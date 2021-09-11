@@ -13,31 +13,13 @@
 	/// Internal storage type
 	var/storage_type = /obj/item/storage/internal/modular
 
-/obj/item/armor_module/storage/can_attach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
-	. = ..()
-	if(!.)
-		return
-	if(parent.installed_storage)
-		if(!silent)
-			to_chat(user,span_warning("There is already an installed storage module."))
-		return FALSE
 
-/obj/item/armor_module/storage/can_detach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
+/obj/item/armor_module/storage/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
-	if(!.)
-		return
-	if(parent.storage && length(parent.storage.contents))
-		if(!silent)
-			to_chat(user, "You can't remove this while there are still items inside")
-		return FALSE
-
-/obj/item/armor_module/storage/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	. = ..()
-	parent.slowdown += slowdown
 	time_to_equip = parent.time_to_equip
 	time_to_unequip = parent.time_to_unequip
 
-/obj/item/armor_module/storage/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/armor_module/storage/on_detach(obj/item/detaching_from, mob/user)
 	parent.slowdown -= slowdown
 	time_to_equip = initial(time_to_equip)
 	time_to_unequip = initial(time_to_unequip)
@@ -55,18 +37,6 @@
 	cant_hold = list(
 		/obj/item/stack,
 	)
-
-/obj/item/armor_module/storage/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	. = ..()
-	parent.installed_storage = src
-	parent.storage = new storage_type(parent)
-
-
-/obj/item/armor_module/storage/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	parent.installed_storage = null
-	QDEL_NULL(parent.storage)
-	return ..()
-
 
 /** General storage */
 /obj/item/armor_module/storage/general

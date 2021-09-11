@@ -9,12 +9,14 @@
 	var/datum/callback/on_attach
 	///Proc the parent calls on detach.
 	var/datum/callback/on_detach
+	///Proc the parent calls to see if its eligable for attachment.
+	var/datum/callback/can_attach
 	///List of offsets for the parent that adjusts the attachment overlay. slot1_x = 1, slot1_y = 1, slot2_x = 3, slot2_y = 7, etc. Can be null, in that case the offsets for all the attachments default to 0.
 	var/list/attachment_offsets
 	///List of the attachment overlay images. This is so that we can easily swap overlays in and out.
 	var/list/attachable_overlays
 
-/datum/component/attachment_handler/Initialize(list/slots, list/attachables_allowed, list/attachment_offsets, list/starting_attachmments, datum/callback/on_attach, datum/callback/on_detach, list/overlays = list())
+/datum/component/attachment_handler/Initialize(list/slots, list/attachables_allowed, list/attachment_offsets, list/starting_attachmments, datum/callback/can_attach, datum/callback/on_attach, datum/callback/on_detach, list/overlays = list())
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -24,6 +26,7 @@
 	src.attachables_allowed = attachables_allowed
 	src.on_attach = on_attach
 	src.on_detach = on_detach
+	src.can_attach = can_attach
 	src.attachment_offsets = attachment_offsets
 	attachable_overlays = overlays //This is incase the parent wishes to have a stored reference to this list.
 	attachable_overlays += slots 
@@ -55,6 +58,9 @@
 		return
 
 	if(!bypass_checks)
+		if(can_attach)
+			if(!can_attach.Invoke(attachment))
+				return
 		if(attachment_data[CAN_ATTACH])
 			var/datum/callback/attachment_can_attach = CALLBACK(attachment, attachment_data[CAN_ATTACH])
 			if(!attachment_can_attach.Invoke(parent, attacher))
@@ -175,7 +181,7 @@
 		if(!CHECK_BITFIELD(current_attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_REMOVABLE))
 			continue
 		attachments_to_remove += current_attachment
-	
+
 	if(!length(attachments_to_remove))
 		to_chat(living_user, span_warning("There are no attachments that can be removed from [parent]!"))
 		return
@@ -263,7 +269,13 @@
 
 		var/list/attachment_data = attachment_data_by_slot[slot]
 
-		overlay = image(attachment_data[OVERLAY_ICON], parent_item, attachment.icon_state + "_a")
+		var/icon = attachment_data[OVERLAY_ICON]
+		var/icon_state = attachment.icon_state + "_a"
+		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
+			icon_state = attachment.icon_state
+			icon = attachment.icon
+
+		overlay = image(icon, parent_item, icon_state)
 
 		var/slot_x = 0 //This and slot_y are for the event that the parent did not have an overlay_offsets. In that case the offsets default to 0
 		var/slot_y = 0

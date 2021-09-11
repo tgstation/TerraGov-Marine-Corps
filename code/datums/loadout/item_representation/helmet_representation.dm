@@ -15,9 +15,7 @@
 		CRASH("/datum/item_representation/modular_helmet created from an item that is not an modular helmet")
 	..()
 	var/obj/item/clothing/head/modular/helmet_to_copy = item_to_copy
-	if(helmet_to_copy.installed_module)
-		module = new /datum/item_representation/modular_helmet_module(helmet_to_copy.installed_module)
-	greyscale_colors = helmet_to_copy.greyscale_colors
+	//this too
 
 /datum/item_representation/modular_helmet/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	. = ..()
@@ -60,11 +58,11 @@
 /datum/item_representation/modular_helmet_module/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
-	if(!ishelmetmodule(item_to_copy))
-		CRASH("/datum/item_representation/modular_helmet_module created from an item that is not an helmet module")
+	//if(!ishelmetmodule(item_to_copy))
+	//	CRASH("/datum/item_representation/modular_helmet_module created from an item that is not an helmet module")
 	..()
 
 ///Attach the instantiated item on an helmet
 /datum/item_representation/modular_helmet_module/proc/install_on_helmet(datum/loadout_seller/seller, obj/item/clothing/head/modular/helmet, mob/living/user)
-	var/obj/item/helmet_module/module = instantiate_object(seller, null, user)
-	module?.do_attach(null, helmet)
+	//var/obj/item/helmet_module/module = instantiate_object(seller, null, user)
+	//module?.do_attach(null, helmet)

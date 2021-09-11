@@ -92,6 +92,7 @@
 //flags_attach_features
 #define ATTACH_REMOVABLE (1<<0)
 #define ATTACH_ACTIVATION (1<<1)
+#define ATTACH_SAME_ICON (1<<2)
 
 //Ammo magazine defines, for flags_magazine
 #define AMMUNITION_REFILLABLE 1

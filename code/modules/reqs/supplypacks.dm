@@ -754,60 +754,60 @@ ARMOR
 /datum/supply_packs/armor/modular/attachments/mixed
 	name = "Jaeger experimental mark 2 modules"
 	contains = list(
-		/obj/item/armor_module/attachable/valkyrie_autodoc,
-		/obj/item/armor_module/attachable/fire_proof,
-		/obj/item/armor_module/attachable/tyr_extra_armor,
-		/obj/item/armor_module/attachable/mimir_environment_protection,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/hlin_explosive_armor,
+		/obj/item/armor_module/valkyrie_autodoc,
+		/obj/item/armor_module/fire_proof,
+		/obj/item/armor_module/tyr_extra_armor,
+		/obj/item/armor_module/mimir_environment_protection,
+		/obj/item/armor_module/better_shoulder_lamp,
+		/obj/item/armor_module/hlin_explosive_armor,
 	)
 	cost = 40
 
 /datum/supply_packs/armor/modular/attachments/valkyrie_autodoc
 	name = "Jaeger Valkyrie autodoc module"
 	contains = list(
-		/obj/item/armor_module/attachable/valkyrie_autodoc,
+		/obj/item/armor_module/valkyrie_autodoc,
 	)
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/fire_proof
 	name = "Jaeger Surt fireproof module"
 	contains = list(
-		/obj/item/armor_module/attachable/fire_proof,
+		/obj/item/armor_module/fire_proof,
 	)
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/tyr_extra_armor
 	name = "Jaeger Tyr mark 2 module"
 	contains = list(
-		/obj/item/armor_module/attachable/tyr_extra_armor,
-		/obj/item/helmet_module/attachable/tyr_head,
+		/obj/item/armor_module/tyr_extra_armor,
+		/obj/item/armor_module/tyr_head,
 	)
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/mimir_environment_protection
 	name = "Jaeger Mimir Mark 2 module set"
 	contains = list(
-		/obj/item/armor_module/attachable/mimir_environment_protection,
-		/obj/item/helmet_module/attachable/mimir_environment_protection,
+		/obj/item/armor_module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/mimir_environment_protection/mark1,
 	)
 	cost = 15
 
 /datum/supply_packs/armor/modular/attachments/generic_helmet_modules
 	name = "Generic Jaeger helmet modules"
 	contains = list(
-		/obj/item/helmet_module/welding,
-		/obj/item/helmet_module/welding,
-		/obj/item/helmet_module/binoculars,
-		/obj/item/helmet_module/binoculars,
-		/obj/item/helmet_module/antenna,
-		/obj/item/helmet_module/antenna,
+		/obj/item/armor_module/welding,
+		/obj/item/armor_module/welding,
+		/obj/item/armor_module/binoculars,
+		/obj/item/armor_module/binoculars,
+		/obj/item/armor_module/antenna,
+		/obj/item/armor_module/antenna,
 	)
 	cost = 5
 
 /datum/supply_packs/armor/modular/attachments/hlin_bombimmune
 	name = "Jaeger Hlin module"
-	contains = list(/obj/item/armor_module/attachable/hlin_explosive_armor)
+	contains = list(/obj/item/armor_module/hlin_explosive_armor)
 	cost = 12
 
 /*******************************************************************************

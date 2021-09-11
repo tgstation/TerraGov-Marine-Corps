@@ -13,7 +13,7 @@
 	name = "Jaeger XM-02 combat exoskeleton"
 	desc = "Designed to mount a variety of modular armor components and support systems. It comes installed with light-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use a crowbar to remove armor pieces, use a screwdriver to remove armor attachments."
 	icon = 'icons/mob/modular/modular_armor.dmi'
-	icon_state = "underarmor_icon"
+	icon_state = "underarmor"
 	item_state = "underarmor"
 	item_state_worn = TRUE
 	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
@@ -42,54 +42,95 @@
 
 	actions_types = list(/datum/action/item_action/toggle)
 
-	/// Attachment slots for chest armor
-	var/obj/item/armor_module/armor/slot_chest
-	/// Attachment slots for arm armor
-	var/obj/item/armor_module/armor/slot_arms
-	/// Attachment slots for leg armor
-	var/obj/item/armor_module/armor/slot_legs
+	var/list/attachments_by_slot = list(
+		ATTACHMENT_SLOT_CHESTPLATE,
+		ATTACHMENT_SLOT_SHOULDER,
+		ATTACHMENT_SLOT_KNEE,
+		ATTACHMENT_SLOT_MODULE,
+		ATTACHMENT_SLOT_STORAGE,
+	)
+	var/list/attachments_allowed = list(
+		/obj/item/armor_module/armor/chest/marine,
+		/obj/item/armor_module/armor/legs/marine,
+		/obj/item/armor_module/armor/arms/marine,
 
-	/** Installed modules */
-	/// How many modules you can have
-	var/max_modules = 1
-	/// What modules are installed
-	var/list/obj/item/armor_module/attachable/installed_modules
-	/// What storage is installed
-	var/obj/item/armor_module/storage/installed_storage
-	/// Holder for the actual storage implementation
-	var/obj/item/storage/internal/storage
+		/obj/item/armor_module/armor/chest/marine/skirmisher,
+		/obj/item/armor_module/armor/legs/marine/skirmisher,
+		/obj/item/armor_module/armor/arms/marine/skirmisher,
 
-	/// How long it takes to attach or detach to this item
-	var/equip_delay = 0.5 SECONDS
+		/obj/item/armor_module/armor/chest/marine/skirmisher/scout,
+		/obj/item/armor_module/armor/legs/marine/scout,
+		/obj/item/armor_module/armor/arms/marine/scout,
+
+		/obj/item/armor_module/armor/chest/marine/assault,
+		/obj/item/armor_module/armor/legs/marine/assault,
+		/obj/item/armor_module/armor/arms/marine/assault,
+
+		/obj/item/armor_module/armor/chest/marine/eva,
+		/obj/item/armor_module/armor/legs/marine/eva,
+		/obj/item/armor_module/armor/arms/marine/eva,
+
+		/obj/item/armor_module/armor/chest/marine/assault/eod,
+		/obj/item/armor_module/armor/legs/marine/eod,
+		/obj/item/armor_module/armor/arms/marine/eod,
+
+		/obj/item/armor_module/better_shoulder_lamp,
+		/obj/item/armor_module/valkyrie_autodoc,
+		/obj/item/armor_module/fire_proof,
+		/obj/item/armor_module/tyr_extra_armor,
+		/obj/item/armor_module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/mimir_environment_protection,
+		/obj/item/armor_module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/hlin_explosive_armor,
+		/obj/item/armor_module/ballistic_armor,
+		/obj/item/armor_module/chemsystem,
+
+	)
+	var/list/attachment_offsets = list()
+	var/list/starting_attachments = list()
+	var/list/attachment_overlays = list()
 
 	/// Misc stats
 	light_range = 5
 
+/obj/item/clothing/suit/modular/Initialize()
+	. = ..()
+	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, attachment_offsets, starting_attachments, null, null, null, attachment_overlays)
 
-/obj/item/clothing/suit/modular/Destroy()
-	QDEL_NULL(slot_chest)
-	QDEL_NULL(slot_arms)
-	QDEL_NULL(slot_legs)
+/obj/item/clothing/suit/modular/equipped(mob/user, slot)
+	. = ..()
+	if(slot != SLOT_WEAR_SUIT)
+		return
+	for(var/key in attachments_by_slot)
+		if(!attachments_by_slot[key])
+			continue
+		var/obj/item/armor_module/module = attachments_by_slot[key]
+		if(!CHECK_BITFIELD(module.flags_attach_features, ATTACH_ACTIVATION))
+			continue
+		LAZYADD(module.actions_types, /datum/action/item_action/toggle)
+		var/datum/action/item_action/toggle/new_action = new(module)
+		new_action.give_action(user)
 
-	QDEL_LIST(installed_modules)
-	installed_modules = null
-	QDEL_NULL(installed_storage)
-	QDEL_NULL(storage)
-	return ..()
+/obj/item/clothing/suit/modular/unequipped(mob/unequipper, slot)
+	. = ..()
+	if(slot != SLOT_WEAR_SUIT)
+		return
+	for(var/key in attachments_by_slot)
+		if(!attachments_by_slot[key])
+			continue
+		var/obj/item/armor_module/module = attachments_by_slot[key]
+		if(!CHECK_BITFIELD(module.flags_attach_features, ATTACH_ACTIVATION))
+			continue
+		LAZYREMOVE(module.actions_types, /datum/action/item_action/toggle)
+		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in module.actions
+		old_action.remove_action(unequipper)
 
 /obj/item/clothing/suit/modular/apply_custom(image/standing)
-	if(slot_chest)
-		standing.overlays += image(slot_chest.icon, ITEM_STATE_IF_SET(slot_chest))
-	if(slot_arms)
-		standing.overlays += image(slot_arms.icon, ITEM_STATE_IF_SET(slot_arms))
-	if(slot_legs)
-		standing.overlays += image(slot_legs.icon, ITEM_STATE_IF_SET(slot_legs))
-	for(var/mod in installed_modules)
-		var/obj/item/armor_module/module = mod
-		standing.overlays += image(module.icon, ITEM_STATE_IF_SET(module))
-	if(installed_storage)
-		standing.overlays += image(installed_storage.icon, ITEM_STATE_IF_SET(installed_storage))
-
+	for(var/key in attachment_overlays)
+		var/image/overlay = attachment_overlays[key]
+		if(!overlay)
+			continue
+		standing.overlays += overlay
 
 /obj/item/clothing/suit/modular/mob_can_equip(mob/user, slot, warning)
 	if(slot == SLOT_WEAR_SUIT && ishuman(user))
@@ -125,201 +166,22 @@
 		return FALSE
 	return TRUE //only give action button when armor is worn.
 
-
-/obj/item/clothing/suit/modular/attack_hand(mob/living/user)
-	if(!storage)
-		return ..()
-	if(storage.handle_attack_hand(user))
-		return ..()
-
-
-/obj/item/clothing/suit/modular/MouseDrop(over_object, src_location, over_location)
-	if(!storage)
-		return ..()
-	if(storage.handle_mousedrop(usr, over_object))
-		return ..()
-
-
-/obj/item/clothing/suit/modular/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return
-
-	if(QDELETED(user) || user.stat != CONSCIOUS)
-		return TRUE
-
-	if(istype(I, /obj/item/armor_module))
-		var/obj/item/armor_module/module = I
-		if(!module.can_attach(user, src))
-			return FALSE
-		if(!can_attach(user, module))
-			return FALSE
-		module.do_attach(user, src)
-		update_overlays()
-		return
-
-	if(!storage)
-		return
-	return storage.attackby(I, user, params)
-
-
-/obj/item/clothing/suit/modular/emp_act(severity)
-	storage?.emp_act(severity)
-	return ..()
-
-/obj/item/clothing/suit/modular/proc/can_attach(mob/living/user, obj/item/armor_module/module, silent = FALSE)
-	. = TRUE
-	if(!istype(module))
-		return FALSE
-
-	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
-		if(!silent)
-			to_chat(user, span_warning("You need to remove the armor first."))
-		return FALSE
-
-	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
-		return FALSE
-
-/obj/item/clothing/suit/modular/proc/can_detach(mob/living/user, obj/item/armor_module/module, silent = FALSE)
-	. = TRUE
-
-	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
-		return FALSE
-
-
-/obj/item/clothing/suit/modular/screwdriver_act(mob/living/user, obj/item/I)
-	. = ..()
-	if(.)
-		return
-
-	if(user.do_actions)
-		return FALSE
-
-	if(!LAZYLEN(installed_modules))
-		to_chat(user, span_notice("There is nothing to remove"))
-		return TRUE
-
-	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
-		to_chat(user, span_warning("You need to remove the armor first."))
-		return TRUE
-
-	var/obj/item/armor_module/attachable/attachment
-	if(LAZYLEN(installed_modules) == 1) // Single item (just take it)
-		attachment = installed_modules[1]
-	else if(LAZYLEN(installed_modules) > 1) // Multi item, ask which piece
-		attachment = tgui_input_list(user, "Which module would you like to remove", "Remove module", installed_modules)
-	if(!attachment)
-		return TRUE
-
-	if(!can_detach(user, attachment))
-		return TRUE
-
-	attachment.do_detach(user, src)
-	update_overlays()
-	return TRUE
-
-
-/obj/item/clothing/suit/modular/crowbar_act(mob/living/user, obj/item/I)
-	. = ..()
-	if(.)
-		return
-
-	if(user.do_actions)
-		return FALSE
-
-	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
-		to_chat(user, span_warning("You need to remove the armor first."))
-		return TRUE
-
-	var/list/obj/item/armor_module/armor/armor_slots = list()
-	if(slot_chest)
-		armor_slots += slot_chest
-	if(slot_arms)
-		armor_slots += slot_arms
-	if(slot_legs)
-		armor_slots += slot_legs
-
-	if(!length(armor_slots))
-		to_chat(user, span_notice("There is nothing to remove"))
-		return TRUE
-
-	var/obj/item/armor_module/armor/armor_slot
-	if(length(armor_slots) == 1) // Single item (just take it)
-		armor_slot = armor_slots[1]
-	else if(length(armor_slots) > 1) // Multi item, ask which piece
-		armor_slot = tgui_input_list(user, "Which armor piece would you like to remove", "Remove armor piece", armor_slots)
-	if(!armor_slot)
-		return TRUE
-
-	if(!can_detach(user, armor_slot))
-		return TRUE
-	armor_slot.do_detach(user, src)
-	update_overlays()
-	return TRUE
-
-
-/obj/item/clothing/suit/modular/wirecutter_act(mob/living/user, obj/item/I)
-	. = ..()
-	if(.)
-		return
-
-	if(user.do_actions)
-		return FALSE
-
-	if(!installed_storage)
-		to_chat(user, span_notice("There is nothing to remove"))
-		return TRUE
-
-	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
-		to_chat(user, span_warning("You need to remove the armor first."))
-		return TRUE
-
-	if(!can_detach(user, installed_storage))
-		return TRUE
-	installed_storage.do_detach(user, src)
-	update_overlays()
-	return TRUE
-
-/obj/item/clothing/suit/modular/update_overlays()
-	. = ..()
-
-	if(overlays)
-		cut_overlays()
-
-	if(slot_chest)
-		add_overlay(image(slot_chest.icon, slot_chest.icon_state))
-	if(slot_arms)
-		add_overlay(image(slot_arms.icon, slot_arms.icon_state))
-	if(slot_legs)
-		add_overlay(image(slot_legs.icon, slot_legs.icon_state))
-
-	// we intentionally do not add modules here
-	// as the icons are not made to be added in world, only on mobs.
-
-	if(installed_storage)
-		add_overlay(image(installed_storage.icon, installed_storage.icon_state))
-
-	update_clothing_icon()
-
-
 /obj/item/clothing/suit/modular/get_mechanics_info()
 	. = ..()
 	. += "<br><br />This is a piece of modular armor, It can equip different attachments.<br />"
-	. += "<br>It currently has [LAZYLEN(installed_modules)] / [max_modules] modules installed."
+	. += "<br>It currently has [attachments_by_slot[ATTACHMENT_SLOT_MODULE] ? "a" : "no" ] module installed.</br>"
 	. += "<ul>"
-	if(LAZYLEN(installed_modules))
-		for(var/obj/item/armor_module/mod in installed_modules)
-			. += "<li>[mod]</li>"
+	. += "<li>[attachments_by_slot[ATTACHMENT_SLOT_MODULE]]</li>"
 	. += "</ul>"
 
-	if(slot_chest)
-		. += "<br> It has a [slot_chest] installed."
-	if(slot_arms)
-		. += "<br> It has a [slot_arms] installed."
-	if(slot_legs)
-		. += "<br> It has a [slot_legs] installed."
-	if(installed_storage)
-		. += "<br> It has a [installed_storage] installed."
+	if(attachments_by_slot[ATTACHMENT_SLOT_CHESTPLATE])
+		. += "<br> It has a [attachments_by_slot[ATTACHMENT_SLOT_CHESTPLATE]] installed."
+	if(attachments_by_slot[ATTACHMENT_SLOT_SHOULDER])
+		. += "<br> It has a [attachments_by_slot[ATTACHMENT_SLOT_SHOULDER]] installed."
+	if(attachments_by_slot[ATTACHMENT_SLOT_KNEE])
+		. += "<br> It has a [attachments_by_slot[ATTACHMENT_SLOT_KNEE]] installed."
+	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+		. += "<br> It has a [attachments_by_slot[ATTACHMENT_SLOT_STORAGE]] installed."
 
 /obj/item/clothing/suit/modular/pas11x
 	name = "\improper PAS-11X pattern armored vest"
@@ -330,12 +192,44 @@
 	slowdown = 0.5
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
-/obj/item/clothing/suit/modular/pas11x/can_attach(mob/living/user, obj/item/armor_module/module, silent)
-	if(istype(module, /obj/item/armor_module/armor))//can't attach armor.
-		return FALSE
-	return ..()
+	attachments_allowed = list(
+		/obj/item/armor_module/better_shoulder_lamp,
+		/obj/item/armor_module/valkyrie_autodoc,
+		/obj/item/armor_module/fire_proof,
+		/obj/item/armor_module/tyr_extra_armor,
+		/obj/item/armor_module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/mimir_environment_protection,
+		/obj/item/armor_module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/hlin_explosive_armor,
+		/obj/item/armor_module/ballistic_armor,
+		/obj/item/armor_module/chemsystem,
+	)
 
+/obj/item/clothing/suit/modular/pas11x/attackby(obj/item/I, mob/user, params)
+	if(!istype(I, /obj/item/facepaint/))
+		return ..()
+	var/obj/item/facepaint/paint = I
+	if(paint.uses < 1)
+		to_chat(user, span_warning("\the [paint] is out of color!"))
+		return
+	paint.uses--
+	var/color = tgui_input_list(user, "Choose a color.", "Color", list("green", "brown", "white", "black"))
 
+	if(!color)
+		return
+	
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return
+
+	switch(color)
+		if("green")
+			icon_state = "m_" + initial(icon_state)
+		if("brown")
+			icon_state = initial(icon_state)
+		if("white")
+			icon_state = "s_" + initial(icon_state)
+		if("black")
+			icon_state = "k_" + initial(icon_state)
 
 /** Core helmet module */
 /obj/item/clothing/head/modular
@@ -355,13 +249,8 @@
 
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
-	actions_types = list(/datum/action/item_action/toggle)
-
 	greyscale_config = /datum/greyscale_config/modularhelmet_infantry
 	greyscale_colors = "#5B6036#f7fb58"
-
-	/// Reference to the installed module
-	var/obj/item/helmet_module/installed_module
 
 	/// How long it takes to attach or detach to this item
 	var/equip_delay = 3 SECONDS
@@ -377,16 +266,29 @@
 	///optional assoc list of colors we can color this armor
 	var/list/colorable_colors
 
+
+	var/list/attachments_by_slot = list(
+		ATTACHMENT_SLOT_HEAD_MODULE,
+	)
+	var/list/attachments_allowed = list(
+		/obj/item/armor_module/tyr_head,
+		/obj/item/armor_module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/welding,
+		/obj/item/armor_module/binoculars,
+		/obj/item/armor_module/antenna,
+	)
+	var/list/attachment_offsets = list()
+	var/list/starting_attachments = list()
+	var/list/attachment_overlays = list()
+
 /obj/item/clothing/head/modular/Initialize(mapload)
 	. = ..()
 	if(!visor_emissive_on || !visor_greyscale_config)
 		return
 	AddElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, visor_greyscale_config, visor_color_hex)
+	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, attachment_offsets, starting_attachments, null, null, null, attachment_overlays)
 	update_icon()
-
-/obj/item/clothing/head/modular/Destroy()
-	QDEL_NULL(installed_module)
-	return ..()
 
 /obj/item/clothing/head/modular/update_greyscale(list/colors, update)
 	. = ..()
@@ -432,16 +334,19 @@
 		return
 
 	if(!istype(I, /obj/item/facepaint))
-		return FALSE
+		return
 
+	return recolor(I, user)
+
+/obj/item/clothing/head/modular/proc/recolor(obj/item/facepaint/paint, mob/user)
 	if(!greyscale_config)
-		return FALSE
+		return
 
-	var/obj/item/facepaint/paint = I
 	if(paint.uses < 1)
 		to_chat(user, span_warning("\the [paint] is out of color!"))
-		return TRUE
+		return
 	paint.uses--
+	
 	var/new_color
 	if(colorable_colors)
 		new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
@@ -452,14 +357,14 @@
 		return
 
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
-		return TRUE
+		return
 
 	main_color_hex = new_color
 	var/list/split_colors = list(new_color)
 	if(visor_color_hex)
 		split_colors += visor_color_hex
 	set_greyscale_colors(split_colors)
-	return TRUE
+	return
 
 /obj/item/clothing/head/modular/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
@@ -470,9 +375,11 @@
 		return
 
 	if(!istype(I, /obj/item/facepaint))
-		return FALSE
+		return
+	
+	return recolor_visor(I, user)
 
-	var/obj/item/facepaint/paint = I
+/obj/item/clothing/head/modular/proc/recolor_visor(obj/item/facepaint/paint, mob/user)
 	if(paint.uses < 1)
 		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
 		return TRUE
@@ -487,6 +394,7 @@
 
 	visor_color_hex = new_color
 	set_greyscale_colors(list(main_color_hex, new_color))
+	return TRUE
 
 /obj/item/clothing/head/modular/attack_hand_alternate(mob/living/carbon/human/user)
 	if(user.head == src)
@@ -500,98 +408,43 @@
 		RemoveElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, visor_greyscale_config, visor_color_hex)
 	update_icon()
 
-/obj/item/clothing/head/modular/item_action_slot_check(mob/user, slot)
-	if(!ishuman(user))
-		return FALSE
+/obj/item/clothing/head/modular/equipped(mob/user, slot)
+	. = ..()
 	if(slot != SLOT_HEAD)
-		return FALSE
-	if(installed_module?.module_type != ARMOR_MODULE_TOGGLE)
-		return FALSE
-	return TRUE //only give action button when armor is worn.
+		return
+	for(var/key in attachments_by_slot)
+		if(!attachments_by_slot[key])
+			continue
+		var/obj/item/armor_module/module = attachments_by_slot[key]
+		if(!CHECK_BITFIELD(module.flags_attach_features, ATTACH_ACTIVATION))
+			continue
+		LAZYADD(module.actions_types, /datum/action/item_action/toggle)
+		var/datum/action/item_action/toggle/new_action = new(module)
+		new_action.give_action(user)
 
-
-/obj/item/clothing/head/modular/attack_self(mob/user)
+/obj/item/clothing/head/modular/unequipped(mob/unequipper, slot)
 	. = ..()
-	if(.)
+	if(slot != SLOT_HEAD)
 		return
-	if(!isturf(user.loc))
-		to_chat(user, span_warning("You cannot turn the module on while in [user.loc]."))
-		return
-	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ARMOR_ACTION) || !ishuman(user))
-		return
-	var/mob/living/carbon/human/H = user
-	if(H.head != src)
-		return
-	installed_module?.toggle_module(user, src)
-	return TRUE
-
-
-
-/obj/item/clothing/head/modular/screwdriver_act(mob/living/user, obj/item/I)
-	. = ..()
-	if(.)
-		return
-
-	if(user.do_actions)
-		return FALSE
-
-	if(!installed_module)
-		to_chat(user, span_notice("There is nothing to remove"))
-		return TRUE
-
-	var/obj/item/armor_module/attachable/attachment = installed_module
-	if(!can_detach(user, attachment))
-		return TRUE
-
-	attachment.do_detach(user, src)
-	update_overlays()
-	return TRUE
-
+	for(var/key in attachments_by_slot)
+		if(!attachments_by_slot[key])
+			continue
+		var/obj/item/armor_module/module = attachments_by_slot[key]
+		if(!CHECK_BITFIELD(module.flags_attach_features, ATTACH_ACTIVATION))
+			continue
+		LAZYREMOVE(module.actions_types, /datum/action/item_action/toggle)
+		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in module.actions
+		old_action.remove_action(unequipper)
 
 /obj/item/clothing/head/modular/update_overlays()
 	. = ..()
-	if(installed_module)
-		. += image(installed_module.icon, installed_module.item_state)
 	if(visor_emissive_on)
 		. += emissive_appearance('icons/mob/modular/infantry.dmi', "visor")
-
-/obj/item/clothing/head/modular/apply_custom(image/standing)
-	if(installed_module)
-		standing.overlays += image(installed_module.icon, ITEM_STATE_IF_SET(installed_module))
 
 /obj/item/clothing/head/modular/get_mechanics_info()
 	. = ..()
 	. += "<br><br />This is a piece of modular armor, It can equip different attachments.<br />"
-	. += "<br>It currently has [installed_module ? installed_module : "nothing"] installed."
-
-/obj/item/clothing/head/modular/proc/can_attach(mob/living/user, obj/item/helmet_module/module, silent = FALSE)
-	. = TRUE
-	if(!istype(module))
-		return FALSE
-
-	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
-		if(!silent)
-			to_chat(user, span_warning("You need to remove the armor first."))
-		return FALSE
-
-	if(installed_module)
-		if(!silent)
-			to_chat(user,span_warning("There is already an installed module."))
-		return FALSE
-
-	if(user.do_actions)
-		return FALSE
-
-	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
-		return FALSE
-	update_overlays()
-
-/obj/item/clothing/head/modular/proc/can_detach(mob/living/user, obj/item/helmet_module/module, silent = FALSE)
-	. = TRUE
-
-	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
-		return FALSE
-	update_overlays()
+	. += "<br>It currently has [attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] ? attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE] : "nothing"] installed."
 
 /obj/item/clothing/head/modular/marine
 	name = "Jaeger Pattern Infantry Helmet"

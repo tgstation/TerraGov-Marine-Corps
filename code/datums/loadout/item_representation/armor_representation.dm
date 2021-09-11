@@ -45,18 +45,7 @@
 	..()
 	var/obj/item/clothing/suit/modular/jaeger_to_copy = item_to_copy
 	armor_modules = list()
-	if(jaeger_to_copy.slot_chest)
-		armor_modules["chest"] = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_chest)
-	if(jaeger_to_copy.slot_arms)
-		armor_modules["arms"] = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_arms)
-	if(jaeger_to_copy.slot_legs)
-		armor_modules["legs"] = new /datum/item_representation/armor_module/colored(jaeger_to_copy.slot_legs)
-	if(jaeger_to_copy.installed_storage)
-		installed_storage = new /datum/item_representation/armor_module(jaeger_to_copy.installed_storage)
-		storage_implementation = new /datum/item_representation/storage(jaeger_to_copy.storage)
-	if(!length(jaeger_to_copy.installed_modules)) //Not supporting mutiple modules, but no object in game has that so
-		return
-	installed_module = new /datum/item_representation/armor_module(jaeger_to_copy.installed_modules[1])
+	//do this
 
 /datum/item_representation/modular_armor/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	. = ..()
@@ -67,9 +56,7 @@
 		var/datum/item_representation/armor_module/colored/armor_module = armor_modules[key]
 		armor_module.install_on_armor(seller, modular_armor, user)
 	installed_module?.install_on_armor(seller, modular_armor, user)
-	if(installed_storage)
-		installed_storage.install_on_armor(seller, modular_armor, user)
-		modular_armor.storage = storage_implementation.instantiate_object(seller, modular_armor, user)
+	//do this too
 	modular_armor.update_icon()
 
 
@@ -128,7 +115,7 @@
 ///Attach the instantiated item on an armor
 /datum/item_representation/armor_module/proc/install_on_armor(datum/loadout_seller/seller, obj/item/clothing/suit/modular/armor, mob/living/user)
 	var/obj/item/armor_module/module = instantiate_object(seller, null, user)
-	module?.do_attach(null, armor)
+	//module?.do_attach(null, armor)
 
 /**
  * Allow to representate an armor piece of a jaeger, and to color it
