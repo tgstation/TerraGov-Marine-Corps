@@ -2,7 +2,7 @@
 	name = "ridden vehicle"
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
 	max_buckled_mobs = 1
-	buckle_lying = 0
+	buckle_lying = -1
 	flags_pass = PASSTABLE
 	COOLDOWN_DECLARE(message_cooldown)
 
