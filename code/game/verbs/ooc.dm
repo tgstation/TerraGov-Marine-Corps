@@ -169,7 +169,7 @@
 	for(var/client/C AS in GLOB.clients)
 		if(!(C.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!(C.mob in GLOB.xeno_mob_list) && !(C.mob in GLOB.observer_list) || check_other_rights(C, R_ADMIN, FALSE)) // If the client is a xeno, an observer, or not an admin.
+		if(!(C.mob in GLOB.xeno_mob_list) && !(C.mob in GLOB.observer_list) || check_other_rights(C, R_ADMIN, FALSE)) // If the client is a xeno, an observer, and not an admin.
 			continue
 
 		var/display_name = mob.name
@@ -256,7 +256,7 @@
 	for(var/client/C AS in GLOB.clients)
 		if(!(C.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!(C.mob in GLOB.human_mob_list) && !(C.mob in GLOB.observer_list) || check_other_rights(C, R_ADMIN, FALSE)) // If the client is a human, an observer, or not an admin.
+		if(!(C.mob in GLOB.human_mob_list) && !(C.mob in GLOB.observer_list) || check_other_rights(C, R_ADMIN, FALSE)) // If the client is a human, an observer, and not an admin.
 			continue
 
 		var/display_name = mob.name
@@ -270,7 +270,7 @@
 	for(var/client/C AS in GLOB.admins)
 		if(!(C.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!check_other_rights(C, R_ADMIN, FALSE) && (C.mob in GLOB.human_mob_list) && (C.mob in GLOB.observer_list)) // If the client is still an admin, not a xeno, and not an observer.
+		if(!check_other_rights(C, R_ADMIN, FALSE) && (C.mob in GLOB.human_mob_list) && (C.mob in GLOB.observer_list)) // If the client is still an admin, not a human, and not an observer.
 			continue
 		var/display_name = mob.name
 		if(admin && !(mob in GLOB.human_mob_list)) // If the verb caller is an admin and is not a human mob, use their ckey instead.
