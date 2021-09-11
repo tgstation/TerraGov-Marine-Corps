@@ -268,6 +268,8 @@
 		to_chat(C, "<font color='#665544'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 	for(var/client/C in GLOB.admins)
+		if(!(C.prefs.toggles_chat & CHAT_OOC))
+			continue
 		if(!check_other_rights(C, R_ADMIN, FALSE) && (C.mob in GLOB.human_mob_list) && (C.mob in GLOB.observer_list))
 			continue
 		var/display_name = mob.name
