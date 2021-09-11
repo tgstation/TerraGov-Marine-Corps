@@ -113,7 +113,7 @@
 	ooc(message)
 
 
-/client/verb/xooc(msg as text)
+/client/verb/xooc(msg as text) // Same as MOOC, but for xenos.
 	set name = "XOOC"
 	set category = "OOC"
 
@@ -124,12 +124,12 @@
 	if(IsGuestKey(key))
 		to_chat(src, "Guests may not use XOOC.")
 		return
-	//if(mob.stat == DEAD && !admin)
-	//	to_chat(src, span_warning("You must be alive to use XOOC."))
-	//	return
-	//if(!(mob in GLOB.xeno_mob_list) && !admin)
-	//	to_chat(src, span_warning("You must be a human to use XOOC."))
-	//	return
+	if(mob.stat == DEAD && !admin)
+		to_chat(src, span_warning("You must be alive to use XOOC."))
+		return
+	if(!(mob in GLOB.xeno_mob_list) && !admin)
+		to_chat(src, span_warning("You must be a human to use XOOC."))
+		return
 
 	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 
@@ -199,7 +199,7 @@
 	ooc(message)
 
 
-/client/verb/mooc(msg as text)
+/client/verb/mooc(msg as text) // Same as XOOC, but for humans.
 	set name = "MOOC"
 	set category = "OOC"
 
@@ -210,12 +210,12 @@
 	if(IsGuestKey(key))
 		to_chat(src, "Guests may not use MOOC.")
 		return
-	//if(mob.stat == DEAD && !admin)
-	//	to_chat(src, span_warning("You must be alive to use MOOC."))
-	//	return
-	//if(!(mob in GLOB.human_mob_list) && !admin)
-	//	to_chat(src, span_warning("You must be a human to use MOOC."))
-	//	return
+	if(mob.stat == DEAD && !admin)
+		to_chat(src, span_warning("You must be alive to use MOOC."))
+		return
+	if(!(mob in GLOB.human_mob_list) && !admin)
+		to_chat(src, span_warning("You must be a human to use MOOC."))
+		return
 
 	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 
