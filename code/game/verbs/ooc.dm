@@ -176,6 +176,7 @@
 		if(admin && !(mob in GLOB.xeno_mob_list)) // If the verb caller is an admin and is not a xeno mob, use their ckey instead.
 			display_name = mob.key
 
+		var/avoid_highlight = C == src
 		to_chat(C, "<font color='#665544'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 	// Send chat message to admins
