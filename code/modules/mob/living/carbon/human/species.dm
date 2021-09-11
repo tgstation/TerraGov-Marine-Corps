@@ -229,16 +229,15 @@
 		to_chat(prefs.parent, span_warning("You forgot to set your synthetic name in your preferences. Please do so next time."))
 
 /datum/species/proc/on_species_gain(mob/living/carbon/human/H, /datum/species/old_species)
+	SHOULD_CALL_PARENT(TRUE)
 	for(var/newtrait in inherent_traits)
 		ADD_TRAIT(H, newtrait, SPECIES_TRAIT)
-	return
 
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
 	SHOULD_CALL_PARENT(TRUE)
 	for(var/oldtrait in inherent_traits)
 		REMOVE_TRAIT(H, oldtrait, SPECIES_TRAIT)
-	return
 
 /datum/species/proc/remove_inherent_verbs(mob/living/carbon/human/H)
 	if(inherent_verbs)
@@ -627,6 +626,7 @@
 	update_moth_wings(H)
 
 /datum/species/moth/post_species_loss(mob/living/carbon/human/H)
+	. = ..()
 	H.remove_overlay(MOTH_WINGS_LAYER)
 	H.remove_underlay(MOTH_WINGS_BEHIND_LAYER)
 
