@@ -1,6 +1,3 @@
-
-
-
 /obj/item/factory_refill
 	name = "generic refiller"
 	desc = "you shouldnt be seeing this."
@@ -59,8 +56,8 @@
 /obj/machinery/outputter/update_icon_state()
 	if(datum_flags & DF_ISPROCESSING)
 		icon_state = "unboxer"
-	else
-		icon_state = "unboxer_inactive"
+		return
+	icon_state = "unboxer_inactive"
 
 /obj/machinery/outputter/attack_hand(mob/living/user)
 	if(!anchored)
@@ -70,11 +67,10 @@
 	if(on)
 		START_PROCESSING(SSmachines, src)
 		balloon_alert_to_viewers("turns on!")
-		update_icon()
 	else
 		STOP_PROCESSING(SSmachines, src)
 		balloon_alert_to_viewers("turns off!")
-		update_icon()
+	update_icon()
 
 /obj/machinery/outputter/attack_ai(mob/living/silicon/ai/user)
 	return attack_hand(user)

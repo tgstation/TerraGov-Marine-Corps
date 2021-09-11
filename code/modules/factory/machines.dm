@@ -6,6 +6,7 @@
 	density = TRUE
 	anchored = FALSE // start off unanchored so its easier to move
 	resistance_flags = XENO_DAMAGEABLE
+	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	///process type we will use to determine what step of the production process this machine will do
 	var/process_type = FACTORY_MACHINE_HEATER
 	///Time in ticks that this machine takes to process one item
@@ -66,7 +67,6 @@
 	if(!locate(held_item.type) in get_step(src, REVERSE_DIR(dir)))
 		icon_state = initial(icon_state)
 	held_item = null
-	icon_state = initial(icon_state)
 
 /obj/machinery/factory/heater
 	name = "Industrial heater"

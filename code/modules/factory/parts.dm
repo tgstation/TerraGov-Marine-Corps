@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(bignade_recipe,  list(
 /obj/item/factory_part/bignade
 	name = "M15 grenade assembly"
 	desc = "An incomplete M15 grenade"
-	result = /obj/item/explosive/grenade/frag/m15
+	result = /obj/item/explosive/grenade/m15
 
 /obj/item/factory_part/bignade/Initialize()
 	. = ..()
