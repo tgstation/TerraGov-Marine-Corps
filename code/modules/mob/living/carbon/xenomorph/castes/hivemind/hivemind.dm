@@ -47,10 +47,11 @@
 
 /mob/living/carbon/xenomorph/hivemind/updatehealth()
 	health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
-	if(health <= 0)
-		setBruteLoss(0)
-		setFireLoss(maxHealth - 1)
+	if(health <= 0 && !(status_flags & INCORPOREAL))
+		setBruteLoss(maxHealth * 1.5)
+		setFireLoss(maxHealth * 1.5)
 		change_form()
+	health = maxHealth - getFireLoss() - getBruteLoss()
 	med_hud_set_health()
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
@@ -105,6 +106,7 @@
 
 ///Finish the form changing of the hivemind and give the needed stats
 /mob/living/carbon/xenomorph/hivemind/proc/do_change_form()
+	LAZYCLEARLIST(movespeed_modification)
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
 		upgrade = XENO_UPGRADE_ZERO
@@ -132,8 +134,6 @@
 	add_abilities()
 	update_wounds()
 	update_icon()
-	if(!check_weeds(get_turf(src)))
-		return_to_core()
 
 /mob/living/carbon/xenomorph/hivemind/flamer_fire_act()
 	return_to_core()
@@ -160,7 +160,7 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/proc/return_to_core()
-	if(!(status_flags & INCORPOREAL))
+	if(!(status_flags & INCORPOREAL) && !TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		do_change_form()
 	forceMove(get_turf(core))
 
@@ -175,6 +175,7 @@
 
 ///Finish the teleportation process to send the hivemind manifestation to the selected turf
 /mob/living/carbon/xenomorph/hivemind/proc/end_teleport(turf/T)
+	LAZYCLEARLIST(movespeed_modification)
 	flick("Hivemind_materialisation_fast", src)
 	if(!check_weeds(T, TRUE))
 		to_chat(src, span_warning("The weeds on our destination were destroyed"))
