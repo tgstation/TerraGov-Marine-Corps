@@ -35,7 +35,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 		break
 	//Iniatialise the behavior of the ai
 	ai_behavior.late_initialize()
-	RegisterSignal(parent, list(COMSIG_PARENT_PREQDELETED, COMSIG_MOB_DEATH), .proc/clean_up)
+	RegisterSignal(parent, list(COMSIG_PARENT_PREQDELETED, COMSIG_MOB_DEATH), .proc/RemoveComponent)
 	RegisterSignal(parent, COMSIG_COMBAT_LOG, .proc/handle_combat_log)
 	GLOB.ai_instances_active += src
 
@@ -43,6 +43,10 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 /datum/component/ai_controller/proc/handle_combat_log()
 	SIGNAL_HANDLER
 	return DONT_LOG
+
+/datum/component/ai_controller/RemoveComponent()
+	clean_up()
+	return ..()
 
 /datum/component/ai_controller/proc/clean_up()
 	SIGNAL_HANDLER
