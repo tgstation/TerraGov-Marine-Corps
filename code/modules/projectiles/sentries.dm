@@ -4,7 +4,7 @@
 	layer = ABOVE_MOB_LAYER
 	use_power = 0
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
-	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
 	///Spark system for making sparks
 	var/datum/effect_system/spark_spread/spark_system
@@ -260,7 +260,7 @@
 /obj/machinery/deployable/mounted/sentry/proc/knock_down()
 	if(CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
-	var/obj/item/weapon/gun/internal_gun = internal_item 
+	var/obj/item/weapon/gun/internal_gun = internal_item
 	internal_gun.stop_fire() //Comrade sentry has been sent to the gulags. He served the revolution well.
 	visible_message(span_highdanger("The [name] is knocked over!"))
 	sentry_alert(SENTRY_ALERT_FALLEN)
