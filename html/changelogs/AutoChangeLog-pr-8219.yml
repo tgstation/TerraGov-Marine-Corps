@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - qol: "Ai will stop processing if you login to a mob with ai. It will resum if you log out"
