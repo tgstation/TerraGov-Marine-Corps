@@ -133,3 +133,21 @@
   Surrealaser:
   - balance: Reduced Hunter's Mark plasma cost from 75 to 25.
   - balance: Removed Hunter's Mark wind up time.
+2021-09-11:
+  BraveMole:
+  - bugfix: AI crusher will no longer have the speed of a runner
+  - expansion: Add ai nodes to EORD
+  MiniMeatwad:
+  - balance: The TP-14 sunder is reduced to 1 from 1.65, and its akimbo scatter range
+      from (30 to 40) to (40 to 50). This will come out as 5 to 15 with attachments
+      instead of -5 to 5.
+  QualityVan:
+  - bugfix: Thrown huggers will crawl into holes or empty eggs.
+  - bugfix: Hatched huggers will jump at people.
+  - bugfix: Planted eggs don't mature instantly.
+  - bugfix: Gas eggs can only be popped once.
+  - qol: Infected limbs are less subtle to their owner.
+  - balance: Wounds with smaller amounts of germs will now disinfect passively over
+      time. Treatment speeds this up.
+  - balance: Fresh wounds won't immediately start infecting the limb they're on.
+  - bugfix: Wounds that worsen now do so more visibly.
