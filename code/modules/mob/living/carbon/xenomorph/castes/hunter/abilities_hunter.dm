@@ -4,15 +4,15 @@
 /datum/action/xeno_action/stealth
 	name = "Toggle Stealth"
 	action_icon_state = "stealth_on"
-	mechanics_text = "Disguise yourself as the enemy. Uses plasma to move."
+	mechanics_text = "Become harder to see, almost invisible if you stand still, and ready a sneak attack. Uses plasma to move."
 	ability_name = "stealth"
 	plasma_cost = 10
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
 	cooldown_timer = HUNTER_STEALTH_COOLDOWN
+	var/last_stealth = null
 	var/stealth = FALSE
 	var/can_sneak_attack = FALSE
-	///the regular appearance of the hunter
-	var/old_appearance
+	var/stealth_alpha_multiplier = 1
 
 /datum/action/xeno_action/stealth/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -33,13 +33,10 @@
 	if(stealth)
 		cancel_stealth()
 		return TRUE
-	var/mob/living/carbon/xenomorph/xenoowner = owner
-	if(!xenoowner.xeno_caste.marked_target)
-		to_chat(owner, span_warning("We have no target to disguise into"))
-		return
 
 	succeed_activate()
-	to_chat(owner, "<span class='xenodanger'>We transform ourselves...</span>")
+	to_chat(owner, "<span class='xenodanger'>We vanish into the shadows...</span>")
+	last_stealth = world.time
 	stealth = TRUE
 
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_stealth)
@@ -72,15 +69,15 @@
 
 	RegisterSignal(owner, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/damage_taken)
 
-	old_appearance = xenoowner.appearance
-	xenoowner.appearance = xenoowner.xeno_caste.marked_target.appearance
-	xenoowner.underlays.Cut()
+	ADD_TRAIT(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT)
+
+	handle_stealth()
 	addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
 
 /datum/action/xeno_action/stealth/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
 	SIGNAL_HANDLER
 	add_cooldown()
-	to_chat(owner, "<span class='xenodanger'>We take back our original appearance.</span>")
+	to_chat(owner, "<span class='xenodanger'>We emerge from the shadows.</span>")
 
 	UnregisterSignal(owner, list(
 		COMSIG_MOVABLE_MOVED,
@@ -111,25 +108,38 @@
 
 	stealth = FALSE
 	can_sneak_attack = FALSE
-
-	owner.appearance = old_appearance
+	REMOVE_TRAIT(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT)
+	owner.alpha = 255 //no transparency/translucency
 
 /datum/action/xeno_action/stealth/proc/sneak_attack_cooldown()
 	if(!stealth || can_sneak_attack)
 		return
 	can_sneak_attack = TRUE
-	to_chat(owner, span_xenodanger("We're ready to use Sneak Attack while disguised."))
+	to_chat(owner, span_xenodanger("We're ready to use Sneak Attack while stealthed."))
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 25, 0, 1)
 
 /datum/action/xeno_action/stealth/proc/handle_stealth()
 	SIGNAL_HANDLER
 
 	var/mob/living/carbon/xenomorph/xenoowner = owner
-
-	xenoowner.use_plasma(owner.m_intent == MOVE_INTENT_WALK ? HUNTER_STEALTH_WALK_PLASMADRAIN : HUNTER_STEALTH_RUN_PLASMADRAIN)
+	//Initial stealth
+	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
+		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
+		return
+	//Stationary stealth
+	else if(owner.last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for 4 seconds we become almost completely invisible
+		owner.alpha = HUNTER_STEALTH_STILL_ALPHA * stealth_alpha_multiplier
+	//Walking stealth
+	else if(owner.m_intent == MOVE_INTENT_WALK)
+		xenoowner.use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN)
+		owner.alpha = HUNTER_STEALTH_WALK_ALPHA * stealth_alpha_multiplier
+	//Running stealth
+	else
+		xenoowner.use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN)
+		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
 	if(!xenoowner.plasma_stored)
-		to_chat(xenoowner, span_xenodanger("We lack sufficient plasma to remain disguised."))
+		to_chat(xenoowner, span_xenodanger("We lack sufficient plasma to remain camouflaged."))
 		cancel_stealth()
 
 /// Callback listening for a xeno using the pounce ability
@@ -195,6 +205,42 @@
 		return
 	return COMSIG_ACCURATE_ZONE
 
+/datum/action/xeno_action/stealth/fun
+	mechanics_text = "Disguise yourself as the enemy. Uses plasma to move."
+	///the regular appearance of the hunter
+	var/old_appearance
+
+/datum/action/xeno_action/stealth/fun/action_activate()
+	if(stealth)
+		cancel_stealth()
+		return TRUE
+
+	var/mob/living/carbon/xenomorph/xenoowner = owner
+	if(!xenoowner.xeno_caste.marked_target)
+		to_chat(owner, span_warning("We have no target to disguise into"))
+		return
+	if(ishuman(xenoowner.xeno_caste.marked_target))
+		to_chat(owner, "You cannot turn into a human!")
+		return
+	old_appearance = xenoowner.appearance
+	ADD_TRAIT(xenoowner, TRAIT_ICON_BLOCKED, STEALTH_TRAIT)
+	return ..()
+
+/datum/action/xeno_action/stealth/fun/cancel_stealth()
+	. = ..()
+	owner.appearance = old_appearance
+	REMOVE_TRAIT(owner, TRAIT_ICON_BLOCKED, STEALTH_TRAIT)
+
+/datum/action/xeno_action/stealth/fun/handle_stealth()
+	var/mob/living/carbon/xenomorph/xenoowner = owner
+	xenoowner.appearance = xenoowner.xeno_caste.marked_target.appearance
+	xenoowner.underlays.Cut()
+	xenoowner.use_plasma(owner.m_intent == MOVE_INTENT_WALK ? HUNTER_STEALTH_WALK_PLASMADRAIN : HUNTER_STEALTH_RUN_PLASMADRAIN)
+	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
+	if(!xenoowner.plasma_stored)
+		to_chat(xenoowner, span_xenodanger("We lack sufficient plasma to remain disguised."))
+		cancel_stealth()
+
 // ***************************************
 // *********** Pounce/sneak attack
 // ***************************************
@@ -220,7 +266,7 @@
 
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(!isliving(A))
+	if((!isliving(A) && !CONFIG_GET(flag/fun_allowed)) || !ismovable(A))
 		if(!silent)
 			to_chat(X, span_xenowarning("We cannot psychically mark this target!"))
 		return FALSE
@@ -326,6 +372,8 @@
 
 ///Where we calculate the approximate health of our trace target
 /datum/action/xeno_action/psychic_trace/proc/calculate_mark_health(mob/living/target)
+	if(!isliving(target))
+		return "not living"
 
 	if(target.stat == DEAD)
 		return "deceased"
