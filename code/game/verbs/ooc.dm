@@ -176,10 +176,6 @@
 		if(admin && !(mob in GLOB.xeno_mob_list)) // If the verb caller is an admin and is not a xeno mob, use their ckey instead.
 			display_name = mob.key
 
-		// Replace display_name with itself and turn it into a clickable player panel href for admins.
-		if(check_other_rights(C, R_ADMIN, FALSE))
-			display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>"
-		var/avoid_highlight = C == src
 		to_chat(C, "<font color='#665544'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 	// Send chat message to admins
