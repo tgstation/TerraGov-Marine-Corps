@@ -86,7 +86,7 @@
 		if(CONFIG_GET(flag/allow_admin_ooccolor))
 			display_colour = prefs.ooccolor
 
-	for(var/client/C in GLOB.clients)
+	for(var/client/C AS in GLOB.clients)
 		if(!(C.prefs.toggles_chat & CHAT_OOC))
 			continue
 
@@ -348,7 +348,7 @@
 		for(var/mob/M in range(mob))
 			to_chat(M, message)
 
-	for(var/client/C in GLOB.admins)
+	for(var/client/C AS in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE) || C.mob == mob)
 			continue
 		if(C.prefs.toggles_chat & CHAT_LOOC)
