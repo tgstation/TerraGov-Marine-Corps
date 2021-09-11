@@ -18453,7 +18453,7 @@
 /obj/structure/table/mainship,
 /obj/item/ammo_magazine/revolver,
 /obj/item/ammo_magazine/revolver,
-/obj/item/weapon/gun/revolver/m44,
+/obj/item/weapon/gun/revolver/single_action/m44,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range)
 "uEg" = (
@@ -18578,7 +18578,7 @@
 /obj/item/ammo_magazine/revolver,
 /obj/item/ammo_magazine/revolver,
 /obj/item/ammo_magazine/revolver,
-/obj/item/weapon/gun/revolver/m44,
+/obj/item/weapon/gun/revolver/single_action/m44,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range)
 "uLM" = (
