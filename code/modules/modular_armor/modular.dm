@@ -85,6 +85,12 @@
 		/obj/item/armor_module/ballistic_armor,
 		/obj/item/armor_module/chemsystem,
 
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/integrated,
+
 	)
 	var/list/attachment_offsets = list()
 	var/list/starting_attachments = list()
@@ -156,6 +162,14 @@
 	turn_light(user, !light_on)
 	return TRUE
 
+/obj/item/clothing/suit/modular/attack_hand(mob/living/user)
+	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+		return ..()
+	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
+		return ..()
+	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+	if(armor_storage.storage.handle_attack_hand(user))
+		return ..()
 
 /obj/item/clothing/suit/modular/item_action_slot_check(mob/user, slot)
 	if(!light_range) // No light no ability
@@ -203,6 +217,12 @@
 		/obj/item/armor_module/hlin_explosive_armor,
 		/obj/item/armor_module/ballistic_armor,
 		/obj/item/armor_module/chemsystem,
+
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/integrated,
 	)
 
 /obj/item/clothing/suit/modular/pas11x/attackby(obj/item/I, mob/user, params)
@@ -424,8 +444,6 @@
 
 /obj/item/clothing/head/modular/unequipped(mob/unequipper, slot)
 	. = ..()
-	if(slot != SLOT_HEAD)
-		return
 	for(var/key in attachments_by_slot)
 		if(!attachments_by_slot[key])
 			continue
@@ -434,7 +452,17 @@
 			continue
 		LAZYREMOVE(module.actions_types, /datum/action/item_action/toggle)
 		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in module.actions
+		if(!old_action)
+			continue
 		old_action.remove_action(unequipper)
+		module.actions = null
+
+/obj/item/clothing/head/modular/apply_custom(image/standing)
+	for(var/key in attachment_overlays)
+		var/image/overlay = attachment_overlays[key]
+		if(!overlay)
+			continue
+		standing.overlays += overlay
 
 /obj/item/clothing/head/modular/update_overlays()
 	. = ..()

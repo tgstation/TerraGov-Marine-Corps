@@ -492,8 +492,8 @@
 	active = !active
 	SEND_SIGNAL(parent, COMSIG_ITEM_TOGGLE_ACTION, user)
 	to_chat(user, span_notice("You toggle \the [src]. [active ? "enabling" : "disabling"] it."))
-	item_state = initial(icon_state) + "[active ? "active" : "" ]" + "_a"
-	icon_state = item_state
+	icon_state = initial(icon_state) + "[active ? "_active" : ""]"
+	item_state = icon_state + "_a"
 	parent.update_overlays()
 	user.update_inv_head()
 
@@ -516,8 +516,8 @@
 
 	active = !active
 	to_chat(user, span_notice("You toggle \the [src]. [active ? "enabling" : "disabling"] it."))
-	item_state = initial(icon_state) + "[active ? "_active" : "" ]" + "_a"
-	icon_state = item_state
+	icon_state = initial(icon_state) + "[active ? "_active" : ""]"
+	item_state = icon_state + "_a"
 	parent.update_overlays()
 	user.update_inv_head()
 	return COMSIG_MOB_CLICK_CANCELED
