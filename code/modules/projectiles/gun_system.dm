@@ -1066,7 +1066,7 @@ and you're good to go.
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
 
 	if(dual_wield) //akimbo firing gives terrible accuracy
-		gun_accuracy_mult = gun_accuracy_mult*rand(upper_akimbo_accuracy_mult, lower_akimbo_accuracy_mult) // Used to decrease akimbo accuracy by random median percentage.
+		gun_accuracy_mult = gun_accuracy_mult*rand(upper_akimbo_accuracy_mult, lower_akimbo_accuracy_mult) // Used to decrease akimbo accuracy by a random median percentage modifier.
 		gun_scatter += 10*rand(upper_akimbo_accuracy, lower_akimbo_accuracy)
 
 
