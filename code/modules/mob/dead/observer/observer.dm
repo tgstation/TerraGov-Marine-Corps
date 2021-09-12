@@ -258,7 +258,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.gender = gender
 	ghost.alpha = 127
 	ghost.can_reenter_corpse = can_reenter_corpse ? WEAKREF(src) : null
-	ghost.timeofdeath = timeofdeath
 	ghost.mind = mind
 	mind = null
 	ghost.key = key
@@ -273,6 +272,14 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.forceMove(T)
 
 	return ghost
+
+/mob/living/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
+	. = ..()
+	if(!. || can_reenter_corpse)
+		return
+	if(!aghosting && job?.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
+		GLOB.key_to_time_of_death[key] = world.time
+		set_afk_status(MOB_RECENTLY_DISCONNECTED, 5 SECONDS)
 
 
 /mob/dead/observer/Move(atom/newloc, direct)
@@ -326,7 +333,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			if(siloless_countdown)
 				stat("<b>Silo less hive collapse timer:</b>", siloless_countdown)
 		if(GLOB.respawn_allowed)
-			status_value = (timeofdeath + SSticker.mode?.respawn_time - world.time) * 0.1
+			status_value = (GLOB.key_to_time_of_death[key] + SSticker.mode?.respawn_time - world.time) * 0.1
 			if(status_value <= 0)
 				stat("Respawn timer:", "<b>READY</b>")
 			else
@@ -339,9 +346,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 				var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 				if(stored_larva)
 					stat("Burrowed larva:", stored_larva)
-				var/datum/hive_status/normal/normal_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
-				if(LAZYLEN(normal_hive.ssd_xenos))
-					stat("SSD xenos:", normal_hive.ssd_xenos.Join(", "))
 		var/datum/game_mode/mode = SSticker.mode
 		if(mode?.flags_round_type & MODE_WIN_POINTS)
 			stat("Points needed to win:", mode.win_points_needed)
@@ -373,6 +377,48 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	client.view_size.set_default(get_screen_size(client.prefs.widescreenpref))//Let's reset so people can't become allseeing gods
 	mind.transfer_to(old_mob, TRUE)
 	return TRUE
+
+/mob/dead/observer/verb/take_ssd_mob()
+	set category = "Ghost"
+	set name = "Try to take SSD mob"
+
+	if(GLOB.key_to_time_of_death[key] + TIME_BEFORE_TAKING_BODY < world.time)
+		to_chat(src, span_warning("You died too recently to be able to take a new mob."))
+		return
+
+	var/list/mob/living/free_ssd_mobs = list()
+	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
+		if(is_centcom_level(ssd_mob.z))
+			continue
+		if(ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
+			continue
+		free_ssd_mobs += ssd_mob
+
+	if(!free_ssd_mobs.len)
+		to_chat(src, span_warning("There aren't any ssd mobs."))
+		return FALSE
+
+	var/mob/living/new_mob = tgui_input_list(src, null, "Available Mobs", free_ssd_mobs)
+	if(!istype(new_mob) || !client)
+		return FALSE
+
+	if(new_mob.stat == DEAD)
+		to_chat(src, span_warning("You cannot join if the mob is dead."))
+		return FALSE
+
+	if(new_mob.client)
+		to_chat(src, span_warning("That mob has been occupied."))
+		return FALSE
+
+	if(new_mob.afk_status == MOB_RECENTLY_DISCONNECTED) //We do not want to occupy them if they've only been gone for a little bit.
+		to_chat(src, span_warning("That player hasn't been away long enough. Please wait [round(timeleft(new_mob.afk_timer_id) * 0.1)] second\s longer."))
+		return FALSE
+
+	if(is_banned_from(ckey, new_mob?.job?.title))
+		to_chat(src, span_warning("You are jobbaned from the [new_mob?.job.title] role."))
+		return
+
+	new_mob.transfer_mob(src)
 
 
 /mob/dead/observer/verb/toggle_HUDs()
@@ -796,33 +842,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 370, 420)
 	popup.set_content(dat)
 	popup.open(FALSE)
-
-
-/mob/dead/verb/join_as_xeno()
-	set category = "Ghost"
-	set name = "Join as Xeno"
-	set desc = "Select an alive but logged-out Xenomorph to rejoin the game."
-
-	if(!client)
-		return
-
-	if(!SSticker?.mode || SSticker.current_state < GAME_STATE_PLAYING)
-		to_chat(src, span_warning("The game hasn't started yet!"))
-		return
-
-	if(is_banned_from(ckey, ROLE_XENOMORPH))
-		to_chat(src, span_warning("You are jobbaned from the [ROLE_XENOMORPH] role."))
-		return
-
-	var/choice = tgui_alert(usr, "Would you like to join as a larva or as a xeno?", "Join as Xeno", list("Xeno", "Larva", "Cancel"), 0)
-	switch(choice)
-		if("Xeno")
-			var/mob/new_xeno = SSticker.mode.attempt_to_join_as_xeno(src)
-			if(new_xeno)
-				SSticker.mode.transfer_xeno(src, new_xeno)
-		if("Larva")
-			SSticker.mode.attempt_to_join_as_larva(src)
-
 
 /mob/dead/observer/verb/observe()
 	set name = "Observe"

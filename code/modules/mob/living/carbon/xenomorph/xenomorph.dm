@@ -373,12 +373,6 @@
 		zoom_out()
 	return ..()
 
-/mob/living/carbon/xenomorph/ghostize(can_reenter_corpse)
-	. = ..()
-	if(!. || can_reenter_corpse)
-		return
-	set_afk_status(MOB_RECENTLY_DISCONNECTED, 5 SECONDS)
-
 /mob/living/carbon/xenomorph/set_stat(new_stat)
 	. = ..()
 	if(isnull(.))
