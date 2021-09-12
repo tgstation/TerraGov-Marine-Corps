@@ -162,14 +162,15 @@
 	turn_light(user, !light_on)
 	return TRUE
 
-/obj/item/clothing/suit/modular/attack_hand(mob/living/user)
+/obj/item/clothing/suit/modular/MouseDrop(over_object, src_location, over_location)
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
 		return ..()
 	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		return ..()
 	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-	if(armor_storage.storage.handle_attack_hand(user))
+	if(armor_storage.storage.handle_mousedrop(usr, over_object))
 		return ..()
+
 
 /obj/item/clothing/suit/modular/item_action_slot_check(mob/user, slot)
 	if(!light_range) // No light no ability
@@ -206,7 +207,23 @@
 	slowdown = 0.5
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
+
 	attachments_allowed = list(
+		/obj/item/armor_module/armor/arms/marine,
+		/obj/item/armor_module/armor/arms/marine/skirmisher,
+		/obj/item/armor_module/armor/arms/marine/scout,
+		/obj/item/armor_module/armor/arms/marine/assault,
+		/obj/item/armor_module/armor/arms/marine/eva,
+		/obj/item/armor_module/armor/arms/marine/eod,
+
+		/obj/item/armor_module/armor/legs/marine,
+		/obj/item/armor_module/armor/legs/marine/skirmisher,
+		/obj/item/armor_module/armor/legs/marine/scout,
+		/obj/item/armor_module/armor/legs/marine/assault,
+		/obj/item/armor_module/armor/legs/marine/eva,
+		/obj/item/armor_module/armor/legs/marine/eod,
+
+
 		/obj/item/armor_module/better_shoulder_lamp,
 		/obj/item/armor_module/valkyrie_autodoc,
 		/obj/item/armor_module/fire_proof,

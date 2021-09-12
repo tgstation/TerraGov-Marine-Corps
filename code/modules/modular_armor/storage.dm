@@ -21,20 +21,35 @@
 	time_to_equip = parent.time_to_equip
 	time_to_unequip = parent.time_to_unequip
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, .proc/open_storage)
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/insert_item)
 	storage.master_item = parent
 
 /obj/item/armor_module/storage/on_detach(obj/item/detaching_from, mob/user)
 	time_to_equip = initial(time_to_equip)
 	time_to_unequip = initial(time_to_unequip)
-	UnregisterSignal(parent, COMSIG_ATOM_ATTACK_HAND)
+	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_PARENT_ATTACKBY))
 	storage.master_item = src
 	return ..()
 
 /obj/item/armor_module/storage/proc/open_storage(datum/source, mob/living/user)
+	SIGNAL_HANDLER
 	if(parent.loc != user)
 		return
 	storage.open(user)
 	return COMPONENT_NO_ATTACK_HAND
+
+/obj/item/armor_module/storage/proc/insert_item(datum/source, obj/item/I, mob/user)
+	SIGNAL_HANDLER
+	if(istype(I, /obj/item/facepaint) || istype(I, /obj/item/armor_module))
+		return
+	if(parent.loc != user)
+		return
+	INVOKE_ASYNC(storage, /atom/proc/attackby, I, user)
+	return COMPONENT_NO_AFTERATTACK
+
+/obj/item/armor_module/storage/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	storage.attackby(I, user, params)
 
 /obj/item/armor_module/storage/attack_hand(mob/living/user)
 	if(loc == user)

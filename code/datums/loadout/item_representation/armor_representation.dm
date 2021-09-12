@@ -28,14 +28,7 @@
  * This is only able to representate items of type /obj/item/clothing/suit/modular
  */
 /datum/item_representation/modular_armor
-	/// Assoc list of all armor modules on that modulare armor
-	var/list/datum/item_representation/armor_module/colored/armor_modules
-	/// What modules are installed
-	var/datum/item_representation/armor_module/installed_module
-	/// What storage is installed
-	var/datum/item_representation/armor_module/installed_storage
-	///The implementation of the storage
-	var/datum/item_representation/storage/storage_implementation
+	var/datum/item_representation/armor_module/attachments = list()
 
 /datum/item_representation/modular_armor/New(obj/item/item_to_copy)
 	if(!item_to_copy)
@@ -44,19 +37,19 @@
 		CRASH("/datum/item_representation/modular_armor created from an item that is not a jaeger")
 	..()
 	var/obj/item/clothing/suit/modular/jaeger_to_copy = item_to_copy
-	armor_modules = list()
-	//do this
+	for(var/key in jaeger_to_copy.attachments_by_slot)
+		if(istype(jaeger_to_copy.attachments_by_slot[key], /obj/item/armor_module/armor))
+			attachments += new /datum/item_representation/armor_module/colored(jaeger_to_copy.attachments_by_slot[key])
+			continue
+		attachments += new /datum/item_representation/armor_module(jaeger_to_copy.attachments_by_slot[key])
 
 /datum/item_representation/modular_armor/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	. = ..()
 	if(!.)
 		return
 	var/obj/item/clothing/suit/modular/modular_armor = .
-	for(var/key in armor_modules)
-		var/datum/item_representation/armor_module/colored/armor_module = armor_modules[key]
-		armor_module.install_on_armor(seller, modular_armor, user)
-	installed_module?.install_on_armor(seller, modular_armor, user)
-	//do this too
+	for(var/datum/item_representation/armor_module/armor_attachement AS in attachments)
+		armor_attachement.install_on_armor(seller, modular_armor, user)
 	modular_armor.update_icon()
 
 
@@ -115,7 +108,7 @@
 ///Attach the instantiated item on an armor
 /datum/item_representation/armor_module/proc/install_on_armor(datum/loadout_seller/seller, obj/item/clothing/suit/modular/armor, mob/living/user)
 	var/obj/item/armor_module/module = instantiate_object(seller, null, user)
-	//module?.do_attach(null, armor)
+	attach_attachment(armor, module)
 
 /**
  * Allow to representate an armor piece of a jaeger, and to color it

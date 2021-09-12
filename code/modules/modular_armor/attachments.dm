@@ -73,6 +73,7 @@
 
 	///optional assoc list of colors we can color this armor
 	var/list/colorable_colors
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON
 
 /obj/item/armor_module/armor/Initialize()
 	. = ..()
@@ -130,7 +131,6 @@
 	icon_state = "infantry_chest"
 	greyscale_config = /datum/greyscale_config/modularchest_infantry
 	slot = ATTACHMENT_SLOT_CHESTPLATE
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON
 
 /obj/item/armor_module/armor/chest/marine
 	name = "\improper Jaeger Pattern Medium Infantry chestplates"

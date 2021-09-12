@@ -48,6 +48,9 @@
 	tgui_data["name"] = initial(item_type.name)
 	return tgui_data
 
+/datum/item_representation/proc/attach_attachment(/obj/item/thing_to_attach_to, /obj/item/attachment)
+	SEND_SIGNAL(thing_to_attach_to, COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT, attachment)
+
 /**
  * Allow to representate a storage
  * This is only able to represent /obj/item/storage
