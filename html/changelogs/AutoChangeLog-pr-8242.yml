@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - qol: "Add minimap blips for nuke disk generator and nuke"
