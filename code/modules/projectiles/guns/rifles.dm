@@ -1301,7 +1301,7 @@
 	burst_delay = 0.1 SECONDS
 	extra_delay = 0.5 SECONDS
 	accuracy_mult = 1
-	scatter = 20
+	scatter = 12
 	burst_amount = 4
 	aim_slowdown = 0.3
 	wield_delay = 0.4 SECONDS
