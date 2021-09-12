@@ -1,4 +1,4 @@
 author: "BraveMole"
 delete-after: True
 changes: 
-  - refactor: "Refactor pathfinder for xeno"
+  - bugfix: "Sentry ammo is visible again"

@@ -52,6 +52,7 @@
 	icon_state = "beret"
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
 	flags_item_map_variant = NONE
+	flags_armor_features = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/tgmcberet/tan
 	icon_state = "berettan"

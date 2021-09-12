@@ -53,7 +53,7 @@
 		/obj/item/ammo_magazine/rifle/tx15_flechette = 25,
 		/obj/item/weapon/gun/launcher/m92/standardmarine = 10,
 		/obj/item/weapon/gun/launcher/m81 = 15,
-		/obj/item/explosive/grenade/frag = 30,
+		/obj/item/explosive/grenade = 30,
 		/obj/item/attachable/bayonetknife = 20,
 		/obj/item/weapon/throwing_knife = 5,
 		/obj/item/storage/box/m94 = 5,
@@ -106,9 +106,6 @@
 			/obj/item/ammo_magazine/smg/standard_smg = -1,
 			/obj/item/weapon/gun/smg/standard_machinepistol = -1,
 			/obj/item/ammo_magazine/smg/standard_machinepistol = -1,
-			/obj/item/weapon/gun/smg/ppsh = -1,
-			/obj/item/ammo_magazine/smg/ppsh = -1,
-			/obj/item/ammo_magazine/smg/ppsh/extended = -1,
 		),
 		"Marksman" = list(
 			/obj/item/weapon/gun/rifle/standard_dmr = -1,
@@ -154,6 +151,8 @@
 			/obj/item/ammo_magazine/pistol/vp70 = -1,
 			/obj/item/weapon/gun/pistol/plasma_pistol = -1,
 			/obj/item/ammo_magazine/pistol/plasma_pistol = -1,
+			/obj/item/weapon/gun/shotgun/double/derringer = 10,
+			/obj/item/ammo_magazine/pistol/derringer = 15,
 		),
 		"Specialized" = list(
 			/obj/item/weapon/gun/launcher/m92/standardmarine = -1,
@@ -163,7 +162,7 @@
 			/obj/item/weapon/gun/rifle/pepperball = 4,
 			/obj/item/ammo_magazine/rifle/pepperball = 40,
 			/obj/item/storage/box/recoilless_system = 2,
-			/obj/item/weapon/gun/flamer/marinestandard = 4,
+			/obj/item/weapon/gun/flamer/big_flamer/marinestandard = 4,
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/ammo_magazine/flamer_tank/large = 20,
 			/obj/item/ammo_magazine/flamer_tank = 20,
@@ -174,12 +173,12 @@
 			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
 		"Grenades" = list(
-			/obj/item/explosive/grenade/frag = 600,
-			/obj/item/explosive/grenade/frag/m15 = 30,
+			/obj/item/explosive/grenade = 600,
+			/obj/item/explosive/grenade/m15 = 30,
 			/obj/item/explosive/grenade/impact = 125,
 			/obj/item/explosive/grenade/incendiary = 50,
-			/obj/item/explosive/grenade/cloakbomb = 25,
-			/obj/item/explosive/grenade/drainbomb = 10,
+			/obj/item/explosive/grenade/smokebomb/cloak = 25,
+			/obj/item/explosive/grenade/smokebomb/drain = 10,
 			/obj/item/explosive/grenade/mirage = 100,
 			/obj/item/storage/box/m94 = 200,
 			/obj/item/storage/box/m94/cas = 30,
@@ -204,15 +203,17 @@
 			/obj/item/attachable/verticalgrip = -1,
 			/obj/item/attachable/stock/t19stock = -1,
 			/obj/item/attachable/stock/t35stock = -1,
-			/obj/item/attachable/attached_gun/flamer = -1,
-			/obj/item/attachable/attached_gun/shotgun = -1,
-			/obj/item/attachable/attached_gun/grenade = -1,
+			/obj/item/weapon/gun/shotgun/combat/masterkey = -1,
+			/obj/item/weapon/gun/flamer/mini_flamer = -1,
+			/obj/item/ammo_magazine/flamer_tank/mini = -1,
+			/obj/item/weapon/gun/launcher/m92/mini_grenade = -1,
 			/obj/item/attachable/motiondetector = -1,
 		),
 		"Boxes" = list(
 		/obj/item/ammo_magazine/packet/p9mm = 100,
 		/obj/item/ammo_magazine/packet/acp = 100,
 		/obj/item/ammo_magazine/packet/magnum = 100,
+		/obj/item/ammo_magazine/packet/p10x20mm = 100,
 		/obj/item/ammo_magazine/packet/p10x24mm = 100,
 		/obj/item/ammo_magazine/packet/p10x25mm = 100,
 		/obj/item/ammo_magazine/packet/p10x26mm = 100,
@@ -227,8 +228,9 @@
 		/obj/item/weapon/combat_knife = -1,
 		/obj/item/binoculars = -1,
 		/obj/item/compass = -1,
-		/obj/item/assembly/signaler = -1,
+		/obj/item/assembly/signaler = 20,
 		/obj/item/weapon/gun/launcher/m81/flare/marine = -1,
+		/obj/item/jetpack_marine = 3,
 		),
 	)
 
@@ -279,7 +281,7 @@
 			/obj/item/ammo_magazine/pistol/plasma_pistol = -1,
 		),
 		"Specialized" = list(
-			/obj/item/weapon/gun/flamer/marinestandard = 4,
+			/obj/item/weapon/gun/flamer/big_flamer/marinestandard = 4,
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/ammo_magazine/flamer_tank/large = 20,
 			/obj/item/ammo_magazine/flamer_tank = 20,
@@ -289,11 +291,11 @@
 			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
 		"Grenades" = list(
-			/obj/item/explosive/grenade/frag = 600,
-			/obj/item/explosive/grenade/frag/m15 = 50,
+			/obj/item/explosive/grenade = 600,
+			/obj/item/explosive/grenade/m15 = 50,
 			/obj/item/explosive/grenade/incendiary = 50,
-			/obj/item/explosive/grenade/cloakbomb = 50,
-			/obj/item/explosive/grenade/drainbomb = 10,
+			/obj/item/explosive/grenade/smokebomb/cloak = 50,
+			/obj/item/explosive/grenade/smokebomb/drain = 10,
 			/obj/item/explosive/grenade/mirage = 100,
 			/obj/item/storage/box/m94 = 200,
 			/obj/item/storage/box/m94/cas = 30,
@@ -315,10 +317,11 @@
 			/obj/item/attachable/verticalgrip = -1,
 			/obj/item/attachable/stock/t19stock = -1,
 			/obj/item/attachable/stock/t35stock = -1,
-			/obj/item/attachable/attached_gun/flamer = -1,
-			/obj/item/attachable/attached_gun/shotgun = -1,
-			/obj/item/attachable/attached_gun/grenade = -1,
+			/obj/item/weapon/gun/flamer/mini_flamer = -1,
+			/obj/item/ammo_magazine/flamer_tank/mini = -1,
+			/obj/item/weapon/gun/launcher/m92/mini_grenade = -1,
 			/obj/item/attachable/motiondetector = -1,
+
 		),
 		"Boxes" = list(
 		/obj/item/ammo_magazine/packet/p9mm = 100,
@@ -610,10 +613,10 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 		),
 		"Heal Pack" = list(
-			/obj/item/stack/medical/advanced/bruise_pack = 32,
-			/obj/item/stack/medical/bruise_pack = 32,
-			/obj/item/stack/medical/advanced/ointment = 32,
-			/obj/item/stack/medical/ointment = 32,
+			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 32,
+			/obj/item/stack/medical/heal_pack/gauze = 32,
+			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 32,
+			/obj/item/stack/medical/heal_pack/ointment = 32,
 			/obj/item/stack/medical/splint = 16,
 		),
 		"Misc" = list(
@@ -648,7 +651,7 @@
 	contraband = list()
 
 /obj/machinery/vending/MarineMed/Blood/rebel
-	req_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
+	req_one_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
 
 /obj/machinery/vending/MarineMed/Blood/build_inventory(list/productlist, category)
 	. = ..()
@@ -675,7 +678,7 @@
 
 	products = list(
 		/obj/item/clothing/under/marine/corpsman = 4,
-		/obj/item/clothing/head/helmet/marine/corpsman = 4,
+		/obj/item/clothing/head/modular/marine/m10x/corpsman = 4,
 		/obj/item/storage/backpack/marine/corpsman = 4,
 		/obj/item/storage/backpack/marine/satchel/corpsman = 4,
 		/obj/item/encryptionkey/med = 4,
@@ -718,6 +721,7 @@
 	prices = list()
 
 /obj/machinery/vending/shared_vending/marine_engi/rebel
+	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
 	products = list(
 		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 		/obj/item/storage/box/sentry = 5,
@@ -764,7 +768,7 @@
 
 	products = list(
 		/obj/item/clothing/suit/storage/marine/leader = 1,
-		/obj/item/clothing/head/helmet/marine/leader = 1,
+		/obj/item/clothing/head/modular/marine/m10x/leader = 1,
 		/obj/item/clothing/tie/storage/webbing = 1,
 		/obj/item/beacon/supply_beacon = 1,
 		/obj/item/beacon/orbital_bombardment_beacon = 1,
@@ -795,15 +799,15 @@
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
 		"Armors" = list(
-			/obj/item/clothing/suit/storage/marine/pasvest = -1,
+			/obj/item/clothing/suit/modular/pas11x = -1,
 			/obj/item/clothing/suit/modular = -1,
 			/obj/item/clothing/suit/storage/marine/harness = -1,
 			/obj/item/clothing/suit/armor/vest/pilot = -1,
 			/obj/item/facepaint/green = -1,
 		),
 		"Helmets" = list(
-			/obj/item/clothing/head/helmet/marine = -1,
-			/obj/item/clothing/head/helmet/marine/heavy = -1,
+			/obj/item/clothing/head/modular/marine/m10x = -1,
+			/obj/item/clothing/head/modular/marine/m10x/heavy = -1,
 			/obj/item/clothing/head/modular/marine/skirmisher = -1,
 			/obj/item/clothing/head/modular/marine = -1,
 			/obj/item/clothing/head/modular/marine/eva = -1,
@@ -850,7 +854,7 @@
 			/obj/item/armor_module/attachable/mimir_environment_protection/mark1 = -1,
 			/obj/item/armor_module/attachable/tyr_extra_armor/mark1 = -1,
 			/obj/item/armor_module/attachable/ballistic_armor = -1,
-			/obj/item/armor_module/attachable/better_shoulder_lamp/mark1 = -1,
+			/obj/item/armor_module/attachable/better_shoulder_lamp = -1,
 			/obj/item/armor_module/attachable/chemsystem = -1,
 		),
 	)

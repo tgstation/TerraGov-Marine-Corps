@@ -1,0 +1,6 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "You can no longer steal aghosted bodies"
+  - bugfix: "Spawning as a space agent no longer allow to bypass respawn timer"
+  - rscadd: "AFK marines can be taken by ghosts"

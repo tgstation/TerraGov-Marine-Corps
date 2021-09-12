@@ -1,4 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - balance: "T-25 reworked, it is more like an LMG than a Assault Rifle. 80 rounds instead of 50, 1.5 sunder instead of 1, 10 pen instead of 15. 0.7 aim slowdown instead of 0.8, 0.9 wield delay instead of 0.6. Packet changed to accomdate the higher amount of ammo, it holds 320 rounds instead of 200."

@@ -330,6 +330,7 @@
 		/obj/item/weapon/gun/rifle/ak47,
 		/obj/item/weapon/gun/rifle/m16,
 		/obj/item/weapon/gun/rifle/famas,
+		/obj/item/weapon/gun/rifle/alf_machinecarbine,
 		/obj/item/weapon/gun/rifle/standard_lmg,
 		/obj/item/weapon/gun/rifle/standard_gpmg,
 		/obj/item/weapon/gun/rifle/m412l1_hpr,
@@ -341,7 +342,7 @@
 		/obj/item/weapon/gun/shotgun/pump/t35,
 		/obj/item/weapon/gun/shotgun/combat,
 		/obj/item/weapon/gun/shotgun/combat/standardmarine,
-		/obj/item/weapon/gun/flamer,
+		/obj/item/weapon/gun/flamer/big_flamer,
 		/obj/item/weapon/gun/pistol/auto9,
 		/obj/item/weapon/gun/rifle/chambered,
 		/obj/item/weapon/gun/rifle/tx11,
@@ -368,7 +369,7 @@
 		/obj/item/weapon/gun/shotgun/pump/cmb,
 		/obj/item/weapon/gun/shotgun/double,
 		/obj/item/weapon/gun/shotgun/double/sawn,
-		/obj/item/weapon/gun/flamer/marinestandard,
+		/obj/item/weapon/gun/flamer/big_flamer/marinestandard,
 		/obj/item/weapon/gun/rifle/standard_autosniper,
 		/obj/item/weapon/energy/axe,
 	)
@@ -399,7 +400,7 @@
 	icon_state = "shuttle"
 
 /obj/effect/landmark/dropship_console_spawn_lz1/Initialize()
-	. =	..()
+	. = ..()
 	GLOB.lz1_shuttle_console_turfs_list += loc
 	return INITIALIZE_HINT_QDEL
 
@@ -409,7 +410,38 @@
 	icon_state = "shuttle"
 
 /obj/effect/landmark/dropship_console_spawn_lz2/Initialize()
-	. =	..()
+	. = ..()
 	GLOB.lz2_shuttle_console_turfs_list += loc
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/fob_sentry
+	name = "Fob sentry"
+	icon = 'icons/Marine/sentry.dmi'
+	icon_state = "sentry"
+
+/obj/effect/landmark/fob_sentry/Initialize()
+	. = ..()
+	GLOB.fob_sentries_loc += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/fob_sentry_rebel
+	name = "Rebel fob sentry"
+	icon = 'icons/Marine/sentry.dmi'
+	icon_state = "sentry"
+
+/obj/effect/landmark/fob_sentry_rebel/Initialize()
+	. = ..()
+	GLOB.fob_sentries_rebel_loc += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/sensor_tower
+	name = "Sensor tower"
+	icon = 'icons/obj/structures/sensor.dmi'
+	icon_state = "sensor"
+
+/obj/effect/landmark/sensor_tower/Initialize()
+	. = ..()
+	var/area/area_to_control = get_area(src)
+	area_to_control.set_to_contested()
+	GLOB.sensor_towers += loc
+	return INITIALIZE_HINT_QDEL

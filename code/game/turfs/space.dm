@@ -42,10 +42,6 @@
 /turf/open/space/update_icon_state()
 	icon_state = SPACE_ICON_STATE
 
-
-/turf/open/space/attack_paw(mob/living/carbon/human/user)
-	return src.attack_hand(user)
-
 /turf/open/space/attackby(obj/item/I, mob/user, params)
 	. = ..()
 

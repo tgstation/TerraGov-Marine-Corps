@@ -148,6 +148,8 @@
 		var/atom/movable/thing = i
 		if(CHECK_MULTIPLE_BITFIELDS(thing.flags_pass, HOVERING))
 			continue
+		if(thing.status_flags & INCORPOREAL)
+			continue
 		if(thing.Cross(mover))
 			continue
 		var/signalreturn = SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_MOVABLE, thing)
@@ -531,7 +533,6 @@
 /turf/open/floor/plating/ground/snow/is_weedable()
 	return !slayer && ..()
 
-
 /**
  * Checks for whether we can build advanced xeno structures here
  * Returns TRUE if present, FALSE otherwise
@@ -565,10 +566,7 @@
 			if(!silent)
 				to_chat(builder, span_warning("There's already a resin structure here!"))
 			return FALSE
-		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin))
-			has_obstacle = TRUE
-			break
-		if(istype(O, /obj/structure/ladder))
+		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/structure/ladder) || istype(O, /obj/effect/alien/resin))
 			has_obstacle = TRUE
 			break
 		if(istype(O, /obj/structure/bed))

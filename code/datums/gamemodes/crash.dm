@@ -23,7 +23,7 @@
 	var/marines_evac = CRASH_EVAC_NONE
 
 	// Shuttle details
-	var/shuttle_id = "tgs_canterbury"
+	var/shuttle_id = SHUTTLE_CANTERBURY
 	var/obj/docking_port/mobile/crashmode/shuttle
 
 	// Round start info
@@ -46,7 +46,7 @@
 
 	// Spawn the ship
 	if(TGS_CLIENT_COUNT >= 25)
-		shuttle_id = "tgs_bigbury"
+		shuttle_id = SHUTTLE_BIGBURY
 	if(!SSmapping.shuttle_templates[shuttle_id])
 		message_admins("Gamemode: couldn't find a valid shuttle template for [shuttle_id]")
 		CRASH("Shuttle [shuttle_id] wasn't found and can't be loaded")

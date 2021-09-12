@@ -101,10 +101,6 @@
 	return attack_hand(X)
 
 
-/obj/effect/forcefield/fog/attack_paw(mob/living/carbon/human/user)
-	return attack_hand(user)
-
-
 /obj/effect/forcefield/fog/attack_animal(M)
 	return attack_hand(M)
 

@@ -22,5 +22,4 @@ endmode
 
 mode Civil War
 	requiredplayers 2
-	votable 0
 endmode

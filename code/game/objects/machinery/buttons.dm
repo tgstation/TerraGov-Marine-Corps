@@ -103,7 +103,7 @@
 	id = "landing_zone"
 	use_power = NO_POWER_USE
 	resistance_flags = RESIST_ALL
-	req_access = list(ACCESS_MARINE_DROPSHIP)
+	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_DROPSHIP_REBEL)
 
 /obj/machinery/button/door/open_only/landing_zone/pulsed()
 	. = ..()
@@ -160,9 +160,6 @@
 	var/area/area = null
 	var/otherarea = null
 	var/id = 1
-
-	attack_paw(mob/user as mob)
-		return
 
 /obj/machinery/medical_help_button
 	name = "Medical attention required"

@@ -21,7 +21,12 @@
 	if(CHECK_BITFIELD(attached_item.flags_item, DEPLOY_ON_INITIALIZE))
 		finish_deploy(attached_item, null, attached_item.loc, attached_item.dir)
 
-	RegisterSignal(attached_item, COMSIG_ITEM_UNIQUE_ACTION, .proc/deploy)
+	RegisterSignal(attached_item, COMSIG_CLICK_CTRL, .proc/deploy)
+
+
+/datum/element/deployable_item/Detach(datum/source, force)
+	. = ..()
+	UnregisterSignal(source, COMSIG_CLICK_CTRL)
 
 ///Wrapper for proc/finish_deploy
 /datum/element/deployable_item/proc/deploy(datum/source, mob/user, location, direction)
@@ -51,7 +56,7 @@
 
 		user.temporarilyRemoveItemFromInventory(attached_item)
 
-		attached_item.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE)) //This unregisters Signals related to guns, its for safety
+		attached_item.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE,  COMSIG_MOB_CLICK_RIGHT)) //This unregisters Signals related to guns, its for safety
 	else
 		deploy_location = location
 		new_direction = direction
@@ -70,7 +75,7 @@
 
 	ENABLE_BITFIELD(attached_item.flags_item, IS_DEPLOYED)
 
-	UnregisterSignal(attached_item, COMSIG_ITEM_UNIQUE_ACTION)
+	UnregisterSignal(attached_item, COMSIG_CLICK_CTRL)
 	RegisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY, .proc/undeploy)
 
 ///Wrapper for proc/finish_undeploy
@@ -96,11 +101,12 @@
 		sentry?.set_on(TRUE)
 		return
 
+	DISABLE_BITFIELD(attached_item.flags_item, IS_DEPLOYED)
+
 	user.unset_interaction()
 	user.put_in_hands(attached_item)
 
-	DISABLE_BITFIELD(attached_item.flags_item, IS_DEPLOYED)
-	UnregisterSignal(deployed_machine, COMSIG_ITEM_UNIQUE_ACTION)
+	UnregisterSignal(deployed_machine, COMSIG_CLICK_CTRL)
 
 	attached_item.max_integrity = deployed_machine.max_integrity
 	attached_item.obj_integrity = deployed_machine.obj_integrity
@@ -109,4 +115,4 @@
 
 	QDEL_NULL(deployed_machine)
 	attached_item.update_icon_state()
-	RegisterSignal(attached_item, COMSIG_ITEM_UNIQUE_ACTION, .proc/deploy)
+	RegisterSignal(attached_item, COMSIG_CLICK_CTRL, .proc/deploy)

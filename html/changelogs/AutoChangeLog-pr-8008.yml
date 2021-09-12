@@ -1,5 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - balance: "buckshot has less falloff"
-  - balance: "buckshot accurate range(not spread) has been increased to 5 tiles."

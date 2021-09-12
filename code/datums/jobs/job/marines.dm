@@ -259,7 +259,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	wear_suit = /obj/item/clothing/suit/storage/marine
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
-	head = /obj/item/clothing/head/helmet/marine/corpsman
+	head = /obj/item/clothing/head/modular/marine/m10x/corpsman
 	l_store = /obj/item/storage/pouch/medkit/equippedcorpsman
 	r_store = /obj/item/storage/pouch/medical/equippedcorpsman
 	glasses = /obj/item/clothing/glasses/hud/health
@@ -283,8 +283,8 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/bodybag/cryobag, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/bruise_pack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/ointment, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/bruise_pack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/burn_pack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
 
 /datum/job/terragov/squad/corpsman/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -373,7 +373,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	wear_suit = /obj/item/clothing/suit/storage/marine/smartgunner
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
-	head = /obj/item/clothing/head/helmet/marine
+	head = /obj/item/clothing/head/modular/marine/m10x/standard
 	l_store = /obj/item/storage/pouch/firstaid/full
 	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun
 	glasses = /obj/item/clothing/glasses/night/m56_goggles
@@ -496,7 +496,7 @@ You are also in charge of communicating with command and letting them know about
 	wear_suit = /obj/item/clothing/suit/storage/marine/leader
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
-	head = /obj/item/clothing/head/helmet/marine/leader
+	head = /obj/item/clothing/head/modular/marine/m10x/leader
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
 	l_store = /obj/item/storage/pouch/firstaid/full

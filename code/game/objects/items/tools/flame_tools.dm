@@ -186,65 +186,61 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	else if(istype(W, /obj/item/tool/lighter/zippo))
 		var/obj/item/tool/lighter/zippo/Z = W
 		if(Z.heat)
-			light(span_rose("With a flick of their wrist, [user] lights their [name] with [W]."))
+			light(span_rose("With a flick of [user.p_their()] wrist, [user] lights their [name] with [W]."))
 
 	else if(istype(W, /obj/item/flashlight/flare))
 		var/obj/item/flashlight/flare/FL = W
 		if(FL.heat)
-			light(span_notice("[user] lights their [name] with [W]."))
+			light(span_notice("[user] lights [user.p_their()] [name] with [W]."))
 
 	else if(istype(W, /obj/item/explosive/grenade/flare))
 		var/obj/item/explosive/grenade/flare/FL2 = W
 		if(FL2.heat)
-			light(span_notice("[user] lights their [name] with [W]."))
+			light(span_notice("[user] lights [user.p_their()] [name] with [W]."))
 
 	else if(istype(W, /obj/item/tool/lighter))
 		var/obj/item/tool/lighter/L = W
 		if(L.heat)
-			light(span_notice("[user] manages to light their [name] with [W]."))
+			light(span_notice("[user] manages to light [user.p_their()] [name] with [W]."))
 
 	else if(istype(W, /obj/item/tool/match))
 		var/obj/item/tool/match/M = W
 		if(M.heat)
-			light(span_notice("[user] lights their [name] with their [W]."))
+			light(span_notice("[user] lights [user.p_their()] [name] with their [W]."))
 
 	else if(istype(W, /obj/item/weapon/energy/sword))
 		var/obj/item/weapon/energy/sword/S = W
 		if(S.active)
-			light(span_warning("[user] swings their [W], barely missing their nose. They light their [name] in the process."))
+			light(span_warning("[user] swings [user.p_their()] [W], barely missing [user.p_their()] nose. [user.p_they()] light [user.p_their()] [name] in the process."))
 
 	else if(istype(W, /obj/item/assembly/igniter))
-		light(span_notice("[user] fiddles with [W], and manages to light their [name]."))
-
-	else if(istype(W, /obj/item/attachable/attached_gun/flamer))
-		light(span_notice("[user] lights their [src] with the [W]."))
+		light(span_notice("[user] fiddles with [W], and manages to light [user.p_their()] [name]."))
 
 	else if(istype(W, /obj/item/weapon/gun/flamer))
-		light(span_notice("[user] lights their [src] with the pilot light of the [W]."))
+		light(span_notice("[user] lights [user.p_their()] [src] with the pilot light of the [W]."))
 
 	else if(istype(W, /obj/item/weapon/gun))
 		var/obj/item/weapon/gun/G = W
 		if(istype(G, /obj/item/weapon/gun/energy/lasgun))
 			var/obj/item/weapon/gun/energy/lasgun/L = G
 			if(L.cell.charge)
-				light(span_notice("[user] deftly lights their [src] with the [L]'s low power setting."))
+				light(span_notice("[user] deftly lights [user.p_their()] [src] with the [L]'s low power setting."))
 			else
 				to_chat(user, span_warning("You try to light your [src] with the [L] but your power cell has no charge!"))
-		else if(istype(LAZYACCESS(G.attachments, ATTACHMENT_SLOT_UNDER), /obj/item/attachable/attached_gun/flamer))
-			light(span_notice("[user] lights their [src] with the underbarrel [LAZYACCESS(G.attachments, ATTACHMENT_SLOT_UNDER)]."))
-
+		else if(istype(LAZYACCESS(G.attachments_by_slot, ATTACHMENT_SLOT_UNDER), /obj/item/weapon/gun/flamer))
+			light(span_notice("[user] lights [user.p_their()] [src] with the underbarrel [LAZYACCESS(G.attachments_by_slot, ATTACHMENT_SLOT_UNDER)]."))
 
 	else if(istype(W, /obj/item/tool/surgery/cautery))
-		light(span_notice("[user] lights their [src] with the [W]."))
+		light(span_notice("[user] lights [user.p_their()] [src] with the [W]."))
 
 	else if(istype(W, /obj/item/clothing/mask/cigarette))
 		var/obj/item/clothing/mask/cigarette/C = W
 		if(C.lit)
-			light(span_notice("[user] lights their [src] with the [C] after a few attempts."))
+			light(span_notice("[user] lights [user.p_their()] [src] with the [C] after a few attempts."))
 
 	else if(istype(W, /obj/item/tool/candle))
 		if(W.heat > 200)
-			light(span_notice("[user] lights their [src] with the [W] after a few attempts."))
+			light(span_notice("[user] lights [user.p_their()] [src] with the [W] after a few attempts."))
 
 	else
 		return ..()
@@ -344,22 +340,22 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(isturf(target))
 			var/turf/T = target
 			if(locate(/obj/flamer_fire) in T.contents)
-				light(span_notice("[user] lights their [src] with the burning ground."))
+				light(span_notice("[user] lights [user.p_their()] [src] with the burning ground."))
 				return
 
 		if(isliving(target) && user.a_intent == INTENT_HELP)
 			var/mob/living/M = target
 			if(M.on_fire)
 				if(user == M)
-					light(span_notice("[user] lights their [src] from their own burning body, that's crazy!"))
+					light(span_notice("[user] lights [user.p_their()] [src] from their own burning body, that's crazy!"))
 				else
-					light(span_notice("[user] lights their [src] from the burning body of [M], that's stone cold."))
+					light(span_notice("[user] lights [user.p_their()] [src] from the burning body of [M], that's stone cold."))
 				return
 
 		if(istype(target, /obj/machinery/light))
 			var/obj/machinery/light/fixture = target
 			if(fixture.is_broken())
-				light(span_notice("[user] lights their [src] from the broken light."))
+				light(span_notice("[user] lights [user.p_their()] [src] from the broken light."))
 				return
 	return ..()
 
@@ -563,7 +559,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 						user.apply_damage(2,BURN,"l_hand")
 					else
 						user.apply_damage(2,BURN,"r_hand")
-					user.visible_message(span_notice("After a few attempts, [user] manages to light the [src], they however burn their finger in the process."))
+					user.visible_message(span_notice("After a few attempts, [user] manages to light the [src],  however [user.p_they()] burn [user.p_their()] finger in the process."))
 				playsound(loc, 'sound/items/lighter_on.ogg', 15, 1)
 			set_light_on(TRUE)
 		else

@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes: 
-  - bugfix: "fixed the capitalization of some shuttle id's so they work better with the AI"
