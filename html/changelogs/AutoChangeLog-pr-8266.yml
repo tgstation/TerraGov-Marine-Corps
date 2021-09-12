@@ -1,0 +1,5 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - bugfix: "People buckled to beds will lie down."
+  - bugfix: "You can move while carrying someone on your back."
