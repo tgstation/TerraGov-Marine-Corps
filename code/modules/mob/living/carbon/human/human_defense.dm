@@ -429,7 +429,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(stat != DEAD || I.sharp < IS_SHARP_ITEM_ACCURATE)
 		return ..()
 	if(!internal_organs_by_name["heart"])
-		to_chat(user, span_notice("[src] no longer has a heart"))
+		to_chat(user, span_notice("[src] no longer has a heart."))
 		return
 	if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE) && get_ghost())
 		to_chat(user, span_warning("You cannot resolve yourself to destroy [src]'s heart, as [p_they()] can still be saved!"))
