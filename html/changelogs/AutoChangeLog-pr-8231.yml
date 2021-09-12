@@ -1,5 +1,0 @@
-author: "MiniMeatwad"
-delete-after: True
-changes: 
-  - qol: "Reduced the quick equip delay for pressing E in hotkey mode. Changes inventory action delay from 150ms to 50ms, which is significantly smoother. The new delay should now only affect you if you're using macros or spamming a key really hard."
-  - code_imp: "Changed get_active_held_item()'s next_move to world.time + 1 instead of world.time + 3."
