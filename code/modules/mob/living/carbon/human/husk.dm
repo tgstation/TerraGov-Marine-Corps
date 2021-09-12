@@ -22,6 +22,7 @@
 	var/zombium_per_hit = 5
 
 /datum/species/husk/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	. = ..()
 	H.language_holder = new default_language_holder()
 	H.setOxyLoss(0)
 	H.setToxLoss(0)
