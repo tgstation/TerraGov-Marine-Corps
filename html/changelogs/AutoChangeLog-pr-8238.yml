@@ -1,0 +1,4 @@
+author: "jroinc"
+delete-after: True
+changes: 
+  - expansion: "Added stuff to sleeping. If you sleep on a bed with sheets and are not in crit, you'll heal 0.25 brute, 0.25 burn, 0.125 toxloss, 25 stamina, and a variable amount of cloneloss (-0.1 to 0.2, depending on your overall health). If you sleep on the floor, you get a quarter of those values."
