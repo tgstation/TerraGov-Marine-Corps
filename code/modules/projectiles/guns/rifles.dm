@@ -74,6 +74,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/launcher/m92/mini_grenade,
 		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -140,6 +141,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/launcher/m92/mini_grenade,
 		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -158,6 +160,8 @@
 	burst_amount = 3
 	aim_slowdown = 0.4
 	damage_falloff_mult = 0.5
+
+	placed_overlay_iconstate = "t12"
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/reddot, /obj/item/attachable/t12barrel, /obj/item/weapon/gun/launcher/m92/mini_grenade)
@@ -209,6 +213,7 @@
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_CAN_POINTBLANK
@@ -273,6 +278,7 @@
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_CAN_POINTBLANK
@@ -328,6 +334,7 @@
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -374,6 +381,7 @@
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/attachable/buildasentry,
 	)
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 9, "stock_y" = 15)
@@ -415,6 +423,7 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/scope,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -450,6 +459,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -462,6 +472,8 @@
 	fire_delay = 0.25 SECONDS
 	scatter = 5
 	wield_delay = 0.7 SECONDS
+
+	placed_overlay_iconstate = "ak47"
 
 //-------------------------------------------------------
 //M16 RIFLE
@@ -504,6 +516,7 @@
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -679,6 +692,7 @@
 		/obj/item/attachable/stock/t60stock,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY
@@ -697,6 +711,8 @@
 	accuracy_mult = 1
 	scatter = 25
 	scatter_unwielded = 80
+
+	placed_overlay_iconstate = "lmg"
 
 /obj/item/weapon/gun/rifle/standard_lmg/autorifleman
 	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/t42barrel, /obj/item/attachable/reddot)
@@ -735,6 +751,7 @@
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER
@@ -754,6 +771,8 @@
 	scatter = 15
 	scatter_unwielded = 80
 	recoil_unwielded = 5
+
+	placed_overlay_iconstate = "lmg"
 
 
 //-------------------------------------------------------
@@ -909,6 +928,7 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
@@ -922,6 +942,8 @@
 	accuracy_mult = 1.2
 	scatter = -20
 	scatter_unwielded = 80
+
+	placed_overlay_iconstate = "smartgun"
 
 // T-25 Smartrifle
 

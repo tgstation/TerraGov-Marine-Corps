@@ -161,6 +161,14 @@ WEAPONS
 	contains = list(/obj/item/storage/box/minisentry)
 	cost = 40
 
+/datum/supply_packs/weapons/buildasentry
+	name = "Build-A-Sentry Attachment System"
+	contains = list(
+		/obj/item/attachable/buildasentry,
+	)
+	cost = 25
+	
+
 /datum/supply_packs/weapons/m56d_emplacement
 	name = "TL-102 Mounted Heavy Smartgun"
 	contains = list(/obj/item/storage/box/tl102)

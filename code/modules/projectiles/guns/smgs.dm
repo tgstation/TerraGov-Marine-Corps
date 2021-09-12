@@ -110,6 +110,7 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -123,6 +124,8 @@
 	scatter_unwielded = 30
 	aim_slowdown = 0.25
 	burst_amount = 0
+
+	placed_overlay_iconstate = "t90"
 
 /obj/item/weapon/gun/smg/standard_smg/breacher
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
