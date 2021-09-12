@@ -689,7 +689,7 @@
 			if(cell.charge < cell.maxcharge)
 				to_chat(user, span_warning("\The [cell] isn't full. You must recharge it before you can restock it."))
 				return
-		else if(istype(item_to_stock, /obj/item/stack))
+		else if(isitemstack(item_to_stock))
 			var/obj/item/stack/stack = item_to_stock
 			if(stack.amount != initial(stack.amount))
 				to_chat(user, span_warning("[stack] has been partially used. You must replace the missing amount before you can restock it."))
