@@ -1,0 +1,4 @@
+author: "jroinc"
+delete-after: True
+changes: 
+  - bugfix: "Altered some descriptive text for the medscanner and defib."
