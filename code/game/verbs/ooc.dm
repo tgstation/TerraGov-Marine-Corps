@@ -127,7 +127,7 @@
 	if(mob.stat == DEAD && !admin)
 		to_chat(src, span_warning("You must be alive to use XOOC."))
 		return
-	if(!(mob in GLOB.xeno_mob_list) && !admin)
+	if(!(mob AS in GLOB.xeno_mob_list) && !admin)
 		to_chat(src, span_warning("You must be a xeno to use XOOC."))
 		return
 
@@ -169,29 +169,29 @@
 	for(var/client/C AS in GLOB.clients)
 		if(!(C.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!(C.mob in GLOB.xeno_mob_list) && !(C.mob in GLOB.observer_list) || check_other_rights(C, R_ADMIN, FALSE)) // If the client is a xeno, an observer, and not an admin.
+		if(!(C.mob AS in GLOB.xeno_mob_list) && !(C.mob AS in GLOB.observer_list) || check_other_rights(C, R_ADMIN, FALSE)) // If the client is a xeno, an observer, and not an admin.
 			continue
 
 		var/display_name = mob.name
-		if(admin && !(mob in GLOB.xeno_mob_list)) // If the verb caller is an admin and is not a xeno mob, use their ckey instead.
+		if(admin && !(mob AS in GLOB.xeno_mob_list)) // If the verb caller is an admin and is not a xeno mob, use their ckey instead.
 			display_name = mob.key
 
 		var/avoid_highlight = C == src
-		to_chat(C, "<font color='#665544'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+		to_chat(C, "<font color='#334455'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 	// Send chat message to admins
 	for(var/client/C AS in GLOB.admins)
-		if(!check_other_rights(C, R_ADMIN, FALSE) && (C.mob in GLOB.xeno_mob_list) && (C.mob in GLOB.observer_list)) // If the client is an admin, not a xeno, and not an observer.
+		if(!check_other_rights(C, R_ADMIN, FALSE)) // Check if the client is still an admin.
 			continue
 		var/display_name = mob.name
-		if(admin && !(mob in GLOB.xeno_mob_list)) // If the verb caller is an admin and is not a xeno mob, use their ckey instead.
+		if(admin && !(mob AS in GLOB.xeno_mob_list)) // If the verb caller is an admin and is not a xeno mob, use their ckey instead.
 			display_name = mob.key
 
 		// Replace display_name with itself and turn it into a clickable player panel href for admins.
 		if(check_other_rights(C, R_ADMIN, FALSE))
 			display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>"
 		var/avoid_highlight = C == src
-		to_chat(C, "<font color='#665544'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+		to_chat(C, "<font color='#334455'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 
 /client/verb/mooc_wrapper()
@@ -214,7 +214,7 @@
 	if(mob.stat == DEAD && !admin)
 		to_chat(src, span_warning("You must be alive to use MOOC."))
 		return
-	if(!(mob in GLOB.human_mob_list) && !admin)
+	if(!(mob AS in GLOB.human_mob_list) && !admin)
 		to_chat(src, span_warning("You must be a human to use MOOC."))
 		return
 
@@ -256,11 +256,11 @@
 	for(var/client/C AS in GLOB.clients)
 		if(!(C.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!(C.mob in GLOB.human_mob_list) && !(C.mob in GLOB.observer_list) || check_other_rights(C, R_ADMIN, FALSE)) // If the client is a human, an observer, and not an admin.
+		if(!(C.mob AS in GLOB.human_mob_list) && !(C.mob AS in GLOB.observer_list) || check_other_rights(C, R_ADMIN, FALSE)) // If the client is a human, an observer, and not an admin.
 			continue
 
 		var/display_name = mob.name
-		if(admin && !(mob in GLOB.human_mob_list)) // If the verb caller is an admin and is not a human mob, use their ckey instead.
+		if(admin && !(mob AS in GLOB.human_mob_list)) // If the verb caller is an admin and is not a human mob, use their ckey instead.
 			display_name = mob.key
 
 		var/avoid_highlight = C == src
@@ -270,10 +270,10 @@
 	for(var/client/C AS in GLOB.admins)
 		if(!(C.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!check_other_rights(C, R_ADMIN, FALSE) && (C.mob in GLOB.human_mob_list) && (C.mob in GLOB.observer_list)) // If the client is still an admin, not a human, and not an observer.
+		if(!check_other_rights(C, R_ADMIN, FALSE)) // Check if the client is still an admin.
 			continue
 		var/display_name = mob.name
-		if(admin && !(mob in GLOB.human_mob_list)) // If the verb caller is an admin and is not a human mob, use their ckey instead.
+		if(admin && !(mob AS in GLOB.human_mob_list)) // If the verb caller is an admin and is not a human mob, use their ckey instead.
 			display_name = mob.key
 
 		// Replace display_name with itself and turn it into a clickable player panel href for admins.
@@ -281,7 +281,6 @@
 			display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>"
 		var/avoid_highlight = C == src
 		to_chat(C, "<font color='#665544'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
-
 
 
 /client/verb/looc_wrapper()
