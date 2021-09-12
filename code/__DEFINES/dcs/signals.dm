@@ -501,6 +501,8 @@
 #define COMSIG_KB_CLIENT_SCREENSHOT_DOWN "keybinding_client_screenshot_down"
 #define COMSIG_KB_CLIENT_MINIMALHUD_DOWN "keybinding_client_minimalhud_down"
 #define COMSIG_KB_CLIENT_OOC_DOWN "keybinding_client_ooc_down"
+#define COMSIG_KB_CLIENT_XOOC_DOWN "keybinding_client_xooc_down"
+#define COMSIG_KB_CLIENT_MOOC_DOWN "keybinding_client_mooc_down"
 #define COMSIG_KB_CLIENT_LOOC_DOWN "keybinding_client_looc_down"
 #define COMSIG_KB_LIVING_RESIST_DOWN "keybinding_living_resist_down"
 #define COMSIG_KB_MOB_FACENORTH_DOWN "keybinding_mob_facenorth_down"

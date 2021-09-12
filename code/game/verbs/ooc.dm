@@ -110,7 +110,7 @@
 /client/verb/xooc_wrapper()
 	set hidden = TRUE
 	var/message = input("", "XOOC \"text\"") as null|text
-	ooc(message)
+	xooc(message)
 
 
 /client/verb/xooc(msg as text) // Same as MOOC, but for xenos.
@@ -197,7 +197,7 @@
 /client/verb/mooc_wrapper()
 	set hidden = TRUE
 	var/message = input("", "MOOC \"text\"") as null|text
-	ooc(message)
+	mooc(message)
 
 
 /client/verb/mooc(msg as text) // Same as XOOC, but for humans.
