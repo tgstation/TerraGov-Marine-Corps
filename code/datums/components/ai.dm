@@ -53,6 +53,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	GLOB.ai_instances_active -= src
 	parent.RemoveElement(/datum/element/pathfinder)
 	UnregisterSignal(parent, COMSIG_COMBAT_LOG)
+	UnregisterSignal(parent, list(COMSIG_PARENT_PREQDELETED, COMSIG_MOB_DEATH))
 	if(ai_behavior)
 		STOP_PROCESSING(SSprocessing, ai_behavior)
 		ai_behavior.unregister_action_signals(ai_behavior.current_action)

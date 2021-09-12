@@ -39,7 +39,7 @@
 /datum/ai_behavior/xeno/look_for_new_state()
 	switch(current_action)
 		if(ESCORTING_ATOM, MOVING_TO_NODE)
-			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
+			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 			if(!next_target)
 				return
 			change_action(MOVING_TO_ATOM, next_target)
@@ -47,7 +47,7 @@
 			if(escorted_atom && get_dist(escorted_atom, mob_parent) > target_distance)
 				change_action(ESCORTING_ATOM, escorted_atom)
 				return
-			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
+			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 			if(!next_target)//We didn't find a target
 				cleanup_current_action()
 				late_initialize()
@@ -70,7 +70,6 @@
 				return
 			var/obj/structure/obstacle = thing
 			if(obstacle.resistance_flags & XENO_DAMAGEABLE)
-				mob_parent.face_atom(obstacle)
 				INVOKE_ASYNC(src, .proc/attack_target, null, obstacle)
 				return COMSIG_OBSTACLE_DEALT_WITH
 		else if(istype(thing, /obj/machinery/door/airlock))
@@ -80,6 +79,7 @@
 			if(lock.operating) //Airlock already doing something
 				continue
 			if(lock.welded) //It's welded, can't force that open
+				INVOKE_ASYNC(src, .proc/attack_target, null, thing) //ai is cheating
 				continue
 			lock.open(TRUE)
 			return COMSIG_OBSTACLE_DEALT_WITH
@@ -96,9 +96,6 @@
 	if(get_dist(attacked, mob_parent) > 1)
 		return
 	mob_parent.face_atom(attacked)
-	if(isobj(attacked) && !(attacked.resistance_flags & XENO_DAMAGEABLE))
-		stack_trace("A xenomorph tried to attack a [attacked.name] that isn't considered XENO_DAMAGABLE according to resistance flags.")
-		return
 	mob_parent.UnarmedAttack(attacked, TRUE)
 
 /datum/ai_behavior/xeno/register_action_signals(action_type)

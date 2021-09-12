@@ -640,7 +640,7 @@
 
 	return ..()
 
-/datum/reagent/toxin/zombium
+/datum/reagent/zombium
 	name = "Zombium"
 	description = "Powerful chemical able to raise the dead, origin is likely from an unidentified bioweapon."
 	reagent_state = LIQUID
@@ -648,22 +648,28 @@
 	custom_metabolism = REAGENTS_METABOLISM * 0.25
 	scannable = TRUE
 	overdose_threshold = 20
-	toxpwr = 0
+	overdose_crit_threshold = 50
 
-/datum/reagent/toxin/zombium/on_overdose_start(mob/living/L, metabolism)
+/datum/reagent/zombium/on_overdose_start(mob/living/L, metabolism)
 	RegisterSignal(L, COMSIG_HUMAN_SET_UNDEFIBBABLE, .proc/zombify)
 
-/datum/reagent/toxin/zombium/on_overdose_stop(mob/living/L, metabolism)
+/datum/reagent/zombium/on_overdose_stop(mob/living/L, metabolism)
 	UnregisterSignal(L, COMSIG_HUMAN_SET_UNDEFIBBABLE)
 
-/datum/reagent/toxin/zombium/overdose_process(mob/living/L, metabolism)
+/datum/reagent/zombium/overdose_process(mob/living/L, metabolism)
 	if(prob(5))
 		L.emote("gasp")
 	L.adjustOxyLoss(3)
 	L.adjustToxLoss(3)
 
+/datum/reagent/zombium/overdose_crit_process(mob/living/L, metabolism)
+	if(prob(50))
+		L.emote("gasp")
+	L.adjustOxyLoss(10)
+	L.adjustToxLoss(10)
+
 ///Signal handler preparing the source to become a zombie
-/datum/reagent/toxin/zombium/proc/zombify(mob/living/L)
+/datum/reagent/zombium/proc/zombify(mob/living/L)
 	SIGNAL_HANDLER
 	L.do_jitter_animation(1000)
 	addtimer(CALLBACK(L, /mob/living/carbon/human.proc/revive_to_crit, TRUE, TRUE), SSticker.mode?.zombie_transformation_time)

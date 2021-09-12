@@ -4,14 +4,23 @@
 	icobase = 'icons/mob/human_races/r_husk.dmi'
 	deform = 'icons/mob/human_races/r_husk.dmi'
 	total_health = 200
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_UNDERWEAR|HEALTH_HUD_ALWAYS_DEAD
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|HAS_UNDERWEAR|HEALTH_HUD_ALWAYS_DEAD|PARALYSE_RESISTANT
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_in_dark = 8
 	blood_color = "#110a0a"
 	hair_color = "#000000"
-	slowdown = 1.5
+	slowdown = 1
 	unarmed_type = /datum/unarmed_attack/husk
 	default_language_holder = /datum/language_holder/zombie
+	has_organ = list(
+		"heart" =    /datum/internal_organ/heart,
+		"lungs" =    /datum/internal_organ/lungs,
+		"liver" =    /datum/internal_organ/liver,
+		"kidneys" =  /datum/internal_organ/kidneys,
+		"brain" =    /datum/internal_organ/brain/husk,
+		"appendix" = /datum/internal_organ/appendix,
+		"eyes" =     /datum/internal_organ/eyes
+	)
 	///Sounds made randomly by the zombie
 	var/list/sounds = list('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg')
 	///Time before resurrecting if dead
@@ -39,7 +48,7 @@
 	if(prob(10))
 		playsound(get_turf(H), pick(sounds), 50)
 	for(var/datum/limb/limb AS in H.limbs) //Regrow some limbs
-		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(10))
+		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(20))
 			limb.remove_limb_flags(LIMB_DESTROYED)
 			H.update_body()
 
@@ -56,7 +65,7 @@
 		var/mob/living/carbon/human/human_target = target
 		if(human_target.stat == DEAD)
 			return TRUE
-		human_target.reagents.add_reagent(/datum/reagent/toxin/zombium, zombium_per_hit)
+		human_target.reagents.add_reagent(/datum/reagent/zombium, zombium_per_hit)
 		return FALSE
 	if(isobj(target) && target.resistance_flags & XENO_DAMAGEABLE)
 		var/obj/obj_target = target
@@ -64,8 +73,17 @@
 	return TRUE
 
 /datum/species/husk/handle_death(mob/living/carbon/human/H)
+	SSmobs.stop_processing(H)
 	if(!H.on_fire && H.has_working_organs())
 		addtimer(CALLBACK(H, /mob/living/carbon/human.proc/revive_to_crit, TRUE, FALSE), revive_time)
+
+/datum/species/husk/create_organs(mob/living/carbon/human/organless_human)
+	. = ..()
+	for(var/datum/limb/limb AS in organless_human.limbs)
+		if(!istype(limb, /datum/limb/head))
+			continue
+		limb.vital = FALSE
+		return
 
 /datum/unarmed_attack/husk
 	attack_verb = list("scratch", "claw")

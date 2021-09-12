@@ -1315,5 +1315,5 @@ Note that amputating the affected organ does in fact remove the infection from t
 	. = ..()
 	if(!.)
 		return
-	if(!(owner.species.species_flags & DETACHABLE_HEAD))
+	if(!(owner.species.species_flags & DETACHABLE_HEAD) && vital)
 		owner.set_undefibbable()

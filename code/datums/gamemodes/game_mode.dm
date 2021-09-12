@@ -29,7 +29,7 @@
 	/// When are the shutters dropping
 	var/shutters_drop_time = 30 MINUTES
 	///Time before becoming a zombie when going undefibbable
-	var/zombie_transformation_time = 5 MINUTES
+	var/zombie_transformation_time = 30 SECONDS
 
 //Distress call variables.
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.
