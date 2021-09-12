@@ -365,35 +365,6 @@
 	recoil_unwielded = 0.75
 
 //-------------------------------------------------------
-//M-44, based off the SAA.
-
-/obj/item/weapon/gun/revolver/m44
-	name = "\improper M-44 SAA revolver"
-	desc = "A uncommon revolver occasionally carried by civilian law enforcement that's very clearly based off a modernized Single Action Army. Uses .44 Magnum rounds."
-	icon_state = "m44"
-	item_state = "m44"
-	caliber = CALIBER_44 //codex
-	max_shells = 6 //codex
-	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
-	force = 8
-	w_class = WEIGHT_CLASS_BULKY //perhaps give snub-nose treatment later?
-	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/flashlight,
-		/obj/item/attachable/heavy_barrel,
-		/obj/item/attachable/quickfire,
-		/obj/item/attachable/extended_barrel,
-		/obj/item/attachable/compensator,
-		/obj/item/attachable/stock/revolver,
-		/obj/item/attachable/scope,
-		/obj/item/attachable/lasersight,
-		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/lace,
-	)
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
-
-//-------------------------------------------------------
 //RUSSIAN REVOLVER //Based on the 7.62mm Russian revolvers.
 
 /obj/item/weapon/gun/revolver/upp
@@ -532,6 +503,9 @@
 	scatter_unwielded = 20
 	damage_mult = 1.05
 
+//Single action revolvers below
+//---------------------------------------------------
+
 /obj/item/weapon/gun/revolver/single_action //This town aint big enuf fer the two of us
 	name = "single action revolver"
 	desc = "you should not be seeing this."
@@ -585,3 +559,33 @@
 	current_mag.chamber_contents[current_mag.chamber_position] = "blank" //We shot the bullet.
 	current_mag.used_casings++ //We add this only if we actually fired the bullet.
 	return TRUE
+
+//-------------------------------------------------------
+//M-44, based off the SAA.
+
+/obj/item/weapon/gun/revolver/single_action/m44
+	name = "\improper M-44 SAA revolver"
+	desc = "A uncommon revolver occasionally carried by civilian law enforcement that's very clearly based off a modernized Single Action Army. Has to be manully primed with each shot. Uses .44 Magnum rounds."
+	icon_state = "m44"
+	item_state = "m44"
+	caliber = CALIBER_44 //codex
+	max_shells = 6 //codex
+	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
+	force = 8
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/quickfire,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/stock/revolver,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/lace,
+	)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
+
+	fire_delay = 0.15 SECONDS
