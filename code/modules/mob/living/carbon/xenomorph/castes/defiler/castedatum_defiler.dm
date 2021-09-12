@@ -41,7 +41,7 @@
 		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/cocoon,
-		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/defile,
 		/datum/action/xeno_action/lay_egg,
 		/datum/action/xeno_action/activable/inject_egg_neurogas,

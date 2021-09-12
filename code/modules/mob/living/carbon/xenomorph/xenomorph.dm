@@ -58,31 +58,31 @@
 	if(!job) //It might be setup on spawn.
 		setup_job()
 
-	AddComponent(/datum/component/bump_attack)
-
 	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
 	hive.update_tier_limits()
 	if(z) //Larva are initiated in null space
 		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
 
-	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/grabbed_self_attack)
-
-/mob/living/carbon/xenomorph/proc/set_datum()
+///Change the caste of the xeno. If restore health is true, then health is set to the new max health
+/mob/living/carbon/xenomorph/proc/set_datum(restore_health_and_plasma = TRUE)
 	if(!caste_base_type)
 		CRASH("xeno spawned without a caste_base_type set")
 	if(!GLOB.xeno_caste_datums[caste_base_type])
 		CRASH("error finding base type")
 	if(!GLOB.xeno_caste_datums[caste_base_type][upgrade])
 		CRASH("error finding datum")
+	if(xeno_caste)
+		xeno_caste.on_caste_removed(src)
 	var/datum/xeno_caste/X = GLOB.xeno_caste_datums[caste_base_type][upgrade]
 	if(!istype(X))
 		CRASH("error with caste datum")
 	xeno_caste = X
-
-	plasma_stored = xeno_caste.plasma_max
+	xeno_caste.on_caste_applied(src)
 	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
-	health = maxHealth
+	if(restore_health_and_plasma)
+		plasma_stored = xeno_caste.plasma_max
+		health = maxHealth
 	setXenoCasteSpeed(xeno_caste.speed)
 	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
 	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
@@ -184,6 +184,9 @@
 		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
 	return NONE
 
+///Initiate of form changing on the xeno
+/mob/living/carbon/xenomorph/proc/change_form()
+	return
 
 /mob/living/carbon/xenomorph/examine(mob/user)
 	..()
