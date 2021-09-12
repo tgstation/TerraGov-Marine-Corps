@@ -3,7 +3,7 @@
 //NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 
-GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports", "Factory"))
+GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports", "Vehicles", "Factory"))
 
 /datum/supply_packs
 	var/name
@@ -160,6 +160,14 @@ WEAPONS
 	name = "UA-580 Portable Sentry"
 	contains = list(/obj/item/storage/box/minisentry)
 	cost = 40
+
+/datum/supply_packs/weapons/buildasentry
+	name = "Build-A-Sentry Attachment System"
+	contains = list(
+		/obj/item/attachable/buildasentry,
+	)
+	cost = 25
+
 
 /datum/supply_packs/weapons/m56d_emplacement
 	name = "TL-102 Mounted Heavy Smartgun"
@@ -1567,6 +1575,14 @@ Imports
 	name = "Straw hat"
 	contains = list(/obj/item/clothing/head/strawhat)
 	cost = 1
+
+/datum/supply_packs/vehicles
+	group = "Vehicles"
+
+/datum/supply_packs/vehicles/motorbike
+	name = "All-Terrain Motorbike"
+	cost = 40
+	contains = list(/obj/vehicle/ridden/motorbike)
 
 /*******************************************************************************
 FACTORY

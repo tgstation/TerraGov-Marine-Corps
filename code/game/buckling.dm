@@ -115,7 +115,12 @@
 		return FALSE
 
 	add_fingerprint(user, "buckle")
-	. = buckle_mob(buckling_mob, check_loc = check_loc)
+	var/hands_req = 0
+	if(buckle_flags & BUCKLE_NEEDS_HAND)
+		hands_req = 1
+	else if(buckle_flags & BUCKLE_NEEDS_TWO_HANDS)
+		hands_req = 2
+	. = buckle_mob(buckling_mob, check_loc = check_loc, target_hands_needed = hands_req)
 	if(!.)
 		return FALSE
 	if(!silent)

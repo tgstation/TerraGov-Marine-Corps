@@ -151,3 +151,19 @@
       time. Treatment speeds this up.
   - balance: Fresh wounds won't immediately start infecting the limb they're on.
   - bugfix: Wounds that worsen now do so more visibly.
+2021-09-12:
+  BraveMole:
+  - bugfix: Flares no longer explode
+  - refactor: Small grenade refactor
+  - qol: Ai will stop processing if you login to a mob with ai. It will resum if you
+      log out
+  MiniMeatwad:
+  - qol: Reduced the quick equip delay for pressing E in hotkey mode. Changes inventory
+      action delay from 150ms to 50ms, which is significantly smoother. The new delay
+      should now only affect you if you're using macros or spamming a key really hard.
+  - code_imp: Changed get_active_held_item()'s next_move to world.time + 1 instead
+      of world.time + 3.
+  QualityVan:
+  - refactor: Repathed non-splint medkits, minimal functional changes.
+  SplinterGP:
+  - balance: magazine ammo belt now has 6 slots from old 5
