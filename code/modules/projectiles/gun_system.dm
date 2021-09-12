@@ -139,7 +139,7 @@
 	///determines lower accuracy modifier in akimbo
 	var/lower_akimbo_accuracy = 1
 
-	// Akimbo is a gamble against odds. Akimbo should be equivalent to single handed in damage at its worst. Fortune blesses you.
+	// Akimbo is a gamble against odds. Akimbo should be 20% stronger than singlehanded on average. You can probably get it up to being 60% stronger though with minmaxing and luck.
 	///determines upper accuracy multiplier in akimbo 
 	var/upper_akimbo_accuracy_mult = 0.8
 	///determines lower accuracy multiplier in akimbo
