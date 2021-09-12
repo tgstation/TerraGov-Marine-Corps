@@ -3,7 +3,7 @@
 //NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 
-GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports"))
+GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports", "Vehicles"))
 
 /datum/supply_packs
 	var/name
@@ -1567,3 +1567,11 @@ Imports
 	name = "Straw hat"
 	contains = list(/obj/item/clothing/head/strawhat)
 	cost = 1
+
+/datum/supply_packs/vehicles
+	group = "Vehicles"
+
+/datum/supply_packs/vehicles/motorbike
+	name = "All-Terrain Motorbike"
+	cost = 40
+	contains = list(/obj/vehicle/ridden/motorbike)

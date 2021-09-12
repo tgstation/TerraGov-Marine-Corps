@@ -2334,6 +2334,12 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
+"hP" = (
+/obj/vehicle/ridden/motorbike{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "hQ" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom{
 	dir = 1
@@ -48251,8 +48257,8 @@ kM
 kM
 kM
 kM
-kM
-kM
+hP
+hP
 CE
 or
 eh
