@@ -181,7 +181,7 @@
 
 	// Send chat message to admins
 	for(var/client/C AS in GLOB.admins)
-		if(!check_other_rights(C, R_ADMIN, FALSE)) // Check if the client is still an admin. Potentially useless if the list already adds
+		if(!check_other_rights(C, R_ADMIN, FALSE)) // Check if the client is still an admin.
 			continue
 		var/display_name = mob.name
 		if(admin && !(mob in GLOB.xeno_mob_list)) // If the verb caller is an admin and is not a xeno mob, use their ckey instead.
