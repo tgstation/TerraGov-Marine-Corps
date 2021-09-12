@@ -232,6 +232,9 @@
 
 /mob/living/carbon/Paralyze(amount, ignore_canstun)
 	if(species?.species_flags & PARALYSE_RESISTANT)
+		if(amount > MAX_PARALYSE_AMOUNT_FOR_PARALYSE_RESISTANT * 4)
+			amount = MAX_PARALYSE_AMOUNT_FOR_PARALYSE_RESISTANT
+			return ..()
 		amount /= 4
 	return ..()
 
