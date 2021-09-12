@@ -296,10 +296,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pistol/superheavy/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 1, slowdown = 1, shake = 0)
 
-/datum/ammo/bullet/pistol/superheavy/derringer
-	handful_amount = 2
-	handful_icon_state = "derringer"
-
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
 	hud_state = "pistol_fire"
@@ -1629,19 +1625,19 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
-	spit_cost = 70
-	added_spit_delay = 0
+	spit_cost = 50
+	added_spit_delay = 5
 	damage_type = STAMINA
 	accurate_range = 5
 	max_range = 10
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	damage = 40
-	stagger_stacks = 1.1
-	slowdown_stacks = 1.1
+	damage = 30
+	stagger_stacks = 1
+	slowdown_stacks = 1
 	smoke_strength = 0.5
 	smoke_range = 0
-	reagent_transfer_amount = 7
+	reagent_transfer_amount = 6.5
 
 ///Set up the list of reagents the spit transfers upon impact
 /datum/ammo/xeno/toxin/proc/set_reagents()
@@ -1703,37 +1699,58 @@ datum/ammo/bullet/revolver/tp44
 	smoke_system.start()
 
 /datum/ammo/xeno/toxin/upgrade1
-	smoke_strength = 0.6
-	reagent_transfer_amount = 8
+	smoke_strength = 0.55
+	reagent_transfer_amount = 7
 
 /datum/ammo/xeno/toxin/upgrade2
-	smoke_strength = 0.7
-	reagent_transfer_amount = 9
-	
+	smoke_strength = 0.6
+	reagent_transfer_amount = 7.5
+
 /datum/ammo/xeno/toxin/upgrade3
+	smoke_strength = 0.65
+	reagent_transfer_amount = 8
+
+
+/datum/ammo/xeno/toxin/medium //Queen
+	name = "neurotoxic spatter"
+	added_spit_delay = 10
+	spit_cost = 75
+	damage = 35
+	smoke_strength = 0.6
+	reagent_transfer_amount = 7.5
+
+/datum/ammo/xeno/toxin/medium/upgrade1
+	smoke_strength = 0.65
+	reagent_transfer_amount = 8
+
+/datum/ammo/xeno/toxin/medium/upgrade2
+	smoke_strength = 0.7
+	reagent_transfer_amount = 8.5
+
+/datum/ammo/xeno/toxin/medium/upgrade3
 	smoke_strength = 0.75
-	reagent_transfer_amount = 9.5
+	reagent_transfer_amount = 9
 
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
-	added_spit_delay = 0
-	spit_cost = 120
+	added_spit_delay = 15
+	spit_cost = 100
 	damage = 40
-	smoke_strength = 0.9
-	reagent_transfer_amount = 9.5
+	smoke_strength = 0.65
+	reagent_transfer_amount = 8.5
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
-	smoke_strength = 0.9
+	smoke_strength = 0.7
 	reagent_transfer_amount = 9
 
 /datum/ammo/xeno/toxin/heavy/upgrade2
-	smoke_strength = 0.95
+	smoke_strength = 0.75
 	reagent_transfer_amount = 9.5
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
-	smoke_strength = 1
-	reagent_transfer_amount = 10  
+	smoke_strength = 0.8
+	reagent_transfer_amount = 10
 
 
 /datum/ammo/xeno/sticky
@@ -1830,7 +1847,6 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/acid/heavy/turret
 	damage = 20
 	name = "acid turret splash"
-	shell_speed = 2
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/projectile/P)
 	var/turf/T = get_turf(M)
@@ -1890,9 +1906,9 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 30
 	damage = 50
 	damage_type = STAMINA
-	penetration = 40
+	penetration = 50
 	bullet_color = BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR
-	reagent_transfer_amount = 30
+	reagent_transfer_amount = 40
 
 ///Set up the list of reagents the spit transfers upon impact
 /datum/ammo/xeno/boiler_gas/proc/set_reagents()
@@ -1951,9 +1967,9 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
 	armor_type = "acid"
 	danger_message = span_danger("A glob of acid lands with a splat and explodes into corrosive bile!")
-	damage = 50
+	damage = 60
 	damage_type = BURN
-	penetration = 40
+	penetration = 50
 	bullet_color = BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR
 
 /datum/ammo/xeno/boiler_gas/corrosive/on_hit_mob(mob/living/victim, obj/projectile/proj)
@@ -2072,7 +2088,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "grenade shell"
 	ping = null
 	damage_type = BRUTE
-	var/nade_type = /obj/item/explosive/grenade
+	var/nade_type = /obj/item/explosive/grenade/frag
 	icon_state = "grenade"
 	armor_type = "bomb"
 	damage = 15
