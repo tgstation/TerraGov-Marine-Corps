@@ -6,7 +6,7 @@
 	density = TRUE
 	layer = ABOVE_MOB_LAYER
 	use_power = FALSE
-	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
 ///generates the icon based on how much ammo it has.
 /obj/machinery/deployable/mounted/update_icon_state(mob/user)
@@ -72,7 +72,7 @@
 		gun.reload(user, ammo)
 		update_icon_state()
 		return
-	
+
 	if(!istype(gun, ammo.gun_type))
 		return
 
