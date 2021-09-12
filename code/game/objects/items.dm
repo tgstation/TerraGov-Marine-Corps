@@ -57,6 +57,9 @@
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
 	var/breakouttime = 0
 
+	///list() of species types, if a species cannot put items in a certain slot, but species type is in list, it will be able to wear that item
+	var/list/species_exception = null
+
 	var/list/allowed = null //suit storage stuff.
 	///name used for message when binoculars/scope is used
 	var/zoomdevicename = null
@@ -115,6 +118,10 @@
 
 
 /obj/item/Initialize()
+
+	if(species_exception)
+		species_exception = string_list(species_exception)
+
 	. = ..()
 
 	for(var/path in actions_types)
@@ -407,7 +414,8 @@
 		mob_equip = H.species.hud.equip_slots
 
 	if(H.species && !(slot in mob_equip))
-		return FALSE
+		if(!is_type_in_list(H.species, species_exception))
+			return FALSE
 
 	if(issynth(H) && CHECK_BITFIELD(flags_item, SYNTH_RESTRICTED) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(H, span_warning("Your programming prevents you from wearing this."))
