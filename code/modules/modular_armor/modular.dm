@@ -572,7 +572,7 @@
 	if(installed_module)
 		standing.overlays += image(installed_module.icon, ITEM_STATE_IF_SET(installed_module))
 	if(storage)
-		for(var/obj/item/stored in storage.contents)
+		for(var/obj/item/stored AS in storage.contents)
 			standing.overlays += image('icons/mob/modular/modular_helmet_storage.dmi', icon_state = stored.icon_state)
 
 
