@@ -642,7 +642,7 @@
 
 /datum/reagent/toxin/zombium
 	name = "Zombium"
-	description = "Powerfull chemical able to raise the dead"
+	description = "Powerful chemical able to raise the dead, origin is likely from an unidentified bioweapon."
 	reagent_state = LIQUID
 	color = "#ac0abb"
 	custom_metabolism = REAGENTS_METABOLISM * 0.25
