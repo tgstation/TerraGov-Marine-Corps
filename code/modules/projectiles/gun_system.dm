@@ -139,6 +139,12 @@
 	///determines lower accuracy modifier in akimbo
 	var/lower_akimbo_accuracy = 1
 
+	// Akimbo is a gamble against odds. Akimbo should be equivalent to single handed in damage at its worst. Fortune blesses you.
+	///determines upper accuracy multiplier in akimbo 
+	var/upper_akimbo_accuracy_mult = 0.8
+	///determines lower accuracy multiplier in akimbo
+	var/lower_akimbo_accuracy_mult = 0.6
+
 	///If the gun is deployable, the time it takes for the weapon to deploy.
 	var/deploy_time = 0
 	///If the gun is deployable, the time it takes for the weapon to undeploy.
@@ -1060,7 +1066,9 @@ and you're good to go.
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
 
 	if(dual_wield) //akimbo firing gives terrible accuracy
+		gun_accuracy_mult = gun_accuracy_mult*rand(upper_akimbo_accuracy_mult, lower_akimbo_accuracy_mult) // Used to decrease akimbo accuracy by probalistic median percentage.
 		gun_scatter += 10*rand(upper_akimbo_accuracy, lower_akimbo_accuracy)
+
 
 	if(user)
 		// Apply any skill-based bonuses to accuracy
