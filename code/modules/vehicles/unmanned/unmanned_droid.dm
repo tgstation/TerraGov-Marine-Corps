@@ -44,7 +44,7 @@
 	balloon_alert_to_viewers("[user] starts repairs", ignored_mobs = user)
 	balloon_alert(user, "You start repair")
 	if(!do_after(user, 2 SECONDS, extra_checks = CALLBACK(I, /obj/item/tool/weldingtool.proc/isOn)))
-		balloon_alert_to_viewers("Stops repair")
+		balloon_alert_to_viewers("Repairs stopped")
 		return
 	if(!I.use_tool(src, user, 0, volume=50, amount=1))
 		return TRUE
