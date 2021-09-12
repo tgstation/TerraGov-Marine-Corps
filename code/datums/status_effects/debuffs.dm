@@ -1,5 +1,5 @@
 #define TRAIT_STATUS_EFFECT(effect_id) "[effect_id]-trait"
-#define BASE_HEAL_RATE -0.003125
+#define BASE_HEAL_RATE -0.0125
 
 //Largely negative status effects go here, even if they have small benificial effects
 //STUN EFFECTS
