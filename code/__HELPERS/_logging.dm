@@ -137,7 +137,7 @@
 
 /proc/log_mooc(text)
 	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] MOOC: [text]")
-	if(CONFIG_GET(flag/log_xooc))
+	if(CONFIG_GET(flag/log_mooc))
 		WRITE_LOG(GLOB.world_game_log, "MOOC: [text]")
 
 /proc/log_looc(text)
