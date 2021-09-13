@@ -423,10 +423,6 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "gross metal"
 
-/datum/reagent/fuel/reaction_turf(turf/T, volume)
-	if(volume <= 3 || !isfloorturf(T))
-		return
-	new /obj/effect/decal/cleanable/liquid_fuel(T, volume) //It already handles dupes on it own turf.
 
 /datum/reagent/fuel/on_mob_life(mob/living/L)
 	L.adjustToxLoss(1)
