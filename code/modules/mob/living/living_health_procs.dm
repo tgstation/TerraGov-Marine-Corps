@@ -385,7 +385,7 @@
 
 ///Revive the huamn up to X health points
 /mob/living/carbon/human/proc/revive_to_crit(should_offer_to_ghost = FALSE, should_zombify = FALSE)
-	if(!has_working_organs() || on_fire || (should_zombify && fireloss > species.total_health))
+	if(!has_working_organs())
 		return
 	if(health > 0)
 		return
@@ -406,12 +406,12 @@
 			return
 		REMOVE_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
 		if(should_zombify || species.name == "Husk")
-			AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie, get_turf(src)) //Zombie stay near
+			AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie/patrolling, src) //Zombie patrol
 			a_intent = INTENT_HARM
 	if(should_zombify)
 		set_species("Husk")
 		faction = FACTION_XENO
-	heal_limbs(-health)
+	heal_limbs(-2 * health)
 	set_stat(CONSCIOUS)
 	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /obj/screen/fullscreen/black)
 	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /obj/screen/fullscreen/spawning_in)

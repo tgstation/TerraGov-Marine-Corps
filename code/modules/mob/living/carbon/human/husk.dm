@@ -40,6 +40,7 @@
 	H.dropItemToGround(H.l_hand)
 	//remove larva
 	var/obj/item/alien_embryo/alien_embryo = locate() in src
+	H.actions.Cut()
 	if(alien_embryo)
 		qdel(alien_embryo)
 		return
