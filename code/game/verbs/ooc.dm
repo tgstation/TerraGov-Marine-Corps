@@ -163,7 +163,7 @@
 		to_chat(src, span_warning("You have been banned from OOC."))
 		return
 
-	mob.log_talk(msg, LOG_OOC)
+	mob.log_talk(msg, LOG_XOOC)
 
 	// Send chat message to non-admins
 	for(var/client/C AS in GLOB.clients)
@@ -250,7 +250,7 @@
 		to_chat(src, span_warning("You have been banned from OOC."))
 		return
 
-	mob.log_talk(msg, LOG_OOC)
+	mob.log_talk(msg, LOG_MOOC)
 
 	// Send chat message to non-admins
 	for(var/client/C AS in GLOB.clients)
