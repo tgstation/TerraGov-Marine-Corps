@@ -803,6 +803,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(HEAD)
 			if(owner.species.species_flags & IS_SYNTHETIC) //special head for synth to allow brainmob to talk without an MMI
 				organ = new /obj/item/limb/head/synth(owner.loc, owner)
+			else if(owner.species.species_flags & ROBOTIC_LIMBS)
+				organ = new /obj/item/limb/head/robotic(owner.loc, owner)
 			else
 				organ = new /obj/item/limb/head(owner.loc, owner)
 			owner.dropItemToGround(owner.glasses, force = TRUE)
@@ -1036,8 +1038,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 		b_icon = B.icon_name
 
 	return icon(race_icon, "[get_limb_icon_name(owner.species, b_icon, owner.gender, icon_name, e_icon)]")
-
-	//return new /icon(race_icon, "[icon_name][gender ? "_[gender]" : ""]")
 
 
 /datum/limb/proc/is_usable()
