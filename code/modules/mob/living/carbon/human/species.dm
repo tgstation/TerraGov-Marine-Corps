@@ -935,7 +935,7 @@
 
 	body_temperature = 350
 
-	innate_traits = list(NON_FLAMMABLE)
+	inherent_traits = list(TRAIT_NON_FLAMMABLE)
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS
 
 	blood_color = "#2d2055" //"oil" color
@@ -952,6 +952,7 @@
 	warcries = list(MALE = "robot_warcry", FEMALE = "robot_warcry")
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
+/datum/language_holder/combat_robot
 
 ///Called when using the shredding behavior.
 /datum/species/proc/can_shred(mob/living/carbon/human/H)
