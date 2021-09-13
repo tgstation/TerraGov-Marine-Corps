@@ -1,6 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - rscadd: "Marine bikes"
-  - rscadd: "The bikes must be filled with fuel and require one hand to use, but come with 4 storage slots for items which can be accessed by clicking the bike with an empty hand or dragging the bike onto yourself. The bikes can be repaired with welders."
-  - imageadd: "Sprites by thatguythere03#4418"

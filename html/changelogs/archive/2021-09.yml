@@ -167,3 +167,60 @@
   - refactor: Repathed non-splint medkits, minimal functional changes.
   SplinterGP:
   - balance: magazine ammo belt now has 6 slots from old 5
+2021-09-13:
+  BraveMole:
+  - rscadd: Admin spawned xeno can use abilities in civil war
+  - qol: Add minimap blips for nuke disk generator and nuke
+  - bugfix: You can no longer steal aghosted bodies
+  - bugfix: Spawning as a space agent no longer allow to bypass respawn timer
+  - rscadd: AFK marines can be taken by ghosts
+  - bugfix: Sentry ammo is visible again
+  Bravemole, sprites by Daytona:
+  - rscadd: Hivemind can manifest
+  MiniMeatwad:
+  - rscadd: Adds Team OOC, two new verbs in the OOC tab called XOOC and MOOC for Xeno
+      and Marine.
+  - code_imp: Modified ooc.dm, adding two new verbs.
+  - admin: XOOC and MOOC should have clickable player panel links for admins, and
+      admins can see XOOC and MOOC chat and talk in them.
+  Pariah919:
+  - balance: T-90 has aim mode, and T-19 has better one handed stats (reduced scatter
+      by 3 and accuracy buff by .1), two handed accuracy reduced from 1.5 to 1.2.
+  - balance: machinecarbine scatter reduced by 8 to 12 from 20.
+  - spellcheck: minor tp44 description changes
+  - balance: m44 now works like a proper single action, use unique action to prime
+      it, it has slightly less fire delay and is normal sized from bulky
+  QualityVan:
+  - bugfix: People buckled to beds will lie down.
+  - bugfix: You can move while carrying someone on your back.
+  TiviPlus:
+  - bugfix: droids can be repaired again
+  - code_imp: Updated max reccomended byond versions
+  - bugfix: fixed a deletion bug
+  - bugfix: fixed soe balloon alerts looking wierd
+  - bugfix: fixed some radial menus looking wierd
+  - bugfix: fixed parallax animation
+  - bugfix: fixed some tgui colors maybe being wierd
+  - admin: fixed some missing byond varedit flags
+  - code_imp: TGUI tooltip optimization
+  - rscadd: Marine bikes
+  - rscadd: The bikes must be filled with fuel and require one hand to use, but come
+      with 4 storage slots for items which can be accessed by clicking the bike with
+      an empty hand or dragging the bike onto yourself. The bikes can be repaired
+      with welders.
+  - imageadd: Sprites by thatguythere03#4418
+  hyper2snyper:
+  - rscadd: New Attachment, the Build-A-Sentry. Available in the Engi vendor for 30
+      points a piece, or 1 for 25 points in Req.
+  - rscadd: Simply attach it to the gun and boom, it can be deployed.
+  - rscadd: Changed the controls for deployable guns and sentries. You can see the
+      controls by examining the guns that can be deployed.
+  - balance: Anti-mat sniper can now have its scope removed.
+  - code_imp: Removed an old bitfield that was unused in gun code.
+  - code_imp: Adds a ton of infrastructure for new sentry types.
+  jroinc:
+  - bugfix: Altered some descriptive text for the medscanner and defib.
+  - expansion: Added stuff to sleeping. If you sleep on a bed with sheets and are
+      not in crit, you'll heal 0.25 brute, 0.25 burn, 0.125 toxloss, 25 stamina, and
+      a variable amount of cloneloss (-0.1 to 0.2, depending on your overall health).
+      If you sleep on the floor, you get a quarter of those values.
