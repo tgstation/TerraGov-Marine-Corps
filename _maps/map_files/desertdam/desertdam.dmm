@@ -7731,7 +7731,7 @@
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "aDn" = (
 /obj/structure/table,
-/obj/item/stack/medical/bruise_pack,
+/obj/item/stack/medical/heal_pack/gauze,
 /turf/open/floor/prison{
 	dir = 10;
 	icon_state = "bright_clean"
@@ -7748,7 +7748,7 @@
 "aDp" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/pickaxe,
-/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/heal_pack/ointment,
 /turf/open/floor/wood,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "aDq" = (
@@ -45073,7 +45073,7 @@
 /area/desert_dam/building/medical/break_room)
 "dOE" = (
 /obj/structure/table/mainship,
-/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/heal_pack/ointment,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4

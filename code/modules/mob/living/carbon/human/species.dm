@@ -39,6 +39,9 @@
 	var/insulated = FALSE
 	var/count_human = FALSE // Does this count as a human?
 
+	///Inventory slots the race can't equip stuff to. Golems cannot wear jumpsuits, for example.
+	var/list/no_equip = list()
+
 	// Some species-specific gibbing data.
 	var/gibbed_anim = "gibbed-h"
 	var/dusted_anim = "dust-h"
@@ -227,7 +230,11 @@
 		to_chat(prefs.parent, span_warning("You forgot to set your synthetic name in your preferences. Please do so next time."))
 
 /datum/species/proc/on_species_gain(mob/living/carbon/human/H, /datum/species/old_species)
-	return
+	SHOULD_CALL_PARENT(TRUE) //remember to call base procs kids
+	for(var/slot_id in no_equip)
+		var/obj/item/thing = H.get_item_by_slot(slot_id)
+		if(thing && !is_type_in_list(src,thing.species_exception))
+			H.dropItemToGround(thing)
 
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)

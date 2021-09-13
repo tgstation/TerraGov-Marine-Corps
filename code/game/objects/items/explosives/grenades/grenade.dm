@@ -19,6 +19,8 @@
 	var/underslug_launchable = TRUE
 	var/hud_state = "grenade_he"
 	var/hud_state_empty = "grenade_empty"
+	///Light impact range when exploding
+	var/light_impact_range = 4
 
 
 /obj/item/explosive/grenade/Initialize()
@@ -79,7 +81,7 @@
 
 
 /obj/item/explosive/grenade/proc/prime()
-	explosion(loc, light_impact_range = 4, small_animation = TRUE)
+	explosion(loc, light_impact_range = src.light_impact_range, small_animation = TRUE)
 	qdel(src)
 
 /obj/item/explosive/grenade/flamer_fire_act()
