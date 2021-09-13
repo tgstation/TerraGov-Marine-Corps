@@ -1599,6 +1599,7 @@ FACTORY
 		/obj/machinery/factory/heater,
 		/obj/machinery/factory/flatter,
 		/obj/machinery/factory/former,
+		/obj/machinery/factory/reconstructor,
 		/obj/machinery/outputter,
 		/obj/item/paper/factoryhowto,
 	)
@@ -1624,8 +1625,13 @@ FACTORY
 	contains = list(/obj/machinery/factory/former)
 	cost = 10
 
+/datum/supply_packs/factory/former
+	name = "Industrial former"
+	contains = list(/obj/machinery/factory/reconstructor)
+	cost = 10
+
 /datum/supply_packs/factory/outputter
-	name = "Industrial outputter"
+	name = "Industrial Unboxer"
 	contains = list(/obj/machinery/outputter)
 	cost = 10
 
