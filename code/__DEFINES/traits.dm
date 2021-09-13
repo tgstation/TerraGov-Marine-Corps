@@ -77,6 +77,7 @@
 #define ROUNDSTART_TRAIT "roundstart" //cannot be removed without admin intervention
 #define SLEEPER_TRAIT "sleeper"
 #define STASIS_BAG_TRAIT "stasis_bag"
+#define SPECIES_TRAIT "species" // /datum/species innate trait
 #define CRYOPOD_TRAIT "cryopod"
 #define TRAIT_XENO "xeno"
 #define ARMOR_TRAIT "armor"
