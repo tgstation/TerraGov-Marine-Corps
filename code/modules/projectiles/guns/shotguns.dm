@@ -643,8 +643,11 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/scope/mosin,
 		/obj/item/attachable/stock/mosin,
 	)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.75 SECONDS
+	aim_speed_modifier = 0.8
 
-	fire_delay = 17.5
+	fire_delay = 1.75 SECONDS
 	accuracy_mult = 1.45
 	accuracy_mult_unwielded = 0.7
 	scatter = -25
