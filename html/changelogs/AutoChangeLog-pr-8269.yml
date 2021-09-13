@@ -1,0 +1,15 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - rscadd: "Added landmark versions of flight computers to both Chigusa Landing Zones, allowing for civil war to be played."
+  - expansion: "Chigusa's river is now animated."
+  - rscdel: "Removed an unnecessary icon sheet."
+  - balance: "Rebalanced both Chigusa LZs to meet TGMC quality standards."
+  - balance: "Moved Chigusa LZ2 to the southeast."
+  - balance: "Moved Chigusa nuke computers much closer together."
+  - balance: "Redid Chigusa fog blockers to be more consistent."
+  - bugfix: "You can no longer defy physics by hiding underneath road paint as a runner."
+  - bugfix: "Several Chigusa APCs now properly connect to the grid."
+  - bugfix: "Chigusa Landing Zones are now longer permanently unpowered despite having a full APC."
+  - bugfix: "Fixed a single obscure unmapped tile Chigusa inherited from CM."
+  - imageadd: "Added some animation frames for Chigusa's river."

@@ -35,6 +35,8 @@
 	attachable_allowed = list(
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/lasersight,
+		/obj/item/attachable/scope/antimaterial,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
@@ -44,6 +46,8 @@
 	burst_amount = 1
 	accuracy_mult = 1.50
 	recoil = 2
+
+	placed_overlay_iconstate = "antimat"
 
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/Initialize()
@@ -815,7 +819,7 @@
 	name = "\improper M81 riot grenade launcher"
 	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by Nanotrasen security during riots."
 	grenade_type_allowed = /obj/item/explosive/grenade/chem_grenade
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_POLICE|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	req_access = list(ACCESS_MARINE_BRIG)
 
 
@@ -842,6 +846,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -856,6 +861,8 @@
 	recoil = 3
 	scatter = -100
 
+	placed_overlay_iconstate = "sadar"
+
 
 /obj/item/weapon/gun/launcher/rocket/Initialize(mapload, spawn_empty)
 	. = ..()
@@ -866,7 +873,7 @@
 	return ..()
 
 /obj/item/weapon/gun/launcher/rocket/Fire()
-	if(!able_to_fire(gun_user) || gun_user.do_actions)
+	if((!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)) || gun_user?.do_actions)
 		return
 
 	if(gun_on_cooldown(gun_user))
@@ -897,12 +904,20 @@
 	if(has_attachment(/obj/item/attachable/scope/mini))
 		delay += 0.2 SECONDS
 
-	if(gun_user.skills.getRating("firearms") < 0)
+	if(gun_user && gun_user.skills.getRating("firearms") < 0)
 		delay += 0.6 SECONDS
 
-	if(!do_after(gun_user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
-		windup_checked = WEAPON_WINDUP_NOT_CHECKED
+	if(gun_user)
+		if(!do_after(gun_user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
+			windup_checked = WEAPON_WINDUP_NOT_CHECKED
+			return
+		finish_windup()
 		return
+	
+	addtimer(CALLBACK(src, .proc/finish_windup), delay)
+
+///Proc that finishes the windup, this fires the gun.
+/obj/item/weapon/gun/launcher/rocket/proc/finish_windup()
 	windup_checked = WEAPON_WINDUP_CHECKED
 	if(Fire())
 		playsound(loc,'sound/weapons/guns/fire/launcher.ogg', 50, TRUE)
@@ -1020,6 +1035,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -1054,7 +1070,9 @@
 	load_method = MAGAZINE //codex
 	current_mag = /obj/item/ammo_magazine/rocket/m57a4/ds
 	aim_slowdown = 2.75
-	attachable_allowed = list()
+	attachable_allowed = list(
+		/obj/item/attachable/buildasentry,
+	)
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	general_codex_key = "explosive weapons"
 
@@ -1062,6 +1080,8 @@
 	burst_delay = 0.4 SECONDS
 	burst_amount = 4
 	accuracy_mult = 0.8
+
+	placed_overlay_iconstate = "thermo"
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/t57
 	name = "\improper T-57 quad thermobaric launcher"
@@ -1097,6 +1117,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -1192,7 +1213,9 @@
 	force = 30 // two shots weeds as it has no bayonet
 	wield_delay = 0.5 SECONDS // Very fast to put up.
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
-	attachable_allowed = list() // Nada.
+	attachable_allowed = list(
+		/obj/item/attachable/buildasentry,
+	) // One
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER
@@ -1204,3 +1227,5 @@
 	accuracy_mult_unwielded = 0.75
 	scatter = -5
 	scatter_unwielded = 5
+
+	placed_overlay_iconstate = "pepper"

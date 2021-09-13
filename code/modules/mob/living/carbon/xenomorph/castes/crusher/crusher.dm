@@ -18,11 +18,6 @@
 	old_x = -16
 	old_y = -3
 
-/mob/living/carbon/xenomorph/crusher/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/ridable, /datum/component/riding/creature/crusher)
-
-
 /mob/living/carbon/xenomorph/crusher/ex_act(severity)
 
 	flash_act()

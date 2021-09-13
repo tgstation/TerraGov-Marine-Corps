@@ -130,6 +130,8 @@
 /mob/living/proc/IgniteMob()
 	if(status_flags & GODMODE) //Invulnerable mobs don't get ignited
 		return FALSE
+	if(HAS_TRAIT(src, TRAIT_NON_FLAMMABLE))
+		return FALSE
 	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 		return FALSE
 	if(fire_stacks > 0 && !on_fire)
