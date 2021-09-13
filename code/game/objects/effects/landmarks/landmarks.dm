@@ -270,7 +270,7 @@
 		/obj/item/weapon/gun/pistol/vp70,
 		/obj/item/weapon/gun/pistol/vp78,
 		/obj/item/weapon/gun/revolver/standard_revolver,
-		/obj/item/weapon/gun/revolver/m44,
+		/obj/item/weapon/gun/revolver/single_action/m44,
 		/obj/item/weapon/gun/revolver/upp,
 		/obj/item/weapon/gun/revolver/small,
 		/obj/item/weapon/gun/revolver/cmb,

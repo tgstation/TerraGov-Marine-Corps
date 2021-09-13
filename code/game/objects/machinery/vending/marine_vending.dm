@@ -613,10 +613,10 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 		),
 		"Heal Pack" = list(
+			/obj/item/stack/medical/heal_pack/gauze = -1,
+			/obj/item/stack/medical/heal_pack/ointment = -1,
 			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 32,
-			/obj/item/stack/medical/heal_pack/gauze = 32,
 			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 32,
-			/obj/item/stack/medical/heal_pack/ointment = 32,
 			/obj/item/stack/medical/splint = 16,
 		),
 		"Misc" = list(

@@ -6,7 +6,7 @@
 	///Action used to turn bump attack on/off manually
 	var/datum/action/bump_attack_toggle/toggle_action
 
-/datum/component/bump_attack/Initialize(enabled = TRUE, has_button = TRUE)
+/datum/component/bump_attack/Initialize(enabled = TRUE, has_button = TRUE, silent_activation = FALSE)
 	. = ..()
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -22,18 +22,23 @@
 		toggle_action.give_action(parent)
 		toggle_action.update_button_icon(active)
 		RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, .proc/living_activation_toggle)
-	living_activation_toggle(should_enable = enabled)
+	living_activation_toggle(should_enable = enabled, silent_activation = silent_activation)
+
+/datum/component/bump_attack/UnregisterFromParent()
+	toggle_action?.remove_action(parent)
+	UnregisterSignal(parent, COMSIG_MOVABLE_BUMP)
 
 /datum/component/bump_attack/Destroy(force, silent)
 	QDEL_NULL(toggle_action)
 	return ..()
 
 
-/datum/component/bump_attack/proc/living_activation_toggle(datum/source, should_enable = !active)
+/datum/component/bump_attack/proc/living_activation_toggle(datum/source, should_enable = !active, silent_activation)
 	if(should_enable == active)
 		return
 	var/mob/living/bumper = parent
-	bumper.balloon_alert(bumper, "Will now [should_enable ? "attack" : "push"] enemies in your way.")
+	if(!silent_activation)
+		bumper.balloon_alert(bumper, "Will now [should_enable ? "attack" : "push"] enemies in your way.")
 	toggle_action?.update_button_icon(should_enable)
 	if(should_enable)
 		active = TRUE

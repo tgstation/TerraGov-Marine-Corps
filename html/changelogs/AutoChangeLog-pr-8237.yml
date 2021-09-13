@@ -1,4 +1,4 @@
 author: "BraveMole"
 delete-after: True
 changes: 
-  - bugfix: "Sentry ammo is visible again"
+  - qol: "No longer shooting at adjacent tiles"
