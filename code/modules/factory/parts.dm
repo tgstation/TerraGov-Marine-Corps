@@ -27,6 +27,7 @@
 /obj/item/factory_part/proc/advance_stage()
 	stage++
 	if(length(recipe) < stage)
+		GLOB.round_statistics.req_items_produced[result]++
 		new result(loc)
 		qdel(src)
 		return
@@ -79,8 +80,8 @@ GLOBAL_LIST_INIT(pizza_recipe,  list(
 
 GLOBAL_LIST_INIT(sadar_ammo_recipe, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "hotplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "tube"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "hotplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "rockettube"),
 	))
 
@@ -98,7 +99,7 @@ GLOBAL_LIST_INIT(sadar_ammo_recipe, list(
 	desc = "An unfinished sleek missile with an AP warhead."
 	result = /obj/item/ammo_magazine/rocket/sadar/ap
 
-/obj/item/factory_part/c/Initialize()
+/obj/item/factory_part/sadar_ap/Initialize()
 	. = ..()
 	recipe = GLOB.sadar_ammo_recipe
 

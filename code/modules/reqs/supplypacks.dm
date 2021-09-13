@@ -1632,7 +1632,7 @@ FACTORY
 /datum/supply_packs/factory/phosphosrefill
 	name = "Phosphorus-resistant plates refill"
 	contains = list(/obj/item/factory_refill/phosnade)
-	cost = 12
+	cost = 30
 
 /datum/supply_packs/factory/bignaderefill
 	name = "Rounded M15 plates refill"
