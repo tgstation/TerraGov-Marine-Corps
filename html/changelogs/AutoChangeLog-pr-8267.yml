@@ -1,0 +1,5 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - balance: "Marine meds have infinite gauze and ointment"
+  - balance: "Stacks can't be restocked in vendors unless they have the count they started with."
