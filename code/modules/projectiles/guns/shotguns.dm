@@ -104,7 +104,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 
 /obj/item/weapon/gun/shotgun/reload(mob/user, obj/item/ammo_magazine/handful/magazine)
-	if(flags_gun_added_features & GUN_BURST_FIRING)
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return FALSE
 
 	if(!istype(magazine)) //Can only reload with handfuls.
@@ -124,7 +124,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 
 /obj/item/weapon/gun/shotgun/unload(mob/user)
-	if(flags_gun_added_features & GUN_BURST_FIRING)
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return FALSE
 	return empty_chamber(user)
 
@@ -321,7 +321,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	return TRUE
 
 /obj/item/weapon/gun/shotgun/double/unload(mob/user)
-	if(flags_gun_added_features & GUN_BURST_FIRING)
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return FALSE
 	return cock(user)
 

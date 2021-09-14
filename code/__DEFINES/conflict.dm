@@ -75,14 +75,6 @@
 #define GUN_INNATE_ATTACHMENT_FIRE_ONLY (1<<14)
 #define GUN_INNATE_IS_SENTRY (1<<15)
 
-//temporary or added flags_gun_feature
-#define GUN_TRIGGER_SAFETY (1<<0)
-#define GUN_FLASHLIGHT_ON (1<<1)
-#define AUTO_AIM_MODE (1<<2)
-#define GUN_IS_AIMING (1<<3)
-#define GUN_BURST_FIRING (1<<4)
-#define GUN_SILENCED (1<<5)
-
 #define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
 #define GUN_FIREMODE_BURSTFIRE "burst-fire mode"
 #define GUN_FIREMODE_AUTOMATIC "automatic fire mode"

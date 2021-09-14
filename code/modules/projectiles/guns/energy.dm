@@ -75,7 +75,7 @@
 
 // energy guns, however, do not use gun rattles.
 /obj/item/weapon/gun/energy/play_fire_sound(mob/user)
-	if(flags_gun_added_features & GUN_SILENCED)
+	if(HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 		playsound(user, fire_sound, 25)
 		return
 	playsound(user, fire_sound, 60)
@@ -293,7 +293,7 @@
 
 
 /obj/item/weapon/gun/energy/lasgun/reload(mob/user, obj/item/cell/lasgun/new_cell)
-	if((flags_gun_innate_features & (GUN_INNATE_UNUSUAL_DESIGN|GUN_INNATE_INTERNAL_MAG)) || (flags_gun_added_features & GUN_BURST_FIRING))
+	if((flags_gun_innate_features & (GUN_INNATE_UNUSUAL_DESIGN|GUN_INNATE_INTERNAL_MAG)) || HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
 
 	if(!new_cell || !istype(new_cell))
@@ -342,7 +342,7 @@
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
 //This can be passed with a null user, so we need to check for that as well.
 /obj/item/weapon/gun/energy/lasgun/unload(mob/user, reload_override = 0, drop_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst. Drop is for dropping the magazine on the ground.
-	if(!reload_override && ((flags_gun_innate_features & (GUN_INNATE_UNUSUAL_DESIGN|GUN_INNATE_INTERNAL_MAG)) || (flags_gun_added_features & GUN_BURST_FIRING)))
+	if(!reload_override && ((flags_gun_innate_features & (GUN_INNATE_UNUSUAL_DESIGN|GUN_INNATE_INTERNAL_MAG)) || HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING)))
 		return FALSE
 
 	if(!cell || cell.loc != src)
