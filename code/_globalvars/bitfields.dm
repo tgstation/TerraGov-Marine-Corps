@@ -25,7 +25,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"MACHINE_DO_NOT_PROCESS" = MACHINE_DO_NOT_PROCESS,
 		"KNOCKED_DOWN" = KNOCKED_DOWN
 		),
-	"flags_gun_innate_features" = list(
+	"flags_gun_features" = list(
 		"GUN_CAN_POINTBLANK" = GUN_CAN_POINTBLANK,
 		"GUN_UNUSUAL_DESIGN" = GUN_UNUSUAL_DESIGN,
 		"GUN_INTERNAL_MAG" = GUN_INTERNAL_MAG,

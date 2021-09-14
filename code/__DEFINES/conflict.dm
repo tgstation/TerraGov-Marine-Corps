@@ -57,7 +57,7 @@
 #define AMMO_IFF (1<<16) //Used to identify ammo that have intrinsec IFF properties
 
 //Gun defines for gun related thing. More in the projectile folder.
-//innate_flags_gun_innate_features
+//innate_flags_gun_features
 #define GUN_CAN_POINTBLANK (1<<0)
 #define GUN_UNUSUAL_DESIGN (1<<1)
 #define GUN_SHOTGUN_CHAMBER (1<<2)

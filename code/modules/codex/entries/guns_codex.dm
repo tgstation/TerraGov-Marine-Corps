@@ -14,7 +14,7 @@
 	. = ..()
 	var/list/traits = list()
 
-	if(flags_gun_innate_features & GUN_WIELDED_FIRING_ONLY)
+	if(flags_gun_features & GUN_WIELDED_FIRING_ONLY)
 		traits += "This can only be fired with a two-handed grip."
 	else
 		traits += "It's best fired with a two-handed grip."

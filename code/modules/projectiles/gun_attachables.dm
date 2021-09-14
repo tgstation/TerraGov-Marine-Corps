@@ -713,7 +713,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		RegisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS, .proc/zoom_item_turnoff)
 	else
 		RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/zoom_item_turnoff)
-	if(!(master_gun.flags_gun_innate_features & IS_DEPLOYED))
+	if(!(master_gun.flags_gun_features & IS_DEPLOYED))
 		RegisterSignal(user, COMSIG_MOB_FACE_DIR, .proc/change_zoom_offset)
 	RegisterSignal(master_gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNWIELD, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
 	master_gun.accuracy_mult += scoped_accuracy_mod
