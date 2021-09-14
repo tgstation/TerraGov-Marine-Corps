@@ -90,6 +90,7 @@
 	edge = TRUE
 	attack_verb = list("clawed", "slashed", "torn", "ripped", "diced", "cut", "bit")
 	flags_item = NODROP|CAN_BUMP_ATTACK|DELONDROP
+	attack_speed = 8 //Same as unarmed delay
 	pry_capable = IS_PRY_CAPABLE_FORCE
 	///How much zombium are transferred per hit. Set to zero to remove transmission
 	var/zombium_per_hit = 5
