@@ -268,7 +268,7 @@
 
 /datum/chemical_reaction/napalm/on_reaction(datum/reagents/holder, created_volume, radius)
 	radius = round(sqrt(created_volume * 0.15)) //allows a nice, healthy 3-tile fire if using 2 120u beakers fully filled up.
-		flame_radius(radius, get_turf(holder.my_atom))
+	flame_radius(radius, get_turf(holder.my_atom))
 
 /datum/chemical_reaction/wpsmoke
 	name = "White Phosphorous smoke"
