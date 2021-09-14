@@ -323,6 +323,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define NO_DAMAGE_OVERLAY (1<<18)
 #define CAN_VENTCRAWL (1<<19)
 #define ROBOTIC_LIMBS (1<<20)
+#define GREYSCALE_BLOOD (1<<21)
 
 //=================================================
 

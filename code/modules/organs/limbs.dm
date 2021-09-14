@@ -1015,7 +1015,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return wound_to_check
 
 /datum/limb/proc/get_icon(icon/race_icon, icon/deform_icon, gender="")
-	if(limb_status & LIMB_ROBOT && !(owner.species.species_flags & IS_SYNTHETIC))
+	if(limb_status & LIMB_ROBOT && !(owner.species.species_flags & LIMB_ROBOT)) //if race set the flag then we just let the race handle this
 		return icon('icons/mob/human_races/robotic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
 
 	if (limb_status & LIMB_MUTATED)

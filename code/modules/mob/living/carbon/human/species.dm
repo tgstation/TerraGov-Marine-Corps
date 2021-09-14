@@ -12,6 +12,10 @@
 	var/icobase = 'icons/mob/human_races/r_human.dmi'
 	///Icon file when mutated
 	var/deform = 'icons/mob/human_races/r_def_human.dmi'
+	///icon state for calculating brute damage icons
+	var/brute_damage_icon_state = "human"
+	///icon state for calculating brute damage icons
+	var/burn_damage_icon_state = "burn"
 	///If set, draws this from icobase when mob is prone.
 	var/prone_icon
 	///icon for eyes
@@ -136,6 +140,8 @@
 		unarmed = new unarmed_type()
 	if(secondary_unarmed_type)
 		secondary_unarmed = new secondary_unarmed_type()
+	if(species_flags & GREYSCALE_BLOOD)
+		brute_damage_icon_state = "greyscale"
 
 /datum/species/proc/create_organs(mob/living/carbon/human/organless_human) //Handles creation of mob organs and limbs.
 
@@ -729,7 +735,7 @@
 	breath_type = "nitrogen"
 	poison_type = "oxygen"
 
-	species_flags = NO_SCAN|NO_BLOOD|NO_PAIN|NO_STAMINA
+	species_flags = NO_SCAN|NO_BLOOD|NO_PAIN|NO_STAMINA|GREYSCALE_BLOOD
 
 	blood_color = "#2299FC"
 	flesh_color = "#808D11"
@@ -767,7 +773,7 @@
 
 	body_temperature = 350
 
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|ROBOTIC_LIMBS
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|ROBOTIC_LIMBS|GREYSCALE_BLOOD
 
 	blood_color = "#EEEEEE"
 	flesh_color = "#272757"
@@ -821,7 +827,7 @@
 
 	body_temperature = 350
 
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_UNDERWEAR|ROBOTIC_LIMBS
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_UNDERWEAR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
 
 	blood_color = "#EEEEEE"
 
@@ -877,7 +883,7 @@
 
 	body_temperature = 350
 
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_UNDERWEAR|ROBOTIC_LIMBS
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_UNDERWEAR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
 
 	blood_color = "#EEEEEE"
 	hair_color = "#000000"
@@ -919,6 +925,8 @@
 	name_plural = "Combat Robots"
 	icobase = 'icons/mob/human_races/r_robot.dmi'
 	deform = 'icons/mob/human_races/r_robot.dmi'
+	brute_damage_icon_state = "robot"
+	burn_damage_icon_state = "robot_burn"
 	default_language_holder = /datum/language_holder/combat_robot
 	unarmed_type = /datum/unarmed_attack/punch/strong
 	total_health = 125
@@ -946,13 +954,20 @@
 		)
 
 
-	screams = list(MALE = "robot_scream", FEMALE = "robot_scream") //todo add these
+	screams = list(MALE = "robot_scream", FEMALE = "robot_scream")
 	paincries = list(MALE = "robot_pain", FEMALE = "robot_pain")
 	goredcries = list(MALE = "robot_scream", FEMALE = "robot_scream")
 	warcries = list(MALE = "robot_warcry", FEMALE = "robot_warcry")
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
-/datum/language_holder/combat_robot
+/datum/species/robot/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	. = ..()
+	H.speech_span = SPAN_ROBOT
+
+/datum/species/robot/post_species_loss(mob/living/carbon/human/H)
+	. = ..()
+	H.speech_span = initial(H.speech_span)
+
 
 ///Called when using the shredding behavior.
 /datum/species/proc/can_shred(mob/living/carbon/human/H)

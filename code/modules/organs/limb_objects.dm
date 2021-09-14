@@ -182,7 +182,7 @@
 
 /obj/item/limb/head/robotic
 	name = "robotic head"
-	icon = icon = 'icons/mob/human_races/r_robot.dmi'
+	icon = 'icons/mob/human_races/r_robot.dmi'
 	icon_state = "head_dead"
 	brain_item_type = /obj/item/organ/brain/prosthetic
 	braindeath_on_decap = 0

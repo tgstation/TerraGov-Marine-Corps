@@ -96,22 +96,22 @@ There are several things that need to be remembered:
 		underlays_standing[cache_index] = null
 
 GLOBAL_LIST_EMPTY(damage_icon_parts)
+///fetches the damage icon part, and caches it if it made a new one
 /mob/living/carbon/human/proc/get_damage_icon_part(damage_state, body_part)
-	if(GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"] == null)
-		var/brutestate = copytext(damage_state, 1, 2)
-		var/burnstate = copytext(damage_state, 2)
-		var/icon/DI
-		if(species.blood_color != "#A10808") //not human blood color
-			DI = new /icon('icons/mob/dam_human.dmi', "grayscale_[brutestate]")// the damage icon for whole human in grayscale
-			DI.Blend(species.blood_color, ICON_MULTIPLY) //coloring with species' blood color
-		else
-			DI = new /icon('icons/mob/dam_human.dmi', "human_[brutestate]")
-		DI.Blend(new /icon('icons/mob/dam_human.dmi', "burn_[burnstate]"), ICON_OVERLAY)//adding burns
-		DI.Blend(new /icon('icons/mob/dam_mask.dmi', body_part), ICON_MULTIPLY)		// mask with this organ's pixels
-		GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"] = DI
-		return DI
-	else
+	if(GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"])
 		return GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"]
+
+	var/brutestate = copytext(damage_state, 1, 2)
+	var/burnstate = copytext(damage_state, 2)
+	var/icon/DI
+	DI = icon('icons/mob/dam_human.dmi', "[species.brute_damage_icon_state]_[brutestate]")
+	if(species.species_flags & GREYSCALE_BLOOD)
+		DI.Blend(species.blood_color, ICON_MULTIPLY) //coloring with species' blood color
+	DI.Blend(new /icon('icons/mob/dam_human.dmi', "[species.burn_damage_icon_state]_[burnstate]"), ICON_OVERLAY)//adding burns
+	DI.Blend(new /icon('icons/mob/dam_mask.dmi', body_part), ICON_MULTIPLY)		// mask with this organ's pixels
+	GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"] = DI
+	return DI
+
 
 //DAMAGE OVERLAYS
 //constructs damage icon for each organ from mask * damage field and saves it in our overlays_ lists
