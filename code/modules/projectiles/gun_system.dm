@@ -681,11 +681,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		SEND_SIGNAL(gun_user, COMSIG_MOB_ATTACHMENT_FIRED, target, src, master_gun)
 	gun_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 
-	// Handle akimbo
-	if(get_current_rounds(get_active_gun()) <= get_current_rounds(get_inactive_gun()) && dual_wield)
-		get_active_gun().akimbo = 1
-	if(get_current_rounds(get_inactive_gun()) > get_current_rounds(get_active_gun()) && dual_wield)
-		get_inactive_gun().akimbo = 1
 
 
 
@@ -852,6 +847,12 @@ and you're good to go.
 			sentry_battery.forceMove(get_turf(src))
 			sentry_battery.charge = 0
 			sentry_battery = null
+
+	// Handle akimbo
+	if(get_current_rounds(get_active_gun()) >= get_current_rounds(get_inactive_gun()) || get_active_gun().akimbo != get_inactive_gun().akimbo && dual_wield)
+		get_active_gun().akimbo = 1
+	if(get_current_rounds(get_inactive_gun()) <= get_current_rounds(get_active_gun()) || get_inactive_gun().akimbo != get_active_gun().akimbo && dual_wield)
+		get_inactive_gun().akimbo = 1
 	return TRUE
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
