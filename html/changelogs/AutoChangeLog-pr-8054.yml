@@ -1,0 +1,6 @@
+author: "jroinc"
+delete-after: True
+changes: 
+  - rscadd: "adds chemical WP gas, gunpowder, and ANFO"
+  - balance: "lowers maximum radius of chemsmoke to around WP-radius. Also raises minimum amount of reactable razorburn to 5/5, from 1/1."
+  - bugfix: "fixes napalm and napalm grenades"
