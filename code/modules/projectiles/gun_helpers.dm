@@ -234,7 +234,7 @@ should be alright.
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
 
-	if(istype(I, /obj/item/cell) && CHECK_BITFIELD(flags_gun_innate_features, GUN__IS_SENTRY))
+	if(istype(I, /obj/item/cell) && CHECK_BITFIELD(flags_gun_innate_features, GUN_IS_SENTRY))
 		if(sentry_battery)
 			to_chat(user, span_warning("[src] already has a battery installed! Use Alt-Click to remove it!"))
 			return
@@ -265,7 +265,7 @@ should be alright.
 /obj/item/weapon/gun/AltClick(mob/user)
 	. = ..()
 
-	if(!user.Adjacent(src) || !ishuman(user) || !CHECK_BITFIELD(flags_gun_innate_features, GUN__IS_SENTRY) && !master_gun)
+	if(!user.Adjacent(src) || !ishuman(user) || !CHECK_BITFIELD(flags_gun_innate_features, GUN_IS_SENTRY) && !master_gun)
 		return
 	var/mob/living/carbon/human/human = user
 	if(!sentry_battery)
@@ -295,7 +295,7 @@ should be alright.
 	if(src != user.r_hand && src != user.l_hand)
 		to_chat(user, span_warning("[src] must be in your hand to do that."))
 		return
-	if(flags_gun_innate_features & GUN__INTERNAL_MAG)
+	if(flags_gun_innate_features & GUN_INTERNAL_MAG)
 		to_chat(user, span_warning("Can't do tactical reloads with [src]."))
 		return
 	//no tactical reload for the untrained.

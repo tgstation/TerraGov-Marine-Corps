@@ -23,7 +23,7 @@
 	)
 
 	turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
-	flags_gun_innate_features = GUN__AUTO_EJECTOR|GUN__AMMO_COUNTER|GUN__LOAD_INTO_CHAMBER|GUN__DEPLOYED_FIRE_ONLY|GUN__WIELDED_FIRING_ONLY|GUN__IS_SENTRY|GUN__IFF
+	flags_gun_innate_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IS_SENTRY|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	flags_item = IS_DEPLOYABLE|TWOHANDED
 	deploy_time = 5 SECONDS
@@ -168,7 +168,7 @@
 /obj/item/weapon/gun/sentry/premade/dumb
 	name = "\improper Modified UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
-	flags_gun_innate_features = GUN__AUTO_EJECTOR|GUN__AMMO_COUNTER|GUN__LOAD_INTO_CHAMBER|GUN__DEPLOYED_FIRE_ONLY|GUN__WIELDED_FIRING_ONLY|GUN__IS_SENTRY
+	flags_gun_innate_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IS_SENTRY
 	ammo = /datum/ammo/bullet/turret/dumb
 	current_mag = /obj/item/ammo_magazine/sentry_premade/dumb
 	max_shells = 500

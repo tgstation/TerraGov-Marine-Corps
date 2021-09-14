@@ -48,7 +48,7 @@
 	burst_scatter_mult = -2
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
-	flags_gun_innate_features = GUN__AUTO_EJECTOR|GUN__AMMO_COUNTER|GUN__LOAD_INTO_CHAMBER|GUN__DEPLOYED_FIRE_ONLY|GUN__WIELDED_FIRING_ONLY|GUN__IFF
+	flags_gun_innate_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
 
 	attachable_allowed = list(
@@ -107,7 +107,7 @@
 	aim_slowdown = 3
 	wield_delay = 5 SECONDS
 
-	flags_gun_innate_features = GUN__AUTO_EJECTOR|GUN__AMMO_COUNTER|GUN__LOAD_INTO_CHAMBER|GUN__IFF
+	flags_gun_innate_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_IFF
 
 // This is a deployed IFF-less MACHINEGUN, has 500 rounds, drums do not fit anywhere but your belt slot and your back slot. But it has 500 rounds. That's nice.
 
@@ -133,7 +133,7 @@
 	burst_amount = 1
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
-	flags_gun_innate_features = GUN__AUTO_EJECTOR|GUN__AMMO_COUNTER|GUN__LOAD_INTO_CHAMBER|GUN__DEPLOYED_FIRE_ONLY|GUN__WIELDED_FIRING_ONLY
+	flags_gun_innate_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
 	attachable_allowed = list(

@@ -688,7 +688,7 @@
 	if(!user?.client)
 		return
 
-	if((user.get_active_held_item() != G && user.get_inactive_held_item() != G && !CHECK_BITFIELD(G.flags_item, IS_DEPLOYED)) || !G.hud_enabled || !CHECK_BITFIELD(G.flags_gun_innate_features, GUN__AMMO_COUNTER))
+	if((user.get_active_held_item() != G && user.get_inactive_held_item() != G && !CHECK_BITFIELD(G.flags_item, IS_DEPLOYED)) || !G.hud_enabled || !CHECK_BITFIELD(G.flags_gun_innate_features, GUN_AMMO_COUNTER))
 		return
 
 	user.client.screen += src
@@ -702,7 +702,7 @@
 	if(!user?.client?.screen.Find(src))
 		return
 
-	if(!G || !(G.flags_gun_innate_features & GUN__AMMO_COUNTER) || !G.hud_enabled || !G.get_ammo_type() || isnull(G.get_ammo_count()))
+	if(!G || !(G.flags_gun_innate_features & GUN_AMMO_COUNTER) || !G.hud_enabled || !G.get_ammo_type() || isnull(G.get_ammo_count()))
 		remove_hud(user)
 		return
 
