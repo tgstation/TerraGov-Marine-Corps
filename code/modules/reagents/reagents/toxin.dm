@@ -115,7 +115,7 @@
 	toxpwr = 2
 	taste_description = "fish"
 
-/datum/reagent/toxin/zombiepowder
+/datum/reagent/toxin/huskpowder
 	name = "Zombie Powder"
 	description = "A strong neurotoxin that puts the subject into a death-like state."
 	reagent_state = SOLID
@@ -123,16 +123,16 @@
 	toxpwr = 0.5
 	taste_description = "death"
 
-/datum/reagent/toxin/zombiepowder/on_mob_add(mob/living/L, metabolism)
+/datum/reagent/toxin/huskpowder/on_mob_add(mob/living/L, metabolism)
 	ADD_TRAIT(L, TRAIT_FAKEDEATH, type)
 	return ..()
 
-/datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/toxin/huskpowder/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(0.25*effect_str)
 	L.Paralyze(20 SECONDS)
 	return ..()
 
-/datum/reagent/toxin/zombiepowder/on_mob_delete(mob/living/L, metabolism)
+/datum/reagent/toxin/huskpowder/on_mob_delete(mob/living/L, metabolism)
 	REMOVE_TRAIT(L, TRAIT_FAKEDEATH, type)
 	return ..()
 
@@ -668,8 +668,8 @@
 	L.adjustOxyLoss(5)
 	L.adjustToxLoss(5)
 
-///Signal handler preparing the source to become a zombie
+///Signal handler preparing the source to become a husk
 /datum/reagent/zombium/proc/zombify(mob/living/L)
 	SIGNAL_HANDLER
 	L.do_jitter_animation(1000)
-	addtimer(CALLBACK(L, /mob/living/carbon/human.proc/revive_to_crit, TRUE, TRUE), SSticker.mode?.zombie_transformation_time)
+	addtimer(CALLBACK(L, /mob/living/carbon/human.proc/revive_to_crit, TRUE, TRUE), SSticker.mode?.husk_transformation_time)

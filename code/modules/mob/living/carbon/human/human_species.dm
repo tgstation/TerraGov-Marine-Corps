@@ -92,5 +92,4 @@
 	var/datum/outfit/outfit = pick(GLOB.survivor_outfits)
 	outfit = new outfit()
 	INVOKE_ASYNC(outfit, /datum/outfit.proc/equip, src)
-	AddComponent(/datum/component/ai_controller, should_patrol ? /datum/ai_behavior/xeno/zombie/patrolling : /datum/ai_behavior/xeno/zombie, should_patrol ? null : get_turf(src))
 	a_intent = INTENT_HARM

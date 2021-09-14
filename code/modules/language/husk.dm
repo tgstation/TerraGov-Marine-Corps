@@ -1,6 +1,6 @@
-/datum/language/zombie
+/datum/language/husk
 	name = "Zombie"
-	desc = "The common tongue of the zombies."
+	desc = "The common tongue of the husks."
 	speech_verb = "moans"
 	ask_verb = "moans"
 	exclaim_verb = "moans"

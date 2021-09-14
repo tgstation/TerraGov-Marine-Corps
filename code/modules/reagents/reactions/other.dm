@@ -142,9 +142,9 @@
 	results = list(/datum/reagent/toxin/potassium_chlorophoride = 4)
 	required_reagents = list(/datum/reagent/toxin/potassium_chloride = 1, /datum/reagent/toxin/phoron = 1, /datum/reagent/toxin/chloralhydrate = 1)
 
-/datum/chemical_reaction/zombiepowder
+/datum/chemical_reaction/huskpowder
 	name = "Zombie Powder"
-	results = list(/datum/reagent/toxin/zombiepowder = 2)
+	results = list(/datum/reagent/toxin/huskpowder = 2)
 	required_reagents = list(/datum/reagent/toxin/carpotoxin = 5, /datum/reagent/toxin/sleeptoxin = 5, /datum/reagent/copper = 5)
 
 /datum/chemical_reaction/rezadone

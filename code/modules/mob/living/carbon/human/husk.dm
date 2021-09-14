@@ -10,7 +10,7 @@
 	blood_color = "#110a0a"
 	hair_color = "#000000"
 	slowdown = 1
-	default_language_holder = /datum/language_holder/zombie
+	default_language_holder = /datum/language_holder/husk
 	has_organ = list(
 		"heart" =    /datum/internal_organ/heart,
 		"lungs" =    /datum/internal_organ/lungs,
@@ -20,7 +20,7 @@
 		"appendix" = /datum/internal_organ/appendix,
 		"eyes" =     /datum/internal_organ/eyes
 	)
-	///Sounds made randomly by the zombie
+	///Sounds made randomly by the husk
 	var/list/sounds = list('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg')
 	///Time before resurrecting if dead
 	var/revive_time = 1 MINUTES
@@ -38,18 +38,16 @@
 	H.dropItemToGround(H.l_hand)
 	if(istype(H.wear_id, /obj/item/card/id))
 		var/obj/item/card/id/id = H.wear_id
-		id.access = list() // A bit gamey, but let's say ids have a security against zombies
+		id.access = list() // A bit gamey, but let's say ids have a security against husks
 		id.iff_signal = NONE
-	if(istype(H.wear_ear, /obj/item/radio/headset/mainship))
-		var/obj/item/radio/headset/mainship/radio = H.wear_ear
-		radio.safety_protocol(H)
-	H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_R_HAND)
-	H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_L_HAND)
+	H.equip_to_slot_or_del(new /obj/item/weapon/husk_claw, SLOT_R_HAND)
+	H.equip_to_slot_or_del(new /obj/item/weapon/husk_claw, SLOT_L_HAND)
 
-	H.job = null //Prevent from skewing the respawn timer if you take a zombie, it's a ghost role after all
+	H.job = new /datum/job/husk //Prevent from skewing the respawn timer if you take a husk, it's a ghost role after all
 	//remove larva
 	var/obj/item/alien_embryo/alien_embryo = locate() in src
-	H.actions.Cut()
+	for(var/datum/action/action AS in H.actions)
+		action.remove_action(H)
 	if(alien_embryo)
 		qdel(alien_embryo)
 		return
@@ -83,7 +81,8 @@
 		limb.vital = FALSE
 		return
 
-/obj/item/weapon/zombie_claw
+/obj/item/weapon/husk_claw
+	name = "claws"
 	hitsound = 'sound/weapons/slice.ogg'
 	icon_state = ""
 	force = 20
@@ -95,7 +94,7 @@
 	///How much zombium are transferred per hit. Set to zero to remove transmission
 	var/zombium_per_hit = 5
 
-/obj/item/weapon/zombie_claw/melee_attack_chain(mob/user, atom/target, params, rightclick)
+/obj/item/weapon/husk_claw/melee_attack_chain(mob/user, atom/target, params, rightclick)
 	if(ishuman(target))
 		var/mob/living/carbon/human/human_target = target
 		if(human_target.stat == DEAD)
@@ -103,9 +102,11 @@
 		human_target.reagents.add_reagent(/datum/reagent/zombium, zombium_per_hit)
 	return ..()
 
-/obj/item/weapon/zombie_claw/afterattack(atom/target, mob/user, has_proximity, click_parameters)
+/obj/item/weapon/husk_claw/afterattack(atom/target, mob/user, has_proximity, click_parameters)
 	. = ..()
 	if(!istype(target, /obj/machinery/door/airlock))
+		return
+	if(user.do_actions)
 		return
 
 	target.balloon_alert_to_viewers("[user] starts to open [target]", "You start to pry open [target]")

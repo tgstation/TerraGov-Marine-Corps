@@ -1,9 +1,9 @@
-/datum/ai_behavior/xeno/zombie
-	identifier = IDENTIFIER_ZOMBIE
+/datum/ai_behavior/xeno/husk
+	identifier = IDENTIFIER_HUSK
 	base_action = ESCORTING_ATOM
 	sidestep_prob = 10
 
-/datum/ai_behavior/xeno/zombie/attack_target(datum/soure, atom/attacked)
+/datum/ai_behavior/xeno/husk/attack_target(datum/soure, atom/attacked)
 	if(world.time < mob_parent.next_move)
 		return
 	if(!attacked)
@@ -18,5 +18,5 @@
 		return
 	INVOKE_ASYNC(item_in_hand, /obj/item.proc/melee_attack_chain, mob_parent, attacked)
 
-/datum/ai_behavior/xeno/zombie/patrolling
+/datum/ai_behavior/xeno/husk/patrolling
 	base_action = MOVING_TO_NODE
