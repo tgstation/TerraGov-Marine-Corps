@@ -131,6 +131,8 @@
 	var/shots_fired = 0
 	///If this gun is in inactive hands and shooting in akimbo
 	var/dual_wield = FALSE
+	///Used to id akimbo weapons for alternating fire
+	var/akimbo = 0
 	///Used if a weapon need windup before firing
 	var/windup_checked = WEAPON_WINDUP_NOT_CHECKED
 
@@ -614,6 +616,26 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			//							    \\
 			//						   	    \\
 //----------------------------------------------------------
+
+/obj/item/weapon/gun/proc/get_inactive_gun()
+	if(isgun(gun_user.get_inactive_held_item()))
+		return gun_user.get_inactive_held_item()
+	return
+
+/obj/item/weapon/gun/proc/get_active_gun()
+	if(isgun(gun_user.get_active_held_item()))
+		return gun_user.get_active_held_item()
+	return
+
+/obj/item/weapon/gun/proc/get_current_rounds(A)
+	if(current_mag)
+		return current_mag.current_rounds
+	return ..()
+
+
+
+
+
 ///Check if the gun can fire and add it to bucket auto_fire system if needed, or just fire the gun if not
 /obj/item/weapon/gun/proc/start_fire(datum/source, atom/object, turf/location, control, params, bypass_checks = FALSE)
 	SIGNAL_HANDLER
@@ -625,7 +647,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		gun_user.setDir(get_cardinal_dir(gun_user, object))
 		CtrlClick(gun_user)
 		return
-
+	
 	if(modifiers["right"] || modifiers["middle"])
 		active_attachable?.start_fire(source, object)
 		return
@@ -638,6 +660,10 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			return
 		if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
 			dual_wield = TRUE
+		if(akimbo && !dual_wield)
+			akimbo = 0
+		if(akimbo)
+			return
 		if(gun_user.in_throw_mode)
 			return
 		if(gun_user.Adjacent(object)) //Dealt with by attack code
@@ -654,6 +680,14 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(master_gun)
 		SEND_SIGNAL(gun_user, COMSIG_MOB_ATTACHMENT_FIRED, target, src, master_gun)
 	gun_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+
+	// Handle akimbo
+	if(get_current_rounds(get_active_gun()) <= get_current_rounds(get_inactive_gun()) && dual_wield)
+		get_active_gun().akimbo = 1
+	if(get_current_rounds(get_inactive_gun()) > get_current_rounds(get_active_gun()) && dual_wield)
+		get_inactive_gun().akimbo = 1
+
+
 
 ///Set the target and take care of hard delete
 /obj/item/weapon/gun/proc/set_target(atom/object)
@@ -687,6 +721,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	set_target(null)
 	windup_checked = WEAPON_WINDUP_NOT_CHECKED
 	dual_wield = FALSE
+	akimbo = 0
 	gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 
 ///Inform the gun if he is currently bursting, to prevent reloading
