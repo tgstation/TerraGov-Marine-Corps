@@ -15,6 +15,7 @@ const category_icon = {
   'Engineering': "tools",
   'Supplies': "hamburger",
   'Imports': "boxes",
+  'Vehicles': "road",
   'Pending Order': "shopping-cart",
 };
 

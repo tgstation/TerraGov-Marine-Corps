@@ -10,7 +10,7 @@
 	icon_state = "m44"
 	w_class = WEIGHT_CLASS_SMALL
 	max_rounds = 6
-	gun_type = /obj/item/weapon/gun/revolver/m44
+	gun_type = /obj/item/weapon/gun/revolver/single_action/m44
 	icon_state_mini = "mag_revolver"
 
 /obj/item/ammo_magazine/revolver/marksman
@@ -97,7 +97,7 @@
 /obj/item/ammo_magazine/internal/revolver/m44
 	caliber = CALIBER_44
 	max_rounds = 6
-	gun_type = /obj/item/weapon/gun/revolver/m44
+	gun_type = /obj/item/weapon/gun/revolver/single_action/m44
 
 //-------------------------------------------------------
 //RUSSIAN REVOLVER //

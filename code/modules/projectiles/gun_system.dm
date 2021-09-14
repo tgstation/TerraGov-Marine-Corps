@@ -174,9 +174,8 @@
 	var/attach_delay = 0 SECONDS
 	///Time it takes to detach src to a master gun.
 	var/detach_delay = 0 SECONDS
-
-
-
+	///Icon state used for an added overlay for a sentry. Currently only used in Build-A-Sentry.
+	var/placed_overlay_iconstate = "rifle"
 
 //----------------------------------------------------------
 				//				    \\
@@ -346,6 +345,17 @@
 		to_chat(user, "[dat.Join(" ")]")
 
 	examine_ammo_count(user)
+	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		if(CHECK_BITFIELD(flags_item, IS_DEPLOYABLE))
+			to_chat(user, span_notice("Use Ctrl-Click to deploy."))
+		if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
+			to_chat(user, span_notice("Use Alt-Right-Click to remove the sentries battery."))
+		return
+	to_chat(user, span_notice("Click-Drag to yourself to undeploy."))
+	to_chat(user, span_notice("Alt-Click to unload."))
+	to_chat(user, span_notice("Right-Click to perform the guns unique action."))
+	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
+		to_chat(user, span_notice("Ctrl-Click to remove the sentries battery."))
 
 /obj/item/weapon/gun/proc/examine_ammo_count(mob/user)
 	var/list/dat = list()
@@ -409,10 +419,7 @@
 
 /obj/item/weapon/gun/unique_action(mob/user)
 	. = ..()
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYABLE) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //If the gun can be deployed, it deploys when unique_action is called.
-		return FALSE
 	return cock(user)
-
 
 //----------------------------------------------------------
 			//							        \\
@@ -614,6 +621,11 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"])
 		return
+	if(modifiers["ctrl"] && !modifiers["right"] && gun_user.get_active_held_item() == src && isturf(object) && get_turf(gun_user) != object && gun_user.Adjacent(object)) //This is so we can simulate it like we are deploying to a tile.
+		gun_user.setDir(get_cardinal_dir(gun_user, object))
+		CtrlClick(gun_user)
+		return
+
 	if(modifiers["right"] || modifiers["middle"])
 		active_attachable?.start_fire(source, object)
 		return
@@ -628,7 +640,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			dual_wield = TRUE
 		if(gun_user.in_throw_mode)
 			return
-		if(gun_user.Adjacent(object) && !isopenturf(object)) //Dealt with by attack code
+		if(gun_user.Adjacent(object)) //Dealt with by attack code
 			return
 	if(QDELETED(object))
 		return
@@ -1045,7 +1057,7 @@ and you're good to go.
 	var/gun_accuracy_mod = 0
 	var/gun_scatter = scatter_unwielded
 
-	if(flags_item & WIELDED && wielded_stable())
+	if(flags_item & WIELDED && wielded_stable() || CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		gun_accuracy_mult = accuracy_mult
 		gun_scatter = scatter
 

@@ -61,9 +61,9 @@
 
 /datum/surgery_step/internal/fix_organ
 	allowed_tools = list(
-		/obj/item/stack/medical/advanced/bruise_pack= 100,
-		/obj/item/stack/medical/bruise_pack = 20,
-		/obj/item/stack/medical/bruise_pack/tajaran = 70,
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack= 100,
+		/obj/item/stack/medical/heal_pack/gauze = 20,
+		/obj/item/stack/medical/heal_pack/gauze/tajaran = 70,
 	)
 
 	min_duration = FIX_ORGAN_MIN_DURATION
@@ -80,9 +80,9 @@
 
 /datum/surgery_step/internal/fix_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	var/tool_name = "\the [tool]"
-	if(istype(tool, /obj/item/stack/medical/advanced/bruise_pack))
+	if(istype(tool, /obj/item/stack/medical/heal_pack/advanced/bruise_pack))
 		tool_name = "regenerative membrane"
-	else if(istype(tool, /obj/item/stack/medical/bruise_pack))
+	else if(istype(tool, /obj/item/stack/medical/heal_pack/gauze))
 		tool_name = "the bandaid"
 
 	for(var/datum/internal_organ/I in affected.internal_organs)
@@ -95,9 +95,9 @@
 
 /datum/surgery_step/internal/fix_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	var/tool_name = "\the [tool]"
-	if(istype(tool, /obj/item/stack/medical/advanced/bruise_pack))
+	if(istype(tool, /obj/item/stack/medical/heal_pack/advanced/bruise_pack))
 		tool_name = "regenerative membrane"
-	else if(istype(tool, /obj/item/stack/medical/bruise_pack))
+	else if(istype(tool, /obj/item/stack/medical/heal_pack/gauze))
 		tool_name = "the bandaid"
 
 	for(var/datum/internal_organ/I in affected.internal_organs)
@@ -111,10 +111,10 @@
 	span_warning("Your hand slips, getting mess and tearing the inside of [target]'s [affected.display_name] with \the [tool]!"))
 	var/dam_amt = 2
 
-	if(istype(tool, /obj/item/stack/medical/advanced/bruise_pack))
+	if(istype(tool, /obj/item/stack/medical/heal_pack/advanced/bruise_pack))
 		target.adjustToxLoss(5)
 
-	else if(istype(tool, /obj/item/stack/medical/bruise_pack))
+	else if(istype(tool, /obj/item/stack/medical/heal_pack/gauze))
 		dam_amt = 5
 		target.adjustToxLoss(10)
 		affected.createwound(CUT, 5)

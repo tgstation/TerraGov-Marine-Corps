@@ -673,23 +673,36 @@
 	name = "Rock"
 	icon_state = "cave"
 
+/area/desert_dam/exterior/landing
+	always_unpowered = FALSE
+	
 //Landing Pad for the Alamo. THIS IS NOT THE SHUTTLE AREA
-/area/desert_dam/exterior/landing_pad_one
+/area/desert_dam/exterior/landing/landing_pad_one
 	name = "Airstrip Landing Pad"
 	icon_state = "landing_pad"
 	minimap_color = MINIMAP_AREA_LZ
-/area/desert_dam/exterior/landing_pad_one_external
+/area/desert_dam/exterior/landing/landing_pad_one_external
 	name = "Airstrip Landing Valley"
 	icon_state = "landing_pad_ext"
 	minimap_color = MINIMAP_AREA_COLONY
 
 
 //Landing Pad for the Normandy. THIS IS NOT THE SHUTTLE AREA
-/area/desert_dam/exterior/landing_pad_two
+/area/desert_dam/exterior/landing/landing_pad_two
+	name = "Eastern Aerodrome Landing Pad"
+	icon_state = "landing_pad"
+	minimap_color = MINIMAP_AREA_LZ
+/area/desert_dam/exterior/landing/landing_pad_two_external
+	name = "Eastern Landing Valley"
+	icon_state = "landing_pad_ext"
+	minimap_color = MINIMAP_AREA_COLONY
+
+//Landing Pad for the abandoned tradeship, not used for transit. THIS IS NOT THE SHUTTLE AREA
+/area/desert_dam/exterior/landing/landing_pad_three
 	name = "Aerodrome Landing Pad"
 	icon_state = "landing_pad"
 	minimap_color = MINIMAP_AREA_LZ
-/area/desert_dam/exterior/landing_pad_two_external
+/area/desert_dam/exterior/landing/landing_pad_three_external
 	name = "Aerodrome Landing Valley"
 	icon_state = "landing_pad_ext"
 	minimap_color = MINIMAP_AREA_COLONY
@@ -709,6 +722,9 @@
 /area/desert_dam/exterior/valley/valley_telecoms
 	name = "Telecomms Valley"
 	icon_state = "valley_west"
+/area/desert_dam/exterior/valley/tradeship
+	name = "NTT Jerry-Cabot"
+	icon_state = "dark160"
 
 //Away from LZ
 
@@ -723,6 +739,9 @@
 	icon_state = "valley_south_excv"
 /area/desert_dam/exterior/valley/valley_medical
 	name = "Medical Valley"
+	icon_state = "valley"
+/area/desert_dam/exterior/valley/valley_medical_south
+	name = "Southern Medical Valley"
 	icon_state = "valley"
 /area/desert_dam/exterior/valley/valley_hydro
 	name = "Hydro Valley"

@@ -771,9 +771,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/scope/antimaterial
 	name = "antimaterial rail scope"
 	desc = "A rail mounted zoom sight scope specialized for the antimaterial Sniper Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration. Use F12 if your HUD doesn't come back."
+	icon_state = "antimat"
 	scoped_accuracy_mod = SCOPE_RAIL_SNIPER
 	has_nightvision = TRUE
-	flags_attach_features = ATTACH_ACTIVATION
+	flags_attach_features = ATTACH_ACTIVATION|ATTACH_REMOVABLE
+	pixel_shift_x = 0
+	pixel_shift_y = 17
+
 
 /obj/item/attachable/scope/slavic
 	icon_state = "slavicscope"
@@ -1389,6 +1393,106 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = -40
 	pixel_shift_y = 0
 	flags_attach_features = NONE
+
+/obj/item/attachable/buildasentry
+	name = "\improper Build-A-Sentry Attachment System"
+	icon = 'icons/Marine/sentry.dmi'
+	icon_state = "build_a_sentry_attachment"
+	desc = "The Build-A-Sentry is the latest design in cheap, automated, defense. Simple attach it the rail of a gun and deploy. Its that easy!"
+	slot = ATTACHMENT_SLOT_RAIL
+	pixel_shift_x = 10
+	pixel_shift_y = 18
+	///Battery of the deployed sentry. This is stored here only when the this is not attached to a gun.
+	var/obj/item/cell/lasgun/lasrifle/marine/battery
+	///Deploy time for the build-a-sentry
+	var/deploy_time = 2 SECONDS
+	///Undeploy tim for the build-a-sentry
+	var/undeploy_time = 2 SECONDS
+
+/obj/item/attachable/buildasentry/Initialize()
+	. = ..()
+	battery = new(src)
+
+/obj/item/attachable/buildasentry/update_icon_state()
+	. = ..()
+	var/has_battery
+	if(master_gun)
+		has_battery = master_gun.sentry_battery
+	else
+		has_battery = battery
+	icon_state = has_battery ? "build_a_sentry_attachment" : "build_a_sentry_attachment_e"
+
+/obj/item/attachable/buildasentry/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!istype(I, /obj/item/cell/lasgun/lasrifle/marine))
+		return
+	if(battery)
+		to_chat(user, span_warning("[src] already has a [battery] installed!"))
+		return
+	to_chat(user, span_notice("You install [I] into [src]."))
+	battery = I
+	battery.forceMove(src)
+	user.temporarilyRemoveItemFromInventory(I)
+	playsound(src, 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg', 20)
+	update_icon()
+
+/obj/item/attachable/buildasentry/attack_hand(mob/living/user)
+	if(user.get_inactive_held_item() != src)
+		return ..()
+	if(!battery)
+		to_chat(user, span_warning("There is no battery to remove from [src]."))
+		return
+	user.put_in_hands(battery)
+	battery = null
+	playsound(src, 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg', 20)
+	update_icon()
+
+/obj/item/attachable/buildasentry/can_attach(obj/item/attaching_to, mob/attacher)
+	if(!isgun(attaching_to))
+		return FALSE
+	var/obj/item/weapon/gun/attaching_gun = attaching_to
+	if(CHECK_BITFIELD(attaching_gun.flags_gun_features, GUN_IS_SENTRY))
+		to_chat(attacher, span_warning("[attaching_gun] is already a sentry!"))
+		return FALSE
+	return ..()
+
+/obj/item/attachable/buildasentry/on_attach(attaching_item, mob/user)
+	. = ..()
+	ENABLE_BITFIELD(master_gun.flags_gun_features, GUN_IS_SENTRY)
+	ENABLE_BITFIELD(master_gun.flags_item, IS_DEPLOYABLE)
+	master_gun.sentry_battery_type = /obj/item/cell/lasgun/lasrifle/marine
+	master_gun.sentry_battery = battery
+	battery?.forceMove(master_gun)
+	master_gun.ignored_terrains = list(
+		/obj/machinery/deployable/mounted,
+		/obj/machinery/miner,
+	)
+	if(master_gun.ammo && CHECK_BITFIELD(master_gun.ammo.flags_ammo_behavior, AMMO_ENERGY) || istype(master_gun, /obj/item/weapon/gun/energy)) //If the guns ammo is energy, the sentry will shoot at things past windows.
+		master_gun.ignored_terrains += list(
+			/obj/structure/window,
+			/obj/structure/window/reinforced,
+			/obj/machinery/door/window,
+			/obj/structure/window/framed,
+			/obj/structure/window/framed/colony,
+			/obj/structure/window/framed/mainship,
+			/obj/structure/window/framed/prison,
+		)
+	master_gun.turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
+	master_gun.AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, deploy_time, undeploy_time)
+	update_icon()
+
+/obj/item/attachable/buildasentry/on_detach(attaching_item, mob/user)
+	. = ..()
+	var/obj/item/weapon/gun/detaching_item = attaching_item
+	DISABLE_BITFIELD(detaching_item.flags_gun_features, GUN_IS_SENTRY)
+	DISABLE_BITFIELD(detaching_item.flags_item, IS_DEPLOYABLE)
+	detaching_item.ignored_terrains = null
+	detaching_item.turret_flags = NONE
+	battery = detaching_item.sentry_battery
+	battery?.forceMove(src)
+	detaching_item.sentry_battery = null
+	detaching_item.RemoveElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, deploy_time, undeploy_time)
+
 
 ///This is called when an attachment gun (src) attaches to a gun.
 /obj/item/weapon/gun/proc/on_attach(obj/item/attached_to, mob/user)
