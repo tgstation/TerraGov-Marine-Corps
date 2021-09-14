@@ -426,7 +426,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	//Perception distorting effects of the psychic scream*
 
 /mob/living/carbon/human/attackby(obj/item/I, mob/living/user, params)
-	if(stat != DEAD || I.sharp < IS_SHARP_ITEM_ACCURATE)
+	if(stat != DEAD || I.sharp < IS_SHARP_ITEM_ACCURATE || user.a_intent != INTENT_HARM)
 		return ..()
 	if(!internal_organs_by_name["heart"])
 		to_chat(user, span_notice("[src] no longer has a heart."))
@@ -446,4 +446,5 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/obj/item/organ/heart/heart = new
 	heart.die()
 	user.put_in_hands(heart)
-	gib()
+	chestburst = 2
+	update_burst()

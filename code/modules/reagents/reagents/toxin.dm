@@ -659,14 +659,14 @@
 /datum/reagent/zombium/overdose_process(mob/living/L, metabolism)
 	if(prob(5))
 		L.emote("gasp")
-	L.adjustOxyLoss(3)
-	L.adjustToxLoss(3)
+	L.adjustOxyLoss(1.5)
+	L.adjustToxLoss(1.5)
 
 /datum/reagent/zombium/overdose_crit_process(mob/living/L, metabolism)
 	if(prob(50))
 		L.emote("gasp")
-	L.adjustOxyLoss(10)
-	L.adjustToxLoss(10)
+	L.adjustOxyLoss(5)
+	L.adjustToxLoss(5)
 
 ///Signal handler preparing the source to become a zombie
 /datum/reagent/zombium/proc/zombify(mob/living/L)
