@@ -58,22 +58,22 @@
 
 //Gun defines for gun related thing. More in the projectile folder.
 //innate_flags_gun_innate_features
-#define GUN_INNATE_CAN_POINTBLANK (1<<0)
-#define GUN_INNATE_UNUSUAL_DESIGN (1<<1)
-#define GUN_INNATE_SHOTGUN_CHAMBER (1<<2)
-#define GUN_INNATE_INTERNAL_MAG (1<<3)
-#define GUN_INNATE_AUTO_EJECTOR (1<<4)
-#define GUN_INNATE_AMMO_COUNTER (1<<5)
-#define GUN_INNATE_LOAD_INTO_CHAMBER (1<<6)
-#define GUN_INNATE_ENERGY (1<<7)
-#define GUN_INNATE_WIELDED_FIRING_ONLY (1<<8)
-#define GUN_INNATE_ALLOW_SYNTHETIC (1<<9)
-#define GUN_INNATE_WIELDED_STABLE_FIRING_ONLY (1<<10)
-#define GUN_INNATE_IFF (1<<11)
-#define GUN_INNATE_DEPLOYED_FIRE_ONLY (1<<12)
-#define GUN_INNATE_IS_ATTACHMENT (1<<13)
-#define GUN_INNATE_ATTACHMENT_FIRE_ONLY (1<<14)
-#define GUN_INNATE_IS_SENTRY (1<<15)
+#define GUN__CAN_POINTBLANK (1<<0)
+#define GUN__UNUSUAL_DESIGN (1<<1)
+#define GUN__SHOTGUN_CHAMBER (1<<2)
+#define GUN__INTERNAL_MAG (1<<3)
+#define GUN__AUTO_EJECTOR (1<<4)
+#define GUN__AMMO_COUNTER (1<<5)
+#define GUN__LOAD_INTO_CHAMBER (1<<6)
+#define GUN__ENERGY (1<<7)
+#define GUN__WIELDED_FIRING_ONLY (1<<8)
+#define GUN__ALLOW_SYNTHETIC (1<<9)
+#define GUN__WIELDED_STABLE_FIRING_ONLY (1<<10)
+#define GUN__IFF (1<<11)
+#define GUN__DEPLOYED_FIRE_ONLY (1<<12)
+#define GUN__IS_ATTACHMENT (1<<13)
+#define GUN__ATTACHMENT_FIRE_ONLY (1<<14)
+#define GUN__IS_SENTRY (1<<15)
 
 #define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
 #define GUN_FIREMODE_BURSTFIRE "burst-fire mode"

@@ -25,7 +25,7 @@
 	var/catchworking = TRUE
 	load_method = SINGLE_CASING|SPEEDLOADER //codex
 	type_of_casings = "bullet"
-	flags_gun_innate_features = GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_INTERNAL_MAG|GUN_INNATE_AMMO_COUNTER
+	flags_gun_innate_features = GUN__CAN_POINTBLANK|GUN__INTERNAL_MAG|GUN__AMMO_COUNTER
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_speed_modifier = 0.75
 	aim_fire_delay = 0.25 SECONDS

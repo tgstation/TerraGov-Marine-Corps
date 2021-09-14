@@ -1343,7 +1343,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "An integrated component of the TL-84 flamethrower, the hydro cannon fires high pressure sprays of water; mainly to extinguish any wayward allies or unintended collateral damage."
 	icon_state = ""
 	slot = ATTACHMENT_SLOT_UNDER
-	flags_attach_features = GUN_INNATE_ALLOW_SYNTHETIC
+	flags_attach_features = GUN__ALLOW_SYNTHETIC
 	attachment_action_type = /datum/action/item_action/toggle_hydro
 	var/is_active = FALSE
 

@@ -7,15 +7,15 @@
 	var/obj/item/cell/cell //1000 power.
 	charge_cost = 10 //100 shots.
 	var/cell_type = /obj/item/cell
-	flags_gun_innate_features = GUN_INNATE_AMMO_COUNTER
+	flags_gun_innate_features = GUN__AMMO_COUNTER
 	general_codex_key = "energy weapons"
 
 /obj/item/weapon/gun/energy/examine_ammo_count(mob/user)
 	var/list/dat = list()
-	if(!(flags_gun_innate_features & (GUN_INNATE_INTERNAL_MAG|GUN_INNATE_UNUSUAL_DESIGN))) //Internal mags and unusual guns have their own stuff set.
+	if(!(flags_gun_innate_features & (GUN__INTERNAL_MAG|GUN__UNUSUAL_DESIGN))) //Internal mags and unusual guns have their own stuff set.
 		var/current_shots = get_ammo_count()
 		if(cell && current_shots > 0)
-			if(flags_gun_innate_features & GUN_INNATE_AMMO_COUNTER)
+			if(flags_gun_innate_features & GUN__AMMO_COUNTER)
 
 				dat += "Ammo counter shows [current_shots] round\s remaining.<br>"
 			else
@@ -90,7 +90,7 @@
 	fire_sound = 'sound/weapons/guns/fire/taser.ogg'
 	ammo = /datum/ammo/energy/taser
 	charge_cost = 500
-	flags_gun_innate_features = GUN_INNATE_UNUSUAL_DESIGN|GUN_INNATE_AMMO_COUNTER|GUN_INNATE_ALLOW_SYNTHETIC
+	flags_gun_innate_features = GUN__UNUSUAL_DESIGN|GUN__AMMO_COUNTER|GUN__ALLOW_SYNTHETIC
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
 	cell_type = /obj/item/cell/high
@@ -130,7 +130,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
 	overcharge = FALSE
-	flags_gun_innate_features = GUN_INNATE_AUTO_EJECTOR|GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_ENERGY|GUN_INNATE_AMMO_COUNTER
+	flags_gun_innate_features = GUN__AUTO_EJECTOR|GUN__CAN_POINTBLANK|GUN__ENERGY|GUN__AMMO_COUNTER
 	aim_slowdown = 0.75
 	wield_delay = 1 SECONDS
 	gun_skill_category = GUN_SKILL_RIFLES
@@ -152,7 +152,7 @@
 	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
 	ammo = /datum/ammo/energy/tesla
 	cell_type = /obj/item/cell/lasgun/tesla
-	flags_gun_innate_features = GUN_INNATE_AUTO_EJECTOR|GUN_INNATE_WIELDED_FIRING_ONLY|GUN_INNATE_ENERGY|GUN_INNATE_AMMO_COUNTER
+	flags_gun_innate_features = GUN__AUTO_EJECTOR|GUN__WIELDED_FIRING_ONLY|GUN__ENERGY|GUN__AMMO_COUNTER
 	muzzle_flash_color = COLOR_TESLA_BLUE
 
 	charge_cost = 500
@@ -193,7 +193,7 @@
 		/obj/item/attachable/pulselens,
 	)
 
-	flags_gun_innate_features = GUN_INNATE_AUTO_EJECTOR|GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_AMMO_COUNTER|GUN_INNATE_ENERGY|GUN_INNATE_AMMO_COUNTER
+	flags_gun_innate_features = GUN__AUTO_EJECTOR|GUN__CAN_POINTBLANK|GUN__AMMO_COUNTER|GUN__ENERGY|GUN__AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/stock/lasgun)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 
@@ -265,7 +265,7 @@
 			if(overcharge && cell.charge < ENERGY_OVERCHARGE_AMMO_COST && cell.charge >= ENERGY_STANDARD_AMMO_COST) //Revert to standard shot if we don't have enough juice for overcharge, but enough for the standard mode
 				cock(user)
 				return
-			if(cell.charge <= 0 && flags_gun_innate_features & GUN_INNATE_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
+			if(cell.charge <= 0 && flags_gun_innate_features & GUN__AUTO_EJECTOR) // This is where the magazine is auto-ejected.
 				unload(user,1,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
 				playsound(src, empty_sound, 25, 1)
 
@@ -293,7 +293,7 @@
 
 
 /obj/item/weapon/gun/energy/lasgun/reload(mob/user, obj/item/cell/lasgun/new_cell)
-	if((flags_gun_innate_features & (GUN_INNATE_UNUSUAL_DESIGN|GUN_INNATE_INTERNAL_MAG)) || HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
+	if((flags_gun_innate_features & (GUN__UNUSUAL_DESIGN|GUN__INTERNAL_MAG)) || HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
 
 	if(!new_cell || !istype(new_cell))
@@ -342,7 +342,7 @@
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
 //This can be passed with a null user, so we need to check for that as well.
 /obj/item/weapon/gun/energy/lasgun/unload(mob/user, reload_override = 0, drop_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst. Drop is for dropping the magazine on the ground.
-	if(!reload_override && ((flags_gun_innate_features & (GUN_INNATE_UNUSUAL_DESIGN|GUN_INNATE_INTERNAL_MAG)) || HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING)))
+	if(!reload_override && ((flags_gun_innate_features & (GUN__UNUSUAL_DESIGN|GUN__INTERNAL_MAG)) || HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING)))
 		return FALSE
 
 	if(!cell || cell.loc != src)
@@ -384,7 +384,7 @@
 	charge_cost = ENERGY_STANDARD_AMMO_COST
 	muzzle_flash_color = COLOR_PULSE_BLUE
 
-	flags_gun_innate_features = GUN_INNATE_AUTO_EJECTOR|GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_AMMO_COUNTER|GUN_INNATE_ENERGY|GUN_INNATE_AMMO_COUNTER
+	flags_gun_innate_features = GUN__AUTO_EJECTOR|GUN__CAN_POINTBLANK|GUN__AMMO_COUNTER|GUN__ENERGY|GUN__AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 
 	fire_delay = 8
@@ -443,7 +443,7 @@
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 	)
-	flags_gun_innate_features = GUN_INNATE_AUTO_EJECTOR|GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_AMMO_COUNTER|GUN_INNATE_ENERGY|GUN_INNATE_AMMO_COUNTER
+	flags_gun_innate_features = GUN__AUTO_EJECTOR|GUN__CAN_POINTBLANK|GUN__AMMO_COUNTER|GUN__ENERGY|GUN__AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
@@ -553,7 +553,7 @@
 		/obj/item/attachable/motiondetector,
 	)
 
-	flags_gun_innate_features = GUN_INNATE_AUTO_EJECTOR|GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_AMMO_COUNTER|GUN_INNATE_ENERGY|GUN_INNATE_AMMO_COUNTER
+	flags_gun_innate_features = GUN__AUTO_EJECTOR|GUN__CAN_POINTBLANK|GUN__AMMO_COUNTER|GUN__ENERGY|GUN__AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 21, "under_x" = 29, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
 	aim_slowdown = 0.4
@@ -621,7 +621,7 @@
 		/obj/item/attachable/lace,
 	)
 
-	flags_gun_innate_features = GUN_INNATE_AUTO_EJECTOR|GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_AMMO_COUNTER|GUN_INNATE_ENERGY|GUN_INNATE_AMMO_COUNTER
+	flags_gun_innate_features = GUN__AUTO_EJECTOR|GUN__CAN_POINTBLANK|GUN__AMMO_COUNTER|GUN__ENERGY|GUN__AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 23, "muzzle_y" = 22,"rail_x" = 12, "rail_y" = 22, "under_x" = 16, "under_y" = 14, "stock_x" = 22, "stock_y" = 12)
 
 	aim_slowdown = 0.2
@@ -701,7 +701,7 @@
 		/obj/item/attachable/motiondetector,
 	)
 
-	flags_gun_innate_features = GUN_INNATE_AUTO_EJECTOR|GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_AMMO_COUNTER|GUN_INNATE_ENERGY|GUN_INNATE_AMMO_COUNTER
+	flags_gun_innate_features = GUN__AUTO_EJECTOR|GUN__CAN_POINTBLANK|GUN__AMMO_COUNTER|GUN__ENERGY|GUN__AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 17, "rail_y" = 21, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
 	aim_slowdown = 0.2
@@ -779,7 +779,7 @@
 		/obj/item/attachable/motiondetector,
 	)
 
-	flags_gun_innate_features = GUN_INNATE_AUTO_EJECTOR|GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_AMMO_COUNTER|GUN_INNATE_ENERGY|GUN_INNATE_AMMO_COUNTER
+	flags_gun_innate_features = GUN__AUTO_EJECTOR|GUN__CAN_POINTBLANK|GUN__AMMO_COUNTER|GUN__ENERGY|GUN__AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 18,"rail_x" = 19, "rail_y" = 19, "under_x" = 28, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/laser_sniper_scope)
 	aim_fire_delay = 0.5 SECONDS
@@ -849,7 +849,7 @@
 		/obj/item/attachable/motiondetector,
 	)
 
-	flags_gun_innate_features = GUN_INNATE_AUTO_EJECTOR|GUN_INNATE_CAN_POINTBLANK|GUN_INNATE_AMMO_COUNTER|GUN_INNATE_ENERGY|GUN_INNATE_AMMO_COUNTER
+	flags_gun_innate_features = GUN__AUTO_EJECTOR|GUN__CAN_POINTBLANK|GUN__AMMO_COUNTER|GUN__ENERGY|GUN__AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 24, "under_x" = 30, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
 
 	aim_slowdown = 1
