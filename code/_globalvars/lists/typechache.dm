@@ -13,5 +13,4 @@ GLOBAL_LIST_INIT(hvh_restricted_items_list, typecacheof(list(
 	/obj/item/armor_module/attachable/ballistic_armor,
 	/obj/item/attachable/scope,
 	/obj/item/clothing/suit/modular/pas11x,
-	/obj/item/clothing/suit/modular/pas11x,
 )))
