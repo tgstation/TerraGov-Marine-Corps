@@ -177,7 +177,7 @@
 	return "\nYou might have to wait a certain time to respawn or be unable to, depending on the game mode!"
 
 /datum/game_mode/infestation/observe_respawn_message()
-	return "\nYou will have to wait at least [SSticker.mode?.respawn_time * 0.1] seconds before being able to respawn as a marine or join the aliens by hopping into the larva queue now!"
+	return "\nYou will have to wait at least [SSticker.mode?.respawn_time * 0.1 / 60] minutes before being able to respawn as a marine!"
 
 /mob/new_player/proc/late_choices()
 	var/list/dat = list("<div class='notice'>Round Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>")
@@ -379,7 +379,7 @@
 	if(failed)
 		to_chat(src, span_danger("Could not locate an observer spawn point. Use the Teleport verb to jump."))
 
-	observer.timeofdeath = world.time
+	GLOB.key_to_time_of_death[key] = world.time
 
 	var/datum/species/species = GLOB.all_species[client.prefs.species] || GLOB.all_species[DEFAULT_SPECIES]
 

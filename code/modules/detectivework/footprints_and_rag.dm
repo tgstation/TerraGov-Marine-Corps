@@ -3,6 +3,10 @@
 
 /obj/item/clothing/shoes/
 	var/track_blood = 0
+	///Whether these shoes have laces that can be tied/untied
+	var/can_be_tied = TRUE
+	///Are we currently tied? Can either be SHOES_TIED or SHOES_KNOTTED
+	var/tied = SHOES_TIED
 
 /obj/item/reagent_containers/glass/rag
 	name = "damp rag"

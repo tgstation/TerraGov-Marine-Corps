@@ -33,12 +33,24 @@
 	. = ..()
 	if(orient == "RIGHT")
 		icon_state = "sleeperconsole-r"
-		connected = locate(/obj/machinery/sleeper, get_step(src, EAST))
-		connected.connected = src
+		set_connected(locate(/obj/machinery/sleeper, get_step(src, EAST)))
 	else
-		connected = locate(/obj/machinery/sleeper, get_step(src, WEST))
-		connected.connected = src
+		set_connected(locate(/obj/machinery/sleeper, get_step(src, WEST)))
+	connected?.set_connected(src)
 
+///Set the connected var
+/obj/machinery/sleep_console/proc/set_connected(obj/future_connected)
+	if(connected)
+		UnregisterSignal(connected, COMSIG_PARENT_QDELETING)
+	connected = null
+	if(future_connected)
+		connected = future_connected
+		RegisterSignal(connected, COMSIG_PARENT_QDELETING, .proc/clean_connected)
+
+///Clean the connected var
+/obj/machinery/sleep_console/proc/clean_connected()
+	SIGNAL_HANDLER
+	set_connected(null)
 
 /obj/machinery/sleep_console/interact(mob/user)
 	. = ..()
@@ -177,6 +189,20 @@
 		var/mob/living/carbon/human/H = occupant
 		go_out()
 		H.gib()
+
+///Set the connected var
+/obj/machinery/sleeper/proc/set_connected(obj/future_connected)
+	if(connected)
+		UnregisterSignal(connected, COMSIG_PARENT_QDELETING)
+	connected = null
+	if(future_connected)
+		connected = future_connected
+		RegisterSignal(connected, COMSIG_PARENT_QDELETING, .proc/clean_connected)
+
+///Clean the connected var
+/obj/machinery/sleeper/proc/clean_connected()
+	SIGNAL_HANDLER
+	set_connected(null)
 
 /obj/machinery/sleeper/Destroy()
 	//clean up; end stasis; remove from processing

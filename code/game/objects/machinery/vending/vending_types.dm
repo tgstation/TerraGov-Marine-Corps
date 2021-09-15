@@ -65,6 +65,7 @@
 	//product_ads = "Have a drink!;Drink up!;It's good for you!;Would you like a hot joe?;I'd kill for some coffee!;The best beans in the galaxy.;Only the finest brew for you.;Mmmm. Nothing like a coffee.;I like coffee, don't you?;Coffee helps you work!;Try some tea.;We hope you like the best!;Try our new chocolate!;Admin conspiracies"
 	icon_state = "coffee"
 	icon_vend = "coffee-vend"
+	vending_sound = 'sound/machines/vending_coffee.ogg'
 	vend_delay = 34
 	products = list(
 		/obj/item/reagent_containers/food/drinks/coffee = 20,
@@ -220,10 +221,10 @@
 			/obj/item/storage/pill_bottle/russian_red = 2,
 		),
 		"Heal Pack" = list(
-			/obj/item/stack/medical/advanced/bruise_pack = 5,
-			/obj/item/stack/medical/advanced/ointment = 5,
-			/obj/item/stack/medical/ointment = 10,
-			/obj/item/stack/medical/bruise_pack = 10,
+			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 5,
+			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 5,
+			/obj/item/stack/medical/heal_pack/ointment = 10,
+			/obj/item/stack/medical/heal_pack/gauze = 10,
 			/obj/item/stack/medical/splint = 5,
 		),
 		"Misc" = list(
@@ -245,6 +246,8 @@
 
 	idle_power_usage = 211
 
+/obj/machinery/vending/medical/rebel
+	req_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
 
 //This one's from bay12
 /obj/machinery/vending/phoronresearch
@@ -266,8 +269,8 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/tramadol = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 1,
-		/obj/item/stack/medical/bruise_pack = 2,
-		/obj/item/stack/medical/ointment = 2,
+		/obj/item/stack/medical/heal_pack/gauze = 2,
+		/obj/item/stack/medical/heal_pack/ointment = 2,
 		/obj/item/healthanalyzer = 1,
 		/obj/item/stack/medical/splint = 1,
 	)

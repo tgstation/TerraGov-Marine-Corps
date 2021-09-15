@@ -14,6 +14,7 @@
 /datum/outfit/job/special_forces/standard
 	name = "Special Response Force Standard"
 	jobtype = /datum/job/special_forces/standard
+
 	glasses = /obj/item/clothing/glasses/night
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine
@@ -23,12 +24,11 @@
 	shoes = /obj/item/clothing/shoes/combat
 	wear_suit = /obj/item/clothing/suit/armor/bulletproof
 	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
-	head = /obj/item/clothing/head/helmet/marine/tech
+	head = /obj/item/clothing/head/modular/marine/m10x/tech
 	suit_store = /obj/item/weapon/gun/smg/m25/elite/suppressed
 	r_store = /obj/item/storage/pouch/pistol
 	l_store = /obj/item/storage/pouch/firstaid/full
 	back = /obj/item/storage/backpack/lightpack
-
 
 /datum/outfit/job/special_forces/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -47,17 +47,60 @@
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/g22, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/cloakbomb, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/cloakbomb, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
 
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/g22, SLOT_IN_R_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/black_vest, SLOT_L_HAND)
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/tactical/coif , SLOT_R_HAND)
 
 
+//Special Force breacher
+/datum/job/special_forces/breacher
+	title = "Special Response Force Breacher"
+	outfit = /datum/outfit/job/special_forces/breacher
+
+/datum/outfit/job/special_forces/breacher
+	name = "Special Response Force Breacher"
+	jobtype = /datum/job/special_forces/breacher
+
+	glasses = /obj/item/clothing/glasses/night
+	id = /obj/item/card/id/silver
+	belt = /obj/item/storage/belt/gun/pistol/standard_pistol
+	ears = /obj/item/radio/headset/distress/dutch
+	mask = /obj/item/clothing/mask/balaclava
+	w_uniform = /obj/item/clothing/under/syndicate/tacticool
+	shoes = /obj/item/clothing/shoes/combat
+	wear_suit = /obj/item/clothing/suit/armor/bulletproof
+	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
+	head = /obj/item/clothing/head/helmet/marine/tech
+	suit_store = /obj/item/weapon/gun/pistol/standard_heavypistol/suppressed
+	r_store = /obj/item/storage/pouch/firstaid/injectors/full
+	l_store = /obj/item/storage/pouch/firstaid/full
+	back = /obj/item/storage/backpack/lightpack
+
+/datum/outfit/job/special_forces/breacher/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/mgoggles, SLOT_IN_HEAD)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BELT)
+
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/metal, SLOT_R_HAND)
 
 
 //Special forces Leader
@@ -96,7 +139,6 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/famas, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/famas, SLOT_IN_BELT)
 
-	H.equip_to_slot_or_del(new /obj/item/healthanalyzer, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/standard_revolver, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/standard_revolver, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/screwdriver, SLOT_IN_BACKPACK)
@@ -104,6 +146,8 @@
 	H.equip_to_slot_or_del(new /obj/item/multitool, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
 

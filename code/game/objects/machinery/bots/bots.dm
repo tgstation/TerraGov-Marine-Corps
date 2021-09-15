@@ -10,6 +10,10 @@
 	var/open = FALSE //Maint panel
 	var/locked = TRUE
 
+/obj/machinery/bot/Destroy()
+	QDEL_NULL(botcard)
+	return ..()
+
 
 /obj/machinery/bot/proc/turn_on()
 	if(machine_stat)

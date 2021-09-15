@@ -14,7 +14,6 @@
 	var/list/list/xenos_by_tier
 	var/list/list/xenos_by_upgrade
 	var/list/dead_xenos // xenos that are still assigned to this hive but are dead.
-	var/list/ssd_xenos
 	var/list/list/xenos_by_zlevel
 	var/tier3_xeno_limit
 	var/tier2_xeno_limit
@@ -131,19 +130,6 @@
 			xenos += X
 	return xenos
 
-/datum/hive_status/proc/get_ssd_xenos(only_away = FALSE)
-	var/list/xenos = list()
-	for(var/i in ssd_xenos)
-		var/mob/living/carbon/xenomorph/ssd_xeno = i
-		if(is_centcom_level(ssd_xeno.z))
-			continue
-		if(isclientedaghost(ssd_xeno)) //To prevent adminghosted xenos to be snatched.
-			continue
-		if(only_away && ssd_xeno.afk_status == MOB_RECENTLY_DISCONNECTED)
-			continue
-		xenos += ssd_xeno
-	return xenos
-
 // ***************************************
 // *********** Adding xenos
 // ***************************************
@@ -160,15 +146,13 @@
 /datum/hive_status/proc/add_to_lists(mob/living/carbon/xenomorph/X)
 	xenos_by_tier[X.tier] += X
 	xenos_by_upgrade[X.upgrade] += X
-	LAZYADD(xenos_by_zlevel["[X.z]"], X)
+	if(X.z)
+		LAZYADD(xenos_by_zlevel["[X.z]"], X)
 	RegisterSignal(X, COMSIG_MOVABLE_Z_CHANGED, .proc/xeno_z_changed)
 
 	if(!xenos_by_typepath[X.caste_base_type])
 		stack_trace("trying to add an invalid typepath into hivestatus list [X.caste_base_type]")
 		return FALSE
-
-	if(X.afk_status != MOB_CONNECTED)
-		LAZYADD(ssd_xenos, X)
 
 	xenos_by_typepath[X.caste_base_type] += X
 	update_tier_limits() //Update our tier limits.
@@ -254,8 +238,7 @@
 	if(!xenos_by_typepath[X.caste_base_type].Remove(X))
 		stack_trace("failed to remove a xeno from hive status typepath list, nothing was removed!?")
 		return FALSE
-
-	LAZYREMOVE(ssd_xenos, X)
+	
 	LAZYREMOVE(xenos_by_zlevel["[X.z]"], X)
 
 	UnregisterSignal(X, COMSIG_MOVABLE_Z_CHANGED)
@@ -327,14 +310,6 @@
 // ***************************************
 // *********** Status changes
 // ***************************************
-/datum/hive_status/proc/on_xeno_logout(mob/living/carbon/xenomorph/ssd_xeno)
-	if(ssd_xeno.stat == DEAD)
-		return
-	LAZYADD(ssd_xenos, ssd_xeno)
-
-/datum/hive_status/proc/on_xeno_login(mob/living/carbon/xenomorph/reconnecting_xeno)
-	LAZYREMOVE(ssd_xenos, reconnecting_xeno)
-
 /datum/hive_status/proc/xeno_z_changed(mob/living/carbon/xenomorph/X, old_z, new_z)
 	SIGNAL_HANDLER
 	LAZYREMOVE(xenos_by_zlevel["[old_z]"], X)
@@ -702,11 +677,12 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/difference = round(players[2] - (players[1] * 0.5)) // no of xenos - half the no of players
 
 	var/left_behind = 0
-	for(var/i in get_all_xenos())
-		var/mob/living/carbon/xenomorph/boarder = i
+	for(var/mob/living/carbon/xenomorph/boarder AS in get_all_xenos())
 		if(isdropshiparea(get_area(boarder)))
 			continue
 		if(!is_ground_level(boarder.z))
+			continue
+		if(isxenohivemind(boarder))
 			continue
 		INVOKE_ASYNC(boarder, /mob/living.proc/gib)
 		left_behind++
@@ -1053,87 +1029,15 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/get_xeno_hivenumber()
 	return hivenumber
 
+/mob/illusion/xeno/get_xeno_hivenumber()
+	var/mob/living/carbon/xenomorph/original_xeno = original_mob
+	return original_xeno.hivenumber
+
 /obj/structure/xeno/tunnel/get_xeno_hivenumber()
 	return hivenumber
 
 /obj/structure/xeno/resin/xeno_turret/get_xeno_hivenumber()
 	return associated_hive.hivenumber
-
-/datum/hive_status/ui_state(mob/user)
-	return GLOB.xeno_state
-
-/// Controls the evolution UI
-/datum/hive_status/ui_interact(mob/user, datum/tgui/ui)
-	// Xeno only screen
-	if(!isxeno(user))
-		return
-
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "HiveEvolveScreen")
-		ui.open()
-
-/// Static data provided once when the ui is opened
-/datum/hive_status/ui_static_data(mob/living/carbon/xenomorph/xeno)
-	. = list()
-	.["name"] = xeno.xeno_caste.display_name
-	.["abilities"] = list()
-	for(var/ability in xeno.xeno_caste.actions)
-		var/datum/action/xeno_action/xeno_ability = ability
-		if(!(SSticker.mode.flags_xeno_abilities & initial(xeno_ability.gamemode_flags)))
-			continue
-		.["abilities"]["[ability]"] = list(
-			"name" = initial(xeno_ability.name),
-			"desc" = initial(xeno_ability.mechanics_text),
-			"cost" = initial(xeno_ability.plasma_cost),
-			"cooldown" = (initial(xeno_ability.cooldown_timer) / 10)
-		)
-	.["evolves_to"] = list()
-	for(var/evolves_into in xeno.xeno_caste.evolves_to)
-		var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[evolves_into][XENO_UPGRADE_BASETYPE]
-		var/list/caste_data = list("type_path" = caste.caste_type_path, "name" = caste.display_name, "abilities" = list())
-		for(var/ability in caste.actions)
-			var/datum/action/xeno_action/xeno_ability = ability
-			if(!(SSticker.mode.flags_xeno_abilities & initial(xeno_ability.gamemode_flags)))
-				continue
-			caste_data["abilities"]["[ability]"] = list(
-				"name" = initial(xeno_ability.name),
-				"desc" = initial(xeno_ability.mechanics_text),
-				"cost" = initial(xeno_ability.plasma_cost),
-				"cooldown" = (initial(xeno_ability.cooldown_timer) / 10)
-			)
-		.["evolves_to"]["[caste.caste_type_path]"] = caste_data
-
-/// Some data to update the UI with the current evolution status
-/datum/hive_status/ui_data(mob/living/carbon/xenomorph/xeno)
-	. = list()
-
-	.["can_evolve"] = !xeno.is_ventcrawling && !xeno.incapacitated(TRUE) && xeno.health >= xeno.maxHealth && xeno.plasma_stored >= (xeno.xeno_caste.plasma_max * xeno.xeno_caste.plasma_regen_limit)
-
-	if(isxenolarva(xeno))
-		.["evolution"] = list(
-			"current" = xeno.amount_grown,
-			"max" = xeno.max_grown
-		)
-		return
-	.["evolution"] = list(
-		"current" = xeno.evolution_stored,
-		"max" = xeno.xeno_caste.evolution_threshold
-	)
-
-/// Handles actuually evolving
-/datum/hive_status/ui_act(action, list/params)
-	. = ..()
-	if(.)
-		return
-
-	var/mob/living/carbon/xenomorph/xeno = usr
-	switch(action)
-		if("evolve")
-			SStgui.close_user_uis(usr, src, "main")
-			var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[text2path(params["path"])][XENO_UPGRADE_BASETYPE]
-			xeno.do_evolve(caste.caste_type_path, caste.display_name) // All the checks for can or can't are handled inside do_evolve
-			return TRUE
 
 /datum/hive_status/proc/update_tier_limits()
 	tier3_xeno_limit = max(length(xenos_by_tier[XENO_TIER_THREE]),FLOOR((length(xenos_by_tier[XENO_TIER_ZERO])+length(xenos_by_tier[XENO_TIER_ONE])+length(xenos_by_tier[XENO_TIER_TWO])+length(xenos_by_tier[XENO_TIER_FOUR]))/3+1,1))

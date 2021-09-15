@@ -321,12 +321,30 @@
 	if(installed_storage)
 		. += "<br> It has a [installed_storage] installed."
 
+/obj/item/clothing/suit/modular/pas11x
+	name = "\improper PAS-11X pattern armored vest"
+	desc = "A modified version of the PAS-11 that has been fit with Jaeger module attach points in order to give use to the surplus armor left while being able to compete with the X-02 Exoskeleton. Use it to toggle the built-in flashlight."
+	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
+	icon_state = "pas11_icon"
+	item_state = "pas11"
+	slowdown = 0.5
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
+
+/obj/item/clothing/suit/modular/pas11x/can_attach(mob/living/user, obj/item/armor_module/module, silent)
+	if(istype(module, /obj/item/armor_module/armor))//can't attach armor.
+		return FALSE
+	return ..()
+
+
 
 /** Core helmet module */
 /obj/item/clothing/head/modular
 	name = "Jaeger Pattern Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
 	icon_state = "medium_helmet"
+	item_state = list(
+		slot_head_str = ""
+	)
 	flags_armor_protection = HEAD
 	flags_armor_features = ARMOR_NO_DECAP
 	flags_inventory = BLOCKSHARPOBJ
@@ -338,15 +356,9 @@
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
 	actions_types = list(/datum/action/item_action/toggle)
-	item_state = list(
-		slot_head_str = ""
-	)
+
 	greyscale_config = /datum/greyscale_config/modularhelmet_infantry
 	greyscale_colors = "#5B6036#f7fb58"
-	//head icon is generated so null this
-	item_state_slots = list(
-		slot_head_str = null,
-	)
 
 	/// Reference to the installed module
 	var/obj/item/helmet_module/installed_module
@@ -358,25 +370,12 @@
 	var/visor_emissive_on = TRUE
 	///Initial hex color we use when applying the visor color
 	var/visor_color_hex = "#f7fb58"
+	///Initial hex color we use when applying the main helmet color
+	var/main_color_hex = "#5B6036"
 	///Greyscale config color we use for the visor
 	var/visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive
-
-	///Assoc list of color-hex for colors we're allowed to color this armor
-	var/list/colorable_colors = list(
-		"black" = "#474A50",
-		"snow" = "#D5CCC3",
-		"desert" = "#A57F7C",
-		"gray" = "#828282",
-		"brown" = "#60452B",
-		"red" = "#CC2C32",
-		"blue" = "#2A4FB7",
-		"yellow" = "#B7B21F",
-		"green" = "#2B7F1E",
-		"aqua" = "#2098A0",
-		"purple" = "#871F8F",
-		"orange" = "#BC4D25",
-		"pink" = "#D354BA",
-	)
+	///optional assoc list of colors we can color this armor
+	var/list/colorable_colors
 
 /obj/item/clothing/head/modular/Initialize(mapload)
 	. = ..()
@@ -391,8 +390,9 @@
 
 /obj/item/clothing/head/modular/update_greyscale(list/colors, update)
 	. = ..()
+	if(!greyscale_config)
+		return
 	item_icons = list(slot_head_str = icon)
-	item_state = list(slot_head_str = "")
 	if(length(colors) >= 2) //for only single color helmets with no visor
 		visor_color_hex = colors[2]
 
@@ -424,6 +424,7 @@
 	. = ..()
 	if(visor_greyscale_config)
 		to_chat(user, "Right click the helmet to toggle the visor internal lighting.")
+		to_chat(user, "Right click the helmet with paint to color the visor internal lighting.")
 
 /obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -433,25 +434,59 @@
 	if(!istype(I, /obj/item/facepaint))
 		return FALSE
 
+	if(!greyscale_config)
+		return FALSE
+
 	var/obj/item/facepaint/paint = I
 	if(paint.uses < 1)
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return TRUE
 	paint.uses--
+	var/new_color
+	if(colorable_colors)
+		new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
+	else
+		new_color = input(user, "Pick a color", "Pick color") as null|color
 
-	var/new_color = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
 	if(!new_color)
 		return
-	new_color = colorable_colors[new_color]
 
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return TRUE
 
+	main_color_hex = new_color
 	var/list/split_colors = list(new_color)
 	if(visor_color_hex)
 		split_colors += visor_color_hex
 	set_greyscale_colors(split_colors)
 	return TRUE
+
+/obj/item/clothing/head/modular/attackby_alternate(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return
+
+	if(!visor_color_hex)
+		return
+
+	if(!istype(I, /obj/item/facepaint))
+		return FALSE
+
+	var/obj/item/facepaint/paint = I
+	if(paint.uses < 1)
+		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
+		return TRUE
+	paint.uses--
+
+	var/new_color = input(user, "Pick a color", "Pick color") as null|color
+	if(!new_color)
+		return
+
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return TRUE
+
+	visor_color_hex = new_color
+	set_greyscale_colors(list(main_color_hex, new_color))
 
 /obj/item/clothing/head/modular/attack_hand_alternate(mob/living/carbon/human/user)
 	if(user.head == src)
@@ -617,3 +652,48 @@
 	greyscale_config = /datum/greyscale_config/modularhelmet_infantry_open
 	visor_color_hex = null //no visor, no color
 	visor_greyscale_config = null
+
+/obj/item/clothing/head/modular/marine/m10x
+	name = "\improper M10X pattern marine helmet"
+	desc = "A standard M10 Pattern Helmet modified with attach points. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
+	icon = 'icons/mob/modular/m10.dmi'
+	icon_state = "helmet_icon"
+	icon_override = null
+	item_state = "helmet"
+	item_state_worn = TRUE
+	item_state_slots = null
+	item_icons = list(
+		slot_head_str = 'icons/mob/modular/m10.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
+	greyscale_colors = null
+	greyscale_config = null
+	visor_color_hex = null
+	visor_greyscale_config = null
+
+/obj/item/clothing/head/modular/marine/m10x/standard
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
+
+/obj/item/clothing/head/modular/marine/m10x/tech
+	name = "\improper M10X technician helmet"
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
+
+
+/obj/item/clothing/head/modular/marine/m10x/corpsman
+	name = "\improper M10X corpsman helmet"
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
+
+/obj/item/clothing/head/modular/marine/m10x/heavy
+	name = "\improper M10XE pattern marine helmet"
+	desc = "A standard M10XE Pattern Helmet. This is a modified version of the M10X helmet, offering an enclosed visor apparatus."
+	icon_state = "heavyhelmet_icon"
+	item_state = "heavyhelmet"
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
+
+/obj/item/clothing/head/modular/marine/m10x/leader
+	name = "\improper M11X pattern leader helmet"
+	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
+	soft_armor = list("melee" = 75, "bullet" = 65, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)

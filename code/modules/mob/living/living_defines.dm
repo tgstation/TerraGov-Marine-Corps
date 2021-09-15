@@ -1,6 +1,6 @@
 /mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
-	flags_atom = CRITICAL_ATOM|PREVENT_CONTENTS_EXPLOSION
+	flags_atom = CRITICAL_ATOM|PREVENT_CONTENTS_EXPLOSION|BUMP_ATTACKABLE
 	var/see_override = 0 //0 for no override, sets see_invisible = see_override in silicon & carbon life process via update_sight()
 
 	var/resize = RESIZE_DEFAULT_SIZE //Badminnery resize
@@ -96,7 +96,8 @@
 	var/reagent_shock_modifier = 0 //negative values reduce shock/pain
 	var/reagent_pain_modifier = 0 //same as above, except can potentially mask damage
 
-	var/smoke_delay = FALSE
+	///Lazy assoc list of smoke type mapped to the next world time that smoke can affect this mob
+	var/list/smoke_delays
 	var/smokecloaked = FALSE //For the new Smoke Grenade
 
 	var/no_stun = FALSE
@@ -124,6 +125,10 @@
 	var/slowdown = 0
 	///Temporary inability to use special actions; hurts projectile damage. Regenerates each tick.
 	var/stagger = 0
+	///Id of the timer to set the afk status to MOB_DISCONNECTED
+	var/afk_timer_id
+	///If this mob is afk
+	var/afk_status = MOB_DISCONNECTED
 
 	/// This is the cooldown on suffering additional effects for when we exhaust all stamina
 	COOLDOWN_DECLARE(last_stamina_exhaustion)
