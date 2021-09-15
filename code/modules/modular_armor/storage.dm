@@ -36,8 +36,12 @@
 	parent.slowdown += slowdown
 	time_to_equip = parent.time_to_equip
 	time_to_unequip = parent.time_to_unequip
+	parent.installed_storage = src
+	parent.storage = new storage_type(parent)
 
 /obj/item/armor_module/storage/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	parent.installed_storage = null
+	QDEL_NULL(parent.storage)
 	parent.slowdown -= slowdown
 	time_to_equip = initial(time_to_equip)
 	time_to_unequip = initial(time_to_unequip)
@@ -55,18 +59,6 @@
 	cant_hold = list(
 		/obj/item/stack,
 	)
-
-/obj/item/armor_module/storage/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	. = ..()
-	parent.installed_storage = src
-	parent.storage = new storage_type(parent)
-
-
-/obj/item/armor_module/storage/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	parent.installed_storage = null
-	QDEL_NULL(parent.storage)
-	return ..()
-
 
 /** General storage */
 /obj/item/armor_module/storage/general
