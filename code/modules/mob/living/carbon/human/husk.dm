@@ -58,6 +58,10 @@
 	for(var/datum/limb/limb AS in H.limbs) //Regrow some limbs
 		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(10))
 			limb.remove_limb_flags(LIMB_DESTROYED)
+			if(istype(limb, /datum/limb/l_arm))
+				H.equip_to_slot_or_del(new /obj/item/weapon/husk_claw, SLOT_L_HAND)
+			else if (istype(limb, /datum/limb/r_arm))
+				H.equip_to_slot_or_del(new /obj/item/weapon/husk_claw, SLOT_R_HAND)
 			H.update_body()
 
 	if(H.health != total_health)
@@ -142,10 +146,10 @@
 	heal_rate = 10
 	total_health = 250
 
-/datum/species/husk/fast/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+/datum/species/tank/fast/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	H.transform = matrix().Scale(1.2, 1.2)
 
-/datum/species/husk/fast/post_species_loss(mob/living/carbon/human/H)
+/datum/species/tank/fast/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.transform = matrix().Scale(1/(1.2), 1/(1.2))
