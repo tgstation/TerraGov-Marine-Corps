@@ -627,7 +627,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		gun_user.setDir(get_cardinal_dir(gun_user, object))
 		CtrlClick(gun_user)
 		return
-	
+
 	if(modifiers["right"] || modifiers["middle"])
 		active_attachable?.start_fire(source, object)
 		return
@@ -755,6 +755,7 @@ and you're good to go.
 		if(current_mag.current_rounds <= 0 && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
 			unload(user, TRUE, TRUE) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
 			playsound(src, empty_sound, 25, 1)
+
 	return in_chamber //Returns the projectile if it's actually successful.
 
 //----------------------------------------------------------
@@ -789,6 +790,7 @@ and you're good to go.
 		stack_trace("projectile malfunctioned while firing. User: [gun_user]")
 		return
 
+
 	play_fire_sound(loc)
 	muzzle_flash(firing_angle, master_gun ? gun_user : loc)
 	simulate_recoil(dual_wield, gun_user)
@@ -799,13 +801,6 @@ and you're good to go.
 	//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 	shots_fired++
-	// Dumb akimbo code
-	var/obj/item/weapon/gun/active_gun = gun_user.get_active_held_item() // Don't use this outside of dual_wield since there are no checks for if it's not a gun else where
-	if(dual_wield && gun_user.shoot_inactive_hand && active_gun?.current_mag.current_rounds > 0)
-		gun_user.shoot_inactive_hand = FALSE
-	if(dual_wield && !gun_user.shoot_inactive_hand && (!active_gun?.current_mag || active_gun.current_mag.current_rounds <= 0))
-		gun_user.shoot_inactive_hand = TRUE
-
 
 	if(fire_animation) //Fires gun firing animation if it has any. ex: rotating barrel
 		flick("[fire_animation]", src)
@@ -823,7 +818,15 @@ and you're good to go.
 			sentry_battery.forceMove(get_turf(src))
 			sentry_battery.charge = 0
 			sentry_battery = null
+	// Dumb akimbo code
+	var/obj/item/weapon/gun/active_gun = gun_user.get_active_held_item() // Don't use active or inactive_gun outside of dual_wield since there are no checks for if it's not a gun else where
+	var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
+	if(dual_wield && gun_user.shoot_inactive_hand && active_gun?.current_mag.current_rounds > 0)
+		gun_user.shoot_inactive_hand = FALSE
+	if(dual_wield && !gun_user.shoot_inactive_hand && !inactive_gun?.current_mag.current_rounds > 0)
+		gun_user.shoot_inactive_hand = TRUE
 	return TRUE
+
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)) // If it can't point blank, you can't suicide and such.
 		return ..()
@@ -966,6 +969,7 @@ and you're good to go.
 /obj/item/weapon/gun/proc/able_to_fire(mob/user)
 	if(!user || user.stat != CONSCIOUS || user.lying_angle)
 		return
+
 	if(dual_wield && gun_user.get_active_held_item() == src && gun_user.shoot_inactive_hand)
 		return FALSE
 	if(dual_wield && gun_user.get_inactive_held_item() == src && !gun_user.shoot_inactive_hand)
