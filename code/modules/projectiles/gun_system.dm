@@ -823,7 +823,7 @@ and you're good to go.
 	var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
 	if(dual_wield && gun_user.shoot_inactive_hand && active_gun?.current_mag.current_rounds > 0)
 		gun_user.shoot_inactive_hand = FALSE
-	if(dual_wield && !gun_user.shoot_inactive_hand && !inactive_gun?.current_mag.current_rounds > 0)
+	if(dual_wield && !gun_user.shoot_inactive_hand && inactive_gun?.current_mag.current_rounds > 0)
 		gun_user.shoot_inactive_hand = TRUE
 	return TRUE
 
