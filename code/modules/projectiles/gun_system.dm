@@ -614,11 +614,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			//							    \\
 			//						   	    \\
 //----------------------------------------------------------
-
-
 ///Check if the gun can fire and add it to bucket auto_fire system if needed, or just fire the gun if not
-
-
 /obj/item/weapon/gun/proc/start_fire(datum/source, atom/object, turf/location, control, params, bypass_checks = FALSE)
 	SIGNAL_HANDLER
 
