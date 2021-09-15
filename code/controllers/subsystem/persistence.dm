@@ -207,6 +207,17 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/revolver = -1,
 		)
 
+/datum/season_datum/weapons/guns/pistol_seasonal_three
+	name = "Judge and Nagant"
+	description = "More revolvers for the revolver mains."
+	item_list = list(
+		/obj/item/weapon/gun/revolver/judge = -1,
+		/obj/item/ammo_magazine/revolver/judge = -1,
+		/obj/item/ammo_magazine/revolver/judge/buckshot = -1,
+		/obj/item/weapon/gun/revolver/upp = -1,
+		/obj/item/ammo_magazine/revolver/upp = -1,
+		)
+
 /datum/season_datum/weapons/guns/pistol_seasonal_two
 	name = "G22 and a heavy pistol"
 	description = "More pistols for the pistol mains."

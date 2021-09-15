@@ -503,6 +503,41 @@
 	scatter_unwielded = 20
 	damage_mult = 1.05
 
+//-------------------------------------------------------
+//The Judge, a shotgun and revolver in one
+
+/obj/item/weapon/gun/revolver/judge
+	name = "\improper 'Judge' revolver"
+	desc = "An incredibly uncommon revolver utilizing a oversized chamber to be able to both fire 45 Long at the cost of firing speed."
+	icon_state = "judge"
+	item_state = "m44"
+	fire_animation = "judge_fire"
+	caliber = CALIBER_45L //codex
+	max_shells = 5 //codex
+	current_mag = /obj/item/ammo_magazine/internal/revolver/judge
+	force = 8
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/quickfire,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/stock/revolver,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/lace,
+	)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
+
+	fire_delay = 0.35 SECONDS
+	recoil_wielded = 0
+	scatter = 9 // Only affects buckshot considering marksman has -15 scatter.
+	damage_falloff_mult = 1.2
+
+
 //Single action revolvers below
 //---------------------------------------------------
 
