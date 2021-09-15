@@ -944,7 +944,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	fire_delay = 1.75 SECONDS
 	damage_mult = 0.9
-	wield_delay = 0.75
+	wield_delay = 0.75 SECONDS
 	burst_amount = 2
 	burst_delay = 0.01 SECONDS //basically instantaneous two shots
 	extra_delay = 1.25 SECONDS
