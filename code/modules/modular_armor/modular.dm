@@ -77,6 +77,10 @@
 	QDEL_NULL(storage)
 	return ..()
 
+/obj/item/clothing/suit/modular/update_icon()
+	. = ..()
+	update_clothing_icon()
+
 /obj/item/clothing/suit/modular/apply_custom(image/standing)
 	if(slot_chest)
 		standing.overlays += image(slot_chest.icon, ITEM_STATE_IF_SET(slot_chest))
@@ -560,9 +564,6 @@
 
 /obj/item/clothing/head/modular/update_overlays()
 	. = ..()
-	/*
-	if(installed_module)
-		. += image(installed_module.icon, ITEM_STATE_IF_SET(installed_module))*/ //these look whack because they dont have non-singl direction spritos.
 	if(visor_emissive_on)
 		. += emissive_appearance('icons/mob/modular/infantry.dmi', "visor")
 
