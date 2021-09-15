@@ -167,7 +167,7 @@ WEAPONS
 		/obj/item/attachable/buildasentry,
 	)
 	cost = 25
-	
+
 
 /datum/supply_packs/weapons/m56d_emplacement
 	name = "TL-102 Mounted Heavy Smartgun"
@@ -214,9 +214,9 @@ WEAPONS
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/zx76
-	name = "ZX-76 Shotgun"
+	name = "ZX-76 Twin Shotgun"
 	contains = list(/obj/item/weapon/gun/shotgun/zx76)
-	cost = 150
+	cost = 100
 
 /datum/supply_packs/weapons/autosniper
 	name = "IFF Auto Sniper kit"

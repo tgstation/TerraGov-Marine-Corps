@@ -943,7 +943,11 @@ can cause issues with ammo types getting mixed up during the burst.
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 18, "under_x" = 24, "under_y" = 12, "stock_x" = 13, "stock_y" = 15)
 
 	fire_delay = 2 SECONDS
+	damage_mult = 0.95
+	wield_delay = 0.75
 	burst_amount = 2
 	burst_delay = 0.01 SECONDS //basically instantaneous two shots
+	extra_delay = 1 SECONDS
+	scatter = 9
 	burst_accuracy_mult = 0.7
 	accuracy_mult = 1
