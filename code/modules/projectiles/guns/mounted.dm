@@ -188,8 +188,6 @@
 	fire_delay = 0.15 SECONDS
 
 	burst_amount = 1
-	burst_accuracy_mult = 2
-	burst_scatter_mult = -2
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY
