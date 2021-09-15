@@ -47,9 +47,9 @@
 	icon_state = "autoinjector-4"
 	volume = 30
 	list_reagents = list(
-		/datum/reagent/medicine/ryetalyn = 5,
 		/datum/reagent/medicine/bicaridine = 10,
 		/datum/reagent/medicine/kelotane = 10,
+		/datum/reagent/medicine/dylovene = 5,
 		/datum/reagent/medicine/tramadol = 5,
 	)
 
