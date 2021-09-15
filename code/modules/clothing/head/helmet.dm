@@ -665,3 +665,31 @@ obj/item/clothing/head/helmet/marine/pilot/green
 	flags_item = NODROP|DELONDROP
 	soft_armor = list("melee" = 65, "bullet" = 60, "laser" = 30, "energy" = 20, "bomb" = 25, "bio" = 40, "rad" = 0, "fire" = 20, "acid" = 20)
 	anti_hug = 5
+
+
+/obj/item/clothing/head/helmet/marine/robot
+	name = "XN-1 upper armor plating"
+	desc = "Medium armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	icon_state = "robot_helmet_medium"
+	item_state = "robot_helmet_medium"
+	species_exception = list(/datum/species/robot)
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
+	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
+
+/obj/item/clothing/head/helmet/marine/robot/mob_can_equip(mob/M, slot, warning, override_nodrop)
+	. = ..()
+	if(!isrobot(M))
+		return FALSE
+
+/obj/item/clothing/head/helmet/marine/robot/light
+	name = "XN-1-L upper armor plating"
+	desc = "Light armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	icon_state = "robot_helmet_light"
+	item_state = "robot_helmet_light"
+
+/obj/item/clothing/head/helmet/marine/robot/heavy
+	name = "XN-1-H upper armor plating"
+	desc = "Heavy armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	icon_state = "robot_helmet_heavy"
+	item_state = "robot_helmet_heavy"
+

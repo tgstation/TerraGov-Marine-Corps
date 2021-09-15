@@ -16,6 +16,8 @@
 	var/brute_damage_icon_state = "human"
 	///icon state for calculating brute damage icons
 	var/burn_damage_icon_state = "burn"
+	///damage mask icon we want to use when drawing wounds
+	var/damage_mask_icon = 'icons/mob/dam_mask.dmi'
 	///If set, draws this from icobase when mob is prone.
 	var/prone_icon
 	///icon for eyes
@@ -348,7 +350,6 @@
 	name_plural = "Vatborns"
 	icobase = 'icons/mob/human_races/r_vatborn.dmi'
 	deform = 'icons/mob/human_races/r_vatborn.dmi'
-
 	namepool = /datum/namepool/vatborn
 
 
@@ -925,9 +926,12 @@
 	name_plural = "Combat Robots"
 	icobase = 'icons/mob/human_races/r_robot.dmi'
 	deform = 'icons/mob/human_races/r_robot.dmi'
+	damage_mask_icon = 'icons/mob/dam_mask_robot.dmi'
 	brute_damage_icon_state = "robot"
 	burn_damage_icon_state = "robot_burn"
-	default_language_holder = /datum/language_holder/combat_robot
+	eyes = "blank_eyes"
+	namepool = /datum/namepool/robotic
+
 	unarmed_type = /datum/unarmed_attack/punch/strong
 	total_health = 125
 	brute_mod = 0.7
@@ -946,6 +950,14 @@
 	inherent_traits = list(TRAIT_NON_FLAMMABLE)
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS
 
+	no_equip = list(
+		SLOT_W_UNIFORM,
+		SLOT_HEAD,
+		SLOT_WEAR_SUIT,
+		SLOT_SHOES,
+		SLOT_GLOVES,
+		SLOT_GLASSES,
+	)
 	blood_color = "#2d2055" //"oil" color
 	hair_color = "#000000"
 	has_organ = list(
@@ -959,6 +971,7 @@
 	goredcries = list(MALE = "robot_scream", FEMALE = "robot_scream")
 	warcries = list(MALE = "robot_warcry", FEMALE = "robot_warcry")
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
+	joinable_roundstart = TRUE
 
 /datum/species/robot/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
@@ -967,7 +980,6 @@
 /datum/species/robot/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.speech_span = initial(H.speech_span)
-
 
 ///Called when using the shredding behavior.
 /datum/species/proc/can_shred(mob/living/carbon/human/H)

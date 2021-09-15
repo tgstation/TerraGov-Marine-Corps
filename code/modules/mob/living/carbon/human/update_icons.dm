@@ -102,13 +102,13 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		return GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"]
 
 	var/brutestate = copytext(damage_state, 1, 2)
-	var/burnstate = copytext(damage_state, 2)
+	var/burnstate = copytext(damage_state, 2) //note, burn overlays currently broken here
 	var/icon/DI
 	DI = icon('icons/mob/dam_human.dmi', "[species.brute_damage_icon_state]_[brutestate]")
 	if(species.species_flags & GREYSCALE_BLOOD)
 		DI.Blend(species.blood_color, ICON_MULTIPLY) //coloring with species' blood color
 	DI.Blend(new /icon('icons/mob/dam_human.dmi', "[species.burn_damage_icon_state]_[burnstate]"), ICON_OVERLAY)//adding burns
-	DI.Blend(new /icon('icons/mob/dam_mask.dmi', body_part), ICON_MULTIPLY)		// mask with this organ's pixels
+	DI.Blend(new /icon(species.damage_mask_icon, body_part), ICON_MULTIPLY)		// mask with this organ's pixels
 	GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"] = DI
 	return DI
 
