@@ -131,8 +131,6 @@
 	var/shots_fired = 0
 	///If this gun is in inactive hands and shooting in akimbo
 	var/dual_wield = FALSE
-	///Used to id akimbo weapons for alternating fire
-	var/akimbo = 0
 	///Used if a weapon need windup before firing
 	var/windup_checked = WEAPON_WINDUP_NOT_CHECKED
 
@@ -617,24 +615,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			//						   	    \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/proc/get_inactive_gun()
-	if(isgun(gun_user.get_inactive_held_item()))
-		return gun_user.get_inactive_held_item()
-	return
-
-/obj/item/weapon/gun/proc/get_active_gun()
-	if(isgun(gun_user.get_active_held_item()))
-		return gun_user.get_active_held_item()
-	return
-
-/obj/item/weapon/gun/proc/get_current_rounds(A)
-	if(current_mag)
-		return current_mag.current_rounds
-	return ..()
-
-
-
-
 
 ///Check if the gun can fire and add it to bucket auto_fire system if needed, or just fire the gun if not
 /obj/item/weapon/gun/proc/start_fire(datum/source, atom/object, turf/location, control, params, bypass_checks = FALSE)
@@ -660,10 +640,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			return
 		if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
 			dual_wield = TRUE
-		if(akimbo && !dual_wield)
-			akimbo = 0
-		if(akimbo)
-			return
 		if(gun_user.in_throw_mode)
 			return
 		if(gun_user.Adjacent(object)) //Dealt with by attack code
@@ -680,9 +656,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(master_gun)
 		SEND_SIGNAL(gun_user, COMSIG_MOB_ATTACHMENT_FIRED, target, src, master_gun)
 	gun_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
-
-
-
 
 ///Set the target and take care of hard delete
 /obj/item/weapon/gun/proc/set_target(atom/object)
@@ -716,7 +689,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	set_target(null)
 	windup_checked = WEAPON_WINDUP_NOT_CHECKED
 	dual_wield = FALSE
-	akimbo = 0
 	gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 
 ///Inform the gun if he is currently bursting, to prevent reloading
@@ -783,7 +755,6 @@ and you're good to go.
 		if(current_mag.current_rounds <= 0 && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
 			unload(user, TRUE, TRUE) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
 			playsound(src, empty_sound, 25, 1)
-
 	return in_chamber //Returns the projectile if it's actually successful.
 
 //----------------------------------------------------------
@@ -796,7 +767,6 @@ and you're good to go.
 /obj/item/weapon/gun/proc/Fire()
 	if(!target || (!gun_user && !istype(loc, /obj/machinery/deployable/mounted/sentry)) || (!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)))
 		return
-
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
 	var/obj/projectile/projectile_to_fire = load_into_chamber(gun_user) //Load a bullet in or check for existing one.
 	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
@@ -819,7 +789,6 @@ and you're good to go.
 		stack_trace("projectile malfunctioned while firing. User: [gun_user]")
 		return
 
-
 	play_fire_sound(loc)
 	muzzle_flash(firing_angle, master_gun ? gun_user : loc)
 	simulate_recoil(dual_wield, gun_user)
@@ -830,7 +799,9 @@ and you're good to go.
 	//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 	shots_fired++
-
+	// Dumb akimbo code
+	if(dual_wield && (!gun_user.get_active_held_item().current_mag || gun_user.get_active_held_item().current_mag.current_rounds <= 0))
+		gun_user.shoot_inactive_hand = TRUE
 	if(fire_animation) //Fires gun firing animation if it has any. ex: rotating barrel
 		flick("[fire_animation]", src)
 
@@ -847,13 +818,6 @@ and you're good to go.
 			sentry_battery.forceMove(get_turf(src))
 			sentry_battery.charge = 0
 			sentry_battery = null
-
-	// Handle akimbo
-	if(get_current_rounds(get_active_gun()) >= get_current_rounds(get_inactive_gun()) || get_active_gun().akimbo != get_inactive_gun().akimbo && dual_wield)
-		get_active_gun().akimbo = 1
-	if(get_current_rounds(get_inactive_gun()) <= get_current_rounds(get_active_gun()) || get_inactive_gun().akimbo != get_active_gun().akimbo && dual_wield)
-		get_inactive_gun().akimbo = 1
-	return TRUE
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)) // If it can't point blank, you can't suicide and such.
@@ -997,7 +961,10 @@ and you're good to go.
 /obj/item/weapon/gun/proc/able_to_fire(mob/user)
 	if(!user || user.stat != CONSCIOUS || user.lying_angle)
 		return
-
+	if(dual_wield && gun_user.get_active_held_item() == src & gun_user.shoot_inactive_hand)
+		return FALSE
+	if(dual_wield && gun_user.get_inactive_held_item() == src & !gun_user.shoot_inactive_hand)
+		return FALSE
 	if(!user.dextrous)
 		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return FALSE
