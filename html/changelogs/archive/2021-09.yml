@@ -250,3 +250,19 @@
   - balance: mini incinerator tank now small item
   TiviPlus:
   - code_imp: Backend vehicle multitile prep
+2021-09-15:
+  MiniMeatwad:
+  - admin: Team OOC code now shows keys for admins and has a fakekey check if the
+      admin is using stealthmin.
+  - config: Add LOG_MOOC and LOG_XOOC to the config.
+  - balance: Praetorian acid spit cost and speed changed to be 90 plasma cost and
+      have +2 delay.
+  Pariah919:
+  - spellcheck: ak got renamed to MPi-KM, and has a new description.
+  TGCMbetcher:
+  - rscadd: MK221 added to marine weapon vendor list
+  jroinc:
+  - rscadd: adds chemical WP gas, gunpowder, and ANFO
+  - balance: lowers maximum radius of chemsmoke to around WP-radius. Also raises minimum
+      amount of reactable razorburn to 5/5, from 1/1.
+  - bugfix: fixes napalm and napalm grenades
