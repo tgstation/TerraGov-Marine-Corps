@@ -9,6 +9,8 @@
 		span_xenonotice("We begin to twist and contort."))
 		do_jitter_animation(1000)
 	set_datum()
+	if(upgrade_stored < xeno_caste.upgrade_threshold)
+		upgrade_stored = xeno_caste.upgrade_threshold
 	var/selected_ability_type = selected_ability?.type
 
 	for(var/check_existing_actions in xeno_abilities) //Remove xenos actions we shouldn't have
