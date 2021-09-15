@@ -161,7 +161,7 @@
 	icon = 'icons/Marine/marine-mmg.dmi'
 	icon_state = "t27"
 	item_state = "t27"
-	caliber = CALIBER_10x26_CASELESS //codex
+	caliber = CALIBER_10X25_CASELESS // codex
 	max_shells = 125 //codex
 	force = 40
 	aim_slowdown = 1.2
@@ -194,6 +194,9 @@
 	flags_item = IS_DEPLOYABLE|TWOHANDED
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.15 SECONDS
+	aim_speed_modifier = 5
 
 	deploy_time = 1 SECONDS
 	undeploy_time = 0.5 SECONDS
