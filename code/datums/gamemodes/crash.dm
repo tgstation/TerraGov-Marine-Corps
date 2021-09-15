@@ -224,7 +224,6 @@
 	SIGNAL_HANDLER
 	switch(new_xeno.tier)
 		if(XENO_TIER_ONE)
-			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE) //This is bad, but this works without more refactoring
 			new_xeno.upgrade_xeno(XENO_UPGRADE_TWO)
 		if(XENO_TIER_TWO)
 			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
