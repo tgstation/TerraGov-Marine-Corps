@@ -800,9 +800,9 @@ and you're good to go.
 
 	shots_fired++
 	// Dumb akimbo code
-	if(dual_wield && gun_user.shoot_inactive_hand && gun_user.get_active_held_item().current_mag.current_rounds > 0)
+	if(dual_wield && gun_user.shoot_inactive_hand && (gun_user.get_active_held_item().current_mag || gun_user.get_active_held_item().current_mag.current_rounds > 0))
 		gun_user.shoot_inactive_hand = FALSE
-	if(dual_wield && !gun_user.shoot_inactive_hand && gun_user.get_inactive_held_item().current_mag.current_rounds > 0)
+	if(dual_wield && !gun_user.shoot_inactive_hand && (gun_user.get_inactive_held_item().current_mag || gun_user.get_inactive_held_item().current_mag.current_rounds > 0))
 		gun_user.shoot_inactive_hand = TRUE
 
 
