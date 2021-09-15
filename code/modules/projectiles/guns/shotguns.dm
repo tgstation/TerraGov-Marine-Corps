@@ -916,7 +916,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/zx76
 	name = "\improper ZX-76 assault shotgun"
-	desc = "The ZX-76 Assault Shotgun, a incredibly rare, double barreled semi-automatic combat shotgun with a twin shot mode. Has a 9 round internal magazine."
+	desc = "The ZX-76 Assault Shotgun, a incredibly rare, double barreled semi-automatic combat shotgun with a twin shot mode. Possibly the unrivaled master of CQC. Has a 9 round internal magazine."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "zx-76"
 	item_state = "zx-76"
@@ -925,7 +925,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	load_method = SINGLE_CASING //codex
 	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
-	aim_slowdown = 0.75
+	aim_slowdown = 0.45
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/reddot,
@@ -942,12 +942,12 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/attached_gun/grenade)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 18, "under_x" = 24, "under_y" = 12, "stock_x" = 13, "stock_y" = 15)
 
-	fire_delay = 2 SECONDS
-	damage_mult = 0.95
+	fire_delay = 1.75 SECONDS
+	damage_mult = 0.9
 	wield_delay = 0.75
 	burst_amount = 2
 	burst_delay = 0.01 SECONDS //basically instantaneous two shots
-	extra_delay = 1 SECONDS
-	scatter = 9
-	burst_accuracy_mult = 0.7
+	extra_delay = 1.25 SECONDS
+	scatter = 2
+	burst_scatter_mod = 6 // 2x6=12
 	accuracy_mult = 1
