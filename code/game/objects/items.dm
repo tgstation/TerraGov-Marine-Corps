@@ -728,7 +728,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return
 
 	if(user.client)
-		user.client.view_size.set_width_and_height(viewsize, viewsize)
+		user.client.view_size.add(viewsize)
 		change_zoom_offset(user, zoom_offset = tileoffset)
 
 	user.visible_message(span_notice("[user] peers through \the [zoom_device]."),
