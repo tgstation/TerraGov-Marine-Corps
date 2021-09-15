@@ -146,10 +146,10 @@
 	heal_rate = 10
 	total_health = 250
 
-/datum/species/tank/fast/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+/datum/species/husk/tank/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	H.transform = matrix().Scale(1.2, 1.2)
 
-/datum/species/tank/fast/post_species_loss(mob/living/carbon/human/H)
+/datum/species/husk/tank/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.transform = matrix().Scale(1/(1.2), 1/(1.2))
