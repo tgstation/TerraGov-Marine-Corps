@@ -617,6 +617,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 
 
 ///Check if the gun can fire and add it to bucket auto_fire system if needed, or just fire the gun if not
+
+
 /obj/item/weapon/gun/proc/start_fire(datum/source, atom/object, turf/location, control, params, bypass_checks = FALSE)
 	SIGNAL_HANDLER
 
@@ -768,6 +770,7 @@ and you're good to go.
 /obj/item/weapon/gun/proc/Fire()
 	if(!target || (!gun_user && !istype(loc, /obj/machinery/deployable/mounted/sentry)) || (!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)))
 		return
+
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
 	var/obj/projectile/projectile_to_fire = load_into_chamber(gun_user) //Load a bullet in or check for existing one.
 	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
@@ -821,7 +824,7 @@ and you're good to go.
 	// Dumb akimbo code
 	var/obj/item/weapon/gun/active_gun = gun_user.get_active_held_item() // Don't use active or inactive_gun outside of dual_wield since there are no checks for if it's not a gun else where
 	var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
-	if(dual_wield && gun_user.shoot_inactive_hand && active_gun?.current_mag.current_rounds > 0)
+	if(!dual_wield || dual_wield && gun_user.shoot_inactive_hand && active_gun?.current_mag.current_rounds > 0)
 		gun_user.shoot_inactive_hand = FALSE
 	if(dual_wield && !gun_user.shoot_inactive_hand && inactive_gun?.current_mag.current_rounds > 0)
 		gun_user.shoot_inactive_hand = TRUE
