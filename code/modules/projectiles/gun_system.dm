@@ -817,14 +817,13 @@ and you're good to go.
 			sentry_battery.forceMove(get_turf(src))
 			sentry_battery.charge = 0
 			sentry_battery = null
-	// Dumb akimbo code
+	// Akimbo code
 	var/obj/item/weapon/gun/active_gun = gun_user.get_active_held_item() // Don't use active or inactive_gun outside of dual_wield since there are no checks for if it's not a gun else where
 	var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
-	if(dual_wield && gun_user.shoot_inactive_hand && active_gun?.current_mag.current_rounds > 0)
+	if(!dual_wield || dual_wield && gun_user.shoot_inactive_hand && active_gun.current_mag?.current_rounds > 0)
 		gun_user.shoot_inactive_hand = FALSE
-	if(dual_wield && !gun_user.shoot_inactive_hand && inactive_gun?.current_mag.current_rounds > 0)
+	if(dual_wield && !gun_user.shoot_inactive_hand && inactive_gun.current_mag?.current_rounds > 0)
 		gun_user.shoot_inactive_hand = TRUE
-	return TRUE
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)) // If it can't point blank, you can't suicide and such.
