@@ -347,3 +347,9 @@
 	full_name = "Toggle minimap"
 	description = "Toggle the minimap screen"
 	keybind_signal = COMSIG_KB_TOGGLE_MINIMAP
+
+/datum/keybinding/mob/vali_use
+	name = "vali_use"
+	full_name = "Toggle Vali"
+	description = "Toggle the Vali Chemical Enhancement module"
+	keybind_signal = COMSIG_KB_VALI_USE

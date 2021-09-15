@@ -111,7 +111,7 @@
 	RegisterSignal(parent, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), .proc/dropped)
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED_TO_SLOT, .proc/equipped)
 	RegisterSignal(configure_action, COMSIG_ACTION_TRIGGER, .proc/configure)
-	RegisterSignal(power_action, COMSIG_ACTION_TRIGGER, .proc/on_off)
+	RegisterSignal(power_action, list(COMSIG_KB_VALI_USE, COMSIG_ACTION_TRIGGER), .proc/on_off)
 	RegisterSignal(scan_action, COMSIG_ACTION_TRIGGER, .proc/scan_user)
 
 /datum/component/chem_booster/UnregisterFromParent()
@@ -252,7 +252,6 @@
 				if(necrotized_counter < 1)
 					break
 
-		UnregisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
 		power_action.action_icon_state = "cboost_off"
 		power_action.update_button_icon()
 		boost_on = FALSE
