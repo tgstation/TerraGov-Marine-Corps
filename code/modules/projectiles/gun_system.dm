@@ -800,8 +800,10 @@ and you're good to go.
 
 	shots_fired++
 	// Dumb akimbo code
-	if(dual_wield && (!gun_user.get_active_held_item().current_mag || gun_user.get_active_held_item().current_mag.current_rounds <= 0))
+	if(dual_wield && gun_user.get_active_held_item().current_mag.current_rounds <= 0)
 		gun_user.shoot_inactive_hand = TRUE
+	if(dual_wield && gun_user.get_active_held_item().current_mag.current_rounds > 0)
+		gun_user.shoot_inactive_hand = FALSE
 	if(fire_animation) //Fires gun firing animation if it has any. ex: rotating barrel
 		flick("[fire_animation]", src)
 
@@ -818,7 +820,7 @@ and you're good to go.
 			sentry_battery.forceMove(get_turf(src))
 			sentry_battery.charge = 0
 			sentry_battery = null
-
+	return TRUE
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)) // If it can't point blank, you can't suicide and such.
 		return ..()
@@ -961,9 +963,9 @@ and you're good to go.
 /obj/item/weapon/gun/proc/able_to_fire(mob/user)
 	if(!user || user.stat != CONSCIOUS || user.lying_angle)
 		return
-	if(dual_wield && gun_user.get_active_held_item() == src & gun_user.shoot_inactive_hand)
+	if(dual_wield && gun_user.get_active_held_item() == src && gun_user.shoot_inactive_hand)
 		return FALSE
-	if(dual_wield && gun_user.get_inactive_held_item() == src & !gun_user.shoot_inactive_hand)
+	if(dual_wield && gun_user.get_inactive_held_item() == src && !gun_user.shoot_inactive_hand)
 		return FALSE
 	if(!user.dextrous)
 		to_chat(user, span_warning("You don't have the dexterity to do this!"))
