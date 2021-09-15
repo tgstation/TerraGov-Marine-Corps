@@ -813,6 +813,65 @@ can cause issues with ammo types getting mixed up during the burst.
 		to_chat(user, span_notice("<b>You pull [src]'s lever downward, ejecting the cartridge.</b>"))
 		pump_lock = FALSE //we're operating the slide release to unload, thus unlocking the pump
 	return ..()
+// ***********************************************
+// Winchester Rifle. The gun that won the west.
+
+/obj/item/weapon/gun/shotgun/pump/winchester
+	name = "Winchester lever action rifle"
+	desc = "The gun that won the west or so they say. But space is a very different kind of frontier all together, chambered for .44 magnum."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "winchester"
+	item_state = "winchester"
+	fire_sound = 'sound/weapons/guns/fire/leveraction.ogg'//I like how this one sounds.
+	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
+	caliber = CALIBER_44 //codex
+	load_method = SINGLE_CASING //codex
+	max_shells = 14 //codex
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/winchester
+	gun_skill_category = GUN_SKILL_RIFLES
+	type_of_casings = "cartridge"
+	pump_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
+	flags_item_map_variant = NONE
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+	)
+	attachable_offset = list ("muzzle_x" = 45, "muzzle_y" = 23,"rail_x" = 21, "rail_y" = 23, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.3 SECONDS
+	aim_speed_modifier = 2
+
+	fire_delay = 10
+	accuracy_mult = 1.20
+	accuracy_mult_unwielded = 0.8
+	damage_falloff_mult = 0.5
+	scatter = -5
+	scatter_unwielded = 15
+	recoil = 0
+	recoil_unwielded = 2
+	pump_delay = 8
+	aim_slowdown = 0.6
+
+/obj/item/weapon/gun/shotgun/pump/lever/pump_fail_notice(mob/user)
+	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
+	to_chat(user,span_warning("<b>[src] lever has already been worked, locking the lever; fire or unload a round to unlock it.</b>"))
+	recent_notice = world.time
+
+/obj/item/weapon/gun/shotgun/pump/lever/pump_notice(mob/user)
+	to_chat(user, span_notice("<b>You work [src] lever.</b>"))
+
+/obj/item/weapon/gun/shotgun/pump/lever/unload(mob/user)
+	if(pump_lock)
+		to_chat(user, span_notice("<b>You pull [src]'s lever downward, ejecting the cartridge.</b>"))
+		pump_lock = FALSE //we're operating the slide release to unload, thus unlocking the pump
+	return ..()
 
 /obj/item/weapon/gun/shotgun/pump/lever/mbx900
 	name = "\improper MBX-900 lever action shotgun"
