@@ -508,7 +508,7 @@
 
 /obj/item/weapon/gun/revolver/judge
 	name = "\improper 'Judge' revolver"
-	desc = "An incredibly uncommon revolver utilizing a oversized chamber to be able to both fire 45 Long at the cost of firing speed."
+	desc = "An incredibly uncommon revolver utilizing a oversized chamber to be able to both fire 45 Long at the cost of firing speed. Normal rounds have no falloff, and next to no scatter. Due to the short barrel, buckshot out of it has high spread."
 	icon_state = "judge"
 	item_state = "m44"
 	fire_animation = "judge_fire"
