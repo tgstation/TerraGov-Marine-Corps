@@ -41,7 +41,7 @@
 	gas_transfer_coefficient = 1
 
 	actions_types = list(/datum/action/item_action/toggle)
-
+	///Assoc list of available slots.
 	var/list/attachments_by_slot = list(
 		ATTACHMENT_SLOT_CHESTPLATE,
 		ATTACHMENT_SLOT_SHOULDER,
@@ -49,6 +49,7 @@
 		ATTACHMENT_SLOT_MODULE,
 		ATTACHMENT_SLOT_STORAGE,
 	)
+	///Typepath list of allowed attachment types.
 	var/list/attachments_allowed = list(
 		/obj/item/armor_module/armor/chest/marine,
 		/obj/item/armor_module/armor/legs/marine,
@@ -74,16 +75,16 @@
 		/obj/item/armor_module/armor/legs/marine/eod,
 		/obj/item/armor_module/armor/arms/marine/eod,
 
-		/obj/item/armor_module/better_shoulder_lamp,
-		/obj/item/armor_module/valkyrie_autodoc,
-		/obj/item/armor_module/fire_proof,
-		/obj/item/armor_module/tyr_extra_armor,
-		/obj/item/armor_module/tyr_extra_armor/mark1,
-		/obj/item/armor_module/mimir_environment_protection,
-		/obj/item/armor_module/mimir_environment_protection/mark1,
-		/obj/item/armor_module/hlin_explosive_armor,
-		/obj/item/armor_module/ballistic_armor,
-		/obj/item/armor_module/chemsystem,
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/module/chemsystem,
 
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
@@ -92,8 +93,11 @@
 		/obj/item/armor_module/storage/integrated,
 
 	)
+	///Pixel offsets for specific attachment slots. Is not used currently.
 	var/list/attachment_offsets = list()
+	///List of attachment types that is attached to the object on initialize.
 	var/list/starting_attachments = list()
+	///List of the attachment overlays.
 	var/list/attachment_overlays = list()
 
 	/// Misc stats
@@ -202,7 +206,7 @@
 	name = "\improper PAS-11X pattern armored vest"
 	desc = "A modified version of the PAS-11 that has been fit with Jaeger module attach points in order to give use to the surplus armor left while being able to compete with the X-02 Exoskeleton. Use it to toggle the built-in flashlight."
 	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
-	icon_state = "pas11_icon"
+	icon_state = "pas11"
 	item_state = "pas11"
 	slowdown = 0.5
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
@@ -224,16 +228,16 @@
 		/obj/item/armor_module/armor/legs/marine/eod,
 
 
-		/obj/item/armor_module/better_shoulder_lamp,
-		/obj/item/armor_module/valkyrie_autodoc,
-		/obj/item/armor_module/fire_proof,
-		/obj/item/armor_module/tyr_extra_armor,
-		/obj/item/armor_module/tyr_extra_armor/mark1,
-		/obj/item/armor_module/mimir_environment_protection,
-		/obj/item/armor_module/mimir_environment_protection/mark1,
-		/obj/item/armor_module/hlin_explosive_armor,
-		/obj/item/armor_module/ballistic_armor,
-		/obj/item/armor_module/chemsystem,
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/module/chemsystem,
 
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
@@ -241,6 +245,12 @@
 		/obj/item/armor_module/storage/medical,
 		/obj/item/armor_module/storage/integrated,
 	)
+
+/obj/item/clothing/suit/modular/pas11x/update_icon()
+	. = ..()
+	if(item_state == icon_state)
+		return
+	item_state = icon_state
 
 /obj/item/clothing/suit/modular/pas11x/attackby(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/facepaint/))
@@ -267,6 +277,7 @@
 			icon_state = "s_" + initial(icon_state)
 		if("black")
 			icon_state = "k_" + initial(icon_state)
+	item_state = icon_state
 
 /** Core helmet module */
 /obj/item/clothing/head/modular
@@ -287,43 +298,43 @@
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
 	greyscale_config = /datum/greyscale_config/modularhelmet_infantry
-	greyscale_colors = "#5B6036#f7fb58"
+	greyscale_colors = "#5B6036"
 
 	/// How long it takes to attach or detach to this item
 	var/equip_delay = 3 SECONDS
 
-	///whether this helmet should be using its emissive overlay or not
-	var/visor_emissive_on = TRUE
-	///Initial hex color we use when applying the visor color
-	var/visor_color_hex = "#f7fb58"
-	///Initial hex color we use when applying the main helmet color
-	var/main_color_hex = "#5B6036"
-	///Greyscale config color we use for the visor
-	var/visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive
 	///optional assoc list of colors we can color this armor
 	var/list/colorable_colors
 
-
+	///Assoc list of available slots.
 	var/list/attachments_by_slot = list(
 		ATTACHMENT_SLOT_HEAD_MODULE,
+		ATTACHMENT_SLOT_VISOR,
 	)
+	///Typepath list of allowed attachment types.
 	var/list/attachments_allowed = list(
-		/obj/item/armor_module/tyr_head,
-		/obj/item/armor_module/mimir_environment_protection/mimir_helmet,
-		/obj/item/armor_module/mimir_environment_protection/mimir_helmet/mark1,
-		/obj/item/armor_module/welding,
-		/obj/item/armor_module/binoculars,
-		/obj/item/armor_module/antenna,
+		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
 	)
+
+	///Pixel offsets for specific attachment slots. Is not used currently.
 	var/list/attachment_offsets = list()
+	///List of attachment types that is attached to the object on initialize.
 	var/list/starting_attachments = list()
+	///List of the attachment overlays.
 	var/list/attachment_overlays = list()
+
+	///Pixel offset on the X axis for how the helmet sits on the mob without a visor.
+	var/visorless_offset_x = 0
+	///Pixel offset on the Y axis for how the helmet sits on the mob without a visor.
+	var/visorless_offset_y = -1
 
 /obj/item/clothing/head/modular/Initialize(mapload)
 	. = ..()
-	if(!visor_emissive_on || !visor_greyscale_config)
-		return
-	AddElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, visor_greyscale_config, visor_color_hex)
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, attachment_offsets, starting_attachments, null, null, null, attachment_overlays)
 	update_icon()
 
@@ -332,38 +343,25 @@
 	if(!greyscale_config)
 		return
 	item_icons = list(slot_head_str = icon)
-	if(length(colors) >= 2) //for only single color helmets with no visor
-		visor_color_hex = colors[2]
 
 ///Will force faction colors on this helmet
 /obj/item/clothing/head/modular/proc/limit_colorable_colors(faction)
 	switch(faction)
 		if(FACTION_TERRAGOV)
-			var/split_colors = list("#2A4FB7")
-			if(visor_color_hex)
-				split_colors += visor_color_hex
-			set_greyscale_colors(split_colors)
+			set_greyscale_colors("#2A4FB7")
 			colorable_colors = list(
 				"blue" = "#2A4FB7",
 				"aqua" = "#2098A0",
 				"purple" = "#871F8F",
 			)
 		if(FACTION_TERRAGOV_REBEL)
-			var/split_colors = list("#CC2C32")
-			if(visor_color_hex)
-				split_colors += visor_color_hex
-			set_greyscale_colors(split_colors)
+			set_greyscale_colors("#CC2C32")
 			colorable_colors = list(
 				"red" = "#CC2C32",
 				"orange" = "#BC4D25",
 				"yellow" = "#B7B21F",
 			)
 
-/obj/item/clothing/head/modular/examine(mob/user, distance, infix, suffix)
-	. = ..()
-	if(visor_greyscale_config)
-		to_chat(user, "Right click the helmet to toggle the visor internal lighting.")
-		to_chat(user, "Right click the helmet with paint to color the visor internal lighting.")
 
 /obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -373,17 +371,11 @@
 	if(!istype(I, /obj/item/facepaint))
 		return
 
-	return recolor(I, user)
-
-/obj/item/clothing/head/modular/proc/recolor(obj/item/facepaint/paint, mob/user)
-	if(!greyscale_config)
-		return
-
+	var/obj/item/facepaint/paint = I
 	if(paint.uses < 1)
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return
-	paint.uses--
-	
+
 	var/new_color
 	if(colorable_colors)
 		new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
@@ -396,54 +388,9 @@
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
 
-	main_color_hex = new_color
-	var/list/split_colors = list(new_color)
-	if(visor_color_hex)
-		split_colors += visor_color_hex
-	set_greyscale_colors(split_colors)
-	return
-
-/obj/item/clothing/head/modular/attackby_alternate(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return
-
-	if(!visor_color_hex)
-		return
-
-	if(!istype(I, /obj/item/facepaint))
-		return
-	
-	return recolor_visor(I, user)
-
-/obj/item/clothing/head/modular/proc/recolor_visor(obj/item/facepaint/paint, mob/user)
-	if(paint.uses < 1)
-		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
-		return TRUE
+	set_greyscale_colors(new_color)
 	paint.uses--
 
-	var/new_color = input(user, "Pick a color", "Pick color") as null|color
-	if(!new_color)
-		return
-
-	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
-		return TRUE
-
-	visor_color_hex = new_color
-	set_greyscale_colors(list(main_color_hex, new_color))
-	return TRUE
-
-/obj/item/clothing/head/modular/attack_hand_alternate(mob/living/carbon/human/user)
-	if(user.head == src)
-		return //must NOT be worn to toggle
-	if(!visor_greyscale_config)
-		return
-	visor_emissive_on = !visor_emissive_on
-	if(visor_emissive_on)
-		AddElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, visor_greyscale_config, visor_color_hex)
-	else
-		RemoveElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, visor_greyscale_config, visor_color_hex)
-	update_icon()
 
 /obj/item/clothing/head/modular/equipped(mob/user, slot)
 	. = ..()
@@ -458,6 +405,7 @@
 		LAZYADD(module.actions_types, /datum/action/item_action/toggle)
 		var/datum/action/item_action/toggle/new_action = new(module)
 		new_action.give_action(user)
+
 
 /obj/item/clothing/head/modular/unequipped(mob/unequipper, slot)
 	. = ..()
@@ -480,11 +428,11 @@
 		if(!overlay)
 			continue
 		standing.overlays += overlay
+	if(attachments_by_slot[ATTACHMENT_SLOT_VISOR])
+		return
+	standing.pixel_x = visorless_offset_x
+	standing.pixel_y = visorless_offset_y
 
-/obj/item/clothing/head/modular/update_overlays()
-	. = ..()
-	if(visor_emissive_on)
-		. += emissive_appearance('icons/mob/modular/infantry.dmi', "visor")
 
 /obj/item/clothing/head/modular/get_mechanics_info()
 	. = ..()
@@ -498,49 +446,118 @@
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	accuracy_mod = 0
 	greyscale_config = /datum/greyscale_config/modularhelmet_infantry
-	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive
+	attachments_allowed = list(
+		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
+
+		/obj/item/armor_module/armor/visor/marine,
+		/obj/item/armor_module/armor/visor/metal/marine,
+	)
+
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine)
 
 /obj/item/clothing/head/modular/marine/skirmisher
 	name = "Jaeger Pattern Skirmisher Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Skirmisher markings."
 	icon_state = "skirmisher_helmet"
 	greyscale_config = /datum/greyscale_config/modularhelmet_skirmisher
-	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive/skirmisher
+	attachments_allowed = list(
+		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
+
+		/obj/item/armor_module/armor/visor/marine/skirmisher,
+		/obj/item/armor_module/armor/visor/metal/marine/skirmisher,
+	)
+
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/skirmisher)
 
 /obj/item/clothing/head/modular/marine/assault
 	name = "Jaeger Pattern Assault Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Assault markings."
 	icon_state = "assault_helmet"
 	greyscale_config = /datum/greyscale_config/modularhelmet_assault
-	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive/assault
+	attachments_allowed = list(
+		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
+
+		/obj/item/armor_module/armor/visor/marine/assault,
+		/obj/item/armor_module/armor/visor/metal/marine/assault,
+	)
+
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/assault)
 
 /obj/item/clothing/head/modular/marine/eva
 	name = "Jaeger Pattern EVA Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings."
 	icon_state = "eva_helmet"
 	greyscale_config = /datum/greyscale_config/modularhelmet_eva
-	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive/eva
+	attachments_allowed = list(
+		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
+
+		/obj/item/armor_module/armor/visor/marine/eva,
+		/obj/item/armor_module/armor/visor/metal/marine/eva,
+	)
+
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eva)
 
 /obj/item/clothing/head/modular/marine/eva/skull
-	name = "Jaeger Pattern EVA Skull Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings and a skull on the visor."
-	icon_state = "eva_skull_helmet"
-	greyscale_config = /datum/greyscale_config/modularhelmet_eva_skull
-	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive_skull
+	name = "Jaeger Pattern EVA 'Skull' Helmet"
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eva/skull)
 
 /obj/item/clothing/head/modular/marine/eod
 	name = "Jaeger Pattern EOD Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EOD markings"
 	icon_state = "eod_helmet"
 	greyscale_config = /datum/greyscale_config/modularhelmet_eod
-	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive/eod
+	attachments_allowed = list(
+		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
+
+		/obj/item/armor_module/armor/visor/marine/eod,
+		/obj/item/armor_module/armor/visor/metal/marine/eod,
+	)
+
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eod)
 
 /obj/item/clothing/head/modular/marine/scout
 	name = "Jaeger Pattern Scout Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Scout markings"
 	icon_state = "scout_helmet"
 	greyscale_config = /datum/greyscale_config/modularhelmet_scout
-	visor_greyscale_config = /datum/greyscale_config/modular_helmet_visor_emissive/scout
+	attachments_allowed = list(
+		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
+
+		/obj/item/armor_module/armor/visor/marine/scout,
+		/obj/item/armor_module/armor/visor/metal/marine/scout,
+	)
+
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/scout)
 
 /obj/item/clothing/head/modular/marine/infantry
 	name = "Jaeger Pattern Infantry-Open Helmet"
@@ -548,8 +565,18 @@
 	icon_state = "infantryopen_helmet"
 	greyscale_colors = "#5B6036"
 	greyscale_config = /datum/greyscale_config/modularhelmet_infantry_open
-	visor_color_hex = null //no visor, no color
-	visor_greyscale_config = null
+	attachments_allowed = list(
+		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
+	)
+	starting_attachments = list()
+
+	visorless_offset_x = 0
+	visorless_offset_y = 0
 
 /obj/item/clothing/head/modular/marine/m10x
 	name = "\improper M10X pattern marine helmet"
@@ -568,8 +595,18 @@
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 	greyscale_colors = null
 	greyscale_config = null
-	visor_color_hex = null
-	visor_greyscale_config = null
+	attachments_allowed = list(
+		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
+	)
+	starting_attachments = list()
+	visorless_offset_x = 0
+	visorless_offset_y = 0
+
 
 /obj/item/clothing/head/modular/marine/m10x/standard
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)

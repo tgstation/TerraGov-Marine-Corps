@@ -28,7 +28,8 @@
  * This is only able to representate items of type /obj/item/clothing/suit/modular
  */
 /datum/item_representation/modular_armor
-	var/datum/item_representation/armor_module/attachments = list()
+	///List of attachments on the armor.
+	var/list/datum/item_representation/armor_module/attachments = list()
 
 /datum/item_representation/modular_armor/New(obj/item/item_to_copy)
 	if(!item_to_copy)
@@ -40,6 +41,9 @@
 	for(var/key in jaeger_to_copy.attachments_by_slot)
 		if(istype(jaeger_to_copy.attachments_by_slot[key], /obj/item/armor_module/armor))
 			attachments += new /datum/item_representation/armor_module/colored(jaeger_to_copy.attachments_by_slot[key])
+			continue
+		if(istype(jaeger_to_copy.attachments_by_slot[key], /obj/item/armor_module/storage))
+			attachments += new /datum/item_representation/armor_module/storage(jaeger_to_copy.attachments_by_slot[key])
 			continue
 		attachments += new /datum/item_representation/armor_module(jaeger_to_copy.attachments_by_slot[key])
 
@@ -57,40 +61,41 @@
 	var/list/tgui_data = list()
 	tgui_data["name"] = initial(item_type.name)
 	tgui_data["icons"] = list()
-	var/icon/icon_to_convert = icon(initial(item_type.icon), initial(item_type.icon_state), SOUTH)
+	var/icon/icon_to_convert = icon(initial(item_type.icon), item_icon_state, SOUTH)
 	tgui_data["icons"] += list(list(
 				"icon" = icon2base64(icon_to_convert),
 				"translateX" = NO_OFFSET,
 				"translateY" = MODULAR_ARMOR_OFFSET_Y,
 				"scale" = MODULAR_ARMOR_SCALING,
 				))
-	for(var/key in armor_modules)
-		var/datum/item_representation/armor_module/colored/armor_module = armor_modules[key]
-		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(armor_module.item_type.greyscale_config), armor_module.greyscale_colors), dir = SOUTH)
-		tgui_data["icons"] += list(list(
+	for(var/datum/item_representation/armor_module/module in attachments)
+		if(istype(module, /datum/item_representation/armor_module/colored))
+			var/datum/item_representation/armor_module/colored/colored_module = module
+			icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(colored_module.item_type.greyscale_config), colored_module.greyscale_colors), dir = SOUTH)
+			tgui_data["icons"] += list(list(
 					"icon" = icon2base64(icon_to_convert),
 					"translateX" = NO_OFFSET,
 					"translateY" = MODULAR_ARMOR_OFFSET_Y,
 					"scale" = MODULAR_ARMOR_SCALING,
 					))
-	if(installed_storage)
-		icon_to_convert = icon(initial(installed_storage.item_type.icon), initial(installed_storage.item_type.icon_state), SOUTH)
-		tgui_data["icons"] += list(list(
-					"icon" = icon2base64(icon_to_convert),
-					"translateX" = NO_OFFSET,
-					"translateY" = MODULAR_ARMOR_OFFSET_Y,
-					"scale" = MODULAR_ARMOR_SCALING,
-					))
-	if(installed_module)
-		icon_to_convert = icon(initial(installed_module.item_type.icon), initial(installed_module.item_type.icon_state), SOUTH)
-		tgui_data["icons"] += list(list(
+			continue
+		if(ispath(module.item_type, /obj/item/armor_module/module))
+			icon_to_convert = icon(initial(module.item_type.icon), initial(module.item_type.icon_state), SOUTH)
+			tgui_data["icons"] += list(list(
 					"icon" = icon2base64(icon_to_convert),
 					"translateX" = "40%",
 					"translateY" = "35%",
 					"scale" = 0.5,
 					))
+			continue
+		icon_to_convert = icon(initial(module.item_type.icon), initial(module.item_type.icon_state), SOUTH)
+		tgui_data["icons"] += list(list(
+					"icon" = icon2base64(icon_to_convert),
+					"translateX" = NO_OFFSET,
+					"translateY" = MODULAR_ARMOR_OFFSET_Y,
+					"scale" = MODULAR_ARMOR_SCALING,
+					))
 	return tgui_data
-
 
 /**
  * Allow to representate an module of a jaeger
@@ -106,9 +111,14 @@
 	..()
 
 ///Attach the instantiated item on an armor
-/datum/item_representation/armor_module/proc/install_on_armor(datum/loadout_seller/seller, obj/item/clothing/suit/modular/armor, mob/living/user)
+/datum/item_representation/armor_module/proc/install_on_armor(datum/loadout_seller/seller, thing_to_install_on, mob/living/user)
+	var/obj/item/armor_module/module_type = item_type
+	if(!CHECK_BITFIELD(initial(module_type.flags_attach_features), ATTACH_REMOVABLE))
+		bypass_vendor_check = TRUE
 	var/obj/item/armor_module/module = instantiate_object(seller, null, user)
-	attach_attachment(armor, module)
+	if(!module)
+		return
+	attach_attachment(thing_to_install_on, module)
 
 /**
  * Allow to representate an armor piece of a jaeger, and to color it
@@ -135,3 +145,26 @@
 		armor.set_greyscale_colors(greyscale_colors)
 		return
 	armor.limit_colorable_colors(seller.faction)
+
+/datum/item_representation/armor_module/storage
+	///Storage repressentation of storage modules.
+	var/datum/item_representation/storage/storage
+
+/datum/item_representation/armor_module/storage/New(obj/item/item_to_copy)
+	if(!item_to_copy)
+		return
+	if(!ismodulararmorstoragemodule(item_to_copy))
+		CRASH("/datum/item_representation/armor_module created from an item that is not a jaeger storage module")
+	..()
+	var/obj/item/armor_module/storage/storage_module = item_to_copy
+	var/obj/item/storage/internal/modular/internal_storage = storage_module.storage
+	storage = new(internal_storage)
+
+/datum/item_representation/armor_module/storage/instantiate_object(datum/loadout_seller/seller, master, mob/living/user)
+	. = ..()
+	if(!.)
+		return
+	var/obj/item/armor_module/storage/storage_module = .
+	if(!storage)
+		return
+	storage_module.storage = storage.instantiate_object(seller, storage_module, user)

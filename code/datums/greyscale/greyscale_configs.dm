@@ -36,7 +36,7 @@
 
 /datum/greyscale_config/modularhelmet_eva_skull
 	icon_file = 'icons/mob/modular/eva.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularhelmet_eva_skull.json'
+	json_config = 'code/datums/greyscale/json_configs/modularhelmet.json'
 
 /datum/greyscale_config/modularhelmet_scout
 	icon_file = 'icons/mob/modular/scout.dmi'
@@ -132,25 +132,49 @@
  * MODULAR VISORS
  */
 
-/datum/greyscale_config/modular_helmet_visor_emissive
+/datum/greyscale_config/modular_helmet_visor
 	icon_file = 'icons/mob/modular/infantry.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modular_visor_emissive.json'
+	json_config = 'code/datums/greyscale/json_configs/modular_visor.json'
 
-/datum/greyscale_config/modular_helmet_visor_emissive/assault
+/datum/greyscale_config/modular_helmet_visor/assault
 	icon_file = 'icons/mob/modular/assault.dmi'
 
-/datum/greyscale_config/modular_helmet_visor_emissive/eod
+/datum/greyscale_config/modular_helmet_visor/eod
 	icon_file = 'icons/mob/modular/eod.dmi'
 
-/datum/greyscale_config/modular_helmet_visor_emissive/eva
+/datum/greyscale_config/modular_helmet_visor/eva
 	icon_file = 'icons/mob/modular/eva.dmi'
 
-/datum/greyscale_config/modular_helmet_visor_emissive/scout
+/datum/greyscale_config/modular_helmet_visor/scout
 	icon_file = 'icons/mob/modular/scout.dmi'
 
-/datum/greyscale_config/modular_helmet_visor_emissive/skirmisher
+/datum/greyscale_config/modular_helmet_visor/skirmisher
 	icon_file = 'icons/mob/modular/skirmisher.dmi'
 
-/datum/greyscale_config/modular_helmet_visor_emissive_skull
+/datum/greyscale_config/modular_helmet_visor_skull
 	icon_file = 'icons/mob/modular/eva.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modular_visor_emissive_skull.json'
+	json_config = 'code/datums/greyscale/json_configs/modular_visor_skull.json'
+
+
+/datum/greyscale_config/modular_helmet_visor/metal
+	icon_file = 'icons/mob/modular/infantry.dmi'
+	json_config = 'code/datums/greyscale/json_configs/modular_visor_metal.json'
+
+/datum/greyscale_config/modular_helmet_visor/metal/assault
+	icon_file = 'icons/mob/modular/assault.dmi'
+
+/datum/greyscale_config/modular_helmet_visor/metal/eod
+	icon_file = 'icons/mob/modular/eod.dmi'
+
+/datum/greyscale_config/modular_helmet_visor/metal/eva
+	icon_file = 'icons/mob/modular/eva.dmi'
+
+/datum/greyscale_config/modular_helmet_visor/metal/scout
+	icon_file = 'icons/mob/modular/scout.dmi'
+
+/datum/greyscale_config/modular_helmet_visor/metal/skirmisher
+	icon_file = 'icons/mob/modular/skirmisher.dmi'
+
+/datum/greyscale_config/modular_helmet_visor_skull/metal
+	icon_file = 'icons/mob/modular/eva.dmi'
+	json_config = 'code/datums/greyscale/json_configs/modular_visor_metal_skull.json'

@@ -36,3 +36,5 @@
 
 //Jaeger helmet slot defines
 #define ATTACHMENT_SLOT_HEAD_MODULE "head_module"
+#define ATTACHMENT_SLOT_VISOR "visor"
+

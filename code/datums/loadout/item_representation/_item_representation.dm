@@ -6,6 +6,8 @@
 /datum/item_representation
 	/// The type of the object represented, to allow us to create the object when needed
 	var/obj/item/item_type
+	/// Icon state of the item. This is so we can keep track of icon_state colors with the loadout vendor. Like PAS armor.
+	var/item_icon_state
 	/// If it's allowed to bypass the vendor check
 	var/bypass_vendor_check = FALSE
 
@@ -13,6 +15,7 @@
 	if(!item_to_copy)
 		return
 	item_type = item_to_copy.type
+	item_icon_state = item_to_copy.icon_state
 
 /**
  * This will attempt to instantiate an object.
@@ -31,6 +34,7 @@
 		to_chat(user, span_warning("[item_type] in your loadout is an invalid item, it has probably been changed or removed."))
 		return
 	var/obj/item/item = new item_type(master)
+	item.icon_state = item_icon_state
 	return item
 
 /**
@@ -48,7 +52,8 @@
 	tgui_data["name"] = initial(item_type.name)
 	return tgui_data
 
-/datum/item_representation/proc/attach_attachment(/obj/item/thing_to_attach_to, /obj/item/attachment)
+///Sends a signal to the object that it is giving the object attachments.
+/datum/item_representation/proc/attach_attachment(obj/item/thing_to_attach_to, obj/item/attachment)
 	SEND_SIGNAL(thing_to_attach_to, COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT, attachment)
 
 /**
@@ -98,6 +103,7 @@
 			storage.handle_item_insertion(item_to_insert)
 			continue
 		item_to_insert.forceMove(get_turf(user))
+	return storage
 
 
 /**

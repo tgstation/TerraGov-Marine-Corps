@@ -31,7 +31,8 @@
 	attachable_overlays = overlays //This is incase the parent wishes to have a stored reference to this list.
 	attachable_overlays += slots 
 
-	if(length(starting_attachmments)) //Attaches starting attachments
+	var/obj/parent_object = parent
+	if(length(starting_attachmments) && parent_object.loc) //Attaches starting attachments if the object is not instantiated in nullspace. If it is created in null space, such as in a loadout vendor. It wont create default attachments.
 		for(var/starting_attachment_type in starting_attachmments)
 			attach_without_user(attachment = new starting_attachment_type())
 
