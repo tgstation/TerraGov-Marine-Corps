@@ -214,9 +214,9 @@ WEAPONS
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/zx76
-	name = "ZX-76 Twin Shotgun"
+	name = "ZX-76 Twin-Barrled Burst Shotgun"
 	contains = list(/obj/item/weapon/gun/shotgun/zx76)
-	cost = 110
+	cost = 120
 
 /datum/supply_packs/weapons/autosniper
 	name = "IFF Auto Sniper kit"
