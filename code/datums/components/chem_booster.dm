@@ -165,11 +165,12 @@
 	power_action.remove_action(wearer)
 	scan_action.remove_action(wearer)
 	wearer.overlays -= resource_overlay
-
+	UnregisterSignal(wearer, COMSIG_KB_VALI_USE)
 	wearer = null
 
 ///Sets up actions and vars when the suit is equipped
 /datum/component/chem_booster/proc/equipped(datum/source, mob/equipper, slot)
+	RegisterSignal(wearer, COMSIG_KB_VALI_USE, .proc/on_off)
 	SIGNAL_HANDLER
 	if(!isliving(equipper))
 		return
