@@ -800,9 +800,10 @@ and you're good to go.
 
 	shots_fired++
 	// Dumb akimbo code
-	if(dual_wield && gun_user.shoot_inactive_hand && (gun_user.get_active_held_item().current_mag || gun_user.get_active_held_item().current_mag.current_rounds > 0))
+	var/obj/item/weapon/gun/active_gun = gun_user.get_active_held_item() // Don't use this outside of dual_wield since there are no checks for if it's not a gun else where
+	if(dual_wield && gun_user.shoot_inactive_hand && active_gun?.current_mag.current_rounds > 0)
 		gun_user.shoot_inactive_hand = FALSE
-	if(dual_wield && !gun_user.shoot_inactive_hand && (gun_user.get_inactive_held_item().current_mag || gun_user.get_inactive_held_item().current_mag.current_rounds > 0))
+	if(dual_wield && !gun_user.shoot_inactive_hand && (!active_gun?.current_mag || active_gun.current_mag.current_rounds <= 0))
 		gun_user.shoot_inactive_hand = TRUE
 
 
