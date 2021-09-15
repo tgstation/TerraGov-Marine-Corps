@@ -128,8 +128,24 @@
 	name = "Fast husk"
 	slowdown = 0
 
+/datum/species/husk/fast/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	. = ..()
+	H.transform = matrix().Scale(0.8, 0.8)
+
+/datum/species/husk/fast/post_species_loss(mob/living/carbon/human/H)
+	. = ..()
+	H.transform = matrix().Scale(1/(0.8), 1/(0.8))
+
 /datum/species/husk/tank
 	name = "Tank husk"
 	slowdown = 1
 	heal_rate = 10
 	total_health = 250
+
+/datum/species/husk/fast/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	. = ..()
+	H.transform = matrix().Scale(1.2, 1.2)
+
+/datum/species/husk/fast/post_species_loss(mob/living/carbon/human/H)
+	. = ..()
+	H.transform = matrix().Scale(1/(1.2), 1/(1.2))
