@@ -10,7 +10,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
  * Should a ai component get initialized while there's already enough instances of said thing, it will deny the initialization of the component but NOT the mob it's being attached to.
  * This is mainly here because admins keep on spamming AI without caring for the server's ability to handle hundreds/thousands of AI.
  */
-#define AI_INSTANCE_HARDCAP 100
+#define AI_INSTANCE_HARDCAP 200
 
 //The most basic of AI; can pathfind to a turf and path around objects in it's path if needed to
 /datum/component/ai_controller

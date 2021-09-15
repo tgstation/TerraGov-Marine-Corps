@@ -38,8 +38,18 @@
 
 /datum/ai_behavior/xeno/look_for_new_state()
 	switch(current_action)
-		if(ESCORTING_ATOM, MOVING_TO_NODE)
+		if(ESCORTING_ATOM)
+			if(get_dist(escorted_atom, mob_parent) > target_distance * 2)//We failed to reach our escorted atom
+				cleanup_current_action()
+				base_action = MOVING_TO_NODE
+				late_initialize()
+				return
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
+			if(!next_target)
+				return
+			change_action(MOVING_TO_ATOM, next_target)
+		if(MOVING_TO_NODE)
+			var/atom/next_target = get_nearest_target(mob_parent, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 			if(!next_target)
 				return
 			change_action(MOVING_TO_ATOM, next_target)
@@ -61,7 +71,10 @@
 	for(var/thing in obstacle_turf.contents)
 		if(isstructure(thing))
 			if(istype(thing, /obj/structure/window_frame))
+				if(locate(/obj/machinery/door/poddoor/shutters) in obstacle_turf)
+					return
 				mob_parent.loc = obstacle_turf
+				mob_parent.next_move_slowdown += 1 SECONDS
 				return COMSIG_OBSTACLE_DEALT_WITH
 			if(istype(thing, /obj/structure/closet))
 				var/obj/structure/closet/closet = thing

@@ -401,6 +401,8 @@
 
 ///Check if we have a mind, and finish the revive if we do
 /mob/living/carbon/human/proc/finish_revive_to_crit(should_offer_to_ghost = FALSE, should_zombify = FALSE)
+	if(!has_working_organs())
+		return
 	do_jitter_animation(1000)
 	if(!client)
 		if(should_offer_to_ghost)

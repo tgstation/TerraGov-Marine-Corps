@@ -3,13 +3,13 @@
 	name_plural = "Husks"
 	icobase = 'icons/mob/human_races/r_husk.dmi'
 	deform = 'icons/mob/human_races/r_husk.dmi'
-	total_health = 200
+	total_health = 125
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|HAS_UNDERWEAR|HEALTH_HUD_ALWAYS_DEAD|PARALYSE_RESISTANT
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_in_dark = 8
 	blood_color = "#110a0a"
 	hair_color = "#000000"
-	slowdown = 1
+	slowdown = 0.5
 	default_language_holder = /datum/language_holder/husk
 	has_organ = list(
 		"heart" =    /datum/internal_organ/heart,
@@ -56,7 +56,7 @@
 	if(prob(10))
 		playsound(get_turf(H), pick(sounds), 50)
 	for(var/datum/limb/limb AS in H.limbs) //Regrow some limbs
-		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(20))
+		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(10))
 			limb.remove_limb_flags(LIMB_DESTROYED)
 			H.update_body()
 
@@ -123,3 +123,13 @@
 		return FALSE
 	if(door.density) //Make sure it's still closed
 		door.open(TRUE)
+
+/datum/species/husk/fast
+	name = "Fast husk"
+	slowdown = 0
+
+/datum/species/husk/tank
+	name = "Tank husk"
+	slowdown = 1
+	heal_rate = 10
+	total_health = 250
