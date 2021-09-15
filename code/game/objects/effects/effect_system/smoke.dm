@@ -20,6 +20,8 @@
 	var/datum/effect_system/smoke_spread/cloud // for associated chemical smokes.
 	var/fraction = 0.2
 	var/smoke_can_spread_through = FALSE
+	///Delay in ticks before this smoke can affect a given mob again, applied in living's effect_smoke
+	var/minimum_effect_delay = 1 SECONDS
 
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
@@ -77,8 +79,9 @@
 
 /obj/effect/particle_effect/smoke/Crossed(atom/movable/O)
 	. = ..()
-	if(CHECK_BITFIELD(smoke_traits, SMOKE_CAMO) && isliving(O))
+	if(isliving(O))
 		O.effect_smoke(src)
+		return
 	if(CHECK_BITFIELD(smoke_traits, SMOKE_NERF_BEAM) && istype(O, /obj/projectile))
 		O.effect_smoke(src)
 

@@ -1390,3 +1390,11 @@
 /area/turret_protected/aisat
 	name = "Abandoned AI Satellite"
 	icon_state = "ai"
+
+/area/sensor_tower_1
+	name = "Sensor tower 1"
+	icon_state = "sensor"
+
+/area/sensor_tower_2
+	name = "Sensor tower 2"
+	icon_state = "sensor"

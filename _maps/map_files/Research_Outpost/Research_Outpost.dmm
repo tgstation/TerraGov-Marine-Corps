@@ -2971,6 +2971,10 @@
 /obj/item/trash/semki,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
+"oG" = (
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/plating/asteroidfloor,
+/area/outpost/lz1)
 "oH" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/shotgun/incendiary,
@@ -3507,6 +3511,10 @@
 	dir = 1
 	},
 /area/outpost/hallway/south_cent)
+"ri" = (
+/obj/effect/landmark/fob_sentry,
+/turf/open/floor/plating/ground/mars/dirttosand,
+/area/outpost/caves/east)
 "rj" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/dark,
@@ -5297,6 +5305,10 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_west)
+"AB" = (
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/caves/west)
 "AD" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/beaker/large,
@@ -5445,6 +5457,12 @@
 	dir = 10
 	},
 /area/outpost/caves/north)
+"Bp" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/tile/dark/purple2{
+	dir = 1
+	},
+/area/outpost/science)
 "Bq" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
@@ -6447,6 +6465,12 @@
 /obj/machinery/light,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig/gear_room)
+"GE" = (
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/outpost/cargo)
 "GF" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/bigred,
@@ -8423,6 +8447,12 @@
 	dir = 10
 	},
 /area/outpost/yard/west)
+"Qt" = (
+/obj/effect/landmark/fob_sentry,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 4
+	},
+/area/outpost/caves/south_east)
 "Qu" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
@@ -8814,6 +8844,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/arrivals)
 "RX" = (
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark/blue2{
 	dir = 10
 	},
@@ -9117,7 +9148,7 @@
 /area/outpost/engineering/engine)
 "TC" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/effect/landmark/dropship_console_spawn_lz1,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/lz1)
 "TD" = (
@@ -9560,7 +9591,7 @@
 /area/outpost/medbay)
 "VG" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/obj/effect/landmark/dropship_console_spawn_lz2,
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 5
 	},
@@ -19708,7 +19739,7 @@ wB
 rQ
 rQ
 rQ
-rQ
+AB
 Xm
 Hc
 Hc
@@ -24106,7 +24137,7 @@ XE
 dr
 dr
 yc
-Eb
+oG
 Eb
 xs
 RN
@@ -24635,7 +24666,7 @@ TE
 lS
 lS
 lS
-lS
+GE
 TE
 lS
 lS
@@ -34130,7 +34161,7 @@ vE
 zx
 oD
 bL
-FI
+Bp
 Dj
 ry
 bp
@@ -40097,7 +40128,7 @@ Xi
 Xi
 Xi
 Xi
-RD
+ri
 XV
 Gm
 Xi
@@ -40109,7 +40140,7 @@ wQ
 uf
 uf
 qn
-HH
+Qt
 HH
 sP
 Hm
@@ -40859,7 +40890,7 @@ wz
 JI
 mI
 la
-RD
+ri
 ss
 hY
 zG

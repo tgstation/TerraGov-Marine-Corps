@@ -10980,6 +10980,12 @@
 	dir = 8
 	},
 /area/mainship/medical/medical_science)
+"gSD" = (
+/obj/vehicle/ridden/motorbike{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo,
+/area/mainship/squads/req)
 "gSF" = (
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/disposalpipe/segment{
@@ -18012,9 +18018,9 @@
 /area/mainship/command/cic)
 "tJw" = (
 /obj/structure/table/mainship,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range)
 "tJz" = (
@@ -18453,7 +18459,7 @@
 /obj/structure/table/mainship,
 /obj/item/ammo_magazine/revolver,
 /obj/item/ammo_magazine/revolver,
-/obj/item/weapon/gun/revolver/m44,
+/obj/item/weapon/gun/revolver/single_action/m44,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range)
 "uEg" = (
@@ -18578,7 +18584,7 @@
 /obj/item/ammo_magazine/revolver,
 /obj/item/ammo_magazine/revolver,
 /obj/item/ammo_magazine/revolver,
-/obj/item/weapon/gun/revolver/m44,
+/obj/item/weapon/gun/revolver/single_action/m44,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range)
 "uLM" = (
@@ -62486,8 +62492,8 @@ hPS
 bPo
 vaF
 qNt
-hit
-hit
+gSD
+gSD
 acl
 qqs
 wcO

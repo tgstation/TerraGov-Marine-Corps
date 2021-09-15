@@ -17,7 +17,7 @@ SUBSYSTEM_DEF(persistence)
 
 	///Stores how long each season should last
 	var/list/seasons_durations = list(
-		SEASONAL_GUNS = 4 DAYS,
+		SEASONAL_GUNS = 24 HOURS,
 	)
 	///Stores the current season for each season group
 	var/list/season_progress = list()
@@ -33,6 +33,7 @@ SUBSYSTEM_DEF(persistence)
 		/datum/season_datum/weapons/guns/pistol_seasonal_three,
 		/datum/season_datum/weapons/guns/copsandrobbers_seasonal,
 		/datum/season_datum/weapons/guns/smg_seasonal,
+		/datum/season_datum/weapons/guns/storm_seasonal,
 		)
 	)
 	///The saved list of custom outfits names
@@ -202,7 +203,7 @@ SUBSYSTEM_DEF(persistence)
 	item_list = list(
 		/obj/item/weapon/gun/revolver/small = -1,
 		/obj/item/ammo_magazine/revolver/small = -1,
-		/obj/item/weapon/gun/revolver/m44 = -1,
+		/obj/item/weapon/gun/revolver/single_action/m44 = -1,
 		/obj/item/ammo_magazine/revolver = -1,
 		)
 
@@ -244,5 +245,16 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/smg/m25 = -1,
 		/obj/item/weapon/gun/smg/mp7 = -1,
 		/obj/item/ammo_magazine/smg/mp7 = -1,
+		)
+
+/datum/season_datum/weapons/guns/storm_seasonal
+	name = "Storm weapons"
+	description = "Two classics on opposite sides, both made for CQC."
+	item_list = list(
+		/obj/item/weapon/gun/rifle/mkh = -1,
+		/obj/item/ammo_magazine/rifle/mkh = -1,
+		/obj/item/weapon/gun/smg/ppsh = -1,
+		/obj/item/ammo_magazine/smg/ppsh = -1,
+		/obj/item/ammo_magazine/smg/ppsh/extended = -1,
 		)
 

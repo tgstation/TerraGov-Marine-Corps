@@ -219,7 +219,7 @@
 	name = "Hunter's Mark"
 	action_icon_state = "hunter_mark"
 	mechanics_text = "Psychically mark a creature you have line of sight to, allowing you to sense its direction, distance and location with Psychic Trace."
-	plasma_cost = 75
+	plasma_cost = 25
 	keybind_signal = COMSIG_XENOABILITY_HUNTER_MARK
 	cooldown_timer = 60 SECONDS
 	///Target of the Hunter's Hunter's Mark ability; referenced by the Psychic Trace ability.
@@ -271,9 +271,6 @@
 	X.face_atom(victim) //Face towards the target so we don't look silly
 
 	to_chat(X, span_xenodanger("We prepare to psychically mark [victim] as our quarry."))
-
-	if(!do_after(X, HUNTER_MARK_WINDUP, TRUE, target, BUSY_ICON_HOSTILE)) //Slight wind up
-		return fail_activate()
 
 	if(!X.line_of_sight(victim)) //Need line of sight.
 		to_chat(X, span_xenowarning("We lost line of sight to the target!"))

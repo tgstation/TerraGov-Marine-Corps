@@ -2,6 +2,10 @@
 "aa" = (
 /turf/closed/wall/desert/invincible,
 /area/deathmatch)
+"ak" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile,
+/area/deathmatch)
 "aL" = (
 /obj/structure/cargo_container/green,
 /turf/open/floor/plating/ground/dirt,
@@ -41,8 +45,19 @@
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/tile,
 /area/deathmatch)
+"hH" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/landmark/deathmatch,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
 "hO" = (
 /turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
+"ia" = (
+/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
+/obj/effect/ai_node,
+/turf/open/floor/tile,
 /area/deathmatch)
 "if" = (
 /obj/effect/landmark/deathmatch,
@@ -94,6 +109,11 @@
 /obj/structure/cargo_container/green{
 	dir = 4
 	},
+/turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
+"nM" = (
+/obj/effect/landmark/deathmatch,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "nT" = (
@@ -184,6 +204,10 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
+"xn" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/deathmatch)
 "yN" = (
 /obj/structure/desertdam/decals/loose_sand_overlay,
 /turf/open/floor/industrial,
@@ -220,6 +244,12 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
+"Cy" = (
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/ai_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
 "Cz" = (
 /obj/structure/platform{
 	dir = 8
@@ -254,6 +284,15 @@
 "DZ" = (
 /obj/machinery/door/airlock/sandstone,
 /turf/open/floor/industrial,
+/area/deathmatch)
+"FE" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
+"FK" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "Gm" = (
 /obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
@@ -384,6 +423,11 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
+"Si" = (
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
 "So" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/tile/dark,
@@ -412,10 +456,20 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
+"Ua" = (
+/obj/effect/ai_node,
+/turf/open/floor/industrial,
+/area/deathmatch)
 "Uq" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
+"WB" = (
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/landmark/deathmatch,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "WT" = (
 /obj/structure/platform{
@@ -612,14 +666,14 @@ pI
 pI
 pI
 pI
-JF
+ia
 pI
 pI
 pI
 Sp
 DS
 hO
-hO
+FE
 hO
 hO
 hO
@@ -627,7 +681,7 @@ kz
 kE
 kE
 kE
-kE
+Ua
 nl
 kE
 kE
@@ -774,7 +828,7 @@ ez
 YD
 kE
 kE
-kE
+Ua
 kE
 kz
 hO
@@ -831,7 +885,7 @@ qS
 hO
 hO
 hO
-hO
+FE
 hO
 hO
 Hh
@@ -840,7 +894,7 @@ hO
 hO
 hO
 hO
-hO
+FE
 hO
 hO
 aa
@@ -906,7 +960,7 @@ OP
 hO
 hO
 DV
-hO
+FE
 hO
 QP
 hO
@@ -1062,7 +1116,7 @@ kE
 kE
 lK
 if
-kE
+Ua
 YD
 ez
 ez
@@ -1106,7 +1160,7 @@ ez
 ez
 YD
 if
-kE
+Ua
 kE
 lK
 kE
@@ -1242,7 +1296,7 @@ ez
 xm
 hO
 hO
-hO
+FE
 hO
 YD
 ez
@@ -1320,7 +1374,7 @@ ez
 ez
 ez
 YD
-Uq
+hH
 Uq
 Uq
 aa
@@ -1435,7 +1489,7 @@ ez
 xg
 hO
 hO
-hO
+FE
 hO
 ZW
 hO
@@ -1443,7 +1497,7 @@ hO
 qZ
 hO
 hO
-DV
+Cy
 hO
 hO
 hO
@@ -1452,9 +1506,9 @@ hO
 hO
 Ii
 hO
+FE
 hO
-hO
-ZW
+FK
 hO
 hO
 hO
@@ -1464,7 +1518,7 @@ hO
 hO
 hO
 Hh
-hO
+FE
 hO
 hO
 aa
@@ -1672,10 +1726,10 @@ ez
 YD
 Ba
 Ba
-Zr
+WB
 DN
 md
-md
+xn
 cm
 YD
 YD
@@ -1789,7 +1843,7 @@ ez
 ez
 YD
 hO
-hO
+FE
 hO
 hO
 hO
@@ -1798,7 +1852,7 @@ xg
 xg
 hO
 hO
-hO
+FE
 eX
 hO
 hO
@@ -1867,7 +1921,7 @@ pI
 pI
 pI
 AM
-pI
+ak
 pI
 pI
 qR
@@ -2025,7 +2079,7 @@ hO
 wI
 hO
 hO
-hO
+FE
 SF
 PV
 Pr
@@ -2034,7 +2088,7 @@ hO
 hO
 hO
 hO
-hO
+FE
 hO
 hO
 hO
@@ -2299,7 +2353,7 @@ pI
 Oi
 pI
 BV
-hO
+FE
 hO
 YD
 YD
@@ -2437,9 +2491,24 @@ YD
 hO
 hO
 hO
-qS
+Si
 hO
 hO
+Ii
+hO
+hO
+hO
+FE
+hO
+hO
+hO
+hO
+hO
+hO
+hO
+hO
+hO
+FE
 Ii
 hO
 hO
@@ -2447,22 +2516,7 @@ hO
 hO
 hO
 hO
-hO
-hO
-hO
-hO
-hO
-hO
-hO
-hO
-Ii
-hO
-hO
-hO
-hO
-hO
-hO
-Ii
+nM
 hO
 hO
 Ze
