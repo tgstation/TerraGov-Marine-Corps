@@ -416,4 +416,4 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 
 /datum/config_entry/number/ValidateAndSet(str_val)
 	. = ..()
-	config_entry_value *= HOURS
+	config_entry_value = config_entry_value HOURS
