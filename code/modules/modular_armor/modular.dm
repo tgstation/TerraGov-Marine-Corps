@@ -455,7 +455,6 @@
 		/obj/item/armor_module/module/antenna,
 
 		/obj/item/armor_module/armor/visor/marine,
-		/obj/item/armor_module/armor/visor/metal/marine,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine)
@@ -474,7 +473,6 @@
 		/obj/item/armor_module/module/antenna,
 
 		/obj/item/armor_module/armor/visor/marine/skirmisher,
-		/obj/item/armor_module/armor/visor/metal/marine/skirmisher,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/skirmisher)
@@ -493,7 +491,6 @@
 		/obj/item/armor_module/module/antenna,
 
 		/obj/item/armor_module/armor/visor/marine/assault,
-		/obj/item/armor_module/armor/visor/metal/marine/assault,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/assault)
@@ -512,7 +509,6 @@
 		/obj/item/armor_module/module/antenna,
 
 		/obj/item/armor_module/armor/visor/marine/eva,
-		/obj/item/armor_module/armor/visor/metal/marine/eva,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eva)
@@ -535,7 +531,6 @@
 		/obj/item/armor_module/module/antenna,
 
 		/obj/item/armor_module/armor/visor/marine/eod,
-		/obj/item/armor_module/armor/visor/metal/marine/eod,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eod)
@@ -554,7 +549,6 @@
 		/obj/item/armor_module/module/antenna,
 
 		/obj/item/armor_module/armor/visor/marine/scout,
-		/obj/item/armor_module/armor/visor/metal/marine/scout,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/scout)

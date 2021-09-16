@@ -293,7 +293,7 @@
 	slot = ATTACHMENT_SLOT_VISOR
 	///Initial hex color we use when applying the visor color
 	greyscale_colors = "#f7fb58"
-	flags_attach_features = ATTACH_SAME_ICON|ATTACH_REMOVABLE
+	flags_attach_features = ATTACH_SAME_ICON
 	///whether this helmet should be using its emissive overlay or not
 	var/visor_emissive_on = TRUE
 	///Whether or not the helmet is allowed to turn its emissive on or off.
@@ -322,7 +322,7 @@
 ///Colors the visor when the parent is right clicked with facepaint.
 /obj/item/armor_module/armor/visor/proc/handle_color(datum/source, obj/I, mob/user)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, /obj/item/armor_module/armor/attackby, I, user)
+	INVOKE_ASYNC(src, /atom/proc/attackby, I, user)
 	return COMPONENT_NO_AFTERATTACK
 
 ///Toggles the visors emmisiveness if allowed.
@@ -392,54 +392,6 @@
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for EOD class of helmet."
 	icon_state = "eod_infantry_visor"
 	greyscale_config = /datum/greyscale_config/modular_helmet_visor/eod
-
-/obj/item/armor_module/armor/visor/metal
-	name = "standard metal visor"
-	greyscale_colors = "#4c4c4d"
-	visor_emissive_on = FALSE
-	allow_emissive = FALSE
-
-/obj/item/armor_module/armor/visor/metal/marine
-	name = "\improper Jaeger Pattern Infantry faceplate"
-	desc = "An alternate visor to the standard. This one is far cheaper and just as effective as the finest metals are far cheaper than the finest glass alloys of the same strength. This one is designed for the Infantry class of helmet."
-	icon_state = "infantry_visor_metal"
-	greyscale_config = /datum/greyscale_config/modular_helmet_visor/metal
-
-/obj/item/armor_module/armor/visor/metal/marine/skirmisher
-	name = "\improper Jaeger Pattern Skirmisher faceplate"
-	desc = "An alternate visor to the standard. This one is far cheaper and just as effective as the finest metals are far cheaper than the finest glass alloys of the same strength. This one is designed for the Skirmisher class of helmet."
-	icon_state = "skirmisher_visor_metal"
-	greyscale_config = /datum/greyscale_config/modular_helmet_visor/metal/skirmisher
-
-/obj/item/armor_module/armor/visor/metal/marine/scout
-	name = "\improper Jaeger Pattern Scout faceplate"
-	desc = "An alternate visor to the standard. This one is far cheaper and just as effective as the finest metals are far cheaper than the finest glass alloys of the same strength. This one is designed for the Scout class of helmet."
-	icon_state = "scout_visor_metal"
-	greyscale_config = /datum/greyscale_config/modular_helmet_visor/metal/scout
-
-/obj/item/armor_module/armor/visor/metal/marine/assault
-	name = "\improper Jaeger Pattern Assault faceplate"
-	desc = "An alternate visor to the standard. This one is far cheaper and just as effective as the finest metals are far cheaper than the finest glass alloys of the same strength. This one is designed for the Assault class of helmet."
-	icon_state = "assault_visor_metal"
-	greyscale_config = /datum/greyscale_config/modular_helmet_visor/metal/assault
-
-/obj/item/armor_module/armor/visor/metal/marine/eva
-	name = "\improper Jaeger Pattern EVA faceplate"
-	desc = "An alternate visor to the standard. This one is far cheaper and just as effective as the finest metals are far cheaper than the finest glass alloys of the same strength. This one is designed for the EVA class of helmet."
-	icon_state = "eva_visor_metal"
-	greyscale_config = /datum/greyscale_config/modular_helmet_visor/metal/eva
-
-/obj/item/armor_module/armor/visor/metal/marine/eva/skull
-	name = "\improper Jaeger Pattern EVA Skull faceplate"
-	icon_state = "eva_skull_visor_metal"
-	greyscale_config = /datum/greyscale_config/modular_helmet_visor_skull/metal
-
-/obj/item/armor_module/armor/visor/metal/marine/eod
-	name = "\improper Jaeger Pattern EOD faceplate"
-	desc = "An alternate visor to the standard. This one is far cheaper and just as effective as the finest metals are far cheaper than the finest glass alloys of the same strength. This one is designed for the EOD class of helmet."
-	icon_state = "eod_infantry_visor_metal"
-	greyscale_config = /datum/greyscale_config/modular_helmet_visor/metal/eod
-
 
 /*
 *   Modules
