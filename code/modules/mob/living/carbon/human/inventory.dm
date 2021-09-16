@@ -11,11 +11,11 @@
 			return
 		if(client?.prefs?.preferred_slot)
 			if(draw_from_slot_if_possible(client.prefs.preferred_slot))
-				next_move = world.time + 3
+				next_move = world.time + 1
 				return
 		for(var/slot in SLOT_DRAW_ORDER)
 			if(draw_from_slot_if_possible(slot))
-				next_move = world.time + 3
+				next_move = world.time + 1
 				return
 	else
 		if(s_active && s_active.can_be_inserted(I))

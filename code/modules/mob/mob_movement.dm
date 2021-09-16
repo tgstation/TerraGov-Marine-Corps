@@ -4,7 +4,7 @@
 		return TRUE
 	if(ismob(mover) && CHECK_BITFIELD(mover.flags_pass, PASSMOB))
 		return TRUE
-	return (!mover.density || !density || lying_angle)
+	return . || (!mover.density || !density || lying_angle) //Parent handles buckling - if someone's strapped to us it can pass.
 
 
 /client/verb/swap_hand()

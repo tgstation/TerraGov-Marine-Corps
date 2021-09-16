@@ -48,6 +48,16 @@
 		/datum/action/xeno_action/activable/cresttoss,
 	)
 
+/datum/xeno_caste/crusher/on_caste_applied(mob/xenomorph)
+	. = ..()
+	xenomorph.AddElement(/datum/element/ridable, /datum/component/riding/creature/crusher)
+	xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, /mob/living/carbon/xenomorph.proc/grabbed_self_attack)
+
+/datum/xeno_caste/crusher/on_caste_removed(mob/xenomorph)
+	. = ..()
+	xenomorph.RemoveElement(/datum/element/ridable, /datum/component/riding/creature/crusher)
+	xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)
+
 /datum/xeno_caste/crusher/young
 	upgrade_name = "Young"
 

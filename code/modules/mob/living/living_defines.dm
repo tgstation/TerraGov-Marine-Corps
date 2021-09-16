@@ -124,6 +124,10 @@
 	var/slowdown = 0
 	///Temporary inability to use special actions; hurts projectile damage. Regenerates each tick.
 	var/stagger = 0
+	///Id of the timer to set the afk status to MOB_DISCONNECTED
+	var/afk_timer_id
+	///If this mob is afk
+	var/afk_status = MOB_DISCONNECTED
 
 	/// This is the cooldown on suffering additional effects for when we exhaust all stamina
 	COOLDOWN_DECLARE(last_stamina_exhaustion)

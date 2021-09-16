@@ -203,7 +203,7 @@ SUBSYSTEM_DEF(persistence)
 	item_list = list(
 		/obj/item/weapon/gun/revolver/small = -1,
 		/obj/item/ammo_magazine/revolver/small = -1,
-		/obj/item/weapon/gun/revolver/m44 = -1,
+		/obj/item/weapon/gun/revolver/single_action/m44 = -1,
 		/obj/item/ammo_magazine/revolver = -1,
 		)
 

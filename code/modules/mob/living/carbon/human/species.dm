@@ -39,6 +39,9 @@
 	var/insulated = FALSE
 	var/count_human = FALSE // Does this count as a human?
 
+	///Inventory slots the race can't equip stuff to. Golems cannot wear jumpsuits, for example.
+	var/list/no_equip = list()
+
 	// Some species-specific gibbing data.
 	var/gibbed_anim = "gibbed-h"
 	var/dusted_anim = "dust-h"
@@ -77,6 +80,8 @@
 	///Whether this mob will tell when the user has logged out
 	var/is_sentient = TRUE
 
+	///Generic traits tied to having the species.
+	var/list/inherent_traits = list()
 	var/species_flags  = NONE       // Various specific features.
 
 	var/list/abilities = list()	// For species-derived or admin-given powers
@@ -227,11 +232,19 @@
 		to_chat(prefs.parent, span_warning("You forgot to set your synthetic name in your preferences. Please do so next time."))
 
 /datum/species/proc/on_species_gain(mob/living/carbon/human/H, /datum/species/old_species)
-	return
+	SHOULD_CALL_PARENT(TRUE) //remember to call base procs kids
+	for(var/slot_id in no_equip)
+		var/obj/item/thing = H.get_item_by_slot(slot_id)
+		if(thing && !is_type_in_list(src,thing.species_exception))
+			H.dropItemToGround(thing)
+	for(var/newtrait in inherent_traits)
+		ADD_TRAIT(H, newtrait, SPECIES_TRAIT)
 
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
-	return
+	SHOULD_CALL_PARENT(TRUE)
+	for(var/oldtrait in inherent_traits)
+		REMOVE_TRAIT(H, oldtrait, SPECIES_TRAIT)
 
 /datum/species/proc/remove_inherent_verbs(mob/living/carbon/human/H)
 	if(inherent_verbs)
@@ -619,6 +632,7 @@
 	update_moth_wings(H)
 
 /datum/species/moth/post_species_loss(mob/living/carbon/human/H)
+	. = ..()
 	H.remove_overlay(MOTH_WINGS_LAYER)
 	H.remove_underlay(MOTH_WINGS_BEHIND_LAYER)
 

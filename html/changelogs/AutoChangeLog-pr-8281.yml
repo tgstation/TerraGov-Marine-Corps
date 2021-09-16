@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - rscdel: "All ghosts have actions, kill the pref"

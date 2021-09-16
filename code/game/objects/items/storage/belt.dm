@@ -168,10 +168,10 @@
 
 /obj/item/storage/belt/combatLifesaver/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/storage/pill_bottle/bicaridine(src)
@@ -212,12 +212,12 @@
 
 /obj/item/storage/belt/medicLifesaver/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/stack/medical/splint(src)
@@ -315,9 +315,9 @@
 	icon_state = "marinebelt"
 	item_state = "marinebelt"
 	w_class = WEIGHT_CLASS_BULKY
-	storage_slots = 5
+	storage_slots = 6
 	max_w_class = 3
-	max_storage_space = 15
+	max_storage_space = 18
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
@@ -828,7 +828,7 @@
 
 /obj/item/storage/belt/gun/m44/full/Initialize()
 	. = ..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/m44(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/single_action/m44(src)
 	new /obj/item/ammo_magazine/revolver/heavy(src)
 	new /obj/item/ammo_magazine/revolver/marksman(src)
 	new /obj/item/ammo_magazine/revolver(src)

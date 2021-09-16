@@ -65,7 +65,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(current_action == MOVING_TO_NODE && next_action != MOVING_TO_NODE)
 		current_node = null
 	unregister_action_signals(current_action)
-	RemoveElement(/datum/element/pathfinder)
+	RemoveElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
 
 ///Cleanup old state vars, start the movement towards our new target
 /datum/ai_behavior/proc/change_action(next_action, atom/next_target)
@@ -88,10 +88,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 				continue
 			if(get_dist_euclide_square(ai_node, mob_parent) >= closest_distance)
 				continue
-			/*THIS PART OF THE CODE IS DEALT WITH IN ANOTHER PR
-			if(!ai_node.is_in_LOS(get_turf(mob_parent)))
-				continue
-			*/
 			current_node = ai_node
 			closest_distance = get_dist_euclide_square(ai_node, mob_parent) //Probably not needed to cache the get_dist
 		if(current_node)

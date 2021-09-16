@@ -1,7 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - qol: "Infected limbs are less subtle to their owner."
-  - balance: "Wounds with smaller amounts of germs will now disinfect passively over time. Treatment speeds this up."
-  - balance: "Fresh wounds won't immediately start infecting the limb they're on."
-  - bugfix: "Wounds that worsen now do so more visibly."

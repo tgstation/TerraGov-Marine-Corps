@@ -161,6 +161,8 @@ GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, X
 #define XENO_UPGRADE_TWO "two"
 #define XENO_UPGRADE_THREE "three"
 
+#define XENO_UPGRADE_MANIFESTATION "manifestation" //just for the hivemind
+
 GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO, XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE))
 
 //=================================================

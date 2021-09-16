@@ -2,7 +2,7 @@
 	name = "ridden vehicle"
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
 	max_buckled_mobs = 1
-	buckle_lying = 0
+	buckle_lying = -1
 	flags_pass = PASSTABLE
 	COOLDOWN_DECLARE(message_cooldown)
 
@@ -56,7 +56,7 @@
 		return FALSE
 	return ..(M, user, FALSE)
 
-/obj/vehicle/ridden/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
+/obj/vehicle/ridden/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
 	if(!force && occupant_amount() >= max_occupants)
 		return FALSE
 	return ..()
