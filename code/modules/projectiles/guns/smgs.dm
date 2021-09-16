@@ -274,7 +274,7 @@
 
 /obj/item/weapon/gun/smg/ppsh
 	name = "\improper PPSh-17b submachinegun"
-	desc = "A replica of a 20th century USSR model submachinegun that many terrorist organizations had copied all over the years. Despite its small-hitting firepower, its reliablity, extreme longevity and high firepower rate proves useful for the hands of the user."
+	desc = "A design copied all over the years, this SMG boasts a high capacity and fire rate, but suffers in the handling department.
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "ppsh"
 	item_state = "ppsh"
@@ -289,6 +289,7 @@
 	current_mag = /obj/item/ammo_magazine/smg/ppsh
 	attachable_allowed = list(
 		/obj/item/attachable/compensator,
+		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
@@ -296,6 +297,10 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 21, "under_x" = 26, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.125 SECONDS
+	aim_speed_modifier = 2.5
+
 	starting_attachment_types = list(
 		/obj/item/attachable/stock/irremoveable/ppsh,
 	)
@@ -304,10 +309,12 @@
 	burst_amount = 6
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.65
-	scatter = 25
+	scatter = 16
+	burst_scatter_mult = 1.5
+	burst_delay = 0.15 SECONDS
 	scatter_unwielded = 45
-	aim_slowdown = 0.8
-	wield_delay = 0.8 SECONDS
+	aim_slowdown = 0.6
+	wield_delay = 0.75 SECONDS
 
 
 //-------------------------------------------------------
