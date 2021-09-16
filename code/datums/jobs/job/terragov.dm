@@ -11,6 +11,8 @@
 
 /datum/job/terragov/return_spawn_type(datum/preferences/prefs)
 	switch(prefs?.species)
+		if("Combat Robot")
+			return /mob/living/carbon/human/species/robot
 		if("Vatborn")
 			return /mob/living/carbon/human/species/vatborn
 		else

@@ -959,7 +959,7 @@
 		SLOT_GLASSES,
 	)
 	blood_color = "#2d2055" //"oil" color
-	hair_color = "#000000"
+	hair_color = "#00000000"
 	has_organ = list(
 		"heart" = /datum/internal_organ/heart/prosthetic,
 		"brain" = /datum/internal_organ/brain/prosthetic,

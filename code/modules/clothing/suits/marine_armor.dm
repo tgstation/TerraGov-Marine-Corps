@@ -811,10 +811,12 @@
 	species_exception = list(/datum/species/robot)
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45,"acid" = 50)
+	slowdown = 0.5
 
 /obj/item/clothing/suit/storage/marine/robot/mob_can_equip(mob/M, slot, warning, override_nodrop)
 	. = ..()
 	if(!isrobot(M))
+		to_chat(M, span_warning("You can't equip this as it requires mounting bolts on your body!"))
 		return FALSE
 
 /obj/item/clothing/suit/storage/marine/robot/light
@@ -823,6 +825,7 @@
 	icon_state = "robot_armor_light"
 	item_state = "robot_armor_light"
 	soft_armor = list("melee" = 35, "bullet" = 55, "laser" = 50, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45,"acid" = 45)
+	slowdown = 0.3
 
 /obj/item/clothing/suit/storage/marine/robot/heavy
 	name = "XR-1-H armor plating"
@@ -830,3 +833,4 @@
 	icon_state = "robot_armor_heavy"
 	item_state = "robot_armor_heavy"
 	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45,"acid" = 55)
+	slowdown = 0.6

@@ -916,6 +916,14 @@
 		/obj/item/armor_module/attachable/tyr_extra_armor/mark1,
 	)
 
+/obj/effect/essentials_set/robot
+	spawned_gear_list = list(
+		/obj/item/clothing/under/marine/robotic,
+		/obj/item/tool/weldingtool,
+		/obj/item/stack/cable_coil/five,
+	)
+
+
 #undef MARINE_CAN_BUY_UNIFORM
 #undef MARINE_CAN_BUY_SHOES
 #undef MARINE_CAN_BUY_HELMET

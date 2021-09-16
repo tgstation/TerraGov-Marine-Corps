@@ -679,6 +679,7 @@ obj/item/clothing/head/helmet/marine/pilot/green
 /obj/item/clothing/head/helmet/marine/robot/mob_can_equip(mob/M, slot, warning, override_nodrop)
 	. = ..()
 	if(!isrobot(M))
+		to_chat(M, span_warning("You can't equip this as it requires mounting bolts on your body!"))
 		return FALSE
 
 /obj/item/clothing/head/helmet/marine/robot/light
