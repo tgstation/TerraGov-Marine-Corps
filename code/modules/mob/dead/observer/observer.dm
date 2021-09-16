@@ -921,30 +921,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!invisibility || camera.see_ghosts)
 		return "You can also see a g-g-g-g-ghooooost!"
 
-
-/mob/dead/observer/verb/toggle_actions()
-	set category = "Ghost"
-	set name = "Toggle Static Action Buttons"
-
-	client.prefs.observer_actions = !client.prefs.observer_actions
-	client.prefs.save_preferences()
-
-
-	to_chat(src, span_notice("You will [client.prefs.observer_actions ? "now" : "no longer"] get the static observer action buttons."))
-
-	if(!client.prefs.observer_actions)
-		for(var/datum/action/observer_action/A in actions)
-			A.remove_action(src)
-
-	else if(/datum/action/observer_action in actions)
-		return
-
-	else
-		for(var/path in subtypesof(/datum/action/observer_action))
-			var/datum/action/observer_action/A = new path()
-			A.give_action(src)
-
-
 /mob/dead/observer/incapacitated(ignore_restrained, restrained_flags)
 	return FALSE
 
