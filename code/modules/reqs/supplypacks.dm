@@ -3,7 +3,7 @@
 //NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 
-GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports", "Vehicles"))
+GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports", "Vehicles", "Factory"))
 
 /datum/supply_packs
 	var/name
@@ -167,7 +167,7 @@ WEAPONS
 		/obj/item/attachable/buildasentry,
 	)
 	cost = 25
-	
+
 
 /datum/supply_packs/weapons/m56d_emplacement
 	name = "TL-102 Mounted Heavy Smartgun"
@@ -1583,3 +1583,104 @@ Imports
 	name = "All-Terrain Motorbike"
 	cost = 40
 	contains = list(/obj/vehicle/ridden/motorbike)
+
+/*******************************************************************************
+FACTORY
+*******************************************************************************/
+
+/datum/supply_packs/factory
+	group = "Factory"
+	containertype = /obj/structure/closet/crate
+
+/datum/supply_packs/factory/starter
+	name = "Starter Pack"
+	contains = list(
+		/obj/machinery/factory/cutter,
+		/obj/machinery/factory/heater,
+		/obj/machinery/factory/flatter,
+		/obj/machinery/factory/former,
+		/obj/machinery/factory/reconstructor,
+		/obj/machinery/outputter,
+		/obj/item/paper/factoryhowto,
+	)
+	cost = 40
+
+/datum/supply_packs/factory/cutter
+	name = "Industrial cutter"
+	contains = list(/obj/machinery/factory/cutter)
+	cost = 10
+
+/datum/supply_packs/factory/heater
+	name = "Industrial heater"
+	contains = list(/obj/machinery/factory/heater)
+	cost = 10
+
+/datum/supply_packs/factory/flatter
+	name = "Industrial flatter"
+	contains = list(/obj/machinery/factory/flatter)
+	cost = 10
+
+/datum/supply_packs/factory/former
+	name = "Industrial former"
+	contains = list(/obj/machinery/factory/former)
+	cost = 10
+
+/datum/supply_packs/factory/reconstructor
+	name = "Industrial reconstructor"
+	contains = list(/obj/machinery/factory/reconstructor)
+	cost = 10
+
+/datum/supply_packs/factory/outputter
+	name = "Industrial Unboxer"
+	contains = list(/obj/machinery/outputter)
+	cost = 10
+
+/datum/supply_packs/factory/phosphosrefill
+	name = "Phosphorus-resistant plates refill"
+	contains = list(/obj/item/factory_refill/phosnade)
+	cost = 30
+
+/datum/supply_packs/factory/bignaderefill
+	name = "Rounded M15 plates refill"
+	contains = list(/obj/item/factory_refill/bignade)
+	cost = 10
+
+/datum/supply_packs/factory/sadar_refill_he
+	name = "SADAR HE missile assembly refill"
+	contains = list(/obj/item/factory_refill/sadar_he)
+	cost = 40
+
+/datum/supply_packs/factory/sadar_refill_ap
+	name = "SADAR AP missile assembly refill"
+	contains = list(/obj/item/factory_refill/sadar_ap)
+	cost = 40
+
+/datum/supply_packs/factory/sadar_refill_wp
+	name = "SADAR WP missile assembly refill"
+	contains = list(/obj/item/factory_refill/sadar_wp)
+	cost = 40
+
+/datum/supply_packs/factory/standard_recoilless_refill
+	name = "Recoilless standard missile assembly refill"
+	contains = list(/obj/item/factory_refill/normal_rr_missile)
+	cost = 20
+
+/datum/supply_packs/factory/light_recoilless_refill
+	name = "Recoilless light missile assembly refill"
+	contains = list(/obj/item/factory_refill/light_rr_missile)
+	cost = 20
+
+/datum/supply_packs/factory/pizzarefill
+	name = "Nanotrasen \"Eat healthy!\" margerita pizza kit refill"
+	contains = list(/obj/item/factory_refill/pizza)
+	cost = 20
+
+/datum/supply_packs/factory/smartrifle_ammo_refill
+	name = "Smart rifle bullet parts refill"
+	contains = list(/obj/item/factory_refill/smartgunner_rifle_box)
+	cost = 20
+
+/datum/supply_packs/factory/claymorerefill
+	name = "Claymore parts refill"
+	contains = list(/obj/item/factory_refill/claymore)
+	cost = 10
