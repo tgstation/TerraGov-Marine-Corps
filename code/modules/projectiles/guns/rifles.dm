@@ -459,10 +459,11 @@
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/buildasentry,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 17, "under_x" = 24, "under_y" = 13, "stock_x" = 0, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/stock/ak47)
@@ -1330,6 +1331,7 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/suppressor,
