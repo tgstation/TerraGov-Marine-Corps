@@ -413,3 +413,7 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 /datum/config_entry/number/time_between_two_civil_war_rounds
 	config_entry_value = 0
 	min_val = 0
+
+/datum/config_entry/number/ValidateAndSet(str_val)
+	. = ..()
+	config_entry_value *= HOURS
