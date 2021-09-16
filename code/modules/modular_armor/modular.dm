@@ -139,6 +139,14 @@
 	. = ..()
 	update_clothing_icon()
 
+/obj/item/clothing/suit/modular/on_pocket_insertion()
+	. = ..()
+	update_icon()
+
+/obj/item/clothing/suit/modular/on_pocket_removal()
+	. = ..()
+	update_icon()
+
 /obj/item/clothing/suit/modular/apply_custom(image/standing)
 	for(var/key in attachment_overlays)
 		var/image/overlay = attachment_overlays[key]
@@ -151,7 +159,7 @@
 	if(!storage_module.show_storage)
 		return standing
 	for(var/obj/item/stored AS in storage_module.storage.contents)
-		standing.overlays += image(storage_module.show_storage_icon, icon_state = stored.icon_state)
+		standing.overlays += image(storage_module.show_storage_icon, icon_state = initial(stored.icon_state))
 	return standing
 
 /obj/item/clothing/suit/modular/mob_can_equip(mob/user, slot, warning)
@@ -356,6 +364,14 @@
 	. = ..()
 	update_clothing_icon()
 
+/obj/item/clothing/head/modular/on_pocket_insertion()
+	. = ..()
+	update_icon()
+
+/obj/item/clothing/head/modular/on_pocket_removal()
+	. = ..()
+	update_icon()
+
 /obj/item/clothing/head/modular/update_greyscale(list/colors, update)
 	. = ..()
 	if(!greyscale_config)
@@ -460,7 +476,7 @@
 		var/obj/item/armor_module/storage/storage_module = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 		if(storage_module.show_storage)
 			for(var/obj/item/stored AS in storage_module.storage.contents)
-				standing.overlays += image(storage_module.show_storage_icon, icon_state = stored.icon_state)
+				standing.overlays += image(storage_module.show_storage_icon, icon_state = initial(stored.icon_state))
 	if(attachments_by_slot[ATTACHMENT_SLOT_VISOR])
 		return standing
 	standing.pixel_x = visorless_offset_x

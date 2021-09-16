@@ -275,8 +275,6 @@
 
 #define COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT "loadout_vended_attachment" //from base of /datum/item_representation/gun_attachement/proc/install_on_gun() : (/obj/item/attachment)
 
-#define COMSIG_ITEM_REMOVED_FROM_STORAGE "item_removed_from_storage" //from base of /obj/screen/storage/Click() : (/obj/item/item_being_removed, mob/user)
-
 // /obj/item/armor_module signals
 #define COMSIG_ARMOR_MODULE_ATTACHING "armor_module_attaching"
 #define COMSIG_ARMOR_MODULE_DETACHED "armor_module_detached"

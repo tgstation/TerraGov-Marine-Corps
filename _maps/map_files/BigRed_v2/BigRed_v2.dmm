@@ -95,7 +95,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "aay" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /obj/machinery/status_display{
 	pixel_y = 32
 	},
@@ -6284,7 +6284,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "awx" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "awA" = (
@@ -6307,7 +6307,7 @@
 /turf/open/floor/carpet,
 /area/bigredv2/caves/lambda_lab)
 "awE" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "awF" = (
@@ -7146,7 +7146,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "azT" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor,
@@ -13532,7 +13532,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bcy" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bcz" = (
@@ -16604,7 +16604,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bru" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "brv" = (
@@ -18314,7 +18314,7 @@
 /turf/open/floor/tile/red/full,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAV" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},

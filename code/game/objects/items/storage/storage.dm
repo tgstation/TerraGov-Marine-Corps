@@ -295,7 +295,6 @@
 			continue
 		I = S.contents[i]
 		I.attack_hand(usr)
-		SEND_SIGNAL(S, COMSIG_ITEM_REMOVED_FROM_STORAGE, I, usr)
 		return
 
 /datum/numbered_display

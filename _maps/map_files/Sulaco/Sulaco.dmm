@@ -6901,7 +6901,7 @@
 /area/sulaco/hallway/central_hall3)
 "aIn" = (
 /obj/machinery/light,
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
 "aIo" = (
@@ -7185,7 +7185,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "aJW" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
 "aKb" = (
@@ -21022,7 +21022,7 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
 "uDI" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
 "uFe" = (

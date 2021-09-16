@@ -19,6 +19,9 @@
 		if(istype(helmet_to_copy.attachments_by_slot[key], /obj/item/armor_module/armor))
 			attachments += new /datum/item_representation/armor_module/colored(helmet_to_copy.attachments_by_slot[key])
 			continue
+		if(istype(helmet_to_copy.attachments_by_slot[key], /obj/item/armor_module/storage))
+			attachments += new /datum/item_representation/armor_module/storage(helmet_to_copy.attachments_by_slot[key])
+			continue
 		attachments += new /datum/item_representation/armor_module(helmet_to_copy.attachments_by_slot[key])
 	greyscale_colors = helmet_to_copy.greyscale_colors
 
@@ -43,7 +46,7 @@
 	if(greyscale_colors)
 		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(item_type.greyscale_config), greyscale_colors), dir = SOUTH)
 	else
-		icon_to_convert = icon(initial(item_type.icon), initial(item_type.icon_state), SOUTH)
+		icon_to_convert = icon(initial(item_type.icon), item_icon_state, SOUTH)
 	tgui_data["icons"] += list(list(
 				"icon" = icon2base64(icon_to_convert),
 				"translateX" = NO_OFFSET,

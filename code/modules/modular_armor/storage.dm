@@ -20,21 +20,10 @@
 /obj/item/armor_module/storage/Initialize()
 	. = ..()
 	storage = new storage(src)
-	RegisterSignal(storage, list(COMSIG_ITEM_REMOVED_FROM_STORAGE, COMSIG_PARENT_ATTACKBY), /atom/proc/update_icon)
 
 /obj/item/armor_module/storage/Destroy()
 	. = ..()
-	UnregisterSignal(storage, list(COMSIG_ITEM_REMOVED_FROM_STORAGE, COMSIG_PARENT_ATTACKBY))
 	QDEL_NULL(storage)
-
-/obj/item/armor_module/storage/update_icon()
-	. = ..()
-	parent?.update_icon()
-	if(!show_storage)
-		return
-	for(var/obj/item/stored AS in storage.contents)	
-		overlays += image(show_storage_icon, parent, icon_state = stored.icon_state)
-		parent?.add_overlay(image(show_storage_icon, icon_state = stored.icon_state), TRUE)
 
 /obj/item/armor_module/storage/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
@@ -67,14 +56,11 @@
 	if(parent.loc != user)
 		return
 	INVOKE_ASYNC(storage, /atom/proc/attackby, I, user)
-	parent.update_icon()
-	update_icon()
 	return COMPONENT_NO_AFTERATTACK
 
 /obj/item/armor_module/storage/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	storage.attackby(I, user, params)
-	update_icon()
 
 /obj/item/armor_module/storage/attack_hand(mob/living/user)
 	if(loc == user)
@@ -220,8 +206,8 @@
 /obj/item/armor_module/storage/helmet
 	name = "Jaeger Pattern helmet storage"
 	desc = "A small set of bands and straps to allow easy storage of small items."
-	icon_state = "" //It is invisable
+	icon_state = "invisable" //It is invisable
 	storage =  /obj/item/storage/internal/marinehelmet
 	slowdown = 0
 	show_storage = TRUE
-	flags_attach_features = ATTACH_SAME_ICON
+	flags_attach_features = NONE
