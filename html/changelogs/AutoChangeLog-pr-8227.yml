@@ -1,4 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - bugfix: "Combat injectors have dylovene instead of ryetalin, so they'll purge toxins more reliably."

@@ -266,3 +266,18 @@
   - balance: lowers maximum radius of chemsmoke to around WP-radius. Also raises minimum
       amount of reactable razorburn to 5/5, from 1/1.
   - bugfix: fixes napalm and napalm grenades
+2021-09-16:
+  BraveMole:
+  - bugfix: Infinite marine respawn are no more, i hope
+  - admin: Logging when a ghost take an ssd mob
+  - admin: Human names are randomised when taken by a ghost
+  - bugfix: Fix crash maturity not being properly updated
+  Pariah919:
+  - balance: Mosin/SVD have aim mode again.
+  QualityVan:
+  - bugfix: Combat injectors have dylovene instead of ryetalin, so they'll purge toxins
+      more reliably.
+  SplinterGP:
+  - expansion: Jaeger and M10X now have storage which shows certain items stored into
+      it like the original M10 did.
+  - code_imp: cleaned some jaeger overlay rendering code.
