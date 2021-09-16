@@ -20,11 +20,11 @@
 /obj/item/armor_module/storage/Initialize()
 	. = ..()
 	storage = new storage(src)
-	RegisterSignal(storage, COMSIG_ITEM_REMOVED_FROM_STORAGE, /atom/proc/update_icon)
+	RegisterSignal(storage, list(COMSIG_ITEM_REMOVED_FROM_STORAGE, COMSIG_PARENT_ATTACKBY), /atom/proc/update_icon)
 
 /obj/item/armor_module/storage/Destroy()
 	. = ..()
-	UnregisterSignal(storage, COMSIG_ITEM_REMOVED_FROM_STORAGE)
+	UnregisterSignal(storage, list(COMSIG_ITEM_REMOVED_FROM_STORAGE, COMSIG_PARENT_ATTACKBY))
 	QDEL_NULL(storage)
 
 /obj/item/armor_module/storage/update_icon()
