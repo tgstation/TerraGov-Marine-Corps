@@ -1625,8 +1625,8 @@ FACTORY
 	contains = list(/obj/machinery/factory/former)
 	cost = 10
 
-/datum/supply_packs/factory/former
-	name = "Industrial former"
+/datum/supply_packs/factory/reconstructor
+	name = "Industrial reconstructor"
 	contains = list(/obj/machinery/factory/reconstructor)
 	cost = 10
 
