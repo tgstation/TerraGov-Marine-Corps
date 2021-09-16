@@ -48,7 +48,7 @@
 			return
 		stored_matter -= products[choice][2] //Matter
 		stored_metal -= products[choice][3] //Metal
-		to_chat(user, "<span class='notice'>\The [src] is now printing the selected organ. Please hold.</span>")
+		to_chat(user, span_notice("\The [src] is now printing the selected organ. Please hold."))
 		working = 1
 		update_icon()
 		spawn(products[choice][4]) //Time
@@ -64,14 +64,14 @@
 /obj/machinery/bioprinter/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(istype(I, /obj/item/reagent_containers/food/snacks/meat))
-		to_chat(user, "<span class='notice'>\The [src] processes \the [I].</span>")
+		to_chat(user, span_notice("\The [src] processes \the [I]."))
 		stored_matter += 50
 		user.drop_held_item()
 		qdel(I)
 
 	else if(istype(I, /obj/item/stack/sheet/metal))
 		var/obj/item/stack/sheet/metal/M = I
-		to_chat(user, "<span class='notice'>\The [src] processes \the [I].</span>")
+		to_chat(user, span_notice("\The [src] processes \the [I]."))
 		stored_metal += M.amount * 100
 		user.drop_held_item()
 		qdel(I)

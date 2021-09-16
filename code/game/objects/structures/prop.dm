@@ -141,7 +141,7 @@
 	if(istype(I, /obj/item/dogtag))
 		var/obj/item/dogtag/D = I
 		if(D.fallen_names)
-			to_chat(user, "<span class='notice'>You add [D] to [src].</span>")
+			to_chat(user, span_notice("You add [D] to [src]."))
 			if(!fallen_list)
 				fallen_list = list()
 			fallen_list += D.fallen_names
@@ -159,7 +159,7 @@
 				faltext += "[fallen_list[i]], "
 			else
 				faltext += fallen_list[i]
-		to_chat(user, "<span class='notice'>To our fallen soldiers:</span> <b>[faltext]</b>.")
+		to_chat(user, "[span_notice("To our fallen soldiers:")] <b>[faltext]</b>.")
 
 
 /obj/structure/prop/mainship/particle_cannon
@@ -193,6 +193,13 @@
 
 /obj/structure/prop/mainship/hangar_stencil/two
 	icon_state = "dropship2"
+
+/obj/structure/prop/mainship/brokengen //all the aesthetics of having a generator without any of the function
+	name = "\improper G-11 geothermal generator"
+	desc = "A thermoelectric generator sitting atop a plasma-filled borehole. The powercell is missing and strange lines of text scroll by on its status panel, you get the feeling there's no fixing it."
+	icon = 'icons/turf/geothermal.dmi'
+	icon_state = "destroyedgen"
+	resistance_flags = RESIST_ALL //normal generators can't be destroyed, so for appearances our fake ones can't be destroyed either.
 
 /obj/structure/prop/mainship/cannon_cables
 	name = "\improper Cannon cables"

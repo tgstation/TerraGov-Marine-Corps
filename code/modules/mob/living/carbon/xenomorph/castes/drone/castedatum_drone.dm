@@ -11,12 +11,9 @@
 	// *** Melee Attacks *** //
 	melee_damage = 16
 
-	// *** Tackle *** //
-	tackle_damage = 20
-
 	// *** Speed *** //
 	speed = -0.8
-	weeds_speed_mod = -0.1
+	weeds_speed_mod = -0.4
 
 	// *** Plasma *** //
 	plasma_max = 750
@@ -38,7 +35,7 @@
 	)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_IS_BUILDER|CASTE_CAN_HOLD_JELLY|CAN_BECOME_KING|CAN_RIDE_CRUSHER
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
@@ -56,12 +53,13 @@
 		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/cocoon,
-		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/activable/psychic_cure/acidic_salve,
 		/datum/action/xeno_action/activable/transfer_plasma/drone,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
 		/datum/action/xeno_action/activable/larval_growth_sting,
+		/datum/action/xeno_action/create_jelly/slow,
 		/datum/action/xeno_action/toggle_pheromones,
 	)
 
@@ -75,9 +73,6 @@
 	caste_desc = "The workhorse of the hive. It looks a little more dangerous."
 
 	upgrade = XENO_UPGRADE_ONE
-
-	// *** Tackle *** //
-	tackle_damage = 20
 
 	// *** Speed *** //
 	speed = -0.9
@@ -105,10 +100,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
-
-	// *** Tackle *** //
-	tackle_damage = 25
+	melee_damage = 18
 
 	// *** Speed *** //
 	speed = -1.0
@@ -136,10 +128,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
-
-	// *** Tackle *** //
-	tackle_damage = 25
+	melee_damage = 18
 
 	// *** Speed *** //
 	speed = -1.2

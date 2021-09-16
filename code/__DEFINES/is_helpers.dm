@@ -37,7 +37,7 @@
 
 #define isbrain(A) (istype(A, /mob/living/brain))
 
-#define isnestedhost(A)	((CHECK_BITFIELD(A.status_flags, XENO_HOST) && CHECK_BITFIELD(A.restrained_flags, RESTRAINED_XENO_NEST)))
+#define isnestedhost(A) ((CHECK_BITFIELD(A.status_flags, XENO_HOST) && CHECK_BITFIELD(A.restrained_flags, RESTRAINED_XENO_NEST)))
 
 //Carbon mobs
 #define iscarbon(A) (istype(A, /mob/living/carbon))
@@ -107,7 +107,7 @@
 #define isxenohivemind(A) (istype(A, /mob/living/carbon/xenomorph/hivemind))
 #define isxenowraith(A) (istype(A, /mob/living/carbon/xenomorph/wraith))
 
-#define isresinsilo(A) (istype(A, /obj/structure/resin/silo))
+#define isresinsilo(A) (istype(A, /obj/structure/xeno/resin/silo))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
@@ -161,7 +161,33 @@
 
 #define isgun(A) (istype(A, /obj/item/weapon/gun))
 
+#define isstorage(A) (istype(A, /obj/item/storage))
+
+#define isitemstack(A) (istype(A, /obj/item/stack))
+
+#define issuitwithstorage(A) (istype(A, /obj/item/clothing/suit/storage))
+
+#define isuniform(A) (istype(A, /obj/item/clothing/under))
+
+#define iswebbing(A) (istype(A, /obj/item/clothing/tie/storage))
+
+#define ismodulararmor(A) (istype(A, /obj/item/clothing/suit/modular))
+
+#define ismodulararmormodule(A) (istype(A, /obj/item/armor_module))
+
+#define ismodulararmorstoragemodule(A) (istype(A, /obj/item/armor_module/storage))
+
+#define ismodulararmorarmorpiece(A) (istype(A, /obj/item/armor_module/armor))
+
+#define ismodularhelmet(A) (istype(A, /obj/item/clothing/head/modular))
+
+#define ishelmetmodule(A) (istype (A, /obj/item/helmet_module))
+
 #define isattachmentflashlight(A) (istype(A, /obj/item/attachable/flashlight))
+
+#define isgunattachment(A) (istype(A, /obj/item/attachable))
+
+#define ishandful(A) (istype(A, /obj/item/ammo_magazine/handful))
 
 #define iswrench(I) (istype(I, /obj/item/tool/wrench))
 
@@ -189,9 +215,17 @@
 
 #define is_cleanable(A) (istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/rune)) //if something is cleanable
 
+#define isvehicle(A) (istype(A, /obj/vehicle))
+
 #define isorgan(A) (istype(A, /datum/limb))
 
 #define isidcard(A) (istype(A, /obj/item/card/id))
+
+#define isuav(A) (istype(A, /obj/vehicle/unmanned))
+
+#define isdroid(A) (istype(A, /obj/vehicle/unmanned/droid))
+
+#define isreagentcontainer(A) (istype(A, /obj/item/reagent_containers)) //Checks for if something is a reagent container.
 
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))

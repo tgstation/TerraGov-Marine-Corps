@@ -11,9 +11,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 20
 
-	// *** Tackle *** //
-	tackle_damage = 25
-
 	// *** Speed *** //
 	speed = -0.2
 
@@ -30,7 +27,7 @@
 	deevolves_to = /mob/living/carbon/xenomorph/spitter
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CAN_BECOME_KING
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 30, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 28, "rad" = 28, "fire" = 35, "acid" = 28)
@@ -72,9 +69,6 @@
 	caste_desc = "A giant ranged monster. It looks a little more dangerous."
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Tackle *** //
-	tackle_damage = 25
-
 	// *** Speed *** //
 	speed = -0.3
 
@@ -108,9 +102,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 23
-
-	// *** Tackle *** //
-	tackle_damage = 28
 
 	// *** Speed *** //
 	speed = -0.4
@@ -146,9 +137,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 23
-
-	// *** Tackle *** //
-	tackle_damage = 28
 
 	// *** Speed *** //
 	speed = -0.5

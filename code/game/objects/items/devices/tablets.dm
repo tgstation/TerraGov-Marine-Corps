@@ -122,14 +122,14 @@
 
 /obj/item/hud_tablet/interact(mob/user)
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access denied, unauthorized user.</span>")
+		to_chat(user, span_warning("Access denied, unauthorized user."))
 		return TRUE
 	return ..()
 
 /obj/item/hud_tablet/ui_interact(mob/user, datum/tgui/ui)
 	// Update UI
 	ui = SStgui.try_update_ui(user, src, ui)
-	
+
 	// Update the camera, showing static if necessary and updating data if the location has moved.
 	update_active_camera_screen()
 
@@ -179,7 +179,7 @@
 
 		if(!selected_camera)
 			return TRUE
-		
+
 		update_active_camera_screen()
 
 		return TRUE

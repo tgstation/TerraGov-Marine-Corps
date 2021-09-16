@@ -92,6 +92,10 @@ Code:
 			code = new_code
 
 	if(href_list["send"])
+		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_SIGNALLER_SEND))
+			to_chat(usr, span_warning("[src] is still recharging..."))
+			return
+		TIMER_COOLDOWN_START(src, COOLDOWN_SIGNALLER_SEND, 1 SECONDS)
 		INVOKE_ASYNC(src, .proc/signal)
 
 	updateUsrDialog()
@@ -156,7 +160,7 @@ Code:
 
 /obj/item/assembly/signaler/receiver/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span class='notice'>The radio receiver is [on?"on":"off"].</span>")
+	to_chat(user, span_notice("The radio receiver is [on?"on":"off"]."))
 
 
 /obj/item/assembly/signaler/receiver/receive_signal(datum/signal/signal)

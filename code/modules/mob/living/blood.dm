@@ -50,7 +50,7 @@
 			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 				if(prob(1))
 					var/word = pick("dizzy","woozy","faint")
-					to_chat(src, "<span class='warning'>You feel [word]</span>")
+					to_chat(src, span_warning("You feel [word]"))
 				if(oxyloss < 20)
 					adjustOxyLoss(3)
 			if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
@@ -65,13 +65,13 @@
 				if(prob(15))
 					Unconscious(rand(20,60))
 					var/word = pick("dizzy","woozy","faint")
-					to_chat(src, "<span class='warning'>You feel extremely [word]</span>")
+					to_chat(src, span_warning("You feel extremely [word]"))
 			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
 				adjustOxyLoss(5)
 				adjustToxLoss(2)
 				if(prob(15))
 					var/word = pick("dizzy","woozy","faint")
-					to_chat(src, "<span class='warning'>You feel extremely [word]</span>")
+					to_chat(src, span_warning("You feel extremely [word]"))
 			if(0 to BLOOD_VOLUME_SURVIVE)
 				death()
 
@@ -123,9 +123,9 @@
 /mob/living/carbon/human/drip(amt)
 	if(HAS_TRAIT(src, TRAIT_STASIS)) // stasis now stops bloodloss
 		return
-	if(NO_BLOOD in species.species_flags)
+	if(species.species_flags & NO_BLOOD)
 		return
-	..()
+	return ..()
 
 
 
@@ -277,7 +277,7 @@
 	return "xenoblood"
 
 /mob/living/carbon/human/get_blood_id()
-	if((NO_BLOOD in species.species_flags))
+	if((species.species_flags & NO_BLOOD))
 		return
 	if(issynth(src))
 		return "whiteblood"
@@ -372,7 +372,7 @@
 
 
 /mob/living/carbon/human/add_splatter_floor(turf/T, small_drip, b_color)
-	if(NO_BLOOD in species.species_flags)
+	if(species.species_flags & NO_BLOOD)
 		return
 
 	b_color = species.blood_color

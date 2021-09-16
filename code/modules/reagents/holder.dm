@@ -26,7 +26,6 @@
 	reagent_flags = new_flags
 
 /datum/reagents/Destroy()
-	. = ..()
 	var/list/cached_reagents = reagent_list
 	for(var/reagent in cached_reagents)
 		var/datum/reagent/R = reagent
@@ -36,6 +35,7 @@
 	if(my_atom && my_atom.reagents == src)
 		my_atom.reagents = null
 	my_atom = null
+	return ..()
 
 /**
  * Used in attack logs for reagents in pills and such
@@ -325,7 +325,7 @@
 						if(114 to 152)
 							need_mob_update += R.addiction_act_stage4(L, quirks)
 						if(152 to INFINITY)
-							to_chat(L, "<span class='notice'>You feel like you've gotten over your need for [R.name].</span>")
+							to_chat(L, span_notice("You feel like you've gotten over your need for [R.name]."))
 							cached_addictions.Remove(R)
 		addiction_tick++
 	if(!QDELETED(L) && need_mob_update)
@@ -444,7 +444,7 @@
 						playsound(get_turf(cached_my_atom), selected_reaction.mix_sound, 30, 1)
 
 					for(var/mob/M in seen)
-						to_chat(M, "<span class='notice'>[iconhtml] [selected_reaction.mix_message]</span>")
+						to_chat(M, span_notice("[iconhtml] [selected_reaction.mix_message]"))
 
 			selected_reaction.on_reaction(src, multiplier)
 			reaction_occured = 1

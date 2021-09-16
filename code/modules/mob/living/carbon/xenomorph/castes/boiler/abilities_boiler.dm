@@ -13,11 +13,11 @@
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	if(X.is_zoomed)
 		X.zoom_out()
-		X.visible_message("<span class='notice'>[X] stops looking off into the distance.</span>", \
-		"<span class='notice'>We stop looking off into the distance.</span>", null, 5)
+		X.visible_message(span_notice("[X] stops looking off into the distance."), \
+		span_notice("We stop looking off into the distance."), null, 5)
 	else
-		X.visible_message("<span class='notice'>[X] starts looking off into the distance.</span>", \
-			"<span class='notice'>We start focusing your sight to look off into the distance.</span>", null, 5)
+		X.visible_message(span_notice("[X] starts looking off into the distance."), \
+			span_notice("We start focusing your sight to look off into the distance."), null, 5)
 		if(!do_after(X, 1 SECONDS, FALSE, null, BUSY_ICON_GENERIC) || X.is_zoomed)
 			return
 		X.zoom_in(11)
@@ -40,17 +40,17 @@
 	if((X.corrosive_ammo + X.neuro_ammo) >= X.xeno_caste.max_ammo)
 		if((X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive && X.neuro_ammo==0) || (X.ammo.type == /datum/ammo/xeno/boiler_gas && X.corrosive_ammo==0))
 			if (!silent)
-				to_chat(X, "<span class='warning'>We won't be able to carry this kind of globule</span>")
+				to_chat(X, span_warning("We won't be able to carry this kind of globule"))
 			return FALSE
 
 /datum/action/xeno_action/toggle_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	if(X.ammo.type == /datum/ammo/xeno/boiler_gas)
 		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas/corrosive]
-		to_chat(X, "<span class='notice'>We will now fire corrosive acid. This is lethal!</span>")
+		to_chat(X, span_notice("We will now fire corrosive acid. This is lethal!"))
 	else
 		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
-		to_chat(X, "<span class='notice'>We will now fire neurotoxic gas. This is nonlethal.</span>")
+		to_chat(X, span_notice("We will now fire neurotoxic gas. This is nonlethal."))
 	update_button_icon()
 
 /datum/action/xeno_action/toggle_bomb/update_button_icon()
@@ -78,21 +78,21 @@
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 
 	if(X.is_zoomed)
-		to_chat(X, "<span class='notice'>We can not prepare globules as we are now. We must stop concentrating into the distance!</span>")
+		to_chat(X, span_notice("We can not prepare globules as we are now. We must stop concentrating into the distance!"))
 		return
 
 	var/current_ammo = X.corrosive_ammo + X.neuro_ammo
 	if(current_ammo >= X.xeno_caste.max_ammo)
-		to_chat(X, "<span class='notice'>We can carry no more globules.</span>")
+		to_chat(X, span_notice("We can carry no more globules."))
 		return
 
 	succeed_activate()
 	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
 		X.corrosive_ammo++
-		to_chat(X, "<span class='notice'>We prepare a corrosive acid globule.</span>")
+		to_chat(X, span_notice("We prepare a corrosive acid globule."))
 	else
 		X.neuro_ammo++
-		to_chat(X, "<span class='notice'>We prepare a neurotoxic gas globule.</span>")
+		to_chat(X, span_notice("We prepare a neurotoxic gas globule."))
 	X.update_boiler_glow()
 	update_button_icon()
 
@@ -116,10 +116,10 @@
 
 /datum/action/xeno_action/activable/bombard/get_cooldown()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	return X.xeno_caste.bomb_delay
+	return X.xeno_caste.bomb_delay - ((X.neuro_ammo + X.corrosive_ammo) * X.xeno_caste.ammo_multiplier)
 
 /datum/action/xeno_action/activable/bombard/on_cooldown_finish()
-	to_chat(owner, "<span class='notice'>We feel your toxin glands swell. We are able to bombard an area again.</span>")
+	to_chat(owner, span_notice("We feel your toxin glands swell. We are able to bombard an area again."))
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	if(X.selected_ability == src)
 		X.set_bombard_pointer()
@@ -129,11 +129,11 @@
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	var/current_ammo = X.corrosive_ammo + X.neuro_ammo
 	if(current_ammo <= 0)
-		to_chat(X, "<span class='notice'>We have nothing prepared to fire.</span>")
+		to_chat(X, span_notice("We have nothing prepared to fire."))
 		return FALSE
 
-	X.visible_message("<span class='notice'>\The [X] begins digging their claws into the ground.</span>", \
-	"<span class='notice'>We begin digging ourselves into place.</span>", null, 5)
+	X.visible_message(span_notice("\The [X] begins digging their claws into the ground."), \
+	span_notice("We begin digging ourselves into place."), null, 5)
 	if(!do_after(X, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
 		on_deactivation()
 		X.selected_ability = null
@@ -141,8 +141,8 @@
 		X.reset_bombard_pointer()
 		return FALSE
 
-	X.visible_message("<span class='notice'>\The [X] digs itself into the ground!</span>", \
-		"<span class='notice'>We dig ourselves into place! If we move, we must wait again to fire.</span>", null, 5)
+	X.visible_message(span_notice("\The [X] digs itself into the ground!"), \
+		span_notice("We dig ourselves into place! If we move, we must wait again to fire."), null, 5)
 	X.set_bombard_pointer()
 	RegisterSignal(X, COMSIG_MOB_ATTACK_RANGED, /datum/action/xeno_action/activable/bombard/proc.on_ranged_attack)
 
@@ -151,7 +151,7 @@
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	if(X.selected_ability == src)
 		X.reset_bombard_pointer()
-		to_chat(X, "<span class='notice'>We relax our stance.</span>")
+		to_chat(X, span_notice("We relax our stance."))
 	UnregisterSignal(X, COMSIG_MOB_ATTACK_RANGED)
 
 
@@ -186,11 +186,11 @@
 	var/turf/S = get_turf(owner)
 	if(!isturf(T) || T.z != S.z)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>This is not a valid target.</span>")
+			to_chat(owner, span_warning("This is not a valid target."))
 		return FALSE
 	if(get_dist(T, S) <= 5) //Magic number
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We are too close! We must be at least 7 meters from the target due to the trajectory arc.</span>")
+			to_chat(owner, span_warning("We are too close! We must be at least 7 meters from the target due to the trajectory arc."))
 		return FALSE
 
 /datum/action/xeno_action/activable/bombard/use_ability(atom/A)
@@ -202,24 +202,24 @@
 
 	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
 		if(X.corrosive_ammo <= 0)
-			to_chat(X, "<span class='warning'>We have no corrosive globules available.</span>")
+			to_chat(X, span_warning("We have no corrosive globules available."))
 			return
 	else
 		if(X.neuro_ammo <= 0)
-			to_chat(X, "<span class='warning'>We have no neurotoxin globules available.</span>")
+			to_chat(X, span_warning("We have no neurotoxin globules available."))
 			return
 
-	to_chat(X, "<span class='xenonotice'>We begin building up pressure.</span>")
+	to_chat(X, span_xenonotice("We begin building up pressure."))
 
 	if(!do_after(X, 2 SECONDS, FALSE, target, BUSY_ICON_DANGER))
-		to_chat(X, "<span class='warning'>We decide not to launch.</span>")
+		to_chat(X, span_warning("We decide not to launch."))
 		return fail_activate()
 
 	if(!can_use_ability(target, FALSE, XACT_IGNORE_PLASMA))
 		return fail_activate()
 
-	X.visible_message("<span class='xenowarning'>\The [X] launches a huge glob of acid hurling into the distance!</span>", \
-	"<span class='xenowarning'>We launch a huge glob of acid hurling into the distance!</span>", null, 5)
+	X.visible_message(span_xenowarning("\The [X] launches a huge glob of acid hurling into the distance!"), \
+	span_xenowarning("We launch a huge glob of acid hurling into the distance!"), null, 5)
 
 	var/obj/projectile/P = new /obj/projectile(X.loc)
 	P.generate_bullet(X.ammo)

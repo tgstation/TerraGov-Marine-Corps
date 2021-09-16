@@ -17,6 +17,8 @@
 	var/list/jumpto_ports = list()
 	/// The custom docking port placed by this console
 	var/obj/docking_port/stationary/my_port
+	/// The previous custom docking port that was safely landed at, for emergency landings
+	var/obj/docking_port/stationary/last_valid_ground_port
 	/// The mobile docking port of the connected shuttle
 	var/obj/docking_port/mobile/shuttle_port
 	/// Traits forbided for custom docking
@@ -59,7 +61,6 @@
 	whitelist_turfs = typecacheof(whitelist_turfs)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/Destroy()
-	. = ..()
 	if(my_port?.get_docked())
 		my_port.delete_after = TRUE
 		my_port.id = null
@@ -67,13 +68,14 @@
 		my_port = null
 	else
 		QDEL_NULL(my_port)
+	return ..()
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/attack_hand(mob/user)
 	if(jammed)
-		to_chat(user, "<span class='warning'>You can only see static on the console.</span>")
+		to_chat(user, span_warning("You can only see static on the console."))
 		return
 	if(!shuttle_port && !SSshuttle.getShuttle(shuttleId))
-		to_chat(user,"<span class='warning'>Warning: Shuttle connection severed!</span>")
+		to_chat(user,span_warning("Warning: Shuttle connection severed!"))
 		return
 	return ..()
 
@@ -135,7 +137,7 @@
 	if(!see_hidden)
 		to_add += SSshuttle.hidden_shuttle_turf_images
 	user.client.images += to_add
-	user.client.change_view(view_range)
+	user.client.view_size.set_view_radius_to(view_range)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/remove_eye_control(mob/living/user)
 	. = ..()
@@ -148,7 +150,7 @@
 	if(!see_hidden)
 		to_remove += SSshuttle.hidden_shuttle_turf_images
 	user.client.images -= to_remove
-	user.client.change_view(WORLD_VIEW)
+	user.client.view_size.reset_to_default()
 
 /// Handles the creation of the custom landing spot
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/placeLandingSpot()
@@ -158,23 +160,23 @@
 	var/mob/camera/aiEye/remote/shuttle_docker/the_eye = eyeobj
 	var/landing_clear = checkLandingSpot()
 	if(designate_time && (landing_clear != SHUTTLE_DOCKER_BLOCKED))
-		to_chat(current_user, "<span class='warning'>Targeting transit location, please wait [DisplayTimeText(designate_time)]...</span>")
+		to_chat(current_user, span_warning("Targeting transit location, please wait [DisplayTimeText(designate_time)]..."))
 		designating_target_loc = the_eye.loc
 		var/wait_completed = do_after(current_user, designate_time, TRUE, designating_target_loc, extra_checks = CALLBACK(src, /obj/machinery/computer/camera_advanced/shuttle_docker/proc/canDesignateTarget))
 		designating_target_loc = null
 		if(!current_user)
 			return
 		if(!wait_completed)
-			to_chat(current_user, "<span class='warning'>Operation aborted.</span>")
+			to_chat(current_user, span_warning("Operation aborted."))
 			return
 		landing_clear = checkLandingSpot()
 
 	if(landing_clear != SHUTTLE_DOCKER_LANDING_CLEAR)
 		switch(landing_clear)
 			if(SHUTTLE_DOCKER_BLOCKED)
-				to_chat(current_user, "<span class='warning'>Invalid transit location.</span>")
+				to_chat(current_user, span_warning("Invalid transit location."))
 			if(SHUTTLE_DOCKER_BLOCKED_BY_HIDDEN_PORT)
-				to_chat(current_user, "<span class='warning'>Unknown object detected in landing zone. Please designate another location.</span>")
+				to_chat(current_user, span_warning("Unknown object detected in landing zone. Please designate another location."))
 		return
 
 	/// Create one use port that deleted after fly off, to not lose information that is needed to properly fly off.
@@ -215,7 +217,7 @@
 
 	if(current_user.client)
 		current_user.client.images += the_eye.placed_images
-		to_chat(current_user, "<span class='notice'>Transit location designated.</span>")
+		to_chat(current_user, span_notice("Transit location designated."))
 	return TRUE
 
 /// Checks if we are able to designate the target location
@@ -358,7 +360,8 @@
 	if(console.check_hovering_spot(T) != nvg_vision_possible) //Cannot see in caves
 		nvg_vision_possible = !nvg_vision_possible
 		update_remote_sight(user)
-	setLoc(T)
+	if(T)
+		setLoc(T)
 
 /mob/camera/aiEye/remote/shuttle_docker/setLoc(T)
 	..()
@@ -439,7 +442,7 @@
 		if(T)
 			playsound(console, 'sound/machines/terminal_prompt_confirm.ogg', 25, FALSE)
 			remote_eye.setLoc(T)
-			to_chat(target, "<span class='notice'>Jumped to [selected].</span>")
+			to_chat(target, span_notice("Jumped to [selected]."))
 			C.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/noise)
 			C.clear_fullscreen("flash", 3)
 	else

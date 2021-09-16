@@ -27,7 +27,7 @@
 /** Called when the module is added to the armor */
 /obj/item/armor_module/proc/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	SEND_SIGNAL(parent, COMSIG_ARMOR_MODULE_ATTACHING, user, src)
-	user.dropItemToGround(src)
+	user?.dropItemToGround(src)
 	forceMove(parent)
 
 

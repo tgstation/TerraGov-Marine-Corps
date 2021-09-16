@@ -72,6 +72,24 @@ datum/gear/eye_patch
 	cost = 3
 	slot = SLOT_HEAD
 
+/datum/gear/beret_darkgreen
+	display_name = "TGMC beret (dark green)"
+	path = /obj/item/clothing/head/tgmcberet/darkgreen
+	cost = 3
+	slot = SLOT_HEAD
+
+/datum/gear/beret_bloodred
+	display_name = "TGMC beret (blood red)"
+	path = /obj/item/clothing/head/tgmcberet/bloodred
+	cost = 3
+	slot = SLOT_HEAD
+
+/datum/gear/beret_bloodred
+	display_name = "TGMC beret (dark blue)"
+	path = /obj/item/clothing/head/tgmcberet/blueberet
+	cost = 3
+	slot = SLOT_HEAD
+
 /datum/gear/beret_snow
 	display_name = "TGMC beret (snow)"
 	path = /obj/item/clothing/head/tgmcberet/snow

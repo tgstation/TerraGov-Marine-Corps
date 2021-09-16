@@ -189,11 +189,11 @@ SUBSYSTEM_DEF(explosions)
 	else
 		if(flame_range > 0) //this proc shouldn't be used for flames only, but here we are
 			if(usr)
-				to_chat(usr, "<span class='narsiesmall'>Please don't use explosions for flames-only, use flame_radius()</span>")
+				to_chat(usr, span_narsiesmall("Please don't use explosions for flames-only, use flame_radius()"))
 			flameturf += turfs_in_range
 		if(throw_range > 0) //admemes, what have you done
 			if(usr)
-				to_chat(usr, "<span class='narsie'>Stop using explosions for memes!</span>")
+				to_chat(usr, span_narsie("Stop using explosions for memes!"))
 			for(var/t in turfs_in_range)
 				var/turf/throw_turf = t
 				throwTurf[throw_turf] += list(epicenter)

@@ -8,6 +8,8 @@
 	losebreath = max(amount, 0)
 
 /mob/living/carbon/proc/set_stagger(amount)
+	if(amount > 0 && HAS_TRAIT(src, TRAIT_STAGGERIMMUNE))
+		return
 	stagger = max(amount, 0)
 
 /mob/living/carbon/proc/adjust_nutrition(amount)

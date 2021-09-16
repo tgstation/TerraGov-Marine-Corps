@@ -11,9 +11,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 17
 
-	// *** Tackle *** //
-	tackle_damage = 21
-
 	// *** Speed *** //
 	speed = -1
 
@@ -35,7 +32,7 @@
 	deevolves_to = /mob/living/carbon/xenomorph/runner
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CAN_BECOME_KING
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 5, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 15, "fire" = 15, "acid" = 10)
@@ -49,6 +46,7 @@
 		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/blink,
 		/datum/action/xeno_action/activable/banish,
+		/datum/action/xeno_action/recall,
 		/datum/action/xeno_action/place_warp_shadow,
 		/datum/action/xeno_action/hyperposition,
 		/datum/action/xeno_action/phase_shift,
@@ -64,9 +62,6 @@
 	caste_desc = "A manipulator of space and time. It looks a little more dangerous."
 
 	upgrade = XENO_UPGRADE_ONE
-
-	// *** Tackle *** //
-	tackle_damage = 21
 
 	// *** Speed *** //
 	speed = -1.1
@@ -94,9 +89,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 20
 
-	// *** Tackle *** //
-	tackle_damage = 25
-
 	// *** Speed *** //
 	speed = -1.2
 
@@ -122,9 +114,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
-
-	// *** Tackle *** //
-	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -1.25

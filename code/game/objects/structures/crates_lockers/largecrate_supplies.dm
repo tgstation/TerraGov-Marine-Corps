@@ -124,7 +124,7 @@
 /obj/structure/largecrate/supply/weapons/flamers
 	name = "\improper M240A1 incinerator weapons chest (x4)"
 	desc = "A weapons chest containing four M240A1 incinerator units."
-	supplies = list(/obj/item/weapon/gun/flamer = 4)
+	supplies = list(/obj/item/weapon/gun/flamer/big_flamer = 4)
 
 /obj/structure/largecrate/supply/weapons/hpr
 	name = "\improper T-42 LMG weapons chest (x2)"
@@ -139,7 +139,7 @@
 /obj/structure/largecrate/supply/weapons/standard_hmg
 	name = "\improper TL-102 mounted heavy smartgun chest (x2)"
 	desc = "A supply crate containing two boxed TL-102 mounted heavy smartguns."
-	supplies = list(/obj/item/storage/box/standard_hmg = 2)
+	supplies = list(/obj/item/storage/box/tl102 = 2)
 
 
 
@@ -178,37 +178,37 @@
 	supplies = list(/obj/item/ammo_magazine/sentry = 6)
 
 /obj/structure/largecrate/supply/ammo/standard_hmg
-	name = "\improper M56D ammunition drum case (x6)"
-	desc = "An ammunition case containing six M56D ammunition drums."
-	supplies = list(/obj/item/ammo_magazine/standard_hmg = 6)
+	name = "\improper TL-102 ammunition box case (x6)"
+	desc = "An ammunition case containing six TL-102 ammunition boxes."
+	supplies = list(/obj/item/ammo_magazine/tl102 = 6)
 
 /obj/structure/largecrate/supply/ammo/standard_ammo
 	name = "large surplus ammuniton crate"
 	desc = "An ammunition case containing one box of each TGMC brand ammo type."
 	icon_state = "chest"
 	supplies = list(
-			/obj/item/shotgunbox = 1,
-			/obj/item/shotgunbox/buckshot = 1,
-			/obj/item/shotgunbox/flechette = 1,
-			/obj/item/storage/box/visual/magazine/compact/standard_pistol/full = 1,
-			/obj/item/storage/box/visual/magazine/compact/standard_heavypistol/full = 1,
-			/obj/item/storage/box/visual/magazine/compact/standard_revolver/full = 1,
-			/obj/item/storage/box/visual/magazine/compact/standard_pocketpistol/full = 1,
-			/obj/item/storage/box/visual/magazine/compact/vp70/full = 1,
-			/obj/item/storage/box/visual/magazine/compact/plasma_pistol/full = 1,
-			/obj/item/storage/box/visual/magazine/compact/standard_smg/full = 1,
-			/obj/item/storage/box/visual/magazine/compact/standard_machinepistol/full = 1,
-			/obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/full = 1,
-			/obj/item/storage/box/visual/magazine/compact/standard_carbine/full = 1,
-			/obj/item/storage/box/visual/magazine/compact/tx11/full = 1,
-			/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full = 1,
-			/obj/item/storage/box/visual/magazine/compact/tx15/flechette/full = 1,
-			/obj/item/storage/box/visual/magazine/compact/tx15/slug/full = 1,
-			/obj/item/storage/box/visual/magazine/compact/standard_dmr/full = 1,
-			/obj/item/storage/box/visual/magazine/compact/standard_br/full = 1,
-			/obj/item/storage/box/visual/magazine/compact/chamberedrifle/full = 1,
-			/obj/item/storage/box/visual/magazine/compact/standard_lmg/full = 1,
-			/obj/item/storage/box/visual/magazine/compact/standard_gpmg/full = 1,
+		/obj/item/shotgunbox = 1,
+		/obj/item/shotgunbox/buckshot = 1,
+		/obj/item/shotgunbox/flechette = 1,
+		/obj/item/storage/box/visual/magazine/compact/standard_pistol/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/standard_heavypistol/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/standard_revolver/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/standard_pocketpistol/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/vp70/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/plasma_pistol/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/standard_smg/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/standard_machinepistol/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/standard_carbine/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/tx11/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/tx15/flechette/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/tx15/slug/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/standard_dmr/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/standard_br/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/chamberedrifle/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/standard_lmg/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/standard_gpmg/full = 1,
 	)
 
 
@@ -286,7 +286,7 @@
 /obj/structure/largecrate/supply/powerloader
 	name = "\improper Caterpillar P-5000 Work Loader crate"
 	desc = "A crate containing one folded, but fully assembled, Caterpillar P-5000 Work Loader."
-	supplies = list(/obj/vehicle/powerloader = 1)
+	supplies = list(/obj/vehicle/ridden/powerloader = 1)
 
 /obj/structure/largecrate/supply/floodlights
 	name = "floodlight crate (x4)"
@@ -352,11 +352,11 @@
 	if(iscrowbar(I) && dir_needed)
 		var/turf/next_turf = get_step(src, dir_needed)
 		if(next_turf.density)
-			to_chat(user, "<span class='warning'>You can't open the crate here, there's not enough room!</span>")
+			to_chat(user, span_warning("You can't open the crate here, there's not enough room!"))
 			return
 		for(var/atom/movable/AM in next_turf.contents)
 			if(AM.density)
-				to_chat(user, "<span class='warning'>You can't open the crate here, [AM] blocks the way.</span>")
+				to_chat(user, span_warning("You can't open the crate here, [AM] blocks the way."))
 				return
 		return TRUE
 	return ..()

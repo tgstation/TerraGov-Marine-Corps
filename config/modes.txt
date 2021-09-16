@@ -14,3 +14,12 @@ endmode
 mode Distress Signal
 	requiredplayers 2
 endmode
+
+mode Extended
+	requiredplayers 0
+	votable 0
+endmode
+
+mode Civil War
+	requiredplayers 2
+endmode

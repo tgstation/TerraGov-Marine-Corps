@@ -71,12 +71,12 @@
 /datum/chemical_reaction/polyhexanide
 	name = "Polyhexanide"
 	results = list(/datum/reagent/medicine/polyhexanide = 3)
-	required_reagents = list(/datum/reagent/cryptobiolin = 1, /datum/reagent/medicine/spaceacillin = 1, /datum/reagent/medicine/sterilizine = 1)
+	required_reagents = list(/datum/reagent/cryptobiolin = 1, /datum/reagent/medicine/spaceacillin = 1, /datum/reagent/sterilizine = 1)
 
 /datum/chemical_reaction/larvaway
 	name = "Larvaway"
 	results = list(/datum/reagent/medicine/larvaway = 3)
-	required_reagents = list(/datum/reagent/medicine/spaceacillin = 1, /datum/reagent/medicine/polyhexanide = 1, /datum/reagent/medicine/sterilizine = 1)
+	required_reagents = list(/datum/reagent/medicine/spaceacillin = 1, /datum/reagent/medicine/polyhexanide = 1, /datum/reagent/sterilizine = 1)
 
 /datum/chemical_reaction/imidazoline
 	name = "imidazoline"
@@ -95,7 +95,7 @@
 
 /datum/chemical_reaction/sterilizine
 	name = "Sterilizine"
-	results = list(/datum/reagent/medicine/sterilizine = 3)
+	results = list(/datum/reagent/sterilizine = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol = 1, /datum/reagent/medicine/dylovene = 1, /datum/reagent/chlorine = 1)
 
 /datum/chemical_reaction/inaprovaline
@@ -205,3 +205,7 @@
 	results = list(/datum/reagent/medicine/dylovene = 2)
 	required_reagents = list(/datum/reagent/virilyth = 1, /datum/reagent/medicine/dylovene = 1)
 
+/datum/chemical_reaction/bihexajuline
+	name = "Bihexajuline"
+	results = list(/datum/reagent/medicine/bihexajuline = 5)
+	required_reagents = list(/datum/reagent/medicine/bicaridine = 2, /datum/reagent/consumable/drink/milk = 1, /datum/reagent/iron = 2)

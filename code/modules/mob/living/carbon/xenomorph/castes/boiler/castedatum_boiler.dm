@@ -13,9 +13,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 17
 
-	// *** Tackle *** //
-	tackle_damage = 21
-
 	// *** Speed *** //
 	speed = 0.3
 
@@ -35,7 +32,7 @@
 	conscious_see_in_dark = 20
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_ACID_BLOOD
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_ACID_BLOOD|CAN_BECOME_KING
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 40, "acid" = 30)
@@ -46,7 +43,8 @@
 	// *** Boiler Abilities *** //
 	max_ammo = 4
 	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob.
-	bomb_delay = 30 SECONDS
+	bomb_delay = 32 SECONDS
+	ammo_multiplier = 1.5 SECONDS
 
 	acid_spray_duration = 10 SECONDS
 	acid_spray_damage = 16
@@ -77,9 +75,6 @@
 	caste_desc = "Some sort of abomination. It looks a little more dangerous."
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Tackle *** //
-	tackle_damage = 21
-
 	// *** Speed *** //
 	speed = 0.2
 
@@ -106,7 +101,7 @@
 	max_ammo = 5
 	bomb_strength = 1.1
 
-	bomb_delay = 30 SECONDS
+	bomb_delay = 32 SECONDS
 
 /datum/xeno_caste/boiler/elder
 	upgrade_name = "Elder"
@@ -115,9 +110,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
-
-	// *** Tackle *** //
-	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = 0.1
@@ -145,7 +137,7 @@
 	max_ammo = 6
 	bomb_strength = 1.2
 
-	bomb_delay = 30 SECONDS
+	bomb_delay = 32 SECONDS
 
 /datum/xeno_caste/boiler/ancient
 	upgrade_name = "Ancient"
@@ -155,9 +147,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
-
-	// *** Tackle *** //
-	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = 0.1
@@ -185,4 +174,4 @@
 	max_ammo = 7
 	bomb_strength = 1.3
 
-	bomb_delay = 25 SECONDS
+	bomb_delay = 27 SECONDS

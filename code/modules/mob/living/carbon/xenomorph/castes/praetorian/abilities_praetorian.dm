@@ -28,8 +28,8 @@
 	succeed_activate()
 
 	playsound(X.loc, 'sound/effects/refill.ogg', 25, 1)
-	X.visible_message("<span class='xenowarning'>\The [X] spews forth a wide cone of acid!</span>", \
-	"<span class='xenowarning'>We spew forth a cone of acid!</span>", null, 5)
+	X.visible_message(span_xenowarning("\The [X] spews forth a wide cone of acid!"), \
+	span_xenowarning("We spew forth a cone of acid!"), null, 5)
 
 	X.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, 2)
 	start_acid_spray_cone(target, X.xeno_caste.acid_spray_range)
@@ -75,7 +75,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 			do_acid_cone_spray(owner.loc, range, facing, CONE_PART_MIDDLE_DIAG, owner, TRUE)
 			do_acid_cone_spray(owner.loc, range + 1, facing, CONE_PART_DIAG_LEFT|CONE_PART_DIAG_RIGHT, owner, TRUE)
-	
+
 ///Check if it's possible to create a spray, and if yes, check if the spray must continue
 /datum/action/xeno_action/activable/spray_acid/cone/proc/do_acid_cone_spray(turf/T, distance_left, facing, direction_flag, source_spray, skip_timer = FALSE)
 	if(distance_left <= 0)
@@ -92,21 +92,21 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return
 
 	var/mob/living/carbon/xenomorph/praetorian/xeno_owner = owner
-	
+
 	var/obj/effect/xenomorph/spray/spray = new(T, xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner)
 	var/turf/next_normal_turf = get_step(T, facing)
 	for (var/atom/movable/A AS in T)
 		A.acid_spray_act(owner)
-		if(((A.density && !A.throwpass && !(A.flags_atom & ON_BORDER)) || !A.CheckExit(source_spray, next_normal_turf)) && !isxeno(A))
+		if(((A.density && !A.throwpass && !(A.flags_atom & ON_BORDER)) || !A.CheckExit(source_spray, facing)) && !isxeno(A))
 			is_blocked = TRUE
 	if(!is_blocked)
 		if(!skip_timer)
 			addtimer(CALLBACK(src, .proc/continue_acid_cone_spray, T, next_normal_turf, distance_left, facing, direction_flag, spray), 3)
 			return
 		continue_acid_cone_spray(T, next_normal_turf, distance_left, facing, direction_flag, spray)
-	
 
-///Call the next steps of the cone spray, 
+
+///Call the next steps of the cone spray,
 /datum/action/xeno_action/activable/spray_acid/cone/proc/continue_acid_cone_spray(turf/current_turf, turf/next_normal_turf, distance_left, facing, direction_flag, spray)
 	if(CHECK_BITFIELD(direction_flag, CONE_PART_MIDDLE))
 		do_acid_cone_spray(next_normal_turf, distance_left - 1 , facing, CONE_PART_MIDDLE, spray)

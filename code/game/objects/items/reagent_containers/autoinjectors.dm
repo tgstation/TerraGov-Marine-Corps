@@ -24,9 +24,9 @@
 /obj/item/reagent_containers/hypospray/autoinjector/examine(mob/user)
 	..()
 	if(reagents && reagents.reagent_list.len)
-		to_chat(user, "<span class='notice'>It is currently loaded.</span>")
+		to_chat(user, span_notice("It is currently loaded."))
 	else
-		to_chat(user, "<span class='notice'>It is spent.</span>")
+		to_chat(user, span_notice("It is spent."))
 
 /obj/item/reagent_containers/hypospray/autoinjector/fillable
 	desc = "An autoinjector loaded with... something, consult the doctor who gave this to you."
@@ -43,12 +43,13 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/combat
 	name = "combat autoinjector"
-	desc = "An autoinjector loaded with a dose of healing and painkilling chemicals. Intended for use in active combat."
+	desc = "An autoinjector loaded with two doses of healing and painkilling chemicals. Intended for use in active combat."
 	icon_state = "autoinjector-4"
-	volume = 25
+	volume = 30
 	list_reagents = list(
 		/datum/reagent/medicine/bicaridine = 10,
 		/datum/reagent/medicine/kelotane = 10,
+		/datum/reagent/medicine/dylovene = 5,
 		/datum/reagent/medicine/tramadol = 5,
 	)
 
@@ -56,17 +57,16 @@
 	name = "Advanced combat autoinjector"
 	desc = "An autoinjector loaded with two doses of advanced healing and painkilling chemicals. Intended for use in active combat."
 	icon_state = "autoinjector-7"
-	amount_per_transfer_from_this = 15
 	volume = 30
 	list_reagents = list(
 		/datum/reagent/medicine/meralyne = 10,
 		/datum/reagent/medicine/dermaline = 10,
-		/datum/reagent/medicine/tramadol = 10,
+		/datum/reagent/medicine/oxycodone = 10,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/quickclot
 	name = "quick-clot autoinjector"
-	desc = "An autoinjector loaded with 30 units of quick-clot, a chemical designed to pause all bleeding. Renew doses as needed."
+	desc = "An autoinjector loaded with three doses of quick-clot, a chemical designed to pause all bleeding. Renew doses as needed."
 	icon_state = "autoinjector-7"
 	amount_per_transfer_from_this = 10
 	volume = 30
@@ -94,7 +94,10 @@
 	icon_state = "autoinjector-8"
 	amount_per_transfer_from_this = 10
 	volume = 10
-	list_reagents = list(/datum/reagent/toxin/sleeptoxin = 10)
+	list_reagents = list(
+		/datum/reagent/toxin/sleeptoxin = 8,
+		/datum/reagent/toxin/chloralhydrate = 2,
+	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/dylovene
 	name = "dylovene autoinjector"
@@ -141,10 +144,10 @@
 /obj/item/reagent_containers/hypospray/autoinjector/hypervene
 	name = "hypervene autoinjector"
 	desc = "An auto-injector loaded with 3 uses of hypervene, an emergency medicine that rapidly purges chems. Causes pain and vomiting."
-	icon_state = "autoinjector-8"
-	amount_per_transfer_from_this = 12
-	volume = 36
-	list_reagents = list(/datum/reagent/hypervene = 36)
+	icon_state = "autoinjector-12"
+	amount_per_transfer_from_this = 3
+	volume = 9
+	list_reagents = list(/datum/reagent/hypervene = 9)
 
 /obj/item/reagent_containers/hypospray/autoinjector/hyperzine
 	name = "hyperzine autoinjector"
@@ -209,6 +212,17 @@
 		/datum/reagent/medicine/hyronalin = 6,
 	)
 
+/obj/item/reagent_containers/hypospray/autoinjector/russian_red
+	name = "Emergency autoinjector"
+	desc = "An autoinjector loaded with a single use of Russian Red. Restores a significant amount of stamina and heals a large amount of damage, but causes slight permanent damage."
+	icon_state = "autoinjector-7"
+	amount_per_transfer_from_this = 15
+	volume = 15
+	list_reagents = list(
+		/datum/reagent/medicine/russian_red = 10,
+		/datum/reagent/medicine/ryetalyn = 5,
+	)
+
 /obj/item/reagent_containers/hypospray/autoinjector/polyhexanide
 	name = "polyhexanide autoinjector"
 	desc = "An auto-injector loaded with a dose of Polyhexanide, a sterilizer for internal surgical use."
@@ -218,14 +232,14 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/isotonic
 	name = "isotonic solution autoinjector"
-	desc = "An auto-injector loaded with 2 doses of isotonic solution, formulated to quickly recover fluid volume after blood loss or trauma."
+	desc = "An auto-injector loaded with a single dose of isotonic solution, formulated to quickly recover fluid volume after blood loss or trauma."
 	icon_state = "autoinjector-8"
 	amount_per_transfer_from_this = 25
-	volume = 50
+	volume = 25
 	list_reagents = list(
-		/datum/reagent/iron = 20,
-		/datum/reagent/consumable/nutriment = 20,
-		/datum/reagent/consumable/sugar = 10,
+		/datum/reagent/iron = 10,
+		/datum/reagent/consumable/nutriment = 10,
+		/datum/reagent/consumable/sugar = 5,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/roulettium
@@ -235,6 +249,17 @@
 	amount_per_transfer_from_this = 1
 	volume = 1
 	list_reagents = list(/datum/reagent/medicine/roulettium = 1)
+
+/obj/item/reagent_containers/hypospray/autoinjector/elite //only deathsquad should be able to get this
+	name = "elite autoinjector"
+	desc = "An elite auto-injector loaded with a strong and versatile combination of chemicals, healing most types of damage. Issued almost excusively to the infamous Nanotrasen deathsquads"
+	icon_state = "autoinjector-7"
+	amount_per_transfer_from_this = 10
+	volume = 30
+	list_reagents = list(
+		/datum/reagent/medicine/russian_red = 15,
+		/datum/reagent/medicine/rezadone = 15,
+	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/hydrocodone //made for debugging
 	name = "hydrocodone autoinjector"

@@ -219,7 +219,7 @@ const ProductEntry = (props: VendingProductEntryProps, context) => {
           </Button>
         </>
       }
-      label={decodeHtmlEntities(product_name)}>
+      label={product_name}>
       {!!prod_desc && (
         <Button
           onClick={() => setShowDesc(prod_desc)}>?

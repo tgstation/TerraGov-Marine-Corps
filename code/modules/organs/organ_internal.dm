@@ -57,19 +57,25 @@
 /datum/internal_organ/proc/is_broken()
 	return damage >= min_broken_damage || cut_away
 
-/datum/internal_organ/New(mob/living/carbon/M)
+/datum/internal_organ/New(mob/living/carbon/carbon_mob)
 	..()
-	if(M && istype(M))
+	if(!istype(carbon_mob))
+		return
 
-		M.internal_organs |= src
-		src.owner = M
+	carbon_mob.internal_organs |= src
+	owner = carbon_mob
+	RegisterSignal(owner, COMSIG_PARENT_QDELETING, .proc/clean_owner)
 
-		var/mob/living/carbon/human/H = M
-		if(istype(H))
-			var/datum/limb/E = H.get_limb(parent_limb)
-			if(E.internal_organs == null)
-				E.internal_organs = list()
-			E.internal_organs |= src
+	if(!ishuman(carbon_mob))
+		return
+	var/mob/living/carbon/human/human = carbon_mob
+	var/datum/limb/limb = human.get_limb(parent_limb)
+	LAZYDISTINCTADD(limb.internal_organs, src)
+
+///Signal handler to prevent hard del
+/datum/internal_organ/proc/clean_owner()
+	SIGNAL_HANDLER
+	owner = null
 
 /datum/internal_organ/process()
 
@@ -211,7 +217,7 @@
 
 	if (germ_level > INFECTION_LEVEL_ONE)
 		if(prob(1))
-			to_chat(owner, "<span class='warning'>Your skin itches.</span>")
+			to_chat(owner, span_warning("Your skin itches."))
 	if (germ_level > INFECTION_LEVEL_TWO)
 		if(prob(1))
 			spawn owner.vomit()

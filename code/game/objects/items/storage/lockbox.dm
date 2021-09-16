@@ -18,23 +18,23 @@
 /obj/item/storage/lockbox/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/card/id))
 		if(broken)
-			to_chat(user, "<span class='warning'>It appears to be broken.</span>")
+			to_chat(user, span_warning("It appears to be broken."))
 			return
 
 		if(!allowed(user))
-			to_chat(user, "<span class='warning'>Access Denied</span>")
+			to_chat(user, span_warning("Access Denied"))
 			return
 
 		locked = !locked
 		if(locked)
 			icon_state = icon_locked
-			to_chat(user, "<span class='warning'>You lock the [src]!</span>")
+			to_chat(user, span_warning("You lock the [src]!"))
 		else
 			icon_state = icon_closed
-			to_chat(user, "<span class='warning'>You unlock the [src]!</span>")
+			to_chat(user, span_warning("You unlock the [src]!"))
 
 	if(locked)
-		to_chat(user, "<span class='warning'>Its locked!</span>")
+		to_chat(user, span_warning("Its locked!"))
 		return
 
 	return ..()
@@ -42,7 +42,7 @@
 
 /obj/item/storage/lockbox/show_to(mob/user)
 	if(locked)
-		to_chat(user, "<span class='warning'>Its locked!</span>")
+		to_chat(user, span_warning("Its locked!"))
 		return
 
 	return ..()

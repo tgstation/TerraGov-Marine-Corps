@@ -3,7 +3,6 @@
 	icon_state = "black"
 	dir = SOUTH
 	baseturfs = /turf/open/space/transit
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED //Different from /tg/
 	flags_atom = NOJAUNT_1 //This line goes out to every wizard that ever managed to escape the den. I'm sorry.
 	explosion_block = INFINITY
 	///The number of icon state available
@@ -13,6 +12,7 @@
 	name = "\proper high atmosphere"
 	baseturfs = /turf/open/space/transit/atmos
 	available_icon_state_amounts = 8
+	plane = FLOOR_PLANE
 
 //Overwrite because we dont want people building rods in space.
 /turf/open/space/transit/attackby(obj/item/I, mob/user, params)
@@ -35,10 +35,10 @@
 /turf/open/space/transit/east
 	dir = EAST
 
-/turf/open/space/transit/Entered(atom/movable/AM, atom/OldLoc)
+/turf/open/space/transit/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	..()
-	if(!locate(/obj/structure/lattice) in src)
-		throw_atom(AM)
+	if(!locate(/obj/structure/lattice) in src) //todo wtf is this even
+		throw_atom(arrived)
 
 /turf/open/space/transit/proc/throw_atom(atom/movable/AM)
 	set waitfor = FALSE

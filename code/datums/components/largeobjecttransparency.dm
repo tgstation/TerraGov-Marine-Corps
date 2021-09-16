@@ -90,7 +90,7 @@
 		reduceAlpha()
 	amounthidden++
 
-/datum/component/largetransparency/proc/objectLeave(datum/source, atom/leaver)
+/datum/component/largetransparency/proc/objectLeave(datum/source, atom/leaver, direction)
 	SIGNAL_HANDLER
 	if(!(leaver.flags_atom & CRITICAL_ATOM))
 		return

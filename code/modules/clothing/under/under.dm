@@ -8,7 +8,7 @@
 	permeability_coefficient = 0.90
 	flags_equip_slot = ITEM_SLOT_ICLOTHING
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	var/has_sensor = 1//For the crew computer 2 = unable to change mode
 	var/sensor_mode = 3
 		/*
@@ -30,7 +30,7 @@
 	if(hastie)
 		qdel(hastie)
 		hastie = null
-	. = ..()
+	return ..()
 
 
 
@@ -149,7 +149,7 @@
 	else if (ismob(loc))
 		switch(sensor_mode)
 			if(0)
-				visible_message("<span class='warning'>[user] disables [loc]'s remote sensing equipment.</span>", null, null, 1)
+				visible_message(span_warning("[user] disables [loc]'s remote sensing equipment."), null, null, 1)
 			if(1)
 				visible_message("[user] turns [loc]'s remote sensors to binary.", null, null, 1)
 			if(2)
@@ -189,7 +189,7 @@
 		flags_heat_protection = flags_armor_protection
 		update_clothing_icon()
 	else
-		to_chat(usr, "<span class='warning'>You cannot roll down the uniform!</span>")
+		to_chat(usr, span_warning("You cannot roll down the uniform!"))
 
 //proper proc to remove the uniform's tie (user optional)
 /obj/item/clothing/under/proc/remove_accessory(mob/user)

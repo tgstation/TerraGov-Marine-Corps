@@ -96,7 +96,7 @@
 
 //medical hud used by ghosts
 /datum/atom_hud/medical/observer
-	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, STATUS_HUD, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, STATUS_HUD, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
 
 /datum/atom_hud/medical/pain
@@ -183,24 +183,55 @@
 	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD] //State of the xeno embryo.
 	var/image/simple_status_hud = hud_list[STATUS_HUD_SIMPLE] //Status for the naked eye.
 	var/image/xeno_reagent = hud_list[XENO_REAGENT_HUD] // Displays active xeno reagents
-	var/static/image/neurotox_image = image('icons/mob/hud.dmi', src, "neurotoxin")
-	var/static/image/hemodile_image = image('icons/mob/hud.dmi', src, "hemodile")
-	var/static/image/transvitox_image = image('icons/mob/hud.dmi', src, "transvitox")
+	var/image/xeno_debuff = hud_list[XENO_DEBUFF_HUD] //Displays active xeno specific debuffs
+	var/static/image/neurotox_image = image('icons/mob/hud.dmi', icon_state = "neurotoxin")
+	var/static/image/hemodile_image = image('icons/mob/hud.dmi', icon_state = "hemodile")
+	var/static/image/transvitox_image = image('icons/mob/hud.dmi', icon_state = "transvitox")
+	var/static/image/sanguinal_image = image('icons/mob/hud.dmi', icon_state = "sanguinal")
+	var/static/image/neurotox_high_image = image('icons/mob/hud.dmi', icon_state = "neurotoxin_high")
+	var/static/image/hemodile_high_image = image('icons/mob/hud.dmi', icon_state = "hemodile_high")
+	var/static/image/transvitox_high_image = image('icons/mob/hud.dmi', icon_state = "transvitox_high")
+	var/static/image/hunter_silence_image = image('icons/mob/hud.dmi', icon_state = "silence_debuff")
+	var/static/image/sanguinal_high_image = image('icons/mob/hud.dmi', icon_state = "sanguinal_high")
 
 	xeno_reagent.overlays.Cut()
 	xeno_reagent.icon_state = ""
 	if(stat != DEAD)
+		var/neurotox_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin) + reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin/light)
+		var/hemodile_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)
+		var/transvitox_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)
+		var/sanguinal_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal)
 
-		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+		if(neurotox_amount > 10) //Blinking image for particularly high concentrations
+			xeno_reagent.overlays += neurotox_high_image
+		else if(neurotox_amount > 0)
 			xeno_reagent.overlays += neurotox_image
 
-		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
+		if(hemodile_amount > 10)
+			xeno_reagent.overlays += hemodile_high_image
+		else if(hemodile_amount > 0)
 			xeno_reagent.overlays += hemodile_image
 
-		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+		if(transvitox_amount > 10)
+			xeno_reagent.overlays += transvitox_high_image
+		else if(transvitox_amount > 0)
 			xeno_reagent.overlays += transvitox_image
 
+		if(sanguinal_amount > 10)
+			xeno_reagent.overlays += sanguinal_high_image
+		else if(sanguinal_amount > 0)
+			xeno_reagent.overlays += sanguinal_image
+
 	hud_list[XENO_REAGENT_HUD] = xeno_reagent
+
+	//Xeno debuff section start
+	xeno_debuff.overlays.Cut()
+	xeno_debuff.icon_state = ""
+	if(stat != DEAD)
+		if(IsMute())
+			xeno_debuff.overlays += hunter_silence_image
+
+	hud_list[XENO_DEBUFF_HUD] = xeno_debuff
 
 	if(species.species_flags & IS_SYNTHETIC)
 		simple_status_hud.icon_state = ""
@@ -230,11 +261,7 @@
 				return TRUE
 			if(!client)
 				var/mob/dead/observer/ghost = get_ghost()
-				if(ghost)
-					if(!ghost.can_reenter_corpse)
-						status_hud.icon_state = "huddead"
-						return TRUE
-				else
+				if(!ghost?.can_reenter_corpse)
 					status_hud.icon_state = "huddead"
 					return TRUE
 			var/stage
@@ -281,6 +308,10 @@
 				status_hud.icon_state = "hudhealthy"
 				return TRUE
 
+#define HEALTH_RATIO_PAIN_HUD 1
+#define PAIN_RATIO_PAIN_HUD 0.25
+#define STAMINA_RATIO_PAIN_HUD 0.5
+
 
 /mob/proc/med_pain_set_perceived_health()
 	return
@@ -297,9 +328,9 @@
 
 	var/perceived_health = health
 	if(!(species.species_flags & NO_PAIN))
-		perceived_health -= traumatic_shock
+		perceived_health -= PAIN_RATIO_PAIN_HUD * traumatic_shock
 	if(!(species.species_flags & NO_STAMINA) && staminaloss > 0)
-		perceived_health -= staminaloss
+		perceived_health -= STAMINA_RATIO_PAIN_HUD * staminaloss
 
 	switch(perceived_health)
 		if(100 to INFINITY)
@@ -325,6 +356,10 @@
 ///hud component for revealing tactical elements to xenos
 /datum/atom_hud/xeno_tactical
 	hud_icons = list(XENO_TACTICAL_HUD)
+
+///hud component for revealing xeno specific status effect debuffs to xenos
+/datum/atom_hud/xeno_debuff
+	hud_icons = list(XENO_DEBUFF_HUD)
 
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno
@@ -352,10 +387,10 @@
 	if(!holder)
 		return
 	if(stat == DEAD)
-		holder.icon_state = "plasma0"
+		holder.icon_state = "[xeno_caste.plasma_icon_state]0"
 	else
 		var/amount = round(plasma_stored * 100 / xeno_caste.plasma_max, 10)
-		holder.icon_state = "plasma[amount]"
+		holder.icon_state = "[xeno_caste.plasma_icon_state][amount]"
 
 
 /mob/living/carbon/xenomorph/proc/hud_set_pheromone()
@@ -438,23 +473,27 @@
 
 
 /datum/atom_hud/squad
-	hud_icons = list(SQUAD_HUD, MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+	hud_icons = list(SQUAD_HUD_TERRAGOV, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
+
+/datum/atom_hud/squad_rebel
+	hud_icons = list(SQUAD_HUD_REBEL, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
 
-/mob/proc/hud_set_job()
+/mob/proc/hud_set_job(faction = FACTION_TERRAGOV)
 	return
 
 
-/mob/living/carbon/human/hud_set_job()
-	var/image/holder = hud_list[SQUAD_HUD]
+/mob/living/carbon/human/hud_set_job(faction = FACTION_TERRAGOV)
+	var/hud_type = faction == FACTION_TERRAGOV ? SQUAD_HUD_TERRAGOV : SQUAD_HUD_REBEL
+	var/image/holder = hud_list[hud_type]
 	holder.icon_state = ""
 	holder.overlays.Cut()
 
 	if(assigned_squad)
 		var/squad_color = assigned_squad.color
-		var/rank = job.title
+		var/rank = job.comm_title
 		if(assigned_squad.squad_leader == src)
-			rank = SQUAD_LEADER
+			rank = JOB_COMM_TITLE_SQUAD_LEADER
 		if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
 			var/image/IMG = image('icons/mob/hud.dmi', src, "hudmarine")
 			IMG.color = squad_color
@@ -467,9 +506,9 @@
 			holder.overlays += IMG2
 
 	else if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
-		holder.overlays += image('icons/mob/hud.dmi', src, "hudmarine [job.title]")
+		holder.overlays += image('icons/mob/hud.dmi', src, "hudmarine [job.comm_title]")
 
-	hud_list[SQUAD_HUD] = holder
+	hud_list[hud_type] = holder
 
 
 /datum/atom_hud/order
@@ -502,7 +541,7 @@
 	hud_list[ORDER_HUD] = holder
 
 ///Makes sentry health visible
-/obj/machinery/proc/hud_set_machine_health()
+/obj/proc/hud_set_machine_health()
 	var/image/holder = hud_list[MACHINE_HEALTH_HUD]
 
 	if(!holder)
@@ -517,30 +556,29 @@
 		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
 	holder.icon_state = "xenohealth[amount]"
 
-///Makes sentry ammo visible
-/obj/machinery/marine_turret/proc/hud_set_sentry_ammo()
-	var/image/holder = hud_list[SENTRY_AMMO_HUD]
+///Makes mounted guns ammo visible
+/obj/machinery/deployable/mounted/proc/hud_set_gun_ammo()
+	var/image/holder = hud_list[MACHINE_AMMO_HUD]
 
 	if(!holder)
 		return
-
-	if(!rounds)
+	var/obj/item/weapon/gun/gun = internal_item
+	if(!gun.current_mag)
 		holder.icon_state = "plasma0"
 		return
-
-	var/amount = round(rounds * 100 / rounds_max, 10)
+	var/amount = round(gun.current_mag.current_rounds * 100 / gun.current_mag.max_rounds, 10)
 	holder.icon_state = "plasma[amount]"
 
-///Makes tl-102 ammo visible
-/obj/machinery/standard_hmg/proc/hud_set_hsg_ammo()
-	var/image/holder = hud_list[SENTRY_AMMO_HUD]
+///Makes unmanned vehicle ammo visible
+/obj/vehicle/unmanned/proc/hud_set_uav_ammo()
+	var/image/holder = hud_list[MACHINE_AMMO_HUD]
 
 	if(!holder)
 		return
 
-	if(!rounds)
+	if(!current_rounds)
 		holder.icon_state = "plasma0"
 		return
-	
-	var/amount = round(rounds * 100 / rounds_max, 10)
+
+	var/amount = round(current_rounds * 100 / max_rounds, 10)
 	holder.icon_state = "plasma[amount]"

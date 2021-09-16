@@ -14,7 +14,7 @@
 		/datum/job/terragov/medical/professor = 1,
 		/datum/job/terragov/silicon/synthetic = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
-		/datum/job/xenomorph = 1
+		/datum/job/xenomorph = FREE_XENO_AT_START
 	)
 
 	// Round end conditions
@@ -23,7 +23,7 @@
 	var/marines_evac = CRASH_EVAC_NONE
 
 	// Shuttle details
-	var/shuttle_id = "tgs_canterbury"
+	var/shuttle_id = SHUTTLE_CANTERBURY
 	var/obj/docking_port/mobile/crashmode/shuttle
 
 	// Round start info
@@ -38,7 +38,7 @@
 	if(!.)
 		return
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.job_points_needed  = CONFIG_GET(number/crash_larvapoints_required)
+	xeno_job.job_points_needed  = CRASH_LARVA_POINTS_NEEDED
 
 
 /datum/game_mode/infestation/crash/pre_setup()
@@ -46,7 +46,7 @@
 
 	// Spawn the ship
 	if(TGS_CLIENT_COUNT >= 25)
-		shuttle_id = "tgs_bigbury"
+		shuttle_id = SHUTTLE_BIGBURY
 	if(!SSmapping.shuttle_templates[shuttle_id])
 		message_admins("Gamemode: couldn't find a valid shuttle template for [shuttle_id]")
 		CRASH("Shuttle [shuttle_id] wasn't found and can't be loaded")
@@ -81,8 +81,8 @@
 /datum/game_mode/infestation/crash/post_setup()
 	. = ..()
 	for(var/i in GLOB.xeno_resin_silo_turfs)
-		new /obj/structure/resin/silo(i)
-	
+		new /obj/structure/xeno/resin/silo(i)
+
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob(HEADBITE_DEATH)
 
@@ -114,7 +114,7 @@
 
 
 /datum/game_mode/infestation/crash/announce()
-	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
+	to_chat(world, span_round_header("The current map is - [SSmapping.configs[GROUND_MAP].map_name]!"))
 	priority_announce("Scheduled for landing in T-10 Minutes. Prepare for landing. Known hostiles near LZ. Detonation Protocol Active, planet disposable. Marines disposable.", type = ANNOUNCEMENT_PRIORITY)
 	playsound(shuttle, 'sound/machines/warning-buzzer.ogg', 75, 0, 30)
 
@@ -224,12 +224,13 @@
 	SIGNAL_HANDLER
 	switch(new_xeno.tier)
 		if(XENO_TIER_ONE)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE) //This is bad, but this works without more refactoring
 			new_xeno.upgrade_xeno(XENO_UPGRADE_TWO)
 		if(XENO_TIER_TWO)
 			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
 
 /datum/game_mode/infestation/crash/can_summon_dropship(mob/user)
-	to_chat(src, "<span class='warning'>This power doesn't work in this gamemode.</span>")
+	to_chat(src, span_warning("This power doesn't work in this gamemode."))
 	return FALSE
 
 /datum/game_mode/infestation/crash/proc/balance_scales()

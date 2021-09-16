@@ -27,6 +27,7 @@
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -35,9 +36,7 @@
 	scatter = 0
 	scatter_unwielded = 0
 
-
-/obj/item/weapon/gun/pistol/unique_action(mob/user)
-	return cock(user)
+	placed_overlay_iconstate = "pistol"
 
 /obj/item/weapon/gun/pistol/get_ammo_type()
 	if(!ammo)
@@ -74,8 +73,8 @@
 	scatter_unwielded = 0
 	recoil = -2
 	recoil_unwielded = -2
-	upper_akimbo_accuracy = 4
-	lower_akimbo_accuracy = 3
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 4
 
 //-------------------------------------------------------
 //TX-7 Plasma Pistol
@@ -98,11 +97,11 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/lace,
-		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/buildasentry,
 	)
 
 	muzzleflash_iconstate = "muzzle_flash_laser"
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT
 	actions_types = list()
 	wield_delay = 0.5 SECONDS
 	muzzle_flash_color = COLOR_GREEN
@@ -114,6 +113,20 @@
 	scatter_unwielded = 2
 	recoil = -2
 	recoil_unwielded = -2
+
+	slot = ATTACHMENT_SLOT_UNDER
+	attach_delay = 3 SECONDS
+	detach_delay = 3 SECONDS
+	pixel_shift_x = 10
+	pixel_shift_y = 19
+
+	placed_overlay_iconstate = "tx7"
+
+/obj/item/weapon/gun/can_attach(obj/item/attaching_to, mob/attacher)
+	if(!attachments_by_slot[ATTACHMENT_SLOT_RAIL])
+		return TRUE
+	to_chat(attacher, span_warning("You cannot attach [src] to [attaching_to] while [attachments_by_slot[ATTACHMENT_SLOT_RAIL]] occupies [src]'s rail slot."))
+	return FALSE
 
 /obj/item/weapon/gun/pistol/plasma_pistol/guardsman_pistol
 	name = "\improper Guardsman\'s plasma pistol"
@@ -163,6 +176,7 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -173,6 +187,9 @@
 	accuracy_mult_unwielded = 0.95
 	recoil = -2
 	recoil_unwielded = -2
+
+/obj/item/weapon/gun/pistol/standard_heavypistol/suppressed
+	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/flashlight) //Tacticool
 
 //-------------------------------------------------------
 //M1911
@@ -209,6 +226,7 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
@@ -285,6 +303,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -292,7 +311,6 @@
 
 	fire_delay = 0.7 SECONDS
 	scatter_unwielded = 25
-	damage_mult = 1.2
 	recoil = 1
 	recoil_unwielded = 2
 	scatter = 5
@@ -325,6 +343,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -379,11 +398,13 @@
 /obj/item/weapon/gun/pistol/standard_pocketpistol
 	name = "\improper TP-17 pocket pistol"
 	desc = "A tiny pistol used by the TGMC as an emergency handgun meant to be stored about anywhere. Fits in boots. Uses .380 ACP stored in an eight round magazine."
+	icon = 'icons/Marine/gun64.dmi' // This is here here for the empty sprite.
 	icon_state = "tp17"
 	item_state = "tp17"
+	fire_animation = "tp17_fire"
 	caliber = CALIBER_380ACP //codex
 	max_shells = 8 //codex
-	fire_sound = 'sound/weapons/guns/fire/pistol_holdout.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tp17.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/standard_pocketpistol
 	w_class = WEIGHT_CLASS_TINY
 	force = 5
@@ -395,7 +416,7 @@
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 21, "rail_y" = 13, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20,"rail_x" = 21, "rail_y" = 15, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
 
 	fire_delay = 0.125 SECONDS
 	recoil = -2
@@ -412,10 +433,10 @@
 
 /obj/item/weapon/gun/pistol/highpower
 	name = "\improper Highpower automag"
-	desc = "A Colonial Marshals issued, powerful semi-automatic pistol chambered in armor piercing 9mm caliber rounds. Used for centuries by law enforcement and criminals alike, recently recreated with this new model."
+	desc = "A powerful semi-automatic pistol chambered in the devastating .50 AE caliber rounds. Used for centuries by law enforcement and criminals alike, recently recreated with this new model."
 	icon_state = "highpower"
 	item_state = "highpower"
-	caliber = CALIBER_9X19 //codex
+	caliber = CALIBER_50AE //codex
 	max_shells = 13 //codex
 	fire_sound = 'sound/weapons/guns/fire/hp.ogg'
 	unload_sound = 'sound/weapons/guns/interact/hp_unload.ogg'
@@ -423,16 +444,18 @@
 	cocked_sound = 'sound/weapons/guns/interact/hp_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/highpower
 	force = 10
+
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 18, "under_y" = 15, "stock_x" = 16, "stock_y" = 15)
 
 	fire_delay = 1 SECONDS
-	damage_mult = 1.5
+	burst_delay = 0.5 SECONDS
+	damage_mult = 1.2
 	recoil = 1
 	recoil_unwielded = 2
 	accuracy_mult = 1.5
-	scatter = 0
-	scatter_unwielded = 15
+	scatter = 5
+	scatter_unwielded = 20
 
 //-------------------------------------------------------
 //VP70
@@ -585,9 +608,6 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/stock/rifle,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/lace,

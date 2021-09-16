@@ -30,7 +30,7 @@
 	return ..()
 
 
-/obj/machinery/door/poddoor/railing/CheckExit(atom/movable/O, turf/target)
+/obj/machinery/door/poddoor/railing/CheckExit(atom/movable/O, direction)
 	. = ..()
 	if(O.throwing)
 		return TRUE

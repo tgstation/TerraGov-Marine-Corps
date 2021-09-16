@@ -50,25 +50,25 @@
 
 	if(istype(I,/obj/item/reagent_containers) && I.is_open_container())
 		if(beaker)
-			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
+			to_chat(user, span_warning("A beaker is already loaded into the machine."))
 			return
 		user.transferItemToLoc(I, src)
 		beaker = I
-		to_chat(user, "<span class='notice'>You add the beaker to the machine!</span>")
+		to_chat(user, span_notice("You add the beaker to the machine!"))
 		updateUsrDialog()
 		icon_state = "mixer1"
 
 	else if(istype(I,/obj/item/reagent_containers/glass))
-		to_chat(user, "<span class='warning'>Take off the lid first.</span>")
+		to_chat(user, span_warning("Take off the lid first."))
 
 	else if(istype(I, /obj/item/storage/pill_bottle))
 		if(loaded_pill_bottle)
-			to_chat(user, "<span class='warning'>A pill bottle is already loaded into the machine.</span>")
+			to_chat(user, span_warning("A pill bottle is already loaded into the machine."))
 			return
 
 		loaded_pill_bottle = I
 		user.transferItemToLoc(I, src)
-		to_chat(user, "<span class='notice'>You add the pill bottle into the dispenser slot!</span>")
+		to_chat(user, span_notice("You add the pill bottle into the dispenser slot!"))
 		updateUsrDialog()
 
 /obj/machinery/chem_master/proc/transfer_chemicals(obj/dest, obj/source, amount, reagent_id)
@@ -95,10 +95,15 @@
 	. = ..()
 	if(.)
 		return
-	if(!ishuman(usr))
+	if(!ishuman(usr) || isAI(usr))
 		return
 
-	var/mob/living/carbon/human/user = usr
+	var/mob/living/user = usr
+
+	if(!user.skills.getRating("medical"))
+		to_chat(user, span_notice("You start fiddling with \the [src]..."))
+		if(!do_after(user, SKILL_TASK_EASY, TRUE, src, BUSY_ICON_UNSKILLED))
+			return
 
 	if (href_list["ejectp"])
 		if(loaded_pill_bottle)
@@ -182,12 +187,15 @@
 		else if (href_list["createpillbottle"])
 			if(!condi)
 				if(loaded_pill_bottle)
-					to_chat(user, "<span class='warning'>A pill bottle is already loaded into the machine.</span>")
+					to_chat(user, span_warning("A pill bottle is already loaded into the machine."))
 					return
+				var/bottle_label = reject_bad_text(input(user, "Label:", "Enter desired bottle label", null) as text|null)
 				var/obj/item/storage/pill_bottle/I = new/obj/item/storage/pill_bottle
 				I.icon_state = "pill_canister"+pillbottlesprite
+				if(bottle_label)
+					I.name = "[bottle_label] pill bottle"
 				loaded_pill_bottle = I
-				to_chat(user, "<span class='notice'>The Chemmaster 3000 sets a pill bottle into the dispenser slot.</span>")
+				to_chat(user, span_notice("The Chemmaster 3000 sets a pill bottle into the dispenser slot."))
 				updateUsrDialog()
 
 		else if (href_list["createpill"] || href_list["createpill_multiple"])
@@ -292,7 +300,7 @@
 			return
 
 		else if(href_list["change_autoinjector"])
-			#define MAX_AUTOINJECTOR_SPRITE 11 //max icon state of the autoinjector sprites
+			#define MAX_AUTOINJECTOR_SPRITE 12 //max icon state of the autoinjector sprites
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_AUTOINJECTOR_SPRITE)
 				dat += "<tr><td><a href=\"?src=\ref[src]&autoinjector_sprite=[i]\">Select</a><img src=\"autoinjector-[i].png\" /><br></td></tr>"

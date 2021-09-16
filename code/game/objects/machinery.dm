@@ -165,10 +165,10 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 60)
-			visible_message("<span class='warning'>[H] stares cluelessly at [src] and drools.</span>")
+			visible_message(span_warning("[H] stares cluelessly at [src] and drools."))
 			return FALSE
 		if(prob(H.getBrainLoss()))
-			to_chat(user, "<span class='warning'>You momentarily forget how to use [src].</span>")
+			to_chat(user, span_warning("You momentarily forget how to use [src]."))
 			return FALSE
 
 	return TRUE
@@ -238,7 +238,7 @@
 	N.fields["last_scan_time"] = od["stationtime"]
 	N.fields["last_scan_result"] = dat
 	N.fields["autodoc_data"] = generate_autodoc_surgery_list(H)
-	visible_message("<span class='notice'>\The [src] pings as it stores the scan report of [H.real_name]</span>")
+	visible_message(span_notice("\The [src] pings as it stores the scan report of [H.real_name]"))
 	playsound(loc, 'sound/machines/ping.ogg', 25, 1)
 	use_power(active_power_usage)
 	return dat

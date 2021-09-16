@@ -14,11 +14,13 @@
 	///What is inside the cocoon
 	var/mob/living/victim
 	///How much time the cocoon takes to deplete the life force of the marine
-	var/cocoon_life_time = 10 MINUTES
+	var/cocoon_life_time = 5 MINUTES
 	///How many psych points it is generating every 5 seconds
-	var/psych_points_output = 1.2
+	var/psych_points_output = COCOON_PSY_POINTS_REWARD
 	///Standard busy check
 	var/busy = FALSE
+	///How much larva points it gives at the end of its life time (8 points for one larva in distress)
+	var/larva_point_reward = 1.5
 
 
 /obj/structure/cocoon/Initialize(mapload, _hivenumber, mob/living/_victim)
@@ -29,14 +31,13 @@
 	victim = _victim
 	victim.forceMove(src)
 	START_PROCESSING(SSslowprocess, src)
-	addtimer(CALLBACK(src, .proc/life_draining_over, TRUE), cocoon_life_time)
+	addtimer(CALLBACK(src, .proc/life_draining_over, null, TRUE), cocoon_life_time)
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/life_draining_over)
-	new /obj/effect/alien/weeds/node(loc)
 
 /obj/structure/cocoon/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(anchored && victim && ishuman(user))
-		to_chat(user, "<span class='notice'>There seems to be someone inside it. You think you can open it with a sharp object.</span>")
+		to_chat(user, span_notice("There seems to be someone inside it. You think you can open it with a sharp object."))
 
 /obj/structure/cocoon/process()
 	SSpoints.add_psy_points(hivenumber, psych_points_output)
@@ -54,12 +55,15 @@
 	playsound(loc, "alien_resin_move", 35)
 
 ///Stop producing points and release the victim if needed
-/obj/structure/cocoon/proc/life_draining_over(must_release_victim = FALSE)
+/obj/structure/cocoon/proc/life_draining_over(datum/source, must_release_victim = FALSE)
 	SIGNAL_HANDLER
 	STOP_PROCESSING(SSslowprocess, src)
 	if(anchored)
 		unanchor_from_nest()
 	if(must_release_victim)
+		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+		xeno_job.add_job_points(larva_point_reward)
+		GLOB.round_statistics.larva_from_cocoon += larva_point_reward / xeno_job.job_points_needed
 		release_victim()
 	update_icon()
 
@@ -68,7 +72,7 @@
 		release_victim()
 	return ..()
 
-///Open the cocoon and move the victim out 
+///Open the cocoon and move the victim out
 /obj/structure/cocoon/proc/release_victim()
 	REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	playsound(loc, "alien_resin_move", 35)
@@ -108,8 +112,7 @@
 /obj/structure/cocoon/opened_cocoon
 	icon_state = "xeno_cocoon_open"
 	anchored = FALSE
-	
+
 /obj/structure/cocoon/opened_cocoon/Initialize()
 	. = ..()
 	new /obj/structure/bed/nest(loc)
-	new /obj/effect/alien/weeds/node(loc)

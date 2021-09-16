@@ -37,7 +37,7 @@
 	var/list/datum/internal_organ/internal_organs
 
 	/// Message that displays when you feel pain from this limb
-	var/damage_msg = "<span class='warning'> You feel an intense pain</span>"
+	var/damage_msg = span_warning(" You feel an intense pain")
 	var/broken_description
 
 	var/surgery_open_stage = 0
@@ -66,7 +66,8 @@
 	var/vital = FALSE
 	///INTERNAL germs inside the organ, this is BAD if it's greater than INFECTION_LEVEL_ONE
 	var/germ_level = 0
-
+	///Keeps track of the last time the limb bothered its owner about infection to prevent spam.
+	COOLDOWN_DECLARE(next_infection_message)
 	///What % of the body does this limb cover. Make sure that the sum is always 100.
 	var/cover_index = 0
 
@@ -79,6 +80,7 @@
 		parent.children.Add(src)
 	if(mob_owner)
 		owner = mob_owner
+		RegisterSignal(owner, COMSIG_PARENT_QDELETING, .proc/clean_owner)
 	soft_armor = getArmor()
 	hard_armor = getArmor()
 	return ..()
@@ -92,11 +94,10 @@
 	hard_armor = null
 	return ..()
 
-/*
-/datum/limb/proc/get_icon(icon/race_icon, icon/deform_icon)
-	return icon('icons/mob/human.dmi',"blank")
-*/
-
+///Signal handler to clean owner and prevent hardel
+/datum/limb/proc/clean_owner()
+	SIGNAL_HANDLER
+	owner = null
 
 //Germs
 /datum/limb/proc/handle_antibiotics()
@@ -109,17 +110,17 @@
 	if (!germ_level || (spaceacillin + polyhexanide) < MIN_ANTIBIOTICS)
 		return
 
-	var/infection_level = 0
+	var/infection_level = 1
 	switch(germ_level)
 		if(-INFINITY to 10)
 			germ_level = 0
 			return // cure instantly
 		if(11 to INFECTION_LEVEL_ONE)
-			infection_level = 1
-		if(INFECTION_LEVEL_ONE - 1 to INFECTION_LEVEL_TWO)
 			infection_level = 2
-		if(INFECTION_LEVEL_TWO - 1 to INFINITY)
+		if(INFECTION_LEVEL_ONE - 1 to INFECTION_LEVEL_TWO)
 			infection_level = 3
+		if(INFECTION_LEVEL_TWO - 1 to INFINITY)
+			infection_level = 4
 
 	if (spaceacillin >= MIN_ANTIBIOTICS)
 		germ_level -= spaceacillin_curve[infection_level]
@@ -275,10 +276,8 @@
 			brute = W.heal_wound_damage(brute)
 		else if(W.damage_type == BURN)
 			burn = W.heal_wound_damage(burn)
-
-	if(internal)
-		remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
-		add_limb_flags(LIMB_REPAIRED)
+		else if(internal)
+			brute = W.heal_wound_damage(brute)
 
 	//Sync the organ's damage with its wounds
 	update_damages()
@@ -343,7 +342,7 @@
 	if(limb_status & LIMB_SPLINTED) //If they have it splinted and no splint health, the splint won't hold.
 		if(splint_health <= 0)
 			remove_limb_flags(LIMB_SPLINTED)
-			to_chat(owner, "<span class='userdanger'>The splint on your [display_name] comes apart!</span>")
+			to_chat(owner, span_userdanger("The splint on your [display_name] comes apart!"))
 		else
 			splint_health = max(splint_health - damage, 0)
 
@@ -362,9 +361,9 @@
 				W.open_wound(damage)
 				if(prob(25))
 					//maybe have a separate message for BRUISE type damage?
-					owner.visible_message("<span class='warning'>The wound on [owner.name]'s [display_name] widens with a nasty ripping noise.</span>",
-					"<span class='warning'>The wound on your [display_name] widens with a nasty ripping noise.</span>",
-					"<span class='warning'>You hear a nasty ripping noise, as if flesh is being torn apart.</span>")
+					owner.visible_message(span_warning("The wound on [owner.name]'s [display_name] widens with a nasty ripping noise."),
+					span_warning("The wound on your [display_name] widens with a nasty ripping noise."),
+					span_warning("You hear a nasty ripping noise, as if flesh is being torn apart."))
 				return
 
 	//Creating wound
@@ -453,18 +452,30 @@ Note that amputating the affected organ does in fact remove the infection from t
 	handle_antibiotics()
 
 /datum/limb/proc/handle_germ_sync()
-	var/antibiotics = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
-	for(var/datum/wound/W in wounds)
-		//Open wounds can become infected
-		if (owner.germ_level > W.germ_level && W.infection_check() && W.damage)
-			W.germ_level += min(1,round(W.damage/20)) //The bigger the wound, the more germs will enter
+	var/infection_checked = FALSE
+	var/white_cell_chance = 0
 
-		if (antibiotics < MIN_ANTIBIOTICS)
-			//Infected wounds raise the organ's germ level.
-			if (W.germ_level)
-				germ_level += min(1,round(W.germ_level/35))
-		else if (W.germ_level && prob(80)) //Antibiotics wont be very effective it the wound is still open
-			germ_level++
+	for(var/datum/wound/W in wounds)
+		infection_checked = W.infection_check()
+
+		//Open wounds can become infected - spaceacillin won't help here.
+		if (owner.germ_level > W.germ_level && infection_checked && W.damage >= 20)
+			W.germ_level++
+
+		if(W.germ_level <= 0)
+			continue
+
+		//Once they're healed up, slowly clean out any infection if it's small enough or treated
+		if (!infection_checked)
+			white_cell_chance = max(0, 40 - W.germ_level/2.5) //Base 0% chance once we hit 100 wound germs, or just over 3 minutes without healing.
+			if(W.is_treated())
+				white_cell_chance += 50
+			if(prob(white_cell_chance))
+				W.germ_level--
+
+		//Infected wounds raise the organ's germ level steadily over time. Can outpace antibiotics if it gets bad enough.
+		if (W.germ_level)
+			germ_level += round((W.germ_level + 25)/35) //One point per tick at 10, then another every 35
 
 /datum/limb/proc/handle_germ_effects()
 	var/spaceacillin = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
@@ -481,11 +492,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(prob(round(germ_level/10)))
 			if (spaceacillin < MIN_ANTIBIOTICS)
 				germ_level++
+				if (COOLDOWN_CHECK(src, next_infection_message) && (germ_level <= INFECTION_LEVEL_TWO) && !(limb_status & LIMB_NECROTIZED))
+					to_chat(owner, span_notice("Your [display_name] itches and feels warm..."))
+					COOLDOWN_START(src, next_infection_message, rand(60 SECONDS, 90 SECONDS))
 
 			if (prob(15))	//adjust this to tweak how fast people take toxin damage from infections
 				owner.adjustToxLoss(1)
-			if (prob(1) && (germ_level <= INFECTION_LEVEL_TWO))
-				to_chat(owner, "<span class='notice'>You have a slight fever...</span>")
 //LEVEL II
 	if(germ_level >= INFECTION_LEVEL_TWO && spaceacillin < 3)
 		//spread the infection to internal organs
@@ -498,8 +510,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(prob(round(germ_level/10)))
 			if (spaceacillin < MIN_ANTIBIOTICS)
 				germ_level++
-		if (prob(1) && (germ_level <= INFECTION_LEVEL_THREE))
-			to_chat(owner, "<span class='notice'>Your infected wound itches and badly hurts!</span>")
+				if (COOLDOWN_CHECK(src, next_infection_message) && (germ_level <= INFECTION_LEVEL_THREE) && !(limb_status & LIMB_NECROTIZED))
+					to_chat(owner, span_warning("Your infected [display_name] is turning off-color and stings like hell!"))
+					COOLDOWN_START(src, next_infection_message, rand(25 SECONDS, 40 SECONDS))
 
 		if (prob(25))	//adjust this to tweak how fast people take toxin damage from infections
 			owner.adjustToxLoss(1)
@@ -531,14 +544,16 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(germ_level >= INFECTION_LEVEL_THREE && spaceacillin < 25 && polyhexanide <2)	//overdosing is necessary to stop severe infections, or a doc-only chem
 		if (!(limb_status & LIMB_NECROTIZED))
 			add_limb_flags(LIMB_NECROTIZED)
-			to_chat(owner, "<span class='notice'>You can't feel your [display_name] anymore...</span>")
+			to_chat(owner, span_notice("You can't feel your [display_name] anymore..."))
 			owner.update_body(1)
 
 		germ_level++
 		if (prob(50))	//adjust this to tweak how fast people take toxin damage from infections
 			owner.adjustToxLoss(1)
 		if (prob(1))
-			to_chat(owner, "<span class='notice'>You have a high fever!</span>")
+			to_chat(owner, span_notice("You have a high fever!"))
+
+
 //Updating wounds. Handles wound natural I had some free spachealing, internal bleedings and infections
 /datum/limb/proc/update_wounds()
 
@@ -547,7 +562,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	for(var/datum/wound/W in wounds)
 		// wounds can disappear after 10 minutes at the earliest
-		if(W.damage <= 0 && W.created + 10 * 10 * 60 <= world.time)
+		if(W.damage <= 0 && W.created + 10 MINUTES <= world.time && W.germ_level <= 0)
 			wounds -= W
 			continue
 			// let the GC handle the deletion of the wound
@@ -593,13 +608,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 			heal_amt = round(heal_amt,0.1)
 			W.heal_wound_damage(heal_amt)
 
-		// Salving also helps against infection, but only if it is small enoough
-		if((W.germ_level > 0 && W.germ_level < 50) && W.salved && prob(2))
-			W.disinfected = 1
-			W.germ_level = 0
-
 	// sync the organ's damage with its wounds
-	src.update_damages()
+	update_damages()
 	if (update_icon())
 		owner.UpdateDamageIcon(1)
 
@@ -756,8 +766,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(body_part == CHEST)
 		return FALSE
 
-	remove_limb_flags()
-	add_limb_flags(LIMB_BLEEDING | LIMB_DESTROYED)
+	set_limb_flags(LIMB_DESTROYED)
 
 	for(var/i in implants)
 		var/obj/item/embedded_thing = i
@@ -843,9 +852,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(delete_limb)
 		QDEL_NULL(organ)
 	else
-		owner.visible_message("<span class='warning'>[owner.name]'s [display_name] flies off in an arc!</span>",
-		"<span class='highdanger'><b>Your [display_name] goes flying off!</b></span>",
-		"<span class='warning'>You hear a terrible sound of ripping tendons and flesh!</span>", 3)
+		owner.visible_message(span_warning("[owner.name]'s [display_name] flies off in an arc!"),
+		span_highdanger("<b>Your [display_name] goes flying off!</b>"),
+		span_warning("You hear a terrible sound of ripping tendons and flesh!"), 3)
 
 	if(organ)
 		//Throw organs around
@@ -947,8 +956,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 
 	owner.visible_message(\
-		"<span class='warning'>You hear a loud cracking sound coming from [owner]!</span>",
-		"<span class='highdanger'>Something feels like it shattered in your [display_name]!</span>",
+		span_warning("You hear a loud cracking sound coming from [owner]!"),
+		span_highdanger("Something feels like it shattered in your [display_name]!"),
 		"<span class='warning'>You hear a sickening crack!<span>")
 	var/F = pick('sound/effects/bone_break1.ogg','sound/effects/bone_break2.ogg','sound/effects/bone_break3.ogg','sound/effects/bone_break4.ogg','sound/effects/bone_break5.ogg','sound/effects/bone_break6.ogg','sound/effects/bone_break7.ogg')
 	playsound(owner,F, 45, 1)
@@ -990,17 +999,25 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /datum/limb/proc/has_infected_wound()
 	for(var/datum/wound/W in wounds)
-		if(W.germ_level > INFECTION_LEVEL_ONE)
-			return 1
-	return 0
+		if(W.germ_level > 30) //About the point at which you should worry about reaching a light infection without treatment
+			return TRUE
+	return FALSE
 
-/datum/limb/proc/get_icon(icon/race_icon, icon/deform_icon,gender="")
+///Returns the first non-internal wound at non-zero damage if any exist
+/datum/limb/proc/has_external_wound()
+	for(var/datum/wound/wound_to_check AS in wounds)
+		if(wound_to_check.internal)
+			continue
+		if(!wound_to_check.damage)
+			continue
+		return wound_to_check
 
-	if (limb_status & LIMB_ROBOT && !(owner.species && owner.species.species_flags & IS_SYNTHETIC))
-		return new /icon('icons/mob/human_races/robotic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
+/datum/limb/proc/get_icon(icon/race_icon, icon/deform_icon, gender="")
+	if(limb_status & LIMB_ROBOT && !(owner.species.species_flags & IS_SYNTHETIC))
+		return icon('icons/mob/human_races/robotic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
 
 	if (limb_status & LIMB_MUTATED)
-		return new /icon(deform_icon, "[icon_name][gender ? "_[gender]" : ""]")
+		return icon(deform_icon, "[icon_name][gender ? "_[gender]" : ""]")
 
 	var/datum/ethnicity/E = GLOB.ethnicities_list[owner.ethnicity]
 	var/datum/body_type/B = GLOB.body_types_list[owner.body_type]
@@ -1018,7 +1035,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	else
 		b_icon = B.icon_name
 
-	return new /icon(race_icon, "[get_limb_icon_name(owner.species, b_icon, owner.gender, icon_name, e_icon)]")
+	return icon(race_icon, "[get_limb_icon_name(owner.species, b_icon, owner.gender, icon_name, e_icon)]")
 
 	//return new /icon(race_icon, "[icon_name][gender ? "_[gender]" : ""]")
 
@@ -1037,11 +1054,16 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if (!c_hand)
 		return
 
+	if(!is_usable())
+		owner.dropItemToGround(c_hand)
+		owner.emote("me", 1, "drop[owner.p_s()] what [owner.p_they()] [owner.p_were()] holding in [owner.p_their()] [hand_name], [owner.p_their()] [display_name] unresponsive!")
+		return
 	if(is_broken())
 		if(prob(15))
 			owner.dropItemToGround(c_hand)
 			var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
 			owner.emote("me", 1, "[(owner.species && owner.species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [hand_name]!")
+			return
 	if(is_malfunctioning())
 		if(prob(5))
 			owner.dropItemToGround(c_hand)
@@ -1055,21 +1077,21 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 
 	if(limb_status & LIMB_DESTROYED)
-		to_chat(user, "<span class='warning'>There's nothing there to splint!</span>")
+		to_chat(user, span_warning("There's nothing there to splint!"))
 		return FALSE
 
 	if(limb_status & LIMB_SPLINTED && applied_health <= splint_health)
-		to_chat(user, "<span class='warning'>This limb is already splinted!</span>")
+		to_chat(user, span_warning("This limb is already splinted!"))
 		return FALSE
 
 	var/delay = SKILL_TASK_AVERAGE - (1 SECONDS + user.skills.getRating("medical") * 5)
-	var/text1 = "<span class='warning'>[user] finishes applying [S] to [target]'s [display_name].</span>"
-	var/text2 = "<span class='notice'>You finish applying [S] to [target]'s [display_name].</span>"
+	var/text1 = span_warning("[user] finishes applying [S] to [target]'s [display_name].")
+	var/text2 = span_notice("You finish applying [S] to [target]'s [display_name].")
 
 	if(target == user) //If self splinting, multiply delay by 4
 		delay *= 4
-		text1 = "<span class='warning'>[user] successfully applies [S] to their [display_name].</span>"
-		text2 = "<span class='notice'>You successfully apply [S] to your [display_name].</span>"
+		text1 = span_warning("[user] successfully applies [S] to their [display_name].")
+		text2 = span_notice("You successfully apply [S] to your [display_name].")
 
 	if(!do_mob(user, target, delay, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
@@ -1083,7 +1105,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return TRUE
 
 
-//called when limb is removed or robotized, any ongoing surgery and related vars are reset
+///called when limb is removed or robotized, any ongoing surgery and related vars are reset
 /datum/limb/proc/reset_limb_surgeries()
 	surgery_open_stage = 0
 	bone_repair_stage = 0
@@ -1102,7 +1124,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/remove_limb_soft_armor(datum/armor/removed_armor)
 	soft_armor = soft_armor.detachArmor(removed_armor)
 	var/datum/armor/scaled_armor = removed_armor.scaleAllRatings(cover_index * 0.01, 1)
-	owner.soft_armor = owner.soft_armor.detachArmor(scaled_armor)
+	if(owner)
+		owner.soft_armor = owner.soft_armor.detachArmor(scaled_armor)
 
 
 /datum/limb/proc/add_limb_hard_armor(datum/armor/added_armor)
@@ -1114,7 +1137,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/remove_limb_hard_armor(datum/armor/removed_armor)
 	hard_armor = hard_armor.detachArmor(removed_armor)
 	var/datum/armor/scaled_armor = removed_armor.scaleAllRatings(cover_index * 0.01, 1)
-	owner.hard_armor = owner.hard_armor.detachArmor(scaled_armor)
+	if(owner)
+		owner.hard_armor = owner.hard_armor.detachArmor(scaled_armor)
 
 
 /****************************************************
@@ -1264,21 +1288,21 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if (!disfigured)
 		if (brute_dam > 40)
 			if (prob(50))
-				disfigure("brute")
+				disfigure(BRUTE)
 		if (burn_dam > 40)
 			disfigure("burn")
 
-/datum/limb/head/proc/disfigure(type = "brute")
+/datum/limb/head/proc/disfigure(type = BRUTE)
 	if (disfigured)
 		return
-	if(type == "brute")
-		owner.visible_message("<span class='warning'> You hear a sickening cracking sound coming from \the [owner]'s face.</span>",	\
-		"<span class='danger'>Your face becomes an unrecognizible mangled mess!</span>",	\
-		"<span class='warning'> You hear a sickening crack.</span>")
+	if(type == BRUTE)
+		owner.visible_message(span_warning(" You hear a sickening cracking sound coming from \the [owner]'s face."),	\
+		span_danger("Your face becomes an unrecognizible mangled mess!"),	\
+		span_warning(" You hear a sickening crack."))
 	else
-		owner.visible_message("<span class='warning'> [owner]'s face melts away, turning into a mangled mess!</span>",	\
-		"<span class='danger'>Your face melts off!</span>",	\
-		"<span class='warning'> You hear a sickening sizzle.</span>")
+		owner.visible_message(span_warning(" [owner]'s face melts away, turning into a mangled mess!"),	\
+		span_danger("Your face melts off!"),	\
+		span_warning(" You hear a sickening sizzle."))
 	disfigured = 1
 	owner.name = owner.get_visible_name()
 

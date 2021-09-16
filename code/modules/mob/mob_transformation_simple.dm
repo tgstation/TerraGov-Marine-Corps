@@ -3,7 +3,7 @@
 		return
 
 	if(new_type == /mob/new_player)
-		to_chat(usr, "<span class='warning'>Cannot convert into a new_player.</span>")
+		to_chat(usr, span_warning("Cannot convert into a new_player."))
 		return
 
 	var/mob/M
@@ -13,7 +13,7 @@
 		M = new new_type(loc)
 
 	if(!istype(M))
-		to_chat(usr, "<span class='warning'>Invalid typepath.</span>")
+		to_chat(usr, span_warning("Invalid typepath."))
 		qdel(M)
 		return
 

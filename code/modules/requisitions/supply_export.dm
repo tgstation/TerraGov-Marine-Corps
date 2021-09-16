@@ -17,6 +17,10 @@
 	SSpoints.supply_points[faction_selling] += .
 	return new /datum/export_report(., name, faction_selling)
 
+/mob/living/carbon/xenomorph/shrike/supply_export(faction_selling)
+	SSpoints.supply_points[faction_selling] += 50
+	return new /datum/export_report(50, name, faction_selling)
+
 
 /mob/living/carbon/human/supply_export(faction_selling)
 	switch(job.job_category)

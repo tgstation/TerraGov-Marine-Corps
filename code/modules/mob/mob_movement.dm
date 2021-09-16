@@ -4,7 +4,7 @@
 		return TRUE
 	if(ismob(mover) && CHECK_BITFIELD(mover.flags_pass, PASSMOB))
 		return TRUE
-	return (!mover.density || !density || lying_angle)
+	return . || (!mover.density || !density || lying_angle) //Parent handles buckling - if someone's strapped to us it can pass.
 
 
 /client/verb/swap_hand()
@@ -101,7 +101,7 @@
 			return
 		else if(L.restrained(RESTRAINED_NECKGRAB))
 			move_delay = world.time + 1 SECONDS //to reduce the spam
-			to_chat(src, "<span class='warning'>You're restrained! You can't move!</span>")
+			to_chat(src, span_warning("You're restrained! You can't move!"))
 			return
 		else
 			move_delay = world.time + 1 SECONDS
@@ -141,7 +141,7 @@
 	. = ..()
 
 	if((direct & (direct - 1)) && mob.loc == n) //moved diagonally successfully
-		add_delay *= 2
+		add_delay *= DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER
 	move_delay += add_delay
 
 #undef MOVEMENT_DELAY_BUFFER
@@ -161,7 +161,7 @@
 
 	//Check to see if we slipped
 	if(prob(Process_Spaceslipping(5)))
-		to_chat(src, "<span class='boldnotice'>You slipped!</span>")
+		to_chat(src, span_boldnotice("You slipped!"))
 		step(src, src.inertia_dir)
 		return 0
 	//If not then we can reset inertia and move

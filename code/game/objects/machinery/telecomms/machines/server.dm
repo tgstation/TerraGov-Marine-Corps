@@ -123,11 +123,69 @@
 	freq_listening = list(FREQ_CAS)
 	autolinkers = list("firesupport")
 
+/obj/machinery/telecomms/server/presets/medical/rebel
+	id = "Medical Server rebel"
+	freq_listening = list(FREQ_MEDICAL_REBEL)
+	autolinkers = list("medical_rebel")
+
+
+/obj/machinery/telecomms/server/presets/requisitions/rebel
+	id = "Requisitions Server rebel"
+	freq_listening = list(FREQ_REQUISITIONS_REBEL)
+	autolinkers = list("requisitions_rebel")
+
+
+/obj/machinery/telecomms/server/presets/alpha/rebel
+	id = "Alpha Server rebel"
+	freq_listening = list(FREQ_ALPHA_REBEL)
+	autolinkers = list("alpha_rebel")
+
+
+/obj/machinery/telecomms/server/presets/bravo/rebel
+	id = "Bravo Server rebel"
+	freq_listening = list(FREQ_BRAVO_REBEL)
+	autolinkers = list("bravo_rebel")
+
+
+/obj/machinery/telecomms/server/presets/charlie/rebel
+	id = "Charlie Server rebel"
+	freq_listening = list(FREQ_CHARLIE_REBEL)
+	autolinkers = list("charlie_rebel")
+
+
+/obj/machinery/telecomms/server/presets/delta/rebel
+	id = "Delta Server rebel"
+	freq_listening = list(FREQ_DELTA_REBEL)
+	autolinkers = list("delta_rebel")
+
+
+/obj/machinery/telecomms/server/presets/command/rebel
+	id = "Command Server rebel"
+	freq_listening = list(FREQ_COMMAND_REBEL)
+	autolinkers = list("command_rebel")
+
+
+/obj/machinery/telecomms/server/presets/engineering/rebel
+	id = "Engineering Server rebel"
+	freq_listening = list(FREQ_ENGINEERING_REBEL)
+	autolinkers = list("engineering_rebel")
+
+
+/obj/machinery/telecomms/server/presets/cas/rebel
+	id = "Fire Support Server rebel"
+	freq_listening = list(FREQ_CAS_REBEL)
+	autolinkers = list("firesupport_rebel")
+
 
 /obj/machinery/telecomms/server/presets/common
 	id = "Common Server"
-	freq_listening = list(FREQ_PMC, FREQ_COLONIST, FREQ_USL, FREQ_DEATHSQUAD, FREQ_IMPERIAL, FREQ_SOM, FREQ_SECTOID, FREQ_ECHO)
+	freq_listening = list(FREQ_COMMON, FREQ_PMC, FREQ_COLONIST, FREQ_USL, FREQ_DEATHSQUAD, FREQ_IMPERIAL, FREQ_SOM, FREQ_SECTOID, FREQ_ECHO)
 	autolinkers = list("common", "ert")
+
+/obj/machinery/telecomms/server/presets/common/rebel
+	id = "Common Server rebel"
+	freq_listening = list(FREQ_COMMON_REBEL, FREQ_PMC, FREQ_COLONIST, FREQ_USL, FREQ_DEATHSQUAD, FREQ_IMPERIAL, FREQ_SOM, FREQ_SECTOID, FREQ_ECHO)
+	autolinkers = list("common_rebel", "ert")
 
 
 //Common and other radio frequencies for people to freely use

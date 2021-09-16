@@ -56,9 +56,9 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 		..()
 		if(get_dist(src, user) <= 4)
 			if(sortTag)
-				to_chat(user, "<span class='notice'>It is labeled \"[sortTag]\"</span>")
+				to_chat(user, span_notice("It is labeled \"[sortTag]\""))
 			if(examtext)
-				to_chat(user, "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>")
+				to_chat(user, span_notice("It has a note attached which reads, \"[examtext]\""))
 		return
 
 
@@ -68,14 +68,14 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 	if(istype(I, /obj/item/destTagger))
 		var/obj/item/destTagger/O = I
 		if(!O.currTag)
-			to_chat(user, "<span class='warning'>You need to set a destination first!</span>")
+			to_chat(user, span_warning("You need to set a destination first!"))
 			return
 
 		if(sortTag == O.currTag)
-			to_chat(user, "<span class='warning'>The package is already labeled for [O.currTag].</span>")
+			to_chat(user, span_warning("The package is already labeled for [O.currTag]."))
 			return
 
-		to_chat(user, "<span class='notice'>You have labeled the destination as [O.currTag].</span>")
+		to_chat(user, span_notice("You have labeled the destination as [O.currTag]."))
 		if(!sortTag)
 			sortTag = O.currTag
 			update_icon()
@@ -88,10 +88,10 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 			if("Title")
 				var/str = stripped_input(user, "Label text?", "Set label", max_length = MAX_NAME_LEN)
 				if(!str)
-					to_chat(user, "<span class='warning'>Invalid text.</span>")
+					to_chat(user, span_warning("Invalid text."))
 					return
 				user.visible_message("\The [user] titles \the [src] with \a [I], marking down: \"[str]\"",\
-				"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
+				span_notice("You title \the [src]: \"[str]\""),\
 				"You hear someone scribbling a note.")
 				name = "[name] ([str])"
 				if(!examtext && !nameset)
@@ -102,7 +102,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 			if("Description")
 				var/str = stripped_input(user, "Label text?", "Set label", max_length = MAX_NAME_LEN)
 				if(!str)
-					to_chat(user, "<span class='warning'>Invalid text.</span>")
+					to_chat(user, span_warning("Invalid text."))
 					return
 				if(!examtext && !nameset)
 					examtext = str
@@ -110,7 +110,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 				else
 					examtext = str
 				user.visible_message("\The [user] labels \the [src] with \a [I], scribbling down: \"[examtext]\"",\
-				"<span class='notice'>You label \the [src]: \"[examtext]\"</span>",\
+				span_notice("You label \the [src]: \"[examtext]\""),\
 				"You hear someone scribbling a note.")
 
 
@@ -165,9 +165,9 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 		..()
 		if(get_dist(src, user) <= 4)
 			if(sortTag)
-				to_chat(user, "<span class='notice'>It is labeled \"[sortTag]\"</span>")
+				to_chat(user, span_notice("It is labeled \"[sortTag]\""))
 			if(examtext)
-				to_chat(user, "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>")
+				to_chat(user, span_notice("It has a note attached which reads, \"[examtext]\""))
 
 /obj/item/smallDelivery/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -175,14 +175,14 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 	if(istype(I, /obj/item/destTagger))
 		var/obj/item/destTagger/O = I
 		if(!O.currTag)
-			to_chat(user, "<span class='warning'>You need to set a destination first!</span>")
+			to_chat(user, span_warning("You need to set a destination first!"))
 			return
 
 		if(sortTag == O.currTag)
-			to_chat(user, "<span class='warning'>The package is already labeled for [O.currTag].</span>")
+			to_chat(user, span_warning("The package is already labeled for [O.currTag]."))
 			return
 
-		to_chat(user, "<span class='notice'>You have labeled the destination as [O.currTag].</span>")
+		to_chat(user, span_notice("You have labeled the destination as [O.currTag]."))
 		if(!sortTag)
 			sortTag = O.currTag
 			update_icon()
@@ -195,10 +195,10 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 			if("Title")
 				var/str = stripped_input(user, "Label text?", "Set label", max_length = MAX_NAME_LEN)
 				if(!str)
-					to_chat(user, "<span class='warning'>Invalid text.</span>")
+					to_chat(user, span_warning("Invalid text."))
 					return
 				user.visible_message("\The [user] titles \the [src] with \a [I], marking down: \"[str]\"",\
-				"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
+				span_notice("You title \the [src]: \"[str]\""),\
 				"You hear someone scribbling a note.")
 				name = "[name] ([str])"
 				if(!examtext && !nameset)
@@ -209,7 +209,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 			if("Description")
 				var/str = stripped_input(user, "Label text?", "Set label", max_length = MAX_NAME_LEN)
 				if(!str)
-					to_chat(user, "<span class='warning'>Invalid text.</span>")
+					to_chat(user, span_warning("Invalid text."))
 					return
 				if(!examtext && !nameset)
 					examtext = str
@@ -217,7 +217,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 				else
 					examtext = str
 				user.visible_message("\The [user] labels \the [src] with \a [I], scribbling down: \"[examtext]\"",\
-				"<span class='notice'>You label \the [src]: \"[examtext]\"</span>",\
+				span_notice("You label \the [src]: \"[examtext]\""),\
 				"You hear someone scribbling a note.")
 
 
@@ -271,7 +271,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 					P.name = "huge parcel"
 				src.amount -= 1
 				user.visible_message("\The [user] wraps \a [target] with \a [src].",\
-				"<span class='notice'>You wrap \the [target], leaving [amount] units of paper on \the [src].</span>",\
+				span_notice("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
 				"You hear someone taping paper around a small object.")
 		else if (istype(target, /obj/structure/closet/crate))
 			var/obj/structure/closet/crate/O = target
@@ -282,10 +282,10 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 				O.loc = P
 				src.amount -= 3
 				user.visible_message("\The [user] wraps \a [target] with \a [src].",\
-				"<span class='notice'>You wrap \the [target], leaving [amount] units of paper on \the [src].</span>",\
+				span_notice("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
 				"You hear someone taping paper around a large object.")
 			else if(src.amount < 3)
-				to_chat(user, "<span class='warning'>You need more paper.</span>")
+				to_chat(user, span_warning("You need more paper."))
 		else if (istype (target, /obj/structure/closet))
 			var/obj/structure/closet/O = target
 			if (src.amount > 3 && !O.opened)
@@ -295,12 +295,12 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 				O.loc = P
 				src.amount -= 3
 				user.visible_message("\The [user] wraps \a [target] with \a [src].",\
-				"<span class='notice'>You wrap \the [target], leaving [amount] units of paper on \the [src].</span>",\
+				span_notice("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
 				"You hear someone taping paper around a large object.")
 			else if(src.amount < 3)
-				to_chat(user, "<span class='warning'>You need more paper.</span>")
+				to_chat(user, span_warning("You need more paper."))
 		else
-			to_chat(user, "<span class='notice'>The object you are trying to wrap is unsuitable for the sorting machinery!</span>")
+			to_chat(user, span_notice("The object you are trying to wrap is unsuitable for the sorting machinery!"))
 		if (src.amount <= 0)
 			new /obj/item/trash/c_tube( src.loc )
 			qdel(src)
@@ -310,7 +310,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 	examine(mob/user)
 		..()
 		if(get_dist(src, user) < 2)
-			to_chat(user, "<span class='notice'>There are [amount] units of package wrap left!</span>")
+			to_chat(user, span_notice("There are [amount] units of package wrap left!"))
 
 
 /obj/item/destTagger
@@ -360,9 +360,9 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 
 /obj/machinery/disposal/deliveryChute/Initialize()
 	. = ..()
-	trunk = locate() in loc
+	set_trunk(locate(/obj/structure/disposalpipe/trunk) in loc)
 	if(trunk)
-		trunk.linked = src	// link the pipe trunk to self
+		trunk.set_linked(src)	// link the pipe trunk to self
 
 /obj/machinery/disposal/deliveryChute/interact()
 	return

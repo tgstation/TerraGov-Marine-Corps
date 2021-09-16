@@ -18,7 +18,7 @@ Contains most of the procs that are called when a xeno is attacked by something
 		use_plasma(200)
 		apply_status_effect(/datum/status_effect/noplasmaregen, 5 SECONDS)
 		if(prob(25))
-			to_chat(src, "<span class='xenowarning'>We feel our plasma reserves being drained as we pass through the smoke.</span>")
+			to_chat(src, span_xenowarning("We feel our plasma reserves being drained as we pass through the smoke."))
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, TOUCH, S.fraction)
 
@@ -29,3 +29,7 @@ Contains most of the procs that are called when a xeno is attacked by something
 /mob/living/carbon/xenomorph/Paralyze(amount, updating, ignore_canstun)
 	amount *= 0.2 // replaces the old knock_down -5
 	return ..()
+
+///Calculates fire resistance given caste and coatings, acts as a multiplier to damage taken
+/mob/living/carbon/xenomorph/proc/get_fire_resist()
+	return clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1)

@@ -20,28 +20,32 @@
 	greyscale_config = /datum/greyscale_config/modularchest_infantry
 	greyscale_colors = "#444732"
 
-	///Assoc list of color-hex for colors we're allowed to color this armor
-	var/static/list/colorable_colors = list(
-		"black" = "#474A50",
-		"snow" = "#D5CCC3",
-		"desert" = "#A57F7C",
-		"gray" = "#828282",
-		"brown" = "#60452B",
-		"red" = "#CC2C32",
-		"blue" = "#2A4FB7",
-		"yellow" = "#B7B21F",
-		"green" = "#2B7F1E",
-		"aqua" = "#2098A0",
-		"purple" = "#871F8F",
-		"orange" = "#BC4D25",
-		"pink" = "#D354BA",
-	)
+	///optional assoc list of colors we can color this armor
+	var/list/colorable_colors
+
 
 /obj/item/armor_module/armor/Initialize()
 	. = ..()
 	icon_state = "[initial(icon_state)]_icon"
 	item_state = initial(icon_state)
 
+///Will force faction colors on this armor module
+/obj/item/armor_module/armor/proc/limit_colorable_colors(faction)
+	switch(faction)
+		if(FACTION_TERRAGOV)
+			set_greyscale_colors("#2A4FB7")
+			colorable_colors = list(
+				"blue" = "#2A4FB7",
+				"aqua" = "#2098A0",
+				"purple" = "#871F8F",
+			)
+		if(FACTION_TERRAGOV_REBEL)
+			set_greyscale_colors("#CC2C32")
+			colorable_colors = list(
+				"red" = "#CC2C32",
+				"orange" = "#BC4D25",
+				"yellow" = "#B7B21F",
+			)
 
 /obj/item/armor_module/armor/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -53,14 +57,17 @@
 
 	var/obj/item/facepaint/paint = I
 	if(paint.uses < 1)
-		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
+		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return TRUE
 
+	var/new_color
+	if(colorable_colors)
+		new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
+	else
+		new_color = input(user, "Pick a color", "Pick color") as null|color
 
-	var/new_color = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
 	if(!new_color)
 		return
-	new_color = colorable_colors[new_color]
 
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return TRUE
@@ -96,7 +103,7 @@
 		return
 	if(parent.slot_chest)
 		if(!silent)
-			to_chat(user, "<span class='notice'>There is already an armor piece installed in that slot.</span>")
+			to_chat(user, span_notice("There is already an armor piece installed in that slot."))
 		return FALSE
 
 /obj/item/armor_module/armor/chest/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
@@ -163,7 +170,7 @@
 		return
 	if(parent.slot_legs)
 		if(!silent)
-			to_chat(user, "<span class='notice'>There is already an armor piece installed in that slot.</span>")
+			to_chat(user, span_notice("There is already an armor piece installed in that slot."))
 		return FALSE
 
 /obj/item/armor_module/armor/legs/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
@@ -225,7 +232,7 @@
 		return
 	if(parent.slot_arms)
 		if(!silent)
-			to_chat(user, "<span class='notice'>There is already an armor piece installed in that slot.</span>")
+			to_chat(user, span_notice("There is already an armor piece installed in that slot."))
 		return FALSE
 
 /obj/item/armor_module/armor/arms/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)

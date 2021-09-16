@@ -7,6 +7,7 @@
 	icon = 'icons/Marine/remotefob.dmi'
 	icon_state = "fobpc"
 	req_one_access = list(ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING)
+	resistance_flags = RESIST_ALL
 	networks = FALSE
 	off_action = new/datum/action/innate/camera_off/remote_fob
 	jump_action = null
@@ -94,22 +95,22 @@
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access Denied!</span>")
+		to_chat(user, span_warning("Access Denied!"))
 		return
 	if(!drone_creation_allowed)
-		to_chat(user, "<span class='notice'>Communication with the drone impossible due to fuel-residue in deployment zone atmosphere.</span>")
+		to_chat(user, span_notice("Communication with the drone impossible due to fuel-residue in deployment zone atmosphere."))
 		return
 	spawn_spot = FALSE
 	switch(tgui_alert(user, "Summon Drone in:", "FOB Construction Drone Control", list("LZ1","LZ2", "Cancel")))
 		if("LZ1")
 			spawn_spot = locate(/obj/docking_port/stationary/marine_dropship/lz1) in SSshuttle.stationary
 			if(!spawn_spot)
-				to_chat(user, "<span class='warning'>No valid location for drone deployment found.</span>")
+				to_chat(user, span_warning("No valid location for drone deployment found."))
 				return
 		if("LZ2")
 			spawn_spot = locate(/obj/docking_port/stationary/marine_dropship/lz2) in SSshuttle.stationary
 			if(!spawn_spot)
-				to_chat(user, "<span class='warning'>No valid location for drone deployment found.</span>")
+				to_chat(user, span_warning("No valid location for drone deployment found."))
 				return
 		else
 			return
@@ -128,7 +129,7 @@
 			var/useamount = attacking_stack.amount
 			sentry_remaining += useamount
 			attacking_stack.use(useamount)
-			to_chat(user, "<span class='notice'>Sentry voucher redeemed.</span>")
+			to_chat(user, span_notice("Sentry voucher redeemed."))
 			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 25, FALSE)
 			flick("fobpc-insert", src)
 			return
@@ -195,7 +196,7 @@
 
 /obj/machinery/computer/camera_advanced/remote_fob/check_eye(mob/living/user)
 	if(!drone_creation_allowed)
-		to_chat(user, "<span class='notice'>Communication with the drone has been disrupted.</span>")
+		to_chat(user, span_notice("Communication with the drone has been disrupted."))
 		user.unset_interaction()
 		return
 	return ..()

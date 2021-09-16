@@ -11,29 +11,22 @@ export const SupplyDropConsole = (_props, context) => {
 
   const beacon = data.current_beacon;
 
-  const canFire = (data.current_squad
-    && beacon.name
+  const canFire = (beacon.name
     && data.supplies_count
     && timeLeft === 0);
 
   return (
     <Window
       width={350}
-      height={500}>
+      height={350}>
       <Window.Content scrollable>
         <Section title="Supply drop">
           <LabeledList>
-            <LabeledList.Item label={'Current Squad'}>
-              {data.squad_lock ? (
-                data.squad_lock
-              ) : (
-                <Dropdown
-                  selected={data.current_squad}
-                  options={data.squads}
-                  onSelected={(e, squad) =>
-                    act('select_squad', { select_squad: e })}
-                />
-              )}
+            <LabeledList.Item label={'Current beacon'}>
+              <Button
+                onClick={() => act("select_beacon")}>
+                {data.current_beacon.name ? data.current_beacon.name : "No beacon selected"}
+              </Button>
             </LabeledList.Item>
             <Divider />
             <LabeledList.Item label="X Offset">

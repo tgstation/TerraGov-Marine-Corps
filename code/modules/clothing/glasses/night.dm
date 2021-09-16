@@ -42,8 +42,8 @@
 
 
 /obj/item/clothing/glasses/night/m56_goggles
-	name = "\improper M26 head mounted sight"
-	desc = "A headset and goggles system for use with the T-26 smart machinegun. Has a low-res short range imager, allowing for view of terrain."
+	name = "\improper KTLD head mounted sight"
+	desc = "A headset and goggles system made to pair with any KTLD weapon, such as a smartmachinegun. Has a low-res short range imager, allowing for view of terrain."
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
@@ -60,3 +60,13 @@
 	darkness_view = 7
 	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 	flags_item = NODROP|DELONDROP
+
+/obj/item/clothing/glasses/night/imager_goggles
+	name = "optical imager goggles"
+	desc = "Uses image scanning to increase visibility of even the most dimly lit surroundings except total darkness"
+	icon_state = "securityhud"
+	deactive_state = "degoggles_sec"
+	actions_types = list(/datum/action/item_action/toggle)
+	toggleable = TRUE
+	darkness_view = 2
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE

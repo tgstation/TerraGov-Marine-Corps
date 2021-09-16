@@ -99,11 +99,6 @@
 		if(O.client.inactivity / 600 > ALIEN_SELECT_AFK_BUFFER + 5)
 			continue
 
-		//Recently dead observers cannot be drafted.
-		var/deathtime = world.time - O.timeofdeath
-		if(deathtime < GLOB.xenorespawntime)
-			continue
-
 		//Aghosted admins don't get picked
 		if(O.mind?.current && isclientedaghost(O.mind.current))
 			continue
@@ -112,7 +107,7 @@
 			picked = O
 			continue
 
-		if(O.timeofdeath < picked.timeofdeath)
+		if(GLOB.key_to_time_of_death[O.key] < GLOB.key_to_time_of_death[picked.key])
 			picked = O
 
 	return picked
@@ -121,6 +116,10 @@
 /proc/convert_k2c(temp)
 	return ((temp - T0C))
 
+
+/// Removes an image from a client's `.images`. Useful as a callback.
+/proc/remove_image_from_client(image/image, client/remove_from)
+	remove_from?.images -= image
 
 /proc/remove_images_from_clients(image/I, list/show_to)
 	for(var/client/C in show_to)

@@ -13,6 +13,7 @@
 	anchored = TRUE
 	use_power = NO_POWER_USE
 	interaction_flags = INTERACT_MACHINE_TGUI
+	resistance_flags = CRUSHER_IMMUNE
 	var/capacity = 5e5		//Maximum amount of power it can hold
 	var/charge = 1e5		//Current amount of power it holds
 
@@ -33,9 +34,9 @@
 /obj/machinery/power/smes/examine(user)
 	..()
 	if(!terminal)
-		to_chat(user, "<span class='warning'>This SMES has no power terminal!</span>")
+		to_chat(user, span_warning("This SMES has no power terminal!"))
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-		to_chat(user, "<span class='notice'>The maintenance hatch is open.</span>")
+		to_chat(user, span_notice("The maintenance hatch is open."))
 
 /obj/machinery/power/smes/Initialize()
 	. = ..()
@@ -61,7 +62,7 @@
 /obj/machinery/power/smes/Destroy()
 	if(terminal)
 		disconnect_terminal()
-	. = ..()
+	return ..()
 
 /obj/machinery/power/smes/should_have_node()
 	return TRUE
@@ -192,10 +193,10 @@
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 
 		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-			to_chat(user, "<span class='notice'>You open the maintenance hatch of [src].</span>")
+			to_chat(user, span_notice("You open the maintenance hatch of [src]."))
 			icon_state = "[initial(icon_state)]_o"
 		else
-			to_chat(user, "<span class='notice'>You close the maintenance hatch of [src].</span>")
+			to_chat(user, span_notice("You close the maintenance hatch of [src]."))
 			icon_state = "[initial(icon_state)]"
 
 		update_icon()
@@ -208,23 +209,23 @@
 			return
 
 		if(terminal)
-			to_chat(user, "<span class='warning'>This SMES already has a power terminal!</span>")
+			to_chat(user, span_warning("This SMES already has a power terminal!"))
 			return
 
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-			to_chat(user, "<span class='warning'>You must open the maintenance panel first!</span>")
+			to_chat(user, span_warning("You must open the maintenance panel first!"))
 			return
 
 		var/turf/T = get_turf(user)
 		if(T.intact_tile) //is the floor plating removed ?
-			to_chat(user, "<span class='warning'>You must first remove the floor plating!</span>")
+			to_chat(user, span_warning("You must first remove the floor plating!"))
 			return
 
 		if(C.get_amount() < 10)
-			to_chat(user, "<span class='warning'>You need more wires!</span>")
+			to_chat(user, span_warning("You need more wires!"))
 			return
 
-		to_chat(user, "<span class='notice'>You start building the power terminal...</span>")
+		to_chat(user, span_notice("You start building the power terminal..."))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, 1)
 
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD) || C.get_amount() < 10)
@@ -237,7 +238,7 @@
 		C.use(10)
 		user.visible_message(\
 			"[user.name] has built a power terminal.",\
-			"<span class='notice'>You build the power terminal.</span>")
+			span_notice("You build the power terminal."))
 
 		//build the terminal and link it to the network
 		make_terminal(T)
@@ -368,7 +369,7 @@
 /obj/machinery/power/smes/proc/ion_act()
 	if(is_ground_level(z))
 		if(prob(1)) //explosion
-			visible_message("<span class='warning'>\The [src] is making strange noises!</span>", null, "<span class='warning'> You hear sizzling electronics.</span>")
+			visible_message(span_warning("\The [src] is making strange noises!"), null, span_warning(" You hear sizzling electronics."))
 			sleep(10*pick(4,5,6,7,10,14))
 			var/datum/effect_system/smoke_spread/smoke = new(src)
 			smoke.set_up(1, loc)

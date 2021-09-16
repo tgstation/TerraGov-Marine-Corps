@@ -88,7 +88,7 @@
 		var/mob/living/vic = i
 		var/total_heal = vic.friendly_fire[FF_DAMAGE_INCOMING]
 		log_admin("[key_name(vic)] healed for [total_heal] due to excessive friendly fire from [key_name(src)]")
-		to_chat(vic, "<span class='boldannounce'>You've been healed due to the recent friendly fire</span>")
+		to_chat(vic, span_boldannounce("You've been healed due to the recent friendly fire"))
 		vic.heal_overall_damage(total_heal)
 
 

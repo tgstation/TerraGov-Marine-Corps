@@ -66,13 +66,13 @@
 	. = ..()
 
 	if(!status)
-		to_chat(user, "<span class='info'>It's currently deactivated.</span>")
+		to_chat(user, span_info("It's currently deactivated."))
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN) && powered())
-			to_chat(user, "<span class='notice'>You'll need to open its maintenance panel with a <b>screwdriver</b> to turn it back on.</span>")
+			to_chat(user, span_notice("You'll need to open its maintenance panel with a <b>screwdriver</b> to turn it back on."))
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-		to_chat(user, "<span class='info'>Its maintenance panel is currently open.</span>")
+		to_chat(user, span_info("Its maintenance panel is currently open."))
 		if(!status && powered())
-			to_chat(user, "<span class='info'>It can reactivated with a <b>screwdriver</b>.</span>")
+			to_chat(user, span_info("It can reactivated with a <b>screwdriver</b>."))
 
 
 /obj/machinery/camera/proc/setViewRange(num = 7)
@@ -89,7 +89,7 @@
 		var/itemname = X.name
 		var/info = X.info
 
-		to_chat(U, "<span class='notice'>You hold \the [itemname] up to the camera...</span>")
+		to_chat(U, span_notice("You hold \the [itemname] up to the camera..."))
 		U.changeNext_move(CLICK_CD_MELEE)
 		for(var/mob/O in GLOB.player_list)
 			if(isAI(O))
@@ -111,7 +111,7 @@
 	if(.)
 		return TRUE
 	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
-	to_chat(user, "<span class='notice'>You screw the camera's panel [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "closed"].</span>")
+	to_chat(user, span_notice("You screw the camera's panel [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "closed"]."))
 	I.play_tool_sound(src)
 	update_icon()
 	return TRUE
@@ -132,7 +132,7 @@
 		return FALSE
 
 	setViewRange((view_range == initial(view_range)) ? short_range : initial(view_range))
-	to_chat(user, "<span class='notice'>You [(view_range == initial(view_range)) ? "restore" : "mess up"] the camera's focus.</span>")
+	to_chat(user, span_notice("You [(view_range == initial(view_range)) ? "restore" : "mess up"] the camera's focus."))
 	return TRUE
 
 
@@ -143,11 +143,11 @@
 	if(!I.tool_start_check(user, amount = 0))
 		return TRUE
 
-	to_chat(user, "<span class='notice'>You start to weld [src]...</span>")
+	to_chat(user, span_notice("You start to weld [src]..."))
 
 	if(I.use_tool(src, user, 100, volume = 50))
-		user.visible_message("<span class='warning'>[user] unwelds [src], leaving it as just a frame bolted to the wall.</span>",
-			"<span class='warning'>You unweld [src], leaving it as just a frame bolted to the wall</span>")
+		user.visible_message(span_warning("[user] unwelds [src], leaving it as just a frame bolted to the wall."),
+			span_warning("You unweld [src], leaving it as just a frame bolted to the wall"))
 		deconstruct(TRUE)
 
 	return TRUE
@@ -158,18 +158,18 @@
 		return FALSE
 
 	if(obj_integrity <= 0)
-		to_chat(X, "<span class='warning'>The camera is already disabled.</span>")
+		to_chat(X, span_warning("The camera is already disabled."))
 		return
 
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	X.visible_message("<span class='danger'>[X] slashes \the [src]!</span>", \
-	"<span class='danger'>We slash \the [src]!</span>")
+	X.visible_message(span_danger("[X] slashes \the [src]!"), \
+	span_danger("We slash \the [src]!"))
 	playsound(loc, "alien_claw_metal", 25, 1)
 
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
 		update_icon()
-		visible_message("<span class='danger'>\The [src]'s cover swings open, exposing the wires!</span>")
+		visible_message(span_danger("\The [src]'s cover swings open, exposing the wires!"))
 		return
 
 	var/datum/effect_system/spark_spread/sparks = new
@@ -178,7 +178,7 @@
 	sparks.start()
 
 	deactivate()
-	visible_message("<span class='danger'>\The [src]'s wires snap apart in a rain of sparks!</span>")
+	visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!"))
 
 
 /obj/machinery/camera/proc/deactivate(mob/user)
@@ -197,6 +197,14 @@
 			M.unset_interaction()
 			M.reset_perspective(null)
 			to_chat(M, "The screen bursts into static.")
+
+	if(!powered())
+		return
+
+	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+		if(!AI.client)
+			continue
+		to_chat(AI, span_notice("[src] has been desactived at [myarea]"))
 
 
 /obj/machinery/camera/update_icon()
@@ -228,9 +236,9 @@
 
 	if(displaymessage)
 		if(user)
-			visible_message("<span class='danger'>[user] [change_msg] [src]!</span>")
+			visible_message(span_danger("[user] [change_msg] [src]!"))
 		else
-			visible_message("<span class='danger'>\The [src] [change_msg]!</span>")
+			visible_message(span_danger("\The [src] [change_msg]!"))
 
 	update_icon() //update Initialize() if you remove this.
 
@@ -308,6 +316,9 @@
 	name = "military-grade camera"
 	network = list("marinemainship")
 
+/obj/machinery/camera/autoname/mainship/rebelship
+	network = list("rebelmainship")
+
 //cameras installed inside the dropships, accessible via both cockpit monitor and ship camera computers
 /obj/machinery/camera/autoname/mainship/dropship_one
 	network = list("marinemainship", "dropship1")
@@ -315,6 +326,9 @@
 
 /obj/machinery/camera/autoname/mainship/dropship_two
 	network = list("marinemainship", "dropship2")
+
+/obj/machinery/camera/autoname/mainship/dropship_three
+	network = list("rebelmainship", "dropship3")
 
 /obj/machinery/camera/headset
 	name = "headset camera"
@@ -328,7 +342,7 @@
 	icon_state = ""
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	network = list("laser targets")
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 
 /obj/machinery/camera/laser_cam/Initialize(mapload, laser_name)
 	. = ..()
@@ -341,7 +355,7 @@
 	icon_state = ""
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	network = list("supply beacons")
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 
 /obj/machinery/camera/beacon_cam/bomb
 	network = list("bomb beacons")

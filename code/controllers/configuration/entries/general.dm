@@ -71,6 +71,10 @@ Administrative related.
 
 /datum/config_entry/flag/log_ooc
 
+/datum/config_entry/flag/log_xooc
+
+/datum/config_entry/flag/log_mooc
+
 /datum/config_entry/flag/log_looc
 
 /datum/config_entry/flag/log_access
@@ -151,6 +155,9 @@ Administrative related.
 /datum/config_entry/flag/use_account_age_for_jobs
 
 /datum/config_entry/number/notify_new_player_age
+	min_val = -1
+
+/datum/config_entry/number/notify_new_account_age
 	min_val = -1
 
 /datum/config_entry/flag/allow_shutdown
@@ -394,3 +401,15 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 /datum/config_entry/number/ff_damage_reset
 	min_val = 0
 	config_entry_value = 30 SECONDS
+
+/datum/config_entry/flag/is_automatic_balance_on
+	config_entry_value = TRUE
+
+/datum/config_entry/number/hard_deletes_overrun_threshold
+	integer = FALSE
+	min_val = 0
+	config_entry_value = 0.5
+
+/datum/config_entry/number/hard_deletes_overrun_limit
+	config_entry_value = 0
+	min_val = 0

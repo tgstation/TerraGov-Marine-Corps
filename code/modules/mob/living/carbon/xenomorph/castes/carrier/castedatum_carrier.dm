@@ -13,9 +13,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 17
 
-	// *** Tackle *** //
-	tackle_damage = 21
-
 	// *** Speed *** //
 	speed = 0
 
@@ -35,7 +32,7 @@
 	evolves_to = list(/mob/living/carbon/xenomorph/Defiler)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CAN_BECOME_KING
 	can_hold_eggs = CAN_HOLD_ONE_HAND
 
 	// *** Defense *** //
@@ -56,7 +53,7 @@
 		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/cocoon,
-		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/throw_hugger,
 		/datum/action/xeno_action/lay_egg,
 		/datum/action/xeno_action/activable/retrieve_egg,
@@ -76,9 +73,6 @@
 	caste_desc = "A portable Love transport. It looks a little more dangerous."
 
 	upgrade = XENO_UPGRADE_ONE
-
-	// *** Tackle *** //
-	tackle_damage = 21
 
 	// *** Speed *** //
 	speed = -0.1
@@ -113,9 +107,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 20
 
-	// *** Tackle *** //
-	tackle_damage = 25
-
 	// *** Speed *** //
 	speed = -0.2
 
@@ -148,9 +139,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
-
-	// *** Tackle *** //
-	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -0.3

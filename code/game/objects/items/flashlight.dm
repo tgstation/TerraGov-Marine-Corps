@@ -9,13 +9,25 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	materials = list(/datum/material/metal = 50, /datum/material/glass = 20)
 	actions_types = list(/datum/action/item_action)
-	light_system = MOVABLE_LIGHT
 	light_range = 5
 	light_power = 3 //luminosity when on
-	var/raillight_compatible = TRUE //Can this be turned into a rail light ?
+	///Can this be turned into a rail light ?
+	var/raillight_compatible = TRUE
 	var/activation_sound = 'sound/items/flashlight.ogg'
+	///If this flashlight affected by nightfall
+	var/nightfall_immune = FALSE
 
-/obj/item/flashlight/turn_light(mob/user, toggle_on)
+/obj/item/flashlight/Initialize()
+	. = ..()
+	GLOB.nightfall_toggleable_lights += src
+
+/obj/item/flashlight/Destroy()
+	GLOB.nightfall_toggleable_lights -= src
+	return ..()
+
+/obj/item/flashlight/turn_light(mob/user, toggle_on, cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
+	if(forced && nightfall_immune)
+		return NIGHTFALL_IMMUNE
 	. = ..()
 	if(. != CHECKS_PASSED)
 		return
@@ -24,7 +36,14 @@
 	set_light_on(toggle_on)
 	update_action_button_icons()
 	update_icon()
-	
+
+/obj/item/flashlight/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
+	if(turn_light(X, FALSE) != CHECKS_PASSED)
+		return
+	playsound(loc, "alien_claw_metal", 25, 1)
+	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	to_chat(X, span_warning("We disable the metal thing's lights.") )
+
 /obj/item/flashlight/update_icon()
 	. = ..()
 	if(light_on)
@@ -49,7 +68,7 @@
 			return
 
 		if(light_on)
-			to_chat(user, "<span class='warning'>Turn off [src] first.</span>")
+			to_chat(user, span_warning("Turn off [src] first."))
 			return
 
 		if(loc == user)
@@ -57,8 +76,8 @@
 
 		var/obj/item/attachable/flashlight/F = new(loc)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
-		to_chat(user, "<span class='notice'>You modify [src]. It can now be mounted on a weapon.</span>")
-		to_chat(user, "<span class='notice'>Use a screwdriver on [F] to change it back.</span>")
+		to_chat(user, span_notice("You modify [src]. It can now be mounted on a weapon."))
+		to_chat(user, span_notice("Use a screwdriver on [F] to change it back."))
 		qdel(src) //Delete da old flashlight
 
 
@@ -71,25 +90,25 @@
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
 		if(ishuman(M) && ((H.head && H.head.flags_inventory & COVEREYES) || (H.wear_mask && H.wear_mask.flags_inventory & COVEREYES) || (H.glasses && H.glasses.flags_inventory & COVEREYES)))
-			to_chat(user, "<span class='notice'>You're going to need to remove that [(H.head && H.head.flags_inventory & COVEREYES) ? "helmet" : (H.wear_mask && H.wear_mask.flags_inventory & COVEREYES) ? "mask": "glasses"] first.</span>")
+			to_chat(user, span_notice("You're going to need to remove that [(H.head && H.head.flags_inventory & COVEREYES) ? "helmet" : (H.wear_mask && H.wear_mask.flags_inventory & COVEREYES) ? "mask": "glasses"] first."))
 			return
 
 		if(M == user)	//they're using it on themselves
 			M.flash_act()
-			M.visible_message("<span class='notice'>[M] directs [src] to [M.p_their()] eyes.</span>", \
-								"<span class='notice'>You wave the light in front of your eyes! Trippy!</span>")
+			M.visible_message(span_notice("[M] directs [src] to [M.p_their()] eyes."), \
+								span_notice("You wave the light in front of your eyes! Trippy!"))
 			return
 
-		user.visible_message("<span class='notice'>[user] directs [src] to [M]'s eyes.</span>", \
-							"<span class='notice'>You direct [src] to [M]'s eyes.</span>")
+		user.visible_message(span_notice("[user] directs [src] to [M]'s eyes."), \
+							span_notice("You direct [src] to [M]'s eyes."))
 
 		if(ishuman(M))	//robots and aliens are unaffected
 			var/mob/living/carbon/C = M
 			if(C.stat == DEAD || C.disabilities & BLIND)	//mob is dead or fully blind
-				to_chat(user, "<span class='notice'>[C] pupils does not react to the light!</span>")
+				to_chat(user, span_notice("[C] pupils does not react to the light!"))
 			else	//they're okay!
 				C.flash_act()
-				to_chat(user, "<span class='notice'>[C]'s pupils narrow.</span>")
+				to_chat(user, span_notice("[C]'s pupils narrow."))
 	else
 		return ..()
 
@@ -157,8 +176,8 @@
 		return FALSE
 	X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 	playsound(loc, 'sound/effects/metalhit.ogg', 20, TRUE)
-	X.visible_message("<span class='danger'>\The [X] smashes [src]!</span>", \
-	"<span class='danger'>We smash [src]!</span>", null, 5)
+	X.visible_message(span_danger("\The [X] smashes [src]!"), \
+	span_danger("We smash [src]!"), null, 5)
 	deconstruct(FALSE)
 
 // FLARES
@@ -173,6 +192,7 @@
 	actions = list()	//just pull it manually, neckbeard.
 	raillight_compatible = FALSE
 	activation_sound = 'sound/items/flare.ogg'
+	nightfall_immune = TRUE
 	var/fuel = 0
 	var/on_damage = 7
 
@@ -180,8 +200,10 @@
 	. = ..()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 
-/obj/item/flashlight/flare/turn_light(mob/user, toggle_on)
+/obj/item/flashlight/flare/turn_light(mob/user = null, toggle_on , cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE, atom/originated_turf = null, distance_max = 0)
 	. = ..()
+	if(. != CHECKS_PASSED)
+		return
 	if(toggle_on)
 		return
 	fuel = 0 //Flares are one way; if you turn them off, you're snuffing them out.
@@ -190,6 +212,9 @@
 	damtype = initial(damtype)
 	icon_state = "[initial(icon_state)]-empty"
 
+/obj/item/flashlight/flare/attack_alien(mob/living/carbon/xenomorph/X, isrightclick)
+	return
+
 /obj/item/flashlight/flare/proc/turn_off()
 	turn_light(null, FALSE, 0, FALSE, TRUE)
 
@@ -197,7 +222,7 @@
 
 	// Usual checks
 	if(!fuel)
-		to_chat(user, "<span class='notice'>It's out of fuel.</span>")
+		to_chat(user, span_notice("It's out of fuel."))
 		return
 	if(light_on)
 		return
@@ -205,10 +230,10 @@
 	. = ..()
 	// All good, turn it on.
 	if(.)
-		user.visible_message("<span class='notice'>[user] activates the flare.</span>", "<span class='notice'>You pull the cord on the flare, activating it!</span>")
+		user.visible_message(span_notice("[user] activates the flare."), span_notice("You pull the cord on the flare, activating it!"))
 		force = on_damage
 		heat = 1500
-		damtype = "fire"
+		damtype = BURN
 		addtimer(CALLBACK(src, .proc/turn_off), fuel)
 		if(iscarbon(user))
 			var/mob/living/carbon/C = usr
@@ -220,7 +245,7 @@
 	heat = 1500
 	turn_light(null, TRUE)
 	force = on_damage
-	damtype = "fire"
+	damtype = BURN
 	addtimer(CALLBACK(src, .proc/turn_off), fuel)
 
 /obj/item/flashlight/slime

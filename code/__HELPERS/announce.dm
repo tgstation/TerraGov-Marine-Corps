@@ -22,7 +22,7 @@
 			announcement += "<meta charset='UTF-8'><h1 class='alert'>Command Announcement</h1>"
 
 
-	announcement += "<meta charset='UTF-8'><br><span class='alert'>[html_encode(message)]</span><br>"
+	announcement += "<meta charset='UTF-8'><br>[span_alert("[html_encode(message)]")]<br>"
 	announcement += "<meta charset='UTF-8'><br>"
 
 	var/s = sound(sound, channel = CHANNEL_ANNOUNCEMENTS)

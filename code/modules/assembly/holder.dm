@@ -113,7 +113,7 @@
 	. = ..()
 	if(.)
 		return TRUE
-	to_chat(user, "<span class='notice'>You disassemble [src]!</span>")
+	to_chat(user, span_notice("You disassemble [src]!"))
 	if(a_left)
 		a_left.on_detach()
 		a_left = null
@@ -126,7 +126,7 @@
 
 /obj/item/assembly_holder/attack_self(mob/user)
 	if(!a_left || !a_right)
-		to_chat(user, "<span class='danger'>Assembly part missing!</span>")
+		to_chat(user, span_danger("Assembly part missing!"))
 		return
 	if(istype(a_left,a_right.type))//If they are the same type it causes issues due to window code
 		switch(tgui_alert(user, "Which side would you like to use?", null, list("Left","Right")))

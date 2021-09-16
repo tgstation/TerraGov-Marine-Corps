@@ -3,593 +3,825 @@
 	name = "Desert Dam"
 	icon_state = "cliff_blocked"
 
-
-
 //INTERIOR
 // areas under rock
-
+/area/desert_dam/interior
+	ceiling = CEILING_METAL
+	outside = FALSE
 //NorthEastern Lab Section
 /area/desert_dam/interior/lab_northeast
-	name = "Desert Dam"
+	ceiling = CEILING_DEEP_UNDERGROUND
+/area/desert_dam/interior/lab_northeast
+	name = "Northeastern Lab"
 	icon_state = "purple"
-/area/desert_dam/interior/lab_northeast/lobby
-	name = "Desert Dam"
+/area/desert_dam/interior/lab_northeast/east_lab_lobby
+	name = "East Lab Lobby"
 	icon_state = "green"
-/area/desert_dam/interior/lab_northeast/west_hallway
-	name = "Desert Dam"
+/area/desert_dam/interior/lab_northeast/east_lab_west_hallway
+	name = "East Lab Western Hallway"
 	icon_state = "blue"
-/area/desert_dam/interior/lab_northeast/central_hallway
-	name = "Desert Dam"
+/area/desert_dam/interior/lab_northeast/east_lab_central_hallway
+	name = "East Lab Central Hallway"
 	icon_state = "green"
-/area/desert_dam/interior/lab_northeast/east_hallway
-	name = "Desert Dam"
+/area/desert_dam/interior/lab_northeast/east_lab_east_hallway
+	name = "East Lab East Hallway"
 	icon_state = "yellow"
-/area/desert_dam/interior/lab_northeast/workshop
-	name = "Desert Dam"
+/area/desert_dam/interior/lab_northeast/east_lab_workshop
+	name = "East Lab Workshop"
 	icon_state = "ass_line"
-/area/desert_dam/interior/lab_northeast/storage
-	name = "Desert Dam"
+/area/desert_dam/interior/lab_northeast/east_lab_storage
+	name = "East Lab Storage "
 	icon_state = "storage"
-/area/desert_dam/interior/lab_northeast/RD_office
-	name = "Desert Dam"
+/area/desert_dam/interior/lab_northeast/east_lab_RD_office
+	name = "East Lab Research Director's Office"
 	icon_state = "yellow"
-/area/desert_dam/interior/lab_northeast/maintenence
-	name = "Desert Dam"
+/area/desert_dam/interior/lab_northeast/east_lab_maintenence
+	name = "East Lab Maintenence"
 	icon_state = "maintcentral"
-/area/desert_dam/interior/lab_northeast/containment
-	name = "Desert Dam"
+/area/desert_dam/interior/lab_northeast/east_lab_containment
+	name = "East Lab Containment"
 	icon_state = "purple"
-/area/desert_dam/interior/lab_northeast/RND
-	name = "Desert Dam"
+/area/desert_dam/interior/lab_northeast/east_lab_RND
+	name = "East Lab Research and Development"
 	icon_state = "purple"
-/area/desert_dam/interior/lab_northeast/biology
-	name = "Desert Dam"
+/area/desert_dam/interior/lab_northeast/east_lab_biology
+	name = "East Lab Biology"
 	icon_state = "purple"
-/area/desert_dam/interior/lab_northeast/surgury
-	name = "Desert Dam"
+/area/desert_dam/interior/lab_northeast/east_lab_surgery
+	name = "East Lab Surgery"
 	icon_state = "red"
-/area/desert_dam/interior/lab_northeast/excavation
-	name = "Desert Dam"
+/area/desert_dam/interior/lab_northeast/east_lab_excavation
+	name = "East Lab Excavation Prep"
 	icon_state = "blue"
-/area/desert_dam/interior/lab_northeast/excavation
-	name = "Desert Dam"
-	icon_state = "blue"
-/area/desert_dam/interior/lab_northeast/west_entrance
-	name = "Desert Dam"
+/area/desert_dam/interior/lab_northeast/east_lab_west_entrance
+	name = "East Lab West Entrance"
 	icon_state = "purple"
-/area/desert_dam/interior/lab_northeast/east_entrance
-	name = "Desert Dam"
+/area/desert_dam/interior/lab_northeast/east_lab_east_entrance
+	name = "East Lab Entrance"
 	icon_state = "purple"
-/area/desert_dam/interior/lab_northeast/security_checkpoint
-	name = "Desert Dam"
+/area/desert_dam/interior/lab_northeast/east_lab_security_checkpoint
+	name = "East Lab Security Checkpoint"
 	icon_state = "purple"
-/area/desert_dam/interior/lab_northeast/security_office
-	name = "Desert Dam"
+/area/desert_dam/interior/lab_northeast/east_lab_security_office
+	name = "East Lab Security Office"
 	icon_state = "security"
-/area/desert_dam/interior/lab_northeast/security_armory
-	name = "Desert Dam"
+/area/desert_dam/interior/lab_northeast/east_lab_security_armory
+	name = "East Lab Armory"
 	icon_state = "armory"
-/area/desert_dam/interior/lab_northeast/xenobiology
-	name = "Desert Dam"
+/area/desert_dam/interior/lab_northeast/east_lab_xenobiology
+	name = "East Lab Xenobiology"
 	icon_state = "red"
 
 //Dam Interior
+/area/desert_dam/interior/dam_interior
+	minimap_color = MINIMAP_AREA_ENGI
+	outside = FALSE
 /area/desert_dam/interior/dam_interior/engine_room
-	name = "Desert Dam"
+	name = "Engineering Generator Room"
 	icon_state = "yellow"
 /area/desert_dam/interior/dam_interior/control_room
-	name = "Desert Dam"
+	name = "Engineering Control Room"
 	icon_state = "red"
 /area/desert_dam/interior/dam_interior/smes_main
-	name = "Desert Dam"
+	name = "Engineering Main Substation"
 	icon_state = "purple"
 /area/desert_dam/interior/dam_interior/smes_backup
-	name = "Desert Dam"
+	name = "Engineering Secondary Backup Substation"
 	icon_state = "green"
 /area/desert_dam/interior/dam_interior/engine_east_wing
-	name = "Desert Dam"
+	name = "Engineering East Engine Wing"
 	icon_state = "blue-red"
 /area/desert_dam/interior/dam_interior/engine_west_wing
-	name = "Desert Dam"
+	name = "Engineering West Engine Wing"
 	icon_state = "yellow"
 /area/desert_dam/interior/dam_interior/lobby
-	name = "Desert Dam"
+	name = "Engineering Lobby"
 	icon_state = "purple"
 /area/desert_dam/interior/dam_interior/atmos_storage
-	name = "Desert Dam"
+	name = "Engineering Atmospheric Storage"
 	icon_state = "purple"
 /area/desert_dam/interior/dam_interior/northwestern_tunnel
-	name = "Desert Dam"
+	name = "Engineering Northwestern Tunnel"
 	icon_state = "green"
 /area/desert_dam/interior/dam_interior/north_tunnel
-	name = "Desert Dam"
+	name = "Engineering Northern Tunnel"
 	icon_state = "blue-red"
+	minimap_color = MINIMAP_AREA_COLONY
 /area/desert_dam/interior/dam_interior/west_tunnel
-	name = "Desert Dam"
+	name = "Engineering Western Tunnel"
 	icon_state = "yellow"
 /area/desert_dam/interior/dam_interior/central_tunnel
-	name = "Desert Dam"
+	name = "Engineering Central Tunnel"
 	icon_state = "red"
+	minimap_color = MINIMAP_AREA_COLONY
 /area/desert_dam/interior/dam_interior/south_tunnel
-	name = "Desert Dam"
+	name = "Engineering Southern Tunnel"
 	icon_state = "purple"
+	minimap_color = MINIMAP_AREA_ENGI
 /area/desert_dam/interior/dam_interior/northeastern_tunnel
-	name = "Desert Dam"
+	name = "Engineering Northeastern Tunnel"
 	icon_state = "green"
+	minimap_color = MINIMAP_AREA_COLONY
 /area/desert_dam/interior/dam_interior/CE_office
-	name = "Desert Dam"
+	name = "Engineering Chief Engineer's Office"
 	icon_state = "yellow"
 /area/desert_dam/interior/dam_interior/workshop
-	name = "Desert Dam"
+	name = "Engineering Workshop"
 	icon_state = "purple"
 /area/desert_dam/interior/dam_interior/hanger
-	name = "Desert Dam"
+	name = "Engineering Hangar"
 	icon_state = "hangar"
 /area/desert_dam/interior/dam_interior/hangar_storage
-	name = "Desert Dam"
+	name = "Engineering Hangar Storage"
 	icon_state = "storage"
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage
-	name = "Desert Dam"
+	name = "Engineering Auxiliary Tool Storage"
 	icon_state = "red"
 /area/desert_dam/interior/dam_interior/primary_tool_storage
-	name = "Desert Dam"
+	name = "Engineering Primary Tool Storage"
 	icon_state = "blue"
 /area/desert_dam/interior/dam_interior/tech_storage
-	name = "Desert Dam"
+	name = "Engineering Secure Tech Storage"
 	icon_state = "dark"
 /area/desert_dam/interior/dam_interior/break_room
-	name = "Desert Dam"
+	name = "Engineering Breakroom"
 	icon_state = "yellow"
 /area/desert_dam/interior/dam_interior/disposals
-	name = "Desert Dam"
+	name = "Engineering Disposals"
 	icon_state = "disposal"
 /area/desert_dam/interior/dam_interior/western_dam_cave
-	name = "Desert Dam"
+	name = "Engineering West Entrance"
 	icon_state = "red"
+	minimap_color = MINIMAP_AREA_CAVES
 /area/desert_dam/interior/dam_interior/office
-	name = "Desert Dam"
+	name = "Engineering Office"
 	icon_state = "red"
 /area/desert_dam/interior/dam_interior
-	name = "Desert Dam"
+	name = "Engineering"
 	icon_state = ""
 
+/area/desert_dam/interior/east_engineering
+	name = "Eastern Engineering"
+	icon_state = "yellow"
+
 /area/desert_dam/interior/dam_interior/north_tunnel_entrance
-	name = "Desert Dam"
+	name = "Engineering North Tunnel Entrance"
 	icon_state = "yellow"
+	minimap_color = MINIMAP_AREA_SEC
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance
-	name = "Desert Dam"
+	name = "Engineering East Tunnel Entrance"
 	icon_state = "yellow"
+	minimap_color = MINIMAP_AREA_SEC
 /area/desert_dam/interior/dam_interior/south_tunnel_entrance
-	name = "Desert Dam"
+	name = "Engineering South Tunnel Entrance"
 	icon_state = "red"
+	minimap_color = MINIMAP_AREA_SEC
+
+/area/desert_dam/interior/caves
+	name = "Caves"
+	ceiling = CEILING_DEEP_UNDERGROUND
+	outside = FALSE
+	icon_state = "red"
+	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambisin4.ogg')
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/desert_dam/interior/caves/northern_caves
-	name = "Desert Dam"
+	name = "Northern Caves"
 	icon_state = "red"
+	minimap_color = MINIMAP_AREA_CAVES
 /area/desert_dam/interior/caves/east_caves
-	name = "Desert Dam"
+	name = "Eastern Caves"
 	icon_state = "red"
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/desert_dam/interior/caves/central_caves
-	name = "Desert Dam"
+	name = "Central Caves"
 	icon_state = "yellow"
 /area/desert_dam/interior/caves/central_caves/entrances/east_tunnel_entrance
-	name = "Desert Dam"
+	name = "Eastern Central Tunnel Entrance"
 	icon_state = "red"
 /area/desert_dam/interior/caves/central_caves/entrances/south_tunnel_entrance
-	name = "Desert Dam"
+	name = "Southern Central Tunnel Entrance"
 	icon_state = "red"
 /area/desert_dam/interior/caves/central_caves/entrances/west_tunnel_entrance
-	name = "Desert Dam"
+	name = "Western Central Tunnel Entrance"
 	icon_state = "red"
+
+/area/desert_dam/interior/caves/temple
+	name = "Sand Temple"
+	icon_state = "green"
 
 //BUILDING
 //areas not under rock
 // ceiling = CEILING_METAL
+/area/desert_dam/building
+	ceiling = CEILING_METAL
+	outside = FALSE
+//Substations
+/area/desert_dam/building/substation
+	name = "Substation"
+	icon = 'icons/turf/dam_areas.dmi'
+	minimap_color = MINIMAP_AREA_ENGI
 
+/area/desert_dam/building/substation/northwest
+	name = "Command Substation"
+	icon_state = "northewestern_ss"
+/area/desert_dam/building/substation/northeast
+	name = "Command Substation"
+	icon_state = "northeastern_ss"
+/area/desert_dam/building/substation/east
+	name = "Command Substation"
+	icon_state = "eastern_ss"
+/area/desert_dam/building/substation/southeast
+	name = "Command Substation"
+	icon_state = "southeastern_ss"
+/area/desert_dam/building/substation/central
+	name = "Command Substation"
+	icon_state = "central_ss"
+/area/desert_dam/building/substation/southwest
+	name = "Command Substation"
+	icon_state = "southwestern_ss"
+/area/desert_dam/building/substation/west
+	name = "Command Substation"
+	icon_state = "western_ss"
 
 //Administration
 /area/desert_dam/building/administration/control_room
-	name = "Desert Dam"
+	name = "Administration Landing Control Room"
 	icon_state = "yellow"
 /area/desert_dam/building/administration/lobby
-	name = "Desert Dam"
+	name = "Administration Lobby"
 	icon_state = "green"
 /area/desert_dam/building/administration/hallway
-	name = "Desert Dam"
+	name = "Administration Hallway"
 	icon_state = "purple"
 /area/desert_dam/building/administration/office
-	name = "Desert Dam"
+	name = "Administration Office"
 	icon_state = "blue-red"
 /area/desert_dam/building/administration/overseer_office
-	name = "Desert Dam"
+	name = "Administration Overseer's Office"
 	icon_state = "red"
 /area/desert_dam/building/administration/meetingrooom
-	name = "Desert Dam"
+	name = "Administration Meeting Room"
 	icon_state = "yellow"
 /area/desert_dam/building/administration/archives
-	name = "Desert Dam"
+	name = "Administration Archives"
 	icon_state = "green"
 
 
 //Bar
 /area/desert_dam/building/bar/bar
-	name = "Desert Dam"
+	name = "Bar"
 	icon_state = "yellow"
 /area/desert_dam/building/bar/backroom
-	name = "Desert Dam"
+	name = "Bar Backroom"
 	icon_state = "green"
 /area/desert_dam/building/bar/bar_restroom
-	name = "Desert Dam"
+	name = "Bar Restroom"
 	icon_state = "purple"
 
 
 //Cafe
 /area/desert_dam/building/cafeteria/cafeteria
-	name = "Desert Dam"
+	name = "Cafeteria"
 	icon_state = "yellow"
 /area/desert_dam/building/cafeteria/backroom
-	name = "Desert Dam"
+	name = "Cafeteria Backroom"
 	icon_state = "green"
 /area/desert_dam/building/cafeteria/restroom
-	name = "Desert Dam"
+	name = "Cafeteria Restroom"
 	icon_state = "purple"
 /area/desert_dam/building/cafeteria/loading
-	name = "Desert Dam"
+	name = "Cafeteria Loading Room"
 	icon_state = "blue-red"
 /area/desert_dam/building/cafeteria/cold_room
-	name = "Desert Dam"
+	name = "Cafeteria Coldroom"
 	icon_state = "red"
-
-
-//Construction Site
-/area/desert_dam/building/construction_site
-	name = "Desert Dam"
-	icon_state = "yellow"
 
 
 //Dorms
 /area/desert_dam/building/dorms/hallway_northwing
-	name = "Desert Dam"
+	name = "Dormitory North Wing"
 	icon_state = "yellow"
 /area/desert_dam/building/dorms/hallway_westwing
-	name = "Desert Dam"
+	name = "Dormitory West Wing"
 	icon_state = "green"
 /area/desert_dam/building/dorms/hallway_eastwing
-	name = "Desert Dam"
+	name = "Dormitory East Wing"
 	icon_state = "purple"
 /area/desert_dam/building/dorms/restroom
-	name = "Desert Dam"
+	name = "Dormitory Showers"
 	icon_state = "blue-red"
 /area/desert_dam/building/dorms/pool
-	name = "Desert Dam"
+	name = "Dormitory Pool Room"
 	icon_state = "red"
 
 
 //Medical
+/area/desert_dam/building/medical
+	minimap_color = MINIMAP_AREA_MEDBAY
 /area/desert_dam/building/medical/garage
-	name = "Desert Dam"
+	name = "Medical Garage"
 	icon_state = "garage"
 /area/desert_dam/building/medical/emergency_room
-	name = "Desert Dam"
+	name = "Medical Emergency Room"
 	icon_state = "medbay"
 /area/desert_dam/building/medical/treatment_room
-	name = "Desert Dam"
+	name = "Medical Treatment Room"
 	icon_state = "medbay2"
 /area/desert_dam/building/medical/lobby
-	name = "Desert Dam"
+	name = "Medical Lobby"
 	icon_state = "medbay3"
 /area/desert_dam/building/medical/chemistry
-	name = "Desert Dam"
+	name = "Medical Pharmacy"
 	icon_state = "medbay"
 /area/desert_dam/building/medical/west_wing_hallway
-	name = "Desert Dam"
+	name = "Medical West Wing "
 	icon_state = "medbay2"
 /area/desert_dam/building/medical/north_wing_hallway
-	name = "Desert Dam"
+	name = "Medical North Wing"
 	icon_state = "medbay3"
 /area/desert_dam/building/medical/east_wing_hallway
-	name = "Desert Dam"
+	name = "Medical East Wing"
 	icon_state = "medbay"
 /area/desert_dam/building/medical/primary_storage
-	name = "Desert Dam"
+	name = "Medical Primary Storage"
 	icon_state = "red"
 /area/desert_dam/building/medical/surgery_room_one
-	name = "Desert Dam"
+	name = "Medical Surgery Room One"
 	icon_state = "yellow"
 /area/desert_dam/building/medical/surgery_room_two
-	name = "Desert Dam"
+	name = "Medical Surgery Room Two"
 	icon_state = "purple"
-/area/desert_dam/building/medical/surgury_observation
-	name = "Desert Dam"
+/area/desert_dam/building/medical/surgery_observation
+	name = "Medical Surgery Observation"
 	icon_state = "medbay2"
 /area/desert_dam/building/medical/morgue
-	name = "Desert Dam"
+	name = "Medical Morgue"
 	icon_state = "blue"
 /area/desert_dam/building/medical/break_room
-	name = "Desert Dam"
+	name = "Medical Breakroom"
 	icon_state = "medbay"
 /area/desert_dam/building/medical/CMO
-	name = "Desert Dam"
+	name = "Medical CMO's Office"
 	icon_state = "CMO"
 /area/desert_dam/building/medical/office1
-	name = "Desert Dam"
+	name = "Medical Office One"
 	icon_state = "red"
 /area/desert_dam/building/medical/office2
-	name = "Desert Dam"
+	name = "Medical Office Two"
 	icon_state = "blue"
 /area/desert_dam/building/medical/patient_wing
-	name = "Desert Dam"
+	name = "Medical Patient Wing"
 	icon_state = "medbay2"
 /area/desert_dam/building/medical/virology_wing
-	name = "Desert Dam"
+	name = "Medical Virology Wing"
 	icon_state = "medbay3"
 /area/desert_dam/building/medical/virology_isolation
-	name = "Desert Dam"
+	name = "Medical Virology Isolation"
 	icon_state = "medbay"
+/area/desert_dam/building/medical/medsecure
+	name = "Medical Virology Isolation"
+	icon_state = "red"
 /area/desert_dam/building/medical
-	name = "Desert Dam"
+	name = "Medical"
 	icon_state = "medbay2"
 
 
 //Warehouse
 /area/desert_dam/building/warehouse/warehouse
-	name = "Desert Dam"
+	name = "Warehouse"
 	icon_state = "yellow"
 /area/desert_dam/building/warehouse/loading
-	name = "Desert Dam"
+	name = "Warehouse Loading Room"
 	icon_state = "red"
 /area/desert_dam/building/warehouse/breakroom
-	name = "Desert Dam"
+	name = "Warehouse Breakroom"
 	icon_state = "green"
 
 
 //Hydroponics
 /area/desert_dam/building/hydroponics/hydroponics
-	name = "Desert Dam"
+	name = "Hydroponics"
 	icon_state = "hydro"
 /area/desert_dam/building/hydroponics/hydroponics_storage
-	name = "Desert Dam"
+	name = "Hydroponics Storage"
 	icon_state = "green"
 /area/desert_dam/building/hydroponics/hydroponics_loading
-	name = "Desert Dam"
+	name = "Hydroponics Loading Room"
 	icon_state = "garage"
 /area/desert_dam/building/hydroponics/hydroponics_breakroom
-	name = "Desert Dam"
+	name = "Hydroponics Breakroom"
 	icon_state = "red"
 
 
 //Telecoms
 /area/desert_dam/building/telecommunication
-	name = "Desert Dam"
+	name = "Telecommunications"
 	icon_state = "yellow"
-/area/desert_dam/building/telecommunication_platform
-	name = "Desert Dam"
-	icon_state = "red"
+	minimap_color = MINIMAP_AREA_ENGI
 
 //Water Treatment Plant 1
 /area/desert_dam/building/water_treatment_one
-	name = "Desert Dam"
+	name = "Water Treatment One"
 	icon_state = "yellow"
+//Water Treatment Plant 1
+/area/desert_dam/building/water_treatment_one/lobby
+	name = "Water Treatment One Lobby"
+	icon_state = "red"
+/area/desert_dam/building/water_treatment_one/breakroom
+	name = "Water Treatment One Breakroom"
+	icon_state = "green"
+/area/desert_dam/building/water_treatment_one/garage
+	name = "Water Treatment One Garage"
+	icon_state = "garage"
+/area/desert_dam/building/water_treatment_one/sedimentation
+	name = "Water Treatment One Sedimentation"
+	icon_state = "blue"
+/area/desert_dam/building/water_treatment_one/equipment
+	name = "Water Treatment One Equipment Room"
+	icon_state = "red"
+/area/desert_dam/building/water_treatment_one/hallway
+	name = "Water Treatment One Hallway"
+	icon_state = "purple"
+/area/desert_dam/building/water_treatment_one/control_room
+	name = "Water Treatment One Control Room"
+	icon_state = "yellow"
+/area/desert_dam/building/water_treatment_one/purification
+	name = "Water Treatment One Purification"
+	icon_state = "green"
+/area/desert_dam/building/water_treatment_one/floodgate_control
+	name = "Water Treatment One Floodgate Control"
+	icon_state = "green"
+
+/area/desert_dam/building/water_treatment_one/floodgate_control/central
+	name = "Central Floodgate Control"
+	icon_state = "green"
+
+/area/desert_dam/building/water_treatment_one/floodgate_control/central2
+	name = "Central Floodgate Control Storage"
+	icon_state = "green"
+
 //Water Treatment Plant 2
 /area/desert_dam/building/water_treatment_two
-	name = "Desert Dam"
+	name = "Water Treatment Two"
 	icon_state = "yellow"
+/area/desert_dam/building/water_treatment_two/lobby
+	name = "Water Treatment Two Lobby"
+	icon_state = "red"
+/area/desert_dam/building/water_treatment_two/breakroom
+	name = "Water Treatment Two Breakroom"
+	icon_state = "green"
+/area/desert_dam/building/water_treatment_two/garage
+	name = "Water Treatment Two Garage"
+	icon_state = "garage"
+/area/desert_dam/building/water_treatment_two/sedimentation
+	name = "Water Treatment Two Sedimentation"
+	icon_state = "blue"
+/area/desert_dam/building/water_treatment_two/equipment
+	name = "Water Treatment Two Equipment"
+	icon_state = "red"
+/area/desert_dam/building/water_treatment_two/hallway
+	name = "Water Treatment Two Hallway"
+	icon_state = "purple"
+/area/desert_dam/building/water_treatment_two/control_room
+	name = "Water Treatment Two Control Room"
+	icon_state = "yellow"
+/area/desert_dam/building/water_treatment_two/purification
+	name = "Water Treatment Two Purification"
+	icon_state = "green"
+/area/desert_dam/building/water_treatment_two/floodgate_control
+	name = "Water Treatment Two Floodgate Control"
+	icon_state = "green"
 
-//Library
+
+//Library UNUSED
+/*
 /area/desert_dam/building/library/library
-	name = "Desert Dam"
+	name = "Library"
 	icon_state = "library"
 /area/desert_dam/building/library/restroom
-	name = "Desert Dam"
+	name = "Library Restroom"
 	icon_state = "green"
 /area/desert_dam/building/library/studyroom
-	name = "Desert Dam"
+	name = "Library Study Room"
 	icon_state = "purple"
-
+*/
 
 //Security
+/area/desert_dam/building/security
+	minimap_color = MINIMAP_AREA_SEC
 /area/desert_dam/building/security/prison
-	name = "Desert Dam"
+	name = "Security Prison"
 	icon_state = "sec_prison"
 /area/desert_dam/building/security/marshals_office
-	name = "Desert Dam"
+	name = "Security Marshal's Office"
 	icon_state = "sec_hos"
 /area/desert_dam/building/security/armory
-	name = "Desert Dam"
+	name = "Security Armory"
 	icon_state = "armory"
 /area/desert_dam/building/security/warden
-	name = "Desert Dam"
+	name = "Security Warden's Office"
 	icon_state = "Warden"
 /area/desert_dam/building/security/interrogation
-	name = "Desert Dam"
+	name = "Security Interrogation"
 	icon_state = "interrogation"
 /area/desert_dam/building/security/backroom
-	name = "Desert Dam"
+	name = "Security Interrogation"
 	icon_state = "sec_backroom"
 /area/desert_dam/building/security/observation
-	name = ""
+	name = "Security Observation"
 	icon_state = "observatory"
 /area/desert_dam/building/security/detective
-	name = "Desert Dam"
+	name = "Security Detective's Office"
 	icon_state = "detective"
 /area/desert_dam/building/security/office
-	name = "Desert Dam"
+	name = "Security Office"
 	icon_state = "yellow"
 /area/desert_dam/building/security/lobby
-	name = "Desert Dam"
+	name = "Security Lobby"
 	icon_state = "green"
 /area/desert_dam/building/security/northern_hallway
-	name = "Desert Dam"
+	name = "Security North Hallway"
 	icon_state = "purple"
 /area/desert_dam/building/security/courtroom
-	name = "Desert Dam"
+	name = "Security Courtroom"
 	icon_state = "courtroom"
 /area/desert_dam/building/security/evidence
-	name = "Desert Dam"
+	name = "Security Evidence"
 	icon_state = "red"
 /area/desert_dam/building/security/holding
-	name = "Desert Dam"
+	name = "Security Holding Room"
 	icon_state = "yellow"
 /area/desert_dam/building/security/southern_hallway
-	name = "Desert Dam"
+	name = "Security South Hallway"
 	icon_state = "green"
 /area/desert_dam/building/security/deathrow
-	name = "Desert Dam"
+	name = "Security Death Row"
 	icon_state = "cells_max_n"
 /area/desert_dam/building/security/execution_chamber
-	name = "Desert Dam"
+	name = "Security Execution Chamber"
 	icon_state = "red"
 /area/desert_dam/building/security/staffroom
-	name = "Desert Dam"
+	name = "Security Staffroom"
 	icon_state = "security"
 
 //Church
 /area/desert_dam/building/church
-	name = "Desert Dam"
+	name = "Church"
 	icon_state = "courtroom"
 
-
-//Mining
+//Mining area
+/area/desert_dam/building/mining
+	minimap_color = MINIMAP_AREA_ENGI
+/area/desert_dam/building/mining/workshop
+	name = "Mining Workshop"
+	icon_state = "yellow"
+/area/desert_dam/building/mining/workshop_foyer
+	name = "Mining Workshop Foyer"
+	icon_state = "purple"
+//Legacy Areas for mining
+	/*
 /area/desert_dam/building/mining/garage
-	name = "Desert Dam"
+	name = "Mining Garage"
 	icon_state = "garage"
 /area/desert_dam/building/mining/boxing_room
-	name = "Desert Dam"
+	name = "Mining Boxing Room"
 	icon_state = "red"
 /area/desert_dam/building/mining/loading_room
-	name = "Desert Dam"
+	name = "Mining Loading Bay"
 	icon_state = "yellow"
 /area/desert_dam/building/mining/break_room
-	name = "Desert Dam"
+	name = "Mining Breakroom"
 	icon_state = "purple"
 /area/desert_dam/building/mining/locker_room
-	name = "Desert Dam"
+	name = "Mining Locker Room"
 	icon_state = "green"
 /area/desert_dam/building/mining/lobby
-	name = "Desert Dam"
+	name = "Mining Lobby"
 	icon_state = "red"
 /area/desert_dam/building/mining/front_desk
-	name = "Desert Dam"
+	name = "Mining Front Desk"
 	icon_state = "green"
 /area/desert_dam/building/mining/foremans_office
-	name = "Desert Dam"
+	name = "Mining Foreman's Office"
 	icon_state = "yellow"
 /area/desert_dam/building/mining/maintenance_north
-	name = "Desert Dam"
+	name = "Mining Maintenance North"
 	icon_state = "dark160"
 /area/desert_dam/building/mining/maintenance_east
-	name = "Desert Dam"
+	name = "Mining Maintenance East"
 	icon_state = "dark128"
+/area/desert_dam/building/mining/bunkhouse
+	name = "Mining Bunkhouse"
+	icon_state = "red"
+/area/desert_dam/building/mining/construction_site
+	name = "Construction Site"
+	icon_state = "yellow"
+*/
+
 
 //NorthWest Lab Buildings
-/area/desert_dam/building/lab_northwest/robotics
-	name = "Desert Dam"
+/area/desert_dam/building/lab_northwest/west_lab_robotics
+	name = "West Lab Robotics"
 	icon_state = "ass_line"
-/area/desert_dam/building/lab_northwest/robotics_mechbay
-	name = "Desert Dam"
-	icon_state = "mechbay"
-/area/desert_dam/building/lab_northwest/lobby
-	name = "Desert Dam"
-	icon_state = "yellow"
-/area/desert_dam/building/lab_northwest/west_wing_hallway
-	name = "Desert Dam"
+/area/desert_dam/building/lab_northwest/west_lab_robotics_mechbay
+	name = "West Lab Mechbay"
+	icon_state = "purple"
+/area/desert_dam/building/lab_northwest/west_lab_east_hallway
+	name = "West Lab Hallway"
 	icon_state = "red"
-/area/desert_dam/building/lab_northwest/east_wing_hallway
-	name = "Desert Dam"
-	icon_state = "blue"
-/area/desert_dam/building/lab_northwest/maintenance
-	name = "Desert Dam"
-	icon_state = "dark"
-/area/desert_dam/building/lab_northwest/chemistry
-	name = "Desert Dam"
+/area/desert_dam/building/lab_northwest/west_lab_west_hallway
+	name = "West Lab Hallway"
+	icon_state = "red"
+/area/desert_dam/building/lab_northwest/west_lab_maintenance
+	name = "West Lab Maintenance"
+	icon_state = "purple"
+/area/desert_dam/building/lab_northwest/west_lab_chemistry
+	name = "West Lab Chemistry"
 	icon_state = "yellow"
-/area/desert_dam/building/lab_northwest/cafeteria
-	name = "Desert Dam"
+/area/desert_dam/building/lab_northwest/west_lab_cafeteria
+	name = "West Lab Cafeteria"
 	icon_state = "blue"
-/area/desert_dam/building/lab_northwest/kitchen
-	name = ""
+/area/desert_dam/building/lab_northwest/west_lab_kitchen
+	name = "West Lab Kitchen"
 	icon_state = "kitchen"
-/area/desert_dam/building/lab_northwest/dormitory
-	name = "Desert Dam"
+/area/desert_dam/building/lab_northwest/west_lab_dormitory
+	name = "West Lab Dormitory"
 	icon_state = "red"
-/area/desert_dam/building/lab_northwest/meeting_room
-	name = "Desert Dam"
+/area/desert_dam/building/lab_northwest/west_lab_meeting_room
+	name = "West Lab Meeting Room"
 	icon_state = "purple"
-/area/desert_dam/building/lab_northwest/xenoflora
-	name = "Desert Dam"
+/area/desert_dam/building/lab_northwest/west_lab_xenoflora
+	name = "West Lab Xenoflora"
 	icon_state = "purple"
-
 /area/desert_dam/building/lab_northeast/checkpoint
-	name = "Desert Dam"
+	name = "East Lab Checkpoint"
 	icon_state = "red"
 /area/desert_dam/building/lab_northeast/garage
-	name = "Desert Dam"
+	name = "East Lab Garage"
 	icon_state = "garage"
 
 
 //EXTERIOR
 //under open sky
 /area/desert_dam/exterior
+	requires_power = 1
+	always_unpowered = TRUE
 
 /area/desert_dam/exterior/rock
-	name = "Desert Dam"
+	name = "Rock"
 	icon_state = "cave"
 
+/area/desert_dam/exterior/landing
+	always_unpowered = FALSE
+	
 //Landing Pad for the Alamo. THIS IS NOT THE SHUTTLE AREA
-/area/desert_dam/exterior/landing_pad_one
-	name = "\improper Airstrip Landing Pad"
+/area/desert_dam/exterior/landing/landing_pad_one
+	name = "Airstrip Landing Pad"
 	icon_state = "landing_pad"
-/area/desert_dam/exterior/landing_pad_one_external
-	name = "\improper Airstrip Landing Valley"
+	minimap_color = MINIMAP_AREA_LZ
+/area/desert_dam/exterior/landing/landing_pad_one_external
+	name = "Airstrip Landing Valley"
 	icon_state = "landing_pad_ext"
+	minimap_color = MINIMAP_AREA_COLONY
 
 
 //Landing Pad for the Normandy. THIS IS NOT THE SHUTTLE AREA
-/area/desert_dam/exterior/landing_pad_two
-	name = "\improper Aerodrome Landing Pad"
+/area/desert_dam/exterior/landing/landing_pad_two
+	name = "Eastern Aerodrome Landing Pad"
 	icon_state = "landing_pad"
-/area/desert_dam/exterior/landing_pad_two_external
-	name = "\improper Aerodrome Landing Valley"
+	minimap_color = MINIMAP_AREA_LZ
+/area/desert_dam/exterior/landing/landing_pad_two_external
+	name = "Eastern Landing Valley"
 	icon_state = "landing_pad_ext"
+	minimap_color = MINIMAP_AREA_COLONY
+
+//Landing Pad for the abandoned tradeship, not used for transit. THIS IS NOT THE SHUTTLE AREA
+/area/desert_dam/exterior/landing/landing_pad_three
+	name = "Aerodrome Landing Pad"
+	icon_state = "landing_pad"
+	minimap_color = MINIMAP_AREA_LZ
+/area/desert_dam/exterior/landing/landing_pad_three_external
+	name = "Aerodrome Landing Valley"
+	icon_state = "landing_pad_ext"
+	minimap_color = MINIMAP_AREA_COLONY
 
 //Valleys
-/area/desert_dam/exterior/valley/valley_telecoms
-	name = "Desert Dam"
-	icon_state = "valley_west"
-/area/desert_dam/exterior/valley/valley_south_west
-	name = "Desert Dam"
-	icon_state = "valley_south_west"
-/area/desert_dam/exterior/valley/valley_south_east
-	name = "Desert Dam"
-	icon_state = "valley_east"
-/area/desert_dam/exterior/valley/valley_north_east
-	name = "Desert Dam"
-	icon_state = "valley_north_east"
-/area/desert_dam/exterior/valley/valley_north_west
-	name = "Desert Dam"
+//Near LZ
+//TODO: incorporate valleys and substrations for floodlight coverage
+
+/area/desert_dam/exterior/valley
+	minimap_color = MINIMAP_AREA_COLONY
+/area/desert_dam/exterior/valley/valley_northwest
+	name = "Northwest Valley"
 	icon_state = "valley_north_west"
+/area/desert_dam/exterior/valley/valley_cargo
+	name = "Shipping Valley"
+	icon_state = "valley_south_west"
+/area/desert_dam/exterior/valley/valley_telecoms
+	name = "Telecomms Valley"
+	icon_state = "valley_west"
+/area/desert_dam/exterior/valley/tradeship
+	name = "NTT Jerry-Cabot"
+	icon_state = "dark160"
+
+//Away from LZ
+
+/area/desert_dam/exterior/valley/valley_labs
+	name = "Lab Valley"
+	icon_state = "valley_north"
+/area/desert_dam/exterior/valley/valley_mining
+	name = "Mining Valley"
+	icon_state = "valley_east"
+/area/desert_dam/exterior/valley/valley_civilian
+	name = "Civilian Valley"
+	icon_state = "valley_south_excv"
+/area/desert_dam/exterior/valley/valley_medical
+	name = "Medical Valley"
+	icon_state = "valley"
+/area/desert_dam/exterior/valley/valley_medical_south
+	name = "Southern Medical Valley"
+	icon_state = "valley"
+/area/desert_dam/exterior/valley/valley_hydro
+	name = "Hydro Valley"
+	icon_state = "valley"
 /area/desert_dam/exterior/valley/valley_crashsite
-	name = "Desert Dam"
+	name = "Crash Site Valley"
 	icon_state = "yellow"
-//Rivers
-//
+	minimap_color = MINIMAP_AREA_CAVES
+/area/desert_dam/exterior/valley/north_valley_dam
+	name = "North Dam Valley"
+	icon_state = "valley"
+/area/desert_dam/exterior/valley/south_valley_dam
+	name = "South Dam Valley"
+	icon_state = "valley"
+/area/desert_dam/exterior/valley/bar_valley_dam
+	name = "Bar Valley"
+	icon_state = "yellow"
+/area/desert_dam/exterior/valley/valley_wilderness
+	name = "Wilderness Valley"
+	icon_state = "central"
+
+
+//End of the river areas, no Next
 /area/desert_dam/exterior/river/riverside_northwest
-	name = "Desert Dam"
+	name = "Northwestern Riverbed"
 	icon_state = "bluenew"
 /area/desert_dam/exterior/river/riverside_central_north
-	name = "Desert Dam"
+	name = "Northern Central Riverbed"
 	icon_state = "purple"
 /area/desert_dam/exterior/river/riverside_central_south
-	name = "Desert Dam"
+	name = "Southern Central Riverbed"
 	icon_state = "purple"
 /area/desert_dam/exterior/river/riverside_south
-	name = "Desert Dam"
+	name = "Southern Riverbed"
 	icon_state = "bluenew"
 /area/desert_dam/exterior/river/riverside_east
-	name = "Desert Dam"
+	name = "Eastern Riverbed"
 	icon_state = "bluenew"
 /area/desert_dam/exterior/river/riverside_northeast
-	name = "Desert Dam"
+	name = "Northeastern Riverbed"
 	icon_state = "bluenew"
+//The filtration plants - This area isn't for the WHOLE plant, but the areas that have water in them, so the water changes color as well.
+
+/area/desert_dam/exterior/river/filtration_a
+	name = "Filtration Plant A"
+
+/area/desert_dam/exterior/river/filtration_b
+	name = "Filtration Plant B"
+
+//Areas that are rivers, but will not change because they're before the floodgates
+/area/desert_dam/exterior/river_mouth/southern
+	name = "Southern River Mouth"
+	icon_state = "purple"
+
+/area/desert_dam/exterior/river_mouth/eastern
+	name = "Eastern River Mouth"
+	icon_state = "purple"
+
+/area/desert_dam/landing/console
+	name = "LZ1 'Admin'"
+	icon_state = "tcomsatcham"
+	requires_power = 0
+	flags_area = NO_DROPPOD
+
+/area/desert_dam/landing/console2
+	name = "LZ2 'Supply'"
+	icon_state = "tcomsatcham"
+	requires_power = 0
+	flags_area = NO_DROPPOD
+
+//Transit Shuttle
+/area/shuttle/tri_trans1/alpha
+	icon_state = "shuttle"
+/area/shuttle/tri_trans1/away
+	icon_state = "away1"
+
+/area/shuttle/tri_trans2/alpha
+	icon_state = "shuttlered"
+/area/shuttle/tri_trans2/away
+	icon_state = "away2"
+/area/shuttle/tri_trans2/omega
+	icon_state = "shuttle2"
 

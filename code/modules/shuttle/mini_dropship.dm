@@ -1,11 +1,11 @@
 /obj/docking_port/stationary/marine_dropship/minidropship
 	name = "Minidropship hangar pad"
-	id = "minidropship"
+	id = SHUTTLE_TADPOLE
 	roundstart_template = /datum/map_template/shuttle/minidropship
 
 /obj/docking_port/mobile/marine_dropship/minidropship
 	name = "Tadpole"
-	id = "minidropship"
+	id = SHUTTLE_TADPOLE
 	dwidth = 0
 	dheight = 0
 	width = 7
@@ -18,9 +18,9 @@
 	icon_state = "shuttlecomputer"
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
 	density = FALSE
-	interaction_flags = INTERACT_MACHINE_TGUI
+	interaction_flags = INTERACT_OBJ_UI
 	resistance_flags = RESIST_ALL
-	shuttleId = "minidropship"
+	shuttleId = SHUTTLE_TADPOLE
 	lock_override = CAMERA_LOCK_GROUND
 	shuttlePortId = "minidropship_custom"
 	view_range = "26x26"
@@ -39,11 +39,13 @@
 	/// If the next destination is a transit
 	var/to_transit = TRUE
 	/// The id of the stationary docking port on the ship
-	var/origin_port_id = "minidropship"
+	var/origin_port_id = SHUTTLE_TADPOLE
 	/// The user of the ui
 	var/mob/living/ui_user
 	/// If this computer was damaged by a xeno
 	var/damaged = FALSE
+	/// How long before you can launch tadpole after a landing
+	var/launching_delay = 10 SECONDS
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/Initialize(mapload)
 	..()
@@ -64,7 +66,7 @@
 	for(var/datum/action/action_from_shuttle_docker AS in actions)
 		action_from_shuttle_docker.remove_action(user)
 	actions.Cut()
-	
+
 	if(off_action)
 		off_action.target = user
 		off_action.give_action(user)
@@ -72,7 +74,7 @@
 
 	if(fly_state != SHUTTLE_IN_ATMOSPHERE)
 		return
-	
+
 	if(rotate_action)
 		rotate_action.target = user
 		rotate_action.give_action(user)
@@ -94,6 +96,8 @@
 		next_fly_state = destination_fly_state
 		return
 	give_actions()
+	if(fly_state == SHUTTLE_ON_GROUND)
+		TIMER_COOLDOWN_START(src, COOLDOWN_TADPOLE_LAUNCHING, launching_delay)
 	if(fly_state != SHUTTLE_IN_ATMOSPHERE)
 		return
 	shuttle_port.assigned_transit.reserved_area.set_turf_type(/turf/open/space/transit/atmos)
@@ -104,8 +108,13 @@
 ///The action of taking off and sending the shuttle to the atmosphere
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/take_off()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
+	#ifndef TESTING
 	if(!(shuttle_port.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
-		to_chat(ui_user, "<span class='warning'>The mothership is too far away from the theatre of operation, we cannot take off.</span>")
+		to_chat(ui_user, span_warning("The mothership is too far away from the theatre of operation, we cannot take off."))
+		return
+	#endif
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TADPOLE_LAUNCHING))
+		to_chat(ui_user, span_warning("The dropship's engines are not ready yet"))
 		return
 	shuttle_port.shuttle_computer = src
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_LAUNCHED)
@@ -129,13 +138,13 @@
 	if(!origin_port_id)
 		return
 	open_prompt = FALSE
-	remove_eye_control(ui_user)
+	clean_ui_user()
 	SSshuttle.moveShuttle(shuttleId, origin_port_id, TRUE)
 
 /// Toggle the vision between small nightvision and turf vision
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/toggle_nvg()
 	if(!check_hovering_spot(eyeobj.loc))
-		to_chat(ui_user, "<span class='warning'>Can not toggle night vision mode in caves</span>")
+		to_chat(ui_user, span_warning("Can not toggle night vision mode in caves"))
 		return
 	nvg_vision_mode = !nvg_vision_mode
 	eyeobj.update_remote_sight(ui_user)
@@ -145,12 +154,12 @@
 	if(damaged)
 		return
 	X.visible_message("[X] begins to slash delicately at the computer",
-	"You start slashing delicately at the computer.")
+	"We start slashing delicately at the computer. This will take a while.")
 	if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		return
 	visible_message("The inner wiring is visible, it can be slashed!")
 	X.visible_message("[X] continue to slash at the computer",
-	"You continue slashing at the computer.")
+	"We continue slashing at the computer. If we stop now we will have to start all over again.")
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
@@ -161,7 +170,26 @@
 	s2.set_up(3, 1, src)
 	s2.start()
 	damaged = TRUE
-	remove_eye_control(ui_user)
+	open_prompt = FALSE
+	clean_ui_user()
+
+	if(fly_state == SHUTTLE_IN_ATMOSPHERE && last_valid_ground_port)
+		visible_message("Autopilot detects loss of helm control. INITIATING EMERGENCY LANDING!")
+		shuttle_port.callTime = SHUTTLE_LANDING_CALLTIME
+		next_fly_state = SHUTTLE_ON_GROUND
+		shuttle_port.set_mode(SHUTTLE_CALL)
+		SSshuttle.moveShuttleToDock(shuttleId, last_valid_ground_port, TRUE)
+		return
+
+	if(next_fly_state == SHUTTLE_IN_ATMOSPHERE)
+		shuttle_port.set_idle() // don't go up with a broken console, cencel spooling
+		visible_message("Autopilot detects loss of helm control. Halting take off!")
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/can_interact(mob/user)
+	if(damaged)
+		to_chat(user, span_warning("The [src] blinks and lets out a crackling noise. Its broken!"))
+		return
+	return ..()
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_state(mob/user)
 	return GLOB.dropship_state
@@ -169,23 +197,26 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
+	if(ui_user)
+		return
 
 	if(!ui)
-		if(ui_user)
-			UnregisterSignal(ui_user, COMSIG_PARENT_QDELETING)
 		ui_user = user
-		RegisterSignal(ui_user, COMSIG_PARENT_QDELETING, .proc/clean_ui_user)
+		RegisterSignal(ui_user, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED), .proc/clean_ui_user)
 		ui = new(user, src, "Minidropship", name)
 		ui.open()
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_close(mob/user)
 	. = ..()
-	remove_eye_control(ui_user)
+	clean_ui_user()
 
 /// Set ui_user to null to prevent hard del
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/clean_ui_user()
-	UnregisterSignal(ui_user, COMSIG_PARENT_QDELETING)
-	ui_user = null
+	SIGNAL_HANDLER
+	if(ui_user)
+		remove_eye_control(ui_user)
+		UnregisterSignal(ui_user, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED))
+		ui_user = null
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_data(mob/user)
 	. = list()
@@ -229,14 +260,15 @@
 	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/origin = remote_eye.origin
 	if(origin.shuttle_port.mode != SHUTTLE_IDLE)
-		to_chat(owner, "<span class='warning'>The shuttle is not ready to land yet!</span>")
+		to_chat(owner, span_warning("The shuttle is not ready to land yet!"))
 		return
 	if(!origin.placeLandingSpot(target))
-		to_chat(owner, "<span class='warning'>You cannot land here.</span>")
+		to_chat(owner, span_warning("You cannot land here."))
 		return
 	origin.shuttle_port.callTime = SHUTTLE_LANDING_CALLTIME
 	origin.next_fly_state = SHUTTLE_ON_GROUND
 	origin.open_prompt = FALSE
-	origin.remove_eye_control(origin.ui_user)
+	origin.clean_ui_user()
 	origin.shuttle_port.set_mode(SHUTTLE_CALL)
+	origin.last_valid_ground_port = origin.my_port
 	SSshuttle.moveShuttleToDock(origin.shuttleId, origin.my_port, TRUE)

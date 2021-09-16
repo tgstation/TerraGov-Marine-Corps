@@ -12,7 +12,7 @@
  * Note that this has the same structure for storing and queueing shooter component as the timer subsystem does
  * for handling timers: the bucket_list is a list of autofire component, each of which are the head
  * of a linked list. Any given index in bucket_list could be null, representing an empty bucket.
- * 
+ *
  * Doesn't support any event scheduled for more than 100 ticks in the future, as it has no secondary queue by design
  */
 SUBSYSTEM_DEF(automatedfire)
@@ -63,7 +63,7 @@ SUBSYSTEM_DEF(automatedfire)
 		shooter = null
 
 	// Iterate through each bucket starting from the practical offset
-	while (practical_offset <= BUCKET_LEN && head_offset + ((practical_offset - 1) * world.tick_lag) <= world.time)	
+	while (practical_offset <= BUCKET_LEN && head_offset + ((practical_offset - 1) * world.tick_lag) <= world.time)
 		if(!shooter)
 			shooter =  bucket_list[practical_offset]
 			bucket_list[practical_offset] = null
@@ -104,7 +104,7 @@ SUBSYSTEM_DEF(automatedfire)
 /datum/component/automatedfire/proc/schedule_shot()
 	//We move to another bucket, so we clean the reference from the former linked list
 	next = null
-	prev = null	
+	prev = null
 	var/list/bucket_list = SSautomatedfire.bucket_list
 
 	// Ensure the next_fire time is properly bound to avoid missing a scheduled event
@@ -147,7 +147,7 @@ SUBSYSTEM_DEF(automatedfire)
 	///What kind of ammo it uses
 	var/datum/ammo/ammo
 	///Its target
-	var/atom/target 
+	var/atom/target
 	///At wich rate it fires in ticks
 	var/firerate = 5.5
 

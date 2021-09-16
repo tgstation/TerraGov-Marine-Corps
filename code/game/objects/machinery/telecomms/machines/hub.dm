@@ -40,3 +40,9 @@
 	autolinkers = list("hub", "relay", "s_relay", "command", "medical", "ert",
 	"requisitions", "alpha","firesupport", "bravo", "charlie", "delta", "common", "engineering",
 	"receiverA", "receiverB", "broadcasterA", "broadcasterB")
+
+/obj/machinery/telecomms/hub/preset/rebel
+	id = "Hub rebel"
+	autolinkers = list("hub_rebel", "relay", "s_relay", "command_rebel", "medical_rebel", "ert",
+	"requisitions_rebel", "alpha_rebel","firesupport_rebel", "bravo_rebel", "charlie_rebel", "delta_rebel", "common_rebel", "engineering_rebel",
+	"receiverA_rebel", "receiverB_rebel", "broadcasterA_rebel")

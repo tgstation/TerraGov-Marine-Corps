@@ -13,6 +13,20 @@
 /obj/item/clothing/under/marine/standard
 	flags_item_map_variant = null
 
+// camo things stuff yeah!
+
+/obj/item/clothing/under/marine/camo
+	name = "\improper TGMC camo fatigues (jungle)"
+	icon_state = "m_marine_jumpsuit"
+
+/obj/item/clothing/under/marine/camo/snow
+	name = "\improper TGMC camo fatigues (snow)"
+	icon_state = "s_marine_jumpsuit"
+
+/obj/item/clothing/under/marine/camo/desert
+	name = "\improper TGMC camo fatigues (desert)"
+	icon_state = "d_marine_jumpsuit"
+
 /obj/item/clothing/under/marine/corpsman
 	name = "\improper TGMC corpsman fatigues"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat corpsman fatigues. You suspect it's not as robust-proof as advertised."

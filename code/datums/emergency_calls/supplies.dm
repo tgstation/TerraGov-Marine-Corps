@@ -1,13 +1,13 @@
 //Supply drop. Just crates, no members.
-#define ERT_CRATES  pick(list(/obj/item/weapon/gun/smg/m25, \
+#define ERT_CRATES pick(list(/obj/item/weapon/gun/smg/m25, \
 							/obj/item/weapon/gun/smg/m25, \
 							/obj/item/ammo_magazine/smg/m25/extended, \
 							/obj/item/ammo_magazine/smg/m25/extended, \
 							/obj/item/ammo_magazine/smg/m25/ap, \
 							/obj/item/ammo_magazine/smg/m25/ap \
 							), \
-						list(/obj/item/weapon/gun/flamer, \
-							/obj/item/weapon/gun/flamer, \
+						list(/obj/item/weapon/gun/flamer/big_flamer, \
+							/obj/item/weapon/gun/flamer/big_flamer, \
 							/obj/item/ammo_magazine/flamer_tank, \
 							/obj/item/ammo_magazine/flamer_tank \
 							), \

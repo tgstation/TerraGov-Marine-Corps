@@ -65,6 +65,7 @@
 	//product_ads = "Have a drink!;Drink up!;It's good for you!;Would you like a hot joe?;I'd kill for some coffee!;The best beans in the galaxy.;Only the finest brew for you.;Mmmm. Nothing like a coffee.;I like coffee, don't you?;Coffee helps you work!;Try some tea.;We hope you like the best!;Try our new chocolate!;Admin conspiracies"
 	icon_state = "coffee"
 	icon_vend = "coffee-vend"
+	vending_sound = 'sound/machines/vending_coffee.ogg'
 	vend_delay = 34
 	products = list(
 		/obj/item/reagent_containers/food/drinks/coffee = 20,
@@ -194,43 +195,59 @@
 	//product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY) //only doctors and researchers can access these
 	products = list(
-		/obj/item/healthanalyzer = 5,
-		/obj/item/clothing/glasses/hud/health = 2,
-		/obj/item/storage/belt/medical = 2,
-		/obj/item/defibrillator = 2,
-		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 5,
-		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 5,
-		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 5,
-		/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin =3,
-		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 5,
-		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 5,
-		/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 2,
-		/obj/item/reagent_containers/syringe = 20,
-		/obj/item/reagent_containers/glass/bottle/dylovene = 4,
-		/obj/item/reagent_containers/glass/bottle/bicaridine = 4,
-		/obj/item/reagent_containers/glass/bottle/inaprovaline = 4,
-		/obj/item/reagent_containers/glass/bottle/sleeptoxin = 2,
-		/obj/item/reagent_containers/glass/bottle/spaceacillin = 4,
-		/obj/item/reagent_containers/glass/bottle/peridaxon = 2,
-		/obj/item/reagent_containers/glass/bottle/kelotane = 4,
-		/obj/item/reagent_containers/glass/bottle/dexalin = 4,
-		/obj/item/reagent_containers/glass/bottle/tramadol = 4,
-		/obj/item/reagent_containers/glass/bottle/oxycodone = 4,
-		/obj/item/reagent_containers/glass/bottle/polyhexanide = 2,
-		/obj/item/reagent_containers/glass/bottle/neurotoxin = 1,
-		/obj/item/reagent_containers/glass/bottle/xeno_growthtoxin = 1,
-		/obj/item/storage/pill_bottle/peridaxon = 2,
-		/obj/item/stack/medical/advanced/bruise_pack = 5,
-		/obj/item/stack/medical/advanced/ointment = 5,
-		/obj/item/stack/medical/ointment = 10,
-		/obj/item/stack/medical/bruise_pack = 10,
-		/obj/item/stack/medical/splint = 5,
+		"Hypospray" = list (
+			/obj/item/defibrillator = 2,
+			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 5,
+			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 3,
+			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 5,
+			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 5,
+			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 2,
+		),
+		"Reagent Bottle" = list(
+			/obj/item/reagent_containers/glass/bottle/dylovene = 4,
+			/obj/item/reagent_containers/glass/bottle/bicaridine = 4,
+			/obj/item/reagent_containers/glass/bottle/inaprovaline = 4,
+			/obj/item/reagent_containers/glass/bottle/sleeptoxin = 2,
+			/obj/item/reagent_containers/glass/bottle/spaceacillin = 4,
+			/obj/item/reagent_containers/glass/bottle/peridaxon = 2,
+			/obj/item/reagent_containers/glass/bottle/kelotane = 4,
+			/obj/item/reagent_containers/glass/bottle/dexalin = 4,
+			/obj/item/reagent_containers/glass/bottle/tramadol = 4,
+			/obj/item/reagent_containers/glass/bottle/oxycodone = 4,
+			/obj/item/reagent_containers/glass/bottle/polyhexanide = 2,
+		),
+		"Pill Bottle" = list(
+			/obj/item/storage/pill_bottle/peridaxon = 2,
+			/obj/item/storage/pill_bottle/russian_red = 2,
+		),
+		"Heal Pack" = list(
+			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 5,
+			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 5,
+			/obj/item/stack/medical/heal_pack/ointment = 10,
+			/obj/item/stack/medical/heal_pack/gauze = 10,
+			/obj/item/stack/medical/splint = 5,
+		),
+		"Misc" = list(
+			/obj/item/healthanalyzer = 5,
+			/obj/item/clothing/glasses/hud/health = 2,
+			/obj/item/storage/belt/medical = 2,
+			/obj/item/reagent_containers/syringe = 20,
+		),
 	)
 
-	contraband = list(/obj/item/reagent_containers/glass/bottle/toxin = 1)
+	contraband = list(
+		/obj/item/reagent_containers/glass/bottle/toxin = 1,
+		/obj/item/reagent_containers/glass/bottle/neurotoxin = 1,
+		/obj/item/reagent_containers/glass/bottle/xeno_growthtoxin = 1,
+		/obj/item/reagent_containers/glass/bottle/neurotoxin/light = 1,
+		/obj/item/reagent_containers/glass/bottle/xeno_hemodile = 1,
+		/obj/item/reagent_containers/glass/bottle/xeno_transvitox = 1,
+	)
 
 	idle_power_usage = 211
 
+/obj/machinery/vending/medical/rebel
+	req_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
 
 //This one's from bay12
 /obj/machinery/vending/phoronresearch
@@ -252,8 +269,8 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/tramadol = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 1,
-		/obj/item/stack/medical/bruise_pack = 2,
-		/obj/item/stack/medical/ointment = 2,
+		/obj/item/stack/medical/heal_pack/gauze = 2,
+		/obj/item/stack/medical/heal_pack/ointment = 2,
 		/obj/item/healthanalyzer = 1,
 		/obj/item/stack/medical/splint = 1,
 	)

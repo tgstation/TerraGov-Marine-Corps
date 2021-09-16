@@ -1,7 +1,7 @@
 // big ert shuttle thing
 /obj/docking_port/stationary/ert_big
 	name = "ert big"
-	id = "big_ert"
+	id = SHUTTLE_BIG_ERT
 	dir = EAST
 	dwidth = 8
 	dheight = 10
@@ -13,7 +13,7 @@
 
 /obj/docking_port/mobile/ert_big
 	name = "ert big"
-	id = "big_ert"
+	id = SHUTTLE_BIG_ERT
 	dir = EAST
 	dwidth = 8
 	dheight = 10

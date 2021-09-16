@@ -1,24 +1,24 @@
 //A set of constants used to determine which type of mute an admin wishes to apply:
 //Please read and understand the muting/automuting stuff before changing these. MUTE_IC_AUTO etc = (MUTE_IC << 1)
 //Therefore there needs to be a gap between the flags for the automute flags
-#define MUTE_IC			(1<<0)
-#define MUTE_OOC		(1<<1)
-#define MUTE_PRAY		(1<<2)
-#define MUTE_ADMINHELP	(1<<3)
-#define MUTE_DEADCHAT	(1<<4)
-#define MUTE_LOOC		(1<<5)
-#define MUTE_ALL		(1<<6)-1
+#define MUTE_IC (1<<0)
+#define MUTE_OOC (1<<1)
+#define MUTE_PRAY (1<<2)
+#define MUTE_ADMINHELP (1<<3)
+#define MUTE_DEADCHAT (1<<4)
+#define MUTE_LOOC (1<<5)
+#define MUTE_ALL (1<<6)-1
 
 //Some constants for DB_Ban
-#define BANTYPE_PERMA		1
-#define BANTYPE_TEMP		2
-#define BANTYPE_JOB_PERMA	3
-#define BANTYPE_JOB_TEMP	4
-#define BANTYPE_ANY_FULLBAN	5 //used to locate stuff to unban.
+#define BANTYPE_PERMA 1
+#define BANTYPE_TEMP 2
+#define BANTYPE_JOB_PERMA 3
+#define BANTYPE_JOB_TEMP 4
+#define BANTYPE_ANY_FULLBAN 5 //used to locate stuff to unban.
 
-#define BANTYPE_ADMIN_PERMA	7
-#define BANTYPE_ADMIN_TEMP	8
-#define BANTYPE_ANY_JOB		9 //used to remove jobbans
+#define BANTYPE_ADMIN_PERMA 7
+#define BANTYPE_ADMIN_TEMP 8
+#define BANTYPE_ANY_JOB 9 //used to remove jobbans
 
 
 //Ticket tiers
@@ -26,23 +26,23 @@
 #define TICKET_ADMIN 2
 
 //Admin Permissions
-#define R_ADMIN 		(1<<0)
-#define R_MENTOR		(1<<1)
-#define R_BAN			(1<<2)
-#define R_ASAY			(1<<3)
-#define R_ADMINTICKET	(1<<4)
-#define R_FUN			(1<<5)
-#define R_SERVER		(1<<6)
-#define R_DEBUG			(1<<7)
-#define R_PERMISSIONS	(1<<8)
-#define R_COLOR			(1<<9)
-#define R_VAREDIT		(1<<10)
-#define R_SOUND			(1<<11)
-#define R_SPAWN			(1<<12)
-#define R_DBRANKS		(1<<13)
-#define R_RUNTIME		(1<<14)
+#define R_ADMIN (1<<0)
+#define R_MENTOR (1<<1)
+#define R_BAN (1<<2)
+#define R_ASAY (1<<3)
+#define R_ADMINTICKET (1<<4)
+#define R_FUN (1<<5)
+#define R_SERVER (1<<6)
+#define R_DEBUG (1<<7)
+#define R_PERMISSIONS (1<<8)
+#define R_COLOR (1<<9)
+#define R_VAREDIT (1<<10)
+#define R_SOUND (1<<11)
+#define R_SPAWN (1<<12)
+#define R_DBRANKS (1<<13)
+#define R_RUNTIME (1<<14)
 
-#define R_EVERYTHING 	(1<<15)-1 //the sum of all other rank permissions, used for +EVERYTHING
+#define R_EVERYTHING (1<<15)-1 //the sum of all other rank permissions, used for +EVERYTHING
 
 #define ADMIN_QUE(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];moreinfo=[REF(user)]'>?</a>)"
 #define ADMIN_FLW(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];observefollow=[REF(user)]'>FLW</a>)"
@@ -51,6 +51,7 @@
 #define ADMIN_PP(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(user)]'>PP</a>)"
 #define ADMIN_VV(atom) "(<a href='?_src_=vars;[HrefToken(TRUE)];vars=[REF(atom)]'>VV</a>)"
 #define ADMIN_SM(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];subtlemessage=[REF(user)]'>SM</a>)"
+#define ADMIN_IF(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];imginaryfriend=[REF(user)]'>IF</a>)"
 #define ADMIN_TP(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];traitorpanel=[REF(user)]'>TP</a>)"
 #define ADMIN_KICK(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];kick=[REF(user)]'>KICK</a>)"
 #define ADMIN_SC(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];spawncookie=[REF(user)]'>SC</a>)"
@@ -72,12 +73,12 @@
 #define AHELP_CLOSED 2
 #define AHELP_RESOLVED 3
 
-#define ROUNDSTART_LOGOUT_REPORT_TIME	10 MINUTES //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
+#define ROUNDSTART_LOGOUT_REPORT_TIME 10 MINUTES //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
 
 #define SPAM_TRIGGER_TIME_PERIOD 10 SECONDS //The time period for checking spammy messages
 #define SPAM_TRIGGER_WEIGHT_FORMULA(message) length(message) / 200
-#define SPAM_TRIGGER_WARNING	7	//Number of messages required per the time period before the spam-prevention will warn you
-#define SPAM_TRIGGER_AUTOMUTE	10	//Number of messages required per the time period before the spam-prevention will automute you
+#define SPAM_TRIGGER_WARNING 7	//Number of messages required per the time period before the spam-prevention will warn you
+#define SPAM_TRIGGER_AUTOMUTE 10	//Number of messages required per the time period before the spam-prevention will automute you
 #define SPAM_TRIGGER_WEIGHT_WARNING 2.5 //The weight required per the time period before the spam-prevention will warn you
 #define SPAM_TRIGGER_WEIGHT_AUTOMUTE 4 //The weight required per the time period before the spam-prevention will automute you
 
@@ -110,20 +111,20 @@
 #define MAX_ADMINBANS_PER_HEADMIN 10
 
 
-#define POLLTYPE_OPTION		"OPTION"
-#define POLLTYPE_TEXT		"TEXT"
-#define POLLTYPE_RATING		"NUMVAL"
-#define POLLTYPE_MULTI		"MULTICHOICE"
-#define POLLTYPE_IRV		"IRV"
+#define POLLTYPE_OPTION "OPTION"
+#define POLLTYPE_TEXT "TEXT"
+#define POLLTYPE_RATING "NUMVAL"
+#define POLLTYPE_MULTI "MULTICHOICE"
+#define POLLTYPE_IRV "IRV"
 
 
-#define APICKER_CLIENT	"Key"
-#define APICKER_MOB		"Mob"
-#define APICKER_LIVING	"Living Mob"
-#define APICKER_AREA	"Area"
-#define APICKER_TURF	"Turf"
-#define APICKER_COORDS	"Coords"
-#define APICKER_PLAYER	"Cliented Mob"
+#define APICKER_CLIENT "Key"
+#define APICKER_MOB "Mob"
+#define APICKER_LIVING "Living Mob"
+#define APICKER_AREA "Area"
+#define APICKER_TURF "Turf"
+#define APICKER_COORDS "Coords"
+#define APICKER_PLAYER "Cliented Mob"
 
 #define ADMIN_SPAWN_CAP 100
 

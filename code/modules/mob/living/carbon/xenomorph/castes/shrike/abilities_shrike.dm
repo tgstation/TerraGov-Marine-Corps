@@ -15,18 +15,18 @@
 /datum/action/xeno_action/call_of_the_burrowed/action_activate()
 	var/mob/living/carbon/xenomorph/shrike/caller = owner
 	if(!isnormalhive(caller.hive))
-		to_chat(caller, "<span class='warning'>Burrowed larva? What a strange concept... It's not for our hive.</span>")
+		to_chat(caller, span_warning("Burrowed larva? What a strange concept... It's not for our hive."))
 		return FALSE
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	if(!stored_larva)
-		to_chat(caller, "<span class='warning'>Our hive currently has no burrowed to call forth!</span>")
+		to_chat(caller, span_warning("Our hive currently has no burrowed to call forth!"))
 		return FALSE
 
 	playsound(caller,'sound/magic/invoke_general.ogg', 75, TRUE)
 	new /obj/effect/temp_visual/telekinesis(get_turf(caller))
-	caller.visible_message("<span class='xenowarning'>A strange buzzing hum starts to emanate from \the [caller]!</span>", \
-	"<span class='xenodanger'>We call forth the larvas to rise from their slumber!</span>")
+	caller.visible_message(span_xenowarning("A strange buzzing hum starts to emanate from \the [caller]!"), \
+	span_xenodanger("We call forth the larvas to rise from their slumber!"))
 
 	if(stored_larva)
 		RegisterSignal(caller.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
@@ -62,7 +62,7 @@
 
 
 /datum/action/xeno_action/activable/psychic_fling/on_cooldown_finish()
-	to_chat(owner, "<span class='notice'>We gather enough mental strength to fling something again.</span>")
+	to_chat(owner, span_notice("We gather enough mental strength to fling something again."))
 	return ..()
 
 
@@ -72,12 +72,12 @@
 		return FALSE
 	if(QDELETED(target))
 		return FALSE
-	if(!isitem(target) && !ishuman(target))	//only items and mobs can be flung.
+	if(!isitem(target) && !ishuman(target) && !isdroid(target))	//only items, droids, and mobs can be flung.
 		return FALSE
 	var/max_dist = 3 //the distance only goes to 3 now, since this is more of a utility then an attack.
 	if(!owner.line_of_sight(target, max_dist))
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We must get closer to fling, our mind cannot reach this far.</span>")
+			to_chat(owner, span_warning("We must get closer to fling, our mind cannot reach this far."))
 		return FALSE
 	if(ishuman(target))
 		var/mob/living/carbon/human/victim = target
@@ -92,10 +92,10 @@
 	GLOB.round_statistics.psychic_flings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_flings")
 
-	owner.visible_message("<span class='xenowarning'>A strange and violent psychic aura is suddenly emitted from \the [owner]!</span>", \
-	"<span class='xenowarning'>We violently fling [victim] with the power of our mind!</span>")
-	victim.visible_message("<span class='xenowarning'>[victim] is violently flung away by an unseen force!</span>", \
-	"<span class='xenowarning'>You are violently flung to the side by an unseen force!</span>")
+	owner.visible_message(span_xenowarning("A strange and violent psychic aura is suddenly emitted from \the [owner]!"), \
+	span_xenowarning("We violently fling [victim] with the power of our mind!"))
+	victim.visible_message(span_xenowarning("[victim] is violently flung away by an unseen force!"), \
+	span_xenowarning("You are violently flung to the side by an unseen force!"))
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
 	playsound(victim,'sound/weapons/alien_claw_block.ogg', 75, 1)
 
@@ -144,7 +144,7 @@
 
 
 /datum/action/xeno_action/activable/unrelenting_force/on_cooldown_finish()
-	to_chat(owner, "<span class='notice'>Our mind is ready to unleash another blast of force.</span>")
+	to_chat(owner, span_notice("Our mind is ready to unleash another blast of force."))
 	return ..()
 
 
@@ -176,7 +176,7 @@
 		affected_tile.Shake(4, 4, 2 SECONDS)
 		for(var/i in affected_tile)
 			var/atom/movable/affected = i
-			if(!ishuman(affected) && !istype(affected, /obj/item))
+			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
 				affected.Shake(4, 4, 20)
 				continue
 			if(ishuman(affected)) //if they're human, they also should get knocked off their feet from the blast.
@@ -190,8 +190,8 @@
 				throwlocation = get_step(throwlocation, owner.dir) //then we find where they're being thrown to, checking tile by tile.
 			affected.throw_at(throwlocation, 6, 1, owner, TRUE)
 
-	owner.visible_message("<span class='xenowarning'>[owner] sends out a huge blast of psychic energy!</span>", \
-	"<span class='xenowarning'>We send out a huge blast of psychic energy!</span>")
+	owner.visible_message(span_xenowarning("[owner] sends out a huge blast of psychic energy!"), \
+	span_xenowarning("We send out a huge blast of psychic energy!"))
 
 	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
 	playsound(owner, "alien_roar", 50)
@@ -224,7 +224,7 @@
 
 
 /datum/action/xeno_action/activable/psychic_cure/on_cooldown_finish()
-	to_chat(owner, "<span class='notice'>We gather enough mental strength to cure sisters again.</span>")
+	to_chat(owner, span_notice("We gather enough mental strength to cure sisters again."))
 	return ..()
 
 
@@ -241,17 +241,17 @@
 	var/mob/living/carbon/xenomorph/patient = target
 	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>It's too late. This sister won't be coming back.</span>")
+			to_chat(owner, span_warning("It's too late. This sister won't be coming back."))
 		return FALSE
 
 
 /datum/action/xeno_action/activable/psychic_cure/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
 	if(dist > heal_range)
-		to_chat(owner, "<span class='warning'>Too far for our reach... We need to be [dist - heal_range] steps closer!</span>")
+		to_chat(owner, span_warning("Too far for our reach... We need to be [dist - heal_range] steps closer!"))
 		return FALSE
 	else if(!owner.line_of_sight(target))
-		to_chat(owner, "<span class='warning'>We can't focus properly without a clear line of sight!</span>")
+		to_chat(owner, span_warning("We can't focus properly without a clear line of sight!"))
 		return FALSE
 	return TRUE
 
@@ -265,10 +265,10 @@
 
 	GLOB.round_statistics.psychic_cures++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_cures")
-	owner.visible_message("<span class='xenowarning'>A strange psychic aura is suddenly emitted from \the [owner]!</span>", \
-	"<span class='xenowarning'>We cure [target] with the power of our mind!</span>")
-	target.visible_message("<span class='xenowarning'>[target] suddenly shimmers in a chill light.</span>", \
-	"<span class='xenowarning'>We feel a sudden soothing chill.</span>")
+	owner.visible_message(span_xenowarning("A strange psychic aura is suddenly emitted from \the [owner]!"), \
+	span_xenowarning("We cure [target] with the power of our mind!"))
+	target.visible_message(span_xenowarning("[target] suddenly shimmers in a chill light."), \
+	span_xenowarning("We feel a sudden soothing chill."))
 
 	playsound(target,'sound/effects/magic.ogg', 75, 1)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
@@ -304,17 +304,12 @@
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do that here.</span>")
+			to_chat(owner, span_warning("We can't do that here."))
 		return FALSE
 
 	if(!(locate(/obj/effect/alien/weeds) in T))
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
-		return FALSE
-
-	if(locate(/obj/effect/alien/weeds/node) in T)
-		if(!silent)
-			to_chat(owner, "<span class='warning'>There is a resin node in the way!</span>")
+			to_chat(owner, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
 		return FALSE
 
 	if(!T.check_alien_construction(owner, silent))
@@ -330,4 +325,7 @@
 	playsound(T, "alien_resin_build", 25)
 	var/obj/structure/xeno/acidwell/AC = new /obj/structure/xeno/acidwell(T, owner)
 	AC.creator = owner
-	to_chat(owner, "<span class='xenonotice'>We place an acid well. It can still be charged more.</span>")
+
+	to_chat(owner, span_xenonotice("We place an acid well; it can be filled with more acid."))
+	GLOB.round_statistics.xeno_acid_wells++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_acid_wells")

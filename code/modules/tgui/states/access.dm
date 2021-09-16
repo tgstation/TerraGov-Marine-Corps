@@ -18,7 +18,7 @@ GLOBAL_DATUM_INIT(access_state, /datum/ui_state/access_state, new)
 
 	var/obj/O = src_object
 	if(!O?.allowed(src)) //No access? No ui!
-		to_chat(src, "<span class='warning'>Access Denied!</span>")
+		to_chat(src, span_warning("Access Denied!"))
 		return UI_CLOSE
 	. = min(., UI_INTERACTIVE)
 

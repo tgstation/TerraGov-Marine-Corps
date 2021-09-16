@@ -1,7 +1,7 @@
 /datum/game_mode/infestation/distress
 	name = "Distress Signal"
 	config_tag = "Distress Signal"
-	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER|MODE_PSY_POINTS|MODE_PSY_POINTS_ROUNDSTART|MODE_DEAD_GRAB_FORBIDDEN|MODE_HIJACK_POSSIBLE
+	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_DEAD_GRAB_FORBIDDEN|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM|MODE_LANDMARK_SPAWN_XENO_TURRETS
 	flags_xeno_abilities = ABILITY_DISTRESS
 	valid_job_types = list(
@@ -23,18 +23,19 @@
 		/datum/job/terragov/squad/smartgunner = 1,
 		/datum/job/terragov/squad/leader = 1,
 		/datum/job/terragov/squad/standard = -1,
-		/datum/job/xenomorph = 2,
+		/datum/job/xenomorph = FREE_XENO_AT_START,
 		/datum/job/xenomorph/queen = 1
 	)
 	var/siloless_hive_timer
 
 /datum/game_mode/infestation/distress/post_setup()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 	addtimer(CALLBACK(GLOB.hive_datums[XENO_HIVE_NORMAL], /datum/hive_status/proc/handle_silo_death_timer), MINIMUM_TIME_SILO_LESS_COLLAPSE)
 
+	SSpoints.add_psy_points(XENO_HIVE_NORMAL, SILO_PRICE + 2 * XENO_TURRET_PRICE)
+
 	for(var/i in GLOB.xeno_turret_turfs)
-		new /obj/structure/resin/xeno_turret(i)
+		new /obj/structure/xeno/resin/xeno_turret(i)
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob(COCOONED_DEATH)
 
@@ -44,7 +45,7 @@
 	if(!.)
 		return
 	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/xenomorph) //Xenos
-	scaled_job.job_points_needed  = CONFIG_GET(number/distress_larvapoints_required)
+	scaled_job.job_points_needed  = DISTRESS_LARVA_POINTS_NEEDED
 
 
 /datum/game_mode/infestation/distress/orphan_hivemind_collapse()

@@ -4,16 +4,21 @@
 ///TODO SPLIT THIS INTO MULTIPLE FILES
 
 /datum/species
-
-	var/name                                             // Species name.
+	///Species name
+	var/name
 	var/name_plural
 
-	var/icobase = 'icons/mob/human_races/r_human.dmi'    // Normal icon set.
-	var/deform = 'icons/mob/human_races/r_def_human.dmi' // Mutated icon set.
-	var/prone_icon                                       // If set, draws this from icobase when mob is prone.
-	var/eyes = "eyes_s"                                  // Icon for eyes.
+	///Normal icon file
+	var/icobase = 'icons/mob/human_races/r_human.dmi'
+	///Icon file when mutated
+	var/deform = 'icons/mob/human_races/r_def_human.dmi'
+	///If set, draws this from icobase when mob is prone.
+	var/prone_icon
+	///icon for eyes
+	var/eyes = "eyes_s"
 
-	var/tail                                   // Name of tail image in species effects icon file.
+	///Name of tail image in species effects icon file.
+	var/tail
 	var/datum/unarmed_attack/unarmed           // For empty hand harm-intent attack
 	var/datum/unarmed_attack/secondary_unarmed // For empty hand harm-intent attack if the first fails.
 	var/datum/hud_data/hud
@@ -22,7 +27,7 @@
 	var/taste_sensitivity = TASTE_NORMAL
 	var/gluttonous        // Can eat some mobs. 1 for monkeys, 2 for people.
 	var/rarity_value = 1  // Relative rarity/collector value for this species. Only used by ninja and cultists atm.
-	var/unarmed_type =           /datum/unarmed_attack
+	var/unarmed_type = /datum/unarmed_attack
 	var/secondary_unarmed_type = /datum/unarmed_attack/bite
 	var/default_language_holder = /datum/language_holder
 	var/speech_verb_override
@@ -30,8 +35,12 @@
 	var/list/speech_sounds        // A list of sounds to potentially play when speaking.
 	var/list/speech_chance
 	var/has_fine_manipulation = TRUE // Can use small items.
-	var/insulated                 // Immune to electrocution and glass shards to the feet.
+	/// Whether it is immune to electrocution and glass shards to the feet.
+	var/insulated = FALSE
 	var/count_human = FALSE // Does this count as a human?
+
+	///Inventory slots the race can't equip stuff to. Golems cannot wear jumpsuits, for example.
+	var/list/no_equip = list()
 
 	// Some species-specific gibbing data.
 	var/gibbed_anim = "gibbed-h"
@@ -44,7 +53,8 @@
 	var/poison_type = "phoron"   // Poisonous air.
 	var/exhale_type = "carbon_dioxide"      // Exhaled gas type.
 
-	var/total_health = 100  //new maxHealth
+	/// new maxHealth [/mob/living/carbon/human/var/maxHealth] of the human mob once species is applied
+	var/total_health = 100
 	var/max_stamina_buffer = 50
 
 	var/cold_level_1 = BODYTEMP_COLD_DAMAGE_LIMIT_ONE  	// Cold damage level 1 below this point.
@@ -70,6 +80,8 @@
 	///Whether this mob will tell when the user has logged out
 	var/is_sentient = TRUE
 
+	///Generic traits tied to having the species.
+	var/list/inherent_traits = list()
 	var/species_flags  = NONE       // Various specific features.
 
 	var/list/abilities = list()	// For species-derived or admin-given powers
@@ -91,7 +103,7 @@
 	var/race_key = 0
 	var/icon/icon_template
 
-	// Species-specific abilities.
+	/// inherent Species-specific verbs.
 	var/list/inherent_verbs
 	var/list/has_organ = list(
 		"heart" =    /datum/internal_organ/heart,
@@ -111,6 +123,7 @@
 
 	var/datum/namepool/namepool = /datum/namepool
 	var/special_death_message = "You have perished." // Special death message that gets overwritten if possible.
+	///Whether it is possible with this race roundstart
 	var/joinable_roundstart = FALSE
 
 /datum/species/New()
@@ -119,61 +132,62 @@
 	else
 		hud = new()
 
-	if(unarmed_type) unarmed = new unarmed_type()
-	if(secondary_unarmed_type) secondary_unarmed = new secondary_unarmed_type()
+	if(unarmed_type)
+		unarmed = new unarmed_type()
+	if(secondary_unarmed_type)
+		secondary_unarmed = new secondary_unarmed_type()
 
-/datum/species/proc/create_organs(mob/living/carbon/human/H) //Handles creation of mob organs and limbs.
+/datum/species/proc/create_organs(mob/living/carbon/human/organless_human) //Handles creation of mob organs and limbs.
 
-	H.limbs = list()
-	H.internal_organs = list()
-	H.internal_organs_by_name = list()
+	organless_human.limbs = list()
+	organless_human.internal_organs = list()
+	organless_human.internal_organs_by_name = list()
 
 	//This is a basic humanoid limb setup.
-	var/datum/limb/chest/C = new(null, H)
-	H.limbs += C
-	var/datum/limb/groin/G = new(C, H)
-	H.limbs += G
-	H.limbs += new/datum/limb/head(C, H)
-	var/datum/limb/l_arm/LA = new(C, H)
-	H.limbs += LA
-	var/datum/limb/r_arm/RA = new(C, H)
-	H.limbs += RA
-	var/datum/limb/l_leg/LL = new(G, H)
-	H.limbs += LL
-	var/datum/limb/r_leg/RL = new(G, H)
-	H.limbs += RL
-	H.limbs +=  new/datum/limb/hand/l_hand(LA, H)
-	H.limbs +=  new/datum/limb/hand/r_hand(RA, H)
-	H.limbs +=  new/datum/limb/foot/l_foot(LL, H)
-	H.limbs +=  new/datum/limb/foot/r_foot(RL, H)
+	var/datum/limb/chest/new_chest = new(null, organless_human)
+	organless_human.limbs += new_chest
+	var/datum/limb/groin/new_groin = new(new_chest, organless_human)
+	organless_human.limbs += new_groin
+	organless_human.limbs += new/datum/limb/head(new_chest, organless_human)
+	var/datum/limb/l_arm/new_l_arm = new(new_chest, organless_human)
+	organless_human.limbs += new_l_arm
+	var/datum/limb/r_arm/new_r_arm = new(new_chest, organless_human)
+	organless_human.limbs += new_r_arm
+	var/datum/limb/l_leg/new_l_leg = new(new_groin, organless_human)
+	organless_human.limbs += new_l_leg
+	var/datum/limb/r_leg/new_r_leg = new(new_groin, organless_human)
+	organless_human.limbs += new_r_leg
+	organless_human.limbs += new/datum/limb/hand/l_hand(new_l_arm, organless_human)
+	organless_human.limbs += new/datum/limb/hand/r_hand(new_r_arm, organless_human)
+	organless_human.limbs += new/datum/limb/foot/l_foot(new_l_leg, organless_human)
+	organless_human.limbs += new/datum/limb/foot/r_foot(new_r_leg, organless_human)
 
 	for(var/organ in has_organ)
 		var/organ_type = has_organ[organ]
-		H.internal_organs_by_name[organ] = new organ_type(H)
+		organless_human.internal_organs_by_name[organ] = new organ_type(organless_human)
 
 	if(species_flags & IS_SYNTHETIC)
-		for(var/datum/limb/l in H.limbs)
-			var/datum/limb/robotic_limb = l
+		for(var/datum/limb/robotic_limb AS in organless_human.limbs)
 			if(robotic_limb.limb_status & LIMB_DESTROYED)
 				continue
 			robotic_limb.add_limb_flags(LIMB_ROBOT)
-		for(var/datum/internal_organ/I in H.internal_organs)
-			I.mechanize()
+		for(var/datum/internal_organ/my_cold_heart in organless_human.internal_organs)
+			my_cold_heart.mechanize()
 
 
-/datum/species/proc/hug(mob/living/carbon/human/H,mob/living/target)
+/datum/species/proc/hug(mob/living/carbon/human/H, mob/living/target)
 	if(H.zone_selected == "head")
-		H.visible_message("<span class='notice'>[H] pats [target] on the head.</span>", \
-					"<span class='notice'>You pat [target] on the head.</span>", null, 4)
+		H.visible_message(span_notice("[H] pats [target] on the head."), \
+					span_notice("You pat [target] on the head."), null, 4)
 	else if(H.zone_selected == "l_hand" && CONFIG_GET(flag/fun_allowed))
-		H.visible_message("<span class='notice'>[H] holds [target] 's left hand.</span>", \
-					"<span class='notice'>You hold [target]'s left hand.</span>", null, 4)
+		H.visible_message(span_notice("[H] holds [target] 's left hand."), \
+					span_notice("You hold [target]'s left hand."), null, 4)
 	else if (H.zone_selected == "r_hand" && CONFIG_GET(flag/fun_allowed))
-		H.visible_message("<span class='notice'>[H] holds [target] 's right hand.</span>", \
-					"<span class='notice'>You hold [target]'s right hand.</span>", null, 4)
+		H.visible_message(span_notice("[H] holds [target] 's right hand."), \
+					span_notice("You hold [target]'s right hand."), null, 4)
 	else
-		H.visible_message("<span class='notice'>[H] hugs [target] to make [target.p_them()] feel better!</span>", \
-					"<span class='notice'>You hug [target] to make [target.p_them()] feel better!</span>", null, 4)
+		H.visible_message(span_notice("[H] hugs [target] to make [target.p_them()] feel better!"), \
+					span_notice("You hug [target] to make [target.p_them()] feel better!"), null, 4)
 
 /datum/species/proc/random_name(gender)
 	return GLOB.namepool[namepool].get_random_name(gender)
@@ -203,7 +217,7 @@
 				. = "Anna"
 			else
 				. = "Jeri"
-		to_chat(prefs.parent, "<span class='warning'>You forgot to set your synthetic name in your preferences. Please do so next time.</span>")
+		to_chat(prefs.parent, span_warning("You forgot to set your synthetic name in your preferences. Please do so next time."))
 
 /datum/species/early_synthetic/prefs_name(datum/preferences/prefs)
 	. = prefs.synthetic_name
@@ -215,14 +229,22 @@
 				. = "Anna"
 			else
 				. = "Jeri"
-		to_chat(prefs.parent, "<span class='warning'>You forgot to set your synthetic name in your preferences. Please do so next time.</span>")
+		to_chat(prefs.parent, span_warning("You forgot to set your synthetic name in your preferences. Please do so next time."))
 
 /datum/species/proc/on_species_gain(mob/living/carbon/human/H, /datum/species/old_species)
-	return
+	SHOULD_CALL_PARENT(TRUE) //remember to call base procs kids
+	for(var/slot_id in no_equip)
+		var/obj/item/thing = H.get_item_by_slot(slot_id)
+		if(thing && !is_type_in_list(src,thing.species_exception))
+			H.dropItemToGround(thing)
+	for(var/newtrait in inherent_traits)
+		ADD_TRAIT(H, newtrait, SPECIES_TRAIT)
 
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
-	return
+	SHOULD_CALL_PARENT(TRUE)
+	for(var/oldtrait in inherent_traits)
+		REMOVE_TRAIT(H, oldtrait, SPECIES_TRAIT)
 
 /datum/species/proc/remove_inherent_verbs(mob/living/carbon/human/H)
 	if(inherent_verbs)
@@ -250,7 +272,7 @@
 /datum/species/proc/handle_unique_behavior(mob/living/carbon/human/H)
 	return
 
-// Used to update alien icons for aliens.
+/// Used to update alien icons for aliens.
 /datum/species/proc/handle_login_special(mob/living/carbon/human/H)
 	return
 
@@ -314,8 +336,6 @@
 	special_death_message = "<big>You have perished.</big><br><small>But it is not the end of you yet... if you still have your body or an unbursted corpse, wait until somebody can resurrect you...</small>"
 	joinable_roundstart = TRUE
 
-	//If you wanted to add a species-level ability:
-	/*abilities = list(/client/proc/test_ability)*/
 
 /datum/species/human/vatborn
 	name = "Vatborn"
@@ -325,21 +345,6 @@
 
 	namepool = /datum/namepool/vatborn
 
-//Slightly tougher humans.
-/datum/species/human/hero
-	name = "Human Hero"
-	name_plural = "Human Heroes"
-	brute_mod = 0.55
-	burn_mod = 0.55
-	unarmed_type = /datum/unarmed_attack/punch/strong
-
-	cold_level_1 = 220
-	cold_level_2 = 180
-	cold_level_3 = 80
-	heat_level_1 = 390
-	heat_level_2 = 480
-	heat_level_3 = 1100
-	joinable_roundstart = FALSE
 
 /datum/species/human/vatgrown
 	name = "Vat-Grown Human"
@@ -419,19 +424,19 @@
 
 /datum/species/monkey/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
 	if(!iscarbon(target))
-		target.attack_paw(user)
+		target.attack_hand(user)
 		return TRUE
 	var/mob/living/carbon/victim = target
 	if(prob(25))
-		victim.visible_message("<span class='danger'>[user]'s bite misses [victim]!</span>",
-			"<span class='danger'>You avoid [user]'s bite!</span>", "<span class='hear'>You hear jaws snapping shut!</span>")
-		to_chat(user, "<span class='danger'>Your bite misses [victim]!</span>")
+		victim.visible_message(span_danger("[user]'s bite misses [victim]!"),
+			span_danger("You avoid [user]'s bite!"), span_hear("You hear jaws snapping shut!"))
+		to_chat(user, span_danger("Your bite misses [victim]!"))
 		return TRUE
 	victim.take_overall_damage(rand(10, 20), updating_health = TRUE)
-	victim.visible_message("<span class='danger'>[name] bites [victim]!</span>",
-		"<span class='userdanger'>[name] bites you!</span>", "<span class='hear'>You hear a chomp!</span>")
-	to_chat(user, "<span class='danger'>You bite [victim]!</span>")
-	target.attack_paw(user)
+	victim.visible_message(span_danger("[name] bites [victim]!"),
+		span_userdanger("[name] bites you!"), span_hear("You hear a chomp!"))
+	to_chat(user, span_danger("You bite [victim]!"))
+	target.attack_hand(user)
 	return TRUE
 
 /datum/species/monkey/random_name(gender,unique,lastname)
@@ -599,7 +604,7 @@
 
 /datum/species/moth/handle_fire(mob/living/carbon/human/H)
 	if(H.moth_wings != "Burnt Off" && H.bodytemperature >= 400 && H.fire_stacks > 0)
-		to_chat(H, "<span class='danger'>Your precious wings burn to a crisp!</span>")
+		to_chat(H, span_danger("Your precious wings burn to a crisp!"))
 		H.moth_wings = "Burnt Off"
 		H.update_body()
 
@@ -628,6 +633,7 @@
 	update_moth_wings(H)
 
 /datum/species/moth/post_species_loss(mob/living/carbon/human/H)
+	. = ..()
 	H.remove_overlay(MOTH_WINGS_LAYER)
 	H.remove_underlay(MOTH_WINGS_BEHIND_LAYER)
 
@@ -839,6 +845,9 @@
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.add_hud_to(H)
 
+/mob/living/carbon/human/species/synthetic/binarycheck(mob/H)
+	return TRUE
+
 
 /datum/species/synthetic/post_species_loss(mob/living/carbon/human/H)
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
@@ -898,6 +907,9 @@
 	AH.remove_hud_from(H)
 	return ..()
 
+/mob/living/carbon/human/species/early_synthetic/binarycheck(mob/H)
+	return TRUE
+
 
 /mob/living/carbon/human/proc/reset_jitteriness() //todo kill this
 	jitteriness = 0
@@ -934,11 +946,11 @@
 
 	// Check if they have a functioning hand.
 	var/datum/limb/E = user.get_limb("l_hand")
-	if(E && !(E.limb_status & LIMB_DESTROYED))
+	if(E?.is_usable())
 		return TRUE
 
 	E = user.get_limb("r_hand")
-	if(E && !(E.limb_status & LIMB_DESTROYED))
+	if(E?.is_usable())
 		return TRUE
 	return FALSE
 

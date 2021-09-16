@@ -37,7 +37,7 @@
 /obj/structure/closet/secure_closet/guncabinet/canterbury/PopulateContents()
 	new /obj/item/weapon/gun/shotgun/combat/standardmarine(src)
 	new /obj/item/weapon/gun/rifle/m412(src)
-	new /obj/item/weapon/gun/flamer/marinestandard(src)
+	new /obj/item/weapon/gun/flamer/big_flamer/marinestandard(src)
 	new /obj/item/ammo_magazine/flamer_tank/large(src)
 	new /obj/item/weapon/gun/smg/m25(src)
 	new /obj/item/weapon/gun/revolver/mateba(src)
@@ -104,7 +104,7 @@
 	req_access = list(ACCESS_MARINE_RESEARCH)
 
 /obj/structure/closet/secure_closet/guncabinet/incendiary/PopulateContents()
-	new /obj/item/weapon/gun/flamer(src)
+	new /obj/item/weapon/gun/flamer/big_flamer(src)
 	new /obj/item/explosive/grenade/incendiary(src)
 
 
@@ -129,7 +129,8 @@
 	new /obj/item/ammo_magazine/shotgun/buckshot(src)
 	new /obj/item/ammo_magazine/shotgun/buckshot(src)
 
-
+/obj/structure/closet/secure_closet/guncabinet/mp_armory/engineering
+	req_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE)
 
 /obj/structure/closet/secure_closet/guncabinet/riot_control
 	name = "riot control equipment closet"

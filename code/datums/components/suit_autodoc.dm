@@ -160,7 +160,7 @@
 		details += "Its painkiller injector is currently refilling.</br>"
 
 	if(details)
-		to_chat(user, "<span class='danger'>[details]</span>")
+		to_chat(user, span_danger("[details]"))
 
 
 /**
@@ -199,7 +199,7 @@
 	UnregisterSignals(wearer)
 	STOP_PROCESSING(SSobj, src)
 	if(!silent)
-		to_chat(wearer, "<span class='warning'>[parent] lets out a beep as its automedical suite deactivates.</span>")
+		wearer.balloon_alert(wearer, "The automedical suite deactivates")
 		playsound(parent,'sound/machines/click.ogg', 15, 0, 1)
 
 /**
@@ -215,7 +215,7 @@
 	RegisterSignals(wearer)
 	START_PROCESSING(SSobj, src)
 	if(!silent)
-		to_chat(wearer, "<span class='notice'>[parent] lets out a hum as its automedical suite activates.</span>")
+		wearer.balloon_alert(wearer, "The automedical suite activates")
 		playsound(parent,'sound/voice/b18_activate.ogg', 15, 0, 1)
 
 
@@ -255,7 +255,7 @@
 			drugs += " [initial(R.name)]: [amount_to_administer]U"
 
 	if(LAZYLEN(drugs))
-		. = "[message_prefix] administered. <span class='bold'>Dosage:[drugs]</span><br/>"
+		. = "[message_prefix] administered. [span_bold("Dosage:[drugs]")]<br/>"
 		TIMER_COOLDOWN_START(src, cooldown_type, chem_cooldown)
 		addtimer(CALLBACK(src, .proc/nextuse_ready, treatment_message), chem_cooldown)
 
@@ -277,7 +277,7 @@
 
 	if(burns || brute || oxy || tox || pain)
 		playsound(parent,'sound/items/hypospray.ogg', 25, 0, 1)
-		to_chat(wearer, "<span class='notice'>[icon2html(parent, wearer)] beeps:</br>[burns][brute][oxy][tox][pain]Estimated [chem_cooldown/600] minute replenishment time for each dosage.</span>")
+		to_chat(wearer, span_notice("[icon2html(parent, wearer)] beeps:</br>[burns][brute][oxy][tox][pain]Estimated [chem_cooldown/600] minute replenishment time for each dosage."))
 
 /**
 	Plays a sound and message to the user informing the user chemicals are ready again
@@ -292,7 +292,7 @@
 	if(!istype(H))
 		return
 
-	to_chat(H, "<span class='notice'>[I] beeps: [message] reservoir replenished.</span>")
+	to_chat(H, span_notice("[I] beeps: [message] reservoir replenished."))
 
 /**
 	Add the actions to the user
@@ -414,9 +414,9 @@
 	else if(href_list["toggle_mode"]) //Integrated scanner
 		analyzer.hud_mode = !analyzer.hud_mode
 		if(analyzer.hud_mode)
-			to_chat(wearer, "<span class='notice'>The scanner now shows results on the hud.</span>")
+			wearer.balloon_alert(wearer, "The scanner now shows results on the hud")
 		else
-			to_chat(wearer, "<span class='notice'>The scanner no longer shows results on the hud.</span>")
+			wearer.balloon_alert(wearer, "The scanner no longer shows results on the hud")
 
 	else if(href_list["automed_damage"])
 		damage_threshold += text2num(href_list["automed_damage"])

@@ -35,10 +35,10 @@
 //Object specific defines
 #define CANDLE_LUM 3 //For how bright candles are
 
-#define SEC_LEVEL_GREEN	0
-#define SEC_LEVEL_BLUE	1
-#define SEC_LEVEL_RED	2
-#define SEC_LEVEL_DELTA	3
+#define SEC_LEVEL_GREEN 0
+#define SEC_LEVEL_BLUE 1
+#define SEC_LEVEL_RED 2
+#define SEC_LEVEL_DELTA 3
 
 
 //some arbitrary defines to be used by self-pruning global lists. (see master_controller)
@@ -56,7 +56,7 @@
 //=================================================
 //Game mode related defines.
 
-#define TRANSITIONEDGE	3 //Distance from edge to move to another z-level
+#define TRANSITIONEDGE 3 //Distance from edge to move to another z-level
 
 //Flags for zone sleeping
 #define ZONE_ACTIVE 1
@@ -95,9 +95,9 @@
 #define CHAT_FILTER_CHECK(text) (config.ic_filter_regex && findtext(text, config.ic_filter_regex))
 
 //for whether AI eyes see static, and whether it is mouse-opaque or not
-#define USE_STATIC_NONE			0
-#define USE_STATIC_TRANSPARENT	1
-#define USE_STATIC_OPAQUE		2
+#define USE_STATIC_NONE 0
+#define USE_STATIC_TRANSPARENT 1
+#define USE_STATIC_OPAQUE 2
 
 
 #define CINEMATIC_DEFAULT 1
@@ -115,3 +115,8 @@
 #define WORLD_VIEW "15x15"
 #define WORLD_VIEW_NUM 7
 #define VIEW_NUM_TO_STRING(v) "[1 + 2 * v]x[1 + 2 * v]"
+
+#define TEXT_NORTH "[NORTH]"
+#define TEXT_SOUTH "[SOUTH]"
+#define TEXT_EAST "[EAST]"
+#define TEXT_WEST "[WEST]"

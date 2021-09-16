@@ -1,8 +1,6 @@
 // points per minute
 #define DROPSHIP_POINT_RATE 18 * ((GLOB.current_orbit+3)/6)
 #define SUPPLY_POINT_RATE 2 * (GLOB.current_orbit/3)
-//How many psych point one gen gives per person on the server
-#define BASE_PSYCH_POINT_OUTPUT 0.002
 
 SUBSYSTEM_DEF(points)
 	name = "Points"
@@ -22,6 +20,7 @@ SUBSYSTEM_DEF(points)
 	var/list/supply_packs = list()
 	var/list/supply_packs_ui = list()
 	var/list/supply_packs_contents = list()
+	///Assoc list of item ready to be sent, categorised by faction
 	var/list/shoppinglist = list()
 	var/list/shopping_history = list()
 	var/list/shopping_cart = list()
@@ -48,10 +47,15 @@ SUBSYSTEM_DEF(points)
 
 /datum/controller/subsystem/points/Initialize(timeofday)
 	ordernum = rand(1, 9000)
+	return ..()
 
+/// Prepare the global supply pack list at the gamemode start
+/datum/controller/subsystem/points/proc/prepare_supply_packs_list(is_human_req_only = FALSE)
 	for(var/pack in subtypesof(/datum/supply_packs))
 		var/datum/supply_packs/P = pack
 		if(!initial(P.cost))
+			continue
+		if(is_human_req_only && initial(P.available_against_xeno_only))
 			continue
 		P = new pack()
 		if(!P.contains)
@@ -66,9 +70,7 @@ SUBSYSTEM_DEF(points)
 				containsname[path] = list("name" = initial(path.name), "count" = 1)
 			else
 				containsname[path]["count"]++
-		supply_packs_contents[pack] = list("name" = P.name, "container_name" = initial(P.containertype.name), "cost" = P.cost, "hidden" = P.hidden, "contains" = containsname)
-
-	return ..()
+		supply_packs_contents[pack] = list("name" = P.name, "container_name" = initial(P.containertype.name), "cost" = P.cost, "contains" = containsname)
 
 /datum/controller/subsystem/points/fire(resumed = FALSE)
 	dropship_points += DROPSHIP_POINT_RATE / (1 MINUTES / wait)
@@ -90,23 +92,24 @@ SUBSYSTEM_DEF(points)
 		cost += SP.cost
 	if(cost > supply_points[user.faction])
 		return
-	if(length(shoppinglist) >= SSshuttle.supply?.return_number_of_turfs())
+	var/obj/docking_port/mobile/supply_shuttle = SSshuttle.getShuttle(SHUTTLE_SUPPLY)
+	if(length(shoppinglist[O.faction]) >= supply_shuttle.return_number_of_turfs())
 		return
 	requestlist -= "[O.id]"
 	deniedrequests -= "[O.id]"
 	approvedrequests["[O.id]"] = O
 	O.authorised_by = user.real_name
 	supply_points[user.faction] -= cost
-	shoppinglist["[O.id]"] = O
+	LAZYADDASSOCSIMPLE(shoppinglist[O.faction], "[O.id]", O)
 	if(GLOB.directory[O.orderer])
-		to_chat(GLOB.directory[O.orderer], "<span class='notice'>Your request [O.id] has been approved!</span>")
+		to_chat(GLOB.directory[O.orderer], span_notice("Your request [O.id] has been approved!"))
 
 /datum/controller/subsystem/points/proc/deny_request(datum/supply_order/O)
 	requestlist -= "[O.id]"
 	deniedrequests["[O.id]"] = O
 	O.authorised_by = "denied"
 	if(GLOB.directory[O.orderer])
-		to_chat(GLOB.directory[O.orderer], "<span class='notice'>Your request [O.id] has been denied!</span>")
+		to_chat(GLOB.directory[O.orderer], span_notice("Your request [O.id] has been denied!"))
 
 /datum/controller/subsystem/points/proc/copy_order(datum/supply_order/O)
 	var/datum/supply_order/NO = new
@@ -164,7 +167,7 @@ SUBSYSTEM_DEF(points)
 	var/list/datum/supply_order/orders = process_cart(user, shopping_cart)
 	for(var/i in 1 to length(orders))
 		orders[i].authorised_by = user.real_name
-		shoppinglist["[orders[i].id]"] = orders[i]
+		LAZYADDASSOCSIMPLE(shoppinglist[user.faction], "[orders[i].id]", orders[i])
 	supply_points[user.faction] -= cost
 	shopping_cart.Cut()
 

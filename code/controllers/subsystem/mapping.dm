@@ -52,7 +52,7 @@ SUBSYSTEM_DEF(mapping)
 			var/old_config = configs[i]
 			configs[i] = global.config.defaultmaps[i]
 			if(!configs || configs[i].defaulted)
-				to_chat(world, "<span class='boldannounce'>Unable to load next or default map config, defaulting.</span>")
+				to_chat(world, span_boldannounce("Unable to load next or default map config, defaulting."))
 				configs[i] = old_config
 
 	if(configs[GROUND_MAP])
@@ -115,7 +115,7 @@ SUBSYSTEM_DEF(mapping)
 
 	z_list = SSmapping.z_list
 
-#define INIT_ANNOUNCE(X) to_chat(world, "<span class='notice'>[X]</span>"); log_world(X)
+#define INIT_ANNOUNCE(X) to_chat(world, span_notice("[X]")); log_world(X)
 /datum/controller/subsystem/mapping/proc/LoadGroup(list/errorList, name, path, files, list/traits, list/default_traits, silent = FALSE)
 	. = list()
 	var/start_time = REALTIMEOFDAY
@@ -264,8 +264,6 @@ SUBSYSTEM_DEF(mapping)
 
 	for(var/item in subtypesof(/datum/map_template/shuttle))
 		var/datum/map_template/shuttle/shuttle_type = item
-		//if(!(initial(shuttle_type.suffix)))
-		//	continue
 
 		var/datum/map_template/shuttle/S = new shuttle_type()
 		if(unbuyable.Find(S.mappath))

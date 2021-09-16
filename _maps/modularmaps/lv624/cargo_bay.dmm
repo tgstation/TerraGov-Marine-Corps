@@ -8,8 +8,8 @@
 /area/lv624/lazarus/quartstorage)
 "as" = (
 /obj/structure/largecrate,
-/obj/item/explosive/grenade/frag/stick,
-/obj/item/explosive/grenade/frag/stick,
+/obj/item/explosive/grenade/stick,
+/obj/item/explosive/grenade/stick,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "bE" = (

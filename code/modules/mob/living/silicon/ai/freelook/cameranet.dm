@@ -64,6 +64,9 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 
 	if(C)
 		switch(use_static)
+			if(USE_STATIC_NONE)
+				C.images -= obscured_transparent
+				C.images -= obscured
 			if(USE_STATIC_TRANSPARENT)
 				C.images += obscured_transparent
 			if(USE_STATIC_OPAQUE)

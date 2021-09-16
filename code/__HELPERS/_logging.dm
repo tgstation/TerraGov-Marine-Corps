@@ -35,6 +35,12 @@
 #define testing(msg)
 #endif
 
+#ifdef REFERENCE_TRACKING_LOG
+#define log_reftracker(msg) log_world("## REF SEARCH [msg]")
+#else
+#define log_reftracker(msg)
+#endif
+
 /* Items with private are stripped from public logs. */
 /proc/log_admin(text)
 	LAZYADD(GLOB.admin_log, "\[[stationTimestamp()]\] ADMIN: [text]")
@@ -124,6 +130,15 @@
 	if(CONFIG_GET(flag/log_ooc))
 		WRITE_LOG(GLOB.world_game_log, "OOC: [text]")
 
+/proc/log_xooc(text)
+	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] XOOC: [text]")
+	if(CONFIG_GET(flag/log_xooc))
+		WRITE_LOG(GLOB.world_game_log, "XOOC: [text]")
+
+/proc/log_mooc(text)
+	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] MOOC: [text]")
+	if(CONFIG_GET(flag/log_mooc))
+		WRITE_LOG(GLOB.world_game_log, "MOOC: [text]")
 
 /proc/log_looc(text)
 	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] LOOC: [text]")

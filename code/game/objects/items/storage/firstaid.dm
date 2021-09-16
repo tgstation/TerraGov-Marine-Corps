@@ -56,8 +56,8 @@
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
 	new /obj/item/storage/pill_bottle/packet/leporazine(src)
 	new /obj/item/storage/syringe_case/burn(src)
 
@@ -67,8 +67,8 @@
 
 /obj/item/storage/firstaid/regular/fill_firstaid_kit()
 	new /obj/item/healthanalyzer(src)
-	new /obj/item/stack/medical/bruise_pack(src)
-	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/stack/medical/heal_pack/gauze(src)
+	new /obj/item/stack/medical/heal_pack/ointment(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol(src)
 	new /obj/item/stack/medical/splint(src)
@@ -116,8 +116,8 @@
 
 /obj/item/storage/firstaid/adv/fill_firstaid_kit()
 	new /obj/item/healthanalyzer(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
 	new /obj/item/storage/pill_bottle/bicaridine(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
@@ -231,15 +231,15 @@
 	new /obj/item/reagent_containers/glass/bottle/meraderm(src)
 	new /obj/item/reagent_containers/glass/bottle/meraderm(src)
 
-/obj/item/storage/syringe_case/ironsugar
-	name = "syringe case (ironsugar)"
-	desc = "It's a medical case for storing syringes and bottles. This one contains Ironsugar."
+/obj/item/storage/syringe_case/nanoblood
+	name = "syringe case (nanoblood)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains nanoblood."
 
-/obj/item/storage/syringe_case/ironsugar/PopulateContents()
+/obj/item/storage/syringe_case/nanoblood/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
-	new /obj/item/reagent_containers/glass/bottle/ironsugar(src)
-	new /obj/item/reagent_containers/glass/bottle/ironsugar(src)
+	new /obj/item/reagent_containers/glass/bottle/nanoblood(src)
+	new /obj/item/reagent_containers/glass/bottle/nanoblood(src)
 
 /obj/item/storage/syringe_case/tricordrazine
 	name = "syringe case (tricordrazine)"
@@ -294,24 +294,24 @@
 
 /obj/item/storage/pill_bottle/attack_self(mob/living/user)
 	if(user.get_inactive_held_item())
-		to_chat(user, "<span class='warning'>You need an empty hand to take out a pill.</span>")
+		to_chat(user, span_warning("You need an empty hand to take out a pill."))
 		return
 	if(contents.len)
 		var/obj/item/I = contents[1]
-		if(!remove_from_storage(I,user))
+		if(!remove_from_storage(I,user,user))
 			return
 		if(user.put_in_inactive_hand(I))
-			to_chat(user, "<span class='notice'>You take a pill out of \the [src].</span>")
+			to_chat(user, span_notice("You take a pill out of \the [src]."))
 			playsound(user, 'sound/items/pills.ogg', 15, 1)
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.swap_hand()
 		else
 			user.dropItemToGround(I)
-			to_chat(user, "<span class='notice'>You fumble around with \the [src] and drop a pill on the floor.</span>")
+			to_chat(user, span_notice("You fumble around with \the [src] and drop a pill on the floor."))
 		return
 	else
-		to_chat(user, "<span class='warning'>\The [src] is empty.</span>")
+		to_chat(user, span_warning("\The [src] is empty."))
 		return
 
 
@@ -321,11 +321,11 @@
 	icon_state = "pill_canister2"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/kelotane
 
-/obj/item/storage/pill_bottle/keloderm
-	name = "keloderm pill bottle"
+/obj/item/storage/pill_bottle/dermaline
+	name = "dermaline pill bottle"
 	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	icon_state = "pill_canister2"
-	pill_type_to_fill = /obj/item/reagent_containers/pill/keloderm
+	pill_type_to_fill = /obj/item/reagent_containers/pill/dermaline
 
 /obj/item/storage/pill_bottle/dylovene
 	name = "dylovene pill bottle"
@@ -363,11 +363,11 @@
 	icon_state = "pill_canister11"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/bicaridine
 
-/obj/item/storage/pill_bottle/bicamera
-	name = "bicamera pill bottle"
+/obj/item/storage/pill_bottle/meralyne
+	name = "meralyne pill bottle"
 	desc = "Contains pills that heal cuts and bruises, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	icon_state = "pill_canister11"
-	pill_type_to_fill = /obj/item/reagent_containers/pill/bicamera
+	pill_type_to_fill = /obj/item/reagent_containers/pill/meralyne
 
 /obj/item/storage/pill_bottle/dexalin
 	name = "dexalin pill bottle"
@@ -442,25 +442,25 @@
 		return TRUE
 
 	if(!allowed(L))
-		to_chat(L, "<span class='notice'>It seems to have some kind of ID lock...</span>")
+		to_chat(L, span_notice("It seems to have some kind of ID lock..."))
 		return FALSE
 
 	if(req_id_role || scan_name)
 		var/obj/item/card/id/I = L.get_idcard()
 		if(!I)
-			to_chat(L, "<span class='notice'>It seems to have some kind of ID lock...</span>")
+			to_chat(L, span_notice("It seems to have some kind of ID lock..."))
 			return FALSE
 
 		if(scan_name && (I.registered_name != L.real_name))
-			to_chat(L, "<span class='warning'>it seems to have some kind of ID lock...</span>")
+			to_chat(L, span_warning("it seems to have some kind of ID lock..."))
 			return FALSE
 
 		if(req_id_role && (I.rank != req_id_role))
-			to_chat(L, "<span class='notice'>It must have some kind of ID lock...</span>")
+			to_chat(L, span_notice("It must have some kind of ID lock..."))
 			return FALSE
 
 	if(req_role && (!L.job || L.job.title != req_role))
-		to_chat(L, "<span class='notice'>It must have some kind of special lock...</span>")
+		to_chat(L, span_notice("It must have some kind of special lock..."))
 		return FALSE
 
 	return TRUE

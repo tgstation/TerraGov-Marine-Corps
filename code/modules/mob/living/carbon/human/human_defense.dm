@@ -179,7 +179,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/armor_verb
 	switch(armor)
 		if(100 to INFINITY)
-			visible_message("<span class='danger'>[src] has been [attack_verb] in the [hit_area] with [I.name] by [user], but the attack is deflected by [p_their()] armor!</span>",\
+			visible_message(span_danger("[src] has been [attack_verb] in the [hit_area] with [I.name] by [user], but the attack is deflected by [p_their()] armor!"),\
 			null, null, COMBAT_MESSAGE_RANGE, visible_message_flags = COMBAT_MESSAGE)
 			user.do_attack_animation(src, used_item = I)
 			log_combat(user, src, "attacked", I, "(FAILED: armor blocked) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)])")
@@ -192,7 +192,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		if(75 to 100)
 			armor_verb = " [p_their(TRUE)] armor has deflected most of the blow!"
 
-	visible_message("<span class='danger'>[src] has been [attack_verb] in the [hit_area] with [I.name] by [user]![armor_verb]</span>",\
+	visible_message(span_danger("[src] has been [attack_verb] in the [hit_area] with [I.name] by [user]![armor_verb]"),\
 	null, null, 5, visible_message_flags = COMBAT_MESSAGE)
 
 	var/weapon_sharp = is_sharp(I)
@@ -227,8 +227,8 @@ Contains most of the procs that are called when a mob is attacked by something
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
 				if(prob(damage) && stat == CONSCIOUS)
 					apply_effect(20, PARALYZE, armor)
-					visible_message("<span class='danger'>[src] has been knocked unconscious!</span>",
-									"<span class='danger'>You have been knocked unconscious!</span>", null, 5)
+					visible_message(span_danger("[src] has been knocked unconscious!"),
+									span_danger("You have been knocked unconscious!"), null, 5)
 					hit_report += "(KO)"
 
 				if(bloody)//Apply blood
@@ -245,8 +245,8 @@ Contains most of the procs that are called when a mob is attacked by something
 			if("chest")//Easier to score a stun but lasts less time
 				if(prob((damage + 10)) && !incapacitated())
 					apply_effect(6, WEAKEN, armor)
-					visible_message("<span class='danger'>[src] has been knocked down!</span>",
-									"<span class='danger'>You have been knocked down!</span>", null, 5)
+					visible_message(span_danger("[src] has been knocked down!"),
+									span_danger("You have been knocked down!"), null, 5)
 					hit_report += "(KO)"
 
 				if(bloody)
@@ -283,7 +283,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	if(in_throw_mode && speed <= 5 && put_in_active_hand(thrown_item))
 		thrown_item.throwing = FALSE //Caught in hand.
-		visible_message("<span class='warning'>[src] catches [thrown_item]!</span>", null, null, 5)
+		visible_message(span_warning("[src] catches [thrown_item]!"), null, null, 5)
 		throw_mode_off()
 		if(living_thrower)
 			log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: caught)")
@@ -306,7 +306,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		zone = get_zone_with_miss_chance(zone, src, 15)
 
 	if(!zone)
-		visible_message("<span class='notice'> \The [thrown_item] misses [src] narrowly!</span>", null, null, 5)
+		visible_message(span_notice(" \The [thrown_item] misses [src] narrowly!"), null, null, 5)
 		if(living_thrower)
 			log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: missed)")
 		return
@@ -315,7 +315,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		throw_damage = check_shields(COMBAT_MELEE_ATTACK, throw_damage, "melee")
 		if(!throw_damage)
 			thrown_item.throwing = FALSE // Hit the shield.
-			visible_message("<span class='danger'>[src] deflects \the [thrown_item]!</span>")
+			visible_message(span_danger("[src] deflects \the [thrown_item]!"))
 			if(living_thrower)
 				log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: shield blocked)")
 			return
@@ -331,11 +331,11 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/armor = run_armor_check(affecting, "melee") //I guess "melee" is the best fit here
 
 	if(armor >= 100)
-		visible_message("<span class='notice'>\The [thrown_item] bounces on [src]'s armor!</span>", null, null, 5)
+		visible_message(span_notice("\The [thrown_item] bounces on [src]'s armor!"), null, null, 5)
 		log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: armor blocked)")
 		return
 
-	visible_message("<span class='warning'>[src] has been hit in the [affecting.display_name] by \the [thrown_item].</span>", null, null, 5)
+	visible_message(span_warning("[src] has been hit in the [affecting.display_name] by \the [thrown_item]."), null, null, 5)
 
 	apply_damage(throw_damage, dtype, zone, armor, is_sharp(thrown_item), has_edge(thrown_item), updating_health = TRUE)
 
@@ -358,7 +358,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(thrown_item.throw_source && speed >= 15)
 		var/momentum = speed * 0.5
 		var/dir = get_dir(thrown_item.throw_source, src)
-		visible_message("<span class='warning'> [src] staggers under the impact!</span>","<span class='warning'> You stagger under the impact!</span>", null, null, 5)
+		visible_message(span_warning(" [src] staggers under the impact!"),span_warning(" You stagger under the impact!"), null, null, 5)
 		throw_at(get_edge_target_turf(src, dir), 1, momentum)
 		hit_report += "(thrown away)"
 
@@ -417,7 +417,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/stamina_damage = LERP(140, 70, dist_pct) * reduction //Max 140 under Queen, 130 beside Queen, 70 at the edge. Reduction of 10 per tile distance from Queen.
 	var/stun_duration = (LERP(1, 0.4, dist_pct) * reduction) * 20 //Max 1.5 beside Queen, 0.4 at the edge.
 
-	to_chat(src, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")
+	to_chat(src, span_danger("An ear-splitting guttural roar tears through your mind and makes your world convulse!"))
 	Stun(stun_duration)
 	Paralyze(stun_duration)
 	apply_damage(stamina_damage, STAMINA, updating_health = TRUE)

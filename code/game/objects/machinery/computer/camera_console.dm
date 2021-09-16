@@ -230,7 +230,7 @@
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "consoleleft"
 	circuit = null
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 
 
 /obj/machinery/computer/security/dropship/one
@@ -241,3 +241,8 @@
 /obj/machinery/computer/security/dropship/two
 	name = "\improper 'Normandy' camera controls"
 	network = list("dropship2")
+
+/obj/machinery/computer/security/dropship/three
+	name = "\improper 'Triump' camera controls"
+	network = list("dropship3")
+

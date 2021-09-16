@@ -22,5 +22,8 @@
 /// A wrapper for _AddComponent that allows us to pretend we're using normal named arguments
 #define AddComponent(arguments...) _AddComponent(list(##arguments))
 
+/// A wrapper for _LoadComponent that allows us to pretend we're using normal named arguments
+#define LoadComponent(arguments...) _LoadComponent(list(##arguments))
+
 /proc/send_global_signal(signal) //Wrapper for callbacks and the likes.
 	SEND_GLOBAL_SIGNAL(signal)

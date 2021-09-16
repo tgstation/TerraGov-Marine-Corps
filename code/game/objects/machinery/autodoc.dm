@@ -127,7 +127,7 @@
 			say("Blood filtering complete.")
 		else if(prob(10))
 			visible_message("[src] whirrs and gurgles as the dialysis module operates.")
-			to_chat(occupant, "<span class='info'>You feel slightly better.</span>")
+			to_chat(occupant, span_info("You feel slightly better."))
 	if(blood_transfer)
 		if(connected && occupant.blood_volume < BLOOD_VOLUME_NORMAL)
 			if(connected.blood_pack.reagents.get_reagent_amount(/datum/reagent/blood) < 4)
@@ -136,7 +136,7 @@
 			occupant.inject_blood(connected.blood_pack, 8) // double iv stand rate
 			if(prob(10))
 				visible_message("[src] whirrs and gurgles as it tranfuses blood.")
-				to_chat(occupant, "<span class='info'>You feel slightly less faint.</span>")
+				to_chat(occupant, span_info("You feel slightly less faint."))
 		else
 			blood_transfer = 0
 			say("Blood transfer complete.")
@@ -146,7 +146,7 @@
 			updating_health = TRUE
 			if(prob(10))
 				visible_message("[src] whirrs and clicks as it stitches flesh together.")
-				to_chat(occupant, "<span class='info'>You feel your wounds being stitched and sealed shut.</span>")
+				to_chat(occupant, span_info("You feel your wounds being stitched and sealed shut."))
 		else
 			heal_brute = 0
 			say("Trauma repair surgery complete.")
@@ -156,7 +156,7 @@
 			updating_health = TRUE
 			if(prob(10))
 				visible_message("[src] whirrs and clicks as it grafts synthetic skin.")
-				to_chat(occupant, "<span class='info'>You feel your burned flesh being sliced away and replaced.</span>")
+				to_chat(occupant, span_info("You feel your burned flesh being sliced away and replaced."))
 		else
 			heal_burn = 0
 			say("Skin grafts complete.")
@@ -166,7 +166,7 @@
 			updating_health = TRUE
 			if(prob(10))
 				visible_message("[src] whirrs and gurgles as it kelates the occupant.")
-				to_chat(occupant, "<span class='info'>You feel slighly less ill.</span>")
+				to_chat(occupant, span_info("You feel slighly less ill."))
 		else
 			heal_toxin = 0
 			say("Chelation complete.")
@@ -299,7 +299,7 @@
 		visible_message("[src] buzzes, no surgical procedures were queued.")
 		return
 
-	visible_message("[src] begins to operate, loud audible clicks lock the pod.")
+	visible_message("[src] begins to operate, the pod locking shut with a loud click.")
 	surgery = TRUE
 	update_icon()
 
@@ -337,7 +337,7 @@
 						var/datum/reagent/R = GLOB.chemical_reagents_list[/datum/reagent/medicine/spaceacillin]
 						var/amount = R.overdose_threshold - occupant.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
 						var/inject_per_second = 3
-						to_chat(occupant, "<span class='info'>You feel a soft prick from a needle.</span>")
+						to_chat(occupant, span_info("You feel a soft prick from a needle."))
 						while(amount > 0)
 							if(!surgery)
 								break
@@ -535,7 +535,7 @@
 							if(A)
 								for(A in occupant)
 									sleep(HEMOSTAT_REMOVE_MAX_DURATION*surgery_mod)
-									occupant.visible_message("<span class='warning'> [src] defty extracts a wriggling parasite from [occupant]'s ribcage!</span>")
+									occupant.visible_message(span_warning(" [src] defty extracts a wriggling parasite from [occupant]'s ribcage!"))
 									var/mob/living/carbon/xenomorph/larva/L = locate() in occupant //the larva was fully grown, ready to burst.
 									if(L)
 										L.forceMove(get_turf(src))
@@ -562,7 +562,7 @@
 						var/datum/reagent/R = GLOB.chemical_reagents_list[/datum/reagent/medicine/spaceacillin]
 						var/amount = (R.overdose_threshold * 0.5) - occupant.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
 						var/inject_per_second = 3
-						to_chat(occupant, "<span class='info'>You feel a soft prick from a needle.</span>")
+						to_chat(occupant, span_info("You feel a soft prick from a needle."))
 						while(amount > 0)
 							if(!surgery)
 								break
@@ -681,7 +681,7 @@
 	if(usr.incapacitated())
 		return // nooooooooooo
 	if(locked && !allowed(usr)) //Check access if locked.
-		to_chat(usr, "<span class='warning'>Access denied.</span>")
+		to_chat(usr, span_warning("Access denied."))
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
 		return
 	do_eject()
@@ -705,13 +705,13 @@
 		return
 	if(usr == occupant)
 		if(surgery)
-			to_chat(usr, "<span class='warning'>There's no way you're getting out while this thing is operating on you!</span>")
+			to_chat(usr, span_warning("There's no way you're getting out while this thing is operating on you!"))
 			return
 		else
 			visible_message("[usr] engages the internal release mechanism, and climbs out of \the [src].")
 	if(usr.skills.getRating("surgery") < SKILL_SURGERY_TRAINED && !event)
-		usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to use [src].</span>",
-		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
+		usr.visible_message(span_notice("[usr] fumbles around figuring out how to use [src]."),
+		span_notice("You fumble around figuring out how to use [src]."))
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.skills.getRating("surgery") ))// 8 secs non-trained, 5 amateur
 		if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || !occupant)
 			return
@@ -731,25 +731,25 @@
 		return
 
 	if(occupant)
-		to_chat(dragger, "<span class='notice'>[src] is already occupied!</span>")
+		to_chat(dragger, span_notice("[src] is already occupied!"))
 		return
 
 	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(dragger, "<span class='notice'>[src] is non-functional!</span>")
+		to_chat(dragger, span_notice("[src] is non-functional!"))
 		return
 
 	if(dragger.skills.getRating("surgery") < SKILL_SURGERY_TRAINED && !event)
-		dropped.visible_message("<span class='notice'>[dropped] fumbles around figuring out how to get into \the [src].</span>",
-		"<span class='notice'>You fumble around figuring out how to get into \the [src].</span>")
+		dropped.visible_message(span_notice("[dropped] fumbles around figuring out how to get into \the [src]."),
+		span_notice("You fumble around figuring out how to get into \the [src]."))
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * dragger.skills.getRating("surgery") ))// 8 secs non-trained, 5 amateur
 		if(!do_after(dropped, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
-	dropped.visible_message("<span class='notice'>[dropped] starts climbing into \the [src].</span>",
-	"<span class='notice'>You start climbing into \the [src].</span>")
+	dropped.visible_message(span_notice("[dropped] starts climbing into \the [src]."),
+	span_notice("You start climbing into \the [src]."))
 	if(do_after(dropped, 1 SECONDS, FALSE, src, BUSY_ICON_GENERIC))
 		if(occupant)
-			to_chat(dragger, "<span class='notice'>[src] is already occupied!</span>")
+			to_chat(dragger, span_notice("[src] is already occupied!"))
 			return
 		dropped.stop_pulling()
 		dropped.forceMove(src)
@@ -762,6 +762,21 @@
 		start_processing()
 		for(var/obj/O in src)
 			qdel(O)
+		if(automaticmode)
+			say("Automatic mode engaged, initialising procedures.")
+			addtimer(CALLBACK(src, .proc/auto_start), 5 SECONDS)
+
+///Callback to start auto mode on someone entering
+/obj/machinery/autodoc/proc/auto_start()
+	if(surgery)
+		return
+	if(!occupant)
+		say("Occupant missing, procedures canceled.")
+	if(!automaticmode)
+		say("Automatic mode disengaged, awaiting manual inputs.")
+		return
+	surgery_op()
+
 
 /obj/machinery/autodoc/MouseDrop_T(mob/M, mob/user)
 	if(!isliving(M) || !ishuman(user))
@@ -817,10 +832,10 @@
 	if(istype(I, /obj/item/stack/sheet/metal))
 		var/obj/item/stack/sheet/metal/M = I
 		if(stored_metal >= stored_metal_max)
-			to_chat(user, "<span class='warning'>[src]'s metal reservoir is full; it can't hold any more material!</span>")
+			to_chat(user, span_warning("[src]'s metal reservoir is full; it can't hold any more material!"))
 			return
 		stored_metal = min(stored_metal_max,stored_metal + M.amount * 100)
-		to_chat(user, "<span class='notice'>[src] processes \the [I]. Its metal reservoir now contains [stored_metal] of [stored_metal_max] units.</span>")
+		to_chat(user, span_notice("[src] processes \the [I]. Its metal reservoir now contains [stored_metal] of [stored_metal_max] units."))
 		user.drop_held_item()
 		qdel(I)
 
@@ -833,11 +848,11 @@
 		return
 
 	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(user, "<span class='notice'>[src] is non-functional!</span>")
+		to_chat(user, span_notice("[src] is non-functional!"))
 		return
 
 	else if(occupant)
-		to_chat(user, "<span class='notice'>[src] is already occupied!</span>")
+		to_chat(user, span_notice("[src] is already occupied!"))
 		return
 
 	if(!istype(I, /obj/item/grab))
@@ -851,7 +866,7 @@
 	else if(istype(G.grabbed_thing, /obj/structure/closet/bodybag/cryobag))
 		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
 		if(!C.bodybag_occupant)
-			to_chat(user, "<span class='warning'>The stasis bag is empty!</span>")
+			to_chat(user, span_warning("The stasis bag is empty!"))
 			return
 		M = C.bodybag_occupant
 		C.open()
@@ -862,16 +877,16 @@
 		return
 
 	else if(!ishuman(M)) // stop fucking monkeys and xenos being put in. // MONKEEY IS FREE
-		to_chat(user, "<span class='notice'>[src] is compatible with humanoid anatomies only!</span>")
+		to_chat(user, span_notice("[src] is compatible with humanoid anatomies only!"))
 		return
 
 	else if(M.abiotic())
-		to_chat(user, "<span class='warning'>Subject cannot have abiotic items on.</span>")
+		to_chat(user, span_warning("Subject cannot have abiotic items on."))
 		return
 
 	if(user.skills.getRating("surgery") < SKILL_SURGERY_TRAINED && !event)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to put [M] into [src].</span>",
-		"<span class='notice'>You fumble around figuring out how to put [M] into [src].</span>")
+		user.visible_message(span_notice("[user] fumbles around figuring out how to put [M] into [src]."),
+		span_notice("You fumble around figuring out how to put [M] into [src]."))
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.skills.getRating("surgery") ))// 8 secs non-trained, 5 amateur
 		if(!do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED) || QDELETED(src))
 			return
@@ -882,7 +897,7 @@
 		return
 
 	if(occupant)
-		to_chat(user, "<span class='notice'>[src] is already occupied!</span>")
+		to_chat(user, span_notice("[src] is already occupied!"))
 		return
 
 	if(!M || !G)
@@ -895,6 +910,10 @@
 	var/mob/living/carbon/human/H = occupant
 	med_scan(H, null, implants, TRUE)
 	start_processing()
+
+	if(automaticmode)
+		say("Automatic mode engaged, initialising procedures.")
+		addtimer(CALLBACK(src, .proc/auto_start), 5 SECONDS)
 
 
 /////////////////////////////////////////////////////////////
@@ -974,6 +993,11 @@
 	else
 		dat += "<hr><a href='?src=\ref[src];noticetoggle=1'>Notifications On</a> | Notifications Off<BR>"
 
+	if(connected.automaticmode)
+		dat += "<hr>[span_notice("Automatic Mode")] | <a href='?src=\ref[src];automatictoggle=1'>Manual Mode</a>"
+	else
+		dat += "<hr><a href='?src=\ref[src];automatictoggle=1'>Automatic Mode</a> | Manual Mode"
+
 	dat += "<hr><font color='#487553'><B>Occupant Statistics:</B></FONT><BR>"
 	if(!connected.occupant)
 		dat += "No occupant detected."
@@ -1003,10 +1027,7 @@
 	dat += text("[]\t-Respiratory Damage %: []</FONT><BR>", (connected.occupant.getOxyLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), connected.occupant.getOxyLoss())
 	dat += text("[]\t-Toxin Content %: []</FONT><BR>", (connected.occupant.getToxLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), connected.occupant.getToxLoss())
 	dat += text("[]\t-Burn Severity %: []</FONT><BR>", (connected.occupant.getFireLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), connected.occupant.getFireLoss())
-	if(connected.automaticmode)
-		dat += "<hr><span class='notice'>Automatic Mode</span> | <a href='?src=\ref[src];automatictoggle=1'>Manual Mode</a>"
-	else
-		dat += "<hr><a href='?src=\ref[src];automatictoggle=1'>Automatic Mode</a> | Manual Mode"
+
 	dat += "<hr> Surgery Queue:<br>"
 
 	var/list/surgeryqueue = list()
@@ -1021,10 +1042,10 @@
 	if(connected.automaticmode)
 		var/list/autosurgeries = N.fields["autodoc_data"]
 		if(length(autosurgeries))
-			dat += "<span class='danger'>Automatic Mode Ready.</span><br>"
+			dat += "[span_danger("Automatic Mode Ready.")]<br>"
 		else
 
-			dat += "<span class='danger'>Automatic Mode Unavaliable, Scan Patient First.</span><br>"
+			dat += "[span_danger("Automatic Mode Unavaliable, Scan Patient First.")]<br>"
 	else
 		if(!isnull(N.fields["autodoc_manual"]))
 			for(var/datum/autodoc_surgery/A in N.fields["autodoc_manual"])
@@ -1280,14 +1301,14 @@
 			locked = !locked
 			connected.locked = !connected.locked
 		else
-			to_chat(usr, "<span class='warning'>Access denied.</span>")
+			to_chat(usr, span_warning("Access denied."))
 			playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
 
 	if(href_list["noticetoggle"]) //Toggle notifications on/off if we have authorization.
 		if(allowed(usr))
 			release_notice = !release_notice
 		else
-			to_chat(usr, "<span class='warning'>Access denied.</span>")
+			to_chat(usr, span_warning("Access denied."))
 			playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
 
 	if(href_list["automatictoggle"])
@@ -1309,13 +1330,13 @@
 /obj/machinery/autodoc_console/examine(mob/living/user)
 	..()
 	if(locked)
-		to_chat(user, "<span class='warning'>It's currently locked down!</span>")
+		to_chat(user, span_warning("It's currently locked down!"))
 	if(release_notice)
-		to_chat(user, "<span class='notice'>Release notifications are turned on.</span>")
+		to_chat(user, span_notice("Release notifications are turned on."))
 
 /obj/machinery/autodoc/examine(mob/living/user)
 	..()
-	to_chat(user, "<span class='notice'>Its metal reservoir contains [stored_metal] of [stored_metal_max] units.</span>")
+	to_chat(user, span_notice("Its metal reservoir contains [stored_metal] of [stored_metal_max] units."))
 	if(!occupant) //Allows us to reference medical files/scan reports for cryo via examination.
 		return
 	if(!ishuman(occupant))
@@ -1324,7 +1345,7 @@
 	if(surgery)
 		active += " Surgical procedures are in progress."
 	if(!hasHUD(user,"medical"))
-		to_chat(user, "<span class='notice'>It contains: [occupant].[active]</span>")
+		to_chat(user, span_notice("It contains: [occupant].[active]"))
 		return
 	var/mob/living/carbon/human/H = occupant
 	for(var/datum/data/record/R in GLOB.datacore.medical)

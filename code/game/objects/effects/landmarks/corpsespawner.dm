@@ -36,6 +36,10 @@
 	. = ..()
 	GLOB.corpse_landmarks_list += src
 
+/obj/effect/landmark/corpsespawner/Destroy()
+	GLOB.corpse_landmarks_list -= src
+	return ..()
+
 /// Create the mob and delete the corpse spawner
 /obj/effect/landmark/corpsespawner/proc/create_mob(death_type)
 	var/mob/living/carbon/human/victim = new(loc)
@@ -55,6 +59,9 @@
 			victim.internal_organs_by_name -= "brain"
 			victim.internal_organs -= brain
 			victim.headbitten = TRUE
+			victim.chestburst = 2
+			victim.update_burst()
+			victim.update_headbite()
 			if(length(GLOB.xeno_resin_silos))
 				victim.loc = pick(GLOB.xeno_resin_silos)
 		if(HEADBITE_DEATH) //Headbite but left there
@@ -63,8 +70,9 @@
 			victim.internal_organs_by_name -= "brain"
 			victim.internal_organs -= brain
 			victim.headbitten = TRUE
+			victim.update_headbite()
 	qdel(src)
-			
+
 
 
 /obj/effect/landmark/corpsespawner/proc/equip_items_to_mob(mob/living/carbon/human/corpse)
@@ -236,17 +244,6 @@
 	corpsesuit = /obj/item/clothing/suit/space/rig/engineering
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/rig/engineering
-
-/obj/effect/landmark/corpsespawner/clown
-	name = "Clown"
-	corpseuniform = /obj/item/clothing/under/rank/clown
-	corpseshoes = /obj/item/clothing/shoes/clown_shoes
-	corpsemask = /obj/item/clothing/mask/gas/clown_hat
-	corpsepocket1 = /obj/item/toy/bikehorn
-	corpseback = /obj/item/storage/backpack/clown
-	corpseid = 1
-	corpseidjob = "Clown"
-//	corpseidaccess = "Clown"
 
 /obj/effect/landmark/corpsespawner/scientist
 	name = "Scientist"

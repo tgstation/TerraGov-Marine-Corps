@@ -174,7 +174,7 @@ export const Orbit = (props: any, context: any) => {
                 color="transparent"
                 tooltip={multiline`Toggle Auto-Observe. When active, you'll
                 see the UI / full inventory of whoever you're orbiting, Neat!`}
-                tooltipPosition="bottom-left"
+                tooltipPosition="bottom-start"
                 selected={auto_observe}
                 icon={auto_observe ? "toggle-on" : "toggle-off"}
                 onClick={() => act("toggle_observe")} />
@@ -182,7 +182,7 @@ export const Orbit = (props: any, context: any) => {
                 inline
                 color="transparent"
                 tooltip="Refresh"
-                tooltipPosition="bottom-left"
+                tooltipPosition="bottom-start"
                 icon="sync-alt"
                 onClick={() => act("refresh")} />
             </Flex.Item>

@@ -10,6 +10,8 @@
 	flags_gun_features = GUN_AMMO_COUNTER
 	general_codex_key = "energy weapons"
 
+	placed_overlay_iconstate = "laser"
+
 /obj/item/weapon/gun/energy/examine_ammo_count(mob/user)
 	var/list/dat = list()
 	if(!(flags_gun_features & (GUN_INTERNAL_MAG|GUN_UNUSUAL_DESIGN))) //Internal mags and unusual guns have their own stuff set.
@@ -75,10 +77,6 @@
 
 // energy guns, however, do not use gun rattles.
 /obj/item/weapon/gun/energy/play_fire_sound(mob/user)
-	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
-		if(active_attachable.fire_sound) //If we're firing from an attachment, use that noise instead.
-			playsound(user, active_attachable.fire_sound, 50)
-		return
 	if(flags_gun_features & GUN_SILENCED)
 		playsound(user, fire_sound, 25)
 		return
@@ -115,7 +113,7 @@
 	. = ..()
 	if (.) //Let's check all that other stuff first.
 		if(user.skills.getRating("police") < SKILL_POLICE_MP)
-			to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
+			to_chat(user, span_warning("You don't seem to know how to use [src]..."))
 			return FALSE
 
 
@@ -188,10 +186,7 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
 		/obj/item/attachable/scope,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/focuslens,
 		/obj/item/attachable/widelens,
@@ -201,7 +196,7 @@
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
-	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/lasgun)
+	starting_attachment_types = list(/obj/item/attachable/stock/lasgun)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
@@ -213,16 +208,13 @@
 /obj/item/weapon/gun/energy/lasgun/M43/stripped
 	starting_attachment_types = list()
 
-/obj/item/weapon/gun/energy/lasgun/M43/unique_action(mob/user)
-	return toggle_chargemode(user)
-
 /obj/item/weapon/gun/energy/lasgun/Initialize(mapload, ...)
 	. = ..()
 	update_icon()
 
 
 //Toggles Overcharge mode. Overcharge mode significantly increases damage and AP in exchange for doubled ammo usage and increased fire delay.
-/obj/item/weapon/gun/energy/lasgun/proc/toggle_chargemode(mob/user)
+/obj/item/weapon/gun/energy/lasgun/cock(mob/user)
 	//if(in_chamber)
 	//	delete_bullet(in_chamber, TRUE)
 	if(ammo_diff == null)
@@ -231,11 +223,11 @@
 	if(overcharge == FALSE)
 		if(!cell)
 			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
-			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s overcharge mode but you have no battery loaded.</span>")
+			to_chat(user, span_warning("You attempt to toggle on [src]'s overcharge mode but you have no battery loaded."))
 			return
 		if(cell.charge < ENERGY_OVERCHARGE_AMMO_COST)
 			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
-			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s overcharge mode but your battery pack lacks adequate charge to do so.</span>")
+			to_chat(user, span_warning("You attempt to toggle on [src]'s overcharge mode but your battery pack lacks adequate charge to do so."))
 			return
 		//While overcharge is active, double ammo consumption, and
 		playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
@@ -263,17 +255,6 @@
 	return TRUE
 
 /obj/item/weapon/gun/energy/lasgun/load_into_chamber(mob/user)
-		//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
-	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
-		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
-			active_attachable.current_rounds--
-			return create_bullet(active_attachable.ammo)
-		else
-			to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
-			to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
-			playsound(user, active_attachable.activation_sound, 15, 1)
-			active_attachable.activate_attachment(null, TRUE)
-
 	if(!cell?.use(charge_cost))
 		return
 	in_chamber = create_bullet(ammo)
@@ -281,18 +262,10 @@
 	return in_chamber
 
 /obj/item/weapon/gun/energy/lasgun/reload_into_chamber(mob/user)
-	/*
-	ATTACHMENT POST PROCESSING
-	This should only apply to the masterkey, since it's the only attachment that shoots through Fire()
-	instead of its own thing through fire_attachment(). If any other bullet attachments are added, they would fire here.
-	*/
-	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
-		make_casing(active_attachable.type_of_casings) // Attachables can drop their own casings.
-
 	if(!active_attachable && cell) //We don't need to check for the mag if an attachment was used to shoot.
 		if(cell) //If there is no mag, we can't reload.
 			if(overcharge && cell.charge < ENERGY_OVERCHARGE_AMMO_COST && cell.charge >= ENERGY_STANDARD_AMMO_COST) //Revert to standard shot if we don't have enough juice for overcharge, but enough for the standard mode
-				toggle_chargemode(user)
+				cock(user)
 				return
 			if(cell.charge <= 0 && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
 				unload(user,1,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
@@ -325,29 +298,33 @@
 	if(flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG))
 		return
 
+	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && ((cell_type == sentry_battery_type && !sentry_battery && cell) || (cell_type != sentry_battery_type && istype(new_cell, sentry_battery_type))))
+		reload_sentry_cell(new_cell, user)
+		return
+
 	if(!new_cell || !istype(new_cell))
-		to_chat(user, "<span class='warning'>That's not a power cell!</span>")
+		to_chat(user, span_warning("That's not a power cell!"))
 		return
 
 	if(new_cell.charge <= 0)
-		to_chat(user, "<span class='warning'>[cell] is depleted!</span>")
+		to_chat(user, span_warning("[cell] is depleted!"))
 		return
 
 	if(!istype(src, new_cell.gun_type))
-		to_chat(user, "<span class='warning'>That power cell doesn't fit in there!</span>")
+		to_chat(user, span_warning("That power cell doesn't fit in there!"))
 		return
 
 	if(cell)
-		to_chat(user, "<span class='warning'>It's still got something loaded.</span>")
+		to_chat(user, span_warning("It's still got something loaded."))
 		return
 
 	if(user)
 		if(new_cell.reload_delay > 1)
-			to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
+			to_chat(user, span_notice("You begin reloading [src]. Hold still..."))
 			if(do_after(user,new_cell.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
 				replace_magazine(user, new_cell)
 			else
-				to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
+				to_chat(user, span_warning("Your reload was interrupted!"))
 				return
 		else
 			replace_magazine(user, new_cell)
@@ -359,8 +336,8 @@
 	cell = new_cell
 	if(user)
 		user.transferItemToLoc(new_cell, src) //Click!
-		user.visible_message("<span class='notice'>[user] loads [new_cell] into [src]!</span>",
-		"<span class='notice'>You load [new_cell] into [src]!</span>", null, 3)
+		user.visible_message(span_notice("[user] loads [new_cell] into [src]!"),
+		span_notice("You load [new_cell] into [src]!"), null, 3)
 		if(reload_sound)
 			playsound(user, reload_sound, 25, 1, 5)
 		update_icon(user)
@@ -383,8 +360,8 @@
 		user.put_in_hands(cell)
 
 	playsound(user, unload_sound, 25, 1, 5)
-	user.visible_message("<span class='notice'>[user] unloads [cell] from [src].</span>",
-	"<span class='notice'>You unload [cell] from [src].</span>", null, 4)
+	user.visible_message(span_notice("[user] unloads [cell] from [src]."),
+	span_notice("You unload [cell] from [src]."), null, 4)
 	cell.update_icon()
 	cell = null
 
@@ -439,7 +416,7 @@
 	fire_delay = 0.33 SECONDS
 	aim_slowdown = 0.35
 
-/obj/item/weapon/gun/energy/lasgun/M43/practice/unique_action(mob/user)
+/obj/item/weapon/gun/energy/lasgun/M43/practice/cock(mob/user)
 	return
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle
@@ -468,11 +445,8 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/marine,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/scope/mini,
 	)
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
@@ -509,10 +483,7 @@
 	///The icon state the radial menu will use.
 	var/radial_icon_state = "laser"
 
-/obj/item/weapon/gun/energy/lasgun/lasrifle/unique_action(mob/user)
-	return switch_modes(user)
-
-/obj/item/weapon/gun/energy/lasgun/lasrifle/proc/switch_modes(mob/user)
+/obj/item/weapon/gun/energy/lasgun/lasrifle/cock(mob/user)
 	if(!user)
 		CRASH("switch_modes called with no user.")
 
@@ -558,7 +529,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle
 	name = "\improper Terra Experimental laser rifle"
-	desc = "A Terra Experimental laser rifle, abbreviated as the TE-R. It has an integrated charge selector for normal and high settings. Uses standard Terra Experimental (abbreviated as TE) power cells."
+	desc = "A Terra Experimental laser rifle, abbreviated as the TE-R. It has an integrated charge selector for normal and high settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	force = 20
@@ -566,12 +537,12 @@
 	item_state = "ter"
 	icon = 'icons/Marine/gun64.dmi'
 	w_class = WEIGHT_CLASS_BULKY
-	max_shots = 60 //codex stuff
+	max_shots = 50 //codex stuff
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
 	cell_type = /obj/item/cell/lasgun/lasrifle/marine
-	charge_cost = 10
+	charge_cost = 12
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 
@@ -582,10 +553,11 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
@@ -595,29 +567,29 @@
 	wield_delay = 0.5 SECONDS
 	scatter = 0
 	scatter_unwielded = 10
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.55
 	scatter_unwielded = 10
-	damage_falloff_mult = 0
+	damage_falloff_mult = 0.2
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_rifle_mode/standard,
 		"Overcharge" = /datum/lasrifle/base/energy_rifle_mode/overcharge,
 	)
 
 /datum/lasrifle/base/energy_rifle_mode/standard
-	charge_cost = 10
+	charge_cost = 12
 	ammo = /datum/ammo/energy/lasgun/marine
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	message_to_user = "You set the laser rifle's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "ter"
 
 /datum/lasrifle/base/energy_rifle_mode/overcharge
-	charge_cost = 20
+	charge_cost = 30
 	ammo = /datum/ammo/energy/lasgun/marine/overcharge
-	fire_delay = 0.3 SECONDS
+	fire_delay = 0.45 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser overcharge standard.ogg'
 	message_to_user = "You set the laser rifle's charge mode to overcharge."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -628,7 +600,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol
 	name = "\improper Terra Experimental laser pistol"
-	desc = "A TerraGov standard issue laser pistol abbreviated as TE-P. It has an integrated charge selector for normal, heat and taser settings. Uses standard Terra Experimental (abbreviated as TE) power cells. "
+	desc = "A TerraGov standard issue laser pistol abbreviated as TE-P. It has an integrated charge selector for normal, heat and taser settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_pistol_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Pistol Standard.ogg'
 	force = 20
@@ -663,11 +635,11 @@
 	wield_delay = 0.6 SECONDS
 	scatter = 0
 	scatter_unwielded = 0
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.25 SECONDS
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.9
 	scatter_unwielded = 0
-	damage_falloff_mult = 0
+	damage_falloff_mult = 0.2
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_pistol_mode/standard,
 		"Heat" = /datum/lasrifle/base/energy_pistol_mode/heat,
@@ -707,7 +679,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine
 	name = "\improper Terra Experimental laser carbine"
-	desc = "A TerraGov standard issue laser carbine, otherwise known as TE-C for short. It has an integrated charge selector for burst and scatter settings. Uses standard Terra Experimental (abbreviated as TE) power cells."
+	desc = "A TerraGov standard issue laser carbine, otherwise known as TE-C for short. It has an integrated charge selector for burst and scatter settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	force = 20
@@ -731,8 +703,10 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
@@ -742,13 +716,13 @@
 	wield_delay = 0.3 SECONDS
 	scatter = 0
 	scatter_unwielded = 15
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.2 SECONDS
 	burst_amount = 1
-	burst_delay = 0.1 SECONDS
+	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.65
 	scatter_unwielded = 15
-	damage_falloff_mult = 0
+	damage_falloff_mult = 0.5
 	mode_list = list(
 
 		"Auto burst standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard,
@@ -759,7 +733,7 @@
 /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard ///I know this seems tacky, but if I make auto burst a standard firemode it somehow buffs spread's fire delay.
 	charge_cost = 15
 	ammo = /datum/ammo/energy/lasgun/marine
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.2 SECONDS
 	burst_amount = 4
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	message_to_user = "You set the laser carbine's charge mode to standard auto burst fire."
@@ -785,7 +759,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper
 	name = "\improper Terra Experimental laser sniper rifle"
-	desc = "The T-ES, a Terra Experimental standard issue laser sniper rifle, it has an integrated charge selector for normal, high and heat settings. Uses standard Terra Experimental (abbreviated as TE) power cells."
+	desc = "The T-ES, a Terra Experimental standard issue laser sniper rifle, it has an integrated charge selector for normal and heat settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_sniper_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
 	force = 20
@@ -808,14 +782,19 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/unremovable/laser_sniper_scope,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 18,"rail_x" = 19, "rail_y" = 19, "under_x" = 28, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/laser_sniper_scope)
+	aim_fire_delay = 0.5 SECONDS
+	aim_speed_modifier = 2
 
+	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_slowdown = 0.7
 	wield_delay = 0.7 SECONDS
 	scatter = 0
@@ -831,8 +810,8 @@
 
 /datum/lasrifle/base/energy_sniper_mode/standard
 	charge_cost = 50
-	ammo = /datum/ammo/energy/lasgun/marine/sniper
 	fire_delay = 1 SECONDS
+	ammo = /datum/ammo/energy/lasgun/marine/sniper
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -840,8 +819,8 @@
 
 /datum/lasrifle/base/energy_sniper_mode/heat
 	charge_cost = 150
+	fire_delay = 1 SECONDS
 	ammo = /datum/ammo/energy/lasgun/marine/sniper_heat
-	fire_delay = 1.5 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to wave heat."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -850,7 +829,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser
 	name = "\improper Terra Experimental laser machine gun"
-	desc = "A Terra Experimental standard issue machine laser gun, often called as the TE-M by marines. It has a fire switch for normal and efficiency modes. Uses standard Terra Experimental (abbreviated as TE) power cells."
+	desc = "A Terra Experimental standard issue machine laser gun, often called as the TE-M by marines. It has a fire switch for normal and efficiency modes. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_machine_laser_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	force = 20
@@ -858,12 +837,12 @@
 	item_state = "tem"
 	icon = 'icons/Marine/gun64.dmi'
 	w_class = WEIGHT_CLASS_BULKY
-	max_shots = 200 //codex stuff
+	max_shots = 150 //codex stuff
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/marine/autolaser
 	ammo_diff = null
 	cell_type = /obj/item/cell/lasgun/lasrifle/marine
-	charge_cost = 3
+	charge_cost = 4
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 
@@ -874,29 +853,30 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 24, "under_x" = 30, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
 
-	aim_slowdown = 0.8
-	wield_delay = 1 SECONDS
+	aim_slowdown = 1
+	wield_delay = 1.5 SECONDS
 	scatter = 0
-	scatter_unwielded = 10
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.2 SECONDS
 	accuracy_mult = 0.95
-	accuracy_mult_unwielded = 0.6
-	scatter_unwielded = 10
-	damage_falloff_mult = 0
+	accuracy_mult_unwielded = 0.3
+	scatter_unwielded = 80
+	damage_falloff_mult = 0.3
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_mg_mode/standard,
 		"Efficiency mode" = /datum/lasrifle/base/energy_mg_mode/standard/efficiency,
 	)
 
 /datum/lasrifle/base/energy_mg_mode/standard
-	charge_cost = 3
+	charge_cost = 4
 	ammo = /datum/ammo/energy/lasgun/marine/autolaser
 	fire_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
@@ -907,4 +887,5 @@
 /datum/lasrifle/base/energy_mg_mode/standard/efficiency
 	ammo = /datum/ammo/energy/lasgun/marine/autolaser/efficiency
 	fire_delay = 0.15 SECONDS
+	charge_cost = 3
 	message_to_user = "You set the machine laser's charge mode to efficiency mode."

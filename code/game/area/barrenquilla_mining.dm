@@ -52,6 +52,14 @@
 	name = "West Caves"
 	icon_state = "lava_cave_w"
 
+/area/barren/cave/lz1
+	name = "Landing Zone 1"
+	icon_state = "lava_lz1"
+
+/area/barren/cave/lz2
+	name = "Landing Zone 2"
+	icon_state = "lava_lz2"
+
 //Medical
 
 /area/barren/medical
@@ -77,7 +85,7 @@
 	outside = FALSE
 	icon_state = "lava_engine"
 	minimap_color = MINIMAP_AREA_ENGI
-	
+
 /area/barren/engie/one
 	name = "Generator One"
 	icon_state = "lava_eng1"

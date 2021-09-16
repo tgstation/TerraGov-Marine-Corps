@@ -224,6 +224,7 @@
 	mymob.update_action_buttons(TRUE)
 	reorganize_alerts(screenmob)
 	mymob.reload_fullscreens()
+	update_parallax_pref(screenmob)
 
 	// ensure observers get an accurate and up-to-date view
 	if(!viewmob)

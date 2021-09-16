@@ -12,9 +12,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 20
 
-	// *** Tackle *** //
-	tackle_damage = 25
-
 	// *** Speed *** //
 	speed = 0
 
@@ -29,7 +26,7 @@
 	upgrade_threshold = 350
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_HIDE_IN_STATUS|CASTE_CAN_HOLD_JELLY|CASTE_CAN_CORRUPT_GENERATOR
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_HOLD_JELLY|CASTE_CAN_CORRUPT_GENERATOR|CASTE_IS_BUILDER|CASTE_CAN_BE_GIVEN_PLASMA
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
@@ -55,17 +52,16 @@
 		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/cocoon,
-		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/activable/build_silo,
 		/datum/action/xeno_action/activable/build_hunt_den,
 		/datum/action/xeno_action/activable/build_turret,
+		/datum/action/xeno_action/summon_king,
 		/datum/action/xeno_action/place_acidwell,
-		/datum/action/xeno_action/activable/larval_growth_sting,
 		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/screech,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
-		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen,
 		/datum/action/xeno_action/toggle_pheromones,
@@ -73,7 +69,7 @@
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/set_xeno_lead,
 		/datum/action/xeno_action/activable/queen_give_plasma,
-		/datum/action/xeno_action/queen_order,
+		/datum/action/xeno_action/hive_message,
 		/datum/action/xeno_action/deevolve,
 		/datum/action/xeno_action/activable/rally_hive,
 	)
@@ -86,9 +82,6 @@
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs."
 
 	upgrade = XENO_UPGRADE_ONE
-
-	// *** Tackle *** //
-	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -0.1
@@ -123,9 +116,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 23
 
-	// *** Tackle *** //
-	tackle_damage = 28
-
 	// *** Speed *** //
 	speed = -0.2
 
@@ -158,9 +148,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 23
-
-	// *** Tackle *** //
-	tackle_damage = 28
 
 	// *** Speed *** //
 	speed = -0.3
