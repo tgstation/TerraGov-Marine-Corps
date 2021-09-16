@@ -145,6 +145,14 @@
 		if(!overlay)
 			continue
 		standing.overlays += overlay
+	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE] || !istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
+		return standing
+	var/obj/item/armor_module/storage/storage_module = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+	if(!storage_module.show_storage)
+		return standing
+	for(var/obj/item/stored AS in storage_module.storage.contents)
+		standing.overlays += image(storage_module.show_storage_icon, icon_state = stored.icon_state)
+	return standing
 
 /obj/item/clothing/suit/modular/mob_can_equip(mob/user, slot, warning)
 	if(slot == SLOT_WEAR_SUIT && ishuman(user))
@@ -314,6 +322,7 @@
 	var/list/attachments_by_slot = list(
 		ATTACHMENT_SLOT_HEAD_MODULE,
 		ATTACHMENT_SLOT_VISOR,
+		ATTACHMENT_SLOT_STORAGE,
 	)
 	///Typepath list of allowed attachment types.
 	var/list/attachments_allowed = list(
@@ -323,6 +332,7 @@
 		/obj/item/armor_module/module/welding,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
+		/obj/item/armor_module/storage/helmet,
 	)
 
 	///Pixel offsets for specific attachment slots. Is not used currently.
@@ -341,6 +351,10 @@
 	. = ..()
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, attachment_offsets, starting_attachments, null, null, null, attachment_overlays)
 	update_icon()
+
+/obj/item/clothing/head/modular/update_icon()
+	. = ..()
+	update_clothing_icon()
 
 /obj/item/clothing/head/modular/update_greyscale(list/colors, update)
 	. = ..()
@@ -365,15 +379,6 @@
 				"orange" = "#BC4D25",
 				"yellow" = "#B7B21F",
 			)
-
-
-/obj/item/clothing/head/modular/attack_hand(mob/living/user)
-	if(!storage || storage.handle_attack_hand(user))
-		return ..()
-
-/obj/item/clothing/head/modular/MouseDrop(over_object, src_location, over_location)
-	if(!storage || storage.handle_mousedrop(usr, over_object))
-		return ..()
 
 /obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -403,6 +408,14 @@
 	set_greyscale_colors(new_color)
 	paint.uses--
 
+/obj/item/clothing/head/modular/MouseDrop(over_object, src_location, over_location)
+	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+		return ..()
+	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
+		return ..()
+	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+	if(armor_storage.storage.handle_mousedrop(usr, over_object))
+		return ..()
 
 /obj/item/clothing/head/modular/equipped(mob/user, slot)
 	. = ..()
@@ -417,6 +430,7 @@
 		LAZYADD(module.actions_types, /datum/action/item_action/toggle)
 		var/datum/action/item_action/toggle/new_action = new(module)
 		new_action.give_action(user)
+	update_clothing_icon()
 
 
 /obj/item/clothing/head/modular/unequipped(mob/unequipper, slot)
@@ -442,10 +456,16 @@
 		if(!overlay)
 			continue
 		standing.overlays += overlay
+	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE] && istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
+		var/obj/item/armor_module/storage/storage_module = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+		if(storage_module.show_storage)
+			for(var/obj/item/stored AS in storage_module.storage.contents)
+				standing.overlays += image(storage_module.show_storage_icon, icon_state = stored.icon_state)
 	if(attachments_by_slot[ATTACHMENT_SLOT_VISOR])
-		return
+		return standing
 	standing.pixel_x = visorless_offset_x
 	standing.pixel_y = visorless_offset_y
+	return standing
 
 
 /obj/item/clothing/head/modular/get_mechanics_info()
@@ -468,10 +488,12 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 
+		/obj/item/armor_module/storage/helmet,
+
 		/obj/item/armor_module/armor/visor/marine,
 	)
 
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/skirmisher
 	name = "Jaeger Pattern Skirmisher Helmet"
@@ -486,10 +508,12 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 
+		/obj/item/armor_module/storage/helmet,
+
 		/obj/item/armor_module/armor/visor/marine/skirmisher,
 	)
 
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/skirmisher)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/skirmisher, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/assault
 	name = "Jaeger Pattern Assault Helmet"
@@ -504,10 +528,12 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 
+		/obj/item/armor_module/storage/helmet,
+
 		/obj/item/armor_module/armor/visor/marine/assault,
 	)
 
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/assault)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/assault, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/eva
 	name = "Jaeger Pattern EVA Helmet"
@@ -522,10 +548,12 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 
+		/obj/item/armor_module/storage/helmet,
+
 		/obj/item/armor_module/armor/visor/marine/eva,
 	)
 
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eva)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eva, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/eva/skull
 	name = "Jaeger Pattern EVA 'Skull' Helmet"
@@ -544,10 +572,12 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 
+		/obj/item/armor_module/storage/helmet,
+
 		/obj/item/armor_module/armor/visor/marine/eod,
 	)
 
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eod)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eod, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/scout
 	name = "Jaeger Pattern Scout Helmet"
@@ -562,10 +592,12 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 
+		/obj/item/armor_module/storage/helmet,
+
 		/obj/item/armor_module/armor/visor/marine/scout,
 	)
 
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/scout)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/scout, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/infantry
 	name = "Jaeger Pattern Infantry-Open Helmet"
@@ -580,8 +612,10 @@
 		/obj/item/armor_module/module/welding,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
+
+		/obj/item/armor_module/storage/helmet,
 	)
-	starting_attachments = list()
+	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 
 	visorless_offset_x = 0
 	visorless_offset_y = 0
@@ -610,8 +644,10 @@
 		/obj/item/armor_module/module/welding,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
+
+		/obj/item/armor_module/storage/helmet,
 	)
-	starting_attachments = list()
+	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 	visorless_offset_x = 0
 	visorless_offset_y = 0
 

@@ -10,11 +10,31 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_is_bag"
 	slot = ATTACHMENT_SLOT_STORAGE
+	///Internal storage of the module. Its parent is switched to the parent item when attached.
 	var/obj/item/storage/internal/storage = /obj/item/storage/internal/modular
+	///If TRUE it will add extra overlays for the items within.
+	var/show_storage = FALSE
+	///Icon for the extra storage overlays.
+	var/show_storage_icon = 'icons/mob/modular/modular_helmet_storage.dmi'
 
 /obj/item/armor_module/storage/Initialize()
 	. = ..()
 	storage = new storage(src)
+	RegisterSignal(storage, COMSIG_ITEM_REMOVED_FROM_STORAGE, /atom/proc/update_icon)
+
+/obj/item/armor_module/storage/Destroy()
+	. = ..()
+	UnregisterSignal(storage, COMSIG_ITEM_REMOVED_FROM_STORAGE)
+	QDEL_NULL(storage)
+
+/obj/item/armor_module/storage/update_icon()
+	. = ..()
+	parent?.update_icon()
+	if(!show_storage)
+		return
+	for(var/obj/item/stored AS in storage.contents)	
+		overlays += image(show_storage_icon, parent, icon_state = stored.icon_state)
+		parent?.add_overlay(image(show_storage_icon, icon_state = stored.icon_state), TRUE)
 
 /obj/item/armor_module/storage/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
@@ -31,6 +51,7 @@
 	storage.master_item = src
 	return ..()
 
+///Opens the internal storage when the parent is clicked on.
 /obj/item/armor_module/storage/proc/open_storage(datum/source, mob/living/user)
 	SIGNAL_HANDLER
 	if(parent.loc != user)
@@ -38,6 +59,7 @@
 	storage.open(user)
 	return COMPONENT_NO_ATTACK_HAND
 
+///Inserts I into storage when parent is attacked by I.
 /obj/item/armor_module/storage/proc/insert_item(datum/source, obj/item/I, mob/user)
 	SIGNAL_HANDLER
 	if(istype(I, /obj/item/facepaint) || istype(I, /obj/item/armor_module))
@@ -45,11 +67,14 @@
 	if(parent.loc != user)
 		return
 	INVOKE_ASYNC(storage, /atom/proc/attackby, I, user)
+	parent.update_icon()
+	update_icon()
 	return COMPONENT_NO_AFTERATTACK
 
 /obj/item/armor_module/storage/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	storage.attackby(I, user, params)
+	update_icon()
 
 /obj/item/armor_module/storage/attack_hand(mob/living/user)
 	if(loc == user)
@@ -191,3 +216,12 @@
 	storage_slots = null
 	max_storage_space = 15
 	max_w_class = WEIGHT_CLASS_NORMAL
+
+/obj/item/armor_module/storage/helmet
+	name = "Jaeger Pattern helmet storage"
+	desc = "A small set of bands and straps to allow easy storage of small items."
+	icon_state = "" //It is invisable
+	storage =  /obj/item/storage/internal/marinehelmet
+	slowdown = 0
+	show_storage = TRUE
+	flags_attach_features = ATTACH_SAME_ICON
