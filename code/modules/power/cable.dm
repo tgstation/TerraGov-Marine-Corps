@@ -491,13 +491,6 @@ GLOBAL_LIST(cable_radial_layer_list)
 	else
 		return ..()
 
-//add cables to the stack
-/obj/item/stack/cable_coil/proc/give(extra)
-	if(amount + extra > max_amount)
-		amount = max_amount
-	else
-		amount += extra
-	update_icon()
 
 
 ///////////////////////////////////////////////

@@ -558,7 +558,7 @@
 
 ///Makes mounted guns ammo visible
 /obj/machinery/deployable/mounted/proc/hud_set_gun_ammo()
-	var/image/holder = hud_list[SENTRY_AMMO_HUD]
+	var/image/holder = hud_list[MACHINE_AMMO_HUD]
 
 	if(!holder)
 		return

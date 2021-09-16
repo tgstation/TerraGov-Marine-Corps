@@ -464,6 +464,7 @@
 #define COMSIG_XENOMORPH_WATCHXENO "xenomorph_watchxeno"
 
 #define COMSIG_XENOMORPH_CORE_RETURN "xenomorph_core_return"
+#define COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM "xenomorph_hivemind_change_form"
 
 #define COMSIG_XENO_OBJ_THROW_HIT "xeno_obj_throw_hit"				///from [/mob/living/carbon/xenomorph/throw_impact]: (obj/target, speed)
 #define COMSIG_XENO_NONE_THROW_HIT "xeno_none_throw_hit"			///from [/mob/living/carbon/xenomorph/throw_impact]: ()
@@ -501,6 +502,8 @@
 #define COMSIG_KB_CLIENT_SCREENSHOT_DOWN "keybinding_client_screenshot_down"
 #define COMSIG_KB_CLIENT_MINIMALHUD_DOWN "keybinding_client_minimalhud_down"
 #define COMSIG_KB_CLIENT_OOC_DOWN "keybinding_client_ooc_down"
+#define COMSIG_KB_CLIENT_XOOC_DOWN "keybinding_client_xooc_down"
+#define COMSIG_KB_CLIENT_MOOC_DOWN "keybinding_client_mooc_down"
 #define COMSIG_KB_CLIENT_LOOC_DOWN "keybinding_client_looc_down"
 #define COMSIG_KB_LIVING_RESIST_DOWN "keybinding_living_resist_down"
 #define COMSIG_KB_MOB_FACENORTH_DOWN "keybinding_mob_facenorth_down"

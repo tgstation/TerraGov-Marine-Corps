@@ -135,6 +135,10 @@
 		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in module.actions
 		old_action.remove_action(unequipper)
 
+/obj/item/clothing/suit/modular/update_icon()
+	. = ..()
+	update_clothing_icon()
+
 /obj/item/clothing/suit/modular/apply_custom(image/standing)
 	for(var/key in attachment_overlays)
 		var/image/overlay = attachment_overlays[key]
@@ -363,6 +367,14 @@
 			)
 
 
+/obj/item/clothing/head/modular/attack_hand(mob/living/user)
+	if(!storage || storage.handle_attack_hand(user))
+		return ..()
+
+/obj/item/clothing/head/modular/MouseDrop(over_object, src_location, over_location)
+	if(!storage || storage.handle_mousedrop(usr, over_object))
+		return ..()
+
 /obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
@@ -421,6 +433,8 @@
 			continue
 		old_action.remove_action(unequipper)
 		module.actions = null
+
+	update_clothing_icon()
 
 /obj/item/clothing/head/modular/apply_custom(image/standing)
 	for(var/key in attachment_overlays)

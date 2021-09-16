@@ -133,3 +133,136 @@
   Surrealaser:
   - balance: Reduced Hunter's Mark plasma cost from 75 to 25.
   - balance: Removed Hunter's Mark wind up time.
+2021-09-11:
+  BraveMole:
+  - bugfix: AI crusher will no longer have the speed of a runner
+  - expansion: Add ai nodes to EORD
+  MiniMeatwad:
+  - balance: The TP-14 sunder is reduced to 1 from 1.65, and its akimbo scatter range
+      from (30 to 40) to (40 to 50). This will come out as 5 to 15 with attachments
+      instead of -5 to 5.
+  QualityVan:
+  - bugfix: Thrown huggers will crawl into holes or empty eggs.
+  - bugfix: Hatched huggers will jump at people.
+  - bugfix: Planted eggs don't mature instantly.
+  - bugfix: Gas eggs can only be popped once.
+  - qol: Infected limbs are less subtle to their owner.
+  - balance: Wounds with smaller amounts of germs will now disinfect passively over
+      time. Treatment speeds this up.
+  - balance: Fresh wounds won't immediately start infecting the limb they're on.
+  - bugfix: Wounds that worsen now do so more visibly.
+2021-09-12:
+  BraveMole:
+  - bugfix: Flares no longer explode
+  - refactor: Small grenade refactor
+  - qol: Ai will stop processing if you login to a mob with ai. It will resum if you
+      log out
+  MiniMeatwad:
+  - qol: Reduced the quick equip delay for pressing E in hotkey mode. Changes inventory
+      action delay from 150ms to 50ms, which is significantly smoother. The new delay
+      should now only affect you if you're using macros or spamming a key really hard.
+  - code_imp: Changed get_active_held_item()'s next_move to world.time + 1 instead
+      of world.time + 3.
+  QualityVan:
+  - refactor: Repathed non-splint medkits, minimal functional changes.
+  SplinterGP:
+  - balance: magazine ammo belt now has 6 slots from old 5
+2021-09-13:
+  BraveMole:
+  - rscadd: Admin spawned xeno can use abilities in civil war
+  - qol: Add minimap blips for nuke disk generator and nuke
+  - bugfix: You can no longer steal aghosted bodies
+  - bugfix: Spawning as a space agent no longer allow to bypass respawn timer
+  - rscadd: AFK marines can be taken by ghosts
+  - bugfix: Sentry ammo is visible again
+  Bravemole, sprites by Daytona:
+  - rscadd: Hivemind can manifest
+  MiniMeatwad:
+  - rscadd: Adds Team OOC, two new verbs in the OOC tab called XOOC and MOOC for Xeno
+      and Marine.
+  - code_imp: Modified ooc.dm, adding two new verbs.
+  - admin: XOOC and MOOC should have clickable player panel links for admins, and
+      admins can see XOOC and MOOC chat and talk in them.
+  Pariah919:
+  - balance: T-90 has aim mode, and T-19 has better one handed stats (reduced scatter
+      by 3 and accuracy buff by .1), two handed accuracy reduced from 1.5 to 1.2.
+  - balance: machinecarbine scatter reduced by 8 to 12 from 20.
+  - spellcheck: minor tp44 description changes
+  - balance: m44 now works like a proper single action, use unique action to prime
+      it, it has slightly less fire delay and is normal sized from bulky
+  QualityVan:
+  - bugfix: People buckled to beds will lie down.
+  - bugfix: You can move while carrying someone on your back.
+  TiviPlus:
+  - bugfix: droids can be repaired again
+  - code_imp: Updated max reccomended byond versions
+  - bugfix: fixed a deletion bug
+  - bugfix: fixed soe balloon alerts looking wierd
+  - bugfix: fixed some radial menus looking wierd
+  - bugfix: fixed parallax animation
+  - bugfix: fixed some tgui colors maybe being wierd
+  - admin: fixed some missing byond varedit flags
+  - code_imp: TGUI tooltip optimization
+  - rscadd: Marine bikes
+  - rscadd: The bikes must be filled with fuel and require one hand to use, but come
+      with 4 storage slots for items which can be accessed by clicking the bike with
+      an empty hand or dragging the bike onto yourself. The bikes can be repaired
+      with welders.
+  - imageadd: Sprites by thatguythere03#4418
+  hyper2snyper:
+  - rscadd: New Attachment, the Build-A-Sentry. Available in the Engi vendor for 30
+      points a piece, or 1 for 25 points in Req.
+  - rscadd: Simply attach it to the gun and boom, it can be deployed.
+  - rscadd: Changed the controls for deployable guns and sentries. You can see the
+      controls by examining the guns that can be deployed.
+  - balance: Anti-mat sniper can now have its scope removed.
+  - code_imp: Removed an old bitfield that was unused in gun code.
+  - code_imp: Adds a ton of infrastructure for new sentry types.
+  jroinc:
+  - bugfix: Altered some descriptive text for the medscanner and defib.
+  - expansion: Added stuff to sleeping. If you sleep on a bed with sheets and are
+      not in crit, you'll heal 0.25 brute, 0.25 burn, 0.125 toxloss, 25 stamina, and
+      a variable amount of cloneloss (-0.1 to 0.2, depending on your overall health).
+      If you sleep on the floor, you get a quarter of those values.
+2021-09-14:
+  BraveMole:
+  - qol: No longer shooting at adjacent tiles
+  QualityVan:
+  - balance: Marine meds have infinite gauze and ointment
+  - balance: Stacks can't be restocked in vendors unless they have the count they
+      started with.
+  RipGrayson:
+  - rscadd: Added landmark versions of flight computers to both Chigusa Landing Zones,
+      allowing for civil war to be played.
+  - expansion: Chigusa's river is now animated.
+  - rscdel: Removed an unnecessary icon sheet.
+  - balance: Rebalanced both Chigusa LZs to meet TGMC quality standards.
+  - balance: Moved Chigusa LZ2 to the southeast.
+  - balance: Moved Chigusa nuke computers much closer together.
+  - balance: Redid Chigusa fog blockers to be more consistent.
+  - bugfix: You can no longer defy physics by hiding underneath road paint as a runner.
+  - bugfix: Several Chigusa APCs now properly connect to the grid.
+  - bugfix: Chigusa Landing Zones are now longer permanently unpowered despite having
+      a full APC.
+  - bugfix: Fixed a single obscure unmapped tile Chigusa inherited from CM.
+  - imageadd: Added some animation frames for Chigusa's river.
+  TheLeopold:
+  - balance: mini incinerator tank now small item
+  TiviPlus:
+  - code_imp: Backend vehicle multitile prep
+2021-09-15:
+  MiniMeatwad:
+  - admin: Team OOC code now shows keys for admins and has a fakekey check if the
+      admin is using stealthmin.
+  - config: Add LOG_MOOC and LOG_XOOC to the config.
+  - balance: Praetorian acid spit cost and speed changed to be 90 plasma cost and
+      have +2 delay.
+  Pariah919:
+  - spellcheck: ak got renamed to MPi-KM, and has a new description.
+  TGCMbetcher:
+  - rscadd: MK221 added to marine weapon vendor list
+  jroinc:
+  - rscadd: adds chemical WP gas, gunpowder, and ANFO
+  - balance: lowers maximum radius of chemsmoke to around WP-radius. Also raises minimum
+      amount of reactable razorburn to 5/5, from 1/1.
+  - bugfix: fixes napalm and napalm grenades
