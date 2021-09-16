@@ -309,12 +309,11 @@
 	burst_amount = 6
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.65
-	scatter = 16
-	burst_scatter_mult = 1.5
+	scatter = 18
 	burst_delay = 0.15 SECONDS
 	scatter_unwielded = 45
 	aim_slowdown = 0.6
-	wield_delay = 0.75 SECONDS
+	wield_delay = 0.6 SECONDS
 
 
 //-------------------------------------------------------
