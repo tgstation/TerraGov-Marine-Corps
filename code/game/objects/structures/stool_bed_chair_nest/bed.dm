@@ -319,6 +319,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	var/obj/item/radio/headset/mainship/doc/radio
 	///A busy var to check if the strecher is already used to send someone to the beacon
 	var/busy = FALSE
+	///The faction this medevac belongs to
+	var/faction
 
 /obj/structure/bed/medevac_stretcher/Initialize(mapload)
 	. = ..()
@@ -416,6 +418,11 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	if(busy)
 		return
 
+	if(user.faction != faction)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		visible_message(span_warning("[src]'s safeties kick in before displacement as it fails to detect correct identification codes."))
+		return
+
 	if(world.time < last_teleport )
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		to_chat(user, span_warning("[src]'s bluespace engine is still recharging; it will be ready in [round(last_teleport - world.time) * 0.1] seconds."))
@@ -482,6 +489,11 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		visible_message(span_warning("[src]'s bluespace engine aborts displacement, being unable to detect an appropriate evacuee."))
 		return
 
+	if(M.faction != faction)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		visible_message(span_warning("[src]'s safeties kick in before displacement as it fails to detect correct identification codes."))
+		return
+
 	visible_message(span_notice("<b>[M] vanishes in a flash of sparks as [src]'s bluespace engine generates its displacement field.</b>"))
 	if(buckled_bodybag)
 		var/obj/structure/closet/bodybag/teleported_bodybag = buckled_bodybag
@@ -517,6 +529,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		B.linked_bed = src
 		to_chat(user, span_notice("<b>You link the medvac beacon to the medvac stretcher.</b>"))
 		playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
+		faction = user.faction
 
 	else if(istype(I, /obj/item/healthanalyzer)) //Allows us to use the analyzer on the occupant without taking him out.
 		var/mob/living/occupant
