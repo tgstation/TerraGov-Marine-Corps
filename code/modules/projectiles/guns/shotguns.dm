@@ -934,9 +934,9 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/lasersight,
-						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun,
-						/obj/item/attachable/attached_gun/grenade)
+						/obj/item/weapon/gun/flamer/mini_flamer,
+						/obj/item/weapon/gun/shotgun/combat/masterkey,
+						/obj/item/weapon/gun/launcher/m92/mini_grenade)
 	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 29, "under_y" = 12, "stock_x" = 13, "stock_y" = 15)
 
 	fire_delay = 1.75 SECONDS
@@ -946,5 +946,5 @@ can cause issues with ammo types getting mixed up during the burst.
 	burst_delay = 0.01 SECONDS //basically instantaneous two shots
 	extra_delay = 1.25 SECONDS
 	scatter = 2
-	burst_scatter_mod = 6 // 2x6=12
+	burst_scatter_mult = 6 // 2x6=12
 	accuracy_mult = 1
