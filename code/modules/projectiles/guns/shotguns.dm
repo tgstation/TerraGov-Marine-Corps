@@ -931,14 +931,13 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
-						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/attached_gun/grenade)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 18, "under_x" = 24, "under_y" = 12, "stock_x" = 13, "stock_y" = 15)
+	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 29, "under_y" = 12, "stock_x" = 13, "stock_y" = 15)
 
 	fire_delay = 1.75 SECONDS
 	damage_mult = 0.9
