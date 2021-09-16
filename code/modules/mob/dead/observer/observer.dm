@@ -276,8 +276,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	. = ..()
 	if(!. || can_reenter_corpse)
 		return
+	var/mob/ghost = .
 	if(!aghosting && job?.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
-		GLOB.key_to_time_of_death[key] = world.time
+		GLOB.key_to_time_of_death[ghost.key] = world.time
 		set_afk_status(MOB_RECENTLY_DISCONNECTED, 5 SECONDS)
 
 
@@ -381,7 +382,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set category = "Ghost"
 	set name = "Try to take SSD mob"
 
-	if(GLOB.key_to_time_of_death[key] + TIME_BEFORE_TAKING_BODY < world.time)
+	if(GLOB.key_to_time_of_death[key] + TIME_BEFORE_TAKING_BODY < world.time && !started_as_observer)
 		to_chat(src, span_warning("You died too recently to be able to take a new mob."))
 		return
 
@@ -416,8 +417,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(is_banned_from(ckey, new_mob?.job?.title))
 		to_chat(src, span_warning("You are jobbaned from the [new_mob?.job.title] role."))
 		return
-
+	message_admins(span_adminnotice("[key] took control of [new_mob.name] as [new_mob.p_they()] was ssd."))
+	log_admin("[key] took control of [new_mob.name] as [new_mob.p_they()] was ssd.")
 	new_mob.transfer_mob(src)
+	if(ishuman(new_mob))
+		var/mob/living/carbon/human/H = new_mob
+		H.fully_replace_character_name(H.real_name, H.species.random_name(H.gender))
 
 
 /mob/dead/observer/verb/toggle_HUDs()
