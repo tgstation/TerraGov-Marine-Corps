@@ -627,7 +627,10 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		return
 
 	if(modifiers["right"] || modifiers["middle"])
-		active_attachable?.start_fire(source, object)
+		modifiers -= "right"
+		modifiers -= "middle"
+		params = list2params(modifiers)
+		active_attachable?.start_fire(source, object, location, control, params, bypass_checks)
 		return
 	if(gun_on_cooldown(gun_user))
 		return
