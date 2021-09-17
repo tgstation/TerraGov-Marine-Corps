@@ -22,4 +22,5 @@ endmode
 
 mode Civil War
 	requiredplayers 2
+	hoursbetweenrounds 8
 endmode

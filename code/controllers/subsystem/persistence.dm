@@ -38,8 +38,8 @@ SUBSYSTEM_DEF(persistence)
 	)
 	///The saved list of custom outfits names
 	var/list/custom_loadouts = list()
-	///When was the last civil war round played in hours
-	var/last_civil_war_round_date = 0
+	///When were the last rounds of specific game mode played, in ticks
+	var/list/last_modes_round_date
 
 ///Loads data at the start of the round
 /datum/controller/subsystem/persistence/Initialize()
@@ -56,11 +56,11 @@ SUBSYSTEM_DEF(persistence)
 
 ///Loads the last civil war round date
 /datum/controller/subsystem/persistence/proc/load_last_civil_war_round_time()
-	var/json_file = file("data/last_civil_war_round_date.json")
+	var/json_file = file("data/last_modes_round_date.json")
 	if(!fexists(json_file))
-		last_civil_war_round_date = 0
+		last_modes_round_date = list()
 		return
-	last_civil_war_round_date = json_decode(file2text(json_file))
+	last_modes_round_date = json_decode(file2text(json_file))
 
 ///Loads the list of custom outfits names
 /datum/controller/subsystem/persistence/proc/load_custom_loadouts_list()
@@ -84,9 +84,9 @@ SUBSYSTEM_DEF(persistence)
 
 ///Save the date of the last civil war round
 /datum/controller/subsystem/persistence/proc/save_last_civil_war_round_time()
-	var/json_file = file("data/last_civil_war_round_date.json")
+	var/json_file = file("data/last_modes_round_date.json")
 	fdel(json_file)
-	WRITE_FILE(json_file, json_encode(last_civil_war_round_date))
+	WRITE_FILE(json_file, json_encode(last_modes_round_date))
 
 ///Saves the list of custom outfits names
 /datum/controller/subsystem/persistence/proc/save_custom_loadouts_list()

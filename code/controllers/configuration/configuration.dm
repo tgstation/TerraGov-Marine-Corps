@@ -289,6 +289,8 @@
 				currentmode.deploy_time_lock = text2num(data) MINUTES
 			if("votable")
 				currentmode.votable = text2num(data)
+			if("hoursbetweenrounds")
+				currentmode.time_between_round = text2num(data) HOURS
 			if("endmode")
 				currentmode = null
 			else
