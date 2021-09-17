@@ -57,7 +57,7 @@
 	var/obj/item/clothing/suit/modular/modular_armor = .
 	for(var/datum/item_representation/armor_module/armor_attachement AS in attachments)
 		armor_attachement.install_on_armor(seller, modular_armor, user)
-	modular_armor.current_variant = current_variant
+	modular_armor.current_variant = current_variant in modular_armor.icon_state_variants ? current_variant : initial(modular_armor.current_variant)
 	modular_armor.update_icon()
 
 
