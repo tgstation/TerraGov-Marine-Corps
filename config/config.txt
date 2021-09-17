@@ -62,6 +62,8 @@ CENTCOM_BAN_DB https://centcom.melonmesa.com/ban/search
 ## Logging. Recommended you keep all of these on.
 LOG_OOC
 LOG_LOOC
+LOG_XOOC
+LOG_MOOC
 LOG_SAY
 LOG_TELECOMMS
 LOG_HIVEMIND

@@ -21,6 +21,7 @@
 	desc = "A fuel tank of usually ultra thick napthal, a sticky combustable liquid chemical, for use in the underail incinerator unit. Handle with care."
 	icon_state = "flametank_mini"
 	reload_delay = 0 SECONDS
+	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 25
 	max_rounds = 25
 	gun_type = /obj/item/weapon/gun/flamer/mini_flamer

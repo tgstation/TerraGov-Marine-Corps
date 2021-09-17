@@ -34,6 +34,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil = 2
 	recoil_unwielded = 4
 
+	placed_overlay_iconstate = "shotgun"
+
 
 /obj/item/weapon/gun/shotgun/Initialize()
 	. = ..()
@@ -290,7 +292,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/magnetic_harness,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_PUMP_REQUIRED
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 21,"rail_x" = 15, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
 
 	fire_delay = 2
@@ -480,6 +482,8 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/weapon/gun/flamer/mini_flamer,
 	)
 
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_PUMP_REQUIRED
+
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
 
 	fire_delay = 20
@@ -530,7 +534,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	pump_notice(user)
 	if(pump_animation)
 		flick("[pump_animation]", src)
-	playsound(user, pump_sound, 25, 1)
+	playsound(src, pump_sound, 25, 1)
 	recent_pump = world.time
 	if(in_chamber) //Lock only if we have ammo loaded.
 		pump_lock = TRUE
@@ -630,16 +634,20 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
 	)
 	flags_item_map_variant = NONE
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_PUMP_REQUIRED
 	attachable_offset = list("muzzle_x" = 37, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/mosin,
 		/obj/item/attachable/stock/mosin,
 	)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.75 SECONDS
+	aim_speed_modifier = 0.8
 
-	fire_delay = 17.5
+	fire_delay = 1.75 SECONDS
 	accuracy_mult = 1.45
 	accuracy_mult_unwielded = 0.7
 	scatter = -25
@@ -649,6 +657,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	pump_delay = 12
 	aim_slowdown = 1
 	wield_delay = 1 SECONDS
+
+	placed_overlay_iconstate = "wood"
 
 /obj/item/weapon/gun/shotgun/pump/bolt/pump_fail_notice(mob/user)
 	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
@@ -695,9 +705,10 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_PUMP_REQUIRED
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 23,"rail_x" = 17, "rail_y" = 25, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
 
 	fire_delay = 1 SECONDS
@@ -711,6 +722,8 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	aim_slowdown = 1
 	wield_delay = 1 SECONDS
+
+	placed_overlay_iconstate = "wood"
 
 //***********************************************************
 // Derringer
@@ -874,6 +887,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/buildasentry,
 	)
 
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 20, "under_x" = 21, "under_y" = 12, "stock_x" = 20, "stock_y" = 16)
@@ -889,6 +903,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = 4
 	aim_slowdown = 0.55
 	pump_delay = 14
+
+	placed_overlay_iconstate = "t35"
 
 //buckshot variants
 /obj/item/weapon/gun/shotgun/pump/t35/pointman

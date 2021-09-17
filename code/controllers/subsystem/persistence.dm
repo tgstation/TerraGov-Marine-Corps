@@ -31,6 +31,7 @@ SUBSYSTEM_DEF(persistence)
 		/datum/season_datum/weapons/guns/pistol_seasonal_two,
 		/datum/season_datum/weapons/guns/rifle_seasonal_two,
 		/datum/season_datum/weapons/guns/pistol_seasonal_three,
+		/datum/season_datum/weapons/guns/pistol_seasonal_four,
 		/datum/season_datum/weapons/guns/copsandrobbers_seasonal,
 		/datum/season_datum/weapons/guns/smg_seasonal,
 		/datum/season_datum/weapons/guns/storm_seasonal,
@@ -221,8 +222,19 @@ SUBSYSTEM_DEF(persistence)
 	item_list = list(
 		/obj/item/weapon/gun/revolver/small = -1,
 		/obj/item/ammo_magazine/revolver/small = -1,
-		/obj/item/weapon/gun/revolver/m44 = -1,
+		/obj/item/weapon/gun/revolver/single_action/m44 = -1,
 		/obj/item/ammo_magazine/revolver = -1,
+		)
+
+/datum/season_datum/weapons/guns/pistol_seasonal_four
+	name = "Judge and Nagant"
+	description = "More revolvers for the revolver mains."
+	item_list = list(
+		/obj/item/weapon/gun/revolver/judge = -1,
+		/obj/item/ammo_magazine/revolver/judge = -1,
+		/obj/item/ammo_magazine/revolver/judge/buckshot = -1,
+		/obj/item/weapon/gun/revolver/upp = -1,
+		/obj/item/ammo_magazine/revolver/upp = -1,
 		)
 
 /datum/season_datum/weapons/guns/pistol_seasonal_two

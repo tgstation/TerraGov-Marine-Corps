@@ -5131,7 +5131,7 @@
 /area/prison/medbay)
 "ara" = (
 /obj/structure/table/reinforced,
-/obj/item/stack/medical/advanced/bruise_pack,
+/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
 /obj/item/stack/nanopaste,
 /turf/open/floor/prison/whitegreen/full,
 /area/prison/medbay/surgery)
