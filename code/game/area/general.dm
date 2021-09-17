@@ -15,7 +15,7 @@
 /area/space/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
 	if(isliving(arrived))
-		to_chat(arrived, span_danger(""The cold vacuum instantly freezes you, maybe this was a bad idea?"))
+		to_chat(arrived, span_danger("The cold vacuum instantly freezes you, maybe this was a bad idea?"))
 		var/mob/living/spaceman = arrived
 		spaceman.adjustFireLoss(600) //Bad idea, spessman.
 
