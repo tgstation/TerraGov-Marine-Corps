@@ -410,11 +410,11 @@
 			addtimer(CALLBACK(src, .proc/finish_revive_to_crit, FALSE, should_zombify), 10 SECONDS)
 			return
 		REMOVE_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
-		if(should_zombify || species.name == "Husk")
+		if(should_zombify || istype(species, /datum/species/husk))
 			AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/husk/patrolling, src) //Zombie patrol
 			a_intent = INTENT_HARM
 	if(should_zombify)
-		set_species("Husk")
+		set_species("Strong husk")
 		faction = FACTION_XENO
 	heal_limbs(-2 * health)
 	set_stat(CONSCIOUS)

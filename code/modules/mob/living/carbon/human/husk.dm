@@ -149,3 +149,9 @@
 /datum/species/husk/tank/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.transform = matrix().Scale(1/(1.2), 1/(1.2))
+
+/datum/species/husk/strong
+	name = "Strong husk" //These are husks created from marines, they are stronger, but of course rarer
+	slowdown = -0.5
+	heal_rate = 10
+	total_health = 200
