@@ -7,6 +7,8 @@
 	var/greyscale_colors
 	///The attachments installed.
 	var/list/datum/item_representation/armor_module/attachments = list()
+	///Icon_state suffix for the saved icon_state varient.
+	var/current_variant
 
 /datum/item_representation/modular_helmet/New(obj/item/item_to_copy)
 	if(!item_to_copy)
@@ -15,6 +17,7 @@
 		CRASH("/datum/item_representation/modular_helmet created from an item that is not an modular helmet")
 	..()
 	var/obj/item/clothing/head/modular/helmet_to_copy = item_to_copy
+	current_variant = helmet_to_copy.current_variant
 	for(var/key in helmet_to_copy.attachments_by_slot)
 		if(istype(helmet_to_copy.attachments_by_slot[key], /obj/item/armor_module/armor))
 			attachments += new /datum/item_representation/armor_module/colored(helmet_to_copy.attachments_by_slot[key])
@@ -30,8 +33,12 @@
 	if(!.)
 		return
 	var/obj/item/clothing/head/modular/modular_helmet = .
+	modular_helmet.current_variant = current_variant
 	for(var/datum/item_representation/armor_module/armor_attachement AS in attachments)
 		armor_attachement.install_on_armor(seller, modular_helmet, user)
+	if(!greyscale_colors)
+		modular_helmet.update_icon()
+		return
 	if(seller.faction == FACTION_NEUTRAL)
 		modular_helmet.set_greyscale_colors(greyscale_colors)
 		return
@@ -46,14 +53,14 @@
 	if(greyscale_colors)
 		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(item_type.greyscale_config), greyscale_colors), dir = SOUTH)
 	else
-		icon_to_convert = icon(initial(item_type.icon), item_icon_state, SOUTH)
+		icon_to_convert = icon(initial(item_type.icon), current_variant ? initial(item_type.icon_state) + "_[current_variant]" : initial(item_type.icon_state), SOUTH)
 	tgui_data["icons"] += list(list(
 				"icon" = icon2base64(icon_to_convert),
 				"translateX" = NO_OFFSET,
 				"translateY" = "40%",
 				"scale" = 1.4,
 				))
-	for(var/datum/item_representation/armor_module/module in attachments)
+	for(var/datum/item_representation/armor_module/module AS in attachments)
 		if(istype(module, /datum/item_representation/armor_module/colored))
 			var/datum/item_representation/armor_module/colored/colored_module = module
 			icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(colored_module.item_type.greyscale_config), colored_module.greyscale_colors), dir = SOUTH)

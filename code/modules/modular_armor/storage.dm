@@ -206,7 +206,7 @@
 /obj/item/armor_module/storage/helmet
 	name = "Jaeger Pattern helmet storage"
 	desc = "A small set of bands and straps to allow easy storage of small items."
-	icon_state = "invisable" //It is invisable
+	icon_state = "invisible" //It is invisible
 	storage =  /obj/item/storage/internal/marinehelmet
 	slowdown = 0
 	show_storage = TRUE

@@ -99,13 +99,38 @@
 	var/list/starting_attachments = list()
 	///List of the attachment overlays.
 	var/list/attachment_overlays = list()
-
+	///List of icon_state suffixes for armor varients.
+	var/list/icon_state_variants = list()
+	///Current varient selected.
+	var/current_variant
 	/// Misc stats
 	light_range = 5
 
 /obj/item/clothing/suit/modular/Initialize()
 	. = ..()
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, attachment_offsets, starting_attachments, null, null, null, attachment_overlays)
+	update_icon()
+
+/obj/item/clothing/suit/modular/pas11x/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!istype(I, /obj/item/facepaint/) || !length(icon_state_variants))
+		return
+	var/obj/item/facepaint/paint = I
+	if(paint.uses < 1)
+		to_chat(user, span_warning("\the [paint] is out of color!"))
+		return
+	paint.uses--
+	var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
+
+	if(!variant)
+		return
+	
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return
+
+	current_variant = variant
+	update_icon()
+
 
 /obj/item/clothing/suit/modular/equipped(mob/user, slot)
 	. = ..()
@@ -137,6 +162,9 @@
 
 /obj/item/clothing/suit/modular/update_icon()
 	. = ..()
+	if(current_variant)
+		icon_state = initial(icon_state) + "_[current_variant]"
+		item_state = initial(item_state) + "_[current_variant]"
 	update_clothing_icon()
 
 /obj/item/clothing/suit/modular/on_pocket_insertion()
@@ -229,8 +257,6 @@
 	icon_state = "pas11"
 	item_state = "pas11"
 	slowdown = 0.5
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
-
 
 	attachments_allowed = list(
 		/obj/item/armor_module/armor/arms/marine,
@@ -266,37 +292,19 @@
 		/obj/item/armor_module/storage/integrated,
 	)
 
+	icon_state_variants = list(
+		"green",
+		"black",
+		"brown",
+		"white",
+	)
+
+	current_variant = "brown"
+
 /obj/item/clothing/suit/modular/pas11x/update_icon()
 	. = ..()
 	if(item_state == icon_state)
 		return
-	item_state = icon_state
-
-/obj/item/clothing/suit/modular/pas11x/attackby(obj/item/I, mob/user, params)
-	if(!istype(I, /obj/item/facepaint/))
-		return ..()
-	var/obj/item/facepaint/paint = I
-	if(paint.uses < 1)
-		to_chat(user, span_warning("\the [paint] is out of color!"))
-		return
-	paint.uses--
-	var/color = tgui_input_list(user, "Choose a color.", "Color", list("green", "brown", "white", "black"))
-
-	if(!color)
-		return
-	
-	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
-		return
-
-	switch(color)
-		if("green")
-			icon_state = "m_" + initial(icon_state)
-		if("brown")
-			icon_state = initial(icon_state)
-		if("white")
-			icon_state = "s_" + initial(icon_state)
-		if("black")
-			icon_state = "k_" + initial(icon_state)
 	item_state = icon_state
 
 /** Core helmet module */
@@ -354,6 +362,10 @@
 	var/visorless_offset_x = 0
 	///Pixel offset on the Y axis for how the helmet sits on the mob without a visor.
 	var/visorless_offset_y = -1
+	///List of icon_state suffixes for armor varients.
+	var/list/icon_state_variants = list()
+	///Current varient selected.
+	var/current_variant
 
 /obj/item/clothing/head/modular/Initialize(mapload)
 	. = ..()
@@ -362,6 +374,9 @@
 
 /obj/item/clothing/head/modular/update_icon()
 	. = ..()
+	if(current_variant)
+		icon_state = initial(icon_state) + "_[current_variant]"
+		item_state = initial(item_state) + "_[current_variant]"
 	update_clothing_icon()
 
 /obj/item/clothing/head/modular/on_pocket_insertion()
@@ -407,6 +422,20 @@
 	var/obj/item/facepaint/paint = I
 	if(paint.uses < 1)
 		to_chat(user, span_warning("\the [paint] is out of color!"))
+		return
+
+	if(!greyscale_config && length(icon_state_variants))
+		paint.uses--
+		var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
+
+		if(!variant)
+			return
+	
+		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+			return
+
+		current_variant = variant
+		update_icon()
 		return
 
 	var/new_color
@@ -650,7 +679,6 @@
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 	)
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 	greyscale_colors = null
 	greyscale_config = null
 	attachments_allowed = list(
@@ -667,28 +695,31 @@
 	visorless_offset_x = 0
 	visorless_offset_y = 0
 
+	icon_state_variants = list(
+		"green",
+		"black",
+		"brown",
+		"white",
+	)
+
+	current_variant = "brown"
 
 /obj/item/clothing/head/modular/marine/m10x/standard
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
 /obj/item/clothing/head/modular/marine/m10x/tech
 	name = "\improper M10X technician helmet"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
 
 /obj/item/clothing/head/modular/marine/m10x/corpsman
 	name = "\improper M10X corpsman helmet"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
 /obj/item/clothing/head/modular/marine/m10x/heavy
 	name = "\improper M10XE pattern marine helmet"
 	desc = "A standard M10XE Pattern Helmet. This is a modified version of the M10X helmet, offering an enclosed visor apparatus."
 	icon_state = "heavyhelmet_icon"
 	item_state = "heavyhelmet"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
 /obj/item/clothing/head/modular/marine/m10x/leader
 	name = "\improper M11X pattern leader helmet"
 	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
 	soft_armor = list("melee" = 75, "bullet" = 65, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)

@@ -30,6 +30,8 @@
 /datum/item_representation/modular_armor
 	///List of attachments on the armor.
 	var/list/datum/item_representation/armor_module/attachments = list()
+	///Icon_state suffix for the saved icon_state varient.
+	var/current_variant
 
 /datum/item_representation/modular_armor/New(obj/item/item_to_copy)
 	if(!item_to_copy)
@@ -38,6 +40,7 @@
 		CRASH("/datum/item_representation/modular_armor created from an item that is not a jaeger")
 	..()
 	var/obj/item/clothing/suit/modular/jaeger_to_copy = item_to_copy
+	current_variant = jaeger_to_copy.current_variant
 	for(var/key in jaeger_to_copy.attachments_by_slot)
 		if(istype(jaeger_to_copy.attachments_by_slot[key], /obj/item/armor_module/armor))
 			attachments += new /datum/item_representation/armor_module/colored(jaeger_to_copy.attachments_by_slot[key])
@@ -54,6 +57,7 @@
 	var/obj/item/clothing/suit/modular/modular_armor = .
 	for(var/datum/item_representation/armor_module/armor_attachement AS in attachments)
 		armor_attachement.install_on_armor(seller, modular_armor, user)
+	modular_armor.current_variant = current_variant
 	modular_armor.update_icon()
 
 
@@ -61,14 +65,14 @@
 	var/list/tgui_data = list()
 	tgui_data["name"] = initial(item_type.name)
 	tgui_data["icons"] = list()
-	var/icon/icon_to_convert = icon(initial(item_type.icon), item_icon_state, SOUTH)
+	var/icon/icon_to_convert = icon(initial(item_type.icon),current_variant ? initial(item_type.icon_state) + "_[current_variant]" : initial(item_type.icon_state), SOUTH)
 	tgui_data["icons"] += list(list(
 				"icon" = icon2base64(icon_to_convert),
 				"translateX" = NO_OFFSET,
 				"translateY" = MODULAR_ARMOR_OFFSET_Y,
 				"scale" = MODULAR_ARMOR_SCALING,
 				))
-	for(var/datum/item_representation/armor_module/module in attachments)
+	for(var/datum/item_representation/armor_module/module AS in attachments)
 		if(istype(module, /datum/item_representation/armor_module/colored))
 			var/datum/item_representation/armor_module/colored/colored_module = module
 			icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(colored_module.item_type.greyscale_config), colored_module.greyscale_colors), dir = SOUTH)

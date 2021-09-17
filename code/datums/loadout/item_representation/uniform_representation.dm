@@ -23,7 +23,7 @@
 
 /datum/item_representation/uniform_representation/get_tgui_data()
 	var/list/tgui_data = list()
-	var/icon/icon_to_convert = icon(initial(item_type.icon), item_icon_state, SOUTH)
+	var/icon/icon_to_convert = icon(initial(item_type.icon), initial(item_type.icon_state), SOUTH)
 	tgui_data["icons"] = list()
 	tgui_data["icons"] += list(list(
 		"icon" = icon2base64(icon_to_convert),

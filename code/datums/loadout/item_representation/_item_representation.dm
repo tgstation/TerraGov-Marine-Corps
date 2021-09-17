@@ -6,8 +6,6 @@
 /datum/item_representation
 	/// The type of the object represented, to allow us to create the object when needed
 	var/obj/item/item_type
-	/// Icon state of the item. This is so we can keep track of icon_state colors with the loadout vendor. Like PAS armor.
-	var/item_icon_state
 	/// If it's allowed to bypass the vendor check
 	var/bypass_vendor_check = FALSE
 
@@ -15,7 +13,6 @@
 	if(!item_to_copy)
 		return
 	item_type = item_to_copy.type
-	item_icon_state = item_to_copy.icon_state
 
 /**
  * This will attempt to instantiate an object.
@@ -34,7 +31,6 @@
 		to_chat(user, span_warning("[item_type] in your loadout is an invalid item, it has probably been changed or removed."))
 		return
 	var/obj/item/item = new item_type(master)
-	item.icon_state = item_icon_state
 	return item
 
 /**
@@ -42,7 +38,7 @@
  */
 /datum/item_representation/proc/get_tgui_data()
 	var/list/tgui_data = list()
-	var/icon/icon_to_convert = icon(initial(item_type.icon), item_icon_state, SOUTH)
+	var/icon/icon_to_convert = icon(initial(item_type.icon), initial(item_type.icon_state), SOUTH)
 	tgui_data["icons"] = list(list(
 				"icon" = icon2base64(icon_to_convert),
 				"translateX" = NO_OFFSET,

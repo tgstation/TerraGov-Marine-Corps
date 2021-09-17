@@ -59,9 +59,8 @@
 		return
 
 	if(!bypass_checks)
-		if(can_attach)
-			if(!can_attach.Invoke(attachment))
-				return
+		if(!can_attach?.Invoke(attachment))
+			return
 		if(attachment_data[CAN_ATTACH])
 			var/datum/callback/attachment_can_attach = CALLBACK(attachment, attachment_data[CAN_ATTACH])
 			if(!attachment_can_attach.Invoke(parent, attacher))
