@@ -1248,7 +1248,7 @@
 	return ..()
 
 /datum/reagent/medicine/research/somolent/overdose_process(mob/living/L, metabolism)
-	L.remove_reagent(/datum/reagent/medicine/research/somolent, 1)
+	holder.remove_reagent(/datum/reagent/medicine/research/somolent, 1)
 
 /datum/reagent/medicine/research/medicalnanites
 	name = "Medical nanites"
