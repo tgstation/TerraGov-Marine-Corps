@@ -221,5 +221,3 @@ DEFAULT_VIEW_SQUARE 15x15
 
 ## Once a typepath causes overrun from hard deletes this many times, stop hard deleting it on garbage collection failures. (set to 0 to disable)
 #HARD_DELETES_OVERRUN_LIMIT 0
-
-FUN_ALLOWED 1
