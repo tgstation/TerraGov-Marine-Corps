@@ -671,6 +671,7 @@
 ///Signal handler preparing the source to become a husk
 /datum/reagent/zombium/proc/zombify(mob/living/carbon/human/H)
 	SIGNAL_HANDLER
+	UnregisterSignal(H, COMSIG_HUMAN_SET_UNDEFIBBABLE)
 	if(!H.has_working_organs())
 		return
 	H.do_jitter_animation(1000)

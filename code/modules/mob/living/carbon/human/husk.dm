@@ -29,6 +29,7 @@
 
 /datum/species/husk/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
+	H.set_undefibbable()
 	H.faction = FACTION_XENO
 	H.language_holder = new default_language_holder()
 	H.setOxyLoss(0)
@@ -44,13 +45,8 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/husk_claw, SLOT_L_HAND)
 
 	H.job = new /datum/job/husk //Prevent from skewing the respawn timer if you take a husk, it's a ghost role after all
-	//remove larva
-	var/obj/item/alien_embryo/alien_embryo = locate() in src
 	for(var/datum/action/action AS in H.actions)
 		action.remove_action(H)
-	if(alien_embryo)
-		qdel(alien_embryo)
-		return
 
 /datum/species/husk/handle_unique_behavior(mob/living/carbon/human/H)
 	if(prob(10))
