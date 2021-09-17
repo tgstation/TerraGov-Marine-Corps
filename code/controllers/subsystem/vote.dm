@@ -209,7 +209,7 @@ SUBSYSTEM_DEF(vote)
 					var/players = length(GLOB.clients)
 					if(mode.time_between_round && (world.realtime - SSpersistence.last_modes_round_date[mode.name]) < mode.time_between_round)
 						continue
-					if(istype(mode, /datum/mode/civil_war) && SSticker.current_state < GAME_STATE_PLAYING && SSmapping.configs[SHIP_MAP].map_name != MAP_TWIN_PILLARS)
+					if(istype(mode, /datum/game_mode/civil_war) && SSticker.current_state < GAME_STATE_PLAYING && SSmapping.configs[SHIP_MAP].map_name != MAP_TWIN_PILLARS)
 						continue
 					if(players > mode.maximum_players)
 						continue
