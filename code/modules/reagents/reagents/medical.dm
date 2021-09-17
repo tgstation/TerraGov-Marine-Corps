@@ -1230,6 +1230,7 @@
 	description = "This is a highly potent regenerative drug, designed to heal critically injured personnel. Only functions on unconscious or sleeping people."
 	color = "#19C832"
 	scannable = TRUE
+	overdose_threshold = REAGENTS_OVERDOSE
 	taste_description = "naptime"
 
 /datum/reagent/medicine/research/somolent/on_mob_life(mob/living/L, metabolism)
@@ -1237,13 +1238,13 @@
 		if(1 to 50)
 			if(L.stat == UNCONSCIOUS)
 				L.heal_limb_damage(0.2*current_cycle*effect_str, 0.2*current_cycle*effect_str)
-			if(prob(20) && L.stat !== UNCONSCIOUS)
+			if(prob(20) && L.stat != UNCONSCIOUS)
 				to_chat(L, span_notice("You feel as though you should be sleeping for the medicine to work."))
 		if(51 to INFINITY)
 			if(L.stat == UNCONSCIOUS)
 				L.heal_limb_damage(10*effect_str, 10*effect_str)
 				L.adjustCloneLoss(-0.1*effect_str-(0.01(L.maxHealth - L.health)))
-				L.remove_reagent(/datum/reagent/medicine/research/somolent, 0.6)
+				holder.remove_reagent(/datum/reagent/medicine/research/somolent, 0.6)
 	return ..()
 
 /datum/reagent/medicine/research/somolent/overdose_process(mob/living/L, metabolism)
@@ -1280,12 +1281,12 @@
 			if (volume >5 && L.getBruteLoss()) //Unhealed IB wasting nanites is an INTENTIONAL feature.
 				L.heal_limb_damage(2*effect_str, 0)
 				L.adjustToxLoss(0.1*effect_str)
-				L.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
+				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
 				
 			if (volume > 5 && L.getFireLoss())
 				L.heal_limb_damage(0, 2*effect_str)
 				L.adjustToxLoss(0.1*effect_str)
-				L.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
+				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
 	return ..()
 
 /datum/reagent/medicine/research/medicalnanites/overdose_process(mob/living/L, metabolism)
