@@ -933,9 +933,9 @@
 	namepool = /datum/namepool/robotic
 
 	unarmed_type = /datum/unarmed_attack/punch/strong
-	total_health = 125
-	brute_mod = 0.7
-	burn_mod = 1.3
+	total_health = 100
+	brute_mod = 0.8
+	burn_mod = 1.4
 
 	cold_level_1 = -1
 	cold_level_2 = -1
@@ -953,6 +953,7 @@
 	no_equip = list(
 		SLOT_W_UNIFORM,
 		SLOT_HEAD,
+		SLOT_WEAR_MASK,
 		SLOT_WEAR_SUIT,
 		SLOT_SHOES,
 		SLOT_GLOVES,
