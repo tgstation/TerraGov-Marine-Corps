@@ -6,7 +6,7 @@
 	action_icon_state = "spray_acid"
 	mechanics_text = "Spray a cone of dangerous acid at your target."
 	ability_name = "spray acid"
-	plasma_cost = 450
+	plasma_cost = 400
 	cooldown_timer = 40 SECONDS
 
 /datum/action/xeno_action/activable/spray_acid/cone/use_ability(atom/A)
