@@ -281,3 +281,14 @@
   - expansion: Jaeger and M10X now have storage which shows certain items stored into
       it like the original M10 did.
   - code_imp: cleaned some jaeger overlay rendering code.
+2021-09-17:
+  BraveMole:
+  - expansion: Synth can use loadout vendor
+  - qol: 'As a xeno: if you are on help intent, you will never be blocked by another
+      xeno'
+  - bugfix: Fix not being able to fire at dark zones with attachment
+  - rscdel: All ghosts have actions, kill the pref
+  - balance: You cannot use enemy medevacs
+  TiviPlus:
+  - rscadd: Reqtorio, read the starter kit how to paper for how to use
+  - imageadd: Sprites by Kuro, Ciel, Gohunt, Nerolostshor
