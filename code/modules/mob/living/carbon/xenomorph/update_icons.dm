@@ -16,7 +16,7 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/update_icons()
-	if(HAS_TRAIT(src, TRAIT_ICON_BLOCKED))
+	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
 		return
 	if(stat == DEAD)
 		icon_state = "[xeno_caste.caste_name] Dead"

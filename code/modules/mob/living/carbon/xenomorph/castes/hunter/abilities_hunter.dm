@@ -223,13 +223,13 @@
 		to_chat(owner, "You cannot turn into a human!")
 		return
 	old_appearance = xenoowner.appearance
-	ADD_TRAIT(xenoowner, TRAIT_ICON_BLOCKED, STEALTH_TRAIT)
+	ADD_TRAIT(xenoowner, TRAIT_MOB_ICON_UPDATE_BLOCKED, STEALTH_TRAIT)
 	return ..()
 
 /datum/action/xeno_action/stealth/fun/cancel_stealth()
 	. = ..()
 	owner.appearance = old_appearance
-	REMOVE_TRAIT(owner, TRAIT_ICON_BLOCKED, STEALTH_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_MOB_ICON_UPDATE_BLOCKED, STEALTH_TRAIT)
 
 /datum/action/xeno_action/stealth/fun/handle_stealth()
 	var/mob/living/carbon/xenomorph/xenoowner = owner
