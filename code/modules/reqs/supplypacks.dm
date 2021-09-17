@@ -204,7 +204,7 @@ WEAPONS
 /datum/supply_packs/weapons/thermobaric
 	name = "T-57 Thermobaric Launcher"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/m57a4/t57)
-	cost = 50
+	cost = 100
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/specdemo
