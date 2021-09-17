@@ -221,6 +221,3 @@ DEFAULT_VIEW_SQUARE 15x15
 
 ## Once a typepath causes overrun from hard deletes this many times, stop hard deleting it on garbage collection failures. (set to 0 to disable)
 #HARD_DELETES_OVERRUN_LIMIT 0
-
-##Players won't be able to vote civil war more than once in a day
-TIME_BETWEEN_TWO_CIVIL_WAR_ROUNDS 8
