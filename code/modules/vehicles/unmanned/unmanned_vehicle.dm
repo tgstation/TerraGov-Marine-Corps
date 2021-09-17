@@ -109,6 +109,18 @@
 	if((unmanned_flags & UNDERCARRIAGE) && istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 
+/obj/vehicle/unmanned/relaymove(mob/living/user, direction)
+	if(user.incapacitated())
+		return FALSE
+
+	if(direction in GLOB.diagonals)
+		return FALSE
+
+	if(world.time < last_move_time + move_delay)
+		return
+
+	return Move(get_step(src, direction))
+
 ///Try to desequip the turret
 /obj/vehicle/unmanned/wrench_act(mob/living/user, obj/item/I)
 	. = ..()

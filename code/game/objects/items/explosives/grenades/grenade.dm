@@ -1,24 +1,26 @@
 /obj/item/explosive/grenade
-	name = "grenade"
-	desc = "A hand held grenade, with an adjustable timer."
+	name = "\improper M40 HEDP grenade"
+	desc = "A small, but deceptively strong high explosive grenade that has been phasing out the M15 fragmentation grenades. Capable of being loaded in the any grenade launcher, or thrown by hand."
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "grenade"
-	item_state = "flashbang"
+	item_state = "grenade"
 	throw_speed = 3
 	throw_range = 7
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	hitsound = 'sound/weapons/smash.ogg'
-	icon_state_mini = "grenade"
+	icon_state_mini = "grenade_red"
 	var/launched = FALSE //if launched from a UGL/grenade launcher
 	var/launchforce = 10 //bonus impact damage if launched from a UGL/grenade launcher
-	var/det_time = 50
+	var/det_time =  40
 	var/dangerous = TRUE 	//Does it make a danger overlay for humans? Can synths use it?
 	var/arm_sound = 'sound/weapons/armbomb.ogg'
-	var/underslug_launchable = FALSE
+	var/underslug_launchable = TRUE
 	var/hud_state = "grenade_he"
 	var/hud_state_empty = "grenade_empty"
+	///Light impact range when exploding
+	var/light_impact_range = 4
 
 
 /obj/item/explosive/grenade/Initialize()
@@ -79,7 +81,11 @@
 
 
 /obj/item/explosive/grenade/proc/prime()
+	explosion(loc, light_impact_range = src.light_impact_range, small_animation = TRUE)
+	qdel(src)
 
+/obj/item/explosive/grenade/flamer_fire_act()
+	activate()
 
 /obj/item/explosive/grenade/attackby(obj/item/I, mob/user, params)
 	. = ..()

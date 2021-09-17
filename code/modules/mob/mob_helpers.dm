@@ -372,7 +372,8 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 
 
 /mob/proc/restrained(ignore_checks)
-	return
+	SHOULD_CALL_PARENT(TRUE)
+	return HAS_TRAIT(src, TRAIT_HANDS_BLOCKED)
 
 
 /mob/proc/incapacitated(ignore_restrained, restrained_flags)

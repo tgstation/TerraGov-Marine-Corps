@@ -1,4 +1,0 @@
-author: "GradusNL"
-delete-after: True
-changes: 
-  - expansion: "Logs respawns to lobby and displays them alongside revives as round statistic."

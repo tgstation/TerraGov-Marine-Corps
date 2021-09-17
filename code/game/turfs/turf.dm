@@ -148,6 +148,8 @@
 		var/atom/movable/thing = i
 		if(CHECK_MULTIPLE_BITFIELDS(thing.flags_pass, HOVERING))
 			continue
+		if(thing.status_flags & INCORPOREAL)
+			continue
 		if(thing.Cross(mover))
 			continue
 		var/signalreturn = SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_MOVABLE, thing)

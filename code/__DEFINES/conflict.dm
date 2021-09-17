@@ -70,16 +70,18 @@
 #define GUN_ENERGY (1<<9)
 #define GUN_FLASHLIGHT_ON (1<<10)
 #define GUN_WIELDED_FIRING_ONLY (1<<11)
-#define GUN_POLICE (1<<12)
-#define GUN_BURST_FIRING (1<<13)
-#define GUN_ALLOW_SYNTHETIC (1<<14)
-#define GUN_HAS_AUTOBURST (1<<15)
-#define GUN_IS_AIMING (1<<16)
-#define AUTO_AIM_MODE (1<<17)
-#define GUN_WIELDED_STABLE_FIRING_ONLY (1<<18)
-#define GUN_IFF (1<<19)
-#define GUN_DEPLOYED_FIRE_ONLY (1<<20)
-#define GUN_IS_SENTRY (1<<21)
+#define GUN_BURST_FIRING (1<<12)
+#define GUN_ALLOW_SYNTHETIC (1<<13)
+#define GUN_HAS_AUTOBURST (1<<14)
+#define GUN_IS_AIMING (1<<15)
+#define AUTO_AIM_MODE (1<<16)
+#define GUN_WIELDED_STABLE_FIRING_ONLY (1<<17)
+#define GUN_IFF (1<<18)
+#define GUN_DEPLOYED_FIRE_ONLY (1<<19)
+#define GUN_IS_SENTRY (1<<20)
+#define GUN_IS_ATTACHMENT (1<<21)
+#define GUN_ATTACHMENT_FIRE_ONLY (1<<22)
+#define GUN_PUMP_REQUIRED (1<<23)
 
 #define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
 #define GUN_FIREMODE_BURSTFIRE "burst-fire mode"
@@ -90,10 +92,6 @@
 //flags_attach_features
 #define ATTACH_REMOVABLE (1<<0)
 #define ATTACH_ACTIVATION (1<<1)
-#define ATTACH_PROJECTILE (1<<2) //for attachments that fire bullets
-#define ATTACH_RELOADABLE (1<<3)
-#define ATTACH_WEAPON (1<<4) //is a weapon that fires stuff
-#define ATTACH_UTILITY (1<<5) //for attachments with utility that trigger by 'shooting'
 
 //Ammo magazine defines, for flags_magazine
 #define AMMUNITION_REFILLABLE 1

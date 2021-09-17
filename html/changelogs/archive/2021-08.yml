@@ -604,3 +604,74 @@
   - balance: acid splash delay changed to 1.2 young, 1.1 mature, 1 elder, and 0.9
       ancient.
   - balance: acid splash now 150 plasma a shot up from 75 a shot
+2021-08-29:
+  BraveMole:
+  - rscadd: Ai nodes added on every map
+  - rscadd: 'Hunter ability: Mirror image. Create double of yourself, mess with your
+      ennemy head! In harm intent, mirage images will escort you, in help intent,
+      they''ll disperse'
+  - rscadd: Weeds type, xeno have now access to three different weeds. Base weeds,
+      resting weeds, sticky weeds. You won't regen sunder if not on resting weeds.
+      All weeds are making xenos faster, but better weeds are more expensive
+  - balance: Weeds are decaying faster
+  GradusNL:
+  - expansion: Logs respawns to lobby and displays them alongside revives as round
+      statistic.
+  Pariah919:
+  - balance: Buckshot extra projectiles have less scatter.
+  Surrealaser:
+  - balance: Defile wind up reduced from 1.5 seconds to 0.5 seconds.
+  - balance: Defile plasma cost reduced from 150 to 100.
+  - balance: Defile Brute damage reduced from 10 to 5 and Stamina damage reduced from
+      100 to 50.
+  - rscadd: Defile no longer injects larva; instead it purges all chemicals in the
+      victim and deals toxin damage equal to half the total U of chemical purged from
+      the victim's system multiplied by 2 for each unique xeno toxin in its system.
+      The victim also exudes a cloud of blood red Sanguinal smoke that scales in size
+      with the amount of toxin damage dealt in this way.
+  - rscadd: New Sanguinal toxin added; deals minor brute and bleeding each tick.  For
+      each other unique xeno toxin in the victim's system, it will also deal minor
+      damage of a corresponding type (Stamina for Hemodile, Toxin for Neurotoxin and
+      Burn for Transvitox).
+  TiviPlus:
+  - refactor: Monkeys now can interact like humans
+  - bugfix: Some messages will now use pronouns correctly instead of their/they
+  - bugfix: the powerloader is now offset correctly
+  - refactor: redid the vehicle code completely
+  lbnesquik:
+  - bugfix: fixes CAS for good this time. Right?
+  - qol: allowed xenos to be fed food for the sake of fluff
+  - code_imp: Moved all shuttle ID's to defines.
+  lovegreenstuff:
+  - bugfix: TP44 attachment offsets reverted to pre-snubnose values
+2021-08-30:
+  BraveMole:
+  - balance: you can slash flashlights off
+  - bugfix: Fix admins xeno buff not staying
+  Pariah919:
+  - balance: machete/officer sword have bump attacks and deal 15 more damage
+  - rscadd: machinecarbine, has the stats of a t-18, but with worse slowdown, incredibly
+      high falloff, has a bigger damaging/sundering bullet, has more in the magazine.
+      Also no aim mode.
+  - expansion: Machinecarbine/Type-71 bucket for seasonals.
+  - balance: Wall rework, max HP lowered, they've been given armor against bullets/lasers
+      so their TTK is about the same, they're less effective against fire, high armor
+      piercing weapons, explosions are about the same, but fire is much worse at killing
+      walls quickly, but it still kills a lot of walls at the same time.
+  TiviPlus:
+  - admin: Admins can now cancel OB's and OB firing now has a game log
+  - bugfix: fixed some conveyors not pushing things in the direction they appeared
+      to be facing
+  - bugfix: Fixes autolathe not having conveyors
+2021-08-31:
+  BraveMole:
+  - balance: You can't put more than 2 guns in bags anymore.
+  - balance: Hunter illusion flickers when hit by projectiles
+  - bugfix: Prevent from dragging while riding a crusher
+  Pariah919:
+  - balance: marines have more messages telling them the severity of their wounds
+      when they self examine
+  vilereaver41:
+  - balance: neurotoxic spit for Sentinel, Praetorian,
+  - balance: After extensive testing the values have been increased slightly and should
+      now be the best they can be without gameplay being unfair.

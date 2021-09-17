@@ -161,6 +161,8 @@ GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, X
 #define XENO_UPGRADE_TWO "two"
 #define XENO_UPGRADE_THREE "three"
 
+#define XENO_UPGRADE_MANIFESTATION "manifestation" //just for the hivemind
+
 GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO, XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE))
 
 //=================================================
@@ -524,7 +526,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_SNEAKATTACK_RUN_REDUCTION 0.2
 #define HUNTER_SNEAKATTACK_WALK_INCREASE 1
 #define HUNTER_SNEAKATTACK_MULTI_RECOVER_DELAY 10
-#define HUNTER_MARK_WINDUP 1 SECONDS //Windup of the Hunter's Mark
 #define HUNTER_PSYCHIC_TRACE_COOLDOWN 5 SECONDS //Cooldown of the Hunter's Psychic Trace, and duration of its arrow
 #define HUNTER_SILENCE_STAGGER_STACKS 1 //Silence imposes this many stagger stacks
 #define HUNTER_SILENCE_SENSORY_STACKS 7 //Silence imposes this many eyeblur and deafen stacks.
@@ -549,7 +550,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define RAVAGER_RAGE_DURATION							10 SECONDS
 #define RAVAGER_RAGE_WARNING							0.7
 #define RAVAGER_RAGE_POWER_MULTIPLIER					0.5 //How much we multiply our % of missing HP by to determine Rage Power
-#define RAVAGER_RAGE_NEGATIVE_HP_POWER_MULTIPLIER		-0.0075 //How much we multiply our negative HP by to determine Rage Power
 #define RAVAGER_RAGE_MIN_HEALTH_THRESHOLD				0.5 //The maximum % of HP we can have to trigger Rage
 #define RAVAGER_RAGE_SUPER_RAGE_THRESHOLD				0.5 //The minimum amount of Rage Power we need to trigger the bonus Rage effects
 #define RAVAGER_RAGE_ENDURE_INCREASE_PER_SLASH			2 SECONDS //The amount of time each slash during Super Rage increases Endure's duration

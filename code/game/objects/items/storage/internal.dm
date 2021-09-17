@@ -2,7 +2,7 @@
 //Types that use this should consider overriding emp_act() and hear_talk(), unless they shield their contents somehow.
 /obj/item/storage/internal
 	allow_drawing_method = FALSE /// Unable to set draw_mode ourselves
-	var/obj/item/master_item
+	var/obj/master_item
 
 /obj/item/storage/internal/Initialize()
 	. = ..()
@@ -47,39 +47,45 @@
 		open(user)
 		return FALSE
 
-	if(master_item.flags_item & NODROP)
+	if(!isitem(master_item))
+		return FALSE
+
+	var/obj/item/owner = master_item
+
+	if(owner.flags_item & NODROP)
 		return FALSE
 
 	if(!istype(over_object, /obj/screen))
 		return TRUE
 
-	//Makes sure master_item is equipped before putting it in hand, so that we can't drag it into our hand from miles away.
+	//Makes sure owner is equipped before putting it in hand, so that we can't drag it into our hand from miles away.
 	//There's got to be a better way of doing this...
-	if(master_item.loc != user || (master_item.loc?.loc == user))
+	if(owner.loc != user || (owner.loc?.loc == user))
 		return FALSE
 
 	if(over_object.name == "r_hand" || over_object.name == "l_hand")
-		if(master_item.time_to_unequip)
+		if(owner.time_to_unequip)
 			INVOKE_ASYNC(src, .proc/unequip_item, user, over_object.name)
 		else if(over_object.name == "r_hand")
-			user.dropItemToGround(master_item)
-			user.put_in_r_hand(master_item)
+			user.dropItemToGround(owner)
+			user.put_in_r_hand(owner)
 		else if(over_object.name == "l_hand")
-			user.dropItemToGround(master_item)
-			user.put_in_l_hand(master_item)
+			user.dropItemToGround(owner)
+			user.put_in_l_hand(owner)
 	return FALSE
 
 ///unequips items that require a do_after because they have an unequip time
 /obj/item/storage/internal/proc/unequip_item(mob/living/carbon/user, hand_to_put_in)
-	if(!do_after(user, master_item.time_to_unequip, TRUE, master_item, BUSY_ICON_FRIENDLY))
-		to_chat(user, "You stop taking off \the [master_item]")
+	var/obj/item/owner = master_item
+	if(!do_after(user, owner.time_to_unequip, TRUE, owner, BUSY_ICON_FRIENDLY))
+		to_chat(user, "You stop taking off \the [owner]")
 		return
 	if(hand_to_put_in == "r_hand")
-		user.dropItemToGround(master_item)
-		user.put_in_r_hand(master_item)
+		user.dropItemToGround(owner)
+		user.put_in_r_hand(owner)
 	else
-		user.dropItemToGround(master_item)
-		user.put_in_l_hand(master_item)
+		user.dropItemToGround(owner)
+		user.put_in_l_hand(owner)
 
 //Items that use internal storage have the option of calling this to emulate default storage attack_hand behaviour.
 //Returns 1 if the master item's parent's attack_hand() should be called, 0 otherwise.
@@ -128,9 +134,9 @@
 
 
 ///things to do when an item is inserted in the obj's internal pocket
-/obj/item/proc/on_pocket_insertion()
+/obj/proc/on_pocket_insertion()
 	return
 
 ///things to do when an item is removed in the obj's internal pocket
-/obj/item/proc/on_pocket_removal()
+/obj/proc/on_pocket_removal()
 	return

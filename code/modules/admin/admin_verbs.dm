@@ -16,7 +16,7 @@
 		ghost.reenter_corpse()
 		return
 
-	var/mob/dead/observer/ghost = M.ghostize(TRUE)
+	var/mob/dead/observer/ghost = M.ghostize(TRUE, FALSE)
 
 	log_admin("[key_name(ghost)] admin ghosted at [AREACOORD(ghost)].")
 	if(M.stat != DEAD)
@@ -87,6 +87,7 @@
 	if(!multiplicator_buff_wanted)
 		return
 	GLOB.xeno_stat_multiplicator_buff = multiplicator_buff_wanted
+	SSmonitor.is_automatic_balance_on = FALSE
 	SSmonitor.apply_balance_changes()
 
 	var/logging = "[usr.ckey] has multiplied all health, melee damage and regen of xeno by [multiplicator_buff_wanted * 100]%"
@@ -254,7 +255,7 @@
 	set category = "Admin"
 	set name = "Get Server Logs"
 
-	if(!check_rights(R_ASAY))
+	if(!check_rights(R_ADMIN))
 		return
 
 	usr.client.holder.browse_server_logs()
@@ -265,7 +266,7 @@
 	set name = "Get Current Logs"
 	set desc = "View/retrieve logfiles for the current round."
 
-	if(!check_rights(R_ASAY))
+	if(!check_rights(R_ADMIN))
 		return
 
 	usr.client.holder.browse_server_logs("[GLOB.log_directory]/")
@@ -276,7 +277,7 @@
 	set name = "Get Server Logs Folder"
 	set desc = "Please use responsibly."
 
-	if(!check_rights(R_ASAY))
+	if(!check_rights(R_ADMIN))
 		return
 
 	if(alert("Due to the way BYOND handles files, you WILL need a click macro. This function is also recurive and prone to fucking up, especially if you select the wrong folder. Are you absolutely sure you want to proceed?", "WARNING", "Yes", "No") != "Yes")
@@ -290,7 +291,7 @@
 
 
 /datum/admins/proc/browse_server_logs(path = "data/logs/")
-	if(!check_rights(R_ASAY))
+	if(!check_rights(R_ADMIN))
 		return
 
 	path = browse_files(path)
@@ -312,7 +313,7 @@
 
 
 /datum/admins/proc/recursive_download(folder)
-	if(!check_rights(R_ASAY))
+	if(!check_rights(R_ADMIN))
 		return
 
 	var/files = flist(folder)
@@ -328,7 +329,7 @@
 
 
 /datum/admins/proc/browse_folders(root = "data/logs/", max_iterations = 100)
-	if(!check_rights(R_ASAY))
+	if(!check_rights(R_ADMIN))
 		return
 
 	var/path = root
@@ -360,7 +361,7 @@
 
 
 /datum/admins/proc/browse_files(root = "data/logs/", max_iterations = 20, list/valid_extensions = list("txt", "log", "htm", "html"))
-	if(!check_rights(R_ASAY))
+	if(!check_rights(R_ADMIN))
 		return
 
 	var/path = root

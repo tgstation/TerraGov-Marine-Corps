@@ -796,7 +796,7 @@
 /area/ice_colony/surface/engineering)
 "ady" = (
 /obj/structure/table,
-/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/heal_pack/ointment,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
@@ -1014,7 +1014,7 @@
 /area/ice_colony/surface/engineering)
 "aev" = (
 /obj/structure/table/reinforced,
-/obj/item/stack/medical/bruise_pack,
+/obj/item/stack/medical/heal_pack/gauze,
 /obj/item/cell,
 /obj/item/clothing/gloves/yellow,
 /turf/open/floor/tile/dark/yellow2{
@@ -6207,6 +6207,7 @@
 "awE" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 4
 	},
@@ -29729,7 +29730,7 @@
 /area/ice_colony/underground/hangar)
 "bWB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/item/stack/medical/ointment{
+/obj/item/stack/medical/heal_pack/ointment{
 	amount = 6;
 	pixel_x = 11;
 	pixel_y = 14
@@ -31418,6 +31419,11 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/taxiway)
+"cZp" = (
+/obj/structure/cable,
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/valley/northwest)
 "cZy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -31437,6 +31443,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
+"dbp" = (
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/ice_nw)
 "dfU" = (
 /obj/structure/cable,
 /obj/structure/sign/greencross{
@@ -32400,6 +32410,13 @@
 	dir = 4
 	},
 /area/ice_colony/underground/maintenance/east)
+"jvm" = (
+/obj/effect/turf_underlay/icefloor,
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/closed/ice/thin/end{
+	dir = 1
+	},
+/area/ice_colony/exterior/underground/caves/ice_w)
 "jyB" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -32418,6 +32435,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
+"jze" = (
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/ice_w)
 "jzH" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice/corner{
@@ -32660,6 +32681,12 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/underground/caves/ice_se)
+"lig" = (
+/obj/effect/landmark/fob_sentry,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/ice_colony/exterior/surface/taxiway)
 "lko" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall/unmeltable,
@@ -32683,7 +32710,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/ice_colony/exterior/surface/taxiway)
 "ltv" = (
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/underground/caves/ice_nw)
@@ -33224,6 +33251,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
+"oCp" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/valley/south)
 "oDn" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -33424,6 +33455,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
+"pVS" = (
+/obj/effect/landmark/fob_sentry,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/surface/valley/southeast)
 "pYj" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
@@ -34031,6 +34066,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
+"tDA" = (
+/obj/effect/landmark/fob_sentry,
+/turf/open/floor/plating/icefloor/warnplate,
+/area/ice_colony/exterior/surface/taxiway)
 "tGL" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
@@ -34055,6 +34094,13 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/cliff)
+"tQC" = (
+/obj/effect/turf_underlay/icefloor,
+/obj/effect/landmark/fob_sentry,
+/turf/closed/ice/thin/end{
+	dir = 4
+	},
+/area/ice_colony/exterior/surface/valley/southeast)
 "tTa" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice/straight,
@@ -39986,7 +40032,7 @@ qrf
 ayq
 aBi
 fDb
-frj
+jvm
 xTa
 oIU
 oIU
@@ -42552,7 +42598,7 @@ yll
 yem
 aTO
 gEI
-oIU
+jze
 pBf
 oIU
 oIU
@@ -44086,7 +44132,7 @@ rJF
 aog
 aog
 aog
-omz
+cZp
 omz
 agd
 agd
@@ -44582,7 +44628,7 @@ aac
 acj
 aar
 qCb
-qCb
+dbp
 acj
 aae
 aaR
@@ -53449,7 +53495,7 @@ baj
 baj
 bVW
 baj
-baj
+oCp
 jKs
 baj
 aYT
@@ -76561,7 +76607,7 @@ aPY
 aPY
 baw
 bba
-jKJ
+lig
 kzj
 kzj
 kzj
@@ -76571,7 +76617,7 @@ kzj
 kzj
 kzj
 kzj
-vhY
+tDA
 aUP
 bcE
 abc
@@ -78095,7 +78141,7 @@ awL
 awL
 awL
 awL
-awL
+pVS
 aMt
 nlt
 mxE
@@ -82203,7 +82249,7 @@ awz
 awL
 awL
 awL
-awO
+tQC
 pxM
 acm
 aae

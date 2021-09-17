@@ -317,6 +317,10 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	var/stretcher_activated
 	var/obj/structure/dropship_equipment/medevac_system/linked_medevac
 	var/obj/item/radio/headset/mainship/doc/radio
+	///A busy var to check if the strecher is already used to send someone to the beacon
+	var/busy = FALSE
+	///The faction this medevac belongs to
+	var/faction
 
 /obj/structure/bed/medevac_stretcher/Initialize(mapload)
 	. = ..()
@@ -411,6 +415,14 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	if(!ishuman(user))
 		return
 
+	if(busy)
+		return
+
+	if(user.faction != faction)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		visible_message(span_warning("[src]'s safeties kick in before displacement as it fails to detect correct identification codes."))
+		return
+
 	if(world.time < last_teleport )
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		to_chat(user, span_warning("[src]'s bluespace engine is still recharging; it will be ready in [round(last_teleport - world.time) * 0.1] seconds."))
@@ -445,9 +457,11 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	playsound(loc,'sound/mecha/powerup.ogg', 25, FALSE)
 	teleport_timer = addtimer(CALLBACK(src, .proc/medevac_teleport, user), MEDEVAC_TELE_DELAY, TIMER_STOPPABLE|TIMER_UNIQUE) //Activate after 5 second delay.
 	RegisterSignal(src, COMSIG_MOVABLE_UNBUCKLE, .proc/on_mob_unbuckle)
+	busy = TRUE
 
 /obj/structure/bed/medevac_stretcher/proc/on_mob_unbuckle(datum/source, mob/living/buckled_mob, force = FALSE)
 	SIGNAL_HANDLER
+	busy = FALSE
 	UnregisterSignal(src, COMSIG_MOVABLE_UNBUCKLE)
 	deltimer(teleport_timer)
 	playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
@@ -456,6 +470,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/structure/bed/medevac_stretcher/proc/medevac_teleport(mob/user)
 	UnregisterSignal(src, COMSIG_MOVABLE_UNBUCKLE)
+	busy = FALSE
 	if(!linked_beacon || !linked_beacon.check_power() || !linked_beacon.planted) //Beacon has to be planted in a powered area.
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		visible_message(span_warning("[src]'s safeties kick in before displacement as it fails to detect a powered, linked, and planted medvac beacon."))
@@ -472,6 +487,11 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	if(!M) //We need a mob to teleport or no deal
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		visible_message(span_warning("[src]'s bluespace engine aborts displacement, being unable to detect an appropriate evacuee."))
+		return
+
+	if(M.faction != faction)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		visible_message(span_warning("[src]'s safeties kick in before displacement as it fails to detect correct identification codes."))
 		return
 
 	visible_message(span_notice("<b>[M] vanishes in a flash of sparks as [src]'s bluespace engine generates its displacement field.</b>"))
@@ -509,6 +529,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		B.linked_bed = src
 		to_chat(user, span_notice("<b>You link the medvac beacon to the medvac stretcher.</b>"))
 		playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
+		faction = user.faction
 
 	else if(istype(I, /obj/item/healthanalyzer)) //Allows us to use the analyzer on the occupant without taking him out.
 		var/mob/living/occupant

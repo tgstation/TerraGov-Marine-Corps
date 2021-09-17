@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - rscadd: "Hunter can disguise itself as it's marked target, this replaces stealth (fun config)"

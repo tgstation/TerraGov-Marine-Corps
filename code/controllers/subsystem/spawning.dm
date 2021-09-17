@@ -54,6 +54,7 @@ SUBSYSTEM_DEF(spawning)
 /datum/controller/subsystem/spawning/proc/remove_mob(mob/source)
 	SIGNAL_HANDLER
 	callbacks_by_mob[source].Invoke()
+	UnregisterSignal(source, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_DEATH))
 
 /**
  * Removes a mob from a spawners mobs spawned list

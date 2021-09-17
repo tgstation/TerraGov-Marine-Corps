@@ -41,6 +41,8 @@
 /mob/living/carbon/human/UnarmedAttack(atom/A, proximity, list/modifiers)
 	if(lying_angle) //No attacks while laying down
 		return FALSE
+	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
+		return
 
 	var/obj/item/clothing/gloves/G = gloves // not typecast specifically enough in defines
 
