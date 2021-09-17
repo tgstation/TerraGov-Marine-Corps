@@ -28,7 +28,7 @@
 	var/list/points_per_faction
 	/// When are the shutters dropping
 	var/shutters_drop_time = 30 MINUTES
-	/* The time between two rounds of this gamemode. If it's zero, this mode i always votable.
+	/** The time between two rounds of this gamemode. If it's zero, this mode i always votable.
 	 * It an integer in ticks, set in config. If it's 8 HOURS, it means that it will be votable again 8 hours 
 	 * after the end of the last round with the gamemode type
 	 */
