@@ -64,6 +64,34 @@
 	return TRUE
 
 
+/datum/keybinding/client/xooc
+	name = "xooc"
+	full_name = "XOOC"
+	description = "Speak in XOOC"
+	keybind_signal = COMSIG_KB_CLIENT_XOOC_DOWN
+
+/datum/keybinding/client/xooc/down(client/user)
+	. = ..()
+	if(.)
+		return
+	user.xooc_wrapper()
+	return TRUE
+
+
+/datum/keybinding/client/mooc
+	name = "mooc"
+	full_name = "MOOC"
+	description = "Speak in MOOC"
+	keybind_signal = COMSIG_KB_CLIENT_MOOC_DOWN
+
+/datum/keybinding/client/mooc/down(client/user)
+	. = ..()
+	if(.)
+		return
+	user.mooc_wrapper()
+	return TRUE
+
+
 /datum/keybinding/client/looc
 	name = "looc"
 	full_name = "LOOC"

@@ -337,7 +337,7 @@ REAGENT SCANNER
 				var/iron = "."
 				if(reagents_in_body[/datum/reagent/iron] < 5)
 					iron = " or one dose of iron."
-				advice += "[span_scanner("<b>Low Blood:</b> Administer or recommend consumption of food[iron]")]\n"
+				advice += "[span_scanner("<b>Low Blood:</b> Administer one 5u dose of nanoblood or recommend consumption of food[iron]")]\n"
 			if(overdosed && reagents_in_body[/datum/reagent/hypervene] < 3)
 				advice += "[span_scanner("<b>Overdose:</b> Administer one dose of hypervene or perform dialysis on patient via sleeper.")]\n"
 			if(unknown_body)
@@ -347,7 +347,7 @@ REAGENT SCANNER
 			if(fracture_detected)
 				advice += "[span_scanner("<b>Unsecured Fracture:</b> Administer splints to specified areas.")]\n"
 			if(internal_bleed_detected)
-				var/internal_bleed_advice = "Administer one dose of quick-clot then seek surgical remedy."
+				var/internal_bleed_advice = "Administer one dose of quick-clot plus, or one dose of quick-clot then seek surgical remedy."
 				if(reagents_in_body[/datum/reagent/medicine/quickclot] > 4)
 					internal_bleed_advice = "Quick-Clot has been administered to patient. Seek surgical remedy."
 				advice += "[span_scanner("<b>Internal Bleeding:</b> [internal_bleed_advice]")]\n"
@@ -369,7 +369,7 @@ REAGENT SCANNER
 				else
 					advice += "[span_scanner("<b>Toxin Damage:</b> Administer one dose of: [tricordrazine] | [dylovene].")]\n"
 			if(((H.getOxyLoss() > 50 && blood_volume > 400) || H.getBrainLoss() >= 10) && reagents_in_body[/datum/reagent/medicine/peridaxon] < 5)
-				peridaxon = "Administer one dose of peridaxon."
+				peridaxon = "Administer one dose of peridaxon plus or peridaxon."
 				if(hyperzine_amount) //Need to make sure no conflicting chems are present; if so, warn the operator
 					peridaxon = "Purge hyperzine in patient or wait for it to metabolize, then administer one dose of peridaxon."
 				advice += "[span_scanner("<b>Brain Damage/Probable Organ Damage:</b> [peridaxon]")]\n"

@@ -14,7 +14,6 @@
 
 
 /obj/item/explosive/grenade/flashbang/prime()
-	..()
 	var/turf/T = get_turf(src)
 	for(var/obj/structure/closet/L in get_hear(7, T))
 		if(locate(/mob/living/carbon/, L))

@@ -71,6 +71,10 @@ Administrative related.
 
 /datum/config_entry/flag/log_ooc
 
+/datum/config_entry/flag/log_xooc
+
+/datum/config_entry/flag/log_mooc
+
 /datum/config_entry/flag/log_looc
 
 /datum/config_entry/flag/log_access

@@ -1,7 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - bugfix: "Thrown huggers will crawl into holes or empty eggs."
-  - bugfix: "Hatched huggers will jump at people."
-  - bugfix: "Planted eggs don't mature instantly."
-  - bugfix: "Gas eggs can only be popped once."

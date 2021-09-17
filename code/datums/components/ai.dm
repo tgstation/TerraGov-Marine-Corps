@@ -37,6 +37,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	ai_behavior.late_initialize()
 	RegisterSignal(parent, list(COMSIG_PARENT_PREQDELETED, COMSIG_MOB_DEATH), .proc/clean_up)
 	RegisterSignal(parent, COMSIG_COMBAT_LOG, .proc/handle_combat_log)
+	RegisterSignal(parent, COMSIG_MOB_LOGIN, .proc/stop_controlling)
 	GLOB.ai_instances_active += src
 
 //Removes registered signals and action states, useful for scenarios like when the parent is destroyed or a client is taking over
@@ -47,12 +48,30 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 /datum/component/ai_controller/proc/clean_up()
 	SIGNAL_HANDLER
 	GLOB.ai_instances_active -= src
-	parent.RemoveElement(/datum/element/pathfinder)
 	UnregisterSignal(parent, COMSIG_COMBAT_LOG)
 	if(ai_behavior)
 		STOP_PROCESSING(SSprocessing, ai_behavior)
-		ai_behavior.unregister_action_signals(ai_behavior.current_action)
+		ai_behavior.cleanup_current_action()
 		QDEL_NULL(ai_behavior)
+
+///Stop this ai controller from acting on the mob
+/datum/component/ai_controller/proc/stop_controlling()
+	SIGNAL_HANDLER
+	STOP_PROCESSING(SSprocessing, ai_behavior)
+	ai_behavior.cleanup_current_action()
+	GLOB.ai_instances_active -= src
+	RegisterSignal(parent, COMSIG_MOB_LOGOUT, .proc/resume_controlling)
+
+///Resume this ai controller process
+/datum/component/ai_controller/proc/resume_controlling()
+	SIGNAL_HANDLER
+	UnregisterSignal(parent, COMSIG_MOB_LOGOUT)
+	if((length(GLOB.ai_instances_active) + 1) >= AI_INSTANCE_HARDCAP)
+		message_admins("Notice: An AI controller failed resume because there's already too many AI controllers existing.")
+		return
+	START_PROCESSING(SSprocessing, ai_behavior)
+	ai_behavior.late_initialize()
+	GLOB.ai_instances_active += src
 
 /datum/component/ai_controller/Destroy()
 	clean_up()

@@ -4,6 +4,7 @@
 	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_WIN_POINTS
 	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
 	shutters_drop_time = 18 MINUTES
+	flags_xeno_abilities = ABILITY_HUNT
 	respawn_time = 5 MINUTES
 
 	valid_job_types = list(
