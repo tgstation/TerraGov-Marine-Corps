@@ -1243,7 +1243,7 @@
 		if(51 to INFINITY)
 			if(L.stat == UNCONSCIOUS)
 				L.heal_limb_damage(10*effect_str, 10*effect_str)
-				L.adjustCloneLoss(-0.1*effect_str-(0.01(L.maxHealth - L.health)))
+				L.adjustCloneLoss(-0.1*effect_str-(0.01*(L.maxHealth - L.health)))
 				holder.remove_reagent(/datum/reagent/medicine/research/somolent, 0.6)
 	return ..()
 
