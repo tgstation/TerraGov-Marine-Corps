@@ -41,10 +41,11 @@
 	desc = "A weapon-mounted refillable flamethrower attachment.\nIt is designed for short bursts."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "flamethrower"
-	
+
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY
 	w_class = WEIGHT_CLASS_BULKY
 	fire_delay = 2.5 SECONDS
+	damage_mult = 0.2 // Ten damage with Armor ignore.
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 
 	current_mag = /obj/item/ammo_magazine/flamer_tank/mini
@@ -281,7 +282,7 @@
 		if(!current_mag?.current_rounds)
 			break
 		var/range = istype(src, /obj/item/weapon/gun/flamer/mini_flamer) ? 4 : loaded_ammo.max_range //Temporary hardcode range of miniflamer.
-		if(distance > range) 
+		if(distance > range)
 			break
 
 		var/blocked = FALSE
