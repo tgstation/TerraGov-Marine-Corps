@@ -14,7 +14,7 @@
 	var/list/modes
 	var/list/gamemode_cache
 	/// List of all modes that can be voted by the players
-	var/list/votable_modes 
+	var/list/votable_modes
 	var/list/mode_names
 
 	var/motd
@@ -289,13 +289,11 @@
 				currentmode.deploy_time_lock = text2num(data) MINUTES
 			if("votable")
 				currentmode.votable = text2num(data)
-			if("hoursbetweenrounds")
-				currentmode.time_between_round = text2num(data) HOURS
 			if("endmode")
 				currentmode = null
 			else
 				log_config("Unknown command in map vote config: '[command]'")
-	
+
 	votable_modes = list()
 	for(var/datum/game_mode/mode AS in modes)
 		if(mode.votable)
