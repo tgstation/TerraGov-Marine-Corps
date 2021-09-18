@@ -1513,7 +1513,7 @@ Imports
 
 /datum/supply_packs/imports/judge/buck_ammo
 	name = "Judge Buckshot Ammo"
-	contains = list(/obj/item/ammo_magazine/revolver/judge/buck)
+	contains = list(/obj/item/ammo_magazine/revolver/judge/buckshot)
 	cost = 1
 
 /datum/supply_packs/imports/m16	//Vietnam time
