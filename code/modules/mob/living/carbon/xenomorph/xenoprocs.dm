@@ -310,13 +310,13 @@
 	plasma_stored = min(plasma_stored + value, xeno_caste.plasma_max)
 	update_action_button_icons()
 
-/mob/living/carbon/xenomorph/proc/use_plasma_percent(value)
-	value = value * xeno_caste.plasma_max / 100 * xeno_caste.plasma_regen_limit
+/mob/living/carbon/xenomorph/proc/use_plasma_percent(value) // 1 = 100%, 0.5 = 50%, example: 0.5 * 1000 * 1 = 500
+	value = value * xeno_caste.plasma_max * xeno_caste.plasma_regen_limit
 	plasma_stored = max(plasma_stored - value, 0)
 	update_action_button_icons()
 
-/mob/living/carbon/xenomorph/proc/gain_plasma_percent(value)
-	value = value * xeno_caste.plasma_max / 100 * xeno_caste.plasma_regen_limit
+/mob/living/carbon/xenomorph/proc/gain_plasma_percent(value) // 1 = 100%, 0.5 = 50%, example: 0.5 * 1000 * 1 = 500
+	value = value * xeno_caste.plasma_max * xeno_caste.plasma_regen_limit
 	plasma_stored = min(plasma_stored + value, xeno_caste.plasma_max)
 	update_action_button_icons()
 
