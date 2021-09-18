@@ -274,7 +274,7 @@
 
 /obj/item/weapon/gun/smg/ppsh
 	name = "\improper PPSh-17b submachinegun"
-	desc = "A replica of a 20th century USSR model submachinegun that many terrorist organizations had copied all over the years. Despite its small-hitting firepower, its reliablity, extreme longevity and high firepower rate proves useful for the hands of the user."
+	desc = "The PPSh-17b or \"Papasha\" is replica of a 20th century USSR model submachinegun that many terrorist organizations had copied all over the years. Despite its small-hitting firepower, its reliablity, extreme longevity and high firepower rate proves useful for the hands of the user."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "ppsh"
 	item_state = "ppsh"
@@ -290,8 +290,15 @@
 	attachable_allowed = list(
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/suppressor,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/bipod,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -300,14 +307,14 @@
 		/obj/item/attachable/stock/irremoveable/ppsh,
 	)
 
-	fire_delay = 0.125 SECONDS
+	fire_delay = 0.15 SECONDS
 	burst_amount = 6
 	accuracy_mult = 1.05
-	accuracy_mult_unwielded = 0.65
-	scatter = 25
-	scatter_unwielded = 45
-	aim_slowdown = 0.8
-	wield_delay = 0.8 SECONDS
+	accuracy_mult_unwielded = 0.75
+	scatter = 20
+	scatter_unwielded = 25
+	aim_slowdown = 0.3
+	wield_delay = 0.35 SECONDS
 
 
 //-------------------------------------------------------

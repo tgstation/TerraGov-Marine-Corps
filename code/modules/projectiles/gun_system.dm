@@ -488,6 +488,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		replace_ammo(,magazine)
 		if(!in_chamber)
 			load_into_chamber()
+	magazine.on_inserted(src)
 
 	update_icon(user)
 	var/obj/screen/ammo/A = user.hud_used.ammo
@@ -522,10 +523,10 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		current_mag.loc = get_turf(src) //Drop it on the ground.
 	else
 		user.put_in_hands(current_mag)
-
 	playsound(loc, unload_sound, 25, 1, 5)
 	user?.visible_message(span_notice("[user] unloads [current_mag] from [src]."),
 	span_notice("You unload [current_mag] from [src]."), null, 4)
+	current_mag.on_removed(src)
 	current_mag.update_icon()
 	current_mag = null
 
