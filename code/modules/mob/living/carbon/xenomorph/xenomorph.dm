@@ -77,6 +77,7 @@
 	var/datum/xeno_caste/X = GLOB.xeno_caste_datums[caste_base_type][upgrade]
 	if(!istype(X))
 		CRASH("error with caste datum")
+	xeno_caste = X
 	xeno_caste.on_caste_applied(src)
 	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
 	if(restore_health_and_plasma)
