@@ -162,7 +162,7 @@
 	icon_state = "t27"
 	item_state = "t27"
 	caliber = CALIBER_10X25_CASELESS // codex
-	max_shells = 125 //codex
+	max_shells = 100 //codex
 	force = 40
 	aim_slowdown = 1.2
 	wield_delay = 2 SECONDS
@@ -182,21 +182,22 @@
 		/obj/item/attachable/magnetic_harness,
 	)
 
-	scatter = 80 // you're not firing this standing.
-	recoil = 3
-	scatter_unwielded = 15
-	fire_delay = 0.15 SECONDS
-
-	burst_amount = 1
+	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/t27)
+	attachable_offset = list("muzzle_x" = 35, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 18, "under_y" = 13, "stock_x" = 0, "stock_y" = 0)
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.15 SECONDS
+	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 5
 
+
+	scatter = 80 // you're not firing this standing.
+	recoil = 3
+	scatter_unwielded = 85
+	fire_delay = 0.15 SECONDS
+	burst_amount = 1
 	deploy_time = 1 SECONDS
 	undeploy_time = 0.5 SECONDS
-
 	max_integrity = 125

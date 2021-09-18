@@ -861,6 +861,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
+/obj/item/attachable/stock/irremoveable/t27
+	name = "T-27 Body"
+	desc = "A stock for a T-27 MMG."
+	icon = 'icons/Marine/marine-mmg.dmi'
+	icon_state = "t27body"
+	pixel_shift_x = 25
+	pixel_shift_y = 0
+
 /obj/item/attachable/stock/irremoveable/pal12
 	name = "Paladin-12 pump shotgun stock"
 	desc = "A standard light stock for the Paladin-12 shotgun."

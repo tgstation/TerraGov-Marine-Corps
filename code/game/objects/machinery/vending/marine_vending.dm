@@ -138,6 +138,8 @@
 			/obj/item/ammo_magazine/standard_lmg = -1,
 			/obj/item/weapon/gun/rifle/standard_gpmg = -1,
 			/obj/item/ammo_magazine/standard_gpmg = -1,
+			/obj/item/weapon/gun/standard_mmg = 5,
+			/obj/item/ammo_magazine/standard_mmg = -1,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,
