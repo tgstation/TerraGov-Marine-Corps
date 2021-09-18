@@ -205,8 +205,6 @@
 	var/vent_exit_speed = XENO_DEFAULT_VENT_EXIT_TIME
 	///Whether the caste enters and crawls through vents silently
 	var/silent_vent_crawl = FALSE
-	///A target marked
-	var/mob/living/marked_target
 
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
@@ -362,5 +360,7 @@
 
 	///The xenos/silo/nuke currently tracked by the xeno_tracker arrow
 	var/atom/tracked
+	///A target marked
+	var/mob/living/marked_target
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

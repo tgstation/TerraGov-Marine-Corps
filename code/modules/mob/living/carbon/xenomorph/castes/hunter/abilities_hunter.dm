@@ -216,10 +216,10 @@
 		return TRUE
 
 	var/mob/living/carbon/xenomorph/xenoowner = owner
-	if(!xenoowner.xeno_caste.marked_target)
+	if(!xenoowner.marked_target)
 		to_chat(owner, span_warning("We have no target to disguise into"))
 		return
-	if(ishuman(xenoowner.xeno_caste.marked_target))
+	if(ishuman(xenoowner.marked_target))
 		to_chat(owner, "You cannot turn into a human!")
 		return
 	old_appearance = xenoowner.appearance
@@ -233,7 +233,7 @@
 
 /datum/action/xeno_action/stealth/fun/handle_stealth()
 	var/mob/living/carbon/xenomorph/xenoowner = owner
-	xenoowner.appearance = xenoowner.xeno_caste.marked_target.appearance
+	xenoowner.appearance = xenoowner.marked_target.appearance
 	xenoowner.underlays.Cut()
 	xenoowner.use_plasma(owner.m_intent == MOVE_INTENT_WALK ? HUNTER_STEALTH_WALK_PLASMADRAIN : HUNTER_STEALTH_RUN_PLASMADRAIN)
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
@@ -271,7 +271,7 @@
 			to_chat(X, span_xenowarning("We cannot psychically mark this target!"))
 		return FALSE
 
-	if(A == X.xeno_caste.marked_target)
+	if(A == X.marked_target)
 		if(!silent)
 			to_chat(X, span_xenowarning("This is already our target!"))
 		return FALSE
@@ -305,12 +305,12 @@
 		to_chat(X, span_xenowarning("We lost line of sight to the target!"))
 		return fail_activate()
 
-	if(X.xeno_caste.marked_target) //If we have an existing target, remove the registration.
-		UnregisterSignal(X.xeno_caste.marked_target, COMSIG_PARENT_QDELETING)
+	if(X.marked_target) //If we have an existing target, remove the registration.
+		UnregisterSignal(X.marked_target, COMSIG_PARENT_QDELETING)
 
-	X.xeno_caste.marked_target = A //Set our target
+	X.marked_target = A //Set our target
 
-	RegisterSignal(X.xeno_caste.marked_target, COMSIG_PARENT_QDELETING, .proc/unset_target) //For var clean up
+	RegisterSignal(X.marked_target, COMSIG_PARENT_QDELETING, .proc/unset_target) //For var clean up
 
 	to_chat(X, span_xenodanger("We psychically mark [A] as our quarry."))
 	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1)
@@ -325,8 +325,8 @@
 /datum/action/xeno_action/activable/hunter_mark/proc/unset_target()
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/X = owner
-	UnregisterSignal(X.xeno_caste.marked_target, COMSIG_PARENT_QDELETING)
-	X.xeno_caste.marked_target = null //Nullify hunter's mark target and clear the var
+	UnregisterSignal(X.marked_target, COMSIG_PARENT_QDELETING)
+	X.marked_target = null //Nullify hunter's mark target and clear the var
 
 // ***************************************
 // *********** Psychic Trace
@@ -344,12 +344,12 @@
 
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(!X.xeno_caste.marked_target)
+	if(!X.marked_target)
 		if(!silent)
 			to_chat(owner, span_xenowarning("We have no target we can trace!"))
 		return FALSE
 
-	if(X.xeno_caste.marked_target.z != owner.z)
+	if(X.marked_target.z != owner.z)
 		if(!silent)
 			to_chat(owner, span_xenowarning("Our target is too far away, and is beyond our senses!"))
 		return FALSE
@@ -358,12 +358,12 @@
 /datum/action/xeno_action/psychic_trace/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 
-	to_chat(X, span_xenodanger("We sense our quarry <b>[X.xeno_caste.marked_target]</b> is currently located in <b>[AREACOORD_NO_Z(X.xeno_caste.marked_target)]</b> and is <b>[get_dist(X, X.xeno_caste.marked_target)]</b> tiles away. It is <b>[calculate_mark_health(X.xeno_caste.marked_target)]</b> and <b>[X.xeno_caste.marked_target.status_flags & XENO_HOST ? "impregnated" : "barren"]</b>."))
+	to_chat(X, span_xenodanger("We sense our quarry <b>[X.marked_target]</b> is currently located in <b>[AREACOORD_NO_Z(X.marked_target)]</b> and is <b>[get_dist(X, X.marked_target)]</b> tiles away. It is <b>[calculate_mark_health(X.marked_target)]</b> and <b>[X.marked_target.status_flags & XENO_HOST ? "impregnated" : "barren"]</b>."))
 	X.playsound_local(X, 'sound/effects/ghost2.ogg', 10, 0, 1)
 
 	var/obj/screen/arrow/hunter_mark_arrow/arrow_hud = new
 	//Prepare the tracker object and set its parameters
-	arrow_hud.add_hud(X, X.xeno_caste.marked_target) //set the tracker parameters
+	arrow_hud.add_hud(X, X.marked_target) //set the tracker parameters
 	arrow_hud.process() //Update immediately
 
 	add_cooldown()
@@ -450,7 +450,7 @@
 				continue
 
 		var/silence_multiplier = 1
-		if(X.xeno_caste.marked_target == target) //Double debuff stacks for the marked target
+		if(X.marked_target == target) //Double debuff stacks for the marked target
 			silence_multiplier = HUNTER_SILENCE_MULTIPLIER
 		to_chat(target, span_danger("Your mind convulses at the touch of something ominous as the world seems to blur, your voice dies in your throat, and everything falls silent!") ) //Notify privately
 		target.playsound_local(target, 'sound/effects/ghost.ogg', 25, 0, 1)
