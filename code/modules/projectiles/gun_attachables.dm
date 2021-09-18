@@ -866,7 +866,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A stock for a T-27 MMG."
 	icon = 'icons/Marine/marine-mmg.dmi'
 	icon_state = "t27body"
-	pixel_shift_x = 25
+	pixel_shift_x = 15
 	pixel_shift_y = 0
 
 /obj/item/attachable/stock/irremoveable/pal12
