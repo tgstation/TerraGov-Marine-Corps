@@ -555,7 +555,7 @@ datum/ammo/bullet/revolver/tp44
 	staggerstun(M, P, max_range = 40, stagger = 2, slowdown = 3.5, knockback = 1)
 
 /datum/ammo/bullet/rifle/ak47
-	name = "heavy rifle bullet"
+	name = "crude heavy rifle bullet"
 	hud_state = "rifle_heavy"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 30
@@ -1709,7 +1709,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/toxin/upgrade2
 	smoke_strength = 0.7
 	reagent_transfer_amount = 9
-	
+
 /datum/ammo/xeno/toxin/upgrade3
 	smoke_strength = 0.75
 	reagent_transfer_amount = 9.5
@@ -1733,7 +1733,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
 	smoke_strength = 1
-	reagent_transfer_amount = 10  
+	reagent_transfer_amount = 10
 
 
 /datum/ammo/xeno/sticky

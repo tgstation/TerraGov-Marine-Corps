@@ -281,3 +281,26 @@
   - expansion: Jaeger and M10X now have storage which shows certain items stored into
       it like the original M10 did.
   - code_imp: cleaned some jaeger overlay rendering code.
+2021-09-17:
+  BraveMole:
+  - expansion: Synth can use loadout vendor
+  - qol: 'As a xeno: if you are on help intent, you will never be blocked by another
+      xeno'
+  - bugfix: Fix not being able to fire at dark zones with attachment
+  - rscdel: All ghosts have actions, kill the pref
+  - balance: You cannot use enemy medevacs
+  TiviPlus:
+  - rscadd: Reqtorio, read the starter kit how to paper for how to use
+  - imageadd: Sprites by Kuro, Ciel, Gohunt, Nerolostshor
+2021-09-18:
+  BraveMole:
+  - rscadd: Hunter can disguise itself as it's marked target, this replaces stealth
+      (fun config)
+  Pariah919:
+  - balance: M16A4 can no longer fit BFA, has less delay between bursts, has no autoburst,
+      aim speed movement is faster and lower base scatter.
+  - balance: prae acid cone plasma cost upped to 400 from 200, cone slowdown halved
+      on use, bomb resistance has been upped overall.
+  - balance: MPi (AK) and storm rifle get magnetic harness, MPi autoejects on empty.
+  - rscadd: Added new seasonal revolver, has shotgun and normal revolver shots.
+  - expansion: seasonal with judge/nagant revolver

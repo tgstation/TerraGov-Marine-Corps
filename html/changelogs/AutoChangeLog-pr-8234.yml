@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - server: "You cannot vote civil war more than once every 12 hours"
