@@ -1315,6 +1315,8 @@
 
 /datum/reagent/medicine/research/stimulon/on_mob_delete(mob/living/L, metabolism)
 	L.remove_movespeed_modifier(type)
+	L.Paralyze(20)
+	to_chat(L, span_warning("You reel as the stimulant departs your bloodstream!"))
 
 /datum/reagent/medicine/research/stimulon/on_mob_life(mob/living/L, metabolism)
 	L.adjustStaminaLoss(1*effect_str)
@@ -1324,6 +1326,9 @@
 		L.emote(pick("twitch","blink_r","shiver"))
 	if(volume < 100) //THERE IS NO "MINIMUM SAFE DOSE" MUAHAHAHA!
 		L.reagents.add_reagent(/datum/reagent/medicine/research/stimulon, 0.5)
-	if(current_cycle = 20) //avg cloneloss of 1/tick and 10 additional units made
-		to_chat(L, span_userdanger("You start to ache and cramp as your muscles wear out. You should probably remove this drug soon."))
+	switch(current_cycle)
+		if(20)//avg cloneloss of 1/tick and 10 additional units made
+			to_chat(L, span_userdanger("You start to ache and cramp as your muscles wear out. You should probably remove this drug soon."))
+		if (21 to INFINITY)
+			L.jitter(5)
 	return ..()
