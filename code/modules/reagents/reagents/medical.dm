@@ -1243,7 +1243,7 @@
 		if(51 to INFINITY)
 			if(L.stat == UNCONSCIOUS)
 				L.heal_limb_damage(10*effect_str, 10*effect_str)
-				L.adjustCloneLoss(-0.1*effect_str-(0.01*(L.maxHealth - L.health)))
+				L.adjustCloneLoss(-0.1*effect_str-(0.02*(L.maxHealth - L.health)))
 				holder.remove_reagent(/datum/reagent/medicine/research/somolent, 0.6)
 	return ..()
 
@@ -1268,13 +1268,13 @@
 			L.take_limb_damage(0.015*current_cycle*effect_str, 0.015*current_cycle*effect_str)
 			L.adjustToxLoss(1*effect_str)
 			L.adjustStaminaLoss((1.5)*effect_str)
-			L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.15)
+			L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.20)
 			if(prob(5))
 				to_chat(L, span_notice("You feel intense itching!"))
 		if(151)
 			to_chat(L, span_warning("The pain rapidly subsides. Looks like they've adapted to you."))
 		if(152 to INFINITY)
-			if(volume < 30) //smol injection will self-replicate up to 30u using 60u of blood.
+			if(volume < 30) //smol injection will self-replicate up to 30u using 240u of blood.
 				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.25)
 				L.blood_volume -= 2
 				
@@ -1282,17 +1282,24 @@
 				L.heal_limb_damage(2*effect_str, 0)
 				L.adjustToxLoss(0.1*effect_str)
 				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
+				if(prob(40))
+					to_chat(L, span_notice("Your cuts and bruises begin to scab over rapidly!"))
 				
 			if (volume > 5 && L.getFireLoss())
 				L.heal_limb_damage(0, 2*effect_str)
 				L.adjustToxLoss(0.1*effect_str)
 				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
+				if(prob(40))
+					to_chat(L, span_notice("Your burns begin to slough off, revealing healthy tissue!"))
 	return ..()
 
 /datum/reagent/medicine/research/medicalnanites/overdose_process(mob/living/L, metabolism)
 	L.adjustToxLoss(effect_str) //softcap VS injecting massive amounts of medical nanites for the healing factor with no downsides. Still doable if you're clever about it.
-	
-	
+	holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.25)
+
+/datum/reagent/medicine/research/medicalnanites/on_mob_delete(mob/living/L, metabolism)
+	to_chat(L, span_userdanger("Your nanites have been fully purged! They no longer affect you."))
+
 /datum/reagent/medicine/research/stimulon
 	name = "Stimulon"
 	description = "A chemical designed to boost running by driving your body beyond it's normal limits. Can have unpredictable side effects, caution recommended."
@@ -1304,6 +1311,7 @@
 	to_chat(L, span_userdanger("You feel jittery and fast! Time to MOVE!"))
 	. = ..()
 	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1)
+	L.adjustCloneLoss(10*effect_str)
 
 /datum/reagent/medicine/research/stimulon/on_mob_delete(mob/living/L, metabolism)
 	L.remove_movespeed_modifier(type)
@@ -1311,12 +1319,11 @@
 /datum/reagent/medicine/research/stimulon/on_mob_life(mob/living/L, metabolism)
 	L.adjustStaminaLoss(1*effect_str)
 	L.take_limb_damage(rand(0.5*effect_str, 4*effect_str), 0)
-	L.adjustCloneLoss(rand (0, 5) * effect_str * current_cycle *0.01)
-	if(prob(2))
+	L.adjustCloneLoss(rand (0, 5) * effect_str * current_cycle * 0.02)
+	if(prob(20))
 		L.emote(pick("twitch","blink_r","shiver"))
 	if(volume < 100) //THERE IS NO "MINIMUM SAFE DOSE" MUAHAHAHA!
-		L.reagents.add_reagent(/datum/reagent/medicine/research/stimulon, 0.25)
-	if(current_cycle > 20)
-		if(prob(10))
-			to_chat(L, span_danger("You start to ache. Maybe you should get rid of this drug?"))
+		L.reagents.add_reagent(/datum/reagent/medicine/research/stimulon, 0.5)
+	if(current_cycle = 20) //avg cloneloss of 1/tick and 10 additional units made
+		to_chat(L, span_userdanger("You start to ache and cramp as your muscles wear out. You should probably remove this drug soon."))
 	return ..()
