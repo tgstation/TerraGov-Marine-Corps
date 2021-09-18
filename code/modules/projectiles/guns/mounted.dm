@@ -157,7 +157,8 @@
 
 /obj/item/weapon/gun/standard_mmg
 	name = "\improper T-27 medium machinegun"
-	desc = "The T-27 is the T-29s aging IFF-less cousin, made for rapid accurate machinegun fire in a short amount of time, you could use it while standing, not a great idea. Use the tripod. It uses 10x27mm boxes."
+	desc = "The T-27 is the T-29s aging IFF-less cousin, made for rapid accurate machinegun fire in a short amount of time, you could use it while standing, not a great idea. Use the tripod for actual combat. It uses 10x27mm boxes."
+	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/marine-mmg.dmi'
 	icon_state = "t27"
 	item_state = "t27"
@@ -173,13 +174,13 @@
 	current_mag = /obj/item/ammo_magazine/standard_mmg
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
+		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/magnetic_harness,
 	)
 
 	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/t27)
@@ -194,6 +195,7 @@
 
 
 	scatter = 80 // you're not firing this standing.
+	deployed_scatter_reduction = -70 // innumerable amount of reduced scatter when deployed,
 	recoil = 3
 	scatter_unwielded = 85
 	fire_delay = 0.15 SECONDS

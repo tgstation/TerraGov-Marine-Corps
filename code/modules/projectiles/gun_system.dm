@@ -143,6 +143,8 @@
 	var/deploy_time = 0
 	///If the gun is deployable, the time it takes for the weapon to undeploy.
 	var/undeploy_time = 0
+	///If the gun is deployed, reduce the scatter amount by this much.
+	var/deployed_scatter_reduction = 0
 	///List of turf/objects/structures that will be ignored in the sentries targeting.
 	var/list/ignored_terrains
 	///Flags that the deployed sentry uses upon deployment.
@@ -1123,6 +1125,8 @@ and you're good to go.
 		if(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC) //Much higher chance on a burst or similar.
 			if(flags_item & WIELDED && wielded_stable() || CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if deployed, its pretty stable.
 				. += burst_amount * burst_scatter_mult
+			if(CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if our gun is deployed, change the scatter by this number, usually a negative
+				. += deployed_scatter_reduction
 			else
 				. += burst_amount * burst_scatter_mult * 5
 
