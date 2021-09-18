@@ -167,7 +167,7 @@ WEAPONS
 		/obj/item/attachable/buildasentry,
 	)
 	cost = 25
-	
+
 
 /datum/supply_packs/weapons/m56d_emplacement
 	name = "TL-102 Mounted Heavy Smartgun"
@@ -229,6 +229,11 @@ WEAPONS
 	name = "MIC-A7 Vindicator Minigun"
 	contains = list(/obj/item/weapon/gun/minigun)
 	cost = MINIGUN_PRICE
+
+/datum/supply_packs/weapons/mmg
+	name = "T-27 Medium Machinegun"
+	contains = list(/obj/item/weapon/gun/standard_mmg)
+	cost = 10
 
 /datum/supply_packs/weapons/smartgun
 	name = "T-29 Smart Machinegun"

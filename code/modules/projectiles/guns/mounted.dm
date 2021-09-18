@@ -153,7 +153,7 @@
 
 
 //-------------------------------------------------------
-//T-27 General Purpose Machine Gun
+//T-27 Medium Machine Gun
 
 /obj/item/weapon/gun/standard_mmg
 	name = "\improper T-27 medium machinegun"
@@ -195,7 +195,7 @@
 
 
 	scatter = 80 // you're not firing this standing.
-	deployed_scatter_reduction = -70 // innumerable amount of reduced scatter when deployed,
+	deployed_scatter_change = -70 // innumerable amount of reduced scatter when deployed,
 	recoil = 3
 	scatter_unwielded = 85
 	fire_delay = 0.15 SECONDS
