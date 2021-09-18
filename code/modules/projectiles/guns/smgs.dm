@@ -274,7 +274,7 @@
 
 /obj/item/weapon/gun/smg/ppsh
 	name = "\improper PPSh-17b submachinegun"
-	desc = "A design copied all over the years, this SMG boasts a high capacity and fire rate, but suffers in the handling department.
+	desc = "A design copied all over the years, this SMG boasts a high capacity and fire rate, but suffers in the handling department."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "ppsh"
 	item_state = "ppsh"
