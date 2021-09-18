@@ -1989,7 +1989,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/bullet/pepperball/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/X = victim
-		X.use_plasma(50)
+		X.use_plasma_percent(0.05)
 
 /datum/ammo/alloy_spike
 	name = "alloy spike"
