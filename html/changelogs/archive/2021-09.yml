@@ -292,3 +292,15 @@
   TiviPlus:
   - rscadd: Reqtorio, read the starter kit how to paper for how to use
   - imageadd: Sprites by Kuro, Ciel, Gohunt, Nerolostshor
+2021-09-18:
+  BraveMole:
+  - rscadd: Hunter can disguise itself as it's marked target, this replaces stealth
+      (fun config)
+  Pariah919:
+  - balance: M16A4 can no longer fit BFA, has less delay between bursts, has no autoburst,
+      aim speed movement is faster and lower base scatter.
+  - balance: prae acid cone plasma cost upped to 400 from 200, cone slowdown halved
+      on use, bomb resistance has been upped overall.
+  - balance: MPi (AK) and storm rifle get magnetic harness, MPi autoejects on empty.
+  - rscadd: Added new seasonal revolver, has shotgun and normal revolver shots.
+  - expansion: seasonal with judge/nagant revolver
