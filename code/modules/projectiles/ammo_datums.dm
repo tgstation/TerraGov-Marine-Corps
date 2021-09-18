@@ -698,7 +698,7 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 5
 	max_range = 10
 	damage = 40
-	damage_falloff = 1
+	damage_falloff = 8
 	penetration = 0
 
 
