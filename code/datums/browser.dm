@@ -29,7 +29,7 @@
 		ref = nref
 
 ///Signal handler to clean the user
-/datum/browser/proc/clean_user()
+/datum/browser/proc/clean_browser()
 	SIGNAL_HANDLER
 	qdel(src)
 
