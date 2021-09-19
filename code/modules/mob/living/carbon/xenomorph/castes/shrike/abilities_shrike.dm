@@ -324,7 +324,6 @@
 
 	playsound(T, "alien_resin_build", 25)
 	var/obj/structure/xeno/acidwell/AC = new /obj/structure/xeno/acidwell(T, owner)
-	AC.creator = owner
 
 	to_chat(owner, span_xenonotice("We place an acid well; it can be filled with more acid."))
 	GLOB.round_statistics.xeno_acid_wells++
