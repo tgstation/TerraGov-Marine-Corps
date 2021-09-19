@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - bugfix: "stuff that zooms now has their previous zoom out range that was accidentally changed on view datum refactor."
