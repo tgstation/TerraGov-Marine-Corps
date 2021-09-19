@@ -9,7 +9,7 @@
 
 // base weed type
 /obj/effect/alien/weeds
-	name = "speed weeds"
+	name = "weeds"
 	desc = "A layer of oozy slime, it feels slick, but not as slick for you to slip."
 	icon = 'icons/Xeno/weeds.dmi'
 	icon_state = "base"
