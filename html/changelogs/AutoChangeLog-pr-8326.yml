@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - balance: "seasonal guns are 5 points in req overall, magazines 1 point."
+  - qol: "some new seasonal guns are added to req in imports"
