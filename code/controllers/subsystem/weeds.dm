@@ -89,10 +89,10 @@ SUBSYSTEM_DEF(weeds)
 			if(istype(O, /obj/effect/alien/weeds/node))
 				return
 			var/obj/effect/alien/weeds/weed = O
-			if(get_dist_euclide_square(node, weed) >= get_dist_euclide_square(weed.parent_node, weed))
+			if(weed.parent_node && get_dist_euclide_square(node, weed) >= get_dist_euclide_square(weed.parent_node, weed))
 				return
 			if(weed.type == node.weed_type)
-				weed.parent_node = node
+				weed.set_parent_node(node)
 				return
 			weed.swapped = TRUE
 			swapped = TRUE

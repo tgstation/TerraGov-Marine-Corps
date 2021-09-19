@@ -33,7 +33,7 @@ SUBSYSTEM_DEF(weeds_decay)
 				decay_chance -= rand(15, 20)
 
 		if(prob(decay_chance))
-			W.parent_node = null // So it wont try to regrow
+			W.clean_parent_node() // So it wont try to regrow
 			addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, W), rand(3, 10 SECONDS))
 			decaying -= T
 
@@ -46,6 +46,6 @@ SUBSYSTEM_DEF(weeds_decay)
 		if(!W || W.parent_node != node)
 			continue
 
-		W.parent_node = null // mark this null otherwise the weed regrows
+		W.clean_parent_node() // mark this null otherwise the weed regrows
 		decaying += T
 
