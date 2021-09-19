@@ -651,7 +651,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		to_chat(user, span_warning("You have to be on the planet to use this or it won't transmit."))
 		return FALSE
 	var/area/A = get_area(user)
-	if(A && istype(A) && A.ceiling >= CEILING_METAL)
+	if(A?.ceiling >= CEILING_METAL)
 		to_chat(user, span_warning("You have to be outside or under a glass ceiling to activate this."))
 		return
 	beacon_datum = new /datum/supply_beacon(user.name, user.loc, user.faction, 4 MINUTES)
