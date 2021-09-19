@@ -238,7 +238,7 @@
 	if(!xenos_by_typepath[X.caste_base_type].Remove(X))
 		stack_trace("failed to remove a xeno from hive status typepath list, nothing was removed!?")
 		return FALSE
-	
+
 	LAZYREMOVE(xenos_by_zlevel["[X.z]"], X)
 
 	UnregisterSignal(X, COMSIG_MOVABLE_Z_CHANGED)
@@ -508,7 +508,7 @@ to_chat will check for valid clients itself already so no need to double check f
 ///Used for setting the trackers of all xenos in the hive, like when a nuke activates
 /datum/hive_status/proc/set_all_xeno_trackers(atom/target)
 	for(var/mob/living/carbon/xenomorph/X AS in get_all_xenos())
-		X.tracked = target
+		X.set_tracked(target)
 		to_chat(X, span_notice(" Now tracking [target.name]"))
 
 // ***************************************
