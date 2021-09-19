@@ -1,0 +1,9 @@
+author: "jroinc"
+delete-after: True
+changes: 
+  - expansion: "Expands chems and gives the RSR the ability to make some new things.
+
+Quietus- It's a long-lasting poison that kills you via oxyloss if you go crit or unconscious for any reason.
+Somolent- Somolent heals gradually increasing amounts of brute and burn, up to ten total per tick, as long as you're sleeping. After a while, it heals some cloneloss too.
+Medical nanites- They let you use blood as a secondary healthbar. Don't inject without medical aid, and keep an iron pill bottle with you.
+Stimulon- Makes you go fast. Unpredictable side effects that get worse the longer it's in you."

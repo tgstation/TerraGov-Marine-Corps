@@ -619,7 +619,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scope_zoom_mod = TRUE // codex
 	accuracy_unwielded_mod = -0.05
 	zoom_tile_offset = 11
-	zoom_viewsize = 12
+	zoom_viewsize = 10
 	zoom_allow_movement = TRUE
 	///how much slowdown the scope gives when zoomed. You want this to be slowdown you want minus aim_speed_mod
 	var/zoom_slowdown = 1
@@ -655,7 +655,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	aim_speed_mod = 0
 	wield_delay_mod = 0
 	zoom_tile_offset = 5
-	zoom_viewsize = 7
+	zoom_viewsize = 0
 	scoped_accuracy_mod = SCOPE_RAIL_MINI
 	zoom_slowdown = 0.50
 
@@ -670,15 +670,15 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "MG-08/495 long range ironsights"
 	desc = "An unremovable set of long range ironsights for an MG-08/495 machinegun."
 	flags_attach_features = ATTACH_ACTIVATION
+	zoom_viewsize = 0
 	zoom_tile_offset = 3
-	zoom_viewsize = 7
 
 
 /obj/item/attachable/scope/unremovable/tl102
 	name = "TL-102 smart sight"
 	desc = "An unremovable smart sight built for use with the tl102, it does nearly all the aiming work for the gun's integrated IFF systems."
+	zoom_viewsize = 0
 	zoom_tile_offset = 3
-	zoom_viewsize = 7
 
 /obj/item/attachable/scope/unremovable/tl102/nest
 	zoom_tile_offset = 6
@@ -759,7 +759,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	zoom_allow_movement = TRUE
 	zoom_slowdown = 0.3
 	zoom_tile_offset = 5
-	zoom_viewsize = 7
+	zoom_viewsize = 0
 
 /obj/item/attachable/scope/mini/tx11
 	name = "TX-11 mini rail scope"
@@ -858,6 +858,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "ppshstock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
+
+/obj/item/attachable/stock/irremoveable/t27
+	name = "T-27 Body"
+	desc = "A stock for a T-27 MMG."
+	icon = 'icons/Marine/marine-mmg.dmi'
+	icon_state = "t27body"
+	pixel_shift_x = 15
+	pixel_shift_y = 0
 
 /obj/item/attachable/stock/irremoveable/pal12
 	name = "Paladin-12 pump shotgun stock"

@@ -304,3 +304,8 @@
   - balance: MPi (AK) and storm rifle get magnetic harness, MPi autoejects on empty.
   - rscadd: Added new seasonal revolver, has shotgun and normal revolver shots.
   - expansion: seasonal with judge/nagant revolver
+2021-09-19:
+  BraveMole:
+  - server: You cannot vote civil war more than once every 12 hours
+  QualityVan:
+  - bugfix: Medevacs work.

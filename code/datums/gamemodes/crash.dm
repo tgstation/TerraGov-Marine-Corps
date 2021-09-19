@@ -29,7 +29,7 @@
 	// Round start info
 	var/starting_squad = "Alpha"
 
-	var/larva_check_interval = 0
+	var/larva_check_interval = 2 MINUTES
 	bioscan_interval = 0
 
 
@@ -245,8 +245,8 @@
 			return //RIP benos.
 		if(stored_larva)
 			return //No need for respawns nor to end the game. They can use their burrowed larvas.
-		xeno_job.add_job_positions(max(1, round(larvapoints, 1))) //At least one, rounded to nearest integer if more.
+		xeno_job.add_job_positions(1)
 		return
 	if(round(larvapoints, 1) < 1)
 		return //Things are balanced, no burrowed needed
-	xeno_job.add_job_positions(round(larvapoints, 1)) //However many burrowed they can afford to buy, rounded to nearest integer.
+	xeno_job.add_job_positions(1)

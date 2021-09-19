@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - bugfix: "t-27 inhands are properly alinged"
