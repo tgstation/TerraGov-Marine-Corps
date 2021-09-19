@@ -33,7 +33,7 @@
 	if(!.)
 		return
 	var/obj/item/clothing/head/modular/modular_helmet = .
-	modular_helmet.current_variant = current_variant
+	modular_helmet.current_variant = (current_variant in modular_helmet.icon_state_variants) ? current_variant : initial(modular_helmet.current_variant)
 	for(var/datum/item_representation/armor_module/armor_attachement AS in attachments)
 		armor_attachement.install_on_armor(seller, modular_helmet, user)
 	if(!greyscale_colors)
