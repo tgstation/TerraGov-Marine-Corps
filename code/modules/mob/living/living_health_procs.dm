@@ -386,6 +386,10 @@
 ///Revive the huamn up to X health points
 /mob/living/carbon/human/proc/revive_to_crit(should_offer_to_ghost = FALSE, should_zombify = FALSE)
 	if(!has_working_organs())
+		on_fire = TRUE
+		fire_stacks = 15
+		update_fire()
+		QDEL_IN(src, 1 MINUTES)
 		return
 	if(health > 0)
 		return
@@ -402,6 +406,10 @@
 ///Check if we have a mind, and finish the revive if we do
 /mob/living/carbon/human/proc/finish_revive_to_crit(should_offer_to_ghost = FALSE, should_zombify = FALSE)
 	if(!has_working_organs())
+		on_fire = TRUE
+		fire_stacks = 15
+		update_icon()
+		QDEL_IN(src, 1 MINUTES)
 		return
 	do_jitter_animation(1000)
 	if(!client)
@@ -416,7 +424,8 @@
 	if(should_zombify)
 		set_species("Strong husk")
 		faction = FACTION_XENO
-	heal_limbs(-2 * health)
+		heal_limbs(- health)
+	heal_limbs(- health)
 	set_stat(CONSCIOUS)
 	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /obj/screen/fullscreen/black)
 	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /obj/screen/fullscreen/spawning_in)

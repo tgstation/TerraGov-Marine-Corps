@@ -54,9 +54,9 @@
 	for(var/datum/limb/limb AS in H.limbs) //Regrow some limbs
 		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(10))
 			limb.remove_limb_flags(LIMB_DESTROYED)
-			if(istype(limb, /datum/limb/l_arm))
+			if(istype(limb, /datum/limb/hand/l_hand))
 				H.equip_to_slot_or_del(new /obj/item/weapon/husk_claw, SLOT_L_HAND)
-			else if (istype(limb, /datum/limb/r_arm))
+			else if (istype(limb, /datum/limb/hand/r_hand))
 				H.equip_to_slot_or_del(new /obj/item/weapon/husk_claw, SLOT_R_HAND)
 			H.update_body()
 
