@@ -279,7 +279,7 @@
 	icon_state = "ppsh"
 	item_state = "ppsh"
 	caliber = CALIBER_762X25 //codex
-	max_shells = 35 //codex
+	max_shells = 42 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
 	fire_sound = 'sound/weapons/guns/fire/ppsh.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/ppsh_empty.ogg'
