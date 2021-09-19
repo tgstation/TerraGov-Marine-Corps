@@ -627,8 +627,8 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	name = "\improper TGMC radio operator backpack"
 	desc = "A backpack that resembles the ones old-age radio operator soldiers would use."
 	icon_state = "radiopack"
-	var/datum/supply_ui/requests/SU
-	var/datum/supply_beacon/beacon_datum
+	var/datum/supply_ui/requests/supply_interface ///Var for the window pop-up
+	var/datum/supply_beacon/beacon_datum /// Reference to the datum used by the supply drop console
 
 /obj/item/storage/backpack/marine/radiopack/attack_hand_alternate(mob/living/user)
 	. = ..()
@@ -636,12 +636,11 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		return
 	if(!allowed(user))
 		return
-	if(!SU)
-		SU = new(src)
-	return SU.interact(user)
+	if(!supply_interface)
+		supply_interface = new(src)
+	return supply_interface.interact(user)
 
 /obj/item/storage/backpack/marine/radiopack/attack_self(mob/living/user)
-	var/turf/location = get_turf(src)
 	if(beacon_datum)
 		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
 		QDEL_NULL(beacon_datum)
@@ -654,6 +653,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	if(A?.ceiling >= CEILING_METAL)
 		to_chat(user, span_warning("You have to be outside or under a glass ceiling to activate this."))
 		return
+	var/turf/location = get_turf(src)
 	beacon_datum = new /datum/supply_beacon(user.name, user.loc, user.faction, 4 MINUTES)
 	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, .proc/clean_beacon_datum)
 	user.show_message(span_notice("The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
