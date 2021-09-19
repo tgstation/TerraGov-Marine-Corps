@@ -230,6 +230,11 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/minigun)
 	cost = MINIGUN_PRICE
 
+/datum/supply_packs/weapons/mmg
+	name = "T-27 Medium Machinegun"
+	contains = list(/obj/item/weapon/gun/standard_mmg)
+	cost = 10
+
 /datum/supply_packs/weapons/smartgun
 	name = "T-29 Smart Machinegun"
 	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
