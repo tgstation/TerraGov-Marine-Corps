@@ -32,6 +32,18 @@
 	if(cell_type)
 		cell = new cell_type(src)
 
+///Set the cell var
+/obj/item/weapon/gun/energy/proc/set_cell(atom/cell)
+	if(src.cell)
+		UnregisterSignal(cell, COMSIG_PARENT_QDELETING)
+	src.cell = cell
+	RegisterSignal(cell, COMSIG_PARENT_QDELETING, .proc/clean_cell)
+
+///Signal handler to clean the cell var
+/obj/item/weapon/gun/energy/proc/clean_cell()
+	SIGNAL_HANDLER
+	cell = null
+
 /obj/item/weapon/gun/energy/able_to_fire(mob/living/user)
 	. = ..()
 	if(!cell || cell.charge - charge_cost < 0)
