@@ -157,6 +157,7 @@
 	if(source)
 		shot_from = source
 	permutated[src] = TRUE
+	loc = shooter
 	if(!isturf(loc))
 		forceMove(get_turf(src))
 	starting_turf = loc
