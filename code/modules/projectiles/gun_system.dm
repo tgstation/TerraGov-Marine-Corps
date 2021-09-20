@@ -687,7 +687,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	set_target(null)
 	windup_checked = WEAPON_WINDUP_NOT_CHECKED
 	dual_wield = FALSE
-	gun_user.shoot_inactive_hand = FALSE
+	gun_user?.shoot_inactive_hand = FALSE
 	gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 
 ///Inform the gun if he is currently bursting, to prevent reloading
