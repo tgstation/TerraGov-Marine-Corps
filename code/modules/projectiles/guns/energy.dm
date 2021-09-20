@@ -33,10 +33,10 @@
 		cell = new cell_type(src)
 
 ///Set the cell var
-/obj/item/weapon/gun/energy/proc/set_cell(atom/cell)
-	if(src.cell)
+/obj/item/weapon/gun/energy/proc/set_cell(new_cell)
+	if(cell)
 		UnregisterSignal(cell, COMSIG_PARENT_QDELETING)
-	src.cell = cell
+	cell = new_cell
 	RegisterSignal(cell, COMSIG_PARENT_QDELETING, .proc/clean_cell)
 
 ///Signal handler to clean the cell var
