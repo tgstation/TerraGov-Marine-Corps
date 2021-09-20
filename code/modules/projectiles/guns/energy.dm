@@ -248,9 +248,7 @@
 
 	//load_into_chamber()
 
-	if(user)
-		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
-		A.update_hud(user)
+	user?.hud_used.update_ammo_hud(user, src)
 
 	return TRUE
 
@@ -515,9 +513,7 @@
 	update_icon()
 
 	to_chat(user, initial(choice.message_to_user))
-
-	var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
-	A.update_hud(user)
+	user.hud_used.update_ammo_hud(user, src)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/update_item_state(mob/user) //Without this override icon states for wielded guns won't show. because lasgun overrides and this has no charge icons
 	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
