@@ -816,19 +816,19 @@ can cause issues with ammo types getting mixed up during the burst.
 // ***********************************************
 // Winchester Rifle. The gun that won the west.
 
-/obj/item/weapon/gun/shotgun/pump/winchester
-	name = "Winchester lever action rifle"
+/obj/item/weapon/gun/shotgun/pump/repeater
+	name = "Leicester Repeater"
 	desc = "The gun that won the west or so they say. But space is a very different kind of frontier all together, chambered for .44 magnum."
 	icon = 'icons/Marine/gun64.dmi'
-	icon_state = "winchester"
-	item_state = "winchester"
+	icon_state = "leicrepeater"
+	item_state = "leicrepeater"
 	fire_sound = 'sound/weapons/guns/fire/leveraction.ogg'//I like how this one sounds.
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = CALIBER_44 //codex
 	load_method = SINGLE_CASING //codex
 	max_shells = 14 //codex
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/winchester
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/repeater
 	gun_skill_category = GUN_SKILL_RIFLES
 	type_of_casings = "cartridge"
 	pump_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
@@ -851,12 +851,13 @@ can cause issues with ammo types getting mixed up during the burst.
 	fire_delay = 10
 	accuracy_mult = 1.20
 	accuracy_mult_unwielded = 0.8
+	damage_mult = 1.5
 	damage_falloff_mult = 0.5
 	scatter = -5
 	scatter_unwielded = 15
 	recoil = 0
 	recoil_unwielded = 2
-	pump_delay = 8
+	pump_delay = 2
 	aim_slowdown = 0.6
 
 /obj/item/weapon/gun/shotgun/pump/lever/pump_fail_notice(mob/user)
