@@ -67,6 +67,7 @@
 /client/MouseDrop(src_object, over_object, src_location, over_location, src_control, over_control, params)
 	if(src_object == over_object)
 		usr.ClickOn(over_object, over_location, params)
+		return
 	if(middragatom == src_object)
 		middragtime = 0
 		middragatom = null
