@@ -262,6 +262,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	mind = null
 	ghost.key = key
 	ghost.mind?.current = ghost
+	ghost.faction = faction
 
 	if(!T)
 		T = SAFEPICK(GLOB.latejoin)
