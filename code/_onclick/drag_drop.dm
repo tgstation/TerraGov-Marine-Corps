@@ -6,7 +6,7 @@
 	almost anything into a trash can.
 */
 /atom/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
-	if(!usr || !over || QDELETED(src) || src_location == over_location || src_control == over_control)
+	if(!usr || !over || QDELETED(src))
 		return
 	if(!Adjacent(usr) || !over.Adjacent(usr))
 		return // should stop you from dragging through windows
@@ -54,7 +54,7 @@
 		return
 	var/list/L = params2list(params)
 	if(L["middle"])
-		if(src_object && (src_location != over_location || src_object != over_object || src_control != over_control))
+		if(src_object && src_location != over_location)
 			middragtime = world.time
 			middragatom = src_object
 		else
@@ -65,8 +65,8 @@
 	SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEDRAG, src_object, over_object, src_location, over_location, src_control, over_control, params)
 
 /client/MouseDrop(src_object, over_object, src_location, over_location, src_control, over_control, params)
-	if(src_location == over_location && src_control == over_control && src_object == over_object)
-		Click(over_location, over_control, params)
+	if(src_control == over_control && src_object == over_object)
+		usr.ClickOn(over_object, over_location, params)
 	if(middragatom == src_object)
 		middragtime = 0
 		middragatom = null
