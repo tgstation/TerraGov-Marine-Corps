@@ -30,15 +30,15 @@
 /obj/item/weapon/gun/energy/Initialize()
 	. = ..()
 	if(cell_type)
-		cell = new cell_type(src)
+		set_cell(new cell_type(src))
 
 ///Set the cell var
 /obj/item/weapon/gun/energy/proc/set_cell(new_cell)
 	if(cell)
 		UnregisterSignal(cell, COMSIG_PARENT_QDELETING)
 	cell = new_cell
-    if(cell)
-	    RegisterSignal(cell, COMSIG_PARENT_QDELETING, .proc/clean_cell)
+	if(cell)
+		RegisterSignal(cell, COMSIG_PARENT_QDELETING, .proc/clean_cell)
 
 ///Signal handler to clean the cell var
 /obj/item/weapon/gun/energy/proc/clean_cell()
@@ -346,7 +346,7 @@
 	return TRUE
 
 /obj/item/weapon/gun/energy/lasgun/replace_magazine(mob/user, obj/item/cell/lasgun/new_cell)
-	cell = new_cell
+	set_cell(new_cell)
 	if(user)
 		user.transferItemToLoc(new_cell, src) //Click!
 		user.visible_message(span_notice("[user] loads [new_cell] into [src]!"),
@@ -376,7 +376,7 @@
 	user.visible_message(span_notice("[user] unloads [cell] from [src]."),
 	span_notice("You unload [cell] from [src]."), null, 4)
 	cell.update_icon()
-	cell = null
+	set_cell(null)
 
 	update_icon(user)
 
