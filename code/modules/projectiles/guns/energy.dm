@@ -37,7 +37,8 @@
 	if(cell)
 		UnregisterSignal(cell, COMSIG_PARENT_QDELETING)
 	cell = new_cell
-	RegisterSignal(cell, COMSIG_PARENT_QDELETING, .proc/clean_cell)
+    if(cell)
+	    RegisterSignal(cell, COMSIG_PARENT_QDELETING, .proc/clean_cell)
 
 ///Signal handler to clean the cell var
 /obj/item/weapon/gun/energy/proc/clean_cell()
