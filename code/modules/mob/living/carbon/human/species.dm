@@ -192,11 +192,6 @@
 /datum/species/proc/random_name(gender)
 	return GLOB.namepool[namepool].get_random_name(gender)
 
-/datum/species/human/random_name(gender)
-	. = ..()
-	if(CONFIG_GET(flag/humans_need_surnames))
-		. += " " + pick(SSstrings.get_list_from_file("names/last_name"))
-
 /datum/species/proc/prefs_name(datum/preferences/prefs)
 	return prefs.real_name
 
@@ -345,6 +340,8 @@
 
 	namepool = /datum/namepool/vatborn
 
+/datum/species/human/vatborn/prefs_name(datum/preferences/prefs)
+	return prefs.real_name
 
 /datum/species/human/vatgrown
 	name = "Vat-Grown Human"
@@ -358,6 +355,9 @@
 
 /datum/species/human/vatgrown/random_name(gender)
 	return "CS-[gender == FEMALE ? "F": "M"]-[rand(111,999)]"
+
+/datum/species/human/vatgrown/prefs_name(datum/preferences/prefs)
+	return prefs.real_name
 
 /datum/species/human/vatgrown/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()

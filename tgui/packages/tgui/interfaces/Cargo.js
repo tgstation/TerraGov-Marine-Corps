@@ -16,6 +16,7 @@ const category_icon = {
   'Supplies': "hamburger",
   'Imports': "boxes",
   'Vehicles': "road",
+  'Factory': "industry",
   'Pending Order': "shopping-cart",
 };
 

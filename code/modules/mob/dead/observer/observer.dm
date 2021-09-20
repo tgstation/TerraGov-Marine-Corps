@@ -276,9 +276,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	. = ..()
 	if(!. || can_reenter_corpse)
 		return
-	var/mob/ghost = .
 	if(!aghosting && job?.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
-		GLOB.key_to_time_of_death[ghost.key] = world.time
+		GLOB.key_to_time_of_death[key] = world.time
 		set_afk_status(MOB_RECENTLY_DISCONNECTED, 5 SECONDS)
 
 
@@ -382,7 +381,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set category = "Ghost"
 	set name = "Try to take SSD mob"
 
-	if(GLOB.key_to_time_of_death[key] + TIME_BEFORE_TAKING_BODY < world.time && !started_as_observer)
+	if(GLOB.key_to_time_of_death[key] + TIME_BEFORE_TAKING_BODY < world.time)
 		to_chat(src, span_warning("You died too recently to be able to take a new mob."))
 		return
 
@@ -417,12 +416,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(is_banned_from(ckey, new_mob?.job?.title))
 		to_chat(src, span_warning("You are jobbaned from the [new_mob?.job.title] role."))
 		return
-	message_admins(span_adminnotice("[key] took control of [new_mob.name] as [new_mob.p_they()] was ssd."))
-	log_admin("[key] took control of [new_mob.name] as [new_mob.p_they()] was ssd.")
+
 	new_mob.transfer_mob(src)
-	if(ishuman(new_mob))
-		var/mob/living/carbon/human/H = new_mob
-		H.fully_replace_character_name(H.real_name, H.species.random_name(H.gender))
 
 
 /mob/dead/observer/verb/toggle_HUDs()
@@ -925,30 +920,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/dead/observer/get_photo_description(obj/item/camera/camera)
 	if(!invisibility || camera.see_ghosts)
 		return "You can also see a g-g-g-g-ghooooost!"
-
-
-/mob/dead/observer/verb/toggle_actions()
-	set category = "Ghost"
-	set name = "Toggle Static Action Buttons"
-
-	client.prefs.observer_actions = !client.prefs.observer_actions
-	client.prefs.save_preferences()
-
-
-	to_chat(src, span_notice("You will [client.prefs.observer_actions ? "now" : "no longer"] get the static observer action buttons."))
-
-	if(!client.prefs.observer_actions)
-		for(var/datum/action/observer_action/A in actions)
-			A.remove_action(src)
-
-	else if(/datum/action/observer_action in actions)
-		return
-
-	else
-		for(var/path in subtypesof(/datum/action/observer_action))
-			var/datum/action/observer_action/A = new path()
-			A.give_action(src)
-
 
 /mob/dead/observer/incapacitated(ignore_restrained, restrained_flags)
 	return FALSE
