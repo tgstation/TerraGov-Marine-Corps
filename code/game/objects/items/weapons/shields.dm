@@ -142,7 +142,7 @@
 	soft_armor = list("melee" = 20, "bullet" = 50, "laser" = 0, "energy" = 100, "bomb" = 15, "bio" = 50, "rad" = 0, "fire" = 0, "acid" = 15)
 	hard_armor = list("melee" = 0, "bullet" = 5, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	force = 20
-	slowdown = 0.2
+	slowdown = 0.5
 
 
 /obj/item/weapon/shield/riot/marine/update_icon_state()
