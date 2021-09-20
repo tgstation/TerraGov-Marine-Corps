@@ -1,0 +1,5 @@
+author: "MiniMeatwad"
+delete-after: True
+changes: 
+  - balance: "Plasmaloss gas now removes 20% of your plasma_max instead of 200 plasma, which is 20% of 1000."
+  - balance: "Pepperball gun now removes 5% of your plasma_max instead of 50, which is 5% of 1000."
