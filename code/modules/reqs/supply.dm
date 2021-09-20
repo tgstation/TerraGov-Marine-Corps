@@ -633,7 +633,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/datum/supply_beacon/beacon_datum
 
 /obj/item/storage/backpack/marine/radiopack/attack_hand_alternate(mob/living/user)
-	. = ..()
 	if(.)
 		return
 	if(!allowed(user))
