@@ -160,7 +160,7 @@ also doesn't really matter. You can only reload them with handfuls.
 	caliber = CALIBER_44
 	max_rounds = 10
 
-/obj/item/ammo_magazine/internal/shotgun/pump/repeater
+/obj/item/ammo_magazine/internal/shotgun/pump/lever/repeater
 	name = "tubular magazine"
 	default_ammo = /datum/ammo/bullet/revolver
 	caliber = CALIBER_44

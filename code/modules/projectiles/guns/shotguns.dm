@@ -814,9 +814,9 @@ can cause issues with ammo types getting mixed up during the burst.
 		pump_lock = FALSE //we're operating the slide release to unload, thus unlocking the pump
 	return ..()
 // ***********************************************
-// Winchester Rifle. The gun that won the west.
+// Leicester Rifle. The gun that won the west.
 
-/obj/item/weapon/gun/shotgun/pump/repeater
+/obj/item/weapon/gun/shotgun/pump/lever/repeater
 	name = "Leicester Repeater"
 	desc = "The gun that won the west or so they say. But space is a very different kind of frontier all together, chambered for .44 magnum."
 	icon = 'icons/Marine/gun64.dmi'
@@ -828,7 +828,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	caliber = CALIBER_44 //codex
 	load_method = SINGLE_CASING //codex
 	max_shells = 14 //codex
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/repeater
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/lever/repeater
 	gun_skill_category = GUN_SKILL_RIFLES
 	type_of_casings = "cartridge"
 	pump_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
@@ -860,20 +860,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	pump_delay = 2
 	aim_slowdown = 0.6
 
-/obj/item/weapon/gun/shotgun/pump/lever/pump_fail_notice(mob/user)
-	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
-	to_chat(user,span_warning("<b>[src] lever has already been worked, locking the lever; fire or unload a round to unlock it.</b>"))
-	recent_notice = world.time
-
-/obj/item/weapon/gun/shotgun/pump/lever/pump_notice(mob/user)
-	to_chat(user, span_notice("<b>You work [src] lever.</b>"))
-
-/obj/item/weapon/gun/shotgun/pump/lever/unload(mob/user)
-	if(pump_lock)
-		to_chat(user, span_notice("<b>You pull [src]'s lever downward, ejecting the cartridge.</b>"))
-		pump_lock = FALSE //we're operating the slide release to unload, thus unlocking the pump
-	return ..()
-
+//------------------------------------------------------
+//MBX900 Lever Action Shotgun
 /obj/item/weapon/gun/shotgun/pump/lever/mbx900
 	name = "\improper MBX-900 lever action shotgun"
 	desc = "A .410 bore lever action shotgun that fires nearly as fast as you can operate the lever. Renowed due to its devastating and extremely reliable design."
