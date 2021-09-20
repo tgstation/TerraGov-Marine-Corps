@@ -627,8 +627,10 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	name = "\improper TGMC radio operator backpack"
 	desc = "A backpack that resembles the ones old-age radio operator soldiers would use."
 	icon_state = "radiopack"
-	var/datum/supply_ui/requests/supply_interface ///Var for the window pop-up
-	var/datum/supply_beacon/beacon_datum /// Reference to the datum used by the supply drop console
+	///Var for the window pop-up
+	var/datum/supply_ui/requests/supply_interface
+	/// Reference to the datum used by the supply drop console
+	var/datum/supply_beacon/beacon_datum
 
 /obj/item/storage/backpack/marine/radiopack/attack_hand_alternate(mob/living/user)
 	. = ..()
