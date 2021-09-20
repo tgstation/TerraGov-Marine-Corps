@@ -27,7 +27,7 @@
 	var/taste_sensitivity = TASTE_NORMAL
 	var/gluttonous        // Can eat some mobs. 1 for monkeys, 2 for people.
 	var/rarity_value = 1  // Relative rarity/collector value for this species. Only used by ninja and cultists atm.
-	var/unarmed_type = /datum/unarmed_attack
+	var/datum/unarmed_attack/unarmed_type = /datum/unarmed_attack
 	var/secondary_unarmed_type = /datum/unarmed_attack/bite
 	var/default_language_holder = /datum/language_holder
 	var/speech_verb_override
@@ -260,7 +260,7 @@
 
 //TODO KILL ME
 ///Snowflake proc for monkeys so they can call attackpaw
-/datum/species/proc/spec_unarmedattack(mob/living/carbon/human/user, mob/living/carbon/human/target)
+/datum/species/proc/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
 	return FALSE
 
 //Only used by horrors at the moment. Only triggers if the mob is alive and not dead.
@@ -424,8 +424,7 @@
 
 /datum/species/monkey/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
 	if(!iscarbon(target))
-		target.attack_hand(user)
-		return TRUE
+		return FALSE
 	var/mob/living/carbon/victim = target
 	if(prob(25))
 		victim.visible_message(span_danger("[user]'s bite misses [victim]!"),

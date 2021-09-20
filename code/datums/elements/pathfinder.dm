@@ -69,8 +69,8 @@ stutter_step: a prob() chance to go left or right of the mob's direction towards
 				continue
 			mob_to_process.Move(get_step(mob_to_process, step_dir), step_dir)
 
-/datum/element/pathfinder/Detach(datum/ai_behavior/ai_behavior)
-	distances_to_maintain.Remove(ai_behavior.mob_parent)
-	atoms_to_walk_to.Remove(ai_behavior.mob_parent)
-	stutter_step_prob.Remove(ai_behavior.mob_parent)
+/datum/element/pathfinder/Detach(mob/mob_parent)
+	distances_to_maintain.Remove(mob_parent)
+	atoms_to_walk_to.Remove(mob_parent)
+	stutter_step_prob.Remove(mob_parent)
 	return ..()

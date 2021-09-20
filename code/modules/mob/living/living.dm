@@ -599,11 +599,6 @@ below 100 is not dizzy
 			to_chat(M, span_warning("You are jobbanned from that role."))
 			return FALSE
 
-		if(stat == DEAD)
-			to_chat(M, span_warning("That mob has died."))
-			GLOB.offered_mob_list -= src
-			return FALSE
-
 		log_game("[key_name(M)] has taken over [key_name_admin(src)].")
 		message_admins("[key_name_admin(M)] has taken over [ADMIN_TPMONTY(src)].")
 

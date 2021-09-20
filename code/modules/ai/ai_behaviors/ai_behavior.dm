@@ -29,7 +29,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	///When this timer is up, we force a change of node to ensure that the ai will never stay stuck trying to go to a specific node
 	var/anti_stuck_timer
 
-/datum/ai_behavior/New(loc, parent_to_assign, escorted_atom)
+/datum/ai_behavior/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
 	if(isnull(parent_to_assign))
 		stack_trace("An ai behavior was initialized without a parent to assign it to; destroying mind. Mind type: [type]")
