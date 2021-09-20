@@ -828,7 +828,6 @@ and you're good to go.
 		gun_user.shoot_inactive_hand = TRUE
 	return TRUE
 
-
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)) // If it can't point blank, you can't suicide and such.
 		return ..()
