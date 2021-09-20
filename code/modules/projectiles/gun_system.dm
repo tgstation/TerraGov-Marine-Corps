@@ -972,7 +972,7 @@ and you're good to go.
 
 	if(dual_wield && gun_user.get_active_held_item() == src && gun_user.shoot_inactive_hand)
 		return FALSE
-	if(dual_wield && gun_user.get_inactive_held_item() == src && !gun_user.shoot_inactive_hand)
+	else if(dual_wield && gun_user.get_inactive_held_item() == src && !gun_user.shoot_inactive_hand)
 		return FALSE
 	if(!user.dextrous)
 		to_chat(user, span_warning("You don't have the dexterity to do this!"))
