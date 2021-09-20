@@ -100,6 +100,12 @@
 				return
 			if(loadout.version != CURRENT_LOADOUT_VERSION)
 				loadout.version = CURRENT_LOADOUT_VERSION
+				if(istype(loadout.item_list[SLOT_HEAD], /datum/item_representation/modular_helmet))
+					loadout.item_list[SLOT_HEAD] = null
+				if(istype(loadout.item_list[SLOT_WEAR_SUIT], /datum/item_representation/modular_armor))
+					loadout.item_list[SLOT_WEAR_SUIT] = null
+				delete_loadout(ui.user, loadout.name, loadout.job)
+				add_loadout(loadout)
 			ui.user.client.prefs.save_loadout(loadout)
 			add_loadout(loadout)
 			update_static_data(ui.user, ui)

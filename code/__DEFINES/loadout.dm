@@ -554,4 +554,4 @@ GLOBAL_LIST_INIT(bypass_storage_content_save, typecacheof(list(
 /// The current loadout version
 #define CURRENT_LOADOUT_VERSION 7
 
-GLOBAL_LIST_INIT(accepted_loadout_versions, list(7))
+GLOBAL_LIST_INIT(accepted_loadout_versions, list(5, 6, 7))

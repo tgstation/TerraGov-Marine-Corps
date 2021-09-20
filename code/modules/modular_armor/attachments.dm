@@ -31,6 +31,8 @@
 	///Light modifier for attachment to an armor piece
 	var/light_mod = 0
 	
+	///Assoc list that uses the parents type as a key. type = "new_icon_state". This will change the icon state depending on what type the parent is. If the list is empty, or the parent type is not within, it will have no effect.
+	var/list/variants_by_parent_type = list()
 
 /obj/item/armor_module/Initialize()
 	. = ..()
@@ -50,6 +52,10 @@
 	parent.hard_armor = parent.hard_armor.attachArmor(hard_armor)
 	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
 	parent.slowdown += slowdown
+	if(!length(variants_by_parent_type) || !(parent.type in variants_by_parent_type))
+		return
+	icon_state = variants_by_parent_type[parent.type]
+	update_icon()
 
 /// Called when the module is removed from the armor.
 /obj/item/armor_module/proc/on_detach(obj/item/detaching_from, mob/user)
@@ -59,6 +65,8 @@
 	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
 	parent.slowdown -= slowdown
 	parent = null
+	icon_state = initial(icon_state)
+	update_icon()
 
 /obj/item/armor_module/ui_action_click(mob/user, datum/action/item_action/action)
 	activate(user)
