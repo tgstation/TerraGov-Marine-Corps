@@ -230,6 +230,11 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/minigun)
 	cost = MINIGUN_PRICE
 
+/datum/supply_packs/weapons/mmg
+	name = "T-27 Medium Machinegun"
+	contains = list(/obj/item/weapon/gun/standard_mmg)
+	cost = 10
+
 /datum/supply_packs/weapons/smartgun
 	name = "T-29 Smart Machinegun"
 	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
@@ -1337,22 +1342,22 @@ Imports
 /datum/supply_packs/imports/m41a
 	name = "M41A Pulse Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m41a)
-	cost = 15
+	cost = 5
 
 /datum/supply_packs/imports/m41a/ammo
 	name = "M41A Pulse Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/m41a)
-	cost = 5
+	cost = 1
 
 /datum/supply_packs/imports/m412
 	name = "M412 Pulse Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m412)
-	cost = 15
+	cost = 5
 
 /datum/supply_packs/imports/m41a2/ammo
 	name = "M412 Pulse Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle)
-	cost = 5
+	cost = 1
 
 /datum/supply_packs/imports/m412l1
 	name = "M412L1 Heavy Pulse Rifle"
@@ -1366,33 +1371,33 @@ Imports
 
 /datum/supply_packs/imports/type71	//Moff gun
 	name = "Type 71 Pulse Rifle"
-	contains = list(/obj/item/weapon/gun/rifle/type71)
-	cost = 15
+	contains = list(/obj/item/weapon/gun/rifle/type71/seasonal)
+	cost = 5
 
 /datum/supply_packs/imports/type71/ammo
 	name = "Type 71 Pulse Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/type71)
-	cost = 5
+	cost = 1
 
 /datum/supply_packs/imports/mp7
 	name = "MP7 SMG"
 	contains = list(/obj/item/weapon/gun/smg/mp7)
-	cost = 15
+	cost = 5
 
 /datum/supply_packs/imports/mp7/ammo
 	name = "MP7 SMG Ammo"
 	contains = list(/obj/item/ammo_magazine/smg/mp7)
-	cost = 5
+	cost = 1
 
 /datum/supply_packs/imports/m25
 	name = "MR-25 SMG"
 	contains = list(/obj/item/weapon/gun/smg/m25)
-	cost = 15
+	cost = 5
 
 /datum/supply_packs/imports/m25/ammo
 	name = "MR-25 SMG Ammo"
 	contains = list(/obj/item/ammo_magazine/smg/m25)
-	cost = 5
+	cost = 1
 
 /datum/supply_packs/imports/skorpion
 	name = "Skorpion SMG"
@@ -1407,22 +1412,22 @@ Imports
 /datum/supply_packs/imports/uzi
 	name = "GAL-9 SMG"
 	contains = list(/obj/item/weapon/gun/smg/uzi)
-	cost = 10
+	cost = 5
 
 /datum/supply_packs/imports/uzi/ammo
 	name = "GAL-9 SMG Ammo"
 	contains = list(/obj/item/ammo_magazine/smg/uzi)
-	cost = 3
+	cost = 1
 
 /datum/supply_packs/imports/ppsh
 	name = "PPSH SMG"
 	contains = list(/obj/item/weapon/gun/smg/ppsh)
-	cost = 15
+	cost = 5
 
 /datum/supply_packs/imports/ppsh/ammo
 	name = "PPSH SMG Ammo Drum"
 	contains = list(/obj/item/ammo_magazine/smg/ppsh/extended)
-	cost = 5
+	cost = 1
 
 /datum/supply_packs/imports/sawnoff
 	name = "Sawn Off Shotgun"
@@ -1484,22 +1489,47 @@ Imports
 /datum/supply_packs/imports/ak47
 	name = "AK-47 Assault Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/ak47)
-	cost = 15
+	cost = 5
 
 /datum/supply_packs/imports/ak47/ammo
 	name = "AK-47 Assault Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/ak47)
+	cost = 1
+
+/datum/supply_packs/imports/mkh
+	name = "MKH-98 Storm Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/mkh)
 	cost = 5
+
+/datum/supply_packs/imports/mkh/ammo
+	name = "MKH-98 Assault Rifle Ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/mkh)
+	cost = 1
+
+/datum/supply_packs/imports/judge
+	name = "Judge Revolver"
+	contains = list(/obj/item/weapon/gun/revolver/judge)
+	cost = 5
+
+/datum/supply_packs/imports/judge/ammo
+	name = "Judge Ammo"
+	contains = list(/obj/item/ammo_magazine/revolver/judge)
+	cost = 1
+
+/datum/supply_packs/imports/judge/buck_ammo
+	name = "Judge Buckshot Ammo"
+	contains = list(/obj/item/ammo_magazine/revolver/judge/buckshot)
+	cost = 1
 
 /datum/supply_packs/imports/m16	//Vietnam time
 	name = "FN M16A Assault Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m16)
-	cost = 15
+	cost = 5
 
 /datum/supply_packs/imports/m16/ammo
 	name = "FN M16A Assault Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/m16)
-	cost = 5
+	cost = 1
 
 /datum/supply_packs/imports/famas //bread joke here
 	name = "FAMAS Assault Rifle"
@@ -1512,64 +1542,64 @@ Imports
 	cost = 5
 
 /datum/supply_packs/imports/rev357
-	name = "Smith and Wesson 357 Revolver"
+	name = "'Rebota' Revolver"
 	contains = list(/obj/item/weapon/gun/revolver/small)
-	cost = 7
+	cost = 5
 
 /datum/supply_packs/imports/rev357/ammo
-	name = "Smith and Wesson 357 Revolver Ammo"
+	name = "Rebota' 357 Revolver Ammo"
 	contains = list(/obj/item/ammo_magazine/revolver/small)
-	cost = 3
+	cost = 1
 
 /datum/supply_packs/imports/rev44
 	name = "M-44 SAA Revolver"
 	contains = list(/obj/item/weapon/gun/revolver/single_action/m44)
-	cost = 7
+	cost = 5
 
 /datum/supply_packs/imports/rev357/ammo
 	name = "M-44 SAA Revolver Ammo"
 	contains = list(/obj/item/ammo_magazine/revolver)
-	cost = 3
+	cost = 5
 
 /datum/supply_packs/imports/g22
 	name = "G-22 Handgun"
 	contains = list(/obj/item/weapon/gun/pistol/g22)
-	cost = 7
+	cost = 5
 
 /datum/supply_packs/imports/beretta92fs/ammo
 	name = "G-22 Handgun Ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/g22)
-	cost = 3
+	cost = 1
 
 /datum/supply_packs/imports/deagle
 	name = "Desert Eagle Handgun"
 	contains = list(/obj/item/weapon/gun/pistol/heavy)
-	cost = 7
+	cost = 5
 
 /datum/supply_packs/imports/deagle/ammo
 	name = "Desert Eagle Handgun Ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/heavy)
-	cost = 3
+	cost = 1
 
 /datum/supply_packs/imports/vp78
 	name = "VP78 Handgun"
 	contains = list(/obj/item/weapon/gun/pistol/vp78)
-	cost = 7
+	cost = 5
 
 /datum/supply_packs/imports/vp78/ammo
 	name = "VP78 Handgun Ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/vp78)
-	cost = 3
+	cost = 1
 
 /datum/supply_packs/imports/highpower
 	name = "Highpower Automag"
 	contains = list(/obj/item/weapon/gun/pistol/highpower)
-	cost = 7
+	cost = 5
 
 /datum/supply_packs/imports/highpower/ammo
 	name = "Highpower Automag Ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/highpower)
-	cost = 3
+	cost = 1
 
 /datum/supply_packs/imports/strawhat
 	name = "Straw hat"

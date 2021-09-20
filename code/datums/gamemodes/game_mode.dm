@@ -650,5 +650,5 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	scaled_job.total_positions = length(SSjob.active_squads[FACTION_TERRAGOV])
 
 ///Return the list of joinable factions, with regards with the current round balance
-/datum/game_mode/proc/get_joinable_factions()
+/datum/game_mode/proc/get_joinable_factions(should_look_balance)
 	return
