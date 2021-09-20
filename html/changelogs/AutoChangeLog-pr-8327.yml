@@ -1,5 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - rscadd: "Added new T-27 MMG, A machinegun meant to be deployed, can be fired while wielded, though I wouldn't recommend it! 100 rounds, T-21 damage, 0.15 fire rate. 80 scatter when held in your hands, 20 when deployed. One second deploy time, and 5 at roundstart."
-  - code_imp: "added a variable for deployed guns to have different scatter stats deployed and undeployed."
