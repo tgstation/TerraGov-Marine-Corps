@@ -187,7 +187,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.update_force_list() //This updates the gun to use proper force verbs.
 
 	if(silence_mod)
-		master_gun.flags_gun_features |= GUN_SILENCED
+		ADD_TRAIT(master_gun, TRAIT_GUN_SILENCED, GUN_TRAIT)
 		master_gun.muzzle_flash = null
 		master_gun.fire_sound = "gun_silenced"
 
@@ -215,7 +215,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.aim_speed_modifier			-= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	-= shot_marine_damage_falloff
 	master_gun.aim_fire_delay 				+= cached_aim_mode_debuff_fire_rate
-	if(CHECK_BITFIELD(master_gun.flags_gun_features, GUN_IS_AIMING))
+	if(HAS_TRAIT(master_gun, TRAIT_GUN_IS_AIMING))
 		master_gun.modify_fire_delay(cached_aim_mode_debuff_fire_rate)
 	cached_aim_mode_debuff_fire_rate = 0
 	if(delay_mod)
@@ -244,7 +244,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.update_force_list()
 
 	if(silence_mod) //Built in silencers always come as an attach, so the gun can't be silenced right off the bat.
-		master_gun.flags_gun_features &= ~GUN_SILENCED
+		REMOVE_TRAIT(master_gun, TRAIT_GUN_SILENCED, GUN_TRAIT)
 		master_gun.muzzle_flash = initial(master_gun.muzzle_flash)
 		master_gun.fire_sound = initial(master_gun.fire_sound)
 
@@ -557,15 +557,16 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.set_light_power(0)
 		master_gun.set_light_on(FALSE)
 		light_on = FALSE
+		REMOVE_TRAIT(master_gun, TRAIT_GUN_FLASHLIGHT_ON, GUN_TRAIT)
 	else if(toggle_on & !light_on)
 		icon_state = "flashlight-on"
 		master_gun.set_light_range(light_mod)
 		master_gun.set_light_power(3)
 		master_gun.set_light_on(TRUE)
 		light_on = TRUE
+		ADD_TRAIT(master_gun, TRAIT_GUN_FLASHLIGHT_ON, GUN_TRAIT)
 	else
 		return
-	master_gun.flags_gun_features ^= GUN_FLASHLIGHT_ON
 
 	for(var/X in master_gun.actions)
 		var/datum/action/A = X

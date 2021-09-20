@@ -109,7 +109,7 @@
 
 /obj/item/weapon/gun/mob_can_equip(mob/user)
 	//Cannot equip wielded items or items burst firing.
-	if(flags_gun_features & GUN_BURST_FIRING)
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
 	unwield(user)
 	return ..()
@@ -231,7 +231,7 @@ should be alright.
 	if(istype(src, /obj/item/weapon/gun/launcher/m92) || istype(src, /obj/item/weapon/gun/launcher/m81)) //This is to allow the parent proc to call and not fuck up GLs. This is temporary until I unfuck Gls.
 		return
 
-	if(flags_gun_features & GUN_BURST_FIRING)
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
 
 	if(istype(I, /obj/item/cell) && !istype(src, /obj/item/weapon/gun/energy) && CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY)) //If the sentry is an energy-gun, the battery is handled in /gun/energy/reload()
@@ -399,7 +399,7 @@ should be alright.
 		to_chat(user, span_warning("You need a gun in your hands to do that!"))
 		return
 
-	if(G.flags_gun_features & GUN_BURST_FIRING)
+	if(HAS_TRAIT(G, TRAIT_GUN_BURST_FIRING))
 		return
 
 	return G
@@ -421,7 +421,7 @@ should be alright.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/ui_action_click(mob/user, datum/action/item_action/action)
-	if(flags_gun_features & GUN_BURST_FIRING)
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
 	var/datum/action/item_action/firemode/firemode_action = action
 	if(!istype(firemode_action))
@@ -518,7 +518,7 @@ should be alright.
 
 /obj/item/weapon/gun/proc/do_toggle_firemode(datum/source, new_firemode)
 	SIGNAL_HANDLER
-	if(flags_gun_features & GUN_BURST_FIRING)//can't toggle mid burst
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))//can't toggle mid burst
 		return
 
 	if(!length(gun_firemode_list))
@@ -684,9 +684,12 @@ should be alright.
 	set name = "Toggle Gun Safety (Weapon)"
 	set desc = "Toggle the safety of the held gun."
 
-	to_chat(usr, span_notice("You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"]."))
+	to_chat(usr, span_notice("You toggle the safety [HAS_TRAIT(src, TRAIT_GUN_SAFETY) ? "<b>off</b>" : "<b>on</b>"]."))
 	playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
-	flags_gun_features ^= GUN_TRIGGER_SAFETY
+	if(HAS_TRAIT(src, TRAIT_GUN_SAFETY))
+		ADD_TRAIT(src, TRAIT_GUN_SAFETY, GUN_TRAIT)
+	else
+		REMOVE_TRAIT(src, TRAIT_GUN_SAFETY, GUN_TRAIT)
 
 
 /mob/living/carbon/human/verb/activate_attachment_verb()
@@ -829,18 +832,18 @@ should be alright.
 		toggle_aim_mode(user)
 		return
 
-	if(!CHECK_BITFIELD(flags_gun_features, AUTO_AIM_MODE))
+	if(!HAS_TRAIT(src, TRAIT_GUN_AUTO_AIM_MODE))
 		to_chat(user, span_notice("You will immediately aim upon wielding your weapon.</b>"))
-		ENABLE_BITFIELD(flags_gun_features, AUTO_AIM_MODE)
+		ADD_TRAIT(src, TRAIT_GUN_AUTO_AIM_MODE, GUN_TRAIT)
 	else
 		to_chat(user, span_notice("You will wield your weapon without aiming with precision.</b>"))
-		DISABLE_BITFIELD(flags_gun_features, AUTO_AIM_MODE)
+		REMOVE_TRAIT(src, TRAIT_GUN_AUTO_AIM_MODE, GUN_TRAIT)
 
 /obj/item/weapon/gun/proc/toggle_aim_mode(mob/living/carbon/human/user)
 	var/static/image/aim_mode_visual = image('icons/mob/hud.dmi', null, "aim_mode")
-	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_AIMING))
+	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING))
 		user.overlays -= aim_mode_visual
-		DISABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
+		REMOVE_TRAIT(src, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
 		user.remove_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN)
 		modify_fire_delay(-aim_fire_delay)
 		to_chat(user, span_notice("You cease aiming.</b>"))
@@ -860,7 +863,7 @@ should be alright.
 			to_chat(user, span_warning("Your concentration is interrupted!</b>"))
 			return
 	user.overlays += aim_mode_visual
-	ENABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
+	ADD_TRAIT(src, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
 	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_speed_modifier)
 	modify_fire_delay(aim_fire_delay)
 	to_chat(user, span_notice("You line up your aim, allowing you to shoot past allies.</b>"))
