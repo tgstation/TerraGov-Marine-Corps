@@ -17,7 +17,7 @@
 	if(command_aura)
 		command_aura_tick--
 
-		if(command_aura_tick < 1 || IsMute()) //Null the command aura if we're muted or its duration is over
+		if( (command_aura_tick < 1 && skills.getRating("leadership") < 3) || IsMute()) //Null the command aura if we're muted or its duration is over
 			command_aura = null
 
 		if(stat == CONSCIOUS) //Must be conscious
