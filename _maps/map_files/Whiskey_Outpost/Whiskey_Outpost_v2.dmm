@@ -2337,13 +2337,6 @@
 /obj/item/clothing/glasses/night/imager_goggles,
 /obj/item/clothing/glasses/night/imager_goggles,
 /obj/item/clothing/glasses/night/imager_goggles,
-/obj/item/clothing/glasses/night/imager_goggles,
-/obj/item/clothing/glasses/night/imager_goggles,
-/obj/item/clothing/glasses/night/imager_goggles,
-/obj/item/clothing/glasses/night/imager_goggles,
-/obj/item/clothing/glasses/night/imager_goggles,
-/obj/item/clothing/glasses/night/imager_goggles,
-/obj/item/clothing/glasses/night/imager_goggles,
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "kj" = (
@@ -3947,14 +3940,7 @@
 /obj/item/factory_refill/phosnade,
 /obj/item/factory_refill/phosnade,
 /obj/item/factory_refill/phosnade,
-/obj/item/factory_refill/phosnade,
-/obj/item/factory_refill/phosnade,
 /obj/structure/rack,
-/obj/item/factory_refill/phosnade,
-/obj/item/factory_refill/phosnade,
-/obj/item/factory_refill/phosnade,
-/obj/item/factory_refill/phosnade,
-/obj/item/factory_refill/phosnade,
 /obj/item/paper/factoryhowto,
 /turf/open/floor/prison,
 /area/whiskey_outpost)
