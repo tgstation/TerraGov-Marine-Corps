@@ -1,7 +1,7 @@
 /obj/effect/projectile
 	name = "pew"
 	icon = 'icons/obj/items/projectiles.dmi'
-	icon_state = "nothing"
+	icon_state = ""
 	layer = ABOVE_MOB_LAYER
 	anchored = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -27,21 +27,12 @@
 	M.Turn(angle)
 	transform = M
 
-/obj/effect/projectile/New(loc, angle_override, p_x, p_y, color_override, scaling = TRUE)
+/obj/effect/projectile/New(loc, angle_override, p_x, p_y, scaling = 1, effect_icon)
 	. = ..()
 	var/mutable_appearance/look = new(src)
 	look.pixel_x = p_x
 	look.pixel_y = p_y
-	if(color_override)
-		look.color = color_override
+	look.icon_state = effect_icon
 	appearance = look
-	scale_to(1,scaling, FALSE)
+	scale_to(1, scaling, FALSE)
 	turn_to(angle_override, FALSE)
-
-/obj/effect/projectile/laser
-	name = "laser"
-	icon_state = "beam"
-
-/obj/effect/projectile/laser_blue
-	icon_state = "beam_blue"
-
