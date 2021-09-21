@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - bugfix: "Synths don't apply their damage reduction twice anymore."

@@ -30,7 +30,20 @@
 /obj/item/weapon/gun/energy/Initialize()
 	. = ..()
 	if(cell_type)
-		cell = new cell_type(src)
+		set_cell(new cell_type(src))
+
+///Set the cell var
+/obj/item/weapon/gun/energy/proc/set_cell(new_cell)
+	if(cell)
+		UnregisterSignal(cell, COMSIG_PARENT_QDELETING)
+	cell = new_cell
+	if(cell)
+		RegisterSignal(cell, COMSIG_PARENT_QDELETING, .proc/clean_cell)
+
+///Signal handler to clean the cell var
+/obj/item/weapon/gun/energy/proc/clean_cell()
+	SIGNAL_HANDLER
+	cell = null
 
 /obj/item/weapon/gun/energy/able_to_fire(mob/living/user)
 	. = ..()
@@ -77,7 +90,7 @@
 
 // energy guns, however, do not use gun rattles.
 /obj/item/weapon/gun/energy/play_fire_sound(mob/user)
-	if(flags_gun_features & GUN_SILENCED)
+	if(HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 		playsound(user, fire_sound, 25)
 		return
 	playsound(user, fire_sound, 60)
@@ -295,7 +308,7 @@
 
 
 /obj/item/weapon/gun/energy/lasgun/reload(mob/user, obj/item/cell/lasgun/new_cell)
-	if(flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG))
+	if((flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)) || HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
 
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && ((cell_type == sentry_battery_type && !sentry_battery && cell) || (cell_type != sentry_battery_type && istype(new_cell, sentry_battery_type))))
@@ -333,7 +346,7 @@
 	return TRUE
 
 /obj/item/weapon/gun/energy/lasgun/replace_magazine(mob/user, obj/item/cell/lasgun/new_cell)
-	cell = new_cell
+	set_cell(new_cell)
 	if(user)
 		user.transferItemToLoc(new_cell, src) //Click!
 		user.visible_message(span_notice("[user] loads [new_cell] into [src]!"),
@@ -348,7 +361,7 @@
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
 //This can be passed with a null user, so we need to check for that as well.
 /obj/item/weapon/gun/energy/lasgun/unload(mob/user, reload_override = 0, drop_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst. Drop is for dropping the magazine on the ground.
-	if(!reload_override && (flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)))
+	if(!reload_override && ((flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)) || HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING)))
 		return FALSE
 
 	if(!cell || cell.loc != src)
@@ -363,7 +376,7 @@
 	user.visible_message(span_notice("[user] unloads [cell] from [src]."),
 	span_notice("You unload [cell] from [src]."), null, 4)
 	cell.update_icon()
-	cell = null
+	set_cell(null)
 
 	update_icon(user)
 

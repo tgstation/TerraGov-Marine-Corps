@@ -534,7 +534,7 @@ to_chat will check for valid clients itself already so no need to double check f
 ///Used for setting the trackers of all xenos in the hive, like when a nuke activates
 /datum/hive_status/proc/set_all_xeno_trackers(atom/target)
 	for(var/mob/living/carbon/xenomorph/X AS in get_all_xenos())
-		X.tracked = target
+		X.set_tracked(target)
 		to_chat(X, span_notice(" Now tracking [target.name]"))
 
 // ***************************************
@@ -1061,6 +1061,12 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /obj/structure/xeno/tunnel/get_xeno_hivenumber()
 	return hivenumber
+
+/mob/living/carbon/human/get_xeno_hivenumber()
+	if(faction == FACTION_XENO)
+		return XENO_HIVE_NORMAL
+	return FALSE
+
 
 /obj/structure/xeno/resin/xeno_turret/get_xeno_hivenumber()
 	return associated_hive.hivenumber

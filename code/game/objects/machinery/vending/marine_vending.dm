@@ -92,6 +92,7 @@
 			/obj/item/ammo_magazine/rifle/standard_skirmishrifle = -1,
 			/obj/item/weapon/gun/rifle/tx11 = -1,
 			/obj/item/ammo_magazine/rifle/tx11 = -1,
+			/obj/item/weapon/gun/shotgun/pump/lever/repeater = -1,
 		),
 		"Energy Weapons" = list(
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = -1,
@@ -122,6 +123,7 @@
 		"Shotgun" = list(
 			/obj/item/weapon/gun/shotgun/pump/t35 = -1,
 			/obj/item/weapon/gun/shotgun/combat/standardmarine = -1,
+			/obj/item/weapon/gun/shotgun/combat = -1,
 			/obj/item/weapon/gun/shotgun/pump/cmb = -1,
 			/obj/item/weapon/gun/shotgun/double/marine = -1,
 			/obj/item/storage/belt/gun/ts34/full = -1,
@@ -137,6 +139,8 @@
 			/obj/item/ammo_magazine/standard_lmg = -1,
 			/obj/item/weapon/gun/rifle/standard_gpmg = -1,
 			/obj/item/ammo_magazine/standard_gpmg = -1,
+			/obj/item/weapon/gun/standard_mmg = 5,
+			/obj/item/ammo_magazine/standard_mmg = -1,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,

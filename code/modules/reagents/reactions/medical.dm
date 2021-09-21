@@ -15,12 +15,6 @@
 	required_reagents = list(/datum/reagent/oxygen = 2, /datum/reagent/toxin/phoron = 0.1)
 	required_catalysts = list(/datum/reagent/toxin/phoron = 5)
 
-/datum/chemical_reaction/dermaline
-	name = "Dermaline"
-	results = list(/datum/reagent/medicine/dermaline = 3)
-	required_reagents = list(/datum/reagent/oxygen = 1, /datum/reagent/phosphorus = 1, /datum/reagent/medicine/kelotane = 1)
-	required_catalysts = list(/datum/reagent/consumable/larvajelly = 5)
-
 /datum/chemical_reaction/dermalime
 	name = "Dermaline"
 	results = list(/datum/reagent/medicine/dermaline = 3)
@@ -37,12 +31,6 @@
 	required_reagents = list(/datum/reagent/medicine/inaprovaline = 1, /datum/reagent/carbon = 1)
 
 /datum/chemical_reaction/meralyne
-	name = "Meralyne"
-	results = list(/datum/reagent/medicine/meralyne = 3)
-	required_reagents = list(/datum/reagent/medicine/inaprovaline = 1, /datum/reagent/medicine/bicaridine = 1, /datum/reagent/iron = 1)
-	required_catalysts = list(/datum/reagent/consumable/larvajelly = 5)
-
-/datum/chemical_reaction/meralime
 	name = "Meralyne"
 	results = list(/datum/reagent/medicine/meralyne = 3)
 	required_reagents = list(/datum/reagent/medicine/inaprovaline = 1, /datum/reagent/medicine/bicaridine = 1, /datum/reagent/iron = 1, /datum/reagent/medicine/lemoline = 1)
@@ -175,9 +163,14 @@
 
 /datum/chemical_reaction/neuraline
 	name = "Neuraline"
-	results = list(/datum/reagent/medicine/neuraline = 4, /datum/reagent/toxin/zombiepowder = 1)
+	results = list(/datum/reagent/medicine/neuraline = 4, /datum/reagent/toxin/huskpowder = 1)
 	required_reagents = list(/datum/reagent/medicine/synaptizine = 1, /datum/reagent/medicine/arithrazine = 1, /datum/reagent/medicine/tricordrazine = 2, /datum/reagent/consumable/larvajellyprepared = 1)
-	required_catalysts = list(/datum/reagent/consumable/larvajelly = 5)
+	required_catalysts = list(/datum/reagent/medicine/lemoline = 5)
+
+/datum/chemical_reaction/lemoline
+	name = "Lemoline catalysis"
+	results = list(/datum/reagent/medicine/lemoline = 5) //4 to one multiplication ratio
+	required_reagents = list(/datum/reagent/medicine/lemoline = 1, /datum/reagent/consumable/larvajelly = 1)
 
 // Cloning chemicals
 /datum/chemical_reaction/expanded_biomass
@@ -196,12 +189,12 @@
 	required_reagents = list(/datum/reagent/virilyth = 1, /datum/reagent/medicine/kelotane = 1)
 
 /datum/chemical_reaction/dupl_tramadol
-	name = "Duplicate Bicaridine"
+	name = "Duplicate Tramadol"
 	results = list(/datum/reagent/medicine/tramadol = 2)
 	required_reagents = list(/datum/reagent/virilyth = 1, /datum/reagent/medicine/tramadol = 1)
 
 /datum/chemical_reaction/dupl_dylovene
-	name = "Duplicate Bicaridine"
+	name = "Duplicate Dylovene"
 	results = list(/datum/reagent/medicine/dylovene = 2)
 	required_reagents = list(/datum/reagent/virilyth = 1, /datum/reagent/medicine/dylovene = 1)
 
@@ -209,3 +202,24 @@
 	name = "Bihexajuline"
 	results = list(/datum/reagent/medicine/bihexajuline = 5)
 	required_reagents = list(/datum/reagent/medicine/bicaridine = 2, /datum/reagent/consumable/drink/milk = 1, /datum/reagent/iron = 2)
+
+/datum/chemical_reaction/quietus
+	name = "Quietus"
+	results = list(/datum/reagent/medicine/research/quietus = 1)
+	required_reagents = list(/datum/reagent/toxin/chloralhydrate = 3, /datum/reagent/medicine/dylovene = 1, /datum/reagent/medicine/lemoline = 3)
+
+/datum/chemical_reaction/somolent
+	name = "Somolent"
+	results = list(/datum/reagent/medicine/research/somolent = 4)
+	required_reagents = list(/datum/reagent/toxin/sleeptoxin = 1, /datum/reagent/medicine/tricordrazine = 1, /datum/reagent/consumable/drink/doctor_delight = 1, /datum/reagent/medicine/paracetamol = 1)
+	required_catalysts = list(/datum/reagent/medicine/lemoline = 5)
+
+/datum/chemical_reaction/medicalnanites
+	name = "Medical Nanites"
+	results = list(/datum/reagent/medicine/research/medicalnanites = 1)
+	required_reagents = list(/datum/reagent/toxin/nanites = 10, /datum/reagent/radium = 5, /datum/reagent/iron = 100, /datum/reagent/medicine/lemoline = 5)
+
+/datum/chemical_reaction/stimulum
+	name = "Stimulum"
+	results = list(/datum/reagent/medicine/research/stimulon = 1)
+	required_reagents = list(/datum/reagent/medicine/synaptizine = 10, /datum/reagent/medicine/arithrazine = 20, /datum/reagent/consumable/nutriment = 20, /datum/reagent/medicine/lemoline = 20)

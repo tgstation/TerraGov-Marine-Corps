@@ -12,6 +12,7 @@
 
 /datum/action/New(Target)
 	target = Target
+	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/clean_action)
 	button = new
 	if(target)
 		var/image/IMG
@@ -34,6 +35,10 @@
 	QDEL_NULL(button)
 	target = null
 	return ..()
+
+/datum/action/proc/clean_action()
+	SIGNAL_HANDLER
+	qdel(src)
 
 /datum/action/proc/should_show()
 	return TRUE

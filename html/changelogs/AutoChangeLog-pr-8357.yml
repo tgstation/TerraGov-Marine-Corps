@@ -1,4 +1,4 @@
 author: "BraveMole"
 delete-after: True
 changes: 
-  - qol: "No longer shooting at adjacent tiles"
+  - bugfix: "Fix twin pillars doors"

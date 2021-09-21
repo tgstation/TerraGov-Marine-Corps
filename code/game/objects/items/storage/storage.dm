@@ -468,7 +468,7 @@
 	for(var/limited_type in storage_type_limits)
 		if(istype(item, limited_type))
 			storage_type_limits[limited_type] -= 1
-	return 1
+	return TRUE
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
 /obj/item/storage/proc/remove_from_storage(obj/item/item, atom/new_location, mob/user)

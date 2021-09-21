@@ -338,13 +338,20 @@ TUNNEL
 	///What xeno created this well
 	var/mob/living/carbon/xenomorph/creator = null
 
-/obj/structure/xeno/acidwell/Initialize()
+/obj/structure/xeno/acidwell/Initialize(loc, creator)
 	. = ..()
+	src.creator = creator
+	RegisterSignal(creator, COMSIG_PARENT_QDELETING, .proc/clear_creator)
 	update_icon()
 
 /obj/structure/xeno/acidwell/Destroy()
 	creator = null
 	return ..()
+
+///Signal handler for creator destruction to clear reference
+/obj/structure/xeno/acidwell/proc/clear_creator()
+	SIGNAL_HANDLER
+	creator = null
 
 ///Ensures that no acid gas will be released when the well is crushed by a shuttle
 /obj/structure/xeno/acidwell/proc/shuttle_crush()

@@ -59,7 +59,7 @@
 	name = "Hyperspace"
 	desc = "Weeeeee"
 	base_lighting_alpha = 255
-	base_lighting_color = LIGHT_COLOR_WHITE
+
 
 /area/shuttle/escape_pod
 	name = "Escape Pod"

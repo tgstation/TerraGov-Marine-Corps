@@ -7,7 +7,6 @@
 	icon_state = "motorbike"
 	max_integrity = 300
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 0, "bomb" = 30, "fire" = 60, "acid" = 60)
-	obj_flags = CAN_BE_HIT
 	resistance_flags = XENO_DAMAGEABLE
 	key_type = null
 	integrity_failure = 0.5

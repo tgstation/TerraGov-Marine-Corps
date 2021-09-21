@@ -279,6 +279,9 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 22, "under_x" = 24, "under_y" = 13, "stock_x" = 20, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/attachable/scope/slavic, /obj/item/attachable/slavicbarrel)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.8 SECONDS
+	aim_speed_modifier = 0.75
 
 	fire_delay = 1.2 SECONDS
 	burst_amount = 1
@@ -913,7 +916,7 @@
 			return
 		finish_windup()
 		return
-	
+
 	addtimer(CALLBACK(src, .proc/finish_windup), delay)
 
 ///Proc that finishes the windup, this fires the gun.
