@@ -106,6 +106,7 @@
 					loadout.item_list[SLOT_WEAR_SUIT] = null
 				delete_loadout(ui.user, loadout.name, loadout.job)
 				add_loadout(loadout)
+				to_chat(ui.user, span_warning("Please note: The loadout code has been updated and as such any modular helmet/suit has been removed from it due to the transitioning of loadout versions. Any future modular helmet/suit saves should have no problem being saved."))
 			ui.user.client.prefs.save_loadout(loadout)
 			add_loadout(loadout)
 			update_static_data(ui.user, ui)
