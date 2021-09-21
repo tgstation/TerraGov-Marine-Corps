@@ -45,6 +45,16 @@
 	in_chamber = create_bullet(ammo)
 	return in_chamber
 
+/obj/item/weapon/gun/energy/create_bullet(datum/ammo/chambered)
+	if(!chambered)
+		stack_trace("null ammo while create_bullet(). User: [usr]")
+		chambered = GLOB.ammo_list[/datum/ammo/bullet] //Slap on a default bullet if somehow ammo wasn't passed.
+
+	var/obj/projectile/P = new /obj/projectile/hitscan()
+	P.generate_bullet(chambered)
+	return P
+
+
 /obj/item/weapon/gun/energy/update_icon()
 	return
 
