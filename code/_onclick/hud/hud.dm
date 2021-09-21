@@ -253,6 +253,7 @@
 /datum/hud/proc/persistent_inventory_update(mob/viewer)
 	return
 
+///Add an ammo hud to the user informing of the ammo count of G
 /datum/hud/proc/add_ammo_hud(mob/living/user, obj/item/weapon/gun/G)
 	if(length(ammo_hud_list) >= MAXHUD_POSSIBLE)
 		return
@@ -262,6 +263,7 @@
 	ammo_hud.add_hud(user, G)
 	ammo_hud.update_hud(user, G)
 
+///Remove the ammo hud related to the gun G from the user
 /datum/hud/proc/remove_ammo_hud(mob/living/user, obj/item/weapon/gun/G)
 	var/obj/screen/ammo/ammo_hud = ammo_hud_list[G]
 	ammo_hud.remove_hud(user, G)
@@ -273,6 +275,7 @@
 		ammo_hud.screen_loc = ammo_hud.ammo_screen_loc_list[i]
 		i++
 
+///Update the ammo hud related to the gun G
 /datum/hud/proc/update_ammo_hud(mob/living/user, obj/item/weapon/gun/G)
 	var/obj/screen/ammo/ammo_hud = ammo_hud_list[G]
 	ammo_hud?.update_hud(user, G)
