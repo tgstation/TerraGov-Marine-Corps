@@ -115,14 +115,15 @@
 	..()
 
 ///Attach the instantiated item on an armor
-/datum/item_representation/armor_module/proc/install_on_armor(datum/loadout_seller/seller, thing_to_install_on, mob/living/user)
+/datum/item_representation/armor_module/proc/install_on_armor(datum/loadout_seller/seller, obj/thing_to_install_on, mob/living/user)
+	SHOULD_CALL_PARENT(TRUE)
 	var/obj/item/armor_module/module_type = item_type
 	if(!CHECK_BITFIELD(initial(module_type.flags_attach_features), ATTACH_REMOVABLE))
 		bypass_vendor_check = TRUE
 	var/obj/item/armor_module/module = instantiate_object(seller, null, user)
 	if(!module)
 		return
-	attach_attachment(thing_to_install_on, module)
+	SEND_SIGNAL(thing_to_install_on, COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT, module)
 
 /**
  * Allow to representate an armor piece of a jaeger, and to color it

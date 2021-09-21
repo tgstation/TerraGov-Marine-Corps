@@ -55,7 +55,7 @@
 		return
 	if(parent.loc != user)
 		return
-	INVOKE_ASYNC(storage, /atom/proc/attackby, I, user)
+	INVOKE_ASYNC(storage, /atom.proc/attackby, I, user)
 	return COMPONENT_NO_AFTERATTACK
 
 /obj/item/armor_module/storage/attackby(obj/item/I, mob/user, params)

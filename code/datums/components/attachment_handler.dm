@@ -40,7 +40,7 @@
 
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/start_handle_attachment) //For attaching.
 	RegisterSignal(parent, list(COMSIG_ATOM_UPDATE_OVERLAYS, COMSIG_ATOM_UPDATE_ICON), .proc/update_parent_overlay) //Updating the attachment overlays.
-	RegisterSignal(parent, COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT, .proc/attach_without_user)
+	RegisterSignal(parent, list(COMSIG_LOADOUT_VENDOR_VENDED_GUN_ATTACHMENT, COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT), .proc/attach_without_user)
 
 	RegisterSignal(parent, COMSIG_CLICK_ALT, .proc/start_detach) //For Detaching
 	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/clean_references) //Dels attachments.

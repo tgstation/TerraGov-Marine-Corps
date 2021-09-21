@@ -199,6 +199,10 @@
 			return FALSE
 	return ..()
 
+/obj/item/clothing/suit/modular/attack_hand_alternate(mob/living/user)
+	. = ..()
+	
+
 /obj/item/clothing/suit/modular/attack_self(mob/user)
 	. = ..()
 	if(.)
@@ -452,6 +456,7 @@
 
 	set_greyscale_colors(new_color)
 	paint.uses--
+	update_icon()
 
 /obj/item/clothing/head/modular/MouseDrop(over_object, src_location, over_location)
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])

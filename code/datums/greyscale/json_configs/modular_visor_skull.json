@@ -9,8 +9,7 @@
 		{
 			"type": "icon_state",
 			"icon_state": "helmet_skull",
-			"blend_mode": "overlay",
-			"color_ids": [ 1 ]
+			"blend_mode": "overlay"
 		}
 	]
 }

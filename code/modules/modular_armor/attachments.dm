@@ -149,3 +149,4 @@
 	set_greyscale_colors(new_color)
 	paint.uses--
 	update_icon()
+	parent?.update_icon()

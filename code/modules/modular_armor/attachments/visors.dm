@@ -24,7 +24,7 @@
 	. = ..()
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY_ALTERNATE, .proc/handle_color)
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/extra_examine)
-	RegisterSignal(parent, COMSIG_CLICK_RIGHT, .proc/toggle_emissive)
+	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, .proc/toggle_emissive)
 	if(visor_emissive_on)
 		parent.AddElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, greyscale_config, greyscale_colors)
 	update_icon()
@@ -42,14 +42,9 @@
 	return COMPONENT_NO_AFTERATTACK
 
 ///Toggles the visors emmisiveness if allowed.
-/obj/item/armor_module/armor/visor/proc/toggle_emissive(datum/source, mob/user)
+/obj/item/armor_module/armor/visor/proc/toggle_emissive(datum/source, mob/living/user)
 	SIGNAL_HANDLER
-	if(!greyscale_config || !allow_emissive)
-		return
-	if(!isliving(user))
-		return
-	var/mob/living/living_user = user
-	if(living_user.get_active_held_item() != parent && living_user.get_inactive_held_item() != parent)
+	if(!greyscale_config || !allow_emissive|| (parent && user.get_inactive_held_item() != parent) || (!parent && user.get_inactive_held_item() != src))
 		return
 	visor_emissive_on = !visor_emissive_on
 	if(visor_emissive_on)
@@ -57,9 +52,9 @@
 	else
 		parent?.RemoveElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, greyscale_config, greyscale_colors)
 	to_chat(user, span_notice("You turn [ visor_emissive_on ? "on" : "off" ] \the [src]'s internal lighting."))
-	parent.update_icon()
 	update_icon()
-	return COMSIG_MOB_CLICK_CANCELED
+	parent.update_icon()
+	return COMPONENT_NO_ATTACK_HAND
 
 ///Relays the extra controls to the user when the parent is examined.
 /obj/item/armor_module/armor/visor/proc/extra_examine(datum/source, mob/user)

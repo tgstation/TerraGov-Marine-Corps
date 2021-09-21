@@ -48,10 +48,6 @@
 	tgui_data["name"] = initial(item_type.name)
 	return tgui_data
 
-///Sends a signal to the object that it is giving the object attachments.
-/datum/item_representation/proc/attach_attachment(obj/item/thing_to_attach_to, obj/item/attachment)
-	SEND_SIGNAL(thing_to_attach_to, COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT, attachment)
-
 /**
  * Allow to representate a storage
  * This is only able to represent /obj/item/storage
@@ -99,8 +95,6 @@
 			storage.handle_item_insertion(item_to_insert)
 			continue
 		item_to_insert.forceMove(get_turf(user))
-	return storage
-
 
 /**
  * Allow to representate stacks of item of type /obj/item/stack
