@@ -438,6 +438,29 @@
 		/obj/item/tweezers,
 	)
 
+/obj/item/clothing/tie/storage/white_vest/marine
+	name = "corpsman webbing"
+	desc = "A clean white Nylon vest with large pockets specially designed for holding common medical supplies. This marine version can hold upto 5 items."
+	hold = /obj/item/storage/internal/tie/white_vest/marine
+
+/obj/item/storage/internal/tie/white_vest/marine
+	storage_slots = 5 //one more than the brown webbing but you lose out on being able to hold non-medic stuff. This marine version has 5 slots only.
+	can_hold = list(
+		/obj/item/stack/medical,
+		/obj/item/healthanalyzer,
+		/obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/glass/beaker,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/storage/pill_bottle,
+		/obj/item/reagent_containers/hypospray,
+		/obj/item/bodybag,
+		/obj/item/roller,
+		/obj/item/clothing/glasses/hud/health,
+		/obj/item/tweezers,
+	)
+
 /obj/item/clothing/tie/storage/knifeharness
 	name = "decorated harness"
 	desc = "A heavily decorated harness of sinew and leather with two knife-loops."
