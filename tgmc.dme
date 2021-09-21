@@ -291,7 +291,6 @@
 #include "code\datums\mutable_appearance.dm"
 #include "code\datums\namepool.dm"
 #include "code\datums\outfit.dm"
-#include "code\datums\point.dm"
 #include "code\datums\progressbar.dm"
 #include "code\datums\recipe.dm"
 #include "code\datums\round_statistics.dm"

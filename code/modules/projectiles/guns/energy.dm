@@ -650,6 +650,7 @@
 		"Heat" = /datum/lasrifle/base/energy_pistol_mode/heat,
 		"Disabler" = /datum/lasrifle/base/energy_pistol_mode/disabler,
 	)
+	hitscan_gun_effect_icon = "beam_thin"
 
 /datum/lasrifle/base/energy_pistol_mode/standard
 	charge_cost = 20
@@ -817,6 +818,7 @@
 		"Standard" = /datum/lasrifle/base/energy_sniper_mode/standard,
 		"Heat" = /datum/lasrifle/base/energy_sniper_mode/heat,
 	)
+	hitscan_gun_effect_icon = "beam_heavy"
 
 /datum/lasrifle/base/energy_sniper_mode/standard
 	charge_cost = 50
