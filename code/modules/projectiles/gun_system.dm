@@ -1307,4 +1307,3 @@ and you're good to go.
 	playsound(loc, "alien_claw_metal", 25, 1)
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	to_chat(X, span_warning("We disable the metal thing's lights.") )
-
