@@ -10,6 +10,7 @@
 
 /datum/language_holder/New(owner)
 	src.owner = owner
+	RegisterSignal(owner, COMSIG_PARENT_QDELETING, .proc/clean_language)
 
 	languages = typecacheof(languages)
 	shadow_languages = typecacheof(shadow_languages)
@@ -21,6 +22,10 @@
 	shadow_languages.Cut()
 	return ..()
 
+///Clean src when it's owner is deleted
+/datum/language_holder/proc/clean_language()
+	SIGNAL_HANDLER
+	qdel(src)
 
 /datum/language_holder/proc/copy(newowner)
 	var/datum/language_holder/copy = new(newowner)
