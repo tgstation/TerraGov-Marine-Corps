@@ -23,13 +23,13 @@
 	var/marines_evac = CRASH_EVAC_NONE
 
 	// Shuttle details
-	var/shuttle_id = "tgs_canterbury"
+	var/shuttle_id = SHUTTLE_CANTERBURY
 	var/obj/docking_port/mobile/crashmode/shuttle
 
 	// Round start info
 	var/starting_squad = "Alpha"
 
-	var/larva_check_interval = 0
+	var/larva_check_interval = 2 MINUTES
 	bioscan_interval = 0
 
 
@@ -46,7 +46,7 @@
 
 	// Spawn the ship
 	if(TGS_CLIENT_COUNT >= 25)
-		shuttle_id = "tgs_bigbury"
+		shuttle_id = SHUTTLE_BIGBURY
 	if(!SSmapping.shuttle_templates[shuttle_id])
 		message_admins("Gamemode: couldn't find a valid shuttle template for [shuttle_id]")
 		CRASH("Shuttle [shuttle_id] wasn't found and can't be loaded")
@@ -224,6 +224,7 @@
 	SIGNAL_HANDLER
 	switch(new_xeno.tier)
 		if(XENO_TIER_ONE)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE) //This is bad, but this works without more refactoring
 			new_xeno.upgrade_xeno(XENO_UPGRADE_TWO)
 		if(XENO_TIER_TWO)
 			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
@@ -244,8 +245,8 @@
 			return //RIP benos.
 		if(stored_larva)
 			return //No need for respawns nor to end the game. They can use their burrowed larvas.
-		xeno_job.add_job_positions(max(1, round(larvapoints, 1))) //At least one, rounded to nearest integer if more.
+		xeno_job.add_job_positions(1)
 		return
 	if(round(larvapoints, 1) < 1)
 		return //Things are balanced, no burrowed needed
-	xeno_job.add_job_positions(round(larvapoints, 1)) //However many burrowed they can afford to buy, rounded to nearest integer.
+	xeno_job.add_job_positions(1)

@@ -124,7 +124,7 @@
 /obj/structure/largecrate/supply/weapons/flamers
 	name = "\improper M240A1 incinerator weapons chest (x4)"
 	desc = "A weapons chest containing four M240A1 incinerator units."
-	supplies = list(/obj/item/weapon/gun/flamer = 4)
+	supplies = list(/obj/item/weapon/gun/flamer/big_flamer = 4)
 
 /obj/structure/largecrate/supply/weapons/hpr
 	name = "\improper T-42 LMG weapons chest (x2)"
@@ -286,7 +286,7 @@
 /obj/structure/largecrate/supply/powerloader
 	name = "\improper Caterpillar P-5000 Work Loader crate"
 	desc = "A crate containing one folded, but fully assembled, Caterpillar P-5000 Work Loader."
-	supplies = list(/obj/vehicle/powerloader = 1)
+	supplies = list(/obj/vehicle/ridden/powerloader = 1)
 
 /obj/structure/largecrate/supply/floodlights
 	name = "floodlight crate (x4)"

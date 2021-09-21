@@ -26,7 +26,7 @@ Redefine as needed.
 	if(user.incapacitated() || !tkMaxRangeCheck(user, src))
 		return FALSE
 	new /obj/effect/temp_visual/telekinesis(get_turf(src))
-	user.UnarmedAttack(src, FALSE) // attack_hand, attack_paw, etc
+	user.UnarmedAttack(src, FALSE) // attack_hand, etc
 	add_fingerprint(user, "attack_tk")
 
 

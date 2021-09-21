@@ -58,29 +58,33 @@
 	if(!job) //It might be setup on spawn.
 		setup_job()
 
-	AddComponent(/datum/component/bump_attack)
-
 	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
 	hive.update_tier_limits()
 	if(z) //Larva are initiated in null space
 		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
 
-/mob/living/carbon/xenomorph/proc/set_datum()
+///Change the caste of the xeno. If restore health is true, then health is set to the new max health
+/mob/living/carbon/xenomorph/proc/set_datum(restore_health_and_plasma = TRUE)
 	if(!caste_base_type)
 		CRASH("xeno spawned without a caste_base_type set")
 	if(!GLOB.xeno_caste_datums[caste_base_type])
 		CRASH("error finding base type")
 	if(!GLOB.xeno_caste_datums[caste_base_type][upgrade])
 		CRASH("error finding datum")
+	if(xeno_caste)
+		xeno_caste.on_caste_removed(src)
 	var/datum/xeno_caste/X = GLOB.xeno_caste_datums[caste_base_type][upgrade]
 	if(!istype(X))
 		CRASH("error with caste datum")
+	var/marked_target = xeno_caste?.marked_target
 	xeno_caste = X
-
-	plasma_stored = xeno_caste.plasma_max
+	xeno_caste.marked_target = marked_target
+	xeno_caste.on_caste_applied(src)
 	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
-	health = maxHealth
+	if(restore_health_and_plasma)
+		plasma_stored = xeno_caste.plasma_max
+		health = maxHealth
 	setXenoCasteSpeed(xeno_caste.speed)
 	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
 	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
@@ -172,6 +176,19 @@
 		CRASH("Unemployment has reached to a xeno, who has failed to become a [xeno_caste.job_type]")
 	apply_assigned_role_to_spawn(xeno_job)
 
+/mob/living/carbon/xenomorph/proc/grabbed_self_attack()
+	SIGNAL_HANDLER
+	if(!(xeno_caste.caste_flags & CAN_RIDE_CRUSHER) || !isxenocrusher(pulling))
+		return NONE
+	var/mob/living/carbon/xenomorph/crusher/grabbed = pulling
+	if(grabbed.stat == CONSCIOUS && stat == CONSCIOUS)
+		INVOKE_ASYNC(grabbed, /mob/living/carbon/xenomorph/crusher/proc.carry_xeno, src, TRUE)
+		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
+	return NONE
+
+///Initiate of form changing on the xeno
+/mob/living/carbon/xenomorph/proc/change_form()
+	return
 
 /mob/living/carbon/xenomorph/examine(mob/user)
 	..()
@@ -286,7 +303,8 @@
 	hud_to_add.add_hud_to(src)
 	hud_to_add = GLOB.huds[DATA_HUD_MEDICAL_PAIN]
 	hud_to_add.add_hud_to(src)
-
+	hud_to_add = GLOB.huds[DATA_HUD_XENO_DEBUFF]
+	hud_to_add.add_hud_to(src)
 
 /mob/living/carbon/xenomorph/point_to_atom(atom/A, turf/T)
 	//xeno leader get a bit arrow and less cooldown
@@ -320,7 +338,7 @@
 	var/obj/screen/LL_dir = hud_used.locate_leader
 	if(!tracked)
 		if(hive.living_xeno_ruler)
-			tracked = hive.living_xeno_ruler
+			set_tracked(hive.living_xeno_ruler)
 		else
 			LL_dir.icon_state = "trackoff"
 			return
@@ -354,12 +372,6 @@
 	if(is_zoomed)
 		zoom_out()
 	return ..()
-
-/mob/living/carbon/xenomorph/ghostize(can_reenter_corpse)
-	. = ..()
-	if(!. || can_reenter_corpse)
-		return
-	set_afk_status(MOB_RECENTLY_DISCONNECTED, 5 SECONDS)
 
 /mob/living/carbon/xenomorph/set_stat(new_stat)
 	. = ..()

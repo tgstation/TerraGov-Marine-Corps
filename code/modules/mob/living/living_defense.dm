@@ -130,6 +130,8 @@
 /mob/living/proc/IgniteMob()
 	if(status_flags & GODMODE) //Invulnerable mobs don't get ignited
 		return FALSE
+	if(HAS_TRAIT(src, TRAIT_NON_FLAMMABLE))
+		return FALSE
 	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 		return FALSE
 	if(fire_stacks > 0 && !on_fire)
@@ -241,16 +243,12 @@
 		if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
 			smokecloak_off()
 		return
-	if(smoke_delay)
-		return FALSE
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO) && (stat == DEAD || isnestedhost(src)))
 		return FALSE
-	smoke_delay = TRUE
-	addtimer(CALLBACK(src, .proc/remove_smoke_delay), 10)
+	if(LAZYACCESS(smoke_delays, S.type) > world.time)
+		return FALSE
+	LAZYSET(smoke_delays, S.type, world.time + S.minimum_effect_delay)
 	smoke_contact(S)
-
-/mob/living/proc/remove_smoke_delay()
-	smoke_delay = FALSE
 
 /mob/living/proc/smoke_contact(obj/effect/particle_effect/smoke/S)
 	var/protection = max(1 - get_permeability_protection() * S.bio_protection, 0)

@@ -11,7 +11,7 @@
 	bound_width = 32
 	var/obj/item/fuelCell/cell_left = null
 	var/obj/item/fuelCell/cell_right = null
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 
 /obj/machinery/fuelcell_recycler/attackby(obj/item/I, mob/user, params)
 	. = ..()

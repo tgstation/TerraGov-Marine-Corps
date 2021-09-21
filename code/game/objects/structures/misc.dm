@@ -46,7 +46,6 @@
 	desc = "Fill it with water, but don't forget a mop!"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "mopbucket"
-	density = TRUE
 	anchored = FALSE
 	resistance_flags = XENO_DAMAGEABLE
 	var/amount_per_transfer_from_this = 5 //Shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
@@ -162,6 +161,10 @@ obj/item/alienjar
 	icon_state = "rampbottom"
 	density = FALSE
 	opacity = FALSE
+
+/obj/structure/stairs/railstairs
+	icon = 'icons/obj/structures/railstairs.dmi'
+	icon_state = "stairdownrailright"
 
 /obj/structure/plasticflaps //HOW DO YOU CALL THOSE THINGS ANYWAY
 	name = "\improper plastic flaps"

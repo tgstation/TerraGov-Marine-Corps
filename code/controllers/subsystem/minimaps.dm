@@ -257,7 +257,7 @@ SUBSYSTEM_DEF(minimaps)
 	images_by_source[source].pixel_y = MINIMAP_PIXEL_FROM_WORLD(source.y) + minimaps_by_z["[source.z]"].y_offset
 
 /**
- * Removes an atom nd it's blip from the subsystem
+ * Removes an atom and it's blip from the subsystem
  */
 /datum/controller/subsystem/minimaps/proc/remove_marker(atom/source)
 	SIGNAL_HANDLER

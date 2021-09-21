@@ -6,17 +6,23 @@
 	density = TRUE
 	layer = ABOVE_MOB_LAYER
 	use_power = FALSE
-	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
-	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
 ///generates the icon based on how much ammo it has.
 /obj/machinery/deployable/mounted/update_icon_state(mob/user)
 	. = ..()
 	var/obj/item/weapon/gun/gun = internal_item
-	if(!gun.current_mag)
+	var/has_mag
+	if(istype(gun, /obj/item/weapon/gun/energy))
+		var/obj/item/weapon/gun/energy/energy_gun = gun
+		has_mag = energy_gun.cell
+	else
+		has_mag = gun.current_mag
+	if(!has_mag)
 		icon_state = default_icon_state + "_e"
 	else
 		icon_state = default_icon_state
+
 	hud_set_gun_ammo()
 
 /obj/machinery/deployable/mounted/Initialize(mapload, _internal_item, deployer)
@@ -27,6 +33,16 @@
 	var/obj/item/weapon/gun/new_gun = internal_item
 
 	new_gun.set_gun_user(null)
+
+/obj/machinery/deployable/mounted/AltClick(mob/user)
+	. = ..()
+	var/obj/item/weapon/gun/internal_gun = internal_item
+	internal_gun.unload(user)
+
+/obj/machinery/deployable/mounted/attack_hand_alternate(mob/living/user)
+	. = ..()
+	var/obj/item/weapon/gun/internal_gun = internal_item
+	internal_gun.cock(user)
 
 /obj/machinery/deployable/mounted/attackby(obj/item/I, mob/user, params) //This handles reloading the gun, if its in acid cant touch it.
 	. = ..()
@@ -41,18 +57,22 @@
 
 	reload(user, I)
 
+///Reloads the internal_item
 /obj/machinery/deployable/mounted/proc/reload(mob/user, ammo_magazine)
+	var/obj/item/weapon/gun/gun = internal_item
+	if(istype(ammo_magazine, /obj/item/cell) && istype(gun, /obj/item/weapon/gun/energy))
+		gun.reload(user, ammo_magazine)
+		return
 	if(!istype(ammo_magazine, /obj/item/ammo_magazine))
 		return
 
 	var/obj/item/ammo_magazine/ammo = ammo_magazine
-	var/obj/item/weapon/gun/gun = internal_item
 
 	if(istype(ammo_magazine, /obj/item/ammo_magazine/handful))
 		gun.reload(user, ammo)
-		update_icon()
+		update_icon_state()
 		return
-	
+
 	if(!istype(gun, ammo.gun_type))
 		return
 
@@ -66,6 +86,10 @@
 
 	gun.reload(user, ammo)
 	update_icon_state()
+
+	if(!CHECK_BITFIELD(gun.flags_gun_features, GUN_PUMP_REQUIRED))
+		return
+	gun.cock()
 
 
 ///This is called when a user tries to operate the gun
@@ -206,7 +230,7 @@
 
 	UnregisterSignal(operator, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEDRAG))
 	var/obj/item/weapon/gun/gun = internal_item
-	if(CHECK_BITFIELD(gun.flags_gun_features, GUN_IS_AIMING))
+	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING))
 		gun.toggle_aim_mode(operator)
 	gun.UnregisterSignal(operator, COMSIG_MOB_MOUSEUP)
 
@@ -215,7 +239,10 @@
 	var/obj/screen/ammo/hud = operator.hud_used.ammo
 	hud.remove_hud(operator)
 
-	for(var/attachable in gun.attachments)
+	for(var/key in gun.attachments_by_slot)
+		var/obj/item/attachable = gun.attachments_by_slot[key]
+		if(!attachable)
+			continue
 		if(!istype(attachable, /obj/item/attachable/scope))
 			continue
 		var/obj/item/attachable/scope/scope = attachable

@@ -32,7 +32,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
-	id = "supply"
+	id = SHUTTLE_SUPPLY
 	callTime = 15 SECONDS
 
 	dir = WEST
@@ -83,11 +83,23 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	for(var/obj/machinery/gear/G in GLOB.machines)
 		if(G.id == "supply_elevator_gear")
 			gears += G
+			RegisterSignal(G, COMSIG_PARENT_QDELETING, .proc/clean_gear)
 	for(var/obj/machinery/door/poddoor/railing/R in GLOB.machines)
 		if(R.id == "supply_elevator_railing")
 			railings += R
+			RegisterSignal(R, COMSIG_PARENT_QDELETING, .proc/clean_railing)
 			R.linked_pad = src
 			R.open()
+
+///Signal handler when a gear is destroyed
+/obj/docking_port/mobile/supply/proc/clean_gear(datum/source)
+	SIGNAL_HANDLER
+	gears -= source
+
+///Signal handler when a railing is destroyed
+/obj/docking_port/mobile/supply/proc/clean_railing(datum/source)
+	SIGNAL_HANDLER
+	railings -= source
 
 /obj/docking_port/mobile/supply/canMove()
 	if(is_station_level(z))
@@ -195,7 +207,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /datum/export_report/New(_points, _export_name, _faction)
 	points = _points
-	export_name = _export_name 
+	export_name = _export_name
 	faction = _faction
 
 /obj/docking_port/mobile/supply/proc/sell()
@@ -219,7 +231,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	w_class = WEIGHT_CLASS_NORMAL
 	var/datum/supply_ui/SU
 	///Id of the shuttle controlled
-	var/shuttle_id = "supply"
+	var/shuttle_id = SHUTTLE_SUPPLY
 	/// Id of the home docking port
 	var/home_id = "supply_home"
 	/// Faction of the tablet
@@ -248,12 +260,12 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	name = "ASRS console"
 	desc = "A console for an Automated Storage and Retrieval System"
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "supply"
+	icon_state = SHUTTLE_SUPPLY
 	req_access = list(ACCESS_MARINE_CARGO)
 	circuit = null
 	var/datum/supply_ui/SU
 	///Id of the shuttle controlled
-	var/shuttle_id = "supply"
+	var/shuttle_id = SHUTTLE_SUPPLY
 	/// Id of the home docking port
 	var/home_id = "supply_home"
 	/// Faction of the computer
@@ -294,6 +306,16 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 /datum/supply_ui/New(atom/source_object)
 	. = ..()
 	src.source_object = source_object
+	RegisterSignal(source_object, COMSIG_PARENT_QDELETING, .proc/clean_ui)
+
+///Signal handler to delete the ui when the source object is deleting
+/datum/supply_ui/proc/clean_ui()
+	SIGNAL_HANDLER
+	qdel(src)
+
+/datum/supply_ui/Destroy(force, ...)
+	source_object = null
+	return ..()
 
 /datum/supply_ui/ui_host()
 	return source_object
@@ -600,3 +622,45 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	if(!SU)
 		SU = new(src)
 	return SU.interact(user)
+
+/obj/item/storage/backpack/marine/radiopack
+	name = "\improper TGMC radio operator backpack"
+	desc = "A backpack that resembles the ones old-age radio operator soldiers would use."
+	icon_state = "radiopack"
+	///Var for the window pop-up
+	var/datum/supply_ui/requests/supply_interface
+	/// Reference to the datum used by the supply drop console
+	var/datum/supply_beacon/beacon_datum
+
+/obj/item/storage/backpack/marine/radiopack/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(.)
+		return
+	if(!allowed(user))
+		return
+	if(!supply_interface)
+		supply_interface = new(src)
+	return supply_interface.interact(user)
+
+/obj/item/storage/backpack/marine/radiopack/attack_self(mob/living/user)
+	if(beacon_datum)
+		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+		QDEL_NULL(beacon_datum)
+		user.show_message(span_warning("The [src] beeps and states, \"Your last position is no longer accessible by the supply console"), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
+		return
+	if(!is_ground_level(user.z))
+		to_chat(user, span_warning("You have to be on the planet to use this or it won't transmit."))
+		return FALSE
+	var/area/A = get_area(user)
+	if(A?.ceiling >= CEILING_METAL)
+		to_chat(user, span_warning("You have to be outside or under a glass ceiling to activate this."))
+		return
+	var/turf/location = get_turf(src)
+	beacon_datum = new /datum/supply_beacon(user.name, user.loc, user.faction, 4 MINUTES)
+	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, .proc/clean_beacon_datum)
+	user.show_message(span_notice("The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
+
+/// Signal handler to nullify beacon datum
+/obj/item/storage/backpack/marine/radiopack/proc/clean_beacon_datum()
+	SIGNAL_HANDLER
+	beacon_datum = null

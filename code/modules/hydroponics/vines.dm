@@ -70,10 +70,6 @@
 	manual_unbuckle(user)
 
 
-/obj/effect/plantsegment/attack_paw(mob/living/carbon/human/user)
-	manual_unbuckle(user)
-
-
 /obj/effect/plantsegment/proc/manual_unbuckle(mob/user)
 	if(!LAZYLEN(buckled_mobs))
 		return FALSE

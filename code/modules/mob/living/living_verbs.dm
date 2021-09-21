@@ -67,10 +67,7 @@
 	set_resting(TRUE)
 	log_game("[key_name(usr)] has ghosted at [AREACOORD(usr)].")
 	message_admins("[ADMIN_TPMONTY(usr)] has ghosted.")
-	var/mob/dead/observer/ghost = ghostize(FALSE)
-	if(ghost)
-		ghost.timeofdeath = world.time
-
+	ghostize(FALSE)
 
 /mob/living/verb/point_to(atom/A in view(client.view, loc))
 	set name = "Point To"

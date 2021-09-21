@@ -12,7 +12,7 @@
 	var/list/datum/mind/members = list() //Currently-joined members.
 	var/list/datum/mind/candidates = list() //Potential candidates for enlisting.
 	var/mob/living/carbon/leader = null
-	var/shuttle_id = "distress"
+	var/shuttle_id = SHUTTLE_DISTRESS
 	var/obj/docking_port/mobile/ert/shuttle
 	var/auto_shuttle_launch = FALSE //Useful for xenos that can't interact with the shuttle console.
 	var/medics = 0
@@ -108,7 +108,7 @@
 		to_chat(usr, span_warning("No distress beacons that need candidates are active. You will be notified if that changes."))
 		return
 
-	var/deathtime = world.time - usr.timeofdeath
+	var/deathtime = world.time - GLOB.key_to_time_of_death[key]
 
 	if(deathtime < 600 && !check_other_rights(usr.client, R_ADMIN, FALSE)) //They have ghosted after the announcement.
 		to_chat(usr, span_warning("You ghosted too recently. Try again later."))

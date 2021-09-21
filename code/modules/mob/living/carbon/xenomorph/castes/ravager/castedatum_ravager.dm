@@ -9,7 +9,7 @@
 	wound_type = "ravager" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 26
+	melee_damage = 28
 	attack_delay = 7
 
 	// *** Speed *** //
@@ -50,6 +50,16 @@
 		/datum/action/xeno_action/rage,
 	)
 
+/datum/xeno_caste/ravager/on_caste_applied(mob/xenomorph)
+	. = ..()
+	xenomorph.AddElement(/datum/element/plasma_on_attack, 1.5)
+	xenomorph.AddElement(/datum/element/plasma_on_attacked, 0.5)
+
+/datum/xeno_caste/ravager/on_caste_removed(mob/xenomorph)
+	. = ..()
+	xenomorph.RemoveElement(/datum/element/plasma_on_attack, 1.5)
+	xenomorph.RemoveElement(/datum/element/plasma_on_attacked, 0.5)
+
 /datum/xeno_caste/ravager/young
 	upgrade_name = "Young"
 
@@ -84,7 +94,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 32
+	melee_damage = 30
 
 	// *** Speed *** //
 	speed = -0.9
@@ -110,7 +120,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 32
+	melee_damage = 30
 
 	// *** Speed *** //
 	speed = -1

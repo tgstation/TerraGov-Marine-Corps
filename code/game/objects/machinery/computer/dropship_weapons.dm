@@ -118,7 +118,7 @@
 
 /obj/machinery/computer/dropship_weapons/dropship1/Initialize()
 	. = ..()
-	shuttle_tag = "alamo"
+	shuttle_tag = SHUTTLE_ALAMO
 
 /obj/machinery/computer/dropship_weapons/dropship2
 	name = "\improper 'Normandy' weapons controls"
@@ -126,7 +126,7 @@
 
 /obj/machinery/computer/dropship_weapons/dropship2/Initialize()
 	. = ..()
-	shuttle_tag = "normandy"
+	shuttle_tag = SHUTTLE_NORMANDY
 
 /obj/machinery/computer/dropship_weapons/dropship3
 	name = "\improper 'Triumpg' weapons controls"
@@ -134,5 +134,5 @@
 
 /obj/machinery/computer/dropship_weapons/dropship3/Initialize()
 	. = ..()
-	shuttle_tag = "triumph"
+	shuttle_tag = SHUTTLE_TRIUMPH
 

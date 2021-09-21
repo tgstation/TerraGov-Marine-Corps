@@ -4,7 +4,7 @@
 		return TRUE
 	if(ismob(mover) && CHECK_BITFIELD(mover.flags_pass, PASSMOB))
 		return TRUE
-	return (!mover.density || !density || lying_angle)
+	return . || (!mover.density || !density || lying_angle) //Parent handles buckling - if someone's strapped to us it can pass.
 
 
 /client/verb/swap_hand()
@@ -80,7 +80,7 @@
 		return Move_object(direct)
 	if(!isliving(mob))
 		return mob.Move(n, direct)
-	if(mob.stat == DEAD)
+	if(mob.stat == DEAD && !HAS_TRAIT(mob, TRAIT_IS_RESURRECTING))
 		mob.ghostize()
 		return FALSE
 
@@ -141,7 +141,7 @@
 	. = ..()
 
 	if((direct & (direct - 1)) && mob.loc == n) //moved diagonally successfully
-		add_delay *= 2
+		add_delay *= DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER
 	move_delay += add_delay
 
 #undef MOVEMENT_DELAY_BUFFER

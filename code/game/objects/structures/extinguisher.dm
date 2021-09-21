@@ -58,10 +58,6 @@
 		opened = !opened
 	update_icon()
 
-/obj/structure/extinguisher_cabinet/attack_paw(mob/living/carbon/human/user)
-	return attack_hand(user)
-
-
 /obj/structure/extinguisher_cabinet/update_icon()
 	overlays.Cut()
 	icon_state = "[initial(icon_state)][opened]"

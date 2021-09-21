@@ -9,6 +9,7 @@ GLOBAL_LIST_INIT(wraith_no_incorporeal_pass_areas, typecacheof(list(
 	/area/shuttle/drop2/lz2,
 	/area/outpost/lz1,
 	/area/outpost/lz2,
+	/area/storage/testroom,
 	/area/bigredv2/outside/space_port,
 	/area/ice_colony/exterior/surface/landing_pad,
 	/area/ice_colony/exterior/surface/landing_pad2,

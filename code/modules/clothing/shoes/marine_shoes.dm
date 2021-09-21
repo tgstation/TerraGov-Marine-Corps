@@ -21,6 +21,7 @@
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
+		/obj/item/weapon/gun/shotgun/double/derringer,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/weapon/throwing_knife,
 	)
@@ -28,6 +29,11 @@
 /obj/item/clothing/shoes/marine/Initialize()
 	. = ..()
 	pockets = new pockets(src)
+
+/obj/item/clothing/shoes/marine/Destroy()
+	QDEL_NULL(pockets)
+	return ..()
+
 
 /obj/item/clothing/shoes/marine/attack_hand(mob/living/user)
 	if(pockets.handle_attack_hand(user))

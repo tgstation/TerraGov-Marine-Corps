@@ -424,18 +424,6 @@
 		to_chat(user, span_notice("You refill [FT] with [lowertext(FT.caliber)]."))
 		FT.update_icon()
 
-	else if(istype(I, /obj/item/attachable/attached_gun/flamer))
-		var/obj/item/attachable/attached_gun/flamer/FT = I
-		if(!reagents.total_volume)
-			return ..()
-
-		var/fuel_transfer_amount = min(reagents.total_volume, (FT.max_rounds - FT.current_rounds))
-		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		FT.current_rounds += fuel_transfer_amount
-		playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)
-		to_chat(user, span_notice("You refill [FT] with fuel."))
-		FT.update_icon()
-
 	else
 		to_chat(user, span_notice("The tank scoffs at your insolence.  It only provides services to welders and flamethrowers."))
 
@@ -488,18 +476,17 @@
 
 /obj/item/tool/handheld_charger/attack_self(mob/user)
 	if(!cell)
-		to_chat(user, span_notice("You need some cell to be useful, idiot"))
-		return
-
-	if(recharging)///Already using it.
-		recharging = FALSE
-		to_chat(user, span_notice("You stop using the recharger."))
+		to_chat(user, span_notice("You need a cell to recharge, idiot"))
 		return
 
 	if(cell.charge >= cell.maxcharge)
 		to_chat(user, span_notice("\The [cell] is already fully charged."))
 		return
-	recharging = TRUE
+
+	if(user.do_actions)
+		to_chat(user, span_notice("You're busy doing something else right now!"))
+		return
+
 	while(do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		cell.charge = min(cell.charge + 200, cell.maxcharge)
 		to_chat(user, span_notice("You squeeze the handle a few times, putting in a few volts of charge."))
@@ -507,8 +494,8 @@
 		flick("handheldcharger_black_pumping", src)
 		if(cell.charge >= cell.maxcharge)
 			to_chat(user, span_notice("\The [cell] is fully charged."))
-			recharging = FALSE
 			return
+	to_chat(user, span_notice("You stop using the recharger."))
 
 
 /obj/item/tool/handheld_charger/attackby(obj/item/I, mob/user, params)

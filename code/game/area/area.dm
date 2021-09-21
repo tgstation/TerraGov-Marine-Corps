@@ -60,9 +60,6 @@
 	///Used to decide what the maximum time between ambience is
 	var/max_ambience_cooldown = 120 SECONDS
 
-
-
-
 /area/New()
 	// This interacts with the map loader, so it needs to be set immediately
 	// rather than waiting for atoms to initialize.
@@ -83,27 +80,19 @@
 		power_equip = TRUE
 		power_environ = TRUE
 
-		if(dynamic_lighting == DYNAMIC_LIGHTING_FORCED)
-			dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
-			luminosity = 0
-		else
-			dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
-
 	. = ..()
 
 	blend_mode = BLEND_MULTIPLY // Putting this in the constructor so that it stops the icons being screwed up in the map editor.
 
-	if(!IS_DYNAMIC_LIGHTING(src))
-		add_overlay(/obj/effect/fullbright)
-
 	reg_in_areas_in_z()
+
+	update_base_lighting()
 
 	return INITIALIZE_HINT_LATELOAD
 
 
 /area/LateInitialize()
 	power_change()		// all machines set to current power level, also updates icon
-
 
 
 /area/Destroy()
@@ -326,3 +315,9 @@
 
 /area/return_gas()
 	return gas_type
+
+///Set this area as a contested zone, that will monitors which faction controls it.
+/area/proc/set_to_contested()
+	if(SSminimaps.initialized)
+		stack_trace("An area was set as contested after SSminimap was initiliazed, it won't be colored")
+	minimap_color = MINIMAP_AREA_CONTESTED_ZONE

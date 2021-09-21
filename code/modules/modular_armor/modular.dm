@@ -77,6 +77,10 @@
 	QDEL_NULL(storage)
 	return ..()
 
+/obj/item/clothing/suit/modular/update_icon()
+	. = ..()
+	update_clothing_icon()
+
 /obj/item/clothing/suit/modular/apply_custom(image/standing)
 	if(slot_chest)
 		standing.overlays += image(slot_chest.icon, ITEM_STATE_IF_SET(slot_chest))
@@ -155,7 +159,7 @@
 		if(!can_attach(user, module))
 			return FALSE
 		module.do_attach(user, src)
-		update_overlays()
+		update_icon()
 		return
 
 	if(!storage)
@@ -215,7 +219,7 @@
 		return TRUE
 
 	attachment.do_detach(user, src)
-	update_overlays()
+	update_icon()
 	return TRUE
 
 
@@ -254,7 +258,7 @@
 	if(!can_detach(user, armor_slot))
 		return TRUE
 	armor_slot.do_detach(user, src)
-	update_overlays()
+	update_icon()
 	return TRUE
 
 
@@ -277,27 +281,24 @@
 	if(!can_detach(user, installed_storage))
 		return TRUE
 	installed_storage.do_detach(user, src)
-	update_overlays()
+	update_icon()
 	return TRUE
 
 /obj/item/clothing/suit/modular/update_overlays()
 	. = ..()
 
-	if(overlays)
-		cut_overlays()
-
 	if(slot_chest)
-		add_overlay(image(slot_chest.icon, slot_chest.icon_state))
+		. += image(slot_chest.icon, slot_chest.icon_state)
 	if(slot_arms)
-		add_overlay(image(slot_arms.icon, slot_arms.icon_state))
+		. += image(slot_arms.icon, slot_arms.icon_state)
 	if(slot_legs)
-		add_overlay(image(slot_legs.icon, slot_legs.icon_state))
+		. += image(slot_legs.icon, slot_legs.icon_state)
 
 	// we intentionally do not add modules here
 	// as the icons are not made to be added in world, only on mobs.
 
 	if(installed_storage)
-		add_overlay(image(installed_storage.icon, installed_storage.icon_state))
+		. += image(installed_storage.icon, installed_storage.icon_state)
 
 	update_clothing_icon()
 
@@ -321,12 +322,30 @@
 	if(installed_storage)
 		. += "<br> It has a [installed_storage] installed."
 
+/obj/item/clothing/suit/modular/pas11x
+	name = "\improper PAS-11X pattern armored vest"
+	desc = "A modified version of the PAS-11 that has been fit with Jaeger module attach points in order to give use to the surplus armor left while being able to compete with the X-02 Exoskeleton. Use it to toggle the built-in flashlight."
+	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
+	icon_state = "pas11_icon"
+	item_state = "pas11"
+	slowdown = 0.5
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
+
+/obj/item/clothing/suit/modular/pas11x/can_attach(mob/living/user, obj/item/armor_module/module, silent)
+	if(istype(module, /obj/item/armor_module/armor))//can't attach armor.
+		return FALSE
+	return ..()
+
+
 
 /** Core helmet module */
 /obj/item/clothing/head/modular
 	name = "Jaeger Pattern Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
 	icon_state = "medium_helmet"
+	item_state = list(
+		slot_head_str = ""
+	)
 	flags_armor_protection = HEAD
 	flags_armor_features = ARMOR_NO_DECAP
 	flags_inventory = BLOCKSHARPOBJ
@@ -338,18 +357,14 @@
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
 	actions_types = list(/datum/action/item_action/toggle)
-	item_state = list(
-		slot_head_str = ""
-	)
+
 	greyscale_config = /datum/greyscale_config/modularhelmet_infantry
 	greyscale_colors = "#5B6036#f7fb58"
-	//head icon is generated so null this
-	item_state_slots = list(
-		slot_head_str = null,
-	)
 
 	/// Reference to the installed module
 	var/obj/item/helmet_module/installed_module
+	/// Holder for the actual storage implementation
+	var/obj/item/storage/internal/storage
 
 	/// How long it takes to attach or detach to this item
 	var/equip_delay = 3 SECONDS
@@ -367,7 +382,9 @@
 
 /obj/item/clothing/head/modular/Initialize(mapload)
 	. = ..()
+	storage = new /obj/item/storage/internal/marinehelmet(src)
 	if(!visor_emissive_on || !visor_greyscale_config)
+		update_icon()
 		return
 	AddElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, visor_greyscale_config, visor_color_hex)
 	update_icon()
@@ -378,8 +395,9 @@
 
 /obj/item/clothing/head/modular/update_greyscale(list/colors, update)
 	. = ..()
+	if(!greyscale_config)
+		return
 	item_icons = list(slot_head_str = icon)
-	item_state = list(slot_head_str = "")
 	if(length(colors) >= 2) //for only single color helmets with no visor
 		visor_color_hex = colors[2]
 
@@ -413,14 +431,26 @@
 		to_chat(user, "Right click the helmet to toggle the visor internal lighting.")
 		to_chat(user, "Right click the helmet with paint to color the visor internal lighting.")
 
+/obj/item/clothing/head/modular/attack_hand(mob/living/user)
+	if(!storage || storage.handle_attack_hand(user))
+		return ..()
+
+/obj/item/clothing/head/modular/MouseDrop(over_object, src_location, over_location)
+	if(!storage || storage.handle_mousedrop(usr, over_object))
+		return ..()
+
 /obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return
 
 	if(!istype(I, /obj/item/facepaint))
+		if(storage?.attackby(I, user, params))
+			update_icon()
+			return TRUE
 		return FALSE
-
+	if(!greyscale_config)
+		return FALSE
 	var/obj/item/facepaint/paint = I
 	if(paint.uses < 1)
 		to_chat(user, span_warning("\the [paint] is out of color!"))
@@ -528,20 +558,24 @@
 		return TRUE
 
 	attachment.do_detach(user, src)
-	update_overlays()
+	update_icon()
 	return TRUE
 
 
 /obj/item/clothing/head/modular/update_overlays()
 	. = ..()
-	if(installed_module)
-		. += image(installed_module.icon, installed_module.item_state)
 	if(visor_emissive_on)
 		. += emissive_appearance('icons/mob/modular/infantry.dmi', "visor")
+
+	update_clothing_icon()
 
 /obj/item/clothing/head/modular/apply_custom(image/standing)
 	if(installed_module)
 		standing.overlays += image(installed_module.icon, ITEM_STATE_IF_SET(installed_module))
+	if(storage)
+		for(var/obj/item/stored AS in storage.contents)
+			standing.overlays += image('icons/mob/modular/modular_helmet_storage.dmi', icon_state = stored.icon_state)
+
 
 /obj/item/clothing/head/modular/get_mechanics_info()
 	. = ..()
@@ -568,14 +602,14 @@
 
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
-	update_overlays()
+	update_icon()
 
 /obj/item/clothing/head/modular/proc/can_detach(mob/living/user, obj/item/helmet_module/module, silent = FALSE)
 	. = TRUE
 
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
-	update_overlays()
+	update_icon()
 
 /obj/item/clothing/head/modular/marine
 	name = "Jaeger Pattern Infantry Helmet"
@@ -636,3 +670,48 @@
 	greyscale_config = /datum/greyscale_config/modularhelmet_infantry_open
 	visor_color_hex = null //no visor, no color
 	visor_greyscale_config = null
+
+/obj/item/clothing/head/modular/marine/m10x
+	name = "\improper M10X pattern marine helmet"
+	desc = "A standard M10 Pattern Helmet modified with attach points. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
+	icon = 'icons/mob/modular/m10.dmi'
+	icon_state = "helmet_icon"
+	icon_override = null
+	item_state = "helmet"
+	item_state_worn = TRUE
+	item_state_slots = null
+	item_icons = list(
+		slot_head_str = 'icons/mob/modular/m10.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
+	greyscale_colors = null
+	greyscale_config = null
+	visor_color_hex = null
+	visor_greyscale_config = null
+
+/obj/item/clothing/head/modular/marine/m10x/standard
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
+
+/obj/item/clothing/head/modular/marine/m10x/tech
+	name = "\improper M10X technician helmet"
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
+
+
+/obj/item/clothing/head/modular/marine/m10x/corpsman
+	name = "\improper M10X corpsman helmet"
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
+
+/obj/item/clothing/head/modular/marine/m10x/heavy
+	name = "\improper M10XE pattern marine helmet"
+	desc = "A standard M10XE Pattern Helmet. This is a modified version of the M10X helmet, offering an enclosed visor apparatus."
+	icon_state = "heavyhelmet_icon"
+	item_state = "heavyhelmet"
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
+
+/obj/item/clothing/head/modular/marine/m10x/leader
+	name = "\improper M11X pattern leader helmet"
+	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
+	soft_armor = list("melee" = 75, "bullet" = 65, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)

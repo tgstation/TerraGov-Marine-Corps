@@ -226,7 +226,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		switch(hit_area)
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
 				if(prob(damage) && stat == CONSCIOUS)
-					apply_effect(20, PARALYZE, armor)
+					Paralyze(20 /(armor+1) * 20)
 					visible_message(span_danger("[src] has been knocked unconscious!"),
 									span_danger("You have been knocked unconscious!"), null, 5)
 					hit_report += "(KO)"
@@ -423,4 +423,28 @@ Contains most of the procs that are called when a mob is attacked by something
 	apply_damage(stamina_damage, STAMINA, updating_health = TRUE)
 	if(!ear_deaf)
 		adjust_ear_damage(deaf = stun_duration)  //Deafens them temporarily
-	//Perception distorting effects of the psychic scream
+	//Perception distorting effects of the psychic scream*
+
+/mob/living/carbon/human/attackby(obj/item/I, mob/living/user, params)
+	if(stat != DEAD || I.sharp < IS_SHARP_ITEM_ACCURATE || user.a_intent != INTENT_HARM)
+		return ..()
+	if(!internal_organs_by_name["heart"])
+		to_chat(user, span_notice("[src] no longer has a heart."))
+		return
+	if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE) && get_ghost())
+		to_chat(user, span_warning("You cannot resolve yourself to destroy [src]'s heart, as [p_they()] can still be saved!"))
+		return
+	to_chat(user, span_notice("You start to remove [src]'s heart, preventing [p_them()] from rising again!"))
+	if(!do_after(user, 2 SECONDS, TRUE, src))
+		return
+	if(!internal_organs_by_name["heart"])
+		to_chat(user, span_notice("The heart is no longer here!"))
+		return
+	log_combat(user, src, "ripped [src]'s heart", I)
+	visible_message(span_notice("[user] ripped off [src]'s heart!"), span_notice("You ripped off [src]'s heart!"))
+	internal_organs_by_name -= "heart"
+	var/obj/item/organ/heart/heart = new
+	heart.die()
+	user.put_in_hands(heart)
+	chestburst = 2
+	update_burst()

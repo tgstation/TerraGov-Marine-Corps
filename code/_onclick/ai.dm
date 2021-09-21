@@ -11,7 +11,7 @@
 */
 
 /mob/living/silicon/ai/DblClickOn(atom/A, params)
-	if(control_disabled || incapacitated())
+	if(control_disabled || incapacitated() || controlling)
 		return
 
 	if(ismob(A))
@@ -25,7 +25,10 @@
 		return
 	next_click = world.time + 1
 
-	if(!can_interact_with(A))
+	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, A, params) & COMSIG_MOB_CLICK_CANCELED)
+		return
+
+	if(!controlling && !can_interact_with(A))
 		return
 
 	if(multicam_on)
@@ -45,7 +48,7 @@
 	var/turf/pixel_turf = get_turf_pixel(A)
 	if(isnull(pixel_turf))
 		return
-	if(!can_see(A))
+	if(!controlling && !can_see(A))
 		if(isturf(A)) //On unmodified clients clicking the static overlay clicks the turf underneath
 			return //So there's no point messaging admins
 		message_admins("[ADMIN_LOOKUPFLW(src)] might be running a modified client! (failed can_see on AI click of [A] (Turf Loc: [ADMIN_VERBOSEJMP(pixel_turf)]))")
@@ -82,6 +85,8 @@
 	it functions and re-insert it above.
 */
 /mob/living/silicon/ai/UnarmedAttack(atom/A, has_proximity, modifiers)
+	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
+		return
 	A.attack_ai(src)
 
 /mob/living/silicon/ai/RangedAttack(atom/A)

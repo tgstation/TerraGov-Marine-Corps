@@ -203,6 +203,10 @@
 
 #define iscrowbar(I) (istype(I, /obj/item/tool/crowbar))
 
+#define isfactorypart(I) (istype(I, /obj/item/factory_part))
+
+#define isfactoryrefill(I) (istype(I, /obj/item/factory_refill))
+
 #define isstructure(A) (istype(A, /obj/structure))
 
 #define iscable(A) (istype(A, /obj/structure/cable))
@@ -220,6 +224,10 @@
 #define isorgan(A) (istype(A, /datum/limb))
 
 #define isidcard(A) (istype(A, /obj/item/card/id))
+
+#define isuav(A) (istype(A, /obj/vehicle/unmanned))
+
+#define isdroid(A) (istype(A, /obj/vehicle/unmanned/droid))
 
 #define isreagentcontainer(A) (istype(A, /obj/item/reagent_containers)) //Checks for if something is a reagent container.
 
