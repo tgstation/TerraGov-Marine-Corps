@@ -2334,9 +2334,6 @@
 /area/whiskey_outpost)
 "ki" = (
 /obj/structure/closet/crate,
-/obj/item/clothing/glasses/night/imager_goggles,
-/obj/item/clothing/glasses/night/imager_goggles,
-/obj/item/clothing/glasses/night/imager_goggles,
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "kj" = (
@@ -2566,13 +2563,6 @@
 /obj/structure/table/mainship,
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
-"lE" = (
-/obj/structure/bed/chair/comfy,
-/obj/item/toy/plush/moth{
-	name = "King Moth"
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost/outside/west)
 "lF" = (
 /turf/closed/shuttle/dropship1/transparent{
 	icon_state = "53"
@@ -2761,18 +2751,6 @@
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/mainship/sterile/dark,
 /area/whiskey_outpost)
-"mJ" = (
-/obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/human/burger{
-	desc = "A burger made by moffdonalds.";
-	name = "BigMoff Burger"
-	},
-/obj/item/weapon/gun/energy/lasgun/pulse{
-	anchored = 1;
-	desc = "Hah, Did you really think you were getting a pulse rifle?"
-	},
-/turf/open/floor/rcircuit,
-/area/whiskey_outpost)
 "mO" = (
 /turf/closed/shuttle/dropship1/transparent{
 	icon_state = "48"
@@ -2792,6 +2770,14 @@
 /obj/structure/dropship_piece/one/engine/righttop,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
+"mV" = (
+/obj/structure/bed/chair,
+/obj/item/toy/plush/moth{
+	desc = "King of the moth kingdom";
+	name = "King Moth"
+	},
+/turf/open/floor/rcircuit,
+/area/whiskey_outpost/outside/north)
 "mW" = (
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating,
@@ -3501,15 +3487,6 @@
 /obj/structure/largecrate/supply/explosives/mortar_flare,
 /turf/open/floor/plating,
 /area/whiskey_outpost)
-"pI" = (
-/obj/item/weapon/wirerod{
-	anchored = 1;
-	desc = "A TV antenna so the princess can watch reality TV. Warranty void if used to watch anything other than reality TV";
-	name = "TV Antenna"
-	},
-/obj/structure/cable,
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/west)
 "pJ" = (
 /obj/structure/platform{
 	dir = 8
@@ -3872,13 +3849,7 @@
 "rc" = (
 /obj/item/storage/box/minisentry,
 /obj/item/storage/box/minisentry,
-/obj/item/storage/box/minisentry,
-/obj/item/storage/box/minisentry,
-/obj/item/storage/box/minisentry,
 /obj/structure/rack,
-/obj/item/ammo_magazine/flamer_tank/large/X,
-/obj/item/ammo_magazine/flamer_tank/large/X,
-/obj/item/ammo_magazine/flamer_tank/backtank/X,
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "rd" = (
@@ -3937,8 +3908,6 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "rl" = (
-/obj/item/factory_refill/phosnade,
-/obj/item/factory_refill/phosnade,
 /obj/item/factory_refill/phosnade,
 /obj/structure/rack,
 /obj/item/paper/factoryhowto,
@@ -4159,6 +4128,15 @@
 /obj/structure/largecrate/supply/supplies/plasteel,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
+"sQ" = (
+/obj/structure/bed/chair,
+/obj/item/toy/plush/slime{
+	anchored = 1;
+	desc = "The adopted daughter of king moth, One day she will inherit the whole kingdom";
+	name = "Princess Slime"
+	},
+/turf/open/floor/rcircuit,
+/area/whiskey_outpost/outside/north)
 "sS" = (
 /obj/machinery/light{
 	dir = 1
@@ -4356,14 +4334,6 @@
 /obj/structure/largecrate/supply/floodlights,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
-"uI" = (
-/obj/item/instrument/musicalmoth{
-	anchored = 1;
-	desc = "This little moth has been tasked with entertaining the moth king. He is not very good at it.";
-	name = "Jester Moth"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/west)
 "uJ" = (
 /obj/machinery/computer/crew,
 /turf/open/floor/mainship/sterile,
@@ -4461,14 +4431,6 @@
 /obj/item/weapon/gun/tl102/hsg_nest,
 /turf/open/floor/plating/warning,
 /area/whiskey_outpost/outside/east)
-"vW" = (
-/obj/item/toy/plush/snake{
-	anchored = 1;
-	desc = "This snake defends the castle of the moth."       ;
-	name = "Snake Knight"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/west)
 "vX" = (
 /obj/machinery/conveyor{
 	id = "reqtorio"
@@ -4646,14 +4608,6 @@
 /obj/item/lightstick/red/anchored,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/south)
-"xW" = (
-/obj/structure/cable,
-/obj/machinery/computer/security/wooden_tv{
-	desc = "An old TV hooked into cable. May or may not work.";
-	name = "Old TV"
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost/outside/west)
 "yd" = (
 /obj/structure/largecrate/supply/medicine/medkits,
 /turf/open/floor/plating/asteroidwarning{
@@ -4842,15 +4796,6 @@
 	},
 /turf/open/floor/mainship,
 /area/whiskey_outpost)
-"AH" = (
-/obj/machinery/door_control/unmeltable{
-	desc = "Huh... What could this possibly control?";
-	id = "escape";
-	name = "Weird Button";
-	pixel_x = -22
-	},
-/turf/open/ground/grass,
-/area/whiskey_outpost)
 "AJ" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -4941,6 +4886,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/toy/plush/therapy_green,
 /turf/open/floor/prison/plate,
 /area/whiskey_outpost)
 "By" = (
@@ -4984,6 +4930,11 @@
 "BR" = (
 /turf/closed/wall/indestructible/mineral,
 /area/whiskey_outpost)
+"BU" = (
+/obj/structure/table/woodentable,
+/obj/item/coin/gold,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/west)
 "BX" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/claymore/mercsword/captain,
@@ -5065,16 +5016,38 @@
 /obj/item/storage/box/sentry,
 /turf/open/ground/jungle/path,
 /area/whiskey_outpost/outside/west)
+"Cy" = (
+/obj/structure/closet/crate,
+/obj/item/coin/gold{
+	name = "SunoBux"
+	},
+/obj/item/coin/gold{
+	name = "SunoBux"
+	},
+/obj/item/coin/gold{
+	name = "SunoBux"
+	},
+/obj/item/coin/gold{
+	name = "SunoBux"
+	},
+/obj/item/coin/uranium{
+	name = "SunoBux"
+	},
+/obj/item/coin/uranium{
+	name = "SunoBux"
+	},
+/obj/item/coin/diamond{
+	name = "SunoBux"
+	},
+/obj/item/coin/gold{
+	name = "SunoBux"
+	},
+/turf/open/floor/prison,
+/area/whiskey_outpost/outside/north)
 "CA" = (
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/ground/jungle/path,
 /area/whiskey_outpost/outside/west)
-"CB" = (
-/turf/closed/banish_space{
-	desc = "You realize the truth. There is no escape";
-	name = "End of the world"
-	},
-/area/whiskey_outpost/outside/south)
 "CD" = (
 /obj/item/quikdeploy/cade/plasteel,
 /obj/item/quikdeploy/cade/plasteel,
@@ -5089,6 +5062,14 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
+"CJ" = (
+/obj/item/instrument/musicalmoth{
+	anchored = 1;
+	desc = "This little moth has been tasked with entertaining the moth king. He is not very good at it.";
+	name = "Jester Moth"
+	},
+/turf/open/floor/prison,
+/area/whiskey_outpost/outside/north)
 "CK" = (
 /obj/item/weapon/gun/tl102/hsg_nest{
 	dir = 4
@@ -5306,6 +5287,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
+/obj/item/toy/plush/farwa,
 /turf/open/floor/prison/plate,
 /area/whiskey_outpost)
 "EU" = (
@@ -5453,13 +5435,6 @@
 /obj/structure/plasticflaps,
 /turf/open/floor/prison,
 /area/whiskey_outpost)
-"Gw" = (
-/obj/machinery/floodlight/landing/testroom,
-/turf/closed/banish_space{
-	desc = "You realize the truth. There is no escape";
-	name = "End of the world"
-	},
-/area/whiskey_outpost)
 "Gx" = (
 /turf/open/floor{
 	icon_state = "cafeteria"
@@ -5524,12 +5499,6 @@
 /obj/structure/jungle/plantbot1/alien,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
-"HC" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/ground/river,
-/area/whiskey_outpost)
 "HE" = (
 /obj/machinery/light{
 	dir = 4
@@ -5612,14 +5581,16 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
-"Ij" = (
-/obj/structure/jungle/vines,
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/west)
 "In" = (
 /obj/effect/ai_node,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/west)
+"Io" = (
+/turf/closed/banish_space{
+	desc = "You realize the truth. There is no escape";
+	name = "End of the world"
+	},
+/area/whiskey_outpost/outside/north)
 "Ip" = (
 /obj/item/tool/lighter/random,
 /obj/structure/table/mainship,
@@ -5648,13 +5619,6 @@
 	dir = 9
 	},
 /area/whiskey_outpost)
-"Iw" = (
-/obj/structure/rack,
-/obj/item/weapon/twohanded/glaive{
-	desc = "A war glaive for the lizard king's champion."
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost/outside/west)
 "Iy" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/item/reagent_containers/jerrycan,
@@ -5719,12 +5683,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "Je" = (
-/obj/structure/bed/chair/comfy,
-/obj/item/toy/plush/slime{
-	anchored = 1;
-	desc = "The adopted daughter of king moth, One day she will inherit the whole kingdom";
-	name = "Princess Slime"
-	},
+/obj/structure/bed,
+/obj/item/bedsheet/captain,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
 "Jf" = (
@@ -5888,12 +5848,6 @@
 "Lj" = (
 /turf/open/floor/asteroidfloor,
 /area/whiskey_outpost/outside/east)
-"Ln" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/ground/river,
-/area/whiskey_outpost)
 "Lo" = (
 /obj/item/storage/box/sentry,
 /turf/open/floor/plating/asteroidfloor,
@@ -5951,10 +5905,6 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
-"LS" = (
-/obj/structure/jungle/vines,
-/turf/closed/mineral,
-/area/whiskey_outpost/outside/west)
 "LX" = (
 /obj/structure/barricade/sandbags{
 	dir = 4
@@ -6073,10 +6023,6 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/mainship,
 /area/whiskey_outpost)
-"MP" = (
-/obj/structure/cable,
-/turf/closed/mineral,
-/area/whiskey_outpost/outside/west)
 "MS" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -6132,11 +6078,8 @@
 /turf/open/ground/river,
 /area/whiskey_outpost/outside/west)
 "NJ" = (
-/obj/item/toy/plush/snake{
-	anchored = 1;
-	desc = "This snake defends the castle of the moth."       ;
-	name = "Snake Knight"
-	},
+/obj/item/weapon/twohanded/glaive,
+/obj/structure/rack,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
 "NL" = (
@@ -6245,6 +6188,14 @@
 /obj/vehicle/ridden/powerloader,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
+"Ov" = (
+/obj/structure/bed/chair,
+/obj/item/toy/plush/moth{
+	desc = "Queen of the moth kingdom";
+	name = "Queen Moth"
+	},
+/turf/open/floor/rcircuit,
+/area/whiskey_outpost/outside/north)
 "Oy" = (
 /obj/machinery/floodlight/outpost,
 /turf/open/floor/plating,
@@ -6314,12 +6265,6 @@
 "Pc" = (
 /obj/machinery/door/window,
 /turf/open/floor/mainship/cargo,
-/area/whiskey_outpost)
-"Pe" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/ground/river,
 /area/whiskey_outpost)
 "Pi" = (
 /obj/machinery/vending/tool,
@@ -6563,13 +6508,6 @@
 	dir = 9
 	},
 /area/whiskey_outpost)
-"Sj" = (
-/obj/item/toy/plush/rouny{
-	desc = "A sekrit rooner to remind you that suno redesigned this map on 21-09-2021";
-	name = "Sekrit Rooner"
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost/outside/north)
 "Sk" = (
 /obj/structure/barricade/sandbags{
 	dir = 4
@@ -6579,12 +6517,6 @@
 	},
 /turf/open/floor/plating/asteroidplating,
 /area/whiskey_outpost/outside/north)
-"Sl" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines,
-/turf/open/ground/jungle,
-/area/whiskey_outpost/outside/west)
 "Sn" = (
 /obj/structure/barricade/sandbags{
 	dir = 8
@@ -6608,12 +6540,12 @@
 "Sz" = (
 /obj/machinery/door/poddoor/four_tile_hor{
 	desc = "No escape.";
-	id = null;
+	id = "escape";
 	name = "Exit Shield";
 	resistance_flags = 3
 	},
 /turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost/outside/south)
+/area/whiskey_outpost)
 "SB" = (
 /turf/open/floor/prison/plate,
 /area/whiskey_outpost)
@@ -6668,17 +6600,6 @@
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
-/area/whiskey_outpost)
-"Te" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/obj/item/instrument/musicalmoth{
-	anchored = 1;
-	desc = "Legends say this moth guards the only escape from whiskey outpost. Too bad there is no escape.";
-	name = "Secret Moth"
-	},
-/turf/open/floor/rcircuit,
 /area/whiskey_outpost)
 "Th" = (
 /obj/structure/barricade/sandbags{
@@ -6789,16 +6710,6 @@
 "UN" = (
 /obj/structure/table/mainship,
 /obj/item/tool/handheld_charger,
-/obj/item/minerupgrade/automatic{
-	pixel_x = 8;
-	pixel_y = 2
-	},
-/obj/item/minerupgrade/automatic{
-	pixel_x = 8;
-	pixel_y = 2
-	},
-/obj/item/minerupgrade/overclock,
-/obj/item/minerupgrade/overclock,
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "US" = (
@@ -6813,12 +6724,15 @@
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
+"Vf" = (
+/turf/open/floor/prison,
+/area/whiskey_outpost/outside/north)
 "Vh" = (
 /obj/effect/ai_node,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/east)
 "Vl" = (
-/obj/structure/jungle/vines,
+/obj/structure/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/whiskey_outpost/outside/west)
 "Vq" = (
@@ -6827,8 +6741,7 @@
 	},
 /area/whiskey_outpost)
 "VB" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines,
+/obj/structure/jungle/vines/heavy,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/west)
 "VD" = (
@@ -6868,6 +6781,14 @@
 "VS" = (
 /turf/open/ground/river,
 /area/whiskey_outpost)
+"Wf" = (
+/obj/machinery/door/airlock/mainship/command{
+	dir = 2;
+	locked = 1;
+	name = "Court Of The Moth King"
+	},
+/turf/open/floor/prison,
+/area/whiskey_outpost/outside/north)
 "Wm" = (
 /obj/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/plating/asteroidfloor,
@@ -7075,7 +6996,6 @@
 /area/whiskey_outpost/outside/south)
 "Yw" = (
 /obj/structure/jungle/vines,
-/obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/whiskey_outpost/outside/west)
 "Yy" = (
@@ -7108,10 +7028,6 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/open/ground/jungle/path,
 /area/whiskey_outpost/outside/west)
-"YO" = (
-/obj/machinery/light/small,
-/turf/open/ground/river,
-/area/whiskey_outpost)
 "YQ" = (
 /obj/structure/barricade/sandbags,
 /obj/structure/platform_decoration{
@@ -7151,6 +7067,10 @@
 /obj/structure/largecrate/guns,
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost)
+"ZB" = (
+/obj/structure/jungle/vines/heavy,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/west)
 "ZP" = (
 /obj/structure/barricade/metal,
 /obj/structure/barricade/metal{
@@ -9642,7 +9562,7 @@ Xz
 aS
 aS
 aS
-ac
+aS
 aS
 aS
 aS
@@ -9795,7 +9715,7 @@ Xz
 aS
 aS
 aS
-AH
+dm
 dm
 aS
 dm
@@ -12149,9 +12069,9 @@ hy
 hk
 sr
 hw
-LS
-LS
-LS
+hB
+hB
+hB
 hB
 hB
 hB
@@ -12301,11 +12221,11 @@ ho
 hy
 hw
 hw
+hw
 cm
-Sl
 VB
 Yw
-LS
+hB
 hB
 hB
 hB
@@ -12454,12 +12374,12 @@ ho
 hy
 hw
 hw
-LS
+hB
+cm
 VB
-Sl
 Vl
+ZB
 hm
-hZ
 hB
 hB
 hB
@@ -12607,11 +12527,11 @@ ho
 hy
 hB
 hB
-LS
-LS
-LS
+hB
+hB
+hB
 Vl
-Ij
+hm
 hm
 hm
 hB
@@ -12764,7 +12684,7 @@ hB
 hB
 hB
 hB
-pI
+hm
 hm
 hm
 hB
@@ -12917,9 +12837,9 @@ hB
 hB
 hB
 hB
-MP
-vW
-vW
+hB
+hm
+hm
 hB
 hB
 hB
@@ -13069,8 +12989,8 @@ hB
 hB
 hB
 hB
-MP
-MP
+hB
+hB
 MA
 MA
 hB
@@ -13222,8 +13142,8 @@ hB
 hB
 hB
 hB
-MP
-uI
+hB
+hm
 hm
 hm
 hB
@@ -13375,7 +13295,7 @@ hB
 hB
 Je
 hX
-xW
+hX
 hm
 hm
 hm
@@ -13525,8 +13445,8 @@ hB
 hB
 hB
 hB
-lE
-hX
+hB
+BU
 hX
 hX
 hX
@@ -13681,8 +13601,8 @@ hB
 hB
 hB
 NJ
-Iw
-NJ
+hX
+hX
 hB
 hB
 hB
@@ -16227,7 +16147,7 @@ aS
 aS
 aS
 aS
-Sj
+fs
 ak
 ak
 gG
@@ -18032,9 +17952,9 @@ ml
 ml
 ml
 ml
-ml
-ml
-qq
+ac
+ac
+BR
 mv
 mv
 mv
@@ -18186,8 +18106,8 @@ Om
 Om
 Om
 Sz
-CB
-qq
+JZ
+BR
 mv
 mv
 mv
@@ -18338,9 +18258,9 @@ Om
 Om
 Om
 Om
-Om
-CB
-qq
+rk
+JZ
+BR
 mv
 mv
 mv
@@ -18491,9 +18411,9 @@ Om
 Om
 Om
 Om
-Om
-CB
-qq
+rk
+JZ
+BR
 mv
 mv
 mv
@@ -18644,9 +18564,9 @@ lf
 Om
 Om
 Om
-Om
-CB
-qq
+rk
+JZ
+BR
 mv
 mv
 mv
@@ -18797,9 +18717,9 @@ ml
 ml
 ml
 ml
-ml
-ml
-qq
+ac
+ac
+BR
 mv
 mv
 mv
@@ -24026,22 +23946,22 @@ aS
 aS
 aS
 aS
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
 PF
 PF
 PF
@@ -24179,24 +24099,24 @@ aS
 aS
 aS
 aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
 PF
-VS
-VS
-VS
-VS
-VS
-VS
-Ln
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-Ln
-VS
-VS
+JZ
 hI
 Oj
 cx
@@ -24332,24 +24252,24 @@ aS
 aS
 aS
 aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
 PF
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-VS
+JZ
 VS
 Oj
 cx
@@ -24485,24 +24405,24 @@ aS
 aS
 aS
 aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
 PF
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-VS
+JZ
 VS
 Oj
 cx
@@ -24633,29 +24553,29 @@ mv
 (115,1,1) = {"
 mv
 Xz
+Xz
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
 aS
 aS
 aS
 aS
 aS
 PF
-VS
-VS
-VS
-VS
-VS
-VS
-Pe
-VS
-VS
-VS
-VS
-VS
-VS
-VS
-Pe
-VS
-VS
+JZ
 VS
 Oj
 cx
@@ -24786,27 +24706,27 @@ mv
 (116,1,1) = {"
 mv
 Xz
+Xz
 aS
 aS
 aS
 aS
 aS
-PF
-VS
-VS
-VS
-VS
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
 PF
 PF
 PF
@@ -24939,17 +24859,17 @@ mv
 (117,1,1) = {"
 mv
 Xz
+Xz
+Xz
 aS
 aS
 aS
 aS
 aS
-PF
-VS
-VS
-VS
-VS
-PF
+aS
+aS
+aS
+aS
 aS
 aS
 aS
@@ -25092,17 +25012,17 @@ mv
 (118,1,1) = {"
 mv
 Xz
+Xz
+Xz
 aS
 aS
 aS
 aS
 aS
-PF
-HC
-VS
-VS
-YO
-PF
+aS
+aS
+aS
+aS
 aS
 aS
 aS
@@ -25245,17 +25165,17 @@ mv
 (119,1,1) = {"
 mv
 Xz
+Xz
+Xz
+Xz
 aS
 aS
 aS
 aS
 aS
-PF
-VS
-VS
-VS
-VS
-PF
+aS
+aS
+aS
 aS
 aS
 aS
@@ -25398,17 +25318,17 @@ mv
 (120,1,1) = {"
 mv
 Xz
+Xz
+Xz
+Xz
+Xz
 aS
 aS
 aS
 aS
 aS
-PF
-VS
-VS
-VS
-VS
-PF
+aS
+aS
 aS
 aS
 aS
@@ -25551,17 +25471,17 @@ mv
 (121,1,1) = {"
 mv
 Xz
+Xz
+Xz
+Xz
+Xz
 aS
 aS
 aS
 aS
 aS
-PF
-VS
-VS
-VS
-VS
-PF
+aS
+aS
 aS
 aS
 aS
@@ -25704,17 +25624,17 @@ mv
 (122,1,1) = {"
 mv
 Xz
+Xz
+Xz
+Xz
+Xz
 aS
 aS
 aS
 aS
 aS
-PF
-VS
-VS
-VS
-VS
-PF
+aS
+aS
 aS
 aS
 aS
@@ -25857,17 +25777,17 @@ mv
 (123,1,1) = {"
 mv
 Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
 aS
 aS
 aS
 aS
-aS
-PF
-VS
-VS
-VS
-VS
-PF
 aS
 aS
 aS
@@ -26010,17 +25930,17 @@ mv
 (124,1,1) = {"
 mv
 Xz
+Io
+Io
+Io
+Io
+Io
+Io
+Xz
 aS
 aS
 aS
 aS
-aS
-PF
-VS
-VS
-VS
-VS
-PF
 aS
 aS
 aS
@@ -26163,17 +26083,17 @@ mv
 (125,1,1) = {"
 mv
 Xz
+Io
+sQ
+Vf
+Vf
+Cy
+Io
+Xz
+Xz
 aS
 aS
 aS
-aS
-aS
-PF
-HC
-VS
-VS
-YO
-PF
 aS
 aS
 aS
@@ -26316,17 +26236,17 @@ mv
 (126,1,1) = {"
 mv
 Xz
+Io
+mV
+Vf
+Vf
+Vf
+Wf
+Xz
+Xz
 aS
 aS
 aS
-aS
-aS
-PF
-HQ
-HQ
-HQ
-HQ
-PF
 aS
 aS
 aS
@@ -26469,17 +26389,17 @@ mv
 (127,1,1) = {"
 mv
 Xz
+Io
+Ov
+Vf
+Vf
+CJ
+Io
+Xz
+Xz
+Xz
 aS
 aS
-aS
-aS
-aS
-PF
-HQ
-Te
-mJ
-HQ
-PF
 aS
 aS
 aS
@@ -26622,18 +26542,18 @@ mv
 (128,1,1) = {"
 mv
 Xz
-aS
-aS
-aS
-aS
-aS
-PF
-Gw
-JZ
-JZ
-Gw
-PF
-aS
+Io
+Io
+Io
+Io
+Io
+Io
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
 aS
 aS
 aS
@@ -26780,12 +26700,12 @@ Xz
 Xz
 Xz
 Xz
-BR
-BR
-BR
-BR
-BR
-BR
+Xz
+Xz
+Xz
+Xz
+Xz
+Xz
 Xz
 Xz
 Xz
