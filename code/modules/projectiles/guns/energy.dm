@@ -7,7 +7,7 @@
 	var/obj/item/cell/cell //1000 power.
 	charge_cost = 10 //100 shots.
 	var/cell_type = /obj/item/cell
-	flags_gun_features = GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_HITSCAN
 	general_codex_key = "energy weapons"
 
 	placed_overlay_iconstate = "laser"
@@ -44,16 +44,6 @@
 	cell.charge -= charge_cost
 	in_chamber = create_bullet(ammo)
 	return in_chamber
-
-/obj/item/weapon/gun/energy/create_bullet(datum/ammo/chambered)
-	if(!chambered)
-		stack_trace("null ammo while create_bullet(). User: [usr]")
-		chambered = GLOB.ammo_list[/datum/ammo/bullet] //Slap on a default bullet if somehow ammo wasn't passed.
-
-	var/obj/projectile/P = new /obj/projectile/hitscan()
-	P.generate_bullet(chambered)
-	return P
-
 
 /obj/item/weapon/gun/energy/update_icon()
 	return
@@ -142,7 +132,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
 	overcharge = FALSE
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_HITSCAN
 	aim_slowdown = 0.75
 	wield_delay = 1 SECONDS
 	gun_skill_category = GUN_SKILL_RIFLES
@@ -205,7 +195,7 @@
 		/obj/item/attachable/pulselens,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_HITSCAN
 	starting_attachment_types = list(/obj/item/attachable/stock/lasgun)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 
@@ -400,7 +390,7 @@
 	charge_cost = ENERGY_STANDARD_AMMO_COST
 	muzzle_flash_color = COLOR_PULSE_BLUE
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_HITSCAN
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 
 	fire_delay = 8
@@ -459,7 +449,7 @@
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 	)
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_HITSCAN
 	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
@@ -492,6 +482,8 @@
 	var/radial_icon = 'icons/mob/radial.dmi'
 	///The icon state the radial menu will use.
 	var/radial_icon_state = "laser"
+	///The beam icon_state shown when firing
+	var/hitscan_gun_effect_icon = "beam"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/cock(mob/user)
 	if(!user)
@@ -517,6 +509,7 @@
 	fire_delay = initial(choice.fire_delay)
 	burst_amount = initial(choice.burst_amount)
 	fire_sound = initial(choice.fire_sound)
+	hitscan_gun_effect_icon = initial(choice.hitscan_gun_effect_icon)
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
 	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(choice.fire_mode), user.client)
@@ -570,7 +563,7 @@
 		/obj/item/attachable/buildasentry,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_HITSCAN
 	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 21, "under_x" = 29, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
 	aim_slowdown = 0.4
@@ -596,6 +589,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "ter"
 
+
 /datum/lasrifle/base/energy_rifle_mode/overcharge
 	charge_cost = 30
 	ammo = /datum/ammo/energy/lasgun/marine/overcharge
@@ -605,6 +599,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "ter"
 	radial_icon_state = "laser_overcharge"
+	hitscan_gun_effect_icon = "beam_heavy"
 
 ///TE Standard Laser Pistol
 
@@ -638,7 +633,7 @@
 		/obj/item/attachable/lace,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_HITSCAN
 	attachable_offset = list("muzzle_x" = 23, "muzzle_y" = 22,"rail_x" = 12, "rail_y" = 22, "under_x" = 16, "under_y" = 14, "stock_x" = 22, "stock_y" = 12)
 
 	aim_slowdown = 0.2
@@ -664,6 +659,8 @@
 	message_to_user = "You set the laser pistol's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tep"
+	hitscan_gun_effect_icon = "beam_thin"
+
 
 /datum/lasrifle/base/energy_pistol_mode/disabler
 	charge_cost = 80
@@ -674,6 +671,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tep"
 	radial_icon_state = "laser_disabler"
+	hitscan_gun_effect_icon = "beam_blue"
 
 /datum/lasrifle/base/energy_pistol_mode/heat
 	charge_cost = 110
@@ -684,6 +682,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tep"
 	radial_icon_state = "laser_heat"
+	hitscan_gun_effect_icon = "solar"
 
 //TE Standard Laser Carbine
 
@@ -719,7 +718,7 @@
 		/obj/item/attachable/buildasentry,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_HITSCAN
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 17, "rail_y" = 21, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
 	aim_slowdown = 0.2
@@ -764,6 +763,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tec"
 	radial_icon_state = "laser_spread"
+	hitscan_gun_effect_icon = "eye"
 
 //TE Standard Sniper
 
@@ -798,7 +798,7 @@
 		/obj/item/attachable/buildasentry,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_HITSCAN
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 18,"rail_x" = 19, "rail_y" = 19, "under_x" = 28, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/laser_sniper_scope)
 	aim_fire_delay = 0.5 SECONDS
@@ -826,6 +826,7 @@
 	message_to_user = "You set the sniper rifle's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tes"
+	hitscan_gun_effect_icon = "beam_heavy"
 
 /datum/lasrifle/base/energy_sniper_mode/heat
 	charge_cost = 150
@@ -836,6 +837,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tes"
 	radial_icon_state = "laser_heat"
+	hitscan_gun_effect_icon = "solar"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser
 	name = "\improper Terra Experimental laser machine gun"
@@ -869,7 +871,7 @@
 		/obj/item/attachable/buildasentry,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_HITSCAN
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 24, "under_x" = 30, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
 
 	aim_slowdown = 1
@@ -899,3 +901,4 @@
 	fire_delay = 0.15 SECONDS
 	charge_cost = 3
 	message_to_user = "You set the machine laser's charge mode to efficiency mode."
+	hitscan_gun_effect_icon = "beam_thin"

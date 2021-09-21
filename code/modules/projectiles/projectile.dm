@@ -867,6 +867,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /obj/projectile/hitscan
 	var/effect_icon = "beam"
 
+/obj/projectile/hitscan/New(loc, effect_icon)
+	. = ..()
+	if(effect_icon)
+		src.effect_icon = effect_icon
+
 /obj/projectile/hitscan/fire_at(atom/target, atom/shooter, atom/source, range, speed, angle, recursivity, suppress_light)
 	if(!isnull(range))
 		proj_max_range = range
