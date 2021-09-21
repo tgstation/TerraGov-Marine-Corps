@@ -264,7 +264,7 @@
 	if(user == gun_user)
 		return
 	if(gun_user)
-		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING))
+		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING, COMSIG_CARBON_SWAPPED_HANDS))
 		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET)
 		gun_user = null
@@ -286,6 +286,7 @@
 	RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, .proc/unload_gun)
 	RegisterSignal(gun_user, COMSIG_KB_FIREMODE, .proc/do_toggle_firemode)
 	RegisterSignal(gun_user, COMSIG_KB_GUN_SAFETY, .proc/toggle_gun_safety_keybind)
+	RegisterSignal(gun_user, COMSIG_CARBON_SWAPPED_HANDS, .proc/swap_shoot_inactive_hand)
 
 
 ///Null out gun user to prevent hard del
@@ -819,7 +820,7 @@ and you're good to go.
 			sentry_battery.charge = 0
 			sentry_battery = null
 	// Akimbo code
-	var/obj/item/weapon/gun/active_gun = gun_user.get_active_held_item() // Don't use active_gun or inactive_gun outside of dual_wield since there are no checks for if it's not a gun else where
+	var/obj/item/weapon/gun/active_gun = gun_user.get_active_held_item() // Don't use active_gun or inactive_gun outside of dual_wield, there are no checks for if it's not a gun outside of dual_wield
 	var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
 	if(dual_wield && gun_user.shoot_inactive_hand && active_gun.current_mag?.current_rounds > 0)
 		gun_user.shoot_inactive_hand = FALSE
@@ -1293,3 +1294,10 @@ and you're good to go.
 	playsound(loc, "alien_claw_metal", 25, 1)
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	to_chat(X, span_warning("We disable the metal thing's lights.") )
+
+/obj/item/weapon/gun/proc/swap_shoot_inactive_hand()
+	SIGNAL_HANDLER
+	if(gun_user.shoot_inactive_hand)
+		gun_user.shoot_inactive_hand = FALSE
+	else
+		gun_user.shoot_inactive_hand = TRUE
