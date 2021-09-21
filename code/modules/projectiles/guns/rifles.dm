@@ -290,7 +290,7 @@
 	aim_speed_modifier = 3
 
 	fire_delay = 0.35 SECONDS
-	damage_mult = 0.5 //uses the marksman bullet, like the DMR.
+	damage_mult = 0.55 //uses the marksman bullet, like the DMR.
 	accuracy_mult = 1.25
 	scatter = -10
 	burst_amount = 1
