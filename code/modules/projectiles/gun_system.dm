@@ -426,13 +426,13 @@
 	SIGNAL_HANDLER
 	if(!gun_user)
 		return
-	if(!isgun(gun_user.get_active_held_item()) || !isgun(gun_user.get_inactive_held_item()))
-		gun_user.shoot_inactive_hand = FALSE
+	if(!isgun(gun_user?.get_active_held_item()) || !isgun(gun_user?.get_inactive_held_item()))
+		gun_user?.shoot_inactive_hand = FALSE
 		return
-	if(gun_user.shoot_inactive_hand && gun_user.get_active_held_item().current_mag?.current_rounds && !gun_user.get_active_held_item().current_mag.current_rounds <= 0)
-		gun_user.shoot_inactive_hand = FALSE
-	if(!gun_user.shoot_inactive_hand && gun_user.get_inactive_held_item().current_mag?.current_rounds && !gun_user.get_inactive_held_item().current_mag.current_rounds <= 0)
-		gun_user.shoot_inactive_hand = TRUE
+	if(gun_user?.shoot_inactive_hand && gun_user?.get_active_held_item().current_mag?.current_rounds && !gun_user?.get_active_held_item().current_mag?.current_rounds <= 0)
+		gun_user?.shoot_inactive_hand = FALSE
+	if(!gun_user?.shoot_inactive_hand && gun_user?.get_inactive_held_item().current_mag?.current_rounds && !gun_user?.get_inactive_held_item().current_mag?.current_rounds <= 0)
+		gun_user?.shoot_inactive_hand = TRUE
 
 //----------------------------------------------------------
 			//							        \\
