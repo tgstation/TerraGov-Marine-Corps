@@ -5,6 +5,5 @@
 	smokecloak_off()
 
 	GLOB.alive_living_list -= src
-	LAZYREMOVE(GLOB.ssd_living_mobs, src)
 
 	return ..()
