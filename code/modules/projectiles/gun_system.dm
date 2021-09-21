@@ -422,18 +422,6 @@
 	. = ..()
 	return cock(user)
 
-/obj/item/weapon/gun/proc/swap_shoot_inactive_hand()
-	SIGNAL_HANDLER
-	if(!gun_user)
-		return
-	if(!isgun(gun_user?.get_active_held_item()) || !isgun(gun_user?.get_inactive_held_item()))
-		gun_user?.shoot_inactive_hand = FALSE
-		return
-	if(gun_user?.shoot_inactive_hand && gun_user?.get_active_held_item().current_mag?.current_rounds && !gun_user?.get_active_held_item().current_mag?.current_rounds <= 0)
-		gun_user?.shoot_inactive_hand = FALSE
-	if(!gun_user?.shoot_inactive_hand && gun_user?.get_inactive_held_item().current_mag?.current_rounds && !gun_user?.get_inactive_held_item().current_mag?.current_rounds <= 0)
-		gun_user?.shoot_inactive_hand = TRUE
-
 //----------------------------------------------------------
 			//							        \\
 			// LOADING, RELOADING, AND CASINGS  \\
@@ -686,6 +674,18 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	SIGNAL_HANDLER
 	active_attachable?.clean_target()
 	target = get_turf(target)
+
+/obj/item/weapon/gun/proc/swap_shoot_inactive_hand()
+	SIGNAL_HANDLER
+	if(!gun_user)
+		return
+	if(!isgun(gun_user?.get_active_held_item()) || !isgun(gun_user?.get_inactive_held_item()))
+		gun_user?.shoot_inactive_hand = FALSE
+		return
+	if(gun_user?.shoot_inactive_hand && gun_user?.get_active_held_item().current_mag?.current_rounds && !gun_user?.get_active_held_item().current_mag?.current_rounds <= 0)
+		gun_user?.shoot_inactive_hand = FALSE
+	if(!gun_user?.shoot_inactive_hand && gun_user?.get_inactive_held_item().current_mag?.current_rounds && !gun_user?.get_inactive_held_item().current_mag?.current_rounds <= 0)
+		gun_user?.shoot_inactive_hand = TRUE
 
 ///Reset variables used in firing and remove the gun from the autofire system
 /obj/item/weapon/gun/proc/stop_fire()
