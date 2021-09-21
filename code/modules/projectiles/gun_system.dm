@@ -422,6 +422,18 @@
 	. = ..()
 	return cock(user)
 
+/obj/item/weapon/gun/proc/swap_shoot_inactive_hand()
+	SIGNAL_HANDLER
+	if(!gun_user)
+		return
+	if(!isgun(gun_user.get_active_held_item()) || !isgun(gun_user.get_inactive_held_item()))
+		gun_user.shoot_inactive_hand = FALSE
+		return
+	if(gun_user.shoot_inactive_hand && gun_user.get_active_held_item().current_mag?.current_rounds && !gun_user.get_active_held_item().current_mag.current_rounds <= 0)
+		gun_user.shoot_inactive_hand = FALSE
+	if(!gun_user.shoot_inactive_hand && gun_user.get_inactive_held_item().current_mag?.current_rounds && !gun_user.get_inactive_held_item().current_mag.current_rounds <= 0)
+		gun_user.shoot_inactive_hand = TRUE
+
 //----------------------------------------------------------
 			//							        \\
 			// LOADING, RELOADING, AND CASINGS  \\
@@ -639,6 +651,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			return
 		if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
 			dual_wield = TRUE
+		else
+			gun_user.shoot_inactive_hand = FALSE
 		if(gun_user.in_throw_mode)
 			return
 		if(gun_user.Adjacent(object)) //Dealt with by attack code
@@ -688,7 +702,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	set_target(null)
 	windup_checked = WEAPON_WINDUP_NOT_CHECKED
 	dual_wield = FALSE
-	gun_user?.shoot_inactive_hand = FALSE
 	gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 
 ///Inform the gun if he is currently bursting, to prevent reloading
@@ -1295,9 +1308,3 @@ and you're good to go.
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	to_chat(X, span_warning("We disable the metal thing's lights.") )
 
-/obj/item/weapon/gun/proc/swap_shoot_inactive_hand()
-	SIGNAL_HANDLER
-	if(gun_user.shoot_inactive_hand)
-		gun_user.shoot_inactive_hand = FALSE
-	else
-		gun_user.shoot_inactive_hand = TRUE
