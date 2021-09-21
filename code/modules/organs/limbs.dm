@@ -1089,7 +1089,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	var/text2 = span_notice("You finish applying [S] to [target]'s [display_name].")
 
 	if(target == user) //If self splinting, multiply delay by 4
-		delay *= 4
+		delay *= 3
 		text1 = span_warning("[user] successfully applies [S] to their [display_name].")
 		text2 = span_notice("You successfully apply [S] to your [display_name].")
 
