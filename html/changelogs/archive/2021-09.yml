@@ -343,3 +343,20 @@
       blood as a secondary healthbar. Don''t inject without medical aid, and keep
       an iron pill bottle with you. Stimulon- Makes you go fast. Unpredictable side
       effects that get worse the longer it''s in you.'
+2021-09-21:
+  BraveMole:
+  - balance: You can no longer switch sides in HvH
+  - qol: change speed weed name to weed
+  Bravemole, sprites by slayer:
+  - rscadd: ZOOOMBIES. Slow movement, fast regen, can come back from the dead. Rip
+      off the heart (use a sharp tool) to prevent it from coming back again and again.
+      Watch out, it spreads...
+  EvilMelonTheSecond:
+  - rscadd: Added an engi backpack for groundside supply requests
+  MiniMeatwad:
+  - balance: Plasmaloss gas now removes 20% of your plasma_max instead of 200 plasma,
+      which is 20% of 1000.
+  - balance: Pepperball gun now removes 5% of your plasma_max instead of 50, which
+      is 5% of 1000.
+  TiviPlus:
+  - qol: centered small eplosions animation
