@@ -889,9 +889,18 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(target)
 		original_target = target
 		original_target_turf = get_turf(target)
+
 	apx = ABS_COOR(x) //Set the absolute coordinates. Center of a tile is assumed to be (16,16)
 	apy = ABS_COOR(y)
-	dir_angle = round(Get_Pixel_Angle((ABS_COOR(target.x) - apx), (ABS_COOR(target.y) - apy))) //Using absolute pixel coordinates.
+	if(!angle && target)
+		dir_angle = round(Get_Pixel_Angle((ABS_COOR(target.x) - apx), (ABS_COOR(target.y) - apy))) //Using absolute pixel coordinates.
+	else
+		dir_angle = angle
+
+	//If we have the the right kind of ammo, we can fire several projectiles at once.
+	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
+		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle)
+
 	x_offset = round(sin(dir_angle), 0.01)
 	y_offset = round(cos(dir_angle), 0.01)
 	projectile_batch_move()

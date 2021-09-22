@@ -159,8 +159,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		victim.apply_damage(proj.damage * 0.1, proj.ammo.damage_type, null, armor_block, updating_health = TRUE)
 
 /datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle)
+	var/effect_icon = ""
+	var/proj_type = /obj/projectile
+	if(istype(main_proj, /obj/projectile/hitscan))
+		proj_type = /obj/projectile/hitscan
+		var/obj/projectile/hitscan/main_proj_hitscan = main_proj
+		effect_icon = main_proj_hitscan.effect_icon
 	for(var/i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
-		var/obj/projectile/new_proj = new /obj/projectile(main_proj.loc)
+		var/obj/projectile/new_proj = new proj_type(main_proj.loc, effect_icon)
 		if(bonus_projectiles_type)
 			new_proj.generate_bullet(GLOB.ammo_list[bonus_projectiles_type])
 			var/obj/item/weapon/gun/g = source
