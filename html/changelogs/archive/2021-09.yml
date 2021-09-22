@@ -360,3 +360,18 @@
       is 5% of 1000.
   TiviPlus:
   - qol: centered small eplosions animation
+2021-09-22:
+  BraveMole:
+  - bugfix: Fix twin pillars doors
+  Joniroq:
+  - rscadd: Added Leicester Repeater. Uses .44 caliber rounds. Yeehaw!
+  MiniMeatwad:
+  - code_imp: Click dragging an object onto itself will click on the object instead
+      of doing nothing.
+  - balance: Praetorian acid spray cost is now 300 instead of 400.
+  Pariah919:
+  - balance: ravager upped to 28/30 melee damage respectively. (Young/Mature and Elder/Ancient)
+  QualityVan:
+  - bugfix: Synths don't apply their damage reduction twice anymore.
+  TiviPlus:
+  - bugfix: Fix shuttle lighting & turfs

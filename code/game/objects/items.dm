@@ -149,6 +149,7 @@
 	master = null
 	embedding = null
 	embedded_into = null //Should have been removed by temporarilyRemoveItemFromInventory, but let's play it safe.
+	GLOB.cryoed_item_list -= src
 	return ..()
 
 
