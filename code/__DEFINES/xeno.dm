@@ -6,6 +6,9 @@
 #define STICKY_WEED "sticky weed sac"
 #define RESTING_WEED "resting weed sac"
 
+#define XENO_TURRET_ACID_ICONSTATE "acid_turret"
+#define XENO_TURRET_STICKY_ICONSTATE "resin_turret"
+
 //List of weed types
 GLOBAL_LIST_INIT(weed_type_list, typecacheof(list(
 		/obj/effect/alien/weeds/node,
@@ -25,6 +28,16 @@ GLOBAL_LIST_INIT(weed_images_list,  list(
 		SPEED_WEED = image('icons/mob/actions.dmi', icon_state = SPEED_WEED),
 		STICKY_WEED = image('icons/mob/actions.dmi', icon_state = STICKY_WEED),
 		RESTING_WEED = image('icons/mob/actions.dmi', icon_state = RESTING_WEED),
+		))
+
+GLOBAL_LIST_INIT(xeno_turret_images_list,  list(
+		"Sticky turret" = image('icons/Xeno/acidturret.dmi', icon_state = XENO_TURRET_STICKY_ICONSTATE),
+		"Acid turret" = image('icons/Xeno/acidturret.dmi', icon_state = XENO_TURRET_ACID_ICONSTATE),
+		))
+
+GLOBAL_LIST_INIT(turret_types_by_name,  list(
+		"Sticky turret" = /obj/structure/xeno/resin/xeno_turret/sticky,
+		"Acid turret" = /obj/structure/xeno/resin/xeno_turret,
 		))
 
 //List of Defiler toxin types
