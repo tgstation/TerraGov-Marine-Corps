@@ -512,10 +512,6 @@
 	dir = 8
 	},
 /area/whiskey_outpost)
-"cm" = (
-/obj/structure/jungle/vines,
-/turf/open/ground/jungle,
-/area/whiskey_outpost/outside/west)
 "cn" = (
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/ground/grass,
@@ -1861,15 +1857,6 @@
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/ground/river,
 /area/whiskey_outpost/outside/east)
-"hI" = (
-/obj/machinery/door/poddoor/four_tile_hor{
-	desc = "No escape.";
-	id = "escape";
-	name = "Exit Shield";
-	resistance_flags = 3
-	},
-/turf/open/ground/river,
-/area/whiskey_outpost)
 "hJ" = (
 /turf/open/ground/grass/beach,
 /area/whiskey_outpost/outside/west)
@@ -2777,7 +2764,7 @@
 	name = "King Moth"
 	},
 /turf/open/floor/rcircuit,
-/area/whiskey_outpost/outside/north)
+/area/whiskey_outpost)
 "mW" = (
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating,
@@ -4136,7 +4123,7 @@
 	name = "Princess Slime"
 	},
 /turf/open/floor/rcircuit,
-/area/whiskey_outpost/outside/north)
+/area/whiskey_outpost)
 "sS" = (
 /obj/machinery/light{
 	dir = 1
@@ -4930,11 +4917,6 @@
 "BR" = (
 /turf/closed/wall/indestructible/mineral,
 /area/whiskey_outpost)
-"BU" = (
-/obj/structure/table/woodentable,
-/obj/item/coin/gold,
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost/outside/west)
 "BX" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/claymore/mercsword/captain,
@@ -5043,7 +5025,7 @@
 	name = "SunoBux"
 	},
 /turf/open/floor/prison,
-/area/whiskey_outpost/outside/north)
+/area/whiskey_outpost)
 "CA" = (
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/ground/jungle/path,
@@ -5069,7 +5051,7 @@
 	name = "Jester Moth"
 	},
 /turf/open/floor/prison,
-/area/whiskey_outpost/outside/north)
+/area/whiskey_outpost)
 "CK" = (
 /obj/item/weapon/gun/tl102/hsg_nest{
 	dir = 4
@@ -5585,12 +5567,6 @@
 /obj/effect/ai_node,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/west)
-"Io" = (
-/turf/closed/banish_space{
-	desc = "You realize the truth. There is no escape";
-	name = "End of the world"
-	},
-/area/whiskey_outpost/outside/north)
 "Ip" = (
 /obj/item/tool/lighter/random,
 /obj/structure/table/mainship,
@@ -5682,11 +5658,6 @@
 /obj/machinery/vending/marine/shared,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
-"Je" = (
-/obj/structure/bed,
-/obj/item/bedsheet/captain,
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost/outside/west)
 "Jf" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -6004,10 +5975,6 @@
 /obj/structure/barricade/sandbags,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
-"MA" = (
-/obj/structure/mineral_door/iron,
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/west)
 "MB" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -6076,11 +6043,6 @@
 	dir = 4
 	},
 /turf/open/ground/river,
-/area/whiskey_outpost/outside/west)
-"NJ" = (
-/obj/item/weapon/twohanded/glaive,
-/obj/structure/rack,
-/turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
 "NL" = (
 /obj/machinery/light{
@@ -6157,10 +6119,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
-"Oj" = (
-/obj/structure/fence,
-/turf/open/ground/river,
-/area/whiskey_outpost)
 "Ok" = (
 /obj/item/weapon/gun/sentry/premade,
 /turf/open/floor/plating/asteroidfloor,
@@ -6195,7 +6153,7 @@
 	name = "Queen Moth"
 	},
 /turf/open/floor/rcircuit,
-/area/whiskey_outpost/outside/north)
+/area/whiskey_outpost)
 "Oy" = (
 /obj/machinery/floodlight/outpost,
 /turf/open/floor/plating,
@@ -6296,9 +6254,6 @@
 /obj/structure/barricade/plasteel,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/east)
-"PF" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/whiskey_outpost)
 "PG" = (
 /obj/item/roller,
 /turf/open/floor/mainship/sterile/dark,
@@ -6724,26 +6679,15 @@
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
-"Vf" = (
-/turf/open/floor/prison,
-/area/whiskey_outpost/outside/north)
 "Vh" = (
 /obj/effect/ai_node,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/east)
-"Vl" = (
-/obj/structure/jungle/vines/heavy,
-/turf/open/floor/plating/ground/dirtgrassborder,
-/area/whiskey_outpost/outside/west)
 "Vq" = (
 /turf/open/floor/plating/asteroidwarning{
 	dir = 6
 	},
 /area/whiskey_outpost)
-"VB" = (
-/obj/structure/jungle/vines/heavy,
-/turf/open/ground/jungle,
-/area/whiskey_outpost/outside/west)
 "VD" = (
 /obj/structure/barricade/sandbags{
 	dir = 4
@@ -6778,9 +6722,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
-"VS" = (
-/turf/open/ground/river,
-/area/whiskey_outpost)
 "Wf" = (
 /obj/machinery/door/airlock/mainship/command{
 	dir = 2;
@@ -6788,7 +6729,7 @@
 	name = "Court Of The Moth King"
 	},
 /turf/open/floor/prison,
-/area/whiskey_outpost/outside/north)
+/area/whiskey_outpost)
 "Wm" = (
 /obj/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/plating/asteroidfloor,
@@ -6994,10 +6935,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/south)
-"Yw" = (
-/obj/structure/jungle/vines,
-/turf/open/floor/plating/ground/dirtgrassborder/corner,
-/area/whiskey_outpost/outside/west)
 "Yy" = (
 /obj/structure/platform_decoration{
 	dir = 1
@@ -7067,10 +7004,6 @@
 /obj/structure/largecrate/guns,
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost)
-"ZB" = (
-/obj/structure/jungle/vines/heavy,
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/west)
 "ZP" = (
 /obj/structure/barricade/metal,
 /obj/structure/barricade/metal{
@@ -12222,9 +12155,9 @@ hy
 hw
 hw
 hw
-cm
-VB
-Yw
+hB
+hB
+hB
 hB
 hB
 hB
@@ -12375,11 +12308,11 @@ hy
 hw
 hw
 hB
-cm
-VB
-Vl
-ZB
-hm
+hB
+hB
+hB
+hB
+hB
 hB
 hB
 hB
@@ -12530,10 +12463,10 @@ hB
 hB
 hB
 hB
-Vl
-hm
-hm
-hm
+hB
+hB
+hB
+hB
 hB
 hB
 hB
@@ -12684,9 +12617,9 @@ hB
 hB
 hB
 hB
-hm
-hm
-hm
+hB
+hB
+hB
 hB
 hB
 hB
@@ -12838,8 +12771,8 @@ hB
 hB
 hB
 hB
-hm
-hm
+hB
+hB
 hB
 hB
 hB
@@ -12991,8 +12924,8 @@ hB
 hB
 hB
 hB
-MA
-MA
+hB
+hB
 hB
 hB
 hB
@@ -13143,9 +13076,9 @@ hB
 hB
 hB
 hB
-hm
-hm
-hm
+hB
+hB
+hB
 hB
 hB
 hB
@@ -13293,12 +13226,12 @@ hB
 hB
 hB
 hB
-Je
-hX
-hX
-hm
-hm
-hm
+hB
+hB
+hB
+hB
+hB
+hB
 hB
 hB
 hB
@@ -13446,11 +13379,11 @@ hB
 hB
 hB
 hB
-BU
-hX
-hX
-hX
-hZ
+hB
+hB
+hB
+hB
+hB
 hB
 hB
 hB
@@ -13600,9 +13533,9 @@ hB
 hB
 hB
 hB
-NJ
-hX
-hX
+hB
+hB
+hB
 hB
 hB
 hB
@@ -23962,10 +23895,10 @@ aS
 aS
 aS
 aS
-PF
-PF
-PF
-PF
+aS
+aS
+aS
+aS
 cx
 cx
 cx
@@ -24115,10 +24048,10 @@ aS
 aS
 aS
 aS
-PF
-JZ
-hI
-Oj
+aS
+aS
+aS
+cx
 cx
 cx
 cx
@@ -24268,10 +24201,10 @@ aS
 aS
 aS
 aS
-PF
-JZ
-VS
-Oj
+aS
+aS
+aS
+cx
 cx
 cx
 cx
@@ -24421,10 +24354,10 @@ aS
 aS
 aS
 aS
-PF
-JZ
-VS
-Oj
+aS
+aS
+aS
+cx
 cx
 cJ
 cx
@@ -24574,10 +24507,10 @@ aS
 aS
 aS
 aS
-PF
-JZ
-VS
-Oj
+aS
+aS
+aS
+cx
 cx
 cx
 cx
@@ -24727,10 +24660,10 @@ aS
 aS
 aS
 aS
-PF
-PF
-PF
-PF
+aS
+aS
+aS
+aS
 cx
 cx
 cx
@@ -25475,7 +25408,7 @@ Xz
 Xz
 Xz
 Xz
-aS
+Xz
 aS
 aS
 aS
@@ -25628,8 +25561,8 @@ Xz
 Xz
 Xz
 Xz
-aS
-aS
+Xz
+Xz
 aS
 aS
 aS
@@ -25930,12 +25863,12 @@ mv
 (124,1,1) = {"
 mv
 Xz
-Io
-Io
-Io
-Io
-Io
-Io
+JZ
+JZ
+JZ
+JZ
+JZ
+JZ
 Xz
 aS
 aS
@@ -26083,12 +26016,12 @@ mv
 (125,1,1) = {"
 mv
 Xz
-Io
+JZ
 sQ
-Vf
-Vf
+HQ
+HQ
 Cy
-Io
+JZ
 Xz
 Xz
 aS
@@ -26236,11 +26169,11 @@ mv
 (126,1,1) = {"
 mv
 Xz
-Io
+JZ
 mV
-Vf
-Vf
-Vf
+HQ
+HQ
+HQ
 Wf
 Xz
 Xz
@@ -26389,12 +26322,12 @@ mv
 (127,1,1) = {"
 mv
 Xz
-Io
+JZ
 Ov
-Vf
-Vf
+HQ
+HQ
 CJ
-Io
+JZ
 Xz
 Xz
 Xz
@@ -26542,12 +26475,12 @@ mv
 (128,1,1) = {"
 mv
 Xz
-Io
-Io
-Io
-Io
-Io
-Io
+JZ
+JZ
+JZ
+JZ
+JZ
+JZ
 Xz
 Xz
 Xz
