@@ -533,7 +533,7 @@
 	new /obj/item/stack/medical/splint(src)
 
 /obj/item/storage/pouch/medkit/marine
-	name = "medkit pouch"
+	name = "Marine medkit pouch"
 	desc = "A standard use medkit pouch that can contain all kinds of stuff. This marine version has 6 slots."
 	icon_state = "medkit"
 	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
