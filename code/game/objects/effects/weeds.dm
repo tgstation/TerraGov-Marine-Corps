@@ -178,7 +178,7 @@
 // =================
 // weed node - grows other weeds
 /obj/effect/alien/weeds/node
-	name = "speed weed sac"
+	name = "weed sac"
 	desc = "A weird, pulsating purple node."
 	max_integrity = 60
 	var/node_icon = "weednode"
