@@ -494,7 +494,7 @@
 
 /obj/item/storage/pouch/medkit
 	name = "Marine medkit pouch"
-	desc = "A standard use medkit pouch that can contain all kinds of stuff.This Marine version has 5 slots."
+	desc = "A standard use medkit pouch that can contain all kinds of stuff. This Marine version has 5 slots."
 	icon_state = "medkit"
 	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
 	max_w_class = 4
