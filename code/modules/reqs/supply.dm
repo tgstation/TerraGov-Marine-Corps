@@ -639,7 +639,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /obj/item/storage/backpack/marine/radiopack/attack_hand_alternate(mob/living/user)
 	if(!allowed(user))
-		return
+		return ..()
 	if(!supply_interface)
 		supply_interface = new(src)
 	return supply_interface.interact(user)
