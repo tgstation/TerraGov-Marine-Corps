@@ -648,8 +648,7 @@
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/storage/firstaid/adv,
 		/obj/item/clothing/glasses/hud/health,
-		/obj/item/storage/pouch/medkit/corpsman,
-		/obj/item/clothing/tie/storage/white_vest/medic,
+		
 	)
 
 /obj/effect/essentials_set/engi
