@@ -534,42 +534,16 @@
 
 /obj/item/storage/pouch/medkit/marine
 	name = "Marine medkit pouch"
-	desc = "A standard use medkit pouch that can contain all kinds of stuff. This marine version has 6 slots."
+	desc = "A standard use medkit pouch that can contain all kinds of stuff. This marine version has 5 slots."
 	icon_state = "medkit"
-	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
-	max_w_class = 4
 	storage_slots = 5
-	can_hold = list(
-		/obj/item/healthanalyzer,
-		/obj/item/reagent_containers/dropper,
-		/obj/item/reagent_containers/pill,
-		/obj/item/reagent_containers/glass/bottle,
-		/obj/item/reagent_containers/syringe,
-		/obj/item/storage/pill_bottle,
-		/obj/item/stack/medical,
-		/obj/item/flashlight/pen,
-		/obj/item/storage/pill_bottle/packet,
-		/obj/item/reagent_containers/hypospray,
 	)
 
 /obj/item/storage/pouch/medkit/corpsman
 	name = "medkit pouch"
 	desc = "A standard use medkit pouch that can contain all kinds of stuff. This corpsman version has 7 slots."
 	icon_state = "medkit"
-	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
-	max_w_class = 4
 	storage_slots = 7
-	can_hold = list(
-		/obj/item/healthanalyzer,
-		/obj/item/reagent_containers/dropper,
-		/obj/item/reagent_containers/pill,
-		/obj/item/reagent_containers/glass/bottle,
-		/obj/item/reagent_containers/syringe,
-		/obj/item/storage/pill_bottle,
-		/obj/item/stack/medical,
-		/obj/item/flashlight/pen,
-		/obj/item/storage/pill_bottle/packet,
-		/obj/item/reagent_containers/hypospray,
 	)
 
 /obj/item/storage/pouch/document
