@@ -267,7 +267,7 @@
 			if(overcharge && cell.charge < ENERGY_OVERCHARGE_AMMO_COST && cell.charge >= ENERGY_STANDARD_AMMO_COST) //Revert to standard shot if we don't have enough juice for overcharge, but enough for the standard mode
 				cock(user)
 				return
-			if(cell.charge < ENERGY_STANDARD_AMMO_COST && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
+			if(cell.charge < charge_cost && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
 				unload(user,1,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
 				playsound(src, empty_sound, 25, 1)
 
