@@ -538,7 +538,7 @@
 	icon_state = "medkit"
 	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
 	max_w_class = 4
-	storage_slots = 6
+	storage_slots = 5
 	can_hold = list(
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/dropper,
