@@ -693,7 +693,7 @@
 		/obj/item/storage/firstaid/regular = 4,
 		/obj/item/storage/firstaid/adv = 8,
 		/obj/item/storage/pouch/medical = 4,
-		/obj/item/storage/pouch/medkit/corpsman = 4,
+		/obj/item/storage/pouch/medkit/corpsman = 1,
 		/obj/item/storage/pouch/magazine/large = 4,
 		/obj/item/storage/pouch/magazine/pistol/large = 4,
 		/obj/item/clothing/mask/gas = 4,
