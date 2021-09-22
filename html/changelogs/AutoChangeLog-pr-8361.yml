@@ -1,4 +1,4 @@
 author: "BraveMole"
 delete-after: True
 changes: 
-  - qol: "change speed weed name to weed"
+  - bugfix: "Fix energy guns not auto ejecting"

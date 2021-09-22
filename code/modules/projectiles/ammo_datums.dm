@@ -1199,6 +1199,7 @@ datum/ammo/bullet/revolver/tp44
 	set_smoke()
 	smoke_system.set_up(range, T)
 	smoke_system.start()
+	smoke_system = null
 	T.visible_message(span_danger("The rocket explodes into white gas!") )
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 	flame_radius(radius, T, 27, 27, 27, 17)
@@ -1701,6 +1702,7 @@ datum/ammo/bullet/revolver/tp44
 	smoke_system.strength = smoke_strength
 	smoke_system.set_up(smoke_range, T)
 	smoke_system.start()
+	smoke_system = null
 
 /datum/ammo/xeno/toxin/upgrade1
 	smoke_strength = 0.6
@@ -1941,6 +1943,7 @@ datum/ammo/bullet/revolver/tp44
 		range = max(2, range + X.upgrade_as_number())
 	smoke_system.set_up(range, T)
 	smoke_system.start()
+	smoke_system = null
 	T.visible_message(danger_message)
 
 /datum/ammo/xeno/boiler_gas/corrosive

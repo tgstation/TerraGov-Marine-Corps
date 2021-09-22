@@ -768,29 +768,6 @@ should be alright.
 
 
 
-/mob/living/carbon/human/verb/toggle_ammo_hud()
-	set category = "Weapons"
-	set name = "Toggle Ammo HUD"
-	set desc = "Toggles the Ammo HUD for this weapon."
-
-	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-	if(!G)
-		return
-	G.toggle_ammo_hud()
-
-
-/obj/item/weapon/gun/verb/toggle_ammo_hud()
-	set category = null
-	set name = "Toggle Ammo HUD (Weapon)"
-	set desc = "Toggles the Ammo HUD for this weapon."
-
-	hud_enabled = !hud_enabled
-	var/obj/screen/ammo/A = usr.hud_used.ammo
-	hud_enabled ? A.add_hud(usr, src) : A.remove_hud(usr, src)
-	A.update_hud(usr)
-	to_chat(usr, span_notice("[hud_enabled ? "You enable the Ammo HUD for this weapon." : "You disable the Ammo HUD for this weapon."]"))
-
-
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
 	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		return FALSE
