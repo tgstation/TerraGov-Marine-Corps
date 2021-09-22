@@ -517,7 +517,7 @@
 	desc = "A standard use medkit pouch that can contain all kinds of stuff.This Marine version has 7 slots."
 	storage_slots = 7
 
-/obj/item/storage/pouch/medkit/full/Initialize()
+/obj/item/storage/pouch/medkit/corpsman/Initialize()
 	. = ..()
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
