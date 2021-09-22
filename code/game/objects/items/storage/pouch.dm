@@ -537,8 +537,6 @@
 	new /obj/item/storage/pill_bottle/tramadol(src)
 	new /obj/item/stack/medical/splint(src)
 
-
-
 /obj/item/storage/pouch/document
 	name = "document pouch"
 	desc = "It can contain papers and clipboards."
