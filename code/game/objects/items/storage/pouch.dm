@@ -515,7 +515,6 @@
 /obj/item/storage/pouch/medkit/corpsman
 	name = "Corpsman medkit pouch"
 	desc = "A standard use medkit pouch that can contain all kinds of stuff.This Marine version has 7 slots."
-	icon_state = "medkit"
 	storage_slots = 7
 
 /obj/item/storage/pouch/medkit/full/Initialize()
