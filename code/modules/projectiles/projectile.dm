@@ -889,7 +889,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(target)
 		original_target = target
 		original_target_turf = get_turf(target)
-	distance_travelled++
 	apx = ABS_COOR(x) //Set the absolute coordinates. Center of a tile is assumed to be (16,16)
 	apy = ABS_COOR(y)
 	dir_angle = round(Get_Pixel_Angle((ABS_COOR(target.x) - apx), (ABS_COOR(target.y) - apy))) //Using absolute pixel coordinates.
@@ -967,8 +966,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 					else
 						border_escaped_through = pick(NORTH, WEST)
 			turf_crossed_by = get_step(last_processed_turf, border_escaped_through)
-			for(var/j in uncross_scheduled)
-				var/atom/movable/thing_to_uncross = j
+			for(var/atom/movable/thing_to_uncross AS in uncross_scheduled)
 				if(QDELETED(thing_to_uncross))
 					continue
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(border_escaped_through), TRUE))
@@ -976,7 +974,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				thing_to_uncross.do_projectile_hit(src)
 				end_of_movement = TRUE
 				break
-			uncross_scheduled.len = 0
+			uncross_scheduled.Cut()
 			if(end_of_movement)
 				break
 			if(scan_a_turf(turf_crossed_by, border_escaped_through))
@@ -986,8 +984,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				ammo.on_hit_turf(turf_crossed_by, src)
 				end_of_movement = TRUE
 				break
-			for(var/j in uncross_scheduled) //We are leaving turf_crossed_by now.
-				var/atom/movable/thing_to_uncross = j
+			for(var/atom/movable/thing_to_uncross AS in uncross_scheduled) //We are leaving turf_crossed_by now.
 				if(QDELETED(thing_to_uncross))
 					continue
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
@@ -995,12 +992,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				thing_to_uncross.do_projectile_hit(src)
 				end_of_movement = TRUE
 				break
-			uncross_scheduled.len = 0
+			uncross_scheduled.Cut()
 			if(end_of_movement)
 				break
 		if(length(uncross_scheduled)) //Time to exit the last turf entered, if the diagonal movement didn't handle it already.
-			for(var/j in uncross_scheduled)
-				var/atom/movable/thing_to_uncross = j
+			for(var/atom/movable/thing_to_uncross AS in uncross_scheduled)
 				if(QDELETED(thing_to_uncross))
 					continue
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
