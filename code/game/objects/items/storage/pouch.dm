@@ -493,12 +493,12 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
 
 /obj/item/storage/pouch/medkit
-	name = "medkit pouch"
-	desc = "A standard use medkit pouch that can contain all kinds of stuff."
+	name = "Marine medkit pouch"
+	desc = "A standard use medkit pouch that can contain all kinds of stuff.This Marine version has 5 slots."
 	icon_state = "medkit"
 	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
 	max_w_class = 4
-	storage_slots = 7
+	storage_slots = 5
 	can_hold = list(
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/dropper,
@@ -511,6 +511,12 @@
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/reagent_containers/hypospray,
 	)
+
+/obj/item/storage/pouch/medkit/corpsman
+	name = "Corpsman medkit pouch"
+	desc = "A standard use medkit pouch that can contain all kinds of stuff.This Marine version has 7 slots."
+	icon_state = "medkit"
+	storage_slots = 7
 
 /obj/item/storage/pouch/medkit/full/Initialize()
 	. = ..()
@@ -532,19 +538,7 @@
 	new /obj/item/storage/pill_bottle/tramadol(src)
 	new /obj/item/stack/medical/splint(src)
 
-/obj/item/storage/pouch/medkit/marine
-	name = "Marine medkit pouch"
-	desc = "A standard use medkit pouch that can contain all kinds of stuff. This marine version has 5 slots."
-	icon_state = "medkit"
-	storage_slots = 5
-	)
 
-/obj/item/storage/pouch/medkit/corpsman
-	name = "medkit pouch"
-	desc = "A standard use medkit pouch that can contain all kinds of stuff. This corpsman version has 7 slots."
-	icon_state = "medkit"
-	storage_slots = 7
-	)
 
 /obj/item/storage/pouch/document
 	name = "document pouch"
