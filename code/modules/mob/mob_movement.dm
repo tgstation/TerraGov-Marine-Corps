@@ -80,7 +80,7 @@
 		return Move_object(direct)
 	if(!isliving(mob))
 		return mob.Move(n, direct)
-	if(mob.stat == DEAD)
+	if(mob.stat == DEAD && !HAS_TRAIT(mob, TRAIT_IS_RESURRECTING))
 		mob.ghostize()
 		return FALSE
 

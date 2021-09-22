@@ -9,7 +9,7 @@
 
 // base weed type
 /obj/effect/alien/weeds
-	name = "speed weeds"
+	name = "weeds"
 	desc = "A layer of oozy slime, it feels slick, but not as slick for you to slip."
 	icon = 'icons/Xeno/weeds.dmi'
 	icon_state = "base"
@@ -39,7 +39,7 @@
 	if(!isnull(node))
 		if(!istype(node))
 			CRASH("Weed created with non-weed node. Type: [node.type]")
-		parent_node = node
+		set_parent_node(node)
 	update_icon()
 	AddElement(/datum/element/accelerate_on_crossed)
 	if(!swapped)
@@ -96,6 +96,18 @@
 	else
 		icon_state = "weed_dir[my_dir]"
 	icon_state += color_variant
+
+///Set the parent_node to node
+/obj/effect/alien/weeds/proc/set_parent_node(atom/node)
+	if(parent_node)
+		UnregisterSignal(parent_node, COMSIG_PARENT_QDELETING)
+	parent_node = node
+	RegisterSignal(parent_node, COMSIG_PARENT_QDELETING, .proc/clean_parent_node)
+
+///Clean the parent node var
+/obj/effect/alien/weeds/proc/clean_parent_node()
+	SIGNAL_HANDLER
+	parent_node = null
 
 /obj/effect/alien/weeds/sticky
 	name = "sticky weeds"

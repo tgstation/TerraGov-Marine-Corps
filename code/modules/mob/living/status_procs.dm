@@ -230,6 +230,14 @@
 			P = apply_status_effect(STATUS_EFFECT_PARALYZED, amount)
 		return P
 
+/mob/living/carbon/Paralyze(amount, ignore_canstun)
+	if(species?.species_flags & PARALYSE_RESISTANT)
+		if(amount > MAX_PARALYSE_AMOUNT_FOR_PARALYSE_RESISTANT * 4)
+			amount = MAX_PARALYSE_AMOUNT_FOR_PARALYSE_RESISTANT
+			return ..()
+		amount /= 4
+	return ..()
+
 /mob/living/proc/SetParalyzed(amount, ignore_canstun = FALSE) //Sets remaining duration
 	if(status_flags & GODMODE)
 		return

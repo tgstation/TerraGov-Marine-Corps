@@ -77,7 +77,9 @@
 	var/datum/xeno_caste/X = GLOB.xeno_caste_datums[caste_base_type][upgrade]
 	if(!istype(X))
 		CRASH("error with caste datum")
+	var/marked_target = xeno_caste?.marked_target
 	xeno_caste = X
+	xeno_caste.marked_target = marked_target
 	xeno_caste.on_caste_applied(src)
 	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
 	if(restore_health_and_plasma)
@@ -336,7 +338,7 @@
 	var/obj/screen/LL_dir = hud_used.locate_leader
 	if(!tracked)
 		if(hive.living_xeno_ruler)
-			tracked = hive.living_xeno_ruler
+			set_tracked(hive.living_xeno_ruler)
 		else
 			LL_dir.icon_state = "trackoff"
 			return
@@ -370,6 +372,12 @@
 	if(is_zoomed)
 		zoom_out()
 	return ..()
+
+/mob/living/carbon/xenomorph/ghostize(can_reenter_corpse)
+	. = ..()
+	if(!. || can_reenter_corpse)
+		return
+	set_afk_status(MOB_RECENTLY_DISCONNECTED, 5 SECONDS)
 
 /mob/living/carbon/xenomorph/set_stat(new_stat)
 	. = ..()

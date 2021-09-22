@@ -5,7 +5,6 @@
 	verb_say = "beeps"
 	verb_yell = "blares"
 	anchored = TRUE
-	obj_flags = CAN_BE_HIT
 	destroy_sound = 'sound/effects/metal_crash.ogg'
 	interaction_flags = INTERACT_MACHINE_DEFAULT
 

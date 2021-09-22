@@ -33,7 +33,7 @@
 	var/taste_sensitivity = TASTE_NORMAL
 	var/gluttonous        // Can eat some mobs. 1 for monkeys, 2 for people.
 	var/rarity_value = 1  // Relative rarity/collector value for this species. Only used by ninja and cultists atm.
-	var/unarmed_type = /datum/unarmed_attack
+	var/datum/unarmed_attack/unarmed_type = /datum/unarmed_attack
 	var/secondary_unarmed_type = /datum/unarmed_attack/bite
 	var/default_language_holder = /datum/language_holder
 	var/speech_verb_override
@@ -200,11 +200,6 @@
 /datum/species/proc/random_name(gender)
 	return GLOB.namepool[namepool].get_random_name(gender)
 
-/datum/species/human/random_name(gender)
-	. = ..()
-	if(CONFIG_GET(flag/humans_need_surnames))
-		. += " " + pick(SSstrings.get_list_from_file("names/last_name"))
-
 /datum/species/proc/prefs_name(datum/preferences/prefs)
 	return prefs.real_name
 
@@ -273,7 +268,7 @@
 
 //TODO KILL ME
 ///Snowflake proc for monkeys so they can call attackpaw
-/datum/species/proc/spec_unarmedattack(mob/living/carbon/human/user, mob/living/carbon/human/target)
+/datum/species/proc/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
 	return FALSE
 
 //Only used by horrors at the moment. Only triggers if the mob is alive and not dead.
@@ -352,6 +347,8 @@
 	deform = 'icons/mob/human_races/r_vatborn.dmi'
 	namepool = /datum/namepool/vatborn
 
+/datum/species/human/vatborn/prefs_name(datum/preferences/prefs)
+	return prefs.real_name
 
 /datum/species/human/vatgrown
 	name = "Vat-Grown Human"
@@ -365,6 +362,9 @@
 
 /datum/species/human/vatgrown/random_name(gender)
 	return "CS-[gender == FEMALE ? "F": "M"]-[rand(111,999)]"
+
+/datum/species/human/vatgrown/prefs_name(datum/preferences/prefs)
+	return prefs.real_name
 
 /datum/species/human/vatgrown/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
@@ -431,8 +431,7 @@
 
 /datum/species/monkey/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
 	if(!iscarbon(target))
-		target.attack_hand(user)
-		return TRUE
+		return FALSE
 	var/mob/living/carbon/victim = target
 	if(prob(25))
 		victim.visible_message(span_danger("[user]'s bite misses [victim]!"),

@@ -36,7 +36,7 @@
 	SEND_SIGNAL(parent, COMSIG_ITEM_TOGGLE_ACTION, user)
 	to_chat(user, span_notice("You toggle \the [src]. [active ? "enabling" : "disabling"] it."))
 	item_state = "welding_head_[active ? "" : "in"]active"
-	parent.update_overlays()
+	parent.update_icon()
 	user.update_inv_head()
 
 
@@ -90,7 +90,7 @@
 	active = !active
 	to_chat(user, span_notice("You toggle \the [src]. [active ? "enabling" : "disabling"] it."))
 	item_state = "binocular_head_[active ? "" : "in"]active"
-	parent.update_overlays()
+	parent.update_icon()
 	user.update_inv_head()
 	return COMSIG_MOB_CLICK_CANCELED
 
@@ -155,3 +155,4 @@
 /obj/item/helmet_module/attachable/tyr_head/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
 	return ..()
+

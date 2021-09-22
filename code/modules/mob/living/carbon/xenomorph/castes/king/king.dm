@@ -62,7 +62,6 @@
 	addtimer(CALLBACK(src, .proc/choose_king), KING_SUMMON_TIMER_DURATION)
 
 /obj/structure/resin/king_pod/Destroy()
-	future_king?.tracked = null
 	future_king = null
 	return ..()
 
@@ -90,7 +89,7 @@
 		future_king = xenomorph_alive
 		RegisterSignal(future_king, COMSIG_HIVE_XENO_DEATH, .proc/choose_another_king)
 		to_chat(future_king, span_notice("You have 5 minutes to go to the [src] to ascend to the king position! Your tracker will guide you to it."))
-		future_king.tracked = src
+		future_king.set_tracked(src)
 		addtimer(CALLBACK(src, .proc/choose_another_king), 5 MINUTES)
 		return
 	//If no xeno accepted, give it to ghost

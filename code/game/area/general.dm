@@ -3,7 +3,7 @@
 	requires_power = 1
 	always_unpowered = 1
 	base_lighting_alpha = 255
-	base_lighting_color = COLOR_WHITE
+
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
@@ -223,7 +223,7 @@
 	requires_power = 0
 	static_lighting = FALSE
 	base_lighting_alpha = 255
-	base_lighting_color = LIGHT_COLOR_WHITE
+
 
 /area/syndicate_mothership
 	name = "Abandoned Syndicate Base"
@@ -263,7 +263,7 @@
 	icon_state = "thunder"
 	requires_power = FALSE
 	base_lighting_alpha = 255
-	base_lighting_color = LIGHT_COLOR_WHITE
+
 
 
 /area/tdome/tdome1
@@ -290,7 +290,7 @@
 	name = "End of Round Deathmatch Arena"
 	icon_state = "green"
 	base_lighting_alpha = 255
-	base_lighting_color = LIGHT_COLOR_WHITE
+
 	requires_power = 0
 
 
@@ -729,7 +729,7 @@
 	icon_state = "Holodeck"
 	static_lighting = FALSE
 	base_lighting_alpha = 255
-	base_lighting_color = LIGHT_COLOR_WHITE
+
 
 /area/holodeck/alphadeck
 	name = "Abandoned Holodeck Alpha"
