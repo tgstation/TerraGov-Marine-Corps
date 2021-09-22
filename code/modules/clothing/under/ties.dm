@@ -434,7 +434,7 @@
 	)
 
 /obj/item/clothing/tie/storage/white_vest/marine
-	name = "corpsman webbing"
+	name = "Marine med webbing"
 	desc = "A clean white Nylon vest with large pockets specially designed for holding common medical supplies. This marine version can hold upto 5 items."
 	hold = /obj/item/storage/internal/tie/white_vest/marine
 
