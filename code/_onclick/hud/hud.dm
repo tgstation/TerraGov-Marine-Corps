@@ -266,6 +266,8 @@
 ///Remove the ammo hud related to the gun G from the user
 /datum/hud/proc/remove_ammo_hud(mob/living/user, obj/item/weapon/gun/G)
 	var/obj/screen/ammo/ammo_hud = ammo_hud_list[G]
+	if(isnull(ammo_hud))
+		return
 	ammo_hud.remove_hud(user, G)
 	qdel(ammo_hud)
 	ammo_hud_list -= G
