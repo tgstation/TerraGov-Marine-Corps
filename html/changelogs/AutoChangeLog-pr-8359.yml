@@ -1,0 +1,4 @@
+author: "EvilMelonTheSecond"
+delete-after: True
+changes: 
+  - bugfix: "fixed right clicking radiopack pulling out items"
