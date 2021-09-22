@@ -16184,7 +16184,7 @@
 /area/sulaco/engineering/engine_monitoring)
 "mBB" = (
 /obj/structure/table/mainship,
-/obj/item/storage/pouch/medkit/full,
+/obj/item/storage/pouch/medkit/corpsman,
 /obj/item/tool/shovel/etool,
 /obj/item/stack/sandbags_empty/half,
 /obj/item/weapon/baton,

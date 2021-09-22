@@ -8140,7 +8140,7 @@
 /obj/item/flashlight/combat,
 /obj/item/clothing/suit/storage/hazardvest,
 /obj/item/tool/shovel/etool,
-/obj/item/storage/pouch/medkit/full,
+/obj/item/storage/pouch/medkit/corpsman,
 /obj/item/storage/pouch/medical/full,
 /obj/item/tool/taperoll/engineering,
 /obj/item/tool/extinguisher/mini,
