@@ -119,8 +119,6 @@
 
 	var/base_gun_icon //the default gun icon_state. change to reskin the gun
 
-	var/hud_enabled = TRUE //If the Ammo HUD is enabled for this gun or not.
-
 	var/general_codex_key = "guns"
 
 	///The mob holding the gun
@@ -269,11 +267,13 @@
 		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING))
 		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET)
+		gun_user.hud_used.remove_ammo_hud(gun_user, src)
 		gun_user = null
 	if(!user)
 		return
 	gun_user = user
 	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
+	gun_user.hud_used.add_ammo_hud(gun_user, src)
 	if(master_gun)
 		return
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
@@ -395,9 +395,6 @@
 		else
 			wdelay += wield_penalty
 	wield_time = world.time + wdelay
-	var/obj/screen/ammo/A = user.hud_used.ammo
-	A.add_hud(user, src)
-	A.update_hud(user, src)
 	do_wield(user, wdelay)
 	if(HAS_TRAIT(src, TRAIT_GUN_AUTO_AIM_MODE))
 		toggle_aim_mode(user)
@@ -409,10 +406,6 @@
 		return FALSE
 
 	user.remove_movespeed_modifier(MOVESPEED_ID_AIM_SLOWDOWN)
-
-	var/obj/screen/ammo/A = user.hud_used?.ammo
-	if(A)
-		A.remove_hud(user)
 
 	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING))
 		toggle_aim_mode(user)
@@ -492,8 +485,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			load_into_chamber()
 
 	update_icon(user)
-	var/obj/screen/ammo/A = user.hud_used.ammo
-	A.update_hud(user, src)
+	user.hud_used.update_ammo_hud(user, src)
 	return TRUE
 
 /obj/item/weapon/gun/proc/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
@@ -812,8 +804,7 @@ and you're good to go.
 	last_fired = world.time
 	reload_into_chamber(gun_user)
 	if(gun_user?.client)
-		var/obj/screen/ammo/A = gun_user.hud_used.ammo //The ammo HUD
-		A.update_hud(gun_user, src)
+		gun_user.hud_used.update_ammo_hud(gun_user, src)
 	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && CHECK_BITFIELD(flags_item, IS_DEPLOYED) && CHECK_BITFIELD(turret_flags, TURRET_RADIAL) && !gun_user)
 		sentry_battery.charge -= sentry_battery_drain
@@ -881,9 +872,8 @@ and you're good to go.
 			QDEL_NULL(projectile_to_fire)
 
 		reload_into_chamber(user) //Reload into the chamber if the gun supports it.
-		if(user) //Update dat HUD
-			var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
-			A.update_hud(user, src)
+
+		user?.hud_used.update_ammo_hud(user, src)
 		return TRUE
 
 	if(M != user || user.zone_selected != "mouth")
@@ -1022,8 +1012,7 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/click_empty(mob/user)
 	if(user)
-		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
-		A.update_hud(user, src)
+		user.hud_used.update_ammo_hud(user, src)
 		to_chat(user, span_warning("<b>*click*</b>"))
 	playsound(src, dry_fire_sound, 25, 1, 5)
 

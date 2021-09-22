@@ -537,9 +537,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	playsound(src, pump_sound, 25, 1)
 	recent_pump = world.time
 	if(in_chamber) //Lock only if we have ammo loaded.
-		pump_lock = TRUE
-		var/obj/screen/ammo/A = user.hud_used.ammo
-		A.update_hud(user)
+		user.hud_used.update_ammo_hud(user, src)
 
 	return TRUE
 
