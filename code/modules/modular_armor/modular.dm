@@ -199,9 +199,6 @@
 			return FALSE
 	return ..()
 
-/obj/item/clothing/suit/modular/attack_hand_alternate(mob/living/user)
-	. = ..()
-	
 
 /obj/item/clothing/suit/modular/attack_self(mob/user)
 	. = ..()
