@@ -925,7 +925,7 @@
 			/obj/item/storage/pouch/explosive = -1,
 			/obj/item/storage/pouch/firstaid = -1,
 			/obj/item/storage/pouch/syringe = -1,
-			/obj/item/storage/pouch/medkit/marine = -1,
+			/obj/item/storage/pouch/medkit = -1,
 			/obj/item/storage/pouch/med_lolipops = -1,
 			/obj/item/storage/pouch/autoinjector = -1,
 			/obj/item/storage/pouch/construction = -1,
