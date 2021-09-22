@@ -1,0 +1,4 @@
+author: "SpaceLoveSs13"
+delete-after: True
+changes: 
+  - balance: "self splinting delay is now 3x instead of 4x"
