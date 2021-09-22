@@ -1,4 +1,0 @@
-author: "MiniMeatwad"
-delete-after: True
-changes: 
-  - code_imp: "Click dragging an object onto itself will click on the object instead of doing nothing."
