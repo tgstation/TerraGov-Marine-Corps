@@ -515,7 +515,6 @@
 /obj/item/storage/pouch/medkit/corpsman
 	name = "Corpsman medkit pouch"
 	desc = "A standard use medkit pouch that can contain all kinds of stuff.This Marine version has 7 slots."
-	icon_state = "medkit"
 	storage_slots = 7
 
 /obj/item/storage/pouch/medkit/full/Initialize()
@@ -537,8 +536,6 @@
 	new /obj/item/storage/pill_bottle/kelotane(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
 	new /obj/item/stack/medical/splint(src)
-
-
 
 /obj/item/storage/pouch/document
 	name = "document pouch"
