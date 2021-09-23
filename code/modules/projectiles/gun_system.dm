@@ -84,6 +84,8 @@
 
 
 	//Energy Weapons
+	var/obj/item/cell/cell = null				//Energy guns use cells instead of magazines.
+	var/cell_type = null						//Cell type
 	var/charge_cost		= 0						//how much energy is consumed per shot.
 	var/ammo_per_shot	= 1						//How much ammo consumed per shot; normally 1.
 	var/overcharge		= 0						//In overcharge mode?
@@ -435,9 +437,9 @@
 			active_gun.last_fired = world.time
 		else
 			inactive_gun.last_fired = world.time
-	if(user.shoot_inactive_hand && (!(inactive_gun.flags_gun_features & GUN_ENERGY) && (!inactive_gun.in_chamber?.ammo && !inactive_gun.current_mag?.current_rounds || inactive_gun.current_mag?.current_rounds && inactive_gun.current_mag.current_rounds <= 0) || (inactive_gun.flags_gun_features & GUN_ENERGY) && (!inactive_gun.sentry_battery?.charge || inactive_gun.sentry_battery.charge <= 0))) // Check inactive gun
+	if(user.shoot_inactive_hand && (!inactive_gun?.cell && (!inactive_gun.in_chamber?.ammo && !inactive_gun.current_mag?.current_rounds || inactive_gun.current_mag?.current_rounds && inactive_gun.current_mag.current_rounds <= 0) || inactive_gun?.cell && !inactive_gun.cell?.charge && inactive_gun.cell.charge <= 0)) // Check inactive gun
 		user.shoot_inactive_hand = FALSE // Shoot from active
-	if(!user.shoot_inactive_hand && (!(active_gun.flags_gun_features & GUN_ENERGY) && (!active_gun.in_chamber?.ammo && !active_gun.current_mag?.current_rounds || active_gun.current_mag?.current_rounds && active_gun.current_mag.current_rounds <= 0) || (active_gun.flags_gun_features & GUN_ENERGY) && (!active_gun.sentry_battery?.charge || active_gun.sentry_battery.charge <= 0))) // Check active gun
+	if(!user.shoot_inactive_hand && (!active_gun?.cell && (!active_gun.in_chamber?.ammo && !active_gun.current_mag?.current_rounds || active_gun.current_mag?.current_rounds && active_gun.current_mag.current_rounds <= 0) || active_gun?.cell && !active_gun.cell?.charge && active_gun.cell.charge <= 0)) // Check active gun
 		user.shoot_inactive_hand = TRUE // Shoot from inactive
 
 

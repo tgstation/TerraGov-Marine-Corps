@@ -4,9 +4,8 @@
 
 /obj/item/weapon/gun/energy
 	attachable_allowed = list()
-	var/obj/item/cell/cell //1000 power.
 	charge_cost = 10 //100 shots.
-	var/cell_type = /obj/item/cell
+	cell_type = /obj/item/cell // 1000 power.
 	flags_gun_features = GUN_AMMO_COUNTER
 	general_codex_key = "energy weapons"
 
