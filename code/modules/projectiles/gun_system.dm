@@ -429,11 +429,12 @@
 	if(!isgun(gun_user.get_active_held_item()) || !isgun(gun_user.get_inactive_held_item()))
 		gun_user.shoot_inactive_hand = FALSE
 		return
-
-	if(gun_user.shoot_inactive_hand && gun_user.get_active_held_item() == src)
-		gun_user.shoot_inactive_hand = FALSE
-	else if(!gun_user.shoot_inactive_hand && gun_user.get_active_held_item() == src)
-		gun_user.shoot_inactive_hand = TRUE
+	var/obj/item/weapon/gun/active_gun = gun_user.get_active_held_item()
+	var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
+	if(gun_user.shoot_inactive_hand && (!inactive_gun.current_mag?.current_rounds || inactive_gun.current_mag?.current_rounds <= 0)) // If shooting inactive gun
+		gun_user.shoot_inactive_hand = FALSE // Shoot from active
+	if(!gun_user.shoot_inactive_hand && (!active_gun.current_mag?.current_rounds || active_gun.current_mag?.current_rounds <= 0)) // If shooting active gun
+		gun_user.shoot_inactive_hand = TRUE // Shoot from inactive
 
 //----------------------------------------------------------
 			//							        \\
@@ -836,11 +837,13 @@ and you're good to go.
 	// Akimbo code
 	var/obj/item/weapon/gun/active_gun = gun_user.get_active_held_item() // Don't use active_gun or inactive_gun outside of dual_wield, there are no checks for if it's not a gun outside of dual_wield
 	var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
-	if(dual_wield && gun_user.shoot_inactive_hand && (!inactive_gun.current_mag?.current_rounds || inactive_gun.current_mag?.current_rounds <= 0))
-		gun_user.shoot_inactive_hand = FALSE
+	if(dual_wield && gun_user.shoot_inactive_hand && (!inactive_gun.current_mag?.current_rounds || inactive_gun.current_mag?.current_rounds <= 0)) // If shooting inactive gun
+		// Active gun
+		gun_user.shoot_inactive_hand = FALSE // Shoot from active
 		active_gun.last_fired = world.time
-	if(dual_wield && !gun_user.shoot_inactive_hand && (!active_gun.current_mag?.current_rounds || active_gun.current_mag?.current_rounds <= 0))
-		gun_user.shoot_inactive_hand = TRUE
+	if(dual_wield && !gun_user.shoot_inactive_hand && (!active_gun.current_mag?.current_rounds || active_gun.current_mag?.current_rounds <= 0)) // If shooting active gun
+		// Inactive gun
+		gun_user.shoot_inactive_hand = TRUE // Shoot from inactive
 		inactive_gun.last_fired = world.time
 	return TRUE
 
