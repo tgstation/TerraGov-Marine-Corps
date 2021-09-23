@@ -84,7 +84,7 @@
 
 
 	//Energy Weapons
-	var/obj/item/cell/cell = null				//Energy guns use cells instead of magazines.
+	var/obj/item/cell/cell						//Energy guns use cells instead of magazines.
 	var/cell_type = /obj/item/cell				//Default cell type, 1000 power.
 	var/charge_cost		= 0						//how much energy is consumed per shot.
 	var/ammo_per_shot	= 1						//How much ammo consumed per shot; normally 1.
@@ -230,8 +230,7 @@
 		QDEL_NULL(current_mag)
 	if(muzzle_flash)
 		QDEL_NULL(muzzle_flash)
-	if(cell)
-		QDEL_NULL(cell)
+	QDEL_NULL(cell)
 	QDEL_NULL(sentry_battery)
 	GLOB.nightfall_toggleable_lights -= src
 	return ..()
