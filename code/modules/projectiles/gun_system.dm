@@ -422,25 +422,25 @@
 	. = ..()
 	return cock(user)
 
-/obj/item/weapon/gun/proc/set_shoot_inactive_hand(var/apply_delay = FALSE)
+/obj/item/weapon/gun/proc/set_shoot_inactive_hand(mob/user, var/apply_delay = FALSE)
 	SIGNAL_HANDLER // If you swap your hands
-	if(!gun_user)
+	if(!user)
 		return
-	if(!isgun(gun_user.get_active_held_item()) || !isgun(gun_user.get_inactive_held_item()))
-		gun_user.shoot_inactive_hand = FALSE
+	if(!isgun(user.get_active_held_item()) || !isgun(user.get_inactive_held_item()))
+		user.shoot_inactive_hand = FALSE
 		return
 	
-	var/obj/item/weapon/gun/active_gun = gun_user.get_active_held_item()
-	var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
+	var/obj/item/weapon/gun/active_gun = user.get_active_held_item()
+	var/obj/item/weapon/gun/inactive_gun = user.get_inactive_held_item()
 	if(apply_delay) // Apply akimbo delay
-		if(gun_user.shoot_inactive_hand)
+		if(user.shoot_inactive_hand)
 			active_gun.last_fired = world.time
 		else
 			inactive_gun.last_fired = world.time
-	if(gun_user.shoot_inactive_hand && (!(inactive_gun.flags_gun_features & GUN_ENERGY) && (!inactive_gun.in_chamber?.ammo && !inactive_gun.current_mag?.current_rounds || inactive_gun.current_mag?.current_rounds && inactive_gun.current_mag.current_rounds <= 0) || (inactive_gun.flags_gun_features & GUN_ENERGY) && (!inactive_gun.sentry_battery?.charge || inactive_gun.sentry_battery.charge <= 0))) // Check inactive gun
-		gun_user.shoot_inactive_hand = FALSE // Shoot from active
-	if(!gun_user.shoot_inactive_hand && (!(active_gun.flags_gun_features & GUN_ENERGY) && (!active_gun.in_chamber?.ammo && !active_gun.current_mag?.current_rounds || active_gun.current_mag?.current_rounds && active_gun.current_mag.current_rounds <= 0) || (active_gun.flags_gun_features & GUN_ENERGY) && (!active_gun.sentry_battery?.charge || active_gun.sentry_battery.charge <= 0))) // Check active gun
-		gun_user.shoot_inactive_hand = TRUE // Shoot from inactive
+	if(user.shoot_inactive_hand && (!(inactive_gun.flags_gun_features & GUN_ENERGY) && (!inactive_gun.in_chamber?.ammo && !inactive_gun.current_mag?.current_rounds || inactive_gun.current_mag?.current_rounds && inactive_gun.current_mag.current_rounds <= 0) || (inactive_gun.flags_gun_features & GUN_ENERGY) && (!inactive_gun.sentry_battery?.charge || inactive_gun.sentry_battery.charge <= 0))) // Check inactive gun
+		user.shoot_inactive_hand = FALSE // Shoot from active
+	if(!user.shoot_inactive_hand && (!(active_gun.flags_gun_features & GUN_ENERGY) && (!active_gun.in_chamber?.ammo && !active_gun.current_mag?.current_rounds || active_gun.current_mag?.current_rounds && active_gun.current_mag.current_rounds <= 0) || (active_gun.flags_gun_features & GUN_ENERGY) && (!active_gun.sentry_battery?.charge || active_gun.sentry_battery.charge <= 0))) // Check active gun
+		user.shoot_inactive_hand = TRUE // Shoot from inactive
 
 
 //----------------------------------------------------------
@@ -528,7 +528,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	span_notice("You load [magazine] into [src]!"), null, 3)
 	if(reload_sound)
 		playsound(user, reload_sound, 25, 1, 5)
-	set_shoot_inactive_hand(FALSE)
+	set_shoot_inactive_hand(user, FALSE)
 	update_icon()
 
 
@@ -840,7 +840,7 @@ and you're good to go.
 			sentry_battery.forceMove(get_turf(src))
 			sentry_battery.charge = 0
 			sentry_battery = null
-	set_shoot_inactive_hand(TRUE)
+	set_shoot_inactive_hand(gun_user, TRUE)
 	return TRUE
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
@@ -985,7 +985,7 @@ and you're good to go.
 /obj/item/weapon/gun/proc/able_to_fire(mob/user)
 	if(!user)
 		return
-	set_shoot_inactive_hand(FALSE)
+	set_shoot_inactive_hand(user, FALSE)
 	if(user.stat != CONSCIOUS || user.lying_angle)
 		return
 
