@@ -983,11 +983,9 @@ and you're good to go.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/able_to_fire(mob/user)
-	if(!user)
+	if(!user || user.stat != CONSCIOUS || user.lying_angle)
 		return
 	set_shoot_inactive_hand(user, FALSE)
-	if(user.stat != CONSCIOUS || user.lying_angle)
-		return
 
 	if(dual_wield && gun_user.get_active_held_item() == src && gun_user.shoot_inactive_hand)
 		return FALSE
