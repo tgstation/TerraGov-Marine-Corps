@@ -526,7 +526,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	span_notice("You load [magazine] into [src]!"), null, 3)
 	if(reload_sound)
 		playsound(user, reload_sound, 25, 1, 5)
-	set_shoot_inactive_hand(user, FALSE)
 	update_icon()
 
 
