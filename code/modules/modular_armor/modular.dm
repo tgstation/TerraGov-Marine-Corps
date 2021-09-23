@@ -322,9 +322,9 @@
 
 	///Assoc list of available slots.
 	var/list/attachments_by_slot = list(
-		ATTACHMENT_SLOT_HEAD_MODULE,
 		ATTACHMENT_SLOT_VISOR,
 		ATTACHMENT_SLOT_STORAGE,
+		ATTACHMENT_SLOT_HEAD_MODULE,
 	)
 	///Typepath list of allowed attachment types.
 	var/list/attachments_allowed = list(
@@ -589,7 +589,7 @@
 
 /obj/item/clothing/head/modular/marine/eva/skull
 	name = "Jaeger Pattern EVA 'Skull' Helmet"
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eva/skull)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eva/skull, /obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/marine/eod
 	name = "Jaeger Pattern EOD Helmet"

@@ -100,11 +100,14 @@
 				return
 			if(loadout.version != CURRENT_LOADOUT_VERSION)
 				loadout.version = CURRENT_LOADOUT_VERSION
-				if(istype(loadout.item_list[SLOT_HEAD], /datum/item_representation/modular_helmet))
-					loadout.item_list[SLOT_HEAD] = null
-				if(istype(loadout.item_list[SLOT_WEAR_SUIT], /datum/item_representation/modular_armor))
-					loadout.item_list[SLOT_WEAR_SUIT] = null
-				delete_loadout(ui.user, loadout.name, loadout.job)
+				if(slot_head_str in loadout.item_list && istype(loadout.item_list[slot_head_str], /datum/item_representation/modular_helmet))
+					loadout.empty_slot(slot_head_str)
+				if(slot_wear_suit_str in loadout.item_list && istype(loadout.item_list[slot_wear_suit_str], /datum/item_representation/modular_armor))
+					loadout.empty_slot(slot_wear_suit_str)
+				var/job = params["loadout_job"]
+				var/name = params["loadout_name"]
+				delete_loadout(ui.user, name, job)
+				ui.user.client.prefs.save_loadout(loadout)
 				add_loadout(loadout)
 				to_chat(ui.user, span_warning("Please note: The loadout code has been updated and as such any modular helmet/suit has been removed from it due to the transitioning of loadout versions. Any future modular helmet/suit saves should have no problem being saved."))
 			ui.user.client.prefs.save_loadout(loadout)
@@ -124,13 +127,15 @@
 				CRASH("Fail to load loadouts")
 			if(loadout.version != CURRENT_LOADOUT_VERSION)
 				loadout.version = CURRENT_LOADOUT_VERSION
-				if(istype(loadout.item_list[SLOT_HEAD], /datum/item_representation/modular_helmet))
-					loadout.item_list[SLOT_HEAD] = null
-				if(istype(loadout.item_list[SLOT_WEAR_SUIT], /datum/item_representation/modular_armor))
-					loadout.item_list[SLOT_WEAR_SUIT] = null
-				delete_loadout(ui.user, loadout.name, loadout.job)
+				if(slot_head_str in loadout.item_list && istype(loadout.item_list[slot_head_str], /datum/item_representation/modular_helmet))
+					loadout.item_list -= loadout.item_list[slot_head_str] 
+				if(slot_wear_suit_str in loadout.item_list && istype(loadout.item_list[slot_wear_suit_str], /datum/item_representation/modular_armor))
+					loadout.item_list -= loadout.item_list[slot_wear_suit_str]
+				delete_loadout(ui.user, name, job)
+				ui.user.client.prefs.save_loadout(loadout)
 				add_loadout(loadout)
 				to_chat(ui.user, span_warning("Please note: The loadout code has been updated and as such any modular helmet/suit has been removed from it due to the transitioning of loadout versions. Any future modular helmet/suit saves should have no problem being saved."))
+			update_static_data(ui.user, ui)
 			loadout.loadout_vendor = loadout_vendor
 			loadout.ui_interact(ui.user)
 
