@@ -79,7 +79,7 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/tool/handheld_charger = list(CAT_ENGSUP, "Hand-held cell charger", 3, "black"),
 		/obj/item/binoculars/tactical/range = list(CAT_ENGSUP, "Range Finder", 10, "black"),
 		/obj/item/cell/high = list(CAT_ENGSUP, "High capacity powercell", 1, "black"),
-		/obj/item/cell/rtg = list(CAT_ENGSUP, "Recharger powercell", 3, "black"),
+		/obj/item/cell/rtg/small = list(CAT_ENGSUP, "Recharger powercell", 3, "black"),
 		/obj/item/cell/rtg/large = list(CAT_ENGSUP, "Large recharger powercell", 6, "black"),
 		/obj/item/storage/box/explosive_mines = list(CAT_ENGSUP, "M20 mine box", 18, "black"),
 		/obj/item/storage/box/explosive_mines/large = list(CAT_ENGSUP, "Large M20 mine box", 35, "black"),
