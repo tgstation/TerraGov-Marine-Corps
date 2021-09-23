@@ -3,11 +3,16 @@
 	id_arg_index = 2
 	///How much it slow down on crossed
 	var/slow_amount = 0
+	///connections list for
+	var/static/list/connections = list(
+		//COMSIG_ATOM_ENTERED = /atom.proc/slow_down_crosser
+	)
 
 /datum/element/slowing_on_crossed/Attach(datum/target, slow_amount)
 	. = ..()
 	src.slow_amount = slow_amount
-	RegisterSignal(target, COMSIG_MOVABLE_CROSSED_BY, .proc/slow_down_crosser)
+	target.AddElement(/datum/element/connect_loc, connections) //tivi todo
+	//RegisterSignal(target, COMSIG_MOVABLE_CROSSED_BY, .proc/slow_down_crosser)
 
 ///Slows down human and vehicle on cross
 /datum/element/slowing_on_crossed/proc/slow_down_crosser(datum/source, atom/movable/crosser)

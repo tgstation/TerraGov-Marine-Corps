@@ -31,6 +31,10 @@
 		merge_type = type
 	update_weight()
 	update_icon()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 
 /obj/item/stack/proc/update_weight()
@@ -298,11 +302,10 @@
 	return transfer
 
 
-/obj/item/stack/Crossed(obj/item/stack/S)
-	. = ..()
+/obj/item/stack/proc/on_cross(datum/source, obj/item/stack/S, oldloc, oldlocs)
+	SIGNAL_HANDLER
 	if(istype(S, merge_type) && !S.throwing)
 		merge(S)
-	return ..()
 
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE

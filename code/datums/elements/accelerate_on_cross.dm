@@ -1,6 +1,6 @@
 /datum/element/accelerate_on_crossed/Attach(datum/target)
 	. = ..()
-	RegisterSignal(target, COMSIG_MOVABLE_CROSSED_BY, .proc/accelerate_crosser)
+	//RegisterSignal(target, COMSIG_MOVABLE_CROSSED_BY, .proc/accelerate_crosser) //tivi todo
 
 ///Speeds up xeno on crossed
 /datum/element/accelerate_on_crossed/proc/accelerate_crosser(datum/source, atom/movable/crosser)

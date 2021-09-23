@@ -171,26 +171,6 @@
 	return TRUE
 
 
-/turf/Exit(atom/movable/mover, direction)
-	. = ..()
-	if(!. || QDELETED(mover))
-		return FALSE
-	for(var/i in contents)
-		if(i == mover)
-			continue
-		var/atom/movable/thing = i
-		if(!thing.Uncross(mover, direction))
-			if(thing.flags_atom & ON_BORDER)
-				var/signalreturn = SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE, thing)
-				if(signalreturn & COMPONENT_MOVABLE_PREBUMP_STOPPED)
-					return FALSE
-				if(signalreturn & COMPONENT_MOVABLE_PREBUMP_PLOWED)
-					continue // no longer in the way
-				mover.Bump(thing)
-				return FALSE
-		if(QDELETED(mover))
-			return FALSE		//We were deleted.
-
 
 /turf/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	if(ismob(arrived))

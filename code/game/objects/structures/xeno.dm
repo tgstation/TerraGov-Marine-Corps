@@ -19,6 +19,10 @@
 	. = ..()
 	if(!ignore_weed_destruction)
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, .proc/weed_removed)
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /// Destroy the alien effect when the weed it was on is destroyed
 /obj/effect/alien/proc/weed_removed()
@@ -35,9 +39,9 @@
 		return I.attack_obj(src, user)
 
 
-/obj/effect/alien/Crossed(atom/movable/O)
-	. = ..()
-	if(!QDELETED(src) && istype(O, /obj/vehicle/multitile/hitbox/cm_armored))
+/obj/effect/alien/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
+	SIGNAL_HANDLER
+	if(istype(O, /obj/vehicle/multitile/hitbox/cm_armored))
 		tank_collision(O)
 
 /obj/effect/alien/flamer_fire_act()

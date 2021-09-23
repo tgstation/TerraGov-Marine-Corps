@@ -26,11 +26,15 @@
 	destroy_sound = "alien_resin_break"
 	///The hugger inside our trap
 	var/obj/item/clothing/mask/facehugger/hugger = null
+	///connection list for huggers
+	var/static/list/listen_connections = list(
+		COMSIG_ATOM_ENTERED = .proc/trigger_hugger_trap,
+	)
 
 /obj/structure/xeno/trap/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
-	RegisterSignal(src, COMSIG_MOVABLE_CROSSED_BY, .proc/trigger_hugger_trap) //Set up the trap signal on our turf
+	AddElement(/datum/element/connect_loc, listen_connections)
 
 /obj/structure/xeno/trap/ex_act(severity)
 	switch(severity)
@@ -79,7 +83,7 @@
 	icon_state = "trap0"
 
 ///Triggers the hugger trap
-/obj/structure/xeno/trap/proc/trigger_hugger_trap(datum/source, atom/movable/AM, oldloc)
+/obj/structure/xeno/trap/proc/trigger_hugger_trap(datum/source, atom/movable/AM, oldloc, oldlocs)
 	SIGNAL_HANDLER
 	if(!iscarbon(AM) || !hugger)
 		return
@@ -343,6 +347,10 @@ TUNNEL
 	src.creator = creator
 	RegisterSignal(creator, COMSIG_PARENT_QDELETING, .proc/clear_creator)
 	update_icon()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/xeno/acidwell/Destroy()
 	creator = null
@@ -461,8 +469,8 @@ TUNNEL
 	update_icon()
 	to_chat(X,span_xenonotice("We add acid to [src]. It is currently has <b>[charges] / [XENO_ACID_WELL_MAX_CHARGES] charges</b>.") )
 
-/obj/structure/xeno/acidwell/Crossed(atom/A)
-	. = ..()
+/obj/structure/xeno/acidwell/proc/on_cross(datum/source, atom/movable/A, oldloc, oldlocs)
+	SIGNAL_HANDLER
 	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
 		return
 	if(iscarbon(A))
