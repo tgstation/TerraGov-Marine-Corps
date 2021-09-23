@@ -85,7 +85,7 @@
 
 	//Energy Weapons
 	var/obj/item/cell/cell = null				//Energy guns use cells instead of magazines.
-	var/cell_type = null						//Cell type
+	var/cell_type = /obj/item/cell				//Default cell type, 1000 power.
 	var/charge_cost		= 0						//how much energy is consumed per shot.
 	var/ammo_per_shot	= 1						//How much ammo consumed per shot; normally 1.
 	var/overcharge		= 0						//In overcharge mode?
