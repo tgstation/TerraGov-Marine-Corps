@@ -424,26 +424,6 @@
 	. = ..()
 	return cock(user)
 
-/obj/item/weapon/gun/proc/set_shoot_inactive_hand(mob/user, apply_delay)
-	if(!user)
-		return
-	if(!isgun(user.get_active_held_item()) || !isgun(user.get_inactive_held_item()))
-		user.shoot_inactive_hand = FALSE
-		return
-	
-	var/obj/item/weapon/gun/active_gun = user.get_active_held_item()
-	var/obj/item/weapon/gun/inactive_gun = user.get_inactive_held_item()
-	if(apply_delay) // Apply akimbo delay
-		if(user.shoot_inactive_hand)
-			active_gun.last_fired = world.time
-		else
-			inactive_gun.last_fired = world.time
-	if(user.shoot_inactive_hand && (!inactive_gun?.cell && (!inactive_gun.in_chamber?.ammo && !inactive_gun.current_mag?.current_rounds || inactive_gun.current_mag?.current_rounds && inactive_gun.current_mag.current_rounds <= 0) || inactive_gun?.cell && !inactive_gun.cell?.charge && inactive_gun.cell.charge <= 0)) // Check inactive gun
-		user.shoot_inactive_hand = FALSE // Shoot from active
-	if(!user.shoot_inactive_hand && (!active_gun?.cell && (!active_gun.in_chamber?.ammo && !active_gun.current_mag?.current_rounds || active_gun.current_mag?.current_rounds && active_gun.current_mag.current_rounds <= 0) || active_gun?.cell && !active_gun.cell?.charge && active_gun.cell.charge <= 0)) // Check active gun
-		user.shoot_inactive_hand = TRUE // Shoot from inactive
-
-
 //----------------------------------------------------------
 			//							        \\
 			// LOADING, RELOADING, AND CASINGS  \\
@@ -677,6 +657,25 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(master_gun)
 		SEND_SIGNAL(gun_user, COMSIG_MOB_ATTACHMENT_FIRED, target, src, master_gun)
 	gun_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+
+/obj/item/weapon/gun/proc/set_shoot_inactive_hand(mob/user, apply_delay) // Handles akimbo
+	if(!user)
+		return
+	if(!dual_wield) // Check if dual wielding
+		user.shoot_inactive_hand = FALSE
+		return
+	
+	var/obj/item/weapon/gun/active_gun = user.get_active_held_item()
+	var/obj/item/weapon/gun/inactive_gun = user.get_inactive_held_item()
+	if(apply_delay) // Apply akimbo delay
+		if(user.shoot_inactive_hand)
+			active_gun.last_fired = world.time
+		else
+			inactive_gun.last_fired = world.time
+	if(user.shoot_inactive_hand && (!inactive_gun?.cell && (!inactive_gun.in_chamber?.ammo && !inactive_gun.current_mag?.current_rounds || inactive_gun.current_mag?.current_rounds && inactive_gun.current_mag.current_rounds <= 0) || inactive_gun?.cell && !inactive_gun.cell?.charge && inactive_gun.cell.charge <= 0)) // Check inactive gun
+		user.shoot_inactive_hand = FALSE // Shoot from active
+	if(!user.shoot_inactive_hand && (!active_gun?.cell && (!active_gun.in_chamber?.ammo && !active_gun.current_mag?.current_rounds || active_gun.current_mag?.current_rounds && active_gun.current_mag.current_rounds <= 0) || active_gun?.cell && !active_gun.cell?.charge && active_gun.cell.charge <= 0)) // Check active gun
+		user.shoot_inactive_hand = TRUE // Shoot from inactive
 
 ///Set the target and take care of hard delete
 /obj/item/weapon/gun/proc/set_target(atom/object)
