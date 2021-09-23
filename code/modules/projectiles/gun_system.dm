@@ -264,7 +264,7 @@
 	if(user == gun_user)
 		return
 	if(gun_user)
-		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING, COMSIG_CARBON_SWAPPED_HANDS))
+		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING))
 		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET)
 		gun_user = null
@@ -286,7 +286,6 @@
 	RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, .proc/unload_gun)
 	RegisterSignal(gun_user, COMSIG_KB_FIREMODE, .proc/do_toggle_firemode)
 	RegisterSignal(gun_user, COMSIG_KB_GUN_SAFETY, .proc/toggle_gun_safety_keybind)
-	RegisterSignal(gun_user, COMSIG_CARBON_SWAPPED_HANDS, .proc/set_shoot_inactive_hand)
 
 
 ///Null out gun user to prevent hard del
@@ -423,7 +422,6 @@
 	return cock(user)
 
 /obj/item/weapon/gun/proc/set_shoot_inactive_hand(mob/user, var/apply_delay = FALSE)
-	SIGNAL_HANDLER // If you swap your hands
 	if(!user)
 		return
 	if(!isgun(user.get_active_held_item()) || !isgun(user.get_inactive_held_item()))
