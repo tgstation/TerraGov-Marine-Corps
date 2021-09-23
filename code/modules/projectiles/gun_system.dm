@@ -421,7 +421,7 @@
 	. = ..()
 	return cock(user)
 
-/obj/item/weapon/gun/proc/set_shoot_inactive_hand(mob/user, var/apply_delay = FALSE)
+/obj/item/weapon/gun/proc/set_shoot_inactive_hand(mob/user, apply_delay)
 	if(!user)
 		return
 	if(!isgun(user.get_active_held_item()) || !isgun(user.get_inactive_held_item()))
