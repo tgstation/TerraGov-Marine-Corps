@@ -122,6 +122,15 @@
 				to_chat(ui.user, span_warning("Error when loading this loadout"))
 				delete_loadout(ui.user, name, job)
 				CRASH("Fail to load loadouts")
+			if(loadout.version != CURRENT_LOADOUT_VERSION)
+				loadout.version = CURRENT_LOADOUT_VERSION
+				if(istype(loadout.item_list[SLOT_HEAD], /datum/item_representation/modular_helmet))
+					loadout.item_list[SLOT_HEAD] = null
+				if(istype(loadout.item_list[SLOT_WEAR_SUIT], /datum/item_representation/modular_armor))
+					loadout.item_list[SLOT_WEAR_SUIT] = null
+				delete_loadout(ui.user, loadout.name, loadout.job)
+				add_loadout(loadout)
+				to_chat(ui.user, span_warning("Please note: The loadout code has been updated and as such any modular helmet/suit has been removed from it due to the transitioning of loadout versions. Any future modular helmet/suit saves should have no problem being saved."))
 			loadout.loadout_vendor = loadout_vendor
 			loadout.ui_interact(ui.user)
 
