@@ -286,7 +286,7 @@
 	RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, .proc/unload_gun)
 	RegisterSignal(gun_user, COMSIG_KB_FIREMODE, .proc/do_toggle_firemode)
 	RegisterSignal(gun_user, COMSIG_KB_GUN_SAFETY, .proc/toggle_gun_safety_keybind)
-	RegisterSignal(gun_user, COMSIG_CARBON_SWAPPED_HANDS, .proc/swap_shoot_inactive_hand)
+	RegisterSignal(gun_user, COMSIG_CARBON_SWAPPED_HANDS, .proc/set_shoot_inactive_hand)
 
 
 ///Null out gun user to prevent hard del
@@ -422,20 +422,26 @@
 	. = ..()
 	return cock(user)
 
-/obj/item/weapon/gun/proc/swap_shoot_inactive_hand()
-	SIGNAL_HANDLER
+/obj/item/weapon/gun/proc/set_shoot_inactive_hand(var/apply_delay = FALSE)
+	SIGNAL_HANDLER // If you swap your hands
 	if(!gun_user)
 		return
 	if(!isgun(gun_user.get_active_held_item()) || !isgun(gun_user.get_inactive_held_item()))
 		gun_user.shoot_inactive_hand = FALSE
 		return
-	// If you swap your hands it resets the shoot_inactive_hand var
+	
 	var/obj/item/weapon/gun/active_gun = gun_user.get_active_held_item()
 	var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
-	if(gun_user.shoot_inactive_hand && (!inactive_gun.current_mag?.current_rounds || inactive_gun.current_mag?.current_rounds <= 0)) // If shooting inactive gun
+	if(apply_delay) // Apply akimbo delay
+		if(gun_user.shoot_inactive_hand)
+			active_gun.last_fired = world.time
+		else
+			inactive_gun.last_fired = world.time
+	if(gun_user.shoot_inactive_hand && (!(inactive_gun.flags_gun_features & GUN_ENERGY) && (!inactive_gun.in_chamber?.ammo && !inactive_gun.current_mag?.current_rounds || inactive_gun.current_mag?.current_rounds && inactive_gun.current_mag.current_rounds <= 0) || (inactive_gun.flags_gun_features & GUN_ENERGY) && (!inactive_gun.sentry_battery?.charge || inactive_gun.sentry_battery.charge <= 0))) // Check inactive gun
 		gun_user.shoot_inactive_hand = FALSE // Shoot from active
-	if(!gun_user.shoot_inactive_hand && (!active_gun.current_mag?.current_rounds || active_gun.current_mag?.current_rounds <= 0)) // If shooting active gun
+	if(!gun_user.shoot_inactive_hand && (!(active_gun.flags_gun_features & GUN_ENERGY) && (!active_gun.in_chamber?.ammo && !active_gun.current_mag?.current_rounds || active_gun.current_mag?.current_rounds && active_gun.current_mag.current_rounds <= 0) || (active_gun.flags_gun_features & GUN_ENERGY) && (!active_gun.sentry_battery?.charge || active_gun.sentry_battery.charge <= 0))) // Check active gun
 		gun_user.shoot_inactive_hand = TRUE // Shoot from inactive
+
 
 //----------------------------------------------------------
 			//							        \\
@@ -522,6 +528,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	span_notice("You load [magazine] into [src]!"), null, 3)
 	if(reload_sound)
 		playsound(user, reload_sound, 25, 1, 5)
+	set_shoot_inactive_hand(FALSE)
 	update_icon()
 
 
@@ -654,8 +661,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			return
 		if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
 			dual_wield = TRUE
-		else
-			gun_user.shoot_inactive_hand = FALSE
 		if(gun_user.in_throw_mode)
 			return
 		if(gun_user.Adjacent(object)) //Dealt with by attack code
@@ -835,15 +840,7 @@ and you're good to go.
 			sentry_battery.forceMove(get_turf(src))
 			sentry_battery.charge = 0
 			sentry_battery = null
-	// Akimbo code
-	var/obj/item/weapon/gun/active_gun = gun_user.get_active_held_item() // Don't use active_gun or inactive_gun outside of dual_wield, there are no checks for if it's not a gun outside of dual_wield
-	var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
-	if(dual_wield && gun_user.shoot_inactive_hand && (!inactive_gun.current_mag?.current_rounds || inactive_gun.current_mag?.current_rounds <= 0)) // Check inactive gun
-		gun_user.shoot_inactive_hand = FALSE // Shoot from active
-		active_gun.last_fired = world.time
-	if(dual_wield && !gun_user.shoot_inactive_hand && (!active_gun.current_mag?.current_rounds || active_gun.current_mag?.current_rounds <= 0)) // Check active gun
-		gun_user.shoot_inactive_hand = TRUE // Shoot from inactive
-		inactive_gun.last_fired = world.time
+	set_shoot_inactive_hand(TRUE)
 	return TRUE
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
@@ -986,7 +983,10 @@ and you're good to go.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/able_to_fire(mob/user)
-	if(!user || user.stat != CONSCIOUS || user.lying_angle)
+	if(!user)
+		return
+	set_shoot_inactive_hand(FALSE)
+	if(user.stat != CONSCIOUS || user.lying_angle)
 		return
 
 	if(dual_wield && gun_user.get_active_held_item() == src && gun_user.shoot_inactive_hand)
