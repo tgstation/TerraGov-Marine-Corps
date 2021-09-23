@@ -538,6 +538,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recent_pump = world.time
 	if(in_chamber) //Lock only if we have ammo loaded.
 		user.hud_used.update_ammo_hud(user, src)
+		pump_lock = TRUE
 
 	return TRUE
 
