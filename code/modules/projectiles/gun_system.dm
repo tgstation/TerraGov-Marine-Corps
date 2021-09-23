@@ -429,6 +429,7 @@
 	if(!isgun(gun_user.get_active_held_item()) || !isgun(gun_user.get_inactive_held_item()))
 		gun_user.shoot_inactive_hand = FALSE
 		return
+	// If you swap your hands it resets the shoot_inactive_hand var
 	var/obj/item/weapon/gun/active_gun = gun_user.get_active_held_item()
 	var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
 	if(gun_user.shoot_inactive_hand && (!inactive_gun.current_mag?.current_rounds || inactive_gun.current_mag?.current_rounds <= 0)) // If shooting inactive gun
