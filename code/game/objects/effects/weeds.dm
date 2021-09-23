@@ -9,7 +9,7 @@
 
 // base weed type
 /obj/effect/alien/weeds
-	name = "weeds"
+	name = WEED
 	desc = "A layer of oozy slime, it feels slick, but not as slick for you to slip."
 	icon = 'icons/Xeno/weeds.dmi'
 	icon_state = "base"
@@ -110,7 +110,7 @@
 	parent_node = null
 
 /obj/effect/alien/weeds/sticky
-	name = "sticky weeds"
+	name = STICKY_WEED
 	desc = "A layer of disgusting sticky slime, it feels like it's going to slow your movement down."
 	color_variant = STICKY_COLOR
 
@@ -119,7 +119,7 @@
 	AddElement(/datum/element/slowing_on_crossed, WEED_SLOWDOWN)
 
 /obj/effect/alien/weeds/resting
-	name = "resting weeds"
+	name = RESTING_WEED
 	desc = "This looks almost comfortable."
 	color_variant = RESTING_COLOR
 	resting_buff = RESTING_BUFF
