@@ -11,7 +11,7 @@
 */
 /obj/item/clothing/suit/modular
 	name = "Jaeger XM-02 combat exoskeleton"
-	desc = "Designed to mount a variety of modular armor components and support systems. It comes installed with light-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use a crowbar to remove armor pieces, use a screwdriver to remove armor attachments."
+	desc = "Designed to mount a variety of modular armor components and support systems. It comes installed with light-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use Alt-Click to remove any attached items."
 	icon = 'icons/mob/modular/modular_armor.dmi'
 	icon_state = "underarmor"
 	item_state = "underarmor"
@@ -253,28 +253,13 @@
 
 /obj/item/clothing/suit/modular/pas11x
 	name = "\improper PAS-11X pattern armored vest"
-	desc = "A modified version of the PAS-11 that has been fit with Jaeger module attach points in order to give use to the surplus armor left while being able to compete with the X-02 Exoskeleton. Use it to toggle the built-in flashlight."
+	desc = "A modified version of the PAS-11 that has been fit with Jaeger module attach points in order to give use to the surplus armor left while being able to compete with the X-02 Exoskeleton. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
 	icon_state = "pas11"
 	item_state = "pas11"
 	slowdown = 0.5
 
 	attachments_allowed = list(
-		/obj/item/armor_module/armor/arms/marine,
-		/obj/item/armor_module/armor/arms/marine/skirmisher,
-		/obj/item/armor_module/armor/arms/marine/scout,
-		/obj/item/armor_module/armor/arms/marine/assault,
-		/obj/item/armor_module/armor/arms/marine/eva,
-		/obj/item/armor_module/armor/arms/marine/eod,
-
-		/obj/item/armor_module/armor/legs/marine,
-		/obj/item/armor_module/armor/legs/marine/skirmisher,
-		/obj/item/armor_module/armor/legs/marine/scout,
-		/obj/item/armor_module/armor/legs/marine/assault,
-		/obj/item/armor_module/armor/legs/marine/eva,
-		/obj/item/armor_module/armor/legs/marine/eod,
-
-
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
