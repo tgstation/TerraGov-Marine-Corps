@@ -230,7 +230,8 @@
 		QDEL_NULL(current_mag)
 	if(muzzle_flash)
 		QDEL_NULL(muzzle_flash)
-	QDEL_NULL(cell)
+	if(cell)
+		QDEL_NULL(cell)
 	QDEL_NULL(sentry_battery)
 	GLOB.nightfall_toggleable_lights -= src
 	return ..()
