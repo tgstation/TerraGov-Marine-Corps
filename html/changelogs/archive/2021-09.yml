@@ -375,3 +375,16 @@
   - bugfix: Synths don't apply their damage reduction twice anymore.
   TiviPlus:
   - bugfix: Fix shuttle lighting & turfs
+2021-09-23:
+  BraveMole:
+  - qol: You can have multiple ammo huds
+  - rscdel: Remove the ability to disable ammo hud
+  - bugfix: Fix energy guns not auto ejecting
+  - bugfix: Fix hivemind slowdown issues
+  - bugfix: Fix corpsespawner looking psydrainable
+  - bugfix: Fix xeno instant evolving
+  - bugfix: Fix loging into ai not giving you full control
+  EvilMelonTheSecond:
+  - bugfix: fixed right clicking radiopack pulling out items
+  SpaceLoveSs13:
+  - balance: self splinting delay is now 3x instead of 4x
