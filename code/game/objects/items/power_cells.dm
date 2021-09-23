@@ -94,7 +94,7 @@
 	maxcharge = 300
 	minor_fault = 1
 
-/obj/item/cell/rtg
+/obj/item/cell/rtg/small
 	name = "recharger cell"
 	desc = "This is a miniature radioisotope generator that can fit into plasma cutters or APC's, but not laser-based weapory. The needed shielding lowers the maximum capacity significantly."
 	icon = 'icons/obj/stock_parts.dmi'
