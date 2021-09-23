@@ -163,7 +163,7 @@
 		to_chat(src, span_warning("You have been banned from OOC."))
 		return
 
-	mob.log_talk(msg, LOG_OOC)
+	mob.log_talk(msg, LOG_XOOC)
 
 	// Send chat message to non-admins
 	for(var/client/C AS in GLOB.clients)
@@ -171,27 +171,34 @@
 			continue
 		if(!(C.mob in GLOB.xeno_mob_list) && !(C.mob in GLOB.observer_list) || check_other_rights(C, R_ADMIN, FALSE)) // If the client is a xeno, an observer, and not an admin.
 			continue
-
+		
 		var/display_name = mob.name
-		if(admin && !(mob in GLOB.xeno_mob_list)) // If the verb caller is an admin and is not a xeno mob, use their ckey instead.
-			display_name = mob.key
+		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
+		if(!(mob in GLOB.xeno_mob_list) && admin) // If the verb caller is an admin and not a xeno mob, use their fakekey or key instead.
+			display_name = display_key
 
 		var/avoid_highlight = C == src
-		to_chat(C, "<font color='#334455'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+		to_chat(C, "<font color='#6D2A6D'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 	// Send chat message to admins
 	for(var/client/C AS in GLOB.admins)
+		if(!(C.prefs.toggles_chat & CHAT_OOC))
+			continue
 		if(!check_other_rights(C, R_ADMIN, FALSE)) // Check if the client is still an admin.
 			continue
-		var/display_name = mob.name
-		if(admin && !(mob in GLOB.xeno_mob_list)) // If the verb caller is an admin and is not a xeno mob, use their ckey instead.
-			display_name = mob.key
 
-		// Replace display_name with itself and turn it into a clickable player panel href for admins.
-		if(check_other_rights(C, R_ADMIN, FALSE))
-			display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>"
+		var/display_name = mob.name
+		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
+		if(!(mob in GLOB.xeno_mob_list) && admin) // If the verb caller is an admin and not a xeno mob, use their fakekey or key instead.
+			display_name = display_key
+		display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>" // Admins get a clickable player panel.
+		if(!holder?.fakekey) // Show their key and their fakekey if they have one.
+			display_name = "[mob.key]/([display_name])"
+		else
+			display_name = "[holder.fakekey]/([mob.key]/[display_name])"
+
 		var/avoid_highlight = C == src
-		to_chat(C, "<font color='#334455'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+		to_chat(C, "<font color='#6D2A6D'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 
 /client/verb/mooc_wrapper()
@@ -250,7 +257,7 @@
 		to_chat(src, span_warning("You have been banned from OOC."))
 		return
 
-	mob.log_talk(msg, LOG_OOC)
+	mob.log_talk(msg, LOG_MOOC)
 
 	// Send chat message to non-admins
 	for(var/client/C AS in GLOB.clients)
@@ -259,12 +266,14 @@
 		if(!(C.mob in GLOB.human_mob_list) && !(C.mob in GLOB.observer_list) || check_other_rights(C, R_ADMIN, FALSE)) // If the client is a human, an observer, and not an admin.
 			continue
 
+		// If the verb caller is an admin and not a human mob, use their key, or if they're stealthmode, hide their key instead.
 		var/display_name = mob.name
-		if(admin && !(mob in GLOB.human_mob_list)) // If the verb caller is an admin and is not a human mob, use their ckey instead.
-			display_name = mob.key
-
+		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
+		if(!(mob in GLOB.human_mob_list) && admin)  // If the verb caller is an admin and not a human mob, use their fakekey or key instead.
+			display_name = display_key
+		
 		var/avoid_highlight = C == src
-		to_chat(C, "<font color='#665544'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+		to_chat(C, "<font color='#B75800'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 	// Send chat message to admins
 	for(var/client/C AS in GLOB.admins)
@@ -272,15 +281,19 @@
 			continue
 		if(!check_other_rights(C, R_ADMIN, FALSE)) // Check if the client is still an admin.
 			continue
-		var/display_name = mob.name
-		if(admin && !(mob in GLOB.human_mob_list)) // If the verb caller is an admin and is not a human mob, use their ckey instead.
-			display_name = mob.key
 
-		// Replace display_name with itself and turn it into a clickable player panel href for admins.
-		if(check_other_rights(C, R_ADMIN, FALSE))
-			display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>"
+		var/display_name = mob.name
+		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
+		if(!(mob in GLOB.human_mob_list) && admin) // If the verb caller is an admin and not a human mob, use their fakekey or key instead.
+			display_name = display_key
+		display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>" // Admins get a clickable player panel.
+		if(!holder?.fakekey) // Show their key and their fakekey if they have one.
+			display_name = "[mob.key]/([display_name])"
+		else
+			display_name = "[holder.fakekey]/([mob.key]/[display_name])"
+
 		var/avoid_highlight = C == src
-		to_chat(C, "<font color='#665544'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+		to_chat(C, "<font color='#B75800'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 
 /client/verb/looc_wrapper()

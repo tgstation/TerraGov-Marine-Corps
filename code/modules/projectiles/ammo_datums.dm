@@ -555,7 +555,7 @@ datum/ammo/bullet/revolver/tp44
 	staggerstun(M, P, max_range = 40, stagger = 2, slowdown = 3.5, knockback = 1)
 
 /datum/ammo/bullet/rifle/ak47
-	name = "heavy rifle bullet"
+	name = "crude heavy rifle bullet"
 	hud_state = "rifle_heavy"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 30
@@ -1199,6 +1199,7 @@ datum/ammo/bullet/revolver/tp44
 	set_smoke()
 	smoke_system.set_up(range, T)
 	smoke_system.start()
+	smoke_system = null
 	T.visible_message(span_danger("The rocket explodes into white gas!") )
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 	flame_radius(radius, T, 27, 27, 27, 17)
@@ -1701,6 +1702,7 @@ datum/ammo/bullet/revolver/tp44
 	smoke_system.strength = smoke_strength
 	smoke_system.set_up(smoke_range, T)
 	smoke_system.start()
+	smoke_system = null
 
 /datum/ammo/xeno/toxin/upgrade1
 	smoke_strength = 0.6
@@ -1709,7 +1711,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/toxin/upgrade2
 	smoke_strength = 0.7
 	reagent_transfer_amount = 9
-	
+
 /datum/ammo/xeno/toxin/upgrade3
 	smoke_strength = 0.75
 	reagent_transfer_amount = 9.5
@@ -1733,7 +1735,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
 	smoke_strength = 1
-	reagent_transfer_amount = 10  
+	reagent_transfer_amount = 10
 
 
 /datum/ammo/xeno/sticky
@@ -1823,8 +1825,8 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
-	added_spit_delay = 0
-	spit_cost = 150
+	added_spit_delay = 2
+	spit_cost = 90
 	damage = 30
 
 /datum/ammo/xeno/acid/heavy/turret
@@ -1941,6 +1943,7 @@ datum/ammo/bullet/revolver/tp44
 		range = max(2, range + X.upgrade_as_number())
 	smoke_system.set_up(range, T)
 	smoke_system.start()
+	smoke_system = null
 	T.visible_message(danger_message)
 
 /datum/ammo/xeno/boiler_gas/corrosive
@@ -1989,7 +1992,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/bullet/pepperball/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/X = victim
-		X.use_plasma(50)
+		X.use_plasma(0.05 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
 
 /datum/ammo/alloy_spike
 	name = "alloy spike"

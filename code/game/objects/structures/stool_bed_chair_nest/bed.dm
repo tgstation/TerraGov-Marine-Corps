@@ -416,6 +416,11 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	if(busy)
 		return
 
+	if(user.faction != linked_beacon?.faction)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		visible_message(span_warning("[src]'s safeties kick in before displacement as it fails to detect correct identification codes."))
+		return
+
 	if(world.time < last_teleport )
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		to_chat(user, span_warning("[src]'s bluespace engine is still recharging; it will be ready in [round(last_teleport - world.time) * 0.1] seconds."))
@@ -480,6 +485,11 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	if(!M) //We need a mob to teleport or no deal
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		visible_message(span_warning("[src]'s bluespace engine aborts displacement, being unable to detect an appropriate evacuee."))
+		return
+
+	if(M.faction != linked_beacon.faction)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		visible_message(span_warning("[src]'s safeties kick in before displacement as it fails to detect correct identification codes."))
 		return
 
 	visible_message(span_notice("<b>[M] vanishes in a flash of sparks as [src]'s bluespace engine generates its displacement field.</b>"))
@@ -594,6 +604,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	var/obj/structure/bed/medevac_stretcher/linked_bed_deployed = null
 	req_one_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_MEDBAY)
 	var/obj/item/radio/headset/mainship/doc/radio
+	///The faction this beacon belongs to
+	var/faction
 
 /obj/item/medevac_beacon/Initialize(mapload)
 	. = ..()
@@ -642,6 +654,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	to_chat(user, span_warning("You plant and activate [src]."))
 	icon_state = "med_beacon1"
 	playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
+	faction = user.faction
 
 /obj/item/medevac_beacon/attack_hand(mob/living/user)
 	. = ..()

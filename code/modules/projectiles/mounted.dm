@@ -134,9 +134,6 @@
 
 	for(var/datum/action/action AS in gun.actions)
 		action.give_action(operator)
-	var/obj/screen/ammo/hud = operator.hud_used.ammo
-	hud.add_hud(operator, internal_item)
-	hud.update_hud(operator, internal_item)
 
 	gun.set_gun_user(operator)
 
@@ -230,14 +227,12 @@
 
 	UnregisterSignal(operator, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEDRAG))
 	var/obj/item/weapon/gun/gun = internal_item
-	if(CHECK_BITFIELD(gun.flags_gun_features, GUN_IS_AIMING))
+	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING))
 		gun.toggle_aim_mode(operator)
 	gun.UnregisterSignal(operator, COMSIG_MOB_MOUSEUP)
 
 	for(var/datum/action/action AS in gun.actions)
 		action.remove_action(operator)
-	var/obj/screen/ammo/hud = operator.hud_used.ammo
-	hud.remove_hud(operator)
 
 	for(var/key in gun.attachments_by_slot)
 		var/obj/item/attachable = gun.attachments_by_slot[key]

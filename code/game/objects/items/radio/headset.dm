@@ -179,10 +179,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_EARS)
 		if(GLOB.faction_to_data_hud[user.faction] != hud_type)
-			to_chat(user, span_warning("[src] violently buzzes and explodes in your face as its tampering mechanisms are triggered!"))
-			playsound(user, 'sound/effects/explosion_small1.ogg', 50, 1)
-			user.ex_act(EXPLODE_LIGHT)
-			qdel(src)
+			safety_protocol(user)
 			return
 		wearer = user
 		squadhud = GLOB.huds[hud_type]
@@ -196,6 +193,12 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			camera.network |= lowertext(user.assigned_squad.name)
 	return ..()
 
+/// Make the headset explode
+/obj/item/radio/headset/mainship/proc/safety_protocol(mob/living/carbon/human/user)
+	to_chat(user, span_warning("[src] violently buzzes and explodes in your face as its tampering mechanisms are triggered!"))
+	playsound(user, 'sound/effects/explosion_small1.ogg', 50, 1)
+	user.ex_act(EXPLODE_LIGHT)
+	qdel(src)
 
 /obj/item/radio/headset/mainship/dropped(mob/living/carbon/human/user)
 	if(istype(user) && headset_hud_on)
