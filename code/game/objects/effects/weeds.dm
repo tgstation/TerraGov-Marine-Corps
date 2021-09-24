@@ -9,7 +9,7 @@
 
 // base weed type
 /obj/effect/alien/weeds
-	name = WEED
+	name = "weeds"
 	desc = "A layer of oozy slime, it feels slick, but not as slick for you to slip."
 	icon = 'icons/Xeno/weeds.dmi'
 	icon_state = "base"
@@ -110,7 +110,7 @@
 	parent_node = null
 
 /obj/effect/alien/weeds/sticky
-	name = STICKY_WEED
+	name = "sticky weeds"
 	desc = "A layer of disgusting sticky slime, it feels like it's going to slow your movement down."
 	color_variant = STICKY_COLOR
 
@@ -119,7 +119,7 @@
 	AddElement(/datum/element/slowing_on_crossed, WEED_SLOWDOWN)
 
 /obj/effect/alien/weeds/resting
-	name = RESTING_WEED
+	name = "resting weeds"
 	desc = "This looks almost comfortable."
 	color_variant = RESTING_COLOR
 	resting_buff = RESTING_BUFF
@@ -170,7 +170,7 @@
 // =================
 // weed node - grows other weeds
 /obj/effect/alien/weeds/node
-	name = "speed weed sac"
+	name = WEED
 	desc = "A weird, pulsating purple node."
 	max_integrity = 60
 	var/node_icon = "weednode"
@@ -223,7 +223,7 @@
 
 //Sticky weed node
 /obj/effect/alien/weeds/node/sticky
-	name = "sticky weed sac"
+	name = STICKY_WEED
 	desc = "A weird, pulsating red node."
 	weed_type = /obj/effect/alien/weeds/sticky
 	color_variant = STICKY_COLOR
@@ -236,7 +236,7 @@
 
 //Resting weed node
 /obj/effect/alien/weeds/node/resting
-	name = "resting weed sac"
+	name = RESTING_WEED
 	desc = "A weird, pulsating white node."
 	weed_type = /obj/effect/alien/weeds/resting
 	color_variant = RESTING_COLOR
