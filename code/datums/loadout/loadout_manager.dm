@@ -100,10 +100,13 @@
 				return
 			if(loadout.version != CURRENT_LOADOUT_VERSION)
 				loadout.version = CURRENT_LOADOUT_VERSION
-				if(slot_head_str in loadout.item_list && istype(loadout.item_list[slot_head_str], /datum/item_representation/modular_helmet))
-					loadout.empty_slot(slot_head_str)
-				if(slot_wear_suit_str in loadout.item_list && istype(loadout.item_list[slot_wear_suit_str], /datum/item_representation/modular_armor))
-					loadout.empty_slot(slot_wear_suit_str)
+				for(var/key in loadout.item_list)
+					if(key == slot_head_str && istype(loadout.item_list[key], /datum/item_representation/modular_helmet))
+						loadout.empty_slot(slot_head_str)
+						continue
+					if(key == slot_wear_suit_str && istype(loadout.item_list[key], /datum/item_representation/modular_armor))
+						loadout.empty_slot(slot_wear_suit_str)
+						continue
 				var/job = params["loadout_job"]
 				var/name = params["loadout_name"]
 				delete_loadout(ui.user, name, job)
@@ -127,10 +130,13 @@
 				CRASH("Fail to load loadouts")
 			if(loadout.version != CURRENT_LOADOUT_VERSION)
 				loadout.version = CURRENT_LOADOUT_VERSION
-				if(slot_head_str in loadout.item_list && istype(loadout.item_list[slot_head_str], /datum/item_representation/modular_helmet))
-					loadout.item_list -= loadout.item_list[slot_head_str] 
-				if(slot_wear_suit_str in loadout.item_list && istype(loadout.item_list[slot_wear_suit_str], /datum/item_representation/modular_armor))
-					loadout.item_list -= loadout.item_list[slot_wear_suit_str]
+				for(var/key in loadout.item_list)
+					if(key == slot_head_str && istype(loadout.item_list[key], /datum/item_representation/modular_helmet))
+						loadout.empty_slot(slot_head_str)
+						continue
+					if(key == slot_wear_suit_str && istype(loadout.item_list[key], /datum/item_representation/modular_armor))
+						loadout.empty_slot(slot_wear_suit_str)
+						continue
 				delete_loadout(ui.user, name, job)
 				ui.user.client.prefs.save_loadout(loadout)
 				add_loadout(loadout)
