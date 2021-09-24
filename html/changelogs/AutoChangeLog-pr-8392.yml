@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "medevac will properly tell you when you forgot to linked it to a beacon"
