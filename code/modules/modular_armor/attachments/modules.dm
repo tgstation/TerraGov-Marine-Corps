@@ -257,20 +257,23 @@
 
 /obj/item/armor_module/module/binoculars/activate(mob/living/user)
 	zoom(user)
-
 	active = !active
 	to_chat(user, span_notice("You toggle \the [src]. [active ? "enabling" : "disabling"] it."))
 	icon_state = initial(icon_state) + "[active ? "_active" : ""]"
 	item_state = icon_state + "_a"
 	parent.update_icon()
 	user.update_inv_head()
-	return COMSIG_MOB_CLICK_CANCELED
+	if(active)
+		RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, .proc/zoom_item_turnoff)
+		return
+	UnregisterSignal(user, COMSIG_MOB_MOUSEDOWN)
 
 /obj/item/armor_module/module/binoculars/zoom_item_turnoff(datum/source, mob/living/user)
 	if(isliving(source))
 		activate(source)
 	else
 		activate(user)
+	return COMSIG_MOB_CLICK_CANCELED
 
 /obj/item/armor_module/module/antenna
 	name = "Antenna helmet module"
