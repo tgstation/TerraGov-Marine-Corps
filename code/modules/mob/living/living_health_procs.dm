@@ -306,7 +306,7 @@
 		qdel(A)
 	if(L)
 		qdel(L)
-	DISABLE_BITFIELD(status_flags, XENO_HOST)
+	DISABLE_BITFIELD(status_flags, LARVA_HOST)
 
 	// restore us to conciousness
 	set_stat(CONSCIOUS)

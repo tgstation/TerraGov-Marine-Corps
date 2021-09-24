@@ -285,7 +285,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_human_revives")
 	to_chat(H, span_notice("You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane."))
 
-	if(CHECK_BITFIELD(H.status_flags, XENO_HOST))
+	if(CHECK_BITFIELD(H.status_flags, LARVA_HOST))
 		var/obj/item/alien_embryo/friend = locate() in H
 		START_PROCESSING(SSobj, friend)
 

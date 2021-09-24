@@ -541,7 +541,7 @@
 										L.forceMove(get_turf(src))
 									else
 										A.forceMove(occupant.loc)
-										occupant.status_flags &= ~XENO_HOST
+										occupant.status_flags &= ~LARVA_HOST
 									qdel(A)
 						if(S.limb_ref.implants.len)
 							for(var/obj/item/I in S.limb_ref.implants)

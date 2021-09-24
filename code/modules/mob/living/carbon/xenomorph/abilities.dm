@@ -81,7 +81,6 @@
 
 	if(ishuman(victim))
 		var/mob/living/carbon/human/H = victim
-		victim.emote_burstscream()
 		var/datum/internal_organ/O
 		O = H.internal_organs_by_name["brain"] //This removes (and later garbage collects) the organ. No brain means instant death.
 		H.internal_organs_by_name -= "brain"

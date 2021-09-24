@@ -597,9 +597,6 @@
 		if(stagger)
 			return FALSE
 		body_tox = C.reagents.get_reagent(toxin)
-		if(CHECK_BITFIELD(C.status_flags, XENO_HOST) && body_tox && body_tox.volume > body_tox.overdose_threshold)
-			to_chat(src, span_warning("We sense the infected host is saturated with [body_tox.name] and cease our attempt to inoculate it further to preserve the little one inside."))
-			return FALSE
 		do_attack_animation(C)
 		playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
 		playsound(C, "alien_drool", 15, TRUE)

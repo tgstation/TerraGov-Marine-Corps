@@ -163,17 +163,6 @@
 		var/datum/limb/head/synthhead = victim.get_limb("head")
 		if(synthhead.limb_status & LIMB_DESTROYED)
 			return FALSE
-	if(locate(/obj/item/alien_embryo) in victim) //Maybe they ate it??
-		var/mob/living/carbon/human/H = victim
-		if(CHECK_BITFIELD(H.status_flags, XENO_HOST))
-			if(victim.stat != DEAD) //Not dead yet.
-				if(!silent)
-					to_chat(owner, span_xenowarning("The host and child are still alive!"))
-				return FALSE
-			else if(istype(H) && !HAS_TRAIT(H, TRAIT_UNDEFIBBABLE )) //Dead code
-				if(!silent)
-					to_chat(owner, span_xenowarning("The child may still hatch! Not yet!"))
-				return FALSE
 	if(owner.issamexenohive(victim))
 		if(!silent)
 			to_chat(owner, span_warning("We can't bring ourselves to harm a fellow sister to this magnitude."))

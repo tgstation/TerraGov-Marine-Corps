@@ -456,8 +456,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 				continue
 			if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
 				continue
-			if(H.status_flags & XENO_HOST)
-				continue
 			if(isspaceturf(H.loc))
 				continue
 			num_humans++
@@ -494,8 +492,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		if(H.stat == DEAD && !H.has_working_organs())
 			continue
 		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
-			continue
-		if(H.status_flags & XENO_HOST)
 			continue
 		if(!(H.z in z_levels) || isspaceturf(H.loc))
 			continue

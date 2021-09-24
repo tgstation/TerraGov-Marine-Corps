@@ -358,7 +358,7 @@
 /datum/action/xeno_action/psychic_trace/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 
-	to_chat(X, span_xenodanger("We sense our quarry <b>[X.xeno_caste.marked_target]</b> is currently located in <b>[AREACOORD_NO_Z(X.xeno_caste.marked_target)]</b> and is <b>[get_dist(X, X.xeno_caste.marked_target)]</b> tiles away. It is <b>[calculate_mark_health(X.xeno_caste.marked_target)]</b> and <b>[X.xeno_caste.marked_target.status_flags & XENO_HOST ? "impregnated" : "barren"]</b>."))
+	to_chat(X, span_xenodanger("We sense our quarry <b>[X.xeno_caste.marked_target]</b> is currently located in <b>[AREACOORD_NO_Z(X.xeno_caste.marked_target)]</b> and is <b>[get_dist(X, X.xeno_caste.marked_target)]</b> tiles away. It is <b>[calculate_mark_health(X.xeno_caste.marked_target)]</b> and <b>[X.xeno_caste.marked_target.status_flags & LARVA_HOST ? "impregnated" : "barren"]</b>."))
 	X.playsound_local(X, 'sound/effects/ghost2.ogg', 10, 0, 1)
 
 	var/obj/screen/arrow/hunter_mark_arrow/arrow_hud = new

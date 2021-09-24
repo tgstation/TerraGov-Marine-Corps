@@ -431,7 +431,7 @@
 	if(F.combat_hugger) //Combat huggers will attack anything else
 		return TRUE
 
-	if((status_flags & (XENO_HOST|GODMODE)) || F.stat == DEAD)
+	if((status_flags & (LARVA_HOST|GODMODE)) || F.stat == DEAD)
 		return FALSE
 
 	if(!provoked)
@@ -475,7 +475,7 @@
 	if(attached)
 		return TRUE
 
-	if(M.status_flags & XENO_HOST || isxeno(M))
+	if(M.status_flags & LARVA_HOST || isxeno(M))
 		return FALSE
 
 	if(isxeno(loc)) //Being carried? Drop it
@@ -573,8 +573,7 @@
 	var/as_planned = target?.wear_mask == src ? TRUE : FALSE
 	if(target.can_be_facehugged(src, FALSE, FALSE) && !sterile && as_planned) //is hugger still on face and can they still be impregnated
 		if(!(locate(/obj/item/alien_embryo) in target))
-			var/obj/item/alien_embryo/embryo = new(target)
-			embryo.hivenumber = hivenumber
+			new /obj/item/alien_embryo(target)
 			GLOB.round_statistics.now_pregnant++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
 			sterile = TRUE
@@ -586,7 +585,7 @@
 		update_icon()
 
 	if(as_planned)
-		if(sterile || target.status_flags & XENO_HOST)
+		if(sterile || target.status_flags & LARVA_HOST)
 			target.visible_message(span_danger("[src] falls limp after violating [target]'s face!"))
 		else //Huggered but not impregnated, deal damage.
 			target.visible_message(span_danger("[src] frantically claws at [target]'s face before falling down!"),span_danger("[src] frantically claws at your face before falling down! Auugh!"))

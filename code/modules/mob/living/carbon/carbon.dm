@@ -26,14 +26,6 @@
 		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
 			germ_level++
 
-/mob/living/carbon/relaymove(mob/user, direction)
-	if(user.incapacitated(TRUE))
-		return
-	if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
-		var/mob/living/carbon/xenomorph/larva/L = user
-		L.initiate_burst(src)
-
-
 /mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, def_zone = null)
 	if(status_flags & GODMODE)	return 0	//godmode
 	shock_damage *= siemens_coeff

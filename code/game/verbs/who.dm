@@ -20,7 +20,7 @@
 				var/mob/living/carbon/human/human_mob = C.mob
 				if(ismarinejob(human_mob.job))
 					count_marine_humans++
-				if(C.mob.status_flags & XENO_HOST)
+				if(C.mob.status_flags & LARVA_HOST)
 					count_infectedhumans++
 			if(isxeno(C.mob))
 				count_aliens++

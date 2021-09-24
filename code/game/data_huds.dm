@@ -245,14 +245,8 @@
 		simple_status_hud.icon_state = ""
 		return TRUE
 
-	if(status_flags & XENO_HOST)
-		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
-		if(E)
-			infection_hud.icon_state = "infected[E.stage]"
-		else if(locate(/mob/living/carbon/xenomorph/larva) in src)
-			infection_hud.icon_state = "infected6"
-		else
-			infection_hud.icon_state = ""
+	if(status_flags & LARVA_HOST)
+		infection_hud.icon_state = "infected3"
 	else
 		infection_hud.icon_state = ""
 

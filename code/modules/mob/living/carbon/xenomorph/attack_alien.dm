@@ -125,7 +125,7 @@
 	X.visible_message("[attack_message1]", \
 	"[attack_message2]")
 
-	if(status_flags & XENO_HOST && stat != DEAD)
+	if(status_flags & LARVA_HOST && stat != DEAD)
 		log_combat(X, src, log, addition = "while they were infected")
 	else //Normal xenomorph friendship with benefits
 		log_combat(X, src, log)
