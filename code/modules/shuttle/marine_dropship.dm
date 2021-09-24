@@ -400,9 +400,6 @@
 	var/humans_on_ground = 0
 	for(var/i in SSmapping.levels_by_trait(ZTRAIT_GROUND))
 		for(var/m in GLOB.humans_by_zlevel["[i]"])
-			var/mob/living/carbon/human/H = m
-			if(isnestedhost(H))
-				continue
 			humans_on_ground++
 	if(length(GLOB.alive_human_list) && ((humans_on_ground / length(GLOB.alive_human_list)) > ALIVE_HUMANS_FOR_CALLDOWN))
 		to_chat(user, span_warning("There's too many tallhosts still on the ground. They interfere with our psychic field. We must dispatch them before we are able to do this."))

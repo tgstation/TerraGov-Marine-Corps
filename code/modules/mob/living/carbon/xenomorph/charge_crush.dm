@@ -205,7 +205,7 @@
 						continue
 					if(victim.client)
 						shake_camera(victim, 1, 1)
-					if(victim.loc != charger.loc || !victim.lying_angle || isnestedhost(victim))
+					if(victim.loc != charger.loc || !victim.lying_angle)
 						continue
 					charger.visible_message(span_danger("[charger] runs [victim] over!"),
 						span_danger("We run [victim] over!"), null, 5)

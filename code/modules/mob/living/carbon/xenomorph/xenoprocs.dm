@@ -532,8 +532,6 @@
 
 /mob/living/carbon/acid_spray_act(mob/living/carbon/xenomorph/X)
 	ExtinguishMob()
-	if(isnestedhost(src))
-		return
 
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
 		return

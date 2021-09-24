@@ -25,7 +25,7 @@
 	X.create_stomp() //Adds the visual effect. Wom wom wom
 
 	for(var/mob/living/M in range(1, get_turf(X)))
-		if(X.issamexenohive(M) || M.stat == DEAD || isnestedhost(M))
+		if(X.issamexenohive(M) || M.stat == DEAD)
 			continue
 		var/distance = get_dist(M, X)
 		var/damage = X.xeno_caste.stomp_damage/max(1, distance + 1)
@@ -85,7 +85,7 @@
 		return FALSE
 	if(isliving(A))
 		var/mob/living/L = A
-		if(L.stat == DEAD || isnestedhost(L)) //no bully
+		if(L.stat == DEAD) //no bully
 			return FALSE
 
 /datum/action/xeno_action/activable/cresttoss/use_ability(atom/movable/A)

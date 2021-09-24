@@ -81,8 +81,6 @@
 		return FALSE
 	if(ishuman(target))
 		var/mob/living/carbon/human/victim = target
-		if(isnestedhost(victim))
-			return FALSE
 		if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && victim.stat == DEAD)
 			return FALSE
 

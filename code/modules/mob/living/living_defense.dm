@@ -243,7 +243,7 @@
 		if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
 			smokecloak_off()
 		return
-	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO) && (stat == DEAD || isnestedhost(src)))
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO) && stat == DEAD)
 		return FALSE
 	if(LAZYACCESS(smoke_delays, S.type) > world.time)
 		return FALSE

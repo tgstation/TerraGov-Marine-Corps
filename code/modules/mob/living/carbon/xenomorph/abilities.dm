@@ -570,12 +570,6 @@
 			X.recent_notice = world.time //anti-notice spam
 		return FALSE
 
-	var/mob/living/carbon/C = A
-	if (isnestedhost(C))
-		if(!silent)
-			to_chat(owner, span_warning("Ashamed, we reconsider bullying the poor, nested host with our stinger."))
-		return FALSE
-
 /datum/action/xeno_action/activable/larval_growth_sting/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 
@@ -939,11 +933,6 @@
 		if(!silent && world.time > (X.recent_notice + X.notice_delay)) //anti-notice spam
 			to_chat(X, span_warning("We can't reach this target!"))
 			X.recent_notice = world.time //anti-notice spam
-		return FALSE
-	var/mob/living/carbon/C = A
-	if (isnestedhost(C))
-		if(!silent)
-			to_chat(owner, span_warning("Ashamed, we reconsider bullying the poor, nested host with our stinger."))
 		return FALSE
 
 /datum/action/xeno_action/activable/neurotox_sting/on_cooldown_finish()

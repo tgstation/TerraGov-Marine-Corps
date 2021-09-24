@@ -34,22 +34,6 @@
 	span_warning("We shove [src]!"), null, 5)
 	return TRUE
 
-/mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
-	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_INTELLIGENT)) // intelligent ignore restrictions
-		return TRUE
-	else if(isnestedhost(src))
-		for(var/obj/item/alien_embryo/embryo in src)
-			if(!embryo.issamexenohive(X))
-				continue
-			to_chat(X, span_warning("We should not harm this host! It has a sister inside."))
-			return FALSE
-	return TRUE
-
-/mob/living/carbon/human/can_xeno_slash(mob/living/carbon/xenomorph/X)
-	. = ..()
-	if(!.)
-		return FALSE
-
 /mob/living/proc/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
 	return
 
@@ -68,9 +52,6 @@
 	return affecting
 
 /mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
-
-	if(!can_xeno_slash(X))
-		return FALSE
 
 	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
 	if(!damage)

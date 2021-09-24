@@ -1440,9 +1440,6 @@ datum/ammo/bullet/revolver/tp44
 	if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
 		return
 
-	if(isnestedhost(C))
-		return
-
 	staggerstun(C, P, stagger = 1, slowdown = 1) //Staggers and slows down briefly
 
 	return ..()
@@ -1652,9 +1649,6 @@ datum/ammo/bullet/revolver/tp44
 	drop_neuro_smoke(get_turf(C))
 
 	if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
-		return
-
-	if(isnestedhost(C))
 		return
 
 	C.adjust_stagger(stagger_stacks) //stagger briefly; useful for support
