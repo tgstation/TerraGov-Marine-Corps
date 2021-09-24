@@ -2,7 +2,7 @@
 #define IGNORE_WEED_REMOVAL (1<<0)
 
 //Weeds define
-#define SPEED_WEED "speed weed sac"
+#define WEED "weed sac"
 #define STICKY_WEED "sticky weed sac"
 #define RESTING_WEED "resting weed sac"
 
@@ -22,7 +22,7 @@ GLOBAL_LIST_INIT(weed_prob_list, list(
 
 //List of weed images
 GLOBAL_LIST_INIT(weed_images_list,  list(
-		SPEED_WEED = image('icons/mob/actions.dmi', icon_state = SPEED_WEED),
+		WEED = image('icons/mob/actions.dmi', icon_state = WEED),
 		STICKY_WEED = image('icons/mob/actions.dmi', icon_state = STICKY_WEED),
 		RESTING_WEED = image('icons/mob/actions.dmi', icon_state = RESTING_WEED),
 		))
