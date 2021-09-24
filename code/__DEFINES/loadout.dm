@@ -642,11 +642,6 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 	)
 ))
 
-///Items that should be saved in loadouts no matter what
-GLOBAL_LIST_INIT(bypass_loadout_check_item, typecacheof(list(
-	/obj/item/clothing/under/marine,
-)))
-
 ///Storage items that will always have their default content
 GLOBAL_LIST_INIT(bypass_storage_content_save, typecacheof(list(
 	/obj/item/storage/box/MRE,
