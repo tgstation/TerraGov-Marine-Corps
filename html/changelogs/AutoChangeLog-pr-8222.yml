@@ -1,5 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - expansion: "Jaeger and M10X now have storage which shows certain items stored into it like the original M10 did."
-  - code_imp: "cleaned some jaeger overlay rendering code."

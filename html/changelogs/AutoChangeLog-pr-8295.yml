@@ -1,6 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "Infinite marine respawn are no more, i hope"
-  - admin: "Logging when a ghost take an ssd mob"
-  - admin: "Human names are randomised when taken by a ghost"

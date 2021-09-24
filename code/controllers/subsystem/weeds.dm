@@ -26,7 +26,12 @@ SUBSYSTEM_DEF(weeds)
 		var/obj/effect/alien/weeds/node/node = currentrun[T]
 		currentrun -= T
 
-		if(QDELETED(node) || QDELETED(T) || !T.is_weedable() || locate(/obj/effect/alien/weeds/node) in T)
+		var/obj/effect/alien/weeds/weed = locate(/obj/effect/alien/weeds) in T
+		if(weed && !weed.parent_node && !istype(weed, /obj/effect/alien/weeds/node))
+			weed.set_parent_node(node)
+			SSweeds_decay.decaying_list -= weed
+
+		if(QDELETED(node) || QDELETED(T) || !T.is_weedable())
 			pending -= T
 			spawn_attempts_by_node -= T
 			continue
@@ -89,10 +94,10 @@ SUBSYSTEM_DEF(weeds)
 			if(istype(O, /obj/effect/alien/weeds/node))
 				return
 			var/obj/effect/alien/weeds/weed = O
-			if(get_dist_euclide_square(node, weed) >= get_dist_euclide_square(weed.parent_node, weed))
+			if(weed.parent_node && weed.parent_node != node && get_dist_euclide_square(node, weed) >= get_dist_euclide_square(weed.parent_node, weed))
 				return
 			if(weed.type == node.weed_type)
-				weed.parent_node = node
+				weed.set_parent_node(node)
 				return
 			weed.swapped = TRUE
 			swapped = TRUE

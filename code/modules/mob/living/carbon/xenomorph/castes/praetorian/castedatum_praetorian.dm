@@ -152,7 +152,7 @@
 	upgrade_threshold = 2750
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_0, "bio" = 38, "rad" = 38, "fire" = 50, "acid" = 38)
+	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_1, "bio" = 38, "rad" = 38, "fire" = 50, "acid" = 38)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS

@@ -9,7 +9,7 @@
 
 // base weed type
 /obj/effect/alien/weeds
-	name = "speed weeds"
+	name = "weeds"
 	desc = "A layer of oozy slime, it feels slick, but not as slick for you to slip."
 	icon = 'icons/Xeno/weeds.dmi'
 	icon_state = "base"
@@ -39,7 +39,7 @@
 	if(!isnull(node))
 		if(!istype(node))
 			CRASH("Weed created with non-weed node. Type: [node.type]")
-		parent_node = node
+		set_parent_node(node)
 	update_icon()
 	AddElement(/datum/element/accelerate_on_crossed)
 	if(!swapped)
@@ -75,6 +75,12 @@
 			if(W)
 				W.update_icon()
 
+///Check if we have a parent node, if not, qdel ourselve
+/obj/effect/alien/weeds/proc/check_for_parent_node()
+	if(parent_node)
+		return
+	qdel(src)
+
 /obj/effect/alien/weeds/update_icon_state()
 	. = ..()
 	var/my_dir = 0
@@ -96,6 +102,20 @@
 	else
 		icon_state = "weed_dir[my_dir]"
 	icon_state += color_variant
+
+///Set the parent_node to node
+/obj/effect/alien/weeds/proc/set_parent_node(atom/node)
+	if(parent_node)
+		UnregisterSignal(parent_node, COMSIG_PARENT_QDELETING)
+	parent_node = node
+	RegisterSignal(parent_node, COMSIG_PARENT_QDELETING, .proc/clean_parent_node)
+
+///Clean the parent node var
+/obj/effect/alien/weeds/proc/clean_parent_node()
+	SIGNAL_HANDLER
+	if(!parent_node.swapped)
+		SSweeds_decay.decaying_list += src
+	parent_node = null
 
 /obj/effect/alien/weeds/sticky
 	name = "sticky weeds"
@@ -158,7 +178,7 @@
 // =================
 // weed node - grows other weeds
 /obj/effect/alien/weeds/node
-	name = "speed weed sac"
+	name = "weed sac"
 	desc = "A weird, pulsating purple node."
 	max_integrity = 60
 	var/node_icon = "weednode"
@@ -186,10 +206,8 @@
 	SSweeds.add_node(src)
 	swapped = FALSE
 
-/obj/effect/alien/weeds/node/Destroy()
-	. = ..()
-	if(!swapped)
-		SSweeds_decay.decay_weeds(src)
+/obj/effect/alien/weeds/node/set_parent_node(atom/node)
+	CRASH("set_parent_node was called on a /obj/effect/alien/weeds/node, node are not supposed to have node themselves")
 
 /obj/effect/alien/weeds/node/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	. = ..()
