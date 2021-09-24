@@ -230,6 +230,7 @@
 		QDEL_NULL(muzzle_flash)
 	QDEL_NULL(sentry_battery)
 	GLOB.nightfall_toggleable_lights -= src
+	set_gun_user(null)
 	return ..()
 
 /obj/item/weapon/gun/turn_light(mob/user, toggle_on, cooldown, sparks, forced)
