@@ -1054,4 +1054,4 @@ TUNNEL
 	desc = "A menacing looking construct of resin, it seems to be alive. It fires resin against intruders."
 	light_initial_color = LIGHT_COLOR_PURPLE
 	ammo = /datum/ammo/xeno/sticky
-	firerate = 6
+	firerate = 5

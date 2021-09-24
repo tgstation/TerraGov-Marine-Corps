@@ -1176,6 +1176,7 @@
 	INVOKE_ASYNC(src, .proc/pick_turret)
 	return COMSIG_KB_ACTIVATED
 
+///async proc to let player choose a turret
 /datum/action/xeno_action/activable/build_turret/proc/pick_turret()
 	var/turret_choice = show_radial_menu(owner, owner, GLOB.xeno_turret_images_list, radius = 48)
 	if(!turret_choice)
