@@ -29,7 +29,7 @@ export const CharacterCustomization = (props, context) => {
     };
     return '#' + convert(red) + convert(green) + convert(blue);
   };
-  const genders = ["male", "female", "neuter"];
+  const genders = ["male", "female", "neuter", "plural"];
 
   return (
     <>
