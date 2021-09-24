@@ -669,12 +669,10 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			active_gun.last_fired = world.time
 		else
 			inactive_gun.last_fired = world.time
-
 	if(user.shoot_inactive_hand && (!inactive_gun?.cell && (!inactive_gun.in_chamber?.ammo && !inactive_gun.current_mag?.current_rounds || inactive_gun.current_mag?.current_rounds && inactive_gun.current_mag.current_rounds <= 0) || inactive_gun?.cell && !inactive_gun.cell?.charge && inactive_gun.cell.charge <= 0)) // Check inactive gun
 		user.shoot_inactive_hand = FALSE // Shoot from active
-	else	
-		if(!user.shoot_inactive_hand && (!active_gun?.cell && (!active_gun.in_chamber?.ammo && !active_gun.current_mag?.current_rounds || active_gun.current_mag?.current_rounds && active_gun.current_mag.current_rounds <= 0) || active_gun?.cell && !active_gun.cell?.charge && active_gun.cell.charge <= 0)) // Check active gun
-			user.shoot_inactive_hand = TRUE // Shoot from inactive
+	else if(!user.shoot_inactive_hand && (!active_gun?.cell && (!active_gun.in_chamber?.ammo && !active_gun.current_mag?.current_rounds || active_gun.current_mag?.current_rounds && active_gun.current_mag.current_rounds <= 0) || active_gun?.cell && !active_gun.cell?.charge && active_gun.cell.charge <= 0)) // Check active gun
+		user.shoot_inactive_hand = TRUE // Shoot from inactive
 	else if(firing)
 		if(user.shoot_inactive_hand)
 			user.shoot_inactive_hand = FALSE
