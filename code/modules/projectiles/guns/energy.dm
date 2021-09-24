@@ -370,12 +370,11 @@
 	else
 		user.put_in_hands(cell)
 
-	playsound(user, unload_sound, 25, 1, 5)
-	user.visible_message(span_notice("[user] unloads [cell] from [src]."),
+	playsound(loc, unload_sound, 25, 1, 5)
+	user?.visible_message(span_notice("[user] unloads [cell] from [src]."),
 	span_notice("You unload [cell] from [src]."), null, 4)
 	cell.update_icon()
 	set_cell(null)
-
 	update_icon(user)
 
 	return TRUE
