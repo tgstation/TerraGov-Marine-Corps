@@ -655,24 +655,31 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		SEND_SIGNAL(gun_user, COMSIG_MOB_ATTACHMENT_FIRED, target, src, master_gun)
 	gun_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 
-/obj/item/weapon/gun/proc/set_shoot_inactive_hand(mob/user, apply_delay) // Handles akimbo
+/obj/item/weapon/gun/proc/set_shoot_inactive_hand(mob/user, firing) // Handles akimbo
 	if(!user)
 		return
-	if(!dual_wield) // Check if dual wielding
+	if(!dual_wield)
 		user.shoot_inactive_hand = FALSE
 		return
 	
 	var/obj/item/weapon/gun/active_gun = user.get_active_held_item()
 	var/obj/item/weapon/gun/inactive_gun = user.get_inactive_held_item()
-	if(apply_delay) // Apply akimbo delay
+	if(firing) // Apply akimbo delay
 		if(user.shoot_inactive_hand)
 			active_gun.last_fired = world.time
 		else
 			inactive_gun.last_fired = world.time
+
 	if(user.shoot_inactive_hand && (!inactive_gun?.cell && (!inactive_gun.in_chamber?.ammo && !inactive_gun.current_mag?.current_rounds || inactive_gun.current_mag?.current_rounds && inactive_gun.current_mag.current_rounds <= 0) || inactive_gun?.cell && !inactive_gun.cell?.charge && inactive_gun.cell.charge <= 0)) // Check inactive gun
 		user.shoot_inactive_hand = FALSE // Shoot from active
-	if(!user.shoot_inactive_hand && (!active_gun?.cell && (!active_gun.in_chamber?.ammo && !active_gun.current_mag?.current_rounds || active_gun.current_mag?.current_rounds && active_gun.current_mag.current_rounds <= 0) || active_gun?.cell && !active_gun.cell?.charge && active_gun.cell.charge <= 0)) // Check active gun
-		user.shoot_inactive_hand = TRUE // Shoot from inactive
+	else	
+		if(!user.shoot_inactive_hand && (!active_gun?.cell && (!active_gun.in_chamber?.ammo && !active_gun.current_mag?.current_rounds || active_gun.current_mag?.current_rounds && active_gun.current_mag.current_rounds <= 0) || active_gun?.cell && !active_gun.cell?.charge && active_gun.cell.charge <= 0)) // Check active gun
+			user.shoot_inactive_hand = TRUE // Shoot from inactive
+	else if(firing)
+		if(user.shoot_inactive_hand)
+			user.shoot_inactive_hand = FALSE
+		else
+			user.shoot_inactive_hand = TRUE
 
 ///Set the target and take care of hard delete
 /obj/item/weapon/gun/proc/set_target(atom/object)
@@ -706,7 +713,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	set_target(null)
 	windup_checked = WEAPON_WINDUP_NOT_CHECKED
 	dual_wield = FALSE
-	gun_user?.shoot_inactive_hand = FALSE
 	gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 
 ///Inform the gun if he is currently bursting, to prevent reloading
