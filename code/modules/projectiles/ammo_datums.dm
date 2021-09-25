@@ -41,6 +41,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/flags_ammo_behavior = NONE
 	///Determines what color our bullet will be when it flies
 	var/bullet_color = COLOR_WHITE
+	///If this ammo is hitscan, the icon of beam coming out from the gun
+	var/hitscan_effect_icon = "beam"
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
 	return
@@ -1456,10 +1458,12 @@ datum/ammo/bullet/revolver/tp44
 // TE Lasers //
 
 /datum/ammo/energy/lasgun/marine
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN
 	damage = 20
 	penetration = 10
 	sundering = 1
 	max_range = 30
+	hitscan_effect_icon = "beam"
 
 /datum/ammo/energy/lasgun/marine/overcharge
 	name = "overcharged laser bolt"
@@ -1468,6 +1472,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 40
 	penetration = 20
 	sundering = 2
+	hitscan_effect_icon = "beam_heavy"
 
 /datum/ammo/energy/lasgun/marine/blast
 	name = "wide range laser blast"
@@ -1495,6 +1500,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 35
 	penetration = 20
 	sundering = 1
+	hitscan_effect_icon = "eye"
 
 /datum/ammo/energy/lasgun/marine/autolaser
 	name = "machine laser bolt"
@@ -1504,6 +1510,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/energy/lasgun/marine/autolaser/efficiency
 	name = "efficient machine laser bolt"
 	damage = 8.5
+	hitscan_effect_icon = "beam_thin"
 
 /datum/ammo/energy/lasgun/marine/sniper
 	name = "sniper laser bolt"
@@ -1513,6 +1520,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 4
 	max_range = 40
 	damage_falloff = 0
+	hitscan_effect_icon = "beam_heavy"
 
 /datum/ammo/energy/lasgun/marine/sniper_heat
 	name = "sniper heat bolt"
@@ -1521,14 +1529,15 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 2.5
 	damage = 40
 	penetration = 0
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
 	sundering = 1
-
+	hitscan_effect_icon = "solar"
 
 /datum/ammo/energy/lasgun/marine/pistol
 	name = "pistol laser bolt"
 	damage = 25
 	penetration = 5
+	hitscan_effect_icon = "beam_thin"
 
 /datum/ammo/energy/lasgun/marine/pistol/disabler
 	name = "disabler bolt"
@@ -1537,6 +1546,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 70
 	penetration = 0
 	damage_type = STAMINA
+	hitscan_effect_icon = "beam_blue"
 
 /datum/ammo/energy/lasgun/marine/pistol/heat
 	name = "microwave heat bolt"
@@ -1545,8 +1555,9 @@ datum/ammo/bullet/revolver/tp44
 	damage = 20
 	shell_speed = 2.5
 	penetration = 10
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
 	sundering = 0.5
+	hitscan_effect_icon = "solar"
 
 /datum/ammo/energy/lasgun/pistol/disabler/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)

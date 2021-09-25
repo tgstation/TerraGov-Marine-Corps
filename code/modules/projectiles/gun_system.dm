@@ -176,8 +176,6 @@
 	var/detach_delay = 0 SECONDS
 	///Icon state used for an added overlay for a sentry. Currently only used in Build-A-Sentry.
 	var/placed_overlay_iconstate = "rifle"
-	///The beam icon_state for hitscan gun
-	var/hitscan_gun_effect_icon = "beam"
 
 //----------------------------------------------------------
 				//				    \\
@@ -731,9 +729,9 @@ and you're good to go.
 		stack_trace("null ammo while create_bullet(). User: [usr]")
 		chambered = GLOB.ammo_list[/datum/ammo/bullet] //Slap on a default bullet if somehow ammo wasn't passed.
 
-	var/proj_type = flags_gun_features & GUN_HITSCAN ? /obj/projectile/hitscan : /obj/projectile
+	var/proj_type = chambered.flags_ammo_behavior & AMMO_HITSCAN ? /obj/projectile/hitscan : /obj/projectile
 
-	var/obj/projectile/P = new proj_type(null, hitscan_gun_effect_icon)
+	var/obj/projectile/P = new proj_type(null, chambered.hitscan_effect_icon)
 	P.generate_bullet(chambered)
 	return P
 
