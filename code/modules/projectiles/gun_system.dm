@@ -9,6 +9,7 @@
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 		)
+	max_integrity = 250
 	materials = list(/datum/material/metal = 100)
 	w_class 	= 3
 	throwforce 	= 5
