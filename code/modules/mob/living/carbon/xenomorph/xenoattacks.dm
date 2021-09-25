@@ -83,7 +83,8 @@
 	switch(X.a_intent)
 		if(INTENT_HELP)
 			if(on_fire)
-				fire_stacks = max(fire_stacks - 1, 0)
+				while(fire_stacks && do_after(user, 5, TRUE, src, BUSY_ICON_FRIENDLY))
+    				fire_stacks = max(fire_stacks - 2, 0)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				X.visible_message(span_danger("[X] tries to put out the fire on [src]!"), \
 					span_warning("We try to put out the fire on [src]!"), null, 5)
