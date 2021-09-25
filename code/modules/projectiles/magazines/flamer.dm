@@ -6,7 +6,6 @@
 	name = "incinerator tank"
 	desc = "A fuel tank of usually ultra thick napthal, a sticky combustable liquid chemical, for use in the M240A1 incinerator unit. Handle with care."
 	icon_state = "flametank"
-	default_ammo = /datum/ammo/flamethrower //doesn't actually need bullets. But we'll get null ammo error messages if we don't
 	max_rounds = 50 //Per turf.
 	current_rounds = 50
 	reload_delay = 2 SECONDS
@@ -15,6 +14,8 @@
 	caliber = CALIBER_FUEL_THICK //Ultra Thick Napthal Fuel, from the lore book.
 	flags_magazine = NONE
 	icon_state_mini = "tank"
+	
+	default_ammo = /datum/ammo/flamethrower
 
 /obj/item/ammo_magazine/flamer_tank/mini
 	name = "mini incinerator tank"
@@ -90,14 +91,12 @@
 		return
 
 	if(FLT.current_mag == src)
-		FLT.detach_fueltank(user)
 		return
 
 	if (attached_flamer)
 		to_chat(user, span_warning("This fuel tank is already attached to something"))
 		return
 
-	FLT.attach_fueltank(user,src)
 
 /obj/item/ammo_magazine/flamer_tank/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
@@ -116,7 +115,6 @@
 		return
 	if(!attached_flamer)
 		return
-	attached_flamer.detach_fueltank(user,FALSE)
 
 /obj/item/ammo_magazine/flamer_tank/backtank/X
 	name = "back fuel tank (X)"

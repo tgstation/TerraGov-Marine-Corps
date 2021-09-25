@@ -24,3 +24,5 @@
 #define ATTACHMENT_BARREL_MOD "barrel_mod"
 //note: not an attachment but uses the same overlay updating system
 #define ATTACHMENT_SLOT_MAGAZINE "mag"
+
+#define ATTACHMENT_SLOT_FLAMER_NOZZLE "flamer_nozzle"

@@ -643,7 +643,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		return
 	set_target(get_turf_on_clickcatcher(object, gun_user, params))
 	if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
-		if(!Fire() || windup_checked == WEAPON_WINDUP_CHECKING)
+		if(!INVOKE_ASYNC(src, .proc/Fire) || windup_checked == WEAPON_WINDUP_CHECKING)
 			return
 		reset_fire()
 		return
@@ -760,8 +760,9 @@ and you're good to go.
 		//						   			   \\
 //----------------------------------------------------------
 
+///Wrapper proc to complete the whole firing process.
 /obj/item/weapon/gun/proc/Fire()
-	if(!target || (!gun_user && !istype(loc, /obj/machinery/deployable/mounted/sentry)) || (!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)))
+	if(!set_up_fire())
 		return
 
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
@@ -771,6 +772,19 @@ and you're good to go.
 		click_empty(gun_user)
 		return
 
+	if(!do_fire(projectile_to_fire))
+		return
+	finish_fire()
+	return TRUE
+
+///Beginning checks to firing the gun. Returns FALSE if the gun should not be able to fire. This is called right before do_fire()
+/obj/item/weapon/gun/proc/set_up_fire()
+	if(!target || (!gun_user && !istype(loc, /obj/machinery/deployable/mounted/sentry)) || (!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)))
+		return FALSE
+	return TRUE
+
+///Actually fires the gun, sets up the projectile and fires it.
+/obj/item/weapon/gun/proc/do_fire(obj/projectile/projectile_to_fire)
 	var/firer
 	if(istype(loc, /obj/machinery/deployable/mounted/sentry) && !gun_user)
 		firer = loc
@@ -802,18 +816,23 @@ and you're good to go.
 		flick("[fire_animation]", src)
 
 	last_fired = world.time
-	reload_into_chamber(gun_user)
-	if(gun_user?.client)
-		gun_user.hud_used.update_ammo_hud(gun_user, src)
-	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
-	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && CHECK_BITFIELD(flags_item, IS_DEPLOYED) && CHECK_BITFIELD(turret_flags, TURRET_RADIAL) && !gun_user)
-		sentry_battery.charge -= sentry_battery_drain
-		if(sentry_battery.charge <= 0)
-			DISABLE_BITFIELD(turret_flags, TURRET_RADIAL)
-			sentry_battery.forceMove(get_turf(src))
-			sentry_battery.charge = 0
-			sentry_battery = null
+
 	return TRUE
+
+///Performs the after firing functions.
+/obj/item/weapon/gun/proc/finish_fire()
+	reload_into_chamber(gun_user)
+	gun_user?.hud_used.update_ammo_hud(gun_user, src)
+	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
+	if(!CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) || !CHECK_BITFIELD(flags_item, IS_DEPLOYED) || !CHECK_BITFIELD(turret_flags, TURRET_RADIAL) || gun_user)
+		return
+	sentry_battery.charge -= sentry_battery_drain
+	if(sentry_battery.charge >= 0)
+		return
+	DISABLE_BITFIELD(turret_flags, TURRET_RADIAL)
+	sentry_battery.forceMove(get_turf(src))
+	sentry_battery.charge = 0
+	sentry_battery = null
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)) // If it can't point blank, you can't suicide and such.

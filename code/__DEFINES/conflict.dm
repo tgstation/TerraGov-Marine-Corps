@@ -76,6 +76,10 @@
 #define GUN_IS_SENTRY (1<<15)
 #define GUN_PUMP_REQUIRED (1<<16)
 
+#define FLAMER_IS_LIT (1<<0)
+#define FLAMER_NO_LIT_OVERLAY (1<<1)
+#define FLAMER_USES_GUN_FLAMES (1<<2)
+
 #define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
 #define GUN_FIREMODE_BURSTFIRE "burst-fire mode"
 #define GUN_FIREMODE_AUTOMATIC "automatic fire mode"

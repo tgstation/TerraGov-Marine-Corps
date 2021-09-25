@@ -1502,6 +1502,39 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	detaching_item.RemoveElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, deploy_time, undeploy_time)
 
 
+/obj/item/attachable/flamer_nozzle
+	name = "\improper Standard Flamer Nozzle"
+	desc = ""
+	slot = ATTACHMENT_SLOT_FLAMER_NOZZLE
+	attach_delay = 2 SECONDS
+	detach_delay = 2 SECONDS
+
+/obj/item/attachable/flamer_nozzle/proc/generate_flame_path(obj/item/weapon/gun/flamer/flamer, target, mob/living/user, max_range)
+	var/list/turf/turfs_to_ignite = list()
+	if(!target)
+		return turfs_to_ignite
+	var/list/turf/path_to_target = getline(get_turf(src), target)
+	path_to_target -= get_turf(src)
+
+	if(length(path_to_target) > max_range)
+		for(var/iteration = path_to_target.len, iteration <= max_range, iteration--)
+			path_to_target -= path_to_target[iteration]
+	
+	if(!length(path_to_target))
+		return turfs_to_ignite
+
+	for(var/turf/turf_to_check in path_to_target)
+		if((turf_to_check.density && !istype(turf_to_check, /turf/closed/wall/resin)) || isspaceturf(turf_to_check))
+			break
+		for(var/obj/object in turf_to_check)
+			if(object.density && !object.throwpass && !CHECK_BITFIELD(object.flags_atom, ON_BORDER) && !istype(object, /obj/structure/mineral_door/resin))
+				break
+			turfs_to_ignite += list(turf_to_check)
+	
+	return turfs_to_ignite
+
+
+
 ///This is called when an attachment gun (src) attaches to a gun.
 /obj/item/weapon/gun/proc/on_attach(obj/item/attached_to, mob/user)
 	if(!istype(attached_to, /obj/item/weapon/gun))
