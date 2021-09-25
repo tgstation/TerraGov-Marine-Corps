@@ -202,6 +202,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	damage_mult = 0.75  //normalizing gun for vendors; damage reduced by 25% to compensate for faster fire rate; still higher DPS than T-32.
 	recoil = 2
 	recoil_unwielded = 4
+	aim_slowdown = 0.4
 
 
 /obj/item/weapon/gun/shotgun/combat/examine_ammo_count(mob/user)
@@ -252,7 +253,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	damage_mult = 0.7  //30% less damage. Faster firerate.
 	recoil = 0 //It has a stock on the sprite.
 	recoil_unwielded = 2
-	aim_slowdown = 0.6
 	wield_delay = 1 SECONDS
 
 /obj/item/weapon/gun/shotgun/combat/masterkey
@@ -303,6 +303,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	scatter_unwielded = 40
 	recoil = 2
 	recoil_unwielded = 4
+	aim_slowdown = 0.6
 
 	///Animation that plays when you eject SPENT shells
 	var/shell_eject_animation = null
@@ -494,6 +495,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil = 2
 	recoil_unwielded = 4
 	pump_delay = 14
+	aim_slowdown = 0.45
 
 /obj/item/weapon/gun/shotgun/pump/ready_in_chamber() //If there wasn't a shell loaded through pump, this returns null.
 	return
@@ -603,6 +605,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil = 0 // It has a stock. It's on the sprite.
 	recoil_unwielded = 0
 	pump_delay = 12
+	aim_slowdown = 0.4
 
 //------------------------------------------------------
 //A hacky bolt action rifle. in here for the "pump" or bolt working action.
@@ -948,7 +951,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	scatter_unwielded = 40
 	recoil = 2
 	recoil_unwielded = 4
-	aim_slowdown = 0.55
+	aim_slowdown = 0.45
 	pump_delay = 14
 
 	placed_overlay_iconstate = "t35"
