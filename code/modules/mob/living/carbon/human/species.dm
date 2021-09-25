@@ -920,6 +920,8 @@
 /mob/living/carbon/human/proc/reset_jitteriness() //todo kill this
 	jitteriness = 0
 
+GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
+
 /datum/species/robot
 	name = "Combat Robot"
 	name_plural = "Combat Robots"
@@ -933,8 +935,6 @@
 
 	unarmed_type = /datum/unarmed_attack/punch/strong
 	total_health = 100
-	brute_mod = 0.8
-	burn_mod = 1.4
 
 	cold_level_1 = -1
 	cold_level_2 = -1
