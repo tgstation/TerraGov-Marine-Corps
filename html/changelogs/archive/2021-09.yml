@@ -388,3 +388,10 @@
   - bugfix: fixed right clicking radiopack pulling out items
   SpaceLoveSs13:
   - balance: self splinting delay is now 3x instead of 4x
+2021-09-25:
+  BraveMole:
+  - bugfix: Fix weed decaying
+  - bugfix: medevac will properly tell you when you forgot to linked it to a beacon
+  - bugfix: Fix not being able to chose weeds
+  sunofang:
+  - rscadd: Made whiskey outpost MUCH nicer.
