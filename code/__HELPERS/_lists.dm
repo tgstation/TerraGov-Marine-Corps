@@ -445,6 +445,7 @@
 		keys += key
 	return keys
 
+///flat list comparison, checks if two lists have the same contents
 /proc/compare_list(list/l,list/d)
 	if(!islist(l) || !islist(d))
 		return FALSE

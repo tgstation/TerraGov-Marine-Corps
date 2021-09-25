@@ -11,7 +11,7 @@
 	var/last_use = 0
 	var/use_delay = 20
 
-	///what we set connect_loc to if parent is an item
+	///what we set connect_loc to if parent is a movable
 	var/static/list/item_connections = list(
 		COMSIG_ATOM_ENTERED = .proc/play_squeak_crossed,
 	)
