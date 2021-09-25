@@ -1155,15 +1155,35 @@
 
 /datum/action/xeno_action/activable/build_turret
 	name = "Secrete acid turret"
-	action_icon_state = "xeno_turret"
+	//action_icon_state = "xeno_turret"
 	mechanics_text = "Creates a new xeno acid turret for 100 points"
 	ability_name = "secrete acid turret"
 	plasma_cost = 150
 	cooldown_timer = 60 SECONDS
 	gamemode_flags = ABILITY_DISTRESS
+	psych_cost = XENO_TURRET_PRICE
 	/// How long does it take to build
 	var/build_time = 15 SECONDS
-	psych_cost = XENO_TURRET_PRICE
+	/// turret typepath to create
+	var/obj/structure/xeno/resin/xeno_turret/turret_type = /obj/structure/xeno/resin/xeno_turret
+
+/datum/action/xeno_action/activable/build_turret/update_button_icon()
+	button.overlays.Cut()
+	button.overlays += image(initial(turret_type.icon), initial(turret_type.icon_state))
+	return ..()
+
+/datum/action/xeno_action/activable/build_turret/alternate_action_activate()
+	INVOKE_ASYNC(src, .proc/pick_turret)
+	return COMSIG_KB_ACTIVATED
+
+///async proc to let player choose a turret
+/datum/action/xeno_action/activable/build_turret/proc/pick_turret()
+	var/turret_choice = show_radial_menu(owner, owner, GLOB.xeno_turret_images_list, radius = 48)
+	if(!turret_choice)
+		return
+	to_chat(owner, span_notice("We will now place <b>[turret_choice]\s</b> turrets."))
+	turret_type = GLOB.turret_types_by_name[turret_choice]
+	update_button_icon()
 
 /datum/action/xeno_action/activable/build_turret/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -1193,7 +1213,7 @@
 
 	for(var/obj/structure/xeno/resin/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
 		if(get_dist(turret, A) < 6)
-			to_chat(owner, span_xenowarning("Another turret is too close!") )
+			to_chat(owner, span_xenowarning("Another turret is too close!"))
 			return FALSE
 
 	if(!alien_weeds)
@@ -1218,7 +1238,7 @@
 		return fail_activate()
 
 	to_chat(owner, span_xenowarning("We build a new acid turret, spending 100 psychic points in the process"))
-	new /obj/structure/xeno/resin/xeno_turret(get_turf(A), X.hivenumber)
+	new turret_type(get_turf(A), X.hivenumber)
 
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
 	log_game("[owner] built a turret in [AREACOORD(A)], spending [psych_cost] psy points in the process")

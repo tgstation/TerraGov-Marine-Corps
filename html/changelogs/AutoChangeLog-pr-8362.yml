@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - qol: "You can have multiple ammo huds"
-  - rscdel: "Remove the ability to disable ammo hud"

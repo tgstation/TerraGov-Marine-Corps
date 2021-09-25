@@ -416,7 +416,12 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	if(busy)
 		return
 
-	if(user.faction != linked_beacon?.faction)
+	if(!linked_beacon)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		to_chat(user, span_warning("[src]'s bluespace engine isn't linked to any medvac beacon."))
+		return
+
+	if(user.faction != linked_beacon.faction)
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		visible_message(span_warning("[src]'s safeties kick in before displacement as it fails to detect correct identification codes."))
 		return
@@ -428,11 +433,6 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 	if(user in buckled_mobs)
 		to_chat(user, span_warning("You can't reach the teleportation activation button while buckled to [src]."))
-		return
-
-	if(!linked_beacon)
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
-		to_chat(user, span_warning("[src]'s bluespace engine isn't linked to any medvac beacon."))
 		return
 
 	if(!linked_beacon.planted)

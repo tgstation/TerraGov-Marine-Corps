@@ -7221,7 +7221,7 @@
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aPo" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "aPp" = (
@@ -8782,7 +8782,7 @@
 	},
 /area/lv624/lazarus/chapel)
 "aXp" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 9
 	},
@@ -8844,7 +8844,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 1
 	},
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "aXB" = (
