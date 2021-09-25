@@ -193,6 +193,7 @@
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 5
+	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
 
 	scatter = 80 // you're not firing this standing.
@@ -203,4 +204,4 @@
 	burst_amount = 1
 	deploy_time = 1 SECONDS
 	undeploy_time = 0.5 SECONDS
-	max_integrity = 125
+	max_integrity = 200
