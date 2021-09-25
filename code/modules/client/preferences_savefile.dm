@@ -663,8 +663,7 @@
 	S.cd = "/loadouts"
 	var/loadout_version = 0
 	READ_FILE(S["loadout_version"], loadout_version)
-	if(loadout_version != CURRENT_LOADOUT_VERSION)
-		return list()
+
 	var/list/loadouts_data = list()
 	READ_FILE(S["loadouts_list"], loadouts_data)
 	return sanitize_islist(loadouts_data, list())
