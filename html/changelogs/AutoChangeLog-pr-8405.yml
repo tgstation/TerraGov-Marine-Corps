@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - balance: "t27 get's 75 more deployed hp for 200 total."
+  - bugfix: "t27 gets the same mounted armor as all other machineguns"
