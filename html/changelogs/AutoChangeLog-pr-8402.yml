@@ -1,0 +1,8 @@
+author: "hyper2snyper"
+delete-after: True
+changes: 
+  - bugfix: "Fixed all my broke shit."
+  - bugfix: "Fixes Sentry Stacking in the same tile."
+  - bugfix: "Fixes visible invisible sprites for scopes."
+  - bugfix: "Fixes a runtime with energy gun sentries not being able to reload after auto-ejecting."
+  - bugfix: "Fixes aim mode problems with the deployable weapons."
