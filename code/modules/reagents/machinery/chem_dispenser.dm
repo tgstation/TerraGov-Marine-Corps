@@ -16,7 +16,7 @@
 	var/obj/item/cell/cell
 	var/powerefficiency = 0.1
 	var/amount = 30
-	var/recharge_amount = 10
+	var/recharge_amount = 30
 	var/recharge_counter = 0
 
 	///Reagent amounts that are dispenced
@@ -58,6 +58,10 @@
 	)
 
 	var/list/recording_recipe
+	///Whether untrained people get a delay when using it
+	var/needs_medical_training = TRUE
+	///If TRUE, we'll clear a recipe we click on instead of dispensing it
+	var/clearing_recipe = FALSE
 
 /obj/machinery/chem_dispenser/Initialize()
 	. = ..()
@@ -72,6 +76,11 @@
 	QDEL_NULL(beaker)
 	QDEL_NULL(cell)
 	return ..()
+
+/obj/machinery/chem_dispenser/examine(mob/user)
+	. = ..()
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		to_chat(user, "The battery compartment is open[cell ? " and there's a cell inside" : ""].")
 
 /obj/machinery/chem_dispenser/process()
 	if (recharge_counter >= 4)
@@ -111,13 +120,11 @@
 	// I dont care about the type of tool, if it triggers multitool act its good enough.
 	hackedcheck = !hackedcheck
 	if(hackedcheck)
-		to_chat(user, emagged_message[0])
+		to_chat(user, emagged_message[1])
 		dispensable_reagents += emagged_reagents
 	else
-		to_chat(user, emagged_message[1])
+		to_chat(user, emagged_message[2])
 		dispensable_reagents -= emagged_reagents
-
-
 
 /obj/machinery/chem_dispenser/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -132,8 +139,8 @@
 /obj/machinery/chem_dispenser/ui_data(mob/user)
 	. = list()
 	.["amount"] = amount
-	.["energy"] = cell.charge ? cell.charge * powerefficiency : "0" //To prevent NaN in the UI.
-	.["maxEnergy"] = cell.maxcharge * powerefficiency
+	.["energy"] = cell?.charge * powerefficiency
+	.["maxEnergy"] = cell?.maxcharge * powerefficiency
 	.["isBeakerLoaded"] = beaker ? 1 : 0
 
 	var/list/beakerContents = list()
@@ -161,11 +168,22 @@
 	.["recipes"] = user.client.prefs.chem_macros
 
 	.["recordingRecipe"] = recording_recipe
+	.["clearingRecipe"] = clearing_recipe
 
 /obj/machinery/chem_dispenser/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return
+
+	if(needs_medical_training && ishuman(usr))
+		var/mob/living/carbon/human/user = usr
+		if(!user.skills.getRating("medical"))
+			if(user.do_actions)
+				return
+			to_chat(user, span_notice("You start fiddling with \the [src]..."))
+			if(!do_after(user, SKILL_TASK_EASY, TRUE, src, BUSY_ICON_UNSKILLED))
+				return
+
 	switch(action)
 		if("amount")
 			if(!is_operational() || QDELETED(beaker))
@@ -209,6 +227,11 @@
 		if("dispense_recipe")
 			if(!is_operational() || QDELETED(cell))
 				return
+			if(clearing_recipe)
+				if(tgui_alert(usr, "Clear recipe [params["recipe"]]?", null, list("Yes","No")) == "Yes")
+					usr.client.prefs.chem_macros.Remove(params["recipe"])
+					usr.client.prefs.save_preferences()
+				return TRUE
 			var/list/chemicals_to_dispense = usr.client.prefs.chem_macros[params["recipe"]]
 			if(!LAZYLEN(chemicals_to_dispense))
 				return
@@ -236,14 +259,20 @@
 		if("clear_recipes")
 			if(!is_operational())
 				return
-			var/yesno = tgui_alert(usr, "Clear all recipes?", null, list("Yes","No"))
-			if(yesno == "Yes")
-				usr.client.prefs.chem_macros = list()
-				usr.client.prefs.save_preferences()
+			if(clearing_recipe)
+				clearing_recipe = FALSE
+				return TRUE
+			switch(tgui_alert(usr, "Clear all recipes?", null, list("Yes","No", "Only one")))
+				if("Only one")
+					clearing_recipe = TRUE
+				if("Yes")
+					usr.client.prefs.chem_macros = list()
+					usr.client.prefs.save_preferences()
 			. = TRUE
 		if("record_recipe")
 			if(!is_operational())
 				return
+			clearing_recipe = FALSE
 			recording_recipe = list()
 			. = TRUE
 		if("save_recording")
@@ -288,21 +317,66 @@
 /obj/machinery/chem_dispenser/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(beaker)
-		to_chat(user, "Something is already loaded into the machine.")
-		return
-
-	else if(istype(I, /obj/item/reagent_containers) && I.is_open_container())
-		if(!user.transferItemToLoc(I, src))
+	if(isreagentcontainer(I))
+		if(beaker)
+			to_chat(user, "Something is already loaded into the machine.")
 			return
 
-		beaker =  I
-		to_chat(user, "You set [I] on the machine.")
-		updateUsrDialog()
+		if(I.is_open_container())
+			if(!user.transferItemToLoc(I, src))
+				return
 
-	else if(istype(I, /obj/item/reagent_containers/glass))
-		to_chat(user, "Take the lid off [I] first.")
+			beaker =  I
+			to_chat(user, "You set [I] on the machine.")
+			updateUsrDialog()
+			return
 
+		if(istype(I, /obj/item/reagent_containers/glass))
+			to_chat(user, "Take the lid off [I] first.")
+			return
+
+		to_chat(user, "The machine can't dispense into that.")
+		return
+
+	if(istype(I, /obj/item/cell))
+		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+			to_chat(user, span_notice("[src]'s battery panel is closed!"))
+			return
+		if(cell)
+			to_chat(user, span_notice("[src] already has a battery installed!"))
+			return
+		if(!user.transferItemToLoc(I, src))
+			return
+		cell = I
+		to_chat(user, span_notice("You install \the [cell]."))
+		start_processing()
+		update_icon()
+		return
+
+/obj/machinery/chem_dispenser/screwdriver_act(mob/living/user, obj/item/I)
+	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+	to_chat(user, span_notice("You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the battery compartment."))
+	update_icon()
+	return TRUE
+
+/obj/machinery/chem_dispenser/crowbar_act(mob/living/user, obj/item/I)
+	if(!cell || !CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		return FALSE
+	cell.forceMove(loc)
+	cell = null
+	to_chat(user, span_notice("You pry out the dispenser's battery."))
+	stop_processing()
+	update_icon()
+	return TRUE
+
+/obj/machinery/chem_dispenser/update_overlays()
+	. = ..()
+	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		return
+	if(cell)
+		. += image(icon, "[initial(icon_state)]_open")
+	else
+		. += image(icon, "[initial(icon_state)]_nobat")
 
 /obj/machinery/chem_dispenser/soda
 	icon_state = "soda_dispenser"
@@ -337,6 +411,7 @@
 		/datum/reagent/consumable/ethanol/thirteenloko,
 		/datum/reagent/consumable/drink/grapesoda,
 	)
+	needs_medical_training = FALSE
 
 
 /obj/machinery/chem_dispenser/beer
@@ -376,3 +451,4 @@
 		/datum/reagent/consumable/drink/watermelonjuice,
 		/datum/reagent/consumable/drink/berryjuice,
 	)
+	needs_medical_training = FALSE

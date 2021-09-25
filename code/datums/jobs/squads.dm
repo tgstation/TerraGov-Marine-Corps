@@ -385,7 +385,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	var/strict = player.client.prefs.be_special && (player.client.prefs.be_special & BE_SQUAD_STRICT)
 	//List of all the faction accessible squads
 	var/list/available_squads = SSjob.active_squads[faction]
-	var/datum/squad/preferred_squad = SSjob.squads_by_name[player.client.prefs.preferred_squad]
+	var/datum/squad/preferred_squad = LAZYACCESSASSOC(SSjob.squads_by_name, faction, player.client.prefs.preferred_squad)
 	if(available_squads.Find(preferred_squad) && preferred_squad?.assign_initial(player, job, latejoin))
 		return TRUE
 	if(strict)

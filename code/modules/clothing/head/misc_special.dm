@@ -113,7 +113,7 @@
 		return
 
 	force = null
-	damtype = "brute"
+	damtype = BRUTE
 	icon_state = "cake0"
 
 

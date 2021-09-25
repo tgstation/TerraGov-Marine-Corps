@@ -210,8 +210,8 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	paygrade = "E3"
 	comm_title = "Med"
 	total_positions = 16
-	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
-	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP)
+	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
+	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/combat_medic
 	display_order = JOB_DISPLAY_ORDER_SQUAD_CORPSMAN
 	outfit = /datum/outfit/job/marine/corpsman
@@ -259,7 +259,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	wear_suit = /obj/item/clothing/suit/storage/marine
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
-	head = /obj/item/clothing/head/helmet/marine/corpsman
+	head = /obj/item/clothing/head/modular/marine/m10x/corpsman
 	l_store = /obj/item/storage/pouch/medkit/equippedcorpsman
 	r_store = /obj/item/storage/pouch/medical/equippedcorpsman
 	glasses = /obj/item/clothing/glasses/hud/health
@@ -283,8 +283,8 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/bodybag/cryobag, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/bruise_pack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/ointment, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/bruise_pack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/burn_pack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
 
 /datum/job/terragov/squad/corpsman/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -373,7 +373,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	wear_suit = /obj/item/clothing/suit/storage/marine/smartgunner
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
-	head = /obj/item/clothing/head/helmet/marine
+	head = /obj/item/clothing/head/modular/marine/m10x/standard
 	l_store = /obj/item/storage/pouch/firstaid/full
 	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun
 	glasses = /obj/item/clothing/glasses/night/m56_goggles
@@ -434,12 +434,12 @@ You can serve a variety of roles, so choose carefully."})
 	title = SQUAD_LEADER
 	req_admin_notify = TRUE
 	paygrade = "E5"
-	comm_title = "SL"
+	comm_title = JOB_COMM_TITLE_SQUAD_LEADER
 	total_positions = 4
 	supervisors = "the acting field commander"
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
-	skills_type = /datum/skills/SL
+	skills_type = /datum/skills/sl
 	display_order = JOB_DISPLAY_ORDER_SQUAD_LEADER
 	outfit = /datum/outfit/job/marine/leader
 	exp_requirements = XP_REQ_INTERMEDIATE
@@ -496,7 +496,7 @@ You are also in charge of communicating with command and letting them know about
 	wear_suit = /obj/item/clothing/suit/storage/marine/leader
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
-	head = /obj/item/clothing/head/helmet/marine/leader
+	head = /obj/item/clothing/head/modular/marine/m10x/leader
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
 	l_store = /obj/item/storage/pouch/firstaid/full
@@ -516,7 +516,6 @@ You are also in charge of communicating with command and letting them know about
 
 	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/motiondetector, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/whistle, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/binoculars/tactical, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)

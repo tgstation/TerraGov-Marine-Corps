@@ -5,6 +5,9 @@
 #define HIDE_ON_GROUND 1
 #define HIDE_ON_SHIP 2
 
+#define SPOTLIGHT_COOLDOWN_DURATION 6 MINUTES
+#define SPOTLIGHT_DURATION 2 MINUTES
+
 GLOBAL_LIST_EMPTY(active_orbital_beacons)
 GLOBAL_LIST_EMPTY(active_laser_targets)
 GLOBAL_LIST_EMPTY(active_cas_targets)
@@ -118,11 +121,13 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	. = ..()
 	RegisterSignal(user, COMSIG_MOB_CLICK_SHIFT, .proc/send_order)
 	RegisterSignal(user, COMSIG_ORDER_SELECTED, .proc/set_order)
+	RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, .proc/attempt_spotlight)
 
 /obj/machinery/computer/camera_advanced/overwatch/remove_eye_control(mob/living/user)
 	. = ..()
 	UnregisterSignal(user, COMSIG_MOB_CLICK_SHIFT)
 	UnregisterSignal(user, COMSIG_ORDER_SELECTED)
+	UnregisterSignal(user, COMSIG_MOB_MIDDLE_CLICK)
 
 /obj/machinery/computer/camera_advanced/overwatch/can_interact(mob/user)
 	. = ..()
@@ -252,6 +257,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				operator = usr
 				var/mob/living/carbon/human/H = operator
 				var/obj/item/card/id/ID = H.get_idcard()
+				if(issilicon(usr))
+					to_chat(usr, span_boldnotice("Basic overwatch systems initialized. Welcome, [ID ? "[ID.rank] ":""][operator.name]. Please select a squad."))
 				visible_message(span_boldnotice("Basic overwatch systems initialized. Welcome, [ID ? "[ID.rank] ":""][operator.name]. Please select a squad."))
 				current_squad?.message_squad("Attention. Your Overwatch officer is now [ID ? "[ID.rank] ":""][operator.name].")
 		if("change_main_operator")
@@ -259,6 +266,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				operator = usr
 				var/mob/living/carbon/human/H = operator
 				var/obj/item/card/id/ID = H.get_idcard()
+				if(issilicon(usr))
+					to_chat(usr, span_boldnotice("Main overwatch systems initialized. Welcome, [ID ? "[ID.rank] ":""][operator.name]."))
 				visible_message(span_boldnotice("Main overwatch systems initialized. Welcome, [ID ? "[ID.rank] ":""][operator.name]."))
 		if("logout")
 			if(!current_squad)
@@ -266,12 +275,16 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			var/obj/item/card/id/ID = operator.get_idcard()
 			current_squad.overwatch_officer = null //Reset the squad's officer.
 			current_squad.message_squad("Attention. [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"] is no longer your Overwatch officer. Overwatch functions deactivated.")
+			if(issilicon(usr))
+				to_chat(usr, span_boldnotice("Overwatch systems deactivated. Goodbye, [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"]."))
 			visible_message(span_boldnotice("Overwatch systems deactivated. Goodbye, [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"]."))
 			operator = null
 			current_squad = null
 			state = OW_MAIN
 		if("logout_main")
 			var/obj/item/card/id/ID = operator.get_idcard()
+			if(issilicon(usr))
+				to_chat(usr, span_boldnotice("Main overwatch systems deactivated. Goodbye, [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"]."))
 			visible_message(span_boldnotice("Main overwatch systems deactivated. Goodbye, [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"]."))
 			operator = null
 			current_squad = null
@@ -290,6 +303,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			current_squad = selected
 			current_squad.message_squad("Attention - Your squad has been selected for Overwatch. Check your Status pane for objectives.")
 			current_squad.message_squad("Your Overwatch officer is: [operator.name].")
+			if(issilicon(usr))
+				to_chat(usr, span_boldnotice("Tactical data for squad '[current_squad]' loaded. All tactical functions initialized."))
 			visible_message(span_boldnotice("Tactical data for squad '[current_squad]' loaded. All tactical functions initialized."))
 			attack_hand(usr)
 		if("message")
@@ -297,24 +312,32 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				var/input = stripped_input(usr, "Please write a message to announce to the squad:", "Squad Message")
 				if(input)
 					current_squad.message_squad(input, usr) //message, adds username
+					if(issilicon(usr))
+						to_chat(usr, span_boldnotice("Message sent to all Marines of squad '[current_squad]'."))
 					visible_message(span_boldnotice("Message sent to all Marines of squad '[current_squad]'."))
 		if("sl_message")
 			if(current_squad && operator == usr)
 				var/input = stripped_input(usr, "Please write a message to announce to the squad leader:", "SL Message")
 				if(input)
 					current_squad.message_leader(input, usr)
+					if(issilicon(usr))
+						to_chat(usr, span_boldnotice("Message sent to Squad Leader [current_squad.squad_leader] of squad '[current_squad]'."))
 					visible_message(span_boldnotice("Message sent to Squad Leader [current_squad.squad_leader] of squad '[current_squad]'."))
 		if("set_primary")
 			var/input = stripped_input(usr, "What will be the squad's primary objective?", "Primary Objective")
 			if(input)
 				current_squad.primary_objective = input + " ([worldtime2text()])"
 				current_squad.message_squad("Your primary objective has changed. See Status pane for details.")
+				if(issilicon(usr))
+					to_chat(usr, span_boldnotice("Primary objective of squad '[current_squad]' set."))
 				visible_message(span_boldnotice("Primary objective of squad '[current_squad]' set."))
 		if("set_secondary")
 			var/input = stripped_input(usr, "What will be the squad's secondary objective?", "Secondary Objective")
 			if(input)
 				current_squad.secondary_objective = input + " ([worldtime2text()])"
 				current_squad.message_squad("Your secondary objective has changed. See Status pane for details.")
+				if(issilicon(usr))
+					to_chat(usr, span_boldnotice("Secondary objective of squad '[current_squad]' set."))
 				visible_message(span_boldnotice("Secondary objective of squad '[current_squad]' set."))
 		if("refresh")
 			attack_hand(usr)
@@ -525,10 +548,14 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		return
 	if(current_squad.squad_leader)
 		current_squad.message_squad("Attention: [current_squad.squad_leader] is [current_squad.squad_leader.stat == DEAD ? "stepping down" : "demoted"]. A new Squad Leader has been set: [H.real_name].")
+		if(issilicon(usr))
+			to_chat(usr, span_boldnotice("Squad Leader [current_squad.squad_leader] of squad '[current_squad]' has been [current_squad.squad_leader.stat == DEAD ? "replaced" : "demoted and replaced"] by [H.real_name]! Logging to enlistment files."))
 		visible_message(span_boldnotice("Squad Leader [current_squad.squad_leader] of squad '[current_squad]' has been [current_squad.squad_leader.stat == DEAD ? "replaced" : "demoted and replaced"] by [H.real_name]! Logging to enlistment files."))
 		current_squad.demote_leader()
 	else
 		current_squad.message_squad("Attention: A new Squad Leader has been set: [H.real_name].")
+		if(issilicon(usr))
+			to_chat(usr, span_boldnotice("[H.real_name] is the new Squad Leader of squad '[current_squad]'! Logging to enlistment file."))
 		visible_message(span_boldnotice("[H.real_name] is the new Squad Leader of squad '[current_squad]'! Logging to enlistment file."))
 
 	to_chat(H, "[icon2html(src, H)] <font size='3' color='blue'><B>\[Overwatch\]: You've been promoted to \'[ismarineleaderjob(H.job) ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [current_squad.name]. Your headset has access to the command channel (:v).</B></font>")
@@ -558,6 +585,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 							R.fields["ma_crim"]	= "Insubordination."
 						else
 							R.fields["ma_crim"] += "Insubordination."
+						if(issilicon(usr))
+							to_chat(usr, span_boldnotice("[wanted_marine] has been reported for insubordination. Logging to enlistment file."))
 						visible_message(span_boldnotice("[wanted_marine] has been reported for insubordination. Logging to enlistment file."))
 						to_chat(wanted_marine, "[icon2html(src, wanted_marine)] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been reported for insubordination by your overwatch officer.</font>")
 						wanted_marine.sec_hud_set_security_status()
@@ -629,9 +658,58 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		H.set_frequency(new_squad.radio_freq)
 
 	transfer_marine.hud_set_job()
+	if(issilicon(usr))
+		to_chat(usr, span_boldnotice("[transfer_marine] has been transfered from squad '[old_squad]' to squad '[new_squad]'. Logging to enlistment file."))
 	visible_message(span_boldnotice("[transfer_marine] has been transfered from squad '[old_squad]' to squad '[new_squad]'. Logging to enlistment file."))
 	to_chat(transfer_marine, "[icon2html(src, transfer_marine)] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been transfered to [new_squad]!</font>")
 
+///This is an orbital light. Basically, huge thing which the CIC can use to light up areas for a bit of time.
+/obj/machinery/computer/camera_advanced/overwatch/proc/attempt_spotlight(datum/source, atom/A, params)
+	SIGNAL_HANDLER
+
+	if(!powered())
+		return 0
+
+	var/area/here_we_are = get_area(src)
+	var/obj/machinery/power/apc/myAPC = here_we_are.get_apc()
+
+	var/power_amount = myAPC?.terminal?.powernet?.avail
+
+	if(power_amount >= 10000)
+		return
+
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORBITAL_SPOTLIGHT))
+		to_chat(source, span_notice("The Orbital spotlight is still recharging."))
+		return
+	var/area/place = get_area(A)
+	if(istype(place) && place.ceiling >= CEILING_UNDERGROUND)
+		to_chat(source, span_warning("You cannot illuminate this place. It is probably underground."))
+		return
+	var/turf/target = get_turf(A)
+	if(!target)
+		return
+	new /obj/effect/overwatch_light(target)
+	use_power(10000)	//Huge light needs big power. Still less than autodocs.
+	TIMER_COOLDOWN_START(src, COOLDOWN_ORBITAL_SPOTLIGHT, SPOTLIGHT_COOLDOWN_DURATION)
+	to_chat(source, span_notice("Orbital spotlight activated. Duration : [SPOTLIGHT_DURATION]"))
+
+//This is an effect to be sure it is properly deleted and it does not interfer with existing lights too much.
+/obj/effect/overwatch_light
+	name = "overwatch beam of light"
+	desc = "You are not supposed to see this. Please report it."
+	icon_state = "" //No sprite
+	invisibility = INVISIBILITY_MAXIMUM
+	resistance_flags = RESIST_ALL
+	light_system = STATIC_LIGHT
+	light_color = COLOR_TESLA_BLUE
+	light_power = 11	//This is a HUGE light.
+
+/obj/effect/overwatch_light/Initialize()
+	. = ..()
+	set_light(light_power)
+	playsound(src,'sound/mecha/heavylightswitch.ogg', 25, 1, 20)
+	visible_message(span_warning("You see a twinkle in the sky before your surroundings are hit with a beam of light!"))
+	QDEL_IN(src, SPOTLIGHT_DURATION)
 
 //This is perhaps one of the weirdest places imaginable to put it, but it's a leadership skill, so
 
@@ -644,6 +722,10 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 	if(stat)
 		to_chat(src, span_warning("You cannot give an order in your current state."))
+		return
+
+	if(IsMute())
+		to_chat(src, span_warning("You cannot give an order while muted."))
 		return
 
 	if(command_aura_cooldown > 0)
@@ -667,8 +749,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 	if(!(command_aura in command_aura_allowed))
 		return
-	command_aura_cooldown = 45 //45 ticks
-	command_aura_tick = 10 //10 ticks
+	command_aura_cooldown = 45 //40 ticks, or 90 seconds overall CD, 60 practical.
+	command_aura_tick = 15//15 ticks, or 30 seconds apprx.
 	var/message = ""
 	switch(command_aura)
 		if("move")
@@ -731,9 +813,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	skill_name = "leadership"
 	skill_min = SKILL_LEAD_TRAINED
 	var/orders_visible = TRUE
-
-/datum/action/skill/toggle_orders/New()
-	return ..(/obj/item/megaphone)
 
 /datum/action/skill/toggle_orders/action_activate()
 	var/mob/living/carbon/human/H = owner
@@ -902,7 +981,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	SIGNAL_HANDLER
 	if(!current_order)
 		var/mob/user = source
-		to_chat(user, span_warning("Your have no order selected."))
+		to_chat(user, span_warning("You have no order selected."))
+		return
 	current_order.send_order(target, faction = faction)
 
 ///Setter for the current order

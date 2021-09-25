@@ -49,8 +49,8 @@
 	list_reagents = list(
 		/datum/reagent/medicine/bicaridine = 10,
 		/datum/reagent/medicine/kelotane = 10,
+		/datum/reagent/medicine/dylovene = 5,
 		/datum/reagent/medicine/tramadol = 5,
-		/datum/reagent/medicine/ryetalyn = 5,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced
@@ -144,7 +144,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/hypervene
 	name = "hypervene autoinjector"
 	desc = "An auto-injector loaded with 3 uses of hypervene, an emergency medicine that rapidly purges chems. Causes pain and vomiting."
-	icon_state = "autoinjector-8"
+	icon_state = "autoinjector-12"
 	amount_per_transfer_from_this = 3
 	volume = 9
 	list_reagents = list(/datum/reagent/hypervene = 9)

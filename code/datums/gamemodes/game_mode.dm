@@ -22,6 +22,19 @@
 	var/deploy_time_lock = 15 MINUTES
 	///The respawn time for marines
 	var/respawn_time = 30 MINUTES
+	///How many points do you need to win in a point gamemode
+	var/win_points_needed = 0
+	///The points per faction, assoc list
+	var/list/points_per_faction
+	/// When are the shutters dropping
+	var/shutters_drop_time = 30 MINUTES
+	///Time before becoming a husk when going undefibbable
+	var/husk_transformation_time = 30 SECONDS
+	/** The time between two rounds of this gamemode. If it's zero, this mode i always votable.
+	 * It an integer in ticks, set in config. If it's 8 HOURS, it means that it will be votable again 8 hours
+	 * after the end of the last round with the gamemode type
+	 */
+	var/time_between_round = 0
 
 //Distress call variables.
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.
@@ -162,6 +175,8 @@
 /datum/game_mode/proc/declare_completion()
 	log_game("The round has ended.")
 	SSdbcore.SetRoundEnd()
+	if(time_between_round)
+		SSpersistence.last_modes_round_date[name] = world.realtime
 	//Collects persistence features
 	if(allow_persistence_save)
 		SSpersistence.CollectData()
@@ -236,7 +251,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		addtimer(CALLBACK(src, .proc/remove_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
 
 	if(flags_round_type & MODE_LZ_SHUTTERS)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 30 MINUTES)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + shutters_drop_time)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
 	if(flags_round_type & MODE_XENO_SPAWN_PROTECT)
@@ -357,7 +372,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	else
 		dat += "No grenades exploded."
 	if(GLOB.round_statistics.total_human_deaths)
-		dat += "[GLOB.round_statistics.total_human_deaths] people were killed, among which [GLOB.round_statistics.total_human_revives] were revived. For a [(GLOB.round_statistics.total_human_revives / max(GLOB.round_statistics.total_human_deaths, 1)) * 100]% medical revival rate."
+		dat += "[GLOB.round_statistics.total_human_deaths] people were killed, among which [GLOB.round_statistics.total_human_revives] were revived and [GLOB.round_statistics.total_human_respawns] respawned. For a [(GLOB.round_statistics.total_human_revives / max(GLOB.round_statistics.total_human_deaths, 1)) * 100]% revival rate and a [(GLOB.round_statistics.total_human_respawns / max(GLOB.round_statistics.total_human_deaths, 1)) * 100]% respawn rate."
 	if(GLOB.round_statistics.now_pregnant)
 		dat += "[GLOB.round_statistics.now_pregnant] people infected among which [GLOB.round_statistics.total_larva_burst] burst. For a [(GLOB.round_statistics.total_larva_burst / max(GLOB.round_statistics.now_pregnant, 1)) * 100]% successful delivery rate!"
 	if(GLOB.round_statistics.queen_screech)
@@ -404,6 +419,24 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.ravager_rages] number of times Ravagers raged."
 	if(GLOB.round_statistics.hunter_silence_targets)
 		dat += "[GLOB.round_statistics.hunter_silence_targets] number of targets silenced by Hunters."
+	if(GLOB.round_statistics.larva_from_psydrain)
+		dat += "[GLOB.round_statistics.larva_from_psydrain] larvas came from psydrain."
+	if(GLOB.round_statistics.larva_from_silo)
+		dat += "[GLOB.round_statistics.larva_from_silo] larvas came from silos."
+	if(GLOB.round_statistics.larva_from_cocoon)
+		dat += "[GLOB.round_statistics.larva_from_cocoon] larvas came from cocoons."
+	if(GLOB.round_statistics.larva_from_marine_spawning)
+		dat += "[GLOB.round_statistics.larva_from_marine_spawning] larvas came from marine spawning."
+	if(GLOB.round_statistics.larva_from_siloing_body)
+		dat += "[GLOB.round_statistics.larva_from_siloing_body] larvas came from siloing bodies."
+	if(length(GLOB.round_statistics.req_items_produced))
+		var/produced = "Requisitions produced: "
+		for(var/atom/movable/path AS in GLOB.round_statistics.req_items_produced)
+			produced += "[GLOB.round_statistics.req_items_produced[path]] [initial(path.name)]"
+			if(path == GLOB.round_statistics.req_items_produced[length(GLOB.round_statistics.req_items_produced)]) //last element
+				produced += "."
+			else
+				produced += ","
 
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)
@@ -572,16 +605,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		to_chat(xeno_candidate, span_warning("That xenomorph has been occupied."))
 		return FALSE
 
-	if(XENODEATHTIME_CHECK(xeno_candidate))
-		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
-			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
-				log_admin("[key_name(xeno_candidate)] used his admin power to bypass respawn before his timer was over")
-				XENODEATHTIME_MESSAGE(xeno_candidate)
-				return FALSE
-		else
-			XENODEATHTIME_MESSAGE(xeno_candidate)
-			return FALSE
-
 	if(new_xeno.afk_status == MOB_RECENTLY_DISCONNECTED) //We do not want to occupy them if they've only been gone for a little bit.
 		to_chat(xeno_candidate, span_warning("That player hasn't been away long enough. Please wait [round(timeleft(new_xeno.afk_timer_id) * 0.1)] second\s longer."))
 		return FALSE
@@ -654,7 +677,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	preferred_squads.len = max_squad_num
 	SSjob.active_squads[FACTION_TERRAGOV] = list()
 	for(var/name in preferred_squads) //Back from weight to instantiate var
-		SSjob.active_squads[FACTION_TERRAGOV] += SSjob.squads_by_name[name]
+		SSjob.active_squads[FACTION_TERRAGOV] += LAZYACCESSASSOC(SSjob.squads_by_name, FACTION_TERRAGOV, name)
 	return TRUE
 
 
@@ -670,5 +693,5 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	scaled_job.total_positions = length(SSjob.active_squads[FACTION_TERRAGOV])
 
 ///Return the list of joinable factions, with regards with the current round balance
-/datum/game_mode/proc/get_joinable_factions()
+/datum/game_mode/proc/get_joinable_factions(should_look_balance)
 	return

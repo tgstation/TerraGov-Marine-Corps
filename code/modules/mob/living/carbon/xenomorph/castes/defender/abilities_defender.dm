@@ -109,8 +109,10 @@
 		X.visible_message(span_danger("[X] plows straight through [S]!"), null, null, 5)
 		S.deconstruct(FALSE) //We want to continue moving, so we do not reset throwing.
 		return // stay registered
-	else
-		target.hitby(X, speed) //This resets throwing.
+	if(istype(target, /obj/machinery/deployable/mounted/sentry))
+		var/obj/machinery/deployable/mounted/sentry/sentry = target
+		sentry.knock_down()
+	target.hitby(X, speed) //This resets throwing.
 	charge_complete()
 
 /datum/action/xeno_action/activable/forward_charge/can_use_ability(atom/A, silent = FALSE, override_flags)

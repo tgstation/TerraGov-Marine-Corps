@@ -14,8 +14,7 @@
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
 
-	hive.ui_interact(src)
-
+	GLOB.evo_panel.ui_interact(src)
 
 /mob/living/carbon/xenomorph/verb/regress()
 	set name = "Regress"
@@ -97,7 +96,7 @@
 		to_chat(src, span_warning("We must be at full health to evolve."))
 		return
 
-	if(plasma_stored < xeno_caste.plasma_max)
+	if(plasma_stored < (xeno_caste.plasma_max * xeno_caste.plasma_regen_limit))
 		to_chat(src, span_warning("We must be at full plasma to evolve."))
 		return
 
@@ -360,6 +359,13 @@
 		if(hive.living_xeno_queen)
 			new_xeno.handle_xeno_leader_pheromones(hive.living_xeno_queen)
 
+		// Retaining blue crowned leadership on minimap past evolution.
+		var/datum/xeno_caste/original = /datum/xeno_caste
+		// Xenos with specialized icons (Queen, King, Shrike) do not need to have their icon returned to normal
+		if(new_xeno.xeno_caste.minimap_icon == initial(original.minimap_icon))
+			SSminimaps.remove_marker(new_xeno)
+			SSminimaps.add_marker(new_xeno, new_xeno.z, MINIMAP_FLAG_XENO, new_xeno.xeno_caste.minimap_leadered_icon)
+
 	if(upgrade == XENO_UPGRADE_THREE)
 		switch(tier)
 			if(XENO_TIER_TWO)
@@ -367,7 +373,7 @@
 			if(XENO_TIER_THREE)
 				SSmonitor.stats.ancient_T3--
 
-	new_xeno.upgrade_stored = upgrade_stored
+	new_xeno.upgrade_stored = max(upgrade_stored, new_xeno.upgrade_stored)
 	while(new_xeno.upgrade_possible() && new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold)
 		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
 	var/obj/screen/zone_sel/selector = new_xeno.hud_used.zone_sel

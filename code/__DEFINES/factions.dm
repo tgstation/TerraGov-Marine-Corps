@@ -63,3 +63,9 @@ GLOBAL_LIST_INIT(faction_to_iff, list(
 	FACTION_DEATHSQUAD = DEATHSQUAD_IFF,
 	FACTION_SOM = SON_OF_MARS_IFF,
 ))
+
+//List of correspond factions to data hud
+GLOBAL_LIST_INIT(faction_to_data_hud, list(
+	FACTION_TERRAGOV = DATA_HUD_SQUAD_TERRAGOV,
+	FACTION_TERRAGOV_REBEL = DATA_HUD_SQUAD_REBEL,
+))

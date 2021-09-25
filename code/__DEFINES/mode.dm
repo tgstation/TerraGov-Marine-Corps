@@ -50,6 +50,7 @@
 #define MODE_HUMAN_ONLY (1<<14)
 #define MODE_TWO_HUMAN_FACTIONS	(1<<15)
 #define MODE_SILOABLE_BODIES (1<<16)
+#define MODE_WIN_POINTS (1<<17)
 
 #define MODE_LANDMARK_RANDOM_ITEMS (1<<0)
 #define MODE_LANDMARK_SPAWN_XENO_TUNNELS (1<<1)
@@ -65,12 +66,9 @@
 
 #define MODE_GENERIC_DRAW_NUKE "DRAW: Nuclear Explosion"
 
-#define MODE_BATTLEFIELD_NT_MAJOR "NT PMC Major Success"
-#define MODE_BATTLEFIELD_M_MAJOR "Marine Major Success"
-#define MODE_BATTLEFIELD_NT_MINOR "NT PMC Minor Success"
-#define MODE_BATTLEFIELD_M_MINOR "Marine Minor Success"
-#define MODE_BATTLEFIELD_DRAW_STALEMATE "DRAW: Stalemate"
-#define MODE_BATTLEFIELD_DRAW_DEATH "DRAW: My Friends Are Dead"
+#define MODE_CIVIL_WAR_LOYALIST_MAJOR "Loyalist Major Victory"
+#define MODE_CIVIL_WAR_REBEL_MAJOR "Rebel Major Victory"
+#define MODE_CIVIL_WAR_DRAW "Civil War Draw"
 
 #define CRASH_EVAC_NONE "CRASH_EVAC_NONE"
 #define CRASH_EVAC_INPROGRESS "CRASH_EVAC_INPROGRESS"
@@ -116,9 +114,6 @@
 #define DEATHTIME_CHECK(M) ((world.time - M.timeofdeath) < SSticker.mode?.respawn_time)
 #define DEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - M.timeofdeath) * 0.1] second\s.</span><br><span class='warning'>You must wait [SSticker.mode?.respawn_time * 0.1] seconds before rejoining the game!"))
 
-#define XENODEATHTIME_CHECK(M) ((world.time - M.timeofdeath) < GLOB.xenorespawntime)
-#define XENODEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - M.timeofdeath) * 0.1] second\s.</span><br><span class='warning'>You must wait [GLOB.xenorespawntime * 0.1] seconds before rejoining the game as a xenomorph!"))
-
 #define COUNT_IGNORE_HUMAN_SSD (1<<0)
 #define COUNT_IGNORE_XENO_SSD (1<<1)
 #define COUNT_IGNORE_XENO_SPECIAL_AREA (1<<2)
@@ -135,7 +130,7 @@
 //How many psy points are gave every 5 second by a cocoon
 #define COCOON_PSY_POINTS_REWARD 2
 
-#define INVOKE_KING_TIME_LOCK 1 HOURS
+#define INVOKE_KING_TIME_LOCK 90 MINUTES
 
 /// How each alive marine contributes to burrower larva output per minute. So with one pool, 15 marines are giving 0.375 points per minute, so it's a new xeno every 22 minutes
 #define SILO_BASE_OUTPUT_PER_MARINE 0.035

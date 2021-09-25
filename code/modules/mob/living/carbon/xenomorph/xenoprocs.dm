@@ -44,7 +44,7 @@
 		switch(X.health/X.maxHealth)
 			if(0.33 to 0.66)
 				hp_color = "orange"
-			if(0 to 0.33)
+			if(-1 to 0.33)
 				hp_color = "red"
 
 		var/distance = get_dist(user, X)
@@ -145,8 +145,9 @@
 	dat += "<table cellspacing=4>"
 	dat += xenoinfo
 	dat += "</table>"
-	var/larva_generated = SSsilo.current_larva_spawn_rate/8
-	dat += "<b>Larvas generated in one minute: [larva_generated]<BR>"
+	dat += "<b>Larva points generated in one minute: [SSsilo.current_larva_spawn_rate]<BR>"
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	dat += "<b>Points needed for next larva: [xeno_job.job_points_needed - xeno_job.job_points]"
 	dat += resin_silo_status_output(user, hive)
 
 	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 650, 650)
@@ -169,14 +170,14 @@
 				if(X.nicknumber != xeno_name)
 					continue
 			to_chat(usr,span_notice(" You will now track [X.name]"))
-			tracked = X
+			set_tracked(X)
 			break
 
 	if(href_list["track_silo_number"])
 		var/silo_number = href_list["track_silo_number"]
 		for(var/obj/structure/xeno/resin/silo/resin_silo AS in GLOB.xeno_resin_silos)
 			if(resin_silo.associated_hive == hive && num2text(resin_silo.number_silo) == silo_number)
-				tracked = resin_silo
+				set_tracked(resin_silo)
 				to_chat(usr,span_notice(" You will now track [resin_silo.name]"))
 				break
 
@@ -216,14 +217,6 @@
 
 	if(xeno_caste.plasma_max > 0)
 		stat("Plasma:", "[plasma_stored]/[xeno_caste.plasma_max]")
-
-	if(hivenumber != XENO_HIVE_CORRUPTED)
-		if(hive.slashing_allowed == XENO_SLASHING_ALLOWED)
-			stat("Slashing of hosts status:", "ALLOWED")
-		else if(hive.slashing_allowed == XENO_SLASHING_RESTRICTED)
-			stat("Slashing of hosts status:","RESTRICTED")
-		else
-			stat("Slashing of hosts status:","FORBIDDEN")
 
 	//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
 	var/msg_holder = ""
@@ -283,14 +276,14 @@
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
-	if(incapacitated() || lying_angle || buckled)
+	if(incapacitated() || lying_angle)
 		to_chat(src, span_warning("We cannot do this in our current state."))
 		return 0
 	return 1
 
 ///A simple handler for checking your state. Will ignore if the xeno is lying down
 /mob/living/carbon/xenomorph/proc/check_concious_state()
-	if(incapacitated() || buckled)
+	if(incapacitated())
 		to_chat(src, span_warning("We cannot do this in our current state."))
 		return FALSE
 	return TRUE
@@ -678,3 +671,15 @@
 		return
 	victim.forceMove(eject_location)
 	REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
+
+///Set the var tracked to to_track
+/mob/living/carbon/xenomorph/proc/set_tracked(atom/to_track)
+	if(tracked)
+		UnregisterSignal(tracked, COMSIG_PARENT_QDELETING)
+	tracked = to_track
+	RegisterSignal(tracked, COMSIG_PARENT_QDELETING, .proc/clean_tracked)
+
+///Signal handler to null tracked
+/mob/living/carbon/xenomorph/proc/clean_tracked(atom/to_track)
+	SIGNAL_HANDLER
+	tracked = null

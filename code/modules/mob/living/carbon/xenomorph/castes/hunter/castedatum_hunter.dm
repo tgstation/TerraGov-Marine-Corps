@@ -42,6 +42,9 @@
 	charge_type = CHARGE_TYPE_MEDIUM
 	pounce_delay = 15 SECONDS
 
+	// *** Stealth ***
+	stealth_break_threshold = 15
+
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -53,12 +56,18 @@
 		/datum/action/xeno_action/stealth,
 		/datum/action/xeno_action/activable/hunter_mark,
 		/datum/action/xeno_action/psychic_trace,
+		/datum/action/xeno_action/mirage,
 	)
 
 	// *** Vent Crawl Parameters *** //
 	vent_enter_speed = HUNTER_VENT_CRAWL_TIME
 	vent_exit_speed = HUNTER_VENT_CRAWL_TIME
 	silent_vent_crawl = TRUE
+
+/datum/xeno_caste/hunter/New()
+	if(CONFIG_GET(flag/fun_allowed))
+		actions -= /datum/action/xeno_action/stealth
+		actions += /datum/action/xeno_action/stealth/fun
 
 /datum/xeno_caste/hunter/young
 	upgrade_name = "Young"

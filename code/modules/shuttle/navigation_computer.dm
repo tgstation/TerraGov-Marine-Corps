@@ -61,7 +61,6 @@
 	whitelist_turfs = typecacheof(whitelist_turfs)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/Destroy()
-	. = ..()
 	if(my_port?.get_docked())
 		my_port.delete_after = TRUE
 		my_port.id = null
@@ -69,6 +68,7 @@
 		my_port = null
 	else
 		QDEL_NULL(my_port)
+	return ..()
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/attack_hand(mob/user)
 	if(jammed)

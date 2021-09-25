@@ -30,6 +30,8 @@
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 
+	w_class = WEIGHT_CLASS_SMALL
+
 	var/max_uses = 50
 	var/uses = 0
 	var/failmsg = ""

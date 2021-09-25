@@ -185,7 +185,7 @@
 	listeningTo = newloc
 
 
-/obj/item/assembly/infra/proc/check_exit(datum/source, atom/movable/offender)
+/obj/item/assembly/infra/proc/check_exit(datum/source, atom/movable/offender, direction)
 	SIGNAL_HANDLER_DOES_SLEEP
 	if(QDELETED(src))
 		return

@@ -3,7 +3,6 @@
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/mob/living/carbon/xenomorph/queen/living_xeno_queen
 	var/mob/living/carbon/xenomorph/living_xeno_ruler
-	var/slashing_allowed = XENO_SLASHING_ALLOWED //This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
 	var/xeno_queen_timer
 	var/xenos_per_queen = 8 //Minimum number of xenos to support a queen.
 	var/hive_orders = "" //What orders should the hive have
@@ -161,7 +160,8 @@
 /datum/hive_status/proc/add_to_lists(mob/living/carbon/xenomorph/X)
 	xenos_by_tier[X.tier] += X
 	xenos_by_upgrade[X.upgrade] += X
-	LAZYADD(xenos_by_zlevel["[X.z]"], X)
+	if(X.z)
+		LAZYADD(xenos_by_zlevel["[X.z]"], X)
 	RegisterSignal(X, COMSIG_MOVABLE_Z_CHANGED, .proc/xeno_z_changed)
 
 	if(!xenos_by_typepath[X.caste_base_type])
@@ -381,10 +381,6 @@
 		announce = FALSE
 	if(announce)
 		xeno_message("A sudden tremor ripples through the hive... \the [ruler] has been slain! Vengeance!", "xenoannounce", 6, TRUE)
-	if(slashing_allowed != XENO_SLASHING_ALLOWED)
-		if(announce)
-			xeno_message("The slashing of hosts is now permitted.", "xenoannounce", 5, TRUE)
-		slashing_allowed = XENO_SLASHING_ALLOWED
 	notify_ghosts("\The <b>[ruler]</b> has been slain!", source = ruler, action = NOTIFY_JUMP)
 	update_ruler()
 	return TRUE
@@ -538,7 +534,7 @@ to_chat will check for valid clients itself already so no need to double check f
 ///Used for setting the trackers of all xenos in the hive, like when a nuke activates
 /datum/hive_status/proc/set_all_xeno_trackers(atom/target)
 	for(var/mob/living/carbon/xenomorph/X AS in get_all_xenos())
-		X.tracked = target
+		X.set_tracked(target)
 		to_chat(X, span_notice(" Now tracking [target.name]"))
 
 // ***************************************
@@ -600,15 +596,6 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(length(possible_silos))
 			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos, larva_already_reserved)
 		if(SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN && !SSsilo.can_fire) // Distress mode & prior to shutters opening, so let the queue bypass silos if needed
-			if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
-				if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
-					if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
-						log_admin("[key_name(xeno_candidate)] used their admin power to bypass respawn before their timer was over")
-						XENODEATHTIME_MESSAGE(xeno_candidate)
-						return FALSE
-				else
-					XENODEATHTIME_MESSAGE(xeno_candidate)
-					return FALSE
 			return do_spawn_larva(xeno_candidate, pick(GLOB.spawns_by_job[/datum/job/xenomorph]), larva_already_reserved)
 		to_chat(xeno_candidate, span_warning("There are no places currently available to receive new larvas."))
 		return FALSE
@@ -621,16 +608,6 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	if(QDELETED(chosen_mother) || !xeno_candidate?.client)
 		return FALSE
-
-	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
-		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
-			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
-				log_admin("[key_name(xeno_candidate)] used his admin power to bypass respawn before his timer was over")
-				XENODEATHTIME_MESSAGE(xeno_candidate)
-				return FALSE
-		else
-			XENODEATHTIME_MESSAGE(xeno_candidate)
-			return FALSE
 
 	return spawn_larva(xeno_candidate, chosen_mother, larva_already_reserved)
 
@@ -652,16 +629,6 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	if(QDELETED(chosen_silo) || !xeno_candidate?.client)
 		return FALSE
-
-	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
-		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
-			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
-				log_admin("[key_name(xeno_candidate)] used his admin power to bypass respawn before his timer was over")
-				XENODEATHTIME_MESSAGE(xeno_candidate)
-				return FALSE
-		else
-			XENODEATHTIME_MESSAGE(xeno_candidate)
-			return FALSE
 
 	return do_spawn_larva(xeno_candidate, chosen_silo.loc, larva_already_reserved)
 
@@ -736,11 +703,12 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/difference = round(players[2] - (players[1] * 0.5)) // no of xenos - half the no of players
 
 	var/left_behind = 0
-	for(var/i in get_all_xenos())
-		var/mob/living/carbon/xenomorph/boarder = i
+	for(var/mob/living/carbon/xenomorph/boarder AS in get_all_xenos())
 		if(isdropshiparea(get_area(boarder)))
 			continue
 		if(!is_ground_level(boarder.z))
+			continue
+		if(isxenohivemind(boarder))
 			continue
 		INVOKE_ASYNC(boarder, /mob/living.proc/gib)
 		left_behind++
@@ -1087,90 +1055,21 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/get_xeno_hivenumber()
 	return hivenumber
 
+/mob/illusion/xeno/get_xeno_hivenumber()
+	var/mob/living/carbon/xenomorph/original_xeno = original_mob
+	return original_xeno.hivenumber
+
 /obj/structure/xeno/tunnel/get_xeno_hivenumber()
 	return hivenumber
 
+/mob/living/carbon/human/get_xeno_hivenumber()
+	if(faction == FACTION_XENO)
+		return XENO_HIVE_NORMAL
+	return FALSE
+
+
 /obj/structure/xeno/resin/xeno_turret/get_xeno_hivenumber()
 	return associated_hive.hivenumber
-
-/datum/hive_status/ui_state(mob/user)
-	return GLOB.xeno_state
-
-/// Controls the evolution UI
-/datum/hive_status/ui_interact(mob/user, datum/tgui/ui)
-	// Xeno only screen
-	if(!isxeno(user))
-		return
-
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "HiveEvolveScreen")
-		ui.open()
-
-/// Static data provided once when the ui is opened
-/datum/hive_status/ui_static_data(mob/living/carbon/xenomorph/xeno)
-	. = list()
-	.["name"] = xeno.xeno_caste.display_name
-	.["abilities"] = list()
-	for(var/ability in xeno.xeno_caste.actions)
-		var/datum/action/xeno_action/xeno_ability = ability
-		if(!(SSticker.mode.flags_xeno_abilities & initial(xeno_ability.gamemode_flags)))
-			continue
-		.["abilities"]["[ability]"] = list(
-			"name" = initial(xeno_ability.name),
-			"desc" = initial(xeno_ability.mechanics_text),
-			"cost" = initial(xeno_ability.plasma_cost),
-			"cooldown" = (initial(xeno_ability.cooldown_timer) / 10)
-		)
-	.["evolves_to"] = list()
-	for(var/evolves_into in xeno.xeno_caste.evolves_to)
-		var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[evolves_into][XENO_UPGRADE_BASETYPE]
-		var/list/caste_data = list("type_path" = caste.caste_type_path, "name" = caste.display_name, "abilities" = list())
-		for(var/ability in caste.actions)
-			var/datum/action/xeno_action/xeno_ability = ability
-			if(!(SSticker.mode.flags_xeno_abilities & initial(xeno_ability.gamemode_flags)))
-				continue
-			caste_data["abilities"]["[ability]"] = list(
-				"name" = initial(xeno_ability.name),
-				"desc" = initial(xeno_ability.mechanics_text),
-				"cost" = initial(xeno_ability.plasma_cost),
-				"cooldown" = (initial(xeno_ability.cooldown_timer) / 10)
-			)
-		.["evolves_to"]["[caste.caste_type_path]"] = caste_data
-
-/// Some data to update the UI with the current evolution status
-/datum/hive_status/ui_data(mob/living/carbon/xenomorph/xeno)
-	. = list()
-
-	.["can_evolve"] = !xeno.is_ventcrawling && \
-		!xeno.incapacitated(TRUE) && \
-		xeno.health >= xeno.maxHealth && \
-		xeno.plasma_stored >= xeno.xeno_caste.plasma_max
-
-	if(isxenolarva(xeno))
-		.["evolution"] = list(
-			"current" = xeno.amount_grown,
-			"max" = xeno.max_grown
-		)
-		return
-	.["evolution"] = list(
-		"current" = xeno.evolution_stored,
-		"max" = xeno.xeno_caste.evolution_threshold
-	)
-
-/// Handles actuually evolving
-/datum/hive_status/ui_act(action, list/params)
-	. = ..()
-	if(.)
-		return
-
-	var/mob/living/carbon/xenomorph/xeno = usr
-	switch(action)
-		if("evolve")
-			SStgui.close_user_uis(usr, src, "main")
-			var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[text2path(params["path"])][XENO_UPGRADE_BASETYPE]
-			xeno.do_evolve(caste.caste_type_path, caste.display_name) // All the checks for can or can't are handled inside do_evolve
-			return TRUE
 
 /datum/hive_status/proc/update_tier_limits()
 	tier3_xeno_limit = max(length(xenos_by_tier[XENO_TIER_THREE]),FLOOR((length(xenos_by_tier[XENO_TIER_ZERO])+length(xenos_by_tier[XENO_TIER_ONE])+length(xenos_by_tier[XENO_TIER_TWO])+length(xenos_by_tier[XENO_TIER_FOUR]))/3+1,1))
@@ -1213,7 +1112,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/list/possible_mothers = list()
 	var/list/possible_silos = list()
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos)
-	if(stored_larva > 0 && !LAZYLEN(candidate) && (length(possible_mothers) || length(possible_silos) || (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN && !SSsilo.can_fire)))
+	if(stored_larva > 0 && !LAZYLEN(candidate) && (length(possible_mothers) || length(possible_silos) || (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN && SSmonitor.gamestate == SHUTTERS_CLOSED)))
 		attempt_to_spawn_larva(observer)
 		return
 	if(LAZYFIND(candidate, observer))

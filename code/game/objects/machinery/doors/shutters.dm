@@ -113,7 +113,7 @@
 	name = "Transit shutters"
 	desc = "Safety shutters to prevent dangerous depressurization during flight"
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE|DROPSHIP_IMMUNE
+	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
 	id = "ghhjmugggggtgggbg" // do not have any button or thing have an ID assigned to this, it is a very bad idea.
 
 

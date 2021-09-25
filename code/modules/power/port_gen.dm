@@ -220,9 +220,6 @@
 /obj/machinery/power/port_gen/pacman/attack_ai(mob/user)
 	interact(user)
 
-/obj/machinery/power/port_gen/pacman/attack_paw(mob/user)
-	interact(user)
-
 /obj/machinery/power/port_gen/pacman/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)

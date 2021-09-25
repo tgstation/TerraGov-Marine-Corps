@@ -34,10 +34,6 @@
 		L.initiate_burst(src)
 
 
-/mob/living/carbon/attack_paw(mob/living/carbon/human/user)
-	user.changeNext_move(CLICK_CD_MELEE) //Adds some lag to the 'attack'
-
-
 /mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, def_zone = null)
 	if(status_flags & GODMODE)	return 0	//godmode
 	shock_damage *= siemens_coeff
@@ -198,10 +194,10 @@
 
 /mob/living/carbon/throw_item(atom/target)
 	. = ..()
-	src.throw_mode_off()
+	throw_mode_off()
 	if(is_ventcrawling) //NOPE
 		return
-	if(usr.stat || !target)
+	if(stat || !target)
 		return
 	if(target.type == /obj/screen)
 		return
@@ -209,37 +205,15 @@
 	var/atom/movable/thrown_thing
 	var/obj/item/I = get_active_held_item()
 
-	if(!I || (I.flags_item & NODROP)) return
+	if(!I || (I.flags_item & NODROP))
+		return
 
 	var/spin_throw = TRUE
-
-	if (istype(I, /obj/item/grab))
-		var/obj/item/grab/G = I
-		if(ismob(G.grabbed_thing))
-			if(grab_state >= GRAB_NECK)
-				var/mob/living/M = G.grabbed_thing
-				spin_throw = FALSE //thrown mobs don't spin
-				thrown_thing = M
-				var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
-				var/turf/end_T = get_turf(target)
-				if(start_T && end_T)
-					var/start_T_descriptor = "tile at [start_T.x], [start_T.y], [start_T.z] in area [get_area(start_T)]"
-					var/end_T_descriptor = "tile at [end_T.x], [end_T.y], [end_T.z] in area [get_area(end_T)]"
-
-					log_combat(usr, M, "thrown", addition="from [start_T_descriptor] with the target [end_T_descriptor]")
-			else
-				to_chat(src, span_warning("You need a better grip!"))
-	else if(istype(I, /obj/item/riding_offhand))
-		var/obj/item/riding_offhand/riding_item = I
+	if(isgrabitem(I))
 		spin_throw = FALSE
-		thrown_thing = riding_item.rider
-		var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
-		var/turf/end_T = get_turf(target)
-		if(start_T && end_T)
-			log_combat(usr, thrown_thing, "thrown", addition = "from tile at [start_T.x], [start_T.y], [start_T.z] in area [get_area(start_T)] with the target tile at [end_T.x], [end_T.y], [end_T.z] in area [get_area(end_T)]")
-	else //real item in hand, not a grab
-		thrown_thing = I
-		dropItemToGround(I, TRUE)
+
+	//real item in hand, not a grab
+	thrown_thing = I.on_thrown(src, target)
 
 	//actually throw it!
 	if (thrown_thing)
@@ -253,6 +227,13 @@
 
 		playsound(src, 'sound/effects/throw.ogg', 30, 1)
 		thrown_thing.throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src, spin_throw)
+
+///Called by the carbon throw_item() proc. Returns null if the item negates the throw, or a reference to the thing to suffer the throw else.
+/obj/item/proc/on_thrown(mob/living/carbon/user, atom/target)
+	if((flags_item & ITEM_ABSTRACT) || (flags_item & NODROP))
+		return
+	user.dropItemToGround(src, TRUE)
+	return src
 
 /mob/living/carbon/fire_act(exposed_temperature, exposed_volume)
 	. = ..()
@@ -412,6 +393,10 @@
 
 	if(see_override)
 		see_invisible = see_override
+
+	if(HAS_TRAIT(src, TRAIT_SEE_IN_DARK))
+		see_in_dark = max(see_in_dark, 8)
+		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 
 	return ..()
 

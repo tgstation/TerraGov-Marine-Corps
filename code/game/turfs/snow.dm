@@ -74,10 +74,10 @@
 		playsound(user, 'sound/weapons/genhit.ogg', 25, 1)
 
 
-/turf/open/floor/plating/ground/snow/Entered(atom/movable/AM)
+/turf/open/floor/plating/ground/snow/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	if(slayer > 0)
-		if(iscarbon(AM))
-			var/mob/living/carbon/C = AM
+		if(iscarbon(arrived))
+			var/mob/living/carbon/C = arrived
 			C.next_move_slowdown += 0.5 * slayer
 			if(prob(1))
 				to_chat(C, span_warning("Moving through [src] slows you down."))

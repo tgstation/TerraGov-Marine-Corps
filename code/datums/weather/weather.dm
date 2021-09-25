@@ -105,11 +105,13 @@
 	weather_duration = rand(weather_duration_lower, weather_duration_upper)
 	START_PROCESSING(SSweather, src)
 	update_areas()
-	for(var/M in GLOB.player_list)
+	for(var/mob/M AS in GLOB.player_list)
 		var/turf/mob_turf = get_turf(M)
 		if(mob_turf && (mob_turf.z in impacted_z_levels))
 			if(telegraph_message)
 				to_chat(M, telegraph_message)
+			if(M?.client?.prefs?.toggles_sound & SOUND_WEATHER)
+				continue
 			if(telegraph_sound)
 				SEND_SOUND(M, sound(telegraph_sound, volume = 60))
 	addtimer(CALLBACK(src, .proc/start), telegraph_duration)
@@ -127,9 +129,11 @@
 	stage = MAIN_STAGE
 	update_areas()
 	for(var/num in impacted_z_levels)
-		for(var/M in GLOB.humans_by_zlevel["[num]"])
+		for(var/mob/M AS in GLOB.humans_by_zlevel["[num]"])
 			if(weather_message)
 				to_chat(M, weather_message)
+			if(M?.client?.prefs?.toggles_sound & SOUND_WEATHER)
+				continue
 			if(weather_sound)
 				SEND_SOUND(M, sound(weather_sound))
 	addtimer(CALLBACK(src, .proc/wind_down), weather_duration)
@@ -147,9 +151,11 @@
 	stage = WIND_DOWN_STAGE
 	update_areas()
 	for(var/num in impacted_z_levels)
-		for(var/M in GLOB.humans_by_zlevel["[num]"])
+		for(var/mob/M AS in GLOB.humans_by_zlevel["[num]"])
 			if(end_message)
 				to_chat(M, end_message)
+			if(M.client?.prefs.toggles_sound & SOUND_WEATHER)
+				continue
 			if(end_sound)
 				SEND_SOUND(M, sound(end_sound))
 	addtimer(CALLBACK(src, .proc/end), end_duration)

@@ -52,3 +52,9 @@
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-remainder, updating_health = TRUE)
 	adjust_sunder(-amount/20)
+
+// ***************************************
+// *********** Drone Jelly
+// ***************************************
+/datum/action/xeno_action/create_jelly/slow
+	cooldown_timer = 45 SECONDS

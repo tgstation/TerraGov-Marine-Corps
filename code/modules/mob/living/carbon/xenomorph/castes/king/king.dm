@@ -20,6 +20,10 @@
 	tier = XENO_TIER_FOUR //King, like queen, doesn't count towards population limit.
 	upgrade = XENO_UPGRADE_ZERO
 
+/mob/living/carbon/xenomorph/king/Initialize(mapload)
+	. = ..()
+	SSmonitor.stats.king++
+
 /mob/living/carbon/xenomorph/king/generate_name()
 	switch(upgrade)
 		if(XENO_UPGRADE_ZERO)
@@ -35,6 +39,9 @@
 	if(mind)
 		mind.name = name
 
+/mob/living/carbon/xenomorph/king/on_death()
+	. = ..()
+	SSmonitor.stats.king--
 
 ///resin pod that creates the king xeno after a delay
 /obj/structure/resin/king_pod
@@ -55,9 +62,8 @@
 	addtimer(CALLBACK(src, .proc/choose_king), KING_SUMMON_TIMER_DURATION)
 
 /obj/structure/resin/king_pod/Destroy()
-	. = ..()
-	future_king?.tracked = null
 	future_king = null
+	return ..()
 
 /obj/structure/resin/king_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	if(X != future_king)
@@ -83,7 +89,7 @@
 		future_king = xenomorph_alive
 		RegisterSignal(future_king, COMSIG_HIVE_XENO_DEATH, .proc/choose_another_king)
 		to_chat(future_king, span_notice("You have 5 minutes to go to the [src] to ascend to the king position! Your tracker will guide you to it."))
-		future_king.tracked = src
+		future_king.set_tracked(src)
 		addtimer(CALLBACK(src, .proc/choose_another_king), 5 MINUTES)
 		return
 	//If no xeno accepted, give it to ghost
@@ -112,7 +118,6 @@
 		if(XENO_HIVE_ADMEME)
 			new_caste_type = /mob/living/carbon/xenomorph/king/admeme
 	var/mob/living/carbon/xenomorph/king/kong = new new_caste_type()
-	SSminimaps.add_marker(kong, kong.z, hud_flags = MINIMAP_FLAG_XENO, iconstate = kong.xeno_caste.minimap_icon)
 	RegisterSignal(kong, COMSIG_MOB_LOGIN , .proc/on_king_occupied)
 	if(future_king)
 		future_king.mind.transfer_to(kong)
@@ -120,7 +125,7 @@
 	kong.offer_mob()
 
 ///When the king mob is offered and then accepted this proc ejects the king and does announcements
-/obj/structure/resin/king_pod/proc/on_king_occupied(mob/occupied)
+/obj/structure/resin/king_pod/proc/on_king_occupied(mob/living/carbon/xenomorph/king/occupied)
 	SIGNAL_HANDLER
 	UnregisterSignal(occupied, COMSIG_MOB_LOGIN)
 	occupied.forceMove(get_turf(src))
@@ -128,6 +133,7 @@
 	priority_announce("Warning: Psychic anomaly signature in [myarea] has spiked and begun to move.", "TGMC Intel Division")
 	xeno_message(span_xenoannounce("[occupied] has awakened at [myarea]. Praise the Queen Mother!"), 3, ownerhive)
 	future_king?.offer_mob()
+	SSminimaps.add_marker(occupied, occupied.z, MINIMAP_FLAG_XENO, occupied.xeno_caste.minimap_icon)
 	qdel(src)
 
 /obj/structure/resin/king_pod/obj_destruction(damage_flag)

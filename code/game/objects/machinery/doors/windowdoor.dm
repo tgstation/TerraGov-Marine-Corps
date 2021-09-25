@@ -5,6 +5,7 @@
 	icon_state = "left"
 	layer = ABOVE_WINDOW_LAYER
 	resistance_flags = XENO_DAMAGEABLE
+	obj_flags = CAN_BE_HIT
 	var/base_state = "left"
 	max_integrity = 50
 	soft_armor = list("melee" = 20, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 70, "acid" = 100)
@@ -34,7 +35,7 @@
 /obj/machinery/door/window/Destroy()
 	density = FALSE
 	playsound(src, "shatter", 50, 1)
-	. = ..()
+	return ..()
 
 
 /obj/machinery/door/window/update_icon()
@@ -88,7 +89,7 @@
 		return ..()
 	return TRUE
 
-/obj/machinery/door/window/CheckExit(atom/movable/mover, turf/target)
+/obj/machinery/door/window/CheckExit(atom/movable/mover, direction)
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
 	return ..()

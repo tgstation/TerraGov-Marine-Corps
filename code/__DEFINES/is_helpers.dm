@@ -181,8 +181,6 @@
 
 #define ismodularhelmet(A) (istype(A, /obj/item/clothing/head/modular))
 
-#define ishelmetmodule(A) (istype (A, /obj/item/helmet_module))
-
 #define isattachmentflashlight(A) (istype(A, /obj/item/attachable/flashlight))
 
 #define isgunattachment(A) (istype(A, /obj/item/attachable))
@@ -203,6 +201,10 @@
 
 #define iscrowbar(I) (istype(I, /obj/item/tool/crowbar))
 
+#define isfactorypart(I) (istype(I, /obj/item/factory_part))
+
+#define isfactoryrefill(I) (istype(I, /obj/item/factory_refill))
+
 #define isstructure(A) (istype(A, /obj/structure))
 
 #define iscable(A) (istype(A, /obj/structure/cable))
@@ -215,9 +217,15 @@
 
 #define is_cleanable(A) (istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/rune)) //if something is cleanable
 
+#define isvehicle(A) (istype(A, /obj/vehicle))
+
 #define isorgan(A) (istype(A, /datum/limb))
 
 #define isidcard(A) (istype(A, /obj/item/card/id))
+
+#define isuav(A) (istype(A, /obj/vehicle/unmanned))
+
+#define isdroid(A) (istype(A, /obj/vehicle/unmanned/droid))
 
 #define isreagentcontainer(A) (istype(A, /obj/item/reagent_containers)) //Checks for if something is a reagent container.
 

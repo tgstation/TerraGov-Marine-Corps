@@ -25,7 +25,6 @@
 	icon_state = "cliff_blocked"
 	requires_power = 1
 	always_unpowered = 1
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
@@ -73,6 +72,11 @@
 /area/ice_colony/exterior/surface/container_yard
 	name = "Aerodrome Container Yard"
 	icon_state = "container_yard"
+
+//The FRONT of the aerodromes.
+/area/ice_colony/exterior/surface/taxiway
+	name = "Aerodrome Taxiway"
+	icon_state = "landing_pad_taxiway"
 
 //
 // Valleys

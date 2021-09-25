@@ -10,6 +10,8 @@
 	flags_gun_features = GUN_AMMO_COUNTER
 	general_codex_key = "energy weapons"
 
+	placed_overlay_iconstate = "laser"
+
 /obj/item/weapon/gun/energy/examine_ammo_count(mob/user)
 	var/list/dat = list()
 	if(!(flags_gun_features & (GUN_INTERNAL_MAG|GUN_UNUSUAL_DESIGN))) //Internal mags and unusual guns have their own stuff set.
@@ -28,7 +30,20 @@
 /obj/item/weapon/gun/energy/Initialize()
 	. = ..()
 	if(cell_type)
-		cell = new cell_type(src)
+		set_cell(new cell_type(src))
+
+///Set the cell var
+/obj/item/weapon/gun/energy/proc/set_cell(new_cell)
+	if(cell)
+		UnregisterSignal(cell, COMSIG_PARENT_QDELETING)
+	cell = new_cell
+	if(cell)
+		RegisterSignal(cell, COMSIG_PARENT_QDELETING, .proc/clean_cell)
+
+///Signal handler to clean the cell var
+/obj/item/weapon/gun/energy/proc/clean_cell()
+	SIGNAL_HANDLER
+	cell = null
 
 /obj/item/weapon/gun/energy/able_to_fire(mob/living/user)
 	. = ..()
@@ -75,11 +90,7 @@
 
 // energy guns, however, do not use gun rattles.
 /obj/item/weapon/gun/energy/play_fire_sound(mob/user)
-	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
-		if(active_attachable.fire_sound) //If we're firing from an attachment, use that noise instead.
-			playsound(user, active_attachable.fire_sound, 50)
-		return
-	if(flags_gun_features & GUN_SILENCED)
+	if(HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 		playsound(user, fire_sound, 25)
 		return
 	playsound(user, fire_sound, 60)
@@ -148,10 +159,6 @@
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
 
-/obj/item/weapon/gun/energy/lasgun/unique_action(mob/user)
-	. = ..()
-	return cock(user)
-
 /obj/item/weapon/gun/energy/lasgun/tesla
 	name = "\improper M43-T tesla shock rifle"
 	desc = "A prototype TGMC energy rifle that fires balls of elecricity that shock all those near them, it is meant to drain the plasma of unidentified creatures from within, limiting their abilities. Handle only with insulated clothing. Reloaded with power cells."
@@ -192,10 +199,7 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
 		/obj/item/attachable/scope,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/focuslens,
 		/obj/item/attachable/widelens,
@@ -205,7 +209,7 @@
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
-	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/lasgun)
+	starting_attachment_types = list(/obj/item/attachable/stock/lasgun)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
@@ -257,24 +261,11 @@
 
 	//load_into_chamber()
 
-	if(user)
-		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
-		A.update_hud(user)
+	user?.hud_used.update_ammo_hud(user, src)
 
 	return TRUE
 
 /obj/item/weapon/gun/energy/lasgun/load_into_chamber(mob/user)
-		//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
-	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
-		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
-			active_attachable.current_rounds--
-			return create_bullet(active_attachable.ammo)
-		else
-			to_chat(user, span_warning("[active_attachable] is empty!"))
-			to_chat(user, span_notice("You disable [active_attachable]."))
-			playsound(user, active_attachable.activation_sound, 15, 1)
-			active_attachable.activate_attachment(null, TRUE)
-
 	if(!cell?.use(charge_cost))
 		return
 	in_chamber = create_bullet(ammo)
@@ -282,20 +273,12 @@
 	return in_chamber
 
 /obj/item/weapon/gun/energy/lasgun/reload_into_chamber(mob/user)
-	/*
-	ATTACHMENT POST PROCESSING
-	This should only apply to the masterkey, since it's the only attachment that shoots through Fire()
-	instead of its own thing through fire_attachment(). If any other bullet attachments are added, they would fire here.
-	*/
-	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
-		make_casing(active_attachable.type_of_casings) // Attachables can drop their own casings.
-
 	if(!active_attachable && cell) //We don't need to check for the mag if an attachment was used to shoot.
 		if(cell) //If there is no mag, we can't reload.
 			if(overcharge && cell.charge < ENERGY_OVERCHARGE_AMMO_COST && cell.charge >= ENERGY_STANDARD_AMMO_COST) //Revert to standard shot if we don't have enough juice for overcharge, but enough for the standard mode
 				cock(user)
 				return
-			if(cell.charge <= 0 && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
+			if(cell.charge < charge_cost && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
 				unload(user,1,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
 				playsound(src, empty_sound, 25, 1)
 
@@ -323,7 +306,11 @@
 
 
 /obj/item/weapon/gun/energy/lasgun/reload(mob/user, obj/item/cell/lasgun/new_cell)
-	if(flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG))
+	if((flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)) || HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
+		return
+
+	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && ((cell_type == sentry_battery_type && !sentry_battery && cell) || (cell_type != sentry_battery_type && istype(new_cell, sentry_battery_type))))
+		reload_sentry_cell(new_cell, user)
 		return
 
 	if(!new_cell || !istype(new_cell))
@@ -357,7 +344,7 @@
 	return TRUE
 
 /obj/item/weapon/gun/energy/lasgun/replace_magazine(mob/user, obj/item/cell/lasgun/new_cell)
-	cell = new_cell
+	set_cell(new_cell)
 	if(user)
 		user.transferItemToLoc(new_cell, src) //Click!
 		user.visible_message(span_notice("[user] loads [new_cell] into [src]!"),
@@ -372,7 +359,7 @@
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
 //This can be passed with a null user, so we need to check for that as well.
 /obj/item/weapon/gun/energy/lasgun/unload(mob/user, reload_override = 0, drop_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst. Drop is for dropping the magazine on the ground.
-	if(!reload_override && (flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)))
+	if(!reload_override && ((flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)) || HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING)))
 		return FALSE
 
 	if(!cell || cell.loc != src)
@@ -383,12 +370,11 @@
 	else
 		user.put_in_hands(cell)
 
-	playsound(user, unload_sound, 25, 1, 5)
-	user.visible_message(span_notice("[user] unloads [cell] from [src]."),
+	playsound(loc, unload_sound, 25, 1, 5)
+	user?.visible_message(span_notice("[user] unloads [cell] from [src]."),
 	span_notice("You unload [cell] from [src]."), null, 4)
 	cell.update_icon()
-	cell = null
-
+	set_cell(null)
 	update_icon(user)
 
 	return TRUE
@@ -469,11 +455,8 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/marine,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/scope/mini,
 	)
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
@@ -542,9 +525,7 @@
 	update_icon()
 
 	to_chat(user, initial(choice.message_to_user))
-
-	var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
-	A.update_hud(user)
+	user.hud_used.update_ammo_hud(user, src)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/update_item_state(mob/user) //Without this override icon states for wielded guns won't show. because lasgun overrides and this has no charge icons
 	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
@@ -580,10 +561,11 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
@@ -729,8 +711,10 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
@@ -806,8 +790,10 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/unremovable/laser_sniper_scope,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
@@ -875,8 +861,10 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/attached_gun/grenade,
-		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER

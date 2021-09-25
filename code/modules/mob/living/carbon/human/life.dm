@@ -55,4 +55,8 @@
 			qdel(parasite)
 		DISABLE_BITFIELD(status_flags, XENO_HOST)
 
-	med_hud_set_status()
+	if(SSticker.mode.flags_round_type & MODE_TWO_HUMAN_FACTIONS)
+		job.add_job_positions(1)
+	if(hud_list)
+		med_hud_set_status()
+

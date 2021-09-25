@@ -157,6 +157,7 @@
 	if(source)
 		shot_from = source
 	permutated[src] = TRUE
+	loc = shooter
 	if(!isturf(loc))
 		forceMove(get_turf(src))
 	starting_turf = loc
@@ -619,15 +620,12 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	return TRUE
 
-/obj/machinery/marine_turret/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(iff_signal & proj.iff_signal)
-		return FALSE
-	return src == proj.original_target
-
 /obj/machinery/deployable/mounted/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(operator?.wear_id.iff_signal & proj.iff_signal)
 		return FALSE
-	return src == proj.original_target
+	if(isxeno(proj.firer))
+		return TRUE
+	return	src == proj.original_target
 
 /obj/machinery/door/poddoor/railing/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
@@ -640,6 +638,12 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /obj/item/clothing/mask/facehugger/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
+
+/obj/vehicle/unmanned/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(iff_signal & proj.iff_signal)
+		proj.damage += proj.damage*proj.damage_marine_falloff
+		return FALSE
+	return TRUE
 
 
 /mob/living/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
@@ -946,16 +950,16 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /turf/bullet_act(obj/projectile/proj)
 	bullet_ping(proj)
 
-	var/list/livings_list = list() //Let's built a list of mobs on the bullet turf and grab one.
-	for(var/mob/living/L in src)
-		if(proj.permutated[L])
+	var/list/mob_list = list() //Let's built a list of mobs on the bullet turf and grab one.
+	for(var/mob/possible_target in src)
+		if(proj.permutated[possible_target])
 			continue
-		livings_list += L
+		mob_list += possible_target
 
-	if(!length(livings_list))
+	if(!length(mob_list))
 		return FALSE
 
-	var/mob/living/picked_mob = pick(livings_list)
+	var/mob/picked_mob = pick(mob_list)
 	if(proj.projectile_hit(picked_mob))
 		picked_mob.bullet_act(proj)
 		return TRUE

@@ -71,9 +71,6 @@ obj/machinery/recharger/attack_hand(mob/living/user)
 		percent_charge_complete = 0
 		update_icon()
 
-obj/machinery/recharger/attack_paw(mob/living/carbon/human/user)
-	return attack_hand(user)
-
 obj/machinery/recharger/process()
 	if(machine_stat & (NOPOWER|BROKEN) || !anchored)
 		update_icon()

@@ -45,6 +45,8 @@
 	if(CHECK_BITFIELD(O.flags_pass, PASSSMALLSTRUCT))
 		return
 	var/mob/living/M = O
+	if(M.status_flags & INCORPOREAL)
+		return
 	if(CHECK_BITFIELD(M.restrained_flags, RESTRAINED_RAZORWIRE))
 		return
 	if(!M.density)
@@ -56,7 +58,7 @@
 	M.apply_damage(RAZORWIRE_BASE_DAMAGE, BRUTE, def_zone, armor_block, TRUE, updating_health = TRUE)
 	razorwire_tangle(M)
 
-/obj/structure/razorwire/CheckExit(atom/movable/mover, turf/target)
+/obj/structure/razorwire/CheckExit(atom/movable/mover, direction)
 	. = ..()
 	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
 		return TRUE
@@ -81,7 +83,6 @@
 	LAZYADD(entangled_list, entangled) //Add the entangled person to the trapped list.
 	RegisterSignal(entangled, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
 	RegisterSignal(entangled, COMSIG_PARENT_QDELETING, .proc/do_razorwire_untangle)
-	RegisterSignal(entangled, COMSIG_MOVABLE_UNCROSS, .proc/on_entangled_uncross)
 	RegisterSignal(entangled, COMSIG_MOVABLE_PULL_MOVED, .proc/razorwire_untangle)
 
 
@@ -108,16 +109,19 @@
 ///This proc is used for signals, so if you plan on adding a second argument, or making it return a value, then change those RegisterSignal's referncing it first.
 /obj/structure/razorwire/proc/do_razorwire_untangle(mob/living/entangled)
 	SIGNAL_HANDLER
-	UnregisterSignal(entangled, list(COMSIG_PARENT_QDELETING, COMSIG_LIVING_DO_RESIST, COMSIG_MOVABLE_UNCROSS, COMSIG_MOVABLE_PULL_MOVED))
+	UnregisterSignal(entangled, list(COMSIG_PARENT_QDELETING, COMSIG_LIVING_DO_RESIST, COMSIG_MOVABLE_PULL_MOVED))
 	LAZYREMOVE(entangled_list, entangled)
 	DISABLE_BITFIELD(entangled.restrained_flags, RESTRAINED_RAZORWIRE)
 	REMOVE_TRAIT(entangled, TRAIT_IMMOBILE, type)
 
 
-/obj/structure/razorwire/proc/on_entangled_uncross(datum/source, atom/movable/uncrosser)
-	SIGNAL_HANDLER
-	razorwire_untangle(uncrosser)
+/obj/structure/razorwire/Uncross(atom/movable/AM, direction)
+	. = ..()
+	razorwire_untangle(AM)
 
+/obj/structure/razorwire/Uncrossed(atom/movable/AM)
+	. = ..()
+	razorwire_untangle(AM)
 
 /obj/structure/razorwire/Destroy()
 	for(var/i in entangled_list)

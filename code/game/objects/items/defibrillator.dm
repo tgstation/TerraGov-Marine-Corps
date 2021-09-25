@@ -123,13 +123,14 @@
 /mob/living/proc/get_ghost()
 	if(client) //Let's call up the correct ghost!
 		return null
-	for(var/g in GLOB.observer_list)
-		if(!g) //Observers hard del often so lets just be safe
+	for(var/mob/dead/observer/ghost AS in GLOB.observer_list)
+		if(!ghost) //Observers hard del often so lets just be safe
 			continue
-		var/mob/dead/observer/ghost = g
-		if(ghost.mind.current != src)
+		if(isnull(ghost.can_reenter_corpse))
 			continue
-		if(ghost.client && ghost.can_reenter_corpse)
+		if(ghost.can_reenter_corpse.resolve() != src)
+			continue
+		if(ghost.client)
 			return ghost
 	return null
 
@@ -178,16 +179,16 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Vital signs detected. Aborting."))
 		return
 
+	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is braindead. No remedy possible."))
+		return
+
 	if(!H.has_working_organs())
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's general condition does not allow reviving."))
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's organs are too damaged to sustain life. Deliver patient to a MD for surgical intervention."))
 		return
 
 	if((H.wear_suit && H.wear_suit.flags_atom & CONDUCT))
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring."))
-		return
-
-	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is braindead."))
 		return
 
 	var/mob/dead/observer/G = H.get_ghost()
@@ -225,13 +226,19 @@
 	if(!issynth(H) && heart && prob(25))
 		heart.take_damage(5) //Allow the defibrilator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 
-	if(!H.has_working_organs())
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Patient's general condition does not allow reviving."))
+	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's brain has decayed too much. No remedy possible."))
 		return
 
-	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's brain has decayed too much."))
+	if(!H.has_working_organs())
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Patient's organs are too damaged to sustain life. Deliver patient to a MD for surgical intervention."))
 		return
+
+	if(H.species.species_flags & DETACHABLE_HEAD)	//But if their head's missing, they're still not coming back
+		var/datum/limb/head/braincase = H.get_limb("head")
+		if(braincase.limb_status & LIMB_DESTROYED)
+			user.visible_message("[icon2html(src, viewers(user))] \The [src] buzzes: Positronic brain missing, cannot reboot.")
+			return
 
 	if(!H.client) //Freak case, no client at all. This is a braindead mob (like a colonist)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: No soul detected, Attempting to revive..."))

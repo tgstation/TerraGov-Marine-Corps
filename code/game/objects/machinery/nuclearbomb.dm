@@ -37,6 +37,7 @@
 	GLOB.nuke_list += src
 	countdown = new(src)
 	name = "[initial(name)] ([UNIQUEID])"
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "nuke")
 
 
 /obj/machinery/nuclearbomb/Destroy()

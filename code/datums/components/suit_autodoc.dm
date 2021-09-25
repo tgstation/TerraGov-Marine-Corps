@@ -199,7 +199,7 @@
 	UnregisterSignals(wearer)
 	STOP_PROCESSING(SSobj, src)
 	if(!silent)
-		to_chat(wearer, span_warning("[parent] lets out a beep as its automedical suite deactivates."))
+		wearer.balloon_alert(wearer, "The automedical suite deactivates")
 		playsound(parent,'sound/machines/click.ogg', 15, 0, 1)
 
 /**
@@ -215,7 +215,7 @@
 	RegisterSignals(wearer)
 	START_PROCESSING(SSobj, src)
 	if(!silent)
-		to_chat(wearer, span_notice("[parent] lets out a hum as its automedical suite activates."))
+		wearer.balloon_alert(wearer, "The automedical suite activates")
 		playsound(parent,'sound/voice/b18_activate.ogg', 15, 0, 1)
 
 
@@ -414,9 +414,9 @@
 	else if(href_list["toggle_mode"]) //Integrated scanner
 		analyzer.hud_mode = !analyzer.hud_mode
 		if(analyzer.hud_mode)
-			to_chat(wearer, span_notice("The scanner now shows results on the hud."))
+			wearer.balloon_alert(wearer, "The scanner now shows results on the hud")
 		else
-			to_chat(wearer, span_notice("The scanner no longer shows results on the hud."))
+			wearer.balloon_alert(wearer, "The scanner no longer shows results on the hud")
 
 	else if(href_list["automed_damage"])
 		damage_threshold += text2num(href_list["automed_damage"])

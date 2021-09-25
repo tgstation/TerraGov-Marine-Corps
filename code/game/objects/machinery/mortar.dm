@@ -155,7 +155,7 @@
 
 		var/turf/selfown = locate((coords["targ_x"] + coords["dial_x"]), (coords["targ_y"] + coords["dial_y"]), z)
 		if(get_dist(loc, selfown) < 7)
-			to_chat(usr, span_warning("You cannot target this coordinate, it is too close to your mortar."))
+			to_chat(user, span_warning("You cannot target this coordinate, it is too close to your mortar."))
 			return
 
 		var/turf/T = locate(coords["targ_x"] + coords["dial_x"] + offset_x, coords["targ_y"]  + coords["dial_x"] + offset_y, z)
@@ -233,14 +233,14 @@
 //The portable mortar item
 /obj/item/mortar_kit
 	name = "\improper M402 mortar"
-	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. Use 'Unique Action' to deploy."
+	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. Use Ctrl-Click to deploy."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar"
 
 	max_integrity = 200
 	flags_item = IS_DEPLOYABLE|DEPLOYED_WRENCH_DISASSEMBLE
 
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	w_class = WEIGHT_CLASS_BULKY //No dumping this in most backpacks. Carry it, fatso
 
 /obj/item/mortar_kit/Initialize()
@@ -331,29 +331,26 @@
 	icon_state = "mortar_ammo_flr"
 
 /obj/item/mortal_shell/flare/detonate(turf/T)
-
-	new /obj/item/flashlight/flare/on/illumination(T)
+	new /obj/effect/mortar_flare(T)
 	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
 
-//Special flare subtype for the illumination flare shell
-//Acts like a flare, just even stronger, and set length
-/obj/item/flashlight/flare/on/illumination
-	name = "illumination flare"
-	desc = "It's really bright, and unreachable."
-	icon_state = "" //No sprite
-	invisibility = INVISIBILITY_MAXIMUM //Can't be seen or found, it's "up in the sky"
+///Name_swap of the CAS flare
+/obj/effect/mortar_flare
+	invisibility = INVISIBILITY_MAXIMUM
 	resistance_flags = RESIST_ALL
 	mouse_opacity = 0
-	light_range = 7 //Way brighter than most lights
+	light_system = HYBRID_LIGHT
+	light_mask_type = /atom/movable/lighting_mask/flicker
+	light_range = 9 //Way brighter than most lights
 
-/obj/item/flashlight/flare/on/illumination/Initialize()
+/obj/effect/mortar_flare/Initialize()
 	. = ..()
-	fuel = rand(400, 500) // Half the duration of a flare, but justified since it's invincible
+	var/turf/T = get_turf(src)
+	set_light(light_power)
+	T.visible_message(span_warning("You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!"))
+	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry
+	QDEL_IN(src, rand(70 SECONDS, 90 SECONDS)) // About the same burn time as a flare, considering it requires it's own CAS run.
 
-/obj/item/flashlight/flare/on/illumination/turn_off()
-
-	..()
-	qdel(src)
 
 /obj/structure/closet/crate/mortar_ammo
 	name = "\improper M402 mortar ammo crate"
@@ -406,6 +403,13 @@
 	new /obj/item/mortal_shell/plasmaloss(src)
 	new /obj/item/mortal_shell/plasmaloss(src)
 	new /obj/item/mortal_shell/smoke(src)
+	new /obj/item/mortal_shell/smoke(src)
+	new /obj/item/mortal_shell/smoke(src)
+	new /obj/item/mortal_shell/smoke(src)
+	new /obj/item/mortal_shell/flare(src)
+	new /obj/item/mortal_shell/flare(src)
+	new /obj/item/mortal_shell/flare(src)
+	new /obj/item/mortal_shell/flare(src)
 	new /obj/item/encryptionkey/engi(src)
 	new /obj/item/encryptionkey/engi(src)
 	new /obj/item/binoculars/tactical/range(src)

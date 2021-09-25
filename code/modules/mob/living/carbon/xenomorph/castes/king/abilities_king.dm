@@ -63,7 +63,7 @@
 /datum/action/xeno_action/activable/gravity_crush/use_ability(atom/A)
 	owner.face_atom(A) //Face towards the target so we don't look silly
 	var/list/turfs = RANGE_TURFS(1, A)
-	playsound(A, 'sound/effects/bomb_fall.ogg', 75, FALSE)
+	playsound(A, 'sound/effects/bomb_fall.ogg', 50, FALSE)
 	apply_filters(turfs)
 	if(!do_after(owner, WINDUP_GRAV, FALSE, owner, BUSY_ICON_DANGER))
 		remove_all_filters()
@@ -106,6 +106,8 @@
 					var/mob/living/carbon/xenomorph/xeno = mob_crushed
 					if(xeno.hive == xeno_owner.hive)
 						continue
+				mob_crushed.ex_act(EXPLODE_LIGHT)
+				continue
 			item.ex_act(EXPLODE_HEAVY)	//crushing without damaging the nearby area
 
 /datum/action/xeno_action/activable/gravity_crush/ai_should_start_consider()
@@ -148,7 +150,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 
 	log_game("[key_name(owner)] has begun summoning hive in [AREACOORD(owner)]")
-	xeno_message("King: \The [owner] has begun a psychic summon in <b>[get_area(owner)]</b>!", "xenoannounce", 3, X.hivenumber)
+	xeno_message("King: \The [owner] has begun a psychic summon in <b>[get_area(owner)]</b>!", hivenumber = X.hivenumber)
 	var/list/allxenos = X.hive.get_all_xenos()
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 		sister.add_filter("summonoutline", 2, outline_filter(1, COLOR_VIOLET))

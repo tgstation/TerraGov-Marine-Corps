@@ -116,7 +116,7 @@
 
 /datum/action/xeno_action/activable/bombard/get_cooldown()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	return X.xeno_caste.bomb_delay
+	return X.xeno_caste.bomb_delay - ((X.neuro_ammo + X.corrosive_ammo) * X.xeno_caste.ammo_multiplier)
 
 /datum/action/xeno_action/activable/bombard/on_cooldown_finish()
 	to_chat(owner, span_notice("We feel your toxin glands swell. We are able to bombard an area again."))

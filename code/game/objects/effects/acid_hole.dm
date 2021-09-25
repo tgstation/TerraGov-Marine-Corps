@@ -4,7 +4,7 @@
 	icon = 'icons/effects/new_acid.dmi'
 	icon_state = "hole_0"
 	anchored = TRUE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	layer = LOWER_ITEM_LAYER
 	var/turf/closed/wall/holed_wall
 
@@ -26,7 +26,7 @@
 		holed_wall.opacity = initial(holed_wall.opacity)
 		holed_wall.acided_hole = null
 		holed_wall = null
-	. = ..()
+	return ..()
 
 
 /obj/effect/acid_hole/fire_act()

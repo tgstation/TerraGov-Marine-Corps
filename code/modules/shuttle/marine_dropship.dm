@@ -96,17 +96,17 @@
 
 /obj/docking_port/stationary/marine_dropship/hangar/one
 	name = "Shipside 'Alamo' Hangar Pad"
-	id = "alamo"
+	id = SHUTTLE_ALAMO
 	roundstart_template = /datum/map_template/shuttle/dropship_one
 
 /obj/docking_port/stationary/marine_dropship/hangar/rebel
 	name = "Shipside 'Triumph' Hangar Pad"
-	id = "triumph"
+	id = SHUTTLE_TRIUMPH
 	roundstart_template = /datum/map_template/shuttle/dropship_three
 
 /obj/docking_port/stationary/marine_dropship/hangar/two
 	name = "Shipside 'Normandy' Hangar Pad"
-	id = "normandy"
+	id = SHUTTLE_NORMANDY
 	roundstart_template = /datum/map_template/shuttle/dropship_two
 	dheight = 6
 	dwidth = 4
@@ -197,6 +197,15 @@
 				var/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/D = i
 				D.release()
 
+///This proc locks and unlocks the AI control over the dropship doors.
+/obj/docking_port/mobile/marine_dropship/proc/silicon_lock_airlocks(should_lock = TRUE)
+	for(var/obj/machinery/door/airlock/dropship_hatch/D AS in left_airlocks)
+		D.aiControlDisabled = should_lock
+	for(var/obj/machinery/door/airlock/dropship_hatch/D AS in right_airlocks)
+		D.aiControlDisabled = should_lock
+	for(var/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/D AS in rear_airlocks)
+		D.aiControlDisabled = should_lock
+
 /obj/docking_port/mobile/marine_dropship/Destroy(force)
 	. = ..()
 	if(force)
@@ -210,12 +219,12 @@
 
 /obj/docking_port/mobile/marine_dropship/one
 	name = "Alamo"
-	id = "alamo"
+	id = SHUTTLE_ALAMO
 	control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
 
 /obj/docking_port/mobile/marine_dropship/two
 	name = "Normandy"
-	id = "normandy"
+	id = SHUTTLE_NORMANDY
 	control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
 	callTime = 28 SECONDS //smaller shuttle go whoosh
 	rechargeTime = 1.5 MINUTES
@@ -226,7 +235,7 @@
 
 /obj/docking_port/mobile/marine_dropship/three
 	name = "Triumph"
-	id = "triumph"
+	id = SHUTTLE_TRIUMPH
 	control_flags = SHUTTLE_REBEL_PRIMARY_DROPSHIP
 
 // queen calldown
@@ -240,6 +249,7 @@
 /obj/docking_port/mobile/marine_dropship/proc/reset_hijack()
 	if(hijack_state == HIJACK_STATE_CALLED_DOWN || hijack_state == HIJACK_STATE_UNLOCKED)
 		set_hijack_state(HIJACK_STATE_NORMAL)
+		silicon_lock_airlocks(FALSE)
 
 /obj/docking_port/mobile/marine_dropship/proc/summon_dropship_to(obj/docking_port/stationary/S)
 	if(hijack_state != HIJACK_STATE_NORMAL)
@@ -340,20 +350,17 @@
 			D = M
 	if(is_ground_level(D.z))
 		var/locked_sides = 0
-		for(var/i in D.left_airlocks)
-			var/obj/machinery/door/airlock/dropship_hatch/DH = i
+		for(var/obj/machinery/door/airlock/dropship_hatch/DH AS in D.left_airlocks)
 			if(!DH.locked)
 				continue
 			locked_sides++
 			break
-		for(var/i in D.right_airlocks)
-			var/obj/machinery/door/airlock/dropship_hatch/DH = i
+		for(var/obj/machinery/door/airlock/dropship_hatch/DH AS in D.right_airlocks)
 			if(!DH.locked)
 				continue
 			locked_sides++
 			break
-		for(var/i in D.rear_airlocks)
-			var/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/DH = i
+		for(var/obj/machinery/door/airlock/dropship_hatch/DH AS in D.rear_airlocks)
 			if(!DH.locked)
 				continue
 			locked_sides++
@@ -379,6 +386,7 @@
 		D.unlock_all()
 		D.set_hijack_state(HIJACK_STATE_UNLOCKED)
 		D.do_start_hijack_timer(GROUND_LOCKDOWN_TIME)
+		D.silicon_lock_airlocks(TRUE)
 		to_chat(user, span_warning("We have overriden the shuttle lockdown!"))
 		playsound(user, "alien_roar", 50)
 		priority_announce("Alamo lockdown protocol compromised. Interference preventing remote control", "Dropship Lock Alert")
@@ -435,7 +443,7 @@
 /obj/machinery/computer/shuttle/marine_dropship
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "console"
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	possible_destinations = "lz1;lz2;alamo"
 
@@ -661,6 +669,7 @@
 	to_chat(user, span_danger("A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!"))
 	user.hive.on_shuttle_hijack(crashing_dropship)
 	playsound(src, 'sound/misc/queen_alarm.ogg')
+	crashing_dropship.silicon_lock_airlocks(TRUE)
 	SSevacuation.flags_scuttle &= ~FLAGS_SDEVAC_TIMELOCK
 	switch(SSshuttle.moveShuttleToDock(shuttleId, crash_target, TRUE))
 		if(0)
@@ -1154,10 +1163,11 @@
 		return FALSE
 
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+	#ifndef TESTING
 	if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		to_chat(usr, span_warning("The engines are still refueling."))
 		return TRUE
-
+	#endif
 	if(!M.can_move_topic(usr))
 		return TRUE
 
@@ -1181,7 +1191,7 @@
 				for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
 					if(!AI.client)
 						continue
-					to_chat(AI, span_info("NOTICE - [M.name] taking off towards [params["destination"]]"))
+					to_chat(AI, span_info("[src] was commanded remotely to take off."))
 			return TRUE
 		if(1)
 			to_chat(usr, span_warning("Invalid shuttle requested."))
@@ -1251,9 +1261,9 @@
 	desc = "The remote controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texans to rally to the flag."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
-	shuttleId = "alamo"
+	shuttleId = SHUTTLE_ALAMO
 	possible_destinations = "lz1;lz2;alamo"
 	compatible_control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
 
@@ -1261,20 +1271,20 @@
 /obj/machinery/computer/shuttle/shuttle_control/dropship/two
 	name = "\improper 'Normandy' dropship console"
 	desc = "The remote controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
-	shuttleId = "normandy"
+	shuttleId = SHUTTLE_NORMANDY
 	possible_destinations = "lz1;lz2;alamo;normandy"
 
 /obj/machinery/computer/shuttle/shuttle_control/dropship/rebel
 	name = "\improper 'Triumph' dropship console"
 	desc = "The remote controls for the 'Triumph' Dropship."
-	shuttleId = "triumph"
+	shuttleId = SHUTTLE_TRIUMPH
 	possible_destinations = "lz1;triumph"
 	compatible_control_flags = SHUTTLE_REBEL_PRIMARY_DROPSHIP
 
 /obj/machinery/computer/shuttle/shuttle_control/dropship/loyalist
 	name = "\improper 'Alamo' dropship console"
 	desc = "The remote controls for the 'Alamo' Dropship."
-	shuttleId = "alamo"
+	shuttleId = SHUTTLE_ALAMO
 	possible_destinations = "lz2;alamo"
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury
@@ -1282,8 +1292,8 @@
 	desc = "The remote controls for the 'Canterbury' shuttle."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-	shuttleId = "tgs_canterbury"
+	resistance_flags = RESIST_ALL
+	shuttleId = SHUTTLE_CANTERBURY
 	possible_destinations = "canterbury_loadingdock"
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury/ui_interact(mob/user)
@@ -1321,9 +1331,11 @@
 	message_admins("[ADMIN_TPMONTY(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
 
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+	#ifndef TESTING
 	if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		to_chat(usr, span_warning("The engines are still refueling."))
 		return TRUE
+	#endif
 	if(!M.can_move_topic(usr))
 		return TRUE
 

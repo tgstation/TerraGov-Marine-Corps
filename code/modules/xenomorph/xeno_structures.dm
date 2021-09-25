@@ -24,7 +24,6 @@
 	max_integrity = 5
 	layer = RESIN_STRUCTURE_LAYER
 	destroy_sound = "alien_resin_break"
-	xeno_structure_flags = IGNORE_WEED_REMOVAL
 	///The hugger inside our trap
 	var/obj/item/clothing/mask/facehugger/hugger = null
 
@@ -187,6 +186,7 @@ TUNNEL
 	GLOB.xeno_tunnels -= src
 	if(creator)
 		creator.tunnels -= src
+	creator = null
 
 	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //HUD clean up
 		xeno_tac_hud.remove_from_hud(src)
@@ -338,13 +338,20 @@ TUNNEL
 	///What xeno created this well
 	var/mob/living/carbon/xenomorph/creator = null
 
-/obj/structure/xeno/acidwell/Initialize()
+/obj/structure/xeno/acidwell/Initialize(loc, creator)
 	. = ..()
+	src.creator = creator
+	RegisterSignal(creator, COMSIG_PARENT_QDELETING, .proc/clear_creator)
 	update_icon()
 
 /obj/structure/xeno/acidwell/Destroy()
 	creator = null
 	return ..()
+
+///Signal handler for creator destruction to clear reference
+/obj/structure/xeno/acidwell/proc/clear_creator()
+	SIGNAL_HANDLER
+	creator = null
 
 ///Ensures that no acid gas will be released when the well is crushed by a shuttle
 /obj/structure/xeno/acidwell/proc/shuttle_crush()
@@ -710,7 +717,7 @@ TUNNEL
 	COOLDOWN_START(src, silo_damage_alert_cooldown, XENO_SILO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
 ///Alerts the Hive when hostiles get too close to their resin silo
-/obj/structure/xeno/resin/silo/proc/resin_silo_proxy_alert(datum/source, atom/hostile)
+/obj/structure/xeno/resin/silo/proc/resin_silo_proxy_alert(datum/source, atom/movable/hostile, direction)
 	SIGNAL_HANDLER
 
 	if(!COOLDOWN_CHECK(src, silo_proxy_alert_cooldown)) //Proxy alert triggered too recently; abort
@@ -788,6 +795,7 @@ TUNNEL
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_points(1.75) //4.5 corpses per burrowed; 8 points per larva
+	GLOB.round_statistics.larva_from_siloing_body += 1.75 / xeno_job.job_points_needed
 
 	log_combat(victim, user, "was consumed by a resin silo")
 	log_game("[key_name(victim)] was consumed by a resin silo at [AREACOORD(victim.loc)].")
@@ -815,7 +823,7 @@ TUNNEL
 
 /obj/structure/xeno/resin/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
-	icon_state = "acid_turret"
+	icon_state = XENO_TURRET_ACID_ICONSTATE
 	name = "resin acid turret"
 	desc = "A menacing looking construct of resin, it seems to be alive. It fires acid against intruders."
 	bound_width = 32
@@ -829,23 +837,25 @@ TUNNEL
 	///The hive it belongs to
 	var/datum/hive_status/associated_hive
 	///What kind of spit it uses
-	var/datum/ammo/ammo
+	var/datum/ammo/ammo = /datum/ammo/xeno/acid/heavy/turret
 	///Range of the turret
 	var/range = 7
 	///Target of the turret
-	var/mob/living/hostile
+	var/atom/hostile
 	///Last target of the turret
-	var/mob/living/last_hostile
+	var/atom/last_hostile
 	///Potential list of targets found by scan
-	var/list/mob/living/potential_hostiles
+	var/list/atom/potential_hostiles
 	///Fire rate of the target in ticks
 	var/firerate = 5
 	///The last time the sentry did a scan
 	var/last_scan_time
+	///light color that gets set in initialize
+	var/light_initial_color = LIGHT_COLOR_GREEN
 
 /obj/structure/xeno/resin/xeno_turret/Initialize(mapload, hivenumber = XENO_HIVE_NORMAL)
 	. = ..()
-	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/turret]
+	ammo = GLOB.ammo_list[ammo]
 	ammo.max_range = range + 2 //To prevent funny gamers to abuse the turrets that easily
 	potential_hostiles = list()
 	associated_hive = GLOB.hive_datums[hivenumber]
@@ -854,7 +864,7 @@ TUNNEL
 	AddComponent(/datum/component/automatedfire/xeno_turret_autofire, firerate)
 	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOOT, .proc/shoot)
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/destroy_on_hijack)
-	set_light(2, 2, LIGHT_COLOR_GREEN)
+	set_light(2, 2, light_initial_color)
 	update_icon()
 
 ///Signal handler to delete the turret when the alamo is hijacked
@@ -933,7 +943,7 @@ TUNNEL
 
 	var/damage = I.force
 	var/multiplier = 1
-	if(I.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
+	if(I.damtype == BURN) //Burn damage deals extra vs resin structures (mostly welders).
 		multiplier += 1
 
 	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
@@ -973,9 +983,11 @@ TUNNEL
 	var/distance = range + 0.5 //we add 0.5 so if a potential target is at range, it is accepted by the system
 	var/buffer_distance
 	var/list/turf/path = list()
-	for (var/mob/living/nearby_hostile AS in potential_hostiles)
-		if(nearby_hostile.stat == DEAD)
-			continue
+	for (var/atom/nearby_hostile AS in potential_hostiles)
+		if(isliving(nearby_hostile))
+			var/mob/living/nearby_living_hostile = nearby_hostile
+			if(nearby_living_hostile.stat == DEAD)
+				continue
 		if(HAS_TRAIT(nearby_hostile, TRAIT_TURRET_HIDDEN))
 			continue
 		buffer_distance = get_dist(nearby_hostile, src)
@@ -1017,6 +1029,9 @@ TUNNEL
 		if(nearby_xeno.stat == DEAD)
 			continue
 		potential_hostiles += nearby_xeno
+	for(var/obj/vehicle/unmanned/vehicle AS in GLOB.unmanned_vehicles)
+		if(vehicle.z == z && get_dist(vehicle, src) <= range)
+			potential_hostiles += vehicle
 
 
 ///Signal handler to make the turret shoot at its target
@@ -1031,3 +1046,12 @@ TUNNEL
 	newshot.permutated += src
 	newshot.def_zone = pick(GLOB.base_miss_chance)
 	newshot.fire_at(hostile, src, null, ammo.max_range, ammo.shell_speed)
+
+/obj/structure/xeno/resin/xeno_turret/sticky
+	name = "resin sticky resin turret"
+	icon = 'icons/Xeno/acidturret.dmi'
+	icon_state = XENO_TURRET_STICKY_ICONSTATE
+	desc = "A menacing looking construct of resin, it seems to be alive. It fires resin against intruders."
+	light_initial_color = LIGHT_COLOR_PURPLE
+	ammo = /datum/ammo/xeno/sticky
+	firerate = 5

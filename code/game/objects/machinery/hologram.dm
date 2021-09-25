@@ -130,6 +130,7 @@
 				if(!AI.client)
 					continue
 				to_chat(AI, span_info("Your presence is requested at <a href='?src=[REF(AI)];jumptoholopad=[REF(src)]'>\the [area]</a>."))
+				playsound(AI, 'sound/machines/two_tones_beep.ogg', 30, 1)
 		else
 			temp = "A request for AI presence was already sent recently.<BR>"
 			temp += "<A href='?src=[REF(src)];mainmenu=1'>Main Menu</A>"

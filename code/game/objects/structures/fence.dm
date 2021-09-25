@@ -133,7 +133,7 @@
 /obj/structure/fence/Destroy()
 	density = FALSE
 	update_nearby_icons()
-	. = ..()
+	return ..()
 
 /obj/structure/fence/Move()
 	var/ini_dir = dir

@@ -32,7 +32,7 @@
 			I.pixel_x = -16
 	overlays += I
 
-/obj/structure/platform/CheckExit(atom/movable/O, turf/target)
+/obj/structure/platform/CheckExit(atom/movable/O, direction)
 	. = ..()
 	if(O.throwing)
 		return TRUE
@@ -46,9 +46,8 @@
 	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
 		return TRUE
 
-	if(!(flags_atom & ON_BORDER) || get_dir(loc, target) == dir)
-		return FALSE
-
+	if(!(flags_atom & ON_BORDER) || !(get_dir(loc, target) == dir))
+		return TRUE
 
 obj/structure/platform_decoration
 	name = "platform"

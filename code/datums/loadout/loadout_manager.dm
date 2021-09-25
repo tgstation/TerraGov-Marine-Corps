@@ -6,7 +6,7 @@
 	/**
 	 * List of all loadouts. Format is list(list(loadout_job, loadout_name))
 	 */
-	var/loadouts_data = list()
+	var/list/loadouts_data = list()
 	/// The host of the loadout_manager, aka from which loadout vendor are you managing loadouts
 	var/loadout_vendor
 	/// The version of the loadout manager
@@ -14,10 +14,12 @@
 
 ///Remove the data of a loadout from the loadouts list
 /datum/loadout_manager/proc/delete_loadout(mob/user, loadout_name, loadout_job)
+	var/list/new_loadouts_data = list()
 	for(var/loadout_data in loadouts_data)
-		if(loadout_data[1] == loadout_job && loadout_data[2] == loadout_name)
-			loadouts_data -= loadout_data
-			return
+		if(loadout_data[1] != loadout_job || loadout_data[2] != loadout_name)
+			new_loadouts_data += list(loadout_data)
+	loadouts_data = new_loadouts_data
+	user.client?.prefs.save_loadout_list(loadouts_data, CURRENT_LOADOUT_VERSION)
 
 
 ///Add the name and the job of a datum/loadout into the list of all loadout data
@@ -98,6 +100,19 @@
 				return
 			if(loadout.version != CURRENT_LOADOUT_VERSION)
 				loadout.version = CURRENT_LOADOUT_VERSION
+				for(var/key in loadout.item_list)
+					if(key == slot_head_str && istype(loadout.item_list[key], /datum/item_representation/modular_helmet))
+						loadout.empty_slot(slot_head_str)
+						continue
+					if(key == slot_wear_suit_str && istype(loadout.item_list[key], /datum/item_representation/modular_armor))
+						loadout.empty_slot(slot_wear_suit_str)
+						continue
+				var/job = params["loadout_job"]
+				var/name = params["loadout_name"]
+				delete_loadout(ui.user, name, job)
+				ui.user.client.prefs.save_loadout(loadout)
+				add_loadout(loadout)
+				to_chat(ui.user, span_warning("Please note: The loadout code has been updated and as such any modular helmet/suit has been removed from it due to the transitioning of loadout versions. Any future modular helmet/suit saves should have no problem being saved."))
 			ui.user.client.prefs.save_loadout(loadout)
 			add_loadout(loadout)
 			update_static_data(ui.user, ui)
@@ -113,6 +128,20 @@
 				to_chat(ui.user, span_warning("Error when loading this loadout"))
 				delete_loadout(ui.user, name, job)
 				CRASH("Fail to load loadouts")
+			if(loadout.version != CURRENT_LOADOUT_VERSION)
+				loadout.version = CURRENT_LOADOUT_VERSION
+				for(var/key in loadout.item_list)
+					if(key == slot_head_str && istype(loadout.item_list[key], /datum/item_representation/modular_helmet))
+						loadout.empty_slot(slot_head_str)
+						continue
+					if(key == slot_wear_suit_str && istype(loadout.item_list[key], /datum/item_representation/modular_armor))
+						loadout.empty_slot(slot_wear_suit_str)
+						continue
+				delete_loadout(ui.user, name, job)
+				ui.user.client.prefs.save_loadout(loadout)
+				add_loadout(loadout)
+				to_chat(ui.user, span_warning("Please note: The loadout code has been updated and as such any modular helmet/suit has been removed from it due to the transitioning of loadout versions. Any future modular helmet/suit saves should have no problem being saved."))
+			update_static_data(ui.user, ui)
 			loadout.loadout_vendor = loadout_vendor
 			loadout.ui_interact(ui.user)
 

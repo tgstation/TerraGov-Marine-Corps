@@ -14,6 +14,8 @@
 	var/gamemode_flags = ABILITY_ALL_GAMEMODE
 	///Alternative keybind signal, to use the action differently
 	var/alternate_keybind_signal
+	/// Psy points cost of using ability, if any.
+	var/psych_cost = 0
 
 /datum/action/xeno_action/New(Target)
 	. = ..()
@@ -31,7 +33,7 @@
 	if(keybind_signal)
 		RegisterSignal(L, keybind_signal, .proc/keybind_activation)
 	if(alternate_keybind_signal)
-		RegisterSignal(L, alternate_keybind_signal, .proc/alternate_keybind_action)
+		RegisterSignal(L, alternate_keybind_signal, .proc/alternate_action_activate)
 	RegisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, .proc/on_xeno_upgrade)
 
 /datum/action/xeno_action/remove_action(mob/living/L)
@@ -50,10 +52,6 @@
 	if(can_use_action())
 		INVOKE_ASYNC(src, .proc/action_activate)
 	return COMSIG_KB_ACTIVATED
-
-///Signal Handler for alternate keybind actions
-/datum/action/xeno_action/proc/alternate_keybind_action()
-	SIGNAL_HANDLER
 
 /datum/action/xeno_action/proc/on_xeno_upgrade()
 	return
@@ -192,7 +190,7 @@
 		deselect()
 	return ..()
 
-/datum/action/xeno_action/activable/alternate_keybind_action()
+/datum/action/xeno_action/activable/alternate_action_activate()
 	INVOKE_ASYNC(src, .proc/action_activate)
 
 /datum/action/xeno_action/activable/action_activate()
@@ -228,10 +226,8 @@
 /datum/action/xeno_action/activable/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
-		to_chat(X, "You will no longer use [ability_name] with [(X.client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING) ? "middle-click" :"shift-click"].")
 		deselect()
 	else
-		to_chat(X, "You will now use [ability_name] with [(X.client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING) ? "middle-click" :"shift-click"].")
 		if(X.selected_ability)
 			X.selected_ability.deselect()
 		select()

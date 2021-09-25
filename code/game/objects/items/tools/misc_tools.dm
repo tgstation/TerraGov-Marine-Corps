@@ -150,7 +150,7 @@
 
 /obj/item/tool/pen/paralysis/Initialize()
 	. = ..()
-	create_reagents(50, OPENCONTAINER, list(/datum/reagent/toxin/zombiepowder = 10, /datum/reagent/cryptobiolin = 15))
+	create_reagents(50, OPENCONTAINER, list(/datum/reagent/toxin/huskpowder = 10, /datum/reagent/cryptobiolin = 15))
 
 
 
@@ -208,7 +208,3 @@
 /obj/item/tool/stamp/centcom
 	name = "centcom rubber stamp"
 	icon_state = "stamp-cent"
-
-
-/obj/item/tool/stamp/attack_paw(mob/living/carbon/human/user)
-	return attack_hand(user)

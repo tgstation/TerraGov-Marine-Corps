@@ -114,8 +114,8 @@
 	GLOB.nightfall_toggleable_lights += src
 
 /obj/item/clothing/suit/Destroy()
-	. = ..()
 	GLOB.nightfall_toggleable_lights -= src
+	return ..()
 
 /obj/item/clothing/suit/dropped(mob/user)
 	turn_light(user, FALSE)

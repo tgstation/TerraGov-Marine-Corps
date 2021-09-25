@@ -120,7 +120,7 @@
 	fixture_type = "bulb"
 	sheets_refunded = 1
 
-// the standard tube light fixture
+/// the standard tube light fixture
 /obj/machinery/light
 	name = "light fixture"
 	icon = 'icons/obj/lighting.dmi'
@@ -133,17 +133,19 @@
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	var/brightness = 8			// luminosity when on, also used in power calculation
-	var/bulb_power = 1			// basically the alpha of the emitted light source
+	light_system = STATIC_LIGHT //do not change this, byond and potato pcs no like
+	obj_flags = CAN_BE_HIT
+	var/brightness = 8			// power usage and light range when on
+	var/bulb_power = 1			// basically the light_power of the emitted light source
 	var/bulb_colour = COLOR_WHITE
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = FALSE
 	var/light_type = /obj/item/light_bulb/tube		// the type of light item
 	var/fitting = "tube"
-	var/switchcount = 0			// count of number of times switched on/off
-								// this is used to calc the probability the light burns out
-
-	var/rigged = FALSE				// true if rigged to explode
+	///count of number of times switched on/off. this is used to calc the probability the light burns out
+	var/switchcount = 0
+	/// true if rigged to explode
+	var/rigged = FALSE
 
 // the smaller bulb light fixture
 
@@ -174,6 +176,15 @@
 
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload, ...)
+	switch(dir)
+		if(NORTH)
+			light_pixel_y = 15
+		if(SOUTH)
+			light_pixel_y = -15
+		if(WEST)
+			light_pixel_x = 15
+		if(EAST)
+			light_pixel_x = -15
 	. = ..()
 
 	GLOB.nightfall_toggleable_lights += src
@@ -206,8 +217,8 @@
 	turn_light(null, (A.lightswitch && A.power_light))
 
 /obj/machinery/light/Destroy()
-	. = ..()
 	GLOB.nightfall_toggleable_lights -= src
+	return ..()
 
 /obj/machinery/light/proc/is_broken()
 	if(status == LIGHT_BROKEN)
@@ -224,7 +235,6 @@
 			icon_state = "[base_state]-burned"
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
-	return
 
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update(trigger = TRUE, toggle_on = TRUE)
@@ -642,7 +652,7 @@
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 
 /obj/machinery/landinglight/Initialize()
 	. = ..()
@@ -657,14 +667,14 @@
 
 /obj/machinery/landinglight/ds1/Initialize(mapload, ...)
 	. = ..()
-	id = "alamo"
+	id = SHUTTLE_ALAMO
 
 /obj/machinery/landinglight/ds2
 
 
 /obj/machinery/landinglight/ds2/Initialize(mapload, ...)
 	. = ..()
-	id = "normandy" // ID for landing zone
+	id = SHUTTLE_NORMANDY // ID for landing zone
 
 /obj/machinery/landinglight/proc/turn_on()
 	icon_state = "landingstripe0"
@@ -693,3 +703,38 @@
 /obj/machinery/landinglight/ds2/delaythree/turn_on()
 	icon_state = "landingstripe3"
 	set_light(2)
+
+/obj/machinery/floor_warn_light
+	name = "alarm light"
+	desc = "If this is on you should probably be running!"
+	icon = 'icons/obj/lighting.dmi'
+	icon_state = "rotating_alarm"
+	light_system = HYBRID_LIGHT
+	light_color = LIGHT_COLOR_RED
+	light_mask_type = /atom/movable/lighting_mask/rotating_conical
+	light_power = 6
+	light_range = 4
+
+/obj/machinery/floor_warn_light/self_destruct
+	name = "self destruct alarm light"
+	icon_state = "rotating_alarm_off"
+	light_power = 0
+	light_range = 0
+
+/obj/machinery/floor_warn_light/self_destruct/Initialize()
+	. = ..()
+	SSevacuation.alarm_lights += src
+
+/obj/machinery/floor_warn_light/self_destruct/Destroy()
+	. = ..()
+	SSevacuation.alarm_lights -= src
+
+///Enables the alarm lights and makes them start flashing
+/obj/machinery/floor_warn_light/self_destruct/proc/enable()
+	icon_state = "rotating_alarm"
+	set_light(4,6)
+
+///Disables the alarm lights and makes them stop flashing
+/obj/machinery/floor_warn_light/self_destruct/proc/disable()
+	icon_state = initial(icon_state)
+	set_light(0,0)

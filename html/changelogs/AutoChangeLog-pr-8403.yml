@@ -1,0 +1,4 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - bugfix: "Removed some landing consoles accidentally placed in dorms."

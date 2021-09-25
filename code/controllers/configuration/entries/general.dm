@@ -71,6 +71,10 @@ Administrative related.
 
 /datum/config_entry/flag/log_ooc
 
+/datum/config_entry/flag/log_xooc
+
+/datum/config_entry/flag/log_mooc
+
 /datum/config_entry/flag/log_looc
 
 /datum/config_entry/flag/log_access
@@ -86,6 +90,8 @@ Administrative related.
 /datum/config_entry/flag/log_prayer
 
 /datum/config_entry/flag/log_game
+
+/datum/config_entry/flag/log_asset
 
 /datum/config_entry/flag/log_vote
 
@@ -151,6 +157,9 @@ Administrative related.
 /datum/config_entry/flag/use_account_age_for_jobs
 
 /datum/config_entry/number/notify_new_player_age
+	min_val = -1
+
+/datum/config_entry/number/notify_new_account_age
 	min_val = -1
 
 /datum/config_entry/flag/allow_shutdown

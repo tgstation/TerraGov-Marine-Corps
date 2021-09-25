@@ -342,7 +342,7 @@
 	icon_state = ""
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	network = list("laser targets")
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 
 /obj/machinery/camera/laser_cam/Initialize(mapload, laser_name)
 	. = ..()
@@ -355,7 +355,7 @@
 	icon_state = ""
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	network = list("supply beacons")
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 
 /obj/machinery/camera/beacon_cam/bomb
 	network = list("bomb beacons")

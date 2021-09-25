@@ -27,7 +27,7 @@ FLOOR SAFES
 	anchored = TRUE
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	var/spawnkey = 1 //Spawn safe code on top of it?
 	var/open = 0		//is the safe open?
 	var/tumbler_1_pos	//the tumbler position- from 0 to 72

@@ -224,6 +224,6 @@
 				var/turf_link = TURF_LINK(M, turf_target)
 				rendered_message = "[turf_link] [message]"
 
-			to_chat(M, rendered_message)
+			to_chat(M, rendered_message, avoid_highlighting = speaker_key == M.key)
 		else
-			to_chat(M, message)
+			to_chat(M, message, avoid_highlighting = speaker_key == M.key)

@@ -12,7 +12,7 @@
 	var/list/datum/mind/members = list() //Currently-joined members.
 	var/list/datum/mind/candidates = list() //Potential candidates for enlisting.
 	var/mob/living/carbon/leader = null
-	var/shuttle_id = "distress"
+	var/shuttle_id = SHUTTLE_DISTRESS
 	var/obj/docking_port/mobile/ert/shuttle
 	var/auto_shuttle_launch = FALSE //Useful for xenos that can't interact with the shuttle console.
 	var/medics = 0

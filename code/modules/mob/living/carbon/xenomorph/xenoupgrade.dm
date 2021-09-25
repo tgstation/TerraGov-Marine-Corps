@@ -8,6 +8,8 @@
 		visible_message(span_xenonotice("\The [src] begins to twist and contort."), \
 		span_xenonotice("We begin to twist and contort."))
 		do_jitter_animation(1000)
+	if(upgrade_stored < xeno_caste.upgrade_threshold)
+		upgrade_stored = xeno_caste.upgrade_threshold
 	set_datum()
 	var/selected_ability_type = selected_ability?.type
 
@@ -51,7 +53,7 @@
 				if(XENO_TIER_THREE)
 					SSmonitor.stats.elder_T3++
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.elder_queen++
+					SSmonitor.stats.elder_T4++
 
 		//FINAL UPGRADE
 		if(XENO_UPGRADE_THREE)
@@ -63,7 +65,7 @@
 				if(XENO_TIER_THREE)
 					SSmonitor.stats.ancient_T3++
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.ancient_queen++
+					SSmonitor.stats.ancient_T4++
 
 	generate_name() //Give them a new name now
 
@@ -159,18 +161,7 @@
 
 //----HIVELORD END----//
 //================//
-//----HIVEMIND START----//
 
-/mob/living/carbon/xenomorph/hivemind/mature
-	upgrade = XENO_UPGRADE_ONE
-
-/mob/living/carbon/xenomorph/hivemind/elder
-	upgrade = XENO_UPGRADE_TWO
-
-/mob/living/carbon/xenomorph/hivemind/ancient
-	upgrade = XENO_UPGRADE_THREE
-
-//----HIVEMIND END----//
 //================//
 //----PRAETORIAN START----//
 

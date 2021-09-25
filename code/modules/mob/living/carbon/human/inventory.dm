@@ -11,11 +11,11 @@
 			return
 		if(client?.prefs?.preferred_slot)
 			if(draw_from_slot_if_possible(client.prefs.preferred_slot))
-				next_move = world.time + 3
+				next_move = world.time + 1
 				return
 		for(var/slot in SLOT_DRAW_ORDER)
 			if(draw_from_slot_if_possible(slot))
-				next_move = world.time + 3
+				next_move = world.time + 1
 				return
 	else
 		if(s_active && s_active.can_be_inserted(I))
@@ -112,13 +112,13 @@
 
 /mob/living/carbon/human/put_in_l_hand(obj/item/W)
 	var/datum/limb/O = get_limb("l_hand")
-	if(!O || !O.is_usable())
+	if(!O?.is_usable())
 		return FALSE
 	. = ..()
 
 /mob/living/carbon/human/put_in_r_hand(obj/item/W)
 	var/datum/limb/O = get_limb("r_hand")
-	if(!O || !O.is_usable())
+	if(!O?.is_usable())
 		return FALSE
 	. = ..()
 
@@ -373,7 +373,7 @@
 		if(SLOT_IN_SUIT)
 			var/obj/item/clothing/suit/storage/S = wear_suit
 			var/obj/item/storage/internal/T = S.pockets
-			T.handle_item_insertion(W, FALSE)
+			T.handle_item_insertion(W, FALSE, src)
 			T.close(src)
 		if(SLOT_IN_BELT)
 			var/obj/item/storage/belt/S = belt
@@ -381,13 +381,13 @@
 		if(SLOT_IN_HEAD)
 			var/obj/item/clothing/head/helmet/marine/S = head
 			var/obj/item/storage/internal/T = S.pockets
-			T.handle_item_insertion(W, FALSE)
+			T.handle_item_insertion(W, FALSE, src)
 			T.close(src)
 		if(SLOT_IN_ACCESSORY)
 			var/obj/item/clothing/under/U = w_uniform
 			var/obj/item/clothing/tie/storage/T = U.hastie
 			var/obj/item/storage/internal/S = T.hold
-			S.handle_item_insertion(W, FALSE)
+			S.handle_item_insertion(W, FALSE, src)
 			S.close(src)
 		if(SLOT_IN_HOLSTER)
 			var/obj/item/storage/S = belt

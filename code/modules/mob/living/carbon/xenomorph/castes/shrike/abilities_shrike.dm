@@ -72,7 +72,7 @@
 		return FALSE
 	if(QDELETED(target))
 		return FALSE
-	if(!isitem(target) && !ishuman(target))	//only items and mobs can be flung.
+	if(!isitem(target) && !ishuman(target) && !isdroid(target))	//only items, droids, and mobs can be flung.
 		return FALSE
 	var/max_dist = 3 //the distance only goes to 3 now, since this is more of a utility then an attack.
 	if(!owner.line_of_sight(target, max_dist))
@@ -176,7 +176,7 @@
 		affected_tile.Shake(4, 4, 2 SECONDS)
 		for(var/i in affected_tile)
 			var/atom/movable/affected = i
-			if(!ishuman(affected) && !istype(affected, /obj/item))
+			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
 				affected.Shake(4, 4, 20)
 				continue
 			if(ishuman(affected)) //if they're human, they also should get knocked off their feet from the blast.
@@ -323,8 +323,7 @@
 	succeed_activate()
 
 	playsound(T, "alien_resin_build", 25)
-	var/obj/structure/xeno/acidwell/AC = new /obj/structure/xeno/acidwell(T, owner)
-	AC.creator = owner
+	new /obj/structure/xeno/acidwell(T, owner)
 
 	to_chat(owner, span_xenonotice("We place an acid well; it can be filled with more acid."))
 	GLOB.round_statistics.xeno_acid_wells++

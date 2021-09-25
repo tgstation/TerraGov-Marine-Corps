@@ -21,6 +21,13 @@
 	description = "Drop weeds to help grow your hive."
 	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
 
+/datum/keybinding/xeno/choose_weeds
+	hotkey_keys = list("Space")
+	name = "choose_weeds"
+	full_name = "Choose Weed"
+	description = "Choose what weed you will drop."
+	keybind_signal = COMSIG_XENOABILITY_CHOOSE_WEEDS
+
 /datum/keybinding/xeno/secrete_resin
 	name = "secrete_resin"
 	full_name = "Secrete Resin"
@@ -249,6 +256,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_REAGENT_SLASH
 
+/datum/keybinding/xeno/defile
+	name = "defile"
+	full_name = "Defiler: Defile"
+	description = "Purges xeno toxins in exchange for dealing toxin damage and generating toxic sanguinal smoke."
+	keybind_signal = COMSIG_XENOABILITY_DEFILE
+
 /datum/keybinding/xeno/resin_walker
 	name = "resin_walker"
 	full_name = "Hivelord: Toggle Resin Walker"
@@ -278,6 +291,12 @@
 	full_name = "Hunter: Toggle Stealth"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
+
+/datum/keybinding/xeno/mirage
+	name = "mirage"
+	full_name = "Hunter: Mirage"
+	description = "Creates multiple mirror images of the xeno."
+	keybind_signal = COMSIG_XENOABILITY_MIRAGE
 
 /datum/keybinding/xeno/haunt
 	name = "impair senses"
@@ -512,7 +531,7 @@
 	description = "Recall a target from netherspace, ending Banish's effect."
 	keybind_signal = COMSIG_XENOABILITY_RECALL
 
-/datum/keybinding/xeno/nightfall 
+/datum/keybinding/xeno/nightfall
 	name = "nightfall"
 	full_name = "King: Nightfall"
 	description = "Shut down all nearby electric lights for 10 seconds"

@@ -48,7 +48,7 @@
 				if(XENO_TIER_THREE)
 					SSmonitor.stats.elder_T3--
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.elder_queen--
+					SSmonitor.stats.elder_T4--
 		if(XENO_UPGRADE_THREE)
 			switch(tier)
 				if(XENO_TIER_TWO)
@@ -56,7 +56,7 @@
 				if(XENO_TIER_THREE)
 					SSmonitor.stats.ancient_T3--
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.ancient_queen--
+					SSmonitor.stats.ancient_T4--
 
 	if(GetComponent(/datum/component/ai_controller))
 		gib()

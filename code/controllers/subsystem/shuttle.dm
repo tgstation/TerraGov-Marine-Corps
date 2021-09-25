@@ -175,6 +175,7 @@ SUBSYSTEM_DEF(shuttle)
 	else
 		if(M.initiate_docking(D) != DOCKING_SUCCESS)
 			return 2
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SHUTTLE_TAKEOFF, shuttleId, D)
 	return 0	//dock successful
 
 /datum/controller/subsystem/shuttle/proc/request_transit_dock(obj/docking_port/mobile/M)

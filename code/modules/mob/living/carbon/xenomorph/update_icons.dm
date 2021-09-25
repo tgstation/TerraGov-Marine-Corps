@@ -16,6 +16,8 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/update_icons()
+	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
+		return
 	if(stat == DEAD)
 		icon_state = "[xeno_caste.caste_name] Dead"
 	else if(lying_angle)
@@ -59,7 +61,7 @@
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			r_hand.screen_loc = ui_rhand
 			client.screen += r_hand
-		
+
 		overlays_standing[X_R_HAND_LAYER] = r_hand.make_worn_icon(inhands = TRUE, slot_name = slot_r_hand_str, default_icon = 'icons/mob/items_righthand_0.dmi', default_layer = X_R_HAND_LAYER)
 		apply_overlay(X_R_HAND_LAYER)
 
@@ -69,7 +71,7 @@
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			l_hand.screen_loc = ui_lhand
 			client.screen += l_hand
-		
+
 		overlays_standing[X_L_HAND_LAYER] = l_hand.make_worn_icon(inhands = TRUE, slot_name = slot_l_hand_str, default_icon = 'icons/mob/items_lefthand_0.dmi', default_layer = X_L_HAND_LAYER)
 		apply_overlay(X_L_HAND_LAYER)
 
@@ -144,7 +146,6 @@
 
 /atom/movable/vis_obj/xeno_wounds/Destroy()
 	if(wound_owner)
-		UnregisterSignal(wound_owner, COMSIG_ATOM_DIR_CHANGE)
 		wound_owner = null
 	return ..()
 

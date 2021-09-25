@@ -112,16 +112,6 @@
 	desc = "A classic switchblade with gold engraving. Just holding it makes you feel like a gangster."
 	icon_state = "switchblade"
 
-/obj/item/weapon/butterfly/katana
-	name = "katana"
-	desc = "A ancient weapon from Japan."
-	icon_state = "samurai"
-	force = 50
-
-
-
-
-
 
 /obj/item/weapon/wirerod
 	name = "wired rod"

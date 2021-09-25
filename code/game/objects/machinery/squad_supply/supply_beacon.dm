@@ -142,10 +142,13 @@
 	beacon_datum = null
 
 /obj/item/beacon/supply_beacon/activate(mob/living/carbon/human/H)
+	var/area/A = get_area(H)
+	if(A.flags_area & OB_CAS_IMMUNE)
+		to_chat(H, span_warning("Our payload won't reach this target!"))
+		return
 	. = ..()
 	if(!.)
 		return
-	var/area/A = get_area(H)
 	beacon_datum = new /datum/supply_beacon("[H.name] + [A]", loc, H.faction)
 	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, .proc/clean_beacon_datum)
 

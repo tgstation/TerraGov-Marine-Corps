@@ -7,7 +7,7 @@
 //#define DEBUG_ATTACK_ALIEN
 
 /mob/living/proc/attack_alien_grab(mob/living/carbon/xenomorph/X)
-	if(X == src || anchored || buckled)
+	if(X == src || anchored || buckled || X.buckled)
 		return FALSE
 
 	if(!Adjacent(X))
@@ -17,7 +17,6 @@
 	return TRUE
 
 /mob/living/carbon/human/attack_alien_grab(mob/living/carbon/xenomorph/X)
-
 	if(check_shields(COMBAT_TOUCH_ATTACK, X.xeno_caste.melee_damage, "melee"))
 		return ..()
 	X.visible_message(span_danger("\The [X]'s grab is blocked by [src]'s shield!"),
@@ -38,19 +37,6 @@
 /mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
 	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_INTELLIGENT)) // intelligent ignore restrictions
 		return TRUE
-
-	if(X.hive.slashing_allowed == XENO_SLASHING_RESTRICTED)
-		if(status_flags & XENO_HOST)
-			for(var/obj/item/alien_embryo/embryo in src)
-				if(!embryo.issamexenohive(X))
-					continue
-				to_chat(X, span_warning("We try to slash [src], but find we <B>cannot</B>. There is a host inside!"))
-				return FALSE
-
-		if(X.health > round(2 * X.maxHealth / 3)) //Note : Under 66 % health
-			to_chat(X, span_warning("We try to slash [src], but find we <B>cannot</B>. We are not yet injured enough to overcome the Queen's orders."))
-			return FALSE
-
 	else if(isnestedhost(src))
 		for(var/obj/item/alien_embryo/embryo in src)
 			if(!embryo.issamexenohive(X))
@@ -62,9 +48,6 @@
 /mob/living/carbon/human/can_xeno_slash(mob/living/carbon/xenomorph/X)
 	. = ..()
 	if(!.)
-		return FALSE
-	if(!X.hive.slashing_allowed && !(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
-		to_chat(X, span_warning("Slashing is currently <b>forbidden</b> by the Queen. We refuse to slash [src]."))
 		return FALSE
 
 /mob/living/proc/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
@@ -200,7 +183,7 @@
 				to_chat(X, span_warning("We disable the creatures hivemind sight apparatus."))
 				return FALSE
 
-		if(length(light_sources) || locate(/obj/effect/overlay/light_visible) in vis_contents)
+		if(length(static_light_sources) || length(hybrid_light_sources) || length(affected_movable_lights))
 			playsound(loc, "alien_claw_metal", 25, 1)
 			X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 			disable_lights(sparks = TRUE)

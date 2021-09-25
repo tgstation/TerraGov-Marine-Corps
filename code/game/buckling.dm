@@ -9,7 +9,7 @@
 	if(. && user_buckle_mob(., user))
 		return TRUE
 
-//procs that handle the actual buckling and unbuckling
+//procs that handle the actual buckling and unbuckling //TODO replace the args in this proc with flags
 /atom/movable/proc/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
 	if(!isliving(buckling_mob))
 		return FALSE
@@ -28,8 +28,13 @@
 				to_chat(usr, span_warning("You are unable to buckle [buckling_mob] to [src]!"))
 		return FALSE
 
-	if(SEND_SIGNAL(src, COMSIG_MOVABLE_BUCKLE, buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent) & COMPONENT_MOVABLE_BUCKLE_STOPPED)
+	// This signal will check if the mob is mounting this atom to ride it. There are 3 possibilities for how this goes
+	// 1. This movable doesn't have a ridable element and can't be ridden, so nothing gets returned, so continue on
+	// 2. There's a ridable element but we failed to mount it for whatever reason (maybe it has no seats left, for example), so we cancel the buckling
+	// 3. There's a ridable element and we were successfully able to mount, so keep it going and continue on with buckling
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PREBUCKLE, buckling_mob, force, check_loc, lying_buckle , hands_needed, target_hands_needed, silent) & COMPONENT_BLOCK_BUCKLE)
 		return FALSE
+
 
 	if(buckling_mob.pulledby)
 		if(buckle_flags & BUCKLE_PREVENTS_PULL)
@@ -58,6 +63,7 @@
 	post_buckle_mob(buckling_mob, silent)
 
 	RegisterSignal(buckling_mob, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_BUCKLE, buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
 	return TRUE
 
 /obj/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
@@ -109,7 +115,12 @@
 		return FALSE
 
 	add_fingerprint(user, "buckle")
-	. = buckle_mob(buckling_mob, check_loc = check_loc)
+	var/hands_req = 0
+	if(buckle_flags & BUCKLE_NEEDS_HAND)
+		hands_req = 1
+	else if(buckle_flags & BUCKLE_NEEDS_TWO_HANDS)
+		hands_req = 2
+	. = buckle_mob(buckling_mob, check_loc = check_loc, target_hands_needed = hands_req)
 	if(!.)
 		return FALSE
 	if(!silent)

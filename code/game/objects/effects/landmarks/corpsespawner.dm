@@ -36,18 +36,24 @@
 	. = ..()
 	GLOB.corpse_landmarks_list += src
 
+/obj/effect/landmark/corpsespawner/Destroy()
+	GLOB.corpse_landmarks_list -= src
+	return ..()
+
 /// Create the mob and delete the corpse spawner
 /obj/effect/landmark/corpsespawner/proc/create_mob(death_type)
 	var/mob/living/carbon/human/victim = new(loc)
+	SSmobs.stop_processing(victim)
 	GLOB.round_statistics.total_humans_created-- //corpses don't count
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_humans_created")
 	victim.real_name = name
 	victim.death(silent = TRUE) //Kills the new mob
 	victim.timeofdeath = -CONFIG_GET(number/revive_grace_period)
+	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+	victim.med_hud_set_status()
 	equip_items_to_mob(victim)
 	switch(death_type)
 		if(COCOONED_DEATH) //Just cocooned
-			ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 			new /obj/structure/cocoon/opened_cocoon(loc)
 		if(SILO_DEATH) //Headbite and siloed
 			var/datum/internal_organ/brain
@@ -68,7 +74,7 @@
 			victim.headbitten = TRUE
 			victim.update_headbite()
 	qdel(src)
-			
+
 
 
 /obj/effect/landmark/corpsespawner/proc/equip_items_to_mob(mob/living/carbon/human/corpse)
@@ -240,17 +246,6 @@
 	corpsesuit = /obj/item/clothing/suit/space/rig/engineering
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/rig/engineering
-
-/obj/effect/landmark/corpsespawner/clown
-	name = "Clown"
-	corpseuniform = /obj/item/clothing/under/rank/clown
-	corpseshoes = /obj/item/clothing/shoes/clown_shoes
-	corpsemask = /obj/item/clothing/mask/gas/clown_hat
-	corpsepocket1 = /obj/item/toy/bikehorn
-	corpseback = /obj/item/storage/backpack/clown
-	corpseid = 1
-	corpseidjob = "Clown"
-//	corpseidaccess = "Clown"
 
 /obj/effect/landmark/corpsespawner/scientist
 	name = "Scientist"

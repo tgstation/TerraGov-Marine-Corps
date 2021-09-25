@@ -43,6 +43,7 @@
 	RegisterSignal(src, COMSIG_KB_GIVE, .proc/give_signal_handler)
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
 	AddComponent(/datum/component/bump_attack, FALSE, FALSE)
+	AddElement(/datum/element/ridable, /datum/component/riding/creature/human)
 
 /mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
 	SIGNAL_HANDLER
@@ -107,6 +108,11 @@
 			stat(null, "You are affected by a HOLD order.")
 		if(marksman_aura)
 			stat(null, "You are affected by a FOCUS order.")
+		var/datum/game_mode/mode = SSticker.mode
+		if(mode.flags_round_type & MODE_WIN_POINTS)
+			stat("Points needed to win:", mode.win_points_needed)
+			stat("Loyalists team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) : 0)
+			stat("Rebels team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) : 0)
 
 /mob/living/carbon/human/ex_act(severity)
 	if(status_flags & GODMODE)
@@ -203,18 +209,6 @@
 	browser.set_content(dat)
 	browser.open(FALSE)
 
-// called when something steps onto a human
-// this handles mulebots and vehicles
-/mob/living/carbon/human/Crossed(atom/movable/AM)
-	. = ..()
-	if(istype(AM, /obj/machinery/bot/mulebot))
-		var/obj/machinery/bot/mulebot/MB = AM
-		MB.RunOver(src)
-
-	if(istype(AM, /obj/vehicle))
-		var/obj/vehicle/V = AM
-		V.RunOver(src)
-
 
 //gets assignment from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
@@ -233,10 +227,9 @@
 /mob/living/carbon/human/proc/get_authentification_name(if_no_id = "Unknown")
 	var/obj/item/card/id/id = wear_id
 	if (istype(id))
-		. = id.registered_name
+		return id.registered_name
 	else
 		return if_no_id
-	return
 
 //gets paygrade from ID
 //paygrade is a user's actual rank, as defined on their ID.  size 1 returns an abbreviation, size 0 returns the full rank name, the third input is used to override what is returned if no paygrade is assigned.
@@ -793,7 +786,6 @@
 /mob/living/carbon/human/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
 	if(!force)//humans are only meant to be ridden through piggybacking and special cases
 		return FALSE
-	LoadComponent(/datum/component/riding/human)
 	return ..()
 
 
@@ -1004,7 +996,7 @@
 				light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/lit_gun in contents)
-			var/obj/item/attachable/flashlight/lit_rail_flashlight = LAZYACCESS(lit_gun.attachments, ATTACHMENT_SLOT_RAIL)
+			var/obj/item/attachable/flashlight/lit_rail_flashlight = LAZYACCESS(lit_gun.attachments_by_slot, ATTACHMENT_SLOT_RAIL)
 			if(!isattachmentflashlight(lit_rail_flashlight))
 				continue
 			lit_rail_flashlight.turn_light(src, FALSE, 0, FALSE, forced)

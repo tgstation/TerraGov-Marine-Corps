@@ -1,0 +1,6 @@
+author: "hyper2snyper"
+delete-after: True
+changes: 
+  - rscadd: "PAS can be recolored using green facepaint."
+  - code_imp: "ALT-CLICK will now remove jaeger attachments."
+  - refactor: "CHONKY Jaeger refactor. Switching its base to that of the gun attachments."

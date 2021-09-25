@@ -18,25 +18,6 @@
 			log_combat(S, src, "attacked")
 
 
-/mob/living/carbon/xenomorph/attack_paw(mob/living/carbon/human/user)
-	. = ..()
-
-	switch(user.a_intent)
-
-		if(INTENT_HELP)
-			help_shake_act(user)
-		else
-			if(istype(wear_mask, /obj/item/clothing/mask/muzzle))
-				return 0
-			if(health > 0)
-				user.do_attack_animation(src, ATTACK_EFFECT_BITE)
-				playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
-				visible_message(span_danger("\The [user] bites \the [src]."), \
-				span_danger("We are bit by \the [user]."), null, 5)
-				apply_damage(rand(1, 3), BRUTE)
-				UPDATEHEALTH(src)
-
-
 /mob/living/carbon/xenomorph/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
