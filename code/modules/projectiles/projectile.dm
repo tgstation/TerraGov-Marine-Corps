@@ -925,7 +925,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			apy += 0.1
 
 		if(next_turf == last_processed_turf)
-			laser_effects += new /obj/effect/projectile(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.1, effect_icon)
+			laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.1, effect_icon)
 			continue //Pixel movement only, didn't manage to change turf.
 		var/movement_dir = get_dir(last_processed_turf, next_turf)
 
@@ -1028,7 +1028,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			ammo.do_at_max_range(src)
 			end_of_movement = TRUE
 			break
-		laser_effects += new /obj/effect/projectile(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, effect_icon)
+		laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, effect_icon)
 	apx -= 8 * x_offset
 	apy -= 8 * y_offset
 
@@ -1036,7 +1036,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		apx += 0.1
 	if(apy % 32 == 0)
 		apy += 0.1
-	laser_effects += new /obj/effect/projectile(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 0.5, effect_icon)
+	laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 0.5, effect_icon)
 	QDEL_LIST_IN(laser_effects, 1)
 
 /mob/living/carbon/human/bullet_act(obj/projectile/proj)
