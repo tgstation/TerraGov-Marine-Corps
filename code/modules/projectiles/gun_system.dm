@@ -479,7 +479,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			replace_magazine(user, magazine)
 	else
 		current_mag = magazine
-		magazine.loc = src
+		if(!istype(magazine, /obj/item/ammo_magazine/worn))
+			magazine.loc = src
 		replace_ammo(,magazine)
 		if(!in_chamber)
 			load_into_chamber()
@@ -511,11 +512,12 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 
 	if((!current_mag || isnull(current_mag) || current_mag.loc != src) && !(flags_gun_features & GUN_ENERGY))
 		return cock(user)
-
-	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
-		current_mag.loc = get_turf(src) //Drop it on the ground.
-	else
-		user.put_in_hands(current_mag)
+	
+	if(!istype(current_mag, /obj/item/ammo_magazine/worn))
+		if(drop_override || !user) //If we want to drop it on the ground or there's no user.
+			current_mag.loc = get_turf(src) //Drop it on the ground.
+		else
+			user.put_in_hands(current_mag)
 
 	playsound(loc, unload_sound, 25, 1, 5)
 	user?.visible_message(span_notice("[user] unloads [current_mag] from [src]."),

@@ -243,6 +243,38 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 //----------------------------------------------------------------//
 
 
+/obj/item/ammo_magazine/worn
+	name = "worn mag"
+	var/obj/item/weapon/gun/attached_gun
+
+/obj/item/ammo_magazine/worn/attackby(obj/item/I, mob/user, params)
+	if(loc != user || !istype(I, /obj/item/weapon/gun) || !istype(I, gun_type))
+		return ..()
+	var/obj/item/weapon/gun/gun = I
+	if(!gun.reload(user, src))
+		return
+	on_linked(gun, user)
+
+/obj/item/ammo_magazine/worn/attackby_alternate(obj/item/I, mob/user, params)
+	. = ..()
+	if(!isgun(I))
+		return
+	var/obj/item/weapon/gun/gun = I
+	if(!gun.active_attachable)
+		return
+	attackby(gun.active_attachable, user, params)
+	attached_gun = gun
+
+/obj/item/ammo_magazine/worn/removed_from_inventory(mob/user) //Dropping the tank should unlink it from the flamer
+	. = ..()
+	var/mob/living/carbon/human/human_user = user
+	if(!istype(human_user))
+		return
+	if(!attached_gun)
+		return
+	attached_gun.unload(user)
+
+
 /*
 Doesn't do anything or hold anything anymore.
 Generated per the various mags, and then changed based on the number of

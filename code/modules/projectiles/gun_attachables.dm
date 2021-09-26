@@ -1574,11 +1574,17 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		var/list/turf/next_turfs = list()
 		for(var/turf/old_turf in previous_turfs)
 			var/turf/new_turf = get_step(old_turf, dir_to_target)
-			next_turfs += new_turf
+			if(!ISDIAGONALDIR(dir_to_target))
+				next_turfs += new_turf
 			if(!(get_step(new_turf, turn(dir_to_target, 90)) in previous_turfs))
 				next_turfs += get_step(new_turf, turn(dir_to_target, 90))
 			if(!(get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90))) in previous_turfs))
 				next_turfs += get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90)))
+			if(ISDIAGONALDIR(dir_to_target))
+				if(!(get_step(new_turf, turn(dir_to_target, 45)) in previous_turfs))
+					next_turfs += get_step(new_turf, turn(dir_to_target, 45))
+				if(!(get_step(new_turf, turn(dir_to_target, -45)) in previous_turfs))
+					next_turfs += get_step(new_turf, turn(dir_to_target, -45))
 		for(var/turf/turf_to_check in next_turfs)
 			if((turf_to_check.density && !istype(turf_to_check, /turf/closed/wall/resin)) || isspaceturf(turf_to_check))
 				next_turfs -= turf_to_check
@@ -1647,3 +1653,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 ///Called when the attachment is trying to be attached. If the attachment is allowed to go through, return TRUE.
 /obj/item/weapon/gun/proc/can_attach(obj/item/attaching_to, mob/attacher)
 	return TRUE
+
+/obj/item/weapon/gun/proc/on_attachment_attach(/obj/item/attaching_here, mob/attacher)
+	return
+
+/obj/item/weapon/gun/proc/on_attachment_detach(/obj/item/attaching_here, mob/attacher)
+	return
