@@ -25,6 +25,7 @@
 ///Clean src when it's owner is deleted
 /datum/language_holder/proc/clean_language()
 	SIGNAL_HANDLER
+	owner = null
 	qdel(src)
 
 /datum/language_holder/proc/copy(newowner)
