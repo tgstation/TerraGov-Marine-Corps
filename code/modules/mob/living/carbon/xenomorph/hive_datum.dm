@@ -91,9 +91,14 @@
 		if("buy")
 			var/buying = params["buyname"]
 			var/datum/hive_upgrade/upgrade = upgrades_by_name[buying]
-			if(!upgrade.can_buy(usr))
+			var/mob/living/carbon/xenomorph/user = usr
+			if(!upgrade.can_buy(user))
 				return
-			upgrade.on_buy(usr)
+			if(!upgrade.on_buy(user))
+				return
+			log_game("[key_name(user)] has purchased \a [upgrade] Boon for [upgrade.psypoint_cost] psypoints for the [hivenumber] hive")
+			if(upgrade.flags_upgrade & UPGRADE_FLAG_MESSAGE_HIVE)
+				xeno_message("[user] has purchased \a [upgrade] Boon", "xenoannounce", 5, user.hivenumber)
 
 
 // ***************************************
