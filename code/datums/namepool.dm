@@ -44,7 +44,6 @@ GLOBAL_LIST_EMPTY_TYPED(namepool, /datum/namepool)
 	firstname_female_pool = "names/first_female"
 
 /datum/namepool/vatborn/get_random_name(gender = MALE)
-
 	if(gender == MALE)
 		. = pick(SSstrings.get_list_from_file(firstname_male_pool))
 	else
