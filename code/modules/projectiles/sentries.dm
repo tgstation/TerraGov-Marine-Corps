@@ -4,10 +4,7 @@
 	layer = ABOVE_MOB_LAYER
 	use_power = 0
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
-	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
-
-
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 50)
+	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
 	///Spark system for making sparks
 	var/datum/effect_system/spark_spread/spark_system
@@ -32,6 +29,8 @@
 	///Iff signal of the sentry. If the /gun has a set IFF then this will be the same as that. If not the sentry will get its IFF signal from the deployer
 	var/iff_signal = NONE
 
+	var/list/ignored_terrains
+
 //------------------------------------------------------------------
 //Setup and Deletion
 
@@ -47,6 +46,7 @@
 
 	knockdown_threshold = gun.knockdown_threshold
 	range = gun.turret_range
+	ignored_terrains = gun.ignored_terrains
 
 	radio = new(src)
 
@@ -73,7 +73,8 @@
 	QDEL_NULL(camera)
 	QDEL_NULL(spark_system)
 	STOP_PROCESSING(SSobj, src)
-	UnregisterSignal(internal_item, COMSIG_MOB_GUN_FIRED)
+	if(internal_item)
+		UnregisterSignal(internal_item, COMSIG_MOB_GUN_FIRED)
 	GLOB.marine_turrets -= src
 	return ..()
 
@@ -91,15 +92,16 @@
 
 /obj/machinery/deployable/mounted/sentry/attackby(obj/item/I, mob/user, params)
 	var/obj/item/weapon/gun/gun = internal_item
-	if(istype(I, gun.sentry_battery_type))
-		internal_item.attackby(I, user, params)
+	if(istype(I, gun.sentry_battery_type) && !istype(gun, /obj/item/weapon/gun/energy))
+		gun.reload_sentry_cell(I, user)
 		update_static_data(user)
 		return
 	return ..()
 
-/obj/machinery/deployable/mounted/sentry/AltClick(mob/user)
+/obj/machinery/deployable/mounted/sentry/CtrlClick(mob/user)
 	. = ..()
-	internal_item.AltClick(user)
+	var/obj/item/weapon/gun/internal_gun = internal_item
+	internal_gun.remove_sentry_cell(user)
 
 /obj/machinery/deployable/mounted/sentry/on_set_interaction(mob/user)
 	. = ..()
@@ -159,17 +161,30 @@
 
 /obj/machinery/deployable/mounted/sentry/ui_data(mob/user)
 	var/obj/item/weapon/gun/gun = internal_item
+	var/current_rounds
+	if(istype(internal_item, /obj/item/weapon/gun/energy))
+		var/obj/item/weapon/gun/energy/internal_gun = internal_item
+		current_rounds = internal_gun.cell ? internal_gun.cell.charge : 0
+	else
+		current_rounds = gun.current_mag ? gun.current_mag.current_rounds : 0
 	. = list(
-		"rounds" = (gun.current_mag ? gun.current_mag.current_rounds : 0),
+		"rounds" =  current_rounds,
 		"cell_charge" = gun.sentry_battery ? gun.sentry_battery.charge : 0,
 		"health" = obj_integrity
 	)
 
 /obj/machinery/deployable/mounted/sentry/ui_static_data(mob/user)
 	var/obj/item/weapon/gun/gun = internal_item
+	var/rounds_max
+	if(istype(internal_item, /obj/item/weapon/gun/energy))
+		var/obj/item/weapon/gun/energy/internal_gun = internal_item
+		var/obj/item/cell/gun_cell_type = internal_gun.cell_type
+		rounds_max = internal_gun.cell ? internal_gun.cell.maxcharge : initial(gun_cell_type.maxcharge)
+	else
+		rounds_max = gun.current_mag ? gun.current_mag.max_rounds : gun.max_shells
 	. = list(
 		"name" = copytext(name, 2),
-		"rounds_max" = (gun.current_mag ? gun.current_mag.max_rounds : gun.max_shells),
+		"rounds_max" = rounds_max,
 		"fire_mode" = gun.gun_firemode,
 		"has_cell" = (gun.sentry_battery ? 1 : 0),
 		"cell_maxcharge" = gun.sentry_battery ? gun.sentry_battery.maxcharge : 0,
@@ -225,6 +240,9 @@
 			. = TRUE
 
 		if("toggle_radial")
+			if(!gun.sentry_battery?.charge)
+				update_static_data(user)
+				return
 			TOGGLE_BITFIELD(gun.turret_flags, TURRET_RADIAL)
 			var/rad_msg = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL) ? "activate" : "deactivate"
 			user.visible_message(span_notice("[user] [rad_msg]s [src]'s radial mode."), span_notice("You [rad_msg] [src]'s radial mode."))
@@ -242,7 +260,7 @@
 		DISABLE_BITFIELD(gun.turret_flags, TURRET_ON)
 		gun.set_target(null)
 		set_light(0)
-		update_icon_state()
+		update_icon()
 		STOP_PROCESSING(SSobj, src)
 		UnregisterSignal(gun, COMSIG_MOB_GUN_FIRED)
 		return
@@ -252,7 +270,7 @@
 	set_light_range(initial(light_power))
 	set_light_color(initial(light_color))
 	set_light(SENTRY_LIGHT_POWER)
-	update_icon_state()
+	update_icon()
 	START_PROCESSING(SSobj, src)
 	RegisterSignal(gun, COMSIG_MOB_GUN_FIRED, .proc/check_next_shot)
 
@@ -260,12 +278,14 @@
 /obj/machinery/deployable/mounted/sentry/proc/knock_down()
 	if(CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
+	var/obj/item/weapon/gun/internal_gun = internal_item
+	internal_gun.stop_fire() //Comrade sentry has been sent to the gulags. He served the revolution well.
 	visible_message(span_highdanger("The [name] is knocked over!"))
 	sentry_alert(SENTRY_ALERT_FALLEN)
 	ENABLE_BITFIELD(machine_stat, KNOCKED_DOWN)
 	density = FALSE
 	set_on(FALSE)
-	update_icon_state()
+	update_icon()
 
 /obj/machinery/deployable/mounted/sentry/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_SENTRY)
@@ -283,7 +303,7 @@
 	if(!internal_item)
 		return
 	sentry_alert(SENTRY_ALERT_DAMAGE)
-	update_icon_state()
+	update_icon()
 
 /obj/machinery/deployable/mounted/sentry/ex_act(severity)
 	switch(severity)
@@ -334,6 +354,7 @@
 
 
 /obj/machinery/deployable/mounted/sentry/process()
+	update_icon()
 	if(!scan())
 		var/obj/item/weapon/gun/gun = internal_item
 		gun.stop_fire()
@@ -360,35 +381,36 @@
 /obj/machinery/deployable/mounted/sentry/proc/check_next_shot(datum/source, atom/gun_target, obj/item/weapon/gun/gun)
 	SIGNAL_HANDLER
 	var/obj/item/weapon/gun/internal_gun = internal_item
-	if(get_dist(src, gun_target) <= range && (CHECK_BITFIELD(get_dir(src, gun_target), dir) || CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) && check_target_path(gun_target))
+	if(CHECK_BITFIELD(internal_gun.flags_gun_features, GUN_PUMP_REQUIRED))
+		internal_gun.cock()
+	if(get_dist(src, gun_target) >= range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
+		internal_gun.stop_fire()
 		return
-	internal_gun.stop_fire()
+	if(internal_gun.gun_firemode != GUN_FIREMODE_SEMIAUTO)
+		return
+	addtimer(CALLBACK(src, .proc/sentry_start_fire), internal_gun.fire_delay) //This schedules the next shot if the gun is on semi-automatic. This is so that semi-automatic guns fire once every two seconds.
 
 ///Sees if theres a target to shoot, then handles firing.
 /obj/machinery/deployable/mounted/sentry/proc/sentry_start_fire()
 	var/obj/item/weapon/gun/gun = internal_item
 	var/mob/living/target = get_target()
-	update_icon_state()
+	update_icon()
 	if(target != gun.target || get_dist(src, target) > range)
 		gun.stop_fire()
-	if(!gun.current_mag)
+	var/has_mag
+	if(istype(gun, /obj/item/weapon/gun/energy))
+		var/obj/item/weapon/gun/energy/energy_gun = gun
+		has_mag = energy_gun.cell
+	else
+		has_mag = gun.current_mag
+	if(!has_mag)
 		sentry_alert(SENTRY_ALERT_AMMO)
 		return
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL))
-		var/new_dir = get_dir(src, target)
-		switch(new_dir)
-			if(NORTHWEST)
-				new_dir = NORTH
-			if(NORTHEAST)
-				new_dir = EAST
-			if(SOUTHWEST)
-				new_dir = WEST
-			if(SOUTHEAST)
-				new_dir = SOUTH
-		setDir(new_dir)
+		setDir(get_cardinal_dir(src, target))
 		if(gun.sentry_battery.charge <= 0)
 			sentry_alert(SENTRY_ALERT_BATTERY)
-	if(CHECK_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING))
+	if(HAS_TRAIT(gun, TRAIT_GUN_BURST_FIRING))
 		gun.set_target(target)
 		return
 	gun.start_fire(src, target, bypass_checks = TRUE)
@@ -404,15 +426,15 @@
 		if(smoke && smoke.opacity)
 			return FALSE
 
-		if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE)
+		if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE && !(T.type in ignored_terrains))
 			return FALSE
 
 		for(var/obj/machinery/MA in T)
-			if(MA.density && MA.throwpass == FALSE)
+			if(MA.density && MA.throwpass == FALSE && !(MA.type in ignored_terrains))
 				return FALSE
 
 		for(var/obj/structure/S in T)
-			if(S.density && S.throwpass == FALSE )
+			if(S.density && S.throwpass == FALSE && !(S.type in ignored_terrains))
 				return FALSE
 
 	return TRUE
@@ -438,3 +460,27 @@
 
 		distance = buffer_distance
 		return nearby_target
+
+
+/obj/machinery/deployable/mounted/sentry/buildasentry
+	name = "broken build-a-sentry"
+	desc = "You should not be seeing this unless a mapper, coder or admin screwed up."
+
+/obj/machinery/deployable/mounted/sentry/buildasentry/Initialize(mapload, _internal_item, deployer) //I know the istype spam is a bit much, but I don't think there is a better way.
+	. = ..()
+	name = "Deployed " + internal_item.name
+	icon = 'icons/Marine/sentry.dmi'
+	default_icon_state = "build_a_sentry"
+	update_icon()
+
+/obj/machinery/deployable/mounted/sentry/buildasentry/examine(mob/user)
+	. = ..()
+	if(!istype(internal_item, /obj/item/weapon/gun/revolver))
+		return
+	to_chat(user, span_notice("It is as if he were still with us.")) //I miss ye already Ocelot.
+
+
+/obj/machinery/deployable/mounted/sentry/buildasentry/update_overlays()
+	. = ..()
+	var/obj/item/weapon/gun/internal_gun = internal_item
+	. += image('icons/Marine/sentry.dmi', src, internal_gun.placed_overlay_iconstate, dir = dir)

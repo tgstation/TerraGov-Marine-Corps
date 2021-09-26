@@ -53,7 +53,7 @@
 		/obj/item/ammo_magazine/rifle/tx15_flechette = 25,
 		/obj/item/weapon/gun/launcher/m92/standardmarine = 10,
 		/obj/item/weapon/gun/launcher/m81 = 15,
-		/obj/item/explosive/grenade/frag = 30,
+		/obj/item/explosive/grenade = 30,
 		/obj/item/attachable/bayonetknife = 20,
 		/obj/item/weapon/throwing_knife = 5,
 		/obj/item/storage/box/m94 = 5,
@@ -92,6 +92,7 @@
 			/obj/item/ammo_magazine/rifle/standard_skirmishrifle = -1,
 			/obj/item/weapon/gun/rifle/tx11 = -1,
 			/obj/item/ammo_magazine/rifle/tx11 = -1,
+			/obj/item/weapon/gun/shotgun/pump/lever/repeater = -1,
 		),
 		"Energy Weapons" = list(
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = -1,
@@ -106,9 +107,6 @@
 			/obj/item/ammo_magazine/smg/standard_smg = -1,
 			/obj/item/weapon/gun/smg/standard_machinepistol = -1,
 			/obj/item/ammo_magazine/smg/standard_machinepistol = -1,
-			/obj/item/weapon/gun/smg/ppsh = -1,
-			/obj/item/ammo_magazine/smg/ppsh = -1,
-			/obj/item/ammo_magazine/smg/ppsh/extended = -1,
 		),
 		"Marksman" = list(
 			/obj/item/weapon/gun/rifle/standard_dmr = -1,
@@ -125,6 +123,7 @@
 		"Shotgun" = list(
 			/obj/item/weapon/gun/shotgun/pump/t35 = -1,
 			/obj/item/weapon/gun/shotgun/combat/standardmarine = -1,
+			/obj/item/weapon/gun/shotgun/combat = -1,
 			/obj/item/weapon/gun/shotgun/pump/cmb = -1,
 			/obj/item/weapon/gun/shotgun/double/marine = -1,
 			/obj/item/storage/belt/gun/ts34/full = -1,
@@ -140,6 +139,8 @@
 			/obj/item/ammo_magazine/standard_lmg = -1,
 			/obj/item/weapon/gun/rifle/standard_gpmg = -1,
 			/obj/item/ammo_magazine/standard_gpmg = -1,
+			/obj/item/weapon/gun/standard_mmg = 5,
+			/obj/item/ammo_magazine/standard_mmg = -1,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,
@@ -176,12 +177,12 @@
 			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
 		"Grenades" = list(
-			/obj/item/explosive/grenade/frag = 600,
-			/obj/item/explosive/grenade/frag/m15 = 30,
+			/obj/item/explosive/grenade = 600,
+			/obj/item/explosive/grenade/m15 = 30,
 			/obj/item/explosive/grenade/impact = 125,
 			/obj/item/explosive/grenade/incendiary = 50,
-			/obj/item/explosive/grenade/cloakbomb = 25,
-			/obj/item/explosive/grenade/drainbomb = 10,
+			/obj/item/explosive/grenade/smokebomb/cloak = 25,
+			/obj/item/explosive/grenade/smokebomb/drain = 10,
 			/obj/item/explosive/grenade/mirage = 100,
 			/obj/item/storage/box/m94 = 200,
 			/obj/item/storage/box/m94/cas = 30,
@@ -205,7 +206,7 @@
 			/obj/item/attachable/lasersight = -1,
 			/obj/item/attachable/verticalgrip = -1,
 			/obj/item/attachable/stock/t19stock = -1,
-			/obj/item/attachable/stock/t35stock = -1, 
+			/obj/item/attachable/stock/t35stock = -1,
 			/obj/item/weapon/gun/shotgun/combat/masterkey = -1,
 			/obj/item/weapon/gun/flamer/mini_flamer = -1,
 			/obj/item/ammo_magazine/flamer_tank/mini = -1,
@@ -233,6 +234,7 @@
 		/obj/item/compass = -1,
 		/obj/item/assembly/signaler = 20,
 		/obj/item/weapon/gun/launcher/m81/flare/marine = -1,
+		/obj/item/jetpack_marine = 3,
 		),
 	)
 
@@ -293,11 +295,11 @@
 			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
 		"Grenades" = list(
-			/obj/item/explosive/grenade/frag = 600,
-			/obj/item/explosive/grenade/frag/m15 = 50,
+			/obj/item/explosive/grenade = 600,
+			/obj/item/explosive/grenade/m15 = 50,
 			/obj/item/explosive/grenade/incendiary = 50,
-			/obj/item/explosive/grenade/cloakbomb = 50,
-			/obj/item/explosive/grenade/drainbomb = 10,
+			/obj/item/explosive/grenade/smokebomb/cloak = 50,
+			/obj/item/explosive/grenade/smokebomb/drain = 10,
 			/obj/item/explosive/grenade/mirage = 100,
 			/obj/item/storage/box/m94 = 200,
 			/obj/item/storage/box/m94/cas = 30,
@@ -341,6 +343,48 @@
 /obj/machinery/vending/marine/shared/hvh/team_one
 
 /obj/machinery/vending/marine/shared/hvh/team_two
+
+/obj/machinery/vending/marine/shared/cigarette
+	name = "cigarette machine" //OCD had to be uppercase to look nice with the new formating
+	desc = "A specialized vending machine designed to contribute to your slow and uncomfortable death."
+	product_slogans = "There's no better time to start smokin'.;\
+		Smoke now, and win the adoration of your peers.;\
+		They beat cancer centuries ago, so smoke away.;\
+		If you're not smoking, you must be joking."
+	product_ads = "Probably not bad for you!;\
+		Don't believe the scientists!;\
+		It's good for you!;\
+		Don't quit, buy more!;\
+		Smoke!;\
+		Nicotine heaven.;\
+		Best cigarettes since 2150.;\
+		Don't be so hard on yourself, kid. Smoke a Lucky Star!;\
+		Professionals. Better cigarettes for better people. Yes, better people."
+	vend_delay = 14
+	icon_state = "cigs"
+	icon_vend = null
+	icon_deny = null
+	products = list(
+		/obj/item/storage/fancy/cigarettes/luckystars = 50,
+		/obj/item/storage/fancy/chemrettes = 30,
+		/obj/item/storage/box/matches = 15,
+		/obj/item/tool/lighter/random = 25,
+		/obj/item/tool/lighter/zippo = 10,
+	)
+
+	contraband = list(/obj/item/clothing/mask/cigarette/cigar/havana = 5)
+	premium = list(/obj/item/storage/fancy/cigar = 25)
+	seasonal_items = list()
+
+/obj/machinery/vending/marine/shared/cigarette/colony
+	product_slogans = "Koorlander Gold, for the refined palate.;Lady Fingers, for the dainty smoker.;Lady Fingers, treat your palete with pink!;The big blue K means a cool fresh day!;For the taste that cools your mood, look for the big blue K!;Refined smokers go for Gold!;Lady Fingers are preferred by women who appreciate a cool smoke.;Lady Fingers are the number one cigarette this side of Gateway!;The tobacco connoisseur prefers Koorlander Gold.;For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;The Colonial Administration Bureau would like to remind you that smoking kills."
+	product_ads = "For the taste that cools your mood, look for the big blue K!;Refined smokers go for Gold!;Lady Fingers are preferred by women who appreciate a cool smoke.;Lady Fingers are the number one cigarette this side of Gateway!;The tobacco connoisseur prefers Koorlander Gold.;For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;The Colonial Administration Bureau would like to remind you that smoking kills."
+	products = list(
+		/obj/item/storage/fancy/cigarettes/kpack = 15,
+		/obj/item/storage/fancy/cigarettes/lady_finger = 15,
+		/obj/item/storage/box/matches = 10,
+		/obj/item/tool/lighter/random = 20,
+	)
 
 /obj/machinery/vending/marine/cargo_supply
 	name = "\improper Operational Supplies Vendor"
@@ -615,10 +659,10 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 		),
 		"Heal Pack" = list(
-			/obj/item/stack/medical/advanced/bruise_pack = 32,
-			/obj/item/stack/medical/bruise_pack = 32,
-			/obj/item/stack/medical/advanced/ointment = 32,
-			/obj/item/stack/medical/ointment = 32,
+			/obj/item/stack/medical/heal_pack/gauze = -1,
+			/obj/item/stack/medical/heal_pack/ointment = -1,
+			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 32,
+			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 32,
 			/obj/item/stack/medical/splint = 16,
 		),
 		"Misc" = list(
@@ -653,7 +697,7 @@
 	contraband = list()
 
 /obj/machinery/vending/MarineMed/Blood/rebel
-	req_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
+	req_one_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
 
 /obj/machinery/vending/MarineMed/Blood/build_inventory(list/productlist, category)
 	. = ..()
@@ -723,6 +767,7 @@
 	prices = list()
 
 /obj/machinery/vending/shared_vending/marine_engi/rebel
+	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
 	products = list(
 		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 		/obj/item/storage/box/sentry = 5,
@@ -805,6 +850,9 @@
 			/obj/item/clothing/suit/storage/marine/harness = -1,
 			/obj/item/clothing/suit/armor/vest/pilot = -1,
 			/obj/item/facepaint/green = -1,
+			/obj/item/clothing/suit/storage/marine/robot/light = -1,
+			/obj/item/clothing/suit/storage/marine/robot = -1,
+			/obj/item/clothing/suit/storage/marine/robot/heavy = -1,
 		),
 		"Helmets" = list(
 			/obj/item/clothing/head/modular/marine/m10x = -1,
@@ -817,6 +865,9 @@
 			/obj/item/clothing/head/modular/marine/eod = -1,
 			/obj/item/clothing/head/modular/marine/scout = -1,
 			/obj/item/clothing/head/modular/marine/infantry = -1,
+			/obj/item/clothing/head/helmet/marine/robot/light = -1,
+			/obj/item/clothing/head/helmet/marine/robot = -1,
+			/obj/item/clothing/head/helmet/marine/robot/heavy = -1,
 		),
 		"Jaeger chestpieces" = list(
 			/obj/item/armor_module/armor/chest/marine/skirmisher = -1,
@@ -847,16 +898,16 @@
 			/obj/item/armor_module/storage/general = -1,
 			/obj/item/armor_module/storage/engineering = -1,
 			/obj/item/armor_module/storage/medical = -1,
-			/obj/item/helmet_module/welding = -1,
-			/obj/item/helmet_module/binoculars = -1,
-			/obj/item/helmet_module/attachable/tyr_head = -1,
-			/obj/item/helmet_module/antenna = -1,
-			/obj/item/helmet_module/attachable/mimir_environment_protection/mark1 = -1,
-			/obj/item/armor_module/attachable/mimir_environment_protection/mark1 = -1,
-			/obj/item/armor_module/attachable/tyr_extra_armor/mark1 = -1,
-			/obj/item/armor_module/attachable/ballistic_armor = -1,
-			/obj/item/armor_module/attachable/better_shoulder_lamp/mark1 = -1,
-			/obj/item/armor_module/attachable/chemsystem = -1,
+			/obj/item/armor_module/module/welding = -1,
+			/obj/item/armor_module/module/binoculars = -1,
+			/obj/item/armor_module/module/tyr_head = -1,
+			/obj/item/armor_module/module/antenna = -1,
+			/obj/item/armor_module/module/mimir_environment_protection/mark1 = -1,
+			/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1 = -1,
+			/obj/item/armor_module/module/tyr_extra_armor/mark1 = -1,
+			/obj/item/armor_module/module/ballistic_armor = -1,
+			/obj/item/armor_module/module/better_shoulder_lamp = -1,
+			/obj/item/armor_module/module/chemsystem = -1,
 		),
 	)
 
@@ -892,6 +943,7 @@
 			/obj/item/clothing/head/white_dress = -1,
 			/obj/item/clothing/shoes/white = -1,
 			/obj/item/clothing/gloves/white = -1,
+			/obj/item/clothing/under/marine/robotic = -1,
 		),
 		"Webbings" = list(
 			/obj/item/clothing/tie/storage/black_vest = -1,

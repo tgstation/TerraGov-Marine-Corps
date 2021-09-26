@@ -59,7 +59,7 @@
 ///Relays health and location data about resin silos belonging to the same hive as the input user
 /proc/resin_silo_status_output(mob/living/carbon/xenomorph/user, datum/hive_status/hive)
 	. = "<BR><b>List of Resin Silos:</b><BR><table cellspacing=4>" //Resin silo data
-	for(var/obj/structure/xeno/resin/silo/resin_silo AS in GLOB.xeno_resin_silos)
+	for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos)
 		if(resin_silo.associated_hive == hive)
 
 			var/hp_color = "green"
@@ -170,14 +170,14 @@
 				if(X.nicknumber != xeno_name)
 					continue
 			to_chat(usr,span_notice(" You will now track [X.name]"))
-			tracked = X
+			set_tracked(X)
 			break
 
 	if(href_list["track_silo_number"])
 		var/silo_number = href_list["track_silo_number"]
-		for(var/obj/structure/xeno/resin/silo/resin_silo AS in GLOB.xeno_resin_silos)
+		for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos)
 			if(resin_silo.associated_hive == hive && num2text(resin_silo.number_silo) == silo_number)
-				tracked = resin_silo
+				set_tracked(resin_silo)
 				to_chat(usr,span_notice(" You will now track [resin_silo.name]"))
 				break
 
@@ -617,7 +617,7 @@
 	return FALSE
 
 /mob/living/carbon/human/can_sting()
-	if(species?.species_flags & IS_SYNTHETIC)
+	if(species?.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
 		return FALSE
 	if(stat != DEAD)
 		return TRUE
@@ -671,3 +671,15 @@
 		return
 	victim.forceMove(eject_location)
 	REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
+
+///Set the var tracked to to_track
+/mob/living/carbon/xenomorph/proc/set_tracked(atom/to_track)
+	if(tracked)
+		UnregisterSignal(tracked, COMSIG_PARENT_QDELETING)
+	tracked = to_track
+	RegisterSignal(tracked, COMSIG_PARENT_QDELETING, .proc/clean_tracked)
+
+///Signal handler to null tracked
+/mob/living/carbon/xenomorph/proc/clean_tracked(atom/to_track)
+	SIGNAL_HANDLER
+	tracked = null

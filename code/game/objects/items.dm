@@ -57,9 +57,20 @@
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
 	var/breakouttime = 0
 
+	///list() of species types, if a species cannot put items in a certain slot, but species type is in list, it will be able to wear that item
+	var/list/species_exception = null
+
 	var/list/allowed = null //suit storage stuff.
-	var/zoomdevicename = null //name used for message when binoculars/scope is used
-	var/zoom = FALSE //TRUE if item is actively being used to zoom. For scoped guns and binoculars.
+	///name used for message when binoculars/scope is used
+	var/zoomdevicename = null
+	///TRUE if item is actively being used to zoom. For scoped guns and binoculars.
+	var/zoom = FALSE
+	///how much tiles the zoom offsets to the direction it zooms to.
+	var/zoom_tile_offset = 6
+	///how much tiles the zoom zooms out, 7 is the default view.
+	var/zoom_viewsize = 7
+	///if you can move with the zoom on, only works if zoom_view_size is 7 otherwise CRASH() is called due to maptick performance reasons.
+	var/zoom_allow_movement = FALSE
 
 	var/datum/embedding_behavior/embedding
 	var/mob/living/embedded_into
@@ -107,6 +118,10 @@
 
 
 /obj/item/Initialize()
+
+	if(species_exception)
+		species_exception = string_list(species_exception)
+
 	. = ..()
 
 	for(var/path in actions_types)
@@ -134,6 +149,7 @@
 	master = null
 	embedding = null
 	embedded_into = null //Should have been removed by temporarilyRemoveItemFromInventory, but let's play it safe.
+	GLOB.cryoed_item_list -= src
 	return ..()
 
 
@@ -400,6 +416,10 @@
 
 	if(H.species && !(slot in mob_equip))
 		return FALSE
+
+	if(slot in H.species?.no_equip)
+		if(!is_type_in_list(H.species, species_exception))
+			return FALSE
 
 	if(issynth(H) && CHECK_BITFIELD(flags_item, SYNTH_RESTRICTED) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(H, span_warning("Your programming prevents you from wearing this."))
@@ -670,7 +690,7 @@ modules/mob/mob_movement.dm if you move you will be zoomed out
 modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 */
 
-/obj/item/proc/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+/obj/item/proc/zoom(mob/living/user, tileoffset, viewsize) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	if(!user)
 		return
 	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
@@ -688,6 +708,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		to_chat(user, span_warning("Your vision is too obscured for you to look through \the [zoom_device]."))
 		return
 
+	if(!tileoffset)
+		tileoffset = zoom_tile_offset
+	if(!viewsize)
+		viewsize = zoom_viewsize
+
 	if(zoom) //If we are zoomed out, reset that parameter.
 		user.visible_message(span_notice("[user] looks up from [zoom_device]."),
 		span_notice("You look up from [zoom_device]."))
@@ -703,8 +728,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		if(user.client)
 			user.client.click_intercept = null
 			user.client.view_size.reset_to_default()
-			user.client.pixel_x = 0
-			user.client.pixel_y = 0
+			animate(user.client, 3*(tileoffset/7), pixel_x = 0, pixel_y = 0)
 		return
 
 	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ZOOM)) //If we are spamming the zoom, cut it out
@@ -716,30 +740,38 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return
 
 	if(user.client)
-		user.client.view_size.set_view_radius_to(viewsize/2-2)//sets the viewsize to reflect radius changes properly
-
-		var/tilesize = 32
-		var/viewoffset = tilesize * tileoffset
-
-		switch(user.dir)
-			if(NORTH)
-				user.client.pixel_x = 0
-				user.client.pixel_y = viewoffset
-			if(SOUTH)
-				user.client.pixel_x = 0
-				user.client.pixel_y = -viewoffset
-			if(EAST)
-				user.client.pixel_x = viewoffset
-				user.client.pixel_y = 0
-			if(WEST)
-				user.client.pixel_x = -viewoffset
-				user.client.pixel_y = 0
+		user.client.view_size.add(viewsize)
+		change_zoom_offset(user, zoom_offset = tileoffset)
 
 	user.visible_message(span_notice("[user] peers through \the [zoom_device]."),
 	span_notice("You peer through \the [zoom_device]."))
 	zoom = TRUE
 	RegisterSignal(user, COMSIG_ITEM_ZOOM, .proc/zoom_check_return)
 	onzoom(user)
+
+///applies the offset of the zooming, using animate for smoothing.
+/obj/item/proc/change_zoom_offset(mob/user, newdir, zoom_offset)
+	SIGNAL_HANDLER
+	if(!istype(user))
+		return
+
+	var/viewoffset = zoom_tile_offset * 32
+	if(zoom_offset)
+		viewoffset = zoom_offset * 32
+
+	var/zoom_offset_time = 3*((viewoffset/32)/7)
+	var/dirtooffset = newdir ? newdir : user.dir
+
+	switch(dirtooffset)
+		if(NORTH)
+			animate(user.client, pixel_x = 0, pixel_y = viewoffset, time = zoom_offset_time)
+		if(SOUTH)
+			animate(user.client, pixel_x = 0, pixel_y = -viewoffset, time = zoom_offset_time)
+		if(EAST)
+			animate(user.client, pixel_x = viewoffset, pixel_y = 0, time = zoom_offset_time)
+		if(WEST)
+			animate(user.client, pixel_x = -viewoffset, pixel_y = 0, time = zoom_offset_time)
+
 
 ///returns a bitflag when another item tries to zoom same user.
 /obj/item/proc/zoom_check_return(datum/source)
@@ -749,16 +781,28 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///Wrapper for signal turning scope off.
 /obj/item/proc/zoom_item_turnoff(datum/source, mob/living/carbon/user)
 	SIGNAL_HANDLER
-	zoom(user)
+	if(isliving(source))
+		zoom(source)
+	else
+		zoom(user)
 
 ///called when zoom is activated.
 /obj/item/proc/onzoom(mob/living/user)
-	RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/zoom)
+	if(zoom_allow_movement)
+		RegisterSignal(user, COMSIG_CARBON_SWAPPED_HANDS, .proc/zoom_item_turnoff)
+	else
+		RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS), .proc/zoom_item_turnoff)
+	RegisterSignal(user, COMSIG_MOB_FACE_DIR, .proc/change_zoom_offset)
 	RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), .proc/zoom_item_turnoff)
+
 
 ///called when zoom is deactivated.
 /obj/item/proc/onunzoom(mob/living/user)
-	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS))
+	if(zoom_allow_movement)
+		UnregisterSignal(user, list(COMSIG_CARBON_SWAPPED_HANDS, COMSIG_MOB_FACE_DIR))
+	else
+		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CARBON_SWAPPED_HANDS, COMSIG_MOB_FACE_DIR))
+
 	UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 
 

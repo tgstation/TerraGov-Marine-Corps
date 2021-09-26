@@ -225,7 +225,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	else if(href_list["track_silo_number"])
 		var/silo_number = href_list["track_silo_number"]
-		for(var/obj/structure/xeno/resin/silo/resin_silo AS in GLOB.xeno_resin_silos)
+		for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos)
 			if(resin_silo.associated_hive == GLOB.hive_datums[XENO_HIVE_NORMAL] && num2text(resin_silo.number_silo) == silo_number)
 				var/mob/dead/observer/ghost = usr
 				ghost.forceMove(resin_silo.loc)
@@ -263,6 +263,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	mind = null
 	ghost.key = key
 	ghost.mind?.current = ghost
+	ghost.faction = faction
 
 	if(!T)
 		T = SAFEPICK(GLOB.latejoin)
@@ -341,6 +342,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 				var/datum/hive_status/normal/normal_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 				if(LAZYLEN(normal_hive.ssd_xenos))
 					stat("SSD xenos:", normal_hive.ssd_xenos.Join(", "))
+		var/datum/game_mode/mode = SSticker.mode
+		if(mode?.flags_round_type & MODE_WIN_POINTS)
+			stat("Points needed to win:", mode.win_points_needed)
+			stat("Loyalists team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) : 0)
+			stat("Rebels team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) : 0)
 
 
 /mob/dead/observer/verb/reenter_corpse()
@@ -896,30 +902,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/dead/observer/get_photo_description(obj/item/camera/camera)
 	if(!invisibility || camera.see_ghosts)
 		return "You can also see a g-g-g-g-ghooooost!"
-
-
-/mob/dead/observer/verb/toggle_actions()
-	set category = "Ghost"
-	set name = "Toggle Static Action Buttons"
-
-	client.prefs.observer_actions = !client.prefs.observer_actions
-	client.prefs.save_preferences()
-
-
-	to_chat(src, span_notice("You will [client.prefs.observer_actions ? "now" : "no longer"] get the static observer action buttons."))
-
-	if(!client.prefs.observer_actions)
-		for(var/datum/action/observer_action/A in actions)
-			A.remove_action(src)
-
-	else if(/datum/action/observer_action in actions)
-		return
-
-	else
-		for(var/path in subtypesof(/datum/action/observer_action))
-			var/datum/action/observer_action/A = new path()
-			A.give_action(src)
-
 
 /mob/dead/observer/incapacitated(ignore_restrained, restrained_flags)
 	return FALSE

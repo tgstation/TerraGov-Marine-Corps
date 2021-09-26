@@ -148,6 +148,8 @@
 		var/atom/movable/thing = i
 		if(CHECK_MULTIPLE_BITFIELDS(thing.flags_pass, HOVERING))
 			continue
+		if(thing.status_flags & INCORPOREAL)
+			continue
 		if(thing.Cross(mover))
 			continue
 		var/signalreturn = SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_MOVABLE, thing)
@@ -288,6 +290,7 @@
 		W.AfterChange(flags)
 
 	W.hybrid_lights_affecting = old_hybrid_lights_affecting
+	W.dynamic_lumcount = dynamic_lumcount
 
 	lighting_corner_NE = old_lighting_corner_NE
 	lighting_corner_SE = old_lighting_corner_SE
@@ -300,14 +303,7 @@
 
 		W.static_lighting_object = old_lighting_object
 
-		var/area/A = loc
-
-		if(A.static_lighting && !old_lighting_object)
-			W.static_lighting_build_overlay()
-		else if(!A.static_lighting && old_lighting_object)
-			W.static_lighting_clear_overlay()
-
-		else if(static_lighting_object && !static_lighting_object.needs_update)
+		if(static_lighting_object && !static_lighting_object.needs_update)
 			static_lighting_object.update()
 
 	//Since the old turf was removed from hybrid_lights_affecting, readd the new turf here
@@ -744,14 +740,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 /turf/proc/copyTurf(turf/T)
 	if(T.type != type)
-		var/obj/O
-		if(underlays.len)	//we have underlays, which implies some sort of transparency, so we want to a snapshot of the previous turf as an underlay
-			O = new()
-			O.underlays += T
 		T.ChangeTurf(type)
-		if(underlays.len)
-			T.underlays.Cut()
-			T.underlays += O.underlays
 	if(T.icon_state != icon_state)
 		T.icon_state = icon_state
 	if(T.icon != icon)

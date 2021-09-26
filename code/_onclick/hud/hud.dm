@@ -1,4 +1,4 @@
-
+#define MAXHUD_POSSIBLE 4
 /*
 	The hud datum
 	Used to show and hide huds for all the different mob types,
@@ -50,7 +50,7 @@
 	var/obj/screen/gun_move_icon
 	var/obj/screen/gun_run_icon
 
-	var/obj/screen/ammo
+	var/list/obj/screen/ammo_hud_list = list()
 
 	var/list/static_inventory = list() //the screen objects which are static
 	var/list/toggleable_inventory = list() //the screen objects which can be hidden
@@ -131,7 +131,7 @@
 
 	QDEL_LIST_ASSOC_VAL(plane_masters)
 
-	ammo = null
+	QDEL_LIST(ammo_hud_list)
 
 	mymob = null
 
@@ -246,11 +246,6 @@
 		return FALSE
 	hidden_inventory_update(screenmob)
 
-	if(hud_version == HUD_STYLE_STANDARD)
-		screenmob.client.screen += ammo
-		var/obj/screen/ammo/A = ammo
-		A.update_hud(screenmob)
-
 
 /datum/hud/proc/hidden_inventory_update(mob/viewer)
 	return
@@ -258,6 +253,34 @@
 /datum/hud/proc/persistent_inventory_update(mob/viewer)
 	return
 
+///Add an ammo hud to the user informing of the ammo count of G
+/datum/hud/proc/add_ammo_hud(mob/living/user, obj/item/weapon/gun/G)
+	if(length(ammo_hud_list) >= MAXHUD_POSSIBLE)
+		return
+	var/obj/screen/ammo/ammo_hud = new
+	ammo_hud_list[G] = ammo_hud
+	ammo_hud.screen_loc = ammo_hud.ammo_screen_loc_list[length(ammo_hud_list)]
+	ammo_hud.add_hud(user, G)
+	ammo_hud.update_hud(user, G)
+
+///Remove the ammo hud related to the gun G from the user
+/datum/hud/proc/remove_ammo_hud(mob/living/user, obj/item/weapon/gun/G)
+	var/obj/screen/ammo/ammo_hud = ammo_hud_list[G]
+	if(isnull(ammo_hud))
+		return
+	ammo_hud.remove_hud(user, G)
+	qdel(ammo_hud)
+	ammo_hud_list -= G
+	var/i = 1
+	for(var/key in ammo_hud_list)
+		ammo_hud = ammo_hud_list[key]
+		ammo_hud.screen_loc = ammo_hud.ammo_screen_loc_list[i]
+		i++
+
+///Update the ammo hud related to the gun G
+/datum/hud/proc/update_ammo_hud(mob/living/user, obj/item/weapon/gun/G)
+	var/obj/screen/ammo/ammo_hud = ammo_hud_list[G]
+	ammo_hud?.update_hud(user, G)
 
 /obj/screen/action_button/MouseEntered(location, control, params)
 	if (!usr.client?.prefs?.tooltips)

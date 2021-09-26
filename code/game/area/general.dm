@@ -3,7 +3,7 @@
 	requires_power = 1
 	always_unpowered = 1
 	base_lighting_alpha = 255
-	base_lighting_color = COLOR_WHITE
+
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
@@ -11,13 +11,6 @@
 	temperature = TCMB
 	pressure = 0
 	flags_area = NO_DROPPOD
-
-/area/space/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	. = ..()
-	if(isliving(arrived))
-		to_chat(arrived, span_danger("The cold vacuum instantly freezes you, maybe this was a bad idea?"))
-		var/mob/living/spaceman = arrived
-		spaceman.adjustFireLoss(600) //Bad idea, spessman.
 
 /area/engine/
 	ambience = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
@@ -223,7 +216,7 @@
 	requires_power = 0
 	static_lighting = FALSE
 	base_lighting_alpha = 255
-	base_lighting_color = LIGHT_COLOR_WHITE
+
 
 /area/syndicate_mothership
 	name = "Abandoned Syndicate Base"
@@ -263,7 +256,7 @@
 	icon_state = "thunder"
 	requires_power = FALSE
 	base_lighting_alpha = 255
-	base_lighting_color = LIGHT_COLOR_WHITE
+
 
 
 /area/tdome/tdome1
@@ -290,7 +283,7 @@
 	name = "End of Round Deathmatch Arena"
 	icon_state = "green"
 	base_lighting_alpha = 255
-	base_lighting_color = LIGHT_COLOR_WHITE
+
 	requires_power = 0
 
 
@@ -729,7 +722,7 @@
 	icon_state = "Holodeck"
 	static_lighting = FALSE
 	base_lighting_alpha = 255
-	base_lighting_color = LIGHT_COLOR_WHITE
+
 
 /area/holodeck/alphadeck
 	name = "Abandoned Holodeck Alpha"
@@ -1390,3 +1383,11 @@
 /area/turret_protected/aisat
 	name = "Abandoned AI Satellite"
 	icon_state = "ai"
+
+/area/sensor_tower_1
+	name = "Sensor tower 1"
+	icon_state = "sensor"
+
+/area/sensor_tower_2
+	name = "Sensor tower 2"
+	icon_state = "sensor"

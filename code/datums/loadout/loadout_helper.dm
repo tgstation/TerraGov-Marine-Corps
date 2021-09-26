@@ -8,9 +8,6 @@
 
 ///Return true if the item was found in a linked vendor and successfully bought
 /proc/buy_item_in_vendor(obj/item/item_to_buy_type, datum/loadout_seller/seller, mob/living/user)
-	//Some items are allowed to bypass the buy checks
-	if(is_type_in_typecache(item_to_buy_type, GLOB.bypass_loadout_check_item))
-		return TRUE
 
 	if(seller.faction != FACTION_NEUTRAL && is_type_in_typecache(item_to_buy_type, GLOB.hvh_restricted_items_list))
 		return FALSE
@@ -83,6 +80,8 @@
 		return /datum/item_representation/modular_armor
 	if(ispath(item_type, /obj/item/armor_module/armor))
 		return /datum/item_representation/armor_module/colored
+	if(ispath(item_type, /obj/item/armor_module/storage))
+		return /datum/item_representation/armor_module/storage
 	if(ispath(item_type, /obj/item/storage))
 		return /datum/item_representation/storage
 	if(ispath(item_type, /obj/item/clothing/suit/storage))

@@ -60,6 +60,8 @@
 	var/list/recording_recipe
 	///Whether untrained people get a delay when using it
 	var/needs_medical_training = TRUE
+	///If TRUE, we'll clear a recipe we click on instead of dispensing it
+	var/clearing_recipe = FALSE
 
 /obj/machinery/chem_dispenser/Initialize()
 	. = ..()
@@ -166,6 +168,7 @@
 	.["recipes"] = user.client.prefs.chem_macros
 
 	.["recordingRecipe"] = recording_recipe
+	.["clearingRecipe"] = clearing_recipe
 
 /obj/machinery/chem_dispenser/ui_act(action, list/params)
 	. = ..()
@@ -175,6 +178,8 @@
 	if(needs_medical_training && ishuman(usr))
 		var/mob/living/carbon/human/user = usr
 		if(!user.skills.getRating("medical"))
+			if(user.do_actions)
+				return
 			to_chat(user, span_notice("You start fiddling with \the [src]..."))
 			if(!do_after(user, SKILL_TASK_EASY, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
@@ -222,6 +227,11 @@
 		if("dispense_recipe")
 			if(!is_operational() || QDELETED(cell))
 				return
+			if(clearing_recipe)
+				if(tgui_alert(usr, "Clear recipe [params["recipe"]]?", null, list("Yes","No")) == "Yes")
+					usr.client.prefs.chem_macros.Remove(params["recipe"])
+					usr.client.prefs.save_preferences()
+				return TRUE
 			var/list/chemicals_to_dispense = usr.client.prefs.chem_macros[params["recipe"]]
 			if(!LAZYLEN(chemicals_to_dispense))
 				return
@@ -249,14 +259,20 @@
 		if("clear_recipes")
 			if(!is_operational())
 				return
-			var/yesno = tgui_alert(usr, "Clear all recipes?", null, list("Yes","No"))
-			if(yesno == "Yes")
-				usr.client.prefs.chem_macros = list()
-				usr.client.prefs.save_preferences()
+			if(clearing_recipe)
+				clearing_recipe = FALSE
+				return TRUE
+			switch(tgui_alert(usr, "Clear all recipes?", null, list("Yes","No", "Only one")))
+				if("Only one")
+					clearing_recipe = TRUE
+				if("Yes")
+					usr.client.prefs.chem_macros = list()
+					usr.client.prefs.save_preferences()
 			. = TRUE
 		if("record_recipe")
 			if(!is_operational())
 				return
+			clearing_recipe = FALSE
 			recording_recipe = list()
 			. = TRUE
 		if("save_recording")

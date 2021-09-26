@@ -325,6 +325,9 @@
 	removed_type = /obj/item/organ/brain/xeno
 	robotic_type = null
 
+/datum/internal_organ/brain/husk
+	vital = FALSE
+
 /datum/internal_organ/eyes
 	name = "eyes"
 	parent_limb = "head"

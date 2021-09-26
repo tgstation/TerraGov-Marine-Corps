@@ -107,7 +107,7 @@
 // ***************************************
 // *********** Drone-y abilities
 // ***************************************
-/datum/action/xeno_action/plant_weeds
+/datum/action/xeno_action/activable/plant_weeds
 	name = "Plant Weeds"
 	action_icon_state = "plant_weeds"
 	plasma_cost = 75
@@ -115,15 +115,27 @@
 	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
 	alternate_keybind_signal = COMSIG_XENOABILITY_CHOOSE_WEEDS
 	use_state_flags = XACT_USE_LYING
+	///the maximum range of the ability
+	var/max_range = 0
 	///The seleted type of weeds
 	var/obj/effect/alien/weeds/node/weed_type = /obj/effect/alien/weeds/node
 
-/datum/action/xeno_action/plant_weeds/can_use_action(atom/A, silent = FALSE, override_flags)
+/datum/action/xeno_action/activable/plant_weeds/can_use_action(atom/A, silent = FALSE, override_flags)
 	plasma_cost = initial(plasma_cost) * initial(weed_type.plasma_cost_mult)
 	return ..()
 
-/datum/action/xeno_action/plant_weeds/action_activate()
-	var/turf/T = get_turf(owner)
+/datum/action/xeno_action/activable/plant_weeds/action_activate()
+	if(max_range)
+		return ..()
+	if(can_use_action())
+		plant_weeds(owner)
+
+/datum/action/xeno_action/activable/plant_weeds/use_ability(atom/A)
+	plant_weeds(A)
+
+////Plant a weeds node on the selected atom
+/datum/action/xeno_action/activable/plant_weeds/proc/plant_weeds(atom/A)
+	var/turf/T = get_turf(A)
 
 	if(!T.check_alien_construction(owner, FALSE))
 		return fail_activate()
@@ -142,19 +154,19 @@
 
 	owner.visible_message(span_xenonotice("\The [owner] regurgitates a pulsating node and plants it on the ground!"), \
 		span_xenonotice("We regurgitate a pulsating node and plant it on the ground!"), null, 5)
-	new weed_type(owner.loc)
-	playsound(owner.loc, "alien_resin_build", 25)
+	new weed_type(T)
+	playsound(T, "alien_resin_build", 25)
 	GLOB.round_statistics.weeds_planted++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_planted")
 	add_cooldown()
 	return succeed_activate()
 
-/datum/action/xeno_action/plant_weeds/alternate_action_activate()
+/datum/action/xeno_action/activable/plant_weeds/alternate_action_activate()
 	INVOKE_ASYNC(src, .proc/choose_weed)
 	return COMSIG_KB_ACTIVATED
 
 ///Chose which weed will be planted by the xeno owner
-/datum/action/xeno_action/plant_weeds/proc/choose_weed()
+/datum/action/xeno_action/activable/plant_weeds/proc/choose_weed()
 	var/weed_choice = show_radial_menu(owner, owner, GLOB.weed_images_list, radius = 48)
 	if(!weed_choice)
 		return
@@ -165,16 +177,16 @@
 	to_chat(owner, "<span class='notice'>We will now spawn <b>[weed_choice]\s</b> when using the plant weeds ability.</span>")
 	update_button_icon()
 
-/datum/action/xeno_action/plant_weeds/update_button_icon()
+/datum/action/xeno_action/activable/plant_weeds/update_button_icon()
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/actions.dmi', button, initial(weed_type.name))
 	return ..()
 
 //AI stuff
-/datum/action/xeno_action/plant_weeds/ai_should_start_consider()
+/datum/action/xeno_action/activable/plant_weeds/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/plant_weeds/ai_should_use(target)
+/datum/action/xeno_action/activable/plant_weeds/ai_should_use(target)
 	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return ..()
 	if(locate(/obj/effect/alien/weeds/node) in owner.loc) //NODE SPAMMMM
@@ -182,16 +194,18 @@
 		return ..()
 	return TRUE
 
-/datum/action/xeno_action/plant_weeds/slow
-	cooldown_timer = 12 SECONDS
+/datum/action/xeno_action/activable/plant_weeds/ranged
+	max_range = 4
 
-/datum/action/xeno_action/plant_weeds/slow/action_activate()
-	if(locate(/obj/effect/alien/weeds) in range(1, owner.loc))
-		return ..()
-	var/mob/living/carbon/xenomorph/hivemind/hiveminde = owner
-	hiveminde.forceMove(get_turf(hiveminde.core))
-	to_chat(hiveminde, span_xenonotice("We can't plant a node without weeds nearby, we've been moved back to our core."))
-	return fail_activate()
+/datum/action/xeno_action/activable/plant_weeds/ranged/can_use_ability(atom/A, silent = FALSE, override_flags)
+	var/area/a_area = get_area(A)
+	if(is_type_in_typecache(a_area, GLOB.wraith_no_incorporeal_pass_areas) && SSmonitor.gamestate == SHUTTERS_CLOSED)
+		to_chat(owner, span_warning("You cannot plant weeds here yet!"))
+		return FALSE
+	if(!owner.line_of_sight(get_turf(A)))
+		to_chat(owner, span_warning("You cannot plant weeds without line of sight!"))
+		return FALSE
+	return ..()
 
 // Secrete Resin
 /datum/action/xeno_action/activable/secrete_resin
@@ -262,6 +276,10 @@
 
 	if(!T.is_weedable())
 		to_chat(X, span_warning("We can't do that here."))
+		return fail_activate()
+
+	if(!owner.line_of_sight(T))
+		to_chat(owner, span_warning("You cannot secrete resin without line of sight!"))
 		return fail_activate()
 
 	var/obj/effect/alien/weeds/alien_weeds = locate() in T
@@ -352,13 +370,6 @@
 		succeed_activate()
 
 	plasma_cost = initial(plasma_cost) //Reset the plasma cost
-
-// Slower version of the secret resin
-/datum/action/xeno_action/activable/secrete_resin/slow
-	cooldown_timer = 5 SECONDS
-	base_wait = 2.5 SECONDS
-	scaling_wait = 0
-
 
 /datum/action/xeno_action/toggle_pheromones
 	name = "Open/Collapse Pheromone Options"
@@ -1061,7 +1072,7 @@
 	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
 		return fail_activate()
 
-	var/obj/structure/xeno/resin/silo/hivesilo = new(get_step(A, SOUTHWEST))
+	var/obj/structure/xeno/silo/hivesilo = new(get_step(A, SOUTHWEST))
 
 	var/moved_human_number = 0
 	for(var/mob/living/to_use AS in valid_mobs)
@@ -1116,7 +1127,7 @@
 		to_chat(owner, span_xenowarning("The hive doesn't have the necessary psychic points for you to do that!"))
 		return FALSE
 
-	for(var/obj/structure/xeno/resin/silo/silo AS in GLOB.xeno_resin_silos)
+	for(var/obj/structure/xeno/silo/silo AS in GLOB.xeno_resin_silos)
 		if(get_dist(silo, A) < 15)
 			to_chat(owner, span_xenowarning("Another silo is too close!"))
 			return FALSE
@@ -1134,7 +1145,7 @@
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
 	log_game("[owner] has built a silo in [AREACOORD(A)], spending [psych_cost] psy points in the process")
 	succeed_activate()
-	new /obj/structure/xeno/resin/silo (get_step(A, SOUTHWEST))
+	new /obj/structure/xeno/silo (get_step(A, SOUTHWEST))
 	xeno_message("[X.name] has built a silo at [get_area(A)]!", "xenoannounce", 5, X.hivenumber)
 
 
@@ -1144,15 +1155,35 @@
 
 /datum/action/xeno_action/activable/build_turret
 	name = "Secrete acid turret"
-	action_icon_state = "xeno_turret"
+	//action_icon_state = "xeno_turret"
 	mechanics_text = "Creates a new xeno acid turret for 100 points"
 	ability_name = "secrete acid turret"
 	plasma_cost = 150
 	cooldown_timer = 60 SECONDS
 	gamemode_flags = ABILITY_DISTRESS
+	psych_cost = XENO_TURRET_PRICE
 	/// How long does it take to build
 	var/build_time = 15 SECONDS
-	psych_cost = XENO_TURRET_PRICE
+	/// turret typepath to create
+	var/obj/structure/xeno/xeno_turret/turret_type = /obj/structure/xeno/xeno_turret
+
+/datum/action/xeno_action/activable/build_turret/update_button_icon()
+	button.overlays.Cut()
+	button.overlays += image(initial(turret_type.icon), initial(turret_type.icon_state))
+	return ..()
+
+/datum/action/xeno_action/activable/build_turret/alternate_action_activate()
+	INVOKE_ASYNC(src, .proc/pick_turret)
+	return COMSIG_KB_ACTIVATED
+
+///async proc to let player choose a turret
+/datum/action/xeno_action/activable/build_turret/proc/pick_turret()
+	var/turret_choice = show_radial_menu(owner, owner, GLOB.xeno_turret_images_list, radius = 48)
+	if(!turret_choice)
+		return
+	to_chat(owner, span_notice("We will now place <b>[turret_choice]\s</b> turrets."))
+	turret_type = GLOB.turret_types_by_name[turret_choice]
+	update_button_icon()
 
 /datum/action/xeno_action/activable/build_turret/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -1180,16 +1211,16 @@
 		to_chat(X, span_warning("We can't build so close to the fog!"))
 		return FALSE
 
-	for(var/obj/structure/xeno/resin/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
+	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
 		if(get_dist(turret, A) < 6)
-			to_chat(owner, span_xenowarning("Another turret is too close!") )
+			to_chat(owner, span_xenowarning("Another turret is too close!"))
 			return FALSE
 
 	if(!alien_weeds)
 		to_chat(X, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
 		return FALSE
 
-	if(!T.check_alien_construction(X, planned_building = /obj/structure/xeno/resin/xeno_turret) || !T.check_disallow_alien_fortification(X))
+	if(!T.check_alien_construction(X, planned_building = /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(X))
 		return FALSE
 
 	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
@@ -1207,7 +1238,7 @@
 		return fail_activate()
 
 	to_chat(owner, span_xenowarning("We build a new acid turret, spending 100 psychic points in the process"))
-	new /obj/structure/xeno/resin/xeno_turret(get_turf(A), X.hivenumber)
+	new turret_type(get_turf(A), X.hivenumber)
 
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
 	log_game("[owner] built a turret in [AREACOORD(A)], spending [psych_cost] psy points in the process")

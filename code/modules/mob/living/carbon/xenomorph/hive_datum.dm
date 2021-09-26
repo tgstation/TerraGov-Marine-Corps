@@ -534,7 +534,7 @@ to_chat will check for valid clients itself already so no need to double check f
 ///Used for setting the trackers of all xenos in the hive, like when a nuke activates
 /datum/hive_status/proc/set_all_xeno_trackers(atom/target)
 	for(var/mob/living/carbon/xenomorph/X AS in get_all_xenos())
-		X.tracked = target
+		X.set_tracked(target)
 		to_chat(X, span_notice(" Now tracking [target.name]"))
 
 // ***************************************
@@ -613,7 +613,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/proc/attempt_to_spawn_larva_in_silo(mob/xeno_candidate, possible_silos, larva_already_reserved = FALSE)
-	var/obj/structure/xeno/resin/silo/chosen_silo
+	var/obj/structure/xeno/silo/chosen_silo
 	if(length(possible_silos) > 1)
 		chosen_silo = tgui_input_list(xeno_candidate, "Available Egg Silos", "Spawn location", possible_silos)
 		if(!chosen_silo)
@@ -683,7 +683,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid a cruel death!")
 	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, .proc/on_hijack_depart)
 
-	for(var/obj/structure/xeno/resin/silo/silo AS in GLOB.xeno_resin_silos)
+	for(var/obj/structure/xeno/silo/silo AS in GLOB.xeno_resin_silos)
 		if(!is_ground_level(silo.z))
 			continue
 		qdel(silo)
@@ -703,11 +703,12 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/difference = round(players[2] - (players[1] * 0.5)) // no of xenos - half the no of players
 
 	var/left_behind = 0
-	for(var/i in get_all_xenos())
-		var/mob/living/carbon/xenomorph/boarder = i
+	for(var/mob/living/carbon/xenomorph/boarder AS in get_all_xenos())
 		if(isdropshiparea(get_area(boarder)))
 			continue
 		if(!is_ground_level(boarder.z))
+			continue
+		if(isxenohivemind(boarder))
 			continue
 		INVOKE_ASYNC(boarder, /mob/living.proc/gib)
 		left_behind++
@@ -1061,7 +1062,13 @@ to_chat will check for valid clients itself already so no need to double check f
 /obj/structure/xeno/tunnel/get_xeno_hivenumber()
 	return hivenumber
 
-/obj/structure/xeno/resin/xeno_turret/get_xeno_hivenumber()
+/mob/living/carbon/human/get_xeno_hivenumber()
+	if(faction == FACTION_XENO)
+		return XENO_HIVE_NORMAL
+	return FALSE
+
+
+/obj/structure/xeno/xeno_turret/get_xeno_hivenumber()
 	return associated_hive.hivenumber
 
 /datum/hive_status/proc/update_tier_limits()

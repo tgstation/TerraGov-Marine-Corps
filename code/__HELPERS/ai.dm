@@ -50,4 +50,11 @@
 			if(!(get_dist(source, nearby_turret) < shorter_distance))
 				continue
 			nearest_target = nearby_turret
+	if(target_flags & TARGET_UNMANNED_VEHICLE)
+		for(var/atom/nearby_vehicle AS in GLOB.unmanned_vehicles)
+			if(source.z != nearby_vehicle.z)
+				continue
+			if(!(get_dist(source, nearby_vehicle) < shorter_distance))
+				continue
+			nearest_target = nearby_vehicle
 	return nearest_target

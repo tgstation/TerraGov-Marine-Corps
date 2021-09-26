@@ -36,6 +36,7 @@
 	maptext = "<span class=menutitle>Welcome to TGMC[SSmapping?.configs ? " - [SSmapping.configs[SHIP_MAP].map_name]" : ""]</span>"
 
 
+INITIALIZE_IMMEDIATE(/obj/screen/text/lobby/year)
 /obj/screen/text/lobby/year
 	maptext = "<span class=menutext>Current Year: Loading...</span>"
 
@@ -114,7 +115,7 @@
 	var/mob/new_player/player = hud.mymob
 	player.try_to_observe()
 
-
+INITIALIZE_IMMEDIATE(/obj/screen/text/lobby/clickable/ready)
 /obj/screen/text/lobby/clickable/ready
 	maptext = "<span class=menutext>You are: Not Ready</span>"
 
@@ -160,6 +161,7 @@
 	hud.mymob.client?.changes()
 
 
+INITIALIZE_IMMEDIATE(/obj/screen/text/lobby/clickable/polls)
 /obj/screen/text/lobby/clickable/polls
 	maptext = "<span class=menutext>Polls</span>"
 

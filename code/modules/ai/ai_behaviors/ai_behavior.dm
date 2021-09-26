@@ -29,7 +29,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	///When this timer is up, we force a change of node to ensure that the ai will never stay stuck trying to go to a specific node
 	var/anti_stuck_timer
 
-/datum/ai_behavior/New(loc, parent_to_assign, escorted_atom)
+/datum/ai_behavior/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
 	if(isnull(parent_to_assign))
 		stack_trace("An ai behavior was initialized without a parent to assign it to; destroying mind. Mind type: [type]")
@@ -65,7 +65,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(current_action == MOVING_TO_NODE && next_action != MOVING_TO_NODE)
 		current_node = null
 	unregister_action_signals(current_action)
-	RemoveElement(/datum/element/pathfinder)
+	mob_parent.RemoveElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
 
 ///Cleanup old state vars, start the movement towards our new target
 /datum/ai_behavior/proc/change_action(next_action, atom/next_target)
@@ -88,10 +88,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 				continue
 			if(get_dist_euclide_square(ai_node, mob_parent) >= closest_distance)
 				continue
-			/*THIS PART OF THE CODE IS DEALT WITH IN ANOTHER PR
-			if(!ai_node.is_in_LOS(get_turf(mob_parent)))
-				continue
-			*/
 			current_node = ai_node
 			closest_distance = get_dist_euclide_square(ai_node, mob_parent) //Probably not needed to cache the get_dist
 		if(current_node)
