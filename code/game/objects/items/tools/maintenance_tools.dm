@@ -503,6 +503,9 @@
 
 	if(!istype(I, /obj/item/cell))
 		return
+	if(istype(I, /obj/item/cell/rtg/large))
+		to_chat(user, span_notice("The RTG is too large to fit in the charger!"))
+		return
 	if(!user.drop_held_item())
 		return
 
