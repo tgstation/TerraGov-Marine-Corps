@@ -169,7 +169,7 @@
 
 	if(limb_status & LIMB_ROBOT && !(owner.species.species_flags & IS_SYNTHETIC))
 		brute *= 0.50 // half damage for ROBOLIMBS if you weren't born with them
-		burn *= 0.50 
+		burn *= 0.50
 
 	//High brute damage or sharp objects may damage internal organs
 	if(internal_organs && ((sharp && brute >= 10) || brute >= 20) && prob(5))
@@ -269,11 +269,11 @@
 
 		// heal brute damage
 		if(W.damage_type == CUT || W.damage_type == BRUISE)
-			brute = W.heal_wound_damage(brute)
+			brute = W.heal_wound_damage(brute, internal)
 		else if(W.damage_type == BURN)
-			burn = W.heal_wound_damage(burn)
+			burn = W.heal_wound_damage(burn, internal)
 		else if(internal)
-			brute = W.heal_wound_damage(brute)
+			brute = W.heal_wound_damage(brute, internal)
 
 	//Sync the organ's damage with its wounds
 	update_damages()
