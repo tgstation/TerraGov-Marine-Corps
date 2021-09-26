@@ -723,7 +723,7 @@
 
 /mob/proc/add_emote_overlay(image/emote_overlay, remove_delay = TYPING_INDICATOR_LIFETIME)
 	emote_overlay.appearance_flags = APPEARANCE_UI_TRANSFORM
-	emote_overlay.plane = ABOVE_HUD_PLANE
+	emote_overlay.plane = ABOVE_LIGHTING_PLANE
 	emote_overlay.layer = ABOVE_HUD_LAYER
 	overlays += emote_overlay
 

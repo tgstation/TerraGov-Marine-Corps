@@ -34,10 +34,17 @@
 
 	new_gun.set_gun_user(null)
 
+/obj/machinery/deployable/mounted/Destroy()
+	operator?.unset_interaction()
+	return ..()
+
 /obj/machinery/deployable/mounted/AltClick(mob/user)
 	. = ..()
+	if(!Adjacent(user) || user.lying_angle || user.incapacitated())
+		return
 	var/obj/item/weapon/gun/internal_gun = internal_item
 	internal_gun.unload(user)
+	update_icon()
 
 /obj/machinery/deployable/mounted/attack_hand_alternate(mob/living/user)
 	. = ..()
@@ -134,9 +141,6 @@
 
 	for(var/datum/action/action AS in gun.actions)
 		action.give_action(operator)
-	var/obj/screen/ammo/hud = operator.hud_used.ammo
-	hud.add_hud(operator, internal_item)
-	hud.update_hud(operator, internal_item)
 
 	gun.set_gun_user(operator)
 
@@ -230,14 +234,12 @@
 
 	UnregisterSignal(operator, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEDRAG))
 	var/obj/item/weapon/gun/gun = internal_item
-	if(CHECK_BITFIELD(gun.flags_gun_features, GUN_IS_AIMING))
+	if(HAS_TRAIT(gun, TRAIT_GUN_IS_AIMING))
 		gun.toggle_aim_mode(operator)
 	gun.UnregisterSignal(operator, COMSIG_MOB_MOUSEUP)
 
 	for(var/datum/action/action AS in gun.actions)
 		action.remove_action(operator)
-	var/obj/screen/ammo/hud = operator.hud_used.ammo
-	hud.remove_hud(operator)
 
 	for(var/key in gun.attachments_by_slot)
 		var/obj/item/attachable = gun.attachments_by_slot[key]
@@ -246,6 +248,8 @@
 		if(!istype(attachable, /obj/item/attachable/scope))
 			continue
 		var/obj/item/attachable/scope/scope = attachable
+		if(!scope.zoom)
+			continue
 		scope.zoom_item_turnoff(operator, operator)
 
 	operator.client?.view_size.reset_to_default()

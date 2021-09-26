@@ -1072,7 +1072,7 @@
 	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
 		return fail_activate()
 
-	var/obj/structure/xeno/resin/silo/hivesilo = new(get_step(A, SOUTHWEST))
+	var/obj/structure/xeno/silo/hivesilo = new(get_step(A, SOUTHWEST))
 
 	var/moved_human_number = 0
 	for(var/mob/living/to_use AS in valid_mobs)
@@ -1127,7 +1127,7 @@
 		to_chat(owner, span_xenowarning("The hive doesn't have the necessary psychic points for you to do that!"))
 		return FALSE
 
-	for(var/obj/structure/xeno/resin/silo/silo AS in GLOB.xeno_resin_silos)
+	for(var/obj/structure/xeno/silo/silo AS in GLOB.xeno_resin_silos)
 		if(get_dist(silo, A) < 15)
 			to_chat(owner, span_xenowarning("Another silo is too close!"))
 			return FALSE
@@ -1145,7 +1145,7 @@
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
 	log_game("[owner] has built a silo in [AREACOORD(A)], spending [psych_cost] psy points in the process")
 	succeed_activate()
-	new /obj/structure/xeno/resin/silo (get_step(A, SOUTHWEST))
+	new /obj/structure/xeno/silo (get_step(A, SOUTHWEST))
 	xeno_message("[X.name] has built a silo at [get_area(A)]!", "xenoannounce", 5, X.hivenumber)
 
 
@@ -1155,15 +1155,35 @@
 
 /datum/action/xeno_action/activable/build_turret
 	name = "Secrete acid turret"
-	action_icon_state = "xeno_turret"
+	//action_icon_state = "xeno_turret"
 	mechanics_text = "Creates a new xeno acid turret for 100 points"
 	ability_name = "secrete acid turret"
 	plasma_cost = 150
 	cooldown_timer = 60 SECONDS
 	gamemode_flags = ABILITY_DISTRESS
+	psych_cost = XENO_TURRET_PRICE
 	/// How long does it take to build
 	var/build_time = 15 SECONDS
-	psych_cost = XENO_TURRET_PRICE
+	/// turret typepath to create
+	var/obj/structure/xeno/xeno_turret/turret_type = /obj/structure/xeno/xeno_turret
+
+/datum/action/xeno_action/activable/build_turret/update_button_icon()
+	button.overlays.Cut()
+	button.overlays += image(initial(turret_type.icon), initial(turret_type.icon_state))
+	return ..()
+
+/datum/action/xeno_action/activable/build_turret/alternate_action_activate()
+	INVOKE_ASYNC(src, .proc/pick_turret)
+	return COMSIG_KB_ACTIVATED
+
+///async proc to let player choose a turret
+/datum/action/xeno_action/activable/build_turret/proc/pick_turret()
+	var/turret_choice = show_radial_menu(owner, owner, GLOB.xeno_turret_images_list, radius = 48)
+	if(!turret_choice)
+		return
+	to_chat(owner, span_notice("We will now place <b>[turret_choice]\s</b> turrets."))
+	turret_type = GLOB.turret_types_by_name[turret_choice]
+	update_button_icon()
 
 /datum/action/xeno_action/activable/build_turret/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -1191,16 +1211,16 @@
 		to_chat(X, span_warning("We can't build so close to the fog!"))
 		return FALSE
 
-	for(var/obj/structure/xeno/resin/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
+	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
 		if(get_dist(turret, A) < 6)
-			to_chat(owner, span_xenowarning("Another turret is too close!") )
+			to_chat(owner, span_xenowarning("Another turret is too close!"))
 			return FALSE
 
 	if(!alien_weeds)
 		to_chat(X, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
 		return FALSE
 
-	if(!T.check_alien_construction(X, planned_building = /obj/structure/xeno/resin/xeno_turret) || !T.check_disallow_alien_fortification(X))
+	if(!T.check_alien_construction(X, planned_building = /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(X))
 		return FALSE
 
 	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
@@ -1218,7 +1238,7 @@
 		return fail_activate()
 
 	to_chat(owner, span_xenowarning("We build a new acid turret, spending 100 psychic points in the process"))
-	new /obj/structure/xeno/resin/xeno_turret(get_turf(A), X.hivenumber)
+	new turret_type(get_turf(A), X.hivenumber)
 
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
 	log_game("[owner] built a turret in [AREACOORD(A)], spending [psych_cost] psy points in the process")

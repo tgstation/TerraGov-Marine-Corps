@@ -71,7 +71,7 @@ GLOBAL_PROTECT(exp_specialmap)
 /datum/job/proc/after_spawn(mob/living/L, mob/M, latejoin = FALSE) //do actions on L but send messages to M as the key may not have been transferred_yet
 	if(!ishuman(L))
 		return
-
+	var/mob/living/carbon/human/H = L
 	if(job_flags & JOB_FLAG_PROVIDES_BANK_ACCOUNT)
 		var/datum/money_account/bank_account = create_account(L.real_name, rand(50, 500) * 10)
 		var/list/remembered_info = list()
@@ -84,7 +84,6 @@ GLOBAL_PROTECT(exp_specialmap)
 		M.mind.store_memory(remembered_info.Join("<br>"))
 		M.mind.initial_account = bank_account
 
-		var/mob/living/carbon/human/H = L
 		var/obj/item/card/id/id = H.wear_id
 		if(istype(id))
 			id.associated_account_number = bank_account.account_number

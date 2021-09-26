@@ -115,7 +115,7 @@
 	toxpwr = 2
 	taste_description = "fish"
 
-/datum/reagent/toxin/zombiepowder
+/datum/reagent/toxin/huskpowder
 	name = "Zombie Powder"
 	description = "A strong neurotoxin that puts the subject into a death-like state."
 	reagent_state = SOLID
@@ -123,16 +123,16 @@
 	toxpwr = 0.5
 	taste_description = "death"
 
-/datum/reagent/toxin/zombiepowder/on_mob_add(mob/living/L, metabolism)
+/datum/reagent/toxin/huskpowder/on_mob_add(mob/living/L, metabolism)
 	ADD_TRAIT(L, TRAIT_FAKEDEATH, type)
 	return ..()
 
-/datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/toxin/huskpowder/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(0.25*effect_str)
 	L.Paralyze(20 SECONDS)
 	return ..()
 
-/datum/reagent/toxin/zombiepowder/on_mob_delete(mob/living/L, metabolism)
+/datum/reagent/toxin/huskpowder/on_mob_delete(mob/living/L, metabolism)
 	REMOVE_TRAIT(L, TRAIT_FAKEDEATH, type)
 	return ..()
 
@@ -639,3 +639,40 @@
 		C.drip(DEFILER_SANGUINAL_DAMAGE) //Causes bleeding
 
 	return ..()
+
+/datum/reagent/zombium
+	name = "Zombium"
+	description = "Powerful chemical able to raise the dead, origin is likely from an unidentified bioweapon."
+	reagent_state = LIQUID
+	color = "#ac0abb"
+	custom_metabolism = REAGENTS_METABOLISM * 0.25
+	scannable = TRUE
+	overdose_threshold = 20
+	overdose_crit_threshold = 50
+
+/datum/reagent/zombium/on_overdose_start(mob/living/L, metabolism)
+	RegisterSignal(L, COMSIG_HUMAN_SET_UNDEFIBBABLE, .proc/zombify)
+
+/datum/reagent/zombium/on_overdose_stop(mob/living/L, metabolism)
+	UnregisterSignal(L, COMSIG_HUMAN_SET_UNDEFIBBABLE)
+
+/datum/reagent/zombium/overdose_process(mob/living/L, metabolism)
+	if(prob(5))
+		L.emote("gasp")
+	L.adjustOxyLoss(1.5)
+	L.adjustToxLoss(1.5)
+
+/datum/reagent/zombium/overdose_crit_process(mob/living/L, metabolism)
+	if(prob(50))
+		L.emote("gasp")
+	L.adjustOxyLoss(5)
+	L.adjustToxLoss(5)
+
+///Signal handler preparing the source to become a husk
+/datum/reagent/zombium/proc/zombify(mob/living/carbon/human/H)
+	SIGNAL_HANDLER
+	UnregisterSignal(H, COMSIG_HUMAN_SET_UNDEFIBBABLE)
+	if(!H.has_working_organs())
+		return
+	H.do_jitter_animation(1000)
+	addtimer(CALLBACK(H, /mob/living/carbon/human.proc/revive_to_crit, TRUE, TRUE), SSticker.mode?.husk_transformation_time)

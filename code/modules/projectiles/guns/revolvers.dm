@@ -94,7 +94,7 @@
 	return TRUE
 
 /obj/item/weapon/gun/revolver/reload(mob/user, obj/item/ammo_magazine/magazine)
-	if(flags_gun_features & GUN_BURST_FIRING)
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
 
 	if(!magazine || !istype(magazine))
@@ -144,7 +144,7 @@
 
 
 /obj/item/weapon/gun/revolver/unload(mob/user)
-	if(flags_gun_features & GUN_BURST_FIRING)
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return FALSE
 
 	if(current_mag.chamber_closed) //If it's actually closed.
@@ -326,7 +326,7 @@
 
 // revolvers do not make any sense when they have a rattle sound, so this is ignored.
 /obj/item/weapon/gun/revolver/play_fire_sound(mob/user)
-	if(flags_gun_features & GUN_SILENCED)
+	if(HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 		playsound(user, fire_sound, 25)
 		return
 	playsound(user, fire_sound, 60)

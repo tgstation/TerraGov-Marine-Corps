@@ -577,8 +577,7 @@
 		to_chat(gun_user, span_warning("The grenade launcher is empty."))
 		return
 	fire_grenade(target, gun_user)
-	var/obj/screen/ammo/A = gun_user.hud_used.ammo
-	A.update_hud(gun_user)
+	gun_user.hud_used.update_ammo_hud(gun_user, src)
 
 
 //Doesn't use most of any of these. Listed for reference.
@@ -811,7 +810,6 @@
 	update_icon()
 	if(F?.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
 		log_explosion("[key_name(user)] fired a grenade [F] from \a [src] at [AREACOORD(user.loc)].")
-		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F] from \a [src].")
 		F.icon_state = initial(F.icon_state) + "_active"
 		F.activate(user)
 		F.updateicon()

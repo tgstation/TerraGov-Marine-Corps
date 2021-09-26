@@ -874,7 +874,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	suit_store = /obj/item/flashlight/pen
-	r_store = /obj/item/storage/pouch/medkit/full
+	r_store = /obj/item/reagent_containers/glass/bottle/lemoline
 	l_store = /obj/item/storage/pouch/autoinjector/advanced/full
 	back = /obj/item/storage/backpack/marine/satchel
 

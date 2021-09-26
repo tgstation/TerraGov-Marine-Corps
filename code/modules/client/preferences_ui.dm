@@ -270,11 +270,10 @@
 			age = clamp(new_age, AGE_MIN, AGE_MAX)
 
 		if("toggle_gender")
-			if(gender == MALE)
-				gender = FEMALE
+			gender = params["newgender"]
+			if(gender == FEMALE)
 				f_style = "Shaved"
 			else
-				gender = MALE
 				underwear = 1
 
 
