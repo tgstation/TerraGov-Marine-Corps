@@ -76,7 +76,8 @@
 	. = ..()
 	if(isliving(arrived))
 		var/mob/living/spaceman = arrived
-		spaceman.apply_status_effect(/datum/status_effect/spacefreeze)
+		if(!spaceman.has_status_effect(/datum/status_effect/spacefreeze))
+			spaceman.apply_status_effect(/datum/status_effect/spacefreeze)
 
 /turf/open/space/Exited(atom/movable/leaver, direction)
 	if(isliving(leaver))
