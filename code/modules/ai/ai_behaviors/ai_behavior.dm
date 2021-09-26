@@ -146,7 +146,6 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 			UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
 			deltimer(anti_stuck_timer)
 
-
 ///Attach this ai to the selected mob. He will listen to its order
 /datum/ai_behavior/proc/attach_to_commander(mob/commander)
 	RegisterSignal(commander, COMSIG_MINION_TARGET_CHANGED, .proc/atom_to_walk_to_changed)
