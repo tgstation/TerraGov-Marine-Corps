@@ -1,4 +1,5 @@
 /datum/hive_status
+	interaction_flags = INTERACT_UI_INTERACT
 	var/name = "Normal"
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/mob/living/carbon/xenomorph/queen/living_xeno_queen
@@ -9,29 +10,27 @@
 	var/color = null
 	var/prefix = ""
 	var/hive_flags = NONE
-	var/list/xeno_leader_list
-	var/list/list/xenos_by_typepath
-	var/list/list/xenos_by_tier
-	var/list/list/xenos_by_upgrade
-	var/list/dead_xenos // xenos that are still assigned to this hive but are dead.
-	var/list/ssd_xenos
-	var/list/list/xenos_by_zlevel
+	var/list/xeno_leader_list = list()
+	var/list/list/xenos_by_typepath = list()
+	var/list/list/xenos_by_tier = list()
+	var/list/list/xenos_by_upgrade = list()
+	var/list/dead_xenos = list() // xenos that are still assigned to this hive but are dead.
+	var/list/ssd_xenos = list()
+	var/list/list/xenos_by_zlevel = list()
 	var/tier3_xeno_limit
 	var/tier2_xeno_limit
 	///Queue of all observer wanting to join xeno side
 	var/list/mob/dead/observer/candidate
+
+	//hive store vars
+	var/list/buyable_upgrades = list()
+	var/list/upgrades_by_name = list()
 
 // ***************************************
 // *********** Init
 // ***************************************
 /datum/hive_status/New()
 	. = ..()
-	xeno_leader_list = list()
-	xenos_by_typepath = list()
-	xenos_by_tier = list()
-	xenos_by_upgrade = list()
-	dead_xenos = list()
-	xenos_by_zlevel = list()
 	LAZYINITLIST(candidate)
 
 	for(var/t in subtypesof(/mob/living/carbon/xenomorph))
@@ -45,6 +44,56 @@
 		xenos_by_upgrade[upgrade] = list()
 
 	SSdirection.set_leader(hivenumber, null)
+
+// ***************************************
+// *********** UI for hive store/boon menu
+// ***************************************
+
+/datum/hive_status/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "BoonMenu", "Queen Mothers Boons")
+		ui.open()
+
+///Sets up upgrades when the round starts
+/datum/hive_status/proc/setup_upgrades()
+	for(var/type in subtypesof(/datum/hive_upgrade))
+		var/datum/hive_upgrade/upgrade = new type
+		if(upgrade.name == "Error upgrade") //defaultname just skip it its probably organisation
+			continue
+		if(!(SSticker.mode.flags_xeno_abilities & upgrade.flags_gamemode))
+			continue
+		buyable_upgrades += upgrade
+		upgrades_by_name[upgrade.name] = upgrade
+
+/datum/hive_status/ui_state(mob/user)
+	return GLOB.conscious_state
+
+/datum/hive_status/ui_assets(mob/user)
+	. = ..()
+	. += get_asset_datum(/datum/asset/spritesheet/boonmenu)
+
+/datum/hive_status/ui_data(mob/user)
+	. = ..()
+	.["upgrades"] = list()
+	for(var/datum/hive_upgrade/upgrade AS in buyable_upgrades)
+		.["upgrades"] += list(list("name" = upgrade.name, "desc" = upgrade.desc, "category" = upgrade.category,\
+		"cost" = upgrade.psypoint_cost, "times_bought" = upgrade.times_bought, "can_buy" = upgrade.can_buy(user), "iconstate" = upgrade.icon))
+	.["psypoints"] = SSpoints.xeno_points_by_hive[hivenumber]
+
+/datum/hive_status/ui_static_data(mob/user)
+	. = ..()
+	.["categories"] = GLOB.upgrade_categories
+
+/datum/hive_status/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	switch(action)
+		if("buy")
+			var/buying = params["buyname"]
+			var/datum/hive_upgrade/upgrade = upgrades_by_name[buying]
+			if(!upgrade.can_buy(usr))
+				return
+			upgrade.on_buy(usr)
 
 
 // ***************************************
@@ -720,6 +769,113 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
 			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
 
+
+///Handles the timer when all silos are destroyed
+/datum/hive_status/proc/handle_silo_death_timer()
+	return
+
+/datum/hive_status/normal/handle_silo_death_timer()
+	if(!isdistressgamemode(SSticker.mode))
+		return
+	if(world.time < MINIMUM_TIME_SILO_LESS_COLLAPSE)
+		return
+	var/datum/game_mode/infestation/distress/D = SSticker.mode
+	if(D.round_stage != INFESTATION_MARINE_DEPLOYMENT)
+		if(D?.siloless_hive_timer)
+			deltimer(D.siloless_hive_timer)
+			D.siloless_hive_timer = null
+		return
+	if(GLOB.xeno_resin_silos.len)
+		if(D?.siloless_hive_timer)
+			deltimer(D.siloless_hive_timer)
+			D.siloless_hive_timer = null
+		return
+
+	if(D?.siloless_hive_timer)
+		return
+
+	xeno_message("We don't have any silos! The hive will collapse if nothing is done", "xenoannounce", 6, TRUE)
+	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 5 MINUTES, TIMER_STOPPABLE)
+
+/**
+ * Add a mob to the candidate queue, the first mobs of the queue will have priority on new larva spots
+ * return TRUE if the observer was added, FALSE if it was removed
+ */
+/datum/hive_status/proc/add_to_larva_candidate_queue(mob/dead/observer/observer)
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+	var/list/possible_mothers = list()
+	var/list/possible_silos = list()
+	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos)
+	if(stored_larva > 0 && !LAZYLEN(candidate) && (length(possible_mothers) || length(possible_silos) || (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN && SSmonitor.gamestate == SHUTTERS_CLOSED)))
+		attempt_to_spawn_larva(observer)
+		return
+	if(LAZYFIND(candidate, observer))
+		remove_from_larva_candidate_queue(observer)
+		return FALSE
+	LAZYADD(candidate, observer)
+	RegisterSignal(observer, COMSIG_PARENT_QDELETING, .proc/clean_observer)
+	observer.larva_position =  LAZYLEN(candidate)
+	to_chat(observer, span_warning("There are no burrowed Larvae or no silos. You are in position [observer.larva_position] to become a Xenomorph."))
+	return TRUE
+
+/// Remove an observer from the larva candidate queue
+/datum/hive_status/proc/remove_from_larva_candidate_queue(mob/dead/observer/observer)
+	LAZYREMOVE(candidate, observer)
+	UnregisterSignal(observer, COMSIG_PARENT_QDELETING)
+	to_chat(observer, span_warning("You left the Larva queue."))
+	var/mob/dead/observer/observer_in_queue
+	for(var/i in 1 to LAZYLEN(candidate))
+		observer_in_queue = candidate[i]
+		observer_in_queue.larva_position = i
+
+///Propose larvas until their is no more candidates, or no more burrowed
+/datum/hive_status/proc/give_larva_to_next_in_queue()
+	var/list/possible_mothers = list()
+	var/list/possible_silos = list()
+	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos)
+	if(!length(possible_mothers) && !length(possible_silos) && (!(SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN) || SSsilo.can_fire))
+		return
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/stored_larva = round(xeno_job.total_positions - xeno_job.current_positions)
+	var/slot_occupied = min(stored_larva, LAZYLEN(candidate))
+	if(slot_occupied < 1)
+		return
+	var/slot_really_taken = 0
+	if(!xeno_job.occupy_job_positions(slot_occupied))
+		return
+	var/mob/dead/observer/observer_in_queue
+	while(stored_larva > 0 && LAZYLEN(candidate))
+		observer_in_queue = LAZYACCESS(candidate, 1)
+		LAZYREMOVE(candidate, observer_in_queue)
+		UnregisterSignal(observer_in_queue, COMSIG_PARENT_QDELETING)
+		if(try_to_give_larva(observer_in_queue))
+			stored_larva--
+			slot_really_taken++
+	if(slot_occupied - slot_really_taken > 0)
+		xeno_job.free_job_positions(slot_occupied - slot_really_taken)
+	for(var/i in 1 to LAZYLEN(candidate))
+		observer_in_queue = LAZYACCESS(candidate, i)
+		observer_in_queue.larva_position = i
+
+/// Remove ref to avoid hard del and null error
+/datum/hive_status/proc/clean_observer(datum/source)
+	SIGNAL_HANDLER
+	LAZYREMOVE(candidate, source)
+
+///Attempt to give a larva to the next in line, if not possible, free the xeno position and propose it to another candidate
+/datum/hive_status/proc/try_to_give_larva(mob/dead/observer/next_in_line)
+	next_in_line.larva_position = 0
+	if(!attempt_to_spawn_larva(next_in_line, TRUE))
+		to_chat(next_in_line, span_warning("You failed to qualify to become a larva, you must join the queue again."))
+		return FALSE
+	return TRUE
+
+
+/datum/hive_status/proc/update_tier_limits()
+	tier3_xeno_limit = max(length(xenos_by_tier[XENO_TIER_THREE]),FLOOR((length(xenos_by_tier[XENO_TIER_ZERO])+length(xenos_by_tier[XENO_TIER_ONE])+length(xenos_by_tier[XENO_TIER_TWO])+length(xenos_by_tier[XENO_TIER_FOUR]))/3+1,1))
+	tier2_xeno_limit = max(length(xenos_by_tier[XENO_TIER_TWO]),length(xenos_by_tier[XENO_TIER_ZERO]) + length(xenos_by_tier[XENO_TIER_ONE]) + length(xenos_by_tier[XENO_TIER_FOUR])+1 - length(xenos_by_tier[XENO_TIER_THREE]))
+
 // ***************************************
 // *********** Corrupted Xenos
 // ***************************************
@@ -1070,108 +1226,3 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /obj/structure/xeno/xeno_turret/get_xeno_hivenumber()
 	return associated_hive.hivenumber
-
-/datum/hive_status/proc/update_tier_limits()
-	tier3_xeno_limit = max(length(xenos_by_tier[XENO_TIER_THREE]),FLOOR((length(xenos_by_tier[XENO_TIER_ZERO])+length(xenos_by_tier[XENO_TIER_ONE])+length(xenos_by_tier[XENO_TIER_TWO])+length(xenos_by_tier[XENO_TIER_FOUR]))/3+1,1))
-	tier2_xeno_limit = max(length(xenos_by_tier[XENO_TIER_TWO]),length(xenos_by_tier[XENO_TIER_ZERO]) + length(xenos_by_tier[XENO_TIER_ONE]) + length(xenos_by_tier[XENO_TIER_FOUR])+1 - length(xenos_by_tier[XENO_TIER_THREE]))
-
-///Handles the timer when all silos are destroyed
-/datum/hive_status/proc/handle_silo_death_timer()
-	return
-
-/datum/hive_status/normal/handle_silo_death_timer()
-	if(!isdistressgamemode(SSticker.mode))
-		return
-	if(world.time < MINIMUM_TIME_SILO_LESS_COLLAPSE)
-		return
-	var/datum/game_mode/infestation/distress/D = SSticker.mode
-	if(D.round_stage != INFESTATION_MARINE_DEPLOYMENT)
-		if(D?.siloless_hive_timer)
-			deltimer(D.siloless_hive_timer)
-			D.siloless_hive_timer = null
-		return
-	if(GLOB.xeno_resin_silos.len)
-		if(D?.siloless_hive_timer)
-			deltimer(D.siloless_hive_timer)
-			D.siloless_hive_timer = null
-		return
-
-	if(D?.siloless_hive_timer)
-		return
-
-	xeno_message("We don't have any silos! The hive will collapse if nothing is done", "xenoannounce", 6, TRUE)
-	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 5 MINUTES, TIMER_STOPPABLE)
-
-/**
- * Add a mob to the candidate queue, the first mobs of the queue will have priority on new larva spots
- * return TRUE if the observer was added, FALSE if it was removed
- */
-/datum/hive_status/proc/add_to_larva_candidate_queue(mob/dead/observer/observer)
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	var/list/possible_mothers = list()
-	var/list/possible_silos = list()
-	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos)
-	if(stored_larva > 0 && !LAZYLEN(candidate) && (length(possible_mothers) || length(possible_silos) || (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN && SSmonitor.gamestate == SHUTTERS_CLOSED)))
-		attempt_to_spawn_larva(observer)
-		return
-	if(LAZYFIND(candidate, observer))
-		remove_from_larva_candidate_queue(observer)
-		return FALSE
-	LAZYADD(candidate, observer)
-	RegisterSignal(observer, COMSIG_PARENT_QDELETING, .proc/clean_observer)
-	observer.larva_position =  LAZYLEN(candidate)
-	to_chat(observer, span_warning("There are no burrowed Larvae or no silos. You are in position [observer.larva_position] to become a Xenomorph."))
-	return TRUE
-
-/// Remove an observer from the larva candidate queue
-/datum/hive_status/proc/remove_from_larva_candidate_queue(mob/dead/observer/observer)
-	LAZYREMOVE(candidate, observer)
-	UnregisterSignal(observer, COMSIG_PARENT_QDELETING)
-	to_chat(observer, span_warning("You left the Larva queue."))
-	var/mob/dead/observer/observer_in_queue
-	for(var/i in 1 to LAZYLEN(candidate))
-		observer_in_queue = candidate[i]
-		observer_in_queue.larva_position = i
-
-///Propose larvas until their is no more candidates, or no more burrowed
-/datum/hive_status/proc/give_larva_to_next_in_queue()
-	var/list/possible_mothers = list()
-	var/list/possible_silos = list()
-	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos)
-	if(!length(possible_mothers) && !length(possible_silos) && (!(SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN) || SSsilo.can_fire))
-		return
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/stored_larva = round(xeno_job.total_positions - xeno_job.current_positions)
-	var/slot_occupied = min(stored_larva, LAZYLEN(candidate))
-	if(slot_occupied < 1)
-		return
-	var/slot_really_taken = 0
-	if(!xeno_job.occupy_job_positions(slot_occupied))
-		return
-	var/mob/dead/observer/observer_in_queue
-	while(stored_larva > 0 && LAZYLEN(candidate))
-		observer_in_queue = LAZYACCESS(candidate, 1)
-		LAZYREMOVE(candidate, observer_in_queue)
-		UnregisterSignal(observer_in_queue, COMSIG_PARENT_QDELETING)
-		if(try_to_give_larva(observer_in_queue))
-			stored_larva--
-			slot_really_taken++
-	if(slot_occupied - slot_really_taken > 0)
-		xeno_job.free_job_positions(slot_occupied - slot_really_taken)
-	for(var/i in 1 to LAZYLEN(candidate))
-		observer_in_queue = LAZYACCESS(candidate, i)
-		observer_in_queue.larva_position = i
-
-/// Remove ref to avoid hard del and null error
-/datum/hive_status/proc/clean_observer(datum/source)
-	SIGNAL_HANDLER
-	LAZYREMOVE(candidate, source)
-
-///Attempt to give a larva to the next in line, if not possible, free the xeno position and propose it to another candidate
-/datum/hive_status/proc/try_to_give_larva(mob/dead/observer/next_in_line)
-	next_in_line.larva_position = 0
-	if(!attempt_to_spawn_larva(next_in_line, TRUE))
-		to_chat(next_in_line, span_warning("You failed to qualify to become a larva, you must join the queue again."))
-		return FALSE
-	return TRUE
