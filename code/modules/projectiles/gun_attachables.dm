@@ -1505,9 +1505,32 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/flamer_nozzle
 	name = "\improper Standard Flamer Nozzle"
 	desc = ""
+	icon_state = "flame_directional"
 	slot = ATTACHMENT_SLOT_FLAMER_NOZZLE
 	attach_delay = 2 SECONDS
 	detach_delay = 2 SECONDS
+
+	var/burn_level_mod = 1
+	var/burn_time_mod = 1
+	var/range_modifier = 0
+
+/obj/item/attachable/flamer_nozzle/on_attach(attaching_item, mob/user)
+	. = ..()
+	if(!istype(attaching_item, /obj/item/weapon/gun/flamer))
+		return
+	var/obj/item/weapon/gun/flamer/flamer = attaching_item
+	flamer.burn_level_mod *= burn_level_mod
+	flamer.burn_time_mod *= burn_time_mod
+	flamer.flame_max_range += range_modifier
+
+/obj/item/attachable/flamer_nozzle/on_detach(attaching_item, mob/user)
+	. = ..()
+	if(!istype(attaching_item, /obj/item/weapon/gun/flamer))
+		return
+	var/obj/item/weapon/gun/flamer/flamer = attaching_item
+	flamer.burn_level_mod /= burn_level_mod
+	flamer.burn_time_mod /= burn_time_mod
+	flamer.flame_max_range -= range_modifier
 
 /obj/item/attachable/flamer_nozzle/proc/generate_flame_path(obj/item/weapon/gun/flamer/flamer, target, mob/living/user, max_range)
 	var/list/turf/turfs_to_ignite = list()
@@ -1517,23 +1540,58 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	path_to_target -= get_turf(src)
 
 	if(length(path_to_target) > max_range)
-		for(var/iteration = path_to_target.len, iteration <= max_range, iteration--)
+		for(var/iteration = path_to_target.len, iteration >= max_range, iteration--)
 			path_to_target -= path_to_target[iteration]
 	
 	if(!length(path_to_target))
 		return turfs_to_ignite
 
+	var/blocked
 	for(var/turf/turf_to_check in path_to_target)
-		if((turf_to_check.density && !istype(turf_to_check, /turf/closed/wall/resin)) || isspaceturf(turf_to_check))
+		if(blocked || (turf_to_check.density && !istype(turf_to_check, /turf/closed/wall/resin)) || isspaceturf(turf_to_check))
 			break
 		for(var/obj/object in turf_to_check)
-			if(object.density && !object.throwpass && !CHECK_BITFIELD(object.flags_atom, ON_BORDER) && !istype(object, /obj/structure/mineral_door/resin))
+			if(object.density && !object.throwpass && !istype(object, /obj/structure/mineral_door/resin))
+				blocked = TRUE
 				break
-			turfs_to_ignite += list(turf_to_check)
-	
+		turfs_to_ignite += list(list(turf_to_check))
 	return turfs_to_ignite
 
+/obj/item/attachable/flamer_nozzle/wide
+	name = "Spray Flamer Nozzle"
+	desc = ""
+	icon_state = "flame_wide"
 
+
+/obj/item/attachable/flamer_nozzle/wide/generate_flame_path(obj/item/weapon/gun/flamer/flamer, target, mob/living/user, max_range)
+	var/list/turfs_to_ignite = list()
+	if(!target)
+		return turfs_to_ignite
+	var/distance = get_dist(get_turf(src), target) > max_range ? max_range : get_dist(get_turf(src), target)
+	var/dir_to_target = get_dir(get_turf(src), target)
+	var/list/turf/previous_turfs = list(get_turf(src))
+	for(var/iteration = 0, iteration < distance, iteration++)
+		var/list/turf/next_turfs = list()
+		for(var/turf/old_turf in previous_turfs)
+			var/turf/new_turf = get_step(old_turf, dir_to_target)
+			next_turfs += new_turf
+			if(!(get_step(new_turf, turn(dir_to_target, 90)) in previous_turfs))
+				next_turfs += get_step(new_turf, turn(dir_to_target, 90))
+			if(!(get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90))) in previous_turfs))
+				next_turfs += get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90)))
+		for(var/turf/turf_to_check in next_turfs)
+			if((turf_to_check.density && !istype(turf_to_check, /turf/closed/wall/resin)) || isspaceturf(turf_to_check))
+				next_turfs -= turf_to_check
+				continue
+			for(var/obj/object in turf_to_check)
+				if(object.density && !object.throwpass && !istype(object, /obj/structure/mineral_door/resin))
+					next_turfs -= turf_to_check
+					break
+
+		turfs_to_ignite += list(next_turfs)
+		previous_turfs = next_turfs
+	
+	return turfs_to_ignite
 
 ///This is called when an attachment gun (src) attaches to a gun.
 /obj/item/weapon/gun/proc/on_attach(obj/item/attached_to, mob/user)

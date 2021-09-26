@@ -20,7 +20,8 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/flamer_nozzle
+		/obj/item/attachable/flamer_nozzle,
+		/obj/item/attachable/flamer_nozzle/wide,
 		)
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_MUZZLE,
@@ -33,14 +34,14 @@
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle)
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
-	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
+	attachable_offset = list("rail_x" = 12, "rail_y" = 23, "flamer_nozzle_x" = 33, "flamer_nozzle_y" = 20)
 	fire_delay = 4
 
 	placed_overlay_iconstate = "flamer"
 
 	ammo = /datum/ammo/flamethrower
 	var/obj/flamer_fire/fire_type = /obj/flamer_fire
-	var/flame_max_range = 7
+	var/flame_max_range = 6
 	var/flame_spread_time = 0.1 SECONDS
 	var/burn_level_mod = 1
 	var/burn_time_mod = 1
@@ -84,13 +85,18 @@
 	. = ..()
 	if(!.)
 		return
+	var/datum/ammo/flamethrower/flamer_ammo = magazine.default_ammo
+	fire_delay = initial(flamer_ammo.fire_delay)
 	light_pilot(TRUE)
+	gun_user?.hud_used.update_ammo_hud(gun_user, src)
 
 /obj/item/weapon/gun/flamer/unload(mob/user, reload_override, drop_override)
 	. = ..()
 	if(!.)
 		return
+	fire_delay = initial(fire_delay)
 	light_pilot(FALSE)
+	gun_user?.hud_used.update_ammo_hud(gun_user, src)
 
 ///Makes the sound of the flamer being lit, and applies the overlay.
 /obj/item/weapon/gun/flamer/proc/light_pilot(light)
@@ -151,6 +157,7 @@
 				break
 			flame_turf(turf_to_ignite, gun_user, burn_time, burn_level, fire_color)
 			current_mag.current_rounds--
+			gun_user?.hud_used.update_ammo_hud(gun_user, src)
 		sleep(flame_spread_time)
 	return TRUE
 
@@ -164,7 +171,7 @@
 			snow_turf.slayer -= 1
 			snow_turf.update_icon(1, 0)
 
-	for(var/obj/structure/jungle/vines/vines AS in turf_to_ignite)
+	for(var/obj/structure/jungle/vines/vines in turf_to_ignite)
 		QDEL_NULL(vines)
 
 	var/fire_mod
