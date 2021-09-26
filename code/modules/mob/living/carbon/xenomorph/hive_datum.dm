@@ -613,7 +613,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/proc/attempt_to_spawn_larva_in_silo(mob/xeno_candidate, possible_silos, larva_already_reserved = FALSE)
-	var/obj/structure/xeno/resin/silo/chosen_silo
+	var/obj/structure/xeno/silo/chosen_silo
 	if(length(possible_silos) > 1)
 		chosen_silo = tgui_input_list(xeno_candidate, "Available Egg Silos", "Spawn location", possible_silos)
 		if(!chosen_silo)
@@ -683,7 +683,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid a cruel death!")
 	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, .proc/on_hijack_depart)
 
-	for(var/obj/structure/xeno/resin/silo/silo AS in GLOB.xeno_resin_silos)
+	for(var/obj/structure/xeno/silo/silo AS in GLOB.xeno_resin_silos)
 		if(!is_ground_level(silo.z))
 			continue
 		qdel(silo)
@@ -1068,7 +1068,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	return FALSE
 
 
-/obj/structure/xeno/resin/xeno_turret/get_xeno_hivenumber()
+/obj/structure/xeno/xeno_turret/get_xeno_hivenumber()
 	return associated_hive.hivenumber
 
 /datum/hive_status/proc/update_tier_limits()

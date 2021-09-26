@@ -36,8 +36,8 @@ GLOBAL_LIST_INIT(xeno_turret_images_list,  list(
 		))
 
 GLOBAL_LIST_INIT(turret_types_by_name,  list(
-		"Sticky turret" = /obj/structure/xeno/resin/xeno_turret/sticky,
-		"Acid turret" = /obj/structure/xeno/resin/xeno_turret,
+		"Sticky turret" = /obj/structure/xeno/xeno_turret/sticky,
+		"Acid turret" = /obj/structure/xeno/xeno_turret,
 		))
 
 //List of Defiler toxin types

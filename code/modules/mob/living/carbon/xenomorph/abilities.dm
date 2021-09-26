@@ -1072,7 +1072,7 @@
 	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
 		return fail_activate()
 
-	var/obj/structure/xeno/resin/silo/hivesilo = new(get_step(A, SOUTHWEST))
+	var/obj/structure/xeno/silo/hivesilo = new(get_step(A, SOUTHWEST))
 
 	var/moved_human_number = 0
 	for(var/mob/living/to_use AS in valid_mobs)
@@ -1127,7 +1127,7 @@
 		to_chat(owner, span_xenowarning("The hive doesn't have the necessary psychic points for you to do that!"))
 		return FALSE
 
-	for(var/obj/structure/xeno/resin/silo/silo AS in GLOB.xeno_resin_silos)
+	for(var/obj/structure/xeno/silo/silo AS in GLOB.xeno_resin_silos)
 		if(get_dist(silo, A) < 15)
 			to_chat(owner, span_xenowarning("Another silo is too close!"))
 			return FALSE
@@ -1145,7 +1145,7 @@
 	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
 	log_game("[owner] has built a silo in [AREACOORD(A)], spending [psych_cost] psy points in the process")
 	succeed_activate()
-	new /obj/structure/xeno/resin/silo (get_step(A, SOUTHWEST))
+	new /obj/structure/xeno/silo (get_step(A, SOUTHWEST))
 	xeno_message("[X.name] has built a silo at [get_area(A)]!", "xenoannounce", 5, X.hivenumber)
 
 
@@ -1165,7 +1165,7 @@
 	/// How long does it take to build
 	var/build_time = 15 SECONDS
 	/// turret typepath to create
-	var/obj/structure/xeno/resin/xeno_turret/turret_type = /obj/structure/xeno/resin/xeno_turret
+	var/obj/structure/xeno/xeno_turret/turret_type = /obj/structure/xeno/xeno_turret
 
 /datum/action/xeno_action/activable/build_turret/update_button_icon()
 	button.overlays.Cut()
@@ -1211,7 +1211,7 @@
 		to_chat(X, span_warning("We can't build so close to the fog!"))
 		return FALSE
 
-	for(var/obj/structure/xeno/resin/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
+	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
 		if(get_dist(turret, A) < 6)
 			to_chat(owner, span_xenowarning("Another turret is too close!"))
 			return FALSE
@@ -1220,7 +1220,7 @@
 		to_chat(X, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
 		return FALSE
 
-	if(!T.check_alien_construction(X, planned_building = /obj/structure/xeno/resin/xeno_turret) || !T.check_disallow_alien_fortification(X))
+	if(!T.check_alien_construction(X, planned_building = /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(X))
 		return FALSE
 
 	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
