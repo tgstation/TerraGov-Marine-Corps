@@ -1,9 +1,0 @@
-author: "lovegreenstuff"
-delete-after: True
-changes: 
-  - balance: "T39 wielded slowdown buffed from 0.6 to 0.35"
-  - balance: "Paladin wielded slowdown nerfed from 0.35 to 0.4"
-  - balance: "Mk221 wielded slowdown nerfed from 0.35 to 0.4"
-  - balance: "V10 wielded slowdown nerfed from 0.35 to 0.45"
-  - balance: "T35 wielded slowdown buffed from 0.55 to 0.45"
-  - balance: "Double barrel wielded slowdown nerfed from 0.35 to 0.6"
