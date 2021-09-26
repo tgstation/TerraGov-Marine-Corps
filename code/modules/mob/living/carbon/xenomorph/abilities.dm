@@ -718,7 +718,7 @@
 		newacid.icon_state += "_wall"
 		if(T.current_acid)
 			acid_progress_transfer(newacid, null, T)
-		T.current_acid = newacid
+		T.set_current_acid(newacid)
 
 	else if(istype(A, /obj/structure) || istype(A, /obj/machinery)) //Always appears above machinery
 		newacid.layer = A.layer + 0.1
