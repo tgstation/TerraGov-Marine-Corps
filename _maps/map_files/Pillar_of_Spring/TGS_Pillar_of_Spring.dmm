@@ -5265,7 +5265,7 @@
 	},
 /area/mainship/shipboard/firing_range)
 "qZ" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "ra" = (
@@ -8014,7 +8014,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "zp" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "zq" = (
@@ -9151,7 +9151,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "Da" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
 "Db" = (
@@ -9860,7 +9860,7 @@
 	},
 /area/mainship/squads/general)
 "EZ" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /obj/item/coin/iron,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway)
@@ -11821,7 +11821,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/self_destruct)
 "Lc" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /obj/item/coin/iron,
 /turf/open/floor/mainship/black{
 	dir = 4

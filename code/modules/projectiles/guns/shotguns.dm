@@ -202,6 +202,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	damage_mult = 0.75  //normalizing gun for vendors; damage reduced by 25% to compensate for faster fire rate; still higher DPS than T-32.
 	recoil = 2
 	recoil_unwielded = 4
+	aim_slowdown = 0.4
 
 
 /obj/item/weapon/gun/shotgun/combat/examine_ammo_count(mob/user)
@@ -252,7 +253,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	damage_mult = 0.7  //30% less damage. Faster firerate.
 	recoil = 0 //It has a stock on the sprite.
 	recoil_unwielded = 2
-	aim_slowdown = 0.6
 	wield_delay = 1 SECONDS
 
 /obj/item/weapon/gun/shotgun/combat/masterkey
@@ -303,6 +303,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	scatter_unwielded = 40
 	recoil = 2
 	recoil_unwielded = 4
+	aim_slowdown = 0.6
 
 	///Animation that plays when you eject SPENT shells
 	var/shell_eject_animation = null
@@ -494,6 +495,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil = 2
 	recoil_unwielded = 4
 	pump_delay = 14
+	aim_slowdown = 0.45
 
 /obj/item/weapon/gun/shotgun/pump/ready_in_chamber() //If there wasn't a shell loaded through pump, this returns null.
 	return
@@ -538,6 +540,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recent_pump = world.time
 	if(in_chamber) //Lock only if we have ammo loaded.
 		user.hud_used.update_ammo_hud(user, src)
+		pump_lock = TRUE
 
 	return TRUE
 
@@ -602,6 +605,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil = 0 // It has a stock. It's on the sprite.
 	recoil_unwielded = 0
 	pump_delay = 12
+	aim_slowdown = 0.4
 
 //------------------------------------------------------
 //A hacky bolt action rifle. in here for the "pump" or bolt working action.
@@ -947,7 +951,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	scatter_unwielded = 40
 	recoil = 2
 	recoil_unwielded = 4
-	aim_slowdown = 0.55
+	aim_slowdown = 0.45
 	pump_delay = 14
 
 	placed_overlay_iconstate = "t35"
@@ -959,3 +963,44 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/pump/t35/nonstandard
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/buckshot
 	starting_attachment_types = list(/obj/item/attachable/stock/t35stock, /obj/item/attachable/angledgrip, /obj/item/attachable/magnetic_harness)
+
+//-------------------------------------------------------
+//THE MYTH, THE GUN, THE LEGEND, THE DEATH, THE ZX
+
+/obj/item/weapon/gun/shotgun/zx76
+	name = "\improper ZX-76 assault shotgun"
+	desc = "The ZX-76 Assault Shotgun, a incredibly rare, double barreled semi-automatic combat shotgun with a twin shot mode. Possibly the unrivaled master of CQC. Has a 9 round internal magazine."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "zx-76"
+	item_state = "zx-76"
+	flags_equip_slot = ITEM_SLOT_BACK
+	max_shells = 10 //codex
+	caliber = CALIBER_12G //codex
+	load_method = SINGLE_CASING //codex
+	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
+	aim_slowdown = 0.45
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/lasersight,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+	)
+
+	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 29, "under_y" = 12, "stock_x" = 13, "stock_y" = 15)
+
+	fire_delay = 1.75 SECONDS
+	damage_mult = 0.9
+	wield_delay = 0.75 SECONDS
+	burst_amount = 2
+	burst_delay = 0.01 SECONDS //basically instantaneous two shots
+	extra_delay = 1.25 SECONDS
+	scatter = 2
+	burst_scatter_mult = 6 // 2x6=12
+	accuracy_mult = 1

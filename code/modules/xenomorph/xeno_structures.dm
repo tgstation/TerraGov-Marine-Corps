@@ -818,7 +818,7 @@ TUNNEL
 
 /obj/structure/xeno/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
-	icon_state = "acid_turret"
+	icon_state = XENO_TURRET_ACID_ICONSTATE
 	name = "resin acid turret"
 	desc = "A menacing looking construct of resin, it seems to be alive. It fires acid against intruders."
 	bound_width = 32
@@ -832,7 +832,7 @@ TUNNEL
 	///The hive it belongs to
 	var/datum/hive_status/associated_hive
 	///What kind of spit it uses
-	var/datum/ammo/ammo
+	var/datum/ammo/ammo = /datum/ammo/xeno/acid/heavy/turret
 	///Range of the turret
 	var/range = 7
 	///Target of the turret
@@ -845,10 +845,12 @@ TUNNEL
 	var/firerate = 5
 	///The last time the sentry did a scan
 	var/last_scan_time
+	///light color that gets set in initialize
+	var/light_initial_color = LIGHT_COLOR_GREEN
 
 /obj/structure/xeno/xeno_turret/Initialize(mapload, hivenumber = XENO_HIVE_NORMAL)
 	. = ..()
-	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/turret]
+	ammo = GLOB.ammo_list[ammo]
 	ammo.max_range = range + 2 //To prevent funny gamers to abuse the turrets that easily
 	potential_hostiles = list()
 	associated_hive = GLOB.hive_datums[hivenumber]
@@ -857,7 +859,7 @@ TUNNEL
 	AddComponent(/datum/component/automatedfire/xeno_turret_autofire, firerate)
 	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOOT, .proc/shoot)
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/destroy_on_hijack)
-	set_light(2, 2, LIGHT_COLOR_GREEN)
+	set_light(2, 2, light_initial_color)
 	update_icon()
 
 ///Signal handler to delete the turret when the alamo is hijacked
@@ -1039,3 +1041,12 @@ TUNNEL
 	newshot.permutated += src
 	newshot.def_zone = pick(GLOB.base_miss_chance)
 	newshot.fire_at(hostile, src, null, ammo.max_range, ammo.shell_speed)
+
+/obj/structure/xeno/xeno_turret/sticky
+	name = "resin sticky resin turret"
+	icon = 'icons/Xeno/acidturret.dmi'
+	icon_state = XENO_TURRET_STICKY_ICONSTATE
+	desc = "A menacing looking construct of resin, it seems to be alive. It fires resin against intruders."
+	light_initial_color = LIGHT_COLOR_PURPLE
+	ammo = /datum/ammo/xeno/sticky
+	firerate = 5
