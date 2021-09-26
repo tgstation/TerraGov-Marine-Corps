@@ -389,6 +389,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	var/list/mob/living/free_ssd_mobs = list()
 	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
+		if(isnull(ssd_mob))
+			GLOB.ssd_living_mobs -= ssd_mob
+			continue
 		if(is_centcom_level(ssd_mob.z))
 			continue
 		if(ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
