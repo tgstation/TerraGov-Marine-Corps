@@ -4,7 +4,9 @@
 
 /obj/item/weapon/gun/energy
 	attachable_allowed = list()
+	var/obj/item/cell/cell //1000 power.
 	charge_cost = 10 //100 shots.
+	var/cell_type = /obj/item/cell
 	flags_gun_features = GUN_AMMO_COUNTER
 	general_codex_key = "energy weapons"
 
@@ -93,6 +95,19 @@
 		return
 	playsound(user, fire_sound, 60)
 
+/obj/item/weapon/gun/energy/set_shoot_inactive_hand(mob/user) // Handles akimbo
+	if(!user)
+		return
+	if(!dual_wield)
+		user.shoot_inactive_hand = FALSE
+		return
+	
+	var/obj/item/weapon/gun/energy/active_gun = user.get_active_held_item()
+	var/obj/item/weapon/gun/energy/inactive_gun = user.get_inactive_held_item()
+	if(user.shoot_inactive_hand || !inactive_gun.cell?.charge && inactive_gun.cell.charge <= 0) // Check inactive gun
+		user.shoot_inactive_hand = FALSE // Shoot from active
+	else if(!user.shoot_inactive_hand || !active_gun.cell?.charge && active_gun.cell.charge <= 0) // Check active gun
+		user.shoot_inactive_hand = TRUE // Shoot from inactive
 
 /obj/item/weapon/gun/energy/taser
 	name = "taser gun"

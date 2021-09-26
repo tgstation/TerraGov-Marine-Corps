@@ -84,8 +84,6 @@
 
 
 	//Energy Weapons
-	var/obj/item/cell/cell						//Energy guns use cells instead of magazines.
-	var/cell_type = /obj/item/cell				//Default cell type, 1000 power.
 	var/charge_cost		= 0						//how much energy is consumed per shot.
 	var/ammo_per_shot	= 1						//How much ammo consumed per shot; normally 1.
 	var/overcharge		= 0						//In overcharge mode?
@@ -230,7 +228,6 @@
 		QDEL_NULL(current_mag)
 	if(muzzle_flash)
 		QDEL_NULL(muzzle_flash)
-	QDEL_NULL(cell)
 	QDEL_NULL(sentry_battery)
 	GLOB.nightfall_toggleable_lights -= src
 	return ..()
@@ -655,7 +652,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		SEND_SIGNAL(gun_user, COMSIG_MOB_ATTACHMENT_FIRED, target, src, master_gun)
 	gun_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 
-/obj/item/weapon/gun/proc/set_shoot_inactive_hand(mob/user, firing) // Handles akimbo
+/obj/item/weapon/gun/proc/set_shoot_inactive_hand(mob/user) // Check if guns are empty and set which hand the shooting hand is.
 	if(!user)
 		return
 	if(!dual_wield)
@@ -664,20 +661,11 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	
 	var/obj/item/weapon/gun/active_gun = user.get_active_held_item()
 	var/obj/item/weapon/gun/inactive_gun = user.get_inactive_held_item()
-	if(firing) // Apply akimbo delay
-		if(user.shoot_inactive_hand)
-			active_gun.last_fired = world.time
-		else
-			inactive_gun.last_fired = world.time
-	if(user.shoot_inactive_hand && (!inactive_gun?.cell && (!inactive_gun.in_chamber?.ammo && !inactive_gun.current_mag?.current_rounds || inactive_gun.current_mag?.current_rounds && inactive_gun.current_mag.current_rounds <= 0) || inactive_gun?.cell && !inactive_gun.cell?.charge && inactive_gun.cell.charge <= 0)) // Check inactive gun
+
+	if(!inactive_gun.in_chamber?.ammo && !inactive_gun.current_mag?.current_rounds || inactive_gun.current_mag?.current_rounds && inactive_gun.current_mag.current_rounds <= 0) // Check inactive gun
 		user.shoot_inactive_hand = FALSE // Shoot from active
-	else if(!user.shoot_inactive_hand && (!active_gun?.cell && (!active_gun.in_chamber?.ammo && !active_gun.current_mag?.current_rounds || active_gun.current_mag?.current_rounds && active_gun.current_mag.current_rounds <= 0) || active_gun?.cell && !active_gun.cell?.charge && active_gun.cell.charge <= 0)) // Check active gun
+	else if(!active_gun.in_chamber?.ammo && !active_gun.current_mag?.current_rounds || active_gun.current_mag?.current_rounds && active_gun.current_mag.current_rounds <= 0) // Check active gun
 		user.shoot_inactive_hand = TRUE // Shoot from inactive
-	else if(firing)
-		if(user.shoot_inactive_hand)
-			user.shoot_inactive_hand = FALSE
-		else
-			user.shoot_inactive_hand = TRUE
 
 ///Set the target and take care of hard delete
 /obj/item/weapon/gun/proc/set_target(atom/object)
@@ -840,7 +828,15 @@ and you're good to go.
 			sentry_battery.forceMove(get_turf(src))
 			sentry_battery.charge = 0
 			sentry_battery = null
-	set_shoot_inactive_hand(gun_user, TRUE)
+	// Akimbo
+	var/obj/item/weapon/gun/active_gun = gun_user.get_active_held_item() // Not checked outside of dual wield
+	var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
+	if(dual_wield && gun_user.shoot_inactive_hand)
+		gun_user.shoot_inactive_hand = FALSE
+		active_gun.last_fired = world.time
+	else if(dual_wield)
+		gun_user.shoot_inactive_hand = TRUE
+		inactive_gun.last_fired = world.time
 	return TRUE
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
@@ -984,12 +980,12 @@ and you're good to go.
 /obj/item/weapon/gun/proc/able_to_fire(mob/user)
 	if(!user || user.stat != CONSCIOUS || user.lying_angle)
 		return
-	set_shoot_inactive_hand(user, FALSE)
-
+	
 	if(dual_wield && gun_user.get_active_held_item() == src && gun_user.shoot_inactive_hand)
 		return FALSE
 	else if(dual_wield && gun_user.get_inactive_held_item() == src && !gun_user.shoot_inactive_hand)
 		return FALSE
+	set_shoot_inactive_hand(user)
 	if(!user.dextrous)
 		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return FALSE
