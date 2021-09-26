@@ -213,6 +213,11 @@ WEAPONS
 	cost = SADAR_PRICE
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/weapons/zx76
+	name = "ZX-76 Twin-Barrled Burst Shotgun"
+	contains = list(/obj/item/weapon/gun/shotgun/zx76)
+	cost = 120
+
 /datum/supply_packs/weapons/autosniper
 	name = "IFF Auto Sniper kit"
 	contains = list(/obj/item/weapon/gun/rifle/standard_autosniper)
