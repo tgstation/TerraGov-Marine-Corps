@@ -114,31 +114,28 @@
 	new /obj/item/tool/weldingtool(src)
 
 
-
-
 /obj/item/storage/pouch/firstaid
 	name = "first-aid pouch"
-	desc = "Standard marine first-aid pouch. It can contain autoinjectors, ointments, and bandages."
+	desc = "Standard marine first-aid pouch. It can contain autoinjectors, sets of pills, and bandages."
 	icon_state = "firstaid"
-	storage_slots = 5
+	storage_slots = 6
 	can_hold = list(
-		/obj/item/stack/medical/heal_pack/ointment,
 		/obj/item/reagent_containers/hypospray/autoinjector,
-		/obj/item/stack/medical/heal_pack/gauze,
-		/obj/item/storage/pill_bottle/packet/tricordrazine,
-		/obj/item/stack/medical/splint,
+		/obj/item/stack/medical,
+		/obj/item/storage/pill_bottle,
 	)
 
 /obj/item/storage/pouch/firstaid/full
-	desc = "Standard marine first-aid pouch. Contains a painkiller autoinjector, a soothing pill packet, splints, some ointment, and some bandages."
+	desc = "Standard marine first-aid pouch. Contains basic pills, splints, and an emergency injector."
 
 /obj/item/storage/pouch/firstaid/full/Initialize()
 	. = ..()
-	new /obj/item/stack/medical/heal_pack/ointment (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol (src)
-	new /obj/item/storage/pill_bottle/packet/tricordrazine (src)
-	new /obj/item/stack/medical/heal_pack/gauze (src)
-	new /obj/item/stack/medical/splint (src)
+	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
+	new /obj/item/storage/pill_bottle/packet/kelotane(src)
+	new /obj/item/storage/pill_bottle/packet/tramadol(src)
+	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
 
 /obj/item/storage/pouch/firstaid/injectors

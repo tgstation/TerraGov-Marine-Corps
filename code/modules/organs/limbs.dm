@@ -167,13 +167,9 @@
 	if(limb_status & LIMB_DESTROYED)
 		return 0
 
-	if(limb_status & LIMB_ROBOT)
-		if(issynth(owner))
-			brute *= owner.species.brute_mod
-			burn *= owner.species.burn_mod
-		else
-			brute *= 0.50 // half damage for ROBOLIMBS
-			burn *= 0.50 // half damage for ROBOLIMBS
+	if(limb_status & LIMB_ROBOT && !(owner.species.species_flags & IS_SYNTHETIC))
+		brute *= 0.50 // half damage for ROBOLIMBS if you weren't born with them
+		burn *= 0.50 
 
 	//High brute damage or sharp objects may damage internal organs
 	if(internal_organs && ((sharp && brute >= 10) || brute >= 20) && prob(5))
@@ -1089,7 +1085,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	var/text2 = span_notice("You finish applying [S] to [target]'s [display_name].")
 
 	if(target == user) //If self splinting, multiply delay by 4
-		delay *= 4
+		delay *= 3
 		text1 = span_warning("[user] successfully applies [S] to their [display_name].")
 		text2 = span_notice("You successfully apply [S] to your [display_name].")
 

@@ -643,7 +643,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "nM" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "oa" = (
