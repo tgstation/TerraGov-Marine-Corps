@@ -424,7 +424,6 @@
 	if(should_zombify)
 		set_species("Strong husk")
 		faction = FACTION_XENO
-		heal_limbs(- health)
 	heal_limbs(- health)
 	set_stat(CONSCIOUS)
 	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /obj/screen/fullscreen/black)
