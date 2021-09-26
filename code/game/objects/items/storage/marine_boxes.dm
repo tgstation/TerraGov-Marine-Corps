@@ -86,7 +86,6 @@
 	else
 		user.visible_message("[user.name]'s powerpack servos begin automatically feeding an ammo belt into the T-100 Minigun.","The powerpack servos begin automatically feeding a fresh ammo belt into the T-100 Minigun.")
 	var/reload_duration = 5 SECONDS
-	var/obj/screen/ammo/A = user.hud_used.ammo
 	if(automatic)
 		if(!autoload_check(user, reload_duration, mygun, src) || !pcell)
 			to_chat(user, "The automated reload process was interrupted!")
@@ -94,7 +93,7 @@
 			reloading = FALSE
 			return TRUE
 		reload(user, mygun, TRUE)
-		A.update_hud(user)
+		user.hud_used.update_ammo_hud(user, src)
 		return TRUE
 	if(user.skills.getRating("firearms") > 0)
 		reload_duration = max(reload_duration - 1 SECONDS * user.skills.getRating("firearms"), 3 SECONDS)
@@ -104,7 +103,7 @@
 		reloading = FALSE
 		return TRUE
 	reload(user, mygun)
-	A.update_hud(user)
+	user.hud_used.update_ammo_hud(user, src)
 	return TRUE
 
 /obj/item/minigun_powerpack/attack_hand(mob/living/user)

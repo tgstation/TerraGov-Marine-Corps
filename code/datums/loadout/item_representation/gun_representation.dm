@@ -53,8 +53,7 @@
 
 	if(!attachment_to_vend)
 		return
-
-	SEND_SIGNAL(gun_to_attach, COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT, attachment_to_vend)
+	SEND_SIGNAL(gun_to_attach, COMSIG_LOADOUT_VENDOR_VENDED_GUN_ATTACHMENT, attachment_to_vend)
 
 /**
  * Able to representate a handfull

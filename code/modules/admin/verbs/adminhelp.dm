@@ -238,9 +238,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 //call this on its own to create a ticket, don't manually assign current_ticket
 //msg is the title of the ticket: usually the ahelp text
 //is_bwoink is TRUE if this ticket was started by an admin PM
-/datum/admin_help/New(msg, client/C, is_bwoink, tickettier)
+/datum/admin_help/New(msg_raw, client/C, is_bwoink, tickettier)
 	//clean the input msg
-	msg = sanitize(copytext_char(msg, 1, MAX_MESSAGE_LEN))
+	var/msg = sanitize(copytext_char(msg_raw, 1, MAX_MESSAGE_LEN))
 	if(!msg || !C || !C.mob)
 		qdel(src)
 		return
@@ -272,7 +272,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			message_admins("Ticket [TicketHref("#[id]")] created.")
 		marked = usr.client.key
 	else
-		MessageNoRecipient(msg)
+		MessageNoRecipient(msg_raw)
 
 		//send it to TGS if nobody is on and tell us how many were on
 		var/ticket_type = (tier == TICKET_ADMIN) ? "Admin" : "Mentor"

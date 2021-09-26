@@ -181,8 +181,6 @@
 
 #define ismodularhelmet(A) (istype(A, /obj/item/clothing/head/modular))
 
-#define ishelmetmodule(A) (istype (A, /obj/item/helmet_module))
-
 #define isattachmentflashlight(A) (istype(A, /obj/item/attachable/flashlight))
 
 #define isgunattachment(A) (istype(A, /obj/item/attachable))
@@ -202,6 +200,10 @@
 #define ismultitool(I) (istype(I, /obj/item/multitool))
 
 #define iscrowbar(I) (istype(I, /obj/item/tool/crowbar))
+
+#define isfactorypart(I) (istype(I, /obj/item/factory_part))
+
+#define isfactoryrefill(I) (istype(I, /obj/item/factory_refill))
 
 #define isstructure(A) (istype(A, /obj/structure))
 

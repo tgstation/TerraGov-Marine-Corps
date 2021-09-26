@@ -1,5 +1,0 @@
-author: "MiniMeatwad"
-delete-after: True
-changes: 
-  - admin: "Team OOC code now shows keys for admins and has a fakekey check if the admin is using stealthmin."
-  - config: "Add LOG_MOOC and LOG_XOOC to the config."

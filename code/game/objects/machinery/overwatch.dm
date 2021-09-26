@@ -814,9 +814,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	skill_min = SKILL_LEAD_TRAINED
 	var/orders_visible = TRUE
 
-/datum/action/skill/toggle_orders/New()
-	return ..(/obj/item/megaphone)
-
 /datum/action/skill/toggle_orders/action_activate()
 	var/mob/living/carbon/human/H = owner
 	if(!istype(H))

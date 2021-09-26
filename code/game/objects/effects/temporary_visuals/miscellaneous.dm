@@ -8,6 +8,7 @@
 	icon = 'icons/effects/explosion.dmi'
 	icon_state = "grenade"
 	duration = 0.8 SECONDS
+	pixel_x = -16
 
 //unsorted miscellaneous temporary visuals
 /obj/effect/temp_visual/dir_setting/bloodsplatter

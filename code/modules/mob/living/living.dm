@@ -93,7 +93,6 @@
 	GLOB.offered_mob_list -= src
 	SSmobs.stop_processing(src)
 	job = null
-	LAZYREMOVE(GLOB.ssd_living_mobs, src)
 	. = ..()
 	hard_armor = null
 	soft_armor = null
@@ -349,7 +348,7 @@
 			//restrained people act if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
 			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP))
 				mob_swap = TRUE
-			else if(mob_size > L.mob_size && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones.
+			else if((mob_size >= MOB_SIZE_XENO || mob_size > L.mob_size) && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones. Xenos can always shove xenos
 				mob_swap = TRUE
 			if(mob_swap)
 				//switch our position with L
@@ -599,18 +598,16 @@ below 100 is not dizzy
 			to_chat(M, span_warning("You are jobbanned from that role."))
 			return FALSE
 
-		if(stat == DEAD)
-			to_chat(M, span_warning("That mob has died."))
-			GLOB.offered_mob_list -= src
-			return FALSE
-
 		log_game("[key_name(M)] has taken over [key_name_admin(src)].")
 		message_admins("[key_name_admin(M)] has taken over [ADMIN_TPMONTY(src)].")
 
 	GLOB.offered_mob_list -= src
 
-	transfer_mob(M)
+	if(isxeno(src))
+		SSticker.mode.transfer_xeno(M, src, TRUE)
+		return TRUE
 
+	M.mind.transfer_to(src, TRUE)
 	fully_replace_character_name(M.real_name, real_name)
 	return TRUE
 
@@ -837,48 +834,3 @@ below 100 is not dizzy
 /mob/living/proc/set_remote_control(atom/movable/controlled)
 	remote_control = controlled
 	reset_perspective(controlled)
-
-///Set the afk status of the mob
-/mob/living/proc/set_afk_status(new_status, afk_timer)
-	switch(new_status)
-		if(MOB_CONNECTED, MOB_DISCONNECTED)
-			if(afk_timer_id)
-				deltimer(afk_timer_id)
-				afk_timer_id = null
-		if(MOB_RECENTLY_DISCONNECTED)
-			if(afk_status == MOB_RECENTLY_DISCONNECTED)
-				if(timeleft(afk_timer_id) <= afk_timer)
-					return
-				deltimer(afk_timer_id) //We'll go with the shorter timer.
-			afk_timer_id = addtimer(CALLBACK(src, .proc/on_sdd_grace_period_end), afk_timer, TIMER_STOPPABLE)
-	afk_status = new_status
-	SEND_SIGNAL(src, COMSIG_CARBON_SETAFKSTATUS, new_status, afk_timer)
-
-///Set the mob as afk after AFK_TIMER
-/mob/living/proc/on_sdd_grace_period_end()
-	if(stat == DEAD)
-		return FALSE
-	if(isclientedaghost(src))
-		return FALSE
-	set_afk_status(MOB_DISCONNECTED)
-	return TRUE
-
-/mob/living/carbon/human/on_sdd_grace_period_end()
-	. = ..()
-	if(!.)
-		return
-	log_admin("[key_name(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for [AFK_TIMER] minutes.")
-	message_admins("[ADMIN_TPMONTY(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for [AFK_TIMER] minutes.")
-
-///Transfer the candidate mind into src
-/mob/living/proc/transfer_mob(mob/candidate)
-	if(QDELETED(src))
-		stack_trace("[candidate] was put into a qdeleted mob [src]")
-		return
-	candidate.mind.transfer_to(src, TRUE)
-
-/mob/living/carbon/xenomorph/transfer_mob(mob/candidate)
-	. = ..()
-	if(is_ventcrawling)  //If we are in a vent, fetch a fresh vent map
-		add_ventcrawl(loc)
-		get_up()
