@@ -851,7 +851,15 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	target.observers |= src
 	target.hud_used.show_hud(target.hud_used.hud_version, src)
 	observetarget = target
+	RegisterSignal(observetarget, COMSIG_PARENT_QDELETING, .proc/clean_observetarget)
 
+///Signal handler to clean the observedtarget
+/mob/dead/observer/proc/clean_observetarget()
+	SIGNAL_HANDLER
+	if(observetarget?.observers)
+		observetarget.observers -= src
+		UNSETEMPTY(target.observers)
+	observetarget = null
 
 /mob/dead/observer/verb/dnr()
 	set category = "Ghost"
@@ -880,13 +888,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 /mob/dead/observer/reset_perspective(atom/A)
-	if(client && ismob(client.eye) && client.eye != src)
-		var/mob/target = client.eye
-		observetarget = null
-		if(target.observers)
-			target.observers -= src
-			UNSETEMPTY(target.observers)
-
+	clean_observetarget()
 	. = ..()
 
 	if(!.)
