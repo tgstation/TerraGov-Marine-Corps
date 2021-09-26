@@ -6,7 +6,7 @@
 	shutters_drop_time = 18 MINUTES
 	flags_xeno_abilities = ABILITY_HUNT
 	respawn_time = 5 MINUTES
-	time_between_round = 12 HOURS
+	time_between_round = 36 HOURS
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
