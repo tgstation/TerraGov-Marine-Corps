@@ -34,10 +34,17 @@
 
 	new_gun.set_gun_user(null)
 
+/obj/machinery/deployable/mounted/Destroy()
+	operator?.unset_interaction()
+	return ..()
+
 /obj/machinery/deployable/mounted/AltClick(mob/user)
 	. = ..()
+	if(!Adjacent(user) || user.lying_angle || user.incapacitated())
+		return
 	var/obj/item/weapon/gun/internal_gun = internal_item
 	internal_gun.unload(user)
+	update_icon()
 
 /obj/machinery/deployable/mounted/attack_hand_alternate(mob/living/user)
 	. = ..()
@@ -227,7 +234,7 @@
 
 	UnregisterSignal(operator, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEDRAG))
 	var/obj/item/weapon/gun/gun = internal_item
-	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING))
+	if(HAS_TRAIT(gun, TRAIT_GUN_IS_AIMING))
 		gun.toggle_aim_mode(operator)
 	gun.UnregisterSignal(operator, COMSIG_MOB_MOUSEUP)
 
@@ -241,6 +248,8 @@
 		if(!istype(attachable, /obj/item/attachable/scope))
 			continue
 		var/obj/item/attachable/scope/scope = attachable
+		if(!scope.zoom)
+			continue
 		scope.zoom_item_turnoff(operator, operator)
 
 	operator.client?.view_size.reset_to_default()

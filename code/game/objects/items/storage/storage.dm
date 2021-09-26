@@ -297,7 +297,6 @@
 		I.attack_hand(usr)
 		return
 
-
 /datum/numbered_display
 	var/obj/item/sample_object
 	var/number

@@ -952,6 +952,7 @@
 
 	INVOKE_ASYNC(src, .proc/regenerate_icons)
 	INVOKE_ASYNC(src, .proc/update_body)
+	INVOKE_ASYNC(src, .proc/update_hair)
 	INVOKE_ASYNC(src, .proc/restore_blood)
 
 	if(!(species.species_flags & NO_STAMINA))

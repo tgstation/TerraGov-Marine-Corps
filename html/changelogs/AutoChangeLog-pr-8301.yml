@@ -1,0 +1,8 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - rscadd: "Nanotrasen is now pleased to say that incompetent \"human\" marines are being replaced with a new limited production Autonomous Combat Robot model!"
+  - rscadd: "Robots take more burn damage, less brute damage, process no chems, cant run, can have their head reattached, cant wear anthing but their snowflake armor, have no blood(duh), cant be set on fire"
+  - qol: "Drastically improved welder and cable repair QOL"
+  - imageadd: "Sprites by Kuro"
+  - soundadd: "Sounds provided by slayer"

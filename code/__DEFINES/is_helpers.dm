@@ -52,6 +52,7 @@
 #define isvox(H) (is_species(H, /datum/species/vox))
 #define isvoxarmalis(H) (is_species(H, /datum/species/vox/armalis))
 #define isIPC(H) (is_species(H, /datum/species/machine))
+#define isrobot(H) (is_species(H, /datum/species/robot))
 #define issynth(H) (is_species(H, /datum/species/synthetic) || is_species(H, /datum/species/early_synthetic))
 #define isspeciessynthetic(H) (H.species.species_flags & IS_SYNTHETIC)
 #define ismoth(H) (is_species(H, /datum/species/moth))
@@ -106,8 +107,6 @@
 #define isxenobull(A) (istype(A, /mob/living/carbon/xenomorph/bull))
 #define isxenohivemind(A) (istype(A, /mob/living/carbon/xenomorph/hivemind))
 #define isxenowraith(A) (istype(A, /mob/living/carbon/xenomorph/wraith))
-
-#define isresinsilo(A) (istype(A, /obj/structure/xeno/resin/silo))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
@@ -180,8 +179,6 @@
 #define ismodulararmorarmorpiece(A) (istype(A, /obj/item/armor_module/armor))
 
 #define ismodularhelmet(A) (istype(A, /obj/item/clothing/head/modular))
-
-#define ishelmetmodule(A) (istype (A, /obj/item/helmet_module))
 
 #define isattachmentflashlight(A) (istype(A, /obj/item/attachable/flashlight))
 
