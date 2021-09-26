@@ -858,7 +858,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	SIGNAL_HANDLER
 	if(observetarget?.observers)
 		observetarget.observers -= src
-		UNSETEMPTY(target.observers)
+		UNSETEMPTY(observetarget.observers)
 	observetarget = null
 
 /mob/dead/observer/verb/dnr()
