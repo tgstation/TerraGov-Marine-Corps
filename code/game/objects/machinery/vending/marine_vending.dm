@@ -850,6 +850,9 @@
 			/obj/item/clothing/suit/storage/marine/harness = -1,
 			/obj/item/clothing/suit/armor/vest/pilot = -1,
 			/obj/item/facepaint/green = -1,
+			/obj/item/clothing/suit/storage/marine/robot/light = -1,
+			/obj/item/clothing/suit/storage/marine/robot = -1,
+			/obj/item/clothing/suit/storage/marine/robot/heavy = -1,
 		),
 		"Helmets" = list(
 			/obj/item/clothing/head/modular/marine/m10x = -1,
@@ -862,6 +865,9 @@
 			/obj/item/clothing/head/modular/marine/eod = -1,
 			/obj/item/clothing/head/modular/marine/scout = -1,
 			/obj/item/clothing/head/modular/marine/infantry = -1,
+			/obj/item/clothing/head/helmet/marine/robot/light = -1,
+			/obj/item/clothing/head/helmet/marine/robot = -1,
+			/obj/item/clothing/head/helmet/marine/robot/heavy = -1,
 		),
 		"Jaeger chestpieces" = list(
 			/obj/item/armor_module/armor/chest/marine/skirmisher = -1,
@@ -937,6 +943,7 @@
 			/obj/item/clothing/head/white_dress = -1,
 			/obj/item/clothing/shoes/white = -1,
 			/obj/item/clothing/gloves/white = -1,
+			/obj/item/clothing/under/marine/robotic = -1,
 		),
 		"Webbings" = list(
 			/obj/item/clothing/tie/storage/black_vest = -1,
