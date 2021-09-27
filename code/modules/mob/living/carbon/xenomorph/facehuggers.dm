@@ -439,7 +439,7 @@
 		return FALSE
 
 	if(!provoked)
-		if(species?.species_flags & IS_SYNTHETIC)
+		if(species?.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
 			return FALSE
 
 	if(on_fire)

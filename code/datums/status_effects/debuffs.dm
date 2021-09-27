@@ -371,3 +371,13 @@
 	REMOVE_TRAIT(owner, TRAIT_MUTED, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
+/datum/status_effect/spacefreeze
+	id = "spacefreeze"
+
+/datum/status_effect/spacefreeze/on_creation(mob/living/new_owner)
+	. = ..()
+	to_chat(new_owner, span_danger("The cold vacuum instantly freezes you, maybe this was a bad idea?"))
+
+/datum/status_effect/spacefreeze/tick()
+	owner.adjustFireLoss(5)
+

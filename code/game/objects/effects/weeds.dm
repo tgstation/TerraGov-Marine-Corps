@@ -75,6 +75,12 @@
 			if(W)
 				W.update_icon()
 
+///Check if we have a parent node, if not, qdel ourselve
+/obj/effect/alien/weeds/proc/check_for_parent_node()
+	if(parent_node)
+		return
+	qdel(src)
+
 /obj/effect/alien/weeds/update_icon_state()
 	. = ..()
 	var/my_dir = 0
@@ -107,6 +113,8 @@
 ///Clean the parent node var
 /obj/effect/alien/weeds/proc/clean_parent_node()
 	SIGNAL_HANDLER
+	if(!parent_node.swapped)
+		SSweeds_decay.decaying_list += src
 	parent_node = null
 
 /obj/effect/alien/weeds/sticky
@@ -170,7 +178,7 @@
 // =================
 // weed node - grows other weeds
 /obj/effect/alien/weeds/node
-	name = "speed weed sac"
+	name = WEED
 	desc = "A weird, pulsating purple node."
 	max_integrity = 60
 	var/node_icon = "weednode"
@@ -198,10 +206,8 @@
 	SSweeds.add_node(src)
 	swapped = FALSE
 
-/obj/effect/alien/weeds/node/Destroy()
-	. = ..()
-	if(!swapped)
-		SSweeds_decay.decay_weeds(src)
+/obj/effect/alien/weeds/node/set_parent_node(atom/node)
+	CRASH("set_parent_node was called on a /obj/effect/alien/weeds/node, node are not supposed to have node themselves")
 
 /obj/effect/alien/weeds/node/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	. = ..()
@@ -223,7 +229,7 @@
 
 //Sticky weed node
 /obj/effect/alien/weeds/node/sticky
-	name = "sticky weed sac"
+	name = STICKY_WEED
 	desc = "A weird, pulsating red node."
 	weed_type = /obj/effect/alien/weeds/sticky
 	color_variant = STICKY_COLOR
@@ -236,7 +242,7 @@
 
 //Resting weed node
 /obj/effect/alien/weeds/node/resting
-	name = "resting weed sac"
+	name = RESTING_WEED
 	desc = "A weird, pulsating white node."
 	weed_type = /obj/effect/alien/weeds/resting
 	color_variant = RESTING_COLOR

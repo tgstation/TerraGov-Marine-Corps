@@ -187,34 +187,7 @@
 	if(istype(I, /obj/item/tool/screwdriver))
 		flamethrower_screwdriver(src, user)
 
-/obj/item/tool/weldingtool/attack(mob/M, mob/user)
-
-	if(hasorgans(M))
-		var/mob/living/carbon/human/H = M
-		var/datum/limb/S = H.get_limb(user.zone_selected)
-
-		if (!S) return
-		if(!(S.limb_status & LIMB_ROBOT) || user.a_intent != INTENT_HELP)
-			return ..()
-
-		if(S.brute_dam && welding)
-			if(issynth(H) && M == user)
-				if(user.do_actions || !do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
-					return
-			S.heal_limb_damage(15, robo_repair = TRUE, updating_health = TRUE)
-			H.UpdateDamageIcon()
-			user.visible_message(span_warning("\The [user] patches some dents on \the [H]'s [S.display_name] with \the [src]."), \
-								span_warning("You patch some dents on \the [H]'s [S.display_name] with \the [src]."))
-			remove_fuel(1,user)
-			playsound(user.loc, 'sound/items/welder2.ogg', 25, 1)
-			return
-		else
-			to_chat(user, span_warning("Nothing to fix!"))
-
-	else
-		return ..()
-
-/obj/item/tool/weldingtool/afterattack(obj/O as obj, mob/user as mob, proximity)
+/obj/item/tool/weldingtool/afterattack(obj/O, mob/user, proximity)
 	if(!proximity)
 		return
 	if(!status && O.is_refillable())
@@ -502,6 +475,9 @@
 	. = ..()
 
 	if(!istype(I, /obj/item/cell))
+		return
+	if(istype(I, /obj/item/cell/rtg/large))
+		to_chat(user, span_notice("The RTG is too large to fit in the charger!"))
 		return
 	if(!user.drop_held_item())
 		return

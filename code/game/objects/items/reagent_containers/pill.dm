@@ -28,7 +28,7 @@
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.species.species_flags & IS_SYNTHETIC)
+			if(H.species.species_flags & ROBOTIC_LIMBS)
 				to_chat(H, span_warning("You can't eat pills."))
 				return
 
@@ -43,7 +43,7 @@
 	else if(ishuman(M) )
 
 		var/mob/living/carbon/human/H = M
-		if(H.species.species_flags & IS_SYNTHETIC)
+		if(H.species.species_flags & ROBOTIC_LIMBS)
 			to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
 			return
 
