@@ -30,19 +30,13 @@ GLOBAL_LIST_INIT(weed_images_list,  list(
 		RESTING_WEED = image('icons/mob/actions.dmi', icon_state = RESTING_WEED),
 		))
 
-GLOBAL_LIST_INIT(xeno_turret_images_list,  list(
-		"Sticky turret" = image('icons/Xeno/acidturret.dmi', icon_state = XENO_TURRET_STICKY_ICONSTATE),
-		"Acid turret" = image('icons/Xeno/acidturret.dmi', icon_state = XENO_TURRET_ACID_ICONSTATE),
-		))
-
-GLOBAL_LIST_INIT(turret_types_by_name,  list(
-		"Sticky turret" = /obj/structure/xeno/xeno_turret/sticky,
-		"Acid turret" = /obj/structure/xeno/xeno_turret,
-		))
-
 //List of Defiler toxin types
 GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 		/datum/reagent/toxin/xeno_neurotoxin,
 		/datum/reagent/toxin/xeno_hemodile,
 		/datum/reagent/toxin/xeno_transvitox,
 		))
+
+//xeno upgrade flags
+///Message the hive when we buy this upgrade
+#define UPGRADE_FLAG_MESSAGE_HIVE (1<<0)

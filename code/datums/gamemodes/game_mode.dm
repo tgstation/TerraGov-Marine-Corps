@@ -94,6 +94,7 @@
 	return TRUE
 
 /datum/game_mode/proc/setup()
+	SHOULD_CALL_PARENT(TRUE)
 	SSjob.DivideOccupations()
 	create_characters()
 	spawn_characters()
@@ -101,6 +102,10 @@
 	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(flags_round_type, MODE_HUMAN_ONLY))
 	SSpoints.dropship_points = 0
 	SSpoints.supply_points[FACTION_TERRAGOV] = 0
+
+	for(var/hivenum in GLOB.hive_datums)
+		var/datum/hive_status/hive = GLOB.hive_datums[hivenum]
+		hive.setup_upgrades()
 	return TRUE
 
 
