@@ -25,7 +25,7 @@
 	///Time before resurrecting if dead
 	var/revive_time = 1 MINUTES
 	///How much burn and burn damage can you heal every Life tick (half a sec)
-	var/heal_rate = 5
+	var/heal_rate = 10
 
 /datum/species/husk/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
@@ -68,6 +68,8 @@
 			else if (istype(limb, /datum/limb/hand/r_hand))
 				H.equip_to_slot_or_del(new /obj/item/weapon/husk_claw, SLOT_R_HAND)
 			H.update_body()
+		else if(limb.limb_status & LIMB_BROKEN && prob(20))
+			limb.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
 
 	if(H.health != total_health)
 		H.heal_limbs(heal_rate)
@@ -148,7 +150,7 @@
 /datum/species/husk/tank
 	name = "Tank husk"
 	slowdown = 1
-	heal_rate = 10
+	heal_rate = 20
 	total_health = 250
 
 /datum/species/husk/tank/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
@@ -162,5 +164,5 @@
 /datum/species/husk/strong
 	name = "Strong husk" //These are husks created from marines, they are stronger, but of course rarer
 	slowdown = -0.5
-	heal_rate = 10
+	heal_rate = 20
 	total_health = 200

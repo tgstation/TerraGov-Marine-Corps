@@ -269,11 +269,11 @@
 
 		// heal brute damage
 		if(W.damage_type == CUT || W.damage_type == BRUISE)
-			brute = W.heal_wound_damage(brute)
+			brute = W.heal_wound_damage(brute, internal)
 		else if(W.damage_type == BURN)
-			burn = W.heal_wound_damage(burn)
+			burn = W.heal_wound_damage(burn, internal)
 		else if(internal)
-			brute = W.heal_wound_damage(brute)
+			brute = W.heal_wound_damage(brute, internal)
 
 	//Sync the organ's damage with its wounds
 	update_damages()
