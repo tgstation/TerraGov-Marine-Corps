@@ -221,7 +221,7 @@
 	if(crashing)
 		force = TRUE
 
-	if(automatic_cycle_on)
+	if(automatic_cycle_on && destination == new_dock)
 		if(cycle_timer)
 			deltimer(cycle_timer)
 		cycle_timer = addtimer(CALLBACK(src, .proc/prepare_going_to_previous_destination), rechargeTime + time_between_cycle SECONDS - 20 SECONDS, TIMER_STOPPABLE)
@@ -309,7 +309,7 @@
 		return "Control integrity compromised"
 	else if(hijack_state == HIJACK_STATE_UNLOCKED)
 		return "Remote control compromised"
-	return ..() + (timeleft(cycle_timer) ? ("\nAutomatic cycle : [(timeleft(cycle_timer) / 10 + 20)] seconds before departure towards [previous.name]") : "")
+	return ..() + (timeleft(cycle_timer) ? (" Automatic cycle : [round(timeleft(cycle_timer) / 10 + 20, 1)] seconds before departure towards [previous.name]") : "")
 
 
 /obj/docking_port/mobile/marine_dropship/can_move_topic(mob/user)

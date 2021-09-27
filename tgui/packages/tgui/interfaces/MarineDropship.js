@@ -126,13 +126,3 @@ const NormalOperation = (props, context) => {
     </>
   );
 };
-
-const AutomaticFlight = (props, context) => {
-  const { act, data } = useBackend(context);
-
-  return (
-    <>
-    </>
-  )
-};
-
