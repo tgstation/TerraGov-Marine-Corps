@@ -1184,7 +1184,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/surgery)
 "gb" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
 /area/outpost/caves/north)
 "gd" = (
@@ -4997,6 +4997,10 @@
 	dir = 10
 	},
 /area/outpost/hallway/south_east)
+"yU" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/outpost/caves/north)
 "yY" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark,
@@ -5435,7 +5439,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/dormitories)
 "Bk" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north)
 "Bl" = (
@@ -5452,7 +5456,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south)
 "Bo" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 10
 	},
@@ -9338,7 +9342,6 @@
 	},
 /area/outpost/caves/north)
 "Ur" = (
-/obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 6
 	},
@@ -9490,6 +9493,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "Vh" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 6
 	},
@@ -9665,8 +9669,9 @@
 	},
 /area/outpost/caves/west)
 "VY" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor/plating/ground/mars/random/dirt,
+/obj/effect/ai_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north)
 "VZ" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -26142,9 +26147,9 @@ Fy
 Fy
 Fy
 Fy
-gb
-gb
-gb
+Fy
+Fy
+Fy
 Fy
 Fy
 Fy
@@ -26401,7 +26406,7 @@ Fy
 Fy
 Fy
 gb
-Fy
+gb
 gb
 gb
 gb
@@ -27443,8 +27448,8 @@ pi
 pi
 Pb
 Bk
-gb
-gb
+Fy
+Fy
 TX
 TX
 TX
@@ -27700,9 +27705,9 @@ Fy
 pi
 pi
 pi
+Bk
 pi
-pi
-gb
+Fy
 Fy
 Fy
 Fy
@@ -27958,9 +27963,9 @@ Fy
 Fy
 pi
 pi
-pi
-pi
 Bk
+pi
+pi
 Fy
 Fy
 Fy
@@ -28216,7 +28221,7 @@ Fy
 Fy
 Fy
 pi
-pi
+Bk
 pi
 Ur
 OR
@@ -28474,9 +28479,9 @@ Fy
 Fy
 Fy
 Pb
-uU
-Co
 VY
+Co
+OR
 OR
 OR
 vj
@@ -28732,9 +28737,9 @@ Fy
 Fy
 pi
 pi
-pi
+Bk
 Co
-VY
+OR
 OR
 OR
 QZ
@@ -28990,9 +28995,9 @@ Fy
 Fy
 pi
 pi
-pi
+Bk
 Fy
-VY
+OR
 OR
 OR
 vj
@@ -29249,8 +29254,8 @@ pi
 Pb
 pi
 gb
-gb
-VY
+Fy
+OR
 OR
 OR
 vj
@@ -29497,8 +29502,8 @@ Fy
 Fy
 Fy
 gb
-gb
-gb
+Fy
+Fy
 pi
 pi
 gn
@@ -29754,10 +29759,10 @@ Fy
 Fy
 Fy
 Fy
+gb
 Fy
 Fy
-gb
-gb
+Fy
 pi
 pi
 pi
@@ -30012,16 +30017,16 @@ Fy
 Fy
 Fy
 Fy
-Fy
-Fy
-Fy
 gb
 Fy
 Fy
-Bk
-Bk
-Bk
-Bk
+Fy
+Fy
+Fy
+pi
+pi
+pi
+pi
 gb
 Fy
 Fy
@@ -30270,17 +30275,17 @@ Fy
 Fy
 Fy
 Fy
-Fy
-Fy
-Fy
 gb
 gb
 gb
 gb
-pi
-pi
+gb
+gb
+gb
+Bk
+Bk
 Vh
-OR
+yU
 Fy
 Fy
 Fy
