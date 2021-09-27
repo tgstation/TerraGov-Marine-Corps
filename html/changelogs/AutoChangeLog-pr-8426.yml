@@ -1,0 +1,4 @@
+author: "Lefunny"
+delete-after: True
+changes: 
+  - balance: "Build a sentry healh goes from 500 to 250"
