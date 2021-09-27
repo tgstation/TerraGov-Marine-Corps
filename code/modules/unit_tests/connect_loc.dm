@@ -43,7 +43,7 @@
 	TEST_ASSERT_EQUAL(watcher.times_called, 3, "After changing turf a second time, connect_loc didn't reconnect it")
 
 /datum/unit_test/connect_loc_change_turf/Destroy()
-	run_loc_floor_bottom_left.ChangeTurf(old_turf_type)
+	run_loc_bottom_left.ChangeTurf(old_turf_type)
 	return ..()
 
 /// Tests that multiple objects can have connect_loc on the same turf without runtimes.
