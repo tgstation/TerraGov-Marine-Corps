@@ -691,13 +691,13 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "shotgun_buckshot"
 	flags_ammo_behavior = AMMO_BALLISTIC
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread
-	bonus_projectiles_amount = 5
-	bonus_projectiles_scatter = 4
+	bonus_projectiles_amount = 4
+	bonus_projectiles_scatter = 5
 	accuracy_var_low = 9
 	accuracy_var_high = 9
 	accurate_range = 5
 	max_range = 10
-	damage = 40
+	damage = 44
 	damage_falloff = 1
 	penetration = 0
 
@@ -713,7 +713,7 @@ datum/ammo/bullet/revolver/tp44
 	accuracy_var_high = 9
 	accurate_range = 5
 	max_range = 10
-	damage = 40
+	damage = 44
 	damage_falloff = 1
 	penetration = 0
 
