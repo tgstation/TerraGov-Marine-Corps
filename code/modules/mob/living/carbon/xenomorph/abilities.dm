@@ -159,7 +159,7 @@
 	GLOB.round_statistics.weeds_planted++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_planted")
 	add_cooldown()
-	return succeed_activate()
+	return succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)
 
 /datum/action/xeno_action/activable/plant_weeds/alternate_action_activate()
 	INVOKE_ASYNC(src, .proc/choose_weed)
@@ -366,8 +366,8 @@
 			plasma_cost = initial(plasma_cost) * 3
 
 	if(new_resin)
-		add_cooldown()
-		succeed_activate()
+		add_cooldown(SSmonitor.gamestate == SHUTTERS_CLOSED ? get_cooldown()/2 : get_cooldown())
+		succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)
 
 	plasma_cost = initial(plasma_cost) //Reset the plasma cost
 
