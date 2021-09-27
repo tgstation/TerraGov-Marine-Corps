@@ -390,7 +390,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/list/mob/living/free_ssd_mobs = list()
 	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
 		if(isnull(ssd_mob))
-			GLOB.ssd_living_mobs -= ssd_mob
+			LAZYREMOVE(GLOB.ssd_living_mobs, src)
 			continue
 		if(is_centcom_level(ssd_mob.z))
 			continue

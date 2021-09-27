@@ -11,4 +11,4 @@
 		set_afk_status(MOB_DISCONNECTED)
 	else if(!isclientedaghost(src))
 		set_afk_status(MOB_RECENTLY_DISCONNECTED, AFK_TIMER)
-	LAZYADD(GLOB.ssd_living_mobs, src)
+	LAZYDISTINCTADD(GLOB.ssd_living_mobs, src)
