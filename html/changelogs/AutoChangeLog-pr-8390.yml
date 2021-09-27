@@ -1,4 +1,0 @@
-author: "jroinc"
-delete-after: True
-changes: 
-  - rscadd: "Added two self-recharging cells to engi vendors. Low capacity, but they charge up to full slowly without needing a hand charger."

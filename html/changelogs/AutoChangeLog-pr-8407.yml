@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "Fix ammo hud breaking when stocking back gun in vendor"
