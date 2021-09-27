@@ -236,7 +236,6 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
-		/obj/item/weapon/gun/launcher/m92/mini_grenade,
 		/obj/item/attachable/motiondetector,
 	)
 
