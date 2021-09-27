@@ -24,7 +24,7 @@ const categoryIcons = {
   "Buildings": "gopuram",
   "Defences": "user-shield",
   "Xenos": "khanda",
-  "Primordeal": "skull", // wolf-pack-battalion
+  "Primordial": "skull", // wolf-pack-battalion
 };
 
 export const BoonMenu = (props, context) => {

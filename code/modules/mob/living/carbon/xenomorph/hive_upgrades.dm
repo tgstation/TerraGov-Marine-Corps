@@ -32,7 +32,7 @@
 		return FALSE
 	return TRUE
 
-GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos", "Primordeal"))
+GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos", "Primordial"))
 /datum/hive_upgrade/building
 	category = "Buildings"
 
@@ -152,7 +152,7 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos", "Pri
 
 /datum/hive_upgrade/xenos/king
 	name = "King"
-	desc = "Places a Psychic Echo chamber that tallhosts can detect, then afterwards selects a random sister to take over the mind of the gravity maniulating King."
+	desc = "Places a Psychic Echo chamber that tallhosts can detect, then after a summon time selects a random sister to take over the mind of the gravity manipulating King."
 	icon = "king"
 	flags_gamemode = ABILITY_DISTRESS
 	psypoint_cost = XENO_KING_PRICE
