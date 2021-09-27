@@ -55,7 +55,7 @@
 		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/activable/build_hunt_den,
-		/datum/action/xeno_action/boon_menu,
+		/datum/action/xeno_action/blessing_menu,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/screech,

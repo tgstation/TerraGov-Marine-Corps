@@ -46,13 +46,13 @@
 	SSdirection.set_leader(hivenumber, null)
 
 // ***************************************
-// *********** UI for hive store/boon menu
+// *********** UI for hive store/blessing menu
 // ***************************************
 
 /datum/hive_status/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "BoonMenu", "Queen Mothers Boons")
+		ui = new(user, src, "BlessingMenu", "Queen Mothers Blessings")
 		ui.open()
 
 ///Sets up upgrades when the round starts
@@ -71,7 +71,7 @@
 
 /datum/hive_status/ui_assets(mob/user)
 	. = ..()
-	. += get_asset_datum(/datum/asset/spritesheet/boonmenu)
+	. += get_asset_datum(/datum/asset/spritesheet/blessingmenu)
 
 /datum/hive_status/ui_data(mob/user)
 	. = ..()
@@ -96,9 +96,9 @@
 				return
 			if(!upgrade.on_buy(user))
 				return
-			log_game("[key_name(user)] has purchased \a [upgrade] Boon for [upgrade.psypoint_cost] psypoints for the [hivenumber] hive")
+			log_game("[key_name(user)] has purchased \a [upgrade] Blessing for [upgrade.psypoint_cost] psypoints for the [hivenumber] hive")
 			if(upgrade.flags_upgrade & UPGRADE_FLAG_MESSAGE_HIVE)
-				xeno_message("[user] has purchased \a [upgrade] Boon", "xenoannounce", 5, user.hivenumber)
+				xeno_message("[user] has purchased \a [upgrade] Blessing", "xenoannounce", 5, user.hivenumber)
 
 
 // ***************************************

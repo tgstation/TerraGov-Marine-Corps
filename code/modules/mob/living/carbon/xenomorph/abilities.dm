@@ -1387,16 +1387,16 @@
 	X.eject_victim(TRUE, starting_turf)
 
 /////////////////////////////////
-// Boon Menu
+// blessing Menu
 /////////////////////////////////
-/datum/action/xeno_action/boon_menu
-	name = "Mothers Boons"
+/datum/action/xeno_action/blessing_menu
+	name = "Mothers Blessings"
 	action_icon_state = "hivestore"
-	mechanics_text = "Ask the Queen Mother for boons for your hive in exchange for psychic energy."
-	keybind_signal = COMSIG_XENOABILITY_BOONMENU
+	mechanics_text = "Ask the Queen Mother for blessings for your hive in exchange for psychic energy."
+	keybind_signal = COMSIG_XENOABILITY_BLESSINGSMENU
 	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY
 
-/datum/action/xeno_action/boon_menu/action_activate()
+/datum/action/xeno_action/blessing_menu/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	X.hive.interact(X)
 	return succeed_activate()

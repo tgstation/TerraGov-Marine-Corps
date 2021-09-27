@@ -129,9 +129,9 @@
 		"ghost.png" = 'html/images/ghost.png'
 	)
 
-/datum/asset/spritesheet/boonmenu
-	name = "boonmenu"
+/datum/asset/spritesheet/blessingmenu
+	name = "blessingmenu"
 
-/datum/asset/spritesheet/boonmenu/register()
+/datum/asset/spritesheet/blessingmenu/register()
 	InsertAll("", 'icons/UI_Icons/buyable_icons.dmi')
 	..()

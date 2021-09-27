@@ -65,7 +65,7 @@
 		/datum/action/xeno_action/activable/unrelenting_force,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/activable/rally_hive,
-		/datum/action/xeno_action/boon_menu,
+		/datum/action/xeno_action/blessing_menu,
 	)
 
 /datum/xeno_caste/shrike/young

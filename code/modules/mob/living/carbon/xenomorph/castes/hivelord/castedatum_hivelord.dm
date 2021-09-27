@@ -59,7 +59,7 @@
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/secrete_resin/ranged,
 		/datum/action/xeno_action/activable/build_hunt_den,
-		/datum/action/xeno_action/boon_menu,
+		/datum/action/xeno_action/blessing_menu,
 		/datum/action/xeno_action/activable/transfer_plasma/improved,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/build_tunnel,

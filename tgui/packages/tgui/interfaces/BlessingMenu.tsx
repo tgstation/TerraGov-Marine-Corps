@@ -3,7 +3,7 @@ import { Window } from "../layouts";
 import { Button, Section, Box, LabeledList, Divider, Tabs, Stack, Collapsible, Flex } from '../components';
 import { classes } from 'common/react';
 
-type BoonData = {
+type BlessingData = {
   user: string,
   psypoints: number,
   upgrades: UpgradeData[],
@@ -27,8 +27,8 @@ const categoryIcons = {
   "Primordial": "skull", // wolf-pack-battalion
 };
 
-export const BoonMenu = (props, context) => {
-  const { data } = useBackend<BoonData>(context);
+export const BlessingMenu = (props, context) => {
+  const { data } = useBackend<BlessingData>(context);
 
   const {
     psypoints,
@@ -42,7 +42,7 @@ export const BoonMenu = (props, context) => {
 
   return (
     <Window
-      title={"Queen Mothers boons"}
+      title={"Queen Mothers blessings"}
       width={500}
       height={600}>
       <Window.Content scrollable>
@@ -82,7 +82,7 @@ export const BoonMenu = (props, context) => {
 };
 
 const Upgrades = (props, context) => {
-  const { data } = useBackend<BoonData>(context);
+  const { data } = useBackend<BlessingData>(context);
 
   const {
     upgrades,
@@ -148,7 +148,7 @@ const UpgradeEntry = (props: UpgradeEntryProps, context) => {
           disabled={!upgrade_can_buy}
           tooltip={upgrade_cost + " points"}
           onClick={() => act('buy', { buyname: upgrade_name })}>
-          Claim Boon
+          Claim Blessing
         </Button>
       )}>
       <UpgradeView
@@ -186,7 +186,7 @@ const UpgradeView = (props: UpgradeViewEntryProps, context) => {
           {name}
         </Box>
         <Box
-          className={classes(['boonmenu32x32', iconstate])}
+          className={classes(['blessingmenu32x32', iconstate])}
           ml={3}
           mt={2}
           style={{
