@@ -19,6 +19,7 @@
 	full_name = "Open Boon Menu"
 	description = "Opens the Queen Mothers boon menu, where hive upgrades are bought"
 	keybind_signal = COMSIG_XENOABILITY_BOONMENU
+
 /datum/keybinding/xeno/drop_weeds
 	hotkey_keys = list("V")
 	name = "drop_weeds"
