@@ -609,6 +609,8 @@
 			. = TRUE
 		if("automation_on")
 			M.automatic_cycle_on = params["automation_on"]
+			if(!M.automatic_cycle_on)
+				M.deltimer(M.cycle_timer)
 		if("cycle_time_change")
 			M.time_between_cycle = params["cycle_time_change"]
 
