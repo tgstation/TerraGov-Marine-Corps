@@ -124,7 +124,7 @@
 
 /obj/effect/alien/weeds/sticky/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	. = ..()
-	AddElement(/datum/element/slowing_on_crossed, WEED_SLOWDOWN)
+	AddComponent(/datum/component/slowing_on_crossed, WEED_SLOWDOWN)
 
 /obj/effect/alien/weeds/resting
 	name = "resting weeds"
@@ -238,7 +238,7 @@
 
 /obj/effect/alien/weeds/node/sticky/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	. = ..()
-	AddElement(/datum/element/slowing_on_crossed, WEED_SLOWDOWN)
+	AddComponent(/datum/component/slowing_on_crossed, WEED_SLOWDOWN)
 
 //Resting weed node
 /obj/effect/alien/weeds/node/resting

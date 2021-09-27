@@ -94,7 +94,7 @@
 
 /obj/effect/alien/resin/sticky/Initialize()
 	. = ..()
-	AddElement(/datum/element/slowing_on_crossed, slow_amt)
+	AddComponent(/datum/component/slowing_on_crossed, slow_amt)
 
 /obj/effect/alien/resin/sticky/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
