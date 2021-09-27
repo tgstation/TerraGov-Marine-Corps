@@ -42,7 +42,7 @@ stutter_step: a prob() chance to go left or right of the mob's direction towards
 			continue
 
 		//Okay it can actually physically move, but has it moved too recently?
-		if(world.time <= mob_to_process.next_move || mob_to_process.do_actions)
+		if(world.time <= (mob_to_process.last_move_time + mob_to_process.cached_multiplicative_slowdown + mob_to_process.next_move_slowdown) || mob_to_process.do_actions)
 			continue
 		var/step_dir
 		if(get_dist(mob_to_process, atoms_to_walk_to[mob_to_process]) == distances_to_maintain[mob_to_process])
@@ -69,8 +69,8 @@ stutter_step: a prob() chance to go left or right of the mob's direction towards
 				continue
 			mob_to_process.Move(get_step(mob_to_process, step_dir), step_dir)
 
-/datum/element/pathfinder/Detach(datum/source)
-	distances_to_maintain.Remove(source)
-	atoms_to_walk_to.Remove(source)
-	stutter_step_prob.Remove(source)
+/datum/element/pathfinder/Detach(mob/mob_parent)
+	distances_to_maintain.Remove(mob_parent)
+	atoms_to_walk_to.Remove(mob_parent)
+	stutter_step_prob.Remove(mob_parent)
 	return ..()

@@ -95,7 +95,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "aay" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /obj/machinery/status_display{
 	pixel_y = 32
 	},
@@ -6284,7 +6284,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "awx" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "awA" = (
@@ -6307,7 +6307,7 @@
 /turf/open/floor/carpet,
 /area/bigredv2/caves/lambda_lab)
 "awE" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "awF" = (
@@ -7146,7 +7146,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "azT" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor,
@@ -13532,7 +13532,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bcy" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bcz" = (
@@ -16540,6 +16540,7 @@
 	},
 /area/bigredv2/caves/southwest)
 "brd" = (
+/obj/effect/landmark/fob_sentry,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/sw)
 "bre" = (
@@ -16603,7 +16604,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bru" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "brv" = (
@@ -18313,7 +18314,7 @@
 /turf/open/floor/tile/red/full,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAV" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
@@ -19437,9 +19438,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/south)
-"cxt" = (
-/turf/open/floor/asteroidfloor,
-/area/space)
 "cyp" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 9
@@ -19604,6 +19602,15 @@
 	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/virology)
+"duV" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/tile/dark/purple2{
+	dir = 8
+	},
+/area/bigredv2/caves/lambda_lab)
 "dwi" = (
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/tile/dark,
@@ -19862,7 +19869,7 @@
 /area/bigredv2/caves/west)
 "eQx" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/obj/effect/landmark/dropship_console_spawn_lz2,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
@@ -19878,6 +19885,10 @@
 	dir = 1
 	},
 /area/shuttle/drop2/lz2)
+"eSh" = (
+/obj/effect/landmark/fob_sentry,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/w)
 "eTT" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -20281,6 +20292,12 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/ne)
+"hdG" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
 "heW" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -20379,7 +20396,7 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/effect/landmark/dropship_console_spawn_lz1,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "hJM" = (
@@ -20551,6 +20568,14 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"iOO" = (
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/bigredv2/outside/nw)
+"iUj" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/wood,
+/area/bigredv2/outside/bar)
 "iUZ" = (
 /obj/machinery/light{
 	dir = 1
@@ -22002,6 +22027,10 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/sw)
+"rRZ" = (
+/obj/effect/landmark/fob_sentry,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/west)
 "rSn" = (
 /turf/open/space/basic,
 /area/bigredv2/outside/c)
@@ -22025,6 +22054,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
+"see" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/fob_sentry,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/w)
 "seg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -22264,6 +22300,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
+"tER" = (
+/obj/effect/landmark/fob_sentry,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southwest)
 "tHR" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/ai_node,
@@ -22444,12 +22484,20 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"uvu" = (
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
 "uvF" = (
 /obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
+"uwN" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
 "uxP" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
@@ -22655,6 +22703,10 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
+"vWQ" = (
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northwest)
 "vXv" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
@@ -25483,7 +25535,7 @@ bLG
 aaf
 aaf
 aaf
-cxt
+aaf
 alH
 aae
 cQC
@@ -26149,7 +26201,7 @@ aad
 aad
 aad
 aad
-aad
+vWQ
 aad
 aad
 aad
@@ -26651,7 +26703,7 @@ nRT
 nRT
 nRT
 nRT
-nRT
+rRZ
 dSm
 puQ
 puQ
@@ -29710,7 +29762,7 @@ mAw
 gva
 vvM
 mSv
-puQ
+tER
 puQ
 puQ
 puQ
@@ -30972,7 +31024,7 @@ aVI
 aWk
 lZa
 aWk
-aVI
+see
 qzU
 faR
 bev
@@ -31346,7 +31398,7 @@ aah
 wQg
 aae
 lPV
-ahP
+iOO
 ahO
 aeI
 aeI
@@ -32618,7 +32670,7 @@ aad
 aad
 axl
 aad
-aad
+vWQ
 bXE
 aae
 aax
@@ -32713,7 +32765,7 @@ aSB
 aVG
 bdZ
 bdZ
-beQ
+eSh
 aSB
 vDI
 vDI
@@ -34384,7 +34436,7 @@ aae
 aae
 vwf
 bQc
-aeI
+uvu
 aiA
 ajz
 ajY
@@ -34809,7 +34861,7 @@ aac
 aac
 aac
 aad
-aad
+vWQ
 aad
 aac
 hzx
@@ -39398,7 +39450,7 @@ aqw
 awh
 awU
 aqw
-aqw
+uwN
 ayO
 azA
 arR
@@ -49003,7 +49055,7 @@ bgx
 bkt
 bkS
 bow
-bly
+hdG
 bkQ
 bno
 bnN
@@ -49178,7 +49230,7 @@ aEO
 aEO
 aEO
 aEO
-aEO
+iUj
 aGH
 aEO
 aNV
@@ -63697,7 +63749,7 @@ asw
 liQ
 agj
 avk
-avk
+duV
 agd
 awJ
 axt

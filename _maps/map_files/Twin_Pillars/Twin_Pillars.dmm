@@ -547,10 +547,10 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
 "azJ" = (
-/obj/machinery/vending/medical,
 /obj/machinery/camera/autoname/mainship/rebelship{
 	dir = 4
 	},
+/obj/machinery/vending/medical/rebel,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
 "aAf" = (
@@ -1727,7 +1727,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
 "bJK" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing/rebel)
 "bKa" = (
@@ -1894,9 +1894,9 @@
 /area/mainship/medical/lower_medical)
 "bSd" = (
 /obj/structure/table/mainship,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
 /obj/item/tool/extinguisher/mini,
 /obj/item/tool/extinguisher/mini,
 /obj/item/tool/extinguisher/mini,
@@ -3192,7 +3192,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
 "cYI" = (
-/obj/machinery/door/airlock/mainship/maint/rebel,
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "cYP" = (
@@ -6374,7 +6374,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "fLR" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
 "fLS" = (
@@ -6541,7 +6541,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
 "fRS" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "fSe" = (
@@ -6969,7 +6969,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/maint/rebel,
-/turf/closed/wall/mainship,
+/turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull/rebel)
 "gqc" = (
 /obj/structure/sink,
@@ -8837,10 +8837,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"hWv" = (
-/obj/machinery/door/airlock/mainship/maint,
-/turf/closed/wall/mainship,
-/area/mainship/hull/lower_hull)
 "hWE" = (
 /obj/machinery/vending/nanomed,
 /turf/closed/wall/mainship,
@@ -9151,7 +9147,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
 "inu" = (
-/obj/machinery/door/airlock/mainship/maint/rebel,
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar/rebel)
 "inH" = (
@@ -10445,7 +10441,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering/rebel)
 "jCA" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /obj/item/coin/iron,
 /turf/open/floor/mainship/black{
 	dir = 4
@@ -11024,7 +11020,7 @@
 "jYh" = (
 /obj/machinery/door/airlock/mainship/maint/rebel,
 /obj/structure/cable,
-/turf/closed/wall/mainship,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull/rebel)
 "jYo" = (
 /obj/item/bedsheet/blue,
@@ -11201,9 +11197,9 @@
 /area/mainship/living/port_emb/rebel)
 "kfg" = (
 /obj/structure/table/mainship,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
 /obj/item/tool/extinguisher/mini,
 /obj/item/tool/extinguisher/mini,
 /obj/item/tool/extinguisher/mini,
@@ -12065,7 +12061,7 @@
 	},
 /area/space)
 "kUj" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop/rebel)
 "kUD" = (
@@ -12144,7 +12140,7 @@
 /turf/open/floor/mainship,
 /area/mainship/engineering/ce_room)
 "kVO" = (
-/obj/docking_port/stationary/marine_dropship/hangar/rebel,
+/obj/docking_port/stationary/marine_dropship/hangar/one,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "kWe" = (
@@ -12336,7 +12332,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway/rebel)
 "lcR" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard/rebel)
 "ldI" = (
@@ -12486,8 +12482,8 @@
 	},
 /area/space)
 "lit" = (
-/obj/machinery/door/airlock/mainship/maint/rebel,
-/turf/closed/wall/mainship,
+/obj/machinery/door/airlock/mainship/generic,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "liH" = (
 /obj/machinery/telecomms/broadcaster/preset_left,
@@ -12656,7 +12652,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
 "lof" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical/rebel,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/chemistry/rebel)
 "lpj" = (
@@ -14541,7 +14537,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/turf/closed/wall/mainship,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull/rebel)
 "neU" = (
 /obj/structure/cable,
@@ -19236,7 +19232,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engine_monitoring)
 "raH" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /obj/item/coin/iron,
 /turf/open/floor/mainship/black{
 	dir = 4
@@ -19503,8 +19499,8 @@
 	},
 /area/mainship/squads/general/rebel)
 "roJ" = (
-/obj/machinery/door/airlock/mainship/maint/rebel,
-/turf/closed/wall/mainship,
+/obj/machinery/door/airlock/mainship/generic,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/rebel)
 "roP" = (
 /obj/structure/table/reinforced,
@@ -20077,7 +20073,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "rPw" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "rPz" = (
@@ -23825,7 +23821,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/turf/closed/wall/mainship,
+/turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "uZG" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/cryo{
@@ -24789,7 +24785,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/maint,
-/turf/closed/wall/mainship,
+/turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "vTi" = (
 /obj/structure/table/mainship,
@@ -33252,7 +33248,7 @@ ieP
 ieP
 ieP
 ieP
-kwK
+oQJ
 ieP
 ieP
 gpZ
@@ -38568,7 +38564,7 @@ juv
 juv
 ieP
 wnQ
-kwK
+rKR
 saY
 jVD
 edB
@@ -73991,7 +73987,7 @@ jTt
 jTt
 jTt
 jTt
-hWv
+kgf
 jTt
 jTt
 vSU

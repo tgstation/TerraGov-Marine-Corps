@@ -21,11 +21,14 @@
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/motiondetector,
+						/obj/item/attachable/buildasentry,
 						)
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 	fire_delay = 4
+
+	placed_overlay_iconstate = "flamer"
 
 /obj/item/weapon/gun/flamer/big_flamer
 	name = "\improper M240A1 incinerator unit"
@@ -38,7 +41,7 @@
 	desc = "A weapon-mounted refillable flamethrower attachment.\nIt is designed for short bursts."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "flamethrower"
-	
+
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY
 	w_class = WEIGHT_CLASS_BULKY
 	fire_delay = 2.5 SECONDS
@@ -107,13 +110,13 @@
 
 
 /obj/item/weapon/gun/flamer/Fire()
-	if(!able_to_fire(gun_user))
+	if((!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)))
 		return
 
 	if(gun_on_cooldown(gun_user))
 		return
 
-	var/turf/curloc = get_turf(gun_user) //In case the target or we are expired.
+	var/turf/curloc = get_turf(src) //In case the target or we are expired.
 	var/turf/targloc = get_turf(target)
 	if(!targloc || !curloc)
 		return //Something has gone wrong...
@@ -164,7 +167,7 @@
 		light_pilot(user,TRUE)
 
 	update_icon()
-
+	user.hud_used.update_ammo_hud(user, src)
 	return TRUE
 
 /obj/item/weapon/gun/flamer/unload(mob/user, reload_override = 0, drop_override = 0)
@@ -215,8 +218,7 @@
 	light_pilot(user,TRUE)
 	playsound(user, reload_sound, 25, 1, 5)
 	update_icon(user)
-	var/obj/screen/ammo/A = user.hud_used.ammo
-	A.update_hud(user, src)
+	user?.hud_used.update_ammo_hud(user, src)
 
 
 /**Proced when unlinking the back fuel tank, making the flamer unlit and unable to fire
@@ -232,9 +234,7 @@
 	playsound(user, unload_sound, 25, 1)
 	light_pilot(user,FALSE)
 	update_icon(user)
-	var/obj/screen/ammo/A = user.hud_used.ammo
-	A.update_hud(user, src)
-
+	user?.hud_used.update_ammo_hud(user, src)
 
 /obj/item/weapon/gun/flamer/removed_from_inventory(mob/user)
 	. = ..()
@@ -260,25 +260,25 @@
 	var/fire_color = loaded_ammo.fire_color
 	fire_delay = loaded_ammo.fire_delay
 
-	var/list/turf/turfs = getline(user,target)
-	playsound(user, fire_sound, 50, 1)
+	var/list/turf/turfs = getline(get_turf(src), target)
+	playsound(loc, fire_sound, 50, 1)
 	var/distance = 1
 	var/turf/prev_T
 
 	for(var/F in turfs)
 		var/turf/T = F
 
-		if(T == user.loc)
+		if(T == get_turf(src))
 			prev_T = T
 			continue
 		if((T.density && !istype(T, /turf/closed/wall/resin)) || isspaceturf(T))
 			break
-		if(loc != user && !master_gun && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && loc != user && !master_gun)
 			break
 		if(!current_mag?.current_rounds)
 			break
 		var/range = istype(src, /obj/item/weapon/gun/flamer/mini_flamer) ? 4 : loaded_ammo.max_range //Temporary hardcode range of miniflamer.
-		if(distance > range) 
+		if(distance > range)
 			break
 
 		var/blocked = FALSE
@@ -311,8 +311,9 @@
 		distance++
 		prev_T = T
 		sleep(1)
-	var/obj/screen/ammo/A = user.hud_used.ammo
-	A.update_hud(user, src)
+	if(!user)
+		return
+	user.hud_used.update_ammo_hud(user, src)
 
 /obj/item/weapon/gun/flamer/proc/flame_turf(turf/T, mob/living/user, heat, burn, f_color = "red")
 	if(!istype(T))
@@ -454,6 +455,8 @@
 	. = ..()
 	to_chat(user, span_notice("Its hydro cannon contains [reagents.get_reagent_amount(/datum/reagent/water)]/[reagents.maximum_volume] units of water!"))
 
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/cock(mob/user)
+	return TRUE
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/unique_action(mob/user)
 	. = ..()
@@ -470,8 +473,7 @@
 		hydro_active = FALSE
 		if (current_mag?.current_rounds > 0)
 			light_pilot(user, TRUE)
-	var/obj/screen/ammo/A = user.hud_used.ammo
-	A.update_hud(user, src)
+	user.hud_used.update_ammo_hud(user, src)
 	SEND_SIGNAL(src, COMSIG_ITEM_HYDRO_CANNON_TOGGLED)
 	return TRUE
 
@@ -500,8 +502,7 @@
 		light_pilot(user,TRUE)
 	playsound(user, reload_sound, 25, 1, 5)
 	update_icon(user)
-	var/obj/screen/ammo/A = user.hud_used.ammo
-	A.update_hud(user, src)
+	user.hud_used.update_ammo_hud(user, src)
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/Fire()
 	if(!target)
@@ -511,10 +512,9 @@
 		water_count -= 7//reagents is not updated in this proc, we need water_count for a updated HUD
 		last_fired = world.time
 		last_use = world.time
-		var/obj/screen/ammo/A = gun_user.hud_used.ammo
-		A.update_hud(gun_user, src)
+		gun_user.hud_used.update_ammo_hud(gun_user, src)
 		return
-	if(gun_user.skills.getRating("firearms") < 0)
+	if(gun_user?.skills.getRating("firearms") < 0)
 		switch(windup_checked)
 			if(WEAPON_WINDUP_NOT_CHECKED)
 				INVOKE_ASYNC(src, .proc/do_windup)
@@ -540,8 +540,7 @@
 		water_count = reagents.maximum_volume
 		to_chat(user, span_notice("\The [src]'s hydro cannon is refilled with water."))
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		var/obj/screen/ammo/A = user.hud_used.ammo
-		A.update_hud(user, src)
+		user.hud_used.update_ammo_hud(user, src)
 		return
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/get_ammo_count()

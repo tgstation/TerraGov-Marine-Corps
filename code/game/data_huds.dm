@@ -239,6 +239,12 @@
 		infection_hud.icon_state = "hudsynth" //Xenos can feel synths are not human.
 		return TRUE
 
+	if(species.species_flags & HEALTH_HUD_ALWAYS_DEAD)
+		status_hud.icon_state = "huddead"
+		infection_hud.icon_state = ""
+		simple_status_hud.icon_state = ""
+		return TRUE
+
 	if(status_flags & XENO_HOST)
 		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
 		if(E)
@@ -318,7 +324,7 @@
 
 
 /mob/living/carbon/human/med_pain_set_perceived_health()
-	if(species && species.species_flags & NO_PAIN)
+	if(species?.species_flags & IS_SYNTHETIC)
 		return FALSE
 
 	var/image/holder = hud_list[PAIN_HUD]
@@ -558,7 +564,7 @@
 
 ///Makes mounted guns ammo visible
 /obj/machinery/deployable/mounted/proc/hud_set_gun_ammo()
-	var/image/holder = hud_list[SENTRY_AMMO_HUD]
+	var/image/holder = hud_list[MACHINE_AMMO_HUD]
 
 	if(!holder)
 		return

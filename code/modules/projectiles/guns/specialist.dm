@@ -35,6 +35,8 @@
 	attachable_allowed = list(
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/lasersight,
+		/obj/item/attachable/scope/antimaterial,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
@@ -44,6 +46,8 @@
 	burst_amount = 1
 	accuracy_mult = 1.50
 	recoil = 2
+
+	placed_overlay_iconstate = "antimat"
 
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/Initialize()
@@ -101,6 +105,8 @@
 	remove_overlay(X_LASER_LAYER)
 	return TRUE
 
+/obj/item/weapon/gun/rifle/sniper/antimaterial/cock(mob/user)
+	return TRUE
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/unique_action(mob/user)
 	. = ..()
@@ -108,11 +114,7 @@
 		return
 	if(!targetmarker_primed && !targetmarker_on)
 		return laser_on(user)
-	else
-		return laser_off(user)
-
-/obj/item/weapon/gun/rifle/sniper/antimaterial/cock(mob/user)
-	return
+	return laser_off(user)
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/Destroy()
 	laser_off()
@@ -277,6 +279,9 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 22, "under_x" = 24, "under_y" = 13, "stock_x" = 20, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/attachable/scope/slavic, /obj/item/attachable/slavicbarrel)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.8 SECONDS
+	aim_speed_modifier = 0.75
 
 	fire_delay = 1.2 SECONDS
 	burst_amount = 1
@@ -430,10 +435,7 @@
 		return in_chamber ? 1 : 0
 	return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
-/obj/item/weapon/gun/minigun/unique_action(mob/living/carbon/user)
-	. = ..()
-	if(!.)
-		return
+/obj/item/weapon/gun/minigun/cock(mob/living/carbon/user)
 	var/obj/item/minigun_powerpack/power_pack = user.back
 	if(!istype(power_pack))
 		return FALSE
@@ -523,7 +525,7 @@
 /obj/item/weapon/gun/launcher/m92/Initialize()
 	. = ..()
 	for(var/i in 1 to max_grenades)
-		grenades += new /obj/item/explosive/grenade/frag(src)
+		grenades += new /obj/item/explosive/grenade(src)
 
 /obj/item/weapon/gun/launcher/m92/update_icon(mob/user)
 	update_item_state(user)
@@ -575,8 +577,7 @@
 		to_chat(gun_user, span_warning("The grenade launcher is empty."))
 		return
 	fire_grenade(target, gun_user)
-	var/obj/screen/ammo/A = gun_user.hud_used.ammo
-	A.update_hud(gun_user)
+	gun_user.hud_used.update_ammo_hud(gun_user, src)
 
 
 //Doesn't use most of any of these. Listed for reference.
@@ -809,7 +810,6 @@
 	update_icon()
 	if(F?.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
 		log_explosion("[key_name(user)] fired a grenade [F] from \a [src] at [AREACOORD(user.loc)].")
-		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F] from \a [src].")
 		F.icon_state = initial(F.icon_state) + "_active"
 		F.activate(user)
 		F.updateicon()
@@ -820,7 +820,7 @@
 	name = "\improper M81 riot grenade launcher"
 	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by Nanotrasen security during riots."
 	grenade_type_allowed = /obj/item/explosive/grenade/chem_grenade
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_POLICE|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	req_access = list(ACCESS_MARINE_BRIG)
 
 
@@ -847,6 +847,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -861,6 +862,8 @@
 	recoil = 3
 	scatter = -100
 
+	placed_overlay_iconstate = "sadar"
+
 
 /obj/item/weapon/gun/launcher/rocket/Initialize(mapload, spawn_empty)
 	. = ..()
@@ -871,7 +874,7 @@
 	return ..()
 
 /obj/item/weapon/gun/launcher/rocket/Fire()
-	if(!able_to_fire(gun_user) || gun_user.do_actions)
+	if((!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)) || gun_user?.do_actions)
 		return
 
 	if(gun_on_cooldown(gun_user))
@@ -902,12 +905,20 @@
 	if(has_attachment(/obj/item/attachable/scope/mini))
 		delay += 0.2 SECONDS
 
-	if(gun_user.skills.getRating("firearms") < 0)
+	if(gun_user && gun_user.skills.getRating("firearms") < 0)
 		delay += 0.6 SECONDS
 
-	if(!do_after(gun_user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
-		windup_checked = WEAPON_WINDUP_NOT_CHECKED
+	if(gun_user)
+		if(!do_after(gun_user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
+			windup_checked = WEAPON_WINDUP_NOT_CHECKED
+			return
+		finish_windup()
 		return
+
+	addtimer(CALLBACK(src, .proc/finish_windup), delay)
+
+///Proc that finishes the windup, this fires the gun.
+/obj/item/weapon/gun/launcher/rocket/proc/finish_windup()
 	windup_checked = WEAPON_WINDUP_CHECKED
 	if(Fire())
 		playsound(loc,'sound/weapons/guns/fire/launcher.ogg', 50, TRUE)
@@ -1025,6 +1036,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -1059,7 +1071,9 @@
 	load_method = MAGAZINE //codex
 	current_mag = /obj/item/ammo_magazine/rocket/m57a4/ds
 	aim_slowdown = 2.75
-	attachable_allowed = list()
+	attachable_allowed = list(
+		/obj/item/attachable/buildasentry,
+	)
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	general_codex_key = "explosive weapons"
 
@@ -1067,6 +1081,8 @@
 	burst_delay = 0.4 SECONDS
 	burst_amount = 4
 	accuracy_mult = 0.8
+
+	placed_overlay_iconstate = "thermo"
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/t57
 	name = "\improper T-57 quad thermobaric launcher"
@@ -1102,6 +1118,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -1197,7 +1214,9 @@
 	force = 30 // two shots weeds as it has no bayonet
 	wield_delay = 0.5 SECONDS // Very fast to put up.
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
-	attachable_allowed = list() // Nada.
+	attachable_allowed = list(
+		/obj/item/attachable/buildasentry,
+	) // One
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER
@@ -1209,3 +1228,5 @@
 	accuracy_mult_unwielded = 0.75
 	scatter = -5
 	scatter_unwielded = 5
+
+	placed_overlay_iconstate = "pepper"
