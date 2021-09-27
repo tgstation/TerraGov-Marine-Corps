@@ -11,7 +11,7 @@
 	wound_type = "hunter" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 23
 	attack_delay = 7
 
 	// *** Speed *** //
@@ -132,7 +132,7 @@
 	ancient_message = "We are the epitome of the hunter. Few can stand against us in open combat."
 
 	// *** Melee Attacks *** //
-	melee_damage = 24
+	melee_damage = 26
 
 	// *** Speed *** //
 	speed = -1.4

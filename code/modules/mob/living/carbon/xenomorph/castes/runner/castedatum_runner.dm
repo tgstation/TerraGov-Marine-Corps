@@ -12,7 +12,7 @@
 	gib_flick = "gibbed-a-runner"
 
 	// *** Melee Attacks *** //
-	melee_damage = 17
+	melee_damage = 20
 	attack_delay = 6
 
 	savage_cooldown = 30 SECONDS
@@ -131,7 +131,7 @@
 	savage_cooldown = 30 SECONDS
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 22
 
 	// *** Speed *** //
 	speed = -1.5
@@ -166,7 +166,7 @@
 	gib_flick = "gibbed-a-runner"
 
 	// *** Melee Attacks *** //
-	melee_damage = 17
+	melee_damage = 20
 	attack_delay = 6
 
 	savage_cooldown = 30 SECONDS
@@ -282,7 +282,7 @@
 	savage_cooldown = 30 SECONDS
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 22
 
 	// *** Speed *** //
 	speed = -1.5

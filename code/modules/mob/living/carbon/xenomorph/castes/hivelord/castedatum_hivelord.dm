@@ -9,7 +9,7 @@
 	wound_type = "hivelord" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 17
+	melee_damage = 18
 
 	// *** Speed *** //
 	speed = 0.4
@@ -142,7 +142,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 21
 
 	// *** Speed *** //
 	speed = 0.1
