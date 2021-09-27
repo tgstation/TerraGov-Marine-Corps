@@ -1,3 +1,5 @@
+GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos", "Primordial"))
+
 /datum/hive_upgrade
 	///name of the upgrade, string, used in ui
 	var/name = "Error upgrade"
@@ -16,14 +18,25 @@
 	///string for UI icon in buyable_icons.dmi for this upgrade
 	var/icon = "larvasilo"
 
-
+/**
+ * Buys the upgrade and applies its effects
+ * returns true on success false on fail
+ * Arguments:
+ * * buyer: Xeno trying to buy this upgrade
+ */
 /datum/hive_upgrade/proc/on_buy(mob/living/carbon/xenomorph/buyer)
 	SHOULD_CALL_PARENT(TRUE)
 	SSpoints.xeno_points_by_hive[buyer.hivenumber] -= psypoint_cost
 	times_bought++
 	return TRUE
 
-
+/**
+ * Whether we can buy this upgrade, used to set the menu button as grey or not
+ * returns true on can false on cannot
+ * Arguments:
+ * * buyer: Xeno trying to buy this upgrade
+ * * silent: whether to send error messages to the buyer
+ */
 /datum/hive_upgrade/proc/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	SHOULD_CALL_PARENT(TRUE)
 	if(SSpoints.xeno_points_by_hive[buyer.hivenumber] < psypoint_cost)
@@ -32,7 +45,6 @@
 		return FALSE
 	return TRUE
 
-GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos", "Primordial"))
 /datum/hive_upgrade/building
 	category = "Buildings"
 
@@ -109,9 +121,6 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos", "Pri
 
 	var/obj/effect/alien/weeds/alien_weeds = locate() in T
 
-	for(var/obj/effect/forcefield/fog/F in range(1, buyer))
-		return FALSE
-
 	if(!alien_weeds)
 		if(!silent)
 			to_chat(buyer, span_xenowarning("No weeds here!"))
@@ -119,6 +128,7 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos", "Pri
 
 	if(!T.check_alien_construction(buyer, silent = silent, planned_building = /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(buyer))
 		return FALSE
+	return TRUE
 
 /datum/hive_upgrade/defence/turret/on_buy(mob/living/carbon/xenomorph/buyer)
 	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
@@ -132,7 +142,7 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos", "Pri
 	if(!can_buy(buyer, FALSE))
 		return FALSE
 
-	to_chat(buyer, span_xenowarning("We build a new acid turret, spending 100 psychic points in the process"))
+	to_chat(buyer, span_xenowarning("We build a new acid turret, spending [psypoint_cost] psychic points in the process"))
 	new turret_type(get_turf(buyer), buyer.hivenumber)
 
 	log_game("[buyer] built a turret in [AREACOORD(buyer)], spending [psypoint_cost] psy points in the process")

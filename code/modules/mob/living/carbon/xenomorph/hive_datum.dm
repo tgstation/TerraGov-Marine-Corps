@@ -15,7 +15,7 @@
 	var/list/list/xenos_by_tier = list()
 	var/list/list/xenos_by_upgrade = list()
 	var/list/dead_xenos = list() // xenos that are still assigned to this hive but are dead.
-	var/list/ssd_xenos = list()
+	var/list/ssd_xenos
 	var/list/list/xenos_by_zlevel = list()
 	var/tier3_xeno_limit
 	var/tier2_xeno_limit
@@ -780,7 +780,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	return
 
 /datum/hive_status/normal/handle_silo_death_timer()
-	if(!isdistressgamemode(SSticker.mode))
+	if(!(SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN))
 		return
 	if(world.time < MINIMUM_TIME_SILO_LESS_COLLAPSE)
 		return
@@ -876,7 +876,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		return FALSE
 	return TRUE
 
-
+///updates and sets the t2 and t3 xeno limits
 /datum/hive_status/proc/update_tier_limits()
 	tier3_xeno_limit = max(length(xenos_by_tier[XENO_TIER_THREE]),FLOOR((length(xenos_by_tier[XENO_TIER_ZERO])+length(xenos_by_tier[XENO_TIER_ONE])+length(xenos_by_tier[XENO_TIER_TWO])+length(xenos_by_tier[XENO_TIER_FOUR]))/3+1,1))
 	tier2_xeno_limit = max(length(xenos_by_tier[XENO_TIER_TWO]),length(xenos_by_tier[XENO_TIER_ZERO]) + length(xenos_by_tier[XENO_TIER_ONE]) + length(xenos_by_tier[XENO_TIER_FOUR])+1 - length(xenos_by_tier[XENO_TIER_THREE]))
