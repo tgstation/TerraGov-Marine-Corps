@@ -829,7 +829,7 @@ and you're good to go.
 	if(M.status_flags & INCORPOREAL) //Can't attack the incorporeal
 		return ..()
 
-	if(M != user && user.a_intent == INTENT_HARM)
+	if(M != user)
 		. = ..()
 		if(!.)
 			return
