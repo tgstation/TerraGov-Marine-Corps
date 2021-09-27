@@ -1549,4 +1549,10 @@
 
 /datum/action/xeno_action/activable/command_minion
 	name = "Command Minions"
+	mechanics_text = "Order your minions to attack what you are pointing"
+	keybind_signal = COMSIG_XENOABILITY_ORDER_MINION_ATTACK
+
+/datum/action/xeno_action/activable/command_minion/use_ability(atom/A)
+	if(SEND_SIGNAL(src, COMSIG_MINION_TARGET_CHANGED, A) & ORDER_RECEIVED)
+		to_chat(owner, span_notice("You ordered your minions to go to [A]"))
 

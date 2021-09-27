@@ -151,9 +151,10 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	RegisterSignal(commander, COMSIG_MINION_TARGET_CHANGED, .proc/atom_to_walk_to_changed)
 
 ///Signal handler to change the targeted atom
-/datum/ai_behavior/xeno/proc/atom_to_walk_to_changed(atom/atom_to_walk_to)
+/datum/ai_behavior/proc/atom_to_walk_to_changed(datum/source, atom/new_atom_to_walk_to)
 	SIGNAL_HANDLER
-	if(src.atom_to_walk_to == atom_to_walk_to)
+	if(atom_to_walk_to == new_atom_to_walk_to)
 		return
-	change_action(MOVING_TO_ATOM, atom_to_walk_to)
+	change_action(MOVING_TO_ATOM, new_atom_to_walk_to)
+	return ORDER_RECEIVED
 

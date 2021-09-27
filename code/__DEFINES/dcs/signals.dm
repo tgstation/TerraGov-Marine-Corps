@@ -559,6 +559,7 @@
 #define COMSIG_XENOABILITY_NEUROTOX_STING "xenoability_neurotox_sting"
 #define COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS "xenoability_inject_egg_neurogas"
 #define COMSIG_XENOABILITY_RALLY_HIVE "xenoability_rally_hive"
+#define COMSIG_XENOABILITY_ORDER_MINION_ATTACK "xenoability_order_minion_attack"
 
 #define COMSIG_XENOABILITY_LONG_RANGE_SIGHT "xenoability_long_range_sight"
 #define COMSIG_XENOABILITY_TOGGLE_BOMB "xenoability_toggle_bomb"
@@ -714,3 +715,4 @@
 
 //Signals for AI
 #define COMSIG_MINION_TARGET_CHANGED "minion target changed"
+	#define ORDER_RECEIVED (1<<0)
