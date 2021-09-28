@@ -26,7 +26,7 @@
 	///flat list of upgrades we can buy
 	var/list/buyable_upgrades = list()
 	///assoc list name = upgraderef
-	var/list/upgrades_by_name = list()
+	var/list/datum/hive_upgrade/upgrades_by_name = list()
 
 // ***************************************
 // *********** Init
