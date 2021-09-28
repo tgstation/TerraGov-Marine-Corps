@@ -27,6 +27,8 @@ They're all essentially identical when it comes to getting the job done.
 	var/used_casings = 0 //Just an easier way to track how many shells to eject later.
 	var/flags_magazine = AMMUNITION_REFILLABLE //flags specifically for magazines.
 	var/base_mag_icon //the default mag icon state.
+	///Rerference to the linked gun if this magazine can be worn.
+	var/obj/item/weapon/gun/attached_gun
 
 /obj/item/ammo_magazine/Initialize(mapload, spawn_empty)
 	. = ..()
@@ -84,6 +86,35 @@ They're all essentially identical when it comes to getting the job done.
 			return
 
 		transfer_ammo(H, user, H.current_rounds) // This takes care of the rest.
+		return
+	
+	if(CHECK_BITFIELD(flags_magazine, AMMUNITION_WORN) && istype(I, /obj/item/weapon/gun) && loc == user && istype(I, gun_type))
+		var/obj/item/weapon/gun/gun = I
+		if(!gun.reload(user, src))
+			return
+		attached_gun = gun
+		return
+	return ..()
+
+/obj/item/ammo_magazine/attackby_alternate(obj/item/I, mob/user, params)
+	. = ..()
+	if(!isgun(I))
+		return
+	var/obj/item/weapon/gun/gun = I
+	if(!gun.active_attachable)
+		return
+	attackby(gun.active_attachable, user, params)
+
+/obj/item/ammo_magazine/removed_from_inventory(mob/user) //Dropping the tank should unlink it from the attached_gun
+	. = ..()
+	if(!CHECK_BITFIELD(flags_magazine, AMMUNITION_WORN))
+		return
+	var/mob/living/carbon/human/human_user = user
+	if(!istype(human_user))
+		return
+	if(!attached_gun)
+		return
+	attached_gun.unload(user)
 
 //Generic proc to transfer ammo between ammo mags. Can work for anything, mags, handfuls, etc.
 /obj/item/ammo_magazine/proc/transfer_ammo(obj/item/ammo_magazine/source, mob/user, transfer_amount = 1)
@@ -208,10 +239,9 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 		if(default_ammo != H.default_ammo) //Has to match.
 			to_chat(user, span_notice("Those aren't the same rounds. Better not mix them up."))
 			return
-
 		transfer_ammo(H, user, H.current_rounds) // Transfer it from currently held to src
-	else
-		return ..()
+		return
+	return ..()
 
 
 /obj/item/ammo_magazine/handful/proc/generate_handful(new_ammo, new_caliber, new_rounds, new_gun_type, maximum_rounds )
@@ -241,39 +271,6 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 	caliber = CALIBER_12G
 
 //----------------------------------------------------------------//
-
-
-/obj/item/ammo_magazine/worn
-	name = "worn mag"
-	var/obj/item/weapon/gun/attached_gun
-
-/obj/item/ammo_magazine/worn/attackby(obj/item/I, mob/user, params)
-	if(loc != user || !istype(I, /obj/item/weapon/gun) || !istype(I, gun_type))
-		return ..()
-	var/obj/item/weapon/gun/gun = I
-	if(!gun.reload(user, src))
-		return
-	on_linked(gun, user)
-
-/obj/item/ammo_magazine/worn/attackby_alternate(obj/item/I, mob/user, params)
-	. = ..()
-	if(!isgun(I))
-		return
-	var/obj/item/weapon/gun/gun = I
-	if(!gun.active_attachable)
-		return
-	attackby(gun.active_attachable, user, params)
-	attached_gun = gun
-
-/obj/item/ammo_magazine/worn/removed_from_inventory(mob/user) //Dropping the tank should unlink it from the flamer
-	. = ..()
-	var/mob/living/carbon/human/human_user = user
-	if(!istype(human_user))
-		return
-	if(!attached_gun)
-		return
-	attached_gun.unload(user)
-
 
 /*
 Doesn't do anything or hold anything anymore.

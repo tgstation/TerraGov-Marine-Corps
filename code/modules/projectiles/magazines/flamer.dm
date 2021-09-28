@@ -67,7 +67,7 @@
 	default_ammo = /datum/ammo/flamethrower/blue
 	icon_state_mini = "tank_blue"
 
-/obj/item/ammo_magazine/worn/flamer_tank
+/obj/item/ammo_magazine/flamer_tank/worn
 	name = "back fuel tank"
 	desc = "A specialized fuel tank for use with the TL-84 flamethrower and M240A1 incinerator unit."
 	icon_state = "flamethrower_tank"
@@ -77,8 +77,13 @@
 	current_rounds = 500
 	reload_delay = 1 SECONDS
 	gun_type = /obj/item/weapon/gun/flamer
+	caliber = CALIBER_FUEL_THICK 
+	flags_magazine = AMMUNITION_WORN 
+	icon_state_mini = "tank"
+	
+	default_ammo = /datum/ammo/flamethrower
 
-/obj/item/ammo_magazine/worn/flamer_tank/x_fuel
+/obj/item/ammo_magazine/flamer_tank/worn/x_fuel
 	name = "back fuel tank (X)"
 	desc = "A specialized fuel tank of ultra thick napthal type X for use with the TL-84 flamethrower and M240A1 incinerator unit."
 	default_ammo = /datum/ammo/flamethrower/blue

@@ -238,8 +238,11 @@ should be alright.
 		reload_sentry_cell(I, user)
 		return
 
-	if((istype(I, /obj/item/ammo_magazine) && !istype(I, /obj/item/ammo_magazine/worn) || istype(I, /obj/item/cell)) && check_inactive_hand(user))
-		reload(user, I)
+	if((istype(I, /obj/item/ammo_magazine) || istype(I, /obj/item/cell)) && check_inactive_hand(user))
+		var/obj/item/ammo_magazine/magazine = I
+		if(CHECK_BITFIELD(magazine.flags_magazine,  AMMUNITION_WORN))
+			return
+		reload(user, magazine)
 		return
 
 ///Reloads the sentry battery. This is used both in the gun, and called from /deployed/mounted/sentry

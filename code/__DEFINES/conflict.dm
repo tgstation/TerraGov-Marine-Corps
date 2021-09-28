@@ -92,8 +92,9 @@
 #define ATTACH_SAME_ICON (1<<2)
 
 //Ammo magazine defines, for flags_magazine
-#define AMMUNITION_REFILLABLE 1
-#define AMMUNITION_HANDFUL 2
+#define AMMUNITION_REFILLABLE (1<<0)
+#define AMMUNITION_HANDFUL (1<<1)
+#define AMMUNITION_WORN (1<<2)
 
 //Slowdown from various armors.
 #define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up

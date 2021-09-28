@@ -127,7 +127,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 	///lazylist of attachment slot offsets for a gun.
 	var/list/gun_attachment_offset_mod
-
 	///what gun this attachment is currently attached to, if any.
 	var/obj/item/weapon/gun/master_gun
 
@@ -1507,15 +1506,20 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/flamer_nozzle
 	name = "\improper Standard Flamer Nozzle"
-	desc = ""
+	desc = "The standard flamer nozzle. This one fires a stream of fire for direct and accurate flames. Though not as area filling as its counterpart, this one excels at directed frontline combat."
 	icon_state = "flame_directional"
 	slot = ATTACHMENT_SLOT_FLAMER_NOZZLE
 	attach_delay = 2 SECONDS
 	detach_delay = 2 SECONDS
 
+	///Modifier for burn level of attached flamer. Percentage based.
 	var/burn_level_mod = 1
+	///Modifier for burn time of attached flamer. Percentage based.
 	var/burn_time_mod = 1
+	///Range modifier of attached flamer. Numerically based.
 	var/range_modifier = 0
+	///Damage multiplier for mobs caught in the initial stream of fire of the attached flamer.
+	var/mob_flame_damage_mod = 1
 
 /obj/item/attachable/flamer_nozzle/on_attach(attaching_item, mob/user)
 	. = ..()
@@ -1525,6 +1529,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	flamer.burn_level_mod *= burn_level_mod
 	flamer.burn_time_mod *= burn_time_mod
 	flamer.flame_max_range += range_modifier
+	flamer.mob_flame_damage_mod *= mob_flame_damage_mod
 
 /obj/item/attachable/flamer_nozzle/on_detach(attaching_item, mob/user)
 	. = ..()
@@ -1534,23 +1539,25 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	flamer.burn_level_mod /= burn_level_mod
 	flamer.burn_time_mod /= burn_time_mod
 	flamer.flame_max_range -= range_modifier
+	flamer.mob_flame_damage_mod /= mob_flame_damage_mod
 
+///This proc returns a list of lists of turfs for the flamer to flame. Each list inside the return list is of turfs to flame per tick.
 /obj/item/attachable/flamer_nozzle/proc/generate_flame_path(obj/item/weapon/gun/flamer/flamer, target, mob/living/user, max_range)
-	var/list/turf/turfs_to_ignite = list()
-	if(!target)
+	var/list/turf/turfs_to_ignite = list() //New list.
+	if(!target) //No target, return empty list. This will stop from flaming.
 		return turfs_to_ignite
 	var/list/turf/path_to_target = getline(get_turf(src), target)
-	path_to_target -= get_turf(src)
+	path_to_target -= get_turf(src) //No flaming the user.
 
-	if(length(path_to_target) > max_range)
-		for(var/iteration = path_to_target.len, iteration >= max_range, iteration--)
+	if(length(path_to_target) > max_range) //If the target is outside range, range is max_range
+		for(var/iteration = path_to_target.len, iteration > max_range, iteration--)
 			path_to_target -= path_to_target[iteration]
 	
-	if(!length(path_to_target))
+	if(!length(path_to_target)) //If the path is empty after the subtractions, return.
 		return turfs_to_ignite
 
 	var/blocked
-	for(var/turf/turf_to_check in path_to_target)
+	for(var/turf/turf_to_check in path_to_target) //Checks each turf, starting from the user out for blockage.
 		if(blocked || (turf_to_check.density && !istype(turf_to_check, /turf/closed/wall/resin)) || isspaceturf(turf_to_check))
 			break
 		for(var/obj/object in turf_to_check)
@@ -1560,11 +1567,18 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		turfs_to_ignite += list(list(turf_to_check))
 	return turfs_to_ignite
 
-/obj/item/attachable/flamer_nozzle/wide
-	name = "Spray Flamer Nozzle"
-	desc = ""
-	icon_state = "flame_wide"
+/obj/item/attachable/flamer_nozzle/unremovable
+	flags_attach_features = NONE
 
+/obj/item/attachable/flamer_nozzle/unremovable/invisible
+	icon_state = null
+
+/obj/item/attachable/flamer_nozzle/wide
+	name = "\improper Spray Flamer Nozzle"
+	desc = "This specialized nozzle sprays the flames of an attached flamer in a much more broad way than the standard nozzle. It serves for wide area denial as opposed to offensive directional flaming."
+	icon_state = "flame_wide"
+	range_modifier = -4
+	pixel_shift_y = 17
 
 /obj/item/attachable/flamer_nozzle/wide/generate_flame_path(obj/item/weapon/gun/flamer/flamer, target, mob/living/user, max_range)
 	var/list/turfs_to_ignite = list()
@@ -1572,23 +1586,25 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		return turfs_to_ignite
 	var/distance = get_dist(get_turf(src), target) > max_range ? max_range : get_dist(get_turf(src), target)
 	var/dir_to_target = get_dir(get_turf(src), target)
-	var/list/turf/previous_turfs = list(get_turf(src))
+	if(ISDIAGONALDIR(dir_to_target)) //Dir ranges are twice as long so a full range diagonal burn takes up a lot more of the screen.
+		distance /= 2
+	var/list/turf/previous_turfs = list(get_turf(src)) //Turfs to check the next line of turfs off of.
 	for(var/iteration = 0, iteration < distance, iteration++)
-		var/list/turf/next_turfs = list()
+		var/list/turf/next_turfs = list() //Turfs to check next and burn.
+		var/list/turf/primary_turfs = list() //Turfs to fill in the gaps in a diagonal burn.
 		for(var/turf/old_turf in previous_turfs)
 			var/turf/new_turf = get_step(old_turf, dir_to_target)
-			if(!ISDIAGONALDIR(dir_to_target))
-				next_turfs += new_turf
-			if(!(get_step(new_turf, turn(dir_to_target, 90)) in previous_turfs))
-				next_turfs += get_step(new_turf, turn(dir_to_target, 90))
+			next_turfs += new_turf //Adds the turf in front of the old turf.
+			if(!(get_step(new_turf, turn(dir_to_target, 90)) in previous_turfs)) //Adds the turf on the sides of the old turf if they arent already in the next_turfs list.
+				next_turfs += get_step(new_turf, turn(dir_to_target, 90)) 
 			if(!(get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90))) in previous_turfs))
 				next_turfs += get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90)))
-			if(ISDIAGONALDIR(dir_to_target))
-				if(!(get_step(new_turf, turn(dir_to_target, 45)) in previous_turfs))
-					next_turfs += get_step(new_turf, turn(dir_to_target, 45))
-				if(!(get_step(new_turf, turn(dir_to_target, -45)) in previous_turfs))
-					next_turfs += get_step(new_turf, turn(dir_to_target, -45))
-		for(var/turf/turf_to_check in next_turfs)
+			if(ISDIAGONALDIR(dir_to_target)) ///Fills in the blanks for a diagonal burn.
+				if(!(get_step(new_turf, turn(dir_to_target, 135)) in primary_turfs))
+					primary_turfs += get_step(new_turf, turn(dir_to_target, 135))
+				if(!(get_step(new_turf, turn(dir_to_target, 225)) in primary_turfs))
+					primary_turfs += get_step(new_turf, turn(dir_to_target, 225))
+		for(var/turf/turf_to_check in next_turfs) //Checks all the turfs for blockage, removes them if they cannot be burned.
 			if((turf_to_check.density && !istype(turf_to_check, /turf/closed/wall/resin)) || isspaceturf(turf_to_check))
 				next_turfs -= turf_to_check
 				continue
@@ -1596,11 +1612,26 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 				if(object.density && !object.throwpass && !istype(object, /obj/structure/mineral_door/resin))
 					next_turfs -= turf_to_check
 					break
-
-		turfs_to_ignite += list(next_turfs)
-		previous_turfs = next_turfs
+		for(var/turf/turf_to_check in primary_turfs)
+			if((turf_to_check.density && !istype(turf_to_check, /turf/closed/wall/resin)) || isspaceturf(turf_to_check))
+				next_turfs -= turf_to_check
+				continue
+			for(var/obj/object in turf_to_check)
+				if(object.density && !object.throwpass && !istype(object, /obj/structure/mineral_door/resin))
+					next_turfs -= turf_to_check
+					break
+		var/list/filled_list = primary_turfs + next_turfs //All the tufs to ignite
+		turfs_to_ignite += list(filled_list)
+		previous_turfs = next_turfs //Only next_turfs has new tiles generated from it.
 	
 	return turfs_to_ignite
+
+///Funny red wide nozzle that can fill entire screens with flames. Admeme only. 
+/obj/item/attachable/flamer_nozzle/wide/red
+	name = "\improper Red Spray Flamer Nozzle"
+	desc = "It is red, therefore its obviously more effective."
+	icon_state = "flame_wide_red"
+	range_modifier = 0
 
 ///This is called when an attachment gun (src) attaches to a gun.
 /obj/item/weapon/gun/proc/on_attach(obj/item/attached_to, mob/user)
@@ -1657,8 +1688,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/weapon/gun/proc/can_attach(obj/item/attaching_to, mob/attacher)
 	return TRUE
 
+///Called when an attachment is attached to this gun (src).
 /obj/item/weapon/gun/proc/on_attachment_attach(/obj/item/attaching_here, mob/attacher)
 	return
-
-/obj/item/weapon/gun/proc/on_attachment_detach(/obj/item/attaching_here, mob/attacher)
+///Called when an attachment is detached from this gun (src).
+/obj/item/weapon/gun/proc/on_attachment_detach(/obj/item/detaching_here, mob/attacher)
 	return
