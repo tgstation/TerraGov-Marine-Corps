@@ -638,6 +638,12 @@ GLOBAL_LIST_INIT(synthetic_clothes_listed_products, list(
 		/obj/item/clothing/mask/gas/tactical/coif = list(CAT_MAS, "Tactical coifed gas mask", 0,"black"),
 	))
 
+
+///Items that should be saved in loadouts no matter what
+GLOBAL_LIST_INIT(bypass_loadout_check_item, typecacheof(list(
+	/obj/item/clothing/under,
+)))
+
 ///Assoc list linking the job title with their specific clothes vendor
 GLOBAL_LIST_INIT(job_specific_clothes_vendor, list(
 	SQUAD_MARINE = GLOB.marine_clothes_listed_products,

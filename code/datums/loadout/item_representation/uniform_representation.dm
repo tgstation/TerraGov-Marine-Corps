@@ -19,7 +19,13 @@
 	. = ..()
 	if(!.)
 		return
-	tie?.install_on_uniform(seller, ., user)
+	var/obj/item/clothing/under/uniform = .
+	uniform.soft_armor = uniform.soft_armor.setRating("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
+	uniform.hard_armor = uniform.hard_armor.setRating("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	uniform.flags_armor_protection = CHEST|GROIN|LEGS|ARMS
+	uniform.flags_cold_protection = CHEST|GROIN|LEGS|ARMS
+	uniform.flags_heat_protection = CHEST|GROIN|LEGS|ARMS
+	tie?.install_on_uniform(seller, uniform, user)
 
 /datum/item_representation/uniform_representation/get_tgui_data()
 	var/list/tgui_data = list()
