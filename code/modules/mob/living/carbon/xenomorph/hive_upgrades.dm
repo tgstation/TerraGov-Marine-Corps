@@ -1,4 +1,4 @@
-GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos", ))// "Primordial"))//uncomment to unlock globally
+GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, "Primordial"))//uncomment to unlock globally
 
 /datum/hive_upgrade
 	///name of the upgrade, string, used in ui
