@@ -202,6 +202,10 @@
 
 	HS.update_ruler()
 
+/mob/living/carbon/xenomorph/king/add_to_hive(datum/hive_status/HS, force=FALSE) // override to ensure proper king/hive behaviour
+	. = ..()
+	if(HS.living_xeno_king) // theres already a king
+		return
 
 /mob/living/carbon/xenomorph/shrike/add_to_hive(datum/hive_status/HS, force = FALSE) // override to ensure proper queen/hive behaviour
 	. = ..()
