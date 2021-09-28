@@ -1,7 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "Zombies properly heal internal wounds"
-  - balance: "Double the healing rate of zombies"
-  - bugfix: "Zombies can heal from broken bone (has no effect on balance)"
-  - bugfix: "Fix a runtime that could prevent human zombies from resurrecting"
