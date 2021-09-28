@@ -195,7 +195,7 @@
 ///returns TRUE if we are permitted to evo to the next case FALSE otherwise
 /mob/living/carbon/xenomorph/proc/upgrade_possible()
 	if(upgrade == XENO_UPGRADE_THREE)
-		if(!xeno_caste.primordial_upgrade_name)
+		if(!GLOB.xeno_caste_datums[xeno_caste.type][XENO_UPGRADE_FOUR])
 			return FALSE
 		return hive.upgrades_by_name[xeno_caste.primordial_upgrade_name].times_bought
 	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_FOUR)

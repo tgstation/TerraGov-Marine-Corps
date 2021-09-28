@@ -191,6 +191,15 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 /datum/hive_upgrade/primordial
 	category = "Primordial"
 
+
+/datum/hive_upgrade/primordial/can_buy(mob/living/carbon/xenomorph/buyer, silent)
+	. = ..()
+	if(!isxenoqueen(buyer) && !isxenoshrike(buyer))
+		if(!silent)
+			to_chat(buyer, span_xenonotice("You must be a ruler to buy this!"))
+		return FALSE
+
+
 /datum/hive_upgrade/primordial/queen
 	name = PRIMORDIAL_QUEEN
 	desc = "Unlocks the primordial empresses queen charge. Walk in a straight line to begin charging. Can be toggled."
