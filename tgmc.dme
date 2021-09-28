@@ -1392,6 +1392,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\evolution.dm"
 #include "code\modules\mob\living\carbon\xenomorph\facehuggers.dm"
 #include "code\modules\mob\living\carbon\xenomorph\hive_datum.dm"
+#include "code\modules\mob\living\carbon\xenomorph\hive_upgrades.dm"
 #include "code\modules\mob\living\carbon\xenomorph\life.dm"
 #include "code\modules\mob\living\carbon\xenomorph\login.dm"
 #include "code\modules\mob\living\carbon\xenomorph\logout.dm"
