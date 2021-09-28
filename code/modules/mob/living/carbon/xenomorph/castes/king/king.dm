@@ -34,6 +34,8 @@
 			name = "[hive.prefix]Elder Emperor ([nicknumber])"	 //Elder
 		if(XENO_UPGRADE_THREE)
 			name = "[hive.prefix]Ancient Emperor ([nicknumber])" //Ancient
+		if(XENO_UPGRADE_FOUR)
+			name = "[hive.prefix]Primordial Emperor ([nicknumber])"
 
 	real_name = name
 	if(mind)

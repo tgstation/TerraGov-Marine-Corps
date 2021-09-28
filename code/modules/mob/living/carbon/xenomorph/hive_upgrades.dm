@@ -1,4 +1,4 @@
-GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos", "Primordial"))
+GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos", ))// "Primordial"))//uncomment to unlock globally
 
 /datum/hive_upgrade
 	///name of the upgrade, string, used in ui
@@ -39,6 +39,8 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos", "Pri
  */
 /datum/hive_upgrade/proc/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	SHOULD_CALL_PARENT(TRUE)
+	if((flags_upgrade & UPGRADE_FLAG_ONETIME) && times_bought)
+		return FALSE
 	if(SSpoints.xeno_points_by_hive[buyer.hivenumber] < psypoint_cost)
 		if(!silent)
 			to_chat(buyer, span_xenowarning("You need [psypoint_cost-SSpoints.xeno_points_by_hive[buyer.hivenumber]] more points to request this blessing!"))
@@ -185,3 +187,13 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos", "Pri
 	xeno_message("<B>[buyer] has created a king pod at [get_area(buyer)]. Defend it until the Queen Mother summons a king!</B>", hivenumber = buyer.hivenumber, target = king_pod, arrow_type = /obj/screen/arrow/leader_tracker_arrow)
 	priority_announce("WARNING: Psychic anomaly detected at [get_area(buyer)]. Assault of the area reccomended.", "TGMC Intel Division")
 	return ..()
+
+/datum/hive_upgrade/primordial
+	category = "Primordial"
+
+/datum/hive_upgrade/primordial/queen
+	name = PRIMORDIAL_QUEEN
+	desc = "Unlocks the primordial empresses queen charge. Walk in a straight line to begin charging. Can be toggled."
+	psypoint_cost = 300
+	icon = "primoqueen"
+	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
