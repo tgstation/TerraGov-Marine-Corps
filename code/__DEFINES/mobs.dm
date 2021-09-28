@@ -324,6 +324,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CAN_VENTCRAWL (1<<19)
 #define HEALTH_HUD_ALWAYS_DEAD (1<<20)
 #define PARALYSE_RESISTANT (1<<21)
+#define ROBOTIC_LIMBS (1<<22)
+#define GREYSCALE_BLOOD (1<<23)
+
 //=================================================
 
 //Some on_mob_life() procs check for alien races.

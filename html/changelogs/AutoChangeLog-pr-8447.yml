@@ -1,0 +1,4 @@
+author: "Lefunny"
+delete-after: True
+changes: 
+  - bugfix: "I fixed a broken fog area."

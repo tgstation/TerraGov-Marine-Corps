@@ -225,7 +225,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	else if(href_list["track_silo_number"])
 		var/silo_number = href_list["track_silo_number"]
-		for(var/obj/structure/xeno/resin/silo/resin_silo AS in GLOB.xeno_resin_silos)
+		for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos)
 			if(resin_silo.associated_hive == GLOB.hive_datums[XENO_HIVE_NORMAL] && num2text(resin_silo.number_silo) == silo_number)
 				var/mob/dead/observer/ghost = usr
 				ghost.forceMove(resin_silo.loc)
@@ -878,7 +878,15 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	target.observers |= src
 	target.hud_used.show_hud(target.hud_used.hud_version, src)
 	observetarget = target
+	RegisterSignal(observetarget, COMSIG_PARENT_QDELETING, .proc/clean_observetarget)
 
+///Signal handler to clean the observedtarget
+/mob/dead/observer/proc/clean_observetarget()
+	SIGNAL_HANDLER
+	if(observetarget?.observers)
+		observetarget.observers -= src
+		UNSETEMPTY(observetarget.observers)
+	observetarget = null
 
 /mob/dead/observer/verb/dnr()
 	set category = "Ghost"
@@ -907,13 +915,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 /mob/dead/observer/reset_perspective(atom/A)
-	if(client && ismob(client.eye) && client.eye != src)
-		var/mob/target = client.eye
-		observetarget = null
-		if(target.observers)
-			target.observers -= src
-			UNSETEMPTY(target.observers)
-
+	clean_observetarget()
 	. = ..()
 
 	if(!.)

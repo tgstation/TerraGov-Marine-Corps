@@ -178,7 +178,7 @@
 // =================
 // weed node - grows other weeds
 /obj/effect/alien/weeds/node
-	name = "weed sac"
+	name = WEED
 	desc = "A weird, pulsating purple node."
 	max_integrity = 60
 	var/node_icon = "weednode"
@@ -229,7 +229,7 @@
 
 //Sticky weed node
 /obj/effect/alien/weeds/node/sticky
-	name = "sticky weed sac"
+	name = STICKY_WEED
 	desc = "A weird, pulsating red node."
 	weed_type = /obj/effect/alien/weeds/sticky
 	color_variant = STICKY_COLOR
@@ -242,7 +242,7 @@
 
 //Resting weed node
 /obj/effect/alien/weeds/node/resting
-	name = "resting weed sac"
+	name = RESTING_WEED
 	desc = "A weird, pulsating white node."
 	weed_type = /obj/effect/alien/weeds/resting
 	color_variant = RESTING_COLOR

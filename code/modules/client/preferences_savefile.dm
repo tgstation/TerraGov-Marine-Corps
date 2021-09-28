@@ -404,7 +404,7 @@
 
 	real_name		= reject_bad_name(real_name, TRUE)
 	random_name		= sanitize_integer(random_name, TRUE, TRUE, initial(random_name))
-	gender			= sanitize_gender(gender)
+	gender			= sanitize_gender(gender, TRUE, TRUE)
 	age				= sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
 	species			= sanitize_inlist(species, GLOB.all_species, initial(species))
 	ethnicity		= sanitize_ethnicity(ethnicity)
@@ -487,7 +487,7 @@
 
 	real_name		= reject_bad_name(real_name, TRUE)
 	random_name		= sanitize_integer(random_name, FALSE, TRUE, initial(random_name))
-	gender			= sanitize_gender(gender)
+	gender			= sanitize_gender(gender, TRUE, TRUE)
 	age				= sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
 	species			= sanitize_inlist(species, GLOB.all_species, initial(species))
 	ethnicity		= sanitize_ethnicity(ethnicity)
@@ -663,8 +663,7 @@
 	S.cd = "/loadouts"
 	var/loadout_version = 0
 	READ_FILE(S["loadout_version"], loadout_version)
-	if(loadout_version != CURRENT_LOADOUT_VERSION)
-		return list()
+
 	var/list/loadouts_data = list()
 	READ_FILE(S["loadouts_list"], loadouts_data)
 	return sanitize_islist(loadouts_data, list())

@@ -817,7 +817,7 @@
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/captain_mess)
 "cZ" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "da" = (
@@ -2335,7 +2335,7 @@
 /turf/open/floor/plating,
 /area/mainship/living/grunt_rnr)
 "hP" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "hQ" = (

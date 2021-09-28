@@ -12,13 +12,6 @@
 	pressure = 0
 	flags_area = NO_DROPPOD
 
-/area/space/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	. = ..()
-	if(isliving(arrived))
-		to_chat(arrived, span_danger("The cold vacuum instantly freezes you, maybe this was a bad idea?"))
-		var/mob/living/spaceman = arrived
-		spaceman.adjustFireLoss(600) //Bad idea, spessman.
-
 /area/engine/
 	ambience = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
 /area/turret_protected/
