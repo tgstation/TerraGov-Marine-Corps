@@ -17,6 +17,7 @@
 	var/list/dead_xenos = list() // xenos that are still assigned to this hive but are dead.
 	var/list/ssd_xenos
 	var/list/list/xenos_by_zlevel = list()
+	var/list/obj/structure/xeno/evotower/evotowers = list()
 	var/tier3_xeno_limit
 	var/tier2_xeno_limit
 	///Queue of all observer wanting to join xeno side
@@ -197,6 +198,12 @@
 			continue
 		xenos += ssd_xeno
 	return xenos
+
+///fetches number of bonus points given to the hive,
+/datum/hive_status/proc/get_evolution_boost()
+	. = 0
+	for(var/obj/structure/xeno/evotower/tower AS in evotowers)
+		. += tower.boost_amount
 
 // ***************************************
 // *********** Adding xenos
