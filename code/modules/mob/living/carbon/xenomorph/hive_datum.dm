@@ -23,8 +23,10 @@
 	var/list/mob/dead/observer/candidate
 
 	//hive store vars
+	///flat list of upgrades we can buy
 	var/list/buyable_upgrades = list()
-	var/list/upgrades_by_name = list()
+	///assoc list name = upgraderef
+	var/list/datum/hive_upgrade/upgrades_by_name = list()
 
 // ***************************************
 // *********** Init

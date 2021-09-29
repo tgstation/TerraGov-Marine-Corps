@@ -143,6 +143,8 @@
 			return 2
 		if(XENO_UPGRADE_THREE)
 			return 3
+		if(XENO_UPGRADE_FOUR)
+			return 4
 
 /mob/living/carbon/xenomorph/proc/upgrade_next()
 	switch(upgrade)
@@ -155,7 +157,9 @@
 		if(XENO_UPGRADE_TWO)
 			return XENO_UPGRADE_THREE
 		if(XENO_UPGRADE_THREE)
-			return XENO_UPGRADE_THREE
+			return XENO_UPGRADE_FOUR
+		if(XENO_UPGRADE_FOUR)
+			return XENO_UPGRADE_FOUR
 
 /mob/living/carbon/xenomorph/proc/upgrade_prev()
 	switch(upgrade)
@@ -169,6 +173,8 @@
 			return XENO_UPGRADE_ONE
 		if(XENO_UPGRADE_THREE)
 			return XENO_UPGRADE_TWO
+		if(XENO_UPGRADE_FOUR)
+			return XENO_UPGRADE_THREE
 
 /mob/living/carbon/xenomorph/proc/setup_job()
 	var/datum/job/xenomorph/xeno_job = SSjob.type_occupations[xeno_caste.job_type]
