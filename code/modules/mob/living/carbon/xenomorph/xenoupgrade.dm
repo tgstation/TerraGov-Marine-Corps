@@ -357,6 +357,9 @@
 /mob/living/carbon/xenomorph/shrike/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/shrike/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----SHRIKE END----//
 //============//
 
