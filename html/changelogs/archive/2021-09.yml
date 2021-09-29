@@ -468,3 +468,14 @@
   - balance: Halve weed and building cost before shutters open
   XSlayer300:
   - bugfix: Fixed the zombie sprite a little bit.
+2021-09-29:
+  BraveMole:
+  - balance: Remove shrap, IB, organ damage from Civil War
+  Lefunny:
+  - bugfix: I fixed a broken fog area.
+  TiviPlus:
+  - rscadd: Replaced place silo/king/turret with the hive boon menu
+  - imageadd: sprites by ciel/kyranova
+  lovegreenstuff:
+  - balance: masterkey, underbarrel flamer, and underbarrel GL for t39, t35, and v10
+      are now gone
