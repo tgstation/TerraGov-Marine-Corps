@@ -362,8 +362,8 @@
 	for(var/atom/movable/victim in view(3))//yes this throws EVERYONE
 		if(victim.anchored)
 			continue
-		if(isliving(A))
-			var/mob/living/livingtarget = A
+		if(isliving(victim))
+			var/mob/living/livingtarget = victim
 			if(livingtarget.stat == DEAD)
 				continue
 		victim.throw_at(src, 5, 1, null, TRUE)
