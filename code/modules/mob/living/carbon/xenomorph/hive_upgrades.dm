@@ -206,3 +206,9 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	psypoint_cost = 300
 	icon = "primoqueen"
 	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
+
+/datum/hive_upgrade/primordial/defiler
+	name = PRIMORDIAL_DEFILER
+	desc = "Unlocks the primordial defilers tentacle. Can grab most items and tallhosts from range and bring them to the defiler."
+	psypoint_cost = 300
+	icon = "primodefiler"
