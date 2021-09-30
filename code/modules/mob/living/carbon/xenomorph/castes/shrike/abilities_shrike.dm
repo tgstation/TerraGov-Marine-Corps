@@ -359,8 +359,12 @@
 /obj/item/explosive/grenade/gravity/prime()
 	new /obj/effect/overlay/temp/emp_pulse(loc)
 	playsound(loc, 'sound/effects/EMPulse.ogg', 50)
-	for(var/obj/victim in view(3))//yes this throws EVERYONE
+	for(var/atom/movable/victim in view(3))//yes this throws EVERYONE
 		if(victim.anchored)
 			continue
+		if(isliving(A))
+			var/mob/living/livingtarget = A
+			if(livingtarget.stat == DEAD)
+				continue
 		victim.throw_at(src, 5, 1, null, TRUE)
 	qdel(src)
