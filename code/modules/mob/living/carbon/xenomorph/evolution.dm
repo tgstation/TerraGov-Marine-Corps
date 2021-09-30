@@ -366,7 +366,7 @@
 			SSminimaps.remove_marker(new_xeno)
 			SSminimaps.add_marker(new_xeno, new_xeno.z, MINIMAP_FLAG_XENO, new_xeno.xeno_caste.minimap_leadered_icon)
 
-	if(upgrade == XENO_UPGRADE_THREE)
+	if(upgrade == XENO_UPGRADE_THREE || upgrade == XENO_UPGRADE_FOUR)
 		switch(tier)
 			if(XENO_TIER_TWO)
 				SSmonitor.stats.ancient_T2--

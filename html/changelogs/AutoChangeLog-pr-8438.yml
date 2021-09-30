@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - rscadd: "Replaced place silo/king/turret with the hive boon menu"
-  - imageadd: "sprites by ciel/kyranova"
