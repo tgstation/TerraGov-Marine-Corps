@@ -17,6 +17,7 @@
 	var/list/dead_xenos = list() // xenos that are still assigned to this hive but are dead.
 	var/list/ssd_xenos
 	var/list/list/xenos_by_zlevel = list()
+	///list of evo towers
 	var/list/obj/structure/xeno/evotower/evotowers = list()
 	var/tier3_xeno_limit
 	var/tier2_xeno_limit
@@ -81,7 +82,7 @@
 	.["upgrades"] = list()
 	for(var/datum/hive_upgrade/upgrade AS in buyable_upgrades)
 		.["upgrades"] += list(list("name" = upgrade.name, "desc" = upgrade.desc, "category" = upgrade.category,\
-		"cost" = upgrade.psypoint_cost, "times_bought" = upgrade.times_bought, "can_buy" = upgrade.can_buy(user), "iconstate" = upgrade.icon))
+		"cost" = upgrade.psypoint_cost, "times_bought" = upgrade.times_bought, "can_buy" = upgrade.can_buy(user, TRUE), "iconstate" = upgrade.icon))
 	.["psypoints"] = SSpoints.xeno_points_by_hive[hivenumber]
 
 /datum/hive_status/ui_static_data(mob/user)
@@ -1240,3 +1241,6 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /obj/structure/xeno/xeno_turret/get_xeno_hivenumber()
 	return associated_hive.hivenumber
+
+/obj/structure/xeno/evotower/get_xeno_hivenumber()
+	return hivenumber

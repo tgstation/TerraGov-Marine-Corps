@@ -1070,12 +1070,13 @@ TUNNEL
 	. = ..()
 	GLOB.hive_datums[hivenum].evotowers += src
 	hivenumber = hivenum
+	set_light(2, 2, LIGHT_COLOR_GREEN)
 
 /obj/structure/xeno/evotower/Destroy()
 	GLOB.hive_datums[hivenumber].evotowers -= src
 	return ..()
 
-/obj/structure/xeno/xeno_turret/ex_act(severity)
+/obj/structure/xeno/evotower/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			take_damage(700)
@@ -1083,6 +1084,3 @@ TUNNEL
 			take_damage(500)
 		if(EXPLODE_LIGHT)
 			take_damage(300)
-
-/obj/structure/xeno/evotower/get_xeno_hivenumber()
-	return hivenumber

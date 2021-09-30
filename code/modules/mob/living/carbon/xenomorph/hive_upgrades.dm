@@ -125,10 +125,6 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 
 	var/turf/buildloc = get_step(buyer, SOUTHWEST)
 
-	if(SSpoints.xeno_points_by_hive[buyer.hivenumber] < psypoint_cost)
-		to_chat(buyer, span_xenowarning("Someone used all the psych points while we were building!"))
-		return
-
 	new /obj/structure/xeno/evotower(buildloc, buyer.hivenumber)
 	to_chat(buyer, span_notice("We build an evolution tower for [psypoint_cost] psy points."))
 	log_game("[buyer] has built an evolution tower in [AREACOORD(buildloc)], spending [psypoint_cost] psy points in the process")
@@ -233,7 +229,7 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	category = "Primordial"
 
 
-/datum/hive_upgrade/primordial/can_buy(mob/living/carbon/xenomorph/buyer, silent)
+/datum/hive_upgrade/primordial/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	. = ..()
 	if(!isxenoqueen(buyer) && !isxenoshrike(buyer))
 		if(!silent)
