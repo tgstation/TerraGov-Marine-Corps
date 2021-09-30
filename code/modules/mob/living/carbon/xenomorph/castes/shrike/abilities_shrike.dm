@@ -340,6 +340,7 @@
 /datum/action/xeno_action/activable/gravity_grenade/use_ability(atom/A)
 	var/turf/T = get_turf(owner)
 	succeed_activate()
+	add_cooldown()
 
 	playsound(T, 'sound/voice/predalien_roar.ogg', 25)
 	var/obj/item/explosive/grenade/gravity/nade = new(T)
