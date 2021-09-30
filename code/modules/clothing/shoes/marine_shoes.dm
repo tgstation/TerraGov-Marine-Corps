@@ -30,6 +30,11 @@
 	. = ..()
 	pockets = new pockets(src)
 
+/obj/item/clothing/shoes/marine/Destroy()
+	QDEL_NULL(pockets)
+	return ..()
+
+
 /obj/item/clothing/shoes/marine/attack_hand(mob/living/user)
 	if(pockets.handle_attack_hand(user))
 		return ..()

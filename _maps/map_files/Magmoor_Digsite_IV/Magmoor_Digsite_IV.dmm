@@ -4829,6 +4829,12 @@
 "dCi" = (
 /turf/open/floor/mainship/mono,
 /area/magmoor/mining)
+"dCK" = (
+/obj/effect/landmark/fob_sentry,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 1
+	},
+/area/magmoor/compound/east)
 "dCN" = (
 /obj/structure/rack,
 /obj/item/tool/pickaxe/drill,
@@ -5566,7 +5572,7 @@
 /area/magmoor/research/rnd)
 "eav" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/obj/effect/landmark/dropship_console_spawn_lz2,
 /turf/open/floor/plating,
 /area/lv624/lazarus/console)
 "ebf" = (
@@ -5658,7 +5664,7 @@
 /area/magmoor/cave/west)
 "edW" = (
 /obj/machinery/vending/nanomed,
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/infocenter)
 "een" = (
@@ -9347,7 +9353,7 @@
 	},
 /area/magmoor/medical/patient)
 "gJu" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
 "gJB" = (
@@ -10535,6 +10541,11 @@
 	dir = 1
 	},
 /area/magmoor/cave/east)
+"hHz" = (
+/obj/structure/table/woodentable,
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/carpet,
+/area/magmoor/command/conference)
 "hIK" = (
 /obj/structure/window/reinforced,
 /obj/machinery/computer/secure_data,
@@ -11700,6 +11711,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing)
 "iDj" = (
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/yellow{
 	dir = 5
 	},
@@ -13804,7 +13816,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/east)
 "kdf" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/storage)
 "kdh" = (
@@ -16375,6 +16387,15 @@
 	dir = 1
 	},
 /area/magmoor/compound/south)
+"lZs" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/obj/effect/landmark/fob_sentry,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/magmoor/compound/northeast)
 "lZt" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
@@ -16792,8 +16813,8 @@
 	},
 /area/magmoor/engi/power)
 "mtP" = (
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /obj/structure/table/reinforced,
+/obj/effect/landmark/dropship_console_spawn_lz1,
 /turf/open/floor/plating,
 /area/magmoor/landing)
 "mtS" = (
@@ -18143,6 +18164,15 @@
 "nqC" = (
 /turf/open/floor/cult,
 /area/magmoor/cave/northwest)
+"nqM" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/obj/effect/landmark/fob_sentry,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/magmoor/compound/east)
 "nqR" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -21969,7 +21999,7 @@
 	},
 /area/magmoor/cave/south)
 "pTF" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/wood,
 /area/magmoor/command/conference)
 "pTM" = (
@@ -23010,6 +23040,10 @@
 	dir = 1
 	},
 /area/magmoor/security/lobby)
+"qCt" = (
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/magmoor/compound/south)
 "qCC" = (
 /obj/structure/closet/wardrobe/atmospherics_yellow,
 /turf/open/floor/mainship/orange{
@@ -25618,6 +25652,18 @@
 "soI" = (
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/cave/southeast)
+"soR" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/fob_sentry,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/magmoor/compound/northeast)
 "spc" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/cavetodirt,
@@ -25702,6 +25748,18 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing)
+"ssK" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/magmoor/compound/south)
 "ssL" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 2;
@@ -29114,6 +29172,10 @@
 	dir = 6
 	},
 /area/magmoor/compound/northeast)
+"uEF" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/mainship/sterile/dark,
+/area/magmoor/medical/treatment)
 "uEV" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -29837,6 +29899,12 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/west)
+"vbT" = (
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/magmoor/compound/south)
 "vbV" = (
 /obj/structure/flora/rock/pile/alt2,
 /turf/open/floor/plating/ground/mars/cavetodirt{
@@ -33373,7 +33441,7 @@
 	},
 /area/magmoor/hydroponics/north)
 "xgV" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "xhu" = (
@@ -54351,7 +54419,7 @@ nMW
 nMW
 nMW
 nMW
-nMW
+qCt
 nMW
 nMW
 nMW
@@ -56673,7 +56741,7 @@ csX
 csX
 sMg
 nMW
-ivD
+ssK
 iSn
 nMW
 dFk
@@ -59469,7 +59537,7 @@ csX
 csX
 sMg
 nMW
-ivD
+ssK
 iSn
 dGo
 dFk
@@ -59630,7 +59698,7 @@ qWb
 ykv
 rAn
 vOM
-rCm
+hHz
 wob
 wAC
 sEx
@@ -60024,7 +60092,7 @@ hRs
 mwN
 iVx
 spq
-hAH
+uEF
 giX
 gyn
 peg
@@ -61575,7 +61643,7 @@ ybo
 ybo
 ybo
 ybo
-ybo
+vbT
 ybo
 ybo
 ybo
@@ -73840,7 +73908,7 @@ oed
 wCn
 wCn
 wCn
-wCn
+lZs
 xPC
 xPC
 xPC
@@ -73855,7 +73923,7 @@ xPC
 xPC
 xPC
 xPC
-xPC
+nqM
 xPC
 xPC
 xPC
@@ -73870,7 +73938,7 @@ tyL
 jlp
 oJl
 oJl
-joI
+dCK
 dBh
 dBh
 dBh
@@ -76162,7 +76230,7 @@ xJP
 hCv
 btK
 oqY
-qTn
+soR
 gjH
 oqY
 pHo

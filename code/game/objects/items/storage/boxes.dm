@@ -987,14 +987,14 @@
 	name = "\improper M15 grenade box"
 	desc = "A secure box holding 25 M15 fragmentation grenades."
 	spawn_number = 25
-	spawn_type = /obj/item/explosive/grenade/frag/m15
+	spawn_type = /obj/item/explosive/grenade/m15
 	closed_overlay = "grenade_box_overlay_m15"
 
 /obj/item/storage/box/visual/grenade/frag
 	name = "\improper M40 HEDP grenade box"
 	desc = "A secure box holding 25 M40 HEDP grenades. High explosive, don't store near the flamer fuel."
 	spawn_number = 25
-	spawn_type = /obj/item/explosive/grenade/frag
+	spawn_type = /obj/item/explosive/grenade
 	closed_overlay = "grenade_box_overlay_hedp"
 
 /obj/item/storage/box/visual/grenade/incendiary
@@ -1024,14 +1024,14 @@
 	name = "\improper M40-2 SCDP grenade box"
 	desc = "A secure box holding 25 M40-2 SCDP cloak grenades. Don't blindly shoot into the smoke."
 	spawn_number = 25
-	spawn_type = /obj/item/explosive/grenade/cloakbomb
+	spawn_type = /obj/item/explosive/grenade/smokebomb/cloak
 	closed_overlay = "grenade_box_overlay_cloak"
 
 /obj/item/storage/box/visual/grenade/drain
 	name = "\improper M40-T grenade box"
 	desc = "A secure box holding 25 M40-T gas grenades. 100% safe to use around masked marines."
 	spawn_number = 25
-	spawn_type = /obj/item/explosive/grenade/drainbomb
+	spawn_type = /obj/item/explosive/grenade/smokebomb/drain
 	closed_overlay = "grenade_box_overlay_drain"
 
 /obj/item/storage/box/visual/grenade/razorburn
@@ -1054,7 +1054,7 @@
 	name = "\improper M07 training grenade box"
 	desc = "A secure box holding 25 M07 training grenades. Harmless and reusable."
 	spawn_number = 25
-	spawn_type = /obj/item/explosive/grenade/frag/training
+	spawn_type = /obj/item/explosive/grenade/training
 	closed_overlay = "grenade_box_overlay_training"
 
 #undef BOX_OVERLAY_SHIFT_X

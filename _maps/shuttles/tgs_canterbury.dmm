@@ -876,7 +876,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "RS" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 

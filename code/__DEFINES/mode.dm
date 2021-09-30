@@ -50,6 +50,8 @@
 #define MODE_HUMAN_ONLY (1<<14)
 #define MODE_TWO_HUMAN_FACTIONS	(1<<15)
 #define MODE_SILOABLE_BODIES (1<<16)
+#define MODE_WIN_POINTS (1<<17)
+#define MODE_NO_PERMANENT_WOUNDS (1<<18)
 
 #define MODE_LANDMARK_RANDOM_ITEMS (1<<0)
 #define MODE_LANDMARK_SPAWN_XENO_TUNNELS (1<<1)
@@ -65,12 +67,9 @@
 
 #define MODE_GENERIC_DRAW_NUKE "DRAW: Nuclear Explosion"
 
-#define MODE_BATTLEFIELD_NT_MAJOR "NT PMC Major Success"
-#define MODE_BATTLEFIELD_M_MAJOR "Marine Major Success"
-#define MODE_BATTLEFIELD_NT_MINOR "NT PMC Minor Success"
-#define MODE_BATTLEFIELD_M_MINOR "Marine Minor Success"
-#define MODE_BATTLEFIELD_DRAW_STALEMATE "DRAW: Stalemate"
-#define MODE_BATTLEFIELD_DRAW_DEATH "DRAW: My Friends Are Dead"
+#define MODE_CIVIL_WAR_LOYALIST_MAJOR "Loyalist Major Victory"
+#define MODE_CIVIL_WAR_REBEL_MAJOR "Rebel Major Victory"
+#define MODE_CIVIL_WAR_DRAW "Civil War Draw"
 
 #define CRASH_EVAC_NONE "CRASH_EVAC_NONE"
 #define CRASH_EVAC_INPROGRESS "CRASH_EVAC_INPROGRESS"

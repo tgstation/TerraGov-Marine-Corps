@@ -49,8 +49,7 @@
 	for (var/obj/O in T)
 		if (!istype(O,/obj/machinery/light/small))
 			return
-	var/obj/effect/alien/egg/newegg = new(T)
-	newegg.transfer_to_hive(hivenumber)
+	new /obj/effect/alien/egg/hugger(T, hivenumber)
 	playsound(T, 'sound/effects/alien_egg_move.ogg', 15, TRUE)
 	qdel(src)
 
@@ -74,8 +73,7 @@
 	if(!locate(/obj/effect/alien/weeds) in T)
 		return
 	user.use_plasma(30)
-	var/obj/effect/alien/egg/newegg = new(T)
-	newegg.transfer_to_hive(hivenumber)
+	new /obj/effect/alien/egg/hugger(T, hivenumber)
 	playsound(T, 'sound/effects/splat.ogg', 15, 1)
 	qdel(src)
 

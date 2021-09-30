@@ -157,6 +157,7 @@
 	if(source)
 		shot_from = source
 	permutated[src] = TRUE
+	loc = shooter
 	if(!isturf(loc))
 		forceMove(get_turf(src))
 	starting_turf = loc
@@ -942,7 +943,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/carbon/human/do_shrapnel_roll(obj/projectile/proj, damage)
-	return (proj.ammo.shrapnel_chance && prob(proj.ammo.shrapnel_chance + damage * 0.1))
+	return (!(SSticker.mode?.flags_round_type & MODE_NO_PERMANENT_WOUNDS) && proj.ammo.shrapnel_chance && prob(proj.ammo.shrapnel_chance + damage * 0.1))
 
 
 //Turf handling.

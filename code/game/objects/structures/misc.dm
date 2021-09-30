@@ -162,6 +162,10 @@ obj/item/alienjar
 	density = FALSE
 	opacity = FALSE
 
+/obj/structure/stairs/railstairs
+	icon = 'icons/obj/structures/railstairs.dmi'
+	icon_state = "stairdownrailright"
+
 /obj/structure/plasticflaps //HOW DO YOU CALL THOSE THINGS ANYWAY
 	name = "\improper plastic flaps"
 	desc = "Completely impassable - or are they?"

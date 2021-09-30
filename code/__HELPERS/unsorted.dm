@@ -1201,3 +1201,5 @@ will handle it, but:
 				turfs_to_check += T
 			turfs_to_check -= trf
 	return	cone_turfs
+
+GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))

@@ -27,6 +27,7 @@
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -35,11 +36,7 @@
 	scatter = 0
 	scatter_unwielded = 0
 
-/obj/item/weapon/gun/pistol/unique_action(mob/user)
-	. = ..()
-	if(!.)
-		return
-	return cock(user)
+	placed_overlay_iconstate = "pistol"
 
 /obj/item/weapon/gun/pistol/get_ammo_type()
 	if(!ammo)
@@ -76,8 +73,8 @@
 	scatter_unwielded = 0
 	recoil = -2
 	recoil_unwielded = -2
-	upper_akimbo_accuracy = 4
-	lower_akimbo_accuracy = 3
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 4
 
 //-------------------------------------------------------
 //TX-7 Plasma Pistol
@@ -100,6 +97,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
 	)
 
 	muzzleflash_iconstate = "muzzle_flash_laser"
@@ -121,6 +119,8 @@
 	detach_delay = 3 SECONDS
 	pixel_shift_x = 10
 	pixel_shift_y = 19
+
+	placed_overlay_iconstate = "tx7"
 
 /obj/item/weapon/gun/can_attach(obj/item/attaching_to, mob/attacher)
 	if(!attachments_by_slot[ATTACHMENT_SLOT_RAIL])
@@ -176,6 +176,7 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -225,6 +226,7 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
@@ -301,6 +303,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -340,6 +343,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER

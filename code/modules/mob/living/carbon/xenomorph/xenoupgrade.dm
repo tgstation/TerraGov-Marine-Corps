@@ -8,6 +8,8 @@
 		visible_message(span_xenonotice("\The [src] begins to twist and contort."), \
 		span_xenonotice("We begin to twist and contort."))
 		do_jitter_animation(1000)
+	if(upgrade_stored < xeno_caste.upgrade_threshold)
+		upgrade_stored = xeno_caste.upgrade_threshold
 	set_datum()
 	var/selected_ability_type = selected_ability?.type
 
@@ -64,6 +66,11 @@
 					SSmonitor.stats.ancient_T3++
 				if(XENO_TIER_FOUR)
 					SSmonitor.stats.ancient_T4++
+
+		//PURCHASED UPGRADE
+		if(XENO_UPGRADE_FOUR)
+			if(!silent)
+				to_chat(src, span_xenoannounce(xeno_caste.primordial_message))
 
 	generate_name() //Give them a new name now
 
@@ -159,18 +166,7 @@
 
 //----HIVELORD END----//
 //================//
-//----HIVEMIND START----//
 
-/mob/living/carbon/xenomorph/hivemind/mature
-	upgrade = XENO_UPGRADE_ONE
-
-/mob/living/carbon/xenomorph/hivemind/elder
-	upgrade = XENO_UPGRADE_TWO
-
-/mob/living/carbon/xenomorph/hivemind/ancient
-	upgrade = XENO_UPGRADE_THREE
-
-//----HIVEMIND END----//
 //================//
 //----PRAETORIAN START----//
 
@@ -279,6 +275,9 @@
 
 /mob/living/carbon/xenomorph/queen/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/queen/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----QUEEN END----//
 //============//

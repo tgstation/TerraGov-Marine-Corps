@@ -1184,7 +1184,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/surgery)
 "gb" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
 /area/outpost/caves/north)
 "gd" = (
@@ -2971,6 +2971,10 @@
 /obj/item/trash/semki,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
+"oG" = (
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/plating/asteroidfloor,
+/area/outpost/lz1)
 "oH" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/shotgun/incendiary,
@@ -3037,7 +3041,7 @@
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/hallway/central)
 "oS" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
 	},
@@ -3327,7 +3331,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/central)
 "qv" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -3507,6 +3511,10 @@
 	dir = 1
 	},
 /area/outpost/hallway/south_cent)
+"ri" = (
+/obj/effect/landmark/fob_sentry,
+/turf/open/floor/plating/ground/mars/dirttosand,
+/area/outpost/caves/east)
 "rj" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/dark,
@@ -5217,7 +5225,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/south_cent)
 "Ac" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
@@ -5297,6 +5305,10 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_west)
+"AB" = (
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/caves/west)
 "AD" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/beaker/large,
@@ -5423,7 +5435,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/dormitories)
 "Bk" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north)
 "Bl" = (
@@ -5440,11 +5452,15 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south)
 "Bo" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor/plating/ground/mars/cavetodirt{
-	dir = 10
-	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/outpost/caves/north)
+"Bp" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/tile/dark/purple2{
+	dir = 1
+	},
+/area/outpost/science)
 "Bq" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
@@ -6447,6 +6463,12 @@
 /obj/machinery/light,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig/gear_room)
+"GE" = (
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/outpost/cargo)
 "GF" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/bigred,
@@ -8207,7 +8229,7 @@
 	},
 /area/outpost/science/research)
 "Pj" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
@@ -8308,6 +8330,7 @@
 /area/outpost/hallway/east)
 "PK" = (
 /obj/machinery/miner/damaged/platinum,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 1
 	},
@@ -8423,6 +8446,12 @@
 	dir = 10
 	},
 /area/outpost/yard/west)
+"Qt" = (
+/obj/effect/landmark/fob_sentry,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 4
+	},
+/area/outpost/caves/south_east)
 "Qu" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
@@ -8814,6 +8843,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/arrivals)
 "RX" = (
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark/blue2{
 	dir = 10
 	},
@@ -9117,7 +9147,7 @@
 /area/outpost/engineering/engine)
 "TC" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/effect/landmark/dropship_console_spawn_lz1,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/lz1)
 "TD" = (
@@ -9307,10 +9337,8 @@
 	},
 /area/outpost/caves/north)
 "Ur" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor/plating/ground/mars/cavetodirt{
-	dir = 6
-	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/mars/cavetodirt,
 /area/outpost/caves/north)
 "Us" = (
 /turf/open/floor/tile/dark/blue2/corner{
@@ -9560,7 +9588,7 @@
 /area/outpost/medbay)
 "VG" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/obj/effect/landmark/dropship_console_spawn_lz2,
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 5
 	},
@@ -9633,10 +9661,6 @@
 	dir = 1
 	},
 /area/outpost/caves/west)
-"VY" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/outpost/caves/north)
 "VZ" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -19708,7 +19732,7 @@ wB
 rQ
 rQ
 rQ
-rQ
+AB
 Xm
 Hc
 Hc
@@ -24106,7 +24130,7 @@ XE
 dr
 dr
 yc
-Eb
+oG
 Eb
 xs
 RN
@@ -24635,7 +24659,7 @@ TE
 lS
 lS
 lS
-lS
+GE
 TE
 lS
 lS
@@ -26111,9 +26135,9 @@ Fy
 Fy
 Fy
 Fy
-gb
-gb
-gb
+Fy
+Fy
+Fy
 Fy
 Fy
 Fy
@@ -26369,17 +26393,17 @@ Fy
 Fy
 Fy
 Fy
-gb
 Fy
-gb
-gb
-gb
-gb
-gb
-Bk
-Bk
-Bk
-Bo
+Fy
+Fy
+Fy
+Fy
+Fy
+Fy
+pi
+pi
+pi
+UN
 OR
 Fy
 TX
@@ -26626,19 +26650,19 @@ Fy
 Fy
 Fy
 Fy
-Fy
 gb
-Fy
-Fy
-Fy
-Fy
-Fy
-OR
+gb
+gb
+gb
+gb
+gb
+gb
+Bo
 PK
-pi
-pi
 Bk
-Fy
+Bk
+Bk
+gb
 Fy
 TX
 hO
@@ -26884,8 +26908,8 @@ Fy
 Fy
 Fy
 Fy
-Fy
 gb
+Fy
 Fy
 Fy
 Fy
@@ -26895,8 +26919,8 @@ iH
 pi
 Pb
 pi
-gb
 Fy
+gb
 Fy
 TX
 dD
@@ -27142,8 +27166,8 @@ Fy
 Fy
 Fy
 Fy
-Fy
 gb
+Fy
 Fy
 Fy
 Fy
@@ -27153,8 +27177,8 @@ pi
 pi
 pi
 pi
-gb
 Fy
+gb
 Fy
 TX
 Uy
@@ -27400,8 +27424,8 @@ Fy
 Fy
 Fy
 Fy
-Fy
 gb
+Fy
 Fy
 Fy
 Pb
@@ -27411,9 +27435,9 @@ gn
 pi
 pi
 Pb
-Bk
+pi
 gb
-gb
+Fy
 TX
 TX
 TX
@@ -27658,10 +27682,10 @@ Fy
 Fy
 Fy
 Fy
-Fy
 gb
 Fy
 Fy
+Fy
 pi
 pi
 pi
@@ -27670,8 +27694,8 @@ pi
 pi
 pi
 pi
-pi
-gb
+Bk
+Fy
 Fy
 Fy
 Fy
@@ -27916,20 +27940,20 @@ Fy
 Fy
 Fy
 Fy
-Fy
 gb
 Fy
+Fy
 pi
 pi
 pi
 Fy
 Fy
 Fy
-pi
 pi
 pi
 pi
 Bk
+pi
 Fy
 Fy
 Fy
@@ -28174,8 +28198,8 @@ Fy
 Fy
 Fy
 Fy
-Fy
 gb
+Fy
 pi
 uU
 Pb
@@ -28186,8 +28210,8 @@ Fy
 Fy
 pi
 pi
-pi
-Ur
+Bk
+Vh
 OR
 OR
 Fy
@@ -28432,8 +28456,8 @@ Fy
 Fy
 Fy
 Fy
-Fy
 gb
+Fy
 pi
 GA
 pi
@@ -28444,8 +28468,8 @@ Fy
 Fy
 Pb
 uU
-Co
-VY
+Ur
+OR
 OR
 OR
 vj
@@ -28690,8 +28714,8 @@ Fy
 Fy
 Fy
 Fy
-Fy
 gb
+Fy
 pi
 pi
 pi
@@ -28702,8 +28726,8 @@ Fy
 pi
 pi
 pi
-Co
-VY
+Ur
+OR
 OR
 OR
 QZ
@@ -28948,8 +28972,8 @@ Fy
 Fy
 Fy
 Fy
-Fy
 gb
+Fy
 pi
 pi
 Pb
@@ -28960,8 +28984,8 @@ Fy
 pi
 pi
 pi
-Fy
-VY
+gb
+OR
 OR
 OR
 vj
@@ -29206,8 +29230,8 @@ Fy
 Fy
 Fy
 Fy
-Fy
 gb
+Fy
 Fy
 pi
 pi
@@ -29217,9 +29241,9 @@ Fy
 pi
 Pb
 pi
+Fy
 gb
-gb
-VY
+OR
 OR
 OR
 vj
@@ -29464,10 +29488,10 @@ Fy
 Fy
 Fy
 Fy
+gb
 Fy
-gb
-gb
-gb
+Fy
+Fy
 pi
 pi
 gn
@@ -29475,8 +29499,8 @@ pi
 pi
 uU
 pi
-gb
 Fy
+gb
 Fy
 OR
 OR
@@ -29722,19 +29746,19 @@ Fy
 Fy
 Fy
 Fy
+gb
 Fy
+Fy
+Fy
+Fy
+pi
+pi
+pi
+pi
+pi
 Fy
 Fy
 gb
-gb
-pi
-pi
-pi
-pi
-pi
-Fy
-gb
-Fy
 Fy
 Fy
 Fy
@@ -29980,19 +30004,19 @@ Fy
 Fy
 Fy
 Fy
-Fy
-Fy
-Fy
-Fy
 gb
-Fy
-Fy
+gb
+gb
+gb
+gb
+gb
+gb
 Bk
 Bk
 Bk
 Bk
 gb
-Fy
+gb
 Fy
 Fy
 Fy
@@ -30242,10 +30266,10 @@ Fy
 Fy
 Fy
 Fy
-gb
-gb
-gb
-gb
+Fy
+Fy
+Fy
+Fy
 pi
 pi
 Vh
@@ -34130,7 +34154,7 @@ vE
 zx
 oD
 bL
-FI
+Bp
 Dj
 ry
 bp
@@ -40097,7 +40121,7 @@ Xi
 Xi
 Xi
 Xi
-RD
+ri
 XV
 Gm
 Xi
@@ -40109,7 +40133,7 @@ wQ
 uf
 uf
 qn
-HH
+Qt
 HH
 sP
 Hm
@@ -40859,7 +40883,7 @@ wz
 JI
 mI
 la
-RD
+ri
 ss
 hY
 zG
