@@ -398,6 +398,12 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 		if(!silent)
 			to_chat(owner, span_warning("We cant use that on [A]!"))
 		return FALSE
+	if(isliving(A))
+		var/mob/living/livingtarget = A
+		if(livingtarget.stat == DEAD)
+			if(!silent)
+				to_chat(owner, span_warning("We cant use that on [livingtarget], they're dead!"))
+			return FALSE
 	var/atom/movable/target = A
 	if(target.anchored)
 		if(!silent)
