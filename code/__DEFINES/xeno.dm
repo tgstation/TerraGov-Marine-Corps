@@ -45,3 +45,4 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 
 //xeno primordial defines
 #define PRIMORDIAL_QUEEN "Primordial Queen"
+#define PRIMORDIAL_CARRIER "Primordial Carrier"

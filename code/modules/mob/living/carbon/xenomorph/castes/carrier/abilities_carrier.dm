@@ -280,3 +280,55 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	to_chat(X, span_notice("We will now spawn <b>[hugger_choice]\s</b> when using the spawn hugger ability."))
 	update_button_icon()
 	return succeed_activate()
+
+
+// ***************************************
+// *********** Psychic wave
+// ***************************************
+/datum/action/xeno_action/psychic_wave
+	name = "Psychic Wave"
+	action_icon_state = "carrier_wave"
+	mechanics_text = "Crush your facehuggers, releasing a burst of psychic energy. Throwback scales with young ones crushed."
+	plasma_cost = 300
+	cooldown_timer = 10 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_WAVE
+
+/datum/action/xeno_action/psychic_wave/on_cooldown_finish()
+	to_chat(owner, "<span class='xenodanger'>We may release a psychic wave again.</span>")
+	playsound(owner, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
+	return ..()
+
+/datum/action/xeno_action/psychic_wave/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/mob/living/carbon/xenomorph/carrier/X = owner
+	if(!length(X.huggers))
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>We don't have any young ones!</span>")
+		return FALSE
+
+/datum/action/xeno_action/psychic_wave/action_activate()
+	var/mob/living/carbon/xenomorph/carrier/X = owner
+
+	if(!do_after(X, 0.5 SECONDS, FALSE, X, BUSY_ICON_DANGER))
+		return fail_activate()
+	var/total_huggers = length(X.huggers)
+	X.visible_message("<span class='warning'>[X] crushes the huggers on it's back, releasing a burst of energy!</span>",\
+		"<span class='xenowarning'>We contract our spines, crushing [total_huggers] little ones and releasing their psychic energy!</span>")
+	new /obj/effect/overlay/temp/emp_pulse(X.loc)
+	new /obj/effect/spawner/gibspawner/xeno(X.loc)
+	for(var/mob/living/victim in view(3))//yes this throws back friendly xenos too
+		if(victim == X)
+			continue
+		var/target = victim.loc
+		for(var/i=1 to total_huggers)
+			var/temp = get_step_away(target, owner)
+			if(!temp)
+				break
+			target = temp
+		victim.throw_at(target, 7, 1, owner, TRUE)
+	QDEL_LIST(X.huggers)
+	playsound(X, 'sound/voice/predalien_roar.ogg', 50, 0, 1)
+	succeed_activate()
+	add_cooldown()

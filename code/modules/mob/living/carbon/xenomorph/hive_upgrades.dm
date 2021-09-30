@@ -206,3 +206,10 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	psypoint_cost = 300
 	icon = "primoqueen"
 	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
+
+
+/datum/hive_upgrade/primordial/carrier
+	name = PRIMORDIAL_CARRIER
+	desc = "Unlocks the primordial carriers psychic wave, allowing them to sacrifice huggers in exchange for a powerful psychic blast."
+	psypoint_cost = 150
+	icon = "primocarrier"

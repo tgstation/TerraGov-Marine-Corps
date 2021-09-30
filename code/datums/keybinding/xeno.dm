@@ -190,6 +190,13 @@
 	description = "Prompt a wheel to choose which hugger you will deploy with the Throw Hugger ability."
 	keybind_signal = COMSIG_XENOABILITY_CHOOSE_HUGGER
 
+
+/datum/keybinding/xeno/psychic_wave
+	name = "psychic_wave"
+	full_name = "Carrier: Psychic Wave"
+	description = "Sacrifice huggers in exchange for a powerful psychic blast"
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_WAVE
+
 /datum/keybinding/xeno/stomp
 	name = "stomp"
 	full_name = "Crusher: Stomp"
