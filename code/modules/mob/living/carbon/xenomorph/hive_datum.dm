@@ -802,7 +802,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		return
 
 	xeno_message("We don't have any silos! The hive will collapse if nothing is done", "xenoannounce", 6, TRUE)
-	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 5 MINUTES, TIMER_STOPPABLE)
+	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 10 MINUTES, TIMER_STOPPABLE)
 
 /**
  * Add a mob to the candidate queue, the first mobs of the queue will have priority on new larva spots
