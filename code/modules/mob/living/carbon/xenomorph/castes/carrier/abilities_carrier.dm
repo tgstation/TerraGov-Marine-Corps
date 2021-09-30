@@ -303,7 +303,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/xenomorph/carrier/X = owner
-	if(!length(X.huggers))
+	if(!X.huggers)
 		if(!silent)
 			to_chat(X, "<span class='xenowarning'>We don't have any young ones!</span>")
 		return FALSE
@@ -313,7 +313,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	if(!do_after(X, 0.5 SECONDS, FALSE, X, BUSY_ICON_DANGER))
 		return fail_activate()
-	var/total_huggers = length(X.huggers)
+	var/total_huggers = X.huggers
 	X.visible_message("<span class='warning'>[X] crushes the huggers on it's back, releasing a burst of energy!</span>",\
 		"<span class='xenowarning'>We contract our spines, crushing [total_huggers] little ones and releasing their psychic energy!</span>")
 	new /obj/effect/overlay/temp/emp_pulse(X.loc)
@@ -328,7 +328,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 				break
 			target = temp
 		victim.throw_at(target, 7, 1, owner, TRUE)
-	QDEL_LIST(X.huggers)
+	X.huggers = 0
 	playsound(X, 'sound/voice/predalien_roar.ogg', 50, 0, 1)
 	succeed_activate()
 	add_cooldown()
