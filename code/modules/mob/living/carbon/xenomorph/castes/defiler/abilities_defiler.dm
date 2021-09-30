@@ -384,7 +384,7 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 /datum/action/xeno_action/activable/tentacle
 	name = "Tentacle"
 	action_icon_state = "tail_attack"
-	mechanics_text = "Throw one of your tenctacles forward to grab a tallhost or item."
+	mechanics_text = "Throw one of your tentacles forward to grab a tallhost or item."
 	ability_name = "Tentacle"
 	cooldown_timer = 20 SECONDS
 	plasma_cost = 200
@@ -403,14 +403,26 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 		if(!silent)
 			to_chat(owner, span_warning("[target] is anchored and cannot be moved!"))
 		return FALSE
-	if(!can_see(owner, target, TENTACLE_ABILITY_RANGE))
-		if(!silent)
-			to_chat(owner, span_warning("We can't reach [target]!"))
+
+	var/turf/current = get_turf(owner)
+	var/turf/target_turf = get_turf(target)
+	if(current == target_turf)
+		return TRUE
+	if(get_dist(current, target_turf) > TENTACLE_ABILITY_RANGE)
 		return FALSE
+	current = get_step_towards(current, target_turf)
+	while((current != target_turf))
+		if(current.density)
+			if(!silent)
+				to_chat(owner, span_warning("We can't reach [target]!"))
+			return FALSE
+		current = get_step_towards(current, target_turf)
+
 
 /datum/action/xeno_action/activable/tentacle/use_ability(atom/movable/target)
 	var/datum/beam/tentacle = owner.beam(target,"curse0",'icons/effects/beam.dmi')
-	to_chat(owner, span_warning("We cant reach [target]!"))
+	to_chat(owner, span_warning("We grab [target] with a tentacle!"))
+	target.balloon_alert_to_viewers("Grabbed!")
 	addtimer(CALLBACK(src, .proc/finish_grab, target, tentacle), 5)
 	playsound(target, 'sound/effects/blobattack.ogg', 40, 1)
 	succeed_activate()
