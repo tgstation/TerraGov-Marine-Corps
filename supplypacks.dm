@@ -1319,11 +1319,11 @@ SUPPLIES
 /datum/supply_packs/supplies/milk
 	name = "Milk crate"
 	contains = list(
-	/obj/item/reagent_containers/food/drinks/milk
-	/obj/item/reagent_containers/food/drinks/milk
-	/obj/item/reagent_containers/food/drinks/soymilk
-	/obj/item/reagent_containers/food/snacks/sliceable/cheesewheel
-	/obj/item/reagent_containers/food/snacks/sliceable/cheesewheel
+	/obj/item/reagent_containers/food/drinks/milk,
+	/obj/item/reagent_containers/food/drinks/milk,
+	/obj/item/reagent_containers/food/drinks/soymilk,
+	/obj/item/reagent_containers/food/snacks/sliceable/cheesewheel,
+	/obj/item/reagent_containers/food/snacks/sliceable/cheesewheel,
 	)
 	containertype = /obj/structure/closet/crate/freezer
 	cost = 2
@@ -1331,12 +1331,12 @@ SUPPLIES
 /datum/supply_packs/supplies/condiments
 	name = "Condiment crate"
 	contains = list(
-	/obj/item/reagent_containers/food/condiment/sugar
-	/obj/item/reagent_containers/food/condiment/sugar
-	/obj/item/reagent_containers/food/condiment/saltshaker
-	/obj/item/reagent_containers/food/condiment/saltshaker
-	/obj/item/reagent_containers/food/condiment/peppermill
-	/obj/item/reagent_containers/food/condiment/peppermill
+	/obj/item/reagent_containers/food/condiment/sugar,
+	/obj/item/reagent_containers/food/condiment/sugar,
+	/obj/item/reagent_containers/food/condiment/saltshaker,
+	/obj/item/reagent_containers/food/condiment/saltshaker,
+	/obj/item/reagent_containers/food/condiment/peppermill,
+	/obj/item/reagent_containers/food/condiment/peppermill,
 	)
 	containertype = /obj/structure/closet/crate/freezer
 	cost = 2
@@ -1344,13 +1344,13 @@ SUPPLIES
 /datum/supply_packs/supplies/ingrediants
 	name = "Ingrediants crate"
 	contains = list(
-	/obj/item/reagent_containers/food/snacks/flour
-	/obj/item/reagent_containers/food/snacks/flour
-	/obj/item/reagent_containers/food/snacks/flour
-	/obj/item/reagent_containers/food/snacks/flour
-	/obj/item/reagent_containers/food/snacks/grown/potato
-	/obj/item/reagent_containers/food/snacks/grown/potato
-	/obj/item/reagent_containers/food/snacks/grown/potato
+	/obj/item/reagent_containers/food/snacks/flour,
+	/obj/item/reagent_containers/food/snacks/flour,
+	/obj/item/reagent_containers/food/snacks/flour,
+	/obj/item/reagent_containers/food/snacks/flour,
+	/obj/item/reagent_containers/food/snacks/grown/potato,
+	/obj/item/reagent_containers/food/snacks/grown/potato,
+	/obj/item/reagent_containers/food/snacks/grown/potato,
 	)
 	containertype = /obj/structure/closet/crate/freezer
 	cost = 2
@@ -1358,12 +1358,12 @@ SUPPLIES
 /datum/supply_packs/supplies/meat
 	name = "Meat crate"
 	contains = list(
-	/obj/item/storage/fancy/egg_box
-	/obj/item/storage/fancy/egg_box
-	/obj/item/reagent_containers/food/snacks/meat
-	/obj/item/reagent_containers/food/snacks/meat
-	/obj/item/reagent_containers/food/snacks/meat
-	/obj/item/reagent_containers/food/snacks/meat
+	/obj/item/storage/fancy/egg_box,
+	/obj/item/storage/fancy/egg_box,
+	/obj/item/reagent_containers/food/snacks/meat,
+	/obj/item/reagent_containers/food/snacks/meat,
+	/obj/item/reagent_containers/food/snacks/meat,
+	/obj/item/reagent_containers/food/snacks/meat,
 	)
 	containertype = /obj/structure/closet/crate/freezer
 	cost = 2
