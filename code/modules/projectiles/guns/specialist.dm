@@ -695,6 +695,16 @@
 	pixel_shift_x = 14
 	pixel_shift_y = 18
 
+/obj/item/weapon/gun/launcher/m92/mini_grenade/attackby(obj/item/I, mob/user, params)
+	if(!istype(I, /obj/item/explosive/grenade))
+		return ..()
+
+	var/obj/item/explosive/grenade/G = I
+	if(! (G.underslug_launchable))
+		to_chat(user, span_warning("[src] cannot hold [G]!"))
+		return
+
+	return ..()
 
 /obj/item/weapon/gun/launcher/m92/mini_grenade/invisable
 	flags_attach_features = NONE
