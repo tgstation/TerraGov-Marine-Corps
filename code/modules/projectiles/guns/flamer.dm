@@ -174,11 +174,7 @@
 		start_location = get_turf(src)
 		current_target = get_turf(target)
 		range = flame_max_range
-		if(burn_type == FLAMER_STREAM_CONE)
-			range /= 2
-	if(!length(old_turfs))
-		return
-	if(length(getline(start_location, old_turfs[1])) > range || (target in old_turfs))
+	if(!length(old_turfs) || length(getline(start_location, old_turfs[1])) > range || (current_target in old_turfs))
 		return
 	var/list/turf/turfs_to_ignite = list()
 	var/list/turf/turfs_skip_old = list()
@@ -188,6 +184,8 @@
 		if(FLAMER_STREAM_STRAIGHT)
 			turfs_to_ignite += new_turf
 		if(FLAMER_STREAM_CONE)
+			if(start && ISDIAGONALDIR(dir_to_target))
+				range /= 2
 			for(var/turf/old_turf in old_turfs)
 				turfs_to_ignite += new_turf //Adds the turf in front of the old turf.
 				if(!(get_step(new_turf, turn(dir_to_target, 90)) in old_turfs)) //Adds the turf on the sides of the old turf if they arent already in the turfs_to_ignite list.
@@ -199,8 +197,9 @@
 						turfs_skip_old += get_step(new_turf, turn(dir_to_target, 135))
 					if(!(get_step(new_turf, turn(dir_to_target, 225)) in turfs_skip_old))
 						turfs_skip_old += get_step(new_turf, turn(dir_to_target, 225))
-	burn_list(turfs_to_ignite)
-	burn_list(turfs_skip_old)
+			burn_list(turfs_skip_old)
+	if(!burn_list(turfs_to_ignite)) //These are so that both are called in the event one is false.
+		return
 	addtimer(CALLBACK(src, .proc/burn_stream, turfs_to_ignite, start_location, current_target, burn_type, range, FALSE), flame_spread_time)
 
 ///Checks and lights the turfs in turfs_to_burn
@@ -223,7 +222,7 @@
 	var/fire_color = initial(loaded_ammo.fire_color)
 
 	for(var/turf/turf_to_ignite in turfs_to_burn)
-		if(current_mag.current_rounds <= 0)
+		if(current_mag?.current_rounds <= 0)
 			light_pilot(FALSE)
 			return FALSE
 		flame_turf(turf_to_ignite, gun_user, burn_time, burn_level, fire_color)
