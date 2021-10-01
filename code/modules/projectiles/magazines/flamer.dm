@@ -60,14 +60,14 @@
 	gun_type = /obj/item/weapon/gun/flamer/big_flamer
 	icon_state_mini = "tank_orange"
 
-/obj/item/ammo_magazine/flamer_tank/large/x_fuel
+/obj/item/ammo_magazine/flamer_tank/large/X
 	name = "large flamethrower tank (X)"
 	desc = "A large fuel tank of ultra thick napthal Fuel type X, a sticky combustable liquid chemical that burns extremely hot, for use in the TL-84 flamethrower. Handle with care."
 	icon_state = "flametank_large_blue"
 	default_ammo = /datum/ammo/flamethrower/blue
 	icon_state_mini = "tank_blue"
 
-/obj/item/ammo_magazine/flamer_tank/worn
+/obj/item/ammo_magazine/flamer_tank/backtank
 	name = "back fuel tank"
 	desc = "A specialized fuel tank for use with the TL-84 flamethrower and M240A1 incinerator unit."
 	icon_state = "flamethrower_tank"
@@ -83,7 +83,7 @@
 	
 	default_ammo = /datum/ammo/flamethrower
 
-/obj/item/ammo_magazine/flamer_tank/worn/x_fuel
+/obj/item/ammo_magazine/flamer_tank/backtank/X
 	name = "back fuel tank (X)"
 	desc = "A specialized fuel tank of ultra thick napthal type X for use with the TL-84 flamethrower and M240A1 incinerator unit."
 	default_ammo = /datum/ammo/flamethrower/blue

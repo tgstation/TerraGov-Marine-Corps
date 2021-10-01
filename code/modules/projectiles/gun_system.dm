@@ -528,11 +528,18 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	user?.visible_message(span_notice("[user] unloads [current_mag] from [src]."),
 	span_notice("You unload [current_mag] from [src]."), null, 4)
 	current_mag.update_icon()
+	UnregisterSignal(current_mag, COMSIG_ITEM_REMOVED_INVENTORY)
 	current_mag = null
 
 	update_icon(user)
 
 	return TRUE
+
+///This is called when a connected worn magazine is dropped. This unloads it.
+/obj/item/weapon/gun/proc/drop_connected_mag(datum/source, mob/user)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/unload, user)
+	UnregisterSignal(source, COMSIG_ITEM_REMOVED_INVENTORY)
 
 
 //Manually cock the gun
@@ -769,7 +776,7 @@ and you're good to go.
 
 ///Wrapper proc to complete the whole firing process.
 /obj/item/weapon/gun/proc/Fire()
-	if(!set_up_fire())
+	if(!target || (!gun_user && !istype(loc, /obj/machinery/deployable/mounted/sentry)) || (!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)))
 		return
 
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
@@ -782,12 +789,6 @@ and you're good to go.
 	if(!do_fire(projectile_to_fire))
 		return
 	finish_fire()
-	return TRUE
-
-///Beginning checks to firing the gun. Returns FALSE if the gun should not be able to fire. This is called right before do_fire()
-/obj/item/weapon/gun/proc/set_up_fire()
-	if(!target || (!gun_user && !istype(loc, /obj/machinery/deployable/mounted/sentry)) || (!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)))
-		return FALSE
 	return TRUE
 
 ///Actually fires the gun, sets up the projectile and fires it.
@@ -822,12 +823,12 @@ and you're good to go.
 	if(fire_animation) //Fires gun firing animation if it has any. ex: rotating barrel
 		flick("[fire_animation]", src)
 
-	last_fired = world.time
-
 	return TRUE
 
 ///Performs the after firing functions.
 /obj/item/weapon/gun/proc/finish_fire()
+	last_fired = world.time
+
 	reload_into_chamber(gun_user)
 	gun_user?.hud_used.update_ammo_hud(gun_user, src)
 	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)

@@ -58,7 +58,7 @@
 	///Pixel offset on the Y axis for the pilot light overlay.
 	var/lit_overlay_offset_y = 0
 	///Damage multiplier for mobs caught in the initial stream of fire.
-	var/mob_flame_damage_mod = 2
+	var/mob_flame_damage_mod = 2 
 
 /obj/item/weapon/gun/flamer/Initialize()
 	. = ..()
@@ -128,6 +128,7 @@
 		DISABLE_BITFIELD(flags_flamer_features, FLAMER_IS_LIT)
 	playsound(src, CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT) ? 'sound/weapons/guns/interact/flamethrower_on.ogg' : 'sound/weapons/guns/interact/flamethrower_off.ogg', 25, 1)
 
+
 	if(CHECK_BITFIELD(flags_flamer_features, FLAMER_NO_LIT_OVERLAY))	
 		return
 
@@ -155,32 +156,79 @@
 	return TRUE
 
 /obj/item/weapon/gun/flamer/do_fire(obj/projectile/projectile_to_fire)
-	var/obj/item/attachable/flamer_nozzle/nozzle = attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE]
+	playsound(loc, fire_sound, 50, 1)
+	burn_stream(current_target = target)
+	return TRUE
 
-	var/list/turfs_to_ignite = nozzle.generate_flame_path(src, target, gun_user, flame_max_range)
+///Recursive proc that handles the path finding of the flame stream.
+/obj/item/weapon/gun/flamer/proc/burn_stream(list/turf/old_turfs, start_location, current_target, burn_type, range, start = TRUE)
+	if(current_mag?.current_rounds <= 0)
+		light_pilot(FALSE)
+		return
+	if(!current_target)
+		return
+	if(start)
+		var/obj/item/attachable/flamer_nozzle/nozzle = attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE]
+		burn_type = nozzle.stream_type
+		old_turfs = list(get_turf(src))
+		start_location = get_turf(src)
+		current_target = get_turf(target)
+		range = flame_max_range
+		if(burn_type == FLAMER_STREAM_CONE)
+			range /= 2
+	if(!length(old_turfs))
+		return
+	if(length(getline(start_location, old_turfs[1])) > range || (target in old_turfs))
+		return
+	var/list/turf/turfs_to_ignite = list()
+	var/list/turf/turfs_skip_old = list()
+	var/dir_to_target = get_dir(old_turfs[1], current_target)
+	var/turf/new_turf = get_step(old_turfs[1], dir_to_target)
+	switch(burn_type)
+		if(FLAMER_STREAM_STRAIGHT)
+			turfs_to_ignite += new_turf
+		if(FLAMER_STREAM_CONE)
+			for(var/turf/old_turf in old_turfs)
+				turfs_to_ignite += new_turf //Adds the turf in front of the old turf.
+				if(!(get_step(new_turf, turn(dir_to_target, 90)) in old_turfs)) //Adds the turf on the sides of the old turf if they arent already in the turfs_to_ignite list.
+					turfs_to_ignite += get_step(new_turf, turn(dir_to_target, 90)) 
+				if(!(get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90))) in old_turfs))
+					turfs_to_ignite += get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90)))
+				if(ISDIAGONALDIR(dir_to_target)) ///Fills in the blanks for a diagonal burn.
+					if(!(get_step(new_turf, turn(dir_to_target, 135)) in turfs_skip_old))
+						turfs_skip_old += get_step(new_turf, turn(dir_to_target, 135))
+					if(!(get_step(new_turf, turn(dir_to_target, 225)) in turfs_skip_old))
+						turfs_skip_old += get_step(new_turf, turn(dir_to_target, 225))
+	burn_list(turfs_to_ignite)
+	burn_list(turfs_skip_old)
+	addtimer(CALLBACK(src, .proc/burn_stream, turfs_to_ignite, start_location, current_target, burn_type, range, FALSE), flame_spread_time)
 
-	if(!length(turfs_to_ignite))
+///Checks and lights the turfs in turfs_to_burn
+/obj/item/weapon/gun/flamer/proc/burn_list(list/turf/turfs_to_burn)
+	for(var/turf/turf_to_check in turfs_to_burn)
+		if((turf_to_check.density && !istype(turf_to_check, /turf/closed/wall/resin)) || isspaceturf(turf_to_check))
+			turfs_to_burn -= turf_to_check
+			continue
+		for(var/obj/object in turf_to_check)
+			if(!object.density || object.throwpass || istype(object, /obj/structure/mineral_door/resin))
+				continue
+			turfs_to_burn -= turf_to_check
+
+	if(!length(turfs_to_burn))
 		return FALSE
-	
+
 	var/datum/ammo/flamethrower/loaded_ammo = CHECK_BITFIELD(flags_flamer_features, FLAMER_USES_GUN_FLAMES) ? ammo : current_mag.default_ammo
-	
 	var/burn_level = initial(loaded_ammo.burnlevel) * burn_level_mod
 	var/burn_time = initial(loaded_ammo.burntime) * burn_time_mod
 	var/fire_color = initial(loaded_ammo.fire_color)
-	playsound(loc, fire_sound, 50, 1)
-	for(var/list/list_to_ignite in turfs_to_ignite)
+
+	for(var/turf/turf_to_ignite in turfs_to_burn)
 		if(current_mag.current_rounds <= 0)
 			light_pilot(FALSE)
-			break
-		for(var/turf/turf_to_ignite in list_to_ignite)
-			if(current_mag.current_rounds <= 0)
-				light_pilot(FALSE)
-				break
-			flame_turf(turf_to_ignite, gun_user, burn_time, burn_level, fire_color)
-			current_mag.current_rounds--
-			gun_user?.hud_used.update_ammo_hud(gun_user, src)
-		sleep(flame_spread_time)
-	last_fired = world.time
+			return FALSE
+		flame_turf(turf_to_ignite, gun_user, burn_time, burn_level, fire_color)
+		current_mag.current_rounds--
+		gun_user?.hud_used.update_ammo_hud(gun_user, src)	
 	return TRUE
 
 ///Lights the specific turf on fire and processes melting snow or vines and the like.

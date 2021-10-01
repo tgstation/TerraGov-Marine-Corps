@@ -27,8 +27,6 @@ They're all essentially identical when it comes to getting the job done.
 	var/used_casings = 0 //Just an easier way to track how many shells to eject later.
 	var/flags_magazine = AMMUNITION_REFILLABLE //flags specifically for magazines.
 	var/base_mag_icon //the default mag icon state.
-	///Rerference to the linked gun if this magazine can be worn.
-	var/obj/item/weapon/gun/attached_gun
 
 /obj/item/ammo_magazine/Initialize(mapload, spawn_empty)
 	. = ..()
@@ -92,7 +90,7 @@ They're all essentially identical when it comes to getting the job done.
 		var/obj/item/weapon/gun/gun = I
 		if(!gun.reload(user, src))
 			return
-		attached_gun = gun
+		gun.RegisterSignal(src, COMSIG_ITEM_REMOVED_INVENTORY, /obj/item/weapon/gun.proc/drop_connected_mag)
 		return
 	return ..()
 
@@ -104,17 +102,6 @@ They're all essentially identical when it comes to getting the job done.
 	if(!gun.active_attachable)
 		return
 	attackby(gun.active_attachable, user, params)
-
-/obj/item/ammo_magazine/removed_from_inventory(mob/user) //Dropping the tank should unlink it from the attached_gun
-	. = ..()
-	if(!CHECK_BITFIELD(flags_magazine, AMMUNITION_WORN))
-		return
-	var/mob/living/carbon/human/human_user = user
-	if(!istype(human_user))
-		return
-	if(!attached_gun)
-		return
-	attached_gun.unload(user)
 
 //Generic proc to transfer ammo between ammo mags. Can work for anything, mags, handfuls, etc.
 /obj/item/ammo_magazine/proc/transfer_ammo(obj/item/ammo_magazine/source, mob/user, transfer_amount = 1)

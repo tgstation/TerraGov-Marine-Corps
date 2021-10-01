@@ -167,7 +167,7 @@
 			/obj/item/ammo_magazine/rifle/pepperball = 40,
 			/obj/item/storage/box/recoilless_system = 2,
 			/obj/item/weapon/gun/flamer/big_flamer/marinestandard = 4,
-			/obj/item/ammo_magazine/flamer_tank/worn = 4,
+			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/ammo_magazine/flamer_tank/large = 20,
 			/obj/item/ammo_magazine/flamer_tank = 20,
 			/obj/item/weapon/shield/riot/marine = 6,
@@ -288,7 +288,7 @@
 		),
 		"Specialized" = list(
 			/obj/item/weapon/gun/flamer/big_flamer/marinestandard = 4,
-			/obj/item/ammo_magazine/flamer_tank/worn = 4,
+			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/ammo_magazine/flamer_tank/large = 20,
 			/obj/item/ammo_magazine/flamer_tank = 20,
 			/obj/item/weapon/shield/riot/marine = 6,
