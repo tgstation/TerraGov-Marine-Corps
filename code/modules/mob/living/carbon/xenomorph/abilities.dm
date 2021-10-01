@@ -1210,9 +1210,7 @@
 	if(ishuman(victim))
 		var/mob/living/carbon/human/H = victim
 		victim.emote_burstscream()
-		var/datum/internal_organ/O
-		O = H.internal_organs_by_name["brain"] 
-		O.take_damage(20)
+		H.adjustCloneLoss(20)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
