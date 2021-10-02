@@ -9,11 +9,10 @@
 
 /datum/action/xeno_action/activable/neurogas_grenade/use_ability(atom/A)
 	. = ..()
-	var/turf/T = get_turf(owner)
 	succeed_activate()
 	add_cooldown()
 
-	var/obj/item/explosive/grenade/smokebomb/xeno/nade = new(T)
+	var/obj/item/explosive/grenade/smokebomb/xeno/nade = new(get_turf(owner))
 	nade.throw_at(A, 5, 1, owner, TRUE)
 	nade.activate(owner)
 
