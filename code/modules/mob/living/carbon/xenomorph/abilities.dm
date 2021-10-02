@@ -1206,11 +1206,7 @@
 	span_xenodanger("We suddenly feel \the [victim]'s life force streaming into us!"))
 
 	victim.do_jitter_animation(2)
-
-	if(ishuman(victim))
-		var/mob/living/carbon/human/H = victim
-		victim.emote_burstscream()
-		H.adjustCloneLoss(20)
+	victim.adjustCloneLoss(20)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
