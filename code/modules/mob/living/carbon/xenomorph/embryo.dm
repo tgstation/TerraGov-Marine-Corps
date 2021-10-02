@@ -14,6 +14,7 @@
 	affected_mob = loc
 	affected_mob.status_flags |= LARVA_HOST
 	log_combat(affected_mob, null, "been infected with an embryo")
+	ADD_TRAIT(affected_mob, TRAIT_HUMAN_WILL_ZOMBIFY, EMBRYO_TRAIT)
 	START_PROCESSING(SSobj, src)
 	if(iscarbon(affected_mob))
 		var/mob/living/carbon/C = affected_mob
@@ -27,6 +28,7 @@
 		if(iscarbon(affected_mob))
 			var/mob/living/carbon/C = affected_mob
 			C.med_hud_set_status()
+		REMOVE_TRAIT(affected_mob, TRAIT_HUMAN_WILL_ZOMBIFY, EMBRYO_TRAIT)
 		STOP_PROCESSING(SSobj, src)
 		affected_mob = null
 	return ..()
@@ -47,8 +49,5 @@
 
 	if(affected_mob.stat == DEAD)
 		return PROCESS_KILL
-
-	if(HAS_TRAIT(affected_mob, TRAIT_STASIS))
-		return //If they are in cryo, bag or cell, the embryo won't grow.
 
 	affected_mob.reagents.add_reagent(/datum/reagent/zombium, 0.15)

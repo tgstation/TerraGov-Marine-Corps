@@ -651,10 +651,10 @@
 	overdose_crit_threshold = 50
 
 /datum/reagent/zombium/on_overdose_start(mob/living/L, metabolism)
-	RegisterSignal(L, COMSIG_HUMAN_SET_UNDEFIBBABLE, .proc/zombify)
+	ADD_TRAIT(L, TRAIT_HUMAN_WILL_ZOMBIFY, REAGENT_TRAIT)
 
 /datum/reagent/zombium/on_overdose_stop(mob/living/L, metabolism)
-	UnregisterSignal(L, COMSIG_HUMAN_SET_UNDEFIBBABLE)
+	REMOVE_TRAIT(L, TRAIT_HUMAN_WILL_ZOMBIFY, REAGENT_TRAIT)
 
 /datum/reagent/zombium/overdose_process(mob/living/L, metabolism)
 	if(prob(5))
@@ -667,12 +667,3 @@
 		L.emote("gasp")
 	L.adjustOxyLoss(5)
 	L.adjustToxLoss(5)
-
-///Signal handler preparing the source to become a husk
-/datum/reagent/zombium/proc/zombify(mob/living/carbon/human/H)
-	SIGNAL_HANDLER
-	UnregisterSignal(H, COMSIG_HUMAN_SET_UNDEFIBBABLE)
-	if(!H.has_working_organs())
-		return
-	H.do_jitter_animation(1000)
-	addtimer(CALLBACK(H, /mob/living/carbon/human.proc/revive_to_crit, TRUE, TRUE), SSticker.mode?.husk_transformation_time)

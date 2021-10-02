@@ -94,6 +94,8 @@
 #define STEALTH_TRAIT "stealth" //From hunter stealth
 #define REVIVE_TO_CRIT_TRAIT "revive_to_crit"
 #define GUN_TRAIT "gun" //Traits related to guns
+#define REAGENT_TRAIT "reagent" //From a reagent
+#define EMBRYO_TRAIT "embryo" //From a larva embryo
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
 
@@ -134,6 +136,8 @@
 #define TRAIT_GUN_IS_AIMING "aiming"
 #define TRAIT_GUN_BURST_FIRING "burst_firing"
 #define TRAIT_GUN_SILENCED "silenced"
+
+#define TRAIT_HUMAN_WILL_ZOMBIFY "will_zombify"
 
 // item traits
 #define TRAIT_T_RAY_VISIBLE "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1

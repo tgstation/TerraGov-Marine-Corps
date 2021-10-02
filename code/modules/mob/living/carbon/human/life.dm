@@ -46,6 +46,9 @@
 
 /mob/living/carbon/human/proc/set_undefibbable()
 	SEND_SIGNAL(src, COMSIG_HUMAN_SET_UNDEFIBBABLE)
+	if(HAS_TRAIT(src, TRAIT_HUMAN_WILL_ZOMBIFY) && has_working_organs())
+		do_jitter_animation(1000)
+		addtimer(CALLBACK(src, .proc/revive_to_crit, TRUE, TRUE), SSticker.mode?.husk_transformation_time)
 	ADD_TRAIT(src, TRAIT_UNDEFIBBABLE , TRAIT_UNDEFIBBABLE)
 	SSmobs.stop_processing(src) //Last round of processing.
 
