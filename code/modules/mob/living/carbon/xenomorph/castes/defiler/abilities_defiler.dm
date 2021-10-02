@@ -389,6 +389,8 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 	cooldown_timer = 20 SECONDS
 	plasma_cost = 200
 	keybind_signal = COMSIG_XENOABILITY_TENTACLE
+	///reference to beam tentacle
+	var/datum/beam/tentacle
 
 /datum/action/xeno_action/activable/tentacle/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -426,7 +428,7 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 
 
 /datum/action/xeno_action/activable/tentacle/use_ability(atom/movable/target)
-	var/datum/beam/tentacle = owner.beam(target,"curse0",'icons/effects/beam.dmi')
+	tentacle = owner.beam(target,"curse0",'icons/effects/beam.dmi')
 	to_chat(owner, span_warning("We grab [target] with a tentacle!"))
 	target.balloon_alert_to_viewers("Grabbed!")
 	addtimer(CALLBACK(src, .proc/finish_grab, target, tentacle), 5)
@@ -436,11 +438,17 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 
 ///after dramatic pause throws the target at the defiler
 /datum/action/xeno_action/activable/tentacle/proc/finish_grab(atom/movable/grabbed, datum/beam/tentacle)
+	RegisterSignal(grabbed, COMSIG_MOVABLE_IMPACT, .proc/delete_beam)
 	grabbed.throw_at(owner, TENTACLE_ABILITY_RANGE, 1, owner, FALSE)
 	if(isliving(grabbed))
 		var/mob/living/loser = grabbed
 		loser.apply_effects(1, 0.1)
-	qdel(tentacle)
+
+///signal handler to delete tetacle after we are done draggging owner along
+/datum/action/xeno_action/activable/tentacle/proc/delete_beam(datum/source, atom/impacted)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, COMSIG_MOVABLE_IMPACT)
+	QDEL_NULL(tentacle)
 
 #undef DEFILER_NEUROTOXIN
 #undef DEFILER_HEMODILE
