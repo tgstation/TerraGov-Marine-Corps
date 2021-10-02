@@ -341,8 +341,6 @@
 	var/turf/T = get_turf(owner)
 	succeed_activate()
 	add_cooldown()
-
-	playsound(T, 'sound/voice/predalien_roar.ogg', 25)
 	var/obj/item/explosive/grenade/gravity/nade = new(T)
 	nade.throw_at(A, 5, 1, owner, TRUE)
 	nade.activate(owner)
@@ -354,6 +352,7 @@
 	name = "gravity grenade"
 	desc = "A fleshy mass that seems way too heavy for its size. It seems to be vibrating."
 	icon_state = "alien_grenade"
+	arm_sound = 'sound/voice/predalien_roar.ogg'
 	det_time = 20
 
 /obj/item/explosive/grenade/gravity/prime()
