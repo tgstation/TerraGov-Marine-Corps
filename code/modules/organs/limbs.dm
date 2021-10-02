@@ -269,11 +269,11 @@
 
 		// heal brute damage
 		if(W.damage_type == CUT || W.damage_type == BRUISE)
-			brute = W.heal_wound_damage(brute)
+			brute = W.heal_wound_damage(brute, internal)
 		else if(W.damage_type == BURN)
-			burn = W.heal_wound_damage(burn)
+			burn = W.heal_wound_damage(burn, internal)
 		else if(internal)
-			brute = W.heal_wound_damage(brute)
+			brute = W.heal_wound_damage(brute, internal)
 
 	//Sync the organ's damage with its wounds
 	update_damages()
@@ -330,7 +330,7 @@
 	//moved this before the open_wound check so that having many small wounds for example doesn't somehow protect you from taking internal damage (because of the return)
 	//Possibly trigger an internal wound, too.
 	var/local_damage = brute_dam + burn_dam + damage
-	if(damage > 15 && type != BURN && local_damage > 30 && prob(damage*0.5) && !(limb_status & LIMB_ROBOT))
+	if(damage > 15 && type != BURN && local_damage > 30 && prob(damage*0.5) && !(limb_status & LIMB_ROBOT) && !(SSticker.mode?.flags_round_type & MODE_NO_PERMANENT_WOUNDS))
 		var/datum/wound/internal_bleeding/I = new (min(damage - 15, 15))
 		wounds += I
 		owner.custom_pain("You feel something rip in your [display_name]!", 1)

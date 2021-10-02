@@ -51,6 +51,7 @@
 #define MODE_TWO_HUMAN_FACTIONS	(1<<15)
 #define MODE_SILOABLE_BODIES (1<<16)
 #define MODE_WIN_POINTS (1<<17)
+#define MODE_NO_PERMANENT_WOUNDS (1<<18)
 
 #define MODE_LANDMARK_RANDOM_ITEMS (1<<0)
 #define MODE_LANDMARK_SPAWN_XENO_TUNNELS (1<<1)
@@ -109,10 +110,11 @@
 
 #define SUPPLY_POINT_MARINE_SPAWN 2.5
 
-#define XENO_AFK_TIMER 5 MINUTES
+#define AFK_TIMER 5 MINUTES
+#define TIME_BEFORE_TAKING_BODY 5 MINUTES
 
-#define DEATHTIME_CHECK(M) ((world.time - M.timeofdeath) < SSticker.mode?.respawn_time)
-#define DEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - M.timeofdeath) * 0.1] second\s.</span><br><span class='warning'>You must wait [SSticker.mode?.respawn_time * 0.1] seconds before rejoining the game!"))
+#define DEATHTIME_CHECK(M) ((world.time - GLOB.key_to_time_of_death[M.key]) < SSticker.mode?.respawn_time)
+#define DEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - GLOB.key_to_time_of_death[M.key]) * 0.1] second\s.</span><br><span class='warning'>You must wait [SSticker.mode?.respawn_time * 0.1] seconds before rejoining the game!"))
 
 #define COUNT_IGNORE_HUMAN_SSD (1<<0)
 #define COUNT_IGNORE_XENO_SSD (1<<1)
