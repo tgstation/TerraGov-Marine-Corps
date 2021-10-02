@@ -351,8 +351,9 @@
 /obj/item/explosive/grenade/gravity
 	name = "gravity grenade"
 	desc = "A fleshy mass that seems way too heavy for its size. It seems to be vibrating."
-	icon_state = "alien_grenade"
 	arm_sound = 'sound/voice/predalien_roar.ogg'
+	greyscale_colors = "#3aaacc"
+	greyscale_config = /datum/greyscale_config/xenogrenade
 	det_time = 20
 
 /obj/item/explosive/grenade/gravity/prime()
