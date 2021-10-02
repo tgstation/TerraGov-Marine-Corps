@@ -486,7 +486,7 @@ GLOBAL_LIST(cable_radial_layer_list)
 	if(!affecting)
 		return TRUE
 
-	if(affecting.limb_status != LIMB_ROBOT)
+	if(!(affecting.limb_status & LIMB_ROBOT))
 		balloon_alert(user, "Limb not robotic")
 		return TRUE
 
@@ -508,7 +508,7 @@ GLOBAL_LIST(cable_radial_layer_list)
 	while(affecting.burn_dam && do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD) && use(1))
 		user.visible_message(span_warning("\The [user] fixes some wires in \the [src]'s [affecting.display_name] with \the [src]."), \
 			span_warning("You patch some wires in \the [src]'s [affecting.display_name]."))
-		affecting.heal_limb_damage(0, 15, robo_repair = TRUE, updating_health = TRUE)
+		affecting.heal_limb_damage(0, 15, updating_health = TRUE)
 		if(!amount)
 			return TRUE
 	return TRUE

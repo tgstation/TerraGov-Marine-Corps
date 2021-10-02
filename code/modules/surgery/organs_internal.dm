@@ -129,7 +129,7 @@
 
 /datum/surgery_step/internal/fix_organ_robotic //For artificial organs
 	allowed_tools = list(
-		/obj/item/stack/nanopaste = 100,
+		/obj/item/stack/medical/heal_pack/nanopaste = 100,
 		/obj/item/tool/surgery/bonegel = 30,
 		/obj/item/tool/screwdriver = 70,
 	)

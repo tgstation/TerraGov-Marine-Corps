@@ -142,7 +142,7 @@
 			say("Blood transfer complete.")
 	if(heal_brute)
 		if(occupant.getexternalBruteLoss() > 0)
-			occupant.heal_limb_damage(3, 0)
+			occupant.heal_overall_damage(3, 0)
 			updating_health = TRUE
 			if(prob(10))
 				visible_message("[src] whirrs and clicks as it stitches flesh together.")
@@ -152,7 +152,7 @@
 			say("Trauma repair surgery complete.")
 	if(heal_burn)
 		if(occupant.getFireLoss() > 0)
-			occupant.heal_limb_damage(0, 3)
+			occupant.heal_overall_damage(0, 3)
 			updating_health = TRUE
 			if(prob(10))
 				visible_message("[src] whirrs and clicks as it grafts synthetic skin.")

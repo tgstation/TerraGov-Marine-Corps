@@ -1,6 +1,7 @@
 #define BANDAGE (1<<0)
 #define SALVE (1<<1)
 #define DISINFECT (1<<2)
+#define NANITES (1<<3)
 
 /obj/item/stack/medical
 	name = "medical pack"
@@ -14,6 +15,8 @@
 	var/skill_level_needed = SKILL_MEDICAL_UNTRAINED
 	///Fumble delay applied without sufficient skill
 	var/unskilled_delay = SKILL_TASK_TRIVIAL
+	///Whether the stack does anything for mechanical limbs
+	var/affects_robots = FALSE
 
 /obj/item/stack/medical/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(!istype(M))
@@ -42,8 +45,8 @@
 			to_chat(user, span_warning("You can't apply [src] through [H.wear_suit]!"))
 			return TRUE
 
-	if(affecting.limb_status & LIMB_ROBOT)
-		to_chat(user, span_warning("This isn't useful at all on a robotic limb."))
+	if(!affects_robots != !(affecting.limb_status & LIMB_ROBOT)) //XOR, converting truthy values to TRUE/FALSE for equality
+		to_chat(user, span_warning("This isn't useful at all on a [affects_robots ? "fleshy" : "robotic"] limb."))
 		return TRUE
 
 	H.UpdateDamageIcon()
@@ -87,6 +90,8 @@
 		affected |= affecting.salve()
 	if(heal_flags & DISINFECT)
 		affected |= affecting.disinfect()
+	if(heal_flags & NANITES)
+		affected = TRUE
 
 	generate_treatment_messages(user, patient, affecting, affected)
 	if(affected)
@@ -169,6 +174,7 @@
 	heal_flags = BANDAGE | SALVE | DISINFECT
 
 
+///Parent class, used for things which change look based on stack size
 /obj/item/stack/medical/heal_pack/advanced
 	dir = NORTH
 	flags_atom = DIRLOCK
@@ -231,6 +237,23 @@
 	user.visible_message(span_notice("[user] covers the wounds on [patient]'s [target_limb.display_name] with regenerative membrane."),
 	span_notice("You cover the wounds on [patient]'s [target_limb.display_name] with regenerative membrane."))
 
+/obj/item/stack/medical/heal_pack/nanopaste
+	name = "nanopaste"
+	singular_name = "nanite swarm"
+	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "tube"
+	heal_brute = 15
+	heal_burn = 15
+	heal_flags = NANITES
+	affects_robots = TRUE
+	skill_level_needed = SKILL_MEDICAL_PRACTICED
+	unskilled_delay = SKILL_TASK_EASY
+
+/obj/item/stack/medical/heal_pack/nanopaste/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
+	user.visible_message(span_notice("[user] spreads nanopaste over [patient]'s [target_limb.display_name]."),
+	span_notice("You spread some nanopaste over [patient]'s [target_limb.display_name]."))
+
 /obj/item/stack/medical/splint
 	name = "medical splints"
 	singular_name = "medical splint"
@@ -283,3 +306,4 @@
 #undef BANDAGE
 #undef SALVE
 #undef DISINFECT
+#undef NANITES

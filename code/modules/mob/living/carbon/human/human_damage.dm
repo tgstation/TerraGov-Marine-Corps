@@ -126,37 +126,6 @@
 			external_dam -= wound.damage
 		. += external_dam
 
-
-/mob/living/carbon/human/proc/adjustBruteLossByPart(amount, organ_name, obj/damage_source = null)
-	if(species && species.brute_mod && amount > 0)
-		amount = amount*species.brute_mod
-
-	for(var/X in limbs)
-		var/datum/limb/O = X
-		if(O.name == organ_name)
-			if(amount > 0)
-				O.take_damage_limb(amount, 0, is_sharp(damage_source), has_edge(damage_source))
-			else
-				//if you don't want to heal robot limbs, they you will have to check that yourself before using this proc.
-				O.heal_limb_damage(-amount, robo_repair = (O.limb_status & LIMB_ROBOT))
-			break
-
-
-/mob/living/carbon/human/proc/adjustFireLossByPart(amount, organ_name, obj/damage_source = null)
-	if(species && species.burn_mod && amount > 0)
-		amount = amount*species.burn_mod
-
-	for(var/X in limbs)
-		var/datum/limb/O = X
-		if(O.name == organ_name)
-			if(amount > 0)
-				O.take_damage_limb(0, amount, is_sharp(damage_source), has_edge(damage_source))
-			else
-				//if you don't want to heal robot limbs, they you will have to check that yourself before using this proc.
-				O.heal_limb_damage(burn = -amount, robo_repair = (O.limb_status & LIMB_ROBOT))
-			break
-
-
 /mob/living/carbon/human/getCloneLoss()
 	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN|ROBOTIC_LIMBS))
 		cloneloss = 0
@@ -253,26 +222,27 @@
 ////////////////////////////////////////////
 
 //Returns a list of damaged limbs
-/mob/living/carbon/human/proc/get_damaged_limbs(brute, burn)
+/mob/living/carbon/human/proc/get_damaged_limbs(brute, burn, robotic = FALSE)
 	var/list/datum/limb/parts = list()
 	for(var/datum/limb/O in limbs)
 		if((brute && O.brute_dam) || (burn && O.burn_dam) || !(O.surgery_open_stage == 0))
-			parts += O
+			if(!robotic == !(O.limb_status & LIMB_ROBOT)) //XNOR
+				parts += O
 	return parts
 
 //Returns a list of damageable limbs
 /mob/living/carbon/human/proc/get_damageable_limbs()
 	var/list/datum/limb/parts = list()
 	for(var/datum/limb/O in limbs)
+		if(O.limb_status & LIMB_DESTROYED)
+			continue
 		if(O.brute_dam + O.burn_dam < O.max_damage)
 			parts += O
 	return parts
 
-//Heals ONE external organ, organ gets randomly selected from damaged ones.
-//It automatically updates damage overlays if necesary
-//It automatically updates health status
-/mob/living/carbon/human/heal_limb_damage(brute, burn, updating_health = FALSE)
-	var/list/datum/limb/parts = get_damaged_limbs(brute, burn)
+/// Picks one damaged limb fitting the first three arguments and heals it by supplied values
+/mob/living/carbon/human/heal_limb_damage(brute, burn, robotic = FALSE, updating_health = FALSE)
+	var/list/datum/limb/parts = get_damaged_limbs(brute, burn, robotic)
 	if(!parts.len)
 		return
 	var/datum/limb/picked = pick(parts)
@@ -300,9 +270,9 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	speech_problem_flag = 1
 
 
-//Heal MANY limbs, in random order
+///Heal MANY limbs. Order is random, each is healed as much as possible before spillover. Will heal robots.
 /mob/living/carbon/human/heal_overall_damage(brute, burn, updating_health = FALSE)
-	var/list/datum/limb/parts = get_damaged_limbs(brute,burn)
+	var/list/datum/limb/parts = get_damaged_limbs(brute, burn)
 
 	var/update = 0
 	while(parts.len && (brute>0 || burn>0) )
@@ -378,6 +348,14 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	while(parts.len)
 		var/datum/limb/picked = pick_n_take(parts)
 		apply_damage(damage, damagetype, picked, run_armor_check(picked, armortype), sharp, edge, updating_health)
+
+///Heal limbs until the total mob health went up by health_to_heal, spread equally across limbs and brute/burn agnostic
+/mob/living/carbon/human/proc/heal_limbs(health_to_heal)
+	var/proportion_to_heal = (health_to_heal < (species.total_health - health)) ? (health_to_heal / (species.total_health - health)) : 1
+	for(var/datum/limb/limb AS in limbs)
+		limb.heal_limb_damage(limb.brute_dam * proportion_to_heal, limb.burn_dam * proportion_to_heal, TRUE)
+	updatehealth()
+
 
 ////////////////////////////////////////////
 

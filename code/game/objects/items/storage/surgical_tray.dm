@@ -9,7 +9,7 @@
 	can_hold = list(
 		/obj/item/tool/surgery,
 		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-		/obj/item/stack/nanopaste,
+		/obj/item/stack/medical/heal_pack/nanopaste,
 	)
 
 /obj/item/storage/surgical_tray/Initialize(mapload, ...)
@@ -25,7 +25,7 @@
 	new /obj/item/tool/surgery/bonegel(src)
 	new /obj/item/tool/surgery/bonesetter(src)
 	new /obj/item/tool/surgery/FixOVein(src)
-	new /obj/item/stack/nanopaste(src)
+	new /obj/item/stack/medical/heal_pack/nanopaste(src)
 
 /obj/item/storage/surgical_tray/update_icon_state()
 	if(!contents.len)

@@ -257,10 +257,8 @@
 	var/result = update_icon()
 	return result
 
-
-/datum/limb/proc/heal_limb_damage(brute, burn, internal = FALSE, robo_repair = FALSE, updating_health = FALSE)
-	if(limb_status & LIMB_ROBOT && !robo_repair)
-		return
+///Make sure you can heal the limb in question (whether it's mechanical, for instance) before calling this.
+/datum/limb/proc/heal_limb_damage(brute, burn, internal = FALSE, updating_health = FALSE)
 
 	//Heal damage on the individual wounds
 	for(var/datum/wound/W in wounds)

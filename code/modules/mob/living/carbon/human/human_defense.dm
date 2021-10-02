@@ -484,7 +484,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	user.visible_message(span_notice("[user] starts to fix some of the dents on [src]'s [hurtlimb.display_name]."),\
 		span_notice("You start fixing some of the dents on [src == user ? "your" : "[src]'s"] [hurtlimb.display_name]."))
 	while(hurtlimb.brute_dam && do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD) && I.use_tool(volume = 50, amount = 2))
-		hurtlimb.heal_limb_damage(15, robo_repair = TRUE, updating_health = TRUE)
+		hurtlimb.heal_limb_damage(15, updating_health = TRUE)
 		UpdateDamageIcon()
 		user.visible_message(span_warning("\The [user] patches some dents on \the [src]'s [hurtlimb.display_name]."), \
 			span_warning("You patch some dents on \the [src]'s [hurtlimb.display_name]."))

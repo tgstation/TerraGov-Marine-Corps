@@ -971,7 +971,7 @@ MEDICAL
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
 		/obj/item/reagent_containers/hypospray/autoinjector/neuraline,
-		/obj/item/stack/nanopaste,
+		/obj/item/stack/medical/heal_pack/nanopaste,
 	)
 	cost = 30
 

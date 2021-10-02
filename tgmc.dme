@@ -660,7 +660,6 @@
 #include "code\game\objects\items\stacks\catwalk.dm"
 #include "code\game\objects\items\stacks\flags.dm"
 #include "code\game\objects\items\stacks\medical.dm"
-#include "code\game\objects\items\stacks\nanopaste.dm"
 #include "code\game\objects\items\stacks\rods.dm"
 #include "code\game\objects\items\stacks\sandbags.dm"
 #include "code\game\objects\items\stacks\snow.dm"
