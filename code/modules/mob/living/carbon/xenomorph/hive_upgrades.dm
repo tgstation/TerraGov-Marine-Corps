@@ -227,7 +227,7 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 
 /datum/hive_upgrade/primordial
 	category = "Primordial"
-
+	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
 
 /datum/hive_upgrade/primordial/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	. = ..()
@@ -242,7 +242,12 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Unlocks the primordial empresses queen charge. Walk in a straight line to begin charging. Can be toggled."
 	psypoint_cost = 300
 	icon = "primoqueen"
-	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
+
+/datum/hive_upgrade/primordial/shrike
+	name = PRIMORDIAL_SHRIKE
+	desc = "Unlocks the primordial shrikes gravity bomb. Activate to throw a gravity grenade thats sucks in everything in a radius."
+	psypoint_cost = 300
+	icon = "primoshrike"
 
 /datum/hive_upgrade/primordial/sentinel
 	name = PRIMORDIAL_SENTINEL

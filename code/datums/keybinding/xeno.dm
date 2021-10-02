@@ -359,6 +359,13 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
 
+
+/datum/keybinding/xeno/gravity_grenade
+	name = "gravnade"
+	full_name = "Shrike: Gravity Grenade"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_GRAV_NADE
+
 /datum/keybinding/xeno/screech
 	name = "screech"
 	full_name = "Queen: Screech"
