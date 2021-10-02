@@ -51,4 +51,4 @@
 	if(HAS_TRAIT(affected_mob, TRAIT_STASIS))
 		return //If they are in cryo, bag or cell, the embryo won't grow.
 
-	affected_mob.reagents.add_reagent(/datum/reagent/zombium, 0.1)
+	affected_mob.reagents.add_reagent(/datum/reagent/zombium, 0.15)
