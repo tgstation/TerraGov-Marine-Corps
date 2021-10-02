@@ -363,4 +363,7 @@
 	///The xenos/silo/nuke currently tracked by the xeno_tracker arrow
 	var/atom/tracked
 
+	///Are we the roony version of this xeno
+	var/is_a_rouny = FALSE
+
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
