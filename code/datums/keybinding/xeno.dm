@@ -112,7 +112,7 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_POUNCE
 
-/datum/keybinding/xeno/pounce
+/datum/keybinding/xeno/nurogasnade
 	name = "neurogas"
 	full_name = "Sentinel: Neurogas Grenade"
 	description = "Throws a gas emitting grenade at the targetted area"
