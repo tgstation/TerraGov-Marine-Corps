@@ -109,6 +109,8 @@
 				take_damage(1, prob(30))
 
 /datum/internal_organ/proc/take_damage(amount, silent= FALSE)
+	if(SSticker.mode?.flags_round_type & MODE_NO_PERMANENT_WOUNDS)
+		return
 	if(amount <= 0)
 		heal_organ_damage(-amount)
 		return

@@ -453,3 +453,38 @@
   jroinc:
   - rscadd: Added two self-recharging cells to engi vendors. Low capacity, but they
       charge up to full slowly without needing a hand charger.
+2021-09-28:
+  BraveMole:
+  - bugfix: Zombies properly heal internal wounds
+  - balance: Double the healing rate of zombies
+  - bugfix: Zombies can heal from broken bone (has no effect on balance)
+  - bugfix: Fix a runtime that could prevent human zombies from resurrecting
+  EvilMelonTheSecond:
+  - balance: Synth vendor has radiopack as a backpack option
+  Lefunny:
+  - balance: Build a sentry healh goes from 500 to 250
+  - balance: prison station now starts weeded
+  TiviPlus:
+  - balance: Halve weed and building cost before shutters open
+  XSlayer300:
+  - bugfix: Fixed the zombie sprite a little bit.
+2021-09-29:
+  BraveMole:
+  - balance: Remove shrap, IB, organ damage from Civil War
+  Lefunny:
+  - bugfix: I fixed a broken fog area.
+  TiviPlus:
+  - rscadd: Replaced place silo/king/turret with the hive boon menu
+  - imageadd: sprites by ciel/kyranova
+  lovegreenstuff:
+  - balance: masterkey, underbarrel flamer, and underbarrel GL for t39, t35, and v10
+      are now gone
+2021-09-30:
+  BraveMole:
+  - bugfix: Buying a mk2 mimir in req really gets you a mk2
+  TiviPlus:
+  - balance: Civil war votable every 36 hours from 12 hours
+  - balance: buckshot has more falloff
+  - balance: buckshot accurate range(not spread) has been reduced to 3
+  - balance: nerfed high velocity ammo slowdown
+  - rscadd: Primordial tab temporily disabled while abilities are added

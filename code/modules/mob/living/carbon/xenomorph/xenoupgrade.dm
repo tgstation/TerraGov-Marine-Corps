@@ -67,6 +67,11 @@
 				if(XENO_TIER_FOUR)
 					SSmonitor.stats.ancient_T4++
 
+		//PURCHASED UPGRADE
+		if(XENO_UPGRADE_FOUR)
+			if(!silent)
+				to_chat(src, span_xenoannounce(xeno_caste.primordial_message))
+
 	generate_name() //Give them a new name now
 
 	hud_set_plasma()
@@ -270,6 +275,9 @@
 
 /mob/living/carbon/xenomorph/queen/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/queen/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----QUEEN END----//
 //============//

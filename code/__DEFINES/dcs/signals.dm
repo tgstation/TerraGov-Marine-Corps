@@ -541,6 +541,7 @@
 
 #define COMSIG_XENOABILITY_HEADBITE "xenoability_headbite"
 #define COMSIG_XENOABILITY_REGURGITATE "xenoability_regurgitate"
+#define COMSIG_XENOABILITY_BLESSINGSMENU "xenoability_blesssingsmenu"
 #define COMSIG_XENOABILITY_DROP_WEEDS "xenoability_drop_weeds"
 #define COMSIG_XENOABILITY_CHOOSE_WEEDS "xenoability_choose_weeds"
 #define COMSIG_XENOABILITY_SECRETE_RESIN "xenoability_secrete_resin"
@@ -646,7 +647,6 @@
 #define COMSIG_XENOABILITY_BANISH "xenoability_banish"
 #define COMSIG_XENOABILITY_RECALL "xenoability_recall"
 
-#define COMSIG_XENOABILITY_SUMMON_KING_POD "xenoability_summon_king_pod"
 #define COMSIG_XENOABILITY_NIGHTFALL "xenoability_nightfall"
 #define COMSIG_XENOABILITY_GRAVITY_CRUSH "xenoability_gravity_crush"
 #define COMSIG_XENOABILITY_HIVE_SUMMON "xenoability_hive_summon"

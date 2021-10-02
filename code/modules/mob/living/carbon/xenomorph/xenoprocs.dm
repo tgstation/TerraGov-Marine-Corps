@@ -192,8 +192,13 @@
 	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
 	HS.xeno_message(message, span_class, size, force, target, sound, apply_preferences, filter_list, arrow_type, arrow_color, report_distance)
 
+///returns TRUE if we are permitted to evo to the next case FALSE otherwise
 /mob/living/carbon/xenomorph/proc/upgrade_possible()
-	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_THREE)
+	if(upgrade == XENO_UPGRADE_THREE)
+		if(!xeno_caste.primordial_upgrade_name)
+			return FALSE
+		return hive.upgrades_by_name[xeno_caste.primordial_upgrade_name].times_bought
+	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_FOUR)
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
@@ -349,7 +354,7 @@
 					// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
 					var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 					var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-					var/upgrade_points = 1 + (stored_larva/6)
+					var/upgrade_points = 1 + (stored_larva/6) + hive.get_evolution_boost()
 					upgrade_stored = min(upgrade_stored + upgrade_points, xeno_caste.upgrade_threshold)
 
 /mob/living/carbon/xenomorph/proc/update_evolving()

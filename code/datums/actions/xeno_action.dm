@@ -14,8 +14,6 @@
 	var/gamemode_flags = ABILITY_ALL_GAMEMODE
 	///Alternative keybind signal, to use the action differently
 	var/alternate_keybind_signal
-	/// Psy points cost of using ability, if any.
-	var/psych_cost = 0
 
 /datum/action/xeno_action/New(Target)
 	. = ..()

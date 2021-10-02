@@ -11,8 +11,14 @@
 /datum/keybinding/xeno/regurgitate
 	name = "regurgitate"
 	full_name = "Regurgitate / Cocoon"
-	description = "Vomit whatever you have devoured. / Cocoon the targeted body, which will produce psy and larva points over time.s"
+	description = "Vomit whatever you have devoured. / Cocoon the targeted body, which will produce psy and larva points over time."
 	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
+
+/datum/keybinding/xeno/blessingmenu
+	name = "blessings menu"
+	full_name = "Open Blessings Menu"
+	description = "Opens the Queen Mothers Blessings menu, where hive upgrades are bought"
+	keybind_signal = COMSIG_XENOABILITY_BLESSINGSMENU
 
 /datum/keybinding/xeno/drop_weeds
 	hotkey_keys = list("V")
