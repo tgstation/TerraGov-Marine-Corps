@@ -303,7 +303,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(!ref_src)
 		ref_src = "[REF(src)]"
 	. = ADMIN_FULLMONTY_NONAME(initiator.mob)
-
+	if(CONFIG_GET(flag/popup_admin_pm))
+		. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];adminpopup=[REF(initiator)]'>POPUP</A>)"
 
 //private
 /datum/admin_help/proc/HalfMonty(ref_src)
@@ -496,7 +497,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	GLOB.ahelp_tickets.active_tickets -= src
 	if(initiator && initiator.current_ticket == src)
 		initiator.current_ticket = null
-
+	SEND_SIGNAL(src, COMSIG_ADMIN_HELP_MADE_INACTIVE)
 
 //Mark open ticket as closed/meme
 /datum/admin_help/proc/Close(silent, irc)

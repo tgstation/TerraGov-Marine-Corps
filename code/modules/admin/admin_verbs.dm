@@ -955,6 +955,7 @@
 					admin_ticket_log(recipient, interaction_message)
 
 			else //Recipient is a staff member, sender is not.
+				SEND_SIGNAL(current_ticket, COMSIG_ADMIN_HELP_REPLIED)
 				admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: [span_linkify("[keywordparsedmsg]")]</font>")
 				to_chat(recipient,
 					type = MESSAGE_TYPE_ADMINPM,
