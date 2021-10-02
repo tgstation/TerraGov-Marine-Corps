@@ -904,6 +904,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	x_offset = round(sin(dir_angle), 0.01)
 	y_offset = round(cos(dir_angle), 0.01)
 	projectile_batch_move()
+	qdel(src)
 
 /obj/projectile/hitscan/projectile_batch_move()
 	var/end_of_movement = FALSE //In batch moves this loop, only if the projectile stopped.
