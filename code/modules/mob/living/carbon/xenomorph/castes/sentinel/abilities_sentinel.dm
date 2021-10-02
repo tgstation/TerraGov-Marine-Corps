@@ -28,6 +28,7 @@
 	det_time = 20
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/xeno/neuro/medium
+	arm_sound = 'sound/voice/alien_yell_alt.ogg'
 	smokeradius = 3
 
 /obj/item/explosive/grenade/smokebomb/xeno/update_overlays()
