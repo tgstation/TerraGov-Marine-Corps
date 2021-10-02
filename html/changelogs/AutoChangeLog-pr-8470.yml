@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - rscadd: "Added the evolution tower xeno building, which costs 300 points and when built generates a extra .25 evo points per evo tick"
