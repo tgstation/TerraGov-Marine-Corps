@@ -479,3 +479,12 @@
   lovegreenstuff:
   - balance: masterkey, underbarrel flamer, and underbarrel GL for t39, t35, and v10
       are now gone
+2021-09-30:
+  BraveMole:
+  - bugfix: Buying a mk2 mimir in req really gets you a mk2
+  TiviPlus:
+  - balance: Civil war votable every 36 hours from 12 hours
+  - balance: buckshot has more falloff
+  - balance: buckshot accurate range(not spread) has been reduced to 3
+  - balance: nerfed high velocity ammo slowdown
+  - rscadd: Primordial tab temporily disabled while abilities are added
