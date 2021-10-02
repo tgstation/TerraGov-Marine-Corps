@@ -94,7 +94,33 @@
 
 /obj/effect/alien/resin/sticky/Initialize()
 	. = ..()
-	AddComponent(/datum/component/slowing_on_crossed, slow_amt)
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/slow_down_crosser
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/effect/alien/resin/sticky/proc/slow_down_crosser(datum/source, atom/movable/crosser)
+	SIGNAL_HANDLER
+	if(crosser.throwing || crosser.buckled)
+		return
+
+	if(isvehicle(crosser))
+		var/obj/vehicle/vehicle = crosser
+		vehicle.last_move_time += slow_amt
+		return
+
+	if(!ishuman(crosser))
+		return
+
+	if(CHECK_MULTIPLE_BITFIELDS(crosser.flags_pass, HOVERING))
+		return
+
+	var/mob/living/carbon/human/victim = crosser
+
+	if(victim.lying_angle)
+		return
+
+	victim.next_move_slowdown += slow_amt
 
 /obj/effect/alien/resin/sticky/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
