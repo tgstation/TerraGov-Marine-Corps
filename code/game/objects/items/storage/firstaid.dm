@@ -284,6 +284,7 @@
 	storage_slots = null
 	use_sound = 'sound/items/pillbottle.ogg'
 	max_storage_space = 16
+	greyscale_config = /datum/greyscale_config/pillbottle
 	var/pill_type_to_fill //type of pill to use to fill in the bottle in New()
 
 /obj/item/storage/pill_bottle/Initialize(mapload, ...)
@@ -318,116 +319,135 @@
 /obj/item/storage/pill_bottle/kelotane
 	name = "kelotane pill bottle"
 	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
-	icon_state = "pill_canister2"
+	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/kelotane
+	greyscale_colors = "#d9cd07"
 
 /obj/item/storage/pill_bottle/dermaline
 	name = "dermaline pill bottle"
 	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
-	icon_state = "pill_canister2"
+	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dermaline
+	greyscale_colors = "#ffef00"
 
 /obj/item/storage/pill_bottle/dylovene
 	name = "dylovene pill bottle"
 	desc = "Contains pills that heal toxic damage and purge toxins and neurotoxins of all kinds."
-	icon_state = "pill_canister6"
+	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dylovene
+	greyscale_colors = "#539328"
 
 /obj/item/storage/pill_bottle/inaprovaline
 	name = "inaprovaline pill bottle"
 	desc = "Contains pills that prevent wounds from getting worse on their own."
-	icon_state = "pill_canister3"
+	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/inaprovaline
+	greyscale_colors = "#b274b9"
 
 /obj/item/storage/pill_bottle/tramadol
 	name = "tramadol pill bottle"
 	desc = "Contains pills that numb pain. Take two for a stronger effect at the cost of a toxic effect."
-	icon_state = "pill_canister5"
+	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tramadol
+	greyscale_colors = "#a09ca0"
 
 /obj/item/storage/pill_bottle/paracetamol
 	name = "paracetamol pill bottle"
 	desc = "Contains pills that mildly numb pain. Take two for a slightly stronger effect."
-	icon_state = "pill_canister5"
+	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/paracetamol
+	greyscale_colors = "#f8f4f8"
 
 /obj/item/storage/pill_bottle/spaceacillin
 	name = "spaceacillin pill bottle"
 	desc = "Contains pills that handle low-level viral and bacterial infections. Effect increases with dosage."
-	icon_state = "pill_canister4"
+	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/spaceacillin
+	greyscale_colors = "#3ef0ec"
 
 /obj/item/storage/pill_bottle/bicaridine
 	name = "bicaridine pill bottle"
 	desc = "Contains pills that heal cuts and bruises, but cause slight pain. Take two to heal faster, but have slightly more pain."
-	icon_state = "pill_canister11"
+	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/bicaridine
+	greyscale_colors = "#7f030c"
 
 /obj/item/storage/pill_bottle/meralyne
 	name = "meralyne pill bottle"
 	desc = "Contains pills that heal cuts and bruises, but cause slight pain. Take two to heal faster, but have slightly more pain."
-	icon_state = "pill_canister11"
+	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/meralyne
+	greyscale_colors = "#fa0214"
 
 /obj/item/storage/pill_bottle/dexalin
 	name = "dexalin pill bottle"
 	desc = "Contains pills that heal oxygen damage. They can suppress bloodloss symptoms as well."
-	icon_state = "pill_canister12"
+	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dexalin
+	greyscale_colors = "#0226fa"
 
 /obj/item/storage/pill_bottle/alkysine
 	name = "alkysine pill bottle"
 	desc = "Contains pills that heal brain damage."
-	icon_state = "pill_canister7"
+	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/alkysine
+	greyscale_colors = "#01434f"
 
 /obj/item/storage/pill_bottle/imidazoline
 	name = "imidazoline pill bottle"
 	desc = "Contains pills that heal eye damage."
-	icon_state = "pill_canister9"
+	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/imidazoline
+	greyscale_colors = "#f47d0d" //orange like carrots
 
 /obj/item/storage/pill_bottle/peridaxon
 	name = "peridaxon pill bottle"
 	desc = "Contains pills that suppress organ damage while waiting for a full treatment."
-	icon_state = "pill_canister10"
+	icon_state = "pill_canister01"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/peridaxon
+	greyscale_colors = "#6e6860"
 
 /obj/item/storage/pill_bottle/russian_red
 	name = "\improper Russian Red pill bottle"
 	desc = "Contains pills that heal all damage rapidly at the cost of small amounts of unhealable damage."
 	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/russian_red
+	greyscale_colors = "#fa067f"
 
 /obj/item/storage/pill_bottle/quickclot
 	name = "quick-clot pill bottle"
 	desc = "Contains pills that suppress internal bleeding while waiting for full treatment."
-	icon_state = "pill_canister8"
+	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/quickclot
+	greyscale_colors = "#7406fa"
 
 /obj/item/storage/pill_bottle/hypervene
 	name = "hypervene pill bottle"
 	desc = "A purge medication used to treat overdoses and rapidly remove toxins. Causes pain and vomiting."
-	icon_state = "pill_canister7"
+	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/hypervene
+	greyscale_colors = "#6e4620"
 
 /obj/item/storage/pill_bottle/tricordrazine
 	name = "tricordrazine pill bottle"
 	desc = "Contains pills commonly used by untrained Squad Marines to avoid seeing their Squad Medic."
-	icon_state = "pill_canister9"
+	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tricordrazine
+	greyscale_colors = "#387d4b"
 
 /obj/item/storage/pill_bottle/happy
 	name = "happy pill bottle"
 	desc = "Contains highly illegal drugs. When you want to see the rainbow."
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_containers/pill/happy
+	greyscale_colors = "#443083"
 
 /obj/item/storage/pill_bottle/zoom
 	name = "zoom pill bottle"
 	desc = "Containts highly illegal drugs. Trade heart for speed."
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_containers/pill/zoom
+	greyscale_colors = "#33599c"
 
 //Pill bottles with identification locks.
 
@@ -474,10 +494,10 @@
 		return ..()
 
 /obj/item/storage/pill_bottle/restricted/ultrazine
-	icon_state = "pill_canister11"
+	icon_state = "pill_canister1"
 	max_storage_space = 5
 	pill_type_to_fill = /obj/item/reagent_containers/pill/ultrazine
-
+	greyscale_colors = "#02f668"
 	req_access = list(ACCESS_NT_CORPORATE)
 	req_id_role = CORPORATE_LIAISON
 	scan_name = TRUE
