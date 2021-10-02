@@ -71,13 +71,13 @@
 	if(dangerous)
 		GLOB.round_statistics.grenades_thrown++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "grenades_thrown")
-		updateicon()
+		update_icon()
 	addtimer(CALLBACK(src, .proc/prime), det_time)
 
-/obj/item/explosive/grenade/proc/updateicon()
+/obj/item/explosive/grenade/update_overlays()
+	. = ..()
 	if(dangerous)
-		overlays+=new/obj/effect/overlay/danger
-		dangerous = 0
+		overlays += new /obj/effect/overlay/danger
 
 
 /obj/item/explosive/grenade/proc/prime()

@@ -632,6 +632,8 @@
 #define COMSIG_XENOABILITY_POUNCE "xenoability_pounce"
 #define COMSIG_XENOABILITY_EVASION "xenoability_evasion"
 
+#define COMSIG_XENOABILITY_NEUROGAS_GRENADE "xenoability_neurogas_nade"
+
 #define COMSIG_XENOABILITY_HAUNT "xenoability_haunt"
 
 #define COMSIG_XENOABILITY_VENTCRAWL "xenoability_vent_crawl"

@@ -822,7 +822,6 @@
 		log_explosion("[key_name(user)] fired a grenade [F] from \a [src] at [AREACOORD(user.loc)].")
 		F.icon_state = initial(F.icon_state) + "_active"
 		F.activate(user)
-		F.updateicon()
 		playsound(F.loc, fire_sound, 50, 1)
 		addtimer(CALLBACK(F, /obj/item/explosive/grenade.proc/prime), 1 SECONDS)
 

@@ -248,3 +248,9 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Unlocks the primordial shrikes gravity bomb. Activate to throw a gravity grenade thats sucks in everything in a radius."
 	psypoint_cost = 300
 	icon = "primoshrike"
+
+/datum/hive_upgrade/primordial/sentinel
+	name = PRIMORDIAL_SENTINEL
+	desc = "Unlocks the primordial sentinels neurogas grenade. Allows them to throw a grenade that emits gas in an area."
+	psypoint_cost = 75
+	icon = "primosent"
