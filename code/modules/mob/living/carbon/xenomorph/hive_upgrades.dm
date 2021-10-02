@@ -206,3 +206,9 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	psypoint_cost = 300
 	icon = "primoqueen"
 	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
+
+/datum/hive_upgrade/primordial/sentinel
+	name = PRIMORDIAL_SENTINEL
+	desc = "Unlocks the primordial sentinels neurogas grenade. Allows them to throw a grenade that emits gas in an area."
+	psypoint_cost = 75
+	icon = "primosent"
