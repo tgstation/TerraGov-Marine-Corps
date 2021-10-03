@@ -116,6 +116,8 @@
 
 /obj/item/weapon/husk_claw/afterattack(atom/target, mob/user, has_proximity, click_parameters)
 	. = ..()
+	if(!has_proximity)
+		return
 	if(!istype(target, /obj/machinery/door/airlock))
 		return
 	if(user.do_actions)

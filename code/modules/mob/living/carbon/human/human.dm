@@ -311,7 +311,7 @@
 	. = ..()
 	if(.)
 		return
-	if(ishusk(src))
+	if(ishusk(usr))
 		return
 	if (href_list["refresh"])
 		if(interactee&&(in_range(src, usr)))
