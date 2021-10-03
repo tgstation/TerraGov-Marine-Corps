@@ -3499,7 +3499,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "amT" = (
-/obj/effect/glowshroom,
+/obj/structure/glowshroom,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "amU" = (
@@ -3677,7 +3677,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "anv" = (
-/obj/effect/glowshroom,
+/obj/structure/glowshroom,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -4904,12 +4904,12 @@
 /turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
 "arL" = (
-/obj/effect/glowshroom,
+/obj/structure/glowshroom,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northeast)
 "arM" = (
-/obj/effect/glowshroom,
+/obj/structure/glowshroom,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "arN" = (
@@ -22875,7 +22875,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "xjd" = (
-/obj/effect/glowshroom,
+/obj/structure/glowshroom,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
@@ -22930,7 +22930,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southeast)
 "xxH" = (
-/obj/effect/glowshroom,
+/obj/structure/glowshroom,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
