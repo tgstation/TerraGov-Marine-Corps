@@ -139,71 +139,6 @@
 	return TRUE
 
 // ***************************************
-// *********** Gut
-// ***************************************
-/datum/action/xeno_action/activable/gut
-	name = "Gut"
-	action_icon_state = "gut"
-	ability_name = "gut"
-	plasma_cost = 200
-
-/datum/action/xeno_action/activable/gut/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(TIMER_COOLDOWN_CHECK(X, COOLDOWN_GUT))
-		return FALSE
-	if(!iscarbon(A))
-		return FALSE
-	if(!owner.Adjacent(A))
-		return FALSE
-	var/mob/living/carbon/victim = A
-	if(issynth(victim))
-		var/datum/limb/head/synthhead = victim.get_limb("head")
-		if(synthhead.limb_status & LIMB_DESTROYED)
-			return FALSE
-	if(locate(/obj/item/alien_embryo) in victim) //Maybe they ate it??
-		var/mob/living/carbon/human/H = victim
-		if(CHECK_BITFIELD(H.status_flags, XENO_HOST))
-			if(victim.stat != DEAD) //Not dead yet.
-				if(!silent)
-					to_chat(owner, span_xenowarning("The host and child are still alive!"))
-				return FALSE
-			else if(istype(H) && !HAS_TRAIT(H, TRAIT_UNDEFIBBABLE )) //Dead code
-				if(!silent)
-					to_chat(owner, span_xenowarning("The child may still hatch! Not yet!"))
-				return FALSE
-	if(owner.issamexenohive(victim))
-		if(!silent)
-			to_chat(owner, span_warning("We can't bring ourselves to harm a fellow sister to this magnitude."))
-		return FALSE
-
-/datum/action/xeno_action/activable/gut/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/queen/X = owner
-	var/mob/living/carbon/victim = A
-
-	succeed_activate()
-
-	TIMER_COOLDOWN_START(X, COOLDOWN_GUT, 5 SECONDS)
-
-	X.visible_message(span_xenowarning("\The [X] begins slowly lifting \the [victim] into the air."), \
-	span_xenowarning("We begin focusing our anger as we slowly lift \the [victim] into the air."))
-	if(!do_mob(X, victim, 80, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
-		return fail_activate()
-	if(!can_use_ability(victim,TRUE,XACT_IGNORE_PLASMA))
-		return fail_activate()
-	if(victim.loc != X.loc)
-		return fail_activate()
-	X.visible_message(span_xenodanger("\The [X] viciously smashes and wrenches \the [victim] apart!"), \
-	span_xenodanger("We suddenly unleash pure anger on \the [victim], instantly wrenching [victim.p_them()] apart!"))
-	X.emote("roar")
-	log_combat(victim, X, "gibbed")
-	victim.gib() //Splut
-	X.stop_pulling()
-
-
-// ***************************************
 // *********** Overwatch
 // ***************************************
 /datum/action/xeno_action/watch_xeno
@@ -450,55 +385,6 @@
 
 	SSminimaps.remove_marker(selected_xeno)
 	SSminimaps.add_marker(selected_xeno, selected_xeno.z, MINIMAP_FLAG_XENO, selected_xeno.xeno_caste.minimap_leadered_icon)
-
-// ***************************************
-// *********** Queen heal
-// ***************************************
-/datum/action/xeno_action/activable/queen_heal
-	name = "Heal Xenomorph"
-	action_icon_state = "heal_xeno"
-	mechanics_text = "Heals a target Xenomorph"
-	plasma_cost = 150
-	cooldown_timer = 16 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_QUEEN_HEAL
-
-
-/datum/action/xeno_action/activable/queen_heal/can_use_ability(atom/target, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(!isxeno(target))
-		return FALSE
-	var/mob/living/carbon/xenomorph/patient = target
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
-		if(!silent)
-			to_chat(owner, span_warning("It's too late. This sister won't be coming back."))
-		return FALSE
-	if(!(patient.xeno_caste.caste_flags & CASTE_CAN_BE_QUEEN_HEALED))
-		if(!silent)
-			to_chat(owner, span_xenowarning("We can't heal that caste."))
-			return FALSE
-	var/mob/living/carbon/xenomorph/healer = owner
-	if(healer.z != patient.z)
-		if(!silent)
-			to_chat(healer, span_xenowarning("They are too far away to do this."))
-		return FALSE
-	if(patient.health >= patient.maxHealth)
-		if(!silent)
-			to_chat(healer, span_warning("[patient] is at full health."))
-		return FALSE
-
-
-/datum/action/xeno_action/activable/queen_heal/use_ability(atom/target)
-	var/mob/living/carbon/xenomorph/patient = target
-	add_cooldown()
-	patient.adjustBruteLoss(-100)
-	patient.adjustFireLoss(-100)
-	patient.adjust_sunder(-10)
-	succeed_activate()
-	to_chat(owner, span_xenonotice("We channel our plasma to heal [target]'s wounds."))
-	to_chat(patient, span_xenonotice("We feel our wounds heal. Bless the Queen!"))
-
 
 // ***************************************
 // *********** Queen plasma
