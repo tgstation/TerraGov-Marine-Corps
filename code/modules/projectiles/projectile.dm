@@ -651,7 +651,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	if(lying_angle && src != proj.original_target)
 		return FALSE
-	if(proj.ammo.flags_ammo_behavior & AMMO_XENO || stat == DEAD)
+	if(stat == DEAD)
 		return FALSE
 	. += proj.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
 	BULLET_DEBUG("Base accuracy is <b>[.]; scatter:[proj.scatter]; distance:[proj.distance_travelled]</b>")
