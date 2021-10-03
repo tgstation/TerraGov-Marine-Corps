@@ -311,6 +311,8 @@
 	. = ..()
 	if(.)
 		return
+	if(ishusk(src))
+		return
 	if (href_list["refresh"])
 		if(interactee&&(in_range(src, usr)))
 			show_inv(interactee)
