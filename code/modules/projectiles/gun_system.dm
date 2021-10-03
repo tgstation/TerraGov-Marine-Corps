@@ -502,6 +502,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	span_notice("You load [magazine] into [src]!"), null, 3)
 	if(reload_sound)
 		playsound(user, reload_sound, 25, 1, 5)
+	user.hud_used.update_ammo_hud(user, src)
 	update_icon()
 
 
@@ -524,9 +525,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	span_notice("You unload [current_mag] from [src]."), null, 4)
 	current_mag.update_icon()
 	current_mag = null
-
+	user.hud_used.update_ammo_hud(user, src)
 	update_icon(user)
-
 	return TRUE
 
 
