@@ -245,6 +245,8 @@
 
 	GLOB.real_names_joined -= real_name
 
+	GLOB.key_to_time_of_death[key] = world.time
+
 	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
 
 	//Make an announcement and log the person entering storage.

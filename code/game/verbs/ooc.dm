@@ -77,6 +77,8 @@
 				display_class = "mentorooc"
 			if("Maintainer")
 				display_class = "maintainerooc"
+			if("Art Maintainer")
+				display_class = "maintainerooc"
 			if("Debugger", "Contributor")
 				display_class = "contributorooc"
 			else

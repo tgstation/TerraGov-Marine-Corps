@@ -112,6 +112,7 @@
 ///Finish the form changing of the hivemind and give the needed stats
 /mob/living/carbon/xenomorph/hivemind/proc/do_change_form()
 	LAZYCLEARLIST(movespeed_modification)
+	update_movespeed()
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
 		upgrade = XENO_UPGRADE_ZERO
@@ -181,6 +182,7 @@
 ///Finish the teleportation process to send the hivemind manifestation to the selected turf
 /mob/living/carbon/xenomorph/hivemind/proc/end_teleport(turf/T)
 	LAZYCLEARLIST(movespeed_modification)
+	update_movespeed()
 	flick("Hivemind_materialisation_fast", src)
 	if(!check_weeds(T, TRUE))
 		to_chat(src, span_warning("The weeds on our destination were destroyed"))
@@ -310,7 +312,7 @@
 	parent.playsound_local(parent, get_sfx("alien_help"), 30, TRUE)
 	to_chat(parent, span_xenohighdanger("Your core has been destroyed!"))
 	xeno_message("A sudden tremor ripples through the hive... \the [parent] has been slain!", "xenoannounce", 5, parent.hivenumber)
-	parent.timeofdeath = world.time
+	GLOB.key_to_time_of_death[parent.key] = world.time
 	parent.ghostize()
 	if(!QDELETED(parent))
 		QDEL_NULL(parent)

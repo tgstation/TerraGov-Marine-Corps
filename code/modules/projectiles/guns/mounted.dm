@@ -26,7 +26,7 @@
 ///TL-102, now with full auto. It is not a superclass of deployed guns, however there are a few varients.
 /obj/item/weapon/gun/tl102
 	name = "\improper TL-102 mounted heavy smartgun"
-	desc = "The TL-102 heavy machinegun, it's too heavy to be wielded or operated without the tripod. IFF capable. No extra work required, just deploy it with unique action. Can be repaired with a blowtorch once deployed."
+	desc = "The TL-102 heavy machinegun, it's too heavy to be wielded or operated without the tripod. IFF capable. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
 
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -193,6 +193,7 @@
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 5
+	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
 
 	scatter = 80 // you're not firing this standing.
@@ -203,4 +204,4 @@
 	burst_amount = 1
 	deploy_time = 1 SECONDS
 	undeploy_time = 0.5 SECONDS
-	max_integrity = 125
+	max_integrity = 200

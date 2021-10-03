@@ -95,7 +95,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "aay" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /obj/machinery/status_display{
 	pixel_y = 32
 	},
@@ -6284,7 +6284,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "awx" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "awA" = (
@@ -6307,7 +6307,7 @@
 /turf/open/floor/carpet,
 /area/bigredv2/caves/lambda_lab)
 "awE" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "awF" = (
@@ -7146,7 +7146,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "azT" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor,
@@ -13532,7 +13532,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bcy" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bcz" = (
@@ -16604,7 +16604,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bru" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "brv" = (
@@ -18314,7 +18314,7 @@
 /turf/open/floor/tile/red/full,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAV" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
@@ -20559,10 +20559,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
-"iLv" = (
-/obj/effect/landmark/dropship_console_spawn_lz2,
-/turf/closed/wall,
-/area/bigredv2/outside/dorms)
 "iMZ" = (
 /obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/tile/red/redtaupecorner,
@@ -21003,13 +20999,6 @@
 	dir = 9
 	},
 /area/shuttle/drop2/lz2)
-"lFP" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/dropship_console_spawn_lz2,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 8
-	},
-/area/bigredv2/outside/c)
 "lFT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -21957,11 +21946,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
-"rrx" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/dropship_console_spawn_lz2,
-/turf/open/floor,
-/area/bigredv2/outside/dorms)
 "rvh" = (
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/lambda_lab)
@@ -43163,7 +43147,7 @@ acP
 djb
 aCN
 aCN
-lFP
+aCN
 aFM
 aCN
 aHC
@@ -43380,7 +43364,7 @@ asH
 asH
 asH
 asH
-iLv
+asH
 asH
 asH
 aHD
@@ -44465,7 +44449,7 @@ asJ
 aua
 asJ
 aDQ
-rrx
+aua
 aws
 pyW
 aHD

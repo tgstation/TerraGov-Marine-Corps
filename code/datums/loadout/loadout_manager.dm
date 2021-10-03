@@ -100,6 +100,19 @@
 				return
 			if(loadout.version != CURRENT_LOADOUT_VERSION)
 				loadout.version = CURRENT_LOADOUT_VERSION
+				for(var/key in loadout.item_list)
+					if(key == slot_head_str && istype(loadout.item_list[key], /datum/item_representation/modular_helmet))
+						loadout.empty_slot(slot_head_str)
+						continue
+					if(key == slot_wear_suit_str && istype(loadout.item_list[key], /datum/item_representation/modular_armor))
+						loadout.empty_slot(slot_wear_suit_str)
+						continue
+				var/job = params["loadout_job"]
+				var/name = params["loadout_name"]
+				delete_loadout(ui.user, name, job)
+				ui.user.client.prefs.save_loadout(loadout)
+				add_loadout(loadout)
+				to_chat(ui.user, span_warning("Please note: The loadout code has been updated and as such any modular helmet/suit has been removed from it due to the transitioning of loadout versions. Any future modular helmet/suit saves should have no problem being saved."))
 			ui.user.client.prefs.save_loadout(loadout)
 			add_loadout(loadout)
 			update_static_data(ui.user, ui)
@@ -115,6 +128,20 @@
 				to_chat(ui.user, span_warning("Error when loading this loadout"))
 				delete_loadout(ui.user, name, job)
 				CRASH("Fail to load loadouts")
+			if(loadout.version != CURRENT_LOADOUT_VERSION)
+				loadout.version = CURRENT_LOADOUT_VERSION
+				for(var/key in loadout.item_list)
+					if(key == slot_head_str && istype(loadout.item_list[key], /datum/item_representation/modular_helmet))
+						loadout.empty_slot(slot_head_str)
+						continue
+					if(key == slot_wear_suit_str && istype(loadout.item_list[key], /datum/item_representation/modular_armor))
+						loadout.empty_slot(slot_wear_suit_str)
+						continue
+				delete_loadout(ui.user, name, job)
+				ui.user.client.prefs.save_loadout(loadout)
+				add_loadout(loadout)
+				to_chat(ui.user, span_warning("Please note: The loadout code has been updated and as such any modular helmet/suit has been removed from it due to the transitioning of loadout versions. Any future modular helmet/suit saves should have no problem being saved."))
+			update_static_data(ui.user, ui)
 			loadout.loadout_vendor = loadout_vendor
 			loadout.ui_interact(ui.user)
 

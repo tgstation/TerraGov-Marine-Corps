@@ -375,3 +375,116 @@
   - bugfix: Synths don't apply their damage reduction twice anymore.
   TiviPlus:
   - bugfix: Fix shuttle lighting & turfs
+2021-09-23:
+  BraveMole:
+  - qol: You can have multiple ammo huds
+  - rscdel: Remove the ability to disable ammo hud
+  - bugfix: Fix energy guns not auto ejecting
+  - bugfix: Fix hivemind slowdown issues
+  - bugfix: Fix corpsespawner looking psydrainable
+  - bugfix: Fix xeno instant evolving
+  - bugfix: Fix loging into ai not giving you full control
+  EvilMelonTheSecond:
+  - bugfix: fixed right clicking radiopack pulling out items
+  SpaceLoveSs13:
+  - balance: self splinting delay is now 3x instead of 4x
+2021-09-25:
+  BraveMole:
+  - bugfix: Fix weed decaying
+  - bugfix: medevac will properly tell you when you forgot to linked it to a beacon
+  - bugfix: Fix not being able to chose weeds
+  sunofang:
+  - rscadd: Made whiskey outpost MUCH nicer.
+2021-09-26:
+  Pariah919:
+  - balance: t27 get's 75 more deployed hp for 200 total.
+  - bugfix: t27 gets the same mounted armor as all other machineguns
+  QualityVan:
+  - balance: 'Marine healthkit pouches from the starting vendors are improved: they
+      come with bkt pills, more tricord, splints, and an inaprovaline autoinjector.
+      They''ve also got an extra storage slot.'
+  RipGrayson:
+  - bugfix: Removed some landing consoles accidentally placed in dorms.
+  TiviPlus:
+  - rscadd: New xeno sticky resin turret, can be selected by right clicking the action
+  - imageadd: Sprites by Ciel/kyranova
+  - bugfix: Emotes and typing indicator no longer show over ui
+  - code_imp: The menu loads faster
+  - rscadd: You can now select Neuter as a gender in preferences, particularily reccomended
+      for robots
+  hyper2snyper:
+  - rscadd: PAS can be recolored using green facepaint.
+  - code_imp: ALT-CLICK will now remove jaeger attachments.
+  - refactor: CHONKY Jaeger refactor. Switching its base to that of the gun attachments.
+  - bugfix: Fixed all my broke shit.
+  - bugfix: Fixes Sentry Stacking in the same tile.
+  - bugfix: Fixes visible invisible sprites for scopes.
+  - bugfix: Fixes a runtime with energy gun sentries not being able to reload after
+      auto-ejecting.
+  - bugfix: Fixes aim mode problems with the deployable weapons.
+  lovegreenstuff:
+  - balance: T39 wielded slowdown buffed from 0.6 to 0.35
+  - balance: Paladin wielded slowdown nerfed from 0.35 to 0.4
+  - balance: Mk221 wielded slowdown nerfed from 0.35 to 0.4
+  - balance: V10 wielded slowdown nerfed from 0.35 to 0.45
+  - balance: T35 wielded slowdown buffed from 0.55 to 0.45
+  - balance: Double barrel wielded slowdown nerfed from 0.35 to 0.6
+2021-09-27:
+  BraveMole:
+  - balance: Space no longer instantly kills you
+  - bugfix: Fix ammo hud breaking when stocking back gun in vendor
+  - bugfix: Fix being able to get all uniform from loadout vendor
+  - bugfix: Fix jelly pod not taking flame damage
+  Pariah919:
+  - balance: shotguns don't get miniflamer anymore
+  - rscadd: the ZX-76 returns in it's (nerfed) glory, avaliable for 100 req points.
+  - balance: zx no longer has rc/eb, deals 10% less damage, burst fire has far more
+      scatter, fires .25 faster.
+  TiviPlus:
+  - rscadd: Nanotrasen is now pleased to say that incompetent "human" marines are
+      being replaced with a new limited production Autonomous Combat Robot model!
+  - rscadd: Robots take more burn damage, less brute damage, process no chems, cant
+      run, can have their head reattached, cant wear anthing but their snowflake armor,
+      have no blood(duh), cant be set on fire
+  - qol: Drastically improved welder and cable repair QOL
+  - imageadd: Sprites by Kuro
+  - soundadd: Sounds provided by slayer
+  - admin: removed admin message from flareguns
+  jroinc:
+  - rscadd: Added two self-recharging cells to engi vendors. Low capacity, but they
+      charge up to full slowly without needing a hand charger.
+2021-09-28:
+  BraveMole:
+  - bugfix: Zombies properly heal internal wounds
+  - balance: Double the healing rate of zombies
+  - bugfix: Zombies can heal from broken bone (has no effect on balance)
+  - bugfix: Fix a runtime that could prevent human zombies from resurrecting
+  EvilMelonTheSecond:
+  - balance: Synth vendor has radiopack as a backpack option
+  Lefunny:
+  - balance: Build a sentry healh goes from 500 to 250
+  - balance: prison station now starts weeded
+  TiviPlus:
+  - balance: Halve weed and building cost before shutters open
+  XSlayer300:
+  - bugfix: Fixed the zombie sprite a little bit.
+2021-09-29:
+  BraveMole:
+  - balance: Remove shrap, IB, organ damage from Civil War
+  Lefunny:
+  - bugfix: I fixed a broken fog area.
+  TiviPlus:
+  - rscadd: Replaced place silo/king/turret with the hive boon menu
+  - imageadd: sprites by ciel/kyranova
+  lovegreenstuff:
+  - balance: masterkey, underbarrel flamer, and underbarrel GL for t39, t35, and v10
+      are now gone
+2021-09-30:
+  BraveMole:
+  - bugfix: Buying a mk2 mimir in req really gets you a mk2
+  TiviPlus:
+  - balance: Civil war votable every 36 hours from 12 hours
+  - balance: buckshot has more falloff
+  - balance: buckshot accurate range(not spread) has been reduced to 3
+  - balance: nerfed high velocity ammo slowdown
+  - rscadd: Primordial tab temporily disabled while abilities are added

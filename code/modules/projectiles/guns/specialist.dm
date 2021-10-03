@@ -542,7 +542,7 @@
 		return ..()
 
 	if(length(grenades) >= max_grenades)
-		to_chat(user, span_warning("The grenade launcher cannot hold more grenades!"))
+		to_chat(user, span_warning("[src] cannot hold more grenades!"))
 		return
 
 	if(!user.transferItemToLoc(I, src))
@@ -550,7 +550,7 @@
 
 	grenades += I
 	playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
-	to_chat(user, span_notice("You put [I] in the grenade launcher."))
+	to_chat(user, span_notice("You put [I] in [src]."))
 	to_chat(user, span_info("Now storing: [grenades.len] / [max_grenades] grenades."))
 
 /obj/item/weapon/gun/launcher/m92/Fire()
@@ -571,10 +571,10 @@
 		to_chat(gun_user, span_notice("You cannot fire [src] without it attached to a gun!"))
 		return
 	if(get_dist(target, gun_user) <= 2)
-		to_chat(gun_user, span_warning("The grenade launcher beeps a warning noise. You are too close!"))
+		to_chat(gun_user, span_warning("[src] beeps a warning noise. You are too close!"))
 		return
 	if(!length(grenades))
-		to_chat(gun_user, span_warning("The grenade launcher is empty."))
+		to_chat(gun_user, span_warning("[src] is empty."))
 		return
 	fire_grenade(target, gun_user)
 	gun_user.hud_used.update_ammo_hud(gun_user, src)
@@ -607,7 +607,7 @@
 	playsound(user.loc, cocked_sound, 25, 1)
 	last_fired = world.time
 	visible_message(span_danger("[user] fired a grenade!"))
-	to_chat(user, span_warning("You fire the grenade launcher!"))
+	to_chat(user, span_warning("You fire [src]!"))
 	var/obj/item/explosive/grenade/F = grenades[1]
 	grenades -= F
 	F.loc = user.loc
@@ -695,6 +695,16 @@
 	pixel_shift_x = 14
 	pixel_shift_y = 18
 
+/obj/item/weapon/gun/launcher/m92/mini_grenade/attackby(obj/item/I, mob/user, params)
+	if(!istype(I, /obj/item/explosive/grenade))
+		return ..()
+
+	var/obj/item/explosive/grenade/G = I
+	if(! (G.underslug_launchable))
+		to_chat(user, span_warning("[src] cannot hold [G]!"))
+		return
+
+	return ..()
 
 /obj/item/weapon/gun/launcher/m92/mini_grenade/invisable
 	flags_attach_features = NONE
@@ -748,11 +758,11 @@
 		return ..()
 
 	if(!istype(I, grenade_type_allowed))
-		to_chat(user, span_warning("[src] can't use this type of grenade!"))
+		to_chat(user, span_warning("[src] can't use [I]!"))
 		return
 
 	if(grenade)
-		to_chat(user, span_warning("The grenade launcher cannot hold more grenades!"))
+		to_chat(user, span_warning("[src] cannot hold more grenades!"))
 		return
 
 	if(!user.transferItemToLoc(I, src))
@@ -810,10 +820,8 @@
 	update_icon()
 	if(F?.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
 		log_explosion("[key_name(user)] fired a grenade [F] from \a [src] at [AREACOORD(user.loc)].")
-		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F] from \a [src].")
 		F.icon_state = initial(F.icon_state) + "_active"
 		F.activate(user)
-		F.updateicon()
 		playsound(F.loc, fire_sound, 50, 1)
 		addtimer(CALLBACK(F, /obj/item/explosive/grenade.proc/prime), 1 SECONDS)
 

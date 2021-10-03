@@ -131,3 +131,6 @@
 // LOG BROWSE TYPES
 #define BROWSE_ROOT_ALL_LOGS 1
 #define BROWSE_ROOT_CURRENT_LOGS 2
+
+/// for asay pings, this is the index in the return list for [/proc/check_admin_pings] that contains the message modified with underlines for the spotted names
+#define ADMINSAY_PING_UNDERLINE_NAME_INDEX "!underlined_names"

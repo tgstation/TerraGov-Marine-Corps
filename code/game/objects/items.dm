@@ -415,6 +415,9 @@
 		mob_equip = H.species.hud.equip_slots
 
 	if(H.species && !(slot in mob_equip))
+		return FALSE
+
+	if(slot in H.species?.no_equip)
 		if(!is_type_in_list(H.species, species_exception))
 			return FALSE
 

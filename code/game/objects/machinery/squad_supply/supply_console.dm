@@ -73,6 +73,7 @@
 			if(!istype(supply_beacon_choice))
 				return
 			supply_beacon = supply_beacon_choice
+			RegisterSignal(supply_beacon, COMSIG_PARENT_QDELETING, .proc/clean_supply_beacon)
 			refresh_pad()
 		if("set_x")
 			var/new_x = text2num(params["set_x"])
@@ -116,9 +117,17 @@
 			COOLDOWN_START(src, next_fire, launch_cooldown)
 			send_supplydrop(supplies, x_offset, y_offset)
 
+///Clean up the supply beacon var
+/obj/machinery/computer/supplydrop_console/proc/clean_supply_beacon()
+	SIGNAL_HANDLER
+	supply_beacon = null
+	refresh_pad()
+
 ///Look for the content on the supply pad
 /obj/machinery/computer/supplydrop_console/proc/refresh_pad()
 	supplies = list()
+	if(!supply_beacon)
+		return
 	for(var/obj/C in supply_pad.loc)
 		if(is_type_in_typecache(C, GLOB.supply_drops) && !C.anchored) //Can only send vendors and crates
 			supplies.Add(C)
