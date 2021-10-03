@@ -30,6 +30,8 @@
 #define COMSIG_GLOB_MOB_LOGOUT "!mob_logout"
 #define COMSIG_GLOB_MOB_DEATH "!mob_death"
 
+#define COMSIG_GLOB_AI_GOAL_SET "!ai_goal_set"
+
 
 /// Sent when a marine dropship enters transit level
 #define COMSIG_GLOB_DROPSHIP_TRANSIT "!dropship_transit"

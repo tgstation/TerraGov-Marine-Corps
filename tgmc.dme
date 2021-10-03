@@ -1014,6 +1014,7 @@
 #include "code\modules\admin\view_variables\mark_datum.dm"
 #include "code\modules\admin\view_variables\reference_tracking.dm"
 #include "code\modules\ai\ai_node.dm"
+#include "code\modules\ai\ai_node_pathfinder.dm"
 #include "code\modules\ai\ai_behaviors\ai_behavior.dm"
 #include "code\modules\ai\ai_behaviors\xeno\husk.dm"
 #include "code\modules\ai\ai_behaviors\xeno\xeno.dm"
