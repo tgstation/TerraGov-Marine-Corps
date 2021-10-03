@@ -13,6 +13,7 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 	src.current_node = current_node
 	src.previous_node = previous_node
 
+///Returns the most optimal nodes path to get from starting node to goal node
 /proc/get_node_path(obj/effect/ai_node/starting_node, obj/effect/ai_node/goal_node)
 	if(starting_node.z != goal_node.z)
 		CRASH("Start node and goal node were not on the same z level")
