@@ -443,7 +443,7 @@
 	cell_type = /obj/item/cell/lasgun/lasrifle
 	charge_cost = 10
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)//Lasrifle has special behavior for fire mode, be carefull
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -478,9 +478,7 @@
 	var/fire_delay = 0
 	///Gives guns a burst amount, editable.
 	var/burst_amount = 0
-	///gives firemode selections for guns.
-	var/gun_firemode_list
-	///The gun firing sound of this mode.
+	///The gun firing sound of this mode
 	var/fire_sound = null
 	///What message it sends to the user when you switch to this mode.
 	var/message_to_user = ""
@@ -552,7 +550,7 @@
 	cell_type = /obj/item/cell/lasgun/lasrifle/marine
 	charge_cost = 12
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -623,8 +621,8 @@
 	ammo_diff = null
 	cell_type = /obj/item/cell/lasgun/lasrifle/marine
 	charge_cost = 20
-	gun_firemode = GUN_FIREMODE_AUTOMATIC
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	gun_firemode = GUN_FIREMODE_SEMIAUTO
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -702,7 +700,7 @@
 	cell_type = /obj/item/cell/lasgun/lasrifle/marine
 	charge_cost = 15
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -759,7 +757,7 @@
 	burst_amount = 1
 	fire_sound = 'sound/weapons/guns/fire/Laser Carbine Scatter.ogg'
 	message_to_user = "You set the laser carbine's charge mode to spread."
-	fire_mode = GUN_FIREMODE_AUTOMATIC
+	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tec"
 	radial_icon_state = "laser_spread"
 
@@ -782,8 +780,8 @@
 	cell_type = /obj/item/cell/lasgun/lasrifle/marine
 	charge_cost = 50
 	damage_falloff_mult = 0
-	gun_firemode = GUN_FIREMODE_AUTOMATIC
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	gun_firemode = GUN_FIREMODE_SEMIAUTO
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -822,7 +820,7 @@
 	ammo = /datum/ammo/energy/lasgun/marine/sniper
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to standard fire."
-	fire_mode = GUN_FIREMODE_AUTOMATIC
+	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tes"
 
 /datum/lasrifle/base/energy_sniper_mode/heat
@@ -831,7 +829,7 @@
 	ammo = /datum/ammo/energy/lasgun/marine/sniper_heat
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to wave heat."
-	fire_mode = GUN_FIREMODE_AUTOMATIC
+	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tes"
 	radial_icon_state = "laser_heat"
 
@@ -852,7 +850,7 @@
 	cell_type = /obj/item/cell/lasgun/lasrifle/marine
 	charge_cost = 4
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
