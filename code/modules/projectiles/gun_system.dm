@@ -583,6 +583,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		user?.visible_message(span_notice("[user] cocks [src]."),
 		span_notice("You cock [src]."), null, 4)
 	ready_in_chamber() //This will already check for everything else, loading the next bullet.
+	user.hud_used.update_ammo_hud(user, src)
 
 	return TRUE
 
