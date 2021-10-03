@@ -4,11 +4,10 @@
 	upgrade_name = ""
 	caste_desc = "An alien with an armored crest. It looks like it's still developing."
 
-	caste_type_path = /mob/living/carbon/xenomorph/defender
+	caste_type_path = /mob/living/carbon/xenomorph/beetle
 
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
-	wound_type = "defender" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
 	melee_damage = 17
@@ -21,16 +20,10 @@
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 260
-
-	// *** Evolution *** //
-	evolution_threshold = 80
-	upgrade_threshold = 60
-
-	evolves_to = list(/mob/living/carbon/xenomorph/warrior)
+	max_health = 300
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CAN_BECOME_KING
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 25, "energy" = 20, "bomb" = XENO_BOMB_RESIST_2, "bio" = 20, "rad" = 20, "fire" = 30, "acid" = 20)
