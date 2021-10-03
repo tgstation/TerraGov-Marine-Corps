@@ -9,3 +9,12 @@
   TiviPlus:
   - rscadd: Added the evolution tower xeno building, which costs 300 points and when
       built generates a extra .25 evo points per evo tick
+2021-10-03:
+  Lewdcifer:
+  - rscadd: Art Maintainer role, has same OOC color as Maintainers
+  Sebbe9123:
+  - rscadd: Ads 20 CLONE damage to psydrain.
+  TiviPlus:
+  - bugfix: fixed a new player error
+  ivanmixo:
+  - bugfix: CMB speedloader can reload CMB revolver
