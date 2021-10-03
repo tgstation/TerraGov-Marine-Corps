@@ -801,10 +801,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 18,"rail_x" = 19, "rail_y" = 19, "under_x" = 28, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/laser_sniper_scope)
-	aim_fire_delay = 0.5 SECONDS
-	aim_speed_modifier = 2
 
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_slowdown = 0.7
 	wield_delay = 0.7 SECONDS
 	scatter = 0
