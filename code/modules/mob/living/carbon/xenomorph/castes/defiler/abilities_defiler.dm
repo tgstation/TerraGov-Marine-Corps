@@ -442,7 +442,7 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 	grabbed.throw_at(owner, TENTACLE_ABILITY_RANGE, 1, owner, FALSE)
 	if(isliving(grabbed))
 		var/mob/living/loser = grabbed
-		loser.apply_effects(1, 0.1)
+		loser.apply_effects(stun = 1, weaken = 0.1)
 
 ///signal handler to delete tetacle after we are done draggging owner along
 /datum/action/xeno_action/activable/tentacle/proc/delete_beam(datum/source, atom/impacted)
