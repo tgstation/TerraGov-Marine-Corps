@@ -431,6 +431,7 @@
 	cooldown_timer = 0.5 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_VAMPIRISM
+	///list of mob = timer_key of mobs we are actively leeching
 	var/list/mob/living/leeched_mobs = list()
 
 /datum/action/xeno_action/vampirism/update_button_icon()
