@@ -188,9 +188,9 @@
 				range /= 2
 			for(var/turf/old_turf in old_turfs)
 				turfs_to_ignite += new_turf //Adds the turf in front of the old turf.
-				if(!(get_step(new_turf, turn(dir_to_target, 90)) in old_turfs)) //Adds the turf on the sides of the old turf if they arent already in the turfs_to_ignite list.
+				if(!(get_step(new_turf, turn(dir_to_target, 90)) in turfs_to_ignite)) //Adds the turf on the sides of the old turf if they arent already in the turfs_to_ignite list.
 					turfs_to_ignite += get_step(new_turf, turn(dir_to_target, 90)) 
-				if(!(get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90))) in old_turfs))
+				if(!(get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90))) in turfs_to_ignite))
 					turfs_to_ignite += get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90)))
 				if(ISDIAGONALDIR(dir_to_target)) ///Fills in the blanks for a diagonal burn.
 					if(!(get_step(new_turf, turn(dir_to_target, 135)) in turfs_skip_old))
