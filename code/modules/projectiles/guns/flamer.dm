@@ -80,7 +80,7 @@
 
 /obj/item/weapon/gun/flamer/get_ammo_count()
 	if(!current_mag)
-		return
+		return 0
 	return current_mag.current_rounds
 
 /obj/item/weapon/gun/flamer/load_into_chamber(mob/user)
@@ -161,7 +161,7 @@
 	return TRUE
 
 ///Recursive proc that handles the path finding of the flame stream.
-/obj/item/weapon/gun/flamer/proc/burn_stream(list/turf/old_turfs, start_location, current_target, burn_type, range, start = TRUE)
+/obj/item/weapon/gun/flamer/proc/burn_stream(list/turf/old_turfs, start_location, current_target, burn_type, range, dir_to_target, start = TRUE)
 	if(current_mag?.current_rounds <= 0)
 		light_pilot(FALSE)
 		return
@@ -174,11 +174,11 @@
 		start_location = get_turf(src)
 		current_target = get_turf(target)
 		range = flame_max_range
+		dir_to_target = get_dir(start_location, current_target)
 	if(!length(old_turfs) || length(getline(start_location, old_turfs[1])) > range || (current_target in old_turfs))
 		return
 	var/list/turf/turfs_to_ignite = list()
 	var/list/turf/turfs_skip_old = list()
-	var/dir_to_target = get_dir(old_turfs[1], current_target)
 	var/turf/new_turf = get_step(old_turfs[1], dir_to_target)
 	switch(burn_type)
 		if(FLAMER_STREAM_STRAIGHT)
@@ -186,8 +186,9 @@
 		if(FLAMER_STREAM_CONE)
 			if(start && ISDIAGONALDIR(dir_to_target))
 				range /= 2
+			turfs_to_ignite += new_turf //Adds the turf in front of the old turf.
 			for(var/turf/old_turf AS in old_turfs)
-				turfs_to_ignite += new_turf //Adds the turf in front of the old turf.
+				new_turf = get_step(old_turf, dir_to_target)
 				if(!(get_step(new_turf, turn(dir_to_target, 90)) in turfs_to_ignite)) //Adds the turf on the sides of the old turf if they arent already in the turfs_to_ignite list.
 					turfs_to_ignite += get_step(new_turf, turn(dir_to_target, 90)) 
 				if(!(get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90))) in turfs_to_ignite))
@@ -198,9 +199,9 @@
 					if(!(get_step(new_turf, turn(dir_to_target, 225)) in turfs_skip_old))
 						turfs_skip_old += get_step(new_turf, turn(dir_to_target, 225))
 			burn_list(turfs_skip_old)
-	if(!burn_list(turfs_to_ignite)) //These are so that both are called in the event one is false.
+	if(!burn_list(turfs_to_ignite))
 		return
-	addtimer(CALLBACK(src, .proc/burn_stream, turfs_to_ignite, start_location, current_target, burn_type, range, FALSE), flame_spread_time)
+	addtimer(CALLBACK(src, .proc/burn_stream, turfs_to_ignite, start_location, current_target, burn_type, range, dir_to_target, FALSE), flame_spread_time)
 
 ///Checks and lights the turfs in turfs_to_burn
 /obj/item/weapon/gun/flamer/proc/burn_list(list/turf/turfs_to_burn)
