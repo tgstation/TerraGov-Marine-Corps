@@ -1,13 +1,13 @@
 /**
  ** Modules
- *	These include the helmet and regular armor modules. Basically these are the subtypes of any armor 'system'. 
+ *	These include the helmet and regular armor modules. Basically these are the subtypes of any armor 'system'.
  */
 /obj/item/armor_module/module
 	name = "broken armor module"
 	desc = "You better be debugging."
 
-/** 
- * Shoulder lamp strength module 
+/**
+ * Shoulder lamp strength module
  */
 /obj/item/armor_module/module/better_shoulder_lamp
 	name = "\improper Baldur Light Amplification System"
@@ -19,8 +19,8 @@
 	light_mod = 4 /// The boost to armor shoulder light
 	slot = ATTACHMENT_SLOT_MODULE
 
-/** 
- * Mini autodoc module 
+/**
+ * Mini autodoc module
  */
 /obj/item/armor_module/module/valkyrie_autodoc
 	name = "\improper Valkyrie Automedical Armor System"
@@ -30,27 +30,25 @@
 	item_state = "mod_autodoc_a"
 	slowdown = 0.25
 	slot = ATTACHMENT_SLOT_MODULE
+	var/static/list/supported_limbs = list(CHEST, GROIN, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT)
 
 /obj/item/armor_module/module/valkyrie_autodoc/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	var/list/tricord = list(/datum/reagent/medicine/tricordrazine)
 	var/list/tramadol = list(/datum/reagent/medicine/tramadol)
 	/// This will do nothing without the autodoc update
-	var/list/supported_limbs = list(CHEST, GROIN, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT)
 	parent.AddComponent(/datum/component/suit_autodoc, 4 MINUTES, tricord, tricord, tricord, tricord, tramadol, 0.5)
 	parent.AddElement(/datum/element/limb_support, supported_limbs)
 
 
-/obj/item/armor_module/valkyrie_autodoc/on_detach(obj/item/detaching_from, mob/user)
-	var/datum/component/suit_autodoc/autodoc = parent.GetComponent(/datum/component/suit_autodoc)
-	autodoc.RemoveComponent()
-	var/list/supported_limbs = list(CHEST, GROIN, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT)
+/obj/item/armor_module/module/valkyrie_autodoc/on_detach(obj/item/detaching_from, mob/user)
+	qdel(parent.GetComponent(/datum/component/suit_autodoc))
 	parent.RemoveElement(/datum/element/limb_support, supported_limbs)
 	return ..()
 
 
-/** 
- * Fire poof module 
+/**
+ * Fire poof module
 */
 /obj/item/armor_module/module/fire_proof
 	name = "\improper Surt Pyrotechnical Insulation System"
@@ -73,8 +71,8 @@
 	return ..()
 
 
-/** 
- * Extra armor module 
+/**
+ * Extra armor module
 */
 /obj/item/armor_module/module/tyr_extra_armor
 	name = "\improper Mark 2 Tyr Armor Reinforcement"
@@ -101,8 +99,8 @@
 	soft_armor = list("melee" = 15, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 
-/** 
- * Environment protecttion module 
+/**
+ * Environment protecttion module
 */
 /obj/item/armor_module/module/mimir_environment_protection
 	name = "\improper Mark 2 Mimir Environmental Resistance System"
@@ -166,8 +164,8 @@
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
 
-/** 
- * Extra armor module 
+/**
+ * Extra armor module
 */
 /obj/item/armor_module/module/ballistic_armor
 	name = "\improper Ballistic Armor Reinforcement"
@@ -196,7 +194,7 @@
 	chemsystem.RemoveComponent()
 	return ..()
 
-/** 
+/**
  *   Helmet
 */
 /obj/item/armor_module/module/welding
