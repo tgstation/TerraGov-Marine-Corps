@@ -186,7 +186,7 @@
 		if(FLAMER_STREAM_CONE)
 			if(start && ISDIAGONALDIR(dir_to_target))
 				range /= 2
-			for(var/turf/old_turf in old_turfs)
+			for(var/turf/old_turf AS in old_turfs)
 				turfs_to_ignite += new_turf //Adds the turf in front of the old turf.
 				if(!(get_step(new_turf, turn(dir_to_target, 90)) in turfs_to_ignite)) //Adds the turf on the sides of the old turf if they arent already in the turfs_to_ignite list.
 					turfs_to_ignite += get_step(new_turf, turn(dir_to_target, 90)) 
@@ -204,7 +204,7 @@
 
 ///Checks and lights the turfs in turfs_to_burn
 /obj/item/weapon/gun/flamer/proc/burn_list(list/turf/turfs_to_burn)
-	for(var/turf/turf_to_check in turfs_to_burn)
+	for(var/turf/turf_to_check AS in turfs_to_burn)
 		if((turf_to_check.density && !istype(turf_to_check, /turf/closed/wall/resin)) || isspaceturf(turf_to_check))
 			turfs_to_burn -= turf_to_check
 			continue
@@ -221,7 +221,7 @@
 	var/burn_time = initial(loaded_ammo.burntime) * burn_time_mod
 	var/fire_color = initial(loaded_ammo.fire_color)
 
-	for(var/turf/turf_to_ignite in turfs_to_burn)
+	for(var/turf/turf_to_ignite AS in turfs_to_burn)
 		if(current_mag?.current_rounds <= 0)
 			light_pilot(FALSE)
 			return FALSE
