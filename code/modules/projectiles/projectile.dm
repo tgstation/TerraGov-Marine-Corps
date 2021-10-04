@@ -441,7 +441,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 					y_pixel_dist_travelled += pixel_moves_until_crossing_y_border * y_offset
 				end_of_movement = i
 				break
-			if(turf_crossed_by.freeze_boolets)
+			if(turf_crossed_by.freeze_bullets)
 				RegisterSignal(turf_crossed_by, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
 				STOP_PROCESSING(SSprojectiles, src)
 				return PROJECTILE_FROZEN
@@ -494,7 +494,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if(scan_a_turf(next_turf, movement_dir))
 			end_of_movement = i
 			break
-		if(next_turf.freeze_boolets)
+		if(next_turf.freeze_bullets)
 			RegisterSignal(next_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
 			return PROJECTILE_FROZEN
 		if(next_turf == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)

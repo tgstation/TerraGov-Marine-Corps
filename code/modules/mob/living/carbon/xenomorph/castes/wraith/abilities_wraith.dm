@@ -778,24 +778,23 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	///The range of the ability
 	var/range = 5
 	///How long is the bullet freeze staying
-	var/duration = 30 SECONDS
+	var/duration = 5 SECONDS
 
 /datum/action/xeno_action/timestop/action_activate()
 	. = ..()
 	var/list/turf/turfs_affected = list()
-	for(var/turf/affected_turf in view(range, owner))
-		affected_turf.freeze_boolets++
+	for(var/turf/affected_turf in view(range, get_turf(owner)))
+		affected_turf.freeze_bullets++
 		turfs_affected += affected_turf
 		affected_turf.add_filter("timestopblur", 1, gauss_blur_filter(3))
-	addtimer(CALLBACK(src, .proc/remove_boolet_freeze, turfs_affected), duration)
-	playsound(owner, 'sound/magic/timeparadox2.ogg', 75, TRUE, -1)
+	addtimer(CALLBACK(src, .proc/remove_bullet_freeze, turfs_affected), duration)
+	playsound(owner, 'sound/magic/timeparadox2.ogg', 75, TRUE)
 
 ///Remove the bullet freeze effect on affected turfs
-/datum/action/xeno_action/timestop/proc/remove_boolet_freeze(list/turf/turfs_affected)
-	playsound(owner, 'sound/magic/timeparadox2.ogg', 75, TRUE, frequency = -1) //reverse!
+/datum/action/xeno_action/timestop/proc/remove_bullet_freeze(list/turf/turfs_affected)
 	for(var/turf/affected_turf AS in turfs_affected)
-		affected_turf.freeze_boolets--
-		if(!affected_turf.freeze_boolets)
+		affected_turf.freeze_bullets--
+		if(!affected_turf.freeze_bullets)
 			affected_turf.remove_filter("timestopblur")
 			SEND_SIGNAL(affected_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
 
