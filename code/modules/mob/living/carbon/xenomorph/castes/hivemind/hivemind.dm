@@ -203,7 +203,7 @@
 	if(door && !door.CanPass(src, NewLoc))
 		return FALSE
 
-	forceMove(NewLoc)
+	abstract_move(NewLoc)
 
 /mob/living/carbon/xenomorph/hivemind/receive_hivemind_message(mob/living/carbon/xenomorph/speaker, message)
 	var/track =  "<a href='?src=[REF(src)];hivemind_jump=[REF(speaker)]'>(F)</a>"
@@ -225,7 +225,7 @@
 		if(!(status_flags & INCORPOREAL))
 			start_teleport(get_turf(xeno))
 			return
-		forceMove(get_turf(xeno))
+		abstract_move(get_turf(xeno))
 
 /// Hivemind just doesn't have any icons to update, disabled for now
 /mob/living/carbon/xenomorph/hivemind/update_icon()
@@ -262,7 +262,7 @@
 	if(!(status_flags & INCORPOREAL))
 		start_teleport(target_turf)
 		return
-	forceMove(target_turf)
+	abstract_move(target_turf)
 
 /mob/living/carbon/xenomorph/hivemind/CtrlClick(mob/user)
 	if(!(status_flags & INCORPOREAL))
