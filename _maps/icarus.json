@@ -1,0 +1,6 @@
+{
+    "map_name": "Icarus",
+    "map_path": "map_files/Icarus",
+    "map_file": "Icarus.dmm",
+    "traits": [{"Marine Main Ship": true}]
+}
