@@ -254,3 +254,9 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Unlocks the primordial sentinels neurogas grenade. Allows them to throw a grenade that emits gas in an area."
 	psypoint_cost = 75
 	icon = "primosent"
+
+/datum/hive_upgrade/primordial/ravager
+	name = PRIMORDIAL_RAVAGER
+	desc = "Unlocks the primordial ravgers vampirism. A passive ability that increases the ravagers healing as it hits more enemies."
+	psypoint_cost = 225
+	icon = "primorav"

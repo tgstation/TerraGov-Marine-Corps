@@ -417,3 +417,84 @@
 	rage_power = 0
 	rage_plasma = 0
 	X.playsound_local(X, 'sound/voice/hiss5.ogg', 50) //Audio cue
+
+
+// ***************************************
+// *********** Vampirism
+// ***************************************
+/datum/action/xeno_action/vampirism
+	name = "Toggle vampirism"
+	action_icon_state = "rage"
+	mechanics_text = "Toggle on to enable boosting on "
+	ability_name = "Vampirism"
+	plasma_cost = 0 //We're limited by cooldowns, not plasma
+	cooldown_timer = 0.5 SECONDS
+	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
+	keybind_signal = COMSIG_XENOABILITY_VAMPIRISM
+	var/list/mob/living/leeched_mobs = list()
+
+/datum/action/xeno_action/vampirism/update_button_icon()
+	button.overlays.Cut()
+	var/mob/living/carbon/xenomorph/xeno = owner
+	if(xeno.vampirism)
+		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_on")
+	else
+		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_off")
+	var/mutable_appearance/number = mutable_appearance()
+	number.maptext = MAPTEXT("[length(leeched_mobs)]")
+	button.overlays += number
+
+/datum/action/xeno_action/vampirism/give_action(mob/living/L)
+	. = ..()
+	var/mob/living/carbon/xenomorph/xeno = L
+	xeno.vampirism = TRUE
+	RegisterSignal(L, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/on_slash)
+	RegisterSignal(L, COMSIG_XENOMORPH_HEALTH_REGEN, .proc/on_regen)
+
+/datum/action/xeno_action/vampirism/remove_action(mob/living/L)
+	. = ..()
+	UnregisterSignal(L, COMSIG_XENOMORPH_ATTACK_LIVING)
+
+/datum/action/xeno_action/vampirism/action_activate()
+	. = ..()
+	var/mob/living/carbon/xenomorph/xeno = owner
+	xeno.vampirism = !xeno.vampirism
+	if(xeno.vampirism)
+		RegisterSignal(xeno, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/on_slash)
+	else
+		UnregisterSignal(xeno, COMSIG_XENOMORPH_ATTACK_LIVING)
+	to_chat(xeno, span_xenonotice("You will now[xeno.vampirism ? "" : " no longer"] heal from attacking"))
+
+///called on regen, handles regen rate reduction
+/datum/action/xeno_action/vampirism/proc/on_regen(mob/living/carbon/xenomorph/dracula, list/heal_data)
+	SIGNAL_HANDLER
+	var/count = length(leeched_mobs)
+	if(!count)
+		return
+	//heals 10% extra per leeched
+	count /= 10
+	count += 1
+	heal_data += count
+
+///Adds the slashed mob to tracked damage mobs
+/datum/action/xeno_action/vampirism/proc/on_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
+	SIGNAL_HANDLER
+	if(target.stat == DEAD)
+		return
+	if(!ishuman(target)) // no farming on animals/dead
+		return
+	if(target in leeched_mobs)
+		return
+	var/timerid = addtimer(CALLBACK(src, .proc/end_leech, target), VAMPIRISM_MOB_DURATION, TIMER_STOPPABLE)
+	leeched_mobs[target] = timerid
+	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/end_leech)
+	update_button_icon()
+
+
+///Called when mob is deleted or you want effect to end
+/datum/action/xeno_action/vampirism/proc/end_leech(datum/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
+	deltimer(leeched_mobs[source])
+	leeched_mobs -= source
+	update_button_icon()

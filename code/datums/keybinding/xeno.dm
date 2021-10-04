@@ -432,6 +432,12 @@
 	description = "While active, you will temporarily recover plasma and sunder and gain a bonus to speed and melee damage in proportion to the percentage of your missing health. At negative HP your ability cooldowns reset and your slash damage restores health."
 	keybind_signal = COMSIG_XENOABILITY_RAGE
 
+/datum/keybinding/xeno/ravager_vampirism
+	name = "togglevampirism"
+	full_name = "Ravager: Toggle vampirism"
+	description = "While active, will increase the ravagers healing for a while for ery time it hits a new enemy. Effects stack."
+	keybind_signal = COMSIG_XENOABILITY_VAMPIRISM
+
 /datum/keybinding/xeno/ravage
 	name = "ravage"
 	full_name = "Ravager: Ravage"
