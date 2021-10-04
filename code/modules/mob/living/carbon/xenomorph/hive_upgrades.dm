@@ -249,6 +249,12 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	psypoint_cost = 300
 	icon = "primoshrike"
 
+/datum/hive_upgrade/primordial/defiler
+	name = PRIMORDIAL_DEFILER
+	desc = "Unlocks the primordial defilers tentacle. Can grab most items and tallhosts from range and bring them to the defiler."
+	psypoint_cost = 225
+	icon = "primodefiler"
+
 /datum/hive_upgrade/primordial/sentinel
 	name = PRIMORDIAL_SENTINEL
 	desc = "Unlocks the primordial sentinels neurogas grenade. Allows them to throw a grenade that emits gas in an area."

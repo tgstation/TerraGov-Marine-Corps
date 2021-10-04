@@ -347,6 +347,9 @@
 /mob/living/carbon/xenomorph/Defiler/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/Defiler/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----DEFILER END----//
 //============//
 //----SHRIKE START----//
