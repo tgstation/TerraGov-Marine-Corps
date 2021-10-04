@@ -18,3 +18,6 @@
   - bugfix: fixed a new player error
   ivanmixo:
   - bugfix: CMB speedloader can reload CMB revolver
+2021-10-04:
+  TiviPlus:
+  - admin: Admins and mentors can now ping each other
