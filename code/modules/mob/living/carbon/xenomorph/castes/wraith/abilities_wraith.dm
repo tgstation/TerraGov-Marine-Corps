@@ -778,7 +778,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	///The range of the ability
 	var/range = 5
 	///How long is the bullet freeze staying
-	var/duration = 5 SECONDS
+	var/duration = 7 SECONDS
 
 /datum/action/xeno_action/timestop/action_activate()
 	. = ..()
@@ -788,7 +788,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		turfs_affected += affected_turf
 		affected_turf.add_filter("timestopblur", 1, gauss_blur_filter(3))
 	addtimer(CALLBACK(src, .proc/remove_bullet_freeze, turfs_affected), duration)
-	playsound(owner, 'sound/magic/timeparadox2.ogg', 75, TRUE)
+	addtimer(CALLBACK(src, .proc/play_sound_stop), duration - 3 SECONDS)
+	playsound(owner, 'sound/magic/timeparadox2.ogg', 50, TRUE)
+	succeed_activate()
+	add_cooldown()
 
 ///Remove the bullet freeze effect on affected turfs
 /datum/action/xeno_action/timestop/proc/remove_bullet_freeze(list/turf/turfs_affected)
@@ -797,4 +800,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		if(!affected_turf.freeze_bullets)
 			affected_turf.remove_filter("timestopblur")
 			SEND_SIGNAL(affected_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
+
+///Play the end ability sound
+/datum/action/xeno_action/timestop/proc/play_sound_stop()
+	playsound(owner, 'sound/magic/timeparadox2.ogg', 50, TRUE, frequency = -1)
 
