@@ -403,6 +403,8 @@
 			var/mob/living/carbon/human/H = m
 			if(isnestedhost(H))
 				continue
+			if(ishusk(H))
+				return
 			humans_on_ground++
 	if(length(GLOB.alive_human_list) && ((humans_on_ground / length(GLOB.alive_human_list)) > ALIVE_HUMANS_FOR_CALLDOWN))
 		to_chat(user, span_warning("There's too many tallhosts still on the ground. They interfere with our psychic field. We must dispatch them before we are able to do this."))

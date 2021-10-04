@@ -428,6 +428,9 @@
 	if(check_death && stat == DEAD)
 		return FALSE
 
+	if(ishusk(src))
+		return FALSE
+
 	if(F.combat_hugger) //Combat huggers will attack anything else
 		return TRUE
 
