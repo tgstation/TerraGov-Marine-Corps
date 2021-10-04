@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - balance: "buckshot has more falloff"
-  - balance: "buckshot accurate range(not spread) has been reduced to 3"

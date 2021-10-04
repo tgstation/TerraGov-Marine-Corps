@@ -1,0 +1,23 @@
+2021-10-01:
+  BraveMole:
+  - bugfix: You can no longer steal aghosted bodies
+  - bugfix: Spawning as a space agent no longer allow to bypass respawn timer
+  - rscadd: AFK marines can be taken by ghosts
+2021-10-02:
+  TheLordME:
+  - bugfix: UGLs loading any grenade
+  TiviPlus:
+  - rscadd: Added the evolution tower xeno building, which costs 300 points and when
+      built generates a extra .25 evo points per evo tick
+2021-10-03:
+  Lewdcifer:
+  - rscadd: Art Maintainer role, has same OOC color as Maintainers
+  Sebbe9123:
+  - rscadd: Ads 20 CLONE damage to psydrain.
+  TiviPlus:
+  - bugfix: fixed a new player error
+  ivanmixo:
+  - bugfix: CMB speedloader can reload CMB revolver
+2021-10-04:
+  TiviPlus:
+  - admin: Admins and mentors can now ping each other

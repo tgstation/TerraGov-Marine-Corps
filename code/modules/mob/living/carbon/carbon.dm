@@ -400,59 +400,6 @@
 
 	return ..()
 
-
-//AFK STATUS
-/mob/living/carbon/proc/set_afk_status(new_status, afk_timer)
-	switch(new_status)
-		if(MOB_CONNECTED, MOB_DISCONNECTED)
-			if(afk_timer_id)
-				deltimer(afk_timer_id)
-				afk_timer_id = null
-		if(MOB_RECENTLY_DISCONNECTED)
-			if(afk_status == MOB_RECENTLY_DISCONNECTED)
-				if(timeleft(afk_timer_id) > afk_timer)
-					deltimer(afk_timer_id) //We'll go with the shorter timer.
-				else
-					return
-			afk_timer_id = addtimer(CALLBACK(src, .proc/on_sdd_grace_period_end), afk_timer, TIMER_STOPPABLE)
-	afk_status = new_status
-	SEND_SIGNAL(src, COMSIG_CARBON_SETAFKSTATUS, new_status, afk_timer)
-
-
-/mob/living/carbon/proc/on_sdd_grace_period_end()
-	if(stat == DEAD)
-		return FALSE
-	if(isclientedaghost(src))
-		return FALSE
-	set_afk_status(MOB_DISCONNECTED)
-	return TRUE
-
-/mob/living/carbon/human/on_sdd_grace_period_end()
-	. = ..()
-	if(!.)
-		return
-	log_admin("[key_name(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for 15 minutes.")
-	message_admins("[ADMIN_TPMONTY(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for 15 minutes.")
-
-/mob/living/carbon/xenomorph/on_sdd_grace_period_end()
-	. = ..()
-	if(!.)
-		return
-	if(client)
-		return
-	if (SSticker.current_state != GAME_STATE_PLAYING)
-		return
-
-	var/mob/picked = get_alien_candidate()
-	if(!picked)
-		return
-
-	SSticker.mode.transfer_xeno(picked, src)
-
-	to_chat(src, span_xenoannounce("We are an old xenomorph re-awakened from slumber!"))
-	playsound_local(get_turf(src), 'sound/effects/xeno_newlarva.ogg')
-
-
 /mob/living/carbon/set_stat(new_stat)
 	. = ..()
 	if(isnull(.))

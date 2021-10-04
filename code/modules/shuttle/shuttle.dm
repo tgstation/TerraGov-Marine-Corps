@@ -631,7 +631,7 @@
 			L.notransform = TRUE
 			var/mob/dead/observer/O = L.ghostize(FALSE)
 			if(O)
-				O.timeofdeath = world.time
+				GLOB.key_to_time_of_death[O.key] = world.time
 			L.moveToNullspace()
 
 	// Now that mobs are stowed, delete the shuttle
