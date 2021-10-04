@@ -55,6 +55,8 @@
 	var/directional_opacity = NONE
 	///Lazylist of movable atoms providing opacity sources.
 	var/list/atom/movable/opacity_sources
+	///If this turf should freeze boolets. It's an int, not a bool. Allows boolets to pass if it's not 0
+	var/freeze_boolets = 0
 
 
 /turf/Initialize(mapload)

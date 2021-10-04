@@ -134,6 +134,8 @@
 #define TRAIT_GUN_IS_AIMING "aiming"
 #define TRAIT_GUN_BURST_FIRING "burst_firing"
 #define TRAIT_GUN_SILENCED "silenced"
+//Traits for turf
+#define TRAIT_FREEZE_PROJECTILE "projectile_freeze"
 
 // item traits
 #define TRAIT_T_RAY_VISIBLE "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1

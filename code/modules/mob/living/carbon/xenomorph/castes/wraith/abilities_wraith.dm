@@ -766,3 +766,30 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			return TRUE
 
 	return FALSE
+
+/datum/action/xeno_action/timestop
+	name = "Time stop"
+	ability_name = "Time stop"
+	action_icon_state = "" //Need one sprite and a sound
+	mechanics_text = "We recall a target we've banished back from the depths of nullspace."
+	cooldown_timer = 1 SECONDS //Token for anti-spam
+	keybind_signal = COMSIG_XENOABILITY_TIMESTOP
+	///The range of the ability
+	var/range = 5
+	///How long is the boolet freeze staying
+	var/duration = 45 SECONDS
+
+/datum/action/xeno_action/timestop/action_activate()
+	. = ..()
+	var/list/turf/turfs_affected = list()
+	for(var/turf/affected_turf in range(range))
+		affected_turf.freeze_boolets++
+		turfs_affected += affected_turf
+	addtimer(CALLBACK(src, .proc/remove_boolet_freeze, turfs_affected), duration)
+
+/datum/action/xeno_action/timestop/proc/remove_boolet_freeze(list/turf/turfs_affected)
+	for(var/turf/affected_turf AS in turfs_affected)
+		affected_turf.freeze_boolets--
+		if(!affected_turf.freeze_boolets)
+			SEND_SIGNAL(affected_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
+
