@@ -95,6 +95,43 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	xeno_message("[buyer] has built a silo at [get_area(buildloc)]!", "xenoannounce", 5, buyer.hivenumber)
 	return ..()
 
+/datum/hive_upgrade/building/evotower
+	name = "Evolution Tower"
+	desc = "Constructs a tower that increases the rate of evolution point generation by 1.25 times per tower."
+	psypoint_cost = 300
+	icon = "evotower"
+	flags_upgrade = ABILITY_DISTRESS
+
+/datum/hive_upgrade/building/evotower/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!.)
+		return
+
+	var/turf/buildloc = get_step(buyer, SOUTHWEST)
+	if(!buildloc)
+		return FALSE
+
+	if(buildloc.density)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
+		return FALSE
+
+/datum/hive_upgrade/building/evotower/on_buy(mob/living/carbon/xenomorph/buyer)
+	if(!do_after(buyer, 10 SECONDS, TRUE, buyer, BUSY_ICON_BUILD))
+		return
+
+	if(!can_buy(buyer, FALSE))
+		return
+
+	var/turf/buildloc = get_step(buyer, SOUTHWEST)
+
+	new /obj/structure/xeno/evotower(buildloc, buyer.hivenumber)
+	to_chat(buyer, span_notice("We build an evolution tower for [psypoint_cost] psy points."))
+	log_game("[buyer] has built an evolution tower in [AREACOORD(buildloc)], spending [psypoint_cost] psy points in the process")
+	xeno_message("[buyer] has built an evolution tower at [get_area(buildloc)]!", "xenoannounce", 5, buyer.hivenumber)
+	return ..()
+
+
 /datum/hive_upgrade/defence
 	category = "Defences"
 
@@ -156,8 +193,8 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	name = "Sticky resin turret"
 	desc = "Places a sticky spit spitting resin turret under you. Must be at least 6 tiles away from other turrets, not near fog and on a weeded area."
 	icon = "resinturret"
+	psypoint_cost = 50
 	turret_type = /obj/structure/xeno/xeno_turret/sticky
-
 
 /datum/hive_upgrade/xenos
 	category = "Xenos"
@@ -167,7 +204,7 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Places a Psychic Echo chamber that tallhosts can detect, then after a summon time selects a random sister to take over the mind of the gravity manipulating King."
 	icon = "king"
 	flags_gamemode = ABILITY_DISTRESS
-	psypoint_cost = XENO_KING_PRICE
+	psypoint_cost = 1800
 
 /datum/hive_upgrade/xenos/king/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	. = ..()
@@ -190,9 +227,9 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 
 /datum/hive_upgrade/primordial
 	category = "Primordial"
+	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
 
-
-/datum/hive_upgrade/primordial/can_buy(mob/living/carbon/xenomorph/buyer, silent)
+/datum/hive_upgrade/primordial/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	. = ..()
 	if(!isxenoqueen(buyer) && !isxenoshrike(buyer))
 		if(!silent)
@@ -205,4 +242,21 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Unlocks the primordial empresses queen charge. Walk in a straight line to begin charging. Can be toggled."
 	psypoint_cost = 300
 	icon = "primoqueen"
-	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
+
+/datum/hive_upgrade/primordial/shrike
+	name = PRIMORDIAL_SHRIKE
+	desc = "Unlocks the primordial shrikes gravity bomb. Activate to throw a gravity grenade thats sucks in everything in a radius."
+	psypoint_cost = 300
+	icon = "primoshrike"
+
+/datum/hive_upgrade/primordial/defiler
+	name = PRIMORDIAL_DEFILER
+	desc = "Unlocks the primordial defilers tentacle. Can grab most items and tallhosts from range and bring them to the defiler."
+	psypoint_cost = 225
+	icon = "primodefiler"
+
+/datum/hive_upgrade/primordial/sentinel
+	name = PRIMORDIAL_SENTINEL
+	desc = "Unlocks the primordial sentinels neurogas grenade. Allows them to throw a grenade that emits gas in an area."
+	psypoint_cost = 75
+	icon = "primosent"

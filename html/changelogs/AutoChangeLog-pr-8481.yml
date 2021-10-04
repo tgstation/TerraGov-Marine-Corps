@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes: 
+  - qol: "AI core can be orbited in the ghost orbit menu"
+  - bugfix: "AI can talk in MOOC"

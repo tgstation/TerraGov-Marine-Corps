@@ -205,6 +205,9 @@
 /mob/living/carbon/xenomorph/sentinel/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/sentinel/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----SENTINEL END----//
 //================//
 //-----SPITTER START-----//
@@ -344,6 +347,9 @@
 /mob/living/carbon/xenomorph/Defiler/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/Defiler/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----DEFILER END----//
 //============//
 //----SHRIKE START----//
@@ -356,6 +362,9 @@
 
 /mob/living/carbon/xenomorph/shrike/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/shrike/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----SHRIKE END----//
 //============//
