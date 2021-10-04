@@ -365,16 +365,18 @@
 	//Creating wound
 	var/wound_type = get_wound_type(type, damage)
 
-	if(wound_type)
-		W = new wound_type(damage)
+	if(!wound_type)
+		return
+	W = new wound_type(damage)
 
-		//Check whether we can add the wound to an existing wound
-		for(var/datum/wound/other in wounds)
-			if(other.can_merge(W))
-				other.merge_wound(W)
-				W = null // to signify that the wound was added
-				break
-		if(W) wounds += W
+	//Check whether we can add the wound to an existing wound
+	for(var/datum/wound/other in wounds)
+		if(other.can_merge(W))
+			other.merge_wound(W)
+			W = null // to signify that the wound was added
+			break
+	if(W)
+		wounds += W
 
 
 /****************************************************
