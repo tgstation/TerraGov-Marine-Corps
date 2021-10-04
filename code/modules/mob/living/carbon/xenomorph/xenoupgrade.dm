@@ -374,3 +374,6 @@
 
 /mob/living/carbon/xenomorph/wraith/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/wraith/primordial
+	upgrade = XENO_UPGRADE_FOUR

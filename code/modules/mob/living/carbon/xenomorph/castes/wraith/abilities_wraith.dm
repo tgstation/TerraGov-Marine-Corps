@@ -770,26 +770,32 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/xeno_action/timestop
 	name = "Time stop"
 	ability_name = "Time stop"
-	action_icon_state = "" //Need one sprite and a sound
-	mechanics_text = "We recall a target we've banished back from the depths of nullspace."
-	cooldown_timer = 1 SECONDS //Token for anti-spam
+	action_icon_state = ""
+	mechanics_text = "Freezes bullets in their course, and they will start to move again only after a certain time"
+	plasma_cost = 200
+	cooldown_timer = 1 MINUTES
 	keybind_signal = COMSIG_XENOABILITY_TIMESTOP
 	///The range of the ability
 	var/range = 5
-	///How long is the boolet freeze staying
-	var/duration = 45 SECONDS
+	///How long is the bullet freeze staying
+	var/duration = 30 SECONDS
 
 /datum/action/xeno_action/timestop/action_activate()
 	. = ..()
 	var/list/turf/turfs_affected = list()
-	for(var/turf/affected_turf in range(range))
+	for(var/turf/affected_turf in view(range, owner))
 		affected_turf.freeze_boolets++
 		turfs_affected += affected_turf
+		affected_turf.add_filter("timestopblur", 1, gauss_blur_filter(3))
 	addtimer(CALLBACK(src, .proc/remove_boolet_freeze, turfs_affected), duration)
+	playsound(owner, 'sound/magic/timeparadox2.ogg', 75, TRUE, -1)
 
+///Remove the bullet freeze effect on affected turfs
 /datum/action/xeno_action/timestop/proc/remove_boolet_freeze(list/turf/turfs_affected)
+	playsound(owner, 'sound/magic/timeparadox2.ogg', 75, TRUE, frequency = -1) //reverse!
 	for(var/turf/affected_turf AS in turfs_affected)
 		affected_turf.freeze_boolets--
 		if(!affected_turf.freeze_boolets)
+			affected_turf.remove_filter("timestopblur")
 			SEND_SIGNAL(affected_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
 
