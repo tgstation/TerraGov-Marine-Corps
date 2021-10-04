@@ -431,8 +431,12 @@
 	cooldown_timer = 0.5 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_VAMPIRISM
+	///timer hash for timer to clear last attacked
+	var/clear_timer
+	///int of how stacked we are on leeching
+	var/leech_count
 	///list of mob = timer_key of mobs we are actively leeching
-	var/list/mob/living/leeched_mobs = list()
+	var/mob/living/last_leeched
 
 /datum/action/xeno_action/vampirism/update_button_icon()
 	button.overlays.Cut()
@@ -442,7 +446,7 @@
 	else
 		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_off")
 	var/mutable_appearance/number = mutable_appearance()
-	number.maptext = MAPTEXT("[length(leeched_mobs)]")
+	number.maptext = MAPTEXT("[leech_count]")
 	button.overlays += number
 
 /datum/action/xeno_action/vampirism/give_action(mob/living/L)
@@ -469,9 +473,9 @@
 ///called on regen, handles regen rate reduction
 /datum/action/xeno_action/vampirism/proc/on_regen(mob/living/carbon/xenomorph/dracula, list/heal_data)
 	SIGNAL_HANDLER
-	var/count = length(leeched_mobs)
-	if(!count)
+	if(!leech_count)
 		return
+	var/count = leech_count
 	//heals 10% extra per leeched
 	count /= 10
 	count += 1
@@ -484,18 +488,24 @@
 		return
 	if(!ishuman(target)) // no farming on animals/dead
 		return
-	if(target in leeched_mobs)
+	if(last_leeched == target)
 		return
-	var/timerid = addtimer(CALLBACK(src, .proc/end_leech, target), VAMPIRISM_MOB_DURATION, TIMER_STOPPABLE)
-	leeched_mobs[target] = timerid
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/end_leech)
+	addtimer(CALLBACK(src, .proc/end_leech), VAMPIRISM_MOB_DURATION)
+	leech_count++
+	UnregisterSignal(last_leeched, COMSIG_PARENT_QDELETING)
+	last_leeched = target
+	deltimer(clear_timer)
+	clear_timer = addtimer(CALLBACK(src, .proc/clear_leeched, target), VAMPIRISM_MOB_DURATION, TIMER_STOPPABLE)
+	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/clear_leeched)
 	update_button_icon()
 
+///Called when the leech effect is supposed to end
+/datum/action/xeno_action/vampirism/proc/end_leech()
+	leech_count--
+	update_button_icon()
 
-///Called when mob is deleted or you want effect to end
-/datum/action/xeno_action/vampirism/proc/end_leech(datum/source)
+///Called when last_leeched mob is deleted
+/datum/action/xeno_action/vampirism/proc/clear_leeched(datum/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
-	deltimer(leeched_mobs[source])
-	leeched_mobs -= source
-	update_button_icon()
+	UnregisterSignal(last_leeched, COMSIG_PARENT_QDELETING)
+	last_leeched = null
