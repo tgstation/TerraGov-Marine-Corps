@@ -111,7 +111,7 @@
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, attachment_offsets, starting_attachments, null, null, null, attachment_overlays)
 	update_icon()
 
-/obj/item/clothing/suit/modular/pas11x/attackby(obj/item/I, mob/user, params)
+/obj/item/clothing/suit/modular/xenonauten/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(!istype(I, /obj/item/facepaint/) || !length(icon_state_variants))
 		return
@@ -124,7 +124,7 @@
 
 	if(!variant)
 		return
-	
+
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
 
@@ -251,12 +251,12 @@
 	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
 		. += "<br> It has a [attachments_by_slot[ATTACHMENT_SLOT_STORAGE]] installed."
 
-/obj/item/clothing/suit/modular/pas11x
-	name = "\improper PAS-11X pattern armored vest"
-	desc = "A modified version of the PAS-11 that has been fit with Jaeger module attach points in order to give use to the surplus armor left while being able to compete with the X-02 Exoskeleton. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+/obj/item/clothing/suit/modular/xenonauten
+	name = "\improper Xenonauten-M pattern armored vest"
+	desc = "A XN-M vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a medium variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
-	icon_state = "pas11"
-	item_state = "pas11"
+	icon_state = "medium"
+	item_state = "medium"
 	slowdown = 0.5
 
 	attachments_allowed = list(
@@ -285,9 +285,9 @@
 		"white",
 	)
 
-	current_variant = "brown"
+	current_variant = "black"
 
-/obj/item/clothing/suit/modular/pas11x/update_icon()
+/obj/item/clothing/suit/modular/xenonauten/update_icon()
 	. = ..()
 	if(item_state == icon_state)
 		return
@@ -416,7 +416,7 @@
 
 		if(!variant)
 			return
-	
+
 		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 			return
 
