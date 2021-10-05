@@ -15,16 +15,19 @@
 	var/list/list/xenos_by_tier = list()
 	var/list/list/xenos_by_upgrade = list()
 	var/list/dead_xenos = list() // xenos that are still assigned to this hive but are dead.
-	var/list/ssd_xenos
 	var/list/list/xenos_by_zlevel = list()
+	///list of evo towers
+	var/list/obj/structure/xeno/evotower/evotowers = list()
 	var/tier3_xeno_limit
 	var/tier2_xeno_limit
 	///Queue of all observer wanting to join xeno side
 	var/list/mob/dead/observer/candidate
 
 	//hive store vars
+	///flat list of upgrades we can buy
 	var/list/buyable_upgrades = list()
-	var/list/upgrades_by_name = list()
+	///assoc list name = upgraderef
+	var/list/datum/hive_upgrade/upgrades_by_name = list()
 
 // ***************************************
 // *********** Init
@@ -78,7 +81,7 @@
 	.["upgrades"] = list()
 	for(var/datum/hive_upgrade/upgrade AS in buyable_upgrades)
 		.["upgrades"] += list(list("name" = upgrade.name, "desc" = upgrade.desc, "category" = upgrade.category,\
-		"cost" = upgrade.psypoint_cost, "times_bought" = upgrade.times_bought, "can_buy" = upgrade.can_buy(user), "iconstate" = upgrade.icon))
+		"cost" = upgrade.psypoint_cost, "times_bought" = upgrade.times_bought, "can_buy" = upgrade.can_buy(user, TRUE), "iconstate" = upgrade.icon))
 	.["psypoints"] = SSpoints.xeno_points_by_hive[hivenumber]
 
 /datum/hive_status/ui_static_data(mob/user)
@@ -185,18 +188,12 @@
 			xenos += X
 	return xenos
 
-/datum/hive_status/proc/get_ssd_xenos(only_away = FALSE)
-	var/list/xenos = list()
-	for(var/i in ssd_xenos)
-		var/mob/living/carbon/xenomorph/ssd_xeno = i
-		if(is_centcom_level(ssd_xeno.z))
-			continue
-		if(isclientedaghost(ssd_xeno)) //To prevent adminghosted xenos to be snatched.
-			continue
-		if(only_away && ssd_xeno.afk_status == MOB_RECENTLY_DISCONNECTED)
-			continue
-		xenos += ssd_xeno
-	return xenos
+
+///fetches number of bonus points given to the hive,
+/datum/hive_status/proc/get_evolution_boost()
+	. = 0
+	for(var/obj/structure/xeno/evotower/tower AS in evotowers)
+		. += tower.boost_amount
 
 // ***************************************
 // *********** Adding xenos
@@ -221,9 +218,6 @@
 	if(!xenos_by_typepath[X.caste_base_type])
 		stack_trace("trying to add an invalid typepath into hivestatus list [X.caste_base_type]")
 		return FALSE
-
-	if(X.afk_status != MOB_CONNECTED)
-		LAZYADD(ssd_xenos, X)
 
 	xenos_by_typepath[X.caste_base_type] += X
 	update_tier_limits() //Update our tier limits.
@@ -310,7 +304,6 @@
 		stack_trace("failed to remove a xeno from hive status typepath list, nothing was removed!?")
 		return FALSE
 
-	LAZYREMOVE(ssd_xenos, X)
 	LAZYREMOVE(xenos_by_zlevel["[X.z]"], X)
 
 	UnregisterSignal(X, COMSIG_MOVABLE_Z_CHANGED)
@@ -382,14 +375,6 @@
 // ***************************************
 // *********** Status changes
 // ***************************************
-/datum/hive_status/proc/on_xeno_logout(mob/living/carbon/xenomorph/ssd_xeno)
-	if(ssd_xeno.stat == DEAD)
-		return
-	LAZYADD(ssd_xenos, ssd_xeno)
-
-/datum/hive_status/proc/on_xeno_login(mob/living/carbon/xenomorph/reconnecting_xeno)
-	LAZYREMOVE(ssd_xenos, reconnecting_xeno)
-
 /datum/hive_status/proc/xeno_z_changed(mob/living/carbon/xenomorph/X, old_z, new_z)
 	SIGNAL_HANDLER
 	LAZYREMOVE(xenos_by_zlevel["[old_z]"], X)
@@ -1231,3 +1216,9 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /obj/structure/xeno/xeno_turret/get_xeno_hivenumber()
 	return associated_hive.hivenumber
+<<<<<<< HEAD
+=======
+
+/obj/structure/xeno/evotower/get_xeno_hivenumber()
+	return hivenumber
+>>>>>>> cea7347b3691da0a218569edec739349c2a60027

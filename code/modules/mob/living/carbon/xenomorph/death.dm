@@ -49,7 +49,7 @@
 					SSmonitor.stats.elder_T3--
 				if(XENO_TIER_FOUR)
 					SSmonitor.stats.elder_T4--
-		if(XENO_UPGRADE_THREE)
+		if(XENO_UPGRADE_THREE, XENO_UPGRADE_FOUR)
 			switch(tier)
 				if(XENO_TIER_TWO)
 					SSmonitor.stats.ancient_T2--

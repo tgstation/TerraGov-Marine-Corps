@@ -49,6 +49,11 @@
 // *********** Mob overrides
 // ***************************************
 
+/mob/living/carbon/xenomorph/queen/handle_special_state()
+	if(is_charging >= CHARGE_ON)
+		icon_state = "Queen Charging"
+		return TRUE
+	return FALSE
 
 /mob/living/carbon/xenomorph/queen/reset_perspective(atom/A)
 	if (!client)
@@ -85,6 +90,8 @@
 			name = "[hive.prefix]Elder Empress ([nicknumber])"	 //Elder
 		if(XENO_UPGRADE_THREE)
 			name = "[hive.prefix]Ancient Empress ([nicknumber])" //Ancient
+		if(XENO_UPGRADE_FOUR)
+			name = "[hive.prefix]Primordial Empress ([nicknumber])"
 
 	real_name = name
 	if(mind)

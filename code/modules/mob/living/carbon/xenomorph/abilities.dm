@@ -159,7 +159,7 @@
 	GLOB.round_statistics.weeds_planted++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_planted")
 	add_cooldown()
-	return succeed_activate()
+	return succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)
 
 /datum/action/xeno_action/activable/plant_weeds/alternate_action_activate()
 	INVOKE_ASYNC(src, .proc/choose_weed)
@@ -366,8 +366,8 @@
 			plasma_cost = initial(plasma_cost) * 3
 
 	if(new_resin)
-		add_cooldown()
-		succeed_activate()
+		add_cooldown(SSmonitor.gamestate == SHUTTERS_CLOSED ? get_cooldown()/2 : get_cooldown())
+		succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)
 
 	plasma_cost = initial(plasma_cost) //Reset the plasma cost
 
@@ -718,7 +718,7 @@
 		newacid.icon_state += "_wall"
 		if(T.current_acid)
 			acid_progress_transfer(newacid, null, T)
-		T.current_acid = newacid
+		T.set_current_acid(newacid)
 
 	else if(istype(A, /obj/structure) || istype(A, /obj/machinery)) //Always appears above machinery
 		newacid.layer = A.layer + 0.1
@@ -1206,6 +1206,7 @@
 	span_xenodanger("We suddenly feel \the [victim]'s life force streaming into us!"))
 
 	victim.do_jitter_animation(2)
+	victim.adjustCloneLoss(20)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))

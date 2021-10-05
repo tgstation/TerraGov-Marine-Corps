@@ -12,3 +12,5 @@
 			add_ventcrawl(A)
 	var/datum/action/toggle_rightclick/rclick = new
 	rclick.give_action(src)
+	LAZYREMOVE(GLOB.ssd_living_mobs, src)
+	set_afk_status(MOB_CONNECTED)

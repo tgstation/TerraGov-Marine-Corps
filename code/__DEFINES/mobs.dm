@@ -160,10 +160,11 @@ GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, X
 #define XENO_UPGRADE_ONE "one"
 #define XENO_UPGRADE_TWO "two"
 #define XENO_UPGRADE_THREE "three"
+#define XENO_UPGRADE_FOUR "four"
 
 #define XENO_UPGRADE_MANIFESTATION "manifestation" //just for the hivemind
 
-GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO, XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE))
+GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO, XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE, XENO_UPGRADE_FOUR))
 
 //=================================================
 
@@ -583,6 +584,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DEFILER_DEFILE_STRENGTH_MULTIPLIER 0.5 //Base multiplier for determining the power of Defile
 #define DEFILER_SANGUINAL_DAMAGE 1 //Damage dealt per tick per xeno toxin by the sanguinal toxin
 #define DEFILER_SANGUINAL_SMOKE_MULTIPLIER 0.03 //Amount the defile power is multiplied by which determines sanguinal smoke strength/size
+#define TENTACLE_ABILITY_RANGE 5
 
 //Drone defines
 #define DRONE_HEAL_RANGE 1

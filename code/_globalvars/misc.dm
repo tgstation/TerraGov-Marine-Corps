@@ -31,3 +31,10 @@ GLOBAL_PROTECT(polls)
 ///All poll option datums of running polls
 GLOBAL_LIST_EMPTY(poll_options)
 GLOBAL_PROTECT(poll_options)
+
+///Assoc list of key to timeofdeath to know if a player can respawn
+GLOBAL_LIST_EMPTY(key_to_time_of_death)
+GLOBAL_PROTECT(key_to_time_of_death)
+
+///List of ssd living mobs
+GLOBAL_LIST_EMPTY(ssd_living_mobs)

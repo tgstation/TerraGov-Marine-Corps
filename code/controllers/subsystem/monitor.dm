@@ -44,7 +44,7 @@ SUBSYSTEM_DEF(monitor)
 
 /datum/controller/subsystem/monitor/Initialize(start_timeofday)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, .proc/set_groundside_calculation)
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), .proc/set_groundside_calculation)
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/set_shipside_calculation)
 	is_automatic_balance_on = CONFIG_GET(flag/is_automatic_balance_on)
 
@@ -70,7 +70,7 @@ SUBSYSTEM_DEF(monitor)
 		SSsilo.larva_spawn_rate_temporary_buff = 0
 		return
 	for(var/mob/dead/observer/observer AS in GLOB.observer_list)
-		observer.timeofdeath -= 5 MINUTES //If we are in a constant stalemate, every 5 minutes we remove 5 minutes of respawn time to become a marine
+		GLOB.key_to_time_of_death[observer.key] -= 5 MINUTES //If we are in a constant stalemate, every 5 minutes we remove 5 minutes of respawn time to become a marine
 	message_admins("Stalemate detected, respawn buff system in action : 5 minutes were removed from the respawn time of everyone, xeno won : [length(GLOB.observer_list) * 0.75 * 5] larvas")
 	log_game("5 minutes were removed from the respawn time of everyone, xeno won : [length(GLOB.observer_list) * 0.75 * 5] larvas")
 	//This will be in effect for 5 SSsilo runs. For 30 ghosts that makes 1 new larva every 2.5 minutes

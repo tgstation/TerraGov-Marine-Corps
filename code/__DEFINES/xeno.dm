@@ -40,3 +40,14 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 //xeno upgrade flags
 ///Message the hive when we buy this upgrade
 #define UPGRADE_FLAG_MESSAGE_HIVE (1<<0)
+<<<<<<< HEAD
+=======
+#define UPGRADE_FLAG_ONETIME (1<<0)
+
+
+//xeno primordial defines
+#define PRIMORDIAL_QUEEN "Primordial Queen"
+#define PRIMORDIAL_SHRIKE "Primordial Shrike"
+#define PRIMORDIAL_DEFILER "Primordial Defiler"
+#define PRIMORDIAL_SENTINEL "Primordial Sentinel"
+>>>>>>> cea7347b3691da0a218569edec739349c2a60027
