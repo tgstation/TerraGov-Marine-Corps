@@ -1,9 +1,16 @@
 GLOBAL_LIST_EMPTY(goal_nodes)
 
+///Basic implementation of A* using nodes. Very cheap, at max it will do about 50-100 distance check for a whole path, but typically it will do 10-20
+
+
 /datum/node_path
+	///Euclidian distance to the goal node
 	var/distance_to_goal
+	///Sum of euclidian distances to get from the starting node to this node, if you follow the current optimal path
 	var/distance_walked
+	///What node this node path reached
 	var/obj/effect/ai_node/current_node
+	///What node was right before current node in the node path
 	var/obj/effect/ai_node/previous_node
 
 /datum/node_path/New(obj/effect/ai_node/previous_node, obj/effect/ai_node/current_node, obj/effect/ai_node/goal_node, old_distance_walked)
@@ -23,15 +30,21 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 	var/obj/effect/ai_node/current_node = starting_node
 	var/list/datum/node_path/paths_checked = list()
 	var/datum/node_path/current_path
+	//Have we reached our goal node yet?
 	while(current_node != goal_node)
+		//Check all node, create node path for all of them
 		for(var/obj/effect/ai_node/node_to_check AS in current_node.adjacent_nodes)
 			if(paths_to_check[node_to_check] || paths_checked[node_to_check]) //We already found a better path to get to this node
 				continue
 			paths_to_check[node_to_check] = new/datum/node_path(current_node, node_to_check, goal_node, current_path?.distance_walked)
 		paths_checked[current_node] = current_path
 		paths_to_check -= current_node
-		sortTim(paths_to_check, /proc/cmp_node_path, TRUE) //We keep the list sorted, very cheap cause almost sorted
-		current_path = paths_to_check[paths_to_check[1]]
+		//We looked through all nodes, we didn't find a way to get to our end points
+		if(!length(paths_to_check))
+			CRASH("Node pathfinder was unable to find a path to goal node, the network of nodes is not fully connected")
+		//We created a node path for each adjacent node, we sort every nodes by their heuristic score
+		sortTim(paths_to_check, /proc/cmp_node_path, TRUE) //Very cheap cause almost sorted
+		current_path = paths_to_check[paths_to_check[1]] //We take the node with the smaller heuristic score (distance to goal + distance already made)
 		current_node = current_path.current_node
 	paths_checked[current_node] = current_path
 	var/list/obj/effect/ai_node/nodes_path = list()
