@@ -1084,3 +1084,34 @@ TUNNEL
 			take_damage(500)
 		if(EXPLODE_LIGHT)
 			take_damage(300)
+
+/obj/structure/xeno/maturitytower
+	name = "maturity tower"
+	desc = "A sickly outcrop from the ground. It seems to ooze a strange chemical that makes the vegetation around it grow faster."
+	icon = 'icons/Xeno/2x2building.dmi'
+	icon_state = "maturitytower"
+	bound_width = 64
+	bound_height = 64
+	obj_integrity = 400
+	max_integrity = 400
+	///hivenumber of this tower
+	var/hivenumber
+	///boost amt to be added per tower per cycle
+	var/boost_amount = 0.2
+
+/obj/structure/xeno/maturitytower/Initialize(mapload, hivenum)
+	. = ..()
+	GLOB.hive_datums[hivenum].maturitytowers += src
+	hivenumber = hivenum
+	set_light(2, 2, LIGHT_COLOR_GREEN)
+
+/obj/structure/xeno/maturitytower/Destroy()
+	GLOB.hive_datums[hivenumber].maturitytowers -= src
+	return ..()
+
+/obj/structure/xeno/maturitytower/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_HEAVY, EXPLODE_DEVASTATE)
+			take_damage(500)
+		if(EXPLODE_LIGHT)
+			take_damage(300)
