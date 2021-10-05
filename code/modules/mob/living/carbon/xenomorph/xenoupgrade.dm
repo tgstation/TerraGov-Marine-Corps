@@ -67,6 +67,11 @@
 				if(XENO_TIER_FOUR)
 					SSmonitor.stats.ancient_T4++
 
+		//PURCHASED UPGRADE
+		if(XENO_UPGRADE_FOUR)
+			if(!silent)
+				to_chat(src, span_xenoannounce(xeno_caste.primordial_message))
+
 	generate_name() //Give them a new name now
 
 	hud_set_plasma()
@@ -200,6 +205,9 @@
 /mob/living/carbon/xenomorph/sentinel/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/sentinel/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----SENTINEL END----//
 //================//
 //-----SPITTER START-----//
@@ -271,6 +279,9 @@
 /mob/living/carbon/xenomorph/queen/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/queen/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----QUEEN END----//
 //============//
 //---CRUSHER START---//
@@ -336,6 +347,9 @@
 /mob/living/carbon/xenomorph/Defiler/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/Defiler/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----DEFILER END----//
 //============//
 //----SHRIKE START----//
@@ -348,6 +362,9 @@
 
 /mob/living/carbon/xenomorph/shrike/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/shrike/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----SHRIKE END----//
 //============//

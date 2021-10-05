@@ -179,7 +179,7 @@
 
 			use_power(active_power_usage)
 
-			if(bitf == MARINE_CAN_BUY_UNIFORM && ishumanbasic(usr))
+			if(bitf == MARINE_CAN_BUY_UNIFORM && !issynth(usr))
 				var/mob/living/carbon/human/H = usr
 				var/headset_type = H.faction == FACTION_TERRAGOV ? /obj/item/radio/headset/mainship/marine : /obj/item/radio/headset/mainship/marine/rebel
 				new headset_type(loc, H.assigned_squad, vendor_role)
@@ -801,6 +801,14 @@
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/tyr_extra_armor/mark1,
 	)
+
+/obj/effect/essentials_set/robot
+	spawned_gear_list = list(
+		/obj/item/clothing/under/marine/robotic,
+		/obj/item/tool/weldingtool,
+		/obj/item/stack/cable_coil/twentyfive,
+	)
+
 
 #undef MARINE_CAN_BUY_UNIFORM
 #undef MARINE_CAN_BUY_SHOES

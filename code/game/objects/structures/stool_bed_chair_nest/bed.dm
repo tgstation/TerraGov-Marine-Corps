@@ -341,6 +341,9 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 			linked_medevac.linked_stretcher = null
 			linked_medevac = null
 		update_icon()
+	if(linked_beacon)
+		linked_beacon.linked_bed_deployed = null
+		linked_beacon = null
 	return ..()
 
 /obj/structure/bed/medevac_stretcher/update_icon()
@@ -568,6 +571,12 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	var/obj/item/medevac_beacon/linked_beacon = null
 	rollertype = /obj/structure/bed/medevac_stretcher
 
+/obj/item/roller/medevac/Destroy()
+	if(linked_beacon)
+		linked_beacon.linked_bed = null
+		linked_beacon = null
+	return ..()
+
 /obj/item/roller/medevac/attack_self(mob/user)
 	deploy_roller(user, user.loc)
 
@@ -613,6 +622,12 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/item/medevac_beacon/Destroy()
 	QDEL_NULL(radio)
+	if(linked_bed)
+		linked_bed.linked_beacon = null
+		linked_bed = null
+	else if(linked_bed_deployed)
+		linked_bed_deployed.linked_beacon = null
+		linked_bed_deployed = null
 	return ..()
 
 /obj/item/medevac_beacon/examine(mob/user)

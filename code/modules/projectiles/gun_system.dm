@@ -9,6 +9,7 @@
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 		)
+	max_integrity = 250
 	materials = list(/datum/material/metal = 100)
 	w_class 	= 3
 	throwforce 	= 5
@@ -230,6 +231,7 @@
 		QDEL_NULL(muzzle_flash)
 	QDEL_NULL(sentry_battery)
 	GLOB.nightfall_toggleable_lights -= src
+	set_gun_user(null)
 	return ..()
 
 /obj/item/weapon/gun/turn_light(mob/user, toggle_on, cooldown, sparks, forced)
@@ -500,6 +502,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	span_notice("You load [magazine] into [src]!"), null, 3)
 	if(reload_sound)
 		playsound(user, reload_sound, 25, 1, 5)
+	user.hud_used.update_ammo_hud(user, src)
 	update_icon()
 
 
@@ -522,9 +525,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	span_notice("You unload [current_mag] from [src]."), null, 4)
 	current_mag.update_icon()
 	current_mag = null
-
+	user.hud_used.update_ammo_hud(user, src)
 	update_icon(user)
-
 	return TRUE
 
 
@@ -581,6 +583,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		user?.visible_message(span_notice("[user] cocks [src]."),
 		span_notice("You cock [src]."), null, 4)
 	ready_in_chamber() //This will already check for everything else, loading the next bullet.
+	user.hud_used.update_ammo_hud(user, src)
 
 	return TRUE
 

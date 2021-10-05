@@ -213,6 +213,11 @@ WEAPONS
 	cost = SADAR_PRICE
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/weapons/zx76
+	name = "ZX-76 Twin-Barrled Burst Shotgun"
+	contains = list(/obj/item/weapon/gun/shotgun/zx76)
+	cost = 120
+
 /datum/supply_packs/weapons/autosniper
 	name = "IFF Auto Sniper kit"
 	contains = list(/obj/item/weapon/gun/rifle/standard_autosniper)
@@ -801,8 +806,8 @@ ARMOR
 /datum/supply_packs/armor/modular/attachments/mimir_environment_protection
 	name = "Jaeger Mimir Mark 2 module set"
 	contains = list(
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
-		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection,
 	)
 	cost = 15
 

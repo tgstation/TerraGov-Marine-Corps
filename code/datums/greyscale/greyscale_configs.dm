@@ -154,3 +154,7 @@
 /datum/greyscale_config/modular_helmet_visor_skull
 	icon_file = 'icons/mob/modular/eva.dmi'
 	json_config = 'code/datums/greyscale/json_configs/modular_visor_skull.json'
+
+/datum/greyscale_config/xenogrenade
+	icon_file = 'icons/obj/items/grenade.dmi'
+	json_config = 'code/datums/greyscale/json_configs/xenogrenade.json'

@@ -11,8 +11,14 @@
 /datum/keybinding/xeno/regurgitate
 	name = "regurgitate"
 	full_name = "Regurgitate / Cocoon"
-	description = "Vomit whatever you have devoured. / Cocoon the targeted body, which will produce psy and larva points over time.s"
+	description = "Vomit whatever you have devoured. / Cocoon the targeted body, which will produce psy and larva points over time."
 	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
+
+/datum/keybinding/xeno/blessingmenu
+	name = "blessings menu"
+	full_name = "Open Blessings Menu"
+	description = "Opens the Queen Mothers Blessings menu, where hive upgrades are bought"
+	keybind_signal = COMSIG_XENOABILITY_BLESSINGSMENU
 
 /datum/keybinding/xeno/drop_weeds
 	hotkey_keys = list("V")
@@ -105,6 +111,13 @@
 	full_name = "Pounce"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_POUNCE
+
+/datum/keybinding/xeno/nurogasnade
+	name = "neurogas"
+	full_name = "Sentinel: Neurogas Grenade"
+	description = "Throws a gas emitting grenade at the targetted area"
+	keybind_signal = COMSIG_XENOABILITY_NEUROGAS_GRENADE
+
 
 /datum/keybinding/xeno/plow_charge
 	name = "plow_charge"
@@ -262,6 +275,12 @@
 	description = "Purges xeno toxins in exchange for dealing toxin damage and generating toxic sanguinal smoke."
 	keybind_signal = COMSIG_XENOABILITY_DEFILE
 
+/datum/keybinding/xeno/tentacle
+	name = "tentacle"
+	full_name = "Defiler: Tentacle"
+	description = "Allows the defiler to grab a tallhost or item from range and bring it towards the defiler."
+	keybind_signal = COMSIG_XENOABILITY_TENTACLE
+
 /datum/keybinding/xeno/resin_walker
 	name = "resin_walker"
 	full_name = "Hivelord: Toggle Resin Walker"
@@ -345,6 +364,13 @@
 	full_name = "Shrike: Psychic Cure"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
+
+
+/datum/keybinding/xeno/gravity_grenade
+	name = "gravnade"
+	full_name = "Shrike: Gravity Grenade"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_GRAV_NADE
 
 /datum/keybinding/xeno/screech
 	name = "screech"

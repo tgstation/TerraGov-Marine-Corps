@@ -16,7 +16,7 @@
 		ghost.reenter_corpse()
 		return
 
-	var/mob/dead/observer/ghost = M.ghostize(TRUE)
+	var/mob/dead/observer/ghost = M.ghostize(TRUE, FALSE)
 
 	log_admin("[key_name(ghost)] admin ghosted at [AREACOORD(ghost)].")
 	if(M.stat != DEAD)
@@ -486,6 +486,18 @@
 	if(!msg)
 		return
 
+	var/list/pinged_admin_clients = check_admin_pings(msg, TRUE)
+	if(length(pinged_admin_clients) && pinged_admin_clients[ADMINSAY_PING_UNDERLINE_NAME_INDEX])
+		msg = pinged_admin_clients[ADMINSAY_PING_UNDERLINE_NAME_INDEX]
+		pinged_admin_clients -= ADMINSAY_PING_UNDERLINE_NAME_INDEX
+
+	for(var/iter_ckey in pinged_admin_clients)
+		var/client/iter_admin_client = pinged_admin_clients[iter_ckey]
+		if(!iter_admin_client?.holder)
+			continue
+		window_flash(iter_admin_client)
+		SEND_SOUND(iter_admin_client.mob, sound('sound/misc/bloop.ogg'))
+
 	log_admin_private_asay("[key_name(src)]: [msg]")
 
 	var/color = "asay"
@@ -540,6 +552,17 @@
 				type = MESSAGE_TYPE_MENTORCHAT,
 				html = "<span class='[color]'>[span_prefix("[holder.rank.name]:")] [key_name_admin(src, TRUE, FALSE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message linkify'>[msg]</span></span>")
 
+	var/list/pinged_admin_clients = check_admin_pings(msg)
+	if(length(pinged_admin_clients) && pinged_admin_clients[ADMINSAY_PING_UNDERLINE_NAME_INDEX])
+		msg = pinged_admin_clients[ADMINSAY_PING_UNDERLINE_NAME_INDEX]
+		pinged_admin_clients -= ADMINSAY_PING_UNDERLINE_NAME_INDEX
+
+	for(var/iter_ckey in pinged_admin_clients)
+		var/client/iter_admin_client = pinged_admin_clients[iter_ckey]
+		if(!iter_admin_client?.holder)
+			continue
+		window_flash(iter_admin_client)
+		SEND_SOUND(iter_admin_client.mob, sound('sound/misc/bloop.ogg'))
 
 /client/proc/get_dsay()
 	var/msg = input(src, null, "dsay \"text\"") as text|null
@@ -955,6 +978,7 @@
 					admin_ticket_log(recipient, interaction_message)
 
 			else //Recipient is a staff member, sender is not.
+				SEND_SIGNAL(current_ticket, COMSIG_ADMIN_HELP_REPLIED)
 				admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: [span_linkify("[keywordparsedmsg]")]</font>")
 				to_chat(recipient,
 					type = MESSAGE_TYPE_ADMINPM,
