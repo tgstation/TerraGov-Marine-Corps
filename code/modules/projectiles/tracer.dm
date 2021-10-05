@@ -26,12 +26,10 @@
 	M.Turn(angle)
 	transform = M
 
-/atom/movable/hitscan_projectile_effect/New(loc, angle_override, p_x, p_y, scaling = 1, effect_icon)
+/atom/movable/hitscan_projectile_effect/Initialize(loc, angle_override, p_x, p_y, scaling = 1, effect_icon)
 	. = ..()
-	var/mutable_appearance/look = mutable_appearance('icons/obj/items/projectiles.dmi', effect_icon)
-	look.pixel_x = p_x
-	look.pixel_y = p_y
-	look.icon_state = effect_icon
-	appearance = look
+	icon_state = effect_icon
+	pixel_x = p_x
+	pixel_y = p_y
 	scale_to(1, scaling, FALSE)
 	turn_to(angle_override, FALSE)

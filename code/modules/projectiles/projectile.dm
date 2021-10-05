@@ -865,9 +865,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return TRUE
 
 /obj/projectile/hitscan
+	///The icon of the laser beam that will be created
 	var/effect_icon = "beam"
 
-/obj/projectile/hitscan/New(loc, effect_icon)
+/obj/projectile/hitscan/Initialize(loc, effect_icon)
 	. = ..()
 	if(effect_icon)
 		src.effect_icon = effect_icon
