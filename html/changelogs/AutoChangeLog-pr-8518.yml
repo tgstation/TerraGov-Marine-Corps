@@ -1,0 +1,4 @@
+author: "hyper2snyper"
+delete-after: True
+changes: 
+  - bugfix: "Fixes loadout saved guns/armor with illegal attachments being vended."
