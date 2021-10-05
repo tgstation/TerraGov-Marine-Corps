@@ -972,11 +972,10 @@ datum/ammo/bullet/revolver/tp44
 	name = "high caliber rifle bullet"
 	hud_state = "minigun"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
-	damage = 80
+	damage = 50
 	penetration = 30
-	sundering = 7.5
-	accurate_range_min = 2
-	damage_falloff = 0.25
+	sundering = 5
+	damage_falloff = 0.05
 
 /*
 //================================================
