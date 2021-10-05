@@ -845,7 +845,10 @@
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
 		"Armors" = list(
-			/obj/item/clothing/suit/modular/xenonauten = -1,
+			/obj/item/clothing/suit/modular/pas11x = -1,
+			/obj/item/clothing/suit/modular/pas11x/xenonautenl = -1,
+			/obj/item/clothing/suit/modular/pas11x/xenonautenm = -1,
+			/obj/item/clothing/suit/modular/pas11x/xenonautenh = -1,
 			/obj/item/clothing/suit/modular = -1,
 			/obj/item/clothing/suit/storage/marine/harness = -1,
 			/obj/item/clothing/suit/armor/vest/pilot = -1,

@@ -173,7 +173,7 @@ Make the TGMC proud!"})
 	belt = /obj/item/storage/large_holster/blade/officer/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/exec
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten
+	wear_suit = /obj/item/clothing/suit/modular/pas11x/xenonautenm
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/marine/officer
 	head = /obj/item/clothing/head/tgmcberet/fc
