@@ -546,8 +546,10 @@
 		return
 	fire_grenade(target, gun_user)
 	gun_user.hud_used.update_ammo_hud(gun_user, src)
+	return TRUE
 
 /obj/item/weapon/gun/launcher/attackby(obj/item/I, mob/user, params)
+	. = ..()
 	if(!istype(I, /obj/item/explosive/grenade))
 		return ..()
 	if(length(grenades) >= max_grenades)
@@ -623,7 +625,7 @@
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT) && !master_gun && CHECK_BITFIELD(flags_gun_features, GUN_ATTACHMENT_FIRE_ONLY))
 		to_chat(gun_user, span_notice("You cannot fire [src] without it attached to a gun!"))
 		return
-	..()
+	. = ..()
 
 //Doesn't use most of any of these. Listed for reference.
 /obj/item/weapon/gun/launcher/m92/load_into_chamber()
@@ -681,7 +683,7 @@
 	if(!(G.underslug_launchable))
 		to_chat(user, span_warning("[src] cannot hold [G]!"))
 		return
-	return ..()
+	. = ..()
 
 /obj/item/weapon/gun/launcher/m92/mini_grenade/invisable
 	flags_attach_features = NONE
@@ -715,11 +717,11 @@
 	to_chat(user, span_notice("It is loaded with [grenades[1]]."))
 
 /obj/item/weapon/gun/launcher/m81/attackby(obj/item/I, mob/user, params)
-	..()
+	. = ..()
 	update_icon()
 
 /obj/item/weapon/gun/launcher/m81/unload(mob/user)
-	..()
+	. = ..()
 	update_icon()
 
 //Doesn't use most of any of these. Listed for reference. Don't need these.
@@ -799,7 +801,6 @@
 		return TRUE
 
 	. = ..()
-
 
 	//loaded_rocket.current_rounds = max(loaded_rocket.current_rounds - 1, 0)
 
