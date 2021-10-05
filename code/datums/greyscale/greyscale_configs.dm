@@ -10,9 +10,11 @@
 /datum/greyscale_config/screwdriver_inhand_right
 	icon_file = 'icons/obj/items/screwdriver.dmi'
 	json_config = 'code/datums/greyscale/json_configs/screwdriver_inhand_right.json'
+
 /datum/greyscale_config/pillbottle
 	icon_file='icons/obj/items/chemistry.dmi'
 	json_config = 'code/datums/greyscale/json_configs/pillbottle.json'
+
 /datum/greyscale_config/pillbottlelong
 	icon_file='icons/obj/items/chemistry.dmi'
 	json_config = 'code/datums/greyscale/json_configs/pillbottlelong.json'
