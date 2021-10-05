@@ -124,7 +124,7 @@
 /obj/structure/largecrate/supply/weapons/flamers
 	name = "\improper M240A1 incinerator weapons chest (x4)"
 	desc = "A weapons chest containing four M240A1 incinerator units."
-	supplies = list(/obj/item/weapon/gun/flamer = 4)
+	supplies = list(/obj/item/weapon/gun/flamer/big_flamer = 4)
 
 /obj/structure/largecrate/supply/weapons/hpr
 	name = "\improper T-42 LMG weapons chest (x2)"
@@ -139,7 +139,7 @@
 /obj/structure/largecrate/supply/weapons/standard_hmg
 	name = "\improper TL-102 mounted heavy smartgun chest (x2)"
 	desc = "A supply crate containing two boxed TL-102 mounted heavy smartguns."
-	supplies = list(/obj/item/storage/box/standard_hmg = 2)
+	supplies = list(/obj/item/storage/box/tl102 = 2)
 
 
 
@@ -178,9 +178,9 @@
 	supplies = list(/obj/item/ammo_magazine/sentry = 6)
 
 /obj/structure/largecrate/supply/ammo/standard_hmg
-	name = "\improper M56D ammunition drum case (x6)"
-	desc = "An ammunition case containing six M56D ammunition drums."
-	supplies = list(/obj/item/ammo_magazine/standard_hmg = 6)
+	name = "\improper TL-102 ammunition box case (x6)"
+	desc = "An ammunition case containing six TL-102 ammunition boxes."
+	supplies = list(/obj/item/ammo_magazine/tl102 = 6)
 
 /obj/structure/largecrate/supply/ammo/standard_ammo
 	name = "large surplus ammuniton crate"
@@ -286,7 +286,7 @@
 /obj/structure/largecrate/supply/powerloader
 	name = "\improper Caterpillar P-5000 Work Loader crate"
 	desc = "A crate containing one folded, but fully assembled, Caterpillar P-5000 Work Loader."
-	supplies = list(/obj/vehicle/powerloader = 1)
+	supplies = list(/obj/vehicle/ridden/powerloader = 1)
 
 /obj/structure/largecrate/supply/floodlights
 	name = "floodlight crate (x4)"
@@ -352,11 +352,11 @@
 	if(iscrowbar(I) && dir_needed)
 		var/turf/next_turf = get_step(src, dir_needed)
 		if(next_turf.density)
-			to_chat(user, "<span class='warning'>You can't open the crate here, there's not enough room!</span>")
+			to_chat(user, span_warning("You can't open the crate here, there's not enough room!"))
 			return
 		for(var/atom/movable/AM in next_turf.contents)
 			if(AM.density)
-				to_chat(user, "<span class='warning'>You can't open the crate here, [AM] blocks the way.</span>")
+				to_chat(user, span_warning("You can't open the crate here, [AM] blocks the way."))
 				return
 		return TRUE
 	return ..()

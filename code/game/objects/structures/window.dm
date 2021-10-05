@@ -76,7 +76,7 @@
 	if(!is_full_window() && !(get_dir(loc, target) == dir))
 		return TRUE
 
-/obj/structure/window/CheckExit(atom/movable/mover, turf/target)
+/obj/structure/window/CheckExit(atom/movable/mover, direction)
 	. = ..()
 	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
@@ -96,17 +96,17 @@
 		if(windowknock_cooldown > world.time)
 			return
 		playsound(loc, 'sound/effects/glassknock.ogg', 25, 1)
-		user.visible_message("<span class='warning'>[user] bangs against [src]!</span>",
-		"<span class='warning'>You bang against [src]!</span>",
-		"<span class='warning'>You hear a banging sound.</span>")
+		user.visible_message(span_warning("[user] bangs against [src]!"),
+		span_warning("You bang against [src]!"),
+		span_warning("You hear a banging sound."))
 		windowknock_cooldown = world.time + 100
 	else
 		if(windowknock_cooldown > world.time)
 			return
 		playsound(loc, 'sound/effects/glassknock.ogg', 15, 1)
-		user.visible_message("<span class='notice'>[user] knocks on [src].</span>",
-		"<span class='notice'>You knock on [src].</span>",
-		"<span class='notice'>You hear a knocking sound.</span>")
+		user.visible_message(span_notice("[user] knocks on [src]."),
+		span_notice("You knock on [src]."),
+		span_notice("You hear a knocking sound."))
 		windowknock_cooldown = world.time + 100
 
 /obj/structure/window/attackby(obj/item/I, mob/user, params)
@@ -124,13 +124,13 @@
 		user.drop_held_item()
 		switch(state)
 			if(GRAB_PASSIVE)
-				M.visible_message("<span class='warning'>[user] slams [M] against \the [src]!</span>")
+				M.visible_message(span_warning("[user] slams [M] against \the [src]!"))
 				log_combat(user, M, "slammed", "", "against \the [src]")
 				M.apply_damage(7)
 				UPDATEHEALTH(M)
 				take_damage(10)
 			if(GRAB_AGGRESSIVE)
-				M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
+				M.visible_message(span_danger("[user] bashes [M] against \the [src]!"))
 				log_combat(user, M, "bashed", "", "against \the [src]")
 				if(prob(50))
 					M.Paralyze(20)
@@ -138,7 +138,7 @@
 				UPDATEHEALTH(M)
 				take_damage(25)
 			if(GRAB_NECK)
-				M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
+				M.visible_message(span_danger("<big>[user] crushes [M] against \the [src]!</big>"))
 				log_combat(user, M, "crushed", "", "against \the [src]")
 				M.Paralyze(10 SECONDS)
 				M.apply_damage(20)
@@ -153,17 +153,17 @@
 		if(reinf && state >= 1)
 			state = 3 - state
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-			to_chat(user, (state == 1 ? "<span class='notice'>You have unfastened the window from the frame.</span>" : "<span class='notice'>You have fastened the window to the frame.</span>"))
+			to_chat(user, (state == 1 ? span_notice("You have unfastened the window from the frame.") : span_notice("You have fastened the window to the frame.")))
 		else if(reinf && state == 0 && !static_frame)
 			anchored = !anchored
 			update_nearby_icons()
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-			to_chat(user, (anchored ? "<span class='notice'>You have fastened the frame to the floor.</span>" : "<span class='notice'>You have unfastened the frame from the floor.</span>"))
+			to_chat(user, (anchored ? span_notice("You have fastened the frame to the floor.") : span_notice("You have unfastened the frame from the floor.")))
 		else if(!reinf && !static_frame)
 			anchored = !anchored
 			update_nearby_icons()
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-			to_chat(user, (anchored ? "<span class='notice'>You have fastened the window to the floor.</span>" : "<span class='notice'>You have unfastened the window.</span>"))
+			to_chat(user, (anchored ? span_notice("You have fastened the window to the floor.") : span_notice("You have unfastened the window.")))
 		else if(!reinf || (static_frame && state == 0))
 			deconstruct(TRUE)
 
@@ -171,7 +171,7 @@
 		dismantle = TRUE
 		state = 1 - state
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-		to_chat(user, (state ? "<span class='notice'>You have pried the window into the frame.</span>" : "<span class='notice'>You have pried the window out of the frame.</span>"))
+		to_chat(user, (state ? span_notice("You have pried the window into the frame.") : span_notice("You have pried the window out of the frame.")))
 
 
 /obj/structure/window/deconstruct(disassembled = TRUE)
@@ -199,7 +199,7 @@
 	if(!deconstructable)
 		return FALSE
 	if(anchored)
-		to_chat(usr, "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>")
+		to_chat(usr, span_warning("It is fastened to the floor, you can't rotate it!"))
 		return FALSE
 
 	setDir(turn(dir, 90))
@@ -216,7 +216,7 @@
 	if(!deconstructable)
 		return FALSE
 	if(anchored)
-		to_chat(usr, "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>")
+		to_chat(usr, span_warning("It is fastened to the floor, you can't rotate it!"))
 		return FALSE
 
 	setDir(turn(dir, 270))
@@ -309,6 +309,16 @@
 	basestate = "rwindow"
 	max_integrity = 300
 	reinf = TRUE
+
+//For the sulaco and POS AI core.
+/obj/structure/window/reinforced/extratoughened
+	name = "protective AI glass"
+	desc = "Heavily reinforced glass with many layers of a rod matrice. This is rarely used for anything but the most important windows"
+	icon_state = "rwindow"
+	basestate = "rwindow"
+	max_integrity = 1500
+	reinf = TRUE
+	resistance_flags = 10 // I have no clue what those are.
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
@@ -408,7 +418,7 @@
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	damageable = FALSE
 	deconstructable = FALSE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	max_integrity = 1000000 //Failsafe, shouldn't matter
 
 /obj/structure/window/framed/mainship/hull/canterbury //So we can wallsmooth properly.
@@ -447,7 +457,7 @@
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
 	damageable = FALSE
 	deconstructable = FALSE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 /obj/structure/window/framed/colony
 	name = "window"
 	icon_state = "col_window0"
@@ -474,7 +484,7 @@
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	damageable = FALSE
 	deconstructable = FALSE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	max_integrity = 1000000 //Failsafe, shouldn't matter
 
 
@@ -551,9 +561,7 @@
 	name = "cell window"
 	icon_state = "prison_cellwindow0"
 	basestate = "prison_cellwindow"
-	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
+	desc = "A glass window with a special rod matrice inside a wall frame. Has no reachable screws to prevent enterprising prisoners from deconstructing it."
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
-	damageable = FALSE
 	deconstructable = FALSE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-	max_integrity = 1000000 //Failsafe, shouldn't matter
+	max_integrity = 300

@@ -15,8 +15,10 @@
 	speed = 0.4
 
 	// *** Plasma *** //
-	plasma_max = 800
+	plasma_max = 1600
 	plasma_gain = 50
+	plasma_regen_limit = 0.5
+	plasma_icon_state = "hivelord_plasma"
 
 	// *** Health *** //
 	max_health = 300
@@ -30,7 +32,7 @@
 	evolves_to = list(/mob/living/carbon/xenomorph/Defiler)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HOLD_JELLY
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HOLD_JELLY|CASTE_IS_BUILDER|CAN_BECOME_KING
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
@@ -52,13 +54,12 @@
 		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/cocoon,
-		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/healing_infusion,
 		/datum/action/xeno_action/place_acidwell,
-		/datum/action/xeno_action/activable/secrete_resin/hivelord,
-		/datum/action/xeno_action/activable/build_silo,
+		/datum/action/xeno_action/activable/secrete_resin/ranged,
 		/datum/action/xeno_action/activable/build_hunt_den,
-		/datum/action/xeno_action/activable/build_turret,
+		/datum/action/xeno_action/blessing_menu,
 		/datum/action/xeno_action/activable/transfer_plasma/improved,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/build_tunnel,
@@ -83,7 +84,7 @@
 	speed = 0.3
 
 	// *** Plasma *** //
-	plasma_max = 900
+	plasma_max = 1800
 	plasma_gain = 60
 
 	// *** Health *** //
@@ -114,7 +115,7 @@
 	speed = 0.2
 
 	// *** Plasma *** //
-	plasma_max = 1000
+	plasma_max = 2000
 	plasma_gain = 63
 
 	// *** Health *** //
@@ -146,7 +147,7 @@
 	speed = 0.1
 
 	// *** Plasma *** //
-	plasma_max = 1200
+	plasma_max = 2400
 	plasma_gain = 65
 
 	// *** Health *** //

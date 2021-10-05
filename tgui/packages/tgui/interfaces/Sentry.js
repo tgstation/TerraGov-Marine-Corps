@@ -4,29 +4,35 @@ import { Window } from '../layouts';
 
 export const Sentry = (props, context) => {
   const { act, data } = useBackend(context);
-
+  const {
+    name,
+    rounds,
+    rounds_max,
+    fire_mode,
+    health,
+    health_max,
+    has_cell,
+    cell_charge,
+    cell_maxcharge,
+    safety_toggle,
+    manual_override,
+    alerts_on,
+    radial_mode,
+  } = data;
   return (
     <Window
       width={360}
       height={320}>
       <Window.Content>
-        <Section title={data.name}
-          buttons={
-            <Button
-              icon="power-off"
-              selected={data.is_on}
-              onClick={() => act('power')}>
-              {data.is_on ? 'On' : 'Off'}
-            </Button>
-          }>
+        <Section title={name}>
           <LabeledList>
             <LabeledList.Item
               label="Power Cell Status">
               <ProgressBar
-                content={data.has_cell
-                  ?data.cell_charge + ' W out of ' + data.cell_maxcharge + ' W'
+                content={has_cell
+                  ?cell_charge + ' W out of ' + cell_maxcharge + ' W'
                   : 'No cell inserted'}
-                value={data.cell_charge/data.cell_maxcharge}
+                value={cell_charge/cell_maxcharge}
                 ranges={{
                   good: [0.67, Infinity],
                   average: [0.33, 0.67],
@@ -36,7 +42,7 @@ export const Sentry = (props, context) => {
             <LabeledList.Item
               label="Structural Integrity">
               <ProgressBar
-                value={data.health/data.health_max}
+                value={health/health_max}
                 ranges={{
                   good: [0.67, Infinity],
                   average: [0.33, 0.67],
@@ -46,8 +52,8 @@ export const Sentry = (props, context) => {
             <LabeledList.Item
               label="Current Rounds">
               <ProgressBar
-                value={data.rounds/data.rounds_max}
-                content={data.rounds + ' out of ' +data.rounds_max}
+                value={rounds/rounds_max}
+                content={rounds + ' out of ' + rounds_max}
                 ranges={{
                   good: [0.67, Infinity],
                   average: [0.33, 0.67],
@@ -57,62 +63,42 @@ export const Sentry = (props, context) => {
             <LabeledList.Item
               buttons={
                 <Button
-                  selected={data.burst_fire}
-                  onClick={() => act('burst')}
-                  icon={data.burst_fire ? "step-forward" : "play"}
-                  disabled={!data.is_on}>
-                  Burst Fire
-                </Button>
-              }
-              label="Burst Fire" />
-            <LabeledList.Item
-              buttons={
-                <>
-                  <Button
-                    onClick={() => act('burstup')}
-                    icon="plus"
-                    disabled={!data.is_on} />
-                  <Box inline mr={1} ml={1}>{data.burst_size}</Box>
-                  <Button
-                    onClick={() => act('burstdown')}
-                    icon="minus"
-                    disabled={!data.is_on} />
-                </>
-              }
-              label="Burst Count" />
-            <LabeledList.Item
-              buttons={
-                <Button
-                  selected={data.safety_toggle}
+                  selected={safety_toggle}
                   onClick={() => act('safety')}
-                  icon={data.safety_toggle ? "check" : "times"}
-                  disabled={!data.is_on}>
+                  icon={safety_toggle ? "check" : "times"}>
                   Safety
                 </Button>
               }
               label="Weapon Safety">
-              {data.safety_toggle ? "Only Xenos" : "Everything"}
+              {safety_toggle ? "Only Xenos" : "Everything"}
             </LabeledList.Item>
-            {!data.mini && (
-              <LabeledList.Item
-                buttons={
-                  <Button
-                    selected={data.manual_override}
-                    onClick={() => act('manual')}
-                    icon={data.manual_override ? "check" : "times"}
-                    disabled={!data.is_on}>
-                    Manual Override
-                  </Button>
-                }
-                label="Manual Override" />
-            )}
             <LabeledList.Item
               buttons={
                 <Button
-                  selected={data.radial_mode}
+                  onClick={() => act('firemode')}>
+                  Fire Mode
+                </Button>
+              }
+              label="Fire Mode">
+              {fire_mode}
+            </LabeledList.Item>
+            <LabeledList.Item
+              buttons={
+                <Button
+                  selected={manual_override}
+                  onClick={() => act('manual')}
+                  icon={manual_override ? "check" : "times"}>
+                  Manual Override
+                </Button>
+              }
+              label="Manual Override" />
+            <LabeledList.Item
+              buttons={
+                <Button
+                  selected={radial_mode}
                   onClick={() => act('toggle_radial')}
-                  icon={data.radial_mode ? "check" : "times"}
-                  disabled={!data.is_on}>
+                  icon={radial_mode ? "check" : "times"}
+                  disabled={!has_cell}>
                   Radial Mode
                 </Button>
               }
@@ -120,10 +106,9 @@ export const Sentry = (props, context) => {
             <LabeledList.Item
               buttons={
                 <Button
-                  selected={data.alerts_on}
+                  selected={alerts_on}
                   onClick={() => act('toggle_alert')}
-                  icon={data.alerts_on ? "check" : "times"}
-                  disabled={!data.is_on}>
+                  icon={alerts_on ? "check" : "times"}>
                   Alert Mode
                 </Button>
               }

@@ -31,6 +31,7 @@
 #define PANEL_OPEN (1<<5)
 #define DISABLED (1<<6)		// can be fixed with a welder; removes density. Used primary to stop otherwise indestructible computers from obstructing pathing.
 #define MACHINE_DO_NOT_PROCESS 32768 //Do not added these to processing queue.
+#define KNOCKED_DOWN (1<<7) //Is knocked over, does not affect operational capacity.
 
 #define ENGINE_EJECT_Z 3
 
@@ -96,11 +97,10 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 //flags_token & tokensupport
 //used for coins and vendors, restricting specific tokens to associated vendors.
 
-#define TOKEN_GENERAL 1
-#define TOKEN_MARINE 2
-#define TOKEN_ENGI 4
-#define TOKEN_SPEC 8
-#define TOKEN_ALL 15
+#define TOKEN_GENERAL (1<<1)
+#define TOKEN_MARINE (1<<2)
+#define TOKEN_ENGI (1<<3)
+#define TOKEN_ALL (1 << 4) -1
 
 //MEDEVAC DEFINES
 #define MEDEVAC_COOLDOWN 1500 //150 seconds or 2,5 minutes aka 2 minutes and 30 secs
@@ -252,3 +252,14 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define TURRET_SCAN_RANGE 25
 #define TURRET_SCAN_FREQUENCY 16 SECONDS
 #define TURRET_HEALTH_REGEN 8
+
+//Unmanned vehicle define
+#define OVERLAY_TURRET (1<<0)
+#define HAS_LIGHTS (1<<1)
+#define UNDERCARRIAGE (1<<2)
+#define GIVE_NIGHT_VISION (1<<3)
+
+//Motion detector define
+#define MOTION_DETECTOR_HOSTILE "hostile"
+#define MOTION_DETECTOR_FRIENDLY "friendly"
+#define MOTION_DETECTOR_DEAD "dead"

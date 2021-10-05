@@ -175,6 +175,7 @@ SUBSYSTEM_DEF(shuttle)
 	else
 		if(M.initiate_docking(D) != DOCKING_SUCCESS)
 			return 2
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SHUTTLE_TAKEOFF, shuttleId, D)
 	return 0	//dock successful
 
 /datum/controller/subsystem/shuttle/proc/request_transit_dock(obj/docking_port/mobile/M)
@@ -259,7 +260,7 @@ SUBSYSTEM_DEF(shuttle)
 		log_debug("generate_transit_dock() failed to get a midpoint")
 		return FALSE
 	var/area/shuttle/transit/A = new()
-	//A.parallax_movedir = travel_dir
+	A.parallax_movedir = travel_dir
 	A.contents = proposal.reserved_turfs
 	var/obj/docking_port/stationary/transit/new_transit_dock = new(midpoint)
 	new_transit_dock.reserved_area = proposal

@@ -2,17 +2,17 @@
 	///Name of the loadout
 	var/name = ""
 	///The job associated with the loadout
-	var/job = MARINE_LOADOUT
+	var/job = SQUAD_MARINE
 	/**
-	 * Assoc list of all items composing this loadout
+	 * Assoc list of all visible items composing this loadout
 	 * the key of each item is a slot key
 	 * each item of the list is a datum/item_representation
 	 */
 	var/list/item_list
-	/// The host of the loadout_manager, aka from which loadout vendor are you managing loadouts
-	var/loadout_vendor 
-	///The version of this loadout. This can allow in the future to erase loadouts that are too old to work with the loadout saver system
-	var/version = 1
+	///The host of the loadout_manager, aka from which loadout vendor are you managing loadouts
+	var/obj/machinery/loadout_vendor/loadout_vendor
+	///The version of this loadout
+	var/version = CURRENT_LOADOUT_VERSION
 
 ///Empty a slot of the loadout
 /datum/loadout/proc/empty_slot(slot)
@@ -69,39 +69,50 @@
 			if(jumpsuit.allowed.Find(item_type))
 				return TRUE
 			return FALSE
+		if(slot_ear_str)
+			return (flags_equip_slot & ITEM_SLOT_EARS)
+		if(slot_wear_id_str)
+			return (flags_equip_slot & ITEM_SLOT_ID)
+		if(slot_r_hand_str)
+			return TRUE
+		if(slot_l_hand_str)
+			return TRUE
 	return FALSE //Unsupported slot
 
 /**
- * This will equipe the mob with all items of the loadout.
- * If a slot is already full, or an item doesn't fit the slot, the item will fall on the ground
+ * This will equip the mob with all items of the loadout.
  * user : the mob to dress
- * source : The turf where all rejected items will fall
  */
-/datum/loadout/proc/equip_mob(mob/user, turf/source)
+/datum/loadout/proc/equip_mob(mob/user)
 	var/obj/item/item
-	for(var/slot_key in GLOB.visible_item_slot_list)
-		if(!item_list[slot_key])
-			continue
+	for(var/slot_key in item_list)
 		var/datum/item_representation/item_representation = item_list[slot_key]
-		item = item_representation.instantiate_object(user)
+		item = item_representation.instantiate_object()
 		if(!item)
 			continue
-		if(!user.equip_to_slot_if_possible(item, GLOB.slot_str_to_slot[slot_key], warning = FALSE))
-			item.forceMove(source)
+		user.equip_to_slot_if_possible(item, GLOB.slot_str_to_slot[slot_key], warning = FALSE)
 
 /**
  * This will read all items on the mob, and if the item is supported by the loadout maker, will save it in the corresponding slot
  * An item is supported if it's path
  */
-/datum/loadout/proc/save_mob_loadout(mob/living/carbon/human/user)
+/datum/loadout/proc/save_mob_loadout(mob/living/carbon/human/user, admin_loadout = FALSE)
 	var/obj/item/item_in_slot
 	var/item2representation_type
 	for(var/slot_key in GLOB.visible_item_slot_list)
 		item_in_slot = user.get_item_by_slot(GLOB.slot_str_to_slot[slot_key])
-		if(!item_in_slot || !is_savable_in_loadout(item_in_slot))
+		if(!item_in_slot)
 			continue
 		item2representation_type = item2representation_type(item_in_slot.type)
-		item_list[slot_key] = new item2representation_type(item_in_slot)
+		item_list[slot_key] = new item2representation_type(item_in_slot, src)
+	if(!admin_loadout)
+		return
+	for(var/slot_key in GLOB.additional_admin_item_slot_list)
+		item_in_slot = user.get_item_by_slot(GLOB.slot_str_to_slot[slot_key])
+		if(!item_in_slot)
+			continue
+		item2representation_type = item2representation_type(item_in_slot.type)
+		item_list[slot_key] = new item2representation_type(item_in_slot, src)
 
 /datum/loadout/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -131,15 +142,14 @@
 	switch(action)
 		if("equipLoadout")
 			if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_EQUIPPED))
-				to_chat(ui.user, "<span class='warning'>The vendor is still reloading</span>")
+				ui.user.balloon_alert(ui.user, "The vendor is still reloading")
 				return
-			TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, 30 SECONDS)
-			if(!ui.user.client.prefs.loadout_manager.seller)
-				ui.user.client.prefs.loadout_manager.seller = new /datum/loadout_seller
-			ui.user.client.prefs.loadout_manager.seller.try_to_equip_loadout(src, ui.user)
+			var/datum/loadout_seller/seller = new (loadout_vendor.faction)
+			if(seller.try_to_equip_loadout(src, ui.user))
+				TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, 30 SECONDS)
 			ui.close()
 		if("deleteLoadout")
-			ui.user.client.prefs.loadout_manager.delete_loadout(src)
+			ui.user.client.prefs.loadout_manager.delete_loadout(ui.user, name, job)
 			ui.close()
 
 

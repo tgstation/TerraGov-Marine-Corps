@@ -26,6 +26,8 @@ SUBSYSTEM_DEF(vote)
 	var/list/voting = list()
 	/// If a vote is currently taking place
 	var/vote_happening = FALSE
+	/// The timer id of the shipmap vote
+	var/shipmap_timer_id
 
 // Called by master_controller
 /datum/controller/subsystem/vote/fire()
@@ -128,6 +130,10 @@ SUBSYSTEM_DEF(vote)
 				if(. == "Restart Round")
 					restart = TRUE
 			if("gamemode")
+				if(. == "Civil War")
+					deltimer(shipmap_timer_id)
+					var/datum/map_config/VM = config.maplist[SHIP_MAP]["Twin Pillars"]
+					SSmapping.changemap(VM, SHIP_MAP)
 				if(GLOB.master_mode != .)
 					SSticker.save_mode(.)
 					if(SSticker.HasRoundStarted())
@@ -176,7 +182,7 @@ SUBSYSTEM_DEF(vote)
 /datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key, ignore_delay = FALSE)
 	//Server is still intializing.
 	if(!Master.current_runlevel)
-		to_chat(usr, "<span class='warning'>Cannot start vote, server is not done initializing.</span>")
+		to_chat(usr, span_warning("Cannot start vote, server is not done initializing."))
 		return FALSE
 	var/lower_admin = FALSE
 	if(initiator_key)
@@ -188,10 +194,10 @@ SUBSYSTEM_DEF(vote)
 		if(started_time && !ignore_delay)
 			var/next_allowed_time = (started_time + CONFIG_GET(number/vote_delay))
 			if(mode)
-				to_chat(usr, "<span class='warning'>There is already a vote in progress! please wait for it to finish.</span>")
+				to_chat(usr, span_warning("There is already a vote in progress! please wait for it to finish."))
 				return FALSE
 			if(next_allowed_time > world.time && !lower_admin)
-				to_chat(usr, "<span class='warning'>A vote was initiated recently, you must wait [DisplayTimeText(next_allowed_time-world.time)] before a new vote can be started!</span>")
+				to_chat(usr, span_warning("A vote was initiated recently, you must wait [DisplayTimeText(next_allowed_time-world.time)] before a new vote can be started!"))
 				return FALSE
 
 		reset()
@@ -201,6 +207,10 @@ SUBSYSTEM_DEF(vote)
 			if("gamemode")
 				for(var/datum/game_mode/mode AS in config.votable_modes)
 					var/players = length(GLOB.clients)
+					if(mode.time_between_round && (world.realtime - SSpersistence.last_modes_round_date[mode.name]) < mode.time_between_round)
+						continue
+					if(istype(mode, /datum/game_mode/civil_war) && SSticker.current_state < GAME_STATE_PLAYING && SSmapping.configs[SHIP_MAP].map_name != MAP_TWIN_PILLARS)
+						continue
 					if(players > mode.maximum_players)
 						continue
 					if(players < mode.required_players)
@@ -208,7 +218,7 @@ SUBSYSTEM_DEF(vote)
 					choices.Add(mode.config_tag)
 			if("groundmap")
 				if(!lower_admin && SSmapping.groundmap_voted)
-					to_chat(usr, "<span class='warning'>The next ground map has already been selected.</span>")
+					to_chat(usr, span_warning("The next ground map has already been selected."))
 					return FALSE
 				var/list/maps = list()
 				if(!config.maplist)
@@ -229,7 +239,7 @@ SUBSYSTEM_DEF(vote)
 					choices.Add(valid_map)
 			if("shipmap")
 				if(!lower_admin && SSmapping.shipmap_voted)
-					to_chat(usr, "<span class='warning'>The next ship map has already been selected.</span>")
+					to_chat(usr, span_warning("The next ship map has already been selected."))
 					return FALSE
 				var/list/maps = list()
 				if(!config.maplist)
@@ -267,7 +277,7 @@ SUBSYSTEM_DEF(vote)
 			text += "<br>[question]"
 		log_vote(text)
 		var/vp = CONFIG_GET(number/vote_period)
-		SEND_SOUND(world, sound('sound/ambience/votestart.ogg', channel = CHANNEL_NOTIFY))
+		SEND_SOUND(world, sound('sound/ambience/votestart.ogg', channel = CHANNEL_NOTIFY, volume = 50))
 		to_chat(world, "<br><font color='purple'><b>[text]</b><br>Type <b>vote</b> or click on vote action (top left) to place your votes.<br>You have [DisplayTimeText(vp)] to vote.</font>")
 		time_remaining = round(vp/10)
 		vote_happening = TRUE
@@ -289,7 +299,7 @@ SUBSYSTEM_DEF(vote)
 ///Starts the automatic map vote at the end of each round
 /datum/controller/subsystem/vote/proc/automatic_vote()
 	initiate_vote("gamemode", null, TRUE)
-	addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap", null, TRUE), CONFIG_GET(number/vote_period) + 3 SECONDS)
+	shipmap_timer_id = addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap", null, TRUE), CONFIG_GET(number/vote_period) + 3 SECONDS, TIMER_STOPPABLE)
 	addtimer(CALLBACK(src, .proc/initiate_vote, "groundmap", null, TRUE), CONFIG_GET(number/vote_period) * 2 + 6 SECONDS)
 
 /datum/controller/subsystem/vote/ui_state()

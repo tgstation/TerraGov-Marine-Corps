@@ -33,7 +33,7 @@
 	update_icon(client.prefs.ghost_form)
 	updateghostimages()
 
-	if(!length(actions) && client.prefs.observer_actions)
+	if(!length(actions))
 		for(var/path in subtypesof(/datum/action/observer_action))
 			var/datum/action/observer_action/A = new path()
 			A.give_action(src)
@@ -43,4 +43,4 @@
 		mini.give_action(src)
 
 	if(length(GLOB.offered_mob_list))
-		to_chat(src, "<span class='boldnotice'>There's mobs available for taking! Ghost > Take Offered Mob</span>")
+		to_chat(src, span_boldnotice("There's mobs available for taking! Ghost > Take Offered Mob"))

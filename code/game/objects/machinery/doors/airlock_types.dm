@@ -340,7 +340,7 @@
 	icon = 'icons/obj/doors/mainship/securedoor.dmi'
 	req_access = list(ACCESS_MARINE_BRIDGE)
 
-/obj/machinery/door/airlock/mainship/secure/rebel 
+/obj/machinery/door/airlock/mainship/secure/rebel
 	req_access = list(ACCESS_MARINE_BRIDGE_REBEL)
 
 /obj/machinery/door/airlock/mainship/secure/free_access
@@ -550,7 +550,7 @@
 	icon = 'icons/obj/doors/mainship/medidoor.dmi'
 	req_access = list(ACCESS_MARINE_RESEARCH)
 
-/obj/machinery/door/airlock/mainship/research
+/obj/machinery/door/airlock/mainship/research/rebel
 	req_access = list(ACCESS_MARINE_RESEARCH_REBEL)
 
 /obj/machinery/door/airlock/mainship/research/free_access
@@ -676,15 +676,8 @@
 	opacity = FALSE
 	glass = TRUE
 
-/obj/machinery/door/airlock/mainship/marine/general/sl/rebel 
+/obj/machinery/door/airlock/mainship/marine/general/sl/rebel
 	req_access = list(ACCESS_MARINE_LEADER_REBEL)
-
-/obj/machinery/door/airlock/mainship/marine/general/spec
-	name = "\improper Specialist Preparations"
-	icon = 'icons/obj/doors/mainship/prepdoor.dmi'
-	req_access = list(ACCESS_MARINE_SPECPREP)
-	opacity = FALSE
-	glass = TRUE
 
 /obj/machinery/door/airlock/mainship/marine/general/smart
 	name = "\improper Smartgunner Preparations"
@@ -744,11 +737,6 @@
 	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_ALPHA)
 	req_one_access =  null
 
-/obj/machinery/door/airlock/mainship/marine/alpha/spec
-	name = "\improper Alpha Squad Specialist Preparations"
-	req_access = list(ACCESS_MARINE_SPECPREP, ACCESS_MARINE_ALPHA)
-	req_one_access =  null
-
 /obj/machinery/door/airlock/mainship/marine/alpha/engineer
 	name = "\improper Alpha Squad Engineer Preparations"
 	req_access = list(ACCESS_MARINE_ENGPREP, ACCESS_MARINE_ALPHA)
@@ -776,11 +764,6 @@
 /obj/machinery/door/airlock/mainship/marine/bravo/sl
 	name = "\improper Bravo Squad Leader Preparations"
 	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_BRAVO)
-	req_one_access = null
-
-/obj/machinery/door/airlock/mainship/marine/bravo/spec
-	name = "\improper Bravo Squad Specialist Preparations"
-	req_access = list(ACCESS_MARINE_SPECPREP, ACCESS_MARINE_BRAVO)
 	req_one_access = null
 
 /obj/machinery/door/airlock/mainship/marine/bravo/engineer
@@ -812,11 +795,6 @@
 	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_CHARLIE)
 	req_one_access = null
 
-/obj/machinery/door/airlock/mainship/marine/charlie/spec
-	name = "\improper Charlie Squad Specialist Preparations"
-	req_access = list(ACCESS_MARINE_SPECPREP, ACCESS_MARINE_CHARLIE)
-	req_one_access = null
-
 /obj/machinery/door/airlock/mainship/marine/charlie/engineer
 	name = "\improper Charlie Squad Engineer Preparations"
 	req_access = list(ACCESS_MARINE_ENGPREP, ACCESS_MARINE_CHARLIE)
@@ -846,11 +824,6 @@
 	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DELTA)
 	req_one_access = null
 
-/obj/machinery/door/airlock/mainship/marine/delta/spec
-	name = "\improper Delta Squad Specialist Preparations"
-	req_access = list(ACCESS_MARINE_SPECPREP, ACCESS_MARINE_DELTA)
-	req_one_access = null
-
 /obj/machinery/door/airlock/mainship/marine/delta/engineer
 	name = "\improper Delta Squad Engineer Preparations"
 	req_access = list(ACCESS_MARINE_ENGPREP, ACCESS_MARINE_DELTA)
@@ -875,10 +848,12 @@
 	icon = 'icons/obj/doors/mainship/dropship1_side.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	id = "sh_dropship1"
 	openspeed = 4 //shorter open animation.
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	no_panel = TRUE
 	not_weldable = TRUE
-	aiControlDisabled = TRUE
+
+/obj/machinery/door/airlock/canAIControl(mob/user)
+	return TRUE
 
 /obj/machinery/door/airlock/dropship_hatch/proc/lockdown()
 	unlock()
@@ -920,10 +895,12 @@
 	icon = 'icons/obj/doors/mainship/dropship1_pilot.dmi'
 	name = "\improper Cockpit"
 	req_access = list(ACCESS_MARINE_DROPSHIP)
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	no_panel = TRUE
 	not_weldable = TRUE
-	aiControlDisabled = TRUE
+
+/obj/machinery/door/airlock/hatch/cockpit/canAIControl(mob/user)
+	return TRUE
 
 /obj/machinery/door/airlock/hatch/cockpit/rebel
 	req_access = list(ACCESS_MARINE_DROPSHIP_REBEL)

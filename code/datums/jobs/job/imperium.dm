@@ -53,7 +53,7 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone, SLOT_IN_HEAD)
 
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
@@ -72,7 +72,7 @@
 /datum/job/imperial/guardsman/sergeant
 	title = "Guardsman Sergeant"
 	comm_title = "Sergeant"
-	skills_type = /datum/skills/imperial/SL
+	skills_type = /datum/skills/imperial/sl
 	paygrade = "Sergeant"
 	outfit = /datum/outfit/job/imperial/sergeant
 
@@ -93,7 +93,7 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone, SLOT_IN_HEAD)
 
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_SUIT)
 
@@ -137,7 +137,7 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone, SLOT_IN_HEAD)
 
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
@@ -158,7 +158,7 @@
 /datum/job/imperial/commissar
 	title = "Imperial Commissar"
 	comm_title = "Commissar"
-	skills_type = /datum/skills/imperial/SL
+	skills_type = /datum/skills/imperial/sl
 	paygrade = "Commissar"
 	outfit = /datum/outfit/job/imperial/commissar
 
@@ -180,7 +180,7 @@
 
 	H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv, SLOT_IN_L_POUCH)
 
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)

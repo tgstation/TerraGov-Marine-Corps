@@ -19,10 +19,10 @@
 #define DEFAULT_MESSAGE_RANGE 7
 
 //Embedded objects
-#define EMBEDDEED_DEL_ON_HOLDER_DEL (1<<0)
-#define EMBEDDEED_CAN_BE_YANKED_OUT (1<<1)
+#define EMBEDDED_DEL_ON_HOLDER_DEL (1<<0)
+#define EMBEDDED_CAN_BE_YANKED_OUT (1<<1)
 
-#define EMBED_FLAGS (EMBEDDEED_CAN_BE_YANKED_OUT)	//Default flags.
+#define EMBED_FLAGS (EMBEDDED_CAN_BE_YANKED_OUT)	//Default flags.
 #define EMBED_CHANCE 3	//Percentage chance for an object to embed into somebody when thrown (if it's sharp).
 #define EMBED_PROCESS_CHANCE 4	//Percentage chance to deal damage or whatever set behavior per victim's move.
 #define EMBED_LIMB_DAMAGE 2	//Damage to deal to victim's limbs.

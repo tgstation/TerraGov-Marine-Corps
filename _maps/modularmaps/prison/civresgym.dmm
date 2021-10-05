@@ -58,7 +58,7 @@
 /turf/open/floor/prison/bright_clean/two,
 /area/template_noop)
 "F" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/prison/bright_clean/two,
 /area/template_noop)
 "I" = (

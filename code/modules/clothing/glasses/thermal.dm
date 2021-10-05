@@ -15,7 +15,7 @@
 /obj/item/clothing/glasses/thermal/emp_act(severity)
 	if(ishuman(loc))
 		var/mob/living/carbon/human/M = src.loc
-		to_chat(M, "<span class='warning'>The Optical Thermal Scanner overloads and blinds you!</span>")
+		to_chat(M, span_warning("The Optical Thermal Scanner overloads and blinds you!"))
 		if(M.glasses == src)
 			M.blind_eyes(3)
 			M.blur_eyes(5)

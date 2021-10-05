@@ -41,12 +41,12 @@
 	if(length(enemies) && prob(10))
 		enemies = list()
 		LoseTarget()
-		visible_message("<span class='notice'>[src] calms down.</span>")
+		visible_message(span_notice("[src] calms down."))
 
 
 /mob/living/simple_animal/hostile/retaliate/goat/Retaliate()
 	. = ..()
-	visible_message("<span class='danger'>[src] gets an evil-looking gleam in [p_their()] eye.</span>")
+	visible_message(span_danger("[src] gets an evil-looking gleam in [p_their()] eye."))
 
 
 /mob/living/simple_animal/cow
@@ -78,9 +78,9 @@
 
 /mob/living/simple_animal/cow/attack_hand(mob/living/user)
 	if(!stat && user.a_intent == INTENT_DISARM && icon_state != icon_dead)
-		user.visible_message("<span class='warning'>[user] tips over [src].</span>",
-			"<span class='notice'>You tip over [src].</span>")
-		to_chat(src, "<span class='userdanger'>You are tipped over by [user]!</span>")
+		user.visible_message(span_warning("[user] tips over [src]."),
+			span_notice("You tip over [src]."))
+		to_chat(src, span_userdanger("You are tipped over by [user]!"))
 		Paralyze(20 SECONDS)
 		icon_state = icon_dead
 		spawn(rand(20, 50))
@@ -97,8 +97,8 @@
 					if(4)
 						external = "[src] seems resigned to its fate."
 						internal = "You resign yourself to your fate."
-				visible_message("<span class='notice'>[external]</span>",
-					"<span class='revennotice'>[internal]</span>")
+				visible_message(span_notice("[external]"),
+					span_revennotice("[internal]"))
 	else
 		return ..()
 
@@ -210,7 +210,7 @@
 			qdel(O)
 			eggsleft += rand(1, 4)
 		else
-			to_chat(user, "<span class='warning'>[name] doesn't seem hungry!</span>")
+			to_chat(user, span_warning("[name] doesn't seem hungry!"))
 	else
 		..()
 
@@ -219,7 +219,7 @@
 	if(!.)
 		return
 	if((!stat && prob(3) && eggsleft > 0) && egg_type)
-		visible_message("<span class='alertalien'>[src] [pick(layMessage)]</span>")
+		visible_message(span_alertalien("[src] [pick(layMessage)]"))
 		eggsleft--
 		var/obj/item/E = new egg_type(get_turf(src))
 		E.pixel_x = rand(-6,6)

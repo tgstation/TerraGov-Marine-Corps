@@ -5,9 +5,11 @@
 	hive.upgrade_xeno(src, upgrade, newlevel)
 	upgrade = newlevel
 	if(!silent)
-		visible_message("<span class='xenonotice'>\The [src] begins to twist and contort.</span>", \
-		"<span class='xenonotice'>We begin to twist and contort.</span>")
+		visible_message(span_xenonotice("\The [src] begins to twist and contort."), \
+		span_xenonotice("We begin to twist and contort."))
 		do_jitter_animation(1000)
+	if(upgrade_stored < xeno_caste.upgrade_threshold)
+		upgrade_stored = xeno_caste.upgrade_threshold
 	set_datum()
 	var/selected_ability_type = selected_ability?.type
 
@@ -39,31 +41,36 @@
 		//FIRST UPGRADE
 		if(XENO_UPGRADE_ONE)
 			if(!silent)
-				to_chat(src, "<span class='xenodanger'>We feel a bit stronger.</span>")
+				to_chat(src, span_xenodanger("We feel a bit stronger."))
 
 		//SECOND UPGRADE
 		if(XENO_UPGRADE_TWO)
 			if(!silent)
-				to_chat(src, "<span class='xenodanger'>We feel a whole lot stronger.</span>")
+				to_chat(src, span_xenodanger("We feel a whole lot stronger."))
 			switch(tier)
 				if(XENO_TIER_TWO)
 					SSmonitor.stats.elder_T2++
 				if(XENO_TIER_THREE)
 					SSmonitor.stats.elder_T3++
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.elder_queen++
+					SSmonitor.stats.elder_T4++
 
 		//FINAL UPGRADE
 		if(XENO_UPGRADE_THREE)
 			if(!silent)
-				to_chat(src, "<span class='xenoannounce'>[xeno_caste.ancient_message]</span>")
+				to_chat(src, span_xenoannounce("[xeno_caste.ancient_message]"))
 			switch(tier)
 				if(XENO_TIER_TWO)
 					SSmonitor.stats.ancient_T2++
 				if(XENO_TIER_THREE)
 					SSmonitor.stats.ancient_T3++
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.ancient_queen++
+					SSmonitor.stats.ancient_T4++
+
+		//PURCHASED UPGRADE
+		if(XENO_UPGRADE_FOUR)
+			if(!silent)
+				to_chat(src, span_xenoannounce(xeno_caste.primordial_message))
 
 	generate_name() //Give them a new name now
 
@@ -159,18 +166,7 @@
 
 //----HIVELORD END----//
 //================//
-//----HIVEMIND START----//
 
-/mob/living/carbon/xenomorph/hivemind/mature
-	upgrade = XENO_UPGRADE_ONE
-
-/mob/living/carbon/xenomorph/hivemind/elder
-	upgrade = XENO_UPGRADE_TWO
-
-/mob/living/carbon/xenomorph/hivemind/ancient
-	upgrade = XENO_UPGRADE_THREE
-
-//----HIVEMIND END----//
 //================//
 //----PRAETORIAN START----//
 
@@ -208,6 +204,9 @@
 
 /mob/living/carbon/xenomorph/sentinel/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/sentinel/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----SENTINEL END----//
 //================//
@@ -280,6 +279,9 @@
 /mob/living/carbon/xenomorph/queen/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/queen/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----QUEEN END----//
 //============//
 //---CRUSHER START---//
@@ -345,6 +347,9 @@
 /mob/living/carbon/xenomorph/Defiler/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/Defiler/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----DEFILER END----//
 //============//
 //----SHRIKE START----//
@@ -357,6 +362,9 @@
 
 /mob/living/carbon/xenomorph/shrike/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/shrike/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----SHRIKE END----//
 //============//

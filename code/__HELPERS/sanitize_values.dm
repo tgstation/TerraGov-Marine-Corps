@@ -6,6 +6,12 @@
 			return number
 	return default
 
+/proc/sanitize_float(number, min=0, max=1, accuracy=1, default=0)
+	if(isnum(number))
+		number = round(number, accuracy)
+		if(min <= number && number <= max)
+			return number
+	return default
 
 /proc/sanitize_text(text, default = "")
 	if(istext(text))
@@ -114,25 +120,3 @@
 		return crunch + repeat_string(desired_format, "0")
 
 	return crunch + .
-
-/**
- * Check if the value is of type loadout_manager, and with correct loadouts in its loadout list.
- * Also null out loadouts_data, seller and loadout vendor to make saving possible in a jatum
- */
-/proc/sanitize_loadout_manager(value)
-	var/datum/loadout_manager/manager
-	if(!istype(value, /datum/loadout_manager))
-		manager = new
-		return manager
-	manager = value
-	if(!islist(manager.loadouts_list))
-		manager = new
-		return manager
-	for(var/loadout in manager.loadouts_list)
-		if(!istype(loadout, /datum/loadout))
-			manager.loadouts_list -= loadout
-	manager.loadouts_data = null
-	manager.seller = null
-	manager.loadout_vendor = null
-	return manager
-

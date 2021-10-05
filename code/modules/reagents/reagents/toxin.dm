@@ -115,7 +115,7 @@
 	toxpwr = 2
 	taste_description = "fish"
 
-/datum/reagent/toxin/zombiepowder
+/datum/reagent/toxin/huskpowder
 	name = "Zombie Powder"
 	description = "A strong neurotoxin that puts the subject into a death-like state."
 	reagent_state = SOLID
@@ -123,16 +123,16 @@
 	toxpwr = 0.5
 	taste_description = "death"
 
-/datum/reagent/toxin/zombiepowder/on_mob_add(mob/living/L, metabolism)
+/datum/reagent/toxin/huskpowder/on_mob_add(mob/living/L, metabolism)
 	ADD_TRAIT(L, TRAIT_FAKEDEATH, type)
 	return ..()
 
-/datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/toxin/huskpowder/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(0.25*effect_str)
 	L.Paralyze(20 SECONDS)
 	return ..()
 
-/datum/reagent/toxin/zombiepowder/on_mob_delete(mob/living/L, metabolism)
+/datum/reagent/toxin/huskpowder/on_mob_delete(mob/living/L, metabolism)
 	REMOVE_TRAIT(L, TRAIT_FAKEDEATH, type)
 	return ..()
 
@@ -190,7 +190,7 @@
 	if(istype(O,/obj/effect/alien/weeds))
 		var/obj/effect/alien/A = O
 		A.take_damage(min(0.5 * volume))
-	else if(istype(O,/obj/effect/glowshroom)) //even a small amount is enough to kill it
+	else if(istype(O,/obj/structure/glowshroom)) //even a small amount is enough to kill it
 		qdel(O)
 	else if(istype(O,/obj/effect/plantsegment))
 		if(prob(50)) qdel(O) //Kills kudzu too.
@@ -207,7 +207,7 @@
 			tray.check_level_sanity()
 			tray.update_icon()
 
-/datum/reagent/toxin/plantbgone/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+/datum/reagent/toxin/plantbgone/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	. = ..()
 	if(!ishuman(L))
 		return
@@ -356,7 +356,7 @@
 	L.take_limb_damage(0, 0.5*effect_str)
 	return ..()
 
-/datum/reagent/toxin/acid/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+/datum/reagent/toxin/acid/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	. = ..()
 	if(!(method in list(TOUCH, VAPOR, PATCH)))
 		return
@@ -364,31 +364,31 @@
 		var/mob/living/carbon/human/H = L
 
 		if(H.head)
-			if(prob(meltprob) && !CHECK_BITFIELD(H.head.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+			if(prob(meltprob) && !CHECK_BITFIELD(H.head.resistance_flags, RESIST_ALL))
 				if(show_message)
-					to_chat(H, "<span class='danger'>Your headgear melts away but protects you from the acid!</span>")
+					to_chat(H, span_danger("Your headgear melts away but protects you from the acid!"))
 				qdel(H.head)
 				H.update_inv_head(0)
 				H.update_hair(0)
 			else if(show_message)
-				to_chat(H, "<span class='warning'>Your headgear protects you from the acid.</span>")
+				to_chat(H, span_warning("Your headgear protects you from the acid."))
 			return
 
 		if(H.wear_mask)
-			if(prob(meltprob) && !CHECK_BITFIELD(H.wear_mask.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+			if(prob(meltprob) && !CHECK_BITFIELD(H.wear_mask.resistance_flags, RESIST_ALL))
 				if(show_message)
-					to_chat(H, "<span class='danger'>Your mask melts away but protects you from the acid!</span>")
+					to_chat(H, span_danger("Your mask melts away but protects you from the acid!"))
 				qdel(H.wear_mask)
 				H.update_inv_wear_mask(0)
 				H.update_hair(0)
 			else if(show_message)
-				to_chat(H, "<span class='warning'>Your mask protects you from the acid.</span>")
+				to_chat(H, span_warning("Your mask protects you from the acid."))
 			return
 
 		if(H.glasses) //Doesn't protect you from the acid but can melt anyways!
-			if(prob(meltprob) && !CHECK_BITFIELD(H.glasses.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+			if(prob(meltprob) && !CHECK_BITFIELD(H.glasses.resistance_flags, RESIST_ALL))
 				if(show_message)
-					to_chat(H, "<span class='danger'>Your glasses melts away!</span>")
+					to_chat(H, span_danger("Your glasses melts away!"))
 				qdel(H.glasses)
 				H.update_inv_glasses(0)
 
@@ -408,11 +408,11 @@
 			L.take_limb_damage(min(6*toxpwr, volume * toxpwr) * touch_protection)
 
 /datum/reagent/toxin/acid/reaction_obj(obj/O, volume)
-	if((istype(O,/obj/item) || istype(O,/obj/effect/glowshroom)) && prob(meltprob * 3))
-		if(!CHECK_BITFIELD(O.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+	if((istype(O,/obj/item) || istype(O,/obj/structure/glowshroom)) && prob(meltprob * 3))
+		if(!CHECK_BITFIELD(O.resistance_flags, RESIST_ALL))
 			var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 			I.desc = "Looks like this was \an [O] some time ago."
-			O.visible_message("<span class='warning'>\the [O] melts.</span>", null, 5)
+			O.visible_message(span_warning("\the [O] melts."), null, 5)
 			qdel(O)
 
 /datum/reagent/toxin/acid/polyacid
@@ -516,9 +516,9 @@
 /datum/reagent/toxin/xeno_growthtoxin/overdose_crit_process(mob/living/L, metabolism)
 	L.Losebreath(2)
 
-/datum/reagent/toxin/xeno_hemodile //slows by 25% and 50% based on base movement speed of marine with shoes on and deals an additional 20% of damage received as stamina damage
+/datum/reagent/toxin/xeno_hemodile //Slows its victim. The slow becomes twice as strong with each other xeno toxin in the victim's system.
 	name = "Hemodile"
-	description = "A stamina draining toxin. Causes increased stamina loss and slower movement."
+	description = "Impedes motor functions and muscle response, causing slower movement."
 	reagent_state = LIQUID
 	color = "#602CFF"
 	custom_metabolism = 0.4
@@ -526,24 +526,31 @@
 	scannable = TRUE
 	toxpwr = 0
 
-/datum/reagent/toxin/xeno_hemodile/on_mob_add(mob/living/L, metabolism, affecting)
-	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/hemodile_human_damage_taken)
-
 /datum/reagent/toxin/xeno_hemodile/on_mob_life(mob/living/L, metabolism)
-	if(prob(25))
-		to_chat(L, "<span class='warning'>You feel your legs tense up.</span>")
-	if(!L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
-		L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 1)
-	else
-		L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 3)
-	return ..()
 
-/datum/reagent/toxin/xeno_hemodile/proc/hemodile_human_damage_taken(mob/living/L, damage)
-	SIGNAL_HANDLER
-	L.adjustStaminaLoss(damage*0.2)
+	var/slowdown_multiplier = 1
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)) //Each other Defiler toxin increases the multiplier by 2x; 2x if we have 1 combo chem, 4x if we have 2
+		slowdown_multiplier *= 2
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+		slowdown_multiplier *= 2
+
+	switch(slowdown_multiplier) //Description varies in severity and probability with the multiplier
+		if(0 to 1 && prob(10))
+			to_chat(L, span_warning("You feel your legs tense up.") )
+		if(2 to 3.9 && prob(20))
+			to_chat(L, span_warning("You feel your legs go numb.") )
+		if(4 to INFINITY && prob(30))
+			to_chat(L, span_danger("You can barely feel your legs!") )
+
+	L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 1.5 * slowdown_multiplier)
+
+	return ..()
 
 /datum/reagent/toxin/xeno_hemodile/on_mob_delete(mob/living/L, metabolism)
 	L.remove_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE)
+
 
 /datum/reagent/toxin/xeno_transvitox //when damage is received, converts brute/burn equal to 50% of damage received to tox damage
 	name = "Transvitox"
@@ -559,12 +566,12 @@
 	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/transvitox_human_damage_taken)
 
 /datum/reagent/toxin/xeno_transvitox/on_mob_life(mob/living/L, metabolism)
-	if(prob(10))
-		to_chat(L, "<span class='warning'>You notice your wounds crusting over with disgusting green ichor.</span>")
-
 	var/fire_loss = L.getFireLoss()
 	if(!fire_loss) //If we have no burn damage, cancel out
 		return ..()
+
+	if(prob(10))
+		to_chat(L, span_warning("You notice your wounds crusting over with disgusting green ichor.") )
 
 	var/tox_cap_multiplier = 1
 
@@ -584,7 +591,7 @@
 		dam = fire_loss
 
 	L.heal_limb_damage(burn = dam, updating_health = TRUE) //Heal damage equal to toxin damage dealt; heal before applying toxin damage so we don't flash kill the target
-	L.adjustToxLoss(dam)
+	L.adjustToxLoss(dam * (1 + 0.1 * tox_cap_multiplier)) //Apply toxin damage. Deal extra toxin damage equal to 10% * the tox cap multiplier
 
 	return ..()
 
@@ -604,3 +611,68 @@
 		return
 
 	L.setToxLoss(clamp(tox_loss + min(L.getBruteLoss() * 0.1 * tox_cap_multiplier, damage * 0.1 * tox_cap_multiplier), tox_loss, DEFILER_TRANSVITOX_CAP)) //Deal bonus tox damage equal to a % of the lesser of the damage taken or the target's brute damage; capped at DEFILER_TRANSVITOX_CAP.
+
+/datum/reagent/toxin/xeno_sanguinal //deals brute damage and causes persistant bleeding. Causes additional damage for each other xeno chem in the system
+	name = "Sanguinal"
+	description = "Potent blood coloured toxin that causes constant bleeding and reacts with other xeno toxins to cause rapid tissue damage."
+	reagent_state = LIQUID
+	color = "#bb0a1e"
+	custom_metabolism = 0.4
+	overdose_threshold = 10000
+	scannable = TRUE
+	toxpwr = 0
+
+/datum/reagent/toxin/xeno_sanguinal/on_mob_life(mob/living/L, metabolism)
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin doubles the multiplier
+		L.adjustStaminaLoss(DEFILER_SANGUINAL_DAMAGE)
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+		L.adjustToxLoss(DEFILER_SANGUINAL_DAMAGE)
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+		L.adjustFireLoss(DEFILER_SANGUINAL_DAMAGE)
+
+	L.apply_damage(DEFILER_SANGUINAL_DAMAGE, BRUTE, sharp = TRUE) //Causes brute damage
+
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.drip(DEFILER_SANGUINAL_DAMAGE) //Causes bleeding
+
+	return ..()
+
+/datum/reagent/zombium
+	name = "Zombium"
+	description = "Powerful chemical able to raise the dead, origin is likely from an unidentified bioweapon."
+	reagent_state = LIQUID
+	color = "#ac0abb"
+	custom_metabolism = REAGENTS_METABOLISM * 0.25
+	scannable = TRUE
+	overdose_threshold = 20
+	overdose_crit_threshold = 50
+
+/datum/reagent/zombium/on_overdose_start(mob/living/L, metabolism)
+	RegisterSignal(L, COMSIG_HUMAN_SET_UNDEFIBBABLE, .proc/zombify)
+
+/datum/reagent/zombium/on_overdose_stop(mob/living/L, metabolism)
+	UnregisterSignal(L, COMSIG_HUMAN_SET_UNDEFIBBABLE)
+
+/datum/reagent/zombium/overdose_process(mob/living/L, metabolism)
+	if(prob(5))
+		L.emote("gasp")
+	L.adjustOxyLoss(1.5)
+	L.adjustToxLoss(1.5)
+
+/datum/reagent/zombium/overdose_crit_process(mob/living/L, metabolism)
+	if(prob(50))
+		L.emote("gasp")
+	L.adjustOxyLoss(5)
+	L.adjustToxLoss(5)
+
+///Signal handler preparing the source to become a husk
+/datum/reagent/zombium/proc/zombify(mob/living/carbon/human/H)
+	SIGNAL_HANDLER
+	UnregisterSignal(H, COMSIG_HUMAN_SET_UNDEFIBBABLE)
+	if(!H.has_working_organs())
+		return
+	H.do_jitter_animation(1000)
+	addtimer(CALLBACK(H, /mob/living/carbon/human.proc/revive_to_crit, TRUE, TRUE), SSticker.mode?.husk_transformation_time)

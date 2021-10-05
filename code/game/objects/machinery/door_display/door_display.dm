@@ -147,7 +147,7 @@
 		data += "<a href='?src=\ref[src];shutter=1'>Open Shutter</a><br/>"
 
 	if(!open_shutter)
-		data += "<span class='linkOff'>Open Door</span><br/>"
+		data += "[span_linkoff("Open Door")]<br/>"
 	else
 		if (open)
 			data += "<a href='?src=\ref[src];open=0'>Close Door</a><br/>"
@@ -158,7 +158,7 @@
 
 	for(var/obj/machinery/flasher/F in targets)
 		if(F.last_flash + 150 > world.time)
-			data += "<span class='linkOff'>Flash Charging</span>"
+			data += span_linkoff("Flash Charging")
 		else
 			data += "<a href='?src=\ref[src];flasher=1'>Activate Flash</a>"
 

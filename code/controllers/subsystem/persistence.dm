@@ -2,6 +2,11 @@
 #define LAST_UPDATE "last_update" //last time the season changed
 #define CURRENT_SEASON "current_season" //current season of the section
 
+//Current season info defines
+#define CURRENT_SEASON_NUMBER "current_season_number"
+#define CURRENT_SEASON_NAME "current_season_name"
+#define CURRENT_SEASON_DESC "current_season_description"
+
 //Season names
 #define SEASONAL_GUNS "seasonal_guns"
 
@@ -12,7 +17,7 @@ SUBSYSTEM_DEF(persistence)
 
 	///Stores how long each season should last
 	var/list/seasons_durations = list(
-		SEASONAL_GUNS = 4 DAYS,
+		SEASONAL_GUNS = 24 HOURS,
 	)
 	///Stores the current season for each season group
 	var/list/season_progress = list()
@@ -26,17 +31,95 @@ SUBSYSTEM_DEF(persistence)
 		/datum/season_datum/weapons/guns/pistol_seasonal_two,
 		/datum/season_datum/weapons/guns/rifle_seasonal_two,
 		/datum/season_datum/weapons/guns/pistol_seasonal_three,
+		/datum/season_datum/weapons/guns/pistol_seasonal_four,
+		/datum/season_datum/weapons/guns/copsandrobbers_seasonal,
+		/datum/season_datum/weapons/guns/smg_seasonal,
+		/datum/season_datum/weapons/guns/storm_seasonal,
 		)
 	)
+	///The saved list of custom outfits names
+	var/list/custom_loadouts = list()
+	///When were the last rounds of specific game mode played, in ticks
+	var/list/last_modes_round_date
 
 ///Loads data at the start of the round
 /datum/controller/subsystem/persistence/Initialize()
 	LoadSeasonalItems()
+	load_custom_loadouts_list()
+	load_last_civil_war_round_time()
 	return ..()
 
 ///Stores data at the end of the round
 /datum/controller/subsystem/persistence/proc/CollectData()
+	save_custom_loadouts_list()
+	save_last_civil_war_round_time()
 	return
+
+///Loads the last civil war round date
+/datum/controller/subsystem/persistence/proc/load_last_civil_war_round_time()
+	var/json_file = file("data/last_modes_round_date.json")
+	if(!fexists(json_file))
+		last_modes_round_date = list()
+		return
+	last_modes_round_date = json_decode(file2text(json_file))
+
+///Loads the list of custom outfits names
+/datum/controller/subsystem/persistence/proc/load_custom_loadouts_list()
+	var/json_file = file("data/custom_loadouts.json")
+	if(!fexists(json_file))
+		initialize_custom_loadouts_file()
+	custom_loadouts = json_decode(file2text(json_file))
+
+///Load a loadout from the persistence loadouts savefile
+/datum/controller/subsystem/persistence/proc/load_loadout(loadout_name)
+	var/savefile/S = new /savefile("data/persistence.sav")
+	if(!S)
+		return FALSE
+	S.cd = "/loadouts"
+	var/loadout_json = ""
+	READ_FILE(S[loadout_name], loadout_json)
+	if(!loadout_json)
+		return FALSE
+	var/datum/loadout/loadout = jatum_deserialize(loadout_json)
+	return loadout
+
+///Save the date of the last civil war round
+/datum/controller/subsystem/persistence/proc/save_last_civil_war_round_time()
+	var/json_file = file("data/last_modes_round_date.json")
+	fdel(json_file)
+	WRITE_FILE(json_file, json_encode(last_modes_round_date))
+
+///Saves the list of custom outfits names
+/datum/controller/subsystem/persistence/proc/save_custom_loadouts_list()
+	var/json_file = file("data/custom_loadouts.json")
+	fdel(json_file)
+	WRITE_FILE(json_file, json_encode(custom_loadouts))
+
+///Save a loadout into the persistence savefile
+/datum/controller/subsystem/persistence/proc/save_loadout(datum/loadout/loadout)
+	var/savefile/S = new /savefile("data/persistence.sav")
+	if(!S)
+		return FALSE
+	S.cd = "/loadouts"
+	loadout.loadout_vendor = null
+	var/loadout_json = jatum_serialize(loadout)
+	WRITE_FILE(S["[loadout.name]"], loadout_json)
+	custom_loadouts += loadout.name
+	return TRUE
+
+///Constructs a message with information about the active seasons and their current buckets
+/datum/controller/subsystem/persistence/proc/seasons_info_message()
+	var/message = ""
+	for(var/season_entry in season_progress)
+		var/season_name = jointext(splittext("[season_entry]", "_"), " ")
+		var/season_name_first_letter = uppertext(copytext(season_name, 1, 2))
+		var/season_name_remainder = copytext(season_name, 2, length(season_name) + 1)
+		season_name = season_name_first_letter + season_name_remainder
+		message += span_seasons_announce("<b>[season_name]</b> - season [season_progress[season_entry][CURRENT_SEASON_NUMBER]]<br>")
+		message += span_season_additional_info("<b>Title:</b> [season_progress[season_entry][CURRENT_SEASON_NAME]]<br>")
+		message += span_season_additional_info("<b>Description:</b> [season_progress[season_entry][CURRENT_SEASON_DESC]]<br>")
+
+	return message
 
 ///Loads seasons data, advances seasons and saves the data
 /datum/controller/subsystem/persistence/proc/LoadSeasonalItems()
@@ -68,12 +151,15 @@ SUBSYSTEM_DEF(persistence)
 		seasons_file_info[season_class][CURRENT_SEASON]++
 
 	//Initializes the season datum that is chosen based on the current season
-	season_progress[season_class] = seasons_file_info[season_class][CURRENT_SEASON]
-	var/seasons_buckets_list_index = season_progress[season_class] % length(seasons_buckets[season_class]) + 1
+	season_progress[season_class] = list()
+	season_progress[season_class][CURRENT_SEASON_NUMBER] = seasons_file_info[season_class][CURRENT_SEASON]
+	var/seasons_buckets_list_index = season_progress[season_class][CURRENT_SEASON_NUMBER] % length(seasons_buckets[season_class]) + 1
 	var/season_typepath = seasons_buckets[season_class][seasons_buckets_list_index]
 	var/datum/season_datum/season_instance = new season_typepath
 
 	//Does stuff with the initialized season datum
+	season_progress[season_class][CURRENT_SEASON_NAME] = season_instance.name
+	season_progress[season_class][CURRENT_SEASON_DESC] = season_instance.description
 	season_items[season_class] = season_instance.item_list
 
 	//returns the updated season file data to write over the stored season file information
@@ -85,6 +171,12 @@ SUBSYSTEM_DEF(persistence)
 	var/list/seasons_file_info = list()
 	WRITE_FILE(json_file, json_encode(seasons_file_info))
 
+///Initializes the custom loadouts file if it is missing
+/datum/controller/subsystem/persistence/proc/initialize_custom_loadouts_file()
+	var/json_file = file("data/custom_loadouts.json")
+	var/list/custom_loadouts_info = list()
+	WRITE_FILE(json_file, json_encode(custom_loadouts_info))
+
 ///Used to make item buckets for the seasonal items system
 /datum/season_datum
 	///Name of the  season
@@ -95,7 +187,7 @@ SUBSYSTEM_DEF(persistence)
 	var/list/item_list = list()
 
 /datum/season_datum/weapons/guns/rifle_seasonal_one
-	name = "rifles bucket 1"
+	name = "AK47 and M16"
 	description = "Rifle guns, previously at import"
 	item_list = list(
 		/obj/item/weapon/gun/rifle/ak47 = -1,
@@ -105,26 +197,49 @@ SUBSYSTEM_DEF(persistence)
 		)
 
 /datum/season_datum/weapons/guns/rifle_seasonal_two
-	name = "rifles bucket 2"
-	description = "Rifle guns, previously at import"
+	name = "Pulse Rifles"
+	description = "A failed classic and it's eventual successor."
 	item_list = list(
-		/obj/item/weapon/gun/smg/uzi = -1,
-		/obj/item/ammo_magazine/smg/uzi = -1,
+		/obj/item/weapon/gun/rifle/m412 = -1,
+		/obj/item/ammo_magazine/rifle = -1,
+		/obj/item/weapon/gun/rifle/m41a = -1,
+		/obj/item/ammo_magazine/rifle/m41a = -1,
+		)
+
+/datum/season_datum/weapons/guns/rifle_seasonal_three
+	name = "Burst and CQC"
+	description = "A Machinecarbine and a burst fire heavy rifle."
+	item_list = list(
+		/obj/item/weapon/gun/rifle/type71/seasonal = -1,
+		/obj/item/ammo_magazine/rifle/type71 = -1,
+		/obj/item/weapon/gun/rifle/alf_machinecarbine = -1,
+		/obj/item/ammo_magazine/rifle/alf_machinecarbine = -1,
 		)
 
 /datum/season_datum/weapons/guns/pistol_seasonal_one
-	name = "pistols bucket 1"
-	description = "Pistol guns, previously at import"
+	name = "Bouncy revolver and average revolver"
+	description = "A rather average revolver and it's far bouncier smaller cousin."
 	item_list = list(
 		/obj/item/weapon/gun/revolver/small = -1,
 		/obj/item/ammo_magazine/revolver/small = -1,
-		/obj/item/weapon/gun/revolver/m44 = -1,
+		/obj/item/weapon/gun/revolver/single_action/m44 = -1,
 		/obj/item/ammo_magazine/revolver = -1,
 		)
 
+/datum/season_datum/weapons/guns/pistol_seasonal_four
+	name = "Judge and Nagant"
+	description = "More revolvers for the revolver mains."
+	item_list = list(
+		/obj/item/weapon/gun/revolver/judge = -1,
+		/obj/item/ammo_magazine/revolver/judge = -1,
+		/obj/item/ammo_magazine/revolver/judge/buckshot = -1,
+		/obj/item/weapon/gun/revolver/upp = -1,
+		/obj/item/ammo_magazine/revolver/upp = -1,
+		)
+
 /datum/season_datum/weapons/guns/pistol_seasonal_two
-	name = "pistols bucket 2"
-	description = "Pistol guns, previously at import"
+	name = "G22 and a heavy pistol"
+	description = "More pistols for the pistol mains."
 	item_list = list(
 		/obj/item/weapon/gun/pistol/g22 = -1,
 		/obj/item/ammo_magazine/pistol/g22 = -1,
@@ -133,11 +248,43 @@ SUBSYSTEM_DEF(persistence)
 		)
 
 /datum/season_datum/weapons/guns/pistol_seasonal_three
-	name = "pistols bucket 3"
-	description = "Pistol guns, previously at import"
+	name = "High-power pistols"
+	description = "More pistols in the vendors, why not?"
 	item_list = list(
 		/obj/item/weapon/gun/pistol/vp78 = -1,
 		/obj/item/ammo_magazine/pistol/vp78 = -1,
 		/obj/item/weapon/gun/pistol/highpower = -1,
 		/obj/item/ammo_magazine/pistol/highpower = -1,
 		)
+
+/datum/season_datum/weapons/guns/copsandrobbers_seasonal
+	name = "Cops and robbers"
+	description = "A Revolver and a classic SMG. Truly cops and robbers."
+	item_list = list(
+		/obj/item/weapon/gun/smg/uzi = -1,
+		/obj/item/ammo_magazine/smg/uzi = -1,
+		/obj/item/weapon/gun/revolver/cmb = -1,
+		/obj/item/ammo_magazine/revolver/cmb = -1,
+		)
+
+/datum/season_datum/weapons/guns/smg_seasonal
+	name = "SMGs"
+	description = "Two different SMGs. A classic and a new guy."
+	item_list = list(
+		/obj/item/weapon/gun/smg/m25 = -1,
+		/obj/item/ammo_magazine/smg/m25 = -1,
+		/obj/item/weapon/gun/smg/mp7 = -1,
+		/obj/item/ammo_magazine/smg/mp7 = -1,
+		)
+
+/datum/season_datum/weapons/guns/storm_seasonal
+	name = "Storm weapons"
+	description = "Two classics on opposite sides, both made for CQC."
+	item_list = list(
+		/obj/item/weapon/gun/rifle/mkh = -1,
+		/obj/item/ammo_magazine/rifle/mkh = -1,
+		/obj/item/weapon/gun/smg/ppsh = -1,
+		/obj/item/ammo_magazine/smg/ppsh = -1,
+		/obj/item/ammo_magazine/smg/ppsh/extended = -1,
+		)
+

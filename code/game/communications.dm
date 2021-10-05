@@ -136,7 +136,7 @@ GLOBAL_LIST_INIT(reverseradiochannels, list(
 	"[FREQ_BRAVO]" = RADIO_CHANNEL_BRAVO,
 	"[FREQ_CHARLIE]" = RADIO_CHANNEL_CHARLIE,
 	"[FREQ_DELTA]" = RADIO_CHANNEL_DELTA,
-	"[FREQ_COMMON_REBEL]" = RADIO_CHANNEL_COMMON,
+	"[FREQ_COMMON_REBEL]" = RADIO_CHANNEL_COMMON_REBEL,
 	"[FREQ_REQUISITIONS_REBEL]" = RADIO_CHANNEL_REQUISITIONS_REBEL,
 	"[FREQ_COMMAND_REBEL]" = RADIO_CHANNEL_COMMAND_REBEL,
 	"[FREQ_MEDICAL_REBEL]" = RADIO_CHANNEL_MEDICAL_REBEL,
@@ -203,6 +203,7 @@ GLOBAL_LIST_INIT(reverseradiochannels, list(
 				if(start_point.z != end_point.z || (range > 0 && get_dist(start_point, end_point) > range))
 					continue
 			device.receive_signal(signal)
+			CHECK_TICK
 
 
 /datum/radio_frequency/proc/add_listener(obj/device, filter)

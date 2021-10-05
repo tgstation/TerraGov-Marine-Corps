@@ -5,7 +5,6 @@ GLOBAL_VAR_INIT(enter_allowed, TRUE)
 GLOBAL_VAR_INIT(respawn_allowed, TRUE)
 
 GLOBAL_VAR_INIT(respawntime, 30 MINUTES)
-GLOBAL_VAR_INIT(xenorespawntime, 2 MINUTES)
 GLOBAL_VAR_INIT(fileaccess_timer, 0)
 
 GLOBAL_VAR_INIT(custom_info, "")
@@ -18,7 +17,7 @@ GLOBAL_PROTECT(non_ascii_regex)
 ///Returns true if this contains text that is not ASCII
 #define NON_ASCII_CHECK(text) (findtext(text, GLOB.non_ascii_regex))
 
-GLOBAL_LIST_EMPTY(custom_outfits)
+GLOBAL_LIST_EMPTY(custom_loadouts)
 
 GLOBAL_LIST_EMPTY(admin_datums)
 GLOBAL_PROTECT(admin_datums)

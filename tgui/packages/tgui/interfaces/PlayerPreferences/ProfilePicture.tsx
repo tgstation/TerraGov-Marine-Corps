@@ -3,7 +3,7 @@ import { ByondUi } from '../../components';
 
 
 export const ProfilePicture = (props, context) => {
-  const { data } = useBackend<PlayerPreferencesData>(context);
+  const { data } = useBackend<ProfilePictureData>(context);
   const { mapRef } = data;
   return (
     <ByondUi

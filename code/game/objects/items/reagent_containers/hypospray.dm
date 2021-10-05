@@ -30,16 +30,16 @@
 	if(tgui_alert(user, "Are you sure you want to empty [src]?", "Flush [src]:", list("Yes", "No")) != "Yes")
 		return
 	if(isturf(user.loc))
-		to_chat(user, "<span class='notice'>You flush the contents of [src].</span>")
+		to_chat(user, span_notice("You flush the contents of [src]."))
 		reagents.reaction(user.loc)
 		reagents.clear_reagents()
 
 /obj/item/reagent_containers/hypospray/proc/label(mob/user)
 	var/str = copytext(reject_bad_text(input(user,"Hypospray label text?", "Set label", "")), 1, MAX_NAME_LEN)
 	if(!length(str))
-		to_chat(user, "<span class='notice'>Invalid text.</span>")
+		to_chat(user, span_notice("Invalid text."))
 		return
-	to_chat(user, "<span class='notice'>You label [src] as \"[str]\".</span>")
+	to_chat(user, span_notice("You label [src] as \"[str]\"."))
 	name = "[core_name] ([str])"
 	label = str
 
@@ -47,7 +47,7 @@
 /obj/item/reagent_containers/hypospray/afterattack(atom/A, mob/living/user)
 	if(istype(A, /obj/item/storage/pill_bottle)) //this should only run if its a pillbottle
 		if(reagents.total_volume >= volume)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			to_chat(user, span_warning("[src] is full."))
 			return  //early returning if its full
 
 		if(!A.contents.len)
@@ -55,11 +55,11 @@
 		var/obj/item/pill = A.contents[1]
 
 		if((pill.reagents.total_volume + reagents.total_volume) > volume)
-			to_chat(user, "<span class='warning'>[src] cannot hold that much more.</span>")
+			to_chat(user, span_warning("[src] cannot hold that much more."))
 			return // so it doesnt let people have hypos more filled than their volume
 		pill.reagents.trans_to(src, pill.reagents.total_volume)
 
-		to_chat(user, "<span class='notice'>You dissolve pill inside [A] in [src].</span>")
+		to_chat(user, span_notice("You dissolve pill inside [A] in [src]."))
 		A.contents -= pill
 		qdel(pill)
 		return
@@ -72,7 +72,7 @@
 		return
 	if(inject_mode == HYPOSPRAY_INJECT_MODE_DRAW) //if we're draining
 		if(reagents.holder_full())
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			to_chat(user, span_warning("[src] is full."))
 			inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
 			update_icon() //So we now display as Inject
 			return
@@ -81,16 +81,16 @@
 			var/amount = min(reagents.maximum_volume - reagents.total_volume, amount_per_transfer_from_this)
 			var/mob/living/carbon/C = A
 			if(C.get_blood_id() && reagents.has_reagent(C.get_blood_id()))
-				to_chat(user, "<span class='warning'>There is already a blood sample in [src].</span>")
+				to_chat(user, span_warning("There is already a blood sample in [src]."))
 				return
 			if(!C.blood_type)
-				to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
+				to_chat(user, span_warning("You are unable to locate any blood."))
 				return
 
 			if(ishuman(C))
 				var/mob/living/carbon/human/H = C
 				if(H.species.species_flags & NO_BLOOD)
-					to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
+					to_chat(user, span_warning("You are unable to locate any blood."))
 					return
 				else
 					C.take_blood(src,amount)
@@ -99,7 +99,7 @@
 
 			reagents.handle_reactions()
 			user.visible_message("<span clas='warning'>[user] takes a blood sample from [A].</span>",
-								"<span class='notice'>You take a blood sample from [A].</span>", null, 4)
+								span_notice("You take a blood sample from [A]."), null, 4)
 
 		else if(istype(A, /obj)) //if not mob
 			if(!A.reagents.total_volume)
@@ -107,26 +107,26 @@
 				return
 
 			if(!A.is_drawable())
-				to_chat(user, "<span class='warning'>You cannot directly remove reagents from this object.</span>")
+				to_chat(user, span_warning("You cannot directly remove reagents from this object."))
 				return
 
 			var/trans = A.reagents.trans_to(src, amount_per_transfer_from_this)
 
-			to_chat(user, "<span class='notice'>You fill [src] with [trans] units of the solution.</span>")
+			to_chat(user, span_notice("You fill [src] with [trans] units of the solution."))
 
 		on_reagent_change()
 		return TRUE
 
 
 	if(!reagents.total_volume)
-		to_chat(user, "<span class='warning'>[src] is empty.</span>")
+		to_chat(user, span_warning("[src] is empty."))
 		return
 	if(!A.is_injectable() && !ismob(A))
-		to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
+		to_chat(user, span_warning("You cannot directly fill this object."))
 		return
 	if(skilllock && user.skills.getRating("medical") < SKILL_MEDICAL_NOVICE)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the [src].</span>",
-		"<span class='notice'>You fumble around figuring out how to use the [src].</span>")
+		user.visible_message(span_notice("[user] fumbles around figuring out how to use the [src]."),
+		span_notice("You fumble around figuring out how to use the [src]."))
 		if(!do_after(user, SKILL_TASK_EASY, TRUE, A, BUSY_ICON_UNSKILLED) || (!in_range(A, user) || !user.Adjacent(A)))
 			return
 
@@ -137,8 +137,8 @@
 		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && M.skills.getRating("cqc") >= SKILL_CQC_MP)
 			user.Paralyze(60)
 			log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
-			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!</span>", \
-				"<span class='warning'>You knock [user] to the ground before they could inject you!</span>", null, 5)
+			M.visible_message(span_danger("[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!"), \
+				span_warning("You knock [user] to the ground before they could inject you!"), null, 5)
 			playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 			return FALSE
 
@@ -149,13 +149,13 @@
 
 	if(ismob(A))
 		var/mob/M = A
-		to_chat(user, "<span class='notice'>You inject [M] with [src]</span>.")
-		to_chat(M, "<span class='warning'>You feel a tiny prick!</span>")
+		to_chat(user, "[span_notice("You inject [M] with [src]")].")
+		to_chat(M, span_warning("You feel a tiny prick!"))
 
 	playsound(loc, 'sound/items/hypospray.ogg', 50, 1)
 	reagents.reaction(A, INJECT)
 	var/trans = reagents.trans_to(A, amount_per_transfer_from_this)
-	to_chat(user, "<span class='notice'>[trans] units injected. [reagents.total_volume] units remaining in [src]. </span>")
+	to_chat(user, span_notice("[trans] units injected. [reagents.total_volume] units remaining in [src]. "))
 
 	return TRUE
 
@@ -249,9 +249,9 @@
 
 	if(href_list["inject_mode"])
 		if(inject_mode)
-			to_chat(usr, "<span class='notice'>[src] has been set to draw mode. It will now drain reagents.</span>")
+			to_chat(usr, span_notice("[src] has been set to draw mode. It will now drain reagents."))
 		else
-			to_chat(usr, "<span class='notice'>[src] has been set to inject mode. It will now inject reagents.</span>")
+			to_chat(usr, span_notice("[src] has been set to inject mode. It will now inject reagents."))
 		inject_mode = !inject_mode
 		update_icon()
 
@@ -375,7 +375,7 @@
 /obj/item/reagent_containers/hypospray/advanced/proc/display_reagents(mob/user)
 	if(!isnull(reagents))
 		var/list/dat = list()
-		dat += "\n \t <span class='notice'><b>Total Reagents:</b> [reagents.total_volume]/[volume]. <b>Dosage Size:</b> [min(reagents.total_volume, amount_per_transfer_from_this)]</span></br>"
+		dat += "\n \t [span_notice("<b>Total Reagents:</b> [reagents.total_volume]/[volume]. <b>Dosage Size:</b> [min(reagents.total_volume, amount_per_transfer_from_this)]")]</br>"
 		if(reagents.reagent_list.len > 0)
 			for (var/datum/reagent/R in reagents.reagent_list)
 				var/percent = round(R.volume / max(0.01 , reagents.total_volume * 0.01),0.01)

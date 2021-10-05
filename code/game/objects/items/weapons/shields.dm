@@ -29,6 +29,8 @@
 	destroy_sound = 'sound/effects/glassbr3.ogg'
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 
+/obj/item/weapon/shield/riot/metal
+	icon_state = "riot_metal"
 
 /obj/item/weapon/shield/riot/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -38,15 +40,15 @@
 		return
 	switch(health_status)
 		if(0 to 20)
-			to_chat(user, "<span class='notice'>It's falling appart, will not be able to withstand much further damage.</span>")
+			to_chat(user, span_notice("It's falling appart, will not be able to withstand much further damage."))
 		if(20 to 40)
-			to_chat(user, "<span class='notice'>It has cracked edges and dents.</span>")
+			to_chat(user, span_notice("It has cracked edges and dents."))
 		if(40 to 60)
-			to_chat(user, "<span class='notice'>It appears damaged, but still sturdy.</span>")
+			to_chat(user, span_notice("It appears damaged, but still sturdy."))
 		if(60 to 80)
-			to_chat(user, "<span class='notice'>It appears in decent condition, with some damage marks.</span>")
+			to_chat(user, span_notice("It appears in decent condition, with some damage marks."))
 		if(80 to 100)
-			to_chat(user, "<span class='notice'>It appears in perfect condition.</span>")
+			to_chat(user, span_notice("It appears in perfect condition."))
 
 /obj/item/weapon/shield/riot/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -57,10 +59,10 @@
 			return
 
 		if(metal_sheets.get_amount() < 1)
-			to_chat(user, "<span class='warning'>You need one metal sheet to repair the base of [src].</span>")
+			to_chat(user, span_warning("You need one metal sheet to repair the base of [src]."))
 			return
 
-		visible_message("<span class='notice'>[user] begins to repair the base of [src].</span>")
+		visible_message(span_notice("[user] begins to repair the base of [src]."))
 
 		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
 			return
@@ -69,7 +71,7 @@
 			return
 
 		repair_damage(max_integrity * 0.2)
-		visible_message("<span class='notice'>[user] repairs the base of [src].</span>")
+		visible_message(span_notice("[user] repairs the base of [src]."))
 
 
 /obj/item/weapon/shield/riot/welder_act(mob/living/user, obj/item/I)
@@ -86,22 +88,22 @@
 		return TRUE
 
 	if(obj_integrity <= (max_integrity - integrity_failure) * 0.2)
-		to_chat(user, "<span class='warning'>[src] has sustained too much structural damage and needs more metal plates to be repaired.</span>")
+		to_chat(user, span_warning("[src] has sustained too much structural damage and needs more metal plates to be repaired."))
 		return TRUE
 
 	if(obj_integrity == max_integrity)
-		to_chat(user, "<span class='warning'>[src] doesn't need repairs.</span>")
+		to_chat(user, span_warning("[src] doesn't need repairs."))
 		return TRUE
 
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to repair [src].</span>",
-		"<span class='notice'>You fumble around figuring out how to repair [src].</span>")
+		user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
+		span_notice("You fumble around figuring out how to repair [src]."))
 		var/fumbling_time = 3 SECONDS * ( SKILL_ENGINEER_METAL - user.skills.getRating("engineer") )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
-	user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
-	"<span class='notice'>You begin repairing the damage to [src].</span>")
+	user.visible_message(span_notice("[user] begins repairing damage to [src]."),
+	span_notice("You begin repairing the damage to [src]."))
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 
 	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
@@ -111,11 +113,11 @@
 		return TRUE
 
 	if(!WT.remove_fuel(2, user))
-		to_chat(user, "<span class='warning'>Not enough fuel to finish the task.</span>")
+		to_chat(user, span_warning("Not enough fuel to finish the task."))
 		return TRUE
 
-	user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
-	"<span class='notice'>You repair [src].</span>")
+	user.visible_message(span_notice("[user] repairs some damage on [src]."),
+	span_notice("You repair [src]."))
 	repair_damage(40)
 	update_icon()
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
@@ -123,7 +125,7 @@
 
 /obj/item/weapon/shield/riot/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/baton) && world.time >= cooldown)
-		user.visible_message("<span class='warning'>[user] bashes [src] with [I]!</span>")
+		user.visible_message(span_warning("[user] bashes [src] with [I]!"))
 		playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1)
 		cooldown = world.time + 2.5 SECONDS
 		return TRUE
@@ -170,9 +172,9 @@
 		return ..()
 	TOGGLE_BITFIELD(flags_item, NODROP)
 	if(CHECK_BITFIELD(flags_item, NODROP))
-		to_chat(user, "<span class='warning'>You tighten the strap of [src] around your hand!</span>")
+		to_chat(user, span_warning("You tighten the strap of [src] around your hand!"))
 	else
-		to_chat(user, "<span class='notice'>You loosen the strap of [src] around your hand!</span>")
+		to_chat(user, span_notice("You loosen the strap of [src] around your hand!"))
 
 /obj/item/weapon/shield/energy
 	name = "energy combat shield"
@@ -198,10 +200,10 @@
 		force = on_force
 		w_class = WEIGHT_CLASS_BULKY
 		playsound(user, 'sound/weapons/saberon.ogg', 25, TRUE)
-		to_chat(user, "<span class='notice'>[src] is now active.</span>")
+		to_chat(user, span_notice("[src] is now active."))
 	else
 		force = initial(force)
 		w_class = WEIGHT_CLASS_TINY
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, TRUE)
-		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
+		to_chat(user, span_notice("[src] can now be concealed."))
 	add_fingerprint(user, "turned [active ? "on" : "off"]")

@@ -27,20 +27,20 @@
 
 //Update this whenever you need to take advantage of more recent byond features
 #define MIN_COMPILER_VERSION 513
-#define MIN_COMPILER_BUILD 1523
+#define MIN_COMPILER_BUILD 1539
 #ifndef SPACEMAN_DMM
 #if DM_VERSION < MIN_COMPILER_VERSION || DM_BUILD < MIN_COMPILER_BUILD
 //Don't forget to update this part
 #error Your version of BYOND is too out-of-date to compile this project. Go to https://secure.byond.com/download and update.
-#error You need version 513.1523 or higher
+#error You need version 513.1539 or higher
 #endif
 #endif
 
 //Update this whenever the byond version is stable so people stop updating to hilariously broken versions
 #define MAX_COMPILER_VERSION 514
-#define MAX_COMPILER_BUILD 1554
+#define MAX_COMPILER_BUILD 1566
 #if DM_VERSION > MAX_COMPILER_VERSION || DM_BUILD > MAX_COMPILER_BUILD
-#warn WARNING! your byond version is over the recommended version(MAX_COMPILER_VERSION:MAX_COMPILER_BUILD)! There may be unexpected byond bugs!
+#warn WARNING! your byond version is over the recommended version! There may be unexpected byond bugs!
 #endif
 
 //Don't load extools on 514
@@ -54,10 +54,23 @@
 #define AS as anything
 #endif
 
-#ifdef USE_EXTOOLS
-//#define REFERENCE_TRACKING //Enables extools-powered reference tracking system, letting you see what is
-									//referencing objects that refuse to hard delete
-#endif
+///Used to find the sources of harddels, quite laggy, don't be surpised if it freezes your client for a good while
+//#define REFERENCE_TRACKING
+#ifdef REFERENCE_TRACKING
+
+///Should we be logging our findings or not
+#define REFERENCE_TRACKING_LOG
+
+///Used for doing dry runs of the reference finder, to test for feature completeness
+//#define REFERENCE_TRACKING_DEBUG
+
+///Run a lookup on things hard deleting by default.
+//#define GC_FAILURE_HARD_LOOKUP
+#ifdef GC_FAILURE_HARD_LOOKUP
+#define FIND_REF_NO_CHECK_TICK
+#endif //ifdef GC_FAILURE_HARD_LOOKUP
+
+#endif //ifdef REFERENCE_TRACKING
 
 //Additional code for the above flags.
 #ifdef TESTING
@@ -71,3 +84,5 @@
 #ifdef CITESTING
 #define TESTING
 #endif
+
+//#define SHADOW_DEBUG

@@ -161,7 +161,7 @@
 	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(!ismineralturf(src) && !istype(src, /turf/closed/gm/dense) && !istype(src, /turf/closed/glass) && !istype(src, /turf/closed/desertdamrockwall) && !istype(src, /turf/closed/brock))
-			to_chat(user, "<span class='warning'>[P] can't cut through this!</span>")
+			to_chat(user, span_warning("[P] can't cut through this!"))
 			return
 		if(!P.start_cut(user, name, src))
 			return
@@ -214,7 +214,7 @@
 	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(!ismineralturf(src) && !istype(src, /turf/closed/gm/dense) && !istype(src, /turf/closed/ice) && !istype(src, /turf/closed/desertdamrockwall) && !istype(src, /turf/closed/brock))
-			to_chat(user, "<span class='warning'>[P] can't cut through this!</span>")
+			to_chat(user, span_warning("[P] can't cut through this!"))
 			return
 		if(!P.start_cut(user, name, src))
 			return
@@ -405,4 +405,3 @@
 	icon_state = "0"
 	can_bloody = FALSE
 	light_power = 0.25
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED

@@ -196,3 +196,70 @@
   jupyterkat, Wayland-Smithy:
   - qol: you can now press space or enter to select in tgui input lists
   - bugfix: tgui input lists no longer break when duplicate keys are passed
+2021-06-25:
+  BraveMole:
+  - balance: Nightfall; better range and lower CD
+  - balance: Gravity crush; higher plasma cost, lower windup, canceling the windup
+      consumme the plasma
+  - balance: Young king get grav crush
+  - balance: The king is selected among live xenos
+  - balance: I takes 5 minutes for the king to spawn, rather than 10
+  - bugfix: Fix larva dying when hijacking
+  QualityVan:
+  - code_imp: Cleared out old tackle values
+  SpaceLove:
+  - rscdel: Stripper suits gone.
+  - admin: Removes admin ability to spawn stripper suits.
+  Surrealaser:
+  - bugfix: Alien slashes now hit bodybag occupants.
+  Wayland-Smithy:
+  - bugfix: Fixed "standard revolver bullet" still having shake.
+  lbnesquik:
+  - qol: The AI can now vend from MONEY restricted vendors.
+2021-06-26:
+  Pariah919:
+  - bugfix: fixed resin jelly not having proper cooldown and sending double messages
+      when your hands are full
+  QualityVan:
+  - bugfix: Jelly shouldn't last forever any more in certain cases.
+  - code_imp: Refactored jelly to an effect, plus some fire resistance cleanup.
+  - balance: Jelly heals a bit of burns while active.
+  - bugfix: Hunter pounce out of stealth now correctly gets its tiny sneak attack
+      bonus
+  - code_imp: Misc. hunter stealth code cleanup
+  - balance: Hunter stealth cooldown starts on leaving stealth.
+  - spellcheck: Rephrased codex entries for attachments with burst scatter modifiers
+  Trilbyspaceclone:
+  - bugfix: Basalt should now be able to dig up for sandbags
+  lbnesquik:
+  - bugfix: Lowered the vote noise.
+  - rscadd: Added a new way to ID the beacons
+2021-06-27:
+  Alterist:
+  - bugfix: a rogue beach tile on prison station have been captured and sent to centcom
+      for study
+  Wayland-Smithy:
+  - bugfix: Fixed an issue with add_fingerprint and power cables.
+2021-06-28:
+  BraveMole:
+  - bugfix: Fix headset, comms, minimap and supply for HvH
+  - expansion: Inform you on which faction you are on when spawning in HvH mode
+  Surrealaser:
+  - bugfix: Emit Noxious Gas's last puff is now larger as previously intended.
+  Wayland-Smithy:
+  - balance: Hivemind resin door manipulation cooldown is gone.
+  - qol: Hivemind can now open and close doors with Ctrl+Click as well as Alt+Click.
+  - bugfix: Fixed a duplicate proc override for /xenomorph/hivemind/
+  lbnesquik:
+  - rscadd: Added extra cameras & lights to Pillar of Spring
+  - bugfix: fixed a few cameras placement
+  - balance: Slightly increase sectoids fire rate.
+2021-06-29:
+  BraveMole:
+  - balance: FC has less skill in pistols and melee
+  - bugfix: Can join rebels now
+  - bugfix: No longer 4 squads on POS
+2021-06-30:
+  Wayland-Smithy:
+  - bugfix: Fixes the silo collapse timer.
+  - bugfix: Fixed the TX-7 ammo box icon and name.

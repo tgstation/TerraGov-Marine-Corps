@@ -24,9 +24,9 @@
 /obj/item/reagent_containers/hypospray/autoinjector/examine(mob/user)
 	..()
 	if(reagents && reagents.reagent_list.len)
-		to_chat(user, "<span class='notice'>It is currently loaded.</span>")
+		to_chat(user, span_notice("It is currently loaded."))
 	else
-		to_chat(user, "<span class='notice'>It is spent.</span>")
+		to_chat(user, span_notice("It is spent."))
 
 /obj/item/reagent_containers/hypospray/autoinjector/fillable
 	desc = "An autoinjector loaded with... something, consult the doctor who gave this to you."
@@ -49,8 +49,8 @@
 	list_reagents = list(
 		/datum/reagent/medicine/bicaridine = 10,
 		/datum/reagent/medicine/kelotane = 10,
+		/datum/reagent/medicine/dylovene = 5,
 		/datum/reagent/medicine/tramadol = 5,
-		/datum/reagent/medicine/ryetalyn = 5,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced
@@ -144,7 +144,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/hypervene
 	name = "hypervene autoinjector"
 	desc = "An auto-injector loaded with 3 uses of hypervene, an emergency medicine that rapidly purges chems. Causes pain and vomiting."
-	icon_state = "autoinjector-8"
+	icon_state = "autoinjector-12"
 	amount_per_transfer_from_this = 3
 	volume = 9
 	list_reagents = list(/datum/reagent/hypervene = 9)
@@ -249,6 +249,17 @@
 	amount_per_transfer_from_this = 1
 	volume = 1
 	list_reagents = list(/datum/reagent/medicine/roulettium = 1)
+
+/obj/item/reagent_containers/hypospray/autoinjector/elite //only deathsquad should be able to get this
+	name = "elite autoinjector"
+	desc = "An elite auto-injector loaded with a strong and versatile combination of chemicals, healing most types of damage. Issued almost excusively to the infamous Nanotrasen deathsquads"
+	icon_state = "autoinjector-7"
+	amount_per_transfer_from_this = 10
+	volume = 30
+	list_reagents = list(
+		/datum/reagent/medicine/russian_red = 15,
+		/datum/reagent/medicine/rezadone = 15,
+	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/hydrocodone //made for debugging
 	name = "hydrocodone autoinjector"

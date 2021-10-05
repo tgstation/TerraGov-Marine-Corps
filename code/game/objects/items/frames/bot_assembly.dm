@@ -22,7 +22,7 @@
 		qdel(I)
 		var/obj/machinery/bot/cleanbot/A = new(get_turf(src))
 		A.name = created_name
-		to_chat(user, "<span class='notice'>You add the robot arm to the bucket and sensor assembly. Beep boop!</span>")
+		to_chat(user, span_notice("You add the robot arm to the bucket and sensor assembly. Beep boop!"))
 		user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 
@@ -60,7 +60,7 @@
 		var/obj/item/frame/toolbox_tiles_sensor/B = new
 		B.created_name = created_name
 		user.put_in_hands(B)
-		to_chat(user, "<span class='notice'>You add the sensor to the toolbox and tiles!</span>")
+		to_chat(user, span_notice("You add the sensor to the toolbox and tiles!"))
 		user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 
@@ -94,7 +94,7 @@
 		qdel(I)
 		var/obj/machinery/bot/floorbot/A = new(get_turf(user))
 		A.name = created_name
-		to_chat(user, "<span class='notice'>You add the robot arm to the odd looking toolbox assembly! Boop beep!</span>")
+		to_chat(user, span_notice("You add the robot arm to the odd looking toolbox assembly! Boop beep!"))
 		user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 
@@ -149,7 +149,7 @@
 				user.drop_held_item()
 				qdel(I)
 				build_step++
-				to_chat(user, "<span class='notice'>You add the health sensor to [src].</span>")
+				to_chat(user, span_notice("You add the health sensor to [src]."))
 				name = "First aid/robot arm/health analyzer assembly"
 				overlays += image('icons/obj/aibots.dmi', "na_scanner")
 		if(1)
@@ -157,7 +157,7 @@
 				user.drop_held_item()
 				qdel(I)
 				build_step++
-				to_chat(user, "<span class='notice'>You complete the Medibot! Beep boop.</span>")
+				to_chat(user, span_notice("You complete the Medibot! Beep boop."))
 				var/obj/machinery/bot/medbot/S = new /obj/machinery/bot/medbot(get_turf(src))
 				S.skin = skin
 				S.name = created_name

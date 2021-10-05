@@ -61,11 +61,11 @@
 	. = ..()
 
 	if(processing)
-		to_chat(user, "<span class='warning'>The processor is in the process of processing.</span>")
+		to_chat(user, span_warning("The processor is in the process of processing."))
 		return TRUE
 
 	if(length(contents))
-		to_chat(user, "<span class='warning'>Something is already in the processing chamber.</span>")
+		to_chat(user, span_warning("Something is already in the processing chamber."))
 		return TRUE
 
 	var/obj/O = I
@@ -76,7 +76,7 @@
 
 	var/datum/food_processor_process/P = select_recipe(O)
 	if(!P)
-		to_chat(user, "<span class='warning'>That probably won't blend.</span>")
+		to_chat(user, span_warning("That probably won't blend."))
 		return TRUE
 	user.visible_message("[user] puts [O] into [src].", \
 		"You put the [O] into [src].")
@@ -90,10 +90,10 @@
 	if (src.machine_stat != 0) //NOPOWER etc
 		return
 	if(src.processing)
-		to_chat(user, "<span class='warning'>The processor is in the process of processing.</span>")
+		to_chat(user, span_warning("The processor is in the process of processing."))
 		return 1
 	if(src.contents.len == 0)
-		to_chat(user, "<span class='warning'>The processor is empty.</span>")
+		to_chat(user, span_warning("The processor is empty."))
 		return 1
 	for(var/O in src.contents)
 		var/datum/food_processor_process/P = select_recipe(O)
@@ -101,7 +101,7 @@
 			stack_trace("[O] in processor doesn't have a suitable recipe.") //-rastaf0
 			continue
 		src.processing = 1
-		user.visible_message("<span class='notice'> [user] turns on [src].</span>", \
+		user.visible_message(span_notice(" [user] turns on [src]."), \
 			"You turn on [src].", \
 			"You hear a food processor.")
 		playsound(src.loc, 'sound/machines/blender.ogg', 25, 1)
@@ -109,5 +109,5 @@
 		sleep(P.time)
 		P.process(src.loc, O)
 		src.processing = 0
-	src.visible_message("<span class='notice'> \the [src] finished processing.</span>", \
+	src.visible_message(span_notice(" \the [src] finished processing."), \
 		"You hear the food processor stopping/")

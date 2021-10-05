@@ -20,8 +20,21 @@
 	var/distress_cancelled = FALSE
 
 	var/deploy_time_lock = 15 MINUTES
-	///List of available factions when spawning
-	var/list/joinable_factions = list()
+	///The respawn time for marines
+	var/respawn_time = 30 MINUTES
+	///How many points do you need to win in a point gamemode
+	var/win_points_needed = 0
+	///The points per faction, assoc list
+	var/list/points_per_faction
+	/// When are the shutters dropping
+	var/shutters_drop_time = 30 MINUTES
+	///Time before becoming a husk when going undefibbable
+	var/husk_transformation_time = 30 SECONDS
+	/** The time between two rounds of this gamemode. If it's zero, this mode i always votable.
+	 * It an integer in ticks, set in config. If it's 8 HOURS, it means that it will be votable again 8 hours
+	 * after the end of the last round with the gamemode type
+	 */
+	var/time_between_round = 0
 
 //Distress call variables.
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.
@@ -81,6 +94,7 @@
 	return TRUE
 
 /datum/game_mode/proc/setup()
+	SHOULD_CALL_PARENT(TRUE)
 	SSjob.DivideOccupations()
 	create_characters()
 	spawn_characters()
@@ -88,6 +102,10 @@
 	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(flags_round_type, MODE_HUMAN_ONLY))
 	SSpoints.dropship_points = 0
 	SSpoints.supply_points[FACTION_TERRAGOV] = 0
+
+	for(var/hivenum in GLOB.hive_datums)
+		var/datum/hive_status/hive = GLOB.hive_datums[hivenum]
+		hive.setup_upgrades()
 	return TRUE
 
 
@@ -162,6 +180,8 @@
 /datum/game_mode/proc/declare_completion()
 	log_game("The round has ended.")
 	SSdbcore.SetRoundEnd()
+	if(time_between_round)
+		SSpersistence.last_modes_round_date[name] = world.realtime
 	//Collects persistence features
 	if(allow_persistence_save)
 		SSpersistence.CollectData()
@@ -170,7 +190,7 @@
 
 
 /datum/game_mode/proc/display_roundstart_logout_report()
-	var/msg = "<hr><span class='notice'><b>Roundstart logout report</b></span><br>"
+	var/msg = "<hr>[span_notice("<b>Roundstart logout report</b>")]<br>"
 	for(var/mob/living/L in GLOB.mob_living_list)
 		if(L.ckey && L.client)
 			continue
@@ -236,7 +256,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		addtimer(CALLBACK(src, .proc/remove_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
 
 	if(flags_round_type & MODE_LZ_SHUTTERS)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 30 MINUTES)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + shutters_drop_time)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
 	if(flags_round_type & MODE_XENO_SPAWN_PROTECT)
@@ -259,7 +279,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	CONFIG_SET(flag/allow_synthetic_gun_use, TRUE)
 
 	if(!length(spawns))
-		to_chat(world, "<br><br><h1><span class='danger'>End of Round Deathmatch initialization failed, please do not grief.</span></h1><br><br>")
+		to_chat(world, "<br><br><h1>[span_danger("End of Round Deathmatch initialization failed, please do not grief.")]</h1><br><br>")
 		return
 
 	for(var/i in GLOB.player_list)
@@ -269,7 +289,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		if(!(M.client?.prefs?.be_special & BE_DEATHMATCH))
 			continue
 		if(!M.mind) //This proc is too important to prevent one admin shenanigan from runtiming it entirely
-			to_chat(M, "<br><br><h1><span class='danger'>You don't have a mind, if you believe this is not intended, please report it.</span></h1><br><br>")
+			to_chat(M, "<br><br><h1>[span_danger("You don't have a mind, if you believe this is not intended, please report it.")]</h1><br><br>")
 			continue
 
 		var/turf/picked
@@ -280,14 +300,14 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			spawns = GLOB.deathmatch.Copy()
 
 			if(!length(spawns))
-				to_chat(world, "<br><br><h1><span class='danger'>End of Round Deathmatch initialization failed, please do not grief.</span></h1><br><br>")
+				to_chat(world, "<br><br><h1>[span_danger("End of Round Deathmatch initialization failed, please do not grief.")]</h1><br><br>")
 				return
 
 			picked = pick(spawns)
 			spawns -= picked
 
 		if(!picked)
-			to_chat(M, "<br><br><h1><span class='danger'>Failed to find a valid location for End of Round Deathmatch. Please do not grief.</span></h1><br><br>")
+			to_chat(M, "<br><br><h1>[span_danger("Failed to find a valid location for End of Round Deathmatch. Please do not grief.")]</h1><br><br>")
 			continue
 
 		var/mob/living/L
@@ -313,7 +333,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 				H.apply_assigned_role_to_spawn(J)
 				H.regenerate_icons()
 
-		to_chat(L, "<br><br><h1><span class='danger'>Fight for your life!</span></h1><br><br>")
+		to_chat(L, "<br><br><h1>[span_danger("Fight for your life!")]</h1><br><br>")
 		CHECK_TICK
 
 
@@ -336,18 +356,18 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(!length(GLOB.medal_awards))
 		return
 
-	var/dat =  "<span class='round_body'>Medal Awards:</span>"
+	var/dat =  span_round_body("Medal Awards:")
 
 	for(var/recipient in GLOB.medal_awards)
 		var/datum/recipient_awards/RA = GLOB.medal_awards[recipient]
 		for(var/i in 1 to length(RA.medal_names))
-			dat += "<br><b>[RA.recipient_rank] [recipient]</b> is awarded [RA.posthumous[i] ? "posthumously " : ""]the <span class='boldnotice'>[RA.medal_names[i]]</span>: \'<i>[RA.medal_citations[i]]</i>\'."
+			dat += "<br><b>[RA.recipient_rank] [recipient]</b> is awarded [RA.posthumous[i] ? "posthumously " : ""]the [span_boldnotice("[RA.medal_names[i]]")]: \'<i>[RA.medal_citations[i]]</i>\'."
 
 	to_chat(world, dat)
 
 
 /datum/game_mode/proc/announce_round_stats()
-	var/list/dat = list({"<span class='round_body'>The end of round statistics are:</span><br>
+	var/list/dat = list({"[span_round_body("The end of round statistics are:")]<br>
 		<br>There were [GLOB.round_statistics.total_bullets_fired] total bullets fired.
 		<br>[GLOB.round_statistics.total_bullet_hits_on_marines] bullets managed to hit marines. For a [(GLOB.round_statistics.total_bullet_hits_on_marines / max(GLOB.round_statistics.total_bullets_fired, 1)) * 100]% friendly fire rate!"})
 	if(GLOB.round_statistics.total_bullet_hits_on_xenos)
@@ -356,6 +376,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.grenades_thrown] total grenades exploding."
 	else
 		dat += "No grenades exploded."
+	if(GLOB.round_statistics.total_human_deaths)
+		dat += "[GLOB.round_statistics.total_human_deaths] people were killed, among which [GLOB.round_statistics.total_human_revives] were revived and [GLOB.round_statistics.total_human_respawns] respawned. For a [(GLOB.round_statistics.total_human_revives / max(GLOB.round_statistics.total_human_deaths, 1)) * 100]% revival rate and a [(GLOB.round_statistics.total_human_respawns / max(GLOB.round_statistics.total_human_deaths, 1)) * 100]% respawn rate."
 	if(GLOB.round_statistics.now_pregnant)
 		dat += "[GLOB.round_statistics.now_pregnant] people infected among which [GLOB.round_statistics.total_larva_burst] burst. For a [(GLOB.round_statistics.total_larva_burst / max(GLOB.round_statistics.now_pregnant, 1)) * 100]% successful delivery rate!"
 	if(GLOB.round_statistics.queen_screech)
@@ -398,6 +420,28 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.ravager_endures] number of times Ravagers used Endure."
 	if(GLOB.round_statistics.hunter_marks)
 		dat += "[GLOB.round_statistics.hunter_marks] number of times Hunters marked a target for death."
+	if(GLOB.round_statistics.ravager_rages)
+		dat += "[GLOB.round_statistics.ravager_rages] number of times Ravagers raged."
+	if(GLOB.round_statistics.hunter_silence_targets)
+		dat += "[GLOB.round_statistics.hunter_silence_targets] number of targets silenced by Hunters."
+	if(GLOB.round_statistics.larva_from_psydrain)
+		dat += "[GLOB.round_statistics.larva_from_psydrain] larvas came from psydrain."
+	if(GLOB.round_statistics.larva_from_silo)
+		dat += "[GLOB.round_statistics.larva_from_silo] larvas came from silos."
+	if(GLOB.round_statistics.larva_from_cocoon)
+		dat += "[GLOB.round_statistics.larva_from_cocoon] larvas came from cocoons."
+	if(GLOB.round_statistics.larva_from_marine_spawning)
+		dat += "[GLOB.round_statistics.larva_from_marine_spawning] larvas came from marine spawning."
+	if(GLOB.round_statistics.larva_from_siloing_body)
+		dat += "[GLOB.round_statistics.larva_from_siloing_body] larvas came from siloing bodies."
+	if(length(GLOB.round_statistics.req_items_produced))
+		var/produced = "Requisitions produced: "
+		for(var/atom/movable/path AS in GLOB.round_statistics.req_items_produced)
+			produced += "[GLOB.round_statistics.req_items_produced[path]] [initial(path.name)]"
+			if(path == GLOB.round_statistics.req_items_produced[length(GLOB.round_statistics.req_items_produced)]) //last element
+				produced += "."
+			else
+				produced += ","
 
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)
@@ -517,74 +561,21 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	var/datum/job/job = player.assigned_role
 	job.on_late_spawn(player.new_character)
 	var/area/A = get_area(player.new_character)
-	deadchat_broadcast("<span class='game'> has woken at <span class='name'>[A?.name]</span>.</span>", "<span class='game'><span class='name'>[player.new_character.real_name]</span> ([job.title])</span>", follow_target = player.new_character, message_type = DEADCHAT_ARRIVALRATTLE)
+	deadchat_broadcast(span_game(" has woken at [span_name("[A?.name]")]."), span_game("[span_name("[player.new_character.real_name]")] ([job.title])"), follow_target = player.new_character, message_type = DEADCHAT_ARRIVALRATTLE)
 	qdel(player)
 
 /datum/game_mode/proc/attempt_to_join_as_larva(mob/xeno_candidate)
-	to_chat(xeno_candidate, "<span class='warning'>This is unavailable in this gamemode.</span>")
+	to_chat(xeno_candidate, span_warning("This is unavailable in this gamemode."))
 	return FALSE
 
 
 /datum/game_mode/proc/spawn_larva(mob/xeno_candidate)
-	to_chat(xeno_candidate, "<span class='warning'>This is unavailable in this gamemode.</span>")
+	to_chat(xeno_candidate, span_warning("This is unavailable in this gamemode."))
 	return FALSE
-
-/datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/living/carbon/xenomorph/X, silent = FALSE)
-	if(QDELETED(X))
-		stack_trace("[xeno_candidate] was put into a qdeleted mob [X]")
-		return
-	if(!silent)
-		message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(X)].")
-	xeno_candidate.mind.transfer_to(X, TRUE)
-	if(X.is_ventcrawling)  //If we are in a vent, fetch a fresh vent map
-		X.add_ventcrawl(X.loc)
-		X.get_up()
-
-
-/datum/game_mode/proc/attempt_to_join_as_xeno(mob/xeno_candidate, instant_join = FALSE)
-	var/list/available_xenos = list()
-	for(var/hive in GLOB.hive_datums)
-		var/datum/hive_status/HS = GLOB.hive_datums[hive]
-		available_xenos += HS.get_ssd_xenos(instant_join)
-
-	if(!available_xenos.len)
-		to_chat(xeno_candidate, "<span class='warning'>There aren't any available already living xenomorphs. You can try waiting for a larva to burst if you have the preference enabled.</span>")
-		return FALSE
-
-	if(instant_join)
-		return pick(available_xenos) //Just picks something at random.
-
-	var/mob/living/carbon/xenomorph/new_xeno = tgui_input_list(usr, null, "Available Xenomorphs", available_xenos)
-	if(!istype(new_xeno) || !xeno_candidate?.client)
-		return FALSE
-
-	if(new_xeno.stat == DEAD)
-		to_chat(xeno_candidate, "<span class='warning'>You cannot join if the xenomorph is dead.</span>")
-		return FALSE
-
-	if(new_xeno.client)
-		to_chat(xeno_candidate, "<span class='warning'>That xenomorph has been occupied.</span>")
-		return FALSE
-
-	if(XENODEATHTIME_CHECK(xeno_candidate))
-		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
-			if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
-				log_admin("[key_name(xeno_candidate)] used his admin power to bypass respawn before his timer was over")
-				XENODEATHTIME_MESSAGE(xeno_candidate)
-				return FALSE
-		else
-			XENODEATHTIME_MESSAGE(xeno_candidate)
-			return FALSE
-
-	if(new_xeno.afk_status == MOB_RECENTLY_DISCONNECTED) //We do not want to occupy them if they've only been gone for a little bit.
-		to_chat(xeno_candidate, "<span class='warning'>That player hasn't been away long enough. Please wait [round(timeleft(new_xeno.afk_timer_id) * 0.1)] second\s longer.</span>")
-		return FALSE
-
-	return new_xeno
 
 /datum/game_mode/proc/set_valid_job_types()
 	if(!SSjob?.initialized)
-		to_chat(world, "<span class='boldnotice'>Error setting up valid jobs, no job subsystem found initialized.</span>")
+		to_chat(world, span_boldnotice("Error setting up valid jobs, no job subsystem found initialized."))
 		CRASH("Error setting up valid jobs, no job subsystem found initialized.")
 	if(SSjob.ssjob_flags & SSJOB_OVERRIDE_JOBS_START) //This allows an admin to pause the roundstart and set custom jobs for the round.
 		SSjob.active_occupations = SSjob.joinable_occupations.Copy()
@@ -610,7 +601,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		job.total_positions = valid_job_types[job.type] //Same for this one, direct value assignment.
 		SSjob.active_occupations += job
 	if(!length(SSjob.active_occupations))
-		to_chat(world, "<span class='boldnotice'>Error, game mode has only invalid jobs assigned.</span>")
+		to_chat(world, span_boldnotice("Error, game mode has only invalid jobs assigned."))
 		return FALSE
 	SSjob.active_joinable_occupations = SSjob.active_occupations.Copy()
 	SSjob.set_active_joinable_occupations_by_category()
@@ -629,9 +620,9 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	for(var/key in shuffle(SSjob.squads))
 		var/datum/squad/squad = SSjob.squads[key]
 		if(squad.faction == FACTION_TERRAGOV)
-			preferred_squads += squad
+			preferred_squads[squad.name] = 0
 	if(!length(preferred_squads))
-		to_chat(world, "<span class='boldnotice'>Error, no squads found.</span>")
+		to_chat(world, span_boldnotice("Error, no squads found."))
 		return FALSE
 	for(var/mob/new_player/player AS in GLOB.new_player_list)
 		if(!player.ready || !player.client?.prefs?.preferred_squad)
@@ -639,17 +630,16 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		var/squad_choice = player.client.prefs.preferred_squad
 		if(squad_choice == "None")
 			continue
-		if(!preferred_squads[squad_choice])
+		if(isnull(preferred_squads[squad_choice]))
 			stack_trace("[player.client] has in its prefs [squad_choice] for a squad. Not valid.")
 			continue
 		preferred_squads[squad_choice]++
 	sortTim(preferred_squads, cmp=/proc/cmp_numeric_dsc, associative = TRUE)
 
 	preferred_squads.len = max_squad_num
-	for(var/s in preferred_squads) //Back from weight to type.
-		preferred_squads[s] = SSjob.squads[s]
-	SSjob.active_squads[FACTION_TERRAGOV] = preferred_squads.Copy()
-
+	SSjob.active_squads[FACTION_TERRAGOV] = list()
+	for(var/name in preferred_squads) //Back from weight to instantiate var
+		SSjob.active_squads[FACTION_TERRAGOV] += LAZYACCESSASSOC(SSjob.squads_by_name, FACTION_TERRAGOV, name)
 	return TRUE
 
 
@@ -663,3 +653,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/scale_squad_jobs()
 	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/terragov/squad/leader)
 	scaled_job.total_positions = length(SSjob.active_squads[FACTION_TERRAGOV])
+
+///Return the list of joinable factions, with regards with the current round balance
+/datum/game_mode/proc/get_joinable_factions(should_look_balance)
+	return

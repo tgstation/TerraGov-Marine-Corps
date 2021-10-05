@@ -27,12 +27,13 @@
 //Create a new disposal, find the attached trunk (if present) and init gas resvr.
 /obj/machinery/disposal/Initialize()
 	. = ..()
-	trunk = locate() in loc
+	set_trunk(locate(/obj/structure/disposalpipe/trunk) in loc)
 	if(!trunk)
 		mode = 0
 		flush = 0
 	else
-		trunk.linked = src	//Link the pipe trunk to self
+		trunk.set_linked(src)	//Link the pipe trunk to self
+
 
 	update()
 	start_processing()
@@ -48,6 +49,19 @@
 		trunk = null
 	return ..()
 
+///Set the trunk of the disposal
+/obj/machinery/disposal/proc/set_trunk(obj/future_trunk)
+	if(trunk)
+		UnregisterSignal(trunk, COMSIG_PARENT_QDELETING)
+	trunk = null
+	if(future_trunk)
+		trunk = future_trunk
+		RegisterSignal(trunk, COMSIG_PARENT_QDELETING, .proc/clean_trunk)
+
+///Signal handler to clean trunk to prevent harddel
+/obj/machinery/disposal/proc/clean_trunk()
+	SIGNAL_HANDLER
+	set_trunk(null)
 
 //Attack by item places it in to disposal
 /obj/machinery/disposal/attackby(obj/item/I, mob/user, params)
@@ -62,33 +76,33 @@
 	else if(mode <= 0)
 		if(isscrewdriver(I))
 			if(length(contents))
-				to_chat(user, "<span class='warning'>Eject the contents first!</span>")
+				to_chat(user, span_warning("Eject the contents first!"))
 				return
 			if(mode == 0) //It's off but still not unscrewed
 				mode = -1 //Set it to doubleoff
 				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-				to_chat(user, "<span class='notice'>You remove the screws around the power connection.</span>")
+				to_chat(user, span_notice("You remove the screws around the power connection."))
 				return
 			else if(mode == -1)
 				mode = 0
 				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-				to_chat(user, "<span class='notice'>You attach the screws around the power connection.</span>")
+				to_chat(user, span_notice("You attach the screws around the power connection."))
 				return
 		else if(iswelder(I) && mode == -1)
 			if(length(contents))
-				to_chat(user, "<span class='warning'>Eject the contents first!</span>")
+				to_chat(user, span_warning("Eject the contents first!"))
 				return
 			var/obj/item/tool/weldingtool/W = I
 			if(!W.remove_fuel(0, user))
-				to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
+				to_chat(user, span_warning("You need more welding fuel to complete this task."))
 				return
 
 			playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-			to_chat(user, "<span class='notice'>You start slicing the floorweld off the disposal unit.</span>")
+			to_chat(user, span_notice("You start slicing the floorweld off the disposal unit."))
 			if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
 				return
 
-			to_chat(user, "<span class='notice'>You sliced the floorweld off the disposal unit.</span>")
+			to_chat(user, span_notice("You sliced the floorweld off the disposal unit."))
 			var/obj/structure/disposalconstruct/C = new(loc)
 			C.ptype = 6 //6 = disposal unit
 			C.anchored = TRUE
@@ -98,7 +112,7 @@
 
 	if(istype(I, /obj/item/storage/bag/trash))
 		var/obj/item/storage/bag/trash/T = I
-		to_chat(user, "<span class='notice'>You empty the bag into [src].</span>")
+		to_chat(user, span_notice("You empty the bag into [src]."))
 		for(var/obj/item/O in T.contents)
 			T.remove_from_storage(O, src, user)
 		T.update_icon()
@@ -110,22 +124,22 @@
 			return
 
 		var/mob/GM = G.grabbed_thing
-		user.visible_message("<span class='warning'>[user] starts putting [GM] into [src].</span>",
-		"<span class='warning'>You start putting [GM] into [src].</span>")
+		user.visible_message(span_warning("[user] starts putting [GM] into [src]."),
+		span_warning("You start putting [GM] into [src]."))
 
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_HOSTILE) || G.grabbed_thing != GM)
 			return
 
 		GM.forceMove(src)
-		user.visible_message("<span class='warning'>[user] puts [GM] into [src].</span>",
-		"<span class='warning'>[user] puts [GM] into [src].</span>")
+		user.visible_message(span_warning("[user] puts [GM] into [src]."),
+		span_warning("[user] puts [GM] into [src]."))
 		log_combat(user, GM, "placed", addition="into disposals")
 		message_admins("[ADMIN_TPMONTY(usr)] placed [ADMIN_TPMONTY(GM)] in a disposals unit.")
 		flush()
 
 	else if(user.transferItemToLoc(I, src))
-		user.visible_message("<span class='notice'>[user] places [I] into [src].</span>",
-		"<span class='notice'>You place [I] into [src].</span>")
+		user.visible_message(span_notice("[user] places [I] into [src]."),
+		span_notice("You place [I] into [src]."))
 
 	update()
 
@@ -141,7 +155,7 @@
 		return //Animals cannot put mobs other than themselves into disposal
 
 	if(target == user)
-		visible_message("<span class='notice'>[user] starts climbing into the disposal.</span>")
+		visible_message(span_notice("[user] starts climbing into the disposal."))
 	else
 		visible_message("<span class ='warning'>[user] starts stuffing [target] into the disposal.</span>")
 
@@ -149,7 +163,7 @@
 		return
 
 	if(target == user)
-		user.visible_message("<span class='notice'>[user] climbs into [src].</span>",
+		user.visible_message(span_notice("[user] climbs into [src]."),
 		"<span class ='notice'>You climb into [src].</span>")
 	else
 		user.visible_message("<span class ='danger'>[user] stuffs [target] into [src]!</span>",
@@ -193,7 +207,7 @@
 	if(!.)
 		return FALSE
 	if(user && user.loc == src)
-		to_chat(usr, "<span class='warning'>You cannot reach the controls from inside.</span>")
+		to_chat(usr, span_warning("You cannot reach the controls from inside."))
 		return FALSE
 
 	return TRUE
@@ -233,11 +247,11 @@
 	if(.)
 		return
 	if(usr.loc == src)
-		to_chat(usr, "<span class='warning'>You cannot reach the controls from inside.</span>")
+		to_chat(usr, span_warning("You cannot reach the controls from inside."))
 		return
 
 	if(mode == -1 && !href_list["eject"]) // only allow ejecting if mode is -1
-		to_chat(usr, "<span class='warning'>The disposal units power is disabled.</span>")
+		to_chat(usr, span_warning("The disposal units power is disabled."))
 		return
 	if(flushing)
 		return
@@ -400,9 +414,9 @@
 		var/obj/item/I = mover
 		if(prob(75))
 			I.loc = src
-			visible_message("<span class='notice'>[I] lands into [src].</span>")
+			visible_message(span_notice("[I] lands into [src]."))
 		else
-			visible_message("<span class='warning'>[I] bounces off of [src]'s rim!</span>")
+			visible_message(span_warning("[I] bounces off of [src]'s rim!"))
 		return 0
 	else
 		return ..()
@@ -421,8 +435,8 @@
 	var/partialTag = "" //Set by a partial tagger the first time round, then put in destinationTag if it goes through again.
 
 /obj/structure/disposalholder/Destroy()
-		active = 0
-		. = ..()
+	active = 0
+	return ..()
 
 //initialize a holder from the contents of a disposal unit
 /obj/structure/disposalholder/proc/init(obj/machinery/disposal/D)
@@ -564,6 +578,7 @@
 	. = ..()
 	base_icon_state = icon_state
 	GLOB.disposal_list += src
+	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
 
 
 //Pipe is deleted
@@ -588,7 +603,7 @@
 		if(H)
 			expel(H, T, 0)
 	GLOB.disposal_list -= src
-	. = ..()
+	return ..()
 
 //Returns the direction of the next pipe object, given the entrance dir by default, returns the bitmask of remaining directions
 /obj/structure/disposalpipe/proc/nextdir(fromdir)
@@ -698,18 +713,18 @@
 		var/obj/item/tool/weldingtool/W = I
 
 		if(!W.remove_fuel(0, user))
-			to_chat(user, "<span class='warning'>You need more welding fuel to cut [src].</span>")
+			to_chat(user, span_warning("You need more welding fuel to cut [src]."))
 			return
 
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		//Check if anything changed over 2 seconds
 		var/turf/uloc = user.loc
 		var/atom/wloc = I.loc
-		user.visible_message("<span class='notice'>[user] starts slicing [src].</span>",
-		"<span class='notice'>You start slicing [src].</span>")
+		user.visible_message(span_notice("[user] starts slicing [src]."),
+		span_notice("You start slicing [src]."))
 		sleep(30)
 		if(!W.isOn() || user.loc != uloc || wloc != I.loc)
-			to_chat(user, "<span class='warning'>You must stay still while welding [src].</span>")
+			to_chat(user, span_warning("You must stay still while welding [src]."))
 			return
 
 		welded()
@@ -1007,7 +1022,7 @@
 
 		sort_tag = O.currTag
 		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
-		to_chat(user, "<span class='notice'>Changed tag to '[sort_tag]'.</span>")
+		to_chat(user, span_notice("Changed tag to '[sort_tag]'."))
 		updatename()
 		updatedesc()
 
@@ -1078,7 +1093,7 @@
 
 		sortType = O.currTag
 		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
-		to_chat(user, "<span class='notice'>Changed filter to '[sortType]'.</span>")
+		to_chat(user, span_notice("Changed filter to '[sortType]'."))
 		updatename()
 		updatedesc()
 
@@ -1149,17 +1164,30 @@
 	getlinked()
 	update()
 
-/obj/structure/disposalpipe/trunk/proc/getlinked()
+///Set the linked atom
+/obj/structure/disposalpipe/trunk/proc/set_linked(obj/to_link)
+	if(linked)
+		UnregisterSignal(linked, COMSIG_PARENT_QDELETING)
 	linked = null
+	if(to_link)
+		linked = to_link
+		RegisterSignal(linked, COMSIG_PARENT_QDELETING, .proc/clean_linked)
+
+///Signal handler to clean linked from harddeling
+/obj/structure/disposalpipe/trunk/proc/clean_linked()
+	SIGNAL_HANDLER
+	set_linked(null)
+
+/obj/structure/disposalpipe/trunk/proc/getlinked()
 	var/obj/machinery/disposal/D = locate() in loc
 	if(D)
-		linked = D
+		set_linked(D)
 		if(!D.trunk)
-			D.trunk = src
+			D.set_trunk(src)
 
 	var/obj/structure/disposaloutlet/O = locate() in loc
 	if(O)
-		linked = O
+		set_linked(O)
 	update()
 
 //Override attackby so we disallow trunkremoval when somethings ontop
@@ -1178,18 +1206,18 @@
 	if(iswelder(I))
 		var/obj/item/tool/weldingtool/W = I
 		if(!W.remove_fuel(0, user))
-			to_chat(user, "<span class='warning'>You need more welding fuel to cut the pipe.</span>")
+			to_chat(user, span_warning("You need more welding fuel to cut the pipe."))
 			return
 
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		//Check if anything changed over 2 seconds
 		var/turf/uloc = user.loc
 		var/atom/wloc = I.loc
-		user.visible_message("<span class='notice'>[user] starts slicing [src].</span>",
-		"<span class='notice'>You start slicing [src].</span>")
+		user.visible_message(span_notice("[user] starts slicing [src]."),
+		span_notice("You start slicing [src]."))
 		sleep(30)
 		if(!W.isOn() || user.loc != uloc && wloc != I.loc)
-			to_chat(user, "<span class='warning'>You must stay still while welding the pipe.</span>")
+			to_chat(user, span_warning("You must stay still while welding the pipe."))
 			return
 
 		welded()
@@ -1258,7 +1286,7 @@
 	target = get_ranged_target_turf(src, dir, 10)
 	var/obj/structure/disposalpipe/trunk/trunk = locate() in loc
 	if(trunk)
-		trunk.linked = src	//Link the pipe trunk to self
+		trunk.set_linked(src)	//Link the pipe trunk to self
 
 //Expel the contents of the holder object, then delete it. Called when the holder exits the outlet
 /obj/structure/disposaloutlet/proc/expel(obj/structure/disposalholder/H)
@@ -1283,24 +1311,24 @@
 		mode = !mode
 		if(mode)
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-			to_chat(user, "<span class='notice'>You remove the screws around the power connection.</span>")
+			to_chat(user, span_notice("You remove the screws around the power connection."))
 		else
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-			to_chat(user, "<span class='notice'>You attach the screws around the power connection.</span>")
+			to_chat(user, span_notice("You attach the screws around the power connection."))
 
 	else if(iswelder(I) && mode)
 		var/obj/item/tool/weldingtool/W = I
 		if(!W.remove_fuel(0, user))
-			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
+			to_chat(user, span_warning("You need more welding fuel to complete this task."))
 			return
 
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		to_chat(user, "<span class='notice'>You start slicing the floorweld off the disposal outlet.</span>")
+		to_chat(user, span_notice("You start slicing the floorweld off the disposal outlet."))
 
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
 			return
 
-		to_chat(user, "<span class='notice'>You sliced the floorweld off the disposal outlet.</span>")
+		to_chat(user, span_notice("You sliced the floorweld off the disposal outlet."))
 		var/obj/structure/disposalconstruct/C = new(loc)
 		C.ptype = 7 //7 =  outlet
 		C.update()

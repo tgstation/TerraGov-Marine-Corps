@@ -83,7 +83,10 @@
 #define UI_STAMINA "EAST-1:28,CENTER-2:13"
 #define ui_health "EAST-1:28,CENTER-1:15"
 #define ui_internal "EAST-1:28,CENTER:17"
-#define ui_ammo "EAST-1:28,CENTER+1:25"
+#define ui_ammo1 "EAST-1:28,CENTER+1:25"
+#define ui_ammo2 "EAST-1:28,CENTER+2:27"
+#define ui_ammo3 "EAST-1:28,CENTER+3:29"
+#define ui_ammo4 "EAST-1:28,CENTER+4:31"
 
 									//borgs
 #define ui_borg_health "EAST-1:28,6:13" //borgs have the health display where humans have the bodytemp indicator.

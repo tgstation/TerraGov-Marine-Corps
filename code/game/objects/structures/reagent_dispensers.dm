@@ -77,8 +77,8 @@
 	var/exploding = FALSE
 
 /obj/structure/reagent_dispensers/fueltank/Destroy()
-	. = ..()
 	QDEL_NULL(rig)
+	return ..()
 
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
 	. = ..()
@@ -86,9 +86,9 @@
 
 		return
 	if(modded)
-		to_chat(user, "<span class='warning'> Fuel faucet is wrenched open, leaking the fuel!</span>")
+		to_chat(user, span_warning(" Fuel faucet is wrenched open, leaking the fuel!"))
 	if(rig)
-		to_chat(user, "<span class='notice'>There is some kind of device rigged to the tank.</span>")
+		to_chat(user, span_notice("There is some kind of device rigged to the tank."))
 
 /obj/structure/reagent_dispensers/fueltank/attack_hand(mob/living/user)
 	. = ..()
@@ -99,7 +99,7 @@
 	user.visible_message("[user] begins to detach [rig] from \the [src].", "You begin to detach [rig] from \the [src]...")
 	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
-	user.visible_message("<span class='notice'>[user] detaches [rig] from \the [src].</span>", "<span class='notice'>You detach [rig] from \the [src].</span>")
+	user.visible_message(span_notice("[user] detaches [rig] from \the [src]."), span_notice("You detach [rig] from \the [src]."))
 	rig.forceMove(get_turf(user))
 	rig = null
 	cut_overlays()
@@ -110,6 +110,7 @@
 	"You wrench [src]'s faucet [modded ? "closed" : "open"]")
 	modded = !modded
 	log_attack("[key_name(user)] has wrenched [src] [modded ? "closed" : "open"] in [AREACOORD(user)]")
+	playsound(src, 'sound/items/ratchet.ogg', 25, 1)
 	if(modded)
 		leak_fuel(amount_per_transfer_from_this)
 	return TRUE
@@ -118,16 +119,16 @@
 	var/obj/item/tool/weldingtool/W = I
 	if(!W.welding)
 		if(W.reagents.has_reagent(/datum/reagent/fuel, W.max_fuel))
-			to_chat(user, "<span class='warning'>Your [W.name] is already full!</span>")
+			to_chat(user, span_warning("Your [W.name] is already full!"))
 			return
 		reagents.trans_to(W, W.max_fuel)
 		W.weld_tick = 0
-		user.visible_message("<span class='notice'>[user] refills [W].</span>", "<span class='notice'>You refill [W].</span>")
+		user.visible_message(span_notice("[user] refills [W]."), span_notice("You refill [W]."))
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 	log_explosion("[key_name(user)] triggered a fueltank explosion with a blowtorch at [AREACOORD(user.loc)].")
-	var/self_message = user.a_intent != INTENT_HARM ? "<span class='danger'>You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done.</span>" : "<span class='danger'>[src] catastrophically explodes in a wave of flames as you begin to weld it.</span>"
-	user.visible_message("<span class='warning'>[user] catastrophically fails at refilling \his [W.name]!</span>", self_message)
+	var/self_message = user.a_intent != INTENT_HARM ? span_danger("You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done.") : span_danger("[src] catastrophically explodes in a wave of flames as you begin to weld it.")
+	user.visible_message(span_warning("[user] catastrophically fails at refilling \his [W.name]!"), self_message)
 	explode()
 	return TRUE
 
@@ -138,14 +139,14 @@
 	if(!istype(I, /obj/item/assembly_holder))
 		return
 	if(rig)
-		to_chat(user, "<span class='warning'>There is another device in the way.</span>")
+		to_chat(user, span_warning("There is another device in the way."))
 		return
 
 	user.visible_message("[user] begins rigging [I] to \the [src].", "You begin rigging [I] to \the [src]")
 	if(!do_after(user, 20, TRUE, src, BUSY_ICON_HOSTILE) || rig)
 		return
 
-	user.visible_message("<span class='notice'>[user] rigs [I] to \the [src].</span>", "<span class='notice'>You rig [I] to \the [src].</span>")
+	user.visible_message(span_notice("[user] rigs [I] to \the [src]."), span_notice("You rig [I] to \the [src]."))
 	rig = I
 	user.transferItemToLoc(I, src)
 
@@ -200,6 +201,8 @@
 	amount = min(amount, reagents.total_volume)
 	reagents.remove_reagent(/datum/reagent/fuel,amount)
 	new /obj/effect/decal/cleanable/liquid_fuel(loc, amount, FALSE)
+	playsound(src, 'sound/effects/glob.ogg', 25, 1)
+
 
 /obj/structure/reagent_dispensers/fueltank/flamer_fire_act()
 	explode()

@@ -85,11 +85,11 @@
 	if(istype(user,/mob/living/carbon/xenomorph))
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(user, "<span class='warning'>[src] doesn't seem to be working.</span>")
+		to_chat(user, span_warning("[src] doesn't seem to be working."))
 		return
 
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access Denied</span>")
+		to_chat(user, span_warning("Access Denied"))
 		flick("doorctrl-denied",src)
 		return
 

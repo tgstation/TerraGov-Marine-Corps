@@ -26,12 +26,17 @@
 #define DIRT_TYPE_GROUND 1
 #define DIRT_TYPE_MARS 2
 #define DIRT_TYPE_SNOW 3
+#define DIRT_TYPE_LAVALAND 4
 
 //wet floors
 
 #define FLOOR_WET_WATER 1
 #define FLOOR_WET_LUBE 2
 #define FLOOR_WET_ICE 3
+
+//stages of shoe tying-ness
+#define SHOES_TIED 1
+#define SHOES_KNOTTED 2
 
 //subtypesof(), typesof() without the parent path
 #define subtypesof(typepath) ( typesof(typepath) - typepath )

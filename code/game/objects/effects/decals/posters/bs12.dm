@@ -212,7 +212,7 @@
 /datum/poster/bay_43
 	icon_state="bsposter43"
 	name = "Responsible medbay habits, No #3"
-	desc = "A safety poster with a purple-haired surgeon. She looks a bit cross. \"Let the surgeons do their work. NEVER replace or remove a surgery tool from where the surgeon put it.\""
+	desc = "A safety poster with a purple-haired surgeon. She looks a bit cross. \"Let the surgeons do their work. NEVER replace or remove a surgery tool from where the surgeon put it!\""
 
 /datum/poster/bay_44
 	icon_state="bsposter44"

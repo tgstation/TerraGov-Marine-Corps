@@ -14,16 +14,16 @@
 		CRASH("/datum/item_representation/gun created from an item that is not a gun")
 	..()
 	var/obj/item/weapon/gun/gun_to_copy = item_to_copy
-	for(var/key in gun_to_copy.attachments)
-		attachments += new /datum/item_representation/gun_attachement(gun_to_copy.attachments[key])
+	for(var/key in gun_to_copy.attachments_by_slot)
+		attachments += new /datum/item_representation/gun_attachement(gun_to_copy.attachments_by_slot[key])
 
 
-/datum/item_representation/gun/instantiate_object(datum/loadout_seller/seller)
+/datum/item_representation/gun/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	. = ..()
 	if(!.)
 		return
 	for(var/datum/item_representation/gun_attachement/gun_attachement AS in attachments)
-		gun_attachement.install_on_gun(seller, .)
+		gun_attachement.install_on_gun(seller, ., user)
 
 /**
  * Allow to representate a gun attachement
@@ -33,17 +33,27 @@
 /datum/item_representation/gun_attachement/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
-	if(!isgunattachment(item_to_copy))
+	if(!isgunattachment(item_to_copy) && !isgun(item_to_copy))
 		CRASH("/datum/item_representation/gun_attachement created from an item that is not a gun attachment")
 	..()
 
 ///Attach the instantiated attachment to the gun
-/datum/item_representation/gun_attachement/proc/install_on_gun(seller, obj/item/weapon/gun/gun_to_attach)
-	var/obj/item/attachable/attachment_type = item_type
-	if(!(initial(attachment_type.flags_attach_features) & ATTACH_REMOVABLE))//Unremovable attachment are not in vendors
-		bypass_vendor_check = TRUE
-	var/obj/item/attachable/attachment = instantiate_object(seller)
-	attachment?.attach_to_gun(gun_to_attach)
+/datum/item_representation/gun_attachement/proc/install_on_gun(seller, obj/item/weapon/gun/gun_to_attach, mob/living/user)
+	var/attachment_to_vend
+	if(ispath(item_type, /obj/item/attachable))
+		var/obj/item/attachable/attachment_type = item_type
+		if(!(initial(attachment_type.flags_attach_features) & ATTACH_REMOVABLE))//Unremovable attachment are not in vendors
+			bypass_vendor_check = TRUE
+		attachment_to_vend = instantiate_object(seller, null, user)
+	else if(ispath(item_type, /obj/item/weapon/gun))
+		var/obj/item/weapon/gun/attachment_type = item_type
+		if(!(initial(attachment_type.flags_attach_features) & ATTACH_REMOVABLE))
+			bypass_vendor_check = TRUE
+		attachment_to_vend = instantiate_object(seller, null, user)
+
+	if(!attachment_to_vend)
+		return
+	SEND_SIGNAL(gun_to_attach, COMSIG_LOADOUT_VENDOR_VENDED_GUN_ATTACHMENT, attachment_to_vend)
 
 /**
  * Able to representate a handfull
@@ -73,9 +83,9 @@
 	max_rounds = handful_to_copy.max_rounds
 	gun_type = handful_to_copy.gun_type
 
-/datum/item_representation/handful_representation/instantiate_object(datum/loadout_seller/seller, master)
-	. = ..()
-	if(!.)
+/datum/item_representation/handful_representation/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
+	if(!is_handful_buyable(ammo))
 		return
-	var/obj/item/ammo_magazine/handful/handful = .
+	var/obj/item/ammo_magazine/handful/handful = new item_type(master)
 	handful.generate_handful(ammo, caliber, max_rounds, gun_type, max_rounds)
+	return handful

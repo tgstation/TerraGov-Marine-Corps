@@ -4,6 +4,8 @@
 	icon_state = "flood00"
 	anchored = TRUE
 	density = TRUE
+	light_system = HYBRID_LIGHT
+	light_power = 5
 	///The brightness of the floodlight
 	var/brightness_on = 7
 
@@ -12,8 +14,8 @@
 	GLOB.nightfall_toggleable_lights += src
 
 /obj/machinery/floodlight/Destroy()
-	. = ..()
 	GLOB.nightfall_toggleable_lights -= src
+	return ..()
 
 /obj/machinery/floodlight/attack_hand(mob/living/user)
 	return
@@ -27,12 +29,12 @@
 		return
 	if(toggle_on)
 		if(user)
-			to_chat(user, "<span class='notice'>You turn on the light.</span>")
+			to_chat(user, span_notice("You turn on the light."))
 		set_light(brightness_on)
 		DISABLE_BITFIELD(resistance_flags, UNACIDABLE)
 		return
 	if(user)
-		to_chat(user, "<span class='notice'>You turn off the light.</span>")
+		to_chat(user, span_notice("You turn off the light."))
 	set_light(0)
 	ENABLE_BITFIELD(resistance_flags, UNACIDABLE)
 
@@ -88,6 +90,8 @@
 	idle_power_usage = 50
 	active_power_usage = 2500
 	wrenchable = TRUE
+	light_power = 5
+	light_system = HYBRID_LIGHT
 	/// Determines how much light does the floodlight make , every light tube adds 4 tiles distance.
 	var/brightness = 0
 	/// Used to show if the object is tipped
@@ -375,18 +379,15 @@
 	turned_on = switch_on
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_FLOODLIGHT_SWITCH, src, switch_on)
 
-/obj/machinery/colony_floodlight_switch/attack_paw(mob/living/carbon/human/user)
-	return attack_hand(user)
-
 /obj/machinery/colony_floodlight_switch/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 	if(!ishuman(user))
-		to_chat(user, "<span class='notice'>Nice try.</span>")
+		to_chat(user, span_notice("Nice try."))
 		return FALSE
 	if(machine_stat & NOPOWER)
-		to_chat(user, "<span class='notice'>Nothing happens.</span>")
+		to_chat(user, span_notice("Nothing happens."))
 		return FALSE
 	playsound(src,'sound/machines/click.ogg', 15, 1)
 	toggle_lights(turned_on ? FALSE : TRUE)

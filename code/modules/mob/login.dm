@@ -28,9 +28,10 @@
 	add_click_catcher()
 
 	if(client)
-		client.change_view(WORLD_VIEW)
-		client.pixel_x = 0
-		client.pixel_y = 0
+		if(client.view_size)
+			client.view_size.reset_to_default() // Resets the client.view in case it was changed.
+		else
+			client.change_view(get_screen_size(client.prefs.widescreenpref))
 
 		if(client.player_details)
 			for(var/foo in client.player_details.post_login_callbacks)

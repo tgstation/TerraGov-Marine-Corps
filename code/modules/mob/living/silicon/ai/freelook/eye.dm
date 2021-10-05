@@ -59,6 +59,7 @@
 		ai.light_cameras()
 	if(ai.master_multicam)
 		ai.master_multicam.refresh_view()
+	update_parallax_contents()
 
 
 /mob/camera/aiEye/Move()

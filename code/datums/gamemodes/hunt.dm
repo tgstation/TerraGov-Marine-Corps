@@ -1,7 +1,7 @@
 /datum/game_mode/infestation/hunt
 	name = "Bug Hunt"
 	config_tag = "Hunt"
-	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER|MODE_HIJACK_POSSIBLE
+	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER|MODE_HIJACK_POSSIBLE|MODE_SILOABLE_BODIES
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
 	flags_xeno_abilities = ABILITY_HUNT
 	valid_job_types = list(
@@ -23,14 +23,14 @@
 		/datum/job/terragov/squad/smartgunner = 1,
 		/datum/job/terragov/squad/leader = 1,
 		/datum/job/terragov/squad/standard = -1,
-		/datum/job/xenomorph = 2,
+		/datum/job/xenomorph = FREE_XENO_AT_START,
 		/datum/job/xenomorph/queen = 1
 	)
 
 /datum/game_mode/infestation/hunt/post_setup()
 	. = ..()
 	for(var/i in GLOB.xeno_resin_silo_turfs)
-		new /obj/structure/xeno/resin/silo(i)
+		new /obj/structure/xeno/silo(i)
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob(SILO_DEATH)
 

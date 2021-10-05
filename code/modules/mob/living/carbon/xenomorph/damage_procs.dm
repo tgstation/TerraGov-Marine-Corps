@@ -163,8 +163,6 @@
 
 
 /mob/living/carbon/xenomorph/adjustBruteLoss(amount, updating_health = FALSE)
-	if(stat == DEAD)
-		return
 
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BRUTE_DAMAGE, amount, amount_mod)
@@ -178,8 +176,6 @@
 
 
 /mob/living/carbon/xenomorph/adjustFireLoss(amount, updating_health = FALSE)
-	if(stat == DEAD)
-		return
 
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BURN_DAMAGE, amount, amount_mod)
@@ -225,8 +221,8 @@
 				splash_chance += 30 //Same tile? BURN
 			splash_chance += distance * -15
 			i++
-			victim.visible_message("<span class='danger'>\The [victim] is scalded with hissing green blood!</span>", \
-			"<span class='danger'>You are splattered with sizzling blood! IT BURNS!</span>")
+			victim.visible_message(span_danger("\The [victim] is scalded with hissing green blood!"), \
+			span_danger("You are splattered with sizzling blood! IT BURNS!"))
 			if(victim.stat != CONSCIOUS && !(victim.species.species_flags & NO_PAIN) && prob(60))
 				victim.emote("scream") //Topkek
 			victim.take_limb_damage(0, rand(10, 25)) //Sizzledam! This automagically burns a random existing body part.

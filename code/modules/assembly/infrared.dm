@@ -40,7 +40,7 @@
 
 /obj/item/assembly/infra/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span class='notice'>The infrared trigger is [on?"on":"off"].</span>")
+	to_chat(user, span_notice("The infrared trigger is [on?"on":"off"]."))
 
 
 /obj/item/assembly/infra/activate()
@@ -185,7 +185,7 @@
 	listeningTo = newloc
 
 
-/obj/item/assembly/infra/proc/check_exit(datum/source, atom/movable/offender)
+/obj/item/assembly/infra/proc/check_exit(datum/source, atom/movable/offender, direction)
 	SIGNAL_HANDLER_DOES_SLEEP
 	if(QDELETED(src))
 		return

@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(job)
 	var/list/squads = list()			//List of potential squads.
 	///Assoc list of all joinable squads, categorised by faction
 	var/list/active_squads = list()
-	///assoc list of squad_name_string->squad_reference for easy lookup
+	///assoc list of squad_name_string->squad_reference for easy lookup, categorised in factions
 	var/list/squads_by_name = list()
 
 	var/list/unassigned = list()		//Players who need jobs.
@@ -40,7 +40,7 @@ SUBSYSTEM_DEF(job)
 	var/list/all_jobs = subtypesof(/datum/job)
 	var/list/all_squads = subtypesof(/datum/squad)
 	if(!length(all_jobs))
-		to_chat(world, "<span class='boldnotice'>Error setting up jobs, no job datums found</span>")
+		to_chat(world, span_boldnotice("Error setting up jobs, no job datums found"))
 		return FALSE
 
 	for(var/J in all_jobs)
@@ -69,7 +69,7 @@ SUBSYSTEM_DEF(job)
 		if(!squad)
 			continue
 		squads[squad.id] = squad
-		squads_by_name[squad.name] = squad
+		LAZYSET(squads_by_name[squad.faction], squad.name, squad)
 	return TRUE
 
 
@@ -200,18 +200,22 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/proc/assign_players_to_occupations(level, list/occupations_to_assign)
-	for(var/p in unassigned)
-		var/mob/new_player/player = p
+	var/faction_rejected
+	for(var/mob/new_player/player AS in unassigned)
 		if(PopcapReached())
 			RejectPlayer(player)
+		//Choose a faction in advance if needed
+		if(SSticker.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS) //Alternates between the two factions
+			faction_rejected = faction_rejected == FACTION_TERRAGOV ? FACTION_TERRAGOV_REBEL : FACTION_TERRAGOV
 		// Loop through all jobs
-		for(var/j in occupations_to_assign)
-			var/datum/job/job = j
+		for(var/datum/job/job AS in occupations_to_assign)
 			// If the player wants that job on this level, then try give it to him.
 			if(player.client.prefs.job_preferences[job.title] != level)
 				continue
 			// If the job isn't filled
 			if((job.total_positions != -1 && job.current_positions >= job.total_positions))
+				continue
+			if(job.faction == faction_rejected)
 				continue
 			JobDebug("DO pass, Trying to assign Player: [player], Level:[level], Job:[job.title]")
 			if(AssignRole(player, job))
@@ -334,9 +338,6 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/proc/SendToLateJoin(mob/M, datum/job/assigned_role)
-	if(isxenosjob(assigned_role) && length(GLOB.xeno_resin_silos))
-		SendToAtom(M, pick(GLOB.xeno_resin_silos))
-		return
 	if(assigned_role && length(GLOB.jobspawn_overrides[assigned_role])) //We're doing something special today.
 		SendToAtom(M, pick(GLOB.jobspawn_overrides[assigned_role]))
 		return

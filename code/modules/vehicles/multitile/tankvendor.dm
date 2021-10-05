@@ -146,17 +146,17 @@
 		if(machine_stat & (NOPOWER|BROKEN))
 			return
 		if(busy)
-			to_chat(usr, "<span class='warning'>[src] is busy. Please wait for completion of previous operation.</span>")
+			to_chat(usr, span_warning("[src] is busy. Please wait for completion of previous operation."))
 		else if(user.transferItemToLoc(W, src))
-			user.visible_message("<span class='notice'>[user] loads [W] into [src]'s maintenance slot.</span>", "<span class='notice'>You load [W] into [src]'s maintenance slot.</span>", null, 4)
+			user.visible_message(span_notice("[user] loads [W] into [src]'s maintenance slot."), span_notice("You load [W] into [src]'s maintenance slot."), null, 4)
 			loaded_mod = W
 		else
-			to_chat(user, "<span class='warning'>[W] appears to be stuck to your hands.</span>")
+			to_chat(user, span_warning("[W] appears to be stuck to your hands."))
 	else if(iscrowbar(W) && machine_stat & (NOPOWER|BROKEN) && !QDELETED(loaded_mod))
-		user.visible_message("<span class='warning'>[user] starts to pry [src]'s maintenance slot open.</span>", "<span class='notice'>You start to pry [loaded_mod] out of [src]'s maintenance slot...</span>")
+		user.visible_message(span_warning("[user] starts to pry [src]'s maintenance slot open."), span_notice("You start to pry [loaded_mod] out of [src]'s maintenance slot..."))
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_GENERIC) || QDELETED(loaded_mod))
 			return
-		user.visible_message("[user] pries [loaded_mod] out of [src].", "<span class='notice'>You retrieve [loaded_mod] from [src].</span>")
+		user.visible_message("[user] pries [loaded_mod] out of [src].", span_notice("You retrieve [loaded_mod] from [src]."))
 		eject_tank_part()
 	else
 		return ..()
@@ -165,9 +165,9 @@
 	if(machine_stat & (NOPOWER|BROKEN) || busy)
 		return
 	if(tank_points < cost)
-		to_chat(user, "<span class='warning'>You don't have enough points to build that.</span>")
+		to_chat(user, span_warning("You don't have enough points to build that."))
 		return
-	visible_message("<span class='notice'>[src] starts printing something.</span>")
+	visible_message(span_notice("[src] starts printing something."))
 	tank_points -= cost
 	set_busy()
 	addtimer(CALLBACK(src, .proc/dispense_tank_part, part_type), 10 SECONDS)
@@ -215,7 +215,7 @@
 		return
 	var/turf/T = get_step(src, SOUTHEAST)
 	if(user)
-		to_chat(user, "<span class='notice'>You retrieve [loaded_mod] from [src].</span>")
+		to_chat(user, span_notice("You retrieve [loaded_mod] from [src]."))
 	loaded_mod.forceMove(T)
 	loaded_mod = null
 
@@ -223,7 +223,7 @@
 	if(machine_stat & (NOPOWER|BROKEN) || busy || QDELETED(loaded_mod))
 		return
 	tank_points += calculate_mod_value()
-	visible_message("<span class='notice'>[src] starts disassembling [loaded_mod].</span>")
+	visible_message(span_notice("[src] starts disassembling [loaded_mod]."))
 	QDEL_NULL(loaded_mod)
 	set_busy(TRUE, 10 SECONDS)
 
@@ -232,7 +232,7 @@
 		return
 	var/cost = calculate_repair_price()
 	if(tank_points < cost)
-		to_chat(user, "<span class='warning'>You don't have enough points to repair that.</span>")
+		to_chat(user, span_warning("You don't have enough points to repair that."))
 	tank_points -= cost
 	if(istype(loaded_mod, /obj/item/hardpoint))
 		var/obj/item/hardpoint/H = loaded_mod
@@ -253,7 +253,7 @@
 		return
 
 	if(busy)
-		to_chat(usr, "<span class='warning'>[src] is busy. Please wait for completion of previous operation.</span>")
+		to_chat(usr, span_warning("[src] is busy. Please wait for completion of previous operation."))
 		return
 
 	if(href_list["produce"])

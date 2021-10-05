@@ -12,7 +12,7 @@
 /// Maximum number of open windows
 #define TGUI_WINDOW_HARD_LIMIT 9
 
-/// Maximum ping timeout allowed to detect zombie windows
+/// Maximum ping timeout allowed to detect husk windows
 #define TGUI_PING_TIMEOUT 4 SECONDS
 
 /// Window does not exist

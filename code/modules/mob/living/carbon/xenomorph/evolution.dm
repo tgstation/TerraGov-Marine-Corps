@@ -14,8 +14,7 @@
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
 
-	hive.ui_interact(src)
-
+	GLOB.evo_panel.ui_interact(src)
 
 /mob/living/carbon/xenomorph/verb/regress()
 	set name = "Regress"
@@ -28,7 +27,7 @@
 			if(isxenoshrike(src))
 				tiers_to_pick_from = GLOB.xeno_types_tier_one
 			else
-				to_chat(src, "<span class='warning'>Your tier does not allow you to regress.</span>")
+				to_chat(src, span_warning("Your tier does not allow you to regress."))
 				return
 		if(XENO_TIER_ONE)
 			tiers_to_pick_from = list(/mob/living/carbon/xenomorph/larva)
@@ -59,54 +58,54 @@
 
 /mob/living/carbon/xenomorph/proc/do_evolve(caste_type, forced_caste_name, forced = FALSE)
 	if(is_ventcrawling)
-		to_chat(src, "<span class='warning'>This place is too constraining to evolve.</span>")
+		to_chat(src, span_warning("This place is too constraining to evolve."))
 		return
 
 	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>We can't evolve here.</span>")
+		to_chat(src, span_warning("We can't evolve here."))
 		return
 
 	if(xeno_caste.hardcore)
-		to_chat(src, "<span class='warning'>Nuh-uh.</span>")
+		to_chat(src, span_warning("Nuh-uh."))
 		return
 
 	if(is_banned_from(ckey, ROLE_XENOMORPH))
 		log_admin_private("[key_name(src)] has tried to evolve as a xenomorph while being banned from the role.")
 		message_admins("[ADMIN_TPMONTY(src)] has tried to evolve as a xenomorph while being banned. They shouldn't be playing the role.")
-		to_chat(src, "<span class='warning'>You are jobbanned from aliens and cannot evolve. How did you even become an alien?</span>")
+		to_chat(src, span_warning("You are jobbanned from aliens and cannot evolve. How did you even become an alien?"))
 		return
 
 	if(incapacitated(TRUE))
-		to_chat(src, "<span class='warning'>We can't evolve in our current state.</span>")
+		to_chat(src, span_warning("We can't evolve in our current state."))
 		return
 
 	if(handcuffed)
-		to_chat(src, "<span class='warning'>The restraints are too restricting to allow us to evolve.</span>")
+		to_chat(src, span_warning("The restraints are too restricting to allow us to evolve."))
 		return
 
 	if(isxenolarva(src)) //Special case for dealing with larvae
 		if(amount_grown < max_grown)
-			to_chat(src, "<span class='warning'>We are not yet fully grown. Currently at: [amount_grown] / [max_grown].</span>")
+			to_chat(src, span_warning("We are not yet fully grown. Currently at: [amount_grown] / [max_grown]."))
 			return
 
 	if(isnull(xeno_caste.evolves_to))
-		to_chat(src, "<span class='warning'>We are already the apex of form and function. Let's go forth and spread the hive!</span>")
+		to_chat(src, span_warning("We are already the apex of form and function. Let's go forth and spread the hive!"))
 		return
 
 	if(health < maxHealth)
-		to_chat(src, "<span class='warning'>We must be at full health to evolve.</span>")
+		to_chat(src, span_warning("We must be at full health to evolve."))
 		return
 
-	if(plasma_stored < xeno_caste.plasma_max)
-		to_chat(src, "<span class='warning'>We must be at full plasma to evolve.</span>")
+	if(plasma_stored < (xeno_caste.plasma_max * xeno_caste.plasma_regen_limit))
+		to_chat(src, span_warning("We must be at full plasma to evolve."))
 		return
 
 	if (agility || fortify || crest_defense)
-		to_chat(src, "<span class='warning'>We cannot evolve while in this stance.</span>")
+		to_chat(src, span_warning("We cannot evolve while in this stance."))
 		return
 
 	if(LAZYLEN(stomach_contents))
-		to_chat(src, "<span class='warning'>We cannot evolve with a belly full.</span>")
+		to_chat(src, span_warning("We cannot evolve with a belly full."))
 		return
 
 	var/new_caste_type
@@ -136,19 +135,19 @@
 		return
 
 	if(incapacitated(TRUE))
-		to_chat(src, "<span class='warning'>We can't evolve in our current state.</span>")
+		to_chat(src, span_warning("We can't evolve in our current state."))
 		return
 
 	if(handcuffed)
-		to_chat(src, "<span class='warning'>The restraints are too restricting to allow us to evolve.</span>")
+		to_chat(src, span_warning("The restraints are too restricting to allow us to evolve."))
 		return
 
 	if(xeno_caste.hardcore)
-		to_chat(src, "<span class='warning'>Nuh-uhh.</span>")
+		to_chat(src, span_warning("Nuh-uhh."))
 		return
 
 	if(!forced && !(new_caste_type in xeno_caste.evolves_to))
-		to_chat(src, "<span class='warning'>We can't evolve to that caste from our current one.</span>")
+		to_chat(src, span_warning("We can't evolve to that caste from our current one."))
 		return
 
 	// used below
@@ -160,20 +159,20 @@
 
 	if(new_caste_type == /mob/living/carbon/xenomorph/queen) //Special case for dealing with queenae
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
-			to_chat(src, "<span class='warning'>You are jobbanned from the Queen role.</span>")
+			to_chat(src, span_warning("You are jobbanned from the Queen role."))
 			return
 
 		var/datum/job/xenojob = SSjob.GetJobType(/datum/job/xenomorph/queen)
 		if(xenojob.required_playtime_remaining(client))
-			to_chat(src, "<span class='warning'>[get_exp_format(xenojob.required_playtime_remaining(client))] as [xenojob.get_exp_req_type()] required to play the queen role.</span>")
+			to_chat(src, span_warning("[get_exp_format(xenojob.required_playtime_remaining(client))] as [xenojob.get_exp_req_type()] required to play the queen role."))
 			return
 
 		if(hive.living_xeno_queen)
-			to_chat(src, "<span class='warning'>There already is a living Queen.</span>")
+			to_chat(src, span_warning("There already is a living Queen."))
 			return
 
 		if(hive.can_hive_have_a_queen())
-			to_chat(src, "<span class='warning'>The hivemind is too weak to sustain a Queen. Gather more xenos. [hive.xenos_per_queen] are required.</span>")
+			to_chat(src, span_warning("The hivemind is too weak to sustain a Queen. Gather more xenos. [hive.xenos_per_queen] are required."))
 			return FALSE
 
 		if(hivenumber == XENO_HIVE_NORMAL && SSticker?.mode && hive.xeno_queen_timer)
@@ -181,7 +180,7 @@
 			return
 
 		if(isxenoresearcharea(get_area(src)))
-			to_chat(src, "<span class='warning'>Something in this place is isolating us from Queen Mother's psychic presence. We should leave before it's too late!</span>")
+			to_chat(src, span_warning("Something in this place is isolating us from Queen Mother's psychic presence. We should leave before it's too late!"))
 			return
 
 		switch(hivenumber) // because it causes issues otherwise
@@ -198,24 +197,24 @@
 
 	else if(new_caste_type == /mob/living/carbon/xenomorph/shrike) //Special case for dealing with shrikes
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
-			to_chat(src, "<span class='warning'>You are jobbanned from Queen-like roles.</span>")
+			to_chat(src, span_warning("You are jobbanned from Queen-like roles."))
 			return
 
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]))
-			to_chat(src, "<span class='warning'>There already is a living Shrike. The hive cannot contain more than one psychic energy repository.</span>")
+			to_chat(src, span_warning("There already is a living Shrike. The hive cannot contain more than one psychic energy repository."))
 			return
 
 		if(isxenoresearcharea(get_area(src)))
-			to_chat(src, "<span class='warning'>Something in this place is interfering with our link to Queen Mother. We are unable to evolve to a psychic caste here!</span>")
+			to_chat(src, span_warning("Something in this place is interfering with our link to Queen Mother. We are unable to evolve to a psychic caste here!"))
 			return
 
 	else if(new_caste_type == /mob/living/carbon/xenomorph/hivemind) //Special case for dealing with hiveminds - this may be subject to heavy change, such as multiple hiveminds potentially being an option
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
-			to_chat(src, "<span class='warning'>There cannot be two manifestations of the hivemind's will at once.</span>")
+			to_chat(src, span_warning("There cannot be two manifestations of the hivemind's will at once."))
 			return
 
 		if(isxenoresearcharea(get_area(src)))
-			to_chat(src, "<span class='warning'>Something in this place is interfering with our link to the Hivemind. We are unable to evolve to be its manifestation!</span>")
+			to_chat(src, span_warning("Something in this place is interfering with our link to the Hivemind. We are unable to evolve to be its manifestation!"))
 			return
 
 		var/turf/T = get_turf(src)
@@ -225,8 +224,6 @@
 
 
 	else
-		if(new_caste_type == /mob/living/carbon/xenomorph/runner & CONFIG_GET(flag/roony))//If the fun config is set, every runner is a roony
-			new_caste_type = /mob/living/carbon/xenomorph/roony
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
 
 		tierzeros = hive.get_total_tier_zeros()
@@ -238,33 +235,33 @@
 		if(forced)
 			//Nothing, go on as normal.
 		else if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones + tierfours, tiertwos, tierthrees))
-			to_chat(src, "<span class='warning'>The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die.</span>")
+			to_chat(src, span_warning("The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die."))
 			return
 		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierzeros + tierones, tiertwos + tierfours, tierthrees))
-			to_chat(src, "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>")
+			to_chat(src, span_warning("The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die."))
 			return
 		else if(SSticker.mode?.flags_round_type & MODE_XENO_RULER && !hive.living_xeno_ruler && potential_queens == 1)
 			if(isxenolarva(src) && new_caste_type != /mob/living/carbon/xenomorph/drone)
-				to_chat(src, "<span class='xenonotice'>The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Drone!</span>")
+				to_chat(src, span_xenonotice("The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Drone!"))
 				return
 			else if(isxenodrone(src) && new_caste_type != /mob/living/carbon/xenomorph/shrike)
-				to_chat(src, "<span class='xenonotice'>The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Shrike!</span>")
+				to_chat(src, span_xenonotice("The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Shrike!"))
 				return
 		else if(xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold)
-			to_chat(src, "<span class='warning'>We must wait before evolving. Currently at: [evolution_stored] / [xeno_caste.evolution_threshold].</span>")
+			to_chat(src, span_warning("We must wait before evolving. Currently at: [evolution_stored] / [xeno_caste.evolution_threshold]."))
 			return
 		else
-			to_chat(src, "<span class='xenonotice'>It looks like the hive can support our evolution to <span style='font-weight: bold'>[castepick]!</span></span>")
+			to_chat(src, span_xenonotice("It looks like the hive can support our evolution to <span style='font-weight: bold'>[castepick]!</span>"))
 
 	if(isnull(new_caste_type))
 		CRASH("[src] tried to evolve but their castepick was null")
 
-	visible_message("<span class='xenonotice'>\The [src] begins to twist and contort.</span>", \
-	"<span class='xenonotice'>We begin to twist and contort.</span>")
+	visible_message(span_xenonotice("\The [src] begins to twist and contort."), \
+	span_xenonotice("We begin to twist and contort."))
 	do_jitter_animation(1000)
 
 	if(!do_after(src, 25, FALSE, null, BUSY_ICON_CLOCK))
-		to_chat(src, "<span class='warning'>We quiver, but nothing happens. We must hold still while evolving.</span>")
+		to_chat(src, span_warning("We quiver, but nothing happens. We must hold still while evolving."))
 		return
 
 	tierzeros = hive.get_total_tier_zeros()
@@ -275,22 +272,22 @@
 
 	if(new_caste_type == /mob/living/carbon/xenomorph/queen)
 		if(hive.living_xeno_queen) //Do another check after the tick.
-			to_chat(src, "<span class='warning'>There already is a Queen.</span>")
+			to_chat(src, span_warning("There already is a Queen."))
 			return
 	else if(new_caste_type == /mob/living/carbon/xenomorph/shrike)
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]))
-			to_chat(src, "<span class='warning'>There already is a Shrike.</span>")
+			to_chat(src, span_warning("There already is a Shrike."))
 			return
 	else if(new_caste_type == /mob/living/carbon/xenomorph/hivemind) //Special case for dealing with hiveminds - this may be subject to heavy change, such as multiple hiveminds potentially being an option
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
-			to_chat(src, "<span class='warning'>There cannot be two manifestations of the hivemind's will at once.</span>")
+			to_chat(src, span_warning("There cannot be two manifestations of the hivemind's will at once."))
 			return
 	else if(!forced) // these shouldnt be checked if trying to become a queen.
 		if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones + tierfours, tiertwos, tierthrees))
-			to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 2.</span>")
+			to_chat(src, span_warning("Another sister evolved meanwhile. The hive cannot support another Tier 2."))
 			return
 		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierzeros + tierones, tiertwos + tierfours, tierthrees))
-			to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 3.</span>")
+			to_chat(src, span_warning("Another sister evolved meanwhile. The hive cannot support another Tier 3."))
 			return
 
 	if(!isturf(loc)) //cdel'd or moved into something
@@ -343,8 +340,8 @@
 
 	new_xeno.update_spits() //Update spits to new/better ones
 
-	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src].</span>", \
-	"<span class='xenodanger'>We emerge in a greater form from the husk of our old body. For the hive!</span>")
+	new_xeno.visible_message(span_xenodanger("A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src]."), \
+	span_xenodanger("We emerge in a greater form from the husk of our old body. For the hive!"))
 
 	SEND_SIGNAL(hive, COMSIG_XENOMORPH_POSTEVOLVING, new_xeno)
 
@@ -360,14 +357,21 @@
 		if(hive.living_xeno_queen)
 			new_xeno.handle_xeno_leader_pheromones(hive.living_xeno_queen)
 
-	if(upgrade == XENO_UPGRADE_THREE)
+		// Retaining blue crowned leadership on minimap past evolution.
+		var/datum/xeno_caste/original = /datum/xeno_caste
+		// Xenos with specialized icons (Queen, King, Shrike) do not need to have their icon returned to normal
+		if(new_xeno.xeno_caste.minimap_icon == initial(original.minimap_icon))
+			SSminimaps.remove_marker(new_xeno)
+			SSminimaps.add_marker(new_xeno, new_xeno.z, MINIMAP_FLAG_XENO, new_xeno.xeno_caste.minimap_leadered_icon)
+
+	if(upgrade == XENO_UPGRADE_THREE || upgrade == XENO_UPGRADE_FOUR)
 		switch(tier)
 			if(XENO_TIER_TWO)
 				SSmonitor.stats.ancient_T2--
 			if(XENO_TIER_THREE)
 				SSmonitor.stats.ancient_T3--
 
-	new_xeno.upgrade_stored = upgrade_stored
+	new_xeno.upgrade_stored = max(upgrade_stored, new_xeno.upgrade_stored)
 	while(new_xeno.upgrade_possible() && new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold)
 		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
 	var/obj/screen/zone_sel/selector = new_xeno.hud_used.zone_sel

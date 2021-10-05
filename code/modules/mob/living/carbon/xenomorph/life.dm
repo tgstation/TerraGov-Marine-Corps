@@ -50,7 +50,7 @@
 		return
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
 		SEND_SIGNAL(src, COMSIG_XENOMORPH_FIRE_BURNING)
-		adjustFireLoss((fire_stacks + 3) * clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1) ) // modifier is negative
+		adjustFireLoss((fire_stacks + 3) * get_fire_resist() )
 
 /mob/living/carbon/xenomorph/proc/handle_living_health_updates()
 	if(health < 0)
@@ -60,16 +60,16 @@
 		updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
 		return
 	var/turf/T = loc
-	if(!T || !istype(T))
+	if(!istype(T))
 		return
 
 	var/ruler_healing_penalty = 0.5
 	if(hive?.living_xeno_ruler?.loc?.z == T.z || xeno_caste.caste_flags & CASTE_CAN_HEAL_WITHOUT_QUEEN) //if the living queen's z-level is the same as ours.
 		ruler_healing_penalty = 1
-
-	if(locate(/obj/effect/alien/weeds) in T || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
+	var/obj/effect/alien/weeds/weed = locate() in T
+	if(weed || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
 		if(lying_angle || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
-			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty, TRUE)
+			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty * weed ? weed.resting_buff : 1, TRUE)
 		else
 			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty, TRUE) //Major healing nerf if standing.
 	updatehealth()
@@ -85,7 +85,7 @@
 	if(resting) //Resting doubles sunder recovery
 		sunder_recov *= 2
 
-	if(locate(/obj/effect/alien/weeds) in loc) //Weeds double sunder recovery
+	if(locate(/obj/effect/alien/weeds/resting) in loc) //Resting weeds double sunder recovery
 		sunder_recov *= 2
 
 	if(recovery_aura)
@@ -98,14 +98,14 @@
 /mob/living/carbon/xenomorph/proc/handle_critical_health_updates()
 	var/turf/T = loc
 	if((istype(T) && locate(/obj/effect/alien/weeds) in T))
-		heal_wounds(XENO_RESTING_HEAL + (warding_aura * 0.5) * 0.5) //Warding pheromones provides 0.125 HP per second per step, up to 1.25 HP per tick.
+		heal_wounds(XENO_RESTING_HEAL)
 	else if(!endure) //If we're not Enduring we bleed out
-		adjustBruteLoss(XENO_CRIT_DAMAGE - (warding_aura * 0.5)) //Warding can heavily lower the impact of bleedout. Halved at 5.
+		adjustBruteLoss(XENO_CRIT_DAMAGE)
 
 /mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL, scaling = FALSE)
-	var/amount = 1 + (maxHealth * 0.03) // 1 damage + 2% max health, with scaling power.
+	var/amount = 1 + (maxHealth * 0.0375) // 1 damage + 3.75% max health, with scaling power.
 	if(recovery_aura)
-		amount += recovery_aura * maxHealth * 0.008 // +0.8% max health per recovery level, up to +4%
+		amount += recovery_aura * maxHealth * 0.01 // +1% max health per recovery level, up to +5%
 	if(scaling)
 		if(recovery_aura)
 			regen_power = clamp(regen_power + xeno_caste.regen_ramp_amount*30,0,1) //Ignores the cooldown, and gives a 50% boost.
@@ -115,25 +115,26 @@
 		else
 			regen_power = min(regen_power + xeno_caste.regen_ramp_amount*20,1)
 		amount *= regen_power
-	amount *= multiplier
+	amount *= multiplier * GLOB.xeno_stat_multiplicator_buff
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, src)
 
+	var/remainder = max(0, amount-getBruteLoss())
 	adjustBruteLoss(-amount)
-	adjustFireLoss(-amount)
+	adjustFireLoss(-remainder)
 
 /mob/living/carbon/xenomorph/proc/handle_living_plasma_updates()
 	var/turf/T = loc
 	if(!T || !istype(T))
 		return
-	if(plasma_stored == xeno_caste.plasma_max)
+	if(plasma_stored >= xeno_caste.plasma_max * xeno_caste.plasma_regen_limit)
 		return
 
 	if(current_aura)
 		if(plasma_stored < 5)
 			use_plasma(plasma_stored)
 			current_aura = null
-			to_chat(src, "<span class='warning'>We have run out of plasma and stopped emitting pheromones.</span>")
+			to_chat(src, span_warning("We have run out of plasma and stopped emitting pheromones."))
 		else
 			use_plasma(5)
 
@@ -144,11 +145,14 @@
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_PLASMA_REGEN, plasma_mod)
 
+
 	var/plasma_gain_multiplier = 1
 	for(var/i in plasma_mod)
 		plasma_gain_multiplier *= i
 
-	if(!(locate(/obj/effect/alien/weeds) in T) && !(xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
+	var/obj/effect/alien/weeds/weeds = locate() in T
+
+	if(!weeds && !(xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
 		hud_set_plasma() // since we used some plasma via the aura
 		return
 
@@ -156,6 +160,8 @@
 
 	if(lying_angle || resting)
 		plasma_gain *= 2  // Doubled for resting
+
+	plasma_gain *= weeds ? weeds.resting_buff : 1
 
 	gain_plasma(plasma_gain * plasma_gain_multiplier)
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
@@ -278,7 +284,7 @@
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire2"
 			if(prob(20))
-				to_chat(src, "<span class='warning'>We feel a searing heat!</span>")
+				to_chat(src, span_warning("We feel a searing heat!"))
 		else
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire0"
@@ -296,11 +302,11 @@
 /mob/living/carbon/xenomorph/handle_slowdown()
 	if(slowdown)
 		#if DEBUG_XENO_LIFE
-		world << "<span class='debuginfo'>Regen: Initial slowdown is: <b>[slowdown]</b></span>"
+		world << span_debuginfo("Regen: Initial slowdown is: <b>[slowdown]</b>")
 		#endif
 		adjust_slowdown(-XENO_SLOWDOWN_REGEN)
 		#if DEBUG_XENO_LIFE
-		world << "<span class='debuginfo'>Regen: Final slowdown is: <b>[slowdown]</b></span>"
+		world << span_debuginfo("Regen: Final slowdown is: <b>[slowdown]</b>")
 		#endif
 	return slowdown
 

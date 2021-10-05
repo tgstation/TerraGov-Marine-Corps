@@ -85,8 +85,8 @@
 			take_limb_damage(10)
 	flash_act(1, TRUE, type = /obj/screen/fullscreen/flash/noise)
 
-	to_chat(src, "<span class='danger'>*BZZZT*</span>")
-	to_chat(src, "<span class='warning'>Warning: Electromagnetic pulse detected.</span>")
+	to_chat(src, span_danger("*BZZZT*"))
+	to_chat(src, span_warning("Warning: Electromagnetic pulse detected."))
 	return ..()
 
 
@@ -125,7 +125,7 @@
 //can't inject synths
 /mob/living/silicon/can_inject(mob/user, error_msg, target_zone, penetrate_thick = FALSE)
 	if(user && error_msg)
-		to_chat(user, "<span class='alert'>The armoured plating is too tough.</span>")
+		to_chat(user, span_alert("The armoured plating is too tough."))
 	return FALSE
 
 
@@ -153,11 +153,11 @@
 	if(HUD_toggled[HUD_nbr])
 		HUD_toggled[HUD_nbr] = 0
 		H.remove_hud_from(src)
-		to_chat(src, "<span class='boldnotice'>[hud_choice] Disabled</span>")
+		to_chat(src, span_boldnotice("[hud_choice] Disabled"))
 	else
 		HUD_toggled[HUD_nbr] = 1
 		H.add_hud_to(src)
-		to_chat(src, "<span class='boldnotice'>[hud_choice] Enabled</span>")
+		to_chat(src, span_boldnotice("[hud_choice] Enabled"))
 
 
 /mob/living/silicon/ex_act(severity)
@@ -187,7 +187,7 @@
 /mob/living/silicon/emp_act(severity)
 	. = ..()
 
-	to_chat(src, "<span class='danger'>Electromagnetic pulse detected.</span>")
+	to_chat(src, span_danger("Electromagnetic pulse detected."))
 
 	switch(severity)
 		if(1)
@@ -195,7 +195,7 @@
 		if(2)
 			adjustBruteLoss(10)
 
-	to_chat(src, "<span class='danger'>*BZZZT*</span>")
+	to_chat(src, span_danger("*BZZZT*"))
 	flash_act()
 
 
@@ -219,7 +219,7 @@
 		. = TRUE
 	switch(user.a_intent)
 		if(INTENT_HELP)
-			user.visible_message("[user] pets [src].", "<span class='notice'>You pet [src].</span>")
+			user.visible_message("[user] pets [src].", span_notice("You pet [src]."))
 
 		if(INTENT_GRAB)
 			user.start_pulling(src)
@@ -227,5 +227,5 @@
 		else
 			user.do_attack_animation(src, ATTACK_EFFECT_KICK)
 			playsound(loc, 'sound/effects/bang.ogg', 10, 1)
-			visible_message("<span class='danger'>[user] punches [src], but doesn't leave a dent.</span>", \
-				"<span class='warning'>[user] punches [src], but doesn't leave a dent.</span>")
+			visible_message(span_danger("[user] punches [src], but doesn't leave a dent."), \
+				span_warning("[user] punches [src], but doesn't leave a dent."))

@@ -229,7 +229,7 @@
 			if(!file)
 				return
 			usr.client.holder.marked_file = file
-			to_chat(usr, "<span class='notice'>File selected successfully.</span>")
+			to_chat(usr, span_notice("File selected successfully."))
 			return
 
 	if(!length(query_text))
@@ -258,7 +258,7 @@
 		running += query
 		var/msg = "Starting query #[query.id] - [query.get_query_text()]."
 		if(usr)
-			to_chat(usr, "<span class='admin'>[msg]</span>")
+			to_chat(usr, span_admin("[msg]"))
 		log_admin(msg)
 		query.ARun()
 	else //Start all
@@ -266,7 +266,7 @@
 			running += query
 			var/msg = "Starting query #[query.id] - [query.get_query_text()]."
 			if(usr)
-				to_chat(usr, "<span class='admin'>[msg]</span>")
+				to_chat(usr, span_admin("[msg]"))
 			log_admin(msg)
 			query.ARun()
 
@@ -288,7 +288,7 @@
 				finished = FALSE
 				if(query.state == SDQL2_STATE_ERROR)
 					if(usr)
-						to_chat(usr, "<span class='admin'>SDQL query [query.get_query_text()] errored. It will NOT be automatically garbage collected. Please remove manually.</span>")
+						to_chat(usr, span_admin("SDQL query [query.get_query_text()] errored. It will NOT be automatically garbage collected. Please remove manually."))
 					running -= query
 			else
 				if(query.finished)
@@ -306,12 +306,12 @@
 						running += next_query
 						var/msg = "Starting query #[next_query.id] - [next_query.get_query_text()]."
 						if(usr)
-							to_chat(usr, "<span class='admin'>[msg]</span>")
+							to_chat(usr, span_admin("[msg]"))
 						log_admin(msg)
 						next_query.ARun()
 				else
 					if(usr)
-						to_chat(usr, "<span class='admin'>SDQL query [query.get_query_text()] was halted. It will NOT be automatically garbage collected. Please remove manually.</span>")
+						to_chat(usr, span_admin("SDQL query [query.get_query_text()] was halted. It will NOT be automatically garbage collected. Please remove manually."))
 					running -= query
 	while(!finished)
 
@@ -320,9 +320,9 @@
 		return list("SDQL query combined results: [query_text]",\
 			"SDQL query completed: [objs_all] objects selected by path, and [selectors_used ? objs_eligible : objs_all] objects executed on after WHERE filtering/MAPping if applicable.",\
 			"SDQL combined querys took [DisplayTimeText(end_time_total)] to complete.", combined_refs, combined_text)
-	return list("<span class='admin'>SDQL query combined results: [query_text]</span>",\
-		"<span class='admin'>SDQL query completed: [objs_all] objects selected by path, and [selectors_used ? objs_eligible : objs_all] objects executed on after WHERE filtering/MAPping if applicable.</span>",\
-		"<span class='admin'>SDQL combined querys took [DisplayTimeText(end_time_total)] to complete.</span>", combined_refs, combined_text)
+	return list(span_admin("SDQL query combined results: [query_text]"),\
+		span_admin("SDQL query completed: [objs_all] objects selected by path, and [selectors_used ? objs_eligible : objs_all] objects executed on after WHERE filtering/MAPping if applicable."),\
+		span_admin("SDQL combined querys took [DisplayTimeText(end_time_total)] to complete."), combined_refs, combined_text)
 
 
 GLOBAL_LIST_INIT(sdql2_queries, GLOB.sdql2_queries || list())
@@ -898,7 +898,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 				if("or", "||")
 					result = (result || val)
 				else
-					to_chat(usr, "<span class='danger'>SDQL2: Unknown op [op]</span>")
+					to_chat(usr, span_danger("SDQL2: Unknown op [op]"))
 					result = null
 		else
 			result = val
@@ -1009,7 +1009,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 				querys[querys_pos] = parsed_tree
 				querys_pos++
 			else //There was an error so don't run anything, and tell the user which query has errored.
-				to_chat(usr, "<span class='danger'>Parsing error on [querys_pos]\th query. Nothing was executed.</span>")
+				to_chat(usr, span_danger("Parsing error on [querys_pos]\th query. Nothing was executed."))
 				return list()
 			query_tree = list()
 			do_parse = 0
@@ -1057,16 +1057,16 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 		D = object
 
 	if (object == world && (!long || expression[start + 1] == ".") && !(expression[start] in exclude) && copytext(expression[start], 1, 3) != "SS") //3 == length("SS") + 1
-		to_chat(usr, "<span class='danger'>World variables are not allowed to be accessed. Use global.</span>")
+		to_chat(usr, span_danger("World variables are not allowed to be accessed. Use global."))
 		return null
 
 	else if(expression [start] == "{" && long)
 		if(lowertext(copytext(expression[start + 1], 1, 3)) != "0x") //3 == length("0x") + 1
-			to_chat(usr, "<span class='danger'>Invalid pointer syntax: [expression[start + 1]]</span>")
+			to_chat(usr, span_danger("Invalid pointer syntax: [expression[start + 1]]"))
 			return null
 		v = locate("\[[expression[start + 1]]]")
 		if(!v)
-			to_chat(usr, "<span class='danger'>Invalid pointer: [expression[start + 1]]</span>")
+			to_chat(usr, span_danger("Invalid pointer: [expression[start + 1]]"))
 			return null
 		start++
 		long = start < expression.len
@@ -1197,7 +1197,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 			var/list/L = v
 			var/index = query.SDQL_expression(source, expression[start + 2])
 			if(isnum(index) && (!ISINTEGER(index) || L.len < index))
-				to_chat(usr, "<span class='danger'>Invalid list index: [index]</span>")
+				to_chat(usr, span_danger("Invalid list index: [index]"))
 				return null
 			return L[index]
 	return v
@@ -1250,7 +1250,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 
 		else if(char == "'")
 			if(word != "")
-				to_chat(usr, "<span class='danger'>SDQL2: You have an error in your SDQL syntax, unexpected ' in query: \"<font color=gray>[query_text]</font>\" following \"<font color=gray>[word]</font>\". Please check your syntax, and try again.</span>")
+				to_chat(usr, span_danger("SDQL2: You have an error in your SDQL syntax, unexpected ' in query: \"<font color=gray>[query_text]</font>\" following \"<font color=gray>[word]</font>\". Please check your syntax, and try again."))
 				return null
 
 			word = "'"
@@ -1270,7 +1270,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 					word += char
 
 			if(i > len)
-				to_chat(usr, "<span class='danger'>SDQL2: You have an error in your SDQL syntax, unmatched ' in query: \"<font color=gray>[query_text]</font>\". Please check your syntax, and try again.</span>")
+				to_chat(usr, span_danger("SDQL2: You have an error in your SDQL syntax, unmatched ' in query: \"<font color=gray>[query_text]</font>\". Please check your syntax, and try again."))
 				return null
 
 			query_list += "[word]'"
@@ -1278,7 +1278,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 
 		else if(char == "\"")
 			if(word != "")
-				to_chat(usr, "<span class='danger'>SDQL2: You have an error in your SDQL syntax, unexpected \" in query: \"<font color=gray>[query_text]</font>\" following \"<font color=gray>[word]</font>\". Please check your syntax, and try again.</span>")
+				to_chat(usr, span_danger("SDQL2: You have an error in your SDQL syntax, unexpected \" in query: \"<font color=gray>[query_text]</font>\" following \"<font color=gray>[word]</font>\". Please check your syntax, and try again."))
 				return null
 
 			word = "\""
@@ -1298,7 +1298,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 					word += char
 
 			if(i > len)
-				to_chat(usr, "<span class='danger'>SDQL2: You have an error in your SDQL syntax, unmatched \" in query: \"<font color=gray>[query_text]</font>\". Please check your syntax, and try again.</span>")
+				to_chat(usr, span_danger("SDQL2: You have an error in your SDQL syntax, unmatched \" in query: \"<font color=gray>[query_text]</font>\". Please check your syntax, and try again."))
 				return null
 
 			query_list += "[word]\""

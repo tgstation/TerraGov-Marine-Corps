@@ -189,6 +189,11 @@ GLOBAL_LIST_EMPTY(autolathe_categories)
 	path = /obj/item/tool/surgery/hemostat
 	category = "Medical"
 
+/datum/autolathe/recipe/suture
+	name = "suture"
+	path = /obj/item/tool/surgery/suture
+	category = "Medical"
+
 /datum/autolathe/recipe/beaker
 	name = "glass beaker"
 	path = /obj/item/reagent_containers/glass/beaker
@@ -278,12 +283,12 @@ GLOBAL_LIST_EMPTY(autolathe_categories)
 	path = /obj/item/frame/camera
 	category = "Devices and Components"
 
-/datum/autolathe/recipe/conveyors
+/datum/autolathe/recipe/conveyorbelts
 	name = "30 conveyors"
 	path = /obj/item/stack/conveyor/thirty
 	category = "Devices and Components"
 
-/datum/autolathe/recipe/conveyors
+/datum/autolathe/recipe/conveyorswitch
 	name = "Conveyor Switch"
 	path = /obj/item/conveyor_switch_construct
 	category = "Devices and Components"

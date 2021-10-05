@@ -1,6 +1,6 @@
 import { useBackend } from "../../backend";
 import { Window } from "../../layouts";
-import { Button, Section, Stack, Box, Flex } from "../../components";
+import { Button, Section, Stack, Flex } from "../../components";
 import { SlotSelector } from './Slots';
 import { Loadout } from '../LoadoutManager/Types';
 import { LoadoutViewerData } from "./Types";
@@ -19,7 +19,7 @@ const LoadoutNavigator = (props: Loadout, context) => {
         <Flex.Item>
           <Button
             onClick={() => { 
-              act('equipLoadout', { loadout_name: name, loadout_job: job });
+              act('equipLoadout');
             }}>
             Equip Loadout
           </Button>
@@ -28,7 +28,7 @@ const LoadoutNavigator = (props: Loadout, context) => {
         <Flex.Item>
           <Button
             onClick={() => {
-              act('deleteLoadout', { loadout_name: name, loadout_job: job });
+              act('deleteLoadout');
             }}>
             Delete Loadout
           </Button>
@@ -59,7 +59,7 @@ export const LoadoutViewer = (props, context) => {
           />
           <LoadoutNavigator
             name={loadout.name}
-            job={loadout.job} 
+            job={loadout.job}
           /> 
         </Stack>
       </Window.Content>

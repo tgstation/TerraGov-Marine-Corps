@@ -41,7 +41,7 @@
 		if(!user.transferItemToLoc(I, src))
 			return
 
-		to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+		to_chat(user, span_notice("You put [I] in [src]."))
 		icon_state = "[initial(icon_state)]-open"
 		sleep(5)
 		icon_state = initial(icon_state)
@@ -50,10 +50,10 @@
 	else if(iswrench(I))
 		anchored = !anchored
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
+		to_chat(user, span_notice("You [anchored ? "wrench" : "unwrench"] \the [src]."))
 
 	else
-		to_chat(user, "<span class='notice'>You can't put [I] in [src]!</span>")
+		to_chat(user, span_notice("You can't put [I] in [src]!"))
 
 
 /obj/structure/filingcabinet/attack_hand(mob/living/user)
@@ -61,7 +61,7 @@
 	if(.)
 		return
 	if(contents.len <= 0)
-		to_chat(user, "<span class='notice'>\The [src] is empty.</span>")
+		to_chat(user, span_notice("\The [src] is empty."))
 		return
 
 	user.set_interaction(src)

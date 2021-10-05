@@ -31,7 +31,7 @@
 	if(keybind_signal)
 		RegisterSignal(L, keybind_signal, .proc/keybind_activation)
 	if(alternate_keybind_signal)
-		RegisterSignal(L, alternate_keybind_signal, .proc/alternate_keybind_action)
+		RegisterSignal(L, alternate_keybind_signal, .proc/alternate_action_activate)
 	RegisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, .proc/on_xeno_upgrade)
 
 /datum/action/xeno_action/remove_action(mob/living/L)
@@ -51,10 +51,6 @@
 		INVOKE_ASYNC(src, .proc/action_activate)
 	return COMSIG_KB_ACTIVATED
 
-///Signal Handler for alternate keybind actions
-/datum/action/xeno_action/proc/alternate_keybind_action()
-	SIGNAL_HANDLER
-
 /datum/action/xeno_action/proc/on_xeno_upgrade()
 	return
 
@@ -66,57 +62,57 @@
 
 	if(!(flags_to_check & XACT_IGNORE_COOLDOWN) && !action_cooldown_check())
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't use [ability_name] yet, we must wait [cooldown_remaining()] seconds!</span>")
+			to_chat(owner, span_warning("We can't use [ability_name] yet, we must wait [cooldown_remaining()] seconds!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_INCAP) && X.incapacitated())
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this while incapacitated!</span>")
+			to_chat(owner, span_warning("We can't do this while incapacitated!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_LYING) && X.lying_angle)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this while lying down!</span>")
+			to_chat(owner, span_warning("We can't do this while lying down!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_BUCKLED) && X.buckled)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this while buckled!</span>")
+			to_chat(owner, span_warning("We can't do this while buckled!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_STAGGERED) && X.stagger)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this while staggered!</span>")
+			to_chat(owner, span_warning("We can't do this while staggered!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_FORTIFIED) && X.fortify)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this while fortified!</span>")
+			to_chat(owner, span_warning("We can't do this while fortified!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_CRESTED) && X.crest_defense)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this while in crest defense!</span>")
+			to_chat(owner, span_warning("We can't do this while in crest defense!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_NOTTURF) && !isturf(X.loc))
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this here!</span>")
+			to_chat(owner, span_warning("We can't do this here!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_BUSY) && X.do_actions)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We're busy doing something right now!</span>")
+			to_chat(owner, span_warning("We're busy doing something right now!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_AGILITY) && X.agility)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this in agility mode!</span>")
+			to_chat(owner, span_warning("We can't do this in agility mode!"))
 		return FALSE
 
 	if(!(flags_to_check & XACT_IGNORE_PLASMA) && X.plasma_stored < plasma_cost)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We don't have enough plasma, we need [plasma_cost - X.plasma_stored] more.</span>")
+			to_chat(owner, span_warning("We don't have enough plasma, we need [plasma_cost - X.plasma_stored] more."))
 		return FALSE
 
 	return TRUE
@@ -124,9 +120,15 @@
 /datum/action/xeno_action/fail_activate()
 	update_button_icon()
 
-/datum/action/xeno_action/proc/succeed_activate()
+///Plasma cost override allows for actions/abilities to override the normal plasma costs
+/datum/action/xeno_action/proc/succeed_activate(plasma_cost_override)
+	if(QDELETED(owner))
+		return
 	var/mob/living/carbon/xenomorph/X = owner
-	if(plasma_cost && !QDELETED(owner))
+	if(plasma_cost_override)
+		X.use_plasma(plasma_cost_override)
+		return
+	if(plasma_cost)
 		X.use_plasma(plasma_cost)
 
 //checks if the linked ability is on some cooldown.
@@ -186,7 +188,7 @@
 		deselect()
 	return ..()
 
-/datum/action/xeno_action/activable/alternate_keybind_action()
+/datum/action/xeno_action/activable/alternate_action_activate()
 	INVOKE_ASYNC(src, .proc/action_activate)
 
 /datum/action/xeno_action/activable/action_activate()
@@ -222,10 +224,8 @@
 /datum/action/xeno_action/activable/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
-		to_chat(X, "You will no longer use [ability_name] with [(X.client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING) ? "middle-click" :"shift-click"].")
 		deselect()
 	else
-		to_chat(X, "You will now use [ability_name] with [(X.client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING) ? "middle-click" :"shift-click"].")
 		if(X.selected_ability)
 			X.selected_ability.deselect()
 		select()

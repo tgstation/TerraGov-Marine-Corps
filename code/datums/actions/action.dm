@@ -12,6 +12,7 @@
 
 /datum/action/New(Target)
 	target = Target
+	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/clean_action)
 	button = new
 	if(target)
 		var/image/IMG
@@ -34,6 +35,10 @@
 	QDEL_NULL(button)
 	target = null
 	return ..()
+
+/datum/action/proc/clean_action()
+	SIGNAL_HANDLER
+	qdel(src)
 
 /datum/action/proc/should_show()
 	return TRUE
@@ -63,6 +68,11 @@
 	if(SEND_SIGNAL(src, COMSIG_ACTION_TRIGGER) & COMPONENT_ACTION_BLOCK_TRIGGER)
 		return FALSE
 	return TRUE
+
+///Signal Handler for alternate actions
+/datum/action/proc/alternate_action_activate()
+	SIGNAL_HANDLER
+	return
 
 /datum/action/proc/fail_activate()
 	return

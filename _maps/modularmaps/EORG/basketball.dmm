@@ -294,8 +294,7 @@
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
-	dir = 4;
-	
+	dir = 4
 	},
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/wood,
@@ -442,6 +441,13 @@
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/plating_catwalk,
 /area/deathmatch)
+"bI" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/deathmatch)
 "ca" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -452,7 +458,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "cd" = (
-/obj/machinery/door/window/eastright,
+/obj/machinery/door/window/right,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "cP" = (
@@ -496,6 +502,11 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/deathmatch)
+"hr" = (
+/obj/structure/bed/chair,
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/deathmatch)
 "it" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
@@ -507,13 +518,6 @@
 /obj/structure/closet/swimsuit,
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/mainship/mono,
-/area/deathmatch)
-"jq" = (
-/obj/structure/bed/chair{
-	dir = 8;
-	icon_state = "chair"
-	},
-/turf/open/floor/wood,
 /area/deathmatch)
 "ki" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -571,6 +575,10 @@
 "qx" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
+/area/deathmatch)
+"rl" = (
+/obj/effect/ai_node,
+/turf/open/ground/river,
 /area/deathmatch)
 "rF" = (
 /obj/machinery/light{
@@ -642,7 +650,9 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "yt" = (
-/obj/machinery/door/window/westleft,
+/obj/machinery/door/window{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/deathmatch)
 "zl" = (
@@ -738,9 +748,17 @@
 	},
 /turf/open/floor/wood,
 /area/deathmatch)
+"HL" = (
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/deathmatch)
 "IC" = (
 /turf/closed/wall/mainship/outer,
 /area/space)
+"IS" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/mainship,
+/area/deathmatch)
 "JI" = (
 /obj/structure/table/reinforced/prison,
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
@@ -872,8 +890,7 @@
 /area/deathmatch)
 "TC" = (
 /obj/structure/bed/chair{
-	dir = 8;
-	icon_state = "chair"
+	dir = 8
 	},
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/wood,
@@ -955,7 +972,9 @@
 /turf/open/floor/grass,
 /area/deathmatch)
 "Xx" = (
-/obj/machinery/door/window/westleft,
+/obj/machinery/door/window{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "Yy" = (
@@ -1231,7 +1250,7 @@ jf
 jf
 cP
 aG
-aG
+hr
 aG
 eo
 aH
@@ -1275,7 +1294,7 @@ ab
 aa
 ey
 jf
-jf
+IS
 jf
 cP
 aG
@@ -1337,7 +1356,7 @@ ue
 aI
 ca
 eo
-eo
+HL
 ag
 ak
 ak
@@ -1347,7 +1366,7 @@ ak
 ak
 ak
 aO
-eo
+HL
 eo
 SS
 aK
@@ -1356,7 +1375,7 @@ bc
 Zn
 aH
 eo
-aF
+bI
 aF
 aa
 bf
@@ -1803,11 +1822,11 @@ IC
 NH
 Qz
 al
+HL
 eo
 eo
 eo
-eo
-eo
+HL
 eo
 eo
 Mn
@@ -1817,6 +1836,7 @@ uB
 aC
 aj
 eo
+HL
 eo
 eo
 eo
@@ -1826,8 +1846,7 @@ eo
 eo
 eo
 eo
-eo
-eo
+HL
 eo
 aT
 aE
@@ -1836,7 +1855,7 @@ bc
 Zu
 Mn
 eo
-eo
+HL
 eo
 eo
 eo
@@ -2235,11 +2254,11 @@ IC
 NH
 Qz
 eo
+HL
 eo
 eo
 eo
-eo
-eo
+HL
 eo
 eo
 tG
@@ -2811,7 +2830,7 @@ eo
 aa
 bb
 Kh
-Kh
+rl
 Kh
 Kh
 aa
@@ -2863,7 +2882,7 @@ Kh
 Kh
 OY
 aa
-aG
+hr
 aG
 eo
 aH
@@ -2992,10 +3011,10 @@ aF
 aF
 aF
 TC
-jq
+yq
 eo
 TC
-jq
+yq
 aa
 ab
 "}

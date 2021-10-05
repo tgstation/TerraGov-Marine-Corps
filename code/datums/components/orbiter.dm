@@ -37,6 +37,7 @@
 	for(var/i in orbiters)
 		end_orbit(i)
 	orbiters = null
+	QDEL_NULL(tracker)
 	return ..()
 
 /datum/component/orbiter/InheritComponent(datum/component/orbiter/newcomp, original, atom/movable/orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
@@ -85,7 +86,7 @@
 	orbiter.forceMove(get_turf(parent))
 	var/atom/movable/movable_parent = parent
 	orbiter.glide_size = movable_parent.glide_size
-	to_chat(orbiter, "<span class='notice'>Now orbiting [parent].</span>")
+	to_chat(orbiter, span_notice("Now orbiting [parent]."))
 
 /datum/component/orbiter/proc/end_orbit(atom/movable/orbiter, refreshing=FALSE)
 	if(!orbiters[orbiter])

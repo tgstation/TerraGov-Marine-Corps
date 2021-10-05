@@ -23,7 +23,7 @@
 			keysend_tripped = TRUE
 			next_keysend_trip_reset = world.time + (2 SECONDS)
 		else
-			to_chat(src, "<span class='userdanger'>Key flooding detected! You have been disconnected from the server automatically.</span>")
+			to_chat(src, span_userdanger("Key flooding detected! You have been disconnected from the server automatically."))
 			log_admin("Client [ckey] was just autokicked for flooding keysends; likely abuse but potentially lagspike.")
 			message_admins("Client [ckey] was just autokicked for flooding keysends; likely abuse but potentially lagspike.")
 			qdel(src)
@@ -31,7 +31,7 @@
 
 	///Check if the key is short enough to even be a real key
 	if(LAZYLEN(_key) > MAX_KEYPRESS_COMMANDLENGTH)
-		to_chat(src, "<span class='userdanger'>Invalid KeyDown detected! You have been disconnected from the server automatically.</span>")
+		to_chat(src, span_userdanger("Invalid KeyDown detected! You have been disconnected from the server automatically."))
 		log_admin("Client [ckey] just attempted to send an invalid keypress. Keymessage was over [MAX_KEYPRESS_COMMANDLENGTH] characters, autokicking due to likely abuse.")
 		message_admins("Client [ckey] just attempted to send an invalid keypress. Keymessage was over [MAX_KEYPRESS_COMMANDLENGTH] characters, autokicking due to likely abuse.")
 		qdel(src)
@@ -62,11 +62,20 @@
 		if("Alt", "Ctrl", "Shift")
 			full_key = "[AltMod][CtrlMod][ShiftMod]"
 		else
+			//Every character is capitalised by Byond except special ones like é and è. Since they are always capitalised by the tgui registering window,
+			//we ensure that they are capitalised also by DM so they match.
+			_key = capitalize(_key)
 			full_key = "[AltMod][CtrlMod][ShiftMod][_key]"
 	var/keycount = 0
 	for(var/kb_name in prefs.key_bindings[full_key])
 		keycount++
 		var/datum/keybinding/kb = GLOB.keybindings_by_name[kb_name]
+		if(!kb)
+			prefs.key_bindings[full_key] -= kb_name
+			if(!prefs.key_bindings[full_key])
+				prefs.key_bindings -= full_key
+			prefs.save_keybinds()
+			continue
 		if(kb.down(src) && keycount >= MAX_COMMANDS_PER_KEY)
 			break
 

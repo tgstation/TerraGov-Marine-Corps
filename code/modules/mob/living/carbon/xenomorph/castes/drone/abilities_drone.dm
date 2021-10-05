@@ -26,10 +26,10 @@
 	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
 
-	owner.visible_message("<span class='xenowarning'>\the [owner] vomits acid over [target]!</span>", \
-	"<span class='xenowarning'>We cover [target] with our rejuvinating goo!</span>")
-	target.visible_message("<span class='xenowarning'>[target]'s wounds are mended by the acid.</span>", \
-	"<span class='xenowarning'>We feel a sudden soothing chill.</span>")
+	owner.visible_message(span_xenowarning("\the [owner] vomits acid over [target]!"), \
+	span_xenowarning("We cover [target] with our rejuvinating goo!"))
+	target.visible_message(span_xenowarning("[target]'s wounds are mended by the acid."), \
+	span_xenowarning("We feel a sudden soothing chill."))
 
 	playsound(target, "alien_drool", 25)
 
@@ -45,9 +45,16 @@
 	add_cooldown()
 
 /mob/living/carbon/xenomorph/proc/salve_healing() //Slight modification of the heal_wounds proc
-	var/amount = 40	//Smaller than psychic cure, less useful on xenos with large health pools
+	var/amount = 50	//Smaller than psychic cure, less useful on xenos with large health pools
 	if(recovery_aura)	//Leaving in the recovery aura bonus, not sure if it is too high the way it is
-		amount += recovery_aura * maxHealth * 0.008 // +0.8% max health per recovery level, up to +4%
+		amount += recovery_aura * maxHealth * 0.01 // +1% max health per recovery level, up to +5%
+	var/remainder = max(0, amount - getBruteLoss()) //Heal brute first, apply whatever's left to burns
 	adjustBruteLoss(-amount)
-	adjustFireLoss(-amount, updating_health = TRUE)
+	adjustFireLoss(-remainder, updating_health = TRUE)
 	adjust_sunder(-amount/20)
+
+// ***************************************
+// *********** Drone Jelly
+// ***************************************
+/datum/action/xeno_action/create_jelly/slow
+	cooldown_timer = 45 SECONDS

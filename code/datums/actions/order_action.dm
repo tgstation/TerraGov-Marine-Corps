@@ -34,14 +34,14 @@
 /datum/action/innate/order/can_use_action()
 	. = ..()
 	if(TIMER_COOLDOWN_CHECK(owner, COOLDOWN_CIC_ORDERS))
-		to_chat(owner, "<span class='warning'>Your last order was too recent.</span>")
+		to_chat(owner, span_warning("Your last order was too recent."))
 		return FALSE
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
 /datum/action/innate/order/proc/send_order(atom/target, datum/squad/squad, faction = FACTION_TERRAGOV)
 	if(!can_use_action())
 		return
-	to_chat(owner ,"<span class='ordercic'>You ordered marines to [verb_name] [get_area(target.loc)]!</span>")
+	to_chat(owner ,span_ordercic("You ordered marines to [verb_name] [get_area(target.loc)]!"))
 	owner.playsound_local(owner, "sound/effects/CIC_order.ogg", 10, 1)
 	if(visual_type)
 		target = get_turf(target)
@@ -85,7 +85,7 @@
 	var/obj/screen/arrow/arrow_hud = new arrow_type
 	arrow_hud.add_hud(src, target)
 	playsound_local(src, "sound/effects/CIC_order.ogg", 20, 1)
-	to_chat(src,"<span class='ordercic'>Command is urging you to [verb_name] [get_area(get_turf(target))]!</span>")
+	to_chat(src,span_ordercic("Command is urging you to [verb_name] [get_area(get_turf(target))]!"))
 
 /datum/action/innate/order/attack_order
 	name = "Send Attack Order"

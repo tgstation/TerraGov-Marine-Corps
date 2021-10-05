@@ -17,7 +17,7 @@
 /turf/open/floor/tile/white,
 /area/tdome)
 "af" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "ag" = (
@@ -338,9 +338,9 @@
 /area/tdome/tdomeadmin)
 "bI" = (
 /obj/structure/table,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/bruise_pack,
+/obj/item/stack/medical/heal_pack/gauze,
+/obj/item/stack/medical/heal_pack/gauze,
+/obj/item/stack/medical/heal_pack/gauze,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bJ" = (
@@ -385,9 +385,9 @@
 /turf/open/floor/mainship/cargo,
 /area/centcom/supplypod/loading/ert)
 "dv" = (
-/obj/item/stack/medical/ointment,
-/obj/item/stack/medical/ointment,
-/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/heal_pack/ointment,
+/obj/item/stack/medical/heal_pack/ointment,
+/obj/item/stack/medical/heal_pack/ointment,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "dX" = (

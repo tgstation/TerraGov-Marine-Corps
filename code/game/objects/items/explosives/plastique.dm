@@ -14,12 +14,12 @@
 
 /obj/item/explosive/plastique/Destroy()
 	plant_target = null
-	. = ..()
+	return ..()
 
 /obj/item/explosive/plastique/attack_self(mob/user)
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
-		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
+		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
+		span_notice("You fumble around figuring out how to use [src]."))
 		var/fumbling_time = 2 SECONDS
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
@@ -41,23 +41,23 @@
 	if(istype(target, /obj/structure/window))
 		var/obj/structure/window/W = target
 		if(!W.damageable)
-			to_chat(user, "<span class='warning'>[W] is much too tough for you to do anything to it with [src]</span>.")
+			to_chat(user, "[span_warning("[W] is much too tough for you to do anything to it with [src]")].")
 			return FALSE
 	if((locate(/obj/item/detpack) in target) || (locate(/obj/item/explosive/plastique) in target)) //This needs a refactor.
-		to_chat(user, "<span class='warning'>There is already a device attached to [target]</span>.")
+		to_chat(user, "[span_warning("There is already a device attached to [target]")].")
 		return FALSE
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
-		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
+		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
+		span_notice("You fumble around figuring out how to use [src]."))
 		var/fumbling_time = 5 SECONDS
 		if(!do_after(user, fumbling_time, TRUE, target, BUSY_ICON_UNSKILLED))
 			return
-	user.visible_message("<span class='warning'>[user] is trying to plant [name] on [target]!</span>",
-	"<span class='warning'>You are trying to plant [name] on [target]!</span>")
+	user.visible_message(span_warning("[user] is trying to plant [name] on [target]!"),
+	span_warning("You are trying to plant [name] on [target]!"))
 
 	if(do_after(user, 5 SECONDS, TRUE, target, BUSY_ICON_HOSTILE))
 		if((locate(/obj/item/detpack) in target) || (locate(/obj/item/explosive/plastique) in target)) //This needs a refactor.
-			to_chat(user, "<span class='warning'>There is already a device attached to [target]</span>.")
+			to_chat(user, "[span_warning("There is already a device attached to [target]")].")
 			return
 		user.drop_held_item()
 		var/location
@@ -69,8 +69,8 @@
 		message_admins("[ADMIN_TPMONTY(user)] planted [src] on [target] at [ADMIN_VERBOSEJMP(target.loc)] with [timer] second fuse.")
 		log_explosion("[key_name(user)] planted [src] at [AREACOORD(user.loc)] with [timer] second fuse.")
 
-		user.visible_message("<span class='warning'>[user] plants [name] on [target]!</span>",
-		"<span class='warning'>You plant [name] on [target]! Timer counting down from [timer].</span>")
+		user.visible_message(span_warning("[user] plants [name] on [target]!"),
+		span_warning("You plant [name] on [target]! Timer counting down from [timer]."))
 
 		plant_target = target
 		if(ismovableatom(plant_target))
@@ -90,8 +90,8 @@
 /obj/item/explosive/plastique/attackby(obj/item/I, mob/user, params)
 	if(ismultitool(I) && armed)
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disarm [src].</span>",
-			"<span class='notice'>You fumble around figuring out how to disarm [src].</span>")
+			user.visible_message(span_notice("[user] fumbles around figuring out how to disarm [src]."),
+			span_notice("You fumble around figuring out how to disarm [src]."))
 			var/fumbling_time = 3 SECONDS
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
@@ -108,8 +108,8 @@
 
 		deltimer(detonation_pending)
 
-		user.visible_message("<span class='warning'>[user] disarmed [src] on [plant_target]!</span>",
-		"<span class='warning'>You disarmed [src] on [plant_target]!</span>")
+		user.visible_message(span_warning("[user] disarmed [src] on [plant_target]!"),
+		span_warning("You disarmed [src] on [plant_target]!"))
 
 		if(ismob(plant_target))
 			log_combat(user, plant_target, "removed [src] from")

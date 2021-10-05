@@ -23,7 +23,7 @@
 		/datum/job/terragov/squad/smartgunner = 1,
 		/datum/job/terragov/squad/leader = 1,
 		/datum/job/terragov/squad/standard = -1,
-		/datum/job/xenomorph = 2,
+		/datum/job/xenomorph = FREE_XENO_AT_START,
 		/datum/job/xenomorph/queen = 1
 	)
 	var/siloless_hive_timer
@@ -35,7 +35,7 @@
 	SSpoints.add_psy_points(XENO_HIVE_NORMAL, SILO_PRICE + 2 * XENO_TURRET_PRICE)
 
 	for(var/i in GLOB.xeno_turret_turfs)
-		new /obj/structure/xeno/resin/xeno_turret(i)
+		new /obj/structure/xeno/xeno_turret(i)
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob(COCOONED_DEATH)
 

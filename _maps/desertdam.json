@@ -1,0 +1,7 @@
+{
+    "map_name": "Chigusa",
+    "map_path": "map_files/desertdam",
+    "map_file": "desertdam.dmm",
+    "map_item_type": "/obj/item/map/desert_dam",
+    "announce_text": "We've lost contact with NT's extra-solar colony, \"Chigusa Dam\", on the planet \"Trivonus IV.\" The ###SHIPNAME### has been dispatched to assist."
+}

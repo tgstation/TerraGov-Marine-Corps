@@ -63,46 +63,6 @@
 			vedits[varname] = I.vars[varname]
 		return vedits
 
-
-/mob/living/carbon/human/proc/copy_outfit()
-	var/datum/outfit/varedit/O = new
-
-	//Copy equipment
-	var/list/result = list()
-	var/list/slots_to_check = list(SLOT_W_UNIFORM,SLOT_BACK,SLOT_WEAR_SUIT,SLOT_BELT,SLOT_GLOVES,SLOT_SHOES,SLOT_HEAD,SLOT_WEAR_MASK,SLOT_EARS,SLOT_GLASSES,SLOT_WEAR_ID,SLOT_S_STORE,SLOT_L_STORE,SLOT_R_STORE)
-	for(var/s in slots_to_check)
-		var/obj/item/I = get_item_by_slot(s)
-		var/vedits = collect_vv(I)
-		if(vedits)
-			result["[s]"] = vedits
-		if(istype(I))
-			O.set_equipement_by_slot(s,I.type)
-
-	//Copy access
-	O.stored_access = list()
-	var/obj/item/card/id/ID = get_idcard()
-	if(istype(ID))
-		O.stored_access = ID.access
-	//Copy hands
-	var/obj/item/left_hand = l_hand
-	var/obj/item/right_hand = r_hand
-	if(istype(left_hand))
-		O.l_hand = left_hand.type
-		var/vedits = collect_vv(left_hand)
-		if(vedits)
-			result["LHAND"] = vedits
-	if(istype(right_hand))
-		O.r_hand = right_hand.type
-		var/vedits = collect_vv(left_hand)
-		if(vedits)
-			result["RHAND"] = vedits
-	O.vv_values = result
-	//Copy to outfit cache
-	var/outfit_name = stripped_input(usr, "Enter the outfit name")
-	O.name = outfit_name
-	GLOB.custom_outfits += O
-
-
 /datum/outfit/varedit/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	//Apply VV

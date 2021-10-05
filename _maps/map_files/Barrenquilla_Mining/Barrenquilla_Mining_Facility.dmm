@@ -148,9 +148,7 @@
 /area/barren/cave/lz2)
 "aK" = (
 /obj/structure/table/reinforced,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/obj/effect/landmark/dropship_console_spawn_lz2,
 /turf/open/floor/tile/dark,
 /area/barren/cave/lz2)
 "aL" = (
@@ -489,7 +487,7 @@
 /turf/open/lavaland/lava,
 /area/barren/cave/east)
 "cB" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/grimy,
 /area/barren/civilian/workdorm)
@@ -1105,6 +1103,12 @@
 /obj/effect/decal/cleanable/blood/writing,
 /turf/open/floor/grimy,
 /area/barren/civilian)
+"fv" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 6
+	},
+/turf/open/floor,
+/area/barren/cave/lz1)
 "fw" = (
 /turf/closed/wall,
 /area/barren/engie/engine)
@@ -1504,6 +1508,12 @@
 	icon_state = "carpet6-0"
 	},
 /area/barren/misc/ashshelter)
+"hi" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/barren/cave/lz2)
 "hj" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
@@ -1556,7 +1566,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/barren/misc/ashshelter)
 "hu" = (
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /turf/open/lavaland/basalt,
 /area/barren/cave/west)
 "hv" = (
@@ -2001,7 +2011,7 @@
 /turf/open/floor/plating/dmg3,
 /area/barren/cave/central)
 "jG" = (
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /turf/open/lavaland/basalt,
 /area/barren/cave/central)
 "jH" = (
@@ -3794,7 +3804,7 @@
 	},
 /area/barren/medical)
 "sq" = (
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/barren/cave/lz2)
@@ -4469,6 +4479,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/red/redtaupe,
 /area/barren/security)
+"vO" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/barren/cave/lz2)
 "vQ" = (
 /obj/structure/cable,
 /turf/open/floor/tile/red,
@@ -4610,6 +4626,12 @@
 "wC" = (
 /obj/structure/girder/reinforced,
 /obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark,
+/area/barren/cave/lz2)
+"wE" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 6
+	},
 /turf/open/floor/tile/dark,
 /area/barren/cave/lz2)
 "wF" = (
@@ -5081,7 +5103,7 @@
 /turf/open/floor/tile/dark,
 /area/barren/cave/lz2)
 "zn" = (
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /turf/open/floor/tile/dark,
 /area/barren/cave/lz2)
 "zo" = (
@@ -5349,6 +5371,10 @@
 	},
 /turf/open/floor/wood,
 /area/barren/cave/lz1)
+"AN" = (
+/obj/effect/decal/warning_stripes/thick,
+/turf/open/floor/tile/dark,
+/area/barren/cave/lz2)
 "AO" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/structure/sign/poster,
@@ -5557,7 +5583,7 @@
 /turf/open/lavaland/basalt,
 /area/barren/cave/northwest)
 "BT" = (
-/obj/item/tool/warning_cone,
+/obj/item/clothing/head/warning_cone,
 /obj/structure/lattice,
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
@@ -5600,10 +5626,10 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/cobweb,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /obj/structure/table/reinforced,
+/obj/effect/landmark/dropship_console_spawn_lz1,
 /turf/open/floor/wood,
-/area/barren/cave/lz1)
+/area/lv624/lazarus/console)
 "Ca" = (
 /obj/structure/sink/bathroom,
 /turf/open/floor/prison/sterilewhite,
@@ -6261,6 +6287,12 @@
 /obj/item/paper/clockresearch1,
 /turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
+"FC" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/barren/cave/lz2)
 "FD" = (
 /obj/structure/window/framed/colony,
 /obj/structure/cable,
@@ -6431,6 +6463,12 @@
 /obj/machinery/computer/med_data/laptop,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
+"Gu" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 9
+	},
+/turf/open/floor/tile/dark,
+/area/barren/cave/lz2)
 "Gv" = (
 /turf/closed/wall/r_wall,
 /area/barren/cave/lz2)
@@ -6996,7 +7034,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/explosive/grenade/frag/PMC,
+/obj/item/explosive/grenade/PMC,
 /obj/item/clothing/under/marine/veteran/PMC,
 /obj/item/clothing/under/marine/veteran/PMC,
 /obj/item/clothing/under/marine/veteran/PMC,
@@ -7255,6 +7293,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/barren/civilian/cook)
+"KW" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 4
+	},
+/turf/open/floor,
+/area/barren/cave/lz1)
 "KZ" = (
 /obj/machinery/shower{
 	dir = 8
@@ -7694,6 +7738,10 @@
 	},
 /turf/open/floor,
 /area/barren/civilian)
+"Nz" = (
+/obj/effect/decal/warning_stripes/thick,
+/turf/open/floor,
+/area/barren/cave/lz1)
 "NA" = (
 /obj/effect/decal/cleanable/liquid_fuel,
 /turf/open/floor/tile/dark,
@@ -8081,11 +8129,11 @@
 /turf/closed/wall/r_wall,
 /area/barren/cave/lz1)
 "PX" = (
-/obj/structure/bed/chair/wood/normal{
-	dir = 1
+/obj/effect/decal/warning_stripes/thick{
+	dir = 9
 	},
-/turf/open/floor/tile/dark,
-/area/barren/cave/lz2)
+/turf/open/floor,
+/area/barren/cave/lz1)
 "PY" = (
 /obj/structure/closet/crate/plastic,
 /obj/item/stack/sheet/wood{
@@ -8595,6 +8643,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/barren/security)
+"ST" = (
+/obj/machinery/camera/autoname/lz_camera,
+/obj/effect/landmark/dropship_console_spawn_lz1,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "SU" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -8891,6 +8944,12 @@
 /obj/structure/closet,
 /turf/open/floor/freezer,
 /area/barren/medical/research)
+"UL" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
+	},
+/turf/open/floor,
+/area/barren/cave/lz1)
 "UN" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/toolbox,
@@ -9096,8 +9155,15 @@
 	dir = 8
 	},
 /area/barren/medical)
+"VS" = (
+/obj/structure/prop/mainship/hangar_stencil,
+/obj/effect/decal/warning_stripes/thick{
+	dir = 10
+	},
+/turf/open/floor,
+/area/barren/cave/lz1)
 "VW" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
@@ -9156,6 +9222,19 @@
 	dir = 4
 	},
 /area/barren/security)
+"Wi" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 5
+	},
+/turf/open/floor,
+/area/barren/cave/lz1)
+"Wk" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 10
+	},
+/obj/structure/prop/mainship/hangar_stencil/two,
+/turf/open/floor/tile/dark,
+/area/barren/cave/lz2)
 "Wm" = (
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 4
@@ -9183,6 +9262,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/barren/civilian/cook)
+"Wx" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 8
+	},
+/turf/open/floor,
+/area/barren/cave/lz1)
 "WA" = (
 /obj/structure/table/mainship,
 /turf/open/floor,
@@ -9288,6 +9373,12 @@
 /obj/structure/window/framed/colony,
 /turf/open/shuttle/plating,
 /area/barren/security)
+"Xf" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 5
+	},
+/turf/open/floor/tile/dark,
+/area/barren/cave/lz2)
 "Xg" = (
 /obj/machinery/vending/boozeomat,
 /turf/closed/wall,
@@ -9645,6 +9736,10 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
+"Zz" = (
+/obj/effect/landmark/dropship_console_spawn_lz1,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "ZB" = (
 /obj/structure/cargo_container/horizontal,
 /turf/open/floor,
@@ -14990,9 +15085,9 @@ pq
 mP
 mP
 mP
-mP
-mP
-mP
+Gu
+vO
+Wk
 mP
 bw
 CI
@@ -15247,9 +15342,9 @@ gO
 mP
 mP
 mP
+FC
 mP
-mP
-mP
+AN
 mP
 vS
 CI
@@ -15504,9 +15599,9 @@ OT
 mP
 mP
 mP
-mP
-mP
-mP
+Xf
+hi
+wE
 mP
 Io
 CI
@@ -16306,9 +16401,9 @@ mP
 mP
 mP
 mP
-mP
-mP
-mP
+Gu
+vO
+Wk
 mP
 gO
 kS
@@ -16563,9 +16658,9 @@ mP
 mP
 mP
 mP
+FC
 mP
-mP
-mP
+AN
 mP
 OT
 kS
@@ -16818,11 +16913,11 @@ pg
 Ob
 mP
 mP
-Bn
 mP
 mP
-mP
-mP
+Xf
+hi
+wE
 mP
 pq
 kS
@@ -17075,8 +17170,8 @@ mP
 mP
 mP
 WK
-Bn
-PX
+mP
+mP
 mP
 mP
 mP
@@ -50703,9 +50798,9 @@ Pw
 Pw
 Pw
 Pw
-Pw
-Pw
-Pw
+PX
+Wx
+VS
 Pw
 Pw
 Pw
@@ -50960,9 +51055,9 @@ AK
 Pw
 kk
 Pw
+UL
 Pw
-Pw
-Pw
+Nz
 Pw
 Pw
 Jv
@@ -51217,9 +51312,9 @@ AK
 Pw
 Kk
 Pw
-Pw
-Pw
-Pw
+Wi
+KW
+fv
 Pw
 Pw
 gj
@@ -53789,15 +53884,15 @@ HR
 HR
 HR
 HR
-HR
+Zz
 HR
 HR
 HR
 xl
 Pw
-Pw
-Pw
-Pw
+PX
+Wx
+VS
 Pw
 WI
 FO
@@ -54052,9 +54147,9 @@ HR
 HR
 xl
 Pw
+UL
 Pw
-Pw
-Pw
+Nz
 Pw
 mL
 FO
@@ -54309,9 +54404,9 @@ HR
 HR
 xl
 Pw
-Pw
-Pw
-Pw
+Wi
+KW
+fv
 gf
 AK
 AK
@@ -54561,7 +54656,7 @@ HR
 HR
 HR
 HR
-HR
+Zz
 HR
 HR
 xl
@@ -54818,7 +54913,7 @@ HR
 HR
 HR
 HR
-HR
+Zz
 HR
 HR
 xl
@@ -55075,7 +55170,7 @@ HR
 HR
 HR
 HR
-HR
+Zz
 HR
 HR
 xl
@@ -55332,7 +55427,7 @@ HR
 HR
 HR
 HR
-aS
+ST
 HR
 HR
 xl

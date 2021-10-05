@@ -631,7 +631,7 @@
 			L.notransform = TRUE
 			var/mob/dead/observer/O = L.ghostize(FALSE)
 			if(O)
-				O.timeofdeath = world.time
+				GLOB.key_to_time_of_death[O.key] = world.time
 			L.moveToNullspace()
 
 	// Now that mobs are stowed, delete the shuttle
@@ -729,29 +729,6 @@
 			var/tl = timeLeft(1)
 			if(tl <= SHUTTLE_RIPPLE_TIME)
 				create_ripples(destination, tl)
-
-	//var/obj/docking_port/stationary/S0 = get_docked()
-	//if(istype(S0, /obj/docking_port/stationary/transit) && timeLeft(1) <= PARALLAX_LOOP_TIME)
-		//for(var/place in shuttle_areas)
-			//var/area/shuttle/shuttle_area = place
-			//if(shuttle_area.parallax_movedir)
-			//	parallax_slowdown()
-
-/obj/docking_port/mobile/proc/parallax_slowdown()
-	//for(var/place in shuttle_areas)
-	//	var/area/shuttle/shuttle_area = place
-	//	shuttle_area.parallax_movedir = FALSE
-	//if(assigned_transit && assigned_transit.assigned_area)
-	//	assigned_transit.assigned_area.parallax_movedir = FALSE
-//	var/list/L0 = return_ordered_turfs(x, y, z, dir)
-//	for (var/thing in L0)
-//		var/turf/T = thing
-//		if(!T || !istype(T.loc, area_type))
-//			continue
-//		for (var/thing2 in T)
-//			var/atom/movable/AM = thing2
-//			if (length(AM.client_mobs_in_contents))
-//				AM.update_parallax_contents()
 
 /obj/docking_port/mobile/proc/check_transit_zone()
 	if(assigned_transit)
@@ -976,12 +953,12 @@
 
 /obj/docking_port/mobile/proc/can_move_topic(mob/user)
 	if(mode == SHUTTLE_RECHARGING)
-		to_chat(user, "<span class='warning'>The engines are not ready to use yet!</span>")
+		to_chat(user, span_warning("The engines are not ready to use yet!"))
 		return FALSE
 	if(launch_status == ENDGAME_LAUNCHED)
-		to_chat(user, "<span class='warning'>You've already escaped. Never going back to that place again!</span>")
+		to_chat(user, span_warning("You've already escaped. Never going back to that place again!"))
 		return FALSE
 	if(mode != SHUTTLE_IDLE)
-		to_chat(user, "<span class='warning'>Shuttle already in transit.</span>")
+		to_chat(user, span_warning("Shuttle already in transit."))
 		return FALSE
 	return TRUE

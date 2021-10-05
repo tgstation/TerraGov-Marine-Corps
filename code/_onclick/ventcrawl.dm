@@ -10,7 +10,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 /mob/proc/ventcrawl_carry()
 	for(var/atom/A in src.contents)
 		if(!istype(A, /obj/item/clothing/mask/facehugger))
-			to_chat(src, "<span class='warning'>You can't be carrying items or have items equipped when vent crawling!</span>")
+			balloon_alert(src, "You can't be carrying items!")
 			return FALSE
 	return TRUE
 
@@ -22,7 +22,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 		if(is_type_in_list(U, GLOB.ventcrawl_machinery) && Adjacent(U))
 			pipes |= U
 	if(!pipes || !pipes.len)
-		to_chat(src, "<span class='warning'>There are no pipes that you can ventcrawl into within range!</span>")
+		balloon_alert(src, "No pipes in range!")
 		return
 	if(pipes.len == 1)
 		pipe = pipes[1]
@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 
 
 //VENTCRAWLING
-/mob/living/proc/handle_ventcrawl(atom/A)
+/mob/living/proc/handle_ventcrawl(atom/A, crawl_time = 4.5 SECONDS, stealthy = FALSE)
 	if(!can_ventcrawl() || !Adjacent(A) || !canmove)
 		return
 	if(stat)
@@ -71,9 +71,9 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	if(vent_found)
 		var/datum/pipeline/vent_found_parent = vent_found.parents[1]
 		if(vent_found_parent && (vent_found_parent.members.len || vent_found_parent.other_atmosmch))
-			visible_message("<span class='notice'>[src] begins climbing into the ventilation system...</span>" ,"<span class='notice'>You begin climbing into the ventilation system...</span>")
+			visible_message(span_notice("[stealthy ? "[src] begins climbing into the ventilation system..." : ""]"),span_notice("You begin climbing into the ventilation system..."))
 
-			if(!do_after(src, 4.5 SECONDS, FALSE, vent_found, BUSY_ICON_GENERIC) || !client || !canmove)
+			if(!do_after(src, crawl_time, FALSE, vent_found, BUSY_ICON_GENERIC) || !client || !canmove)
 				return
 
 			if(iscarbon(src) && can_ventcrawl())//It must have atleast been 1 to get this far
@@ -82,19 +82,20 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 				if(items_list.len)
 					failed = TRUE
 				if(failed)
-					to_chat(src, "<span class='warning'>You can't crawl around in the ventilation ducts with items!</span>")
+					to_chat(src, span_warning("You can't crawl around in the ventilation ducts with items!"))
 					return
 
 			if(!ventcrawl_carry())
 				return
 
-			visible_message("<span class='notice'>[src] scrambles into the ventilation ducts!</span>","<span class='notice'>You climb into the ventilation ducts.</span>")
-			if(!isxenohunter(src)) //Hunters silently enter/exit vents.
+			visible_message(span_notice("[stealthy ? "[src] scrambles into the ventilation ducts!" : ""]"),span_notice("You climb into the ventilation ducts."))
+
+			if(!stealthy) //Xenos with stealth vent crawling can silently enter/exit vents.
 				playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
 
 			forceMove(vent_found)
 	else
-		to_chat(src, "<span class='warning'>This ventilation duct is not connected to anything!</span>")
+		to_chat(src, span_warning("This ventilation duct is not connected to anything!"))
 
 
 /mob/living/proc/add_ventcrawl(obj/machinery/atmospherics/starting_machine)

@@ -1,24 +1,26 @@
 /obj/item/explosive/grenade
-	name = "grenade"
-	desc = "A hand held grenade, with an adjustable timer."
+	name = "\improper M40 HEDP grenade"
+	desc = "A small, but deceptively strong high explosive grenade that has been phasing out the M15 fragmentation grenades. Capable of being loaded in the any grenade launcher, or thrown by hand."
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "grenade"
-	item_state = "flashbang"
+	item_state = "grenade"
 	throw_speed = 3
 	throw_range = 7
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	hitsound = 'sound/weapons/smash.ogg'
-	icon_state_mini = "grenade"
+	icon_state_mini = "grenade_red"
 	var/launched = FALSE //if launched from a UGL/grenade launcher
 	var/launchforce = 10 //bonus impact damage if launched from a UGL/grenade launcher
-	var/det_time = 50
+	var/det_time =  40
 	var/dangerous = TRUE 	//Does it make a danger overlay for humans? Can synths use it?
 	var/arm_sound = 'sound/weapons/armbomb.ogg'
-	var/underslug_launchable = FALSE
+	var/underslug_launchable = TRUE
 	var/hud_state = "grenade_he"
 	var/hud_state_empty = "grenade_empty"
+	///Light impact range when exploding
+	var/light_impact_range = 4
 
 
 /obj/item/explosive/grenade/Initialize()
@@ -30,17 +32,17 @@
 		return
 
 	if(!user.dextrous)
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return
 
 	if(issynth(user) && dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		to_chat(user, "<span class='warning'>Your programming prevents you from operating this device!</span>")
+		to_chat(user, span_warning("Your programming prevents you from operating this device!"))
 		return
 
 	activate(user)
 
-	user.visible_message("<span class='warning'>[user] primes \a [name]!</span>", \
-	"<span class='warning'>You prime \a [name]!</span>")
+	user.visible_message(span_warning("[user] primes \a [name]!"), \
+	span_warning("You prime \a [name]!"))
 	if(initial(dangerous) && ishumanbasic(user))
 		var/nade_sound = user.gender == FEMALE ? get_sfx("female_fragout") : get_sfx("male_fragout")
 
@@ -69,35 +71,21 @@
 	if(dangerous)
 		GLOB.round_statistics.grenades_thrown++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "grenades_thrown")
-		updateicon()
+		update_icon()
 	addtimer(CALLBACK(src, .proc/prime), det_time)
 
-/obj/item/explosive/grenade/proc/updateicon()
+/obj/item/explosive/grenade/update_overlays()
+	. = ..()
 	if(dangerous)
-		overlays+=new/obj/effect/overlay/danger
-		dangerous = 0
+		overlays += new /obj/effect/overlay/danger
 
 
 /obj/item/explosive/grenade/proc/prime()
+	explosion(loc, light_impact_range = src.light_impact_range, small_animation = TRUE)
+	qdel(src)
 
-
-/obj/item/explosive/grenade/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(isscrewdriver(I))
-		switch(det_time)
-			if(1)
-				det_time = 10
-				to_chat(user, "<span class='notice'>You set the [name] for 1 second detonation time.</span>")
-			if(10)
-				det_time = 30
-				to_chat(user, "<span class='notice'>You set the [name] for 3 second detonation time.</span>")
-			if(30)
-				det_time = 50
-				to_chat(user, "<span class='notice'>You set the [name] for 5 second detonation time.</span>")
-			if(50)
-				det_time = 1
-				to_chat(user, "<span class='notice'>You set the [name] for instant detonation.</span>")
+/obj/item/explosive/grenade/flamer_fire_act()
+	activate()
 
 /obj/item/explosive/grenade/attack_hand(mob/living/user)
 	. = ..()
@@ -105,6 +93,3 @@
 		return
 	walk(src, null, null)
 	return
-
-/obj/item/explosive/grenade/attack_paw(mob/living/carbon/human/user)
-	return attack_hand(user)

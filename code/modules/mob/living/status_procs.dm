@@ -230,6 +230,14 @@
 			P = apply_status_effect(STATUS_EFFECT_PARALYZED, amount)
 		return P
 
+/mob/living/carbon/Paralyze(amount, ignore_canstun)
+	if(species?.species_flags & PARALYSE_RESISTANT)
+		if(amount > MAX_PARALYSE_AMOUNT_FOR_PARALYSE_RESISTANT * 4)
+			amount = MAX_PARALYSE_AMOUNT_FOR_PARALYSE_RESISTANT
+			return ..()
+		amount /= 4
+	return ..()
+
 /mob/living/proc/SetParalyzed(amount, ignore_canstun = FALSE) //Sets remaining duration
 	if(status_flags & GODMODE)
 		return
@@ -471,11 +479,11 @@
 		if(amount) //don't spam up the chat for continuous stuns
 			if(priority_absorb_key["visible_message"] || priority_absorb_key["self_message"])
 				if(priority_absorb_key["visible_message"] && priority_absorb_key["self_message"])
-					visible_message("<span class='warning'>[src][priority_absorb_key["visible_message"]]</span>", "<span class='boldwarning'>[priority_absorb_key["self_message"]]</span>")
+					visible_message(span_warning("[src][priority_absorb_key["visible_message"]]"), span_boldwarning("[priority_absorb_key["self_message"]]"))
 				else if(priority_absorb_key["visible_message"])
-					visible_message("<span class='warning'>[src][priority_absorb_key["visible_message"]]</span>")
+					visible_message(span_warning("[src][priority_absorb_key["visible_message"]]"))
 				else if(priority_absorb_key["self_message"])
-					to_chat(src, "<span class='boldwarning'>[priority_absorb_key["self_message"]]</span>")
+					to_chat(src, span_boldwarning("[priority_absorb_key["self_message"]]"))
 			priority_absorb_key["stuns_absorbed"] += amount
 		return TRUE
 
@@ -678,3 +686,64 @@
 	if(HAS_TRAIT(src, TRAIT_SLOWDOWNIMMUNE))
 		return
 	adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)
+
+////////////////////////////// MUTE ////////////////////////////////////
+
+///Checks to see if we're muted
+/mob/living/proc/IsMute()
+	return has_status_effect(STATUS_EFFECT_MUTED)
+
+///Checks the duration left on our mute status effect
+/mob/living/proc/AmountMute()
+	var/datum/status_effect/mute/M = IsMute()
+	if(M)
+		return M.duration - world.time
+	return 0
+
+///Mutes the target for the stated duration
+/mob/living/proc/Mute(amount) //Can't go below remaining duration
+	if(status_flags & GODMODE)
+		return
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_MUTE, amount) & COMPONENT_NO_MUTE)
+		return
+	var/datum/status_effect/mute/M = IsMute()
+	if(M)
+		M.duration = max(world.time + amount, M.duration)
+	else if(amount > 0)
+		M = apply_status_effect(STATUS_EFFECT_MUTED, amount)
+	return M
+
+//Sets remaining mute duration
+/mob/living/proc/SetMute(amount)
+	if(status_flags & GODMODE)
+		return
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_MUTE, amount) & COMPONENT_NO_MUTE)
+		return
+	var/datum/status_effect/mute/M = IsMute()
+
+	if(M)
+		if(amount <= 0)
+			qdel(M)
+			return
+
+		M.duration = world.time + amount
+		return
+
+	M = apply_status_effect(STATUS_EFFECT_MUTED, amount)
+	return M
+
+///Adds to remaining mute duration
+/mob/living/proc/AdjustMute(amount)
+	if(!amount)
+		return
+	if(status_flags & GODMODE)
+		return
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_MUTE, amount) & COMPONENT_NO_MUTE)
+		return
+
+	var/datum/status_effect/mute/M = IsMute()
+	if(M)
+		M.duration += amount
+	else if(amount > 0)
+		M = apply_status_effect(STATUS_EFFECT_MUTED, amount)
+	return M
