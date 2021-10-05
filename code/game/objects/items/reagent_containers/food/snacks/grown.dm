@@ -515,7 +515,7 @@
 /obj/item/reagent_containers/food/snacks/grown/mushroom/glowshroom/attack_self(mob/user as mob)
 	if(istype(user.loc,/turf/open/space))
 		return
-	var/obj/effect/glowshroom/planted = new /obj/effect/glowshroom(user.loc)
+	var/obj/structure/glowshroom/planted = new /obj/structure/glowshroom(user.loc)
 
 	planted.delay = 50
 	planted.endurance = 100

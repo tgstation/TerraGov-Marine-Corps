@@ -91,6 +91,8 @@ Administrative related.
 
 /datum/config_entry/flag/log_game
 
+/datum/config_entry/flag/log_asset
+
 /datum/config_entry/flag/log_vote
 
 /datum/config_entry/flag/log_whisper
@@ -222,6 +224,9 @@ Voting
 	config_entry_value = 40
 	integer = TRUE
 	min_val = 0
+
+/// Gives the ability to send players a maptext popup.
+/datum/config_entry/flag/popup_admin_pm
 
 /*
 Master controller and performance related.

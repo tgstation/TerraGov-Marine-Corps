@@ -552,7 +552,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 5
 
 /datum/ammo/bullet/rifle/tx8/impact/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, max_range = 40, stagger = 2, slowdown = 3.5, knockback = 1)
+	staggerstun(M, P, max_range = 20, stagger = 2, slowdown = 1, knockback = 1)
 
 /datum/ammo/bullet/rifle/ak47
 	name = "crude heavy rifle bullet"
@@ -695,10 +695,10 @@ datum/ammo/bullet/revolver/tp44
 	bonus_projectiles_scatter = 4
 	accuracy_var_low = 9
 	accuracy_var_high = 9
-	accurate_range = 5
+	accurate_range = 3
 	max_range = 10
 	damage = 40
-	damage_falloff = 1
+	damage_falloff = 4
 	penetration = 0
 
 
@@ -711,10 +711,10 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 2
 	accuracy_var_low = 9
 	accuracy_var_high = 9
-	accurate_range = 5
+	accurate_range = 3
 	max_range = 10
 	damage = 40
-	damage_falloff = 1
+	damage_falloff = 4
 	penetration = 0
 
 //buckshot variant only used by the masterkey shotgun attachment.
@@ -1199,6 +1199,7 @@ datum/ammo/bullet/revolver/tp44
 	set_smoke()
 	smoke_system.set_up(range, T)
 	smoke_system.start()
+	smoke_system = null
 	T.visible_message(span_danger("The rocket explodes into white gas!") )
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 	flame_radius(radius, T, 27, 27, 27, 17)
@@ -1701,6 +1702,7 @@ datum/ammo/bullet/revolver/tp44
 	smoke_system.strength = smoke_strength
 	smoke_system.set_up(smoke_range, T)
 	smoke_system.start()
+	smoke_system = null
 
 /datum/ammo/xeno/toxin/upgrade1
 	smoke_strength = 0.6
@@ -1941,6 +1943,7 @@ datum/ammo/bullet/revolver/tp44
 		range = max(2, range + X.upgrade_as_number())
 	smoke_system.set_up(range, T)
 	smoke_system.start()
+	smoke_system = null
 	T.visible_message(danger_message)
 
 /datum/ammo/xeno/boiler_gas/corrosive

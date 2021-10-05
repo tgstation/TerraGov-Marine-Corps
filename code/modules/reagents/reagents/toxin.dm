@@ -190,7 +190,7 @@
 	if(istype(O,/obj/effect/alien/weeds))
 		var/obj/effect/alien/A = O
 		A.take_damage(min(0.5 * volume))
-	else if(istype(O,/obj/effect/glowshroom)) //even a small amount is enough to kill it
+	else if(istype(O,/obj/structure/glowshroom)) //even a small amount is enough to kill it
 		qdel(O)
 	else if(istype(O,/obj/effect/plantsegment))
 		if(prob(50)) qdel(O) //Kills kudzu too.
@@ -408,7 +408,7 @@
 			L.take_limb_damage(min(6*toxpwr, volume * toxpwr) * touch_protection)
 
 /datum/reagent/toxin/acid/reaction_obj(obj/O, volume)
-	if((istype(O,/obj/item) || istype(O,/obj/effect/glowshroom)) && prob(meltprob * 3))
+	if((istype(O,/obj/item) || istype(O,/obj/structure/glowshroom)) && prob(meltprob * 3))
 		if(!CHECK_BITFIELD(O.resistance_flags, RESIST_ALL))
 			var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 			I.desc = "Looks like this was \an [O] some time ago."

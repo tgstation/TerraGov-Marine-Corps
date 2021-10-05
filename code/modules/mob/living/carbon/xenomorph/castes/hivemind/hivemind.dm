@@ -112,6 +112,7 @@
 ///Finish the form changing of the hivemind and give the needed stats
 /mob/living/carbon/xenomorph/hivemind/proc/do_change_form()
 	LAZYCLEARLIST(movespeed_modification)
+	update_movespeed()
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
 		upgrade = XENO_UPGRADE_ZERO
@@ -181,6 +182,7 @@
 ///Finish the teleportation process to send the hivemind manifestation to the selected turf
 /mob/living/carbon/xenomorph/hivemind/proc/end_teleport(turf/T)
 	LAZYCLEARLIST(movespeed_modification)
+	update_movespeed()
 	flick("Hivemind_materialisation_fast", src)
 	if(!check_weeds(T, TRUE))
 		to_chat(src, span_warning("The weeds on our destination were destroyed"))

@@ -323,9 +323,48 @@
 	succeed_activate()
 
 	playsound(T, "alien_resin_build", 25)
-	var/obj/structure/xeno/acidwell/AC = new /obj/structure/xeno/acidwell(T, owner)
-	AC.creator = owner
+	new /obj/structure/xeno/acidwell(T, owner)
 
 	to_chat(owner, span_xenonotice("We place an acid well; it can be filled with more acid."))
 	GLOB.round_statistics.xeno_acid_wells++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_acid_wells")
+
+/datum/action/xeno_action/activable/gravity_grenade
+	name = "Throw gravity grenade"
+	action_icon_state = "gas mine"
+	mechanics_text = "Throw a gravity grenades thats sucks everyone and everything in a radius inward."
+	plasma_cost = 500
+	keybind_signal = COMSIG_XENOABILITY_GRAV_NADE
+	cooldown_timer = 1 MINUTES
+
+/datum/action/xeno_action/activable/gravity_grenade/use_ability(atom/A)
+	var/turf/T = get_turf(owner)
+	succeed_activate()
+	add_cooldown()
+	var/obj/item/explosive/grenade/gravity/nade = new(T)
+	nade.throw_at(A, 5, 1, owner, TRUE)
+	nade.activate(owner)
+
+	owner.visible_message(span_warning("[owner] vomits up a roaring fleshy lump and throws it at [A]!"), span_warning("We vomit up a roaring fleshy lump and throws it at [A]!"))
+
+
+/obj/item/explosive/grenade/gravity
+	name = "gravity grenade"
+	desc = "A fleshy mass that seems way too heavy for its size. It seems to be vibrating."
+	arm_sound = 'sound/voice/predalien_roar.ogg'
+	greyscale_colors = "#3aaacc"
+	greyscale_config = /datum/greyscale_config/xenogrenade
+	det_time = 20
+
+/obj/item/explosive/grenade/gravity/prime()
+	new /obj/effect/overlay/temp/emp_pulse(loc)
+	playsound(loc, 'sound/effects/EMPulse.ogg', 50)
+	for(var/atom/movable/victim in view(3))//yes this throws EVERYONE
+		if(victim.anchored)
+			continue
+		if(isliving(victim))
+			var/mob/living/livingtarget = victim
+			if(livingtarget.stat == DEAD)
+				continue
+		victim.throw_at(src, 5, 1, null, TRUE)
+	qdel(src)

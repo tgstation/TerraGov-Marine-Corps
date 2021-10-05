@@ -30,7 +30,20 @@
 /obj/item/weapon/gun/energy/Initialize()
 	. = ..()
 	if(cell_type)
-		cell = new cell_type(src)
+		set_cell(new cell_type(src))
+
+///Set the cell var
+/obj/item/weapon/gun/energy/proc/set_cell(new_cell)
+	if(cell)
+		UnregisterSignal(cell, COMSIG_PARENT_QDELETING)
+	cell = new_cell
+	if(cell)
+		RegisterSignal(cell, COMSIG_PARENT_QDELETING, .proc/clean_cell)
+
+///Signal handler to clean the cell var
+/obj/item/weapon/gun/energy/proc/clean_cell()
+	SIGNAL_HANDLER
+	cell = null
 
 /obj/item/weapon/gun/energy/able_to_fire(mob/living/user)
 	. = ..()
@@ -248,9 +261,7 @@
 
 	//load_into_chamber()
 
-	if(user)
-		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
-		A.update_hud(user)
+	user?.hud_used.update_ammo_hud(user, src)
 
 	return TRUE
 
@@ -267,7 +278,7 @@
 			if(overcharge && cell.charge < ENERGY_OVERCHARGE_AMMO_COST && cell.charge >= ENERGY_STANDARD_AMMO_COST) //Revert to standard shot if we don't have enough juice for overcharge, but enough for the standard mode
 				cock(user)
 				return
-			if(cell.charge <= 0 && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
+			if(cell.charge < charge_cost && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
 				unload(user,1,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
 				playsound(src, empty_sound, 25, 1)
 
@@ -333,7 +344,7 @@
 	return TRUE
 
 /obj/item/weapon/gun/energy/lasgun/replace_magazine(mob/user, obj/item/cell/lasgun/new_cell)
-	cell = new_cell
+	set_cell(new_cell)
 	if(user)
 		user.transferItemToLoc(new_cell, src) //Click!
 		user.visible_message(span_notice("[user] loads [new_cell] into [src]!"),
@@ -359,12 +370,11 @@
 	else
 		user.put_in_hands(cell)
 
-	playsound(user, unload_sound, 25, 1, 5)
-	user.visible_message(span_notice("[user] unloads [cell] from [src]."),
+	playsound(loc, unload_sound, 25, 1, 5)
+	user?.visible_message(span_notice("[user] unloads [cell] from [src]."),
 	span_notice("You unload [cell] from [src]."), null, 4)
 	cell.update_icon()
-	cell = null
-
+	set_cell(null)
 	update_icon(user)
 
 	return TRUE
@@ -515,9 +525,7 @@
 	update_icon()
 
 	to_chat(user, initial(choice.message_to_user))
-
-	var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
-	A.update_hud(user)
+	user.hud_used.update_ammo_hud(user, src)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/update_item_state(mob/user) //Without this override icon states for wielded guns won't show. because lasgun overrides and this has no charge icons
 	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"

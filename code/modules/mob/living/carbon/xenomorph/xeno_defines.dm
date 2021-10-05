@@ -8,6 +8,11 @@
 	var/caste_type_path = null
 
 	var/ancient_message = ""
+	///primordial message that is shown when a caste becomes primordial
+	var/primordial_message = ""
+
+	///name of primordial upgrade this caste looks for, keep this as define
+	var/primordial_upgrade_name = ""
 
 	var/tier = XENO_TIER_ZERO
 	var/upgrade = XENO_UPGRADE_ZERO
@@ -362,5 +367,8 @@
 
 	///The xenos/silo/nuke currently tracked by the xeno_tracker arrow
 	var/atom/tracked
+
+	///Are we the roony version of this xeno
+	var/is_a_rouny = FALSE
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

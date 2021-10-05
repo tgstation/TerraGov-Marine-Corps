@@ -324,7 +324,7 @@
 
 
 /mob/living/carbon/human/med_pain_set_perceived_health()
-	if(species && species.species_flags & NO_PAIN)
+	if(species?.species_flags & IS_SYNTHETIC)
 		return FALSE
 
 	var/image/holder = hud_list[PAIN_HUD]

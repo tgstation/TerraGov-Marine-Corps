@@ -1,4 +1,5 @@
 import { useBackend } from '../../backend';
+import { capitalize } from 'common/string';
 import { Button, Section, Flex, LabeledList, Box, ColorBox } from '../../components';
 import { TextFieldPreference, ToggleFieldPreference, SelectFieldPreference } from './FieldPreferences';
 import { ProfilePicture } from './ProfilePicture';
@@ -28,6 +29,7 @@ export const CharacterCustomization = (props, context) => {
     };
     return '#' + convert(red) + convert(green) + convert(blue);
   };
+  const genders = ["male", "female", "neuter", "plural"];
 
   return (
     <>
@@ -77,15 +79,17 @@ export const CharacterCustomization = (props, context) => {
           <Flex.Item>
             <LabeledList>
               <TextFieldPreference label={'Age'} value={'age'} />
-              <ToggleFieldPreference
-                label={'Gender'}
-                value="gender"
-                leftLabel={'Male'}
-                leftValue="male"
-                rightValue="female"
-                rightLabel={'Female'}
-                action={'toggle_gender'}
-              />
+              <LabeledList.Item label={'Gender'}>
+                {genders.map(thisgender => (
+                  <Button.Checkbox
+                    inline
+                    key={thisgender}
+                    content={capitalize(thisgender)}
+                    checked={data['gender'] === thisgender}
+                    onClick={() => act('toggle_gender', { newgender: thisgender })}
+                  />
+                ))}
+              </LabeledList.Item>
               <SelectFieldPreference
                 label={'Hair style'}
                 value={'h_style'}
