@@ -225,6 +225,9 @@ Voting
 	integer = TRUE
 	min_val = 0
 
+/// Gives the ability to send players a maptext popup.
+/datum/config_entry/flag/popup_admin_pm
+
 /*
 Master controller and performance related.
 */

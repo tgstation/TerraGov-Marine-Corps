@@ -193,8 +193,8 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	name = "Sticky resin turret"
 	desc = "Places a sticky spit spitting resin turret under you. Must be at least 6 tiles away from other turrets, not near fog and on a weeded area."
 	icon = "resinturret"
+	psypoint_cost = 50
 	turret_type = /obj/structure/xeno/xeno_turret/sticky
-
 
 /datum/hive_upgrade/xenos
 	category = "Xenos"
@@ -204,7 +204,7 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Places a Psychic Echo chamber that tallhosts can detect, then after a summon time selects a random sister to take over the mind of the gravity manipulating King."
 	icon = "king"
 	flags_gamemode = ABILITY_DISTRESS
-	psypoint_cost = XENO_KING_PRICE
+	psypoint_cost = 1800
 
 /datum/hive_upgrade/xenos/king/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	. = ..()
@@ -248,6 +248,12 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Unlocks the primordial shrikes gravity bomb. Activate to throw a gravity grenade thats sucks in everything in a radius."
 	psypoint_cost = 300
 	icon = "primoshrike"
+
+/datum/hive_upgrade/primordial/defiler
+	name = PRIMORDIAL_DEFILER
+	desc = "Unlocks the primordial defilers tentacle. Can grab most items and tallhosts from range and bring them to the defiler."
+	psypoint_cost = 225
+	icon = "primodefiler"
 
 /datum/hive_upgrade/primordial/sentinel
 	name = PRIMORDIAL_SENTINEL
