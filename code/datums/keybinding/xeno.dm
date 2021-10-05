@@ -435,7 +435,7 @@
 /datum/keybinding/xeno/ravager_vampirism
 	name = "togglevampirism"
 	full_name = "Ravager: Toggle vampirism"
-	description = "While active, will increase the ravagers healing for a while for ery time it hits a new enemy. Effects stack."
+	description = "While active, will increase the ravagers healing for a while for every time it hits a new enemy. Effects stack."
 	keybind_signal = COMSIG_XENOABILITY_VAMPIRISM
 
 /datum/keybinding/xeno/ravage
