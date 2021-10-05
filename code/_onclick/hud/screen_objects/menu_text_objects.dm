@@ -115,7 +115,6 @@ INITIALIZE_IMMEDIATE(/obj/screen/text/lobby/year)
 	var/mob/new_player/player = hud.mymob
 	player.try_to_observe()
 
-INITIALIZE_IMMEDIATE(/obj/screen/text/lobby/clickable/ready)
 /obj/screen/text/lobby/clickable/ready
 	maptext = "<span class=menutext>You are: Not Ready</span>"
 
@@ -161,7 +160,6 @@ INITIALIZE_IMMEDIATE(/obj/screen/text/lobby/clickable/ready)
 	hud.mymob.client?.changes()
 
 
-INITIALIZE_IMMEDIATE(/obj/screen/text/lobby/clickable/polls)
 /obj/screen/text/lobby/clickable/polls
 	maptext = "<span class=menutext>Polls</span>"
 

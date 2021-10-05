@@ -3,3 +3,39 @@
   - bugfix: You can no longer steal aghosted bodies
   - bugfix: Spawning as a space agent no longer allow to bypass respawn timer
   - rscadd: AFK marines can be taken by ghosts
+2021-10-02:
+  TheLordME:
+  - bugfix: UGLs loading any grenade
+  TiviPlus:
+  - rscadd: Added the evolution tower xeno building, which costs 300 points and when
+      built generates a extra .25 evo points per evo tick
+2021-10-03:
+  Lewdcifer:
+  - rscadd: Art Maintainer role, has same OOC color as Maintainers
+  Sebbe9123:
+  - rscadd: Ads 20 CLONE damage to psydrain.
+  TiviPlus:
+  - bugfix: fixed a new player error
+  ivanmixo:
+  - bugfix: CMB speedloader can reload CMB revolver
+2021-10-04:
+  TiviPlus:
+  - admin: Admins and mentors can now ping each other
+2021-10-05:
+  BraveMole:
+  - bugfix: Ais no longer stack slowdown
+  - bugfix: Space area are correctly assimilated as space
+  - balance: Sticky turrets cost only 50 psypoints rather than 100
+  Lewdcifer:
+  - rscadd: Changed Maintainer OOC color
+  TiviPlus:
+  - bugfix: fixed valk not removing its effects
+  - admin: Admins can now use screen popups on players
+  ivanmixo:
+  - bugfix: glowshrooms can now be destroyed
+  - bugfix: The ammo counter for the shotgun and revolvers now works properly
+  - qol: AI core can be orbited in the ghost orbit menu
+  - bugfix: AI can talk in MOOC
+  - bugfix: vendors no longer eat items if depowered
+  - bugfix: mirage nades now work with grenade launchers
+  - bugfix: ghosts can no longer interact with conveyor switches

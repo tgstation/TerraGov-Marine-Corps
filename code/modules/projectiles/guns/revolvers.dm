@@ -67,15 +67,14 @@
 /obj/item/weapon/gun/revolver/proc/replace_cylinder(number_to_replace)
 	current_mag.chamber_contents = list()
 	current_mag.chamber_contents.len = current_mag.max_rounds
-	var/i
-	for(i = 1 to current_mag.max_rounds) //We want to make sure to populate the cylinder.
+	for(var/i = 1 to current_mag.max_rounds) //We want to make sure to populate the cylinder.
 		current_mag.chamber_contents[i] = i > number_to_replace ? "empty" : "bullet"
 	current_mag.chamber_position = max(1,number_to_replace)
 
-/obj/item/weapon/gun/revolver/proc/empty_cylinder()
-	var/i
-	for(i = 1 to current_mag.max_rounds)
+/obj/item/weapon/gun/revolver/proc/empty_cylinder(mob/user)
+	for(var/i = 1 to current_mag.max_rounds)
 		current_mag.chamber_contents[i] = "empty"
+	user.hud_used.update_ammo_hud(user, src)
 
 //The cylinder is always emptied out before a reload takes place.
 /obj/item/weapon/gun/revolver/proc/add_to_cylinder(mob/user) //Bullets are added forward.
@@ -122,6 +121,7 @@
 					current_mag.match_ammo(magazine)
 					replace_cylinder(current_mag.current_rounds)
 					playsound(user, reload_sound, 25, 1) // Reloading via speedloader.
+					user.hud_used.update_ammo_hud(user, src)
 			else
 				to_chat(user, span_warning("\The [magazine] doesn't fit!"))
 		else
@@ -150,7 +150,7 @@
 	if(current_mag.chamber_closed) //If it's actually closed.
 		to_chat(user, span_notice("You clear the cylinder of [src]."))
 		make_casing(type_of_casings)
-		empty_cylinder()
+		empty_cylinder(user)
 		current_mag.create_handful(user)
 		current_mag.chamber_closed = !current_mag.chamber_closed
 		russian_roulette = !russian_roulette //Resets the RR variable.
