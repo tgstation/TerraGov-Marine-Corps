@@ -19,10 +19,9 @@
   $border-radius: 2px,
 );
 
-@import url('https://fonts.googleapis.com/css2?family=Averia+Libre:wght@300&display=swap');
 
 .theme-xeno {
-  font-family: 'Averia Libre', Verdana, Tahoma, sans-serif;
+  font-family: 'Segoe', Verdana, Tahoma, sans-serif;
    // Atomic classes
   @include meta.load-css('../atomic/color.scss');
 
