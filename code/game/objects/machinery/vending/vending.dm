@@ -462,7 +462,6 @@
 		return
 	if(tipped_level != 2) // only fix when fully tipped
 		return
-
 	if(!iscarbon(user)) // AI can't heave remotely
 		return
 	user.visible_message(span_notice(" [user] begins to heave the vending machine back into place!"),span_notice(" You start heaving the vending machine back into place.."))
@@ -521,6 +520,8 @@
 /obj/machinery/vending/ui_act(action, list/params)
 	. = ..()
 	if(.)
+		return
+	if(!powered())
 		return
 	switch(action)
 		if("remove_coin")

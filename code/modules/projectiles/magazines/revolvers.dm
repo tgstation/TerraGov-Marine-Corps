@@ -69,6 +69,7 @@
 	caliber = CALIBER_357
 	icon_state = "cmb"
 	max_rounds = 6
+	gun_type = /obj/item/weapon/gun/revolver/cmb
 
 /obj/item/ammo_magazine/revolver/judge
 	name = "\improper Judge speed loader (.45L)"
