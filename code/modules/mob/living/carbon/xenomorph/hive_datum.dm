@@ -1216,9 +1216,6 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /obj/structure/xeno/xeno_turret/get_xeno_hivenumber()
 	return associated_hive.hivenumber
-<<<<<<< HEAD
-=======
 
 /obj/structure/xeno/evotower/get_xeno_hivenumber()
 	return hivenumber
->>>>>>> cea7347b3691da0a218569edec739349c2a60027
