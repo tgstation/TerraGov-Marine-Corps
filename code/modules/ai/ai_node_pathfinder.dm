@@ -7,7 +7,7 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 	var/obj/effect/ai_node/previous_node
 
 /datum/node_path/New(obj/effect/ai_node/previous_node, obj/effect/ai_node/current_node, obj/effect/ai_node/goal_node, old_distance_walked)
-	. = ..()
+	..()
 	distance_to_goal = get_dist_euclide_square(current_node, goal_node)
 	distance_walked = old_distance_walked + get_dist_euclide_square(current_node, previous_node)
 	src.current_node = current_node
