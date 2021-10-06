@@ -328,7 +328,7 @@
 	name = "dermaline pill bottle"
 	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	icon_state = "pill_canistertall"
-	greyscale_config = /datum/greyscale_config/pillbottlelong
+	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dermaline
 	greyscale_colors = "#ffef00#FFFFFF"
 
@@ -343,7 +343,7 @@
 	name = "inaprovaline pill bottle"
 	desc = "Contains pills that prevent wounds from getting worse on their own."
 	icon_state = "pill_canistertall"
-	greyscale_config = /datum/greyscale_config/pillbottlelong
+	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/inaprovaline
 	greyscale_colors = "#C89CCD#ffffff"
 
@@ -358,7 +358,7 @@
 	name = "paracetamol pill bottle"
 	desc = "Contains pills that mildly numb pain. Take two for a slightly stronger effect."
 	icon_state = "pill_canistertall"
-	greyscale_config = /datum/greyscale_config/pillbottlelong
+	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/paracetamol
 	greyscale_colors = "#f8f4f8#ffffff"
 
@@ -380,7 +380,7 @@
 	name = "meralyne pill bottle"
 	desc = "Contains pills that heal cuts and bruises, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	icon_state = "pill_canistertall"
-	greyscale_config = /datum/greyscale_config/pillbottlelong
+	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/meralyne
 	greyscale_colors = "#FD5964#ffffff"
 
@@ -395,7 +395,7 @@
 	name = "alkysine pill bottle"
 	desc = "Contains pills that heal brain damage."
 	icon_state = "pill_canistertall"
-	greyscale_config = /datum/greyscale_config/pillbottlelong
+	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/alkysine
 	greyscale_colors = "#0292AC#ffffff"
 
@@ -410,7 +410,7 @@
 	name = "peridaxon pill bottle"
 	desc = "Contains pills that suppress organ damage while waiting for a full treatment."
 	icon_state = "pill_canistertall"
-	greyscale_config = /datum/greyscale_config/pillbottlelong
+	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/peridaxon
 	greyscale_colors = "#6e6860#ffffff"
 
@@ -425,7 +425,7 @@
 	name = "quick-clot pill bottle"
 	desc = "Contains pills that suppress internal bleeding while waiting for full treatment."
 	icon_state = "pill_canistertall"
-	greyscale_config = /datum/greyscale_config/pillbottlelong
+	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/quickclot
 	greyscale_colors = "#A55EFC#ffffff"
 
@@ -440,7 +440,7 @@
 	name = "tricordrazine pill bottle"
 	desc = "Contains pills commonly used by untrained Squad Marines to avoid seeing their Squad Medic."
 	icon_state = "pill_canistertall"
-	greyscale_config = /datum/greyscale_config/pillbottlelong
+	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tricordrazine
 	greyscale_colors = "#387d4b#ffffff"
 
