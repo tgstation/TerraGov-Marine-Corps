@@ -562,7 +562,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	return TRUE
 
 /obj/item/weapon/gun/launcher/grenade/attackby(obj/item/I, mob/user, params)
-	. = ..()
 	if(!istype(I, /obj/item/explosive/grenade))
 		return ..()
 	if(length(grenades) >= max_grenades)
@@ -576,6 +575,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	to_chat(user, span_info("Now storing: [grenades.len] / [max_grenades] grenades."))
 	update_icon()
 	user.hud_used.update_ammo_hud(user, src)
+	return ..()
 
 /obj/item/weapon/gun/launcher/grenade/unload(mob/user)
 	if(length(grenades))
@@ -681,12 +681,12 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	/obj/item/explosive/grenade/impact, /obj/item/explosive/grenade/flare)
 
 /obj/item/weapon/gun/launcher/grenade/m92/mini_grenade/attackby(obj/item/I, mob/user, params)
-	. = ..()
 	if(!istype(I, /obj/item/explosive/grenade))
 		return
 	if(!(I in grenade_type_allowed))
 		to_chat(user, span_warning("[src] cannot hold [I]!"))
 		return
+	return ..()
 
 /obj/item/weapon/gun/launcher/grenade/m92/mini_grenade/invisable
 	flags_attach_features = NONE
@@ -757,14 +757,12 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
-	var/datum/effect_system/smoke_spread/smoke
-
 	fire_delay = 1 SECONDS
 	recoil = 3
 	scatter = -100
-
 	placed_overlay_iconstate = "sadar"
-
+	///the smoke effect after firing
+	var/datum/effect_system/smoke_spread/smoke
 
 /obj/item/weapon/gun/launcher/rocket/Initialize(mapload, spawn_empty)
 	. = ..()
