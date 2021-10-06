@@ -514,8 +514,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/launcher/grenade/proc/fire_grenade(atom/target, mob/user)
 	last_fired = world.time
 	var/obj/item/explosive/grenade/grenade = grenades[1]
-	var/turf/userturf = user.loc
-	if(!userturf || !isturf(userturf))
+	var/turf/userturf = get_turf(user)
+	if(!userturf)
 		return
 	grenades -= grenade
 	grenade.loc = userturf
