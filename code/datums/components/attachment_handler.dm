@@ -34,6 +34,8 @@
 	var/obj/parent_object = parent
 	if(length(starting_attachmments) && parent_object.loc) //Attaches starting attachments if the object is not instantiated in nullspace. If it is created in null space, such as in a loadout vendor. It wont create default attachments.
 		for(var/starting_attachment_type in starting_attachmments)
+			if(!(starting_attachment_type in attachables_allowed)) //This way guns and such that share a general list of allowed attachments but have different default attachments wont need to overwrite whats allowed each time.
+				attachables_allowed += starting_attachment_type
 			attach_without_user(attachment = new starting_attachment_type())
 
 	update_parent_overlay()
