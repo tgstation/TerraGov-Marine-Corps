@@ -985,6 +985,7 @@
 #include "code\modules\admin\SDQL2\SDQL_2.dm"
 #include "code\modules\admin\SDQL2\SDQL_2_parser.dm"
 #include "code\modules\admin\SDQL2\SDQL_2_wrappers.dm"
+#include "code\modules\admin\smites\ai_replacement.dm"
 #include "code\modules\admin\smites\bloodless.dm"
 #include "code\modules\admin\smites\boneless.dm"
 #include "code\modules\admin\smites\brain_damage.dm"
