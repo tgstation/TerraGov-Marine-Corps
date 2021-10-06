@@ -1,0 +1,4 @@
+author: "jroinc"
+delete-after: True
+changes: 
+  - rscadd: "Adds sanguinol and zombium to medvendor hacked section"
