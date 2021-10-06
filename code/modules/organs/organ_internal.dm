@@ -179,12 +179,10 @@
 	..()
 	
 	if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-		if(is_bruised())
-			if(prob(5))
-				spawn owner.emote("me", 1, "grabs at his chest!")
-		else if(is_broken())
-			if(prob(20))
-				spawn owner.emote("me", 1, "clutches his chest!")
+		if(is_bruised() && prob(5))
+			owner.emote("me", 1, "grabs at his chest!")
+		else if(is_broken() && prob(20))
+			owner.emote("me", 1, "clutches his chest!")
 
 /datum/internal_organ/heart/prosthetic //used by synthetic species
 	robotic = ORGAN_ROBOT
@@ -206,17 +204,17 @@
 	if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
 		if(is_bruised())
 			if(prob(5))
-				spawn owner.emote("me", 1, "coughs up blood!")
+				owner.emote("me", 1, "coughs up blood!")
 				owner.drip(10)
 			if(prob(15))
-				spawn owner.emote("me", 1, "gasps for air!")
+				owner.emote("me", 1, "gasps for air!")
 				owner.Losebreath(10)
 		else if(is_broken())
 			if(prob(30))
-				spawn owner.emote("me", 1, "coughs up blood!")
+				owner.emote("me", 1, "coughs up blood!")
 				owner.drip(10)
 			if(prob(50))
-				spawn owner.emote("me", 1, "gasps for air!")
+				owner.emote("me", 1, "gasps for air!")
 				owner.Losebreath(4)
 
 /datum/internal_organ/lungs/prosthetic
