@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes: 
+  - bugfix: "Burn overlays now work"
+  - code_imp: "Small refactor to injury overlay naming, and makes the overlay code more readable"
