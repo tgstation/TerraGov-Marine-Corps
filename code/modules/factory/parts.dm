@@ -72,7 +72,7 @@ GLOBAL_LIST_INIT(pizza_recipe,  list(
 /obj/item/factory_part/pizza
 	name = "Unfinished pizza"
 	desc = "Wait I dont think thats how you make pizza..."
-	result = /obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita
+	result = obj/item/reagent_containers/food/snacks/mre_pack/meal4/req
 
 /obj/item/factory_part/pizza/Initialize()
 	. = ..()
