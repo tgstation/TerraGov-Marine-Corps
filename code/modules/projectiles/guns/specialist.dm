@@ -514,14 +514,14 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/launcher/grenade/proc/fire_grenade(atom/target, mob/user)
 	last_fired = world.time
 	var/obj/item/explosive/grenade/grenade = grenades[1]
-	var/turf/T = user.loc
-	if(!T)
+	var/turf/userturf = user.loc
+	if(!userturf)
 		return
 	grenades -= grenade
 	grenade.throw_range = 20
-	grenade.loc = T
+	grenade.loc = userturf
 	user.visible_message(span_danger("[user] fired a grenade!"), span_warning("You fire [src]!"))
-	log_explosion("[key_name(user)] fired a grenade ([grenade]) from [src] at [AREACOORD(T)].")
+	log_explosion("[key_name(user)] fired a grenade ([grenade]) from [src] at [AREACOORD(userturf)].")
 	log_combat(user, src, "fired a grenade ([grenade]) from [src]")
 	playsound(user, fire_sound, 50, 1)
 	grenade.det_time = min(10, grenade.det_time)
