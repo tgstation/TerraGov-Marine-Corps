@@ -176,13 +176,14 @@
 	organ_id = ORGAN_HEART
 
 /datum/internal_organ/heart/process()
-	..()
+	. = ..()
 	
-	if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-		if(is_bruised() && prob(5))
-			owner.emote("me", 1, "grabs at his chest!")
-		else if(is_broken() && prob(20))
-			owner.emote("me", 1, "clutches his chest!")
+	if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
+		return
+	if(is_bruised() && prob(5))
+		owner.emote("me", 1, "grabs at his chest!")
+	else if(is_broken() && prob(20))
+		owner.emote("me", 1, "clutches his chest!")
 
 /datum/internal_organ/heart/prosthetic //used by synthetic species
 	robotic = ORGAN_ROBOT
@@ -201,21 +202,22 @@
 		if(prob(5))
 			owner.emote("cough")		//respitory tract infection
 
-	if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-		if(is_bruised())
-			if(prob(5))
-				owner.emote("me", 1, "coughs up blood!")
-				owner.drip(10)
-			if(prob(15))
-				owner.emote("me", 1, "gasps for air!")
-				owner.Losebreath(10)
-		else if(is_broken())
-			if(prob(30))
-				owner.emote("me", 1, "coughs up blood!")
-				owner.drip(10)
-			if(prob(50))
-				owner.emote("me", 1, "gasps for air!")
-				owner.Losebreath(4)
+	if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
+		return
+	if(is_bruised())
+		if(prob(5))
+			owner.emote("me", 1, "coughs up blood!")
+			owner.drip(10)
+		if(prob(15))
+			owner.emote("me", 1, "gasps for air!")
+			owner.Losebreath(10)
+	else if(is_broken())
+		if(prob(30))
+			owner.emote("me", 1, "coughs up blood!")
+			owner.drip(10)
+		if(prob(50))
+			owner.emote("me", 1, "gasps for air!")
+			owner.Losebreath(4)
 
 /datum/internal_organ/lungs/prosthetic
 	robotic = ORGAN_ROBOT
@@ -284,11 +286,12 @@
 			owner.adjustToxLoss(-0.5)
 
 		//Deal toxin damage if damaged
-		if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-			if(is_bruised() && prob(25))
-				owner.adjustToxLoss(0.1 * (damage/2))
-			else if(is_broken() && prob(50))
-				owner.adjustToxLoss(0.3 * (damage/2))
+		if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
+			return
+		if(is_bruised() && prob(25))
+			owner.adjustToxLoss(0.1 * (damage/2))
+		else if(is_broken() && prob(50))
+			owner.adjustToxLoss(0.3 * (damage/2))
 
 /datum/internal_organ/liver/prosthetic
 	robotic = ORGAN_ROBOT
@@ -316,11 +319,12 @@
 			owner.adjustToxLoss(0.3 * PROCESS_ACCURACY)
 
 	//Deal toxin damage if damaged
-	if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-		if(is_bruised() && prob(25))
-			owner.adjustToxLoss(0.1 * (damage/3))
-		else if(is_broken() && prob(50))
-			owner.adjustToxLoss(0.2 * (damage/3))
+	if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
+		return
+	if(is_bruised() && prob(25))
+		owner.adjustToxLoss(0.1 * (damage/3))
+	else if(is_broken() && prob(50))
+		owner.adjustToxLoss(0.2 * (damage/3))
 
 /datum/internal_organ/kidneys/prosthetic
 	robotic = ORGAN_ROBOT
@@ -356,11 +360,12 @@
 
 /datum/internal_organ/eyes/process() //Eye damage replaces the old eye_stat var.
 	..()
-	if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-		if(is_bruised())
-			owner.set_blurriness(20)
-		if(is_broken())
-			owner.set_blindness(20)
+	if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
+		return
+	if(is_bruised())
+		owner.set_blurriness(20)
+	if(is_broken())
+		owner.set_blindness(20)
 
 /datum/internal_organ/eyes/prosthetic
 	robotic = ORGAN_ROBOT
