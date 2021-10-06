@@ -67,11 +67,6 @@
 				return
 		if(!do_attach(attachment, attacher, attachment_data))
 			return
-	
-	var/slot = attachment_data[SLOT]
-	if(!attacher && (!(slot in slots) || !(attachment.type in attachables_allowed))) //No more black market attachment combos.
-		QDEL_NULL(attachment)
-		return
 
 	finish_handle_attachment(attachment, attachment_data, attacher)
 
