@@ -39,3 +39,17 @@
   - bugfix: vendors no longer eat items if depowered
   - bugfix: mirage nades now work with grenade launchers
   - bugfix: ghosts can no longer interact with conveyor switches
+2021-10-06:
+  BraveMole:
+  - bugfix: Big xeno can no longer body block small xenos
+  - qol: Automatic cycle alamo mode
+  - qol: Dead colonists are no longer in ghost follow menu
+  Pariah919:
+  - balance: ZX burst fire fire dealy reduced to 2.25 from 3, burst spread reduced.
+  hyper2snyper:
+  - bugfix: Fixes loadout saved guns/armor with illegal attachments being vended.
+  - rscadd: Defoonder
+  jroinc:
+  - expansion: 4 plants now have different chems. Deathberries, Blood tomatos, apples,
+      and ambrosia deus now have Quietus, Quick-clot plus, paracetamol, and somolent,
+      respectively.
