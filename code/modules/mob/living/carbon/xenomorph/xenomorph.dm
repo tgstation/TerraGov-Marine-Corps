@@ -61,6 +61,8 @@
 	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
 	hive.update_tier_limits()
+	if(CONFIG_GET(flag/xenos_on_strike))
+		replace_by_ai()
 	if(z) //Larva are initiated in null space
 		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
 
@@ -389,3 +391,10 @@
 		if(DEAD, CONSCIOUS)
 			if(. == UNCONSCIOUS)
 				see_in_dark = xeno_caste.conscious_see_in_dark
+
+///Kick the player from this mob, replace it by a more competent ai
+/mob/living/carbon/xenomorph/proc/replace_by_ai()
+	client = null
+	GLOB.offered_mob_list -= src
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
+	a_intent = INTENT_HARM
