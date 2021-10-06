@@ -11,6 +11,7 @@
 	gun_skill_category = GUN_SKILL_PISTOLS
 	grenade_type_allowed = /obj/item/explosive/grenade/flare
 	general_codex_key = "explosive weapons"
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/flaregun)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/flaregun)
 	fire_delay = 0.5 SECONDS
 
