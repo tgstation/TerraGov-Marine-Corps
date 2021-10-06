@@ -340,7 +340,7 @@
 		if(!istype(attachable, /obj/item/weapon/gun))
 			continue
 		var/obj/item/weapon/gun/gun_attachable = attachable
-		if(istype(attachable, /obj/item/weapon/gun/launcher))
+		if(istype(attachable, /obj/item/weapon/gun/launcher/grenade))
 			continue
 		var/chamber = in_chamber ? 1 : 0
 		dat += gun_attachable.current_mag ? "([gun_attachable.current_mag.current_rounds + chamber]/[gun_attachable.current_mag.max_rounds])" : "(Unloaded)"
