@@ -320,14 +320,12 @@
 /obj/item/storage/pill_bottle/kelotane
 	name = "kelotane pill bottle"
 	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
-	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/kelotane
 	greyscale_colors = "#d9cd07#FFFFFF"
 
 /obj/item/storage/pill_bottle/dermaline
 	name = "dermaline pill bottle"
 	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
-	icon_state = "pill_canistertall"
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dermaline
 	greyscale_colors = "#ffef00#FFFFFF"
@@ -335,14 +333,12 @@
 /obj/item/storage/pill_bottle/dylovene
 	name = "dylovene pill bottle"
 	desc = "Contains pills that heal toxic damage and purge toxins and neurotoxins of all kinds."
-	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dylovene
 	greyscale_colors = "#72C939#ffffff"
 
 /obj/item/storage/pill_bottle/inaprovaline
 	name = "inaprovaline pill bottle"
 	desc = "Contains pills that prevent wounds from getting worse on their own."
-	icon_state = "pill_canistertall"
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/inaprovaline
 	greyscale_colors = "#C89CCD#ffffff"
@@ -350,14 +346,12 @@
 /obj/item/storage/pill_bottle/tramadol
 	name = "tramadol pill bottle"
 	desc = "Contains pills that numb pain. Take two for a stronger effect at the cost of a toxic effect."
-	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tramadol
 	greyscale_colors = "#a09ca0#ffffff"
 
 /obj/item/storage/pill_bottle/paracetamol
 	name = "paracetamol pill bottle"
 	desc = "Contains pills that mildly numb pain. Take two for a slightly stronger effect."
-	icon_state = "pill_canistertall"
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/paracetamol
 	greyscale_colors = "#f8f4f8#ffffff"
@@ -365,14 +359,12 @@
 /obj/item/storage/pill_bottle/spaceacillin
 	name = "spaceacillin pill bottle"
 	desc = "Contains pills that handle low-level viral and bacterial infections. Effect increases with dosage."
-	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/spaceacillin
 	greyscale_colors = "#90F7F5#ffffff"
 
 /obj/item/storage/pill_bottle/bicaridine
 	name = "bicaridine pill bottle"
 	desc = "Contains pills that heal cuts and bruises, but cause slight pain. Take two to heal faster, but have slightly more pain."
-	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/bicaridine
 	greyscale_colors = "#FA2A38#ffffff"
 
@@ -387,7 +379,6 @@
 /obj/item/storage/pill_bottle/dexalin
 	name = "dexalin pill bottle"
 	desc = "Contains pills that heal oxygen damage. They can suppress bloodloss symptoms as well."
-	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dexalin
 	greyscale_colors = "#5972FD#ffffff"
 
@@ -402,7 +393,7 @@
 /obj/item/storage/pill_bottle/imidazoline
 	name = "imidazoline pill bottle"
 	desc = "Contains pills that heal eye damage."
-	icon_state = "pill_canister1"
+
 	pill_type_to_fill = /obj/item/reagent_containers/pill/imidazoline
 	greyscale_colors = "#F7A151#ffffff" //orange like carrots
 
