@@ -504,21 +504,20 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	general_codex_key = "explosive weapons"
 	///a list of the grenades in the chamber
-	var/list/grenades = list()
+	var/list/obj/item/explosive/grenade/grenades = list()
 	///the maximum number of grenades the grenade launcher can hold
 	var/max_grenades
 	///list of allowed grenade types
-	var/grenade_type_allowed = /obj/item/explosive/grenade
+	var/list/grenade_type_allowed = list(/obj/item/explosive/grenade)
 
 ///proc that handles firing the grenade itself
 /obj/item/weapon/gun/launcher/grenade/proc/fire_grenade(atom/target, mob/user)
 	last_fired = world.time
 	var/obj/item/explosive/grenade/grenade = grenades[1]
 	var/turf/userturf = user.loc
-	if(!userturf)
+	if(!userturf || !isturf(userturf))
 		return
 	grenades -= grenade
-	grenade.throw_range = 20
 	grenade.loc = userturf
 	user.visible_message(span_danger("[user] fired a grenade!"), span_warning("You fire [src]!"))
 	log_explosion("[key_name(user)] fired a grenade ([grenade]) from [src] at [AREACOORD(userturf)].")
@@ -688,7 +687,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		return
 	return ..()
 
-/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade/invisable
+/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade/invisible
 	flags_attach_features = NONE
 
 /obj/item/weapon/gun/launcher/grenade/m81
