@@ -168,12 +168,23 @@
 				INTERNAL ORGANS TYPES
 ****************************************************/
 
-/datum/internal_organ/heart // This is not set to vital because death immediately occurs in blood.dm if it is removed.
+/datum/internal_organ/heart // This is not set to vital because death immediately occurs in blood.dm if it is removed. Also, all damage effects are handled there.
 	name = "heart"
 	parent_limb = "chest"
 	removed_type = /obj/item/organ/heart
 	robotic_type = /obj/item/organ/heart/prosthetic
 	organ_id = ORGAN_HEART
+
+/datum/internal_organ/heart/process()
+	..()
+	
+	if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
+		if(is_bruised())
+			if(prob(5))
+				spawn owner.emote("me", 1, "grabs at his chest!")
+		else if(is_broken())
+			if(prob(20))
+				spawn owner.emote("me", 1, "clutches his chest!")
 
 /datum/internal_organ/heart/prosthetic //used by synthetic species
 	robotic = ORGAN_ROBOT
@@ -194,12 +205,19 @@
 
 	if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
 		if(is_bruised())
-			if(prob(2))
+			if(prob(5))
 				spawn owner.emote("me", 1, "coughs up blood!")
 				owner.drip(10)
-			if(prob(4))
+			if(prob(15))
 				spawn owner.emote("me", 1, "gasps for air!")
-				owner.Losebreath(15)
+				owner.Losebreath(10)
+		else if(is_broken())
+			if(prob(30))
+				spawn owner.emote("me", 1, "coughs up blood!")
+				owner.drip(10)
+			if(prob(50))
+				spawn owner.emote("me", 1, "gasps for air!")
+				owner.Losebreath(4)
 
 /datum/internal_organ/lungs/prosthetic
 	robotic = ORGAN_ROBOT
