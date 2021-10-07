@@ -305,8 +305,8 @@
 		qdel(src)
 		return PROCESS_KILL
 
-	if(ammo.flags_ammo_behavior & AMMO_CHAINING)
-		zap_beam(src, 4, damage)
+	if(ammo.flags_ammo_behavior & SPECIAL_PROCESS)
+		ammo.ammo_process(src, damage)
 
 /obj/projectile/proc/required_moves_calc()
 	var/elapsed_time_deciseconds = world.time - last_projectile_move
