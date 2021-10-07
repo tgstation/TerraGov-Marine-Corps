@@ -505,34 +505,23 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	new /obj/effect/temp_visual/blink_portal(get_turf(teleporter))
 
-	for(var/turf/affected_tile as() in RANGE_TURFS(1,teleporter.loc))
-		affected_tile.add_filter("wraith_blink_distortion", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
-		animate(affected_tile.get_filter("wraith_blink_distortion"), x = 60*rand() - 30, y = 60*rand() - 30, time = 0.5 SECONDS, loop = 2, flags=ANIMATION_PARALLEL)
-		addtimer(CALLBACK(affected_tile, /atom.proc/remove_filter, "wraith_blink_distortion"), 1 SECONDS)
+	new /obj/effect/temp_visual/wraith_warp(get_turf(teleporter))
 
-		for(var/obj/obj_target in affected_tile) //This is just about SFX, so we don't have objects not distorting while everything else does
-			obj_target.add_filter("wraith_aoe_debuff_filter", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
-			animate(obj_target.get_filter("wraith_aoe_debuff_filter"), x = 60*rand() - 30, y = 60*rand() - 30, time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
-			addtimer(CALLBACK(obj_target, /atom.proc/remove_filter, "wraith_aoe_debuff_filter"), 0.5 SECONDS)
+	for(var/mob/living/living_target in range(1, teleporter.loc))
 
-		for(var/mob/living/living_target in affected_tile)
-			living_target.add_filter("wraith_aoe_debuff_filter", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
-			animate(living_target.get_filter("wraith_aoe_debuff_filter"), x = 60*rand() - 30, y = 60*rand() - 30, time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
-			addtimer(CALLBACK(living_target, /atom.proc/remove_filter, "wraith_aoe_debuff_filter"), 0.5 SECONDS)
+		if(living_target.stat == DEAD)
+			continue
 
-			if(living_target.stat == DEAD)
+		if(isxeno(living_target))
+			var/mob/living/carbon/xenomorph/X = living_target
+			if(X.issamexenohive(ghost)) //No friendly fire
 				continue
 
-			if(isxeno(living_target))
-				var/mob/living/carbon/xenomorph/X = living_target
-				if(X.issamexenohive(ghost)) //No friendly fire
-					continue
-
-			shake_camera(living_target, 2, 1)
-			living_target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS)
-			living_target.add_slowdown(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS)
-			living_target.adjust_blurriness(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS) //minor visual distortion
-			to_chat(living_target, span_warning("You feel nauseous as reality warps around you!"))
+		shake_camera(living_target, 2, 1)
+		living_target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS)
+		living_target.add_slowdown(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS)
+		living_target.adjust_blurriness(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS) //minor visual distortion
+		to_chat(living_target, span_warning("You feel nauseous as reality warps around you!"))
 
 /datum/action/xeno_action/activable/blink/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We are able to blink again."))

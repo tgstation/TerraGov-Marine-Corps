@@ -6,6 +6,14 @@
 	var/show_alpha = 255
 	var/hide_alpha = 0
 
+	//--rendering relay vars--
+	///integer: what plane we will relay this planes render to
+	var/render_relay_plane = RENDER_PLANE_GAME
+	///bool: Whether this plane should get a render target automatically generated
+	var/generate_render_target = TRUE
+	///integer: blend mode to apply to the render relay in case you dont want to use the plane_masters blend_mode
+	var/blend_mode_override
+
 /obj/screen/plane_master/proc/Show(override)
 	alpha = override || show_alpha
 
@@ -15,6 +23,9 @@
 //Why do plane masters need a backdrop sometimes? Read https://secure.byond.com/forum/?post=2141928
 //Trust me, you need one. Period. If you don't think you do, you're doing something extremely wrong.
 /obj/screen/plane_master/proc/backdrop(mob/mymob)
+	SHOULD_CALL_PARENT(TRUE)
+	if(!isnull(render_relay_plane))
+		relay_render_to_plane(mymob, render_relay_plane)
 
 ///Things rendered on "openspace"; holes in multi-z
 /obj/screen/plane_master/openspace
@@ -39,6 +50,7 @@
 	blend_mode = BLEND_OVERLAY
 
 /obj/screen/plane_master/floor/backdrop(mob/living/mymob)
+	. = ..()
 	clear_filters()
 	if(istype(mymob) && mymob.eye_blurry)
 		add_filter("eye_blur", 1, gauss_blur_filter(clamp(mymob.eye_blurry * 0.1, 0.6, 3)))
@@ -51,10 +63,27 @@
 	blend_mode = BLEND_OVERLAY
 
 /obj/screen/plane_master/game_world/backdrop(mob/living/mymob)
+	. = ..()
 	clear_filters()
 	add_filter("AO", 1, drop_shadow_filter(x = 0, y = -2, size = 4, color = "#04080FAA"))
 	if(istype(mymob) && mymob.eye_blurry)
 		add_filter("eye_blur", 1, gauss_blur_filter(clamp(mymob.eye_blurry * 0.1, 0.6, 3)))
+
+/**
+ * Plane master handling byond internal blackness
+ * vars are set as to replicate behavior when rendering to other planes
+ * do not touch this unless you know what you are doing
+ */
+/obj/screen/plane_master/blackness
+	name = "darkness plane master"
+	plane = BLACKNESS_PLANE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	color = list(null, null, null, "#0000", "#000f")
+	blend_mode = BLEND_MULTIPLY
+	appearance_flags = PLANE_MASTER | NO_CLIENT_COLOR | PIXEL_SCALE
+	//byond internal end
+	render_relay_plane = RENDER_PLANE_GAME
+
 
 /*!
  * This system works by exploiting BYONDs color matrix filter to use layers to handle emissive blockers.
@@ -71,10 +100,11 @@
 /obj/screen/plane_master/lighting
 	name = "lighting plane master"
 	plane = LIGHTING_PLANE
-	blend_mode = BLEND_MULTIPLY
+	blend_mode_override = BLEND_MULTIPLY
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/screen/plane_master/lighting/backdrop(mob/mymob)
+	. = ..()
 	mymob.overlay_fullscreen("lighting_backdrop", /obj/screen/fullscreen/lighting_backdrop/backplane)
 	mymob.overlay_fullscreen("lighting_backdrop_lit_secondary", /obj/screen/fullscreen/lighting_backdrop/lit_secondary)
 
@@ -91,6 +121,7 @@
 	plane = EMISSIVE_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	render_target = EMISSIVE_RENDER_TARGET
+	render_relay_plane = null
 
 /obj/screen/plane_master/emissive/Initialize()
 	. = ..()
@@ -120,3 +151,17 @@
 	render_target = O_LIGHTING_VISUAL_RENDER_TARGET
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	blend_mode = BLEND_MULTIPLY
+	render_relay_plane = null
+
+
+/obj/screen/plane_master/fullscreen
+	name = "fullscreen alert plane"
+	plane = FULLSCREEN_PLANE
+	render_relay_plane = RENDER_PLANE_NON_GAME
+
+/obj/screen/plane_master/gravpulse
+	name = "gravpulse plane"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	plane = GRAVITY_PULSE_PLANE
+	render_target = GRAVITY_PULSE_RENDER_TARGET
+	render_relay_plane = null
