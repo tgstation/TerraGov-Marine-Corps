@@ -6,7 +6,7 @@
 	. = ..()
 
 	if (!isxeno(C))
-		to_chat(user, span_warning("Marines have no ai available, aborting!"), confidential = TRUE)
+		to_chat(user, span_warning("Marines have no ai available, aborting!"))
 		return
 
 	var/mob/living/carbon/xenomorph/skill_less_xeno = C
