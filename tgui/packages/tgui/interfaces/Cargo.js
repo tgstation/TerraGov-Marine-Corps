@@ -1,11 +1,8 @@
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
-import { Button, Flex, Divider, Collapsible, AnimatedNumber, Box, Section, LabeledList, Icon, Input } from '../components';
+import { Button, Flex, Divider, Collapsible, AnimatedNumber, Box, Section, LabeledList, Icon, Input, Table } from '../components';
 import { Window } from '../layouts';
 import { map } from 'common/collections';
-import { FlexItem } from '../components/Flex';
-import { Table, TableRow, TableCell } from '../components/Table';
-import { LabeledListItem } from '../components/LabeledList';
 
 const category_icon = {
   'Operations': "parachute-box",
@@ -18,6 +15,8 @@ const category_icon = {
   'Engineering': "tools",
   'Supplies': "hamburger",
   'Imports': "boxes",
+  'Vehicles': "road",
+  'Factory': "industry",
   'Pending Order': "shopping-cart",
 };
 
@@ -32,6 +31,7 @@ export const Cargo = (props, context) => {
   const {
     supplypacks,
     approvedrequests,
+    export_history,
     deniedrequests,
     shopping_history,
     awaiting_delivery,
@@ -81,8 +81,6 @@ export const Cargo = (props, context) => {
   );
 };
 
-
-
 const Exports = (props, context) => {
   const { act, data } = useBackend(context);
 
@@ -92,23 +90,14 @@ const Exports = (props, context) => {
 
   return (
     <Section title="Exports">
-      { export_history.map(entry => (
-        <Section
-          key={entry.id}
-          level={2}
-          title={"#"+entry.id}
-          buttons={entry.points+" points"}>
-          <Table>
-            {entry.exports.map(exp => (
-              <TableRow key={exp.id}>
-                <TableCell>{exp.name}</TableCell>
-                <TableCell>x {exp.count}</TableCell>
-                <TableCell>{exp.points} points</TableCell>
-              </TableRow>
-            ))}
-          </Table>
-        </Section>
-      ))}
+      <Table>
+        {export_history.map(exp => (
+          <Table.Row key={exp.id}>
+            <Table.Cell>{exp.name}</Table.Cell>
+            <Table.Cell>{exp.points} points</Table.Cell>
+          </Table.Row>
+        ))}
+      </Table>
     </Section>
   );
 };
@@ -149,10 +138,10 @@ const Menu = (props, context) => {
     shopping_list_items,
     elevator,
     elevator_dir,
+    export_history,
     deniedrequests,
     approvedrequests,
     awaiting_delivery_orders,
-    export_history,
     shopping_history,
   } = data;
 
@@ -165,47 +154,50 @@ const Menu = (props, context) => {
         <>
           <Divider />
           <Flex>
-            <FlexItem grow={1}>
+            <Flex.Item grow={1}>
               <MenuButton
                 icon="luggage-cart"
                 menuname="Awaiting Delivery"
                 condition={!awaiting_delivery_orders} />
-            </FlexItem>
-            <FlexItem>
+            </Flex.Item>
+            <Flex.Item>
               <AnimatedNumber value={awaiting_delivery_orders} /> order{
                 awaiting_delivery_orders !== 1 && "s"
               }
-            </FlexItem>
+            </Flex.Item>
           </Flex>
           <Flex>
-            <FlexItem grow={1}>
+            <Flex.Item grow={1}>
               <Button
                 onClick={() => act('send')}
                 disabled={!elev_status}
                 icon={"angle-double-"+elevator_dir}>
                 {elevator_dir==="up"?"Raise":"Lower"}
               </Button>
-            </FlexItem>
-            <FlexItem>
+            </Flex.Item>
+            <Flex.Item>
               Elevator: {elevator}
-            </FlexItem>
+            </Flex.Item>
           </Flex>
         </>
       )}
       <Divider />
       <Flex>
-        <FlexItem grow={1}>
+        <Flex.Item grow={1}>
           <MenuButton
             icon="shopping-cart"
             menuname="Pending Order"
             condition={!shopping_list_items} />
-        </FlexItem>
-        <FlexItem><AnimatedNumber value={shopping_list_items} /> item{
-          shopping_list_items !== 1 && "s"
-        }
-        </FlexItem>
-        <FlexItem width="5px" />
-        <FlexItem>Cost: <AnimatedNumber value={shopping_list_cost} /></FlexItem>
+        </Flex.Item>
+        <Flex.Item>
+          <AnimatedNumber value={shopping_list_items} /> item{
+            shopping_list_items !== 1 && "s"
+          }
+        </Flex.Item>
+        <Flex.Item width="5px" />
+        <Flex.Item>Cost:
+          <AnimatedNumber value={shopping_list_cost} />
+        </Flex.Item>
       </Flex>
       { !readOnly && (
         <>
@@ -221,13 +213,13 @@ const Menu = (props, context) => {
       )}
       <Divider />
       <Flex>
-        <FlexItem grow={1}>
+        <Flex.Item grow={1}>
           <MenuButton
             icon="clipboard-list"
             menuname="Requests"
             condition={!requests.length} />
-        </FlexItem>
-        <FlexItem>{requests.length} pending</FlexItem>
+        </Flex.Item>
+        <Flex.Item>{requests.length} pending</Flex.Item>
       </Flex>
       <MenuButton
         icon="clipboard-check"
@@ -299,18 +291,18 @@ const OrderList = (props, context) => {
               </>
             )}>
             <LabeledList>
-              <LabeledListItem label="Requested by">
+              <LabeledList.Item label="Requested by">
                 {rank+" "+orderer}
-              </LabeledListItem>
-              <LabeledListItem label="Reason">
+              </LabeledList.Item>
+              <LabeledList.Item label="Reason">
                 {reason}
-              </LabeledListItem>
-              <LabeledListItem label="Total Cost">
+              </LabeledList.Item>
+              <LabeledList.Item label="Total Cost">
                 {cost} points
-              </LabeledListItem>
-              <LabeledListItem label="Contents">
+              </LabeledList.Item>
+              <LabeledList.Item label="Contents">
                 <Packs packs={packs} />
-              </LabeledListItem>
+              </LabeledList.Item>
             </LabeledList>
           </Section>
         );
@@ -511,8 +503,8 @@ const Category = (props, context) => {
             cost,
           } = supplypackscontents[entry];
           return (
-            <TableRow key={entry.id}>
-              <TableCell width="130px">
+            <Table.Row key={entry.id}>
+              <Table.Cell width="130px">
                 <CategoryButton
                   icon="fast-backward"
                   disabled={!count}
@@ -537,11 +529,11 @@ const Category = (props, context) => {
                   disabled={cost > spare_points}
                   id={entry}
                   mode="addall" />
-              </TableCell>
-              <TableCell>
+              </Table.Cell>
+              <Table.Cell>
                 <Pack pack={entry} />
-              </TableCell>
-            </TableRow>
+              </Table.Cell>
+            </Table.Row>
           );
         }) }
       </Table>
@@ -556,23 +548,23 @@ const PackContents = (props, context) => {
 
   return (
     <>
-      <TableRow>
-        <TableCell bold>
+      <Table.Row>
+        <Table.Cell bold>
           Item Type
-        </TableCell>
-        <TableCell bold>
+        </Table.Cell>
+        <Table.Cell bold>
           Quantity
-        </TableCell>
-      </TableRow>
+        </Table.Cell>
+      </Table.Row>
       {map(contententry => (
-        <TableRow>
-          <TableCell width="70%">
+        <Table.Row>
+          <Table.Cell width="70%">
             {contententry.name}
-          </TableCell>
-          <TableCell>
+          </Table.Cell>
+          <Table.Cell>
             x {contententry.count}
-          </TableCell>
-        </TableRow>
+          </Table.Cell>
+        </Table.Row>
       ))(contains)}
     </>
   );

@@ -96,7 +96,7 @@ log transactions
 		T.time = worldtime2text()
 		authenticated_account.transaction_log += T
 
-		to_chat(user, "<span class='info'>You insert [I] into [src].</span>")
+		to_chat(user, span_info("You insert [I] into [src]."))
 		attack_hand(user)
 		qdel(I)
 
@@ -113,11 +113,11 @@ log transactions
 	dat += "Card: <a href='?src=\ref[src];choice=insert_card'>[held_card ? held_card.name : "------"]</a><br><br>"
 
 	if(ticks_left_locked_down > 0)
-		dat += "<span class='alert'>Maximum number of pin attempts exceeded! Access to this ATM has been temporarily disabled.</span>"
+		dat += span_alert("Maximum number of pin attempts exceeded! Access to this ATM has been temporarily disabled.")
 
 	else if(authenticated_account)
 		if(authenticated_account.suspended)
-			dat += "<span class='warning'><b>Access to this account has been suspended, and the funds within frozen.</b></span>"
+			dat += span_warning("<b>Access to this account has been suspended, and the funds within frozen.</b>")
 		else
 			switch(view_screen)
 				if(CHANGE_SECURITY_LEVEL)
@@ -212,7 +212,7 @@ log transactions
 						var/target_account_number = text2num(href_list["target_acc_number"])
 						var/transfer_purpose = href_list["purpose"]
 						if(charge_to_account(target_account_number, authenticated_account.owner_name, transfer_purpose, machine_id, transfer_amount))
-							to_chat(usr, "[icon2html(src, usr)]<span class='info'>Funds transfer successful.</span>")
+							to_chat(usr, "[icon2html(src, usr)][span_info("Funds transfer successful.")]")
 							authenticated_account.money -= transfer_amount
 
 							//create an entry in the account transaction log
@@ -225,10 +225,10 @@ log transactions
 							T.amount = "([transfer_amount])"
 							authenticated_account.transaction_log.Add(T)
 						else
-							to_chat(usr, "[icon2html(src, usr)]<span class='warning'>Funds transfer failed.</span>")
+							to_chat(usr, "[icon2html(src, usr)][span_warning("Funds transfer failed.")]")
 
 					else
-						to_chat(usr, "[icon2html(src, usr)]<span class='warning'>You don't have enough funds to do that!</span>")
+						to_chat(usr, "[icon2html(src, usr)][span_warning("You don't have enough funds to do that!")]")
 			if("view_screen")
 				view_screen = text2num(href_list["view_screen"])
 			if("change_security_level")
@@ -266,11 +266,11 @@ log transactions
 									T.time = worldtime2text()
 									failed_account.transaction_log.Add(T)
 							else
-								to_chat(usr, "<span class='warning'>[icon2html(src, usr)] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining.</span>")
+								to_chat(usr, span_warning("[icon2html(src, usr)] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining."))
 								previous_account_number = tried_account_num
 								playsound(src, 'sound/machines/buzz-sigh.ogg', 25, 1)
 						else
-							to_chat(usr, "<span class='warning'>[icon2html(src, usr)] incorrect pin/account combination entered.</span>")
+							to_chat(usr, span_warning("[icon2html(src, usr)] incorrect pin/account combination entered."))
 							number_incorrect_tries = 0
 					else
 						playsound(src, 'sound/machines/twobeep.ogg', 25, 1)
@@ -286,7 +286,7 @@ log transactions
 						T.time = worldtime2text()
 						authenticated_account.transaction_log.Add(T)
 
-						to_chat(usr, "<span class='notice'>[icon2html(src, usr)] Access granted. Welcome user '[authenticated_account.owner_name].'</span>")
+						to_chat(usr, span_notice("[icon2html(src, usr)] Access granted. Welcome user '[authenticated_account.owner_name].'"))
 
 					previous_account_number = tried_account_num
 			if("e_withdrawal")
@@ -314,7 +314,7 @@ log transactions
 						T.time = worldtime2text()
 						authenticated_account.transaction_log.Add(T)
 					else
-						to_chat(usr, "[icon2html(src, usr)]<span class='warning'>You don't have enough funds to do that!</span>")
+						to_chat(usr, "[icon2html(src, usr)][span_warning("You don't have enough funds to do that!")]")
 			if("withdrawal")
 				var/amount = max(text2num(href_list["funds_amount"]),0)
 				amount = round(amount, 0.01)
@@ -339,7 +339,7 @@ log transactions
 						T.time = worldtime2text()
 						authenticated_account.transaction_log.Add(T)
 					else
-						to_chat(usr, "[icon2html(src, usr)]<span class='warning'>You don't have enough funds to do that!</span>")
+						to_chat(usr, "[icon2html(src, usr)][span_warning("You don't have enough funds to do that!")]")
 			if("balance_statement")
 				if(authenticated_account)
 					var/obj/item/paper/R = new(src.loc)
@@ -432,7 +432,7 @@ log transactions
 			if(I)
 				authenticated_account = attempt_account_access(I.associated_account_number)
 				if(authenticated_account)
-					to_chat(human_user, "<span class='notice'>[icon2html(src, human_user)] Access granted. Welcome user '[authenticated_account.owner_name].'</span>")
+					to_chat(human_user, span_notice("[icon2html(src, human_user)] Access granted. Welcome user '[authenticated_account.owner_name].'"))
 
 					//create a transaction log entry
 					var/datum/transaction/T = new()

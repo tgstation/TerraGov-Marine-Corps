@@ -17,7 +17,7 @@
 /turf/open/floor/tile/white,
 /area/tdome)
 "af" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "ag" = (
@@ -274,11 +274,6 @@
 /obj/machinery/computer/security/telescreen,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
-"bu" = (
-/turf/closed/wall/mainship/outer{
-	name = "reinforced hull"
-	},
-/area/space)
 "bv" = (
 /obj/item/tool/wrench,
 /turf/open/floor/tile/red/yellowfull,
@@ -343,9 +338,9 @@
 /area/tdome/tdomeadmin)
 "bI" = (
 /obj/structure/table,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/bruise_pack,
+/obj/item/stack/medical/heal_pack/gauze,
+/obj/item/stack/medical/heal_pack/gauze,
+/obj/item/stack/medical/heal_pack/gauze,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bJ" = (
@@ -389,33 +384,10 @@
 "cr" = (
 /turf/open/floor/mainship/cargo,
 /area/centcom/supplypod/loading/ert)
-"cy" = (
-/turf/open/space/basic,
-/area/centcom)
-"cA" = (
-/turf/open/floor/plating/plating_catwalk,
-/area/centcom)
-"cB" = (
-/turf/closed/wall/mainship/outer{
-	name = "reinforced hull"
-	},
-/area/centcom/supply)
-"cC" = (
-/turf/open/floor/mainship/stripesquare,
-/area/centcom)
-"cD" = (
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 8
-	},
-/area/centcom)
-"cF" = (
-/obj/machinery/computer/supplycomp,
-/turf/open/floor/plating/plating_catwalk,
-/area/centcom)
 "dv" = (
-/obj/item/stack/medical/ointment,
-/obj/item/stack/medical/ointment,
-/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/heal_pack/ointment,
+/obj/item/stack/medical/heal_pack/ointment,
+/obj/item/stack/medical/heal_pack/ointment,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "dX" = (
@@ -423,11 +395,6 @@
 	name = "reinforced hull"
 	},
 /area/centcom)
-"ej" = (
-/turf/open/floor/plating{
-	icon_state = "test_floor5"
-	},
-/area/centcom/supply)
 "hk" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/cans/beer,
@@ -443,17 +410,6 @@
 "hp" = (
 /turf/closed/wall/indestructible,
 /area/start)
-"in" = (
-/turf/open/floor/mainship/stripesquare,
-/area/centcom/supply)
-"ir" = (
-/turf/open/floor/plating/plating_catwalk,
-/area/centcom/supply)
-"iv" = (
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 1
-	},
-/area/centcom/supply)
 "ji" = (
 /obj/effect/landmark/newplayer_start,
 /turf/open/floor,
@@ -465,14 +421,6 @@
 "kx" = (
 /turf/closed/wall/indestructible/splashscreen,
 /area/start)
-"nq" = (
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 4
-	},
-/area/centcom/supply)
-"nK" = (
-/turf/open/floor/mainship/cargo/arrow,
-/area/centcom/supply)
 "tW" = (
 /obj/machinery/igniter,
 /obj/machinery/light{
@@ -512,12 +460,6 @@
 "OG" = (
 /turf/open/ai_visible,
 /area/ai_multicam_room)
-"TC" = (
-/obj/docking_port/stationary/supply,
-/turf/open/floor/plating{
-	icon_state = "test_floor5"
-	},
-/area/centcom/supply)
 "VE" = (
 /obj/effect/landmark/ai_multicam_room,
 /turf/open/ai_visible,
@@ -2296,15 +2238,15 @@ aa
 aa
 aa
 aa
-bu
-bu
-bu
-bu
-bu
-bu
-bu
-bu
-bu
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -2348,15 +2290,15 @@ aa
 aa
 aa
 aa
-dX
-cA
-cC
-cC
-cD
-cC
-cC
-cF
-dX
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -2400,15 +2342,15 @@ aa
 aa
 aa
 aa
-dX
-in
-ej
-ej
-ej
-ej
-ej
-in
-dX
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -2452,15 +2394,15 @@ aa
 aa
 aa
 aa
-dX
-in
-ej
-ej
-ej
-ej
-ej
-in
-dX
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -2504,15 +2446,15 @@ aa
 aa
 aa
 aa
-dX
-iv
-ej
-ej
-TC
-ej
-ej
-nK
-dX
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -2556,15 +2498,15 @@ aa
 aa
 aa
 aa
-dX
-in
-ej
-ej
-ej
-ej
-ej
-in
-dX
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -2608,15 +2550,15 @@ aa
 aa
 aa
 aa
-dX
-in
-ej
-ej
-ej
-ej
-ej
-in
-dX
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -2660,15 +2602,15 @@ aa
 aa
 aa
 aa
-dX
-ir
-in
-in
-nq
-in
-in
-ir
-dX
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -2712,15 +2654,15 @@ aa
 aa
 aa
 aa
-dX
-cB
-cB
-cB
-cB
-cB
-cB
-cB
-dX
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -2764,15 +2706,15 @@ aa
 aa
 aa
 aa
-cy
-cy
-cy
-cy
-cy
-cy
-cy
-cy
-cy
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa

@@ -7,7 +7,7 @@
 //#define DEBUG_ATTACK_ALIEN
 
 /mob/living/proc/attack_alien_grab(mob/living/carbon/xenomorph/X)
-	if(X == src || anchored || buckled)
+	if(X == src || anchored || buckled || X.buckled)
 		return FALSE
 
 	if(!Adjacent(X))
@@ -17,64 +17,37 @@
 	return TRUE
 
 /mob/living/carbon/human/attack_alien_grab(mob/living/carbon/xenomorph/X)
-	if(check_shields(COMBAT_TOUCH_ATTACK, X.xeno_caste.tackle_damage, "melee"))
+	if(check_shields(COMBAT_TOUCH_ATTACK, X.xeno_caste.melee_damage, "melee"))
 		return ..()
-	X.visible_message("<span class='danger'>\The [X]'s grab is blocked by [src]'s shield!</span>",
-		"<span class='danger'>Our grab was blocked by [src]'s shield!</span>", null, 5)
+	X.visible_message(span_danger("\The [X]'s grab is blocked by [src]'s shield!"),
+		span_danger("Our grab was blocked by [src]'s shield!"), null, 5)
 	playsound(loc, 'sound/weapons/alien_claw_block.ogg', 25, TRUE) //Feedback
 	return FALSE
 
 
 /mob/living/proc/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
-	if(!prob(X.melee_accuracy))
-		X.do_attack_animation(src)
-		playsound(loc, 'sound/weapons/slashmiss.ogg', 25, TRUE)
-		X.visible_message("<span class='danger'>\The [X] shoves at [src], narroly missing!</span>",
-		"<span class='danger'>Our tackle against [src] narroly misses!</span>")
-		return FALSE
+
 	SEND_SIGNAL(src, COMSIG_LIVING_MELEE_ALIEN_DISARMED, X)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, TRUE)
-	X.visible_message("<span class='warning'>\The [X] shoves [src]!</span>",
-	"<span class='warning'>We shove [src]!</span>", null, 5)
+	X.visible_message(span_warning("\The [X] shoves [src]!"),
+	span_warning("We shove [src]!"), null, 5)
 	return TRUE
-
-/mob/living/carbon/monkey/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
-	. = ..()
-	if(!.)
-		return
-	Paralyze(16 SECONDS)
 
 /mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
 	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_INTELLIGENT)) // intelligent ignore restrictions
 		return TRUE
-
-	if(X.hive.slashing_allowed == XENO_SLASHING_RESTRICTED)
-		if(status_flags & XENO_HOST)
-			for(var/obj/item/alien_embryo/embryo in src)
-				if(!embryo.issamexenohive(X))
-					continue
-				to_chat(X, "<span class='warning'>We try to slash [src], but find we <B>cannot</B>. There is a host inside!</span>")
-				return FALSE
-
-		if(X.health > round(2 * X.maxHealth / 3)) //Note : Under 66 % health
-			to_chat(X, "<span class='warning'>We try to slash [src], but find we <B>cannot</B>. We are not yet injured enough to overcome the Queen's orders.</span>")
-			return FALSE
-
 	else if(isnestedhost(src))
 		for(var/obj/item/alien_embryo/embryo in src)
 			if(!embryo.issamexenohive(X))
 				continue
-			to_chat(X, "<span class='warning'>We should not harm this host! It has a sister inside.</span>")
+			to_chat(X, span_warning("We should not harm this host! It has a sister inside."))
 			return FALSE
 	return TRUE
 
 /mob/living/carbon/human/can_xeno_slash(mob/living/carbon/xenomorph/X)
 	. = ..()
 	if(!.)
-		return FALSE
-	if(!X.hive.slashing_allowed && !(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
-		to_chat(X, "<span class='warning'>Slashing is currently <b>forbidden</b> by the Queen. We refuse to slash [src].</span>")
 		return FALSE
 
 /mob/living/proc/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
@@ -95,16 +68,11 @@
 	return affecting
 
 /mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+
 	if(!can_xeno_slash(X))
 		return FALSE
 
-	if(!prob(X.melee_accuracy))
-		playsound(loc, 'sound/weapons/slashmiss.ogg', 25, TRUE)
-		X.visible_message("<span class='danger'>\The [X] slashes at [src], narroly missing!</span>",
-		"<span class='danger'>Our slash against [src] narroly misses!</span>")
-		return FALSE
-
-	var/damage = X.xeno_caste.melee_damage
+	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
 	if(!damage)
 		return FALSE
 
@@ -133,21 +101,21 @@
 		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
 
 	if(!damage)
-		X.visible_message("<span class='danger'>\The [X]'s slash is blocked by [src]'s shield!</span>",
-			"<span class='danger'>Our slash is blocked by [src]'s shield!</span>", null, COMBAT_MESSAGE_RANGE)
+		X.visible_message(span_danger("\The [X]'s slash is blocked by [src]'s shield!"),
+			span_danger("Our slash is blocked by [src]'s shield!"), null, COMBAT_MESSAGE_RANGE)
 		return FALSE
 
 	var/attack_sound = "alien_claw_flesh"
-	var/attack_message1 = "<span class='danger'>\The [X] slashes [src]!</span>"
-	var/attack_message2 = "<span class='danger'>We slash [src]!</span>"
+	var/attack_message1 = span_danger("\The [X] slashes [src]!")
+	var/attack_message2 = span_danger("We slash [src]!")
 	var/log = "slashed"
 
 	//Somehow we will deal no damage on this attack
 	if(!damage)
 		playsound(X.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
 		X.do_attack_animation(src)
-		X.visible_message("<span class='danger'>\The [X] lunges at [src]!</span>", \
-		"<span class='danger'>We lunge at [src]!</span>", null, 5)
+		X.visible_message(span_danger("\The [X] lunges at [src]!"), \
+		span_danger("We lunge at [src]!"), null, 5)
 		return FALSE
 
 	X.do_attack_animation(src, ATTACK_EFFECT_REDSLASH)
@@ -167,6 +135,7 @@
 	return TRUE
 
 /mob/living/silicon/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+
 	if(stat == DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
 		return FALSE
 	. = ..()
@@ -180,6 +149,7 @@
 	playsound(loc, "alien_claw_metal", 25, TRUE)
 
 /mob/living/silicon/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+
 	if(stat == DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
 		return FALSE
 	. = ..()
@@ -195,13 +165,14 @@
 
 /mob/living/carbon/xenomorph/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(issamexenohive(X))
-		X.visible_message("<span class='warning'>\The [X] nibbles [src].</span>",
-		"<span class='warning'>We nibble [src].</span>", null, 5)
+		X.visible_message(span_warning("\The [X] nibbles [src]."),
+		span_warning("We nibble [src]."), null, 5)
 		return FALSE
 	return ..()
 
 
 /mob/living/carbon/human/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+
 	if(stat == DEAD)
 		if(istype(wear_ear, /obj/item/radio/headset/mainship))
 			var/obj/item/radio/headset/mainship/cam_headset = wear_ear
@@ -209,16 +180,16 @@
 				cam_headset.camera.toggle_cam(null, FALSE)
 				playsound(loc, "alien_claw_metal", 25, 1)
 				X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-				to_chat(X, "<span class='warning'>We disable the creatures hivemind sight apparatus.</span>")
+				to_chat(X, span_warning("We disable the creatures hivemind sight apparatus."))
 				return FALSE
 
-		if(length(light_sources) || locate(/obj/effect/overlay/light_visible) in vis_contents)
+		if(length(static_light_sources) || length(hybrid_light_sources) || length(affected_movable_lights))
 			playsound(loc, "alien_claw_metal", 25, 1)
 			X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 			disable_lights(sparks = TRUE)
-			to_chat(X, "<span class='warning'>We disable whatever annoying lights the dead creature possesses.</span>")
+			to_chat(X, span_warning("We disable whatever annoying lights the dead creature possesses."))
 		else
-			to_chat(X, "<span class='warning'>[src] is dead, why would we want to touch it?</span>")
+			to_chat(X, span_warning("[src] is dead, why would we want to touch it?"))
 		return FALSE
 
 	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_HUMAN, src)
@@ -229,6 +200,9 @@
 
 //Every other type of nonhuman mob //MARKER OVERRIDE
 /mob/living/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
 	if (X.fortify)
 		return FALSE
 
@@ -237,11 +211,11 @@
 			if(on_fire)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 				ExtinguishMob()
-				X.visible_message("<span class='danger'>[X] effortlessly extinguishes the fire on [src]!</span>",
-					"<span class='notice'>We extinguished the fire on [src].</span>", null, 5)
+				X.visible_message(span_danger("[X] effortlessly extinguishes the fire on [src]!"),
+					span_notice("We extinguished the fire on [src]."), null, 5)
 				return TRUE
-			X.visible_message("<span class='notice'>\The [X] caresses [src] with its scythe-like arm.</span>", \
-			"<span class='notice'>We caress [src] with our scythe-like arm.</span>", null, 5)
+			X.visible_message(span_notice("\The [X] caresses [src] with its scythe-like arm."), \
+			span_notice("We caress [src] with our scythe-like arm."), null, 5)
 			return FALSE
 
 		if(INTENT_GRAB)
@@ -252,5 +226,5 @@
 	return FALSE
 
 /mob/living/attack_larva(mob/living/carbon/xenomorph/larva/M)
-	M.visible_message("<span class='danger'>[M] nudges its head against [src].</span>", \
-	"<span class='danger'>We nudge our head against [src].</span>", null, 5)
+	M.visible_message(span_danger("[M] nudges its head against [src]."), \
+	span_danger("We nudge our head against [src]."), null, 5)

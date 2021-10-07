@@ -48,7 +48,7 @@
 
 	//light stuff
 
-	///Light systems, both shouldn't be active at the same time.
+	///Light systems, only one of the three should be active at the same time.
 	var/light_system = STATIC_LIGHT
 	///Range of the light in tiles. Zero means no light.
 	var/light_range = 0
@@ -57,14 +57,29 @@
 	///Hexadecimal RGB string representing the colour of the light. White by default.
 	var/light_color = COLOR_WHITE
 	///Boolean variable for toggleable lights. Has no effect without the proper light_system, light_range and light_power values.
-	var/light_on = TRUE
+	var/light_on = FALSE
 	///Our light source. Don't fuck with this directly unless you have a good reason!
-	var/tmp/datum/light_source/light
+	var/tmp/datum/dynamic_light_source/light
 	///Any light sources that are "inside" of us, for example, if src here was a mob that's carrying a flashlight, that flashlight's light source would be part of this list.
-	var/tmp/list/light_sources
+	var/tmp/list/hybrid_light_sources
+
+	///The config type to use for greyscaled sprites. Both this and greyscale_colors must be assigned to work.
+	var/greyscale_config
+	///A string of hex format colors to be used by greyscale sprites, ex: "#0054aa#badcff"
+	var/greyscale_colors
+
+	//Values should avoid being close to -16, 16, -48, 48 etc.
+	//Best keep them within 10 units of a multiple of 32, as when the light is closer to a wall, the probability
+	//that a shadow extends to opposite corners of the light mask square is increased, resulting in more shadow
+	//overlays.
+	///x offset for dynamic lights on this atom
+	var/light_pixel_x
+	///y offset for dynamic lights on this atom
+	var/light_pixel_y
+	///typepath for the lighting maskfor dynamic light sources
+	var/light_mask_type = null
 
 	// popup chat messages
-
 	/// Last name used to calculate a color for the chatmessage overlays
 	var/chat_color_name
 	/// Last color calculated for the the chatmessage overlays
@@ -73,6 +88,11 @@
 	var/chat_color_darkened
 	///HUD images that this mob can provide.
 	var/list/hud_possible
+	///Reference to atom being orbited
+	var/atom/orbit_target
+
+	///The color this atom will be if we choose to draw it on the minimap
+	var/minimap_color = MINIMAP_SOLID
 
 /*
 We actually care what this returns, since it can return different directives.
@@ -132,13 +152,11 @@ directive is properly returned.
 
 /atom/proc/Bumped(atom/movable/AM)
 	SEND_SIGNAL(src, COMSIG_ATOM_BUMPED, AM)
-	return
+
 
 ///Can the mover object pass this atom, while heading for the target turf
 /atom/proc/CanPass(atom/movable/mover, turf/target)
 	SHOULD_CALL_PARENT(TRUE)
-	if(mover.status_flags & INCORPOREAL)
-		return TRUE
 	. = CanAllowThrough(mover, target)
 	// This is cheaper than calling the proc every time since most things dont override CanPassThrough
 	if(!mover.generic_canpass)
@@ -149,12 +167,12 @@ directive is properly returned.
 	SHOULD_CALL_PARENT(TRUE)
 	return !density
 
-/atom/proc/CheckExit(atom/movable/mover, turf/target)
-	if(!density || !(flags_atom & ON_BORDER) || !(get_dir(mover.loc, target) & dir))
-		return 1
-	else
-		return 0
-
+/// Returns true or false to allow the mover to move out of the atom
+/atom/proc/CheckExit(atom/movable/mover, direction)
+	SHOULD_CALL_PARENT(TRUE)
+	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
+		return TRUE
+	return FALSE
 
 // Convenience proc for reagents handling.
 /atom/proc/is_open_container()
@@ -219,7 +237,7 @@ directive is properly returned.
 	set category = "IC"
 
 	if(is_blind(src))
-		to_chat(src, "<span class='notice'>Something is there but you can't see it.</span>")
+		to_chat(src, span_notice("Something is there but you can't see it."))
 		return
 
 	face_atom(A)
@@ -259,14 +277,14 @@ directive is properly returned.
 					var/total_volume = 0
 					for(var/datum/reagent/R in reagents.reagent_list)
 						total_volume += R.volume
-					to_chat(user, "<span class='notice'>[total_volume] units of various reagents.</span>")
+					to_chat(user, span_notice("[total_volume] units of various reagents."))
 				else
 					to_chat(user, "<span class='notice'>Nothing.")
 			else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_VISIBLE))
 				if(reagents.total_volume)
-					to_chat(user, "<span class='notice'>It has [reagents.total_volume] unit\s left.</span>")
+					to_chat(user, span_notice("It has [reagents.total_volume] unit\s left."))
 				else
-					to_chat(user, "<span class='warning'>It's empty.</span>")
+					to_chat(user, span_warning("It's empty."))
 			else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_SKILLCHECK))
 				if(isxeno(user))
 					return
@@ -282,15 +300,15 @@ directive is properly returned.
 			else if(reagents.reagent_flags & AMOUNT_ESTIMEE)
 				var/obj/item/reagent_containers/C = src
 				if(!reagents.total_volume)
-					to_chat(user, "<span class='notice'>\The [src] is empty!</span>")
+					to_chat(user, span_notice("\The [src] is empty!"))
 				else if (reagents.total_volume<= C.volume*0.3)
-					to_chat(user, "<span class='notice'>\The [src] is almost empty!</span>")
+					to_chat(user, span_notice("\The [src] is almost empty!"))
 				else if (reagents.total_volume<= C.volume*0.6)
-					to_chat(user, "<span class='notice'>\The [src] is half full!</span>")
+					to_chat(user, span_notice("\The [src] is half full!"))
 				else if (reagents.total_volume<= C.volume*0.9)
-					to_chat(user, "<span class='notice'>\The [src] is almost full!</span>")
+					to_chat(user, span_notice("\The [src] is almost full!"))
 				else
-					to_chat(user, "<span class='notice'>\The [src] is full!</span>")
+					to_chat(user, span_notice("\The [src] is full!"))
 
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user)
 
@@ -320,11 +338,53 @@ directive is properly returned.
 	. = list()
 	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_OVERLAYS, .)
 
+/// Checks if the colors given are different and if so causes a greyscale icon update
+/// The colors argument can be either a list or the full color string
+/atom/proc/set_greyscale_colors(list/colors, update=TRUE)
+	SHOULD_CALL_PARENT(TRUE)
+	if(istype(colors))
+		colors = colors.Join("")
+	if(greyscale_colors == colors)
+		return
+	greyscale_colors = colors
+	if(!greyscale_config)
+		return
+	if(update)
+		update_greyscale()
+
+/// Checks if the greyscale config given is different and if so causes a greyscale icon update
+/atom/proc/set_greyscale_config(new_config, update=TRUE)
+	if(greyscale_config == new_config)
+		return
+	greyscale_config = new_config
+	if(update)
+		update_greyscale()
+
+/// Checks if this atom uses the GAS system and if so updates the icon
+/atom/proc/update_greyscale()
+	if(greyscale_config && greyscale_colors)
+		icon = SSgreyscale.GetColoredIconByType(greyscale_config, greyscale_colors)
+
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
 /atom/proc/relaymove()
 	return
 
+/**
+ * A special case of relaymove() in which the person relaying the move may be "driving" this atom
+ *
+ * This is a special case for vehicles and ridden animals where the relayed movement may be handled
+ * by the riding component attached to this atom. Returns TRUE as long as there's nothing blocking
+ * the movement, or FALSE if the signal gets a reply that specifically blocks the movement
+ */
+/atom/proc/relaydrive(mob/living/user, direction)
+	return !(SEND_SIGNAL(src, COMSIG_RIDDEN_DRIVER_MOVE, user, direction) & COMPONENT_DRIVER_BLOCK_MOVE)
+
+/**
+ * React to being hit by an explosion
+ *
+ * Default behaviour is to call [contents_explosion][/atom/proc/contents_explosion] and send the [COMSIG_ATOM_EX_ACT] signal
+ */
 /atom/proc/ex_act(severity, epicenter_dist, impact_range)
 	if(!(flags_atom & PREVENT_CONTENTS_EXPLOSION))
 		contents_explosion(severity, epicenter_dist, impact_range)
@@ -337,7 +397,6 @@ directive is properly returned.
 /atom/proc/hitby(atom/movable/AM)
 	if(density)
 		AM.set_throwing(FALSE)
-	return
 
 
 /atom/proc/GenerateTag()
@@ -385,6 +444,10 @@ directive is properly returned.
 			log_dsay(log_text)
 		if(LOG_OOC)
 			log_ooc(log_text)
+		if(LOG_XOOC)
+			log_xooc(log_text)
+		if(LOG_MOOC)
+			log_mooc(log_text)
 		if(LOG_ADMIN)
 			log_admin(log_text)
 		if(LOG_LOOC)
@@ -631,7 +694,9 @@ Proc for attack log creation, because really why not
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_atom |= INITIALIZED
 
-	if(light_system == STATIC_LIGHT && light_power && light_range)
+	update_greyscale()
+
+	if(light_system != MOVABLE_LIGHT && light_power && light_range)
 		update_light()
 	if(loc)
 		SEND_SIGNAL(loc, COMSIG_ATOM_INITIALIZED_ON, src) //required since spawning something doesn't call Move hence it doesn't call Entered.
@@ -669,20 +734,20 @@ Proc for attack log creation, because really why not
 	.["Modify Transform"] = "?_src_=vars;[HrefToken()];modtransform=[REF(src)]"
 	.["Add reagent"] = "?_src_=vars;[HrefToken()];addreagent=[REF(src)]"
 	.["Modify Filters"] = "?_src_=vars;[HrefToken()];filteredit=[REF(src)]"
+	.["Modify Greyscale Colors"] = "?_src_=vars;[HrefToken()];modify_greyscale=[REF(src)]"
+
+/atom/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs) //TODO add should_call_parent(TRUE)
+	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, arrived, old_loc, old_locs)
 
 
-/atom/Entered(atom/movable/AM, atom/oldloc)
-	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM, oldloc)
-
-
-/atom/Exit(atom/movable/AM, atom/newloc)
+/atom/Exit(atom/movable/AM, direction) //TODO add should_call_parent(TRUE)
 	. = ..()
-	if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, AM, newloc) & COMPONENT_ATOM_BLOCK_EXIT)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, AM, direction) & COMPONENT_ATOM_BLOCK_EXIT)
 		return FALSE
 
 
-/atom/Exited(atom/movable/AM, atom/newloc)
-	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, newloc)
+/atom/Exited(atom/movable/AM, direction)
+	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, direction)
 
 
 // Stacks and storage redefined procs.
@@ -703,7 +768,7 @@ Proc for attack log creation, because really why not
 /atom/proc/multitool_check_buffer(user, obj/item/I, silent = FALSE)
 	if(!istype(I, /obj/item/multitool))
 		if(user && !silent)
-			to_chat(user, "<span class='warning'>[I] has no data buffer!</span>")
+			to_chat(user, span_warning("[I] has no data buffer!"))
 		return FALSE
 	return TRUE
 
@@ -729,7 +794,7 @@ Proc for attack log creation, because really why not
 /atom/proc/fulton_act(mob/living/user, obj/item/I)
 	if(!isturf(loc))
 		return FALSE //Storage screens, worn containers, anything we want to be able to interact otherwise.
-	to_chat(user, "<span class='warning'>Cannot extract [src].</span>")
+	to_chat(user, span_warning("Cannot extract [src]."))
 	return TRUE
 
 ///This proc is called on atoms when they are loaded into a shuttle
@@ -792,23 +857,6 @@ Proc for attack log creation, because really why not
 	add_fingerprint(usr, "topic")
 
 
-/atom/vv_edit_var(var_name, var_value)
-	switch(var_name)
-		if("light_range")
-			set_light(l_range = var_value)
-			return TRUE
-
-		if("light_power")
-			set_light(l_power = var_value)
-			return TRUE
-
-		if("light_color")
-			set_light(l_color = var_value)
-			return TRUE
-
-	return ..()
-
-
 /atom/can_interact(mob/user)
 	. = ..()
 	if(!.)
@@ -833,3 +881,52 @@ Proc for attack log creation, because really why not
 	hud_list = new
 	for(var/hud in hud_possible) //Providing huds.
 		hud_list[hud] = image('icons/mob/hud.dmi', src, "")
+
+/**
+ * If this object has lights, turn it on/off.
+ * user: the mob actioning this
+ * toggle_on: if TRUE, will try to turn ON the light. Opposite if FALSE
+ * cooldown: how long until you can toggle the light on/off again
+ * sparks: if a spark effect will be generated
+ * forced: if TRUE and toggle_on = FALSE, will cause the light to turn on in cooldown second
+ * originated_turf: if not null, will check if the obj_turf is closer than distance_max to originated_turf, and the proc will return if not
+ * distance_max: used to check if originated_turf is close to obj.loc
+*/
+/atom/proc/turn_light(mob/user = null, toggle_on , cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LIGHT) && !forced)
+		return STILL_ON_COOLDOWN
+	if(cooldown <= 0)
+		cooldown = 1 SECONDS
+	TIMER_COOLDOWN_START(src, COOLDOWN_LIGHT, cooldown)
+	if(toggle_on == light_on)
+		return NO_LIGHT_STATE_CHANGE
+	if(forced && !toggle_on) //Is true when turn light is called by nightfall and the light is already on
+		addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
+	if(sparks && light_on)
+		var/datum/effect_system/spark_spread/spark_system = new
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		spark_system.start(src)
+	return CHECKS_PASSED
+
+///Turn on the light, should be called by a timer
+/atom/proc/reset_light()
+	turn_light(null, TRUE, 1 SECONDS, FALSE, TRUE)
+
+/**
+ * Recursive getter method to return a list of all ghosts orbitting this atom
+ *
+ * This will work fine without manually passing arguments.
+ */
+/atom/proc/get_all_orbiters(list/processed, source = TRUE)
+	var/list/output = list()
+	if (!processed)
+		processed = list()
+	if (src in processed)
+		return output
+	if (!source)
+		output += src
+	processed += src
+	for (var/atom/atom_orbiter AS in orbiters?.orbiters)
+		output += atom_orbiter.get_all_orbiters(processed, source = FALSE)
+	return output

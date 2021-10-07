@@ -14,12 +14,6 @@
 		if(!usr.get_active_held_item())		//if active hand is empty
 			attack_hand(usr, 1, 1)
 
-	return
-
-
-/obj/structure/paper_bin/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
-
 
 /obj/structure/paper_bin/attack_hand(mob/living/user)
 	. = ..()
@@ -32,7 +26,7 @@
 			return
 
 	if(amount < 1)
-		to_chat(user, "<span class='notice'>[src] is empty!</span>")
+		to_chat(user, span_notice("[src] is empty!"))
 		return
 
 	amount--
@@ -49,7 +43,7 @@
 
 	P.forceMove(user.loc)
 	user.put_in_hands(P)
-	to_chat(user, "<span class='notice'>You take [P] out of the [src].</span>")
+	to_chat(user, span_notice("You take [P] out of the [src]."))
 
 
 /obj/structure/paper_bin/attackby(obj/item/I, mob/user, params)
@@ -59,7 +53,7 @@
 		if(!user.transferItemToLoc(I, src))
 			return
 
-		to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+		to_chat(user, span_notice("You put [I] in [src]."))
 		LAZYADD(papers, I)
 		amount++
 
@@ -67,9 +61,9 @@
 /obj/structure/paper_bin/examine(mob/user)
 	. = ..()
 	if(amount)
-		to_chat(user, "<span class='notice'>There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.</span>")
+		to_chat(user, span_notice("There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin."))
 	else
-		to_chat(user, "<span class='notice'>There are no papers in the bin.</span>")
+		to_chat(user, span_notice("There are no papers in the bin."))
 
 
 /obj/structure/paper_bin/update_icon()

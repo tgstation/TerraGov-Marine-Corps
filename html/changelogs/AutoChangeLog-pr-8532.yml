@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - rscadd: "Maturity tower that makes .2 maturity per maturity tick, costs 300 psy pints"
+  - bugfix: "fixed evo tower making matiurity instead of evo points"

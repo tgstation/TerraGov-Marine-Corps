@@ -59,7 +59,7 @@
 			SSblackbox.record_feedback("tally", "event_admin_cancelled", 1, typepath)
 			return EVENT_CANCELLED
 		if(!triggering)
-			to_chat(usr, "<span class='admin'>You are too late to cancel that event</span>")
+			to_chat(usr, span_admin("You are too late to cancel that event"))
 			return
 		var/gamemode = SSticker.mode.config_tag
 		var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE)
@@ -121,7 +121,6 @@
 	if(control.alert_observers)
 		if (atom_of_interest)
 			notify_ghosts("[control.name] has an object of interest: [atom_of_interest]!", source=atom_of_interest, action=NOTIFY_ORBIT, header="Something's Interesting!")
-	return
 
 //Called when the tick is equal to the announce_when variable.
 //Allows you to announce before starting or vice versa.

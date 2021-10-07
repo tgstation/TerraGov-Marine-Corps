@@ -59,7 +59,7 @@
 
       <div class='item'>
         <div class="itemLabel">
-          <span class='average'><b>Account Number</b>:</span>
+          [span_average("<b>Account Number</b>:")]
         </div>
         <div class="itemContent">
           #{{:data.account_number}}
@@ -68,7 +68,7 @@
 
       <div class='item'>
         <div class="itemLabel">
-          <span class='average'><b>Holder</b>:</span>
+          [span_average("<b>Holder</b>:")]
         </div>
         <div class="itemContent">
           {{:data.owner_name}}
@@ -77,7 +77,7 @@
 
       <div class='item'>
         <div class="itemLabel">
-          <span class='average'><b>Balance</b>:</span>
+          [span_average("<b>Balance</b>:")]
         </div>
         <div class="itemContent">
           ${{:helper.formatNumber(data.money)}}
@@ -86,7 +86,7 @@
 
       <div class='item'>
         <div class="itemLabel">
-          <span class='average'><b>Status</b>:</span>
+          [span_average("<b>Status</b>:")]
         </div>
         <div class="itemContent">
           <span class='{{:data.suspended ? "bad" : "good"}}'>
@@ -123,7 +123,7 @@
           </tbody>
         </table>
         {{else}}
-          <span class='alert'>This account has no financial transactions on record for today.</span>
+          [span_alert("This account has no financial transactions on record for today.")]
         {{/if}}
       </div>
         <div class='item'>
@@ -160,7 +160,7 @@
           {{/for}}
         </table>
       {{else}}
-        <span class='alert'>There are no accounts available.</span>
+        [span_alert("There are no accounts available.")]
       {{/if}}
     {{/if}}
   {{/if}}

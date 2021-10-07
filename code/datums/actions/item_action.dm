@@ -49,6 +49,9 @@
 	name = "Toggle [target]"
 	button.name = name
 
+/datum/action/item_action/toggle/motion_detector/action_activate()
+	. = ..()
+	update_button_icon()
 
 /datum/action/item_action/firemode
 	var/action_firemode
@@ -105,3 +108,30 @@
 /datum/action/item_action/aim_mode/action_activate()
 	var/obj/item/weapon/gun/I = target
 	I.toggle_auto_aim_mode(owner)
+
+
+/datum/action/item_action/toggle_hydro
+	/// This references the TL84 flamer
+	var/obj/item/weapon/gun/flamer/big_flamer/marinestandard/holder_flamer
+
+/datum/action/item_action/toggle_hydro/New()
+	. = ..()
+	holder_flamer = holder_item
+	RegisterSignal(holder_flamer, COMSIG_ITEM_HYDRO_CANNON_TOGGLED, .proc/update_toggle_button_icon)
+
+
+/datum/action/item_action/toggle_hydro/update_button_icon()
+	button.overlays.Cut()
+	if (holder_flamer.hydro_active)
+		button.overlays += image('icons/mob/actions.dmi', null, "TL_84_Water", ABOVE_HUD_LAYER)
+		return
+	button.overlays += image('icons/mob/actions.dmi', null, "TL_84_Flame", ABOVE_HUD_LAYER)
+
+///Signal handler for when the hydro cannon is activated
+/datum/action/item_action/toggle_hydro/proc/update_toggle_button_icon()
+	SIGNAL_HANDLER
+	update_button_icon()
+
+/datum/action/item_action/toggle_hydro/Destroy()
+	holder_flamer=null
+	return ..()

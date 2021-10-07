@@ -58,7 +58,7 @@
 		colour = "#000000"
 		shadeColour = "#FFFFFF"
 		to_chat(user, "You will now draw in black and white with this crayon.")
-	return
+
 
 /* A special rainbow crayon */
 /obj/item/toy/crayon/rainbow
@@ -71,10 +71,10 @@
 /obj/item/toy/crayon/rainbow/attack_self(mob/living/user as mob)
 	colour = input(user, "Please select the main colour.", "Crayon colour") as color
 	shadeColour = input(user, "Please select the shade colour.", "Crayon colour") as color
-	return
+
 
 /obj/item/toy/crayon/afterattack(atom/target, mob/user, proximity)
-	if(!proximity) 
+	if(!proximity)
 		return
 
 	if(!isfloorturf(target))
@@ -86,7 +86,7 @@
 	var/drawtype = tgui_input_list(user, "Choose what you'd like to draw.", "Crayon scribbles", list("graffiti","rune","letter"))
 	if(drawtype == "letter")
 		drawtype = tgui_input_list(user, "Choose the letter.", "Crayon scribbles", list("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"))
-	
+
 	user.visible_message("[user] starts drawing something on \the [target.name]")
 	if(!instant && !do_after(user, 5 SECONDS, TRUE, target, BUSY_ICON_GENERIC))
 		return
@@ -94,21 +94,20 @@
 	new /obj/effect/decal/cleanable/crayon(target, colour, shadeColour, drawtype)
 	uses--
 	if(uses <= 0)
-		to_chat(user, "<span class='warning'>You used up your crayon!</span>")
+		to_chat(user, span_warning("You used up your crayon!"))
 		qdel(src)
 
 /obj/item/toy/crayon/attack(mob/living/M, mob/living/user)
 	if(M != user)
 		return ..()
-	
+
 	user.visible_message("[user] took a bite of \the [src] and swallowed it.",
 	"You took a bit of \the [src] and swallowed it.")
 	uses -= 5
 	if(uses <= 0)
-		to_chat(user, "<span class='warning'>You ate the whole crayon!</span>")
+		to_chat(user, span_warning("You ate the whole crayon!"))
 		qdel(src)
 
 	M.adjustToxLoss(1) // add a little bit of toxic damage
 	if(istype(src, /obj/item/toy/crayon/mime))
-		M.disabilities |= MUTE
-		addtimer(VARSET_CALLBACK(M, disabilities, M.disabilities & ~MUTE), 30 SECONDS)
+		M.apply_status_effect(/datum/status_effect/mute, 30 SECONDS)

@@ -31,9 +31,9 @@ export const MESSAGE_TYPE_OOC = 'ooc';
 export const MESSAGE_TYPE_ADMINPM = 'adminpm';
 export const MESSAGE_TYPE_COMBAT = 'combat';
 export const MESSAGE_TYPE_ADMINCHAT = 'adminchat';
-export const MESSAGE_TYPE_MODCHAT = 'modchat';
-export const MESSAGE_TYPE_EVENTCHAT = 'eventchat';
+export const MESSAGE_TYPE_MENTORCHAT = 'mentorchat';
 export const MESSAGE_TYPE_ADMINLOG = 'adminlog';
+export const MESSAGE_TYPE_STAFFLOG = 'stafflog';
 export const MESSAGE_TYPE_ATTACKLOG = 'attacklog';
 export const MESSAGE_TYPE_DEBUG = 'debug';
 
@@ -58,19 +58,19 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_RADIO,
     name: 'Radio',
     description: 'All departments of radio messages',
-    selector: '.alert, .minorannounce, .syndradio, .centcomradio, .aiprivradio, .comradio, .secradio, .engradio, .medradio, .sciradio, .suppradio, .servradio, .radio, .deptradio, .binarysay, .newscaster',
+    selector: '.alert, .minorannounce, .radio, .deptradio, .syndradio, .comradio, .casradio, .engradio, .medradio, .sciradio, .supradio, .alpharadio, .bravoradio, .charlieradio, .deltaradio, .newscaster, .binarysay, .hivemind',
   },
   {
     type: MESSAGE_TYPE_INFO,
     name: 'Info',
     description: 'Non-urgent messages from the game and items',
-    selector: '.notice:not(.pm), .adminnotice, .info, .sinister, .cult, .infoplain',
+    selector: '.notice, .xenonotice, .boldnotice, .adminnotice, .info, .cult, .infoplain',
   },
   {
     type: MESSAGE_TYPE_WARNING,
     name: 'Warnings',
     description: 'Urgent messages from the game and items',
-    selector: '.warning:not(.pm), .critical, .userdanger, .italics',
+    selector: '.warning, .xenowarning, .danger, .xenodanger, .highdanger, .xenohighdanger, .xenoannounce',
   },
   {
     type: MESSAGE_TYPE_DEADCHAT,
@@ -82,19 +82,19 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_OOC,
     name: 'OOC',
     description: 'The bluewall of global OOC messages',
-    selector: '.ooc, .adminooc',
+    selector: '.ooc, .colorooc, .looc, .adminooc, .hostooc, .projleadooc, .headcoderooc, .headminooc, .headmentorooc, .trialminooc, .candiminooc, .mentorooc, .maintainerooc, .contributorooc, .otherooc',
   },
   {
     type: MESSAGE_TYPE_ADMINPM,
-    name: 'Admin PMs',
-    description: 'Messages to/from admins (adminhelp)',
-    selector: '.pm, .adminhelp',
+    name: 'Staff PMs',
+    description: 'Messages to/from staff (adminhelp/mentorhelp)',
+    selector: '.staffpmin, .staffpmout, .adminhelp, .adminnotice',
   },
   {
     type: MESSAGE_TYPE_COMBAT,
     name: 'Combat Log',
     description: 'Urist McTraitor has stabbed you with a knife!',
-    selector: '.danger',
+    selector: '.danger, .highdanger, .xenodanger, .xenohighdanger, .attack, .moderate, .disarm, .passive',
   },
   {
     type: MESSAGE_TYPE_UNKNOWN,
@@ -106,14 +106,14 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_ADMINCHAT,
     name: 'Admin Chat',
     description: 'ASAY messages',
-    selector: '.admin_channel, .adminsay',
+    selector: '.admin, .asay, .headminasay',
     admin: true,
   },
   {
-    type: MESSAGE_TYPE_MODCHAT,
-    name: 'Mod Chat',
+    type: MESSAGE_TYPE_MENTORCHAT,
+    name: 'Mentor Chat',
     description: 'MSAY messages',
-    selector: '.mod_channel',
+    selector: '.msay, .adminmsay, .headminmsay',
     admin: true,
   },
   {
@@ -121,6 +121,12 @@ export const MESSAGE_TYPES = [
     name: 'Admin Log',
     description: 'ADMIN LOG: Urist McAdmin has jumped to coordinates X, Y, Z',
     selector: '.log_message',
+    admin: true,
+  },
+  {
+    type: MESSAGE_TYPE_STAFFLOG,
+    name: 'Staff Log',
+    description: 'STAFF LOG: 5Head has solved the mentor ticket #1',
     admin: true,
   },
   {

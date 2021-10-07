@@ -2,21 +2,12 @@
 	Animals & All Unspecified
 */
 /mob/living/UnarmedAttack(atom/A, has_proximity, modifiers)
+	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
+		return
 	A.attack_animal(src)
 
 
 /atom/proc/attack_animal(mob/user as mob)
-	return
-
-
-
-/*
-	Monkeys
-*/
-/mob/living/carbon/monkey/UnarmedAttack(atom/A, has_proximity, modifiers)
-	A.attack_paw(src)
-
-/atom/proc/attack_paw(mob/living/carbon/monkey/user)
 	return
 
 
@@ -33,6 +24,10 @@
 	. = ..()
 	if(.)
 		return
+
+	if(status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //We can't physically attack or be attacked by the incorporeal
+		return FALSE
+
 	if(buckle_flags & CAN_BUCKLE)
 		switch(LAZYLEN(buckled_mobs))
 			if(0)
@@ -55,27 +50,20 @@
 		unbuckle_bodybag()
 		return TRUE
 
-/*
-	Monkey RestrainedClickOn() was apparently the
-	one and only use of all of the restrained click code
-	(except to stop you from doing things while handcuffed);
-	moving it here instead of various hand_p's has simplified
-	things considerably
-*/
-/mob/living/carbon/monkey/RestrainedClickOn(atom/A)
-	if(a_intent != INTENT_HARM || !ismob(A))
-		return
-	if(istype(wear_mask, /obj/item/clothing/mask/muzzle))
-		return
-	var/mob/living/carbon/ML = A
-	var/dam_zone = ran_zone(pick("chest", "l_hand", "r_hand", "l_leg", "r_leg"))
-	var/armor = ML.run_armor_check(dam_zone, "melee")
-	if(prob(75))
-		ML.apply_damage(rand(1,3), BRUTE, dam_zone, armor)
-		visible_message("<span class='danger'>[name] has bit [ML]!</span>")
-	else
-		visible_message("<span class='danger'>[src] has attempted to bite [ML]!</span>")
-
+/**
+ * This proc is called when a human user right clicks on an atom with an empty hand
+ *
+ * Arguments:
+ * * user: The mob clicking on the atom
+ */
+/atom/proc/attack_hand_alternate(mob/living/user)
+	. = FALSE
+	if(QDELETED(src))
+		stack_trace("attack_hand_alternate on a qdeleted atom")
+		return TRUE
+	add_fingerprint(user, "attack_hand_alternate")
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, user) & COMPONENT_NO_ATTACK_HAND)
+		return TRUE
 
 /*
 	New Players:

@@ -12,7 +12,7 @@
 /obj/item/encryptionkey/engi
 	name = "Engineering Radio Encryption Key"
 	icon_state = "eng_cypherkey"
-	channels = list(RADIO_CHANNEL_ENGINEERING = TRUE,RADIO_CHANNEL_CAS = TRUE)
+	channels = list(RADIO_CHANNEL_ENGINEERING = TRUE,RADIO_CHANNEL_CAS = TRUE, RADIO_CHANNEL_REQUISITIONS = TRUE)
 
 /obj/item/encryptionkey/cas
 	name = "Fire support radio encryption key"
@@ -32,7 +32,7 @@
 /obj/item/encryptionkey/cas
 	name = "\improper fire support specialist radio encryption key"
 	icon_state = "rob_cypherkey"
-	channels = list(RADIO_CHANNEL_CAS = TRUE, RADIO_CHANNEL_COMMAND = TRUE)
+	channels = list(RADIO_CHANNEL_CAS = TRUE)
 
 /obj/item/encryptionkey/mcom
 	name = "\improper Marine Command radio encryption key"
@@ -72,6 +72,46 @@
 	name = "\improper General radio encryption key"
 	icon_state = "cypherkey"
 	channels = list(RADIO_CHANNEL_COMMON = TRUE)
+
+/obj/item/encryptionkey/engi/rebel
+	channels = list(RADIO_CHANNEL_ENGINEERING_REBEL = TRUE,RADIO_CHANNEL_CAS_REBEL = TRUE, RADIO_CHANNEL_REQUISITIONS_REBEL = TRUE)
+
+/obj/item/encryptionkey/cas/rebel
+	channels = list(RADIO_CHANNEL_CAS_REBEL = TRUE)
+
+/obj/item/encryptionkey/med/rebel
+	channels = list(RADIO_CHANNEL_MEDICAL_REBEL = TRUE)
+
+/obj/item/encryptionkey/req/rebel
+	channels = list(RADIO_CHANNEL_REQUISITIONS_REBEL = TRUE)
+
+/obj/item/encryptionkey/cas/rebel
+	channels = list(RADIO_CHANNEL_CAS_REBEL = TRUE)
+
+/obj/item/encryptionkey/mcom/rebel
+	channels = list(RADIO_CHANNEL_COMMAND_REBEL = TRUE, RADIO_CHANNEL_CAS_REBEL = TRUE, RADIO_CHANNEL_ALPHA_REBEL = TRUE, RADIO_CHANNEL_BRAVO_REBEL = TRUE, RADIO_CHANNEL_CHARLIE_REBEL = TRUE, RADIO_CHANNEL_DELTA_REBEL = TRUE, RADIO_CHANNEL_ENGINEERING_REBEL = TRUE, RADIO_CHANNEL_MEDICAL_REBEL = TRUE, RADIO_CHANNEL_REQUISITIONS_REBEL = TRUE)
+
+/obj/item/encryptionkey/mcom/ai/rebel //AI only.
+	channels = list(RADIO_CHANNEL_COMMAND_REBEL = TRUE, RADIO_CHANNEL_CAS_REBEL = TRUE, RADIO_CHANNEL_ALPHA_REBEL = TRUE, RADIO_CHANNEL_BRAVO_REBEL = TRUE, RADIO_CHANNEL_CHARLIE_REBEL = TRUE, RADIO_CHANNEL_DELTA_REBEL = TRUE, RADIO_CHANNEL_ENGINEERING_REBEL = TRUE, RADIO_CHANNEL_MEDICAL_REBEL = TRUE, RADIO_CHANNEL_REQUISITIONS_REBEL = TRUE)
+
+
+/obj/item/encryptionkey/squadlead/rebel
+	channels = list(RADIO_CHANNEL_COMMAND_REBEL = TRUE,RADIO_CHANNEL_CAS_REBEL = TRUE)
+
+/obj/item/encryptionkey/alpha/rebel
+	channels = list(RADIO_CHANNEL_ALPHA_REBEL = TRUE)
+
+/obj/item/encryptionkey/bravo/rebel
+	channels = list(RADIO_CHANNEL_BRAVO_REBEL = TRUE)
+
+/obj/item/encryptionkey/charlie/rebel
+	channels = list(RADIO_CHANNEL_CHARLIE_REBEL = TRUE)
+
+/obj/item/encryptionkey/delta/rebel
+	channels = list(RADIO_CHANNEL_DELTA_REBEL = TRUE)
+
+/obj/item/encryptionkey/general/rebel
+	channels = list(RADIO_CHANNEL_COMMON_REBEL = TRUE)
 
 
 //ERT

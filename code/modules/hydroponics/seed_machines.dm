@@ -92,7 +92,7 @@
 
 	else if(isscrewdriver(I))
 		open = !open
-		to_chat(user, "<span class='notice'>You [open ? "open" : "close"] the maintenance panel.</span>")
+		to_chat(user, span_notice("You [open ? "open" : "close"] the maintenance panel."))
 
 	else if(iscrowbar(I) && open)
 		deconstruct()
@@ -242,8 +242,8 @@
 		genetics = null
 		degradation = 0
 
-	src.updateUsrDialog()
-	return
+	updateUsrDialog()
+
 
 // Fires an extracted trait into another packet of seeds with a chance
 // of destroying it based on the size/complexity of the plasmid.

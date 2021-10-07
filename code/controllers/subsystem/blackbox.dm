@@ -1,7 +1,6 @@
 SUBSYSTEM_DEF(blackbox)
 	name = "Blackbox"
 	wait = 10 MINUTES
-	flags = SS_NO_TICK_CHECK
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
 
 	var/list/feedback = list()
@@ -93,11 +92,11 @@ SUBSYSTEM_DEF(blackbox)
 	return TRUE
 
 
-#define FEEDBACK_TEXT			"text"
-#define FEEDBACK_AMOUNT			"amount"
-#define FEEDBACK_TALLY			"tally"
-#define FEEDBACK_NESTED_TALLY	"nested_tally"
-#define FEEDBACK_ASSOCIATIVE	"associative"
+#define FEEDBACK_TEXT "text"
+#define FEEDBACK_AMOUNT "amount"
+#define FEEDBACK_TALLY "tally"
+#define FEEDBACK_NESTED_TALLY "nested_tally"
+#define FEEDBACK_ASSOCIATIVE "associative"
 
 /datum/controller/subsystem/blackbox/proc/record_feedback(key_type, key, increment, data, overwrite, version = 1)
 	if(sealed || !key_type || !istext(key) || !isnum(increment || !data))

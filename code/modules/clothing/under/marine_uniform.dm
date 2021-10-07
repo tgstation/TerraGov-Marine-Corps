@@ -13,6 +13,20 @@
 /obj/item/clothing/under/marine/standard
 	flags_item_map_variant = null
 
+// camo things stuff yeah!
+
+/obj/item/clothing/under/marine/camo
+	name = "\improper TGMC camo fatigues (jungle)"
+	icon_state = "m_marine_jumpsuit"
+
+/obj/item/clothing/under/marine/camo/snow
+	name = "\improper TGMC camo fatigues (snow)"
+	icon_state = "s_marine_jumpsuit"
+
+/obj/item/clothing/under/marine/camo/desert
+	name = "\improper TGMC camo fatigues (desert)"
+	icon_state = "d_marine_jumpsuit"
+
 /obj/item/clothing/under/marine/corpsman
 	name = "\improper TGMC corpsman fatigues"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat corpsman fatigues. You suspect it's not as robust-proof as advertised."
@@ -364,3 +378,17 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
 	flags_item = NODROP|DELONDROP
+
+/obj/item/clothing/under/marine/robotic
+	name = "robotic armor suit mount"
+	desc = "Additional structural armor plate used for mounting equipment on a combat robot."
+	item_state = "chest_rig"
+	icon_state = "chest_rig"
+	rollable_sleeves = FALSE
+	species_exception = list(/datum/species/robot)
+
+/obj/item/clothing/under/marine/robotic/mob_can_equip(mob/M, slot, warning, override_nodrop)
+	. = ..()
+	if(!isrobot(M))
+		to_chat(M, span_warning("You can't equip this as it requires mounting screws on your body!"))
+		return FALSE

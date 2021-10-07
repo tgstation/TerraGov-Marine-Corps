@@ -1,13 +1,15 @@
 
-/mob/living/carbon/xenomorph/proc/upgrade_xeno(newlevel)
+/mob/living/carbon/xenomorph/proc/upgrade_xeno(newlevel, silent = FALSE)
 	if(!(newlevel in (GLOB.xenoupgradetiers - XENO_UPGRADE_BASETYPE - XENO_UPGRADE_INVALID)))
 		return // smelly badmins
 	hive.upgrade_xeno(src, upgrade, newlevel)
 	upgrade = newlevel
-	upgrade_stored = 0
-	visible_message("<span class='xenonotice'>\The [src] begins to twist and contort.</span>", \
-	"<span class='xenonotice'>We begin to twist and contort.</span>")
-	do_jitter_animation(1000)
+	if(!silent)
+		visible_message(span_xenonotice("\The [src] begins to twist and contort."), \
+		span_xenonotice("We begin to twist and contort."))
+		do_jitter_animation(1000)
+	if(upgrade_stored < xeno_caste.upgrade_threshold)
+		upgrade_stored = xeno_caste.upgrade_threshold
 	set_datum()
 	var/selected_ability_type = selected_ability?.type
 
@@ -19,8 +21,10 @@
 	for(var/check_new_actions in xeno_caste.actions) //Give the xenos actions we don't currently have
 		var/datum/action/xeno_action/new_action_path = check_new_actions
 		if(!locate(new_action_path) in xeno_abilities)
-			var/datum/action/xeno_action/A = new new_action_path()
-			A.give_action(src)
+			var/datum/action/xeno_action/action = new new_action_path()
+			if(SSticker.mode.flags_xeno_abilities & action.gamemode_flags)
+				action.give_action(src)
+
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
 	if(selected_ability_type)
@@ -36,29 +40,37 @@
 	switch(upgrade)
 		//FIRST UPGRADE
 		if(XENO_UPGRADE_ONE)
-			to_chat(src, "<span class='xenodanger'>We feel a bit stronger.</span>")
+			if(!silent)
+				to_chat(src, span_xenodanger("We feel a bit stronger."))
 
 		//SECOND UPGRADE
 		if(XENO_UPGRADE_TWO)
-			to_chat(src, "<span class='xenodanger'>We feel a whole lot stronger.</span>")
+			if(!silent)
+				to_chat(src, span_xenodanger("We feel a whole lot stronger."))
 			switch(tier)
 				if(XENO_TIER_TWO)
 					SSmonitor.stats.elder_T2++
 				if(XENO_TIER_THREE)
 					SSmonitor.stats.elder_T3++
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.elder_queen++
+					SSmonitor.stats.elder_T4++
 
 		//FINAL UPGRADE
 		if(XENO_UPGRADE_THREE)
-			to_chat(src, "<span class='xenoannounce'>[xeno_caste.ancient_message]</span>")
+			if(!silent)
+				to_chat(src, span_xenoannounce("[xeno_caste.ancient_message]"))
 			switch(tier)
 				if(XENO_TIER_TWO)
 					SSmonitor.stats.ancient_T2++
 				if(XENO_TIER_THREE)
 					SSmonitor.stats.ancient_T3++
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.ancient_queen++
+					SSmonitor.stats.ancient_T4++
+
+		//PURCHASED UPGRADE
+		if(XENO_UPGRADE_FOUR)
+			if(!silent)
+				to_chat(src, span_xenoannounce(xeno_caste.primordial_message))
 
 	generate_name() //Give them a new name now
 
@@ -154,18 +166,7 @@
 
 //----HIVELORD END----//
 //================//
-//----HIVEMIND START----//
 
-/mob/living/carbon/xenomorph/hivemind/mature
-	upgrade = XENO_UPGRADE_ONE
-
-/mob/living/carbon/xenomorph/hivemind/elder
-	upgrade = XENO_UPGRADE_TWO
-
-/mob/living/carbon/xenomorph/hivemind/ancient
-	upgrade = XENO_UPGRADE_THREE
-
-//----HIVEMIND END----//
 //================//
 //----PRAETORIAN START----//
 
@@ -203,6 +204,9 @@
 
 /mob/living/carbon/xenomorph/sentinel/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/sentinel/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----SENTINEL END----//
 //================//
@@ -275,6 +279,9 @@
 /mob/living/carbon/xenomorph/queen/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/queen/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----QUEEN END----//
 //============//
 //---CRUSHER START---//
@@ -340,6 +347,9 @@
 /mob/living/carbon/xenomorph/Defiler/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/Defiler/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----DEFILER END----//
 //============//
 //----SHRIKE START----//
@@ -353,5 +363,17 @@
 /mob/living/carbon/xenomorph/shrike/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/shrike/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----SHRIKE END----//
 //============//
+
+/mob/living/carbon/xenomorph/wraith/mature
+	upgrade = XENO_UPGRADE_ONE
+
+/mob/living/carbon/xenomorph/wraith/elder
+	upgrade = XENO_UPGRADE_TWO
+
+/mob/living/carbon/xenomorph/wraith/ancient
+	upgrade = XENO_UPGRADE_THREE

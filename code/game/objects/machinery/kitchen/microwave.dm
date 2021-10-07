@@ -49,47 +49,47 @@
 	. = ..()
 
 	if(broken == 2 && isscrewdriver(I))
-		user.visible_message( "<span class='notice'>[user] starts to fix part of the microwave.</span>", \
-			"<span class='notice'>You start to fix part of the microwave.</span>")
+		user.visible_message( span_notice("[user] starts to fix part of the microwave."), \
+			span_notice("You start to fix part of the microwave."))
 
 		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
-		user.visible_message("<span class='notice'>[user] fixes part of the microwave.</span>", \
-			"<span class='notice'>You have fixed part of the microwave.</span>")
+		user.visible_message(span_notice("[user] fixes part of the microwave."), \
+			span_notice("You have fixed part of the microwave."))
 		broken = 1
 
 	else if(broken == 1 && iswrench(I))
-		user.visible_message("<span class='notice'>[user] starts to fix part of the microwave.</span>", \
-			"<span class='notice'>You start to fix part of the microwave.</span>")
+		user.visible_message(span_notice("[user] starts to fix part of the microwave."), \
+			span_notice("You start to fix part of the microwave."))
 
 		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
-		user.visible_message( "<span class='notice'>[user] fixes the microwave.</span>", \
-			"<span class='notice'>You have fixed the microwave.</span>")
+		user.visible_message( span_notice("[user] fixes the microwave."), \
+			span_notice("You have fixed the microwave."))
 		icon_state = "mw"
 		broken = 0
 		dirty = 0
 		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
 
 	else if(broken > 2)
-		to_chat(user, "<span class='warning'>It's broken!</span>")
+		to_chat(user, span_warning("It's broken!"))
 		return TRUE
 
 	else if(dirty == 100)
 		if(!istype(I, /obj/item/reagent_containers/spray/cleaner))
-			to_chat(user, "<span class='warning'>It's dirty!</span>")
+			to_chat(user, span_warning("It's dirty!"))
 			return TRUE
 
-		user.visible_message("<span class='notice'>[user] starts to clean \the [src].</span>", \
-			"<span class='notice'>You start to clean \the [src].</span>")
+		user.visible_message(span_notice("[user] starts to clean \the [src]."), \
+			span_notice("You start to clean \the [src]."))
 
 		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
-		user.visible_message("<span class='notice'>[user] has cleaned \the [src].</span>", \
-			"<span class='notice'>You have cleaned \the [src].</span>")
+		user.visible_message(span_notice("[user] has cleaned \the [src]."), \
+			span_notice("You have cleaned \the [src]."))
 		dirty = 0
 		broken = 0
 		icon_state = "mw"
@@ -97,20 +97,20 @@
 
 	else if(is_type_in_list(I, acceptable_items))
 		if(length(contents) >= max_n_of_items)
-			to_chat(user, "<span class='warning'>This [src] is full of ingredients, you cannot put more.</span>")
+			to_chat(user, span_warning("This [src] is full of ingredients, you cannot put more."))
 			return TRUE
 
 		if(istype(I, /obj/item/stack) && I:get_amount() > 1) // This is bad, but I can't think of how to change it
 			var/obj/item/stack/S = I
 			new S.type(src)
 			S.use(1)
-			user.visible_message("<span class='notice'>[user] has added one of [I] to \the [src].</span>", \
-				"<span class='notice'>You add one of [I] to \the [src].</span>")
+			user.visible_message(span_notice("[user] has added one of [I] to \the [src]."), \
+				span_notice("You add one of [I] to \the [src]."))
 
 		else if(user.drop_held_item())
 			I.forceMove(src)
-			user.visible_message("<span class='notice'>[user] has added \the [I] to \the [src].</span>", \
-				"<span class='notice'>You add \the [I] to \the [src].</span>")
+			user.visible_message(span_notice("[user] has added \the [I] to \the [src]."), \
+				span_notice("You add \the [I] to \the [src]."))
 
 	else if(istype(I,/obj/item/reagent_containers/glass) || \
 			istype(I,/obj/item/reagent_containers/food/drinks) || \
@@ -122,7 +122,7 @@
 		for(var/i in I.reagents.reagent_list)
 			var/datum/reagent/R = i
 			if(!(R.type in acceptable_reagents))
-				to_chat(user, "<span class='warning'>Your [I] contains components unsuitable for cookery.</span>")
+				to_chat(user, span_warning("Your [I] contains components unsuitable for cookery."))
 				return TRUE
 
 		return FALSE
@@ -131,7 +131,7 @@
 		return TRUE
 
 	else
-		to_chat(user, "<span class='warning'>You have no idea what you can cook with this [I].</span>")
+		to_chat(user, span_warning("You have no idea what you can cook with this [I]."))
 
 	return TRUE
 
@@ -287,7 +287,7 @@
 	return 0
 
 /obj/machinery/microwave/proc/start()
-	src.visible_message("<span class='notice'> The microwave turns on.</span>", "<span class='notice'> You hear a microwave.</span>")
+	src.visible_message(span_notice(" The microwave turns on."), span_notice(" You hear a microwave."))
 	src.operating = 1
 	src.icon_state = "mw1"
 	src.updateUsrDialog()
@@ -309,7 +309,7 @@
 	if (src.reagents.total_volume)
 		src.dirty++
 	src.reagents.clear_reagents()
-	to_chat(usr, "<span class='notice'>You dispose of the microwave contents.</span>")
+	to_chat(usr, span_notice("You dispose of the microwave contents."))
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/muck_start()
@@ -318,7 +318,7 @@
 
 /obj/machinery/microwave/proc/muck_finish()
 	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
-	visible_message("<span class='warning'> The microwave gets covered in muck!</span>")
+	visible_message(span_warning(" The microwave gets covered in muck!"))
 	dirty = 100 // Make it dirty so it can't be used util cleaned
 	DISABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER) //So you can't add condiments
 	icon_state = "mwbloody0" // Make it look dirty too
@@ -330,7 +330,7 @@
 	s.set_up(2, 1, src)
 	s.start()
 	icon_state = "mwb" // Make it look all busted up and shit
-	visible_message("<span class='warning'> The microwave breaks!</span>") //Let them know they're stupid
+	visible_message(span_warning(" The microwave breaks!")) //Let them know they're stupid
 	broken = 2 // Make it broken so it can't be used util fixed
 	DISABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER) //So you can't add condiments
 	operating = 0 // Turn it off again aferwards

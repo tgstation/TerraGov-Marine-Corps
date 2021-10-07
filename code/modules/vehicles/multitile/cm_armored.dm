@@ -131,18 +131,18 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	var/list/slots = get_activatable_hardpoints()
 
 	if(!length(slots))
-		to_chat(usr, "<span class='warning'>All of the modules can't be activated or are broken.</span>")
+		to_chat(usr, span_warning("All of the modules can't be activated or are broken."))
 		return
 
 	var/slot = tgui_input_list(usr, "Select a slot.", null, slots)
 
 	var/obj/item/hardpoint/HP = hardpoints[slot]
 	if(!(HP?.obj_integrity))
-		to_chat(usr, "<span class='warning'>That module is either missing or broken.</span>")
+		to_chat(usr, span_warning("That module is either missing or broken."))
 		return
 
 	active_hp = slot
-	to_chat(usr, "<span class='notice'>You select the [slot] slot.</span>")
+	to_chat(usr, span_notice("You select the [slot] slot."))
 	if(isliving(usr))
 		var/mob/living/M = usr
 		M.set_interaction(src)
@@ -159,22 +159,22 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	var/list/slots = get_activatable_hardpoints()
 
 	if(!length(slots))
-		to_chat(usr, "<span class='warning'>All of the modules can't be reloaded or are broken.</span>")
+		to_chat(usr, span_warning("All of the modules can't be reloaded or are broken."))
 		return
 
 	var/slot = tgui_input_list(usr, "Select a slot.", null, slots)
 
 	var/obj/item/hardpoint/HP = hardpoints[slot]
 	if(!length(HP?.backup_clips))
-		to_chat(usr, "<span class='warning'>That module is either missing or has no remaining backup clips.</span>")
+		to_chat(usr, span_warning("That module is either missing or has no remaining backup clips."))
 		return
 
 	var/obj/item/ammo_magazine/A = HP.backup_clips[1] //LISTS START AT 1 REEEEEEEEEEEE
 	if(!A)
-		to_chat(usr, "<span class='danger'>Something went wrong! PM a staff member! Code: T_RHPN</span>")
+		to_chat(usr, span_danger("Something went wrong! PM a staff member! Code: T_RHPN"))
 		return
 
-	to_chat(usr, "<span class='notice'>You begin reloading the [slot] module.</span>")
+	to_chat(usr, span_notice("You begin reloading the [slot] module."))
 
 	addtimer(CALLBACK(src, .proc/finish_reloading_hp, usr, HP, A, slot), 2 SECONDS)
 
@@ -187,7 +187,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	HP.ammo = A
 	HP.backup_clips.Remove(A)
 
-	to_chat(usr, "<span class='notice'>You reload the [slot] module.</span>")
+	to_chat(usr, span_notice("You reload the [slot] module."))
 
 
 /obj/vehicle/multitile/root/cm_armored/proc/get_activatable_hardpoints()
@@ -202,36 +202,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 
 	return slots
 
-//Specialness for armored vics
-/obj/vehicle/multitile/root/cm_armored/load_hitboxes(datum/coords/dimensions, datum/coords/root_pos)
 
-	var/start_x = -1 * root_pos.x_pos
-	var/start_y = -1 * root_pos.x_pos
-	var/end_x = start_x + dimensions.x_pos - 1
-	var/end_y = start_y + dimensions.y_pos - 1
-
-	for(var/i = start_x to end_x)
-
-		for(var/j = start_y to end_y)
-
-			if(i == 0 && j == 0)
-				continue
-
-			var/datum/coords/C = new
-			C.x_pos = i
-			C.y_pos = j
-			C.z_pos = 0
-
-			var/obj/vehicle/multitile/hitbox/cm_armored/H = new(locate(x + C.x_pos, y + C.y_pos, z))
-			H.setDir(dir)
-			H.root = src
-			linked_objs[C] = H
-
-/obj/vehicle/multitile/root/cm_armored/load_entrance_marker(datum/coords/rel_pos)
-
-	entrance = new(locate(x + rel_pos.x_pos, y + rel_pos.y_pos, z))
-	entrance.master = src
-	linked_objs[rel_pos] = entrance
 
 //Normal examine() but tells the player what is installed and if it's broken
 /obj/vehicle/multitile/root/cm_armored/examine(mob/user)
@@ -362,7 +333,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 			throw_at(T, 3, 2, C, 1)
 		ParalyzeNoChain(20)
 		apply_damage(rand(10, 15), BRUTE)
-		visible_message("<span class='danger'>[C] bumps into [src], throwing [p_them()] away!</span>", "<span class='danger'>[C] violently bumps into you!</span>")
+		visible_message(span_danger("[C] bumps into [src], throwing [p_them()] away!"), span_danger("[C] violently bumps into you!"))
 	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
 	var/list/slots = CA.get_activatable_hardpoints()
 	for(var/slot in slots)
@@ -376,7 +347,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	T = temp
 	T = get_step(T, pick(GLOB.cardinals))
 	throw_at(T, 2, 2, C, 0)
-	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
+	visible_message(span_danger("[C] bumps into [src], pushing [p_them()] away!"), span_danger("[C] bumps into you!"))
 
 /mob/living/carbon/xenomorph/crusher/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	if(lying_angle || loc == C.loc)
@@ -385,7 +356,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	T = temp
 	T = get_step(T, pick(GLOB.cardinals))
 	throw_at(T, 2, 2, C, 0)
-	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
+	visible_message(span_danger("[C] bumps into [src], pushing [p_them()] away!"), span_danger("[C] bumps into you!"))
 
 /mob/living/carbon/xenomorph/larva/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	if(loc == C.loc) // treaded over.
@@ -429,7 +400,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	take_damage(damage)
 	CA.take_damage_type(tank_damage, "blunt", src)
 	if(world.time > C.lastsound + 1 SECONDS)
-		visible_message("<span class='danger'>[CA] rams into \the [src]!</span>")
+		visible_message(span_danger("[CA] rams into \the [src]!"))
 		playsound(src, 'sound/effects/metal_crash.ogg', 35)
 		C.lastsound = world.time
 
@@ -447,7 +418,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	take_damage(damage)
 	CA.take_damage_type(tank_damage, "blunt", src)
 	if(world.time > C.lastsound + 1 SECONDS)
-		visible_message("<span class='danger'>[CA] crushes \the [src]!</span>")
+		visible_message(span_danger("[CA] crushes \the [src]!"))
 		playsound(src, 'sound/effects/metal_crash.ogg', 35)
 		C.lastsound = world.time
 
@@ -558,8 +529,8 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	if(!damage)
 		playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
 		M.do_attack_animation(src)
-		M.visible_message("<span class='danger'>\The [M] lunges at [src]!</span>", \
-		"<span class='danger'>We lunge at [src]!</span>")
+		M.visible_message(span_danger("\The [M] lunges at [src]!"), \
+		span_danger("We lunge at [src]!"))
 		return FALSE
 
 	M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
@@ -567,8 +538,8 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_TANK)
 
-	M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
-	"<span class='danger'>We slash [src]!</span>")
+	M.visible_message(span_danger("\The [M] slashes [src]!"), \
+	span_danger("We slash [src]!"))
 
 	take_damage_type(damage * ( (isxenoravager(M)) ? 2 : 1 ), "slash", M) //Ravs do a bitchin double damage
 
@@ -635,8 +606,8 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 
 	//Need to the what the hell you're doing
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_MASTER)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [O] on the [src].</span>",
-		"<span class='notice'>You fumble around figuring out what to do with [O] on the [src].</span>")
+		user.visible_message(span_notice("[user] fumbles around figuring out what to do with [O] on the [src]."),
+		span_notice("You fumble around figuring out what to do with [O] on the [src]."))
 		var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_MASTER - user.skills.getRating("engineer"))
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
@@ -650,11 +621,11 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	var/obj/item/hardpoint/old = hardpoints[slot] //Is there something there already?
 
 	if(!old)
-		to_chat(user, "<span class='warning'>There is nothing installed on that slot.</span>")
+		to_chat(user, span_warning("There is nothing installed on that slot."))
 		return
 
 	if(old.obj_integrity >= old.max_integrity)
-		to_chat(user, "<span class='notice'>\the [old] is already in perfect conditions.</span>")
+		to_chat(user, span_notice("\the [old] is already in perfect conditions."))
 		return
 
 	//Determine how many 3 second intervals to wait and if you have the right tool
@@ -663,59 +634,59 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		if(HDPT_PRIMARY)
 			num_delays = 5
 			if(!iswelder(I))
-				to_chat(user, "<span class='warning'>That's the wrong tool. Use a welder.</span>")
+				to_chat(user, span_warning("That's the wrong tool. Use a welder."))
 				return
 			var/obj/item/tool/weldingtool/WT = I
 			if(!WT.isOn())
-				to_chat(user, "<span class='warning'>You need to light your [WT] first.</span>")
+				to_chat(user, span_warning("You need to light your [WT] first."))
 				return
 
 		if(HDPT_SECDGUN)
 			num_delays = 3
 			if(!iswrench(I))
-				to_chat(user, "<span class='warning'>That's the wrong tool. Use a wrench.</span>")
+				to_chat(user, span_warning("That's the wrong tool. Use a wrench."))
 				return
 
 		if(HDPT_SUPPORT)
 			num_delays = 2
 			if(!iswrench(I))
-				to_chat(user, "<span class='warning'>That's the wrong tool. Use a wrench.</span>")
+				to_chat(user, span_warning("That's the wrong tool. Use a wrench."))
 				return
 
 		if(HDPT_ARMOR)
 			num_delays = 10
 			if(!iswelder(I))
-				to_chat(user, "<span class='warning'>That's the wrong tool. Use a welder.</span>")
+				to_chat(user, span_warning("That's the wrong tool. Use a welder."))
 				return
 			var/obj/item/tool/weldingtool/WT = I
 			if(!WT.isOn())
-				to_chat(user, "<span class='warning'>You need to light your [WT] first.</span>")
+				to_chat(user, span_warning("You need to light your [WT] first."))
 				return
 
 		if(HDPT_TREADS)
 			if(!iswelder(I))
-				to_chat(user, "<span class='warning'>That's the wrong tool. Use a welder.</span>")
+				to_chat(user, span_warning("That's the wrong tool. Use a welder."))
 				return
 			var/obj/item/tool/weldingtool/WT = I
 			if(!WT.isOn())
-				to_chat(user, "<span class='warning'>You need to light your [WT] first.</span>")
+				to_chat(user, span_warning("You need to light your [WT] first."))
 				return
 			WT.remove_fuel(num_delays, user)
 
-	user.visible_message("<span class='notice'>[user] starts repairing the [slot] slot on [src].</span>",
-		"<span class='notice'>You start repairing the [slot] slot on the [src].</span>")
+	user.visible_message(span_notice("[user] starts repairing the [slot] slot on [src]."),
+		span_notice("You start repairing the [slot] slot on the [src]."))
 
 	if(!do_after(user, 30 * num_delays, TRUE, src, BUSY_ICON_BUILD, extra_checks = iswelder(O) ? CALLBACK(O, /obj/item/tool/weldingtool/proc/isOn) : null))
-		user.visible_message("<span class='notice'>[user] stops repairing the [slot] slot on [src].</span>",
-			"<span class='notice'>You stop repairing the [slot] slot on the [src].</span>")
+		user.visible_message(span_notice("[user] stops repairing the [slot] slot on [src]."),
+			span_notice("You stop repairing the [slot] slot on the [src]."))
 		return
 
 	if(iswelder(O))
 		var/obj/item/tool/weldingtool/WT = O
 		WT.remove_fuel(num_delays, user)
 
-	user.visible_message("<span class='notice'>[user] repairs the [slot] slot on the [src].</span>",
-		"<span class='notice'>You repair the [slot] slot on [src].</span>")
+	user.visible_message(span_notice("[user] repairs the [slot] slot on the [src]."),
+		span_notice("You repair the [slot] slot on [src]."))
 
 	old.repair_damage(old.max_integrity) //We repaired it, good job
 	old.apply_buff()
@@ -736,7 +707,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	var/obj/item/hardpoint/HP = hardpoints[slot]
 
 	if(!HP)
-		to_chat(user, "<span class='warning'>There is nothing installed on that slot.</span>")
+		to_chat(user, span_warning("There is nothing installed on that slot."))
 		return
 
 	HP.try_add_clip(AM, user)
@@ -746,8 +717,8 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 /obj/vehicle/multitile/root/cm_armored/proc/install_hardpoint(obj/item/hardpoint/HP, mob/user)
 
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_MASTER)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [HP] on the [src].</span>",
-		"<span class='notice'>You fumble around figuring out what to do with [HP] on the [src].</span>")
+		user.visible_message(span_notice("[user] fumbles around figuring out what to do with [HP] on the [src]."),
+		span_notice("You fumble around figuring out what to do with [HP] on the [src]."))
 		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_MASTER - user.skills.getRating("engineer") )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
@@ -755,11 +726,11 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	var/obj/item/hardpoint/occupied = hardpoints[HP.slot]
 
 	if(occupied)
-		to_chat(user, "<span class='warning'>Remove the previous hardpoint module first.</span>")
+		to_chat(user, span_warning("Remove the previous hardpoint module first."))
 		return
 
-	user.visible_message("<span class='notice'>[user] begins installing [HP] on the [HP.slot] hardpoint slot on the [src].</span>",
-		"<span class='notice'>You begin installing [HP] on the [HP.slot] hardpoint slot on the [src].</span>")
+	user.visible_message(span_notice("[user] begins installing [HP] on the [HP.slot] hardpoint slot on the [src]."),
+		span_notice("You begin installing [HP] on the [HP.slot] hardpoint slot on the [src]."))
 
 	var/num_delays = 1
 
@@ -776,13 +747,13 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 			num_delays = 7
 
 	if(!do_after(user, 30 * num_delays, TRUE, src, BUSY_ICON_BUILD))
-		user.visible_message("<span class='warning'>[user] stops installing \the [HP] on [src].</span>", "<span class='warning'>You stop installing \the [HP] on [src].</span>")
+		user.visible_message(span_warning("[user] stops installing \the [HP] on [src]."), span_warning("You stop installing \the [HP] on [src]."))
 		return
 
 	if(occupied)
 		return
 
-	user.visible_message("<span class='notice'>[user] installs \the [HP] on [src].</span>", "<span class='notice'>You install \the [HP] on [src].</span>")
+	user.visible_message(span_notice("[user] installs \the [HP] on [src]."), span_notice("You install \the [HP] on [src]."))
 
 	user.temporarilyRemoveItemFromInventory(HP, 0)
 
@@ -793,8 +764,8 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 /obj/vehicle/multitile/root/cm_armored/proc/uninstall_hardpoint(obj/item/O, mob/user)
 
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_MASTER)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [O] on the [src].</span>",
-		"<span class='notice'>You fumble around figuring out what to do with [O] on the [src].</span>")
+		user.visible_message(span_notice("[user] fumbles around figuring out what to do with [O] on the [src]."),
+		span_notice("You fumble around figuring out what to do with [O] on the [src]."))
 		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_MASTER - user.skills.getRating("engineer") )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
@@ -806,11 +777,11 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	var/obj/item/hardpoint/old = hardpoints[slot]
 
 	if(!old)
-		to_chat(user, "<span class='warning'>There is nothing installed there.</span>")
+		to_chat(user, span_warning("There is nothing installed there."))
 		return
 
-	user.visible_message("<span class='notice'>[user] begins removing [old] on the [old.slot] hardpoint slot on [src].</span>",
-		"<span class='notice'>You begin removing [old] on the [old.slot] hardpoint slot on [src].</span>")
+	user.visible_message(span_notice("[user] begins removing [old] on the [old.slot] hardpoint slot on [src]."),
+		span_notice("You begin removing [old] on the [old.slot] hardpoint slot on [src]."))
 
 	var/num_delays = 1
 
@@ -827,12 +798,12 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 			num_delays = 7
 
 	if(!do_after(user, 30 * num_delays, TRUE, src, BUSY_ICON_BUILD))
-		user.visible_message("<span class='warning'>[user] stops removing \the [old] on [src].</span>", "<span class='warning'>You stop removing \the [old] on [src].</span>")
+		user.visible_message(span_warning("[user] stops removing \the [old] on [src]."), span_warning("You stop removing \the [old] on [src]."))
 		return
 	if(QDELETED(old) || old != hardpoints[slot])
 		return
 
-	user.visible_message("<span class='notice'>[user] removes \the [old] on [src].</span>", "<span class='notice'>You remove \the [old] on [src].</span>")
+	user.visible_message(span_notice("[user] removes \the [old] on [src]."), span_notice("You remove \the [old] on [src]."))
 
 	remove_hardpoint(old, user)
 

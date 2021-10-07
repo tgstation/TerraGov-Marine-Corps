@@ -8,8 +8,8 @@
 /area/lv624/lazarus/quartstorage)
 "as" = (
 /obj/structure/largecrate,
-/obj/item/explosive/grenade/frag/stick,
-/obj/item/explosive/grenade/frag/stick,
+/obj/item/explosive/grenade/stick,
+/obj/item/explosive/grenade/stick,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "bE" = (
@@ -33,6 +33,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "gi" = (
@@ -52,6 +53,13 @@
 /obj/item/roller,
 /obj/item/roller,
 /turf/open/floor/plating,
+/area/lv624/lazarus/quartstorage)
+"jb" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "ji" = (
 /obj/structure/rack,
@@ -81,14 +89,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage)
-"lQ" = (
-/obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 1;
-	name = "\improper Storage Dome"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "mj" = (
@@ -282,6 +282,11 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
+"HT" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/quartstorage)
 "Ih" = (
 /obj/item/stack/sheet/metal,
 /obj/item/stack/sheet/mineral/phoron{
@@ -299,6 +304,13 @@
 "Iu" = (
 /turf/template_noop,
 /area/template_noop)
+"Jl" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/quartstorage)
 "Lv" = (
 /obj/item/stack/sheet/wood{
 	amount = 50
@@ -433,10 +445,6 @@
 /obj/item/storage/belt/utility/full,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
-"Zv" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage)
 
 (1,1,1) = {"
 Iu
@@ -558,10 +566,10 @@ Nw
 rz
 "}
 (8,1,1) = {"
-lQ
-Zv
+ze
+pF
 em
-eh
+HT
 vP
 mX
 YT
@@ -578,10 +586,10 @@ ze
 iE
 Nw
 Nw
-kz
-Cp
-Cp
-Cp
+Jl
+jb
+jb
+jb
 vk
 Ad
 Ad

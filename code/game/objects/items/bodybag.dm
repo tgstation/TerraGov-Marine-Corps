@@ -121,7 +121,7 @@
 			name = "body bag"
 
 	else if(iswirecutter(I))
-		to_chat(user, "<span class='notice'>You cut the tag off the bodybag.</span>")
+		to_chat(user, span_notice("You cut the tag off the bodybag."))
 		name = "body bag"
 		overlays.Cut()
 
@@ -131,8 +131,7 @@
 		return FALSE //Only humans.
 	if(mob_to_stuff.stat != DEAD) //Only the dead for bodybags.
 		return FALSE
-	var/mob/living/carbon/human/human_to_stuff = mob_to_stuff
-	if(human_to_stuff.is_revivable() && (check_tod(human_to_stuff) || issynth(human_to_stuff)))
+	if(!HAS_TRAIT(mob_to_stuff, TRAIT_UNDEFIBBABLE) || issynth(mob_to_stuff))
 		return FALSE //We don't want to store those that can be revived.
 	return TRUE
 
@@ -164,7 +163,7 @@
 		return
 	if(length(contents))
 		return FALSE
-	visible_message("<span class='notice'>[usr] folds up [name].</span>")
+	visible_message(span_notice("[usr] folds up [name]."))
 	if(QDELETED(foldedbag_instance))
 		foldedbag_instance = new foldedbag_path(loc, src)
 	usr.put_in_hands(foldedbag_instance)
@@ -198,12 +197,15 @@
 
 
 /obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
 	if(opened)
 		return FALSE // stop xeno closing things
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	bodybag_occupant?.attack_alien(X)
 	open()
-	X.visible_message("<span class='danger'>\The [X] slashes \the [src] open!</span>", \
-		"<span class='danger'>We slash \the [src] open!</span>", null, 5)
+	X.visible_message(span_danger("\The [X] slashes \the [src] open!"), \
+		span_danger("We slash \the [src] open!"), null, 5)
 	return TRUE
 
 /obj/structure/closet/bodybag/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
@@ -213,23 +215,23 @@
 
 	if(!opened && bodybag_occupant)
 		bodybag_occupant.bullet_act(proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
-		to_chat(bodybag_occupant, "<span class='danger'>You jolt out of [name] upon being hit!</span>")
+		to_chat(bodybag_occupant, span_danger("You jolt out of [name] upon being hit!"))
 		open()
 
 /obj/structure/closet/bodybag/flamer_fire_act()
 	if(!opened && bodybag_occupant)
-		to_chat(bodybag_occupant, "<span class='danger'>The intense heat forces you out of [name]!</span>")
+		to_chat(bodybag_occupant, span_danger("The intense heat forces you out of [name]!"))
 		open()
 		bodybag_occupant.flamer_fire_act()
 
 /obj/structure/closet/bodybag/ex_act(severity)
 	if(!opened && bodybag_occupant)
-		to_chat(bodybag_occupant, "<span class='danger'>The shockwave blows [name] open!</span>")
+		to_chat(bodybag_occupant, span_danger("The shockwave blows [name] open!"))
 		open()
 		bodybag_occupant.ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			visible_message("<span class='danger'>\The shockwave blows [name] apart!</span>")
+			visible_message(span_danger("\The shockwave blows [name] apart!"))
 			qdel(src) //blown apart
 
 /obj/structure/closet/bodybag/proc/acidspray_act(datum/source, obj/effect/xenomorph/spray/acid_puddle)
@@ -239,7 +241,7 @@
 			var/mob/living/carbon/human/H = bodybag_occupant
 			SEND_SIGNAL(H, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_puddle.acid_damage, acid_puddle.slow_amt) //tarp isn't acid proof; pass it on to the occupant
 
-		to_chat(bodybag_occupant, "<span class='danger'>The sizzling acid forces us out of [name]!</span>")
+		to_chat(bodybag_occupant, span_danger("The sizzling acid forces us out of [name]!"))
 		open() //Get out
 
 /obj/structure/closet/bodybag/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -249,7 +251,7 @@
 
 	if((CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING) || CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID)) && !opened && bodybag_occupant)
 		bodybag_occupant.effect_smoke(S) //tarp *definitely* isn't acid/phosphorous smoke proof, lol.
-		to_chat(bodybag_occupant, "<span class='danger'>The scathing smoke forces us out of [name]!</span>")
+		to_chat(bodybag_occupant, span_danger("The scathing smoke forces us out of [name]!"))
 		open() //Get out
 
 
@@ -284,7 +286,7 @@
 		return ..()
 
 	if(!bodybag_occupant)
-		to_chat(user, "<span class='warning'>The stasis bag is empty!</span>")
+		to_chat(user, span_warning("The stasis bag is empty!"))
 		return TRUE
 
 	var/obj/item/healthanalyzer/J = I
@@ -302,8 +304,6 @@
 /obj/structure/closet/bodybag/cryobag/closet_special_handling(mob/living/mob_to_stuff) // overriding this
 	if(!ishuman(mob_to_stuff))
 		return FALSE //Humans only.
-	if(mob_to_stuff.stat == DEAD) // dead, nope
-		return FALSE
 	return TRUE
 
 
@@ -317,7 +317,7 @@
 /obj/structure/closet/bodybag/cryobag/proc/on_bodybag_occupant_death(mob/source, gibbing)
 	SIGNAL_HANDLER
 	if(!QDELETED(bodybag_occupant))
-		visible_message("<span class='notice'>\The [src] rejects the corpse.</span>")
+		visible_message(span_notice("\The [src] rejects the corpse."))
 	open()
 
 
@@ -346,7 +346,7 @@
 		if(!hasHUD(usr,"medical"))
 			return
 		if(get_dist(usr, src) > WORLD_VIEW_NUM)
-			to_chat(usr, "<span class='warning'>[src] is too far away.</span>")
+			to_chat(usr, span_warning("[src] is too far away."))
 			return
 		for(var/datum/data/record/R in GLOB.datacore.medical)
 			if(R.fields["name"] != bodybag_occupant.real_name)
@@ -390,8 +390,10 @@
 		unfolded_tarp.name = "\improper [serial_number] [unfolded_tarp.name]" //Set the name with the serial number
 
 /obj/item/bodybag/tarp/unique_action(mob/user)
+	. = ..()
 	deploy_bodybag(user, get_turf(user))
 	unfoldedbag_instance.close()
+	return TRUE
 
 
 /obj/item/bodybag/tarp/snow

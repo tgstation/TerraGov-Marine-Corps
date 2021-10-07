@@ -19,7 +19,7 @@
 	density = FALSE
 	layer = BELOW_MOB_LAYER
 	mouse_opacity = 0
-	///How much tiles the foam expands on. 
+	///How much tiles the foam expands on.
 	var/amount = 3
 	///How much long the foam lasts
 	var/lifetime = 40
@@ -36,7 +36,7 @@
 
 /obj/effect/particle_effect/foam/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
-	return ..()	
+	return ..()
 
 ///Finishes the foam, stopping it from processing and doing whatever it has to do.
 /obj/effect/particle_effect/foam/proc/kill_foam()
@@ -47,11 +47,11 @@
 		if(RAZOR_FOAM)
 			var/turf/mystery_turf = get_turf(loc)
 			if(!isopenturf(mystery_turf))
-				return FALSE
+				return
 
 			var/turf/open/T = mystery_turf
 			if(T.allow_construction) //No loopholes.
-				new /obj/structure/razorwire/foam(loc)
+				new /obj/structure/razorwire(loc)
 	flick("[icon_state]-disolve", src)
 	QDEL_IN(src, 5)
 
@@ -102,7 +102,7 @@
 		var/obj/effect/particle_effect/foam/oldF = locate() in T
 		if(oldF)
 			continue
-		
+
 		for(var/mob/living/L in T)
 			foam_mob(L)
 		var/obj/effect/particle_effect/foam/F = new src.type(T)
@@ -153,7 +153,7 @@
 		location = loca
 	else
 		location = get_turf(loca)
-	
+
 	amount = round(sqrt(amt / 3), 1)
 	carry.copy_to(chemholder, carry.total_volume)
 	if(metalfoam)

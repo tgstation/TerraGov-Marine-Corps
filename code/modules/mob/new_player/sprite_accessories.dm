@@ -1146,6 +1146,52 @@
 	species_allowed = list("Machine")
 
 /*
+/////////////////////////////////////
+/  =---------------------------=    /
+/  == Gradient Hair Definitions ==  /
+/  =---------------------------=    /
+/////////////////////////////////////
+*/
+
+/datum/sprite_accessory/hair_gradient
+	icon = 'icons/mob/hair_gradients.dmi'
+	gender = NEUTER
+	species_allowed = list("Human","Synthetic", "Early Synthetic", "Vat-Grown", "Vatborn")
+
+/datum/sprite_accessory/hair_gradient/none
+	name = "None"
+	icon_state = "none"
+
+/datum/sprite_accessory/hair_gradient/fadeup
+	name = "Fade Up"
+	icon_state = "fadeup"
+
+/datum/sprite_accessory/hair_gradient/fadedown
+	name = "Fade Down"
+	icon_state = "fadedown"
+
+/datum/sprite_accessory/hair_gradient/vertical_split
+	name = "Vertical Split"
+	icon_state = "vsplit"
+
+/datum/sprite_accessory/hair_gradient/_split
+	name = "Horizontal Split"
+	icon_state = "bottomflat"
+
+/datum/sprite_accessory/hair_gradient/reflected
+	name = "Reflected"
+	icon_state = "reflected_high"
+
+/datum/sprite_accessory/hair_gradient/reflected_inverse
+	name = "Reflected Inverse"
+	icon_state = "reflected_inverse_high"
+
+/datum/sprite_accessory/hair_gradient/wavy
+	name = "Wavy"
+	icon_state = "wavy"
+
+
+/*
 ///////////////////////////////////
 /  =---------------------------=  /
 /  == Facial Hair Definitions ==  /
@@ -1246,6 +1292,10 @@
 /datum/sprite_accessory/facial_hair/soul_patch
 	name = "Soul Patch"
 	icon_state = "facial_soulpatch"
+
+/datum/sprite_accessory/facial_hair/broken_man
+	name = "Broken Man"
+	icon_state = "facial_brokenman"
 
 /*
 ///////////////////////////////////

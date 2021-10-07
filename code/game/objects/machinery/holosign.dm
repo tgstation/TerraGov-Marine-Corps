@@ -16,7 +16,7 @@
 	lit = !lit
 	update_icon()
 
-/obj/machinery/holosign/update_icon()
+/obj/machinery/holosign/update_icon_state()
 	if(!lit)
 		icon_state = "sign_off"
 	else
@@ -48,8 +48,6 @@
 /obj/machinery/holosign_switch/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/holosign_switch/attack_paw(mob/living/carbon/monkey/user)
-	return src.attack_hand(user)
 
 /obj/machinery/holosign_switch/attackby(obj/item/I, mob/user, params)
 	. = ..()

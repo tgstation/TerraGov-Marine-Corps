@@ -44,7 +44,7 @@
 /obj/item/clothing/under/apply_accessories(image/standing)
 	if(hastie)
 		var/tie_state = hastie.item_state
-		if(!tie_state) 
+		if(!tie_state)
 			tie_state = hastie.icon_state
 		standing.overlays += image(icon = 'icons/mob/ties.dmi', icon_state = "[tie_state]")
 
@@ -52,7 +52,7 @@
 	. = ..()
 	if(rolled_sleeves && !inhands)
 		. += "_d"
-	return
+
 
 /obj/item/clothing/apply_blood(image/standing)
 	if(blood_overlay && blood_sprite_state)
@@ -104,46 +104,32 @@
 	var/fire_resist = T0C + 100
 	var/shield_state = "shield-blue"
 
-
 	// Strength of the armor light used by [proc/set_light()]
 	light_power = 3
 	light_range = 4
 	light_system = MOVABLE_LIGHT
-	light_on = FALSE
 
-/obj/item/clothing/suit/dropped(mob/user)
-	turn_off_light(user)
+/obj/item/clothing/suit/Initialize()
+	. = ..()
+	GLOB.nightfall_toggleable_lights += src
+
+/obj/item/clothing/suit/Destroy()
+	GLOB.nightfall_toggleable_lights -= src
 	return ..()
 
+/obj/item/clothing/suit/dropped(mob/user)
+	turn_light(user, FALSE)
+	return ..()
 
-/**
-	Turn off the armor light
-
-	This proc forces the light to off, useful when the armor is dropped or if a xeno slashes the armor to disable it.
-*/
-/obj/item/clothing/suit/proc/turn_off_light(mob/wearer)
-	if(flags_armor_features & ARMOR_LAMP_ON)
-		toggle_armor_light(wearer) //turn the light off
-		return TRUE
-	return FALSE
-
-
-/**
-	Toggles the armor light
-
-	This proc will toggle the light enabled or disabled on the armor, playing a sound and updating the action button for the user.
-*/
-/obj/item/clothing/suit/proc/toggle_armor_light(mob/user)
-	TIMER_COOLDOWN_START(src, COOLDOWN_ARMOR_LIGHT, 2.5 SECONDS)
-	if(flags_armor_features & ARMOR_LAMP_ON)
-		set_light_on(FALSE)
-	else
-		set_light_on(TRUE)
+/obj/item/clothing/suit/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
+	set_light_on(toggle_on)
 	flags_armor_features ^= ARMOR_LAMP_ON
 	playsound(src, 'sound/items/flashlight.ogg', 15, TRUE)
 	update_icon(user)
 	update_action_button_icons()
-
 
 /obj/item/clothing/suit/update_clothing_icon()
 	if(ismob(loc))
@@ -194,12 +180,12 @@
 	. = ..()
 	if(iswirecutter(I) || istype(I, /obj/item/tool/surgery/scalpel))
 		if(clipped)
-			to_chat(user, "<span class='notice'>The [src] have already been clipped!</span>")
+			to_chat(user, span_notice("The [src] have already been clipped!"))
 			update_icon()
 			return
 
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		user.visible_message("<span class='warning'> [user] cuts the fingertips off of the [src].</span>","<span class='warning'> You cut the fingertips off of the [src].</span>")
+		user.visible_message(span_warning(" [user] cuts the fingertips off of the [src]."),span_warning(" You cut the fingertips off of the [src]."))
 
 		clipped = TRUE
 		name = "mangled [name]"

@@ -1,0 +1,265 @@
+2021-06-01:
+  BraveMole:
+  - bugfix: Fix request console
+  - rscadd: Loadout Saver
+  - bugfix: Fix runtime for gun keybinds
+  - rscadd: King is back
+2021-06-02:
+  Pariah919:
+  - rscadd: Added new razorburn nade sprites by enukar.
+  ZephyrTFA:
+  - bugfix: Martini Belts can no longer give you invalid 'fixme' items
+  - server: Two new config values for overriding the respawn timers of both marines
+      and xenomorphs.
+2021-06-03:
+  BraveMole:
+  - rscadd: New way of registering keybinds, you have to push the buttons for 2 seconds
+      for it to register
+  - code_imp: better perfs on game prefs ui
+  DeltaFire15:
+  - bugfix: Admins can now actually mark things via the varedit dropdown.
+  - code_imp: Moved marking into its own file as a proc for easier access in the future.
+  SplinterGP:
+  - bugfix: binoculars now can laser target properly.
+  TiviPlus:
+  - admin: Adds logging to shipside doors
+2021-06-04:
+  BraveMole:
+  - balance: Miners now take time to disable
+  ZephyrTFA:
+  - refactor: Massive Define Refactoring
+2021-06-05:
+  Wayland-Smithy:
+  - qol: Latejoin Xeno Prefs default to OFF now. Far less unwitting ghosts should
+      be getting shoved into SSD xenos.
+2021-06-06:
+  Wayland-Smithy:
+  - bugfix: Say verb get_key() no longer runtimes.
+  - admin: Game logs now save the location of mob ghostings.
+2021-06-07:
+  BraveMole:
+  - rscadd: Marine meds are now a tabbed share vendor
+  - rscadd: Fire mode keybind
+  DeltaFire15:
+  - bugfix: Harvester Blades no longer runtime if clicked with things that aren't
+      reagent containers.
+2021-06-08:
+  BraveMole:
+  - bugfix: Fix bioscans
+  Walarks:
+  - balance: remove famas from seasonals
+  Wayland-Smithy:
+  - bugfix: Fixed Crusher Stomp damage delay.
+  - qol: Crusher Crest Toss now works on big allies with a penalty like Warrior Fling.
+  - balance: Crusher Stomp briefly knocks down anyone adjacent to crusher for a half
+      second. Victims directly under foot stun increased by one second.
+  - balance: Crusher Crest Toss increases distance with age from 3 to 6 (still less
+      than half max powerfist), and has less cooldown.
+  - balance: Crest Toss and Stomp no longer deal stamina damage, only brute.
+2021-06-09:
+  BraveMole:
+  - bugfix: Corpses spawned in silo in hunt cannot be siloed again
+2021-06-10:
+  Pariah919:
+  - rscadd: Added new camo uniforms in marine clothing vendors
+2021-06-11:
+  Pariah919:
+  - rscadd: Added new berets with dark green, blood red and dark blue
+  ZephyrTFA:
+  - bugfix: Cloning Vats use less power if not running
+2021-06-13:
+  BraveMole:
+  - qol: You can see how many burrowed there are from lobby
+  MLGTASTICa:
+  - bugfix: Ravager charge now applies its damage bonus properly.
+  - bugfix: Fixed resin jelly allowing for xenos to be set on fire.
+  Pariah919:
+  - balance: shields no longer have hard melee armor and slow you down a bit more
+  SplinterGP:
+  - code_imp: Input system won't request in-place movements constantly anymore.
+  - balance: shields now break instead of being deletted.
+  Wayland-Smithy:
+  - bugfix: Fixed the orbital level change arrival message never being announced.
+  - balance: Shield now stops the bomb vest from exploding when equipped and up to
+      5 seconds after drop.
+  - bugfix: Fixed Tadpole getting stuck in the air with a slashed console.
+  - bugfix: AI can now recover from a camera blackout if it was looking at an escape
+      shuttle, or anything else causes deletion.
+  - rscadd: Added Runechat text to Imaginary Friends for them and their owners to
+      see.
+  - rscadd: Added a Xeno Suit cosmetic for Imaginary Friends.
+  - rscadd: Added Darkness, Change Appearance, and HUD toggle verbs to Imaginary Friends.
+  - qol: Imaginary Friends now continue to hear ghosts and other IFs while active.
+  - bugfix: Fixed the Show/Hide ability button requiring two toggles to work the first
+      time for Imaginary Friends.
+  - bugfix: Fixed Imaginary Friends possibly being naked spatial agents and blocking
+      clicks.
+  - admin: Shipside airlock attacks now log to admin chat also.
+  - balance: Plasma pistol no longer accepts scope attachments.
+  - balance: Plasma pistol now has 7 range, not 40.
+  - balance: Snub-nosed TP-44 Revolvers no longer apply stagger or knockback to targets.
+      Moves shake to Mateba which it did not have before.
+  ZephyrTFA:
+  - server: Fixes the CI Linters
+2021-06-14:
+  SplinterGP:
+  - bugfix: shields won't go invisible anymore.
+2021-06-15:
+  BraveMole:
+  - rscadd: Antenna helmet module can be used to create temporary supply beacon
+  - bugfix: supply drop console works again
+  Wayland-Smithy:
+  - balance: TL-127, Mosin, and SVD sniper rifles no longer have aim-mode.
+  - bugfix: Fixed the tgui changelog dates being inaccurate to the source files.
+2021-06-16:
+  Terra1:
+  - balance: Colony floodlight switches can no longer be destroyed by xenomorphs.
+2021-06-17:
+  BraveMole:
+  - bugfix: Nightfall now applies on all electrical lights like it should
+  - bugfix: You can give plasma as a queen to king
+  Pariah919:
+  - balance: makes eviscerating charge cost 100 less plasma
+  - admin: delete maid
+  SpaceLove:
+  - rscdel: Removed Maid outfit spawn command.
+  - admin: Removes Admin ability to spawn maid loadout.
+  Wayland-Smithy:
+  - bugfix: Fixed a problem with vendors refusing to vend items containing symbols
+      in their name.
+2021-06-18:
+  BraveMole:
+  - balance: Update pain hud (what xeno see on humans) to be more reliable. Pain and
+      stamina have way less impact on it.
+  - qol: Give engineers req channel
+  - balance: Rework silo generation
+  - rscdel: remove small silos
+  - balance: psy drain gives 60 points and 1/8th of a larva, cocoon give 120 points
+      and at the end of its lifetime (5minutes), 1/6th of a larva. Generators are
+      making more psy points, but it's linked with the number of alive alive marines
+      ground side
+  - balance: Turrets are now 100 points, silo are now 800, king is now 1800. This
+      is to account for xeno having way less psy points in general (marine spawning
+      no longer give 80 points)
+  Pariah919:
+  - rscadd: Added new earpiece sprte by kuro
+  - rscdel: Removed old earpiece sprite
+  Wayland-Smithy:
+  - bugfix: Fixed King caste_flags, so it can now be healed by and become a leader
+      for the Queen.
+  - balance: S&W .357 Revolver ricochet rounds no longer stagger or knockback.
+  - balance: M-44 SAA Revolver is now bulky like an extended barrel TP-44.
+  - balance: M-44 SAA Revolver now does 5 more damage.
+  - refactor: Refactored some revolver ammo code for less signal headaches later.
+  - bugfix: Fixed handfuls of loose .44 ammo breaking speed loaders.
+  - bugfix: Fixed the .357 seasonal item ref and speed loader ammo type.
+  - spellcheck: Removed an extra "That" from revolver ammo rejection notices.
+  - bugfix: Fixed send to lobby breaking the ghost orbit panel.
+  - code_imp: Update the max recommended byond  client version.
+  ZephyrTFA:
+  - code_imp: Helper procs for handling delays of manipulating storage objects and
+      their contents
+  - qol: Backpacks can be accessed while you are wearing them but it takes time
+2021-06-19:
+  Wayland-Smithy:
+  - expansion: Added Tier 4 Xenos list to Hive Status.
+  - balance: Shrike is now Tier 4, but can still regress back to T1.
+  - balance: T4 Xenos count as T0 for evolution slot calculation purposes.
+  - balance: Shrikes can no longer grant slots by regressing.
+  - bugfix: Xenos lose leadership when evolving into a caste that can not be granted
+      it normally. *cough* hivemind *cough*
+  - admin: Updated PP to include Wraith transformation and reflect Shrikes new tier.
+2021-06-21:
+  BraveMole:
+  - balance: Resin doors open when you try to cross them as a xeno, and no longer
+      when you are near them. Still instantanious
+  - rscadd: New HvH gamemode, civil war. Very much WIP
+2021-06-23:
+  BraveMole:
+  - bugfix: Rebel can access their overwatch
+  - qol: If there are silos, late join xenos will spawn in silos, and not in random
+      locations
+  - qol: Switching hugger now has 2 keybinds, one gives a radial menu to choose the
+      hugger and the other switches in old fashioned way.
+  Pariah919:
+  - balance: shield has less bomb armor, and no longer has bio armor immunity, only
+      50%.
+  Surrealaser:
+  - rscadd: Added the Hunter's Mark Hunter ability.
+  - rscadd: Added the Psychic Trace Hunter ability.
+  - bugfix: Endure can now be used while staggered instead of Ravage.
+  hyper2snyper:
+  - balance: Increases bombvest's timer to Two seconds
+2021-06-24:
+  BraveMole:
+  - balance: Spitter can spit more often
+  jupyterkat, Wayland-Smithy:
+  - qol: you can now press space or enter to select in tgui input lists
+  - bugfix: tgui input lists no longer break when duplicate keys are passed
+2021-06-25:
+  BraveMole:
+  - balance: Nightfall; better range and lower CD
+  - balance: Gravity crush; higher plasma cost, lower windup, canceling the windup
+      consumme the plasma
+  - balance: Young king get grav crush
+  - balance: The king is selected among live xenos
+  - balance: I takes 5 minutes for the king to spawn, rather than 10
+  - bugfix: Fix larva dying when hijacking
+  QualityVan:
+  - code_imp: Cleared out old tackle values
+  SpaceLove:
+  - rscdel: Stripper suits gone.
+  - admin: Removes admin ability to spawn stripper suits.
+  Surrealaser:
+  - bugfix: Alien slashes now hit bodybag occupants.
+  Wayland-Smithy:
+  - bugfix: Fixed "standard revolver bullet" still having shake.
+  lbnesquik:
+  - qol: The AI can now vend from MONEY restricted vendors.
+2021-06-26:
+  Pariah919:
+  - bugfix: fixed resin jelly not having proper cooldown and sending double messages
+      when your hands are full
+  QualityVan:
+  - bugfix: Jelly shouldn't last forever any more in certain cases.
+  - code_imp: Refactored jelly to an effect, plus some fire resistance cleanup.
+  - balance: Jelly heals a bit of burns while active.
+  - bugfix: Hunter pounce out of stealth now correctly gets its tiny sneak attack
+      bonus
+  - code_imp: Misc. hunter stealth code cleanup
+  - balance: Hunter stealth cooldown starts on leaving stealth.
+  - spellcheck: Rephrased codex entries for attachments with burst scatter modifiers
+  Trilbyspaceclone:
+  - bugfix: Basalt should now be able to dig up for sandbags
+  lbnesquik:
+  - bugfix: Lowered the vote noise.
+  - rscadd: Added a new way to ID the beacons
+2021-06-27:
+  Alterist:
+  - bugfix: a rogue beach tile on prison station have been captured and sent to centcom
+      for study
+  Wayland-Smithy:
+  - bugfix: Fixed an issue with add_fingerprint and power cables.
+2021-06-28:
+  BraveMole:
+  - bugfix: Fix headset, comms, minimap and supply for HvH
+  - expansion: Inform you on which faction you are on when spawning in HvH mode
+  Surrealaser:
+  - bugfix: Emit Noxious Gas's last puff is now larger as previously intended.
+  Wayland-Smithy:
+  - balance: Hivemind resin door manipulation cooldown is gone.
+  - qol: Hivemind can now open and close doors with Ctrl+Click as well as Alt+Click.
+  - bugfix: Fixed a duplicate proc override for /xenomorph/hivemind/
+  lbnesquik:
+  - rscadd: Added extra cameras & lights to Pillar of Spring
+  - bugfix: fixed a few cameras placement
+  - balance: Slightly increase sectoids fire rate.
+2021-06-29:
+  BraveMole:
+  - balance: FC has less skill in pistols and melee
+  - bugfix: Can join rebels now
+  - bugfix: No longer 4 squads on POS
+2021-06-30:
+  Wayland-Smithy:
+  - bugfix: Fixes the silo collapse timer.
+  - bugfix: Fixed the TX-7 ammo box icon and name.

@@ -1,7 +1,6 @@
 import { useBackend } from '../backend';
 import { Button, Section, LabeledList, NoticeBox, NumberInput, Box } from '../components';
 import { Window } from '../layouts';
-import { LabeledListItem } from '../components/LabeledList';
 
 export const Droppod = (props, context) => {
   const { data } = useBackend(context);
@@ -28,36 +27,36 @@ const PreDeploy = (props, context) => {
   return (
     <Section title={`Welcome, ${data.occupant}`}>
       <LabeledList>
-        <LabeledListItem label="X Coordinate">
+        <LabeledList.Item label="X Coordinate">
           <NumberInput
             value={data.target_x}
             onChange={(e, value) => act('set_x_target', { set_x: `${value}` })}
           />
-        </LabeledListItem>
-        <LabeledListItem label="Y Coordinate">
+        </LabeledList.Item>
+        <LabeledList.Item label="Y Coordinate">
           <NumberInput
             value={data.target_y}
             onChange={(e, value) => act('set_y_target', { set_y: `${value}` })}
           />
-        </LabeledListItem>
-        <LabeledListItem label="Check drop validity">
+        </LabeledList.Item>
+        <LabeledList.Item label="Check drop validity">
           <Button
             content="Check drop point validity"
             color="blue"
             onClick={() => act('check_droppoint')} />
-        </LabeledListItem>
-        <LabeledListItem label="Launching">
+        </LabeledList.Item>
+        <LabeledList.Item label="Launching">
           <Button
             content="LAUNCH DROPPOD"
             color="red"
             onClick={() => act('launch')} />
-        </LabeledListItem>
-        <LabeledListItem label="Exit Drop pod">
+        </LabeledList.Item>
+        <LabeledList.Item label="Exit Drop pod">
           <Button
             content="Exit Pod"
             color="green"
             onClick={() => act('exitpod')} />
-        </LabeledListItem>
+        </LabeledList.Item>
       </LabeledList>
     </Section>
   );

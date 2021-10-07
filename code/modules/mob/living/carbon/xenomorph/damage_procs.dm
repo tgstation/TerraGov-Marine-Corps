@@ -4,7 +4,7 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/ex_act(severity)
-	if(status_flags & GODMODE)
+	if(status_flags & (INCORPOREAL|GODMODE))
 		return
 
 	if(severity < EXPLODE_LIGHT) //Actually means higher.
@@ -45,8 +45,8 @@
 					add_slowdown(1)
 					return
 				if(XENO_BOMB_RESIST_3 to XENO_BOMB_RESIST_4)
-					b_loss = rand(50, 60)
-					f_loss = rand(50, 60)
+					b_loss = rand(50, 50)
+					f_loss = rand(50, 50)
 					add_slowdown(2)
 					adjust_sunder(35)
 				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
@@ -153,38 +153,39 @@
 		if(X == src) //We don't need an alert about ourself.
 			filter_list += X //Add the xeno to the filter list
 
-		if(!(X.client.prefs.mute_xeno_health_alert_messages)) //Build the filter list; people who opted not to receive health alert messages
+		if(X.client.prefs.mute_xeno_health_alert_messages) //Build the filter list; people who opted not to receive health alert messages
 			filter_list += X //Add the xeno to the filter list
 
-	xeno_message("<span class='xenoannounce'>Our sister [name] is badly hurt with ([health]/[maxHealth]) health remaining at [get_area(src)] (X: [x], Y: [y])!</span>", 2, hivenumber, FALSE, src, 'sound/voice/alien_help1.ogg', TRUE, filter_list)
+	xeno_message("Our sister [name] is badly hurt with <font color='red'>([health]/[maxHealth])</font> health remaining at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, hivenumber, FALSE, src, 'sound/voice/alien_help1.ogg', TRUE, filter_list, /obj/screen/arrow/silo_damaged_arrow)
 	COOLDOWN_START(src, xeno_health_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 
 	return damage
 
 
 /mob/living/carbon/xenomorph/adjustBruteLoss(amount, updating_health = FALSE)
+
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BRUTE_DAMAGE, amount, amount_mod)
 	for(var/i in amount_mod)
 		amount -= i
 
-	bruteloss = clamp(bruteloss + amount, 0, maxHealth - xeno_caste.crit_health)
+	bruteloss = max(bruteloss + amount, 0)
 
 	if(updating_health)
 		updatehealth()
 
 
 /mob/living/carbon/xenomorph/adjustFireLoss(amount, updating_health = FALSE)
+
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BURN_DAMAGE, amount, amount_mod)
 	for(var/i in amount_mod)
 		amount -= i
 
-	fireloss = clamp(fireloss + amount, 0, maxHealth - xeno_caste.crit_health)
+	fireloss = max(fireloss + amount, 0)
 
 	if(updating_health)
 		updatehealth()
-
 
 /mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)
 	if(!damage)
@@ -220,8 +221,8 @@
 				splash_chance += 30 //Same tile? BURN
 			splash_chance += distance * -15
 			i++
-			victim.visible_message("<span class='danger'>\The [victim] is scalded with hissing green blood!</span>", \
-			"<span class='danger'>You are splattered with sizzling blood! IT BURNS!</span>")
+			victim.visible_message(span_danger("\The [victim] is scalded with hissing green blood!"), \
+			span_danger("You are splattered with sizzling blood! IT BURNS!"))
 			if(victim.stat != CONSCIOUS && !(victim.species.species_flags & NO_PAIN) && prob(60))
 				victim.emote("scream") //Topkek
 			victim.take_limb_damage(0, rand(10, 25)) //Sizzledam! This automagically burns a random existing body part.

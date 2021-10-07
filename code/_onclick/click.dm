@@ -32,19 +32,19 @@
 		usr.MouseWheelOn(src, delta_x, delta_y, params)
 
 
-/*
-	Standard mob ClickOn()
-	Handles exceptions: Buildmode, middle click, modified clicks, mech actions
-
-	After that, mostly just check your state, check whether you're holding an item,
-	check whether you're adjacent to the target, then pass off the click to whoever
-	is receiving it.
-	The most common are:
-	* mob/UnarmedAttack(atom, adjacent, params) - used here only when adjacent, with no item in hand; in the case of humans, checks gloves
-	* atom/attackby(item, user, params) - used only when adjacent
-	* item/afterattack(atom, user, adjacent, params) - used both ranged and adjacent when not handled by attackby
-	* mob/RangedAttack(atom, params) - used only ranged, only used for tk and laser eyes but could be changed
-*/
+/**
+ * Standard mob ClickOn()
+ * Handles exceptions: Buildmode, middle click, modified clicks, mech actions
+ *
+ * After that, mostly just check your state, check whether you're holding an item,
+ * check whether you're adjacent to the target, then pass off the click to whoever
+ * is receiving it.
+ * The most common are:
+ * * mob/UnarmedAttack(atom, adjacent, params) - used here only when adjacent, with no item in hand; in the case of humans, checks gloves
+ * * atom/attackby(item, user, params) - used only when adjacent
+ * * item/afterattack(atom, user, adjacent, params) - used both ranged and adjacent when not handled by attackby
+ * * mob/RangedAttack(atom, params) - used only ranged, only used for tk and laser eyes but could be changed
+ */
 /mob/proc/ClickOn(atom/A, location, params)
 
 	if(world.time <= next_click)
@@ -78,17 +78,18 @@
 		return
 	if(modifiers["middle"] && MiddleClickOn(A))
 		return
+	if(modifiers["shift"] && modifiers["right"])
+		ShiftRightClickOn(A)
+		return
 	if(modifiers["shift"] && ShiftClickOn(A))
+		return
+	if(modifiers["alt"] && modifiers["right"])
+		AltRightClickOn(A)
 		return
 	if(modifiers["alt"] && AltClickOn(A))
 		return
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
-		return
-	if(modifiers["shift"] && modifiers["right"])
-		ShiftRightClickOn(A)
-		return
-	if(modifiers["alt"] && modifiers["right"])
 		return
 	if(modifiers["right"] && RightClickOn(A))
 		return
@@ -130,7 +131,7 @@
 	//User itself, current loc, and user inventory
 	if(A in DirectAccess())
 		if(W)
-			W.melee_attack_chain(src, A, params)
+			W.melee_attack_chain(src, A, params, modifiers["right"])
 		else
 			UnarmedAttack(A, FALSE, modifiers)
 		return
@@ -142,16 +143,13 @@
 	//Standard reach turf to turf or reaching inside storage
 	if(CanReach(A, W))
 		if(W)
-			W.melee_attack_chain(src, A, params)
+			W.melee_attack_chain(src, A, params, modifiers["right"])
 		else
 			UnarmedAttack(A, TRUE, modifiers)
 	else
 		if(W)
-			var/attack
 			var/proximity = A.Adjacent(src)
-			if(proximity && A.attackby(W, src, params))
-				attack = TRUE
-			if(!attack)
+			if(!proximity || !A.attackby(W, src, params))
 				W.afterattack(A, src, proximity, params)
 		else
 			if(A.Adjacent(src))
@@ -293,27 +291,30 @@
 	Only used for swapping hands
 */
 /mob/proc/MiddleClickOn(atom/A)
+	switch(SEND_SIGNAL(src, COMSIG_MOB_MIDDLE_CLICK, A))
+		if(COMSIG_MOB_CLICK_CANCELED)
+			return FALSE
+		if(COMSIG_MOB_CLICK_HANDLED)
+			return TRUE
 	return TRUE
 
 
 /mob/living/carbon/human/MiddleClickOn(atom/A)
 	. = ..()
-	if(!client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING)
+	if(!(client.prefs.toggles_gameplay & MIDDLESHIFTCLICKING))
 		return
 	var/obj/item/held_thing = get_active_held_item()
 	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_MIDDLECLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
 		return FALSE
 
 #define TARGET_FLAGS_MACRO(flagname, typepath) \
-if(selected_ability.target_flags & flagname){\
+if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	. = locate(typepath) in get_turf(A);\
 	if(.){\
 		return;}}
 
 /mob/living/carbon/xenomorph/proc/ability_target(atom/A)
 	TARGET_FLAGS_MACRO(XABB_MOB_TARGET, /mob/living)
-	TARGET_FLAGS_MACRO(XABB_OBJ_TARGET, /obj)
-	TARGET_FLAGS_MACRO(XABB_WALL_TARGET, /turf/closed/wall)
 	if(selected_ability.target_flags & XABB_TURF_TARGET)
 		return get_turf(A)
 	return A
@@ -328,11 +329,11 @@ if(selected_ability.target_flags & flagname){\
 
 /mob/living/carbon/xenomorph/RightClickOn(atom/A)
 	. = ..()
-	if(!selected_ability)
-		return FALSE
-	A = ability_target(A)
-	if(selected_ability.can_use_ability(A))
-		selected_ability.use_ability(A)
+	if(selected_ability) //If we have a selected ability that we can use, return TRUE
+		A = ability_target(A)
+		if(selected_ability.can_use_ability(A))
+			selected_ability.use_ability(A)
+			return TRUE
 
 /*
 	Right click
@@ -484,7 +485,6 @@ if(selected_ability.target_flags & flagname){\
 */
 /mob/proc/CtrlShiftClickOn(atom/A)
 	A.CtrlShiftClick(src)
-	return
 
 
 /mob/proc/ShiftMiddleClickOn(atom/A)
@@ -497,7 +497,6 @@ if(selected_ability.target_flags & flagname){\
 
 /atom/proc/CtrlShiftClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_SHIFT)
-	return
 
 
 /*
@@ -505,35 +504,6 @@ if(selected_ability.target_flags & flagname){\
 */
 /atom/proc/CtrlMiddleClickOn(atom/A)
 	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_MIDDLE, A)
-
-
-// Simple helper to face what you clicked on, in case it should be needed in more than one place
-/mob/proc/face_atom(atom/A)
-	if(buckled || stat != CONSCIOUS || !A || !x || !y || !A.x || !A.y)
-		return
-	var/dx = A.x - x
-	var/dy = A.y - y
-	if(!dx && !dy) // Wall items are graphically shifted but on the floor
-		if(A.pixel_y > 16)
-			setDir(NORTH)
-		else if(A.pixel_y < -16)
-			setDir(SOUTH)
-		else if(A.pixel_x > 16)
-			setDir(EAST)
-		else if(A.pixel_x < -16)
-			setDir(WEST)
-		return
-
-	if(abs(dx) < abs(dy))
-		if(dy > 0)
-			setDir(NORTH)
-		else
-			setDir(SOUTH)
-	else
-		if(dx > 0)
-			setDir(EAST)
-		else
-			setDir(WEST)
 
 
 /obj/screen/proc/scale_to(x1,y1)
@@ -586,6 +556,9 @@ if(selected_ability.target_flags & flagname){\
 			modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
 			T.Click(location, control, list2params(modifiers))
 	. = TRUE
+
+/obj/screen/click_catcher/MouseMove(location, control, params)//This allow to catch mouse drag on click catcher, aka black tiles
+	return
 
 
 /* MouseWheelOn */

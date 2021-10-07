@@ -60,7 +60,7 @@
 	files[fresh.uid] = fresh
 
 /obj/machinery/computer/forensic_scanning/proc/process_card(obj/item/f_card/card)
-		to_chat(usr, "<span class='warning'>Fingerprints are currently unavailable.</span>")
+		to_chat(usr, span_warning("Fingerprints are currently unavailable."))
 		return 0
 
 //Takes a list of forensic records, with key being reference to object, and updates internal database.
@@ -147,7 +147,7 @@
 				var/list/filternames = list("Object"="name", "Area"="area", "Fingerprints"="fprints", "Fibers"="fibers", "DNA"="blood", "Label"="label")
 				for(var/filter in filternames)
 					var/fname = filternames[filter]
-					dat += "<br>[filter]: <a href='?src=\ref[src];operation=filter;filter=[fname]'>[filter_list[fname] ? list2text(filter_list[fname], ",") : "All"]</a>"
+					dat += "<br>[filter]: <a href='?src=\ref[src];operation=filter;filter=[fname]'>[filter_list[fname] ? jointext(filter_list[fname], ",") : "All"]</a>"
 
 				current_list = get_filtered_set()
 				dat+= "<br><hr><br>"
@@ -219,7 +219,7 @@
 				to_chat(usr, "<spawn class='warning'>No record found.</span>")
 		if("delete")
 			if(href_list["identifier"])
-				if(tgui_alert(usr, "Are you sure you want to delete this record?","Record deletion", list("Yes", "No")) == "Yes")
+				if(tgui_alert(usr, "Are you sure you want to delete this record?", "Record deletion", list("Yes", "No")) == "Yes")
 					files.Remove(href_list["identifier"])
 					if(current && current.uid == href_list["identifier"])
 						current = null

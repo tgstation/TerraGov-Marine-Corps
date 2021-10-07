@@ -1,0 +1,198 @@
+2020-04-02:
+  MerryweatherLost:
+  - tweak: Changed many sprites.
+2020-04-03:
+  KwinOriginal:
+  - rscadd: Added FOB drone computer in Theseus Hangar
+  Toxici11i:
+  - rscdel: removed hivemind cores automatically spawning a hivemind (to prevent queens
+      from spawning another)
+  - rscadd: the ability for drones to evolve into hiveminds
+  - rscdel: queens and shrikes being able to manually spawn them
+  - tweak: hiveminds now have loudvoice
+  - tweak: hiveminds no longer display their name in xeno hivemind, instead are just
+      'The hivemind'
+  - tweak: synth and old synth now have 0.9* the normal burn damage.
+  - tweak: old synths now have extra brute armor to accompany the slowdown and extra
+      HP compared to new synths
+  - tweak: Bumps the 1.5X burn pain modifier down to 1.2X
+  - tweak: removed spooky synth skills (super specialist skills that not even DS had)
+  - tweak: gives synths a boost to CQC and meele respectively
+  - tweak: gives synths pistol training, but untrained firearm training for everything
+      else
+  - bugfix: now factors in melee skill for damaging objects and humans.
+  - tweak: synths/robotic users can now use nanopaste on themselves smh
+2020-04-04:
+  Kuro-ai:
+  - rscadd: added prison variant clothes
+  - tweak: gas mask and heavy helmet don't have tint anymore/armor sprites changes
+  - balance: heavy helmet accuracy debuff from 10% to 15%
+  KwinOriginal:
+  - rscadd: Added uniform surplus vendor in Canterbury Cryo
+  - rscadd: Added weapon vendor in Canterbury main area
+  - rscdel: Removed uniform surplus vendor in Canterbury main area
+  - rscdel: Removed one GHMME closet from Canterbury Cryo
+  ma44:
+  - code_imp: A code framework for AI via components
+  - code_imp: 'In layman''s term it means a more dynamic and featureful:tm: human
+      and xenomorphs artificial intelligence'
+  psykzz:
+  - tweak: Nuke must be anchored for the timer to be active, disabling the nuke resets
+      the timer
+2020-04-05:
+  psykzz:
+  - balance: xenos upgrade and mature faster when there are more marines
+2020-04-06:
+  ma44:
+  - balance: Synths can't get head delimbed provided they wear a helmet
+2020-04-07:
+  Mouseofthecake:
+  - balance: Lowered crusher bullet armor by 4 for mature/elder/ancient.
+2020-04-08:
+  Hughgent:
+  - rscadd: There is a data analysis tool in the tools folder for those interested.
+  KwinOriginal:
+  - balance: Rebalanced icy caves LZ2
+  Mouseofthecake:
+  - balance: Lowered crusher charge knockdown to 20. Ungas get up quicker from rams.
+  - rscadd: Improved description to scout/sniper cloaks.
+  TiviPlus:
+  - rscadd: Phosphorus grenades. Can be ordered in req.
+  grinkgo:
+  - bugfix: The pistol rig now properly holds pistols other than the TP-14
+2020-04-09:
+  KwinOriginal:
+  - rscadd: Added missing pipes in hangar
+  TiviPlus:
+  - balance: If you get put out you will also slightly cool down
+  - rscadd: AI xenos will now gib on death, this should help with lategame lag on
+      WO
+  - rscadd: You can now sing by prefacing your message with %
+  XSlayer300:
+  - rscadd: Added many more names to the namelists, including the Deathsquad ERT.
+  - tweak: Combined PMC and SoM/Freelancer (and CLF) names into the main namelist,
+      as a result, PMC and SoM/Freelancers now use the main namelist. This does not
+      apply to UPP.
+  - tweak: Rearranged names as well as removal of duplicate names.
+  psykzz:
+  - rscadd: new ammo type of sundering, currently added to the standard dmr ammo.
+2020-04-10:
+  Hughgent:
+  - rscadd: Tactical Binocs get a third and fourth mode, to direct the railgun and
+      orbital cannon respectively.
+  - tweak: Lobby music now plays via YouTube links.
+  - bugfix: The stunbaton no longer acts like a battery based magnet railgun
+  MJP:
+  - rscadd: Codex entries for all your favorite weapons.
+  Mouseofthecake:
+  - spellcheck: Fixed ancient boiler caste description.
+  TiviPlus:
+  - rscadd: Buckshot is now red and slugs are now green
+  XElectricX:
+  - tweak: Weed nodes can be built over.
+  grinkgo:
+  - bugfix: Ship Techs should now be able to properly access most maintenance airlocks
+      on the Pillar
+  - bugfix: Anyone with engineering access should be able to use the FOB construction
+      drone now.
+2020-04-11:
+  KwinOriginal:
+  - rscadd: AI nodes
+  MerryweatherLost:
+  - tweak: Changes the theseus
+  - balance: May change strategies on the theseus
+  - rscadd: New Json file I guess.
+  - bugfix: Now its in rotation temporarily.
+  psykzz:
+  - rscadd: Xenos get a new hud to show sundering levels
+  - balance: power generator can no longer be destroyed
+2020-04-12:
+  TiviPlus:
+  - bugfix: fixed shotgun huds displaying the wrong ammo type
+2020-04-13:
+  BobSlim:
+  - rscadd: All Xenos can see if an impregnated human is inoculated with Larval accelerant
+      if examined.
+  MrStonedOne:
+  - admin: Admins can now issue a shutdown command mid round. It will automatically
+      shut the server down at the end of the round.
+  TiviPlus:
+  - rscadd: G8 utility pouches added to marine vendors
+  factoryman942:
+  - tweak: beakers can use 15/30/60u transfer amounts
+2020-04-14:
+  TiviPlus:
+  - balance: Platforms are now destructible until xeno AI pathfinding is improved
+2020-04-15:
+  Drawsstuff:
+  - rscadd: New lobby art
+  Hathkar:
+  - rscadd: New operating table attachment for the Alamo.
+  Mouseofthecake:
+  - balance: Increased bull charge steps, lowered bull charge damage.
+  Pariah919:
+  - balance: Too much to list. But I added Sunder to most weapons in the game. If
+      not all! Also MBX buffs. Checkout https://github.com/tgstation/TerraGov-Marine-Corps/pull/3818
+      for more detailed changes.
+  jroinc:
+  - rscadd: Water regens stamina and heals brute and burns slightly at the cost of
+      purging all chems slowly.
+  - rscadd: Coffee regens stamina and makes you run faster at the cost of purging
+      oxy and removing stamina when it runs out.
+  - tweak: Doubles metabolism rates of roulettium, polyhexanide, and synaptizine to
+      match intended
+  psykzz:
+  - rscadd: eating a crayons will give you a small amount of toxin damage. Mime crayons
+      will also mute you for 30 seconds.
+2020-04-16:
+  BobSlim:
+  - tweak: xeno bump attack is on by default
+  Pariah919:
+  - bugfix: Readded helmets to SG box
+2020-04-17:
+  psykzz:
+  - admin: added a flag to disable ert on distress
+2020-04-19:
+  BobSlim:
+  - balance: Xeno Neurotoxin begins its effects immediately, and ramp up over time.
+  - balance: Xeno Neurotoxin deals a small amount of toxin damage if overdosed.
+  - bugfix: A single Neurotoxin Sting will no longer trigger an overdose.
+  - tweak: Boilers glow a mix of yellow/green, based on amount of neuro/corrosive
+      ammo stored.
+  - bugfix: Boilers don't stop glowing when they are extinguished
+  - rscadd: the Queen and Drone heals now heal some sunder.
+  Hughgent:
+  - bugfix: Double Barrel Shotgun sprites are fixed.
+  - imageadd: New lobby art!
+  Pariah919:
+  - balance: Adds a spare post to the M56D box.
+  - balance: Scopes added to rifles, gyros added to handguns, removed qfa from scout
+      shotgun and handguns
+  XElectricX:
+  - tweak: RO lockers spawn a flash, which the RO can now use
+  - balance: RO, CE, and early gen synths have level 4 powerloader skill
+  - balance: Combet engis gain level 1 powerloader skill
+  psykzz:
+  - rscadd: xenos can now melt mines
+2020-04-20:
+  grinkgo:
+  - rscadd: Added lollipops. Find them in snack vendors or ask your medical officer
+      if you can have one after your surgery!
+  psykzz:
+  - admin: adds links to OOC, Dead chat, and Say chat (when ghosting) as admin
+  - balance: updated the lv624 map a little
+2020-04-22:
+  Ghostboy1217:
+  - bugfix: fixed the Wheelchair sprite
+  Pariah919:
+  - balance: Added imi/alky/tricord pill bottles to marine med
+  psykzz:
+  - rscadd: Regenerating resin walls
+2020-04-23:
+  LorenzoTheMarauder:
+  - rscadd: MedpatchHUD Icon and mob sprite
+  XElectricX:
+  - rscadd: Pillar of Spring's req department gets an autolathe. A requests console
+      is installed next to the req line.
+  - tweak: Remapping of Pillar's requisitions. Several items removed and added in
+      the department.

@@ -5,7 +5,6 @@
 	verb_say = "beeps"
 	verb_yell = "blares"
 	anchored = TRUE
-	obj_flags = CAN_BE_HIT
 	destroy_sound = 'sound/effects/metal_crash.ogg'
 	interaction_flags = INTERACT_MACHINE_DEFAULT
 
@@ -38,7 +37,7 @@
 
 
 /obj/machinery/proc/is_operational()
-	return !(machine_stat & (NOPOWER|BROKEN|MAINT))
+	return !(machine_stat & (NOPOWER|BROKEN|MAINT|DISABLED))
 
 
 /obj/machinery/deconstruct(disassembled = TRUE)
@@ -159,22 +158,24 @@
 	if(!is_operational())
 		return FALSE
 
-	if(iscarbon(usr) && (!in_range(src, usr) || !isturf(loc)))
+	if(iscarbon(user) && (!in_range(src, user) || !isturf(loc)))
 		return FALSE
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 60)
-			visible_message("<span class='warning'>[H] stares cluelessly at [src] and drools.</span>")
+			visible_message(span_warning("[H] stares cluelessly at [src] and drools."))
 			return FALSE
 		if(prob(H.getBrainLoss()))
-			to_chat(user, "<span class='warning'>You momentarily forget how to use [src].</span>")
+			to_chat(user, span_warning("You momentarily forget how to use [src]."))
 			return FALSE
 
 	return TRUE
 
 
 /obj/machinery/attack_ai(mob/living/silicon/ai/user)
+	if(!is_operational())
+		return FALSE
 	return interact(user)
 
 
@@ -236,7 +237,7 @@
 	N.fields["last_scan_time"] = od["stationtime"]
 	N.fields["last_scan_result"] = dat
 	N.fields["autodoc_data"] = generate_autodoc_surgery_list(H)
-	visible_message("<span class='notice'>\The [src] pings as it stores the scan report of [H.real_name]</span>")
+	visible_message(span_notice("\The [src] pings as it stores the scan report of [H.real_name]"))
 	playsound(loc, 'sound/machines/ping.ogg', 25, 1)
 	use_power(active_power_usage)
 	return dat
@@ -387,7 +388,7 @@
 			else
 				imp += "Unknown body present:<br>"
 
-		if(!AN && !open && !infected & !imp && !necrosis && !bled && !internal_bleeding && !lung_ruptured)
+		if(!AN && !open && !infected && !imp && !necrosis && !bled && !internal_bleeding && !lung_ruptured)
 			AN = "None:"
 		if(!(e.limb_status & LIMB_DESTROYED))
 			dat += "<td>[e.display_name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][stabilized][open][infected][necrosis][imp][internal_bleeding][lung_ruptured]</td>"

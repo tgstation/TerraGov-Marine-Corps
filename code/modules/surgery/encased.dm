@@ -24,19 +24,19 @@
 	open_case_step = 2
 
 /datum/surgery_step/open_encased/saw/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] begins to cut through [target]'s [affected.encased] with \the [tool].</span>", \
-	"<span class='notice'>You begin to cut through [target]'s [affected.encased] with \the [tool].</span>")
+	user.visible_message(span_notice("[user] begins to cut through [target]'s [affected.encased] with \the [tool]."), \
+	span_notice("You begin to cut through [target]'s [affected.encased] with \the [tool]."))
 	target.custom_pain("Something hurts horribly in your [affected.display_name]!", 1)
 	..()
 
 /datum/surgery_step/open_encased/saw/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] has cut [target]'s [affected.encased] open with \the [tool].</span>",		\
-	"<span class='notice'>You have cut [target]'s [affected.encased] open with \the [tool].</span>")
+	user.visible_message(span_notice("[user] has cut [target]'s [affected.encased] open with \the [tool]."),		\
+	span_notice("You have cut [target]'s [affected.encased] open with \the [tool]."))
 	affected.surgery_open_stage = 2.5
 
 /datum/surgery_step/open_encased/saw/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='warning'>[user]'s hand slips, cracking [target]'s [affected.encased] with \the [tool]!</span>" , \
-	"<span class='warning'>Your hand slips, cracking [target]'s [affected.encased] with \the [tool]!</span>" )
+	user.visible_message(span_warning("[user]'s hand slips, cracking [target]'s [affected.encased] with \the [tool]!") , \
+	span_warning("Your hand slips, cracking [target]'s [affected.encased] with \the [tool]!") )
 
 	affected.createwound(CUT, 20)
 	affected.fracture()
@@ -54,14 +54,14 @@
 	open_case_step = 2.5
 
 /datum/surgery_step/open_encased/retract/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] starts to force open the [affected.encased] in [target]'s [affected.display_name] with \the [tool].</span>", \
-	"<span class='notice'>You start to force open the [affected.encased] in [target]'s [affected.display_name] with \the [tool].</span>")
+	user.visible_message(span_notice("[user] starts to force open the [affected.encased] in [target]'s [affected.display_name] with \the [tool]."), \
+	span_notice("You start to force open the [affected.encased] in [target]'s [affected.display_name] with \the [tool]."))
 	target.custom_pain("Something hurts horribly in your [affected.display_name]!", 1)
 	..()
 
 /datum/surgery_step/open_encased/retract/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] forces open [target]'s [affected.encased] with \the [tool].</span>", \
-	"<span class='notice'>You force open [target]'s [affected.encased] with \the [tool].</span>")
+	user.visible_message(span_notice("[user] forces open [target]'s [affected.encased] with \the [tool]."), \
+	span_notice("You force open [target]'s [affected.encased] with \the [tool]."))
 	affected.surgery_open_stage = 3
 
 	//Whoops!
@@ -69,8 +69,8 @@
 		affected.fracture()
 
 /datum/surgery_step/open_encased/retract/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='warning'>[user]'s hand slips, cracking [target]'s [affected.encased]!</span>", \
-	"<span class='warning'>Your hand slips, cracking [target]'s  [affected.encased]!</span>")
+	user.visible_message(span_warning("[user]'s hand slips, cracking [target]'s [affected.encased]!"), \
+	span_warning("Your hand slips, cracking [target]'s  [affected.encased]!"))
 
 	affected.createwound(BRUISE, 20)
 	affected.fracture()
@@ -88,19 +88,19 @@
 	open_case_step = 3
 
 /datum/surgery_step/open_encased/close/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] starts bending [target]'s [affected.encased] back into place with \the [tool].</span>", \
-	"<span class='notice'>You start bending [target]'s [affected.encased] back into place with \the [tool].</span>")
+	user.visible_message(span_notice("[user] starts bending [target]'s [affected.encased] back into place with \the [tool]."), \
+	span_notice("You start bending [target]'s [affected.encased] back into place with \the [tool]."))
 	target.custom_pain("Something hurts horribly in your [affected.display_name]!", 1)
 	..()
 
 /datum/surgery_step/open_encased/close/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] bends [target]'s [affected.encased] back into place with \the [tool].</span>", \
-	"<span class='notice'>You bend [target]'s [affected.encased] back into place with \the [tool].</span>")
+	user.visible_message(span_notice("[user] bends [target]'s [affected.encased] back into place with \the [tool]."), \
+	span_notice("You bend [target]'s [affected.encased] back into place with \the [tool]."))
 	affected.surgery_open_stage = 2.5
 
 /datum/surgery_step/open_encased/close/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='warning'>[user]'s hand slips, bending [target]'s [affected.encased] the wrong way!</span>", \
-	"<span class='warning'>Your hand slips, bending [target]'s [affected.encased] the wrong way!</span>")
+	user.visible_message(span_warning("[user]'s hand slips, bending [target]'s [affected.encased] the wrong way!"), \
+	span_warning("Your hand slips, bending [target]'s [affected.encased] the wrong way!"))
 
 	affected.createwound(BRUISE, 20)
 	affected.fracture()
@@ -118,12 +118,12 @@
 	open_case_step = 2.5
 
 /datum/surgery_step/open_encased/mend/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] starts applying \the [tool] to [target]'s [affected.encased].</span>", \
-	"<span class='notice'>You start applying \the [tool] to [target]'s [affected.encased].</span>")
+	user.visible_message(span_notice("[user] starts applying \the [tool] to [target]'s [affected.encased]."), \
+	span_notice("You start applying \the [tool] to [target]'s [affected.encased]."))
 	target.custom_pain("Something hurts horribly in your [affected.display_name]!",1)
 	..()
 
 /datum/surgery_step/open_encased/mend/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] applied \the [tool] to [target]'s [affected.encased].</span>", \
-	"<span class='notice'>You applied \the [tool] to [target]'s [affected.encased].</span>")
+	user.visible_message(span_notice("[user] applied \the [tool] to [target]'s [affected.encased]."), \
+	span_notice("You applied \the [tool] to [target]'s [affected.encased]."))
 	affected.surgery_open_stage = 2

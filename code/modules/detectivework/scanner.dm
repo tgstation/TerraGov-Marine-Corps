@@ -10,7 +10,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 
 /obj/item/detective_scanner/attack(mob/living/carbon/human/M as mob, mob/user as mob)
-	to_chat(user, "<span class='warning'>This device is non-functional.</span>")
+	to_chat(user, span_warning("This device is non-functional."))
 
 /obj/item/detective_scanner/afterattack(atom/A as obj|turf, mob/user, proximity)
-	to_chat(user, "<span class='warning'>This device is non-functional.</span>")
+	to_chat(user, span_warning("This device is non-functional."))

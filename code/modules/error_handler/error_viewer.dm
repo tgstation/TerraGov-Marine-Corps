@@ -176,7 +176,7 @@ GLOBAL_DATUM_INIT(error_cache, /datum/error_viewer/error_cache, new)
 	if(istype(desclines))
 		for (var/line in desclines)
 			// There's probably a better way to do this than non-breaking spaces...
-			desc += "<span class='runtime_line'>[html_encode(line)]</span><br>"
+			desc += "[span_runtime_line("[html_encode(line)]")]<br>"
 
 	if(usr)
 		usr_ref = "[REF(usr)]"

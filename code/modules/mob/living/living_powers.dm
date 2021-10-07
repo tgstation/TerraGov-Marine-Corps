@@ -3,7 +3,7 @@
 	set desc = "Enter an air vent and crawl through the pipe system."
 	set category = "Abilities"
 	handle_ventcrawl()
-	return
+
 
 /mob/living/proc/hide()
 	set name = "Hide"
@@ -12,7 +12,7 @@
 
 	if (layer != ANIMAL_HIDING_LAYER)
 		layer = ANIMAL_HIDING_LAYER
-		to_chat(src, text("<span class='notice'> You are now hiding.</span>"))
-	else
-		layer = MOB_LAYER
-		to_chat(src, text("<span class='notice'> You have stopped hiding.</span>"))
+		to_chat(src, span_notice("You are now hiding."))
+		return
+	layer = MOB_LAYER
+	to_chat(src, span_notice("You have stopped hiding."))

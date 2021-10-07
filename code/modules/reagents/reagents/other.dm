@@ -48,7 +48,7 @@
 		if(!cube.package)
 			cube.Expand()
 
-/datum/reagent/water/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0) //Splashing people with water can help put them out!
+/datum/reagent/water/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0) //Splashing people with water can help put them out!
 	. = ..()
 	if(method in list(TOUCH, VAPOR))
 		L.adjust_fire_stacks(-(volume / 10))
@@ -64,12 +64,15 @@
 		if(6 to 10) //sip 2
 			L.adjustStaminaLoss(-0.5*effect_str)
 			L.heal_limb_damage(0.1*effect_str, 0.1*effect_str)
+		if(11 to INFINITY) //anything after
+			L.adjustStaminaLoss(-0.15*effect_str)
+			L.heal_limb_damage(0.1*effect_str, 0.1*effect_str)
 	return ..()
 
 /datum/reagent/water/overdose_process(mob/living/L, metabolism)
 	if(prob(10))
 		L.adjustStaminaLoss(50*effect_str)
-		to_chat(L, "<span class='warning'>You cramp up! Too much water!</span>")
+		to_chat(L, span_warning("You cramp up! Too much water!"))
 
 /datum/reagent/water/holywater
 	name = "Holy Water"
@@ -429,7 +432,7 @@
 	L.adjustToxLoss(1)
 	return ..()
 
-/datum/reagent/fuel/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)//Splashing people with welding fuel to make them easy to ignite!
+/datum/reagent/fuel/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)//Splashing people with welding fuel to make them easy to ignite!
 	. = ..()
 	if(method in list(TOUCH, VAPOR))
 		L.adjust_fire_stacks(volume / 10)
@@ -463,7 +466,7 @@
 			reaction_obj(C, volume)
 			qdel(C)
 
-/datum/reagent/space_cleaner/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+/datum/reagent/space_cleaner/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
@@ -486,10 +489,11 @@
 				if(H.w_uniform.clean_blood())
 					H.update_inv_w_uniform(0)
 			if(H.shoes)
+				H.clean_blood(FALSE)
 				if(H.shoes.clean_blood())
 					H.update_inv_shoes(0)
 			else
-				H.clean_blood(1)
+				H.clean_blood(TRUE)
 			return
 	L.clean_blood()
 
@@ -634,17 +638,21 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
 
-/datum/reagent/sterilizine/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+/datum/reagent/sterilizine/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	if(!(method in list(TOUCH, VAPOR, PATCH)))
 		return
 	L.germ_level -= min(volume * 20 * touch_protection, L.germ_level)
-	if((L.getFireLoss() > 30 || L.getBruteLoss() > 30) && prob(10)) // >Spraying space bleach on open wounds
+	if(ishuman(L))
+		var/mob/living/carbon/human/disinfectee = L
+		for(var/datum/limb/limb AS in disinfectee.limbs)
+			limb.disinfect() //Only removes germs from individual external wounds. Won't help with the limb itself having a high germ level.
+	if(prob(L.getFireLoss() + L.getBruteLoss())) // >Spraying space bleach on open wounds
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
 			if(C.species.species_flags & NO_PAIN)
 				return
 		if(show_message)
-			to_chat(L, "<span class='warning'>Your open wounds feel like they're on fire!</span>")
+			to_chat(L, span_warning("Your open wounds feel like they're on fire!"))
 		L.emote(pick("scream","pain","moan"))
 		L.flash_pain()
 		L.reagent_shock_modifier -= PAIN_REDUCTION_MEDIUM
@@ -652,9 +660,20 @@
 /datum/reagent/sterilizine/reaction_obj(obj/O, volume)
 	O.germ_level -= min(volume*20, O.germ_level)
 
-/datum/reagent/medicine/sterilizine/reaction_turf(turf/T, volume)
+/datum/reagent/sterilizine/reaction_turf(turf/T, volume)
 	T.germ_level -= min(volume*20, T.germ_level)
 
 /datum/reagent/sterilizine/on_mob_life(mob/living/L, metabolism)
 	L.adjustToxLoss(effect_str)
 	return ..()
+
+/datum/reagent/virilyth
+	name = "Virilyth"
+	description = "A strange substance with high regenerative properties."
+	color = "#488C54"
+	taste_description = "slimy lemon"
+	can_synth = FALSE
+	custom_metabolism = REAGENTS_METABOLISM * 0.1
+	overdose_threshold = REAGENTS_OVERDOSE
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
+	scannable = TRUE

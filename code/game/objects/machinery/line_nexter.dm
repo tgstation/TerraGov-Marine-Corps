@@ -17,13 +17,13 @@
 /obj/machinery/line_nexter/ex_act(severity)
 	return
 
-/obj/machinery/line_nexter/CheckExit(atom/movable/O, turf/target)
+/obj/machinery/line_nexter/CheckExit(atom/movable/O, direction)
+	. = ..()
 	if(iscarbon(O))
 		var/mob/living/carbon/C = O
 		if(C.pulledby)
-			if(!C.incapacitated() && target == locate(x-1,y,z))
-				return 0
-	return 1
+			if(!C.incapacitated() && (direction & WEST))
+				return FALSE
 
 /obj/machinery/line_nexter/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()

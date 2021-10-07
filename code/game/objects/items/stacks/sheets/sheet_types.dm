@@ -32,6 +32,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("metal rod", /obj/item/stack/rods, 1, 4, 60), \
 	null, \
 	new/datum/stack_recipe("barbed wire", /obj/item/stack/barbed_wire, 2, 1, 20, time = 1 SECONDS, skill_req = SKILL_CONSTRUCTION_METAL), \
+	new/datum/stack_recipe("razor wire", /obj/item/stack/razorwire, 3, 1, 20, time = 5 SECONDS, skill_req = SKILL_CONSTRUCTION_METAL), \
 	new/datum/stack_recipe("metal barricade", /obj/structure/barricade/metal, 4, time = 8 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_METAL), \
 	new/datum/stack_recipe("computer frame", /obj/structure/computerframe, 5, time = 2.5 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_MASTER), \
 	new/datum/stack_recipe("wall girder", /obj/structure/girder, 8, time = 10 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_ADVANCED), \
@@ -69,6 +70,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	desc = "Sheets made out of metal. It has been dubbed Metal Sheets."
 	singular_name = "metal sheet"
 	icon_state = "sheet-metal"
+	flags_item = NOBLUDGEON
 	materials = list(/datum/material/metal = 4000)
 	throwforce = 14.0
 	flags_atom = CONDUCT
@@ -104,6 +106,7 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	desc = "This sheet is an alloy of iron and phoron."
 	icon_state = "sheet-plasteel"
 	item_state = "sheet-metal"
+	flags_item = NOBLUDGEON
 	materials = list(/datum/material/metal = 7500)
 	throwforce = 15.0
 	flags_atom = CONDUCT
@@ -193,6 +196,37 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 		new/datum/stack_recipe("red folder", /obj/item/folder/red), \
 		new/datum/stack_recipe("white folder", /obj/item/folder/white), \
 		new/datum/stack_recipe("yellow folder", /obj/item/folder/yellow), \
+		)), \
+	null, \
+	new/datum/stack_recipe_list("pistol boxes",list( \
+		new/datum/stack_recipe("TP-14 mag box", /obj/item/storage/box/visual/magazine/compact/standard_pistol), \
+		new/datum/stack_recipe("TP-23 mag box", /obj/item/storage/box/visual/magazine/compact/standard_heavypistol), \
+		new/datum/stack_recipe("TP-44 mag box", /obj/item/storage/box/visual/magazine/compact/standard_revolver), \
+		new/datum/stack_recipe("TP-17 mag box", /obj/item/storage/box/visual/magazine/compact/standard_pocketpistol), \
+		new/datum/stack_recipe("88M4 mag box", /obj/item/storage/box/visual/magazine/compact/vp70), \
+		new/datum/stack_recipe("TX-8 plasma cell box", /obj/item/storage/box/visual/magazine/compact/plasma_pistol), \
+		)), \
+	new/datum/stack_recipe_list("smg boxes",list( \
+		new/datum/stack_recipe("T-90 mag box", /obj/item/storage/box/visual/magazine/compact/standard_smg), \
+		new/datum/stack_recipe("T-19 mag box", /obj/item/storage/box/visual/magazine/compact/standard_machinepistol), \
+		new/datum/stack_recipe("PPSh drum mag box", /obj/item/storage/box/visual/magazine/compact/ppsh), \
+		)), \
+	new/datum/stack_recipe_list("rifle boxes",list( \
+		new/datum/stack_recipe("T-12 mag box", /obj/item/storage/box/visual/magazine/compact/standard_assaultrifle), \
+		new/datum/stack_recipe("T-18 mag box", /obj/item/storage/box/visual/magazine/compact/standard_carbine), \
+		new/datum/stack_recipe("TX-11 mag box", /obj/item/storage/box/visual/magazine/compact/tx11), \
+		new/datum/stack_recipe("TE cell box", /obj/item/storage/box/visual/magazine/compact/lasrifle/marine), \
+		new/datum/stack_recipe("TX-15 mag box", /obj/item/storage/box/visual/magazine/compact/tx15), \
+		)), \
+	new/datum/stack_recipe_list("marksmen rifle boxes",list( \
+		new/datum/stack_recipe("T-37 mag box", /obj/item/storage/box/visual/magazine/compact/standard_dmr), \
+		new/datum/stack_recipe("T-64 mag box", /obj/item/storage/box/visual/magazine/compact/standard_br), \
+		new/datum/stack_recipe("TL-127 mag box", /obj/item/storage/box/visual/magazine/compact/chamberedrifle), \
+		new/datum/stack_recipe("Mosin packet box", /obj/item/storage/box/visual/magazine/compact/mosin), \
+		)), \
+	new/datum/stack_recipe_list("machinegun boxes",list( \
+		new/datum/stack_recipe("T-42 drum mag box", /obj/item/storage/box/visual/magazine/compact/standard_lmg), \
+		new/datum/stack_recipe("T-60 mag box", /obj/item/storage/box/visual/magazine/compact/standard_gpmg), \
 		)) \
 	))
 

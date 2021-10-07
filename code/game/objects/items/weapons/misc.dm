@@ -11,7 +11,7 @@
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
 
 /obj/item/weapon/chainofcommand/suicide_act(mob/user)
-	user.visible_message("<span class='danger'>[user] is strangling [p_them()]self with the [src.name]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	user.visible_message(span_danger("[user] is strangling [p_them()]self with the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
 	return (OXYLOSS)
 
 
@@ -65,7 +65,7 @@
 		setting = 1
 	else
 		setting += 1
-	to_chat(user, "<span class='notice'>You set the [src]'s power level to [setting].</span>")
+	balloon_alert(user, "Power level [setting].")
 
 /obj/item/weapon/powerfist/AltClick(mob/user)
 	if(!can_interact(user))
@@ -76,53 +76,65 @@
 		return ..()
 	TOGGLE_BITFIELD(flags_item, NODROP)
 	if(CHECK_BITFIELD(flags_item, NODROP))
-		to_chat(user, "<span class='warning'>You feel the [src] clamp shut around your hand!</span>")
+		to_chat(user, span_warning("You feel the [src] clamp shut around your hand!"))
 		playsound(user, 'sound/weapons/fistclamp.ogg', 25, 1, 7)
 	else
-		to_chat(user, "<span class='notice'>You feel the [src] loosen around your hand!</span>")
+		to_chat(user, span_notice("You feel the [src] loosen around your hand!"))
 		playsound(user, 'sound/weapons/fistunclamp.ogg', 25, 1, 7)
 
 
 
 /obj/item/weapon/powerfist/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!cell)
-		to_chat(user, "<span class='warning'>\The [src] can't operate without a source of power!</span>")
+		to_chat(user, span_warning("\The [src] can't operate without a source of power!"))
 		return
-	var/powerused = setting*100
+
+	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
+		return
+
+	var/powerused = setting * 30
 	if(powerused >= cell.charge)
-		to_chat(user, "<span class='warning'>\The [src]'s cell doesn't have enough power!</span>")
+		to_chat(user, span_warning("\The [src]'s cell doesn't have enough power!"))
 		M.apply_damage((force/5), BRUTE)
 		playsound(loc, 'sound/weapons/punch1.ogg', 50, TRUE)
-		M.visible_message("<span class='danger'>[user]'s powerfist lets out a dull thunk as they punch [M.name]!</span>", \
-			"<span class='userdanger'>[user] punches you!</span>")
+		M.visible_message(span_danger("[user]'s powerfist lets out a dull thunk as they punch [M.name]!"), \
+			span_userdanger("[user] punches you!"))
 		return ..()
 	M.apply_damage(force * setting, BRUTE)
-	M.visible_message("<span class='danger'>[user]'s powerfist shudders as they punch [M.name], flinging them away!</span>", \
-		"<span class='userdanger'>You [user]'s punch flings you backwards!</span>")
+	M.visible_message(span_danger("[user]'s powerfist shudders as they punch [M.name], flinging them away!"), \
+		span_userdanger("You [user]'s punch flings you backwards!"))
 	playsound(loc, 'sound/weapons/energy_blast.ogg', 50, TRUE)
 	playsound(loc, 'sound/weapons/genhit2.ogg', 50, TRUE)
 	var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
-	M.throw_at(throw_target, 5 * setting, 0.5 + (setting / 2))
+	var/throw_distance = setting * LERP(5 , 2, M.mob_size / MOB_SIZE_BIG)
+	M.throw_at(throw_target, throw_distance, 0.5 + (setting / 2))
 	cell.charge -= powerused
 	return ..()
 
 /obj/item/weapon/powerfist/attackby(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/cell))
 		return ..()
-	if(cell)
-		to_chat(user, "<span class='warning'>There already is a cell installed!</span>")
+	if(!istype(I, /obj/item/cell/lasgun))
+		to_chat(user, span_warning("The powerfist only accepts lasgun cells!"))
 		return
+	if(cell)
+		unload(user)
 	user.transferItemToLoc(I,src)
 	cell = I
-	to_chat(user, "<span class='notice'>You insert the [I] into the [src].</span>")
+	to_chat(user, span_notice("You insert the [I] into the [src]."))
 
 /obj/item/weapon/powerfist/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
 		return TRUE
 	if(!cell)
-		to_chat(user, "<span class='notice'>There is no cell installed!</span>")
+		to_chat(user, span_notice("There is no cell installed!"))
 		return TRUE
+	unload(user)
+	to_chat(user, span_notice("You pop open the cover and remove the cell."))
+	return TRUE
+
+/// Remove the cell from the powerfist
+/obj/item/weapon/powerfist/proc/unload(mob/user)
 	user.dropItemToGround(cell)
 	cell = null
-	to_chat(user, "<span class='notice'>You pop open the cover and remove the cell.</span>")
-	return TRUE
+	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, TRUE)

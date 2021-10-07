@@ -31,6 +31,8 @@
 	var/printing = FALSE
 	///When we reach max progress and get the points
 	var/printing_complete = FALSE
+	///What faction has launched the intel process
+	var/faction = FACTION_TERRAGOV
 
 
 /obj/machinery/computer/intel_computer/Initialize()
@@ -47,7 +49,7 @@
 		STOP_PROCESSING(SSmachines, src)
 		printing = FALSE
 		printing_complete = TRUE
-		SSpoints.supply_points += supply_reward
+		SSpoints.supply_points[faction] += supply_reward
 		SSpoints.dropship_points += dropship_reward
 		priority_announce("Classified transmission recieved from [get_area(src)]. Bonus delivered as [supply_reward] supply points and [dropship_reward] dropship points.", title = "TGMC Intel Division")
 
@@ -58,7 +60,7 @@
 
 /obj/machinery/computer/intel_computer/interact(mob/user)
 	if(!active)
-		to_chat(user, "<span class='notice'> This terminal has nothing of use on it.</span>")
+		to_chat(user, span_notice(" This terminal has nothing of use on it."))
 		return
 	return ..()
 
@@ -78,7 +80,7 @@
 
 	return data
 
-/obj/machinery/computer/intel_computer/ui_act(action, list/params)
+/obj/machinery/computer/intel_computer/ui_act(action, list/params, datum/tgui/ui)
 	. = ..()
 	if(.)
 		return
@@ -91,5 +93,7 @@
 			. = TRUE
 		if("start_progressing")
 			printing = TRUE
+			var/mob/living/ui_user = ui.user
+			faction = ui_user.faction
 			START_PROCESSING(SSmachines, src)
 	update_icon()

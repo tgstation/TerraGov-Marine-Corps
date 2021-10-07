@@ -47,9 +47,9 @@
 		if(D.id_tag == src.id)
 			if(specialfunctions & OPEN)
 				if (D.density)
-					INVOKE_ASYNC(D, /obj/machinery/door.proc/open)
+					D.open()
 				else
-					INVOKE_ASYNC(D, /obj/machinery/door.proc/close)
+					D.close()
 			if(desiredstate == 1)
 				if(specialfunctions & IDSCAN)
 					D.aiDisabledIdScanner = 1
@@ -74,9 +74,9 @@
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == id)
 			if(M.density)
-				INVOKE_ASYNC(M, /obj/machinery/door/.proc/open)
+				M.open()
 			else
-				INVOKE_ASYNC(M, /obj/machinery/door/.proc/close)
+				M.close()
 
 /obj/machinery/door_control/attack_hand(mob/living/user)
 	. = ..()
@@ -85,11 +85,11 @@
 	if(istype(user,/mob/living/carbon/xenomorph))
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(user, "<span class='warning'>[src] doesn't seem to be working.</span>")
+		to_chat(user, span_warning("[src] doesn't seem to be working."))
 		return
 
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access Denied</span>")
+		to_chat(user, span_warning("Access Denied"))
 		flick("doorctrl-denied",src)
 		return
 
@@ -115,7 +115,7 @@
 	pressed = FALSE
 	update_icon()
 
-/obj/machinery/door_control/update_icon()
+/obj/machinery/door_control/update_icon_state()
 	if(machine_stat & NOPOWER)
 		icon_state = "doorctrl-p"
 	else if(pressed)
@@ -146,18 +146,18 @@
 
 	use_power(active_power_usage)
 
-	active = 1
+	active = TRUE
 	icon_state = "launcheract"
 
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
-		if(M.id == src.id)
-			INVOKE_ASYNC(M, /obj/machinery/door.proc/open)
+		if(M.id == id)
+			M.open()
 
 	sleep(50)
 
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
-		if(M.id == src.id)
-			INVOKE_ASYNC(M, /obj/machinery/door.proc/close)
+		if(M.id == id)
+			M.close()
 
 	icon_state = "launcherbtt"
 	active = 0
@@ -216,9 +216,17 @@
 	id = "cic_lockdown"
 	req_one_access = list(ACCESS_MARINE_BRIDGE)
 
+/obj/machinery/door_control/mainship/cic/rebel
+	id = "cic_lockdown_rebel"
+	req_one_access = list(ACCESS_MARINE_BRIDGE_REBEL)
+
 /obj/machinery/door_control/mainship/cic/armory
 	name = "Armory Lockdown"
 	id = "cic_armory"
+
+/obj/machinery/door_control/mainship/cic/armory/rebel
+	id = "cic_armory_armory"
+	req_one_access = list(ACCESS_MARINE_BRIDGE_REBEL)
 
 /obj/machinery/door_control/mainship/cic/hangar
 	name = "Hangar Lockdown"
@@ -229,6 +237,16 @@
 	id = "tcomms"
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE)
 
+/obj/machinery/door_control/mainship/tcomms/rebel
+	id = "tcomms_rebel"
+	req_one_access = list(ACCESS_MARINE_ENGINEERING_REBEL, ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_BRIDGE_REBEL)
+
+/obj/machinery/door_control/mainship/engineering/armory
+	name = "Engineering Armory Lockdown"
+	id = "engi_armory"
+	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE)
+
+
 /obj/machinery/door_control/mainship/corporate
 	name = "Privacy Shutters"
 	id = "cl_shutters"
@@ -238,6 +256,10 @@
 	name = "RO Line Shutters"
 	id = "ROlobby"
 	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
+
+/obj/machinery/door_control/mainship/req/rebel
+	id = "ROlobby_rebel"
+	req_one_access = list(ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_LOGISTICS_REBEL)
 
 /obj/machinery/door_control/mainship/req/ro1
 	name = "RO Line 1 Shutters"

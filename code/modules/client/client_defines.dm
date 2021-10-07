@@ -2,7 +2,6 @@
 	parent_type = /datum // black magic
 	preload_rsc = PRELOAD_RSC // This is 0 so we can set it to an URL once the player logs in and have them download the resources from a different server.
 	view = WORLD_VIEW
-	var/datum/chatOutput/chatOutput //Goonchat holder
 	var/datum/tooltip/tooltips
 
 	//Admin related
@@ -18,6 +17,8 @@
 	//Preferences related
 	var/datum/preferences/prefs 	= null
 	var/inprefs = FALSE
+	///remembers what our context menu setting is currently set to
+	var/shift_to_open_context_menu = TRUE
 
 
 	//Mob related
@@ -36,9 +37,6 @@
 	var/mouse_down_icon = null
 	var/click_intercepted = FALSE //Check if current click was intercepted. Reset and return if TRUE. This is because there's no communication between Click(), MouseDown() and MouseUp().
 
-	//Sound related
-	var/played = FALSE
-
 	//Security related
 	var/list/topiclimiter
 	var/list/clicklimiter
@@ -50,6 +48,8 @@
 	var/middragtime = 0 //MMB exploit detection
 	var/atom/middragatom //MMB exploit detection
 
+	/// datum wrapper for client view
+	var/datum/view_data/view_size
 
 	//Database related
 	var/player_age = -1	//Used to determine how old the account is - in days.
@@ -82,6 +82,20 @@
 	///custom movement keys for this client
 	var/list/movement_keys = list()
 
+	var/list/parallax_layers
+	var/list/parallax_layers_cached
+	var/atom/movable/movingmob
+	var/turf/previous_turf
+	///world.time of when we can state animate()ing parallax again
+	var/dont_animate_parallax
+	///world.time of last parallax update
+	var/last_parallax_shift
+	///ds between parallax updates
+	var/parallax_throttle = 0
+	var/parallax_movedir = 0
+	var/parallax_layers_max = 4
+	var/parallax_animate_timer
+
 	/**
 	 * Assoc list with all the active maps - when a screen obj is added to
 	 * a map, it's put in here as well.
@@ -94,3 +108,4 @@
 	var/list/seen_messages
 
 	show_popup_menus = TRUE // right click menu no longer shows up
+	control_freak = CONTROL_FREAK_MACROS

@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - bugfix: "needhelp emote is now activated with needhelp instead of heedhelp (N instead of H)"

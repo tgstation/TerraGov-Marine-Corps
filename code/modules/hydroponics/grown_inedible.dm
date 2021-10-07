@@ -53,7 +53,7 @@
 	if(I.sharp != IS_SHARP_ITEM_BIG)
 		return
 
-	user.show_message("<span class='notice'>You make planks out of \the [src]!</span>", 1)
+	user.show_message(span_notice("You make planks out of \the [src]!"), 1)
 	var/obj/item/stack/sheet/wood/NG = new(user.loc, 2)
 	NG.add_to_stacks(user)
 	qdel(src)
@@ -65,7 +65,7 @@
 	desc = "It's beautiful! A certain person might beat you to death if you trample these."
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "sunflower"
-	damtype = "fire"
+	damtype = BURN
 	force = 0
 	flags_atom = NONE
 	throwforce = 1
@@ -83,7 +83,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	name = "nettle"
 	icon_state = "nettle"
-	damtype = "fire"
+	damtype = BURN
 	force = 15
 	flags_atom = NONE
 	throwforce = 1
@@ -101,7 +101,7 @@
 
 /obj/item/grown/nettle/pickup(mob/living/carbon/human/user as mob)
 	if(istype(user) && !user.gloves)
-		to_chat(user, "<span class='warning'>The nettle burns your bare hand!</span>")
+		to_chat(user, span_warning("The nettle burns your bare hand!"))
 		if(ishuman(user))
 			var/organ = ((user.hand ? "l_":"r_") + "arm")
 			var/datum/limb/affecting = user.get_limb(organ)
@@ -137,7 +137,7 @@
 
 	if(..() && prob(50))
 		user.Unconscious(10 SECONDS)
-		to_chat(user, "<span class='warning'>You are stunned by the deathnettle when you try picking it up!</span>")
+		to_chat(user, span_warning("You are stunned by the deathnettle when you try picking it up!"))
 
 /obj/item/grown/nettle/attack(mob/living/carbon/M as mob, mob/user as mob)
 
@@ -150,7 +150,7 @@
 	if(!..()) return
 
 	if(isliving(M))
-		to_chat(M, "<span class='warning'>You are stunned by the powerful acid of the deathnettle!</span>")
+		to_chat(M, span_warning("You are stunned by the powerful acid of the deathnettle!"))
 
 		log_combat(user, M, "hit", src)
 
@@ -174,6 +174,6 @@
 	. = ..()
 
 	if(I.sharp == IS_SHARP_ITEM_ACCURATE)
-		to_chat(user, "<span class='notice'>You use [I] to fashion a pipe out of the corn cob!</span>")
+		to_chat(user, span_notice("You use [I] to fashion a pipe out of the corn cob!"))
 		new /obj/item/clothing/mask/cigarette/pipe/cobpipe(user.loc)
 		qdel(src)

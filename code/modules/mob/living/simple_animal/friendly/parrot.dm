@@ -1,10 +1,10 @@
-#define PARROT_PERCH	(1<<0)	//Sitting/sleeping, not moving
-#define PARROT_SWOOP	(1<<1)	//Moving towards or away from a target
-#define PARROT_WANDER	(1<<2)	//Moving without a specific target in mind
-#define PARROT_STEAL	(1<<3)	//Flying towards a target to steal it/from it
-#define PARROT_ATTACK	(1<<4)	//Flying towards a target to attack it
-#define PARROT_RETURN	(1<<5)	//Flying towards its perch
-#define PARROT_FLEE		(1<<6)	//Flying away from its attacker
+#define PARROT_PERCH (1<<0)	//Sitting/sleeping, not moving
+#define PARROT_SWOOP (1<<1)	//Moving towards or away from a target
+#define PARROT_WANDER (1<<2)	//Moving without a specific target in mind
+#define PARROT_STEAL (1<<3)	//Flying towards a target to steal it/from it
+#define PARROT_ATTACK (1<<4)	//Flying towards a target to attack it
+#define PARROT_RETURN (1<<5)	//Flying towards its perch
+#define PARROT_FLEE (1<<6)	//Flying away from its attacker
 
 
 /mob/living/simple_animal/parrot
@@ -110,7 +110,7 @@
 /mob/living/simple_animal/parrot/radio(message, message_mode, list/spans, language) //literally copied from human/radio(), but there's no other way to do this. at least it's better than it used to be.
 	. = ..()
 	if(. != 0)
-		return .
+		return
 
 	switch(message_mode)
 		if(MODE_HEADSET)
@@ -154,7 +154,7 @@
 		switch(remove_from)
 			if("ears")
 				if(!ears)
-					to_chat(usr, "<span class='warning'>There is nothing to remove from its [remove_from]!</span>")
+					to_chat(usr, span_warning("There is nothing to remove from its [remove_from]!"))
 					return
 				if(!stat)
 					say("[available_channels.len ? "[pick(available_channels)] " : null]BAWWWWWK LEAVE THE HEADSET BAWKKKKK!")
@@ -168,12 +168,12 @@
 	else if(href_list["add_inv"])
 		var/add_to = href_list["add_inv"]
 		if(!usr.get_active_held_item())
-			to_chat(usr, "<span class='warning'>You have nothing in your hand to put on its [add_to]!</span>")
+			to_chat(usr, span_warning("You have nothing in your hand to put on its [add_to]!"))
 			return
 		switch(add_to)
 			if("ears")
 				if(ears)
-					to_chat(usr, "<span class='warning'>It's already wearing something!</span>")
+					to_chat(usr, span_warning("It's already wearing something!"))
 					return
 				else
 					var/obj/item/item_to_add = usr.get_active_held_item()
@@ -181,7 +181,7 @@
 						return
 
 					if( !istype(item_to_add,  /obj/item/radio/headset) )
-						to_chat(usr, "<span class='warning'>This object won't fit!</span>")
+						to_chat(usr, span_warning("This object won't fit!"))
 						return
 
 					var/obj/item/radio/headset/headset_to_add = item_to_add
@@ -189,7 +189,7 @@
 					if(!usr.transferItemToLoc(headset_to_add, src))
 						return
 					ears = headset_to_add
-					to_chat(usr, "<span class='notice'>You fit the headset onto [src].</span>")
+					to_chat(usr, span_notice("You fit the headset onto [src]."))
 
 					clearlist(available_channels)
 					for(var/ch in headset_to_add.channels)
@@ -235,11 +235,6 @@
 			drop_held_item(0)
 	if(stat != DEAD && user.a_intent == INTENT_HELP)
 		handle_automated_speech(1) //assured speak/emote
-
-
-/mob/living/simple_animal/parrot/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
-
 
 /mob/living/simple_animal/parrot/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	return attack_hand(X)
@@ -401,7 +396,7 @@
 			if(!isliving(parrot_interest) && (!parrot_perch || parrot_interest.loc != parrot_perch.loc))
 				held_item = parrot_interest
 				parrot_interest.forceMove(src)
-				visible_message("[src] grabs [held_item]!", "<span class='notice'>You grab [held_item]!</span>", "<span class='italics'>You hear the sounds of wings flapping furiously.</span>")
+				visible_message("[src] grabs [held_item]!", span_notice("You grab [held_item]!"), span_italics("You hear the sounds of wings flapping furiously."))
 
 			parrot_interest = null
 			parrot_state = PARROT_SWOOP|PARROT_RETURN
@@ -485,7 +480,7 @@
 
 		held_item = I
 		I.forceMove(src)
-		visible_message("[src] grabs [held_item]!", "<span class='notice'>You grab [held_item]!</span>", "<span class='italics'>You hear the sounds of wings flapping furiously.</span>")
+		visible_message("[src] grabs [held_item]!", span_notice("You grab [held_item]!"), span_italics("You hear the sounds of wings flapping furiously."))
 		return held_item
 
 

@@ -108,8 +108,9 @@ SUBSYSTEM_DEF(explosions)
 	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flame_range, throw_range)
 	var/started_at = REALTIMEOFDAY
 	if(adminlog)
-		message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [ADMIN_VERBOSEJMP(epicenter)]")
 		log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [loc_name(epicenter)]")
+		if(is_mainship_level(epicenter.z))
+			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [ADMIN_VERBOSEJMP(epicenter)]")
 
 	// Play sounds; we want sounds to be different depending on distance so we will manually do it ourselves.
 	// Stereo users will also hear the direction of the explosion!
@@ -189,11 +190,11 @@ SUBSYSTEM_DEF(explosions)
 	else
 		if(flame_range > 0) //this proc shouldn't be used for flames only, but here we are
 			if(usr)
-				to_chat(usr, "<span class='narsiesmall'>Please don't use explosions for flames-only, use flame_radius()</span>")
+				to_chat(usr, span_narsiesmall("Please don't use explosions for flames-only, use flame_radius()"))
 			flameturf += turfs_in_range
 		if(throw_range > 0) //admemes, what have you done
 			if(usr)
-				to_chat(usr, "<span class='narsie'>Stop using explosions for memes!</span>")
+				to_chat(usr, span_narsie("Stop using explosions for memes!"))
 			for(var/t in turfs_in_range)
 				var/turf/throw_turf = t
 				throwTurf[throw_turf] += list(epicenter)
@@ -421,6 +422,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 				var/atom/movable/thing_to_throw = am
 				if(thing_to_throw.anchored || thing_to_throw.move_resist == INFINITY)
 					continue
+
 				for(var/throw_source in throw_turf[affected_turf])
 					thing_to_throw.throw_at(
 						get_ranged_target_turf(

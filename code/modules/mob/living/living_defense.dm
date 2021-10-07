@@ -68,14 +68,14 @@
 			miss_chance = min(15*(distance-2), 0)
 
 		if (prob(miss_chance))
-			visible_message("<span class='notice'> \The [O] misses [src] narrowly!</span>", null, null, 5)
+			visible_message(span_notice(" \The [O] misses [src] narrowly!"), null, null, 5)
 			return
 
-		src.visible_message("<span class='warning'> [src] has been hit by [O].</span>", null, null, 5)
+		src.visible_message(span_warning(" [src] has been hit by [O]."), null, null, 5)
 		var/armor = run_armor_check(null, "melee")
 
 		if(armor < 1)
-			apply_damage(throw_damage, dtype, null, armor, is_sharp(O), has_edge(O))
+			apply_damage(throw_damage, dtype, null, armor, is_sharp(O), has_edge(O), TRUE)
 
 		if(O.item_fire_stacks)
 			fire_stacks += O.item_fire_stacks
@@ -96,7 +96,7 @@
 			var/momentum = speed/2
 			var/dir = get_dir(O.throw_source, src)
 
-			visible_message("<span class='warning'> [src] staggers under the impact!</span>","<span class='warning'> You stagger under the impact!</span>", null, 5)
+			visible_message(span_warning(" [src] staggers under the impact!"),span_warning(" You stagger under the impact!"), null, 5)
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 			if(!W || !src) return
@@ -128,12 +128,16 @@
 
 //Mobs on Fire
 /mob/living/proc/IgniteMob()
+	if(status_flags & GODMODE) //Invulnerable mobs don't get ignited
+		return FALSE
+	if(HAS_TRAIT(src, TRAIT_NON_FLAMMABLE))
+		return FALSE
 	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 		return FALSE
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = TRUE
 		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)
-		to_chat(src, "<span class='danger'>You are on fire! Use Resist to put yourself out!</span>")
+		to_chat(src, span_danger("You are on fire! Use Resist to put yourself out!"))
 		update_fire()
 		return TRUE
 
@@ -144,8 +148,10 @@
 			emote("scream")
 
 /mob/living/carbon/xenomorph/IgniteMob()
+	if(fire_resist_modifier <= -1)	//having high fire resist makes you immune
+		return
 	. = ..()
-	if(!. || fire_resist_modifier <= -1)	//having high fire resist makes you immune
+	if(!.)
 		return
 	var/fire_light = min(fire_stacks,5)
 	if(fire_light > fire_luminosity) // light up xenos if new light source thats bigger hits them
@@ -186,6 +192,8 @@
 	return
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
+	if(status_flags & GODMODE) //Invulnerable mobs don't get fire stacks
+		return
 	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
@@ -211,16 +219,16 @@
 
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/open/floor/plating/ground/snow))
-		visible_message("<span class='danger'>[src] rolls in the snow, putting themselves out!</span>", \
-		"<span class='notice'>You extinguish yourself in the snow!</span>", null, 5)
+		visible_message(span_danger("[src] rolls in the snow, putting themselves out!"), \
+		span_notice("You extinguish yourself in the snow!"), null, 5)
 		ExtinguishMob()
 		return
 
-	visible_message("<span class='danger'>[src] rolls on the floor, trying to put themselves out!</span>", \
-	"<span class='notice'>You stop, drop, and roll!</span>", null, 5)
+	visible_message(span_danger("[src] rolls on the floor, trying to put themselves out!"), \
+	span_notice("You stop, drop, and roll!"), null, 5)
 	if(fire_stacks <= 0)
-		visible_message("<span class='danger'>[src] has successfully extinguished themselves!</span>", \
-		"<span class='notice'>You extinguish yourself.</span>", null, 5)
+		visible_message(span_danger("[src] has successfully extinguished themselves!"), \
+		span_notice("You extinguish yourself."), null, 5)
 		ExtinguishMob()
 
 
@@ -235,27 +243,23 @@
 		if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
 			smokecloak_off()
 		return
-	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
-		smokecloak_on()
-	if(smoke_delay)
-		return FALSE
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO) && (stat == DEAD || isnestedhost(src)))
 		return FALSE
-	smoke_delay = TRUE
-	addtimer(CALLBACK(src, .proc/remove_smoke_delay), 10)
+	if(LAZYACCESS(smoke_delays, S.type) > world.time)
+		return FALSE
+	LAZYSET(smoke_delays, S.type, world.time + S.minimum_effect_delay)
 	smoke_contact(S)
 
-/mob/living/proc/remove_smoke_delay()
-	smoke_delay = FALSE
-
 /mob/living/proc/smoke_contact(obj/effect/particle_effect/smoke/S)
-	var/protection = max(1 - get_permeability_protection() * S.bio_protection)
+	var/protection = max(1 - get_permeability_protection() * S.bio_protection, 0)
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_EXTINGUISH))
+		ExtinguishMob()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
 		adjustFireLoss(15 * protection)
-		to_chat(src, "<span class='danger'>It feels as if you've been dumped into an open fire!</span>")
+		to_chat(src, span_danger("It feels as if you've been dumped into an open fire!"))
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
 		if(prob(25 * protection))
-			to_chat(src, "<span class='danger'>Your skin feels like it is melting away!</span>")
+			to_chat(src, span_danger("Your skin feels like it is melting away!"))
 		adjustFireLoss(S.strength * rand(20, 23) * protection)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, TOUCH, S.fraction)

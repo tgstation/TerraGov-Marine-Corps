@@ -15,8 +15,8 @@
 #define INSTRUMENT_MAX_TOTAL_SUSTAIN (5 SECONDS)
 
 /// These are per decisecond.
-#define INSTRUMENT_EXP_FALLOFF_MIN			1.025		//100/(1.025^50) calculated for [INSTRUMENT_MIN_SUSTAIN_DROPOFF] to be 30.
-#define INSTRUMENT_EXP_FALLOFF_MAX			10
+#define INSTRUMENT_EXP_FALLOFF_MIN 1.025		//100/(1.025^50) calculated for [INSTRUMENT_MIN_SUSTAIN_DROPOFF] to be 30.
+#define INSTRUMENT_EXP_FALLOFF_MAX 10
 
 /// Minimum volume for when the sound is considered dead.
 #define INSTRUMENT_MIN_SUSTAIN_DROPOFF 0

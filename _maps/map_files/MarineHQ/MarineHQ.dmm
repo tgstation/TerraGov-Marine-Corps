@@ -170,7 +170,7 @@
 	dir = 2
 	},
 /obj/machinery/shower{
-	pixel_z = 15
+	pixel_y = 15
 	},
 /obj/item/tool/soap,
 /turf/open/floor/plating/plating_catwalk,
@@ -211,7 +211,7 @@
 	dir = 2
 	},
 /obj/machinery/shower{
-	pixel_z = 15
+	pixel_y = 15
 	},
 /obj/item/tool/soap,
 /turf/open/floor/plating/plating_catwalk,
@@ -506,7 +506,7 @@
 	dir = 2
 	},
 /obj/machinery/shower{
-	pixel_z = 15
+	pixel_y = 15
 	},
 /obj/item/tool/soap,
 /turf/open/floor/plating/plating_catwalk,
@@ -817,7 +817,7 @@
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/captain_mess)
 "cZ" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "da" = (
@@ -1246,8 +1246,8 @@
 "eu" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_w = -9;
-	pixel_z = 1
+	pixel_x = -9;
+	pixel_y = 1
 	},
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/captain_mess)
@@ -1849,7 +1849,7 @@
 /area/mainship/hallways/hangar)
 "gm" = (
 /obj/structure/table/mainship,
-/obj/item/toy/farwadoll,
+/obj/item/toy/plush/farwa,
 /turf/open/floor/wood,
 /area/mainship/squads/req)
 "gn" = (
@@ -2130,7 +2130,7 @@
 "hb" = (
 /obj/structure/cable,
 /obj/structure/bed/chair/sofa/right,
-/obj/item/toy/farwadoll,
+/obj/item/toy/plush/farwa,
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
 "hc" = (
@@ -2335,7 +2335,7 @@
 /turf/open/floor/plating,
 /area/mainship/living/grunt_rnr)
 "hP" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "hQ" = (
@@ -2665,9 +2665,6 @@
 	dir = 8;
 	name = "\improper Extended Operations Bunks"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
 "iV" = (
@@ -2859,8 +2856,7 @@
 "jG" = (
 /obj/structure/cable,
 /obj/machinery/power/terminal{
-	dir = 8;
-	icon_state = "term"
+	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
 	dir = 5
@@ -3073,8 +3069,8 @@
 "ky" = (
 /obj/structure/sink/bathroom{
 	dir = 8;
-	pixel_w = 12;
-	pixel_z = 2
+	pixel_x = 12;
+	pixel_y = 2
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/living/grunt_rnr)
@@ -3538,7 +3534,7 @@
 "lW" = (
 /obj/structure/toilet{
 	dir = 4;
-	pixel_z = 7
+	pixel_y = 7
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -3848,9 +3844,11 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/door/window/southleft,
+/obj/machinery/door/window{
+	dir = 2
+	},
 /turf/open/floor/mainship/plate,
-/area/mainship/living/offices)
+/area/mainship/command/cic)
 "mO" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -3882,10 +3880,10 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/obj/structure/disposalpipe/junction/flipped{
-	dir = 4
-	},
 /obj/effect/landmark/start/job/synthetic,
+/obj/structure/disposalpipe/junction/yjunc{
+	dir = 1
+	},
 /turf/open/floor/mainship/plate,
 /area/mainship/command/cic)
 "mU" = (
@@ -3901,7 +3899,7 @@
 "nb" = (
 /obj/structure/toilet{
 	dir = 4;
-	pixel_z = 7
+	pixel_y = 7
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -4022,8 +4020,7 @@
 /area/mainship/living/starboard_emb)
 "qa" = (
 /obj/structure/toilet{
-	dir = 8;
-	icon_state = "toilet00"
+	dir = 8
 	},
 /obj/machinery/light/small{
 	dir = 4
@@ -4260,9 +4257,8 @@
 "rH" = (
 /obj/structure/sink/bathroom{
 	dir = 8;
-	icon_state = "sink3";
-	pixel_w = 12;
-	pixel_z = 2
+	pixel_x = 12;
+	pixel_y = 2
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/living/commandbunks)
@@ -4307,14 +4303,13 @@
 "rT" = (
 /obj/machinery/door_control{
 	id = 999;
-	pixel_z = 8
+	pixel_y = 8
 	},
 /turf/closed/wall,
 /area/mainship/squads/alpha)
 "rZ" = (
 /obj/structure/toilet{
-	dir = 1;
-	icon_state = "toilet00"
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/living/commandbunks)
@@ -4853,7 +4848,7 @@
 "wF" = (
 /obj/machinery/door_control{
 	id = 998;
-	pixel_z = 8
+	pixel_y = 8
 	},
 /turf/closed/wall,
 /area/mainship/living/bridgebunks)
@@ -4923,10 +4918,6 @@
 "xe" = (
 /turf/open/floor/mainship/sterile,
 /area/centcom/practice/medical)
-"xf" = (
-/obj/machinery/vending/marine/cargo_ammo,
-/turf/open/floor/mainship/red/full,
-/area/mainship/shipboard/weapon_room)
 "xp" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Garden"
@@ -4934,10 +4925,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/living/starboard_garden)
-"xt" = (
-/obj/effect/landmark/start/job/tankcrewman,
-/turf/open/floor/mainship/green,
-/area/mainship/living/basketball)
 "xu" = (
 /turf/open/floor/mainship/red{
 	dir = 6
@@ -5161,10 +5148,10 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "zm" = (
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
 /obj/structure/table/mainship,
 /obj/item/explosive/grenade/smokebomb,
 /obj/item/explosive/grenade/smokebomb,
@@ -5769,7 +5756,6 @@
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
 "CC" = (
-/obj/machinery/vending/marine_special,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/weapon_room)
 "CD" = (
@@ -5974,8 +5960,7 @@
 /area/mainship/squads/delta)
 "Dn" = (
 /obj/structure/toilet{
-	dir = 1;
-	icon_state = "toilet00"
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/living/tankerbunks)
@@ -5987,7 +5972,7 @@
 	dir = 2
 	},
 /obj/machinery/shower{
-	pixel_z = 15
+	pixel_y = 15
 	},
 /obj/item/tool/soap,
 /turf/open/floor/plating/plating_catwalk,
@@ -5999,8 +5984,7 @@
 /area/mainship/living/tankerbunks)
 "Dq" = (
 /obj/structure/toilet{
-	dir = 1;
-	icon_state = "toilet00"
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/squads/charlie)
@@ -6024,8 +6008,7 @@
 /area/mainship/squads/charlie)
 "Dt" = (
 /obj/structure/toilet{
-	dir = 1;
-	icon_state = "toilet00"
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/living/pilotbunks)
@@ -6049,8 +6032,7 @@
 /area/mainship/living/pilotbunks)
 "Dw" = (
 /obj/structure/toilet{
-	dir = 1;
-	icon_state = "toilet00"
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/squads/delta)
@@ -6576,8 +6558,7 @@
 /area/mainship/living/grunt_rnr)
 "FN" = (
 /obj/structure/bed/chair/sofa{
-	dir = 4;
-	icon_state = "sofamiddle"
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
@@ -6589,8 +6570,7 @@
 /area/mainship/living/grunt_rnr)
 "FP" = (
 /obj/structure/bed/chair/sofa{
-	dir = 1;
-	icon_state = "sofamiddle"
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
@@ -6621,8 +6601,7 @@
 /area/mainship/living/grunt_rnr)
 "FV" = (
 /obj/structure/bed/chair/sofa{
-	dir = 8;
-	icon_state = "sofamiddle"
+	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
@@ -7669,8 +7648,7 @@
 /area/mainship/hallways/stern_hallway)
 "JZ" = (
 /obj/structure/bed/chair/sofa{
-	dir = 4;
-	icon_state = "sofamiddle"
+	dir = 4
 	},
 /obj/machinery/light{
 	dir = 8
@@ -7995,7 +7973,6 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/centcom/practice/medical)
 "LZ" = (
-/obj/machinery/vending/marine/cargo_guns,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/weapon_room)
 "Ma" = (
@@ -8222,8 +8199,7 @@
 /area/lv624/ground/caves)
 "MN" = (
 /obj/structure/bed/chair{
-	dir = 8;
-	icon_state = "chair"
+	dir = 8
 	},
 /obj/item/radio,
 /turf/open/floor/plating/ground/dirt,
@@ -8445,7 +8421,6 @@
 /turf/open/floor/mainship/green,
 /area/mainship/shipboard/firing_range)
 "PI" = (
-/obj/machinery/vending/marine/cargo_guns,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/shipboard/weapon_room)
 "PJ" = (
@@ -8747,10 +8722,10 @@
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "Tg" = (
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
 /obj/structure/table/mainship,
 /obj/item/explosive/grenade/smokebomb,
 /obj/item/explosive/grenade/smokebomb,
@@ -9167,7 +9142,7 @@
 /turf/open/floor/mainship/sterile/side,
 /area/centcom/practice/medical)
 "XQ" = (
-/obj/machinery/vending/dress_supply,
+/obj/machinery/vending/marine/dress_supply,
 /turf/open/floor/carpet{
 	dir = 9;
 	icon_state = "carpetside"
@@ -35445,9 +35420,9 @@ Ft
 FI
 gD
 Qo
-xf
+LZ
 LC
-xf
+LZ
 RV
 bJ
 bJ
@@ -36941,7 +36916,7 @@ HW
 HW
 If
 HD
-xt
+HJ
 Iy
 aU
 IE
@@ -37949,7 +37924,7 @@ HW
 HW
 If
 HD
-xt
+HJ
 Iy
 pZ
 IL

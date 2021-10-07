@@ -28,16 +28,13 @@
 	var/losebreath = 0
 	var/nutrition = NUTRITION_WELLFED
 
-	var/obj/item/back //Human/Monkey
-	var/obj/item/tank/internal = null//Human/Monkey
+	var/obj/item/back //Human //todo move to human level
+	var/obj/item/tank/internal = null//Human //todo move to human level
 
 	var/blood_type
 	blood_volume = BLOOD_VOLUME_NORMAL
 
 	var/overeatduration = 0		// How long this guy is overeating
-
-	var/afk_timer_id
-	var/afk_status = MOB_DISCONNECTED
 
 	// halucination vars
 	var/hal_screwyhud = SCREWYHUD_NONE

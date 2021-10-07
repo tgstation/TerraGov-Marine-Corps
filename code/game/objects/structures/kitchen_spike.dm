@@ -12,28 +12,26 @@
 	var/meattype = 0 // 0 - Nothing, 1 - Monkey, 2 - Xeno
 
 /obj/structure/kitchenspike
-	attack_paw(mob/user as mob)
-		return src.attack_hand(usr)
 
 	attackby(obj/item/grab/G, mob/user)
 		if(!istype(G, /obj/item/grab))
 			return
 		if(ismonkey(G.grabbed_thing))
-			var/mob/living/carbon/monkey/M = G.grabbed_thing
+			var/mob/living/carbon/human/species/monkey/M = G.grabbed_thing
 			if(!occupied)
 				icon_state = "spikebloody"
 				occupied = 1
 				meat = 5
 				meattype = 1
-				visible_message("<span class='warning'> [user] has forced [M] onto the spike, killing [M.p_them()] instantly!</span>")
+				visible_message(span_warning(" [user] has forced [M] onto the spike, killing [M.p_them()] instantly!"))
 				M.death(TRUE)
 				G.grabbed_thing = null
 				qdel(G)
 
 			else
-				to_chat(user, "<span class='warning'>The spike already has something on it, finish collecting its meat first!</span>")
+				to_chat(user, span_warning("The spike already has something on it, finish collecting its meat first!"))
 		else
-			to_chat(user, "<span class='warning'>They are too big for the spike, try something smaller!</span>")
+			to_chat(user, span_warning("They are too big for the spike, try something smaller!"))
 			return
 
 //	MouseDrop_T(var/atom/movable/C, mob/user)

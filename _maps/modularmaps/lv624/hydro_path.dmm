@@ -33,7 +33,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/main_hall)
 "hJ" = (
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -66,10 +66,15 @@
 /area/lv624/ground/jungle7)
 "md" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 8
 	},
 /turf/closed/gm/dense,
+/area/lv624/ground/compound/ne)
+"mC" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "nL" = (
 /obj/structure/fence,
@@ -177,7 +182,7 @@
 /area/lv624/ground/jungle9)
 "wt" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -275,6 +280,10 @@
 "HZ" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
+"Id" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/ne)
 "IA" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -323,7 +332,7 @@
 	},
 /area/lv624/ground/jungle9)
 "KW" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "Lp" = (
@@ -397,6 +406,11 @@
 /obj/structure/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
+"VM" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/ne)
 "VQ" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
@@ -438,7 +452,7 @@
 /area/lv624/ground/jungle7)
 "Zj" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 4
 	},
 /turf/open/ground/grass,
@@ -456,7 +470,7 @@ pI
 bA
 SX
 HZ
-YD
+VM
 qj
 HZ
 Jv
@@ -711,7 +725,7 @@ AV
 AV
 AV
 AV
-AV
+mC
 sG
 "}
 (13,1,1) = {"
@@ -720,7 +734,7 @@ ps
 bA
 lF
 HZ
-HZ
+Id
 HZ
 HZ
 HZ
@@ -799,7 +813,7 @@ HZ
 HZ
 HZ
 HZ
-HZ
+Id
 EK
 "}
 (17,1,1) = {"
@@ -814,7 +828,7 @@ II
 II
 ZU
 HZ
-HZ
+Id
 HZ
 YD
 HZ

@@ -1,0 +1,5 @@
+author: "chesse20"
+delete-after: True
+changes: 
+  - rscadd: "Grayscale pill bottle and new grayscale pill bottle."
+  - refactor: "Changed all existing pill bottles to grayscale sprites and gave them grayscale numbers, made some different shapes"
