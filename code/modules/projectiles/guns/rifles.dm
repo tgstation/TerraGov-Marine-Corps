@@ -943,7 +943,7 @@
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/stock/t29stock,
-		 /obj/item/attachable/t29barrel,
+		/obj/item/attachable/t29barrel,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
