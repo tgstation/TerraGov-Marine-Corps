@@ -503,3 +503,11 @@
 		if(INTENT_HELP, INTENT_GRAB, INTENT_DISARM) //Disperse
 			for(var/i in 1 to illusion_count)
 				new /mob/illusion/xeno(owner.loc, owner, null, illusion_life_time)
+
+// ***************************************
+// *********** Passive: stagger armor penetration.
+// ***************************************
+/mob/living/carbon/human/attack_alien_harm(mob/living/carbon/xenomorph/hunter/X, list/armor_mod)
+	if(src.stagger >= 1) //src is the slashed human.
+		armor_mod += 8 //this is armor piercing .8 is 8%, 8 is around 25.5%.
+	return ..()
