@@ -72,7 +72,7 @@
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade,
+		/obj/item/weapon/gun/launcher/grenade/m92/underslung,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
 	)
@@ -139,7 +139,7 @@
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade,
+		/obj/item/weapon/gun/launcher/grenade/m92/underslung,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
 	)
@@ -164,7 +164,7 @@
 	placed_overlay_iconstate = "t12"
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
-	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/reddot, /obj/item/attachable/t12barrel, /obj/item/weapon/gun/launcher/grenade/m92/mini_grenade)
+	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/reddot, /obj/item/attachable/t12barrel, /obj/item/weapon/gun/launcher/grenade/m92/underslung)
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle/engineer
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/t12barrel, /obj/item/attachable/angledgrip)
@@ -212,7 +212,7 @@
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade,
+		/obj/item/weapon/gun/launcher/grenade/m92/underslung,
 		/obj/item/attachable/buildasentry,
 	)
 
@@ -277,7 +277,7 @@
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade,
+		/obj/item/weapon/gun/launcher/grenade/m92/underslung,
 		/obj/item/attachable/buildasentry,
 	)
 
@@ -333,13 +333,13 @@
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade,
+		/obj/item/weapon/gun/launcher/grenade/m92/underslung,
 		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	starting_attachment_types = list(/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade)
+	starting_attachment_types = list(/obj/item/weapon/gun/launcher/grenade/m92/underslung)
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 17, "rail_y" = 20, "under_x" = 27, "under_y" = 14, "stock_x" = 9, "stock_y" = 15)
 
 	fire_delay = 0.2 SECONDS
@@ -380,12 +380,12 @@
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade,
+		/obj/item/weapon/gun/launcher/grenade/m92/underslung,
 		/obj/item/attachable/buildasentry,
 	)
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 9, "stock_y" = 15)
-	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/rifle, /obj/item/attachable/magnetic_harness, /obj/item/weapon/gun/launcher/grenade/m92/mini_grenade)
+	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/rifle, /obj/item/attachable/magnetic_harness, /obj/item/weapon/gun/launcher/grenade/m92/underslung)
 
 
 	burst_delay = 0.2 SECONDS
@@ -428,7 +428,7 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/m41a, /obj/item/weapon/gun/launcher/grenade/m92/mini_grenade/invisible)
+	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/m41a, /obj/item/weapon/gun/launcher/grenade/m92/underslung/invisible)
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 24, "under_x" = 24, "under_y" = 13, "stock_x" = 21, "stock_y" = 16)
 
 	burst_amount = 4
@@ -515,7 +515,7 @@
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade,
+		/obj/item/weapon/gun/launcher/grenade/m92/underslung,
 		/obj/item/attachable/buildasentry,
 	)
 
@@ -582,7 +582,7 @@
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade,
+		/obj/item/weapon/gun/launcher/grenade/m92/underslung,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -639,7 +639,7 @@
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade,
+		/obj/item/weapon/gun/launcher/grenade/m92/underslung,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -752,7 +752,7 @@
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade,
+		/obj/item/weapon/gun/launcher/grenade/m92/underslung,
 		/obj/item/attachable/buildasentry,
 	)
 
@@ -818,7 +818,7 @@
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade,
+		/obj/item/weapon/gun/launcher/grenade/m92/underslung,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -889,7 +889,7 @@
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade,
+		/obj/item/weapon/gun/launcher/grenade/m92/underslung,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY //Its a shotgun type weapon effectively, most shotgun type weapons shouldn't be able to point blank 1 handed.
@@ -986,7 +986,7 @@
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade,
+		/obj/item/weapon/gun/launcher/grenade/m92/underslung,
 		/obj/item/attachable/motiondetector,
 	)
 
@@ -1246,7 +1246,7 @@
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade,
+		/obj/item/weapon/gun/launcher/grenade/m92/underslung,
 		/obj/item/attachable/motiondetector,
 	)
 

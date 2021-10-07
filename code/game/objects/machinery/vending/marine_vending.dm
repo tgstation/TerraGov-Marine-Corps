@@ -210,7 +210,7 @@
 			/obj/item/weapon/gun/shotgun/combat/masterkey = -1,
 			/obj/item/weapon/gun/flamer/mini_flamer = -1,
 			/obj/item/ammo_magazine/flamer_tank/mini = -1,
-			/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade = -1,
+			/obj/item/weapon/gun/launcher/grenade/m92/underslung = -1,
 			/obj/item/attachable/motiondetector = -1,
 		),
 		"Boxes" = list(
@@ -323,7 +323,7 @@
 			/obj/item/attachable/stock/t35stock = -1,
 			/obj/item/weapon/gun/flamer/mini_flamer = -1,
 			/obj/item/ammo_magazine/flamer_tank/mini = -1,
-			/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade = -1,
+			/obj/item/weapon/gun/launcher/grenade/m92/underslung = -1,
 			/obj/item/attachable/motiondetector = -1,
 
 		),

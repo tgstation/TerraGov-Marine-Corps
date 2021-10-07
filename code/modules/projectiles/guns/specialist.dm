@@ -332,7 +332,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade,
+		/obj/item/weapon/gun/launcher/grenade/m92/underslung,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
@@ -508,7 +508,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	///the maximum number of grenades the grenade launcher can hold
 	var/max_grenades
 	///list of allowed grenade types
-	var/list/grenade_type_allowed = list(/obj/item/explosive/grenade)
+	var/list/grenade_type_allowed = list()
 
 ///proc that handles firing the grenade itself
 /obj/item/weapon/gun/launcher/grenade/proc/fire_grenade(atom/target, mob/user)
@@ -566,6 +566,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	if(length(grenades) >= max_grenades)
 		to_chat(user, span_warning("[src] cannot hold more grenades!"))
 		return
+	if(length(grenade_type_allowed) && !(I in grenade_type_allowed)) //doesn't work yet
+		to_chat(user, span_warning("[src] cannot hold [I]!"))
+		return
 	if(!user.transferItemToLoc(I, src))
 		return
 	grenades += I
@@ -577,17 +580,17 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	return ..()
 
 /obj/item/weapon/gun/launcher/grenade/unload(mob/user)
-	if(length(grenades))
-		var/obj/item/explosive/grenade/nade = grenades[length(grenades)] //Grab the last one.
-		if(user)
-			user.put_in_hands(nade)
-			playsound(user, unload_sound, 25, 1)
-		else
-			nade.loc = get_turf(src)
-		grenades -= nade
-		user.hud_used.update_ammo_hud(user, src)
-	else
+	if(!length(grenades))
 		to_chat(user, span_warning("It's empty!"))
+		return
+	var/obj/item/explosive/grenade/nade = grenades[length(grenades)] //Grab the last one.
+	if(user)
+		user.put_in_hands(nade)
+		playsound(user, unload_sound, 25, 1)
+	else
+		nade.loc = get_turf(src)
+	grenades -= nade
+	user.hud_used.update_ammo_hud(user, src)
 	update_icon()
 	return TRUE
 
@@ -659,7 +662,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	. = ..()
 	grenades.Cut(1,0)
 
-/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade
+/obj/item/weapon/gun/launcher/grenade/m92/underslung
 	name = "underslung grenade launcher"
 	desc = "A weapon-mounted, reloadable, two-shot grenade launcher."
 	icon = 'icons/Marine/marine-weapons.dmi'
@@ -676,18 +679,15 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	pixel_shift_x = 14
 	pixel_shift_y = 18
-	grenade_type_allowed = list(/obj/item/explosive/grenade/incendiary, /obj/item/explosive/grenade/smokebomb, /obj/item/explosive/grenade/phosphorus, \
-	/obj/item/explosive/grenade/impact, /obj/item/explosive/grenade/flare)
+	grenade_type_allowed = list(
+		/obj/item/explosive/grenade/incendiary, 
+		/obj/item/explosive/grenade/smokebomb, 
+		/obj/item/explosive/grenade/phosphorus,
+		/obj/item/explosive/grenade/impact,
+		/obj/item/explosive/grenade/flare,
+	)
 
-/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade/attackby(obj/item/I, mob/user, params)
-	if(!istype(I, /obj/item/explosive/grenade))
-		return
-	if(!(I in grenade_type_allowed))
-		to_chat(user, span_warning("[src] cannot hold [I]!"))
-		return
-	return ..()
-
-/obj/item/weapon/gun/launcher/grenade/m92/mini_grenade/invisible
+/obj/item/weapon/gun/launcher/grenade/m92/underslung/invisible
 	flags_attach_features = NONE
 
 /obj/item/weapon/gun/launcher/grenade/m81
