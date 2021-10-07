@@ -911,6 +911,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	var/end_of_movement = FALSE //In batch moves this loop, only if the projectile stopped.
 	var/turf/last_processed_turf = loc
 	var/list/obj/effect/laser_effects = list()
+	var/first_projectile = TRUE
 	while(!end_of_movement)
 		distance_travelled++
 		//Here we take the projectile's absolute pixel coordinate + the travelled distance and use PROJ_ABS_PIXEL_TO_TURF to first convert it into tile coordinates, and then use those to locate the turf.
@@ -1030,7 +1031,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			ammo.do_at_max_range(src)
 			end_of_movement = TRUE
 			break
-		laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, effect_icon)
+		if(first_projectile)
+			laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, "muzzle_"+effect_icon)
+			first_projectile = FALSE
+		else
+			laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, effect_icon)
 	apx -= 8 * x_offset
 	apy -= 8 * y_offset
 
@@ -1038,7 +1043,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		apx += 0.1
 	if(apy % 32 == 0)
 		apy += 0.1
-	laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 0.5, effect_icon)
+	if(first_projectile)
+		laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, "muzzle_"+effect_icon)
+	laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, "impact_"+effect_icon)
 	QDEL_LIST_IN(laser_effects, 1)
 
 /mob/living/carbon/human/bullet_act(obj/projectile/proj)

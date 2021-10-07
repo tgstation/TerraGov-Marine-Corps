@@ -1488,6 +1488,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 35
 	penetration = 20
 	sundering = 1
+	hitscan_effect_icon = "pu_laser"
 
 /datum/ammo/energy/lasgun/marine/spread
 	name = "additional laser blast"
@@ -1500,7 +1501,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 35
 	penetration = 20
 	sundering = 1
-	hitscan_effect_icon = "eye"
+	hitscan_effect_icon = "pu_laser"
 
 /datum/ammo/energy/lasgun/marine/autolaser
 	name = "machine laser bolt"
@@ -1510,7 +1511,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/energy/lasgun/marine/autolaser/efficiency
 	name = "efficient machine laser bolt"
 	damage = 8.5
-	hitscan_effect_icon = "beam_thin"
+	hitscan_effect_icon = "beam_particle"
 
 /datum/ammo/energy/lasgun/marine/sniper
 	name = "sniper laser bolt"
@@ -1531,13 +1532,13 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 0
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
 	sundering = 1
-	hitscan_effect_icon = "solar"
+	hitscan_effect_icon = "u_laser_beam"
 
 /datum/ammo/energy/lasgun/marine/pistol
 	name = "pistol laser bolt"
 	damage = 25
 	penetration = 5
-	hitscan_effect_icon = "beam_thin"
+	hitscan_effect_icon = "beam_particle"
 
 /datum/ammo/energy/lasgun/marine/pistol/disabler
 	name = "disabler bolt"
@@ -1557,7 +1558,7 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 10
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
 	sundering = 0.5
-	hitscan_effect_icon = "solar"
+	hitscan_effect_icon = "beam_incen"
 
 /datum/ammo/energy/lasgun/pistol/disabler/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)

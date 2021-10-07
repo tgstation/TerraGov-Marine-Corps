@@ -731,7 +731,6 @@
 	scatter_unwielded = 15
 	damage_falloff_mult = 0.5
 	mode_list = list(
-
 		"Auto burst standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard,
 		"Automatic standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard/automatic,
 		"Spread" = /datum/lasrifle/base/energy_carbine_mode/base/spread,
