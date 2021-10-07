@@ -13123,6 +13123,8 @@
 /obj/item/clothing/suit/apron/overalls,
 /obj/item/storage/bag/plants,
 /obj/item/storage/bag/plants,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/condiment/enzyme,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hydro)
 "hbf" = (
@@ -15251,6 +15253,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/sulaco/engineering/storage)
+"kWM" = (
+/obj/machinery/grill/unwrenched,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
 "kXj" = (
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -38990,7 +38996,7 @@ nzi
 mDu
 aPg
 hrN
-aQw
+kWM
 aQw
 iTR
 aQw
