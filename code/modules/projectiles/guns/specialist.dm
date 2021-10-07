@@ -585,9 +585,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		else
 			nade.loc = get_turf(src)
 		grenades -= nade
+		user.hud_used.update_ammo_hud(user, src)
 	else
 		to_chat(user, span_warning("It's empty!"))
-	user.hud_used.update_ammo_hud(user, src)
 	update_icon()
 	return TRUE
 
@@ -693,7 +693,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/launcher/grenade/m81
 	name = "\improper T-81 grenade launcher"
 	desc = "A lightweight, single-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
-	icon_state = "m81"
+	icon_state = "m81_e" //due to it always being empty when first spawned
 	item_state = "m81"
 	max_shells = 1 //codex
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
@@ -704,10 +704,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	fire_delay = 1.05 SECONDS
 	max_grenades = 1
-
-/obj/item/weapon/gun/launcher/grenade/m81/Initialize()
-	. = ..()
-	update_icon() //we adapt in case it starts empty or full
 
 /obj/item/weapon/gun/launcher/grenade/m81/update_icon()
 	icon_state = "[base_gun_icon][length(grenades) ? "" : "_e"]"
