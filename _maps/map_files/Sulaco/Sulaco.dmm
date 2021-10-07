@@ -14975,6 +14975,10 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall2)
+"ksF" = (
+/obj/machinery/grill/unwrenched,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
 "ksU" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -15253,10 +15257,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/sulaco/engineering/storage)
-"kWM" = (
-/obj/machinery/grill/unwrenched,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint2)
 "kXj" = (
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -16991,6 +16991,11 @@
 	},
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
+"nXm" = (
+/obj/structure/cable,
+/obj/machinery/griddle,
+/turf/open/floor/prison/sterilewhite,
+/area/sulaco/cafeteria/kitchen)
 "nZF" = (
 /obj/machinery/door/poddoor/mainship/umbilical/south{
 	id = "prepblasteast";
@@ -38996,7 +39001,7 @@ nzi
 mDu
 aPg
 hrN
-kWM
+ksF
 aQw
 iTR
 aQw
@@ -45210,7 +45215,7 @@ wWw
 oUY
 hTK
 rgW
-oUY
+nXm
 wMZ
 wMZ
 gVp
