@@ -18,6 +18,8 @@
 	var/list/list/xenos_by_zlevel = list()
 	///list of evo towers
 	var/list/obj/structure/xeno/evotower/evotowers = list()
+	///list of upgrade towers
+	var/list/obj/structure/xeno/maturitytower/maturitytowers = list()
 	var/tier3_xeno_limit
 	var/tier2_xeno_limit
 	///Queue of all observer wanting to join xeno side
@@ -189,10 +191,16 @@
 	return xenos
 
 
-///fetches number of bonus points given to the hive,
+///fetches number of bonus evo points given to the hive
 /datum/hive_status/proc/get_evolution_boost()
 	. = 0
 	for(var/obj/structure/xeno/evotower/tower AS in evotowers)
+		. += tower.boost_amount
+
+///fetches number of bonus upgrade points given to the hive
+/datum/hive_status/proc/get_upgrade_boost()
+	. = 0
+	for(var/obj/structure/xeno/maturitytower/tower AS in maturitytowers)
 		. += tower.boost_amount
 
 // ***************************************
@@ -303,7 +311,7 @@
 	if(!xenos_by_typepath[X.caste_base_type].Remove(X))
 		stack_trace("failed to remove a xeno from hive status typepath list, nothing was removed!?")
 		return FALSE
-	
+
 	LAZYREMOVE(xenos_by_zlevel["[X.z]"], X)
 
 	UnregisterSignal(X, COMSIG_MOVABLE_Z_CHANGED)
