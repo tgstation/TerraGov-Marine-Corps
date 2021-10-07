@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - rscadd: "Node based a* pathfinder"
+  - admin: "Admins can control ai using goal nodes"
