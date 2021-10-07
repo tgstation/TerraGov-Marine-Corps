@@ -126,7 +126,7 @@
 #define XENO_TURRET_PRICE 100
 
 //How many psych point one gen gives every second
-#define GENERATOR_PSYCH_POINT_OUTPUT 0.03
+#define GENERATOR_PSYCH_POINT_OUTPUT 1
 //How many psy points are gave for each marine psy drained at low pop
 #define PSY_DRAIN_REWARD_MAX 90
 //How many psy points are gave for each marine psy drained at high pop
@@ -136,8 +136,8 @@
 //How many psy points are gave every 5 second by a cocoon at high pop
 #define COCOON_PSY_POINTS_REWARD_MIN 1
 
-//The pop considered to be medium marine pop for the psy points calculation
-#define MEDIUM_MARINE_POP 50
+//The player pop consider to be very high pop
+#define HIGH_PLAYER_POP 80
 
 
 #define INVOKE_KING_TIME_LOCK 90 MINUTES
