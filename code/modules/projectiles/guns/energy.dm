@@ -352,6 +352,7 @@
 		if(reload_sound)
 			playsound(user, reload_sound, 25, 1, 5)
 		update_icon(user)
+		user.hud_used.update_ammo_hud(user, src)
 	else
 		cell.loc = src
 		update_icon()
@@ -369,14 +370,16 @@
 		cell.loc = get_turf(src) //Drop it on the ground.
 	else
 		user.put_in_hands(cell)
-
-	playsound(loc, unload_sound, 25, 1, 5)
-	user?.visible_message(span_notice("[user] unloads [cell] from [src]."),
-	span_notice("You unload [cell] from [src]."), null, 4)
 	cell.update_icon()
-	set_cell(null)
-	update_icon(user)
-
+	if(user)
+		user.visible_message(span_notice("[user] unloads [cell] from [src]."), span_notice("You unload [cell] from [src]."), null, 4)
+		set_cell(null)
+		playsound(user, unload_sound, 25, 1, 5)
+		update_icon(user)
+		user.hud_used.update_ammo_hud(user, src)
+	else
+		set_cell(null)
+		update_icon()
 	return TRUE
 
 //-------------------------------------------------------

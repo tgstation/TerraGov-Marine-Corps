@@ -192,6 +192,9 @@
 /mob/living/carbon/xenomorph/ravager/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/ravager/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----RAVAGER END----//
 //================//
 //----SENTINEL START----//
@@ -346,6 +349,9 @@
 
 /mob/living/carbon/xenomorph/Defiler/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/Defiler/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----DEFILER END----//
 //============//

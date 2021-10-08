@@ -18,3 +18,68 @@
   - bugfix: fixed a new player error
   ivanmixo:
   - bugfix: CMB speedloader can reload CMB revolver
+2021-10-04:
+  TiviPlus:
+  - admin: Admins and mentors can now ping each other
+2021-10-05:
+  BraveMole:
+  - bugfix: Ais no longer stack slowdown
+  - bugfix: Space area are correctly assimilated as space
+  - balance: Sticky turrets cost only 50 psypoints rather than 100
+  Lewdcifer:
+  - rscadd: Changed Maintainer OOC color
+  TiviPlus:
+  - bugfix: fixed valk not removing its effects
+  - admin: Admins can now use screen popups on players
+  ivanmixo:
+  - bugfix: glowshrooms can now be destroyed
+  - bugfix: The ammo counter for the shotgun and revolvers now works properly
+  - qol: AI core can be orbited in the ghost orbit menu
+  - bugfix: AI can talk in MOOC
+  - bugfix: vendors no longer eat items if depowered
+  - bugfix: mirage nades now work with grenade launchers
+  - bugfix: ghosts can no longer interact with conveyor switches
+2021-10-06:
+  BraveMole:
+  - bugfix: Big xeno can no longer body block small xenos
+  - qol: Automatic cycle alamo mode
+  - qol: Dead colonists are no longer in ghost follow menu
+  Pariah919:
+  - balance: ZX burst fire fire dealy reduced to 2.25 from 3, burst spread reduced.
+  hyper2snyper:
+  - bugfix: Fixes loadout saved guns/armor with illegal attachments being vended.
+  - rscadd: Defoonder
+  jroinc:
+  - expansion: 4 plants now have different chems. Deathberries, Blood tomatos, apples,
+      and ambrosia deus now have Quietus, Quick-clot plus, paracetamol, and somolent,
+      respectively.
+2021-10-07:
+  BraveMole:
+  - bugfix: Can no longer remove hearts from defibbable marines
+  ivanmixo:
+  - bugfix: ammo counter works for energy weapons
+  - bugfix: Burn overlays now work
+  - code_imp: Small refactor to injury overlay naming, and makes the overlay code
+      more readable
+  jroinc:
+  - rscadd: Adds sanguinol and zombium to medvendor hacked section
+2021-10-08:
+  BraveMole:
+  - rscadd: Node based a* pathfinder
+  - admin: Admins can control ai using goal nodes
+  KrabSpider:
+  - balance: Hunter sneak attack now stuns again.
+  TiviPlus:
+  - rscadd: Maturity tower that makes .2 maturity per maturity tick, costs 300 psy
+      pints
+  - bugfix: fixed evo tower making matiurity instead of evo points
+  - bugfix: fixed link ckeys being links
+  chesse20:
+  - rscadd: Grayscale pill bottle and new grayscale pill bottle.
+  - refactor: Changed all existing pill bottles to grayscale sprites and gave them
+      grayscale numbers, made some different shapes
+  jroinc:
+  - expansion: Req can now make and sell pizzas for a smol but steady profit.
+  - balance: Nanites now have a "safe zone" where they won't cost blood for the first
+      ~20 damage they heal in a given length of time. This should lower the odds of
+      being "scratch damaged" to bloodloss death.

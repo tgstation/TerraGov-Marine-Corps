@@ -35,3 +35,20 @@
 	. = ..()
 	loc.overlays += image(icon, icon_state, dir = src.dir)
 	return INITIALIZE_HINT_QDEL
+
+/obj/effect/decal/sandedge
+	name = "dirt"
+	desc = "A dirty pile, it looks thinner in certain areas."
+	gender = PLURAL
+	density = FALSE
+	anchored = TRUE
+	layer = TURF_LAYER
+	icon = 'icons/turf/bigred.dmi'
+	icon_state = "sandedge"
+	mouse_opacity = 0
+
+/obj/effect/decal/sandedge/corner
+	icon_state = "sandcorner"
+
+/obj/effect/decal/sandedge/corner2
+	icon_state = "sandcorner2"

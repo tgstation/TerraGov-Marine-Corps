@@ -200,6 +200,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/proc/drop_nade(turf/T)
 	return
 
+///called on projectile process() when SPECIAL_PROCESS flag is active
+/datum/ammo/proc/ammo_process(obj/projectile/proj, damage)
+	CRASH("ammo_process called with unimplemented process!")
+
+
 
 /*
 //================================================
@@ -1331,12 +1336,14 @@ datum/ammo/bullet/revolver/tp44
 	icon_state = "tesla"
 	hud_state = "taser"
 	hud_state_empty = "battery_empty"
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_CHAINING
+	flags_ammo_behavior = AMMO_ENERGY|SPECIAL_PROCESS
 	shell_speed = 0.1
 	damage = 20
 	penetration = 20
 	bullet_color = COLOR_TESLA_BLUE
 
+/datum/ammo/energy/tesla/ammo_process(obj/projectile/proj, damage)
+	zap_beam(proj, 4, damage)
 
 /datum/ammo/energy/droidblast
 	name = "energetic plasma bolt"

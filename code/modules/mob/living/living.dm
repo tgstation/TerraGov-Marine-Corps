@@ -323,10 +323,6 @@
 	if(isliving(A))
 		var/mob/living/L = A
 
-		if(mob_size < L.mob_size) //Can't go around pushing things larger than us.
-			return
-
-
 		if(L.pulledby && L.pulledby != src && L.restrained())
 			if(!(world.time % 5))
 				to_chat(src, span_warning("[L] is restrained, you cannot push past."))
@@ -381,6 +377,9 @@
 
 				if(!move_failed)
 					return
+
+		if(mob_size < L.mob_size) //Can't go around pushing things larger than us.
+			return
 
 		if(!(L.status_flags & CANPUSH))
 			return

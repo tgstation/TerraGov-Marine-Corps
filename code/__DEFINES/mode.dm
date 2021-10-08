@@ -124,7 +124,6 @@
 
 #define SILO_PRICE 800
 #define XENO_TURRET_PRICE 100
-#define XENO_KING_PRICE 1800
 //How many psych point one gen gives per person on the server
 #define BASE_PSYCH_POINT_OUTPUT 0.008
 //How many psy points are gave for each marine psy drained
