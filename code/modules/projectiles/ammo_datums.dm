@@ -1554,7 +1554,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 70
 	penetration = 0
 	damage_type = STAMINA
-	hitscan_effect_icon = "beam_blue"
+	hitscan_effect_icon = "stun"
 
 /datum/ammo/energy/lasgun/marine/pistol/heat
 	name = "microwave heat bolt"
