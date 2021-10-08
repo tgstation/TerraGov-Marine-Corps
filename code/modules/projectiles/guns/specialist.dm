@@ -4,6 +4,7 @@ This file contains:
 Sniper rifles
 Miniguns
 Pepperball gun
+Rocket launchers
 
 */
 
@@ -534,3 +535,371 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	scatter_unwielded = 5
 
 	placed_overlay_iconstate = "pepper"
+
+//-------------------------------------------------------
+//M5 RPG
+
+/obj/item/weapon/gun/launcher/rocket
+	name = "\improper M-5 rocket launcher"
+	desc = "The M-5 is the primary anti-armor used around the galaxy. Used to take out light-tanks and enemy structures, the M-5 rocket launcher is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
+	icon_state = "m5"
+	item_state = "m5"
+	max_shells = 1 //codex
+	caliber = CALIBER_84MM //codex
+	load_method = SINGLE_CASING //codex
+	materials = list(/datum/material/metal = 10000)
+	current_mag = /obj/item/ammo_magazine/rocket
+	flags_equip_slot = NONE
+	w_class = WEIGHT_CLASS_HUGE
+	force = 15
+	wield_delay = 12
+	wield_penalty = 1.6 SECONDS
+	aim_slowdown = 1.75
+	general_codex_key = "explosive weapons"
+	attachable_allowed = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/buildasentry,
+	)
+
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	gun_skill_category = GUN_SKILL_FIREARMS
+	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	fire_delay = 1 SECONDS
+	recoil = 3
+	scatter = -100
+	placed_overlay_iconstate = "sadar"
+	///the smoke effect after firing
+	var/datum/effect_system/smoke_spread/smoke
+
+/obj/item/weapon/gun/launcher/rocket/Initialize(mapload, spawn_empty)
+	. = ..()
+	smoke = new(src, FALSE)
+
+/obj/item/weapon/gun/launcher/rocket/Destroy()
+	QDEL_NULL(smoke)
+	return ..()
+
+/obj/item/weapon/gun/launcher/rocket/Fire()
+	if((!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)) || gun_user?.do_actions)
+		return
+
+	if(gun_on_cooldown(gun_user))
+		return
+
+	if(windup_checked == WEAPON_WINDUP_NOT_CHECKED)
+		INVOKE_ASYNC(src, .proc/do_windup)
+		return TRUE
+	else if (windup_checked == WEAPON_WINDUP_CHECKING)//We are already in windup, abort
+		return TRUE
+
+	. = ..()
+
+	//loaded_rocket.current_rounds = max(loaded_rocket.current_rounds - 1, 0)
+
+	if(current_mag && !current_mag.current_rounds)
+		current_mag.loc = get_turf(src)
+		current_mag.update_icon()
+		current_mag = null
+	log_combat(gun_user, gun_user, "fired the [src].")
+	log_explosion("[gun_user] fired the [src] at [AREACOORD(loc)].")
+
+///Windup before shooting
+/obj/item/weapon/gun/launcher/rocket/proc/do_windup()
+	windup_checked = WEAPON_WINDUP_CHECKING
+	var/delay = 0.1 SECONDS
+	if(has_attachment(/obj/item/attachable/scope/mini))
+		delay += 0.2 SECONDS
+
+	if(gun_user && gun_user.skills.getRating("firearms") < 0)
+		delay += 0.6 SECONDS
+
+	if(gun_user)
+		if(!do_after(gun_user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
+			windup_checked = WEAPON_WINDUP_NOT_CHECKED
+			return
+		finish_windup()
+		return
+
+	addtimer(CALLBACK(src, .proc/finish_windup), delay)
+
+///Proc that finishes the windup, this fires the gun.
+/obj/item/weapon/gun/launcher/rocket/proc/finish_windup()
+	windup_checked = WEAPON_WINDUP_CHECKED
+	if(Fire())
+		playsound(loc,'sound/weapons/guns/fire/launcher.ogg', 50, TRUE)
+		return
+	windup_checked = WEAPON_WINDUP_NOT_CHECKED
+
+
+/obj/item/weapon/gun/launcher/rocket/examine_ammo_count(mob/user)
+	if(current_mag?.current_rounds)
+		to_chat(user, "It's ready to rocket.")
+	else
+		to_chat(user, "It's empty.")
+
+
+/obj/item/weapon/gun/launcher/rocket/load_into_chamber(mob/user)
+	return ready_in_chamber()
+
+
+//No such thing
+/obj/item/weapon/gun/launcher/rocket/reload_into_chamber(mob/user)
+	return TRUE
+
+
+/obj/item/weapon/gun/launcher/rocket/delete_bullet(obj/projectile/projectile_to_fire, refund = FALSE)
+	qdel(projectile_to_fire)
+	if(refund)
+		current_mag.current_rounds++
+	return TRUE
+
+
+/obj/item/weapon/gun/launcher/rocket/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
+	user.transferItemToLoc(magazine, src) //Click!
+	current_mag = magazine
+	ammo = GLOB.ammo_list[current_mag.default_ammo]
+	user.visible_message(span_notice("[user] loads [magazine] into [src]!"),
+	span_notice("You load [magazine] into [src]!"), null, 3)
+	if(reload_sound)
+		playsound(user, reload_sound, 25, 1, 5)
+	update_icon()
+
+
+/obj/item/weapon/gun/launcher/rocket/unload(mob/user)
+	if(!user)
+		return FALSE
+	if(!current_mag || current_mag.loc != src)
+		to_chat(user, span_warning("[src] is already empty!"))
+		return TRUE
+	to_chat(user, span_notice("You begin unloading [src]."))
+	if(!do_after(user, current_mag.reload_delay * 0.5, TRUE, src, BUSY_ICON_GENERIC))
+		to_chat(user, span_warning("Your unloading was interrupted!"))
+		return TRUE
+	if(!user) //If we want to drop it on the ground or there's no user.
+		current_mag.loc = get_turf(src) //Drop it on the ground.
+	else
+		user.put_in_hands(current_mag)
+
+	playsound(user, unload_sound, 25, 1, 5)
+	user.visible_message(span_notice("[user] unloads [current_mag] from [src]."),
+	span_notice("You unload [current_mag] from [src]."), null, 4)
+	current_mag.update_icon()
+	current_mag = null
+
+	return TRUE
+
+
+//Adding in the rocket backblast. The tile behind the specialist gets blasted hard enough to down and slightly wound anyone
+/obj/item/weapon/gun/launcher/rocket/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target)
+	. = ..()
+	var/turf/blast_source = get_turf(src)
+	var/thrown_dir = REVERSE_DIR(get_dir(blast_source, target))
+	var/turf/backblast_loc = get_step(blast_source, thrown_dir)
+	smoke.set_up(0, backblast_loc)
+	smoke.start()
+	for(var/mob/living/carbon/victim in backblast_loc)
+		if(victim.lying_angle || victim.stat == DEAD) //Have to be standing up to get the fun stuff
+			continue
+		victim.adjustBruteLoss(15) //The shockwave hurts, quite a bit. It can knock unarmored targets unconscious in real life
+		victim.Paralyze(60) //For good measure
+		victim.emote("pain")
+		victim.throw_at(get_step(backblast_loc, thrown_dir), 1, 2)
+
+
+/obj/item/weapon/gun/launcher/rocket/get_ammo_type()
+	if(!ammo)
+		return list("unknown", "unknown")
+	else
+		return list(ammo.hud_state, ammo.hud_state_empty)
+
+/obj/item/weapon/gun/launcher/rocket/get_ammo_count()
+	if(!current_mag)
+		return 0
+	else
+		return current_mag.current_rounds
+
+//-------------------------------------------------------
+//T-152 RPG
+
+/obj/item/weapon/gun/launcher/rocket/sadar
+	name = "\improper T-152 rocket launcher"
+	desc = "The T-152 is the primary anti-armor weapon of the TGMC. Used to take out light-tanks and enemy structures, the T-152 rocket launcher is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
+	icon_state = "m5"
+	item_state = "m5"
+	max_shells = 1 //codex
+	caliber = CALIBER_84MM //codex
+	load_method = SINGLE_CASING //codex
+	materials = list(/datum/material/metal = 10000)
+	current_mag = /obj/item/ammo_magazine/rocket/sadar
+	flags_equip_slot = NONE
+	w_class = WEIGHT_CLASS_HUGE
+	force = 15
+	wield_delay = 12
+	wield_penalty = 1.6 SECONDS
+	aim_slowdown = 1.75
+	general_codex_key = "explosive weapons"
+	attachable_allowed = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/buildasentry,
+	)
+
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	gun_skill_category = GUN_SKILL_FIREARMS
+	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+
+	fire_delay = 1 SECONDS
+	recoil = 3
+	scatter = -100
+
+/obj/item/weapon/gun/launcher/rocket/sadar/Initialize(mapload, spawn_empty)
+	. = ..()
+	SSmonitor.stats.sadar_in_use += src
+
+/obj/item/weapon/gun/launcher/rocket/sadar/Destroy()
+	SSmonitor.stats.sadar_in_use -= src
+	return ..()
+
+//-------------------------------------------------------
+//M5 RPG'S MEAN FUCKING COUSIN
+
+/obj/item/weapon/gun/launcher/rocket/m57a4
+	name = "\improper M57A4 quad thermobaric launcher"
+	desc = "The M57A4 is posssibly the most destructive man-portable weapon ever made. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles. Enough said."
+	icon_state = "m57a4"
+	item_state = "m57a4"
+	max_shells = 4 //codex
+	caliber = CALIBER_ROCKETARRAY //codex
+	load_method = MAGAZINE //codex
+	current_mag = /obj/item/ammo_magazine/rocket/m57a4/ds
+	aim_slowdown = 2.75
+	attachable_allowed = list(
+		/obj/item/attachable/buildasentry,
+	)
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	general_codex_key = "explosive weapons"
+
+	fire_delay = 0.6 SECONDS
+	burst_delay = 0.4 SECONDS
+	burst_amount = 4
+	accuracy_mult = 0.8
+
+	placed_overlay_iconstate = "thermo"
+
+/obj/item/weapon/gun/launcher/rocket/m57a4/t57
+	name = "\improper T-57 quad thermobaric launcher"
+	desc = "The T-57 is posssibly the most awful man portable weapon. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles with nearly no force to the rocket. Enough said."
+	icon_state = "t57"
+	item_state = "t57"
+	current_mag = /obj/item/ammo_magazine/rocket/m57a4
+
+
+
+//-------------------------------------------------------
+//T-160 Recoilless Rifle. Its effectively an RPG codewise.
+
+/obj/item/weapon/gun/launcher/rocket/recoillessrifle
+	name = "\improper T-160 recoilless rifle"
+	desc = "The T-160 recoilless rifle is a long range explosive ordanance device used by the TGMC used to fire explosive shells at far distances. Uses a variety of 67mm shells designed for various purposes."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "t160"
+	item_state = "t160"
+	max_shells = 1 //codex
+	caliber = CALIBER_67MM //codex
+	load_method = SINGLE_CASING //codex
+	materials = list(/datum/material/metal = 10000)
+	current_mag = /obj/item/ammo_magazine/rocket/recoilless
+	flags_equip_slot = NONE
+	w_class = WEIGHT_CLASS_HUGE
+	force = 15
+	wield_delay = 1 SECONDS
+	recoil = 1
+	wield_penalty = 1.6 SECONDS
+	aim_slowdown = 1
+	general_codex_key = "explosive weapons"
+	attachable_allowed = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/buildasentry,
+	)
+
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	gun_skill_category = GUN_SKILL_FIREARMS
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+
+	fire_delay = 1 SECONDS
+	recoil = 3
+	scatter = -100
+
+//-------------------------------------------------------
+//Disposable RPG
+
+/obj/item/weapon/gun/launcher/rocket/oneuse
+	name = "\improper T-72 disposable rocket launcher"
+	desc = "This is the premier disposable rocket launcher used throughout the galaxy, it cannot be reloaded or unloaded on the field. This one fires an 84mm explosive rocket."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "t72"
+	item_state = "t72"
+	max_shells = 1 //codex
+	caliber = CALIBER_84MM //codex
+	load_method = SINGLE_CASING //codex
+	current_mag = /obj/item/ammo_magazine/rocket/oneuse
+	flags_equip_slot = ITEM_SLOT_BELT
+	attachable_allowed = list(/obj/item/attachable/magnetic_harness)
+
+	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	fire_delay = 1 SECONDS
+	recoil = 3
+	scatter = -100
+
+/obj/item/weapon/gun/launcher/rocket/oneuse/unload(mob/user) // Unsurprisngly you can't unload this.
+	to_chat(user, span_warning("You can't unload this!"))
+	return FALSE
+
+
+/obj/item/weapon/gun/launcher/rocket/oneuse/examine_ammo_count(mob/user)
+	if(current_mag?.current_rounds)
+		to_chat(user, "It's loaded.")
+	else
+		to_chat(user, "It's empty.")
+
+//-------------------------------------------------------
+//TX-220 Railgun
+
+/obj/item/weapon/gun/rifle/railgun
+	name = "\improper TX-220 railgun"
+	desc = "The TX-220 is a specialized heavy duty railgun made to shred through hard armor to allow for follow up attacks. Uses specialized canisters to reload."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "railgun"
+	item_state = "railgun"
+	max_shells = 1 //codex
+	caliber = CALIBER_RAILGUN
+	fire_sound = 'sound/weapons/guns/fire/railgun.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/railgun.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/sniper_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/sniper_reload.ogg'
+	current_mag = /obj/item/ammo_magazine/railgun
+	force = 40
+	wield_delay = 1.75 SECONDS //You're not quick drawing this.
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	attachable_allowed = list(
+		/obj/item/attachable/magnetic_harness,
+	)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+
+	fire_delay = 1 SECONDS
+	burst_amount = 1
+	accuracy_mult = 2
+	recoil = 0

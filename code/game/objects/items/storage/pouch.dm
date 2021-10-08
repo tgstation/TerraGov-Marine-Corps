@@ -547,11 +547,11 @@
 	storage_slots = 7
 	draw_mode = 1
 	icon_state = "flare"
-	storage_type_limits = list(/obj/item/weapon/gun/grenade_launcher/m81/flare = 1)
+	storage_type_limits = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare = 1)
 
 	can_hold = list(
 		/obj/item/flashlight/flare,
-		/obj/item/weapon/gun/grenade_launcher/m81/flare,
+		/obj/item/weapon/gun/grenade_launcher/single_shot/flare,
 		/obj/item/explosive/grenade/flare,
 	)
 
