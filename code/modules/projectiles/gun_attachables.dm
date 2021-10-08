@@ -1561,7 +1561,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 ///Funny red wide nozzle that can fill entire screens with flames. Admeme only. 
 /obj/item/attachable/flamer_nozzle/wide/red
-	name = "red spray flamer zozzle"
+	name = "red spray flamer nozzle"
 	desc = "It is red, therefore its obviously more effective."
 	icon_state = "flame_wide_red"
 	range_modifier = 0
