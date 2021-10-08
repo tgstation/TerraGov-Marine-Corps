@@ -64,7 +64,6 @@
 	actions = list(
 		/datum/action/xeno_action/change_form,
 		/datum/action/xeno_action/activable/plant_weeds/ranged,
-		/datum/action/xeno_action/lay_minion_egg,
 		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/activable/secrete_resin/ranged/slow,

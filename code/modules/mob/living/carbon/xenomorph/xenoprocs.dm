@@ -193,7 +193,7 @@
 	HS.xeno_message(message, span_class, size, force, target, sound, apply_preferences, filter_list, arrow_type, arrow_color, report_distance)
 
 /mob/living/carbon/xenomorph/proc/upgrade_possible()
-	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_THREE)
+	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_THREE && upgrade != XENO_TIER_ZERO)
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.

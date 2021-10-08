@@ -208,25 +208,3 @@
 
 	to_chat(xenomorph, span_warning("That egg is filled with gas and has no child to retrieve."))
 
-/obj/effect/alien/egg/minion
-	desc = "It looks like a weird egg"
-	name = "minion egg"
-	icon_state = "egg_minion"
-	density = FALSE
-	flags_atom = CRITICAL_ATOM
-	max_integrity = 200
-	maturity_time = 1 MINUTES
-	stage_ready_to_burst = 3
-	trigger_size = 5
-	///What type of minion are produced here
-	var/minion_type
-
-/obj/effect/alien/egg/minion/Initialize(mapload, hivenumber)
-	. = ..()
-	GLOB.minion_eggs += src
-
-/obj/effect/alien/egg/minion/burst(kill)
-	. = ..()
-	playsound(src.loc, "sound/effects/alien_egg_move.ogg", 25)
-	GLOB.minion_eggs -= src
-

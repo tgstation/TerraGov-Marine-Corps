@@ -6,8 +6,8 @@
 
 	caste_type_path = /mob/living/carbon/xenomorph/beetle
 
-	tier = XENO_TIER_ONE
-	upgrade = XENO_UPGRADE_BASETYPE
+	tier = XENO_TIER_ZERO
+	upgrade = XENO_UPGRADE_ZERO
 
 	// *** Melee Attacks *** //
 	melee_damage = 17

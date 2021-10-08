@@ -1392,6 +1392,8 @@
 #include "code\modules\mob\living\carbon\xenomorph\xenomorph_defense.dm"
 #include "code\modules\mob\living\carbon\xenomorph\xenoprocs.dm"
 #include "code\modules\mob\living\carbon\xenomorph\xenoupgrade.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\beetle\beetle.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\beetle\castedatum_beetle.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\boiler\abilities_boiler.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\boiler\boiler.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\boiler\castedatum_boiler.dm"
