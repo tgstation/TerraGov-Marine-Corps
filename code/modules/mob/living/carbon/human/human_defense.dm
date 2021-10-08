@@ -431,7 +431,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(!internal_organs_by_name["heart"])
 		to_chat(user, span_notice("[src] no longer has a heart."))
 		return
-	if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE) && get_ghost())
+	if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
 		to_chat(user, span_warning("You cannot resolve yourself to destroy [src]'s heart, as [p_they()] can still be saved!"))
 		return
 	to_chat(user, span_notice("You start to remove [src]'s heart, preventing [p_them()] from rising again!"))
