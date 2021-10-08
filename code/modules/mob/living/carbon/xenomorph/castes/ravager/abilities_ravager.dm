@@ -492,11 +492,9 @@
 		return
 	addtimer(CALLBACK(src, .proc/end_leech), VAMPIRISM_MOB_DURATION)
 	leech_count++
-	UnregisterSignal(last_leeched, COMSIG_PARENT_QDELETING)
 	last_leeched = target
 	deltimer(clear_timer)
-	clear_timer = addtimer(CALLBACK(src, .proc/clear_leeched, target), VAMPIRISM_MOB_DURATION, TIMER_STOPPABLE)
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/clear_leeched)
+	clear_timer = addtimer(CALLBACK(src, .proc/clear_leeched), VAMPIRISM_MOB_DURATION, TIMER_STOPPABLE)
 	update_button_icon()
 
 ///Called when the leech effect is supposed to end
@@ -505,7 +503,6 @@
 	update_button_icon()
 
 ///Called when last_leeched mob is deleted
-/datum/action/xeno_action/vampirism/proc/clear_leeched(datum/source)
+/datum/action/xeno_action/vampirism/proc/clear_leeched()
 	SIGNAL_HANDLER
-	UnregisterSignal(last_leeched, COMSIG_PARENT_QDELETING)
 	last_leeched = null
