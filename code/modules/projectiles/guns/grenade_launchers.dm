@@ -164,7 +164,7 @@ The Rocket Launchers
 	desc = "A weapon-mounted, reloadable, two-shot grenade launcher."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "grenade"
-	max_shells = 2
+	max_shells = 2 //codex
 	max_grenades = 2
 	fire_delay = 1 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
