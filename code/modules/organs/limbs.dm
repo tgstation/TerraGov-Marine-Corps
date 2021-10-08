@@ -370,7 +370,7 @@
 	W = new wound_type(damage)
 
 	//Check whether we can add the wound to an existing wound
-	for(var/datum/wound/other in wounds)
+	for(var/datum/wound/other AS in wounds)
 		if(other.can_merge(W))
 			other.merge_wound(W)
 			W = null // to signify that the wound was added
