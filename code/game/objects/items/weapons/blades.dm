@@ -355,7 +355,7 @@
 	icon='icons/obj/items/weapons.dmi'
 	icon_state = "throwing_knife"
 	desc="A military knife designed to be thrown at the enemy. Much quieter than a firearm, but requires a steady hand to be used effectively."
-	flags_atom = CONDUCT
+	flags_atom = CONDUCT|DIRLOCK
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 20
 	w_class = WEIGHT_CLASS_TINY
@@ -365,8 +365,97 @@
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	flags_equip_slot = ITEM_SLOT_POCKET
+	///Max amount in a knife stack
+	var/max_stack = 5
+	///Current amount in the stack
+	var/amount_in_stack = 5
+	///Delay between throwing.
+	var/throw_delay = 0
+	///Time of last throw.
+	var/last_thrown
 
+/obj/item/weapon/throwing_knife/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, .proc/post_throw)
+	update_icon()
 
+/obj/item/weapon/throwing_knife/update_icon()
+	. = ..()
+	var/amount = amount_in_stack > max_stack ? max_stack : amount_in_stack
+	setDir(amount + round(amount/3))
+
+/obj/item/weapon/throwing_knife/equipped(mob/user, slot)
+	. = ..()
+	if(!isliving(user))
+		return
+	var/mob/living/living_user = user
+	if(living_user.get_active_held_item() != src && living_user.get_inactive_held_item() != src)
+		return
+	RegisterSignal(user, COMSIG_MOB_ITEM_AFTERATTACK, .proc/throw_knife)
+
+/obj/item/weapon/throwing_knife/unequipped(mob/unequipper, slot)
+	. = ..()
+	UnregisterSignal(unequipper, COMSIG_MOB_ITEM_AFTERATTACK)
+
+/obj/item/weapon/throwing_knife/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!Adjacent(user) || !istype(I, /obj/item/weapon/throwing_knife))
+		return
+	restack_knives(I, user)
+
+///Throws a knife from the stack, or, if the stack is one, throws the stack.
+/obj/item/weapon/throwing_knife/proc/throw_knife(datum/source, atom/target, params)
+	SIGNAL_HANDLER
+	var/mob/living/user = source
+	if(user.Adjacent(target) || user.get_active_held_item() != src || (world.time < last_thrown + throw_delay))
+		return
+	var/thrown_thing = src
+	if(amount_in_stack == 1)
+		user.temporarilyRemoveItemFromInventory(src)
+		forceMove(get_turf(src))
+		throw_at(target, throw_range, throw_speed, user, TRUE)
+	else
+		var/obj/item/weapon/throwing_knife/knife_to_throw = new(get_turf(src))
+		knife_to_throw.amount_in_stack = 1
+		knife_to_throw.update_icon()
+		knife_to_throw.throw_at(target, throw_range, throw_speed, user, TRUE)
+		amount_in_stack--
+		thrown_thing = knife_to_throw
+	playsound(src, 'sound/effects/throw.ogg', 30, 1)
+	visible_message(span_warning("[user] has expertly thrown [thrown_thing]."), null, null, 5)
+	update_icon()
+	last_thrown = world.time
+
+///Stacks knife_to_fill with the knifes from this object.
+/obj/item/weapon/throwing_knife/proc/restack_knives(obj/item/weapon/throwing_knife/knife_to_fill, user)
+	if(knife_to_fill.amount_in_stack >= knife_to_fill.max_stack)
+		to_chat(user, span_notice("You cannot hold anymore in your [knife_to_fill]."))
+		return FALSE
+	var/amount_to_fill = knife_to_fill.max_stack - knife_to_fill.amount_in_stack
+	to_chat(user, span_notice("You refill your stack of knives."))
+	if(amount_to_fill >= amount_in_stack)
+		knife_to_fill.amount_in_stack += amount_in_stack
+		knife_to_fill.update_icon()
+		QDEL_NULL(src)
+		return TRUE
+	knife_to_fill.amount_in_stack += amount_to_fill
+	amount_in_stack -= amount_to_fill
+	update_icon()
+	knife_to_fill.update_icon()
+	return TRUE
+
+///Fills any stacks currently in the tile that this object is thrown to.
+/obj/item/weapon/throwing_knife/proc/post_throw()
+	SIGNAL_HANDLER
+	if(amount_in_stack >= max_stack)
+		return
+	for(var/item_in_loc in loc.contents)
+		if(!istype(item_in_loc, /obj/item/weapon/throwing_knife) || item_in_loc == src)
+			continue
+		var/obj/item/weapon/throwing_knife/knife = item_in_loc
+		if(!restack_knives(knife))
+			continue
+		break
 
 /obj/item/weapon/unathiknife
 	name = "duelling knife"
