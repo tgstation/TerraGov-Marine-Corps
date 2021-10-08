@@ -69,9 +69,11 @@
 	// NOT apply to map popups. If there's ever a way to make planesmasters
 	// omnipresent, then this wouldn't be needed.
 	cam_plane_masters = list()
-	for(var/plane in subtypesof(/obj/screen/plane_master))
-		var/obj/screen/instance = new plane()
+	for(var/plane in subtypesof(/obj/screen/plane_master) - /obj/screen/plane_master/blackness)
+		var/obj/screen/plane_master/instance = new plane()
 		instance.assigned_map = "spypopup_map"
+		if(instance.blend_mode_override)
+			instance.blend_mode = instance.blend_mode_override
 		instance.del_on_map_removal = FALSE
 		instance.screen_loc = "spypopup_map:CENTER"
 		cam_plane_masters += instance

@@ -167,7 +167,7 @@
 	plane = GRAVITY_PULSE_PLANE
 	pixel_x = -48
 	pixel_y = -48
-	duration = 1 SECONDS
+	duration = 8
 
 /obj/effect/temp_visual/wraith_warp/Initialize()
 	. = ..()

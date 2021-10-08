@@ -79,10 +79,12 @@
 	cam_screen.del_on_map_removal = FALSE
 	cam_screen.screen_loc = "[map_name]:1,1"
 	cam_plane_masters = list()
-	for(var/plane in subtypesof(/obj/screen/plane_master))
-		var/obj/screen/instance = new plane()
+	for(var/plane in subtypesof(/obj/screen/plane_master) - /obj/screen/plane_master/blackness)
+		var/obj/screen/plane_master/instance = new plane()
 		instance.assigned_map = map_name
 		instance.del_on_map_removal = FALSE
+		if(instance.blend_mode_override)
+			instance.blend_mode = instance.blend_mode_override
 		instance.screen_loc = "[map_name]:CENTER"
 		cam_plane_masters += instance
 	cam_background = new
