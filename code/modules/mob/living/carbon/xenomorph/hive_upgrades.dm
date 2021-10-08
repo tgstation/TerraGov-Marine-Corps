@@ -1,6 +1,5 @@
 GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, "Primordial"))//uncomment to unlock globally
 
-
 /datum/hive_upgrade
 	///name of the upgrade, string, used in ui
 	var/name = "Error upgrade"
@@ -167,7 +166,6 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	log_game("[buyer] has built a maturity tower in [AREACOORD(buildloc)], spending [psypoint_cost] psy points in the process")
 	xeno_message("[buyer] has built a maturity tower at [get_area(buildloc)]!", "xenoannounce", 5, buyer.hivenumber)
 	return ..()
-
 
 
 /datum/hive_upgrade/defence
