@@ -275,7 +275,7 @@
 
 /obj/item/storage/box/grenade_system/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/weapon/gun/launcher/grenade/m92(src)
+	new /obj/item/weapon/gun/grenade_launcher/m92(src)
 	new /obj/item/storage/belt/grenade/b17(src)
 
 /obj/item/storage/box/rocket_system
@@ -545,7 +545,7 @@
 
 /obj/item/storage/box/spec/heavy_grenadier/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/weapon/gun/launcher/grenade/m92(src)
+	new /obj/item/weapon/gun/grenade_launcher/m92(src)
 	new /obj/item/storage/belt/grenade/b17(src)
 	new /obj/item/clothing/suit/storage/marine/B17(src)
 	new /obj/item/clothing/head/helmet/marine/grenadier(src)
@@ -1069,7 +1069,7 @@
 	. = ..()
 	new /obj/item/storage/belt/grenade/b17(src)
 	new /obj/item/clothing/suit/storage/marine/B17(src)
-	new /obj/item/weapon/gun/launcher/grenade/m92(src)
+	new /obj/item/weapon/gun/grenade_launcher/m92(src)
 	new /obj/item/attachable/magnetic_harness(src)
 	new /obj/item/clothing/head/helmet/marine/grenadier(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)

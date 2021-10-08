@@ -6,7 +6,7 @@ The Rocket Launchers
 
 //GRENADE LAUNCHERS
 
-/obj/item/weapon/gun/launcher/grenade
+/obj/item/weapon/gun/grenade_launcher
 	w_class = WEIGHT_CLASS_BULKY
 	gun_skill_category = GUN_SKILL_FIREARMS
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -29,7 +29,7 @@ The Rocket Launchers
 	var/max_range = 15
 
 ///proc that handles firing the grenade itself
-/obj/item/weapon/gun/launcher/grenade/proc/fire_grenade(atom/target, mob/user)
+/obj/item/weapon/gun/grenade_launcher/proc/fire_grenade(atom/target, mob/user)
 	last_fired = world.time
 	var/obj/item/explosive/grenade/grenade = grenades[1]
 	var/turf/userturf = get_turf(user)
@@ -50,7 +50,7 @@ The Rocket Launchers
 		flick("[fire_animation]", src)
 	update_icon()
 
-/obj/item/weapon/gun/launcher/grenade/Fire()
+/obj/item/weapon/gun/grenade_launcher/Fire()
 	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		to_chat(gun_user, span_notice("You cannot fire [src] while it is not deployed."))
 		return
@@ -77,7 +77,7 @@ The Rocket Launchers
 	gun_user.hud_used.update_ammo_hud(gun_user, src)
 	return TRUE
 
-/obj/item/weapon/gun/launcher/grenade/attackby(obj/item/I, mob/user, params)
+/obj/item/weapon/gun/grenade_launcher/attackby(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/explosive/grenade))
 		return ..()
 	if(length(grenades) >= max_grenades)
@@ -96,7 +96,7 @@ The Rocket Launchers
 	user.hud_used.update_ammo_hud(user, src)
 	return ..()
 
-/obj/item/weapon/gun/launcher/grenade/unload(mob/user)
+/obj/item/weapon/gun/grenade_launcher/unload(mob/user)
 	if(!length(grenades))
 		to_chat(user, span_warning("It's empty!"))
 		return
@@ -111,24 +111,24 @@ The Rocket Launchers
 	update_icon()
 	return TRUE
 
-/obj/item/weapon/gun/launcher/grenade/get_ammo_type()
+/obj/item/weapon/gun/grenade_launcher/get_ammo_type()
 	if(!length(grenades))
 		return list("empty", "empty")
 	else
 		var/obj/item/explosive/grenade/F = grenades[1]
 		return list(F.hud_state, F.hud_state_empty)
 
-/obj/item/weapon/gun/launcher/grenade/get_ammo_count()
+/obj/item/weapon/gun/grenade_launcher/get_ammo_count()
 	return length(grenades)
 
 //Doesn't use most of any of these. Listed for reference.
-/obj/item/weapon/gun/launcher/grenade/load_into_chamber()
+/obj/item/weapon/gun/grenade_launcher/load_into_chamber()
 	return
 
-/obj/item/weapon/gun/launcher/grenade/reload_into_chamber()
+/obj/item/weapon/gun/grenade_launcher/reload_into_chamber()
 	return
 
-/obj/item/weapon/gun/launcher/grenade/m92
+/obj/item/weapon/gun/grenade_launcher/m92
 	name = "\improper T-26 grenade launcher"
 	desc = "A heavy, 6-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
 	icon_state = "m92"
@@ -141,16 +141,16 @@ The Rocket Launchers
 	fire_delay = 1.8 SECONDS
 	max_grenades = 6
 
-/obj/item/weapon/gun/launcher/grenade/m92/Initialize()
+/obj/item/weapon/gun/grenade_launcher/m92/Initialize()
 	. = ..()
 	for(var/i in 1 to max_grenades)
 		grenades += new /obj/item/explosive/grenade(src)
 
-/obj/item/weapon/gun/launcher/grenade/m92/update_icon(mob/user)
+/obj/item/weapon/gun/grenade_launcher/m92/update_icon(mob/user)
 	update_item_state(user)
 	update_mag_overlay(user)
 
-/obj/item/weapon/gun/launcher/grenade/m92/examine_ammo_count(mob/user)
+/obj/item/weapon/gun/grenade_launcher/m92/examine_ammo_count(mob/user)
 	if(!length(grenades) || (get_dist(user, src) > 2 && user != loc))
 		return
 	to_chat(user, span_notice("It is loaded with <b>[length(grenades)] / [max_grenades]</b> grenades."))
@@ -158,7 +158,7 @@ The Rocket Launchers
 //-------------------------------------------------------
 //T-70 Grenade Launcher.
 
-/obj/item/weapon/gun/launcher/grenade/m92/standardmarine
+/obj/item/weapon/gun/grenade_launcher/m92/standardmarine
 	name = "\improper T-70 grenade launcher"
 	desc = "The T-70 is the standard grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
 	icon = 'icons/Marine/gun64.dmi'
@@ -175,11 +175,11 @@ The Rocket Launchers
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 11, "stock_y" = 12)
 	fire_delay = 1.2 SECONDS
 
-/obj/item/weapon/gun/launcher/grenade/m92/standardmarine/Initialize()
+/obj/item/weapon/gun/grenade_launcher/m92/standardmarine/Initialize()
 	. = ..()
 	grenades.Cut(1,0)
 
-/obj/item/weapon/gun/launcher/grenade/underslung
+/obj/item/weapon/gun/grenade_launcher/underslung
 	name = "underslung grenade launcher"
 	desc = "A weapon-mounted, reloadable, two-shot grenade launcher."
 	icon = 'icons/Marine/marine-weapons.dmi'
@@ -206,13 +206,13 @@ The Rocket Launchers
 		/obj/item/explosive/grenade/flare,
 	)
 
-/obj/item/weapon/gun/launcher/grenade/underslung/update_icon(mob/user)
+/obj/item/weapon/gun/grenade_launcher/underslung/update_icon(mob/user)
 	update_mag_overlay(user)
 
-/obj/item/weapon/gun/launcher/grenade/underslung/invisible
+/obj/item/weapon/gun/grenade_launcher/underslung/invisible
 	flags_attach_features = NONE
 
-/obj/item/weapon/gun/launcher/grenade/m81
+/obj/item/weapon/gun/grenade_launcher/m81
 	name = "\improper T-81 grenade launcher"
 	desc = "A lightweight, single-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
 	icon_state = "m81"
@@ -228,15 +228,15 @@ The Rocket Launchers
 	max_grenades = 1
 	max_range = 10
 
-/obj/item/weapon/gun/launcher/grenade/m81/update_icon()
+/obj/item/weapon/gun/grenade_launcher/m81/update_icon()
 	icon_state = "[base_gun_icon][length(grenades) ? "" : "_e"]"
 
-/obj/item/weapon/gun/launcher/grenade/m81/examine_ammo_count(mob/user)
+/obj/item/weapon/gun/grenade_launcher/m81/examine_ammo_count(mob/user)
 	if(!length(grenades) || (get_dist(user, src) > 2 && user != loc))
 		return
 	to_chat(user, span_notice("It is loaded with [grenades[1]]."))
 
-/obj/item/weapon/gun/launcher/grenade/m81/riot
+/obj/item/weapon/gun/grenade_launcher/m81/riot
 	name = "\improper M81 riot grenade launcher"
 	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by Nanotrasen security during riots."
 	grenade_type_allowed = /obj/item/explosive/grenade/chem_grenade
