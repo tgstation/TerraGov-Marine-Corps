@@ -104,6 +104,11 @@
 	tastes = list("pizza" = 3, "vegetables" = 1)
 	bitesize = 1
 
+/obj/item/reagent_containers/food/snacks/mre_pack/meal4/req
+	desc = "This is supposedly a pizza MRE, fit for marine consumption. While it certainly looks like one, the first, active, primary, and only ingredient that went into it was a rounded metal plate. Maybe it'll taste better after it's sat in the ASRS for a while?"
+	list_reagents = list(/datum/reagent/iron = 8)
+	tastes = list("metal" = 3, "one of your teeth cracking" = 1)
+
 /obj/item/reagent_containers/food/snacks/mre_pack/meal5
 	name = "\improper TGMC Prepared Meal (monkey)"
 	desc = "Sopa de Macaco, Uma Delicia."

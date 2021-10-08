@@ -181,6 +181,7 @@
 	span_danger("We strike [target] with [flavour] precision!"))
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
+	target.ParalyzeNoChain(1 SECONDS)
 
 	cancel_stealth()
 

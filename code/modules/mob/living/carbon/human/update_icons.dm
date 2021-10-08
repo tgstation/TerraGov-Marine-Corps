@@ -101,22 +101,23 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"])
 		return GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"]
 
-	var/brutestate = copytext(damage_state, 1, 2)
-	var/burnstate = copytext(damage_state, 2) //note, burn overlays currently broken here
-	var/icon/DI
-	DI = icon('icons/mob/dam_human.dmi', "[species.brute_damage_icon_state]_[brutestate]")
+	var/brute_state = copytext(damage_state, 1, 2)
+	var/burn_state = copytext(damage_state, 2)
+	var/icon/brute_state_icon = icon('icons/mob/dam_human.dmi', "[species.brute_damage_icon_state]_[brute_state]")
+	var/icon/burn_state_icon = icon('icons/mob/dam_human.dmi', "[species.burn_damage_icon_state]_[burn_state]")
+	var/icon/damage_mask_icon = icon(species.damage_mask_icon, body_part)
+	var/icon/DI = icon('icons/mob/dam_human.dmi', "00") //starts blank
 	if(species.species_flags & GREYSCALE_BLOOD)
-		DI.Blend(species.blood_color, ICON_MULTIPLY) //coloring with species' blood color
-	DI.Blend(new /icon('icons/mob/dam_human.dmi', "[species.burn_damage_icon_state]_[burnstate]"), ICON_OVERLAY)//adding burns
-	DI.Blend(new /icon(species.damage_mask_icon, body_part), ICON_MULTIPLY)		// mask with this organ's pixels
+		DI.Blend(species.blood_color, ICON_MULTIPLY) 	//coloring with species' blood color
+	DI.Blend(brute_state_icon, ICON_OVERLAY)			//add bruises
+	DI.Blend(burn_state_icon, ICON_OVERLAY)				//add burns
+	DI.Blend(damage_mask_icon, ICON_MULTIPLY)			//mask with this organ's pixels
 	GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"] = DI
 	return DI
-
 
 //DAMAGE OVERLAYS
 //constructs damage icon for each organ from mask * damage field and saves it in our overlays_ lists
 /mob/living/carbon/human/UpdateDamageIcon()
-
 	if(species.species_flags & NO_DAMAGE_OVERLAY)
 		return
 
