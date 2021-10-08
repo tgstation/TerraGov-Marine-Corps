@@ -1708,7 +1708,7 @@ FACTORY
 /datum/supply_packs/factory/pizzarefill
 	name = "Nanotrasen \"Eat healthy!\" margerita pizza kit refill"
 	contains = list(/obj/item/factory_refill/pizza)
-	cost = 29 //allows a one point profit if all pizzas are processed and sold back to ASRS
+	cost = 27 //allows a three point profit if all pizzas are processed and sold back to ASRS
 
 /datum/supply_packs/factory/smartrifle_ammo_refill
 	name = "Smart rifle bullet parts refill"
