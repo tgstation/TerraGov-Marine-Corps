@@ -4410,7 +4410,7 @@
 	},
 /area/mainship/medical/medical_science)
 "bpe" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway)
 "bpf" = (
@@ -8885,7 +8885,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/lower_engineering)
 "cUI" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -10599,7 +10599,7 @@
 /turf/open/floor/mainship/orange,
 /area/mainship/squads/alpha)
 "gbU" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/mainship/silver{
 	dir = 6
 	},
@@ -13341,7 +13341,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
 "loD" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/mainship/silver{
 	dir = 5
 	},
@@ -14524,7 +14524,7 @@
 	},
 /area/mainship/command/bridge)
 "noV" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -17738,7 +17738,7 @@
 	},
 /area/mainship/living/basketball)
 "tmb" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
@@ -18459,7 +18459,7 @@
 /obj/structure/table/mainship,
 /obj/item/ammo_magazine/revolver,
 /obj/item/ammo_magazine/revolver,
-/obj/item/weapon/gun/revolver/m44,
+/obj/item/weapon/gun/revolver/single_action/m44,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range)
 "uEg" = (
@@ -18584,7 +18584,7 @@
 /obj/item/ammo_magazine/revolver,
 /obj/item/ammo_magazine/revolver,
 /obj/item/ammo_magazine/revolver,
-/obj/item/weapon/gun/revolver/m44,
+/obj/item/weapon/gun/revolver/single_action/m44,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range)
 "uLM" = (

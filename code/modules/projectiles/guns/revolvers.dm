@@ -67,15 +67,14 @@
 /obj/item/weapon/gun/revolver/proc/replace_cylinder(number_to_replace)
 	current_mag.chamber_contents = list()
 	current_mag.chamber_contents.len = current_mag.max_rounds
-	var/i
-	for(i = 1 to current_mag.max_rounds) //We want to make sure to populate the cylinder.
+	for(var/i = 1 to current_mag.max_rounds) //We want to make sure to populate the cylinder.
 		current_mag.chamber_contents[i] = i > number_to_replace ? "empty" : "bullet"
 	current_mag.chamber_position = max(1,number_to_replace)
 
-/obj/item/weapon/gun/revolver/proc/empty_cylinder()
-	var/i
-	for(i = 1 to current_mag.max_rounds)
+/obj/item/weapon/gun/revolver/proc/empty_cylinder(mob/user)
+	for(var/i = 1 to current_mag.max_rounds)
 		current_mag.chamber_contents[i] = "empty"
+	user.hud_used.update_ammo_hud(user, src)
 
 //The cylinder is always emptied out before a reload takes place.
 /obj/item/weapon/gun/revolver/proc/add_to_cylinder(mob/user) //Bullets are added forward.
@@ -94,7 +93,7 @@
 	return TRUE
 
 /obj/item/weapon/gun/revolver/reload(mob/user, obj/item/ammo_magazine/magazine)
-	if(flags_gun_features & GUN_BURST_FIRING)
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
 
 	if(!magazine || !istype(magazine))
@@ -122,6 +121,7 @@
 					current_mag.match_ammo(magazine)
 					replace_cylinder(current_mag.current_rounds)
 					playsound(user, reload_sound, 25, 1) // Reloading via speedloader.
+					user.hud_used.update_ammo_hud(user, src)
 			else
 				to_chat(user, span_warning("\The [magazine] doesn't fit!"))
 		else
@@ -144,13 +144,13 @@
 
 
 /obj/item/weapon/gun/revolver/unload(mob/user)
-	if(flags_gun_features & GUN_BURST_FIRING)
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return FALSE
 
 	if(current_mag.chamber_closed) //If it's actually closed.
 		to_chat(user, span_notice("You clear the cylinder of [src]."))
 		make_casing(type_of_casings)
-		empty_cylinder()
+		empty_cylinder(user)
 		current_mag.create_handful(user)
 		current_mag.chamber_closed = !current_mag.chamber_closed
 		russian_roulette = !russian_roulette //Resets the RR variable.
@@ -326,7 +326,7 @@
 
 // revolvers do not make any sense when they have a rattle sound, so this is ignored.
 /obj/item/weapon/gun/revolver/play_fire_sound(mob/user)
-	if(flags_gun_features & GUN_SILENCED)
+	if(HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 		playsound(user, fire_sound, 25)
 		return
 	playsound(user, fire_sound, 60)
@@ -336,7 +336,7 @@
 
 /obj/item/weapon/gun/revolver/standard_revolver
 	name = "\improper TP-44 combat revolver"
-	desc = "The TP-44 standard combat revolver, produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to the nature of the weapon, its rate of fire doesn’t quite match the output of other guns, but does hit much harder."
+	desc = "The TP-44 standard combat revolver, produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to an error in the cylinder rotation system the fire rate of the gun is much faster than intended, it ended up being billed as a feature of the system."
 	icon_state = "tp44"
 	item_state = "tp44"
 	caliber =  CALIBER_44 //codex
@@ -363,35 +363,6 @@
 	scatter = 2.5
 	recoil = 0
 	recoil_unwielded = 0.75
-
-//-------------------------------------------------------
-//M-44, based off the SAA.
-
-/obj/item/weapon/gun/revolver/m44
-	name = "\improper M-44 SAA revolver"
-	desc = "A uncommon revolver occasionally carried by civilian law enforcement that's very clearly based off a modernized Single Action Army. Uses .44 Magnum rounds."
-	icon_state = "m44"
-	item_state = "m44"
-	caliber = CALIBER_44 //codex
-	max_shells = 6 //codex
-	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
-	force = 8
-	w_class = WEIGHT_CLASS_BULKY //perhaps give snub-nose treatment later?
-	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/flashlight,
-		/obj/item/attachable/heavy_barrel,
-		/obj/item/attachable/quickfire,
-		/obj/item/attachable/extended_barrel,
-		/obj/item/attachable/compensator,
-		/obj/item/attachable/stock/revolver,
-		/obj/item/attachable/scope,
-		/obj/item/attachable/lasersight,
-		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/lace,
-	)
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
 
 //-------------------------------------------------------
 //RUSSIAN REVOLVER //Based on the 7.62mm Russian revolvers.
@@ -532,6 +503,44 @@
 	scatter_unwielded = 20
 	damage_mult = 1.05
 
+//-------------------------------------------------------
+//The Judge, a shotgun and revolver in one
+
+/obj/item/weapon/gun/revolver/judge
+	name = "\improper 'Judge' revolver"
+	desc = "An incredibly uncommon revolver utilizing a oversized chamber to be able to both fire 45 Long at the cost of firing speed. Normal rounds have no falloff, and next to no scatter. Due to the short barrel, buckshot out of it has high spread."
+	icon_state = "judge"
+	item_state = "m44"
+	fire_animation = "judge_fire"
+	caliber = CALIBER_45L //codex
+	max_shells = 5 //codex
+	current_mag = /obj/item/ammo_magazine/internal/revolver/judge
+	force = 8
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/quickfire,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/stock/revolver,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/lace,
+	)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
+
+	fire_delay = 0.35 SECONDS
+	recoil = 0
+	scatter = 9 // Only affects buckshot considering marksman has -15 scatter.
+	damage_falloff_mult = 1.2
+
+
+//Single action revolvers below
+//---------------------------------------------------
+
 /obj/item/weapon/gun/revolver/single_action //This town aint big enuf fer the two of us
 	name = "single action revolver"
 	desc = "you should not be seeing this."
@@ -585,3 +594,33 @@
 	current_mag.chamber_contents[current_mag.chamber_position] = "blank" //We shot the bullet.
 	current_mag.used_casings++ //We add this only if we actually fired the bullet.
 	return TRUE
+
+//-------------------------------------------------------
+//M-44, based off the SAA.
+
+/obj/item/weapon/gun/revolver/single_action/m44
+	name = "\improper M-44 SAA revolver"
+	desc = "A uncommon revolver occasionally carried by civilian law enforcement that's very clearly based off a modernized Single Action Army. Has to be manully primed with each shot. Uses .44 Magnum rounds."
+	icon_state = "m44"
+	item_state = "m44"
+	caliber = CALIBER_44 //codex
+	max_shells = 6 //codex
+	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
+	force = 8
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/quickfire,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/stock/revolver,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/lace,
+	)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
+
+	fire_delay = 0.15 SECONDS

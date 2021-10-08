@@ -49,6 +49,9 @@
 		if(attached_item.check_blocked_turf(deploy_location))
 			user.balloon_alert(user, "There is insufficient room to deploy [attached_item]!")
 			return
+		if(user.do_actions)
+			user.balloon_alert(user, "You are already doing something!")
+			return
 		new_direction = user.dir
 		user.balloon_alert(user, "You start deploying...")
 		if(!do_after(user, deploy_time, TRUE, attached_item, BUSY_ICON_BUILD))

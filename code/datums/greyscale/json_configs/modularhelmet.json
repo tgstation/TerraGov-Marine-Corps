@@ -8,12 +8,6 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "visor",
-			"blend_mode": "overlay",
-			"color_ids": [2]
-		},
-		{
-			"type": "icon_state",
 			"icon_state": "helmet_nocolor",
 			"blend_mode": "overlay"
 		}

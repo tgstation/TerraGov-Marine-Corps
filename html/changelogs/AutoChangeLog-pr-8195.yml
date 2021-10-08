@@ -1,9 +1,0 @@
-author: "hyper2snyper"
-delete-after: True
-changes: 
-  - rscadd: "New Attachment, the Build-A-Sentry. Available in the Engi vendor for 30 points a piece, or 1 for 25 points in Req."
-  - rscadd: "Simply attach it to the gun and boom, it can be deployed."
-  - rscadd: "Changed the controls for deployable guns and sentries. You can see the controls by examining the guns that can be deployed."
-  - balance: "Anti-mat sniper can now have its scope removed."
-  - code_imp: "Removed an old bitfield that was unused in gun code."
-  - code_imp: "Adds a ton of infrastructure for new sentry types."

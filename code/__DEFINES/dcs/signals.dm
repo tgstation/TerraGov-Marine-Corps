@@ -30,6 +30,8 @@
 #define COMSIG_GLOB_MOB_LOGOUT "!mob_logout"
 #define COMSIG_GLOB_MOB_DEATH "!mob_death"
 
+#define COMSIG_GLOB_AI_GOAL_SET "!ai_goal_set"
+
 
 /// Sent when a marine dropship enters transit level
 #define COMSIG_GLOB_DROPSHIP_TRANSIT "!dropship_transit"
@@ -82,6 +84,15 @@
 #define COMSIG_LIMB_DESTROYED "limb_destroyed"
 #define COMSIG_LIMB_UNDESTROYED "limb_undestroyed"
 
+/// Admin helps
+/// From /datum/admin_help/RemoveActive().
+/// Fired when an adminhelp is made inactive either due to closing or resolving.
+#define COMSIG_ADMIN_HELP_MADE_INACTIVE "admin_help_made_inactive"
+
+/// Called when the player replies. From /client/proc/cmd_admin_pm().
+#define COMSIG_ADMIN_HELP_REPLIED "admin_help_replied"
+
+
 // /area signals
 #define COMSIG_AREA_ENTERED "area_entered" 						//from base of area/Entered(): (atom/movable/M)
 #define COMSIG_AREA_EXITED "area_exited" 							//from base of area/Exited(): (atom/movable/M)
@@ -133,6 +144,7 @@
 	#define COMPONENT_BLOCK_REACH (1<<0)
 #define COMSIG_ATOM_SCREWDRIVER_ACT "atom_screwdriver_act"		//from base of atom/screwdriver_act(): (mob/living/user, obj/item/I)
 #define COMSIG_ATOM_ATTACK_HAND "atom_attack_hand"				//from base of atom/attack_hand(mob/living/user)
+#define COMSIG_ATOM_ATTACK_HAND_ALTERNATE "atom_attack_hand_alternate"	//from base of /atom/attack_hand_alternate(mob/living/user)
 #define COMSIG_ATOM_ATTACK_GHOST "atom_attack_ghost"			//from base of atom/attack_ghost(): (mob/dead/observer/ghost)
 	#define COMPONENT_NO_ATTACK_HAND (1<<0)						//works on all attack_hands.
 #define COMSIG_PARENT_EXAMINE "atom_examine"					//from base of atom/examine(): (/mob)
@@ -273,7 +285,8 @@
 
 #define COMSIG_ITEM_UNDEPLOY "item_undeploy" //from base of /obj/machinery/deployable
 
-#define COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT "loadout_vended_attachment" //from base of /datum/item_representation/gun_attachement/proc/install_on_gun() : (/obj/item/attachment)
+#define COMSIG_LOADOUT_VENDOR_VENDED_GUN_ATTACHMENT "loadout_vended_gun_attachment" //from base of /datum/item_representation/gun_attachement/proc/install_on_gun() : (/obj/item/attachment)
+#define COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT "loadout_vended_armor_attachment" //from base of /datum/item_representation/armor_module/proc/install_on_armor() : (/obj/item/attachment)
 
 // /obj/item/armor_module signals
 #define COMSIG_ARMOR_MODULE_ATTACHING "armor_module_attaching"
@@ -541,6 +554,7 @@
 
 #define COMSIG_XENOABILITY_HEADBITE "xenoability_headbite"
 #define COMSIG_XENOABILITY_REGURGITATE "xenoability_regurgitate"
+#define COMSIG_XENOABILITY_BLESSINGSMENU "xenoability_blesssingsmenu"
 #define COMSIG_XENOABILITY_DROP_WEEDS "xenoability_drop_weeds"
 #define COMSIG_XENOABILITY_CHOOSE_WEEDS "xenoability_choose_weeds"
 #define COMSIG_XENOABILITY_SECRETE_RESIN "xenoability_secrete_resin"
@@ -589,6 +603,7 @@
 #define COMSIG_XENOABILITY_RADIAL_SELECT_REAGENT "xenoability_radial_select_reagent"
 #define COMSIG_XENOABILITY_REAGENT_SLASH "xenoability_reagent_slash"
 #define COMSIG_XENOABILITY_DEFILE "xenoability_defile"
+#define COMSIG_XENOABILITY_TENTACLE "xenoability tentacle"
 
 #define COMSIG_XENOABILITY_RESIN_WALKER "xenoability_resin_walker"
 #define COMSIG_XENOABILITY_BUILD_TUNNEL "xenoability_build_tunnel"
@@ -616,6 +631,7 @@
 #define COMSIG_XENOABILITY_PSYCHIC_CURE "xenoability_psychic_cure"
 #define COMSIG_XENOABILITY_UNRELENTING_FORCE "xenoability_unrelenting_force"
 #define COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT "xenoability_unrelenting_force_select"
+#define COMSIG_XENOABILITY_GRAV_NADE "xenoability_grav_nade"
 
 #define COMSIG_XENOABILITY_RAVAGER_CHARGE "xenoability_ravager_charge"
 #define COMSIG_XENOABILITY_RAVAGE "xenoability_ravage"
@@ -623,10 +639,13 @@
 #define COMSIG_XENOABILITY_SECOND_WIND "xenoability_second_wind"
 #define COMSIG_XENOABILITY_ENDURE "xenoability_endure"
 #define COMSIG_XENOABILITY_RAGE "xenoability_rage"
+#define COMSIG_XENOABILITY_VAMPIRISM "xenoability_vampirism"
 
 #define COMSIG_XENOABILITY_TOGGLE_SAVAGE "xenoability_toggle_savage"
 #define COMSIG_XENOABILITY_POUNCE "xenoability_pounce"
 #define COMSIG_XENOABILITY_EVASION "xenoability_evasion"
+
+#define COMSIG_XENOABILITY_NEUROGAS_GRENADE "xenoability_neurogas_nade"
 
 #define COMSIG_XENOABILITY_HAUNT "xenoability_haunt"
 
@@ -646,7 +665,6 @@
 #define COMSIG_XENOABILITY_BANISH "xenoability_banish"
 #define COMSIG_XENOABILITY_RECALL "xenoability_recall"
 
-#define COMSIG_XENOABILITY_SUMMON_KING_POD "xenoability_summon_king_pod"
 #define COMSIG_XENOABILITY_NIGHTFALL "xenoability_nightfall"
 #define COMSIG_XENOABILITY_GRAVITY_CRUSH "xenoability_gravity_crush"
 #define COMSIG_XENOABILITY_HIVE_SUMMON "xenoability_hive_summon"

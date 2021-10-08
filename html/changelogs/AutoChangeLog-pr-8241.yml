@@ -1,6 +1,0 @@
-author: "MiniMeatwad"
-delete-after: True
-changes: 
-  - rscadd: "Adds Team OOC, two new verbs in the OOC tab called XOOC and MOOC for Xeno and Marine."
-  - code_imp: "Modified ooc.dm, adding two new verbs."
-  - admin: "XOOC and MOOC should have clickable player panel links for admins, and admins can see XOOC and MOOC chat and talk in them."

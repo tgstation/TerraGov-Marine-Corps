@@ -192,6 +192,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/proc/drop_nade(turf/T)
 	return
 
+///called on projectile process() when SPECIAL_PROCESS flag is active
+/datum/ammo/proc/ammo_process(obj/projectile/proj, damage)
+	CRASH("ammo_process called with unimplemented process!")
+
+
 
 /*
 //================================================
@@ -552,10 +557,10 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 5
 
 /datum/ammo/bullet/rifle/tx8/impact/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, max_range = 40, stagger = 2, slowdown = 3.5, knockback = 1)
+	staggerstun(M, P, max_range = 20, stagger = 2, slowdown = 1, knockback = 1)
 
 /datum/ammo/bullet/rifle/ak47
-	name = "heavy rifle bullet"
+	name = "crude heavy rifle bullet"
 	hud_state = "rifle_heavy"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 30
@@ -695,10 +700,10 @@ datum/ammo/bullet/revolver/tp44
 	bonus_projectiles_scatter = 4
 	accuracy_var_low = 9
 	accuracy_var_high = 9
-	accurate_range = 5
+	accurate_range = 3
 	max_range = 10
 	damage = 40
-	damage_falloff = 1
+	damage_falloff = 4
 	penetration = 0
 
 
@@ -711,10 +716,10 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 2
 	accuracy_var_low = 9
 	accuracy_var_high = 9
-	accurate_range = 5
+	accurate_range = 3
 	max_range = 10
 	damage = 40
-	damage_falloff = 1
+	damage_falloff = 4
 	penetration = 0
 
 //buckshot variant only used by the masterkey shotgun attachment.
@@ -1199,6 +1204,7 @@ datum/ammo/bullet/revolver/tp44
 	set_smoke()
 	smoke_system.set_up(range, T)
 	smoke_system.start()
+	smoke_system = null
 	T.visible_message(span_danger("The rocket explodes into white gas!") )
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 	flame_radius(radius, T, 27, 27, 27, 17)
@@ -1322,12 +1328,14 @@ datum/ammo/bullet/revolver/tp44
 	icon_state = "tesla"
 	hud_state = "taser"
 	hud_state_empty = "battery_empty"
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_CHAINING
+	flags_ammo_behavior = AMMO_ENERGY|SPECIAL_PROCESS
 	shell_speed = 0.1
 	damage = 20
 	penetration = 20
 	bullet_color = COLOR_TESLA_BLUE
 
+/datum/ammo/energy/tesla/ammo_process(obj/projectile/proj, damage)
+	zap_beam(proj, 4, damage)
 
 /datum/ammo/energy/droidblast
 	name = "energetic plasma bolt"
@@ -1701,6 +1709,7 @@ datum/ammo/bullet/revolver/tp44
 	smoke_system.strength = smoke_strength
 	smoke_system.set_up(smoke_range, T)
 	smoke_system.start()
+	smoke_system = null
 
 /datum/ammo/xeno/toxin/upgrade1
 	smoke_strength = 0.6
@@ -1709,7 +1718,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/toxin/upgrade2
 	smoke_strength = 0.7
 	reagent_transfer_amount = 9
-	
+
 /datum/ammo/xeno/toxin/upgrade3
 	smoke_strength = 0.75
 	reagent_transfer_amount = 9.5
@@ -1733,7 +1742,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
 	smoke_strength = 1
-	reagent_transfer_amount = 10  
+	reagent_transfer_amount = 10
 
 
 /datum/ammo/xeno/sticky
@@ -1823,8 +1832,8 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
-	added_spit_delay = 0
-	spit_cost = 150
+	added_spit_delay = 2
+	spit_cost = 90
 	damage = 30
 
 /datum/ammo/xeno/acid/heavy/turret
@@ -1941,6 +1950,7 @@ datum/ammo/bullet/revolver/tp44
 		range = max(2, range + X.upgrade_as_number())
 	smoke_system.set_up(range, T)
 	smoke_system.start()
+	smoke_system = null
 	T.visible_message(danger_message)
 
 /datum/ammo/xeno/boiler_gas/corrosive
@@ -1989,7 +1999,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/bullet/pepperball/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/X = victim
-		X.use_plasma(50)
+		X.use_plasma(0.05 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
 
 /datum/ammo/alloy_spike
 	name = "alloy spike"

@@ -7,6 +7,19 @@
 	can_bloody = FALSE
 	light_power = 0.25
 
+/area/space/Entered(atom/movable/arrived, atom/old_loc)
+	. = ..()
+	if(isliving(arrived))
+		var/mob/living/spaceman = arrived
+		if(!spaceman.has_status_effect(/datum/status_effect/spacefreeze))
+			spaceman.apply_status_effect(/datum/status_effect/spacefreeze)
+
+/area/space/Exited(atom/movable/leaver, direction)
+	. = ..()
+	if(isliving(leaver))
+		var/mob/living/spaceman = leaver
+		spaceman.remove_status_effect(/datum/status_effect/spacefreeze)
+
 
 /turf/open/space/basic/New()	//Do not convert to Initialize
 	//This is used to optimize the map loader
@@ -75,9 +88,14 @@
 /turf/open/space/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
 	if(isliving(arrived))
-		to_chat(arrived, span_danger("The cold vacuum instantly freezes you, maybe this was a bad idea?"))
 		var/mob/living/spaceman = arrived
-		spaceman.adjustFireLoss(600) //Death. Space shouldn't be entered.
+		if(!spaceman.has_status_effect(/datum/status_effect/spacefreeze))
+			spaceman.apply_status_effect(/datum/status_effect/spacefreeze)
+
+/turf/open/space/Exited(atom/movable/leaver, direction)
+	if(isliving(leaver))
+		var/mob/living/spaceman = leaver
+		spaceman.remove_status_effect(/datum/status_effect/spacefreeze)
 
 
 /turf/open/space/sea //used on prison for flavor

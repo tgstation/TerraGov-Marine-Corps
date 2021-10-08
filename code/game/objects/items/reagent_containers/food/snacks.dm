@@ -50,6 +50,11 @@
 /obj/item/reagent_containers/food/snacks/attack_self(mob/user as mob)
 	return
 
+/obj/item/reagant_containers/food/snacks/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(!CONFIG_GET(flag/fun_allowed))
+		return FALSE
+	attack_hand(X)
+
 /obj/item/reagent_containers/food/snacks/attack(mob/M, mob/user, def_zone)
 	if(!reagents.total_volume)						//Shouldn't be needed but it checks to see if it has anything left in it.
 		to_chat(user, span_warning("None of [src] left, oh no!"))
@@ -66,7 +71,7 @@
 		var/fullness = C.nutrition + (C.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 25)
 		if(M == user)								//If you're eating it yourself
 			var/mob/living/carbon/H = M
-			if(ishuman(H) && (H.species.species_flags & IS_SYNTHETIC))
+			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
 				to_chat(H, span_warning("You have a monitor for a head, where do you think you're going to put that?"))
 				return
 			if (fullness <= 50)
@@ -82,7 +87,7 @@
 				return FALSE
 		else
 			var/mob/living/carbon/H = M
-			if(ishuman(H) && (H.species.species_flags & IS_SYNTHETIC))
+			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
 				to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
 				return
 			if (fullness <= (550 * (1 + C.overeatduration / 1000)))

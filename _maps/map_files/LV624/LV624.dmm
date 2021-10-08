@@ -7221,7 +7221,7 @@
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aPo" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "aPp" = (
@@ -8172,7 +8172,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/obj/effect/glowshroom,
+/obj/structure/glowshroom,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aUj" = (
@@ -8452,7 +8452,7 @@
 /obj/machinery/shower{
 	dir = 8
 	},
-/obj/effect/glowshroom,
+/obj/structure/glowshroom,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aVv" = (
@@ -8540,7 +8540,7 @@
 /turf/closed/gm/dense,
 /area/shuttle/drop2/lz2)
 "aWa" = (
-/obj/effect/glowshroom,
+/obj/structure/glowshroom,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aWb" = (
@@ -8782,7 +8782,7 @@
 	},
 /area/lv624/lazarus/chapel)
 "aXp" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 9
 	},
@@ -8844,7 +8844,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 1
 	},
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "aXB" = (

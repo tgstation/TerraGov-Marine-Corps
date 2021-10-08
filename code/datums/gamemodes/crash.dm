@@ -29,7 +29,7 @@
 	// Round start info
 	var/starting_squad = "Alpha"
 
-	var/larva_check_interval = 0
+	var/larva_check_interval = 2 MINUTES
 	bioscan_interval = 0
 
 
@@ -81,7 +81,7 @@
 /datum/game_mode/infestation/crash/post_setup()
 	. = ..()
 	for(var/i in GLOB.xeno_resin_silo_turfs)
-		new /obj/structure/xeno/resin/silo(i)
+		new /obj/structure/xeno/silo(i)
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob(HEADBITE_DEATH)
@@ -224,6 +224,7 @@
 	SIGNAL_HANDLER
 	switch(new_xeno.tier)
 		if(XENO_TIER_ONE)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE) //This is bad, but this works without more refactoring
 			new_xeno.upgrade_xeno(XENO_UPGRADE_TWO)
 		if(XENO_TIER_TWO)
 			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
@@ -244,8 +245,8 @@
 			return //RIP benos.
 		if(stored_larva)
 			return //No need for respawns nor to end the game. They can use their burrowed larvas.
-		xeno_job.add_job_positions(max(1, round(larvapoints, 1))) //At least one, rounded to nearest integer if more.
+		xeno_job.add_job_positions(1)
 		return
 	if(round(larvapoints, 1) < 1)
 		return //Things are balanced, no burrowed needed
-	xeno_job.add_job_positions(round(larvapoints, 1)) //However many burrowed they can afford to buy, rounded to nearest integer.
+	xeno_job.add_job_positions(1)

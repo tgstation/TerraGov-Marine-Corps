@@ -167,13 +167,9 @@
 	if(limb_status & LIMB_DESTROYED)
 		return 0
 
-	if(limb_status & LIMB_ROBOT)
-		if(issynth(owner))
-			brute *= owner.species.brute_mod
-			burn *= owner.species.burn_mod
-		else
-			brute *= 0.50 // half damage for ROBOLIMBS
-			burn *= 0.50 // half damage for ROBOLIMBS
+	if(limb_status & LIMB_ROBOT && !(owner.species.species_flags & ROBOTIC_LIMBS))
+		brute *= 0.50 // half damage for ROBOLIMBS if you weren't born with them
+		burn *= 0.50
 
 	//High brute damage or sharp objects may damage internal organs
 	if(internal_organs && ((sharp && brute >= 10) || brute >= 20) && prob(5))
@@ -273,11 +269,11 @@
 
 		// heal brute damage
 		if(W.damage_type == CUT || W.damage_type == BRUISE)
-			brute = W.heal_wound_damage(brute)
+			brute = W.heal_wound_damage(brute, internal)
 		else if(W.damage_type == BURN)
-			burn = W.heal_wound_damage(burn)
+			burn = W.heal_wound_damage(burn, internal)
 		else if(internal)
-			brute = W.heal_wound_damage(brute)
+			brute = W.heal_wound_damage(brute, internal)
 
 	//Sync the organ's damage with its wounds
 	update_damages()
@@ -334,7 +330,7 @@
 	//moved this before the open_wound check so that having many small wounds for example doesn't somehow protect you from taking internal damage (because of the return)
 	//Possibly trigger an internal wound, too.
 	var/local_damage = brute_dam + burn_dam + damage
-	if(damage > 15 && type != BURN && local_damage > 30 && prob(damage*0.5) && !(limb_status & LIMB_ROBOT))
+	if(damage > 15 && type != BURN && local_damage > 30 && prob(damage*0.5) && !(limb_status & LIMB_ROBOT) && !(SSticker.mode?.flags_round_type & MODE_NO_PERMANENT_WOUNDS))
 		var/datum/wound/internal_bleeding/I = new (min(damage - 15, 15))
 		wounds += I
 		owner.custom_pain("You feel something rip in your [display_name]!", 1)
@@ -369,16 +365,18 @@
 	//Creating wound
 	var/wound_type = get_wound_type(type, damage)
 
-	if(wound_type)
-		W = new wound_type(damage)
+	if(!wound_type)
+		return
+	W = new wound_type(damage)
 
-		//Check whether we can add the wound to an existing wound
-		for(var/datum/wound/other in wounds)
-			if(other.can_merge(W))
-				other.merge_wound(W)
-				W = null // to signify that the wound was added
-				break
-		if(W) wounds += W
+	//Check whether we can add the wound to an existing wound
+	for(var/datum/wound/other AS in wounds)
+		if(other.can_merge(W))
+			other.merge_wound(W)
+			W = null // to signify that the wound was added
+			break
+	if(W)
+		wounds += W
 
 
 /****************************************************
@@ -803,6 +801,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(HEAD)
 			if(owner.species.species_flags & IS_SYNTHETIC) //special head for synth to allow brainmob to talk without an MMI
 				organ = new /obj/item/limb/head/synth(owner.loc, owner)
+			else if(owner.species.species_flags & ROBOTIC_LIMBS)
+				organ = new /obj/item/limb/head/robotic(owner.loc, owner)
 			else
 				organ = new /obj/item/limb/head(owner.loc, owner)
 			owner.dropItemToGround(owner.glasses, force = TRUE)
@@ -1013,7 +1013,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return wound_to_check
 
 /datum/limb/proc/get_icon(icon/race_icon, icon/deform_icon, gender="")
-	if(limb_status & LIMB_ROBOT && !(owner.species.species_flags & IS_SYNTHETIC))
+	if(limb_status & LIMB_ROBOT && !(owner.species.species_flags & LIMB_ROBOT)) //if race set the flag then we just let the race handle this
 		return icon('icons/mob/human_races/robotic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
 
 	if (limb_status & LIMB_MUTATED)
@@ -1036,8 +1036,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 		b_icon = B.icon_name
 
 	return icon(race_icon, "[get_limb_icon_name(owner.species, b_icon, owner.gender, icon_name, e_icon)]")
-
-	//return new /icon(race_icon, "[icon_name][gender ? "_[gender]" : ""]")
 
 
 /datum/limb/proc/is_usable()
@@ -1089,7 +1087,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	var/text2 = span_notice("You finish applying [S] to [target]'s [display_name].")
 
 	if(target == user) //If self splinting, multiply delay by 4
-		delay *= 4
+		delay *= 3
 		text1 = span_warning("[user] successfully applies [S] to their [display_name].")
 		text2 = span_notice("You successfully apply [S] to your [display_name].")
 
@@ -1315,5 +1313,5 @@ Note that amputating the affected organ does in fact remove the infection from t
 	. = ..()
 	if(!.)
 		return
-	if(!(owner.species.species_flags & DETACHABLE_HEAD))
+	if(!(owner.species.species_flags & DETACHABLE_HEAD) && vital)
 		owner.set_undefibbable()

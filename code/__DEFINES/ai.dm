@@ -28,14 +28,15 @@
  * This is mainly used for deciding what weights are to be looked at when determing a node waypoint of going towards
  */
 #define IDENTIFIER_XENO "identifies_xeno"
+#define IDENTIFIER_HUSK "identifies_husk"
+
 
 //Flags for the get_nearest_target
 #define TARGET_HUMAN_TURRETS (1<<0)
 #define TARGET_XENO_TURRETS (1<<1)
 #define TARGET_HUMAN (1<<2)
 #define TARGET_XENO (1<<3)
-
-#define TARGET_ALL (TARGET_HUMAN_TURRETS|TARGET_XENO_TURRETS|TARGET_HUMAN|TARGET_XENO)
+#define TARGET_UNMANNED_VEHICLE (1<<4)
 
 #define MAX_NODE_RANGE_SQUARED 256
 

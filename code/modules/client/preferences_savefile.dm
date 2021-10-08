@@ -146,7 +146,6 @@
 	READ_FILE(S["ghost_orbit"], ghost_orbit)
 	READ_FILE(S["ghost_form"], ghost_form)
 	READ_FILE(S["ghost_others"], ghost_others)
-	READ_FILE(S["observer_actions"], observer_actions)
 	READ_FILE(S["focus_chat"], focus_chat)
 	READ_FILE(S["clientfps"], clientfps)
 	READ_FILE(S["parallax"], parallax)
@@ -193,7 +192,6 @@
 	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
 	ghost_form		= sanitize_inlist_assoc(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
-	observer_actions= sanitize_integer(observer_actions, FALSE, TRUE, initial(observer_actions))
 	focus_chat		= sanitize_integer(focus_chat, FALSE, TRUE, initial(focus_chat))
 	clientfps		= sanitize_integer(clientfps, 0, 240, initial(clientfps))
 	parallax = sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
@@ -255,7 +253,6 @@
 	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
 	ghost_form		= sanitize_inlist_assoc(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
-	observer_actions= sanitize_integer(observer_actions, FALSE, TRUE, initial(observer_actions))
 	focus_chat		= sanitize_integer(focus_chat, FALSE, TRUE, initial(focus_chat))
 	clientfps		= sanitize_integer(clientfps, 0, 240, initial(clientfps))
 	parallax = sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
@@ -296,7 +293,6 @@
 	WRITE_FILE(S["ghost_orbit"], ghost_orbit)
 	WRITE_FILE(S["ghost_form"], ghost_form)
 	WRITE_FILE(S["ghost_others"], ghost_others)
-	WRITE_FILE(S["observer_actions"], observer_actions)
 	WRITE_FILE(S["focus_chat"], focus_chat)
 	WRITE_FILE(S["clientfps"], clientfps)
 	WRITE_FILE(S["parallax"], parallax)
@@ -408,7 +404,7 @@
 
 	real_name		= reject_bad_name(real_name, TRUE)
 	random_name		= sanitize_integer(random_name, TRUE, TRUE, initial(random_name))
-	gender			= sanitize_gender(gender)
+	gender			= sanitize_gender(gender, TRUE, TRUE)
 	age				= sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
 	species			= sanitize_inlist(species, GLOB.all_species, initial(species))
 	ethnicity		= sanitize_ethnicity(ethnicity)
@@ -491,7 +487,7 @@
 
 	real_name		= reject_bad_name(real_name, TRUE)
 	random_name		= sanitize_integer(random_name, FALSE, TRUE, initial(random_name))
-	gender			= sanitize_gender(gender)
+	gender			= sanitize_gender(gender, TRUE, TRUE)
 	age				= sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
 	species			= sanitize_inlist(species, GLOB.all_species, initial(species))
 	ethnicity		= sanitize_ethnicity(ethnicity)
@@ -667,8 +663,7 @@
 	S.cd = "/loadouts"
 	var/loadout_version = 0
 	READ_FILE(S["loadout_version"], loadout_version)
-	if(loadout_version != CURRENT_LOADOUT_VERSION)
-		return list()
+
 	var/list/loadouts_data = list()
 	READ_FILE(S["loadouts_list"], loadouts_data)
 	return sanitize_islist(loadouts_data, list())

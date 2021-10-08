@@ -71,13 +71,13 @@
 	if(dangerous)
 		GLOB.round_statistics.grenades_thrown++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "grenades_thrown")
-		updateicon()
+		update_icon()
 	addtimer(CALLBACK(src, .proc/prime), det_time)
 
-/obj/item/explosive/grenade/proc/updateicon()
+/obj/item/explosive/grenade/update_overlays()
+	. = ..()
 	if(dangerous)
-		overlays+=new/obj/effect/overlay/danger
-		dangerous = 0
+		overlays += new /obj/effect/overlay/danger
 
 
 /obj/item/explosive/grenade/proc/prime()
@@ -86,24 +86,6 @@
 
 /obj/item/explosive/grenade/flamer_fire_act()
 	activate()
-
-/obj/item/explosive/grenade/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(isscrewdriver(I))
-		switch(det_time)
-			if(1)
-				det_time = 10
-				to_chat(user, span_notice("You set the [name] for 1 second detonation time."))
-			if(10)
-				det_time = 30
-				to_chat(user, span_notice("You set the [name] for 3 second detonation time."))
-			if(30)
-				det_time = 50
-				to_chat(user, span_notice("You set the [name] for 5 second detonation time."))
-			if(50)
-				det_time = 1
-				to_chat(user, span_notice("You set the [name] for instant detonation."))
 
 /obj/item/explosive/grenade/attack_hand(mob/living/user)
 	. = ..()

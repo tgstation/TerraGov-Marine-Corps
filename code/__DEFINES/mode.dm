@@ -51,6 +51,7 @@
 #define MODE_TWO_HUMAN_FACTIONS	(1<<15)
 #define MODE_SILOABLE_BODIES (1<<16)
 #define MODE_WIN_POINTS (1<<17)
+#define MODE_NO_PERMANENT_WOUNDS (1<<18)
 
 #define MODE_LANDMARK_RANDOM_ITEMS (1<<0)
 #define MODE_LANDMARK_SPAWN_XENO_TUNNELS (1<<1)
@@ -123,7 +124,6 @@
 
 #define SILO_PRICE 800
 #define XENO_TURRET_PRICE 100
-#define XENO_KING_PRICE 1800
 //How many psych point one gen gives per person on the server
 #define BASE_PSYCH_POINT_OUTPUT 0.008
 //How many psy points are gave for each marine psy drained

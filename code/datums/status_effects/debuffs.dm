@@ -1,5 +1,6 @@
 #define TRAIT_STATUS_EFFECT(effect_id) "[effect_id]-trait"
-#define BASE_HEAL_RATE -0.003125
+#define BASE_HEAL_RATE -0.0125
+
 
 //Largely negative status effects go here, even if they have small benificial effects
 //STUN EFFECTS
@@ -369,4 +370,14 @@
 /datum/status_effect/mute/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_MUTED, TRAIT_STATUS_EFFECT(id))
 	return ..()
+
+/datum/status_effect/spacefreeze
+	id = "spacefreeze"
+
+/datum/status_effect/spacefreeze/on_creation(mob/living/new_owner)
+	. = ..()
+	to_chat(new_owner, span_danger("The cold vacuum instantly freezes you, maybe this was a bad idea?"))
+
+/datum/status_effect/spacefreeze/tick()
+	owner.adjustFireLoss(5)
 

@@ -44,7 +44,7 @@ SUBSYSTEM_DEF(monitor)
 
 /datum/controller/subsystem/monitor/Initialize(start_timeofday)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, .proc/set_groundside_calculation)
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), .proc/set_groundside_calculation)
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/set_shipside_calculation)
 	is_automatic_balance_on = CONFIG_GET(flag/is_automatic_balance_on)
 

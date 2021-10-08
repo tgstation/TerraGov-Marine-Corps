@@ -77,7 +77,9 @@
 	var/datum/xeno_caste/X = GLOB.xeno_caste_datums[caste_base_type][upgrade]
 	if(!istype(X))
 		CRASH("error with caste datum")
+	var/marked_target = xeno_caste?.marked_target
 	xeno_caste = X
+	xeno_caste.marked_target = marked_target
 	xeno_caste.on_caste_applied(src)
 	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
 	if(restore_health_and_plasma)
@@ -141,6 +143,8 @@
 			return 2
 		if(XENO_UPGRADE_THREE)
 			return 3
+		if(XENO_UPGRADE_FOUR)
+			return 4
 
 /mob/living/carbon/xenomorph/proc/upgrade_next()
 	switch(upgrade)
@@ -153,7 +157,9 @@
 		if(XENO_UPGRADE_TWO)
 			return XENO_UPGRADE_THREE
 		if(XENO_UPGRADE_THREE)
-			return XENO_UPGRADE_THREE
+			return XENO_UPGRADE_FOUR
+		if(XENO_UPGRADE_FOUR)
+			return XENO_UPGRADE_FOUR
 
 /mob/living/carbon/xenomorph/proc/upgrade_prev()
 	switch(upgrade)
@@ -167,6 +173,8 @@
 			return XENO_UPGRADE_ONE
 		if(XENO_UPGRADE_THREE)
 			return XENO_UPGRADE_TWO
+		if(XENO_UPGRADE_FOUR)
+			return XENO_UPGRADE_THREE
 
 /mob/living/carbon/xenomorph/proc/setup_job()
 	var/datum/job/xenomorph/xeno_job = SSjob.type_occupations[xeno_caste.job_type]
@@ -336,7 +344,7 @@
 	var/obj/screen/LL_dir = hud_used.locate_leader
 	if(!tracked)
 		if(hive.living_xeno_ruler)
-			tracked = hive.living_xeno_ruler
+			set_tracked(hive.living_xeno_ruler)
 		else
 			LL_dir.icon_state = "trackoff"
 			return
