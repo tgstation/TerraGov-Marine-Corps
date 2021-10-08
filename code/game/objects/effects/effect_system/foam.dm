@@ -3,12 +3,6 @@
 
 // Foam
 // Similar to smoke, but spreads out more
-// metal foams leave behind a foamed metal wall
-
-#define METAL_FOAM 1
-#define RAZOR_FOAM 2
-
-
 //foam effect
 
 /obj/effect/particle_effect/foam
@@ -19,14 +13,15 @@
 	density = FALSE
 	layer = BELOW_MOB_LAYER
 	mouse_opacity = 0
+	animate_movement = NO_STEPS
 	///How much tiles the foam expands on.
 	var/amount = 3
 	///How much long the foam lasts
 	var/lifetime = 40
 	///How much the reagents in the foam are divided when applying and how much it can apply per proccess.
 	var/reagent_divisor = 7
-	animate_movement = NO_STEPS
-	var/metal = 0
+
+	var/metal = NONE
 
 /obj/effect/particle_effect/foam/Initialize()
 	. = ..()
@@ -41,17 +36,16 @@
 ///Finishes the foam, stopping it from processing and doing whatever it has to do.
 /obj/effect/particle_effect/foam/proc/kill_foam()
 	STOP_PROCESSING(SSfastprocess, src)
-	switch(metal)
-		if(METAL_FOAM)
-			new /obj/structure/foamedmetal(loc)
-		if(RAZOR_FOAM)
-			var/turf/mystery_turf = get_turf(loc)
-			if(!isopenturf(mystery_turf))
-				return
+	if(metal & METAL_FOAM)
+		new /obj/structure/foamedmetal(loc)
+	if(metal & RAZOR_FOAM)
+		var/turf/mystery_turf = get_turf(loc)
+		if(!isopenturf(mystery_turf))
+			return
 
-			var/turf/open/T = mystery_turf
-			if(T.allow_construction) //No loopholes.
-				new /obj/structure/razorwire(loc)
+		var/turf/open/T = mystery_turf
+		if(T.allow_construction) //No loopholes.
+			new /obj/structure/razorwire(loc)
 	flick("[icon_state]-disolve", src)
 	QDEL_IN(src, 5)
 
@@ -61,7 +55,7 @@
 		kill_foam()
 		return
 
-	var/fraction = 1/initial(reagent_divisor)
+	var/fraction = 1/reagent_divisor
 	for(var/obj/O in range(0, src))
 		if(O.type == src.type)
 			continue
@@ -85,7 +79,7 @@
 		return FALSE
 	if(!isliving(L))
 		return FALSE
-	var/fraction = 1/initial(reagent_divisor)
+	var/fraction = 1/reagent_divisor
 	if(lifetime % reagent_divisor)
 		reagents.reaction(L, VAPOR, fraction)
 	lifetime--
@@ -105,7 +99,7 @@
 
 		for(var/mob/living/L in T)
 			foam_mob(L)
-		var/obj/effect/particle_effect/foam/F = new src.type(T)
+		var/obj/effect/particle_effect/foam/F = new type(T)
 		F.amount = amount
 		reagents.copy_to(F, reagents.total_volume)
 		F.color = color
@@ -134,11 +128,11 @@
 	var/amount = 5				// the size of the foam spread.
 	var/list/carried_reagents	// the IDs of reagents present when the foam was mixed
 	var/obj/chemholder
-	var/metal = 0				// 0=foam, 1=metalfoam, 2=razorburn
+	var/metal = NONE				// 0=foam, 1=metalfoam, 2=razorburn
 
 /datum/effect_system/foam_spread/New()
 	..()
-	chemholder = new /obj()
+	chemholder = new
 	var/datum/reagents/R = new/datum/reagents(1000)
 	chemholder.reagents = R
 	R.my_atom = chemholder
@@ -148,7 +142,7 @@
 	chemholder = null
 	return ..()
 
-/datum/effect_system/foam_spread/set_up(amt=5, loca, datum/reagents/carry = null, metalfoam = 0)
+/datum/effect_system/foam_spread/set_up(amt=5, loca, datum/reagents/carry = null, metalfoam = NONE)
 	if(isturf(loca))
 		location = loca
 	else
@@ -184,5 +178,3 @@
 /obj/structure/foamedmetal/fire_act() //flamerwallhacks go BRRR
 	take_damage(10, BURN, "fire")
 
-#undef METAL_FOAM
-#undef RAZOR_FOAM
