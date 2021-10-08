@@ -62,7 +62,7 @@
 	duration = 0.5 SECONDS
 
 
-/obj/effect/temp_visual/xenomorph/runner_afterimage
+/obj/effect/temp_visual/xenomorph/afterimage
 	name = "runner afterimage"
 	desc = "It has become speed.."
 	icon = 'icons/Xeno/2x2_Xenos.dmi' //They are now like, 2x1 or something
@@ -74,6 +74,14 @@
 	opacity = FALSE
 	anchored = FALSE
 	animate_movement = SLIDE_STEPS
+
+/obj/effect/temp_visual/xenomorph/afterimage/Initialize(mapload, atom/owner)
+	. = ..()
+	appearance = owner.appearance
+	setDir(owner.dir)
+	alpha = initial(alpha)
+	layer = initial(layer)
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/temp_visual/heavyimpact
 	name = "heavy impact"

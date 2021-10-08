@@ -215,6 +215,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
 
+/datum/keybinding/xeno/advance
+	name = "advance"
+	full_name = "Crusher: Rapid Advance"
+	description = "Charges up the crushers charge, then unleashes the full bulk of the crusher into a direction."
+	keybind_signal = COMSIG_XENOABILITY_ADVANCE
+
 /datum/keybinding/xeno/forward_charge
 	name = "forward charge"
 	full_name = "Defender: Forward charge"
