@@ -117,9 +117,10 @@
 		amount *= regen_power
 	amount *= multiplier * GLOB.xeno_stat_multiplicator_buff
 
-	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, src)
+	var/list/heal_data = list(amount)
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, src, heal_data)
 
-	var/remainder = max(0, amount-getBruteLoss())
+	var/remainder = max(0, heal_data[1]-getBruteLoss())
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-remainder)
 
