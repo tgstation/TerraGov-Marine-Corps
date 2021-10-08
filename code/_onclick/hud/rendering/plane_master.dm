@@ -13,6 +13,8 @@
 	var/generate_render_target = TRUE
 	///integer: blend mode to apply to the render relay in case you dont want to use the plane_masters blend_mode
 	var/blend_mode_override
+	///reference to render relay screen object to avoid backdropping multiple times
+	var/atom/movable/render_plane_relay/relay
 
 /obj/screen/plane_master/proc/Show(override)
 	alpha = override || show_alpha
