@@ -161,30 +161,32 @@
 	return TRUE
 
 ///Recursive proc that handles the path finding of the flame stream.
-/obj/item/weapon/gun/flamer/proc/burn_stream(list/turf/old_turfs, start_location, current_target, burn_type, range, dir_to_target, start = TRUE)
+/obj/item/weapon/gun/flamer/proc/burn_stream(list/turf/old_turfs, current_target, burn_type, range, dir_to_target, list/turf/path_to_target, iteration = 1)
 	if(current_mag?.current_rounds <= 0)
 		light_pilot(FALSE)
 		return
 	if(!current_target)
 		return
-	if(start)
+	if(iteration == 1)
 		var/obj/item/attachable/flamer_nozzle/nozzle = attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE]
 		burn_type = nozzle.stream_type
 		old_turfs = list(get_turf(src))
-		start_location = get_turf(src)
 		current_target = get_turf(target)
 		range = flame_max_range
+		var/start_location = get_turf(src)
 		dir_to_target = get_dir(start_location, current_target)
-	if(!length(old_turfs) || length(getline(start_location, old_turfs[1])) > range || (current_target in old_turfs))
+		path_to_target = getline(start_location, current_target)
+		path_to_target -= start_location
+	if(!length(old_turfs) || iteration > range || (current_target in old_turfs))
 		return
 	var/list/turf/turfs_to_ignite = list()
 	var/list/turf/turfs_skip_old = list()
 	var/turf/new_turf = get_step(old_turfs[1], dir_to_target)
 	switch(burn_type)
 		if(FLAMER_STREAM_STRAIGHT)
-			turfs_to_ignite += new_turf
+			turfs_to_ignite += path_to_target[iteration]
 		if(FLAMER_STREAM_CONE)
-			if(start && ISDIAGONALDIR(dir_to_target))
+			if(iteration == 1 && ISDIAGONALDIR(dir_to_target))
 				range /= 2
 			turfs_to_ignite += new_turf //Adds the turf in front of the old turf.
 			for(var/turf/old_turf AS in old_turfs)
@@ -201,7 +203,8 @@
 			burn_list(turfs_skip_old)
 	if(!burn_list(turfs_to_ignite))
 		return
-	addtimer(CALLBACK(src, .proc/burn_stream, turfs_to_ignite, start_location, current_target, burn_type, range, dir_to_target, FALSE), flame_spread_time)
+	iteration++
+	addtimer(CALLBACK(src, .proc/burn_stream, turfs_to_ignite, current_target, burn_type, range, dir_to_target, path_to_target, iteration), flame_spread_time)
 
 ///Checks and lights the turfs in turfs_to_burn
 /obj/item/weapon/gun/flamer/proc/burn_list(list/turf/turfs_to_burn)
@@ -228,7 +231,7 @@
 			return FALSE
 		flame_turf(turf_to_ignite, gun_user, burn_time, burn_level, fire_color)
 		current_mag.current_rounds--
-		gun_user?.hud_used.update_ammo_hud(gun_user, src)	
+	gun_user?.hud_used.update_ammo_hud(gun_user, src)	
 	return TRUE
 
 ///Lights the specific turf on fire and processes melting snow or vines and the like.
@@ -367,7 +370,7 @@
 	SEND_SIGNAL(src, COMSIG_ITEM_HYDRO_CANNON_TOGGLED)
 	return TRUE
 
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/Fire()
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/do_fire(obj/projectile/projectile_to_fire)
 	if(!target)
 		return
 	if(hydro_active && (world.time > last_use + 10))
