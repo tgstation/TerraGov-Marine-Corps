@@ -560,6 +560,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define RAVAGER_RAGE_SUPER_RAGE_THRESHOLD				0.5 //The minimum amount of Rage Power we need to trigger the bonus Rage effects
 #define RAVAGER_RAGE_ENDURE_INCREASE_PER_SLASH			2 SECONDS //The amount of time each slash during Super Rage increases Endure's duration
 
+#define VAMPIRISM_MOB_DURATION 45 SECONDS
+
 //crusher defines
 #define CRUSHER_STOMP_LOWER_DMG 40
 #define CRUSHER_STOMP_UPPER_DMG 60

@@ -248,6 +248,18 @@
 	icon_state = "bottle7"
 	list_reagents = list(/datum/reagent/toxin/xeno_transvitox = 30)
 
+/obj/item/reagent_containers/glass/bottle/xeno_sanguinal
+	name = "\improper Sanguinal bottle"
+	desc = "A small bottle. Contains artificialy synthesized sanguinal- useful for testing treatments or training troops."
+	icon_state = "bottle7"
+	list_reagents = list(/datum/reagent/toxin/xeno_sanguinal = 30)
+
+/obj/item/reagent_containers/glass/bottle/xeno_zombium
+	name = "\improper Zombium bottle"
+	desc = "A small bottle. Contains artificialy synthesized zombium- useful for testing treatments, training troops, or attempting to start the end of the world."
+	icon_state = "bottle7"
+	list_reagents = list(/datum/reagent/zombium = 60)
+
 /obj/item/reagent_containers/glass/bottle/polyhexanide
 	name = "\improper Polyhexanide bottle"
 	desc = "A small bottle. Contains one and a half doses of polyhexanide, a sterilizer for internal surgical use."
