@@ -46,6 +46,12 @@
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
 
+/mob/living/carbon/xenomorph/mantid/ai
+
+/mob/living/carbon/xenomorph/mantid/ai/Initialize()
+	. = ..()
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
+
 /mob/living/carbon/xenomorph/ravager/ai
 
 /mob/living/carbon/xenomorph/ravager/ai/Initialize()
@@ -55,6 +61,12 @@
 /mob/living/carbon/xenomorph/runner/ai
 
 /mob/living/carbon/xenomorph/runner/ai/Initialize()
+	. = ..()
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
+
+/mob/living/carbon/xenomorph/scorpion/ai
+
+/mob/living/carbon/xenomorph/scorpion/ai/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
 

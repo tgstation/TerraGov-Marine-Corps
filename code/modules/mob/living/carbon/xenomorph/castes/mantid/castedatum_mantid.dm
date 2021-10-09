@@ -4,7 +4,7 @@
 	upgrade_name = ""
 	caste_desc = "An alien with an armored crest. It looks like it's still developing." //Need a desc, this is defender desc
 
-	caste_type_path = /mob/living/carbon/xenomorph/beetle
+	caste_type_path = /mob/living/carbon/xenomorph/mantid
 
 	tier = XENO_TIER_ZERO
 	upgrade = XENO_UPGRADE_ZERO
@@ -16,8 +16,8 @@
 	speed = -1
 
 	// *** Plasma *** //
-	plasma_max = 150
-	plasma_gain = 10
+	plasma_max = 400
+	plasma_gain = 20
 
 	// *** Health *** //
 	max_health = 200
