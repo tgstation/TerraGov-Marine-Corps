@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, NoticeBox, Section } from '../components';
+import { Box, Button, LabeledList, NoticeBox, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 export const MarineDropship = (props, context) => {
@@ -25,6 +25,13 @@ export const MarineDropship = (props, context) => {
 
 const NormalOperation = (props, context) => {
   const { act, data } = useBackend(context);
+  const delayBetweenFlight = [
+    0,
+    15,
+    30,
+    45,
+    60,
+  ];
   const doorLocks = [
     {
       label: "Left",
@@ -46,6 +53,34 @@ const NormalOperation = (props, context) => {
     <>
       <Section title="Ship Status">
         {data.ship_status}
+      </Section>
+      <Section title="Automation Status">
+        <Button
+          onClick={() => act("automation_on", { automation_on: 1 })}
+          selected={data.automatic_cycle_on}>
+          On
+        </Button>
+        <Button
+          onClick={() => act("automation_on", { automation_on: 0 })}
+          selected={!data.automatic_cycle_on}>
+          Off
+        </Button>
+      </Section>
+      <Section title="Cycle Time">
+        <Stack>
+          {delayBetweenFlight.map(time_between_cycle => {
+            return (
+              <Stack.Item
+                key={time_between_cycle}>
+                <Button
+                  onClick={() => act("cycle_time_change", { cycle_time_change: time_between_cycle })}
+                  selected={data.time_between_cycle === time_between_cycle}>
+                  {time_between_cycle ? time_between_cycle + " Seconds" : "Instantanious"}
+                </Button>
+              </Stack.Item>
+            );
+          })}
+        </Stack>
       </Section>
       <Section title="Destinations">
         {data.destinations.map(destination => (
@@ -91,4 +126,3 @@ const NormalOperation = (props, context) => {
     </>
   );
 };
-
