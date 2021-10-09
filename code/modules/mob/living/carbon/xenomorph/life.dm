@@ -118,7 +118,7 @@
 	amount *= multiplier * GLOB.xeno_stat_multiplicator_buff
 
 	var/list/heal_data = list(amount)
-	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, src, heal_data)
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, heal_data)
 
 	var/remainder = max(0, heal_data[1]-getBruteLoss())
 	adjustBruteLoss(-amount)
@@ -142,14 +142,6 @@
 	if(HAS_TRAIT(src, TRAIT_NOPLASMAREGEN))
 		hud_set_plasma()
 		return
-	var/list/plasma_mod = list()
-
-	SEND_SIGNAL(src, COMSIG_XENOMORPH_PLASMA_REGEN, plasma_mod)
-
-
-	var/plasma_gain_multiplier = 1
-	for(var/i in plasma_mod)
-		plasma_gain_multiplier *= i
 
 	var/obj/effect/alien/weeds/weeds = locate() in T
 
@@ -164,7 +156,11 @@
 
 	plasma_gain *= weeds ? weeds.resting_buff : 1
 
-	gain_plasma(plasma_gain * plasma_gain_multiplier)
+	var/list/plasma_mod = list(plasma_gain)
+
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_PLASMA_REGEN, plasma_mod)
+
+	gain_plasma(plasma_mod[1])
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
 
 /mob/living/carbon/xenomorph/proc/handle_aura_emiter()

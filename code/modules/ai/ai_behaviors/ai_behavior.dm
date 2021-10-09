@@ -27,11 +27,13 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	///An identifier associated with this behavior, used for accessing specific values of a node's weights
 	var/identifier
 	///How far will we look for targets
-	var/target_distance = 8
+	var/target_distance = 12
 	///What we will escort
 	var/atom/escorted_atom
 	///When this timer is up, we force a change of node to ensure that the ai will never stay stuck trying to go to a specific node
 	var/anti_stuck_timer
+	///Minimum health percentage before the ai tries to run away
+	var/minimum_health = 0.3
 
 /datum/ai_behavior/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
@@ -85,6 +87,10 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		atom_to_walk_to = next_target
 		mob_parent.AddElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
 	register_action_signals(current_action)
+	if(current_action == MOVING_TO_SAFETY)
+		mob_parent.a_intent = INTENT_HELP
+	else
+		mob_parent.a_intent = INTENT_HARM
 
 ///Try to find a node to go to. If ignore_current_node is true, we will just find the closest current_node, and not the current_node best adjacent node
 /datum/ai_behavior/proc/look_for_next_node(ignore_current_node = TRUE, should_reset_goal_nodes = FALSE)
