@@ -56,34 +56,23 @@
 		return
 
 	var/fraction = 1/reagent_divisor
-	for(var/obj/O in range(0, src))
-		if(O.type == src.type)
+	var/turf/our_turf = get_turf(src)
+	var/mob_iterated = FALSE
+	for(var/atom/movable/thing in our_turf)
+		if(thing.type == src.type)
 			continue
 		if(lifetime % reagent_divisor)
-			reagents.reaction(O, VAPOR, fraction)
-	var/hit = 0
-	for(var/mob/living/L in range(0, src))
-		hit += foam_mob(L)
-	if(hit)
-		lifetime++
-	var/T = get_turf(src)
+			reagents.reaction(thing, VAPOR, fraction)
+		if(isliving(thing))
+			if(mob_iterated)
+				lifetime--
+			else
+				mob_iterated = TRUE
 	if(lifetime % reagent_divisor)
-		reagents.reaction(T, VAPOR, fraction)
+		reagents.reaction(our_turf, VAPOR, fraction)
 	if(--amount < 0)
 		return
 	spread_foam()
-
-///Applies foam reagents reaction on the mob OR anything overrided by some foam type.
-/obj/effect/particle_effect/foam/proc/foam_mob(mob/living/L)
-	if(lifetime < 1)
-		return FALSE
-	if(!isliving(L))
-		return FALSE
-	var/fraction = 1/reagent_divisor
-	if(lifetime % reagent_divisor)
-		reagents.reaction(L, VAPOR, fraction)
-	lifetime--
-	return TRUE
 
 ///Spreads the foam in the 4 cardinal directions and gives them the reagents and all.
 /obj/effect/particle_effect/foam/proc/spread_foam()
@@ -98,7 +87,11 @@
 			continue
 
 		for(var/mob/living/L in T)
-			foam_mob(L)
+			if(lifetime < 1)
+				break
+			reagents.reaction(L, VAPOR, 1/reagent_divisor)
+			lifetime--
+
 		var/obj/effect/particle_effect/foam/F = new type(T)
 		F.amount = amount
 		reagents.copy_to(F, reagents.total_volume)
