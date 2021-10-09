@@ -443,7 +443,8 @@
 	if(user != src || dropping == user)
 		return
 	var/mob/dragged = dropping
-	dragged.show_inv(user)
+	if(!HAS_TRAIT(user, TRAIT_CANNOT_STRIP))
+		dragged.show_inv(user)
 
 /mob/living/carbon/xenomorph/MouseDrop_T(atom/dropping, atom/user)
 	return
