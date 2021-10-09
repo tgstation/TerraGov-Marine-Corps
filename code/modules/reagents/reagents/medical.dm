@@ -199,27 +199,28 @@
 	color = "#D8C58C"
 	scannable = TRUE
 	purge_list = list(/datum/reagent/medicine/ryetalyn)
-	purge_rate = 1
+	purge_rate = 0.5
+	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
 /datum/reagent/medicine/kelotane/on_mob_life(mob/living/L, metabolism)
 	var/target_temp = L.get_standard_bodytemperature()
-	L.heal_limb_damage(0, effect_str)
+	L.heal_limb_damage(0, 0.5*effect_str)
 	if(L.bodytemperature > target_temp)
 		L.adjust_bodytemperature(-2.5*TEMPERATURE_DAMAGE_COEFFICIENT*effect_str, target_temp)
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	if(volume > 20)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-		L.heal_limb_damage(0, 0.5*effect_str)
+		L.heal_limb_damage(0, 0.25*effect_str)
 	return ..()
 
 /datum/reagent/medicine/kelotane/overdose_process(mob/living/L, metabolism)
-	L.apply_damages(effect_str, 0, effect_str)
+	L.apply_damages(0.5*effect_str, 0, 0.5*effect_str)
 
 /datum/reagent/medicine/kelotane/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(2*effect_str, 0, 2*effect_str)
+	L.apply_damages(effect_str, 0, effect_str)
 
 /datum/reagent/medicine/dermaline
 	name = "Dermaline"
@@ -299,16 +300,17 @@
 	color = "#B865CC"
 	scannable = TRUE
 	purge_list = list(/datum/reagent/medicine/ryetalyn)
-	purge_rate = 1
+	purge_rate = 0.5
+	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "grossness"
 
 /datum/reagent/medicine/tricordrazine/on_mob_life(mob/living/L, metabolism)
 
-	L.adjustOxyLoss(-0.5*effect_str)
-	L.adjustToxLoss(-0.4*effect_str)
-	L.heal_limb_damage(0.8*effect_str, 0.8*effect_str)
+	L.adjustOxyLoss(-0.25*effect_str)
+	L.adjustToxLoss(-0.2*effect_str)
+	L.heal_limb_damage(0.4*effect_str, 0.4*effect_str)
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	if(volume > 20)
@@ -317,10 +319,10 @@
 
 /datum/reagent/medicine/tricordrazine/overdose_process(mob/living/L, metabolism)
 	L.jitter(5)
-	L.adjustBrainLoss(effect_str, TRUE)
+	L.adjustBrainLoss(0.5*effect_str, TRUE)
 
 /datum/reagent/medicine/tricordrazine/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(3*effect_str, 3*effect_str, 3*effect_str)
+	L.apply_damages(1.5*effect_str, 1.5*effect_str, 1.5*effect_str)
 
 /datum/reagent/medicine/dylovene
 	name = "Dylovene"
@@ -627,26 +629,27 @@
 	description = "Bicaridine is an analgesic medication and can be used to treat blunt trauma."
 	color = "#E8756C"
 	purge_list = list(/datum/reagent/medicine/ryetalyn)
-	purge_rate = 1
+	purge_rate = 0.5
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
+	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	scannable = TRUE
 
 /datum/reagent/medicine/bicaridine/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(effect_str, 0)
+	L.heal_limb_damage(0.5*effect_str, 0)
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	if(volume > 20)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-		L.heal_limb_damage(0.5*effect_str, 0)
+		L.heal_limb_damage(0.25*effect_str, 0)
 	return ..()
 
 
 /datum/reagent/medicine/bicaridine/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(effect_str, BURN)
+	L.apply_damage(0.5*effect_str, BURN)
 
 /datum/reagent/medicine/bicaridine/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(effect_str, 3*effect_str, 2*effect_str)
+	L.apply_damages(0.5*effect_str, 1.5*effect_str, effect_str)
 
 /datum/reagent/medicine/meralyne
 	name = "Meralyne"
