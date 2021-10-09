@@ -7,21 +7,21 @@
 
 /obj/effect/particle_effect/foam
 	name = "foam"
-	icon_state = "foam"
+	icon_state = "greyscalefoam"
 	opacity = FALSE
 	anchored = TRUE
 	density = FALSE
 	layer = BELOW_MOB_LAYER
 	mouse_opacity = 0
 	animate_movement = NO_STEPS
-	///How much tiles the foam expands on.
-	var/amount = 3
-	///How much long the foam lasts
-	var/lifetime = 40
+	///How much the foam expands.
+	var/spread_amount = 3
+	///How much long the foam lasts, 1 second = 5 since this uses fast processing which ticks 5 times in 1 second..
+	var/lifetime = 75
 	///How much the reagents in the foam are divided when applying and how much it can apply per proccess.
 	var/reagent_divisor = 7
-
-	var/metal = NONE
+	///flags for the foam, such as RAZOR_FOAM and METAL_FOAM.
+	var/foam_flags = NONE
 
 /obj/effect/particle_effect/foam/Initialize()
 	. = ..()
@@ -36,9 +36,9 @@
 ///Finishes the foam, stopping it from processing and doing whatever it has to do.
 /obj/effect/particle_effect/foam/proc/kill_foam()
 	STOP_PROCESSING(SSfastprocess, src)
-	if(metal & METAL_FOAM)
+	if(foam_flags & METAL_FOAM)
 		new /obj/structure/foamedmetal(loc)
-	if(metal & RAZOR_FOAM)
+	if(foam_flags & RAZOR_FOAM)
 		var/turf/mystery_turf = get_turf(loc)
 		if(!isopenturf(mystery_turf))
 			return
@@ -70,7 +70,7 @@
 				mob_iterated = TRUE
 	if(lifetime % reagent_divisor)
 		reagents.reaction(our_turf, VAPOR, fraction)
-	if(--amount < 0)
+	if(--spread_amount < 0)
 		return
 	spread_foam()
 
@@ -93,21 +93,21 @@
 			lifetime--
 
 		var/obj/effect/particle_effect/foam/F = new type(T)
-		F.amount = amount
+		F.spread_amount = spread_amount
 		reagents.copy_to(F, reagents.total_volume)
 		F.color = color
-		F.metal = metal
+		F.foam_flags = foam_flags
 
 // foam disolves when heated
 // except metal foams
 /obj/effect/particle_effect/foam/fire_act(exposed_temperature, exposed_volume)
-	if(!metal && prob(max(0, exposed_temperature - 475)))
+	if(!(foam_flags & METAL_FOAM|RAZOR_FOAM) && prob(max(0, exposed_temperature - 475)))
 		kill_foam()
 
 
 /obj/effect/particle_effect/foam/Crossed(atom/movable/AM)
 	. = ..()
-	if(metal)
+	if(foam_flags & METAL_FOAM|RAZOR_FOAM)
 		return
 	if (iscarbon(AM))
 		var/mob/living/carbon/C = AM
@@ -118,10 +118,14 @@
 //datum effect system
 
 /datum/effect_system/foam_spread
-	var/amount = 5				// the size of the foam spread.
-	var/list/carried_reagents	// the IDs of reagents present when the foam was mixed
+	///The size of the foam spread
+	var/spread_amount = 5
+	/// the IDs of reagents present when the foam was mixed
+	var/list/carried_reagents
+	///Holder that holds the chems the foam will have
 	var/obj/chemholder
-	var/metal = NONE				// 0=foam, 1=metalfoam, 2=razorburn
+	///Flags for the foam.
+	var/foam_flags = NONE
 
 /datum/effect_system/foam_spread/New()
 	..()
@@ -135,24 +139,23 @@
 	chemholder = null
 	return ..()
 
-/datum/effect_system/foam_spread/set_up(amt=5, loca, datum/reagents/carry = null, metalfoam = NONE)
-	if(isturf(loca))
-		location = loca
+/datum/effect_system/foam_spread/set_up(spread_amount = 5, atom/location, datum/reagents/carry = null, foam_flags = NONE, lifetime  = 75)
+	if(isturf(location))
+		src.location = location
 	else
-		location = get_turf(loca)
+		src.location = get_turf(location)
 
-	amount = round(sqrt(amt / 3), 1)
+	src.spread_amount = round(sqrt(spread_amount / 3), 1)
 	carry.copy_to(chemholder, carry.total_volume)
-	if(metalfoam)
-		metal = metalfoam
+	src.foam_flags = foam_flags
 
 /datum/effect_system/foam_spread/start()
 	var/obj/effect/particle_effect/foam/F = new(location)
 	var/foamcolor = mix_color_from_reagents(chemholder.reagents.reagent_list)
-	chemholder.reagents.copy_to(F, chemholder.reagents.total_volume/amount)
+	chemholder.reagents.copy_to(F, chemholder.reagents.total_volume/spread_amount)
 	F.add_atom_colour(foamcolor, FIXED_COLOUR_PRIORITY)
-	F.amount = amount
-	F.metal = metal
+	F.spread_amount = spread_amount
+	F.foam_flags = foam_flags
 
 // wall formed by metal foams
 // dense and opaque, but easy to break
