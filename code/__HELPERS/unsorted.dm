@@ -1096,7 +1096,7 @@ will handle it, but:
 	var/list/mobs = sortmobs()
 	var/list/namecounts = list()
 	var/list/pois = list()
-	for(var/mob/M in mobs)
+	for(var/mob/M AS in mobs)
 		if(skip_mindless && (!M.mind && !M.ckey))
 			continue
 		if(M.client?.holder)

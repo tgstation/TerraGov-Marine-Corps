@@ -48,3 +48,4 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 #define PRIMORDIAL_SHRIKE "Primordial Shrike"
 #define PRIMORDIAL_DEFILER "Primordial Defiler"
 #define PRIMORDIAL_SENTINEL "Primordial Sentinel"
+#define PRIMORDIAL_RAVAGER "Primordial Ravager"

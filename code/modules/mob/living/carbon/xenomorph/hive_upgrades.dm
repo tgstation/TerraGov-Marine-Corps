@@ -118,10 +118,10 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 
 /datum/hive_upgrade/building/evotower/on_buy(mob/living/carbon/xenomorph/buyer)
 	if(!do_after(buyer, 10 SECONDS, TRUE, buyer, BUSY_ICON_BUILD))
-		return
+		return FALSE
 
 	if(!can_buy(buyer, FALSE))
-		return
+		return FALSE
 
 	var/turf/buildloc = get_step(buyer, SOUTHWEST)
 
@@ -129,6 +129,42 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	to_chat(buyer, span_notice("We build an evolution tower for [psypoint_cost] psy points."))
 	log_game("[buyer] has built an evolution tower in [AREACOORD(buildloc)], spending [psypoint_cost] psy points in the process")
 	xeno_message("[buyer] has built an evolution tower at [get_area(buildloc)]!", "xenoannounce", 5, buyer.hivenumber)
+	return ..()
+
+/datum/hive_upgrade/building/maturitytower
+	name = "Maturity Tower"
+	desc = "Constructs a tower that increases the rate of maturity point generation by 1.2 times per tower."
+	psypoint_cost = 300
+	icon = "maturitytower"
+	flags_upgrade = ABILITY_DISTRESS
+
+/datum/hive_upgrade/building/maturitytower/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!.)
+		return
+
+	var/turf/buildloc = get_step(buyer, SOUTHWEST)
+	if(!buildloc)
+		return FALSE
+
+	if(buildloc.density)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
+		return FALSE
+
+/datum/hive_upgrade/building/maturitytower/on_buy(mob/living/carbon/xenomorph/buyer)
+	if(!do_after(buyer, 10 SECONDS, TRUE, buyer, BUSY_ICON_BUILD))
+		return FALSE
+
+	if(!can_buy(buyer, FALSE))
+		return FALSE
+
+	var/turf/buildloc = get_step(buyer, SOUTHWEST)
+
+	new /obj/structure/xeno/maturitytower(buildloc, buyer.hivenumber)
+	to_chat(buyer, span_notice("We build a maturity tower for [psypoint_cost] psy points."))
+	log_game("[buyer] has built a maturity tower in [AREACOORD(buildloc)], spending [psypoint_cost] psy points in the process")
+	xeno_message("[buyer] has built a maturity tower at [get_area(buildloc)]!", "xenoannounce", 5, buyer.hivenumber)
 	return ..()
 
 
@@ -260,3 +296,9 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Unlocks the primordial sentinels neurogas grenade. Allows them to throw a grenade that emits gas in an area."
 	psypoint_cost = 75
 	icon = "primosent"
+
+/datum/hive_upgrade/primordial/ravager
+	name = PRIMORDIAL_RAVAGER
+	desc = "Unlocks the primordial ravgers vampirism. A passive ability that increases the ravagers healing as it hits more enemies."
+	psypoint_cost = 225
+	icon = "primorav"

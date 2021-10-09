@@ -12,7 +12,7 @@
 	invisibility = INVISIBILITY_ABSTRACT
 	#endif
 	///list of adjacent landmark nodes
-	var/list/adjacent_nodes
+	var/list/adjacent_nodes = list()
 
 	///List of weights for scoring stuff happening here; ultilizes "identifiers" to differentiate different kinds of AI types looking at the same node.
 	var/list/weights = list(
@@ -39,10 +39,9 @@
 /obj/effect/ai_node/Destroy()
 	GLOB.allnodes -= src
 	//Remove our reference to self from nearby adjacent node's adjacent nodes
-	for(var/nodes in adjacent_nodes)
-		var/obj/effect/ai_node/node = nodes
+	for(var/obj/effect/ai_node/node AS in adjacent_nodes)
 		node.adjacent_nodes -= src
-	adjacent_nodes?.Cut()
+	adjacent_nodes.Cut()
 	return ..()
 
 /**
@@ -84,8 +83,8 @@
 		if(!is_in_line_of_sight(get_turf(node)))
 			continue
 
-		LAZYDISTINCTADD(adjacent_nodes ,node)
-		LAZYDISTINCTADD(node.adjacent_nodes, src)
+		adjacent_nodes |= node
+		node.adjacent_nodes |= src
 
 ///Returns true if the turf in argument is in line of sight
 /obj/effect/ai_node/proc/is_in_line_of_sight(turf/target_loc)
