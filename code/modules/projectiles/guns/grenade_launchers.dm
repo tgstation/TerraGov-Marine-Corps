@@ -1,7 +1,6 @@
 /*
 This file contains: 
 The Grenade Launchers
-The Rocket Launchers
 */
 
 //GRENADE LAUNCHERS
