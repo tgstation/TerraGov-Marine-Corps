@@ -202,6 +202,8 @@
 	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
+	effect_str = 0.5
+	custom_metabolism = REAGENTS_METABOLISM * 0.5
 
 /datum/reagent/medicine/kelotane/on_mob_life(mob/living/L, metabolism)
 	var/target_temp = L.get_standard_bodytemperature()
@@ -303,6 +305,8 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "grossness"
+	effect_str = 0.5
+	custom_metabolism = REAGENTS_METABOLISM * 0.5
 
 /datum/reagent/medicine/tricordrazine/on_mob_life(mob/living/L, metabolism)
 
@@ -631,6 +635,8 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
+	effect_str = 0.5
+	custom_metabolism = REAGENTS_METABOLISM * 0.5
 
 /datum/reagent/medicine/bicaridine/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(effect_str, 0)
