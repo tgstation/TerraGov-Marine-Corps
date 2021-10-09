@@ -136,3 +136,6 @@
 				return
 
 	return ..()
+
+/datum/ai_behavior/xeno/ranged
+	distance_to_maintain = 5
