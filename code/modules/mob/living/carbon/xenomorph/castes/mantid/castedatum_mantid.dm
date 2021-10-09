@@ -1,6 +1,6 @@
-/datum/xeno_caste/beetle
-	caste_name = "Beetle"
-	display_name = "Beetle"
+/datum/xeno_caste/mantid
+	caste_name = "Mantid"
+	display_name = "Mantid"
 	upgrade_name = ""
 	caste_desc = "An alien with an armored crest. It looks like it's still developing." //Need a desc, this is defender desc
 
@@ -10,28 +10,25 @@
 	upgrade = XENO_UPGRADE_ZERO
 
 	// *** Melee Attacks *** //
-	melee_damage = 17
+	melee_damage = 20
 
 	// *** Speed *** //
-	speed = -0.3
+	speed = -1
 
 	// *** Plasma *** //
 	plasma_max = 150
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 200
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 25, "energy" = 20, "bomb" = XENO_BOMB_RESIST_2, "bio" = 20, "rad" = 20, "fire" = 30, "acid" = 20)
-
-	// *** Ranged Attack *** //
-	charge_type = CHARGE_TYPE_LARGE
+	soft_armor = list("melee" = 14, "bullet" = 5, "laser" = 5, "energy" = 0, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 5, "acid" = 0)
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/activable/forward_charge,
+		/datum/action/xeno_action/activable/ravage,
 	)

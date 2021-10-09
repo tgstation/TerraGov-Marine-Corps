@@ -1442,6 +1442,8 @@
 #include "code\modules\mob\living\carbon\xenomorph\castes\king\king.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\larva\castedatum_larva.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\larva\larva.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\mantid\castedatum_mantid.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\mantid\mantid.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\praetorian\abilities_praetorian.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\praetorian\castedatum_praetorian.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\praetorian\praetorian.dm"
