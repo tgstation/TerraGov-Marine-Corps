@@ -2,7 +2,7 @@
 	caste_name = "Beetle"
 	display_name = "Beetle"
 	upgrade_name = ""
-	caste_desc = """
+	caste_desc = ""
 
 	caste_type_path = /mob/living/carbon/xenomorph/beetle
 
