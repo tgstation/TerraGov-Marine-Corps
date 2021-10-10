@@ -974,7 +974,7 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
 	damage = 50
 	penetration = 30
-	sundering = 5
+	sundering = 2
 	damage_falloff = 0.25
 
 /*
