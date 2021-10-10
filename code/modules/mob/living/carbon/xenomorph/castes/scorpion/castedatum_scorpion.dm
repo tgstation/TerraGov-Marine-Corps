@@ -2,7 +2,7 @@
 	caste_name = "Scorpion"
 	display_name = "Scorpion"
 	upgrade_name = ""
-	caste_desc = "An alien with an armored crest. It looks like it's still developing." //Need a desc, this is defender desc
+	caste_desc = ""
 
 	caste_type_path = /mob/living/carbon/xenomorph/scorpion
 

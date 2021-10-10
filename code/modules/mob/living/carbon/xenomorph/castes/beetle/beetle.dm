@@ -1,7 +1,7 @@
 /mob/living/carbon/xenomorph/beetle
 	caste_base_type = /mob/living/carbon/xenomorph/beetle
 	name = "Beetle"
-	desc = "A alien with an armored head crest."
+	desc = "A bulky, six-legged alien with a horn. Its carapace seems quite durable."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Beetle Walking"
 	health = 200
