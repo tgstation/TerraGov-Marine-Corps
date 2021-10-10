@@ -88,6 +88,9 @@
 	else
 		return FLOOR(cell.charge / max(charge_cost, 1),1)
 
+/obj/item/weapon/gun/energy/muzzle_flash()
+	return
+
 // energy guns, however, do not use gun rattles.
 /obj/item/weapon/gun/energy/play_fire_sound(mob/user)
 	if(HAS_TRAIT(src, TRAIT_GUN_SILENCED))
