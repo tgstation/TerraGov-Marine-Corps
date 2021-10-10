@@ -33,7 +33,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER|CASTE_INNATE_PLASMA_REGEN|CAN_BECOME_KING
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 35, "bullet" = 40, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_1, "bio" = 30, "rad" = 30, "fire" = 50, "acid" = 30)
+	soft_armor = list("melee" = 40, "bullet" = 45, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_1, "bio" = 35, "rad" = 35, "fire" = 55, "acid" = 35)
 
 	// *** Ranged Attack *** //
 	charge_type = CHARGE_TYPE_LARGE
@@ -85,7 +85,7 @@
 	upgrade_threshold = 750
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 40, "bullet" = 45, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_1, "bio" = 35, "rad" = 35, "fire" = 55, "acid" = 35)
+	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_1, "bio" = 40, "rad" = 40, "fire" = 60, "acid" = 40)
 
 /datum/xeno_caste/ravager/elder
 	upgrade_name = "Elder"
@@ -111,7 +111,7 @@
 	upgrade_threshold = 1750
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_1, "bio" = 38, "rad" = 38, "fire" = 65, "acid" = 38)
+	soft_armor = list("melee" = 50, "bullet" = 55, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_1, "bio" = 45, "rad" = 45, "fire" = 70, "acid" = 45)
 
 /datum/xeno_caste/ravager/ancient
 	upgrade_name = "Ancient"
@@ -136,7 +136,7 @@
 	upgrade_threshold = 2750
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 50, "bullet" = 55, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_1, "bio" = 40, "rad" = 40, "fire" = 70, "acid" = 40)
+	soft_armor = list("melee" = 55, "bullet" = 60, "laser" = 55, "energy" = 55, "bomb" = XENO_BOMB_RESIST_1, "bio" = 50, "rad" = 50, "fire" = 75, "acid" = 50)
 
 /datum/xeno_caste/ravager/primordial
 	upgrade_name = "Primordial"
@@ -161,7 +161,7 @@
 	upgrade_threshold = 2750
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 50, "bullet" = 55, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_1, "bio" = 40, "rad" = 40, "fire" = 70, "acid" = 40)
+	soft_armor = list("melee" = 60, "bullet" = 65, "laser" = 60, "energy" = 60, "bomb" = XENO_BOMB_RESIST_1, "bio" = 55, "rad" = 55, "fire" = 80, "acid" = 55)
 
 	// *** Abilities *** //
 	actions = list(
