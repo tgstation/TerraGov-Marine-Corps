@@ -1055,6 +1055,11 @@
 	dir = 4
 	},
 /area/mainship/command/cic)
+"fl" = (
+/obj/structure/window/framed/colony/reinforced/tinted,
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/closed/wall/r_wall,
+/area/mainship/shipboard/weapon_room)
 "fo" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -1465,6 +1470,13 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
+"hD" = (
+/obj/effect/landmark/start/job/squadmarine,
+/obj/effect/landmark/start/latejoin,
+/turf/open/floor/mainship/purple{
+	dir = 4
+	},
+/area/mainship/living/cryo_cells)
 "hE" = (
 /obj/structure/window/framed/colony/reinforced/tinted,
 /turf/closed/wall/r_wall,
@@ -2943,6 +2955,10 @@
 	dir = 6
 	},
 /area/space)
+"oB" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/closed/wall/mainship/gray,
+/area/mainship/squads/general)
 "oC" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -3726,6 +3742,13 @@
 	dir = 8
 	},
 /area/mainship/squads/req)
+"sy" = (
+/obj/effect/landmark/start/job/squadmarine,
+/obj/effect/landmark/start/latejoin,
+/turf/open/floor/mainship/blue{
+	dir = 8
+	},
+/area/mainship/living/cryo_cells)
 "sz" = (
 /obj/structure/table/reinforced,
 /obj/machinery/photocopier,
@@ -4545,6 +4568,13 @@
 /obj/machinery/door/poddoor/mainship/droppod,
 /turf/open/floor/mainship/stripesquare,
 /area/sulaco/hangar/droppod)
+"wv" = (
+/obj/effect/landmark/start/job/squadmarine,
+/obj/effect/landmark/start/latejoin,
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/mainship/living/cryo_cells)
 "ww" = (
 /turf/open/floor/carpet{
 	dir = 4;
@@ -5437,6 +5467,13 @@
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
+"Bv" = (
+/obj/effect/landmark/start/job/squadmarine,
+/obj/effect/landmark/start/latejoin,
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/mainship/living/cryo_cells)
 "Bz" = (
 /obj/structure/table/woodentable,
 /obj/machinery/light{
@@ -18828,7 +18865,7 @@ Ao
 jM
 ZW
 Vk
-Vk
+fl
 Vk
 ZW
 ZW
@@ -21006,11 +21043,11 @@ Ha
 xX
 Lh
 wO
-fN
-fN
-fN
-fN
-fN
+Bv
+Bv
+Bv
+Bv
+Bv
 fN
 mW
 fN
@@ -21462,11 +21499,11 @@ AF
 mT
 od
 NL
-Ui
-Ui
-Ui
-Ui
-Ui
+wv
+wv
+wv
+wv
+wv
 Ui
 Ui
 Ui
@@ -21757,7 +21794,7 @@ fz
 fz
 fz
 fK
-fK
+oB
 fK
 fz
 fz
@@ -22070,11 +22107,11 @@ Ry
 mT
 od
 UM
-kq
-kq
-kq
-kq
-kq
+sy
+sy
+sy
+sy
+sy
 kq
 kq
 kq
@@ -22526,11 +22563,11 @@ gH
 KJ
 DD
 qB
-sV
-sV
-sV
-sV
-sV
+hD
+hD
+hD
+hD
+hD
 sV
 Ac
 sV
