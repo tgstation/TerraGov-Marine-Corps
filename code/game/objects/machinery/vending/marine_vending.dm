@@ -846,6 +846,9 @@
 	products = list(
 		"Armors" = list(
 			/obj/item/clothing/suit/modular/pas11x = -1,
+			/obj/item/clothing/suit/modular/pas11x/xenonautenl = -1,
+			/obj/item/clothing/suit/modular/pas11x/xenonautenm = -1,
+			/obj/item/clothing/suit/modular/pas11x/xenonautenh = -1,
 			/obj/item/clothing/suit/modular = -1,
 			/obj/item/clothing/suit/storage/marine/harness = -1,
 			/obj/item/clothing/suit/armor/vest/pilot = -1,

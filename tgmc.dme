@@ -1518,6 +1518,7 @@
 #include "code\modules\mob\new_player\sprite_accessories.dm"
 #include "code\modules\modular_armor\attachments.dm"
 #include "code\modules\modular_armor\modular.dm"
+#include "code\modules\modular_armor\normal_armor.dm"
 #include "code\modules\modular_armor\attachments\arm_plates.dm"
 #include "code\modules\modular_armor\attachments\chestplates.dm"
 #include "code\modules\modular_armor\attachments\leg_plates.dm"

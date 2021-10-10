@@ -43,6 +43,30 @@
 		return
 	item_state = icon_state
 
+/obj/item/clothing/suit/modular/pas11x/xenonautenl
+	name = "\improper Xenonauten-L pattern armored vest"
+	desc = "A XN-H vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a light variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	soft_armor = list("melee" = 35, "bullet" = 55, "laser" = 55, "energy" = 50, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 40)
+	icon_state = "light"
+	item_state = "light"
+	slowdown = 0.3
+
+/obj/item/clothing/suit/modular/pas11x/xenonautenm
+	name = "\improper Xenonauten-M pattern armored vest"
+	desc = "A XN-M vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a medium variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 50, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
+	icon_state = "medium"
+	item_state = "medium"
+	slowdown = 0.5
+
+/obj/item/clothing/suit/modular/pas11x/xenonautenh
+	name = "\improper Xenonauten-H pattern armored vest"
+	desc = "A XN-H vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a heavy variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	soft_armor = list("melee" = 45, "bullet" = 70, "laser" = 70, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 55)
+	icon_state = "heavy"
+	item_state = "heavy"
+	slowdown = 0.7
+
 // Helmets //
 
 /obj/item/clothing/head/modular/marine/m10x
