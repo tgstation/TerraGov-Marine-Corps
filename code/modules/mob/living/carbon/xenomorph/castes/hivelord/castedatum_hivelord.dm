@@ -37,7 +37,7 @@
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 15, "acid" = 10)
+	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 10)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -94,7 +94,7 @@
 	upgrade_threshold = 360
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 20, "acid" = 15)
+	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 25, "acid" = 15)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -125,7 +125,7 @@
 	upgrade_threshold = 840
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 25, "acid" = 18)
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 30, "acid" = 20)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -157,7 +157,7 @@
 	upgrade_threshold = 1320
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 30, "acid" = 20)
+	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 25, "fire" = 35, "acid" = 25)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
