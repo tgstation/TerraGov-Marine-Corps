@@ -202,7 +202,9 @@
 	X.set_canmove(TRUE)
 
 	var/datum/action/xeno_action/ready_charge/charge = X.actions_by_path[/datum/action/xeno_action/ready_charge]
-	charge?.do_start_crushing()
+	if(charge)
+		charge.do_start_crushing()
+		charge.valid_steps_taken = charge.max_steps_buildup - 1
 	for(var/i=0 to get_dist(X, A))
 		var/aimdir = get_dir(X,A)
 		if(i % 2)

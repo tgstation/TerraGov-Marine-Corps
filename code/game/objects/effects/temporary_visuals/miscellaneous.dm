@@ -63,10 +63,7 @@
 
 
 /obj/effect/temp_visual/xenomorph/afterimage
-	name = "runner afterimage"
-	desc = "It has become speed.."
-	icon = 'icons/Xeno/2x2_Xenos.dmi' //They are now like, 2x1 or something
-	icon_state = "Runner Walking"
+	name = "runner/crusher afterimage"
 	layer = MOB_LAYER
 	alpha = 64 //Translucent
 	duration = 0.5 SECONDS
