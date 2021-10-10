@@ -34,7 +34,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CAN_BECOME_KING|CAN_RIDE_CRUSHER
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 10, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 10)
+	soft_armor = list("melee" = 15, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 25, "acid" = 15)
 
 	// *** Ranged Attack *** //
 	spit_delay = 0.8 SECONDS
@@ -83,7 +83,7 @@
 	upgrade_threshold = 360
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 15, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 25, "acid" = 15)
+	soft_armor = list("melee" = 20, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 30, "acid" = 20)
 
 	// *** Ranged Attack *** //
 	spit_delay = 0.7 SECONDS
@@ -113,7 +113,7 @@
 	upgrade_threshold = 840
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 20, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 30, "acid" = 18)
+	soft_armor = list("melee" = 25, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 25, "fire" = 35, "acid" = 25)
 
 	// *** Ranged Attack *** //
 	spit_delay = 0.6 SECONDS
@@ -143,7 +143,7 @@
 	upgrade_threshold = 1320
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 25, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 35, "acid" = 20)
+	soft_armor = list("melee" = 30, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 40, "acid" = 30)
 
 	// *** Ranged Attack *** //
 	spit_delay = 0.5 SECONDS
