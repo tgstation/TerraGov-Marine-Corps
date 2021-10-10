@@ -558,6 +558,7 @@
 
 // xeno abilities for keybindings
 
+#define COMSIG_XENOABILITY_REST "xenoability_rest"
 #define COMSIG_XENOABILITY_HEADBITE "xenoability_headbite"
 #define COMSIG_XENOABILITY_REGURGITATE "xenoability_regurgitate"
 #define COMSIG_XENOABILITY_BLESSINGSMENU "xenoability_blesssingsmenu"
@@ -645,6 +646,7 @@
 #define COMSIG_XENOABILITY_SECOND_WIND "xenoability_second_wind"
 #define COMSIG_XENOABILITY_ENDURE "xenoability_endure"
 #define COMSIG_XENOABILITY_RAGE "xenoability_rage"
+#define COMSIG_XENOABILITY_VAMPIRISM "xenoability_vampirism"
 
 #define COMSIG_XENOABILITY_TOGGLE_SAVAGE "xenoability_toggle_savage"
 #define COMSIG_XENOABILITY_POUNCE "xenoability_pounce"

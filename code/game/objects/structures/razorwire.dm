@@ -114,15 +114,6 @@
 	DISABLE_BITFIELD(entangled.restrained_flags, RESTRAINED_RAZORWIRE)
 	REMOVE_TRAIT(entangled, TRAIT_IMMOBILE, type)
 
-
-/obj/structure/razorwire/Uncross(atom/movable/AM, direction)
-	. = ..()
-	razorwire_untangle(AM)
-
-/obj/structure/razorwire/Uncrossed(atom/movable/AM)
-	. = ..()
-	razorwire_untangle(AM)
-
 /obj/structure/razorwire/Destroy()
 	for(var/i in entangled_list)
 		do_razorwire_untangle(i)

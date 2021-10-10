@@ -18,5 +18,8 @@
 		return
 	INVOKE_ASYNC(item_in_hand, /obj/item.proc/melee_attack_chain, mob_parent, attacked)
 
+/datum/ai_behavior/xeno/husk/try_to_heal()
+	return //Husks don't need to do anything to heal
+
 /datum/ai_behavior/xeno/husk/patrolling
 	base_action = MOVING_TO_NODE

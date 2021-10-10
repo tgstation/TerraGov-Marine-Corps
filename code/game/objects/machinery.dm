@@ -183,6 +183,8 @@
 /obj/machinery/attack_ai(mob/living/silicon/ai/user)
 	if(!is_operational())
 		return FALSE
+	if(!(interaction_flags & INTERACT_SILICON_ALLOWED))
+		return FALSE
 	return interact(user)
 
 
