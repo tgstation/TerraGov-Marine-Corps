@@ -1,4 +1,4 @@
 author: "BraveMole"
 delete-after: True
 changes: 
-  - bugfix: "Fix ai breaking tadpole"
+  - bugfix: "Fix energy gun not auto ejecting"

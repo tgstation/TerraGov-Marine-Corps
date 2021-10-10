@@ -273,14 +273,12 @@
 	return in_chamber
 
 /obj/item/weapon/gun/energy/lasgun/reload_into_chamber(mob/user)
-	if(!active_attachable && cell) //We don't need to check for the mag if an attachment was used to shoot.
-		if(cell) //If there is no mag, we can't reload.
-			if(overcharge && cell.charge < ENERGY_OVERCHARGE_AMMO_COST && cell.charge >= ENERGY_STANDARD_AMMO_COST) //Revert to standard shot if we don't have enough juice for overcharge, but enough for the standard mode
-				cock(user)
-				return
-			if(cell.charge < charge_cost && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
-				unload(user,1,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
-				playsound(src, empty_sound, 25, 1)
+	if(overcharge && cell.charge < ENERGY_OVERCHARGE_AMMO_COST && cell.charge >= ENERGY_STANDARD_AMMO_COST) //Revert to standard shot if we don't have enough juice for overcharge, but enough for the standard mode
+		cock(user)
+		return
+	if(cell.charge < charge_cost && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
+		unload(user,1,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
+		playsound(src, empty_sound, 25, 1)
 
 	return TRUE
 

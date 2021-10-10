@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "Xenomorph now belongs to the xenomorph faction, not the neutral one"
