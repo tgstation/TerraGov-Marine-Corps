@@ -1,9 +1,9 @@
-/mob/living/carbon/xenomorph/mantid
-	caste_base_type = /mob/living/carbon/xenomorph/mantid
-	name = "Mantid"
+/mob/living/carbon/xenomorph/mantis
+	caste_base_type = /mob/living/carbon/xenomorph/mantis
+	name = "Mantis"
 	desc = "A alien with an armored head crest."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
-	icon_state = "Mantid Walking"
+	icon_state = "Mantis Walking"
 	health = 150
 	maxHealth = 150
 	plasma_stored = 50

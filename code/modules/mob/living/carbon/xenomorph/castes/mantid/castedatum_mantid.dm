@@ -1,10 +1,10 @@
-/datum/xeno_caste/mantid
-	caste_name = "Mantid"
-	display_name = "Mantid"
+/datum/xeno_caste/mantis
+	caste_name = "Mantis"
+	display_name = "Mantis"
 	upgrade_name = ""
 	caste_desc = "An alien with an armored crest. It looks like it's still developing." //Need a desc, this is defender desc
 
-	caste_type_path = /mob/living/carbon/xenomorph/mantid
+	caste_type_path = /mob/living/carbon/xenomorph/mantis
 
 	tier = XENO_TIER_ZERO
 	upgrade = XENO_UPGRADE_BASETYPE

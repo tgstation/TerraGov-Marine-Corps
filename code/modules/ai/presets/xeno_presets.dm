@@ -46,9 +46,9 @@
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
 
-/mob/living/carbon/xenomorph/mantid/ai
+/mob/living/carbon/xenomorph/mantis/ai
 
-/mob/living/carbon/xenomorph/mantid/ai/Initialize()
+/mob/living/carbon/xenomorph/mantis/ai/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
 
