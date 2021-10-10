@@ -394,8 +394,8 @@
 
 ///Kick the player from this mob, replace it by a more competent ai
 /mob/living/carbon/xenomorph/proc/replace_by_ai()
-	to_chat(src, span_warning("Sorry, your skill level was deemed too low by our automatic skill check system. Your body has as such been given to a more capable brain, our state of the art AI technology piece. Do not hesitate to come back after you trained on a private server!"))
-	client = null
+	to_chat(src, span_warning("Sorry, your skill level was deemed too low by our automatic skill check system. Your body has as such been given to a more capable brain, our state of the art AI technology piece. Do not hesitate to take back your body after you've improved!"))
+	ghostize(TRUE)//Can take back its body
 	GLOB.offered_mob_list -= src
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
 	a_intent = INTENT_HARM
