@@ -28,6 +28,8 @@ SUBSYSTEM_DEF(monitor)
 	var/gamestate = SHUTTERS_CLOSED
 	///If the automatic balance system is online
 	var/is_automatic_balance_on = TRUE
+	///Maximum record of how many players were concurrently playing this round
+	var/maximum_connected_players_count = 0
 
 /datum/monitor_statistics
 	var/king = 0
@@ -51,6 +53,7 @@ SUBSYSTEM_DEF(monitor)
 /datum/controller/subsystem/monitor/fire(resumed = 0)
 	var/total_living_players = GLOB.alive_human_list.len + GLOB.alive_xeno_list.len
 	current_points = calculate_state_points() / max(total_living_players, 10)//having less than 10 players gives bad results
+	maximum_connected_players_count = max(get_active_player_count(), maximum_connected_players_count)
 	if(gamestate == GROUNDSIDE)
 		process_human_positions()
 		FOB_hugging_check()
