@@ -7,6 +7,7 @@
 	action_icon_state = "resting"
 	mechanics_text = "Rest on weeds to regenerate health and plasma."
 	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY
+	keybind_signal = COMSIG_XENOABILITY_REST
 
 /datum/action/xeno_action/xeno_resting/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -131,7 +132,7 @@
 		plant_weeds(owner)
 
 /datum/action/xeno_action/activable/plant_weeds/use_ability(atom/A)
-	plant_weeds(A)
+	plant_weeds(max_range ? A : get_turf(owner))
 
 ////Plant a weeds node on the selected atom
 /datum/action/xeno_action/activable/plant_weeds/proc/plant_weeds(atom/A)
@@ -189,8 +190,7 @@
 /datum/action/xeno_action/activable/plant_weeds/ai_should_use(target)
 	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return ..()
-	if(locate(/obj/effect/alien/weeds/node) in owner.loc) //NODE SPAMMMM
-		//There's already a node on this loc don't plant anything
+	if(locate(/obj/effect/alien/weeds) in owner.loc)
 		return ..()
 	return TRUE
 
