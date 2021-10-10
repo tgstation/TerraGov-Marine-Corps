@@ -198,7 +198,7 @@
 		if(!xeno_caste.primordial_upgrade_name)
 			return FALSE
 		return hive.upgrades_by_name[xeno_caste.primordial_upgrade_name].times_bought
-	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_THREE && upgrade != XENO_TIER_ZERO)
+	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_FOUR)
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
