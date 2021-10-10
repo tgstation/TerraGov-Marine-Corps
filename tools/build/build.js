@@ -73,7 +73,6 @@ const TguiTarget = Juke.createTarget({
   outputs: [
     'tgui/public/tgui.bundle.css',
     'tgui/public/tgui.bundle.js',
-    'tgui/public/tgui-common.bundle.js',
     'tgui/public/tgui-panel.bundle.css',
     'tgui/public/tgui-panel.bundle.js',
   ],

@@ -38,6 +38,7 @@
 		stack_trace("Invalid type [skills.type] found in .skills during /mob Initialize()")
 	update_config_movespeed()
 	update_movespeed(TRUE)
+	log_mob_tag("\[[tag]\] CREATED: [key_name(src)]")
 
 
 /mob/Stat()
@@ -821,6 +822,8 @@
 		mind.name = newname
 		if(mind.key)
 			log_played_names(mind.key, newname) //Just in case the mind is unsynced at the moment.
+
+	log_mob_tag("\[[tag]\] RENAMED: [key_name(src)]")
 
 	return TRUE
 
