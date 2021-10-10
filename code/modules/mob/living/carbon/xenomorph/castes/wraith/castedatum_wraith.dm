@@ -35,7 +35,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CAN_BECOME_KING
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 5, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 15, "fire" = 15, "acid" = 10)
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 15, "fire" = 20, "acid" = 10)
 
 
 	// *** Abilities *** //
@@ -77,7 +77,7 @@
 	upgrade_threshold = 240
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 20, "fire" = 20, "acid" = 15)
+	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 20, "fire" = 25, "acid" = 15)
 
 
 /datum/xeno_caste/wraith/elder
@@ -103,7 +103,7 @@
 	upgrade_threshold = 480
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 25, "fire" = 25, "acid" = 18)
+	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 25, "fire" = 30, "acid" = 20)
 
 
 /datum/xeno_caste/wraith/ancient
@@ -129,5 +129,5 @@
 	upgrade_threshold = 480
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 25, "fire" = 30, "acid" = 18)
+	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 30, "fire" = 35, "acid" = 25)
 
