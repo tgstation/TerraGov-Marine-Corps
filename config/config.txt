@@ -229,4 +229,4 @@ DEFAULT_VIEW_SQUARE 15x15
 #HARD_DELETES_OVERRUN_LIMIT 0
 
 ## Uncomment if you think xenos are struggling against marines
-#XENOS_ON_STRIKE 1
+#XENOS_ON_STRIKE
