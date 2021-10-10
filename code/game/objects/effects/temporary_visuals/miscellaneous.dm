@@ -63,7 +63,7 @@
 
 
 /obj/effect/temp_visual/xenomorph/afterimage
-	name = "runner/crusher afterimage"
+	name = "afterimage"
 	layer = MOB_LAYER
 	alpha = 64 //Translucent
 	duration = 0.5 SECONDS
