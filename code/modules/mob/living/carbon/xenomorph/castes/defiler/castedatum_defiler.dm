@@ -34,7 +34,7 @@
 
 	can_hold_eggs = CAN_HOLD_ONE_HAND
 	// *** Defense *** //
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 25, "acid" = 30)
+	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 30, "acid" = 35)
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -87,7 +87,7 @@
 	upgrade_threshold = 750
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 30, "acid" = 35)
+	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 40, "rad" = 40, "fire" = 35, "acid" = 40)
 
 	// *** Pheromones *** //
 	aura_strength = 2 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
@@ -115,7 +115,7 @@
 	upgrade_threshold = 1750
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 38, "rad" = 38, "fire" = 35, "acid" = 38)
+	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 45, "rad" = 45, "fire" = 40, "acid" = 45)
 
 		// *** Pheromones *** //
 	aura_strength = 2.1 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
@@ -143,7 +143,7 @@
 	upgrade_threshold = 2750
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 40, "rad" = 40, "fire" = 40, "acid" = 40)
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 45)
 
 	// *** Pheromones *** //
 	aura_strength = 2.6 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
@@ -172,7 +172,7 @@
 	upgrade_threshold = 2850
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 40, "rad" = 40, "fire" = 40, "acid" = 40)
+	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = XENO_BOMB_RESIST_0, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 
 	// *** Pheromones *** //
 	aura_strength = 2.6 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
