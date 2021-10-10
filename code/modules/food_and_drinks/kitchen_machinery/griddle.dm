@@ -24,7 +24,6 @@
 	grill_loop = new(src, FALSE)
 	if(isnum(variant))
 		variant = rand(1,3)
-	//RegisterSignal(src, COMSIG_ATOM_EXPOSE_REAGENT, .proc/on_expose_reagent)
 
 /obj/machinery/griddle/Destroy()
 	QDEL_NULL(grill_loop)
@@ -38,23 +37,6 @@
 		return
 	variant = rand(1,3)
 
-/*
-/obj/machinery/griddle/proc/on_expose_reagent(atom/parent_atom, datum/reagent/exposing_reagent, reac_volume)
-	SIGNAL_HANDLER
-
-	if(griddled_objects.len >= max_items || !istype(exposing_reagent, /datum/reagent/consumable/pancakebatter) || reac_volume < 5)
-		return NONE //make sure you have space... it's actually batter... and a proper amount of it.
-
-	for(var/pancakes in 1 to FLOOR(reac_volume, 5) step 5) //this adds as many pancakes as you possibly could make, with 5u needed per pancake
-		var/obj/item/food/pancakes/raw/new_pancake = new(src)
-		new_pancake.pixel_x = rand(16,-16)
-		new_pancake.pixel_y = rand(16,-16)
-		AddToGrill(new_pancake)
-		if(griddled_objects.len >= max_items)
-			break
-	visible_message(span_notice("[exposing_reagent] begins to cook on [src]."))
-	return NONE
-*/
 /obj/machinery/griddle/crowbar_act(mob/living/user, obj/item/I)
 	..()
 	return default_deconstruction_crowbar(I, ignore_panel = TRUE)
@@ -131,8 +113,7 @@
 
 /obj/machinery/griddle/process(delta_time)
 	..()
-	for(var/i in griddled_objects)
-		var/obj/item/griddled_item = i
+	for(var/obj/item/griddled_item AS in griddled_objects)
 		if(SEND_SIGNAL(griddled_item, COMSIG_ITEM_GRILLED, src, delta_time) & COMPONENT_HANDLED_GRILLING)
 			continue
 		griddled_item.fire_act(1000) //Hot hot hot!
