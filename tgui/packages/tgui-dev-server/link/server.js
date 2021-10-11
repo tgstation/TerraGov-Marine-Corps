@@ -4,7 +4,6 @@
  * @license MIT
  */
 
-
 import http from 'http';
 import { inspect } from 'util';
 import { createLogger, directLog } from '../logging.js';

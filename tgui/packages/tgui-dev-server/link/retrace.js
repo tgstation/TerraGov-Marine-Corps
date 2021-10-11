@@ -4,13 +4,11 @@
  * @license MIT
  */
 
-
 import fs from 'fs';
 import { basename } from 'path';
 import { createLogger } from '../logging.js';
 import { require } from '../require.js';
 import { resolveGlob } from '../util.js';
-
 
 const SourceMap = require('source-map');
 const { parse: parseStackTrace } = require('stacktrace-parser');

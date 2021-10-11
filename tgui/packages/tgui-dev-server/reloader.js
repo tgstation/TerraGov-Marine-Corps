@@ -4,7 +4,6 @@
  * @license MIT
  */
 
-
 import fs from 'fs';
 import os from 'os';
 import { basename } from 'path';
