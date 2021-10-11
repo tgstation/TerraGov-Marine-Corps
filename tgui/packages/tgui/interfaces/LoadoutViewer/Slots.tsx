@@ -36,9 +36,8 @@ export const SlotSelector = (props: LoadoutSlotData, context) => {
                   {range(0, COLUMNS).map(column => {
                     const key = getGridSpotKey([row, column]);
                     const keyAtSpot = gridSpots.get(key);
-
-                    const item = items[keyAtSpot];
-                    const slot = SLOTS[keyAtSpot];
+                    const item = items[keyAtSpot!];
+                    const slot = SLOTS[keyAtSpot!];
 
                     let tooltip;
 
