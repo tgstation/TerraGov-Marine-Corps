@@ -51,7 +51,7 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 #define PRIMORDIAL_RAVAGER "Primordial Ravager"
 
 GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
-	/mob/living/carbon/xenomorph/beetle,
-	/mob/living/carbon/xenomorph/mantis,
-	/mob/living/carbon/xenomorph/scorpion,
+	/mob/living/carbon/xenomorph/beetle/ai,
+	/mob/living/carbon/xenomorph/mantis/ai,
+	/mob/living/carbon/xenomorph/scorpion/ai,
 ))
