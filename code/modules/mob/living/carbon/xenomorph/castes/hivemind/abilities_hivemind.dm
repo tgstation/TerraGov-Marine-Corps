@@ -7,7 +7,7 @@
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_CORE_RETURN)
 
 /datum/action/xeno_action/activable/secrete_resin/ranged/slow
-	base_wait = 1.5 SECONDS
+	base_wait = 1 SECONDS
 	max_range = 4
 
 /datum/action/xeno_action/change_form

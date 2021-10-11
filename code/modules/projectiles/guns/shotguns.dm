@@ -995,7 +995,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	wield_delay = 0.75 SECONDS
 	burst_amount = 2
 	burst_delay = 0.01 SECONDS //basically instantaneous two shots
-	extra_delay = 1.25 SECONDS
+	extra_delay = 0.5 SECONDS
 	scatter = 2
-	burst_scatter_mult = 6 // 2x6=12
+	burst_scatter_mult = 4 // 2x4=8
 	accuracy_mult = 1

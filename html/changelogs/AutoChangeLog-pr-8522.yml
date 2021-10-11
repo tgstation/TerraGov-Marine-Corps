@@ -1,0 +1,5 @@
+author: "jroinc"
+delete-after: True
+changes: 
+  - rscadd: "borgar?"
+  - bugfix: "fixes runtimes upon gibbing a simplemob"

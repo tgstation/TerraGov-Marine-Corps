@@ -215,6 +215,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
 
+/datum/keybinding/xeno/advance
+	name = "advance"
+	full_name = "Crusher: Rapid Advance"
+	description = "Charges up the crushers charge, then unleashes the full bulk of the crusher into a direction."
+	keybind_signal = COMSIG_XENOABILITY_ADVANCE
+
 /datum/keybinding/xeno/forward_charge
 	name = "forward charge"
 	full_name = "Defender: Forward charge"
@@ -274,6 +280,12 @@
 	full_name = "Defiler: Defile"
 	description = "Purges xeno toxins in exchange for dealing toxin damage and generating toxic sanguinal smoke."
 	keybind_signal = COMSIG_XENOABILITY_DEFILE
+
+/datum/keybinding/xeno/tentacle
+	name = "tentacle"
+	full_name = "Defiler: Tentacle"
+	description = "Allows the defiler to grab a tallhost or item from range and bring it towards the defiler."
+	keybind_signal = COMSIG_XENOABILITY_TENTACLE
 
 /datum/keybinding/xeno/resin_walker
 	name = "resin_walker"
@@ -431,6 +443,12 @@
 	full_name = "Ravager: Rage"
 	description = "While active, you will temporarily recover plasma and sunder and gain a bonus to speed and melee damage in proportion to the percentage of your missing health. At negative HP your ability cooldowns reset and your slash damage restores health."
 	keybind_signal = COMSIG_XENOABILITY_RAGE
+
+/datum/keybinding/xeno/ravager_vampirism
+	name = "togglevampirism"
+	full_name = "Ravager: Toggle vampirism"
+	description = "While active, will increase the ravagers healing for a while for every time it hits a new enemy. Effects stack."
+	keybind_signal = COMSIG_XENOABILITY_VAMPIRISM
 
 /datum/keybinding/xeno/ravage
 	name = "ravage"

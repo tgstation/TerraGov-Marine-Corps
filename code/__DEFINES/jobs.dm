@@ -143,7 +143,7 @@ MEDICAL_DOCTOR, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SMARTGUNNER, SQUAD_CORPS
 // how much a job is going to contribute towards burrowed larva. see config for points required to larva. old balance was 1 larva per 3 humans.
 #define LARVA_POINTS_SHIPSIDE 1
 #define LARVA_POINTS_SHIPSIDE_STRONG 1.5
-#define LARVA_POINTS_REGULAR 3
+#define LARVA_POINTS_REGULAR 3.25
 #define LARVA_POINTS_STRONG 6
 
 #define SURVIVOR_POINTS_REGULAR 1

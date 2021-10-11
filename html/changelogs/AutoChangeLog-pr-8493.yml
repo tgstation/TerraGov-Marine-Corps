@@ -1,6 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes: 
-  - bugfix: "vendors no longer eat items if depowered"
-  - bugfix: "mirage nades now work with grenade launchers"
-  - bugfix: "ghosts can no longer interact with conveyor switches"
