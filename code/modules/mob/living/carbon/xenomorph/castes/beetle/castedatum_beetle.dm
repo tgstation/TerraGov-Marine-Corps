@@ -16,7 +16,7 @@
 	speed = -0.3
 
 	// *** Plasma *** //
-	plasma_max = 150
+	plasma_max = 320 ///4 forward charges
 	plasma_gain = 10
 
 	// *** Health *** //

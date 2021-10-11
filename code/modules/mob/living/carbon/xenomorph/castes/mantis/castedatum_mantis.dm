@@ -16,7 +16,7 @@
 	speed = -1
 
 	// *** Plasma *** //
-	plasma_max = 400
+	plasma_max = 600 //3 ravage
 	plasma_gain = 20
 
 	// *** Health *** //
