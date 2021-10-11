@@ -47,6 +47,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	else
 		src.escorted_atom = parent_to_assign
 		RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, .proc/set_escorted_atom)
+	RegisterSignal(escorted_atom, COMSIG_PARENT_QDELETING, .proc/clean_escorted_atom)
 	mob_parent = parent_to_assign
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, .proc/set_goal_node)
 	goal_node = GLOB.goal_nodes[identifier]
@@ -95,6 +96,10 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		mob_parent.a_intent = INTENT_HELP
 	else
 		mob_parent.a_intent = INTENT_HARM
+	if(current_action == ESCORTING_ATOM)
+		distance_to_maintain = 2 //Don't stay too close
+	else
+		distance_to_maintain = initial(distance_to_maintain)
 
 ///Try to find a node to go to. If ignore_current_node is true, we will just find the closest current_node, and not the current_node best adjacent node
 /datum/ai_behavior/proc/look_for_next_node(ignore_current_node = TRUE, should_reset_goal_nodes = FALSE)
@@ -155,6 +160,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 ///Set the escorted atom
 /datum/ai_behavior/proc/set_escorted_atom(datum/source, atom/atom_to_escort)
+	SIGNAL_HANDLER
 	if(atom_to_escort.get_xeno_hivenumber() != mob_parent.get_xeno_hivenumber())
 		return
 	if(get_dist(atom_to_escort, mob_parent) > target_distance)
@@ -162,6 +168,13 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	escorted_atom = atom_to_escort
 	change_action(ESCORTING_ATOM, escorted_atom)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
+
+///clean the escorted atom var to avoid harddels
+/datum/ai_behavior/proc/clean_escorted_atom()
+	SIGNAL_HANDLER
+	escorted_atom = null
+	if(current_action == ESCORTING_ATOM)
+		look_for_next_node()
 
 ///Clean the goal node
 /datum/ai_behavior/proc/clean_goal_node()
