@@ -635,7 +635,7 @@ TUNNEL
 			RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
 
 	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = "silo")
-	AddComponent(/datum/component/spawner, GLOB.xeno_ai_spawnable, 0.5)
+	SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, null)
 	return INITIALIZE_HINT_LATELOAD
 
 
@@ -1130,4 +1130,9 @@ TUNNEL
 
 /obj/structure/xeno/spawner/Initialize()
 	. = ..()
-	AddComponent(/datum/component/spawner, GLOB.xeno_ai_spawnable)
+	GLOB.xeno_spawner += src
+	SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, null)
+
+/obj/structure/xeno/spawner/Destroy()
+	GLOB.xeno_spawner -= src
+	return ..()
