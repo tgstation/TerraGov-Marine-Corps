@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - qol: "stacks now show how many items there are when in your inventory"

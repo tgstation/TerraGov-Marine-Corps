@@ -200,8 +200,7 @@
 
 /mob/living/carbon/xenomorph/examine(mob/user)
 	..()
-	if(isxeno(user) && xeno_caste.caste_desc)
-		to_chat(user, xeno_caste.caste_desc)
+	to_chat(user, xeno_caste.caste_desc)
 
 	if(stat == DEAD)
 		to_chat(user, "It is DEAD. Kicked the bucket. Off to that great hive in the sky.")

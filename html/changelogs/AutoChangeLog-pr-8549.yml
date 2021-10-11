@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - bugfix: "Combat robots(Species) doens't have slowdown from not wearing boots anymore."
