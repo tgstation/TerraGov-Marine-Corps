@@ -16,7 +16,7 @@
 	speed = -1
 
 	// *** Plasma *** //
-	plasma_max = 150
+	plasma_max = 1500// 20 spits
 	plasma_gain = 10
 
 	// *** Health *** //
