@@ -1133,6 +1133,7 @@
 /datum/action/xeno_action/activable/rally_minion/use_ability()
 	succeed_activate()
 	add_cooldown()
+	owner.emote("roar")
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_MINION_RALLY, owner)
 
 /////////////////////////////////////////////////////////////////////////////////////////////
