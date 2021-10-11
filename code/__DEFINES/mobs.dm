@@ -143,14 +143,14 @@
 // =============================
 // xeno tiers
 
-#define XENO_TIER_AI "ai"
+#define XENO_TIER_MINION "ai"
 #define XENO_TIER_ZERO "zero" // god forgive me because i wont forgive myself
 #define XENO_TIER_ONE "one"
 #define XENO_TIER_TWO "two"
 #define XENO_TIER_THREE "three"
 #define XENO_TIER_FOUR "four"
 
-GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, XENO_TIER_THREE, XENO_TIER_FOUR))
+GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_MINION, XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, XENO_TIER_THREE, XENO_TIER_FOUR))
 
 // =============================
 // xeno upgrades

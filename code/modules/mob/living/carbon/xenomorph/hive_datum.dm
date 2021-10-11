@@ -112,6 +112,8 @@
 /datum/hive_status/proc/get_total_xeno_number() // unsafe for use by gamemode code
 	. = 0
 	for(var/t in xenos_by_tier)
+		if(t == XENO_TIER_MINION)
+			continue
 		. += length(xenos_by_tier[t])
 
 /datum/hive_status/proc/post_add(mob/living/carbon/xenomorph/X)

@@ -6,7 +6,7 @@
 
 	caste_type_path = /mob/living/carbon/xenomorph/beetle
 
-	tier = XENO_TIER_AI
+	tier = XENO_TIER_MINION
 	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
