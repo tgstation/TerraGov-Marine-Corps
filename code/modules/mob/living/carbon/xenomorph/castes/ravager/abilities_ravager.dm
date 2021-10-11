@@ -66,13 +66,15 @@
 /datum/action/xeno_action/activable/charge/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/charge/ai_should_use(target)
+/datum/action/xeno_action/activable/charge/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 4)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
 
 
@@ -127,13 +129,15 @@
 /datum/action/xeno_action/activable/ravage/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/ravage/ai_should_use(target)
+/datum/action/xeno_action/activable/ravage/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 1)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
 
 
@@ -233,13 +237,13 @@
 /datum/action/xeno_action/endure/ai_should_use(target)
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > WORLD_VIEW_NUM) // If we can be seen.
-		return ..()
+		return FALSE
 	if(X.health > 50)
-		return ..()
+		return FALSE
 	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
 	return TRUE
 
 // ***************************************

@@ -888,7 +888,7 @@
 /datum/action/xeno_action/activable/xeno_spit/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/xeno_spit/ai_should_use(target)
+/datum/action/xeno_action/activable/xeno_spit/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
 	if(get_dist(target, owner) > 6)
@@ -896,6 +896,8 @@
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(!owner.line_of_sight(target))
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
 	return TRUE
 
