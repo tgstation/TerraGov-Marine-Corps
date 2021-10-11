@@ -230,7 +230,7 @@
 
 ///Announce that the dropship will departure soon
 /obj/docking_port/mobile/marine_dropship/proc/prepare_going_to_previous_destination()
-	if(D.hijack_state != HIJACK_STATE_NORMAL)
+	if(hijack_state != HIJACK_STATE_NORMAL)
 		return
 	cycle_timer = addtimer(CALLBACK(src, .proc/go_to_previous_destination), 20 SECONDS, TIMER_STOPPABLE)
 	priority_announce("Dropship taking off in 20 seconds towards [previous.name]", "Dropship Automatic Departure")
