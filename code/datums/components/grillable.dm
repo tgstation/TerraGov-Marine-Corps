@@ -43,12 +43,12 @@
 		src.use_large_steam_sprite = use_large_steam_sprite
 
 ///Ran every time an item is grilled by something
-/datum/component/grillable/proc/OnGrill(datum/source, atom/used_grill, delta_time = 1)
+/datum/component/grillable/proc/OnGrill(datum/source, atom/used_grill)
 	SIGNAL_HANDLER
 
 	. = COMPONENT_HANDLED_GRILLING
 
-	current_cook_time += delta_time * 10 //turn it into ds
+	current_cook_time += 2 SECONDS
 	if(current_cook_time >= required_cook_time)
 		FinishGrilling(used_grill)
 	else if(!currently_grilling) //We havn't started grilling yet
