@@ -329,6 +329,7 @@
 #include "code\datums\components\remote_control.dm"
 #include "code\datums\components\rotation.dm"
 #include "code\datums\components\shield.dm"
+#include "code\datums\components\spawner.dm"
 #include "code\datums\components\squeak.dm"
 #include "code\datums\components\stamina_behavior.dm"
 #include "code\datums\components\suit_autodoc.dm"

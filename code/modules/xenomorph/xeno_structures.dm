@@ -635,6 +635,7 @@ TUNNEL
 			RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
 
 	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = "silo")
+	AddComponent(/datum/component/spawner, GLOB.xeno_ai_spawnable, 0.5)
 	return INITIALIZE_HINT_LATELOAD
 
 
@@ -1115,3 +1116,18 @@ TUNNEL
 			take_damage(500)
 		if(EXPLODE_LIGHT)
 			take_damage(300)
+
+/obj/structure/xeno/spawner
+	name = "spawner"
+	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things."
+	icon = 'icons/Xeno/3x3building.dmi'
+	icon_state = "spawner"
+	bound_width = 96
+	bound_height = 96
+	max_integrity = 500
+	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
+	xeno_structure_flags = IGNORE_WEED_REMOVAL
+
+/obj/structure/xeno/spawner/Initialize()
+	. = ..()
+	AddComponent(/datum/component/spawner, GLOB.xeno_ai_spawnable)
