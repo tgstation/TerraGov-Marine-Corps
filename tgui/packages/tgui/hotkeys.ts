@@ -33,7 +33,7 @@ const hotKeysAcquired = [
 const keyState: Record<string, boolean> = {};
 
 // Custom listeners for key events
-const keyListeners: ((key: KeyEvent) => void)[] = []
+const keyListeners: ((key: KeyEvent) => void)[] = [];
 
 /**
  * Converts a browser keycode to BYOND keycode.

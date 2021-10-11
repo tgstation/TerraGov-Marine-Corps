@@ -14,7 +14,7 @@
  *
  * @returns {any[]}
  */
- export const filter = <T>(iterateeFn: (
+export const filter = <T>(iterateeFn: (
   input: T,
   index: number,
   collection: T[],
