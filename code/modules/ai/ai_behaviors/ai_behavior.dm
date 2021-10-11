@@ -165,7 +165,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		return
 	if(get_dist(atom_to_escort, mob_parent) > target_distance)
 		return
-	mob_parent.emote("roar")
+	INVOKE_ASYNC(mob_parent, /mob/living.proc/emote, "roar")
 	escorted_atom = atom_to_escort
 	change_action(ESCORTING_ATOM, escorted_atom)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
