@@ -67,14 +67,14 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 
 /datum/hive_upgrade/building/on_buy(mob/living/carbon/xenomorph/buyer)
 	if(!do_after(buyer, 10 SECONDS, TRUE, buyer, BUSY_ICON_BUILD))
-		return
+		return FALSE
 
 	if(!can_buy(buyer, FALSE))
-		return
+		return FALSE
 
 	if(SSpoints.xeno_points_by_hive[buyer.hivenumber] < psypoint_cost)
 		to_chat(buyer, span_xenowarning("Someone used all the psych points while we were building!"))
-		return
+		return FALSE
 
 	var/turf/buildloc = get_step(buyer, SOUTHWEST)
 
@@ -111,7 +111,7 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	for(var/obj/structure/xeno/silo/silo AS in GLOB.xeno_resin_silos)
 		if(get_dist(silo, buyer) < 15)
 			to_chat(buyer, span_xenowarning("Another silo is too close!"))
-			return
+			return FALSE
 
 	return ..()
 
