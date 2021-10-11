@@ -147,10 +147,10 @@
  * Regenerating walls that start with lower health, but grow to a much higher hp over time
  */
 /turf/closed/wall/resin/regenerating
-	max_integrity = 150
+	max_integrity = 100
 
 	/// Total health possible for a wall after regenerating at max health
-	var/max_upgradable_health = 300
+	var/max_upgradable_health = 200
 	/// How much the walls integrity heals per tick (5 seconds)
 	var/heal_per_tick = 25
 	/// How much the walls max_integrity increases per tick (5 seconds)
@@ -197,4 +197,4 @@
 
 /* Hivelord walls, they start off stronger */
 /turf/closed/wall/resin/regenerating/thick
-	max_integrity = 250
+	max_integrity = 150
