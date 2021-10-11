@@ -4,7 +4,6 @@
  * @license MIT
  */
 
-
 import fs from 'fs';
 import { createRequire } from 'module';
 import { dirname } from 'path';

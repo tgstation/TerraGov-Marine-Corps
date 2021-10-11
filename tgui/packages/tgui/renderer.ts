@@ -1,98 +1,66 @@
-/**
- * @file
- * @copyright 2020 Aleksej Komarov
- * @license MIT
- */
-
-import { flow } from 'common/fp';
-import { applyMiddleware, combineReducers, createStore } from 'common/redux';
-import { Component } from 'inferno';
-import { assetMiddleware } from './assets';
-import { backendMiddleware, backendReducer } from './backend';
-import { debugMiddleware, debugReducer, relayMiddleware } from './debug';
+import { perf } from 'common/perf';
+import { render } from 'inferno';
 import { createLogger } from './logging';
 
-const logger = createLogger('store');
+const logger = createLogger('renderer');
 
-export const configureStore = (options = {}) => {
-  const { sideEffects = true } = options;
-  const reducer = flow([
-    combineReducers({
-      debug: debugReducer,
-      backend: backendReducer,
-    }),
-    options.reducer,
-  ]);
-  const middleware = !sideEffects ? [] : [
-    ...(options.middleware?.pre || []),
-    assetMiddleware,
-    backendMiddleware,
-    ...(options.middleware?.post || []),
-  ];
-  if (process.env.NODE_ENV !== 'production') {
-    // We are using two if statements because Webpack is capable of
-    // removing this specific block as dead code.
-    if (sideEffects) {
-      middleware.unshift(
-        loggingMiddleware,
-        debugMiddleware,
-        relayMiddleware);
-    }
-  }
-  const enhancer = applyMiddleware(...middleware);
-  const store = createStore(reducer, enhancer);
-  // Globals
-  window.__store__ = store;
-  window.__augmentStack__ = createStackAugmentor(store);
-  return store;
+let reactRoot: any;
+let initialRender: string | boolean = true;
+let suspended = false;
+
+// These functions are used purely for profiling.
+export const resumeRenderer = () => {
+  initialRender = initialRender || 'resumed';
+  suspended = false;
 };
 
-const loggingMiddleware = store => next => action => {
-  const { type, payload } = action;
-  if (type === 'update' || type === 'backend/update') {
-    logger.debug('action', { type });
+export const suspendRenderer = () => {
+  suspended = true;
+};
+
+type CreateRenderer = <T extends unknown[] = [unknown]>(
+  getVNode?: (...args: T) => any,
+) => (...args: T) => void;
+
+export const createRenderer: CreateRenderer = (getVNode) => (...args) => {
+  perf.mark('render/start');
+  // Start rendering
+  if (!reactRoot) {
+    reactRoot = document.getElementById('react-root');
+  }
+  if (getVNode) {
+    render(getVNode(...args), reactRoot);
   }
   else {
-    logger.debug('action', action);
+    render(args[0] as any, reactRoot);
   }
-  return next(action);
+  perf.mark('render/finish');
+  if (suspended) {
+    return;
+  }
+  // Report rendering time
+  if (process.env.NODE_ENV !== 'production') {
+    if (initialRender === 'resumed') {
+      logger.log('rendered in',
+        perf.measure('render/start', 'render/finish'));
+    }
+    else if (initialRender) {
+      logger.debug('serving from:', location.href);
+      logger.debug('bundle entered in',
+        perf.measure('inception', 'init'));
+      logger.debug('initialized in',
+        perf.measure('init', 'render/start'));
+      logger.log('rendered in',
+        perf.measure('render/start', 'render/finish'));
+      logger.log('fully loaded in',
+        perf.measure('inception', 'render/finish'));
+    }
+    else {
+      logger.debug('rendered in',
+        perf.measure('render/start', 'render/finish'));
+    }
+  }
+  if (initialRender) {
+    initialRender = false;
+  }
 };
-
-/**
- * Creates a function, which can be assigned to window.__augmentStack__
- * to augment reported stack traces with useful data for debugging.
- */
-const createStackAugmentor = store => (stack, error) => {
-  if (!error) {
-    error = new Error(stack.split('\n')[0]);
-    error.stack = stack;
-  }
-  else if (typeof error === 'object' && !error.stack) {
-    error.stack = stack;
-  }
-  logger.log('FatalError:', error);
-  const state = store.getState();
-  const config = state?.backend?.config;
-  let augmentedStack = stack;
-  augmentedStack += '\nUser Agent: ' + navigator.userAgent;
-  augmentedStack += '\nState: ' + JSON.stringify({
-    ckey: config?.client?.ckey,
-    interface: config?.interface,
-    window: config?.window,
-  });
-  return augmentedStack;
-};
-
-/**
- * Store provider for Inferno apps.
- */
-export class StoreProvider extends Component {
-  getChildContext() {
-    const { store } = this.props;
-    return { store };
-  }
-
-  render() {
-    return this.props.children;
-  }
-}

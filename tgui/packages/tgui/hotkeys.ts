@@ -15,7 +15,6 @@ const byondMacros: Record<string, string> = {};
 
 // Default set of acquired keys, which will not be sent to BYOND.
 const hotKeysAcquired = [
-  // Default set of acquired keys
   keycodes.KEY_ESCAPE,
   keycodes.KEY_ENTER,
   keycodes.KEY_SPACE,
@@ -70,7 +69,7 @@ const keyCodeToByond = (keyCode: number) => {
  * Keyboard passthrough logic. This allows you to keep doing things
  * in game while the browser window is focused.
  */
-const handlePassthrough = (key:KeyEvent) => {
+const handlePassthrough = (key: KeyEvent) => {
   const keyString = String(key);
   // In addition to F5, support reloading with Ctrl+R and Ctrl+F5
   if (keyString === 'Ctrl+F5' || keyString === 'Ctrl+R') {
@@ -131,7 +130,6 @@ export const releaseHotKey = (keyCode: number) => {
   }
 };
 
-
 export const releaseHeldKeys = () => {
   for (let byondKeyCode of Object.keys(keyState)) {
     if (keyState[byondKeyCode]) {
@@ -186,6 +184,7 @@ export const setupHotKeys = () => {
     for (const keyListener of keyListeners) {
       keyListener(key);
     }
+
     handlePassthrough(key);
   });
 };
