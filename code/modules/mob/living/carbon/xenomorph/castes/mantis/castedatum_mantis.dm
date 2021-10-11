@@ -6,7 +6,7 @@
 
 	caste_type_path = /mob/living/carbon/xenomorph/mantis
 
-	tier = XENO_TIER_ZERO
+	tier = XENO_TIER_AI
 	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //

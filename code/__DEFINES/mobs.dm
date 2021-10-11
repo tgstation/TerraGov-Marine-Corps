@@ -143,6 +143,7 @@
 // =============================
 // xeno tiers
 
+#define XENO_TIER_AI "ai"
 #define XENO_TIER_ZERO "zero" // god forgive me because i wont forgive myself
 #define XENO_TIER_ONE "one"
 #define XENO_TIER_TWO "two"
