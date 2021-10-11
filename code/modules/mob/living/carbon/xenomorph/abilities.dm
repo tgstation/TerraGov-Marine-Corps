@@ -890,11 +890,13 @@
 
 /datum/action/xeno_action/activable/xeno_spit/ai_should_use(target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 6)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(!owner.line_of_sight(target))
+		return FALSE
 	return TRUE
 
 
