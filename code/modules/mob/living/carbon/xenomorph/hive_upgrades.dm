@@ -49,6 +49,38 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 
 /datum/hive_upgrade/building
 	category = "Buildings"
+	///The type of building created
+	var/building_type
+
+/datum/hive_upgrade/building/can_buy(mob/living/carbon/xenomorph/buyer, silent)
+	. = ..()
+	var/turf/buildloc = get_step(buyer, SOUTHWEST)
+	if(!buildloc)
+		return FALSE
+
+	if(buildloc.density)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
+		return FALSE
+
+/datum/hive_upgrade/building/on_buy(mob/living/carbon/xenomorph/buyer)
+	. = ..()
+	if(!do_after(buyer, 10 SECONDS, TRUE, buyer, BUSY_ICON_BUILD))
+		return
+
+	if(!can_buy(buyer, FALSE))
+		return
+
+	if(SSpoints.xeno_points_by_hive[buyer.hivenumber] < psypoint_cost)
+		to_chat(buyer, span_xenowarning("Someone used all the psych points while we were building!"))
+		return
+
+	var/turf/buildloc = get_step(buyer, SOUTHWEST)
+
+	var/atom/built = new building_type(buildloc, buyer.hivenumber)
+	to_chat(buyer, span_notice("We build [built] for [psypoint_cost] psy points."))
+	log_game("[buyer] has built [built] in [AREACOORD(buildloc)], spending [psypoint_cost] psy points in the process")
+	xeno_message("[buyer] has built [built] at [get_area(buildloc)]!", "xenoannounce", 5, buyer.hivenumber)
 
 /datum/hive_upgrade/building/silo
 	name = "Larva Silo"
@@ -56,6 +88,7 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	psypoint_cost = SILO_PRICE
 	icon = "larvasilo"
 	flags_upgrade = ABILITY_DISTRESS
+	building_type = /obj/structure/xeno/silo
 
 /datum/hive_upgrade/building/silo/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	. = ..()
@@ -72,27 +105,12 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 		return FALSE
 
 /datum/hive_upgrade/building/silo/on_buy(mob/living/carbon/xenomorph/buyer)
-	if(!do_after(buyer, 10 SECONDS, TRUE, buyer, BUSY_ICON_BUILD))
-		return
-
-	if(!can_buy(buyer, FALSE))
-		return
-
-	var/turf/buildloc = get_step(buyer, SOUTHWEST)
 
 	for(var/obj/structure/xeno/silo/silo AS in GLOB.xeno_resin_silos)
-		if(get_dist(silo, buildloc) < 15)
+		if(get_dist(silo, buyer) < 15)
 			to_chat(buyer, span_xenowarning("Another silo is too close!"))
 			return
 
-	if(SSpoints.xeno_points_by_hive[buyer.hivenumber] < psypoint_cost)
-		to_chat(buyer, span_xenowarning("Someone used all the psych points while we were building!"))
-		return
-
-	to_chat(buyer, span_notice("We build a new silo for [psypoint_cost] psy points."))
-	log_game("[buyer] has built a silo in [AREACOORD(buildloc)], spending [psypoint_cost] psy points in the process")
-	new /obj/structure/xeno/silo(buildloc, buyer.hivenumber)
-	xeno_message("[buyer] has built a silo at [get_area(buildloc)]!", "xenoannounce", 5, buyer.hivenumber)
 	return ..()
 
 /datum/hive_upgrade/building/evotower
@@ -101,35 +119,7 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	psypoint_cost = 300
 	icon = "evotower"
 	flags_upgrade = ABILITY_DISTRESS
-
-/datum/hive_upgrade/building/evotower/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
-	. = ..()
-	if(!.)
-		return
-
-	var/turf/buildloc = get_step(buyer, SOUTHWEST)
-	if(!buildloc)
-		return FALSE
-
-	if(buildloc.density)
-		if(!silent)
-			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
-		return FALSE
-
-/datum/hive_upgrade/building/evotower/on_buy(mob/living/carbon/xenomorph/buyer)
-	if(!do_after(buyer, 10 SECONDS, TRUE, buyer, BUSY_ICON_BUILD))
-		return FALSE
-
-	if(!can_buy(buyer, FALSE))
-		return FALSE
-
-	var/turf/buildloc = get_step(buyer, SOUTHWEST)
-
-	new /obj/structure/xeno/evotower(buildloc, buyer.hivenumber)
-	to_chat(buyer, span_notice("We build an evolution tower for [psypoint_cost] psy points."))
-	log_game("[buyer] has built an evolution tower in [AREACOORD(buildloc)], spending [psypoint_cost] psy points in the process")
-	xeno_message("[buyer] has built an evolution tower at [get_area(buildloc)]!", "xenoannounce", 5, buyer.hivenumber)
-	return ..()
+	building_type = /obj/structure/xeno/evotower
 
 /datum/hive_upgrade/building/maturitytower
 	name = "Maturity Tower"
@@ -137,36 +127,15 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	psypoint_cost = 300
 	icon = "maturitytower"
 	flags_upgrade = ABILITY_DISTRESS
+	building_type = /obj/structure/xeno/maturitytower
 
-/datum/hive_upgrade/building/maturitytower/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
-	. = ..()
-	if(!.)
-		return
-
-	var/turf/buildloc = get_step(buyer, SOUTHWEST)
-	if(!buildloc)
-		return FALSE
-
-	if(buildloc.density)
-		if(!silent)
-			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
-		return FALSE
-
-/datum/hive_upgrade/building/maturitytower/on_buy(mob/living/carbon/xenomorph/buyer)
-	if(!do_after(buyer, 10 SECONDS, TRUE, buyer, BUSY_ICON_BUILD))
-		return FALSE
-
-	if(!can_buy(buyer, FALSE))
-		return FALSE
-
-	var/turf/buildloc = get_step(buyer, SOUTHWEST)
-
-	new /obj/structure/xeno/maturitytower(buildloc, buyer.hivenumber)
-	to_chat(buyer, span_notice("We build a maturity tower for [psypoint_cost] psy points."))
-	log_game("[buyer] has built a maturity tower in [AREACOORD(buildloc)], spending [psypoint_cost] psy points in the process")
-	xeno_message("[buyer] has built a maturity tower at [get_area(buildloc)]!", "xenoannounce", 5, buyer.hivenumber)
-	return ..()
-
+/datum/hive_upgrade/building/spawner
+	name = "Spawner"
+	desc = "Constructs a spawner that generates ai xenos over time"
+	psypoint_cost = 400
+	icon = "spawner"
+	flags_upgrade = ABILITY_DISTRESS
+	building_type = /obj/structure/xeno/spawner
 
 /datum/hive_upgrade/defence
 	category = "Defences"
