@@ -55,6 +55,7 @@
 #define AMMO_SENTRY (1<<14) //Used to identify ammo from sentry guns and other automated sources
 #define AMMO_FLAME (1<<15) //Used to identify flamethrower projectiles and similar projectiles
 #define AMMO_IFF (1<<16) //Used to identify ammo that have intrinsec IFF properties
+#define AMMO_HITSCAN (1<<17) //If the projectile from this ammo is hitscan
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features

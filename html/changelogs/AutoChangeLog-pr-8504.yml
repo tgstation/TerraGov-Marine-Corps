@@ -1,6 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "Hivemind no longer hyper speed"
-  - bugfix: "Hivemind no longer get caught in razor wire"
-  - bugfix: "Hivemind no longer stuck on fire for ever"

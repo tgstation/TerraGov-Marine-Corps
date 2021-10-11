@@ -87,6 +87,8 @@
 
 /datum/config_entry/flag/fun_allowed //a lot of LRP features
 
+/datum/config_entry/flag/xenos_on_strike
+
 /datum/config_entry/number/min_xenos
 	config_entry_value = 5
 	min_val = 1
