@@ -1117,6 +1117,22 @@
 	GLOB.round_statistics.xeno_rally_hive++ //statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_rally_hive")
 
+/datum/action/xeno_action/activable/rally_minion
+	name = "Rally Minions"
+	action_icon_state = "rally_minions"
+	mechanics_text = "Rallies the minions around you, asking them to follow you if they don't have a leader already. 60 second cooldown."
+	ability_name = "rally minions"
+	plasma_cost = 0
+	keybind_signal = COMSIG_XENOABILITY_RALLY_MINION
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	cooldown_timer = 60 SECONDS
+	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
+
+/datum/action/xeno_action/activable/rally_minion/use_ability()
+	succeed_activate()
+	add_cooldown()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_MINION_RALLY, owner)
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 /mob/living/carbon/xenomorph/proc/add_abilities()
