@@ -47,6 +47,7 @@ GLOBAL_LIST_EMPTY(xeno_weed_node_turfs)
 GLOBAL_LIST_EMPTY(xeno_resin_wall_turfs)
 GLOBAL_LIST_EMPTY(xeno_resin_door_turfs)
 GLOBAL_LIST_EMPTY(xeno_spawner)
+GLOBAL_LIST_EMPTY(xeno_structure)
 
 GLOBAL_LIST_EMPTY(shuttle_controls_list)
 GLOBAL_LIST_EMPTY(lz1_shuttle_console_turfs_list)

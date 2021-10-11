@@ -9,6 +9,11 @@
 	. = ..()
 	if(!(xeno_structure_flags & IGNORE_WEED_REMOVAL))
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, .proc/weed_removed)
+	GLOB.xeno_structure += src
+
+/obj/structure/xeno/Destroy()
+	GLOB.xeno_structure -= src
+	return ..()
 
 /obj/structure/xeno/ex_act(severity)
 	switch(severity)

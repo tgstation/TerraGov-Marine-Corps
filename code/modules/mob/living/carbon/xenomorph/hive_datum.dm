@@ -732,10 +732,10 @@ to_chat will check for valid clients itself already so no need to double check f
 	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid a cruel death!")
 	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, .proc/on_hijack_depart)
 
-	for(var/obj/structure/xeno/silo/silo AS in GLOB.xeno_resin_silos)
-		if(!is_ground_level(silo.z))
+	for(var/obj/structure/xeno/structure AS in GLOB.xeno_structure)
+		if(!is_ground_level(structure.z))
 			continue
-		qdel(silo)
+		qdel(structure)
 
 	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS_ADVANCED)
 		SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
