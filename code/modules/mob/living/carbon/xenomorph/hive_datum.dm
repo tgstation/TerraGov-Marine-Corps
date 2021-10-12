@@ -760,6 +760,8 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(isxenohivemind(boarder))
 			continue
 		INVOKE_ASYNC(boarder, /mob/living.proc/gib)
+		if(boarder.xeno_caste.tier == XENO_TIER_MINION)
+			continue
 		left_behind++
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	if(left_behind)
