@@ -58,7 +58,7 @@
 	///Pixel offset on the Y axis for the pilot light overlay.
 	var/lit_overlay_offset_y = 0
 	///Damage multiplier for mobs caught in the initial stream of fire.
-	var/mob_flame_damage_mod = 2 
+	var/mob_flame_damage_mod = 2
 
 /obj/item/weapon/gun/flamer/Initialize()
 	. = ..()
@@ -129,7 +129,7 @@
 	playsound(src, CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT) ? 'sound/weapons/guns/interact/flamethrower_on.ogg' : 'sound/weapons/guns/interact/flamethrower_off.ogg', 25, 1)
 
 
-	if(CHECK_BITFIELD(flags_flamer_features, FLAMER_NO_LIT_OVERLAY))	
+	if(CHECK_BITFIELD(flags_flamer_features, FLAMER_NO_LIT_OVERLAY))
 		return
 
 	var/image/lit_overlay = image(icon, src, lit_overlay_icon_state)
@@ -157,54 +157,79 @@
 
 /obj/item/weapon/gun/flamer/do_fire(obj/projectile/projectile_to_fire)
 	playsound(loc, fire_sound, 50, 1)
-	burn_stream(current_target = target)
+	start_stream()
 	return TRUE
 
-///Recursive proc that handles the path finding of the flame stream.
-/obj/item/weapon/gun/flamer/proc/burn_stream(list/turf/old_turfs, current_target, burn_type, range, dir_to_target, list/turf/path_to_target, iteration = 1)
-	if(current_mag?.current_rounds <= 0)
-		light_pilot(FALSE)
-		return
-	if(!current_target)
-		return
-	if(iteration == 1)
-		var/obj/item/attachable/flamer_nozzle/nozzle = attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE]
-		burn_type = nozzle.stream_type
-		old_turfs = list(get_turf(src))
-		current_target = get_turf(target)
-		range = flame_max_range
-		var/start_location = get_turf(src)
-		dir_to_target = get_dir(start_location, current_target)
-		path_to_target = getline(start_location, current_target)
-		path_to_target -= start_location
-	if(!length(old_turfs) || iteration > range || (current_target in old_turfs))
-		return
-	var/list/turf/turfs_to_ignite = list()
-	var/list/turf/turfs_skip_old = list()
-	var/turf/new_turf = get_step(old_turfs[1], dir_to_target)
+///Sets up the recursive proc for flaming.
+/obj/item/weapon/gun/flamer/proc/start_stream()
+	var/obj/item/attachable/flamer_nozzle/nozzle = attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE]
+	var/burn_type = nozzle.stream_type
+	var/old_turfs = list(get_turf(src))
+	var/range = flame_max_range
+	var/start_location = get_turf(src)
+	var/current_target = get_turf(target)
 	switch(burn_type)
 		if(FLAMER_STREAM_STRAIGHT)
-			turfs_to_ignite += path_to_target[iteration]
+			var/path_to_target = getline(start_location, current_target)
+			path_to_target -= start_location
+			recursive_flame_straight(1, old_turfs, path_to_target, range, current_target)
 		if(FLAMER_STREAM_CONE)
-			if(iteration == 1 && ISDIAGONALDIR(dir_to_target))
+			var/dir_to_target = get_dir(start_location, current_target)
+			if(ISDIAGONALDIR(dir_to_target))
 				range /= 2
-			turfs_to_ignite += new_turf //Adds the turf in front of the old turf.
-			for(var/turf/old_turf AS in old_turfs)
-				new_turf = get_step(old_turf, dir_to_target)
-				if(!(get_step(new_turf, turn(dir_to_target, 90)) in turfs_to_ignite)) //Adds the turf on the sides of the old turf if they arent already in the turfs_to_ignite list.
-					turfs_to_ignite += get_step(new_turf, turn(dir_to_target, 90)) 
-				if(!(get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90))) in turfs_to_ignite))
-					turfs_to_ignite += get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90)))
-				if(ISDIAGONALDIR(dir_to_target)) ///Fills in the blanks for a diagonal burn.
-					if(!(get_step(new_turf, turn(dir_to_target, 135)) in turfs_skip_old))
-						turfs_skip_old += get_step(new_turf, turn(dir_to_target, 135))
-					if(!(get_step(new_turf, turn(dir_to_target, 225)) in turfs_skip_old))
-						turfs_skip_old += get_step(new_turf, turn(dir_to_target, 225))
-			burn_list(turfs_skip_old)
+			recursive_flame_cone(1, old_turfs, dir_to_target, range, current_target)
+
+///Checks whether or not the recursive proc should continue.
+/obj/item/weapon/gun/flamer/proc/recursive_check(list/turf/old_turfs, range, current_target, iteration)
+	if(current_mag?.current_rounds <= 0)
+		light_pilot(FALSE)
+		return FALSE
+	if(!length(old_turfs) || iteration > range || !current_target || (current_target in old_turfs))
+		return FALSE
+	return TRUE
+
+///Flames recursively a straight path.
+/obj/item/weapon/gun/flamer/proc/recursive_flame_straight(iteration, list/turf/old_turfs, list/turf/path_to_target, range, current_target)
+
+	if(!recursive_check(old_turfs, range, current_target, iteration))
+		return
+
+	var/list/turf/turfs_to_ignite = list()
+	if(iteration > length(path_to_target))
+		return
+	turfs_to_ignite += path_to_target[iteration]
 	if(!burn_list(turfs_to_ignite))
 		return
 	iteration++
-	addtimer(CALLBACK(src, .proc/burn_stream, turfs_to_ignite, current_target, burn_type, range, dir_to_target, path_to_target, iteration), flame_spread_time)
+	addtimer(CALLBACK(src, .proc/recursive_flame_straight, iteration, turfs_to_ignite, path_to_target, range, current_target), flame_spread_time)
+
+///Flames recursively a cone.
+/obj/item/weapon/gun/flamer/proc/recursive_flame_cone(iteration, list/turf/old_turfs, dir_to_target, range, current_target)
+
+	if(!recursive_check(old_turfs, range, current_target, iteration))
+		return
+
+	var/list/turf/turfs_to_ignite = list()
+	var/list/turf/turfs_skip_old = list()
+	var/turf/new_turf = get_step(old_turfs[1], dir_to_target)
+
+	turfs_to_ignite += new_turf //Adds the turf in front of the old turf.
+	for(var/turf/old_turf AS in old_turfs)
+		new_turf = get_step(old_turf, dir_to_target)
+		if(!(get_step(new_turf, turn(dir_to_target, 90)) in turfs_to_ignite)) //Adds the turf on the sides of the old turf if they arent already in the turfs_to_ignite list.
+			turfs_to_ignite += get_step(new_turf, turn(dir_to_target, 90))
+		if(!(get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90))) in turfs_to_ignite))
+			turfs_to_ignite += get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90)))
+		if(ISDIAGONALDIR(dir_to_target)) ///Fills in the blanks for a diagonal burn.
+			if(!(get_step(new_turf, turn(dir_to_target, 135)) in turfs_skip_old))
+				turfs_skip_old += get_step(new_turf, turn(dir_to_target, 135))
+			if(!(get_step(new_turf, turn(dir_to_target, 225)) in turfs_skip_old))
+				turfs_skip_old += get_step(new_turf, turn(dir_to_target, 225))
+	burn_list(turfs_skip_old)
+	if(!burn_list(turfs_to_ignite))
+		return
+	iteration++
+	addtimer(CALLBACK(src, .proc/recursive_flame_cone, iteration, turfs_to_ignite, dir_to_target, range, current_target), flame_spread_time)
 
 ///Checks and lights the turfs in turfs_to_burn
 /obj/item/weapon/gun/flamer/proc/burn_list(list/turf/turfs_to_burn)
@@ -231,7 +256,7 @@
 			return FALSE
 		flame_turf(turf_to_ignite, gun_user, burn_time, burn_level, fire_color)
 		current_mag.current_rounds--
-	gun_user?.hud_used.update_ammo_hud(gun_user, src)	
+	gun_user?.hud_used.update_ammo_hud(gun_user, src)
 	return TRUE
 
 ///Lights the specific turf on fire and processes melting snow or vines and the like.
