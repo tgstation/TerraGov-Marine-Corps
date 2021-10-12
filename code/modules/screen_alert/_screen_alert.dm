@@ -6,19 +6,17 @@
  * proc for playing a screen_text on a mob.
  * enqueues it if a screen text is running and plays i otherwise
  * Arguments:
- * * text: text we want to be displayed. do not use html formatting here
- * * title: text we play before text. seperately formatted, do not use html formatting here
+ * * text: text we want to be displayed
  * * alert_type: typepath for screen text type we want to play here
  */
-/mob/proc/play_screen_text(text, title, alert_type = /obj/screen/text/screen_text)
+/mob/proc/play_screen_text(text, alert_type = /obj/screen/text/screen_text)
 	if(!client)
 		return
 	var/obj/screen/text/screen_text/text_box = new alert_type()
 	text_box.text_to_play = text
-	text_box.title_to_play = title
 	LAZYADD(client.screen_texts, text_box)
 	if(LAZYLEN(client.screen_texts) == 1) //lets only play one at a time, for thematic effect and prevent overlap
-		text_box.play_to_client(client)
+		INVOKE_ASYNC(text_box, /obj/screen/text/screen_text.proc/play_to_client, client)
 		return
 	client.screen_texts += text_box
 
@@ -43,16 +41,10 @@
 	///delay between playing each letter. in general use 1 for fluff and 0.5 for time sensitive messsages
 	var/play_delay = 0.5
 
-	///opening styling for the title
-	var/title_style
-	///closing styling for the title
-	var/title_close
 	///opening styling for the message
 	var/style_open = "<span class='maptext' style=text-align:center valign='top'>"
 	///closing styling for the message
 	var/style_close = "</span>"
-	///Var for the seperately styled title we are going to play
-	var/title_to_play
 	///var for the text we are going to play
 	var/text_to_play
 
@@ -62,14 +54,28 @@
  * * player: client to play to
  */
 /obj/screen/text/screen_text/proc/play_to_client(client/player)
-	player.screen += src
+	player?.screen += src
 	if(fade_in_time)
 		animate(src, alpha = 255)
-	for(var/letter=2 to length(title_to_play)+1)
-		maptext = "[title_style][copytext_char(title_to_play, 1, letter)][title_close]"
-		sleep(play_delay)
+	var/list/lines_to_skip = list()
+	var/static/html_locate_regex = regex("<.*>")
+	var/tag_position = findtext(text_to_play, html_locate_regex)
+	var/reading_tag = TRUE
+	while(tag_position)
+		if(reading_tag)
+			if(text_to_play[tag_position] == ">")
+				reading_tag = FALSE
+				lines_to_skip += tag_position
+			else
+				lines_to_skip += tag_position
+			tag_position++
+		else
+			tag_position = findtext(text_to_play, html_locate_regex, tag_position)
+			reading_tag = TRUE
 	for(var/letter=2 to length(text_to_play)+1)
-		maptext = "[title_style][title_to_play][title_close][style_open][copytext_char(text_to_play, 1, letter)][style_close]"
+		if(letter in lines_to_skip)
+			continue
+		maptext = "[style_open][copytext_char(text_to_play, 1, letter)][style_close]"
 		sleep(play_delay)
 	addtimer(CALLBACK(src, .proc/after_play, player), fade_out_delay)
 
