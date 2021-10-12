@@ -231,6 +231,26 @@
 	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
 		. += "<br> It has a [attachments_by_slot[ATTACHMENT_SLOT_STORAGE]] installed."
 
+/obj/item/clothing/suit/modular/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!istype(I, /obj/item/facepaint) || !length(icon_state_variants))
+		return
+	var/obj/item/facepaint/paint = I
+	if(paint.uses < 1)
+		to_chat(user, span_warning("\the [paint] is out of color!"))
+		return
+	paint.uses--
+	var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
+
+	if(!variant)
+		return
+
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return
+
+	current_variant = variant
+	update_icon()
+
 /obj/item/clothing/suit/modular/xenonauten
 	name = "\improper Xenonauten-M pattern armored vest"
 	desc = "A XN-M vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a medium variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
@@ -267,25 +287,7 @@
 
 	current_variant = "black"
 
-/obj/item/clothing/suit/modular/xenonauten/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(!istype(I, /obj/item/facepaint) || !length(icon_state_variants))
-		return
-	var/obj/item/facepaint/paint = I
-	if(paint.uses < 1)
-		to_chat(user, span_warning("\the [paint] is out of color!"))
-		return
-	paint.uses--
-	var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
 
-	if(!variant)
-		return
-
-	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
-		return
-
-	current_variant = variant
-	update_icon()
 
 /*/obj/item/clothing/suit/modular/xenonauten/update_icon()
 	. = ..()
