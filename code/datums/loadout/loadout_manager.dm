@@ -103,7 +103,6 @@
 				if(istype(helmet, /datum/item_representation/modular_helmet))
 					if(loadout.version < 7)
 						loadout.empty_slot(slot_head_str)
-						continue
 					if(loadout.version < 8)
 						if("[helmet.item_type]" == "/obj/item/clothing/head/modular/marine/m10x/tech" || "[helmet.item_type]" == "/obj/item/clothing/head/modular/marine/m10x/corpsman")
 							helmet.item_type = /obj/item/clothing/head/modular/marine/m10x
@@ -111,11 +110,9 @@
 				if(istype(armor, /datum/item_representation/modular_armor))
 					if(loadout.version < 7)
 						loadout.empty_slot(slot_wear_suit_str)
-						continue
 					if(loadout.version < 8)
-						if("[checkpas.item_type]" == "/obj/item/clothing/suit/modular/pas11x")
-							checkpas.item_type = /obj/item/clothing/suit/modular/xenonauten
-							continue
+						if("[armor.item_type]" == "/obj/item/clothing/suit/modular/pas11x")
+							armor.item_type = /obj/item/clothing/suit/modular/xenonauten
 				loadout.version = CURRENT_LOADOUT_VERSION
 				var/job = params["loadout_job"]
 				var/name = params["loadout_name"]
@@ -143,7 +140,6 @@
 				if(istype(helmet, /datum/item_representation/modular_helmet))
 					if(loadout.version < 7)
 						loadout.empty_slot(slot_head_str)
-						continue
 					if(loadout.version < 8)
 						if("[helmet.item_type]" == "/obj/item/clothing/head/modular/marine/m10x/tech" || "[helmet.item_type]" == "/obj/item/clothing/head/modular/marine/m10x/corpsman")
 							helmet.item_type = /obj/item/clothing/head/modular/marine/m10x
@@ -151,11 +147,9 @@
 				if(istype(armor, /datum/item_representation/modular_armor))
 					if(loadout.version < 7)
 						loadout.empty_slot(slot_wear_suit_str)
-						continue
 					if(loadout.version < 8)
-						if("[checkpas.item_type]" == "/obj/item/clothing/suit/modular/pas11x")
-							checkpas.item_type = /obj/item/clothing/suit/modular/xenonauten
-							continue
+						if("[armor.item_type]" == "/obj/item/clothing/suit/modular/pas11x")
+							armor.item_type = /obj/item/clothing/suit/modular/xenonauten
 				loadout.version = CURRENT_LOADOUT_VERSION
 				delete_loadout(ui.user, name, job)
 				ui.user.client.prefs.save_loadout(loadout)
