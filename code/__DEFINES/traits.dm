@@ -124,7 +124,6 @@
 #define TRAIT_MUTED "muted" //target is mute and can't speak
 #define TRAIT_TURRET_HIDDEN "turret_hidden" //target gets passed over by turrets choosing a victim
 #define TRAIT_MOB_ICON_UPDATE_BLOCKED "icon_blocked" //target should not update its icon_state
-#define TRAIT_CANNOT_STRIP "cannot_strip" //target can look at other people inventory
 ///Prevent mob from being ignited due to IgniteMob()
 #define TRAIT_NON_FLAMMABLE "non-flammable"
 /// Prevents mob from riding mobs when buckled onto something

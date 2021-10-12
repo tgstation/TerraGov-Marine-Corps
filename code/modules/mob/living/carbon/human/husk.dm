@@ -45,7 +45,6 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/husk_claw, SLOT_L_HAND)
 	var/datum/atom_hud/health_hud = GLOB.huds[DATA_HUD_MEDICAL_OBSERVER]
 	health_hud.add_hud_to(H)
-	ADD_TRAIT(H, TRAIT_CANNOT_STRIP, HUSK_TRAIT)
 	H.job = new /datum/job/husk //Prevent from skewing the respawn timer if you take a husk, it's a ghost role after all
 	for(var/datum/action/action AS in H.actions)
 		action.remove_action(H)
@@ -56,7 +55,6 @@
 	health_hud.remove_hud_from(H)
 	qdel(H.r_hand)
 	qdel(H.l_hand)
-	REMOVE_TRAIT(H, TRAIT_CANNOT_STRIP, HUSK_TRAIT)
 
 /datum/species/husk/handle_unique_behavior(mob/living/carbon/human/H)
 	if(prob(10))
