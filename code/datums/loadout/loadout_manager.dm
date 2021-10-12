@@ -99,14 +99,24 @@
 				to_chat(ui.user, span_warning("The loadouts was found but is from a past version, and cannot be imported."))
 				return
 			if(loadout.version != CURRENT_LOADOUT_VERSION)
-				loadout.version = CURRENT_LOADOUT_VERSION
-				for(var/key in loadout.item_list)
-					if(key == slot_head_str && istype(loadout.item_list[key], /datum/item_representation/modular_helmet))
+				var/datum/item_representation/modular_helmet/helmet = loadout.item_list[slot_head_str]
+				if(istype(helmet, /datum/item_representation/modular_helmet))
+					if(loadout.version < 7)
 						loadout.empty_slot(slot_head_str)
 						continue
-					if(key == slot_wear_suit_str && istype(loadout.item_list[key], /datum/item_representation/modular_armor))
+					if(loadout.version < 8)
+						if("[helmet.item_type]" == "/obj/item/clothing/head/modular/marine/m10x/tech" || "[helmet.item_type]" == "/obj/item/clothing/head/modular/marine/m10x/corpsman")
+							helmet.item_type = /obj/item/clothing/head/modular/marine/m10x
+				var/datum/item_representation/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
+				if(istype(armor, /datum/item_representation/modular_armor))
+					if(loadout.version < 7)
 						loadout.empty_slot(slot_wear_suit_str)
 						continue
+					if(loadout.version < 8)
+						if("[checkpas.item_type]" == "/obj/item/clothing/suit/modular/pas11x")
+							checkpas.item_type = /obj/item/clothing/suit/modular/xenonauten
+							continue
+				loadout.version = CURRENT_LOADOUT_VERSION
 				var/job = params["loadout_job"]
 				var/name = params["loadout_name"]
 				delete_loadout(ui.user, name, job)
@@ -129,14 +139,24 @@
 				delete_loadout(ui.user, name, job)
 				CRASH("Fail to load loadouts")
 			if(loadout.version != CURRENT_LOADOUT_VERSION)
-				loadout.version = CURRENT_LOADOUT_VERSION
-				for(var/key in loadout.item_list)
-					if(key == slot_head_str && istype(loadout.item_list[key], /datum/item_representation/modular_helmet))
+				var/datum/item_representation/modular_helmet/helmet = loadout.item_list[slot_head_str]
+				if(istype(helmet, /datum/item_representation/modular_helmet))
+					if(loadout.version < 7)
 						loadout.empty_slot(slot_head_str)
 						continue
-					if(key == slot_wear_suit_str && istype(loadout.item_list[key], /datum/item_representation/modular_armor))
+					if(loadout.version < 8)
+						if("[helmet.item_type]" == "/obj/item/clothing/head/modular/marine/m10x/tech" || "[helmet.item_type]" == "/obj/item/clothing/head/modular/marine/m10x/corpsman")
+							helmet.item_type = /obj/item/clothing/head/modular/marine/m10x
+				var/datum/item_representation/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
+				if(istype(armor, /datum/item_representation/modular_armor))
+					if(loadout.version < 7)
 						loadout.empty_slot(slot_wear_suit_str)
 						continue
+					if(loadout.version < 8)
+						if("[checkpas.item_type]" == "/obj/item/clothing/suit/modular/pas11x")
+							checkpas.item_type = /obj/item/clothing/suit/modular/xenonauten
+							continue
+				loadout.version = CURRENT_LOADOUT_VERSION
 				delete_loadout(ui.user, name, job)
 				ui.user.client.prefs.save_loadout(loadout)
 				add_loadout(loadout)
