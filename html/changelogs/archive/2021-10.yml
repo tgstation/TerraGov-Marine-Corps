@@ -112,3 +112,16 @@
   - admin: Add a smite to increase xeno skill
   - balance: Lasers have hitscan
   - bugfix: Xenomorph now belongs to the xenomorph faction, not the neutral one
+2021-10-12:
+  BraveMole:
+  - qol: Everyone can see xeno caste description
+  - bugfix: Fix alamo automatic mode working even when it was hijacked
+  SplinterGP:
+  - bugfix: Combat robots(Species) doens't have slowdown from not wearing boots anymore.
+  - imageadd: added new cool theme for TGUI xeno UI's
+  TiviPlus:
+  - bugfix: tweaked wraith effects
+  - qol: stacks now show how many items there are when in your inventory
+  jroinc:
+  - rscadd: borgar?
+  - bugfix: fixes runtimes upon gibbing a simplemob

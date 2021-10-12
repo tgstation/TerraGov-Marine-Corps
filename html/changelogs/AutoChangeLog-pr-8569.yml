@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "Fix alamo automatic mode working even when it was hijacked"
