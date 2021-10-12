@@ -232,7 +232,7 @@ GLOBAL_LIST_INIT(marine_clothes_listed_products, list(
 		/obj/effect/modular_set/eva = list(CAT_AMR, "Medium EVA Jaeger kit", 0, "orange"),
 		/obj/effect/modular_set/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "orange"),
 		/obj/effect/modular_set/eod = list(CAT_AMR, "Heavy EOD Jaeger kit", 0, "orange"),
-		/obj/effect/essentials_set/xenonauten_light = list(CAT_AMR, "Xenonauten might armor kit", 0, "orange"),
+		/obj/effect/essentials_set/xenonauten_light = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
 		/obj/effect/essentials_set/xenonauten_medium = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
 		/obj/effect/essentials_set/xenonauten_heavy = list(CAT_AMR, "Xenonauten heavy armor kit", 0, "orange"),
 		/obj/item/clothing/suit/storage/marine/robot/light = list(CAT_AMR, "Combat robot light armor plating", 0, "black"),
@@ -706,6 +706,6 @@ GLOBAL_LIST_INIT(bypass_storage_content_save, typecacheof(list(
 #define MAXIMUM_LOADOUT 50
 
 /// The current loadout version
-#define CURRENT_LOADOUT_VERSION 7
+#define CURRENT_LOADOUT_VERSION 8
 
-GLOBAL_LIST_INIT(accepted_loadout_versions, list(5, 6, 7))
+GLOBAL_LIST_INIT(accepted_loadout_versions, list(5, 6, 7, 8))
