@@ -27,7 +27,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	///An identifier associated with this behavior, used for accessing specific values of a node's weights
 	var/identifier
 	///How far will we look for targets
-	var/target_distance = 12
+	var/target_distance = 8
 	///What we will escort
 	var/atom/escorted_atom
 	///When this timer is up, we force a change of node to ensure that the ai will never stay stuck trying to go to a specific node
@@ -88,6 +88,10 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	cleanup_current_action(next_action)
 	if(next_action)
 		current_action = next_action
+	if(current_action == ESCORTING_ATOM)
+		distance_to_maintain = 2 //Don't stay too close
+	else
+		distance_to_maintain = initial(distance_to_maintain)
 	if(next_target)
 		atom_to_walk_to = next_target
 		mob_parent.AddElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
@@ -96,10 +100,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		mob_parent.a_intent = INTENT_HELP
 	else
 		mob_parent.a_intent = INTENT_HARM
-	if(current_action == ESCORTING_ATOM)
-		distance_to_maintain = 2 //Don't stay too close
-	else
-		distance_to_maintain = initial(distance_to_maintain)
 
 ///Try to find a node to go to. If ignore_current_node is true, we will just find the closest current_node, and not the current_node best adjacent node
 /datum/ai_behavior/proc/look_for_next_node(ignore_current_node = TRUE, should_reset_goal_nodes = FALSE)
@@ -174,6 +174,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior/proc/clean_escorted_atom()
 	SIGNAL_HANDLER
 	escorted_atom = null
+	RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, .proc/set_escorted_atom)
 	if(current_action == ESCORTING_ATOM)
 		look_for_next_node()
 
