@@ -95,20 +95,6 @@
 		return
 	playsound(user, fire_sound, 60)
 
-/obj/item/weapon/gun/energy/set_shoot_inactive_hand(mob/user) // Handles akimbo
-	if(!user)
-		return
-	if(!dual_wield)
-		user.shoot_inactive_hand = FALSE
-		return
-	
-	var/obj/item/weapon/gun/energy/active_gun = user.get_active_held_item()
-	var/obj/item/weapon/gun/energy/inactive_gun = user.get_inactive_held_item()
-	if(user.shoot_inactive_hand || !inactive_gun.cell?.charge && inactive_gun.cell.charge <= 0) // Check inactive gun
-		user.shoot_inactive_hand = FALSE // Shoot from active
-	else if(!user.shoot_inactive_hand || !active_gun.cell?.charge && active_gun.cell.charge <= 0) // Check active gun
-		user.shoot_inactive_hand = TRUE // Shoot from inactive
-
 /obj/item/weapon/gun/energy/taser
 	name = "taser gun"
 	desc = "An advanced stun device capable of firing balls of ionized electricity. Used for nonlethal takedowns."

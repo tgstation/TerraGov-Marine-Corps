@@ -652,20 +652,15 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		SEND_SIGNAL(gun_user, COMSIG_MOB_ATTACHMENT_FIRED, target, src, master_gun)
 	gun_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 
-/obj/item/weapon/gun/proc/set_shoot_inactive_hand(mob/user) // Check if guns are empty and set which hand the shooting hand is.
-	if(!user)
-		return
-	if(!dual_wield)
-		user.shoot_inactive_hand = FALSE
-		return
-	
+/// Check if guns are empty and set which hand the shooting hand is.
+/obj/item/weapon/gun/proc/check_ammo_akimbo(mob/user)
 	var/obj/item/weapon/gun/active_gun = user.get_active_held_item()
 	var/obj/item/weapon/gun/inactive_gun = user.get_inactive_held_item()
 
-	if(!inactive_gun.in_chamber?.ammo && !inactive_gun.current_mag?.current_rounds || inactive_gun.current_mag?.current_rounds && inactive_gun.current_mag.current_rounds <= 0) // Check inactive gun
-		user.shoot_inactive_hand = FALSE // Shoot from active
-	else if(!active_gun.in_chamber?.ammo && !active_gun.current_mag?.current_rounds || active_gun.current_mag?.current_rounds && active_gun.current_mag.current_rounds <= 0) // Check active gun
-		user.shoot_inactive_hand = TRUE // Shoot from inactive
+	if(!inactive_gun.get_ammo_count())
+		user.shoot_inactive_hand = FALSE
+	else if(!active_gun.get_ammo_count())
+		user.shoot_inactive_hand = TRUE
 
 ///Set the target and take care of hard delete
 /obj/item/weapon/gun/proc/set_target(atom/object)
@@ -792,7 +787,7 @@ and you're good to go.
 	else
 		firer = gun_user
 	apply_gun_modifiers(projectile_to_fire, target, firer)
-	setup_bullet_accuracy(projectile_to_fire, gun_user, shots_fired, dual_wield) //User can be passed as null.
+	setup_bullet_accuracy(projectile_to_fire, gun_user, shots_fired) //User can be passed as null.
 
 	var/firing_angle = get_angle_with_scatter((gun_user || get_turf(src)), target, get_scatter(projectile_to_fire.scatter, gun_user), projectile_to_fire.p_x, projectile_to_fire.p_y)
 
@@ -828,15 +823,15 @@ and you're good to go.
 			sentry_battery.forceMove(get_turf(src))
 			sentry_battery.charge = 0
 			sentry_battery = null
-	// Akimbo
-	var/obj/item/weapon/gun/active_gun = gun_user.get_active_held_item() // Not checked outside of dual wield
-	var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
-	if(dual_wield && gun_user.shoot_inactive_hand)
-		gun_user.shoot_inactive_hand = FALSE
-		active_gun.last_fired = world.time
-	else if(dual_wield)
-		gun_user.shoot_inactive_hand = TRUE
-		inactive_gun.last_fired = world.time
+	if(dual_wield && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
+		if(gun_user.shoot_inactive_hand)
+			gun_user.shoot_inactive_hand = FALSE
+			var/obj/item/weapon/gun/active_gun = gun_user.get_active_held_item()
+			active_gun.last_fired = world.time
+		else
+			gun_user.shoot_inactive_hand = TRUE
+			var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
+			inactive_gun.last_fired = world.time
 	return TRUE
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
@@ -980,12 +975,13 @@ and you're good to go.
 /obj/item/weapon/gun/proc/able_to_fire(mob/user)
 	if(!user || user.stat != CONSCIOUS || user.lying_angle)
 		return
-	
-	if(dual_wield && gun_user.get_active_held_item() == src && gun_user.shoot_inactive_hand)
-		return FALSE
-	else if(dual_wield && gun_user.get_inactive_held_item() == src && !gun_user.shoot_inactive_hand)
-		return FALSE
-	set_shoot_inactive_hand(user)
+
+	//Akimbo shooting style
+	if(dual_wield && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
+		if((gun_user.get_active_held_item() == src && gun_user.shoot_inactive_hand) || (gun_user.get_inactive_held_item() == src && !gun_user.shoot_inactive_hand))
+			return FALSE
+		check_ammo_akimbo(user)
+
 	if(!user.dextrous)
 		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return FALSE
@@ -1075,7 +1071,7 @@ and you're good to go.
 	projectile_to_fire.damage_marine_falloff = iff_marine_damage_falloff
 
 
-/obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)
+/obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1)
 	var/gun_accuracy_mult = accuracy_mult_unwielded
 	var/gun_accuracy_mod = 0
 	var/gun_scatter = scatter_unwielded
@@ -1091,9 +1087,6 @@ and you're good to go.
 
 	if(gun_firemode == GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST && burst_amount > 1)
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
-
-	if(dual_wield) //akimbo firing gives terrible accuracy
-		gun_scatter += 10*rand(upper_akimbo_accuracy, lower_akimbo_accuracy)
 
 	if(user)
 		// Apply any skill-based bonuses to accuracy
