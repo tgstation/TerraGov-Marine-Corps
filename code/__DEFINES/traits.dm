@@ -94,6 +94,7 @@
 #define STEALTH_TRAIT "stealth" //From hunter stealth
 #define REVIVE_TO_CRIT_TRAIT "revive_to_crit"
 #define GUN_TRAIT "gun" //Traits related to guns
+#define HUSK_TRAIT "husk"
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
 
