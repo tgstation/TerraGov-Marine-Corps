@@ -935,6 +935,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 
 	unarmed_type = /datum/unarmed_attack/punch/strong
 	total_health = 100
+	slowdown = SHOES_SLOWDOWN //because they don't wear boots.
 
 	cold_level_1 = -1
 	cold_level_2 = -1

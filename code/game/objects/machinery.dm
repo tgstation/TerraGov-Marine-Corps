@@ -40,6 +40,13 @@
 	return !(machine_stat & (NOPOWER|BROKEN|MAINT|DISABLED))
 
 
+/obj/machinery/proc/default_deconstruction_crowbar(obj/item/crowbar, ignore_panel = 0, custom_deconstruct = FALSE)
+	. = !(flags_atom & NODECONSTRUCT) && crowbar.tool_behaviour == TOOL_CROWBAR
+	if(!. || custom_deconstruct)
+		return
+	crowbar.play_tool_sound(src, 50)
+	deconstruct(TRUE)
+
 /obj/machinery/deconstruct(disassembled = TRUE)
 	if(!(flags_atom & NODECONSTRUCT))
 		on_deconstruction()

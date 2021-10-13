@@ -68,6 +68,15 @@ SUBSYSTEM_DEF(monitor)
 		GLOB.xeno_stat_multiplicator_buff = proposed_balance_buff
 		apply_balance_changes()
 
+	//Balance spawners output
+	for(var/silo in GLOB.xeno_resin_silos)
+		SSspawning.spawnerdata[silo].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
+		SSspawning.spawnerdata[silo].max_allowed_mobs = max(1, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count * 0.5)
+	for(var/spawner in GLOB.xeno_spawner)
+		SSspawning.spawnerdata[spawner].required_increment = max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
+		SSspawning.spawnerdata[spawner].max_allowed_mobs = max(2, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count)
+
+
 	//Automatic respawn buff, if a stalemate is detected and a lot of ghosts are waiting to play
 	if(state != STATE_BALANCED || !stalemate || GLOB.observer_list <= 0.5 * total_living_players)
 		SSsilo.larva_spawn_rate_temporary_buff = 0

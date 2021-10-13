@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - expansion: "Ais can retreat and rest"
-  - bugfix: "Fix ai drones able to weed at a distance"

@@ -196,3 +196,5 @@
 		SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
 		UnregisterSignal(mob_parent, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_PLASMA_REGEN))
 
+/datum/ai_behavior/xeno/ranged
+	distance_to_maintain = 5
