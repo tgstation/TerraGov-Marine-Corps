@@ -113,13 +113,19 @@
 					if(loadout.version < 8)
 						if("[armor.item_type]" == "/obj/item/clothing/suit/modular/pas11x")
 							armor.item_type = /obj/item/clothing/suit/modular/xenonauten
+				var/message_to_send = "Please note: The loadout code has been updated and due to that:"
+				if(loadout.version < 7)
+					message_to_send += "<br>any modular helmet/suit has been removed from it due to the transitioning of loadout version 6 to 7."
+				if(loadout.version < 8)
+					message_to_send += "<br>any PAS11 armor/M10x helmet has been removed from it due to the transitioning of loadout version 7 to 8(Xenonauten Addition)."
 				loadout.version = CURRENT_LOADOUT_VERSION
+				message_to_send += "<br>This loadout is now on version [loadout.version]"
+				to_chat(ui.user, span_warning(message_to_send))
 				var/job = params["loadout_job"]
 				var/name = params["loadout_name"]
 				delete_loadout(ui.user, name, job)
 				ui.user.client.prefs.save_loadout(loadout)
 				add_loadout(loadout)
-				to_chat(ui.user, span_warning("Please note: The loadout code has been updated and as such any modular helmet/suit has been removed from it due to the transitioning of loadout versions. Any future modular helmet/suit saves should have no problem being saved."))
 			ui.user.client.prefs.save_loadout(loadout)
 			add_loadout(loadout)
 			update_static_data(ui.user, ui)
@@ -150,7 +156,14 @@
 					if(loadout.version < 8)
 						if("[armor.item_type]" == "/obj/item/clothing/suit/modular/pas11x")
 							armor.item_type = /obj/item/clothing/suit/modular/xenonauten
+				var/message_to_send = "Please note: The loadout code has been updated and due to that:"
+				if(loadout.version < 7)
+					message_to_send += "<br>any modular helmet/suit has been removed from it due to the transitioning of loadout version 6 to 7."
+				if(loadout.version < 8)
+					message_to_send += "<br>any PAS11 armor/M10x helmet has been removed from it due to the transitioning of loadout version 7 to 8(Xenonauten Addition)."
 				loadout.version = CURRENT_LOADOUT_VERSION
+				message_to_send += "<br>This loadout is now on version [loadout.version]"
+				to_chat(ui.user, span_warning(message_to_send))
 				delete_loadout(ui.user, name, job)
 				ui.user.client.prefs.save_loadout(loadout)
 				add_loadout(loadout)

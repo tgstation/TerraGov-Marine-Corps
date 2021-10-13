@@ -421,6 +421,7 @@
 #include "code\datums\loadout\loadout_helper.dm"
 #include "code\datums\loadout\loadout_manager.dm"
 #include "code\datums\loadout\loadout_seller.dm"
+#include "code\datums\loadout\old_typepaths.dm"
 #include "code\datums\loadout\item_representation\_item_representation.dm"
 #include "code\datums\loadout\item_representation\armor_representation.dm"
 #include "code\datums\loadout\item_representation\gun_representation.dm"
