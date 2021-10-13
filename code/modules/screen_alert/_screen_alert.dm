@@ -1,7 +1,3 @@
-/client
-	///lazylist of screen_texts in
-	var/list/obj/screen/text/screen_text/screen_texts
-
 /**
  * proc for playing a screen_text on a mob.
  * enqueues it if a screen text is running and plays i otherwise
