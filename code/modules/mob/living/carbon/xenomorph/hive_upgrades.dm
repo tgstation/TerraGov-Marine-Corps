@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 /datum/hive_upgrade/building/spawner
 	name = "Spawner"
 	desc = "Constructs a spawner that generates ai xenos over time"
-	psypoint_cost = 800
+	psypoint_cost = 600
 	icon = "spawner"
 	flags_upgrade = ABILITY_DISTRESS
 	building_type = /obj/structure/xeno/spawner
