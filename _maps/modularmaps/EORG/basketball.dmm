@@ -445,7 +445,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/wood,
 /area/deathmatch)
 "ca" = (
@@ -504,7 +504,7 @@
 /area/deathmatch)
 "hr" = (
 /obj/structure/bed/chair,
-/obj/effect/ai_node,
+
 /turf/open/floor/wood,
 /area/deathmatch)
 "it" = (
@@ -577,7 +577,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "rl" = (
-/obj/effect/ai_node,
+
 /turf/open/ground/river,
 /area/deathmatch)
 "rF" = (
@@ -749,14 +749,14 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "HL" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/wood,
 /area/deathmatch)
 "IC" = (
 /turf/closed/wall/mainship/outer,
 /area/space)
 "IS" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/mainship,
 /area/deathmatch)
 "JI" = (

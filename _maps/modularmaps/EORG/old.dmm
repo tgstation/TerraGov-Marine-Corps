@@ -105,17 +105,17 @@
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "az" = (
-/obj/effect/ai_node,
+
 /turf/open/ground/grass,
 /area/deathmatch)
 "aA" = (
-/obj/effect/ai_node,
+
 /turf/open/ground/coast{
 	dir = 4
 	},
 /area/deathmatch)
 "aB" = (
-/obj/effect/ai_node,
+
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "aC" = (
@@ -303,7 +303,7 @@
 /area/deathmatch)
 "bm" = (
 /obj/structure/closet/cabinet,
-/obj/effect/ai_node,
+
 /turf/open/floor,
 /area/deathmatch)
 "bn" = (
@@ -312,12 +312,12 @@
 /turf/open/floor,
 /area/deathmatch)
 "bo" = (
-/obj/effect/ai_node,
+
 /turf/open/ground/river,
 /area/deathmatch)
 "bp" = (
 /obj/structure/lattice,
-/obj/effect/ai_node,
+
 /turf/open/ground/grass,
 /area/deathmatch)
 "bq" = (
@@ -464,7 +464,7 @@
 /turf/open/floor,
 /area/deathmatch)
 "bT" = (
-/obj/effect/ai_node,
+
 /turf/open/floor,
 /area/deathmatch)
 "bU" = (

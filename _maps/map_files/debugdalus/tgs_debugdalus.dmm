@@ -1324,7 +1324,7 @@
 /area/mainship/command/telecomms)
 "afU" = (
 /obj/effect/landmark/start/job/shiptech,
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "afX" = (
@@ -2064,7 +2064,7 @@
 	},
 /area/mainship/medical/medical_science)
 "aja" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/medical/medical_science)
 "ajb" = (
@@ -2314,7 +2314,7 @@
 /turf/open/floor/plating,
 /area/mainship/command/telecomms)
 "azU" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "aGU" = (
@@ -2331,7 +2331,7 @@
 "bhC" = (
 /obj/structure/cable,
 /obj/machinery/landinglight/ds1/delaytwo,
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "bkg" = (
@@ -2385,24 +2385,24 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "dwY" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "dZo" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "ecz" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "ekJ" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
 "eBB" = (
@@ -2445,7 +2445,7 @@
 	id = "supply_elevator_railing"
 	},
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "gas" = (
@@ -2492,12 +2492,12 @@
 /area/mainship/hallways/hangar)
 "hni" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "hyS" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/medical/medical_science)
 "hCx" = (
@@ -2523,7 +2523,7 @@
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 8
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "iSK" = (
@@ -2551,7 +2551,7 @@
 /area/mainship/hallways/hangar)
 "jxJ" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
 "jzm" = (
@@ -2561,7 +2561,7 @@
 /area/mainship/hallways/hangar)
 "jRy" = (
 /obj/item/reagent_containers/food/snacks/grown/poppy,
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/living/port_garden)
 "kdt" = (
@@ -2583,7 +2583,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "kso" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
 "ksL" = (
@@ -2750,7 +2750,7 @@
 /area/mainship/command/cic)
 "qEm" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "qRv" = (
@@ -2769,7 +2769,7 @@
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 1
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "rmt" = (
@@ -2785,7 +2785,7 @@
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
 "rDw" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
 "rSb" = (
@@ -2817,7 +2817,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "sAD" = (
@@ -2834,12 +2834,12 @@
 /obj/effect/landmark/start/job/crash/squadleader,
 /obj/structure/cable,
 /obj/effect/landmark/start/latejoin,
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "tpB" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
 "tQD" = (
@@ -2847,7 +2847,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "tZD" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/medical/medical_science)
 "ual" = (
@@ -2877,7 +2877,7 @@
 /area/mainship/hallways/hangar)
 "vHf" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "vPb" = (
@@ -2960,7 +2960,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "xTV" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship,
 /area/mainship/hallways/exoarmor)
 "ybc" = (

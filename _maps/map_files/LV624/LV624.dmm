@@ -2534,7 +2534,7 @@
 /area/lv624/ground/sand8)
 "aoa" = (
 /obj/structure/flora/tree/jungle,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "aob" = (
@@ -2698,7 +2698,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor,
 /area/lv624/ground/river2)
 "aoR" = (
@@ -2854,7 +2854,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/ai_node,
+
 /turf/open/floor,
 /area/lv624/ground/compound/n)
 "apI" = (
@@ -5319,7 +5319,7 @@
 /area/lv624/ground/compound/n)
 "aDa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
 "aDc" = (
@@ -6163,7 +6163,7 @@
 /obj/item/clothing/mask/facehugger/dead,
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "aJn" = (
@@ -6184,7 +6184,7 @@
 "aJp" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "aJq" = (
@@ -6265,7 +6265,7 @@
 /area/lv624/lazarus/research)
 "aKf" = (
 /obj/item/clothing/glasses/regular,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -6313,7 +6313,7 @@
 "aKm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
@@ -6663,7 +6663,7 @@
 /area/lv624/lazarus/research)
 "aMq" = (
 /obj/effect/decal/remains/human,
-/obj/effect/ai_node,
+
 /turf/open/floor/freezer,
 /area/lv624/lazarus/research)
 "aMr" = (
@@ -6676,7 +6676,7 @@
 /area/lv624/lazarus/research)
 "aMt" = (
 /obj/structure/bed/chair/office/dark,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -7499,7 +7499,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "aQR" = (
@@ -7507,7 +7507,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "aQU" = (
@@ -8993,7 +8993,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "aYB" = (
@@ -11218,7 +11218,7 @@
 	},
 /area/lv624/ground/jungle2)
 "blN" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
@@ -11623,7 +11623,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "bnS" = (
@@ -11639,7 +11639,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "bnV" = (
@@ -11978,7 +11978,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
 "bpx" = (
@@ -12040,7 +12040,7 @@
 /area/lv624/ground/jungle1)
 "bpX" = (
 /obj/item/weapon/claymore/mercsword/machete,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
 "bpY" = (
@@ -12213,7 +12213,7 @@
 /area/lv624/lazarus/engineering)
 "bqT" = (
 /obj/effect/landmark/start/job/survivor,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "bqV" = (
@@ -12496,7 +12496,7 @@
 "buE" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "bvr" = (
@@ -12670,7 +12670,7 @@
 /area/lv624/lazarus/security)
 "ciT" = (
 /obj/structure/jungle/vines/heavy,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "cmc" = (
@@ -12741,7 +12741,7 @@
 "crJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "crT" = (
@@ -12763,12 +12763,12 @@
 /area/lv624/lazarus/main_hall)
 "cyw" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+
 /turf/open/floor/engine/cult,
 /area/lv624/ground/caves/west1)
 "cyy" = (
 /obj/structure/jungle/vines,
-/obj/effect/ai_node,
+
 /turf/open/floor,
 /area/lv624/ground/river3)
 "czK" = (
@@ -12779,11 +12779,11 @@
 /area/lv624/ground/river1)
 "cAO" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/caves/east1)
 "cDA" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/caves/east1)
 "cEK" = (
@@ -12841,7 +12841,7 @@
 /obj/structure/barricade/wooden{
 	dir = 4
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "cTl" = (
@@ -12853,7 +12853,7 @@
 /area/lv624/ground/filtration)
 "cTJ" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "cTX" = (
@@ -12862,7 +12862,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "cUl" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "cUA" = (
@@ -12894,7 +12894,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
 "cYV" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand5)
 "cZd" = (
@@ -12910,7 +12910,7 @@
 /turf/closed/wall/mineral/sandstone,
 /area/lv624/ground/caves/east1)
 "deH" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand7)
 "dgb" = (
@@ -12922,7 +12922,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "dmz" = (
@@ -12995,7 +12995,7 @@
 /area/lv624/lazarus/engineering)
 "drS" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "dsV" = (
@@ -13041,7 +13041,7 @@
 	},
 /area/lv624/ground/jungle9)
 "dwA" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east2)
 "dwG" = (
@@ -13179,14 +13179,14 @@
 /turf/open/space/basic,
 /area/lv624/ground/jungle9)
 "dSX" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
 /area/lv624/ground/southcargo)
 "dTK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "dTQ" = (
@@ -13266,7 +13266,7 @@
 /area/shuttle/drop2/lz2)
 "eme" = (
 /obj/effect/decal/cleanable/blood/oil,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/neutral,
 /area/shuttle/drop1/lz1)
 "emp" = (
@@ -13300,7 +13300,7 @@
 /turf/open/floor/marking/bot,
 /area/shuttle/drop2/lz2)
 "eso" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "etu" = (
@@ -13309,7 +13309,7 @@
 /area/lv624/ground/caves/west2)
 "etV" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/ai_node,
+
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "eva" = (
@@ -13349,7 +13349,7 @@
 "eBL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor,
 /area/lv624/ground/river2)
 "eCA" = (
@@ -13399,7 +13399,7 @@
 /obj/effect/decal/cleanable/blood/oil,
 /obj/effect/landmark/weed_node,
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "eMi" = (
@@ -13506,12 +13506,12 @@
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
 "fft" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
 "ffX" = (
@@ -13535,7 +13535,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "fis" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "fiW" = (
@@ -13690,7 +13690,7 @@
 /turf/open/floor/plating/warning,
 /area/lv624/lazarus/engineering)
 "fLV" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "fMC" = (
@@ -13703,7 +13703,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
@@ -13789,7 +13789,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle4)
 "gbb" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "gbD" = (
@@ -13895,7 +13895,7 @@
 "gsT" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
 "gtX" = (
@@ -14040,7 +14040,7 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle9)
 "gND" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/marking/warning,
 /area/shuttle/drop1/lz1)
 "gNJ" = (
@@ -14084,7 +14084,7 @@
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
 "gWf" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river1)
 "gWo" = (
@@ -14114,7 +14114,7 @@
 /turf/open/floor/tile/whiteyellow,
 /area/lv624/lazarus/main_hall)
 "hbx" = (
-/obj/effect/ai_node,
+
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "heg" = (
@@ -14233,13 +14233,13 @@
 	dir = 4
 	},
 /obj/structure/catwalk,
-/obj/effect/ai_node,
+
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "hHC" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "hIc" = (
@@ -14274,7 +14274,7 @@
 /area/lv624/ground/ruin)
 "hMR" = (
 /obj/effect/decal/remains/xeno,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/caves/east1)
 "hNc" = (
@@ -14297,7 +14297,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
@@ -14308,7 +14308,7 @@
 /area/lv624/ground/ruin)
 "hQD" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "hRL" = (
@@ -14364,7 +14364,7 @@
 "ilA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
@@ -14422,7 +14422,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "iuG" = (
@@ -14431,11 +14431,11 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "ivg" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "iwd" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6)
 "ixc" = (
@@ -14490,7 +14490,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "iDY" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/se)
 "iEQ" = (
@@ -14525,7 +14525,7 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
 "iKn" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "iLn" = (
@@ -14568,7 +14568,7 @@
 /area/lv624/ground/jungle7)
 "iRm" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west2)
 "iSN" = (
@@ -14739,7 +14739,7 @@
 /area/lv624/lazarus/research)
 "jwS" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "jyr" = (
@@ -14798,7 +14798,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle2)
 "jIr" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle8)
 "jJr" = (
@@ -14810,11 +14810,11 @@
 "jLx" = (
 /obj/structure/jungle/vines,
 /obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "jLA" = (
-/obj/effect/ai_node,
+
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "jMR" = (
@@ -14878,7 +14878,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "jYA" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/engine/cult,
 /area/lv624/ground/caves/west1)
 "jZl" = (
@@ -14894,7 +14894,7 @@
 /area/lv624/ground/southcargo)
 "kgp" = (
 /obj/effect/decal/warning_stripes/thin,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "kir" = (
@@ -14963,7 +14963,7 @@
 	},
 /area/lv624/ground/jungle1)
 "kvx" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
@@ -15000,7 +15000,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "kFx" = (
@@ -15059,7 +15059,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "kIM" = (
@@ -15075,7 +15075,7 @@
 	},
 /area/lv624/ground/river2)
 "kKx" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand8)
 "kKz" = (
@@ -15113,7 +15113,7 @@
 /area/lv624/ground/jungle6)
 "kPe" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "kPi" = (
@@ -15125,7 +15125,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle4)
 "kQJ" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "kSB" = (
@@ -15157,7 +15157,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "kYJ" = (
@@ -15183,7 +15183,7 @@
 /area/lv624/ground/southcargo)
 "lcN" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
 	},
@@ -15238,13 +15238,13 @@
 /area/lv624/lazarus/engineering)
 "lns" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 8
 	},
 /area/lv624/ground/jungle8)
 "lnQ" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand1)
 "lou" = (
@@ -15260,7 +15260,7 @@
 /area/shuttle/drop2/lz2)
 "lqZ" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "lrO" = (
@@ -15276,7 +15276,7 @@
 /area/lv624/ground/jungle5)
 "ltg" = (
 /obj/machinery/miner/damaged,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "ltn" = (
@@ -15285,13 +15285,13 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "ltI" = (
-/obj/effect/ai_node,
+
 /turf/open/floor,
 /area/lv624/ground/southcargo)
 "lud" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/obj/effect/ai_node,
+
 /turf/open/floor,
 /area/lv624/ground/southcargo)
 "lux" = (
@@ -15307,7 +15307,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle1)
 "lwk" = (
-/obj/effect/ai_node,
+
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "lwm" = (
@@ -15321,7 +15321,7 @@
 /area/lv624/ground/jungle9)
 "lAS" = (
 /obj/structure/jungle/vines,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "lFb" = (
@@ -15438,7 +15438,7 @@
 /area/lv624/ground/jungle9)
 "mbG" = (
 /obj/structure/flora/ausbushes/fernybush,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
 	},
@@ -15494,7 +15494,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "mjQ" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle2)
 "mjZ" = (
@@ -15513,7 +15513,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/compound/sw)
 "moZ" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/dark,
 /area/lv624/ground/sand6)
 "mpW" = (
@@ -15548,7 +15548,7 @@
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "mrY" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
 	},
@@ -15719,7 +15719,7 @@
 /turf/closed/mineral,
 /area/lv624/ground/caves/central1)
 "mYJ" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/warning,
 /area/lv624/ground/filtration)
 "naB" = (
@@ -15746,7 +15746,7 @@
 	},
 /area/lv624/ground/jungle2)
 "nfJ" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
 "nhC" = (
@@ -15865,7 +15865,7 @@
 	},
 /area/lv624/lazarus/engineering)
 "nzz" = (
-/obj/effect/ai_node,
+
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "nzZ" = (
@@ -15916,7 +15916,7 @@
 /area/lv624/ground/jungle9)
 "nEL" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/southcargo)
 "nFi" = (
@@ -15958,7 +15958,7 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "nPO" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand2)
 "nPP" = (
@@ -16018,7 +16018,7 @@
 	},
 /area/lv624/ground/jungle3)
 "oac" = (
-/obj/effect/ai_node,
+
 /turf/open/floor,
 /area/lv624/ground/sand9)
 "oav" = (
@@ -16034,7 +16034,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
 "obH" = (
@@ -16051,7 +16051,7 @@
 /area/lv624/ground/jungle9)
 "odj" = (
 /obj/structure/catwalk,
-/obj/effect/ai_node,
+
 /turf/open/ground/coast{
 	dir = 5
 	},
@@ -16139,7 +16139,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand8)
 "oqY" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating,
 /area/lv624/ground/jungle7)
 "orD" = (
@@ -16193,7 +16193,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle4)
 "oCD" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west2)
 "oCG" = (
@@ -16261,7 +16261,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "oRS" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/marking/loadingarea,
 /area/shuttle/drop2/lz2)
 "oTy" = (
@@ -16311,7 +16311,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle2)
 "piy" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating,
 /area/lv624/ground/sand7)
 "pkq" = (
@@ -16334,7 +16334,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/canteen)
 "pnr" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 8
 	},
@@ -16506,7 +16506,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle6)
 "pSQ" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "pUK" = (
@@ -16520,7 +16520,7 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "pVN" = (
-/obj/effect/ai_node,
+
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
 "pWa" = (
@@ -16529,11 +16529,11 @@
 /area/lv624/ground/sand8)
 "pWw" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "pXA" = (
-/obj/effect/ai_node,
+
 /turf/open/floor,
 /area/lv624/ground/river3)
 "pXO" = (
@@ -16684,7 +16684,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river1)
 "qFt" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand3)
 "qGH" = (
@@ -16785,7 +16785,7 @@
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "qWK" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
 	},
@@ -17047,7 +17047,7 @@
 "sgc" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "sgU" = (
@@ -17069,7 +17069,7 @@
 /area/lv624/ground/jungle9)
 "sjE" = (
 /obj/machinery/light,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -17099,11 +17099,11 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east2)
 "ssM" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "stp" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand4)
 "stN" = (
@@ -17139,7 +17139,7 @@
 /area/shuttle/drop1/lz1)
 "sBr" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/se)
 "sCc" = (
@@ -17210,7 +17210,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/shuttle/drop1/lz1)
 "sLr" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "sLE" = (
@@ -17248,7 +17248,7 @@
 /area/lv624/ground/jungle6)
 "sPX" = (
 /obj/effect/decal/warning_stripes/thin,
-/obj/effect/ai_node,
+
 /turf/open/floor,
 /area/lv624/ground/sand9)
 "sQR" = (
@@ -17288,7 +17288,7 @@
 /area/lv624/ground/southcargo)
 "sWv" = (
 /obj/structure/jungle/vines,
-/obj/effect/ai_node,
+
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "tal" = (
@@ -17349,7 +17349,7 @@
 /area/lv624/ground/jungle2)
 "tgF" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "tgS" = (
@@ -17375,7 +17375,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "tnr" = (
@@ -17464,7 +17464,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/sand9)
 "tAZ" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "tCY" = (
@@ -17516,7 +17516,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand8)
 "tKw" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/jungle3)
 "tMn" = (
@@ -17540,7 +17540,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east2)
 "tPb" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "tPp" = (
@@ -17562,7 +17562,7 @@
 /turf/closed/mineral,
 /area/lv624/ground/caves/east1)
 "tTO" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/southcargo)
 "tUg" = (
@@ -17608,7 +17608,7 @@
 /area/lv624/ground/river1)
 "uaA" = (
 /obj/structure/bed/chair/wood/wings,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -17673,7 +17673,7 @@
 "ukH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
 "unj" = (
@@ -17694,7 +17694,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/warning,
 /area/lv624/ground/filtration)
 "upF" = (
@@ -17883,11 +17883,11 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle3)
 "vmp" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
 "vnH" = (
-/obj/effect/ai_node,
+
 /turf/open/ground/coast/corner{
 	dir = 4
 	},
@@ -17921,7 +17921,7 @@
 /turf/open/floor/marking/bot,
 /area/lv624/ground/southcargo)
 "vuD" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/marking/bot,
 /area/shuttle/drop1/lz1)
 "vuY" = (
@@ -17960,7 +17960,7 @@
 /area/lv624/ground/jungle7)
 "vAL" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east2)
 "vAO" = (
@@ -18095,7 +18095,7 @@
 /area/lv624/ground/jungle3)
 "vSc" = (
 /obj/item/stack/sheet/metal,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6)
 "vTg" = (
@@ -18105,7 +18105,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "vUk" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "vUy" = (
@@ -18173,7 +18173,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "wgC" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle8)
 "wit" = (
@@ -18197,7 +18197,7 @@
 	},
 /area/lv624/lazarus/engineering)
 "wnK" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "wok" = (
@@ -18218,12 +18218,12 @@
 /area/lv624/ground/jungle2)
 "wss" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "wtg" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand3)
 "wub" = (
@@ -18261,7 +18261,7 @@
 /area/lv624/ground/jungle9)
 "wDI" = (
 /obj/effect/landmark/xeno_silo_spawn,
-/obj/effect/ai_node,
+
 /turf/open/floor/engine/cult,
 /area/lv624/ground/caves/east2)
 "wEt" = (
@@ -18350,7 +18350,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "wTn" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/marking/loadingarea{
 	dir = 4
 	},
@@ -18384,7 +18384,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle4)
 "wZm" = (
-/obj/effect/ai_node,
+
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "xam" = (
@@ -18403,7 +18403,7 @@
 "xee" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_door,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "xib" = (
@@ -18438,11 +18438,11 @@
 "xot" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "xoF" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
@@ -18472,13 +18472,13 @@
 "xss" = (
 /obj/structure/cable,
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "xsu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "xtz" = (
@@ -18489,7 +18489,7 @@
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
 "xtK" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
 "xvo" = (
@@ -18506,7 +18506,7 @@
 	},
 /area/lv624/ground/compound/c)
 "xwC" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
@@ -18534,7 +18534,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "xDt" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -18591,7 +18591,7 @@
 /area/lv624/ground/caves/west1)
 "xPw" = (
 /obj/effect/landmark/start/job/xenomorph,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "xQg" = (
@@ -18599,7 +18599,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "xQl" = (
@@ -18659,7 +18659,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "yaM" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "yaU" = (
@@ -18688,7 +18688,7 @@
 /area/lv624/ground/jungle9)
 "ygr" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "yhd" = (

@@ -7,7 +7,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/brown{
 	dir = 9
 	},
@@ -82,7 +82,7 @@
 "k" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/brown{
 	dir = 9
 	},
@@ -92,7 +92,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/brown{
 	dir = 9
 	},
@@ -125,7 +125,7 @@
 	},
 /area/lv624/lazarus/comms)
 "q" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/brown{
 	dir = 9
 	},

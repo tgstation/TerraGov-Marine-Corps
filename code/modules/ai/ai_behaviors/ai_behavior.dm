@@ -72,8 +72,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior/proc/finished_node_move()
 	SIGNAL_HANDLER
 	if(current_node == goal_node)
-		goal_node = null
-		goal_nodes = null
 		change_action(MOVING_TO_ATOM, current_node, rand(2, 6))
 		return
 	look_for_next_node(FALSE)
@@ -88,6 +86,18 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 ///Cleanup old state vars, start the movement towards our new target
 /datum/ai_behavior/proc/change_action(next_action, atom/next_target, special_distance_to_maintain)
 	cleanup_current_action(next_action)
+	#ifdef TESTING
+	switch(next_action)
+		if(MOVING_TO_NODE)
+			message_admins("[mob_parent] goes to a new node")
+			flick("x2_animate", next_target)
+		if(MOVING_TO_ATOM)
+			message_admins("[mob_parent] moves toward [next_target]")
+		if(MOVING_TO_SAFETY)
+			message_admins("[mob_parent] wants to escape from [next_target]")
+		if(ESCORTING_ATOM)
+			message_admins("[mob_parent] escorts [next_target]")
+	#endif
 	if(next_action)
 		current_action = next_action
 	if(current_action == ESCORTING_ATOM)
@@ -108,16 +118,16 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(should_reset_goal_nodes)
 		goal_nodes = null
 	if(ignore_current_node || !current_node) //We don't have a current node, let's find the closest in our LOS
-		var/closest_distance = MAX_NODE_RANGE_SQUARED //squared because we are using the cheap get dist
+		var/closest_distance = MAX_NODE_RANGE //squared because we are using the cheap get dist
 		var/avoid_node = current_node
 		current_node = null
 		for(var/obj/effect/ai_node/ai_node AS in GLOB.allnodes)
 			if(ai_node == avoid_node)
 				continue
-			if(get_dist_euclide_square(ai_node, mob_parent) >= closest_distance)
+			if(ai_node.z != mob_parent.z || get_dist(ai_node, mob_parent) >= closest_distance)
 				continue
 			current_node = ai_node
-			closest_distance = get_dist_euclide_square(ai_node, mob_parent) //Probably not needed to cache the get_dist
+			closest_distance = get_dist(ai_node, mob_parent) //Probably not needed to cache the get_dist
 		if(current_node)
 			change_action(MOVING_TO_NODE, current_node)
 		return
@@ -125,15 +135,13 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		if(!length(goal_nodes))
 			goal_nodes = get_node_path(current_node, goal_node)
 		if(!length(goal_nodes))
-			goal_node = null
+			current_node = null
 			look_for_next_node()
 			return
 		current_node = goal_nodes[length(goal_nodes)]
 		goal_nodes.len--
-	else if(identifier)
-		current_node = current_node.get_best_adj_node(list(NODE_LAST_VISITED = -1))
 	else
-		current_node = pick(current_node.adjacent_nodes)
+		current_node = current_node.get_best_adj_node(list(NODE_LAST_VISITED = -1), identifier)
 	current_node.set_weight(identifier, NODE_LAST_VISITED, world.time)
 	change_action(MOVING_TO_NODE, current_node)
 

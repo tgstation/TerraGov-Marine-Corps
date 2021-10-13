@@ -738,7 +738,7 @@
 /area/deathmatch)
 "cV" = (
 /obj/structure/flora/ausbushes/ywflowers,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "cW" = (
@@ -791,7 +791,7 @@
 /area/deathmatch)
 "df" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
-/obj/effect/ai_node,
+
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "dg" = (
@@ -921,7 +921,7 @@
 /area/deathmatch)
 "dE" = (
 /obj/structure/flora/ausbushes/palebush,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "dF" = (
@@ -1123,7 +1123,7 @@
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "es" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
@@ -1351,49 +1351,49 @@
 /turf/open/ground/river,
 /area/deathmatch)
 "fI" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "hA" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 1
 	},
 /area/deathmatch)
 "hM" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/asteroidwarning,
 /area/deathmatch)
 "lu" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/freezer,
 /area/deathmatch)
 "rW" = (
-/obj/effect/ai_node,
+
 /turf/open/ground/coast{
 	dir = 8
 	},
 /area/deathmatch)
 "tf" = (
-/obj/effect/ai_node,
+
 /turf/open/ground/coast,
 /area/deathmatch)
 "xX" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "GL" = (
-/obj/effect/ai_node,
+
 /turf/open/ground/coast/corner{
 	dir = 4
 	},
 /area/deathmatch)
 "LP" = (
-/obj/effect/ai_node,
+
 /turf/open/ground/grass,
 /area/deathmatch)
 "Tu" = (
-/obj/effect/ai_node,
+
 /turf/open/ground/coast{
 	dir = 6
 	},
@@ -1402,22 +1402,22 @@
 /obj/machinery/floodlight{
 	name = "Floodlight"
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "TP" = (
-/obj/effect/ai_node,
+
 /turf/open/ground/river,
 /area/deathmatch)
 "UN" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "VE" = (
-/obj/effect/ai_node,
+
 /turf/open/ground/coast{
 	dir = 5
 	},

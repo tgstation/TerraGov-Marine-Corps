@@ -73,7 +73,7 @@
 /area/lv624/ground/compound/ne)
 "mC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "nL" = (
@@ -281,7 +281,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "Id" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "IA" = (
@@ -408,7 +408,7 @@
 /area/lv624/ground/jungle7)
 "VM" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "VQ" = (

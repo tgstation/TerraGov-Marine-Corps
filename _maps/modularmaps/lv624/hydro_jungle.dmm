@@ -3,7 +3,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "aW" = (
@@ -98,7 +98,7 @@
 "iF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/jungle/vines,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "iO" = (
@@ -141,7 +141,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "mb" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "nd" = (
@@ -149,7 +149,7 @@
 /area/lv624/ground/jungle7)
 "oY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "qe" = (
@@ -179,7 +179,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/ai_node,
+
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "vT" = (

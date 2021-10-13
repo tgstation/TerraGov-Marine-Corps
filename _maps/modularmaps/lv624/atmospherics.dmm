@@ -368,7 +368,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/effect/decal/cleanable/blood,
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "En" = (
@@ -408,7 +408,7 @@
 /obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "IT" = (
@@ -477,7 +477,7 @@
 	},
 /area/lv624/lazarus/atmos)
 "Nt" = (
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "Nw" = (
@@ -505,7 +505,7 @@
 "Ps" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/dark/brown2,
 /area/lv624/lazarus/atmos)
 "PD" = (
@@ -531,7 +531,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/decal/cleanable/blood/drip,
 /obj/structure/cable,
-/obj/effect/ai_node,
+
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
