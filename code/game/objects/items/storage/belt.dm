@@ -536,16 +536,16 @@
 	max_w_class = 1
 	max_storage_space = 6
 	draw_mode = TRUE
-	can_hold = list(/obj/item/weapon/throwing_knife)
+	can_hold = list(/obj/item/stack/throwing_knife)
 
 /obj/item/storage/belt/knifepouch/Initialize()
 	. = ..()
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
 
 /obj/item/storage/belt/grenade
 	name="\improper M276 pattern M40 HEDP rig"
