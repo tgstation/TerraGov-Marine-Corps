@@ -31,6 +31,7 @@
 #define COMSIG_GLOB_MOB_DEATH "!mob_death"
 
 #define COMSIG_GLOB_AI_GOAL_SET "!ai_goal_set"
+#define COMSIG_GLOB_AI_MINION_RALLY "!ai_minion_rally"
 
 
 /// Sent when a marine dropship enters transit level
@@ -578,6 +579,7 @@
 #define COMSIG_XENOABILITY_NEUROTOX_STING "xenoability_neurotox_sting"
 #define COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS "xenoability_inject_egg_neurogas"
 #define COMSIG_XENOABILITY_RALLY_HIVE "xenoability_rally_hive"
+#define COMSIG_XENOABILITY_RALLY_MINION "xenoability_rally_minion"
 
 #define COMSIG_XENOABILITY_LONG_RANGE_SIGHT "xenoability_long_range_sight"
 #define COMSIG_XENOABILITY_TOGGLE_BOMB "xenoability_toggle_bomb"

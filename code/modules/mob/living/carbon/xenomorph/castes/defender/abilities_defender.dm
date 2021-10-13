@@ -69,13 +69,15 @@
 /datum/action/xeno_action/tail_sweep/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/tail_sweep/ai_should_use(target)
+/datum/action/xeno_action/tail_sweep/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 1)
-		return ..()
+		return FALSE
 	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
 
 // ***************************************
@@ -164,13 +166,15 @@
 /datum/action/xeno_action/activable/forward_charge/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/forward_charge/ai_should_use(target)
+/datum/action/xeno_action/activable/forward_charge/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > range)
-		return ..()
+		return FALSE
 	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	action_activate()
 	owner.canmove = FALSE
 	addtimer(VARSET_CALLBACK(owner, canmove, TRUE), windup_time)

@@ -3,10 +3,11 @@
 	display_name = "Mantis"
 	upgrade_name = ""
 	caste_desc = ""
+	wound_type = ""
 
 	caste_type_path = /mob/living/carbon/xenomorph/mantis
 
-	tier = XENO_TIER_ZERO
+	tier = XENO_TIER_MINION
 	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
@@ -16,7 +17,7 @@
 	speed = -1
 
 	// *** Plasma *** //
-	plasma_max = 400
+	plasma_max = 600 //3 ravage
 	plasma_gain = 20
 
 	// *** Health *** //

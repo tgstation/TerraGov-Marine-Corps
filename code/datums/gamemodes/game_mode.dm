@@ -482,7 +482,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 				continue
 			if(isspaceturf(X.loc))
 				continue
-
+			if(X.xeno_caste.upgrade == XENO_UPGRADE_BASETYPE) //Ais don't count
+				continue
 			// Never count hivemind
 			if(isxenohivemind(X))
 				continue

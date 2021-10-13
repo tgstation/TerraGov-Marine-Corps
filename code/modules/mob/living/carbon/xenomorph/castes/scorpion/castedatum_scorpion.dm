@@ -3,10 +3,11 @@
 	display_name = "Scorpion"
 	upgrade_name = ""
 	caste_desc = ""
+	wound_type = ""
 
 	caste_type_path = /mob/living/carbon/xenomorph/scorpion
 
-	tier = XENO_TIER_ZERO
+	tier = XENO_TIER_MINION
 	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
@@ -16,7 +17,7 @@
 	speed = -1
 
 	// *** Plasma *** //
-	plasma_max = 150
+	plasma_max = 1500// 20 spits
 	plasma_gain = 10
 
 	// *** Health *** //
