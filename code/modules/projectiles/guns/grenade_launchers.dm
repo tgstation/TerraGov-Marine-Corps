@@ -178,6 +178,7 @@ The Grenade Launchers
 	pixel_shift_x = 14
 	pixel_shift_y = 18
 	grenade_type_allowed = list(
+		/obj/item/explosive/grenade,
 		/obj/item/explosive/grenade/incendiary, 
 		/obj/item/explosive/grenade/smokebomb, 
 		/obj/item/explosive/grenade/phosphorus,
@@ -186,6 +187,7 @@ The Grenade Launchers
 	)
 
 /obj/item/weapon/gun/grenade_launcher/underslung/update_icon(mob/user)
+	. = ..()
 	update_mag_overlay(user)
 
 /obj/item/weapon/gun/grenade_launcher/underslung/invisible
@@ -207,7 +209,7 @@ The Grenade Launchers
 	max_grenades = 1
 	max_range = 10
 
-/obj/item/weapon/gun/grenade_launcher/single_shot/update_icon()
+/obj/item/weapon/gun/grenade_launcher/single_shot/update_icon_state()
 	icon_state = "[base_gun_icon][length(grenades) ? "" : "_e"]"
 
 /obj/item/weapon/gun/grenade_launcher/single_shot/examine_ammo_count(mob/user)
