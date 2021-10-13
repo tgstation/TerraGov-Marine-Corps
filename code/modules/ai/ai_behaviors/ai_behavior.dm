@@ -74,6 +74,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(current_node == goal_node)
 		goal_node = null
 		goal_nodes = null
+		change_action(MOVING_TO_ATOM, current_node, rand(2, 6))
+		return
 	look_for_next_node(FALSE)
 
 //Cleans up signals related to the action and element(s)
@@ -84,14 +86,14 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	mob_parent.RemoveElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
 
 ///Cleanup old state vars, start the movement towards our new target
-/datum/ai_behavior/proc/change_action(next_action, atom/next_target)
+/datum/ai_behavior/proc/change_action(next_action, atom/next_target, special_distance_to_maintain)
 	cleanup_current_action(next_action)
 	if(next_action)
 		current_action = next_action
 	if(current_action == ESCORTING_ATOM)
 		distance_to_maintain = 2 //Don't stay too close
 	else
-		distance_to_maintain = initial(distance_to_maintain)
+		distance_to_maintain = isnull(special_distance_to_maintain) ? initial(distance_to_maintain) : special_distance_to_maintain
 	if(next_target)
 		atom_to_walk_to = next_target
 		mob_parent.AddElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
