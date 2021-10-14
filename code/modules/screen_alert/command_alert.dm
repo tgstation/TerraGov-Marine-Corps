@@ -25,7 +25,7 @@
 
 /datum/action/innate/message_squad/can_use_action()
 	. = ..()
-	if(stat)
+	if(owner.stat)
 		to_chat(owner, span_warning("You cannot give orders in your current state."))
 		return FALSE
 	if(TIMER_COOLDOWN_CHECK(owner, COOLDOWN_HUD_ORDER))
