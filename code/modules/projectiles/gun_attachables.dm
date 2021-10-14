@@ -201,8 +201,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	update_icon()
 
 ///Called when the attachment is detached from something. If the thing is a gun, it returns its stats to what they were before being attached.
-/obj/item/attachable/proc/on_detach(attaching_item, mob/user)
-	if(!isgun(attaching_item))
+/obj/item/attachable/proc/on_detach(detaching_item, mob/user)
+	if(!isgun(detaching_item))
 		return
 
 	master_gun.accuracy_mult				-= accuracy_mod
@@ -1492,18 +1492,139 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, deploy_time, undeploy_time)
 	update_icon()
 
-/obj/item/attachable/buildasentry/on_detach(attaching_item, mob/user)
+/obj/item/attachable/buildasentry/on_detach(detaching_item, mob/user)
 	. = ..()
-	var/obj/item/weapon/gun/detaching_item = attaching_item
-	DISABLE_BITFIELD(detaching_item.flags_gun_features, GUN_IS_SENTRY)
-	DISABLE_BITFIELD(detaching_item.flags_item, IS_DEPLOYABLE)
-	detaching_item.ignored_terrains = null
-	detaching_item.turret_flags = NONE
-	battery = detaching_item.sentry_battery
+	var/obj/item/weapon/gun/detaching_gun = detaching_item
+	DISABLE_BITFIELD(detaching_gun.flags_gun_features, GUN_IS_SENTRY)
+	DISABLE_BITFIELD(detaching_gun.flags_item, IS_DEPLOYABLE)
+	detaching_gun.ignored_terrains = null
+	detaching_gun.turret_flags = NONE
+	battery = detaching_gun.sentry_battery
 	battery?.forceMove(src)
-	detaching_item.sentry_battery = null
-	detaching_item.RemoveElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, deploy_time, undeploy_time)
+	detaching_gun.sentry_battery = null
+	detaching_gun.RemoveElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, deploy_time, undeploy_time)
 
+
+/obj/item/attachable/shoulder_mount
+	name = "test"
+	desc = ""
+	icon = 'icons/mob/modular/shoulder_gun.dmi'
+	icon_state = "shoulder_gun"
+	slot = ATTACHMENT_SLOT_RAIL
+	pixel_shift_x = 13
+	var/fire_mode = "right"
+
+/obj/item/attachable/shoulder_mount/on_attach(attaching_item, mob/user)
+	. = ..()
+	var/obj/item/weapon/gun/attaching_gun = attaching_item
+	ENABLE_BITFIELD(flags_attach_features, ATTACH_BYPASS_ALLOWED_LIST)
+	attaching_gun.AddElement(/datum/element/attachment, ATTACHMENT_SLOT_MODULE, icon, null, null, null, null, 0, 0, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound)
+	RegisterSignal(attaching_gun, COMSIG_ATTACHMENT_ATTACHED, .proc/handle_armor_attach)
+	RegisterSignal(attaching_gun, COMSIG_ATTACHMENT_DETACHED, .proc/handle_armor_detach)
+
+/obj/item/attachable/shoulder_mount/on_detach(detaching_item, mob/user)
+	var/obj/item/weapon/gun/detaching_gun = detaching_item
+	detaching_gun.RemoveElement(/datum/element/attachment, ATTACHMENT_SLOT_MODULE, icon, null, null, null, null, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound)
+	DISABLE_BITFIELD(flags_attach_features, ATTACH_BYPASS_ALLOWED_LIST)
+	UnregisterSignal(detaching_gun, list(COMSIG_ATTACHMENT_ATTACHED, COMSIG_ATTACHMENT_DETACHED))
+	return ..()
+
+/obj/item/attachable/shoulder_mount/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
+	if(!istype(master_gun.loc, /obj/item/clothing/suit/modular) || master_gun.loc.loc != user)
+		return
+	activate(user)
+
+/obj/item/attachable/shoulder_mount/activate(mob/user)
+	. = ..()
+	if(CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED))
+		DISABLE_BITFIELD(master_gun.flags_item, IS_DEPLOYED)
+		overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
+		UnregisterSignal(user, COMSIG_MOB_MOUSEDOWN)
+		master_gun.set_gun_user(null)
+	else
+		ENABLE_BITFIELD(master_gun.flags_item, IS_DEPLOYED)
+		overlays += image('icons/Marine/marine-weapons.dmi', src, "active")
+		update_icon()
+		master_gun.set_gun_user(user)
+		RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, .proc/handle_firing)
+		master_gun.RegisterSignal(user, COMSIG_MOB_MOUSEDRAG, /obj/item/weapon/gun.proc/change_target)
+	for(var/action_to_update in actions)
+		var/datum/action/action = action_to_update
+		action.update_button_icon()
+
+/obj/item/attachable/shoulder_mount/proc/handle_armor_attach(datum/source, attaching_item, mob/user)
+	SIGNAL_HANDLER
+	if(!istype(attaching_item, /obj/item/clothing/suit/modular))
+		return
+	master_gun.set_gun_user(null)
+	RegisterSignal(attaching_item, COMSIG_ITEM_EQUIPPED_TO_SLOT, .proc/handle_activations)
+	RegisterSignal(attaching_item, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, .proc/switch_mode)
+	RegisterSignal(attaching_item, COMSIG_PARENT_ATTACKBY_ALTERNATE, .proc/reload_gun)
+	if(CHECK_BITFIELD(master_gun.flags_gun_features, GUN_PUMP_REQUIRED))
+		RegisterSignal(master_gun, COMSIG_MOB_GUN_FIRED, .proc/after_fire)
+	master_gun.icon_state = master_gun.placed_overlay_iconstate
+
+/obj/item/attachable/shoulder_mount/proc/handle_armor_detach(datum/source, detaching_item, mob/user)
+	SIGNAL_HANDLER
+	if(!istype(detaching_item, /obj/item/clothing/suit/modular))
+		return
+	for(var/datum/action/action_to_delete AS in actions)
+		if(action_to_delete.target != src)
+			continue
+		QDEL_NULL(action_to_delete)
+		break
+	overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
+	update_icon(user)
+	master_gun.icon_state = master_gun.base_gun_icon
+	UnregisterSignal(detaching_item, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, COMSIG_PARENT_ATTACKBY_ALTERNATE, COMSIG_MOB_GUN_FIRED))
+
+
+/obj/item/attachable/shoulder_mount/proc/handle_activations(datum/source, mob/equipper, slot)
+	if(!isliving(equipper))
+		return
+	if(slot != SLOT_WEAR_SUIT)
+		LAZYREMOVE(actions_types, /datum/action/item_action/toggle)
+		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in actions
+		if(!old_action)
+			return
+		old_action.remove_action(equipper)
+		actions = null
+	else
+		LAZYADD(actions_types, /datum/action/item_action/toggle)
+		var/datum/action/item_action/toggle/new_action = new(src)
+		new_action.give_action(equipper)
+
+/obj/item/attachable/shoulder_mount/proc/handle_firing(datum/source, atom/object, turf/location, control, params)
+	SIGNAL_HANDLER
+	var/list/modifiers = params2list(params)
+	if(!modifiers[fire_mode])
+		return
+	if(!istype(master_gun.loc, /obj/item/clothing/suit/modular) || master_gun.loc.loc != source)
+		return
+	if(source.Adjacent(object))
+		return
+	master_gun.start_fire(source, object, location, control, null, TRUE)
+
+/obj/item/attachable/shoulder_mount/proc/switch_mode(datum/source, mob/living/user)
+	SIGNAL_HANDLER
+	switch(fire_mode)
+		if("right")
+			fire_mode = "middle"
+			to_chat(user, span_notice("[master_gun] will now fire on a 'middle click'."))
+		if("middle")
+			fire_mode = "left"
+			to_chat(user, span_notice("[master_gun] will now fire on a 'left click'."))
+		if("left")
+			fire_mode = "right"
+			to_chat(user, span_notice("[master_gun] will now fire on a 'right click'."))
+
+/obj/item/attachable/shoulder_mount/proc/reload_gun(datum/source, obj/item/attacking_item, mob/living/user)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(master_gun, /obj/item/weapon/gun.proc/reload, user, attacking_item)
+
+/obj/item/attachable/shoulder_mount/proc/after_fire(datum/source, atom/target, obj/item/weapon/gun/fired_gun)
+	SIGNAL_HANDLER
+	master_gun.cock()
 
 ///This is called when an attachment gun (src) attaches to a gun.
 /obj/item/weapon/gun/proc/on_attach(obj/item/attached_to, mob/user)

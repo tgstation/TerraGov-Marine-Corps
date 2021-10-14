@@ -97,6 +97,8 @@
 	if(attachment_data[ON_ATTACH])
 		var/datum/callback/attachment_on_attach = CALLBACK(attachment, attachment_data[ON_ATTACH])
 		attachment_on_attach.Invoke(parent, attacker)
+	SEND_SIGNAL(attachment, COMSIG_ATTACHMENT_ATTACHED, parent, attacker)
+	SEND_SIGNAL(parent, COMSIG_ATTACHMENT_ATTACHED_TO_ITEM, attachment, attacker)
 
 	RegisterSignal(attachment, COMSIG_ATOM_UPDATE_ICON, .proc/update_parent_overlay)
 	update_parent_overlay()
@@ -148,7 +150,7 @@
 
 	var/slot = attachment_data[SLOT]
 
-	if(!(slot in slots) || !(attachment.type in attachables_allowed)) //If theres no slot on parent, or if the attachment type isnt allowed, returns FALSE.
+	if(!(slot in slots) || (!(attachment.type in attachables_allowed) && !CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_BYPASS_ALLOWED_LIST))) //If theres no slot on parent, or if the attachment type isnt allowed, returns FALSE.
 		to_chat(user, span_warning("You cannot attach [attachment] to [parent]!"))
 		return FALSE
 
@@ -251,6 +253,9 @@
 	if(attachment_data[ON_DETACH])
 		var/datum/callback/attachment_on_detach = CALLBACK(attachment, attachment_data[ON_DETACH])
 		attachment_on_detach.Invoke(parent, user)
+
+	SEND_SIGNAL(attachment, COMSIG_ATTACHMENT_DETACHED, parent, user)
+	SEND_SIGNAL(parent, COMSIG_ATTACHMENT_DETACHED_FROM_ITEM, attachment, user)
 
 ///This is for other objects to be able to attach things without the need for a user.
 /datum/component/attachment_handler/proc/attach_without_user(datum/source, obj/item/attachment)
