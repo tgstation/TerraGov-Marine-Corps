@@ -298,7 +298,7 @@
 /obj/item/clothing/suit/modular/xenonauten/light
 	name = "\improper Xenonauten-L pattern armored vest"
 	desc = "A XN-L vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a light variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
-	soft_armor = list("melee" = 35, "bullet" = 55, "laser" = 55, "energy" = 50, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 40)
+	soft_armor = list("melee" = 35, "bullet" = 55, "laser" = 55, "energy" = 50, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 45)
 	icon_state = "light"
 	item_state = "light"
 	slowdown = 0.3
@@ -306,7 +306,7 @@
 /obj/item/clothing/suit/modular/xenonauten/heavy
 	name = "\improper Xenonauten-H pattern armored vest"
 	desc = "A XN-H vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a heavy variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
-	soft_armor = list("melee" = 45, "bullet" = 70, "laser" = 70, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 55)
+	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 65, "energy" = 50, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 55)
 	icon_state = "heavy"
 	item_state = "heavy"
 	slowdown = 0.7
