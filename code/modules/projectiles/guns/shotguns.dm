@@ -195,7 +195,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/stock/tactical,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
-	starting_attachment_types = list(/obj/item/weapon/gun/launcher/m92/mini_grenade/invisable)
+	starting_attachment_types = list(/obj/item/weapon/gun/grenade_launcher/underslung/invisible)
 
 	fire_delay = 15 //one shot every 1.5 seconds.
 	accuracy_mult = 1.15
@@ -985,7 +985,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/lasersight,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
-		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
 	)
 
 	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 29, "under_y" = 12, "stock_x" = 13, "stock_y" = 15)
@@ -995,7 +995,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	wield_delay = 0.75 SECONDS
 	burst_amount = 2
 	burst_delay = 0.01 SECONDS //basically instantaneous two shots
-	extra_delay = 1.25 SECONDS
+	extra_delay = 0.5 SECONDS
 	scatter = 2
-	burst_scatter_mult = 6 // 2x6=12
+	burst_scatter_mult = 4 // 2x4=8
 	accuracy_mult = 1

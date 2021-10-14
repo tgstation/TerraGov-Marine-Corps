@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes: 
-  - bugfix: "The ammo counter for the shotgun and revolvers now works properly"

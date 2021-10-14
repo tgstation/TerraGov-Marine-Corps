@@ -21,8 +21,6 @@
 	var/cur_tick = 0 //Tick updater
 	///Hive it should be powering and whether it should be generating hive psycic points instead of power on process()
 	var/corrupted = XENO_HIVE_NORMAL
-	///Multiplicator factor for psych points output
-	var/corrupt_point_factor = 0.3
 	///whether we wil allow these to be corrupted
 	var/is_corruptible = TRUE
 	///whether they should generate corruption if corrupted
@@ -33,6 +31,7 @@
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), .proc/activate_corruption)
 	update_icon()
 	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "generator")
+	GLOB.geothermal_generator_ammount++
 
 /obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -89,8 +88,8 @@
 	start_processing()
 
 /obj/machinery/power/geothermal/process()
-	if(corrupted && corruption_on)
-		SSpoints.add_psy_points("[corrupted]", length(GLOB.humans_by_zlevel["2"]) * BASE_PSYCH_POINT_OUTPUT * corrupt_point_factor)
+	if(corrupted && corruption_on && length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list))
+		SSpoints.add_psy_points("[corrupted]", GENERATOR_PSYCH_POINT_OUTPUT / GLOB.geothermal_generator_ammount)
 		return
 	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
 		return PROCESS_KILL
@@ -309,7 +308,6 @@
 /obj/machinery/power/geothermal/bigred //used on big red
 	name = "\improper Reactor Turbine"
 	power_generation_max = 1e+6
-	corrupt_point_factor = 3
 
 /obj/machinery/power/geothermal/reinforced
 	name = "\improper Reinforced Reactor Turbine"

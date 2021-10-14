@@ -340,7 +340,7 @@
 		if(!istype(attachable, /obj/item/weapon/gun))
 			continue
 		var/obj/item/weapon/gun/gun_attachable = attachable
-		if(istype(attachable, /obj/item/weapon/gun/launcher))
+		if(istype(attachable, /obj/item/weapon/gun/grenade_launcher))
 			continue
 		var/chamber = in_chamber ? 1 : 0
 		dat += gun_attachable.current_mag ? "([gun_attachable.current_mag.current_rounds + chamber]/[gun_attachable.current_mag.max_rounds])" : "(Unloaded)"
@@ -732,7 +732,9 @@ and you're good to go.
 		stack_trace("null ammo while create_bullet(). User: [usr]")
 		chambered = GLOB.ammo_list[/datum/ammo/bullet] //Slap on a default bullet if somehow ammo wasn't passed.
 
-	var/obj/projectile/P = new /obj/projectile()
+	var/proj_type = chambered.flags_ammo_behavior & AMMO_HITSCAN ? /obj/projectile/hitscan : /obj/projectile
+
+	var/obj/projectile/P = new proj_type(null, chambered.hitscan_effect_icon)
 	P.generate_bullet(chambered)
 	return P
 
@@ -831,7 +833,7 @@ and you're good to go.
 	if(M.status_flags & INCORPOREAL) //Can't attack the incorporeal
 		return ..()
 
-	if(M != user && user.a_intent == INTENT_HARM)
+	if(M != user && (M.faction != user.faction || user.a_intent == INTENT_HARM))
 		. = ..()
 		if(!.)
 			return

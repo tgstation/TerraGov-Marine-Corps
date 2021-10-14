@@ -27,7 +27,6 @@
 	item_state = "grenade_ex"
 	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "grenade_frag"
-	underslug_launchable = FALSE
 	icon_state_mini = "grenade_red_white"
 	light_impact_range = 5
 
@@ -38,7 +37,6 @@
 	item_state = "grenade_ex"
 	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "grenade_frag"
-	underslug_launchable = FALSE
 	icon_state_mini = "grenade_yellow"
 	light_impact_range = 5
 
@@ -54,7 +52,6 @@
 	throwforce = 15
 	throw_speed = 2
 	throw_range = 7
-	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/upp
 	name = "\improper Type 5 shrapnel grenade"
@@ -65,7 +62,6 @@
 	hud_state = "greande_frag"
 	throw_speed = 2
 	throw_range = 6
-	underslug_launchable = FALSE
 
 
 /obj/item/explosive/grenade/sectoid
@@ -74,7 +70,6 @@
 	icon_state = "alien_grenade"
 	item_state = "grenade_ex"
 	hud_state = "grenade_frag"
-	underslug_launchable = FALSE
 	light_impact_range = 6
 
 /obj/item/explosive/grenade/incendiary
@@ -84,7 +79,6 @@
 	det_time = 40
 	item_state = "grenade_fire"
 	hud_state = "grenade_fire"
-	underslug_launchable = TRUE
 	icon_state_mini = "grenade_orange"
 
 /obj/item/explosive/grenade/incendiary/prime()
@@ -113,7 +107,6 @@
 	icon_state = "molotov"
 	item_state = "molotov"
 	arm_sound = 'sound/items/welder2.ogg'
-	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/incendiary/molotov/Initialize()
 	. = ..()
@@ -133,7 +126,6 @@
 	det_time = 20
 	item_state = "grenade_smoke"
 	hud_state = "grenade_smoke"
-	underslug_launchable = TRUE
 	dangerous = FALSE
 	icon_state_mini = "grenade_blue"
 	/// smoke type created when the grenade is primed
@@ -174,7 +166,6 @@
 	det_time = 20
 	item_state = "grenade_phos"
 	hud_state = "grenade_hide"
-	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/phosphorus/smoke
 	icon_state_mini = "grenade_cyan"
 
@@ -209,7 +200,6 @@
 	hud_state = "grenade_frag"
 	det_time = 40
 	dangerous = TRUE
-	underslug_launchable = TRUE
 	icon_state_mini = "grenade_blue_white"
 	light_impact_range = 3
 
@@ -227,7 +217,6 @@
 	det_time = 0
 	throwforce = 1
 	dangerous = FALSE
-	underslug_launchable = TRUE
 	w_class = WEIGHT_CLASS_SMALL
 	hud_state = "grenade_frag"
 	light_system = MOVABLE_LIGHT

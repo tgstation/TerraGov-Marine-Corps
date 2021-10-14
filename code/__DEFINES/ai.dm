@@ -19,6 +19,9 @@
 ///AI component state where we're moving towards *something*, probably something we want to hit
 #define MOVING_TO_ATOM "moving_to_an_atom"
 
+///Ai component state where the ai tries to flee to heal
+#define MOVING_TO_SAFETY "moving_to_safety"
+
 ///A define for a node variable which is the last world.time that a AI visited it
 #define NODE_LAST_VISITED "node_last_visited"
 
