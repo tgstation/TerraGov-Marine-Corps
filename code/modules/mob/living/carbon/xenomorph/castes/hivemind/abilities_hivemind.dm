@@ -32,8 +32,6 @@
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	cooldown_timer = 60 SECONDS
 	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
-	///The effect created by this ability
-	var/obj/effect/xenomorph/minions_goal/goal_effect
 
 /datum/action/xeno_action/activable/command_minions/use_ability(atom/target)
 	var/turf_targeted = get_turf(target)
