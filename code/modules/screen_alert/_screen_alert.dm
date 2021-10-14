@@ -36,6 +36,8 @@
 	var/fade_out_time = 0.5 SECONDS
 	///delay between playing each letter. in general use 1 for fluff and 0.5 for time sensitive messsages
 	var/play_delay = 0.5
+	///letters to update by per text to per play_delay
+	var/letters_per_update = 1
 
 	///opening styling for the message
 	var/style_open = "<span class='maptext' style=text-align:center valign='top'>"
@@ -68,7 +70,7 @@
 		else
 			tag_position = findtext(text_to_play, html_locate_regex, tag_position)
 			reading_tag = TRUE
-	for(var/letter = 2 to length(text_to_play) + 1)
+	for(var/letter = 2 to length(text_to_play) + 1 step letters_per_update)
 		if(letter in lines_to_skip)
 			continue
 		maptext = "[style_open][copytext_char(text_to_play, 1, letter)][style_close]"

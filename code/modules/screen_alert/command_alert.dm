@@ -7,6 +7,7 @@
 	maptext_y = 0
 	screen_loc = "LEFT,TOP-3"
 
+	letters_per_update = 2
 	fade_out_delay = 5 SECONDS
 	style_open = "<span class='maptext' style=font-size:20pt;text-align:center valign='top'>"
 	style_close = "</span>"
@@ -24,6 +25,9 @@
 
 /datum/action/innate/message_squad/can_use_action()
 	. = ..()
+	if(stat)
+		to_chat(owner, span_warning("You cannot give orders in your current state."))
+		return FALSE
 	if(TIMER_COOLDOWN_CHECK(owner, COOLDOWN_HUD_ORDER))
 		to_chat(owner, span_warning("Your last order was too recent."))
 		return FALSE
