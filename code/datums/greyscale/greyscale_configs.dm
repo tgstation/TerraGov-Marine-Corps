@@ -11,6 +11,14 @@
 	icon_file = 'icons/obj/items/screwdriver.dmi'
 	json_config = 'code/datums/greyscale/json_configs/screwdriver_inhand_right.json'
 
+/datum/greyscale_config/pillbottle
+	icon_file='icons/obj/items/chemistry.dmi'
+	json_config = 'code/datums/greyscale/json_configs/pillbottle.json'
+
+/datum/greyscale_config/pillbottleround
+	icon_file='icons/obj/items/chemistry.dmi'
+	json_config = 'code/datums/greyscale/json_configs/pillbottleround.json'
+
 /*
  * MODULAR HELMETS
  */
@@ -154,3 +162,7 @@
 /datum/greyscale_config/modular_helmet_visor_skull
 	icon_file = 'icons/mob/modular/eva.dmi'
 	json_config = 'code/datums/greyscale/json_configs/modular_visor_skull.json'
+
+/datum/greyscale_config/xenogrenade
+	icon_file = 'icons/obj/items/grenade.dmi'
+	json_config = 'code/datums/greyscale/json_configs/xenogrenade.json'

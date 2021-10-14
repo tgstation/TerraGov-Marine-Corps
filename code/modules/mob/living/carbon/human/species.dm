@@ -13,9 +13,9 @@
 	///Icon file when mutated
 	var/deform = 'icons/mob/human_races/r_def_human.dmi'
 	///icon state for calculating brute damage icons
-	var/brute_damage_icon_state = "human"
+	var/brute_damage_icon_state = "human_brute"
 	///icon state for calculating brute damage icons
-	var/burn_damage_icon_state = "burn"
+	var/burn_damage_icon_state = "human_burn"
 	///damage mask icon we want to use when drawing wounds
 	var/damage_mask_icon = 'icons/mob/dam_mask.dmi'
 	///If set, draws this from icobase when mob is prone.
@@ -928,13 +928,14 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	icobase = 'icons/mob/human_races/r_robot.dmi'
 	deform = 'icons/mob/human_races/r_robot.dmi'
 	damage_mask_icon = 'icons/mob/dam_mask_robot.dmi'
-	brute_damage_icon_state = "robot"
+	brute_damage_icon_state = "robot_brute"
 	burn_damage_icon_state = "robot_burn"
 	eyes = "blank_eyes"
 	namepool = /datum/namepool/robotic
 
 	unarmed_type = /datum/unarmed_attack/punch/strong
 	total_health = 100
+	slowdown = SHOES_SLOWDOWN //because they don't wear boots.
 
 	cold_level_1 = -1
 	cold_level_2 = -1

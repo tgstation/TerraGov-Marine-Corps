@@ -240,7 +240,7 @@
 					/obj/item/weapon/gun/pistol/rt3 = /obj/item/ammo_magazine/pistol/incendiary,
 					/obj/item/weapon/gun/rifle/standard_assaultrifle = /obj/item/ammo_magazine/rifle/standard_assaultrifle,
 					/obj/item/weapon/gun/rifle/standard_lmg = /obj/item/ammo_magazine/standard_lmg,
-					/obj/item/weapon/gun/launcher/m81 = /obj/item/explosive/grenade/phosphorus
+					/obj/item/weapon/gun/grenade_launcher/single_shot = /obj/item/explosive/grenade/phosphorus
 					)
 
 /obj/structure/largecrate/guns/Initialize()

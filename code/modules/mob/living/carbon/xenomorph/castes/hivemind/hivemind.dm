@@ -48,6 +48,8 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/updatehealth()
+	if(on_fire)
+		ExtinguishMob()
 	health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
 	if(health <= 0 && !(status_flags & INCORPOREAL))
 		setBruteLoss(0)
@@ -69,7 +71,7 @@
 		if(health < minimum_health + maxHealth)
 			setBruteLoss(0)
 			setFireLoss(-minimum_health)
-		if((health >= maxHealth) || on_fire) //can't regenerate.
+		if((health >= maxHealth)) //can't regenerate.
 			updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
 			return
 		heal_wounds(XENO_RESTING_HEAL)
@@ -181,8 +183,6 @@
 
 ///Finish the teleportation process to send the hivemind manifestation to the selected turf
 /mob/living/carbon/xenomorph/hivemind/proc/end_teleport(turf/T)
-	LAZYCLEARLIST(movespeed_modification)
-	update_movespeed()
 	flick("Hivemind_materialisation_fast", src)
 	if(!check_weeds(T, TRUE))
 		to_chat(src, span_warning("The weeds on our destination were destroyed"))

@@ -9,6 +9,11 @@
 	. = ..()
 	if(!(xeno_structure_flags & IGNORE_WEED_REMOVAL))
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, .proc/weed_removed)
+	GLOB.xeno_structure += src
+
+/obj/structure/xeno/Destroy()
+	GLOB.xeno_structure -= src
+	return ..()
 
 /obj/structure/xeno/ex_act(severity)
 	switch(severity)
@@ -643,6 +648,11 @@ TUNNEL
 			RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
 
 	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = "silo")
+	if(SSticker.mode?.flags_landmarks & MODE_SPAWNING_MINIONS)
+		SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, null)
+		SSspawning.spawnerdata[src].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
+		SSspawning.spawnerdata[src].max_allowed_mobs = max(1, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count * 0.5)
+
 	return INITIALIZE_HINT_LATELOAD
 
 
@@ -1025,6 +1035,8 @@ TUNNEL
 	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, TURRET_SCAN_RANGE))
 		if(nearby_human.stat == DEAD)
 			continue
+		if(nearby_human.get_xeno_hivenumber() == associated_hive.hivenumber)
+			continue
 		potential_hostiles += nearby_human
 	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))
 		if(associated_hive == nearby_xeno.hive) //Xenomorphs not in our hive will be attacked as well!
@@ -1092,3 +1104,56 @@ TUNNEL
 			take_damage(500)
 		if(EXPLODE_LIGHT)
 			take_damage(300)
+
+/obj/structure/xeno/maturitytower
+	name = "maturity tower"
+	desc = "A sickly outcrop from the ground. It seems to ooze a strange chemical that makes the vegetation around it grow faster."
+	icon = 'icons/Xeno/2x2building.dmi'
+	icon_state = "maturitytower"
+	bound_width = 64
+	bound_height = 64
+	obj_integrity = 400
+	max_integrity = 400
+	///hivenumber of this tower
+	var/hivenumber
+	///boost amt to be added per tower per cycle
+	var/boost_amount = 0.2
+
+/obj/structure/xeno/maturitytower/Initialize(mapload, hivenum)
+	. = ..()
+	GLOB.hive_datums[hivenum].maturitytowers += src
+	hivenumber = hivenum
+	set_light(2, 2, LIGHT_COLOR_GREEN)
+
+/obj/structure/xeno/maturitytower/Destroy()
+	GLOB.hive_datums[hivenumber].maturitytowers -= src
+	return ..()
+
+/obj/structure/xeno/maturitytower/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_HEAVY, EXPLODE_DEVASTATE)
+			take_damage(500)
+		if(EXPLODE_LIGHT)
+			take_damage(300)
+
+/obj/structure/xeno/spawner
+	name = "spawner"
+	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things."
+	icon = 'icons/Xeno/3x3building.dmi'
+	icon_state = "spawner"
+	bound_width = 96
+	bound_height = 96
+	max_integrity = 500
+	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
+	xeno_structure_flags = IGNORE_WEED_REMOVAL
+
+/obj/structure/xeno/spawner/Initialize()
+	. = ..()
+	GLOB.xeno_spawner += src
+	SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, null)
+	SSspawning.spawnerdata[src].required_increment = max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
+	SSspawning.spawnerdata[src].max_allowed_mobs = max(2, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count)
+
+/obj/structure/xeno/spawner/Destroy()
+	GLOB.xeno_spawner -= src
+	return ..()

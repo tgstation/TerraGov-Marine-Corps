@@ -340,7 +340,7 @@
 		if(!istype(attachable, /obj/item/weapon/gun))
 			continue
 		var/obj/item/weapon/gun/gun_attachable = attachable
-		if(istype(attachable, /obj/item/weapon/gun/launcher))
+		if(istype(attachable, /obj/item/weapon/gun/grenade_launcher))
 			continue
 		var/chamber = in_chamber ? 1 : 0
 		dat += gun_attachable.current_mag ? "([gun_attachable.current_mag.current_rounds + chamber]/[gun_attachable.current_mag.max_rounds])" : "(Unloaded)"
@@ -502,6 +502,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	span_notice("You load [magazine] into [src]!"), null, 3)
 	if(reload_sound)
 		playsound(user, reload_sound, 25, 1, 5)
+	user.hud_used.update_ammo_hud(user, src)
 	update_icon()
 
 
@@ -524,9 +525,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	span_notice("You unload [current_mag] from [src]."), null, 4)
 	current_mag.update_icon()
 	current_mag = null
-
+	user.hud_used.update_ammo_hud(user, src)
 	update_icon(user)
-
 	return TRUE
 
 
@@ -583,6 +583,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		user?.visible_message(span_notice("[user] cocks [src]."),
 		span_notice("You cock [src]."), null, 4)
 	ready_in_chamber() //This will already check for everything else, loading the next bullet.
+	user.hud_used.update_ammo_hud(user, src)
 
 	return TRUE
 
@@ -731,7 +732,9 @@ and you're good to go.
 		stack_trace("null ammo while create_bullet(). User: [usr]")
 		chambered = GLOB.ammo_list[/datum/ammo/bullet] //Slap on a default bullet if somehow ammo wasn't passed.
 
-	var/obj/projectile/P = new /obj/projectile()
+	var/proj_type = chambered.flags_ammo_behavior & AMMO_HITSCAN ? /obj/projectile/hitscan : /obj/projectile
+
+	var/obj/projectile/P = new proj_type(null, chambered.hitscan_effect_icon)
 	P.generate_bullet(chambered)
 	return P
 
@@ -830,7 +833,7 @@ and you're good to go.
 	if(M.status_flags & INCORPOREAL) //Can't attack the incorporeal
 		return ..()
 
-	if(M != user && user.a_intent == INTENT_HARM)
+	if(M != user && (M.faction != user.faction || user.a_intent == INTENT_HARM))
 		. = ..()
 		if(!.)
 			return

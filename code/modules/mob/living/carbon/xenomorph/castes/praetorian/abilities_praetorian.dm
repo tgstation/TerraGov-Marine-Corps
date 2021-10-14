@@ -45,15 +45,17 @@
 /datum/action/xeno_action/activable/spray_acid/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/spray_acid/ai_should_use(target)
+/datum/action/xeno_action/activable/spray_acid/ai_should_use(atom/target)
 	if(owner.do_actions) //Chances are we're already spraying acid, don't override it
-		return
+		return FALSE
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 3)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
 
 GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj/vehicle/multitile/root/cm_armored, /obj/structure/razorwire)))

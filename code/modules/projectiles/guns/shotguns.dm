@@ -64,6 +64,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		cock_gun(user)
 	if(user)
 		playsound(user, reload_sound, 25, 1)
+		user.hud_used.update_ammo_hud(user, src)
 	return TRUE
 
 /obj/item/weapon/gun/shotgun/proc/empty_chamber(mob/user)
@@ -79,6 +80,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(ammo.type)
 	playsound(user, reload_sound, 25, 1)
 	new_handful.forceMove(get_turf(src))
+	user.hud_used.update_ammo_hud(user, src)
 	return TRUE
 
 
@@ -93,6 +95,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	current_mag.current_rounds--
 	current_mag.chamber_contents[current_mag.chamber_position] = "empty"
 	current_mag.chamber_position--
+	user.hud_used.update_ammo_hud(user, src)
 	return 1
 
 ///Generates a handful of 1 bullet from the gun.
@@ -123,7 +126,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	var/mag_caliber = magazine.default_ammo //Handfuls can get deleted, so we need to keep this on hand for later.
 	if(current_mag.transfer_ammo(magazine,user,1))
 		add_to_tube(user,mag_caliber) //This will check the other conditions.
-
+		user.hud_used.update_ammo_hud(user, src)
 
 /obj/item/weapon/gun/shotgun/unload(mob/user)
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
@@ -192,7 +195,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/stock/tactical,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
-	starting_attachment_types = list(/obj/item/weapon/gun/launcher/m92/mini_grenade/invisable)
+	starting_attachment_types = list(/obj/item/weapon/gun/grenade_launcher/underslung/invisible)
 
 	fire_delay = 15 //one shot every 1.5 seconds.
 	accuracy_mult = 1.15
@@ -982,7 +985,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/lasersight,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
-		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
 	)
 
 	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 29, "under_y" = 12, "stock_x" = 13, "stock_y" = 15)
@@ -992,7 +995,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	wield_delay = 0.75 SECONDS
 	burst_amount = 2
 	burst_delay = 0.01 SECONDS //basically instantaneous two shots
-	extra_delay = 1.25 SECONDS
+	extra_delay = 0.5 SECONDS
 	scatter = 2
-	burst_scatter_mult = 6 // 2x6=12
+	burst_scatter_mult = 4 // 2x4=8
 	accuracy_mult = 1

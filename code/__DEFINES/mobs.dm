@@ -143,13 +143,14 @@
 // =============================
 // xeno tiers
 
+#define XENO_TIER_MINION "ai"
 #define XENO_TIER_ZERO "zero" // god forgive me because i wont forgive myself
 #define XENO_TIER_ONE "one"
 #define XENO_TIER_TWO "two"
 #define XENO_TIER_THREE "three"
 #define XENO_TIER_FOUR "four"
 
-GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, XENO_TIER_THREE, XENO_TIER_FOUR))
+GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_MINION, XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, XENO_TIER_THREE, XENO_TIER_FOUR))
 
 // =============================
 // xeno upgrades
@@ -560,6 +561,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define RAVAGER_RAGE_SUPER_RAGE_THRESHOLD				0.5 //The minimum amount of Rage Power we need to trigger the bonus Rage effects
 #define RAVAGER_RAGE_ENDURE_INCREASE_PER_SLASH			2 SECONDS //The amount of time each slash during Super Rage increases Endure's duration
 
+#define VAMPIRISM_MOB_DURATION 45 SECONDS
+
 //crusher defines
 #define CRUSHER_STOMP_LOWER_DMG 40
 #define CRUSHER_STOMP_UPPER_DMG 60
@@ -584,6 +587,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DEFILER_DEFILE_STRENGTH_MULTIPLIER 0.5 //Base multiplier for determining the power of Defile
 #define DEFILER_SANGUINAL_DAMAGE 1 //Damage dealt per tick per xeno toxin by the sanguinal toxin
 #define DEFILER_SANGUINAL_SMOKE_MULTIPLIER 0.03 //Amount the defile power is multiplied by which determines sanguinal smoke strength/size
+#define TENTACLE_ABILITY_RANGE 5
 
 //Drone defines
 #define DRONE_HEAL_RANGE 1

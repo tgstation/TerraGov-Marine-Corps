@@ -1,31 +1,3 @@
-
-/obj/item/weapon/gun/launcher/m81/flare
-	name = "flare gun"
-	desc = "A gun that fires flares. Replace with flares. Simple! Equipped with long range irons."
-	icon_state = "flaregun"
-	item_state = "gun"
-	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
-	w_class = WEIGHT_CLASS_TINY
-	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
-	flags_gun_features = GUN_UNUSUAL_DESIGN
-	gun_skill_category = GUN_SKILL_PISTOLS
-	grenade_type_allowed = /obj/item/explosive/grenade/flare
-	general_codex_key = "explosive weapons"
-	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/flaregun)
-	fire_delay = 0.5 SECONDS
-
-//-----------	--------------------------------------------
-
-/obj/item/weapon/gun/launcher/m81/flare/examine_ammo_count(mob/user)
-	if(!grenade || (get_dist(user, src) > 2 && user != loc))
-		return
-	to_chat(user, span_notice("It is loaded with a flare."))
-
-/obj/item/weapon/gun/launcher/m81/flare/marine
-	name = "M30E2 flare gun"
-	desc = "A very tiny flaregun that fires flares equipped with long range irons, the mass amounts of markings on the back and barrel denote it as owned by the TGMC."
-	icon_state = "marine_flaregun"
-
 //-------------------------------------------------------
 //Toy rocket launcher.
 

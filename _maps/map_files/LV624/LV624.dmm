@@ -8172,7 +8172,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/obj/effect/glowshroom,
+/obj/structure/glowshroom,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aUj" = (
@@ -8452,7 +8452,7 @@
 /obj/machinery/shower{
 	dir = 8
 	},
-/obj/effect/glowshroom,
+/obj/structure/glowshroom,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aVv" = (
@@ -8540,7 +8540,7 @@
 /turf/closed/gm/dense,
 /area/shuttle/drop2/lz2)
 "aWa" = (
-/obj/effect/glowshroom,
+/obj/structure/glowshroom,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aWb" = (
@@ -11454,8 +11454,8 @@
 /area/lv624/lazarus/kitchen)
 "bmX" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/launcher/m92/mini_grenade,
-/obj/item/weapon/gun/launcher/m92/mini_grenade,
+/obj/item/weapon/gun/grenade_launcher/underslung,
+/obj/item/weapon/gun/grenade_launcher/underslung,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},

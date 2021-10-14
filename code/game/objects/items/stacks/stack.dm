@@ -55,7 +55,7 @@
 		loc?.recalculate_storage_space() //No need to do icon updates if there are no changes.
 
 
-/obj/item/stack/update_icon()
+/obj/item/stack/update_icon_state()
 	if(!number_of_extra_variants)
 		return
 	var/ratio = round((amount * (number_of_extra_variants + 1)) / max_amount)
@@ -64,6 +64,14 @@
 		return
 	ratio = min(ratio + 1, number_of_extra_variants + 1)
 	icon_state = "[initial(icon_state)]_[ratio]"
+
+/obj/item/stack/update_overlays()
+	. = ..()
+	if(isturf(loc))
+		return
+	var/mutable_appearance/number = mutable_appearance()
+	number.maptext = MAPTEXT(amount)
+	. += number
 
 
 /obj/item/stack/Destroy()
@@ -76,6 +84,14 @@
 	. = ..()
 	if(amount > 1)
 		to_chat(user, "There are [amount] [singular_name]\s in the [stack_name].")
+
+/obj/item/stack/equipped(mob/user, slot)
+	. = ..()
+	update_icon()
+
+/obj/item/stack/dropped(mob/user, slot)
+	. = ..()
+	update_icon()
 
 /obj/item/stack/interact(mob/user, recipes_sublist)
 	. = ..()

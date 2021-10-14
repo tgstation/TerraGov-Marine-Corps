@@ -35,7 +35,7 @@
 			break
 
 	if(queen_chosen_lead)
-		give_rally_hive_ability() //Give them back their rally hive ability
+		give_rally_abilities() //Give them back their rally hive ability
 
 	switch(upgrade)
 		//FIRST UPGRADE
@@ -192,6 +192,9 @@
 /mob/living/carbon/xenomorph/ravager/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/ravager/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----RAVAGER END----//
 //================//
 //----SENTINEL START----//
@@ -204,6 +207,9 @@
 
 /mob/living/carbon/xenomorph/sentinel/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/sentinel/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----SENTINEL END----//
 //================//
@@ -292,6 +298,9 @@
 /mob/living/carbon/xenomorph/crusher/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/crusher/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //---CRUSHER END---//
 //============//
 //---BOILER START---//
@@ -344,6 +353,9 @@
 /mob/living/carbon/xenomorph/Defiler/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/Defiler/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----DEFILER END----//
 //============//
 //----SHRIKE START----//
@@ -356,6 +368,9 @@
 
 /mob/living/carbon/xenomorph/shrike/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/shrike/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----SHRIKE END----//
 //============//

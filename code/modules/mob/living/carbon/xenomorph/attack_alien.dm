@@ -85,7 +85,7 @@
 	var/signal_return = SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage, damage_mod, armor_mod)
 
 	// if we don't get any non-stacking bonuses dont apply dam_bonus
-	if(!(signal_return & COMSIG_XENOMORPH_BONUS_APPLIED ))
+	if(!(signal_return & COMSIG_XENOMORPH_BONUS_APPLIED))
 		damage_mod += dam_bonus
 
 	if(!(signal_return & COMPONENT_BYPASS_ARMOR))

@@ -16,7 +16,6 @@
 	var/det_time =  40
 	var/dangerous = TRUE 	//Does it make a danger overlay for humans? Can synths use it?
 	var/arm_sound = 'sound/weapons/armbomb.ogg'
-	var/underslug_launchable = TRUE
 	var/hud_state = "grenade_he"
 	var/hud_state_empty = "grenade_empty"
 	///Light impact range when exploding
@@ -71,13 +70,13 @@
 	if(dangerous)
 		GLOB.round_statistics.grenades_thrown++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "grenades_thrown")
-		updateicon()
+		update_icon()
 	addtimer(CALLBACK(src, .proc/prime), det_time)
 
-/obj/item/explosive/grenade/proc/updateicon()
+/obj/item/explosive/grenade/update_overlays()
+	. = ..()
 	if(dangerous)
-		overlays+=new/obj/effect/overlay/danger
-		dangerous = 0
+		overlays += new /obj/effect/overlay/danger
 
 
 /obj/item/explosive/grenade/proc/prime()

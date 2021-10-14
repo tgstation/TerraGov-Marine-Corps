@@ -7,6 +7,19 @@
 	can_bloody = FALSE
 	light_power = 0.25
 
+/area/space/Entered(atom/movable/arrived, atom/old_loc)
+	. = ..()
+	if(isliving(arrived))
+		var/mob/living/spaceman = arrived
+		if(!spaceman.has_status_effect(/datum/status_effect/spacefreeze))
+			spaceman.apply_status_effect(/datum/status_effect/spacefreeze)
+
+/area/space/Exited(atom/movable/leaver, direction)
+	. = ..()
+	if(isliving(leaver))
+		var/mob/living/spaceman = leaver
+		spaceman.remove_status_effect(/datum/status_effect/spacefreeze)
+
 
 /turf/open/space/basic/New()	//Do not convert to Initialize
 	//This is used to optimize the map loader

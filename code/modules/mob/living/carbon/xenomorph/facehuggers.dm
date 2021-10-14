@@ -432,6 +432,9 @@
 	if(check_death && stat == DEAD)
 		return FALSE
 
+	if(faction == FACTION_XENO)
+		return FALSE
+
 	if(F.combat_hugger) //Combat huggers will attack anything else
 		return TRUE
 
