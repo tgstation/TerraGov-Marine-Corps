@@ -724,7 +724,7 @@
 
 	products = list(
 		/obj/item/clothing/under/marine/corpsman = 4,
-		/obj/item/clothing/head/modular/marine/m10x/corpsman = 4,
+		/obj/item/clothing/head/modular/marine/m10x = 4,
 		/obj/item/storage/backpack/marine/corpsman = 4,
 		/obj/item/storage/backpack/marine/satchel/corpsman = 4,
 		/obj/item/encryptionkey/med = 4,
@@ -845,7 +845,9 @@
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
 		"Armors" = list(
-			/obj/item/clothing/suit/modular/pas11x = -1,
+			/obj/item/clothing/suit/modular/xenonauten/light = -1,
+			/obj/item/clothing/suit/modular/xenonauten = -1,
+			/obj/item/clothing/suit/modular/xenonauten/heavy = -1,
 			/obj/item/clothing/suit/modular = -1,
 			/obj/item/clothing/suit/storage/marine/harness = -1,
 			/obj/item/clothing/suit/armor/vest/pilot = -1,

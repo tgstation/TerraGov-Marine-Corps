@@ -400,7 +400,9 @@
 		/obj/effect/modular_set/eva = list(CAT_AMR, "Medium EVA Jaeger kit", 0, "black"),
 		/obj/effect/modular_set/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "black"),
 		/obj/effect/modular_set/eod = list(CAT_AMR, "Heavy EOD Jaeger kit", 0, "black"),
-		/obj/item/clothing/suit/modular/pas11x = list(CAT_AMR, "PAS-11X pattern armor", 0, "orange"),
+		/obj/effect/essentials_set/xenonauten_light/leader = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
+		/obj/effect/essentials_set/xenonauten_medium/leader = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
+		/obj/effect/essentials_set/xenonauten_heavy/leader = list(CAT_AMR, "Xenonauten heavy armor kit", 0, "orange"),
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
 		/obj/item/storage/large_holster/blade/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
@@ -419,7 +421,6 @@
 		/obj/item/armor_module/module/antenna = list(CAT_HEL, "Jaeger Antenna module", 0, "orange"),
 		/obj/item/clothing/head/headband/red = list(CAT_HEL, "FC Headband", 0, "black"),
 		/obj/item/clothing/head/tgmcberet/fc = list(CAT_HEL, "FC Beret", 0, "black"),
-		/obj/item/clothing/head/modular/marine/m10x/leader = list(CAT_HEL, "FC Helmet", 0, "black"),
 		/obj/item/armor_module/storage/medical = list(CAT_MOD, "Medical Storage Module", 0, "black"),
 		/obj/item/armor_module/storage/general = list(CAT_MOD, "General Purpose Storage Module", 0, "black"),
 		/obj/item/armor_module/storage/engineering = list(CAT_MOD, "Engineering Storage Module", 0, "black"),
@@ -702,6 +703,45 @@
 		/obj/item/bodybag/cryobag,
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/tweezers,
+	)
+
+/obj/effect/essentials_set/xenonauten_light
+	spawned_gear_list = list(
+		/obj/item/clothing/head/modular/marine/m10x,
+		/obj/item/clothing/head/modular/marine/m10x/heavy,
+		/obj/item/clothing/suit/modular/xenonauten/light,
+	)
+
+/obj/effect/essentials_set/xenonauten_medium
+	spawned_gear_list = list(
+		/obj/item/clothing/head/modular/marine/m10x,
+		/obj/item/clothing/head/modular/marine/m10x/heavy,
+		/obj/item/clothing/suit/modular/xenonauten,
+	)
+
+/obj/effect/essentials_set/xenonauten_heavy
+	spawned_gear_list = list(
+		/obj/item/clothing/head/modular/marine/m10x,
+		/obj/item/clothing/head/modular/marine/m10x/heavy,
+		/obj/item/clothing/suit/modular/xenonauten/heavy,
+	)
+
+/obj/effect/essentials_set/xenonauten_light/leader
+	spawned_gear_list = list(
+		/obj/item/clothing/head/modular/marine/m10x/leader,
+		/obj/item/clothing/suit/modular/xenonauten/light,
+	)
+
+/obj/effect/essentials_set/xenonauten_medium/leader
+	spawned_gear_list = list(
+		/obj/item/clothing/head/modular/marine/m10x/leader,
+		/obj/item/clothing/suit/modular/xenonauten,
+	)
+
+/obj/effect/essentials_set/xenonauten_heavy/leader
+	spawned_gear_list = list(
+		/obj/item/clothing/head/modular/marine/m10x/leader,
+		/obj/item/clothing/suit/modular/xenonauten/heavy,
 	)
 
 /obj/effect/modular_set
