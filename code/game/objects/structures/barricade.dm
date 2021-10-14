@@ -34,6 +34,10 @@
 /obj/structure/barricade/Initialize()
 	. = ..()
 	update_icon()
+	var/static/list/connections = list(
+		COMSIG_ATOM_EXIT = .proc/on_try_exit
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/barricade/handle_barrier_chance(mob/living/M)
 	return prob(max(30,(100.0*obj_integrity)/max_integrity))
@@ -53,22 +57,25 @@
 			to_chat(user, span_warning("It's crumbling apart, just a few more blows will tear it apart."))
 
 
-/obj/structure/barricade/CheckExit(atom/movable/O, direction)
-	. = ..()
-	if(closed)
-		return TRUE
-
+/obj/structure/barricade/proc/on_try_exit(datum/source, atom/movable/O, direction, list/knownblockers)
+	SIGNAL_HANDLER
 	if(CHECK_BITFIELD(O.flags_pass, PASSSMALLSTRUCT))
-		return TRUE
+		return NONE
 
 	if(O.throwing)
 		if(is_wired && iscarbon(O)) //Leaping mob against barbed wire fails
 			if(direction & dir)
-				return FALSE
+				knownblockers += src
+				return COMPONENT_ATOM_BLOCK_EXIT
 		if(!allow_thrown_objs && !istype(O, /obj/projectile))
 			if(direction & dir)
-				return FALSE
-		return TRUE
+				knownblockers += src
+				return COMPONENT_ATOM_BLOCK_EXIT
+		return NONE
+	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (O.status_flags & INCORPOREAL))
+		return NONE
+	knownblockers += src
+	return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()

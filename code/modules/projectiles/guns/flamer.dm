@@ -603,12 +603,16 @@
 
 	START_PROCESSING(SSobj, src)
 
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 /obj/flamer_fire/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/flamer_fire/Crossed(mob/living/M) //Only way to get it to reliable do it when you walk into it.
-	. = ..()
+/obj/flamer_fire/proc/on_cross(datum/source, mob/living/M, oldloc, oldlocs) //Only way to get it to reliable do it when you walk into it.
 	if(istype(M))
 		M.flamer_fire_crossed(burnlevel, firelevel)
 

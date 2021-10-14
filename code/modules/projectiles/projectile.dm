@@ -92,6 +92,13 @@
 	///A damage multiplier applied when a mob from the same faction as the projectile firer is hit
 	var/friendly_fire_multiplier = 0.5
 
+/obj/projectile/Initialize()
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 
 /obj/projectile/Destroy()
 	STOP_PROCESSING(SSprojectiles, src)
@@ -105,8 +112,8 @@
 	return ..()
 
 
-/obj/projectile/Crossed(atom/movable/AM) //A mob moving on a tile with a projectile is hit by it.
-	. = ..()
+/obj/projectile/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs) //A mob moving on a tile with a projectile is hit by it.
+	SIGNAL_HANDLER
 	if(permutated[AM]) //If we've already handled this atom, don't do it again.
 		return
 	if(AM.projectile_hit(src))
