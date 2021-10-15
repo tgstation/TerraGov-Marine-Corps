@@ -278,8 +278,6 @@
 			/obj/item/ammo_magazine/rifle/chamberedrifle = -1,
 			/obj/item/weapon/gun/shotgun/pump/bolt = -1,
 			/obj/item/ammo_magazine/rifle/bolt = -1,
-			/obj/item/weapon/gun/shotgun/double/martini = -1,
-			/obj/item/ammo_magazine/rifle/martini = -1,
 		),
 		"Shotgun" = list(
 			/obj/item/weapon/gun/shotgun/pump/t35 = -1,
