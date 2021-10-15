@@ -38,14 +38,15 @@
 	can_hold = list() // any
 	cant_hold = list(/obj/item/disk/nuclear)
 
-/obj/item/storage/bag/trash/update_icon()
+/obj/item/storage/bag/trash/update_icon_state()
 	if(contents.len == 0)
 		icon_state = "trashbag0"
 	else if(contents.len < 12)
 		icon_state = "trashbag1"
 	else if(contents.len < 21)
 		icon_state = "trashbag2"
-	else icon_state = "trashbag3"
+	else
+		icon_state = "trashbag3"
 
 
 // -----------------------------
@@ -97,7 +98,8 @@
 	can_hold = list(
 		/obj/item/reagent_containers/food/snacks/grown,
 		/obj/item/seeds,
-		/obj/item/grown)
+		/obj/item/grown,
+	)
 
 
 // -----------------------------
@@ -127,7 +129,7 @@
 		current += S.amount
 	if(capacity == current)//If it's full, you're done
 		if(!stop_messages)
-			to_chat(usr, "<span class='warning'>The snatcher is full.</span>")
+			to_chat(usr, span_warning("The snatcher is full."))
 		return 0
 	return 1
 
@@ -190,8 +192,8 @@
 	var/col_count = min(7,storage_slots) -1
 	if (adjusted_contents > 7)
 		row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
-	src.slot_orient_objs(row_num, col_count, numbered_contents)
-	return
+	slot_orient_objs(row_num, col_count, numbered_contents)
+
 
 
 // Modified quick_empty verb drops appropriate sized stacks
@@ -211,9 +213,10 @@
 	update_icon()
 
 // Instead of removing
-/obj/item/storage/bag/sheetsnatcher/remove_from_storage(obj/item/W as obj, atom/new_location)
+/obj/item/storage/bag/sheetsnatcher/remove_from_storage(obj/item/W, atom/new_location, mob/user)
 	var/obj/item/stack/sheet/S = W
-	if(!istype(S)) return 0
+	if(!istype(S))
+		return FALSE
 
 	//I would prefer to drop a new stack, but the item/attack_hand(mob/living/user)
 	// that calls this can't recieve a different object than you clicked on.
@@ -225,7 +228,7 @@
 		temp.amount = S.amount - S.max_amount
 		S.amount = S.max_amount
 
-	return ..(S,new_location)
+	return ..(S,new_location,user)
 
 // -----------------------------
 //    Sheet Snatcher (Cyborg)
@@ -251,4 +254,5 @@
 	w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
 		/obj/item/coin,
-		/obj/item/spacecash)
+		/obj/item/spacecash,
+	)

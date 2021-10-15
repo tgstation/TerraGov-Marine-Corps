@@ -5,17 +5,10 @@
 /mob/living/proc/handle_blood()
 	return
 
-/mob/living/carbon/monkey/handle_blood()
-	if(bodytemperature >= 225) //cryosleep people do not pump the blood.
-		//Blood regeneration if there is some space
-		if(blood_volume < BLOOD_VOLUME_NORMAL)
-			blood_volume += 0.1 // regenerate blood VERY slowly
-
 
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/handle_blood()
-
-	if(NO_BLOOD in species.species_flags)
+	if(species.species_flags & NO_BLOOD)
 		return
 
 	if(stat != DEAD && bodytemperature >= 170)	//Dead or cryosleep people do not pump the blood.
@@ -57,7 +50,7 @@
 			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 				if(prob(1))
 					var/word = pick("dizzy","woozy","faint")
-					to_chat(src, "<span class='warning'>You feel [word]</span>")
+					to_chat(src, span_warning("You feel [word]"))
 				if(oxyloss < 20)
 					adjustOxyLoss(3)
 			if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
@@ -72,13 +65,13 @@
 				if(prob(15))
 					Unconscious(rand(20,60))
 					var/word = pick("dizzy","woozy","faint")
-					to_chat(src, "<span class='warning'>You feel extremely [word]</span>")
+					to_chat(src, span_warning("You feel extremely [word]"))
 			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
 				adjustOxyLoss(5)
 				adjustToxLoss(2)
 				if(prob(15))
 					var/word = pick("dizzy","woozy","faint")
-					to_chat(src, "<span class='warning'>You feel extremely [word]</span>")
+					to_chat(src, span_warning("You feel extremely [word]"))
 			if(0 to BLOOD_VOLUME_SURVIVE)
 				death()
 
@@ -130,9 +123,9 @@
 /mob/living/carbon/human/drip(amt)
 	if(HAS_TRAIT(src, TRAIT_STASIS)) // stasis now stops bloodloss
 		return
-	if(NO_BLOOD in species.species_flags)
+	if(species.species_flags & NO_BLOOD)
 		return
-	..()
+	return ..()
 
 
 
@@ -256,6 +249,14 @@
 
 	return blood_data
 
+// Add blood type to carbons that may have one
+/mob/living/carbon/get_blood_data()
+	. = ..()
+
+	if(blood_type)
+		.["blood_type"] = blood_type
+
+
 //returns the color of the mob's blood
 /mob/living/proc/get_blood_color()
 	return "#A10808"
@@ -267,19 +268,16 @@
 	return species.blood_color
 
 
-
+//todo make these return values defines
 //get the id of the substance this mob uses as blood.
 /mob/proc/get_blood_id()
 	return
-
-/mob/living/carbon/monkey/get_blood_id()
-	return "blood"
 
 /mob/living/carbon/xenomorph/get_blood_id()
 	return "xenoblood"
 
 /mob/living/carbon/human/get_blood_id()
-	if((NO_BLOOD in species.species_flags))
+	if((species.species_flags & NO_BLOOD))
 		return
 	if(issynth(src))
 		return "whiteblood"
@@ -374,7 +372,7 @@
 
 
 /mob/living/carbon/human/add_splatter_floor(turf/T, small_drip, b_color)
-	if(NO_BLOOD in species.species_flags)
+	if(species.species_flags & NO_BLOOD)
 		return
 
 	b_color = species.blood_color

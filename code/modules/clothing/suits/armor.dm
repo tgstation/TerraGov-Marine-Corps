@@ -21,7 +21,7 @@
 
 	var/mob/living/carbon/human/H = M
 	if(!H.w_uniform)
-		to_chat(H, "<span class='warning'>You need to be wearing somethng under this to be able to equip it.</span>")
+		to_chat(H, span_warning("You need to be wearing somethng under this to be able to equip it."))
 		return FALSE
 
 
@@ -37,23 +37,35 @@
 	permeability_coefficient = 0.8
 	flags_armor_protection = CHEST
 	soft_armor = list("melee" = 20, "bullet" = 30, "laser" = 25, "energy" = 10, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	allowed = list (
+		/obj/item/flashlight,
+		/obj/item/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/storage/large_holster/blade
+	)
+
 
 /obj/item/clothing/suit/armor/vest/pilot
 	name = "\improper M70 flak jacket"
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
 	icon = 'icons/obj/clothing/cm_suits.dmi'
 	icon_state = "pilot"
-	sprite_sheet_id = 1
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
 	blood_overlay_type = "armor"
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	soft_armor = list("melee" = 35, "bullet" = 45, "laser" = 45, "energy" = 20, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 25)
 	slowdown = 0.25
-	allowed = list(/obj/item/weapon/gun/,
+	allowed = list(
+		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
-		/obj/item/ammo_magazine/,
+		/obj/item/ammo_magazine,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/weapon/baton,
@@ -61,10 +73,11 @@
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/belt/sparepouch,
-		/obj/item/storage/large_holster/machete,
-		/obj/item/storage/belt/gun/m4a3,
-		/obj/item/storage/belt/gun/m44)
+		/obj/item/storage/large_holster/blade,
+		/obj/item/storage/belt/gun,
+	)
 
 /obj/item/clothing/suit/armor/vest/dutch
 	name = "armored jacket"
@@ -111,11 +124,19 @@
 	item_state = "bulletproof"
 	blood_overlay_type = "armor"
 	flags_armor_protection = CHEST
-	soft_armor = list("melee" = 20, "bullet" = 50, "laser" = 25, "energy" = 10, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	soft_armor = list("melee" = 30, "bullet" = 55, "laser" = 0, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 15)
+	hard_armor = list("melee" = 0, "bullet" = 20, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 5)
 	siemens_coefficient = 0.7
 	permeability_coefficient = 0.9
 	time_to_unequip = 20
 	time_to_equip = 20
+	allowed = list(
+		/obj/item/weapon/gun/,
+		/obj/item/flashlight,
+		/obj/item/storage/large_holster/blade,
+		/obj/item/storage/belt/gun/pistol/m4a3,
+		/obj/item/storage/belt/gun/m44,
+	)
 
 /obj/item/clothing/suit/armor/riot
 	name = "riot suit"
@@ -127,6 +148,7 @@
 	soft_armor = list("melee" = 65, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEJUMPSUIT
+	flags_item = SYNTH_RESTRICTED
 	siemens_coefficient = 0.5
 	permeability_coefficient = 0.7
 	time_to_unequip = 20
@@ -150,6 +172,7 @@
 	slowdown = 1
 	soft_armor = list("melee" = 50, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
 	flags_inventory = BLOCKSHARPOBJ|NOPRESSUREDMAGE
+	flags_item = SYNTH_RESTRICTED
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
@@ -174,6 +197,7 @@
 	item_state = "detective-armor"
 	blood_overlay_type = "armor"
 	flags_armor_protection = CHEST|GROIN
+	flags_item = SYNTH_RESTRICTED
 	soft_armor = list("melee" = 50, "bullet" = 15, "laser" = 50, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 
 
@@ -202,6 +226,7 @@
 	item_state = "swatarmor"
 	var/obj/item/weapon/gun/holstered = null
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	flags_item = SYNTH_RESTRICTED
 	slowdown = 0
 	soft_armor = list("melee" = 50, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 50, "bio" = 40, "rad" = 0, "fire" = 50, "acid" = 50)
 	siemens_coefficient = 0.7
@@ -230,7 +255,7 @@
 //All of the armor below is mostly unused
 
 
-/obj/item/clothing/suit/armor/centcomm
+/obj/item/clothing/suit/armor/centcom
 	name = "Cent. Com. armor"
 	desc = "A suit that protects against some damage."
 	icon_state = "centcom"
@@ -281,9 +306,11 @@
 	item_state = "swatarmor"
 	var/obj/item/weapon/gun/holstered = null
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
+	flags_item = SYNTH_RESTRICTED
 	slowdown = 1
 	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 40, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 40)
 	siemens_coefficient = 0.7
+
 
 /obj/item/clothing/suit/armor/tactical/verb/holster()
 	set name = "Holster"
@@ -295,26 +322,26 @@
 
 	if(!holstered)
 		if(!istype(usr.get_active_held_item(), /obj/item/weapon/gun))
-			to_chat(usr, "<span class='notice'>You need your gun equiped to holster it.</span>")
+			to_chat(usr, span_notice("You need your gun equiped to holster it."))
 			return
 		var/obj/item/weapon/gun/W = usr.get_active_held_item()
 		if (W.w_class > 3)
-			to_chat(usr, "<span class='warning'>This gun won't fit in \the belt!</span>")
+			to_chat(usr, span_warning("This gun won't fit in \the belt!"))
 			return
 		holstered = usr.get_active_held_item()
 		usr.drop_held_item()
 		holstered.loc = src
-		usr.visible_message("<span class='notice'> \The [usr] holsters \the [holstered].</span>", "You holster \the [holstered].")
+		usr.visible_message(span_notice(" \The [usr] holsters \the [holstered]."), "You holster \the [holstered].")
 	else
 		if(istype(usr.get_active_held_item(),/obj) && istype(usr.get_inactive_held_item(),/obj))
-			to_chat(usr, "<span class='warning'>You need an empty hand to draw the gun!</span>")
+			to_chat(usr, span_warning("You need an empty hand to draw the gun!"))
 		else
 			if(usr.a_intent == INTENT_HARM)
-				usr.visible_message("<span class='warning'> \The [usr] draws \the [holstered], ready to shoot!</span>", \
-				"<span class='warning'> You draw \the [holstered], ready to shoot!</span>")
+				usr.visible_message(span_warning(" \The [usr] draws \the [holstered], ready to shoot!"), \
+				span_warning(" You draw \the [holstered], ready to shoot!"))
 			else
-				usr.visible_message("<span class='notice'> \The [usr] draws \the [holstered], pointing it at the ground.</span>", \
-				"<span class='notice'> You draw \the [holstered], pointing it at the ground.</span>")
+				usr.visible_message(span_notice(" \The [usr] draws \the [holstered], pointing it at the ground."), \
+				span_notice(" You draw \the [holstered], pointing it at the ground."))
 			usr.put_in_hands(holstered)
 		holstered = null
 
@@ -324,6 +351,7 @@
 	desc = "A set of armor worn by members of the NanoTrasen Emergency Response Team."
 	icon_state = "ertarmor_cmd"
 	item_state = "ertarmor_cmd"
+	flags_item = SYNTH_RESTRICTED
 	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 40, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 40)
 
 //Captain
@@ -353,16 +381,13 @@
 	item_state = "ertarmor_med"
 
 
-
-
-
-
 /obj/item/clothing/suit/armor/hos
 	name = "armored coat"
 	desc = "A greatcoat enhanced with a special alloy for some protection and style."
 	icon_state = "hos"
 	item_state = "hos"
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
+	flags_item = SYNTH_RESTRICTED
 	soft_armor = list("melee" = 65, "bullet" = 30, "laser" = 50, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	flags_inventory = NONE
 	flags_inv_hide = HIDEJUMPSUIT
@@ -376,3 +401,4 @@
 	flags_inv_hide = NONE
 	siemens_coefficient = 0.6
 	flags_armor_protection = CHEST|ARMS
+

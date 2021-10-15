@@ -120,13 +120,13 @@
 	created = max(created, other.created)	//take the newer created time
 
 /**
-  *checks if wound is considered open for external infections
-  *untreated cuts (and bleeding bruises) and burns are possibly infectable, chance higher if wound is bigger
-  */
+ *checks if wound is considered open for external infections
+ *untreated cuts (and bleeding bruises) and burns are possibly infectable, chance higher if wound is bigger
+ */
 /datum/wound/proc/infection_check()
 	if(damage < 10)	//small cuts, tiny bruises, and moderate burns shouldn't be infectable.
 		return NONE
-	if(is_treated() && damage < 25)	//anything less than a flesh wound (or equivalent) isn't infectable if treated properly
+	if(is_treated() && (damage < 25 || !prob(damage * 2))) //Small treated wounds can't be infected, medium ones are just less likely
 		return NONE
 	if(disinfected)
 		germ_level = 0	//reset this, just in case
@@ -146,10 +146,10 @@
 	return 0
 
 /**
-  *heal the given amount of damage, and if the given amount of damage was more
-  *than what needed to be healed, return how much heal was left
-  *set @heals_internal to also heal internal organ damage
-  */
+ *heal the given amount of damage, and if the given amount of damage was more
+ *than what needed to be healed, return how much heal was left
+ *set @heals_internal to also heal internal organ damage
+ */
 /datum/wound/proc/heal_wound_damage(heal_amount, heals_internal = FALSE)
 	// If the wound is internal, and we don't heal internal wounds just pass through.
 	if(internal && !heals_internal)
@@ -175,12 +175,16 @@
 	damage += initial_damage
 	bleed_timer += damage
 
-	var/damage_per_wound = initial_damage / amount
+	var/damage_per_wound = damage / amount
 	while(current_stage > 1 && damage_list[current_stage - 1] <= damage_per_wound)
 		current_stage--
 
 	desc = desc_list[current_stage]
 	min_damage = damage_list[current_stage]
+
+	bandaged = FALSE
+	disinfected = FALSE
+	salved = FALSE
 
 	// returns whether this wound can absorb the given amount of damage.
 	// this will prevent large amounts of damage being trapped in less severe wound types

@@ -17,43 +17,47 @@
 
 	savage_cooldown = 30 SECONDS
 
-	// *** Tackle *** //
-	tackle_damage = 20
-
 	// *** Speed *** //
 	speed = -1.3
 
 	// *** Plasma *** //
-	plasma_max = 100
-	plasma_gain = 2
+	plasma_max = 150
+	plasma_gain = 5
 
 	// *** Health *** //
-	max_health = 150
+	max_health = 175
 
 	// *** Evolution *** //
 	evolution_threshold = 80
 	upgrade_threshold = 60
 
-	evolves_to = list(/mob/living/carbon/xenomorph/hunter, /mob/living/carbon/xenomorph/bull, /mob/living/carbon/xenomorph/panther)
+	evolves_to = list(
+		/mob/living/carbon/xenomorph/hunter,
+		/mob/living/carbon/xenomorph/bull,
+		/mob/living/carbon/xenomorph/wraith,
+	)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CAN_BECOME_KING|CAN_RIDE_CRUSHER
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 0, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 5, "acid" = 0)
+	soft_armor = list("melee" = 14, "bullet" = 5, "laser" = 5, "energy" = 0, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 5, "acid" = 0)
 
 	// *** Ranged Attack *** //
 	charge_type = CHARGE_TYPE_SMALL
-	pounce_delay = 6.0 SECONDS
+	pounce_delay = 13 SECONDS
 
 	// *** Abilities *** ///
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/xenohide,
 		/datum/action/xeno_action/activable/pounce,
 		/datum/action/xeno_action/toggle_savage,
-		)
+		/datum/action/xeno_action/evasion,
+	)
 
 /datum/xeno_caste/runner/young
 	upgrade_name = "Young"
@@ -68,27 +72,24 @@
 
 	savage_cooldown = 30 SECONDS
 
-	// *** Tackle *** //
-	tackle_damage = 25
-
 	// *** Speed *** //
 	speed = -1.3
 
 	// *** Plasma *** //
-	plasma_max = 150
-	plasma_gain = 3
+	plasma_max = 175
+	plasma_gain = 7
 
 	// *** Health *** //
-	max_health = 175
+	max_health = 200
 
 	// *** Evolution *** //
-	upgrade_threshold = 120
+	upgrade_threshold = 180
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 3, "rad" = 3, "fire" = 10, "acid" = 3)
+	soft_armor = list("melee" = 16, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 3, "rad" = 3, "fire" = 10, "acid" = 3)
 
 	// *** Ranged Attack *** //
-	pounce_delay = 6.0 SECONDS
+	pounce_delay = 13 SECONDS
 
 /datum/xeno_caste/runner/elder
 	upgrade_name = "Elder"
@@ -101,31 +102,28 @@
 
 	savage_cooldown = 30 SECONDS
 
-	// *** Tackle *** //
-	tackle_damage = 30
-
 	// *** Speed *** //
 	speed = -1.4
 
 	// *** Plasma *** //
 	plasma_max = 200
-	plasma_gain = 3
+	plasma_gain = 9
 
 	// *** Health *** //
-	max_health = 200
+	max_health = 225
 
 	// *** Evolution *** //
-	upgrade_threshold = 240
+	upgrade_threshold = 420
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 15, "acid" = 5)
+	soft_armor = list("melee" = 18, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 15, "acid" = 5)
 
 	// *** Ranged Attack *** //
-	pounce_delay = 6.0 SECONDS
+	pounce_delay = 13 SECONDS
 
 /datum/xeno_caste/runner/ancient
 	upgrade_name = "Ancient"
-	caste_desc = "Not what you want to run into in a dark alley. It looks fucking deadly."
+	caste_desc = "Not what you want to run into in a dark alley. It looks extremely deadly."
 	ancient_message = "We are the fastest assassin of all time. Our speed is unmatched."
 	upgrade = XENO_UPGRADE_THREE
 	wound_type = "runner" //used to match appropriate wound overlays
@@ -135,25 +133,21 @@
 	// *** Melee Attacks *** //
 	melee_damage = 21
 
-	// *** Tackle *** //
-	tackle_damage = 35
-
 	// *** Speed *** //
 	speed = -1.5
 
 	// *** Plasma *** //
 	plasma_max = 200
-	plasma_gain = 3
+	plasma_gain = 11
 
 	// *** Health *** //
-	max_health = 225
+	max_health = 240
 
 	// *** Evolution *** //
-	upgrade_threshold = 240
+	upgrade_threshold = 660
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 19, "bullet" = 19, "laser" = 19, "energy" = 19, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 19, "acid" = 7)
+	soft_armor = list("melee" = 20, "bullet" = 19, "laser" = 19, "energy" = 19, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 19, "acid" = 7)
 
 	// *** Ranged Attack *** //
-	pounce_delay = 6.0 SECONDS
-
+	pounce_delay = 13 SECONDS

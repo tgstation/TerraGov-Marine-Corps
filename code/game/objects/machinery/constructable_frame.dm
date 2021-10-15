@@ -7,7 +7,6 @@
 	use_power = NO_POWER_USE
 	var/list/components
 	var/list/req_components
-	var/list/req_component_names
 	var/state = 1
 
 
@@ -18,7 +17,8 @@
 		var/first = 1
 		for(var/I in req_components)
 			if(req_components[I] > 0)
-				D += "[first?"":", "][num2text(req_components[I])] [req_component_names[I]]"
+				var/atom/A = I
+				D += "[first?"":", "][num2text(req_components[I])] [initial(A.name)]"
 				first = 0
 		if(first) // nothing needs to be added, then
 			D += "nothing"
@@ -33,7 +33,7 @@
 
 /obj/machinery/constructable_frame/machine_frame/attackby(obj/item/I, mob/living/user, params)
 	if(I.crit_fail)
-		to_chat(user, "<span class='warning'>This part is faulty, you cannot add this to the machine!</span>")
+		to_chat(user, span_warning("This part is faulty, you cannot add this to the machine!"))
 		return
 
 	switch(state)
@@ -41,33 +41,33 @@
 			if(iscablecoil(I))
 				var/obj/item/stack/cable_coil/C = I
 				if(C.get_amount() < 5)
-					to_chat(user, "<span class='warning'>You need five lengths of cable to add them to the frame.</span>")
+					to_chat(user, span_warning("You need five lengths of cable to add them to the frame."))
 					return
 
 				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-				user.visible_message("<span class='notice'>[user] starts adding cables to [src].</span>",
-				"<span class='notice'>You start adding cables to [src].</span>")
+				user.visible_message(span_notice("[user] starts adding cables to [src]."),
+				span_notice("You start adding cables to [src]."))
 				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || state != 1 || QDELETED(C))
 					return
 
 				if(!C.use(5))
 					return
 
-				user.visible_message("<span class='notice'>[user] adds cables to [src].</span>",
-				"<span class='notice'>You add cables to [src].</span>")
+				user.visible_message(span_notice("[user] adds cables to [src]."),
+				span_notice("You add cables to [src]."))
 				state = 2
 				icon_state = "box_1"
 
 			if(iswrench(I))
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-				to_chat(user, "<span class='notice'>You dismantle the frame</span>")
+				to_chat(user, span_notice("You dismantle the frame"))
 				new /obj/item/stack/sheet/metal(loc, 5)
 				qdel(src)
 
 		if(2)
 			if(istype(I, /obj/item/circuitboard/machine))
 				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-				to_chat(user, "<span class='notice'>You add the circuit board to the frame.</span>")
+				to_chat(user, span_notice("You add the circuit board to the frame."))
 				var/obj/item/circuitboard/machine/circuit = I
 				if(!user.transferItemToLoc(I, src))
 					return
@@ -78,11 +78,6 @@
 				req_components = circuit.req_components.Copy()
 				for(var/A in circuit.req_components)
 					req_components[A] = circuit.req_components[A]
-				req_component_names = circuit.req_components.Copy()
-				for(var/A in req_components)
-					var/cp = text2path(A)
-					var/obj/ct = new cp() // have to quickly instantiate it get name
-					req_component_names[A] = ct.name
 				if(circuit.frame_desc)
 					desc = circuit.frame_desc
 				else
@@ -91,7 +86,7 @@
 
 			if(iswirecutter(I))
 				playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-				to_chat(user, "<span class='notice'>You remove the cables.</span>")
+				to_chat(user, span_notice("You remove the cables."))
 				state = 1
 				icon_state = "box_0"
 				var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil(loc)
@@ -104,9 +99,9 @@
 				circuit.forceMove(loc)
 				circuit = null
 				if(!length(components))
-					to_chat(user, "<span class='notice'>You remove the circuit board.</span>")
+					to_chat(user, span_notice("You remove the circuit board."))
 				else
-					to_chat(user, "<span class='notice'>You remove the circuit board and other components.</span>")
+					to_chat(user, span_notice("You remove the circuit board and other components."))
 					for(var/obj/item/W in components)
 						W.forceMove(loc)
 

@@ -1,0 +1,114 @@
+2019-12-02:
+  Hughgent:
+  - bugfix: Lever action rifle sprite fix
+  Kuro-ai:
+  - balance: Buffed LMG base accuracy and scatter and removed its starting bipod.
+  terranaut1:
+  - refactor: Made burrowed larva amount be dependant on a jobs estimated combat potential
+      or support utility rather than bodycount
+  - balance: Assigned combat worth/support utility to all common roles
+  - config: Larva points required is a config option.
+2019-12-04:
+  Kuro-ai:
+  - balance: Nerfs warrior
+  Rohesie:
+  - rscadd: Humans are now able to fireman-carry their fallen comrades by grabbing
+      them with both hands and click-dragging the sprite as if they were stripping
+      them.
+  ma44:
+  - balance: Base plasma regen is now 1/4th when standing on weeds and 4x while resting
+      on weeds
+  nemvar:
+  - soundadd: Added sounds for opening/closing the airlock panel with a screwdriver.
+  spookydonut:
+  - bugfix: resinwalker now works again
+  terranaut1:
+  - rscadd: LZ shutters now require (acting) Squad Leader or higher rank access
+2019-12-06:
+  nemvar:
+  - tweak: Footsteps can now be heard from slightly further away
+  - soundadd: Shortened the resin footstep sound
+2019-12-07:
+  Rohesie:
+  - rscadd: Resin silos added to Distress game mode. They are unprotected by fog and
+      get automatically destroyed on xeno shuttle hijack.
+2019-12-08:
+  Rohesie:
+  - tweak: Going unconscious toggles the scout cloak stealth off.
+  nemvar:
+  - bugfix: The nuke can no longer be hidden under beds.
+2019-12-10:
+  Rohesie:
+  - rscadd: Riot shields now absorb damage until they are destroyed. Component made
+      which allows for new kinds of shields, abstract or concrete.
+  nemvar:
+  - tweak: Trees now turn transparent if something is behind them.
+2019-12-13:
+  Hathkar:
+  - tweak: Wires are now placed above pipes, for visibility.
+  terranaut1:
+  - balance: Xenos upgrade faster
+  - balance: burrowed are generated a bit more quickly
+2019-12-14:
+  psykzz:
+  - tweak: Larvas now evolve twice as quuick
+  - rscadd: Marines now get a fax in Crash with bioscan information
+  - tweak: xeno building cooldown changed from 1-4 seconds -> 1-2 seconds (based on
+      health)
+  - balance: xeno rested healing changed from a 1.0 multiplier to 1.1
+  - balance: spec are worth more larva points
+  - balance: hunter stealth attack changed to flat 0.5 seconds, and only applied on
+      disarm.
+2019-12-16:
+  psykzz:
+  - tweak: moved the nuke on icy caves to the north east
+2019-12-18:
+  adamkad1:
+  - balance: Removed the M4RA's burst mode and increased its recoil.
+  psykzz:
+  - tweak: power across all the things
+2019-12-19:
+  David-Stormwell:
+  - rscadd: Added DMR incendiary ammo and tweaked the DMR's rail attachment offsets
+  - balance: Buffed most T Series wield delays
+  - balance: More Survivor guns have more raillight additions to slap on
+  - imageadd: Incendiary DMR magazine
+  Hathkar:
+  - balance: Mesons are no longer as good as night vision battlesights.
+  psykzz:
+  - tweak: how flame graphs are generated, they are now blocked by dense objects
+  - balance: Increased autodocs power consumption, reduced max charge of smes.
+2019-12-20:
+  factoryman942:
+  - balance: actually removes the scout rifle's burst
+  - bugfix: you can no longer transmute normal magazines into extended ones with ammo
+      boxes
+  psykzz:
+  - rscadd: new hallucinations
+2019-12-21:
+  ma44:
+  - code_imp: Adds a signal for when a mob gets revived; coders can do fancy things
+      whenever a mob gets revived if they wanted to
+2019-12-22:
+  David-Stormwell:
+  - rscadd: SL armor now has a 8 tile radius of light, and has the same storage as
+      a G8 pouch also buffed to be the same as medium/regular armor
+  - balance: PMC SG armor is now the same as B18, if not a little weaker.
+  Rohesie:
+  - bugfix: Dropship airlocks get unlocked on shuttle hijack, in case a pilot locked
+      them before transit, not to trap the marines inside.
+  factoryman942:
+  - rscadd: People who go DNR now become skulls on medHUD instead of lightning bolts.
+  ma44:
+  - balance: Ravagers regain the ravage ability. Plasma storage, regen and abilities
+      cost tweaked to account for the interaction of the abilities.
+  psykzz:
+  - balance: Increased the benefits of skills when performing surgery.
+  - tweak: size of the blue disk room on icy caves
+  - rscadd: desk lamps can now be broken
+2019-12-23:
+  Kuro-ai:
+  - balance: Some value changes to marine attachments
+2019-12-29:
+  Hughgent:
+  - bugfix: defender forward charge can now be keybound

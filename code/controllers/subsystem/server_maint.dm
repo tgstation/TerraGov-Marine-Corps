@@ -61,6 +61,14 @@ SUBSYSTEM_DEF(server_maint)
 					log_world("Found a null in GLOB.hive_datums(XENO_HIVE_NORMAL).xenos_by_zlevel!")
 				cleanup_ticker++
 			if(30)
+				var/found = FALSE
+				for(var/level in GLOB.observers_by_zlevel)
+					if(listclearnulls(GLOB.observers_by_zlevel["[level]"]))
+						found = TRUE
+				if(found)
+					log_world("Found a null in observers_by_zlevel!")
+				cleanup_ticker++
+			if(35)
 				cleanup_ticker = 0
 			else
 				cleanup_ticker++
@@ -80,7 +88,7 @@ SUBSYSTEM_DEF(server_maint)
 			var/cmob = C.mob
 			if(!isnewplayer(cmob))
 				log_access("AFK: [key_name(C)]")
-				to_chat(C, "<span class='userdanger'>You have been inactive for more than [DisplayTimeText(afk_period)] and have been disconnected.</span><br><span class='danger'You may reconnect via the button in the file menu or by <b><u><a href='byond://winset?command=.reconnect'>clicking here to reconnect</a></b></u></span>")
+				to_chat(C, span_userdanger("You have been inactive for more than [DisplayTimeText(afk_period)] and have been disconnected.</span><br><span class='danger'You may reconnect via the button in the file menu or by <b><u><a href='byond://winset?command=.reconnect'>clicking here to reconnect</a></b></u>"))
 				QDEL_IN(C, 1) //to ensure they get our message before getting disconnected
 				continue
 
@@ -97,12 +105,7 @@ SUBSYSTEM_DEF(server_maint)
 		if(!thing)
 			continue
 		var/client/C = thing
-		var/datum/chatOutput/CO = C.chatOutput
-		if(SSticker.graceful && CO)
-			CO.ehjax_send(data = "shutdown")
-			continue
-		if(CO)
-			CO.ehjax_send(data = "roundrestart")
+		C?.tgui_panel?.send_roundrestart()
 		if(server)
 			C << link("byond://[server]")
 

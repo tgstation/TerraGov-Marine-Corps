@@ -19,24 +19,24 @@
 	. = ..()
 	overlays += image('icons/obj/kitchen.dmi', "grjam")
 
-/obj/machinery/gibber/update_icon()
-	overlays.Cut()
-	if (dirty)
-		src.overlays += image('icons/obj/kitchen.dmi', "grbloody")
+/obj/machinery/gibber/update_overlays()
+	. = ..()
+	if(dirty)
+		. += image('icons/obj/kitchen.dmi', "grbloody")
+
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
-	if (!occupant)
-		src.overlays += image('icons/obj/kitchen.dmi', "grjam")
-	else if (operating)
-		src.overlays += image('icons/obj/kitchen.dmi', "gruse")
-	else
-		src.overlays += image('icons/obj/kitchen.dmi', "gridle")
 
-/obj/machinery/gibber/attack_paw(mob/living/carbon/monkey/user)
-	return src.attack_hand(user)
+	if (!occupant)
+		. += image('icons/obj/kitchen.dmi', "grjam")
+	else if (operating)
+		. += image('icons/obj/kitchen.dmi', "gruse")
+	else
+		. += image('icons/obj/kitchen.dmi', "gridle")
 
 /obj/machinery/gibber/relaymove(mob/user)
-	if(user.incapacitated(TRUE)) return
+	if(user.incapacitated(TRUE))
+		return
 	go_out()
 
 
@@ -45,7 +45,7 @@
 	if(.)
 		return
 	if(operating)
-		to_chat(user, "<span class='warning'>It's locked and running</span>")
+		to_chat(user, span_warning("It's locked and running"))
 		return
 
 	startgibbing(user)
@@ -54,32 +54,32 @@
 	. = ..()
 
 	if(occupant)
-		to_chat(user, "<span class='warning'>The gibber is full, empty it first!</span>")
+		to_chat(user, span_warning("The gibber is full, empty it first!"))
 		return
 
 	else if(!(istype(I, /obj/item/grab)) )
-		to_chat(user, "<span class='warning'>This item is not suitable for the gibber!</span>")
+		to_chat(user, span_warning("This item is not suitable for the gibber!"))
 		return
 
 	else if(!iscarbon(I.grabbed_thing) && !istype(I.grabbed_thing, /mob/living/simple_animal))
-		to_chat(user, "<span class='warning'>This item is not suitable for the gibber!</span>")
+		to_chat(user, span_warning("This item is not suitable for the gibber!"))
 		return
 
 	var/mob/living/M = I.grabbed_thing
 	if(user.grab_state < GRAB_AGGRESSIVE)
-		to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
+		to_chat(user, span_warning("You need a better grip to do that!"))
 		return
 
 	else if(M.abiotic(TRUE))
-		to_chat(user, "<span class='warning'>Subject may not have abiotic items on.</span>")
+		to_chat(user, span_warning("Subject may not have abiotic items on."))
 		return
 
-	user.visible_message("<span class='danger'>[user] starts to put [M] into the gibber!</span>")
+	user.visible_message(span_danger("[user] starts to put [M] into the gibber!"))
 
 	if(!do_after(user, 30, TRUE, M, BUSY_ICON_DANGER) || QDELETED(src) || occupant)
 		return
 
-	user.visible_message("<span class='danger'>[user] stuffs [M] into the gibber!</span>")
+	user.visible_message(span_danger("[user] stuffs [M] into the gibber!"))
 	M.forceMove(src)
 	occupant = M
 	update_icon()
@@ -91,8 +91,7 @@
 
 	if (usr.stat != 0)
 		return
-	src.go_out()
-	return
+	go_out()
 
 /obj/machinery/gibber/proc/go_out()
 	if (!src.occupant)
@@ -105,17 +104,17 @@
 	src.occupant.loc = src.loc
 	src.occupant = null
 	update_icon()
-	return
+
 
 
 /obj/machinery/gibber/proc/startgibbing(mob/user as mob)
 	if(src.operating)
 		return
 	if(!src.occupant)
-		visible_message("<span class='warning'> You hear a loud metallic grinding sound.</span>")
+		visible_message(span_warning(" You hear a loud metallic grinding sound."))
 		return
 	use_power(active_power_usage)
-	visible_message("<span class='warning'> You hear a loud squelchy grinding sound.</span>")
+	visible_message(span_warning(" You hear a loud squelchy grinding sound."))
 	src.operating = 1
 	update_icon()
 
@@ -144,17 +143,19 @@
 		occupant.death(silent = TRUE)
 		src.occupant.ghostize()
 
-	else if( istype(src.occupant, /mob/living/carbon/) || istype(src.occupant, /mob/living/simple_animal/ ) )
+	else if(istype(occupant, /mob/living/carbon) || istype(occupant, /mob/living/simple_animal))
 
 		var/mob/living/carbon/C = occupant
 		var/sourcename = src.occupant.name
 		var/sourcenutriment = C.nutrition / 15
 		var/sourcetotalreagents = 0
 
-		if( istype(src.occupant, /mob/living/carbon/monkey/) || istype(src.occupant, /mob/living/carbon/xenomorph) ) // why are you gibbing aliens? oh well
+		if(ismonkey(occupant))
 			totalslabs = 3
 			sourcetotalreagents = src.occupant.reagents.total_volume
-		else if( istype(src.occupant, /mob/living/simple_animal/cow) || istype(src.occupant, /mob/living/simple_animal/hostile/bear) )
+		else if(istype(occupant, /mob/living/carbon/xenomorph)) // why are you gibbing aliens? oh well DELICIOUS
+			totalslabs = 2
+		else if(istype(occupant, /mob/living/simple_animal/cow) || istype(occupant, /mob/living/simple_animal/hostile/bear))
 			totalslabs = 2
 		else
 			totalslabs = 1
@@ -193,5 +194,4 @@
 				new /obj/effect/decal/cleanable/blood/gibs(Tx,i)
 		src.operating = 0
 		update_icon()
-
 

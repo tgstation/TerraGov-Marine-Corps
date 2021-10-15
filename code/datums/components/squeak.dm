@@ -11,14 +11,18 @@
 	var/last_use = 0
 	var/use_delay = 20
 
+	///what we set connect_loc to if parent is a movable
+	var/static/list/item_connections = list(
+		COMSIG_ATOM_ENTERED = .proc/play_squeak_crossed,
+	)
 
 /datum/component/squeak/Initialize(sound_to_play, volume_override, chance_override, step_delay_override, use_delay_override)
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, list(COMSIG_ATOM_ENTERED, COMSIG_PARENT_ATTACKBY), .proc/play_squeak)
 	if(ismovableatom(parent))
+		AddComponent(/datum/component/connect_loc_behalf, parent, item_connections)
 		RegisterSignal(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOVABLE_IMPACT), .proc/play_squeak)
-		RegisterSignal(parent, COMSIG_MOVABLE_CROSSED_BY, .proc/play_squeak_crossed)
 		RegisterSignal(parent, COMSIG_MOVABLE_DISPOSING, .proc/disposing_react)
 		if(isitem(parent))
 			RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/play_squeak)
@@ -27,6 +31,8 @@
 			RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/on_drop)
 			if(istype(parent, /obj/item/clothing/shoes))
 				RegisterSignal(parent, COMSIG_SHOES_STEP_ACTION, .proc/step_squeak)
+		else if(isstructure(parent))
+			RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, .proc/use_squeak)
 
 	squeak_sound = sound_to_play
 
@@ -39,8 +45,12 @@
 	if(isnum(use_delay_override))
 		use_delay = use_delay_override
 
+/datum/component/squeak/UnregisterFromParent()
+	. = ..()
+	qdel(GetComponent(/datum/component/connect_loc_behalf))
 
 /datum/component/squeak/proc/play_squeak()
+	SIGNAL_HANDLER
 	if(!prob(squeak_chance))
 		return
 	if(!squeak_sound)
@@ -53,6 +63,7 @@
 
 
 /datum/component/squeak/proc/step_squeak()
+	SIGNAL_HANDLER
 	if(steps > step_delay)
 		play_squeak()
 		steps = 0
@@ -60,7 +71,8 @@
 		steps++
 
 
-/datum/component/squeak/proc/play_squeak_crossed(datum/source, atom/movable/AM, oldloc)
+/datum/component/squeak/proc/play_squeak_crossed(datum/source, atom/movable/AM, oldloc, oldlocs)
+	SIGNAL_HANDLER
 	if(isitem(AM))
 		var/obj/item/I = AM
 		if(I.flags_item & ITEM_ABSTRACT)
@@ -74,6 +86,8 @@
 	if(isobserver(AM))
 		return
 
+	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
+		return
 	var/atom/current_parent = parent
 	if(isturf(current_parent.loc))
 		play_squeak()
@@ -86,19 +100,23 @@
 
 
 /datum/component/squeak/proc/on_equip(datum/source, mob/equipper, slot)
+	SIGNAL_HANDLER
 	RegisterSignal(equipper, COMSIG_MOVABLE_DISPOSING, .proc/disposing_react, TRUE)
 
 
 /datum/component/squeak/proc/on_drop(datum/source, mob/user)
+	SIGNAL_HANDLER
 	UnregisterSignal(user, COMSIG_MOVABLE_DISPOSING)
 
 
 /datum/component/squeak/proc/disposing_react(datum/source, obj/structure/disposalholder/holder, obj/machinery/disposal/source)
+	SIGNAL_HANDLER
 	//We don't need to worry about unregistering this signal as it will happen for us automaticaly when the holder is qdeleted
 	RegisterSignal(holder, COMSIG_ATOM_DIR_CHANGE, .proc/holder_dir_change)
 
 
 /datum/component/squeak/proc/holder_dir_change(datum/source, old_dir, new_dir)
+	SIGNAL_HANDLER
 	//If the dir changes it means we're going through a bend in the pipes, let's pretend we bumped the wall
 	if(old_dir != new_dir)
 		play_squeak()

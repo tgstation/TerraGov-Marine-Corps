@@ -7,12 +7,8 @@ SUBSYSTEM_DEF(overlays)
 
 	var/list/queue
 	var/list/stats
-	var/list/overlay_icon_state_caches
-	var/list/overlay_icon_cache
 
 /datum/controller/subsystem/overlays/PreInit()
-	overlay_icon_state_caches = list()
-	overlay_icon_cache = list()
 	queue = list()
 	stats = list()
 
@@ -27,8 +23,6 @@ SUBSYSTEM_DEF(overlays)
 
 
 /datum/controller/subsystem/overlays/Recover()
-	overlay_icon_state_caches = SSoverlays.overlay_icon_state_caches
-	overlay_icon_cache = SSoverlays.overlay_icon_cache
 	queue = SSoverlays.queue
 
 
@@ -46,6 +40,8 @@ SUBSYSTEM_DEF(overlays)
 			STAT_START_STOPWATCH
 			var/atom/A = thing
 			COMPILE_OVERLAYS(A)
+			UNSETEMPTY(A.add_overlays)
+			UNSETEMPTY(A.remove_overlays)
 			STAT_STOP_STOPWATCH
 			STAT_LOG_ENTRY(stats, A.type)
 		if(mc_check)
@@ -60,29 +56,14 @@ SUBSYSTEM_DEF(overlays)
 
 /proc/iconstate2appearance(icon, iconstate)
 	var/static/image/stringbro = new()
-	var/list/icon_states_cache = SSoverlays.overlay_icon_state_caches
-	var/list/cached_icon = icon_states_cache[icon]
-	if (cached_icon)
-		var/cached_appearance = cached_icon["[iconstate]"]
-		if (cached_appearance)
-			return cached_appearance
 	stringbro.icon = icon
 	stringbro.icon_state = iconstate
-	if (!cached_icon) //not using the macro to save an associated lookup
-		cached_icon = list()
-		icon_states_cache[icon] = cached_icon
-	var/cached_appearance = stringbro.appearance
-	cached_icon["[iconstate]"] = cached_appearance
-	return cached_appearance
+	return stringbro.appearance
 
 /proc/icon2appearance(icon)
 	var/static/image/iconbro = new()
-	var/list/icon_cache = SSoverlays.overlay_icon_cache
-	. = icon_cache[icon]
-	if (!.)
-		iconbro.icon = icon
-		. = iconbro.appearance
-		icon_cache[icon] = .
+	iconbro.icon = icon
+	return iconbro.appearance
 
 /atom/proc/build_appearance_list(old_overlays)
 	var/static/image/appearance_bro = new()
@@ -113,9 +94,8 @@ SUBSYSTEM_DEF(overlays)
 /atom/proc/cut_overlays(priority = FALSE)
 	LAZYINITLIST(priority_overlays)
 	LAZYINITLIST(remove_overlays)
-	LAZYINITLIST(add_overlays)
 	remove_overlays = overlays.Copy()
-	add_overlays.Cut()
+	add_overlays = null
 
 	if(priority)
 		priority_overlays.Cut()
@@ -128,7 +108,7 @@ SUBSYSTEM_DEF(overlays)
 	if(!overlays)
 		return
 	overlays = build_appearance_list(overlays)
-	LAZYINITLIST(add_overlays) //always initialized after this point
+	LAZYINITLIST(add_overlays)
 	LAZYINITLIST(priority_overlays)
 	LAZYINITLIST(remove_overlays)
 	var/a_len = add_overlays.len
@@ -149,6 +129,7 @@ SUBSYSTEM_DEF(overlays)
 	//If not already queued and there is work to be done
 	if(NOT_QUEUED_ALREADY && (fa_len != a_len || fr_len != r_len || fp_len != p_len))
 		QUEUE_FOR_COMPILE
+	UNSETEMPTY(add_overlays)
 
 /atom/proc/add_overlay(list/overlays, priority = FALSE)
 	if(!overlays)

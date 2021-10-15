@@ -45,57 +45,83 @@
 	flags_pass = PASSTABLE|PASSMOB|PASSGRILLE
 	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
+	var/acid_damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE
+	/// Who created that spray
+	var/mob/xeno_owner
 
-/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS) //Self-deletes
+/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE, mob/living/_xeno_owner) //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, duration + rand(0, 2 SECONDS))
+	acid_damage = damage
+	xeno_owner = _xeno_owner
+	RegisterSignal(xeno_owner, COMSIG_PARENT_QDELETING, .proc/clean_mob_owner)
+	RegisterSignal(loc, COMSIG_ATOM_ENTERED, .proc/atom_enter_turf)
+	TIMER_COOLDOWN_START(src, COOLDOWN_PARALYSE_ACID, 5)
 
 /obj/effect/xenomorph/spray/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
+	xeno_owner = null
 	return ..()
 
-/obj/effect/xenomorph/spray/Crossed(atom/movable/AM)
-	. = ..()
-	if(ishuman(AM))
-		var/mob/living/carbon/human/H = AM
-		var/armor_block
-		if(TIMER_COOLDOWN_CHECK(H, COOLDOWN_ACID))
-			return
-		TIMER_COOLDOWN_START(H, COOLDOWN_ACID, 1 SECONDS)
-		if(!H.lying_angle)
-			to_chat(H, "<span class='danger'>Your feet scald and burn! Argh!</span>")
-			if(!(H.species.species_flags & NO_PAIN))
-				H.emote("pain")
-			H.next_move_slowdown += slow_amt
-			var/datum/limb/affecting = H.get_limb("l_foot")
-			armor_block = H.run_armor_check(affecting, "acid")
-			if(istype(affecting) && affecting.take_damage_limb(0, rand(14, 18), FALSE, FALSE, armor_block, TRUE))
-				UPDATEHEALTH(H)
-				H.UpdateDamageIcon()
-			affecting = H.get_limb("r_foot")
-			armor_block = H.run_armor_check(affecting, "acid")
-			if(istype(affecting) && affecting.take_damage_limb(0, rand(14, 18), FALSE, FALSE, armor_block, TRUE))
-				UPDATEHEALTH(H)
-				H.UpdateDamageIcon()
-		else
-			armor_block = H.run_armor_check("chest", "acid")
-			H.take_overall_damage(0, rand(12, 14), armor_block)
-			UPDATEHEALTH(H)
-			to_chat(H, "<span class='danger'>You are scalded by the burning acid!</span>")
+/// Signal handler to check if an human is entering the acid spray turf
+/obj/effect/xenomorph/spray/proc/atom_enter_turf(datum/source, atom/movable/moved_in, direction)
+	SIGNAL_HANDLER
+	if(!ishuman(moved_in))
+		return
+	var/mob/living/carbon/human/victim = moved_in
+	if(victim.flags_pass & HOVERING)
+		return
+	victim.acid_spray_entered(null, src, acid_damage, slow_amt)
+
+/// Set xeno_owner to null to avoid hard del
+/obj/effect/xenomorph/spray/proc/clean_mob_owner()
+	UnregisterSignal(xeno_owner, COMSIG_PARENT_QDELETING)
+	xeno_owner = null
+
+/// Signal handler to burn and maybe stun the human entering the acid spray
+/mob/living/carbon/human/proc/acid_spray_entered(datum/source, obj/effect/xenomorph/spray/acid_spray, acid_damage, slow_amt)
+	SIGNAL_HANDLER
+	if(CHECK_MULTIPLE_BITFIELDS(flags_pass, HOVERING))
+		return
+
+	if(acid_spray.xeno_owner && TIMER_COOLDOWN_CHECK(acid_spray, COOLDOWN_PARALYSE_ACID)) //To prevent being able to walk "over" acid sprays
+		acid_spray_act(acid_spray.xeno_owner)
+		return
+
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
+		return
+
+	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 1 SECONDS)
+	if(HAS_TRAIT(src, TRAIT_FLOORED))
+		INVOKE_ASYNC(src, .proc/take_overall_damage_armored, acid_damage, BURN, "acid", FALSE, FALSE, TRUE)
+		to_chat(src, span_danger("You are scalded by the burning acid!"))
+		return
+	to_chat(src, span_danger("Your feet scald and burn! Argh!"))
+	if(!(species.species_flags & NO_PAIN))
+		INVOKE_ASYNC(src, .proc/emote, "pain")
+
+	next_move_slowdown += slow_amt
+	var/datum/limb/affecting = get_limb(BODY_ZONE_PRECISE_L_FOOT)
+	var/armor_block = run_armor_check(affecting, "acid")
+	INVOKE_ASYNC(affecting, /datum/limb/.proc/take_damage_limb, 0, acid_damage/2, FALSE, FALSE, armor_block)
+
+	affecting = get_limb(BODY_ZONE_PRECISE_R_FOOT)
+	armor_block = run_armor_check(affecting, "acid")
+	INVOKE_ASYNC(affecting, /datum/limb/.proc/take_damage_limb, 0, acid_damage/2, FALSE, FALSE, armor_block, TRUE)
 
 
 /obj/effect/xenomorph/spray/process()
 	var/turf/T = loc
 	if(!istype(T))
-		STOP_PROCESSING(SSobj, src)
 		qdel(src)
 		return
 
-	for(var/mob/living/carbon/M in loc)
-		if(isxeno(M))
-			continue
-		Crossed(M)
+	SEND_SIGNAL(T, COMSIG_ATOM_ACIDSPRAY_ACT, src) //Signal the turf
+	for(var/H in T)
+
+		var/atom/A = H
+		SEND_SIGNAL(A, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_damage, slow_amt)
 
 //Medium-strength acid
 /obj/effect/xenomorph/acid
@@ -107,42 +133,44 @@
 	anchored = TRUE
 	var/atom/acid_t
 	var/ticks = 0
-	var/acid_strength = 1 //100% speed, normal
+	var/acid_strength = 0.004 //base speed, normal
 	var/acid_damage = 125 //acid damage on pick up, subject to armor
+	var/strength_t
 
 //Sentinel weakest acid
 /obj/effect/xenomorph/acid/weak
 	name = "weak acid"
-	acid_strength = 2.5 //250% normal speed
+	acid_strength = 0.0016 //40% of base speed
 	acid_damage = 75
 	icon_state = "acid_weak"
 
 //Superacid
 /obj/effect/xenomorph/acid/strong
 	name = "strong acid"
-	acid_strength = 0.4 //20% normal speed
+	acid_strength = 0.01 //250% normal speed
 	acid_damage = 175
 	icon_state = "acid_strong"
 
 /obj/effect/xenomorph/acid/Initialize(mapload, target)
 	. = ..()
 	acid_t = target
-	var/strength_t = isturf(acid_t) ? 8:4 // Turf take twice as long to take down.
-	tick(strength_t)
+	strength_t = isturf(acid_t) ? 8:4 // Turf take twice as long to take down.
+	START_PROCESSING(SSslowprocess, src)
 
 /obj/effect/xenomorph/acid/Destroy()
+	STOP_PROCESSING(SSslowprocess, src)
 	acid_t = null
-	. = ..()
+	return ..()
 
-/obj/effect/xenomorph/acid/proc/tick(strength_t)
-	set waitfor = 0
+/obj/effect/xenomorph/acid/process(delta_time)
 	if(!acid_t || !acid_t.loc)
 		qdel(src)
 		return
 	if(loc != acid_t.loc && !isturf(acid_t))
 		loc = acid_t.loc
-	if(++ticks >= strength_t)
-		visible_message("<span class='xenodanger'>[acid_t] collapses under its own weight into a puddle of goop and undigested debris!</span>")
+	ticks += delta_time * acid_strength
+	if(ticks >= strength_t)
+		visible_message(span_xenodanger("[acid_t] collapses under its own weight into a puddle of goop and undigested debris!"))
 		playsound(src, "acid_hit", 25)
 
 		if(istype(acid_t, /turf))
@@ -170,10 +198,22 @@
 		return
 
 	switch(strength_t - ticks)
-		if(6) visible_message("<span class='xenowarning'>\The [acid_t] is barely holding up against the acid!</span>")
-		if(4) visible_message("<span class='xenowarning'>\The [acid_t]\s structure is being melted by the acid!</span>")
-		if(2) visible_message("<span class='xenowarning'>\The [acid_t] is struggling to withstand the acid!</span>")
-		if(0 to 1) visible_message("<span class='xenowarning'>\The [acid_t] begins to crumble under the acid!</span>")
+		if(6) visible_message(span_xenowarning("\The [acid_t] is barely holding up against the acid!"))
+		if(4) visible_message(span_xenowarning("\The [acid_t]\s structure is being melted by the acid!"))
+		if(2) visible_message(span_xenowarning("\The [acid_t] is struggling to withstand the acid!"))
+		if(0 to 1) visible_message(span_xenowarning("\The [acid_t] begins to crumble under the acid!"))
 
-	sleep(rand(200,300) * (acid_strength))
-	.()
+/obj/effect/xenomorph/warp_shadow
+	name = "warp shadow"
+	desc = "A strange rift in space and time. You probably shouldn't touch this."
+	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon_state = "Wraith Walking"
+	color = COLOR_BLACK
+	alpha = 128 //Translucent
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+
+/obj/effect/xenomorph/warp_shadow/Initialize(mapload, target)
+	. = ..()
+	add_filter("wraith_warp_shadow", 4, list("type" = "blur", 5)) //Cool filter appear

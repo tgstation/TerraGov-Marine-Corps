@@ -16,9 +16,9 @@
 /client/proc/set_macros()
 	set waitfor = FALSE
 
-	keys_held.Cut()
-	for(var/i in 1 to HELD_KEY_BUFFER_LENGTH)
-		keys_held += null
+	//Reset the buffer
+	for(var/key in keys_held)
+		keyUp(key)
 
 	erase_all_macros()
 

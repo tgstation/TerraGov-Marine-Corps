@@ -8,15 +8,16 @@
 	var/window_options = "can_close=1;can_minimize=1;can_maximize=0;can_resize=1;titlebar=1;" // window option is set using window_id
 	var/stylesheets[0]
 	var/scripts[0]
-	var/title_image
 	var/head_elements
 	var/body_elements
 	var/head_content = ""
 	var/content = ""
+	var/static/datum/asset/simple/namespaced/common/common_asset = get_asset_datum(/datum/asset/simple/namespaced/common)
 
 
 /datum/browser/New(nuser, nwindow_id, ntitle = 0, nwidth = 0, nheight = 0, atom/nref = null)
 	user = nuser
+	RegisterSignal(user, COMSIG_PARENT_QDELETING, .proc/clean_browser)
 	window_id = nwindow_id
 	if(ntitle)
 		title = format_text(ntitle)
@@ -26,8 +27,15 @@
 		height = nheight
 	if(nref)
 		ref = nref
-	add_stylesheet("common", 'html/browser/common.css') // this CSS sheet is common to all UIs
 
+///Signal handler to clean the user
+/datum/browser/proc/clean_browser()
+	SIGNAL_HANDLER
+	qdel(src)
+
+/datum/browser/Destroy(force, ...)
+	user = null
+	return ..()
 
 /datum/browser/proc/add_head_content(nhead_content)
 	head_content = nhead_content
@@ -37,19 +45,20 @@
 	window_options = nwindow_options
 
 
-/datum/browser/proc/set_title_image(ntitle_image)
-	//title_image = ntitle_image
-
-
 /datum/browser/proc/add_stylesheet(name, file)
-	stylesheets["[ckey(name)].css"] = file
-	register_asset("[ckey(name)].css", file)
+	if (istype(name, /datum/asset/spritesheet))
+		var/datum/asset/spritesheet/sheet = name
+		stylesheets["spritesheet_[sheet.name].css"] = "data/spritesheets/[sheet.name]"
+	else
+		var/asset_name = "[name].css"
+		stylesheets[asset_name] = file
 
+		if (!SSassets.cache[asset_name])
+			SSassets.transport.register_asset(asset_name, file)
 
 /datum/browser/proc/add_script(name, file)
 	scripts["[ckey(name)].js"] = file
-	register_asset("[ckey(name)].js", file)
-
+	SSassets.transport.register_asset("[ckey(name)].js", file)
 
 /datum/browser/proc/set_content(ncontent)
 	content = ncontent
@@ -61,15 +70,12 @@
 
 /datum/browser/proc/get_header()
 	var/file
+	head_content += "<link rel='stylesheet' type='text/css' href='[common_asset.get_url_mappings()["common.css"]]'>"
 	for(file in stylesheets)
-		head_content += "<link rel='stylesheet' type='text/css' href='[file]'>"
+		head_content += "<link rel='stylesheet' type='text/css' href='[SSassets.transport.get_asset_url(file)]'>"
 
-	for(file in scripts)
-		head_content += "<script type='text/javascript' src='[file]'></script>"
-
-	var/title_attributes = "class='uiTitle'"
-	if(title_image)
-		title_attributes = "class='uiTitle icon' style='background-image: url([title_image]);'"
+	for (file in scripts)
+		head_content += "<script type='text/javascript' src='[SSassets.transport.get_asset_url(file)]'></script>"
 
 	return {"<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -80,7 +86,7 @@
 	</head>
 	<body scroll=auto>
 		<div class='uiWrapper'>
-			[title ? "<div class='uiTitleWrapper'><div [title_attributes]><tt>[title]</tt></div></div>" : ""]
+			[title ? "<div class='uiTitleWrapper'><div class='uiTitle'><tt>[title]</tt></div></div>" : ""]
 			<div class='uiContent'>
 	"}
 
@@ -105,15 +111,16 @@
 /datum/browser/proc/open(use_onclose = TRUE)
 	if(isnull(window_id))	//null check because this can potentially nuke goonchat
 		stack_trace("Browser [title] tried to open with a null ID")
-		to_chat(user, "<span class='userdanger'>The [title] browser you tried to open failed a sanity check! Please report this on github!</span>")
+		to_chat(user, span_userdanger("The [title] browser you tried to open failed a sanity check! Please report this on github!"))
 		return
 	var/window_size = ""
 	if(width && height)
 		window_size = "size=[width]x[height];"
+	common_asset.send(user)
 	if(length(stylesheets))
-		send_asset_list(user, stylesheets, verify=FALSE)
+		SSassets.transport.send_assets(user, stylesheets)
 	if(length(scripts))
-		send_asset_list(user, scripts, verify=FALSE)
+		SSassets.transport.send_assets(user, scripts)
 	user << browse(get_content(), "window=[window_id];[window_size][window_options]")
 	if(use_onclose)
 		setup_onclose()
@@ -175,33 +182,40 @@
 	close()
 
 
-//designed as a drop in replacement for alert(); functions the same. (outside of needing User specified)
+/**
+ * **DEPRECATED: USE tgui_alert(...) INSTEAD**
+ *
+ * Designed as a drop in replacement for alert(); functions the same. (outside of needing User specified)
+ * Arguments:
+ * * User - The user to show the alert to.
+ * * Message - The textual body of the alert.
+ * * Title - The title of the alert's window.
+ * * Button1 - The first button option.
+ * * Button2 - The second button option.
+ * * Button3 - The third button option.
+ * * StealFocus - Boolean operator controlling if the alert will steal the user's window focus.
+ * * Timeout - The timeout of the window, after which no responses will be valid.
+ */
 /proc/tgalert(mob/User, Message, Title, Button1="Ok", Button2, Button3, StealFocus = 1, Timeout = 6000)
 	if(!User)
 		User = usr
-	switch(askuser(User, Message, Title, Button1, Button2, Button3, StealFocus, Timeout))
-		if(1)
-			return Button1
-		if(2)
-			return Button2
-		if(3)
-			return Button3
-
-
-//Same shit, but it returns the button number, could at some point support unlimited button amounts.
-/proc/askuser(mob/User,Message, Title, Button1="Ok", Button2, Button3, StealFocus = 1, Timeout = 6000)
 	if(!istype(User))
 		if(istype(User, /client/))
 			var/client/C = User
 			User = C.mob
 		else
 			return
+	// Get user's response using a modal
 	var/datum/browser/modal/alert/A = new(User, Message, Title, Button1, Button2, Button3, StealFocus, Timeout)
 	A.open()
 	A.wait()
-	if(A.selectedbutton)
-		return A.selectedbutton
-
+	switch(A.selectedbutton)
+		if(1)
+			return Button1
+		if(2)
+			return Button2
+		if(3)
+			return Button3
 
 /datum/browser/modal
 	var/opentime = 0
@@ -450,11 +464,6 @@
 	A.wait()
 	if(A.selectedbutton)
 		return list("button" = A.selectedbutton, "settings" = A.settings)
-
-// This will allow you to show an icon in the browse window
-// This is added to mob so that it can be used without a reference to the browser object
-// There is probably a better place for this...
-/mob/proc/browse_rsc_icon(icon, icon_state, dir = -1)
 
 
 // Registers the on-close verb for a browse window (client/verb/.windowclose)

@@ -101,7 +101,7 @@
 
 /mob/living/simple_animal/hostile/syndicate/melee/bullet_act(obj/projectile/Proj)
 	if(prob(projectile_deflect_chance))
-		visible_message("<span class='danger'>[src] blocks [Proj] with its shield!</span>")
+		visible_message(span_danger("[src] blocks [Proj] with its shield!"))
 		return FALSE
 	return ..()
 
@@ -166,7 +166,7 @@
 	rapid = 2
 	icon_state = "syndicate_smg"
 	icon_living = "syndicate_smg"
-	projectilesound = 'sound/weapons/guns/fire/smg.ogg'
+	projectilesound = 'sound/weapons/guns/fire/smg_light.ogg'
 
 
 /mob/living/simple_animal/hostile/syndicate/ranged/smg/pilot

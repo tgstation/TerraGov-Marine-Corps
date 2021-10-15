@@ -19,8 +19,8 @@
 		if(is_ventcrawling)
 			return FALSE
 		set_resting(TRUE, FALSE)
-	else if(action_busy)
-		to_chat(src, "<span class='warning'>You are still in the process of standing up.</span>")
+	else if(do_actions)
+		to_chat(src, span_warning("You are still in the process of standing up."))
 		return
 	else if(do_mob(src, src, 2 SECONDS, ignore_flags = (IGNORE_LOC_CHANGE|IGNORE_HAND)))
 		get_up()
@@ -29,7 +29,7 @@
 	if(!incapacitated(TRUE))
 		set_resting(FALSE, FALSE)
 	else
-		to_chat(src, "<span class='notice'>You fail to get up.</span>")
+		to_chat(src, span_notice("You fail to get up."))
 
 /mob/living/proc/set_resting(rest, silent = TRUE)
 	if(status_flags & INCORPOREAL)
@@ -41,11 +41,11 @@
 	if(resting)
 		ADD_TRAIT(src, TRAIT_FLOORED, RESTING_TRAIT)
 		if(!silent)
-			to_chat(src, "<span class='notice'>You are now resting.</span>")
+			to_chat(src, span_notice("You are now resting."))
 	else
 		REMOVE_TRAIT(src, TRAIT_FLOORED, RESTING_TRAIT)
 		if(!silent)
-			to_chat(src, "<span class='notice'>You get up.</span>")
+			to_chat(src, span_notice("You get up."))
 	update_resting()
 
 
@@ -61,16 +61,13 @@
 		ghostize(TRUE)
 		return
 
-	if(alert(src, "Are you sure you want to ghost?\n(You are alive. If you ghost, you won't be able to return to your body. You can't change your mind so choose wisely!)", "Ghost", "Yes", "No") != "Yes")
+	if(tgui_alert(src, "Are you sure you want to ghost?\n(You are alive. If you ghost, you won't be able to return to your body. You can't change your mind so choose wisely!)", "Ghost", list("Yes", "No")) != "Yes")
 		return
 
 	set_resting(TRUE)
-	log_game("[key_name(usr)] has ghosted.")
+	log_game("[key_name(usr)] has ghosted at [AREACOORD(usr)].")
 	message_admins("[ADMIN_TPMONTY(usr)] has ghosted.")
-	var/mob/dead/observer/ghost = ghostize(FALSE)
-	if(ghost)
-		ghost.timeofdeath = world.time
-
+	ghostize(FALSE)
 
 /mob/living/verb/point_to(atom/A in view(client.view, loc))
 	set name = "Point To"

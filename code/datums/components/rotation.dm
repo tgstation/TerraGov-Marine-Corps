@@ -1,9 +1,9 @@
-#define ROTATION_ALTCLICK			(1<<0)
-#define ROTATION_WRENCH				(1<<1)
-#define ROTATION_VERBS				(1<<2)
-#define ROTATION_COUNTERCLOCKWISE	(1<<3)
-#define ROTATION_CLOCKWISE			(1<<4)
-#define ROTATION_FLIP				(1<<5)
+#define ROTATION_ALTCLICK (1<<0)
+#define ROTATION_WRENCH (1<<1)
+#define ROTATION_VERBS (1<<2)
+#define ROTATION_COUNTERCLOCKWISE (1<<3)
+#define ROTATION_CLOCKWISE (1<<4)
+#define ROTATION_FLIP (1<<5)
 
 /datum/component/simple_rotation
 	var/datum/callback/can_user_rotate //Checks if user can rotate
@@ -98,7 +98,6 @@
 	QDEL_NULL(can_user_rotate)
 	QDEL_NULL(can_be_rotated)
 	QDEL_NULL(after_rotation)
-	//Signals + verbs removed via UnRegister
 	return ..()
 
 
@@ -108,17 +107,20 @@
 
 
 /datum/component/simple_rotation/proc/ExamineMessage(datum/source, mob/user)
+	SIGNAL_HANDLER
 	if(rotation_flags & ROTATION_ALTCLICK)
-		to_chat(user, "<span class='notice'>Alt-click to rotate it clockwise.</span>")
+		to_chat(user, span_notice("Alt-click to rotate it clockwise."))
 
 
 /datum/component/simple_rotation/proc/HandRot(datum/source, mob/user, rotation = default_rotation_direction)
+	SIGNAL_HANDLER
 	if(!can_be_rotated.Invoke(user, rotation) || !can_user_rotate.Invoke(user, rotation))
 		return
 	BaseRot(user, rotation)
 
 
 /datum/component/simple_rotation/proc/WrenchRot(datum/source, obj/item/I, mob/living/user)
+	SIGNAL_HANDLER
 	if(!can_be_rotated.Invoke(user,default_rotation_direction) || !can_user_rotate.Invoke(user,default_rotation_direction))
 		return
 	if(I.tool_behaviour == TOOL_WRENCH)
@@ -152,7 +154,7 @@
 
 
 /datum/component/simple_rotation/proc/default_after_rotation(mob/user, rotation_type)
-	to_chat(user,"<span class='notice'>You [rotation_type == ROTATION_FLIP ? "flip" : "rotate"] [parent].</span>")
+	user.balloon_alert(user, "[rotation_type == ROTATION_FLIP ? "flipped" : "rotated"] [parent].")
 
 
 /atom/movable/proc/simple_rotate_clockwise()

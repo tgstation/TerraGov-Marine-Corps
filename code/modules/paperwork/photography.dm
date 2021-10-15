@@ -116,7 +116,7 @@
 	if(in_range(src, user) || isobserver(user))
 		show(user)
 	else
-		to_chat(user, "<span class='warning'>You need to get closer to get a good look at this photo!</span>")
+		to_chat(user, span_warning("You need to get closer to get a good look at this photo!"))
 
 
 /obj/item/photo/proc/set_picture(datum/picture/P, setname, setdesc, name_override = FALSE)
@@ -137,7 +137,7 @@
 
 /obj/item/photo/proc/show(mob/user)
 	if(!istype(picture) || !picture.picture_image)
-		to_chat(user, "<span class='warning'>[src] seems to be blank...</span>")
+		to_chat(user, span_warning("[src] seems to be blank..."))
 		return
 	user << browse_rsc(picture.picture_image, "tmp_photo.png")
 	user << browse("<html><head><title>[name]</title></head>" \
@@ -164,7 +164,7 @@
 	desc = "A polaroid camera."
 	icon_state = "camera"
 	item_state = "camera"
-	light_color = LIGHT_COLOR_WHITE
+	light_color = COLOR_WHITE
 	light_power = FLASH_LIGHT_POWER
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
@@ -212,11 +212,11 @@
 
 	if(istype(I, /obj/item/camera_film))
 		if(pictures_left)
-			to_chat(user, "<span class='notice'>[src] still has some film in it!</span>")
+			to_chat(user, span_notice("[src] still has some film in it!"))
 			return
 		if(!user.temporarilyRemoveItemFromInventory(I))
 			return
-		to_chat(user, "<span class='notice'>You insert [I] into [src].</span>")
+		to_chat(user, span_notice("You insert [I] into [src]."))
 		qdel(I)
 		pictures_left = pictures_max
 
@@ -317,7 +317,7 @@
 	blending = FALSE
 
 
-/obj/item/camera/proc/after_picture(mob/user, datum/picture/picture, proximity_flag)
+/obj/item/camera/proc/after_picture(mob/user, datum/picture/picture, has_proximity)
 	printpicture(user, picture)
 
 
@@ -326,10 +326,10 @@
 	if(in_range(src, user)) //needed because of TK
 		user.put_in_hands(p)
 		pictures_left--
-		to_chat(user, "<span class='notice'>[pictures_left] photos left.</span>")
+		to_chat(user, span_notice("[pictures_left] photos left."))
 		var/customise = "No"
 		if(can_customise)
-			customise = alert(user, "Do you want to customize the photo?", "Customization", "Yes", "No")
+			customise = tgui_alert(user, "Do you want to customize the photo?", "Customization", list("Yes", "No"))
 		if(customise == "Yes")
 			var/name1 = stripped_input(user, "Set a name for this photo, or leave blank. 32 characters max.", "Name", max_length = 32)
 			var/desc1 = stripped_input(user, "Set a description to add to photo, or leave blank. 128 characters max.", "Caption", max_length = 128)

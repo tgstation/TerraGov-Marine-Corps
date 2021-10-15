@@ -1,16 +1,3 @@
-/mob/living/carbon/proc/getHalLoss()
-	return halloss
-
-/mob/living/carbon/adjustHalLoss(amount)
-	if(status_flags & GODMODE)
-		return FALSE	//godmode
-	halloss = clamp(halloss + amount, 0, maxHealth * 2)
-
-/mob/living/carbon/proc/setHalLoss(amount)
-	if(status_flags & GODMODE)
-		return FALSE	//godmode
-	halloss = amount
-
 /mob/living/carbon/proc/getTraumatic_Shock()
 	return traumatic_shock
 
@@ -87,7 +74,7 @@
 	if(ishuman(src))
 		var/mob/living/carbon/human/M = src
 		for(var/datum/limb/O in M.limbs)
-			if((O.limb_status & LIMB_DESTROYED) && !(O.limb_status & LIMB_AMPUTATED))
+			if(((O.limb_status & LIMB_DESTROYED) && !(O.limb_status & LIMB_AMPUTATED)) || O.limb_status & LIMB_NECROTIZED)
 				traumatic_shock += 40
 			else if(O.limb_status & LIMB_BROKEN || O.surgery_open_stage)
 				if(O.limb_status & LIMB_SPLINTED || O.limb_status & LIMB_STABILIZED)
@@ -108,26 +95,10 @@
 	traumatic_shock += reagent_pain_modifier
 	traumatic_shock = max(0, traumatic_shock)	//stuff below this has the potential to mask damage
 
-	traumatic_shock += 1.5 * halloss //not affected by reagent shock reduction
+	traumatic_shock += 1.5 //not affected by reagent shock reduction
 
 
 	return traumatic_shock
 
 /mob/living/carbon/proc/handle_shock()
 	updateshock()
-
-/mob/living/carbon/proc/halloss_recovery()
-	if(stat == DEAD)
-		setHalLoss(0)
-		return
-	var/rate = BASE_HALLOSS_RECOVERY_RATE
-
-	if(lying_angle || last_move_intent < world.time - 20) //If we're standing still or knocked down we benefit from the downed halloss rate
-		if(resting || IsSleeping()) //we're deliberately resting, comfortably taking a breather
-			rate = REST_HALLOSS_RECOVERY_RATE
-		else
-			rate = DOWNED_HALLOSS_RECOVERY_RATE
-	else if(m_intent == MOVE_INTENT_WALK)
-		rate = WALK_HALLOSS_RECOVERY_RATE
-
-	adjustHalLoss(rate)

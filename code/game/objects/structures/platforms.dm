@@ -31,28 +31,31 @@
 		if(WEST)
 			I.pixel_x = -16
 	overlays += I
+	var/static/list/connections = list(
+		COMSIG_ATOM_EXIT = .proc/on_try_exit
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
-/obj/structure/platform/CheckExit(atom/movable/O, turf/target)
-	if(O && O.throwing)
-		return 1
+/obj/structure/platform/proc/on_try_exit(datum/source, atom/movable/O, direction, list/knownblockers)
+	SIGNAL_HANDLER
+	if(O.throwing)
+		return NONE
+	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (O.status_flags & INCORPOREAL))
+		return NONE
+	knownblockers += src
+	return COMPONENT_ATOM_BLOCK_EXIT
 
-	if(((flags_atom & ON_BORDER) && get_dir(loc, target) == dir))
-		return 0
-	else
-		return 1
-
-/obj/structure/platform/CanPass(atom/movable/mover, turf/target)
+/obj/structure/platform/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(mover && mover.throwing)
-		return 1
+		return TRUE
 
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
-		return 1
+		return TRUE
 
-	if(!(flags_atom & ON_BORDER) || get_dir(loc, target) == dir)
-		return 0
-	else
-		return 1
+	if(!(flags_atom & ON_BORDER) || !(get_dir(loc, target) == dir))
+		return TRUE
 
 obj/structure/platform_decoration
 	name = "platform"

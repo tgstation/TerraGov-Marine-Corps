@@ -9,11 +9,10 @@
 	var/mob_min = 1
 	var/dispatch_message = "An encrypted signal has been received from a nearby vessel. Stand by." //Message displayed to marines once the signal is finalized.
 	var/objectives = "" //Objectives to display to the members.
-	var/probability = 0 //So we can give different ERTs a different probability.
 	var/list/datum/mind/members = list() //Currently-joined members.
 	var/list/datum/mind/candidates = list() //Potential candidates for enlisting.
 	var/mob/living/carbon/leader = null
-	var/shuttle_id = "distress"
+	var/shuttle_id = SHUTTLE_DISTRESS
 	var/obj/docking_port/mobile/ert/shuttle
 	var/auto_shuttle_launch = FALSE //Useful for xenos that can't interact with the shuttle console.
 	var/medics = 0
@@ -21,6 +20,15 @@
 	var/candidate_timer
 	var/cooldown_timer
 	var/spawn_type = /mob/living/carbon/human
+	///The base probability of that ERT spawning, it is changing with monitor state
+	var/base_probability = 0
+	/**
+	 * How the current_weight change with the monitor state. A big positive number will make the current weight go down drasticly when marines are winning
+	 * A small negative number will make the current weight get smaller when xenos are winning.
+	 * All effects are symetric (if it goes down when marine are winning, it will go up when xeno are winning)
+	 * if the alignement_factor factor is 0, it will proc a specific case
+	 */
+	var/alignement_factor = 0
 
 /datum/game_mode/proc/initialize_emergency_calls()
 	if(length(all_calls)) //It's already been set up.
@@ -39,23 +47,30 @@
 
 //Randomizes and chooses a call datum.
 /datum/game_mode/proc/get_random_call()
-	var/datum/emergency_call/chosen_call
-	var/list/valid_calls = list()
-
+	var/normalised_monitor_state = SSmonitor.current_points / XENOS_LOSING_THRESHOLD
+	var/list/calls_weighted = list()
+	var/total_weight = 0
 	for(var/datum/emergency_call/E in all_calls) //Loop through all potential candidates
-		if(E.probability < 1) //Those that are meant to be admin-only
+		if(E.base_probability <= 0)
 			continue
+		var/weight = E.get_actualised_weight(normalised_monitor_state)
+		calls_weighted[E] = weight
+		total_weight += weight
+	var/datum/emergency_call/chosen = pickweight(calls_weighted)
+	message_admins("[chosen.name] was randomly picked from all emergency calls possible with a probability of [(calls_weighted[chosen] / total_weight) * 100]")
+	return chosen
 
-		valid_calls.Add(E)
+/**
+ * Return a new current_weight using the base probability, the Alignement factor of the ERT and the monitor state
+ * monitor_state : the normalised state of the monitor. If it's equal to -1, monitor is barely in its MARINE_LOSING state.
+ * A +2.5 value mean we are beyond the XENO_DELAYING state, aka marines have crushed the xenos
+ */
+/datum/emergency_call/proc/get_actualised_weight(monitor_state)
+	var/probability_direction = (monitor_state * alignement_factor)
+	if(probability_direction >= 0)
+		return base_probability * (1+probability_direction)
+	return base_probability / (1-probability_direction)
 
-		if(prob(E.probability))
-			chosen_call = E
-			break
-
-	if(!istype(chosen_call))
-		chosen_call = pick(valid_calls)
-
-	return chosen_call
 
 /datum/emergency_call/proc/show_join_message()
 	if(!mob_max || !SSticker?.mode) //Not a joinable distress call.
@@ -63,8 +78,8 @@
 
 	for(var/i in GLOB.observer_list)
 		var/mob/dead/observer/M = i
-		to_chat(M, "<br><font size='3'><span class='attack'>An emergency beacon has been activated. Use the <B>Ghost > <a href='byond://?src=[REF(M)];join_ert=1'>Join Response Team</a></b> verb to join!</span></font><br>")
-		to_chat(M, "<span class='attack'>You cannot join if you have Ghosted before this message.</span><br>")
+		to_chat(M, "<br><font size='3'>[span_attack("An emergency beacon has been activated. Use the <B>Ghost > <a href='byond://?src=[REF(M)];join_ert=1'>Join Response Team</a></b> verb to join!")]</font><br>")
+		to_chat(M, "[span_attack("You cannot join if you have Ghosted before this message.")]<br>")
 
 
 /datum/game_mode/proc/activate_distress(datum/emergency_call/chosen_call)
@@ -86,27 +101,27 @@
 	var/datum/emergency_call/distress = SSticker?.mode?.picked_call //Just to simplify things a bit
 
 	if(is_banned_from(usr.ckey, ROLE_ERT))
-		to_chat(usr, "<span class='danger'>You are jobbanned from the emergency reponse team!</span>")
+		to_chat(usr, span_danger("You are jobbanned from the emergency reponse team!"))
 		return
 
 	if(!istype(distress) || !SSticker.mode.waiting_for_candidates || distress.mob_max < 1)
-		to_chat(usr, "<span class='warning'>No distress beacons that need candidates are active. You will be notified if that changes.</span>")
+		to_chat(usr, span_warning("No distress beacons that need candidates are active. You will be notified if that changes."))
 		return
 
-	var/deathtime = world.time - usr.timeofdeath
+	var/deathtime = world.time - GLOB.key_to_time_of_death[key]
 
 	if(deathtime < 600 && !check_other_rights(usr.client, R_ADMIN, FALSE)) //They have ghosted after the announcement.
-		to_chat(usr, "<span class='warning'>You ghosted too recently. Try again later.</span>")
+		to_chat(usr, span_warning("You ghosted too recently. Try again later."))
 		return
 
 	if(usr.mind in distress.candidates)
-		to_chat(usr, "<span class='warning'>You are already a candidate for this emergency response team.</span>")
+		to_chat(usr, span_warning("You are already a candidate for this emergency response team."))
 		return
 
 	if(distress.add_candidate(usr))
-		to_chat(usr, "<span class='boldnotice'>You are now a candidate in the emergency response team! If there are enough candidates, you may be picked to be part of the team.</span>")
+		to_chat(usr, span_boldnotice("You are now a candidate in the emergency response team! If there are enough candidates, you may be picked to be part of the team."))
 	else
-		to_chat(usr, "<span class='warning'>Something went wrong while adding you into the candidate list!</span>")
+		to_chat(usr, span_warning("Something went wrong while adding you into the candidate list!"))
 
 /datum/emergency_call/proc/reset()
 	if(candidate_timer)
@@ -155,11 +170,11 @@
 			continue
 		if(M.current) //If they still have a body
 			if(!isaghost(M.current) && M.current.stat != DEAD) // and not dead or admin ghosting,
-				to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team because you aren't dead.</span>")
+				to_chat(M.current, span_warning("You didn't get selected to join the distress team because you aren't dead."))
 				continue
 		if(name == "Xenomorphs" && is_banned_from(ckey(M.key), ROLE_XENOMORPH))
 			if(M.current)
-				to_chat(M, "<span class='warning'>You didn't get selected to join the distress team because you are jobbanned from Xenomorph.</span>")
+				to_chat(M, span_warning("You didn't get selected to join the distress team because you are jobbanned from Xenomorph."))
 			continue
 		valid_candidates += M
 
@@ -180,7 +195,7 @@
 		cooldown_timer = addtimer(CALLBACK(src, .proc/reset), COOLDOWN_COMM_REQUEST, TIMER_STOPPABLE)
 		return
 
-	var/datum/mind/picked_candidates = list()
+	var/list/datum/mind/picked_candidates = list()
 	if(length(valid_candidates) > mob_max)
 		for(var/i in 1 to mob_max)
 			if(!length(valid_candidates)) //We ran out of candidates.
@@ -189,7 +204,7 @@
 
 		for(var/datum/mind/M in valid_candidates)
 			if(M.current)
-				to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team. Better luck next time!</span>")
+				to_chat(M.current, span_warning("You didn't get selected to join the distress team. Better luck next time!"))
 		message_admins("Distress beacon: [length(valid_candidates)] valid candidates were not selected.")
 	else
 		picked_candidates = valid_candidates // save some time

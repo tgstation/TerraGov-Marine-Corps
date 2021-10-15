@@ -214,11 +214,6 @@
 	icon_state = "containment_corner_4"
 
 
-
-
-
-
-
 //Outerhull
 
 /turf/open/floor/mainship_hull
@@ -230,7 +225,14 @@
 /turf/open/floor/mainship_hull/dir
 	icon_state = "outerhull_dir"
 
+/turf/open/floor/mainship_hull/gray
+	icon = 'icons/turf/mainship.dmi'
+	icon_state = "outerhull_gray"
+	name = "hull"
+	hull_floor = TRUE
 
+/turf/open/floor/mainship_hull/gray/dir
+	icon_state = "outerhull_gray_dir"
 
 
 
@@ -311,6 +313,9 @@
 /turf/open/floor/cult
 	icon_state = "cult"
 
+/turf/open/floor/cult/clock
+	icon_state = "clockwork"
+
 /turf/open/floor/engine
 	name = "reinforced floor"
 	icon_state = "engine"
@@ -322,11 +327,13 @@
 	return
 
 /turf/open/floor/engine/attackby(obj/item/I, mob/user, params)
+	if(iscrowbar(I)) // Prevent generation of infinite 'floor_tile' objs caused by the overridden make_plating() above never clearing the var
+		return
 	. = ..()
 
 	if(iswrench(I))
-		user.visible_message("<span class='notice'>[user] starts removing [src]'s protective cover.</span>",
-		"<span class='notice'>You start removing [src]'s protective cover.</span>")
+		user.visible_message(span_notice("[user] starts removing [src]'s protective cover."),
+		span_notice("You start removing [src]'s protective cover."))
 		playsound(src, 'sound/items/ratchet.ogg', 25, 1)
 
 		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
@@ -770,11 +777,17 @@
 /turf/open/floor/prison/kitchen
 	icon_state = "kitchen"
 
-/turf/open/floor/prison/cleanmarked
-	icon_state = "bright_clean_marked"
-
 /turf/open/floor/prison/marked
 	icon_state = "floor_marked"
+
+/turf/open/floor/prison/cleanmarked
+	icon_state = "floor_marked_white"
+
+/turf/open/floor/prison/arrow
+	icon_state = "floor_arrow"
+
+/turf/open/floor/prison/arrow/clean
+	icon_state = "floor_arrow_white"
 
 /turf/open/floor/prison/cellstripe
 	icon_state = "cell_stripe"

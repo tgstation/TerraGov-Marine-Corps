@@ -8,6 +8,14 @@
 	icon = 'icons/turf/snow2.dmi'
 	icon_state = "snow_0"
 	hull_floor = TRUE
+	shoefootstep = FOOTSTEP_SNOW
+	barefootstep = FOOTSTEP_SNOW
+	mediumxenofootstep = FOOTSTEP_SNOW
+
+/turf/open/floor/plating/ground/snow/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acidspray_act)
+	update_icon(1,1) //Update icon and sides on start, but skip nearby check for turfs.
 
 // Melting snow
 /turf/open/floor/plating/ground/snow/fire_act(exposed_temperature, exposed_volume)
@@ -15,26 +23,29 @@
 	update_icon(1, 0)
 
 //Xenos digging up snow
-/turf/open/floor/plating/ground/snow/attack_alien(mob/living/carbon/xenomorph/M)
+/turf/open/floor/plating/ground/snow/attack_alien(mob/living/carbon/xenomorph/M, damage_amount = M.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(M.status_flags & INCORPOREAL)
+		return
+
 	if(M.a_intent == INTENT_GRAB)
 
 		if(!slayer)
-			to_chat(M, "<span class='warning'>There is nothing to clear out!</span>")
+			to_chat(M, span_warning("There is nothing to clear out!"))
 			return FALSE
 
-		M.visible_message("<span class='notice'>\The [M] starts clearing out \the [src].</span>", \
-		"<span class='notice'>We start clearing out \the [src].</span>", null, 5)
+		M.visible_message(span_notice("\The [M] starts clearing out \the [src]."), \
+		span_notice("We start clearing out \the [src]."), null, 5)
 		playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
-		if(!do_after(M, 25, FALSE, src, BUSY_ICON_BUILD))
+		if(!do_after(M, 5, FALSE, src, BUSY_ICON_BUILD))
 			return FALSE
 
 		if(!slayer)
-			to_chat(M, "<span class='warning'>There is nothing to clear out!</span>")
+			to_chat(M, span_warning("There is nothing to clear out!"))
 			return
 
-		M.visible_message("<span class='notice'>\The [M] clears out \the [src].</span>", \
-		"<span class='notice'>We clear out \the [src].</span>", null, 5)
-		slayer -= 1
+		M.visible_message(span_notice("\The [M] clears out \the [src]."), \
+		span_notice("We clear out \the [src]."), null, 5)
+		slayer = 0
 		update_icon(1, 0)
 
 	//PLACING/REMOVING/BUILDING
@@ -51,7 +62,7 @@
 		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
-		user.visible_message("<span class='notice'>[user.name] planted \the [L] into [src].</span>")
+		user.visible_message(span_notice("[user.name] planted \the [L] into [src]."))
 		L.anchored = TRUE
 		L.icon_state = "lightstick_[L.s_color][L.anchored]"
 		user.drop_held_item()
@@ -63,20 +74,21 @@
 		playsound(user, 'sound/weapons/genhit.ogg', 25, 1)
 
 
-
-//Update icon and sides on start, but skip nearby check for turfs.
-/turf/open/floor/plating/ground/snow/Initialize()
-	. = ..()
-	update_icon(1,1)
-
-/turf/open/floor/plating/ground/snow/Entered(atom/movable/AM)
+/turf/open/floor/plating/ground/snow/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	if(slayer > 0)
-		if(iscarbon(AM))
-			var/mob/living/carbon/C = AM
-			C.next_move_slowdown += (isxeno(C) ? 0.25 : 0.5) * slayer
+		if(iscarbon(arrived))
+			var/mob/living/carbon/C = arrived
+			C.next_move_slowdown += 0.5 * slayer
 			if(prob(1))
-				to_chat(C, "<span class='warning'>Moving through [src] slows you down.</span>")
-	..()
+				to_chat(C, span_warning("Moving through [src] slows you down."))
+			if(!isxeno(C))
+				return ..()
+			C.next_move_slowdown -= 0.25 * slayer
+			var/mob/living/carbon/xenomorph/X = C
+			if(X.is_charging >= CHARGE_ON) // chargers = snow plows
+				slayer = 0
+				update_icon(1, 0)
+	return ..()
 
 
 //Update icon
@@ -142,16 +154,41 @@
 		if(EXPLODE_DEVASTATE)
 			if(slayer)
 				slayer = 0
-				update_icon(1, 0)
 		if(EXPLODE_HEAVY)
 			if(slayer && prob(60))
 				slayer = max(slayer - 2, 0)
-				update_icon(1, 0)
 		if(EXPLODE_LIGHT)
 			if(slayer && prob(20))
-				slayer -= 1
-				update_icon(1, 0)
+				slayer = max(slayer - 1, 0)
+
+	update_icon(1, 0)
 	return ..()
+
+//Fire act; fire now melts snow as it should; fire beats ice
+/turf/open/floor/plating/ground/snow/flamer_fire_act(burnlevel, firelevel)
+
+	if(!slayer || !burnlevel) //Don't bother if there's no snow to melt or if there's no burn stacks
+		return
+
+	switch(burnlevel)
+		if(1 to 10)
+			slayer = max(0, slayer - 1)
+		if(11 to 24)
+			slayer = max(0, slayer - 2)
+		if(25 to INFINITY)
+			slayer = 0
+
+	update_icon(1, 0)
+
+/turf/open/floor/plating/ground/snow/proc/acidspray_act()
+	SIGNAL_HANDLER
+
+	if(!slayer) //Don't bother if there's no snow to melt or if there's no burn stacks
+		return
+
+	slayer = max(0, slayer - 1) //Melt a layer
+	update_icon(1, 0)
+
 
 //SNOW LAYERS-----------------------------------//
 /turf/open/floor/plating/ground/snow/layer0
@@ -169,6 +206,5 @@
 /turf/open/floor/plating/ground/snow/layer3
 	icon_state = "snow_3"
 	slayer = 3
-
 
 

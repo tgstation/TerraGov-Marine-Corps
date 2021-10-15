@@ -1,0 +1,510 @@
+2021-04-02:
+  BlackFira:
+  - balance: Armored lab coat weight 0.3 -> 0.2
+  - balance: Armored lab coat coverage increased to full body -head
+  - balance: Armored lab coat soft melee protection 35% -> 30%
+  BraveMole:
+  - code_imp: CIC orders are way more generic
+  - rscadd: 'AI can use CIC orders. Alt click to send one remove: Ai can now longer
+      electify doors with alt click'
+  - balance: Power fist throw distance is now linear with the mob size
+  - balance: Powerfist only takes now lasgun battery as power source. That mean 3
+      times less punch per battery overall. You can change the battery just by clicking
+      on the powerfist with a full one, no need for screwdriver
+  - rscadd: Xenos can build small pools. Half the price for half the HP and half the
+      larva output. Click on build xenos ability to switch silo type
+  - balance: queen lose the ability to produce eggs, defiler gains it
+  - code_imp: Acid spray cone code no longer uses sleep.
+  - refactor: Cone spray use recursive code, which mean blocking the middle row will
+      not block the other part of the cone. In short, collisions are more consistent
+  - rscadd: Praetorian can spray diagonally
+  - bugfix: You can no longer avoid acid spray by running towards the caster. Works
+      for boiler, prae and spitter
+  - bugfix: Wraith get psy drain
+  - qol: Select spit and spit buttons are merged
+  - rscdel: Tank crewman is gone
+  - bugfix: Silo price fixed
+  Pariah919:
+  - balance: power req guns reduced in price. railgun goes from 130 to 75, rounds
+      reduced as you only get one. anti mat from 120 to 70, ammo normal halved in
+      price M4RA goes from 80 to 50
+  - balance: drone speed up on weeds reduced
+  SplinterGP:
+  - qol: dead people now appear on orbit menu under dead section.
+  - balance: revolver screenshake when hit reduced by half.
+  Swagile:
+  - rscadd: Surgical vest to synth prep vendor.
+  - rscadd: Tweezers to essential synth kit in synth prep vendor.
+  - balance: Construction pouches get 1 extra storage slots.
+  - balance: Essential combat engi kit now gets 50 sandbags, 50 metal, 30 plasteel.
+  - balance: Material points buffed; its much less expensive to use your points for
+      materials in combat engi point vendor now.
+  - rscadd: Razor burn grenade boxes.
+  - rscadd: Razor burn grenade boxes to req for 50 points.
+  Walarks:
+  - balance: cloak grenades cloak only marines instead of marines and xenos, decreased
+      alpha by ~70%
+  - balance: cut cloak grenade supplies in half
+  XSlayer300:
+  - qol: Added an examine message whenever someone was admin slept.
+  bobbahbrown:
+  - server: Fixed missing dependency for libssl1.1 in PreCompile.sh
+2021-04-03:
+  Alterist:
+  - bugfix: Marines should no longer be able to delay prison rounds by tadpoling to
+      the tiny island
+  BraveMole:
+  - qol: You can corrupt a generator as queen or shrike by clicking on it. Corrupt
+      generators ability is gone
+  - bugfix: Defiler can lay eggs
+  - balance: Hivemind collapse will now ALWAYS be 5 minutes
+  DerrickChamberlain:
+  - qol: optimized cables on Sulaco.
+  - qol: optimized some atmos pipes
+  - qol: Gave AI more to do.
+  - rscadd: Repurposed a maintenance room near Alamo to serve as a staging area
+  - rscadd: added more vents around the ship.
+  - rscdel: Removed rogue photocopiers near the Condor, and embedded in the outer
+      hull.
+  - bugfix: Repositioned a few APC's around ship
+  - bugfix: Fixed up medbay area tiles making more power independent rooms. (You know
+      with APCs)
+  - bugfix: Fixed Sulaco's power distribution problem with an additional SMES
+  - bugfix: Possible lock out of RnD and Engineering engine room
+  SplinterGP:
+  - qol: lasergun mode changing now uses a radial menu.
+  - balance: delay for switching modes on the lasergun removed.
+  Surrealaser:
+  - rscadd: 'Added Neuro Huggers, Clawed Huggers, Resin Huggers, and Acid Huggers;
+      Carrier can now select between hugger types. tweak: Facehugger stun time reduced
+      from 6 seconds to 1 second. tweak: Huggers now signify when they''re about to
+      attack with an overlay.'
+  - refactor: Carrier hugger storage code refactored.
+  - refactor: Xeno announcements refactored; new parameter, distance added. Redundant
+      spans removed.
+  - bugfix: Hugger throw impact behaviour improved and made consistent.
+  - bugfix: Opaque xeno smoke now reliably stops huggers from attacking.
+  - code_imp: Cleaned up/improved hugger code in general
+  Swagile:
+  - balance: Portable turrets are now 30 points and base turrets are 60 points in
+      requisitions.
+  - qol: You no longer have to fumble around with barbed wire and rods to create razorwire;
+      it can now be made straight from the metal menu.
+  TGCMbetcher:
+  - balance: Medical belt(not lifesaver bag) now fits small SMG mags.
+  lovegreenstuff:
+  - balance: gives slugs the same slowdown that TX15 slugs have.
+2021-04-04:
+  BraveMole:
+  - refactor: Autofire use bucket system
+  - refactor: Gun system use signals and callbacks
+  - refactor: Firing in akimbo now respect ROF and fire mode of each gun, and applies
+      innacuracy maluses on both gun rather than only one
+  - refactor: Burstfire is no longer using sleep
+  - bugfix: Masterkey shotgun was runtiming when running out of ammunition
+  - bugfix: Burst fire assembly now works
+  - bugfix: You can no longer shoot while laying down or unconcious (sorry marine
+      turrets)
+  - rscadd: Devour and cocoon, a new ability for queen, shrike, hivelord, drone, carrier
+      and defiler. Devour a marine bodies that was not psy drain and you will eject
+      it in a cocoon 5 seconds later. For 10 minutes or until marines manage to break
+      it, you will get 1.2 points every 5 seconds. Marines inside the cocoon are in
+      statis, which mean their DNR timer stays at zero, and that for 10 minutes
+  - code_imp: Remove some dead code from former devour and regurgitate code
+  - spellcheck: Some typo in psy drain code
+  - bugfix: Make the "sharp" bayonetknife really sharp, so you can use it to break
+      cocoon
+  - bugfix: Prae acid spray back to normal
+  - balance: Fresh acid (from acid spray) stun when you walk on it, acid is considered
+      fresh for 1 second rather than 0.5 previously
+  InterroLouis:
+  - balance: Same tile screech does a bit more stamina damage.
+  - bugfix: Screech stamina damage no longer reversed.
+  Lewdcifer:
+  - balance: Wound slowdown halved, appears slightly later
+  Naaanii:
+  - balance: Reduces damage and sunder of AT Sniper.
+  Swagile:
+  - rscadd: B18 gauntlets to B18 req crate.
+  - balance: B17 and B18 rebalanced; 70 melee for chest, 75 melee for helmet on both
+      armor sets.
+  - balance: B18 and B17 now have 0.55 slowdown, making it only 0.05 slower than PAS.
+  - balance: In return, B18 is now 120 points from 100 points, and B17 is 80 points
+      from 60.
+  Walarks:
+  - balance: changed harvester effects cost from 10u to 5u. Kelotane effect now ignites
+      all mobs in the cone, dealing additional fire damage, without leaving fire tiles.
+      Tramadol effect deals 60% bonus damage that ignores armor, but the slow lasts
+      1s instead of 2s. Bicaridine effect heals 12.5 brute instead of 10 brute. If
+      you target yourself, it instantly restores 6 brute and 30 stamina.
+  - qol: failing to fill the harvester no longer makes you lose reagents from the
+      liquid container, this wasn't an intended thing
+  XSlayer300:
+  - rscadd: Added the Basketball Arena as one of the EORD options, map made by me.
+2021-04-06:
+  Alterist:
+  - rscdel: No more regular helmets for medics, engies, and leaders when they choose
+      jaeger loadout.
+  - qol: Cleanup and organizes marine vending file
+  BraveMole:
+  - bugfix: Larva output number in hivestatus is now correct shipside
+  Pariah919:
+  - balance: compared to t-45 the tx-8 fires slightly faster and holds more in a magazine,
+      has more attachment options
+  SplinterGP:
+  - balance: arm is now harder to delimb, max damage raised to 125
+  Surrealaser:
+  - code_imp: Distance data is now included for Hive and Tunnel status lists.
+  - bugfix: Should fix a bug that stopped Tunnel lists from being openable.
+  hyper2snyper:
+  - balance: Removes Engineer skill requirements for Mortar.
+2021-04-07:
+  BraveMole:
+  - bugfix: Nests are really gone now
+  - qol: Select resin and build resin buttons are merged
+  - rscadd: Rally order for SL, FC, captain and SO
+  - balance: Change leading skill for SL (from 2 to 3) and for CE (from 4 to 2)
+  - qol: Order text are bigger, and the sound is louder. Marines are blind and deaf
+  - bugfix: Ai order no longer runtime that much
+  - qol: When sending an order as CIC or AI, you have feedback on what you've done
+  - bugfix: Autofire mode in lasgun will be on when you buy the gun
+  - balance: Carrier can lay eggs
+  Swagile:
+  - balance: Robo limbs now malfunction at a proper threshold, and do it at a lower
+      probability than fleshy limbs.
+  - balance: Robo limbs take more punishment; from 0.66 reduction to 0.50 reduction
+      to brute and burn damage.
+  XSlayer300:
+  - bugfix: Fixed HvH variants of ERT that will despawn automatically after spawning.
+2021-04-08:
+  BraveMole:
+  - rscadd: TGUI vote panel
+  - rscadd: User can change vote
+2021-04-09:
+  Alterist:
+  - balance: even more areas of what was once deadly water on prison should be accessable
+      now
+  BraveMole:
+  - bugfix: Can no longer vote for any map
+  - bugfix: Admins have access to a readable list of voters
+  - bugfix: Voting buttons change in real time
+  - rscadd: Hivemind open resin doors with alt click
+  - balance: Silo less timer from 10 minutes to 5
+  - qol: You can aim at black tiles while shooting
+  - balance: The cas laser can no longer be hidden below an object or a mob
+  SkeletalElite:
+  - bugfix: The FOB drone can now move on ice tiles in ice colony LZ2
+  TGCMbetcher:
+  - bugfix: Tasers wont murder people
+  Walarks:
+  - balance: vali now heals 6/12 brute/burn instead of boosting reagents and provides
+      stamina regen if you have a connected weapon. Reduced reagent storage from 60u
+      to 30u. Weapon takes 1s to connect instead of 2s.
+  - bugfix: vali checks for germ level instead of necrotized limb flag since the negatives
+      associated with necrotized limbs are based on germ levels
+  XSlayer300:
+  - qol: Metal/Plasteel sheets and barbed wire now have the NOBLUDGEON flag, which
+      prevents accidentally damaging the cades while hitting them on harm intent.
+      This also means you cannot attack anyone with it anymore, not like it really
+      matters...
+  hyper2snyper:
+  - rscadd: Allows an empty pistol to be reloaded from a pistol belt using right click
+      so long as right click is disabled and there is no ammo within.
+  - rscadd: Allows entrenching tool to be sharpened by the machete to be a comparable
+      weapon.
+2021-04-10:
+  BraveMole:
+  - code_imp: Protection against temporary visuals hard del
+  Swagile:
+  - rscadd: Miners now give off their own light; both in the repairing process and
+      in the final running phase.
+  - balance: This buffs properly defended miners.
+  - balance: However, stealth mining is now nerfed, since fully operational miners
+      give off huge light, which is easy to spot on most maps.
+  XSlayer300:
+  - qol: Clicking yourself with the fire extinguisher while on HELP intent and with
+      the safety off will extinguish yourself instead of bashing.
+  hyper2snyper:
+  - rscadd: Adds an explosive suicide vest with customizable warcry.
+2021-04-11:
+  Alterist:
+  - balance: water around central dome on prison are now accessible
+  - bugfix: fixed the pocket of space localized entirely within prison station that
+      was killing marines/xenos
+  BraveMole:
+  - balance: Hitting the turf where the target is will automaticly redirect your ability
+      on the target. This works for most xeno ability
+  - code_imp: Remove unused targeting flags
+  - qol: Xeno message is sent to the hive when silos/turrets are built
+  - admin: Psy points spent are now saved in game log
+  - bugfix: Democracy is restored
+  Pariah919:
+  - balance: mortar kit and shells are bulky rather than huge, engineer bag is able
+      to hold them
+  SkeletalElite:
+  - balance: hold orders are more effective at reducing incoming damage
+  - qol: moved fences on the ice colony LZ2 flanks, this means you can put cades where
+      they used to be on the FOB drone now
+  - bugfix: Wraith can't phase into ice colony LZ1 through a gap in the shutters
+2021-04-12:
+  2whatever2:
+  - balance: Lowered the cost for laying eggs from, 400 plasma to 200 plasma.
+  BraveMole:
+  - balance: Every marine spawning for the first time will provide req 2.5 points
+  - balance: probability of each ERT depends on the state of the game. IE, if xenos
+      are losing shipside there is more chance than an XRT is called rather than a
+      PMC one
+  - balance: Each ERT can be called only once (unless admin interaction)
+  - admin: Admin can deny an ERT without annoncing if they want. They can then use
+      distress beacon verb to send another ERT if they wish to
+  - bugfix: CIC order and rally no longer runtime
+  InterroLouis:
+  - balance: Buffed spears.
+  Swagile:
+  - rscadd: Adds handholding. Now you can hold your SL's hand before you get atomized
+      by GOOD HITS. Help intent and aim at either hand (not arm). Locked behind fun
+      config.
+  hyper2snyper:
+  - bugfix: Synths can no longer operate suicide vests
+2021-04-13:
+  2whatever2:
+  - balance: Lowers tesla shell speed (2 to 0.1), lowers drain, and plasma regen disable
+      (30 to 20), and increases the slow telsagun has (0.5 to 2)
+  AgentMA1:
+  - balance: Req Lemoline from 50 points to 25
+  BraveMole:
+  - admin: Automatic votes at the end of each round
+  - qol: Almost all non-combat abilities of xenos can be used while resting (changing
+      type of spit, pheros, queen orders, etc etc)
+  Pariah919:
+  - balance: dmr has slightly less slowdown, less aim slowdown, and battle rifle has
+      had its capacity upped from 25 to 35
+  - balance: nerfs hunter slash by 3 points, weed speed from -0.4 to .1 and he's slightly
+      slower off weeds too
+  TiviPlus:
+  - admin: Mass replace admin verb
+  XSlayer300:
+  - bugfix: Tips are updated, removed some outdated tips.
+  hyper2snyper:
+  - balance: Now if your hands are full, or there is a magazine in your gun, Pistol
+      Belt reloading will instead perform a "Tactical Reload"
+2021-04-14:
+  Alterist:
+  - rscadd: New releases from TerraGov Publishing! Rouny the Big Red Dog will teach
+      the world how to love big.
+  - balance: the captain's Claymore should now have slightly more damage
+  Walarks:
+  - rscadd: added bump attack component to humans, added bump attack compatibility
+      to wielded harvester and unarmed
+  hyper2snyper:
+  - bugfix: fixes tactical reloading
+2021-04-15:
+  SplinterGP:
+  - qol: Swapped OK/Cancel buttons in tgui list input, so that it stays consistent
+      with Windows UI guidelines (was Cancel/OK before).
+  Walarks:
+  - rscadd: Added vali boost support for bicaridine, kelotane, dylovene, meralyne,
+      dermaline, paracetamol, neuraline and synaptizine
+  - rscadd: Added a radial button with information about each reagent's effects
+  - qol: changed boost tier change text to correspond to new boost system
+  hyper2snyper:
+  - rscadd: Allows Mortar to be aimed using tactical binocs
+2021-04-16:
+  AnCopper:
+  - rscadd: Added a Flower Pin to the loadout menu.
+  BraveMole:
+  - qol: Ravage and Shrike Screech can be selected with a new keybind, and then used
+      with shift/middle/right click
+  - bugfix: Can psydrain / cocoon stacked bodies
+  SplinterGP:
+  - balance: leader pheros are now removed when queen dies.
+  TheOneAndMightyRed:
+  - qol: You can now click a stack of magazines with the ammo box to fill the ammo
+      box with.
+  hyper2snyper:
+  - rscadd: Adds the TX7 Plasma Pistol, a 10 round incendiary weapon, available in
+      the Automated Armaments Vendor.
+2021-04-18:
+  BraveMole:
+  - balance: You cannot shoot the flamer if you didn't finish your wielding
+  - admin: Shipmap and Groundmap votes happen sooner
+  David-Stormwell:
+  - balance: Made Akimbo/Duel wielding less viable on the TP-14
+  - refactor: Adds vars for scatter on guns, you may now add specific values on a
+      gun if required.
+  Walarks:
+  - balance: removes item slowdown scalability from vali speed buff, changed Paracetamol
+      buff from -0.2 to -0.1 and Neuraline buff from -0.4 to -0.3.
+2021-04-19:
+  Alterist:
+  - balance: 'Prison Balance Patch: more reinforced walls near central dome, and island
+      has more land for xenos to weed and is harder to reach overall'
+  Wayland-Smithy:
+  - bugfix: Xeno Queen overwatch from hivemind chat works again!
+2021-04-20:
+  TiviPlus:
+  - rscadd: Adds minimaps for xenos and marines
+  - imageadd: Special thanks to Ciel for icons and Ayy robotics for the medic icons
+2021-04-21:
+  BraveMole:
+  - balance: Prae spit extinguishes fire
+  Pariah919:
+  - balance: hunter gets higher melee resist and one more point of slash damage
+  Swagile:
+  - qol: OB warheads and fuel bought in req now comes in a locked crate for easy movement
+      to / from OB room and to prevent random opening / theft of the crate.
+  Tupinambis:
+  - bugfix: The TGMC logo is now actually centered between the TGMC letters on the
+      Sulaco.
+  Walarks:
+  - qol: updated Vali manual to be in-line with the recent rework of the active effect
+  Wayland-Smithy:
+  - bugfix: Bull's extra gore attack now always harms instead of using what ever intent
+      is selected.
+  XSlayer300:
+  - qol: After several incidents where drop pods accidentally land to places unsafe
+      (*cough cough* water on Prison *cough*), TGMC finally upgraded the pod's safeties
+      to not drop in these locations, as well as some locations they're not suppose
+      to drop.
+2021-04-22:
+  BraveMole:
+  - admin: Bypassing respawn as an admin will leave a trace in admin logs
+  - bugfix: Can no longer jump over acid spray to avoid the stun
+  MsSeraph:
+  - rscadd: Added milk dispenser
+  - bugfix: milk dispenser placements
+2021-04-23:
+  Pariah919:
+  - rscdel: Prae spits no longer extingush fire
+  SplinterGP:
+  - imageadd: 'added among us emojis to ooc, red, yellow blue, green, orange and purple,
+      use :colorsus: for it.'
+2021-04-24:
+  BraveMole:
+  - bugfix: Removed white pixel in green arrow
+  - bugfix: No longer weird damage overlay on silo
+  EvilMelonTheSecond:
+  - balance: DMR gets sniper range
+  Surrealaser:
+  - bugfix: Fixes non-larval huggers not attacking infected humans.
+  TiviPlus:
+  - code_imp: Suggested byond versions have been updated
+  - bugfix: You will no longer be ordered to attack the floor
+  - qol: monkey cubes now tell you when they're wrapped
+  - code_imp: cleaned up monkey cube code
+  - code_imp: Code cleanup
+  - imageadd: New screwdrivers
+  - refactor: New greyscaling system
+  Wayland-Smithy:
+  - bugfix: Fixed being able to remove items from storage on your person once dead.
+  - bugfix: 'Closing the "Warning : the game is unbalanced" dialog when joining late
+      as a marine no longer proceeds to spawn you in.'
+  - bugfix: Fixed a glitch which could break the metal economy.
+2021-04-25:
+  BraveMole:
+  - rscadd: Totally new and original gamemode, hunt party
+  SplinterGP:
+  - refactor: Vendors can now have tabs
+  - qol: all weapons vendor now has tab and share same items, Special vendors on prep
+      are gone.
+  TiviPlus:
+  - rscadd: The CIC minimap table will now display groundside
+  - refactor: Changed how minimaps were cached
+  - qol: Medevac beds can be instantly activated with right click
+  - rscadd: Some things will now glow in the dark
+  Wayland-Smithy:
+  - bugfix: Ghosts no longer have a fumble time when looking at the OB cannon console.
+  hyper2snyper:
+  - qol: Shows the Hiveminds nickname in its radio chat.
+2021-04-26:
+  BraveMole:
+  - code_imp: Prevent runtimes when config failed to load + backup solution when next_map.json
+      is not found
+2021-04-28:
+  BraveMole:
+  - balance: Larval won't purge neurotox
+  SplinterGP:
+  - qol: Arrow keys are grabbed by TGUI for keyboard navigation, and won't be moving
+      your character.
+  TiviPlus:
+  - qol: Tank transfer rates can be changed with right click now
+  - bugfix: milk dispenser works now
+  - bugfix: You can now get liquids out of tanks properly (yes this includes huffing
+      welding fuel)
+  - refactor: refactored reagent tanks a bit
+  Wayland-Smithy:
+  - balance: Tactical explosive vests now have a short wind up time, more close range
+      damage, and a guarantee you will become a dead nugget.
+2021-04-29:
+  Alterist:
+  - rscadd: Larvaway and Ironutriment Autoinjectors now exists
+  - balance: Combat Autoinjector to 10/10/5u Bica/Kelo/Tram
+  - balance: Advanced Combat Autoinjector to 2 shots of 10/10/10u mera/derma/tram
+  - balance: Oxycodone Autoinjector to 2 shots of 10u
+  - balance: Autoinjector pouch can now hold 8 autoinjectors
+  - balance: Synth Closet Autoinjector Pouch now contains a variety of unique and
+      useful chems
+  - balance: Corpsman Closet Autoinjector Pouch now contains some more useful chems
+  - balance: Corpsman Hypo pouch now holds 5
+  - balance: Corpsman hypo pouch now comes with both a meraderma hypo and an oxy hypo.
+  BraveMole:
+  - balance: SL rally orders is sent only to his squad
+  - code_imp: no runtime in arrow process
+  - balance: Can no longer place small silos in medium-high pop
+  David-Stormwell:
+  - refactor: refactored shoulder holsters
+  - balance: Removed Headbite from Crash.
+  DerrickChamberlain:
+  - qol: Overhauled marine prep, spawn and cafeteria on Sulaco
+  - qol: Added ladders in marine prep that lead outside CIC
+  - qol: Hardened Sulaco AI Core
+  - qol: Hardened Sulaco CIC APC
+  - qol: Moved dropship modules slightly closer on Sulaco
+  - qol: Moved two PACMAN gens to Sulaco Dropship Prep
+  - qol: Added some flavor to the Sulaco (think old marine prep)
+  - rscdel: Removed old marine prep from Sulaco
+  - bugfix: Returned Req blastdoors on Sulaco
+  - bugfix: Fixed airlock and shutter buttons appearing through walls
+  - rscdel: Removed a lot of old useless Sulaco areas, and repurposed some
+  Lauwma:
+  - balance: Jetpacks cost 15 -> 12
+  Psykzz revived by bravemole:
+  - rscadd: TGUI player preferences
+  TheOneAndMightyRed:
+  - code_imp: calibers are now defines.
+  - bugfix: Map tables in conjuntion with command headset minimaps should work again.
+  TiviPlus:
+  - qol: Jaeger can now be painted hot pink
+  - refactor: Jaeger is now greyscale
+  Walarks:
+  - balance: splints require taking a certain amount of damage to break, based on
+      medical skill of the one applying it. Anyone with medical skill adds 15 splint
+      health per medical skill rank. If you splint yourself, this is reduced by 15,
+      but can't be lower than 0.
+  - balance: removes small chance for splints to not be damaged
+  Wayland-Smithy:
+  - qol: Xenos now keep their selected targeting zone when evolving/regressing.
+  - bugfix: Fixed a small bug with the zone selection hud.
+  - bugfix: Crusher charge no longer damages resin silos and turrets. No more mystery
+      silo damage alerts.
+  - bugfix: Shrike's unrelenting force no longer displaces dead humans.
+  - bugfix: Warrior's fling no longer works on dead humans.
+  - bugfix: Unconscious humans pulled through a Wraith teleport receive equivalent
+      critdrag damage based on distance traveled.
+  - qol: Xeno hive status buttons work for observers too!
+  XSlayer300:
+  - qol: Made health analyzers and medical tweezers to be stored on more medical storages
+      (medical belts for the former, webbings and medical armor modules for the latter)
+  hyper2snyper:
+  - bugfix: Fixes invisible jaeger helmets created when trying to cancel coloring
+      them.
+  - bugfix: Fixes a TL-102 ammo counter bug.
+2021-04-30:
+  BraveMole:
+  - balance: Double the damage of bull gore and make it damage the area the player
+      is aiming
+  TiviPlus:
+  - qol: Cades can be rotated instantly clockwise with right click
+  XSlayer300:
+  - bugfix: Recolored the current Jaeger colors with somewhat accurate ones before
+      the greyscale armor PR

@@ -22,7 +22,7 @@
 	msg = "## NOTICE: [msg]"
 	log_world(msg)
 
-#ifdef UNIT_TESTS
+#if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
 /proc/log_test(text)
 	WRITE_LOG(GLOB.test_log, text)
 	SEND_TEXT(world.log, text)
@@ -33,6 +33,12 @@
 #define testing(msg) log_world("## TESTING: [msg]"); to_chat(world, "## TESTING: [msg]")
 #else
 #define testing(msg)
+#endif
+
+#ifdef REFERENCE_TRACKING_LOG
+#define log_reftracker(msg) log_world("## REF SEARCH [msg]")
+#else
+#define log_reftracker(msg)
 #endif
 
 /* Items with private are stripped from public logs. */
@@ -80,6 +86,10 @@
 		WRITE_LOG(GLOB.world_game_log, "ACCESS: [text]")
 
 
+/proc/log_asset(text)
+	if(CONFIG_GET(flag/log_asset))
+		WRITE_LOG(GLOB.world_asset_log, "ASSET: [text]")
+
 /proc/log_attack(text)
 	LAZYADD(GLOB.attack_log, "\[[stationTimestamp()]\] ATTACK: [text]")
 	if(CONFIG_GET(flag/log_attack))
@@ -121,6 +131,15 @@
 	if(CONFIG_GET(flag/log_ooc))
 		WRITE_LOG(GLOB.world_game_log, "OOC: [text]")
 
+/proc/log_xooc(text)
+	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] XOOC: [text]")
+	if(CONFIG_GET(flag/log_xooc))
+		WRITE_LOG(GLOB.world_game_log, "XOOC: [text]")
+
+/proc/log_mooc(text)
+	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] MOOC: [text]")
+	if(CONFIG_GET(flag/log_mooc))
+		WRITE_LOG(GLOB.world_game_log, "MOOC: [text]")
 
 /proc/log_looc(text)
 	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] LOOC: [text]")
@@ -198,10 +217,37 @@
 /proc/log_paper(text)
 	WRITE_LOG(GLOB.world_paper_log, "PAPER: [text]")
 
-/* ui logging */
-
-/proc/log_tgui(text)
-	WRITE_LOG(GLOB.tgui_log, text)
+/**
+ * Appends a tgui-related log entry. All arguments are optional.
+ */
+/proc/log_tgui(user, message, context,
+		datum/tgui_window/window,
+		datum/src_object)
+	var/entry = ""
+	// Insert user info
+	if(!user)
+		entry += "<nobody>"
+	else if(istype(user, /mob))
+		var/mob/mob = user
+		entry += "[mob.ckey] (as [mob] at [mob.x],[mob.y],[mob.z])"
+	else if(istype(user, /client))
+		var/client/client = user
+		entry += "[client.ckey]"
+	// Insert context
+	if(context)
+		entry += " in [context]"
+	else if(window)
+		entry += " in [window.id]"
+	// Resolve src_object
+	if(!src_object && window?.locked_by)
+		src_object = window.locked_by.src_object
+	// Insert src_object info
+	if(src_object)
+		entry += "\nUsing: [src_object.type] [REF(src_object)]"
+	// Insert message
+	if(message)
+		entry += "\n[message]"
+	WRITE_LOG(GLOB.tgui_log, entry)
 
 /* For logging round startup. */
 /proc/start_log(log)
@@ -293,8 +339,6 @@
 				. += "/([M.name])"
 		else if(fallback_name)
 			. += "/([fallback_name])"
-
-	return .
 
 
 /proc/key_name_admin(whom, include_name = TRUE)

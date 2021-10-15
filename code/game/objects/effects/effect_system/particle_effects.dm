@@ -25,6 +25,11 @@
 
 	QDEL_IN(src, life SECONDS)
 
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 	setDir(pick(GLOB.cardinals))
 	set_light(3)
 
@@ -39,8 +44,8 @@
 	for(var/turf/open/floor/plating/ground/snow/S in loc)//Snow
 		S.fire_act()
 
-/obj/effect/particle_effect/fire/Crossed(mob/living/L)
-	. = ..()
+/obj/effect/particle_effect/fire/proc/on_cross(datum/source, mob/living/L, oldloc, oldlocs)
+	SIGNAL_HANDLER
 	if(isliving(L))
 		L.fire_act()
 
@@ -54,15 +59,11 @@
 	mouse_opacity = 0
 
 /obj/effect/particle_effect/water/Move(turf/newloc)
-	//var/turf/T = src.loc
-	//if (istype(T, /turf))
-	//	T.firelevel = 0 //TODO: FIX
-	if (--src.life < 1)
-		//SN src = null
+	if (--life < 1)
 		qdel(src)
 	if(newloc.density)
-		return 0
-	.=..()
+		return FALSE
+	return ..()
 
 /obj/effect/particle_effect/water/Bump(atom/A)
 	if(reagents)

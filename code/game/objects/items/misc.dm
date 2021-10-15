@@ -11,7 +11,6 @@
 	attack_verb = list("called", "rang")
 	hitsound = 'sound/weapons/ring.ogg'
 
-
 /obj/item/clock
 	name = "digital clock"
 	desc = "A battery powered clock, able to keep time within about 5 seconds... it was never that accurate."
@@ -27,7 +26,6 @@
 	. = ..()
 	to_chat(user, "The [src] reads: [GLOB.current_date_string] - [stationTimestamp()]")
 
-
 /obj/item/bananapeel
 	name = "banana peel"
 	desc = "A peel from a banana."
@@ -35,12 +33,17 @@
 	icon_state = "banana_peel"
 	item_state = "banana_peel"
 	w_class = WEIGHT_CLASS_TINY
-	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/bananapeel/Crossed(AM)
+/obj/item/bananapeel/Initialize()
 	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/item/bananapeel/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs) //TODO JUST USE THE SLIPPERY COMPONENT
 	if (iscarbon(AM))
 		var/mob/living/carbon/C = AM
 		C.slip(name, 4, 2)
@@ -118,3 +121,43 @@
 	gender = PLURAL
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "ectoplasm"
+
+/obj/item/minerupgrade
+	name = "miner upgrade"
+	desc = "Subtype item, should not exist."
+	icon = 'icons/obj/mining_drill.dmi'
+	icon_state = "mining_drill_reinforceddisplay"
+	w_class = WEIGHT_CLASS_NORMAL
+	materials = list(/datum/material/metal = 60000) // 18 Sheets , because thats all a autolathe can fit
+	/// Used to determine the type of upgrade the miner is going to receive. Has to be a string which is defined in miner.dm or it won't work.
+	var/uptype
+
+/obj/item/minerupgrade/reinforcement
+	name = "reinforced components box"
+	desc = "A very folded box of reinforced components, meant to replace weak components used in normal mining wells."
+	icon_state = "mining_drill_reinforceddisplay"
+	uptype = "reinforced components"
+
+/obj/item/minerupgrade/overclock
+	name =  "high-efficiency drill"
+	desc = "A box with a few pumps and a big drill, meant to replace the standard drill used in normal mining wells for faster extraction."
+	icon_state = "mining_drill_overclockeddisplay"
+	uptype = "high-efficiency drill"
+
+/obj/item/dropship_points_voucher
+	name = "dropship fabricator voucher"
+	desc = "A small keycard stamped by a Terra Gov logo. It contains points you can redeem at a dropship fabricator. One use only."
+	icon = 'icons/obj/items/card.dmi'
+	icon_state = "centcom"
+	///This is the number of points this thing has to give.
+	var/extra_points = 100
+
+/obj/item/dropship_points_voucher/examine(mob/user)
+	. = ..()
+	to_chat(user, "It contains [extra_points] points.")
+
+/obj/item/minerupgrade/automatic
+	name = "mining computer"
+	desc = "A small computer that can automate mining wells, reducing the need for oversight."
+	icon_state = "mining_drill_automaticdisplay"
+	uptype = "mining computer"

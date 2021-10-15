@@ -126,8 +126,8 @@
 	if(user)
 		var/skill = user.skills.getRating("engineer")
 		if(skill < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out the wiring.</span>",
-			"<span class='notice'>You fumble around figuring out the wiring.</span>")
+			user.visible_message(span_notice("[user] fumbles around figuring out the wiring."),
+			span_notice("You fumble around figuring out the wiring."))
 			if(!do_after(user, 2 SECONDS * (SKILL_ENGINEER_ENGI - skill), TRUE, holder, BUSY_ICON_UNSKILLED))
 				return
 
@@ -158,8 +158,8 @@
 
 	var/skill = user.skills.getRating("engineer")
 	if(skill < SKILL_ENGINEER_ENGI)
-		user.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
-		"<span class='notice'>You fumble around figuring out the wiring.</span>")
+		user.visible_message(span_notice("[usr] fumbles around figuring out the wiring."),
+		span_notice("You fumble around figuring out the wiring."))
 		if(!do_after(user, 2 SECONDS * (SKILL_ENGINEER_ENGI - skill), TRUE, holder, BUSY_ICON_UNSKILLED) || is_cut(wire))
 			return
 
@@ -242,11 +242,13 @@
 		return ..()
 	return UI_CLOSE
 
-/datum/wires/ui_interact(mob/user, ui_key = "wires", datum/tgui/ui = null, force_open = FALSE, \
-							datum/tgui/master_ui = null, datum/ui_state/state = GLOB.physical_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/wires/ui_state(mob/user)
+	return GLOB.physical_state
+
+/datum/wires/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, ui_key, "Wires", "[holder.name] Wires", 350, 150 + wires.len * 30, master_ui, state)
+		ui = new(user, src, "Wires", "[holder.name] Wires")
 		ui.open()
 
 /datum/wires/ui_data(mob/user)
@@ -269,8 +271,10 @@
 	data["status"] = get_status()
 	return data
 
-/datum/wires/ui_act(action, params)
-	if(..() || !interactable(usr))
+/datum/wires/ui_act(action, list/params)
+	. = ..()
+
+	if(. || !interactable(usr))
 		return
 	var/target_wire = params["wire"]
 	var/mob/living/L = usr
@@ -284,7 +288,7 @@
 				cut_color(target_wire)
 				. = TRUE
 			else
-				to_chat(L, "<span class='warning'>You need wirecutters!</span>")
+				holder.balloon_alert(L, "You need wirecutters!")
 		if("pulse")
 			I = L.is_holding_tool_quality(TOOL_MULTITOOL)
 			if(I || IsAdminGhost(usr))
@@ -293,7 +297,7 @@
 				pulse_color(target_wire, L)
 				. = TRUE
 			else
-				to_chat(L, "<span class='warning'>You need a multitool!</span>")
+				holder.balloon_alert(L, "You need a multitool!")
 		if("attach")
 			if(is_attached(target_wire))
 				I = detach_assembly(target_wire)
@@ -311,6 +315,6 @@
 							A.forceMove(L.drop_location())
 						. = TRUE
 					else
-						to_chat(L, "<span class='warning'>You need an attachable assembly!</span>")
+						holder.balloon_alert(L, "You need an attachable assembly!")
 
 #undef MAXIMUM_EMP_WIRES

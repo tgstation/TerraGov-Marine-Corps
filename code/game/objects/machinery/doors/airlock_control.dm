@@ -107,14 +107,16 @@ obj/machinery/door/airlock/proc/send_status(var/bumped = 0)
 		radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
 
 
-obj/machinery/door/airlock/open(surpress_send)
+/obj/machinery/door/airlock/open(surpress_send)
 	. = ..()
-	if(!surpress_send) send_status()
+	if(!surpress_send)
+		INVOKE_ASYNC(src, .proc/send_status)
 
 
 obj/machinery/door/airlock/close(surpress_send)
 	. = ..()
-	if(!surpress_send) send_status()
+	if(!surpress_send)
+		INVOKE_ASYNC(src, .proc/send_status)
 
 obj/machinery/door/airlock/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
@@ -148,14 +150,15 @@ obj/machinery/airlock_sensor
 	var/alert = 0
 	var/previousPressure
 
-obj/machinery/airlock_sensor/update_icon()
+obj/machinery/airlock_sensor/update_icon_state()
 	if(on)
-		if(alert)
-			icon_state = "airlock_sensor_alert"
-		else
-			icon_state = "airlock_sensor_standby"
-	else
 		icon_state = "airlock_sensor_off"
+		return
+	if(alert)
+		icon_state = "airlock_sensor_alert"
+	else
+		icon_state = "airlock_sensor_standby"
+
 
 obj/machinery/airlock_sensor/attack_hand(mob/living/user)
 	. = ..()
@@ -225,7 +228,7 @@ obj/machinery/access_button
 	var/on = 1
 
 
-obj/machinery/access_button/update_icon()
+obj/machinery/access_button/update_icon_state()
 	if(on)
 		icon_state = "access_button_standby"
 	else
@@ -242,7 +245,7 @@ obj/machinery/access_button/attack_hand(mob/living/user)
 	if(.)
 		return
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access Denied</span>")
+		to_chat(user, span_warning("Access Denied"))
 
 	else if(radio_connection)
 		var/datum/signal/signal = new

@@ -5,8 +5,6 @@
 	use_power = 0
 	flags_atom = ON_BORDER
 	opacity = FALSE
-
-	throwpass = TRUE //You can throw objects over this, despite its density.
 	open_layer = CATWALK_LAYER
 	closed_layer = WINDOW_LAYER
 
@@ -23,7 +21,10 @@
 	if(dir == SOUTH)
 		closed_layer = ABOVE_MOB_LAYER
 	layer = closed_layer
-
+	var/static/list/connections = list(
+		COMSIG_ATOM_EXIT = .proc/on_try_exit
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/machinery/door/poddoor/railing/Destroy()
 	if(linked_pad)
@@ -32,23 +33,18 @@
 	return ..()
 
 
-/obj/machinery/door/poddoor/railing/CheckExit(atom/movable/O, turf/target)
+/obj/machinery/door/poddoor/railing/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/moveblockers)
+	SIGNAL_HANDLER
+	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
+		return NONE
+	if(mover.throwing)
+		return NONE
+	moveblockers += src
+	return COMPONENT_ATOM_BLOCK_EXIT
+
+/obj/machinery/door/poddoor/railing/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(!density)
-		return 1
-
-	if(O && O.throwing)
-		return 1
-
-	if(get_dir(loc, target) == dir)
-		return 0
-	else
-		return 1
-
-/obj/machinery/door/poddoor/railing/CanPass(atom/movable/mover, turf/target)
-	if(!density)
-		return 1
-
-	if(mover && mover.throwing)
 		return 1
 
 	if(get_dir(loc, target) == dir)

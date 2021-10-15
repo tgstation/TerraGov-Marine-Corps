@@ -13,6 +13,7 @@
 
 
 /datum/component/stamina_behavior/proc/on_toggle_move_intent(datum/source, new_intent)
+	SIGNAL_HANDLER
 	switch(new_intent)
 		if(MOVE_INTENT_RUN)
 			stamina_active()
@@ -36,6 +37,7 @@
 
 
 /datum/component/stamina_behavior/proc/on_move_run(datum/source, atom/oldloc, direction, Forced)
+	SIGNAL_HANDLER
 	if(Forced)
 		return
 	var/mob/living/stamina_holder = parent
@@ -47,6 +49,7 @@
 
 
 /datum/component/stamina_behavior/proc/on_canmove_change(datum/source, canmove)
+	SIGNAL_HANDLER
 	var/mob/living/stamina_holder = parent
 	if(canmove || stamina_holder.m_intent == MOVE_INTENT_WALK)
 		return

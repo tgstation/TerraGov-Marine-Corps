@@ -10,7 +10,7 @@
 		if(!(status_flags & GODMODE)) //godmode doesn't work as intended anyway
 			reagents.metabolize(src, overdosable, L ? FALSE : TRUE)
 
-	if(!issynth(src)) //synthetics are never hungry
+	if(species && !(species.species_flags & ROBOTIC_LIMBS)) //robotic units never go hungry: todo make this a trait
 		//Nutrition decrease
 		if(nutrition > 0 && stat != DEAD)
 			adjust_nutrition(-HUNGER_FACTOR)
@@ -36,7 +36,7 @@
 
 		E.process()
 
-		if(!lying_angle && world.time - last_move_time < 15 && m_intent != MOVE_INTENT_WALK || pulledby)
+		if(!lying_angle && world.time - last_move_time < 15)
 			if(E.is_broken() && E.internal_organs && prob(15))
 				var/datum/internal_organ/I = pick(E.internal_organs)
 				custom_pain("You feel broken bones moving in your [E.display_name]!", 1)

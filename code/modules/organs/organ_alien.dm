@@ -171,7 +171,8 @@
 /datum/internal_organ/stack/process()
 	if(owner && owner.stat != 2 && !is_broken())
 		backup_time = world.time
-		if(owner.mind) backup = owner.mind
+		if(owner.mind) 
+			backup = owner.mind
 
 /datum/internal_organ/stack/vox
 	removed_type = /obj/item/organ/stack/vox

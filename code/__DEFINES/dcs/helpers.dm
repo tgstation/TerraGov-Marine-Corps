@@ -6,6 +6,14 @@
 
 #define SEND_GLOBAL_SIGNAL(sigtype, arguments...) ( SEND_SIGNAL(SSdcs, sigtype, ##arguments) )
 
+/// Signifies that this proc is used to handle signals.
+/// Every proc you pass to RegisterSignal must have this.
+#define SIGNAL_HANDLER SHOULD_NOT_SLEEP(TRUE)
+
+/// Signifies that this proc is used to handle signals, but also sleeps.
+/// Do not use this for new work.
+#define SIGNAL_HANDLER_DOES_SLEEP
+
 /// A wrapper for _AddElement that allows us to pretend we're using normal named arguments
 #define AddElement(arguments...) _AddElement(list(##arguments))
 /// A wrapper for _RemoveElement that allows us to pretend we're using normal named arguments
@@ -13,6 +21,9 @@
 
 /// A wrapper for _AddComponent that allows us to pretend we're using normal named arguments
 #define AddComponent(arguments...) _AddComponent(list(##arguments))
+
+/// A wrapper for _LoadComponent that allows us to pretend we're using normal named arguments
+#define LoadComponent(arguments...) _LoadComponent(list(##arguments))
 
 /proc/send_global_signal(signal) //Wrapper for callbacks and the likes.
 	SEND_GLOBAL_SIGNAL(signal)

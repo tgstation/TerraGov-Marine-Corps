@@ -19,8 +19,11 @@
 		M.copy_appearance(current_user, illusion_lifespan)
 		var/mob/living/simple_animal/hostile/illusion/I = new(get_turf(src))
 		I.copy_appearance(current_user, illusion_lifespan)
-	current_user = null
 	qdel(src)
+
+/obj/item/explosive/grenade/mirage/Destroy()
+	current_user = null
+	return ..()
 
 /mob/living/simple_animal/hostile/illusion
 	name = "illusion"
@@ -59,6 +62,7 @@
 	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/on_parent_del)
 
 /mob/living/simple_animal/hostile/illusion/proc/on_parent_del()
+	SIGNAL_HANDLER
 	parent = null
 
 /mob/living/simple_animal/hostile/illusion/Destroy()

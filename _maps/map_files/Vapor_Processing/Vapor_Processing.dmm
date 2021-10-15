@@ -97,7 +97,6 @@
 "as" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
 /obj/docking_port/stationary/crashmode,
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "at" = (
@@ -205,15 +204,6 @@
 	},
 /turf/open/floor/plating/asteroidwarning{
 	dir = 4
-	},
-/area/shuttle/drop2/lz2)
-"aK" = (
-/obj/effect/landmark/monkey_spawn,
-/obj/machinery/landinglight/ds2/delaytwo{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 8
 	},
 /area/shuttle/drop2/lz2)
 "aL" = (
@@ -368,17 +358,16 @@
 /area/maintenance/apmaint)
 "bj" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1;
-	name = "\improper Airlock"
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/apmaint)
 "bk" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/n)
 "bl" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/ground,
 /area/lv624/ground/caves/central2)
 "bm" = (
@@ -464,39 +453,33 @@
 /turf/closed/mineral,
 /area/lv624/ground/caves/east1)
 "bH" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Braxton Oxto"
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "bI" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = null;
 	corpseidjob = "Laborer";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Kira Von"
 	},
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "bJ" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = null;
 	corpseidjob = "Laborer";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Bren Foras"
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "bK" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/ground,
 /area/lv624/ground/caves/east1)
 "bL" = (
@@ -589,7 +572,6 @@
 "cb" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
 /obj/docking_port/stationary/crashmode,
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cc" = (
@@ -659,7 +641,7 @@
 /turf/open/ground,
 /area/lv624/ground/compound/n)
 "ct" = (
-/obj/structure/mineral_door/resin,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/ground,
 /area/space)
 "cu" = (
@@ -667,7 +649,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/lv624/lazarus/fitness)
 "cv" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/ground,
 /area/space)
 "cx" = (
@@ -734,10 +716,6 @@
 /obj/machinery/light,
 /turf/open/floor/prison/sterilewhite,
 /area/lv624/lazarus/fitness)
-"cN" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/ground,
-/area/lv624/ground/compound/n)
 "cO" = (
 /obj/structure/largecrate/supply/machine,
 /turf/open/floor,
@@ -927,7 +905,7 @@
 /turf/open/floor/grimy,
 /area/lv624/lazarus/internal_affairs)
 "dC" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/wood,
 /area/shuttle/drop2/lz2)
 "dD" = (
@@ -989,10 +967,6 @@
 	},
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/n)
-"dR" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/grass,
-/area/lv624/ground/compound/n)
 "dT" = (
 /obj/structure/cable,
 /turf/closed/gm/dense,
@@ -1036,9 +1010,7 @@
 /turf/open/floor/tile/white,
 /area/medical/medbay2)
 "ee" = (
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/medical/medbay2)
 "ef" = (
 /obj/structure/closet/secure_closet/medical2,
@@ -1172,9 +1144,7 @@
 "eE" = (
 /obj/item/defibrillator,
 /obj/structure/table,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/medical/medbay2)
 "eF" = (
 /obj/item/defibrillator,
@@ -1182,9 +1152,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/medical/medbay2)
 "eG" = (
 /obj/machinery/iv_drip,
@@ -1194,9 +1162,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/medical/medbay2)
 "eH" = (
 /obj/machinery/optable,
@@ -1288,9 +1254,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/medical/medbay2)
 "eY" = (
 /obj/structure/table,
@@ -1309,10 +1273,6 @@
 /area/medical/medbay2)
 "fa" = (
 /obj/structure/cable,
-/turf/open/floor/grass,
-/area/vapor_processing/west_compound)
-"fb" = (
-/obj/effect/landmark/monkey_spawn,
 /turf/open/floor/grass,
 /area/vapor_processing/west_compound)
 "fd" = (
@@ -1346,21 +1306,19 @@
 /turf/closed/wall,
 /area/lv624/ground/compound/c)
 "fl" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/ground/grass/grass2,
 /area/vapor_processing/east_compound)
 "fm" = (
 /obj/machinery/door/airlock/multi_tile/medical,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/medical/medbay2)
 "fn" = (
 /obj/structure/cable,
 /turf/closed/wall,
 /area/medical/medbay2)
 "fo" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/grass,
 /area/vapor_processing/west_compound)
 "fq" = (
@@ -1419,10 +1377,6 @@
 	dir = 1
 	},
 /area/vapor_processing/cargo2)
-"fy" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/ground,
-/area/vapor_processing/east_compound)
 "fz" = (
 /turf/closed/wall/indestructible/mineral,
 /area/vapor_processing/caves/se)
@@ -1436,9 +1390,7 @@
 /turf/closed/wall,
 /area/lv624/lazarus/medbay)
 "fD" = (
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
 "fE" = (
 /obj/structure/cable,
@@ -1459,7 +1411,6 @@
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = null;
 	corpseidjob = "Laborer";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Olgin Vekin"
 	},
 /turf/open/ground,
@@ -1498,10 +1449,6 @@
 	dir = 1
 	},
 /area/lv624/lazarus/quart)
-"fX" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/ground,
-/area/lv624/ground/compound/c)
 "fY" = (
 /turf/closed/wall,
 /area/lv624/lazarus/engineering)
@@ -1511,14 +1458,10 @@
 /area/lv624/lazarus/engineering)
 "ga" = (
 /obj/machinery/vending/MarineMed/Blood,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "gb" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	dir = 2
-	},
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
 	dir = 1
@@ -1566,58 +1509,42 @@
 /area/lv624/lazarus/medbay)
 "gk" = (
 /obj/structure/closet/secure_closet/medical2,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
 "gl" = (
 /obj/structure/closet/secure_closet/medical3,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
 "gm" = (
 /obj/structure/closet/secure_closet/medical_doctor,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
 "gn" = (
 /obj/structure/closet/secure_closet/medical_doctor,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
-"go" = (
-/turf/closed/wall/resin,
-/area/space)
 "gp" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Evan Kark"
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/space)
 "gq" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/doctor{
 	corpseback = null;
 	corpsegloves = /obj/item/clothing/gloves/latex;
 	corpseidjob = "Doctor";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Drew Bellel"
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/space)
 "gr" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/security{
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Jac Mester"
@@ -1625,167 +1552,134 @@
 /turf/open/floor/plating/ground/dirt,
 /area/space)
 "gs" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
 	corpsehelmet = /obj/item/clothing/head/tgmccap/req;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Lee Hesto"
 	},
-/obj/effect/alien/weeds/node,
-/turf/open/floor/plating/ground/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/ground,
 /area/space)
 "gt" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Ellis Bark"
 	},
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/space)
 "gu" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = null;
 	corpseidjob = "Laborer";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Olgin Vekin"
 	},
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/space)
 "gv" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Chang Lin"
 	},
 /obj/item/weapon/gun/pistol/holdout,
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/space)
 "gw" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/resin/membrane,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/ground,
 /area/space)
 "gx" = (
-/turf/closed/wall/resin/membrane,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/ground,
 /area/space)
 "gy" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/engineer{
 	corpseback = /obj/item/storage/backpack;
 	corpseidjob = "Engineer";
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Wes Uvin"
 	},
-/turf/open/floor/plating/ground/dirt,
-/area/space)
-"gz" = (
-/obj/structure/bed/nest,
 /turf/open/ground,
 /area/space)
-"gA" = (
-/turf/open/floor/plating/ground/dirt,
-/area/space)
 "gB" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/engineer{
 	corpseback = /obj/item/storage/backpack;
 	corpsehelmet = /obj/item/clothing/head/welding;
 	corpseidjob = "Engineer";
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Ted Jarka"
 	},
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/space)
 "gC" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/engineer{
 	corpseback = /obj/item/storage/backpack;
 	corpseidjob = "Engineer";
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Everett Mison"
 	},
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/space)
 "gD" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/doctor{
 	corpseback = null;
 	corpsegloves = /obj/item/clothing/gloves/latex;
 	corpseidjob = "Doctor";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Ted Koso"
 	},
-/obj/effect/alien/weeds/node,
-/turf/open/floor/plating/ground/dirt,
-/area/space)
-"gE" = (
-/obj/effect/alien/weeds/node,
-/turf/open/floor/plating/ground/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/ground,
 /area/space)
 "gF" = (
-/obj/structure/mineral_door/resin,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/weed_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/space)
 "gG" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = /obj/item/storage/backpack;
 	corpsehelmet = /obj/item/clothing/head/flatcap;
 	corpseidjob = "Laborer";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Terrin Yin"
 	},
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/space)
 "gH" = (
-/obj/structure/mineral_door/resin,
+/obj/effect/landmark/xeno_resin_door,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/space)
 "gI" = (
-/obj/structure/bed/nest,
 /turf/open/floor/plating/ground/dirt,
 /area/space)
 "gJ" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Marko Quin"
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/space)
 "gK" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
 	corpsehelmet = /obj/item/clothing/head/flatcap;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Jackson Martin"
 	},
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/space)
 "gL" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/security{
 	corpsehelmet = /obj/item/clothing/head/tgmccap/req;
 	corpseuniform = /obj/item/clothing/under/colonist;
@@ -1794,7 +1688,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/space)
 "gM" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/security{
 	corpsebelt = /obj/item/weapon/gun/revolver/cmb;
 	corpsesuit = /obj/item/clothing/suit/storage/CMB;
@@ -1802,15 +1695,13 @@
 	name = "Deputy Maxwell Ligis"
 	},
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/space)
 "gN" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
 	corpsehelmet = /obj/item/clothing/head/soft/grey;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Innio Morris"
 	},
@@ -1830,13 +1721,12 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "gR" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/security{
 	corpsehelmet = /obj/item/clothing/head/helmet/riot;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Fors Ilin"
 	},
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/space)
 "gS" = (
 /turf/open/floor/tile/whiteyellow/corner{
@@ -1853,7 +1743,6 @@
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = /obj/item/storage/backpack;
 	corpseidjob = "Laborer";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Roester Kalin"
 	},
 /turf/open/ground,
@@ -1885,16 +1774,12 @@
 /area/lv624/lazarus/engineering)
 "ha" = (
 /obj/machinery/biogenerator,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "hb" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
 "hc" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -1949,7 +1834,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "hn" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/c)
 "ho" = (
@@ -1989,17 +1874,13 @@
 "hu" = (
 /obj/machinery/computer/operating,
 /obj/structure/table,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
 "hv" = (
 /obj/item/reagent_containers/hypospray,
 /obj/structure/table,
 /obj/item/healthanalyzer,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
 "hw" = (
 /obj/machinery/chem_dispenser,
@@ -2019,21 +1900,15 @@
 /area/lv624/lazarus/medbay)
 "hA" = (
 /obj/structure/closet/secure_closet/chemical,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
 "hB" = (
 /obj/structure/closet/secure_closet/CMO,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
 "hC" = (
 /obj/structure/closet/secure_closet/medical1,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
 "hD" = (
 /obj/structure/table,
@@ -2060,12 +1935,10 @@
 /area/lv624/lazarus/engineering)
 "hI" = (
 /obj/machinery/door/airlock/medical,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
 "hJ" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/c)
 "hK" = (
@@ -2077,15 +1950,12 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/medical/medbay2)
 "hM" = (
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = null;
 	corpseidjob = "Laborer";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Kira Von"
 	},
 /turf/open/ground,
@@ -2108,7 +1978,7 @@
 /turf/open/floor/prison/whitepurple,
 /area/lv624/lazarus/engineering)
 "hR" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/prison/whitepurple,
 /area/lv624/lazarus/engineering)
 "hS" = (
@@ -2146,7 +2016,6 @@
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = null;
 	corpseidjob = "Laborer";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Bren Foras"
 	},
 /turf/open/ground,
@@ -2263,7 +2132,6 @@
 	corpseback = null;
 	corpsegloves = /obj/item/clothing/gloves/latex;
 	corpseidjob = "Doctor";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Drew Bellel"
 	},
 /turf/open/floor/tile/white,
@@ -2273,7 +2141,6 @@
 	corpseback = /obj/item/storage/backpack;
 	corpsehelmet = /obj/item/clothing/head/flatcap;
 	corpseidjob = "Laborer";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Terrin Yin"
 	},
 /turf/open/ground,
@@ -2309,24 +2176,17 @@
 /obj/effect/landmark/corpsespawner/doctor{
 	corpseback = null;
 	corpsegloves = /obj/item/clothing/gloves/latex;
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Ben Harris"
 	},
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/medical/medbay2)
 "iG" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/medical/medbay2)
 "iH" = (
 /obj/effect/landmark/corpsespawner/doctor,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/medical/medbay2)
 "iI" = (
 /obj/structure/cable,
@@ -2845,7 +2705,7 @@
 	},
 /area/lv624/lazarus/security)
 "kC" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/wood,
 /area/lv624/lazarus/canteen)
 "kD" = (
@@ -2891,10 +2751,6 @@
 	dir = 4
 	},
 /area/lv624/lazarus/comms)
-"kK" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/grass,
-/area/lv624/ground/compound/c)
 "kL" = (
 /obj/machinery/door/airlock/engineering,
 /obj/structure/cable,
@@ -2923,7 +2779,7 @@
 /turf/closed/wall,
 /area/lv624/lazarus/comms)
 "kX" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/sw)
 "kY" = (
@@ -2991,7 +2847,6 @@
 	corpseback = /obj/item/storage/backpack;
 	corpseidjob = "Engineer";
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Wes Uvin"
 	},
 /turf/open/floor/grass,
@@ -3008,7 +2863,7 @@
 	},
 /area/lv624/lazarus/comms)
 "ls" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/grass,
 /area/vapor_processing/south_compound)
 "lt" = (
@@ -3034,10 +2889,7 @@
 	},
 /area/vapor_processing/cargo2)
 "ly" = (
-/obj/effect/landmark/corpsespawner/clown,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
 "lA" = (
 /obj/structure/closet/emcloset,
@@ -3082,8 +2934,7 @@
 /area/vapor_processing/cargo_maint_s)
 "lK" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1;
-	name = "\improper Airlock"
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
@@ -3091,10 +2942,6 @@
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
-"lN" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/ground/grass/grass2,
-/area/lv624/ground/compound/sw)
 "lO" = (
 /obj/machinery/firealarm,
 /obj/machinery/light{
@@ -3112,14 +2959,8 @@
 /area/storage/tools)
 "lR" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
-"lS" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/grass,
-/area/vapor_processing/south_compound)
 "lT" = (
 /turf/closed/wall,
 /area/lv624/lazarus/robotics)
@@ -3210,12 +3051,8 @@
 /turf/closed/wall,
 /area/lv624/lazarus/research)
 "mp" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/grass,
-/area/lv624/ground/compound/se)
-"mq" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/se)
 "mr" = (
 /obj/structure/reagent_dispensers/fueltank,
@@ -3242,11 +3079,6 @@
 /turf/open/floor/scorched/two,
 /area/storage/tools)
 "mw" = (
-/turf/open/floor,
-/area/lv624/lazarus/research)
-"mx" = (
-/obj/effect/landmark/monkey_spawn,
-/obj/structure/cable,
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "my" = (
@@ -3287,10 +3119,6 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/research)
-"mG" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor,
-/area/storage/tools)
 "mH" = (
 /obj/effect/spawner/random/tool,
 /turf/open/floor,
@@ -3353,10 +3181,6 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/lv624/lazarus/research)
-"mV" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor,
-/area/lv624/lazarus/research)
 "mW" = (
 /obj/effect/spawner/random/toolbox,
 /obj/structure/table,
@@ -3385,7 +3209,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "nb" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/ground/grass/grass2,
 /area/vapor_processing/south_compound)
 "nc" = (
@@ -3402,7 +3226,6 @@
 /area/maintenance/substation)
 "nf" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 4;
 	id = "secure_blast";
 	name = "\improper Secure Armory Blast Door"
 	},
@@ -3410,7 +3233,6 @@
 /area/storage/tools)
 "ng" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 4;
 	id = "secure_blast";
 	name = "\improper Secure Armory Blast Door"
 	},
@@ -3582,16 +3404,9 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
-"od" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor,
-/area/maintenance/substation)
 "oe" = (
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
-"of" = (
-/turf/closed/wall/resin,
-/area/vapor_processing/caves/se)
 "og" = (
 /obj/structure/table/flipped,
 /obj/item/rsp,
@@ -3621,51 +3436,42 @@
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
 "on" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
 "oo" = (
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/weed_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/resin,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/ground,
 /area/vapor_processing/caves/se)
 "op" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Kegan Mills"
 	},
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/vapor_processing/caves/se)
 "oq" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/security{
 	corpsebelt = /obj/item/weapon/gun/revolver/cmb;
 	corpsesuit = /obj/item/clothing/suit/storage/CMB;
 	corpseuniform = /obj/item/clothing/under/CM_uniform;
 	name = "Marshal Logan Bills"
 	},
-/obj/effect/alien/weeds/node,
-/turf/open/floor/plating/ground/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/ground,
 /area/vapor_processing/caves/se)
 "or" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Harry Trent"
 	},
-/turf/open/floor/plating/ground/dirt,
-/area/vapor_processing/caves/se)
-"os" = (
-/obj/structure/bed/nest,
-/obj/effect/alien/weeds/node,
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/vapor_processing/caves/se)
 "ot" = (
 /obj/structure/cable,
@@ -3698,11 +3504,8 @@
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
 "oC" = (
-/turf/closed/wall/resin/membrane,
-/area/vapor_processing/caves/se)
-"oD" = (
-/obj/structure/bed/nest,
-/turf/open/floor/plating/ground/dirt,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/ground,
 /area/vapor_processing/caves/se)
 "oF" = (
 /obj/structure/table/flipped,
@@ -3727,22 +3530,17 @@
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
 "oK" = (
-/obj/structure/mineral_door/resin,
+/obj/effect/landmark/xeno_resin_door,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/vapor_processing/caves/se)
-"oL" = (
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/vapor_processing/caves/se)
 "oM" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/doctor{
 	corpseback = null;
 	corpsegloves = /obj/item/clothing/gloves/latex;
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Redo Koster"
 	},
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/vapor_processing/caves/se)
 "oN" = (
 /obj/structure/cable,
@@ -3778,20 +3576,19 @@
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
 "oT" = (
-/obj/structure/mineral_door/resin,
-/obj/effect/alien/weeds/node,
+/obj/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/weed_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/vapor_processing/caves/se)
 "oU" = (
-/obj/effect/alien/weeds/node,
-/turf/open/floor/plating/ground/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/ground,
 /area/vapor_processing/caves/se)
 "oV" = (
-/obj/structure/bed/nest,
 /obj/item/weapon/gun/pistol/holdout,
-/obj/effect/alien/weeds/node,
-/turf/open/floor/plating/ground/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/ground,
 /area/vapor_processing/caves/se)
 "oW" = (
 /obj/structure/cargo_container,
@@ -3814,16 +3611,14 @@
 /turf/open/floor/grass,
 /area/lv624/ground/compound/c)
 "pb" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
 	corpsebelt = /obj/item/weapon/gun/pistol/holdout;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Luther Yovin"
 	},
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/vapor_processing/caves/se)
 "pc" = (
 /obj/structure/cable,
@@ -3833,7 +3628,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
 "pd" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/se)
 "pe" = (
@@ -3850,32 +3645,27 @@
 /turf/closed/wall/wood,
 /area/crew_quarters/sleep_male)
 "ph" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/doctor{
 	corpseback = null;
 	corpsegloves = /obj/item/clothing/gloves/latex;
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Ben Harris"
 	},
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/vapor_processing/caves/se)
 "pi" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/doctor{
 	corpseback = null;
 	corpsegloves = /obj/item/clothing/gloves/latex;
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Mio Linno"
 	},
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/vapor_processing/caves/se)
 "pj" = (
-/obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/security{
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Ethan Peser"
 	},
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/vapor_processing/caves/se)
 "pk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -4102,12 +3892,8 @@
 "qc" = (
 /turf/open/floor/grass,
 /area/lv624/ground/compound/sw)
-"qd" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/ground/grass/grass2,
-/area/vapor_processing/south_compound)
 "qe" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/wood,
 /area/shuttle/drop1/lz1)
 "qf" = (
@@ -4247,9 +4033,7 @@
 /area/lv624/lazarus/canteen)
 "qC" = (
 /obj/structure/window/framed/colony,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
 "qD" = (
 /obj/structure/window/framed/colony,
@@ -4391,7 +4175,6 @@
 /area/vapor_processing/south_compound)
 "rg" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 4;
 	id = "secure_blast";
 	name = "\improper Secure Armory Blast Door"
 	},
@@ -4399,7 +4182,6 @@
 /area/lv624/lazarus/research)
 "rh" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 4;
 	id = "secure_blast";
 	name = "\improper Secure Armory Blast Door"
 	},
@@ -4533,7 +4315,6 @@
 /obj/effect/landmark/corpsespawner/doctor{
 	corpseback = null;
 	corpsegloves = /obj/item/clothing/gloves/latex;
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Mio Linno"
 	},
 /turf/open/floor/tile/red/redtaupe,
@@ -4736,7 +4517,6 @@
 	corpsehelmet = /obj/item/clothing/head/welding;
 	corpseidjob = "Engineer";
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Ted Jarka"
 	},
 /turf/open/floor/tile/whiteyellow/corner{
@@ -4769,7 +4549,6 @@
 	corpseback = /obj/item/storage/backpack;
 	corpseidjob = "Engineer";
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Everett Mison"
 	},
 /turf/open/floor/prison/yellow/full,
@@ -4824,7 +4603,6 @@
 	corpseback = null;
 	corpsegloves = /obj/item/clothing/gloves/latex;
 	corpseidjob = "Doctor";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Ted Koso"
 	},
 /turf/open/ground,
@@ -4924,7 +4702,7 @@
 	},
 /area/lv624/lazarus/comms)
 "sG" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/grass,
 /area/vapor_processing/south_compound)
@@ -5006,7 +4784,6 @@
 /area/storage/tools)
 "sT" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 4;
 	id = "secure_blast";
 	name = "\improper Secure Armory Blast Door"
 	},
@@ -5071,11 +4848,6 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor,
 /area/storage/tools)
-"te" = (
-/obj/effect/landmark/monkey_spawn,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor,
-/area/lv624/lazarus/research)
 "tf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -5191,10 +4963,6 @@
 "tC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall,
-/area/lv624/lazarus/research)
-"tD" = (
-/obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating/dmg1,
 /area/lv624/lazarus/research)
 "tE" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -5511,7 +5279,7 @@
 /obj/structure/closet,
 /obj/item/tool/crowbar,
 /obj/item/clothing/gloves/yellow,
-/obj/item/stack/medical/bruise_pack,
+/obj/item/stack/medical/heal_pack/gauze,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -5570,10 +5338,6 @@
 "zj" = (
 /turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/compound/se)
-"Av" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/resin,
-/area/space)
 "AB" = (
 /obj/structure/cable,
 /turf/open/floor/grass,
@@ -5593,15 +5357,15 @@
 /area/lv624/lazarus/quart)
 "Ca" = (
 /obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/vapor_processing/caves/se)
 "CU" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/resin/membrane,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/ground,
 /area/space)
 "FJ" = (
 /obj/docking_port/stationary/crashmode,
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
 "Gn" = (
@@ -5621,7 +5385,7 @@
 /area/lv624/lazarus/quartstorage)
 "It" = (
 /obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground,
 /area/space)
 "Iu" = (
 /obj/machinery/computer/nuke_disk_generator/green,
@@ -5640,7 +5404,8 @@
 /area/storage/tools)
 "Jt" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/resin,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/ground,
 /area/vapor_processing/caves/se)
 "Jy" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -5695,6 +5460,10 @@
 /obj/effect/landmark/nuke_spawn,
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
+"Sw" = (
+/obj/effect/landmark/dropship_start_location,
+/turf/open/ground,
+/area/lv624/ground/compound/c)
 "SJ" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/whiteyellow/full,
@@ -7475,7 +7244,7 @@ aB
 ar
 aF
 aI
-aK
+aM
 aL
 aF
 aI
@@ -8320,7 +8089,7 @@ el
 el
 eK
 eK
-fb
+eK
 eK
 fa
 qC
@@ -8649,7 +8418,7 @@ ki
 ki
 kY
 kY
-lN
+ki
 ki
 ki
 kP
@@ -8669,7 +8438,7 @@ kQ
 kQ
 kP
 kR
-lN
+ki
 kY
 ki
 ki
@@ -9019,7 +8788,7 @@ bS
 cK
 bQ
 ah
-cN
+cs
 cs
 ah
 cV
@@ -9572,7 +9341,7 @@ lQ
 lQ
 lQ
 sQ
-mG
+lQ
 lQ
 lQ
 lQ
@@ -9596,7 +9365,7 @@ lh
 lh
 le
 le
-lS
+le
 le
 le
 aa
@@ -9686,7 +9455,7 @@ nd
 oi
 nx
 nx
-od
+nx
 nx
 nx
 nd
@@ -9945,7 +9714,7 @@ ah
 ah
 ah
 bf
-dR
+bf
 ah
 ah
 et
@@ -10275,7 +10044,7 @@ et
 et
 et
 ep
-kK
+ep
 ep
 le
 lf
@@ -10567,7 +10336,7 @@ ep
 GV
 ft
 eu
-fX
+eu
 eu
 eu
 eu
@@ -10791,7 +10560,7 @@ lg
 le
 le
 le
-lS
+le
 le
 lH
 sO
@@ -11324,7 +11093,7 @@ mo
 lh
 lh
 lh
-lS
+le
 pf
 uA
 pt
@@ -11693,7 +11462,7 @@ eu
 eu
 eu
 eu
-eu
+Sw
 eu
 eu
 eu
@@ -12222,7 +11991,7 @@ lh
 lT
 pI
 mk
-mx
+mE
 sV
 mE
 tb
@@ -12337,7 +12106,7 @@ mw
 mw
 nH
 tw
-tD
+tQ
 tN
 mo
 mw
@@ -12431,7 +12200,7 @@ sX
 sZ
 sZ
 sZ
-te
+sZ
 sZ
 sZ
 tk
@@ -12545,7 +12314,7 @@ tF
 tP
 mw
 mw
-mV
+mw
 mw
 lh
 lh
@@ -12605,7 +12374,7 @@ bD
 bD
 bD
 eO
-fy
+eO
 eO
 eO
 fZ
@@ -12638,7 +12407,7 @@ qI
 mw
 mw
 tb
-mx
+mE
 mw
 mw
 qI
@@ -12658,7 +12427,7 @@ lh
 lh
 lg
 lg
-qd
+lg
 lg
 aa
 "}
@@ -13045,7 +12814,7 @@ ll
 li
 li
 ll
-mq
+ll
 nn
 ll
 ll
@@ -13789,17 +13558,17 @@ aa
 aa
 aa
 aa
-go
-go
-go
+gx
+gx
+gx
 ct
 ct
 ct
 ct
 ct
-go
-go
-go
+gx
+gx
+gx
 ag
 bG
 bG
@@ -13894,7 +13663,7 @@ gp
 gx
 bd
 gv
-gz
+af
 gC
 gD
 gG
@@ -13902,7 +13671,7 @@ gI
 gJ
 gL
 gN
-go
+gx
 bG
 bG
 bF
@@ -14003,7 +13772,7 @@ CU
 CU
 CU
 CU
-gI
+af
 gx
 bH
 bG
@@ -14098,12 +13867,12 @@ gr
 gx
 af
 CU
-gA
-gA
-gA
-gA
-gA
-gA
+af
+af
+af
+af
+af
+af
 CU
 af
 gx
@@ -14197,15 +13966,15 @@ aa
 aa
 aa
 ag
-go
+gx
 gs
 CU
-gA
-gA
-gE
+af
+af
+cv
 It
-gA
-gA
+af
+af
 gw
 af
 ct
@@ -14299,13 +14068,13 @@ aa
 aa
 aa
 ag
-go
+gx
 gt
 CU
 CU
 CU
-gA
-gA
+af
+af
 CU
 CU
 CU
@@ -14401,18 +14170,18 @@ aa
 aa
 aa
 ag
-go
+gx
 gu
 gy
 gB
 CU
-gA
-gA
+af
+af
 CU
 gK
 gM
 gR
-go
+gx
 bE
 bE
 bE
@@ -14503,18 +14272,18 @@ aa
 aa
 aa
 ag
-go
-go
-go
-go
-Av
+gx
+gx
+gx
+gx
+CU
 gF
 gH
-Av
-go
-go
-go
-go
+CU
+gx
+gx
+gx
+gx
 bG
 bG
 bF
@@ -14567,7 +14336,7 @@ li
 li
 ll
 ll
-mq
+ll
 ll
 ll
 ll
@@ -14582,7 +14351,7 @@ lm
 ll
 ll
 ll
-mq
+ll
 ll
 ll
 ll
@@ -15000,7 +14769,7 @@ ll
 ll
 ll
 ll
-mq
+ll
 ll
 ll
 ll
@@ -15085,7 +14854,7 @@ ll
 ll
 ll
 ll
-mq
+ll
 ll
 ll
 ll
@@ -15296,7 +15065,7 @@ ll
 li
 lm
 li
-of
+oC
 oo
 Jt
 oK
@@ -15304,7 +15073,7 @@ oT
 Jt
 Jt
 Jt
-of
+oC
 lm
 lm
 ll
@@ -15401,9 +15170,9 @@ li
 Jt
 op
 oC
-oL
-oL
-oL
+fB
+fB
+fB
 oC
 ph
 Jt
@@ -15503,11 +15272,11 @@ li
 Jt
 oq
 oC
-oL
+fB
 oU
 Ca
 oC
-os
+oU
 Jt
 ll
 li
@@ -15705,12 +15474,12 @@ fz
 fz
 fz
 Jt
-os
-oD
+oU
+fB
 oM
 oV
 pb
-oD
+fB
 pj
 Jt
 li
@@ -15806,7 +15575,7 @@ fz
 fz
 fz
 fz
-of
+oC
 Jt
 Jt
 Jt

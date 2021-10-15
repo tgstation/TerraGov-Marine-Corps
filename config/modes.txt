@@ -1,0 +1,25 @@
+# Settings for modes. deploytimelock is in minutes
+
+mode Crash
+	requiredplayers 2
+	squadmaxnumber 1
+	maximumplayers 40
+	deploytimelock 45
+endmode
+
+mode Hunt
+	requiredplayers 2
+endmode
+
+mode Distress Signal
+	requiredplayers 2
+endmode
+
+mode Extended
+	requiredplayers 0
+	votable 0
+endmode
+
+mode Civil War
+	requiredplayers 2
+endmode

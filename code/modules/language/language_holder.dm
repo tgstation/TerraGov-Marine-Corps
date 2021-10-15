@@ -10,6 +10,7 @@
 
 /datum/language_holder/New(owner)
 	src.owner = owner
+	RegisterSignal(owner, COMSIG_PARENT_QDELETING, .proc/clean_language)
 
 	languages = typecacheof(languages)
 	shadow_languages = typecacheof(shadow_languages)
@@ -21,6 +22,10 @@
 	shadow_languages.Cut()
 	return ..()
 
+///Clean src when it's owner is deleted
+/datum/language_holder/proc/clean_language()
+	SIGNAL_HANDLER
+	qdel(src)
 
 /datum/language_holder/proc/copy(newowner)
 	var/datum/language_holder/copy = new(newowner)
@@ -113,8 +118,8 @@
 
 
 /datum/language_holder/synthetic
-	languages = list(/datum/language/common)
-	shadow_languages = list(/datum/language/machine, /datum/language/xenocommon)
+	languages = list(/datum/language/common, /datum/language/machine)
+	shadow_languages = list(/datum/language/xenocommon)
 
 
 /datum/language_holder/unathi
@@ -131,6 +136,7 @@
 
 /datum/language_holder/moth
 	languages = list(/datum/language/common, /datum/language/moth)
+	selected_default_language = /datum/language/moth
 
 
 /datum/language_holder/vox
@@ -143,6 +149,9 @@
 /datum/language_holder/sectoid
 	languages = list(/datum/language/sectoid)
 
+/datum/language_holder/husk
+	languages = list(/datum/language/husk)
+
 
 /mob/living/verb/language_menu()
 	set category = "IC"
@@ -153,12 +162,13 @@
 
 	for(var/i in H.languages)
 		var/datum/language/L = i
-		body += "[initial(L.name)] - Key: ,[initial(L.key)]"
+		body += "<b>[initial(L.name)]</b> - Key: <b>,[initial(L.key)]</b>"
 		if(H.selected_default_language == L)
 			body += " - Default"
 		else
 			body += " - <a href='?src=[REF(src)];default_language=[L]'>Set as Default</a>"
-		body += "<br>"
+		body += "<br><b>Description:</b> <i>[initial(L.desc)]</i>"
+		body += "<br><br>"
 
 
 	var/datum/browser/popup = new(src, "languages", "<div align='center'>Language Menu</div>", 550, 615)

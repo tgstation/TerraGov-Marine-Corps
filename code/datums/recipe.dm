@@ -51,7 +51,6 @@
 				return 0
 	if ((reagents?(reagents.len):(0)) < avail_reagents.reagent_list.len)
 		return -1
-	return .
 
 /datum/recipe/proc/check_items(obj/container as obj) //1=precisely, 0=insufficiently, -1=superfluous
 	if (!items)
@@ -72,7 +71,6 @@
 			. = -1
 	if (checklist.len)
 		return 0
-	return .
 
 //general version
 /datum/recipe/proc/make(obj/container as obj)
@@ -117,4 +115,3 @@
 				r_count = N_r
 				i_count = N_i
 				. = recipe
-		return .

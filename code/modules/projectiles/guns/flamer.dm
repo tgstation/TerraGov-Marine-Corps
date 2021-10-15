@@ -3,10 +3,8 @@
 //FLAMETHROWER
 
 /obj/item/weapon/gun/flamer
-	name = "\improper M240A1 incinerator unit"
-	desc = "The M240A1 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
-	icon_state = "m240"
-	item_state = "m240"
+	name = "flamer"
+	desc = "flame go froosh"
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
@@ -16,425 +14,438 @@
 	reload_sound = 'sound/weapons/guns/interact/flamethrower_reload.ogg'
 	aim_slowdown = 1.75
 	current_mag = /obj/item/ammo_magazine/flamer_tank
-	var/lit = 0 //Turn the flamer on/off
 	general_codex_key = "flame weapons"
-
 	attachable_allowed = list( //give it some flexibility.
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/magnetic_harness)
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/flamer_nozzle,
+		/obj/item/attachable/flamer_nozzle/wide,
+		/obj/item/attachable/flamer_nozzle/wide/red,
+		)
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_MUZZLE,
+		ATTACHMENT_SLOT_RAIL,
+		ATTACHMENT_SLOT_STOCK,
+		ATTACHMENT_SLOT_UNDER,
+		ATTACHMENT_SLOT_MAGAZINE,
+		ATTACHMENT_SLOT_FLAMER_NOZZLE,
+	)
+	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle)
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
-	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
-	fire_delay = 20
+	attachable_offset = list("rail_x" = 12, "rail_y" = 23, "flamer_nozzle_x" = 33, "flamer_nozzle_y" = 20)
+	fire_delay = 4
 
+	placed_overlay_iconstate = "flamer"
 
-/obj/item/weapon/gun/flamer/unique_action(mob/user)
-	return toggle_flame(user)
+	ammo = /datum/ammo/flamethrower
+	///Max range of the flamer in tiles.
+	var/flame_max_range = 6
+	///Travel speed of the flames in seconds.
+	var/flame_spread_time = 0.1 SECONDS
+	///Gun based modifier for burn level. Percentage based.
+	var/burn_level_mod = 1
+	///Gun based modifier for burn time. Percentage based.
+	var/burn_time_mod = 1
+	///Bitfield flags for flamer specific traits.
+	var/flags_flamer_features = NONE
+	///Overlay icon state of the pilot light.
+	var/lit_overlay_icon_state = "+lit"
+	///Pixel offset on the X axis for the pilot light overlay.
+	var/lit_overlay_offset_x = 6
+	///Pixel offset on the Y axis for the pilot light overlay.
+	var/lit_overlay_offset_y = 0
+	///Damage multiplier for mobs caught in the initial stream of fire.
+	var/mob_flame_damage_mod = 2
 
+/obj/item/weapon/gun/flamer/Initialize()
+	. = ..()
+	if(!current_mag)
+		return
+	light_pilot(TRUE)
 
 /obj/item/weapon/gun/flamer/examine_ammo_count(mob/user)
-	to_chat(user, "It's turned [lit? "on" : "off"].")
 	if(current_mag)
 		to_chat(user, "The fuel gauge shows the current tank is [round(current_mag.get_ammo_percent())]% full!")
-	else
-		to_chat(user, "There's no tank in [src]!")
-
-/obj/item/weapon/gun/flamer/able_to_fire(mob/user)
-	. = ..()
-	if(.)
-		if(!current_mag || !current_mag.current_rounds)
-			return
-
-
-/obj/item/weapon/gun/flamer/proc/toggle_flame(mob/user)
-	playsound(user, lit ? 'sound/weapons/guns/interact/flamethrower_off.ogg' : 'sound/weapons/guns/interact/flamethrower_on.ogg', 25, 1)
-	lit = !lit
-
-	var/image/I = image('icons/obj/items/gun.dmi', src, "+lit")
-	I.pixel_x += 3
-
-	if (lit)
-		overlays += I
-	else
-		overlays -= I
-		qdel(I)
-
-	return TRUE
-
-
-/obj/item/weapon/gun/flamer/Fire(atom/target, mob/living/user, params, reflex)
-	set waitfor = 0
-
-	if(!able_to_fire(user))
 		return
-
-	if(gun_on_cooldown(user))
-		return
-
-	var/turf/curloc = get_turf(user) //In case the target or we are expired.
-	var/turf/targloc = get_turf(target)
-	if(!targloc || !curloc)
-		return //Something has gone wrong...
-
-	if(!lit)
-		to_chat(user, "<span class='alert'>The weapon isn't lit</span>")
-		return
-
-	if(!current_mag)
-		return
-
-	if(current_mag.current_rounds <= 0)
-		click_empty(user)
-	else
-		unleash_flame(target, user)
-		var/obj/screen/ammo/A = user.hud_used.ammo
-		A.update_hud(user)
-
-/obj/item/weapon/gun/flamer/reload(mob/user, obj/item/ammo_magazine/magazine)
-	if(!magazine || !istype(magazine))
-		to_chat(user, "<span class='warning'>That's not a magazine!</span>")
-		return
-
-	if(magazine.current_rounds <= 0)
-		to_chat(user, "<span class='warning'>That [magazine.name] is empty!</span>")
-		return
-
-	if(!istype(src, magazine.gun_type))
-		to_chat(user, "<span class='warning'>That magazine doesn't fit in there!</span>")
-		return
-
-	if(istype(magazine, /obj/item/ammo_magazine/flamer_tank/large))
-		to_chat(user, "<span class='warning'>That tank is too large for this model!</span>")
-		return
-
-	if(!isnull(current_mag) && current_mag.loc == src)
-		to_chat(user, "<span class='warning'>It's still got something loaded!</span>")
-		return
-
-	else
-		if(user)
-			if(magazine.reload_delay > 1)
-				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
-				if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
-					replace_magazine(user, magazine)
-				else
-					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
-					return
-			else
-				replace_magazine(user, magazine)
-		else
-			current_mag = magazine
-			magazine.loc = src
-			replace_ammo(,magazine)
-
-	update_icon()
-	return TRUE
-
-/obj/item/weapon/gun/flamer/unload(mob/user, reload_override = 0, drop_override = 0)
-	if(!current_mag)
-		return FALSE //no magazine to unload
-	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
-		current_mag.forceMove(get_turf(src)) //Drop it on the ground.
-	else
-		user.put_in_hands(current_mag)
-
-	playsound(user, unload_sound, 25, 1)
-	user.visible_message("<span class='notice'>[user] unloads [current_mag] from [src].</span>",
-	"<span class='notice'>You unload [current_mag] from [src].</span>")
-	current_mag.update_icon()
-	current_mag = null
-
-	update_icon()
-
-	return TRUE
-
-
-/obj/item/weapon/gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
-	set waitfor = 0
-
-	last_fired = world.time
-
-	if(!istype(ammo, /datum/ammo/flamethrower))
-		CRASH("flamerthrower loaded with non-flamerthrower ammo")
-
-	var/datum/ammo/flamethrower/loaded_ammo = ammo
-
-	var/burnlevel = loaded_ammo.burnlevel
-	var/burntime = loaded_ammo.burntime
-	var/fire_color = loaded_ammo.fire_color
-	fire_delay = loaded_ammo.fire_delay
-	if(istype(loaded_ammo, /datum/ammo/flamethrower/green))
-		playsound(user, fire_sound, 50, 1)
-		triangular_flame(target, user, burntime, burnlevel, loaded_ammo.max_range)
-		return
-
-	var/list/turf/turfs = getline(user,target)
-	playsound(user, fire_sound, 50, 1)
-	var/distance = 1
-	var/turf/prev_T
-
-	for(var/F in turfs)
-		var/turf/T = F
-
-		if(T == user.loc)
-			prev_T = T
-			continue
-		if((T.density && !istype(T, /turf/closed/wall/resin)) || isspaceturf(T))
-			break
-		if(loc != user)
-			break
-		if(!current_mag?.current_rounds)
-			break
-		if(distance > loaded_ammo.max_range)
-			break
-
-		var/blocked = FALSE
-		for(var/obj/O in T)
-			if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER))
-				blocked = TRUE
-				break
-
-		var/turf/TF
-		if(!prev_T.Adjacent(T) && (T.x != prev_T.x || T.y != prev_T.y)) //diagonally blocked, it will seek for a cardinal turf by the former target.
-			blocked = TRUE
-			var/turf/Ty = locate(prev_T.x, T.y, prev_T.z)
-			var/turf/Tx = locate(T.x, prev_T.y, prev_T.z)
-			for(var/turf/TB in shuffle(list(Ty, Tx)))
-				if(prev_T.Adjacent(TB) && ((!TB.density && !isspaceturf(T)) || istype(T, /turf/closed/wall/resin)))
-					TF = TB
-					break
-			if(!TF)
-				break
-		else
-			TF = T
-
-		current_mag.current_rounds--
-		flame_turf(TF,user, burntime, burnlevel, fire_color)
-		if(blocked)
-			break
-		distance++
-		prev_T = T
-		sleep(1)
-
-/obj/item/weapon/gun/flamer/proc/flame_turf(turf/T, mob/living/user, heat, burn, f_color = "red")
-	if(!istype(T))
-		return
-
-	T.ignite(heat, burn, f_color)
-
-	// Melt a single layer of snow
-	if(istype(T, /turf/open/floor/plating/ground/snow))
-		var/turf/open/floor/plating/ground/snow/S = T
-
-		if (S.slayer > 0)
-			S.slayer -= 1
-			S.update_icon(1, 0)
-
-	for(var/obj/structure/jungle/vines/V in T)
-		qdel(V)
-
-	var/fire_mod
-	for(var/mob/living/M in T) //Deal bonus damage if someone's caught directly in initial stream
-		if(M.stat == DEAD)
-			continue
-
-		fire_mod = 1
-
-		if(isxeno(M))
-			var/mob/living/carbon/xenomorph/X = M
-			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
-				continue
-			fire_mod = clamp(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
-		else if(ishuman(M))
-			var/mob/living/carbon/human/H = M //fixed :s
-
-			if(user)
-				if(!user.mind?.bypass_ff && !H.mind?.bypass_ff && user.faction == H.faction)
-					log_combat(user, H, "flamed", src)
-					user.ff_check(30, H) // avg between 20/40 dmg
-					log_ffattack("[key_name(user)] flamed [key_name(H)] with \a [name] in [AREACOORD(T)].")
-					msg_admin_ff("[ADMIN_TPMONTY(user)] flamed [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(T)].")
-				else
-					log_combat(user, H, "flamed", src)
-
-			if(H.hard_armor.getRating("fire") >= 100)
-				continue
-
-		var/armor_block = M.run_armor_check(null, "fire")
-		M.apply_damage(rand(burn,(burn*2))* fire_mod, BURN, null, armor_block) // Make it so its the amount of heat or twice it for the initial blast.
-		UPDATEHEALTH(M)
-		M.adjust_fire_stacks(rand(5,burn*2))
-		M.IgniteMob()
-
-		to_chat(M, "[isxeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
-
-/obj/item/weapon/gun/flamer/proc/triangular_flame(atom/target, mob/living/user, burntime, burnlevel, max_range = 4)
-	set waitfor = 0
-
-	var/unleash_dir = user.dir //don't want the player to turn around mid-unleash to bend the fire.
-	var/list/turf/turfs = getline(user,target)
-	playsound(user, fire_sound, 50, 1)
-	var/distance = 1
-	var/turf/prev_T
-
-	for(var/turf/T in turfs)
-		if(T == user.loc)
-			prev_T = T
-			continue
-		if(T.density)
-			break
-		if(locate(/obj/effect/forcefield/fog) in T)
-			break
-		if(loc != user)
-			break
-		if(!current_mag || !current_mag.current_rounds)
-			break
-		if(distance > max_range)
-			break
-		if(prev_T && LinkBlocked(prev_T, T))
-			break
-		current_mag.current_rounds--
-		flame_turf(T,user, burntime, burnlevel, "green")
-		prev_T = T
-		sleep(1)
-
-		var/list/turf/right = list()
-		var/list/turf/left = list()
-		var/turf/right_turf = T
-		var/turf/left_turf = T
-		var/right_dir = turn(unleash_dir, 90)
-		var/left_dir = turn(unleash_dir, -90)
-		for (var/i = 0, i < distance - 1, i++)
-			right_turf = get_step(right_turf, right_dir)
-			right += right_turf
-			left_turf = get_step(left_turf, left_dir)
-			left += left_turf
-
-		var/turf/prev_R = T
-		for (var/turf/R in right)
-
-			if (R.density)
-				break
-			if(prev_R && LinkBlocked(prev_R, R))
-				break
-
-			flame_turf(R, user, burntime, burnlevel, "green")
-			prev_R = R
-			sleep(1)
-
-		var/turf/prev_L = T
-		for (var/turf/L in left)
-			if (L.density)
-				break
-			if(prev_L && LinkBlocked(prev_L, L))
-				break
-
-			flame_turf(L, user, burntime, burnlevel, "green")
-			prev_L = L
-			sleep(1)
-
-		distance++
+	to_chat(user, "[src] has no fuel tank!")
 
 /obj/item/weapon/gun/flamer/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
 	else
-		return list(ammo.hud_state, ammo.hud_state_empty)
+		return list(initial(ammo.hud_state), initial(ammo.hud_state_empty))
 
 /obj/item/weapon/gun/flamer/get_ammo_count()
 	if(!current_mag)
 		return 0
+	return current_mag.current_rounds
+
+/obj/item/weapon/gun/flamer/load_into_chamber(mob/user)
+	if(!current_mag || current_mag.current_rounds <= 0)
+		return FALSE
+	return TRUE
+
+/obj/item/weapon/gun/flamer/on_attachment_attach(obj/item/attaching_here, mob/attacher)
+	. = ..()
+	if(!istype(attaching_here, /obj/item/attachable/flamer_nozzle) || !current_mag)
+		return
+	light_pilot(TRUE)
+
+/obj/item/weapon/gun/flamer/on_attachment_detach(obj/item/detaching_here, mob/attacher)
+	. = ..()
+	if(!istype(detaching_here, /obj/item/attachable/flamer_nozzle))
+		return
+	light_pilot(FALSE)
+
+/obj/item/weapon/gun/flamer/reload(mob/user, obj/item/ammo_magazine/magazine)
+	. = ..()
+	if(!.)
+		return
+	var/datum/ammo/flamethrower/flamer_ammo = magazine.default_ammo
+	fire_delay = initial(flamer_ammo.fire_delay)
+	if(attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE])
+		light_pilot(TRUE)
+	gun_user?.hud_used.update_ammo_hud(gun_user, src)
+
+/obj/item/weapon/gun/flamer/unload(mob/user, reload_override, drop_override)
+	. = ..()
+	if(!.)
+		return
+	fire_delay = initial(fire_delay)
+	light_pilot(FALSE)
+	gun_user?.hud_used.update_ammo_hud(gun_user, src)
+
+///Makes the sound of the flamer being lit, and applies the overlay.
+/obj/item/weapon/gun/flamer/proc/light_pilot(light)
+	if(CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT) && light)
+		return
+	if(light)
+		ENABLE_BITFIELD(flags_flamer_features, FLAMER_IS_LIT)
 	else
-		return current_mag.current_rounds
+		DISABLE_BITFIELD(flags_flamer_features, FLAMER_IS_LIT)
+	playsound(src, CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT) ? 'sound/weapons/guns/interact/flamethrower_on.ogg' : 'sound/weapons/guns/interact/flamethrower_off.ogg', 25, 1)
 
 
-/obj/item/weapon/gun/flamer/marinestandard
+	if(CHECK_BITFIELD(flags_flamer_features, FLAMER_NO_LIT_OVERLAY))
+		return
+
+	var/image/lit_overlay = image(icon, src, lit_overlay_icon_state)
+	lit_overlay.pixel_x += lit_overlay_offset_x
+	lit_overlay.pixel_y += lit_overlay_offset_y
+
+	if(!CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT))
+		overlays.Cut()
+		update_icon()
+		return
+	overlays += lit_overlay
+
+/obj/item/weapon/gun/flamer/click_empty(mob/user)
+	playsound(src, 'sound/weapons/guns/interact/flamethrower_off.ogg', 25, 1)
+
+
+/obj/item/weapon/gun/flamer/able_to_fire(mob/user)
+	. = ..()
+	if(!.)
+		return
+	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE], /obj/item/attachable/flamer_nozzle))
+		to_chat(user, span_warning("[src] does not have a nozzle installed!"))
+		return FALSE
+	return TRUE
+
+/obj/item/weapon/gun/flamer/do_fire(obj/projectile/projectile_to_fire)
+	playsound(loc, fire_sound, 50, 1)
+	start_stream()
+	return TRUE
+
+///Sets up the recursive proc for flaming.
+/obj/item/weapon/gun/flamer/proc/start_stream()
+	var/obj/item/attachable/flamer_nozzle/nozzle = attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE]
+	var/burn_type = nozzle.stream_type
+	var/old_turfs = list(get_turf(src))
+	var/range = flame_max_range
+	var/start_location = get_turf(src)
+	var/current_target = get_turf(target)
+	switch(burn_type)
+		if(FLAMER_STREAM_STRAIGHT)
+			var/path_to_target = getline(start_location, current_target)
+			path_to_target -= start_location
+			recursive_flame_straight(1, old_turfs, path_to_target, range, current_target)
+		if(FLAMER_STREAM_CONE)
+			var/dir_to_target = get_dir(start_location, current_target)
+			if(ISDIAGONALDIR(dir_to_target))
+				range /= 2
+			recursive_flame_cone(1, old_turfs, dir_to_target, range, current_target)
+
+#define RECURSIVE_CHECK(old_turfs, range, current_target, iteration) (!length(old_turfs) || iteration > range || !current_target || (current_target in old_turfs))
+
+
+///Flames recursively a straight path.
+/obj/item/weapon/gun/flamer/proc/recursive_flame_straight(iteration, list/turf/old_turfs, list/turf/path_to_target, range, current_target)
+	if(current_mag?.current_rounds <= 0)
+		light_pilot(FALSE)
+		return
+	
+	if(RECURSIVE_CHECK(old_turfs, range, current_target, iteration))
+		return
+
+	var/list/turf/turfs_to_ignite = list()
+	if(iteration > length(path_to_target))
+		return
+	turfs_to_ignite += path_to_target[iteration]
+	if(!burn_list(turfs_to_ignite))
+		return
+	iteration++
+	addtimer(CALLBACK(src, .proc/recursive_flame_straight, iteration, turfs_to_ignite, path_to_target, range, current_target), flame_spread_time)
+
+///Flames recursively a cone.
+/obj/item/weapon/gun/flamer/proc/recursive_flame_cone(iteration, list/turf/old_turfs, dir_to_target, range, current_target)
+	if(current_mag?.current_rounds <= 0)
+		light_pilot(FALSE)
+		return
+
+	if(RECURSIVE_CHECK(old_turfs, range, current_target, iteration))
+		return
+
+
+	var/list/turf/turfs_to_ignite = list()
+	var/list/turf/turfs_skip_old = list()
+	var/turf/new_turf = get_step(old_turfs[1], dir_to_target)
+
+	turfs_to_ignite += new_turf //Adds the turf in front of the old turf.
+	for(var/turf/old_turf AS in old_turfs)
+		new_turf = get_step(old_turf, dir_to_target)
+		if(!(get_step(new_turf, turn(dir_to_target, 90)) in turfs_to_ignite)) //Adds the turf on the sides of the old turf if they arent already in the turfs_to_ignite list.
+			turfs_to_ignite += get_step(new_turf, turn(dir_to_target, 90))
+		if(!(get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90))) in turfs_to_ignite))
+			turfs_to_ignite += get_step(new_turf, REVERSE_DIR(turn(dir_to_target, 90)))
+		if(ISDIAGONALDIR(dir_to_target)) ///Fills in the blanks for a diagonal burn.
+			if(!(get_step(new_turf, turn(dir_to_target, 135)) in turfs_skip_old))
+				turfs_skip_old += get_step(new_turf, turn(dir_to_target, 135))
+			if(!(get_step(new_turf, turn(dir_to_target, 225)) in turfs_skip_old))
+				turfs_skip_old += get_step(new_turf, turn(dir_to_target, 225))
+	burn_list(turfs_skip_old)
+	if(!burn_list(turfs_to_ignite))
+		return
+	iteration++
+	addtimer(CALLBACK(src, .proc/recursive_flame_cone, iteration, turfs_to_ignite, dir_to_target, range, current_target), flame_spread_time)
+
+#undef RECURSIVE_CHECK
+
+///Checks and lights the turfs in turfs_to_burn
+/obj/item/weapon/gun/flamer/proc/burn_list(list/turf/turfs_to_burn)
+	for(var/turf/turf_to_check AS in turfs_to_burn)
+		if((turf_to_check.density && !istype(turf_to_check, /turf/closed/wall/resin)) || isspaceturf(turf_to_check))
+			turfs_to_burn -= turf_to_check
+			continue
+		for(var/obj/object in turf_to_check)
+			if(!object.density || object.throwpass || istype(object, /obj/structure/mineral_door/resin))
+				continue
+			turfs_to_burn -= turf_to_check
+
+	if(!length(turfs_to_burn))
+		return FALSE
+
+	var/datum/ammo/flamethrower/loaded_ammo = CHECK_BITFIELD(flags_flamer_features, FLAMER_USES_GUN_FLAMES) ? ammo : current_mag.default_ammo
+	var/burn_level = initial(loaded_ammo.burnlevel) * burn_level_mod
+	var/burn_time = initial(loaded_ammo.burntime) * burn_time_mod
+	var/fire_color = initial(loaded_ammo.fire_color)
+
+	for(var/turf/turf_to_ignite AS in turfs_to_burn)
+		if(current_mag?.current_rounds <= 0)
+			light_pilot(FALSE)
+			return FALSE
+		flame_turf(turf_to_ignite, gun_user, burn_time, burn_level, fire_color)
+		current_mag.current_rounds--
+	gun_user?.hud_used.update_ammo_hud(gun_user, src)
+	return TRUE
+
+///Lights the specific turf on fire and processes melting snow or vines and the like.
+/obj/item/weapon/gun/flamer/proc/flame_turf(turf/turf_to_ignite, mob/living/user, burn_time, burn_level, fire_color = "red")
+	turf_to_ignite.ignite(burn_time, burn_level, fire_color)
+
+	// Melt a single layer of snow
+	if(istype(turf_to_ignite, /turf/open/floor/plating/ground/snow))
+		var/turf/open/floor/plating/ground/snow/snow_turf = turf_to_ignite
+		if(snow_turf.slayer > 0)
+			snow_turf.slayer -= 1
+			snow_turf.update_icon(1, 0)
+
+	for(var/obj/structure/jungle/vines/vines in turf_to_ignite)
+		QDEL_NULL(vines)
+
+	var/fire_mod
+	for(var/mob/living/mob_caught in turf_to_ignite) //Deal bonus damage if someone's caught directly in initial stream
+		if(mob_caught.stat == DEAD)
+			continue
+
+		fire_mod = 1
+
+		if(isxeno(mob_caught))
+			var/mob/living/carbon/xenomorph/xeno_caught = mob_caught
+			if(CHECK_BITFIELD(xeno_caught.xeno_caste.caste_flags, CASTE_FIRE_IMMUNE))
+				continue
+			fire_mod = xeno_caught.get_fire_resist()
+		else if(ishuman(mob_caught))
+			var/mob/living/carbon/human/human_caught = mob_caught
+			if(user)
+				if(!user.mind?.bypass_ff && !human_caught.mind?.bypass_ff && user.faction == human_caught.faction)
+					log_combat(user, human_caught, "flamed", src)
+					user.ff_check(30, human_caught) // avg between 20/40 dmg
+					log_ffattack("[key_name(user)] flamed [key_name(human_caught)] with \a [name] in [AREACOORD(turf_to_ignite)].")
+					msg_admin_ff("[ADMIN_TPMONTY(user)] flamed [ADMIN_TPMONTY(human_caught)] with \a [name] in [ADMIN_VERBOSEJMP(turf_to_ignite)].")
+				else
+					log_combat(user, human_caught, "flamed", src)
+
+			if(human_caught.hard_armor.getRating("fire") >= 100)
+				continue
+
+		mob_caught.take_overall_damage_armored(rand(burn_level, (burn_level * mob_flame_damage_mod)) * fire_mod, BURN, "fire", updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
+		mob_caught.adjust_fire_stacks(rand(5, (burn_level * mob_flame_damage_mod)))
+		mob_caught.IgniteMob()
+
+		var/burn_message = "Augh! You are roasted by the flames!"
+		to_chat(mob_caught, isxeno(mob_caught) ? span_xenodanger(burn_message) : span_highdanger(burn_message))
+
+/obj/item/weapon/gun/flamer/big_flamer
+	name = "\improper M240A1 incinerator unit"
+	desc = "The M240A1 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
+	icon_state = "m240"
+	item_state = "m240"
+
+/obj/item/weapon/gun/flamer/mini_flamer
+	name = "mini flamethrower"
+	desc = "A weapon-mounted refillable flamethrower attachment.\nIt is designed for short bursts."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "flamethrower"
+
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY
+	flags_flamer_features = FLAMER_NO_LIT_OVERLAY
+	w_class = WEIGHT_CLASS_BULKY
+	fire_delay = 2.5 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
+
+	current_mag = /obj/item/ammo_magazine/flamer_tank/mini
+	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/unremovable/invisible)
+	attachable_allowed = list(
+		/obj/item/attachable/flamer_nozzle/unremovable/invisible,
+	)
+	slot = ATTACHMENT_SLOT_UNDER
+	attach_delay = 3 SECONDS
+	detach_delay = 3 SECONDS
+	pixel_shift_x = 15
+	pixel_shift_y = 18
+
+	flame_max_range = 4
+
+/obj/item/weapon/gun/flamer/mini_flamer/unremovable
+	flags_attach_features = NONE
+
+
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard
 	name = "\improper TL-84 flamethrower"
-	desc = "The TL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Uses large flamethrower cans to fuel itself."
+	desc = "The TL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Use unique action to use hydro cannon"
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "tl84"
 	item_state = "tl84"
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13)
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY
+	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13, "flamer_nozzle_x" = 31, "flamer_nozzle_y" = 19)
 	starting_attachment_types = list(
 		/obj/item/attachable/stock/t84stock,
 		/obj/item/attachable/hydro_cannon,
+		/obj/item/attachable/flamer_nozzle,
 	)
 	var/last_use
+	///If we are using the hydro cannon when clicking
+	var/hydro_active = FALSE
+	///How much water the hydro cannon has
+	var/water_count = 0
 
-/obj/item/weapon/gun/flamer/marinestandard/Initialize()
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/Initialize()
 	. = ..()
 	reagents = new /datum/reagents(FLAMER_WATER)
 	reagents.my_atom = src
 	reagents.add_reagent(/datum/reagent/water, reagents.maximum_volume)
+	water_count = reagents.maximum_volume
 
-/obj/item/weapon/gun/flamer/marinestandard/reload(mob/user, obj/item/ammo_magazine/magazine)
-	if(!magazine || !istype(magazine))
-		to_chat(user, "<span class='warning'>That's not a magazine!</span>")
-		return
 
-	if(magazine.current_rounds <= 0)
-		to_chat(user, "<span class='warning'>That [magazine.name] is empty!</span>")
-		return
 
-	if(!istype(src, magazine.gun_type))
-		to_chat(user, "<span class='warning'>That magazine doesn't fit in there!</span>")
-		return
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/examine(mob/user)
+	. = ..()
+	to_chat(user, span_notice("Its hydro cannon contains [reagents.get_reagent_amount(/datum/reagent/water)]/[reagents.maximum_volume] units of water!"))
 
-	if(!isnull(current_mag) && current_mag.loc == src)
-		to_chat(user, "<span class='warning'>It's still got something loaded!</span>")
-		return
-
-	else
-		if(user)
-			if(magazine.reload_delay > 1)
-				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
-				if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
-					replace_magazine(user, magazine)
-				else
-					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
-					return
-			else
-				replace_magazine(user, magazine)
-		else
-			current_mag = magazine
-			magazine.loc = src
-			replace_ammo(,magazine)
-
-	update_icon()
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/cock(mob/user)
 	return TRUE
 
-
-/obj/item/weapon/gun/flamer/marinestandard/able_to_fire(mob/user)
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/unique_action(mob/user)
 	. = ..()
-	if(.)
-		if(!current_mag || !current_mag.current_rounds)
-			return
+	if(!.)
+		return
+	var/obj/item/attachable/hydro_cannon/hydro = LAZYACCESS(attachments_by_slot, ATTACHMENT_SLOT_UNDER)
+	if(!istype(hydro))
+		return FALSE
+	playsound(user, hydro.activation_sound, 15, 1)
+	if (hydro.activate(user))
+		hydro_active = TRUE
+		light_pilot(FALSE)
+	else
+		hydro_active = FALSE
+		if (current_mag?.current_rounds > 0)
+			light_pilot(TRUE)
+	user.hud_used.update_ammo_hud(user, src)
+	SEND_SIGNAL(src, COMSIG_ITEM_HYDRO_CANNON_TOGGLED)
+	return TRUE
 
-/obj/item/weapon/gun/flamer/marinestandard/examine(mob/user)
-	. = ..()
-	to_chat(user, "<span class='notice'>Its hydro cannon contains [reagents.get_reagent_amount(/datum/reagent/water)]/[reagents.maximum_volume] units of water!</span>")
-
-
-
-/obj/item/weapon/gun/flamer/marinestandard/Fire(atom/target, mob/living/user, params, reflex)
-	if(active_attachable && istype(active_attachable, /obj/item/attachable/hydro_cannon) && (world.time > last_use + 10))
-		extinguish(target,user) //Fire it.
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/do_fire(obj/projectile/projectile_to_fire)
+	if(!target)
+		return
+	if(hydro_active && (world.time > last_use + 10))
+		INVOKE_ASYNC(src, .proc/extinguish, target, gun_user) //Fire it.
+		water_count -= 7//reagents is not updated in this proc, we need water_count for a updated HUD
 		last_fired = world.time
 		last_use = world.time
+		gun_user.hud_used.update_ammo_hud(gun_user, src)
 		return
-	if(user.skills.getRating("firearms") < 0 && !do_after(user, 1 SECONDS, TRUE, src))
-		return
+	if(gun_user?.skills.getRating("firearms") < 0)
+		switch(windup_checked)
+			if(WEAPON_WINDUP_NOT_CHECKED)
+				INVOKE_ASYNC(src, .proc/do_windup)
+				return
+			if(WEAPON_WINDUP_CHECKING)
+				return
 	return ..()
 
-/obj/item/weapon/gun/flamer/marinestandard/afterattack(atom/target, mob/user)
+///Flamer windup called before firing
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/proc/do_windup()
+	windup_checked = WEAPON_WINDUP_CHECKING
+	if(!do_after(gun_user, 1 SECONDS, TRUE, src))
+		windup_checked = WEAPON_WINDUP_NOT_CHECKED
+		return
+	windup_checked = WEAPON_WINDUP_CHECKED
+	Fire()
+
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/afterattack(atom/target, mob/user)
 	. = ..()
 	if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(user,target) <= 1)
 		var/obj/o = target
 		o.reagents.trans_to(src, reagents.maximum_volume)
-		to_chat(user, "<span class='notice'>\The [src]'s hydro cannon is refilled with water.</span>")
+		water_count = reagents.maximum_volume
+		to_chat(user, span_notice("\The [src]'s hydro cannon is refilled with water."))
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		user.hud_used.update_ammo_hud(user, src)
 		return
+
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/get_ammo_count()
+	if (hydro_active)
+		return max(water_count,0)
+	return ..()
+
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/get_ammo_type()
+	if (hydro_active)
+		return list("water","water_empty")
+	return ..()
 
 /turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	//extinguish any flame present
@@ -455,6 +466,12 @@
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "red_2"
 	layer = BELOW_OBJ_LAYER
+	light_system = MOVABLE_LIGHT
+	light_mask_type = /atom/movable/lighting_mask/flicker
+	light_on = TRUE
+	light_range = 3
+	light_power = 3
+	light_color = LIGHT_COLOR_LAVA
 	var/firelevel = 12 //Tracks how much "fire" there is. Basically the timer of how long the fire burns
 	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
 	var/flame_color = "red"
@@ -474,40 +491,48 @@
 		for(var/mob/living/C in get_turf(src))
 			C.flamer_fire_act(fire_stacks)
 
-			var/armor_block = C.run_armor_check("chest", "fire")
-			if(C.apply_damage(fire_damage, BURN, null, armor_block))
-				UPDATEHEALTH(C)
+			C.take_overall_damage_armored(fire_damage, BURN, "fire", updating_health = TRUE)
 			if(C.IgniteMob())
-				C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
+				C.visible_message(span_danger("[C] bursts into flames!"), isxeno(C) ? span_xenodanger("You burst into flames!") : span_highdanger("You burst into flames!"))
 
 	START_PROCESSING(SSobj, src)
+
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/flamer_fire/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/flamer_fire/Crossed(mob/living/M) //Only way to get it to reliable do it when you walk into it.
-	. = ..()
+/obj/flamer_fire/proc/on_cross(datum/source, mob/living/M, oldloc, oldlocs) //Only way to get it to reliable do it when you walk into it.
 	if(istype(M))
 		M.flamer_fire_crossed(burnlevel, firelevel)
 
-
 // override this proc to give different walking-over-fire effects
 /mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
-	adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
-	IgniteMob()
-	var/armor_block = run_armor_check(null, "fire")
-	if(apply_damage(round(burnlevel*0.5)* fire_mod, BURN, null, armor_block))
-		UPDATEHEALTH(src)
-	to_chat(src, "<span class='danger'>You are burned!</span>")
+	if(status_flags & (INCORPOREAL|GODMODE))
+		return FALSE
+	if(!CHECK_BITFIELD(flags_pass, PASSFIRE)) //Pass fire allow to cross fire without being ignited
+		adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
+		IgniteMob()
+	take_overall_damage_armored(round(burnlevel*0.5)* fire_mod, BURN, "fire", updating_health = TRUE)
+	to_chat(src, span_danger("You are burned!"))
 
+/obj/flamer_fire/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!CHECK_BITFIELD(S.smoke_traits, SMOKE_EXTINGUISH)) //Fire suppressing smoke
+		return
 
+	firelevel -= 20 //Water level extinguish
+	updateicon()
+	if(firelevel < 1) //Extinguish if our firelevel is less than 1
+		qdel(src)
 
 /mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	if(hard_armor.getRating("fire") >= 100)
-		var/armor_block = run_armor_check(null, "fire")
-		if(apply_damage(round(burnlevel * 0.2) * fire_mod, BURN, null, armor_block))
-			UPDATEHEALTH(src)
+		take_overall_damage_armored(round(burnlevel * 0.2) * fire_mod, BURN, "fire", updating_health = TRUE)
 		return
 	. = ..()
 	if(isxeno(pulledby))
@@ -517,7 +542,7 @@
 /mob/living/carbon/xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
-	fire_mod = fire_resist
+	fire_mod = get_fire_resist()
 	return ..()
 
 
@@ -541,7 +566,7 @@
 		if(25 to INFINITY) //Change the icons and luminosity based on the fire's intensity
 			icon_state = "[flame_color]_3"
 			light_intensity = 6
-	set_light(light_intensity, null, light_color)
+	set_light_range_power_color(light_intensity, light_power, light_color)
 
 /obj/flamer_fire/process()
 	var/turf/T = loc
@@ -568,28 +593,33 @@
 		A.flamer_fire_act(burnlevel, firelevel)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick
-	return
+
 
 // override this proc to give different idling-on-fire effects
 /mob/living/flamer_fire_act(burnlevel, firelevel)
+	if(!burnlevel)
+		return
+	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
+		return
 	if(hard_armor.getRating("fire") >= 100)
-		to_chat(src, "<span class='warning'>Your suit protects you from most of the flames.</span>")
+		to_chat(src, span_warning("Your suit protects you from most of the flames."))
 		adjustFireLoss(rand(0, burnlevel * 0.25)) //Does small burn damage to a person wearing one of the suits.
 		return
 	adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
 	IgniteMob()
 	adjustFireLoss(rand(10 , burnlevel)) //Including the fire should be way stronger.
-	to_chat(src, "<span class='warning'>You are burned!</span>")
+	to_chat(src, span_warning("You are burned!"))
 
 
 /mob/living/carbon/xenomorph/flamer_fire_act(burnlevel, firelevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
+	burnlevel *= get_fire_resist()
 	. = ..()
 	updatehealth()
 
 /mob/living/carbon/xenomorph/queen/flamer_fire_act(burnlevel, firelevel)
-	to_chat(src, "<span class='xenowarning'>Our extra-thick exoskeleton protects us from the flames.</span>")
+	to_chat(src, span_xenowarning("Our extra-thick exoskeleton protects us from the flames."))
 
 /mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel, firelevel)
 	if(stat)
@@ -598,7 +628,7 @@
 	var/datum/action/xeno_action/charge = actions_by_path[/datum/action/xeno_action/activable/charge]
 	if(charge)
 		charge.clear_cooldown() //Reset charge cooldown
-	to_chat(src, "<span class='xenodanger'>The heat of the fire roars in our veins! KILL! CHARGE! DESTROY!</span>")
+	to_chat(src, span_xenodanger("The heat of the fire roars in our veins! KILL! CHARGE! DESTROY!"))
 	if(prob(70))
 		emote("roar")
 

@@ -70,12 +70,12 @@ SUBSYSTEM_DEF(explosions)
 #define SSEX_OBJ "obj"
 
 
-/proc/dyn_explosion(turf/epicenter, power, flash_range, adminlog = TRUE, ignorecap = TRUE, flame_range = 0, silent = FALSE, smoke = TRUE)
+/proc/dyn_explosion(turf/epicenter, power, flash_range, adminlog = TRUE, ignorecap = TRUE, flame_range = 0, silent = FALSE, smoke = TRUE, animate = FALSE)
 	if(!power)
 		return
 	var/range = 0
 	range = round((2 * power)**GLOB.DYN_EX_SCALE)
-	explosion(epicenter, round(range * 0.25), round(range * 0.5), round(range), flash_range*range, adminlog, ignorecap, flame_range*range, silent, smoke)
+	explosion(epicenter, round(range * 0.25), round(range * 0.5), round(range), flash_range*range, adminlog, ignorecap, flame_range*range, silent, smoke, animate)
 
 // Using default dyn_ex scale:
 // 100 explosion power is a (5, 10, 20) explosion.
@@ -86,17 +86,20 @@ SUBSYSTEM_DEF(explosions)
 // 5 explosion power is a (0, 1, 3) explosion.
 // 1 explosion power is a (0, 0, 1) explosion.
 
-/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range = 0, throw_range, adminlog = TRUE, silent = FALSE, smoke = FALSE)
-	return SSexplosions.explode(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke)
+/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range = 0, throw_range, adminlog = TRUE, silent = FALSE, smoke = FALSE, small_animation = FALSE)
+	return SSexplosions.explode(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, small_animation)
 
-/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke)
+/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, small_animation)
 	epicenter = get_turf(epicenter)
 	if(!epicenter)
 		return
 
+	if(small_animation)
+		new /obj/effect/temp_visual/explosion(epicenter)
+
 	if(isnull(flash_range))
 		flash_range = devastation_range
-	
+
 	if(isnull(throw_range))
 		throw_range = max(devastation_range, heavy_impact_range, light_impact_range)
 
@@ -105,8 +108,9 @@ SUBSYSTEM_DEF(explosions)
 	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flame_range, throw_range)
 	var/started_at = REALTIMEOFDAY
 	if(adminlog)
-		message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [ADMIN_VERBOSEJMP(epicenter)]")
 		log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [loc_name(epicenter)]")
+		if(is_mainship_level(epicenter.z))
+			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [ADMIN_VERBOSEJMP(epicenter)]")
 
 	// Play sounds; we want sounds to be different depending on distance so we will manually do it ourselves.
 	// Stereo users will also hear the direction of the explosion!
@@ -121,7 +125,8 @@ SUBSYSTEM_DEF(explosions)
 	if(!silent)
 		var/frequency = GET_RAND_FREQUENCY
 		var/sound/explosion_sound = sound(get_sfx("explosion"))
-		var/sound/far_explosion_sound = sound('sound/effects/explosionfar.ogg')
+		var/sound/far_explosion_sound = sound(get_sfx("explosion_distant"))
+		var/sound/creak_sound = sound(get_sfx("explosion_creak"))
 
 		for(var/MN in GLOB.player_list)
 			var/mob/M = MN
@@ -135,13 +140,17 @@ SUBSYSTEM_DEF(explosions)
 				// If inside the blast radius + world.view - 2
 				if(dist <= round(max_range + world.view - 2, 1))
 					M.playsound_local(epicenter, null, 100, 1, frequency, falloff = 5, S = explosion_sound)
+					if(is_mainship_level(epicenter.z))
+						M.playsound_local(epicenter, null, 40, 1, frequency, falloff = 5, S = creak_sound)//ship groaning under explosion effect
 					if(baseshakeamount > 0)
 						shake_camera(M, 25, clamp(baseshakeamount, 0, 10))
 				// You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
 				else if(dist <= far_dist)
-					var/far_volume = clamp(far_dist, 30, 50) // Volume is based on explosion size and dist
+					var/far_volume = clamp(far_dist, 30, 60) // Volume is based on explosion size and dist
 					far_volume += (dist <= far_dist * 0.5 ? 50 : 0) // add 50 volume if the mob is pretty close to the explosion
 					M.playsound_local(epicenter, null, far_volume, 1, frequency, falloff = 5, S = far_explosion_sound)
+					if(is_mainship_level(epicenter.z))
+						M.playsound_local(epicenter, null, far_volume*3, 1, frequency, falloff = 5, S = creak_sound)//ship groaning under explosion effect
 					if(baseshakeamount > 0)
 						shake_camera(M, 10, clamp(baseshakeamount*0.25, 0, 2.5))
 
@@ -181,11 +190,11 @@ SUBSYSTEM_DEF(explosions)
 	else
 		if(flame_range > 0) //this proc shouldn't be used for flames only, but here we are
 			if(usr)
-				to_chat(usr, "<span class='narsiesmall'>Please don't use explosions for flames-only, use flame_radius()</span>")
+				to_chat(usr, span_narsiesmall("Please don't use explosions for flames-only, use flame_radius()"))
 			flameturf += turfs_in_range
 		if(throw_range > 0) //admemes, what have you done
 			if(usr)
-				to_chat(usr, "<span class='narsie'>Stop using explosions for memes!</span>")
+				to_chat(usr, span_narsie("Stop using explosions for memes!"))
 			for(var/t in turfs_in_range)
 				var/turf/throw_turf = t
 				throwTurf[throw_turf] += list(epicenter)
@@ -199,7 +208,7 @@ SUBSYSTEM_DEF(explosions)
 	for(var/obj/blocking_object in epicenter)
 		if(!blocking_object.density)
 			continue
-			current_exp_block += ( (blocking_object.explosion_block == EXPLOSION_BLOCK_PROC) ? blocking_object.GetExplosionBlock(0) : blocking_object.explosion_block ) //0 is the result of get_dir between two atoms on the same tile.
+		current_exp_block += ( (blocking_object.explosion_block == EXPLOSION_BLOCK_PROC) ? blocking_object.GetExplosionBlock(0) : blocking_object.explosion_block ) //0 is the result of get_dir between two atoms on the same tile.
 
 	var/list/turfs_by_dist = list()
 	turfs_by_dist[epicenter] = current_exp_block
@@ -413,6 +422,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 				var/atom/movable/thing_to_throw = am
 				if(thing_to_throw.anchored || thing_to_throw.move_resist == INFINITY)
 					continue
+
 				for(var/throw_source in throw_turf[affected_turf])
 					thing_to_throw.throw_at(
 						get_ranged_target_turf(

@@ -34,6 +34,7 @@
 	return object
 
 /datum/element/gesture/proc/start_gesture(mob/living/source, atom/object, location, control, params)
+	SIGNAL_HANDLER
 	if(source.stat != CONSCIOUS)
 		return
 	object = get_click_object(source, object, location, control, params)
@@ -45,6 +46,7 @@
 	return COMSIG_MOB_CLICK_CANCELED
 
 /datum/element/gesture/proc/end_gesture(mob/living/source, atom/object, location, control, params)
+	SIGNAL_HANDLER_DOES_SLEEP
 	if(source.stat != CONSCIOUS)
 		return
 	object = get_click_object(source, object, location, control, params)

@@ -1,7 +1,12 @@
 {
-    "recommendations": [
-        "gbasood.byond-dm-language-support",
-        "platymuus.dm-langclient",
-        "EditorConfig.EditorConfig"
-    ]
+	"recommendations": [
+		"gbasood.byond-dm-language-support",
+		"arcanis.vscode-zipfs",
+		"dbaeumer.vscode-eslint",
+		"Donkie.vscode-tgstation-test-adapter",
+		"stylemistake.auto-comment-blocks",
+		"oderwat.indent-rainbow",
+		"platymuus.dm-langclient",
+		"EditorConfig.EditorConfig"
+	]
 }

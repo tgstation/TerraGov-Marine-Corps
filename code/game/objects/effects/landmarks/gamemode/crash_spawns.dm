@@ -25,10 +25,6 @@
 	icon_state = "PO"
 	job = /datum/job/terragov/command/pilot
 
-/obj/effect/landmark/start/job/crash/tankcrewman
-	icon_state = "TC"
-	job = /datum/job/terragov/command/tank_crew
-
 /obj/effect/landmark/start/job/crash/chiefshipengineer
 	icon_state = "CSE"
 	job = /datum/job/terragov/engineering/chief

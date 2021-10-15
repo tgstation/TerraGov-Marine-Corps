@@ -8,7 +8,6 @@
 	icon_state = "sandbag_stack"
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 2
-	throwforce = 0
 	throw_speed = 5
 	throw_range = 20
 	max_amount = 50
@@ -61,7 +60,7 @@
 	desc = "Some bags filled with sand. For now, just cumbersome, but soon to be used for fortifications."
 	singular_name = "sandbag"
 	icon_state = "sandbag_pile"
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_NORMAL
 	force = 9.0
 	throwforce = 15.0
 	throw_speed = 5
@@ -79,13 +78,13 @@
 	if(!istype(user.loc,/turf)) return 0
 
 	if(istype(get_area(user.loc),/area/sulaco/hangar))  //HANGAR BUILDING
-		to_chat(user, "<span class='warning'>No. This area is needed for the dropships and personnel.</span>")
+		to_chat(user, span_warning("No. This area is needed for the dropships and personnel."))
 		return
 
 	if(!isopenturf(user.loc))
 		var/turf/open/OT = user.loc
 		if(!OT.allow_construction)
-			to_chat(user, "<span class='warning'>The sandbag barricade must be constructed on a proper surface!</span>")
+			to_chat(user, span_warning("The sandbag barricade must be constructed on a proper surface!"))
 			return
 
 	//Using same safeties as other constructions
@@ -93,27 +92,27 @@
 		if(O.density)
 			if(O.flags_atom & ON_BORDER)
 				if(O.dir == user.dir)
-					to_chat(user, "<span class='warning'>There is already \a [O.name] in this direction!</span>")
+					to_chat(user, span_warning("There is already \a [O.name] in this direction!"))
 					return
 			else
-				to_chat(user, "<span class='warning'>You need a clear, open area to build the sandbag barricade!</span>")
+				to_chat(user, span_warning("You need a clear, open area to build the sandbag barricade!"))
 				return
 
-	if(user.action_busy)
+	if(user.do_actions)
 		return
 	if(amount < 5)
-		to_chat(user, "<span class='warning'>You need at least five [name] to do this.</span>")
+		to_chat(user, span_warning("You need at least five [name] to do this."))
 		return
-	user.visible_message("<span class='notice'>[user] starts assembling a sandbag barricade.</span>",
-	"<span class='notice'>You start assembling a sandbag barricade.</span>")
-
-	if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+	user.visible_message(span_notice("[user] starts assembling a sandbag barricade."),
+	span_notice("You start assembling a sandbag barricade."))
+	var/building_time = LERP(2 SECONDS, 1 SECONDS, user.skills.getPercent("construction", SKILL_ENGINEER_MASTER))
+	if(!do_after(user, building_time, TRUE, src, BUSY_ICON_BUILD))
 		return
 	for(var/obj/O in user.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
 		if(O.density && (!(O.flags_atom & ON_BORDER) || O.dir == user.dir))
 			return
 	var/obj/structure/barricade/sandbags/SB = new(user.loc, user.dir)
-	user.visible_message("<span class='notice'>[user] assembles a sandbag barricade.</span>",
-	"<span class='notice'>You assemble a sandbag barricade.</span>")
+	user.visible_message(span_notice("[user] assembles a sandbag barricade."),
+	span_notice("You assemble a sandbag barricade."))
 	SB.setDir(user.dir)
 	use(5)

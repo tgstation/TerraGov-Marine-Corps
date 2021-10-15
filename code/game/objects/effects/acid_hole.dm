@@ -4,7 +4,7 @@
 	icon = 'icons/effects/new_acid.dmi'
 	icon_state = "hole_0"
 	anchored = TRUE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	layer = LOWER_ITEM_LAYER
 	var/turf/closed/wall/holed_wall
 
@@ -26,7 +26,7 @@
 		holed_wall.opacity = initial(holed_wall.opacity)
 		holed_wall.acided_hole = null
 		holed_wall = null
-	. = ..()
+	return ..()
 
 
 /obj/effect/acid_hole/fire_act()
@@ -44,6 +44,8 @@
 /obj/effect/acid_hole/specialclick(mob/living/carbon/user)
 	if(!isxeno(user))
 		return
+	if(!user.CanReach(src))
+		return
 	if(holed_wall)
 		if(user.mob_size == MOB_SIZE_BIG)
 			expand_hole(user)
@@ -51,7 +53,7 @@
 		use_wall_hole(user)
 
 /obj/effect/acid_hole/proc/expand_hole(mob/living/carbon/xenomorph/user)
-	if(user.action_busy || user.lying_angle)
+	if(user.do_actions || user.lying_angle)
 		return
 
 	playsound(src, 'sound/effects/metal_creaking.ogg', 25, 1)
@@ -81,22 +83,23 @@
 
 	if(entrance_dir)
 		if(!step(user, entrance_dir))
-			to_chat(user, "<span class='warning'>You can't reach the hole's entrance.</span>")
+			to_chat(user, span_warning("You can't reach the hole's entrance."))
 			return
 
 	for(var/obj/O in T)
 		if(!O.CanPass(user, user.loc))
-			to_chat(user, "<span class='warning'>The hole's exit is blocked by something!</span>")
+			to_chat(user, span_warning("The hole's exit is blocked by something!"))
 			return
 
-	if(locate(/obj/machinery/door/poddoor/timed_late/containment) in get_turf(src))
-		to_chat(user, "<span class='warning'>You can't reach the hole's entrance under the shutters.</span>")
+	for(var/obj/machinery/door/poddoor/timed_late/containment/shutter in get_turf(src))
+		if(shutter.density)
+			to_chat(user, span_warning("You can't reach the hole's entrance under the shutters."))
+			return
+
+	if(user.do_actions)
 		return
 
-	if(user.action_busy)
-		return
-
-	to_chat(user, "<span class='notice'>You start crawling through the hole.</span>")
+	to_chat(user, span_notice("You start crawling through the hole."))
 
 	if(do_after(user, 15, FALSE, src, BUSY_ICON_HOSTILE) && !T.density && !user.lying_angle && !user.buckled)
 		for(var/obj/O in T)
@@ -104,7 +107,7 @@
 				return
 		if(user.pulling)
 			user.stop_pulling()
-			to_chat(user, "<span class='warning'>You release what you're pulling to fit into the tunnel!</span>")
+			to_chat(user, span_warning("You release what you're pulling to fit into the tunnel!"))
 		user.forceMove(T)
 
 
@@ -127,17 +130,21 @@
 	if(istype(I, /obj/item/explosive/grenade))
 		var/obj/item/explosive/grenade/G = I
 
-		if(!T || T.density)
-			to_chat(user, "<span class='warning'>This hole leads nowhere!</span>")
+		if(issynth(user) && G.dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
+			to_chat(user, span_warning("Your programming prevents you from doing this."))
 			return
 
-		to_chat(user, "<span class='notice'>You take the position to throw [G].</span>")
+		if(!T || T.density)
+			to_chat(user, span_warning("This hole leads nowhere!"))
+			return
+
+		to_chat(user, span_notice("You take the position to throw [G]."))
 
 		if(!do_after(user, 10, TRUE, src, BUSY_ICON_HOSTILE) || !T || T.density)
 			return
 
-		user.visible_message("<span class='warning'>[user] throws [G] through [src]!</span>", \
-							"<span class='warning'>You throw [G] through [src]</span>")
+		user.visible_message(span_warning("[user] throws [G] through [src]!"), \
+							span_warning("You throw [G] through [src]"))
 		user.drop_held_item()
 		G.forceMove(T)
 		G.setDir(pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
@@ -150,21 +157,21 @@
 		var/obj/item/flashlight/F = I
 
 		if(!T || T.density)
-			to_chat(user, "<span class='warning'>This hole leads nowhere!</span>")
+			to_chat(user, span_warning("This hole leads nowhere!"))
 			return
 
-		to_chat(user, "<span class='notice'>You take the position to throw [F].</span>")
+		to_chat(user, span_notice("You take the position to throw [F]."))
 
 		if(!do_after(user,10, TRUE, src, BUSY_ICON_GENERIC) || !T || T.density)
 			return
 
-		user.visible_message("<span class='warning'>[user] throws [F] through [src]!</span>", \
-							"<span class='warning'>You throw [F] through [src]</span>")
+		user.visible_message(span_warning("[user] throws [F] through [src]!"), \
+							span_warning("You throw [F] through [src]"))
 		user.drop_held_item()
 		F.forceMove(T)
 		F.setDir(pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 		step_away(F, src, rand(1,5))
-		if(F.on && loc != user)
-			F.set_light(F.brightness_on)
+		if(F.light_on && loc != user)
+			F.set_light_on(TRUE)
 		else
-			F.set_light(0)
+			F.set_light_on(FALSE)

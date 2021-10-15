@@ -1,0 +1,3212 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/closed/wall/mainship/outer,
+/area/deathmatch)
+"ab" = (
+/turf/open/space/basic,
+/area/space)
+"ac" = (
+/turf/closed/wall/mainship,
+/area/deathmatch)
+"ad" = (
+/obj/effect/decal/warning_stripes/nscenter,
+/turf/open/floor/wood,
+/area/deathmatch)
+"ae" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/mainship/green{
+	dir = 1
+	},
+/area/deathmatch)
+"af" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"ag" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/wood,
+/area/deathmatch)
+"ah" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/wood,
+/area/deathmatch)
+"ai" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"aj" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/turf/open/floor/wood,
+/area/deathmatch)
+"ak" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"al" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/wood,
+/area/deathmatch)
+"am" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"an" = (
+/obj/effect/decal/warning_stripes/nscenter,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"ao" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"ap" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"aq" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"ar" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"as" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes,
+/obj/structure/hoop{
+	dir = 4;
+	id = "basketball";
+	side = "left"
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/floodlight/landing/testroom,
+/turf/open/floor/wood,
+/area/deathmatch)
+"at" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes,
+/obj/structure/hoop{
+	dir = 8;
+	id = "basketball";
+	side = "right"
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/floodlight/landing/testroom,
+/turf/open/floor/wood,
+/area/deathmatch)
+"au" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"av" = (
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/wood,
+/area/deathmatch)
+"aw" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"ax" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"ay" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/window/reinforced,
+/turf/open/floor/wood,
+/area/deathmatch)
+"az" = (
+/obj/effect/decal/warning_stripes/nscenter,
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/window/reinforced,
+/turf/open/floor/wood,
+/area/deathmatch)
+"aA" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/wood,
+/area/deathmatch)
+"aB" = (
+/obj/structure/platform,
+/turf/open/floor/mainship/green,
+/area/deathmatch)
+"aC" = (
+/turf/open/floor/stairs/rampbottom{
+	dir = 1
+	},
+/area/deathmatch)
+"aD" = (
+/obj/structure/platform,
+/obj/machinery/scoreboard{
+	id = "basketball";
+	pixel_y = 30
+	},
+/obj/machinery/floodlight/landing/hq,
+/turf/open/floor/mainship/green,
+/area/deathmatch)
+"aE" = (
+/turf/open/floor/stairs/rampbottom,
+/area/deathmatch)
+"aF" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"aG" = (
+/obj/structure/bed/chair,
+/turf/open/floor/wood,
+/area/deathmatch)
+"aH" = (
+/obj/structure/window/framed/mainship/requisitions,
+/turf/open/floor/wood,
+/area/deathmatch)
+"aI" = (
+/obj/structure/platform,
+/turf/open/floor/mainship/red,
+/area/deathmatch)
+"aJ" = (
+/obj/structure/platform,
+/turf/open/floor/mainship/blue,
+/area/deathmatch)
+"aK" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/deathmatch)
+"aL" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/mainship/blue{
+	dir = 1
+	},
+/area/deathmatch)
+"aM" = (
+/obj/effect/decal/warning_stripes/nscenter,
+/obj/effect/decal/warning_stripes,
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/wood,
+/area/deathmatch)
+"aN" = (
+/obj/effect/decal/warning_stripes/nscenter,
+/obj/effect/decal/warning_stripes,
+/obj/item/toy/beach_ball/basketball,
+/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
+/obj/machinery/floodlight/landing/testroom,
+/turf/open/floor/wood,
+/area/deathmatch)
+"aO" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/wood,
+/area/deathmatch)
+"aP" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/wood,
+/area/deathmatch)
+"aQ" = (
+/obj/structure/bed/chair,
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/mainship,
+/area/deathmatch)
+"aR" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/mainship,
+/area/deathmatch)
+"aS" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/structure/window/reinforced,
+/turf/open/floor/wood,
+/area/deathmatch)
+"aT" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/turf/open/floor/wood,
+/area/deathmatch)
+"aU" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/structure/window/reinforced,
+/turf/open/floor/wood,
+/area/deathmatch)
+"aV" = (
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/wood,
+/area/deathmatch)
+"aW" = (
+/obj/structure/bed/chair,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/mainship,
+/area/deathmatch)
+"aX" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/mainship,
+/area/deathmatch)
+"aY" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/wood,
+/area/deathmatch)
+"aZ" = (
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 1
+	},
+/obj/machinery/door/window{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"ba" = (
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"bb" = (
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"bc" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/deathmatch)
+"bd" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/mainship/sterile/plain,
+/area/deathmatch)
+"be" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/effect/landmark/deathmatch,
+/obj/machinery/light/small,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"bf" = (
+/obj/structure/sink,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"bg" = (
+/turf/open/floor/mainship/sterile/plain,
+/area/deathmatch)
+"bh" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/machinery/light/small,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"bi" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/plating/plating_catwalk,
+/area/deathmatch)
+"bj" = (
+/obj/machinery/door/airlock/mainship/generic{
+	name = "\improper Bathroom"
+	},
+/turf/open/floor/mainship/sterile/plain,
+/area/deathmatch)
+"bk" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1;
+	name = "Bathroom"
+	},
+/turf/open/floor/mainship/sterile/plain,
+/area/deathmatch)
+"bl" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/mainship/sterile/plain,
+/area/deathmatch)
+"bm" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/plating/plating_catwalk,
+/area/deathmatch)
+"bI" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/deathmatch)
+"ca" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"cd" = (
+/obj/machinery/door/window/right,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"cP" = (
+/obj/structure/window/framed/mainship/requisitions,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"eb" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"eo" = (
+/turf/open/floor/wood,
+/area/deathmatch)
+"et" = (
+/obj/item/storage/belt/champion,
+/turf/open/floor/mainship/sterile/plain,
+/area/deathmatch)
+"ey" = (
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/mainship/red,
+/area/deathmatch)
+"fe" = (
+/turf/open/floor/mainship/emerald{
+	dir = 4
+	},
+/area/deathmatch)
+"fM" = (
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "silvercorner"
+	},
+/area/deathmatch)
+"gd" = (
+/obj/structure/prop/mainship/ship_memorial{
+	desc = "A ship memorial dedicated to the triumphs of the TGMC and the fallen marines of this ship. On the left there are grand tales of victory etched into the slab. On the right there is a list of famous marines who have fallen in combat serving the TGMC. There seems to be an etch of three spikes on the free space below."
+	},
+/turf/open/floor/plating/mainship,
+/area/deathmatch)
+"hr" = (
+/obj/structure/bed/chair,
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/deathmatch)
+"it" = (
+/obj/machinery/light,
+/turf/open/floor/mainship,
+/area/deathmatch)
+"jf" = (
+/turf/open/floor/plating/mainship,
+/area/deathmatch)
+"jl" = (
+/obj/structure/closet/swimsuit,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"ki" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/grass,
+/area/deathmatch)
+"kQ" = (
+/obj/machinery/floodlight/landing/testroom,
+/turf/open/floor/wood,
+/area/deathmatch)
+"me" = (
+/turf/open/floor/mainship/red{
+	dir = 8
+	},
+/area/deathmatch)
+"mJ" = (
+/obj/structure/table/reinforced/prison,
+/turf/open/floor/wood,
+/area/deathmatch)
+"mT" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/red,
+/area/deathmatch)
+"nh" = (
+/obj/structure/table/reinforced/prison,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"nl" = (
+/obj/structure/closet/lasertag/blue,
+/turf/open/floor/wood,
+/area/deathmatch)
+"nu" = (
+/obj/structure/prop/mainship/valmoric,
+/turf/open/floor/grass,
+/area/deathmatch)
+"nQ" = (
+/obj/effect/landmark/deathmatch,
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"pV" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/mainship/blue{
+	dir = 10
+	},
+/area/deathmatch)
+"qx" = (
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/deathmatch)
+"rl" = (
+/obj/effect/ai_node,
+/turf/open/ground/river,
+/area/deathmatch)
+"rF" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"rM" = (
+/obj/machinery/disposal,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"sa" = (
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"sm" = (
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/mainship,
+/area/deathmatch)
+"tG" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/turf/open/floor/wood,
+/area/deathmatch)
+"ue" = (
+/obj/structure/bed/chair,
+/turf/open/floor/mainship,
+/area/deathmatch)
+"uB" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/plating/plating_catwalk,
+/area/deathmatch)
+"wK" = (
+/obj/machinery/disposal,
+/turf/open/floor/mainship/sterile/plain,
+/area/deathmatch)
+"wY" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/deathmatch)
+"xH" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/effect/landmark/deathmatch,
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"yi" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship,
+/area/deathmatch)
+"yq" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"yt" = (
+/obj/machinery/door/window{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"zl" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/landmark/deathmatch,
+/obj/structure/window/reinforced/tinted/frosted,
+/turf/open/floor/wood,
+/area/deathmatch)
+"Al" = (
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/turf/open/floor/mainship,
+/area/deathmatch)
+"Bd" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/mainship,
+/area/deathmatch)
+"Bi" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "silvercorner"
+	},
+/area/deathmatch)
+"Bw" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/structure/window/reinforced/tinted/frosted,
+/turf/open/floor/wood,
+/area/deathmatch)
+"BC" = (
+/obj/structure/prop/mainship/ship_memorial,
+/turf/open/floor/plating/mainship,
+/area/deathmatch)
+"Di" = (
+/obj/structure/target_stake,
+/obj/item/target,
+/obj/item/clothing/suit/storage/militia,
+/turf/open/floor/plating/mainship,
+/area/deathmatch)
+"Dn" = (
+/turf/open/floor/grass,
+/area/deathmatch)
+"DC" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/wood,
+/area/deathmatch)
+"Ec" = (
+/obj/structure/closet/swimsuit,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"Eh" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/deathmatch)
+"FT" = (
+/obj/structure/table/reinforced/prison,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/machinery/light,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"Gz" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/machinery/floodlight/landing/testroom,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"GD" = (
+/obj/item/toy/beach_ball,
+/turf/open/ground/river,
+/area/deathmatch)
+"Hf" = (
+/turf/open/floor/mainship/blue{
+	dir = 8
+	},
+/area/deathmatch)
+"HC" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"HL" = (
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/deathmatch)
+"IC" = (
+/turf/closed/wall/mainship/outer,
+/area/space)
+"IS" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/mainship,
+/area/deathmatch)
+"JI" = (
+/obj/structure/table/reinforced/prison,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/wood,
+/area/deathmatch)
+"JU" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/obj/machinery/floodlight/landing/hq,
+/turf/open/floor/mainship/green{
+	dir = 1
+	},
+/area/deathmatch)
+"JV" = (
+/obj/structure/platform,
+/obj/machinery/floodlight/landing/hq,
+/turf/open/floor/mainship/blue,
+/area/deathmatch)
+"Kh" = (
+/turf/open/ground/river,
+/area/deathmatch)
+"Kr" = (
+/obj/item/toy/inflatable_duck,
+/turf/open/ground/river,
+/area/deathmatch)
+"KK" = (
+/obj/structure/closet/lasertag/red,
+/turf/open/floor/wood,
+/area/deathmatch)
+"Mn" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/turf/open/floor/wood,
+/area/deathmatch)
+"Ms" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/obj/machinery/floodlight/landing/hq,
+/turf/open/floor/mainship/blue{
+	dir = 1
+	},
+/area/deathmatch)
+"MX" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/obj/machinery/floodlight/landing/hq,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/deathmatch)
+"NH" = (
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"NP" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"OY" = (
+/obj/machinery/light,
+/turf/open/ground/river,
+/area/deathmatch)
+"PK" = (
+/obj/machinery/disposal,
+/turf/open/floor/plating/plating_catwalk,
+/area/deathmatch)
+"Qz" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "\improper Recreation Area"
+	},
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"QG" = (
+/turf/open/floor/mainship/blue,
+/area/deathmatch)
+"Rd" = (
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/deathmatch)
+"Sb" = (
+/turf/open/floor/mainship{
+	icon_state = "silvercorner"
+	},
+/area/deathmatch)
+"Sj" = (
+/turf/open/floor/mainship/emerald,
+/area/deathmatch)
+"SK" = (
+/obj/structure/bed/chair,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship,
+/area/deathmatch)
+"SS" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/window/reinforced,
+/turf/open/floor/wood,
+/area/deathmatch)
+"Tn" = (
+/turf/open/floor/mainship/orange{
+	dir = 1
+	},
+/area/deathmatch)
+"Tt" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"Tx" = (
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/mainship/sterile/plain,
+/area/deathmatch)
+"TC" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/wood,
+/area/deathmatch)
+"TL" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/wood,
+/area/deathmatch)
+"Uc" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/grass,
+/area/deathmatch)
+"Ud" = (
+/obj/machinery/disposal,
+/turf/open/floor/wood,
+/area/deathmatch)
+"Uo" = (
+/obj/structure/platform,
+/obj/machinery/floodlight/landing/hq,
+/turf/open/floor/mainship/red,
+/area/deathmatch)
+"Uu" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/landmark/deathmatch,
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/deathmatch)
+"Vg" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"Vy" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/mainship/emerald{
+	dir = 6
+	},
+/area/deathmatch)
+"VL" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/mainship/orange{
+	dir = 5
+	},
+/area/deathmatch)
+"VY" = (
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/floor/mainship/mono,
+/area/space)
+"Wi" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/mainship{
+	icon_state = "silvercorner"
+	},
+/area/deathmatch)
+"WF" = (
+/obj/structure/window/framed/mainship/hull,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"Xi" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/mainship/red{
+	dir = 9
+	},
+/area/deathmatch)
+"Xu" = (
+/obj/item/reagent_containers/food/snacks/grown/poppy{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/turf/open/floor/grass,
+/area/deathmatch)
+"Xx" = (
+/obj/machinery/door/window{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"Yy" = (
+/obj/structure/table/reinforced/prison,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"YI" = (
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/deathmatch)
+"Zc" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"Zn" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/open/floor/mainship,
+/area/deathmatch)
+"Zu" = (
+/turf/open/floor/mainship,
+/area/deathmatch)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+"}
+(2,1,1) = {"
+aa
+ey
+jf
+sm
+jf
+aa
+aG
+aG
+aG
+al
+aH
+aW
+bc
+aW
+aI
+af
+HC
+ap
+ap
+HC
+ap
+ap
+as
+ap
+ap
+HC
+ap
+ap
+HC
+aS
+aK
+aX
+bc
+aX
+aH
+al
+aF
+aF
+aa
+bf
+bl
+bg
+bk
+be
+aa
+ab
+"}
+(3,1,1) = {"
+aa
+mT
+jf
+jf
+jf
+cP
+aG
+aG
+aG
+eo
+aH
+ue
+bc
+ue
+aI
+ca
+eo
+eo
+eo
+eo
+eo
+eo
+al
+eo
+eo
+eo
+eo
+eo
+eo
+SS
+aK
+Zn
+bc
+Zn
+aH
+eo
+aF
+aF
+aa
+NP
+bg
+wK
+aa
+aa
+aa
+ab
+"}
+(4,1,1) = {"
+aa
+ey
+jf
+jf
+Di
+cP
+aG
+aG
+aG
+eo
+aH
+aQ
+bc
+aQ
+aI
+am
+ak
+ak
+aq
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+au
+ak
+ak
+ay
+aK
+aR
+bc
+aR
+aH
+eo
+aF
+aF
+aa
+bf
+bd
+bg
+bk
+bh
+aa
+ab
+"}
+(5,1,1) = {"
+aa
+ey
+jf
+jf
+jf
+cP
+aG
+aG
+aG
+eo
+aH
+ue
+bc
+ue
+aI
+ca
+eo
+eo
+ai
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+av
+eo
+eo
+SS
+aK
+Zn
+bc
+Zn
+aH
+eo
+aF
+aF
+aa
+bb
+bg
+wK
+aa
+aa
+aa
+ab
+"}
+(6,1,1) = {"
+aa
+mT
+jf
+jf
+jf
+cP
+aG
+hr
+aG
+eo
+aH
+ue
+bc
+ue
+aI
+ca
+al
+eo
+ai
+eo
+al
+eo
+eo
+eo
+al
+eo
+av
+eo
+al
+SS
+aK
+Zn
+bc
+Zn
+aH
+eo
+aF
+aF
+aa
+bf
+bg
+bg
+bk
+be
+aa
+ab
+"}
+(7,1,1) = {"
+aa
+ey
+jf
+IS
+jf
+cP
+aG
+aG
+aG
+aY
+aH
+ue
+uB
+ue
+aI
+ca
+eo
+eo
+ai
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+av
+eo
+eo
+SS
+aK
+Zn
+uB
+Zn
+aH
+aY
+aF
+aF
+aa
+NP
+bg
+wK
+aa
+aa
+aa
+ab
+"}
+(8,1,1) = {"
+aa
+ey
+jf
+Di
+jf
+cP
+aG
+aG
+aG
+eo
+aH
+ue
+bc
+ue
+aI
+ca
+eo
+HL
+ag
+ak
+ak
+ak
+aM
+ak
+ak
+ak
+aO
+HL
+eo
+SS
+aK
+Zn
+bc
+Zn
+aH
+eo
+bI
+aF
+aa
+bf
+bd
+aZ
+bc
+bi
+aa
+ab
+"}
+(9,1,1) = {"
+aa
+mT
+jf
+jf
+jf
+cP
+aG
+aG
+aG
+eo
+aH
+ue
+PK
+ue
+Uo
+ca
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+SS
+MX
+Zn
+PK
+Zn
+aH
+eo
+aF
+aF
+aa
+bb
+bg
+ba
+bc
+bm
+aa
+ab
+"}
+(10,1,1) = {"
+aa
+ey
+jf
+jf
+jf
+cP
+aG
+aG
+aG
+aY
+aH
+ue
+uB
+ue
+aI
+ca
+aV
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+aV
+SS
+aK
+Zn
+uB
+Zn
+aH
+aY
+aF
+aF
+aa
+bf
+bg
+ba
+bc
+bm
+aa
+ab
+"}
+(11,1,1) = {"
+aa
+ey
+Di
+jf
+jf
+cP
+aG
+aG
+aG
+eo
+aH
+ue
+bc
+ue
+aI
+ca
+eo
+eo
+aV
+eo
+eo
+eo
+al
+eo
+eo
+eo
+aV
+eo
+eo
+SS
+aK
+Zn
+bc
+Zn
+aH
+eo
+aF
+aF
+aa
+NP
+bg
+ba
+wY
+bi
+aa
+ab
+"}
+(12,1,1) = {"
+aa
+mT
+jf
+jf
+jf
+cP
+aG
+aG
+aG
+eo
+aH
+ue
+bc
+ue
+aI
+ca
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+SS
+aK
+Zn
+bc
+Zn
+aH
+eo
+aF
+aF
+aa
+bf
+bd
+aa
+aa
+aa
+aa
+ab
+"}
+(13,1,1) = {"
+aa
+ey
+jf
+jf
+jf
+cP
+aG
+aG
+aG
+aY
+aH
+ue
+uB
+ue
+aI
+ca
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+SS
+aK
+Zn
+uB
+Zn
+aH
+aY
+aF
+aF
+aa
+bb
+bg
+bb
+bb
+Yy
+aa
+ab
+"}
+(14,1,1) = {"
+aa
+yt
+nh
+nh
+nh
+cP
+aG
+aG
+aG
+eo
+aH
+ue
+bc
+ue
+aI
+ca
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+SS
+aK
+Zn
+bc
+Zn
+aH
+eo
+aF
+aF
+aa
+bf
+bg
+bg
+bg
+FT
+aa
+ab
+"}
+(15,1,1) = {"
+aa
+eo
+nQ
+nQ
+nQ
+cP
+aG
+aG
+aG
+eo
+aH
+ue
+bc
+ue
+aI
+ca
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+SS
+aK
+Zn
+bc
+Zn
+aH
+eo
+aF
+aF
+aa
+NP
+bg
+bb
+bb
+rM
+aa
+ab
+"}
+(16,1,1) = {"
+aa
+eo
+eo
+eo
+qx
+aa
+aG
+aG
+aG
+al
+aa
+SK
+bc
+aQ
+aI
+ca
+eo
+eo
+eo
+eo
+eo
+eo
+aV
+eo
+eo
+eo
+eo
+eo
+eo
+SS
+aK
+aR
+bc
+Bd
+aa
+al
+aF
+aF
+aa
+aa
+bj
+aa
+aa
+aa
+aa
+ab
+"}
+(17,1,1) = {"
+aa
+aa
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+qx
+aa
+Zu
+bc
+bb
+aC
+ai
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+av
+aE
+bb
+bc
+Zu
+aa
+Zc
+eo
+eo
+eo
+eo
+al
+eo
+eo
+eo
+aa
+IC
+"}
+(18,1,1) = {"
+NH
+Qz
+al
+HL
+eo
+eo
+eo
+HL
+eo
+eo
+Mn
+Zu
+bc
+uB
+aC
+aj
+eo
+HL
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+HL
+eo
+aT
+aE
+uB
+bc
+Zu
+Mn
+eo
+HL
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+Qz
+VY
+"}
+(19,1,1) = {"
+NH
+NH
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+aY
+Zu
+bb
+bb
+aC
+ai
+eo
+eo
+eo
+eo
+eo
+al
+eo
+al
+eo
+eo
+eo
+eo
+eo
+av
+aE
+bb
+bb
+Zu
+aY
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+NH
+VY
+"}
+(20,1,1) = {"
+aa
+aa
+Zc
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+aH
+Zu
+aQ
+Yy
+aB
+ca
+eo
+eo
+aV
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+aV
+eo
+eo
+SS
+ae
+Zu
+Zu
+Zu
+aH
+eo
+eo
+eo
+aa
+WF
+WF
+aa
+al
+qx
+aa
+IC
+"}
+(21,1,1) = {"
+NH
+Qz
+al
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+aH
+Zu
+ue
+Yy
+aB
+ca
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+SS
+ae
+Yy
+Zn
+Zu
+aH
+eo
+eo
+eo
+WF
+gd
+Uc
+WF
+eo
+eo
+Qz
+VY
+"}
+(22,1,1) = {"
+NH
+NH
+eo
+eo
+eo
+eo
+eo
+eo
+mJ
+Ud
+aH
+Zu
+ue
+Yy
+aB
+ca
+eo
+eo
+eo
+eo
+eo
+eo
+al
+eo
+eo
+eo
+eo
+eo
+eo
+SS
+ae
+Yy
+Zn
+Zu
+aH
+Ud
+mJ
+eo
+WF
+jf
+ki
+WF
+eo
+eo
+NH
+VY
+"}
+(23,1,1) = {"
+aa
+aa
+Zc
+eo
+kQ
+eo
+eo
+eo
+JI
+qx
+aa
+yi
+Al
+ac
+aD
+an
+ad
+ad
+ad
+ad
+ad
+ad
+aN
+ad
+ad
+ad
+ad
+ad
+ad
+az
+JU
+Yy
+aR
+it
+aa
+Zc
+JI
+eo
+WF
+nu
+Xu
+Gz
+eo
+qx
+aa
+IC
+"}
+(24,1,1) = {"
+NH
+Qz
+eo
+eo
+eo
+eo
+eo
+eo
+mJ
+Ud
+aH
+Zu
+ue
+Yy
+aB
+ca
+eo
+eo
+eo
+eo
+eo
+eo
+al
+eo
+eo
+eo
+eo
+eo
+eo
+SS
+ae
+Yy
+Zn
+Zu
+aH
+Ud
+mJ
+eo
+WF
+BC
+ki
+WF
+eo
+eo
+Qz
+VY
+"}
+(25,1,1) = {"
+NH
+NH
+al
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+aH
+Zu
+ue
+Yy
+aB
+ca
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+SS
+ae
+Yy
+Zn
+Zu
+aH
+eo
+eo
+eo
+WF
+jf
+Dn
+WF
+eo
+eo
+NH
+VY
+"}
+(26,1,1) = {"
+aa
+aa
+Zc
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+aH
+Zu
+aQ
+Yy
+aB
+ca
+eo
+eo
+aV
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+aV
+eo
+eo
+SS
+ae
+Zu
+Zu
+Zu
+aH
+eo
+eo
+eo
+aa
+WF
+WF
+aa
+al
+qx
+aa
+IC
+"}
+(27,1,1) = {"
+NH
+Qz
+eo
+HL
+eo
+eo
+eo
+HL
+eo
+eo
+tG
+Zu
+bb
+bb
+aC
+ai
+eo
+eo
+eo
+eo
+eo
+al
+eo
+al
+eo
+eo
+eo
+eo
+eo
+av
+aE
+bb
+bb
+Zu
+tG
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+Qz
+VY
+"}
+(28,1,1) = {"
+NH
+NH
+al
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+Zu
+bc
+uB
+aC
+aj
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+aT
+aE
+uB
+bc
+Zu
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+NH
+VY
+"}
+(29,1,1) = {"
+aa
+aa
+bb
+bb
+bb
+bb
+eo
+eo
+eo
+qx
+aa
+Zu
+bc
+bb
+aC
+ai
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+av
+aE
+bb
+bc
+Zu
+aa
+Zc
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+aa
+IC
+"}
+(30,1,1) = {"
+aa
+bb
+Wi
+Sb
+Wi
+Ec
+aa
+aG
+aG
+al
+aa
+SK
+bc
+aQ
+aJ
+ca
+eo
+eo
+eo
+eo
+eo
+eo
+aV
+eo
+eo
+eo
+eo
+eo
+eo
+SS
+aL
+aR
+bc
+Bd
+aa
+al
+aF
+aF
+aF
+eo
+eo
+eo
+eo
+nl
+aa
+ab
+"}
+(31,1,1) = {"
+aa
+NP
+Kh
+Kh
+Kh
+OY
+aa
+aG
+aG
+eo
+aH
+ue
+bc
+ue
+aJ
+ca
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+SS
+aL
+Zn
+bc
+Zn
+aH
+eo
+aF
+aF
+aF
+eo
+eo
+eo
+eo
+nl
+aa
+ab
+"}
+(32,1,1) = {"
+aa
+bb
+Kh
+Kh
+Kh
+Kh
+aa
+aG
+aG
+eo
+aH
+ue
+bc
+ue
+aJ
+ca
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+SS
+aL
+Zn
+bc
+Zn
+aH
+eo
+aF
+aF
+aF
+Vg
+DC
+eo
+Vg
+DC
+aa
+ab
+"}
+(33,1,1) = {"
+aa
+bb
+Kh
+Kh
+GD
+Kh
+aa
+aG
+aG
+aY
+aH
+ue
+uB
+ue
+aJ
+ca
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+SS
+aL
+Zn
+uB
+Zn
+aH
+aY
+aF
+aF
+aF
+TL
+Bw
+eo
+xH
+Eh
+aa
+aa
+"}
+(34,1,1) = {"
+aa
+NP
+Kh
+Kh
+Kh
+OY
+aa
+aG
+aG
+eo
+aH
+ue
+bc
+ue
+aJ
+ca
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+SS
+aL
+Zn
+bc
+Zn
+aH
+eo
+aF
+aF
+aa
+cP
+cP
+Xx
+WF
+WF
+aa
+eo
+"}
+(35,1,1) = {"
+aa
+bb
+Kh
+Kh
+Kh
+Kh
+aa
+aG
+aG
+eo
+aH
+ue
+bc
+ue
+aJ
+ca
+eo
+eo
+aV
+eo
+eo
+eo
+al
+eo
+eo
+eo
+aV
+eo
+eo
+SS
+aL
+Zn
+bc
+Zn
+aH
+eo
+aF
+aF
+cP
+Xi
+me
+bb
+Hf
+pV
+WF
+eo
+"}
+(36,1,1) = {"
+aa
+bb
+Kh
+Kh
+Kh
+Kh
+aa
+aG
+aG
+aY
+aH
+ue
+uB
+ue
+aJ
+ca
+aV
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+aV
+SS
+aL
+Zn
+uB
+Zn
+aH
+aY
+aF
+aF
+cP
+YI
+Tx
+Tx
+Tx
+QG
+WF
+eo
+"}
+(37,1,1) = {"
+aa
+sa
+Kh
+Kh
+Kh
+OY
+aa
+aG
+aG
+eo
+aH
+ue
+PK
+ue
+JV
+ca
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+SS
+Ms
+Zn
+PK
+Zn
+aH
+eo
+aF
+aF
+cP
+bb
+Tx
+et
+Tx
+bb
+WF
+eo
+"}
+(38,1,1) = {"
+aa
+bb
+Kh
+Kr
+Kh
+Kh
+aa
+aG
+aG
+eo
+aH
+ue
+bc
+ue
+aJ
+ca
+eo
+eo
+ah
+ap
+ap
+ap
+aM
+ap
+ap
+ap
+aP
+eo
+eo
+SS
+aL
+Zn
+bc
+Zn
+aH
+eo
+aF
+aF
+cP
+Tn
+Tx
+Tx
+Tx
+Sj
+WF
+eo
+"}
+(39,1,1) = {"
+aa
+bb
+Kh
+rl
+Kh
+Kh
+aa
+aG
+aG
+aY
+aH
+ue
+uB
+ue
+aJ
+ca
+eo
+eo
+ai
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+av
+eo
+eo
+SS
+aL
+Zn
+uB
+Zn
+aH
+aY
+aF
+aF
+cP
+VL
+Rd
+bb
+fe
+Vy
+WF
+eo
+"}
+(40,1,1) = {"
+aa
+NP
+Kh
+Kh
+Kh
+OY
+aa
+hr
+aG
+eo
+aH
+ue
+bc
+ue
+aJ
+ca
+al
+eo
+ai
+eo
+al
+eo
+eo
+eo
+al
+eo
+av
+eo
+al
+SS
+aL
+Zn
+bc
+Zn
+aH
+eo
+aF
+aF
+aa
+cP
+cP
+cd
+WF
+WF
+aa
+eo
+"}
+(41,1,1) = {"
+aa
+bb
+Kh
+Kh
+Kh
+Kh
+aa
+aG
+aG
+eo
+aH
+ue
+bc
+ue
+aJ
+ca
+eo
+eo
+ai
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+av
+eo
+eo
+SS
+aL
+Zn
+bc
+Zn
+aH
+eo
+aF
+aF
+aF
+yq
+zl
+eo
+eb
+Uu
+aa
+aa
+"}
+(42,1,1) = {"
+aa
+bb
+Kh
+Kh
+Kh
+Kh
+aa
+aG
+aG
+eo
+aH
+aQ
+bc
+aQ
+aJ
+ao
+ap
+ap
+ar
+eo
+eo
+eo
+eo
+eo
+eo
+eo
+ax
+ap
+ap
+aA
+aL
+aR
+bc
+aR
+aH
+eo
+aF
+aF
+aF
+TC
+yq
+eo
+TC
+yq
+aa
+ab
+"}
+(43,1,1) = {"
+aa
+NP
+Kh
+Kh
+Kh
+OY
+aa
+aG
+aG
+eo
+aH
+ue
+bc
+ue
+aJ
+ca
+eo
+eo
+eo
+eo
+eo
+eo
+al
+eo
+eo
+eo
+eo
+eo
+eo
+SS
+aL
+Zn
+bc
+Zn
+aH
+eo
+aF
+aF
+aF
+eo
+eo
+eo
+eo
+KK
+aa
+ab
+"}
+(44,1,1) = {"
+aa
+bb
+fM
+Bi
+fM
+jl
+aa
+aG
+aG
+al
+aH
+aW
+bc
+aW
+aJ
+aw
+Tt
+ak
+ak
+Tt
+ak
+ak
+at
+ak
+ak
+Tt
+ak
+ak
+Tt
+aU
+aL
+aX
+bc
+aX
+aH
+al
+aF
+aF
+aF
+eo
+eo
+eo
+eo
+KK
+aa
+ab
+"}
+(45,1,1) = {"
+aa
+bb
+bb
+rF
+bb
+jl
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+"}
+(46,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}

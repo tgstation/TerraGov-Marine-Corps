@@ -53,7 +53,7 @@
 		/datum/reagent/medicine/spaceacillin,
 		/datum/reagent/medicine/tricordrazine)
 	var/static/list/default_pain_chems = list(
-		/datum/reagent/medicine/oxycodone,
+		/datum/reagent/medicine/hydrocodone,
 		/datum/reagent/medicine/tramadol)
 
 	var/datum/action/suit_autodoc/toggle/toggle_action
@@ -142,6 +142,7 @@
 	Hook into the examine of the parent to show additional information about the suit_autodoc
 */
 /datum/component/suit_autodoc/proc/examine(datum/source, mob/user)
+	SIGNAL_HANDLER
 	var/details
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_BURN))
 		details += "Its burn treatment injector is currently refilling.</br>"
@@ -159,13 +160,14 @@
 		details += "Its painkiller injector is currently refilling.</br>"
 
 	if(details)
-		to_chat(user, "<span class='danger'>[details]</span>")
+		to_chat(user, span_danger("[details]"))
 
 
 /**
 	Disables the autodoc and removes actions when dropped
 */
 /datum/component/suit_autodoc/proc/dropped(datum/source, mob/user)
+	SIGNAL_HANDLER
 	if(!iscarbon(user))
 		return
 	remove_actions()
@@ -177,6 +179,7 @@
 	Enable the autodoc and give appropriate actions
 */
 /datum/component/suit_autodoc/proc/equipped(datum/source, mob/equipper, slot)
+	SIGNAL_HANDLER
 	if(!iscarbon(equipper)) // living can equip stuff but only carbon has traumatic shock
 		return
 	wearer = equipper
@@ -196,7 +199,7 @@
 	UnregisterSignals(wearer)
 	STOP_PROCESSING(SSobj, src)
 	if(!silent)
-		to_chat(wearer, "<span class='warning'>[parent] lets out a beep as its automedical suite deactivates.</span>")
+		wearer.balloon_alert(wearer, "The automedical suite deactivates")
 		playsound(parent,'sound/machines/click.ogg', 15, 0, 1)
 
 /**
@@ -212,7 +215,7 @@
 	RegisterSignals(wearer)
 	START_PROCESSING(SSobj, src)
 	if(!silent)
-		to_chat(wearer, "<span class='notice'>[parent] lets out a hum as its automedical suite activates.</span>")
+		wearer.balloon_alert(wearer, "The automedical suite activates")
 		playsound(parent,'sound/voice/b18_activate.ogg', 15, 0, 1)
 
 
@@ -220,6 +223,7 @@
 	Proc for the damange taken signal, calls treat_injuries
 */
 /datum/component/suit_autodoc/proc/damage_taken(datum/source, mob/living/carbon/human/wearer, damage)
+	SIGNAL_HANDLER
 	treat_injuries()
 
 /**
@@ -251,7 +255,7 @@
 			drugs += " [initial(R.name)]: [amount_to_administer]U"
 
 	if(LAZYLEN(drugs))
-		. = "[message_prefix] administered. <span class='bold'>Dosage:[drugs]</span><br/>"
+		. = "[message_prefix] administered. [span_bold("Dosage:[drugs]")]<br/>"
 		TIMER_COOLDOWN_START(src, cooldown_type, chem_cooldown)
 		addtimer(CALLBACK(src, .proc/nextuse_ready, treatment_message), chem_cooldown)
 
@@ -273,7 +277,7 @@
 
 	if(burns || brute || oxy || tox || pain)
 		playsound(parent,'sound/items/hypospray.ogg', 25, 0, 1)
-		to_chat(wearer, "<span class='notice'>[icon2html(parent, wearer)] beeps:</br>[burns][brute][oxy][tox][pain]Estimated [chem_cooldown/600] minute replenishment time for each dosage.</span>")
+		to_chat(wearer, span_notice("[icon2html(parent, wearer)] beeps:</br>[burns][brute][oxy][tox][pain]Estimated [chem_cooldown/600] minute replenishment time for each dosage."))
 
 /**
 	Plays a sound and message to the user informing the user chemicals are ready again
@@ -288,7 +292,7 @@
 	if(!istype(H))
 		return
 
-	to_chat(H, "<span class='notice'>[I] beeps: [message] reservoir replenished.</span>")
+	to_chat(H, span_notice("[I] beeps: [message] reservoir replenished."))
 
 /**
 	Add the actions to the user
@@ -324,6 +328,7 @@
 	This will enable or disable the suit
 */
 /datum/component/suit_autodoc/proc/action_toggle(datum/source)
+	SIGNAL_HANDLER
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TOGGLE))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_TOGGLE, 2 SECONDS)
@@ -336,13 +341,15 @@
 	Proc to handle the internal analyzer scanning the user
 */
 /datum/component/suit_autodoc/proc/scan_user(datum/source)
-	analyzer.attack(wearer, wearer, TRUE)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(analyzer, /obj/item.proc/attack, wearer, wearer, TRUE)
 
 /**
 	Proc to show the suit configuration page
 */
 /datum/component/suit_autodoc/proc/configure(datum/source)
-	interact(wearer)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/interact, wearer)
 
 /**
 	Shows the suit configuration
@@ -407,9 +414,9 @@
 	else if(href_list["toggle_mode"]) //Integrated scanner
 		analyzer.hud_mode = !analyzer.hud_mode
 		if(analyzer.hud_mode)
-			to_chat(wearer, "<span class='notice'>The scanner now shows results on the hud.</span>")
+			wearer.balloon_alert(wearer, "The scanner now shows results on the hud")
 		else
-			to_chat(wearer, "<span class='notice'>The scanner no longer shows results on the hud.</span>")
+			wearer.balloon_alert(wearer, "The scanner no longer shows results on the hud")
 
 	else if(href_list["automed_damage"])
 		damage_threshold += text2num(href_list["automed_damage"])

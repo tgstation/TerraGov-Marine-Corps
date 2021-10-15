@@ -9,158 +9,6 @@
 	force = 10 //This is otherwise no different from a normal flashlight minus the flavour.
 	throwforce = 12 //"combat" flashlight
 
-//MARINE SNIPER TARPS
-
-/obj/item/bodybag/tarp
-	name = "\improper V1 thermal-dampening tarp (folded)"
-	desc = "A tarp carried by TGMC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
-	icon = 'icons/obj/bodybag.dmi'
-	icon_state = "jungletarp_folded"
-	w_class = WEIGHT_CLASS_NORMAL
-	unfoldedbag_path = /obj/structure/closet/bodybag/tarp
-
-/obj/item/bodybag/tarp/unique_action(mob/user)
-	deploy_bodybag(user, get_turf(user))
-	unfoldedbag_instance.close()
-
-/obj/item/bodybag/tarp/snow
-	icon = 'icons/obj/bodybag.dmi'
-	icon_state = "snowtarp_folded"
-	unfoldedbag_path = /obj/structure/closet/bodybag/tarp/snow
-
-
-/obj/structure/closet/bodybag/tarp
-	name = "\improper V1 thermal-dampening tarp"
-	bag_name = "V1 thermal-dampening tarp"
-	desc = "An active camo tarp carried by TGMC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camouflage, and smell dampening."
-	icon = 'icons/obj/bodybag.dmi'
-	icon_state = "jungletarp_closed"
-	icon_closed = "jungletarp_closed"
-	icon_opened = "jungletarp_open"
-	open_sound = 'sound/effects/vegetation_walk_1.ogg'
-	close_sound = 'sound/effects/vegetation_walk_2.ogg'
-	foldedbag_path = /obj/item/bodybag/tarp
-	closet_stun_delay = 0
-	var/list/tarp_triggers = list()
-
-
-/obj/structure/closet/bodybag/tarp/close()
-	. = ..()
-	if(!opened && bodybag_occupant)
-		anchored = TRUE
-		playsound(loc,'sound/effects/cloak_scout_on.ogg', 15, 1) //stealth mode engaged!
-		animate(src, alpha = 13, time = 3 SECONDS) //Fade out gradually.
-
-
-/obj/structure/closet/bodybag/tarp/open()
-	anchored = FALSE
-	if(alpha != initial(alpha))
-		playsound(loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
-		alpha = initial(alpha) //stealth mode disengaged
-		animate(src) //Cancel the fade out if still ongoing.
-	if(bodybag_occupant)
-		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED))
-	QDEL_LIST(tarp_triggers)
-	return ..()
-
-
-/obj/structure/closet/bodybag/tarp/closet_special_handling(mob/living/mob_to_stuff) // overriding this
-	if(!ishuman(mob_to_stuff))
-		return FALSE //Humans only.
-	if(mob_to_stuff.stat == DEAD) //Only the dead for bodybags.
-		return FALSE
-	return TRUE
-
-
-/obj/structure/closet/bodybag/tarp/close()
-	. = ..()
-	if(bodybag_occupant)
-		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), .proc/on_bodybag_occupant_death)
-		deploy_triggers()
-
-/obj/structure/closet/bodybag/tarp/proc/on_bodybag_occupant_death(mob/source, gibbing)
-	open()
-
-
-/obj/structure/closet/bodybag/tarp/update_name()
-	return //Shouldn't be revealing who's inside.
-
-
-/obj/structure/closet/bodybag/tarp/fire_act(exposed_temperature, exposed_volume)
-	var/mob/M = locate() in src //need to be occupied
-	if(exposed_temperature > 300 && !opened && M)
-		to_chat(M, "<span class='danger'>The intense heat forces you out of [src]!</span>")
-		open()
-		M.fire_act(exposed_temperature, exposed_volume)
-
-/obj/structure/closet/bodybag/tarp/flamer_fire_act()
-	var/mob/M = locate() in src //need to be occupied
-	if(!opened && M)
-		to_chat(M, "<span class='danger'>The intense heat forces you out of [src]!</span>")
-		open()
-		M.flamer_fire_act()
-
-/obj/structure/closet/bodybag/tarp/ex_act(severity)
-	var/mob/M = locate() in src //need to be occupied
-	if(!opened && M)
-		to_chat(M, "<span class='danger'>The shockwave blows [src] open!</span>")
-		open()
-		M.ex_act(severity)
-	switch(severity)
-		if(EXPLODE_DEVASTATE)
-			visible_message("<span class='danger'>\The shockwave blows [src] apart!</span>")
-			qdel(src) //blown apart
-
-/obj/structure/closet/bodybag/tarp/bullet_act(obj/projectile/proj)
-	var/mob/M = locate() in src //need to be occupied
-	if(!opened && M)
-		M.bullet_act(proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
-
-/obj/structure/closet/bodybag/tarp/Crossed(mob/living/L)
-	. = ..()
-	if(!istype(L) || L.stat != CONSCIOUS || opened || (L.status_flags & INCORPOREAL))
-		return
-	// Walking on the tarp reveals it
-	open()
-	L.visible_message("<span class='notice'>[L] stepped on \the [src], revealing it!</span>", "<span class='notice'>You stepped on \the [src], revealing it!</span>")
-
-/obj/structure/closet/bodybag/tarp/proc/trigger_open()
-	if(locate(/mob/living/carbon/xenomorph) in viewers(2,get_turf(src)))
-		open()
-
-/obj/structure/closet/bodybag/tarp/proc/deploy_triggers()
-	QDEL_LIST(tarp_triggers)
-	var/list/turf/target_locations = filled_turfs(src, 2, "circle", FALSE)
-	for(var/turf/trigger_location in target_locations)
-		var/obj/effect/tarp_trigger/TT = new /obj/effect/tarp_trigger(trigger_location, src)
-		TT.linked_tarp = src
-		tarp_triggers += TT
-
-/obj/effect/tarp_trigger
-	name = "tarp trigger"
-	icon = 'icons/effects/effects.dmi'
-	anchored = TRUE
-	mouse_opacity = 0
-	invisibility = INVISIBILITY_MAXIMUM
-	var/obj/structure/closet/bodybag/tarp/linked_tarp
-
-/obj/effect/tarp_trigger/Initialize(mapload, obj/structure/closet/bodybag/tarp/source_tarp)
-	. = ..()
-	linked_tarp = source_tarp
-
-/obj/effect/tarp_trigger/Crossed(atom/A)
-	. = ..()
-	if(!linked_tarp) //something went very wrong
-		qdel(src)
-	else if(isxeno(A))
-		addtimer(CALLBACK(linked_tarp, /obj/structure/closet/bodybag/tarp.proc/trigger_open), 5 SECONDS)
-
-/obj/structure/closet/bodybag/tarp/snow
-	icon_state = "snowtarp_closed"
-	icon_closed = "snowtarp_closed"
-	icon_opened = "snowtarp_open"
-	foldedbag_path = /obj/item/bodybag/tarp/snow
-
 
 /obj/item/coin/marine
 	name = "marine premium token"
@@ -170,11 +18,6 @@
 
 /obj/item/coin/marine/attackby(obj/item/I, mob/user, params) //To remove attaching a string functionality
 	return
-
-/obj/item/coin/marine/specialist
-	name = "marine specialist weapon token"
-	desc = "Insert this into a specialist vendor in order to access a single highly dangerous weapon."
-	flags_token = TOKEN_SPEC
 
 /obj/structure/broken_apc
 	name = "\improper M577 armored personnel carrier"
@@ -260,6 +103,11 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
 	tastes = list("pizza" = 3, "vegetables" = 1)
 	bitesize = 1
+
+/obj/item/reagent_containers/food/snacks/mre_pack/meal4/req
+	desc = "This is supposedly a pizza MRE, fit for marine consumption. While it certainly looks like one, the first, active, primary, and only ingredient that went into it was a rounded metal plate. Maybe it'll taste better after it's sat in the ASRS for a while?"
+	list_reagents = list(/datum/reagent/iron = 8)
+	tastes = list("metal" = 3, "one of your teeth cracking" = 1)
 
 /obj/item/reagent_containers/food/snacks/mre_pack/meal5
 	name = "\improper TGMC Prepared Meal (monkey)"
@@ -364,6 +212,8 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
 	time_to_equip = 2 SECONDS
+	time_to_unequip = 1 SECONDS
+	flags_inventory = NOQUICKEQUIP
 
 /obj/item/belt_harness/marine
 	name = "\improper M45 pattern belt harness"
@@ -375,3 +225,14 @@
 	. = ..()
 	if(slot == SLOT_BELT)
 		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
+
+/obj/item/compass
+	name = "compass"
+	desc = "A small compass that can tell you your coordinates on use."
+	icon_state = "compass"
+	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/compass/attack_self(mob/living/user)
+	. = ..()
+	var/turf/location = get_turf(src)
+	to_chat(user, span_notice("After looking at the [src] you can tell your general coordinates.") + span_bold(" LONGITUDE [location.x]. LATITUDE [location.y]."))

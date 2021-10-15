@@ -186,7 +186,7 @@
 	desc = "A very small bottle. Contains Hypervene - A purge chem for flushing toxins. Causes pain and vomiting."
 	icon_state = "bottle3"
 	volume = 10
-	list_reagents = list(/datum/reagent/medicine/hypervene = 10)
+	list_reagents = list(/datum/reagent/hypervene = 10)
 
 /obj/item/reagent_containers/glass/bottle/tricordrazine
 	name = "\improper Tricordrazine bottle"
@@ -212,11 +212,11 @@
 	icon_state = "bottle19"
 	list_reagents = list(/datum/reagent/medicine/dermaline = 30, /datum/reagent/medicine/meralyne = 30)
 
-/obj/item/reagent_containers/glass/bottle/ironsugar
-	name = "\improper Ironsugar bottle"
-	desc = "A small bottle. Contains a mixture of iron and sugar - used as an odd-tasting treatment for blood loss."
+/obj/item/reagent_containers/glass/bottle/nanoblood
+	name = "\improper Nanoblood bottle"
+	desc = "A small bottle. Contains nanoblood - used as a treatment for large amounts of blood loss."
 	icon_state = "bottle3"
-	list_reagents = list(/datum/reagent/iron = 30, /datum/reagent/consumable/sugar = 30)
+	list_reagents = list(/datum/reagent/medicine/nanoblood = 60)
 
 /obj/item/reagent_containers/glass/bottle/neurotoxin
 	name = "\improper Neurotoxin bottle"
@@ -224,11 +224,41 @@
 	icon_state = "bottle7"
 	list_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 30)
 
+/obj/item/reagent_containers/glass/bottle/neurotoxin/light
+	name = "\improper Light Neurotoxin bottle"
+	desc = "A small bottle. Contains weakened synthesized neurotoxin- useful for testing treatments, or training troops."
+	icon_state = "bottle7"
+	list_reagents = list(/datum/reagent/toxin/xeno_neurotoxin/light = 30)
+
 /obj/item/reagent_containers/glass/bottle/xeno_growthtoxin
 	name = "\improper Growth toxin bottle"
 	desc = "A small bottle. Contains artificialy synthesized growth toxin - useful for researchers, or as a very risky medicine."
 	icon_state = "bottle7"
 	list_reagents = list(/datum/reagent/toxin/xeno_growthtoxin = 30)
+
+/obj/item/reagent_containers/glass/bottle/xeno_hemodile
+	name = "\improper Hemodile bottle"
+	desc = "A small bottle. Contains artificialy synthesized hemodile- useful for testing treatments, or training troops."
+	icon_state = "bottle7"
+	list_reagents = list(/datum/reagent/toxin/xeno_hemodile = 30)
+
+/obj/item/reagent_containers/glass/bottle/xeno_transvitox
+	name = "\improper Transvitox bottle"
+	desc = "A small bottle. Contains artificialy synthesized transvitox- useful for testing treatments, training troops, or as a very risky medicine."
+	icon_state = "bottle7"
+	list_reagents = list(/datum/reagent/toxin/xeno_transvitox = 30)
+
+/obj/item/reagent_containers/glass/bottle/xeno_sanguinal
+	name = "\improper Sanguinal bottle"
+	desc = "A small bottle. Contains artificialy synthesized sanguinal- useful for testing treatments or training troops."
+	icon_state = "bottle7"
+	list_reagents = list(/datum/reagent/toxin/xeno_sanguinal = 30)
+
+/obj/item/reagent_containers/glass/bottle/xeno_zombium
+	name = "\improper Zombium bottle"
+	desc = "A small bottle. Contains artificialy synthesized zombium- useful for testing treatments, training troops, or attempting to start the end of the world."
+	icon_state = "bottle7"
+	list_reagents = list(/datum/reagent/zombium = 60)
 
 /obj/item/reagent_containers/glass/bottle/polyhexanide
 	name = "\improper Polyhexanide bottle"
@@ -236,6 +266,10 @@
 	icon_state = "bottle2"
 	list_reagents = list(/datum/reagent/medicine/polyhexanide = 30)
 
-
+/obj/item/reagent_containers/glass/bottle/lemoline
+	name = "\improper Lemoline bottle"
+	desc = "A small bottle. Contains 10 units of lemoline, a reagent used in the creation of advanced medicine."
+	icon_state = "bottle-5"
+	list_reagents = list(/datum/reagent/medicine/lemoline = 10)
 
 

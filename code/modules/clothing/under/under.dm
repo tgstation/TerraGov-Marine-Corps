@@ -8,7 +8,7 @@
 	permeability_coefficient = 0.90
 	flags_equip_slot = ITEM_SLOT_ICLOTHING
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	var/has_sensor = 1//For the crew computer 2 = unable to change mode
 	var/sensor_mode = 3
 		/*
@@ -20,6 +20,7 @@
 	var/displays_id = 1
 	var/rollable_sleeves = FALSE //can we roll the sleeves on this uniform?
 	var/rolled_sleeves = FALSE //are the sleeves currently rolled?
+	blood_sprite_state = "uniformblood"
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/uniform.dmi')
 
 
@@ -29,7 +30,7 @@
 	if(hastie)
 		qdel(hastie)
 		hastie = null
-	. = ..()
+	return ..()
 
 
 
@@ -74,13 +75,13 @@
 		hastie.attack_hand(user)
 		return
 
-	if ((ishuman(usr) || ismonkey(usr)) && src.loc == user)	//make it harder to accidentally undress yourself
+	if(ishuman(usr) && loc == user)	//make it harder to accidentally undress yourself
 		return
 
 	return ..()
 
 /obj/item/clothing/under/MouseDrop(obj/over_object as obj)
-	if (ishuman(usr) || ismonkey(usr))
+	if (ishuman(usr))
 		//makes sure that the clothing is equipped so that we can't drag it into our hand from miles away.
 		if ((flags_item & NODROP) || loc != usr)
 			return
@@ -124,7 +125,7 @@
 		return FALSE
 
 	var/list/modes = list("Off", "Binary sensors", "Vitals tracker", "Tracking beacon")
-	var/switchMode = input("Select a sensor mode:", "Suit Sensor Mode", modes[sensor_mode + 1]) in modes
+	var/switchMode = tgui_input_list(user, "Select a sensor mode:", "Suit Sensor Mode", modes)
 	if(get_dist(user, src) > 1)
 		to_chat(user, "You have moved too far away.")
 		return
@@ -148,7 +149,7 @@
 	else if (ismob(loc))
 		switch(sensor_mode)
 			if(0)
-				visible_message("<span class='warning'>[user] disables [loc]'s remote sensing equipment.</span>", null, null, 1)
+				visible_message(span_warning("[user] disables [loc]'s remote sensing equipment."), null, null, 1)
 			if(1)
 				visible_message("[user] turns [loc]'s remote sensors to binary.", null, null, 1)
 			if(2)
@@ -188,7 +189,7 @@
 		flags_heat_protection = flags_armor_protection
 		update_clothing_icon()
 	else
-		to_chat(usr, "<span class='warning'>You cannot roll down the uniform!</span>")
+		to_chat(usr, span_warning("You cannot roll down the uniform!"))
 
 //proper proc to remove the uniform's tie (user optional)
 /obj/item/clothing/under/proc/remove_accessory(mob/user)

@@ -17,7 +17,7 @@
 
 /datum/podlauncher
 	interaction_flags = INTERACT_UI_INTERACT
-	var/static/list/ignored_atoms = typecacheof(list(null, /mob/dead, /obj/effect/landmark, /obj/docking_port, /obj/effect/particle_effect/sparks, /obj/effect/DPtarget, /obj/effect/supplypod_selector, /atom/movable/lighting_object))
+	var/static/list/ignored_atoms = typecacheof(list(null, /mob/dead, /obj/effect/landmark, /obj/docking_port, /obj/effect/particle_effect/sparks, /obj/effect/DPtarget, /obj/effect/supplypod_selector))
 	var/turf/oldTurf
 	var/client/holder
 	var/area/bay
@@ -67,19 +67,18 @@
 /datum/podlauncher/can_interact(mob/user)
 	return TRUE
 
-/datum/podlauncher/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/podlauncher/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	to_chat(world, "ui_interact called")
 
 	if(!ui)
-		ui = new(user, src, ui_key, "PodLauncher", "podlauncher", 1000, 700, master_ui, state)
+		ui = new(user, src, "PodLauncher", "podlauncher")
 		ui.open()
 
 /datum/podlauncher/ui_data(mob/user)
 	if(!temp_pod)
-		to_chat(user, "<span class='warning'>Pod has been deleted, closing the menu.</span>")
+		to_chat(user, span_warning("Pod has been deleted, closing the menu."))
 		SStgui.close_user_uis(user, src)
 		return
 	var/list/data = list()
@@ -119,8 +118,9 @@
 
 	return data
 
-/datum/podlauncher/ui_act(action, params)
-	if(..())
+/datum/podlauncher/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 
 	switch(action)
@@ -148,7 +148,7 @@
 				turfs.Add(T)
 			var/turf/T = SAFEPICK(turfs)
 			if(!T)
-				to_chat(M, "<span class='warning'>Nowhere to jump to!</span>")
+				to_chat(M, span_warning("Nowhere to jump to!"))
 				return
 			M.forceMove(T)
 			log_admin("[key_name(usr)] jumped to [AREACOORD(A)]")
@@ -158,7 +158,7 @@
 		if("teleportBack")
 			var/mob/M = holder.mob
 			if(!oldTurf)
-				to_chat(M, "<span class='warning'>Nowhere to jump to!</span>")
+				to_chat(M, span_warning("Nowhere to jump to!"))
 				return
 			M.forceMove(oldTurf)
 			log_admin("[key_name(usr)] jumped to [AREACOORD(oldTurf)]")
@@ -202,7 +202,7 @@
 				if(isnull(boomInput[i]))
 					return
 				if(!isnum(boomInput[i]))
-					to_chat(holder, "<span class='warning'>That wasnt a number! Value set to zero instead.</span>")
+					to_chat(holder, span_warning("That wasnt a number! Value set to zero instead."))
 					boomInput = 0
 			explosionChoice = 1
 			temp_pod.explosionSize = boomInput
@@ -228,7 +228,7 @@
 			if(isnull(damageInput))
 				return
 			if(!isnum(damageInput))
-				to_chat(holder, "<span class='warning'>That wasn't a number! Value set to default (zero) instead.</span>")
+				to_chat(holder, span_warning("That wasn't a number! Value set to default (zero) instead."))
 				damageInput = 0
 			damageChoice = 1
 			temp_pod.damage = damageInput
@@ -329,7 +329,7 @@
 			if(isnull(timeInput))
 				return
 			if(!isnum(timeInput))
-				to_chat(holder, "<span class='warning'>That wasn't a number! Value set to default [initial(temp_pod.fallDuration) * 0.1] instead.</span>")
+				to_chat(holder, span_warning("That wasn't a number! Value set to default [initial(temp_pod.fallDuration) * 0.1] instead."))
 				timeInput = initial(temp_pod.fallDuration)
 			temp_pod.fallDuration = 10 * timeInput
 			. = TRUE
@@ -343,7 +343,7 @@
 			if(isnull(timeInput))
 				return
 			if(!isnum(timeInput))
-				to_chat(holder, "<span class='warning'>That wasnt a number! Value set to default [initial(temp_pod.landingDelay) * 0.1] instead.</span>")
+				to_chat(holder, span_warning("That wasnt a number! Value set to default [initial(temp_pod.landingDelay) * 0.1] instead."))
 				timeInput = initial(temp_pod.landingDelay)
 			temp_pod.landingDelay = 10 * timeInput
 			. = TRUE
@@ -357,7 +357,7 @@
 			if(isnull(timeInput))
 				return
 			if(!isnum(timeInput))
-				to_chat(holder, "<span class='warning'>That wasnt a number! Value set to default [initial(temp_pod.openingDelay) * 0.1] instead.</span>")
+				to_chat(holder, span_warning("That wasnt a number! Value set to default [initial(temp_pod.openingDelay) * 0.1] instead."))
 				timeInput = initial(temp_pod.openingDelay)
 			temp_pod.openingDelay = 10 *  timeInput
 			. = TRUE
@@ -371,7 +371,7 @@
 			if(isnull(timeInput))
 				return
 			if(!isnum(timeInput))
-				to_chat(holder, "<span class='warning'>That wasnt a number! Value set to default [initial(temp_pod.departureDelay) * 0.1] instead.</span>")
+				to_chat(holder, span_warning("That wasnt a number! Value set to default [initial(temp_pod.departureDelay) * 0.1] instead."))
 				timeInput = initial(temp_pod.departureDelay)
 			temp_pod.departureDelay = 10 * timeInput
 			. = TRUE
@@ -389,7 +389,7 @@
 			if(isnull(timeInput))
 				return
 			if(!isnum(timeInput))
-				to_chat(holder, "<span class='warning'>That wasnt a number! Value set to default [initial(temp_pod.fallingSoundLength) * 0.1] instead.</span>")
+				to_chat(holder, span_warning("That wasnt a number! Value set to default [initial(temp_pod.fallingSoundLength) * 0.1] instead."))
 			temp_pod.fallingSound = soundInput
 			temp_pod.fallingSoundLength = 10 * timeInput
 			. = TRUE
@@ -548,7 +548,7 @@
 			else
 				return
 			//if(effectAnnounce)
-			//	deadchat_broadcast("<span class='deadsay'>A special package is being launched at the station!</span>", turf_target = target)
+			//	deadchat_broadcast(span_deadsay("A special package is being launched at the station!"), turf_target = target)
 			var/list/targets = list()
 			for(var/mob/living/M in viewers(0, target))
 				targets.Add(M)
@@ -575,7 +575,7 @@
 
 /datum/podlauncher/proc/createPod(area/A)
 	if(isnull(A))
-		to_chat(holder.mob, "<span class='warning'>No /area/centcom/supplypod/podStorage in the world! You can make one yourself if necessary.</span>")
+		to_chat(holder.mob, span_warning("No /area/centcom/supplypod/podStorage in the world! You can make one yourself if necessary."))
 		return
 
 	temp_pod = new(A)
@@ -583,7 +583,7 @@
 
 /datum/podlauncher/proc/createOrderedArea(area/A)
 	if(isnull(A))
-		to_chat(holder.mob, "<span class='warning'>No /area/centcom/supplypod/loading/ in the world! You can make one yourself if necessary.</span>")
+		to_chat(holder.mob, span_warning("No /area/centcom/supplypod/loading/ in the world! You can make one yourself if necessary."))
 		return
 
 	orderedArea = list()

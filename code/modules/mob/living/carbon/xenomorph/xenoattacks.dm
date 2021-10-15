@@ -4,7 +4,6 @@
 	return
 
 /mob/living/carbon/xenomorph/attack_animal(mob/living/M as mob)
-
 	if(isanimal(M))
 		var/mob/living/simple_animal/S = M
 		if(!S.melee_damage)
@@ -12,30 +11,11 @@
 			S.emote("me", EMOTE_VISIBLE, "[S.friendly] [src]")
 		else
 			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
-			visible_message("<span class='danger'>[S] [S.attacktext] [src]!</span>", null, null, 5)
+			visible_message(span_danger("[S] [S.attacktext] [src]!"), null, null, 5)
 			var/damage = S.melee_damage
 			apply_damage(damage, BRUTE)
 			UPDATEHEALTH(src)
 			log_combat(S, src, "attacked")
-
-
-/mob/living/carbon/xenomorph/attack_paw(mob/living/carbon/monkey/user)
-	. = ..()
-
-	switch(user.a_intent)
-
-		if(INTENT_HELP)
-			help_shake_act(user)
-		else
-			if(istype(wear_mask, /obj/item/clothing/mask/muzzle))
-				return 0
-			if(health > 0)
-				user.do_attack_animation(src, ATTACK_EFFECT_BITE)
-				playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
-				visible_message("<span class='danger'>\The [user] bites \the [src].</span>", \
-				"<span class='danger'>We are bit by \the [user].</span>", null, 5)
-				apply_damage(rand(1, 3), BRUTE)
-				UPDATEHEALTH(src)
 
 
 /mob/living/carbon/xenomorph/attack_hand(mob/living/user)
@@ -46,6 +26,9 @@
 	if(!ishuman(user))
 		return
 
+	if(status_flags & INCORPOREAL) //Incorporeal xenos cannot attack
+		return
+
 	var/mob/living/carbon/human/H = user
 
 	H.changeNext_move(7)
@@ -53,11 +36,11 @@
 
 		if(INTENT_HELP)
 			if(stat == DEAD)
-				H.visible_message("<span class='warning'>\The [H] pokes \the [src], but nothing happens.</span>", \
-				"<span class='warning'>You poke \the [src], but nothing happens.</span>", null, 5)
+				H.visible_message(span_warning("\The [H] pokes \the [src], but nothing happens."), \
+				span_warning("You poke \the [src], but nothing happens."), null, 5)
 			else
-				H.visible_message("<span class='notice'>\The [H] pets \the [src].</span>", \
-					"<span class='notice'>You pet \the [src].</span>", null, 5)
+				H.visible_message(span_notice("\The [H] pets \the [src]."), \
+					span_notice("You pet \the [src]."), null, 5)
 
 		if(INTENT_GRAB)
 			if(H == src || anchored)
@@ -72,87 +55,77 @@
 			if(!attack.is_usable(H))
 				return FALSE
 
-			if(!H.melee_damage || !prob(H.melee_accuracy))
+			if(!H.melee_damage)
 				H.do_attack_animation(src)
 				playsound(loc, attack.miss_sound, 25, TRUE)
-				visible_message("<span class='danger'>[H] tried to [pick(attack.attack_verb)] [src]!</span>", null, null, 5)
+				visible_message(span_danger("[H] tried to [pick(attack.attack_verb)] [src]!"), null, null, 5)
 				return FALSE
 
 			H.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 			playsound(loc, attack.attack_sound, 25, TRUE)
-			visible_message("<span class='danger'>[H] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
-			apply_damage(melee_damage + attack.damage, BRUTE, "chest", soft_armor.getRating("melee") + armor_bonus + armor_pheromone_bonus)
-			UPDATEHEALTH(src)
+			visible_message(span_danger("[H] [pick(attack.attack_verb)]ed [src]!"), null, null, 5)
+			apply_damage(melee_damage + attack.damage, BRUTE, "chest", soft_armor.getRating("melee"), updating_health = TRUE)
 
 
 //Hot hot Aliens on Aliens action.
 //Actually just used for eating people.
-/mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/M)
-	if(src != M)
-		if(isxenolarva(M)) //Larvas can't eat people
-			M.visible_message("<span class='danger'>[M] nudges its head against \the [src].</span>", \
-			"<span class='danger'>We nudge our head against \the [src].</span>")
-			return 0
+/mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(status_flags & INCORPOREAL || X.status_flags & INCORPOREAL) //Incorporeal xenos cannot attack or be attacked
+		return
 
-		switch(M.a_intent)
-			if(INTENT_HELP)
+	if(src == X)
+		return TRUE
+	if(isxenolarva(X)) //Larvas can't eat people
+		X.visible_message(span_danger("[X] nudges its head against \the [src]."), \
+		span_danger("We nudge our head against \the [src]."))
+		return FALSE
 
-				if(on_fire)
-					fire_stacks = max(fire_stacks - 1, 0)
-					playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-					M.visible_message("<span class='danger'>[M] tries to put out the fire on [src]!</span>", \
-						"<span class='warning'>We try to put out the fire on [src]!</span>", null, 5)
-					if(fire_stacks <= 0)
-						M.visible_message("<span class='danger'>[M] has successfully extinguished the fire on [src]!</span>", \
-							"<span class='notice'>We extinguished the fire on [src].</span>", null, 5)
-						ExtinguishMob()
-					return 1
-				else
-					M.visible_message("<span class='notice'>\The [M] caresses \the [src] with its scythe-like arm.</span>", \
-					"<span class='notice'>We caress \the [src] with our scythe-like arm.</span>", null, 5)
+	switch(X.a_intent)
+		if(INTENT_HELP)
+			if(on_fire)
+				fire_stacks = max(fire_stacks - 1, 0)
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+				X.visible_message(span_danger("[X] tries to put out the fire on [src]!"), \
+					span_warning("We try to put out the fire on [src]!"), null, 5)
+				if(fire_stacks <= 0)
+					X.visible_message(span_danger("[X] has successfully extinguished the fire on [src]!"), \
+						span_notice("We extinguished the fire on [src]."), null, 5)
+					ExtinguishMob()
+				return TRUE
+			X.visible_message(span_notice("\The [X] caresses \the [src] with its scythe-like arm."), \
+			span_notice("We caress \the [src] with our scythe-like arm."), null, 5)
 
-			if(INTENT_GRAB)
-				if(M == src || anchored)
-					return 0
+		if(INTENT_GRAB)
+			if(anchored)
+				return FALSE
+			if(!X.start_pulling(src))
+				return FALSE
+			X.visible_message(span_warning("[X] grabs \the [src]!"), \
+			span_warning("We grab \the [src]!"), null, 5)
+			playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 
-				if(Adjacent(M)) //Logic!
-					M.start_pulling(src)
+		if(INTENT_HARM, INTENT_DISARM)//Can't slash other xenos for now. SORRY  // You can now! --spookydonut
+			if(issamexenohive(X))
+				X.do_attack_animation(src)
+				X.visible_message(span_warning("\The [X] nibbles \the [src]."), \
+				span_warning("We nibble \the [src]."), null, 5)
+				return TRUE
+			// copypasted from attack_alien.dm
+			//From this point, we are certain a full attack will go out. Calculate damage and modifiers
+			var/damage = X.xeno_caste.melee_damage
 
-					M.visible_message("<span class='warning'>[M] grabs \the [src]!</span>", \
-					"<span class='warning'>We grab \the [src]!</span>", null, 5)
-					playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+			//Somehow we will deal no damage on this attack
+			if(!damage)
+				X.do_attack_animation(src)
+				playsound(X.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
+				X.visible_message(span_danger("\The [X] lunges at [src]!"), \
+				span_danger("We lunge at [src]!"), null, 5)
+				return FALSE
 
-			if(INTENT_HARM)//Can't slash other xenos for now. SORRY  // You can now! --spookydonut
-				if(issamexenohive(M))
-					M.do_attack_animation(src)
-					M.visible_message("<span class='warning'>\The [M] nibbles \the [src].</span>", \
-					"<span class='warning'>We nibble \the [src].</span>", null, 5)
-					return 1
-				else
-					// copypasted from attack_alien.dm
-					//From this point, we are certain a full attack will go out. Calculate damage and modifiers
-					var/damage = M.xeno_caste.melee_damage
+			X.visible_message(span_danger("\The [X] slashes [src]!"), \
+			span_danger("We slash [src]!"), null, 5)
+			log_combat(X, src, "slashed")
 
-					//Somehow we will deal no damage on this attack
-					if(!damage)
-						M.do_attack_animation(src)
-						playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
-						M.visible_message("<span class='danger'>\The [M] lunges at [src]!</span>", \
-						"<span class='danger'>We lunge at [src]!</span>", null, 5)
-						return 0
-
-					M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
-					"<span class='danger'>We slash [src]!</span>", null, 5)
-					log_combat(M, src, "slashed")
-
-					M.do_attack_animation(src, ATTACK_EFFECT_REDSLASH)
-					playsound(loc, "alien_claw_flesh", 25, 1)
-					apply_damage(damage, BRUTE)
-					UPDATEHEALTH(src)
-
-			if(INTENT_DISARM)
-				M.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
-				M.visible_message("<span class='warning'>\The [M] shoves \the [src]!</span>", \
-				"<span class='warning'>We shove \the [src]!</span>", null, 5)
-		return 1
+			X.do_attack_animation(src, ATTACK_EFFECT_REDSLASH)
+			playsound(loc, "alien_claw_flesh", 25, 1)
+			apply_damage(damage, BRUTE, updating_health = TRUE)

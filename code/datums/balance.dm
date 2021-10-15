@@ -21,6 +21,7 @@ GLOBAL_DATUM_INIT(balance, /datum/balance, new())
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/lose_points)
 
 /datum/balance/proc/gain_points(datum/dcs, mob/source)
+	SIGNAL_HANDLER
 	if(!isliving(source))
 		return FALSE
 	var/mob/living/living = source
@@ -37,6 +38,7 @@ GLOBAL_DATUM_INIT(balance, /datum/balance, new())
 
 
 /datum/balance/proc/lose_points(datum/dcs, mob/source)
+	SIGNAL_HANDLER
 	if(!isliving(source))
 		return FALSE
 	var/mob/living/living = source

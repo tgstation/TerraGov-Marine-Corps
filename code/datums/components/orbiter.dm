@@ -18,6 +18,7 @@
 	begin_orbit(orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
 
 /datum/component/orbiter/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, .proc/orbiter_glide_size_update)
 	var/atom/target = parent
 
 	target.orbiters = src
@@ -25,6 +26,7 @@
 		tracker = new(target, CALLBACK(src, .proc/move_react))
 
 /datum/component/orbiter/UnregisterFromParent()
+	UnregisterSignal(parent, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE)
 	var/atom/target = parent
 	target.orbiters = null
 	QDEL_NULL(tracker)
@@ -35,6 +37,7 @@
 	for(var/i in orbiters)
 		end_orbit(i)
 	orbiters = null
+	QDEL_NULL(tracker)
 	return ..()
 
 /datum/component/orbiter/InheritComponent(datum/component/orbiter/newcomp, original, atom/movable/orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
@@ -48,6 +51,8 @@
 	if(!isatom(parent) || isarea(parent) || !get_turf(parent))
 		return COMPONENT_INCOMPATIBLE
 	move_react(parent)
+	var/atom/movable/movable_parent = parent
+	orbiter_glide_size_update(src, movable_parent.glide_size)
 
 /datum/component/orbiter/proc/begin_orbit(atom/movable/orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
 	if(orbiter.orbiting)
@@ -78,8 +83,10 @@
 
 	orbiter.SpinAnimation(rotation_speed, -1, clockwise, rotation_segments, parallel = FALSE)
 
-	orbiter.forceMove(get_turf(parent))
-	to_chat(orbiter, "<span class='notice'>Now orbiting [parent].</span>")
+	orbiter.abstract_move(get_turf(parent))
+	var/atom/movable/movable_parent = parent
+	orbiter.glide_size = movable_parent.glide_size
+	to_chat(orbiter, span_notice("Now orbiting [parent]."))
 
 /datum/component/orbiter/proc/end_orbit(atom/movable/orbiter, refreshing=FALSE)
 	if(!orbiters[orbiter])
@@ -92,6 +99,7 @@
 	orbiters -= orbiter
 	orbiter.stop_orbit(src)
 	orbiter.orbiting = null
+	orbiter.glide_size = 8 //Reset to the default for atom/movable as ours was matched to the orbit target
 	if(!refreshing && !length(orbiters) && !QDELING(src))
 		qdel(src)
 
@@ -111,16 +119,23 @@
 		var/atom/movable/thing = i
 		if(QDELETED(thing) || thing.loc == newturf)
 			continue
-		thing.forceMove(newturf)
+		thing.abstract_move(newturf)
 		if(CHECK_TICK && master.loc != curloc)
 			// We moved again during the checktick, cancel current operation
 			break
 
 
 /datum/component/orbiter/proc/orbiter_move_react(atom/movable/orbiter, atom/oldloc, direction)
+	SIGNAL_HANDLER
 	if(orbiter.loc == get_turf(parent))
 		return
 	end_orbit(orbiter)
+
+/datum/component/orbiter/proc/orbiter_glide_size_update(datum/source, new_size)
+	SIGNAL_HANDLER
+	for(var/orbiter in orbiters)
+		var/atom/movable/movable_orbiter = orbiter
+		movable_orbiter.glide_size = new_size
 
 /////////////////////
 
@@ -128,10 +143,12 @@
 	if(!istype(A) || !get_turf(A) || A == src)
 		return
 
+	orbit_target = A
+
 	return A.AddComponent(/datum/component/orbiter, src, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
 
 /atom/movable/proc/stop_orbit(datum/component/orbiter/orbits)
-	return // We're just a simple hook
+	orbit_target = null
 
 /atom/proc/transfer_observers_to(atom/target)
 	if(!orbiters || !istype(target) || !get_turf(target) || target == src)

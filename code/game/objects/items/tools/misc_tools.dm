@@ -16,23 +16,23 @@
 	if(!on)
 		return
 	if(!label)
-		to_chat(user, "<span class='notice'>No label set.</span>")
+		to_chat(user, span_notice("No label set."))
 		return
 	if(length(A.name) + length(label) > 64)
-		to_chat(user, "<span class='notice'>Label too big.</span>")
+		to_chat(user, span_notice("Label too big."))
 		return
 	if(!labels_left)
-		to_chat(user, "<span class='notice'>You've run out of labelling paper, feed some paper into it.</span>")
+		to_chat(user, span_notice("You've run out of labelling paper, feed some paper into it."))
 		return
 	if(isturf(A) || ismob(A))
-		to_chat(user, "<span class='notice'>The label won't stick to that.</span>")
+		to_chat(user, span_notice("The label won't stick to that."))
 		return
 	if(A.name == "[initial(A.name)] ([label])")
-		to_chat(user, "<span class='notice'>It already has the same label.</span>")
+		to_chat(user, span_notice("It already has the same label."))
 		return
 
-	user.visible_message("<span class='notice'>[user] labels [A] as \"[label]\".</span>", \
-						"<span class='notice'>You label [A] as \"[label]\".</span>")
+	user.visible_message(span_notice("[user] labels [A] as \"[label]\"."), \
+						span_notice("You label [A] as \"[label]\"."))
 	A.name = "[initial(A.name)] ([label])"
 	labels_left--
 
@@ -41,21 +41,21 @@
 	on = !on
 	icon_state = "labeler[on]"
 	if(on)
-		to_chat(user, "<span class='notice'>You turn on \the [src].</span>")
+		to_chat(user, span_notice("You turn on \the [src]."))
 		var/str = reject_bad_text(stripped_input(user, "Label text?", "Set label","", MAX_NAME_LEN))
 		if(!str)
-			to_chat(user, "<span class='notice'>Invalid label.</span>")
+			to_chat(user, span_notice("Invalid label."))
 			return
 		label = str
-		to_chat(user, "<span class='notice'>You set the label text to '[str]'.</span>")
+		to_chat(user, span_notice("You set the label text to '[str]'."))
 	else
-		to_chat(user, "<span class='notice'>You turn off \the [src].</span>")
+		to_chat(user, span_notice("You turn off \the [src]."))
 
 
 /obj/item/tool/hand_labeler/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(istype(I, /obj/item/paper))
-		to_chat(user, "<span class='notice'>You insert [I] into [src].</span>")
+		to_chat(user, span_notice("You insert [I] into [src]."))
 		qdel(I)
 		labels_left = min(labels_left + 5, initial(labels_left))
 
@@ -76,7 +76,6 @@
 	icon_state = "pen"
 	item_state = "pen"
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_EARS
-	throwforce = 0
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 7
 	throw_range = 15
@@ -103,8 +102,8 @@
 /obj/item/tool/pen/attack(mob/M as mob, mob/user as mob)
 	if(!ismob(M))
 		return
-	to_chat(user, "<span class='warning'>You stab [M] with the pen.</span>")
-//	to_chat(M, "<span class='warning'>You feel a tiny prick!</span>")
+	to_chat(user, span_warning("You stab [M] with the pen."))
+//	to_chat(M, span_warning("You feel a tiny prick!"))
 	log_combat(user, M, "stabbed", src)
 
 
@@ -124,11 +123,11 @@
 /obj/item/tool/pen/sleepypen/attack(mob/M as mob, mob/user as mob)
 	if(!(istype(M,/mob)))
 		return
-	..()
+	. = ..()
 	if(reagents.total_volume)
 		reagents.reaction(M, INJECT)
 		if(M.reagents) reagents.trans_to(M, 50) //used to be 150
-	return
+
 
 
 /*
@@ -151,7 +150,7 @@
 
 /obj/item/tool/pen/paralysis/Initialize()
 	. = ..()
-	create_reagents(50, OPENCONTAINER, list(/datum/reagent/toxin/zombiepowder = 10, /datum/reagent/cryptobiolin = 15))
+	create_reagents(50, OPENCONTAINER, list(/datum/reagent/toxin/huskpowder = 10, /datum/reagent/cryptobiolin = 15))
 
 
 
@@ -162,14 +161,13 @@
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "stamp-qm"
 	item_state = "stamp"
-	throwforce = 0
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 7
 	throw_range = 15
 	attack_verb = list("stamped")
 
 /obj/item/tool/stamp/qm
-	name = "Quartermaster's Stamp"	
+	name = "Quartermaster's Stamp"
 
 /obj/item/tool/stamp/captain
 	name = "captain's rubber stamp"
@@ -207,10 +205,6 @@
 	name = "internal affairs rubber stamp"
 	icon_state = "stamp-intaff"
 
-/obj/item/tool/stamp/centcomm
-	name = "centcomm rubber stamp"
+/obj/item/tool/stamp/centcom
+	name = "centcom rubber stamp"
 	icon_state = "stamp-cent"
-
-
-/obj/item/tool/stamp/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)

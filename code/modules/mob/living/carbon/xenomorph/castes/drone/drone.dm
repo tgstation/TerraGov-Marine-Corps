@@ -13,5 +13,5 @@
 	old_x = -12
 	pull_speed = -2
 	inherent_verbs = list(
-		/mob/living/carbon/xenomorph/proc/vent_crawl
-		)
+		/mob/living/carbon/xenomorph/proc/vent_crawl,
+	)

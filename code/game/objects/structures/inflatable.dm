@@ -8,7 +8,7 @@
 
 /obj/item/inflatable/attack_self(mob/user)
 	playsound(loc, 'sound/items/zip.ogg', 25, 1)
-	to_chat(user, "<span class='notice'>You inflate [src].</span>")
+	to_chat(user, span_notice("You inflate [src]."))
 	new /obj/structure/inflatable(user.loc)
 	qdel(src)
 
@@ -22,7 +22,7 @@
 
 	attack_self(mob/user)
 		playsound(loc, 'sound/items/zip.ogg', 25, 1)
-		to_chat(user, "<span class='notice'>You inflate [src].</span>")
+		to_chat(user, span_notice("You inflate [src]."))
 		new /obj/structure/inflatable/door(user.loc)
 		qdel(src)
 
@@ -50,11 +50,6 @@
 		deflate(!disassembled)
 	return ..()
 
-
-/obj/structure/inflatable/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	return 0
-
-
 /obj/structure/inflatable/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
@@ -71,7 +66,7 @@
 	. = ..()
 
 	if(can_puncture(I))
-		visible_message("<span class='danger'>[user] pierces [src] with [I]!</span>")
+		visible_message(span_danger("[user] pierces [src] with [I]!"))
 		deflate(TRUE)
 
 
@@ -89,7 +84,7 @@
 		//var/obj/item/inflatable/torn/R = new /obj/item/inflatable/torn(loc)
 		qdel(src)
 	else
-		//to_chat(user, "<span class='notice'>You slowly deflate the inflatable wall.</span>")
+		//to_chat(user, span_notice("You slowly deflate the inflatable wall."))
 		visible_message("[src] slowly deflates.")
 		flick("wall_deflating", src)
 		spawn(50)
@@ -126,10 +121,6 @@
 	icon_state = "wall_popped"
 
 
-/obj/structure/inflatable/popped/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	return 1
-
-
 /obj/structure/inflatable/popped/door
 	name = "popped inflatable door"
 	desc = "This used to be an inflatable door, now it's just a mess of plastic."
@@ -152,22 +143,18 @@
 	var/state = 0 //closed, 1 == open
 	var/isSwitchingStates = 0
 
-
-/obj/structure/inflatable/door/attack_paw(mob/living/carbon/monkey/user)
-	return TryToSwitchState(user)
-
 /obj/structure/inflatable/door/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 	return TryToSwitchState(user)
 
-/obj/structure/inflatable/door/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+/obj/structure/inflatable/door/CanAllowThrough(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	. = ..()
 	if(air_group)
 		return state
 	if(istype(mover, /obj/effect/beam))
 		return !opacity
-	return !density
 
 /obj/structure/inflatable/door/proc/TryToSwitchState(atom/user)
 	if(isSwitchingStates)
@@ -231,7 +218,7 @@
 		//var/obj/item/inflatable/door/torn/R = new /obj/item/inflatable/door/torn(loc)
 		qdel(src)
 	else
-		//to_chat(user, "<span class='notice'>You slowly deflate the inflatable wall.</span>")
+		//to_chat(user, span_notice("You slowly deflate the inflatable wall."))
 		visible_message("[src] slowly deflates.")
 		flick("door_deflating", src)
 		spawn(50)

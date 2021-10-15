@@ -6,7 +6,7 @@
 /obj/machinery/computer/intel_computer
 	name = "Intelligence computer"
 	desc = "A computer used to access the colonies central database. TGMC Intel division will occasionally request remote data retrieval from these computers"
-	icon_state = "nuke_red"
+	icon_state = "intel_computer"
 	circuit = /obj/item/circuitboard/computer/intel_computer
 
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
@@ -31,6 +31,8 @@
 	var/printing = FALSE
 	///When we reach max progress and get the points
 	var/printing_complete = FALSE
+	///What faction has launched the intel process
+	var/faction = FACTION_TERRAGOV
 
 
 /obj/machinery/computer/intel_computer/Initialize()
@@ -47,7 +49,7 @@
 		STOP_PROCESSING(SSmachines, src)
 		printing = FALSE
 		printing_complete = TRUE
-		SSpoints.supply_points += supply_reward
+		SSpoints.supply_points[faction] += supply_reward
 		SSpoints.dropship_points += dropship_reward
 		priority_announce("Classified transmission recieved from [get_area(src)]. Bonus delivered as [supply_reward] supply points and [dropship_reward] dropship points.", title = "TGMC Intel Division")
 
@@ -58,14 +60,14 @@
 
 /obj/machinery/computer/intel_computer/interact(mob/user)
 	if(!active)
-		to_chat(user, "<span class='notice'> This terminal has nothing of use on it.</span>")
+		to_chat(user, span_notice(" This terminal has nothing of use on it."))
 		return
 	return ..()
 
-/obj/machinery/computer/intel_computer/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/intel_computer/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "IntelComputer", "IntelComputer", 400, 500, master_ui, state)
+		ui = new(user, src, "IntelComputer", "IntelComputer")
 		ui.open()
 
 /obj/machinery/computer/intel_computer/ui_data(mob/user)
@@ -78,8 +80,9 @@
 
 	return data
 
-/obj/machinery/computer/intel_computer/ui_act(action, params)
-	if(..())
+/obj/machinery/computer/intel_computer/ui_act(action, list/params, datum/tgui/ui)
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("login")
@@ -90,5 +93,7 @@
 			. = TRUE
 		if("start_progressing")
 			printing = TRUE
+			var/mob/living/ui_user = ui.user
+			faction = ui_user.faction
 			START_PROCESSING(SSmachines, src)
 	update_icon()

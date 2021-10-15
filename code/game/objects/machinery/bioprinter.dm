@@ -39,7 +39,7 @@
 	if(working)
 		to_chat(user, "Something is already being printed...")
 		return
-	var/choice = input("What would you like to print?") as null|anything in products
+	var/choice = tgui_input_list(user, "What would you like to print?", null, products)
 	if(!choice)
 		return
 	if(stored_matter >= products[choice][2] && stored_metal >= products[choice][3]) //Matter and metal
@@ -48,7 +48,7 @@
 			return
 		stored_matter -= products[choice][2] //Matter
 		stored_metal -= products[choice][3] //Metal
-		to_chat(user, "<span class='notice'>\The [src] is now printing the selected organ. Please hold.</span>")
+		to_chat(user, span_notice("\The [src] is now printing the selected organ. Please hold."))
 		working = 1
 		update_icon()
 		spawn(products[choice][4]) //Time
@@ -64,14 +64,14 @@
 /obj/machinery/bioprinter/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(istype(I, /obj/item/reagent_containers/food/snacks/meat))
-		to_chat(user, "<span class='notice'>\The [src] processes \the [I].</span>")
+		to_chat(user, span_notice("\The [src] processes \the [I]."))
 		stored_matter += 50
 		user.drop_held_item()
 		qdel(I)
 
 	else if(istype(I, /obj/item/stack/sheet/metal))
 		var/obj/item/stack/sheet/metal/M = I
-		to_chat(user, "<span class='notice'>\The [src] processes \the [I].</span>")
+		to_chat(user, span_notice("\The [src] processes \the [I]."))
 		stored_metal += M.amount * 100
 		user.drop_held_item()
 		qdel(I)
@@ -80,11 +80,14 @@
 	..()
 	to_chat(user, "It has [stored_matter] matter and [stored_metal] metal left.")
 
-/obj/machinery/bioprinter/update_icon()
+/obj/machinery/bioprinter/update_icon_state()
 	if(machine_stat & NOPOWER)
 		icon_state = "bioprinter_off"
+		return
+	if(working)
+		icon_state = "bioprinter_busy"
 	else
-		if(working)
-			icon_state = "bioprinter_busy"
-		else
-			icon_state = "bioprinter"
+		icon_state = "bioprinter"
+
+/obj/machinery/bioprinter/stocked
+	stored_metal = 1000

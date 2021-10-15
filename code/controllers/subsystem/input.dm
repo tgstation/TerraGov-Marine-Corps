@@ -20,11 +20,12 @@ SUBSYSTEM_DEF(input)
 // This is for when macro sets are eventualy datumized
 /datum/controller/subsystem/input/proc/setup_default_macro_sets()
 	macro_set = list(
-	"Any" = "\"KeyDown \[\[*\]\]\"",
-	"Any+UP" = "\"KeyUp \[\[*\]\]\"",
-	"Back" = "\".winset \\\"input.text=\\\"\\\"\\\"\"",
-	"Tab" = "\".winset \\\"input.focus=true ? map.focus=true : input.focus=true\\\"\"",
-	"Escape" = "\".winset \\\"input.text=\\\"\\\"\\\"\"")
+		"Any" = "\"KeyDown \[\[*\]\]\"",
+		"Any+UP" = "\"KeyUp \[\[*\]\]\"",
+		"Back" = "\".winset \\\"input.text=\\\"\\\"\\\"\"",
+		"Tab" = "\".winset \\\"input.focus=true ? map.focus=true : input.focus=true\\\"\"",
+		"Escape" = "Reset-Held-Keys",
+	)
 
 
 /datum/controller/subsystem/input/proc/refresh_client_macro_sets()
@@ -35,7 +36,5 @@ SUBSYSTEM_DEF(input)
 		user.update_movement_keys()
 
 /datum/controller/subsystem/input/fire()
-	var/list/clients = GLOB.clients //Cache, makes it faster.
-	for(var/i in 1 to length(clients))
-		var/client/C = clients[i]
-		C.keyLoop()
+	for(var/mob/user as anything in GLOB.player_list)
+		user.focus?.keyLoop(user.client)

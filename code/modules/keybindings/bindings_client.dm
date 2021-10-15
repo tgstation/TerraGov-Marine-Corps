@@ -23,7 +23,7 @@
 			keysend_tripped = TRUE
 			next_keysend_trip_reset = world.time + (2 SECONDS)
 		else
-			to_chat(src, "<span class='userdanger'>Key flooding detected! You have been disconnected from the server automatically.</span>")
+			to_chat(src, span_userdanger("Key flooding detected! You have been disconnected from the server automatically."))
 			log_admin("Client [ckey] was just autokicked for flooding keysends; likely abuse but potentially lagspike.")
 			message_admins("Client [ckey] was just autokicked for flooding keysends; likely abuse but potentially lagspike.")
 			qdel(src)
@@ -31,7 +31,7 @@
 
 	///Check if the key is short enough to even be a real key
 	if(LAZYLEN(_key) > MAX_KEYPRESS_COMMANDLENGTH)
-		to_chat(src, "<span class='userdanger'>Invalid KeyDown detected! You have been disconnected from the server automatically.</span>")
+		to_chat(src, span_userdanger("Invalid KeyDown detected! You have been disconnected from the server automatically."))
 		log_admin("Client [ckey] just attempted to send an invalid keypress. Keymessage was over [MAX_KEYPRESS_COMMANDLENGTH] characters, autokicking due to likely abuse.")
 		message_admins("Client [ckey] just attempted to send an invalid keypress. Keymessage was over [MAX_KEYPRESS_COMMANDLENGTH] characters, autokicking due to likely abuse.")
 		qdel(src)
@@ -42,11 +42,11 @@
 		winset(src, null, "input.focus=true ; input.text=[url_encode(_key)]")
 		return
 
-	//offset by 1 because the buffer address is 0 indexed because the math was simpler
-	keys_held[current_key_address + 1] = _key
+	if(length(keys_held) >= HELD_KEY_BUFFER_LENGTH && !keys_held[_key])
+		keyUp(keys_held[1]) //We are going over the number of possible held keys, so let's remove the first one.
+
 	//the time a key was pressed isn't actually used anywhere (as of 2019-9-10) but this allows easier access usage/checking
 	keys_held[_key] = world.time
-	current_key_address = ((current_key_address + 1) % HELD_KEY_BUFFER_LENGTH)
 	var/movement = movement_keys[_key]
 	if(!(next_move_dir_sub & movement) && !keys_held["Ctrl"])
 		next_move_dir_add |= movement
@@ -62,11 +62,20 @@
 		if("Alt", "Ctrl", "Shift")
 			full_key = "[AltMod][CtrlMod][ShiftMod]"
 		else
+			//Every character is capitalised by Byond except special ones like é and è. Since they are always capitalised by the tgui registering window,
+			//we ensure that they are capitalised also by DM so they match.
+			_key = capitalize(_key)
 			full_key = "[AltMod][CtrlMod][ShiftMod][_key]"
 	var/keycount = 0
 	for(var/kb_name in prefs.key_bindings[full_key])
 		keycount++
 		var/datum/keybinding/kb = GLOB.keybindings_by_name[kb_name]
+		if(!kb)
+			prefs.key_bindings[full_key] -= kb_name
+			if(!prefs.key_bindings[full_key])
+				prefs.key_bindings -= full_key
+			prefs.save_keybinds()
+			continue
 		if(kb.down(src) && keycount >= MAX_COMMANDS_PER_KEY)
 			break
 
@@ -75,16 +84,12 @@
 	set instant = TRUE
 	set hidden = TRUE
 
-	for(var/i in 1 to 10)
+	for(var/i in 1 to length(keys_held))
 		if(keys_held[i] == _key)
 			keys_held[i] = null
 			break
 
-	//Can't just do a remove because it would alter the length of the rolling buffer, instead search for the key then null it out if it exists
-	for(var/i in 1 to HELD_KEY_BUFFER_LENGTH)
-		if(keys_held[i] == _key)
-			keys_held[i] = null
-			break
+	keys_held -= _key
 	var/movement = movement_keys[_key]
 	if(!(next_move_dir_add & movement))
 		next_move_dir_sub |= movement
@@ -96,8 +101,15 @@
 		if(kb.up(src))
 			break
 
+/**
+ * Manually clears any held keys, in case due to lag or other undefined behavior a key gets stuck.
+ *
+ * Hardcoded to the ESC key.
+ */
+/client/verb/reset_held_keys()
+	set name = "Reset Held Keys"
+	set hidden = TRUE
 
-// Called every game tick
-/client/keyLoop()
-	holder?.keyLoop(src)
-	mob.focus?.keyLoop(src)
+	for(var/key in keys_held)
+		keyUp(key)
+

@@ -2,8 +2,6 @@
 /datum/job/colonist
 	title = "Colonist"
 	paygrade = "C"
-	access = list(ACCESS_IFF_MARINE)
-	minimal_access = list(ACCESS_IFF_MARINE)
 	outfit = /datum/outfit/job/other/colonist
 
 
@@ -22,8 +20,6 @@
 /datum/job/passenger
 	title = "Passenger"
 	paygrade = "C"
-	access = list(ACCESS_IFF_MARINE)
-	minimal_access = list(ACCESS_IFF_MARINE)
 
 
 //Pizza Deliverer
@@ -52,8 +48,8 @@
 //Spatial Agent
 /datum/job/spatial_agent
 	title = "Spatial Agent"
-	access = ALL_MARINE_ACCESS
-	minimal_access = ALL_MARINE_ACCESS
+	access = ALL_ACCESS
+	minimal_access = ALL_ACCESS
 	skills_type = /datum/skills/spatial_agent
 	outfit = /datum/outfit/job/other/spatial_agent
 
@@ -69,3 +65,29 @@
 	gloves = /obj/item/clothing/gloves/marine/officer/chief/sa
 	glasses = /obj/item/clothing/glasses/sunglasses/sa/nodrop
 	back = /obj/item/storage/backpack/marine/satchel
+
+/datum/job/spatial_agent/galaxy_red
+	outfit = /datum/outfit/job/other/spatial_agent/galaxy_red
+
+/datum/outfit/job/other/spatial_agent/galaxy_red
+	w_uniform = /obj/item/clothing/under/liaison_suit/galaxy_red
+	belt = null
+	back = null
+
+/datum/job/spatial_agent/galaxy_blue
+	outfit = /datum/outfit/job/other/spatial_agent/galaxy_blue
+
+/datum/outfit/job/other/spatial_agent/galaxy_blue
+	w_uniform = /obj/item/clothing/under/liaison_suit/galaxy_blue
+	belt = null
+	back = null
+
+/datum/job/spatial_agent/xeno_suit
+	outfit = /datum/outfit/job/other/spatial_agent/xeno_suit
+
+/datum/outfit/job/other/spatial_agent/xeno_suit
+	head = /obj/item/clothing/head/xenos
+	wear_suit = /obj/item/clothing/suit/xenos
+
+/datum/job/husk
+	title = "Oh god run"

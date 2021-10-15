@@ -52,22 +52,28 @@
 	set category = "OOC"
 
 	if(!GLOB.respawn_allowed && !check_rights(R_ADMIN, FALSE))
-		to_chat(usr, "<span class='notice'>Respawn is disabled. This is the default state, you can usually rejoin the round as a human only via ERT.</span>")
+		to_chat(usr, span_notice("Respawn is disabled. This is the default state, you can usually rejoin the round as a human only via ERT."))
 		return
 	if(stat != DEAD)
-		to_chat(usr, "<span class='boldnotice'>You must be dead to use this!</span>")
+		to_chat(usr, span_boldnotice("You must be dead to use this!"))
 		return
 
 	if(DEATHTIME_CHECK(usr))
 		if(check_other_rights(usr.client, R_ADMIN, FALSE))
-			if(alert(usr, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", "Yes", "No") != "Yes")
+			if(tgui_alert(usr, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No"), 0) != "Yes")
 				DEATHTIME_MESSAGE(usr)
 				return
+			var/admin_message = "[key_name(usr)] used his admin power to bypass respawn before his timer was over"
+			log_admin(admin_message)
+			message_admins(admin_message)
 		else
 			DEATHTIME_MESSAGE(usr)
 			return
 
-	to_chat(usr, "<span class='notice'>You can respawn now, enjoy your new life!<br><b>Make sure to play a different character, and please roleplay correctly.</b></span>")
+	to_chat(usr, span_notice("You can respawn now, enjoy your new life!<br><b>Make sure to play a different character, and please roleplay correctly.</b>"))
+	GLOB.round_statistics.total_human_respawns++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_human_respawns")
+
 
 	if(!client)
 		return
@@ -76,6 +82,8 @@
 		return
 
 	var/mob/new_player/M = new /mob/new_player()
+	if(SSticker.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS)
+		M.faction = faction
 	if(!client)
 		qdel(M)
 		return
@@ -88,36 +96,25 @@
 	set name = "EORD Respawn"
 	set category = "OOC"
 
-	if(stat != DEAD)
-		to_chat(src, "You can only use this when you're dead.")
-		return
+	if(isliving(usr))
+		var/mob/living/liver = usr
+		if(liver.health >= liver.health_threshold_crit)
+			to_chat(src, "You can only use this when you're dead or crit.")
+			return
 
-	var/list/spawn_types = pick(
-		500 ; /mob/living/carbon/human,
-		/mob/living/carbon/xenomorph/runner,
-		/mob/living/carbon/xenomorph/hunter,
-		/mob/living/carbon/xenomorph/spitter,
-		/mob/living/carbon/xenomorph/defender,
-		/mob/living/carbon/xenomorph/warrior,
-	)
 	var/spawn_location = pick(GLOB.deathmatch)
-	var/mob/living/L = new spawn_types(spawn_location)
+	var/mob/living/L = new /mob/living/carbon/human(spawn_location)
 	mind.transfer_to(L, TRUE)
 	L.mind.bypass_ff = TRUE
 	L.revive()
 
-	if(isxeno(L))
-		var/mob/living/carbon/xenomorph/X = L
-		X.transfer_to_hive(pick(XENO_HIVE_NORMAL, XENO_HIVE_CORRUPTED, XENO_HIVE_ALPHA, XENO_HIVE_BETA, XENO_HIVE_ZETA))
+	var/mob/living/carbon/human/H = L
+	var/job = pick(/datum/job/clf/leader, /datum/job/freelancer/leader, /datum/job/upp/leader, /datum/job/som/leader, /datum/job/pmc/leader, /datum/job/freelancer/standard, /datum/job/som/standard, /datum/job/clf/standard)
+	var/datum/job/J = SSjob.GetJobType(job)
+	H.apply_assigned_role_to_spawn(J)
+	H.regenerate_icons()
 
-	else if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		var/job = pick(/datum/job/clf/leader, /datum/job/freelancer/leader, /datum/job/upp/leader, /datum/job/som/leader, /datum/job/pmc/leader, /datum/job/freelancer/standard, /datum/job/som/standard, /datum/job/clf/standard)
-		var/datum/job/J = SSjob.GetJobType(job)
-		H.apply_assigned_role_to_spawn(J)
-		H.regenerate_icons()
-
-	to_chat(L, "<br><br><h1><span class='danger'>Fight for your life (again), try not to die this time!</span></h1><br><br>")
+	to_chat(L, "<br><br><h1>[span_danger("Fight for your life (again), try not to die this time!")]</h1><br><br>")
 
 
 /mob/verb/cancel_camera()
@@ -132,21 +129,25 @@
 
 
 /mob/verb/eastface()
+	SIGNAL_HANDLER
 	set hidden = 1
 	return facedir(EAST)
 
 
 /mob/verb/westface()
+	SIGNAL_HANDLER
 	set hidden = 1
 	return facedir(WEST)
 
 
 /mob/verb/northface()
+	SIGNAL_HANDLER
 	set hidden = 1
 	return facedir(NORTH)
 
 
 /mob/verb/southface()
+	SIGNAL_HANDLER
 	set hidden = 1
 	return facedir(SOUTH)
 

@@ -10,9 +10,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 17
 
-	// *** Tackle *** //
-	tackle_damage = 30
-
 	// *** Speed *** //
 	speed = -0.3
 
@@ -27,29 +24,39 @@
 	evolution_threshold = 180
 	upgrade_threshold = 120
 
-	evolves_to = list(/mob/living/carbon/xenomorph/boiler, /mob/living/carbon/xenomorph/praetorian)
+	evolves_to = list(
+		/mob/living/carbon/xenomorph/boiler,
+		/mob/living/carbon/xenomorph/praetorian,
+	)
 	deevolves_to = /mob/living/carbon/xenomorph/sentinel
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CAN_BECOME_KING|CAN_RIDE_CRUSHER
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 10, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 10)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.3 SECONDS
+	spit_delay = 0.8 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/medium) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
 
-	acid_delay = 30 SECONDS //30 second delay on acid spray.
+	acid_spray_duration = 10 SECONDS
+	acid_spray_damage_on_hit = 35
+	acid_spray_damage = 16
+	acid_spray_structure_damage = 45
+
 
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/activable/scatter_spit,
 		/datum/action/xeno_action/activable/spray_acid/line,
-		)
+	)
 
 /datum/xeno_caste/spitter/young
 	upgrade_name = "Young"
@@ -62,9 +69,6 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Tackle *** //
-	tackle_damage = 35
-
 	// *** Speed *** //
 	speed = -0.4
 
@@ -76,15 +80,15 @@
 	max_health = 270
 
 	// *** Evolution *** //
-	upgrade_threshold = 240
+	upgrade_threshold = 360
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 15, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 25, "acid" = 15)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.2 SECONDS
+	spit_delay = 0.7 SECONDS
 
-	acid_delay = 30 SECONDS //30 second delay on acid spray.
+
 
 /datum/xeno_caste/spitter/elder
 	upgrade_name = "Elder"
@@ -94,9 +98,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
-
-	// *** Tackle *** //
-	tackle_damage = 40
 
 	// *** Speed *** //
 	speed = -0.5
@@ -109,27 +110,24 @@
 	max_health = 290
 
 	// *** Evolution *** //
-	upgrade_threshold = 480
+	upgrade_threshold = 840
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 20, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 30, "acid" = 18)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.1 SECONDS
+	spit_delay = 0.6 SECONDS
 
-	acid_delay = 30 SECONDS //30 second delay on acid spray.
+
 
 /datum/xeno_caste/spitter/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "A ranged destruction machine."
-	ancient_message = "We are a master of ranged stuns and damage. Let's go fourth and generate salt."
+	ancient_message = "We are a master of ranged stuns and damage. Go forth and conquer."
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
-
-	// *** Tackle *** //
-	tackle_damage = 40
 
 	// *** Speed *** //
 	speed = -0.6
@@ -142,13 +140,12 @@
 	max_health = 310
 
 	// *** Evolution *** //
-	upgrade_threshold = 480
+	upgrade_threshold = 1320
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 25, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 35, "acid" = 20)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 0.5 SECONDS
 
-	acid_delay = 30 SECONDS //30 second delay on acid spray.
 

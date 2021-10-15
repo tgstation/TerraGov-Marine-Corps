@@ -37,6 +37,7 @@
 	GLOB.nuke_list += src
 	countdown = new(src)
 	name = "[initial(name)] ([UNIQUEID])"
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "nuke")
 
 
 /obj/machinery/nuclearbomb/Destroy()
@@ -63,9 +64,6 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
 	notify_ghosts("[usr] enabled the [src], it has [timeleft] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
 
-	// Set the nuke as the hive leader so its tracked
-	SSdirection.clear_leader(XENO_HIVE_NORMAL)
-	SSdirection.set_leader(XENO_HIVE_NORMAL, src)
 
 
 /obj/machinery/nuclearbomb/stop_processing()
@@ -73,12 +71,6 @@
 	countdown.stop()
 	GLOB.active_nuke_list -= src
 	timeleft = initial(timeleft)
-
-	// Reset the hive leader
-	SSdirection.clear_leader()
-	var/datum/hive_status/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	SSdirection.set_leader(XENO_HIVE_NORMAL, HS.living_xeno_ruler)
-
 	return ..()
 
 
@@ -121,9 +113,12 @@
 	updateUsrDialog()
 
 
-/obj/machinery/nuclearbomb/attack_alien(mob/living/carbon/xenomorph/X)
+/obj/machinery/nuclearbomb/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
 	if(!timer_enabled)
-		to_chat(X, "<span class='warning'>\The [src] is soundly asleep. We better not disturb it.</span>")
+		to_chat(X, span_warning("\The [src] is soundly asleep. We better not disturb it."))
 		return
 
 	X.visible_message("[X] begins to slash delicately at the nuke",
@@ -166,12 +161,12 @@
 
 	if(removal_stage < NUKE_STAGE_BOLTS_REMOVED)
 		if(anchored)
-			visible_message("<span class='warning'>With a loud beep, lights flicker on the [src]'s display panel. It's working!</span>")
+			visible_message(span_warning("With a loud beep, lights flicker on the [src]'s display panel. It's working!"))
 		else
 			anchored = TRUE
-			visible_message("<span class='warning'>With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
+			visible_message(span_warning("With a steely snap, bolts slide out of [src] and anchor it to the flooring!"))
 	else
-		visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
+		visible_message(span_warning("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
 	if(!lighthack)
 		flick("nuclearbombc", src)
 		icon_state = "nuclearbomb1"
@@ -278,10 +273,10 @@
 			if(exploded)
 				return
 			if(safety)
-				to_chat(usr, "<span class='warning'>The safety is still on.</span>")
+				to_chat(usr, span_warning("The safety is still on."))
 				return
 			if(!anchored)
-				to_chat(usr, "<span class='warning'>The anchors are not set.</span>")
+				to_chat(usr, span_warning("The anchors are not set."))
 				return
 			timer_enabled = !timer_enabled
 			if(timer_enabled)
@@ -299,17 +294,17 @@
 		if(href_list["anchor"])
 			if(removal_stage == NUKE_STAGE_BOLTS_REMOVED)
 				anchored = FALSE
-				visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
+				visible_message(span_warning("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
 				return
 			if(istype(get_area(loc), /area/shuttle))
-				to_chat(usr, "<span class='warning'>This doesn't look like a good spot to anchor the nuke.</span>")
+				to_chat(usr, span_warning("This doesn't look like a good spot to anchor the nuke."))
 				return
 
 			anchored = !anchored
 			if(anchored)
-				visible_message("<span class='warning'>With a steely snap, bolts slide out of [src] and anchor it to the flooring.</span>")
+				visible_message(span_warning("With a steely snap, bolts slide out of [src] and anchor it to the flooring."))
 			else
-				visible_message("<span class='warning'>The anchoring bolts slide back into the depths of [src].</span>")
+				visible_message(span_warning("The anchoring bolts slide back into the depths of [src]."))
 				timer_enabled = FALSE
 				stop_processing()
 

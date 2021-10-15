@@ -6,7 +6,19 @@
 	icon_state = "0"
 	can_bloody = FALSE
 	light_power = 0.25
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+
+/area/space/Entered(atom/movable/arrived, atom/old_loc)
+	. = ..()
+	if(isliving(arrived))
+		var/mob/living/spaceman = arrived
+		if(!spaceman.has_status_effect(/datum/status_effect/spacefreeze))
+			spaceman.apply_status_effect(/datum/status_effect/spacefreeze)
+
+/area/space/Exited(atom/movable/leaver, direction)
+	. = ..()
+	if(isliving(leaver))
+		var/mob/living/spaceman = leaver
+		spaceman.remove_status_effect(/datum/status_effect/spacefreeze)
 
 
 /turf/open/space/basic/New()	//Do not convert to Initialize
@@ -21,6 +33,7 @@
 			O.hide(FALSE)
 
 /turf/open/space/Initialize(mapload, ...)
+	SHOULD_CALL_PARENT(FALSE) //prevent laggies
 	if(flags_atom & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	ENABLE_BITFIELD(flags_atom, INITIALIZED)
@@ -28,16 +41,12 @@
 	vis_contents.Cut() //removes inherited overlays
 	visibilityChanged()
 
-	var/area/A = loc
-	if(!IS_DYNAMIC_LIGHTING(src) && IS_DYNAMIC_LIGHTING(A))
-		add_overlay(/obj/effect/fullbright)
-
-	if(light_power && light_range)
+	if(light_system != MOVABLE_LIGHT && light_power && light_range)
 		update_light()
 
 	if(opacity)
-		has_opaque_atom = TRUE
-	
+		directional_opacity = ALL_CARDINALS
+
 	update_icon()
 
 	return INITIALIZE_HINT_NORMAL
@@ -45,10 +54,6 @@
 
 /turf/open/space/update_icon_state()
 	icon_state = SPACE_ICON_STATE
-
-
-/turf/open/space/attack_paw(mob/living/carbon/monkey/user)
-	return src.attack_hand(user)
 
 /turf/open/space/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -61,14 +66,14 @@
 		if(!R.use(1))
 			return
 
-		to_chat(user, "<span class='notice'>Constructing support lattice ...</span>")
+		to_chat(user, span_notice("Constructing support lattice ..."))
 		playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
 		ReplaceWithLattice()
 
 	else if(istype(I, /obj/item/stack/tile/plasteel))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice) in src
 		if(!L)
-			to_chat(user, "<span class='warning'>The plating is going to need some support.</span>")
+			to_chat(user, span_warning("The plating is going to need some support."))
 			return
 
 		var/obj/item/stack/tile/plasteel/S = I
@@ -80,8 +85,24 @@
 		S.use(1)
 
 
-/turf/open/space/Entered(atom/movable/AM, atom/oldloc)
+/turf/open/space/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
-	if(isliving(AM))
-		var/mob/living/spaceman = AM
-		spaceman.adjustFireLoss(600) //Death. Space shouldn't be entered.
+	if(isliving(arrived))
+		var/mob/living/spaceman = arrived
+		if(!spaceman.has_status_effect(/datum/status_effect/spacefreeze))
+			spaceman.apply_status_effect(/datum/status_effect/spacefreeze)
+
+/turf/open/space/Exited(atom/movable/leaver, direction)
+	if(isliving(leaver))
+		var/mob/living/spaceman = leaver
+		spaceman.remove_status_effect(/datum/status_effect/spacefreeze)
+
+
+/turf/open/space/sea //used on prison for flavor
+	icon = 'icons/misc/beach.dmi'
+	name = "sea"
+	icon_state = "seadeep"
+	plane = FLOOR_PLANE
+
+/turf/open/space/sea/update_icon_state()
+	return

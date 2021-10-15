@@ -1,7 +1,7 @@
- /**
-  * tgui state: xeno_state
-  *
-  * Checks that the user is a xeno, ezpz.
+/**
+ * tgui state: xeno_state
+ *
+ * Checks that the user is a xeno, ezpz.
  **/
 
 GLOBAL_DATUM_INIT(xeno_state, /datum/ui_state/xeno_state, new)

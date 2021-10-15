@@ -11,7 +11,7 @@
 	bound_width = 32
 	var/obj/item/fuelCell/cell_left = null
 	var/obj/item/fuelCell/cell_right = null
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 
 /obj/machinery/fuelcell_recycler/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -25,19 +25,19 @@
 				cell_right = I
 				start_processing()
 		else
-			to_chat(user, "<span class='notice'>The recycler is full!</span>")
+			to_chat(user, span_notice("The recycler is full!"))
 		update_icon()
 		return
 
-	to_chat(user, "<span class='notice'>You can't see how you'd use [I] with [src]...</span>")
-	return
+	to_chat(user, span_notice("You can't see how you'd use [I] with [src]..."))
+
 
 /obj/machinery/fuelcell_recycler/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 	if(cell_left == null && cell_right == null)
-		to_chat(user, "<span class='notice'>The recycler is empty.</span>")
+		to_chat(user, span_notice("The recycler is empty."))
 		return
 
 	if(cell_right == null)

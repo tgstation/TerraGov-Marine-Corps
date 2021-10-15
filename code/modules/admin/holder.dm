@@ -11,8 +11,15 @@
 
 	var/href_token
 
-	var/deadmined
+	///Reference to filteriffic tgui holder datum
+	var/datum/filter_editor/filteriffic
+
+	///Whether this admin is currently deadminned or not
+	var/deadmined = FALSE
+	///Whether this admin has ghost interaction enabled
 	var/ghost_interact = FALSE
+	///Whether this admin is invisiminning
+	var/invisimined = FALSE
 
 
 /datum/admins/New(datum/admin_rank/R, ckey, protected)
@@ -193,12 +200,12 @@
 		if(usr.client.holder?.rank && (usr.client.holder.rank.rights & rights_required))
 			return TRUE
 		else if(show_msg)
-			to_chat(usr, "<span class='warning'>You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</span>")
+			to_chat(usr, span_warning("You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")]."))
 	else
 		if(usr.client.holder)
 			return TRUE
 		else if(show_msg)
-			to_chat(usr, "<span class='warning'>You are not a holder.</span>")
+			to_chat(usr, span_warning("You are not a holder."))
 	return FALSE
 
 
@@ -209,12 +216,12 @@
 		if(rights_required & other.holder.rank.rights)
 			return TRUE
 		else if(show_msg)
-			to_chat(usr, "<span class='warning'>You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</span>")
+			to_chat(usr, span_warning("You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")]."))
 	else
 		if(other.holder)
 			return TRUE
 		else if(show_msg)
-			to_chat(usr, "<span class='warning'>You are not a holder.</span>")
+			to_chat(usr, span_warning("You are not a holder."))
 	return FALSE
 
 
@@ -230,7 +237,7 @@
 			return TRUE
 		if(usr.client.holder.rank.rights != other.holder.rank.rights && ((usr.client.holder.rank.rights & other.holder.rank.rights) == other.holder.rank.rights))
 			return TRUE
-	to_chat(usr, "<span class='warning'>They have more or equal rights than you.</span>")
+	to_chat(usr, span_warning("They have more or equal rights than you."))
 	return FALSE
 
 
@@ -293,6 +300,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/toggle_prayers,
 	/datum/admins/proc/mcdb,
 	/datum/admins/proc/check_fingerprints,
+	/client/proc/smite,
 	/client/proc/private_message_panel,
 	/client/proc/private_message_context,
 	/client/proc/msay,
@@ -351,14 +359,19 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/reestablish_db_connection,
 	/datum/admins/proc/view_runtimes,
 	/datum/admins/proc/spatial_agent,
-#ifdef REFERENCE_TRACKING
-	/datum/admins/proc/view_refs,
-	/datum/admins/proc/view_del_failures,
-#endif
-	/datum/admins/proc/check_bomb_impacts
+	/datum/admins/proc/set_xeno_stat_buffs,
+	/datum/admins/proc/check_bomb_impacts,
+	/client/proc/toggle_cdn
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 GLOBAL_PROTECT(admin_verbs_debug)
+
+/world/proc/AVruntimes()
+	return list(
+	/datum/admins/proc/view_runtimes,
+	)
+GLOBAL_LIST_INIT(admin_verbs_runtimes, world.AVruntimes())
+GLOBAL_PROTECT(admin_verbs_runtimes)
 
 /world/proc/AVvaredit()
 	return list(
@@ -389,7 +402,6 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/drop_dynex_bomb,
 	/datum/admins/proc/change_security_level,
 	/datum/admins/proc/edit_appearance,
-	/datum/admins/proc/outfit_manager,
 	/datum/admins/proc/offer,
 	/datum/admins/proc/force_dropship,
 	/datum/admins/proc/open_shuttlepanel,
@@ -404,7 +416,8 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/client/proc/toggle_buildmode,
 	/client/proc/force_event,
 	/client/proc/toggle_events,
-	/client/proc/run_weather
+	/client/proc/run_weather,
+	/client/proc/cmd_display_del_log,
 	)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 GLOBAL_PROTECT(admin_verbs_fun)
@@ -421,7 +434,6 @@ GLOBAL_PROTECT(admin_verbs_fun)
 	/datum/admins/proc/toggle_join,
 	/datum/admins/proc/toggle_respawn,
 	/datum/admins/proc/set_respawn_time,
-	/datum/admins/proc/set_xenorespawn_time,
 	/datum/admins/proc/end_round,
 	/datum/admins/proc/delay_start,
 	/datum/admins/proc/delay_end,
@@ -431,15 +443,16 @@ GLOBAL_PROTECT(admin_verbs_fun)
 	/datum/admins/proc/change_ground_map,
 	/datum/admins/proc/change_ship_map,
 	/datum/admins/proc/panic_bunker,
-	/datum/admins/proc/mode_check
+	/datum/admins/proc/mode_check,
+	/client/proc/toggle_cdn
 	)
 GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
 GLOBAL_PROTECT(admin_verbs_server)
 
 /world/proc/AVpermissions()
 	return list(
-	/datum/admins/proc/permissions_panel,
-	/datum/admins/proc/create_poll
+	/client/proc/edit_admin_permissions,
+	/client/proc/poll_panel,
 	)
 GLOBAL_LIST_INIT(admin_verbs_permissions, world.AVpermissions())
 GLOBAL_PROTECT(admin_verbs_permissions)
@@ -464,7 +477,8 @@ GLOBAL_PROTECT(admin_verbs_sound)
 /world/proc/AVspawn()
 	return list(
 	/datum/admins/proc/spawn_atom,
-	/client/proc/get_togglebuildmode
+	/client/proc/get_togglebuildmode,
+	/client/proc/mass_replace,
 	)
 GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 GLOBAL_PROTECT(admin_verbs_spawn)
@@ -487,6 +501,8 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 			verbs += GLOB.admin_verbs_server
 		if(rights & R_DEBUG)
 			verbs += GLOB.admin_verbs_debug
+		if(rights & R_RUNTIME)
+			verbs += GLOB.admin_verbs_runtimes
 		if(rights & R_PERMISSIONS)
 			verbs += GLOB.admin_verbs_permissions
 		if(rights & R_DBRANKS)
@@ -532,26 +548,32 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 
 
 /proc/message_admins(msg)
-	msg = "<span class='admin'><span class='prefix'>ADMIN LOG:</span> <span class='message linkify'>[msg]</span></span>"
+	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
-			to_chat(C, msg)
+			to_chat(C,
+				type = MESSAGE_TYPE_ADMINLOG,
+				html = msg)
+
 
 
 /proc/message_staff(msg)
-	msg = "<span class='admin'><span class='prefix'>STAFF LOG:</span> <span class='message linkify'>[msg]</span></span>"
+	msg = "<span class=\"admin\"><span class=\"prefix\">STAFF LOG:</span> <span class=\"message\">[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE) || is_mentor(C))
-			to_chat(C, msg)
-
+			to_chat(C,
+				type = MESSAGE_TYPE_STAFFLOG,
+				html = msg)
 
 /proc/msg_admin_ff(msg)
-	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='green linkify'>[msg]</span></span>"
+	msg = span_admin("[span_prefix("ATTACK:")] <span class='green'>[msg]</span>")
 	for(var/client/C in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE))
 			continue
 		if((C.prefs.toggles_chat & CHAT_FFATTACKLOGS) || ((SSticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
-			to_chat(C, msg)
+			to_chat(C,
+				type = MESSAGE_TYPE_ATTACKLOG,
+				html = msg)
 
 
 /client/proc/find_stealth_key(txt)
@@ -591,10 +613,10 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 
 	if(current_caller && current_caller != ckey)
 		if(!GLOB.AdminProcCallSpamPrevention[ckey])
-			to_chat(usr, "<span class='adminnotice'>Another set of admin called procs are still running, your proc will be run after theirs finish.</span>")
+			to_chat(usr, span_adminnotice("Another set of admin called procs are still running, your proc will be run after theirs finish."))
 			GLOB.AdminProcCallSpamPrevention[ckey] = TRUE
 			UNTIL(!GLOB.AdminProcCaller)
-			to_chat(usr, "<span class='adminnotice'>Running your proc</span>")
+			to_chat(usr, span_adminnotice("Running your proc"))
 			GLOB.AdminProcCallSpamPrevention -= ckey
 		else
 			UNTIL(!GLOB.AdminProcCaller)

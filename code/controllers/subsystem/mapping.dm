@@ -10,6 +10,9 @@ SUBSYSTEM_DEF(mapping)
 
 	var/list/shuttle_templates = list()
 
+	///list of all modular mapping templates
+	var/list/modular_templates = list()
+
 	var/list/areas_in_z = list()
 
 	var/list/turf/unused_turfs = list()				//Not actually unused turfs they're unused but reserved for use for whatever requests them. "[zlevel_of_turf]" = list(turfs)
@@ -24,6 +27,11 @@ SUBSYSTEM_DEF(mapping)
 	var/list/z_list
 	var/datum/space_level/transit
 	var/num_of_res_levels = 1
+
+	///If true, non-admin players will not be able to initiate a vote to change groundmap
+	var/groundmap_voted = FALSE
+	///If true, non-admin players will not be able to initiate a vote to change shipmap
+	var/shipmap_voted = FALSE
 
 //dlete dis once #39770 is resolved
 /datum/controller/subsystem/mapping/proc/HACK_LoadMapConfig()
@@ -44,13 +52,13 @@ SUBSYSTEM_DEF(mapping)
 			var/old_config = configs[i]
 			configs[i] = global.config.defaultmaps[i]
 			if(!configs || configs[i].defaulted)
-				to_chat(world, "<span class='boldannounce'>Unable to load next or default map config, defaulting.</span>")
+				to_chat(world, span_boldannounce("Unable to load next or default map config, defaulting."))
 				configs[i] = old_config
 
 	if(configs[GROUND_MAP])
-		for(var/i in config.votable_modes)
-			if(!(i in configs[GROUND_MAP].gamemodes))
-				config.votable_modes -= i // remove invalid modes
+		for(var/datum/game_mode/M AS in config.votable_modes)
+			if(!(M.config_tag in configs[GROUND_MAP].gamemodes))
+				config.votable_modes -= M // remove invalid modes
 
 	loadWorld()
 	repopulate_sorted_areas()
@@ -95,6 +103,7 @@ SUBSYSTEM_DEF(mapping)
 	initialized = SSmapping.initialized
 	map_templates = SSmapping.map_templates
 	shuttle_templates = SSmapping.shuttle_templates
+	modular_templates = SSmapping.modular_templates
 	unused_turfs = SSmapping.unused_turfs
 	turf_reservations = SSmapping.turf_reservations
 	used_turfs = SSmapping.used_turfs
@@ -106,7 +115,7 @@ SUBSYSTEM_DEF(mapping)
 
 	z_list = SSmapping.z_list
 
-#define INIT_ANNOUNCE(X) to_chat(world, "<span class='notice'>[X]</span>"); log_world(X)
+#define INIT_ANNOUNCE(X) to_chat(world, span_notice("[X]")); log_world(X)
 /datum/controller/subsystem/mapping/proc/LoadGroup(list/errorList, name, path, files, list/traits, list/default_traits, silent = FALSE)
 	. = list()
 	var/start_time = REALTIMEOFDAY
@@ -172,7 +181,9 @@ SUBSYSTEM_DEF(mapping)
 	LoadGroup(FailedZs, ship_map.map_name, ship_map.map_path, ship_map.map_file, ship_map.traits, ZTRAITS_MAIN_SHIP)
 
 	if(SSdbcore.Connect())
-		var/datum/DBQuery/query_round_map_name = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET map_name = '[ground_map.map_name]' WHERE id = [GLOB.round_id]")
+		var/datum/db_query/query_round_map_name = SSdbcore.NewQuery({"
+			UPDATE [format_table_name("round")] SET map_name = :map_name WHERE id = :round_id
+		"}, list("map_name" = ground_map.map_name, "round_id" = GLOB.round_id))
 		query_round_map_name.Execute()
 		qdel(query_round_map_name)
 
@@ -216,10 +227,11 @@ SUBSYSTEM_DEF(mapping)
 		map_templates[T.name] = T
 
 	preloadShuttleTemplates()
+	preloadModularTemplates()
 
 /proc/generateMapList(filename)
 	. = list()
-	var/list/Lines = world.file2list(filename)
+	var/list/Lines = file2list(filename)
 
 	if(!Lines.len)
 		return
@@ -252,8 +264,6 @@ SUBSYSTEM_DEF(mapping)
 
 	for(var/item in subtypesof(/datum/map_template/shuttle))
 		var/datum/map_template/shuttle/shuttle_type = item
-		//if(!(initial(shuttle_type.suffix)))
-		//	continue
 
 		var/datum/map_template/shuttle/S = new shuttle_type()
 		if(unbuyable.Find(S.mappath))
@@ -261,6 +271,16 @@ SUBSYSTEM_DEF(mapping)
 
 		shuttle_templates[S.shuttle_id] = S
 		map_templates[S.shuttle_id] = S
+
+/datum/controller/subsystem/mapping/proc/preloadModularTemplates()
+	for(var/item in subtypesof(/datum/map_template/modular))
+		var/datum/map_template/modular/modular_type = item
+
+		var/datum/map_template/modular/M = new modular_type()
+
+		LAZYINITLIST(modular_templates[M.modular_id])
+		modular_templates[M.modular_id] += M
+		map_templates[M.type] = M
 
 /datum/controller/subsystem/mapping/proc/RequestBlockReservation(width, height, z, type = /datum/turf_reservation, turf_type_override)
 	UNTIL(initialized && !clearing_reserved_turfs)

@@ -18,6 +18,10 @@
 
 /obj/effect/decal/cleanable/blood/Initialize()
 	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 	update_icon()
 	if(istype(src, /obj/effect/decal/cleanable/blood/gibs))
 		return
@@ -27,7 +31,7 @@
 		for(var/obj/effect/decal/cleanable/blood/B in loc)
 			if(B == src)
 				continue
-			qdel(B)
+			return INITIALIZE_HINT_QDEL
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/effect/decal/cleanable/blood/LateInitialize()
@@ -47,11 +51,13 @@
 	if(basecolor == "rainbow") basecolor = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"
 	color = basecolor
 
-/obj/effect/decal/cleanable/blood/Crossed(mob/living/carbon/human/perp)
-	. = ..()
-	if (!istype(perp))
+/obj/effect/decal/cleanable/blood/proc/on_cross(datum/source, mob/living/carbon/human/perp, oldloc, oldlocs)
+	SIGNAL_HANDLER
+	if(!istype(perp))
 		return
 	if(amount < 1)
+		return
+	if(CHECK_MULTIPLE_BITFIELDS(perp.flags_pass, HOVERING))
 		return
 
 	var/datum/limb/foot/l_foot = perp.get_limb("l_foot")
@@ -95,7 +101,7 @@
 
 	var/taken = rand(1,amount)
 	amount -= taken
-	to_chat(H, "<span class='notice'>You get some of \the [src] on your hands.</span>")
+	to_chat(H, span_notice("You get some of \the [src] on your hands."))
 
 	H.add_blood(basecolor)
 	H.bloody_hands += taken

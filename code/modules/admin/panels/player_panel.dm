@@ -318,7 +318,7 @@
 		dat += "<tr><td>[(M.key ? "[M.key]" : "No Key")]</td>"
 		dat += "<td><a href='?priv_msg=[M.ckey]'>[M.name]</a></td>"
 		if(isAI(M))
-			dat += "<td>aI</td>"
+			dat += "<td>AI</td>"
 		else if(ishuman(M))
 			dat += "<td>[M.real_name]</td>"
 		else if(istype(M, /mob/new_player))
@@ -399,6 +399,13 @@
 			body += "<b>Mob Role:</b> [L.job.title]<br>"
 
 	body += "<b>CID:</b> [M.computer_id] | <b>IP:</b> [M.ip_address]<br>"
+	if(M.client)
+		body += "<br>\[<b>First Seen:</b> [M.client.player_join_date]\]\[<b>Byond account registered on:</b> [M.client.account_join_date]\]"
+		if(M.client.related_accounts_cid || M.client.related_accounts_ip)
+			//if(M.client.related_accounts_cid != "Requires database" && M.client.related_accounts_ip != "Requires database")
+			body += "<br><b><font color=red>Player has related accounts</font></b> "
+		body += "\[ <a href='?_src_=holder;[HrefToken()];showrelatedacc=cid;client=[REF(M.client)]'>CID related accounts</a> | "
+		body += "<a href='?_src_=holder;[HrefToken()];showrelatedacc=ip;client=[REF(M.client)]'>IP related accounts</a> \]<br>"
 
 	body += "<b>CentCom Galactic Ban DB: </b> "
 	if(CONFIG_GET(string/centcom_ban_db))
@@ -445,35 +452,46 @@
 
 	body += {"<br>
 		<b>Transformation:</b>
-		<br> Special: <a href='?src=[ref];transform=observer;mob=[REF(M)]'>Observer</a> |
+		<br> Special:
+		<a href='?src=[ref];transform=observer;mob=[REF(M)]'>Observer</a> |
 		<a href='?src=[ref];transform=ai;mob=[REF(M)]'>AI</a>
-		<br> Humanoid: <a href='?src=[ref];transform=human;mob=[REF(M)]'>Human</a> |
+		<a href='?src=[ref];transform=sectoid;mob=[REF(M)]'>Sectoid</a> |
+		<a href='?src=[ref];transform=SKELETON;mob=[REF(M)]'>SKELETON</a>
+		<br> Humanoid:
+		<a href='?src=[ref];transform=human;mob=[REF(M)]'>Human</a> |
+		<a href='?src=[ref];transform=synthetic;mob=[REF(M)]'>Synthetic</a> |
+		<a href='?src=[ref];transform=early_synth;mob=[REF(M)]'>Early_Synth</a> |
+		<a href='?src=[ref];transform=vatborn;mob=[REF(M)]'>Vatborn</a> |
+		<a href='?src=[ref];transform=vatgrown;mob=[REF(M)]'>Vatgrown</a> |
 		<a href='?src=[ref];transform=monkey;mob=[REF(M)]'>Monkey</a> |
-		<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a>
+		<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a> |
+		<a href='?src=[ref];transform=husk;mob=[REF(M)]'>Husk</a> |
 		<br> Alien Tier 0:
-		<a href='?src=[ref];transform=larva;mob=[REF(M)]'>Larva</a>
+		<a href='?src=[ref];transform=larva;mob=[REF(M)]'>Larva</a> |
 		<br> Alien Tier 1:
 		<a href='?src=[ref];transform=runner;mob=[REF(M)]'>Runner</a> |
-		<a href='?src=[ref];transform=panther;mob=[REF(M)]'>Panther</a> |
 		<a href='?src=[ref];transform=drone;mob=[REF(M)]'>Drone</a> |
 		<a href='?src=[ref];transform=sentinel;mob=[REF(M)]'>Sentinel</a> |
-		<a href='?src=[ref];transform=defender;mob=[REF(M)]'>Defender</a>
+		<a href='?src=[ref];transform=defender;mob=[REF(M)]'>Defender</a> |
 		<br> Alien Tier 2:
 		<a href='?src=[ref];transform=hunter;mob=[REF(M)]'>Hunter</a> |
 		<a href='?src=[ref];transform=bull;mob=[REF(M)]'>Bull</a> |
 		<a href='?src=[ref];transform=warrior;mob=[REF(M)]'>Warrior</a> |
 		<a href='?src=[ref];transform=spitter;mob=[REF(M)]'>Spitter</a> |
 		<a href='?src=[ref];transform=hivelord;mob=[REF(M)]'>Hivelord</a> |
-		<a href='?src=[ref];transform=carrier;mob=[REF(M)]'>Carrier</a>
+		<a href='?src=[ref];transform=carrier;mob=[REF(M)]'>Carrier</a> |
+		<a href='?src=[ref];transform=wraith;mob=[REF(M)]'>Wraith</a>
 		<br> Alien Tier 3:
 		<a href='?src=[ref];transform=ravager;mob=[REF(M)]'>Ravager</a> |
 		<a href='?src=[ref];transform=praetorian;mob=[REF(M)]'>Praetorian</a> |
 		<a href='?src=[ref];transform=boiler;mob=[REF(M)]'>Boiler</a> |
 		<a href='?src=[ref];transform=defiler;mob=[REF(M)]'>Defiler</a> |
-		<a href='?src=[ref];transform=crusher;mob=[REF(M)]'>Crusher</a> |
-		<a href='?src=[ref];transform=shrike;mob=[REF(M)]'>Shrike</a>
+		<a href='?src=[ref];transform=crusher;mob=[REF(M)]'>Crusher</a>
 		<br> Alien Tier 4:
-		<a href='?src=[ref];transform=queen;mob=[REF(M)]'>Queen</a>
+		<a href='?src=[ref];transform=queen;mob=[REF(M)]'>Queen</a> |
+		<a href='?src=[ref];transform=shrike;mob=[REF(M)]'>Shrike</a> |
+		<a href='?src=[ref];transform=hivemind;mob=[REF(M)]'>Hivemind</a> |
+		<a href='?src=[ref];transform=king;mob=[REF(M)]'>King</a> |
 		<br>
 	"}
 

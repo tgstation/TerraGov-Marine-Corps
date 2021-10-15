@@ -1,6 +1,6 @@
 
 /mob/living/carbon/xenomorph/proc/death_cry()
-	playsound(loc, prob(50) == TRUE ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 25, 1)
+	playsound(loc, prob(50) ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 25, 1)
 
 
 /mob/living/carbon/xenomorph/death(gibbing, deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw.", silent)
@@ -12,16 +12,15 @@
 /mob/living/carbon/xenomorph/on_death()
 	GLOB.alive_xeno_list -= src
 	GLOB.dead_xeno_list += src
-	hive?.on_xeno_death(src)
 
-	if(LAZYLEN(stomach_contents))
-		empty_gut()
-		visible_message("<span class='danger'>Something bursts out of [src]!</span>")
+	hive?.on_xeno_death(src)
+	hive.update_tier_limits() //Update our tier limits.
 
 	if(is_zoomed)
 		zoom_out()
 
-	set_light(0)
+	SSminimaps.remove_marker(src)
+	set_light_on(FALSE)
 
 	if(hud_used)
 		if(hud_used.healths)
@@ -41,9 +40,30 @@
 	GLOB.round_statistics.total_xeno_deaths++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_xeno_deaths")
 
-	var/isAI = GetComponent(/datum/component/ai_controller)
-	if (isAI)
+	switch (upgrade)
+		if(XENO_UPGRADE_TWO)
+			switch(tier)
+				if(XENO_TIER_TWO)
+					SSmonitor.stats.elder_T2--
+				if(XENO_TIER_THREE)
+					SSmonitor.stats.elder_T3--
+				if(XENO_TIER_FOUR)
+					SSmonitor.stats.elder_T4--
+		if(XENO_UPGRADE_THREE, XENO_UPGRADE_FOUR)
+			switch(tier)
+				if(XENO_TIER_TWO)
+					SSmonitor.stats.ancient_T2--
+				if(XENO_TIER_THREE)
+					SSmonitor.stats.ancient_T3--
+				if(XENO_TIER_FOUR)
+					SSmonitor.stats.ancient_T4--
+
+	if(GetComponent(/datum/component/ai_controller))
 		gib()
+
+	eject_victim()
+
+	to_chat(src,"<b>[span_deadsay("<p style='font-size:1.5em'><big>We have perished.</big><br><small>But it is not the end of us yet... wait until a newborn can rise in this world...</small></p>")]</b>")
 
 	return ..()
 
@@ -52,7 +72,7 @@
 	if(is_centcom_level(z))
 		return
 	var/area/A = get_area(src)
-	xeno_message("Hive: \The [src] has <b>died</b>[A? " at [sanitize(A.name)]":""]!", 3, hivenumber)
+	xeno_message("Hive: \The [src] has <b>died</b>[A? " at [A]":""]!", "xenoannounce", 5, hivenumber)
 
 /mob/living/carbon/xenomorph/gib()
 

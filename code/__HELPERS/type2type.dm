@@ -75,94 +75,7 @@
 		hex = text("0[]", hex)
 	return hex
 
-
-// Concatenates a list of strings into a single string.  A seperator may optionally be provided.
-/proc/list2text(list/ls, sep)
-	if(ls.len <= 1) // Early-out code for empty or singleton lists.
-		return ls.len ? ls[1] : ""
-
-	var/l = ls.len // Made local for sanic speed.
-	var/i = 0 // Incremented every time a list index is accessed.
-
-	if(sep <> null)
-		// Macros expand to long argument lists like so: sep, ls[++i], sep, ls[++i], sep, ls[++i], etc...
-		#define S1    sep, ls[++i]
-		#define S4    S1,  S1,  S1,  S1
-		#define S16   S4,  S4,  S4,  S4
-		#define S64   S16, S16, S16, S16
-
-		. = "[ls[++i]]" // Make sure the initial element is converted to text.
-
-		// Having the small concatenations come before the large ones boosted speed by an average of at least 5%.
-		if(l-1 & 0x01) // 'i' will always be 1 here.
-			. = text("[][][]", ., S1) // Append 1 element if the remaining elements are not a multiple of 2.
-		if(l-i & 0x02)
-			. = text("[][][][][]", ., S1, S1) // Append 2 elements if the remaining elements are not a multiple of 4.
-		if(l-i & 0x04)
-			. = text("[][][][][][][][][]", ., S4) // And so on....
-		if(l-i & 0x08)
-			. = text("[][][][][][][][][][][][][][][][][]", ., S4, S4)
-		if(l-i & 0x10)
-			. = text("[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", ., S16)
-		if(l-i & 0x20)
-			. = text("[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-				[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", ., S16, S16)
-		if(l-i & 0x40)
-			. = text("[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-				[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-				[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-				[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", ., S64)
-		while(l > i) // Chomp through the rest of the list, 128 elements at a time.
-			. = text("[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-				[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-				[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-				[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-				[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-				[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-				[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-				[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", ., S64, S64)
-
-		#undef S64
-		#undef S16
-		#undef S4
-		#undef S1
-
-	else
-		// Macros expand to long argument lists like so: ls[++i], ls[++i], ls[++i], etc...
-		#define S1    ls[++i]
-		#define S4    S1,  S1,  S1,  S1
-		#define S16   S4,  S4,  S4,  S4
-		#define S64   S16, S16, S16, S16
-
-		. = "[ls[++i]]" // Make sure the initial element is converted to text.
-
-		if(l-1 & 0x01) // 'i' will always be 1 here.
-			. += S1 // Append 1 element if the remaining elements are not a multiple of 2.
-		if(l-i & 0x02)
-			. = text("[][][]", ., S1, S1) // Append 2 elements if the remaining elements are not a multiple of 4.
-		if(l-i & 0x04)
-			. = text("[][][][][]", ., S4) // And so on...
-		if(l-i & 0x08)
-			. = text("[][][][][][][][][]", ., S4, S4)
-		if(l-i & 0x10)
-			. = text("[][][][][][][][][][][][][][][][][]", ., S16)
-		if(l-i & 0x20)
-			. = text("[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", ., S16, S16)
-		if(l-i & 0x40)
-			. = text("[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-				[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", ., S64)
-		while(l > i) // Chomp through the rest of the list, 128 elements at a time.
-			. = text("[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-				[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-				[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-				[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", ., S64, S64)
-
-		#undef S64
-		#undef S16
-		#undef S4
-		#undef S1
-
-
+//TODO replace thise usage with the byond proc
 //Converts a string into a list by splitting the string at each delimiter found. (discarding the seperator)
 /proc/text2list(text, delimiter = "\n")
 	var/delim_len = length(delimiter)
@@ -177,11 +90,6 @@
 		. += copytext(text, last_found, found)
 		last_found = found + delim_len
 	while(found)
-
-
-//Splits the text of a file at seperator and returns them in a list.
-/proc/file2list(filename, seperator = "\n")
-	return text2list(return_file_text(filename),seperator)
 
 
 //Turns a direction into text
@@ -349,8 +257,8 @@
 		. += "[seperator]+MENTOR"
 	if(rights & R_DBRANKS)
 		. += "[seperator]+DBRANKS"
-
-	return .
+	if(rights & R_RUNTIME)
+		. += "[seperator]+RUNTIME"
 
 
 /proc/ui_style2icon(ui_style)
@@ -367,12 +275,18 @@
 			return 'icons/mob/screen/clockwork.dmi'
 		if("White")
 			return 'icons/mob/screen/White.dmi'
+		if("Glass")
+			return 'icons/mob/screen/glass.dmi'
+		if("Minimalist")
+			return 'icons/mob/screen/minimalist.dmi'
+		if("Holo")
+			return 'icons/mob/screen/holo.dmi'
 	return 'icons/mob/screen/midnight.dmi'
 
 
 //Splits the text of a file at seperator and returns them in a list.
 //returns an empty list if the file doesn't exist
-/world/proc/file2list(filename, seperator = "\n", trim = TRUE)
+/proc/file2list(filename, seperator = "\n", trim = TRUE)
 	if(trim)
 		return splittext(trim(file2text(filename)),seperator)
 	return splittext(file2text(filename),seperator)
@@ -461,3 +375,8 @@
 				r += (1 << i)
 
 	return r
+
+/// Return html to load a url.
+/// for use inside of browse() calls to html assets that might be loaded on a cdn.
+/proc/url2htmlloader(url)
+	return {"<html><head><meta http-equiv="refresh" content="0;URL='[url]'"/></head><body onLoad="parent.location='[url]'"></body></html>"}

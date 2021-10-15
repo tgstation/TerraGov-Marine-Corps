@@ -23,14 +23,15 @@
 		/obj/item/photo,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/tool/screwdriver,
-		/obj/item/tool/stamp)
+		/obj/item/tool/stamp,
+	)
 	flags_equip_slot = ITEM_SLOT_ID
 
 	var/obj/item/card/id/front_id = null
 
 
-/obj/item/storage/wallet/remove_from_storage(obj/item/W as obj, atom/new_location)
-	. = ..(W, new_location)
+/obj/item/storage/wallet/remove_from_storage(obj/item/W, atom/new_location, mob/user)
+	. = ..()
 	if(.)
 		if(W == front_id)
 			front_id = null

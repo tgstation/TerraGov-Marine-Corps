@@ -134,11 +134,11 @@ GLOBAL_PROTECT(exp_to_update)
 		return 0
 	return text2num(play_records[role])
 
-/client/proc/get_exp_living()
+/client/proc/get_exp_living(pure_numeric = FALSE)
 	if(!prefs.exp)
-		return "No data"
+		return pure_numeric ? 0 :"No data"
 	var/exp_living = text2num(prefs.exp[EXP_TYPE_LIVING])
-	return get_exp_format(exp_living)
+	return pure_numeric ? exp_living : get_exp_format(exp_living)
 
 
 /proc/get_exp_format(expnum)
@@ -163,7 +163,7 @@ GLOBAL_PROTECT(exp_to_update)
 	set waitfor = FALSE
 	var/list/old_minutes = GLOB.exp_to_update
 	GLOB.exp_to_update = null
-	SSdbcore.MassInsert(format_table_name("role_time"), old_minutes, "ON DUPLICATE KEY UPDATE minutes = minutes + VALUES(minutes)")
+	SSdbcore.MassInsert(format_table_name("role_time"), old_minutes, duplicate_key = "ON DUPLICATE KEY UPDATE minutes = minutes + VALUES(minutes)")
 
 
 /client/proc/set_exp_from_db()
@@ -171,7 +171,7 @@ GLOBAL_PROTECT(exp_to_update)
 		return -1
 	if(!SSdbcore.Connect())
 		return -1
-	var/datum/DBQuery/exp_read = SSdbcore.NewQuery("SELECT job, minutes FROM [format_table_name("role_time")] WHERE ckey = '[sanitizeSQL(ckey)]'")
+	var/datum/db_query/exp_read = SSdbcore.NewQuery("SELECT job, minutes FROM [format_table_name("role_time")] WHERE ckey = :ckey", list("ckey" = ckey))
 	if(!exp_read.Execute(async = TRUE))
 		qdel(exp_read)
 		return -1
@@ -202,41 +202,41 @@ GLOBAL_PROTECT(exp_to_update)
 	if(holder && !holder.deadmined)
 		play_records[EXP_TYPE_ADMIN] += minutes
 		if(announce_changes)
-			to_chat(src,"<span class='notice'>You got: [minutes] Admin EXP!</span>")
+			to_chat(src,span_notice("You got: [minutes] Admin EXP!"))
 
 	if(isliving(mob))
 		var/mob/living/living_mob = mob
 		if(mob.stat != DEAD)
 			play_records[EXP_TYPE_LIVING] += minutes
 			if(announce_changes)
-				to_chat(src,"<span class='notice'>You got: [minutes] Living EXP!</span>")
+				to_chat(src,span_notice("You got: [minutes] Living EXP!"))
 			if(living_mob.job)
 				play_records[living_mob.job.title] += minutes
 				if(announce_changes)
-					to_chat(src,"<span class='notice'>You got: [minutes] [living_mob.job] EXP!</span>")
+					to_chat(src,span_notice("You got: [minutes] [living_mob.job] EXP!"))
 			else
 				play_records["Unknown"] += minutes
 		else
 			play_records[EXP_TYPE_GHOST] += minutes
 			if(announce_changes)
-				to_chat(src,"<span class='notice'>You got: [minutes] Ghost EXP!</span>")
+				to_chat(src,span_notice("You got: [minutes] Ghost EXP!"))
 	else if(isobserver(mob))
 		play_records[EXP_TYPE_GHOST] += minutes
 		if(announce_changes)
-			to_chat(src,"<span class='notice'>You got: [minutes] Ghost EXP!</span>")
+			to_chat(src,span_notice("You got: [minutes] Ghost EXP!"))
 	else if(minutes)	//Let "refresh" checks go through
 		return
 
 	for(var/jtype in play_records)
 		var/jvalue = play_records[jtype]
-		if(!jvalue)
+		if (!jvalue)
 			continue
-		if(!isnum(jvalue))
+		if (!isnum(jvalue))
 			CRASH("invalid job value [jtype]:[jvalue]")
 		LAZYINITLIST(GLOB.exp_to_update)
 		GLOB.exp_to_update.Add(list(list(
-			"job" = "'[sanitizeSQL(jtype)]'",
-			"ckey" = "'[sanitizeSQL(ckey)]'",
+			"job" = jtype,
+			"ckey" = ckey,
 			"minutes" = jvalue)))
 		prefs.exp[jtype] += jvalue
 	addtimer(CALLBACK(GLOBAL_PROC, /proc/update_exp_db), 20, TIMER_OVERRIDE|TIMER_UNIQUE)
@@ -250,4 +250,4 @@ GLOBAL_PROTECT(exp_to_update)
 	if(CONFIG_GET(flag/use_exp_restrictions_admin_bypass) && check_other_rights(C, R_ADMIN, FALSE))
 		return FALSE
 	var/my_exp = C.prefs.exp[ROLE_XENOMORPH]
-	return my_exp < XP_REQ_INTERMEDIATE
+	return my_exp < XP_REQ_UNSEASONED

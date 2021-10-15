@@ -75,7 +75,8 @@
 	new /obj/item/storage/pouch/medkit(src)
 	new /obj/item/clothing/suit/surgical(src)
 	new /obj/item/clothing/suit/surgical(src)
-	new /obj/item/clothing/tie/storage/white_vest(src)
+	new /obj/item/clothing/tie/storage/white_vest/surgery(src)
+	new /obj/item/storage/box/trampop(src)
 	if(is_mainship_level(z))
 		new /obj/item/radio/headset/mainship/doc(src)
 
@@ -106,16 +107,16 @@
 	new /obj/item/clothing/suit/storage/labcoat(src)
 	new /obj/item/clothing/mask/surgical(src)
 	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/radio/headset/mainship/mcom(src)
 	new /obj/item/reagent_containers/hypospray/advanced/tricordrazine(src)
 	new /obj/item/flash(src)
 	new /obj/item/storage/pouch/medical(src)
 	new /obj/item/storage/pouch/syringe(src)
 	new /obj/item/storage/pouch/medkit(src)
 	new /obj/item/clothing/suit/surgical(src)
-	new /obj/item/clothing/tie/storage/white_vest(src)
+	new /obj/item/clothing/tie/storage/white_vest/surgery(src)
 	new /obj/item/clothing/tie/medal/letter/commendation
 	new /obj/item/paper/commendation
+	new /obj/item/storage/box/trampop(src)
 
 
 

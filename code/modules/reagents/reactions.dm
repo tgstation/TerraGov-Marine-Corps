@@ -33,14 +33,14 @@
 
 
 /**
-  * Shit that happens on reaction
-  *
-  * Proc where the additional magic happens.
-  * You dont want to handle mob spawning in this since there is a dedicated proc for that.client
-  * Arguments:
-  * * holder - the datum that holds this reagent, be it a beaker or anything else
-  * * created_volume - volume created when this is mixed. look at 'var/list/results'.
-  */
+ * Shit that happens on reaction
+ *
+ * Proc where the additional magic happens.
+ * You dont want to handle mob spawning in this since there is a dedicated proc for that.client
+ * Arguments:
+ * * holder - the datum that holds this reagent, be it a beaker or anything else
+ * * created_volume - volume created when this is mixed. look at 'var/list/results'.
+ */
 /datum/chemical_reaction/proc/on_reaction(datum/reagents/holder, created_volume)
 	return
 	//I recommend you set the result amount to the total volume of all components.

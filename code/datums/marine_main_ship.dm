@@ -79,7 +79,7 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 				security_level = SEC_LEVEL_DELTA
 				for(var/obj/machinery/door/poddoor/shutters/mainship/D in GLOB.machines)
 					if(D.id == "sd_lockdown")
-						INVOKE_ASYNC(D, /obj/machinery/door.proc/open)
+						D.open()
 				for(var/obj/machinery/status_display/SD in GLOB.machines)
 					if(is_mainship_level(SD.z))
 						SD.set_picture("redalert")

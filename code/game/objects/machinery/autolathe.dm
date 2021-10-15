@@ -107,6 +107,8 @@
 	popup.set_content(dat)
 	popup.open()
 
+/obj/machinery/autolathe/update_icon_state()
+	icon_state = (CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "autolathe_t": "autolathe")
 
 /obj/machinery/autolathe/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -115,13 +117,13 @@
 		return
 
 	if(busy)
-		to_chat(user, "<span class='warning'>\The [src] is busy. Please wait for completion of previous operation.</span>")
+		to_chat(user, span_warning("\The [src] is busy. Please wait for completion of previous operation."))
 		return
 
 	if(isscrewdriver(I))
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
-		icon_state = (CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "autolathe_t": "autolathe")
 		to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance hatch of [src].")
+		update_icon()
 		updateUsrDialog()
 		return
 
@@ -139,11 +141,11 @@
 	//Resources are being loaded.
 	var/obj/item/eating = I
 	if(!eating.materials)
-		to_chat(user, "<span class='warning'>\The [eating] does not contain significant amounts of useful materials and cannot be accepted.</span>")
+		to_chat(user, span_warning("\The [eating] does not contain significant amounts of useful materials and cannot be accepted."))
 		return
 
 	if(eating.flags_item & (NODROP|DELONDROP))
-		to_chat(user, "<span class='warning'>\The [eating] is stuck to you and cannot be placed into [src].</span>")
+		to_chat(user, span_warning("\The [eating] is stuck to you and cannot be placed into [src]."))
 		return
 
 	var/filltype = 0       // Used to determine message.
@@ -176,7 +178,7 @@
 		mass_per_sheet += eating.materials[material]
 
 	if(!filltype)
-		to_chat(user, "<span class='warning'>\The [src] is full. Please remove material from the autolathe in order to insert more.</span>")
+		to_chat(user, span_warning("\The [src] is full. Please remove material from the autolathe in order to insert more."))
 		return
 	else if(filltype == 1)
 		to_chat(user, "You fill \the [src] to capacity with \the [eating].")
@@ -201,13 +203,13 @@
 		return
 
 	if(busy)
-		to_chat(usr, "<span class='warning'>The autolathe is busy. Please wait for completion of previous operation.</span>")
+		to_chat(usr, span_warning("The autolathe is busy. Please wait for completion of previous operation."))
 		return
 
 	if(href_list["change_category"])
-
-		var/choice = input("Which category do you wish to display?") as null|anything in GLOB.autolathe_categories+"All"
-		if(!choice) return
+		var/choice = tgui_input_list(usr, "Which category do you wish to display?", null, GLOB.autolathe_categories+"All")
+		if(!choice)
+			return
 		show_category = choice
 
 	if(href_list["make"] && GLOB.autolathe_recipes)

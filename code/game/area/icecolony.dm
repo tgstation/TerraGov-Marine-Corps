@@ -25,12 +25,12 @@
 	icon_state = "cliff_blocked"
 	requires_power = 1
 	always_unpowered = 1
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
 	ambience = list('sound/ambience/ambispace.ogg')
 	temperature = ICE_COLONY_TEMPERATURE
+	minimap_color = MINIMAP_AREA_COLONY
 
 /*
 * Exterior - Surface
@@ -72,6 +72,11 @@
 /area/ice_colony/exterior/surface/container_yard
 	name = "Aerodrome Container Yard"
 	icon_state = "container_yard"
+
+//The FRONT of the aerodromes.
+/area/ice_colony/exterior/surface/taxiway
+	name = "Aerodrome Taxiway"
+	icon_state = "landing_pad_taxiway"
 
 //
 // Valleys
@@ -146,6 +151,7 @@
 	icon_state = "cave"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_CAVES
 
 
 //
@@ -158,6 +164,18 @@
 /area/ice_colony/exterior/underground/caves
 	name = "Underground Caves"
 	icon_state = "cave"
+
+/area/ice_colony/exterior/underground/caves/ice_nw
+	name = "North Western Ice Caves"
+	icon_state = "icecave_nw"
+
+/area/ice_colony/exterior/underground/caves/ice_se
+	name = "South Eastern Ice Caves"
+	icon_state = "icecave_se"
+
+/area/ice_colony/exterior/underground/caves/ice_w
+	name = "Western Ice Caves"
+	icon_state = "icecave_w"
 
 /area/ice_colony/exterior/underground/caves/open
 	icon_state = "explored"
@@ -202,6 +220,7 @@
 /area/ice_colony/surface/clinic
 	name = "Aurora Medical Clinic"
 	icon_state = "medbay"
+	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/ice_colony/surface/clinic/lobby
 	name = "Aurora Medical Clinic Lobby"
@@ -221,6 +240,7 @@
 /area/ice_colony/surface/command
 	name = "Colony Administration"
 	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/ice_colony/surface/command/checkpoint
 	name = "Colony Administration Security Checkpoint"
@@ -285,6 +305,7 @@
 /area/ice_colony/surface/engineering
 	name = "Engineering"
 	icon_state = "engine_hallway"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/ice_colony/surface/engineering/generator
 	name = "Engineering Generator Room"
@@ -313,6 +334,7 @@
 /area/ice_colony/surface/excavation/storage
 	name = "Excavation Outpost External Storage"
 	icon_state = "mining_storage"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /*
 * Surface - Garage
@@ -321,6 +343,7 @@
 /area/ice_colony/surface/garage
 	name = "Garage"
 	icon_state = "garage"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/ice_colony/surface/garage/one
 	name = "Garage Western Unit"
@@ -341,6 +364,7 @@
 /area/ice_colony/surface/hangar
 	name = "Aerodrome Hangar"
 	icon_state = "hangar"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/ice_colony/surface/hangar/hallway
 	name = "Aerodrome Hangar Hallway"
@@ -405,6 +429,7 @@
 /area/ice_colony/surface/requesitions
 	name = "Surface Requesition Warehouse"
 	icon_state = "quartstorage"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /*
 * Surface - Research
@@ -756,6 +781,7 @@
 /area/ice_colony/underground/storage
 	name = "Underground Technical Storage"
 	icon_state = "storage"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/ice_colony/underground/storage/highsec
 	name = "Underground High Security Technical Storage"

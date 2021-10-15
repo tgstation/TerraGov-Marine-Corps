@@ -5,7 +5,6 @@
 	verb_say = "beeps"
 	verb_yell = "blares"
 	anchored = TRUE
-	obj_flags = CAN_BE_HIT
 	destroy_sound = 'sound/effects/metal_crash.ogg'
 	interaction_flags = INTERACT_MACHINE_DEFAULT
 
@@ -21,9 +20,6 @@
 	var/wrenchable = FALSE
 	var/obj/item/circuitboard/circuit // Circuit to be created and inserted when the machinery is created
 	var/mob/living/carbon/human/operator
-
-	var/ui_x	//For storing and overriding ui dimensions
-	var/ui_y
 
 /obj/machinery/Initialize()
 	. = ..()
@@ -41,8 +37,15 @@
 
 
 /obj/machinery/proc/is_operational()
-	return !(machine_stat & (NOPOWER|BROKEN|MAINT))
+	return !(machine_stat & (NOPOWER|BROKEN|MAINT|DISABLED))
 
+
+/obj/machinery/proc/default_deconstruction_crowbar(obj/item/crowbar, ignore_panel = 0, custom_deconstruct = FALSE)
+	. = !(flags_atom & NODECONSTRUCT) && crowbar.tool_behaviour == TOOL_CROWBAR
+	if(!. || custom_deconstruct)
+		return
+	crowbar.play_tool_sound(src, 50)
+	deconstruct(TRUE)
 
 /obj/machinery/deconstruct(disassembled = TRUE)
 	if(!(flags_atom & NODECONSTRUCT))
@@ -64,6 +67,11 @@
 		M.take_damage(M.max_integrity * 0.5) //the frame is already half broken
 	M.state = 2
 	M.icon_state = "box_1"
+
+
+/obj/machinery/setAnchored(anchorvalue)
+	. = ..()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MACHINERY_ANCHORED_CHANGE, src, anchorvalue)
 
 
 //called on machinery construction (i.e from frame to machinery) but not on initialization
@@ -157,22 +165,26 @@
 	if(!is_operational())
 		return FALSE
 
-	if(iscarbon(usr) && (!in_range(src, usr) || !isturf(loc)))
+	if(iscarbon(user) && (!in_range(src, user) || !isturf(loc)))
 		return FALSE
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 60)
-			visible_message("<span class='warning'>[H] stares cluelessly at [src] and drools.</span>")
+			visible_message(span_warning("[H] stares cluelessly at [src] and drools."))
 			return FALSE
 		if(prob(H.getBrainLoss()))
-			to_chat(user, "<span class='warning'>You momentarily forget how to use [src].</span>")
+			to_chat(user, span_warning("You momentarily forget how to use [src]."))
 			return FALSE
 
 	return TRUE
 
 
 /obj/machinery/attack_ai(mob/living/silicon/ai/user)
+	if(!is_operational())
+		return FALSE
+	if(!(interaction_flags & INTERACT_SILICON_ALLOWED))
+		return FALSE
 	return interact(user)
 
 
@@ -234,7 +246,7 @@
 	N.fields["last_scan_time"] = od["stationtime"]
 	N.fields["last_scan_result"] = dat
 	N.fields["autodoc_data"] = generate_autodoc_surgery_list(H)
-	visible_message("<span class='notice'>\The [src] pings as it stores the scan report of [H.real_name]</span>")
+	visible_message(span_notice("\The [src] pings as it stores the scan report of [H.real_name]"))
 	playsound(loc, 'sound/machines/ping.ogg', 25, 1)
 	use_power(active_power_usage)
 	return dat
@@ -251,7 +263,6 @@
 		"fireloss" = H.getFireLoss(),
 		"oxyloss" = H.getOxyLoss(),
 		"toxloss" = H.getToxLoss(),
-		"rads" = H.radiation,
 		"cloneloss" = H.getCloneLoss(),
 		"brainloss" = H.getBrainLoss(),
 		"knocked_out" = H.AmountUnconscious(),
@@ -386,7 +397,7 @@
 			else
 				imp += "Unknown body present:<br>"
 
-		if(!AN && !open && !infected & !imp && !necrosis && !bled && !internal_bleeding && !lung_ruptured)
+		if(!AN && !open && !infected && !imp && !necrosis && !bled && !internal_bleeding && !lung_ruptured)
 			AN = "None:"
 		if(!(e.limb_status & LIMB_DESTROYED))
 			dat += "<td>[e.display_name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][stabilized][open][infected][necrosis][imp][internal_bleeding][lung_ruptured]</td>"
@@ -450,3 +461,13 @@
 	. = . % 9
 	AM.pixel_x = -8 + ((.%3)*8)
 	AM.pixel_y = -8 + (round( . / 3)*8)
+
+///Currently used for computers only; it can be repaired with a welder after a 5 second wind up
+/obj/machinery/proc/set_disabled()
+
+	if(machine_stat & (BROKEN|DISABLED)) //If we're already broken or disabled, don't bother
+		return
+
+	machine_stat |= DISABLED
+	density = FALSE
+	update_icon()

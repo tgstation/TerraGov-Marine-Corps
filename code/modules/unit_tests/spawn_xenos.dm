@@ -1,5 +1,6 @@
 /datum/unit_test/spawn_xenos/Run()
 	var/list/mob/living/carbon/xenomorph/xenos = list()
+	GLOB.xeno_stat_multiplicator_buff = 1
 	for(var/xeno_type in GLOB.xeno_caste_datums)
 		xenos += allocate(xeno_type)
 

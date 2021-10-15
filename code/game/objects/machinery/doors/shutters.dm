@@ -3,6 +3,7 @@
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 	icon_state = "shutter1"
 	power_channel = ENVIRON
+	resistance_flags = DROPSHIP_IMMUNE
 
 /obj/machinery/door/poddoor/shutters/Initialize()
 	. = ..()
@@ -98,7 +99,8 @@
 	tiles_with = list(
 		/turf/closed/wall,
 		/obj/structure/window/framed/mainship,
-		/obj/machinery/door/airlock)
+		/obj/machinery/door/airlock,
+	)
 
 
 /obj/machinery/door/poddoor/shutters/mainship/Initialize()
@@ -111,7 +113,8 @@
 	name = "Transit shutters"
 	desc = "Safety shutters to prevent dangerous depressurization during flight"
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
+	id = "ghhjmugggggtgggbg" // do not have any button or thing have an ID assigned to this, it is a very bad idea.
 
 
 /obj/machinery/door/poddoor/shutters/mainship/open
@@ -140,22 +143,32 @@
 
 
 /obj/machinery/door/poddoor/shutters/mainship/open/indestructible
-	resistance_flags = RESIST_ALL
+	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
 
 
 /obj/machinery/door/poddoor/shutters/transit/open
 	density = FALSE
 	opacity = FALSE
-	resistance_flags = RESIST_ALL
+	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
 	layer = PODDOOR_OPEN_LAYER
 	icon_state = "shutter0"
 
+/obj/machinery/door/poddoor/shutters/barren
+	resistance_flags = UNACIDABLE|DROPSHIP_IMMUNE
 
 /obj/machinery/door/poddoor/shutters/mainship/pressure
 	name = "pressure shutters"
 	density = FALSE
 	opacity = FALSE
-	resistance_flags = RESIST_ALL
+	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
+	icon_state = "shutter0"
+	open_layer = PODDOOR_CLOSED_LAYER
+	closed_layer = PODDOOR_CLOSED_LAYER
+
+/obj/machinery/door/poddoor/shutters/tadpole_cockpit
+	name = "pressure shutters"
+	density = FALSE
+	opacity = FALSE
 	icon_state = "shutter0"
 	open_layer = PODDOOR_CLOSED_LAYER
 	closed_layer = PODDOOR_CLOSED_LAYER
@@ -164,7 +177,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/hangar
 	name = "\improper Hangar Shutters"
 	id = "hangar_shutters"
-	
+
 /obj/machinery/door/poddoor/shutters/mainship/hangar/fuel
 	name = "\improper Solid Fuel Storage"
 	id = "solid_fuel"
@@ -177,38 +190,49 @@
 	name = "\improper RO Line"
 	id = "ROlobby"
 
+/obj/machinery/door/poddoor/shutters/mainship/req/ro/rebel
+	id = "ROlobby_rebel"
+
 /obj/machinery/door/poddoor/shutters/mainship/req/ro1
 	name = "\improper RO Line 1"
-	id = "ROlobby1"		
+	id = "ROlobby1"
 
 /obj/machinery/door/poddoor/shutters/mainship/req/ro2
 	name = "\improper RO Line 2"
-	id = "ROlobby2"	
+	id = "ROlobby2"
 
 /obj/machinery/door/poddoor/shutters/mainship/containment
 	name = "\improper Containment Cell"
-	id = "containmentcell"	
+	id = "containmentcell"
 	icon_state = "shutter1"
 
 /obj/machinery/door/poddoor/shutters/mainship/containment/cell1
 	name = "\improper Containment Cell 1"
-	id = "containmentcell_1"	
+	id = "containmentcell_1"
 
 /obj/machinery/door/poddoor/shutters/mainship/containment/cell2
 	name = "\improper Containment Cell 2"
-	id = "containmentcell_2"			
+	id = "containmentcell_2"
 
 /obj/machinery/door/poddoor/shutters/mainship/brigarmory
 	name = "\improper Brig Armory Shutters"
 	id = "brig_armory"
-	icon_state = "shutter1"	
+	icon_state = "shutter1"
 
 /obj/machinery/door/poddoor/shutters/mainship/cic
-	name = "\improper CIC Shutters"	
+	name = "\improper CIC Shutters"
 
 /obj/machinery/door/poddoor/shutters/mainship/cic/armory
 	name = "\improper Armory Shutters"
 	id = "cic_armory"
+	icon_state = "shutter1"
+
+/obj/machinery/door/poddoor/shutters/mainship/cic/armory/rebel
+	id = "cic_armory_rebel"
+
+/obj/machinery/door/poddoor/shutters/mainship/engineering/armory
+	name = "\improper Engineering Armory Shutters"
+	id = "engi_armory"
 	icon_state = "shutter1"
 
 /obj/machinery/door/poddoor/shutters/mainship/corporate

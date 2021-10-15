@@ -125,7 +125,7 @@
 	qdel(src)
 
 
-/obj/item/cat/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/cat/afterattack(atom/target, mob/user, has_proximity, click_parameters)
 	. = ..()
 	qdel(src)
 

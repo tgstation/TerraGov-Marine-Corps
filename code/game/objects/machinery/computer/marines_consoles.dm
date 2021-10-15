@@ -18,10 +18,9 @@
 	if(istype(I, /obj/item/card/id))
 		var/obj/item/card/id/idcard = I
 		if(ACCESS_MARINE_LOGISTICS in idcard.access)
-			if(scan || modify)
+			if(scan && modify)
 				to_chat(user, "Both slots are full already. Remove a card first.")
 				return
-
 			if(!scan)
 				user.drop_held_item()
 				idcard.forceMove(src)
@@ -30,16 +29,14 @@
 				user.drop_held_item()
 				idcard.forceMove(src)
 				modify = idcard
-
 		else
 			if(modify)
-				to_chat(user, "Both slots are full already. Remove a card first.")
+				to_chat(user, "The modifying slot is full already. Remove a card first.")
 				return
-
 			user.drop_held_item()
 			idcard.forceMove(src)
 			modify = idcard
-
+	updateUsrDialog()
 
 /obj/machinery/computer/marine_card/interact(mob/user)
 	. = ..()
@@ -100,7 +97,7 @@
 		header += "<hr>"
 
 		var/jobs_all = ""
-		var/list/alljobs = (GLOB.jobs_regular_all - SYNTHETIC + "Custom")
+		var/list/alljobs = (GLOB.jobs_regular_all - list(SYNTHETIC, SILICON_AI) + "Custom")
 		for(var/job in alljobs)
 			jobs_all += "<a href='?src=\ref[src];choice=assign;assign_target=[job]'>[replacetext(job, " ", "&nbsp")]</a> " //make sure there isn't a line break in the middle of a job
 
@@ -175,10 +172,10 @@
 			accesses += "<div align='center'><b>Access</b></div>"
 			accesses += "<table style='width:100%'>"
 			accesses += "<tr>"
-			for(var/i in 1 to 6)
+			for(var/i in 1 to 8)
 				accesses += "<td style='width:14%'><b>[get_region_accesses_name(i)]:</b></td>"
 			accesses += "</tr><tr>"
-			for(var/i in 1 to 6)
+			for(var/i in 1 to 8)
 				accesses += "<td style='width:14%' valign='top'>"
 				for(var/A in get_region_accesses(i))
 					if(A in modify.access)
@@ -194,7 +191,7 @@
 			body += "<a href='?src=\ref[src];choice=mode;mode_target=1'>Access Crew Manifest</a>"
 		dat = "<tt>[header][body]<hr><br></tt>"
 
-	var/datum/browser/popup = new(user, "id_com", "<div align='center'>Identification Card Modifier</div>", 625, 500)
+	var/datum/browser/popup = new(user, "id_com", "<div align='center'>Identification Card Modifier</div>", 800, 650)
 	popup.set_content(dat)
 	popup.open()
 
@@ -275,11 +272,11 @@
 							break
 
 					if(!jobdatum)
-						to_chat(usr, "<span class='warning'>No log exists for this job.</span>")
+						to_chat(usr, span_warning("No log exists for this job."))
 						return
 
 					if(!modify)
-						to_chat(usr, "<span class='warning'>No card to modify!</span>")
+						to_chat(usr, span_warning("No card to modify!"))
 						return
 
 					modify.access = jobdatum.get_access()
@@ -295,7 +292,7 @@
 					if(temp_name)
 						modify.registered_name = temp_name
 					else
-						src.visible_message("<span class='notice'>[src] buzzes rudely.</span>")
+						src.visible_message(span_notice("[src] buzzes rudely."))
 		if ("account")
 			if (authenticated)
 				var/t2 = modify
@@ -348,6 +345,8 @@
 	resistance_flags = INDESTRUCTIBLE
 	var/obj/item/card/id/modify = null
 	var/screen = 0 //0: main, 1: squad menu
+	///Which faction this computer belongs to
+	var/faction = FACTION_TERRAGOV
 
 /obj/machinery/computer/squad_changer/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -417,10 +416,19 @@
 	else if(href_list["squad"])
 		if(allowed(usr))
 			if(modify && istype(modify))
-				var/squad_name = input("Which squad would you like to put the person in?") as null|anything in SSjob.active_squads
-				if(!squad_name)
+				var/list/squad_choices = list()
+				for(var/datum/squad/squad AS in SSjob.active_squads[faction])
+					if(!squad.overwatch_officer)
+						squad_choices += squad.name
+
+				var/squad_name = tgui_input_list(usr, "Which squad would you like to claim for Overwatch?", null, squad_choices)
+				if(!squad_name || operator != usr)
 					return
-				var/datum/squad/selected = SSjob.active_squads[squad_name]
+				var/datum/squad/selected
+				for(var/datum/squad/squad AS in SSjob.active_squads[faction])
+					if(squad.name == squad_name)
+						selected = squad
+						break
 
 				//First, remove any existing squad access and clear the card.
 				for(var/datum/squad/Q in SSjob.squads)

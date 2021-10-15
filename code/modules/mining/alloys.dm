@@ -13,8 +13,8 @@
 	requires = list(
 		"platinum" = 1,
 		"coal" = 2,
-		"hematite" = 2
-		)
+		"hematite" = 2,
+	)
 	product_mod = 0.3
 	product = /obj/item/stack/sheet/plasteel
 
@@ -22,6 +22,6 @@
 	metaltag = "steel"
 	requires = list(
 		"coal" = 1,
-		"hematite" = 1
-		)
+		"hematite" = 1,
+	)
 	product = /obj/item/stack/sheet/metal

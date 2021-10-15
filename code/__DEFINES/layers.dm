@@ -21,6 +21,11 @@
 #define PLANE_SPACE -95
 #define PLANE_SPACE_PARALLAX -90
 
+
+#define OPENSPACE_LAYER 18 //Openspace layer over all
+#define OPENSPACE_PLANE -4 //Openspace plane below all turfs
+#define OPENSPACE_BACKDROP_PLANE -3 //Black square just over openspace plane to guaranteed cover all in openspace turf
+
 #define FLOOR_PLANE -2
 #define GAME_PLANE -1
 #define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
@@ -29,7 +34,8 @@
 
 #define UNDER_TURF_LAYER 1.99
 #define ABOVE_TURF_LAYER 2.01
-
+#define ABOVE_OPEN_TURF_LAYER 2.04
+#define ABOVE_NORMAL_TURF_LAYER 2.08
 #define LATTICE_LAYER 2.15
 
 #define ANIMAL_HIDING_LAYER 2.2
@@ -54,6 +60,8 @@
 #define UNDERFLOOR_OBJ_LAYER 2.5 //bluespace beacon, navigation beacon, etc
 
 #define CATWALK_LAYER 2.51 //catwalk overlay of /turf/open/floor/plating/plating_catwalk
+#define HOLOPAD_LAYER 2.515 //layer for the holopads so they render over catwalks, yet still get covered like regular floor.
+#define XENO_WEEDS_LAYER 2.52 //weed layer so that it goes above catwalks
 
 #define ATMOS_DEVICE_LAYER 2.53 //vents, connector ports, atmos devices that should be above pipe layer.
 
@@ -103,16 +111,16 @@
 #define POWERLOADER_LAYER 3.6 //above windows and wall mounts so the top of the loader doesn't clip.
 
 #define BELOW_MOB_LAYER 3.79
-#define LYING_MOB_LAYER	3.8
+#define LYING_MOB_LAYER 3.8
 
 #define ABOVE_LYING_MOB_LAYER 3.9 //drone (not the xeno)
 
 //#define MOB_LAYER 4
 #define RIVER_OVERLAY_LAYER 4.01
 
-#define FACEHUGGER_LAYER 4.05
-
 #define ABOVE_MOB_LAYER 4.1
+
+#define FACEHUGGER_LAYER 4.45
 
 #define ABOVE_ALL_MOB_LAYER 4.5
 
@@ -132,37 +140,76 @@
 
 #define POINT_LAYER 12
 
+
 #define CHAT_LAYER 12.0001 // Do not insert layers between these two values
 #define CHAT_LAYER_MAX 12.9999
 
+
+//---------- EMISSIVES -------------
+//Layering order of these is not particularly meaningful.
+//Important part is the seperation of the planes for control via plane_master
+
+/// This plane masks out lighting to create an "emissive" effect, ie for glowing lights in otherwise dark areas.
+#define EMISSIVE_PLANE 13
+/// The render target used by the emissive layer.
+#define EMISSIVE_RENDER_TARGET "*EMISSIVE_PLANE"
+/// The layer you should use if you _really_ don't want an emissive overlay to be blocked.
+#define EMISSIVE_LAYER_UNBLOCKABLE 9999
+
+
+#define LIGHTING_BACKPLANE_LAYER 14.5
+
 #define LIGHTING_PLANE 15
+#define LIGHTING_RENDER_TARGET "LIGHT_PLANE"
 
-#define ABOVE_LIGHTING_PLANE 16
-#define ABOVE_LIGHTING_LAYER 16
+#define SHADOW_RENDER_TARGET "SHADOW_RENDER_TARGET"
 
-#define FLOOR_OPENSPACE_PLANE 17
+/// Plane for balloon text (text that fades up)
+#define BALLOON_CHAT_PLANE 17
 
-#define BELOW_FULLSCREEN_LAYER 17.9 //blip from motion detector
+#define O_LIGHTING_VISUAL_PLANE 18
+#define O_LIGHTING_VISUAL_LAYER 16
+#define O_LIGHTING_VISUAL_RENDER_TARGET "O_LIGHT_VISUAL_PLANE"
 
-#define CAMERA_STATIC_PLANE 18
-#define CAMERA_STATIC_LAYER 18
+#define LIGHTING_PRIMARY_LAYER 15	//The layer for the main lights of the station
+#define LIGHTING_PRIMARY_DIMMER_LAYER 15.1	//The layer that dims the main lights of the station
+#define LIGHTING_SECONDARY_LAYER 16	//The colourful, usually small lights that go on top
 
-#define FULLSCREEN_LAYER 18
-#define FULLSCREEN_IMPAIRED_LAYER 18.02 //visual impairment from wearing welding helmet, etc
-#define FULLSCREEN_DRUGGY_LAYER 18.03
-#define FULLSCREEN_BLURRY_LAYER 18.04
-#define FULLSCREEN_FLASH_LAYER 18.05 //flashed
-#define FULLSCREEN_DAMAGE_LAYER 18.1 //red circles when hurt
-#define FULLSCREEN_BLIND_LAYER 18.15 //unconscious
-#define FULLSCREEN_PAIN_LAYER	18.2 //pain flashes
-#define FULLSCREEN_CRIT_LAYER 18.25 //in critical
+#define LIGHTING_SHADOW_LAYER 17	//Where the shadows happen
 
-#define FULLSCREEN_PLANE 20
+#define ABOVE_LIGHTING_PLANE 18
+#define ABOVE_LIGHTING_LAYER 18
 
-#define HUD_PLANE 21
-#define HUD_LAYER 21
-#define ABOVE_HUD_PLANE 22
-#define ABOVE_HUD_LAYER 22
+#define BYOND_LIGHTING_PLANE 19
+#define BYOND_LIGHTING_LAYER 19
 
-#define SPLASHSCREEN_LAYER 23
-#define SPLASHSCREEN_PLANE 23
+#define CAMERA_STATIC_PLANE 20
+#define CAMERA_STATIC_LAYER 20
+
+
+#define BELOW_FULLSCREEN_LAYER 20.9 //blip from motion detector
+
+#define FULLSCREEN_LAYER 22
+#define FULLSCREEN_IMPAIRED_LAYER 22.02 //visual impairment from wearing welding helmet, etc
+#define FULLSCREEN_DRUGGY_LAYER 22.03
+#define FULLSCREEN_BLURRY_LAYER 22.04
+#define FULLSCREEN_INFECTION_LAYER	22.041 //purple cloud
+#define FULLSCREEN_FLASH_LAYER 22.05 //flashed
+#define FULLSCREEN_DAMAGE_LAYER 22.1 //red circles when hurt
+#define FULLSCREEN_BLIND_LAYER 22.15 //unconscious
+#define FULLSCREEN_PAIN_LAYER	22.2 //pain flashes
+#define FULLSCREEN_CRIT_LAYER 22.25 //in critical
+#define FULLSCREEN_MACHINE_LAYER 22.3
+#define FULLSCREEN_INTRO_LAYER 22.4 //black screen when you spawn
+
+#define FULLSCREEN_PLANE 23
+
+#define HUD_PLANE 24
+#define HUD_LAYER 24
+#define ABOVE_HUD_PLANE 25
+#define ABOVE_HUD_LAYER 25
+
+#define ADMIN_POPUP_LAYER 1
+
+#define SPLASHSCREEN_LAYER 26
+#define SPLASHSCREEN_PLANE 26

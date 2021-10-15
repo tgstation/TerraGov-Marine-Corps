@@ -23,3 +23,18 @@ GLOBAL_LIST_EMPTY(all_money_accounts)
 GLOBAL_VAR_INIT(station_account, null)
 
 GLOBAL_VAR_INIT(internal_tick_usage, 0.2 * world.tick_lag)
+
+///All currently running polls held as datums
+GLOBAL_LIST_EMPTY(polls)
+GLOBAL_PROTECT(polls)
+
+///All poll option datums of running polls
+GLOBAL_LIST_EMPTY(poll_options)
+GLOBAL_PROTECT(poll_options)
+
+///Assoc list of key to timeofdeath to know if a player can respawn
+GLOBAL_LIST_EMPTY(key_to_time_of_death)
+GLOBAL_PROTECT(key_to_time_of_death)
+
+///List of ssd living mobs
+GLOBAL_LIST_EMPTY(ssd_living_mobs)

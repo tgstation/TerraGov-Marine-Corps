@@ -1,6 +1,4 @@
-
-//=========================//MARINES\\===================================
-
+/*********MARINES***********/
 
 
 /obj/item/clothing/under/marine
@@ -14,6 +12,20 @@
 
 /obj/item/clothing/under/marine/standard
 	flags_item_map_variant = null
+
+// camo things stuff yeah!
+
+/obj/item/clothing/under/marine/camo
+	name = "\improper TGMC camo fatigues (jungle)"
+	icon_state = "m_marine_jumpsuit"
+
+/obj/item/clothing/under/marine/camo/snow
+	name = "\improper TGMC camo fatigues (snow)"
+	icon_state = "s_marine_jumpsuit"
+
+/obj/item/clothing/under/marine/camo/desert
+	name = "\improper TGMC camo fatigues (desert)"
+	icon_state = "d_marine_jumpsuit"
 
 /obj/item/clothing/under/marine/corpsman
 	name = "\improper TGMC corpsman fatigues"
@@ -92,11 +104,11 @@
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 /obj/item/clothing/under/marine/officer/pilot
-	name = "pilot officer bodysuit"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented, survival-friendly pilot bodysuit. Fly the marines onwards to glory."
+	name = "pilot officer flightsuit"
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented, survival-friendly pilot flightsuit. Fly the marines onwards to glory."
 	icon_state = "pilot_flightsuit"
 	flags_cold_protection = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	flags_item_map_variant = null
 
 /obj/item/clothing/under/marine/officer/tanker
 	name = "tank crewman officer uniform"
@@ -152,10 +164,10 @@
 	icon_state = "marine_whites" //with thanks to Manezinho
 	rollable_sleeves = FALSE
 
-//=========================//RESPONDERS\\================================
+/*=========================RESPONDERS================================*/
 
 
-//=========================//Imperium\\==================================\\
+/*=========================Imperium=================================*/
 
 /obj/item/clothing/under/marine/imperial
 	name = "\improper Imperial uniform"
@@ -234,7 +246,7 @@
 /obj/item/clothing/under/marine/veteran/dutch/ranger
 	icon_state = "dutch_jumpsuit2"
 
-//===========================//HELGHAST - MERCENARY\\================================
+/*===========================HELGHAST - MERCENARY================================*/
 
 /obj/item/clothing/under/marine/veteran/mercenary
 	name = "mercenary fatigues"
@@ -268,14 +280,14 @@
 	name = "colonist uniform"
 	desc = "A stylish grey-green jumpsuit - standard issue for colonists."
 	icon_state = "colonist"
-	has_sensor = 0
+	has_sensor = 2
 
 /obj/item/clothing/under/CM_uniform
 	name = "colonial marshal uniform"
 	desc = "A blue shirt and tan trousers - the official uniform for a Colonial Marshal."
 	icon_state = "marshal"
-	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
-	has_sensor = 0
+	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
+	has_sensor = 2
 
 
 /obj/item/clothing/under/liaison_suit
@@ -366,3 +378,17 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
 	flags_item = NODROP|DELONDROP
+
+/obj/item/clothing/under/marine/robotic
+	name = "robotic armor suit mount"
+	desc = "Additional structural armor plate used for mounting equipment on a combat robot."
+	item_state = "chest_rig"
+	icon_state = "chest_rig"
+	rollable_sleeves = FALSE
+	species_exception = list(/datum/species/robot)
+
+/obj/item/clothing/under/marine/robotic/mob_can_equip(mob/M, slot, warning, override_nodrop)
+	. = ..()
+	if(!isrobot(M))
+		to_chat(M, span_warning("You can't equip this as it requires mounting screws on your body!"))
+		return FALSE

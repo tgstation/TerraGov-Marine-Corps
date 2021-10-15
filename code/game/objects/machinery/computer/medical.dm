@@ -30,7 +30,7 @@
 		scan = null
 	else
 		to_chat(usr, "There is nothing to remove from the console.")
-	return
+
 
 /obj/machinery/computer/med_data/attackby(obj/item/I, mob/user, params)
 	. = ..()

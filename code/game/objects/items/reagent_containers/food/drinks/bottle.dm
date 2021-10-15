@@ -58,17 +58,17 @@
 	if(affecting == "head" && istype(target, /mob/living/carbon/) && !isxeno(target))
 
 		if(target != user)
-			user.visible_message("<span class='danger'>[target] has been hit over the head with a bottle of [name], by [user]!</span>")
+			user.visible_message(span_danger("[target] has been hit over the head with a bottle of [name], by [user]!"))
 		else
-			user.visible_message("<span class='danger'>[user] has hit [user.p_them()]self with the bottle of [name] on the head!</span>")
+			user.visible_message(span_danger("[user] has hit [user.p_them()]self with the bottle of [name] on the head!"))
 		if(armor_duration)
 			target.apply_effect(min(armor_duration, 10) , WEAKEN, armor_block) // Never weaken more than a flash!
 
 	else
 		if(target != user)
-			user.visible_message("<span class='danger'>[target] has been attacked with a bottle of [name], by [user]!</span>")
+			user.visible_message(span_danger("[target] has been attacked with a bottle of [name], by [user]!"))
 		else
-			user.visible_message("<span class='danger'>[user] has attacked [user.p_them()]self with the bottle of [name]!</span>")
+			user.visible_message(span_danger("[user] has attacked [user.p_them()]self with the bottle of [name]!"))
 
 	UPDATEHEALTH(target)
 
@@ -77,15 +77,16 @@
 
 	//The reagents in the bottle splash all over the target, thanks for the idea Nodrak
 	if(reagents)
-		visible_message("<span class='boldnotice'>The contents of the [src] splashes all over [target]!</span>")
+		visible_message(span_boldnotice("The contents of the [src] splashes all over [target]!"))
 		reagents.reaction(target, TOUCH)
 
 	//Finally, smash the bottle. This kills (del) the bottle.
 	smash(target, user)
 
-	return
-
-
+/obj/item/reagent_containers/food/drinks/bottle/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(!CONFIG_GET(flag/fun_allowed))
+		return FALSE
+	attack_hand(X)
 
 /obj/item/reagent_containers/food/drinks/bottle/gin
 	name = "\improper Griffeater Gin"

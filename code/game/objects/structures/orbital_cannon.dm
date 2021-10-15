@@ -1,4 +1,5 @@
-#define WARHEAD_FLY_TIME 50
+#define WARHEAD_FLY_TIME 1 SECONDS
+#define RG_FLY_TIME 1 SECONDS
 #define WARHEAD_FALLING_SOUND_RANGE 15
 
 /obj/structure/orbital_cannon
@@ -12,7 +13,7 @@
 	bound_width = 128
 	bound_height = 64
 	bound_y = 64
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	var/obj/structure/orbital_tray/tray
 	var/chambered_tray = FALSE
 	var/loaded_tray = FALSE
@@ -31,20 +32,20 @@
 			amt = pick_n_take(L)
 			GLOB.marine_main_ship?.ob_type_fuel_requirements += amt
 
-	var/turf/T = locate(x+1,y+2,z)
+	var/turf/T = locate(x+1,y+1,z)
 	var/obj/structure/orbital_tray/O = new(T)
 	tray = O
 	tray.linked_ob = src
 
 
-/obj/structure/orbital_cannon/update_icon()
+/obj/structure/orbital_cannon/update_icon_state()
 	if(chambered_tray)
 		icon_state = "OBC_chambered"
+		return
+	if(loaded_tray)
+		icon_state = "OBC_loaded"
 	else
-		if(loaded_tray)
-			icon_state = "OBC_loaded"
-		else
-			icon_state = "OBC_unloaded"
+		icon_state = "OBC_unloaded"
 
 
 /obj/structure/orbital_cannon/proc/load_tray(mob/user)
@@ -58,15 +59,15 @@
 
 	if(!tray.warhead)
 		if(user)
-			to_chat(user, "<span class='warning'>No warhead in the tray, loading operation cancelled.</span>")
+			to_chat(user, span_warning("No warhead in the tray, loading operation cancelled."))
 		return
 
 	if(tray.fuel_amt < 1)
-		to_chat(user, "<span class='warning'>No solid fuel in the tray, loading operation cancelled.</span>")
+		to_chat(user, span_warning("No solid fuel in the tray, loading operation cancelled."))
 		return
 
 	if(loaded_tray)
-		to_chat(user, "<span class='warning'>The tray is already loaded.</span>")
+		to_chat(user, span_warning("The tray is already loaded."))
 		return
 
 	tray.forceMove(src)
@@ -95,11 +96,11 @@
 		return
 
 	if(chambered_tray)
-		to_chat(user, "<span class='warning'>The tray cannot be unloaded after its chambered, fire the gun first.</span>")
+		to_chat(user, span_warning("The tray cannot be unloaded after its chambered, fire the gun first."))
 		return
 
 	if(!loaded_tray)
-		to_chat(user, "<span class='warning'>The tray is not loaded.</span>")
+		to_chat(user, span_warning("The tray is not loaded."))
 		return
 
 	flick("OBC_unloading",src)
@@ -112,7 +113,7 @@
 
 	ob_cannon_busy = FALSE
 
-	var/turf/T = locate(x+1,y+2,z)
+	var/turf/T = locate(x+1,y+1,z)
 
 	tray.forceMove(T)
 	loaded_tray = FALSE
@@ -127,7 +128,7 @@
 	set waitfor = 0
 
 	if(!loaded_tray)
-		to_chat(user, "<span class='warning'>You need to load the tray before chambering it.</span>")
+		to_chat(user, span_warning("You need to load the tray before chambering it."))
 		return
 
 	if(ob_cannon_busy)
@@ -139,12 +140,12 @@
 		return
 	if(!tray.warhead)
 		if(user)
-			to_chat(user, "<span class='warning'>No warhead in the tray, cancelling chambering operation.</span>")
+			to_chat(user, span_warning("No warhead in the tray, cancelling chambering operation."))
 		return
 
 	if(tray.fuel_amt < 1)
 		if(user)
-			to_chat(user, "<span class='warning'>No solid fuel in the tray, cancelling chambering operation.</span>")
+			to_chat(user, span_warning("No solid fuel in the tray, cancelling chambering operation."))
 		return
 
 	flick("OBC_chambering",src)
@@ -161,8 +162,16 @@
 
 	update_icon()
 
+/// Handles the playing of the Orbital Bombardment incoming sound and other visual and auditory effects of the cannon, usually a spiraling whistle noise but can be overridden.
+/obj/structure/orbital_cannon/proc/handle_ob_firing_effects(target, ob_sound = 'sound/effects/OB_incoming.ogg')
+	flick("OBC_firing",src)
+	playsound(loc, 'sound/effects/obfire.ogg', 100, FALSE, 20, 4)
+	for(var/i in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
+		var/mob/M = i
+		M.playsound_local(target, ob_sound, falloff = 2)
+
 /obj/structure/orbital_cannon/proc/fire_ob_cannon(turf/T, mob/user)
-	set waitfor = 0
+	set waitfor = FALSE
 
 	if(ob_cannon_busy)
 		return
@@ -170,12 +179,7 @@
 	if(!chambered_tray || !loaded_tray || !tray || !tray.warhead)
 		return
 
-	flick("OBC_firing",src)
-
 	ob_cannon_busy = TRUE
-
-	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
-	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
 
 	var/inaccurate_fuel = 0
 
@@ -190,13 +194,21 @@
 			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[4] - tray.fuel_amt)
 
 	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
-	for(var/i in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
-		var/mob/M = i
-		M.playsound_local(target, 'sound/effects/OB_incoming.ogg', falloff = 2)
 
+	playsound_z_humans(target.z, 'sound/effects/OB_warning_announce.ogg', 100) //for marines on ground
+	playsound(target, 'sound/effects/OB_warning_announce_novoiceover.ogg', 125, FALSE, 30, 10) //VOX-less version for xenomorphs
+	playsound_z(z, 'sound/effects/OB_warning_announce.ogg', 100) //for the ship
+
+	var/impact_time = 10 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3))
+
+	addtimer(CALLBACK(src, /obj/structure/orbital_cannon/proc/handle_ob_firing_effects, target), impact_time - (0.5 SECONDS))
+	var/impact_timerid = addtimer(CALLBACK(src, /obj/structure/orbital_cannon.proc/impact_callback, target, inaccurate_fuel), impact_time, TIMER_STOPPABLE)
+
+	var/canceltext = "Warhead: [tray.warhead.warhead_kind]. Impact at [ADMIN_VERBOSEJMP(target)] <a href='?_src_=holder;[HrefToken(TRUE)];cancelob=[impact_timerid]'>\[CANCEL OB\]</a>"
+	message_admins("[span_prefix("OB FIRED:")] <span class='message linkify'> [canceltext]</span>")
+	log_game("OB fired by [user] at [AREACOORD(src)], OB type: [tray.warhead.warhead_kind], timerid to cancel: [impact_timerid]")
 	notify_ghosts("<b>[user]</b> has just fired \the <b>[src]</b> !", source = T, action = NOTIFY_JUMP)
 
-	addtimer(CALLBACK(src, /obj/structure/orbital_cannon.proc/impact_callback, target, inaccurate_fuel), WARHEAD_FLY_TIME)
 
 /obj/structure/orbital_cannon/proc/impact_callback(target,inaccurate_fuel)
 	tray.warhead.warhead_impact(target, inaccurate_fuel)
@@ -222,7 +234,7 @@
 	layer = LADDER_LAYER + 0.01
 	bound_width = 64
 	bound_height = 32
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	pixel_y = -9
 	pixel_x = -6
 	var/obj/structure/ob_ammo/warhead/warhead
@@ -231,22 +243,19 @@
 
 
 /obj/structure/orbital_tray/Destroy()
-	if(warhead)
-		qdel(warhead)
-		warhead = null
+	QDEL_NULL(warhead)
 	if(linked_ob)
 		linked_ob.tray = null
 		linked_ob = null
+	return ..()
+
+
+/obj/structure/orbital_tray/update_overlays()
 	. = ..()
-
-
-/obj/structure/orbital_tray/update_icon()
-	overlays.Cut()
-	icon_state = "cannon_tray"
 	if(warhead)
-		overlays += image("cannon_tray_[warhead.warhead_kind]")
+		. += image("cannon_tray_[warhead.warhead_kind]")
 	if(fuel_amt)
-		overlays += image("cannon_tray_[fuel_amt]")
+		. += image("cannon_tray_[fuel_amt]")
 
 
 /obj/structure/orbital_tray/attackby(obj/item/I, mob/user, params)
@@ -266,14 +275,14 @@
 			var/obj/structure/ob_ammo/OA = PC.loaded
 			if(OA.is_solid_fuel)
 				if(fuel_amt >= 6)
-					to_chat(user, "<span class='warning'>[src] can't accept more solid fuel.</span>")
+					to_chat(user, span_warning("[src] can't accept more solid fuel."))
 					return
 
 				if(!warhead)
-					to_chat(user, "<span class='warning'>A warhead must be placed in [src] first.</span>")
+					to_chat(user, span_warning("A warhead must be placed in [src] first."))
 					return
 
-				to_chat(user, "<span class='notice'>You load [OA] into [src].</span>")
+				to_chat(user, span_notice("You load [OA] into [src]."))
 				playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 				fuel_amt++
 				PC.loaded = null
@@ -282,10 +291,10 @@
 				update_icon()
 			else
 				if(warhead)
-					to_chat(user, "<span class='warning'>[src] already has a warhead.</span>")
+					to_chat(user, span_warning("[src] already has a warhead."))
 					return
 
-				to_chat(user, "<span class='notice'>You load [OA] into [src].</span>")
+				to_chat(user, span_notice("You load [OA] into [src]."))
 				playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 				warhead = OA
 				OA.forceMove(src)
@@ -305,7 +314,7 @@
 				return TRUE
 			PC.update_icon()
 			playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-			to_chat(user, "<span class='notice'>You grab [PC.loaded] with [PC].</span>")
+			to_chat(user, span_notice("You grab [PC.loaded] with [PC]."))
 			update_icon()
 
 		return TRUE
@@ -337,7 +346,7 @@
 		PC.loaded = src
 		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		PC.update_icon()
-		to_chat(user, "<span class='notice'>You grab [PC.loaded] with [PC].</span>")
+		to_chat(user, span_notice("You grab [PC.loaded] with [PC]."))
 		update_icon()
 		return TRUE
 
@@ -346,8 +355,8 @@
 	to_chat(user, "Moving this will require some sort of lifter.")
 
 
-/obj/structure/ob_ammo/obj_destruction(damage_flag)
-	explosion(loc, light_impact_range = 2, flash_range = 3, flame_range = 2)
+/obj/structure/ob_ammo/obj_destruction(damage_amount, damage_type, damage_flag)
+	explosion(loc, light_impact_range = 2, flash_range = 3, flame_range = 2, small_animation = TRUE)
 	return ..()
 
 
@@ -355,9 +364,9 @@
 	name = "theoretical orbital ammo"
 	var/warhead_kind
 
-
-/obj/structure/ob_ammo/warhead/proc/warhead_impact(turf/target, inaccuracy_amt = 0)
-
+///Explode the warhead
+/obj/structure/ob_ammo/warhead/proc/warhead_impact()
+	return
 
 /obj/structure/ob_ammo/warhead/explosive
 	name = "\improper HE orbital warhead"
@@ -365,7 +374,8 @@
 	icon_state = "ob_warhead_1"
 
 /obj/structure/ob_ammo/warhead/explosive/warhead_impact(turf/target, inaccuracy_amt = 0)
-	explosion(target, 6 - inaccuracy_amt, 10 - inaccuracy_amt, 15 - inaccuracy_amt, 11 - inaccuracy_amt)
+	. = ..()
+	explosion(target, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 15 - inaccuracy_amt, 15 - inaccuracy_amt)
 
 
 
@@ -376,9 +386,12 @@
 
 
 /obj/structure/ob_ammo/warhead/incendiary/warhead_impact(turf/target, inaccuracy_amt = 0)
+	. = ..()
 	var/range_num = max(15 - inaccuracy_amt, 12)
-	flame_radius(range_num, target)
-
+	flame_radius(range_num, target,	burn_intensity = 36, burn_duration = 40, colour = "blue")
+	var/datum/effect_system/smoke_spread/phosphorus/warcrime = new
+	warcrime.set_up(17, target, 20)
+	warcrime.start()
 
 /obj/structure/ob_ammo/warhead/cluster
 	name = "\improper Cluster orbital warhead"
@@ -387,7 +400,7 @@
 
 /obj/structure/ob_ammo/warhead/cluster/warhead_impact(turf/target, inaccuracy_amt = 0)
 	set waitfor = FALSE
-
+	. = ..()
 	var/range_num = max(9 - inaccuracy_amt, 6)
 	var/list/turf_list = list()
 	for(var/turf/T in range(range_num, target))
@@ -395,7 +408,7 @@
 	var/total_amt = max(25 - inaccuracy_amt, 20)
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
-		explosion(U, 1, 4, 6, 6, throw_range = 0, adminlog = FALSE) //rocket barrage
+		explosion(U, 1, 4, 6, 6, throw_range = 0, adminlog = FALSE, small_animation = TRUE) //rocket barrage
 		sleep(1)
 
 /obj/structure/ob_ammo/warhead/plasmaloss
@@ -405,6 +418,7 @@
 	var/datum/effect_system/smoke_spread/plasmaloss/smoke
 
 /obj/structure/ob_ammo/warhead/plasmaloss/warhead_impact(turf/target, inaccuracy_amt = 0)
+	. = ..()
 	smoke = new(src)
 	smoke.set_up(25, target, 3 SECONDS)//Vape nation
 	smoke.start()
@@ -442,9 +456,12 @@
 	if(.)
 		return
 
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the console.</span>",
-		"<span class='notice'>You fumble around figuring out how to use the console.</span>")
+	if(!allowed(user))
+		return
+
+	if(!isobserver(user) && user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+		user.visible_message(span_notice("[user] fumbles around figuring out how to use the console."),
+		span_notice("You fumble around figuring out how to use the console."))
 		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
@@ -523,25 +540,24 @@
 	bound_width = 128
 	bound_height = 64
 	bound_y = 64
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	var/cannon_busy = FALSE
 	var/last_firing = 0 //stores the last time it was fired to check when we can fire again
-	var/obj/structure/ship_ammo/heavygun/highvelocity/rail_gun_ammo
+	var/obj/structure/ship_ammo/heavygun/railgun/rail_gun_ammo
 
 /obj/structure/ship_rail_gun/Initialize()
 	. = ..()
 	if(!GLOB.marine_main_ship.rail_gun)
 		GLOB.marine_main_ship.rail_gun = src
-	rail_gun_ammo = new /obj/structure/ship_ammo/heavygun/highvelocity(src)
+	rail_gun_ammo = new /obj/structure/ship_ammo/heavygun/railgun(src)
 	rail_gun_ammo.max_ammo_count = 8000 //200 uses or 15 full minutes of firing.
 	rail_gun_ammo.ammo_count = 8000
 
 /obj/structure/ship_rail_gun/proc/fire_rail_gun(turf/T, mob/user)
-	set waitfor = 0
 	if(cannon_busy)
 		return
 	if(!rail_gun_ammo?.ammo_count)
-		to_chat(user, "<span class='warning'>[src] has ran out of ammo.</span>")
+		to_chat(user, span_warning("[src] has ran out of ammo."))
 		return
 	flick("Railgun_firing",src)
 	cannon_busy = TRUE
@@ -549,7 +565,11 @@
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
 	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
 	var/turf/target = locate(T.x + pick(-2,2), T.y + pick(-2,2), T.z)
-	sleep(15)
-	rail_gun_ammo.detonate_on(target)
+	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+		to_chat(AI, span_notice("NOTICE - \The [src] has fired."))
 	rail_gun_ammo.ammo_count = max(0, rail_gun_ammo.ammo_count - rail_gun_ammo.ammo_used_per_firing)
+	addtimer(CALLBACK(src, /obj/structure/ship_rail_gun/proc/impact_rail_gun, target), 2 SECONDS + (RG_FLY_TIME * (GLOB.current_orbit/3)))
+
+/obj/structure/ship_rail_gun/proc/impact_rail_gun(turf/T)
+	rail_gun_ammo.detonate_on(T)
 	cannon_busy = FALSE

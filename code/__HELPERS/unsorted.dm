@@ -206,6 +206,11 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	for(var/obj/structure/mineral_door/D in loc)
 		if(D.density)
 			return TRUE
+	for(var/obj/structure/barricade/B in loc)
+		if(!B.density)
+			continue
+		if(B.dir == direction)
+			return TRUE
 	return FALSE
 
 
@@ -268,8 +273,6 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	for(var/mob/dead/observer/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/new_player/M in sortmob)
-		moblist.Add(M)
-	for(var/mob/living/carbon/monkey/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/living/simple_animal/M in sortmob)
 		moblist.Add(M)
@@ -494,28 +497,27 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	qdel(animation)
 
 
-/atom/proc/GetAllContents(T)
+///Returns the src and all recursive contents as a list.
+/atom/proc/GetAllContents()
+	. = list(src)
+	var/i = 0
+	while(i < length(.))
+		var/atom/A = .[++i]
+		. += A.contents
+
+///identical to getallcontents but returns a list of atoms of the type passed in the argument.
+/atom/proc/get_all_contents_type(type)
 	var/list/processing_list = list(src)
-	var/list/assembled = list()
-	if(T)
-		while(length(processing_list))
-			var/atom/A = processing_list[1]
-			processing_list.Cut(1, 2)
-			//Byond does not allow things to be in multiple contents, or double parent-child hierarchies, so only += is needed
-			//This is also why we don't need to check against assembled as we go along
-			processing_list += A.contents
-			if(istype(A, T))
-				assembled += A
-	else
-		while(length(processing_list))
-			var/atom/A = processing_list[1]
-			processing_list.Cut(1, 2)
-			processing_list += A.contents
-			assembled += A
-	return assembled
+	. = list()
+	while(length(processing_list))
+		var/atom/A = processing_list[1]
+		processing_list.Cut(1, 2)
+		processing_list += A.contents
+		if(istype(A, type))
+			. += A
 
 
-//Step-towards method of determining whether one atom can see another. Similar to viewers()
+///Step-towards method of determining whether one atom can see another. Similar to viewers()
 /proc/can_see(atom/source, atom/target, length = 5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
 	var/turf/current = get_turf(source)
 	var/turf/target_turf = get_turf(target)
@@ -525,12 +527,8 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		return FALSE
 	current = get_step_towards(source, target_turf)
 	while((current != target_turf))
-		if(current.opacity)
+		if(IS_OPAQUE_TURF(current))
 			return FALSE
-		for(var/thing in current)
-			var/atom/A = thing
-			if(A.opacity)
-				return FALSE
 		current = get_step_towards(current, target_turf)
 	return TRUE
 
@@ -574,154 +572,6 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	return turfs
 
 
-/datum/coords //Simple datum for storing coordinates.
-	var/x_pos = null
-	var/y_pos = null
-	var/z_pos = null
-
-
-/area/proc/move_contents_to(area/A, turftoleave, direction)
-	//Takes: Area. Optional: turf type to leave behind.
-	//Returns: Nothing.
-	//Notes: Attempts to move the contents of one area to another area.
-	//       Movement based on lower left corner. Tiles that do not fit
-	//		 into the new area will not be moved.
-
-	if(!A || !src)
-		return FALSE
-
-	var/list/turfs_src = get_area_turfs(src.type)
-	var/list/turfs_trg = get_area_turfs(A.type)
-
-	var/src_min_x = 0
-	var/src_min_y = 0
-	for(var/turf/T in turfs_src)
-		if(T.x < src_min_x || !src_min_x)
-			src_min_x = T.x
-		if(T.y < src_min_y || !src_min_y)
-			src_min_y = T.y
-
-	var/trg_min_x = 0
-	var/trg_min_y = 0
-	for(var/turf/T in turfs_trg)
-		if(T.x < trg_min_x || !trg_min_x)
-			trg_min_x = T.x
-		if(T.y < trg_min_y || !trg_min_y)
-			trg_min_y = T.y
-
-	var/list/refined_src = list()
-	for(var/turf/T in turfs_src)
-		refined_src += T
-		refined_src[T] = new /datum/coords
-		var/datum/coords/C = refined_src[T]
-		C.x_pos = (T.x - src_min_x)
-		C.y_pos = (T.y - src_min_y)
-
-	var/list/refined_trg = list()
-	for(var/turf/T in turfs_trg)
-		refined_trg += T
-		refined_trg[T] = new /datum/coords
-		var/datum/coords/C = refined_trg[T]
-		C.x_pos = (T.x - trg_min_x)
-		C.y_pos = (T.y - trg_min_y)
-
-	var/list/fromupdate = list()
-	var/list/toupdate = list()
-
-	moving:
-		for(var/turf/T in refined_src)
-			var/datum/coords/C_src = refined_src[T]
-			for(var/turf/B in refined_trg)
-				var/datum/coords/C_trg = refined_trg[B]
-				if(C_src.x_pos == C_trg.x_pos && C_src.y_pos == C_trg.y_pos)
-
-					var/old_dir1 = T.dir
-					var/old_icon_state1 = T.icon_state
-					var/old_icon1 = T.icon
-
-					var/turf/X = B.ChangeTurf(T.type)
-					X.setDir(old_dir1)
-					X.icon_state = old_icon_state1
-					X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
-
-					/* Quick visual fix for some weird shuttle corner artefacts when on transit space tiles */
-					if(direction && findtext(X.icon_state, "swall_s"))
-
-						// Spawn a new shuttle corner object
-						var/obj/corner = new()
-						corner.loc = X
-						corner.density = TRUE
-						corner.anchored = TRUE
-						corner.icon = X.icon
-						corner.icon_state = replacetext(X.icon_state, "_s", "_f")
-						corner.tag = "delete me"
-						corner.name = "wall"
-
-						// Find a new turf to take on the property of
-						var/turf/nextturf = get_step(corner, direction)
-						if(!nextturf || !isspaceturf(nextturf))
-							nextturf = get_step(corner, turn(direction, 180))
-
-
-						// Take on the icon of a neighboring scrolling space icon
-						X.icon = nextturf.icon
-						X.icon_state = nextturf.icon_state
-
-
-					for(var/obj/O in T)
-						// Reset the shuttle corners
-						if(O.tag == "delete me")
-							X.icon = 'icons/turf/shuttle.dmi'
-							X.icon_state = replacetext(O.icon_state, "_f", "_s") // revert the turf to the old icon_state
-							X.name = "wall"
-							qdel(O) // prevents multiple shuttle corners from stacking
-							continue
-						if(!isobj(O))
-							continue
-						O.loc = X
-					for(var/mob/M in T)
-						if(!ismob(M))
-							continue // If we need to check for more mobs, I'll add a variable
-						M.loc = X
-
-//					var/area/AR = X.loc
-
-//					if(AR.dynamic_lighting)							//TODO: rewrite this code so it's not messed by lighting ~Carn
-//						X.opacity = !X.opacity
-//						X.set_opacity(!X.opacity)
-
-					toupdate += X
-
-					if(turftoleave)
-						fromupdate += T.ChangeTurf(turftoleave)
-					else
-						T.ChangeTurf(/turf/open/space)
-
-					refined_src -= T
-					refined_trg -= B
-					continue moving
-
-	var/list/doors = list()
-
-	if(length(toupdate))
-		for(var/turf/T1 in toupdate)
-			for(var/obj/machinery/door/D2 in T1)
-				doors += D2
-			/*if(T1.parent)
-				air_master.groups_to_rebuild += T1.parent
-			else
-				air_master.tiles_to_update += T1*/
-
-	if(length(fromupdate))
-		for(var/turf/T2 in fromupdate)
-			for(var/obj/machinery/door/D2 in T2)
-				doors += D2
-			/*if(T2.parent)
-				air_master.groups_to_rebuild += T2.parent
-			else
-				air_master.tiles_to_update += T2*/
-
-
 /proc/DuplicateObject(atom/original, atom/newloc)
 	RETURN_TYPE(original.type)
 	if(!original || !newloc)
@@ -759,134 +609,6 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		M.regenerate_icons()
 
 	return O
-
-
-/area/proc/copy_contents_to(area/A , platingRequired = FALSE)
-	//Takes: Area. Optional: If it should copy to areas that don't have plating
-	//Returns: Nothing.
-	//Notes: Attempts to move the contents of one area to another area.
-	//       Movement based on lower left corner. Tiles that do not fit
-	//		 into the new area will not be moved.
-
-	if(!A || !src)
-		return FALSE
-
-	var/list/turfs_src = get_area_turfs(src.type)
-	var/list/turfs_trg = get_area_turfs(A.type)
-
-	var/src_min_x = 0
-	var/src_min_y = 0
-	for(var/turf/T in turfs_src)
-		if(T.x < src_min_x || !src_min_x)
-			src_min_x = T.x
-		if(T.y < src_min_y || !src_min_y)
-			src_min_y = T.y
-
-	var/trg_min_x = 0
-	var/trg_min_y = 0
-	for(var/turf/T in turfs_trg)
-		if(T.x < trg_min_x || !trg_min_x)
-			trg_min_x = T.x
-		if(T.y < trg_min_y || !trg_min_y)
-			trg_min_y = T.y
-
-	var/list/refined_src = list()
-	for(var/turf/T in turfs_src)
-		refined_src += T
-		refined_src[T] = new /datum/coords
-		var/datum/coords/C = refined_src[T]
-		C.x_pos = (T.x - src_min_x)
-		C.y_pos = (T.y - src_min_y)
-
-	var/list/refined_trg = list()
-	for(var/turf/T in turfs_trg)
-		refined_trg += T
-		refined_trg[T] = new /datum/coords
-		var/datum/coords/C = refined_trg[T]
-		C.x_pos = (T.x - trg_min_x)
-		C.y_pos = (T.y - trg_min_y)
-
-	var/list/toupdate = list()
-
-	var/copiedobjs = list()
-
-
-	moving:
-		for(var/turf/T in refined_src)
-			var/datum/coords/C_src = refined_src[T]
-			for(var/turf/B in refined_trg)
-				var/datum/coords/C_trg = refined_trg[B]
-				if(C_src.x_pos == C_trg.x_pos && C_src.y_pos == C_trg.y_pos)
-
-					var/old_dir1 = T.dir
-					var/old_icon_state1 = T.icon_state
-					var/old_icon1 = T.icon
-
-					if(platingRequired)
-						if(isspaceturf(B))
-							continue moving
-
-					var/turf/X = new T.type(B)
-					X.setDir(old_dir1)
-					X.icon_state = old_icon_state1
-					X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
-
-
-					var/list/objs = new/list()
-					var/list/newobjs = new/list()
-					var/list/mobs = new/list()
-					var/list/newmobs = new/list()
-
-					for(var/obj/O in T)
-
-						if(!isobj(O))
-							continue
-
-						objs += O
-
-
-					for(var/obj/O in objs)
-						newobjs += DuplicateObject(O, T)
-
-
-					for(var/obj/O in newobjs)
-						O.loc = X
-
-					for(var/mob/M in T)
-
-						if(!ismob(M))
-							continue // If we need to check for more mobs, I'll add a variable
-						mobs += M
-
-					for(var/mob/M in mobs)
-						newmobs += DuplicateObject(M, T)
-
-					for(var/mob/M in newmobs)
-						M.loc = X
-
-					copiedobjs += newobjs
-					copiedobjs += newmobs
-
-
-
-					for(var/V in T.vars)
-						if(!(V in list("type", "loc", "locs", "vars", "parent", "parent_type", "verbs", "ckey", "key", "x", "y", "z", "contents", "luminosity")))
-							X.vars[V] = T.vars[V]
-
-//					var/area/AR = X.loc
-
-//					if(AR.dynamic_lighting)
-//						X.opacity = !X.opacity
-//						X.sd_set_opacity(!X.opacity)			//TODO: rewrite this code so it's not messed by lighting ~Carn
-
-					toupdate += X
-
-					refined_src -= T
-					refined_trg -= B
-					continue moving
-
-
-	return copiedobjs
 
 
 /proc/get_cardinal_dir(atom/A, atom/B)
@@ -966,8 +688,6 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 		return FALSE
 	if(I.sharp)
 		return TRUE
-	if(I.edge)
-		return TRUE
 	return FALSE
 
 
@@ -1008,26 +728,6 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 
 //Actually better performant than reverse_direction()
 #define REVERSE_DIR(dir) ( ((dir & 85) << 1) | ((dir & 170) >> 1) )
-
-
-/proc/reverse_direction(direction)
-	switch(direction)
-		if(NORTH)
-			return SOUTH
-		if(NORTHEAST)
-			return SOUTHWEST
-		if(EAST)
-			return WEST
-		if(SOUTHEAST)
-			return NORTHWEST
-		if(SOUTH)
-			return NORTH
-		if(SOUTHWEST)
-			return NORTHEAST
-		if(WEST)
-			return EAST
-		if(NORTHWEST)
-			return SOUTHEAST
 
 
 /proc/reverse_nearby_direction(direction)
@@ -1198,6 +898,16 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 		return !QDELETED(D)
 	return FALSE
 
+//Returns the atom sitting on the turf.
+//For example, using this on a disk, which is in a bag, on a mob, will return the mob because it's on the turf.
+//Optional arg 'type' to stop once it reaches a specific type instead of a turf.
+/proc/get_atom_on_turf(atom/movable/M, stop_type)
+	var/atom/turf_to_check = M
+	while(turf_to_check?.loc && !isturf(turf_to_check.loc))
+		turf_to_check = turf_to_check.loc
+		if(stop_type && istype(turf_to_check, stop_type))
+			break
+	return turf_to_check
 
 //Repopulates sortedAreas list
 /proc/repopulate_sorted_areas()
@@ -1235,14 +945,14 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 	if(!length(ignore_typecache))
 		return GetAllContents()
 	var/list/processing = list(src)
-	var/list/assembled = list()
+	. = list()
 	while(processing.len)
 		var/atom/A = processing[1]
 		processing.Cut(1,2)
-		if(!ignore_typecache[A.type])
-			processing += A.contents
-			assembled += A
-	return assembled
+		if(ignore_typecache[A.type])
+			continue
+		processing += A.contents
+		. += A
 
 /atom/proc/Shake(pixelshiftx = 15, pixelshifty = 15, duration = 25 SECONDS) //Does a "shaking" effect on a sprite, code is from tgstation
 	var/initialpixelx = pixel_x
@@ -1259,6 +969,54 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 	for(var/atom/location = A.loc, location, location = location.loc)
 		if(location == src)
 			return TRUE
+
+GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
+
+/// Version of view() which ignores darkness, because BYOND doesn't have it (I actually suggested it but it was tagged redundant, BUT HEARERS IS A T- /rant).
+/proc/dview(range = world.view, center, invis_flags = 0)
+	if(!center)
+		return
+
+	GLOB.dview_mob.loc = center
+
+	GLOB.dview_mob.see_invisible = invis_flags
+
+	. = view(range, GLOB.dview_mob)
+	GLOB.dview_mob.loc = null
+
+/mob/dview
+	name = "INTERNAL DVIEW MOB"
+	invisibility = 101
+	density = FALSE
+	see_in_dark = 1e6
+	move_resist = INFINITY
+	var/ready_to_die = FALSE
+
+/mob/dview/Initialize() //Properly prevents this mob from gaining huds or joining any global lists
+	SHOULD_CALL_PARENT(FALSE)
+	if(flags_atom & INITIALIZED)
+		stack_trace("Warning: [src]([type]) initialized multiple times!")
+	flags_atom |= INITIALIZED
+	return INITIALIZE_HINT_NORMAL
+
+/mob/dview/Destroy(force = FALSE)
+	if(!ready_to_die)
+		stack_trace("ALRIGHT WHICH FUCKER TRIED TO DELETE *MY* DVIEW?")
+
+		if (!force)
+			return QDEL_HINT_LETMELIVE
+
+		log_world("EVACUATE THE SHITCODE IS TRYING TO STEAL MUH JOBS")
+		GLOB.dview_mob = new
+	return ..()
+
+
+#define FOR_DVIEW(type, range, center, invis_flags) \
+	GLOB.dview_mob.loc = center;           \
+	GLOB.dview_mob.see_invisible = invis_flags; \
+	for(type in view(range, GLOB.dview_mob))
+
+#define FOR_DVIEW_END GLOB.dview_mob.loc = null
 
 /*
 
@@ -1334,20 +1092,21 @@ will handle it, but:
 	return input_key
 
 ///Returns a list of all items of interest with their name
-/proc/getpois(mobs_only=FALSE,skip_mindless=FALSE)
+/proc/getpois(mobs_only = FALSE, skip_mindless = FALSE, specify_dead_role = TRUE)
 	var/list/mobs = sortmobs()
 	var/list/namecounts = list()
 	var/list/pois = list()
-	for(var/mob/M in mobs)
+	for(var/mob/M AS in mobs)
 		if(skip_mindless && (!M.mind && !M.ckey))
 			continue
-		if(M.client && M.client.holder && M.client.holder.fakekey) //stealthmins
-			continue
+		if(M.client?.holder)
+			if(M.client.holder.fakekey || M.client.holder.invisimined) //stealthmins
+				continue
 		var/name = avoid_assoc_duplicate_keys(M.name, namecounts)
 
 		if(M.real_name && M.real_name != M.name)
 			name += " \[[M.real_name]\]"
-		if(M.stat == DEAD)
+		if(M.stat == DEAD && specify_dead_role)
 			if(isobserver(M))
 				name += " \[ghost\]"
 			else
@@ -1393,3 +1152,54 @@ will handle it, but:
 			if(A.type == areatype)
 				areas += V
 	return areas
+
+/**
+ *	Generates a cone shape. Any other checks should be handled with the resulting list. Can work with up to 359 degrees
+ *	Variables:
+ *	center - where the cone begins, or center of a circle drawn with this
+ *	max_row_count - how many rows are checked
+ *	starting_row - from how far should the turfs start getting included in the cone
+ *	cone_width - big the angle of the cone is
+ *	cone_direction - at what angle should the cone be made, relative to the game board's orientation
+ *	blocked - whether the cone should take into consideration solid walls
+ */
+/proc/generate_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE)
+	var/right_angle = cone_direction + cone_width/2
+	var/left_angle = cone_direction - cone_width/2
+
+	//These are needed because degrees need to be from 0 to 359 for the checks to function
+	if(right_angle >= 360)
+		right_angle -= 360
+
+	if(left_angle < 0)
+		left_angle += 360
+
+	///the 3 directions in the direction on the cone that will be checked
+	var/cardinals = GLOB.cardinals - REVERSE_DIR(cone_direction)
+	///turfs that are checked whether the cone can continue further from them
+	var/list/turfs_to_check = list(get_turf(center))
+	var/list/cone_turfs = list()
+
+	for(var/r in 1 to max_row_count)
+		for(var/X in turfs_to_check)
+			var/turf/trf = X
+			for(var/direction in cardinals)
+				var/turf/T = get_step(trf, direction)
+				if(cone_turfs.Find(T))
+					continue
+				if(get_dist(center, T) < starting_row)
+					continue
+				var/turf_angle = Get_Angle(center, T)
+				if(right_angle > left_angle && (turf_angle > right_angle || turf_angle < left_angle))
+					continue
+				if(turf_angle > right_angle && turf_angle < left_angle)
+					continue
+				if(blocked)
+					if(T.density || LinkBlocked(trf, T) || TurfBlockedNonWindow(T))
+						continue
+				cone_turfs += T
+				turfs_to_check += T
+			turfs_to_check -= trf
+	return	cone_turfs
+
+GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))

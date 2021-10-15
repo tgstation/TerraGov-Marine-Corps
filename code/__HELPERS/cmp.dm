@@ -61,6 +61,8 @@
 /proc/cmp_subsystem_priority(datum/controller/subsystem/a, datum/controller/subsystem/b)
 	return a.priority - b.priority
 
+/proc/cmp_filter_data_priority(list/A, list/B)
+	return A["priority"] - B["priority"]
 
 /proc/cmp_timer(datum/timedevent/a, datum/timedevent/b)
 	return a.timeToRun - b.timeToRun
@@ -86,3 +88,6 @@
 
 /proc/cmp_job_display_asc(datum/job/A, datum/job/B)
 	return A.display_order - B.display_order
+
+/proc/cmp_node_path(datum/node_path/a, datum/node_path/b)
+	return a.distance_to_goal + a.distance_walked - b.distance_to_goal - b.distance_walked

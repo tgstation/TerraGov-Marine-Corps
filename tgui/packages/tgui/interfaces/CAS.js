@@ -1,4 +1,3 @@
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
@@ -50,7 +49,7 @@ const FiringMode = (props, context) => {
   const { act, data } = useBackend(context);
 
   return (
-    <Fragment>
+    <>
       <Section
         title={"Weapon Selected: "+data.selected_eqp}
         buttons={
@@ -99,6 +98,6 @@ const FiringMode = (props, context) => {
           <Box>No laser targets detected.</Box>
         )}
       </Section>
-    </Fragment>
+    </>
   );
 };

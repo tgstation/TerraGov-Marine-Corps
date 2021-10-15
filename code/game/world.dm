@@ -8,13 +8,12 @@ GLOBAL_VAR(restart_counter)
 //This happens after the Master subsystem new(s) (it's a global datum)
 //So subsystems globals exist, but are not initialised
 /world/New()
-	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || "./byond-extools.dll"
+#ifdef USE_EXTOOLS
+	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || (world.system_type == MS_WINDOWS ? "./byond-extools.dll" : "./libbyond-extools.so")
 	if(fexists(extools))
 		call(extools, "maptick_initialize")()
-	enable_debugger()
-#ifdef REFERENCE_TRACKING
-	enable_reference_tracking()
 #endif
+	enable_debugger()
 
 	log_world("World loaded at [time_stamp()]!")
 
@@ -28,8 +27,6 @@ GLOBAL_VAR(restart_counter)
 
 	load_admins()
 
-	SetupExternalRSC()
-
 	populate_seed_list()
 	populate_gear_list()
 	make_datum_references_lists()
@@ -39,6 +36,7 @@ GLOBAL_VAR(restart_counter)
 	SSdbcore.CheckSchemaVersion()
 	SSdbcore.SetRoundID()
 	SetupLogs()
+	load_poll_data()
 
 	LoadVerbs(/datum/verbs/menu)
 	if(CONFIG_GET(flag/usewhitelist))
@@ -62,10 +60,11 @@ GLOBAL_VAR(restart_counter)
 
 	update_status()
 
-	world.tick_lag = CONFIG_GET(number/ticklag)
+	change_tick_lag(CONFIG_GET(number/ticklag))
 
-	if(TEST_RUN_PARAMETER in params)
-		HandleTestRun()
+	#ifdef UNIT_TESTS
+	HandleTestRun()
+	#endif
 
 	return ..()
 
@@ -80,7 +79,7 @@ GLOBAL_VAR(restart_counter)
 #else
 	cb = VARSET_CALLBACK(SSticker, force_ending, TRUE)
 #endif
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/addtimer, cb, 10 SECONDS))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/_addtimer, cb, 10 SECONDS))
 
 /world/proc/SetupLogs()
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
@@ -97,6 +96,7 @@ GLOBAL_VAR(restart_counter)
 		GLOB.log_directory = "data/logs/[override_dir]"
 
 	GLOB.world_game_log = "[GLOB.log_directory]/game.log"
+	GLOB.world_asset_log = "[GLOB.log_directory]/asset.log"
 	GLOB.world_attack_log = "[GLOB.log_directory]/attack.log"
 	GLOB.world_manifest_log = "[GLOB.log_directory]/manifest.log"
 	GLOB.world_href_log = "[GLOB.log_directory]/hrefs.log"
@@ -107,6 +107,10 @@ GLOBAL_VAR(restart_counter)
 	GLOB.world_debug_log = "[GLOB.log_directory]/debug.log"
 	GLOB.world_paper_log = "[GLOB.log_directory]/paper.log"
 
+#ifdef UNIT_TESTS
+	GLOB.test_log = "[GLOB.log_directory]/tests.log"
+	start_log(GLOB.test_log)
+#endif
 	start_log(GLOB.world_game_log)
 	start_log(GLOB.world_attack_log)
 	start_log(GLOB.world_manifest_log)
@@ -118,7 +122,8 @@ GLOBAL_VAR(restart_counter)
 	start_log(GLOB.world_debug_log)
 	start_log(GLOB.world_paper_log)
 
-	GLOB.changelog_hash = md5('html/changelog.html') //for telling if the changelog has changed recently
+	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
+	GLOB.changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
 	if(fexists(GLOB.config_error_log))
 		fcopy(GLOB.config_error_log, "[GLOB.log_directory]/config_error.log")
 		fdel(GLOB.config_error_log)
@@ -132,6 +137,8 @@ GLOBAL_VAR(restart_counter)
 	log_runtime(GLOB.revdata.get_log_message())
 
 /world/Topic(T, addr, master, key)
+	TGS_TOPIC	//redirect to server tools if necessary
+
 	var/static/list/bannedsourceaddrs = list()
 
 	var/static/list/lasttimeaddr = list()
@@ -157,10 +164,6 @@ GLOBAL_VAR(restart_counter)
 				return
 
 		lasttimeaddr[addr] = world.time + 2 SECONDS
-
-
-	TGS_TOPIC	//redirect to server tools if necessary
-
 
 	var/list/input = params2list(T)
 	var/datum/world_topic/handler
@@ -201,7 +204,8 @@ GLOBAL_VAR(restart_counter)
 
 /world/Reboot(ping)
 	if(ping)
-		send2update(CONFIG_GET(string/restart_message))
+		// TODO: Replace the second arguments of send2chat with custom config tags. See __HELPERS/chat.dm
+		send2chat(CONFIG_GET(string/restart_message), "")
 		var/list/msg = list()
 
 		if(GLOB.round_id)
@@ -232,14 +236,15 @@ GLOBAL_VAR(restart_counter)
 			msg += "Players: [length(GLOB.clients)]"
 
 		if(length(msg))
-			send2update(msg.Join(" | "))
+			send2chat(msg.Join(" | "), "")
 
 	Master.Shutdown()
 	TgsReboot()
 
-	if(TEST_RUN_PARAMETER in params)
-		FinishTestRun()
-		return
+	#ifdef UNIT_TESTS
+	FinishTestRun()
+	return
+	#endif
 
 	if(TgsAvailable())
 		var/do_hard_reboot
@@ -322,12 +327,6 @@ GLOBAL_VAR(restart_counter)
 	SSidlenpcpool.MaxZChanged()
 
 
-/world/proc/SetupExternalRSC()
-	if(!CONFIG_GET(string/resource_url))
-		return
-	GLOB.external_rsc_url = CONFIG_GET(string/resource_url)
-
-
 /world/proc/update_hub_visibility(new_visibility)
 	if(new_visibility == GLOB.hub_visibility)
 		return
@@ -337,7 +336,6 @@ GLOBAL_VAR(restart_counter)
 	else
 		hub_password = "SORRYNOPASSWORD"
 
-
 /world/proc/change_fps(new_value = 20)
 	if(new_value <= 0)
 		CRASH("change_fps() called with [new_value] new_value.")
@@ -345,8 +343,23 @@ GLOBAL_VAR(restart_counter)
 		return //No change required.
 
 	fps = new_value
+	on_tickrate_change()
 
+
+/world/proc/change_tick_lag(new_value = 0.5)
+	if(new_value <= 0)
+		CRASH("change_tick_lag() called with [new_value] new_value.")
+	if(tick_lag == new_value)
+		return //No change required.
+
+	tick_lag = new_value
+	on_tickrate_change()
+
+
+/world/proc/on_tickrate_change()
 	SStimer?.reset_buckets()
+	SSrunechat?.reset_buckets()
+	SSautomatedfire?.reset_buckets()
 
 #undef MAX_TOPIC_LEN
 #undef TOPIC_BANNED

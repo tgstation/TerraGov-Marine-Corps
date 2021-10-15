@@ -78,7 +78,6 @@
 				// Ghostship is magic: Ghosts can hear radio chatter from anywhere
 				if(speaker_coverage[ear] || (isobserver(M) && M.client?.prefs?.toggles_chat & CHAT_GHOSTRADIO))
 					. |= M		// Since we're already looping through mobs, why bother using |= ? This only slows things down.
-	return .
 
 
 // Same as above but for alien candidates.
@@ -93,16 +92,11 @@
 
 		if(O.client.prefs.be_special & BE_ALIEN_UNREVIVABLE && !(O.client.prefs.be_special & BE_ALIEN) && ishuman(O.mind.current))
 			var/mob/living/carbon/human/H = O.mind.current
-			if(check_tod(H))
+			if(!HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ))
 				continue
 
 		//AFK players cannot be drafted
 		if(O.client.inactivity / 600 > ALIEN_SELECT_AFK_BUFFER + 5)
-			continue
-
-		//Recently dead observers cannot be drafted.
-		var/deathtime = world.time - O.timeofdeath
-		if(deathtime < GLOB.xenorespawntime)
 			continue
 
 		//Aghosted admins don't get picked
@@ -113,7 +107,7 @@
 			picked = O
 			continue
 
-		if(O.timeofdeath < picked.timeofdeath)
+		if(GLOB.key_to_time_of_death[O.key] < GLOB.key_to_time_of_death[picked.key])
 			picked = O
 
 	return picked
@@ -122,6 +116,10 @@
 /proc/convert_k2c(temp)
 	return ((temp - T0C))
 
+
+/// Removes an image from a client's `.images`. Useful as a callback.
+/proc/remove_image_from_client(image/image, client/remove_from)
+	remove_from?.images -= image
 
 /proc/remove_images_from_clients(image/I, list/show_to)
 	for(var/client/C in show_to)
@@ -154,31 +152,24 @@
 
 // Like view but bypasses luminosity check
 /proc/get_hear(range, atom/source)
-
 	var/lum = source.luminosity
 	source.luminosity = 6
 
-	var/list/heard = view(range, source)
+	. = view(range, source)
 	source.luminosity = lum
-
-	return heard
 
 /proc/get_active_player_count(alive_check = FALSE, afk_check = FALSE, faction_check = FALSE, faction = FACTION_NEUTRAL)
 	// Get active players who are playing in the round
 	var/active_players = 0
-	for(var/i = 1; i <= GLOB.player_list.len; i++)
-		var/mob/M = GLOB.player_list[i]
-		if(!(M && M.client))
+	for(var/mob/M  in GLOB.player_list)
+		if(!M?.client)
 			continue
-		if(alive_check && M.stat)
+		if(alive_check && M.stat == DEAD)
 			continue
 		else if(afk_check && M.client.is_afk())
 			continue
 		else if(faction_check)
-			if(!isliving(M))
-				continue
-			var/mob/living/living = M
-			if(faction != living.faction)
+			if(faction != M.faction)
 				continue
 		else if(isnewplayer(M)) // exclude people in the lobby
 			continue

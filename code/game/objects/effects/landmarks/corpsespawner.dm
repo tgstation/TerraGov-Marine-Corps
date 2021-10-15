@@ -30,51 +30,84 @@
 	var/corpseid = 0     //Just set to 1 if you want them to have an ID
 	var/corpseidjob = null // Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
 	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Use CAPTAIN if you want it to be all access.
-	var/corpseidicon = null //For setting it to be a gold, silver, centcomm etc ID
-	var/xenovictim = FALSE //whether this person was infected and killed by xenos
-
+	var/corpseidicon = null //For setting it to be a gold, silver, centcom etc ID
 
 /obj/effect/landmark/corpsespawner/Initialize()
 	. = ..()
-	if(loc && !gc_destroyed) //there's some issue with the code that calls this initialize twice,
-		createCorpse()	//once normally and once when the landmark is in null space, thus spawning a mob there
-						//this is a bandaid until it's properly fixed.
+	GLOB.corpse_landmarks_list += src
 
-/obj/effect/landmark/corpsespawner/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
-	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
+/obj/effect/landmark/corpsespawner/Destroy()
+	GLOB.corpse_landmarks_list -= src
+	return ..()
+
+/// Create the mob and delete the corpse spawner
+/obj/effect/landmark/corpsespawner/proc/create_mob(death_type)
+	var/mob/living/carbon/human/victim = new(loc)
+	SSmobs.stop_processing(victim)
 	GLOB.round_statistics.total_humans_created-- //corpses don't count
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_humans_created")
+	victim.real_name = name
+	victim.death(silent = TRUE) //Kills the new mob
+	GLOB.dead_human_list -= victim
+	GLOB.dead_mob_list -= victim
+	GLOB.mob_list -= victim
+	victim.timeofdeath = -CONFIG_GET(number/revive_grace_period)
+	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+	victim.med_hud_set_status()
+	equip_items_to_mob(victim)
+	switch(death_type)
+		if(COCOONED_DEATH) //Just cocooned
+			new /obj/structure/cocoon/opened_cocoon(loc)
+		if(SILO_DEATH) //Headbite and siloed
+			var/datum/internal_organ/brain
+			brain = victim.internal_organs_by_name["brain"] //This removes (and later garbage collects) the organ. No brain means instant death.
+			victim.internal_organs_by_name -= "brain"
+			victim.internal_organs -= brain
+			victim.headbitten = TRUE
+			victim.chestburst = 2
+			victim.update_burst()
+			victim.update_headbite()
+			if(length(GLOB.xeno_resin_silos))
+				victim.loc = pick(GLOB.xeno_resin_silos)
+		if(HEADBITE_DEATH) //Headbite but left there
+			var/datum/internal_organ/brain
+			brain = victim.internal_organs_by_name["brain"] //This removes (and later garbage collects) the organ. No brain means instant death.
+			victim.internal_organs_by_name -= "brain"
+			victim.internal_organs -= brain
+			victim.headbitten = TRUE
+			victim.update_headbite()
+	qdel(src)
 
-	M.real_name = name
-	M.death(silent = TRUE) //Kills the new mob
-	M.timeofdeath = -CONFIG_GET(number/revive_grace_period)
+
+
+/obj/effect/landmark/corpsespawner/proc/equip_items_to_mob(mob/living/carbon/human/corpse)
 	if(corpseuniform)
-		M.equip_to_slot_or_del(new corpseuniform(M), SLOT_W_UNIFORM)
+		corpse.equip_to_slot_or_del(new corpseuniform(corpse), SLOT_W_UNIFORM)
 	if(corpsesuit)
-		M.equip_to_slot_or_del(new corpsesuit(M), SLOT_WEAR_SUIT)
+		corpse.equip_to_slot_or_del(new corpsesuit(corpse), SLOT_WEAR_SUIT)
 	if(corpseshoes)
-		M.equip_to_slot_or_del(new corpseshoes(M), SLOT_SHOES)
+		corpse.equip_to_slot_or_del(new corpseshoes(corpse), SLOT_SHOES)
 	if(corpsegloves)
-		M.equip_to_slot_or_del(new corpsegloves(M), SLOT_GLOVES)
+		corpse.equip_to_slot_or_del(new corpsegloves(corpse), SLOT_GLOVES)
 	if(corpseradio)
-		M.equip_to_slot_or_del(new corpseradio(M), SLOT_EARS)
+		corpse.equip_to_slot_or_del(new corpseradio(corpse), SLOT_EARS)
 	if(corpseglasses)
-		M.equip_to_slot_or_del(new corpseglasses(M), SLOT_GLASSES)
+		corpse.equip_to_slot_or_del(new corpseglasses(corpse), SLOT_GLASSES)
 	if(corpsemask)
-		M.equip_to_slot_or_del(new corpsemask(M), SLOT_WEAR_MASK)
+		corpse.equip_to_slot_or_del(new corpsemask(corpse), SLOT_WEAR_MASK)
 	if(corpsehelmet)
-		M.equip_to_slot_or_del(new corpsehelmet(M), SLOT_HEAD)
+		corpse.equip_to_slot_or_del(new corpsehelmet(corpse), SLOT_HEAD)
 	if(corpsebelt)
-		M.equip_to_slot_or_del(new corpsebelt(M), SLOT_BELT)
+		corpse.equip_to_slot_or_del(new corpsebelt(corpse), SLOT_BELT)
 	if(corpsepocket1)
-		M.equip_to_slot_or_del(new corpsepocket1(M), SLOT_R_STORE)
+		corpse.equip_to_slot_or_del(new corpsepocket1(corpse), SLOT_R_STORE)
 	if(corpsepocket2)
-		M.equip_to_slot_or_del(new corpsepocket2(M), SLOT_L_STORE)
+		corpse.equip_to_slot_or_del(new corpsepocket2(corpse), SLOT_L_STORE)
 	if(corpseback)
-		M.equip_to_slot_or_del(new corpseback(M), SLOT_BACK)
+		corpse.equip_to_slot_or_del(new corpseback(corpse), SLOT_BACK)
 	if(corpseid)
-		var/obj/item/card/id/W = new(M)
-		W.name = "[M.real_name]'s ID Card"
+		var/obj/item/card/id/newid = new(corpse)
+		newid.name = "[corpse.real_name]'s ID Card"
 		var/datum/job/jobdatum
 		for(var/jobtype in typesof(/datum/job))
 			var/datum/job/J = new jobtype
@@ -82,36 +115,18 @@
 				jobdatum = J
 				break
 		if(corpseidicon)
-			W.icon_state = corpseidicon
+			newid.icon_state = corpseidicon
 		if(corpseidaccess)
 			if(jobdatum)
-				W.access = jobdatum.get_access()
+				newid.access = jobdatum.get_access()
 			else
-				W.access = list()
+				newid.access = list()
 		if(corpseidjob)
-			W.assignment = corpseidjob
-		W.registered_name = M.real_name
-		M.equip_to_slot_or_del(W, SLOT_WEAR_ID)
-	if(xenovictim)
-		// no damage because limb updates are expensive
-		var/datum/internal_organ/O
-		var/i
-		for(i in list("heart","lungs"))
-			O = M.internal_organs_by_name[i]
-			M.internal_organs_by_name -= i
-			M.internal_organs -= O
-		M.chestburst = 2
-		M.update_burst()
-		//buckle to nest
-		var/obj/structure/bed/nest/victim_nest = locate() in get_turf(src)
-		if(victim_nest)
-			victim_nest.buckle_mob(M, silent = TRUE)
-	qdel(src)
-
-
+			newid.assignment = corpseidjob
+		newid.registered_name = corpse.real_name
+		corpse.equip_to_slot_or_del(newid, SLOT_WEAR_ID)
 
 // I'll work on making a list of corpses people request for maps, or that I think will be commonly used. Syndicate operatives for example.
-
 
 /obj/effect/landmark/corpsespawner/syndicatesoldier
 	name = "Syndicate Operative"
@@ -217,7 +232,6 @@
 	corpseid = 1
 	corpseidjob = "Medical Doctor"
 //	corpseidaccess = "Medical Doctor"
-	xenovictim = TRUE
 
 /obj/effect/landmark/corpsespawner/engineer
 	name = "Engineer"
@@ -230,23 +244,11 @@
 	corpseid = 1
 	corpseidjob = "Station Engineer"
 //	corpseidaccess = "Station Engineer"
-	xenovictim = TRUE
 
 /obj/effect/landmark/corpsespawner/engineer/rig
 	corpsesuit = /obj/item/clothing/suit/space/rig/engineering
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/rig/engineering
-
-/obj/effect/landmark/corpsespawner/clown
-	name = "Clown"
-	corpseuniform = /obj/item/clothing/under/rank/clown
-	corpseshoes = /obj/item/clothing/shoes/clown_shoes
-	corpsemask = /obj/item/clothing/mask/gas/clown_hat
-	corpsepocket1 = /obj/item/toy/bikehorn
-	corpseback = /obj/item/storage/backpack/clown
-	corpseid = 1
-	corpseidjob = "Clown"
-//	corpseidaccess = "Clown"
 
 /obj/effect/landmark/corpsespawner/scientist
 	name = "Scientist"
@@ -257,7 +259,6 @@
 	corpseid = 1
 	corpseidjob = "Scientist"
 //	corpseidaccess = "Scientist"
-	xenovictim = TRUE
 
 /obj/effect/landmark/corpsespawner/miner
 	corpseuniform = /obj/item/clothing/under/colonist
@@ -267,7 +268,6 @@
 	corpseid = 1
 	corpseidjob = "Shaft Miner"
 //	corpseidaccess = "Shaft Miner"
-	xenovictim = TRUE
 
 /obj/effect/landmark/corpsespawner/miner/rig
 	corpsesuit = /obj/item/clothing/suit/space/rig/mining
@@ -296,19 +296,17 @@
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsesuit = /obj/item/clothing/suit/armor/vest/security
 	corpseback = /obj/item/storage/backpack/satchel
-	corpsebelt = /obj/item/storage/belt/gun/m4a3/vp70
+	corpsebelt = /obj/item/storage/belt/gun/pistol/m4a3/vp70
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC
 	corpsemask = /obj/item/clothing/mask/gas/PMC/damaged
 	corpseradio = /obj/item/radio/headset/survivor
 	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC
-	xenovictim = TRUE
 
 /obj/effect/landmark/corpsespawner/colonist
 	name = "Colonist"
 	corpseuniform = /obj/item/clothing/under/colonist
 	corpseshoes = /obj/item/clothing/shoes/black
-	xenovictim = TRUE
 
 
 /////////////////Officers//////////////////////

@@ -17,20 +17,23 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/limb/S = H.get_limb(user.zone_selected)
 
+		if(H.species.species_flags & IS_SYNTHETIC)
+			H.blood_volume = BLOOD_VOLUME_NORMAL
+
 		if(S.surgery_open_stage == 0)
 			if (S && (S.limb_status & LIMB_ROBOT))
-				if(user.action_busy || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_MEDICAL))
+				if(user.do_actions || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_MEDICAL))
 					return
 				if(S.get_damage())
 					S.heal_limb_damage(15, 15, robo_repair = TRUE, updating_health = TRUE)
 					use(1)
-					user.visible_message("<span class='notice'>\The [user] applies some nanite paste at [user != M ? "\the [M]'s" : "\the"] [S.display_name] with \the [src].</span>",\
-					"<span class='notice'>You apply some nanite paste at [user == M ? "your" : "[M]'s"] [S.display_name].</span>")
+					user.visible_message(span_notice("\The [user] applies some nanite paste at [user != M ? "\the [M]'s" : "\the"] [S.display_name] with \the [src]."),\
+					span_notice("You apply some nanite paste at [user == M ? "your" : "[M]'s"] [S.display_name]."))
 				else
-					to_chat(user, "<span class='notice'>Nothing to fix here.</span>")
+					to_chat(user, span_notice("Nothing to fix here."))
 		else
 			if (H.can_be_operated_on())
 				if (do_surgery(H,user,src))
 					return
 			else
-				to_chat(user, "<span class='notice'>Nothing to fix in here.</span>")
+				to_chat(user, span_notice("Nothing to fix in here."))

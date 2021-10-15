@@ -7,24 +7,24 @@
 	var/mob/living/carbon/human/humanspawned = null
 
 /obj/machinery/practice/medical/surgery/Initialize(mapload, ndir = 0)
-    . = ..()
-    setDir(ndir)
-    pixel_x = ( (dir & 3) ? 0 : (dir == 4 ? -24 : 24) )
-    pixel_y = ( (dir & 3) ? (dir == 1 ? -24 : 24) : 0 )
-    update_icon()
+	. = ..()
+	setDir(ndir)
+	pixel_x = ( (dir & 3) ? 0 : (dir == 4 ? -24 : 24) )
+	pixel_y = ( (dir & 3) ? (dir == 1 ? -24 : 24) : 0 )
+	update_icon()
 
 /obj/machinery/practice/medical/surgery/attack_hand(mob/living/user)
 	if(user.a_intent == INTENT_HARM)
-		to_chat(user, "<span class='warning'>You are unable to damage the button.</span>")
+		to_chat(user, span_warning("You are unable to damage the button."))
 		return
 	if(humanspawned)
 		QDEL_NULL(humanspawned)
-		visible_message("<span class='notice'>The dummy vanishes, ending the simulation.</span>")
+		visible_message(span_notice("The dummy vanishes, ending the simulation."))
 		return
 	else
-		var/choice = input("What surgery would you like to simulate?") as null|anything in list("larval host", "broken bones", "missing limbs", "damaged organs")
+		var/choice = tgui_input_list(user, "What surgery would you like to simulate?", null, list("larval host", "broken bones", "missing limbs", "damaged organs"))
 		if(!choice)
-			to_chat(user, "<span class='notice'>You must select a surgery to start the simulation.</span>")
+			to_chat(user, span_notice("You must select a surgery to start the simulation."))
 			return
 		switch(choice)
 			if("larval host")

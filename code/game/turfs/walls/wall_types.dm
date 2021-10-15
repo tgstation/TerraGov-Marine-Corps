@@ -51,8 +51,8 @@
 		/turf/closed/wall/mainship/outer/canterbury,
 		/obj/machinery/door/poddoor/shutters/transit,
 		/obj/machinery/door/airlock/mainship/marine/canterbury,
-		/obj/machinery/door/airlock/mainship/command/canterbury
-		)
+		/obj/machinery/door/airlock/mainship/command/canterbury,
+	)
 
 /turf/closed/wall/mainship/white
 	walltype = "wwall"
@@ -60,6 +60,32 @@
 
 /turf/closed/wall/mainship/white/handle_icon_junction(junction)
 	icon_state = "[walltype][junction]"
+	junctiontype = junction
+
+/turf/closed/wall/mainship/gray
+	walltype = "gwall"
+	icon_state = "gwall0"
+
+/turf/closed/wall/mainship/gray/outer
+	name = "outer hull"
+	desc = "A huge chunk of metal used to seperate space from the ship"
+	walltype = "gwall"
+	resistance_flags = RESIST_ALL
+
+/turf/closed/wall/mainship/gray/handle_icon_junction(junction)
+	if (!walltype)
+		return
+	//lets make some detailed randomized shit happen.
+	var/r1 = rand(0,10) //Make a random chance for this to happen
+	var/r2 = rand(0,3) // Which wall if we do choose it
+	if(junction == 12)
+		switch(r1)
+			if(0 to 8)
+				icon_state = "[walltype]12"
+			if(9 to 10)
+				icon_state = "gmainship_deco_wall[r2]"
+	else
+		icon_state = "[walltype][junction]"
 	junctiontype = junction
 
 /turf/closed/wall/mainship/white/canterbury //For ship smoothing.
@@ -122,6 +148,9 @@
 	icon = 'icons/turf/chigusa.dmi'
 	icon_state = "chigusa0"
 	walltype = "chigusa"
+
+/turf/closed/wall/desert/invincible
+	resistance_flags = RESIST_ALL
 
 /turf/closed/wall/desert/handle_icon_junction(junction)
 	if (!walltype)
@@ -250,7 +279,7 @@
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()
 	if(icon_state == "title_painting1")
-		icon_state = "title_painting[rand(1,11)]"
+		icon_state = "title_painting[rand(0,15)]"
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
@@ -304,32 +333,6 @@
 	walltype = "uranium"
 	mineral = "uranium"
 
-/turf/closed/wall/mineral/uranium/proc/radiate()
-	if(!active)
-		if(world.time > last_event+15)
-			active = 1
-			for(var/mob/living/L in range(3,src))
-				L.apply_effect(12, IRRADIATE)
-				UPDATEHEALTH(L)
-			for(var/turf/closed/wall/mineral/uranium/T in range(3,src))
-				T.radiate()
-			last_event = world.time
-			active = null
-			return
-	return
-
-/turf/closed/wall/mineral/uranium/attack_hand(mob/living/user)
-	radiate()
-	return ..()
-
-/turf/closed/wall/mineral/uranium/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	radiate()
-
-/turf/closed/wall/mineral/uranium/Bumped(AM as mob|obj)
-	radiate()
-	..()
-
 /turf/closed/wall/mineral/phoron
 	name = "phoron wall"
 	desc = "A wall with phoron plating. This is definately a bad idea."
@@ -349,6 +352,10 @@
 	icon_state = "cult0"
 	walltype = "cult"
 
+/turf/closed/wall/clock
+	name = "brass wall"
+	desc = "An intricate pattern of brass masterfully crafted into a sturdy wall. Looking at it instills a strange sense of pride in you."
+	icon_state = "clockwork_wall"
 
 /turf/closed/wall/vault
 	icon_state = "rockvault"

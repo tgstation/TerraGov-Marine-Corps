@@ -22,6 +22,19 @@
 	return l_hand
 
 /**
+ * Checks if this mob is holding a certain type of item in hands
+ * returns TRUEif found FALSE if not
+ * Args:
+ * * typepath: typepath to check for
+ */
+/mob/proc/is_holding_item_of_type(typepath)
+	if(istype(get_active_held_item(), typepath))
+		return TRUE
+	if(istype(get_inactive_held_item(), typepath))
+		return TRUE
+	return FALSE
+
+/**
 	Puts the item into your l_hand if possible and calls all necessary triggers/updates.
 
 	Arguments
@@ -193,11 +206,11 @@
 	drop_l_hand()
 
 /**
-  * Used to drop an item (if it exists) to the ground.
-  * * Will return TRUE is successfully dropped.
-  * * Will return FALSE if the item can not be dropped due to TRAIT_NODROP via doUnEquip().
-  * * Will return null if there is no item.
-  * If the item can be dropped, it will be forceMove()'d to the ground and the turf's Entered() will be called.
+ * Used to drop an item (if it exists) to the ground.
+ * * Will return TRUE is successfully dropped.
+ * * Will return FALSE if the item can not be dropped due to TRAIT_NODROP via doUnEquip().
+ * * Will return null if there is no item.
+ * If the item can be dropped, it will be forceMove()'d to the ground and the turf's Entered() will be called.
 */
 /mob/proc/dropItemToGround(obj/item/I, force = FALSE)
 	. = UnEquip(I, force, drop_location())
@@ -206,23 +219,23 @@
 		I.pixel_y = initial(I.pixel_y) + rand(-6,6)
 
 /**
-  * For when the item will be immediately placed in a loc other than the ground.
+ * For when the item will be immediately placed in a loc other than the ground.
 */
 /mob/proc/transferItemToLoc(obj/item/I, atom/newloc, force = FALSE)
 	return UnEquip(I, force, newloc)
 
 /**
-  *Removes an item on a mob's inventory.
-  * * It does not change the item's loc, just unequips it from the mob.
-  * * Used just before you want to delete the item, or moving it afterwards.
+ *Removes an item on a mob's inventory.
+ * * It does not change the item's loc, just unequips it from the mob.
+ * * Used just before you want to delete the item, or moving it afterwards.
 */
 /mob/proc/temporarilyRemoveItemFromInventory(obj/item/I, force = FALSE)
 	return UnEquip(I, force)
 
 /**
-  * DO NOT CALL THIS PROC
-  * * Use one of the above 3 helper procs.
-  * * You may override it, but do not modify the args.
+ * DO NOT CALL THIS PROC
+ * * Use one of the above 3 helper procs.
+ * * You may override it, but do not modify the args.
 */
 /mob/proc/UnEquip(obj/item/I, force, atom/newloc)
 	if(!I)
@@ -239,6 +252,7 @@
 	I.plane = initial(I.plane)
 	if(newloc)
 		I.forceMove(newloc)
+		I.removed_from_inventory(src)
 	I.dropped(src)
 
 	return TRUE
@@ -259,6 +273,7 @@
 
 
 //Outdated but still in use apparently. This should at least be a human proc.
+//this is still in use please fix this mess
 /mob/proc/get_equipped_items()
 	var/list/items = new/list()
 

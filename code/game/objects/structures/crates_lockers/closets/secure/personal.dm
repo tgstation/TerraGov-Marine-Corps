@@ -10,7 +10,6 @@
 		new /obj/item/storage/backpack(src)
 	else
 		new /obj/item/storage/backpack/satchel/norm(src)
-	new /obj/item/radio/headset( src )
 
 /obj/structure/closet/secure_closet/personal/patient
 	name = "Patient's Closet"
@@ -61,7 +60,7 @@
 		if (W) W.loc = src.loc
 	else if(istype(W, /obj/item/card/id))
 		if(src.broken)
-			to_chat(user, "<span class='warning'>It appears to be broken.</span>")
+			to_chat(user, span_warning("It appears to be broken."))
 			return
 		var/obj/item/card/id/I = W
 		if(!I || !I.registered_name)	return
@@ -75,10 +74,10 @@
 				src.registered_name = I.registered_name
 				src.desc = "Owned by [I.registered_name]."
 		else
-			to_chat(user, "<span class='warning'>Access Denied</span>")
-	else
-		to_chat(user, "<span class='warning'>Access Denied</span>")
-	return
+			to_chat(user, span_warning("Access Denied"))
+		return
+	to_chat(user, span_warning("Access Denied"))
+
 
 /obj/structure/closet/secure_closet/personal/verb/reset()
 	set src in oview(1) // One square distance
@@ -86,17 +85,17 @@
 	set name = "Reset Lock"
 	if(!usr.canmove || usr.stat || usr.restrained()) // Don't use it if you're not able to! Checks for stuns, ghost and restrain
 		return
-	if(ishuman(usr))
-		if (src.locked || !src.registered_name)
-			to_chat(usr, "<span class='warning'>You need to unlock it first.</span>")
-		else if (src.broken)
-			to_chat(usr, "<span class='warning'>It appears to be broken.</span>")
-		else
-			if (src.opened)
-				if(!src.close())
-					return
-			src.locked = 1
-			src.icon_state = src.icon_locked
-			src.registered_name = null
-			src.desc = "It's a secure locker for personnel. The first card swiped gains control."
-	return
+	if(!ishuman(usr))
+		return
+	if (src.locked || !src.registered_name)
+		to_chat(usr, span_warning("You need to unlock it first."))
+	else if (src.broken)
+		to_chat(usr, span_warning("It appears to be broken."))
+	else
+		if (src.opened)
+			if(!src.close())
+				return
+		src.locked = TRUE
+		src.icon_state = src.icon_locked
+		src.registered_name = null
+		src.desc = "It's a secure locker for personnel. The first card swiped gains control."

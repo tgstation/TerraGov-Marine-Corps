@@ -376,11 +376,40 @@
 	else
 		return pick('sound/voice/human_male_laugh_1.ogg', 'sound/voice/human_male_laugh_2.ogg')
 
+/datum/emote/living/carbon/human/warcry
+	key = "warcry"
+	key_third_person = "warcries"
+	message = "shouts an inspiring cry!"
+	emote_type = EMOTE_AUDIBLE
+
+/datum/emote/living/carbon/human/warcry/get_sound(mob/living/carbon/human/user)
+	if(!user.species)
+		return
+	if(user.species.warcries[user.gender])
+		return user.species.warcries[user.gender]
+	if(user.species.warcries[NEUTER])
+		return user.species.warcries[NEUTER]
+
+
+/datum/emote/living/carbon/human/warcry/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
+	. = ..()
+	if(!.)
+		return
+	var/image/warcry = image('icons/mob/talk.dmi', user, icon_state = "warcry")
+	user.add_emote_overlay(warcry)
+
+/datum/emote/living/carbon/human/snap
+	key = "snap"
+	key_third_person = "snaps"
+	message = "snaps their fingers"
+	emote_type = EMOTE_AUDIBLE
+	flags_emote = EMOTE_RESTRAINT_CHECK|EMOTE_MUZZLE_IGNORE|EMOTE_ARMS_CHECK
+	sound = 'sound/misc/fingersnap.ogg'
 
 /datum/emote/living/carbon/human/hug
 	key = "hug"
 	key_third_person = "hugs"
-	message = "hugs themself."
+	message = "hugs themself"
 	message_param = "hugs %t."
 	flags_emote = EMOTE_RESTRAINT_CHECK
 	emote_type = EMOTE_AUDIBLE

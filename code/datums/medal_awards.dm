@@ -20,14 +20,17 @@ GLOBAL_LIST_EMPTY(medal_awards)
 		var/rcpt_name = t.fields["name"]
 		listed_rcpt_ranks[rcpt_name] = t.fields["rank"]
 		possible_recipients += rcpt_name
-	var/chosen_recipient = input("Who do you want to award a medal to?", "Medal Recipient", "Cancel") in possible_recipients
-	if(!chosen_recipient || chosen_recipient == "Cancel") return
+	var/chosen_recipient = tgui_input_list(usr, "Who do you want to award a medal to?", "Medal Recipient", possible_recipients)
+	if(!chosen_recipient || chosen_recipient == "Cancel") 
+		return
 	var/recipient_rank = listed_rcpt_ranks[chosen_recipient]
 	var/posthumous = 1
-	var/medal_type = input("What type of medal do you want to award?", "Medal Type", null) in list("distinguished conduct medal", "bronze heart medal","medal of valor", "medal of exceptional heroism", "letter of commendation")
-	if(!medal_type) return
+	var/medal_type = tgui_input_list(usr, "What type of medal do you want to award?", "Medal Type", list("distinguished conduct medal", "bronze heart medal","medal of valor", "medal of exceptional heroism", "letter of commendation"))
+	if(!medal_type) 
+		return
 	var/citation = stripped_input(usr, "What should the medal citation read?", "Medal Citation")
-	if(!citation) return
+	if(!citation) 
+		return
 	for(var/mob/M in GLOB.alive_human_list)
 		if(M.real_name == chosen_recipient)
 			posthumous = 0

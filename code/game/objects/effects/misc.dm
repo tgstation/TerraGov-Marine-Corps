@@ -93,30 +93,34 @@
 
 
 /obj/effect/forcefield/fog/attack_hand(mob/living/user)
-	to_chat(user, "<span class='notice'>You peer through the fog, but it's impossible to tell what's on the other side...</span>")
+	to_chat(user, span_notice("You peer through the fog, but it's impossible to tell what's on the other side..."))
 	return TRUE
 
 
-/obj/effect/forcefield/fog/attack_alien(M)
-	return attack_hand(M)
-
-
-/obj/effect/forcefield/fog/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
+/obj/effect/forcefield/fog/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	return attack_hand(X)
 
 
 /obj/effect/forcefield/fog/attack_animal(M)
 	return attack_hand(M)
 
 
-/obj/effect/forcefield/fog/CanPass(atom/movable/mover, turf/target)
-	if(isobj(mover))
-		return TRUE
+/obj/effect/forcefield/fog/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(isobj(mover)) //No grenades/bullets should cross this
+		return FALSE
 	if(isxeno(mover))
 		var/mob/living/carbon/xenomorph/moving_xeno = mover
-		if(LAZYLEN(moving_xeno.stomach_contents))
-			return FALSE
+		for(var/tummy_resident in moving_xeno.stomach_contents)//Dead code, to be removed
+			if(ishuman(tummy_resident))
+				var/mob/living/carbon/human/H = tummy_resident
+				if(!HAS_TRAIT(H, TRAIT_UNDEFIBBABLE))
+					return FALSE
 		return TRUE
+	if(ishuman(mover) && !issynth(mover))
+		var/mob/living/carbon/human/H = mover
+		if(HAS_TRAIT(H, TRAIT_UNDEFIBBABLE)) // Allow pulled perma-dead humans to cross
+			return TRUE
 	return FALSE
 
 /obj/effect/forcefield/fog/passable_fog
@@ -126,11 +130,19 @@
 	icon_state = "smoke"
 	density = FALSE
 
-/obj/effect/forcefield/fog/passable_fog/CanPass(atom/movable/mover, turf/target)
+/obj/effect/forcefield/fog/passable_fog/Initialize()
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/effect/forcefield/fog/passable_fog/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	return TRUE
 
-/obj/effect/forcefield/fog/passable_fog/Crossed(atom/movable/mover, oldloc)
-	. = ..()
+/obj/effect/forcefield/fog/passable_fog/proc/on_cross(datum/source, atom/movable/mover, oldloc, oldlocs)
+	SIGNAL_HANDLER
 	if(!opacity)
 		return
 	set_opacity(FALSE)
@@ -148,7 +160,7 @@
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
-	resistance_flags = UNACIDABLE | INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/opacifier/Initialize(mapload, initial_opacity)
@@ -168,11 +180,17 @@
 	light_color = "#FFFFFF"
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-
+	light_system = MOVABLE_LIGHT
+	blocks_emissive = NONE
 
 /obj/effect/dummy/lighting_obj/Initialize(mapload, _color, _range, _power, _duration)
 	. = ..()
-	set_light(_range ? _range : light_range, _power ? _power : light_power, _color ? _color : light_color)
+	if(!isnull(_range))
+		set_light_range(_range)
+	if(!isnull(_power))
+		set_light_power(_power)
+	if(!isnull(_color))
+		set_light_color(_color)
 	if(_duration)
 		QDEL_IN(src, _duration)
 
@@ -192,5 +210,5 @@
 	icon = 'icons/effects/alphacolors.dmi'
 	icon_state = "white"
 	plane = LIGHTING_PLANE
-	layer = LIGHTING_LAYER
+	layer = BACKGROUND_LAYER + LIGHTING_PRIMARY_LAYER
 	blend_mode = BLEND_ADD

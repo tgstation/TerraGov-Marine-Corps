@@ -1,0 +1,1827 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ab" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"ad" = (
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"ag" = (
+/obj/docking_port/stationary/crashmode,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
+"av" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark/blue2{
+	dir = 6
+	},
+/area/bigredv2/outside/admin_building)
+"be" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 2;
+	name = "\improper Operations Toilet"
+	},
+/turf/open/floor/freezer,
+/area/bigredv2/outside/admin_building)
+"bl" = (
+/turf/open/floor/tile/dark/blue2/corner,
+/area/bigredv2/outside/admin_building)
+"bE" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
+/turf/open/floor/tile/dark/blue2/corner,
+/area/bigredv2/outside/admin_building)
+"bY" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"ca" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"cd" = (
+/obj/structure/table,
+/obj/machinery/door_control{
+	id = "Operations";
+	name = "Storm Shutters";
+	pixel_y = -32
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"cD" = (
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"cH" = (
+/obj/machinery/light,
+/turf/open/floor/plating,
+/area/bigredv2/outside/admin_building)
+"cK" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
+"dV" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark/blue2/corner,
+/area/bigredv2/outside/admin_building)
+"dZ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/admin_building)
+"ea" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/blue2/corner,
+/area/bigredv2/outside/admin_building)
+"ee" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"ep" = (
+/turf/closed/wall,
+/area/bigredv2/outside/admin_building)
+"eA" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"eD" = (
+/obj/structure/closet/secure_closet/personal/cabinet,
+/turf/open/floor/wood,
+/area/bigredv2/outside/admin_building)
+"eG" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
+"eX" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 6
+	},
+/area/bigredv2/outside/admin_building)
+"fc" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 10
+	},
+/area/bigredv2/outside/admin_building)
+"fe" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 6
+	},
+/area/bigredv2/outside/admin_building)
+"fx" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"fP" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/red2{
+	dir = 5
+	},
+/area/bigredv2/outside/admin_building)
+"fY" = (
+/obj/effect/landmark/start/job/survivor,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"gj" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/grimy,
+/area/bigredv2/outside/admin_building)
+"gk" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/grimy,
+/area/bigredv2/outside/admin_building)
+"gQ" = (
+/obj/structure/table,
+/obj/item/tool/pen/red,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"ht" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"jj" = (
+/obj/structure/table,
+/obj/item/phone,
+/obj/machinery/light,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"jv" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "Operations";
+	name = "\improper Operations Shutters"
+	},
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/admin_building)
+"jQ" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/bigredv2/outside/admin_building)
+"kK" = (
+/obj/machinery/computer/security,
+/obj/structure/table,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"kX" = (
+/obj/structure/flora/ausbushes/brflowers,
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/ground/jungle/clear,
+/area/bigredv2/outside/admin_building)
+"lq" = (
+/obj/structure/table,
+/obj/machinery/faxmachine,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"mv" = (
+/obj/machinery/photocopier,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
+"nt" = (
+/obj/machinery/computer/station_alert,
+/obj/structure/table,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"nB" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/bigredv2/outside/admin_building)
+"nF" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark/blue2{
+	dir = 5
+	},
+/area/bigredv2/outside/admin_building)
+"nH" = (
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/admin_building)
+"nP" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"on" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/grimy,
+/area/bigredv2/outside/admin_building)
+"oS" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 9
+	},
+/area/bigredv2/outside/admin_building)
+"pc" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/bigredv2/outside/admin_building)
+"ph" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"pk" = (
+/turf/open/floor/plating,
+/area/bigredv2/outside/admin_building)
+"py" = (
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
+"qw" = (
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"qy" = (
+/obj/machinery/door_control{
+	id = "Operations";
+	name = "Storm Shutters";
+	pixel_y = -32
+	},
+/turf/open/floor/tile/dark/blue2,
+/area/bigredv2/outside/admin_building)
+"ru" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 1
+	},
+/area/bigredv2/outside/admin_building)
+"rI" = (
+/obj/machinery/faxmachine,
+/obj/structure/table,
+/turf/open/floor/tile/dark/blue2{
+	dir = 9
+	},
+/area/bigredv2/outside/admin_building)
+"rM" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"rV" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/turf/open/floor/tile/dark/blue2,
+/area/bigredv2/outside/admin_building)
+"st" = (
+/turf/open/floor/tile/dark/blue2,
+/area/bigredv2/outside/admin_building)
+"sA" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
+"te" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2,
+/area/bigredv2/outside/admin_building)
+"to" = (
+/obj/machinery/door/airlock/mainship/generic{
+	name = "\improper Operations Bedroom"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/admin_building)
+"tH" = (
+/obj/machinery/door_control{
+	id = "Operations";
+	name = "Storm Shutters";
+	pixel_y = -32
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/tile/dark/blue2,
+/area/bigredv2/outside/admin_building)
+"tU" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"ud" = (
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
+	name = "\improper Operations"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/bigredv2/outside/admin_building)
+"uu" = (
+/obj/structure/table,
+/obj/machinery/computer/communications,
+/turf/open/floor/tile/dark/blue2{
+	dir = 6
+	},
+/area/bigredv2/outside/admin_building)
+"uI" = (
+/obj/machinery/light,
+/turf/open/floor/tile/dark/red2{
+	dir = 6
+	},
+/area/bigredv2/outside/admin_building)
+"vf" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/grimy,
+/area/bigredv2/outside/admin_building)
+"vM" = (
+/obj/structure/rack,
+/obj/item/weapon/gun/smg/mp7,
+/obj/item/ammo_magazine/smg/mp7,
+/obj/item/ammo_magazine/smg/mp7,
+/obj/item/ammo_magazine/smg/mp7,
+/turf/open/floor/tile/dark/red2{
+	dir = 8
+	},
+/area/bigredv2/outside/admin_building)
+"wi" = (
+/obj/machinery/computer/communications,
+/obj/structure/table,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"wq" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2/corner,
+/area/bigredv2/outside/admin_building)
+"xC" = (
+/obj/machinery/computer/atmos_alert,
+/obj/structure/table,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"xM" = (
+/obj/structure/bed/chair/office/dark,
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 8
+	},
+/area/bigredv2/outside/admin_building)
+"xT" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"ye" = (
+/obj/machinery/door/airlock/mainship/command/free_access{
+	dir = 1;
+	name = "\improper Operations Maintenance"
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/bigredv2/outside/admin_building)
+"yq" = (
+/obj/machinery/door_control{
+	id = "Operations";
+	name = "Storm Shutters";
+	pixel_y = -32
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/obj/machinery/light,
+/turf/open/floor/tile/dark/blue2,
+/area/bigredv2/outside/admin_building)
+"yt" = (
+/obj/structure/closet/secure_closet/guncabinet/mp_armory,
+/turf/open/floor/tile/dark/red2{
+	dir = 9
+	},
+/area/bigredv2/outside/admin_building)
+"zl" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"zQ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 8
+	},
+/area/bigredv2/outside/admin_building)
+"Ag" = (
+/obj/structure/closet/secure_closet/guncabinet/mp_armory,
+/turf/open/floor/tile/dark/red2{
+	dir = 10
+	},
+/area/bigredv2/outside/admin_building)
+"Aj" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/bigredv2/outside/admin_building)
+"Ap" = (
+/obj/machinery/computer3/server/rack,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"AM" = (
+/obj/structure/bed/chair,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"Bc" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/tile/dark/blue2/corner,
+/area/bigredv2/outside/admin_building)
+"Bu" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grimy,
+/area/bigredv2/outside/admin_building)
+"Bz" = (
+/obj/machinery/computer3/server/rack,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/bigredv2/outside/admin_building)
+"BU" = (
+/obj/machinery/door/airlock/mainship/command/free_access{
+	name = "\improper Operations Maintenance"
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/bigredv2/outside/admin_building)
+"BV" = (
+/turf/open/floor/wood,
+/area/bigredv2/outside/admin_building)
+"Cu" = (
+/obj/structure/table/woodentable,
+/turf/open/floor/wood,
+/area/bigredv2/outside/admin_building)
+"CU" = (
+/turf/open/floor/grimy,
+/area/bigredv2/outside/admin_building)
+"CY" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	on = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/admin_building)
+"Dq" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/bigredv2/outside/admin_building)
+"Ed" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/grimy,
+/area/bigredv2/outside/admin_building)
+"Eg" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
+"ER" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 1
+	},
+/area/bigredv2/outside/admin_building)
+"Fx" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"FS" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/shutters/mainship{
+	id = "Operations";
+	name = "\improper Operations Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/admin_building)
+"Gd" = (
+/obj/structure/table,
+/obj/machinery/computer/security,
+/turf/open/floor/tile/dark/blue2{
+	dir = 10
+	},
+/area/bigredv2/outside/admin_building)
+"Go" = (
+/obj/structure/rack,
+/obj/item/weapon/gun/pistol/highpower,
+/obj/item/ammo_magazine/pistol/highpower,
+/obj/item/ammo_magazine/pistol/highpower,
+/obj/item/ammo_magazine/pistol/highpower,
+/turf/open/floor/tile/dark/red2{
+	dir = 8
+	},
+/area/bigredv2/outside/admin_building)
+"GK" = (
+/obj/structure/cable,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2/corner,
+/area/bigredv2/outside/admin_building)
+"GM" = (
+/obj/structure/bed/chair/office/dark,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
+"GX" = (
+/obj/machinery/alarm{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/admin_building)
+"Hg" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
+"HN" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
+"HW" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/bigredv2/outside/admin_building)
+"Io" = (
+/obj/machinery/door/airlock/mainship/security/glass/free_access{
+	name = "\improper Operations Armory"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"Ir" = (
+/obj/structure/table,
+/obj/item/tool/pen/red,
+/obj/structure/paper_bin,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"IN" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"JJ" = (
+/obj/machinery/door/airlock/mainship/generic{
+	name = "\improper Operations Toilet"
+	},
+/turf/open/floor/freezer,
+/area/bigredv2/outside/admin_building)
+"JK" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"JO" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 1
+	},
+/area/bigredv2/outside/admin_building)
+"KC" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
+	name = "\improper Operations"
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"KL" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	on = 1
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/admin_building)
+"KP" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 8
+	},
+/area/bigredv2/outside/admin_building)
+"Lf" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/grimy,
+/area/bigredv2/outside/admin_building)
+"Ls" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/bigredv2/outside/admin_building)
+"LE" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 9
+	},
+/area/bigredv2/outside/admin_building)
+"Mj" = (
+/obj/structure/table/woodentable,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/admin_building)
+"Mk" = (
+/obj/machinery/photocopier,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"Mr" = (
+/obj/machinery/computer3/server,
+/turf/open/floor/tile/dark/blue2{
+	dir = 5
+	},
+/area/bigredv2/outside/admin_building)
+"MG" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/bigredv2/outside/admin_building)
+"MX" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"Ne" = (
+/turf/open/floor/tile/dark/red2{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
+"NB" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/bigredv2/outside/admin_building)
+"ND" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/bigredv2/outside/admin_building)
+"NN" = (
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 8
+	},
+/area/bigredv2/outside/admin_building)
+"NO" = (
+/obj/machinery/lapvend,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"NW" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"Oa" = (
+/obj/structure/toilet,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/freezer,
+/area/bigredv2/outside/admin_building)
+"Ol" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/bigredv2/outside/admin_building)
+"Om" = (
+/obj/machinery/computer3/server,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/bigredv2/outside/admin_building)
+"Or" = (
+/obj/machinery/door_control{
+	id = "Operations";
+	name = "Storm Shutters";
+	pixel_y = -32
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2,
+/area/bigredv2/outside/admin_building)
+"OI" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
+"OO" = (
+/obj/structure/window/reinforced,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grimy,
+/area/bigredv2/outside/admin_building)
+"Pb" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
+"Pr" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
+"PQ" = (
+/obj/machinery/vending/cola,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"Qo" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"QL" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/bigredv2/outside/admin_building)
+"QX" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 2;
+	name = "\improper Operations Bedroom"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/wood,
+/area/bigredv2/outside/admin_building)
+"Se" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
+"Sw" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1;
+	on = 1
+	},
+/turf/open/floor/tile/dark/red2{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
+"SJ" = (
+/obj/structure/bed,
+/turf/open/floor/wood,
+/area/bigredv2/outside/admin_building)
+"SW" = (
+/turf/open/floor/freezer,
+/area/bigredv2/outside/admin_building)
+"Tf" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/bigredv2/outside/admin_building)
+"Tk" = (
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
+	dir = 1;
+	name = "\improper Operations"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2,
+/area/bigredv2/outside/admin_building)
+"TE" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/bigredv2/outside/admin_building)
+"TR" = (
+/obj/structure/table,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/bigredv2/outside/admin_building)
+"Ub" = (
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 1
+	},
+/area/bigredv2/outside/admin_building)
+"Ue" = (
+/obj/structure/table/woodentable,
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/bigredv2/outside/admin_building)
+"UC" = (
+/obj/structure/table,
+/obj/item/tool/pen,
+/turf/open/floor/tile/dark/blue2{
+	dir = 10
+	},
+/area/bigredv2/outside/admin_building)
+"UD" = (
+/obj/structure/bed/chair,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"UL" = (
+/obj/structure/table/woodentable,
+/obj/structure/paper_bin,
+/obj/item/tool/pen,
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/bigredv2/outside/admin_building)
+"US" = (
+/obj/structure/table,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"Va" = (
+/obj/structure/table,
+/obj/structure/paper_bin,
+/obj/item/tool/pen,
+/obj/machinery/light,
+/turf/open/floor/tile/dark/blue2,
+/area/bigredv2/outside/admin_building)
+"VB" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"VC" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
+"VK" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/admin_building)
+"Xz" = (
+/obj/structure/table,
+/obj/item/paper,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"XA" = (
+/obj/machinery/power/apc,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/bigredv2/outside/admin_building)
+"XS" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grimy,
+/area/bigredv2/outside/admin_building)
+"Yi" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "Operations";
+	name = "\improper Operations Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/admin_building)
+"Ym" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/freezer,
+/area/bigredv2/outside/admin_building)
+"Yp" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/c)
+"YF" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/grimy,
+/area/bigredv2/outside/admin_building)
+"YJ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 8
+	},
+/turf/open/floor/grimy,
+/area/bigredv2/outside/admin_building)
+"YR" = (
+/obj/machinery/computer3/server,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"Zj" = (
+/obj/machinery/door/airlock/mainship/command/free_access{
+	name = "\improper Operations Office"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+
+(1,1,1) = {"
+Yp
+nH
+nH
+nH
+FS
+FS
+nH
+nH
+nH
+FS
+FS
+FS
+nH
+nH
+nH
+FS
+FS
+nH
+FS
+FS
+nH
+nH
+nH
+qw
+"}
+(2,1,1) = {"
+nH
+nH
+PQ
+Qo
+ad
+US
+Ir
+ep
+YR
+xC
+wi
+Xz
+YR
+ep
+ep
+SJ
+eD
+ep
+SJ
+eD
+ep
+Ym
+nH
+nH
+"}
+(3,1,1) = {"
+nH
+AM
+ad
+CU
+CU
+CU
+US
+ep
+Ap
+fx
+fx
+cD
+nP
+ep
+ep
+CY
+Cu
+ep
+CY
+Cu
+ep
+SW
+ep
+nH
+"}
+(4,1,1) = {"
+nH
+AM
+CU
+CU
+CU
+CU
+rM
+ep
+lq
+cD
+IN
+cD
+jj
+ep
+ep
+to
+ep
+ep
+to
+ep
+ep
+JJ
+ep
+nH
+"}
+(5,1,1) = {"
+KC
+eA
+XS
+Lf
+YF
+CU
+ca
+ep
+kK
+NW
+fY
+cD
+NO
+ep
+LE
+JK
+nB
+MG
+JK
+nB
+nB
+MX
+fc
+Yi
+"}
+(6,1,1) = {"
+ad
+ad
+CU
+OO
+kX
+Ed
+rM
+ep
+nt
+NW
+Fx
+cD
+Mk
+ep
+Dq
+bl
+Pr
+Fx
+cK
+Pr
+Pr
+eG
+st
+Yi
+"}
+(7,1,1) = {"
+nH
+AM
+CU
+Bu
+on
+CU
+rM
+ep
+ep
+ep
+Zj
+ep
+ep
+ep
+Dq
+st
+ep
+to
+ep
+ep
+ep
+Dq
+st
+nH
+"}
+(8,1,1) = {"
+nH
+UD
+gj
+gk
+XS
+YJ
+zl
+ud
+nB
+nB
+JK
+nB
+nB
+MG
+ER
+st
+ep
+VK
+BV
+UL
+ep
+Dq
+st
+nH
+"}
+(9,1,1) = {"
+Yi
+AM
+CU
+vf
+CU
+Bu
+ad
+Pr
+py
+bl
+Pr
+cK
+Pr
+Fx
+Pr
+eX
+ep
+SJ
+BV
+eD
+ep
+Ls
+st
+nH
+"}
+(10,1,1) = {"
+Yi
+gQ
+CU
+CU
+CU
+Bu
+cd
+ep
+TE
+qy
+ep
+ep
+ep
+Zj
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+Dq
+st
+nH
+"}
+(11,1,1) = {"
+nH
+ht
+ad
+ad
+ad
+ab
+US
+ep
+TE
+st
+ep
+rI
+Ol
+Fx
+TR
+UC
+ep
+ep
+oS
+NB
+QL
+ER
+st
+Yi
+"}
+(12,1,1) = {"
+nH
+ep
+ep
+ep
+TE
+Tk
+ep
+ep
+TE
+st
+ep
+Bz
+cD
+Fx
+fx
+Va
+ep
+ep
+TE
+GK
+VC
+VC
+eX
+Yi
+"}
+(13,1,1) = {"
+Yi
+eD
+Mj
+ep
+TE
+te
+ep
+oS
+Ub
+st
+ep
+Om
+cD
+ph
+cD
+xM
+Gd
+ep
+pc
+te
+ep
+ep
+ep
+nH
+"}
+(14,1,1) = {"
+Yi
+SJ
+KL
+QX
+ee
+rV
+ep
+TE
+bl
+eX
+ep
+Mr
+Pr
+mv
+Pb
+GM
+uu
+ep
+TE
+xT
+ye
+jQ
+pk
+nH
+"}
+(15,1,1) = {"
+nH
+ep
+ep
+ep
+TE
+te
+ep
+pc
+st
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+TE
+te
+ep
+XA
+cH
+nH
+"}
+(16,1,1) = {"
+Yi
+eD
+Mj
+ep
+TE
+tH
+ep
+TE
+st
+ep
+yt
+vM
+vM
+Go
+Go
+Ag
+ep
+oS
+Ub
+te
+ep
+jQ
+GX
+nH
+"}
+(17,1,1) = {"
+Yi
+SJ
+KL
+QX
+ee
+rV
+ep
+TE
+st
+ep
+fP
+Ne
+bY
+Sw
+Ne
+uI
+ep
+TE
+Bc
+fe
+ep
+jQ
+pk
+nH
+"}
+(18,1,1) = {"
+nH
+ep
+ep
+ep
+TE
+te
+ep
+TE
+st
+ep
+ep
+ep
+Io
+ep
+ep
+ep
+ep
+TE
+te
+ep
+ep
+BU
+ep
+nH
+"}
+(19,1,1) = {"
+Yi
+eD
+Mj
+ep
+TE
+zQ
+Ol
+Ub
+NN
+Ol
+Ol
+Ol
+Aj
+cD
+Ol
+Ol
+Ol
+Ub
+zQ
+HW
+HW
+VB
+fc
+nH
+"}
+(20,1,1) = {"
+Yi
+SJ
+KL
+QX
+ee
+bE
+HN
+HN
+HN
+Hg
+HN
+HN
+Eg
+Se
+dV
+Se
+ea
+HN
+sA
+Pr
+cK
+Pr
+eX
+nH
+"}
+(21,1,1) = {"
+nH
+ep
+ep
+ep
+TE
+te
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+TE
+st
+TE
+te
+ep
+ep
+ep
+ep
+ep
+ep
+nH
+"}
+(22,1,1) = {"
+Yi
+eD
+Mj
+ep
+cD
+te
+ep
+SJ
+eD
+ep
+SJ
+eD
+ep
+TE
+st
+TE
+te
+ep
+SJ
+eD
+ep
+SJ
+eD
+nH
+"}
+(23,1,1) = {"
+Yi
+SJ
+KL
+QX
+ND
+yq
+ep
+dZ
+Ue
+ep
+dZ
+Ue
+ep
+TE
+st
+TE
+Or
+ep
+dZ
+Ue
+ep
+dZ
+Ue
+nH
+"}
+(24,1,1) = {"
+nH
+ep
+ep
+ep
+TE
+te
+ep
+to
+ep
+ep
+to
+ep
+ep
+TE
+st
+TE
+te
+ep
+to
+ep
+ep
+to
+ep
+nH
+"}
+(25,1,1) = {"
+Yi
+eD
+Mj
+ep
+cD
+zQ
+Ol
+Fx
+Ol
+Tf
+Fx
+Ol
+Ol
+Ub
+st
+TE
+zQ
+Ol
+Aj
+tU
+Ol
+JO
+st
+nH
+"}
+(26,1,1) = {"
+Yi
+SJ
+KL
+QX
+ND
+wq
+HN
+Eg
+HN
+HN
+Eg
+HN
+HN
+HN
+av
+nF
+Eg
+ag
+Eg
+HN
+HN
+OI
+st
+nH
+"}
+(27,1,1) = {"
+nH
+ep
+ep
+ep
+TE
+NN
+Ol
+Ol
+Ol
+Ol
+Ol
+Ol
+Ol
+Ol
+Ol
+Ol
+Ol
+Ol
+Ol
+Ol
+Ol
+ru
+KP
+ud
+"}
+(28,1,1) = {"
+nH
+Oa
+SW
+be
+cD
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+cK
+Pr
+Pr
+Pr
+Pr
+Pr
+Pr
+cK
+Pr
+Pr
+Pr
+Pr
+Pr
+"}
+(29,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+Yi
+Yi
+nH
+nH
+nH
+jv
+jv
+Yi
+Yi
+nH
+nH
+nH
+Yi
+Yi
+nH
+nH
+"}

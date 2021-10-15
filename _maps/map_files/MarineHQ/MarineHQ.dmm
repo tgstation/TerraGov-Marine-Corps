@@ -170,7 +170,7 @@
 	dir = 2
 	},
 /obj/machinery/shower{
-	pixel_z = 15
+	pixel_y = 15
 	},
 /obj/item/tool/soap,
 /turf/open/floor/plating/plating_catwalk,
@@ -211,7 +211,7 @@
 	dir = 2
 	},
 /obj/machinery/shower{
-	pixel_z = 15
+	pixel_y = 15
 	},
 /obj/item/tool/soap,
 /turf/open/floor/plating/plating_catwalk,
@@ -326,9 +326,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/hallways/hangar)
 "bl" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 2
-	},
+/obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bm" = (
@@ -355,7 +353,6 @@
 	name = "\improper Containment Cell 3"
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "Containment Cell 3";
 	name = "\improper Containment Cell 3"
 	},
@@ -509,7 +506,7 @@
 	dir = 2
 	},
 /obj/machinery/shower{
-	pixel_z = 15
+	pixel_y = 15
 	},
 /obj/item/tool/soap,
 /turf/open/floor/plating/plating_catwalk,
@@ -755,7 +752,6 @@
 /area/lv624/ground/caves)
 "cL" = (
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 4;
 	name = "\improper Toilet"
 	},
 /turf/open/floor/mainship/sterile/dark,
@@ -805,9 +801,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/hallways/hangar)
 "cV" = (
-/obj/machinery/door/airlock/mainship/secure/tcomms{
-	name = "\improper Telecommunications"
-	},
+/obj/machinery/door/airlock/mainship/secure/tcomms,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "cX" = (
@@ -823,7 +817,7 @@
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/captain_mess)
 "cZ" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "da" = (
@@ -1242,7 +1236,6 @@
 /area/mainship/hallways/hangar)
 "es" = (
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 4;
 	name = "\improper Freezer"
 	},
 /turf/open/floor/mainship,
@@ -1253,8 +1246,8 @@
 "eu" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_w = -9;
-	pixel_z = 1
+	pixel_x = -9;
+	pixel_y = 1
 	},
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/captain_mess)
@@ -1856,7 +1849,7 @@
 /area/mainship/hallways/hangar)
 "gm" = (
 /obj/structure/table/mainship,
-/obj/item/toy/farwadoll,
+/obj/item/toy/plush/farwa,
 /turf/open/floor/wood,
 /area/mainship/squads/req)
 "gn" = (
@@ -2037,9 +2030,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/camera/autoname/mainship{
-	dir = 2
-	},
+/obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "gL" = (
@@ -2139,7 +2130,7 @@
 "hb" = (
 /obj/structure/cable,
 /obj/structure/bed/chair/sofa/right,
-/obj/item/toy/farwadoll,
+/obj/item/toy/plush/farwa,
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
 "hc" = (
@@ -2344,7 +2335,7 @@
 /turf/open/floor/plating,
 /area/mainship/living/grunt_rnr)
 "hP" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "hQ" = (
@@ -2674,9 +2665,6 @@
 	dir = 8;
 	name = "\improper Extended Operations Bunks"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
 "iV" = (
@@ -2868,8 +2856,7 @@
 "jG" = (
 /obj/structure/cable,
 /obj/machinery/power/terminal{
-	dir = 8;
-	icon_state = "term"
+	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
 	dir = 5
@@ -3033,14 +3020,10 @@
 /turf/open/floor/mainship,
 /area/mainship/living/grunt_rnr)
 "ko" = (
-/turf/open/floor/mainship/green/corner{
-	dir = 2
-	},
+/turf/open/floor/mainship/green/corner,
 /area/mainship/powered)
 "kp" = (
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/powered)
 "kq" = (
 /turf/open/floor/mainship/green/corner{
@@ -3071,9 +3054,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "kv" = (
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 2
-	},
+/turf/open/floor/mainship/cargo/arrow,
 /area/mainship/powered)
 "kw" = (
 /turf/open/floor/mainship/cargo/arrow{
@@ -3088,8 +3069,8 @@
 "ky" = (
 /obj/structure/sink/bathroom{
 	dir = 8;
-	pixel_w = 12;
-	pixel_z = 2
+	pixel_x = 12;
+	pixel_y = 2
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/living/grunt_rnr)
@@ -3289,9 +3270,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/powered)
 "lc" = (
 /obj/docking_port/stationary/marine_dropship/hangar/one{
@@ -3320,36 +3299,26 @@
 "lg" = (
 /obj/machinery/landinglight/ds1/delaytwo,
 /obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/powered)
 "lh" = (
 /obj/machinery/landinglight/ds1/delayone,
 /obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/powered)
 "li" = (
 /obj/machinery/landinglight/ds1,
 /obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/powered)
 "lj" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/mainship/powered)
 "lk" = (
 /obj/machinery/landinglight/ds1/delaythree,
 /obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/powered)
 "ll" = (
 /obj/structure/table/woodentable,
@@ -3413,9 +3382,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/powered)
 "ly" = (
 /turf/open/floor/mainship/green{
@@ -3450,9 +3417,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 2
-	},
+/turf/open/floor/mainship/cargo/arrow,
 /area/mainship/powered)
 "lD" = (
 /obj/machinery/landinglight/ds1/delaytwo{
@@ -3480,9 +3445,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 2
-	},
+/turf/open/floor/mainship/cargo/arrow,
 /area/mainship/powered)
 "lG" = (
 /obj/machinery/light,
@@ -3515,7 +3478,7 @@
 /turf/open/floor/mainship,
 /area/mainship/shipboard/sensors)
 "lN" = (
-/obj/machinery/door/window/brigdoor/mainship/cell_1,
+/obj/machinery/door/window/secure/brig/cell_1,
 /obj/machinery/door_timer/cell_2,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/sensors)
@@ -3571,7 +3534,7 @@
 "lW" = (
 /obj/structure/toilet{
 	dir = 4;
-	pixel_z = 7
+	pixel_y = 7
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -3689,17 +3652,13 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 2
-	},
+/turf/open/floor/mainship/cargo/arrow,
 /area/mainship/powered)
 "mk" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 2
-	},
+/turf/open/floor/mainship/cargo/arrow,
 /area/mainship/powered)
 "ml" = (
 /obj/machinery/landinglight/ds1/delaythree{
@@ -3708,9 +3667,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 2
-	},
+/turf/open/floor/mainship/cargo/arrow,
 /area/mainship/powered)
 "mm" = (
 /obj/machinery/landinglight/ds1{
@@ -3719,9 +3676,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 2
-	},
+/turf/open/floor/mainship/cargo/arrow,
 /area/mainship/powered)
 "mn" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -3889,9 +3844,11 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/door/window/southleft,
+/obj/machinery/door/window{
+	dir = 2
+	},
 /turf/open/floor/mainship/plate,
-/area/mainship/living/offices)
+/area/mainship/command/cic)
 "mO" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -3923,10 +3880,10 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/obj/structure/disposalpipe/junction/flipped{
-	dir = 4
-	},
 /obj/effect/landmark/start/job/synthetic,
+/obj/structure/disposalpipe/junction/yjunc{
+	dir = 1
+	},
 /turf/open/floor/mainship/plate,
 /area/mainship/command/cic)
 "mU" = (
@@ -3942,7 +3899,7 @@
 "nb" = (
 /obj/structure/toilet{
 	dir = 4;
-	pixel_z = 7
+	pixel_y = 7
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -4063,8 +4020,7 @@
 /area/mainship/living/starboard_emb)
 "qa" = (
 /obj/structure/toilet{
-	dir = 8;
-	icon_state = "toilet00"
+	dir = 8
 	},
 /obj/machinery/light/small{
 	dir = 4
@@ -4301,9 +4257,8 @@
 "rH" = (
 /obj/structure/sink/bathroom{
 	dir = 8;
-	icon_state = "sink3";
-	pixel_w = 12;
-	pixel_z = 2
+	pixel_x = 12;
+	pixel_y = 2
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/living/commandbunks)
@@ -4326,7 +4281,6 @@
 /area/mainship/hallways/port_hallway)
 "rQ" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "Killhouse"
 	},
 /turf/open/floor/mainship/mono,
@@ -4336,9 +4290,7 @@
 	dir = 4
 	},
 /obj/machinery/floodlight/landing/hq,
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/shipboard/firing_range)
 "rS" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
@@ -4351,14 +4303,13 @@
 "rT" = (
 /obj/machinery/door_control{
 	id = 999;
-	pixel_z = 8
+	pixel_y = 8
 	},
 /turf/closed/wall,
 /area/mainship/squads/alpha)
 "rZ" = (
 /obj/structure/toilet{
-	dir = 1;
-	icon_state = "toilet00"
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/living/commandbunks)
@@ -4794,9 +4745,7 @@
 /obj/structure/barricade/sandbags{
 	dir = 4
 	},
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/shipboard/firing_range)
 "vO" = (
 /obj/machinery/reagentgrinder,
@@ -4856,7 +4805,6 @@
 /area/mainship/hallways/hangar)
 "vU" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "Killhouse"
 	},
 /turf/open/floor/mainship,
@@ -4870,9 +4818,7 @@
 /area/mainship/squads/req)
 "wn" = (
 /obj/machinery/floodlight/landing/hq,
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/shipboard/firing_range)
 "wo" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -4902,7 +4848,7 @@
 "wF" = (
 /obj/machinery/door_control{
 	id = 998;
-	pixel_z = 8
+	pixel_y = 8
 	},
 /turf/closed/wall,
 /area/mainship/living/bridgebunks)
@@ -4917,9 +4863,7 @@
 /obj/item/weapon/gun/energy/lasgun/M43/practice,
 /obj/item/weapon/gun/energy/lasgun/M43/practice,
 /obj/machinery/light,
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/shipboard/firing_range)
 "wM" = (
 /obj/structure/table/woodentable,
@@ -4969,17 +4913,11 @@
 /obj/structure/barricade/sandbags{
 	dir = 8
 	},
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/shipboard/firing_range)
 "xe" = (
 /turf/open/floor/mainship/sterile,
 /area/centcom/practice/medical)
-"xf" = (
-/obj/machinery/vending/marine/cargo_ammo,
-/turf/open/floor/mainship/red/full,
-/area/mainship/shipboard/weapon_room)
 "xp" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Garden"
@@ -4987,12 +4925,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/living/starboard_garden)
-"xt" = (
-/obj/effect/landmark/start/job/tankcrewman,
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
-/area/mainship/living/basketball)
 "xu" = (
 /turf/open/floor/mainship/red{
 	dir = 6
@@ -5126,9 +5058,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/mainship/sterile/side{
-	dir = 2
-	},
+/turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/medical_science)
 "yJ" = (
 /obj/machinery/door_control{
@@ -5218,10 +5148,10 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "zm" = (
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
 /obj/structure/table/mainship,
 /obj/item/explosive/grenade/smokebomb,
 /obj/item/explosive/grenade/smokebomb,
@@ -5826,7 +5756,6 @@
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
 "CC" = (
-/obj/machinery/vending/marine_special,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/weapon_room)
 "CD" = (
@@ -6031,8 +5960,7 @@
 /area/mainship/squads/delta)
 "Dn" = (
 /obj/structure/toilet{
-	dir = 1;
-	icon_state = "toilet00"
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/living/tankerbunks)
@@ -6044,7 +5972,7 @@
 	dir = 2
 	},
 /obj/machinery/shower{
-	pixel_z = 15
+	pixel_y = 15
 	},
 /obj/item/tool/soap,
 /turf/open/floor/plating/plating_catwalk,
@@ -6056,8 +5984,7 @@
 /area/mainship/living/tankerbunks)
 "Dq" = (
 /obj/structure/toilet{
-	dir = 1;
-	icon_state = "toilet00"
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/squads/charlie)
@@ -6081,8 +6008,7 @@
 /area/mainship/squads/charlie)
 "Dt" = (
 /obj/structure/toilet{
-	dir = 1;
-	icon_state = "toilet00"
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/living/pilotbunks)
@@ -6106,8 +6032,7 @@
 /area/mainship/living/pilotbunks)
 "Dw" = (
 /obj/structure/toilet{
-	dir = 1;
-	icon_state = "toilet00"
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/squads/delta)
@@ -6139,9 +6064,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "DA" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "DB" = (
@@ -6265,7 +6188,6 @@
 /area/mainship/living/chapel)
 "DW" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Chapel"
 	},
 /turf/open/floor/mainship/mono,
@@ -6570,9 +6492,7 @@
 /area/mainship/medical/lower_medical)
 "Fz" = (
 /obj/machinery/vending/MarineMed,
-/turf/open/floor/mainship/sterile/corner{
-	dir = 2
-	},
+/turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/lower_medical)
 "FA" = (
 /obj/machinery/vending/MarineMed/Blood,
@@ -6638,8 +6558,7 @@
 /area/mainship/living/grunt_rnr)
 "FN" = (
 /obj/structure/bed/chair/sofa{
-	dir = 4;
-	icon_state = "sofamiddle"
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
@@ -6651,8 +6570,7 @@
 /area/mainship/living/grunt_rnr)
 "FP" = (
 /obj/structure/bed/chair/sofa{
-	dir = 1;
-	icon_state = "sofamiddle"
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
@@ -6683,8 +6601,7 @@
 /area/mainship/living/grunt_rnr)
 "FV" = (
 /obj/structure/bed/chair/sofa{
-	dir = 8;
-	icon_state = "sofamiddle"
+	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
@@ -6758,9 +6675,7 @@
 /area/mainship/medical/lower_medical)
 "Gj" = (
 /obj/machinery/autodoc_console,
-/turf/open/floor/mainship/sterile/side{
-	dir = 2
-	},
+/turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "Gk" = (
 /obj/machinery/power/apc/mainship{
@@ -7078,21 +6993,15 @@
 /area/mainship/living/basketball)
 "HH" = (
 /obj/item/stack/flag/red,
-/turf/open/floor/mainship/green/corner{
-	dir = 2
-	},
+/turf/open/floor/mainship/green/corner,
 /area/mainship/living/basketball)
 "HI" = (
 /obj/structure/window/reinforced,
 /obj/structure/bed/chair,
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/living/basketball)
 "HJ" = (
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/living/basketball)
 "HK" = (
 /obj/item/stack/flag/green,
@@ -7389,7 +7298,6 @@
 /area/mainship/living/starboard_emb)
 "IF" = (
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 4;
 	name = "\improper Toilet"
 	},
 /turf/open/floor/mainship/sterile/dark,
@@ -7696,9 +7604,7 @@
 /area/mainship/living/basketball)
 "JS" = (
 /obj/machinery/light,
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/living/basketball)
 "JU" = (
 /obj/machinery/power/apc/mainship,
@@ -7742,8 +7648,7 @@
 /area/mainship/hallways/stern_hallway)
 "JZ" = (
 /obj/structure/bed/chair/sofa{
-	dir = 4;
-	icon_state = "sofamiddle"
+	dir = 4
 	},
 /obj/machinery/light{
 	dir = 8
@@ -8068,7 +7973,6 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/centcom/practice/medical)
 "LZ" = (
-/obj/machinery/vending/marine/cargo_guns,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/weapon_room)
 "Ma" = (
@@ -8295,8 +8199,7 @@
 /area/lv624/ground/caves)
 "MN" = (
 /obj/structure/bed/chair{
-	dir = 8;
-	icon_state = "chair"
+	dir = 8
 	},
 /obj/item/radio,
 /turf/open/floor/plating/ground/dirt,
@@ -8388,9 +8291,7 @@
 /obj/structure/barricade/sandbags{
 	dir = 4
 	},
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/shipboard/firing_range)
 "NS" = (
 /obj/machinery/floodlight/landing/hq,
@@ -8517,12 +8418,9 @@
 /turf/open/floor/grass,
 /area/construction)
 "PG" = (
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/shipboard/firing_range)
 "PI" = (
-/obj/machinery/vending/marine/cargo_guns,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/shipboard/weapon_room)
 "PJ" = (
@@ -8550,9 +8448,7 @@
 	dir = 1;
 	name = "\improper Killhouse"
 	},
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/shipboard/firing_range)
 "PX" = (
 /turf/open/floor/plating/asteroidwarning{
@@ -8826,10 +8722,10 @@
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "Tg" = (
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
-/obj/item/explosive/grenade/frag/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
+/obj/item/explosive/grenade/training,
 /obj/structure/table/mainship,
 /obj/item/explosive/grenade/smokebomb,
 /obj/item/explosive/grenade/smokebomb,
@@ -8949,9 +8845,7 @@
 /obj/item/weapon/gun/energy/lasgun/M43/practice,
 /obj/item/weapon/gun/energy/lasgun/M43/practice,
 /obj/item/weapon/gun/energy/lasgun/M43/practice,
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/shipboard/firing_range)
 "UV" = (
 /obj/machinery/door_control{
@@ -9165,9 +9059,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/shipboard/firing_range)
 "WX" = (
 /obj/machinery/light{
@@ -9212,9 +9104,7 @@
 /turf/open/floor/freezer,
 /area/centcom/practice/medical)
 "XC" = (
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 2
-	},
+/turf/open/floor/mainship/cargo/arrow,
 /area/mainship/shipboard/firing_range)
 "XF" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -9252,7 +9142,7 @@
 /turf/open/floor/mainship/sterile/side,
 /area/centcom/practice/medical)
 "XQ" = (
-/obj/machinery/vending/dress_supply,
+/obj/machinery/vending/marine/dress_supply,
 /turf/open/floor/carpet{
 	dir = 9;
 	icon_state = "carpetside"
@@ -35530,9 +35420,9 @@ Ft
 FI
 gD
 Qo
-xf
+LZ
 LC
-xf
+LZ
 RV
 bJ
 bJ
@@ -37026,7 +36916,7 @@ HW
 HW
 If
 HD
-xt
+HJ
 Iy
 aU
 IE
@@ -38034,7 +37924,7 @@ HW
 HW
 If
 HD
-xt
+HJ
 Iy
 pZ
 IL
