@@ -30,17 +30,6 @@
 
 	sentry_battery_type = /obj/item/cell/lasgun/lasrifle/marine
 
-
-/obj/item/weapon/gun/sentry/get_ammo_type()
-	if(!ammo)
-		return list("unknown", "unknown")
-	return list(ammo.hud_state, ammo.hud_state_empty)
-
-/obj/item/weapon/gun/sentry/get_ammo_count()
-	if(!current_mag)
-		return in_chamber ? 1 : 0
-	return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
-
 /obj/item/storage/box/sentry
 	name = "\improper UA 571-C sentry crate"
 	desc = "A large case containing all you need to set up an automated sentry."

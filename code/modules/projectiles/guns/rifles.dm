@@ -21,18 +21,6 @@
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
 
-/obj/item/weapon/gun/rifle/get_ammo_type()
-	if(!ammo)
-		return list("unknown", "unknown")
-	else
-		return list(ammo.hud_state, ammo.hud_state_empty)
-
-/obj/item/weapon/gun/rifle/get_ammo_count()
-	if(!current_mag)
-		return in_chamber ? 1 : 0
-	else
-		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
-
 //-------------------------------------------------------
 //T-18 Carbine
 
@@ -1111,7 +1099,7 @@
 	make_casing(type_of_casings)
 	if(in_chamber)
 		QDEL_NULL(in_chamber)
-	if(current_mag.current_rounds <= 0 && flags_gun_features & GUN_AUTO_EJECTOR)
+	if(current_rounds <= 0 && flags_gun_features & GUN_AUTO_EJECTOR)
 		unload(user, TRUE, TRUE)
 		playsound(src, empty_sound, 25, 1)
 

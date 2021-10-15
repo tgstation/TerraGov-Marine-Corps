@@ -39,7 +39,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/Initialize()
 	. = ..()
-	replace_tube(current_mag.current_rounds) //Populate the chamber.
+	replace_tube(current_rounds) //Populate the chamber.
 	if(flags_gun_features & GUN_SHOTGUN_CHAMBER)
 		load_into_chamber()
 
@@ -48,17 +48,18 @@ can cause issues with ammo types getting mixed up during the burst.
 	return
 
 /obj/item/weapon/gun/shotgun/proc/replace_tube(number_to_replace)
-	current_mag.chamber_contents = list()
-	current_mag.chamber_contents.len = current_mag.max_rounds
+	var/obj/item/ammo_magazine/internal/mag = current_mag
+	mag.chamber_contents = list()
+	mag.chamber_contents.len = mag.max_rounds
 	var/i
-	for(i = 1 to current_mag.max_rounds) //We want to make sure to populate the tube.
-		current_mag.chamber_contents[i] = i > number_to_replace ? "empty" : current_mag.default_ammo
-	current_mag.chamber_position = current_mag.current_rounds //The position is always in the beginning [1]. It can move from there.
+	for(i = 1 to mag.max_rounds) //We want to make sure to populate the tube.
+		mag.chamber_contents[i] = i > number_to_replace ? "empty" : mag.default_ammo
+	mag.chamber_position = mag.current_rounds //The position is always in the beginning [1]. It can move from there.
 
 /obj/item/weapon/gun/shotgun/proc/add_to_tube(mob/user,selection) //Shells are added forward.
-	current_mag.chamber_position++ //We move the position up when loading ammo. New rounds are always fired next, in order loaded.
-	current_mag.chamber_contents[current_mag.chamber_position] = selection //Just moves up one, unless the mag is full.
-	if(current_mag.current_rounds == 1 && !in_chamber) //The previous proc in the reload() cycle adds ammo, so the best workaround here,
+	mag.chamber_position++ //We move the position up when loading ammo. New rounds are always fired next, in order loaded.
+	mag.chamber_contents[mag.chamber_position] = selection //Just moves up one, unless the mag is full.
+	if(mag.current_rounds == 1 && !in_chamber) //The previous proc in the reload() cycle adds ammo, so the best workaround here,
 		update_icon()	//This is not needed for now. Maybe we'll have loaded sprites at some point, but I doubt it. Also doesn't play well with double barrel.
 		ready_in_chamber()
 		cock_gun(user)
@@ -68,9 +69,9 @@ can cause issues with ammo types getting mixed up during the burst.
 	return TRUE
 
 /obj/item/weapon/gun/shotgun/proc/empty_chamber(mob/user)
-	if(current_mag.current_rounds > 0)
+	if(current_rounds > 0)
 		unload_shell(user)
-		if(!current_mag.current_rounds && !in_chamber)
+		if(!current_rounds && !in_chamber)
 			update_icon()
 		return TRUE
 	if(!in_chamber)
@@ -85,18 +86,20 @@ can cause issues with ammo types getting mixed up during the burst.
 
 
 /obj/item/weapon/gun/shotgun/proc/unload_shell(mob/user)
-	var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(current_mag.chamber_contents[current_mag.chamber_position])
+	var/obj/item/ammo_magazine/internal/mag = current_mag
+	var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(mag.chamber_contents[mag.chamber_position])
 
 	if(user)
 		user.put_in_hands(new_handful)
 		playsound(user, reload_sound, 25, 1)
 	else new_handful.loc = get_turf(src)
 
-	current_mag.current_rounds--
-	current_mag.chamber_contents[current_mag.chamber_position] = "empty"
-	current_mag.chamber_position--
+	current_rounds--
+	mag.chamber_contents[mag.chamber_position] = "empty"
+	mag.chamber_position--
+	sync_ammo(mag)
 	user.hud_used.update_ammo_hud(user, src)
-	return 1
+	return TRUE
 
 ///Generates a handful of 1 bullet from the gun.
 /obj/item/weapon/gun/shotgun/proc/retrieve_shell(selection)
@@ -135,12 +138,14 @@ can cause issues with ammo types getting mixed up during the burst.
 
 
 /obj/item/weapon/gun/shotgun/proc/ready_shotgun_tube()
-	if(current_mag.current_rounds > 0)
-		ammo = GLOB.ammo_list[current_mag.chamber_contents[current_mag.chamber_position]]
+	var/obj/item/ammo_magazine/internal/mag = current_mag
+	if(mag.current_rounds > 0)
+		ammo = GLOB.ammo_list[mag.chamber_contents[mag.chamber_position]]
 		in_chamber = create_bullet(ammo)
-		current_mag.current_rounds--
-		current_mag.chamber_contents[current_mag.chamber_position] = "empty"
-		current_mag.chamber_position--
+		mag.current_rounds--
+		mag.chamber_contents[mag.chamber_position] = "empty"
+		mag.chamber_position--
+		sync_ammo(mag)
 		return in_chamber
 
 
@@ -154,24 +159,10 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	//Time to move the tube position.
 	ready_in_chamber() //We're going to try and reload. If we don't get anything, icon change.
-	if(!current_mag.current_rounds && !in_chamber) //No rounds, nothing chambered.
+	if(!current_rounds && !in_chamber) //No rounds, nothing chambered.
 		update_icon()
 
 	return TRUE
-
-/obj/item/weapon/gun/shotgun/get_ammo_type()
-	if(in_chamber)
-		return list(in_chamber.ammo.hud_state, in_chamber.ammo.hud_state_empty)
-	if(!ammo)
-		return list("unknown", "unknown")
-	else
-		return list(ammo.hud_state, ammo.hud_state_empty)
-
-/obj/item/weapon/gun/shotgun/get_ammo_count()
-	if(!current_mag)
-		return in_chamber ? 1 : 0
-	else
-		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
 //-------------------------------------------------------
 //TACTICAL SHOTGUN
@@ -309,17 +300,20 @@ can cause issues with ammo types getting mixed up during the burst.
 	var/shell_eject_animation = null
 
 /obj/item/weapon/gun/shotgun/double/examine_ammo_count(mob/user)
-	if(current_mag.chamber_closed)
+	var/obj/item/ammo_magazine/internal/mag = current_mag
+	if(mag.chamber_closed)
 		to_chat(user, "It's closed.")
 	else
-		to_chat(user, "It's open with [current_mag.current_rounds] shell\s loaded.")
+		to_chat(user, "It's open with [current_rounds] shell\s loaded.")
 
 //Turns out it has some attachments.
 /obj/item/weapon/gun/shotgun/double/update_icon()
-	icon_state = "[base_gun_icon][current_mag.chamber_closed ? "" : "_o"]"
+	var/obj/item/ammo_magazine/internal/mag = current_mag
+	icon_state = "[base_gun_icon][mag.chamber_closed ? "" : "_o"]"
 
 /obj/item/weapon/gun/shotgun/double/check_chamber_position()
-	if(current_mag.chamber_closed)
+	var/obj/item/ammo_magazine/internal/mag = current_mag
+	if(mag.chamber_closed)
 		return
 	return TRUE
 
@@ -329,27 +323,30 @@ can cause issues with ammo types getting mixed up during the burst.
 	return cock(user)
 
 /obj/item/weapon/gun/shotgun/double/add_to_tube(mob/user,selection) //Load it on the go, nothing chambered.
-	current_mag.chamber_position++
-	current_mag.chamber_contents[current_mag.chamber_position] = selection
+	var/obj/item/ammo_magazine/internal/mag = current_mag
+	mag.chamber_position++
+	mag.chamber_contents[mag.chamber_position] = selection
 	playsound(user, reload_sound, 25, 1)
 	return TRUE
 
 /obj/item/weapon/gun/shotgun/double/able_to_fire(mob/user)
 	. = ..()
 	if(. && istype(user))
-		if(!current_mag.chamber_closed)
+		var/obj/item/ammo_magazine/internal/mag = current_mag
+		if(!mag.chamber_closed)
 			to_chat(user, span_warning("Close the chamber!"))
-			return 0
+			return FALSE
 
 /obj/item/weapon/gun/shotgun/double/cock(mob/user)
-	if(current_mag.chamber_closed) //Has to be closed.
-		if(current_mag.current_rounds) //We want to empty out the bullets.
+	var/obj/item/ammo_magazine/internal/mag = current_mag
+	if(mag.chamber_closed) //Has to be closed.
+		if(mag.current_rounds) //We want to empty out the bullets.
 			var/i
-			for(i = 1 to current_mag.current_rounds)
+			for(i = 1 to mag.current_rounds)
 				unload_shell(user)
 		make_casing(type_of_casings)
 
-	current_mag.chamber_closed = !current_mag.chamber_closed
+	mag.chamber_closed = !mag.chamber_closed
 	update_icon()
 	playsound(user, opened_sound, 25, 1)
 	return TRUE
@@ -358,33 +355,37 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/double/load_into_chamber()
 	//Trimming down the unnecessary stuff.
 	//This doesn't chamber, creates a bullet on the go.
-
-	if(current_mag.current_rounds > 0)
-		ammo = GLOB.ammo_list[current_mag.chamber_contents[current_mag.chamber_position]]
+	var/obj/item/ammo_magazine/internal/mag = current_mag
+	if(mag.current_rounds > 0)
+		ammo = GLOB.ammo_list[mag.chamber_contents[mag.chamber_position]]
 		in_chamber = create_bullet(ammo)
-		current_mag.current_rounds--
+		mag.current_rounds--
+		sync_ammo(mag)
 		return in_chamber
 	//We can't make a projectile without a mag or active attachable.
 
 /obj/item/weapon/gun/shotgun/double/make_casing()
-	if(current_mag.used_casings)
+	var/obj/item/ammo_magazine/internal/mag = current_mag
+	if(mag.used_casings)
 		. = ..()
-		current_mag.used_casings = 0
+		mag.used_casings = 0
 		if(shell_eject_animation)
 			flick("[shell_eject_animation]", src)
 
-/obj/item/weapon/gun/shotgun/double/delete_bullet(obj/projectile/projectile_to_fire, refund = 0)
+/obj/item/weapon/gun/shotgun/double/delete_bullet(obj/projectile/projectile_to_fire, refund = FALSE)
 	qdel(projectile_to_fire)
 	if(refund)
-		current_mag.current_rounds++
+		current_rounds++
 	return TRUE
 
 /obj/item/weapon/gun/shotgun/double/reload_into_chamber(mob/user)
 	if(in_chamber)
 		QDEL_NULL(in_chamber)
-	current_mag.chamber_contents[current_mag.chamber_position] = "empty"
-	current_mag.chamber_position--
-	current_mag.used_casings++
+	var/obj/item/ammo_magazine/internal/mag = current_mag
+	mag.chamber_contents[mag.chamber_position] = "empty"
+	mag.chamber_position--
+	mag.used_casings++
+	sync_ammo(mag)
 	return TRUE
 
 
@@ -500,8 +501,9 @@ can cause issues with ammo types getting mixed up during the burst.
 
 //Same as double barrel. We don't want to do anything else here.
 /obj/item/weapon/gun/shotgun/pump/add_to_tube(mob/user, selection) //Load it on the go, nothing chambered.
-	current_mag.chamber_position++
-	current_mag.chamber_contents[current_mag.chamber_position] = selection
+	var/obj/item/ammo_magazine/internal/mag = current_mag
+	mag.chamber_position++
+	mag.chamber_contents[mag.chamber_position] = selection
 	playsound(user, reload_sound, 25, 1)
 	return TRUE
 	/*
@@ -526,9 +528,9 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	ready_shotgun_tube()
 
-
-	if(current_mag.used_casings)
-		current_mag.used_casings--
+	var/obj/item/ammo_magazine/internal/mag = current_mag
+	if(mag.used_casings)
+		mag.used_casings--
 		make_casing(type_of_casings)
 
 	pump_notice(user)
@@ -552,11 +554,12 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/pump/reload_into_chamber(mob/user)
 	pump_lock = FALSE //fired successfully; unlock the pump
-	current_mag.used_casings++ //The shell was fired successfully. Add it to used.
+	var/obj/item/ammo_magazine/internal/mag = current_mag
+	mag.used_casings++ //The shell was fired successfully. Add it to used.
 	if(in_chamber)
 		QDEL_NULL(in_chamber)
 	//Time to move the tube position.
-	if(!current_mag.current_rounds)
+	if(!current_rounds)
 		update_icon()//No rounds, nothing chambered.
 
 	return TRUE

@@ -227,17 +227,7 @@ should be alright.
 	. = ..()
 	if(.)
 		return
-
-	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
-		return
-
-	if(istype(I, /obj/item/cell) && !istype(src, /obj/item/weapon/gun/energy) && CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY)) //If the sentry is an energy-gun, the battery is handled in /gun/energy/reload()
-		reload_sentry_cell(I, user)
-		return
-
-	if((istype(I, /obj/item/ammo_magazine) || istype(I, /obj/item/cell)) && check_inactive_hand(user))
-		reload(user, I)
-		return
+	start_reload(user, I)
 
 ///Reloads the sentry battery. This is used both in the gun, and called from /deployed/mounted/sentry
 /obj/item/weapon/gun/proc/reload_sentry_cell(obj/item/cell/cell, mob/user)
@@ -319,7 +309,7 @@ should be alright.
 		var/obj/item/storage/S = new_magazine.loc
 		S.remove_from_storage(new_magazine, get_turf(user), user)
 	user.put_in_any_hand_if_possible(new_magazine)
-	reload(user, new_magazine)
+	start_reload(user, new_magazine)
 
 //----------------------------------------------------------
 				//						 \\
@@ -361,8 +351,11 @@ should be alright.
 /obj/item/weapon/gun/proc/update_mag_overlay(mob/user)
 	var/image/overlay = attachment_overlays[ATTACHMENT_SLOT_MAGAZINE]
 	overlays -= overlay
-	if(current_mag && current_mag.bonus_overlay)
-		overlay = image(current_mag.icon, src, current_mag.bonus_overlay)
+	if(!istype(current_mag, /obj/item/ammo_magazine))
+		return
+	var/obj/item/ammo_magazine/mag = current_mag
+	if(current_mag && mag.bonus_overlay)
+		overlay = image(current_mag.icon, src, mag.bonus_overlay)
 		attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = overlay
 		overlays += overlay
 	else
@@ -771,10 +764,15 @@ should be alright.
 	return TRUE
 
 /obj/item/weapon/gun/proc/get_ammo_type()
-	return FALSE
+	if(!ammo)
+		return list("unknown", "unknown")
+	return list(ammo.hud_state, ammo.hud_state_empty)
 
 /obj/item/weapon/gun/proc/get_ammo_count()
-	return FALSE
+	if(!current_mag)
+		return in_chamber ? 1 : 0
+	else
+		return in_chamber ? (current_rounds + 1) : current_rounds
 
 
 /obj/item/weapon/gun/proc/modify_fire_delay(value, mob/user)

@@ -65,17 +65,6 @@
 	max_integrity = 125
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
-///This and get_ammo_count is to make sure the ammo counter functions.
-/obj/item/weapon/gun/tl102/get_ammo_type()
-	if(!ammo)
-		return list("unknown", "unknown")
-	return list(ammo.hud_state, ammo.hud_state_empty)
-
-/obj/item/weapon/gun/tl102/get_ammo_count()
-	if(!current_mag)
-		return in_chamber ? 1 : 0
-	return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
-
 ///Unmovable ship mounted version.
 /obj/item/weapon/gun/tl102/hsg_nest
 	name = "\improper TL-102 heavy smartgun nest"

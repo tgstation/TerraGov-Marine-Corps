@@ -67,31 +67,11 @@
 ///Reloads the internal_item
 /obj/machinery/deployable/mounted/proc/reload(mob/user, ammo_magazine)
 	var/obj/item/weapon/gun/gun = internal_item
-	if(istype(ammo_magazine, /obj/item/cell) && istype(gun, /obj/item/weapon/gun/energy))
-		gun.reload(user, ammo_magazine)
-		return
-	if(!istype(ammo_magazine, /obj/item/ammo_magazine))
-		return
-
-	var/obj/item/ammo_magazine/ammo = ammo_magazine
-
-	if(istype(ammo_magazine, /obj/item/ammo_magazine/handful))
-		gun.reload(user, ammo)
-		update_icon_state()
-		return
-
-	if(!istype(gun, ammo.gun_type))
-		return
-
-	if(ammo.current_rounds <= 0)
-		to_chat(user, span_warning("[ammo] is empty!"))
-		return
-
 	if(gun.current_mag)
-		gun.unload(user,0,1)
+		gun.unload(user, FALSE, TRUE)
 		update_icon_state()
 
-	gun.reload(user, ammo)
+	gun.start_reload(user, ammo_magazine)
 	update_icon_state()
 
 	if(!CHECK_BITFIELD(gun.flags_gun_features, GUN_PUMP_REQUIRED))

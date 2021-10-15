@@ -166,7 +166,7 @@
 		var/obj/item/weapon/gun/energy/internal_gun = internal_item
 		current_rounds = internal_gun.cell ? internal_gun.cell.charge : 0
 	else
-		current_rounds = gun.current_mag ? gun.current_mag.current_rounds : 0
+		current_rounds = gun.current_mag ? gun.current_rounds : 0
 	. = list(
 		"rounds" =  current_rounds,
 		"cell_charge" = gun.sentry_battery ? gun.sentry_battery.charge : 0,
@@ -181,7 +181,7 @@
 		var/obj/item/cell/gun_cell_type = internal_gun.cell_type
 		rounds_max = internal_gun.cell ? internal_gun.cell.maxcharge : initial(gun_cell_type.maxcharge)
 	else
-		rounds_max = gun.current_mag ? gun.current_mag.max_rounds : gun.max_shells
+		rounds_max = gun.current_mag ? gun.max_rounds : gun.max_shells
 	. = list(
 		"name" = copytext(name, 2),
 		"rounds_max" = rounds_max,

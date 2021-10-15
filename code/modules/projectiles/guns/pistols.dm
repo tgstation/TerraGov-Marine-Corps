@@ -38,18 +38,6 @@
 
 	placed_overlay_iconstate = "pistol"
 
-/obj/item/weapon/gun/pistol/get_ammo_type()
-	if(!ammo)
-		return list("unknown", "unknown")
-	else
-		return list(ammo.hud_state, ammo.hud_state_empty)
-
-/obj/item/weapon/gun/pistol/get_ammo_count()
-	if(!current_mag)
-		return in_chamber ? 1 : 0
-	else
-		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
-
 //-------------------------------------------------------
 //TP-14 PISTOL
 

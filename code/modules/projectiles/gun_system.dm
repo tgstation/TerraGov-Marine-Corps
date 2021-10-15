@@ -46,7 +46,11 @@
 	/*Ammo mags may or may not be internal, though the difference is a few additional variables. If they are not internal, don't call
 	on those unique vars. This is done for quicker pathing. Just keep in mind most mags aren't internal, though some are.
 	This is also the default magazine path loaded into a projectile weapon for reverse lookups on New(). Leave this null to do your own thing.*/
-	var/obj/item/ammo_magazine/internal/current_mag = null
+	var/magazine_type = /obj/item/ammo_magazine
+	var/obj/item/current_mag = null
+	var/current_rounds
+	var/max_rounds
+
 	var/type_of_casings = null					//Can be "bullet", "shell", or "cartridge". Bullets are generic casings, shells are used by shotguns, cartridges are for rifles.
 
 	//Basic stats.
@@ -194,10 +198,7 @@
 			current_mag = null
 			update_icon()
 		else
-			current_mag = new current_mag(src, spawn_empty ? TRUE : FALSE)
-			ammo = current_mag.default_ammo ? GLOB.ammo_list[current_mag.default_ammo] : GLOB.ammo_list[/datum/ammo/bullet] //Latter should never happen, adding as a precaution.
-		if(flags_gun_features & GUN_LOAD_INTO_CHAMBER && current_mag?.current_rounds > 0)
-			load_into_chamber()
+			INVOKE_ASYNC(src, .proc/start_reload, null, new magazine_type(src, spawn_empty ? TRUE : FALSE))
 	else
 		ammo = GLOB.ammo_list[ammo] //If they don't have a mag, they fire off their own thing.
 	update_force_list() //This gives the gun some unique verbs for attacking.
@@ -343,7 +344,7 @@
 		if(istype(attachable, /obj/item/weapon/gun/grenade_launcher))
 			continue
 		var/chamber = in_chamber ? 1 : 0
-		dat += gun_attachable.current_mag ? "([gun_attachable.current_mag.current_rounds + chamber]/[gun_attachable.current_mag.max_rounds])" : "(Unloaded)"
+		dat += gun_attachable.current_mag ? "([gun_attachable.current_rounds + chamber]/[gun_attachable.max_rounds])" : "(Unloaded)"
 
 	if(dat)
 		to_chat(user, "[dat.Join(" ")]")
@@ -364,9 +365,9 @@
 /obj/item/weapon/gun/proc/examine_ammo_count(mob/user)
 	var/list/dat = list()
 	if(!(flags_gun_features & (GUN_INTERNAL_MAG|GUN_UNUSUAL_DESIGN))) //Internal mags and unusual guns have their own stuff set.
-		if(current_mag?.current_rounds > 0)
+		if(current_rounds > 0)
 			if(flags_gun_features & GUN_AMMO_COUNTER)
-				dat += "Ammo counter shows [current_mag.current_rounds] round\s remaining.<br>"
+				dat += "Ammo counter shows [current_rounds] round\s remaining.<br>"
 			else
 				dat += "It's loaded[in_chamber?" and has a round chambered":""].<br>"
 		else
@@ -425,41 +426,11 @@
 			//						   	        \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/proc/replace_ammo(mob/user = null, obj/item/ammo_magazine/magazine)
-	if(!magazine.default_ammo)
-		stack_trace("null ammo while reloading. User: [user]")
-		ammo = GLOB.ammo_list[/datum/ammo/bullet] //Looks like we're defaulting it.
-	else
-		ammo = GLOB.ammo_list[overcharge? magazine.overcharge_ammo : magazine.default_ammo]
-		//to_chat(user, "DEBUG: REPLACE AMMO. Ammo: [ammo]")
-
-///Effects when the gun gets cocked, currently just plays the sound
-/obj/item/weapon/gun/proc/cock_gun(mob/user)
-	if(cocked_sound)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, user, cocked_sound, 25, 1),3)
-
-/*
-Reload a gun using a magazine.
-This sets all the initial datum's stuff. The bullet does the rest.
-User can be passed as null, (a gun reloading itself for instance), so we need to watch for that constantly.
-*/
-/obj/item/weapon/gun/proc/reload(mob/user, obj/item/ammo_magazine/magazine)
-	if((flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)) || HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
+/obj/item/weapon/gun/proc/start_reload(mob/user, obj/item/magazine)
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
 
-	if(!magazine || !istype(magazine))
-		to_chat(user, span_warning("That's not a magazine!"))
-		return
-
-	if(magazine.flags_magazine & AMMUNITION_HANDFUL)
-		to_chat(user, span_warning("[src] needs an actual magazine."))
-		return
-
-	if(magazine.current_rounds <= 0)
-		to_chat(user, span_warning("[magazine] is empty!"))
-		return
-
-	if(!istype(src, magazine.gun_type))
+	if(!istype(magazine, magazine_type))
 		to_chat(user, span_warning("That magazine doesn't fit in there!"))
 		return
 
@@ -467,62 +438,72 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		to_chat(user, span_warning("It's still got something loaded."))
 		return
 
+	if(check_ammo_amount(magazine) <= 0)
+		to_chat(user, span_warning("[magazine] is empty!"))
+		return
+
+	if(!check_magazine(magazine, user))
+		return
+
+	return finish_reload(user, magazine)
 
 
-	if(user)
-		if(magazine.reload_delay > 1)
-			to_chat(user, span_notice("You begin reloading [src]. Hold still..."))
-			if(do_after(user, magazine.reload_delay, TRUE, CHECK_BITFIELD(flags_item, IS_DEPLOYED) || master_gun ? loc : src, BUSY_ICON_GENERIC))
-				replace_magazine(user, magazine)
-			else
-				to_chat(user, span_warning("Your reload was interrupted!"))
-				return
-		else
-			replace_magazine(user, magazine)
-	else
-		current_mag = magazine
-		magazine.loc = src
-		replace_ammo(,magazine)
-		if(!in_chamber)
-			load_into_chamber()
-
-	update_icon(user)
-	user.hud_used.update_ammo_hud(user, src)
-	return TRUE
-
-/obj/item/weapon/gun/proc/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
-	user.transferItemToLoc(magazine, src) //Click!
-	current_mag = magazine
-	replace_ammo(user,magazine)
+/obj/item/weapon/gun/proc/finish_reload(mob/living/user, obj/item/magazine)
+	user?.temporarilyRemoveItemFromInventory(magazine)
+	magazine.forceMove(src)
 	if(!in_chamber)
 		load_into_chamber()
-		if(!(flags_gun_features & GUN_ENERGY))
-			cock_gun(user)
-	user.visible_message(span_notice("[user] loads [magazine] into [src]!"),
+		if(cocked_sound)
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, user, cocked_sound, 25, 1), 3)
+	user?.visible_message(span_notice("[user] loads [magazine] into [src]!"),
 	span_notice("You load [magazine] into [src]!"), null, 3)
 	if(reload_sound)
 		playsound(user, reload_sound, 25, 1, 5)
-	user.hud_used.update_ammo_hud(user, src)
+	sync_ammo(magazine, FALSE)
+	user?.hud_used.update_ammo_hud(user, src)
 	update_icon()
 
+/obj/item/weapon/gun/proc/check_magazine(obj/item/magazine, mob/user)
+	var/obj/item/ammo_magazine/mag = magazine
+	if(!istype(src, mag.gun_type))
+		to_chat(user, span_warning("That magazine doesn't fit in there!"))
+		return FALSE
+	if(user && mag.reload_delay > 1)
+		to_chat(user, span_notice("You begin reloading [src]. Hold still..."))
+		if(!do_after(user, mag.reload_delay, TRUE, CHECK_BITFIELD(flags_item, IS_DEPLOYED) || master_gun ? loc : src, BUSY_ICON_GENERIC))
+			to_chat(user, span_warning("Your reload was interrupted!"))
+			return FALSE
+	return TRUE
 
-//Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
-//This can be passed with a null user, so we need to check for that as well.
-/obj/item/weapon/gun/proc/unload(mob/user, reload_override = 0, drop_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst. Drop is for dropping the magazine on the ground.
-	if(!reload_override && ((flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)) || HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING)))
+/obj/item/weapon/gun/proc/check_ammo_amount(obj/item/magazine)
+	var/obj/item/ammo_magazine/mag = magazine
+	return mag.current_rounds
+
+/obj/item/weapon/gun/proc/sync_ammo(obj/item/magazine, gun_to_mag = TRUE)
+	var/obj/item/ammo_magazine/mag = magazine
+	if(gun_to_mag)
+		mag.current_rounds = current_rounds
+		return
+	current_rounds = mag.current_rounds
+	max_rounds = mag.max_rounds
+	ammo = GLOB.ammo_list[overcharge ? mag.overcharge_ammo : mag.default_ammo]
+
+/obj/item/weapon/gun/proc/unload(mob/user, reload_override = FALSE, drop_override = FALSE)
+	if(!reload_override || HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return FALSE
 
-	if((!current_mag || isnull(current_mag) || current_mag.loc != src) && !(flags_gun_features & GUN_ENERGY))
+	if((!current_mag || current_mag.loc != src))
 		return cock(user)
 
 	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
-		current_mag.loc = get_turf(src) //Drop it on the ground.
+		current_mag.forceMove(get_turf(src))
 	else
 		user.put_in_hands(current_mag)
 
 	playsound(loc, unload_sound, 25, 1, 5)
 	user?.visible_message(span_notice("[user] unloads [current_mag] from [src]."),
 	span_notice("You unload [current_mag] from [src]."), null, 4)
+	sync_ammo(current_mag)
 	current_mag.update_icon()
 	current_mag = null
 	user.hud_used.update_ammo_hud(user, src)
@@ -539,7 +520,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		return FALSE
 
 	cock_cooldown = world.time + cock_delay
-	cock_gun(user)
+	if(cocked_sound)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, user, cocked_sound, 25, 1), 3)
 	if(in_chamber)
 		user?.visible_message(span_notice("[user] cocks [src], clearing a [in_chamber.name] from its chamber."),
 		span_notice("You cock [src], clearing a [in_chamber.name] from its chamber."), null, 4)
@@ -548,7 +530,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		var/bullet_ammo_type = in_chamber.ammo.type
 		var/bullet_caliber
 		if(current_mag)
-			bullet_caliber = current_mag.caliber //make sure it's the functional caliber
+			var/obj/item/ammo_magazine/mag = current_mag
+			bullet_caliber = mag.caliber //make sure it's the functional caliber
 		else
 			bullet_caliber = caliber //if not, the codex caliber will have to do.
 
@@ -591,7 +574,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 //Since reloading and casings are closely related, placing this here ~N
 /obj/item/weapon/gun/proc/make_casing(casing_type) //Handle casings is set to discard them.
 	if(casing_type)
-		var/num_of_casings = (current_mag && current_mag.used_casings) ? current_mag.used_casings : 1
+		var/obj/item/ammo_magazine/mag = current_mag
+		var/num_of_casings = (mag && mag.used_casings) ? mag.used_casings : 1
 		var/sound_to_play = casing_type == "shell" ? 'sound/bullets/bulletcasing_shotgun_fall1.ogg' : pick('sound/bullets/bulletcasing_fall2.ogg','sound/bullets/bulletcasing_fall1.ogg')
 		var/turf/current_turf = get_turf(src)
 		var/new_casing = text2path("/obj/item/ammo_casing/[casing_type]")
@@ -722,10 +706,12 @@ and you're good to go.
 
 
 /obj/item/weapon/gun/proc/ready_in_chamber()
-	if(current_mag && current_mag.current_rounds > 0)
+	if(current_rounds > 0)
 		in_chamber = create_bullet(ammo)
-		current_mag.current_rounds-- //Subtract the round from the mag.
+		current_rounds-- //Subtract the round from the mag.
+		sync_ammo(current_mag)
 		return in_chamber
+	return null
 
 /obj/item/weapon/gun/proc/create_bullet(datum/ammo/chambered)
 	if(!chambered)
@@ -752,7 +738,7 @@ and you're good to go.
 
 	if(current_mag) //If there is no mag, we can't reload.
 		ready_in_chamber(user)
-		if(current_mag.current_rounds <= 0 && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
+		if(current_rounds <= 0 && CHECK_BITFIELD(flags_gun_features, GUN_AUTO_EJECTOR)) // This is where the magazine is auto-ejected.
 			unload(user, TRUE, TRUE) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
 			playsound(src, empty_sound, 25, 1)
 
@@ -1023,7 +1009,7 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/play_fire_sound(mob/user)
 	//Guns with low ammo have their firing sound
-	var/firing_sndfreq = ((current_mag?.current_rounds / current_mag?.max_rounds) > 0.25) ? FALSE : 55000
+	var/firing_sndfreq = ((current_rounds / max_rounds) > 0.25) ? FALSE : 55000
 	if(HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 		playsound(user, fire_sound, 25, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 		return
