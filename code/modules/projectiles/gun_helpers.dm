@@ -837,6 +837,7 @@ should be alright.
 		DISABLE_BITFIELD(flags_gun_features, AUTO_AIM_MODE)
 
 /obj/item/weapon/gun/proc/toggle_aim_mode(mob/living/carbon/human/user)
+	var/static/not_wielded_msg = "You need to wield your gun before aiming.</b>"
 	var/static/image/aim_mode_visual = image('icons/mob/hud.dmi', null, "aim_mode")
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_AIMING))
 		user.overlays -= aim_mode_visual
@@ -846,7 +847,7 @@ should be alright.
 		to_chat(user, span_notice("You cease aiming.</b>"))
 		return
 	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		to_chat(user, span_notice("You need to wield your gun before aiming.</b>"))
+		to_chat(user, span_notice(not_wielded_msg))
 		return
 	if(!user.wear_id)
 		to_chat(user, span_notice("You don't have distinguished allies you want to avoid shooting.</b>"))
@@ -859,6 +860,9 @@ should be alright.
 		if(!do_after(user, 1 SECONDS, TRUE, CHECK_BITFIELD(flags_item, IS_DEPLOYED) ? loc : src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
 			to_chat(user, span_warning("Your concentration is interrupted!</b>"))
 			return
+	if(!CHECK_BITFIELD(flags_item, WIELDED))
+		to_chat(user, span_notice(not_wielded_msg))
+		return
 	user.overlays += aim_mode_visual
 	ENABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
 	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_speed_modifier)
