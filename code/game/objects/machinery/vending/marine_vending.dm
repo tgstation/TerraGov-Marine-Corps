@@ -315,8 +315,8 @@
 			/obj/item/ammo_magazine/pistol/plasma_pistol = -1,
 		),
 		"Specialized" = list(
-			/obj/item/weapon/gun/launcher/m92/standardmarine = -1,
-			/obj/item/weapon/gun/launcher/m81 = -1,
+			/obj/item/weapon/gun/grenade_launcher/multinade_launcher = -1,
+			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 4,
 			/obj/item/storage/box/recoilless_system = 2,
@@ -381,7 +381,7 @@
 			/obj/item/binoculars = -1,
 			/obj/item/compass = -1,
 			/obj/item/assembly/signaler = 20,
-			/obj/item/weapon/gun/launcher/m81/flare/marine = -1,
+			/obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine = -1,
 			/obj/item/jetpack_marine = 3,
 		),
 	)
