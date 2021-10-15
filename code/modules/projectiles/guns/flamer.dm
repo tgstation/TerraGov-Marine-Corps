@@ -179,19 +179,16 @@
 				range /= 2
 			recursive_flame_cone(1, old_turfs, dir_to_target, range, current_target)
 
-///Checks whether or not the recursive proc should continue.
-/obj/item/weapon/gun/flamer/proc/recursive_check(list/turf/old_turfs, range, current_target, iteration)
-	if(current_mag?.current_rounds <= 0)
-		light_pilot(FALSE)
-		return FALSE
-	if(!length(old_turfs) || iteration > range || !current_target || (current_target in old_turfs))
-		return FALSE
-	return TRUE
+#define RECURSIVE_CHECK(old_turfs, range, current_target, iteration) (!length(old_turfs) || iteration > range || !current_target || (current_target in old_turfs))
+
 
 ///Flames recursively a straight path.
 /obj/item/weapon/gun/flamer/proc/recursive_flame_straight(iteration, list/turf/old_turfs, list/turf/path_to_target, range, current_target)
-
-	if(!recursive_check(old_turfs, range, current_target, iteration))
+	if(current_mag?.current_rounds <= 0)
+		light_pilot(FALSE)
+		return
+	
+	if(RECURSIVE_CHECK(old_turfs, range, current_target, iteration))
 		return
 
 	var/list/turf/turfs_to_ignite = list()
@@ -205,9 +202,13 @@
 
 ///Flames recursively a cone.
 /obj/item/weapon/gun/flamer/proc/recursive_flame_cone(iteration, list/turf/old_turfs, dir_to_target, range, current_target)
-
-	if(!recursive_check(old_turfs, range, current_target, iteration))
+	if(current_mag?.current_rounds <= 0)
+		light_pilot(FALSE)
 		return
+
+	if(RECURSIVE_CHECK(old_turfs, range, current_target, iteration))
+		return
+
 
 	var/list/turf/turfs_to_ignite = list()
 	var/list/turf/turfs_skip_old = list()
@@ -230,6 +231,8 @@
 		return
 	iteration++
 	addtimer(CALLBACK(src, .proc/recursive_flame_cone, iteration, turfs_to_ignite, dir_to_target, range, current_target), flame_spread_time)
+
+#undef RECURSIVE_CHECK
 
 ///Checks and lights the turfs in turfs_to_burn
 /obj/item/weapon/gun/flamer/proc/burn_list(list/turf/turfs_to_burn)
