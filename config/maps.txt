@@ -57,3 +57,6 @@ endmap
 
 map marine_hq
 endmap
+
+map zeus
+endmap
