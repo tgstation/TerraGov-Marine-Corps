@@ -3,7 +3,7 @@
 
 //Mob movement define
 #define DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER 1.6
-
+#define PULL_CHARGE_TIME 2 SECONDS
 
 //Pain or shock reduction for different reagents
 #define PAIN_REDUCTION_VERY_LIGHT -10 //alkysine
@@ -445,7 +445,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define HIVE_CAN_HIJACK (1<<0)
 
-#define XENO_PULL_CHARGE_TIME 2 SECONDS
 #define XENO_SLOWDOWN_REGEN 0.4
 #define QUEEN_DEATH_TIMER 5 MINUTES
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
