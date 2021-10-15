@@ -509,6 +509,9 @@
 		var/mob/pulled_mob = AM
 		log_combat(src, pulled_mob, "grabbed")
 		do_attack_animation(pulled_mob, ATTACK_EFFECT_GRAB)
+		
+		if(!do_mob(src, pulled_mob, PULL_CHARGE_TIME, BUSY_ICON_HOSTILE))
+				return FALSE
 
 		if(!suppress_message)
 			visible_message(span_warning("[src] has grabbed [pulled_mob] passively!"), null, null, 5)
