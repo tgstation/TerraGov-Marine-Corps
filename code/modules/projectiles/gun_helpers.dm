@@ -235,7 +235,13 @@ should be alright.
 		reload_sentry_cell(I, user)
 		return
 
-	if((istype(I, /obj/item/ammo_magazine) || istype(I, /obj/item/cell)) && check_inactive_hand(user))
+	if(istype(I, /obj/item/ammo_magazine) && check_inactive_hand(user))
+		var/obj/item/ammo_magazine/magazine = I
+		if(CHECK_BITFIELD(magazine.flags_magazine,  AMMUNITION_WORN))
+			return
+		reload(user, magazine)
+		return
+	if(istype(I, /obj/item/cell) && check_inactive_hand(user))
 		reload(user, I)
 		return
 
