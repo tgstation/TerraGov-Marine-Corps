@@ -15060,6 +15060,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
+"kcP" = (
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle6)
 "kdc" = (
 /obj/structure/cargo_container/hd_blue{
 	icon_state = "NT"
@@ -18689,6 +18695,10 @@
 /obj/structure/jungle/plantbot1/alien,
 /turf/open/floor,
 /area/lv624/ground/river3)
+"xdq" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/sw)
 "xee" = (
 /obj/effect/ai_node,
 /turf/open/floor/marking/warning{
@@ -18772,6 +18782,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
+"xtq" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle4)
 "xtz" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
@@ -24310,13 +24324,13 @@ aSa
 eso
 eso
 eso
+aYc
 eso
-eso
 wNe
 wNe
 wNe
 wNe
-wNe
+xtq
 tyH
 tyH
 tyH
@@ -25763,7 +25777,7 @@ biS
 biS
 eHm
 boA
-vmp
+xdq
 qyR
 bdu
 hAe
@@ -26837,7 +26851,7 @@ aHT
 aFB
 bcD
 blb
-vmp
+xdq
 qda
 exa
 fis
@@ -28409,7 +28423,7 @@ axQ
 axQ
 aBP
 aBM
-eso
+aYc
 atH
 iMd
 aXH
@@ -29851,7 +29865,7 @@ avd
 avd
 aOj
 eso
-pWw
+fdX
 eso
 kir
 avx
@@ -30567,7 +30581,7 @@ axQ
 axQ
 aOj
 eso
-lXV
+kcP
 pWw
 fdX
 eso
