@@ -372,8 +372,7 @@
 	amount = 5
 	///Delay between throwing.
 	var/throw_delay = 0
-	///Time of last throw.
-	var/last_thrown
+	COOLDOWN_DECLARE(last_thrown)
 
 /obj/item/stack/throwing_knife/Initialize(mapload, new_amount)
 	. = ..()
@@ -401,7 +400,7 @@
 /obj/item/stack/throwing_knife/proc/throw_knife(datum/source, atom/target, params)
 	SIGNAL_HANDLER
 	var/mob/living/user = source
-	if(user.Adjacent(target) || user.get_active_held_item() != src || (world.time < last_thrown + throw_delay))
+	if(user.Adjacent(target) || user.get_active_held_item() != src || !COOLDOWN_CHECK(src, last_thrown))
 		return
 	var/thrown_thing = src
 	if(amount == 1)
@@ -416,9 +415,9 @@
 		amount--
 		thrown_thing = knife_to_throw
 	playsound(src, 'sound/effects/throw.ogg', 30, 1)
-	visible_message(span_warning("[user] has expertly thrown [thrown_thing]."), null, null, 5)
+	visible_message(span_warning("[user] expertly throws [thrown_thing]."), null, null, 5)
 	update_icon()
-	last_thrown = world.time
+	COOLDOWN_START(src, last_thrown, throw_delay)
 
 ///Fills any stacks currently in the tile that this object is thrown to.
 /obj/item/stack/throwing_knife/proc/post_throw()
