@@ -98,3 +98,6 @@
 	icon_state = "blue"
 	ceiling = CEILING_NONE
 	outside = TRUE
+
+/area/icy_caves/outpost/outside/center
+	name = "\improper Colony Central Grounds"
