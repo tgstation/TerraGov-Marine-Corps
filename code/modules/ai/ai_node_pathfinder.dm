@@ -78,6 +78,9 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 		goal_image.layer = BELOW_FULLSCREEN_LAYER
 		creator.client.images += goal_image
 
+/obj/effect/ai_node/goal/LateInitialize()
+	make_adjacents(TRUE)
+
 /obj/effect/ai_node/goal/Destroy()
 	. = ..()
 	GLOB.goal_nodes -= identifier

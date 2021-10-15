@@ -71,9 +71,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 //We finished moving to a node, let's pick a random nearby one to travel to
 /datum/ai_behavior/proc/finished_node_move()
 	SIGNAL_HANDLER
-	if(current_node == goal_node)
-		change_action(MOVING_TO_ATOM, current_node, rand(2, 6))
-		return
 	look_for_next_node(FALSE)
 
 //Cleans up signals related to the action and element(s)

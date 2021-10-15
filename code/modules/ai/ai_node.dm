@@ -78,9 +78,9 @@
 	return adjacent_nodes[pick(adjacent_nodes)]
 
 ///Clears the adjacencies of src and repopulates it, it will consider nodes "adjacent" to src should it be less 15 turfs away
-/obj/effect/ai_node/proc/make_adjacents()
+/obj/effect/ai_node/proc/make_adjacents(bypass_diagonal_check = FALSE)
 	for(var/obj/effect/ai_node/node AS in GLOB.allnodes)
-		if(node == src || node.z != z || get_dist(src, node) > MAX_NODE_RANGE || (!Adjacent(node) && ISDIAGONALDIR(get_dir(src, node))))
+		if(node == src || node.z != z || get_dist(src, node) > MAX_NODE_RANGE || (!bypass_diagonal_check && !Adjacent(node) && ISDIAGONALDIR(get_dir(src, node))))
 			continue
 		if(get_dist(src, adjacent_nodes["[get_dir(src, node)]"]) < get_dist(src, node))
 			continue
