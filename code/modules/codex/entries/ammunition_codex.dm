@@ -26,7 +26,7 @@
 		if(ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
 			entry.mechanics_text += "Secondary effect: explosion.<br>"
 
-		if(ammo.flags_ammo_behavior & AMMO_CHAINING)
+		if(ammo.flags_ammo_behavior & SPECIAL_PROCESS)
 			entry.mechanics_text += "Secondary effect: hits nearby targets in-flight.<br>"
 
 		if(ammo.penetration)

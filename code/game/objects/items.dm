@@ -149,6 +149,7 @@
 	master = null
 	embedding = null
 	embedded_into = null //Should have been removed by temporarilyRemoveItemFromInventory, but let's play it safe.
+	GLOB.cryoed_item_list -= src
 	return ..()
 
 
@@ -414,6 +415,9 @@
 		mob_equip = H.species.hud.equip_slots
 
 	if(H.species && !(slot in mob_equip))
+		return FALSE
+
+	if(slot in H.species?.no_equip)
 		if(!is_type_in_list(H.species, species_exception))
 			return FALSE
 

@@ -13,16 +13,15 @@
 	upgrade = XENO_UPGRADE_ZERO
 	pull_speed = -2
 
-
 // ***************************************
 // *********** Icon
 // ***************************************
 /mob/living/carbon/xenomorph/defender/handle_special_state()
 	if(fortify)
-		icon_state = "Defender Fortify"
+		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Fortify"
 		return TRUE
 	if(crest_defense)
-		icon_state = "Defender Crest"
+		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Crest"
 		return TRUE
 	return FALSE
 

@@ -69,13 +69,15 @@
 /datum/action/xeno_action/tail_sweep/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/tail_sweep/ai_should_use(target)
+/datum/action/xeno_action/tail_sweep/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 1)
-		return ..()
+		return FALSE
 	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
 
 // ***************************************
@@ -90,6 +92,10 @@
 	plasma_cost = 80
 	use_state_flags = XACT_USE_CRESTED|XACT_USE_FORTIFIED
 	keybind_signal = COMSIG_XENOABILITY_FORWARD_CHARGE
+	///How far can we charge
+	var/range = 4
+	///How long is the windup before charging
+	var/windup_time = 0.5 SECONDS
 
 /datum/action/xeno_action/activable/forward_charge/proc/charge_complete()
 	SIGNAL_HANDLER
@@ -130,11 +136,7 @@
 /datum/action/xeno_action/activable/forward_charge/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, .proc/obj_hit)
-	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
-	RegisterSignal(X, COMSIG_XENO_NONE_THROW_HIT, .proc/charge_complete)
-
-	if(!do_after(X, 0.5 SECONDS, FALSE, X, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
+	if(!do_after(X, windup_time, FALSE, X, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 
 	var/mob/living/carbon/xenomorph/defender/defender = X
@@ -153,9 +155,30 @@
 	X.emote("roar")
 	succeed_activate()
 
-	X.throw_at(A, 4, 70, X)
+	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, .proc/obj_hit,)
+	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
+	RegisterSignal(X, COMSIG_XENO_NONE_THROW_HIT, .proc/charge_complete)
+
+	X.throw_at(A, range, 70, X)
 
 	add_cooldown()
+
+/datum/action/xeno_action/activable/forward_charge/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/forward_charge/ai_should_use(atom/target)
+	if(!iscarbon(target))
+		return FALSE
+	if(get_dist(target, owner) > range)
+		return FALSE
+	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
+	action_activate()
+	owner.canmove = FALSE
+	addtimer(VARSET_CALLBACK(owner, canmove, TRUE), windup_time)
+	return TRUE
 
 // ***************************************
 // *********** Crest defense

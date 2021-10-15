@@ -187,7 +187,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.update_force_list() //This updates the gun to use proper force verbs.
 
 	if(silence_mod)
-		master_gun.flags_gun_features |= GUN_SILENCED
+		ADD_TRAIT(master_gun, TRAIT_GUN_SILENCED, GUN_TRAIT)
 		master_gun.muzzle_flash = null
 		master_gun.fire_sound = "gun_silenced"
 
@@ -215,7 +215,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.aim_speed_modifier			-= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	-= shot_marine_damage_falloff
 	master_gun.aim_fire_delay 				+= cached_aim_mode_debuff_fire_rate
-	if(CHECK_BITFIELD(master_gun.flags_gun_features, GUN_IS_AIMING))
+	if(HAS_TRAIT(master_gun, TRAIT_GUN_IS_AIMING))
 		master_gun.modify_fire_delay(cached_aim_mode_debuff_fire_rate)
 	cached_aim_mode_debuff_fire_rate = 0
 	if(delay_mod)
@@ -244,7 +244,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.update_force_list()
 
 	if(silence_mod) //Built in silencers always come as an attach, so the gun can't be silenced right off the bat.
-		master_gun.flags_gun_features &= ~GUN_SILENCED
+		REMOVE_TRAIT(master_gun, TRAIT_GUN_SILENCED, GUN_TRAIT)
 		master_gun.muzzle_flash = initial(master_gun.muzzle_flash)
 		master_gun.fire_sound = initial(master_gun.fire_sound)
 
@@ -557,15 +557,16 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.set_light_power(0)
 		master_gun.set_light_on(FALSE)
 		light_on = FALSE
+		REMOVE_TRAIT(master_gun, TRAIT_GUN_FLASHLIGHT_ON, GUN_TRAIT)
 	else if(toggle_on & !light_on)
 		icon_state = "flashlight-on"
 		master_gun.set_light_range(light_mod)
 		master_gun.set_light_power(3)
 		master_gun.set_light_on(TRUE)
 		light_on = TRUE
+		ADD_TRAIT(master_gun, TRAIT_GUN_FLASHLIGHT_ON, GUN_TRAIT)
 	else
 		return
-	master_gun.flags_gun_features ^= GUN_FLASHLIGHT_ON
 
 	for(var/X in master_gun.actions)
 		var/datum/action/A = X
@@ -663,6 +664,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/scope/unremovable/tl127
 	name = "T-45 rail scope"
+	icon_state = "sniperscope_invisible"
 	aim_speed_mod = 0
 	wield_delay_mod = 0
 	desc = "A rail mounted zoom sight scope specialized for the T-127 sniper rifle. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
@@ -671,6 +673,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/scope/unremovable/heavymachinegun
 	name = "MG-08/495 long range ironsights"
 	desc = "An unremovable set of long range ironsights for an MG-08/495 machinegun."
+	icon_state = "sniperscope_invisible"
 	flags_attach_features = ATTACH_ACTIVATION
 	zoom_viewsize = 0
 	zoom_tile_offset = 3
@@ -679,6 +682,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/scope/unremovable/tl102
 	name = "TL-102 smart sight"
 	desc = "An unremovable smart sight built for use with the tl102, it does nearly all the aiming work for the gun's integrated IFF systems."
+	icon_state = "sniperscope_invisible"
 	zoom_viewsize = 0
 	zoom_tile_offset = 3
 

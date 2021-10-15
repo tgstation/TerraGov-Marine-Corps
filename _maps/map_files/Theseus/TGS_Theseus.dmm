@@ -3948,7 +3948,10 @@
 /area/mainship/hallways/starboard_hallway)
 "blh" = (
 /obj/structure/table/mainship,
-/obj/item/storage/donut_box,
+/obj/item/reagent_containers/food/condiment/saltshaker,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/food/condiment/peppermill,
+/obj/item/reagent_containers/glass/rag,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/grunt_rnr)
 "bli" = (
@@ -4031,13 +4034,6 @@
 /obj/machinery/microwave,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
-"blM" = (
-/obj/structure/rack,
-/obj/item/reagent_containers/food/condiment/enzyme,
-/obj/item/reagent_containers/food/condiment/enzyme,
-/obj/item/reagent_containers/food/condiment/enzyme,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
 "blN" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -4410,7 +4406,7 @@
 	},
 /area/mainship/medical/medical_science)
 "bpe" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway)
 "bpf" = (
@@ -7641,6 +7637,7 @@
 "bVS" = (
 /obj/structure/table/mainship,
 /obj/item/toy/deck,
+/obj/item/storage/donut_box,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "bVU" = (
@@ -8020,13 +8017,21 @@
 /obj/item/reagent_containers/food/snacks/grown/potato,
 /obj/item/reagent_containers/food/snacks/grown/potato,
 /obj/item/reagent_containers/food/snacks/grown/potato,
+/obj/item/reagent_containers/food/condiment/sugar,
+/obj/item/reagent_containers/food/condiment/sugar,
+/obj/item/reagent_containers/food/condiment/sugar,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/glass/fertilizer/ez,
+/obj/item/reagent_containers/glass/fertilizer/ez,
+/obj/item/tool/minihoe,
+/obj/item/tool/plantspray/weeds,
+/obj/item/tool/plantspray/weeds,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "caJ" = (
-/obj/structure/rack,
-/obj/item/reagent_containers/food/condiment/sugar,
-/obj/item/reagent_containers/food/condiment/sugar,
-/obj/item/reagent_containers/food/condiment/sugar,
+/obj/machinery/portable_atmospherics/hydroponics,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "caM" = (
@@ -8152,12 +8157,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "ccc" = (
-/obj/structure/rack,
-/obj/item/reagent_containers/food/snacks/chocolatebar,
-/obj/item/reagent_containers/food/snacks/chocolatebar,
-/obj/item/reagent_containers/food/snacks/chocolatebar,
-/obj/item/reagent_containers/food/snacks/chocolatebar,
-/obj/item/reagent_containers/food/snacks/chocolatebar,
+/obj/machinery/grill/unwrenched,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "ccd" = (
@@ -8885,7 +8885,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/lower_engineering)
 "cUI" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -10599,7 +10599,7 @@
 /turf/open/floor/mainship/orange,
 /area/mainship/squads/alpha)
 "gbU" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/mainship/silver{
 	dir = 6
 	},
@@ -11681,11 +11681,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/port_hull)
 "igT" = (
-/obj/structure/table/mainship,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/reagent_containers/glass/rag,
-/obj/item/reagent_containers/food/condiment/peppermill,
-/obj/item/reagent_containers/food/condiment/saltshaker,
+/obj/machinery/griddle,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/grunt_rnr)
 "ihG" = (
@@ -13341,7 +13337,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
 "loD" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/mainship/silver{
 	dir = 5
 	},
@@ -13488,15 +13484,10 @@
 	},
 /area/mainship/medical/operating_room_one)
 "lzY" = (
-/obj/item/tool/minihoe,
-/obj/item/reagent_containers/glass/fertilizer/ez,
-/obj/item/reagent_containers/glass/fertilizer/ez,
-/obj/item/tool/plantspray/weeds,
-/obj/item/tool/plantspray/weeds,
-/obj/structure/table/mainship,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/vending/hydronutrients,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "lAe" = (
@@ -14524,7 +14515,7 @@
 	},
 /area/mainship/command/bridge)
 "noV" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -17738,7 +17729,7 @@
 	},
 /area/mainship/living/basketball)
 "tmb" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
@@ -55571,7 +55562,7 @@ nqG
 bZe
 bSw
 caJ
-blM
+caJ
 ccc
 bSw
 aVl

@@ -128,3 +128,10 @@
 	assets = list(
 		"ghost.png" = 'html/images/ghost.png'
 	)
+
+/datum/asset/spritesheet/blessingmenu
+	name = "blessingmenu"
+
+/datum/asset/spritesheet/blessingmenu/register()
+	InsertAll("", 'icons/UI_Icons/buyable_icons.dmi')
+	..()

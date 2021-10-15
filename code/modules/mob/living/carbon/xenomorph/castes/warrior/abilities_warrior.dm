@@ -81,13 +81,15 @@
 /datum/action/xeno_action/activable/lunge/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/lunge/ai_should_use(target)
+/datum/action/xeno_action/activable/lunge/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 2)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
 
 /datum/action/xeno_action/activable/lunge/use_ability(atom/A)
@@ -216,13 +218,15 @@
 /datum/action/xeno_action/activable/fling/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/fling/ai_should_use(target)
+/datum/action/xeno_action/activable/fling/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 1)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
 
 // ***************************************
@@ -506,11 +510,13 @@
 /datum/action/xeno_action/activable/punch/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/punch/ai_should_use(target)
+/datum/action/xeno_action/activable/punch/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 1)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE

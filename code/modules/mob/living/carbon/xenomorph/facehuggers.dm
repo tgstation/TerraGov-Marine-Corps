@@ -428,6 +428,9 @@
 	if(check_death && stat == DEAD)
 		return FALSE
 
+	if(faction == FACTION_XENO)
+		return FALSE
+
 	if(F.combat_hugger) //Combat huggers will attack anything else
 		return TRUE
 
@@ -435,7 +438,7 @@
 		return FALSE
 
 	if(!provoked)
-		if(species?.species_flags & IS_SYNTHETIC)
+		if(species?.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
 			return FALSE
 
 	if(on_fire)

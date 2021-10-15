@@ -58,8 +58,7 @@
 /datum/camerachunk/proc/update()
 	var/list/newVisibleTurfs = list()
 
-	for(var/camera in cameras)
-		var/obj/machinery/camera/c = camera
+	for(var/obj/machinery/camera/c AS in cameras)
 		if(!c)
 			continue
 		if(!c.can_use())
@@ -108,12 +107,12 @@
 	for(var/obj/machinery/camera/c in urange(CHUNK_SIZE, locate(x + (CHUNK_SIZE / 2), y + (CHUNK_SIZE / 2), z)))
 		if(c.can_use())
 			cameras += c
+			RegisterSignal(c, COMSIG_PARENT_QDELETING, .proc/remove_camera)
 
 	for(var/turf/t in block(locate(max(x, 1), max(y, 1), z), locate(min(x + CHUNK_SIZE - 1, world.maxx), min(y + CHUNK_SIZE - 1, world.maxy), z)))
 		turfs[t] = t
 
-	for(var/camera in cameras)
-		var/obj/machinery/camera/c = camera
+	for(var/obj/machinery/camera/c AS in cameras)
 		if(!c)
 			continue
 
@@ -134,6 +133,10 @@
 	for(var/turf in obscuredTurfs)
 		var/turf/t = turf
 		t.vis_contents += GLOB.cameranet.vis_contents_objects
+
+/datum/camerachunk/proc/remove_camera(atom/camera)
+	SIGNAL_HANDLER
+	cameras -= camera
 
 #undef UPDATE_BUFFER
 #undef CHUNK_SIZE

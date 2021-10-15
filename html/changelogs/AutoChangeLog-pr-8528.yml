@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes: 
+  - bugfix: "ammo counter for grenade launchers works"
+  - refactor: "refactored the grenade launcher code"

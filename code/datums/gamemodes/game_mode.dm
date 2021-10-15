@@ -28,8 +28,10 @@
 	var/list/points_per_faction
 	/// When are the shutters dropping
 	var/shutters_drop_time = 30 MINUTES
+	///Time before becoming a husk when going undefibbable
+	var/husk_transformation_time = 30 SECONDS
 	/** The time between two rounds of this gamemode. If it's zero, this mode i always votable.
-	 * It an integer in ticks, set in config. If it's 8 HOURS, it means that it will be votable again 8 hours 
+	 * It an integer in ticks, set in config. If it's 8 HOURS, it means that it will be votable again 8 hours
 	 * after the end of the last round with the gamemode type
 	 */
 	var/time_between_round = 0
@@ -92,6 +94,7 @@
 	return TRUE
 
 /datum/game_mode/proc/setup()
+	SHOULD_CALL_PARENT(TRUE)
 	SSjob.DivideOccupations()
 	create_characters()
 	spawn_characters()
@@ -99,6 +102,10 @@
 	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(flags_round_type, MODE_HUMAN_ONLY))
 	SSpoints.dropship_points = 0
 	SSpoints.supply_points[FACTION_TERRAGOV] = 0
+
+	for(var/hivenum in GLOB.hive_datums)
+		var/datum/hive_status/hive = GLOB.hive_datums[hivenum]
+		hive.setup_upgrades()
 	return TRUE
 
 
@@ -456,6 +463,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 				continue
 			if(H.status_flags & XENO_HOST)
 				continue
+			if(H.faction == FACTION_XENO)
+				continue
 			if(isspaceturf(H.loc))
 				continue
 			num_humans++
@@ -473,7 +482,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 				continue
 			if(isspaceturf(X.loc))
 				continue
-
+			if(X.xeno_caste.upgrade == XENO_UPGRADE_BASETYPE) //Ais don't count
+				continue
 			// Never count hivemind
 			if(isxenohivemind(X))
 				continue

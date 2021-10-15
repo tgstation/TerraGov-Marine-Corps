@@ -11,8 +11,14 @@
 /datum/keybinding/xeno/regurgitate
 	name = "regurgitate"
 	full_name = "Regurgitate / Cocoon"
-	description = "Vomit whatever you have devoured. / Cocoon the targeted body, which will produce psy and larva points over time.s"
+	description = "Vomit whatever you have devoured. / Cocoon the targeted body, which will produce psy and larva points over time."
 	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
+
+/datum/keybinding/xeno/blessingmenu
+	name = "blessings menu"
+	full_name = "Open Blessings Menu"
+	description = "Opens the Queen Mothers Blessings menu, where hive upgrades are bought"
+	keybind_signal = COMSIG_XENOABILITY_BLESSINGSMENU
 
 /datum/keybinding/xeno/drop_weeds
 	hotkey_keys = list("V")
@@ -105,6 +111,13 @@
 	full_name = "Pounce"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_POUNCE
+
+/datum/keybinding/xeno/nurogasnade
+	name = "neurogas"
+	full_name = "Sentinel: Neurogas Grenade"
+	description = "Throws a gas emitting grenade at the targetted area"
+	keybind_signal = COMSIG_XENOABILITY_NEUROGAS_GRENADE
+
 
 /datum/keybinding/xeno/plow_charge
 	name = "plow_charge"
@@ -202,6 +215,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
 
+/datum/keybinding/xeno/advance
+	name = "advance"
+	full_name = "Crusher: Rapid Advance"
+	description = "Charges up the crushers charge, then unleashes the full bulk of the crusher into a direction."
+	keybind_signal = COMSIG_XENOABILITY_ADVANCE
+
 /datum/keybinding/xeno/forward_charge
 	name = "forward charge"
 	full_name = "Defender: Forward charge"
@@ -261,6 +280,12 @@
 	full_name = "Defiler: Defile"
 	description = "Purges xeno toxins in exchange for dealing toxin damage and generating toxic sanguinal smoke."
 	keybind_signal = COMSIG_XENOABILITY_DEFILE
+
+/datum/keybinding/xeno/tentacle
+	name = "tentacle"
+	full_name = "Defiler: Tentacle"
+	description = "Allows the defiler to grab a tallhost or item from range and bring it towards the defiler."
+	keybind_signal = COMSIG_XENOABILITY_TENTACLE
 
 /datum/keybinding/xeno/resin_walker
 	name = "resin_walker"
@@ -346,6 +371,13 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
 
+
+/datum/keybinding/xeno/gravity_grenade
+	name = "gravnade"
+	full_name = "Shrike: Gravity Grenade"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_GRAV_NADE
+
 /datum/keybinding/xeno/screech
 	name = "screech"
 	full_name = "Queen: Screech"
@@ -411,6 +443,12 @@
 	full_name = "Ravager: Rage"
 	description = "While active, you will temporarily recover plasma and sunder and gain a bonus to speed and melee damage in proportion to the percentage of your missing health. At negative HP your ability cooldowns reset and your slash damage restores health."
 	keybind_signal = COMSIG_XENOABILITY_RAGE
+
+/datum/keybinding/xeno/ravager_vampirism
+	name = "togglevampirism"
+	full_name = "Ravager: Toggle vampirism"
+	description = "While active, will increase the ravagers healing for a while for every time it hits a new enemy. Effects stack."
+	keybind_signal = COMSIG_XENOABILITY_VAMPIRISM
 
 /datum/keybinding/xeno/ravage
 	name = "ravage"

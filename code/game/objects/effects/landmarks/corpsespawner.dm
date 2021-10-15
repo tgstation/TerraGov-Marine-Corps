@@ -48,11 +48,15 @@
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_humans_created")
 	victim.real_name = name
 	victim.death(silent = TRUE) //Kills the new mob
+	GLOB.dead_human_list -= victim
+	GLOB.dead_mob_list -= victim
+	GLOB.mob_list -= victim
 	victim.timeofdeath = -CONFIG_GET(number/revive_grace_period)
+	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+	victim.med_hud_set_status()
 	equip_items_to_mob(victim)
 	switch(death_type)
 		if(COCOONED_DEATH) //Just cocooned
-			ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 			new /obj/structure/cocoon/opened_cocoon(loc)
 		if(SILO_DEATH) //Headbite and siloed
 			var/datum/internal_organ/brain
