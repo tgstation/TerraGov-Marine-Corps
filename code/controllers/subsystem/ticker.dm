@@ -253,15 +253,13 @@ SUBSYSTEM_DEF(ticker)
 	else
 		time_left = newtime
 
+///loads the sound file into rsc for the users
 /datum/controller/subsystem/ticker/proc/SetRoundEndSound(the_sound)
 	set waitfor = FALSE
 	round_end_sound_sent = FALSE
 	round_end_sound = fcopy_rsc(the_sound)
-	for(var/thing in GLOB.clients)
-		var/client/C = thing
-		if (!C)
-			continue
-		C.Export("##action=load_rsc", round_end_sound)
+	for(var/client/cli AS in GLOB.clients)
+		cli.Export("##action=load_rsc", round_end_sound)
 	round_end_sound_sent = TRUE
 
 /datum/controller/subsystem/ticker/proc/load_mode()
@@ -375,7 +373,7 @@ SUBSYSTEM_DEF(ticker)
 		round_end_sound = choose_round_end_song()
 	///The reference to the end of round sound that we have chosen.
 	var/sound/end_of_round_sound_ref = sound(round_end_sound)
-	for(var/mob/M in GLOB.player_list)
+	for(var/mob/M AS in GLOB.player_list)
 		if(M.client.prefs?.toggles_sound & SOUND_NOENDOFROUND)
 			continue
 		SEND_SOUND(M.client, end_of_round_sound_ref)

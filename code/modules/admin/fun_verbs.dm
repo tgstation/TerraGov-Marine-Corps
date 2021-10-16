@@ -1058,6 +1058,7 @@
 	log_admin("[key_name(usr)] started weather of type [weather_type] on the z-level [z_level].")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Run Weather")
 
+///client verb to set round end sound
 /client/proc/set_round_end_sound(S as sound)
 	set category = "Fun"
 	set name = "Set Round End Sound"
