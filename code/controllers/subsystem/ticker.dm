@@ -18,6 +18,11 @@ SUBSYSTEM_DEF(ticker)
 
 	var/list/login_music = null						//Music played in pregame lobby
 
+	///music/jingle played when the world reboots
+	var/round_end_sound
+	///If all clients have loaded the round end sound
+	var/round_end_sound_sent = TRUE
+
 	var/delay_end = FALSE					//If set true, the round will not restart on it's own
 	var/admin_delay_notice = ""				//A message to display to anyone who tries to restart the world after a delay
 
@@ -216,6 +221,7 @@ SUBSYSTEM_DEF(ticker)
 	mode = SSticker.mode
 
 	login_music = SSticker.login_music
+	round_end_sound = SSticker.round_end_sound
 
 	delay_end = SSticker.delay_end
 
@@ -247,6 +253,16 @@ SUBSYSTEM_DEF(ticker)
 	else
 		time_left = newtime
 
+/datum/controller/subsystem/ticker/proc/SetRoundEndSound(the_sound)
+	set waitfor = FALSE
+	round_end_sound_sent = FALSE
+	round_end_sound = fcopy_rsc(the_sound)
+	for(var/thing in GLOB.clients)
+		var/client/C = thing
+		if (!C)
+			continue
+		C.Export("##action=load_rsc", round_end_sound)
+	round_end_sound_sent = TRUE
 
 /datum/controller/subsystem/ticker/proc/load_mode()
 	var/mode = trim(file2text("data/mode.txt"))
@@ -294,6 +310,7 @@ SUBSYSTEM_DEF(ticker)
 	to_chat(world, span_boldnotice("Rebooting World in [DisplayTimeText(delay)]. [reason]"))
 
 	var/start_wait = world.time
+	UNTIL(round_end_sound_sent || (world.time - start_wait) > (delay * 2)) //don't wait forever
 	sleep(delay - (world.time - start_wait))
 
 	if(delay_end && !skip_delay)
@@ -352,3 +369,25 @@ SUBSYSTEM_DEF(ticker)
 			to_chat(next_in_line, span_danger("No response received. You have been removed from the line."))
 			queued_players -= next_in_line
 			queue_delay = 0
+
+/datum/controller/subsystem/ticker/Shutdown()
+	if(!round_end_sound)
+		round_end_sound = choose_round_end_song()
+	///The reference to the end of round sound that we have chosen.
+	var/sound/end_of_round_sound_ref = sound(round_end_sound)
+	for(var/mob/M in GLOB.player_list)
+		if(M.client.prefs?.toggles_sound & SOUND_NOENDOFROUND)
+			continue
+		SEND_SOUND(M.client, end_of_round_sound_ref)
+
+	text2file(login_music, "data/last_round_lobby_music.txt")
+
+///picks a round end sound and returns it
+/datum/controller/subsystem/ticker/proc/choose_round_end_song()
+	var/list/reboot_sounds = flist("[global.config.directory]/reboot_themes/")
+	var/list/possible_themes = list()
+
+	for(var/themes in reboot_sounds)
+		possible_themes += themes
+	if(possible_themes.len)
+		return "[global.config.directory]/reboot_themes/[pick(possible_themes)]"
