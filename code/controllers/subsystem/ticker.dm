@@ -49,6 +49,7 @@ SUBSYSTEM_DEF(ticker)
 
 	return ..()
 
+///returns the string address of a random config lobby song
 /datum/controller/subsystem/ticker/proc/choose_lobby_song()
 	var/list/reboot_sounds = flist("[global.config.directory]/lobby_themes/")
 	var/list/possible_themes = list()
