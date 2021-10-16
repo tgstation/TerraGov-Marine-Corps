@@ -168,7 +168,6 @@
 	icon_state = "ram_trophy"
 	bound_width = 160
 	bound_height = 32
-	pixel_x = 80
 
 /obj/structure/prop/mainship/particle_cannon
 	name = "\improper 75cm/140 Mark 74 General Atomics railgun"
