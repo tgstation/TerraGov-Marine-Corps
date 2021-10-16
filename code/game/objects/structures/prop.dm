@@ -137,6 +137,10 @@
 	resistance_flags = UNACIDABLE
 	var/list/fallen_list
 
+/obj/structure/prop/mainship/ship_memorial/Initialize()
+	. = ..()
+	LAZYADD(fallen_list, "Aleksey, Bowl and Abuzar in toolbox tournament 2021")
+
 /obj/structure/prop/mainship/ship_memorial/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/dogtag))
 		var/obj/item/dogtag/D = I
