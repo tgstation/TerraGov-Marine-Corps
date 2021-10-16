@@ -187,7 +187,6 @@ The Grenade Launchers
 	)
 
 /obj/item/weapon/gun/grenade_launcher/underslung/update_icon(mob/user)
-	. = ..()
 	update_mag_overlay(user)
 
 /obj/item/weapon/gun/grenade_launcher/underslung/invisible
