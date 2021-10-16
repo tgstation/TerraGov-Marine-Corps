@@ -24,10 +24,10 @@ Contains most of the procs that are called when a mob is attacked by something
 
 				dropItemToGround(c_hand)
 				if (affected.limb_status & LIMB_ROBOT)
-					emote("me", 1, "drops what they were holding, their [affected.display_name] malfunctioning!")
+					emote("me", 1, "drops what they were holding, [p_their()] [affected.display_name] malfunctioning!")
 				else
 					var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
-					emote("me", 1, "[(species && species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [affected.display_name]!")
+					emote("me", 1, "[(species && species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in [p_their()] [affected.display_name]!")
 
 	return ..()
 
@@ -226,7 +226,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		switch(hit_area)
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
 				if(prob(damage) && stat == CONSCIOUS)
-					apply_effect(20, PARALYZE, armor)
+					Paralyze(20 /(armor+1) * 20)
 					visible_message(span_danger("[src] has been knocked unconscious!"),
 									span_danger("You have been knocked unconscious!"), null, 5)
 					hit_report += "(KO)"
@@ -423,4 +423,71 @@ Contains most of the procs that are called when a mob is attacked by something
 	apply_damage(stamina_damage, STAMINA, updating_health = TRUE)
 	if(!ear_deaf)
 		adjust_ear_damage(deaf = stun_duration)  //Deafens them temporarily
-	//Perception distorting effects of the psychic scream
+	//Perception distorting effects of the psychic scream*
+
+/mob/living/carbon/human/attackby(obj/item/I, mob/living/user, params)
+	if(stat != DEAD || I.sharp < IS_SHARP_ITEM_ACCURATE || user.a_intent != INTENT_HARM)
+		return ..()
+	if(!internal_organs_by_name["heart"])
+		to_chat(user, span_notice("[src] no longer has a heart."))
+		return
+	if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
+		to_chat(user, span_warning("You cannot resolve yourself to destroy [src]'s heart, as [p_they()] can still be saved!"))
+		return
+	to_chat(user, span_notice("You start to remove [src]'s heart, preventing [p_them()] from rising again!"))
+	if(!do_after(user, 2 SECONDS, TRUE, src))
+		return
+	if(!internal_organs_by_name["heart"])
+		to_chat(user, span_notice("The heart is no longer here!"))
+		return
+	log_combat(user, src, "ripped [src]'s heart", I)
+	visible_message(span_notice("[user] ripped off [src]'s heart!"), span_notice("You ripped off [src]'s heart!"))
+	internal_organs_by_name -= "heart"
+	var/obj/item/organ/heart/heart = new
+	heart.die()
+	user.put_in_hands(heart)
+	chestburst = 2
+	update_burst()
+
+/mob/living/carbon/human/welder_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(!hasorgans(src))
+		return ..()
+
+	if(user.a_intent != INTENT_HELP)
+		return ..()
+
+	var/datum/limb/hurtlimb = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(src, user) : get_limb(user.zone_selected)
+
+	if(!hurtlimb)
+		return TRUE
+
+	if(!(hurtlimb.limb_status & LIMB_ROBOT))
+		balloon_alert(user, "Limb not robotic")
+		return TRUE
+
+
+	if(!hurtlimb.brute_dam)
+		balloon_alert(user, "Nothing to fix!")
+		return TRUE
+
+	if(user.do_actions)
+		balloon_alert(user, "Already busy!")
+		return TRUE
+
+	var/repair_time = 1 SECONDS
+	if(src == user)
+		repair_time *= 3
+	if(!I.tool_use_check(user, 2))
+		return TRUE
+
+	user.visible_message(span_notice("[user] starts to fix some of the dents on [src]'s [hurtlimb.display_name]."),\
+		span_notice("You start fixing some of the dents on [src == user ? "your" : "[src]'s"] [hurtlimb.display_name]."))
+	while(hurtlimb.brute_dam && do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD) && I.use_tool(volume = 50, amount = 2))
+		hurtlimb.heal_limb_damage(15, robo_repair = TRUE, updating_health = TRUE)
+		UpdateDamageIcon()
+		user.visible_message(span_warning("\The [user] patches some dents on \the [src]'s [hurtlimb.display_name]."), \
+			span_warning("You patch some dents on \the [src]'s [hurtlimb.display_name]."))
+		if(!I.tool_use_check(user, 2))
+			return TRUE
+	return TRUE

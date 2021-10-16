@@ -148,9 +148,7 @@
 /area/barren/cave/lz2)
 "aK" = (
 /obj/structure/table/reinforced,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
-/obj/machinery/computer/shuttle/shuttle_control/dropship/two,
+/obj/effect/landmark/dropship_console_spawn_lz2,
 /turf/open/floor/tile/dark,
 /area/barren/cave/lz2)
 "aL" = (
@@ -489,7 +487,7 @@
 /turf/open/lavaland/lava,
 /area/barren/cave/east)
 "cB" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/grimy,
 /area/barren/civilian/workdorm)
@@ -5628,10 +5626,10 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/cobweb,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /obj/structure/table/reinforced,
+/obj/effect/landmark/dropship_console_spawn_lz1,
 /turf/open/floor/wood,
-/area/barren/cave/lz1)
+/area/lv624/lazarus/console)
 "Ca" = (
 /obj/structure/sink/bathroom,
 /turf/open/floor/prison/sterilewhite,
@@ -7036,7 +7034,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/explosive/grenade/frag/PMC,
+/obj/item/explosive/grenade/PMC,
 /obj/item/clothing/under/marine/veteran/PMC,
 /obj/item/clothing/under/marine/veteran/PMC,
 /obj/item/clothing/under/marine/veteran/PMC,
@@ -8645,6 +8643,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/barren/security)
+"ST" = (
+/obj/machinery/camera/autoname/lz_camera,
+/obj/effect/landmark/dropship_console_spawn_lz1,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "SU" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -9160,7 +9163,7 @@
 /turf/open/floor,
 /area/barren/cave/lz1)
 "VW" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
@@ -9733,6 +9736,10 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
+"Zz" = (
+/obj/effect/landmark/dropship_console_spawn_lz1,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "ZB" = (
 /obj/structure/cargo_container/horizontal,
 /turf/open/floor,
@@ -53877,7 +53884,7 @@ HR
 HR
 HR
 HR
-HR
+Zz
 HR
 HR
 HR
@@ -54649,7 +54656,7 @@ HR
 HR
 HR
 HR
-HR
+Zz
 HR
 HR
 xl
@@ -54906,7 +54913,7 @@ HR
 HR
 HR
 HR
-HR
+Zz
 HR
 HR
 xl
@@ -55163,7 +55170,7 @@ HR
 HR
 HR
 HR
-HR
+Zz
 HR
 HR
 xl
@@ -55420,7 +55427,7 @@ HR
 HR
 HR
 HR
-aS
+ST
 HR
 HR
 xl

@@ -317,6 +317,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	var/stretcher_activated
 	var/obj/structure/dropship_equipment/medevac_system/linked_medevac
 	var/obj/item/radio/headset/mainship/doc/radio
+	///A busy var to check if the strecher is already used to send someone to the beacon
+	var/busy = FALSE
 
 /obj/structure/bed/medevac_stretcher/Initialize(mapload)
 	. = ..()
@@ -339,6 +341,9 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 			linked_medevac.linked_stretcher = null
 			linked_medevac = null
 		update_icon()
+	if(linked_beacon)
+		linked_beacon.linked_bed_deployed = null
+		linked_beacon = null
 	return ..()
 
 /obj/structure/bed/medevac_stretcher/update_icon()
@@ -411,6 +416,19 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	if(!ishuman(user))
 		return
 
+	if(busy)
+		return
+
+	if(!linked_beacon)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		to_chat(user, span_warning("[src]'s bluespace engine isn't linked to any medvac beacon."))
+		return
+
+	if(user.faction != linked_beacon.faction)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		visible_message(span_warning("[src]'s safeties kick in before displacement as it fails to detect correct identification codes."))
+		return
+
 	if(world.time < last_teleport )
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		to_chat(user, span_warning("[src]'s bluespace engine is still recharging; it will be ready in [round(last_teleport - world.time) * 0.1] seconds."))
@@ -418,11 +436,6 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 	if(user in buckled_mobs)
 		to_chat(user, span_warning("You can't reach the teleportation activation button while buckled to [src]."))
-		return
-
-	if(!linked_beacon)
-		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
-		to_chat(user, span_warning("[src]'s bluespace engine isn't linked to any medvac beacon."))
 		return
 
 	if(!linked_beacon.planted)
@@ -445,9 +458,11 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	playsound(loc,'sound/mecha/powerup.ogg', 25, FALSE)
 	teleport_timer = addtimer(CALLBACK(src, .proc/medevac_teleport, user), MEDEVAC_TELE_DELAY, TIMER_STOPPABLE|TIMER_UNIQUE) //Activate after 5 second delay.
 	RegisterSignal(src, COMSIG_MOVABLE_UNBUCKLE, .proc/on_mob_unbuckle)
+	busy = TRUE
 
 /obj/structure/bed/medevac_stretcher/proc/on_mob_unbuckle(datum/source, mob/living/buckled_mob, force = FALSE)
 	SIGNAL_HANDLER
+	busy = FALSE
 	UnregisterSignal(src, COMSIG_MOVABLE_UNBUCKLE)
 	deltimer(teleport_timer)
 	playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
@@ -456,6 +471,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/structure/bed/medevac_stretcher/proc/medevac_teleport(mob/user)
 	UnregisterSignal(src, COMSIG_MOVABLE_UNBUCKLE)
+	busy = FALSE
 	if(!linked_beacon || !linked_beacon.check_power() || !linked_beacon.planted) //Beacon has to be planted in a powered area.
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		visible_message(span_warning("[src]'s safeties kick in before displacement as it fails to detect a powered, linked, and planted medvac beacon."))
@@ -472,6 +488,11 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	if(!M) //We need a mob to teleport or no deal
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		visible_message(span_warning("[src]'s bluespace engine aborts displacement, being unable to detect an appropriate evacuee."))
+		return
+
+	if(M.faction != linked_beacon.faction)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		visible_message(span_warning("[src]'s safeties kick in before displacement as it fails to detect correct identification codes."))
 		return
 
 	visible_message(span_notice("<b>[M] vanishes in a flash of sparks as [src]'s bluespace engine generates its displacement field.</b>"))
@@ -550,6 +571,12 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	var/obj/item/medevac_beacon/linked_beacon = null
 	rollertype = /obj/structure/bed/medevac_stretcher
 
+/obj/item/roller/medevac/Destroy()
+	if(linked_beacon)
+		linked_beacon.linked_bed = null
+		linked_beacon = null
+	return ..()
+
 /obj/item/roller/medevac/attack_self(mob/user)
 	deploy_roller(user, user.loc)
 
@@ -586,6 +613,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	var/obj/structure/bed/medevac_stretcher/linked_bed_deployed = null
 	req_one_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_MEDBAY)
 	var/obj/item/radio/headset/mainship/doc/radio
+	///The faction this beacon belongs to
+	var/faction
 
 /obj/item/medevac_beacon/Initialize(mapload)
 	. = ..()
@@ -593,6 +622,12 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/item/medevac_beacon/Destroy()
 	QDEL_NULL(radio)
+	if(linked_bed)
+		linked_bed.linked_beacon = null
+		linked_bed = null
+	else if(linked_bed_deployed)
+		linked_bed_deployed.linked_beacon = null
+		linked_bed_deployed = null
 	return ..()
 
 /obj/item/medevac_beacon/examine(mob/user)
@@ -634,6 +669,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	to_chat(user, span_warning("You plant and activate [src]."))
 	icon_state = "med_beacon1"
 	playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
+	faction = user.faction
 
 /obj/item/medevac_beacon/attack_hand(mob/living/user)
 	. = ..()

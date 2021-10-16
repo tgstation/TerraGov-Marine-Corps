@@ -162,6 +162,10 @@ obj/item/alienjar
 	density = FALSE
 	opacity = FALSE
 
+/obj/structure/stairs/railstairs
+	icon = 'icons/obj/structures/railstairs.dmi'
+	icon_state = "stairdownrailright"
+
 /obj/structure/plasticflaps //HOW DO YOU CALL THOSE THINGS ANYWAY
 	name = "\improper plastic flaps"
 	desc = "Completely impassable - or are they?"
@@ -186,7 +190,7 @@ obj/item/alienjar
 
 	if(isliving(A)) // You Shall Not Pass!
 		var/mob/living/M = A
-		if(!M.lying_angle && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/carbon/xenomorph/larva) && !istype(M, /mob/living/carbon/xenomorph/runner) && !istype(M, /mob/living/carbon/xenomorph/roony))  //If your not laying down, or a small creature, no pass. //todo kill shitcode
+		if(!M.lying_angle && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/carbon/xenomorph/larva) && !istype(M, /mob/living/carbon/xenomorph/runner))  //If your not laying down, or a small creature, no pass. //todo kill shitcode
 			return FALSE
 
 /obj/structure/plasticflaps/ex_act(severity)

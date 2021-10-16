@@ -42,8 +42,9 @@ stutter_step: a prob() chance to go left or right of the mob's direction towards
 			continue
 
 		//Okay it can actually physically move, but has it moved too recently?
-		if(world.time <= mob_to_process.next_move || mob_to_process.do_actions)
+		if(world.time <= (mob_to_process.last_move_time + mob_to_process.cached_multiplicative_slowdown + mob_to_process.next_move_slowdown) || mob_to_process.do_actions)
 			continue
+		mob_to_process.next_move_slowdown = 0
 		var/step_dir
 		if(get_dist(mob_to_process, atoms_to_walk_to[mob_to_process]) == distances_to_maintain[mob_to_process])
 			SEND_SIGNAL(mob_to_process, COMSIG_STATE_MAINTAINED_DISTANCE)
@@ -51,11 +52,15 @@ stutter_step: a prob() chance to go left or right of the mob's direction towards
 				step_dir = pick(CARDINAL_ALL_DIRS)
 				if(!mob_to_process.Move(get_step(mob_to_process, step_dir), step_dir))
 					SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE, step_dir)
+				else if(ISDIAGONALDIR(step_dir))
+					mob_to_process.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_to_process.cached_multiplicative_slowdown //Not perfect but good enough
 				continue
 			if(prob(stutter_step_prob[mob_to_process]))
 				step_dir = pick(LeftAndRightOfDir(get_dir(mob_to_process, atoms_to_walk_to[mob_to_process])))
 				if(!mob_to_process.Move(get_step(mob_to_process, step_dir), step_dir))
 					SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE, step_dir)
+				else if(ISDIAGONALDIR(step_dir))
+					mob_to_process.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_to_process.cached_multiplicative_slowdown
 			continue
 		if(get_dist(mob_to_process, atoms_to_walk_to[mob_to_process]) < distances_to_maintain[mob_to_process]) //We're too close, back it up
 			step_dir = get_dir(atoms_to_walk_to[mob_to_process], mob_to_process)
@@ -67,10 +72,14 @@ stutter_step: a prob() chance to go left or right of the mob's direction towards
 			next_turf = get_step(mob_to_process, step_dir)
 			if(!can_cross_lava_turf(next_turf))
 				continue
-			mob_to_process.Move(get_step(mob_to_process, step_dir), step_dir)
+			if(mob_to_process.Move(get_step(mob_to_process, step_dir), step_dir) && ISDIAGONALDIR(step_dir))
+				mob_to_process.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_to_process.cached_multiplicative_slowdown
+		else if(ISDIAGONALDIR(step_dir))
+			mob_to_process.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_to_process.cached_multiplicative_slowdown
 
-/datum/element/pathfinder/Detach(datum/source)
-	distances_to_maintain.Remove(source)
-	atoms_to_walk_to.Remove(source)
-	stutter_step_prob.Remove(source)
+
+/datum/element/pathfinder/Detach(mob/mob_parent)
+	distances_to_maintain.Remove(mob_parent)
+	atoms_to_walk_to.Remove(mob_parent)
+	stutter_step_prob.Remove(mob_parent)
 	return ..()

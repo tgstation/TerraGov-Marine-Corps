@@ -170,12 +170,6 @@
 	prime()
 
 
-/obj/item/explosive/grenade/chem_grenade/Crossed(atom/movable/AM)
-	. = ..()
-	if(nadeassembly)
-		nadeassembly.Crossed(AM)
-
-
 /obj/item/explosive/grenade/chem_grenade/prime()
 	if(stage != CG_READY)
 		return
@@ -290,11 +284,9 @@
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
-	B1.reagents.add_reagent(/datum/reagent/aluminum, 15)
-	B1.reagents.add_reagent(/datum/reagent/fuel,20)
-	B2.reagents.add_reagent(/datum/reagent/toxin/phoron, 15)
-	B2.reagents.add_reagent(/datum/reagent/toxin/acid, 15)
-	B1.reagents.add_reagent(/datum/reagent/fuel,20)
+	B1.reagents.add_reagent(/datum/reagent/aluminum, 30)
+	B1.reagents.add_reagent(/datum/reagent/toxin/acid,30)
+	B2.reagents.add_reagent(/datum/reagent/toxin/phoron, 60)
 
 	beakers += B1
 	beakers += B2

@@ -21,6 +21,11 @@
 	throw_range = 20
 	force = 0
 
+/obj/item/toy/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(!CONFIG_GET(flag/fun_allowed))
+		return FALSE
+	attack_hand(X)
+
 
 /*
 * Balloons
@@ -153,30 +158,39 @@
 	icon_state = "snappop"
 	w_class = WEIGHT_CLASS_TINY
 
-	throw_impact(atom/hit_atom)
-		..()
-		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-		s.set_up(3, 1, src)
-		s.start()
-		new /obj/effect/decal/cleanable/ash(src.loc)
-		src.visible_message(span_warning(" The [src.name] explodes!"),span_warning(" You hear a snap!"))
-		playsound(src, 'sound/effects/snap.ogg', 25, 1)
-		qdel(src)
-
-/obj/item/toy/snappop/Crossed(atom/movable/H)
+/obj/item/toy/snappop/Initialize()
 	. = ..()
-	if((ishuman(H))) //i guess carp and shit shouldn't set them off
-		var/mob/living/carbon/M = H
-		if(M.m_intent == MOVE_INTENT_RUN)
-			to_chat(M, span_warning("You step on the snap pop!"))
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
-			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-			s.set_up(2, 0, src)
-			s.start()
-			new /obj/effect/decal/cleanable/ash(src.loc)
-			src.visible_message(span_warning(" The [src.name] explodes!"),span_warning(" You hear a snap!"))
-			playsound(src, 'sound/effects/snap.ogg', 25, 1)
-			qdel(src)
+/obj/item/toy/snappop/throw_impact(atom/hit_atom)
+	..()
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+	s.set_up(3, 1, src)
+	s.start()
+	new /obj/effect/decal/cleanable/ash(src.loc)
+	src.visible_message(span_warning(" The [src.name] explodes!"),span_warning(" You hear a snap!"))
+	playsound(src, 'sound/effects/snap.ogg', 25, 1)
+	qdel(src)
+
+/obj/item/toy/snappop/proc/on_cross(datum/source, atom/movable/H, oldloc, oldlocs)
+	SIGNAL_HANDLER
+	if(!ishuman(H)) //i guess carp and shit shouldn't set them off
+		return
+	var/mob/living/carbon/M = H
+	if(M.m_intent != MOVE_INTENT_RUN)
+		return
+	to_chat(M, span_warning("You step on the snap pop!"))
+
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+	s.set_up(2, 0, src)
+	s.start()
+	new /obj/effect/decal/cleanable/ash(src.loc)
+	visible_message(span_warning(" The [src.name] explodes!"),span_warning(" You hear a snap!"))
+	playsound(src, 'sound/effects/snap.ogg', 25, 1)
+	qdel(src)
 
 /*
 * Water flower
@@ -513,12 +527,6 @@
 	item_state = "basketball"
 	desc = "Here's your chance, do your dance at the Space Jam."
 	w_class = WEIGHT_CLASS_BULKY
-
-
-/obj/item/toy/beach_ball/basketball/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(!CONFIG_GET(flag/fun_allowed))
-		return FALSE
-	attack_hand(X)
 
 
 /obj/structure/hoop

@@ -462,7 +462,6 @@
 		return
 	if(tipped_level != 2) // only fix when fully tipped
 		return
-
 	if(!iscarbon(user)) // AI can't heave remotely
 		return
 	user.visible_message(span_notice(" [user] begins to heave the vending machine back into place!"),span_notice(" You start heaving the vending machine back into place.."))
@@ -521,6 +520,8 @@
 /obj/machinery/vending/ui_act(action, list/params)
 	. = ..()
 	if(.)
+		return
+	if(!powered())
 		return
 	switch(action)
 		if("remove_coin")
@@ -689,6 +690,12 @@
 			if(cell.charge < cell.maxcharge)
 				to_chat(user, span_warning("\The [cell] isn't full. You must recharge it before you can restock it."))
 				return
+		else if(isitemstack(item_to_stock))
+			var/obj/item/stack/stack = item_to_stock
+			if(stack.amount != initial(stack.amount))
+				to_chat(user, span_warning("[stack] has been partially used. You must replace the missing amount before you can restock it."))
+				return
+
 		if(item_to_stock.loc == user) //Inside the mob's inventory
 			if(item_to_stock.flags_item & WIELDED)
 				item_to_stock.unwield(user)

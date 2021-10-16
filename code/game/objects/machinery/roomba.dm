@@ -49,6 +49,17 @@
 		return
 	step_to(src, get_step(src,newdir))
 
+/obj/machinery/roomba/attack_hand(mob/living/user)
+	if(!CONFIG_GET(flag/fun_allowed))
+		return
+	if(user.a_intent != INTENT_HARM)
+		return
+	tgui_alert(user, "Are you really sure to want to try your luck with the devilish roomba?", "The roomba roulette", list("Yes", "Yes!", "Yes?"))
+	if(prob(50))
+		explosion(user, 1, 0, 0, 0, 0, 4, "[user] lost at the roomba roulette")
+		return
+	explosion(src, 1, 0, 0, 0, 0, 4, "[user] won at the roomba roulette")
+	qdel(src)
 
 /obj/machinery/roomba/Bump(atom/A)
 	. = ..()
@@ -98,12 +109,15 @@
 	add_overlay(image(I.icon, initial(I.icon_state) + "_roomba"))
 	claymore = I
 	claymore.armed = TRUE
-	RegisterSignal(src, COMSIG_MOVABLE_CROSSED_BY, .proc/attempt_mine_explode)
+	var/static/list/explosive_connections = list(
+		COMSIG_ATOM_ENTERED = .proc/attempt_mine_explode
+	)
+	AddElement(/datum/element/connect_loc, explosive_connections)
 
 /obj/machinery/roomba/proc/attempt_mine_explode(datum/source, atom/movable/crosser, oldloc)
 	SIGNAL_HANDLER
 	if(!claymore.trip_mine(crosser))
 		return
 	claymore = null
-	UnregisterSignal(src, COMSIG_MOVABLE_CROSSED_BY)
+	RemoveElement(/datum/element/connect_loc)
 	cut_overlays()

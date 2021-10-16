@@ -380,6 +380,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list(new/datum/stack_recipe("cable restrain
 
 /obj/item/stack/cable_coil
 	name = "cable coil"
+	desc = "A coil of insulated power cable."
 	gender = NEUTER //That's a cable coil sounds better than that's some cable coils
 	icon = 'icons/obj/power.dmi'
 	icon_state = "coil"
@@ -388,8 +389,6 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list(new/datum/stack_recipe("cable restrain
 	amount = MAXCOIL
 	merge_type = /obj/item/stack/cable_coil // This is here to let its children merge between themselves
 	color = "yellow"
-	var/cable_color = "yellow"
-	desc = "A coil of insulated power cable."
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3
 	throw_range = 5
@@ -398,6 +397,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list(new/datum/stack_recipe("cable restrain
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 	singular_name = "cable piece"
 	usesound = 'sound/items/deconstruct.ogg'
+	var/cable_color = "yellow"
 	var/obj/structure/cable/target_type = /obj/structure/cable
 	var/target_layer = CABLE_LAYER_2
 
@@ -479,25 +479,40 @@ GLOBAL_LIST(cable_radial_layer_list)
 	if(!istype(H))
 		return ..()
 
-	var/datum/limb/affecting = H.get_limb(check_zone(user.zone_selected))
-	if(affecting && affecting.limb_status == LIMB_ROBOT)
-		if(user == H)
-			user.visible_message(span_notice("[user] starts to fix some of the wires in [H]'s [affecting.display_name]."), span_notice("You start fixing some of the wires in [H == user ? "your" : "[H]'s"] [affecting.display_name]."))
-			if(!do_mob(user, H, 50))
-				return
-		if(affecting.heal_limb_damage(15, 15, FALSE, TRUE, TRUE))
-			use(1)
-		return
-	else
+	if(user.a_intent != INTENT_HELP)
 		return ..()
 
-//add cables to the stack
-/obj/item/stack/cable_coil/proc/give(extra)
-	if(amount + extra > max_amount)
-		amount = max_amount
-	else
-		amount += extra
-	update_icon()
+	var/datum/limb/affecting = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(H, user) : H.get_limb(user.zone_selected)
+	if(!affecting)
+		return TRUE
+
+	if(affecting.limb_status != LIMB_ROBOT)
+		balloon_alert(user, "Limb not robotic")
+		return TRUE
+
+	if(!affecting.burn_dam)
+		balloon_alert(user, "Nothing to fix!")
+		return TRUE
+
+	if(user.do_actions)
+		balloon_alert(user, "Already busy!")
+		return TRUE
+
+	var/repair_time = 1 SECONDS
+	if(H == user)
+		repair_time *= 3
+
+	user.visible_message(span_notice("[user] starts to fix some of the wires in [H]'s [affecting.display_name]."),\
+		span_notice("You start fixing some of the wires in [H == user ? "your" : "[H]'s"] [affecting.display_name]."))
+
+	while(affecting.burn_dam && do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD) && use(1))
+		user.visible_message(span_warning("\The [user] fixes some wires in [H == user ? "your" : "[H]'s"] [affecting.display_name] with \the [src]."), \
+			span_warning("You patch some wires in [H == user ? "your" : "[H]'s"] [affecting.display_name]."))
+		affecting.heal_limb_damage(0, 15, robo_repair = TRUE, updating_health = TRUE)
+		if(!amount)
+			return TRUE
+	return TRUE
+
 
 
 ///////////////////////////////////////////////
@@ -547,6 +562,9 @@ GLOBAL_LIST(cable_radial_layer_list)
 
 /obj/item/stack/cable_coil/five
 	amount = 5
+
+/obj/item/stack/cable_coil/twentyfive
+	amount = 25
 
 /obj/item/stack/cable_coil/cut
 	amount = null
@@ -668,16 +686,16 @@ GLOBAL_LIST(hub_radial_layer_list)
 	switch(layer_result)
 		if("Layer 1")
 			CL = CABLE_LAYER_1
-			to_chat(user, span_warning("You toggle L1 connection."))
+			to_chat(user, span_warning("You toggle the L1 connection."))
 		if("Layer 2")
 			CL = CABLE_LAYER_2
-			to_chat(user, span_warning("You toggle L2 connection."))
+			to_chat(user, span_warning("You toggle the L2 connection."))
 		if("Layer 3")
 			CL = CABLE_LAYER_3
-			to_chat(user, span_warning("You toggle L3 connection."))
+			to_chat(user, span_warning("You toggle the L3 connection."))
 		if("Machinery")
 			machinery_layer ^= MACHINERY_LAYER_1
-			to_chat(user, span_warning("You toggle machinery connection."))
+			to_chat(user, span_warning("You toggle the machinery connection."))
 
 	cut_cable_from_powernet(FALSE)
 
@@ -705,7 +723,7 @@ GLOBAL_LIST(hub_radial_layer_list)
 	auto_propagate_cut_cable(src)				// update the powernets
 
 /obj/structure/cable/multilayer/CtrlClick(mob/living/user)
-	to_chat(user, span_warning("You pust reset button."))
+	to_chat(user, span_warning("You push the reset button."))
 	addtimer(CALLBACK(src, .proc/Reload), 10, TIMER_UNIQUE) //spam protect
 
 //Multilayer combinations so avoid linter issues in the future

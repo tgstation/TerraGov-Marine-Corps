@@ -45,7 +45,7 @@
 	crewmembers_planetside.Cut()
 	crewmembers_in_transit.Cut()
 
-	for(var/obj/item/clothing/under/C in tracked)
+	for(var/obj/item/clothing/under/C AS in tracked)
 		var/turf/pos = get_turf(C)
 
 		if(C && pos)
@@ -128,8 +128,21 @@
 		var/obj/item/clothing/under/C = H.w_uniform
 		if(!C || !istype(C)) continue
 		if(C.has_sensor && H.mind)
-			tracked |= C
+			add_to_tracked(C)
 	return TRUE
+
+///Add an atom to the tracked list
+/obj/machinery/computer/crew/proc/add_to_tracked(atom/under)
+	if(tracked.Find(under))
+		return
+	tracked += under
+	RegisterSignal(tracked, COMSIG_PARENT_QDELETING, .proc/remove_from_tracked)
+
+///Remove an atom from the tracked list
+/obj/machinery/computer/crew/proc/remove_from_tracked(atom/under)
+	SIGNAL_HANDLER
+	tracked -= under
+	UnregisterSignal(tracked, COMSIG_PARENT_QDELETING)
 
 #undef DISPLAY_ON_SHIP
 #undef DISPLAY_PLANETSIDE

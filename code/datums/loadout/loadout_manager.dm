@@ -99,7 +99,33 @@
 				to_chat(ui.user, span_warning("The loadouts was found but is from a past version, and cannot be imported."))
 				return
 			if(loadout.version != CURRENT_LOADOUT_VERSION)
+				var/datum/item_representation/modular_helmet/helmet = loadout.item_list[slot_head_str]
+				if(istype(helmet, /datum/item_representation/modular_helmet))
+					if(loadout.version < 7)
+						loadout.empty_slot(slot_head_str)
+					if(loadout.version < 8)
+						if("[helmet.item_type]" == "/obj/item/clothing/head/modular/marine/m10x/tech" || "[helmet.item_type]" == "/obj/item/clothing/head/modular/marine/m10x/corpsman" ||  "[helmet.item_type]" == "/obj/item/clothing/head/modular/marine/m10x/standard")
+							helmet.item_type = /obj/item/clothing/head/modular/marine/m10x
+				var/datum/item_representation/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
+				if(istype(armor, /datum/item_representation/modular_armor))
+					if(loadout.version < 7)
+						loadout.empty_slot(slot_wear_suit_str)
+					if(loadout.version < 8)
+						if("[armor.item_type]" == "/obj/item/clothing/suit/modular/pas11x")
+							armor.item_type = /obj/item/clothing/suit/modular/xenonauten
+				var/message_to_send = "Please note: The loadout code has been updated and due to that:"
+				if(loadout.version < 7)
+					message_to_send += "<br>any modular helmet/suit has been removed from it due to the transitioning of loadout version 6 to 7."
+				if(loadout.version < 8)
+					message_to_send += "<br>any PAS11 armor/M10x helmet has been removed from it due to the transitioning of loadout version 7 to 8(Xenonauten Addition)."
 				loadout.version = CURRENT_LOADOUT_VERSION
+				message_to_send += "<br>This loadout is now on version [loadout.version]"
+				to_chat(ui.user, span_warning(message_to_send))
+				var/job = params["loadout_job"]
+				var/name = params["loadout_name"]
+				delete_loadout(ui.user, name, job)
+				ui.user.client.prefs.save_loadout(loadout)
+				add_loadout(loadout)
 			ui.user.client.prefs.save_loadout(loadout)
 			add_loadout(loadout)
 			update_static_data(ui.user, ui)
@@ -115,6 +141,34 @@
 				to_chat(ui.user, span_warning("Error when loading this loadout"))
 				delete_loadout(ui.user, name, job)
 				CRASH("Fail to load loadouts")
+			if(loadout.version != CURRENT_LOADOUT_VERSION)
+				var/datum/item_representation/modular_helmet/helmet = loadout.item_list[slot_head_str]
+				if(istype(helmet, /datum/item_representation/modular_helmet))
+					if(loadout.version < 7)
+						loadout.empty_slot(slot_head_str)
+					if(loadout.version < 8)
+						if("[helmet.item_type]" == "/obj/item/clothing/head/modular/marine/m10x/tech" || "[helmet.item_type]" == "/obj/item/clothing/head/modular/marine/m10x/corpsman" || "[helmet.item_type]" == "/obj/item/clothing/head/modular/marine/m10x/standard")
+							helmet.item_type = /obj/item/clothing/head/modular/marine/m10x
+				var/datum/item_representation/modular_armor/armor = loadout.item_list[slot_wear_suit_str]
+				if(istype(armor, /datum/item_representation/modular_armor))
+					if(loadout.version < 7)
+						loadout.empty_slot(slot_wear_suit_str)
+					if(loadout.version < 8)
+						if("[armor.item_type]" == "/obj/item/clothing/suit/modular/pas11x")
+							armor.item_type = /obj/item/clothing/suit/modular/xenonauten
+				var/message_to_send = "Please note: The loadout code has been updated and due to that:"
+				if(loadout.version < 7)
+					message_to_send += "<br>any modular helmet/suit has been removed from it due to the transitioning of loadout version 6 to 7."
+				if(loadout.version < 8)
+					message_to_send += "<br>any PAS11 armor/M10x helmet has been removed from it due to the transitioning of loadout version 7 to 8(Xenonauten Addition)."
+				loadout.version = CURRENT_LOADOUT_VERSION
+				message_to_send += "<br>This loadout is now on version [loadout.version]"
+				to_chat(ui.user, span_warning(message_to_send))
+				delete_loadout(ui.user, name, job)
+				ui.user.client.prefs.save_loadout(loadout)
+				add_loadout(loadout)
+				to_chat(ui.user, span_warning("Please note: The loadout code has been updated and as such any modular helmet/suit has been removed from it due to the transitioning of loadout versions. Any future modular helmet/suit saves should have no problem being saved."))
+			update_static_data(ui.user, ui)
 			loadout.loadout_vendor = loadout_vendor
 			loadout.ui_interact(ui.user)
 

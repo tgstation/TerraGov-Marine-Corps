@@ -22,6 +22,19 @@
 	var/deploy_time_lock = 15 MINUTES
 	///The respawn time for marines
 	var/respawn_time = 30 MINUTES
+	///How many points do you need to win in a point gamemode
+	var/win_points_needed = 0
+	///The points per faction, assoc list
+	var/list/points_per_faction
+	/// When are the shutters dropping
+	var/shutters_drop_time = 30 MINUTES
+	///Time before becoming a husk when going undefibbable
+	var/husk_transformation_time = 30 SECONDS
+	/** The time between two rounds of this gamemode. If it's zero, this mode i always votable.
+	 * It an integer in ticks, set in config. If it's 8 HOURS, it means that it will be votable again 8 hours
+	 * after the end of the last round with the gamemode type
+	 */
+	var/time_between_round = 0
 
 //Distress call variables.
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.
@@ -81,6 +94,7 @@
 	return TRUE
 
 /datum/game_mode/proc/setup()
+	SHOULD_CALL_PARENT(TRUE)
 	SSjob.DivideOccupations()
 	create_characters()
 	spawn_characters()
@@ -88,6 +102,10 @@
 	SSpoints.prepare_supply_packs_list(CHECK_BITFIELD(flags_round_type, MODE_HUMAN_ONLY))
 	SSpoints.dropship_points = 0
 	SSpoints.supply_points[FACTION_TERRAGOV] = 0
+
+	for(var/hivenum in GLOB.hive_datums)
+		var/datum/hive_status/hive = GLOB.hive_datums[hivenum]
+		hive.setup_upgrades()
 	return TRUE
 
 
@@ -162,6 +180,8 @@
 /datum/game_mode/proc/declare_completion()
 	log_game("The round has ended.")
 	SSdbcore.SetRoundEnd()
+	if(time_between_round)
+		SSpersistence.last_modes_round_date[name] = world.realtime
 	//Collects persistence features
 	if(allow_persistence_save)
 		SSpersistence.CollectData()
@@ -236,7 +256,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		addtimer(CALLBACK(src, .proc/remove_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
 
 	if(flags_round_type & MODE_LZ_SHUTTERS)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 30 MINUTES)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + shutters_drop_time)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
 	if(flags_round_type & MODE_XENO_SPAWN_PROTECT)
@@ -414,6 +434,14 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.larva_from_marine_spawning] larvas came from marine spawning."
 	if(GLOB.round_statistics.larva_from_siloing_body)
 		dat += "[GLOB.round_statistics.larva_from_siloing_body] larvas came from siloing bodies."
+	if(length(GLOB.round_statistics.req_items_produced))
+		var/produced = "Requisitions produced: "
+		for(var/atom/movable/path AS in GLOB.round_statistics.req_items_produced)
+			produced += "[GLOB.round_statistics.req_items_produced[path]] [initial(path.name)]"
+			if(path == GLOB.round_statistics.req_items_produced[length(GLOB.round_statistics.req_items_produced)]) //last element
+				produced += "."
+			else
+				produced += ","
 
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)
@@ -435,6 +463,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 				continue
 			if(H.status_flags & XENO_HOST)
 				continue
+			if(H.faction == FACTION_XENO)
+				continue
 			if(isspaceturf(H.loc))
 				continue
 			num_humans++
@@ -452,7 +482,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 				continue
 			if(isspaceturf(X.loc))
 				continue
-
+			if(X.xeno_caste.upgrade == XENO_UPGRADE_BASETYPE) //Ais don't count
+				continue
 			// Never count hivemind
 			if(isxenohivemind(X))
 				continue
@@ -545,49 +576,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	to_chat(xeno_candidate, span_warning("This is unavailable in this gamemode."))
 	return FALSE
 
-/datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/living/carbon/xenomorph/X, silent = FALSE)
-	if(QDELETED(X))
-		stack_trace("[xeno_candidate] was put into a qdeleted mob [X]")
-		return
-	if(!silent)
-		message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(X)].")
-	xeno_candidate.mind.transfer_to(X, TRUE)
-	if(X.is_ventcrawling)  //If we are in a vent, fetch a fresh vent map
-		X.add_ventcrawl(X.loc)
-		X.get_up()
-
-
-/datum/game_mode/proc/attempt_to_join_as_xeno(mob/xeno_candidate, instant_join = FALSE)
-	var/list/available_xenos = list()
-	for(var/hive in GLOB.hive_datums)
-		var/datum/hive_status/HS = GLOB.hive_datums[hive]
-		available_xenos += HS.get_ssd_xenos(instant_join)
-
-	if(!available_xenos.len)
-		to_chat(xeno_candidate, span_warning("There aren't any available already living xenomorphs. You can try waiting for a larva to burst if you have the preference enabled."))
-		return FALSE
-
-	if(instant_join)
-		return pick(available_xenos) //Just picks something at random.
-
-	var/mob/living/carbon/xenomorph/new_xeno = tgui_input_list(usr, null, "Available Xenomorphs", available_xenos)
-	if(!istype(new_xeno) || !xeno_candidate?.client)
-		return FALSE
-
-	if(new_xeno.stat == DEAD)
-		to_chat(xeno_candidate, span_warning("You cannot join if the xenomorph is dead."))
-		return FALSE
-
-	if(new_xeno.client)
-		to_chat(xeno_candidate, span_warning("That xenomorph has been occupied."))
-		return FALSE
-
-	if(new_xeno.afk_status == MOB_RECENTLY_DISCONNECTED) //We do not want to occupy them if they've only been gone for a little bit.
-		to_chat(xeno_candidate, span_warning("That player hasn't been away long enough. Please wait [round(timeleft(new_xeno.afk_timer_id) * 0.1)] second\s longer."))
-		return FALSE
-
-	return new_xeno
-
 /datum/game_mode/proc/set_valid_job_types()
 	if(!SSjob?.initialized)
 		to_chat(world, span_boldnotice("Error setting up valid jobs, no job subsystem found initialized."))
@@ -670,5 +658,5 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	scaled_job.total_positions = length(SSjob.active_squads[FACTION_TERRAGOV])
 
 ///Return the list of joinable factions, with regards with the current round balance
-/datum/game_mode/proc/get_joinable_factions()
+/datum/game_mode/proc/get_joinable_factions(should_look_balance)
 	return

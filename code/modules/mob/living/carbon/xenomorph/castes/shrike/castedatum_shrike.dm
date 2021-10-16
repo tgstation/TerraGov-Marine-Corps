@@ -3,6 +3,7 @@
 	display_name = "Shrike"
 	upgrade_name = ""
 	caste_desc = "A psychically unstable xeno. The Shrike controls the hive when there's no Queen and acts as its successor when there is."
+	primordial_upgrade_name = PRIMORDIAL_SHRIKE
 	job_type = /datum/job/xenomorph/queen
 	caste_type_path = /mob/living/carbon/xenomorph/shrike
 
@@ -51,14 +52,12 @@
 		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/cocoon,
-		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/lay_egg,
 		/datum/action/xeno_action/activable/larval_growth_sting,
 		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/secrete_resin,
-		/datum/action/xeno_action/activable/build_silo,
 		/datum/action/xeno_action/activable/build_hunt_den,
-		/datum/action/xeno_action/activable/build_turret,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/activable/psychic_cure,
@@ -67,6 +66,8 @@
 		/datum/action/xeno_action/activable/unrelenting_force,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/activable/rally_hive,
+		/datum/action/xeno_action/activable/rally_minion,
+		/datum/action/xeno_action/blessing_menu,
 	)
 
 /datum/xeno_caste/shrike/young
@@ -154,3 +155,56 @@
 
 	// *** Pheromones *** //
 	aura_strength = 3
+
+/datum/xeno_caste/shrike/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "The unleashed repository of the hive's psychic power."
+	primordial_message = "We are the unbridled psychic power of the hive. Throw our enemies to their doom."
+	upgrade = XENO_UPGRADE_FOUR
+
+	// *** Melee Attacks *** //
+	melee_damage = 23
+
+	// *** Speed *** //
+	speed = -0.6
+
+	// *** Plasma *** //
+	plasma_max = 925
+	plasma_gain = 45
+
+	// *** Health *** //
+	max_health = 400
+
+	// *** Evolution *** //
+	upgrade_threshold = 1420
+
+	// *** Defense *** //
+	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_2, "bio" = 23, "rad" = 23, "fire" = 45, "acid" = 20)
+
+	// *** Pheromones *** //
+	aura_strength = 3
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/activable/cocoon,
+		/datum/action/xeno_action/activable/plant_weeds,
+		/datum/action/xeno_action/lay_egg,
+		/datum/action/xeno_action/activable/larval_growth_sting,
+		/datum/action/xeno_action/call_of_the_burrowed,
+		/datum/action/xeno_action/activable/secrete_resin,
+		/datum/action/xeno_action/activable/build_hunt_den,
+		/datum/action/xeno_action/place_acidwell,
+		/datum/action/xeno_action/activable/corrosive_acid,
+		/datum/action/xeno_action/activable/psychic_cure,
+		/datum/action/xeno_action/psychic_whisper,
+		/datum/action/xeno_action/activable/psychic_fling,
+		/datum/action/xeno_action/activable/unrelenting_force,
+		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/activable/rally_hive,
+		/datum/action/xeno_action/activable/rally_minion,
+		/datum/action/xeno_action/blessing_menu,
+		/datum/action/xeno_action/activable/gravity_grenade,
+	)

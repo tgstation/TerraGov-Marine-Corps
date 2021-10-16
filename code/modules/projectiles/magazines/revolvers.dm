@@ -10,7 +10,7 @@
 	icon_state = "m44"
 	w_class = WEIGHT_CLASS_SMALL
 	max_rounds = 6
-	gun_type = /obj/item/weapon/gun/revolver/m44
+	gun_type = /obj/item/weapon/gun/revolver/single_action/m44
 	icon_state_mini = "mag_revolver"
 
 /obj/item/ammo_magazine/revolver/marksman
@@ -71,6 +71,23 @@
 	max_rounds = 6
 	gun_type = /obj/item/weapon/gun/revolver/cmb
 
+/obj/item/ammo_magazine/revolver/judge
+	name = "\improper Judge speed loader (.45L)"
+	desc = "A revolver speed loader for the Judge, these rounds have a high velocity propellant, leading to next to no scatter and falloff."
+	default_ammo = /datum/ammo/bullet/revolver/marksman
+	caliber = CALIBER_45L
+	gun_type = /obj/item/weapon/gun/revolver/judge
+	max_rounds = 5
+	icon_state = "m_m44"
+
+/obj/item/ammo_magazine/revolver/judge/buckshot
+	name = "\improper Judge buckshot speed loader (.45L)"
+	desc = "A revolver speed loader for the Judge, this is filled with tiny pellets inside, with high scatter but large CQC damage."
+	default_ammo = /datum/ammo/bullet/shotgun/mbx900_buckshot
+	caliber = CALIBER_45L
+	icon_state = "h_m44"
+
+
 
 //INTERNAL MAGAZINES
 
@@ -97,7 +114,7 @@
 /obj/item/ammo_magazine/internal/revolver/m44
 	caliber = CALIBER_44
 	max_rounds = 6
-	gun_type = /obj/item/weapon/gun/revolver/m44
+	gun_type = /obj/item/weapon/gun/revolver/single_action/m44
 
 //-------------------------------------------------------
 //RUSSIAN REVOLVER //
@@ -131,3 +148,11 @@
 	caliber = CALIBER_357
 	gun_type = /obj/item/weapon/gun/revolver/cmb
 
+//-------------------------------------------------------
+//JUDGE REVOLVER //
+
+/obj/item/ammo_magazine/internal/revolver/judge
+	default_ammo = /datum/ammo/bullet/revolver/marksman
+	caliber = CALIBER_45L
+	gun_type = /obj/item/weapon/gun/revolver/judge
+	max_rounds = 5

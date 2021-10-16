@@ -30,3 +30,16 @@
 	default_ammo = /datum/ammo/bullet/machinegun
 	gun_type = /obj/item/weapon/gun/heavymachinegun
 	reload_delay = 10 SECONDS
+
+/obj/item/ammo_magazine/standard_mmg
+	name = "T-27 box magazine (10x27m Caseless)"
+	desc = "A box of 100 10x25mm caseless rounds for the T-27 medium machinegun."
+	w_class = WEIGHT_CLASS_NORMAL
+	icon = 'icons/Marine/marine-mmg.dmi'
+	icon_state = "mag"
+	flags_magazine = NONE
+	caliber = CALIBER_10X25_CASELESS
+	max_rounds = 100
+	default_ammo = /datum/ammo/bullet/rifle/heavy
+	gun_type = /obj/item/weapon/gun/standard_mmg
+	reload_delay = 1 SECONDS

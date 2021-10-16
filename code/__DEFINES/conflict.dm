@@ -51,37 +51,38 @@
 #define AMMO_IGNORE_RESIST (1<<10) //Unused.
 #define AMMO_BALLISTIC (1<<11)
 #define AMMO_SUNDERING (1<<12)
-#define AMMO_CHAINING (1<<13)
+#define SPECIAL_PROCESS (1<<13)
 #define AMMO_SENTRY (1<<14) //Used to identify ammo from sentry guns and other automated sources
 #define AMMO_FLAME (1<<15) //Used to identify flamethrower projectiles and similar projectiles
 #define AMMO_IFF (1<<16) //Used to identify ammo that have intrinsec IFF properties
+#define AMMO_HITSCAN (1<<17) //If the projectile from this ammo is hitscan
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features
 #define GUN_CAN_POINTBLANK (1<<0)
-#define GUN_TRIGGER_SAFETY (1<<1)
-#define GUN_UNUSUAL_DESIGN (1<<2)
-#define GUN_SILENCED (1<<3)
-#define GUN_SHOTGUN_CHAMBER (1<<4)
-#define GUN_INTERNAL_MAG (1<<5)
-#define GUN_AUTO_EJECTOR (1<<6)
-#define GUN_AMMO_COUNTER (1<<7)
-#define GUN_LOAD_INTO_CHAMBER (1<<8)
-#define GUN_ENERGY (1<<9)
-#define GUN_FLASHLIGHT_ON (1<<10)
-#define GUN_WIELDED_FIRING_ONLY (1<<11)
-#define GUN_POLICE (1<<12)
-#define GUN_BURST_FIRING (1<<13)
-#define GUN_ALLOW_SYNTHETIC (1<<14)
-#define GUN_HAS_AUTOBURST (1<<15)
-#define GUN_IS_AIMING (1<<16)
-#define AUTO_AIM_MODE (1<<17)
-#define GUN_WIELDED_STABLE_FIRING_ONLY (1<<18)
-#define GUN_IFF (1<<19)
-#define GUN_DEPLOYED_FIRE_ONLY (1<<20)
-#define GUN_IS_SENTRY (1<<21)
-#define GUN_IS_ATTACHMENT (1<<22)
-#define GUN_ATTACHMENT_FIRE_ONLY (1<<23)
+#define GUN_UNUSUAL_DESIGN (1<<1)
+#define GUN_SHOTGUN_CHAMBER (1<<2)
+#define GUN_INTERNAL_MAG (1<<3)
+#define GUN_AUTO_EJECTOR (1<<4)
+#define GUN_AMMO_COUNTER (1<<5)
+#define GUN_LOAD_INTO_CHAMBER (1<<6)
+#define GUN_ENERGY (1<<7)
+#define GUN_WIELDED_FIRING_ONLY (1<<8)
+#define GUN_ALLOW_SYNTHETIC (1<<9)
+#define GUN_WIELDED_STABLE_FIRING_ONLY (1<<10)
+#define GUN_IFF (1<<11)
+#define GUN_DEPLOYED_FIRE_ONLY (1<<12)
+#define GUN_IS_ATTACHMENT (1<<13)
+#define GUN_ATTACHMENT_FIRE_ONLY (1<<14)
+#define GUN_IS_SENTRY (1<<15)
+#define GUN_PUMP_REQUIRED (1<<16)
+
+#define FLAMER_IS_LIT (1<<0)
+#define FLAMER_NO_LIT_OVERLAY (1<<1)
+#define FLAMER_USES_GUN_FLAMES (1<<2)
+
+#define FLAMER_STREAM_STRAIGHT "straight"
+#define FLAMER_STREAM_CONE "cone"
 
 #define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
 #define GUN_FIREMODE_BURSTFIRE "burst-fire mode"
@@ -92,10 +93,12 @@
 //flags_attach_features
 #define ATTACH_REMOVABLE (1<<0)
 #define ATTACH_ACTIVATION (1<<1)
+#define ATTACH_SAME_ICON (1<<2)
 
 //Ammo magazine defines, for flags_magazine
-#define AMMUNITION_REFILLABLE 1
-#define AMMUNITION_HANDFUL 2
+#define AMMUNITION_REFILLABLE (1<<0)
+#define AMMUNITION_HANDFUL (1<<1)
+#define AMMUNITION_WORN (1<<2)
 
 //Slowdown from various armors.
 #define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up
@@ -190,18 +193,7 @@
 //We will round to this value in damage calculations.
 #define DAMAGE_PRECISION 0.1
 
-//Autofire component
-#define AUTOFIRE_STAT_SLEEPING (1<<0) //Component is in the gun, but the gun is in a different firemode. Sleep until a compatible firemode is activated.
-// VV wake_up() VV
-// ^^ sleep_up() ^^
-#define AUTOFIRE_STAT_IDLE (1<<1) //Compatible firemode is in the gun. Wait until it's held in the user hands.
-// VV autofire_on() VV
-// ^^ autofire_off() ^^
-#define AUTOFIRE_STAT_ALERT (1<<2) //Gun is active and in the user hands. Wait until user does a valid click.
-// VV start_autofiring() VV
-// ^^ stop_autofiring() ^^
-#define AUTOFIRE_STAT_FIRING (1<<3) //Dakka-dakka-dakka.
-
+#define MAX_PARALYSE_AMOUNT_FOR_PARALYSE_RESISTANT 2 SECONDS
 
 //Xeno Overlays Indexes//////////
 #define X_LASER_LAYER 9

@@ -25,8 +25,8 @@
 	var/metal = 0
 
 
-/obj/effect/particle_effect/foam/New(loc, ismetal=0)
-	..(loc)
+/obj/effect/particle_effect/foam/Initialize(mapload, ismetal = FALSE) //todo turbo shitcode pls fix
+	. = ..()
 	icon_state = "[ismetal ? "m":""]foam"
 	metal = ismetal
 	playsound(src, 'sound/effects/bubbles2.ogg', 25, 1, 5)
@@ -51,7 +51,10 @@
 
 		flick("[icon_state]-disolve", src)
 		QDEL_IN(src, 5)
-
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 // transfer any reagents to the floor
 /obj/effect/particle_effect/foam/proc/checkReagents()
@@ -97,8 +100,8 @@
 		QDEL_IN(src, 5)
 
 
-/obj/effect/particle_effect/foam/Crossed(atom/movable/AM)
-	. = ..()
+/obj/effect/particle_effect/foam/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
+	SIGNAL_HANDLER
 	if(metal)
 		return
 	if (iscarbon(AM))

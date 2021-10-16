@@ -32,8 +32,9 @@
 /proc/xeno_status_output(list/xenolist, ignore_leads = TRUE, user)
 	var/xenoinfo = ""
 	var/leadprefix = (ignore_leads?"":"<b>(-L-)</b>")
-	for(var/i in xenolist)
-		var/mob/living/carbon/xenomorph/X = i
+	for(var/mob/living/carbon/xenomorph/X AS in xenolist)
+		if(X.xeno_caste.tier == XENO_TIER_MINION)
+			continue
 		if(ignore_leads && X.queen_chosen_lead)
 			continue
 		xenoinfo += "<tr><td>[leadprefix]<a href='byond://?src=\ref[user];track_xeno_name=[X.nicknumber]'>[X.name]</a> "
@@ -59,7 +60,7 @@
 ///Relays health and location data about resin silos belonging to the same hive as the input user
 /proc/resin_silo_status_output(mob/living/carbon/xenomorph/user, datum/hive_status/hive)
 	. = "<BR><b>List of Resin Silos:</b><BR><table cellspacing=4>" //Resin silo data
-	for(var/obj/structure/xeno/resin/silo/resin_silo AS in GLOB.xeno_resin_silos)
+	for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos)
 		if(resin_silo.associated_hive == hive)
 
 			var/hp_color = "green"
@@ -112,7 +113,7 @@
 			continue
 
 		switch(initial(T.tier))
-			if(XENO_TIER_ZERO)
+			if(XENO_TIER_ZERO || XENO_TIER_MINION)
 				continue
 			if(XENO_TIER_FOUR)
 				tier4counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
@@ -137,6 +138,7 @@
 	dat += "<b>Tier 2: ([length(hive.xenos_by_tier[XENO_TIER_TWO])]/[hive.tier2_xeno_limit]) Sisters</b>[tier2counts]<BR>"
 	dat += "<b>Tier 1: [length(hive.xenos_by_tier[XENO_TIER_ONE])] Sisters</b>[tier1counts]<BR>"
 	dat += "<b>Larvas: [length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva])] Sisters<BR>"
+	dat += "<b>Minions: [length(hive.xenos_by_tier[XENO_TIER_MINION])] Sisters<BR>"
 	dat += "<b>Psychic points : [SSpoints.xeno_points_by_hive[hive.hivenumber]]<BR>"
 	dat += "<b>Hivemind: [hivemind_text]<BR>"
 	if(hive.hivenumber == XENO_HIVE_NORMAL)
@@ -170,14 +172,14 @@
 				if(X.nicknumber != xeno_name)
 					continue
 			to_chat(usr,span_notice(" You will now track [X.name]"))
-			tracked = X
+			set_tracked(X)
 			break
 
 	if(href_list["track_silo_number"])
 		var/silo_number = href_list["track_silo_number"]
-		for(var/obj/structure/xeno/resin/silo/resin_silo AS in GLOB.xeno_resin_silos)
+		for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos)
 			if(resin_silo.associated_hive == hive && num2text(resin_silo.number_silo) == silo_number)
-				tracked = resin_silo
+				set_tracked(resin_silo)
 				to_chat(usr,span_notice(" You will now track [resin_silo.name]"))
 				break
 
@@ -192,8 +194,13 @@
 	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
 	HS.xeno_message(message, span_class, size, force, target, sound, apply_preferences, filter_list, arrow_type, arrow_color, report_distance)
 
+///returns TRUE if we are permitted to evo to the next case FALSE otherwise
 /mob/living/carbon/xenomorph/proc/upgrade_possible()
-	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_THREE)
+	if(upgrade == XENO_UPGRADE_THREE)
+		if(!xeno_caste.primordial_upgrade_name)
+			return FALSE
+		return hive.upgrades_by_name[xeno_caste.primordial_upgrade_name].times_bought
+	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_FOUR)
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
@@ -349,7 +356,7 @@
 					// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
 					var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 					var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-					var/upgrade_points = 1 + (stored_larva/6)
+					var/upgrade_points = 1 + (stored_larva/6) + hive.get_upgrade_boost()
 					upgrade_stored = min(upgrade_stored + upgrade_points, xeno_caste.upgrade_threshold)
 
 /mob/living/carbon/xenomorph/proc/update_evolving()
@@ -363,7 +370,7 @@
 	// Evolution is increased based on marine to xeno population taking stored_larva as a modifier.
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	var/evolution_points = 1 + (FLOOR(stored_larva / 3, 1))
+	var/evolution_points = 1 + (FLOOR(stored_larva / 3, 1)) + hive.get_evolution_boost()
 	evolution_stored = min(evolution_stored + evolution_points, xeno_caste.evolution_threshold)
 
 	if(evolution_stored == xeno_caste.evolution_threshold)
@@ -617,7 +624,7 @@
 	return FALSE
 
 /mob/living/carbon/human/can_sting()
-	if(species?.species_flags & IS_SYNTHETIC)
+	if(species?.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
 		return FALSE
 	if(stat != DEAD)
 		return TRUE
@@ -671,3 +678,15 @@
 		return
 	victim.forceMove(eject_location)
 	REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
+
+///Set the var tracked to to_track
+/mob/living/carbon/xenomorph/proc/set_tracked(atom/to_track)
+	if(tracked)
+		UnregisterSignal(tracked, COMSIG_PARENT_QDELETING)
+	tracked = to_track
+	RegisterSignal(tracked, COMSIG_PARENT_QDELETING, .proc/clean_tracked)
+
+///Signal handler to null tracked
+/mob/living/carbon/xenomorph/proc/clean_tracked(atom/to_track)
+	SIGNAL_HANDLER
+	tracked = null
