@@ -860,7 +860,7 @@ should be alright.
 		if(!do_after(user, 1 SECONDS, TRUE, CHECK_BITFIELD(flags_item, IS_DEPLOYED) ? loc : src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
 			to_chat(user, span_warning("Your concentration is interrupted!</b>"))
 			return
-	if(!CHECK_BITFIELD(flags_item, WIELDED))
+	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		to_chat(user, span_notice(not_wielded_msg))
 		return
 	user.overlays += aim_mode_visual
