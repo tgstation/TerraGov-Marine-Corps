@@ -35,7 +35,7 @@
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine(src)
 	new /obj/item/storage/belt/marine(src)
-	new /obj/item/clothing/head/modular/marine/m10x/standard(src)
+	new /obj/item/clothing/head/modular/marine/m10x(src)
 	new /obj/item/clothing/under/marine/standard(src)
 
 /obj/structure/closet/secure_closet/marine/standard/alpha
@@ -147,7 +147,7 @@
 	new /obj/item/clothing/glasses/welding(src)
 	new /obj/item/clothing/tie/storage/webbing(src)
 	new /obj/item/clothing/suit/storage/marine(src)
-	new /obj/item/clothing/head/modular/marine/m10x/tech(src)
+	new /obj/item/clothing/head/modular/marine/m10x(src)
 	new /obj/item/clothing/under/marine/engineer(src)
 
 /obj/structure/closet/secure_closet/marine/engi/alpha
@@ -203,7 +203,7 @@
 	new /obj/item/roller/medevac(src)
 	new /obj/item/defibrillator(src)
 	new /obj/item/clothing/suit/storage/marine(src)
-	new /obj/item/clothing/head/modular/marine/m10x/corpsman(src)
+	new /obj/item/clothing/head/modular/marine/m10x(src)
 	new /obj/item/clothing/under/marine/corpsman(src)
 
 /obj/structure/closet/secure_closet/marine/medic/alpha

@@ -84,6 +84,24 @@ They're all essentially identical when it comes to getting the job done.
 			return
 
 		transfer_ammo(H, user, H.current_rounds) // This takes care of the rest.
+		return
+	
+	if(CHECK_BITFIELD(flags_magazine, AMMUNITION_WORN) && istype(I, /obj/item/weapon/gun) && loc == user && istype(I, gun_type))
+		var/obj/item/weapon/gun/gun = I
+		if(!gun.reload(user, src))
+			return
+		gun.RegisterSignal(src, COMSIG_ITEM_REMOVED_INVENTORY, /obj/item/weapon/gun.proc/drop_connected_mag)
+		return
+	return ..()
+
+/obj/item/ammo_magazine/attackby_alternate(obj/item/I, mob/user, params)
+	. = ..()
+	if(!isgun(I))
+		return
+	var/obj/item/weapon/gun/gun = I
+	if(!gun.active_attachable)
+		return
+	attackby(gun.active_attachable, user, params)
 
 //Generic proc to transfer ammo between ammo mags. Can work for anything, mags, handfuls, etc.
 /obj/item/ammo_magazine/proc/transfer_ammo(obj/item/ammo_magazine/source, mob/user, transfer_amount = 1)
@@ -208,10 +226,9 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 		if(default_ammo != H.default_ammo) //Has to match.
 			to_chat(user, span_notice("Those aren't the same rounds. Better not mix them up."))
 			return
-
 		transfer_ammo(H, user, H.current_rounds) // Transfer it from currently held to src
-	else
-		return ..()
+		return
+	return ..()
 
 
 /obj/item/ammo_magazine/handful/proc/generate_handful(new_ammo, new_caliber, new_rounds, new_gun_type, maximum_rounds )
@@ -241,7 +258,6 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 	caliber = CALIBER_12G
 
 //----------------------------------------------------------------//
-
 
 /*
 Doesn't do anything or hold anything anymore.
