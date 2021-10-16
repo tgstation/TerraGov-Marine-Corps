@@ -1,0 +1,4 @@
+author: "jroinc"
+delete-after: True
+changes: 
+  - rscdel: "Removes obtainable zombium"

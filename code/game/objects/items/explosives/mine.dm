@@ -25,6 +25,13 @@ Stepping directly on the mine will also blow it up
 	/// Tripwire holds reference to the tripwire obj that is used to trigger an explosion
 	var/obj/effect/mine_tripwire/tripwire
 
+/obj/item/explosive/mine/Initialize()
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 /obj/item/explosive/mine/Destroy()
 	QDEL_NULL(tripwire)
 	return ..()
@@ -104,8 +111,7 @@ Stepping directly on the mine will also blow it up
 	QDEL_NULL(tripwire)
 
 //Mine can also be triggered if you "cross right in front of it" (same tile)
-/obj/item/explosive/mine/Crossed(atom/A)
-	. = ..()
+/obj/item/explosive/mine/proc/on_cross(datum/source, atom/movable/A, oldloc, oldlocs)
 	if(!isliving(A))
 		return
 	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
@@ -164,13 +170,20 @@ Stepping directly on the mine will also blow it up
 	resistance_flags = UNACIDABLE
 	var/obj/item/explosive/mine/linked_mine
 
+/obj/effect/mine_tripwire/Initialize()
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 /obj/effect/mine_tripwire/Destroy()
 	linked_mine = null
 	return ..()
 
 /// When crossed the tripwire triggers the linked mine
-/obj/effect/mine_tripwire/Crossed(atom/A)
-	. = ..()
+/obj/effect/mine_tripwire/proc/on_cross(datum/source, atom/A, oldloc, oldlocs)
+	SIGNAL_HANDLER
 	if(!linked_mine)
 		qdel(src)
 		return

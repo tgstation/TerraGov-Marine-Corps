@@ -257,9 +257,13 @@
 	density = FALSE
 	flags_pass = PASSTABLE|PASSGLASS|PASSGRILLE
 
-
-/obj/effect/beam/i_beam/Crossed(atom/movable/AM)
+/obj/effect/beam/i_beam/Initialize()
 	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+
+/obj/effect/beam/i_beam/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
 	if(istype(AM, /obj/effect/beam))
 		return
 	if(isitem(AM))

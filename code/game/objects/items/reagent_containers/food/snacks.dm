@@ -2557,6 +2557,17 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	tastes = list("meat" = 1)
 
+/obj/item/reagent_containers/food/snacks/rawcutlet/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tool/kitchen/knife))
+		new /obj/item/reagent_containers/food/snacks/rawmeatball(src)
+		new /obj/item/reagent_containers/food/snacks/rawmeatball(src)
+		new /obj/item/reagent_containers/food/snacks/rawmeatball(src)
+		to_chat(user, "You cut the strips and roll them into balls.")
+		qdel(src)
+
+
 /obj/item/reagent_containers/food/snacks/cutlet
 	name = "cutlet"
 	desc = "A tasty meat slice."
@@ -2574,6 +2585,10 @@
 	icon_state = "rawmeatball"
 	bitesize = 2
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
+
+/obj/item/reagent_containers/food/snacks/rawmeatball/Initialize()
+	. = ..()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meatball, rand(40 SECONDS, 50 SECONDS), TRUE, TRUE)
 
 /obj/item/reagent_containers/food/snacks/hotdog
 	name = "hotdog"

@@ -112,6 +112,8 @@
 /datum/hive_status/proc/get_total_xeno_number() // unsafe for use by gamemode code
 	. = 0
 	for(var/t in xenos_by_tier)
+		if(t == XENO_TIER_MINION)
+			continue
 		. += length(xenos_by_tier[t])
 
 /datum/hive_status/proc/post_add(mob/living/carbon/xenomorph/X)
@@ -367,7 +369,7 @@
 /datum/hive_status/proc/add_leader(mob/living/carbon/xenomorph/X)
 	xeno_leader_list += X
 	X.queen_chosen_lead = TRUE
-	X.give_rally_hive_ability()
+	X.give_rally_abilities()
 
 /datum/hive_status/proc/remove_leader(mob/living/carbon/xenomorph/X)
 	xeno_leader_list -= X
@@ -730,10 +732,10 @@ to_chat will check for valid clients itself already so no need to double check f
 	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid a cruel death!")
 	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, .proc/on_hijack_depart)
 
-	for(var/obj/structure/xeno/silo/silo AS in GLOB.xeno_resin_silos)
-		if(!is_ground_level(silo.z))
+	for(var/obj/structure/xeno/structure AS in GLOB.xeno_structure)
+		if(!is_ground_level(structure.z))
 			continue
-		qdel(silo)
+		qdel(structure)
 
 	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS_ADVANCED)
 		SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
@@ -758,6 +760,8 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(isxenohivemind(boarder))
 			continue
 		INVOKE_ASYNC(boarder, /mob/living.proc/gib)
+		if(boarder.xeno_caste.tier == XENO_TIER_MINION)
+			continue
 		left_behind++
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	if(left_behind)

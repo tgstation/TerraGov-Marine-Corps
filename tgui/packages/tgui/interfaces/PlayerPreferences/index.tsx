@@ -1,4 +1,4 @@
-import { useBackend, useLocalState } from '../../backend';
+import { useBackend } from '../../backend';
 import { Button, Section, Flex, Tabs } from '../../components';
 import { Window } from '../../layouts';
 import { GearCustomization } from './GearCustomisation';

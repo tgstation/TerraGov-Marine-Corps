@@ -506,8 +506,8 @@ GLOBAL_LIST(cable_radial_layer_list)
 		span_notice("You start fixing some of the wires in [H == user ? "your" : "[H]'s"] [affecting.display_name]."))
 
 	while(affecting.burn_dam && do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD) && use(1))
-		user.visible_message(span_warning("\The [user] fixes some wires in \the [src]'s [affecting.display_name] with \the [src]."), \
-			span_warning("You patch some wires in \the [src]'s [affecting.display_name]."))
+		user.visible_message(span_warning("\The [user] fixes some wires in [H == user ? "your" : "[H]'s"] [affecting.display_name] with \the [src]."), \
+			span_warning("You patch some wires in [H == user ? "your" : "[H]'s"] [affecting.display_name]."))
 		affecting.heal_limb_damage(0, 15, robo_repair = TRUE, updating_health = TRUE)
 		if(!amount)
 			return TRUE
@@ -686,16 +686,16 @@ GLOBAL_LIST(hub_radial_layer_list)
 	switch(layer_result)
 		if("Layer 1")
 			CL = CABLE_LAYER_1
-			to_chat(user, span_warning("You toggle L1 connection."))
+			to_chat(user, span_warning("You toggle the L1 connection."))
 		if("Layer 2")
 			CL = CABLE_LAYER_2
-			to_chat(user, span_warning("You toggle L2 connection."))
+			to_chat(user, span_warning("You toggle the L2 connection."))
 		if("Layer 3")
 			CL = CABLE_LAYER_3
-			to_chat(user, span_warning("You toggle L3 connection."))
+			to_chat(user, span_warning("You toggle the L3 connection."))
 		if("Machinery")
 			machinery_layer ^= MACHINERY_LAYER_1
-			to_chat(user, span_warning("You toggle machinery connection."))
+			to_chat(user, span_warning("You toggle the machinery connection."))
 
 	cut_cable_from_powernet(FALSE)
 
@@ -723,7 +723,7 @@ GLOBAL_LIST(hub_radial_layer_list)
 	auto_propagate_cut_cable(src)				// update the powernets
 
 /obj/structure/cable/multilayer/CtrlClick(mob/living/user)
-	to_chat(user, span_warning("You pust reset button."))
+	to_chat(user, span_warning("You push the reset button."))
 	addtimer(CALLBACK(src, .proc/Reload), 10, TIMER_UNIQUE) //spam protect
 
 //Multilayer combinations so avoid linter issues in the future

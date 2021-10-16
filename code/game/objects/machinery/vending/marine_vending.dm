@@ -51,8 +51,8 @@
 		/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
 		/obj/item/ammo_magazine/rifle/tx15_slug = 25,
 		/obj/item/ammo_magazine/rifle/tx15_flechette = 25,
-		/obj/item/weapon/gun/launcher/m92/standardmarine = 10,
-		/obj/item/weapon/gun/launcher/m81 = 15,
+		/obj/item/weapon/gun/grenade_launcher/multinade_launcher = 10,
+		/obj/item/weapon/gun/grenade_launcher/single_shot = 15,
 		/obj/item/explosive/grenade = 30,
 		/obj/item/attachable/bayonetknife = 20,
 		/obj/item/weapon/throwing_knife = 5,
@@ -159,8 +159,8 @@
 			/obj/item/ammo_magazine/pistol/derringer = 15,
 		),
 		"Specialized" = list(
-			/obj/item/weapon/gun/launcher/m92/standardmarine = -1,
-			/obj/item/weapon/gun/launcher/m81 = -1,
+			/obj/item/weapon/gun/grenade_launcher/multinade_launcher = -1,
+			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 4,
 			/obj/item/weapon/gun/rifle/pepperball = 4,
@@ -207,10 +207,12 @@
 			/obj/item/attachable/verticalgrip = -1,
 			/obj/item/attachable/stock/t19stock = -1,
 			/obj/item/attachable/stock/t35stock = -1,
+			/obj/item/attachable/flamer_nozzle = -1,
+			/obj/item/attachable/flamer_nozzle/wide = -1,
 			/obj/item/weapon/gun/shotgun/combat/masterkey = -1,
 			/obj/item/weapon/gun/flamer/mini_flamer = -1,
 			/obj/item/ammo_magazine/flamer_tank/mini = -1,
-			/obj/item/weapon/gun/launcher/m92/mini_grenade = -1,
+			/obj/item/weapon/gun/grenade_launcher/underslung = -1,
 			/obj/item/attachable/motiondetector = -1,
 		),
 		"Boxes" = list(
@@ -233,7 +235,7 @@
 		/obj/item/binoculars = -1,
 		/obj/item/compass = -1,
 		/obj/item/assembly/signaler = 20,
-		/obj/item/weapon/gun/launcher/m81/flare/marine = -1,
+		/obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine = -1,
 		/obj/item/jetpack_marine = 3,
 		),
 	)
@@ -321,9 +323,11 @@
 			/obj/item/attachable/verticalgrip = -1,
 			/obj/item/attachable/stock/t19stock = -1,
 			/obj/item/attachable/stock/t35stock = -1,
+			/obj/item/attachable/flamer_nozzle = -1,
+			/obj/item/attachable/flamer_nozzle/wide = -1,
 			/obj/item/weapon/gun/flamer/mini_flamer = -1,
 			/obj/item/ammo_magazine/flamer_tank/mini = -1,
-			/obj/item/weapon/gun/launcher/m92/mini_grenade = -1,
+			/obj/item/weapon/gun/grenade_launcher/underslung = -1,
 			/obj/item/attachable/motiondetector = -1,
 
 		),
@@ -724,7 +728,7 @@
 
 	products = list(
 		/obj/item/clothing/under/marine/corpsman = 4,
-		/obj/item/clothing/head/modular/marine/m10x/corpsman = 4,
+		/obj/item/clothing/head/modular/marine/m10x = 4,
 		/obj/item/storage/backpack/marine/corpsman = 4,
 		/obj/item/storage/backpack/marine/satchel/corpsman = 4,
 		/obj/item/encryptionkey/med = 4,
@@ -845,7 +849,9 @@
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
 		"Armors" = list(
-			/obj/item/clothing/suit/modular/pas11x = -1,
+			/obj/item/clothing/suit/modular/xenonauten/light = -1,
+			/obj/item/clothing/suit/modular/xenonauten = -1,
+			/obj/item/clothing/suit/modular/xenonauten/heavy = -1,
 			/obj/item/clothing/suit/modular = -1,
 			/obj/item/clothing/suit/storage/marine/harness = -1,
 			/obj/item/clothing/suit/armor/vest/pilot = -1,
