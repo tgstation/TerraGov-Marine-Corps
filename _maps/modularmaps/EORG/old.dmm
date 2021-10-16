@@ -120,8 +120,8 @@
 /area/deathmatch)
 "aC" = (
 /obj/structure/bed/chair/dropship/pilot{
-	icon_state = "pilot_chair";
-	dir = 1
+	dir = 1;
+	icon_state = "pilot_chair"
 	},
 /obj/effect/landmark/deathmatch,
 /turf/open/shuttle/brig,
@@ -549,8 +549,8 @@
 /area/deathmatch)
 "ci" = (
 /obj/structure/closet/walllocker/medical_wall/full{
-	icon_state = "medical_wall";
-	dir = 1
+	dir = 1;
+	icon_state = "medical_wall"
 	},
 /turf/open/floor{
 	icon_state = "panelscorched"
@@ -599,6 +599,10 @@
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
+/area/deathmatch)
+"nQ" = (
+/obj/structure/prop/mainship/ram_trophy,
+/turf/open/ground/river,
 /area/deathmatch)
 
 (1,1,1) = {"
@@ -1628,7 +1632,7 @@ ai
 ai
 do
 bo
-ai
+nQ
 ai
 al
 ai

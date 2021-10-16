@@ -969,6 +969,7 @@
 	pixel_x = 4;
 	pixel_y = 4
 	},
+/obj/structure/prop/mainship/ram_trophy,
 /turf/open/floor/grass,
 /area/deathmatch)
 "Xx" = (

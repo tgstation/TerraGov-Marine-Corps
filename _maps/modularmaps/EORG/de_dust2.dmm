@@ -263,6 +263,10 @@
 /obj/structure/ore_box,
 /turf/open/floor/tile/dark,
 /area/deathmatch)
+"Di" = (
+/obj/structure/window/framed/mainship/hull,
+/turf/closed/wall/desert,
+/area/deathmatch)
 "DN" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /obj/effect/landmark/deathmatch,
@@ -512,6 +516,10 @@
 /area/deathmatch)
 "ZW" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/deathmatch)
+"ZY" = (
+/obj/structure/prop/mainship/ram_trophy,
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 
@@ -1693,8 +1701,8 @@ pI
 pI
 YD
 YD
-YD
-YD
+Di
+Di
 YD
 YD
 YD
@@ -1739,12 +1747,12 @@ pI
 pI
 pI
 YD
-ez
-ez
-ez
-ez
-ez
-ez
+hO
+hO
+hO
+hO
+hO
+hO
 YD
 hO
 hO
@@ -1786,14 +1794,14 @@ YD
 pI
 pI
 AM
-YD
-ez
-ez
-ez
-ez
-ez
-ez
-YD
+Di
+hO
+hO
+hO
+ZY
+hO
+hO
+Di
 hO
 hO
 hO
@@ -1834,14 +1842,14 @@ YD
 ri
 pI
 pI
-YD
-ez
-ez
-ez
-ez
-ez
-ez
-YD
+Di
+hO
+hO
+hO
+hO
+hO
+hO
+Di
 hO
 FE
 hO
@@ -1883,12 +1891,12 @@ pI
 pI
 pI
 YD
-ez
-ez
-ez
-ez
-ez
-ez
+hO
+hO
+hO
+hO
+hO
+hO
 YD
 hO
 Ii
@@ -1931,12 +1939,12 @@ pI
 pI
 Zp
 YD
-ez
-ez
-ez
-ez
-ez
-ez
+hO
+hO
+hO
+hO
+hO
+hO
 YD
 hO
 hO
@@ -1981,8 +1989,8 @@ SO
 YD
 YD
 YD
-YD
-YD
+Di
+Di
 YD
 YD
 YD

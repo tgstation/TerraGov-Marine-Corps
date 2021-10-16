@@ -1364,6 +1364,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/asteroidwarning,
 /area/deathmatch)
+"ig" = (
+/obj/structure/prop/mainship/ram_trophy,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
 "lu" = (
 /obj/effect/ai_node,
 /turf/open/floor/freezer,
@@ -2418,7 +2422,7 @@ ai
 ai
 aq
 dW
-cT
+ig
 cT
 cT
 eE

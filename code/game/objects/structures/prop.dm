@@ -137,10 +137,6 @@
 	resistance_flags = UNACIDABLE
 	var/list/fallen_list
 
-/obj/structure/prop/mainship/ship_memorial/Initialize()
-	. = ..()
-	LAZYADD(fallen_list, "Aleksey, Bowl and Abuzar in toolbox tournament 2021")
-
 /obj/structure/prop/mainship/ship_memorial/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/dogtag))
 		var/obj/item/dogtag/D = I
@@ -165,6 +161,14 @@
 				faltext += fallen_list[i]
 		to_chat(user, "[span_notice("To our fallen soldiers:")] <b>[faltext]</b>.")
 
+/obj/structure/prop/mainship/ram_trophy
+	name = "69 GigaBytes of RAM"
+	desc = "The RAM won by the \"Skill issue\" TGMC team(Aleks, Bowl and Abuzar) who traveled 200 years in the future to attend the Toolbox Tournament 2021 for a cause and won the 9th place(which is the highest place because 9 is the highest decimal number). "
+	icon = 'icons/misc/toolbox_trophy.dmi'
+	icon_state = "ram_trophy"
+	bound_width = 160
+	bound_height = 32
+	pixel_x = 80
 
 /obj/structure/prop/mainship/particle_cannon
 	name = "\improper 75cm/140 Mark 74 General Atomics railgun"
