@@ -308,7 +308,7 @@
 	hud_to_add.add_hud_to(src)
 	hud_to_add = GLOB.huds[DATA_HUD_XENO_TACTICAL] //Allows us to see xeno tactical elements clearly via HUD elements
 	hud_to_add.add_hud_to(src)
-	hud_to_add = GLOB.huds[DATA_HUD_MEDICAL_PAIN]
+	hud_to_add = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	hud_to_add.add_hud_to(src)
 	hud_to_add = GLOB.huds[DATA_HUD_XENO_DEBUFF]
 	hud_to_add.add_hud_to(src)
