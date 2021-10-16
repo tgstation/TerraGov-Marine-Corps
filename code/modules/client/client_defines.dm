@@ -71,6 +71,10 @@
 	var/codex_on_cooldown = FALSE
 	var/const/max_codex_entries_shown = 10
 
+	//screen_text vars
+	///lazylist of screen_texts for this client, first in this list is the one playing
+	var/list/obj/screen/text/screen_text/screen_texts
+
 	///Amount of keydowns in the last keysend checking interval
 	var/client_keysend_amount = 0
 	///World tick time where client_keysend_amount will reset
