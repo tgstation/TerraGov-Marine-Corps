@@ -2,6 +2,7 @@
 	identifier = IDENTIFIER_HUSK
 	base_action = ESCORTING_ATOM
 	sidestep_prob = 10
+	minimum_health = 0
 
 /datum/ai_behavior/xeno/husk/attack_target(datum/soure, atom/attacked)
 	if(world.time < mob_parent.next_move)

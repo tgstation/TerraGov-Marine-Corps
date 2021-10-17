@@ -693,10 +693,6 @@
 			old_area = get_area(oldLoc)
 		if(new_area && old_area != new_area)
 			new_area.Entered(AM, oldLoc)
-		for(var/atom/movable/CR in destination)
-			if(CR in conga_line)
-				continue
-			CR.Crossed(AM)
 		if(oldLoc)
 			AM.Moved(oldLoc, move_dir)
 		var/mob/M = AM
