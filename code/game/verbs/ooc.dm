@@ -173,7 +173,7 @@
 			continue
 		if(!(C.mob in GLOB.xeno_mob_list) && !(C.mob in GLOB.observer_list) || check_other_rights(C, R_ADMIN, FALSE)) // If the client is a xeno, an observer, and not an admin.
 			continue
-		
+
 		var/display_name = mob.name
 		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
 		if(!(mob in GLOB.xeno_mob_list) && admin) // If the verb caller is an admin and not a xeno mob, use their fakekey or key instead.
@@ -273,7 +273,7 @@
 		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
 		if(!((mob in GLOB.human_mob_list) || (mob in GLOB.ai_list)) && admin)  // If the verb caller is an admin and not a human mob, use their fakekey or key instead.
 			display_name = display_key
-		
+
 		var/avoid_highlight = C == src
 		to_chat(C, "<font color='#B75800'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
