@@ -290,8 +290,8 @@
 /obj/item/weapon/gun/energy/lasgun/update_icon(mob/user)
 	var/cell_charge = (!cell || cell.charge <= 0) ? 0 : CEILING((cell.charge / max(cell.maxcharge, 1)) * 100, 25)
 	icon_state = "[base_gun_icon]_[cell_charge]"
-	update_mag_overlay(user)
-	update_item_state(user)
+	update_mag_overlay()
+	update_item_state()
 
 
 /obj/item/weapon/gun/energy/lasgun/update_item_state(mob/user)

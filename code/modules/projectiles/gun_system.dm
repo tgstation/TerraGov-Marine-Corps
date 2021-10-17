@@ -319,11 +319,11 @@
 			var/datum/action/action = action_to_update
 			action.update_button_icon()
 
-	update_item_state(user)
-	update_mag_overlay(user)
+	update_item_state()
+	update_mag_overlay()
 
 
-/obj/item/weapon/gun/update_item_state(mob/user)
+/obj/item/weapon/gun/update_item_state()
 	item_state = "[base_gun_icon][flags_item & WIELDED ? "_w" : ""]"
 
 
