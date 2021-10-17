@@ -826,22 +826,25 @@ should be alright.
 		REMOVE_TRAIT(src, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
 		user.remove_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN)
 		modify_fire_delay(-aim_fire_delay)
-		to_chat(user, span_notice("You cease aiming.</b>"))
+		to_chat(user, span_notice("You cease aiming."))
 		return
 	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		to_chat(user, span_notice("You need to wield your gun before aiming.</b>"))
+		to_chat(user, span_notice("You need to wield your gun before aiming."))
 		return
 	if(!user.wear_id)
 		to_chat(user, span_notice("You don't have distinguished allies you want to avoid shooting.</b>"))
 		return
-	to_chat(user, span_notice("You steady your breathing...</b>"))
+	to_chat(user, span_notice("You steady your breathing..."))
 
 	if(user.do_actions && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		return
 	if(!user.marksman_aura)
 		if(!do_after(user, 1 SECONDS, TRUE, CHECK_BITFIELD(flags_item, IS_DEPLOYED) ? loc : src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
-			to_chat(user, span_warning("Your concentration is interrupted!</b>"))
+			to_chat(user, span_warning("<b>Your concentration is interrupted!</b>"))
 			return
+	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		to_chat(user, span_notice("You need to wield your gun before aiming."))
+		return
 	user.overlays += aim_mode_visual
 	ADD_TRAIT(src, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
 	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_speed_modifier)
