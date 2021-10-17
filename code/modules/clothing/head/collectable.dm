@@ -87,6 +87,13 @@
 	item_state = "pirate"
 	flags_armor_protection = NONE
 
+/obj/item/clothing/head/collectable/kitty
+	name = "collectable kitty ears"
+	desc = "The fur feels.....a bit too realistic."
+	icon_state = "kitty"
+	item_state = "kitty"
+	flags_armor_protection = NONE
+
 /obj/item/clothing/head/collectable/rabbitears
 	name = "collectable rabbit ears"
 	desc = "Not as lucky as the feet!"
