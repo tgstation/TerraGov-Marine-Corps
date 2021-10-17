@@ -955,7 +955,7 @@
 			/obj/item/clothing/under/marine/officer/ce =-1,
 			/obj/item/clothing/under/marine/officer/engi =-1,
 			/obj/item/clothing/under/marine/officer/researcher =-1,
-			/obj/item/clothing/under/marine/officer/imperial =-1,
+			/obj/item/clothing/under/marine/imperial =-1,
 			/obj/item/clothing/under/marine/veteran/wolves =-1,
 			/obj/item/clothing/under/marine/veteran/UPP/medic =-1,
 			/obj/item/clothing/under/marine/veteran/UPP =-1,
