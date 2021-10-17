@@ -40,7 +40,6 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/north)
 "act" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/north)
 "acH" = (
@@ -3602,7 +3601,6 @@
 /turf/open/floor/mainship/stripesquare,
 /area/magmoor/mining/garage)
 "cQP" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/northwest)
 "cQZ" = (
@@ -7904,7 +7902,6 @@
 	},
 /area/magmoor/compound/northeast)
 "fIc" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/west)
 "fIf" = (
@@ -12927,7 +12924,6 @@
 /turf/open/floor/mainship/sterile/side,
 /area/magmoor/medical/patient)
 "jpv" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/northeast)
 "jpE" = (
@@ -16351,7 +16347,6 @@
 	},
 /area/magmoor/security/storage)
 "lNt" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/central)
 "lNw" = (
@@ -16570,7 +16565,6 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/east)
 "lYH" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/research/containment)
 "lZd" = (
@@ -27887,7 +27881,6 @@
 	},
 /area/magmoor/compound/northwest)
 "tyC" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/lavaland/basalt/cave/corner{
 	dir = 1
 	},

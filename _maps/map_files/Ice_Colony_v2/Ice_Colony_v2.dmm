@@ -31532,7 +31532,6 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "cup" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/east)
 "cvo" = (
@@ -31936,7 +31935,6 @@
 /turf/closed/ice_rock/eastWall,
 /area/ice_colony/exterior/surface/landing_pad2)
 "fiX" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "fjG" = (
@@ -31946,7 +31944,6 @@
 	},
 /area/ice_colony/exterior/underground/caves)
 "fnv" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/south)
 "fnZ" = (
@@ -32100,7 +32097,6 @@
 	},
 /area/ice_colony/exterior/underground/caves/open)
 "gid" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves)
 "gij" = (
@@ -33473,7 +33469,6 @@
 	},
 /area/ice_colony/exterior/surface/cliff)
 "nWj" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/ice_se)
 "nWU" = (
@@ -33956,7 +33951,6 @@
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/ice_nw)
 "qCE" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/engineering)
 "qDA" = (
@@ -33970,7 +33964,6 @@
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/east)
 "qGt" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/central)
 "qIx" = (

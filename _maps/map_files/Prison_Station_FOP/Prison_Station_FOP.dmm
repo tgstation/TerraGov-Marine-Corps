@@ -2775,7 +2775,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/prison/darkred/full,
 /area/prison/cellblock/maxsec/north)
 "ajV" = (
@@ -5512,7 +5511,6 @@
 /area/prison/research/RD)
 "arW" = (
 /obj/machinery/light,
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/prison/whitepurple,
 /area/prison/research/secret/biolab)
 "arX" = (
@@ -8383,7 +8381,6 @@
 	},
 /area/prison/chapel)
 "aAj" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/prison/darkred/full,
 /area/prison/cellblock/maxsec/south)
 "aAk" = (
@@ -13032,7 +13029,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/north/north)
 "aNQ" = (
@@ -20012,7 +20008,6 @@
 /turf/open/floor/plating,
 /area/prison/kitchen)
 "biv" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
 "biw" = (
@@ -24845,7 +24840,6 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/se)
 "bxR" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/prison/red{
 	dir = 8
 	},
@@ -31007,7 +31001,6 @@
 /turf/open/floor/prison,
 /area/prison/intake)
 "bRS" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
 "bRT" = (
@@ -41932,7 +41925,6 @@
 	},
 /area/prison/cellblock/vip)
 "eBr" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating,
 /area/prison/disposal)
 "eCA" = (
@@ -43953,7 +43945,6 @@
 /turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/n)
 "lGC" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/prison/yellow/corner{
 	dir = 1
 	},
@@ -44406,7 +44397,6 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/medbay)
 "mYx" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/residential/south)
 "mYC" = (
@@ -46160,7 +46150,6 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/maxsec/north)
 "sgC" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/prison/yellow{
 	dir = 4
 	},
@@ -47389,7 +47378,6 @@
 	},
 /area/prison/security/monitoring/maxsec/panopticon)
 "vSz" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/hallway/central)
 "vSO" = (

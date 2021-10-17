@@ -4201,7 +4201,6 @@
 	},
 /area/icy_caves/outpost/office)
 "ym" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "yn" = (
@@ -7605,7 +7604,6 @@
 /turf/closed/ice/thin/end,
 /area/icy_caves/outpost/outside)
 "WC" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "WD" = (

@@ -55704,7 +55704,6 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/water_treatment_one/garage)
 "mdB" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/desert_dam/interior/caves/east_caves)
 "mdP" = (
@@ -58904,7 +58903,6 @@
 	},
 /area/desert_dam/exterior/valley/valley_labs)
 "ppo" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_crashsite)
 "ppp" = (
@@ -60498,7 +60496,6 @@
 	},
 /area/desert_dam/exterior/valley/valley_hydro)
 "qQv" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached1"
 	},
@@ -60934,7 +60931,6 @@
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/virology_wing)
 "rnF" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/desert_dam/interior/caves/east_caves)
 "rnI" = (
@@ -62796,7 +62792,6 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/landing/landing_pad_two_external)
 "try" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/desert_dam/interior/caves/temple)
 "trV" = (
@@ -66015,7 +66010,6 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "wFi" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/interior/caves/central_caves)
 "wFv" = (

@@ -12703,7 +12703,6 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "bQV" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "bRK" = (
@@ -13428,7 +13427,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "etu" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west2)
 "etV" = (
@@ -14053,7 +14051,6 @@
 /area/lv624/ground/sand1)
 "gyP" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
 "gzj" = (
@@ -16350,7 +16347,6 @@
 	},
 /area/lv624/ground/jungle2)
 "oph" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "oqt" = (
@@ -17926,7 +17922,6 @@
 /turf/open/floor/marking/bot,
 /area/lv624/ground/southcargo)
 "ujY" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "ukH" = (
@@ -18596,7 +18591,6 @@
 	},
 /area/lv624/ground/compound/c)
 "wMO" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east2)
 "wNe" = (

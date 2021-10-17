@@ -21216,7 +21216,6 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "iqX" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "irU" = (
@@ -21436,7 +21435,6 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/bigredv2/caves/southeast)
 "jmf" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -23256,7 +23254,6 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
 "qqG" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "qra" = (
@@ -23458,7 +23455,6 @@
 /turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
 "qRX" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
 "qSJ" = (
@@ -23982,7 +23978,6 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/southeast)
 "sQi" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
 "sQm" = (
@@ -24135,7 +24130,6 @@
 	},
 /area/shuttle/drop2/lz2)
 "ttW" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/east)
 "tux" = (
@@ -24734,7 +24728,6 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/southeast)
 "vyZ" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "vzf" = (
@@ -24901,7 +24894,6 @@
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "whf" = (
-/obj/effect/landmark/xeno_turret_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "wjM" = (
