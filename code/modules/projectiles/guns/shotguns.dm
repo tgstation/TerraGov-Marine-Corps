@@ -17,7 +17,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_shell_insert.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/shotgun_reload.ogg'
-	var/opened_sound = 'sound/weapons/guns/interact/shotgun_open.ogg'
+	opened_sound = 'sound/weapons/guns/interact/shotgun_open.ogg'
 	type_of_casings = "shell"
 	accuracy_mult = 1.15
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
@@ -36,133 +36,6 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	placed_overlay_iconstate = "shotgun"
 
-
-/obj/item/weapon/gun/shotgun/Initialize()
-	. = ..()
-	replace_tube(current_rounds) //Populate the chamber.
-	if(flags_gun_features & GUN_SHOTGUN_CHAMBER)
-		load_into_chamber()
-
-
-/obj/item/weapon/gun/shotgun/update_icon() //Shotguns do not currently have empty states, as they look exactly the same. Other than double barrel.
-	return
-
-/obj/item/weapon/gun/shotgun/proc/replace_tube(number_to_replace)
-	var/obj/item/ammo_magazine/internal/mag = current_mag
-	mag.chamber_contents = list()
-	mag.chamber_contents.len = mag.max_rounds
-	var/i
-	for(i = 1 to mag.max_rounds) //We want to make sure to populate the tube.
-		mag.chamber_contents[i] = i > number_to_replace ? "empty" : mag.default_ammo
-	mag.chamber_position = mag.current_rounds //The position is always in the beginning [1]. It can move from there.
-
-/obj/item/weapon/gun/shotgun/proc/add_to_tube(mob/user,selection) //Shells are added forward.
-	mag.chamber_position++ //We move the position up when loading ammo. New rounds are always fired next, in order loaded.
-	mag.chamber_contents[mag.chamber_position] = selection //Just moves up one, unless the mag is full.
-	if(mag.current_rounds == 1 && !in_chamber) //The previous proc in the reload() cycle adds ammo, so the best workaround here,
-		update_icon()	//This is not needed for now. Maybe we'll have loaded sprites at some point, but I doubt it. Also doesn't play well with double barrel.
-		ready_in_chamber()
-		cock_gun(user)
-	if(user)
-		playsound(user, reload_sound, 25, 1)
-		user.hud_used.update_ammo_hud(user, src)
-	return TRUE
-
-/obj/item/weapon/gun/shotgun/proc/empty_chamber(mob/user)
-	if(current_rounds > 0)
-		unload_shell(user)
-		if(!current_rounds && !in_chamber)
-			update_icon()
-		return TRUE
-	if(!in_chamber)
-		to_chat(user, span_warning("[src] is already empty."))
-		return TRUE
-	QDEL_NULL(in_chamber)
-	var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(ammo.type)
-	playsound(user, reload_sound, 25, 1)
-	new_handful.forceMove(get_turf(src))
-	user.hud_used.update_ammo_hud(user, src)
-	return TRUE
-
-
-/obj/item/weapon/gun/shotgun/proc/unload_shell(mob/user)
-	var/obj/item/ammo_magazine/internal/mag = current_mag
-	var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(mag.chamber_contents[mag.chamber_position])
-
-	if(user)
-		user.put_in_hands(new_handful)
-		playsound(user, reload_sound, 25, 1)
-	else new_handful.loc = get_turf(src)
-
-	current_rounds--
-	mag.chamber_contents[mag.chamber_position] = "empty"
-	mag.chamber_position--
-	sync_ammo(mag)
-	user.hud_used.update_ammo_hud(user, src)
-	return TRUE
-
-///Generates a handful of 1 bullet from the gun.
-/obj/item/weapon/gun/shotgun/proc/retrieve_shell(selection)
-	var/obj/item/ammo_magazine/handful/new_handful = new()
-	new_handful.generate_handful(selection, caliber, 1, /obj/item/weapon/gun/shotgun)
-	return new_handful
-
-/obj/item/weapon/gun/shotgun/proc/check_chamber_position()
-	return 1
-
-
-/obj/item/weapon/gun/shotgun/reload(mob/user, obj/item/ammo_magazine/handful/magazine)
-	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
-		return FALSE
-
-	if(!istype(magazine)) //Can only reload with handfuls.
-		to_chat(user, span_warning("You can't use that to reload!"))
-		return FALSE
-
-	if(!check_chamber_position()) //For the double barrel.
-		to_chat(user, span_warning("[src] has to be open!"))
-		return FALSE
-
-	//From here we know they are using shotgun type ammo and reloading via handful.
-	//Makes some of this a lot easier to determine.
-
-	var/mag_caliber = magazine.default_ammo //Handfuls can get deleted, so we need to keep this on hand for later.
-	if(current_mag.transfer_ammo(magazine,user,1))
-		add_to_tube(user,mag_caliber) //This will check the other conditions.
-		user.hud_used.update_ammo_hud(user, src)
-
-/obj/item/weapon/gun/shotgun/unload(mob/user)
-	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
-		return FALSE
-	return empty_chamber(user)
-
-
-/obj/item/weapon/gun/shotgun/proc/ready_shotgun_tube()
-	var/obj/item/ammo_magazine/internal/mag = current_mag
-	if(mag.current_rounds > 0)
-		ammo = GLOB.ammo_list[mag.chamber_contents[mag.chamber_position]]
-		in_chamber = create_bullet(ammo)
-		mag.current_rounds--
-		mag.chamber_contents[mag.chamber_position] = "empty"
-		mag.chamber_position--
-		sync_ammo(mag)
-		return in_chamber
-
-
-/obj/item/weapon/gun/shotgun/ready_in_chamber()
-	return ready_shotgun_tube()
-
-/obj/item/weapon/gun/shotgun/reload_into_chamber(mob/user)
-	make_casing(type_of_casings)
-	if(in_chamber)
-		QDEL_NULL(in_chamber)
-
-	//Time to move the tube position.
-	ready_in_chamber() //We're going to try and reload. If we don't get anything, icon change.
-	if(!current_rounds && !in_chamber) //No rounds, nothing chambered.
-		update_icon()
-
-	return TRUE
 
 //-------------------------------------------------------
 //TACTICAL SHOTGUN

@@ -78,7 +78,7 @@
 	reload_delay = 1 SECONDS
 	gun_type = /obj/item/weapon/gun/flamer
 	caliber = CALIBER_FUEL_THICK 
-	flags_magazine = AMMUNITION_WORN 
+	flags_magazine = MAGAZINE_WORN 
 	icon_state_mini = "tank"
 	
 	default_ammo = /datum/ammo/flamethrower

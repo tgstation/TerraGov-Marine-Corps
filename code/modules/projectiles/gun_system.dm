@@ -437,10 +437,6 @@
 		to_chat(user, span_warning("That magazine doesn't fit in there!"))
 		return
 
-	if(current_mag)
-		to_chat(user, span_warning("It's still got something loaded."))
-		return
-
 	if(check_ammo_amount(magazine) <= 0)
 		to_chat(user, span_warning("[magazine] is empty!"))
 		return
@@ -452,9 +448,7 @@
 
 
 /obj/item/weapon/gun/proc/finish_reload(mob/living/user, obj/item/magazine)
-	user?.temporarilyRemoveItemFromInventory(magazine)
-	if(!CHECK_BITFIELD(magazine.flags_magazine, AMMUNITION_WORN))
-		magazine.forceMove(src)
+	finish_reload_mag(user, magazine)
 	if(!in_chamber)
 		load_into_chamber()
 		if(cocked_sound)
@@ -467,11 +461,23 @@
 	user?.hud_used.update_ammo_hud(user, src)
 	update_icon()
 
+/obj/item/weapon/gun/proc/finish_reload_mag(mob/living/user, obj/item/magazine)
+	var/obj/item/ammo_magazine/mag = magazine
+	if(CHECK_BITFIELD(mag.flags_magazine, MAGAZINE_WORN|MAGAZINE_HANDFUL))
+		return
+	user?.temporarilyRemoveItemFromInventory(mag)
+	mag.forceMove(src)
+
 /obj/item/weapon/gun/proc/check_magazine(obj/item/magazine, mob/user)
 	var/obj/item/ammo_magazine/mag = magazine
 	if(!istype(src, mag.gun_type))
 		to_chat(user, span_warning("That magazine doesn't fit in there!"))
 		return FALSE
+	if(istype(current_mag, /obj/item/ammo_magazine))
+		var/obj/item/ammo_magazine/current_magazine = current_mag
+		if(!CHECK_BITFIELD(mag.flags_magazine, MAGAZINE_INTERNAL) || !CHECK_BITFIELD(current_magazine, MAGAZINE_INTERNAL))
+			to_chat(user, span_warning("It's still got something loaded."))
+			return FALSE
 	if(user && mag.reload_delay > 1)
 		to_chat(user, span_notice("You begin reloading [src]. Hold still..."))
 		if(!do_after(user, mag.reload_delay, TRUE, CHECK_BITFIELD(flags_item, IS_DEPLOYED) || master_gun ? loc : src, BUSY_ICON_GENERIC))
