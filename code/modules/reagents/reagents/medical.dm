@@ -203,9 +203,14 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
+/datum/reagent/medicine/kelotane/on_mob_add(mob/living/L, metabolism)
+	var/fire_loss = L.getFireLoss()
+	L.heal_limb_damage(0, 0.2*effect_str*fire_loss(+5))
+	to_chat(L, span_warning("Your wounds begin to rapidly knit together!"))
+
 /datum/reagent/medicine/kelotane/on_mob_life(mob/living/L, metabolism)
 	var/target_temp = L.get_standard_bodytemperature()
-	L.heal_limb_damage(0, effect_str)
+
 	if(L.bodytemperature > target_temp)
 		L.adjust_bodytemperature(-2.5*TEMPERATURE_DAMAGE_COEFFICIENT*effect_str, target_temp)
 	if(volume > 10)
@@ -213,7 +218,20 @@
 	if(volume > 20)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		L.heal_limb_damage(0, 0.5*effect_str)
+	switch(current_cycle)
+		if(1 to 25)
+			L.heal_limb_damage(0, effect_str)
+		if(26 to 50)
+			L.heal_limb_damage(0, (-0.02 * current_cycle + 1.5)*effect_str)
+		if(51 to INFINITY)
+			L.heal_limb_damage(0, 0.5*effect_str)
 	return ..()
+
+/datum/reagent/medicine/kelotane/on_mob_delete(mob/living/L, metabolism)
+	if(current_cycle > 10)
+		return
+	to_chat(L, span_userdanger("You reel as your medicine stops affecting you!"))
+	L.Paralyze((5*current_cycle)-50)
 
 /datum/reagent/medicine/kelotane/overdose_process(mob/living/L, metabolism)
 	L.apply_damages(effect_str, 0, effect_str)
@@ -307,8 +325,8 @@
 /datum/reagent/medicine/tricordrazine/on_mob_life(mob/living/L, metabolism)
 
 	L.adjustOxyLoss(-0.5*effect_str)
-	L.adjustToxLoss(-0.4*effect_str)
-	L.heal_limb_damage(0.8*effect_str, 0.8*effect_str)
+	L.adjustToxLoss(-0.25*effect_str)
+	L.heal_limb_damage(0.5*effect_str, 0.5*effect_str)
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	if(volume > 20)
@@ -632,15 +650,31 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
 
+/datum/reagent/medicine/bicardine/on_mob_add(mob/living/L, metabolism)
+	var/brute_loss = L.getBruteLoss()
+	L.heal_limb_damage(0.2*effect_str*brute_loss(+5), 0)
+	to_chat(L, span_warning("Your wounds begin to rapidly knit together!"))
+
 /datum/reagent/medicine/bicaridine/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(effect_str, 0)
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	if(volume > 20)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		L.heal_limb_damage(0.5*effect_str, 0)
+	switch(current_cycle)
+		if(1 to 25)
+			L.heal_limb_damage(effect_str, 0)
+		if(26 to 50)
+			L.heal_limb_damage((-0.02 * current_cycle + 1.5)*effect_str, 0)
+		if(51 to INFINITY)
+			L.heal_limb_damage(0.5*effect_str, 0)
 	return ..()
 
+/datum/reagent/medicine/bicardine/on_mob_delete(mob/living/L, metabolism)
+	if(current_cycle > 10)
+		return
+	to_chat(L, span_userdanger("You reel as your medicine stops affecting you!"))
+	L.Paralyze((5*current_cycle)-50)
 
 /datum/reagent/medicine/bicaridine/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(effect_str, BURN)
