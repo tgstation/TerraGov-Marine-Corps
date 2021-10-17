@@ -860,7 +860,7 @@ should be alright.
 			to_chat(user, span_warning("Your concentration is interrupted!</b>"))
 			return
 	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		to_chat(user, span_notice("You need to wield your gun before aiming.</b>"))
+		to_chat(user, span_notice("You need to wield your gun before aiming."))
 		return
 	user.overlays += aim_mode_visual
 	ENABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
