@@ -1543,7 +1543,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/energy/lasgun/marine/pistol
 	name = "pistol laser bolt"
-	damage = 25
+	damage = 20
 	penetration = 5
 	hitscan_effect_icon = "beam_particle"
 
@@ -1568,7 +1568,7 @@ datum/ammo/bullet/revolver/tp44
 	hitscan_effect_icon = "beam_incen"
 
 /datum/ammo/energy/lasgun/pistol/disabler/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)
+	staggerstun(M, P, stagger = 0.5, slowdown = 0.75
 
 // Plasma //
 
