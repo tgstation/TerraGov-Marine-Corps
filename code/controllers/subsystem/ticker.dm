@@ -16,7 +16,8 @@ SUBSYSTEM_DEF(ticker)
 
 	var/datum/game_mode/mode = null
 
-	var/list/login_music = null						//Music played in pregame lobby
+	///music that is played in pre game lobby
+	var/login_music = null
 
 	///music/jingle played when the world reboots
 	var/round_end_sound
@@ -47,13 +48,22 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
 
-	var/all_music = CONFIG_GET(keyed_list/lobby_music)
-	var/key = SAFEPICK(all_music)
-	if(key)
-		var/music_options = splittext(all_music[key], " ")
-		login_music = list(music_options[1], music_options[2], music_options[3])
+	login_music = choose_lobby_song()
+	for(var/client/player AS in GLOB.clients)
+		player.play_title_music()
 
 	return ..()
+
+///returns the string address of a random config lobby song
+/datum/controller/subsystem/ticker/proc/choose_lobby_song()
+	var/list/reboot_sounds = flist("[global.config.directory]/lobby_themes/")
+	var/list/possible_themes = list()
+
+	for(var/themes in reboot_sounds)
+		possible_themes += themes
+	if(possible_themes.len)
+		return "[global.config.directory]/lobby_themes/[pick(possible_themes)]"
+
 
 
 /datum/controller/subsystem/ticker/fire()
