@@ -373,4 +373,7 @@
 	///Are we the roony version of this xeno
 	var/is_a_rouny = FALSE
 
+	///Is the xeno researched
+	var/researched = FALSE
+
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
