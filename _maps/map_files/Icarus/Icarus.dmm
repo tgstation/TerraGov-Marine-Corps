@@ -4551,7 +4551,6 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/bow_hallway)
 "ta" = (
@@ -5037,6 +5036,7 @@
 /area/mainship/command/self_destruct)
 "vb" = (
 /obj/effect/landmark/start/job/synthetic,
+/obj/effect/ai_node,
 /turf/open/floor/vault,
 /area/mainship/command/airoom)
 "vc" = (
@@ -7533,6 +7533,10 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/mainship/plate,
 /area/mainship/squads/req)
+"Fi" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/airoom)
 "Fj" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
@@ -11525,6 +11529,10 @@
 /obj/machinery/power/apc/mainship/hardened,
 /turf/open/floor/mainship/plate,
 /area/mainship/shipboard/weapon_room)
+"We" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/upper_medical)
 "Wg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -21079,7 +21087,7 @@ ru
 Ut
 Tp
 xx
-Ya
+We
 UB
 qG
 Fa
@@ -25901,7 +25909,7 @@ Fy
 yR
 ZQ
 lP
-lP
+Fi
 lP
 lP
 sg
@@ -26359,7 +26367,7 @@ VA
 SM
 lP
 lP
-lP
+Fi
 lP
 Nq
 IE
