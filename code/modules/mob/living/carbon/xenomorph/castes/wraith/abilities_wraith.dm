@@ -776,21 +776,25 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	cooldown_timer = 1 MINUTES
 	keybind_signal = COMSIG_XENOABILITY_TIMESTOP
 	///The range of the ability
-	var/range = 5
+	var/range = 4
 	///How long is the bullet freeze staying
 	var/duration = 7 SECONDS
 
 /datum/action/xeno_action/timestop/action_activate()
 	. = ..()
+	var/range_square = range * range
 	var/list/turf/turfs_affected = list()
 	var/turf/central_turf = get_turf(owner)
 	for(var/turf/affected_turf in view(range, central_turf))
+		if(get_dist_euclide_square(affected_turf, central_turf) > range_square)
+			continue
 		ADD_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET, REF(owner))
 		turfs_affected += affected_turf
+		affected_turf.add_filter("wraith_magic", 2, drop_shadow_filter(color = "#04080FAA", size = -10))
 	playsound(owner, 'sound/magic/timeparadox2.ogg', 50, TRUE)
 	succeed_activate()
 	add_cooldown()
-	var/mutable_appearance/MA = mutable_appearance('icons/effects/160x160.dmi', "time", FLY_LAYER, GAME_PLANE, 125)
+	var/mutable_appearance/MA = mutable_appearance('icons/effects/160x160.dmi', "time", FLY_LAYER, GAME_PLANE, 70)
 	var/matrix/M = MA.transform
 	M.Translate(-60, -50)
 	MA.transform = M
@@ -805,6 +809,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		REMOVE_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET, REF(owner))
 		if(!HAS_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET))
 			SEND_SIGNAL(affected_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
+			affected_turf.remove_filter("wraith_magic")
 
 ///Play the end ability sound
 /datum/action/xeno_action/timestop/proc/play_sound_stop()
