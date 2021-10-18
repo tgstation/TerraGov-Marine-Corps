@@ -428,7 +428,7 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/stock/irremoveable/m41a,
-		/obj/item/weapon/gun/launcher/m92/mini_grenade/invisable,
+		/obj/item/weapon/gun/grenade_launcher/underslung/invisible,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
