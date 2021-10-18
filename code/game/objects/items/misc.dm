@@ -36,8 +36,14 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/bananapeel/Crossed(AM)
+/obj/item/bananapeel/Initialize()
 	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/item/bananapeel/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs) //TODO JUST USE THE SLIPPERY COMPONENT
 	if (iscarbon(AM))
 		var/mob/living/carbon/C = AM
 		C.slip(name, 4, 2)
@@ -143,7 +149,7 @@
 	desc = "A small keycard stamped by a Terra Gov logo. It contains points you can redeem at a dropship fabricator. One use only."
 	icon = 'icons/obj/items/card.dmi'
 	icon_state = "centcom"
-	///This is the number of points this thing has to give. 
+	///This is the number of points this thing has to give.
 	var/extra_points = 100
 
 /obj/item/dropship_points_voucher/examine(mob/user)

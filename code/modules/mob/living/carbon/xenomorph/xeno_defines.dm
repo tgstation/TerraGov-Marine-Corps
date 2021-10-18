@@ -355,6 +355,8 @@
 	// *** Ravager vars *** //
 	/// when true the rav will not go into crit or take crit damage.
 	var/endure = FALSE
+	///when true the rav leeches healing off of hitting marines
+	var/vampirism
 
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger

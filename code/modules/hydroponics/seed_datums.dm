@@ -743,7 +743,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	products = list(/obj/item/reagent_containers/food/snacks/grown/deathberries)
 	packet_icon = "seed-deathberry"
 	plant_icon = "deathberry"
-	chems = list(/datum/reagent/consumable/nutriment = list(1), /datum/reagent/toxin = list(3,3), /datum/reagent/toxin/lexorin = list(1,5))
+	chems = list(/datum/reagent/consumable/nutriment = list(1), /datum/reagent/toxin/lexorin = list(1,5), /datum/reagent/medicine/research/quietus = list(3,5))
 
 	yield = 3
 	potency = 50
@@ -805,7 +805,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = list("killer")
 	packet_icon = "seed-bloodtomato"
 	plant_icon = "bloodtomato"
-	chems = list(/datum/reagent/consumable/nutriment = list(1,10), /datum/reagent/blood = list(1,5))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,10), /datum/reagent/blood = list(1,5), /datum/reagent/medicine/quickclotplus = list (3,5))
 
 	yield = 3
 
@@ -882,7 +882,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	packet_icon = "seed-apple"
 	plant_icon = "apple"
 	harvest_repeat = 1
-	chems = list(/datum/reagent/consumable/nutriment = list(1,10))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,10), /datum/reagent/medicine/paracetamol = list(1,2))
 
 	lifespan = 55
 	maturation = 6
@@ -936,7 +936,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = null
 	packet_icon = "seed-ambrosiadeus"
 	plant_icon = "ambrosiadeus"
-	chems = list(/datum/reagent/consumable/nutriment = list(1), /datum/reagent/medicine/bicaridine = list(1,8), /datum/reagent/medicine/synaptizine = list(1,8,1), /datum/reagent/medicine/hyperzine = list(1,10,1), /datum/reagent/space_drugs = list(1,10))
+	chems = list(/datum/reagent/consumable/nutriment = list(1), /datum/reagent/medicine/research/somolent = list(5,10), /datum/reagent/medicine/synaptizine = list(1,8,1), /datum/reagent/medicine/hyperzine = list(1,10,1), /datum/reagent/space_drugs = list(1,10))
 
 //Mushrooms/varieties.
 /datum/seed/mushroom

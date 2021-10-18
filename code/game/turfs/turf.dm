@@ -127,6 +127,13 @@
 	..()
 	return QDEL_HINT_IWILLGC
 
+/// WARNING WARNING
+/// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
+/// It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
+/// We do it because moving signals over was needlessly expensive, and bloated a very commonly used bit of code
+/turf/clear_signal_refs()
+	return
+
 /turf/Enter(atom/movable/mover, direction)
 	// Do not call ..()
 	// Byond's default turf/Enter() doesn't have the behaviour we want with Bump()
@@ -172,26 +179,6 @@
 		return FALSE
 	return TRUE
 
-
-/turf/Exit(atom/movable/mover, direction)
-	. = ..()
-	if(!. || QDELETED(mover))
-		return FALSE
-	for(var/i in contents)
-		if(i == mover)
-			continue
-		var/atom/movable/thing = i
-		if(!thing.Uncross(mover, direction))
-			if(thing.flags_atom & ON_BORDER)
-				var/signalreturn = SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE, thing)
-				if(signalreturn & COMPONENT_MOVABLE_PREBUMP_STOPPED)
-					return FALSE
-				if(signalreturn & COMPONENT_MOVABLE_PREBUMP_PLOWED)
-					continue // no longer in the way
-				mover.Bump(thing)
-				return FALSE
-		if(QDELETED(mover))
-			return FALSE		//We were deleted.
 
 
 /turf/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
@@ -270,18 +257,26 @@
 
 	var/list/old_baseturfs = baseturfs
 
-	var/list/transferring_comps = list()
-	SEND_SIGNAL(src, COMSIG_TURF_CHANGE, path, new_baseturfs, flags, transferring_comps)
-	for(var/i in transferring_comps)
-		var/datum/component/comp = i
-		comp.RemoveComponent()
+	var/list/post_change_callbacks = list()
+	SEND_SIGNAL(src, COMSIG_TURF_CHANGE, path, new_baseturfs, flags, post_change_callbacks)
 
 	changing_turf = TRUE
 	qdel(src)	//Just get the side effects and call Destroy
+	//We do this here so anything that doesn't want to persist can clear itself
+	var/list/old_comp_lookup = comp_lookup?.Copy()
+	var/list/old_signal_procs = signal_procs?.Copy()
 	var/turf/W = new path(src)
 
-	for(var/i in transferring_comps)
-		W.TakeComponent(i)
+	// WARNING WARNING
+	// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
+	// It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
+	if(old_comp_lookup)
+		LAZYOR(W.comp_lookup, old_comp_lookup)
+	if(old_signal_procs)
+		LAZYOR(W.signal_procs, old_signal_procs)
+
+	for(var/datum/callback/callback as anything in post_change_callbacks)
+		callback.InvokeAsync(W)
 
 	if(new_baseturfs)
 		W.baseturfs = new_baseturfs

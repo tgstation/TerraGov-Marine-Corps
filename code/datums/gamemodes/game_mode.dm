@@ -463,6 +463,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 				continue
 			if(H.status_flags & XENO_HOST)
 				continue
+			if(H.faction == FACTION_XENO)
+				continue
 			if(isspaceturf(H.loc))
 				continue
 			num_humans++
@@ -480,7 +482,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 				continue
 			if(isspaceturf(X.loc))
 				continue
-
+			if(X.xeno_caste.upgrade == XENO_UPGRADE_BASETYPE) //Ais don't count
+				continue
 			// Never count hivemind
 			if(isxenohivemind(X))
 				continue

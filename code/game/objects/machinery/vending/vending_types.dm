@@ -189,6 +189,7 @@
 		/obj/item/reagent_containers/glass/bottle/neurotoxin/light = 1,
 		/obj/item/reagent_containers/glass/bottle/xeno_hemodile = 1,
 		/obj/item/reagent_containers/glass/bottle/xeno_transvitox = 1,
+		/obj/item/reagent_containers/glass/bottle/xeno_sanguinal = 1,
 	)
 
 	idle_power_usage = 211

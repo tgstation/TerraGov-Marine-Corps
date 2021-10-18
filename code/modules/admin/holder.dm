@@ -466,10 +466,11 @@ GLOBAL_PROTECT(admin_verbs_color)
 
 /world/proc/AVsound()
 	return list(
-	/datum/admins/proc/sound_file,
-	/datum/admins/proc/sound_web,
-	/datum/admins/proc/sound_stop,
-	/datum/admins/proc/music_stop
+		/datum/admins/proc/sound_file,
+		/datum/admins/proc/sound_web,
+		/datum/admins/proc/sound_stop,
+		/datum/admins/proc/music_stop,
+		/client/proc/set_round_end_sound,
 	)
 GLOBAL_LIST_INIT(admin_verbs_sound, world.AVsound())
 GLOBAL_PROTECT(admin_verbs_sound)
@@ -548,7 +549,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 
 
 /proc/message_admins(msg)
-	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\">[msg]</span></span>"
+	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
 			to_chat(C,
@@ -558,7 +559,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 
 
 /proc/message_staff(msg)
-	msg = "<span class=\"admin\"><span class=\"prefix\">STAFF LOG:</span> <span class=\"message linkify\">[msg]</span></span>"
+	msg = "<span class=\"admin\"><span class=\"prefix\">STAFF LOG:</span> <span class=\"message\">[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE) || is_mentor(C))
 			to_chat(C,
@@ -566,7 +567,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 				html = msg)
 
 /proc/msg_admin_ff(msg)
-	msg = span_admin("[span_prefix("ATTACK:")] <span class='green linkify'>[msg]</span>")
+	msg = span_admin("[span_prefix("ATTACK:")] <span class='green'>[msg]</span>")
 	for(var/client/C in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE))
 			continue
