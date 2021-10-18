@@ -3,7 +3,7 @@
  */
 
 /obj/machinery/computer/researchcomp
-	name = "Research console"
+	name = "research console"
 	desc = "A console for performing complex computations."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = SHUTTLE_SUPPLY
