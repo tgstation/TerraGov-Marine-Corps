@@ -27,8 +27,6 @@
 	var/track_blood = 0
 	var/feet_blood_color
 	var/datum/skills/skills
-	/// In akimbo firing, if the gun shooting the next shot will be in our inactive hand
-	var/shoot_inactive_hand = FALSE
 
 
 	//Movement

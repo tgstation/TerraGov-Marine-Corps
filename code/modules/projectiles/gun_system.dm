@@ -136,6 +136,8 @@
 	var/upper_akimbo_accuracy = 2
 	///determines lower accuracy modifier in akimbo
 	var/lower_akimbo_accuracy = 1
+	///If fire delay is 1 second, and akimbo_additional_delay is 0.5, then you'll have to wait 1 second * 0.5 to fire the second gun
+	var/akimbo_additional_delay = 0.5
 
 	///If the gun is deployable, the time it takes for the weapon to deploy.
 	var/deploy_time = 0
@@ -635,6 +637,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			return
 		if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
 			dual_wield = TRUE
+			if(gun_user.get_inactive_held_item() == src && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
+				return
 		if(gun_user.in_throw_mode)
 			return
 		if(gun_user.Adjacent(object)) //Dealt with by attack code
@@ -651,16 +655,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(master_gun)
 		SEND_SIGNAL(gun_user, COMSIG_MOB_ATTACHMENT_FIRED, target, src, master_gun)
 	gun_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
-
-/// Check if guns are empty and set which hand the shooting hand is.
-/obj/item/weapon/gun/proc/check_ammo_akimbo(mob/user)
-	var/obj/item/weapon/gun/active_gun = user.get_active_held_item()
-	var/obj/item/weapon/gun/inactive_gun = user.get_inactive_held_item()
-
-	if(!inactive_gun.get_ammo_count())
-		user.shoot_inactive_hand = FALSE
-	else if(!active_gun.get_ammo_count())
-		user.shoot_inactive_hand = TRUE
 
 ///Set the target and take care of hard delete
 /obj/item/weapon/gun/proc/set_target(atom/object)
@@ -824,14 +818,10 @@ and you're good to go.
 			sentry_battery.charge = 0
 			sentry_battery = null
 	if(dual_wield && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
-		if(gun_user.shoot_inactive_hand)
-			gun_user.shoot_inactive_hand = FALSE
-			var/obj/item/weapon/gun/active_gun = gun_user.get_active_held_item()
-			active_gun.last_fired = world.time
-		else
-			gun_user.shoot_inactive_hand = TRUE
-			var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
-			inactive_gun.last_fired = world.time
+		var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
+		if(inactive_gun.get_ammo_count())
+			inactive_gun.last_fired = max(world.time - fire_delay * akimbo_additional_delay, inactive_gun.last_fired)
+			gun_user.swap_hand()
 	return TRUE
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
@@ -975,12 +965,6 @@ and you're good to go.
 /obj/item/weapon/gun/proc/able_to_fire(mob/user)
 	if(!user || user.stat != CONSCIOUS || user.lying_angle)
 		return
-
-	//Akimbo shooting style
-	if(dual_wield && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
-		if((gun_user.get_active_held_item() == src && gun_user.shoot_inactive_hand) || (gun_user.get_inactive_held_item() == src && !gun_user.shoot_inactive_hand))
-			return FALSE
-		check_ammo_akimbo(user)
 
 	if(!user.dextrous)
 		to_chat(user, span_warning("You don't have the dexterity to do this!"))
