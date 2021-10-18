@@ -441,6 +441,7 @@
 		/obj/item/armor_module/module/ballistic_armor = list(CAT_ARMMOD, "Ballistic armor module", 0,"black"),
 		/obj/effect/essentials_set/tyr = list(CAT_ARMMOD, "Mark 1 Tyr extra armor set", 0,"black"),
 		/obj/item/armor_module/module/better_shoulder_lamp = list(CAT_ARMMOD, "Baldur light armor module", 0,"black"),
+		/obj/item/armor_module/module/splintboy_autodoc = list(CAT_ARMMOD, "Valkyrie Mk1 Autosplinting armor system", 0,"black"),
 		/obj/effect/essentials_set/vali = list(CAT_ARMMOD, "Vali chemical enhancement set", 0,"black"),
 		/obj/item/clothing/mask/gas = list(CAT_MAS, "Transparent gas mask", 0,"black"),
 		/obj/item/clothing/mask/gas/tactical = list(CAT_MAS, "Tactical gas mask", 0,"black"),
