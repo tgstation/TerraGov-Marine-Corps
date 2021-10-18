@@ -193,7 +193,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/stock/tactical,
-		/obj/item/weapon/gun/launcher/m92/mini_grenade/invisable,
+		/obj/item/weapon/gun/grenade_launcher/underslung/invisible,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
 	starting_attachment_types = list(/obj/item/weapon/gun/grenade_launcher/underslung/invisible)
