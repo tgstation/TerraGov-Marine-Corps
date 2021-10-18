@@ -770,7 +770,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/xeno_action/timestop
 	name = "Time stop"
 	ability_name = "Time stop"
-	action_icon_state = ""
+	action_icon_state = "time_stop"
 	mechanics_text = "Freezes bullets in their course, and they will start to move again only after a certain time"
 	plasma_cost = 200
 	cooldown_timer = 1 MINUTES
