@@ -70,7 +70,7 @@
 			replace_init_resource(usr)
 		if("start_research")
 			if (!init_resource)
-				to_chat(user, span_notice("You have no resource to begin research."))
+				to_chat(usr, span_notice("You have no resource to begin research."))
 				return
 			start_research(usr)
 

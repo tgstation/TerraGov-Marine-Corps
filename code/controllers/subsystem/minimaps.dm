@@ -375,6 +375,10 @@ SUBSYSTEM_DEF(minimaps)
 /datum/action/minimap/xeno
 	minimap_flags = MINIMAP_FLAG_XENO
 
+/datum/action/minimap/researcher
+	minimap_flags = MINIMAP_FLAG_MARINE
+	marker_flags = MINIMAP_FLAG_MARINE|MINIMAP_FLAG_EXCAVATION_ZONE
+
 /datum/action/minimap/marine
 	minimap_flags = MINIMAP_FLAG_MARINE
 	marker_flags = MINIMAP_FLAG_MARINE
