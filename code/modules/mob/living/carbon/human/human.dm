@@ -29,6 +29,8 @@
 	issue_order_focus.give_action(src)
 	var/datum/action/innate/order/rally_order/send_rally_order = new
 	send_rally_order.give_action(src)
+	var/datum/action/innate/message_squad/screen_orders = new
+	screen_orders.give_action(src)
 
 	//makes order hud visible
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_ORDER]

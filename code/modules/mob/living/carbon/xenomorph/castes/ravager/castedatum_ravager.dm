@@ -137,3 +137,41 @@
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 50, "bullet" = 55, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_1, "bio" = 40, "rad" = 40, "fire" = 70, "acid" = 40)
+
+/datum/xeno_caste/ravager/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "Red like the blood of those that try to stop its rampage."
+	primordial_message = "Our frenzy is eternal. Rip and tear, until it is done."
+	upgrade = XENO_UPGRADE_FOUR
+
+	// *** Melee Attacks *** //
+	melee_damage = 30
+
+	// *** Speed *** //
+	speed = -1
+
+	// *** Plasma *** //
+	plasma_max = 800
+	plasma_gain = 15
+
+	// *** Health *** //
+	max_health = 350
+
+	// *** Evolution *** //
+	upgrade_threshold = 2750
+
+	// *** Defense *** //
+	soft_armor = list("melee" = 50, "bullet" = 55, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_1, "bio" = 40, "rad" = 40, "fire" = 70, "acid" = 40)
+
+	// *** Abilities *** //
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/activable/charge,
+		/datum/action/xeno_action/activable/ravage,
+		/datum/action/xeno_action/endure,
+		/datum/action/xeno_action/rage,
+		/datum/action/xeno_action/vampirism,
+	)

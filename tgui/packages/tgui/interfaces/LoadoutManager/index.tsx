@@ -1,10 +1,10 @@
 import { useBackend, useLocalState } from "../../backend";
-import { Stack, Button, Section, LabeledList, Tabs, Box, Flex } from "../../components";
+import { Stack, Button, Section, LabeledList, Tabs, Flex } from "../../components";
 import { Window } from "../../layouts";
 import { LoadoutListData, LoadoutTabData, LoadoutManagerData, LoadoutItemData } from './Types';
 import { NameInputModal } from './NameInputModal';
 
-const LoadoutItem = (props : LoadoutItemData, context) => { 
+const LoadoutItem = (props : LoadoutItemData, context) => {
   const { act } = useBackend(context);
   const {
     loadout,
@@ -36,7 +36,7 @@ const LoadoutList = (props: LoadoutListData) => {
           {loadout_list
             .map(loadout_visible => {
               return (
-                <LoadoutItem 
+                <LoadoutItem
                   key={loadout_visible.name}
                   loadout={loadout_visible} />
               );
@@ -95,16 +95,16 @@ export const LoadoutManager = (props, context) => {
     setImportNewLoadout,
   ] = useLocalState(context, 'importLoadout', false);
 
-  return ( 
-    <Window 
+  return (
+    <Window
       title="Loadout Manager"
-      width={700} 
+      width={700}
       height={400}>
       <Window.Content>
         <Stack vertical>
           <JobTabs job={job} setJob={setJob} />
-          <LoadoutList 
-            loadout_list={loadout_list.filter(loadout => loadout.job === job)} 
+          <LoadoutList
+            loadout_list={loadout_list.filter(loadout => loadout.job === job)}
           />
           <Flex>
             <Flex.Item grow={1}><div> </div></Flex.Item>

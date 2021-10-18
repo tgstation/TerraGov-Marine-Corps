@@ -32,8 +32,9 @@
 /proc/xeno_status_output(list/xenolist, ignore_leads = TRUE, user)
 	var/xenoinfo = ""
 	var/leadprefix = (ignore_leads?"":"<b>(-L-)</b>")
-	for(var/i in xenolist)
-		var/mob/living/carbon/xenomorph/X = i
+	for(var/mob/living/carbon/xenomorph/X AS in xenolist)
+		if(X.xeno_caste.tier == XENO_TIER_MINION)
+			continue
 		if(ignore_leads && X.queen_chosen_lead)
 			continue
 		xenoinfo += "<tr><td>[leadprefix]<a href='byond://?src=\ref[user];track_xeno_name=[X.nicknumber]'>[X.name]</a> "
@@ -112,7 +113,7 @@
 			continue
 
 		switch(initial(T.tier))
-			if(XENO_TIER_ZERO)
+			if(XENO_TIER_ZERO || XENO_TIER_MINION)
 				continue
 			if(XENO_TIER_FOUR)
 				tier4counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
@@ -137,6 +138,7 @@
 	dat += "<b>Tier 2: ([length(hive.xenos_by_tier[XENO_TIER_TWO])]/[hive.tier2_xeno_limit]) Sisters</b>[tier2counts]<BR>"
 	dat += "<b>Tier 1: [length(hive.xenos_by_tier[XENO_TIER_ONE])] Sisters</b>[tier1counts]<BR>"
 	dat += "<b>Larvas: [length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva])] Sisters<BR>"
+	dat += "<b>Minions: [length(hive.xenos_by_tier[XENO_TIER_MINION])] Sisters<BR>"
 	dat += "<b>Psychic points : [SSpoints.xeno_points_by_hive[hive.hivenumber]]<BR>"
 	dat += "<b>Hivemind: [hivemind_text]<BR>"
 	if(hive.hivenumber == XENO_HIVE_NORMAL)
@@ -354,7 +356,7 @@
 					// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
 					var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 					var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-					var/upgrade_points = 1 + (stored_larva/6) + hive.get_evolution_boost()
+					var/upgrade_points = 1 + (stored_larva/6) + hive.get_upgrade_boost()
 					upgrade_stored = min(upgrade_stored + upgrade_points, xeno_caste.upgrade_threshold)
 
 /mob/living/carbon/xenomorph/proc/update_evolving()
@@ -368,7 +370,7 @@
 	// Evolution is increased based on marine to xeno population taking stored_larva as a modifier.
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	var/evolution_points = 1 + (FLOOR(stored_larva / 3, 1))
+	var/evolution_points = 1 + (FLOOR(stored_larva / 3, 1)) + hive.get_evolution_boost()
 	evolution_stored = min(evolution_stored + evolution_points, xeno_caste.evolution_threshold)
 
 	if(evolution_stored == xeno_caste.evolution_threshold)

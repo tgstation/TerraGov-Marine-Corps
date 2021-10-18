@@ -113,11 +113,13 @@
 /datum/action/xeno_action/activable/gravity_crush/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/gravity_crush/ai_should_use(target)
+/datum/action/xeno_action/activable/gravity_crush/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
 
 // ***************************************

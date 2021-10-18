@@ -230,6 +230,8 @@
 
 ///Announce that the dropship will departure soon
 /obj/docking_port/mobile/marine_dropship/proc/prepare_going_to_previous_destination()
+	if(hijack_state != HIJACK_STATE_NORMAL)
+		return
 	cycle_timer = addtimer(CALLBACK(src, .proc/go_to_previous_destination), 20 SECONDS, TIMER_STOPPABLE)
 	priority_announce("Dropship taking off in 20 seconds towards [previous.name]", "Dropship Automatic Departure")
 
@@ -423,6 +425,8 @@
 		for(var/m in GLOB.humans_by_zlevel["[i]"])
 			var/mob/living/carbon/human/H = m
 			if(isnestedhost(H))
+				continue
+			if(H.faction == FACTION_XENO)
 				continue
 			humans_on_ground++
 	if(length(GLOB.alive_human_list) && ((humans_on_ground / length(GLOB.alive_human_list)) > ALIVE_HUMANS_FOR_CALLDOWN))

@@ -66,13 +66,15 @@
 /datum/action/xeno_action/activable/charge/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/charge/ai_should_use(target)
+/datum/action/xeno_action/activable/charge/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 4)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
 
 
@@ -127,13 +129,15 @@
 /datum/action/xeno_action/activable/ravage/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/ravage/ai_should_use(target)
+/datum/action/xeno_action/activable/ravage/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 1)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
 
 
@@ -233,13 +237,13 @@
 /datum/action/xeno_action/endure/ai_should_use(target)
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > WORLD_VIEW_NUM) // If we can be seen.
-		return ..()
+		return FALSE
 	if(X.health > 50)
-		return ..()
+		return FALSE
 	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
 	return TRUE
 
 // ***************************************
@@ -417,3 +421,92 @@
 	rage_power = 0
 	rage_plasma = 0
 	X.playsound_local(X, 'sound/voice/hiss5.ogg', 50) //Audio cue
+
+
+// ***************************************
+// *********** Vampirism
+// ***************************************
+/datum/action/xeno_action/vampirism
+	name = "Toggle vampirism"
+	action_icon_state = "rage"
+	mechanics_text = "Toggle on to enable boosting on "
+	ability_name = "Vampirism"
+	plasma_cost = 0 //We're limited by cooldowns, not plasma
+	cooldown_timer = 0.5 SECONDS
+	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
+	keybind_signal = COMSIG_XENOABILITY_VAMPIRISM
+	///timer hash for timer to clear last attacked
+	var/clear_timer
+	///int of how stacked we are on leeching
+	var/leech_count
+	///list of mob = timer_key of mobs we are actively leeching
+	var/mob/living/last_leeched
+
+/datum/action/xeno_action/vampirism/update_button_icon()
+	button.overlays.Cut()
+	var/mob/living/carbon/xenomorph/xeno = owner
+	if(xeno.vampirism)
+		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_on")
+	else
+		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_off")
+	var/mutable_appearance/number = mutable_appearance()
+	number.maptext = MAPTEXT("[leech_count]")
+	button.overlays += number
+
+/datum/action/xeno_action/vampirism/give_action(mob/living/L)
+	. = ..()
+	var/mob/living/carbon/xenomorph/xeno = L
+	xeno.vampirism = TRUE
+	RegisterSignal(L, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/on_slash)
+	RegisterSignal(L, COMSIG_XENOMORPH_HEALTH_REGEN, .proc/on_regen)
+
+/datum/action/xeno_action/vampirism/remove_action(mob/living/L)
+	. = ..()
+	UnregisterSignal(L, COMSIG_XENOMORPH_ATTACK_LIVING)
+
+/datum/action/xeno_action/vampirism/action_activate()
+	. = ..()
+	var/mob/living/carbon/xenomorph/xeno = owner
+	xeno.vampirism = !xeno.vampirism
+	if(xeno.vampirism)
+		RegisterSignal(xeno, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/on_slash)
+	else
+		UnregisterSignal(xeno, COMSIG_XENOMORPH_ATTACK_LIVING)
+	to_chat(xeno, span_xenonotice("You will now[xeno.vampirism ? "" : " no longer"] heal from attacking"))
+
+///called on regen, handles regen rate reduction
+/datum/action/xeno_action/vampirism/proc/on_regen(mob/living/carbon/xenomorph/dracula, list/heal_data)
+	SIGNAL_HANDLER
+	if(!leech_count)
+		return
+	var/count = leech_count
+	//heals 10% extra per leeched
+	count /= 10
+	count += 1
+	heal_data += count
+
+///Adds the slashed mob to tracked damage mobs
+/datum/action/xeno_action/vampirism/proc/on_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
+	SIGNAL_HANDLER
+	if(target.stat == DEAD)
+		return
+	if(!ishuman(target)) // no farming on animals/dead
+		return
+	if(last_leeched == target)
+		return
+	addtimer(CALLBACK(src, .proc/end_leech), VAMPIRISM_MOB_DURATION)
+	leech_count++
+	last_leeched = target
+	deltimer(clear_timer)
+	clear_timer = addtimer(CALLBACK(src, .proc/clear_leeched), VAMPIRISM_MOB_DURATION, TIMER_STOPPABLE)
+	update_button_icon()
+
+///Called when the leech effect is supposed to end
+/datum/action/xeno_action/vampirism/proc/end_leech()
+	leech_count--
+	update_button_icon()
+
+///Called when last_leeched mob is deleted
+/datum/action/xeno_action/vampirism/proc/clear_leeched()
+	SIGNAL_HANDLER
+	last_leeched = null

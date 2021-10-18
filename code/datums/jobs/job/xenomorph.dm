@@ -7,6 +7,7 @@
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_SHOW_OPEN_POSITIONS
 	jobworth = list(/datum/job/survivor/rambo = SURVIVOR_POINTS_REGULAR)
 	job_points_needed  = 10 //Redefined via config.
+	faction = FACTION_XENO
 	html_description = {"
 		<b>Difficulty</b>: Variable<br /><br />
 		<b>You answer to the</b> acting Hive leader<br /><br />
