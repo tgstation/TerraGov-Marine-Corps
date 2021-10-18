@@ -28,6 +28,7 @@
 #define COOLDOWN_LIGHT "cooldown_light"
 #define COOLDOWN_JETPACK "jetpack"
 #define COOLDOWN_CIC_ORDERS "cic_orders"
+#define COOLDOWN_HUD_ORDER "hud_order"
 #define COOLDOWN_CLOAK_IMPLANT "cloak_implant"
 #define COOLDOWN_DRONE_CLOAK "drone_cloak"
 #define COOLDOWN_XENO_TURRETS_ALERT "xeno_turrets_alert"

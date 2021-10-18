@@ -6901,7 +6901,7 @@
 /area/sulaco/hallway/central_hall3)
 "aIn" = (
 /obj/machinery/light,
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
 "aIo" = (
@@ -7185,7 +7185,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "aJW" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
 "aKb" = (
@@ -13123,6 +13123,8 @@
 /obj/item/clothing/suit/apron/overalls,
 /obj/item/storage/bag/plants,
 /obj/item/storage/bag/plants,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/condiment/enzyme,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hydro)
 "hbf" = (
@@ -14973,6 +14975,10 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall2)
+"ksF" = (
+/obj/machinery/grill/unwrenched,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
 "ksU" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -16985,6 +16991,11 @@
 	},
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
+"nXm" = (
+/obj/structure/cable,
+/obj/machinery/griddle,
+/turf/open/floor/prison/sterilewhite,
+/area/sulaco/cafeteria/kitchen)
 "nZF" = (
 /obj/machinery/door/poddoor/mainship/umbilical/south{
 	id = "prepblasteast";
@@ -21022,7 +21033,7 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
 "uDI" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
 "uFe" = (
@@ -38990,7 +39001,7 @@ nzi
 mDu
 aPg
 hrN
-aQw
+ksF
 aQw
 iTR
 aQw
@@ -45204,7 +45215,7 @@ wWw
 oUY
 hTK
 rgW
-oUY
+nXm
 wMZ
 wMZ
 gVp

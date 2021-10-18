@@ -51,6 +51,8 @@
 #define MODE_TWO_HUMAN_FACTIONS	(1<<15)
 #define MODE_SILOABLE_BODIES (1<<16)
 #define MODE_WIN_POINTS (1<<17)
+#define MODE_NO_PERMANENT_WOUNDS (1<<18)
+#define MODE_SPAWNING_MINIONS (1<<19)
 
 #define MODE_LANDMARK_RANDOM_ITEMS (1<<0)
 #define MODE_LANDMARK_SPAWN_XENO_TUNNELS (1<<1)
@@ -109,10 +111,11 @@
 
 #define SUPPLY_POINT_MARINE_SPAWN 2.5
 
-#define XENO_AFK_TIMER 5 MINUTES
+#define AFK_TIMER 5 MINUTES
+#define TIME_BEFORE_TAKING_BODY 5 MINUTES
 
-#define DEATHTIME_CHECK(M) ((world.time - M.timeofdeath) < SSticker.mode?.respawn_time)
-#define DEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - M.timeofdeath) * 0.1] second\s.</span><br><span class='warning'>You must wait [SSticker.mode?.respawn_time * 0.1] seconds before rejoining the game!"))
+#define DEATHTIME_CHECK(M) ((world.time - GLOB.key_to_time_of_death[M.key]) < SSticker.mode?.respawn_time)
+#define DEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - GLOB.key_to_time_of_death[M.key]) * 0.1] second\s.</span><br><span class='warning'>You must wait [SSticker.mode?.respawn_time * 0.1] seconds before rejoining the game!"))
 
 #define COUNT_IGNORE_HUMAN_SSD (1<<0)
 #define COUNT_IGNORE_XENO_SSD (1<<1)
@@ -122,13 +125,21 @@
 
 #define SILO_PRICE 800
 #define XENO_TURRET_PRICE 100
-#define XENO_KING_PRICE 1800
-//How many psych point one gen gives per person on the server
-#define BASE_PSYCH_POINT_OUTPUT 0.008
-//How many psy points are gave for each marine psy drained
-#define PSY_DRAIN_REWARD 60
-//How many psy points are gave every 5 second by a cocoon
-#define COCOON_PSY_POINTS_REWARD 2
+
+//How many psych point one gen gives every second
+#define GENERATOR_PSYCH_POINT_OUTPUT 1
+//How many psy points are gave for each marine psy drained at low pop
+#define PSY_DRAIN_REWARD_MAX 90
+//How many psy points are gave for each marine psy drained at high pop
+#define PSY_DRAIN_REWARD_MIN 30
+//How many psy points are gave every 5 second by a cocoon at low pop
+#define COCOON_PSY_POINTS_REWARD_MAX 3
+//How many psy points are gave every 5 second by a cocoon at high pop
+#define COCOON_PSY_POINTS_REWARD_MIN 1
+
+//The player pop consider to be very high pop
+#define HIGH_PLAYER_POP 80
+
 
 #define INVOKE_KING_TIME_LOCK 90 MINUTES
 

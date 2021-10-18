@@ -48,6 +48,8 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/updatehealth()
+	if(on_fire)
+		ExtinguishMob()
 	health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
 	if(health <= 0 && !(status_flags & INCORPOREAL))
 		setBruteLoss(0)
@@ -69,7 +71,7 @@
 		if(health < minimum_health + maxHealth)
 			setBruteLoss(0)
 			setFireLoss(-minimum_health)
-		if((health >= maxHealth) || on_fire) //can't regenerate.
+		if((health >= maxHealth)) //can't regenerate.
 			updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
 			return
 		heal_wounds(XENO_RESTING_HEAL)
@@ -181,8 +183,6 @@
 
 ///Finish the teleportation process to send the hivemind manifestation to the selected turf
 /mob/living/carbon/xenomorph/hivemind/proc/end_teleport(turf/T)
-	LAZYCLEARLIST(movespeed_modification)
-	update_movespeed()
 	flick("Hivemind_materialisation_fast", src)
 	if(!check_weeds(T, TRUE))
 		to_chat(src, span_warning("The weeds on our destination were destroyed"))
@@ -203,7 +203,7 @@
 	if(door && !door.CanPass(src, NewLoc))
 		return FALSE
 
-	forceMove(NewLoc)
+	abstract_move(NewLoc)
 
 /mob/living/carbon/xenomorph/hivemind/receive_hivemind_message(mob/living/carbon/xenomorph/speaker, message)
 	var/track =  "<a href='?src=[REF(src)];hivemind_jump=[REF(speaker)]'>(F)</a>"
@@ -225,7 +225,7 @@
 		if(!(status_flags & INCORPOREAL))
 			start_teleport(get_turf(xeno))
 			return
-		forceMove(get_turf(xeno))
+		abstract_move(get_turf(xeno))
 
 /// Hivemind just doesn't have any icons to update, disabled for now
 /mob/living/carbon/xenomorph/hivemind/update_icon()
@@ -262,7 +262,7 @@
 	if(!(status_flags & INCORPOREAL))
 		start_teleport(target_turf)
 		return
-	forceMove(target_turf)
+	abstract_move(target_turf)
 
 /mob/living/carbon/xenomorph/hivemind/CtrlClick(mob/user)
 	if(!(status_flags & INCORPOREAL))
@@ -312,7 +312,7 @@
 	parent.playsound_local(parent, get_sfx("alien_help"), 30, TRUE)
 	to_chat(parent, span_xenohighdanger("Your core has been destroyed!"))
 	xeno_message("A sudden tremor ripples through the hive... \the [parent] has been slain!", "xenoannounce", 5, parent.hivenumber)
-	parent.timeofdeath = world.time
+	GLOB.key_to_time_of_death[parent.key] = world.time
 	parent.ghostize()
 	if(!QDELETED(parent))
 		QDEL_NULL(parent)

@@ -74,7 +74,7 @@
 				T.relativewall()
 
 			//nearby glowshrooms updated
-			for(var/obj/effect/glowshroom/shroom in T)
+			for(var/obj/structure/glowshroom/shroom in T)
 				if(!shroom.floor) //shrooms drop to the floor
 					shroom.floor = 1
 					shroom.icon_state = "glowshroomf"

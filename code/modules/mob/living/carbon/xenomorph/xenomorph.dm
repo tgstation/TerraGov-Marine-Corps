@@ -61,6 +61,8 @@
 	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
 	hive.update_tier_limits()
+	if(CONFIG_GET(flag/xenos_on_strike))
+		replace_by_ai()
 	if(z) //Larva are initiated in null space
 		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
 
@@ -143,6 +145,8 @@
 			return 2
 		if(XENO_UPGRADE_THREE)
 			return 3
+		if(XENO_UPGRADE_FOUR)
+			return 4
 
 /mob/living/carbon/xenomorph/proc/upgrade_next()
 	switch(upgrade)
@@ -155,7 +159,9 @@
 		if(XENO_UPGRADE_TWO)
 			return XENO_UPGRADE_THREE
 		if(XENO_UPGRADE_THREE)
-			return XENO_UPGRADE_THREE
+			return XENO_UPGRADE_FOUR
+		if(XENO_UPGRADE_FOUR)
+			return XENO_UPGRADE_FOUR
 
 /mob/living/carbon/xenomorph/proc/upgrade_prev()
 	switch(upgrade)
@@ -169,6 +175,8 @@
 			return XENO_UPGRADE_ONE
 		if(XENO_UPGRADE_THREE)
 			return XENO_UPGRADE_TWO
+		if(XENO_UPGRADE_FOUR)
+			return XENO_UPGRADE_THREE
 
 /mob/living/carbon/xenomorph/proc/setup_job()
 	var/datum/job/xenomorph/xeno_job = SSjob.type_occupations[xeno_caste.job_type]
@@ -192,8 +200,7 @@
 
 /mob/living/carbon/xenomorph/examine(mob/user)
 	..()
-	if(isxeno(user) && xeno_caste.caste_desc)
-		to_chat(user, xeno_caste.caste_desc)
+	to_chat(user, xeno_caste.caste_desc)
 
 	if(stat == DEAD)
 		to_chat(user, "It is DEAD. Kicked the bucket. Off to that great hive in the sky.")
@@ -250,7 +257,7 @@
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
 		if(L.stat == DEAD && (SSticker.mode?.flags_round_type & MODE_DEAD_GRAB_FORBIDDEN)) //Can't drag dead human bodies in distress
-			to_chat(usr,span_xenowarning("This looks gross, better not touch it"))
+			to_chat(usr,span_xenowarning("This looks gross, better not touch it."))
 			return FALSE
 		do_attack_animation(L, ATTACK_EFFECT_GRAB)
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
@@ -373,12 +380,6 @@
 		zoom_out()
 	return ..()
 
-/mob/living/carbon/xenomorph/ghostize(can_reenter_corpse)
-	. = ..()
-	if(!. || can_reenter_corpse)
-		return
-	set_afk_status(MOB_RECENTLY_DISCONNECTED, 5 SECONDS)
-
 /mob/living/carbon/xenomorph/set_stat(new_stat)
 	. = ..()
 	if(isnull(.))
@@ -389,3 +390,11 @@
 		if(DEAD, CONSCIOUS)
 			if(. == UNCONSCIOUS)
 				see_in_dark = xeno_caste.conscious_see_in_dark
+
+///Kick the player from this mob, replace it by a more competent ai
+/mob/living/carbon/xenomorph/proc/replace_by_ai()
+	to_chat(src, span_warning("Sorry, your skill level was deemed too low by our automatic skill check system. Your body has as such been given to a more capable brain, our state of the art AI technology piece. Do not hesitate to take back your body after you've improved!"))
+	ghostize(TRUE)//Can take back its body
+	GLOB.offered_mob_list -= src
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
+	a_intent = INTENT_HARM

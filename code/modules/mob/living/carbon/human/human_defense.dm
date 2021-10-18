@@ -24,10 +24,10 @@ Contains most of the procs that are called when a mob is attacked by something
 
 				dropItemToGround(c_hand)
 				if (affected.limb_status & LIMB_ROBOT)
-					emote("me", 1, "drops what they were holding, their [affected.display_name] malfunctioning!")
+					emote("me", 1, "drops what they were holding, [p_their()] [affected.display_name] malfunctioning!")
 				else
 					var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
-					emote("me", 1, "[(species && species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [affected.display_name]!")
+					emote("me", 1, "[(species && species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in [p_their()] [affected.display_name]!")
 
 	return ..()
 
@@ -431,7 +431,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(!internal_organs_by_name["heart"])
 		to_chat(user, span_notice("[src] no longer has a heart."))
 		return
-	if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE) && get_ghost())
+	if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
 		to_chat(user, span_warning("You cannot resolve yourself to destroy [src]'s heart, as [p_they()] can still be saved!"))
 		return
 	to_chat(user, span_notice("You start to remove [src]'s heart, preventing [p_them()] from rising again!"))
@@ -448,3 +448,46 @@ Contains most of the procs that are called when a mob is attacked by something
 	user.put_in_hands(heart)
 	chestburst = 2
 	update_burst()
+
+/mob/living/carbon/human/welder_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(!hasorgans(src))
+		return ..()
+
+	if(user.a_intent != INTENT_HELP)
+		return ..()
+
+	var/datum/limb/hurtlimb = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(src, user) : get_limb(user.zone_selected)
+
+	if(!hurtlimb)
+		return TRUE
+
+	if(!(hurtlimb.limb_status & LIMB_ROBOT))
+		balloon_alert(user, "Limb not robotic")
+		return TRUE
+
+
+	if(!hurtlimb.brute_dam)
+		balloon_alert(user, "Nothing to fix!")
+		return TRUE
+
+	if(user.do_actions)
+		balloon_alert(user, "Already busy!")
+		return TRUE
+
+	var/repair_time = 1 SECONDS
+	if(src == user)
+		repair_time *= 3
+	if(!I.tool_use_check(user, 2))
+		return TRUE
+
+	user.visible_message(span_notice("[user] starts to fix some of the dents on [src]'s [hurtlimb.display_name]."),\
+		span_notice("You start fixing some of the dents on [src == user ? "your" : "[src]'s"] [hurtlimb.display_name]."))
+	while(hurtlimb.brute_dam && do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD) && I.use_tool(volume = 50, amount = 2))
+		hurtlimb.heal_limb_damage(15, robo_repair = TRUE, updating_health = TRUE)
+		UpdateDamageIcon()
+		user.visible_message(span_warning("\The [user] patches some dents on \the [src]'s [hurtlimb.display_name]."), \
+			span_warning("You patch some dents on \the [src]'s [hurtlimb.display_name]."))
+		if(!I.tool_use_check(user, 2))
+			return TRUE
+	return TRUE

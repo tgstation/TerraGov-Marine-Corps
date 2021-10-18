@@ -38,6 +38,7 @@
 		stack_trace("Invalid type [skills.type] found in .skills during /mob Initialize()")
 	update_config_movespeed()
 	update_movespeed(TRUE)
+	log_mob_tag("\[[tag]\] CREATED: [key_name(src)]")
 
 
 /mob/Stat()
@@ -437,7 +438,7 @@
 	. = ..()
 	if(.)
 		return
-	if(!ismob(dropping) || isxeno(user) || isxeno(dropping))
+	if(!ismob(dropping) || isxeno(user) || isxeno(dropping) || ishusk(user))
 		return
 	// If not dragged onto myself or dragging my own sprite onto myself
 	if(user != src || dropping == user)
@@ -729,10 +730,6 @@
 			old_area = get_area(oldLoc)
 		if(new_area && old_area != new_area)
 			new_area.Entered(AM, oldLoc)
-		for(var/atom/movable/CR in destination)
-			if(CR in conga_line)
-				continue
-			CR.Crossed(AM)
 		if(oldLoc)
 			AM.Moved(oldLoc, move_dir)
 		var/mob/M = AM
@@ -759,7 +756,7 @@
 
 /mob/proc/add_emote_overlay(image/emote_overlay, remove_delay = TYPING_INDICATOR_LIFETIME)
 	emote_overlay.appearance_flags = APPEARANCE_UI_TRANSFORM
-	emote_overlay.plane = ABOVE_HUD_PLANE
+	emote_overlay.plane = ABOVE_LIGHTING_PLANE
 	emote_overlay.layer = ABOVE_HUD_LAYER
 	overlays += emote_overlay
 
@@ -857,6 +854,8 @@
 		mind.name = newname
 		if(mind.key)
 			log_played_names(mind.key, newname) //Just in case the mind is unsynced at the moment.
+
+	log_mob_tag("\[[tag]\] RENAMED: [key_name(src)]")
 
 	return TRUE
 

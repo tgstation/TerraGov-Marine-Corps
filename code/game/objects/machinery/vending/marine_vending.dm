@@ -51,8 +51,8 @@
 		/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
 		/obj/item/ammo_magazine/rifle/tx15_slug = 25,
 		/obj/item/ammo_magazine/rifle/tx15_flechette = 25,
-		/obj/item/weapon/gun/launcher/m92/standardmarine = 10,
-		/obj/item/weapon/gun/launcher/m81 = 15,
+		/obj/item/weapon/gun/grenade_launcher/multinade_launcher = 10,
+		/obj/item/weapon/gun/grenade_launcher/single_shot = 15,
 		/obj/item/explosive/grenade = 30,
 		/obj/item/attachable/bayonetknife = 20,
 		/obj/item/weapon/throwing_knife = 5,
@@ -159,8 +159,8 @@
 			/obj/item/ammo_magazine/pistol/derringer = 15,
 		),
 		"Specialized" = list(
-			/obj/item/weapon/gun/launcher/m92/standardmarine = -1,
-			/obj/item/weapon/gun/launcher/m81 = -1,
+			/obj/item/weapon/gun/grenade_launcher/multinade_launcher = -1,
+			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 4,
 			/obj/item/weapon/gun/rifle/pepperball = 4,
@@ -207,10 +207,12 @@
 			/obj/item/attachable/verticalgrip = -1,
 			/obj/item/attachable/stock/t19stock = -1,
 			/obj/item/attachable/stock/t35stock = -1,
+			/obj/item/attachable/flamer_nozzle = -1,
+			/obj/item/attachable/flamer_nozzle/wide = -1,
 			/obj/item/weapon/gun/shotgun/combat/masterkey = -1,
 			/obj/item/weapon/gun/flamer/mini_flamer = -1,
 			/obj/item/ammo_magazine/flamer_tank/mini = -1,
-			/obj/item/weapon/gun/launcher/m92/mini_grenade = -1,
+			/obj/item/weapon/gun/grenade_launcher/underslung = -1,
 			/obj/item/attachable/motiondetector = -1,
 		),
 		"Boxes" = list(
@@ -233,7 +235,7 @@
 		/obj/item/binoculars = -1,
 		/obj/item/compass = -1,
 		/obj/item/assembly/signaler = 20,
-		/obj/item/weapon/gun/launcher/m81/flare/marine = -1,
+		/obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine = -1,
 		/obj/item/jetpack_marine = 3,
 		),
 	)
@@ -321,9 +323,11 @@
 			/obj/item/attachable/verticalgrip = -1,
 			/obj/item/attachable/stock/t19stock = -1,
 			/obj/item/attachable/stock/t35stock = -1,
+			/obj/item/attachable/flamer_nozzle = -1,
+			/obj/item/attachable/flamer_nozzle/wide = -1,
 			/obj/item/weapon/gun/flamer/mini_flamer = -1,
 			/obj/item/ammo_magazine/flamer_tank/mini = -1,
-			/obj/item/weapon/gun/launcher/m92/mini_grenade = -1,
+			/obj/item/weapon/gun/grenade_launcher/underslung = -1,
 			/obj/item/attachable/motiondetector = -1,
 
 		),
@@ -343,6 +347,48 @@
 /obj/machinery/vending/marine/shared/hvh/team_one
 
 /obj/machinery/vending/marine/shared/hvh/team_two
+
+/obj/machinery/vending/marine/shared/cigarette
+	name = "cigarette machine" //OCD had to be uppercase to look nice with the new formating
+	desc = "A specialized vending machine designed to contribute to your slow and uncomfortable death."
+	product_slogans = "There's no better time to start smokin'.;\
+		Smoke now, and win the adoration of your peers.;\
+		They beat cancer centuries ago, so smoke away.;\
+		If you're not smoking, you must be joking."
+	product_ads = "Probably not bad for you!;\
+		Don't believe the scientists!;\
+		It's good for you!;\
+		Don't quit, buy more!;\
+		Smoke!;\
+		Nicotine heaven.;\
+		Best cigarettes since 2150.;\
+		Don't be so hard on yourself, kid. Smoke a Lucky Star!;\
+		Professionals. Better cigarettes for better people. Yes, better people."
+	vend_delay = 14
+	icon_state = "cigs"
+	icon_vend = null
+	icon_deny = null
+	products = list(
+		/obj/item/storage/fancy/cigarettes/luckystars = 50,
+		/obj/item/storage/fancy/chemrettes = 30,
+		/obj/item/storage/box/matches = 15,
+		/obj/item/tool/lighter/random = 25,
+		/obj/item/tool/lighter/zippo = 10,
+	)
+
+	contraband = list(/obj/item/clothing/mask/cigarette/cigar/havana = 5)
+	premium = list(/obj/item/storage/fancy/cigar = 25)
+	seasonal_items = list()
+
+/obj/machinery/vending/marine/shared/cigarette/colony
+	product_slogans = "Koorlander Gold, for the refined palate.;Lady Fingers, for the dainty smoker.;Lady Fingers, treat your palete with pink!;The big blue K means a cool fresh day!;For the taste that cools your mood, look for the big blue K!;Refined smokers go for Gold!;Lady Fingers are preferred by women who appreciate a cool smoke.;Lady Fingers are the number one cigarette this side of Gateway!;The tobacco connoisseur prefers Koorlander Gold.;For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;The Colonial Administration Bureau would like to remind you that smoking kills."
+	product_ads = "For the taste that cools your mood, look for the big blue K!;Refined smokers go for Gold!;Lady Fingers are preferred by women who appreciate a cool smoke.;Lady Fingers are the number one cigarette this side of Gateway!;The tobacco connoisseur prefers Koorlander Gold.;For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;The Colonial Administration Bureau would like to remind you that smoking kills."
+	products = list(
+		/obj/item/storage/fancy/cigarettes/kpack = 15,
+		/obj/item/storage/fancy/cigarettes/lady_finger = 15,
+		/obj/item/storage/box/matches = 10,
+		/obj/item/tool/lighter/random = 20,
+	)
 
 /obj/machinery/vending/marine/cargo_supply
 	name = "\improper Operational Supplies Vendor"
@@ -682,7 +728,7 @@
 
 	products = list(
 		/obj/item/clothing/under/marine/corpsman = 4,
-		/obj/item/clothing/head/modular/marine/m10x/corpsman = 4,
+		/obj/item/clothing/head/modular/marine/m10x = 4,
 		/obj/item/storage/backpack/marine/corpsman = 4,
 		/obj/item/storage/backpack/marine/satchel/corpsman = 4,
 		/obj/item/encryptionkey/med = 4,
@@ -803,11 +849,16 @@
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
 		"Armors" = list(
-			/obj/item/clothing/suit/modular/pas11x = -1,
+			/obj/item/clothing/suit/modular/xenonauten/light = -1,
+			/obj/item/clothing/suit/modular/xenonauten = -1,
+			/obj/item/clothing/suit/modular/xenonauten/heavy = -1,
 			/obj/item/clothing/suit/modular = -1,
 			/obj/item/clothing/suit/storage/marine/harness = -1,
 			/obj/item/clothing/suit/armor/vest/pilot = -1,
 			/obj/item/facepaint/green = -1,
+			/obj/item/clothing/suit/storage/marine/robot/light = -1,
+			/obj/item/clothing/suit/storage/marine/robot = -1,
+			/obj/item/clothing/suit/storage/marine/robot/heavy = -1,
 		),
 		"Helmets" = list(
 			/obj/item/clothing/head/modular/marine/m10x = -1,
@@ -820,6 +871,9 @@
 			/obj/item/clothing/head/modular/marine/eod = -1,
 			/obj/item/clothing/head/modular/marine/scout = -1,
 			/obj/item/clothing/head/modular/marine/infantry = -1,
+			/obj/item/clothing/head/helmet/marine/robot/light = -1,
+			/obj/item/clothing/head/helmet/marine/robot = -1,
+			/obj/item/clothing/head/helmet/marine/robot/heavy = -1,
 		),
 		"Jaeger chestpieces" = list(
 			/obj/item/armor_module/armor/chest/marine/skirmisher = -1,
@@ -850,16 +904,16 @@
 			/obj/item/armor_module/storage/general = -1,
 			/obj/item/armor_module/storage/engineering = -1,
 			/obj/item/armor_module/storage/medical = -1,
-			/obj/item/helmet_module/welding = -1,
-			/obj/item/helmet_module/binoculars = -1,
-			/obj/item/helmet_module/attachable/tyr_head = -1,
-			/obj/item/helmet_module/antenna = -1,
-			/obj/item/helmet_module/attachable/mimir_environment_protection/mark1 = -1,
-			/obj/item/armor_module/attachable/mimir_environment_protection/mark1 = -1,
-			/obj/item/armor_module/attachable/tyr_extra_armor/mark1 = -1,
-			/obj/item/armor_module/attachable/ballistic_armor = -1,
-			/obj/item/armor_module/attachable/better_shoulder_lamp = -1,
-			/obj/item/armor_module/attachable/chemsystem = -1,
+			/obj/item/armor_module/module/welding = -1,
+			/obj/item/armor_module/module/binoculars = -1,
+			/obj/item/armor_module/module/tyr_head = -1,
+			/obj/item/armor_module/module/antenna = -1,
+			/obj/item/armor_module/module/mimir_environment_protection/mark1 = -1,
+			/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1 = -1,
+			/obj/item/armor_module/module/tyr_extra_armor/mark1 = -1,
+			/obj/item/armor_module/module/ballistic_armor = -1,
+			/obj/item/armor_module/module/better_shoulder_lamp = -1,
+			/obj/item/armor_module/module/chemsystem = -1,
 		),
 	)
 
@@ -895,6 +949,7 @@
 			/obj/item/clothing/head/white_dress = -1,
 			/obj/item/clothing/shoes/white = -1,
 			/obj/item/clothing/gloves/white = -1,
+			/obj/item/clothing/under/marine/robotic = -1,
 		),
 		"Webbings" = list(
 			/obj/item/clothing/tie/storage/black_vest = -1,

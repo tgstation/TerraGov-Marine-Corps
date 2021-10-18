@@ -276,7 +276,7 @@
 /mob/new_player/get_species()
 	var/datum/species/chosen_species
 	if(client.prefs.species)
-		chosen_species = GLOB.all_species[client.prefs.species]
+		chosen_species = client.prefs.species
 	if(!chosen_species)
 		return "Human"
 	return chosen_species
@@ -375,14 +375,14 @@
 			CRASH("Invalid latejoin spawn location type")
 
 		to_chat(src, span_notice("Now teleporting."))
-		observer.forceMove(T)
+		observer.abstract_move(T)
 	else
 		failed = TRUE
 
 	if(failed)
 		to_chat(src, span_danger("Could not locate an observer spawn point. Use the Teleport verb to jump."))
 
-	observer.timeofdeath = world.time
+	GLOB.key_to_time_of_death[key] = world.time
 
 	var/datum/species/species = GLOB.all_species[client.prefs.species] || GLOB.all_species[DEFAULT_SPECIES]
 
