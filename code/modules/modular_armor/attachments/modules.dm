@@ -24,7 +24,7 @@
  * Mini autodoc module
  */
 /obj/item/armor_module/module/valkyrie_autodoc
-	name = "\improper Valkyrie Automedical Armor System"
+	name = "\improper Valkyrie Mk2 Automedical Armor System"
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Has a variety of chemicals it can inject, as well as automatically securing the bones and body of the wearer, to minimize the impact of broken bones or mangled limbs in the field. Will definitely impact mobility."
 	icon_state = "mod_autodoc"
@@ -48,6 +48,29 @@
 	parent.RemoveElement(/datum/element/limb_support, supported_limbs)
 	return ..()
 
+/**
+ * Autosplint module
+ */
+/obj/item/armor_module/module/splintboy_autodoc
+	name = "\improper Valkyrie Mk1 Autosplinting Armor System"
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Based on the more complete Valkyrie Automedical Module, it automatically secures the bones and body of the wearer, to minimize the impact of broken bones or mangled limbs in the field. Will definitely impact mobility."
+	icon_state = "mod_autodoc"
+	item_state = "mod_autodoc_a"
+	slowdown = 0.25
+	slot = ATTACHMENT_SLOT_MODULE
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_autodoc_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_autodoc_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_autodoc_xn")
+	var/static/list/supported_limbs = list(CHEST, GROIN, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT)
+
+/obj/item/armor_module/module/splintboy_autodoc/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	/// This will do nothing without the autodoc update
+	parent.AddElement(/datum/element/limb_support, supported_limbs)
+
+/obj/item/armor_module/module/splintboy_autodoc/on_detach(obj/item/detaching_from, mob/user)
+	qdel(parent.GetComponent(/datum/component/suit_autodoc))
+	parent.RemoveElement(/datum/element/limb_support, supported_limbs)
+	return ..()
 
 /**
  * Fire poof module

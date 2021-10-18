@@ -782,11 +782,12 @@ ARMOR
 	cost = 40
 
 /datum/supply_packs/armor/modular/attachments/valkyrie_autodoc
-	name = "Jaeger Valkyrie autodoc module"
+	name = "Jaeger Valkyrie Mk2 autodoc module"
 	contains = list(
 		/obj/item/armor_module/module/valkyrie_autodoc,
 	)
 	cost = 12
+
 
 /datum/supply_packs/armor/modular/attachments/fire_proof
 	name = "Jaeger Surt fireproof module"
