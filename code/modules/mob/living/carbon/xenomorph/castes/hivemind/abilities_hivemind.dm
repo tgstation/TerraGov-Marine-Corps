@@ -25,7 +25,7 @@
 /datum/action/xeno_action/activable/command_minions
 	name = "Command minions"
 	action_icon_state = "rally_minions"
-	mechanics_text = "Command all minions, ordering them to converge on this location"
+	mechanics_text = "Command all minions, ordering them to converge on this location."
 	ability_name = "command minions"
 	plasma_cost = 100
 	keybind_signal = COMSIG_XENOABILITY_RALLY_MINION
