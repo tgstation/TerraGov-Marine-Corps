@@ -133,7 +133,7 @@
 
 /datum/xeno_caste/wraith/primordial
 	upgrade_name = "Primordial"
-	caste_desc = "The overlord of time and space."
+	caste_desc = "A xenomorph that has perfected the manipulation of space and time. Its movements appear quick and distorted."
 	primordial_message = "We control the very fabric of reality." //Help
 	upgrade = XENO_UPGRADE_FOUR
 

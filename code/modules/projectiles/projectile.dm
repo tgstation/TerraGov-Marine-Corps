@@ -939,14 +939,18 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	x_offset = round(sin(dir_angle), 0.01)
 	y_offset = round(cos(dir_angle), 0.01)
-	projectile_batch_move()
+	if(projectile_batch_move() == PROJECTILE_FROZEN)
+		permutated.Cut()
+		var/atom/movable/hitscan_projectile_effect/laser_effect = new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, effect_icon)
+		RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
+		laser_effect.RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, /atom/movable/hitscan_projectile_effect/proc/remove_effect)
+		return
 	qdel(src)
 
-/obj/projectile/hitscan/projectile_batch_move()
+/obj/projectile/hitscan/projectile_batch_move(first_projectile = TRUE)
 	var/end_of_movement = FALSE //In batch moves this loop, only if the projectile stopped.
 	var/turf/last_processed_turf = loc
-	var/list/obj/effect/laser_effects = list()
-	var/first_projectile = TRUE
+	var/list/atom/movable/hitscan_projectile_effect/laser_effects = list()
 	while(!end_of_movement)
 		distance_travelled++
 		//Here we take the projectile's absolute pixel coordinate + the travelled distance and use PROJ_ABS_PIXEL_TO_TURF to first convert it into tile coordinates, and then use those to locate the turf.
@@ -1031,6 +1035,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				ammo.on_hit_turf(turf_crossed_by, src)
 				end_of_movement = TRUE
 				break
+			if(HAS_TRAIT(turf_crossed_by, TRAIT_TURF_FREEZE_BULLET))
+				QDEL_LIST_IN(laser_effects, 1)
+				forceMove(turf_crossed_by)
+				return PROJECTILE_FROZEN
 			for(var/atom/movable/thing_to_uncross AS in uncross_scheduled) //We are leaving turf_crossed_by now.
 				if(QDELETED(thing_to_uncross))
 					continue
@@ -1066,6 +1074,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			ammo.do_at_max_range(src)
 			end_of_movement = TRUE
 			break
+		if(HAS_TRAIT(next_turf, TRAIT_TURF_FREEZE_BULLET))
+			QDEL_LIST_IN(laser_effects, 1)
+			forceMove(next_turf)
+			return PROJECTILE_FROZEN
 		if(first_projectile)
 			laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, "muzzle_"+effect_icon)
 			first_projectile = FALSE
@@ -1082,6 +1094,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, "muzzle_"+effect_icon)
 	laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, "impact_"+effect_icon)
 	QDEL_LIST_IN(laser_effects, 1)
+
+/obj/projectile/hitscan/resume_move(datum/source)
+	UnregisterSignal(source, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
+	projectile_batch_move(FALSE)
 
 /mob/living/carbon/human/bullet_act(obj/projectile/proj)
 	. = ..()
