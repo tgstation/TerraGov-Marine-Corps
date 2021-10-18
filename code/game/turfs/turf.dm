@@ -55,9 +55,6 @@
 	var/directional_opacity = NONE
 	///Lazylist of movable atoms providing opacity sources.
 	var/list/atom/movable/opacity_sources
-	///If this turf should freeze bullets. It's an int, not a bool. Allows bullets to pass if it's not 0
-	var/freeze_bullets = 0
-
 
 /turf/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE) // anti laggies
