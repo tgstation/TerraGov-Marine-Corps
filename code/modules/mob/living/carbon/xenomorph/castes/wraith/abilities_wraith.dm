@@ -783,17 +783,24 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/xeno_action/timestop/action_activate()
 	. = ..()
 	var/list/turf/turfs_affected = list()
-	for(var/turf/affected_turf in view(range, get_turf(owner)))
+	var/turf/central_turf = get_turf(owner)
+	for(var/turf/affected_turf in view(range, central_turf))
 		ADD_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET, REF(owner))
 		turfs_affected += affected_turf
-	addtimer(CALLBACK(src, .proc/remove_bullet_freeze, turfs_affected), duration)
-	addtimer(CALLBACK(src, .proc/play_sound_stop), duration - 3 SECONDS)
 	playsound(owner, 'sound/magic/timeparadox2.ogg', 50, TRUE)
 	succeed_activate()
 	add_cooldown()
+	var/mutable_appearance/MA = mutable_appearance('icons/effects/160x160.dmi', "time", FLY_LAYER, GAME_PLANE, 125)
+	var/matrix/M = MA.transform
+	M.Translate(-60, -50)
+	MA.transform = M
+	central_turf.add_overlay(MA)
+	addtimer(CALLBACK(src, .proc/remove_bullet_freeze, turfs_affected, central_turf, MA), duration)
+	addtimer(CALLBACK(src, .proc/play_sound_stop), duration - 3 SECONDS)
 
 ///Remove the bullet freeze effect on affected turfs
-/datum/action/xeno_action/timestop/proc/remove_bullet_freeze(list/turf/turfs_affected)
+/datum/action/xeno_action/timestop/proc/remove_bullet_freeze(list/turf/turfs_affected, turf/central_turf, mutable_appearance/MA)
+	central_turf.cut_overlay(MA)
 	for(var/turf/affected_turf AS in turfs_affected)
 		REMOVE_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET, REF(owner))
 		if(!HAS_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET))
