@@ -66,7 +66,7 @@ SUBSYSTEM_DEF(research)
 		),
 	)
 
-///Generates rewards from a research resource
+///Generates rewards from a research resource test
 /datum/controller/subsystem/research/proc/research_item(atom/rewards_position, obj/item/research_resource/resource, bucket)
 	var/list/potential_rewards = rewards[bucket]
 	var/list/earned_rewards = list()
