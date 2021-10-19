@@ -30,7 +30,7 @@
 /obj/machinery/computer/researchcomp/proc/construct_insertable_resources_desc()
 	allowed_resources_desc = ""
 	allowed_resources_desc += "<br><b>Insertable material:</b><br>"
-	for(var/obj/resource as() in typesof(BASE_RESEARCH_RES_TYPE))
+	for(var/obj/resource AS in typesof(BASE_RESEARCH_RES_TYPE))
 		allowed_resources_desc += " >[initial(resource.name)]<br>"
 
 /obj/machinery/computer/researchcomp/attackby(obj/item/I, mob/user, params)
