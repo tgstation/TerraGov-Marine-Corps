@@ -74,7 +74,7 @@
 		)
 
 		var/list/tier_rewards_typepaths = research_rewards[tier]
-		for(var/obj/typepath as() in tier_rewards_typepaths)
+		for(var/obj/typepath AS in tier_rewards_typepaths)
 			reward_tier["rewards_list"] += initial(typepath.name)
 
 		data["init_resource"]["rewards"] += list(reward_tier)
