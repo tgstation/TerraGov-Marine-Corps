@@ -53,11 +53,32 @@
 
 /obj/machinery/computer/researchcomp/ui_data(mob/user)
 	var/list/data = list()
-	data["init_resource"] = init_resource ? list(
+
+	data["researching"] = researching
+	if(!init_resource)
+		data["init_resource"] = null
+		return data
+
+	data["init_resource"] = list(
 		"name" = init_resource.name,
 		"colour" = init_resource.colour,
-	) : null
-	data["researching"] = researching
+	)
+
+	var/list/research_rewards = SSresearch.rewards[init_resource.research_type]
+	data["init_resource"]["rewards"] = list()
+	for(var/tier in research_rewards)
+		var/list/reward_tier = list(
+			"type" = tier,
+			"probability" = init_resource.reward_probs[tier],
+			"rewards_list" = list(),
+		)
+
+		var/list/tier_rewards_typepaths = research_rewards[tier]
+		for(var/obj/typepath as() in tier_rewards_typepaths)
+			reward_tier["rewards_list"] += initial(typepath.name)
+
+		data["init_resource"]["rewards"] += list(reward_tier)
+
 	return data
 
 /obj/machinery/computer/researchcomp/ui_act(action, params)
@@ -103,7 +124,7 @@
 	///Type of research the item is used for
 	var/research_type = RES_MONEY
 	///Research progress percent modifiers
-	var/list/reward_tier_mods = list(
+	var/list/reward_probs = list(
 		RES_TIER_BASIC = 0,
 		RES_TIER_COMMON = 0,
 		RES_TIER_UNCOMMON = 0,
@@ -116,35 +137,36 @@
 
 /obj/item/research_resource/xeno/tier_one
 	name = "Xenomorph research material - tier 1"
+	research_type = RES_MONEY
 
 /obj/item/research_resource/xeno/tier_two
 	name = "Xenomorph research material - tier 2"
 	colour = "#d6e641"
-	reward_tier_mods = list(
-		RES_TIER_BASIC = 0,
-		RES_TIER_COMMON = 20,
-		RES_TIER_UNCOMMON = 0,
-		RES_TIER_RARE = 0,
+	reward_probs = list(
+		RES_TIER_BASIC = 100,
+		RES_TIER_COMMON = 50,
+		RES_TIER_UNCOMMON = 20,
+		RES_TIER_RARE = 5,
 	)
 
 /obj/item/research_resource/xeno/tier_three
 	name = "Xenomorph research material - tier 3"
 	colour = "#e43939"
-	reward_tier_mods = list(
-		RES_TIER_BASIC = 0,
-		RES_TIER_COMMON = 20,
-		RES_TIER_UNCOMMON = 20,
-		RES_TIER_RARE = 0,
+	reward_probs = list(
+		RES_TIER_BASIC = 100,
+		RES_TIER_COMMON = 50,
+		RES_TIER_UNCOMMON = 40,
+		RES_TIER_RARE = 5,
 	)
 
 /obj/item/research_resource/xeno/tier_four
 	name = "Xenomorph research material - tier 4"
 	colour = "#a800ad"
-	reward_tier_mods = list(
-		RES_TIER_BASIC = 0,
-		RES_TIER_COMMON = 20,
-		RES_TIER_UNCOMMON = 20,
-		RES_TIER_RARE = 40,
+	reward_probs = list(
+		RES_TIER_BASIC = 100,
+		RES_TIER_COMMON = 50,
+		RES_TIER_UNCOMMON = 40,
+		RES_TIER_RARE = 45,
 	)
 
 ///
@@ -160,22 +182,22 @@
 /obj/item/research_product/supply_export(faction_selling)
 	return export_points
 
-/obj/item/research_product/money/Initialize()
-	. = ..()
-	name += " - [export_points]"
-
 /obj/item/research_product/money/examine(user)
 	. = ..()
 	to_chat(user, span_notice("Rewards export points, as the name suggests."))
 
 /obj/item/research_product/money/basic
+	name = "money - 10"
 	export_points = 10
 
 /obj/item/research_product/money/common
+	name = "money - 20"
 	export_points = 20
 
 /obj/item/research_product/money/uncommon
+	name = "money - 30"
 	export_points = 30
 
 /obj/item/research_product/money/rare
+	name = "money - 100"
 	export_points = 100

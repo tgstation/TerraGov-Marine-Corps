@@ -5,3 +5,7 @@ export const hexToRGB = function(hex: string, alpha: number):string {
 
   return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
 };
+
+export const objectToArray = (objectArray: Object) => {
+  return Object.keys(objectArray).map(key => objectArray[key]);
+};

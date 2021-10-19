@@ -20,11 +20,11 @@ SUBSYSTEM_DEF(research)
 
 	///Research reward tiers and their base chances
 	var/list/reward_tiers = list(
-		RES_TIER_BASIC = 100,
-		RES_TIER_COMMON = 30,
-		RES_TIER_UNCOMMON = 20,
-		RES_TIER_RARE = 5,
-	)
+		RES_TIER_BASIC,
+		RES_TIER_COMMON,
+		RES_TIER_UNCOMMON,
+		RES_TIER_RARE
+		)
 
 	var/list/rewards = list(
 		RES_MONEY = list(
@@ -48,12 +48,10 @@ SUBSYSTEM_DEF(research)
 /datum/controller/subsystem/research/proc/research_item(atom/rewards_position, obj/item/research_resource/resource, bucket)
 	var/list/potential_rewards = rewards[bucket]
 	var/list/earned_rewards = list()
-	var/list/resource_mods = resource.reward_tier_mods
 
 	for (var/tier in reward_tiers)
-		var/tier_base_prob = reward_tiers[tier]
-		var/prob_mod = resource_mods[tier]
-		if (!prob(tier_base_prob + prob_mod))
+		var/tier_prob = resource.reward_probs[tier]
+		if (!prob(tier_prob))
 			continue
 
 		var/list/tier_rewards = potential_rewards[tier]

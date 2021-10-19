@@ -1,12 +1,11 @@
 import { useBackend } from '../../backend';
-import { Button, Flex, LabeledList, Section } from '../../components';
+import { Button, Divider, Flex, LabeledList, Section } from '../../components';
 import { Window } from '../../layouts';
-import { ResearchData } from './Types';
-import { hexToRGB } from './Utility';
+import { ResearchData, ResearchResource, RewardTier } from './Types';
+import { hexToRGB, objectToArray } from './Utility';
 
 export const Research = (props, context) => {
   const { act, data } = useBackend<ResearchData>(context);
-  // Extract `health` and `color` variables from the `data` object.
   const {
     init_resource,
   } = data;
@@ -29,14 +28,56 @@ export const Research = (props, context) => {
                 </LabeledList.Item>
                 <LabeledList.Item>
                   <Button
-                    content="Start research"
+                    content="Research item"
                     onClick={() => act('start_research')} />
                 </LabeledList.Item>
               </LabeledList>
               : "No resource inserted"
           }
         </Section>
+        {
+          init_resource ? init_resource.rewards.length > 0
+            ? <RarityInfo {... init_resource.rewards} />
+            : "" : ""
+        }
+
       </Window.Content>
     </Window>
   );
+};
+
+const RarityInfo = (rewards_list: RewardTier[]) => {
+  // THANKS IE!!!!
+  rewards_list = objectToArray(rewards_list);
+
+  return (
+    <Section title="Reward tiers info and possible rewards" p="5px">
+      {rewards_list.map(tier => (constructTierInfo(tier)))}
+    </Section>
+  );
+};
+
+const constructTierInfo = (tier: RewardTier) => {
+  const {
+    type,
+    probability,
+    rewards_list,
+  } = tier;
+
+  return (
+    <>
+      {constructRarityText(type, probability)}
+      <LabeledList>
+        {rewards_list.map(item => (
+          <LabeledList.Item>
+            {item}
+          </LabeledList.Item>))}
+      </LabeledList>
+      <Divider />
+    </>
+  );
+};
+
+const constructRarityText = (rarityText: string, rarityVal: number) => {
+  return `${rarityText.toUpperCase()} ${rarityVal}%`;
 };
