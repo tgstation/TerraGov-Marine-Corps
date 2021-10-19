@@ -72,7 +72,7 @@
 
 	var/list/checked_turfs = filled_turfs(center_turf, 3, "circle")
 	var/excavation_site
-	for(var/turf/turf_to_check as() in checked_turfs)
+	for(var/turf/turf_to_check AS in checked_turfs)
 		excavation_site = locate(/obj/effect/landmark/excavation_site) in turf_to_check
 		if(excavation_site)
 			break
