@@ -41,7 +41,7 @@
 		INVOKE_NEXT_TICK(table, /atom/proc.update_icon)
 
 
-/obj/structure/table/Initialize()
+/obj/structure/table/Initialize(mapload)
 	. = ..()
 	for(var/obj/structure/table/evil_table in loc)
 		if(evil_table != src)
@@ -50,15 +50,20 @@
 	if(!flipped)
 		update_icon()
 		update_adjacent()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_EXIT = .proc/on_try_exit,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
-
-/obj/structure/table/Crossed(atom/movable/O)
-	. = ..()
-	if(istype(O,/mob/living/carbon/xenomorph/ravager))
-		var/mob/living/carbon/xenomorph/M = O
-		if(!M.stat) //No dead xenos jumpin on the bed~
-			visible_message(span_danger("[O] plows straight through [src]!"))
-			deconstruct(FALSE)
+/obj/structure/table/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
+	SIGNAL_HANDLER
+	if(!istype(O,/mob/living/carbon/xenomorph/ravager))
+		return
+	var/mob/living/carbon/xenomorph/M = O
+	if(!M.stat) //No dead xenos jumpin on the bed~
+		visible_message(span_danger("[O] plows straight through [src]!"))
+		deconstruct(FALSE)
 
 /obj/structure/table/Destroy()
 	var/tableloc = loc
@@ -219,10 +224,14 @@
 			return TRUE
 
 
-/obj/structure/table/CheckExit(atom/movable/mover, direction)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
+/obj/structure/table/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
+	SIGNAL_HANDLER
+	if(CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
+		return NONE
+	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
+		return NONE
+	knownblockers += src
+	return COMPONENT_ATOM_BLOCK_EXIT
 
 //Flipping tables, nothing more, nothing less
 /obj/structure/table/MouseDrop(over_object, src_location, over_location)
@@ -574,6 +583,13 @@
 	resistance_flags = XENO_DAMAGEABLE
 	var/parts = /obj/item/frame/rack
 
+/obj/structure/rack/Initialize()
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 /obj/structure/rack/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
@@ -605,13 +621,14 @@
 		return user.transferItemToLoc(I, loc)
 
 
-/obj/structure/rack/Crossed(atom/movable/O)
-	. = ..()
-	if(istype(O,/mob/living/carbon/xenomorph/ravager))
-		var/mob/living/carbon/xenomorph/M = O
-		if(!M.stat) //No dead xenos jumpin on the bed~
-			visible_message(span_danger("[O] plows straight through [src]!"))
-			deconstruct(FALSE)
+/obj/structure/rack/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
+	SIGNAL_HANDLER
+	if(!istype(O,/mob/living/carbon/xenomorph/ravager))
+		return
+	var/mob/living/carbon/xenomorph/M = O
+	if(!M.stat) //No dead xenos jumpin on the bed~
+		visible_message(span_danger("[O] plows straight through [src]!"))
+		deconstruct(FALSE)
 
 /obj/structure/rack/deconstruct(disassembled = TRUE)
 	if(disassembled && parts)

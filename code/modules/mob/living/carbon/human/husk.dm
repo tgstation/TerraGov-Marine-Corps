@@ -35,8 +35,8 @@
 	H.setOxyLoss(0)
 	H.setToxLoss(0)
 	H.setCloneLoss(0)
-	H.dropItemToGround(H.r_hand)
-	H.dropItemToGround(H.l_hand)
+	H.dropItemToGround(H.r_hand, TRUE)
+	H.dropItemToGround(H.l_hand, TRUE)
 	if(istype(H.wear_id, /obj/item/card/id))
 		var/obj/item/card/id/id = H.wear_id
 		id.access = list() // A bit gamey, but let's say ids have a security against husks
@@ -45,7 +45,6 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/husk_claw, SLOT_L_HAND)
 	var/datum/atom_hud/health_hud = GLOB.huds[DATA_HUD_MEDICAL_OBSERVER]
 	health_hud.add_hud_to(H)
-
 	H.job = new /datum/job/husk //Prevent from skewing the respawn timer if you take a husk, it's a ghost role after all
 	for(var/datum/action/action AS in H.actions)
 		action.remove_action(H)
@@ -116,6 +115,8 @@
 
 /obj/item/weapon/husk_claw/afterattack(atom/target, mob/user, has_proximity, click_parameters)
 	. = ..()
+	if(!has_proximity)
+		return
 	if(!istype(target, /obj/machinery/door/airlock))
 		return
 	if(user.do_actions)

@@ -1,0 +1,5 @@
+author: "hyper2snyper"
+delete-after: True
+changes: 
+  - rscadd: "New flamer nozzle, the Spray Nozzle. It makes the flamers fire stream a cone."
+  - code_imp: "Refactored Flamers."

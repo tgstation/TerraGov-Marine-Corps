@@ -14,8 +14,8 @@
 	speed = 0
 
 	// *** Plasma *** //
-	plasma_max = 450 //  75 is the cost of plant_weeds
-	plasma_gain = 45
+	plasma_max = 600 //  75 is the cost of plant_weeds
+	plasma_gain = 60
 
 	// *** Health *** //
 	max_health = 100
@@ -58,7 +58,7 @@
 
 	aura_strength = 4 //Good pheros
 
-	speed = 2.5
+	speed = 1.5
 
 	// *** Abilities *** //
 	actions = list(

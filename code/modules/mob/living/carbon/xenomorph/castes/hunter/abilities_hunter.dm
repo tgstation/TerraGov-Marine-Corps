@@ -196,9 +196,9 @@
 	handle_stealth()
 
 	if(owner.last_move_intent > world.time - 20) //Stealth halves the rate of plasma recovery on weeds, and eliminates it entirely while moving
-		plasma_mod += 0.0
+		plasma_mod[1] *= 0.5
 	else
-		plasma_mod += 0.5
+		plasma_mod[1] = 0
 
 /datum/action/xeno_action/stealth/proc/sneak_attack_zone()
 	SIGNAL_HANDLER
