@@ -935,6 +935,7 @@
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
 		"Clothing" = list(
+			/obj/item/clothing/under/marine = -1,
 			/obj/item/clothing/under/marine/standard =-1,
 			/obj/item/clothing/under/marine/camo =-1,
 			/obj/item/clothing/under/marine/camo/desert =-1,
