@@ -47,7 +47,7 @@
 	toggle_wielded(user, TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_WIELD, user)
 	name = "[name] (Wielded)"
-	update_item_state(user)
+	update_item_state()
 	place_offhand(user, name)
 	return TRUE
 
@@ -63,7 +63,7 @@
 		name = copytext(name, 1, sf)
 	else
 		name = "[initial(name)]"
-	update_item_state(user)
+	update_item_state()
 	remove_offhand(user)
 	return TRUE
 
