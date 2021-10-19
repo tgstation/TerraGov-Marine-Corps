@@ -795,10 +795,6 @@ TUNNEL
 		to_chat(user, span_notice("[victim] has no useful biomass for us."))
 		return
 
-		if(isrobot(victim))
-		to_chat(user, span_notice("[victim] has no useful biomass for us."))
-		return
-
 	visible_message("[user] starts putting [victim] into [src].", 3)
 
 	if(!do_after(user, 20, FALSE, victim, BUSY_ICON_DANGER) || QDELETED(src))
