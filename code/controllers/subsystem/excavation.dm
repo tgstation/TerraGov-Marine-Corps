@@ -10,7 +10,7 @@
  * - performing an excavation rewards from a list of rewards (rewards datums?)
  */
 
-#define MAX_EXCAVATION_TILES 10
+#define MAX_ACTIVE_EXCAVATIONS 10
 
 SUBSYSTEM_DEF(excavation)
 	name = "Excavation"
@@ -20,63 +20,41 @@ SUBSYSTEM_DEF(excavation)
 
 	///Areas that can have an excavation site spawned in them
 	var/list/eligible_areas
-	///Areas that can't have an excavation site spawned in them
-	var/list/ineligible_areas
-	///Tiles with an excavation site spawned on them
-	var/list/active_excavation_areas
+	var/excavations_count = 0
 
 /datum/controller/subsystem/excavation/Initialize(start_timeofday)
 	. = ..()
-	eligible_areas = getEligibleAreas()
-	ineligible_areas = list()
-	active_excavation_areas = list()
+	EligibleAreasInit()
 
 /datum/controller/subsystem/excavation/fire()
-	if (active_excavation_areas.len >= MAX_EXCAVATION_TILES)
-		return
+	while (excavations_count < MAX_ACTIVE_EXCAVATIONS && eligible_areas.len > 0)
+		pickExcavationTurf()
 
-	while (active_excavation_areas.len < 10 && eligible_areas.len > 0)
-		getExcavationTurf()
-
-/datum/controller/subsystem/excavation/proc/getEligibleAreas()
-	//is this the best way to get the ground map's turfs? :mothdonk:
+///Initializes the list of areas that can have an excavation spawned in them
+/datum/controller/subsystem/excavation/proc/EligibleAreasInit()
+	eligible_areas = list()
 	var/map_name = lowertext(SSmapping.configs[GROUND_MAP].map_name)
 	var/groundside_areas_base_typepath = text2path("/area/[map_name]")
-	var/list/eligible_areas = list()
 	for (var/type in subtypesof(groundside_areas_base_typepath))
-		var/list/area_turfs = get_area_turfs(type)
-		if(area_turfs.len == 0)
-			continue
-		eligible_areas[type] = area_turfs
-	return eligible_areas
+		eligible_areas += type
 
-/datum/controller/subsystem/excavation/proc/getExcavationTurf()
-	var/area/area_to_check = pick(eligible_areas)
-	var/list/area_turfs = eligible_areas[area_to_check]
-	var/turf/random_turf = pick(area_turfs)
-
-	var/obj/effect/landmark/excavation_site/new_site = new
-	new_site.forceMove(random_turf)
-	active_excavation_areas[area_to_check] = new_site
-	make_area_ineligible(area_to_check)
-
-/datum/controller/subsystem/excavation/proc/excavate_area(area/area_to_escavate)
-	if(!LAZYACCESS(active_excavation_areas, area_to_escavate.type))
+/datum/controller/subsystem/excavation/proc/pickExcavationTurf()
+	var/area/area_to_check = pick_n_take(eligible_areas)
+	var/list/area_turfs = get_area_turfs(area_to_check)
+	if(area_turfs.len == 0)
 		return
-	var/obj/effect/landmark/excavation_site/landmark_to_remove = active_excavation_areas[area_to_escavate.type]
-	LAZYREMOVE(active_excavation_areas, area_to_escavate)
-	landmark_to_remove.drop_rewards()
-	qdel(landmark_to_remove)
-	make_area_eligible(area_to_escavate)
 
-///Makes an area able to be considered for area-related functions
-/datum/controller/subsystem/excavation/proc/make_area_eligible(area_to_check)
-	LAZYADDASSOC(eligible_areas, area_to_check, ineligible_areas[area_to_check])
-	LAZYREMOVEASSOC(ineligible_areas, area_to_check, ineligible_areas[area_to_check])
+	var/turf/random_turf = pick(area_turfs)
+	if(random_turf.density)
+		return
 
-///Makes an area unable to be considered for area-related functions
-/datum/controller/subsystem/excavation/proc/make_area_ineligible(area_to_check)
-	LAZYADDASSOC(ineligible_areas, area_to_check, eligible_areas[area_to_check])
-	LAZYREMOVEASSOC(eligible_areas, area_to_check, eligible_areas[area_to_check])
+	new /obj/effect/landmark/excavation_site(random_turf)
+	excavations_count++
 
-#undef MAX_EXCAVATION_TILES
+///Excavates an excavation site
+/datum/controller/subsystem/excavation/proc/excavate_site(obj/effect/landmark/excavation_site/excavation_landmark)
+	eligible_areas += get_area(excavation_landmark)
+	excavation_landmark.drop_rewards()
+	qdel(excavation_landmark)
+
+#undef MAX_ACTIVE_EXCAVATIONS

@@ -1,6 +1,8 @@
 // Tools used for research
 /obj/item/tool/research
+	///Skill type needed to use the tool
 	var/skill_type = "medical"
+	///Skill level needed to use the tool
 	var/skill_threshold = SKILL_MEDICAL_EXPERT
 
 /obj/item/tool/research/xeno_analyzer
@@ -8,7 +10,9 @@
 	desc = "A tool for analyzing xenomorphs for research material. Just click on a xenomorph."
 	icon = 'icons/obj/items/surgery_tools.dmi'
 	icon_state = "predator_bonesaw"
+	///Delay to perform research
 	var/research_delay = 2 SECONDS
+	///List of rewards for each xeno tier
 	var/list/xeno_tier_rewards = list(
 		XENO_TIER_ONE = list(
 			/obj/item/research_resource/xeno/tier_one,
@@ -46,7 +50,7 @@
 
 	var/list/xeno_rewards = xeno_tier_rewards[target_xeno.tier]
 
-	var/reward_typepath = xeno_rewards[rand(1, xeno_rewards.len)]
+	var/reward_typepath = pick(xeno_rewards)
 	var/obj/reward = new reward_typepath
 	reward.forceMove(get_turf(user))
 	target_xeno.researched = TRUE
@@ -82,4 +86,4 @@
 		return
 
 	say(span_notice("<b>Excavation site found, escavating...</b>"))
-	SSexcavation.excavate_area(get_area(excavation_site))
+	SSexcavation.excavate_site(excavation_site)

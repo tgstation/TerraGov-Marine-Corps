@@ -35,12 +35,13 @@
 
 /obj/machinery/computer/researchcomp/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(!researching && istype(I, /obj/item/research_resource))
-		if(!user.transferItemToLoc(I, src))
-			return
-
-		replace_init_resource(usr, I)
+	if(researching || !istype(I, /obj/item/research_resource))
 		return
+
+	if(!user.transferItemToLoc(I, src))
+		return
+
+	replace_init_resource(usr, I)
 
 #undef BASE_RESEARCH_RES_TYPE
 
@@ -50,7 +51,8 @@
 		ui = new(user, src, "Research", name)
 		ui.open()
 
-/obj/machinery/computer/researchcomp/ui_data(mob/user)
+/obj/machinery/computer/researchcomp/ui_static_data(mob/user)
+	. = ..()
 	var/list/data = list()
 
 	data["anchored"] = anchored
@@ -61,7 +63,7 @@
 
 	data["init_resource"] = list(
 		"name" = init_resource.name,
-		"colour" = init_resource.colour,
+		"colour" = init_resource.color,
 	)
 
 	var/list/research_rewards = SSresearch.rewards[init_resource.research_type]
@@ -93,6 +95,7 @@
 				return
 
 			setAnchored(!anchored)
+			SStgui.update_uis(src)
 
 		if("start_research")
 			if (!anchored)
@@ -106,7 +109,9 @@
 				return
 
 			start_research(usr, 5 SECONDS)
+			SStgui.update_uis(src)
 
+///Inserts/Replaces the resource used to being research
 /obj/machinery/computer/researchcomp/proc/replace_init_resource(mob/living/user, obj/item/new_resource)
 	if(init_resource)
 		init_resource.forceMove(drop_location())
@@ -120,11 +125,13 @@
 		icon_state = "chamber"
 	return TRUE
 
+///Begins the research process
 /obj/machinery/computer/researchcomp/proc/start_research(mob/living/user, research_time)
 	icon_state = "chamber_active_loaded"
 	researching = TRUE
 	addtimer(CALLBACK(src, .proc/finish_research), research_time)
 
+///Handles the research process completing
 /obj/machinery/computer/researchcomp/proc/finish_research()
 	flick("chamber_flash",src)
 	SSresearch.research_item(src, init_resource, init_resource.research_type)
@@ -132,6 +139,7 @@
 	init_resource = null
 	icon_state = "chamber"
 	researching = FALSE
+	SStgui.update_uis(src)
 
 ///
 ///Research materials
@@ -140,8 +148,7 @@
 /obj/item/research_resource
 	name = "base research token"
 	icon_state = "coin-mythril"
-	///Colour associated with the resource
-	var/colour = "#f0bee3"
+	color = "#f0bee3"
 	///Type of research the item is used for
 	var/research_type = RES_MONEY
 	///Research progress percent modifiers
@@ -152,17 +159,19 @@
 		RES_TIER_RARE = 0,
 	)
 
-/obj/item/research_resource/xeno/Initialize()
-	. = ..()
-	color = colour
-
 /obj/item/research_resource/xeno/tier_one
 	name = "Xenomorph research material - tier 1"
 	research_type = RES_MONEY
+	reward_probs = list(
+		RES_TIER_BASIC = 100,
+		RES_TIER_COMMON = 30,
+		RES_TIER_UNCOMMON = 20,
+		RES_TIER_RARE = 2,
+	)
 
 /obj/item/research_resource/xeno/tier_two
 	name = "Xenomorph research material - tier 2"
-	colour = "#d6e641"
+	color = "#d6e641"
 	reward_probs = list(
 		RES_TIER_BASIC = 100,
 		RES_TIER_COMMON = 50,
@@ -172,7 +181,7 @@
 
 /obj/item/research_resource/xeno/tier_three
 	name = "Xenomorph research material - tier 3"
-	colour = "#e43939"
+	color = "#e43939"
 	reward_probs = list(
 		RES_TIER_BASIC = 100,
 		RES_TIER_COMMON = 50,
@@ -182,7 +191,7 @@
 
 /obj/item/research_resource/xeno/tier_four
 	name = "Xenomorph research material - tier 4"
-	colour = "#a800ad"
+	color = "#a800ad"
 	reward_probs = list(
 		RES_TIER_BASIC = 100,
 		RES_TIER_COMMON = 50,
@@ -198,6 +207,7 @@
 /obj/item/research_product
 	name = "money"
 	icon_state = "coin_uranium"
+	///Points provided for exporting the product
 	var/export_points = 100000
 
 /obj/item/research_product/supply_export(faction_selling)

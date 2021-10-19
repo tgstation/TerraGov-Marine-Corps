@@ -26,6 +26,7 @@ SUBSYSTEM_DEF(research)
 		RES_TIER_RARE
 		)
 
+	///List of rewards for each category
 	var/list/rewards = list(
 		RES_MONEY = list(
 			RES_TIER_BASIC = list(
@@ -45,6 +46,7 @@ SUBSYSTEM_DEF(research)
 		),
 	)
 
+///Generates rewards from a research resource
 /datum/controller/subsystem/research/proc/research_item(atom/rewards_position, obj/item/research_resource/resource, bucket)
 	var/list/potential_rewards = rewards[bucket]
 	var/list/earned_rewards = list()
