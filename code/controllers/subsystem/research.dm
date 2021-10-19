@@ -58,7 +58,7 @@ SUBSYSTEM_DEF(research)
 
 		var/list/tier_rewards = potential_rewards[tier]
 		//getting random item from the list of items at the tier
-		var/item_typepath = tier_rewards[rand(1, tier_rewards.len)]
+		var/item_typepath = pick(tier_rewards)
 		var/obj/item = new item_typepath
 		item.desc += "<br>Received from \"[bucket]\", tier [tier]"
 		earned_rewards += item
