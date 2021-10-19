@@ -56,7 +56,7 @@ SUBSYSTEM_DEF(excavation)
 	var/turf/random_turf = pick(area_turfs)
 
 	var/obj/effect/landmark/excavation_site/new_site = new
-	new_site.forceMove(random_turf.loc)
+	new_site.forceMove(random_turf)
 	active_excavation_areas[area_to_check] = new_site
 	make_area_ineligible(area_to_check)
 
