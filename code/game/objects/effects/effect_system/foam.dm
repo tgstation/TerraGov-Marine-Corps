@@ -126,20 +126,16 @@
 	/// the IDs of reagents present when the foam was mixed
 	var/list/carried_reagents
 	///Holder that holds the chems the foam will have
-	var/obj/chemholder
+	var/datum/reagents/carrying_reagents
 	///Flags for the foam.
 	var/foam_flags = NONE
 
 /datum/effect_system/foam_spread/New()
 	..()
-	chemholder = new
-	var/datum/reagents/R = new/datum/reagents(1000)
-	chemholder.reagents = R
-	R.my_atom = chemholder
+	carrying_reagents = new(1000)
 
 /datum/effect_system/foam_spread/Destroy()
-	qdel(chemholder)
-	chemholder = null
+	QDEL_NULL(carrying_reagents)
 	return ..()
 
 /datum/effect_system/foam_spread/set_up(spread_amount = 5, atom/location, datum/reagents/carry = null, foam_flags = NONE, lifetime  = 75)
@@ -149,13 +145,13 @@
 		src.location = get_turf(location)
 
 	src.spread_amount = round(sqrt(spread_amount / 3), 1)
-	carry.copy_to(chemholder, carry.total_volume)
+	carry.copy_to(carrying_reagents, carry.total_volume)
 	src.foam_flags = foam_flags
 
 /datum/effect_system/foam_spread/start()
 	var/obj/effect/particle_effect/foam/F = new(location)
-	var/foamcolor = mix_color_from_reagents(chemholder.reagents.reagent_list)
-	chemholder.reagents.copy_to(F, chemholder.reagents.total_volume/spread_amount)
+	var/foamcolor = mix_color_from_reagents(carrying_reagents.reagent_list)
+	carrying_reagents.copy_to(F, carrying_reagents.total_volume/spread_amount)
 	F.add_atom_colour(foamcolor, FIXED_COLOUR_PRIORITY)
 	F.spread_amount = spread_amount
 	F.foam_flags = foam_flags
