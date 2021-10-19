@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - rscadd: "Lobby music should be more reliable now"

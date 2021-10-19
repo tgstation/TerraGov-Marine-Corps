@@ -941,5 +941,5 @@
 /obj/item/storage/belt/gun/ts34/full/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/shotgun/double/marine(src)
-	new /obj/item/ammo_magazine/shotgun(src)
+	new /obj/item/ammo_magazine/shotgun/buckshot(src)
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_gun)

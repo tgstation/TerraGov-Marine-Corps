@@ -466,10 +466,11 @@ GLOBAL_PROTECT(admin_verbs_color)
 
 /world/proc/AVsound()
 	return list(
-	/datum/admins/proc/sound_file,
-	/datum/admins/proc/sound_web,
-	/datum/admins/proc/sound_stop,
-	/datum/admins/proc/music_stop
+		/datum/admins/proc/sound_file,
+		/datum/admins/proc/sound_web,
+		/datum/admins/proc/sound_stop,
+		/datum/admins/proc/music_stop,
+		/client/proc/set_round_end_sound,
 	)
 GLOBAL_LIST_INIT(admin_verbs_sound, world.AVsound())
 GLOBAL_PROTECT(admin_verbs_sound)
