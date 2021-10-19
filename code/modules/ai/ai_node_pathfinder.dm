@@ -58,7 +58,6 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 /obj/effect/ai_node/goal
 	name = "AI goal"
 	invisibility = INVISIBILITY_OBSERVER
-	color = "#1c0bb3"
 	///The identifier of this ai goal
 	var/identifier = IDENTIFIER_XENO
 	///Who made that ai_node
@@ -74,8 +73,12 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 	if(creator)
 		src.creator = creator
 		RegisterSignal(creator, COMSIG_PARENT_QDELETING, .proc/clean_creator)
-		goal_image = image('icons/misc/emoji.dmi', src, "cult")
-		goal_image.layer = BELOW_FULLSCREEN_LAYER
+		goal_image = image('icons/mob/actions.dmi', src, "minion_rendez_vous")
+		goal_image.layer = HUD_PLANE
+		goal_image.alpha = 180
+		goal_image.pixel_y += 10
+		animate(goal_image, pixel_y = pixel_y - 3, time = 7, loop = -1, easing = EASE_OUT)
+		animate(pixel_y = pixel_y + 3, time = 7, loop = -1, easing = EASE_OUT)
 		creator.client.images += goal_image
 
 /obj/effect/ai_node/goal/LateInitialize()
