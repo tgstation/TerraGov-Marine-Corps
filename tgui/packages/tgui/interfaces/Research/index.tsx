@@ -80,8 +80,8 @@ const constructTierInfo = (tier: RewardTier) => {
       {constructRarityText(type, probability)}
       <Divider />
       <LabeledList>
-        {rewards_list.map(item => (
-          <LabeledList.Item>
+        {rewards_list.map((item, i) => (
+          <LabeledList.Item key={i}>
             {item}
           </LabeledList.Item>))}
       </LabeledList>
