@@ -53,21 +53,20 @@
 
 /obj/machinery/computer/researchcomp/ui_static_data(mob/user)
 	. = ..()
-	var/list/data = list()
 
-	data["anchored"] = anchored
-	data["researching"] = researching
+	.["anchored"] = anchored
+	.["researching"] = researching
 	if(!init_resource)
-		data["init_resource"] = null
-		return data
+		.["init_resource"] = null
+		return
 
-	data["init_resource"] = list(
+	.["init_resource"] = list(
 		"name" = init_resource.name,
 		"colour" = init_resource.color,
 	)
 
 	var/list/research_rewards = SSresearch.rewards[init_resource.research_type]
-	data["init_resource"]["rewards"] = list()
+	.["init_resource"]["rewards"] = list()
 	for(var/tier in research_rewards)
 		var/list/reward_tier = list(
 			"type" = tier,
@@ -79,9 +78,7 @@
 		for(var/obj/typepath AS in tier_rewards_typepaths)
 			reward_tier["rewards_list"] += initial(typepath.name)
 
-		data["init_resource"]["rewards"] += list(reward_tier)
-
-	return data
+		.["init_resource"]["rewards"] += list(reward_tier)
 
 /obj/machinery/computer/researchcomp/ui_act(action, params)
 	. = ..()
@@ -95,7 +92,7 @@
 				return
 
 			setAnchored(!anchored)
-			SStgui.update_uis(src)
+			update_static_data(usr)
 
 		if("start_research")
 			if (!anchored)
@@ -109,7 +106,7 @@
 				return
 
 			start_research(usr, 5 SECONDS)
-			SStgui.update_uis(src)
+			update_static_data(usr)
 
 ///Inserts/Replaces the resource used to being research
 /obj/machinery/computer/researchcomp/proc/replace_init_resource(mob/living/user, obj/item/new_resource)
@@ -123,7 +120,7 @@
 	else
 		init_resource = null
 		icon_state = "chamber"
-	return TRUE
+	update_static_data(usr)
 
 ///Begins the research process
 /obj/machinery/computer/researchcomp/proc/start_research(mob/living/user, research_time)
@@ -139,7 +136,7 @@
 	init_resource = null
 	icon_state = "chamber"
 	researching = FALSE
-	SStgui.update_uis(src)
+	update_static_data(usr)
 
 ///
 ///Research materials
