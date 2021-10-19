@@ -371,7 +371,7 @@
 	max_amount = 5
 	amount = 5
 	///Delay between throwing.
-	var/throw_delay = 0.35 SECONDS
+	var/throw_delay = 0.2 SECONDS
 	COOLDOWN_DECLARE(last_thrown)
 
 /obj/item/stack/throwing_knife/Initialize(mapload, new_amount)
