@@ -1,5 +1,5 @@
 import { useBackend } from '../../backend';
-import { Button, Divider, Flex, LabeledList, Section } from '../../components';
+import { Button, Divider, LabeledList, Section } from '../../components';
 import { Window } from '../../layouts';
 import { ResearchData, ResearchResource, RewardTier } from './Types';
 import { hexToRGB, objectToArray } from './Utility';
@@ -22,16 +22,7 @@ export const Research = (props, context) => {
         <Section title="Base resource">
           {
             init_resource
-              ? <LabeledList>
-                <LabeledList.Item label="Name">
-                  {init_resource.name}
-                </LabeledList.Item>
-                <LabeledList.Item>
-                  <Button
-                    content="Research item"
-                    onClick={() => act('start_research')} />
-                </LabeledList.Item>
-              </LabeledList>
+              ? constructResourceInfo(init_resource, act)
               : "No resource inserted"
           }
         </Section>
@@ -43,6 +34,26 @@ export const Research = (props, context) => {
 
       </Window.Content>
     </Window>
+  );
+};
+
+const constructResourceInfo = (resource: ResearchResource, act: Function) => {
+  const {
+    name,
+    colour,
+  } = resource;
+
+  return (
+    <LabeledList>
+      <LabeledList.Item label="Name">
+        {name}
+      </LabeledList.Item>
+      <LabeledList.Item>
+        <Button
+          content="Research item"
+          onClick={() => act('start_research')} />
+      </LabeledList.Item>
+    </LabeledList>
   );
 };
 
@@ -67,6 +78,7 @@ const constructTierInfo = (tier: RewardTier) => {
   return (
     <>
       {constructRarityText(type, probability)}
+      <Divider />
       <LabeledList>
         {rewards_list.map(item => (
           <LabeledList.Item>
