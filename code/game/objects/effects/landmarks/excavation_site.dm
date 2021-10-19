@@ -8,8 +8,8 @@
 	var/rewards_max = 4
 	///List of rewards for the excavation
 	var/list/rewards = list(
-		/obj/item/research_product/money/common,
-		/obj/item/research_product/money/uncommon,
+		/obj/item/research_resource/money,
+		/obj/item/research_resource/xeno/tier_one,
 	)
 
 /obj/effect/landmark/excavation_site/Initialize()

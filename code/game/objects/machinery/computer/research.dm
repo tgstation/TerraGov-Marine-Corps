@@ -156,9 +156,22 @@
 		RES_TIER_RARE = 0,
 	)
 
+/obj/item/research_resource/money
+	name = "Unknown substance"
+	desc = "Unidentified substance. The random data it provides could probably secure some funding."
+	research_type = RES_MONEY
+	reward_probs = list(
+		RES_TIER_BASIC = 100,
+		RES_TIER_COMMON = 30,
+		RES_TIER_UNCOMMON = 20,
+		RES_TIER_RARE = 5,
+	)
+
+/obj/item/research_resource/xeno
+	research_type = RES_XENO
 /obj/item/research_resource/xeno/tier_one
 	name = "Xenomorph research material - tier 1"
-	research_type = RES_MONEY
+	color = "#f0bee3"
 	reward_probs = list(
 		RES_TIER_BASIC = 100,
 		RES_TIER_COMMON = 30,
@@ -173,7 +186,7 @@
 		RES_TIER_BASIC = 100,
 		RES_TIER_COMMON = 50,
 		RES_TIER_UNCOMMON = 20,
-		RES_TIER_RARE = 5,
+		RES_TIER_RARE = 6,
 	)
 
 /obj/item/research_resource/xeno/tier_three
@@ -183,7 +196,7 @@
 		RES_TIER_BASIC = 100,
 		RES_TIER_COMMON = 50,
 		RES_TIER_UNCOMMON = 40,
-		RES_TIER_RARE = 5,
+		RES_TIER_RARE = 10,
 	)
 
 /obj/item/research_resource/xeno/tier_four
@@ -193,7 +206,7 @@
 		RES_TIER_BASIC = 100,
 		RES_TIER_COMMON = 50,
 		RES_TIER_UNCOMMON = 40,
-		RES_TIER_RARE = 45,
+		RES_TIER_RARE = 50,
 	)
 
 ///

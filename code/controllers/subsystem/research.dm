@@ -6,6 +6,7 @@
 
 //Bucket names
 #define RES_MONEY "money"
+#define RES_XENO "xeno"
 
 //Reward tiers
 #define RES_TIER_BASIC "basic"
@@ -39,9 +40,28 @@ SUBSYSTEM_DEF(research)
 			),
 			RES_TIER_UNCOMMON = list(
 				/obj/item/research_product/money/uncommon,
+				/obj/item/implanter/blade,
 			),
 			RES_TIER_RARE = list(
 				/obj/item/research_product/money/rare,
+			),
+		),
+		RES_XENO = list(
+			RES_TIER_BASIC = list(
+				/obj/item/research_product/money/basic,
+				/obj/item/research_product/money/common,
+			),
+			RES_TIER_COMMON = list(
+				/obj/item/research_product/money/uncommon,
+				/obj/item/implanter/chem,
+			),
+			RES_TIER_UNCOMMON = list(
+				/obj/item/research_product/money/uncommon,
+				/obj/item/implanter/neurostim,
+			),
+			RES_TIER_RARE = list(
+				/obj/item/research_product/money/rare,
+				/obj/item/implanter/cloak,
 			),
 		),
 	)
@@ -60,7 +80,6 @@ SUBSYSTEM_DEF(research)
 		//getting random item from the list of items at the tier
 		var/item_typepath = pick(tier_rewards)
 		var/obj/item = new item_typepath
-		item.desc += "<br>Received from \"[bucket]\", tier [tier]"
 		earned_rewards += item
 
 	var/turf/drop_loc = get_turf(rewards_position)
