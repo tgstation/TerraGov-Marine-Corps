@@ -15,8 +15,8 @@
 SUBSYSTEM_DEF(excavation)
 	name = "Excavation"
 	init_order = INIT_ORDER_EXCAVATION
-	flags = SS_KEEP_TIMING
-	wait = 10 SECONDS
+	flags = SS_BACKGROUND
+	wait = 5 MINUTES
 
 	///Areas that can have an excavation site spawned in them
 	var/list/eligible_areas
@@ -44,7 +44,6 @@ SUBSYSTEM_DEF(excavation)
 	var/groundside_areas_base_typepath = text2path("/area/[map_name]")
 	var/list/eligible_areas = list()
 	for (var/type in subtypesof(groundside_areas_base_typepath))
-		eligible_areas[type] = list()
 		var/list/area_turfs = get_area_turfs(type)
 		if(area_turfs.len == 0)
 			continue
@@ -52,7 +51,7 @@ SUBSYSTEM_DEF(excavation)
 	return eligible_areas
 
 /datum/controller/subsystem/excavation/proc/getExcavationTurf()
-	var/area_to_check = pick(eligible_areas)
+	var/area/area_to_check = pick(eligible_areas)
 	var/list/area_turfs = eligible_areas[area_to_check]
 	var/turf/random_turf = pick(area_turfs)
 
