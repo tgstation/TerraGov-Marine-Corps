@@ -278,9 +278,6 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/toggle_sleep,
 	/datum/admins/proc/toggle_sleep_panel,
 	/datum/admins/proc/toggle_sleep_area,
-	/datum/admins/proc/logs_server,
-	/datum/admins/proc/logs_current,
-	/datum/admins/proc/logs_folder,
 	/datum/admins/proc/jump,
 	/datum/admins/proc/get_mob,
 	/datum/admins/proc/send_mob,
@@ -293,7 +290,6 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/secrets_panel,
 	/datum/admins/proc/remove_from_tank,
 	/datum/admins/proc/game_panel,
-	/datum/admins/proc/log_panel,
 	/datum/admins/proc/mode_panel,
 	/datum/admins/proc/job_slots,
 	/datum/admins/proc/toggle_adminhelp_sound,
@@ -484,6 +480,16 @@ GLOBAL_PROTECT(admin_verbs_sound)
 GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 GLOBAL_PROTECT(admin_verbs_spawn)
 
+/world/proc/AVlog()
+	return list(
+	/datum/admins/proc/logs_server,
+	/datum/admins/proc/logs_current,
+	/datum/admins/proc/logs_folder,
+	/datum/admins/proc/log_panel,
+	)
+GLOBAL_LIST_INIT(admin_verbs_log,world.AVlog())
+GLOBAL_PROTECT(admin_verbs_log)
+
 /client/proc/add_admin_verbs()
 	if(holder)
 		var/rights = holder.rank.rights
@@ -516,6 +522,8 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 			verbs += GLOB.admin_verbs_varedit
 		if(rights & R_SPAWN)
 			verbs += GLOB.admin_verbs_spawn
+		if(rights & R_LOG)
+			verbs += GLOB.admin_verbs_log
 
 
 /client/proc/remove_admin_verbs()
