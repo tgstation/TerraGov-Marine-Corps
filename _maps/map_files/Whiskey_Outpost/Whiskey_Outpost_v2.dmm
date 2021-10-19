@@ -6751,11 +6751,11 @@
 	},
 /obj/item/storage/box/visual/grenade/phosphorus,
 /obj/item/storage/box/visual/grenade/phosphorus,
-/obj/item/weapon/gun/launcher/m92/standardmarine,
-/obj/item/weapon/gun/launcher/m92/standardmarine,
+/obj/item/weapon/gun/grenade_launcher/multinade_launcher,
+/obj/item/weapon/gun/grenade_launcher/multinade_launcher,
 /obj/item/attachable/scope/mini,
 /obj/item/attachable/scope/mini,
-/obj/item/weapon/gun/launcher/m81/flare/marine{
+/obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine{
 	desc = "A very tiny flaregun that fires flares equipped with long range irons. This one has been modified to fire WP grenades for some reason. What madman would do this?";
 	grenade_type_allowed = /obj/item/explosive/grenade/phosphorus;
 	name = "Modified M30E2 flare gun"

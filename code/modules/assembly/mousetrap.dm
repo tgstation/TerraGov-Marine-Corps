@@ -6,6 +6,12 @@
 	attachable = TRUE
 	var/armed = FALSE
 
+/obj/item/assembly/mousetrap/Initialize()
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/item/assembly/mousetrap/examine(mob/user)
 	. = ..()
@@ -64,19 +70,20 @@
 	playsound(src, 'sound/weapons/handcuffs.ogg', 30, TRUE, -3)
 
 
-/obj/item/assembly/mousetrap/Crossed(atom/movable/AM)
-	if(armed)
-		if(ishuman(AM))
-			var/mob/living/carbon/H = AM
-			if(H.m_intent == MOVE_INTENT_RUN)
-				triggered(H)
-				H.visible_message(span_warning("[H] accidentally steps on [src]."), \
-								span_warning("You accidentally step on [src]"))
-		else if(ismouse(AM))
-			triggered(AM)
-		else if(AM.density) // For mousetrap grenades, set off by anything heavy
-			triggered(AM)
-	return ..()
+/obj/item/assembly/mousetrap/proc/on_cross(atom/movable/AM)
+	SIGNAL_HANDLER
+	if(!armed)
+		return
+	if(ishuman(AM))
+		var/mob/living/carbon/H = AM
+		if(H.m_intent == MOVE_INTENT_RUN)
+			INVOKE_ASYNC(src, .proc/triggered, H)
+			H.visible_message(span_warning("[H] accidentally steps on [src]."), \
+							span_warning("You accidentally step on [src]"))
+	else if(ismouse(AM))
+		INVOKE_ASYNC(src, .proc/triggered, AM)
+	else if(AM.density) // For mousetrap grenades, set off by anything heavy
+		INVOKE_ASYNC(src, .proc/triggered, AM)
 
 
 /obj/item/assembly/mousetrap/on_found(mob/finder)

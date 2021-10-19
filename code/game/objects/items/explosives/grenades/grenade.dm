@@ -16,7 +16,6 @@
 	var/det_time =  40
 	var/dangerous = TRUE 	//Does it make a danger overlay for humans? Can synths use it?
 	var/arm_sound = 'sound/weapons/armbomb.ogg'
-	var/underslug_launchable = TRUE
 	var/hud_state = "grenade_he"
 	var/hud_state_empty = "grenade_empty"
 	///Light impact range when exploding

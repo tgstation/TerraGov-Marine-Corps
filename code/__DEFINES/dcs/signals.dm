@@ -31,6 +31,7 @@
 #define COMSIG_GLOB_MOB_DEATH "!mob_death"
 
 #define COMSIG_GLOB_AI_GOAL_SET "!ai_goal_set"
+#define COMSIG_GLOB_AI_MINION_RALLY "!ai_minion_rally"
 
 
 /// Sent when a marine dropship enters transit level
@@ -179,8 +180,10 @@
 #define COMSIG_MOVABLE_PRE_MOVE "movable_pre_move"				//from base of atom/movable/Moved(): (/atom)
 #define COMSIG_MOVABLE_MOVED "movable_moved"					//from base of atom/movable/Moved(): (/atom, movement_dir, forced, old_locs)
 #define COMSIG_MOVABLE_PULL_MOVED "movable_pull_moved"		//base base of atom/movable/Moved() (/atom, movement_dir, forced, old_locs)
-#define COMSIG_MOVABLE_CROSSED_BY "movable_crossed_by"			//from base of atom/movable/Crossed(): (/atom/movable, oldloc)
-#define COMSIG_MOVABLE_CROSSED "movable_crossed"				//from base of atom/movable/Crossed(): (/atom/movable, oldloc)
+///from base of atom/movable/Cross(): (/atom/movable)
+#define COMSIG_MOVABLE_CROSS "movable_cross"
+///from base of atom/movable/update_loc(): (/atom/oldloc)
+#define COMSIG_MOVABLE_LOCATION_CHANGE "location_changed"
 #define COMSIG_MOVABLE_BUMP "movable_bump"						//from base of atom/movable/Bump(): (/atom)
 	#define COMPONENT_BUMP_RESOLVED (1<<0)
 #define COMSIG_MOVABLE_IMPACT "movable_impact"					//from base of atom/movable/throw_impact(): (/atom/hit_atom)
@@ -201,10 +204,6 @@
 #define COMSIG_MOVABLE_DISPOSING "movable_disposing"			//called when the movable is added to a disposal holder object for disposal movement: (obj/structure/disposalholder/holder, obj/machinery/disposal/source)
 #define COMSIG_MOVABLE_HEAR "movable_hear"						//from base of atom/movable/Hear(): (message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 #define COMSIG_MOVABLE_Z_CHANGED "movable_ztransit" 			//from base of atom/movable/onTransitZ(): (old_z, new_z)
-#define COMSIG_MOVABLE_CROSS "movable_cross"					//from base of atom/movable/Cross(): (/atom/movable)
-#define COMSIG_MOVABLE_UNCROSS "movable_uncross"				//from base of atom/movable/Uncross(): (/atom/movable)
-	#define COMPONENT_MOVABLE_BLOCK_UNCROSS (1<<0)
-#define COMSIG_MOVABLE_UNCROSSED "movable_uncrossed"            //from base of atom/movable/Uncrossed(): (/atom/movable)
 #define COMSIG_MOVABLE_CLOSET_DUMPED "movable_closet_dumped"
 #define COMSIG_MOVABLE_PREBUMP_TURF "movable_prebump_turf"
 #define COMSIG_MOVABLE_PREBUMP_MOVABLE "movable_prebump_movable"
@@ -345,6 +344,12 @@
 #define COMSIG_MOB_ITEM_ATTACK "mob_item_attack"				//from base of /obj/item/attack(): (mob/target, /obj/item/attacking_item)
 #define COMSIG_MOB_ITEM_ATTACK_ALTERNATE "mob_item_attack_alt"	//from base of /obj/item/attack_alternate(): (mob/target, /obj/item/attacking_item)
 	#define COMPONENT_ITEM_NO_ATTACK (1<<0)						//return this if you dont want attacka and altattacks to run
+
+///Called when an object is grilled ontop of a griddle
+#define COMSIG_ITEM_GRILLED "item_griddled"
+	#define COMPONENT_HANDLED_GRILLING (1<<0)
+///Called when an object is turned into another item through grilling ontop of a griddle
+#define COMSIG_GRILL_COMPLETED "item_grill_completed"
 
 #define COMSIG_MOB_ITEM_AFTERATTACK "mob_item_afterattack"		//from base of obj/item/afterattack(): (atom/target, mob/user, has_proximity, click_parameters)
 #define COMSIG_MOB_ITEM_AFTERATTACK_ALTERNATE "mob_item_afterattack_alternate" //from base of obj/item/afterattack_alternate(): (atom/target, mob/user, has_proximity, click_parameters)
@@ -552,6 +557,7 @@
 
 // xeno abilities for keybindings
 
+#define COMSIG_XENOABILITY_REST "xenoability_rest"
 #define COMSIG_XENOABILITY_HEADBITE "xenoability_headbite"
 #define COMSIG_XENOABILITY_REGURGITATE "xenoability_regurgitate"
 #define COMSIG_XENOABILITY_BLESSINGSMENU "xenoability_blesssingsmenu"
@@ -571,6 +577,7 @@
 #define COMSIG_XENOABILITY_NEUROTOX_STING "xenoability_neurotox_sting"
 #define COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS "xenoability_inject_egg_neurogas"
 #define COMSIG_XENOABILITY_RALLY_HIVE "xenoability_rally_hive"
+#define COMSIG_XENOABILITY_RALLY_MINION "xenoability_rally_minion"
 
 #define COMSIG_XENOABILITY_LONG_RANGE_SIGHT "xenoability_long_range_sight"
 #define COMSIG_XENOABILITY_TOGGLE_BOMB "xenoability_toggle_bomb"
@@ -587,6 +594,7 @@
 #define COMSIG_XENOABILITY_STOMP "xenoability_stomp"
 #define COMSIG_XENOABILITY_TOGGLE_CHARGE "xenoability_toggle_charge"
 #define COMSIG_XENOABILITY_CRESTTOSS "xenoability_cresttoss"
+#define COMSIG_XENOABILITY_ADVANCE "xenoability_advance"
 
 #define COMSIG_XENOABILITY_BULLCHARGE "xenoability_bullcharge"
 #define COMSIG_XENOABILITY_BULLHEADBUTT "xenoability_bullheadbutt"
