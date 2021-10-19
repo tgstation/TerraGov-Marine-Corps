@@ -13229,6 +13229,12 @@
 	},
 /turf/closed/wall/mainship/gray,
 /area/sulaco/research)
+"hlt" = (
+/obj/machinery/computer/researchcomp,
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 1
+	},
+/area/sulaco/medbay)
 "hlP" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -17473,6 +17479,15 @@
 /obj/machinery/vending/hydronutrients,
 /turf/open/floor/tile/hydro,
 /area/sulaco/hydro)
+"oFT" = (
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/machinery/computer/researchcomp,
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 1
+	},
+/area/sulaco/medbay)
 "oGg" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -52654,7 +52669,7 @@ fmW
 ade
 jhf
 ade
-adV
+oFT
 jXT
 mDu
 qDO
@@ -53168,7 +53183,7 @@ fdz
 ade
 mJk
 ade
-kMl
+hlt
 jXT
 mDu
 qDO

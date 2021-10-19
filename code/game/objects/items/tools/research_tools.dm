@@ -5,7 +5,7 @@
 
 /obj/item/tool/research/xeno_analyzer
 	name = "xenomorph analyzer"
-	desc = "A tool for scanning objects for research material."
+	desc = "A tool for analyzing xenomorphs for research material. Just click on a xenomorph."
 	icon = 'icons/obj/items/surgery_tools.dmi'
 	icon_state = "predator_bonesaw"
 	var/research_delay = 2 SECONDS
@@ -55,7 +55,7 @@
 
 /obj/item/tool/research/excavation_tool
 	name = "subterrain scanner and excavator"
-	desc = "A tool for locating and uncovering underground resources."
+	desc = "A tool for locating and uncovering underground resources. Activate when near an excavation site."
 	icon = 'icons/obj/items/surgery_tools.dmi'
 	icon_state = "alien_drill"
 
@@ -78,7 +78,7 @@
 			break
 
 	if (!excavation_site)
-		say(span_notice("<b>No excavation site found at location.</b>"))
+		say(span_notice("<b>No excavation site found at location. Try moving closer to the nearest one on your map.</b>"))
 		return
 
 	say(span_notice("<b>Excavation site found, escavating...</b>"))
