@@ -5,11 +5,10 @@
 /obj/machinery/computer/researchcomp
 	name = "research console"
 	desc = "A console for performing complex computations."
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = SHUTTLE_SUPPLY
+	icon = 'icons/obj/machines/bepis.dmi'
+	icon_state = "chamber"
 	interaction_flags = INTERACT_MACHINE_TGUI
 	req_access = list(ACCESS_MARINE_MEDBAY)
-	circuit = null
 	///Description of usable resources for starting research
 	var/allowed_resources_desc
 	///Loaded resource to begin research
@@ -54,6 +53,7 @@
 /obj/machinery/computer/researchcomp/ui_data(mob/user)
 	var/list/data = list()
 
+	data["anchored"] = anchored
 	data["researching"] = researching
 	if(!init_resource)
 		data["init_resource"] = null
@@ -87,13 +87,25 @@
 		return
 
 	switch(action)
-		if("remove_init_resource")
-			replace_init_resource(usr)
+		if("switch_anchored")
+			if (researching)
+				to_chat(usr, span_notice("It is currently researching."))
+				return
+
+			setAnchored(!anchored)
+
 		if("start_research")
+			if (!anchored)
+				to_chat(usr, span_notice("It needs to be fastened before researching."))
+				return
 			if (!init_resource)
 				to_chat(usr, span_notice("You have no resource to begin research."))
 				return
-			start_research(usr)
+			if (researching)
+				to_chat(usr, span_notice("It is already researching something."))
+				return
+
+			start_research(usr, 5 SECONDS)
 
 /obj/machinery/computer/researchcomp/proc/replace_init_resource(mob/living/user, obj/item/new_resource)
 	if(init_resource)
@@ -102,15 +114,24 @@
 			user.put_in_hands(init_resource)
 	if(new_resource)
 		init_resource = new_resource
+		icon_state = "chamber_loaded"
 	else
 		init_resource = null
-	update_icon()
+		icon_state = "chamber"
 	return TRUE
 
-/obj/machinery/computer/researchcomp/proc/start_research(mob/living/user)
+/obj/machinery/computer/researchcomp/proc/start_research(mob/living/user, research_time)
+	icon_state = "chamber_active_loaded"
+	researching = TRUE
+	addtimer(CALLBACK(src, .proc/finish_research), research_time)
+
+/obj/machinery/computer/researchcomp/proc/finish_research()
+	flick("chamber_flash",src)
 	SSresearch.research_item(src, init_resource, init_resource.research_type)
 	qdel(init_resource)
 	init_resource = null
+	icon_state = "chamber"
+	researching = FALSE
 
 ///
 ///Research materials

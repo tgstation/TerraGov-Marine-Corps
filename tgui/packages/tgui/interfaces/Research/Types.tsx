@@ -1,5 +1,7 @@
 export type ResearchData =
 {
+  anchored: boolean,
+  researching: boolean,
   init_resource: ResearchResource,
 }
 

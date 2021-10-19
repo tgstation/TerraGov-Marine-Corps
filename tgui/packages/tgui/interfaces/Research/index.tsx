@@ -7,6 +7,8 @@ import { hexToRGB, objectToArray } from './Utility';
 export const Research = (props, context) => {
   const { act, data } = useBackend<ResearchData>(context);
   const {
+    anchored,
+    researching,
     init_resource,
   } = data;
 
@@ -19,10 +21,15 @@ export const Research = (props, context) => {
         scrollable
         align="stretch"
         backgroundColor={init_resource ? hexToRGB(init_resource.colour, 0.5) : ""}>
+        <Button
+          content={anchored ? "Release" : "Lock"}
+          disabled={researching}
+          icon={anchored ? "lock" : "lock-open"}
+          onClick={() => act('switch_anchored')} />
         <Section title="Base resource">
           {
             init_resource
-              ? constructResourceInfo(init_resource, act)
+              ? constructResourceInfo(init_resource, act, researching)
               : "No resource inserted"
           }
         </Section>
@@ -37,7 +44,10 @@ export const Research = (props, context) => {
   );
 };
 
-const constructResourceInfo = (resource: ResearchResource, act: Function) => {
+const constructResourceInfo = (
+  resource: ResearchResource,
+  act: Function,
+  researching: boolean) => {
   const {
     name,
     colour,
@@ -51,6 +61,8 @@ const constructResourceInfo = (resource: ResearchResource, act: Function) => {
       <LabeledList.Item>
         <Button
           content="Research item"
+          disabled={researching}
+          icon="prescription-bottle"
           onClick={() => act('start_research')} />
       </LabeledList.Item>
     </LabeledList>
