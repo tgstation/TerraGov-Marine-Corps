@@ -57,7 +57,6 @@ SUBSYSTEM_DEF(research)
 			),
 			RES_TIER_UNCOMMON = list(
 				/obj/item/research_product/money/uncommon,
-				/obj/item/implanter/neurostim,
 			),
 			RES_TIER_RARE = list(
 				/obj/item/research_product/money/rare,

@@ -139,7 +139,7 @@
 ///
 
 /obj/item/research_resource
-	name = "base research token"
+	name = "Unknown substance"
 	icon_state = "coin-mythril"
 	///Type of research the item is used for
 	var/research_type = RES_MONEY
@@ -152,7 +152,6 @@
 	)
 
 /obj/item/research_resource/money
-	name = "Unknown substance"
 	desc = "Unidentified substance. The random data it provides could probably secure some funding."
 	research_type = RES_MONEY
 	reward_probs = list(
@@ -175,9 +174,9 @@
 	color = "#f0bee3"
 	reward_probs = list(
 		RES_TIER_BASIC = 100,
-		RES_TIER_COMMON = 30,
-		RES_TIER_UNCOMMON = 20,
-		RES_TIER_RARE = 2,
+		RES_TIER_COMMON = 15,
+		RES_TIER_UNCOMMON = 7,
+		RES_TIER_RARE = 1,
 	)
 
 /obj/item/research_resource/xeno/tier_two
@@ -185,7 +184,7 @@
 	color = "#d6e641"
 	reward_probs = list(
 		RES_TIER_BASIC = 100,
-		RES_TIER_COMMON = 50,
+		RES_TIER_COMMON = 40,
 		RES_TIER_UNCOMMON = 20,
 		RES_TIER_RARE = 6,
 	)
@@ -219,27 +218,28 @@
 	name = "money"
 	icon_state = "coin_uranium"
 	///Points provided for exporting the product
-	var/export_points = 100000
+	var/export_points = 1
 
 /obj/item/research_product/supply_export(faction_selling)
-	return export_points
+	SSpoints.supply_points[faction_selling] += export_points
+	return new /datum/export_report(export_points, name, faction_selling)
 
 /obj/item/research_product/money/examine(user)
 	. = ..()
 	to_chat(user, span_notice("Rewards export points, as the name suggests."))
 
 /obj/item/research_product/money/basic
-	name = "money - 10"
-	export_points = 10
+	name = "money - 5"
+	export_points = 5
 
 /obj/item/research_product/money/common
-	name = "money - 20"
-	export_points = 20
+	name = "money - 15"
+	export_points = 15
 
 /obj/item/research_product/money/uncommon
-	name = "money - 30"
-	export_points = 30
+	name = "money - 25"
+	export_points = 25
 
 /obj/item/research_product/money/rare
-	name = "money - 100"
-	export_points = 100
+	name = "money - 80"
+	export_points = 80
