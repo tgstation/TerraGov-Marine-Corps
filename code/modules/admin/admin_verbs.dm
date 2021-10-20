@@ -80,7 +80,7 @@
 	set name = "Set Xeno Buffs"
 	set desc = "Allows you to change stats on all xeno. It is a multiplicator buff, so input 1 to put back everything to normal"
 
-	if(!check_rights(R_DEBUG))
+	if(!check_rights(R_FUN))
 		return
 
 	var/multiplicator_buff_wanted = input("Input the factor that will multiply xeno stat", "1 is normal stat, 2 is doubling health, regen and melee attack") as num
