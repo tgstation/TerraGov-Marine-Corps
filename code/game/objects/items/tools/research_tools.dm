@@ -14,6 +14,9 @@
 	var/static/research_delay = 2 SECONDS
 	///List of rewards for each xeno tier
 	var/static/list/xeno_tier_rewards = list(
+		XENO_TIER_ZERO = list(
+			/obj/item/research_resource/xeno/tier_one,
+		),
 		XENO_TIER_ONE = list(
 			/obj/item/research_resource/xeno/tier_one,
 		),

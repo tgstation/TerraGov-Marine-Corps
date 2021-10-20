@@ -141,7 +141,6 @@
 /obj/item/research_resource
 	name = "base research token"
 	icon_state = "coin-mythril"
-	color = "#f0bee3"
 	///Type of research the item is used for
 	var/research_type = RES_MONEY
 	///Research progress percent modifiers
@@ -165,6 +164,12 @@
 
 /obj/item/research_resource/xeno
 	research_type = RES_XENO
+	icon = 'icons/obj/alien_autopsy.dmi'
+
+/obj/item/research_resource/xeno/Initialize()
+	. = ..()
+	icon_state = "sample_[rand(0, 11)]"
+
 /obj/item/research_resource/xeno/tier_one
 	name = "Xenomorph research material - tier 1"
 	color = "#f0bee3"
