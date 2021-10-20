@@ -5632,6 +5632,7 @@
 /area/mainship/hallways/starboard_hallway)
 "xm" = (
 /obj/machinery/camera/autoname,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "xn" = (
@@ -6315,6 +6316,10 @@
 	},
 /turf/open/floor/mainship/plate,
 /area/mainship/hallways/starboard_umbilical)
+"Aj" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/sulaco/bridge/maint)
 "Ak" = (
 /obj/machinery/door/airlock/mainship/engineering,
 /turf/open/floor/freezer,
@@ -10989,6 +10994,7 @@
 /area/mainship/living/starboard_garden)
 "Tz" = (
 /obj/structure/ship_rail_gun,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/plate,
 /area/mainship/shipboard/weapon_room)
 "TA" = (
@@ -20835,7 +20841,7 @@ Sl
 bm
 oD
 BQ
-BQ
+oD
 fX
 XX
 DR
@@ -21139,7 +21145,7 @@ Hu
 BQ
 BQ
 KU
-BQ
+oD
 bv
 XX
 rO
@@ -21898,7 +21904,7 @@ xk
 lT
 QV
 ju
-KL
+Aj
 KL
 KL
 xr
@@ -25546,7 +25552,7 @@ jd
 LP
 cx
 ju
-KL
+Aj
 KL
 Xf
 dW
