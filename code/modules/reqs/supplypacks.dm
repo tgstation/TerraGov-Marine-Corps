@@ -1619,6 +1619,11 @@ Imports
 	cost = 40
 	contains = list(/obj/vehicle/ridden/motorbike)
 
+/datum/supply_packs/vehicles/sidecar
+	name = "Sidecar motorbike upgrade"
+	cost = 20
+	contains = list(/obj/item/sidecar)
+
 /*******************************************************************************
 FACTORY
 *******************************************************************************/
