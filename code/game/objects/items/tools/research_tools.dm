@@ -63,7 +63,7 @@
 
 /obj/item/tool/research/excavation_tool
 	name = "subterrain scanner and excavator"
-	desc = "A tool for locating and uncovering underground resources. Activate when near an excavation site."
+	desc = "A tool for locating and uncovering underground resources. Use \"unique action\" when near an excavation site."
 	icon = 'icons/obj/items/surgery_tools.dmi'
 	icon_state = "alien_drill"
 
