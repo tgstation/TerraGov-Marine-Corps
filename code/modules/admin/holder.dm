@@ -263,7 +263,6 @@ GLOBAL_PROTECT(admin_verbs_default)
 
 /world/proc/AVadmin()
 	return list(
-	/datum/admins/proc/show_player_panel,
 	/datum/admins/proc/pref_ff_attack_logs,
 	/datum/admins/proc/pref_end_attack_logs,
 	/datum/admins/proc/pref_debug_logs,
@@ -285,8 +284,6 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/jump_coord,
 	/datum/admins/proc/jump_mob,
 	/datum/admins/proc/jump_key,
-	/datum/admins/proc/player_panel,
-	/datum/admins/proc/player_panel_extended,
 	/datum/admins/proc/secrets_panel,
 	/datum/admins/proc/remove_from_tank,
 	/datum/admins/proc/game_panel,
@@ -294,7 +291,6 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/job_slots,
 	/datum/admins/proc/toggle_adminhelp_sound,
 	/datum/admins/proc/toggle_prayers,
-	/datum/admins/proc/mcdb,
 	/datum/admins/proc/check_fingerprints,
 	/client/proc/smite,
 	/client/proc/private_message_panel,
@@ -327,7 +323,11 @@ GLOBAL_PROTECT(admin_verbs_mentor)
 	/datum/admins/proc/ban_panel,
 	/datum/admins/proc/stickybanpanel,
 	/datum/admins/proc/unban_panel,
-	/datum/admins/proc/note_panel
+	/datum/admins/proc/note_panel,
+	/datum/admins/proc/show_player_panel,
+	/datum/admins/proc/player_panel,
+	/datum/admins/proc/player_panel_extended,
+	/datum/admins/proc/mcdb
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, world.AVban())
 GLOBAL_PROTECT(admin_verbs_ban)
@@ -349,14 +349,8 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/delete_atom,
 	/datum/admins/proc/restart_controller,
 	/datum/admins/proc/check_contents,
-	/datum/admins/proc/SDQL2_query,
-	/datum/admins/proc/map_template_load,
-	/datum/admins/proc/map_template_upload,
 	/datum/admins/proc/reestablish_db_connection,
 	/datum/admins/proc/view_runtimes,
-	/datum/admins/proc/spatial_agent,
-	/datum/admins/proc/set_xeno_stat_buffs,
-	/datum/admins/proc/check_bomb_impacts,
 	/client/proc/toggle_cdn
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
@@ -414,6 +408,12 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/client/proc/toggle_events,
 	/client/proc/run_weather,
 	/client/proc/cmd_display_del_log,
+	/datum/admins/proc/SDQL2_query,
+	/datum/admins/proc/map_template_load,
+	/datum/admins/proc/map_template_upload,
+	/datum/admins/proc/spatial_agent,
+	/datum/admins/proc/set_xeno_stat_buffs,
+	/datum/admins/proc/check_bomb_impacts,
 	)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 GLOBAL_PROTECT(admin_verbs_fun)
