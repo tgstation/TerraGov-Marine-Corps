@@ -29,6 +29,9 @@ endmap
 map sulaco
 endmap
 
+map icarus
+endmap
+
 map twin_pillars
 	voteweight 0
 endmap
