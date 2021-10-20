@@ -34,7 +34,7 @@
 
 	var/mob/living/carbon/xenomorph/target_xeno = M
 
-	if(target_xeno.status_flags & RESEARCHED)
+	if(HAS_TRAIT(target_xeno, TRAIT_RESEARCHED))
 		to_chat(user, span_notice("[target_xeno] has already been probed."))
 		return ..()
 
@@ -45,7 +45,7 @@
 	if(!do_after(user, research_delay, TRUE, target_xeno, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
 		return ..()
 
-	if(target_xeno.status_flags & RESEARCHED)
+	if(HAS_TRAIT(target_xeno, TRAIT_RESEARCHED))
 		to_chat(user, span_notice("[target_xeno] has already been probed."))
 		return ..()
 
@@ -54,7 +54,7 @@
 	var/reward_typepath = pick(xeno_rewards)
 	var/obj/reward = new reward_typepath
 	reward.forceMove(get_turf(user))
-	target_xeno.status_flags |= RESEARCHED
+	ADD_TRAIT(target_xeno, TRAIT_RESEARCHED, TRAIT_RESEARCHED)
 
 	return ..()
 
