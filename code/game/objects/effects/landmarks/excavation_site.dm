@@ -1,7 +1,5 @@
 /obj/effect/landmark/excavation_site
 	name = "excavation landmark"
-	///Amount of rewards that the excavation site provides
-	var/rewards_count = 1
 	///Min amount of rewards the excavation site provides
 	var/rewards_min = 1
 	///Max amount of rewards the excavation site provides

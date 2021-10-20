@@ -20,6 +20,7 @@ SUBSYSTEM_DEF(excavation)
 
 	///Areas that can have an excavation site spawned in them
 	var/list/eligible_areas
+	///Amount of present excavation landmarks
 	var/excavations_count = 0
 
 /datum/controller/subsystem/excavation/Initialize(start_timeofday)
@@ -38,6 +39,7 @@ SUBSYSTEM_DEF(excavation)
 	for (var/type in subtypesof(groundside_areas_base_typepath))
 		eligible_areas += type
 
+///Creates an excavation landmark at a random area from eligible areas
 /datum/controller/subsystem/excavation/proc/pickExcavationTurf()
 	var/area/area_to_check = pick_n_take(eligible_areas)
 	var/list/area_turfs = get_area_turfs(area_to_check)
