@@ -6757,7 +6757,6 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
-/obj/item/research_resource/xeno/tier_three,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
