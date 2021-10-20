@@ -83,5 +83,5 @@ SUBSYSTEM_DEF(research)
 		earned_rewards += item
 
 	var/turf/drop_loc = get_turf(rewards_position)
-	for (var/obj/item in earned_rewards)
+	for (var/obj/item AS in earned_rewards)
 		item.forceMove(drop_loc)
