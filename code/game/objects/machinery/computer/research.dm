@@ -24,13 +24,11 @@
 	. = ..()
 	to_chat(user, span_notice(allowed_resources_desc))
 
-#define BASE_RESEARCH_RES_TYPE /obj/item/research_resource
-
 ///Creates the description of usable resources for starting research
 /obj/machinery/computer/researchcomp/proc/construct_insertable_resources_desc()
 	allowed_resources_desc = ""
 	allowed_resources_desc += "<br><b>Insertable material:</b><br>"
-	for(var/obj/resource AS in typesof(BASE_RESEARCH_RES_TYPE))
+	for(var/obj/resource AS in typesof(/obj/item/research_resource))
 		allowed_resources_desc += " >[initial(resource.name)]<br>"
 
 /obj/machinery/computer/researchcomp/attackby(obj/item/I, mob/user, params)
@@ -42,8 +40,6 @@
 		return
 
 	replace_init_resource(usr, I)
-
-#undef BASE_RESEARCH_RES_TYPE
 
 /obj/machinery/computer/researchcomp/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

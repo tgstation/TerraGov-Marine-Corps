@@ -128,6 +128,7 @@
 #define CANUNCONSCIOUS (1<<9)
 #define CANCONFUSE (1<<10)
 #define INCORPOREAL (1<<11) // Whether not this unit should be detectable by automated means (like turrets). Used by hivemind
+#define RESEARCHED (1<<12) // Whether the thing has been researched/probed
 
 // =============================
 // hive types

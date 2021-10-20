@@ -56,5 +56,6 @@ SUBSYSTEM_DEF(excavation)
 	eligible_areas += get_area(excavation_landmark)
 	excavation_landmark.drop_rewards()
 	qdel(excavation_landmark)
+	excavations_count--
 
 #undef MAX_ACTIVE_EXCAVATIONS

@@ -11,9 +11,9 @@
 	icon = 'icons/obj/items/surgery_tools.dmi'
 	icon_state = "predator_bonesaw"
 	///Delay to perform research
-	var/research_delay = 2 SECONDS
+	var/static/research_delay = 2 SECONDS
 	///List of rewards for each xeno tier
-	var/list/xeno_tier_rewards = list(
+	var/static/list/xeno_tier_rewards = list(
 		XENO_TIER_ONE = list(
 			/obj/item/research_resource/xeno/tier_one,
 		),
@@ -34,17 +34,18 @@
 
 	var/mob/living/carbon/xenomorph/target_xeno = M
 
-	if(target_xeno.researched)
+	if(target_xeno.status_flags & RESEARCHED)
 		to_chat(user, span_notice("[target_xeno] has already been probed."))
 		return ..()
 
 	if(user.skills.getRating(skill_type) < skill_threshold)
 		to_chat(user, "You need higher [skill_type] skill.")
+		return ..()
 
 	if(!do_after(user, research_delay, TRUE, target_xeno, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
 		return ..()
 
-	if(target_xeno.researched)
+	if(target_xeno.status_flags & RESEARCHED)
 		to_chat(user, span_notice("[target_xeno] has already been probed."))
 		return ..()
 
@@ -53,7 +54,7 @@
 	var/reward_typepath = pick(xeno_rewards)
 	var/obj/reward = new reward_typepath
 	reward.forceMove(get_turf(user))
-	target_xeno.researched = TRUE
+	target_xeno.status_flags |= RESEARCHED
 
 	return ..()
 
@@ -74,9 +75,9 @@
 	if(!do_after(user, 10 SECONDS, TRUE, center_turf, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
 		return
 
-	var/list/checked_turfs = filled_turfs(center_turf, 3, "circle")
+	var/list/turfs_to_check = filled_turfs(center_turf, 3, "circle")
 	var/excavation_site
-	for(var/turf/turf_to_check AS in checked_turfs)
+	for(var/turf/turf_to_check AS in turfs_to_check)
 		excavation_site = locate(/obj/effect/landmark/excavation_site) in turf_to_check
 		if(excavation_site)
 			break
