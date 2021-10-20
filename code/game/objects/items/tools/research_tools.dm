@@ -72,7 +72,7 @@
 	var/turf/center_turf = get_turf(user.loc)
 
 	if(!do_after(user, 10 SECONDS, TRUE, center_turf, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
-		return ..()
+		return
 
 	var/list/checked_turfs = filled_turfs(center_turf, 3, "circle")
 	var/excavation_site
