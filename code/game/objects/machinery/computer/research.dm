@@ -10,7 +10,7 @@
 	interaction_flags = INTERACT_MACHINE_TGUI
 	req_access = list(ACCESS_MARINE_MEDBAY)
 	///Description of usable resources for starting research
-	var/allowed_resources_desc
+	var/allowed_resources_desc = ""
 	///Loaded resource to begin research
 	var/obj/item/research_resource/init_resource = null
 	///UI holder
