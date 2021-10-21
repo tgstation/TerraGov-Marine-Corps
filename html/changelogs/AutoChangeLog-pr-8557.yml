@@ -1,0 +1,4 @@
+author: "hyper2snyper"
+delete-after: True
+changes: 
+  - expansion: "Throwing knives are now stackable and hold 5 a stack, clicking a tile with a stack in hand will throw one of the stack."
