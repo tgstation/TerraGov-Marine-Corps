@@ -1103,6 +1103,9 @@ and you're good to go.
 	if(gun_firemode == GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST && burst_amount > 1)
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
 
+	if(dual_wield) //akimbo firing gives terrible accuracy
+		gun_scatter += 5 * rand(upper_akimbo_accuracy, lower_akimbo_accuracy)
+
 	if(user)
 		// Apply any skill-based bonuses to accuracy
 		var/skill_accuracy = 0
