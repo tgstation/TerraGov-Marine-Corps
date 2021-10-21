@@ -123,7 +123,7 @@
 	var/general_codex_key = "guns"
 
 	///The mob holding the gun
-	var/mob/gun_user
+	var/mob/living/gun_user
 	///The atom targeted by the user
 	var/atom/target
 	///How many bullets the gun fired while bursting/auto firing
