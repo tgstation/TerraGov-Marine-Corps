@@ -1,6 +1,6 @@
 import { useBackend } from '../../backend';
-import { Box, Button, Divider, Flex, Grid, LabeledList, Section, Table } from '../../components';
-import { TableCell, TableRow } from '../../components/Table';
+import { Box, Button, Divider, Flex, Section, Table } from '../../components';
+import { TableRow } from '../../components/Table';
 import { Window } from '../../layouts';
 import { ResearchData, ResearchResource, RewardTier } from './Types';
 import { hexToRGB, objectToArray } from './Utility';
