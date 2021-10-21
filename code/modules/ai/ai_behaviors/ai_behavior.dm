@@ -43,11 +43,10 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		return
 	//We always use the escorted atom as our reference point for looking for target. So if we don't have any escorted atom, we take ourselve as the reference
 	if(escorted_atom)
-		src.escorted_atom = escorted_atom
+		set_escorted_atom(escorted_atom)
 	else
 		src.escorted_atom = parent_to_assign
 		RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, .proc/set_escorted_atom)
-	RegisterSignal(escorted_atom, COMSIG_PARENT_QDELETING, .proc/clean_escorted_atom)
 	mob_parent = parent_to_assign
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, .proc/set_goal_node)
 	goal_node = GLOB.goal_nodes[identifier]
@@ -167,6 +166,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		return
 	INVOKE_ASYNC(mob_parent, /mob/living.proc/emote, "roar")
 	escorted_atom = atom_to_escort
+	RegisterSignal(escorted_atom, COMSIG_PARENT_QDELETING, .proc/clean_escorted_atom)
+	RegisterSignal(escorted_atom, COMSIG_AI_SET_BEHAVIOUR, .proc/set_agressivity)
 	change_action(ESCORTING_ATOM, escorted_atom)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
 
@@ -177,6 +178,11 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, .proc/set_escorted_atom)
 	if(current_action == ESCORTING_ATOM)
 		look_for_next_node()
+
+///Set the target distance to be normal (initial) or very low (almost passive)
+/datum/ai_behavior/proc/set_agressivity(datum/source, should_be_passive = FALSE)
+	SIGNAL_HANDLER
+	target_distance = should_be_passive ? 2 : initial(target_distance)
 
 ///Clean the goal node
 /datum/ai_behavior/proc/clean_goal_node()

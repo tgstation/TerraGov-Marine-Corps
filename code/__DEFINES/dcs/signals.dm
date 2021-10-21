@@ -578,6 +578,7 @@
 #define COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS "xenoability_inject_egg_neurogas"
 #define COMSIG_XENOABILITY_RALLY_HIVE "xenoability_rally_hive"
 #define COMSIG_XENOABILITY_RALLY_MINION "xenoability_rally_minion"
+#define COMSIG_XENOABILITY_MINION_BEHAVIOUR "xenoability_minion_behavior"
 
 #define COMSIG_XENOABILITY_LONG_RANGE_SIGHT "xenoability_long_range_sight"
 #define COMSIG_XENOABILITY_TOGGLE_BOMB "xenoability_toggle_bomb"
@@ -722,6 +723,7 @@
 
 //Signals for CIC orders
 #define COMSIG_ORDER_SELECTED "order_selected"
+#define COMSIG_ORDER_SENT "order_updated"
 
 //Signals for automatic fire at component
 #define COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT "start_shooting_at"
@@ -733,5 +735,5 @@
 	#define BURST_FIRING (1<<0)
 #define COMSIG_DISABLE_BURST_FIRE "disable_burst_fire"
 
-//Signals for CIC orders
-#define COMSIG_ORDER_SENT "order_updated"
+//Signals for ais
+#define COMSIG_AI_SET_BEHAVIOUR "set_ai_behaviour"
