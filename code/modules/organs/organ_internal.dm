@@ -109,6 +109,8 @@
 				take_damage(1, prob(30))
 
 /datum/internal_organ/proc/take_damage(amount, silent= FALSE)
+	if(SSticker.mode?.flags_round_type & MODE_NO_PERMANENT_WOUNDS)
+		return
 	if(amount <= 0)
 		heal_organ_damage(-amount)
 		return
@@ -166,12 +168,22 @@
 				INTERNAL ORGANS TYPES
 ****************************************************/
 
-/datum/internal_organ/heart // This is not set to vital because death immediately occurs in blood.dm if it is removed.
+/datum/internal_organ/heart // This is not set to vital because death immediately occurs in blood.dm if it is removed. Also, all damage effects are handled there.
 	name = "heart"
 	parent_limb = "chest"
 	removed_type = /obj/item/organ/heart
 	robotic_type = /obj/item/organ/heart/prosthetic
 	organ_id = ORGAN_HEART
+
+/datum/internal_organ/heart/process()
+	. = ..()
+	
+	if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
+		return
+	if(is_bruised() && prob(5))
+		owner.emote("me", 1, "grabs at [owner.p_their()] chest!")
+	else if(is_broken() && prob(20))
+		owner.emote("me", 1, "clutches [owner.p_their()] chest!")
 
 /datum/internal_organ/heart/prosthetic //used by synthetic species
 	robotic = ORGAN_ROBOT
@@ -190,14 +202,22 @@
 		if(prob(5))
 			owner.emote("cough")		//respitory tract infection
 
-	if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-		if(is_bruised())
-			if(prob(2))
-				spawn owner.emote("me", 1, "coughs up blood!")
-				owner.drip(10)
-			if(prob(4))
-				spawn owner.emote("me", 1, "gasps for air!")
-				owner.Losebreath(15)
+	if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
+		return
+	if(is_bruised())
+		if(prob(5))
+			owner.emote("me", 1, "coughs up blood!")
+			owner.drip(10)
+		if(prob(15))
+			owner.emote("me", 1, "gasps for air!")
+			owner.Losebreath(10)
+	else if(is_broken())
+		if(prob(30))
+			owner.emote("me", 1, "coughs up blood!")
+			owner.drip(10)
+		if(prob(50))
+			owner.emote("me", 1, "gasps for air!")
+			owner.Losebreath(4)
 
 /datum/internal_organ/lungs/prosthetic
 	robotic = ORGAN_ROBOT
@@ -266,11 +286,12 @@
 			owner.adjustToxLoss(-0.5)
 
 		//Deal toxin damage if damaged
-		if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-			if(is_bruised() && prob(25))
-				owner.adjustToxLoss(0.1 * (damage/2))
-			else if(is_broken() && prob(50))
-				owner.adjustToxLoss(0.3 * (damage/2))
+		if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
+			return
+		if(is_bruised() && prob(25))
+			owner.adjustToxLoss(0.1 * (damage/2))
+		else if(is_broken() && prob(50))
+			owner.adjustToxLoss(0.3 * (damage/2))
 
 /datum/internal_organ/liver/prosthetic
 	robotic = ORGAN_ROBOT
@@ -298,11 +319,12 @@
 			owner.adjustToxLoss(0.3 * PROCESS_ACCURACY)
 
 	//Deal toxin damage if damaged
-	if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-		if(is_bruised() && prob(25))
-			owner.adjustToxLoss(0.1 * (damage/3))
-		else if(is_broken() && prob(50))
-			owner.adjustToxLoss(0.2 * (damage/3))
+	if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
+		return
+	if(is_bruised() && prob(25))
+		owner.adjustToxLoss(0.1 * (damage/3))
+	else if(is_broken() && prob(50))
+		owner.adjustToxLoss(0.2 * (damage/3))
 
 /datum/internal_organ/kidneys/prosthetic
 	robotic = ORGAN_ROBOT
@@ -325,6 +347,9 @@
 	removed_type = /obj/item/organ/brain/xeno
 	robotic_type = null
 
+/datum/internal_organ/brain/husk
+	vital = FALSE
+
 /datum/internal_organ/eyes
 	name = "eyes"
 	parent_limb = "head"
@@ -335,11 +360,12 @@
 
 /datum/internal_organ/eyes/process() //Eye damage replaces the old eye_stat var.
 	..()
-	if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-		if(is_bruised())
-			owner.set_blurriness(20)
-		if(is_broken())
-			owner.set_blindness(20)
+	if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
+		return
+	if(is_bruised())
+		owner.set_blurriness(20)
+	if(is_broken())
+		owner.set_blindness(20)
 
 /datum/internal_organ/eyes/prosthetic
 	robotic = ORGAN_ROBOT

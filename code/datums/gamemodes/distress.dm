@@ -1,7 +1,7 @@
 /datum/game_mode/infestation/distress
 	name = "Distress Signal"
 	config_tag = "Distress Signal"
-	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_DEAD_GRAB_FORBIDDEN|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN
+	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_DEAD_GRAB_FORBIDDEN|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_SPAWNING_MINIONS
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM|MODE_LANDMARK_SPAWN_XENO_TURRETS
 	flags_xeno_abilities = ABILITY_DISTRESS
 	valid_job_types = list(
@@ -35,7 +35,7 @@
 	SSpoints.add_psy_points(XENO_HIVE_NORMAL, SILO_PRICE + 2 * XENO_TURRET_PRICE)
 
 	for(var/i in GLOB.xeno_turret_turfs)
-		new /obj/structure/xeno/resin/xeno_turret(i)
+		new /obj/structure/xeno/xeno_turret(i)
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob(COCOONED_DEATH)
 

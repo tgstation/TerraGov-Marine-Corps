@@ -2,13 +2,12 @@ import { range } from "common/collections";
 import { resolveAsset } from "../../assets";
 import { useBackend } from "../../backend";
 import { Box, Button, Section, Stack, Flex } from "../../components";
-import { IconStack } from "../../components/Icon";
 import { LoadoutSlotData, GridSpotKey, SLOTS, getGridSpotKey } from './Types';
 
 const ROWS = 4;
 const COLUMNS = 3;
 
-const BUTTON_DIMENSION_WIDTH = "70px"; 
+const BUTTON_DIMENSION_WIDTH = "70px";
 const BUTTON_DIMENSION_HEIGHT = "70px";
 
 
@@ -24,7 +23,7 @@ export const SlotSelector = (props: LoadoutSlotData, context) => {
   for (const key of Object.keys(items)) {
     gridSpots.set(SLOTS[key].gridSpot, key);
   }
-  
+
   return (
     <Section title="Slot Selector" textAlign="center">
       <Flex>
@@ -37,9 +36,8 @@ export const SlotSelector = (props: LoadoutSlotData, context) => {
                   {range(0, COLUMNS).map(column => {
                     const key = getGridSpotKey([row, column]);
                     const keyAtSpot = gridSpots.get(key);
-                    
-                    const item = items[keyAtSpot];
-                    const slot = SLOTS[keyAtSpot];
+                    const item = items[keyAtSpot!];
+                    const slot = SLOTS[keyAtSpot!];
 
                     let tooltip;
 
@@ -89,7 +87,7 @@ export const SlotSelector = (props: LoadoutSlotData, context) => {
                                 }}
                               />
                             )}
-                            <Box style={{ 
+                            <Box style={{
                               position: "relative",
                               width: "60px",
                               height: "60px",

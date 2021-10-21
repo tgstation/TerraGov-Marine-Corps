@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - refactor: "refactored foam code to more modern standards and to fix other stuff, foam now applies reagents on contact properly (beware of razorburn) and has the color of the chem used for the foam."

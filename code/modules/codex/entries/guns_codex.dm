@@ -20,7 +20,7 @@
 		traits += "It's best fired with a two-handed grip."
 
 
-	if(flags_gun_features & GUN_TRIGGER_SAFETY)
+	if(HAS_TRAIT(src, TRAIT_GUN_SAFETY))
 		traits += "It has a safety switch. Alt-Click it to toggle safety."
 
 	if(scope_zoom) //flawed, unless you check the codex for the first time when the scope is attached, this won't show. works for sniper rifles though.
@@ -133,10 +133,11 @@
 /datum/codex_entry/energy_weapons
 	display_name = "energy weapons"
 	mechanics_text = "This weapon is an energy weapon; they run on battery charge rather than traditional ammunition. You can recharge \
-		an energy weapon by placing it in a wall-mounted or table-mounted charger such as those found in Medical or around the \
-		place. In addition, energy weapons, if compatible, can be recharged via energy-fed battery cells acting as magazines, \
+		an energy weapon by placing it in a table-mounted or field-deployed charger such as those found in Medical or around the \
+		area. In addition, energy weapons, if compatible, can be recharged via energy-fed battery cells acting as magazines, \
 		which can also be recharged at chargers. Most energy weapons' projectiles can go straight through windows and hit whatever \
 		is on the other side, and have very fast projectiles, making them accurate and useful against distant targets. \
+		Some (like the TE series of weapons) have hitscan properties, allowing the weapon to hit the target instantly. \
 		<br>"
 	lore_text = "\"OPERATOR\", the tagline and marketing tactic of energy weapons (usually lasguns) in the 25th century, \
 		especially made popular with the rise of the xenomorph threat in 2414. Energy weapons are usually famed by private security firms \

@@ -170,12 +170,6 @@
 	prime()
 
 
-/obj/item/explosive/grenade/chem_grenade/Crossed(atom/movable/AM)
-	. = ..()
-	if(nadeassembly)
-		nadeassembly.Crossed(AM)
-
-
 /obj/item/explosive/grenade/chem_grenade/prime()
 	if(stage != CG_READY)
 		return

@@ -28,6 +28,8 @@ SUBSYSTEM_DEF(monitor)
 	var/gamestate = SHUTTERS_CLOSED
 	///If the automatic balance system is online
 	var/is_automatic_balance_on = TRUE
+	///Maximum record of how many players were concurrently playing this round
+	var/maximum_connected_players_count = 0
 
 /datum/monitor_statistics
 	var/king = 0
@@ -44,13 +46,14 @@ SUBSYSTEM_DEF(monitor)
 
 /datum/controller/subsystem/monitor/Initialize(start_timeofday)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, .proc/set_groundside_calculation)
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), .proc/set_groundside_calculation)
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/set_shipside_calculation)
 	is_automatic_balance_on = CONFIG_GET(flag/is_automatic_balance_on)
 
 /datum/controller/subsystem/monitor/fire(resumed = 0)
 	var/total_living_players = GLOB.alive_human_list.len + GLOB.alive_xeno_list.len
 	current_points = calculate_state_points() / max(total_living_players, 10)//having less than 10 players gives bad results
+	maximum_connected_players_count = max(get_active_player_count(), maximum_connected_players_count)
 	if(gamestate == GROUNDSIDE)
 		process_human_positions()
 		FOB_hugging_check()
@@ -64,6 +67,15 @@ SUBSYSTEM_DEF(monitor)
 	if(abs(proposed_balance_buff - GLOB.xeno_stat_multiplicator_buff) >= 0.05 || (proposed_balance_buff == 1 && GLOB.xeno_stat_multiplicator_buff != 1))
 		GLOB.xeno_stat_multiplicator_buff = proposed_balance_buff
 		apply_balance_changes()
+
+	//Balance spawners output
+	for(var/silo in GLOB.xeno_resin_silos)
+		SSspawning.spawnerdata[silo].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
+		SSspawning.spawnerdata[silo].max_allowed_mobs = max(1, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count * 0.5)
+	for(var/spawner in GLOB.xeno_spawner)
+		SSspawning.spawnerdata[spawner].required_increment = max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
+		SSspawning.spawnerdata[spawner].max_allowed_mobs = max(2, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count)
+
 
 	//Automatic respawn buff, if a stalemate is detected and a lot of ghosts are waiting to play
 	if(state != STATE_BALANCED || !stalemate || GLOB.observer_list <= 0.5 * total_living_players)

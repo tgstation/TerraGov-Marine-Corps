@@ -47,7 +47,7 @@
 	toggle_wielded(user, TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_WIELD, user)
 	name = "[name] (Wielded)"
-	update_item_state(user)
+	update_item_state()
 	place_offhand(user, name)
 	return TRUE
 
@@ -63,7 +63,7 @@
 		name = copytext(name, 1, sf)
 	else
 		name = "[initial(name)]"
-	update_item_state(user)
+	update_item_state()
 	remove_offhand(user)
 	return TRUE
 
@@ -291,7 +291,7 @@
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/motiondetector,
 	), \
 	attachment_offsets = list("muzzle_x" = 59, "muzzle_y" = 16, "rail_x" = 26, "rail_y" = 18, "under_x" = 40, "under_y" = 12))

@@ -109,12 +109,15 @@
 	add_overlay(image(I.icon, initial(I.icon_state) + "_roomba"))
 	claymore = I
 	claymore.armed = TRUE
-	RegisterSignal(src, COMSIG_MOVABLE_CROSSED_BY, .proc/attempt_mine_explode)
+	var/static/list/explosive_connections = list(
+		COMSIG_ATOM_ENTERED = .proc/attempt_mine_explode
+	)
+	AddElement(/datum/element/connect_loc, explosive_connections)
 
 /obj/machinery/roomba/proc/attempt_mine_explode(datum/source, atom/movable/crosser, oldloc)
 	SIGNAL_HANDLER
 	if(!claymore.trip_mine(crosser))
 		return
 	claymore = null
-	UnregisterSignal(src, COMSIG_MOVABLE_CROSSED_BY)
+	RemoveElement(/datum/element/connect_loc)
 	cut_overlays()

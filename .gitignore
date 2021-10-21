@@ -3,6 +3,10 @@ Thumbs.db
 *.log
 *.int
 *.rsc
+*.mdme
+*.mdme.*
+*.m.dme
+*.test.dme
 *.dmb
 *.lk
 *.backup
@@ -23,8 +27,6 @@ tools/MapDaemon/logs/*.txt
 
 tools/BalanceTool/raw.json
 
-#Temp files from cbt stuff
-tgmc.mdme
 
 # Ignore compiled linux libs in the root folder, e.g. librust_g.so
 /*.so
