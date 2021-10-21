@@ -630,10 +630,10 @@
 	isshared = TRUE
 	products = list(
 		"Pill Bottle" = list(
-			/obj/item/storage/pill_bottle/packet/bicaridine = 48,
-			/obj/item/storage/pill_bottle/packet/kelotane = 48,
-			/obj/item/storage/pill_bottle/packet/tramadol = 48,
-			/obj/item/storage/pill_bottle/packet/tricordrazine = 48,
+			/obj/item/storage/pill_bottle/packet/bicaridine = 24,
+			/obj/item/storage/pill_bottle/packet/kelotane = 24,
+			/obj/item/storage/pill_bottle/packet/tramadol = 24,
+			/obj/item/storage/pill_bottle/packet/tricordrazine = 32,
 			/obj/item/storage/pill_bottle/inaprovaline = 12,
 			/obj/item/storage/pill_bottle/dexalin = 12,
 			/obj/item/storage/pill_bottle/dylovene = 12,
