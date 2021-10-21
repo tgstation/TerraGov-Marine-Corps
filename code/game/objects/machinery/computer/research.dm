@@ -4,7 +4,7 @@
 
 /obj/machinery/computer/researchcomp
 	name = "research console"
-	desc = "A console for performing complex computations."
+	desc = "A console for performing complex computations. Release the stabilizers to move it around."
 	icon = 'icons/obj/machines/bepis.dmi'
 	icon_state = "chamber"
 	interaction_flags = INTERACT_MACHINE_TGUI
@@ -23,6 +23,13 @@
 /obj/machinery/computer/researchcomp/examine(user)
 	. = ..()
 	to_chat(user, span_notice(allowed_resources_desc))
+
+/obj/machinery/computer/update_icon()
+	..()
+	if(init_resource)
+		icon_state = "chamber_loaded"
+	else
+		icon_state = "chamber"
 
 ///Creates the description of usable resources for starting research
 /obj/machinery/computer/researchcomp/proc/construct_insertable_resources_desc()
@@ -144,6 +151,7 @@
 /obj/item/research_resource
 	name = "Unknown substance"
 	icon_state = "coin-mythril"
+	color = "#e2a4dd"
 	///Type of research the item is used for
 	var/research_type = RES_MONEY
 	///Research progress percent modifiers
