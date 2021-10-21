@@ -105,9 +105,6 @@
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = -1,
 			/obj/item/ammo_magazine/smg/standard_smg = -1,
-			/obj/item/weapon/gun/smg/ppsh = -1,
-			/obj/item/ammo_magazine/smg/ppsh = -1,
-			/obj/item/ammo_magazine/smg/ppsh/extended = -1,
 			/obj/item/weapon/gun/smg/standard_machinepistol = -1,
 			/obj/item/ammo_magazine/smg/standard_machinepistol = -1,
 		),

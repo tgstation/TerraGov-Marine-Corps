@@ -279,9 +279,12 @@ SUBSYSTEM_DEF(persistence)
 
 /datum/season_datum/weapons/guns/storm_seasonal
 	name = "Storm weapons"
-	description = "A classic storm MKH storm rifle."
+	description = "Two classics on opposite sides, both made for CQC."
 	item_list = list(
 		/obj/item/weapon/gun/rifle/mkh = -1,
 		/obj/item/ammo_magazine/rifle/mkh = -1,
+		/obj/item/weapon/gun/smg/ppsh = -1,
+		/obj/item/ammo_magazine/smg/ppsh = -1,
+		/obj/item/ammo_magazine/smg/ppsh/extended = -1,
 		)
 
