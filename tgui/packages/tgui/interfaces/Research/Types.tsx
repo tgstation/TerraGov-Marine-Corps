@@ -9,6 +9,7 @@ export type ResearchResource =
 {
   name: string,
   colour: string,
+  icon: string,
   rewards: RewardTier[],
 }
 

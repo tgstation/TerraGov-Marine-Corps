@@ -56,9 +56,12 @@
 		.["init_resource"] = null
 		return
 
+	var/icon/resource_icon = icon(init_resource.icon, init_resource.icon_state, SOUTH)
+
 	.["init_resource"] = list(
 		"name" = init_resource.name,
 		"colour" = init_resource.color,
+		"icon" = icon2base64(resource_icon)
 	)
 
 	var/list/research_rewards = SSresearch.rewards[init_resource.research_type]
@@ -164,6 +167,7 @@
 /obj/item/research_resource/xeno
 	research_type = RES_XENO
 	icon = 'icons/obj/alien_autopsy.dmi'
+	icon_state = "sample_0"
 
 /obj/item/research_resource/xeno/Initialize()
 	. = ..()

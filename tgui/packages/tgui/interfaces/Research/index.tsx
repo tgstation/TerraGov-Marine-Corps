@@ -1,5 +1,6 @@
 import { useBackend } from '../../backend';
-import { Button, Divider, LabeledList, Section } from '../../components';
+import { Box, Button, Divider, Flex, Grid, LabeledList, Section, Table } from '../../components';
+import { TableCell, TableRow } from '../../components/Table';
 import { Window } from '../../layouts';
 import { ResearchData, ResearchResource, RewardTier } from './Types';
 import { hexToRGB, objectToArray } from './Utility';
@@ -15,13 +16,16 @@ export const Research = (props, context) => {
   return (
     <Window
       resizable
-      width={600}
+      width={400}
       height={600}>
       <Window.Content
         scrollable
         align="stretch"
         backgroundColor={init_resource ? hexToRGB(init_resource.colour, 0.5) : ""}>
         <Button
+          style={{
+            "margin": "0.2em",
+          }}
           content={anchored ? "Release" : "Lock"}
           disabled={researching}
           icon={anchored ? "lock" : "lock-open"}
@@ -51,21 +55,46 @@ const constructResourceInfo = (
   const {
     name,
     colour,
+    icon,
   } = resource;
 
   return (
-    <LabeledList>
-      <LabeledList.Item label="Name">
-        {name}
-      </LabeledList.Item>
-      <LabeledList.Item>
+    <Flex
+      direction="row">
+      <Flex.Item basis="auto">
+        <p style={{
+          margin: 0,
+        }}>
+          {name}
+        </p>
+        <Divider />
         <Button
           content="Research item"
           disabled={researching}
           icon="prescription-bottle"
           onClick={() => act('start_research')} />
-      </LabeledList.Item>
-    </LabeledList>
+      </Flex.Item>
+      <Flex.Item basis="auto" style={{
+        "display": "flex",
+        "justify-content": "center",
+      }}>
+        <Box
+          as="img"
+          src={`data:image/jpeg;base64,
+              ${icon}`}
+          color="transparent"
+          style={{
+            "vertical-align": "middle",
+            "width": "190px",
+            transform: "scale(2) translate(0, -10%)",
+            "-ms-interpolation-mode": "nearest-neighbor",
+            // "image-rendering": "-webkit-optimize-contrast",
+            // "image-rendering": "-moz-crisp-edges",
+            // "image-rendering": "-o-pixelated",
+            // "image-rendering": "pixelated",
+          }} />
+      </Flex.Item>
+    </Flex>
   );
 };
 
@@ -88,17 +117,17 @@ const constructTierInfo = (tier: RewardTier) => {
   } = tier;
 
   return (
-    <>
-      {constructRarityText(type, probability)}
-      <Divider />
-      <LabeledList>
+    <Box mb="0.6em">
+      <Box bold margin>
+        {constructRarityText(type, probability)}
+      </Box>
+      <Table>
         {rewards_list.map((item, i) => (
-          <LabeledList.Item key={i}>
-            {item}
-          </LabeledList.Item>))}
-      </LabeledList>
-      <Divider />
-    </>
+          <TableRow key={i}>
+            {`> ${item}`}
+          </TableRow>))}
+      </Table>
+    </Box>
   );
 };
 
