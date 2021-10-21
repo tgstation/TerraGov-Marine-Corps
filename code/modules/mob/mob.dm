@@ -177,7 +177,7 @@
 		if(M == src && self_message) //the src always see the main message or self message
 			msg = self_message
 
-			if(visible_message_flags & COMBAT_MESSAGE && M.client.prefs.mute_self_combat_messages)
+			if((visible_message_flags & COMBAT_MESSAGE) && M.client.prefs.mute_self_combat_messages)
 				continue
 
 		else
@@ -187,7 +187,7 @@
 
 				msg = blind_message
 
-			if(visible_message_flags & COMBAT_MESSAGE && M.client.prefs.mute_others_combat_messages)
+			if((visible_message_flags & COMBAT_MESSAGE) && M.client.prefs.mute_others_combat_messages)
 				continue
 
 		if(visible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, visible_message_flags) && !is_blind(M))
