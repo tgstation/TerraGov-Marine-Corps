@@ -53,10 +53,10 @@ SUBSYSTEM_DEF(research)
 			),
 			RES_TIER_COMMON = list(
 				/obj/item/research_product/money/uncommon,
-				/obj/item/implanter/chem,
 			),
 			RES_TIER_UNCOMMON = list(
 				/obj/item/research_product/money/uncommon,
+				/obj/item/implanter/chem/blood,
 			),
 			RES_TIER_RARE = list(
 				/obj/item/research_product/money/rare,

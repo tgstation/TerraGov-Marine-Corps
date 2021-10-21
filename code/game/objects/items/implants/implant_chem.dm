@@ -45,3 +45,18 @@
 	user.mind.store_memory("[src] in [target] will now activate by saying something containing the phrase ''[activation_phrase]'', <B>say [activation_phrase]</B> to attempt to activate.", 0, 0)
 	to_chat(user, span_notice("[src] in [target] will now activate by saying something containing the phrase ''[activation_phrase]'', <B>say [activation_phrase]</B> to attempt to activate."))
 	return ..()
+
+/obj/item/implant/chem/blood
+	name = "blood recovery implant"
+	desc = "A chemical implant able to accelerate blood recovery, recovering lost blood."
+	///Amount of blood added
+	var/blood_amount = 200
+
+/obj/item/implant/chem/blood/activate/activate(accidental)
+	. = ..()
+	if(!iscarbon(implant_owner))
+		return
+
+	var/mob/living/carbon/carb_mob = implant_owner
+	var/current_blood = carb_mob.blood_volume
+	carb_mob.blood_volume += min(BLOOD_VOLUME_MAXIMUM - current_blood, blood_amount)
