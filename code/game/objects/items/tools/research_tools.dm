@@ -73,21 +73,15 @@
 		to_chat(user, "You need higher [skill_type] skill.")
 		return
 
-	var/turf/center_turf = get_turf(user.loc)
-
-	if(!do_after(user, 10 SECONDS, TRUE, center_turf, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
+	if(!do_after(user, 10 SECONDS, TRUE, user.loc, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
 		return
 
-	var/list/turfs_to_check = filled_turfs(center_turf, 3, "circle")
-	var/excavation_site
-	for(var/turf/turf_to_check AS in turfs_to_check)
-		excavation_site = locate(/obj/effect/landmark/excavation_site) in turf_to_check
-		if(excavation_site)
-			break
+	var/spawner_located = FALSE
+	for(var/obj/effect/landmark/excavation_site_spawner/spawner_to_check AS in SSexcavation.active_spawners)
+		if(get_dist(user, spawner_to_check) < 3)
+			say(span_notice("<b>Excavation site found, escavating...</b>"))
+			SSexcavation.excavate_site(spawner_to_check)
+			spawner_located = TRUE
 
-	if (!excavation_site)
+	if (!spawner_located)
 		say(span_notice("<b>No excavation site found at location. Try moving closer to the nearest one on your map.</b>"))
-		return
-
-	say(span_notice("<b>Excavation site found, escavating...</b>"))
-	SSexcavation.excavate_site(excavation_site)

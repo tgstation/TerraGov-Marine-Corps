@@ -23,6 +23,10 @@
 /obj/machinery/vending/cola,
 /turf/open/floor,
 /area/bigredv2/outside/admin_building)
+"bO" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
 "ce" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -178,9 +182,17 @@
 	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
+"kr" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark/red2,
+/area/bigredv2/outside/admin_building)
 "ks" = (
 /obj/machinery/photocopier,
 /turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"kx" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/carpet/edge2,
 /area/bigredv2/outside/admin_building)
 "kJ" = (
 /obj/structure/table,
@@ -502,6 +514,10 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
+"ym" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/wood,
+/area/bigredv2/outside/admin_building)
 "yp" = (
 /obj/structure/window/reinforced,
 /turf/open/floor/tile/dark,
@@ -626,7 +642,11 @@
 	},
 /area/bigredv2/outside/admin_building)
 "CQ" = (
-/turf/open/floor,
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "CU" = (
 /obj/structure/window/framed/colony,
@@ -1238,7 +1258,7 @@ BN
 (4,1,1) = {"
 BN
 pR
-uu
+CQ
 Bw
 Bw
 Dj
@@ -1306,7 +1326,7 @@ ZJ
 ZJ
 ZJ
 ZJ
-ZJ
+kx
 ZJ
 ZJ
 OA
@@ -1456,7 +1476,7 @@ QL
 QL
 QL
 Gr
-fO
+bO
 PN
 uX
 fO
@@ -1620,7 +1640,7 @@ UW
 sT
 wY
 Jj
-Jj
+ym
 Jj
 Jj
 BN
@@ -1772,7 +1792,7 @@ Nv
 fO
 Nv
 lt
-vW
+kr
 sT
 tW
 rM
@@ -1836,7 +1856,7 @@ BN
 (27,1,1) = {"
 BN
 Ls
-Jj
+ym
 Jj
 sT
 Ls
@@ -1883,7 +1903,7 @@ GT
 GT
 eq
 GT
-CQ
+GT
 "}
 (29,1,1) = {"
 BN

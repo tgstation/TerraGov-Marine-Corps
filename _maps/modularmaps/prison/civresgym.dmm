@@ -26,8 +26,17 @@
 /obj/structure/bed/chair/sofa,
 /turf/open/floor/prison/bright_clean/two,
 /area/template_noop)
+"p" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/prison/bright_clean/two,
+/area/template_noop)
 "r" = (
 /obj/machinery/holopad,
+/turf/open/floor/prison/bright_clean/two,
+/area/template_noop)
+"s" = (
+/obj/machinery/light/small,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/prison/bright_clean/two,
 /area/template_noop)
 "v" = (
@@ -105,7 +114,7 @@ a
 "}
 (2,1,1) = {"
 F
-a
+p
 a
 a
 a
@@ -192,7 +201,7 @@ a
 a
 a
 a
-V
+s
 "}
 (9,1,1) = {"
 i

@@ -244,6 +244,11 @@
 	dir = 8
 	},
 /area/lv624/lazarus/atmos)
+"xs" = (
+/obj/item/stool,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/atmos)
 "xU" = (
 /obj/machinery/light,
 /obj/effect/decal/warning_stripes/thin{
@@ -485,6 +490,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/podhatch/floor{
 	icon_state = "bcircuitoff"
 	},
@@ -814,7 +820,7 @@ CS
 Dp
 iN
 LL
-qq
+xs
 En
 lX
 ef

@@ -50,6 +50,10 @@
 /obj/machinery/light/small,
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
+"ha" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
 "hh" = (
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
@@ -460,7 +464,7 @@ Uv
 eY
 DP
 EM
-hh
+ha
 jz
 Dy
 la
@@ -571,7 +575,7 @@ la
 la
 Dy
 vO
-hh
+ha
 hh
 CR
 jg

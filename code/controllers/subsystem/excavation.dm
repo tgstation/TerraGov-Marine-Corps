@@ -18,46 +18,29 @@ SUBSYSTEM_DEF(excavation)
 	flags = SS_BACKGROUND
 	wait = 5 MINUTES
 
-	///Areas that can have an excavation site spawned in them
-	var/list/eligible_areas
+	///Landmarks that can spawn excavation sites
+	var/list/excavation_site_spawners = list()
+	///Landmarks that have active excavation sites
+	var/list/active_spawners = list()
 	///Amount of present excavation landmarks
 	var/excavations_count = 0
 
-/datum/controller/subsystem/excavation/Initialize(start_timeofday)
-	. = ..()
-	EligibleAreasInit()
-
 /datum/controller/subsystem/excavation/fire()
-	while (excavations_count < MAX_ACTIVE_EXCAVATIONS && eligible_areas.len > 0)
-		pickExcavationTurf()
-
-///Initializes the list of areas that can have an excavation spawned in them
-/datum/controller/subsystem/excavation/proc/EligibleAreasInit()
-	eligible_areas = list()
-	var/map_name = lowertext(SSmapping.configs[GROUND_MAP].map_name)
-	var/groundside_areas_base_typepath = text2path("/area/[map_name]")
-	for (var/type in subtypesof(groundside_areas_base_typepath))
-		eligible_areas += type
+	while (excavations_count < MAX_ACTIVE_EXCAVATIONS && excavation_site_spawners.len > 0)
+		spawnExcavation()
 
 ///Creates an excavation landmark at a random area from eligible areas
-/datum/controller/subsystem/excavation/proc/pickExcavationTurf()
-	var/area/area_to_check = pick_n_take(eligible_areas)
-	var/list/area_turfs = get_area_turfs(area_to_check)
-	if(area_turfs.len == 0)
-		return
-
-	var/turf/random_turf = pick(area_turfs)
-	if(random_turf.density)
-		return
-
-	new /obj/effect/landmark/excavation_site(random_turf)
+/datum/controller/subsystem/excavation/proc/spawnExcavation()
+	var/obj/effect/landmark/excavation_site_spawner/site_spawner = pick_n_take(excavation_site_spawners)
+	active_spawners += site_spawner
+	site_spawner.spawn_excavation_site()
 	excavations_count++
 
 ///Excavates an excavation site
-/datum/controller/subsystem/excavation/proc/excavate_site(obj/effect/landmark/excavation_site/excavation_landmark)
-	eligible_areas += get_area(excavation_landmark)
-	excavation_landmark.drop_rewards()
-	qdel(excavation_landmark)
+/datum/controller/subsystem/excavation/proc/excavate_site(obj/effect/landmark/excavation_site_spawner/site_spawner)
+	active_spawners -= site_spawner
+	excavation_site_spawners += site_spawner
+	site_spawner.excavate_site()
 	excavations_count--
 
 #undef MAX_ACTIVE_EXCAVATIONS

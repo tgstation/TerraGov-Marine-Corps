@@ -292,6 +292,7 @@
 	amount = 25
 	},
 /obj/item/stack/barbed_wire/half_stack,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "bf" = (
@@ -1175,6 +1176,11 @@
 /obj/item/storage/firstaid/fire,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/west)
+"fc" = (
+/obj/structure/cable,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/research)
 "fd" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/powercell,
@@ -2129,6 +2135,12 @@
 	dir = 5
 	},
 /area/icy_caves/caves)
+"lJ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/east)
 "lM" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -2908,6 +2920,11 @@
 "qH" = (
 /turf/closed/ice_rock/singleT,
 /area/icy_caves/caves)
+"qI" = (
+/obj/machinery/light,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/dorms)
 "qJ" = (
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/tile/dark,
@@ -2940,6 +2957,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "qS" = (
@@ -3018,6 +3036,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
 "rl" = (
@@ -3734,6 +3753,10 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/medbay)
+"uS" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/south)
 "uX" = (
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
@@ -4060,6 +4083,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
+"xo" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/northern)
 "xr" = (
 /obj/machinery/mineral/stacking_machine,
 /obj/machinery/conveyor{
@@ -4169,6 +4196,14 @@
 "yq" = (
 /turf/closed/ice/thin/straight,
 /area/icy_caves/outpost/LZ2)
+"yr" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/structure/cable,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/outside)
 "yw" = (
 /obj/structure/closet/secure_closet/scientist,
 /obj/machinery/light,
@@ -4429,6 +4464,10 @@
 /obj/machinery/processor,
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
+"Aq" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/icy_caves/outpost/outside)
 "Ar" = (
 /obj/structure/closet/crate/secure/ammo,
 /obj/item/ammo_magazine/smg/m25,
@@ -4598,6 +4637,10 @@
 	dir = 4
 	},
 /area/icy_caves/caves)
+"Bc" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/crashed_ship)
 "Bd" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -4678,6 +4721,12 @@
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/dorms)
+"BN" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/outside)
 "BP" = (
 /turf/closed/ice/junction{
 	dir = 4
@@ -4874,6 +4923,10 @@
 	},
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
+"Dx" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/outside)
 "DB" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/ice_rock/singlePart{
@@ -5016,6 +5069,10 @@
 	dir = 8
 	},
 /area/icy_caves/caves)
+"EF" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/security)
 "EH" = (
 /turf/open/floor/tile/dark/green2{
 	dir = 1
@@ -5063,6 +5120,11 @@
 	},
 /turf/closed/ice_rock/westWall,
 /area/icy_caves/caves)
+"EU" = (
+/obj/machinery/light,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/crashed_ship)
 "EZ" = (
 /obj/item/ammo_casing,
 /obj/structure/cable,
@@ -5074,6 +5136,10 @@
 	},
 /turf/open/floor/freezer,
 /area/icy_caves/outpost/dorms)
+"Fb" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/east)
 "Fc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -5511,6 +5577,11 @@
 	dir = 1
 	},
 /area/icy_caves/caves/south)
+"IB" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/west)
 "IC" = (
 /turf/closed/ice/thin/intersection,
 /area/icy_caves/caves/northern)
@@ -5547,6 +5618,10 @@
 	dir = 9
 	},
 /area/icy_caves/outpost/security)
+"IN" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/west)
 "IS" = (
 /obj/machinery/door/airlock/multi_tile/mainship/research{
 	dir = 1
@@ -5825,6 +5900,11 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/outside)
+"KY" = (
+/obj/structure/cable,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/west)
 "KZ" = (
 /turf/closed/wall,
 /area/icy_caves/outpost/garage)
@@ -6018,6 +6098,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
+"LY" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/garage)
 "LZ" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -6128,6 +6212,14 @@
 	dir = 8
 	},
 /area/icy_caves/caves/south)
+"MN" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/outside)
 "MO" = (
 /obj/machinery/landinglight/ds1{
 	dir = 1
@@ -6183,6 +6275,14 @@
 "Nf" = (
 /turf/closed/wall,
 /area/icy_caves/outpost/office)
+"Nk" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/security)
 "Nl" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/closet/cabinet,
@@ -6399,6 +6499,10 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
+"OU" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/wood,
+/area/icy_caves/outpost/dorms)
 "OW" = (
 /turf/closed/ice,
 /area/icy_caves/caves/east)
@@ -6867,6 +6971,10 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/security)
+"Sr" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/south)
 "Sv" = (
 /turf/closed/ice_rock/singleT{
 	dir = 4
@@ -6979,6 +7087,10 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
+"Ts" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/medbay)
 "Tu" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 1
@@ -7133,6 +7245,10 @@
 "Uu" = (
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/LZ1)
+"Uy" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/engineering)
 "Uz" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/wood,
@@ -7421,6 +7537,10 @@
 	dir = 9
 	},
 /area/icy_caves/caves)
+"Wy" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/icy_caves/outpost/outside)
 "WA" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -9920,7 +10040,7 @@ qs
 dy
 dM
 ap
-ap
+KY
 eN
 fd
 dy
@@ -10722,7 +10842,7 @@ ZU
 ZU
 fE
 ZU
-ZU
+IN
 ZU
 ZU
 dq
@@ -10890,7 +11010,7 @@ jz
 ZU
 gS
 ZU
-ZU
+IN
 ZU
 ZU
 dj
@@ -11954,7 +12074,7 @@ ZU
 dq
 jb
 ZU
-ZU
+IN
 ZU
 ZU
 ZU
@@ -12000,7 +12120,7 @@ XO
 XO
 XO
 Za
-pY
+yr
 np
 np
 np
@@ -12255,7 +12375,7 @@ SR
 SR
 SR
 SR
-SR
+xo
 dg
 ZU
 ZU
@@ -12553,7 +12673,7 @@ qs
 ce
 ot
 by
-SR
+xo
 HA
 yh
 SR
@@ -12767,7 +12887,7 @@ dx
 ZU
 ZU
 ZU
-ZU
+IN
 ZU
 ZU
 ZU
@@ -12901,7 +13021,7 @@ ec
 fi
 EB
 ZU
-ZU
+IN
 Xu
 DK
 dp
@@ -13737,7 +13857,7 @@ Pq
 HS
 AW
 HS
-HS
+Dx
 HS
 HS
 HS
@@ -13912,7 +14032,7 @@ tQ
 Ge
 SM
 Oh
-xR
+LY
 HS
 HS
 HS
@@ -15050,7 +15170,7 @@ SR
 HA
 SR
 im
-SR
+xo
 SR
 SR
 ok
@@ -15074,7 +15194,7 @@ fi
 ft
 EB
 ZU
-dq
+IB
 ZU
 ZU
 dE
@@ -15409,7 +15529,7 @@ hn
 ZU
 ZU
 ZU
-ZU
+IN
 ht
 ht
 ht
@@ -15421,7 +15541,7 @@ xP
 xP
 DK
 ZU
-ZU
+IN
 ZU
 ZU
 dw
@@ -15969,7 +16089,7 @@ qz
 Lm
 by
 SR
-SR
+xo
 ok
 Nd
 SR
@@ -16062,7 +16182,7 @@ WY
 rs
 Kp
 sn
-Kp
+Ts
 Kp
 Ai
 ru
@@ -16368,7 +16488,7 @@ nu
 nu
 XO
 HS
-AW
+MN
 XO
 WY
 rt
@@ -17027,7 +17147,7 @@ tg
 lk
 tg
 tg
-PO
+qI
 Hf
 Hf
 Hf
@@ -17110,7 +17230,7 @@ Td
 Td
 Td
 Td
-Td
+uS
 Td
 Td
 Td
@@ -17190,7 +17310,7 @@ wZ
 Ez
 ND
 XO
-HS
+Dx
 HS
 Za
 XO
@@ -17233,7 +17353,7 @@ SR
 im
 SR
 SR
-SR
+xo
 SR
 SR
 SR
@@ -17322,7 +17442,7 @@ XO
 XO
 Za
 Za
-HS
+Dx
 AW
 XO
 YA
@@ -17437,7 +17557,7 @@ Td
 Td
 Td
 Td
-HS
+Dx
 HS
 HS
 SI
@@ -17840,7 +17960,7 @@ aM
 aQ
 aQ
 SR
-SR
+xo
 SR
 SR
 SR
@@ -18392,7 +18512,7 @@ YW
 YS
 YS
 XO
-XO
+Wy
 XO
 XO
 Za
@@ -19200,7 +19320,7 @@ HS
 XO
 ND
 Ez
-wZ
+OU
 wZ
 Hf
 tg
@@ -19567,7 +19687,7 @@ VI
 VI
 Nd
 SR
-SR
+xo
 SR
 SR
 Lm
@@ -20280,7 +20400,7 @@ np
 et
 np
 np
-np
+BN
 np
 np
 np
@@ -20459,7 +20579,7 @@ HS
 HS
 HS
 HS
-HS
+Dx
 HS
 HS
 HS
@@ -21029,7 +21149,7 @@ ZT
 ZT
 ZT
 ZT
-ZT
+Sr
 ZT
 ZT
 eR
@@ -21241,7 +21361,7 @@ IH
 VM
 zm
 Ie
-Ie
+EF
 Lh
 VM
 XO
@@ -21443,7 +21563,7 @@ ot
 Fu
 SR
 SR
-SR
+xo
 SR
 KU
 IC
@@ -21541,7 +21661,7 @@ YX
 Ie
 YX
 Ie
-RX
+Nk
 Zo
 Pd
 UQ
@@ -22456,7 +22576,7 @@ gV
 gV
 ro
 rS
-si
+Uy
 si
 mp
 ol
@@ -22467,7 +22587,7 @@ si
 yE
 SI
 AW
-HS
+Dx
 XO
 Za
 XO
@@ -23069,7 +23189,7 @@ PK
 nu
 XO
 nu
-XO
+Wy
 XO
 XO
 fp
@@ -23783,7 +23903,7 @@ SR
 cl
 SR
 SR
-SR
+xo
 aQ
 SR
 ok
@@ -23912,7 +24032,7 @@ Yf
 qs
 MQ
 ow
-ow
+Bc
 ow
 aJ
 MQ
@@ -24495,7 +24615,7 @@ XO
 tH
 Ck
 nH
-vM
+fc
 vM
 fu
 tH
@@ -24640,7 +24760,7 @@ Za
 XO
 XO
 nu
-nu
+Aq
 nu
 nu
 nu
@@ -24771,7 +24891,7 @@ XO
 XO
 XO
 XO
-XO
+Wy
 XO
 XO
 XO
@@ -25043,7 +25163,7 @@ SR
 SR
 SR
 SR
-SR
+xo
 SR
 SR
 SR
@@ -25059,7 +25179,7 @@ gN
 gN
 gN
 gN
-gN
+lJ
 LQ
 gN
 gN
@@ -25491,7 +25611,7 @@ cj
 IC
 Zt
 SR
-SR
+xo
 SR
 SR
 bJ
@@ -25785,7 +25905,7 @@ qs
 MQ
 ak
 ow
-ow
+Bc
 ow
 MQ
 ow
@@ -25794,7 +25914,7 @@ bc
 ow
 ab
 AN
-aN
+EU
 MQ
 MQ
 bF
@@ -26007,7 +26127,7 @@ fQ
 Hq
 hw
 YT
-YT
+Fb
 YT
 YT
 YT
@@ -26594,7 +26714,7 @@ VU
 SR
 SR
 SR
-SR
+xo
 SR
 HA
 yh
@@ -26924,7 +27044,7 @@ SR
 SR
 SR
 YT
-YT
+Fb
 YT
 lc
 lc

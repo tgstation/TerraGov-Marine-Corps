@@ -276,6 +276,13 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
+"Hr" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/quartstorage)
 "HO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -397,6 +404,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
+"ST" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/quartstorage)
 "VF" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
@@ -493,7 +504,7 @@ CG
 wF
 CG
 jV
-Nw
+ST
 gJ
 Iu
 "}
@@ -538,7 +549,7 @@ Nw
 kz
 Cp
 Cp
-Cp
+Hr
 yx
 Cp
 Cp
@@ -653,7 +664,7 @@ Iu
 (13,1,1) = {"
 Iu
 gJ
-Nw
+ST
 kz
 Cp
 Cp

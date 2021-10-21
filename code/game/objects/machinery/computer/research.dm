@@ -24,7 +24,7 @@
 	. = ..()
 	to_chat(user, span_notice(allowed_resources_desc))
 
-/obj/machinery/computer/update_icon()
+/obj/machinery/computer/researchcomp/update_icon()
 	..()
 	if(init_resource)
 		icon_state = "chamber_loaded"

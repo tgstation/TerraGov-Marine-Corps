@@ -77,6 +77,8 @@
 "aap" = (
 /obj/structure/table/mainship,
 /obj/item/storage/donut_box,
+/obj/item/tool/research/excavation_tool,
+/obj/item/radio/headset/mainship/res,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aaq" = (
@@ -86,19 +88,11 @@
 /area/mainship/hallways/hangar)
 "aar" = (
 /obj/structure/cable,
-/turf/open/floor/mainship,
-/area/mainship/living/cryo_cells)
-"aas" = (
-/obj/structure/table/mainship,
-/obj/item/pizzabox/margherita,
+/obj/item/research_resource/xeno/tier_three,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aat" = (
 /obj/machinery/vending/coffee,
-/turf/open/floor/mainship,
-/area/mainship/living/cryo_cells)
-"aau" = (
-/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aav" = (
@@ -1044,6 +1038,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "aeF" = (
@@ -2289,6 +2284,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
+"alp" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/mainship,
+/area/mainship/medical/medical_science)
 "amH" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
@@ -2378,6 +2377,13 @@
 /obj/machinery/landinglight/ds2,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"cuh" = (
+/obj/structure/table/mainship,
+/obj/item/pizzabox/margherita,
+/obj/item/research_resource,
+/obj/item/tool/research/xeno_analyzer,
+/turf/open/floor/mainship,
+/area/mainship/living/cryo_cells)
 "cCb" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -2398,6 +2404,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
+"eio" = (
+/obj/machinery/vending/marine/shared/cigarette,
+/turf/open/floor/mainship,
+/area/mainship/living/cryo_cells)
 "ekJ" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -2479,6 +2489,7 @@
 /obj/machinery/landinglight/ds2{
 	dir = 4
 	},
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/mainship/plate,
 /area/mainship/hallways/hangar)
 "hlu" = (
@@ -2495,6 +2506,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"hwT" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/mainship,
+/area/mainship/command/self_destruct)
 "hyS" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -2842,6 +2857,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
+"tMQ" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "tQD" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
@@ -2867,6 +2886,10 @@
 /obj/machinery/computer/orbital_cannon_console,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
+"uwT" = (
+/obj/machinery/computer/researchcomp,
+/turf/open/floor/mainship,
+/area/mainship/living/cryo_cells)
 "vrS" = (
 /obj/machinery/landinglight/ds2,
 /turf/open/floor/mainship,
@@ -4626,7 +4649,7 @@ bOu
 aeI
 bOu
 bOu
-bOu
+tMQ
 bOu
 bOu
 bOu
@@ -4735,7 +4758,7 @@ agN
 aaq
 bOu
 bOu
-bOu
+tMQ
 bOu
 bOu
 bOu
@@ -4786,7 +4809,7 @@ aav
 aay
 acI
 acI
-acI
+hwT
 acI
 acI
 abC
@@ -5259,9 +5282,9 @@ aab
 aae
 aaf
 afX
-aae
+uwT
 aal
-aas
+cuh
 aab
 wqS
 aaH
@@ -5299,7 +5322,7 @@ ahq
 ahH
 ahZ
 ahY
-ahY
+alp
 ahY
 aiV
 ahq
@@ -5381,7 +5404,7 @@ aaf
 afX
 aae
 aal
-aau
+eio
 aaw
 aaB
 aaI
@@ -5411,7 +5434,7 @@ bOu
 bOu
 bOu
 bOu
-bOu
+tMQ
 bOu
 bOu
 agX
@@ -5462,7 +5485,7 @@ aob
 bOu
 aht
 bOu
-bOu
+tMQ
 bOu
 bOu
 bOu

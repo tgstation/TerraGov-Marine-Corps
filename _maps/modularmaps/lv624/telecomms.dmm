@@ -271,6 +271,12 @@
 	dir = 9
 	},
 /area/lv624/lazarus/comms)
+"N" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/brown{
+	dir = 9
+	},
+/area/lv624/lazarus/comms)
 "O" = (
 /obj/structure/table,
 /obj/item/clothing/head/soft/blue,
@@ -380,7 +386,7 @@ a
 B
 w
 x
-x
+N
 x
 x
 x
@@ -503,7 +509,7 @@ P
 P
 t
 L
-x
+N
 P
 P
 G

@@ -43,6 +43,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "ca" = (
@@ -116,6 +117,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 4
 	},
@@ -494,6 +496,10 @@
 /area/bigredv2/outside/admin_building)
 "Ap" = (
 /obj/machinery/computer3/server/rack,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"AA" = (
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "AM" = (
@@ -901,6 +907,13 @@
 	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
+"Sr" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
 "Sw" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
@@ -1161,7 +1174,7 @@ ep
 lq
 cD
 IN
-cD
+AA
 jj
 ep
 ep
@@ -1371,7 +1384,7 @@ st
 ep
 Bz
 cD
-Fx
+Sr
 fx
 Va
 ep

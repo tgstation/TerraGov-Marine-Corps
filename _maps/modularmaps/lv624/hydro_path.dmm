@@ -85,6 +85,10 @@
 "ov" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle7)
+"oO" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/ne)
 "pc" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -156,6 +160,11 @@
 	dir = 8
 	},
 /area/lv624/ground/compound/ne)
+"uz" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle9)
 "uR" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
@@ -218,6 +227,11 @@
 "zj" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle7)
+"zy" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "AV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -296,6 +310,10 @@
 	dir = 8
 	},
 /area/lv624/ground/jungle7)
+"IQ" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle9)
 "IT" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
@@ -309,6 +327,10 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle9)
+"Ke" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle7)
 "Kf" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
@@ -369,6 +391,10 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle7)
+"PD" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/ground/grass,
+/area/lv624/ground/compound/ne)
 "PM" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -526,12 +552,12 @@ DF
 DF
 DF
 TU
-lf
+uz
 Xt
 wT
 "}
 (4,1,1) = {"
-bA
+Ke
 bA
 QM
 SX
@@ -565,7 +591,7 @@ Ss
 yC
 se
 bv
-yC
+IQ
 DF
 yC
 yC
@@ -692,7 +718,7 @@ SX
 HZ
 HZ
 qj
-HZ
+oO
 HZ
 HZ
 HZ
@@ -888,7 +914,7 @@ ps
 ps
 ps
 Vd
-rd
+zy
 pc
 XC
 qD
@@ -900,7 +926,7 @@ IA
 GL
 QV
 xI
-wD
+PD
 xI
 wD
 "}
