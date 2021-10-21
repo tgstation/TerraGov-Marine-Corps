@@ -277,7 +277,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	reload_sound = 'sound/weapons/guns/interact/svd_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/svd_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/svd
-	type_of_casings = "cartridge"
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
@@ -377,7 +376,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	reload_sound = 'sound/weapons/guns/interact/minigun_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/minigun
-	type_of_casings = "cartridge"
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
 	wield_delay = 12
@@ -410,62 +408,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	SSmonitor.stats.miniguns_in_use -= src
 	return ..()
 
-
-/obj/item/weapon/gun/minigun/examine_ammo_count(mob/user)
-	to_chat(user, "[current_mag?.current_rounds ? "Ammo counter shows [current_mag.current_rounds] round\s remaining." : "It's dry."]")
-
-//The minigun needs to wind up to fire.
-/obj/item/weapon/gun/minigun/Fire()
-	if(!able_to_fire(gun_user))
-		return
-	if(windup_checked == WEAPON_WINDUP_NOT_CHECKED)
-		playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
-		INVOKE_ASYNC(src, .proc/do_windup)
-		return
-	else if (windup_checked == WEAPON_WINDUP_CHECKING)//We are already in windup, continue
-		return
-	. = ..()
-	if(!.)
-		windup_checked = WEAPON_WINDUP_NOT_CHECKED
-
-///Windup before firing
-/obj/item/weapon/gun/minigun/proc/do_windup()
-	windup_checked = WEAPON_WINDUP_CHECKING
-	if(!do_after(gun_user, 0.4 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
-		windup_checked = WEAPON_WINDUP_NOT_CHECKED
-		return
-	windup_checked = WEAPON_WINDUP_CHECKED
-	SEND_SIGNAL(src, COMSIG_GUN_FIRE)
-
-/obj/item/weapon/gun/minigun/get_ammo_type()
-	if(!ammo)
-		return list("unknown", "unknown")
-	return list(ammo.hud_state, ammo.hud_state_empty)
-
-/obj/item/weapon/gun/minigun/get_ammo_count()
-	if(!current_mag)
-		return in_chamber ? 1 : 0
-	return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
-
-/obj/item/weapon/gun/minigun/cock(mob/living/carbon/user)
-	var/obj/item/minigun_powerpack/power_pack = user.back
-	if(!istype(power_pack))
-		return FALSE
-	return power_pack.attack_self(user)
-
-/obj/item/weapon/gun/minigun/able_to_fire(mob/living/user)
-	. = ..()
-	if(.)
-		if(!ishuman(user))
-			return FALSE
-		var/mob/living/carbon/human/H = user
-		if(!istype(H.back,/obj/item/minigun_powerpack))
-			click_empty(H)
-			return FALSE
-
-/obj/item/weapon/gun/minigun/load_into_chamber(mob/user)
-	return ready_in_chamber()
-
 /obj/item/weapon/gun/minigun/reload_into_chamber(mob/living/carbon/user)
 	var/obj/item/minigun_powerpack/power_pack = user.back
 	if(!istype(power_pack))
@@ -477,27 +419,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	return current_mag.current_rounds
 
-/obj/item/weapon/gun/minigun/delete_bullet(obj/projectile/projectile_to_fire, refund = 0)
-	qdel(projectile_to_fire)
-	if(refund) current_mag.current_rounds++
-	return 1
-
 /obj/item/weapon/gun/minigun/proc/auto_reload(mob/minigunner, obj/item/minigun_powerpack/power_pack)
 	if(power_pack?.loc == minigunner)
 		power_pack.attack_self(minigunner, TRUE)
-
-/obj/item/weapon/gun/minigun/get_ammo_type()
-	if(!ammo)
-		return list("unknown", "unknown")
-	else
-		return list(ammo.hud_state, ammo.hud_state_empty)
-
-/obj/item/weapon/gun/minigun/get_ammo_count()
-	if(!current_mag)
-		return 0
-	else
-		return current_mag.current_rounds
-
 
 
 
@@ -583,116 +507,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	QDEL_NULL(smoke)
 	return ..()
 
-/obj/item/weapon/gun/launcher/rocket/Fire()
-	if((!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)) || gun_user?.do_actions)
-		return
-
-	if(gun_on_cooldown(gun_user))
-		return
-
-	if(windup_checked == WEAPON_WINDUP_NOT_CHECKED)
-		INVOKE_ASYNC(src, .proc/do_windup)
-		return TRUE
-	else if (windup_checked == WEAPON_WINDUP_CHECKING)//We are already in windup, abort
-		return TRUE
-
-	. = ..()
-
-	//loaded_rocket.current_rounds = max(loaded_rocket.current_rounds - 1, 0)
-
-	if(current_mag && !current_mag.current_rounds)
-		current_mag.loc = get_turf(src)
-		current_mag.update_icon()
-		current_mag = null
-	log_combat(gun_user, gun_user, "fired the [src].")
-	log_explosion("[gun_user] fired the [src] at [AREACOORD(loc)].")
-
-///Windup before shooting
-/obj/item/weapon/gun/launcher/rocket/proc/do_windup()
-	windup_checked = WEAPON_WINDUP_CHECKING
-	var/delay = 0.1 SECONDS
-	if(has_attachment(/obj/item/attachable/scope/mini))
-		delay += 0.2 SECONDS
-
-	if(gun_user && gun_user.skills.getRating("firearms") < 0)
-		delay += 0.6 SECONDS
-
-	if(gun_user)
-		if(!do_after(gun_user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
-			windup_checked = WEAPON_WINDUP_NOT_CHECKED
-			return
-		finish_windup()
-		return
-
-	addtimer(CALLBACK(src, .proc/finish_windup), delay)
-
-///Proc that finishes the windup, this fires the gun.
-/obj/item/weapon/gun/launcher/rocket/proc/finish_windup()
-	windup_checked = WEAPON_WINDUP_CHECKED
-	if(Fire())
-		playsound(loc,'sound/weapons/guns/fire/launcher.ogg', 50, TRUE)
-		return
-	windup_checked = WEAPON_WINDUP_NOT_CHECKED
-
-
-/obj/item/weapon/gun/launcher/rocket/examine_ammo_count(mob/user)
-	if(current_mag?.current_rounds)
-		to_chat(user, "It's ready to rocket.")
-	else
-		to_chat(user, "It's empty.")
-
-
-/obj/item/weapon/gun/launcher/rocket/load_into_chamber(mob/user)
-	return ready_in_chamber()
-
-
-//No such thing
-/obj/item/weapon/gun/launcher/rocket/reload_into_chamber(mob/user)
-	return TRUE
-
-
-/obj/item/weapon/gun/launcher/rocket/delete_bullet(obj/projectile/projectile_to_fire, refund = FALSE)
-	qdel(projectile_to_fire)
-	if(refund)
-		current_mag.current_rounds++
-	return TRUE
-
-
-/obj/item/weapon/gun/launcher/rocket/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
-	user.transferItemToLoc(magazine, src) //Click!
-	current_mag = magazine
-	ammo = GLOB.ammo_list[current_mag.default_ammo]
-	user.visible_message(span_notice("[user] loads [magazine] into [src]!"),
-	span_notice("You load [magazine] into [src]!"), null, 3)
-	if(reload_sound)
-		playsound(user, reload_sound, 25, 1, 5)
-	update_icon()
-
-
-/obj/item/weapon/gun/launcher/rocket/unload(mob/user)
-	if(!user)
-		return FALSE
-	if(!current_mag || current_mag.loc != src)
-		to_chat(user, span_warning("[src] is already empty!"))
-		return TRUE
-	to_chat(user, span_notice("You begin unloading [src]."))
-	if(!do_after(user, current_mag.reload_delay * 0.5, TRUE, src, BUSY_ICON_GENERIC))
-		to_chat(user, span_warning("Your unloading was interrupted!"))
-		return TRUE
-	if(!user) //If we want to drop it on the ground or there's no user.
-		current_mag.loc = get_turf(src) //Drop it on the ground.
-	else
-		user.put_in_hands(current_mag)
-
-	playsound(user, unload_sound, 25, 1, 5)
-	user.visible_message(span_notice("[user] unloads [current_mag] from [src]."),
-	span_notice("You unload [current_mag] from [src]."), null, 4)
-	current_mag.update_icon()
-	current_mag = null
-
-	return TRUE
-
-
 //Adding in the rocket backblast. The tile behind the specialist gets blasted hard enough to down and slightly wound anyone
 /obj/item/weapon/gun/launcher/rocket/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target)
 	. = ..()
@@ -709,18 +523,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		victim.emote("pain")
 		victim.throw_at(get_step(backblast_loc, thrown_dir), 1, 2)
 
-
-/obj/item/weapon/gun/launcher/rocket/get_ammo_type()
-	if(!ammo)
-		return list("unknown", "unknown")
-	else
-		return list(ammo.hud_state, ammo.hud_state_empty)
-
-/obj/item/weapon/gun/launcher/rocket/get_ammo_count()
-	if(!current_mag)
-		return 0
-	else
-		return current_mag.current_rounds
 
 //-------------------------------------------------------
 //T-152 RPG

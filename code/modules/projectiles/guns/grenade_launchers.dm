@@ -1,5 +1,5 @@
 /*
-This file contains: 
+This file contains:
 The Grenade Launchers
 */
 
@@ -149,14 +149,6 @@ The Grenade Launchers
 	fire_delay = 1.2 SECONDS
 	max_grenades = 6
 
-/obj/item/weapon/gun/grenade_launcher/multinade_launcher/update_icon(mob/user)
-	update_item_state(user)
-	update_mag_overlay(user)
-
-/obj/item/weapon/gun/grenade_launcher/multinade_launcher/examine_ammo_count(mob/user)
-	if(!length(grenades) || (get_dist(user, src) > 2 && user != loc))
-		return
-	to_chat(user, span_notice("It is loaded with <b>[length(grenades)] / [max_grenades]</b> grenades."))
 
 /obj/item/weapon/gun/grenade_launcher/underslung
 	name = "underslung grenade launcher"
@@ -179,16 +171,13 @@ The Grenade Launchers
 	pixel_shift_y = 18
 	grenade_type_allowed = list(
 		/obj/item/explosive/grenade,
-		/obj/item/explosive/grenade/incendiary, 
-		/obj/item/explosive/grenade/smokebomb, 
+		/obj/item/explosive/grenade/incendiary,
+		/obj/item/explosive/grenade/smokebomb,
 		/obj/item/explosive/grenade/phosphorus,
 		/obj/item/explosive/grenade/impact,
 		/obj/item/explosive/grenade/flare,
 	)
 
-/obj/item/weapon/gun/grenade_launcher/underslung/update_icon(mob/user)
-	. = ..()
-	update_mag_overlay(user)
 
 /obj/item/weapon/gun/grenade_launcher/underslung/invisible
 	flags_attach_features = NONE

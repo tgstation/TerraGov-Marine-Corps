@@ -107,6 +107,22 @@
 #define MAGAZINE_ROTATES (1<<7)
 #define MAGAZINE_FILLER (1<<8)
 
+
+#define RECIEVER_REQUIRES_OPERATION (1<<0)
+#define RECIEVER_MAGAZINES (1<<1)
+#define RECIEVER_HANDFULS (1<<2)
+#define RECIEVER_TOGGLES (1<<3)
+#define RECIEVER_OPEN (1<<4)
+#define RECIEVER_CYCLES (1<<5)
+#define RECIEVER_AUTO_EJECT (1<<6)
+#define RECIEVER_CASING (1<<7)
+#define RECIEVER_INTERNAL (1<<8)
+#define RECIEVER_TOGGLES_EJECTS (1<<9)
+#define RECIEVER_OPERATION_LOCK (1<<10)
+
+
+
+
 //Slowdown from various armors.
 #define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up
 

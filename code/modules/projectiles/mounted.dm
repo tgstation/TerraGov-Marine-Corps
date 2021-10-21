@@ -12,13 +12,7 @@
 /obj/machinery/deployable/mounted/update_icon_state(mob/user)
 	. = ..()
 	var/obj/item/weapon/gun/gun = internal_item
-	var/has_mag
-	if(istype(gun, /obj/item/weapon/gun/energy))
-		var/obj/item/weapon/gun/energy/energy_gun = gun
-		has_mag = energy_gun.cell
-	else
-		has_mag = gun.current_mag
-	if(!has_mag)
+	if(!gun.reciever.chamber_items[gun.reciever.current_chamber_position])
 		icon_state = default_icon_state + "_e"
 	else
 		icon_state = default_icon_state
@@ -43,13 +37,13 @@
 	if(!Adjacent(user) || user.lying_angle || user.incapacitated())
 		return
 	var/obj/item/weapon/gun/internal_gun = internal_item
-	internal_gun.unload(user)
+	internal_gun.reciever.process_unload(internal_gun, user)
 	update_icon()
 
 /obj/machinery/deployable/mounted/attack_hand_alternate(mob/living/user)
 	. = ..()
 	var/obj/item/weapon/gun/internal_gun = internal_item
-	internal_gun.cock(user)
+	internal_gun.reciever.process_unique_action(internal_gun, user)
 
 /obj/machinery/deployable/mounted/attackby(obj/item/I, mob/user, params) //This handles reloading the gun, if its in acid cant touch it.
 	. = ..()
@@ -67,16 +61,17 @@
 ///Reloads the internal_item
 /obj/machinery/deployable/mounted/proc/reload(mob/user, ammo_magazine)
 	var/obj/item/weapon/gun/gun = internal_item
-	if(gun.current_mag)
-		gun.unload(user, FALSE, TRUE)
+	var/obj/ammo_reciever/reciever = gun.reciever
+	if(reciever.chamber_items[reciever.current_chamber_position])
+		reciever.process_unload(gun, user)
 		update_icon_state()
 
-	gun.start_reload(user, ammo_magazine)
+	reciever.process_reload(gun, ammo_magazine, user)
 	update_icon_state()
 
 	if(!CHECK_BITFIELD(gun.flags_gun_features, GUN_PUMP_REQUIRED))
 		return
-	gun.cock()
+	reciever.process_unique_action(gun, user)
 
 
 ///This is called when a user tries to operate the gun

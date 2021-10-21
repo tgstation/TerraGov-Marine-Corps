@@ -162,11 +162,7 @@
 /obj/machinery/deployable/mounted/sentry/ui_data(mob/user)
 	var/obj/item/weapon/gun/gun = internal_item
 	var/current_rounds
-	if(istype(internal_item, /obj/item/weapon/gun/energy))
-		var/obj/item/weapon/gun/energy/internal_gun = internal_item
-		current_rounds = internal_gun.cell ? internal_gun.cell.charge : 0
-	else
-		current_rounds = gun.current_mag ? gun.current_rounds : 0
+	current_rounds = gun.reciever.rounds
 	. = list(
 		"rounds" =  current_rounds,
 		"cell_charge" = gun.sentry_battery ? gun.sentry_battery.charge : 0,
@@ -176,12 +172,7 @@
 /obj/machinery/deployable/mounted/sentry/ui_static_data(mob/user)
 	var/obj/item/weapon/gun/gun = internal_item
 	var/rounds_max
-	if(istype(internal_item, /obj/item/weapon/gun/energy))
-		var/obj/item/weapon/gun/energy/internal_gun = internal_item
-		var/obj/item/cell/gun_cell_type = internal_gun.cell_type
-		rounds_max = internal_gun.cell ? internal_gun.cell.maxcharge : initial(gun_cell_type.maxcharge)
-	else
-		rounds_max = gun.current_mag ? gun.max_rounds : gun.max_shells
+	rounds_max = gun.reciever.max_rounds
 	. = list(
 		"name" = copytext(name, 2),
 		"rounds_max" = rounds_max,
@@ -382,7 +373,7 @@
 	SIGNAL_HANDLER
 	var/obj/item/weapon/gun/internal_gun = internal_item
 	if(CHECK_BITFIELD(internal_gun.flags_gun_features, GUN_PUMP_REQUIRED))
-		internal_gun.cock()
+		internal_gun.unique_action()
 	if(get_dist(src, gun_target) >= range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
 		internal_gun.stop_fire()
 		return
@@ -397,13 +388,7 @@
 	update_icon()
 	if(target != gun.target || get_dist(src, target) > range)
 		gun.stop_fire()
-	var/has_mag
-	if(istype(gun, /obj/item/weapon/gun/energy))
-		var/obj/item/weapon/gun/energy/energy_gun = gun
-		has_mag = energy_gun.cell
-	else
-		has_mag = gun.current_mag
-	if(!has_mag)
+	if(!gun.reciever.rounds)
 		sentry_alert(SENTRY_ALERT_AMMO)
 		return
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL))

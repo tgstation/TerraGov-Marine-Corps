@@ -443,7 +443,6 @@
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/ak47
 	aim_slowdown = 0.7
-	type_of_casings = "cartridge"
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/flashlight,
@@ -482,7 +481,6 @@
 	cocked_sound = 'sound/weapons/guns/interact/m16_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/m16
 	aim_slowdown = 0.4
-	type_of_casings = "cartridge"
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
@@ -552,7 +550,6 @@
 	cocked_sound = 'sound/weapons/guns/interact/m16_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/famas
 	aim_slowdown = 0.4
-	type_of_casings = "cartridge"
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
@@ -1050,7 +1047,6 @@
 	caliber = CALIBER_86X70 //codex
 	max_shells = 7 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/chamberedrifle
-	type_of_casings = "cartridge"
 	attachable_allowed = list(
 		/obj/item/attachable/scope/unremovable/tl127,
 		/obj/item/attachable/extended_barrel,
@@ -1083,25 +1079,6 @@
 	wield_delay = 1.3 SECONDS
 	cock_delay = 0.7 SECONDS
 
-/obj/item/weapon/gun/rifle/chambered/cock(mob/user)
-	if(cock_cooldown < world.time && in_chamber)
-		to_chat(user, span_warning("[src] already has a round chambered!"))
-		return
-	return ..()
-
-/obj/item/weapon/gun/rifle/chambered/load_into_chamber(mob/user)
-	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		to_chat(user, span_notice("You cannot fire [src] while it is not deployed."))
-		return
-	return in_chamber
-
-/obj/item/weapon/gun/rifle/chambered/reload_into_chamber(mob/user)
-	make_casing(type_of_casings)
-	if(in_chamber)
-		QDEL_NULL(in_chamber)
-	if(current_rounds <= 0 && flags_gun_features & GUN_AUTO_EJECTOR)
-		unload(user, TRUE, TRUE)
-		playsound(src, empty_sound, 25, 1)
 
 //-------------------------------------------------------
 //T-81 Auto-Sniper
@@ -1118,7 +1095,6 @@
 	caliber = CALIBER_86X70 //codex
 	max_shells = 7 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/autosniper
-	type_of_casings = "cartridge"
 	attachable_allowed = list(
 		/obj/item/attachable/autosniperbarrel,
 		/obj/item/attachable/scope/nightvision,
@@ -1315,7 +1291,6 @@
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/mkh
 	aim_slowdown = 0.45
-	type_of_casings = "cartridge"
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,

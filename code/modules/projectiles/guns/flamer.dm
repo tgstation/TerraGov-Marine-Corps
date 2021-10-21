@@ -13,7 +13,6 @@
 	unload_sound = 'sound/weapons/guns/interact/flamethrower_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/flamethrower_reload.ogg'
 	aim_slowdown = 1.75
-	current_mag = /obj/item/ammo_magazine/flamer_tank
 	general_codex_key = "flame weapons"
 	attachable_allowed = list( //give it some flexibility.
 		/obj/item/attachable/flashlight,
@@ -100,24 +99,6 @@
 		return
 	light_pilot(FALSE)
 
-/obj/item/weapon/gun/flamer/reload(mob/user, obj/item/ammo_magazine/magazine)
-	. = ..()
-	if(!.)
-		return
-	var/datum/ammo/flamethrower/flamer_ammo = magazine.default_ammo
-	fire_delay = initial(flamer_ammo.fire_delay)
-	if(attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE])
-		light_pilot(TRUE)
-	gun_user?.hud_used.update_ammo_hud(gun_user, src)
-
-/obj/item/weapon/gun/flamer/unload(mob/user, reload_override, drop_override)
-	. = ..()
-	if(!.)
-		return
-	fire_delay = initial(fire_delay)
-	light_pilot(FALSE)
-	gun_user?.hud_used.update_ammo_hud(gun_user, src)
-
 ///Makes the sound of the flamer being lit, and applies the overlay.
 /obj/item/weapon/gun/flamer/proc/light_pilot(light)
 	if(CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT) && light)
@@ -187,7 +168,7 @@
 	if(current_mag?.current_rounds <= 0)
 		light_pilot(FALSE)
 		return
-	
+
 	if(RECURSIVE_CHECK(old_turfs, range, current_target, iteration))
 		return
 

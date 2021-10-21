@@ -98,7 +98,7 @@
 	if(living_user.get_active_held_item() != src && living_user.get_inactive_held_item() != src)
 		return
 
-	active_attachable.unload(living_user)
+	active_attachable.reciever.process_unload(living_user)
 
 /obj/item/weapon/gun/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
@@ -113,15 +113,6 @@
 		return
 	unwield(user)
 	return ..()
-
-
-/obj/item/weapon/gun/attack_hand(mob/living/user)
-	var/obj/item/weapon/gun/in_hand = user.get_inactive_held_item()
-	if(in_hand == src && (flags_item & TWOHANDED))
-		unload(user)//It has to be held if it's a two hander.
-		return
-	else
-		return ..()
 
 
 /obj/item/weapon/gun/throw_at(atom/target, range, speed, thrower)
@@ -210,24 +201,16 @@ should be alright.
 
 /obj/item/weapon/gun/attack_self(mob/user)
 	. = ..()
-
 	//There are only two ways to interact here.
-	if(flags_item & TWOHANDED)
-		if(flags_item & WIELDED)
-			unwield(user)//Trying to unwield it
-		else
-			wield(user)//Trying to wield it
-	else
-		unload(user)//We just unload it.
-
-
-//Clicking stuff onto the gun.
-//Attachables & Reloading
-/obj/item/weapon/gun/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
+	if(!CHECK_BITFIELD(flags_item, TWOHANDED))
 		return
-	start_reload(user, I)
+	if(flags_item & WIELDED)
+		unwield(user)//Trying to unwield it
+		return
+	wield(user)//Trying to wield it
+
+
+
 
 ///Reloads the sentry battery. This is used both in the gun, and called from /deployed/mounted/sentry
 /obj/item/weapon/gun/proc/reload_sentry_cell(obj/item/cell/cell, mob/user)
@@ -299,8 +282,8 @@ should be alright.
 		return
 	if(!istype(src, new_magazine.gun_type))
 		return
-	if(current_mag)
-		unload(user,0,1)
+	if(reciever.chamber_items[reciever.current_chamber_position])
+		reciever.process_unload(src, user)
 		to_chat(user, span_notice("You start a tactical reload."))
 	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
 	if(!do_after(user,tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
@@ -309,7 +292,7 @@ should be alright.
 		var/obj/item/storage/S = new_magazine.loc
 		S.remove_from_storage(new_magazine, get_turf(user), user)
 	user.put_in_any_hand_if_possible(new_magazine)
-	start_reload(user, new_magazine)
+	reciever.process_reload(src, new_magazine, user)
 
 //----------------------------------------------------------
 				//						 \\
@@ -346,20 +329,6 @@ should be alright.
 			continue
 		return TRUE
 	return FALSE
-
-///updates the magazine overlay if it needs to be updated
-/obj/item/weapon/gun/proc/update_mag_overlay(mob/user)
-	var/image/overlay = attachment_overlays[ATTACHMENT_SLOT_MAGAZINE]
-	overlays -= overlay
-	if(!istype(current_mag, /obj/item/ammo_magazine))
-		return
-	var/obj/item/ammo_magazine/mag = current_mag
-	if(current_mag && mag.bonus_overlay)
-		overlay = image(current_mag.icon, src, mag.bonus_overlay)
-		attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = overlay
-		overlays += overlay
-	else
-		attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = null
 
 
 /obj/item/weapon/gun/proc/update_force_list()
@@ -636,7 +605,7 @@ should be alright.
 	set name = "Unload Weapon (Weapon)"
 	set desc = "Removes the magazine from your current gun and drops it on the ground, or clears the chamber if your gun is already empty."
 
-	unload(usr,,1) //We want to drop the mag on the ground.
+	reciever.process_unload(src, usr) //We want to drop the mag on the ground.
 
 
 /mob/living/carbon/human/verb/use_unique_action()
@@ -763,17 +732,6 @@ should be alright.
 		return FALSE
 	return TRUE
 
-/obj/item/weapon/gun/proc/get_ammo_type()
-	if(!ammo)
-		return list("unknown", "unknown")
-	return list(ammo.hud_state, ammo.hud_state_empty)
-
-/obj/item/weapon/gun/proc/get_ammo_count()
-	if(!current_mag)
-		return in_chamber ? 1 : 0
-	else
-		return in_chamber ? (current_rounds + 1) : current_rounds
-
 
 /obj/item/weapon/gun/proc/modify_fire_delay(value, mob/user)
 	fire_delay += value
@@ -859,7 +817,7 @@ should be alright.
 /// Signal handler to unload that gun if it's in our active hand
 /obj/item/weapon/gun/proc/unload_gun()
 	SIGNAL_HANDLER
-	unload(gun_user)
+	reciever.process_unload(src, gun_user)
 	return COMSIG_KB_ACTIVATED
 
 /// Signal handler to toggle the safety of the gun

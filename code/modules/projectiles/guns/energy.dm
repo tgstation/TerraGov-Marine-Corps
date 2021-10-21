@@ -4,89 +4,13 @@
 
 /obj/item/weapon/gun/energy
 	attachable_allowed = list()
-	var/obj/item/cell/cell //1000 power.
 	charge_cost = 10 //100 shots.
-	var/cell_type = /obj/item/cell
 	flags_gun_features = GUN_AMMO_COUNTER
 	general_codex_key = "energy weapons"
 
 	placed_overlay_iconstate = "laser"
 
-/obj/item/weapon/gun/energy/examine_ammo_count(mob/user)
-	var/list/dat = list()
-	if(!(flags_gun_features & (GUN_INTERNAL_MAG|GUN_UNUSUAL_DESIGN))) //Internal mags and unusual guns have their own stuff set.
-		var/current_shots = get_ammo_count()
-		if(cell && current_shots > 0)
-			if(flags_gun_features & GUN_AMMO_COUNTER)
 
-				dat += "Ammo counter shows [current_shots] round\s remaining.<br>"
-			else
-				dat += "It's loaded[in_chamber?" and has a round chambered":""].<br>"
-		else
-			dat += "It's unloaded[in_chamber?" but has a round chambered":""].<br>"
-	if(dat)
-		to_chat(user, "[dat.Join(" ")]")
-
-/obj/item/weapon/gun/energy/Initialize()
-	. = ..()
-	if(cell_type)
-		set_cell(new cell_type(src))
-
-///Set the cell var
-/obj/item/weapon/gun/energy/proc/set_cell(new_cell)
-	if(cell)
-		UnregisterSignal(cell, COMSIG_PARENT_QDELETING)
-	cell = new_cell
-	if(cell)
-		RegisterSignal(cell, COMSIG_PARENT_QDELETING, .proc/clean_cell)
-
-///Signal handler to clean the cell var
-/obj/item/weapon/gun/energy/proc/clean_cell()
-	SIGNAL_HANDLER
-	cell = null
-
-/obj/item/weapon/gun/energy/able_to_fire(mob/living/user)
-	. = ..()
-	if(!cell || cell.charge - charge_cost < 0)
-		return
-
-/obj/item/weapon/gun/energy/load_into_chamber()
-	if(!cell || cell.charge - charge_cost < 0)
-		return
-
-	cell.charge -= charge_cost
-	in_chamber = create_bullet(ammo)
-	return in_chamber
-
-/obj/item/weapon/gun/energy/update_icon()
-	return
-
-/obj/item/weapon/gun/energy/reload_into_chamber()
-	update_icon()
-	return TRUE
-
-/obj/item/weapon/gun/energy/delete_bullet(obj/projectile/projectile_to_fire, refund = 0)
-	qdel(projectile_to_fire)
-	if(refund)
-		cell.charge = min(cell.charge + charge_cost, cell.maxcharge) //Safeguard against 'overcharging' the cell.
-	return TRUE
-
-/obj/item/weapon/gun/energy/emp_act(severity)
-	cell.use(round(cell.maxcharge / severity))
-	update_icon()
-	return ..()
-
-/obj/item/weapon/gun/energy/get_ammo_type()
-	if(!ammo)
-		return list("unknown", "unknown")
-	else
-		return list(ammo.hud_state, ammo.hud_state_empty)
-
-/obj/item/weapon/gun/energy/get_ammo_count()
-	if(!cell)
-		return 0
-	else
-		return FLOOR(cell.charge / max(charge_cost, 1),1)
 
 /obj/item/weapon/gun/energy/muzzle_flash()
 	return
@@ -111,26 +35,13 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_ALLOW_SYNTHETIC
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
-	cell_type = /obj/item/cell/high
+
 
 	fire_delay = 10
 	accuracy_mult = 1.15
 	scatter = 10
 	scatter_unwielded = 15
 
-
-/obj/item/weapon/gun/energy/taser/update_icon()
-	if(!cell || cell.charge - charge_cost < 0)
-		icon_state = base_gun_icon + "_e"
-	else
-		icon_state = base_gun_icon
-
-/obj/item/weapon/gun/energy/taser/able_to_fire(mob/living/user)
-	. = ..()
-	if (.) //Let's check all that other stuff first.
-		if(user.skills.getRating("police") < SKILL_POLICE_MP)
-			to_chat(user, span_warning("You don't seem to know how to use [src]..."))
-			return FALSE
 
 
 //-------------------------------------------------------
@@ -169,7 +80,6 @@
 	item_state = "m43"
 	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
 	ammo = /datum/ammo/energy/tesla
-	cell_type = /obj/item/cell/lasgun/tesla
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER
 	muzzle_flash_color = COLOR_TESLA_BLUE
 
@@ -189,7 +99,6 @@
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/M43
 	ammo_diff = null
-	cell_type = /obj/item/cell/lasgun/M43
 	charge_cost = ENERGY_STANDARD_AMMO_COST
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -224,164 +133,6 @@
 /obj/item/weapon/gun/energy/lasgun/M43/stripped
 	starting_attachment_types = list()
 
-/obj/item/weapon/gun/energy/lasgun/Initialize(mapload, ...)
-	. = ..()
-	update_icon()
-
-
-//Toggles Overcharge mode. Overcharge mode significantly increases damage and AP in exchange for doubled ammo usage and increased fire delay.
-/obj/item/weapon/gun/energy/lasgun/cock(mob/user)
-	//if(in_chamber)
-	//	delete_bullet(in_chamber, TRUE)
-	if(ammo_diff == null)
-		to_chat(user, "[icon2html(src, user)] You need an appropriate lens to enable overcharge mode.")
-		return
-	if(overcharge == FALSE)
-		if(!cell)
-			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
-			to_chat(user, span_warning("You attempt to toggle on [src]'s overcharge mode but you have no battery loaded."))
-			return
-		if(cell.charge < ENERGY_OVERCHARGE_AMMO_COST)
-			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
-			to_chat(user, span_warning("You attempt to toggle on [src]'s overcharge mode but your battery pack lacks adequate charge to do so."))
-			return
-		//While overcharge is active, double ammo consumption, and
-		playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
-		charge_cost = ENERGY_OVERCHARGE_AMMO_COST
-		ammo = GLOB.ammo_list[ammo_diff]
-		fire_delay += 7 // 1 shot per second fire rate
-		fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
-		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
-		overcharge = TRUE
-	else
-		playsound(user, 'sound/weapons/emitter2.ogg', 5, 0, 2)
-		charge_cost = ENERGY_STANDARD_AMMO_COST
-		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43]
-		fire_delay -= 7
-		fire_sound = 'sound/weapons/guns/fire/laser.ogg'
-		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
-		overcharge = FALSE
-
-	//load_into_chamber()
-
-	user?.hud_used.update_ammo_hud(user, src)
-
-	return TRUE
-
-/obj/item/weapon/gun/energy/lasgun/load_into_chamber(mob/user)
-	if(!cell?.use(charge_cost))
-		return
-	in_chamber = create_bullet(ammo)
-	update_icon(user)
-	return in_chamber
-
-/obj/item/weapon/gun/energy/lasgun/reload_into_chamber(mob/user)
-	if(overcharge && cell.charge < ENERGY_OVERCHARGE_AMMO_COST && cell.charge >= ENERGY_STANDARD_AMMO_COST) //Revert to standard shot if we don't have enough juice for overcharge, but enough for the standard mode
-		cock(user)
-		return
-	if(cell.charge < charge_cost && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
-		unload(user,1,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
-		playsound(src, empty_sound, 25, 1)
-
-	return TRUE
-
-
-//Ammo/Charge functions
-/obj/item/weapon/gun/energy/lasgun/update_icon(mob/user)
-	var/cell_charge = (!cell || cell.charge <= 0) ? 0 : CEILING((cell.charge / max(cell.maxcharge, 1)) * 100, 25)
-	icon_state = "[base_gun_icon]_[cell_charge]"
-	update_mag_overlay(user)
-	update_item_state(user)
-
-
-/obj/item/weapon/gun/energy/lasgun/update_item_state(mob/user)
-	. = item_state
-	var/cell_charge = (!cell || cell.charge <= 0) ? 0 : CEILING((cell.charge / max(cell.maxcharge, 1)) * 100, 25)
-	item_state = "[initial(icon_state)]_[cell_charge][flags_item & WIELDED ? "_w" : ""]"
-	if(. != item_state && ishuman(user))
-		var/mob/living/carbon/human/human_user = user
-		if(src == human_user.l_hand)
-			human_user.update_inv_l_hand()
-		else if (src == human_user.r_hand)
-			human_user.update_inv_r_hand()
-
-
-/obj/item/weapon/gun/energy/lasgun/reload(mob/user, obj/item/cell/lasgun/new_cell)
-	if((flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)) || HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
-		return
-
-	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && ((cell_type == sentry_battery_type && !sentry_battery && cell) || (cell_type != sentry_battery_type && istype(new_cell, sentry_battery_type))))
-		reload_sentry_cell(new_cell, user)
-		return
-
-	if(!new_cell || !istype(new_cell))
-		to_chat(user, span_warning("That's not a power cell!"))
-		return
-
-	if(new_cell.charge <= 0)
-		to_chat(user, span_warning("[cell] is depleted!"))
-		return
-
-	if(!istype(src, new_cell.gun_type))
-		to_chat(user, span_warning("That power cell doesn't fit in there!"))
-		return
-
-	if(cell)
-		to_chat(user, span_warning("It's still got something loaded."))
-		return
-
-	if(user)
-		if(new_cell.reload_delay > 1)
-			to_chat(user, span_notice("You begin reloading [src]. Hold still..."))
-			if(do_after(user,new_cell.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
-				replace_magazine(user, new_cell)
-			else
-				to_chat(user, span_warning("Your reload was interrupted!"))
-				return
-		else
-			replace_magazine(user, new_cell)
-	else
-		replace_magazine(null, new_cell)
-	return TRUE
-
-/obj/item/weapon/gun/energy/lasgun/replace_magazine(mob/user, obj/item/cell/lasgun/new_cell)
-	set_cell(new_cell)
-	if(user)
-		user.transferItemToLoc(new_cell, src) //Click!
-		user.visible_message(span_notice("[user] loads [new_cell] into [src]!"),
-		span_notice("You load [new_cell] into [src]!"), null, 3)
-		if(reload_sound)
-			playsound(user, reload_sound, 25, 1, 5)
-		update_icon(user)
-		user.hud_used.update_ammo_hud(user, src)
-	else
-		cell.loc = src
-		update_icon()
-
-//Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
-//This can be passed with a null user, so we need to check for that as well.
-/obj/item/weapon/gun/energy/lasgun/unload(mob/user, reload_override = 0, drop_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst. Drop is for dropping the magazine on the ground.
-	if(!reload_override && ((flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)) || HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING)))
-		return FALSE
-
-	if(!cell || cell.loc != src)
-		return FALSE
-
-	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
-		cell.loc = get_turf(src) //Drop it on the ground.
-	else
-		user.put_in_hands(cell)
-	cell.update_icon()
-	if(user)
-		user.visible_message(span_notice("[user] unloads [cell] from [src]."), span_notice("You unload [cell] from [src]."), null, 4)
-		set_cell(null)
-		playsound(user, unload_sound, 25, 1, 5)
-		update_icon(user)
-		user.hud_used.update_ammo_hud(user, src)
-	else
-		set_cell(null)
-		update_icon()
-	return TRUE
 
 //-------------------------------------------------------
 //Deathsquad-only gun -- Model 2419 pulse rifle, the M19C4.
@@ -400,7 +151,6 @@
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/pulsebolt
 	muzzleflash_iconstate = "muzzle_flash_pulse"
-	cell_type = /obj/item/cell/lasgun/pulse
 	charge_cost = ENERGY_STANDARD_AMMO_COST
 	muzzle_flash_color = COLOR_PULSE_BLUE
 
@@ -421,7 +171,6 @@
 	desc = "An accurate, recoilless laser based battle rifle, based on the outdated M43 design. Only accepts practice power cells and it doesn't have a charge selector. Uses power cells instead of ballistic magazines."
 	force = 8 //Well, it's not complicted compared to the original.
 	ammo = /datum/ammo/energy/lasgun/M43/practice
-	cell_type = /obj/item/cell/lasgun/M43/practice
 	attachable_allowed = list()
 	starting_attachment_types = list(/obj/item/attachable/stock/lasgun/practice)
 	muzzle_flash_color = COLOR_DISABLER_BLUE
@@ -444,7 +193,6 @@
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/M43
 	ammo_diff = null
-	cell_type = /obj/item/cell/lasgun/lasrifle
 	charge_cost = 10
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
@@ -551,7 +299,6 @@
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
-	cell_type = /obj/item/cell/lasgun/lasrifle/marine
 	charge_cost = 12
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
@@ -624,7 +371,6 @@
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
-	cell_type = /obj/item/cell/lasgun/lasrifle/marine
 	charge_cost = 20
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
@@ -702,7 +448,6 @@
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
-	cell_type = /obj/item/cell/lasgun/lasrifle/marine
 	charge_cost = 15
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
@@ -781,7 +526,6 @@
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/marine/sniper
 	ammo_diff = null
-	cell_type = /obj/item/cell/lasgun/lasrifle/marine
 	charge_cost = 50
 	damage_falloff_mult = 0
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
@@ -848,7 +592,6 @@
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/marine/autolaser
 	ammo_diff = null
-	cell_type = /obj/item/cell/lasgun/lasrifle/marine
 	charge_cost = 4
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)

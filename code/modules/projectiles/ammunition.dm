@@ -1,8 +1,234 @@
-//Magazine items, and casings.
-/*
-Boxes of ammo. Certain weapons have internal boxes of ammo that cannot be removed and function as part of the weapon.
-They're all essentially identical when it comes to getting the job done.
-*/
+/obj/ammo_reciever
+	var/obj/item/weapon/gun/parent_gun
+
+	var/rounds
+	var/obj/in_chamber
+	var/list/obj/chamber_items = list()
+	var/max_rounds
+	var/current_chamber_position = 1
+
+
+	var/list/allowed_ammo_types = list()
+
+	var/reciever_flags = NONE
+
+	var/type_of_casings = null
+
+/obj/ammo_reciever/Initialize()
+	. = ..()
+	if(!isgun(loc))
+		stack_trace("[src] has been initialized outside of a gun at [loc].")
+		return
+	parent_gun = loc
+	RegisterSignal(parent_gun, COMSIG_MOB_GUN_FIRED, .proc/process_fire)
+	RegisterSignal(parent_gun, COMSIG_ITEM_UNIQUE_ACTION, .proc/process_unique_action)
+	RegisterSignal(parent_gun, COMSIG_PARENT_ATTACKBY, .proc/process_reload)
+	RegisterSignal(parent_gun, COMSIG_ATOM_ATTACK_HAND, .proc/process_unload)
+	if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
+		RegisterSignal(parent_gun, COMSIG_ITEM_REMOVED_INVENTORY, .proc/process_removed_from_inventory)
+
+
+/obj/ammo_reciever/proc/process_fire(datum/source, atom/target, obj/item/weapon/gun/fired_gun)
+	SIGNAL_HANDLER
+	if(CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION))
+		return
+	cycle(null)
+	if(rounds <= 0 && CHECK_BITFIELD(reciever_flags, RECIEVER_AUTO_EJECT) && CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
+		process_unload()
+		return
+
+
+/obj/ammo_reciever/proc/process_unique_action(datum/source, mob/user)
+	SIGNAL_HANDLER
+	if(CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION))
+		cycle(user)
+		return
+	if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES))
+		if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES_EJECTS) && !CHECK_BITFIELD(reciever_flags, RECIEVER_OPEN))
+			for(var/obj/object_to_eject in chamber_items)
+				if(user)
+					user.put_in_hands(object_to_eject)
+				else
+					object_to_eject.forceMove(get_turf(parent_gun))
+		if(CHECK_BITFIELD(reciever_flags, RECIEVER_OPEN))
+			DISABLE_BITFIELD(reciever_flags, RECIEVER_OPEN)
+			return
+		ENABLE_BITFIELD(reciever_flags, RECIEVER_OPEN)
+		return
+
+
+/obj/ammo_reciever/proc/process_reload(datum/source, obj/item/attackedby, mob/living/user)
+	SIGNAL_HANDLER
+	if(!(attackedby.type in allowed_ammo_types) || length(chamber_items) >= max_rounds || !CHECK_BITFIELD(reciever_flags, RECIEVER_OPEN))
+		return
+	var/mag_to_insert
+	if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
+		var/obj/item/ammo_magazine/mag = attackedby
+		if(!CHECK_BITFIELD(mag.flags_magazine, MAGAZINE_HANDFUL))
+			return
+		if(mag.current_rounds == 1)
+			mag_to_insert = attackedby
+			return
+		mag_to_insert = mag.create_handful(null, 1)
+
+	if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES) || mag_to_insert)
+		if(!mag_to_insert)
+			get_ammo_amounts(attackedby)
+		mag_load(user, attackedby)
+		chamber_items += attackedby
+		return
+
+	if(CHECK_BITFIELD(reciever_flags, RECIEVER_INTERNAL))
+		rounds = length(chamber_items)
+
+
+
+
+
+
+/obj/ammo_reciever/proc/process_unload(datum/source, mob/living/user)
+	SIGNAL_HANDLER
+	if(HAS_TRAIT(parent_gun, TRAIT_GUN_BURST_FIRING))
+		return
+	if(!length(chamber_items) && in_chamber)
+		if(user)
+			user.put_in_hands(in_chamber)
+		else
+			in_chamber.forceMove(get_turf(parent_gun))
+		in_chamber = null
+		return
+	var/obj/item/mag = chamber_items[current_chamber_position]
+	if(!length(chamber_items) || mag.loc != src)
+		return cycle(user)
+	playsound(parent_gun.loc, parent_gun.unload_sound, 25, 1, 5)
+	user?.visible_message(span_notice("[user] unloads [mag] from [src]."),
+	span_notice("You unload [mag] from [src]."), null, 4)
+	if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
+		set_ammo(mag)
+		mag_drop(user, mag)
+	else
+		if(user)
+			user.put_in_hands(chamber_items[current_chamber_position])
+		else
+			chamber_items[current_chamber_position].forceMove(get_turf(parent_gun))
+	mag.update_icon()
+	parent_gun.update_icon()
+	user?.hud_used.update_ammo_hud(user, src)
+
+	chamber_items -= mag
+
+	playsound(parent_gun, parent_gun.empty_sound, 25, 1)
+
+
+
+
+/obj/ammo_reciever/proc/return_obj_to_fire()
+	if(!rounds)
+		return null
+	if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES) || CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
+		return get_ammo_object(chamber_items[current_chamber_position])
+	return chamber_items[current_chamber_position]
+
+/obj/ammo_reciever/proc/cycle(mob/living/user)
+	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
+		qdel(chamber_items[current_chamber_position])
+		chamber_items -= chamber_items[current_chamber_position]
+	if(CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES))
+		var/next_chamber_position = current_chamber_position++
+		if(next_chamber_position > max_rounds)
+			next_chamber_position = 1
+	if(!user && CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION))
+		return
+
+	rounds--
+	make_casing()
+
+	in_chamber = return_obj_to_fire()
+
+
+
+
+
+
+/obj/ammo_reciever/proc/make_casing(obj/item/magazine)
+	if(!type_of_casings)
+		return
+	var/num_of_casings
+	if(istype(chamber_items[current_chamber_position], /obj/item/ammo_magazine))
+		var/obj/item/ammo_magazine/mag = magazine
+		num_of_casings = (mag && mag.used_casings) ? mag.used_casings : 1
+	else
+		num_of_casings = 1
+	var/sound_to_play = type_of_casings == "shell" ? 'sound/bullets/bulletcasing_shotgun_fall1.ogg' : pick('sound/bullets/bulletcasing_fall2.ogg','sound/bullets/bulletcasing_fall1.ogg')
+	var/turf/current_turf = get_turf(parent_gun)
+	var/new_casing = text2path("/obj/item/ammo_casing/[type_of_casings]")
+	var/obj/item/ammo_casing/casing = locate(new_casing) in current_turf
+	if(!casing)
+		casing = new new_casing(current_turf)
+		num_of_casings--
+	if(num_of_casings)
+		casing.current_casings += num_of_casings
+		casing.update_icon()
+	playsound(current_turf, sound_to_play, 25, 1, 5)
+
+
+
+
+
+/obj/ammo_reciever/proc/get_ammo_amounts(obj/item/magazine)
+	var/obj/item/ammo_magazine/mag = magazine
+	rounds = mag.current_rounds
+	max_rounds = mag.max_rounds
+
+/obj/ammo_reciever/proc/set_ammo(obj/item/magazine)
+	var/obj/item/ammo_magazine/mag = magazine
+	mag.current_rounds = rounds
+	mag.max_rounds = max_rounds
+
+/obj/ammo_reciever/proc/get_ammo_object(obj/item/magazine)
+	var/obj/item/ammo_magazine/mag = magazine
+	var/datum/ammo/ammo = mag.default_ammo
+	var/projectile_type = CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
+	var/obj/projectile/projectile = new projectile_type(null, ammo.hitscan_effect_icon)
+	projectile.generate_bullet(ammo)
+	return projectile
+
+/obj/ammo_reciever/proc/mag_load(mob/living/user, obj/item/magazine)
+	var/obj/item/ammo_magazine/mag = magazine
+	if(CHECK_BITFIELD(mag.flags_magazine, MAGAZINE_WORN|MAGAZINE_HANDFUL))
+		return
+	user?.temporarilyRemoveItemFromInventory(mag)
+	mag.forceMove(src)
+
+/obj/ammo_reciever/proc/mag_drop(mob/living/user, obj/item/magazine)
+	var/obj/item/ammo_magazine/mag = magazine
+	if(CHECK_BITFIELD(mag.flags_magazine, MAGAZINE_WORN))
+		return
+	if(!user)
+		mag.forceMove(get_turf(parent_gun))
+		return
+	user.put_in_hands(mag)
+
+/obj/ammo_reciever/proc/process_removed_from_inventory(datum/source, mob/user)
+	SIGNAL_HANDLER
+	if(!chamber_items[current_chamber_position] || chamber_items[current_chamber_position].loc == parent_gun)
+		return
+	if(!istype(chamber_items[current_chamber_position], /obj/item/ammo_magazine))
+		return
+	process_unload(null, user)
+
+///This is called when a connected worn magazine is dropped. This unloads it.
+/obj/ammo_reciever/proc/drop_connected_mag(datum/source, mob/user)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/process_unload, null, user)
+	UnregisterSignal(source, COMSIG_ITEM_REMOVED_INVENTORY)
+
+
+
+
+
+
+
 /obj/item/ammo_magazine
 	name = "generic ammo"
 	desc = "A box of ammo."
@@ -22,9 +248,9 @@ They're all essentially identical when it comes to getting the job done.
 	///Generally used for energy weapons
 	var/datum/ammo/bullet/overcharge_ammo = /datum/ammo/bullet/
 	///This is used for matching handfuls to each other or whatever the mag is. The #Defines can be found in __DEFINES/calibers.dm
-	var/caliber = null 
+	var/caliber = null
 	///Set this to something else for it not to start with different initial counts.
-	var/current_rounds = -1 
+	var/current_rounds = -1
 	///How many rounds it can hold.
 	var/max_rounds = 7
 	///Path of the gun that it fits. Mags will fit any of the parent guns as well, so make sure you want this.
@@ -38,13 +264,13 @@ They're all essentially identical when it comes to getting the job done.
 	///flags specifically for magazines.
 	var/flags_magazine = MAGAZINE_REFILLABLE
 	///the default mag icon state.
-	var/base_mag_icon 
+	var/base_mag_icon
 	///What is actually in the chamber. Initiated on New().
 	var/list/chamber_contents
 	///Where the firing pin is located. We usually move this instead of the contents.
 	var/chamber_position = 1
-	///Starts out closed. Depends on firearm. 
-	var/chamber_closed = 1 
+	///Starts out closed. Depends on firearm.
+	var/chamber_closed = 1
 
 /obj/item/ammo_magazine/Initialize(mapload, spawn_empty)
 	. = ..()
@@ -59,7 +285,7 @@ They're all essentially identical when it comes to getting the job done.
 	if(CHECK_BITFIELD(flags_magazine, MAGAZINE_HANDFUL))
 		setDir(current_rounds + round(current_rounds/3))
 		return
-	if(current_rounds <= 0) 	
+	if(current_rounds <= 0)
 		icon_state = base_mag_icon + "_e"
 		return
 	icon_state = base_mag_icon
@@ -84,14 +310,14 @@ They're all essentially identical when it comes to getting the job done.
 		if(!CHECK_BITFIELD(flags_magazine, MAGAZINE_WORN) || !istype(I, /obj/item/weapon/gun) || loc != user || !istype(I, gun_type))
 			return ..()
 		var/obj/item/weapon/gun/gun = I
-		if(!gun.start_reload(user, src))
+		if(!gun.reciever.process_reload(null, src, user))
 			return
-		gun.RegisterSignal(src, COMSIG_ITEM_REMOVED_INVENTORY, /obj/item/weapon/gun.proc/drop_connected_mag)
+		gun.reciever.RegisterSignal(src, COMSIG_ITEM_REMOVED_INVENTORY, /obj/ammo_reciever.proc/drop_connected_mag)
 		return
 
 	if(!CHECK_BITFIELD(flags_magazine, MAGAZINE_REFILLABLE)) //and a refillable magazine
 		return
-	
+
 	if(src != user.get_inactive_held_item()) //It has to be held.
 		to_chat(user, span_notice("Try holding [src] before you attempt to restock it."))
 		return
@@ -100,7 +326,7 @@ They're all essentially identical when it comes to getting the job done.
 	if(default_ammo != mag.default_ammo)
 		to_chat(user, span_notice("Those aren't the same rounds. Better not mix them up."))
 		return
-	
+
 	var/amount_to_transfer = CHECK_BITFIELD(mag.flags_magazine, MAGAZINE_HANDFUL) ? 1 : mag.current_rounds
 	transfer_ammo(mag, user, amount_to_transfer)
 
@@ -174,7 +400,7 @@ They're all essentially identical when it comes to getting the job done.
 
 /obj/item/ammo_magazine/proc/generate_handful(new_ammo, new_caliber, new_rounds, new_gun_type, maximum_rounds )
 	var/datum/ammo/ammo = GLOB.ammo_list[new_ammo]
-	var/ammo_name = ammo.name 
+	var/ammo_name = ammo.name
 
 	name = "handful of [ammo_name + (ammo_name == "shotgun buckshot"? " ":"s ") + "([new_caliber])"]"
 	icon_state = ammo.handful_icon_state

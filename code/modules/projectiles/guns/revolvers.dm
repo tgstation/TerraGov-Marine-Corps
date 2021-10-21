@@ -24,7 +24,6 @@
 	///Whether the chamber can be spun for Russian Roulette. If False the chamber can be spun.
 	var/catchworking = TRUE
 	load_method = SINGLE_CASING|SPEEDLOADER //codex
-	type_of_casings = "bullet"
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_speed_modifier = 0.75
@@ -41,197 +40,6 @@
 
 	placed_overlay_iconstate = "revolver"
 
-
-/obj/item/weapon/gun/revolver/Initialize()
-	. = ..()
-	replace_cylinder(current_rounds)
-
-/obj/item/weapon/gun/revolver/examine_ammo_count(mob/user)
-	if(!current_mag)
-		return
-	var/obj/item/ammo_magazine/internal/mag = current_mag
-	to_chat(user, "[mag.chamber_closed ? "It's closed." : "It's open with [mag.current_rounds] round\s loaded."]")
-
-/obj/item/weapon/gun/revolver/update_icon() //Special snowflake update icon.
-	var/obj/item/ammo_magazine/internal/mag = current_mag
-	icon_state = mag.chamber_closed ? initial(icon_state) : initial(icon_state) + "_o"
-
-/obj/item/weapon/gun/revolver/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(isscrewdriver(I))
-		to_chat(user, "[catchworking ? "You adjust the cylinder lock to allow the cylinder to be spun." : "You adjust the cylinder lock to the correct depth."]")
-		catchworking = !catchworking
-
-/obj/item/weapon/gun/revolver/proc/rotate_cylinder(mob/user) //Cylinder moves backward.
-	var/obj/item/ammo_magazine/internal/mag = current_mag
-	mag.chamber_position = mag.chamber_position == 1 ? mag.max_rounds : mag.chamber_position - 1
-
-/obj/item/weapon/gun/revolver/proc/replace_cylinder(number_to_replace)
-	var/obj/item/ammo_magazine/internal/mag = current_mag
-	mag.chamber_contents = list()
-	mag.chamber_contents.len = mag.max_rounds
-	for(var/i = 1 to mag.max_rounds) //We want to make sure to populate the cylinder.
-		mag.chamber_contents[i] = i > number_to_replace ? "empty" : "bullet"
-	mag.chamber_position = max(1,number_to_replace)
-
-/obj/item/weapon/gun/revolver/proc/empty_cylinder(mob/user)
-	var/obj/item/ammo_magazine/internal/mag = current_mag
-	for(var/i = 1 to mag.max_rounds)
-		mag.chamber_contents[i] = "empty"
-	user.hud_used.update_ammo_hud(user, src)
-
-//The cylinder is always emptied out before a reload takes place.
-/obj/item/weapon/gun/revolver/proc/add_to_cylinder(mob/user) //Bullets are added forward.
-	var/obj/item/ammo_magazine/internal/mag = current_mag
-	//First we're going to try and replace the current bullet.
-	if(!mag.current_rounds)
-		mag.chamber_contents[mag.chamber_position] = "bullet"
-	else//Failing that, we'll try to replace the next bullet in line.
-		if( (mag.chamber_position + 1) > mag.max_rounds)
-			mag.chamber_contents[1] = "bullet"
-			mag.chamber_position = 1
-		else
-			mag.chamber_contents[mag.chamber_position + 1] = "bullet"
-			mag.chamber_position++
-
-	playsound(user, hand_reload_sound, 25, 1)
-	return TRUE
-
-/obj/item/weapon/gun/revolver/reload(mob/user, obj/item/ammo_magazine/magazine)
-	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
-		return
-
-	if(!magazine || !istype(magazine))
-		to_chat(user, span_warning("That's not gonna work!"))
-		return
-
-	if(magazine.current_rounds <= 0)
-		to_chat(user, span_warning("That [magazine.name] is empty!"))
-		return
-
-	var/obj/item/ammo_magazine/internal/mag = current_mag
-	if(mag.chamber_closed)
-		to_chat(user, span_warning("You can't load anything when the cylinder is closed!"))
-		return
-
-	if(mag.current_rounds == mag.max_rounds)
-		to_chat(user, span_warning("It's already full!"))
-		return
-
-	// speedloaders go fast
-	if(istype(magazine, /obj/item/ammo_magazine/revolver))
-		if(!mag.current_rounds) //We can't have rounds in the gun if it's a speeloader.
-			if(mag.gun_type == magazine.gun_type) //Has to be the same gun type.
-				if(mag.transfer_ammo(magazine,user,magazine.current_rounds))//Make sure we're successful.
-					replace_ammo(user, magazine) //We want to replace the ammo ahead of time, but not necessary here.
-					current_mag.match_ammo(magazine)
-					replace_cylinder(current_mag.current_rounds)
-					playsound(user, reload_sound, 25, 1) // Reloading via speedloader.
-					user.hud_used.update_ammo_hud(user, src)
-			else
-				to_chat(user, span_warning("\The [magazine] doesn't fit!"))
-		else
-			to_chat(user, span_warning("You can't load a speedloader when there's something in the cylinder!"))
-		return
-
-	// the rest go slow: handfuls, boxes, etc..
-	if(!current_mag.current_rounds && current_mag.caliber == magazine.caliber) //Make sure nothing's loaded and the calibers match.
-		replace_ammo(user, magazine) //We are going to replace the ammo just in case.
-		current_mag.match_ammo(magazine)
-		current_mag.transfer_ammo(magazine,user,1) //Handful can get deleted, so we can't check through it.
-		add_to_cylinder(user)
-		return
-	//If bullets still remain in the gun, we want to check if the actual ammo matches.
-	if(magazine.default_ammo == current_mag.default_ammo) //Ammo datums match, let's see if they are compatible.
-		if(current_mag.transfer_ammo(magazine,user,1))
-			add_to_cylinder(user)//If the magazine is deleted, we're still fine.
-		return
-	to_chat(user, "[current_mag] is [current_mag.current_rounds ? "already loaded with some other ammo. Better not mix them up." : "not compatible with that ammo."]")
-
-
-/obj/item/weapon/gun/revolver/unload(mob/user)
-	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
-		return FALSE
-
-	if(current_mag.chamber_closed) //If it's actually closed.
-		to_chat(user, span_notice("You clear the cylinder of [src]."))
-		make_casing(type_of_casings)
-		empty_cylinder(user)
-		current_mag.create_handful(user)
-		current_mag.chamber_closed = !current_mag.chamber_closed
-		russian_roulette = !russian_roulette //Resets the RR variable.
-	else
-		current_mag.chamber_closed = !current_mag.chamber_closed
-	playsound(src, unload_sound, 25, 1)
-	update_icon()
-
-	return TRUE
-
-
-/obj/item/weapon/gun/revolver/make_casing()
-	var/obj/item/ammo_magazine/internal/mag = current_mag
-	if(mag.used_casings)
-		. = ..()
-		mag.used_casings = 0 //Always dump out everything.
-
-/obj/item/weapon/gun/revolver/able_to_fire(mob/user)
-	. = ..()
-	if(. && istype(user))
-		var/obj/item/ammo_magazine/internal/mag = current_mag
-		if(!mag.chamber_closed)
-			to_chat(user, span_warning("Close the cylinder!"))
-			return FALSE
-
-/obj/item/weapon/gun/revolver/ready_in_chamber()
-	var/obj/item/ammo_magazine/internal/mag = current_mag
-	if(mag.current_rounds > 0)
-		if( mag.chamber_contents[mag.chamber_position] == "bullet")
-			mag.current_rounds-- //Subtract the round from the mag.
-			sync_ammo(mag)
-			in_chamber = create_bullet(ammo)
-			return in_chamber
-
-/obj/item/weapon/gun/revolver/load_into_chamber(mob/user)
-	if(ready_in_chamber())
-		return in_chamber
-	rotate_cylinder() //If we fail to return to chamber the round, we just move the firing pin some.
-
-/obj/item/weapon/gun/revolver/reload_into_chamber(mob/user)
-	var/obj/item/ammo_magazine/internal/mag = current_mag
-	mag.chamber_contents[mag.chamber_position] = "blank" //We shot the bullet.
-	mag.used_casings++ //We add this only if we actually fired the bullet.
-	rotate_cylinder()
-	return TRUE
-
-/obj/item/weapon/gun/revolver/delete_bullet(obj/projectile/projectile_to_fire, refund = 0)
-	qdel(projectile_to_fire)
-	var/obj/item/ammo_magazine/internal/mag = current_mag
-	if(refund) mag.current_rounds++
-	return TRUE
-
-/obj/item/weapon/gun/revolver/cock(mob/user)
-	if(catchworking)
-		return unload(user)
-	var/obj/item/ammo_magazine/internal/mag = current_mag
-	if(!mag.chamber_closed) //We're not spinning while it's open. Could screw up reloading.
-		return
-	mag.chamber_position = rand(1, mag.max_rounds)
-	to_chat(user, span_notice("You spin the cylinder."))
-	playsound(user, cocked_sound, 25, 1)
-	russian_roulette = !russian_roulette //Sets to play RR. Resets when the gun is emptied.
-
-/obj/item/weapon/gun/revolver/proc/revolver_basic_spin(mob/living/carbon/human/user, direction = 1, obj/item/weapon/gun/revolver/double)
-	set waitfor = 0
-	playsound(user, spin_sound, 25, 1)
-	if(double)
-		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice(" You flick and spin [src] and [double]!"))
-		animation_wrist_flick(double, 1)
-	else user.visible_message("[user] deftly flicks and spins [src]!",span_notice(" You flick and spin [src]!"))
-
-	animation_wrist_flick(src, direction)
-	sleep(3)
-	if(loc && user) playsound(user, thud_sound, 25, 1)
 
 /obj/item/weapon/gun/revolver/verb/revolvertrick()
 	set category = "Weapons"
@@ -328,8 +136,17 @@
 
 	return TRUE
 
-/obj/item/weapon/gun/revolver/get_ammo_count()
-	return current_rounds
+/obj/item/weapon/gun/revolver/proc/revolver_basic_spin(mob/living/carbon/human/user, direction = 1, obj/item/weapon/gun/revolver/double)
+	set waitfor = 0
+	playsound(user, spin_sound, 25, 1)
+	if(double)
+		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice(" You flick and spin [src] and [double]!"))
+		animation_wrist_flick(double, 1)
+	else user.visible_message("[user] deftly flicks and spins [src]!",span_notice(" You flick and spin [src]!"))
+
+	animation_wrist_flick(src, direction)
+	sleep(3)
+	if(loc && user) playsound(user, thud_sound, 25, 1)
 
 // revolvers do not make any sense when they have a rattle sound, so this is ignored.
 /obj/item/weapon/gun/revolver/play_fire_sound(mob/user)
@@ -553,58 +370,7 @@
 	desc = "you should not be seeing this."
 	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
 
-/obj/item/weapon/gun/revolver/single_action/update_icon_state()
-	. = ..()
-	if(in_chamber)
-		return
-	icon_state = icon_state + "_unprimed"
 
-/obj/item/weapon/gun/revolver/single_action/examine(mob/user)
-	. = ..()
-	to_chat(user, "[in_chamber ? "It's primed and ready to fire." : "It is not primed."]")
-
-/obj/item/weapon/gun/revolver/single_action/Fire()
-	. = ..()
-	update_icon()
-
-/obj/item/weapon/gun/revolver/single_action/cock(mob/user)
-	var/obj/item/ammo_magazine/internal/mag = current_mag
-	if(!in_chamber && mag.current_rounds && mag.chamber_closed)
-		rotate_cylinder(user)
-		ready_in_chamber(user)
-		to_chat(user, span_notice("You prime the [src]"))
-		playsound(user, reload_sound, 25, 1)
-		update_icon()
-		return TRUE
-	if(catchworking)
-		unload(user)
-		return TRUE
-	if(!mag.chamber_closed)
-		return FALSE
-	mag.chamber_position = rand(1, mag.max_rounds)
-	to_chat(user, span_notice("You spin the cylinder."))
-	playsound(user, cocked_sound, 25, 1)
-	russian_roulette = !russian_roulette //Sets to play RR. Resets when the gun is emptied.
-	return TRUE
-
-/obj/item/weapon/gun/revolver/single_action/ready_in_chamber()
-	var/obj/item/ammo_magazine/internal/mag = current_mag
-	if(mag.current_rounds <= 0 || mag.chamber_contents[mag.chamber_position] != "bullet")
-		return
-	mag.current_rounds-- //Subtract the round from the mag.
-	in_chamber = create_bullet(ammo)
-	sync_ammo(mag)
-	update_icon()
-	return in_chamber
-
-/obj/item/weapon/gun/revolver/single_action/load_into_chamber(mob/user)
-	return in_chamber
-
-/obj/item/weapon/gun/revolver/single_action/reload_into_chamber(mob/user)
-	var/obj/item/ammo_magazine/internal/mag = current_mag
-	mag.chamber_contents[mag.chamber_position] = "blank" //We shot the bullet.
-	mag.used_casings++ //We add this only if we actually fired the bullet.
-	return TRUE
 
 //-------------------------------------------------------
 //M-44, based off the SAA.
