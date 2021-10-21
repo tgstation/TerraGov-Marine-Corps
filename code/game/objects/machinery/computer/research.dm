@@ -233,17 +233,17 @@
 	to_chat(user, span_notice("Rewards export points, as the name suggests."))
 
 /obj/item/research_product/money/basic
-	name = "TerraTokens - 5"
+	name = "virtual credits - 5"
 	export_points = 5
 
 /obj/item/research_product/money/common
-	name = "TerraTokens - 15"
+	name = "virtual credits - 15"
 	export_points = 15
 
 /obj/item/research_product/money/uncommon
-	name = "TerraTokens - 25"
+	name = "virtual credits - 25"
 	export_points = 25
 
 /obj/item/research_product/money/rare
-	name = "TerraTokens - 80"
+	name = "virtual credits - 80"
 	export_points = 80
