@@ -107,13 +107,8 @@
 	if(recovery_aura)
 		amount += recovery_aura * maxHealth * 0.01 // +1% max health per recovery level, up to +5%
 	if(scaling)
-		if(recovery_aura)
-			regen_power = clamp(regen_power + xeno_caste.regen_ramp_amount*30,0,1) //Ignores the cooldown, and gives a 50% boost.
-		else if(regen_power < 0) // We're not supposed to regenerate yet. Start a countdown for regeneration.
-			regen_power += 2 SECONDS //Life ticks are 2 seconds.
-			return
-		else
-			regen_power = min(regen_power + xeno_caste.regen_ramp_amount*20,1)
+		regen_power = clamp(regen_power + xeno_caste.regen_ramp_amount*(17.5+recovery_aura), 0, 1)
+
 		amount *= regen_power
 	amount *= multiplier * GLOB.xeno_stat_multiplicator_buff
 

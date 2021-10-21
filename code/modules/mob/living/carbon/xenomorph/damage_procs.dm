@@ -132,7 +132,7 @@
 	if(updating_health)
 		updatehealth()
 
-	regen_power = -xeno_caste.regen_delay //Remember, this is in deciseconds.
+	regen_power = 0
 
 	if(!damage) //If we've actually taken damage, check whether we alert the hive
 		return

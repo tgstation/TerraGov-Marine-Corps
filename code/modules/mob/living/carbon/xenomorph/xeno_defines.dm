@@ -43,8 +43,6 @@
 	var/weeds_speed_mod = -0.4
 
 	// *** Regeneration Delay ***//
-	///Time after you take damage before a xenomorph can regen.
-	var/regen_delay = 10 SECONDS
 	///Regeneration power increases by this amount evey decisecond.
 	var/regen_ramp_amount = 0.005
 
