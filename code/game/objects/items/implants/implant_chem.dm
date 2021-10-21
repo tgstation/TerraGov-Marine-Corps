@@ -52,10 +52,12 @@
 	///Amount of blood added
 	var/blood_amount = 200
 
-/obj/item/implant/chem/blood/activate/activate(accidental)
+/obj/item/implant/chem/blood/activate(accidental)
 	. = ..()
+	if(!.)
+		return FALSE
 	if(!iscarbon(implant_owner))
-		return
+		return FALSE
 
 	var/mob/living/carbon/carb_mob = implant_owner
 	var/current_blood = carb_mob.blood_volume
