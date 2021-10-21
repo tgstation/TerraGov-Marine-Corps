@@ -125,3 +125,55 @@
   jroinc:
   - rscadd: borgar?
   - bugfix: fixes runtimes upon gibbing a simplemob
+2021-10-21:
+  BraveMole:
+  - bugfix: Fix uniform not being given by loadout vendor
+  - bugfix: Zombies are no longer shot by xeno turrets
+  - bugfix: Zombies no longer prevent the game from stopping
+  - bugfix: Zombies no longer attract huggers
+  - bugfix: Zombies cannot stop xenos from hijacking
+  - bugfix: Zombies cannot open doors at a distance
+  - bugfix: No drop objects like shields were not dropped, fixed
+  - balance: Almost all guns are available in civil war
+  - bugfix: Fix diagonal move speed for ais (they were going too fast)
+  - balance: Zombie are not fleeing anymore
+  - rscadd: Silo and spawners; ai xenos are here
+  RipGrayson:
+  - bugfix: Wraiths can no longer teleport into the back of Big Red LZ2 through solid
+      rock.
+  - bugfix: Fixed an odd area of cave in Big Red that counted as being outside.
+  - bugfix: Added some missing shutters to Big Red engineering.
+  SplinterGP:
+  - rscadd: Added more mechanics or gameplay changes
+  - code_imp: TGUI has been updated and now certain stuff load considerably faster,
+      other changes were done but its more dev-side and dont affect players.
+  TiviPlus:
+  - rscadd: You can now use grills and griddles to grill food
+  - rscadd: You can make raw meatballs from cutting cuttlettes, which you get from
+      cutting meat
+  - rscadd: Grilling raw meatballs makes grilled meatballs which you can put into
+      buns to make burgers
+  - expansion: grill added to maint on all ships and griddles to all ship kitchens,
+      new hydroponics area for PoS, added hydro gear to some maps that were missing
+      it
+  - refactor: Movement code performance improvements
+  - rscadd: Added round end sounds (including custom tgmc ones), can be toggled
+  - admin: added logs for who brought up the asrs
+  - rscadd: Added NOTHING to the game trust me
+  - rscadd: New screen-based orders for TGMC command
+  - rscadd: Lobby music should be more reliable now
+  Walarks:
+  - bugfix: fixed aim mode activating when after unwielding
+  hyper2snyper:
+  - expansion: Throwing knives are now stackable and hold 5 a stack, clicking a tile
+      with a stack in hand will throw one of the stack.
+  - rscadd: New flamer nozzle, the Spray Nozzle. It makes the flamers fire stream
+      a cone.
+  - code_imp: Refactored Flamers.
+  ivanmixo:
+  - bugfix: underslung grenade launcher now actually shows up when attached
+  - bugfix: ammo counter for grenade launchers works
+  - refactor: refactored the grenade launcher code
+  - bugfix: Some alerts have been made more accurate
+  jroinc:
+  - rscdel: Removes obtainable zombium
