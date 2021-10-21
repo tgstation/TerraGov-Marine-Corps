@@ -79,6 +79,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior/proc/cleanup_current_action(next_action)
 	if(current_action == MOVING_TO_NODE && next_action != MOVING_TO_NODE)
 		current_node = null
+	if(current_action == ESCORTING_ATOM)
+		clean_escorted_atom()
 	unregister_action_signals(current_action)
 	mob_parent.RemoveElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
 
@@ -88,7 +90,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(next_action)
 		current_action = next_action
 	if(current_action == ESCORTING_ATOM)
-		distance_to_maintain = 2 //Don't stay too close
+		distance_to_maintain = 1
 	else
 		distance_to_maintain = initial(distance_to_maintain)
 	if(next_target)
@@ -168,6 +170,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	escorted_atom = atom_to_escort
 	RegisterSignal(escorted_atom, COMSIG_PARENT_QDELETING, .proc/clean_escorted_atom)
 	RegisterSignal(escorted_atom, COMSIG_AI_SET_BEHAVIOUR, .proc/set_agressivity)
+	base_action = ESCORTING_ATOM
 	change_action(ESCORTING_ATOM, escorted_atom)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
 
@@ -175,14 +178,15 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior/proc/clean_escorted_atom()
 	SIGNAL_HANDLER
 	escorted_atom = null
+	base_action = initial(base_action)
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, .proc/set_escorted_atom)
 	if(current_action == ESCORTING_ATOM)
 		look_for_next_node()
 
 ///Set the target distance to be normal (initial) or very low (almost passive)
-/datum/ai_behavior/proc/set_agressivity(datum/source, should_be_passive = FALSE)
+/datum/ai_behavior/proc/set_agressivity(datum/source, should_be_agressive = TRUE)
 	SIGNAL_HANDLER
-	target_distance = should_be_passive ? 2 : initial(target_distance)
+	target_distance = should_be_agressive ? initial(target_distance) : 2
 
 ///Clean the goal node
 /datum/ai_behavior/proc/clean_goal_node()

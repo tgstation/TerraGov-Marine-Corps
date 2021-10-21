@@ -43,7 +43,7 @@
 	var/mob/living/living_parent = mob_parent
 	switch(current_action)
 		if(ESCORTING_ATOM)
-			if(get_dist(escorted_atom, mob_parent) > target_distance * 2)//We failed to reach our escorted atom
+			if(get_dist(escorted_atom, mob_parent) > 10)
 				cleanup_current_action()
 				base_action = MOVING_TO_NODE
 				late_initialize()
