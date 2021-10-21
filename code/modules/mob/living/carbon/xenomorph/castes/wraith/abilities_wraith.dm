@@ -807,9 +807,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	central_turf.cut_overlay(MA)
 	for(var/turf/affected_turf AS in turfs_affected)
 		REMOVE_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET, REF(owner))
-		if(!HAS_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET))
-			SEND_SIGNAL(affected_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
-			affected_turf.remove_filter("wraith_magic")
+		if(HAS_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET))
+			continue
+		SEND_SIGNAL(affected_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
+		affected_turf.remove_filter("wraith_magic")
 
 ///Play the end ability sound
 /datum/action/xeno_action/timestop/proc/play_sound_stop()
