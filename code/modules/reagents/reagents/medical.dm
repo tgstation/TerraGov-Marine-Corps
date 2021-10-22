@@ -606,7 +606,12 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/peridaxon_plus/on_mob_add(mob/living/L, metabolism)
+	if(TIMER_COOLDOWN_CHECK(L, peridaxon_plus))
+		return
 	L.adjustCloneLoss(5*effect_str)
+
+/datum/reagent/medicine/peridaxon_plus/on_mob_delete(mob/living/L, metabolism)
+	TIMER_COOLDOWN_START(L, peridaxon_plus, 30 SECONDS)
 
 /datum/reagent/medicine/peridaxon_plus/on_mob_life(mob/living/L, metabolism)
 	L.reagents.add_reagent(/datum/reagent/toxin,5)
@@ -718,7 +723,12 @@
 	custom_metabolism = REAGENTS_METABOLISM * 2.5
 
 /datum/reagent/medicine/quickclotplus/on_mob_add(mob/living/L, metabolism)
+	if(TIMER_COOLDOWN_CHECK(L, quickclotplus))
+		return
 	L.adjustCloneLoss(5*effect_str)
+
+/datum/reagent/medicine/quickclotplus/on_mob_delete(mob/living/L, metabolism)
+	TIMER_COOLDOWN_START(L, quickclotplus, 30 SECONDS)
 
 /datum/reagent/medicine/quickclotplus/on_mob_life(mob/living/L, metabolism)
 	var/mob/living/carbon/human/H = L
