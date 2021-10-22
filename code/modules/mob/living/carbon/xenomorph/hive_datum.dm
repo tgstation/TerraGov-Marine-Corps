@@ -30,6 +30,8 @@
 	var/list/buyable_upgrades = list()
 	///assoc list name = upgraderef
 	var/list/datum/hive_upgrade/upgrades_by_name = list()
+	///If a king is alive, or in a pod, this is non-null
+	var/king_present = 0
 
 // ***************************************
 // *********** Init
