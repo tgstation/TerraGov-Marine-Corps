@@ -217,7 +217,7 @@
 			return
 		set_trap_type(TRAP_SMOKE_NEURO)
 		smoke = new /datum/effect_system/smoke_spread/xeno/neuro/medium
-		smoke.set_up(1, get_turf(src))
+		smoke.set_up(2, get_turf(src))
 	else if(acid_action)
 		if(!do_after(X, 2 SECONDS, TRUE, src))
 			return
