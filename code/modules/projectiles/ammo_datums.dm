@@ -1665,7 +1665,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 40
 	stagger_stacks = 1.1
 	slowdown_stacks = 1.1
-	smoke_strength = 0.5
+	smoke_strength = 1
 	smoke_range = 0
 	reagent_transfer_amount = 7
 
