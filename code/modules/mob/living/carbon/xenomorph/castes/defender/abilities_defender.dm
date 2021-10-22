@@ -421,7 +421,7 @@
 		var/armor_block = slapped.run_armor_check(affecting, "melee")
 		slapped.apply_damage(damage, BRUTE, affecting, armor_block)
 		slapped.apply_damage(damage, STAMINA, updating_health = TRUE)
-		slapped.Paralyze(5)
+		slapped.Paralyze(3)
 		shake_camera(slapped, 2, 1)
 
 		to_chat(slapped, span_xenowarning("We are struck by \the [X]'s flying tail!"))
