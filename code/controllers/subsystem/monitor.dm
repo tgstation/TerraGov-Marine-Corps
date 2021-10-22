@@ -61,8 +61,7 @@ SUBSYSTEM_DEF(monitor)
 
 	//Automatic buff system for the xeno, if they have too much burrowed yet are still losing
 	var/proposed_balance_buff = GLOB.xeno_stat_multiplicator_buff
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	if(is_automatic_balance_on && current_state < STATE_BALANCED && ((xeno_job.total_positions - xeno_job.current_positions) > (length(GLOB.alive_xeno_list) * TOO_MUCH_BURROWED_PROPORTION)) && gamestate == GROUNDSIDE)
+	if(is_automatic_balance_on)
 		proposed_balance_buff = balance_xeno_team()
 	if(abs(proposed_balance_buff - GLOB.xeno_stat_multiplicator_buff) >= 0.05 || (proposed_balance_buff == 1 && GLOB.xeno_stat_multiplicator_buff != 1))
 		GLOB.xeno_stat_multiplicator_buff = proposed_balance_buff
@@ -180,6 +179,8 @@ SUBSYSTEM_DEF(monitor)
  */
 /datum/controller/subsystem/monitor/proc/balance_xeno_team()
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	if(current_state >= STATE_BALANCED || ((xeno_job.total_positions - xeno_job.current_positions) <= (length(GLOB.alive_xeno_list) * TOO_MUCH_BURROWED_PROPORTION)) || length(GLOB.xeno_resin_silos) == 0)
+		return 1
 	var/xeno_alive_plus_burrowed = length(GLOB.alive_xeno_list) + (xeno_job.total_positions - xeno_job.current_positions)
 	var/buff_needed_estimation = min( MAXIMUM_XENO_BUFF_POSSIBLE , 1 + (xeno_job.total_positions-xeno_job.current_positions) / (xeno_alive_plus_burrowed ? xeno_alive_plus_burrowed : 1))
 	// No need to ask admins every time
