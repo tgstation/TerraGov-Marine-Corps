@@ -230,12 +230,6 @@
 	icon_state = "bottle7"
 	list_reagents = list(/datum/reagent/toxin/xeno_neurotoxin/light = 30)
 
-/obj/item/reagent_containers/glass/bottle/xeno_growthtoxin
-	name = "\improper Growth toxin bottle"
-	desc = "A small bottle. Contains artificialy synthesized growth toxin - useful for researchers, or as a very risky medicine."
-	icon_state = "bottle7"
-	list_reagents = list(/datum/reagent/toxin/xeno_growthtoxin = 30)
-
 /obj/item/reagent_containers/glass/bottle/xeno_hemodile
 	name = "\improper Hemodile bottle"
 	desc = "A small bottle. Contains artificialy synthesized hemodile- useful for testing treatments, or training troops."

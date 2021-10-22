@@ -506,30 +506,6 @@
 
 	return ..()
 
-
-/datum/reagent/toxin/xeno_growthtoxin
-	name = "Larval Accelerant"
-	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."
-	reagent_state = LIQUID
-	color = "#CF3600" // rgb: 207, 54, 0
-	purge_list = list(/datum/reagent/medicine)
-	purge_rate = 3
-	overdose_threshold = REAGENTS_OVERDOSE
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
-	toxpwr = 0
-	scannable = TRUE
-
-/datum/reagent/toxin/xeno_growthtoxin/on_mob_life(mob/living/L)
-	L.jitter(1) //So unga know to get treated
-	return ..()
-
-/datum/reagent/toxin/xeno_growthtoxin/overdose_process(mob/living/L, metabolism)
-	L.adjustOxyLoss(2)
-	L.jitter(4)
-
-/datum/reagent/toxin/xeno_growthtoxin/overdose_crit_process(mob/living/L, metabolism)
-	L.Losebreath(2)
-
 /datum/reagent/toxin/xeno_hemodile //Slows its victim. The slow becomes twice as strong with each other xeno toxin in the victim's system.
 	name = "Hemodile"
 	description = "Impedes motor functions and muscle response, causing slower movement."
