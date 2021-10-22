@@ -392,8 +392,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.weeds_planted] weed nodes planted."
 	if(GLOB.round_statistics.weeds_destroyed)
 		dat += "[GLOB.round_statistics.weeds_destroyed] weed tiles removed."
-	if(GLOB.round_statistics.carrier_traps)
-		dat += "[GLOB.round_statistics.carrier_traps] hidey holes for huggers were made."
+	if(GLOB.round_statistics.trap_holes)
+		dat += "[GLOB.round_statistics.trap_holes] holes for acid and huggers were made."
 	if(GLOB.round_statistics.sentinel_neurotoxin_stings)
 		dat += "[GLOB.round_statistics.sentinel_neurotoxin_stings] number of times Sentinels stung."
 	if(GLOB.round_statistics.defiler_defiler_stings)

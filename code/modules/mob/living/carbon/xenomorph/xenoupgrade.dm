@@ -164,6 +164,9 @@
 /mob/living/carbon/xenomorph/hivelord/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/hivelord/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----HIVELORD END----//
 //================//
 
