@@ -213,10 +213,16 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	flags_gamemode = ABILITY_DISTRESS
 	psypoint_cost = 1800
 
-/datum/hive_upgrade/xenos/king/on_buy(mob/living/carbon/xenomorph/buyer)
+/datum/hive_upgrade/xenos/king/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!.)
+		return
 	if(buyer.hive.king_present)
-		to_chat(buyer, span_xenowarning("Another king is alive"))
+		if(!silent)
+			to_chat(buyer, span_xenowarning("Another king is alive"))
 		return FALSE
+
+/datum/hive_upgrade/xenos/king/on_buy(mob/living/carbon/xenomorph/buyer)
 	to_chat(buyer, span_xenonotice("We begin constructing a psychic echo chamber for the Queen Mother..."))
 	if(!do_after(buyer, 15 SECONDS, FALSE, buyer, BUSY_ICON_HOSTILE))
 		return FALSE
