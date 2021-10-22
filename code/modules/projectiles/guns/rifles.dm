@@ -242,6 +242,7 @@
 	desc = "The T-64 is the TerraGov Marine Corps main battle rifle. It is known for its consistent ability to perform well at most ranges, and close range stopping power. It is mostly used by people who prefer a bigger round than the average. Lacks burst fire. Uses 10x27mm caseless caliber."
 	icon_state = "t64"
 	item_state = "t64"
+	icon = 'icons/Marine/gun64.dmi'
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	fire_sound = 'sound/weapons/guns/fire/t64.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/t64_low.ogg'
@@ -283,14 +284,17 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_CAN_POINTBLANK
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	starting_attachment_types = list(/obj/item/attachable/stock/br,/obj/item/attachable/scope/mini)
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 17, "rail_y" = 18, "under_x" = 25, "under_y" = 12, "stock_x" = 14, "stock_y" = 10)
+	starting_attachment_types = list(/obj/item/attachable/scope/mini)
+	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 18,"rail_x" = 20, "rail_y" = 24, "under_x" = 25, "under_y" = 12, "stock_x" = 14, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 3
 
 	fire_delay = 0.35 SECONDS
 	damage_mult = 0.5 //uses the marksman bullet, like the DMR.
+	burst_amount = 3
+	burst_delay = 0.1 SECONDS
+	extra_delay = 0.15 SECONDS
 	accuracy_mult = 1.25
 	scatter = -10
 	burst_amount = 1
