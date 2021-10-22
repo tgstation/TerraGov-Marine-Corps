@@ -370,14 +370,14 @@
 // ***************************************
 /datum/action/xeno_action/activable/centrifugal_force
 	name = "Centrifugal force"
-	action_icon_state = "tail_sweep"
-	mechanics_text = "Hit all adjacent units around you, knocking them away and down."
-	ability_name = "tail sweep"
+	action_icon_state = "centrifugal_force"
+	mechanics_text = "Rapidly spin and hit all adjacent humans around you, knocking them away and down."
+	ability_name = "centrifugal force"
 	plasma_cost = 15
 	use_state_flags = XACT_USE_CRESTED
 	cooldown_timer = 30 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_TAIL_SWEEP
+	keybind_signal = COMSIG_XENOABILITY_CENTRIFUGAL_FORCE
 	///bool whether we should take a random step this tick
 	var/step_tick = FALSE
 	///timer hash for the timer we use when spinning
