@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes: 
-  - bugfix: "the combat messages prefs are no longer inverted"
