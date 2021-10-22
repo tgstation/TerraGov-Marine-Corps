@@ -1,4 +1,4 @@
-/obj/ammo_reciever
+/datum/ammo_reciever
 	var/obj/item/weapon/gun/parent_gun
 
 	var/rounds
@@ -7,28 +7,37 @@
 	var/max_rounds
 	var/current_chamber_position = 1
 
-
 	var/list/allowed_ammo_types = list()
 
 	var/reciever_flags = NONE
 
 	var/type_of_casings = null
 
-/obj/ammo_reciever/Initialize()
+	var/magazine_type
+	var/current_rounds_var
+	var/max_rounds_var
+	var/magazine_flags_var
+
+/datum/ammo_reciever/Initialize(obj/item/weapon/gun/parent, spawn_loaded = TRUE)
 	. = ..()
-	if(!isgun(loc))
+	if(!isgun(parent))
 		stack_trace("[src] has been initialized outside of a gun at [loc].")
 		return
-	parent_gun = loc
+	parent_gun = parent
 	RegisterSignal(parent_gun, COMSIG_MOB_GUN_FIRED, .proc/process_fire)
 	RegisterSignal(parent_gun, COMSIG_ITEM_UNIQUE_ACTION, .proc/process_unique_action)
 	RegisterSignal(parent_gun, COMSIG_PARENT_ATTACKBY, .proc/process_reload)
 	RegisterSignal(parent_gun, COMSIG_ATOM_ATTACK_HAND, .proc/process_unload)
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
 		RegisterSignal(parent_gun, COMSIG_ITEM_REMOVED_INVENTORY, .proc/process_removed_from_inventory)
+	if(!spawn_loaded)
+		return
+	for(var/i to max_rounds)
+		chamber_items += new allowed_ammo_types[1]()
+	
 
 
-/obj/ammo_reciever/proc/process_fire(datum/source, atom/target, obj/item/weapon/gun/fired_gun)
+/datum/ammo_reciever/proc/process_fire(datum/source, atom/target, obj/item/weapon/gun/fired_gun)
 	SIGNAL_HANDLER
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION))
 		return
@@ -38,7 +47,7 @@
 		return
 
 
-/obj/ammo_reciever/proc/process_unique_action(datum/source, mob/user)
+/datum/ammo_reciever/proc/process_unique_action(datum/source, mob/user)
 	SIGNAL_HANDLER
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION))
 		cycle(user)
@@ -57,7 +66,7 @@
 		return
 
 
-/obj/ammo_reciever/proc/process_reload(datum/source, obj/item/attackedby, mob/living/user)
+/datum/ammo_reciever/proc/process_reload(datum/source, obj/item/attackedby, mob/living/user)
 	SIGNAL_HANDLER
 	if(!(attackedby.type in allowed_ammo_types) || length(chamber_items) >= max_rounds || !CHECK_BITFIELD(reciever_flags, RECIEVER_OPEN))
 		return
@@ -86,7 +95,7 @@
 
 
 
-/obj/ammo_reciever/proc/process_unload(datum/source, mob/living/user)
+/datum/ammo_reciever/proc/process_unload(datum/source, mob/living/user)
 	SIGNAL_HANDLER
 	if(HAS_TRAIT(parent_gun, TRAIT_GUN_BURST_FIRING))
 		return
@@ -122,14 +131,14 @@
 
 
 
-/obj/ammo_reciever/proc/return_obj_to_fire()
+/datum/ammo_reciever/proc/return_obj_to_fire()
 	if(!rounds)
 		return null
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES) || CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
 		return get_ammo_object(chamber_items[current_chamber_position])
 	return chamber_items[current_chamber_position]
 
-/obj/ammo_reciever/proc/cycle(mob/living/user)
+/datum/ammo_reciever/proc/cycle(mob/living/user)
 	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
 		qdel(chamber_items[current_chamber_position])
 		chamber_items -= chamber_items[current_chamber_position]
@@ -150,7 +159,7 @@
 
 
 
-/obj/ammo_reciever/proc/make_casing(obj/item/magazine)
+/datum/ammo_reciever/proc/make_casing(obj/item/magazine)
 	if(!type_of_casings)
 		return
 	var/num_of_casings
@@ -175,17 +184,17 @@
 
 
 
-/obj/ammo_reciever/proc/get_ammo_amounts(obj/item/magazine)
+/datum/ammo_reciever/proc/get_ammo_amounts(obj/item/magazine)
 	var/obj/item/ammo_magazine/mag = magazine
 	rounds = mag.current_rounds
 	max_rounds = mag.max_rounds
 
-/obj/ammo_reciever/proc/set_ammo(obj/item/magazine)
+/datum/ammo_reciever/proc/set_ammo(obj/item/magazine)
 	var/obj/item/ammo_magazine/mag = magazine
 	mag.current_rounds = rounds
 	mag.max_rounds = max_rounds
 
-/obj/ammo_reciever/proc/get_ammo_object(obj/item/magazine)
+/datum/ammo_reciever/proc/get_ammo_object(obj/item/magazine)
 	var/obj/item/ammo_magazine/mag = magazine
 	var/datum/ammo/ammo = mag.default_ammo
 	var/projectile_type = CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
@@ -193,14 +202,14 @@
 	projectile.generate_bullet(ammo)
 	return projectile
 
-/obj/ammo_reciever/proc/mag_load(mob/living/user, obj/item/magazine)
+/datum/ammo_reciever/proc/mag_load(mob/living/user, obj/item/magazine)
 	var/obj/item/ammo_magazine/mag = magazine
 	if(CHECK_BITFIELD(mag.flags_magazine, MAGAZINE_WORN|MAGAZINE_HANDFUL))
 		return
 	user?.temporarilyRemoveItemFromInventory(mag)
 	mag.forceMove(src)
 
-/obj/ammo_reciever/proc/mag_drop(mob/living/user, obj/item/magazine)
+/datum/ammo_reciever/proc/mag_drop(mob/living/user, obj/item/magazine)
 	var/obj/item/ammo_magazine/mag = magazine
 	if(CHECK_BITFIELD(mag.flags_magazine, MAGAZINE_WORN))
 		return
@@ -209,7 +218,7 @@
 		return
 	user.put_in_hands(mag)
 
-/obj/ammo_reciever/proc/process_removed_from_inventory(datum/source, mob/user)
+/datum/ammo_reciever/proc/process_removed_from_inventory(datum/source, mob/user)
 	SIGNAL_HANDLER
 	if(!chamber_items[current_chamber_position] || chamber_items[current_chamber_position].loc == parent_gun)
 		return
@@ -218,12 +227,10 @@
 	process_unload(null, user)
 
 ///This is called when a connected worn magazine is dropped. This unloads it.
-/obj/ammo_reciever/proc/drop_connected_mag(datum/source, mob/user)
+/datum/ammo_reciever/proc/drop_connected_mag(datum/source, mob/user)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, .proc/process_unload, null, user)
 	UnregisterSignal(source, COMSIG_ITEM_REMOVED_INVENTORY)
-
-
 
 
 
@@ -312,7 +319,7 @@
 		var/obj/item/weapon/gun/gun = I
 		if(!gun.reciever.process_reload(null, src, user))
 			return
-		gun.reciever.RegisterSignal(src, COMSIG_ITEM_REMOVED_INVENTORY, /obj/ammo_reciever.proc/drop_connected_mag)
+		gun.reciever.RegisterSignal(src, COMSIG_ITEM_REMOVED_INVENTORY, /datum/ammo_reciever.proc/drop_connected_mag)
 		return
 
 	if(!CHECK_BITFIELD(flags_magazine, MAGAZINE_REFILLABLE)) //and a refillable magazine
