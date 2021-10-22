@@ -187,7 +187,7 @@
 	if(current_mag?.current_rounds <= 0)
 		light_pilot(FALSE)
 		return
-	
+
 	if(RECURSIVE_CHECK(old_turfs, range, current_target, iteration))
 		return
 
@@ -350,8 +350,8 @@
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "tl84"
 	item_state = "tl84"
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY
-	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13)
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY
+	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13, "flamer_nozzle_x" = 33, "flamer_nozzle_y" = 20)
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
@@ -360,7 +360,9 @@
 		/obj/item/attachable/stock/t84stock,
 		/obj/item/attachable/hydro_cannon,
 		/obj/item/attachable/flamer_nozzle,
+		/obj/item/attachable/flamer_nozzle/wide,
 	)
+	starting_attachment_types = (/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock)
 	var/last_use
 	///If we are using the hydro cannon when clicking
 	var/hydro_active = FALSE
