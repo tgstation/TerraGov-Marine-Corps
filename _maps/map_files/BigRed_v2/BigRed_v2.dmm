@@ -12075,6 +12075,9 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/machinery/door/poddoor/two_tile_ver{
+	name = "\improper Lambda Lab Lockdown"
+	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/caves/lambda_lab)
 "aUx" = (
