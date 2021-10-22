@@ -279,3 +279,9 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Unlocks the primordial crushers advance. An ability that allows them to charge up their charge and release it in a sudden burst."
 	psypoint_cost = 225
 	icon = "primocrush"
+
+/datum/hive_upgrade/primordial/defender
+	name = PRIMORDIAL_DEFENDER
+	desc = "Unlocks the primordial defenders centrifugal force. An ability that allows them to rapidly spin and attack enemies nearby."
+	psypoint_cost = 75
+	icon = "primodefender"
