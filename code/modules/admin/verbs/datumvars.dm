@@ -1192,7 +1192,7 @@
 
 
 	else if(href_list["playerpanel"])
-		if(!check_rights(R_DEBUG))
+		if(!check_rights(R_BAN))
 			return
 
 		var/mob/M = locate(href_list["playerpanel"])
