@@ -46,8 +46,6 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/toggle_crest_defense,
 		/datum/action/xeno_action/fortify,
 		/datum/action/xeno_action/activable/forward_charge,
