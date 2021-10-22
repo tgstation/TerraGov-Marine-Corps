@@ -107,7 +107,7 @@
 	if(recovery_aura)
 		amount += recovery_aura * maxHealth * 0.01 // +1% max health per recovery level, up to +5%
 	if(scaling)
-		regen_power = clamp(regen_power + xeno_caste.regen_ramp_amount*(17.5+recovery_aura), 0, 1)
+		regen_power = clamp(regen_power + xeno_caste.regen_ramp_amount*(15+(recovery_aura*3)), 0, 1)
 
 		amount *= regen_power
 	amount *= multiplier * GLOB.xeno_stat_multiplicator_buff
