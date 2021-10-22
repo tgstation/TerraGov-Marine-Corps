@@ -206,19 +206,20 @@
 		return
 	return COMSIG_ACCURATE_ZONE
 
-/datum/action/xeno_action/stealth/fun
+/datum/action/xeno_action/stealth/disguise
+	name = "Disguise"
 	mechanics_text = "Disguise yourself as the enemy. Uses plasma to move."
 	///the regular appearance of the hunter
 	var/old_appearance
 
-/datum/action/xeno_action/stealth/fun/action_activate()
+/datum/action/xeno_action/stealth/disguise/action_activate()
 	if(stealth)
 		cancel_stealth()
 		return TRUE
 
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	if(!xenoowner.xeno_caste.marked_target)
-		to_chat(owner, span_warning("We have no target to disguise into"))
+		to_chat(owner, span_warning("We have no target to disguise into!"))
 		return
 	if(ishuman(xenoowner.xeno_caste.marked_target))
 		to_chat(owner, "You cannot turn into a human!")
@@ -227,12 +228,12 @@
 	ADD_TRAIT(xenoowner, TRAIT_MOB_ICON_UPDATE_BLOCKED, STEALTH_TRAIT)
 	return ..()
 
-/datum/action/xeno_action/stealth/fun/cancel_stealth()
+/datum/action/xeno_action/stealth/disguise/cancel_stealth()
 	. = ..()
 	owner.appearance = old_appearance
 	REMOVE_TRAIT(owner, TRAIT_MOB_ICON_UPDATE_BLOCKED, STEALTH_TRAIT)
 
-/datum/action/xeno_action/stealth/fun/handle_stealth()
+/datum/action/xeno_action/stealth/disguise/handle_stealth()
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	xenoowner.appearance = xenoowner.xeno_caste.marked_target.appearance
 	xenoowner.underlays.Cut()
@@ -267,7 +268,7 @@
 
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if((!isliving(A) && !CONFIG_GET(flag/fun_allowed)) || !ismovable(A))
+	if(!isliving(A) && (X.xeno_caste.upgrade != XENO_UPGRADE_FOUR) || !ismovable(A))
 		if(!silent)
 			to_chat(X, span_xenowarning("We cannot psychically mark this target!"))
 		return FALSE
