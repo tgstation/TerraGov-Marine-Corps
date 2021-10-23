@@ -325,7 +325,7 @@
 	taste_description = "ow ow ow"
 
 /datum/reagent/toxin/pain/on_mob_life(mob/living/L, metabolism)
-	L.reagent_pain_modifier -= volume
+	L.reagent_pain_modifier = volume
 	return ..()
 
 /datum/reagent/toxin/beer2	//disguised as normal beer
