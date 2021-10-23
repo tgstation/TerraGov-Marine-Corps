@@ -33,6 +33,8 @@
 	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin)
 
+	minimap_icon = "xenominion"
+
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
