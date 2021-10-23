@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "Fix xeno being buffed by autobalance because of xeno ais"
