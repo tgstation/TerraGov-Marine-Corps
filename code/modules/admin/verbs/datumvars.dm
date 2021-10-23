@@ -10,6 +10,13 @@
 /datum/proc/can_vv_get(var_name)
 	return TRUE
 
+/client/can_vv_get(var_name)
+	if(var_name != "address" && var_name != "computer_id")
+		return TRUE
+	if(check_rights(R_DEBUG))
+		return TRUE
+	return FALSE
+
 
 /datum/proc/vv_edit_var(var_name, var_value) //called whenever a var is edited
 	if(var_name == NAMEOF(src, vars))
