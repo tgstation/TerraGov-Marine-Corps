@@ -4,7 +4,7 @@
 /mob/living/carbon/proc/adjustTraumatic_Shock(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	traumatic_shock = clamp(traumatic_shock+amount,0,maxHealth*2)
+	traumatic_shock = clamp(traumatic_shock+amount,-100,maxHealth*2)
 
 /mob/living/carbon/proc/setTraumatic_Shock(amount)
 	if(status_flags & GODMODE)
