@@ -141,7 +141,7 @@
 
 /datum/reagent/medicine/oxycodone/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(3*effect_str, TOX)
-	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
+	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
