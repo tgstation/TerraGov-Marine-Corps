@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - balance: "xenos don't get healing debuff from being hive leaderless on crash anymore."
