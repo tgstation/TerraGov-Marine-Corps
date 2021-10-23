@@ -1,0 +1,7 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - balance: "PPSh can now take way more attachments than before."
+  - balance: "PPSh stats change to take in account the magazine stats + overall buff to make it competitive with the T-90"
+  - balance: "PPSh extended mags now provide scatter increase and, wield and movement speed debuffs"
+  - balance: "PPSh magazines now have proper size, the normal mags being SMALL like the T-90 magazines and extended mags being NORMAL like T-12 magazines."
