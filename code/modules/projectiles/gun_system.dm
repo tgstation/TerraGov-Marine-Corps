@@ -1170,8 +1170,8 @@ and you're good to go.
 		return 0
 
 
-/obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, mob/user, firing_angle)
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED) || !user)
+/obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, mob/gun_user, firing_angle)
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED) || !gun_user)
 		return TRUE
 	var/total_recoil = recoil_bonus
 	if(flags_item & WIELDED && wielded_stable() || master_gun)
@@ -1180,10 +1180,10 @@ and you're good to go.
 		total_recoil += recoil_unwielded
 		if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 			total_recoil += 1
-	if(!user.skills.getRating("firearms")) //no training in any firearms
+	if(!gun_user.skills.getRating("firearms")) //no training in any firearms
 		total_recoil += 2
 	else
-		var/recoil_tweak = user.skills.getRating(gun_skill_category)
+		var/recoil_tweak = gun_user.skills.getRating(gun_skill_category)
 		if(recoil_tweak)
 			total_recoil -= recoil_tweak * 2
 
@@ -1191,8 +1191,8 @@ and you're good to go.
 	var/actual_angle = firing_angle + rand(-recoil_deviation, recoil_deviation) + 180
 	if(actual_angle > 360)
 		actual_angle -= 360
-	if(total_recoil > 0 && istype(user))
-		recoil_camera(user, total_recoil + 1, (total_recoil * recoil_backtime_multiplier)+1, total_recoil, actual_angle)
+	if(total_recoil > 0)
+		recoil_camera(gun_user, total_recoil + 1, (total_recoil * recoil_backtime_multiplier)+1, total_recoil, actual_angle)
 		return TRUE
 
 
