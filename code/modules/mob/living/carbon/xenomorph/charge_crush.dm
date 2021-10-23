@@ -320,11 +320,11 @@
 
 /datum/action/xeno_action/ready_charge/bull_charge
 	charge_type = CHARGE_BULL
-	speed_per_step = 0.1
-	steps_for_charge = 6
+	speed_per_step = 0.15
+	steps_for_charge = 5
 	max_steps_buildup = 10
 	crush_living_damage = 15
-	plasma_use_multiplier = 1.8
+	plasma_use_multiplier = 2
 
 
 /datum/action/xeno_action/ready_charge/bull_charge/give_action(mob/living/L)
@@ -523,7 +523,7 @@
 		if(CHARGE_CRUSH)
 			Paralyze(CHARGE_SPEED(charge_datum) * 20)
 		if(CHARGE_BULL_HEADBUTT)
-			Paralyze(CHARGE_SPEED(charge_datum) * 60)
+			Paralyze(CHARGE_SPEED(charge_datum) * 40)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)
