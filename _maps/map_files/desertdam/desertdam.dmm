@@ -1,11 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aaa" = (
-/obj/structure/desertdam/decals/loose_sand_overlay,
-/turf/closed/shuttle{
-	dir = 1;
-	icon_state = "pwall"
-	},
-/area/desert_dam/exterior/rock)
 "aad" = (
 /obj/machinery/door/poddoor/shutters/opened{
 	dir = 8
@@ -134,16 +127,6 @@
 	icon_state = "tile"
 	},
 /area/desert_dam/exterior/valley/valley_labs)
-"aaK" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	start_charge = 0
-	},
-/turf/closed/shuttle{
-	dir = 1;
-	icon_state = "pwall"
-	},
-/area/desert_dam/exterior/rock)
 "aaL" = (
 /obj/item/storage/box/lights/tubes,
 /turf/open/floor/plating/ground/desertdam/asphalt{
@@ -2462,9 +2445,6 @@
 	icon_state = "bright_clean2"
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_central_hallway)
-"akP" = (
-/turf/closed/mineral,
-/area/desert_dam/exterior/valley/valley_mining)
 "akQ" = (
 /turf/open/floor/prison{
 	dir = 9;
@@ -37246,6 +37226,11 @@
 	icon_state = "cement_sunbleached12"
 	},
 /area/desert_dam/exterior/valley/bar_valley_dam)
+"cTw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/desert_dam/exterior/valley/valley_hydro)
 "cTC" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
 	icon_state = "cement_sunbleached18"
@@ -41229,6 +41214,14 @@
 	},
 /turf/open/floor/prison,
 /area/desert_dam/interior/lab_northeast/east_lab_excavation)
+"dss" = (
+/obj/structure/cable,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt{
+	icon_state = "tile"
+	},
+/area/desert_dam/exterior/valley/valley_hydro)
 "dsA" = (
 /turf/open/floor/prison{
 	dir = 8;
@@ -41689,7 +41682,7 @@
 /turf/open/floor/plating/ground/mars/random/cave{
 	dir = 6
 	},
-/area/desert_dam/exterior/rock)
+/area/desert_dam/interior/dam_interior/western_dam_cave)
 "dwy" = (
 /obj/machinery/computer/general_air_control,
 /turf/open/floor/prison,
@@ -48411,7 +48404,7 @@
 "ejB" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/desert_dam/exterior/rock)
+/area/desert_dam/interior/dam_interior/western_dam_cave)
 "ejN" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -51266,12 +51259,6 @@
 	icon_state = "cement_sunbleached16"
 	},
 /area/desert_dam/exterior/landing/landing_pad_one_external)
-"gXL" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 4
-	},
-/area/desert_dam/exterior/valley/valley_medical)
 "gXX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -51415,7 +51402,7 @@
 /turf/open/floor/plating/ground/mars/random/cave{
 	dir = 5
 	},
-/area/desert_dam/exterior/rock)
+/area/desert_dam/interior/dam_interior/western_dam_cave)
 "hgM" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -52145,6 +52132,11 @@
 	icon_state = "bright_clean2"
 	},
 /area/desert_dam/building/dorms/restroom)
+"hJX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/desert_dam/exterior/valley/valley_crashsite)
 "hKa" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -55803,7 +55795,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock{
 	dir = 4
 	},
-/area/desert_dam/exterior/rock)
+/area/desert_dam/interior/dam_interior/western_dam_cave)
 "ldU" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -57204,9 +57196,6 @@
 	},
 /turf/open/floor/prison,
 /area/desert_dam/building/dorms/hallway_northwing)
-"mxQ" = (
-/turf/closed/mineral,
-/area/desert_dam/interior/dam_interior/west_tunnel)
 "myi" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -57747,7 +57736,7 @@
 /area/desert_dam/building/administration/hallway)
 "mTa" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/desert_dam/exterior/rock)
+/area/desert_dam/interior/dam_interior/western_dam_cave)
 "mTb" = (
 /turf/open/floor/plating/ground/mars/random/cave{
 	dir = 8
@@ -58116,7 +58105,7 @@
 /turf/open/floor/plating/ground/mars/random/cave{
 	dir = 1
 	},
-/area/desert_dam/exterior/rock)
+/area/desert_dam/interior/dam_interior/western_dam_cave)
 "nnA" = (
 /obj/structure/table,
 /obj/effect/spawner/random/toolbox,
@@ -58779,7 +58768,7 @@
 /turf/open/floor/plating/ground/mars/random/cave{
 	dir = 4
 	},
-/area/desert_dam/exterior/rock)
+/area/desert_dam/interior/dam_interior/western_dam_cave)
 "nQl" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -61483,7 +61472,7 @@
 /turf/open/floor/plating/ground/mars/random/cave{
 	dir = 8
 	},
-/area/desert_dam/exterior/rock)
+/area/desert_dam/interior/dam_interior/western_dam_cave)
 "qqk" = (
 /obj/structure/desertdam/decals/road/edge{
 	icon_state = "road_edge_decal2"
@@ -61863,7 +61852,7 @@
 /area/desert_dam/exterior/valley/south_valley_dam)
 "qJA" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/desert_dam/exterior/rock)
+/area/desert_dam/interior/dam_interior/western_dam_cave)
 "qKe" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/interior/dam_interior/south_tunnel)
@@ -62528,7 +62517,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock{
 	dir = 4
 	},
-/area/desert_dam/exterior/rock)
+/area/desert_dam/interior/dam_interior/western_dam_cave)
 "ryv" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -63850,7 +63839,7 @@
 /turf/open/floor/plating/ground/mars/random/cave{
 	dir = 9
 	},
-/area/desert_dam/exterior/rock)
+/area/desert_dam/interior/dam_interior/western_dam_cave)
 "sKJ" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement{
@@ -64533,7 +64522,7 @@
 /turf/open/floor/plating/ground/mars/random/cave{
 	dir = 5
 	},
-/area/desert_dam/exterior/rock)
+/area/desert_dam/interior/dam_interior/western_dam_cave)
 "tvf" = (
 /obj/structure/platform{
 	dir = 1
@@ -64744,12 +64733,6 @@
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/desert_dam/interior/caves/temple)
-"tFW" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt{
-	icon_state = "cement_sunbleached15"
-	},
-/area/desert_dam/exterior/valley/valley_hydro)
 "tFX" = (
 /obj/effect/decal/warning_stripes{
 	icon_state = "E"
@@ -69505,7 +69488,7 @@
 /turf/open/floor/plating/ground/mars/random/cave{
 	dir = 10
 	},
-/area/desert_dam/exterior/rock)
+/area/desert_dam/interior/dam_interior/western_dam_cave)
 "yiF" = (
 /obj/effect/decal/warning_stripes{
 	icon_state = "E"
@@ -71873,7 +71856,7 @@ ceA
 ceA
 ceA
 ceG
-mKs
+jZZ
 dTs
 dTs
 dTs
@@ -72109,7 +72092,7 @@ ceA
 pEx
 hvG
 jZZ
-mKs
+jZZ
 dTs
 dTs
 dTs
@@ -72280,7 +72263,7 @@ ejB
 qJA
 qJA
 nns
-pqs
+bPO
 azs
 azs
 uoD
@@ -72514,7 +72497,7 @@ qJA
 qJA
 yiv
 qJA
-pqs
+bPO
 azs
 azs
 bRM
@@ -72748,7 +72731,7 @@ nns
 qJA
 qJA
 qJA
-pqs
+bPO
 azs
 azs
 bKc
@@ -96759,7 +96742,7 @@ dTs
 acu
 "}
 (117,1,1) = {"
-aaa
+acu
 dTs
 dTs
 dTs
@@ -97367,12 +97350,12 @@ ceo
 tjV
 cFf
 ghQ
+uHV
 ghQ
 ghQ
 ghQ
 ghQ
-ghQ
-ghQ
+uHV
 lwj
 dTs
 dTs
@@ -97601,12 +97584,12 @@ ceo
 tjV
 cFf
 ghQ
-uHV
 ghQ
 ghQ
 ghQ
 ghQ
-uHV
+ghQ
+ghQ
 lwj
 nlb
 dTs
@@ -98258,7 +98241,7 @@ cif
 qDb
 aFo
 aFo
-wrl
+aFo
 aFo
 mfK
 chA
@@ -101626,11 +101609,11 @@ dgT
 dgT
 eeW
 aEq
-aEq
+lSl
 xqQ
 taG
 xqQ
-xqQ
+cTw
 fdk
 hOK
 tLl
@@ -101864,14 +101847,14 @@ lYm
 aEq
 taG
 sLx
-atr
-fdk
+wya
+kbA
 hOK
 tLl
-ego
 tLl
 tLl
-gdW
+tLl
+fhm
 gdW
 gdW
 gdW
@@ -102103,9 +102086,9 @@ fdk
 hOK
 viV
 vuu
-ego
 tLl
-fhm
+tLl
+gdW
 wRX
 jpa
 gdW
@@ -102436,14 +102419,14 @@ bkj
 blj
 ato
 biy
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
+dTs
+dTs
+dTs
+dTs
+dTs
+dTs
+dTs
+dTs
 dTs
 dTs
 brh
@@ -102563,10 +102546,10 @@ dea
 dda
 gdW
 hqp
-xmX
+jOe
 bYV
 sLx
-atr
+wya
 fdk
 hOK
 xoO
@@ -102670,14 +102653,14 @@ bky
 blj
 bmJ
 biy
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
+dTs
+dTs
+dTs
+dTs
+dTs
+dTs
+dTs
+dTs
 dTs
 dTs
 brh
@@ -102904,14 +102887,14 @@ bkj
 blj
 bmJ
 biy
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
+dTs
+dTs
+dTs
+dTs
+dTs
+dTs
+dTs
+dTs
 dTs
 dTs
 dTs
@@ -103138,14 +103121,14 @@ bkj
 blj
 bmJ
 biy
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
+dTs
+dTs
+dTs
+dTs
+dTs
+dTs
+dTs
+dTs
 dTs
 dTs
 dTs
@@ -103372,14 +103355,14 @@ bky
 blj
 bmJ
 biy
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
+dTs
+dTs
+dTs
+dTs
+dTs
+dTs
+dTs
+dTs
 dTs
 dTs
 dTs
@@ -103501,7 +103484,7 @@ hBr
 qck
 jOe
 bYV
-aEq
+lSl
 aEq
 fdk
 hlu
@@ -103509,7 +103492,7 @@ lwm
 lwm
 lwm
 lwm
-gFK
+dss
 gdW
 dEo
 dEn
@@ -103606,14 +103589,14 @@ bkj
 blj
 att
 biy
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
+dTs
+dTs
+dTs
+dTs
+dTs
+dTs
+dTs
+dTs
 dTs
 dTs
 dTs
@@ -103732,11 +103715,11 @@ cll
 cWE
 dkc
 peQ
-peQ
-tFW
+ajG
+oQx
 bYV
 aEq
-aEq
+lSl
 fdk
 hlu
 xoO
@@ -103841,13 +103824,13 @@ rtX
 biy
 biy
 biy
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
+dTs
+dTs
+dTs
+dTs
+dTs
+dTs
+dTs
 dTs
 dTs
 dTs
@@ -104075,11 +104058,11 @@ blj
 ctg
 dTs
 biy
-mxQ
-mxQ
-mxQ
-mxQ
-mxQ
+dTs
+dTs
+dTs
+dTs
+dTs
 biy
 biy
 dTs
@@ -104293,8 +104276,8 @@ vit
 wDA
 bRg
 bRg
-bRg
-lIg
+pnG
+wjr
 dTs
 dTs
 bgH
@@ -104526,7 +104509,7 @@ dTs
 dTs
 xix
 pxa
-pxa
+vit
 pxa
 fgl
 noc
@@ -105616,8 +105599,8 @@ ghQ
 ghQ
 ghQ
 ghQ
-ghQ
 uHV
+ghQ
 ghQ
 ghQ
 ghQ
@@ -105931,7 +105914,7 @@ dTs
 dTs
 dTs
 ahV
-bzV
+rzf
 bzV
 bzV
 bzV
@@ -106166,7 +106149,7 @@ azF
 aaB
 abZ
 abZ
-nBk
+abZ
 abZ
 abZ
 abZ
@@ -107569,8 +107552,8 @@ bRg
 bgr
 aXW
 blT
-buj
-cFU
+nrl
+aZk
 bij
 aPk
 ftw
@@ -109863,7 +109846,7 @@ dTs
 acu
 "}
 (173,1,1) = {"
-aaK
+acu
 dTs
 dTs
 dTs
@@ -112999,7 +112982,7 @@ adK
 aMf
 aMp
 aMf
-aMf
+uqo
 aZI
 baX
 afL
@@ -113215,7 +113198,7 @@ alj
 azT
 azT
 sDw
-aKA
+iWY
 aJY
 lEv
 aJY
@@ -113232,7 +113215,7 @@ aHG
 adK
 aMf
 aMq
-aMg
+hJX
 aMg
 aTr
 baX
@@ -113449,7 +113432,7 @@ alj
 azT
 azT
 aKA
-iWY
+aKA
 doT
 aKA
 aKy
@@ -113736,7 +113719,7 @@ aMz
 caH
 cbD
 civ
-caH
+xCj
 aOG
 dTs
 dTs
@@ -115139,7 +115122,7 @@ aNC
 aNC
 aMz
 cbD
-oWr
+civ
 caH
 cdw
 cdw
@@ -115148,7 +115131,7 @@ coI
 cdw
 cdv
 cer
-gXL
+cer
 cer
 dTs
 wcO
@@ -115365,7 +115348,7 @@ ciU
 caH
 caH
 caH
-caH
+xCj
 caH
 caH
 caH
@@ -115374,6 +115357,7 @@ caH
 caH
 cbD
 civ
+xCj
 caH
 caH
 caH
@@ -115381,8 +115365,7 @@ caH
 caH
 caH
 caH
-caH
-caH
+xCj
 caH
 bnA
 emI
@@ -116769,7 +116752,7 @@ caH
 caH
 aMW
 caH
-caH
+xCj
 caH
 aOz
 wCn
@@ -124017,7 +124000,7 @@ dTs
 dTs
 dTs
 dTs
-akP
+bqp
 bqp
 bkm
 bqp
@@ -124252,7 +124235,7 @@ dTs
 dTs
 dTs
 dTs
-akP
+bqp
 dTs
 dTs
 dTs
