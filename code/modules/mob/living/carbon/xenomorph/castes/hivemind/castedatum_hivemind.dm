@@ -39,6 +39,7 @@
 		/datum/action/xeno_action/change_form,
 		/datum/action/xeno_action/return_to_core,
 		/datum/action/xeno_action/rally_hive/hivemind,
+		/datum/action/xeno_action/command_minions,
 	)
 
 /datum/xeno_caste/hivemind/on_caste_applied(mob/xenomorph)
@@ -68,4 +69,5 @@
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/activable/secrete_resin/ranged/slow,
 		/datum/action/xeno_action/rally_hive/hivemind,
+		/datum/action/xeno_action/command_minions,
 	)

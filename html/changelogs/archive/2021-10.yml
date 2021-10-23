@@ -177,3 +177,14 @@
   - bugfix: Some alerts have been made more accurate
   jroinc:
   - rscdel: Removes obtainable zombium
+2021-10-22:
+  SplinterGP:
+  - refactor: refactored foam code to more modern standards and to fix other stuff,
+      foam now applies reagents on contact properly (beware of razorburn) and has
+      the color of the chem used for the foam.
+  ivanmixo:
+  - bugfix: the combat messages prefs are no longer inverted
+2021-10-23:
+  jroinc:
+  - balance: ayy doors aren't paper-machie anymore
+  - balance: Razorburn is less immediately lethal now

@@ -33,7 +33,8 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 	//Have we reached our goal node yet?
 	while(current_node != goal_node)
 		//Check all node, create node path for all of them
-		for(var/obj/effect/ai_node/node_to_check AS in current_node.adjacent_nodes)
+		for(var/direction in current_node.adjacent_nodes)
+			var/obj/effect/ai_node/node_to_check = current_node.adjacent_nodes[direction]
 			if(paths_to_check[node_to_check] || paths_checked[node_to_check]) //We already found a better path to get to this node
 				continue
 			paths_to_check[node_to_check] = new/datum/node_path(current_node, node_to_check, goal_node, current_path?.distance_walked)
@@ -57,19 +58,43 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 /obj/effect/ai_node/goal
 	name = "AI goal"
 	invisibility = INVISIBILITY_OBSERVER
-	color = "#1c0bb3"
 	///The identifier of this ai goal
 	var/identifier = IDENTIFIER_XENO
+	///Who made that ai_node
+	var/mob/creator
+	///The image added to the creator screen
+	var/image/goal_image
 
-/obj/effect/ai_node/goal/Initialize()
+/obj/effect/ai_node/goal/Initialize(loc, mob/creator)
 	. = ..()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_GOAL_SET, identifier, src)
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, .proc/clean_goal_node)
 	GLOB.goal_nodes[identifier] = src
+	if(creator)
+		src.creator = creator
+		RegisterSignal(creator, COMSIG_PARENT_QDELETING, .proc/clean_creator)
+		goal_image = image('icons/mob/actions.dmi', src, "minion_rendez_vous")
+		goal_image.layer = HUD_PLANE
+		goal_image.alpha = 180
+		goal_image.pixel_y += 10
+		animate(goal_image, pixel_y = pixel_y - 3, time = 7, loop = -1, easing = EASE_OUT)
+		animate(pixel_y = pixel_y + 3, time = 7, loop = -1, easing = EASE_OUT)
+		creator.client.images += goal_image
+
+/obj/effect/ai_node/goal/LateInitialize()
+	make_adjacents(TRUE)
 
 /obj/effect/ai_node/goal/Destroy()
 	. = ..()
 	GLOB.goal_nodes -= identifier
+	if(creator)
+		creator.client.images -= goal_image
+
+///Null creator to prevent harddel
+/obj/effect/ai_node/goal/proc/clean_creator()
+	SIGNAL_HANDLER
+	creator.client.images -= goal_image
+	creator = null
 
 ///Delete this ai_node goal
 /obj/effect/ai_node/goal/proc/clean_goal_node()

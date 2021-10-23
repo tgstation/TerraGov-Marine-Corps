@@ -149,18 +149,18 @@ export const GameSettings = (props, context) => {
                 label="Show self combat messages"
                 value="mute_self_combat_messages"
                 action="mute_self_combat_messages"
-                leftValue={1}
+                leftValue={0}
                 leftLabel={'Enabled'}
-                rightValue={0}
+                rightValue={1}
                 rightLabel={'Disabled'}
               />
               <ToggleFieldPreference
                 label="Show others combat messages"
                 value="mute_others_combat_messages"
                 action="mute_others_combat_messages"
-                leftValue={1}
+                leftValue={0}
                 leftLabel={'Enabled'}
-                rightValue={0}
+                rightValue={1}
                 rightLabel={'Disabled'}
               />
             </LabeledList>

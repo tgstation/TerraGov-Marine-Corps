@@ -19,6 +19,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/admin_building)
+"bH" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
 "bK" = (
 /obj/machinery/vending/cola,
 /turf/open/floor,
@@ -262,6 +267,15 @@
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
+"ou" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/red2{
+	dir = 1
+	},
+/area/bigredv2/outside/admin_building)
 "oB" = (
 /turf/open/floor/freezer,
 /area/bigredv2/outside/admin_building)
@@ -310,6 +324,7 @@
 "qc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "qI" = (
@@ -344,6 +359,14 @@
 "sA" = (
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
+"sC" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
 "sE" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/podhatch/floor,
@@ -384,6 +407,10 @@
 	dir = 6
 	},
 /obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"ut" = (
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "uu" = (
@@ -459,6 +486,13 @@
 	name = "\improper Operations Armory"
 	},
 /turf/open/floor,
+/area/bigredv2/outside/admin_building)
+"xx" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/red2{
+	dir = 1
+	},
 /area/bigredv2/outside/admin_building)
 "xA" = (
 /obj/machinery/light,
@@ -556,6 +590,10 @@
 	},
 /turf/open/floor/tile/dark/blue2,
 /area/bigredv2/outside/admin_building)
+"AA" = (
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/admin_building)
 "AK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/light{
@@ -626,7 +664,10 @@
 	},
 /area/bigredv2/outside/admin_building)
 "CQ" = (
-/turf/open/floor,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/red2{
+	dir = 4
+	},
 /area/bigredv2/outside/admin_building)
 "CU" = (
 /obj/structure/window/framed/colony,
@@ -777,6 +818,14 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
+"Kt" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
 "Ky" = (
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 1
@@ -890,6 +939,12 @@
 "Pq" = (
 /obj/structure/sign/safety/computer,
 /turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"Px" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/red2/corner{
+	dir = 4
+	},
 /area/bigredv2/outside/admin_building)
 "PN" = (
 /obj/effect/landmark/start/job/survivor,
@@ -1092,6 +1147,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
@@ -1118,6 +1174,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
+/obj/effect/ai_node,
 /turf/open/floor/grimy,
 /area/bigredv2/outside/admin_building)
 "YO" = (
@@ -1130,6 +1187,7 @@
 	dir = 9
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "Zk" = (
@@ -1292,14 +1350,14 @@ Bw
 oq
 Bw
 Bw
-XE
+Kt
 mo
 WH
 fj
 fj
 fj
 WH
-wR
+xx
 vW
 CU
 ZJ
@@ -1403,11 +1461,11 @@ Sb
 ZX
 ZX
 sT
-UY
+ou
 fO
 Ds
 dN
-fO
+ut
 ng
 fO
 fO
@@ -1476,7 +1534,7 @@ qc
 xS
 Zg
 sT
-UY
+ou
 Wy
 Nv
 Nv
@@ -1550,11 +1608,11 @@ BN
 (16,1,1) = {"
 ml
 xc
-Nv
-ng
+CQ
+sC
 fO
 Nv
-Nv
+CQ
 qW
 sT
 wc
@@ -1589,7 +1647,7 @@ fO
 fO
 Bn
 fO
-fO
+ut
 UW
 sT
 sT
@@ -1745,7 +1803,7 @@ FW
 Sw
 fj
 fj
-fj
+bH
 ie
 Ga
 Ga
@@ -1759,19 +1817,19 @@ BN
 BN
 xc
 fO
-Nv
-Nv
-Nv
-fO
-Nv
+CQ
 Nv
 Nv
 fO
 Nv
 Nv
+Nv
+fO
+CQ
+Nv
 fO
 Nv
-lt
+Px
 vW
 sT
 tW
@@ -1880,10 +1938,10 @@ qW
 sT
 xG
 GT
-GT
+AA
 eq
 GT
-CQ
+GT
 "}
 (29,1,1) = {"
 BN
