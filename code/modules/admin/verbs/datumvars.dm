@@ -11,9 +11,7 @@
 	return TRUE
 
 /client/can_vv_get(var_name)
-	if(var_name != "address" && var_name != "computer_id")
-		return TRUE
-	if(check_rights(R_DEBUG))
+	if(var_name != "address" && var_name != "computer_id" || check_rights(R_DEBUG))
 		return TRUE
 	return FALSE
 
