@@ -23,7 +23,7 @@
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
 		/obj/item/weapon/gun/shotgun/double/derringer,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/weapon/throwing_knife,
+		/obj/item/stack/throwing_knife,
 	)
 
 /obj/item/clothing/shoes/marine/Initialize()

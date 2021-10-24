@@ -2,7 +2,7 @@
 	set category = "Admin"
 	set name = "Player Panel"
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_BAN))
 		return
 
 	var/dat = {"<html>
@@ -305,7 +305,7 @@
 	set category = "Admin"
 	set name = "Player Panel Extended"
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_BAN))
 		return
 
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"

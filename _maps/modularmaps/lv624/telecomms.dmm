@@ -88,10 +88,6 @@
 	},
 /area/lv624/lazarus/comms)
 "l" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/brown{
 	dir = 9
@@ -125,6 +121,10 @@
 	},
 /area/lv624/lazarus/comms)
 "q" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/brown{
 	dir = 9
@@ -366,7 +366,7 @@ B
 B
 I
 m
-q
+x
 x
 I
 B
@@ -383,7 +383,7 @@ x
 x
 x
 x
-x
+l
 x
 x
 x
@@ -462,8 +462,8 @@ B
 "}
 (8,1,1) = {"
 d
-k
 V
+k
 V
 V
 V
@@ -473,8 +473,8 @@ u
 V
 V
 V
-V
 k
+V
 d
 "}
 (9,1,1) = {"
@@ -553,7 +553,7 @@ R
 x
 x
 x
-L
+q
 x
 x
 x
@@ -570,7 +570,7 @@ B
 B
 I
 x
-l
+L
 x
 I
 B
