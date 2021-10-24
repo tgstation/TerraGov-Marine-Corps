@@ -481,7 +481,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set name = "Check Bomb Impact"
 	set category = "Debug"
 
-	if(!check_rights(R_FUN))
+	if(!check_rights(R_DEBUG))
 		return
 
 	var/devastation_range = 0
