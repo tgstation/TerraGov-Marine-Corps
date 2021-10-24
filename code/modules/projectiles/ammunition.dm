@@ -32,9 +32,9 @@
 		RegisterSignal(parent_gun, COMSIG_ITEM_REMOVED_INVENTORY, .proc/process_removed_from_inventory)
 	if(!spawn_loaded)
 		return
-	for(var/i to max_rounds)
+	for(var/i, i <= max_rounds, i++)
 		chamber_items += new allowed_ammo_types[1]()
-	
+
 
 
 /datum/ammo_reciever/proc/process_fire(datum/source, atom/target, obj/item/weapon/gun/fired_gun)

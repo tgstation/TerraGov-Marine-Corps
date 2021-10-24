@@ -45,7 +45,7 @@
 	//Ammo will be replaced on New() for things that do not use mags..
 	var/datum/ammo/ammo = null					//How the bullet will behave once it leaves the gun, also used for basic bullet damage and effects, etc.
 
-	var/obj/ammo_reciever/reciever = /obj/ammo_reciever
+	var/obj/ammo_reciever/reciever = /datum/ammo_reciever
 	var/obj/item/ammo_magazine/current_mag
 
 	//Basic stats.
