@@ -32,6 +32,10 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/main_hall)
+"hE" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle9)
 "hJ" = (
 /obj/machinery/floodlight/colony{
 	dir = 8
@@ -85,10 +89,6 @@
 "ov" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle7)
-"oO" = (
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/compound/ne)
 "pc" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -154,21 +154,26 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
+"tI" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle9)
 "tQ" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/lv624/ground/compound/ne)
-"uz" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle9)
 "uR" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle9)
+"uV" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle7)
 "vw" = (
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/plating/ground/dirt,
@@ -227,11 +232,6 @@
 "zj" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle7)
-"zy" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "AV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -298,6 +298,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
+"Im" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle7)
 "IA" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -310,10 +314,6 @@
 	dir = 8
 	},
 /area/lv624/ground/jungle7)
-"IQ" = (
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle9)
 "IT" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
@@ -327,10 +327,6 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle9)
-"Ke" = (
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle7)
 "Kf" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
@@ -363,6 +359,10 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle9)
+"Lq" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/ground/grass,
+/area/lv624/ground/compound/ne)
 "MK" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -374,9 +374,20 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle9)
+"Oi" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/ne)
 "On" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/main_hall)
+"Po" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/ne)
 "Pr" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -391,10 +402,6 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle7)
-"PD" = (
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/ground/grass,
-/area/lv624/ground/compound/ne)
 "PM" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -432,11 +439,6 @@
 /obj/structure/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
-"VM" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/compound/ne)
 "VQ" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
@@ -496,8 +498,8 @@ pI
 bA
 SX
 HZ
-VM
-qj
+YD
+Oi
 HZ
 Jv
 yC
@@ -552,12 +554,12 @@ DF
 DF
 DF
 TU
-uz
+tI
 Xt
 wT
 "}
 (4,1,1) = {"
-Ke
+Im
 bA
 QM
 SX
@@ -591,7 +593,7 @@ Ss
 yC
 se
 bv
-IQ
+hE
 DF
 yC
 yC
@@ -718,7 +720,7 @@ SX
 HZ
 HZ
 qj
-oO
+Po
 HZ
 HZ
 HZ
@@ -744,14 +746,14 @@ AV
 AV
 AV
 AV
-AV
-AV
-AV
-AV
-AV
-AV
-AV
 mC
+AV
+AV
+AV
+AV
+AV
+AV
+AV
 sG
 "}
 (13,1,1) = {"
@@ -760,7 +762,7 @@ ps
 bA
 lF
 HZ
-Id
+HZ
 HZ
 HZ
 HZ
@@ -783,12 +785,12 @@ bA
 SX
 HZ
 HZ
+Id
 HZ
 HZ
 HZ
 HZ
-HZ
-HZ
+Id
 HZ
 HZ
 HZ
@@ -839,7 +841,7 @@ HZ
 HZ
 HZ
 HZ
-Id
+HZ
 EK
 "}
 (17,1,1) = {"
@@ -914,7 +916,7 @@ ps
 ps
 ps
 Vd
-zy
+uV
 pc
 XC
 qD
@@ -926,7 +928,7 @@ IA
 GL
 QV
 xI
-PD
+Lq
 xI
 wD
 "}

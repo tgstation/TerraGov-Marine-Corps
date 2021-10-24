@@ -131,9 +131,10 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		return 2
 	return ..()
 
-/obj/docking_port/mobile/supply/proc/buy()
+/obj/docking_port/mobile/supply/proc/buy(mob/user)
 	if(!length(SSpoints.shoppinglist[faction]))
 		return
+	log_game("Supply pack orders have been purchased by [key_name(user)]")
 
 	var/list/empty_turfs = list()
 	for(var/place in shuttle_areas)
@@ -479,7 +480,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 						var/datum/supply_packs/SP = SSpoints.supply_packs[i]
 						cart_cost += SP.cost * shopping_cart[SP.type]
 					var/excess_points = SSpoints.supply_points[ui_user.faction] - cart_cost
-					var/number_to_buy = round(excess_points / P.cost)
+					var/number_to_buy = min(round(excess_points / P.cost), 20) //hard cap at 20
 					if(shopping_cart[P.type])
 						shopping_cart[P.type] += number_to_buy
 					else
@@ -496,7 +497,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 					addtimer(CALLBACK(supply_shuttle, /obj/docking_port/mobile/supply/proc/sell), 15 SECONDS)
 			else
 				var/obj/docking_port/D = SSshuttle.getDock(home_id)
-				supply_shuttle.buy()
+				supply_shuttle.buy(usr)
 				playsound(D.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
 				SSshuttle.moveShuttle(shuttle_id, home_id, TRUE)
 			. = TRUE

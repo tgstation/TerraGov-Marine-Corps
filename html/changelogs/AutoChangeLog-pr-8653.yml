@@ -1,0 +1,6 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - rscadd: "Added Chigusa support for the AI pathing."
+  - bugfix: "Removes some incorrectly stacked resin landmarks on Chigusa."
+  - bugfix: "Removes a ship area that was incorrectly applied to Chigusa caves."

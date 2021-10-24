@@ -1,7 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - rscadd: "You can now use grills and griddles to grill food"
-  - rscadd: "You can make raw meatballs from cutting cuttlettes, which you get from cutting meat"
-  - rscadd: "Grilling raw meatballs makes grilled meatballs which you can put into buns to make burgers"
-  - expansion: "grill added to maint on all ships and griddles to all ship kitchens, new hydroponics area for PoS, added hydro gear to some maps that were missing it"

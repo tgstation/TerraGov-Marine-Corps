@@ -131,3 +131,43 @@
 	// *** Defense *** //
 	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 25, "fire" = 30, "acid" = 18)
 
+/datum/xeno_caste/wraith/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "A xenomorph that has perfected the manipulation of space and time. Its movements appear quick and distorted."
+	primordial_message = "We control the very fabric of reality." //Help
+	upgrade = XENO_UPGRADE_FOUR
+
+	// *** Melee Attacks *** //
+	melee_damage = 20
+
+	// *** Speed *** //
+	speed = -1.25
+
+	// *** Plasma *** //
+	plasma_max = 400
+	plasma_gain = 25
+
+	// *** Health *** //
+	max_health = 260
+
+	// *** Evolution *** //
+	upgrade_threshold = 580
+
+	// *** Defense *** //
+	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 25, "fire" = 30, "acid" = 18)
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/activable/blink,
+		/datum/action/xeno_action/activable/banish,
+		/datum/action/xeno_action/recall,
+		/datum/action/xeno_action/place_warp_shadow,
+		/datum/action/xeno_action/hyperposition,
+		/datum/action/xeno_action/phase_shift,
+		/datum/action/xeno_action/resync,
+		/datum/action/xeno_action/timestop,
+	)
+

@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aC" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
 "aK" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
@@ -23,7 +27,7 @@
 	},
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
-"dG" = (
+"dv" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/structure/window/reinforced{
 	dir = 4
@@ -35,6 +39,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/grass,
 /area/lv624/lazarus/internal_affairs)
 "eq" = (
@@ -60,6 +65,14 @@
 	dir = 1
 	},
 /area/lv624/lazarus/internal_affairs)
+"fi" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/lv624/lazarus/internal_affairs)
 "fA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/airlock/mainship/generic/corporate{
@@ -73,6 +86,14 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
+/area/lv624/lazarus/internal_affairs)
+"gB" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
 "gU" = (
 /obj/machinery/light/small{
@@ -140,15 +161,6 @@
 	},
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
-"kz" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/blue/whiteblue{
-	dir = 1
-	},
-/area/lv624/lazarus/internal_affairs)
 "lf" = (
 /obj/machinery/light{
 	dir = 8
@@ -180,6 +192,15 @@
 /obj/item/pinpointer,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
+"oV" = (
+/obj/machinery/door_control{
+	id = "secure_blast";
+	name = "Vault Access";
+	pixel_x = -25
+	},
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
 "qp" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/blue/whiteblue{
@@ -203,15 +224,6 @@
 "sS" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
-/area/lv624/lazarus/internal_affairs)
-"tF" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/blue/whiteblue{
-	dir = 1
-	},
 /area/lv624/lazarus/internal_affairs)
 "vo" = (
 /obj/item/bedsheet/rd,
@@ -270,16 +282,6 @@
 "CI" = (
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
-"CY" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
-	},
-/obj/structure/cable,
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/tile/blue/whiteblue{
-	dir = 8
-	},
-/area/lv624/lazarus/internal_affairs)
 "Dg" = (
 /obj/item/spacecash/c100{
 	pixel_x = -12
@@ -307,9 +309,15 @@
 /obj/structure/closet/gmcloset,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
-"Fx" = (
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/wood,
+"FK" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
 /area/lv624/lazarus/internal_affairs)
 "FP" = (
 /obj/item/shard,
@@ -337,6 +345,16 @@
 "Hx" = (
 /obj/structure/bookcase,
 /turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"HM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/obj/structure/cable,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
+	},
 /area/lv624/lazarus/internal_affairs)
 "HP" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -428,6 +446,16 @@
 /obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/internal_affairs)
+"MG" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/lv624/lazarus/internal_affairs)
 "MR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -445,15 +473,6 @@
 	name = "Corporate Dome"
 	},
 /turf/open/floor/podhatch/floor,
-/area/lv624/lazarus/internal_affairs)
-"NK" = (
-/obj/machinery/door_control{
-	id = "secure_blast";
-	name = "Vault Access";
-	pixel_x = -25
-	},
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "NN" = (
 /obj/machinery/vending/coffee,
@@ -531,13 +550,6 @@
 /obj/structure/bed/fancy,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
-"Ve" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
-/turf/open/floor/tile/blue/whitebluefull,
-/area/lv624/lazarus/internal_affairs)
 "Vq" = (
 /obj/machinery/light/small,
 /turf/open/floor/wood,
@@ -593,13 +605,6 @@
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
-/area/lv624/lazarus/internal_affairs)
-"XK" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
-	},
-/turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
 "XP" = (
 /obj/item/book/manual/security_space_law,
@@ -665,7 +670,7 @@ Tk
 vo
 Xd
 EF
-XK
+fi
 If
 Xd
 Of
@@ -678,7 +683,7 @@ Hq
 Hq
 Vu
 Hx
-Fx
+aC
 sS
 it
 EF
@@ -686,7 +691,7 @@ ky
 YP
 it
 CI
-Fx
+aC
 no
 Vu
 Hq
@@ -745,17 +750,17 @@ Vu
 (8,1,1) = {"
 fA
 Ge
-tF
+MG
 Ge
 Ge
 Ge
 yr
-dG
+dv
 KD
 Jr
 QA
 PF
-kz
+FK
 Ge
 Wd
 "}
@@ -766,7 +771,7 @@ gU
 hU
 hU
 hU
-CY
+HM
 eE
 if
 hU
@@ -804,7 +809,7 @@ Qi
 xH
 jv
 Xd
-NK
+oV
 CI
 cf
 Vu
@@ -814,7 +819,7 @@ Hq
 Hq
 Vu
 rO
-Fx
+aC
 CI
 it
 EF
@@ -835,7 +840,7 @@ CI
 UW
 Xd
 Rb
-Ve
+gB
 fb
 Xd
 os

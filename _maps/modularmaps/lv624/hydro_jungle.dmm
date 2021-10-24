@@ -50,10 +50,6 @@
 	dir = 8
 	},
 /area/lv624/ground/jungle9)
-"ej" = (
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle7)
 "eo" = (
 /obj/structure/bed/chair/office{
 	dir = 8
@@ -144,10 +140,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
-"mb" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/compound/ne)
 "nd" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
@@ -161,6 +153,12 @@
 /obj/structure/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
+"qj" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 8
+	},
+/area/lv624/ground/jungle7)
 "sZ" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -178,10 +176,6 @@
 "uA" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle9)
-"vi" = (
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "vS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -268,10 +262,6 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle9)
-"Cd" = (
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/ground/grass,
-/area/lv624/ground/compound/ne)
 "CE" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
@@ -344,18 +334,16 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle9)
-"Ii" = (
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/plating/ground/dirtgrassborder/corner{
-	dir = 8
-	},
-/area/lv624/ground/jungle7)
 "Is" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/jungle7)
 "Ix" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
+"Iy" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle7)
 "Jm" = (
 /obj/structure/jungle/vines,
 /obj/structure/jungle/vines,
@@ -505,6 +493,10 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle9)
+"Wv" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle9)
 "Wz" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -546,6 +538,10 @@
 	dir = 8
 	},
 /area/lv624/ground/jungle7)
+"YW" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/ground/grass,
+/area/lv624/ground/compound/ne)
 "Zw" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -561,7 +557,7 @@
 
 (1,1,1) = {"
 PR
-Ii
+qj
 Vq
 WT
 Ix
@@ -577,7 +573,7 @@ jf
 Xl
 jf
 jf
-vi
+Wv
 CR
 Xl
 "}
@@ -660,7 +656,7 @@ GW
 jf
 RS
 MK
-vi
+Wv
 Xl
 jf
 jf
@@ -717,7 +713,7 @@ RS
 gZ
 CE
 ZF
-ej
+Iy
 Vq
 yd
 ly
@@ -916,7 +912,7 @@ wR
 wR
 xR
 Vq
-ej
+Iy
 Vq
 EC
 Vq
@@ -948,7 +944,7 @@ wf
 wf
 wf
 xw
-Cd
+YW
 jf
 RS
 jf
@@ -989,7 +985,7 @@ CE
 xR
 Vy
 Mk
-mb
+Mk
 Mk
 vT
 Sx

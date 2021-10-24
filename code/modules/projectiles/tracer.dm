@@ -15,3 +15,8 @@
 	M.Turn(angle_override)
 	M.Scale(1, scaling)
 	transform = M
+
+///Signal handler to delete this effect
+/atom/movable/hitscan_projectile_effect/proc/remove_effect()
+	SIGNAL_HANDLER
+	qdel(src)
