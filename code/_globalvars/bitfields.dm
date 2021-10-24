@@ -15,7 +15,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"SOUND" = R_SOUND,
 		"SPAWN" = R_SPAWN,
 		"DBRANKS" = R_DBRANKS,
-		"LOG" = R_LOG
+		"LOG" = R_LOG,
 		),
 	"machine_stat" = list(
 		"BROKEN" = BROKEN,
