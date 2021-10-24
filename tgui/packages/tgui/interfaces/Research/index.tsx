@@ -74,10 +74,14 @@ const constructResourceInfo = (
           icon="prescription-bottle"
           onClick={() => act('start_research')} />
       </Flex.Item>
-      <Flex.Item basis="auto" style={{
-        "display": "flex",
-        "justify-content": "center",
-      }}>
+      <Flex.Item
+        basis="auto"
+        overflow="hidden"
+        position="relative"
+        style={{
+          "display": "flex",
+          "justify-content": "center",
+        }}>
         <Box
           as="img"
           src={`data:image/jpeg;base64,
@@ -88,10 +92,6 @@ const constructResourceInfo = (
             "width": "190px",
             transform: "scale(2) translate(0, -10%)",
             "-ms-interpolation-mode": "nearest-neighbor",
-            // "image-rendering": "-webkit-optimize-contrast",
-            // "image-rendering": "-moz-crisp-edges",
-            // "image-rendering": "-o-pixelated",
-            // "image-rendering": "pixelated",
           }} />
       </Flex.Item>
     </Flex>
