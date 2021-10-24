@@ -279,3 +279,9 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Unlocks the primordial crushers advance. An ability that allows them to charge up their charge and release it in a sudden burst."
 	psypoint_cost = 225
 	icon = "primocrush"
+
+/datum/hive_upgrade/primordial/hunter
+	name = PRIMORDIAL_HUNTER
+	desc = "Replaces the hunters stealth ability with the ability to disguise itself as any object."
+	psypoint_cost = 125
+	icon = "primohunter"

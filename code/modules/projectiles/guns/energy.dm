@@ -642,11 +642,10 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 23, "muzzle_y" = 22,"rail_x" = 12, "rail_y" = 22, "under_x" = 16, "under_y" = 14, "stock_x" = 22, "stock_y" = 12)
 
-	aim_slowdown = 0.2
 	wield_delay = 0.6 SECONDS
 	scatter = 0
 	scatter_unwielded = 0
-	fire_delay = 0.25 SECONDS
+	fire_delay = 0.15 SECONDS
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.9
 	scatter_unwielded = 0
@@ -660,7 +659,7 @@
 /datum/lasrifle/base/energy_pistol_mode/standard
 	charge_cost = 20
 	ammo = /datum/ammo/energy/lasgun/marine/pistol
-	fire_delay = 0.25 SECONDS
+	fire_delay = 0.15 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Pistol Standard.ogg'
 	message_to_user = "You set the laser pistol's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
