@@ -504,7 +504,7 @@
 	req_id_role = CORPORATE_LIAISON
 	scan_name = TRUE
 
-	/obj/item/storage/pill_bottle/attackby(obj/item/I, mob/user, params)
+/obj/item/storage/pill_bottle/attackby(obj/item/I, mob/user, params)
 		. = ..()
 		if(.)
 			return
