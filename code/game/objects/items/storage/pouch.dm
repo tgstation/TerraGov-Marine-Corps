@@ -74,7 +74,7 @@
 	desc = "A pouch for your knives."
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
-		/obj/item/weapon/throwing_knife,
+		/obj/item/stack/throwing_knife,
 		/obj/item/attachable/bayonet,
 	)
 	icon_state = "bayonet"

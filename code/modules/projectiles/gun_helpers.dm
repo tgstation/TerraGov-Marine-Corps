@@ -364,7 +364,7 @@ should be alright.
 	return FALSE
 
 ///updates the magazine overlay if it needs to be updated
-/obj/item/weapon/gun/proc/update_mag_overlay(mob/user)
+/obj/item/weapon/gun/proc/update_mag_overlay()
 	var/image/overlay = attachment_overlays[ATTACHMENT_SLOT_MAGAZINE]
 	overlays -= overlay
 	if(current_mag && current_mag.bonus_overlay)

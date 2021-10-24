@@ -48,6 +48,7 @@
 #include "code\__DEFINES\factions.dm"
 #include "code\__DEFINES\factory.dm"
 #include "code\__DEFINES\flags.dm"
+#include "code\__DEFINES\foam.dm"
 #include "code\__DEFINES\footsteps.dm"
 #include "code\__DEFINES\implants.dm"
 #include "code\__DEFINES\instruments.dm"

@@ -180,7 +180,8 @@ SUBSYSTEM_DEF(monitor)
  */
 /datum/controller/subsystem/monitor/proc/balance_xeno_team()
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/xeno_alive_plus_burrowed = length(GLOB.alive_xeno_list) + (xeno_job.total_positions - xeno_job.current_positions)
+	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	var/xeno_alive_plus_burrowed = length(HN.get_total_xeno_number()) + (xeno_job.total_positions - xeno_job.current_positions)
 	var/buff_needed_estimation = min( MAXIMUM_XENO_BUFF_POSSIBLE , 1 + (xeno_job.total_positions-xeno_job.current_positions) / (xeno_alive_plus_burrowed ? xeno_alive_plus_burrowed : 1))
 	// No need to ask admins every time
 	if(GLOB.xeno_stat_multiplicator_buff != 1)

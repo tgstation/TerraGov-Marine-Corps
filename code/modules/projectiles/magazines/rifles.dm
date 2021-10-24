@@ -311,11 +311,11 @@
 //Marine magazine automatic sniper, or the T-81.
 /obj/item/ammo_magazine/rifle/autosniper
 	name = "\improper T-81 automatic sniper rifle magazine"
-	desc = "A box magazine filled with 8.6x70mm rifle rounds for the T-81."
+	desc = "A box magazine filled with low pressure 8.6x70mm rifle rounds for the T-81."
 	caliber = CALIBER_86X70
 	icon_state = "t81"
 	default_ammo = /datum/ammo/bullet/sniper/auto
-	max_rounds = 12
+	max_rounds = 20
 	gun_type = /obj/item/weapon/gun/rifle/standard_autosniper
 	icon_state_mini = "mag_sniper"
 

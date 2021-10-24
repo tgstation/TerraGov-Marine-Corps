@@ -321,11 +321,11 @@
 			var/datum/action/action = action_to_update
 			action.update_button_icon()
 
-	update_item_state(user)
-	update_mag_overlay(user)
+	update_item_state()
+	update_mag_overlay()
 
 
-/obj/item/weapon/gun/update_item_state(mob/user)
+/obj/item/weapon/gun/update_item_state()
 	item_state = "[base_gun_icon][flags_item & WIELDED ? "_w" : ""]"
 
 
@@ -491,6 +491,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		replace_ammo(,magazine)
 		if(!in_chamber)
 			load_into_chamber()
+	magazine.on_inserted(src)
 
 	update_icon(user)
 	user.hud_used.update_ammo_hud(user, src)
@@ -531,6 +532,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	playsound(loc, unload_sound, 25, 1, 5)
 	user?.visible_message(span_notice("[user] unloads [current_mag] from [src]."),
 	span_notice("You unload [current_mag] from [src]."), null, 4)
+	current_mag.on_removed(src)
 	current_mag.update_icon()
 	UnregisterSignal(current_mag, COMSIG_ITEM_REMOVED_INVENTORY)
 	current_mag = null
