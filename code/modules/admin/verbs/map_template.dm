@@ -1,5 +1,5 @@
 /datum/admins/proc/map_template_load()
-	set category = "Debug"
+	set category = "FUN"
 	set name = "Map template - Place"
 
 	if(!check_rights(R_FUN))
@@ -42,7 +42,7 @@
 
 
 /datum/admins/proc/map_template_upload()
-	set category = "Debug"
+	set category = "FUN"
 	set name = "Map Template - Upload"
 
 	if(!check_rights(R_FUN))
