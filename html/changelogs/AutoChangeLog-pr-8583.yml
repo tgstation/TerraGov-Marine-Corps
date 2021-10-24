@@ -1,6 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - expansion: "Hivemind can command xeno ai"
-  - expansion: "Ai pathfinding is a bit better (avoid making huge mazes though)"
-  - qol: "Minions have their own minimap icon"
