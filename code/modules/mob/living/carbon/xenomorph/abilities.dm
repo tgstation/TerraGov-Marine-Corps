@@ -1141,7 +1141,7 @@
 /mob/living/carbon/xenomorph/proc/add_abilities()
 	for(var/action_path in xeno_caste.actions)
 		var/datum/action/xeno_action/action = new action_path()
-		if(SSticker.mode.flags_xeno_abilities & action.gamemode_flags)
+		if(SSticker.mode?.flags_xeno_abilities & action.gamemode_flags)
 			action.give_action(src)
 
 

@@ -10,6 +10,21 @@
 	obj_flags = NONE
 	explosion_block = 6
 
+/obj/machinery/door/poddoor/Initialize()
+	. = ..()
+	ADD_TRAIT(get_step(src, 0), TRAIT_TURF_AI_UNPASSABLE, SHUTTER_TRAIT)
+
+/obj/machinery/door/poddoor/Destroy()
+	REMOVE_TRAIT(get_step(src, 0), TRAIT_TURF_AI_UNPASSABLE, SHUTTER_TRAIT)
+	return ..()
+
+/obj/machinery/door/poddoor/open()
+	. = ..()
+	REMOVE_TRAIT(get_step(src, 0), TRAIT_TURF_AI_UNPASSABLE, SHUTTER_TRAIT)
+
+/obj/machinery/door/poddoor/close()
+	. = ..()
+	ADD_TRAIT(get_step(src, 0), TRAIT_TURF_AI_UNPASSABLE, SHUTTER_TRAIT)
 
 /obj/machinery/door/poddoor/Bumped(atom/AM)
 	if(!density)
@@ -223,6 +238,7 @@
 
 /obj/machinery/door/poddoor/timed_late/Initialize()
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH), .proc/open)
+	ADD_TRAIT(src, TRAIT_TURF_AI_UNPASSABLE, SHUTTER_TRAIT)
 	return ..()
 
 

@@ -52,7 +52,7 @@
 			if(!next_target)
 				return
 			change_action(MOVING_TO_ATOM, next_target)
-		if(MOVING_TO_NODE)
+		if(MOVING_TO_NODE, FOLLOWING_PATH)
 			var/atom/next_target = get_nearest_target(mob_parent, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 			if(!next_target)
 				if(can_heal && living_parent.health <= minimum_health * 2 * living_parent.maxHealth)

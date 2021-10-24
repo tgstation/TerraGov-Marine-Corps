@@ -379,8 +379,10 @@
 		anchored = !anchored
 		if(anchored)
 			user.visible_message("[user] tightens the bolts securing \the [src] to the floor.", "You tighten the bolts securing \the [src] to the floor.")
+			ADD_TRAIT(get_step(src, 0), TRAIT_TURF_AI_UNPASSABLE, MACHINERY_TRAIT)
 		else
 			user.visible_message("[user] unfastens the bolts securing \the [src] to the floor.", "You unfasten the bolts securing \the [src] to the floor.")
+			REMOVE_TRAIT(get_step(src, 0), TRAIT_TURF_AI_UNPASSABLE, MACHINERY_TRAIT)
 
 	else if(istype(I, /obj/item))
 		var/obj/item/to_stock = I

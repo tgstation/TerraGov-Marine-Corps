@@ -95,6 +95,9 @@
 #define REVIVE_TO_CRIT_TRAIT "revive_to_crit"
 #define GUN_TRAIT "gun" //Traits related to guns
 #define HUSK_TRAIT "husk"
+#define LAVA_TRAIT "lava"
+#define MACHINERY_TRAIT "machinery"
+#define SHUTTER_TRAIT "shutter"
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
 
@@ -142,3 +145,4 @@
 #define TRAIT_T_RAY_VISIBLE "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
 // turf traits
 #define TRAIT_TURF_FREEZE_BULLET "freeze_bullet" //Stop projectiles on this tiles
+#define TRAIT_TURF_AI_UNPASSABLE "ai_unpassable" //Prevent ai from going on this tile

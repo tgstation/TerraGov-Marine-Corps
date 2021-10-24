@@ -311,6 +311,7 @@
 
 /turf/open/lavaland/lava/New()
 	..()
+	ADD_TRAIT(src, TRAIT_TURF_AI_UNPASSABLE, LAVA_TRAIT)
 
 /turf/open/lavaland/lava/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
@@ -367,6 +368,7 @@
 			to_chat(user, span_notice("You construct a heatproof catwalk."))
 			playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
 			ChangeTurf(/turf/open/lavaland/catwalk/built)
+			REMOVE_TRAIT(src, TRAIT_TURF_AI_UNPASSABLE, LAVA_TRAIT)
 		else
 			to_chat(user, span_warning("You need four rods to build a heatproof catwalk."))
 		return
@@ -428,4 +430,5 @@
 		return
 	deconstructing = FALSE
 	playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
+	ADD_TRAIT(src, TRAIT_TURF_AI_UNPASSABLE, LAVA_TRAIT)
 	ChangeTurf(/turf/open/lavaland/lava)

@@ -35,6 +35,7 @@ stutter_step: a prob() chance to go left or right of the mob's direction towards
 	distances_to_maintain[target] = distance_to_maintain
 	atoms_to_walk_to[target] = atom_to_walk_to
 	stutter_step_prob[target] = stutter_step
+	RegisterSignal(target, COMSIG_PATHFINDER_SET_ATOM_TO_WALK_TO, .proc/change_target)
 
 /datum/element/pathfinder/process()
 	for(var/mob/mob_to_process AS in distances_to_maintain)
@@ -47,17 +48,20 @@ stutter_step: a prob() chance to go left or right of the mob's direction towards
 		mob_to_process.next_move_slowdown = 0
 		var/step_dir
 		if(get_dist(mob_to_process, atoms_to_walk_to[mob_to_process]) == distances_to_maintain[mob_to_process])
-			SEND_SIGNAL(mob_to_process, COMSIG_STATE_MAINTAINED_DISTANCE)
+			if(SEND_SIGNAL(mob_to_process, COMSIG_STATE_MAINTAINED_DISTANCE) & COMSIG_MAINTAIN_POSITION)
+				continue
 			if(!get_dir(mob_to_process, atoms_to_walk_to[mob_to_process])) //We're right on top, move out of it
 				step_dir = pick(CARDINAL_ALL_DIRS)
-				if(!mob_to_process.Move(get_step(mob_to_process, step_dir), step_dir))
+				var/turf/next_turf = get_step(mob_to_process, step_dir)
+				if(!HAS_TRAIT(next_turf, TRAIT_TURF_AI_UNPASSABLE) && !mob_to_process.Move(get_step(mob_to_process, step_dir), step_dir))
 					SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE, step_dir)
 				else if(ISDIAGONALDIR(step_dir))
 					mob_to_process.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_to_process.cached_multiplicative_slowdown //Not perfect but good enough
 				continue
 			if(prob(stutter_step_prob[mob_to_process]))
 				step_dir = pick(LeftAndRightOfDir(get_dir(mob_to_process, atoms_to_walk_to[mob_to_process])))
-				if(!mob_to_process.Move(get_step(mob_to_process, step_dir), step_dir))
+				var/turf/next_turf = get_step(mob_to_process, step_dir)
+				if(!HAS_TRAIT(next_turf, TRAIT_TURF_AI_UNPASSABLE) && !mob_to_process.Move(get_step(mob_to_process, step_dir), step_dir))
 					SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE, step_dir)
 				else if(ISDIAGONALDIR(step_dir))
 					mob_to_process.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_to_process.cached_multiplicative_slowdown
@@ -67,19 +71,24 @@ stutter_step: a prob() chance to go left or right of the mob's direction towards
 		else
 			step_dir = get_dir(mob_to_process, atoms_to_walk_to[mob_to_process])
 		var/turf/next_turf = get_step(mob_to_process, step_dir)
-		if(!can_cross_lava_turf(next_turf) || (!mob_to_process.Move(next_turf, step_dir) && !(SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE, step_dir) & COMSIG_OBSTACLE_DEALT_WITH)))
+		if(HAS_TRAIT(next_turf, TRAIT_TURF_AI_UNPASSABLE) || (!mob_to_process.Move(next_turf, step_dir) && !(SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE, step_dir) & COMSIG_OBSTACLE_DEALT_WITH)))
 			step_dir = pick(LeftAndRightOfDir(step_dir))
 			next_turf = get_step(mob_to_process, step_dir)
-			if(!can_cross_lava_turf(next_turf))
+			if(HAS_TRAIT(next_turf, TRAIT_TURF_AI_UNPASSABLE))
 				continue
 			if(mob_to_process.Move(get_step(mob_to_process, step_dir), step_dir) && ISDIAGONALDIR(step_dir))
 				mob_to_process.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_to_process.cached_multiplicative_slowdown
 		else if(ISDIAGONALDIR(step_dir))
 			mob_to_process.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_to_process.cached_multiplicative_slowdown
 
+///Signal handler to change the target's atom_to_walk_to
+/datum/element/pathfinder/proc/change_target(mob/target, atom/atom_to_walk_to)
+	SIGNAL_HANDLER
+	atoms_to_walk_to[target] = atom_to_walk_to
 
 /datum/element/pathfinder/Detach(mob/mob_parent)
 	distances_to_maintain.Remove(mob_parent)
 	atoms_to_walk_to.Remove(mob_parent)
 	stutter_step_prob.Remove(mob_parent)
+	UnregisterSignal(mob_parent, COMSIG_PATHFINDER_SET_ATOM_TO_WALK_TO)
 	return ..()

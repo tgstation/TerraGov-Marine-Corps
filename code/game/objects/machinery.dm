@@ -25,6 +25,8 @@
 	. = ..()
 	GLOB.machines += src
 	component_parts = list()
+	if(anchored && get_step(src, 0) && density)
+		ADD_TRAIT(get_step(src, 0), TRAIT_TURF_AI_UNPASSABLE, MACHINERY_TRAIT)
 
 
 /obj/machinery/Destroy()
@@ -33,6 +35,8 @@
 	if(istype(circuit)) //There are some uninitialized legacy path circuits.
 		QDEL_NULL(circuit)
 	operator = null
+	if(anchored && get_step(src, 0) && density)
+		REMOVE_TRAIT(get_step(src, 0), TRAIT_TURF_AI_UNPASSABLE, MACHINERY_TRAIT)
 	return ..()
 
 
