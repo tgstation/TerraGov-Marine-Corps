@@ -205,7 +205,7 @@
 	set name = "SDQL2 Query"
 	set category = "Debug"
 
-	if(!check_rights(R_FUN))
+	if(!check_rights(R_DEBUG))
 		return FALSE
 
 	var/list/results = world.SDQL2_query(query_text, key_name_admin(usr), "[key_name(usr)]")
