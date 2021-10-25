@@ -58,6 +58,7 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/stock/t18stock,
+		/obj/item/attachable/t18barrel,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/extended_barrel,
@@ -124,6 +125,7 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/stock/t12stock,
+		/obj/item/attachable/t12barrel,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/extended_barrel,
@@ -382,6 +384,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/irremoveable/rifle,
 	)
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 9, "stock_y" = 15)
@@ -424,6 +427,8 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/irremoveable/m41a,
+		/obj/item/weapon/gun/grenade_launcher/underslung/invisible,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -461,6 +466,7 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/ak47,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -640,6 +646,7 @@
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/attachable/t42barrel,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -754,6 +761,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/irremoveable/rifle,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER
@@ -819,6 +827,9 @@
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/weapon/gun/flamer/mini_flamer/unremovable,
+		/obj/item/attachable/suppressor/unremovable/invisible,
+		/obj/item/attachable/scope/unremovable,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -931,6 +942,8 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/t29stock,
+		/obj/item/attachable/t29barrel,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
@@ -1065,6 +1078,7 @@
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
 		/obj/item/attachable/scope/unremovable/tl127,
+		/obj/item/attachable/stock/tl127stock,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,

@@ -295,6 +295,7 @@
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/stock/irremoveable/ppsh,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/gyro,

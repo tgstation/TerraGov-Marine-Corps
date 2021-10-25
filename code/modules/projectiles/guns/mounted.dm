@@ -85,6 +85,7 @@
 
 	current_mag = /obj/item/ammo_magazine/tl102/hsg_nest
 
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable/tl102/nest,
 	)
@@ -182,6 +183,7 @@
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/stock/irremoveable/t27,
 	)
 
 	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/t27)
