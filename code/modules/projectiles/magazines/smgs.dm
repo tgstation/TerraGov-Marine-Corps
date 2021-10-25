@@ -84,16 +84,22 @@
 	name = "\improper PPSh-17b magazine (7.62x25mm)"
 	desc = "A drum magazine for the PPSh submachinegun."
 	default_ammo = /datum/ammo/bullet/smg
+	w_class = WEIGHT_CLASS_SMALL
 	caliber = CALIBER_762X25
 	icon_state = "ppsh"
-	max_rounds = 35
+	max_rounds = 42
 	gun_type = /obj/item/weapon/gun/smg/ppsh
 
 
 /obj/item/ammo_magazine/smg/ppsh/extended
 	name = "\improper PPSh-17b drum magazine (7.62x25mm)"
 	icon_state = "ppsh_ext"
-	max_rounds = 71
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 78
+	scatter_mod = 5
+	scatter_unwielded_mod = 10
+	wield_delay_mod = 0.2 SECONDS
+	aim_speed_mod = 0.3
 
 //-------------------------------------------------------
 //GENERIC UZI //Based on the uzi submachinegun, of course.

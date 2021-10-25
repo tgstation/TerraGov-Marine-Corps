@@ -58,6 +58,7 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/stock/t18stock,
+		/obj/item/attachable/t18barrel,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/extended_barrel,
@@ -124,6 +125,7 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/stock/t12stock,
+		/obj/item/attachable/t12barrel,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/extended_barrel,
@@ -382,6 +384,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/irremoveable/rifle,
 	)
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 9, "stock_y" = 15)
@@ -424,6 +427,8 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/irremoveable/m41a,
+		/obj/item/weapon/gun/grenade_launcher/underslung/invisible,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -461,6 +466,7 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/ak47,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -640,6 +646,7 @@
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/attachable/t42barrel,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -754,6 +761,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/irremoveable/rifle,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER
@@ -819,6 +827,9 @@
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/weapon/gun/flamer/mini_flamer/unremovable,
+		/obj/item/attachable/suppressor/unremovable/invisible,
+		/obj/item/attachable/scope/unremovable,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -931,6 +942,8 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/t29stock,
+		/obj/item/attachable/t29barrel,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
@@ -1065,6 +1078,7 @@
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
 		/obj/item/attachable/scope/unremovable/tl127,
+		/obj/item/attachable/stock/tl127stock,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
@@ -1120,7 +1134,7 @@
 
 /obj/item/weapon/gun/rifle/standard_autosniper
 	name = "\improper T-81 automatic sniper rifle"
-	desc = "The T-81 is the TerraGov Marine Corps's automatic sniper rifle. It is rather well-known for it's night vision scope and IFF ammo, it however lacks a burst fire mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 8.6x70mm caseless IFF caliber."
+	desc = "The T-81 is the TerraGov Marine Corps's automatic sniper rifle usually married to it's iconic NVG/KTLD scope combo. It's users use it for it's high rate of fire for it's class, and has decent performance in any range. Uses 8.6x70mm caseless with specialized pressures for IFF fire."
 	icon_state = "t81"
 	item_state = "t81"
 	fire_sound = 'sound/weapons/guns/fire/sniper.ogg'
@@ -1128,9 +1142,8 @@
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = CALIBER_86X70 //codex
-	max_shells = 7 //codex
+	max_shells = 20 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/autosniper
-	type_of_casings = "cartridge"
 	attachable_allowed = list(
 		/obj/item/attachable/autosniperbarrel,
 		/obj/item/attachable/scope/nightvision,
@@ -1150,7 +1163,7 @@
 	)
 
 	burst_amount = 0
-	fire_delay = 1.75 SECONDS
+	fire_delay = 0.5 SECONDS
 	accuracy_mult = 1.35
 	accuracy_mult_unwielded = 0.7
 	scatter = -30

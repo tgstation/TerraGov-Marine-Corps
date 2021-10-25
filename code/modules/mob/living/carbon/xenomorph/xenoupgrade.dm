@@ -253,6 +253,9 @@
 /mob/living/carbon/xenomorph/hunter/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/hunter/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----HUNTER END----//
 //================//
 //HUNTER ERT START

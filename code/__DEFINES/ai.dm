@@ -41,7 +41,7 @@
 #define TARGET_XENO (1<<3)
 #define TARGET_UNMANNED_VEHICLE (1<<4)
 
-#define MAX_NODE_RANGE_SQUARED 256
+#define MAX_NODE_RANGE 15
 
 GLOBAL_LIST_EMPTY(allnodes)
 

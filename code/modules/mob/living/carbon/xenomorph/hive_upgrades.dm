@@ -280,6 +280,12 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	psypoint_cost = 225
 	icon = "primocrush"
 
+/datum/hive_upgrade/primordial/hunter
+	name = PRIMORDIAL_HUNTER
+	desc = "Replaces the hunters stealth ability with the ability to disguise itself as any object."
+	psypoint_cost = 125
+	icon = "primohunter"
+
 /datum/hive_upgrade/primordial/defender
 	name = PRIMORDIAL_DEFENDER
 	desc = "Unlocks the primordial defenders centrifugal force. An ability that allows them to rapidly spin and attack enemies nearby."
