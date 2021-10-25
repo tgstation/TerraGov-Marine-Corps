@@ -18,7 +18,7 @@
 	REMOVE_TRAIT(get_step(src, 0), TRAIT_TURF_AI_UNPASSABLE, SHUTTER_TRAIT)
 	return ..()
 
-/obj/machinery/door/poddoor/opened()
+/obj/machinery/door/poddoor/open()
 	. = ..()
 	REMOVE_TRAIT(get_step(src, 0), TRAIT_TURF_AI_UNPASSABLE, SHUTTER_TRAIT)
 
