@@ -1141,7 +1141,7 @@
 /datum/action/xeno_action/set_agressivity
 	name = "Set minions behavior"
 	action_icon_state = "minion_agressive"
-	mechanics_text = "Ask the minions escorting you to be either agressive or passive."
+	mechanics_text = "Order the minions escorting you to be either agressive or passive."
 	ability_name = "set_agressivity"
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_MINION_BEHAVIOUR
