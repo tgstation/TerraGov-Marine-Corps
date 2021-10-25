@@ -95,9 +95,6 @@
 #define REVIVE_TO_CRIT_TRAIT "revive_to_crit"
 #define GUN_TRAIT "gun" //Traits related to guns
 #define HUSK_TRAIT "husk"
-#define LAVA_TRAIT "lava"
-#define MACHINERY_TRAIT "machinery"
-#define SHUTTER_TRAIT "shutter"
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
 
