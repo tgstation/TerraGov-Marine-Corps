@@ -18,98 +18,36 @@ The Grenade Launchers
 	fire_rattle = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	general_codex_key = "explosive weapons"
-	///a list of the grenades in the chamber
-	var/list/obj/item/explosive/grenade/grenades = list()
-	///the maximum number of grenades the grenade launcher can hold
-	var/max_grenades = 0
-	///list of allowed grenade types
-	var/list/grenade_type_allowed = list()
 	///the maximum range the launcher can fling the grenade, by default 15 tiles
 	var/max_range = 15
 
-///proc that handles firing the grenade itself
-/obj/item/weapon/gun/grenade_launcher/proc/fire_grenade(atom/target, mob/user)
-	last_fired = world.time
-	var/obj/item/explosive/grenade/grenade = grenades[1]
-	var/turf/userturf = get_turf(user)
-	if(!userturf)
-		return
-	grenades -= grenade
-	grenade.loc = userturf
-	user.visible_message(span_danger("[user] fired a grenade!"), span_warning("You fire [src]!"))
-	log_explosion("[key_name(user)] fired a grenade ([grenade]) from [src] at [AREACOORD(userturf)].")
-	log_combat(user, src, "fired a grenade ([grenade]) from [src]")
-	playsound(user, fire_sound, 50, 1)
-	grenade.det_time = min(10, grenade.det_time)
-	grenade.launched = TRUE
-	grenade.activate(user)
-	grenade.throwforce += grenade.launchforce
-	grenade.throw_at(target, max_range, 3, user)
-	if(fire_animation)
-		flick("[fire_animation]", src)
-	update_icon()
 
-/obj/item/weapon/gun/grenade_launcher/Fire()
-	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		to_chat(gun_user, span_notice("You cannot fire [src] while it is not deployed."))
-		return
-	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT) && !master_gun && CHECK_BITFIELD(flags_gun_features, GUN_ATTACHMENT_FIRE_ONLY))
-		to_chat(gun_user, span_notice("You cannot fire [src] without it attached to a gun!"))
-		return
-	if(!gun_user || !target)
-		return
-	if(gun_user.do_actions)
-		return
-	if(!able_to_fire(gun_user))
-		return
-	if(gun_on_cooldown(gun_user))
-		return
-	if(gun_user.skills.getRating("firearms") < 0 && !do_after(gun_user, 0.8 SECONDS, TRUE, src))
-		return
+/obj/item/weapon/gun/grenade_launcher/able_to_fire(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(get_dist(target, gun_user) <= 2)
 		to_chat(gun_user, span_warning("[src] beeps a warning noise. You are too close!"))
-		return
-	if(!length(grenades))
-		to_chat(gun_user, span_warning("[src] is empty."))
-		return
-	fire_grenade(target, gun_user)
-	gun_user.hud_used.update_ammo_hud(gun_user, src)
+		return FALSE
+
+
+/obj/item/weapon/gun/grenade_launcher/do_fire(obj/object_to_fire)
+	if(!istype(object_to_fire, /obj/item/explosive/grenade))
+		return FALSE
+	var/obj/item/explosive/grenade/grenade_to_launch = object_to_fire
+	grenade_to_launch.forceMove(get_turf(src))
+	user.visible_message(span_danger("[user] fired a grenade!"), span_warning("You fire [src]!"))
+	log_explosion("[key_name(user)] fired a grenade ([grenade_to_launch]) from [src] at [AREACOORD(userturf)].")
+	log_combat(user, src, "fired a grenade ([grenade_to_launch]) from [src]")
+	play_fire_sound(loc)
+	grenade_to_launch.det_time = min(10, grenade_to_launch.det_time)
+	grenade_to_launch.launched = TRUE
+	grenade_to_launch.activate(user)
+	grenade_to_launch.throwforce += grenade_to_launch.launchforce
+	grenade_to_launch.throw_at(target, max_range, 3, user)
+	if(fire_animation)
+		flick("[fire_animation]", src)
 	return TRUE
-
-/obj/item/weapon/gun/grenade_launcher/attackby(obj/item/I, mob/user, params)
-	if(!istype(I, /obj/item/explosive/grenade))
-		return ..()
-	if(length(grenades) >= max_grenades)
-		to_chat(user, span_warning("[src] cannot hold more grenades!"))
-		return
-	if(length(grenade_type_allowed) && !(I.type in grenade_type_allowed)) //doesn't work yet
-		to_chat(user, span_warning("[src] cannot hold [I]!"))
-		return
-	if(!user.transferItemToLoc(I, src))
-		return
-	grenades += I
-	playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
-	to_chat(user, span_notice("You put [I] in [src]."))
-	to_chat(user, span_info("Now storing: [grenades.len] / [max_grenades] grenades."))
-	update_icon()
-	user.hud_used.update_ammo_hud(user, src)
-	return ..()
-
-/obj/item/weapon/gun/grenade_launcher/unload(mob/user)
-	if(!length(grenades))
-		to_chat(user, span_warning("It's empty!"))
-		return
-	var/obj/item/explosive/grenade/nade = grenades[length(grenades)] //Grab the last one.
-	if(user)
-		user.put_in_hands(nade)
-		playsound(user, unload_sound, 25, 1)
-	else
-		nade.loc = get_turf(src)
-	grenades -= nade
-	user.hud_used.update_ammo_hud(user, src)
-	update_icon()
-	return TRUE
-
 
 //-------------------------------------------------------
 //T-70 Grenade Launcher.
@@ -153,7 +91,7 @@ The Grenade Launchers
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	pixel_shift_x = 14
 	pixel_shift_y = 18
-	grenade_type_allowed = list(
+	allowed_ammo_types = list(
 		/obj/item/explosive/grenade,
 		/obj/item/explosive/grenade/incendiary,
 		/obj/item/explosive/grenade/smokebomb,
@@ -179,16 +117,9 @@ The Grenade Launchers
 	attachable_allowed = list()
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	fire_delay = 1.05 SECONDS
-	max_grenades = 1
+	max_chamber_items = 1
 	max_range = 10
 
-/obj/item/weapon/gun/grenade_launcher/single_shot/update_icon_state()
-	icon_state = "[base_gun_icon][length(grenades) ? "" : "_e"]"
-
-/obj/item/weapon/gun/grenade_launcher/single_shot/examine_ammo_count(mob/user)
-	if(!length(grenades) || (get_dist(user, src) > 2 && user != loc))
-		return
-	to_chat(user, span_notice("It is loaded with [grenades[1]]."))
 
 /obj/item/weapon/gun/grenade_launcher/single_shot/riot
 	name = "\improper M81 riot grenade launcher"
@@ -209,11 +140,6 @@ The Grenade Launchers
 	fire_delay = 0.5 SECONDS
 	grenade_type_allowed = /obj/item/explosive/grenade/flare
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/flaregun)
-
-/obj/item/weapon/gun/grenade_launcher/single_shot/flare/examine_ammo_count(mob/user)
-	if(!length(grenades) || (get_dist(user, src) > 2 && user != loc))
-		return
-	to_chat(user, span_notice("It is loaded with a flare."))
 
 /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine
 	name = "M30E2 flare gun"

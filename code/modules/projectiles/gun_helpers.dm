@@ -97,6 +97,8 @@
 /obj/item/weapon/gun/attack_hand(mob/living/user)
 	if(loc != user)
 		return ..()
+	if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES) && CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION))
+		do_unique_action(user, TRUE)
 	unload(user)
 
 /obj/item/weapon/gun/attack_hand_alternate(mob/user)

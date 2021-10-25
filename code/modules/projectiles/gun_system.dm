@@ -22,154 +22,142 @@
 	light_range = 0
 	light_color = COLOR_WHITE
 
+/*
+ *  Muzzle Vars
+*/
+	///Effect for the muzzle flash of the gun.
 	var/atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash
+	///Icon state of the muzzle flash effect.
 	var/muzzleflash_iconstate
-	var/muzzle_flash_lum = 3 //muzzle flash brightness
+	///Brightness of the muzzle flash effect.
+	var/muzzle_flash_lum = 3
+	///Color of the muzzle flash effect.
 	var/muzzle_flash_color = COLOR_VERY_SOFT_YELLOW
+
+/*
+ *  Firing Vars
+*/
 
 	///State for a fire animation if the gun has any
 	var/fire_animation = null
+	///Animation for opening the chamber of a gun.
 	var/shell_eject_animation = null
+
+	///Sound of firing the gun.
 	var/fire_sound 		= 'sound/weapons/guns/fire/gunshot.ogg'
 	///Does our gun have a unique sound when running out of ammo? If so, use this instead of pitch shifting.
 	var/fire_rattle		= null
-	var/dry_fire_sound	= 'sound/weapons/guns/fire/empty.ogg'
-	var/unload_sound 	= 'sound/weapons/flipblade.ogg'
-	var/empty_sound 	= 'sound/weapons/guns/misc/empty_alarm.ogg'
-	var/reload_sound 	= null					//We don't want these for guns that don't have them.
-
+	///World.time of last gun firing.
 	var/last_fired = 0
 
-	var/cock_notice
+
+/*
+ *  Cocking Vars
+*/
+	///Message given to user on cocking.
+	var/cocked_message
+	///Message for a pump lock.
 	var/cock_locked_message
 
+	///Animation of the gun Cocking.
 	var/cock_animation
 
+	///World.time of the last cocked_message.
 	var/last_cock_message
+	///Delay between given cocked_message.
 	var/cock_message_delay = 1 SECONDS
 
-	var/cocked_sound 	= null
-	var/opened_sound
+	///Sound of cocking the gun.
+	var/cocked_sound = null
+	///Sounds of opening the guns reciever. (DBs, Martinis opening.)
+	var/opened_sound = null
 
+	///World.time of the last cock.
 	var/last_cocked
+	///Delay between cocking the gun.
 	var/cock_delay = 3 SECONDS
 
 /*
  *  RELOADING_VARS
  *
 */
+	///Sound for the gun firing when empty.
+	var/dry_fire_sound	= 'sound/weapons/guns/fire/empty.ogg'
+	///Sound of unloading the gun.
+	var/unload_sound 	= 'sound/weapons/flipblade.ogg'
+	///Sound played when the gun auto ejects its magazine.
+	var/empty_sound 	= 'sound/weapons/guns/misc/empty_alarm.ogg'
+	///Sound played for reloading.
+	var/reload_sound 	= null
+	///Sound for reloading by handfuls
+	var/hand_reload_sound
 
+	///Stored sum of magazine rounds / chamber contents. This is used for anything needing ammo. It is updated on reload/unload/fire
 	var/rounds
+	///If the gun uses magazines, it is the max rounds of the magazine(s). If it has an internal chamber, it is max_chamber_items.
 	var/max_rounds
 
+	///Current object slated for firing. Magazines/Handfuls will make this a projectile. Internal magazines that aren't handfuls will have this be the object in the gun.
 	var/obj/in_chamber
+	///List of stored ammunition items. 
 	var/list/obj/chamber_items = list()
+	///Maximum allowed chamber items.
 	var/max_chamber_items = 1
 
+	///Current selected position of chamber_items
 	var/current_chamber_position = 1
 
+	///Flags to determin guns ammo/operation.
 	var/reciever_flags = RECIEVER_MAGAZINES
 
+	///Types of casing it ejects.
 	var/type_of_casings = null
 
+	///If the gun uses a magazine, the gun will subtract this from the magazine every fire.
 	var/rounds_to_draw = 1
 
+	///Stored ammo datum.
 	var/datum/ammo/ammo = /datum/ammo/bullet
+	///Default magazine to spawn with.
 	var/obj/item/ammo_magazine/default_magazine_type = /obj/item/ammo_magazine
+	///If you try to reload the gun with the type or subtype of this it will succeed. Even if it is not listed in allowed_ammo_types. This is primarily for guns that are fine will selecting a whole type to allow.
 	var/obj/item/allowed_mag_type = /obj/item/ammo_magazine
+	///List of allowed specific types. If trying to reload with something in this list it will succeed. This is mainly for use in internal magazine weapons or scenarios where you do not want to inclue a whole subtype.
 	var/list/allowed_ammo_types = list(
 		/obj/item/ammo_magazine,
 	)
-
+	///The var to draw from a 'magazine' for its current rounds.
 	var/current_rounds_var = "current_rounds"
+	///The var to draw from a 'magazine' for its maximum rounds.
 	var/max_rounds_var = "max_rounds"
+	///The var to draw from a 'magazine' for its magazine flags.
 	var/magazine_flags_var = "flags_magazine"
+	///The var to draw from a 'magazine' for its default ammo var.
 	var/ammo_type_var = "default_ammo"
+	///The var to draw from a 'magazine' for its gun type.
+	var/gun_type_var = "gun_type"
+	///The var to draw from a 'magazine' for its reload delay.
+	var/reload_delay_var = "reload_delay"
 
 
 /*
- *
- *  STAT VARS
- *
+ * Operation Vars
 */
 
-	//Basic stats.
-	var/accuracy_mult 			= 1				//Multiplier. Increased and decreased through attachments. Multiplies the projectile's accuracy by this number.
-	var/damage_mult 			= 1				//Same as above, for damage.
-	var/damage_falloff_mult 	= 1				//Same as above, for damage bleed (falloff)
-	var/recoil 					= 0				//Screen shake when the weapon is fired.
-	var/recoil_unwielded 		= 0
-	var/scatter					= 20				//How much the bullet scatters when fired.
-	var/scatter_unwielded 		= 20
-	var/burst_scatter_mult		= 3				//Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
-	var/burst_accuracy_mult		= 1				//Multiplier. Defaults to 1 (no penalty). Multiplies accuracy modifier by this amount while burst firing; usually a fraction (penalty) when set.
-	var/accuracy_mod			= 0.05				//accuracy modifier, used by most attachments.
-	var/accuracy_mult_unwielded = 1		//same vars as above but for unwielded firing.
-	var/movement_acc_penalty_mult = 5				//Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
-	var/fire_delay = 6							//For regular shots, how long to wait before firing again.
-	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
-	///Modifies projectile damage by a % when a marine gets passed, but not hit
-	var/iff_marine_damage_falloff = 0
-	///Determines how fire delay is changed when aim mode is active
-	var/aim_fire_delay = 0
-	///Determines character slowdown from aim mode. Default is 66%
-	var/aim_speed_modifier = 6
-
-	//Burst fire.
-	var/burst_amount 	= 1						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
-	var/burst_delay 	= 0.1 SECONDS			//The delay in between shots. Lower = less delay = faster.
-	var/extra_delay		= 0						//When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
-
-
-	//Slowdowns
-	var/aim_slowdown	= 0						//Self explanatory. How much does aiming (wielding the gun) slow you
-	var/wield_delay		= 0.4 SECONDS		//How long between wielding and firing in tenths of seconds
-	var/wield_penalty	= 0.2 SECONDS	//Extra wield delay for untrained operators
-	var/wield_time		= 0						//Storing value for above
-
-
-	//Energy Weapons
-	var/charge_cost		= 0						//how much energy is consumed per shot.
-	var/ammo_per_shot	= 1						//How much ammo consumed per shot; normally 1.
-	var/overcharge		= 0						//In overcharge mode?
-	var/ammo_diff		= null					//what ammo to use for overcharge
-
-/*
- *
- *   ATTACHMENT VARS
- *
-*/
-
-
-	///List of offsets to make attachment overlays not look wonky.
-	var/list/attachable_offset 		= null		//Is a list, see examples of from the other files. Initiated on New() because lists don't initial() properly.
-	///List of allowed attachments, does not have to include the starting attachment types.
-	var/list/attachable_allowed		= null		//Must be the exact path to the attachment present in the list. Empty list for a default.
-
-	///This is only not null when a weapon attachment is activated. All procs of firing get passed to this when it is not null.
-	var/obj/item/weapon/gun/active_attachable = null
-	///The attachments this gun starts with on Init
-	var/list/starting_attachment_types = null
-	///Image list of attachments overlays.
-	var/list/image/attachment_overlays = list()
-	///List of slots a gun can have.
-	var/list/attachments_by_slot = list(
-		ATTACHMENT_SLOT_MUZZLE,
-		ATTACHMENT_SLOT_RAIL,
-		ATTACHMENT_SLOT_STOCK,
-		ATTACHMENT_SLOT_UNDER,
-		ATTACHMENT_SLOT_MAGAZINE,
-	)
 	///Innate carateristics of that gun
 	var/flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
-
+	///Current selected firemode of the gun.
 	var/gun_firemode = GUN_FIREMODE_SEMIAUTO
+	///List of allowed firemodes.
 	var/list/gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 
-	var/gun_skill_category = GUN_SKILL_RIFLES //Using rifles because they are the most common, and need a skill that at default the value is 0
+	///Skill used to operate this gun.
+	var/gun_skill_category = GUN_SKILL_RIFLES 
 
-	var/base_gun_icon //the default gun icon_state. change to reskin the gun
+	///the default gun icon_state. change to reskin the gun
+	var/base_gun_icon
 
+	///Key for the codex
 	var/general_codex_key = "guns"
 
 	///The mob holding the gun
@@ -187,6 +175,121 @@
 	var/upper_akimbo_accuracy = 2
 	///determines lower accuracy modifier in akimbo
 	var/lower_akimbo_accuracy = 1
+
+/*
+ *  STAT VARS
+*/
+
+	///Multiplier. Increased and decreased through attachments. Multiplies the projectile's accuracy by this number.
+	var/accuracy_mult 			= 1	
+	///Same as above, for damage.
+	var/damage_mult = 1	
+	///Same as above, for damage bleed (falloff)
+	var/damage_falloff_mult = 1
+	///Screen shake when the weapon is fired while wielded.
+	var/recoil = 0
+	///Screen shake when the weapon is fired while unwielded.
+	var/recoil_unwielded = 0
+	///How much the bullet scatters when fired while wielded.
+	var/scatter	= 20
+	///How much the bullet scatters when fired while unwielded.
+	var/scatter_unwielded = 20
+	///Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
+	var/burst_scatter_mult = 3
+	///Multiplier. Defaults to 1 (no penalty). Multiplies accuracy modifier by this amount while burst firing; usually a fraction (penalty) when set.
+	var/burst_accuracy_mult	= 1
+	///accuracy modifier, used by most attachments.
+	var/accuracy_mod = 0.05	
+	///same vars as above but for unwielded firing.
+	var/accuracy_mult_unwielded = 1
+	///Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
+	var/movement_acc_penalty_mult = 5
+	///For regular shots, how long to wait before firing again.
+	var/fire_delay = 6
+	///Modifies the speed of projectiles fired.
+	var/shell_speed_mod	= 0
+	///Modifies projectile damage by a % when a marine gets passed, but not hit
+	var/iff_marine_damage_falloff = 0
+	///Determines how fire delay is changed when aim mode is active
+	var/aim_fire_delay = 0
+	///Determines character slowdown from aim mode. Default is 66%
+	var/aim_speed_modifier = 6
+
+	///How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
+	var/burst_amount = 1
+	///The delay in between shots. Lower = less delay = faster.
+	var/burst_delay = 0.1 SECONDS
+	///When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
+	var/extra_delay	= 0	
+
+	///Slowdown for wielding
+	var/aim_slowdown = 0	
+	///How long between wielding and firing in tenths of seconds
+	var/wield_delay	= 0.4 SECONDS
+	///Extra wield delay for untrained operators
+	var/wield_penalty = 0.2 SECONDS
+	///Storing value for above
+	var/wield_time = 0
+
+
+	///how much energy is consumed per shot.
+	var/charge_cost	= 0
+	///How much ammo consumed per shot; normally 1.
+	var/ammo_per_shot = 1
+	///In overcharge mode?
+	var/overcharge = 0	
+	///what ammo to use for overcharge
+	var/ammo_diff = null
+
+/*
+ *
+ *   ATTACHMENT VARS
+ *
+*/
+
+
+	///List of offsets to make attachment overlays not look wonky.
+	var/list/attachable_offset = null	
+	///List of allowed attachments, IT MUST INCLUDE THE STARTING ATTACHMENT TYPES OR THEY WILL NOT ATTACH.
+	var/list/attachable_allowed	= null
+	///This is only not null when a weapon attachment is activated. All procs of firing get passed to this when it is not null.
+	var/obj/item/weapon/gun/active_attachable = null
+	///The attachments this gun starts with on Init
+	var/list/starting_attachment_types = null
+	///Image list of attachments overlays.
+	var/list/image/attachment_overlays = list()
+	///List of slots a gun can have.
+	var/list/attachments_by_slot = list(
+		ATTACHMENT_SLOT_MUZZLE,
+		ATTACHMENT_SLOT_RAIL,
+		ATTACHMENT_SLOT_STOCK,
+		ATTACHMENT_SLOT_UNDER,
+		ATTACHMENT_SLOT_MAGAZINE,
+	)
+
+/*
+ * Gun as Attachment Vars
+*/ 
+
+	///Gun reference if src is an attachment and is attached to a gun. This will be the gun that src is attached to.
+	var/obj/item/weapon/gun/master_gun
+	///Slot the gun fits into.
+	var/slot
+	///Pixel shift on the X Axis for the attached overlay.
+	var/pixel_shift_x = 16
+	///Pixel shift on the Y Axis for the attached overlay.
+	var/pixel_shift_y = 16
+	///Flags for attachment functions.
+	var/flags_attach_features = ATTACH_REMOVABLE
+	///Time it takes to attach src to a master gun.
+	var/attach_delay = 0 SECONDS
+	///Time it takes to detach src to a master gun.
+	var/detach_delay = 0 SECONDS
+
+
+/*
+ * Deployed and Sentry Vars
+*/
 
 	///If the gun is deployable, the time it takes for the weapon to deploy.
 	var/deploy_time = 0
@@ -211,20 +314,6 @@
 	///IFF signal for sentries. If it is set here it will be this signal forever. If null the IFF signal will be dependant on the deployer.
 	var/sentry_iff_signal = NONE
 
-	///Gun reference if src is an attachment and is attached to a gun. This will be the gun that src is attached to.
-	var/obj/item/weapon/gun/master_gun
-	///Slot the gun fits into.
-	var/slot
-	///Pixel shift on the X Axis for the attached overlay.
-	var/pixel_shift_x = 16
-	///Pixel shift on the Y Axis for the attached overlay.
-	var/pixel_shift_y = 16
-	///Flags for attachment functions.
-	var/flags_attach_features = ATTACH_REMOVABLE
-	///Time it takes to attach src to a master gun.
-	var/attach_delay = 0 SECONDS
-	///Time it takes to detach src to a master gun.
-	var/detach_delay = 0 SECONDS
 	///Icon state used for an added overlay for a sentry. Currently only used in Build-A-Sentry.
 	var/placed_overlay_iconstate = "rifle"
 
@@ -294,6 +383,10 @@
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
 	set_gun_user(null)
 	active_attachable?.removed_from_inventory(user)
+	if(chamber_items[current_chamber_position].loc == src)
+		return
+	unload(chamber_items[current_chamber_position], user)
+	update_icon()
 
 ///Set the user in argument as gun_user
 /obj/item/weapon/gun/proc/set_gun_user(mob/user)
@@ -582,14 +675,15 @@
 	return TRUE
 
 ///Actually fires the gun, sets up the projectile and fires it.
-/obj/item/weapon/gun/proc/do_fire(obj/projectile/projectile_to_fire)
+/obj/item/weapon/gun/proc/do_fire(obj/object_to_fire)
 	var/firer
 	if(istype(loc, /obj/machinery/deployable/mounted/sentry) && !gun_user)
 		firer = loc
 	else
 		firer = gun_user
+	var/projectile/projectile_to_fire = object_to_fire
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
-		projectile_to_fire = get_ammo_object(projectile_to_fire)
+		projectile_to_fire = get_ammo_object(object_to_fire)
 	apply_gun_modifiers(projectile_to_fire, target, firer)
 	setup_bullet_accuracy(projectile_to_fire, gun_user, shots_fired, dual_wield) //User can be passed as null.
 
@@ -769,33 +863,37 @@
 //----------------------------------------------------------
 
 
-
+///Called after the gun fires. Handles the amunition side of firing.
 /obj/item/weapon/gun/proc/post_fire()
 	in_chamber = null
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION))
 		return
 	cycle(null)
 	if(rounds <= 0 && CHECK_BITFIELD(reciever_flags, RECIEVER_AUTO_EJECT) && CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
+		playsound(src, empty_sound, 25, 1)
 		unload()
 		return
 
-
-/obj/item/weapon/gun/proc/do_unique_action(mob/user)
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION))
+///Performs the unique action. Can be overwritten.
+/obj/item/weapon/gun/proc/do_unique_action(mob/user, dont_operate = FALSE)
+	if(CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION) && !dont_operate)
 		if(last_cocked + cock_delay > world.time)
 			return
 		if(CHECK_BITFIELD(reciever_flags, RECIEVER_LOCKS) && in_chamber)
 			if(last_cock_message + cock_message_delay > world.time)
 				return
-			to_chat(user, span_warning(cock_locked_message))
+			if(cock_locked_message)
+				to_chat(user, span_warning(cock_locked_message))
 			playsound(user, 'sound/weapons/throwtap.ogg', 25, 1)
 			last_cock_message = world.time
 			return
 		cycle(user)
-		to_chat(user, span_notice(cock_notice))
+		playsound(src, cocked_sound, 25, 1)
+		if(cocked_message)
+			to_chat(user, span_notice(cocked_message))
 		if(cock_animation)
 			flick("[cock_animation]", src)
-		cock_delay = world.time
+		last_cocked = world.time
 		return
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES_EJECTS) && CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED))
 		for(var/obj/object_to_eject in chamber_items)
@@ -803,13 +901,19 @@
 				user.put_in_hands(object_to_eject)
 			else
 				object_to_eject.forceMove(get_turf(src))
+		update_ammo_count()
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED))
 		DISABLE_BITFIELD(reciever_flags, RECIEVER_CLOSED)
-		return
-	ENABLE_BITFIELD(reciever_flags, RECIEVER_CLOSED)
+		playsound(src, opened_sound, 25, 1)
+		if(shell_eject_animation)
+			flick("[shell_eject_animation]", src)
+	else
+		ENABLE_BITFIELD(reciever_flags, RECIEVER_CLOSED)
+		playsound(src, cocked_sound, 25, 1)
+	update_icon()
 
 
-
+///Handles reloading. Called on attack_by
 /obj/item/weapon/gun/proc/reload(obj/item/new_mag, mob/living/user)
 	if((!(new_mag.type in allowed_ammo_types) && !istype(new_mag, allowed_mag_type)))
 		to_chat(user, span_warning("[new_mag] cannot fit into [src]!"))
@@ -824,42 +928,54 @@
 		return
 
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
-		rounds += new_mag.vars[current_rounds_var]
-		max_rounds += new_mag.vars[max_rounds_var]
+		if(gun_type_var && !istype(src, new_mag.vars[gun_type_var]))
+			to_chat(user, span_warning("[new_mag] cannot fit in [src]!"))
+			return
+		if(reload_delay_var && new_mag.vars[reload_delay_var] != 0)
+			to_chat(user, span_notice("You begin reloading [src] with [new_mag]."))
+			if(!do_after(user, new_mag.vars[reload_delay_var], TRUE, user))
+				to_chat(user, span_warning("Your reload was interupted!"))
+				return
 		chamber_items += new_mag
 		get_ammo()
-		new_mag.forceMove(src)
 		playsound(src, reload_sound, 25, 1)
-		user?.temporarilyRemoveItemFromInventory(new_mag)
+		if(magazine_flags_var && !CHECK_BITFIELD(new_mag.vars[magazine_flags_var], MAGAZINE_WORN))
+			new_mag.forceMove(src)
+			user?.temporarilyRemoveItemFromInventory(new_mag)
 		if(!in_chamber)
 			cycle(user)
 		update_icon()
+		update_ammo_count()
+		user?.hud_used.update_ammo_hud(user, src)
+		to_chat(user, span_notice("You reload [src] with [new_mag]."))
 		return
 
-	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_INTERNAL))
-		return
-
-	var/obj/item_to_insert = new_mag
+	var/obj/items_to_insert = new_mag
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
 		var/obj/item/ammo_magazine/mag = new_mag
-		if(!CHECK_BITFIELD(mag.flags_magazine, MAGAZINE_HANDFUL))
-			return
-		if(mag.current_rounds > 1)
-			item_to_insert = mag.create_handful(null, 1)
+		if(CHECK_BITFIELD(mag.flags_magazine, MAGAZINE_HANDFUL))
+			if(mag.current_rounds > 1)
+				items_to_insert += mag.create_handful(null, 1)
+			playsound(src, reload_sound, 25, 1)
+		else
+			for(var/i, i =< mag.current_rounds, i++)
+				items_to_insert += mag.create_handful(null, 1)
+			playsound(src, hand_reload_sound, 25, 1)
 
-	rounds = length(chamber_items) + in_chamber ? 1 : 0
-	chamber_items += item_to_insert
-	get_ammo()
-	item_to_insert.forceMove(src)
-	playsound(src, reload_sound, 25, 1)
-	user?.temporarilyRemoveItemFromInventory(item_to_insert)
+	chamber_items += items_to_insert
+	for(var/item_to_insert in items_to_insert)
+		item_to_insert.forceMove(src)
+		user?.temporarilyRemoveItemFromInventory(item_to_insert)
+	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
+		playsound(src, reload_sound, 25, 1)
 	if(in_chamber)
 		return
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
-		cycle(user)
+	get_ammo()
+	update_ammo_count()
 	update_icon()
 	user?.hud_used.update_ammo_hud(user, src)
 
+///Handles unloading. Called on attackhand.
 /obj/item/weapon/gun/proc/unload(mob/living/user)
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
@@ -877,8 +993,7 @@
 	playsound(src, unload_sound, 25, 1, 5)
 	user?.visible_message(span_notice("[user] unloads [mag] from [src]."),
 	span_notice("You unload [mag] from [src]."), null, 4)
-	rounds -= mag.vars[current_rounds_var]
-	max_rounds -= mag.vars[max_rounds_var]
+	update_ammo_count()
 	if(user)
 		user.put_in_hands(chamber_items[current_chamber_position])
 	else
@@ -888,43 +1003,35 @@
 	update_icon()
 	user?.hud_used.update_ammo_hud(user, src)
 
-	playsound(src, empty_sound, 25, 1)
 
-
+///Returns an object that will be put into the guns chamber.
 /obj/item/weapon/gun/proc/return_obj_to_fire()
+	if(current_chamber_position > length(chamber_items))
+		return null
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
+		chamber_items[current_chamber_position].vars[current_rounds_var] -= rounds_to_draw
 		return get_ammo_object(chamber_items[current_chamber_position])
 	return chamber_items[current_chamber_position]
 
+///Cycles the gun, handles ammunition draw
 /obj/item/weapon/gun/proc/cycle(mob/living/user)
 	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
 		var/thing_to_delete = chamber_items[current_chamber_position]
 		chamber_items -= thing_to_delete
 		qdel(thing_to_delete)
+		update_ammo_count()
 	if((CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES) && !CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES)) || (CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES) && CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES) && chamber_items[current_chamber_position].vars[current_rounds_var] <= 0))
 		var/next_chamber_position = current_chamber_position + 1
 		if(next_chamber_position > max_chamber_items)
 			next_chamber_position = 1
 		current_chamber_position = next_chamber_position
-	if(user)
-		playsound(src, cocked_sound, 25, 1)
-	if(!user && CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION))
+	if((!user && CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION)) || !rounds)
 		return
-
-	if(!rounds)
-		return
-
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
-		var/obj/mag = chamber_items[current_chamber_position]
-		mag.vars[current_rounds_var] -= rounds_to_draw
-		rounds -= rounds_to_draw
-	else
-		rounds = length(chamber_items) + in_chamber ? 1 : 0
+	in_chamber = return_obj_to_fire()
+	update_ammo_count()
 	make_casing()
 
-	in_chamber = return_obj_to_fire()
-
-
+///Generates a casing.
 /obj/item/weapon/gun/proc/make_casing(obj/item/magazine)
 	if(!type_of_casings)
 		return
@@ -947,7 +1054,7 @@
 	playsound(current_turf, sound_to_play, 25, 1, 5)
 
 
-
+///Gets a projectile to fire from the magazines ammo type. 
 /obj/item/weapon/gun/proc/get_ammo_object(obj/item/magazine)
 	var/obj/item/mag = magazine
 	var/datum/ammo/new_ammo
@@ -962,18 +1069,37 @@
 	projectile.generate_bullet(new_ammo)
 	return projectile
 
-
+///Sets and returns the guns ammo type from the current magazine. 
 /obj/item/weapon/gun/proc/get_ammo()
 	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS) && !CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES) || !length(chamber_items))
 		return
-	var/ammo_type = chamber_items[current_chamber_position].vars[ammo_type_var]
+	var/ammo_type
+	if(ammo_type_var)
+		ammo_type = chamber_items[current_chamber_position].vars[ammo_type_var]
+	else
+		ammo_type = ammo
 	ammo = new ammo_type()
 	return ammo
 
+///Updates the guns rounds and max_rounds vars based on the contents of chamber_items
+/obj/item/weapon/gun/proc/update_ammo_count()
+	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
+		rounds = length(chamber_items) + in_chamber ? 1 : 0
+		max_rounds = max_chamber_items
+		return
+	var/total_rounds
+	var/total_max_rounds
+	for(var/obj/chamber_item in chamber_items)
+		total_rounds += chamber_item.vars[current_rounds_var]
+		total_max_rounds += chamber_item.vars[max_rounds_var]
+	rounds = total_rounds + in_chamber ? 1 : 0
+	max_rounds = total_max_rounds
 
-/obj/item/weapon/gun/proc/drop_connected_mag(mob/user)
-
-
+///Disconnects from a worn magazine.
+/obj/item/weapon/gun/proc/drop_connected_mag(datum/source, mob/user)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, COMSIG_ITEM_REMOVED_INVENTORY)
+	unload(user)
 
 
 //----------------------------------------------------------

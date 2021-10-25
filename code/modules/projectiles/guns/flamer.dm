@@ -61,19 +61,20 @@
 
 /obj/item/weapon/gun/flamer/Initialize()
 	. = ..()
-	if(!default_magazine_type)
+	if(!rounds)
 		return
 	light_pilot(TRUE)
 
 /obj/item/weapon/gun/flamer/examine_ammo_count(mob/user)
-	if(default_magazine_type)
-		to_chat(user, "The fuel gauge shows the current tank is [round(default_magazine_type.get_ammo_percent())]% full!")
+	if(rounds)
+		var/obj/item/ammo_magazine/mag = chamber_items[current_chamber_position]
+		to_chat(user, "The fuel gauge shows the current tank is [round(mag.get_ammo_percent())]% full!")
 		return
 	to_chat(user, "[src] has no fuel tank!")
 
 /obj/item/weapon/gun/flamer/on_attachment_attach(obj/item/attaching_here, mob/attacher)
 	. = ..()
-	if(!istype(attaching_here, /obj/item/attachable/flamer_nozzle) || !default_magazine_type)
+	if(!istype(attaching_here, /obj/item/attachable/flamer_nozzle) || !rounds)
 		return
 	light_pilot(TRUE)
 
@@ -149,7 +150,7 @@
 
 ///Flames recursively a straight path.
 /obj/item/weapon/gun/flamer/proc/recursive_flame_straight(iteration, list/turf/old_turfs, list/turf/path_to_target, range, current_target)
-	if(default_magazine_type?.current_rounds <= 0)
+	if(!rounds)
 		light_pilot(FALSE)
 		return
 
@@ -167,7 +168,7 @@
 
 ///Flames recursively a cone.
 /obj/item/weapon/gun/flamer/proc/recursive_flame_cone(iteration, list/turf/old_turfs, dir_to_target, range, current_target)
-	if(default_magazine_type?.current_rounds <= 0)
+	if(!rounds)
 		light_pilot(FALSE)
 		return
 
@@ -219,11 +220,11 @@
 	var/fire_color = initial(loaded_ammo.fire_color)
 
 	for(var/turf/turf_to_ignite AS in turfs_to_burn)
-		if(default_magazine_type?.current_rounds <= 0)
+		if(rounds)
 			light_pilot(FALSE)
 			return FALSE
 		flame_turf(turf_to_ignite, gun_user, burn_time, burn_level, fire_color)
-		default_magazine_type.current_rounds--
+		post_fire()
 	gun_user?.hud_used.update_ammo_hud(gun_user, src)
 	return TRUE
 
@@ -341,10 +342,7 @@
 	. = ..()
 	to_chat(user, span_notice("Its hydro cannon contains [reagents.get_reagent_amount(/datum/reagent/water)]/[reagents.maximum_volume] units of water!"))
 
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/unique_action(mob/user)
-	. = ..()
-	if(!.)
-		return
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/do_unique_action(mob/user)
 	var/obj/item/attachable/hydro_cannon/hydro = LAZYACCESS(attachments_by_slot, ATTACHMENT_SLOT_UNDER)
 	if(!istype(hydro))
 		return FALSE

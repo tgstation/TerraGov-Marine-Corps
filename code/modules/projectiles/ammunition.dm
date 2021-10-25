@@ -77,6 +77,8 @@
 		if(!CHECK_BITFIELD(flags_magazine, MAGAZINE_WORN) || !istype(I, /obj/item/weapon/gun) || loc != user || !istype(I, gun_type))
 			return ..()
 		var/obj/item/weapon/gun/gun = I
+		if(!CHECK_BITFIELD(gun.reciever_flags, RECIEVER_MAGAZINES]))
+			return ..()
 		if(!gun.reload(user))
 			return
 		gun.RegisterSignal(src, COMSIG_ITEM_REMOVED_INVENTORY, /obj/item/weapon/gun.proc/drop_connected_mag)
@@ -94,7 +96,7 @@
 		to_chat(user, span_notice("Those aren't the same rounds. Better not mix them up."))
 		return
 
-	var/amount_to_transfer = CHECK_BITFIELD(mag.flags_magazine, MAGAZINE_HANDFUL) ? 1 : mag.current_rounds
+	var/amount_to_transfer = mag.current_rounds
 	transfer_ammo(mag, user, amount_to_transfer)
 
 
@@ -140,7 +142,6 @@
 		source.update_icon()
 
 	update_icon()
-	return amount_difference // We return the number transferred if it was successful.
 
 ///This will attempt to place the ammo in the user's hand if possible.
 /obj/item/ammo_magazine/proc/create_handful(mob/user, transfer_amount)
