@@ -219,7 +219,7 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 		return
 	if(buyer.hive.king_present)
 		if(!silent)
-			to_chat(buyer, span_xenowarning("Another king is alive"))
+			to_chat(buyer, span_xenowarning("Another king is alive already!"))
 		return FALSE
 
 /datum/hive_upgrade/xenos/king/on_buy(mob/living/carbon/xenomorph/buyer)
