@@ -110,22 +110,6 @@ The Grenade Launchers
 	update_icon()
 	return TRUE
 
-/obj/item/weapon/gun/grenade_launcher/get_ammo_type()
-	if(!length(grenades))
-		return list("empty", "empty")
-	else
-		var/obj/item/explosive/grenade/F = grenades[1]
-		return list(F.hud_state, F.hud_state_empty)
-
-/obj/item/weapon/gun/grenade_launcher/get_ammo_count()
-	return length(grenades)
-
-//Doesn't use most of any of these. Listed for reference.
-/obj/item/weapon/gun/grenade_launcher/load_into_chamber()
-	return
-
-/obj/item/weapon/gun/grenade_launcher/reload_into_chamber()
-	return
 
 //-------------------------------------------------------
 //T-70 Grenade Launcher.

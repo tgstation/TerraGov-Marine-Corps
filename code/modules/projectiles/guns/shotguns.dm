@@ -47,7 +47,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	item_state = "mk221"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/combat
+	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/combat
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/reddot,
@@ -84,7 +84,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	item_state = "t39"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/combat
+	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/combat
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -124,7 +124,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
 	flags_gun_features = GUN_IS_ATTACHMENT|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_CAN_POINTBLANK
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/masterkey
+	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/masterkey
 	recoil = 0
 	pixel_shift_x = 14
 	pixel_shift_y = 18
@@ -139,7 +139,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = "dshotgun"
 	item_state = "dshotgun"
 	max_shells = 2 //codex
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/double
+	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/double
 	fire_sound = 'sound/weapons/guns/fire/shotgun_heavy.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'
 	cocked_sound = null //We don't want this.
@@ -192,7 +192,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = "ts34"
 	item_state = "ts34"
 	max_shells = 2 //codex
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/double
+	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/double
 	fire_sound = 'sound/weapons/guns/fire/shotgun_heavy.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'
 	cocked_sound = null //We don't want this.
@@ -232,15 +232,12 @@ can cause issues with ammo types getting mixed up during the burst.
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "v10"
 	item_state = "v10"
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump
+	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/pump
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/shotgun_pump.ogg'
 	max_shells = 9
-	var/pump_sound = 'sound/weapons/guns/interact/shotgun_pump.ogg'
-	var/pump_delay //Higher means longer delay.
-	var/recent_pump //world.time to see when they last pumped it.
-	var/recent_notice //world.time to see when they last got a notice.
-	var/pump_lock = FALSE //Modern shotguns normally lock after being pumped; this lock is undone by pumping or operating the slide release i.e. unloading a shell manually.
-	var/pump_animation = null
+	cock_delay = 1.4 SECONDS
+
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -258,6 +255,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_PUMP_REQUIRED
+	reciever_flags = RECIEVER_INTERNAL|RECIEVER_HANDFULS|RECIEVER_REQUIRES_OPERATION
+	max_chamber_items = 8
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
 
@@ -268,17 +267,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	scatter_unwielded = 40
 	recoil = 2
 	recoil_unwielded = 4
-	pump_delay = 14
 	aim_slowdown = 0.45
-
-
-/obj/item/weapon/gun/shotgun/pump/proc/pump_fail_notice(mob/user)
-	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
-	to_chat(user,span_warning("<b>[src] has already been pumped, locking the pump mechanism; fire or unload a shell to unlock it.</b>"))
-	recent_notice = world.time
-
-/obj/item/weapon/gun/shotgun/pump/proc/pump_notice(mob/user)
-	to_chat(user, span_notice("<b>You pump [src].</b>"))
 
 //-------------------------------------------------------
 //A shotgun, how quaint.
@@ -290,8 +279,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	item_state = "pal12"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_cmb.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_cmb_insert.ogg'
-	pump_sound = 'sound/weapons/guns/interact/shotgun_cmb_pump.ogg'
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/CMB
+	cocked_sound = 'sound/weapons/guns/interact/shotgun_cmb_pump.ogg'
+	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/pump/CMB
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/gyro,
@@ -315,7 +304,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	scatter_unwielded = 35
 	recoil = 0 // It has a stock. It's on the sprite.
 	recoil_unwielded = 0
-	pump_delay = 12
+	cock_delay = 12
 	aim_slowdown = 0.4
 
 //------------------------------------------------------
@@ -333,9 +322,9 @@ can cause issues with ammo types getting mixed up during the burst.
 	caliber = CALIBER_762X54 //codex
 	load_method = SINGLE_CASING //codex
 	max_shells = 5 //codex
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/bolt
+	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/pump/bolt
 	gun_skill_category = GUN_SKILL_RIFLES
-	pump_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/scope/mini,
@@ -366,19 +355,11 @@ can cause issues with ammo types getting mixed up during the burst.
 	scatter_unwielded = 40
 	recoil = 0
 	recoil_unwielded = 4
-	pump_delay = 12
+	cock_delay = 12
 	aim_slowdown = 1
 	wield_delay = 1 SECONDS
 
 	placed_overlay_iconstate = "wood"
-
-/obj/item/weapon/gun/shotgun/pump/bolt/pump_fail_notice(mob/user)
-	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
-	to_chat(user,span_warning("<b>[src] bolt has already been worked, locking the bolt; fire or unload a round to unlock it.</b>"))
-	recent_notice = world.time
-
-/obj/item/weapon/gun/shotgun/pump/bolt/pump_notice(mob/user)
-	to_chat(user, span_notice("<b>You work [src] bolt.</b>"))
 
 
 //***********************************************************
@@ -396,7 +377,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	muzzle_flash_lum = 7
 	max_shells = 1 //codex
 	ammo = /datum/ammo/bullet/sniper/martini
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/martini
+	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/martini
 	gun_skill_category = GUN_SKILL_RIFLES
 	fire_sound = 'sound/weapons/guns/fire/martini.ogg'
 	reload_sound = 'sound/weapons/guns/interact/martini_reload.ogg'
@@ -445,7 +426,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	muzzle_flash_lum = 5
 	max_shells = 2 //codex
 	ammo = /datum/ammo/bullet/pistol/superheavy/derringer
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/derringer
+	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/derringer
 	fire_sound = 'sound/weapons/guns/fire/mateba.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/martini_cocked.ogg'
@@ -481,9 +462,9 @@ can cause issues with ammo types getting mixed up during the burst.
 	caliber = CALIBER_44 //codex
 	load_method = SINGLE_CASING //codex
 	max_shells = 10 //codex
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/lever
+	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/pump/lever
 	gun_skill_category = GUN_SKILL_RIFLES
-	pump_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
+	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
 	flags_item_map_variant = NONE
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -502,15 +483,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	scatter_unwielded = 40
 	recoil = 2
 	recoil_unwielded = 4
-	pump_delay = 6
+	cock_delay = 6
 
-/obj/item/weapon/gun/shotgun/pump/lever/pump_fail_notice(mob/user)
-	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
-	to_chat(user,span_warning("<b>[src] lever has already been worked, locking the lever; fire or unload a round to unlock it.</b>"))
-	recent_notice = world.time
-
-/obj/item/weapon/gun/shotgun/pump/lever/pump_notice(mob/user)
-	to_chat(user, span_notice("<b>You work [src] lever.</b>"))
 
 // ***********************************************
 // Leicester Rifle. The gun that won the west.
@@ -527,9 +501,9 @@ can cause issues with ammo types getting mixed up during the burst.
 	caliber = CALIBER_44 //codex
 	load_method = SINGLE_CASING //codex
 	max_shells = 14 //codex
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/lever/repeater
+	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/pump/lever/repeater
 	gun_skill_category = GUN_SKILL_RIFLES
-	pump_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
+	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
 	flags_item_map_variant = NONE
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -555,7 +529,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	scatter_unwielded = 15
 	recoil = 0
 	recoil_unwielded = 2
-	pump_delay = 2
+	cock_delay = 2
 	aim_slowdown = 0.6
 
 //------------------------------------------------------
@@ -571,9 +545,9 @@ can cause issues with ammo types getting mixed up during the burst.
 	caliber = CALIBER_410
 	load_method = SINGLE_CASING
 	max_shells = 10
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/lever/mbx900
+	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/pump/lever/mbx900
 	gun_skill_category = GUN_SKILL_SHOTGUNS
-	pump_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
 
 	attachable_allowed = list(
 		/obj/item/attachable/angledgrip,
@@ -600,7 +574,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	fire_delay = 0.6 SECONDS
 	accuracy_mult = 1.4
-	pump_delay = 0.2 SECONDS
+	cock_delay = 0.2 SECONDS
 
 //------------------------------------------------------
 //T-35 Pump shotgun
@@ -610,8 +584,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "t35"
 	item_state = "t35"
-	pump_animation = "t35_pump"
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump
+	cock_animation = "t35_pump"
+	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/pump
 	fire_sound = 'sound/weapons/guns/fire/t35.ogg'
 	max_shells = 9
 	attachable_allowed = list(
@@ -644,16 +618,16 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil = 2
 	recoil_unwielded = 4
 	aim_slowdown = 0.45
-	pump_delay = 14
+	cock_delay = 14
 
 	placed_overlay_iconstate = "t35"
 
 //buckshot variants
 /obj/item/weapon/gun/shotgun/pump/t35/pointman
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/buckshot
+	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/pump/buckshot
 
 /obj/item/weapon/gun/shotgun/pump/t35/nonstandard
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/buckshot
+	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/pump/buckshot
 	starting_attachment_types = list(/obj/item/attachable/stock/t35stock, /obj/item/attachable/angledgrip, /obj/item/attachable/magnetic_harness)
 
 //-------------------------------------------------------
@@ -670,7 +644,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	caliber = CALIBER_12G //codex
 	load_method = SINGLE_CASING //codex
 	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'
-	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
+	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/scout
 	aim_slowdown = 0.45
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,

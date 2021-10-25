@@ -140,13 +140,13 @@
 
 /obj/item/minigun_powerpack/proc/reload(mob/user, obj/item/weapon/gun/minigun/mygun, automatic = FALSE)
 	pcell.charge -= 50
-	if(!mygun.current_mag)
+	if(!mygun.default_magazine_type)
 		var/obj/item/ammo_magazine/internal/minigun/A = new(mygun)
-		mygun.current_mag = A
+		mygun.default_magazine_type = A
 
-	var/rounds_to_reload = min(rounds_remaining, (mygun.current_mag.max_rounds - mygun.current_mag.current_rounds)) //Get the smaller value.
+	var/rounds_to_reload = min(rounds_remaining, (mygun.default_magazine_type.max_rounds - mygun.default_magazine_type.current_rounds)) //Get the smaller value.
 
-	mygun.current_mag.current_rounds += rounds_to_reload
+	mygun.default_magazine_type.current_rounds += rounds_to_reload
 	rounds_remaining -= rounds_to_reload
 
 	if(!automatic)

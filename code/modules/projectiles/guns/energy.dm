@@ -179,7 +179,7 @@
 	fire_delay = 0.33 SECONDS
 	aim_slowdown = 0.35
 
-/obj/item/weapon/gun/energy/lasgun/M43/practice/cock(mob/user)
+/obj/item/weapon/gun/energy/lasgun/M43/practice/do_unique_action(mob/user)
 	return
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle
@@ -243,7 +243,7 @@
 	///The icon state the radial menu will use.
 	var/radial_icon_state = "laser"
 
-/obj/item/weapon/gun/energy/lasgun/lasrifle/cock(mob/user)
+/obj/item/weapon/gun/energy/lasgun/lasrifle/do_unique_action(mob/user)
 	if(!user)
 		CRASH("switch_modes called with no user.")
 

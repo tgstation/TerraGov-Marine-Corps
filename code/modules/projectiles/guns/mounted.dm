@@ -36,7 +36,7 @@
 	fire_sound = 'sound/weapons/guns/fire/hmg2.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 
-	current_mag = /obj/item/ammo_magazine/tl102
+	default_magazine_type = /obj/item/ammo_magazine/tl102
 
 	scatter = 20
 	fire_delay = 0.25 SECONDS
@@ -72,7 +72,7 @@
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "entrenched"
 
-	current_mag = /obj/item/ammo_magazine/tl102/hsg_nest
+	default_magazine_type = /obj/item/ammo_magazine/tl102/hsg_nest
 
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable/tl102/nest,
@@ -113,7 +113,7 @@
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 	caliber = CALIBER_10X28
 
-	current_mag = /obj/item/ammo_magazine/heavymachinegun
+	default_magazine_type = /obj/item/ammo_magazine/heavymachinegun
 
 
 	scatter = 25
@@ -161,7 +161,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
-	current_mag = /obj/item/ammo_magazine/standard_mmg
+	default_magazine_type = /obj/item/ammo_magazine/standard_mmg
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/magnetic_harness,

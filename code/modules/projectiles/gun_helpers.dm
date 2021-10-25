@@ -30,7 +30,7 @@
 	gun_on_cooldown() //For custom cooldown checks. By default it takes into account the user's skills.
 
 	load_into_chamber() //This can get complicated, but if the gun doesn't take attachments that fire bullets from
-	the Fire() process, just set them to null and leave the if(current_mag && current_mag.current_rounds > 0) check.
+	the Fire() process, just set them to null and leave the if(default_magazine_type && default_magazine_type.current_rounds > 0) check.
 	The idea here is that if the gun can find a valid bullet to fire, subtract the ammo.
 	This must return positive to continue the fire cycle.
 
@@ -89,6 +89,16 @@
 			//						   	  \\
 //----------------------------------------------------------
 
+
+/obj/item/weapon/gun/unique_action(mob/user)
+	. = ..()
+	do_unique_action(user)
+
+/obj/item/weapon/gun/attack_hand(mob/living/user)
+	if(loc != user)
+		return ..()
+	unload(user)
+
 /obj/item/weapon/gun/attack_hand_alternate(mob/user)
 	. = ..()
 	if(!active_attachable)
@@ -98,7 +108,14 @@
 	if(living_user.get_active_held_item() != src && living_user.get_inactive_held_item() != src)
 		return
 
-	active_attachable.reciever.process_unload(living_user)
+	unload(living_user)
+
+
+/obj/item/weapon/gun/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	reload(I, user)
+
+
 
 /obj/item/weapon/gun/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
@@ -282,8 +299,8 @@ should be alright.
 		return
 	if(!istype(src, new_magazine.gun_type))
 		return
-	if(reciever.chamber_items[reciever.current_chamber_position])
-		reciever.process_unload(src, user)
+	if(chamber_items[current_chamber_position])
+		unload(user)
 		to_chat(user, span_notice("You start a tactical reload."))
 	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
 	if(!do_after(user,tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
@@ -292,7 +309,7 @@ should be alright.
 		var/obj/item/storage/S = new_magazine.loc
 		S.remove_from_storage(new_magazine, get_turf(user), user)
 	user.put_in_any_hand_if_possible(new_magazine)
-	reciever.process_reload(src, new_magazine, user)
+	reload(new_magazine, user)
 
 //----------------------------------------------------------
 				//						 \\
@@ -605,7 +622,7 @@ should be alright.
 	set name = "Unload Weapon (Weapon)"
 	set desc = "Removes the magazine from your current gun and drops it on the ground, or clears the chamber if your gun is already empty."
 
-	reciever.process_unload(src, usr) //We want to drop the mag on the ground.
+	unload(usr) //We want to drop the mag on the ground.
 
 
 /mob/living/carbon/human/verb/use_unique_action()
@@ -817,7 +834,7 @@ should be alright.
 /// Signal handler to unload that gun if it's in our active hand
 /obj/item/weapon/gun/proc/unload_gun()
 	SIGNAL_HANDLER
-	reciever.process_unload(src, gun_user)
+	unload(gun_user)
 	return COMSIG_KB_ACTIVATED
 
 /// Signal handler to toggle the safety of the gun
@@ -837,7 +854,7 @@ should be alright.
 	//This works, but it's also pretty slow in comparison to the updated method.
 	var/turf/current_turf = get_turf(src)
 	var/obj/item/ammo_casing/casing = locate() in current_turf
-	var/icon/I = new( 'icons/obj/items/ammo.dmi', current_mag.icon_spent, pick(1,2,4,5,6,8,9,10) ) //Feeding dir is faster than doing Turn().
+	var/icon/I = new( 'icons/obj/items/ammo.dmi', default_magazine_type.icon_spent, pick(1,2,4,5,6,8,9,10) ) //Feeding dir is faster than doing Turn().
 	I.Shift(pick(1,2,4,5,6,8,9,10),rand(0,11))
 	if(casing) //If there is already something on the ground, takes the firs thing it finds. Can take a long time if there are a lot of things.
 		//Still better than making a billion casings.
@@ -856,25 +873,25 @@ should be alright.
 //most efficient. Also, this particular example crashes the client upon Blend(). Not sure what is causing it,
 //but the code was entirely replaced so it's irrelevant now. ~N
 //If the gun has spent shells and we either have no ammo remaining or we're reloading it on the go.
-if(current_mag.casings_to_eject.len && casing_override) //We have some spent casings to eject.
+if(default_magazine_type.casings_to_eject.len && casing_override) //We have some spent casings to eject.
 	var/turf/current_turf = get_turf(src)
 	var/obj/item/ammo_casing/casing = locate() in current_turf
 	var/icon/G
 
 	if(!casing)
 		//Feeding dir is faster than doing Turn().
-		G = new( 'icons/obj/items/ammo.dmi', current_mag.icon_spent, pick(1,2,4,5,6,8,9,10) ) //We make a new icon.
+		G = new( 'icons/obj/items/ammo.dmi', default_magazine_type.icon_spent, pick(1,2,4,5,6,8,9,10) ) //We make a new icon.
 		G.Shift(pick(1,2,4,5,6,8,9,10),rand(0,11)) //Shift it randomy.
 		var/obj/item/ammo_casing/new_casing = new(current_turf) //Then we create a new casing.
 		new_casing.icon = G //We give this new casing the icon we just generated.
 		casing = new_casing //Our casing from earlier is now this csaing.
-		current_mag.casings_to_eject.Cut(1,2) //Cut the list so that it's one less.
+		default_magazine_type.casings_to_eject.Cut(1,2) //Cut the list so that it's one less.
 		playsound(current_turf, sound_to_play, 20, 1) //Play the sound.
 
 	G = casing.icon //Get the icon from the casing icon if it spawned or was there previously.
 	var/i
-	for(i = 1 to current_mag.casings_to_eject.len) //We want to run this for each item in the list.
-		var/icon/I = new( 'icons/obj/items/ammo.dmi', current_mag.icon_spent, pick(1,2,4,5,6,8,9,10) )
+	for(i = 1 to default_magazine_type.casings_to_eject.len) //We want to run this for each item in the list.
+		var/icon/I = new( 'icons/obj/items/ammo.dmi', default_magazine_type.icon_spent, pick(1,2,4,5,6,8,9,10) )
 		I.Shift(pick(1,2,4,5,6,8,9,10),rand(0,11))
 		G.Blend(I,ICON_OVERLAY) //<---- Crashes the client. //Blend them two in, with I overlaying what's already there.
 		playsound(current_turf, sound_to_play, 20, 1)
@@ -883,9 +900,9 @@ if(current_mag.casings_to_eject.len && casing_override) //We have some spent cas
 	casing.icon = G
 	if(casing.name != "spent casings")
 		casing.name += "s"
-	current_mag.casings_to_eject = list() //Empty list.
+	default_magazine_type.casings_to_eject = list() //Empty list.
 
 else if(!casing_override)//So we're not reloading/emptying, we're firing the gun.
 	//I would add a check here for attachables, but you can't fit the masterkey on a revolver/shotgun.
-	current_mag.casings_to_eject += ammo.casing_type //Other attachables are processed beforehand and don't matter here.
+	default_magazine_type.casings_to_eject += ammo.casing_type //Other attachables are processed beforehand and don't matter here.
 */

@@ -36,7 +36,7 @@
 	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 36 //codex
 	force = 20
-	current_mag = /obj/item/ammo_magazine/rifle/standard_carbine
+	default_magazine_type = /obj/item/ammo_magazine/rifle/standard_carbine
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
@@ -103,7 +103,7 @@
 	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 50 //codex
 	force = 20
-	current_mag = /obj/item/ammo_magazine/rifle/standard_assaultrifle
+	default_magazine_type = /obj/item/ammo_magazine/rifle/standard_assaultrifle
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
@@ -177,7 +177,7 @@
 	wield_delay = 0.8 SECONDS
 	force = 20
 	max_shells = 10 //codex
-	current_mag = /obj/item/ammo_magazine/rifle/standard_dmr
+	default_magazine_type = /obj/item/ammo_magazine/rifle/standard_dmr
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
@@ -241,7 +241,7 @@
 	wield_delay = 0.7 SECONDS
 	force = 20
 	max_shells = 10 //codex
-	current_mag = /obj/item/ammo_magazine/rifle/standard_br
+	default_magazine_type = /obj/item/ammo_magazine/rifle/standard_br
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
@@ -299,7 +299,7 @@
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 40 //codex
-	current_mag = /obj/item/ammo_magazine/rifle
+	default_magazine_type = /obj/item/ammo_magazine/rifle
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
@@ -349,7 +349,7 @@
 	desc = "An \"Elite\" modification of the M412 pulse rifle series, given to special operation units. It has been given a stock and a longer barrel with an integrated barrel charger, with a red skull stenciled on the body for some reason."
 	icon_state = "m412e"
 	item_state = "m412e"
-	current_mag = /obj/item/ammo_magazine/rifle/ap
+	default_magazine_type = /obj/item/ammo_magazine/rifle/ap
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
@@ -398,7 +398,7 @@
 	aim_slowdown = 0.5
 	wield_delay = 1.35 SECONDS
 	max_shells = 95 //codex
-	current_mag = /obj/item/ammo_magazine/rifle/m41a
+	default_magazine_type = /obj/item/ammo_magazine/rifle/m41a
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -441,7 +441,7 @@
 	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/rifle/ak47
+	default_magazine_type = /obj/item/ammo_magazine/rifle/ak47
 	aim_slowdown = 0.7
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -479,7 +479,7 @@
 	unload_sound = 'sound/weapons/guns/interact/m16_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m16_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m16_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/rifle/m16
+	default_magazine_type = /obj/item/ammo_magazine/rifle/m16
 	aim_slowdown = 0.4
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -548,7 +548,7 @@
 	unload_sound = 'sound/weapons/guns/interact/m16_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m16_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m16_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/rifle/famas
+	default_magazine_type = /obj/item/ammo_magazine/rifle/famas
 	aim_slowdown = 0.4
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -602,7 +602,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
-	current_mag = /obj/item/ammo_magazine/standard_lmg
+	default_magazine_type = /obj/item/ammo_magazine/standard_lmg
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
@@ -662,7 +662,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
-	current_mag = /obj/item/ammo_magazine/standard_gpmg
+	default_magazine_type = /obj/item/ammo_magazine/standard_gpmg
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
@@ -721,7 +721,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
-	current_mag = /obj/item/ammo_magazine/m412l1_hpr
+	default_magazine_type = /obj/item/ammo_magazine/m412l1_hpr
 	attachable_allowed = list(
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/reddot,
@@ -778,7 +778,7 @@
 	unload_sound = 'sound/weapons/guns/interact/type71_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/type71_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/type71_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/rifle/type71
+	default_magazine_type = /obj/item/ammo_magazine/rifle/type71
 	aim_slowdown = 0.6
 	wield_delay = 0.7 SECONDS
 	attachable_allowed = list(
@@ -856,7 +856,7 @@
 	caliber = CALIBER_16G //codex
 	max_shells = 12 //codex
 	force = 20
-	current_mag = /obj/item/ammo_magazine/rifle/tx15_slug
+	default_magazine_type = /obj/item/ammo_magazine/rifle/tx15_slug
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -904,7 +904,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
-	current_mag = /obj/item/ammo_magazine/standard_smartmachinegun
+	default_magazine_type = /obj/item/ammo_magazine/standard_smartmachinegun
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
@@ -949,7 +949,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
-	current_mag = /obj/item/ammo_magazine/rifle/standard_smartrifle
+	default_magazine_type = /obj/item/ammo_magazine/rifle/standard_smartrifle
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
@@ -1002,7 +1002,7 @@
 	max_shells = 20//codex stuff
 	ammo = /datum/ammo/energy/plasma
 	muzzleflash_iconstate = "muzzle_flash_pulse"
-	current_mag = /obj/item/ammo_magazine/rifle/sectoid_rifle
+	default_magazine_type = /obj/item/ammo_magazine/rifle/sectoid_rifle
 	wield_delay = 0.4 SECONDS
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_LOAD_INTO_CHAMBER
@@ -1046,7 +1046,7 @@
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = CALIBER_86X70 //codex
 	max_shells = 7 //codex
-	current_mag = /obj/item/ammo_magazine/rifle/chamberedrifle
+	default_magazine_type = /obj/item/ammo_magazine/rifle/chamberedrifle
 	attachable_allowed = list(
 		/obj/item/attachable/scope/unremovable/tl127,
 		/obj/item/attachable/extended_barrel,
@@ -1094,7 +1094,7 @@
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = CALIBER_86X70 //codex
 	max_shells = 7 //codex
-	current_mag = /obj/item/ammo_magazine/rifle/autosniper
+	default_magazine_type = /obj/item/ammo_magazine/rifle/autosniper
 	attachable_allowed = list(
 		/obj/item/attachable/autosniperbarrel,
 		/obj/item/attachable/scope/nightvision,
@@ -1139,7 +1139,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
-	current_mag = /obj/item/ammo_magazine/rifle/tx11
+	default_magazine_type = /obj/item/ammo_magazine/rifle/tx11
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
@@ -1188,7 +1188,7 @@
 	caliber = CALIBER_10X25_CASELESS //codex
 	max_shells = 30 //codex
 	force = 20
-	current_mag = /obj/item/ammo_magazine/rifle/standard_skirmishrifle
+	default_magazine_type = /obj/item/ammo_magazine/rifle/standard_skirmishrifle
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
@@ -1247,7 +1247,7 @@
 	caliber = CALIBER_10X25_CASELESS //codex
 	max_shells = 80 //codex
 	force = 20
-	current_mag = /obj/item/ammo_magazine/rifle/alf_machinecarbine
+	default_magazine_type = /obj/item/ammo_magazine/rifle/alf_machinecarbine
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
@@ -1289,7 +1289,7 @@
 	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/rifle/mkh
+	default_magazine_type = /obj/item/ammo_magazine/rifle/mkh
 	aim_slowdown = 0.45
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,

@@ -162,7 +162,7 @@
 /obj/machinery/deployable/mounted/sentry/ui_data(mob/user)
 	var/obj/item/weapon/gun/gun = internal_item
 	var/current_rounds
-	current_rounds = gun.reciever.rounds
+	current_rounds = gun.rounds
 	. = list(
 		"rounds" =  current_rounds,
 		"cell_charge" = gun.sentry_battery ? gun.sentry_battery.charge : 0,
@@ -172,7 +172,7 @@
 /obj/machinery/deployable/mounted/sentry/ui_static_data(mob/user)
 	var/obj/item/weapon/gun/gun = internal_item
 	var/rounds_max
-	rounds_max = gun.reciever.max_rounds
+	rounds_max = gun.max_rounds
 	. = list(
 		"name" = copytext(name, 2),
 		"rounds_max" = rounds_max,
@@ -388,7 +388,7 @@
 	update_icon()
 	if(target != gun.target || get_dist(src, target) > range)
 		gun.stop_fire()
-	if(!gun.reciever.rounds)
+	if(!gun.rounds)
 		sentry_alert(SENTRY_ALERT_AMMO)
 		return
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL))

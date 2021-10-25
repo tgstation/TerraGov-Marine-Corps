@@ -116,13 +116,13 @@ Generic internal magazine. All shotguns will use this or a variation with differ
 Since all shotguns share ammo types, the gun path is going to be the same for all of them. And it
 also doesn't really matter. You can only reload them with handfuls.
 */
+
 /obj/item/ammo_magazine/internal/shotgun
 	name = "shotgun tube"
 	desc = "An internal magazine. It is not supposed to be seen or removed."
 	default_ammo = /datum/ammo/bullet/shotgun/slug
 	caliber = CALIBER_12G
 	max_rounds = 8
-	chamber_closed = 0
 
 /obj/item/ammo_magazine/internal/shotgun/pump
 
@@ -146,13 +146,11 @@ also doesn't really matter. You can only reload them with handfuls.
 	default_ammo = /datum/ammo/bullet/sniper/martini
 	caliber = CALIBER_557
 	max_rounds = 1
-	chamber_closed = 1
 
 /obj/item/ammo_magazine/internal/shotgun/derringer
 	default_ammo = /datum/ammo/bullet/pistol/superheavy/derringer
 	caliber = CALIBER_41RIM
 	max_rounds = 2
-	chamber_closed = 1
 
 /obj/item/ammo_magazine/internal/shotgun/pump/lever
 	name = "tubular magazine"
@@ -174,7 +172,6 @@ also doesn't really matter. You can only reload them with handfuls.
 /obj/item/ammo_magazine/internal/shotgun/double
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 	max_rounds = 2
-	chamber_closed = 1 //Starts out with a closed tube.
 
 /obj/item/ammo_magazine/internal/shotgun/combat
 	max_rounds = 9
@@ -185,3 +182,4 @@ also doesn't really matter. You can only reload them with handfuls.
 /obj/item/ammo_magazine/internal/shotgun/scout
 	max_rounds = 9
 	current_rounds = 0
+

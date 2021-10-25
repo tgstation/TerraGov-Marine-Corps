@@ -211,17 +211,17 @@
 	if(istype(gun_to_spawn, /obj/item/weapon/gun/grenade_launcher/single_shot/flare))
 		new /obj/item/storage/box/m94 (get_turf(src))
 		return
-
+/* remember to do this too retard
 	if(istype(gun_to_spawn, /obj/item/weapon/gun/energy))
 		var/obj/item/weapon/gun/energy/energy_gun_to_spawn = gun_to_spawn
 		for(var/i in 1 to 3)
 			new energy_gun_to_spawn.cell_type (get_turf(src))
 		return
-
-	if(!gun_to_spawn.current_mag)
-		stack_trace("Attempted to spawn ammo for a gun that has no current_mag. Someone make a bugreport for this weapon [initial(gun_to_spawn.name)] as related to the tiered weapon spawning.")
+*/
+	if(!gun_to_spawn.default_magazine_type)
+		stack_trace("Attempted to spawn ammo for a gun that has no default_magazine_type. Someone make a bugreport for this weapon [initial(gun_to_spawn.name)] as related to the tiered weapon spawning.")
 		return
-	var/obj/item/ammo_magazine/gun_mag = gun_to_spawn.current_mag.type
+	var/obj/item/ammo_magazine/gun_mag = gun_to_spawn.default_magazine_type.type
 
 	if(istype(gun_to_spawn, /obj/item/weapon/gun/shotgun))
 		var/obj/item/ammo_magazine/handful/handful_to_generate

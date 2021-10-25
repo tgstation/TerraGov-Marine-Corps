@@ -4,7 +4,7 @@
 /obj/item/weapon/gun/launcher/rocket/toy //Fires dummy rockets, like a toy gun
 	name = "\improper toy rocket launcher"
 	desc = "Where did this come from?"
-	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket/toy
+	default_magazine_type = /obj/item/ammo_magazine/internal/launcher/rocket/toy
 	gun_skill_category = GUN_SKILL_FIREARMS
 
 

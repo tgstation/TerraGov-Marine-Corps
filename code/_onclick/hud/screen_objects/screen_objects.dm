@@ -704,15 +704,15 @@
 	if(!user?.client?.screen.Find(src))
 		return
 
-	if(!G || !(G.flags_gun_features & GUN_AMMO_COUNTER) || !G.get_ammo_type() || isnull(G.get_ammo_count()))
+	if(!G || !(G.flags_gun_features & GUN_AMMO_COUNTER) || !G.get_ammo())
 		remove_hud(user)
 		return
 
-	var/list/ammo_type = G.get_ammo_type()
-	var/rounds = G.get_ammo_count()
+	var/datum/ammo/ammo_type = G.get_ammo()
+	var/rounds = G.rounds
 
-	var/hud_state = ammo_type[1]
-	var/hud_state_empty = ammo_type[2]
+	var/hud_state = ammo_type.hud_state
+	var/hud_state_empty = ammo_type.hud_state_empty
 
 	overlays.Cut()
 
@@ -730,7 +730,7 @@
 			spawn(20)
 				user.client.screen -= F
 				qdel(F)
-				if(G.get_ammo_count() == 0)
+				if(G.rounds == 0)
 					overlays += empty
 	else
 		warned = FALSE

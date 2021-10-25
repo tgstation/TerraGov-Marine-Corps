@@ -62,7 +62,7 @@
 	max_shells = 50
 
 	ammo = /datum/ammo/bullet/turret
-	current_mag = /obj/item/ammo_magazine/sentry
+	default_magazine_type = /obj/item/ammo_magazine/sentry
 
 	sentry_battery_drain = 50
 
@@ -94,7 +94,7 @@
 	sentry_iff_signal = TGMC_LOYALIST_IFF
 	flags_item = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 	turret_flags = TURRET_IMMOBILE|TURRET_RADIAL|TURRET_LOCKED|TURRET_ON
-	current_mag = /obj/item/ammo_magazine/sentry/fob_sentry
+	default_magazine_type = /obj/item/ammo_magazine/sentry/fob_sentry
 	sentry_battery_type = /obj/item/cell/lasgun/fob_sentry/cell
 
 /obj/item/weapon/gun/sentry/big_sentry/fob_sentry/rebel
@@ -130,7 +130,7 @@
 	knockdown_threshold = 80
 
 	ammo = /datum/ammo/bullet/turret/mini
-	current_mag = /obj/item/ammo_magazine/minisentry
+	default_magazine_type = /obj/item/ammo_magazine/minisentry
 
 	fire_delay = 0.3 SECONDS
 	burst_delay = 0.2 SECONDS
@@ -149,7 +149,7 @@
 	max_shells = 100
 
 	ammo = /datum/ammo/bullet/turret/gauss
-	current_mag = /obj/item/ammo_magazine/sentry
+	default_magazine_type = /obj/item/ammo_magazine/sentry
 
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
@@ -159,7 +159,7 @@
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IS_SENTRY
 	ammo = /datum/ammo/bullet/turret/dumb
-	current_mag = /obj/item/ammo_magazine/sentry_premade/dumb
+	default_magazine_type = /obj/item/ammo_magazine/sentry_premade/dumb
 	max_shells = 500
 	turret_flags = TURRET_ON|TURRET_IMMOBILE|TURRET_SAFETY|TURRET_RADIAL
 

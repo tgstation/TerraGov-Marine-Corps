@@ -36,7 +36,7 @@
 	caliber = CALIBER_10X20_CASELESS //codex
 	max_shells = 30 //codex
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
-	current_mag = /obj/item/ammo_magazine/smg/standard_machinepistol
+	default_magazine_type = /obj/item/ammo_magazine/smg/standard_machinepistol
 
 	w_class = WEIGHT_CLASS_NORMAL
 	attachable_allowed = list(
@@ -83,7 +83,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	wield_delay = 0.5 SECONDS
 	force = 20
-	current_mag = /obj/item/ammo_magazine/smg/standard_smg
+	default_magazine_type = /obj/item/ammo_magazine/smg/standard_smg
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
@@ -136,7 +136,7 @@
 	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
 	flags_equip_slot = ITEM_SLOT_BACK
-	current_mag = /obj/item/ammo_magazine/smg/m25
+	default_magazine_type = /obj/item/ammo_magazine/smg/m25
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
@@ -169,7 +169,7 @@
 	icon_state = "m25b2"
 	item_state = "m25b2"
 	fire_sound = 'sound/weapons/guns/fire/smg_heavy.ogg'
-	current_mag = /obj/item/ammo_magazine/smg/m25/ap
+	default_magazine_type = /obj/item/ammo_magazine/smg/m25/ap
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
@@ -211,7 +211,7 @@
 	caliber = CALIBER_46X30 //codex
 	max_shells = 30 //codex
 	fire_sound = 'sound/weapons/guns/fire/mp7.ogg'
-	current_mag = /obj/item/ammo_magazine/smg/mp7
+	default_magazine_type = /obj/item/ammo_magazine/smg/mp7
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
@@ -245,7 +245,7 @@
 	unload_sound = 'sound/weapons/guns/interact/skorpion_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/skorpion_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/skorpion_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/smg/skorpion
+	default_magazine_type = /obj/item/ammo_magazine/smg/skorpion
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 23, "stock_y" = 15)
 
 	burst_delay = 0.2 SECONDS
@@ -272,7 +272,7 @@
 	unload_sound = 'sound/weapons/guns/interact/ppsh_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ppsh_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ppsh_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/smg/ppsh
+	default_magazine_type = /obj/item/ammo_magazine/smg/ppsh
 	attachable_allowed = list(
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
@@ -316,7 +316,7 @@
 	unload_sound = 'sound/weapons/guns/interact/uzi_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/uzi_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/uzi_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/smg/uzi
+	default_magazine_type = /obj/item/ammo_magazine/smg/uzi
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
 	fire_delay = 0.15 SECONDS
