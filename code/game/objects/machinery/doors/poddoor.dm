@@ -238,7 +238,6 @@
 
 /obj/machinery/door/poddoor/timed_late/Initialize()
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH), .proc/open)
-	ADD_TRAIT(src, TRAIT_TURF_AI_UNPASSABLE, SHUTTER_TRAIT)
 	return ..()
 
 

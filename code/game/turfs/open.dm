@@ -309,8 +309,8 @@
 /turf/open/lavaland/lava/single/corners
 	icon_state = "single_corners"
 
-/turf/open/lavaland/lava/New()
-	..()
+/turf/open/lavaland/lava/Initialize()
+	. = ..()
 	ADD_TRAIT(src, TRAIT_TURF_AI_UNPASSABLE, LAVA_TRAIT)
 
 /turf/open/lavaland/lava/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
