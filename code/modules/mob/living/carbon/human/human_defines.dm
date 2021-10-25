@@ -136,7 +136,3 @@
 
 	/// This is the cooldown on suffering additional effects for when shock gets high
 	COOLDOWN_DECLARE(last_shock_effect)
-
-	///Cooldowns on taking effects on injection from chems. Anti-microdose-spam measure
-	COOLDOWN_DECLARE(peridaxon_plus)
-	COOLDOWN_DECLARE(quickclotplus)
