@@ -176,7 +176,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	INVOKE_ASYNC(mob_parent, /mob/living.proc/emote, "roar")
 	escorted_atom = atom_to_escort
 	RegisterSignal(escorted_atom, COMSIG_PARENT_QDELETING, .proc/clean_escorted_atom)
-	RegisterSignal(escorted_atom, COMSIG_AI_SET_BEHAVIOUR, .proc/set_agressivity)
+	RegisterSignal(escorted_atom, ESCORTING_ATOM_BEHAVIOUR_CHANGED, .proc/set_agressivity)
 	base_action = ESCORTING_ATOM
 	change_action(ESCORTING_ATOM, escorted_atom)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)

@@ -1135,7 +1135,8 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_MINION_RALLY, owner)
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	var/datum/action/xeno_action/set_agressivity/set_agressivity = xenoowner.actions_by_path[/datum/action/xeno_action/set_agressivity]
-	SEND_SIGNAL(owner, COMSIG_AI_SET_BEHAVIOUR, set_agressivity.minions_agressive) //New escorting ais should have the same behaviour as old one
+	if(set_agressivity)
+		SEND_SIGNAL(owner, ESCORTING_ATOM_BEHAVIOUR_CHANGED, set_agressivity.minions_agressive) //New escorting ais should have the same behaviour as old one
 
 /datum/action/xeno_action/set_agressivity
 	name = "Set minions behavior"
@@ -1151,7 +1152,7 @@
 
 /datum/action/xeno_action/set_agressivity/action_activate()
 	minions_agressive = !minions_agressive
-	SEND_SIGNAL(owner, COMSIG_AI_SET_BEHAVIOUR, minions_agressive)
+	SEND_SIGNAL(owner, ESCORTING_ATOM_BEHAVIOUR_CHANGED, minions_agressive)
 	update_button_icon()
 
 /datum/action/xeno_action/set_agressivity/update_button_icon()
