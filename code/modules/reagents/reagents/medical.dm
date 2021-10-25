@@ -723,7 +723,7 @@
 	custom_metabolism = REAGENTS_METABOLISM * 2.5
 
 /datum/reagent/medicine/quickclotplus/on_mob_add(mob/living/L, metabolism)
-	if(TIMER_COOLDOWN_CHECK(L, "name))
+	if(TIMER_COOLDOWN_CHECK(L, name))
 		return
 	L.adjustCloneLoss(5*effect_str)
 
