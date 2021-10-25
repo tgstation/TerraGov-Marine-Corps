@@ -175,7 +175,7 @@
 		return FALSE
 	if(living_mob.resting)//Already resting
 		if(living_mob.on_fire)
-			living_mob.resist()
+			living_mob.do_resist()
 		return TRUE
 	SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
 	RegisterSignal(mob_parent, COMSIG_XENOMORPH_HEALTH_REGEN, .proc/check_for_health)
