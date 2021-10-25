@@ -435,6 +435,6 @@
 	deconstructing = FALSE
 	playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
 	var/turf/current_turf = get_turf(src)
-	if(anchored && current_turf)
+	if(current_turf)
 		current_turf.flags_atom |= AI_BLOCKED
 	ChangeTurf(/turf/open/lavaland/lava)
