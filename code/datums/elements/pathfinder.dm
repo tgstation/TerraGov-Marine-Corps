@@ -53,7 +53,7 @@ stutter_step: a prob() chance to go left or right of the mob's direction towards
 			if(!get_dir(mob_to_process, atoms_to_walk_to[mob_to_process])) //We're right on top, move out of it
 				step_dir = pick(CARDINAL_ALL_DIRS)
 				var/turf/next_turf = get_step(mob_to_process, step_dir)
-				if(!HAS_TRAIT(next_turf, TRAIT_TURF_AI_UNPASSABLE) && !mob_to_process.Move(get_step(mob_to_process, step_dir), step_dir))
+				if(!(next_turf.flags_atom & AI_BLOCKED) && !mob_to_process.Move(get_step(mob_to_process, step_dir), step_dir))
 					SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE, step_dir)
 				else if(ISDIAGONALDIR(step_dir))
 					mob_to_process.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_to_process.cached_multiplicative_slowdown //Not perfect but good enough
@@ -61,7 +61,7 @@ stutter_step: a prob() chance to go left or right of the mob's direction towards
 			if(prob(stutter_step_prob[mob_to_process]))
 				step_dir = pick(LeftAndRightOfDir(get_dir(mob_to_process, atoms_to_walk_to[mob_to_process])))
 				var/turf/next_turf = get_step(mob_to_process, step_dir)
-				if(!HAS_TRAIT(next_turf, TRAIT_TURF_AI_UNPASSABLE) && !mob_to_process.Move(get_step(mob_to_process, step_dir), step_dir))
+				if(!(next_turf.flags_atom & AI_BLOCKED) && !mob_to_process.Move(get_step(mob_to_process, step_dir), step_dir))
 					SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE, step_dir)
 				else if(ISDIAGONALDIR(step_dir))
 					mob_to_process.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_to_process.cached_multiplicative_slowdown
@@ -71,10 +71,10 @@ stutter_step: a prob() chance to go left or right of the mob's direction towards
 		else
 			step_dir = get_dir(mob_to_process, atoms_to_walk_to[mob_to_process])
 		var/turf/next_turf = get_step(mob_to_process, step_dir)
-		if(HAS_TRAIT(next_turf, TRAIT_TURF_AI_UNPASSABLE) || (!mob_to_process.Move(next_turf, step_dir) && !(SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE, step_dir) & COMSIG_OBSTACLE_DEALT_WITH)))
+		if(next_turf.flags_atom & AI_BLOCKED || (!mob_to_process.Move(next_turf, step_dir) && !(SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE, step_dir) & COMSIG_OBSTACLE_DEALT_WITH)))
 			step_dir = pick(LeftAndRightOfDir(step_dir))
 			next_turf = get_step(mob_to_process, step_dir)
-			if(HAS_TRAIT(next_turf, TRAIT_TURF_AI_UNPASSABLE))
+			if(next_turf.flags_atom & AI_BLOCKED)
 				continue
 			if(mob_to_process.Move(get_step(mob_to_process, step_dir), step_dir) && ISDIAGONALDIR(step_dir))
 				mob_to_process.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_to_process.cached_multiplicative_slowdown

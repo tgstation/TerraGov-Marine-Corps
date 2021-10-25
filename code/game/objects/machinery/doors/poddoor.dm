@@ -12,19 +12,27 @@
 
 /obj/machinery/door/poddoor/Initialize()
 	. = ..()
-	ADD_TRAIT(get_step(src, 0), TRAIT_TURF_AI_UNPASSABLE, SHUTTER_TRAIT)
+	var/turf/current_turf = get_turf(src)
+	if(anchored && current_turf && density)
+		current_turf.flags_atom |= AI_BLOCKED
 
 /obj/machinery/door/poddoor/Destroy()
-	REMOVE_TRAIT(get_step(src, 0), TRAIT_TURF_AI_UNPASSABLE, SHUTTER_TRAIT)
+	var/turf/current_turf = get_turf(src)
+	if(anchored && current_turf && density)
+		current_turf.flags_atom &= ~AI_BLOCKED
 	return ..()
 
 /obj/machinery/door/poddoor/open()
 	. = ..()
-	REMOVE_TRAIT(get_step(src, 0), TRAIT_TURF_AI_UNPASSABLE, SHUTTER_TRAIT)
+	var/turf/current_turf = get_turf(src)
+	if(anchored && current_turf && density)
+		current_turf.flags_atom &= ~AI_BLOCKED
 
 /obj/machinery/door/poddoor/close()
 	. = ..()
-	ADD_TRAIT(get_step(src, 0), TRAIT_TURF_AI_UNPASSABLE, SHUTTER_TRAIT)
+	var/turf/current_turf = get_turf(src)
+	if(anchored && current_turf && density)
+		current_turf.flags_atom |= AI_BLOCKED
 
 /obj/machinery/door/poddoor/Bumped(atom/AM)
 	if(!density)
