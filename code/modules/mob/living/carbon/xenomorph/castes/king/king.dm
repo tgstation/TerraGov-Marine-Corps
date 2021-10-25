@@ -75,7 +75,7 @@
 	. = ..()
 	var/datum/hive_status/hive = GLOB.hive_datums[ownerhive]
 	if(hive)
-		hive.king_present = max (hive.king_present - 1, 0)
+		hive.king_present = max(hive.king_present - 1, 0)
 
 /obj/structure/resin/king_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	if(X != future_king)
