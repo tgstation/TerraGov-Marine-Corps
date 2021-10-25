@@ -27365,10 +27365,6 @@
 	dir = 6
 	},
 /area/shuttle/drop2/lz2)
-"xTC" = (
-/obj/structure/cable,
-/turf/closed/wall/r_wall,
-/area/bigredv2/outside/telecomm)
 "xTT" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -30383,7 +30379,7 @@ aaM
 aaM
 aaM
 aaM
-xTC
+rBD
 adb
 ads
 adf
