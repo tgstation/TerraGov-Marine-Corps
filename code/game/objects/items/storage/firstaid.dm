@@ -505,34 +505,29 @@
 	scan_name = TRUE
 
 /obj/item/storage/pill_bottle/attackby(obj/item/I, mob/user, params)
-		. = ..()
-		if(.)
-			return
+	. = ..()
+	if(.)
+		return
+	if(!istype(I, /obj/item/facepaint) || istype(src, /obj/item/storage/pill_bottle/packet))
+		return
 
-		if(!istype(I, /obj/item/facepaint))
-			return
-		if(istype(src, /obj/item/storage/pill_bottle/packet))
-			return
+	var/obj/item/facepaint/paint = I
+	if(paint.uses < 1)
+		to_chat(user, span_warning("\the [paint] is out of color!"))
+		return
+	var/new_color
+	var/new_color2
+	if(colorable_colors)
+		new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
+		new_color2 = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
+	else
+		new_color = input(user, "Pick a color", "Pick color") as null|color
+		new_color2 = input(user, "Pick a color", "Pick color") as null|color
 
-		var/obj/item/facepaint/paint = I
-		if(paint.uses < 1)
-			to_chat(user, span_warning("\the [paint] is out of color!"))
-			return
-		var/new_color
-		var/new_color2
-		if(colorable_colors)
-			new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
-			new_color2 = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
-		else
-			new_color = input(user, "Pick a color", "Pick color") as null|color
-			new_color2 = input(user, "Pick a color", "Pick color") as null|color
+	if(!new_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return
 
-		if(!new_color)
-			return
 
-		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
-			return
-
-		set_greyscale_colors(list(new_color,new_color2))
-		paint.uses--
-		update_icon()
+	set_greyscale_colors(list(new_color,new_color2))
+	paint.uses--
+	update_icon()
