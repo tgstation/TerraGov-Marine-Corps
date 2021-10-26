@@ -21,6 +21,9 @@ The Grenade Launchers
 	///the maximum range the launcher can fling the grenade, by default 15 tiles
 	var/max_range = 15
 
+	allowed_ammo_type = /obj/item/explosive/grenade
+	reciever_flags = NONE
+
 
 /obj/item/weapon/gun/grenade_launcher/able_to_fire(mob/user)
 	. = ..()
@@ -35,16 +38,17 @@ The Grenade Launchers
 	if(!istype(object_to_fire, /obj/item/explosive/grenade))
 		return FALSE
 	var/obj/item/explosive/grenade/grenade_to_launch = object_to_fire
-	grenade_to_launch.forceMove(get_turf(src))
-	user.visible_message(span_danger("[user] fired a grenade!"), span_warning("You fire [src]!"))
-	log_explosion("[key_name(user)] fired a grenade ([grenade_to_launch]) from [src] at [AREACOORD(userturf)].")
-	log_combat(user, src, "fired a grenade ([grenade_to_launch]) from [src]")
+	var/turf/user_turf = get_turf(src)
+	grenade_to_launch.forceMove(user_turf)
+	gun_user.visible_message(span_danger("[gun_user] fired a grenade!"), span_warning("You fire [src]!"))
+	log_explosion("[key_name(gun_user)] fired a grenade ([grenade_to_launch]) from [src] at [AREACOORD(user_turf)].")
+	log_combat(gun_user, src, "fired a grenade ([grenade_to_launch]) from [src]")
 	play_fire_sound(loc)
 	grenade_to_launch.det_time = min(10, grenade_to_launch.det_time)
 	grenade_to_launch.launched = TRUE
-	grenade_to_launch.activate(user)
+	grenade_to_launch.activate(gun_user)
 	grenade_to_launch.throwforce += grenade_to_launch.launchforce
-	grenade_to_launch.throw_at(target, max_range, 3, user)
+	grenade_to_launch.throw_at(target, max_range, 3, gun_user)
 	if(fire_animation)
 		flick("[fire_animation]", src)
 	return TRUE
@@ -69,7 +73,7 @@ The Grenade Launchers
 	starting_attachment_types = list(/obj/item/attachable/stock/t70stock)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 11, "stock_y" = 12)
 	fire_delay = 1.2 SECONDS
-	max_grenades = 6
+	max_chamber_items = 6
 
 
 /obj/item/weapon/gun/grenade_launcher/underslung
@@ -78,7 +82,7 @@ The Grenade Launchers
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "grenade"
 	max_shells = 2 //codex
-	max_grenades = 2
+	max_chamber_items = 2
 	fire_delay = 1 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
@@ -124,7 +128,7 @@ The Grenade Launchers
 /obj/item/weapon/gun/grenade_launcher/single_shot/riot
 	name = "\improper M81 riot grenade launcher"
 	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by Nanotrasen security during riots."
-	grenade_type_allowed = /obj/item/explosive/grenade/chem_grenade
+	allowed_ammo_type = /obj/item/explosive/grenade/chem_grenade
 	req_access = list(ACCESS_MARINE_BRIG)
 
 /obj/item/weapon/gun/grenade_launcher/single_shot/flare
@@ -138,7 +142,7 @@ The Grenade Launchers
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 	gun_skill_category = GUN_SKILL_PISTOLS
 	fire_delay = 0.5 SECONDS
-	grenade_type_allowed = /obj/item/explosive/grenade/flare
+	allowed_ammo_type = /obj/item/explosive/grenade/flare
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/flaregun)
 
 /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine

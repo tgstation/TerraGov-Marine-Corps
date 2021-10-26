@@ -99,7 +99,7 @@
 
 	///Current object slated for firing. Magazines/Handfuls will make this a projectile. Internal magazines that aren't handfuls will have this be the object in the gun.
 	var/obj/in_chamber
-	///List of stored ammunition items. 
+	///List of stored ammunition items.
 	var/list/obj/chamber_items = list()
 	///Maximum allowed chamber items.
 	var/max_chamber_items = 1
@@ -121,7 +121,7 @@
 	///Default magazine to spawn with.
 	var/obj/item/ammo_magazine/default_magazine_type = /obj/item/ammo_magazine
 	///If you try to reload the gun with the type or subtype of this it will succeed. Even if it is not listed in allowed_ammo_types. This is primarily for guns that are fine will selecting a whole type to allow.
-	var/obj/item/allowed_mag_type = /obj/item/ammo_magazine
+	var/obj/item/allowed_ammo_type = /obj/item/ammo_magazine
 	///List of allowed specific types. If trying to reload with something in this list it will succeed. This is mainly for use in internal magazine weapons or scenarios where you do not want to inclue a whole subtype.
 	var/list/allowed_ammo_types = list(
 		/obj/item/ammo_magazine,
@@ -152,7 +152,7 @@
 	var/list/gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 
 	///Skill used to operate this gun.
-	var/gun_skill_category = GUN_SKILL_RIFLES 
+	var/gun_skill_category = GUN_SKILL_RIFLES
 
 	///the default gun icon_state. change to reskin the gun
 	var/base_gun_icon
@@ -181,9 +181,9 @@
 */
 
 	///Multiplier. Increased and decreased through attachments. Multiplies the projectile's accuracy by this number.
-	var/accuracy_mult 			= 1	
+	var/accuracy_mult = 1
 	///Same as above, for damage.
-	var/damage_mult = 1	
+	var/damage_mult = 1
 	///Same as above, for damage bleed (falloff)
 	var/damage_falloff_mult = 1
 	///Screen shake when the weapon is fired while wielded.
@@ -199,7 +199,7 @@
 	///Multiplier. Defaults to 1 (no penalty). Multiplies accuracy modifier by this amount while burst firing; usually a fraction (penalty) when set.
 	var/burst_accuracy_mult	= 1
 	///accuracy modifier, used by most attachments.
-	var/accuracy_mod = 0.05	
+	var/accuracy_mod = 0.05
 	///same vars as above but for unwielded firing.
 	var/accuracy_mult_unwielded = 1
 	///Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
@@ -220,10 +220,10 @@
 	///The delay in between shots. Lower = less delay = faster.
 	var/burst_delay = 0.1 SECONDS
 	///When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
-	var/extra_delay	= 0	
+	var/extra_delay	= 0
 
 	///Slowdown for wielding
-	var/aim_slowdown = 0	
+	var/aim_slowdown = 0
 	///How long between wielding and firing in tenths of seconds
 	var/wield_delay	= 0.4 SECONDS
 	///Extra wield delay for untrained operators
@@ -237,7 +237,7 @@
 	///How much ammo consumed per shot; normally 1.
 	var/ammo_per_shot = 1
 	///In overcharge mode?
-	var/overcharge = 0	
+	var/overcharge = 0
 	///what ammo to use for overcharge
 	var/ammo_diff = null
 
@@ -249,7 +249,7 @@
 
 
 	///List of offsets to make attachment overlays not look wonky.
-	var/list/attachable_offset = null	
+	var/list/attachable_offset = null
 	///List of allowed attachments, IT MUST INCLUDE THE STARTING ATTACHMENT TYPES OR THEY WILL NOT ATTACH.
 	var/list/attachable_allowed	= null
 	///This is only not null when a weapon attachment is activated. All procs of firing get passed to this when it is not null.
@@ -269,7 +269,7 @@
 
 /*
  * Gun as Attachment Vars
-*/ 
+*/
 
 	///Gun reference if src is an attachment and is attached to a gun. This will be the gun that src is attached to.
 	var/obj/item/weapon/gun/master_gun
@@ -348,6 +348,17 @@
 	GLOB.nightfall_toggleable_lights += src
 
 	ammo = new ammo()
+	if(!spawn_empty)
+		if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
+			INVOKE_ASYNC(src, .proc/reload, new default_magazine_type())
+			return
+		for(var/i = 0, i <= max_chamber_items, i++)
+			var/obj/object_to_insert = new default_magazine_type()
+			if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
+				var/obj/item/ammo_magazine/handful = object_to_insert
+				handful.current_rounds = 1
+			INVOKE_ASYNC(src, .proc/reload, object_to_insert)
+	update_icon()
 
 /obj/item/weapon/gun/Destroy()
 	active_attachable = null
@@ -681,7 +692,7 @@
 		firer = loc
 	else
 		firer = gun_user
-	var/projectile/projectile_to_fire = object_to_fire
+	var/obj/projectile/projectile_to_fire = object_to_fire
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
 		projectile_to_fire = get_ammo_object(object_to_fire)
 	apply_gun_modifiers(projectile_to_fire, target, firer)
@@ -915,7 +926,7 @@
 
 ///Handles reloading. Called on attack_by
 /obj/item/weapon/gun/proc/reload(obj/item/new_mag, mob/living/user)
-	if((!(new_mag.type in allowed_ammo_types) && !istype(new_mag, allowed_mag_type)))
+	if((!(new_mag.type in allowed_ammo_types) && !istype(new_mag, allowed_ammo_type)))
 		to_chat(user, span_warning("[new_mag] cannot fit into [src]!"))
 		return
 
@@ -931,14 +942,18 @@
 		if(gun_type_var && !istype(src, new_mag.vars[gun_type_var]))
 			to_chat(user, span_warning("[new_mag] cannot fit in [src]!"))
 			return
-		if(reload_delay_var && new_mag.vars[reload_delay_var] != 0)
+		if(!new_mag.vars[current_rounds_var])
+			to_chat(user, span_notice("[new_mag] is empty!"))
+			return
+		if(reload_delay_var && new_mag.vars[reload_delay_var] != 0 && user)
 			to_chat(user, span_notice("You begin reloading [src] with [new_mag]."))
 			if(!do_after(user, new_mag.vars[reload_delay_var], TRUE, user))
 				to_chat(user, span_warning("Your reload was interupted!"))
 				return
 		chamber_items += new_mag
 		get_ammo()
-		playsound(src, reload_sound, 25, 1)
+		if(user)
+			playsound(src, reload_sound, 25, 1)
 		if(magazine_flags_var && !CHECK_BITFIELD(new_mag.vars[magazine_flags_var], MAGAZINE_WORN))
 			new_mag.forceMove(src)
 			user?.temporarilyRemoveItemFromInventory(new_mag)
@@ -958,14 +973,14 @@
 				items_to_insert += mag.create_handful(null, 1)
 			playsound(src, reload_sound, 25, 1)
 		else
-			for(var/i, i =< mag.current_rounds, i++)
+			for(var/i = 0, i <= mag.current_rounds, i++)
 				items_to_insert += mag.create_handful(null, 1)
 			playsound(src, hand_reload_sound, 25, 1)
 
 	chamber_items += items_to_insert
-	for(var/item_to_insert in items_to_insert)
-		item_to_insert.forceMove(src)
-		user?.temporarilyRemoveItemFromInventory(item_to_insert)
+	for(var/obj/obj_to_insert in items_to_insert)
+		obj_to_insert.forceMove(src)
+		user?.temporarilyRemoveItemFromInventory(obj_to_insert)
 	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
 		playsound(src, reload_sound, 25, 1)
 	if(in_chamber)
@@ -1054,7 +1069,7 @@
 	playsound(current_turf, sound_to_play, 25, 1, 5)
 
 
-///Gets a projectile to fire from the magazines ammo type. 
+///Gets a projectile to fire from the magazines ammo type.
 /obj/item/weapon/gun/proc/get_ammo_object(obj/item/magazine)
 	var/obj/item/mag = magazine
 	var/datum/ammo/new_ammo
@@ -1069,7 +1084,7 @@
 	projectile.generate_bullet(new_ammo)
 	return projectile
 
-///Sets and returns the guns ammo type from the current magazine. 
+///Sets and returns the guns ammo type from the current magazine.
 /obj/item/weapon/gun/proc/get_ammo()
 	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS) && !CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES) || !length(chamber_items))
 		return

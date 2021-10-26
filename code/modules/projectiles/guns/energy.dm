@@ -10,7 +10,7 @@
 
 	placed_overlay_iconstate = "laser"
 	reciever_flags = RECIEVER_MAGAZINES
-	allowed_mag_type = /obj/item/cell
+	allowed_ammo_type = /obj/item/cell
 	current_rounds_var = "charge"
 	max_rounds_var = "maxcharge"
 	ammo_type_var = null

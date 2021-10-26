@@ -32,7 +32,7 @@
 
 	reciever_flags = RECIEVER_HANDFULS|RECIEVER_CYCLES|RECIEVER_TOGGLES|RECIEVER_TOGGLES_EJECTS
 	max_chamber_items = 6
-	allowed_mag_type = /obj/item/ammo_magazine/revolver
+	allowed_ammo_type = /obj/item/ammo_magazine/revolver
 
 	movement_acc_penalty_mult = 2
 	fire_delay = 2
@@ -168,7 +168,7 @@
 	item_state = "tp44"
 	caliber =  CALIBER_44 //codex
 	max_shells = 7 //codex
-	allowed_mag_type = /obj/item/ammo_magazine/internal/revolver/standard_revolver
+	allowed_ammo_type = /obj/item/ammo_magazine/internal/revolver/standard_revolver
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -202,7 +202,7 @@
 	caliber = CALIBER_762X38 //codex
 	max_shells = 7 //codex
 	fire_sound = 'sound/weapons/guns/fire/ny.ogg'
-	allowed_mag_type = /obj/item/ammo_magazine/internal/revolver/upp
+	allowed_ammo_type = /obj/item/ammo_magazine/internal/revolver/upp
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -229,7 +229,7 @@
 	caliber = CALIBER_357 //codex
 	max_shells = 6 //codex
 	fire_sound = 'sound/weapons/guns/fire/revolver.ogg'
-	allowed_mag_type = /obj/item/ammo_magazine/internal/revolver/small
+	allowed_ammo_type = /obj/item/ammo_magazine/internal/revolver/small
 	force = 6
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -261,7 +261,7 @@
 	caliber = CALIBER_454 //codex
 	max_shells = 6 //codex
 	fire_sound = 'sound/weapons/guns/fire/mateba.ogg'
-	allowed_mag_type = /obj/item/ammo_magazine/internal/revolver/mateba
+	allowed_ammo_type = /obj/item/ammo_magazine/internal/revolver/mateba
 	force = 15
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -311,7 +311,7 @@
 	caliber = CALIBER_357 //codex
 	max_shells = 6 //codex
 	fire_sound = 'sound/weapons/guns/fire/revolver_light.ogg'
-	allowed_mag_type = /obj/item/ammo_magazine/internal/revolver/cmb
+	allowed_ammo_type = /obj/item/ammo_magazine/internal/revolver/cmb
 	force = 12
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -341,7 +341,7 @@
 	fire_animation = "judge_fire"
 	caliber = CALIBER_45L //codex
 	max_shells = 5 //codex
-	allowed_mag_type = /obj/item/ammo_magazine/internal/revolver/judge
+	allowed_ammo_type = /obj/item/ammo_magazine/internal/revolver/judge
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -371,7 +371,7 @@
 /obj/item/weapon/gun/revolver/single_action //This town aint big enuf fer the two of us
 	name = "single action revolver"
 	desc = "you should not be seeing this."
-	allowed_mag_type = /obj/item/ammo_magazine/internal/revolver/m44
+	allowed_ammo_type = /obj/item/ammo_magazine/internal/revolver/m44
 
 
 
@@ -385,7 +385,7 @@
 	item_state = "m44"
 	caliber = CALIBER_44 //codex
 	max_shells = 6 //codex
-	allowed_mag_type = /obj/item/ammo_magazine/internal/revolver/m44
+	allowed_ammo_type = /obj/item/ammo_magazine/internal/revolver/m44
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
