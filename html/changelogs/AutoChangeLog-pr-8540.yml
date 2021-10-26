@@ -1,4 +1,0 @@
-author: "hyper2snyper"
-delete-after: True
-changes: 
-  - bugfix: "Fixes a bug where guns that didnt allow their starting attachments didnt get their starting attachments."
