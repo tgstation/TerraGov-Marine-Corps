@@ -167,8 +167,10 @@
 		return
 
 	var/turf/TU = get_turf(A)
-	if(TU.z != user.z)
-		to_chat(user, span_warning("You can't laze like that!"))
+	var/distance = get_dist(TU, get_turf(user))
+	var/zoom_screen_size = zoom_tile_offset + zoom_viewsize + 1
+	if(TU.z != user.z || (distance > zoom_screen_size))
+		to_chat(user, span_warning("You can't focus properly through \the [src] while looking through something else."))
 		return
 
 
