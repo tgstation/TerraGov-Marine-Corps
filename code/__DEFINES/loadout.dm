@@ -194,7 +194,7 @@ GLOBAL_LIST_INIT(additional_admin_item_slot_list, list(
 ///All the vendor types which the automated loadout vendor can take items from.
 GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 	FACTION_NEUTRAL = list(
-		/obj/machinery/vending/weapons,
+		/obj/machinery/vending/weapon,
 		/obj/machinery/vending/uniform_supply,
 		/obj/machinery/vending/armor_supply,
 		/obj/machinery/vending/marineFood,
@@ -203,7 +203,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/cigarette/colony,
 	),
 	FACTION_TERRAGOV = list(
-		/obj/machinery/vending/weapons/hvh/team_one,
+		/obj/machinery/vending/weapon/hvh/team_one,
 		/obj/machinery/vending/uniform_supply,
 		/obj/machinery/vending/armor_supply/loyalist,
 		/obj/machinery/vending/marineFood,
@@ -212,7 +212,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/cigarette/colony,
 	),
 	FACTION_TERRAGOV_REBEL = list(
-		/obj/machinery/vending/weapons/hvh,
+		/obj/machinery/vending/weapon/hvh,
 		/obj/machinery/vending/uniform_supply,
 		/obj/machinery/vending/armor_supply/rebel,
 		/obj/machinery/vending/marineFood,

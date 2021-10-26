@@ -1,4 +1,4 @@
-/obj/machinery/vending/weapons
+/obj/machinery/vending/weapon
 	name = "\improper Automated Weapons Rack"
 	desc = "A automated weapon rack hooked up to a colossal storage of standard-issue weapons."
 	icon_state = "marinearmory"
@@ -171,7 +171,7 @@
 		SEASONAL_GUNS = "Seasonal",
 	)
 
-/obj/machinery/vending/weapons/hvh
+/obj/machinery/vending/weapon/hvh
 
 	contraband = list(/obj/item/explosive/grenade/smokebomb = 50)
 
@@ -317,9 +317,9 @@
 		),
 	)
 
-/obj/machinery/vending/weapons/hvh/team_one
+/obj/machinery/vending/weapon/hvh/team_one
 
-/obj/machinery/vending/weapons/hvh/team_two
+/obj/machinery/vending/weapon/hvh/team_two
 
 /obj/machinery/vending/cigarette
 	name = "cigarette machine" //OCD had to be uppercase to look nice with the new formating
@@ -341,6 +341,8 @@
 	icon_state = "cigs"
 	icon_vend = null
 	icon_deny = null
+	wrenchable = FALSE
+	isshared = TRUE
 	products = list(
 		/obj/item/storage/fancy/cigarettes/luckystars = 50,
 		/obj/item/storage/fancy/chemrettes = 30,
@@ -1011,6 +1013,8 @@
 	icon_deny = "marineuniform"
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
 	product_ads = "Hey! You! Stop looking like a turtle and start looking like a TRUE soldier!;Dress whites, fresh off the ironing board!;Why kill in armor when you can kill in style?;These uniforms are so sharp you'd cut yourself just looking at them!"
+	wrenchable = FALSE
+	isshared = TRUE
 	products = list(
 		/obj/item/clothing/under/whites = -1,
 		/obj/item/clothing/head/white_dress = -1,

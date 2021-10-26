@@ -3088,7 +3088,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/vending/weapons/hvh/team_one,
+/obj/machinery/vending/weapon/hvh/team_one,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "cUq" = (
@@ -8924,7 +8924,7 @@
 /area/mainship/command/cic/rebel)
 "icU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/vending/weapons/hvh/team_one,
+/obj/machinery/vending/weapon/hvh/team_one,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "ied" = (
@@ -13182,7 +13182,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced,
-/obj/machinery/vending/weapons/hvh,
+/obj/machinery/vending/weapon/hvh,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "lMS" = (
@@ -14441,7 +14441,7 @@
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
 "nba" = (
-/obj/machinery/vending/weapons/hvh,
+/obj/machinery/vending/weapon/hvh,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks/rebel)
 "nbr" = (
@@ -16408,7 +16408,7 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/starboard_umbilical)
 "oGK" = (
-/obj/machinery/vending/weapons/hvh,
+/obj/machinery/vending/weapon/hvh,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
 "oGY" = (
@@ -16749,7 +16749,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
 "oUj" = (
-/obj/machinery/vending/weapons/hvh,
+/obj/machinery/vending/weapon/hvh,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
@@ -16940,7 +16940,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "pcb" = (
-/obj/machinery/vending/weapons/hvh,
+/obj/machinery/vending/weapon/hvh,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
@@ -18929,7 +18929,7 @@
 	},
 /area/mainship/hallways/hangar)
 "qLu" = (
-/obj/machinery/vending/weapons/hvh,
+/obj/machinery/vending/weapon/hvh,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "qLC" = (
@@ -20261,7 +20261,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/vending/weapons/hvh,
+/obj/machinery/vending/weapon/hvh,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "rXg" = (
@@ -20280,7 +20280,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles/rebel)
 "rYU" = (
-/obj/machinery/vending/weapons/hvh,
+/obj/machinery/vending/weapon/hvh,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
@@ -21752,7 +21752,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "tnb" = (
-/obj/machinery/vending/weapons/hvh/team_one,
+/obj/machinery/vending/weapon/hvh/team_one,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "tnc" = (
@@ -23340,7 +23340,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop/rebel)
 "uzH" = (
-/obj/machinery/vending/weapons/hvh/team_one,
+/obj/machinery/vending/weapon/hvh/team_one,
 /turf/open/floor/mainship/red/full,
 /area/mainship/command/cic)
 "uzM" = (
@@ -23914,7 +23914,7 @@
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
 "vcA" = (
-/obj/machinery/vending/weapons/hvh,
+/obj/machinery/vending/weapon/hvh,
 /turf/open/floor/mainship/red/full,
 /area/mainship/command/cic/rebel)
 "vdN" = (
@@ -24922,7 +24922,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/vending/weapons/hvh/team_one,
+/obj/machinery/vending/weapon/hvh/team_one,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "vZZ" = (
@@ -24957,7 +24957,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "wbE" = (
-/obj/machinery/vending/weapons/hvh,
+/obj/machinery/vending/weapon/hvh,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req/rebel)
 "wbQ" = (
@@ -27333,7 +27333,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
 "xYh" = (
-/obj/machinery/vending/weapons/hvh,
+/obj/machinery/vending/weapon/hvh,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range/rebel)
 "xYC" = (

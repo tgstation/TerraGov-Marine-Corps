@@ -167,7 +167,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "aaG" = (
-/obj/machinery/vending/weapons,
+/obj/machinery/vending/weapon,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -180,7 +180,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "aaH" = (
-/obj/machinery/vending/weapons,
+/obj/machinery/vending/weapon,
 /obj/structure/window/reinforced{
 	dir = 1
 	},

@@ -513,7 +513,7 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/hallways/starboard_umbilical)
 "abT" = (
-/obj/machinery/vending/weapons,
+/obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "abU" = (
@@ -558,7 +558,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "acc" = (
-/obj/machinery/vending/weapons,
+/obj/machinery/vending/weapon,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
@@ -749,7 +749,7 @@
 	},
 /area/mainship/hull/port_hull)
 "acG" = (
-/obj/machinery/vending/weapons,
+/obj/machinery/vending/weapon,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -2439,7 +2439,7 @@
 /turf/open/floor/plating,
 /area/mainship/living/cafeteria_starboard)
 "aXi" = (
-/obj/machinery/vending/weapons,
+/obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aXm" = (
@@ -3187,7 +3187,7 @@
 	},
 /area/mainship/living/starboard_emb)
 "bgK" = (
-/obj/machinery/vending/weapons,
+/obj/machinery/vending/weapon,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -5210,7 +5210,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "bwQ" = (
-/obj/machinery/vending/weapons,
+/obj/machinery/vending/weapon,
 /turf/open/floor/mainship/green{
 	dir = 4
 	},
@@ -7509,7 +7509,7 @@
 	},
 /area/mainship/living/port_emb)
 "bUy" = (
-/obj/machinery/vending/weapons,
+/obj/machinery/vending/weapon,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -8290,7 +8290,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "ced" = (
-/obj/machinery/vending/weapons,
+/obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "cef" = (
@@ -9149,7 +9149,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "dqb" = (
-/obj/machinery/vending/weapons,
+/obj/machinery/vending/weapon,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -9613,7 +9613,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_umbilical)
 "eeS" = (
-/obj/machinery/vending/marine,
+/obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "ehv" = (
@@ -13874,7 +13874,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "mdE" = (
-/obj/machinery/vending/weapons,
+/obj/machinery/vending/weapon,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
@@ -17451,7 +17451,7 @@
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "sBJ" = (
-/obj/machinery/vending/weapons,
+/obj/machinery/vending/weapon,
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
@@ -20214,7 +20214,7 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/engine_core)
 "xWn" = (
-/obj/machinery/vending/marine,
+/obj/machinery/vending/weapon,
 /turf/open/floor/mainship/red/full,
 /area/mainship/command/cic)
 "xWG" = (
