@@ -143,13 +143,14 @@
 // =============================
 // xeno tiers
 
+#define XENO_TIER_MINION "ai"
 #define XENO_TIER_ZERO "zero" // god forgive me because i wont forgive myself
 #define XENO_TIER_ONE "one"
 #define XENO_TIER_TWO "two"
 #define XENO_TIER_THREE "three"
 #define XENO_TIER_FOUR "four"
 
-GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, XENO_TIER_THREE, XENO_TIER_FOUR))
+GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_MINION, XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, XENO_TIER_THREE, XENO_TIER_FOUR))
 
 // =============================
 // xeno upgrades
@@ -160,8 +161,11 @@ GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, X
 #define XENO_UPGRADE_ONE "one"
 #define XENO_UPGRADE_TWO "two"
 #define XENO_UPGRADE_THREE "three"
+#define XENO_UPGRADE_FOUR "four"
 
-GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO, XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE))
+#define XENO_UPGRADE_MANIFESTATION "manifestation" //just for the hivemind
+
+GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO, XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE, XENO_UPGRADE_FOUR))
 
 //=================================================
 
@@ -320,6 +324,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define USES_ALIEN_WEAPONS (1<<17)
 #define NO_DAMAGE_OVERLAY (1<<18)
 #define CAN_VENTCRAWL (1<<19)
+#define HEALTH_HUD_ALWAYS_DEAD (1<<20)
+#define PARALYSE_RESISTANT (1<<21)
+#define ROBOTIC_LIMBS (1<<22)
+#define GREYSCALE_BLOOD (1<<23)
+
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
@@ -524,7 +533,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_SNEAKATTACK_RUN_REDUCTION 0.2
 #define HUNTER_SNEAKATTACK_WALK_INCREASE 1
 #define HUNTER_SNEAKATTACK_MULTI_RECOVER_DELAY 10
-#define HUNTER_MARK_WINDUP 1 SECONDS //Windup of the Hunter's Mark
 #define HUNTER_PSYCHIC_TRACE_COOLDOWN 5 SECONDS //Cooldown of the Hunter's Psychic Trace, and duration of its arrow
 #define HUNTER_SILENCE_STAGGER_STACKS 1 //Silence imposes this many stagger stacks
 #define HUNTER_SILENCE_SENSORY_STACKS 7 //Silence imposes this many eyeblur and deafen stacks.
@@ -549,10 +557,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define RAVAGER_RAGE_DURATION							10 SECONDS
 #define RAVAGER_RAGE_WARNING							0.7
 #define RAVAGER_RAGE_POWER_MULTIPLIER					0.5 //How much we multiply our % of missing HP by to determine Rage Power
-#define RAVAGER_RAGE_NEGATIVE_HP_POWER_MULTIPLIER		-0.0075 //How much we multiply our negative HP by to determine Rage Power
 #define RAVAGER_RAGE_MIN_HEALTH_THRESHOLD				0.5 //The maximum % of HP we can have to trigger Rage
 #define RAVAGER_RAGE_SUPER_RAGE_THRESHOLD				0.5 //The minimum amount of Rage Power we need to trigger the bonus Rage effects
 #define RAVAGER_RAGE_ENDURE_INCREASE_PER_SLASH			2 SECONDS //The amount of time each slash during Super Rage increases Endure's duration
+
+#define VAMPIRISM_MOB_DURATION 45 SECONDS
 
 //crusher defines
 #define CRUSHER_STOMP_LOWER_DMG 40
@@ -578,6 +587,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DEFILER_DEFILE_STRENGTH_MULTIPLIER 0.5 //Base multiplier for determining the power of Defile
 #define DEFILER_SANGUINAL_DAMAGE 1 //Damage dealt per tick per xeno toxin by the sanguinal toxin
 #define DEFILER_SANGUINAL_SMOKE_MULTIPLIER 0.03 //Amount the defile power is multiplied by which determines sanguinal smoke strength/size
+#define TENTACLE_ABILITY_RANGE 5
 
 //Drone defines
 #define DRONE_HEAL_RANGE 1

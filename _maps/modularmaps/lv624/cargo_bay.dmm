@@ -8,8 +8,8 @@
 /area/lv624/lazarus/quartstorage)
 "as" = (
 /obj/structure/largecrate,
-/obj/item/explosive/grenade/frag/stick,
-/obj/item/explosive/grenade/frag/stick,
+/obj/item/explosive/grenade/stick,
+/obj/item/explosive/grenade/stick,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "bE" = (
@@ -23,6 +23,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "eh" = (
@@ -34,6 +35,7 @@
 	dir = 9
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "gi" = (
@@ -110,6 +112,7 @@
 /obj/item/stack/sheet/wood{
 	amount = 50
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "ov" = (
@@ -267,6 +270,12 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
+"Fq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/quartstorage)
 "Gt" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -420,6 +429,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "WN" = (
@@ -578,7 +588,7 @@ oA
 Ne
 Lv
 rF
-pF
+Fq
 pF
 ze
 "}

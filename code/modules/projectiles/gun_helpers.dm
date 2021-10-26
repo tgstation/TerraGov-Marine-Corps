@@ -109,7 +109,7 @@
 
 /obj/item/weapon/gun/mob_can_equip(mob/user)
 	//Cannot equip wielded items or items burst firing.
-	if(flags_gun_features & GUN_BURST_FIRING)
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
 	unwield(user)
 	return ..()
@@ -228,44 +228,51 @@ should be alright.
 	if(.)
 		return
 
-	if(istype(src, /obj/item/weapon/gun/launcher/m92) || istype(src, /obj/item/weapon/gun/launcher/m81)) //This is to allow the parent proc to call and not fuck up GLs. This is temporary until I unfuck Gls.
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
 
-	if(flags_gun_features & GUN_BURST_FIRING)
+	if(istype(I, /obj/item/cell) && !istype(src, /obj/item/weapon/gun/energy) && CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY)) //If the sentry is an energy-gun, the battery is handled in /gun/energy/reload()
+		reload_sentry_cell(I, user)
 		return
 
-	if(istype(I, /obj/item/cell) && CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
-		if(sentry_battery)
-			to_chat(user, span_warning("[src] already has a battery installed! Use Alt-Click to remove it!"))
+	if(istype(I, /obj/item/ammo_magazine) && check_inactive_hand(user))
+		var/obj/item/ammo_magazine/magazine = I
+		if(CHECK_BITFIELD(magazine.flags_magazine,  AMMUNITION_WORN))
 			return
-		if(!istype(I, sentry_battery_type))
-			to_chat(user, span_warning("[I] wont fit there!"))
-			return
-		var/obj/item/cell/new_cell = I
-		if(!new_cell.charge)
-			to_chat(user, span_warning("[new_cell] is out of charge!"))
-			return
-		playsound(src, 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg', 20)
-		sentry_battery = new_cell
-		user.temporarilyRemoveItemFromInventory(new_cell)
-		new_cell.forceMove(src)
-		to_chat(user, span_notice("You install the [new_cell] into the [src]."))
+		reload(user, magazine)
 		return
-
-	if((istype(I, /obj/item/ammo_magazine) || istype(I, /obj/item/cell/lasgun)) && check_inactive_hand(user))
+	if(istype(I, /obj/item/cell) && check_inactive_hand(user))
 		reload(user, I)
 		return
 
+///Reloads the sentry battery. This is used both in the gun, and called from /deployed/mounted/sentry
+/obj/item/weapon/gun/proc/reload_sentry_cell(obj/item/cell/cell, mob/user)
+	if(!istype(cell, sentry_battery_type))
+		to_chat(user, span_warning("[cell] wont fit there!"))
+		return
+	if(sentry_battery)
+		to_chat(user, span_warning("[src] already has a battery installed! Use Alt-Right-Click to remove it!"))
+		return
+	if(!cell.charge)
+		to_chat(user, span_warning("[cell] is out of charge!"))
+		return
+	playsound(src, 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg', 20)
+	sentry_battery = cell
+	user.temporarilyRemoveItemFromInventory(cell)
+	cell.forceMove(src)
+	to_chat(user, span_notice("You install the [cell] into the [src]."))
+	if(istype(attachments_by_slot[ATTACHMENT_SLOT_RAIL], /obj/item/attachable/buildasentry)) //This and the piece of code below that is the same are here because the build-a-sentry attachment does not keep track of the sentry battery when it is attached to the gun. Therefore this is so the overlay updates.
+		var/obj/item/attachable/buildasentry/sentry = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
+		sentry.update_icon_state()
+	update_icon()
+
 /obj/item/weapon/gun/AltRightClick(mob/user)
 	. = ..()
-	if(!active_attachable)
-		return
-	active_attachable.AltClick(user)
+	remove_sentry_cell(user)
 
-/obj/item/weapon/gun/AltClick(mob/user)
-	. = ..()
-
-	if(!user.Adjacent(src) || !ishuman(user) || !CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && !master_gun)
+///Removes the sentry battery. This is used both in the gun, and called from /deployed/mounted/sentry.
+/obj/item/weapon/gun/proc/remove_sentry_cell(mob/user)
+	if(!user.Adjacent(src) || !ishuman(user) || !CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
 		return
 	var/mob/living/carbon/human/human = user
 	if(!sentry_battery)
@@ -277,6 +284,10 @@ should be alright.
 	playsound(src, 'sound/weapons/flipblade.ogg', 20)
 	human.put_in_hands(sentry_battery)
 	sentry_battery = null
+	if(istype(attachments_by_slot[ATTACHMENT_SLOT_RAIL], /obj/item/attachable/buildasentry)) //This and the piece of code below that is the same are here because the build-a-sentry attachment does not keep track of the sentry battery when it is attached to the gun. Therefore this is so the overlay updates.
+		var/obj/item/attachable/buildasentry/sentry = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
+		sentry.update_icon_state()
+	update_icon()
 
 //tactical reloads
 /obj/item/weapon/gun/MouseDrop_T(atom/dropping, mob/living/carbon/human/user)
@@ -353,7 +364,7 @@ should be alright.
 	return FALSE
 
 ///updates the magazine overlay if it needs to be updated
-/obj/item/weapon/gun/proc/update_mag_overlay(mob/user)
+/obj/item/weapon/gun/proc/update_mag_overlay()
 	var/image/overlay = attachment_overlays[ATTACHMENT_SLOT_MAGAZINE]
 	overlays -= overlay
 	if(current_mag && current_mag.bonus_overlay)
@@ -391,7 +402,7 @@ should be alright.
 		to_chat(user, span_warning("You need a gun in your hands to do that!"))
 		return
 
-	if(G.flags_gun_features & GUN_BURST_FIRING)
+	if(HAS_TRAIT(G, TRAIT_GUN_BURST_FIRING))
 		return
 
 	return G
@@ -413,7 +424,7 @@ should be alright.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/ui_action_click(mob/user, datum/action/item_action/action)
-	if(flags_gun_features & GUN_BURST_FIRING)
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
 	var/datum/action/item_action/firemode/firemode_action = action
 	if(!istype(firemode_action))
@@ -510,7 +521,7 @@ should be alright.
 
 /obj/item/weapon/gun/proc/do_toggle_firemode(datum/source, new_firemode)
 	SIGNAL_HANDLER
-	if(flags_gun_features & GUN_BURST_FIRING)//can't toggle mid burst
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))//can't toggle mid burst
 		return
 
 	if(!length(gun_firemode_list))
@@ -676,9 +687,12 @@ should be alright.
 	set name = "Toggle Gun Safety (Weapon)"
 	set desc = "Toggle the safety of the held gun."
 
-	to_chat(usr, span_notice("You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"]."))
+	to_chat(usr, span_notice("You toggle the safety [HAS_TRAIT(src, TRAIT_GUN_SAFETY) ? "<b>off</b>" : "<b>on</b>"]."))
 	playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
-	flags_gun_features ^= GUN_TRIGGER_SAFETY
+	if(HAS_TRAIT(src, TRAIT_GUN_SAFETY))
+		ADD_TRAIT(src, TRAIT_GUN_SAFETY, GUN_TRAIT)
+	else
+		REMOVE_TRAIT(src, TRAIT_GUN_SAFETY, GUN_TRAIT)
 
 
 /mob/living/carbon/human/verb/activate_attachment_verb()
@@ -757,29 +771,6 @@ should be alright.
 
 
 
-/mob/living/carbon/human/verb/toggle_ammo_hud()
-	set category = "Weapons"
-	set name = "Toggle Ammo HUD"
-	set desc = "Toggles the Ammo HUD for this weapon."
-
-	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-	if(!G)
-		return
-	G.toggle_ammo_hud()
-
-
-/obj/item/weapon/gun/verb/toggle_ammo_hud()
-	set category = null
-	set name = "Toggle Ammo HUD (Weapon)"
-	set desc = "Toggles the Ammo HUD for this weapon."
-
-	hud_enabled = !hud_enabled
-	var/obj/screen/ammo/A = usr.hud_used.ammo
-	hud_enabled ? A.add_hud(usr, src) : A.remove_hud(usr, src)
-	A.update_hud(usr)
-	to_chat(usr, span_notice("[hud_enabled ? "You enable the Ammo HUD for this weapon." : "You disable the Ammo HUD for this weapon."]"))
-
-
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
 	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		return FALSE
@@ -821,38 +812,41 @@ should be alright.
 		toggle_aim_mode(user)
 		return
 
-	if(!CHECK_BITFIELD(flags_gun_features, AUTO_AIM_MODE))
+	if(!HAS_TRAIT(src, TRAIT_GUN_AUTO_AIM_MODE))
 		to_chat(user, span_notice("You will immediately aim upon wielding your weapon.</b>"))
-		ENABLE_BITFIELD(flags_gun_features, AUTO_AIM_MODE)
+		ADD_TRAIT(src, TRAIT_GUN_AUTO_AIM_MODE, GUN_TRAIT)
 	else
 		to_chat(user, span_notice("You will wield your weapon without aiming with precision.</b>"))
-		DISABLE_BITFIELD(flags_gun_features, AUTO_AIM_MODE)
+		REMOVE_TRAIT(src, TRAIT_GUN_AUTO_AIM_MODE, GUN_TRAIT)
 
 /obj/item/weapon/gun/proc/toggle_aim_mode(mob/living/carbon/human/user)
 	var/static/image/aim_mode_visual = image('icons/mob/hud.dmi', null, "aim_mode")
-	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_AIMING))
+	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING))
 		user.overlays -= aim_mode_visual
-		DISABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
+		REMOVE_TRAIT(src, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
 		user.remove_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN)
 		modify_fire_delay(-aim_fire_delay)
-		to_chat(user, span_notice("You cease aiming.</b>"))
+		to_chat(user, span_notice("You cease aiming."))
 		return
 	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		to_chat(user, span_notice("You need to wield your gun before aiming.</b>"))
+		to_chat(user, span_notice("You need to wield your gun before aiming."))
 		return
 	if(!user.wear_id)
 		to_chat(user, span_notice("You don't have distinguished allies you want to avoid shooting.</b>"))
 		return
-	to_chat(user, span_notice("You steady your breathing...</b>"))
+	to_chat(user, span_notice("You steady your breathing..."))
 
 	if(user.do_actions && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		return
 	if(!user.marksman_aura)
 		if(!do_after(user, 1 SECONDS, TRUE, CHECK_BITFIELD(flags_item, IS_DEPLOYED) ? loc : src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
-			to_chat(user, span_warning("Your concentration is interrupted!</b>"))
+			to_chat(user, span_warning("<b>Your concentration is interrupted!</b>"))
 			return
+	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		to_chat(user, span_notice("You need to wield your gun before aiming."))
+		return
 	user.overlays += aim_mode_visual
-	ENABLE_BITFIELD(flags_gun_features, GUN_IS_AIMING)
+	ADD_TRAIT(src, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
 	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_speed_modifier)
 	modify_fire_delay(aim_fire_delay)
 	to_chat(user, span_notice("You line up your aim, allowing you to shoot past allies.</b>"))

@@ -79,6 +79,8 @@
 			var/mob/living/carbon/the_mob = L
 			if(the_mob.wear_mask)	//safety first
 				return TRUE
+			if(the_mob.status_flags & INCORPOREAL)
+				return TRUE
 		L = L.loc //Check parent items immunities (recurses up to the turf)
 	return FALSE //RIP you
 

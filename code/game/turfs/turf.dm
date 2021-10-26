@@ -125,6 +125,13 @@
 	..()
 	return QDEL_HINT_IWILLGC
 
+/// WARNING WARNING
+/// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
+/// It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
+/// We do it because moving signals over was needlessly expensive, and bloated a very commonly used bit of code
+/turf/clear_signal_refs()
+	return
+
 /turf/Enter(atom/movable/mover, direction)
 	// Do not call ..()
 	// Byond's default turf/Enter() doesn't have the behaviour we want with Bump()
@@ -148,6 +155,8 @@
 		var/atom/movable/thing = i
 		if(CHECK_MULTIPLE_BITFIELDS(thing.flags_pass, HOVERING))
 			continue
+		if(thing.status_flags & INCORPOREAL)
+			continue
 		if(thing.Cross(mover))
 			continue
 		var/signalreturn = SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_MOVABLE, thing)
@@ -168,26 +177,6 @@
 		return FALSE
 	return TRUE
 
-
-/turf/Exit(atom/movable/mover, direction)
-	. = ..()
-	if(!. || QDELETED(mover))
-		return FALSE
-	for(var/i in contents)
-		if(i == mover)
-			continue
-		var/atom/movable/thing = i
-		if(!thing.Uncross(mover, direction))
-			if(thing.flags_atom & ON_BORDER)
-				var/signalreturn = SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE, thing)
-				if(signalreturn & COMPONENT_MOVABLE_PREBUMP_STOPPED)
-					return FALSE
-				if(signalreturn & COMPONENT_MOVABLE_PREBUMP_PLOWED)
-					continue // no longer in the way
-				mover.Bump(thing)
-				return FALSE
-		if(QDELETED(mover))
-			return FALSE		//We were deleted.
 
 
 /turf/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
@@ -266,18 +255,26 @@
 
 	var/list/old_baseturfs = baseturfs
 
-	var/list/transferring_comps = list()
-	SEND_SIGNAL(src, COMSIG_TURF_CHANGE, path, new_baseturfs, flags, transferring_comps)
-	for(var/i in transferring_comps)
-		var/datum/component/comp = i
-		comp.RemoveComponent()
+	var/list/post_change_callbacks = list()
+	SEND_SIGNAL(src, COMSIG_TURF_CHANGE, path, new_baseturfs, flags, post_change_callbacks)
 
 	changing_turf = TRUE
 	qdel(src)	//Just get the side effects and call Destroy
+	//We do this here so anything that doesn't want to persist can clear itself
+	var/list/old_comp_lookup = comp_lookup?.Copy()
+	var/list/old_signal_procs = signal_procs?.Copy()
 	var/turf/W = new path(src)
 
-	for(var/i in transferring_comps)
-		W.TakeComponent(i)
+	// WARNING WARNING
+	// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
+	// It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
+	if(old_comp_lookup)
+		LAZYOR(W.comp_lookup, old_comp_lookup)
+	if(old_signal_procs)
+		LAZYOR(W.signal_procs, old_signal_procs)
+
+	for(var/datum/callback/callback as anything in post_change_callbacks)
+		callback.InvokeAsync(W)
 
 	if(new_baseturfs)
 		W.baseturfs = new_baseturfs
@@ -288,6 +285,7 @@
 		W.AfterChange(flags)
 
 	W.hybrid_lights_affecting = old_hybrid_lights_affecting
+	W.dynamic_lumcount = dynamic_lumcount
 
 	lighting_corner_NE = old_lighting_corner_NE
 	lighting_corner_SE = old_lighting_corner_SE
@@ -300,14 +298,7 @@
 
 		W.static_lighting_object = old_lighting_object
 
-		var/area/A = loc
-
-		if(A.static_lighting && !old_lighting_object)
-			W.static_lighting_build_overlay()
-		else if(!A.static_lighting && old_lighting_object)
-			W.static_lighting_clear_overlay()
-
-		else if(static_lighting_object && !static_lighting_object.needs_update)
+		if(static_lighting_object && !static_lighting_object.needs_update)
 			static_lighting_object.update()
 
 	//Since the old turf was removed from hybrid_lights_affecting, readd the new turf here
@@ -744,14 +735,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 /turf/proc/copyTurf(turf/T)
 	if(T.type != type)
-		var/obj/O
-		if(underlays.len)	//we have underlays, which implies some sort of transparency, so we want to a snapshot of the previous turf as an underlay
-			O = new()
-			O.underlays += T
 		T.ChangeTurf(type)
-		if(underlays.len)
-			T.underlays.Cut()
-			T.underlays += O.underlays
 	if(T.icon_state != icon_state)
 		T.icon_state = icon_state
 	if(T.icon != icon)
@@ -922,3 +906,16 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	if(var_name in banned_edits)
 		return FALSE
 	return ..()
+
+///Change the turf current acid var
+/turf/proc/set_current_acid(obj/effect/xenomorph/acid/new_acid)
+	if(current_acid)
+		UnregisterSignal(current_acid, COMSIG_PARENT_QDELETING)
+	current_acid = new_acid
+	RegisterSignal(current_acid, COMSIG_PARENT_QDELETING, .proc/clean_current_acid)
+
+///Signal handler to clean current_acid var
+/turf/proc/clean_current_acid()
+	SIGNAL_HANDLER
+	current_acid = null
+

@@ -7,6 +7,7 @@
 	action_icon_state = "resting"
 	mechanics_text = "Rest on weeds to regenerate health and plasma."
 	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY
+	keybind_signal = COMSIG_XENOABILITY_REST
 
 /datum/action/xeno_action/xeno_resting/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -107,7 +108,7 @@
 // ***************************************
 // *********** Drone-y abilities
 // ***************************************
-/datum/action/xeno_action/plant_weeds
+/datum/action/xeno_action/activable/plant_weeds
 	name = "Plant Weeds"
 	action_icon_state = "plant_weeds"
 	plasma_cost = 75
@@ -115,15 +116,27 @@
 	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
 	alternate_keybind_signal = COMSIG_XENOABILITY_CHOOSE_WEEDS
 	use_state_flags = XACT_USE_LYING
+	///the maximum range of the ability
+	var/max_range = 0
 	///The seleted type of weeds
 	var/obj/effect/alien/weeds/node/weed_type = /obj/effect/alien/weeds/node
 
-/datum/action/xeno_action/plant_weeds/can_use_action(atom/A, silent = FALSE, override_flags)
+/datum/action/xeno_action/activable/plant_weeds/can_use_action(atom/A, silent = FALSE, override_flags)
 	plasma_cost = initial(plasma_cost) * initial(weed_type.plasma_cost_mult)
 	return ..()
 
-/datum/action/xeno_action/plant_weeds/action_activate()
-	var/turf/T = get_turf(owner)
+/datum/action/xeno_action/activable/plant_weeds/action_activate()
+	if(max_range)
+		return ..()
+	if(can_use_action())
+		plant_weeds(owner)
+
+/datum/action/xeno_action/activable/plant_weeds/use_ability(atom/A)
+	plant_weeds(max_range ? A : get_turf(owner))
+
+////Plant a weeds node on the selected atom
+/datum/action/xeno_action/activable/plant_weeds/proc/plant_weeds(atom/A)
+	var/turf/T = get_turf(A)
 
 	if(!T.check_alien_construction(owner, FALSE))
 		return fail_activate()
@@ -142,19 +155,19 @@
 
 	owner.visible_message(span_xenonotice("\The [owner] regurgitates a pulsating node and plants it on the ground!"), \
 		span_xenonotice("We regurgitate a pulsating node and plant it on the ground!"), null, 5)
-	new weed_type(owner.loc)
-	playsound(owner.loc, "alien_resin_build", 25)
+	new weed_type(T)
+	playsound(T, "alien_resin_build", 25)
 	GLOB.round_statistics.weeds_planted++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_planted")
 	add_cooldown()
-	return succeed_activate()
+	return succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)
 
-/datum/action/xeno_action/plant_weeds/alternate_action_activate()
+/datum/action/xeno_action/activable/plant_weeds/alternate_action_activate()
 	INVOKE_ASYNC(src, .proc/choose_weed)
 	return COMSIG_KB_ACTIVATED
 
 ///Chose which weed will be planted by the xeno owner
-/datum/action/xeno_action/plant_weeds/proc/choose_weed()
+/datum/action/xeno_action/activable/plant_weeds/proc/choose_weed()
 	var/weed_choice = show_radial_menu(owner, owner, GLOB.weed_images_list, radius = 48)
 	if(!weed_choice)
 		return
@@ -165,33 +178,34 @@
 	to_chat(owner, "<span class='notice'>We will now spawn <b>[weed_choice]\s</b> when using the plant weeds ability.</span>")
 	update_button_icon()
 
-/datum/action/xeno_action/plant_weeds/update_button_icon()
+/datum/action/xeno_action/activable/plant_weeds/update_button_icon()
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/actions.dmi', button, initial(weed_type.name))
 	return ..()
 
 //AI stuff
-/datum/action/xeno_action/plant_weeds/ai_should_start_consider()
+/datum/action/xeno_action/activable/plant_weeds/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/plant_weeds/ai_should_use(target)
+/datum/action/xeno_action/activable/plant_weeds/ai_should_use(target)
 	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return ..()
-	if(locate(/obj/effect/alien/weeds/node) in owner.loc) //NODE SPAMMMM
-		//There's already a node on this loc don't plant anything
+	if(locate(/obj/effect/alien/weeds) in owner.loc)
 		return ..()
 	return TRUE
 
-/datum/action/xeno_action/plant_weeds/slow
-	cooldown_timer = 12 SECONDS
+/datum/action/xeno_action/activable/plant_weeds/ranged
+	max_range = 4
 
-/datum/action/xeno_action/plant_weeds/slow/action_activate()
-	if(locate(/obj/effect/alien/weeds) in range(1, owner.loc))
-		return ..()
-	var/mob/living/carbon/xenomorph/hivemind/hiveminde = owner
-	hiveminde.forceMove(get_turf(hiveminde.core))
-	to_chat(hiveminde, span_xenonotice("We can't plant a node without weeds nearby, we've been moved back to our core."))
-	return fail_activate()
+/datum/action/xeno_action/activable/plant_weeds/ranged/can_use_ability(atom/A, silent = FALSE, override_flags)
+	var/area/a_area = get_area(A)
+	if(is_type_in_typecache(a_area, GLOB.wraith_no_incorporeal_pass_areas) && SSmonitor.gamestate == SHUTTERS_CLOSED)
+		to_chat(owner, span_warning("You cannot plant weeds here yet!"))
+		return FALSE
+	if(!owner.line_of_sight(get_turf(A)))
+		to_chat(owner, span_warning("You cannot plant weeds without line of sight!"))
+		return FALSE
+	return ..()
 
 // Secrete Resin
 /datum/action/xeno_action/activable/secrete_resin
@@ -262,6 +276,10 @@
 
 	if(!T.is_weedable())
 		to_chat(X, span_warning("We can't do that here."))
+		return fail_activate()
+
+	if(!owner.line_of_sight(T))
+		to_chat(owner, span_warning("You cannot secrete resin without line of sight!"))
 		return fail_activate()
 
 	var/obj/effect/alien/weeds/alien_weeds = locate() in T
@@ -348,17 +366,10 @@
 			plasma_cost = initial(plasma_cost) * 3
 
 	if(new_resin)
-		add_cooldown()
-		succeed_activate()
+		add_cooldown(SSmonitor.gamestate == SHUTTERS_CLOSED ? get_cooldown()/2 : get_cooldown())
+		succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)
 
 	plasma_cost = initial(plasma_cost) //Reset the plasma cost
-
-// Slower version of the secret resin
-/datum/action/xeno_action/activable/secrete_resin/slow
-	cooldown_timer = 5 SECONDS
-	base_wait = 2.5 SECONDS
-	scaling_wait = 0
-
 
 /datum/action/xeno_action/toggle_pheromones
 	name = "Open/Collapse Pheromone Options"
@@ -707,7 +718,7 @@
 		newacid.icon_state += "_wall"
 		if(T.current_acid)
 			acid_progress_transfer(newacid, null, T)
-		T.current_acid = newacid
+		T.set_current_acid(newacid)
 
 	else if(istype(A, /obj/structure) || istype(A, /obj/machinery)) //Always appears above machinery
 		newacid.layer = A.layer + 0.1
@@ -877,13 +888,17 @@
 /datum/action/xeno_action/activable/xeno_spit/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/xeno_spit/ai_should_use(target)
+/datum/action/xeno_action/activable/xeno_spit/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 6)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(!owner.line_of_sight(target))
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
 
 
@@ -1061,7 +1076,7 @@
 	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
 		return fail_activate()
 
-	var/obj/structure/xeno/resin/silo/hivesilo = new(get_step(A, SOUTHWEST))
+	var/obj/structure/xeno/silo/hivesilo = new(get_step(A, SOUTHWEST))
 
 	var/moved_human_number = 0
 	for(var/mob/living/to_use AS in valid_mobs)
@@ -1071,147 +1086,6 @@
 		to_use.update_burst()
 		to_use.forceMove(hivesilo)
 		moved_human_number++
-
-	succeed_activate()
-
-////////////////////
-/// Build silo
-///////////////////
-/datum/action/xeno_action/activable/build_silo
-	name = "Secrete resin silo"
-	action_icon_state = "resin_silo"
-	mechanics_text = "Creates a new silo"
-	ability_name = "secrete resin silo"
-	plasma_cost = 150
-	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
-	cooldown_timer = 60 SECONDS
-	gamemode_flags = ABILITY_DISTRESS
-	/// How long does it take to build
-	var/build_time = 10 SECONDS
-	psych_cost = SILO_PRICE
-
-/datum/action/xeno_action/activable/build_silo/can_use_ability(atom/A, silent, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-
-	var/turf/T = get_turf(A)
-	if(T?.density)
-		to_chat(owner, span_xenowarning("You need open ground to place that!"))
-		return FALSE
-
-	for(var/direction in GLOB.cardinals - REVERSE_DIR(Get_Angle(owner, A)))
-		T = get_step(A, direction)
-		if(!T || T.density)
-			to_chat(owner, span_xenowarning("You need open ground to place that!"))
-			return FALSE
-
-	if(!in_range(owner, A))
-		if(!silent)
-			to_chat(owner, span_warning("We need to get closer!."))
-		return FALSE
-
-	var/mob/living/carbon/xenomorph/X = owner
-	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
-		to_chat(owner, span_xenowarning("The hive doesn't have the necessary psychic points for you to do that!"))
-		return FALSE
-
-	for(var/obj/structure/xeno/resin/silo/silo AS in GLOB.xeno_resin_silos)
-		if(get_dist(silo, A) < 15)
-			to_chat(owner, span_xenowarning("Another silo is too close!"))
-			return FALSE
-
-/datum/action/xeno_action/activable/build_silo/use_ability(atom/A)
-	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
-		return fail_activate()
-
-	var/mob/living/carbon/xenomorph/X = owner
-	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
-		to_chat(owner, span_xenowarning("Someone used all the psych points while we were building!"))
-		return fail_activate()
-
-	to_chat(owner, span_notice("We build a new silo for [psych_cost] psy points."))
-	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
-	log_game("[owner] has built a silo in [AREACOORD(A)], spending [psych_cost] psy points in the process")
-	succeed_activate()
-	new /obj/structure/xeno/resin/silo (get_step(A, SOUTHWEST))
-	xeno_message("[X.name] has built a silo at [get_area(A)]!", "xenoannounce", 5, X.hivenumber)
-
-
-////////////////////
-/// Build xeno turret
-///////////////////
-
-/datum/action/xeno_action/activable/build_turret
-	name = "Secrete acid turret"
-	action_icon_state = "xeno_turret"
-	mechanics_text = "Creates a new xeno acid turret for 100 points"
-	ability_name = "secrete acid turret"
-	plasma_cost = 150
-	cooldown_timer = 60 SECONDS
-	gamemode_flags = ABILITY_DISTRESS
-	/// How long does it take to build
-	var/build_time = 15 SECONDS
-	psych_cost = XENO_TURRET_PRICE
-
-/datum/action/xeno_action/activable/build_turret/can_use_ability(atom/A, silent, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-
-	if(!in_range(owner, A))
-		if(!silent)
-			to_chat(owner, span_warning("We need to get closer!."))
-		return FALSE
-	var/turf/T = get_turf(A)
-	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/carbon/xenomorph/blocker = locate() in T
-	if(blocker && blocker != X && blocker.stat != DEAD)
-		to_chat(X, span_warning("Can't do that with [blocker] in the way!"))
-		return FALSE
-
-	if(!T.is_weedable())
-		to_chat(X, span_warning("We can't do that here."))
-		return FALSE
-
-	var/obj/effect/alien/weeds/alien_weeds = locate() in T
-
-	for(var/obj/effect/forcefield/fog/F in range(1, X))
-		to_chat(X, span_warning("We can't build so close to the fog!"))
-		return FALSE
-
-	for(var/obj/structure/xeno/resin/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
-		if(get_dist(turret, A) < 6)
-			to_chat(owner, span_xenowarning("Another turret is too close!") )
-			return FALSE
-
-	if(!alien_weeds)
-		to_chat(X, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
-		return FALSE
-
-	if(!T.check_alien_construction(X, planned_building = /obj/structure/xeno/resin/xeno_turret) || !T.check_disallow_alien_fortification(X))
-		return FALSE
-
-	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
-		to_chat(owner, span_xenowarning("The hive doesn't have the necessary psychic points for you to do that!"))
-		return FALSE
-
-/datum/action/xeno_action/activable/build_turret/use_ability(atom/A)
-	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
-		return fail_activate()
-
-	var/mob/living/carbon/xenomorph/X = owner
-
-	if(SSpoints.xeno_points_by_hive[X.hivenumber] < psych_cost)
-		to_chat(owner, span_xenowarning("Someone used all the psych points while we were building!"))
-		return fail_activate()
-
-	to_chat(owner, span_xenowarning("We build a new acid turret, spending 100 psychic points in the process"))
-	new /obj/structure/xeno/resin/xeno_turret(get_turf(A), X.hivenumber)
-
-	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
-	log_game("[owner] built a turret in [AREACOORD(A)], spending [psych_cost] psy points in the process")
-	xeno_message("[X.name] has built a new turret at [get_area(A)]!", "xenoannounce", 5, X.hivenumber)
 
 	succeed_activate()
 
@@ -1245,6 +1119,23 @@
 	GLOB.round_statistics.xeno_rally_hive++ //statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_rally_hive")
 
+/datum/action/xeno_action/activable/rally_minion
+	name = "Rally Minions"
+	action_icon_state = "rally_minions"
+	mechanics_text = "Rallies the minions around you, asking them to follow you if they don't have a leader already. 60 second cooldown."
+	ability_name = "rally minions"
+	plasma_cost = 0
+	keybind_signal = COMSIG_XENOABILITY_RALLY_MINION
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	cooldown_timer = 60 SECONDS
+	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
+
+/datum/action/xeno_action/activable/rally_minion/use_ability()
+	succeed_activate()
+	add_cooldown()
+	owner.emote("roar")
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_MINION_RALLY, owner)
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 /mob/living/carbon/xenomorph/proc/add_abilities()
@@ -1272,8 +1163,6 @@
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 	gamemode_flags = ABILITY_DISTRESS
 	plasma_cost = 100
-	///How much psy points it give
-	var/psy_points_reward = PSY_DRAIN_REWARD
 	///How much larva points it gives (8 points for one larva in distress)
 	var/larva_point_reward = 1
 
@@ -1336,11 +1225,13 @@
 	span_xenodanger("We suddenly feel \the [victim]'s life force streaming into us!"))
 
 	victim.do_jitter_animation(2)
+	victim.adjustCloneLoss(20)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
 		victim.med_hud_set_status()
-
+	var/psy_points_reward = PSY_DRAIN_REWARD_MIN + (HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count / HIGH_PLAYER_POP * (PSY_DRAIN_REWARD_MAX - PSY_DRAIN_REWARD_MIN))
+	psy_points_reward = clamp(psy_points_reward, PSY_DRAIN_REWARD_MIN, PSY_DRAIN_REWARD_MAX)
 	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_points(larva_point_reward)
@@ -1515,3 +1406,18 @@
 	victim.dead_ticks = 0
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	X.eject_victim(TRUE, starting_turf)
+
+/////////////////////////////////
+// blessing Menu
+/////////////////////////////////
+/datum/action/xeno_action/blessing_menu
+	name = "Mothers Blessings"
+	action_icon_state = "hivestore"
+	mechanics_text = "Ask the Queen Mother for blessings for your hive in exchange for psychic energy."
+	keybind_signal = COMSIG_XENOABILITY_BLESSINGSMENU
+	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY
+
+/datum/action/xeno_action/blessing_menu/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	X.hive.interact(X)
+	return succeed_activate()

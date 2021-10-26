@@ -96,7 +96,6 @@
 			continue
 		item_to_insert.forceMove(get_turf(user))
 
-
 /**
  * Allow to representate stacks of item of type /obj/item/stack
  */

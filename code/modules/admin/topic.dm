@@ -456,13 +456,15 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/monkey, location, null, delmob, "Monkey") //todo doublecheck this
 			if("moth")
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/moth, location, null, delmob, "Moth")
+			if("husk")
+				newmob =  M.change_mob_type(/mob/living/carbon/human/species/husk, location, null, delmob, "Husk")
 			if("ai")
 				newmob = M.change_mob_type(/mob/living/silicon/ai, location, null, delmob)
 
 		C.holder.show_player_panel(newmob)
 
-		log_admin("[key_name(oldusr)] has transformed [key_name(newmob)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
-		message_admins("[delmob ? key_name_admin(oldusr) : ADMIN_TPMONTY(oldusr)] has transformed [ADMIN_TPMONTY(newmob)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
+		log_admin("[key_name(oldusr)] has transformed [key_name(newmob ? newmob : M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
+		message_admins("[delmob ? key_name_admin(oldusr) : ADMIN_TPMONTY(oldusr)] has transformed [newmob ? ADMIN_TPMONTY(newmob) : ADMIN_TPMONTY(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
 
 
 	else if(href_list["revive"])
@@ -562,6 +564,22 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		log_admin("[key_name(M)] got their fortune cookie, spawned by [key_name(usr)]")
 		message_admins("[ADMIN_TPMONTY(M)] got their fortune cookie, spawned by [ADMIN_TPMONTY(usr)].")
+
+	else if(href_list["adminpopup"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/message = input(owner, "As well as a popup, they'll also be sent a message to reply to. What do you want that to be?", "Message") as text|null
+		if(!message)
+			to_chat(owner, span_notice("Popup cancelled."))
+			return
+
+		var/client/target = locate(href_list["adminpopup"])
+		if(!istype(target))
+			to_chat(owner, span_notice("The mob doesn't exist anymore!"))
+			return
+
+		give_admin_popup(target, owner, message)
 
 	else if(href_list["adminsmite"])
 		if(!check_rights(R_ADMIN|R_FUN))

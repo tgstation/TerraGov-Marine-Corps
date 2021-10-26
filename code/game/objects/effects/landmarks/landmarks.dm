@@ -204,11 +204,11 @@
 
 /obj/effect/landmark/weapon_spawn/proc/spawn_associated_ammo(obj/item/weapon/gun/gun_to_spawn)
 	//fuck you grenade launchers you snowflake pieces of shit
-	if(istype(gun_to_spawn, /obj/item/weapon/gun/launcher/m92) || istype(gun_to_spawn, /obj/item/weapon/gun/launcher/m81))
+	if(istype(gun_to_spawn, /obj/item/weapon/gun/grenade_launcher/multinade_launcher) || istype(gun_to_spawn, /obj/item/weapon/gun/grenade_launcher/single_shot))
 		new /obj/item/storage/box/visual/grenade/frag (get_turf(src))
 		return
 
-	if(istype(gun_to_spawn, /obj/item/weapon/gun/launcher/m81/flare))
+	if(istype(gun_to_spawn, /obj/item/weapon/gun/grenade_launcher/single_shot/flare))
 		new /obj/item/storage/box/m94 (get_turf(src))
 		return
 
@@ -254,7 +254,7 @@
 	weapon_list = list(
 		/obj/item/weapon/gun/energy/lasgun/M43/practice,
 		/obj/item/weapon/gun/energy/lasgun/tesla,
-		/obj/item/weapon/gun/launcher/m81/flare,
+		/obj/item/weapon/gun/grenade_launcher/single_shot/flare,
 		/obj/item/weapon/gun/pistol/standard_pistol,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
 		/obj/item/weapon/gun/pistol/rt3,
@@ -270,7 +270,7 @@
 		/obj/item/weapon/gun/pistol/vp70,
 		/obj/item/weapon/gun/pistol/vp78,
 		/obj/item/weapon/gun/revolver/standard_revolver,
-		/obj/item/weapon/gun/revolver/m44,
+		/obj/item/weapon/gun/revolver/single_action/m44,
 		/obj/item/weapon/gun/revolver/upp,
 		/obj/item/weapon/gun/revolver/small,
 		/obj/item/weapon/gun/revolver/cmb,
@@ -278,7 +278,7 @@
 		/obj/item/weapon/katana/replica,
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/combat_knife/upp,
-		/obj/item/weapon/throwing_knife,
+		/obj/item/stack/throwing_knife,
 		/obj/item/weapon/unathiknife,
 		/obj/item/weapon/chainofcommand,
 		/obj/item/weapon/broken_bottle,
@@ -360,7 +360,7 @@
 		/obj/item/weapon/gun/rifle/sniper/antimaterial,
 		/obj/item/weapon/gun/rifle/railgun,
 		/obj/item/weapon/gun/rifle/sniper/svd,
-		/obj/item/weapon/gun/launcher/m81,
+		/obj/item/weapon/gun/grenade_launcher/single_shot,
 		/obj/item/weapon/gun/rifle/standard_smartmachinegun,
 		/obj/item/weapon/gun/rifle/sectoid_rifle,
 		/obj/item/weapon/gun/rifle/tx8,
@@ -381,7 +381,7 @@
 		/obj/item/weapon/gun/launcher/rocket,
 		/obj/item/weapon/gun/launcher/rocket/m57a4,
 		/obj/item/weapon/gun/minigun,
-		/obj/item/weapon/gun/launcher/m92,
+		/obj/item/weapon/gun/grenade_launcher/multinade_launcher,
 		/obj/item/weapon/gun/energy/lasgun/pulse,
 	)
 
@@ -400,7 +400,7 @@
 	icon_state = "shuttle"
 
 /obj/effect/landmark/dropship_console_spawn_lz1/Initialize()
-	. =	..()
+	. = ..()
 	GLOB.lz1_shuttle_console_turfs_list += loc
 	return INITIALIZE_HINT_QDEL
 
@@ -410,7 +410,38 @@
 	icon_state = "shuttle"
 
 /obj/effect/landmark/dropship_console_spawn_lz2/Initialize()
-	. =	..()
+	. = ..()
 	GLOB.lz2_shuttle_console_turfs_list += loc
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/fob_sentry
+	name = "Fob sentry"
+	icon = 'icons/Marine/sentry.dmi'
+	icon_state = "sentry"
+
+/obj/effect/landmark/fob_sentry/Initialize()
+	. = ..()
+	GLOB.fob_sentries_loc += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/fob_sentry_rebel
+	name = "Rebel fob sentry"
+	icon = 'icons/Marine/sentry.dmi'
+	icon_state = "sentry"
+
+/obj/effect/landmark/fob_sentry_rebel/Initialize()
+	. = ..()
+	GLOB.fob_sentries_rebel_loc += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/sensor_tower
+	name = "Sensor tower"
+	icon = 'icons/obj/structures/sensor.dmi'
+	icon_state = "sensor"
+
+/obj/effect/landmark/sensor_tower/Initialize()
+	. = ..()
+	var/area/area_to_control = get_area(src)
+	area_to_control.set_to_contested()
+	GLOB.sensor_towers += loc
+	return INITIALIZE_HINT_QDEL

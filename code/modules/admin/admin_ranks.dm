@@ -80,6 +80,8 @@
 				flag = R_SPAWN
 			if("DBRANKS")
 				flag = R_DBRANKS
+			if("LOG")
+				flag = R_LOG
 			if("EVERYTHING")
 				flag = R_EVERYTHING
 			if("@")

@@ -2,6 +2,7 @@
 	caste_name = "Sentinel"
 	display_name = "Sentinel"
 	upgrade_name = ""
+	primordial_upgrade_name = PRIMORDIAL_SENTINEL
 	caste_desc = "A weak ranged combat alien."
 	caste_type_path = /mob/living/carbon/xenomorph/sentinel
 	tier = XENO_TIER_ONE
@@ -136,3 +137,44 @@
 	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/upgrade3, /datum/ammo/xeno/acid)
 
+
+
+/datum/xeno_caste/sentinel/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "A doctors worst nightmare. It's stinger drips with poison."
+	ancient_message = "All will succumb to our toxins. Leave noone standing."
+	upgrade = XENO_UPGRADE_FOUR
+
+	// *** Melee Attacks *** //
+	melee_damage = 17
+
+	// *** Speed *** //
+	speed = -0.8
+
+	// *** Plasma *** //
+	plasma_max = 600
+	plasma_gain = 20
+
+	// *** Health *** //
+	max_health = 300
+
+	// *** Evolution *** //
+	upgrade_threshold = 760
+
+	// *** Defense *** //
+	soft_armor = list("melee" = 26, "bullet" = 26, "laser" = 26, "energy" = 26, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 25, "fire" = 26, "acid" = 25)
+
+	// *** Ranged Attack *** //
+	spit_delay = 1.3 SECONDS
+	spit_types = list(/datum/ammo/xeno/toxin/upgrade3, /datum/ammo/xeno/acid)
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/activable/corrosive_acid/drone,
+		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/activable/neurotox_sting,
+		/datum/action/xeno_action/activable/neurogas_grenade,
+	)

@@ -25,13 +25,6 @@
 	burst_amount = 3
 	recoil_unwielded = 0.5
 
-
-/obj/item/weapon/gun/smg/unique_action(mob/user)
-	. = ..()
-	if(!.)
-		return
-	return cock(user)
-
 /obj/item/weapon/gun/smg/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
@@ -76,12 +69,12 @@
 
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 20, "under_x" = 21, "under_y" = 14, "stock_x" = 24, "stock_y" = 10)
 
-	accuracy_mult = 1.5
-	accuracy_mult_unwielded = 0.85
+	accuracy_mult = 1.2
+	accuracy_mult_unwielded = 0.95
 	recoil_unwielded = 0
 	scatter = 0
 	fire_delay = 0.15 SECONDS
-	scatter_unwielded = 5 //Made to be better used one handed.
+	scatter_unwielded = 2 //Made to be better used one handed.
 	aim_slowdown = 0.15
 	burst_amount = 5
 	movement_acc_penalty_mult = 0
@@ -102,8 +95,6 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	wield_delay = 0.5 SECONDS
 	force = 20
-	aim_speed_modifier = 0.4
-	aim_fire_delay = 0.2 SECONDS
 	current_mag = /obj/item/ammo_magazine/smg/standard_smg
 	type_of_casings = null
 	attachable_allowed = list(
@@ -117,19 +108,25 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.1 SECONDS
+	aim_speed_modifier = 0.55
 
 	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.8
-	scatter = 0
+	accuracy_mult_unwielded = 0.9
+	scatter = -2
 	fire_delay = 0.15 SECONDS
-	scatter_unwielded = 30
+	scatter_unwielded = 20
 	aim_slowdown = 0.25
 	burst_amount = 0
+
+	placed_overlay_iconstate = "t90"
 
 /obj/item/weapon/gun/smg/standard_smg/breacher
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
@@ -277,12 +274,12 @@
 
 /obj/item/weapon/gun/smg/ppsh
 	name = "\improper PPSh-17b submachinegun"
-	desc = "A replica of a 20th century USSR model submachinegun that many terrorist organizations had copied all over the years. Despite its small-hitting firepower, its reliablity, extreme longevity and high firepower rate proves useful for the hands of the user."
+	desc = "The PPSh-17b or \"Papasha\" is replica of a 20th century USSR model submachinegun that many terrorist organizations had copied all over the years. Despite its small-hitting firepower, its reliablity, extreme longevity and high firepower rate proves useful for the hands of the user."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "ppsh"
 	item_state = "ppsh"
 	caliber = CALIBER_762X25 //codex
-	max_shells = 35 //codex
+	max_shells = 42 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
 	fire_sound = 'sound/weapons/guns/fire/ppsh.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/ppsh_empty.ogg'
@@ -292,25 +289,38 @@
 	current_mag = /obj/item/ammo_magazine/smg/ppsh
 	attachable_allowed = list(
 		/obj/item/attachable/compensator,
+		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/suppressor,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/stock/irremoveable/ppsh,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/bipod,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 21, "under_x" = 26, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.125 SECONDS
+	aim_speed_modifier = 2.5
+
 	starting_attachment_types = list(
 		/obj/item/attachable/stock/irremoveable/ppsh,
 	)
 
-	fire_delay = 0.125 SECONDS
+	fire_delay = 0.15 SECONDS
 	burst_amount = 6
 	accuracy_mult = 1.05
-	accuracy_mult_unwielded = 0.65
-	scatter = 25
-	scatter_unwielded = 45
-	aim_slowdown = 0.8
-	wield_delay = 0.8 SECONDS
+	accuracy_mult_unwielded = 0.75
+	scatter = 20
+	scatter_unwielded = 25
+	aim_slowdown = 0.3
+	wield_delay = 0.35 SECONDS
 
 
 //-------------------------------------------------------

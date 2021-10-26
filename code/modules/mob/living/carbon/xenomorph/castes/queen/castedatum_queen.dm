@@ -2,6 +2,7 @@
 	caste_name = "Queen"
 	display_name = "Queen"
 	caste_type_path = /mob/living/carbon/xenomorph/queen
+	primordial_upgrade_name = PRIMORDIAL_QUEEN
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 	job_type = /datum/job/xenomorph/queen
 
@@ -52,12 +53,10 @@
 		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/cocoon,
-		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/secrete_resin,
-		/datum/action/xeno_action/activable/build_silo,
 		/datum/action/xeno_action/activable/build_hunt_den,
-		/datum/action/xeno_action/activable/build_turret,
-		/datum/action/xeno_action/summon_king,
+		/datum/action/xeno_action/blessing_menu,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/screech,
@@ -72,6 +71,7 @@
 		/datum/action/xeno_action/hive_message,
 		/datum/action/xeno_action/deevolve,
 		/datum/action/xeno_action/activable/rally_hive,
+		/datum/action/xeno_action/activable/rally_minion,
 	)
 
 
@@ -173,3 +173,64 @@
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 4
+
+//same stats as ancient
+/datum/xeno_caste/queen/primordial
+	caste_desc = "A fearsome Xeno hulk of titanic proportions. Nothing can stand in it's way."
+	primordial_message = "Destiny bows to our will as the universe trembles before us."
+	upgrade = XENO_UPGRADE_FOUR
+	// *** Melee Attacks *** //
+	melee_damage = 23
+
+	// *** Speed *** //
+	speed = -0.3
+
+	// *** Plasma *** //
+	plasma_max = 1200
+	plasma_gain = 70
+
+	// *** Health *** //
+	max_health = 500
+
+	// *** Evolution *** //
+	upgrade_threshold = 2950
+
+	// *** Defense *** //
+	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 65, "energy" = 65, "bomb" = XENO_BOMB_RESIST_3, "bio" = 60, "rad" = 60, "fire" = 100, "acid" = 60)
+
+	// *** Ranged Attack *** //
+	spit_delay = 1.1 SECONDS
+
+	// *** Pheromones *** //
+	aura_strength = 5
+
+	// *** Queen Abilities *** //
+	queen_leader_limit = 4
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/activable/cocoon,
+		/datum/action/xeno_action/activable/plant_weeds,
+		/datum/action/xeno_action/activable/secrete_resin,
+		/datum/action/xeno_action/activable/build_hunt_den,
+		/datum/action/xeno_action/blessing_menu,
+		/datum/action/xeno_action/place_acidwell,
+		/datum/action/xeno_action/call_of_the_burrowed,
+		/datum/action/xeno_action/activable/screech,
+		/datum/action/xeno_action/activable/corrosive_acid/strong,
+		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen,
+		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/toggle_queen_zoom,
+		/datum/action/xeno_action/watch_xeno,
+		/datum/action/xeno_action/set_xeno_lead,
+		/datum/action/xeno_action/activable/queen_give_plasma,
+		/datum/action/xeno_action/hive_message,
+		/datum/action/xeno_action/deevolve,
+		/datum/action/xeno_action/activable/rally_hive,
+		/datum/action/xeno_action/activable/rally_minion,
+		/datum/action/xeno_action/ready_charge,
+	)

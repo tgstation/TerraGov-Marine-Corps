@@ -52,11 +52,13 @@
 #define isvox(H) (is_species(H, /datum/species/vox))
 #define isvoxarmalis(H) (is_species(H, /datum/species/vox/armalis))
 #define isIPC(H) (is_species(H, /datum/species/machine))
+#define isrobot(H) (is_species(H, /datum/species/robot))
 #define issynth(H) (is_species(H, /datum/species/synthetic) || is_species(H, /datum/species/early_synthetic))
 #define isspeciessynthetic(H) (H.species.species_flags & IS_SYNTHETIC)
 #define ismoth(H) (is_species(H, /datum/species/moth))
 #define issectoid(H) (is_species(H, /datum/species/sectoid))
 #define ishumanbasic(H) (is_species(H, /datum/species/human))
+#define ishusk(H) (is_species(H, /datum/species/husk))
 
 //Monkey species and subtypes
 #define ismonkey(H) (is_species(H, /datum/species/monkey))
@@ -106,8 +108,6 @@
 #define isxenobull(A) (istype(A, /mob/living/carbon/xenomorph/bull))
 #define isxenohivemind(A) (istype(A, /mob/living/carbon/xenomorph/hivemind))
 #define isxenowraith(A) (istype(A, /mob/living/carbon/xenomorph/wraith))
-
-#define isresinsilo(A) (istype(A, /obj/structure/xeno/resin/silo))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
@@ -181,8 +181,6 @@
 
 #define ismodularhelmet(A) (istype(A, /obj/item/clothing/head/modular))
 
-#define ishelmetmodule(A) (istype (A, /obj/item/helmet_module))
-
 #define isattachmentflashlight(A) (istype(A, /obj/item/attachable/flashlight))
 
 #define isgunattachment(A) (istype(A, /obj/item/attachable))
@@ -202,6 +200,10 @@
 #define ismultitool(I) (istype(I, /obj/item/multitool))
 
 #define iscrowbar(I) (istype(I, /obj/item/tool/crowbar))
+
+#define isfactorypart(I) (istype(I, /obj/item/factory_part))
+
+#define isfactoryrefill(I) (istype(I, /obj/item/factory_refill))
 
 #define isstructure(A) (istype(A, /obj/structure))
 

@@ -124,6 +124,9 @@
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/roller,
 	)
+	storage_type_limits = list(
+		/obj/item/ammo_magazine = 3,
+	)
 
 /obj/item/storage/belt/medical/Initialize()
 	. = ..()
@@ -165,10 +168,10 @@
 
 /obj/item/storage/belt/combatLifesaver/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/storage/pill_bottle/bicaridine(src)
@@ -209,12 +212,12 @@
 
 /obj/item/storage/belt/medicLifesaver/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/stack/medical/splint(src)
@@ -312,9 +315,9 @@
 	icon_state = "marinebelt"
 	item_state = "marinebelt"
 	w_class = WEIGHT_CLASS_BULKY
-	storage_slots = 5
+	storage_slots = 6
 	max_w_class = 3
-	max_storage_space = 15
+	max_storage_space = 18
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
@@ -529,29 +532,20 @@
 	icon_state="knifebelt"
 	item_state="knifebelt"
 	w_class = WEIGHT_CLASS_NORMAL
-	storage_slots = 15
+	storage_slots = 6
 	max_w_class = 1
-	max_storage_space = 15
+	max_storage_space = 6
 	draw_mode = TRUE
-	can_hold = list(/obj/item/weapon/throwing_knife)
+	can_hold = list(/obj/item/stack/throwing_knife)
 
 /obj/item/storage/belt/knifepouch/Initialize()
 	. = ..()
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
 
 /obj/item/storage/belt/grenade
 	name="\improper M276 pattern M40 HEDP rig"
@@ -571,10 +565,10 @@
 	new /obj/item/explosive/grenade/incendiary(src)
 	new /obj/item/explosive/grenade/incendiary(src)
 	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
 
 /obj/item/storage/belt/grenade/b17
 	name = "\improper M276 pattern M40 HEDP rig Mk II"
@@ -594,14 +588,14 @@
 	new /obj/item/explosive/grenade/incendiary(src)
 	new /obj/item/explosive/grenade/incendiary(src)
 	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
 
 /obj/item/storage/belt/sparepouch
 	name= "\improper G8 general utility pouch"
@@ -825,7 +819,7 @@
 
 /obj/item/storage/belt/gun/m44/full/Initialize()
 	. = ..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/m44(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/single_action/m44(src)
 	new /obj/item/ammo_magazine/revolver/heavy(src)
 	new /obj/item/ammo_magazine/revolver/marksman(src)
 	new /obj/item/ammo_magazine/revolver(src)
@@ -938,5 +932,5 @@
 /obj/item/storage/belt/gun/ts34/full/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/shotgun/double/marine(src)
-	new /obj/item/ammo_magazine/shotgun(src)
+	new /obj/item/ammo_magazine/shotgun/buckshot(src)
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_gun)

@@ -263,7 +263,6 @@ GLOBAL_PROTECT(admin_verbs_default)
 
 /world/proc/AVadmin()
 	return list(
-	/datum/admins/proc/show_player_panel,
 	/datum/admins/proc/pref_ff_attack_logs,
 	/datum/admins/proc/pref_end_attack_logs,
 	/datum/admins/proc/pref_debug_logs,
@@ -278,9 +277,6 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/toggle_sleep,
 	/datum/admins/proc/toggle_sleep_panel,
 	/datum/admins/proc/toggle_sleep_area,
-	/datum/admins/proc/logs_server,
-	/datum/admins/proc/logs_current,
-	/datum/admins/proc/logs_folder,
 	/datum/admins/proc/jump,
 	/datum/admins/proc/get_mob,
 	/datum/admins/proc/send_mob,
@@ -288,17 +284,13 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/jump_coord,
 	/datum/admins/proc/jump_mob,
 	/datum/admins/proc/jump_key,
-	/datum/admins/proc/player_panel,
-	/datum/admins/proc/player_panel_extended,
 	/datum/admins/proc/secrets_panel,
 	/datum/admins/proc/remove_from_tank,
 	/datum/admins/proc/game_panel,
-	/datum/admins/proc/log_panel,
 	/datum/admins/proc/mode_panel,
 	/datum/admins/proc/job_slots,
 	/datum/admins/proc/toggle_adminhelp_sound,
 	/datum/admins/proc/toggle_prayers,
-	/datum/admins/proc/mcdb,
 	/datum/admins/proc/check_fingerprints,
 	/client/proc/smite,
 	/client/proc/private_message_panel,
@@ -331,7 +323,11 @@ GLOBAL_PROTECT(admin_verbs_mentor)
 	/datum/admins/proc/ban_panel,
 	/datum/admins/proc/stickybanpanel,
 	/datum/admins/proc/unban_panel,
-	/datum/admins/proc/note_panel
+	/datum/admins/proc/note_panel,
+	/datum/admins/proc/show_player_panel,
+	/datum/admins/proc/player_panel,
+	/datum/admins/proc/player_panel_extended,
+	/datum/admins/proc/mcdb
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, world.AVban())
 GLOBAL_PROTECT(admin_verbs_ban)
@@ -351,16 +347,11 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/generate_powernets,
 	/datum/admins/proc/debug_mob_lists,
 	/datum/admins/proc/delete_atom,
+	/datum/admins/proc/SDQL2_query,
 	/datum/admins/proc/restart_controller,
 	/datum/admins/proc/check_contents,
-	/datum/admins/proc/SDQL2_query,
-	/datum/admins/proc/map_template_load,
-	/datum/admins/proc/map_template_upload,
 	/datum/admins/proc/reestablish_db_connection,
 	/datum/admins/proc/view_runtimes,
-	/datum/admins/proc/spatial_agent,
-	/datum/admins/proc/set_xeno_stat_buffs,
-	/datum/admins/proc/check_bomb_impacts,
 	/client/proc/toggle_cdn
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
@@ -418,6 +409,11 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/client/proc/toggle_events,
 	/client/proc/run_weather,
 	/client/proc/cmd_display_del_log,
+	/datum/admins/proc/map_template_load,
+	/datum/admins/proc/map_template_upload,
+	/datum/admins/proc/spatial_agent,
+	/datum/admins/proc/set_xeno_stat_buffs,
+	/datum/admins/proc/check_bomb_impacts,
 	)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 GLOBAL_PROTECT(admin_verbs_fun)
@@ -466,10 +462,11 @@ GLOBAL_PROTECT(admin_verbs_color)
 
 /world/proc/AVsound()
 	return list(
-	/datum/admins/proc/sound_file,
-	/datum/admins/proc/sound_web,
-	/datum/admins/proc/sound_stop,
-	/datum/admins/proc/music_stop
+		/datum/admins/proc/sound_file,
+		/datum/admins/proc/sound_web,
+		/datum/admins/proc/sound_stop,
+		/datum/admins/proc/music_stop,
+		/client/proc/set_round_end_sound,
 	)
 GLOBAL_LIST_INIT(admin_verbs_sound, world.AVsound())
 GLOBAL_PROTECT(admin_verbs_sound)
@@ -482,6 +479,16 @@ GLOBAL_PROTECT(admin_verbs_sound)
 	)
 GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 GLOBAL_PROTECT(admin_verbs_spawn)
+
+/world/proc/AVlog()
+	return list(
+	/datum/admins/proc/logs_server,
+	/datum/admins/proc/logs_current,
+	/datum/admins/proc/logs_folder,
+	/datum/admins/proc/log_panel,
+	)
+GLOBAL_LIST_INIT(admin_verbs_log, world.AVlog())
+GLOBAL_PROTECT(admin_verbs_log)
 
 /client/proc/add_admin_verbs()
 	if(holder)
@@ -515,6 +522,8 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 			verbs += GLOB.admin_verbs_varedit
 		if(rights & R_SPAWN)
 			verbs += GLOB.admin_verbs_spawn
+		if(rights & R_LOG)
+			verbs += GLOB.admin_verbs_log
 
 
 /client/proc/remove_admin_verbs()
@@ -548,7 +557,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 
 
 /proc/message_admins(msg)
-	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\">[msg]</span></span>"
+	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
 			to_chat(C,
@@ -558,7 +567,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 
 
 /proc/message_staff(msg)
-	msg = "<span class=\"admin\"><span class=\"prefix\">STAFF LOG:</span> <span class=\"message linkify\">[msg]</span></span>"
+	msg = "<span class=\"admin\"><span class=\"prefix\">STAFF LOG:</span> <span class=\"message\">[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE) || is_mentor(C))
 			to_chat(C,
@@ -566,7 +575,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 				html = msg)
 
 /proc/msg_admin_ff(msg)
-	msg = span_admin("[span_prefix("ATTACK:")] <span class='green linkify'>[msg]</span>")
+	msg = span_admin("[span_prefix("ATTACK:")] <span class='green'>[msg]</span>")
 	for(var/client/C in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE))
 			continue

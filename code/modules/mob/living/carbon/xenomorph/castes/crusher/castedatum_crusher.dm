@@ -4,6 +4,7 @@
 	upgrade_name = ""
 	caste_desc = "A huge tanky xenomorph."
 	caste_type_path = /mob/living/carbon/xenomorph/crusher
+	primordial_upgrade_name = PRIMORDIAL_CRUSHER
 
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -47,6 +48,16 @@
 		/datum/action/xeno_action/ready_charge,
 		/datum/action/xeno_action/activable/cresttoss,
 	)
+
+/datum/xeno_caste/crusher/on_caste_applied(mob/xenomorph)
+	. = ..()
+	xenomorph.AddElement(/datum/element/ridable, /datum/component/riding/creature/crusher)
+	xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, /mob/living/carbon/xenomorph.proc/grabbed_self_attack)
+
+/datum/xeno_caste/crusher/on_caste_removed(mob/xenomorph)
+	. = ..()
+	xenomorph.RemoveElement(/datum/element/ridable, /datum/component/riding/creature/crusher)
+	xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)
 
 /datum/xeno_caste/crusher/young
 	upgrade_name = "Young"
@@ -135,3 +146,43 @@
 	// *** Abilities *** //
 	stomp_damage = 60
 	crest_toss_distance = 6
+
+
+/datum/xeno_caste/crusher/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "Behemoth of the hive. Nothing will remain in its way"
+	ancient_message = "We are an unstoppable force. Crush. Kill. Destroy."
+	upgrade = XENO_UPGRADE_FOUR
+
+	// *** Melee Attacks *** //
+	melee_damage = 24
+
+	// *** Speed *** //
+	speed = 0.1
+
+	// *** Plasma *** //
+	plasma_max = 400
+	plasma_gain = 30
+
+	// *** Health *** //
+	max_health = 400
+
+	// *** Evolution *** //
+	upgrade_threshold = 1750
+
+	// *** Defense *** //
+	soft_armor = list("melee" = 90, "bullet" = 75, "laser" = 75, "energy" = 75, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 75, "acid" = 100)
+	// *** Abilities *** //
+	stomp_damage = 60
+	crest_toss_distance = 6
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/activable/stomp,
+		/datum/action/xeno_action/ready_charge,
+		/datum/action/xeno_action/activable/cresttoss,
+		/datum/action/xeno_action/activable/advance,
+	)

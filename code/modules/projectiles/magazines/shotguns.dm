@@ -119,7 +119,7 @@ also doesn't really matter. You can only reload them with handfuls.
 /obj/item/ammo_magazine/internal/shotgun
 	name = "shotgun tube"
 	desc = "An internal magazine. It is not supposed to be seen or removed."
-	default_ammo = /datum/ammo/bullet/shotgun/slug
+	default_ammo = /datum/ammo/bullet/shotgun/flechette
 	caliber = CALIBER_12G
 	max_rounds = 8
 	chamber_closed = 0
@@ -159,6 +159,12 @@ also doesn't really matter. You can only reload them with handfuls.
 	default_ammo = /datum/ammo/bullet/revolver
 	caliber = CALIBER_44
 	max_rounds = 10
+
+/obj/item/ammo_magazine/internal/shotgun/pump/lever/repeater
+	name = "tubular magazine"
+	default_ammo = /datum/ammo/bullet/revolver
+	caliber = CALIBER_44
+	max_rounds = 14
 
 /obj/item/ammo_magazine/internal/shotgun/pump/lever/mbx900
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_buckshot

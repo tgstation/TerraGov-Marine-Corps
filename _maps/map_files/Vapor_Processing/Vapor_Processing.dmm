@@ -905,7 +905,7 @@
 /turf/open/floor/grimy,
 /area/lv624/lazarus/internal_affairs)
 "dC" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/wood,
 /area/shuttle/drop2/lz2)
 "dD" = (
@@ -1978,7 +1978,7 @@
 /turf/open/floor/prison/whitepurple,
 /area/lv624/lazarus/engineering)
 "hR" = (
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/prison/whitepurple,
 /area/lv624/lazarus/engineering)
 "hS" = (
@@ -2705,7 +2705,7 @@
 	},
 /area/lv624/lazarus/security)
 "kC" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/wood,
 /area/lv624/lazarus/canteen)
 "kD" = (
@@ -3893,7 +3893,7 @@
 /turf/open/floor/grass,
 /area/lv624/ground/compound/sw)
 "qe" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/marine/shared/cigarette,
 /turf/open/floor/wood,
 /area/shuttle/drop1/lz1)
 "qf" = (
@@ -5279,7 +5279,7 @@
 /obj/structure/closet,
 /obj/item/tool/crowbar,
 /obj/item/clothing/gloves/yellow,
-/obj/item/stack/medical/bruise_pack,
+/obj/item/stack/medical/heal_pack/gauze,
 /obj/structure/window/reinforced{
 	dir = 4
 	},

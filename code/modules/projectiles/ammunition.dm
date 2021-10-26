@@ -28,6 +28,15 @@ They're all essentially identical when it comes to getting the job done.
 	var/flags_magazine = AMMUNITION_REFILLABLE //flags specifically for magazines.
 	var/base_mag_icon //the default mag icon state.
 
+	//Stats to modify on the gun, just like the attachments do, only has used ones add more as you need.
+	var/scatter_mod 	= 0
+	///Increases or decreases scatter chance but for onehanded firing.
+	var/scatter_unwielded_mod = 0
+	///Changes the slowdown amount when wielding a weapon by this value.
+	var/aim_speed_mod	= 0
+	///How long ADS takes (time before firing)
+	var/wield_delay_mod	= 0
+
 /obj/item/ammo_magazine/Initialize(mapload, spawn_empty)
 	. = ..()
 	base_mag_icon = icon_state
@@ -42,11 +51,13 @@ They're all essentially identical when it comes to getting the job done.
 
 /obj/item/ammo_magazine/update_icon(round_diff = 0)
 	. = ..()
-	if(current_rounds <= 0) 					icon_state = base_mag_icon + "_e"
-	else if(current_rounds - round_diff <= 0) 	icon_state = base_mag_icon
+	if(current_rounds <= 0)
+		icon_state = base_mag_icon + "_e"
+	else if(current_rounds - round_diff <= 0)
+		icon_state = base_mag_icon
 
 /obj/item/ammo_magazine/examine(mob/user)
-	..()
+	. = ..()
 	// It should never have negative ammo after spawn. If it does, we need to know about it.
 	if(current_rounds < 0)
 		stack_trace("negative current_rounds on examine. User: [usr]")
@@ -84,6 +95,37 @@ They're all essentially identical when it comes to getting the job done.
 			return
 
 		transfer_ammo(H, user, H.current_rounds) // This takes care of the rest.
+		return
+	
+	if(CHECK_BITFIELD(flags_magazine, AMMUNITION_WORN) && istype(I, /obj/item/weapon/gun) && loc == user && istype(I, gun_type))
+		var/obj/item/weapon/gun/gun = I
+		if(!gun.reload(user, src))
+			return
+		gun.RegisterSignal(src, COMSIG_ITEM_REMOVED_INVENTORY, /obj/item/weapon/gun.proc/drop_connected_mag)
+		return
+	return ..()
+
+/obj/item/ammo_magazine/attackby_alternate(obj/item/I, mob/user, params)
+	. = ..()
+	if(!isgun(I))
+		return
+	var/obj/item/weapon/gun/gun = I
+	if(!gun.active_attachable)
+		return
+	attackby(gun.active_attachable, user, params)
+
+/obj/item/ammo_magazine/proc/on_inserted(obj/item/weapon/gun/master_gun)
+	master_gun.scatter						+= scatter_mod
+	master_gun.scatter_unwielded			+= scatter_unwielded_mod
+	master_gun.aim_slowdown					+= aim_speed_mod
+	master_gun.wield_delay					+= wield_delay_mod
+
+
+/obj/item/ammo_magazine/proc/on_removed(obj/item/weapon/gun/master_gun)
+	master_gun.scatter						-= scatter_mod
+	master_gun.scatter_unwielded			-= scatter_unwielded_mod
+	master_gun.aim_slowdown					-= aim_speed_mod
+	master_gun.wield_delay					-= wield_delay_mod
 
 //Generic proc to transfer ammo between ammo mags. Can work for anything, mags, handfuls, etc.
 /obj/item/ammo_magazine/proc/transfer_ammo(obj/item/ammo_magazine/source, mob/user, transfer_amount = 1)
@@ -208,10 +250,9 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 		if(default_ammo != H.default_ammo) //Has to match.
 			to_chat(user, span_notice("Those aren't the same rounds. Better not mix them up."))
 			return
-
 		transfer_ammo(H, user, H.current_rounds) // Transfer it from currently held to src
-	else
-		return ..()
+		return
+	return ..()
 
 
 /obj/item/ammo_magazine/handful/proc/generate_handful(new_ammo, new_caliber, new_rounds, new_gun_type, maximum_rounds )
@@ -241,7 +282,6 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 	caliber = CALIBER_12G
 
 //----------------------------------------------------------------//
-
 
 /*
 Doesn't do anything or hold anything anymore.

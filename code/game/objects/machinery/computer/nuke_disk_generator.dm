@@ -156,12 +156,24 @@
 	name = "red nuke disk generator"
 	disk_type = /obj/item/disk/nuclear/red
 
+/obj/machinery/computer/nuke_disk_generator/red/Initialize()
+	. = ..()
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "red_disk")
+
 /obj/machinery/computer/nuke_disk_generator/green
 	name = "green nuke disk generator"
 	icon_state = "nuke_green"
 	disk_type = /obj/item/disk/nuclear/green
 
+/obj/machinery/computer/nuke_disk_generator/green/Initialize()
+	. = ..()
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "green_disk")
+
 /obj/machinery/computer/nuke_disk_generator/blue
 	name = "blue nuke disk generator"
 	icon_state = "nuke_blue"
 	disk_type = /obj/item/disk/nuclear/blue
+
+/obj/machinery/computer/nuke_disk_generator/blue/Initialize()
+	. = ..()
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "blue_disk")

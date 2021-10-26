@@ -7,6 +7,7 @@
 	reload_sound = 'sound/weapons/guns/interact/smartgun_unload.ogg'
 
 	max_integrity = 200
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 50)
 
 	fire_delay = 0.6 SECONDS
 	extra_delay = 0.6 SECONDS
@@ -15,6 +16,11 @@
 	scatter_unwielded = 0
 	burst_scatter_mult = 0
 	burst_amount = 4
+
+	ignored_terrains = list(
+		/obj/machinery/deployable/mounted,
+		/obj/machinery/miner,
+	)
 
 	turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IS_SENTRY|GUN_IFF
@@ -73,6 +79,7 @@
 
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102)
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable/tl102,
 	)
@@ -90,6 +97,19 @@
 	density = FALSE
 
 /obj/item/weapon/gun/sentry/big_sentry/dropship/rebel
+	sentry_iff_signal = TGMC_REBEL_IFF
+
+/obj/item/weapon/gun/sentry/big_sentry/fob_sentry
+	max_integrity = INFINITY //Good luck killing it
+	fire_delay = 0.2 SECONDS
+	ammo = /datum/ammo/bullet/turret/gauss
+	sentry_iff_signal = TGMC_LOYALIST_IFF
+	flags_item = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
+	turret_flags = TURRET_IMMOBILE|TURRET_RADIAL|TURRET_LOCKED|TURRET_ON
+	current_mag = /obj/item/ammo_magazine/sentry/fob_sentry
+	sentry_battery_type = /obj/item/cell/lasgun/fob_sentry/cell
+
+/obj/item/weapon/gun/sentry/big_sentry/fob_sentry/rebel
 	sentry_iff_signal = TGMC_REBEL_IFF
 
 /obj/item/storage/box/minisentry

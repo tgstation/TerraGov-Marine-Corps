@@ -62,12 +62,15 @@ CENTCOM_BAN_DB https://centcom.melonmesa.com/ban/search
 ## Logging. Recommended you keep all of these on.
 LOG_OOC
 LOG_LOOC
+LOG_XOOC
+LOG_MOOC
 LOG_SAY
 LOG_TELECOMMS
 LOG_HIVEMIND
 LOG_ADMIN
 LOG_ADMINCHAT
 LOG_ACCESS
+#LOG_ASSET
 LOG_GAME
 LOG_VOTE
 LOG_WHISPER
@@ -87,6 +90,9 @@ LOOC_ENABLED
 BONES_CAN_BREAK
 LIMBS_CAN_BREAK
 
+## Uncomment to give admins the ability to send a maptext popup to players.
+## Only fires when an admin requests it, not every ahelp.
+POPUP_ADMIN_PM
 
 # Topic filtering whitelist
 # Addressed listed below are except from any incoming topic filering
@@ -221,3 +227,6 @@ DEFAULT_VIEW_SQUARE 15x15
 
 ## Once a typepath causes overrun from hard deletes this many times, stop hard deleting it on garbage collection failures. (set to 0 to disable)
 #HARD_DELETES_OVERRUN_LIMIT 0
+
+## Uncomment if you think xenos are struggling against marines
+#XENOS_ON_STRIKE

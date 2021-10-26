@@ -1,4 +1,6 @@
 #define TRAIT_STATUS_EFFECT(effect_id) "[effect_id]-trait"
+#define BASE_HEAL_RATE -0.0125
+
 
 //Largely negative status effects go here, even if they have small benificial effects
 //STUN EFFECTS
@@ -126,21 +128,22 @@
 /datum/status_effect/incapacitating/sleeping/tick()
 	if(owner.maxHealth)
 		var/health_ratio = owner.health / owner.maxHealth
-		var/healing = -0.2
+		var/healing = BASE_HEAL_RATE //set for a base of 0.25 healed per 2-second interval asleep in a bed with covers.
 		if((locate(/obj/structure/bed) in owner.loc))
-			healing -= 0.3
+			healing += (2 * BASE_HEAL_RATE)
 		else if((locate(/obj/structure/table) in owner.loc))
-			healing -= 0.1
+			healing += BASE_HEAL_RATE
 		for(var/obj/item/bedsheet/bedsheet in range(owner.loc,0))
 			if(bedsheet.loc != owner.loc) //bedsheets in your backpack/neck don't give you comfort
 				continue
-			healing -= 0.1
+			healing += BASE_HEAL_RATE
 			break //Only count the first bedsheet
-		if(health_ratio > 0.8)
+		if(health_ratio > -0.5)
 			owner.adjustBruteLoss(healing)
 			owner.adjustFireLoss(healing)
 			owner.adjustToxLoss(healing * 0.5, TRUE, TRUE)
-		owner.adjustStaminaLoss(healing)
+			owner.adjustStaminaLoss(healing * 100)
+			owner.adjustCloneLoss(healing * health_ratio * 0.8)
 	if(human_owner && human_owner.drunkenness)
 		human_owner.drunkenness *= 0.997 //reduce drunkenness by 0.3% per tick, 6% per 2 seconds
 	if(prob(20))
@@ -367,4 +370,14 @@
 /datum/status_effect/mute/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_MUTED, TRAIT_STATUS_EFFECT(id))
 	return ..()
+
+/datum/status_effect/spacefreeze
+	id = "spacefreeze"
+
+/datum/status_effect/spacefreeze/on_creation(mob/living/new_owner)
+	. = ..()
+	to_chat(new_owner, span_danger("The cold vacuum instantly freezes you, maybe this was a bad idea?"))
+
+/datum/status_effect/spacefreeze/tick()
+	owner.adjustFireLoss(5)
 

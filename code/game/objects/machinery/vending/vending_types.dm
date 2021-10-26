@@ -134,59 +134,6 @@
 	)
 	idle_power_usage = 200
 
-/obj/machinery/vending/cigarette
-	name = "cigarette machine" //OCD had to be uppercase to look nice with the new formating
-	desc = "A specialized vending machine designed to contribute to your slow and uncomfortable death."
-	product_slogans = "There's no better time to start smokin'.;\
-		Smoke now, and win the adoration of your peers.;\
-		They beat cancer centuries ago, so smoke away.;\
-		If you're not smoking, you must be joking."
-	product_ads = "Probably not bad for you!;\
-		Don't believe the scientists!;\
-		It's good for you!;\
-		Don't quit, buy more!;\
-		Smoke!;\
-		Nicotine heaven.;\
-		Best cigarettes since 2150.;\
-		Don't be so hard on yourself, kid. Smoke a Lucky Star!;\
-		Professionals. Better cigarettes for better people. Yes, better people."
-	vend_delay = 14
-	icon_state = "cigs"
-	products = list(
-		/obj/item/storage/fancy/cigarettes/luckystars = 50,
-		/obj/item/storage/fancy/chemrettes = 30,
-		/obj/item/storage/box/matches = 15,
-		/obj/item/tool/lighter/random = 25,
-		/obj/item/tool/lighter/zippo = 10,
-	)
-
-	contraband = list(/obj/item/clothing/mask/cigarette/cigar/havana = 5)
-
-	premium = list(/obj/item/storage/fancy/cigar = 25)
-	prices = list(
-		/obj/item/storage/fancy/cigarettes/luckystars = 15,
-		/obj/item/storage/box/matches = 1,
-		/obj/item/tool/lighter/random = 2,
-		/obj/item/tool/lighter/zippo = 20,
-		/obj/item/clothing/mask/cigarette/cigar/havana = 50,
-	)
-
-/obj/machinery/vending/cigarette/colony
-	product_slogans = "Koorlander Gold, for the refined palate.;Lady Fingers, for the dainty smoker.;Lady Fingers, treat your palete with pink!;The big blue K means a cool fresh day!;For the taste that cools your mood, look for the big blue K!;Refined smokers go for Gold!;Lady Fingers are preferred by women who appreciate a cool smoke.;Lady Fingers are the number one cigarette this side of Gateway!;The tobacco connoisseur prefers Koorlander Gold.;For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;The Colonial Administration Bureau would like to remind you that smoking kills."
-	product_ads = "For the taste that cools your mood, look for the big blue K!;Refined smokers go for Gold!;Lady Fingers are preferred by women who appreciate a cool smoke.;Lady Fingers are the number one cigarette this side of Gateway!;The tobacco connoisseur prefers Koorlander Gold.;For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;The Colonial Administration Bureau would like to remind you that smoking kills."
-	products = list(
-		/obj/item/storage/fancy/cigarettes/kpack = 15,
-		/obj/item/storage/fancy/cigarettes/lady_finger = 15,
-		/obj/item/storage/box/matches = 10,
-		/obj/item/tool/lighter/random = 20,
-	)
-	prices = list(
-		/obj/item/storage/fancy/cigarettes/kpack = 15,
-		/obj/item/storage/fancy/cigarettes/lady_finger = 15,
-		/obj/item/storage/box/matches = 1,
-		/obj/item/tool/lighter/random = 2,
-	)
-
 /obj/machinery/vending/medical
 	name = "NanotrasenMed Plus"
 	desc = "Medical Pharmaceutical dispenser.  Provided by Nanotrasen Pharmaceuticals Division(TM)."
@@ -221,10 +168,10 @@
 			/obj/item/storage/pill_bottle/russian_red = 2,
 		),
 		"Heal Pack" = list(
-			/obj/item/stack/medical/advanced/bruise_pack = 5,
-			/obj/item/stack/medical/advanced/ointment = 5,
-			/obj/item/stack/medical/ointment = 10,
-			/obj/item/stack/medical/bruise_pack = 10,
+			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 5,
+			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 5,
+			/obj/item/stack/medical/heal_pack/ointment = 10,
+			/obj/item/stack/medical/heal_pack/gauze = 10,
 			/obj/item/stack/medical/splint = 5,
 		),
 		"Misc" = list(
@@ -242,10 +189,13 @@
 		/obj/item/reagent_containers/glass/bottle/neurotoxin/light = 1,
 		/obj/item/reagent_containers/glass/bottle/xeno_hemodile = 1,
 		/obj/item/reagent_containers/glass/bottle/xeno_transvitox = 1,
+		/obj/item/reagent_containers/glass/bottle/xeno_sanguinal = 1,
 	)
 
 	idle_power_usage = 211
 
+/obj/machinery/vending/medical/rebel
+	req_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
 
 //This one's from bay12
 /obj/machinery/vending/phoronresearch
@@ -267,8 +217,8 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/tramadol = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 1,
-		/obj/item/stack/medical/bruise_pack = 2,
-		/obj/item/stack/medical/ointment = 2,
+		/obj/item/stack/medical/heal_pack/gauze = 2,
+		/obj/item/stack/medical/heal_pack/ointment = 2,
 		/obj/item/healthanalyzer = 1,
 		/obj/item/stack/medical/splint = 1,
 	)
