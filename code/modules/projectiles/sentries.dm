@@ -240,6 +240,9 @@
 			. = TRUE
 
 		if("toggle_radial")
+			if(!gun.sentry_battery?.charge)
+				update_static_data(user)
+				return
 			TOGGLE_BITFIELD(gun.turret_flags, TURRET_RADIAL)
 			var/rad_msg = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL) ? "activate" : "deactivate"
 			user.visible_message(span_notice("[user] [rad_msg]s [src]'s radial mode."), span_notice("You [rad_msg] [src]'s radial mode."))
@@ -407,7 +410,7 @@
 		setDir(get_cardinal_dir(src, target))
 		if(gun.sentry_battery.charge <= 0)
 			sentry_alert(SENTRY_ALERT_BATTERY)
-	if(CHECK_BITFIELD(gun.flags_gun_features, GUN_BURST_FIRING))
+	if(HAS_TRAIT(gun, TRAIT_GUN_BURST_FIRING))
 		gun.set_target(target)
 		return
 	gun.start_fire(src, target, bypass_checks = TRUE)

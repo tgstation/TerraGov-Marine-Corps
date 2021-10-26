@@ -92,9 +92,9 @@
 	results = list(/datum/reagent/toxin/potassium_chlorophoride = 4)
 	required_reagents = list(/datum/reagent/toxin/potassium_chloride = 1, /datum/reagent/toxin/phoron = 1, /datum/reagent/toxin/chloralhydrate = 1)
 
-/datum/chemical_reaction/zombiepowder
+/datum/chemical_reaction/huskpowder
 	name = "Zombie Powder"
-	results = list(/datum/reagent/toxin/zombiepowder = 2)
+	results = list(/datum/reagent/toxin/huskpowder = 2)
 	required_reagents = list(/datum/reagent/toxin/carpotoxin = 5, /datum/reagent/toxin/sleeptoxin = 5, /datum/reagent/copper = 5)
 
 /datum/chemical_reaction/rezadone
@@ -151,7 +151,7 @@
 	var/turf/location = get_turf(holder.my_atom)
 	location.visible_message(span_warning("The solution spews out foam!"))
 	var/datum/effect_system/foam_spread/s = new()
-	s.set_up(created_volume, location, holder, 0)
+	s.set_up(created_volume, location, holder, NONE)
 	s.start()
 	holder.clear_reagents()
 
@@ -166,7 +166,7 @@
 	location.visible_message(span_warning("The solution spews out a metalic foam!"))
 
 	var/datum/effect_system/foam_spread/s = new()
-	s.set_up(created_volume, location, holder, 1)
+	s.set_up(created_volume, location, holder, METAL_FOAM)
 	s.start()
 	holder.clear_reagents()
 
@@ -180,19 +180,19 @@
 	var/turf/location = get_turf(holder.my_atom)
 	location.visible_message(span_warning("The solution spews out a metallic foam!"))
 	var/datum/effect_system/foam_spread/s = new()
-	s.set_up(created_volume, location, holder, 1)
+	s.set_up(created_volume, location, holder, METAL_FOAM)
 	s.start()
 	holder.clear_reagents()
 
 /datum/chemical_reaction/razorburn
 	name = "Razorburn Gas"
-	required_reagents = list(/datum/reagent/foaming_agent = 5, /datum/reagent/toxin/nanites = 5)
+	required_reagents = list(/datum/reagent/foaming_agent = 1, /datum/reagent/toxin/nanites = 1)
 
 /datum/chemical_reaction/razorburn/on_reaction(datum/reagents/holder, created_volume)
 	var/turf/location = get_turf(holder.my_atom)
 	location.visible_message(span_danger("The solution spews out a dense, ground-hugging gas! Get away!"))
 	var/datum/effect_system/foam_spread/s = new()
-	s.set_up(created_volume, location, holder, 2)
+	s.set_up(created_volume, location, holder, RAZOR_FOAM)
 	s.start()
 	holder.clear_reagents()
 
@@ -225,8 +225,8 @@
 	name = "laughter"
 	results = list(/datum/reagent/consumable/laughter = 5)
 	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/drink/banana = 1)
-	
-	
+
+
 //Explosives and pyrotechnics
 
 

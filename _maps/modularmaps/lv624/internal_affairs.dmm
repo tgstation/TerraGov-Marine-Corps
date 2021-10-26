@@ -35,6 +35,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/grass,
 /area/lv624/lazarus/internal_affairs)
 "eq" = (
@@ -145,6 +146,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -209,6 +211,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -420,7 +423,7 @@
 /area/lv624/lazarus/internal_affairs)
 "LM" = (
 /obj/machinery/firealarm,
-/obj/machinery/vending/cigarette/colony,
+/obj/machinery/vending/marine/shared/cigarette/colony,
 /turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/internal_affairs)
 "MR" = (
@@ -530,6 +533,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
 "Vq" = (
@@ -593,6 +597,7 @@
 	dir = 4;
 	on = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
 "XP" = (

@@ -70,6 +70,12 @@
 	if(input_source)
 		facehugger_register_source(input_source)
 
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_EXITED = .proc/on_exited,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 ///Registers the source of our facehugger for the purpose of anti-shuffle mechanics
 /obj/item/clothing/mask/facehugger/proc/facehugger_register_source(mob/living/carbon/xenomorph/S)
 	if(source) //If we have an existing source, unregister
@@ -334,14 +340,12 @@
 			return TRUE
 	return FALSE
 
-/obj/item/clothing/mask/facehugger/Crossed(atom/target)
-	. = ..()
+/obj/item/clothing/mask/facehugger/proc/on_cross(datum/source, atom/movable/target, oldloc, oldlocs)
 	if(stat == CONSCIOUS  && !issamexenohive(target))
 		HasProximity(target)
 
-/obj/item/clothing/mask/facehugger/Uncross(atom/movable/AM, direction)
-	. = ..()
-	if(!. || stat != CONSCIOUS) //Have to be conscious
+/obj/item/clothing/mask/facehugger/proc/on_exited(datum/source, atom/movable/AM, direction)
+	if(stat != CONSCIOUS) //Have to be conscious
 		return
 	if(!source && issamexenohive(AM)) //shuffle hug prevention, if we don't have a source and a xeno from the same hive steps off go_idle()
 		go_idle()
@@ -428,6 +432,9 @@
 	if(check_death && stat == DEAD)
 		return FALSE
 
+	if(faction == FACTION_XENO)
+		return FALSE
+
 	if(F.combat_hugger) //Combat huggers will attack anything else
 		return TRUE
 
@@ -435,7 +442,7 @@
 		return FALSE
 
 	if(!provoked)
-		if(species?.species_flags & IS_SYNTHETIC)
+		if(species?.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
 			return FALSE
 
 	if(on_fire)

@@ -202,8 +202,9 @@
 
 	if(!issamexenohive(xenomorph) || xenomorph.a_intent != INTENT_HELP)
 		xenomorph.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-		xenomorph.visible_message(span_xenowarning("[xenomorph] crushes \the [src]."),span_xenowarning("<span class='xenowarning'>We crush \the [src]."))
+		xenomorph.visible_message(span_xenowarning("[xenomorph] crushes \the [src]."), span_xenowarning("We crush \the [src]."))
 		burst(TRUE)
 		return
 
-	to_chat(xenomorph, span_warning("That egg is filled with gas and has no child to retrieve.") )
+	to_chat(xenomorph, span_warning("That egg is filled with gas and has no child to retrieve."))
+

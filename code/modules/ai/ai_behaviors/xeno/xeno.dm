@@ -5,13 +5,16 @@
 	identifier = IDENTIFIER_XENO
 	///List of abilities to consider doing every Process()
 	var/list/ability_list = list()
+	///If the mob parent can heal itself and so should flee
+	var/can_heal = TRUE
 
-/datum/ai_behavior/xeno/New(loc, parent_to_assign, escorted_atom)
+/datum/ai_behavior/xeno/New(loc, parent_to_assign, escorted_atom, can_heal = TRUE)
 	..()
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, /datum/ai_behavior.proc/deal_with_obstacle)
 	RegisterSignal(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), .proc/refresh_abilities)
 	refresh_abilities()
 	mob_parent.a_intent = INTENT_HARM //Killing time
+	src.can_heal = can_heal
 
 ///Refresh abilities-to-consider list
 /datum/ai_behavior/xeno/proc/refresh_abilities()
@@ -37,31 +40,61 @@
 	return ..()
 
 /datum/ai_behavior/xeno/look_for_new_state()
+	var/mob/living/living_parent = mob_parent
 	switch(current_action)
-		if(ESCORTING_ATOM, MOVING_TO_NODE)
-			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_ALL, null, mob_parent.get_xeno_hivenumber())
+		if(ESCORTING_ATOM)
+			if(get_dist(escorted_atom, mob_parent) > target_distance * 2)//We failed to reach our escorted atom
+				cleanup_current_action()
+				base_action = MOVING_TO_NODE
+				late_initialize()
+				return
+			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 			if(!next_target)
+				return
+			change_action(MOVING_TO_ATOM, next_target)
+		if(MOVING_TO_NODE)
+			var/atom/next_target = get_nearest_target(mob_parent, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
+			if(!next_target)
+				if(can_heal && living_parent.health <= minimum_health * 2 * living_parent.maxHealth)
+					try_to_heal() //If we have some damage, look for some healing
 				return
 			change_action(MOVING_TO_ATOM, next_target)
 		if(MOVING_TO_ATOM)
 			if(escorted_atom && get_dist(escorted_atom, mob_parent) > target_distance)
 				change_action(ESCORTING_ATOM, escorted_atom)
 				return
-			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_ALL, null, mob_parent.get_xeno_hivenumber())
+			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 			if(!next_target)//We didn't find a target
 				cleanup_current_action()
 				late_initialize()
 				return
+			if(can_heal && living_parent.health <= minimum_health * living_parent.maxHealth)//We are low health, run away
+				distance_to_maintain = INFINITY
+				target_distance = 15 //Run away
+				change_action(MOVING_TO_SAFETY, next_target)
+				return
 			if(next_target == atom_to_walk_to)//We didn't find a better target
 				return
 			change_action(null, next_target)//We found a better target, change course!
+		if(MOVING_TO_SAFETY)
+			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
+			if(!next_target)//We are safe, try to find some weeds
+				distance_to_maintain = initial(distance_to_maintain)
+				target_distance = initial(target_distance)
+				cleanup_current_action()
+				late_initialize()
+				return
+			change_action(null, next_target)
 
 /datum/ai_behavior/xeno/deal_with_obstacle(datum/source, direction)
 	var/turf/obstacle_turf = get_step(mob_parent, direction)
 	for(var/thing in obstacle_turf.contents)
 		if(isstructure(thing))
 			if(istype(thing, /obj/structure/window_frame))
+				if(locate(/obj/machinery/door/poddoor/shutters) in obstacle_turf)
+					return
 				mob_parent.loc = obstacle_turf
+				mob_parent.next_move_slowdown += 1 SECONDS
 				return COMSIG_OBSTACLE_DEALT_WITH
 			if(istype(thing, /obj/structure/closet))
 				var/obj/structure/closet/closet = thing
@@ -70,7 +103,6 @@
 				return
 			var/obj/structure/obstacle = thing
 			if(obstacle.resistance_flags & XENO_DAMAGEABLE)
-				mob_parent.face_atom(obstacle)
 				INVOKE_ASYNC(src, .proc/attack_target, null, obstacle)
 				return COMSIG_OBSTACLE_DEALT_WITH
 		else if(istype(thing, /obj/machinery/door/airlock))
@@ -80,11 +112,21 @@
 			if(lock.operating) //Airlock already doing something
 				continue
 			if(lock.welded) //It's welded, can't force that open
+				INVOKE_ASYNC(src, .proc/attack_target, null, thing) //ai is cheating
 				continue
 			lock.open(TRUE)
 			return COMSIG_OBSTACLE_DEALT_WITH
 	if(ISDIAGONALDIR(direction))
 		return deal_with_obstacle(null, turn(direction, -45)) || deal_with_obstacle(null, turn(direction, 45))
+
+/datum/ai_behavior/xeno/cleanup_current_action(next_action)
+	. = ..()
+	if(next_action == MOVING_TO_NODE)
+		return
+	var/mob/living/living_mob = mob_parent
+	if(can_heal && living_mob.resting)
+		SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
+		UnregisterSignal(mob_parent, COMSIG_XENOMORPH_HEALTH_REGEN)
 
 ///Signal handler to try to attack our target
 /datum/ai_behavior/xeno/proc/attack_target(datum/soure, atom/attacked)
@@ -96,12 +138,7 @@
 	if(get_dist(attacked, mob_parent) > 1)
 		return
 	mob_parent.face_atom(attacked)
-	if(isobj(attacked) && !(attacked.resistance_flags & XENO_DAMAGEABLE))
-		stack_trace("A xenomorph tried to attack a [attacked.name] that isn't considered XENO_DAMAGABLE according to resistance flags.")
-		return
-	var/mob/living/carbon/xenomorph/xeno = mob_parent
-	attacked.attack_alien(xeno, xeno.xeno_caste.melee_damage * xeno.xeno_melee_damage_modifier)
-	xeno.changeNext_move(xeno.xeno_caste.attack_delay)
+	mob_parent.UnarmedAttack(attacked, TRUE)
 
 /datum/ai_behavior/xeno/register_action_signals(action_type)
 	switch(action_type)
@@ -128,3 +165,36 @@
 				return
 
 	return ..()
+
+///Will try finding and resting on weeds
+/datum/ai_behavior/xeno/proc/try_to_heal()
+	var/mob/living/living_mob = mob_parent
+	if(!locate(/obj/effect/alien/weeds) in get_turf(mob_parent))
+		if(living_mob.resting)//We are resting on no weeds
+			SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
+			UnregisterSignal(mob_parent, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_PLASMA_REGEN))
+			return FALSE
+		return FALSE
+	if(living_mob.resting)//Already resting
+		return TRUE
+	SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
+	RegisterSignal(mob_parent, COMSIG_XENOMORPH_HEALTH_REGEN, .proc/check_for_health)
+	RegisterSignal(mob_parent, COMSIG_XENOMORPH_PLASMA_REGEN, .proc/check_for_plasma)
+	return TRUE
+
+///Wait for the xeno to be full life and plasma to unrest
+/datum/ai_behavior/xeno/proc/check_for_health(mob/living/carbon/xenomorph/healing, list/heal_data)
+	SIGNAL_HANDLER
+	if(healing.health + heal_data[1] >= healing.maxHealth && healing.plasma_stored >= healing.xeno_caste.plasma_max * healing.xeno_caste.plasma_regen_limit)
+		SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
+		UnregisterSignal(mob_parent, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_PLASMA_REGEN))
+
+///Wait for the xeno to be full life and plasma to unrest
+/datum/ai_behavior/xeno/proc/check_for_plasma(mob/living/carbon/xenomorph/healing, list/plasma_data)
+	SIGNAL_HANDLER
+	if(healing.health >= healing.maxHealth && healing.plasma_stored + plasma_data[1] >= healing.xeno_caste.plasma_max * healing.xeno_caste.plasma_regen_limit)
+		SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
+		UnregisterSignal(mob_parent, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_PLASMA_REGEN))
+
+/datum/ai_behavior/xeno/ranged
+	distance_to_maintain = 5

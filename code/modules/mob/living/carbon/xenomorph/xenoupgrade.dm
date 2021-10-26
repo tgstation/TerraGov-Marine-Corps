@@ -8,9 +8,9 @@
 		visible_message(span_xenonotice("\The [src] begins to twist and contort."), \
 		span_xenonotice("We begin to twist and contort."))
 		do_jitter_animation(1000)
-	set_datum()
 	if(upgrade_stored < xeno_caste.upgrade_threshold)
 		upgrade_stored = xeno_caste.upgrade_threshold
+	set_datum()
 	var/selected_ability_type = selected_ability?.type
 
 	for(var/check_existing_actions in xeno_abilities) //Remove xenos actions we shouldn't have
@@ -35,7 +35,7 @@
 			break
 
 	if(queen_chosen_lead)
-		give_rally_hive_ability() //Give them back their rally hive ability
+		give_rally_abilities() //Give them back their rally hive ability
 
 	switch(upgrade)
 		//FIRST UPGRADE
@@ -66,6 +66,11 @@
 					SSmonitor.stats.ancient_T3++
 				if(XENO_TIER_FOUR)
 					SSmonitor.stats.ancient_T4++
+
+		//PURCHASED UPGRADE
+		if(XENO_UPGRADE_FOUR)
+			if(!silent)
+				to_chat(src, span_xenoannounce(xeno_caste.primordial_message))
 
 	generate_name() //Give them a new name now
 
@@ -187,6 +192,9 @@
 /mob/living/carbon/xenomorph/ravager/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/ravager/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----RAVAGER END----//
 //================//
 //----SENTINEL START----//
@@ -199,6 +207,9 @@
 
 /mob/living/carbon/xenomorph/sentinel/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/sentinel/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----SENTINEL END----//
 //================//
@@ -242,6 +253,9 @@
 /mob/living/carbon/xenomorph/hunter/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/hunter/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----HUNTER END----//
 //================//
 //HUNTER ERT START
@@ -271,6 +285,9 @@
 /mob/living/carbon/xenomorph/queen/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/queen/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----QUEEN END----//
 //============//
 //---CRUSHER START---//
@@ -283,6 +300,9 @@
 
 /mob/living/carbon/xenomorph/crusher/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/crusher/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //---CRUSHER END---//
 //============//
@@ -336,6 +356,9 @@
 /mob/living/carbon/xenomorph/Defiler/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/Defiler/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----DEFILER END----//
 //============//
 //----SHRIKE START----//
@@ -349,6 +372,9 @@
 /mob/living/carbon/xenomorph/shrike/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/shrike/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----SHRIKE END----//
 //============//
 
@@ -360,3 +386,6 @@
 
 /mob/living/carbon/xenomorph/wraith/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/wraith/primordial
+	upgrade = XENO_UPGRADE_FOUR

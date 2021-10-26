@@ -109,7 +109,6 @@
 	var/grab_resist_level = 0 //Every time we try to resist a grab, we increment this by 1 until it exceeds the grab level, thereby breaking the grab.
 
 	var/datum/job/job
-	var/faction = FACTION_NEUTRAL
 	var/comm_title = ""
 
 	var/blood_volume = 0 //how much blood the mob has

@@ -101,6 +101,14 @@
 /obj/item/attachable/motiondetector/update_icon_state()
 	icon_state = initial(icon_state) + (isnull(operator) ? "" : "_on")
 
+/obj/item/attachable/motiondetector/equipped(mob/user, slot)
+	. = ..()
+	if(!ishandslot(slot))
+		clean_operator()
+
+/obj/item/attachable/motiondetector/removed_from_inventory(mob/user)
+	clean_operator()
+
 /// Signal handler to clean out user vars
 /obj/item/attachable/motiondetector/proc/clean_operator()
 	SIGNAL_HANDLER

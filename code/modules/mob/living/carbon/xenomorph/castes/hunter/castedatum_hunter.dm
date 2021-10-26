@@ -2,6 +2,7 @@
 	caste_name = "Hunter"
 	display_name = "Hunter"
 	upgrade_name = ""
+	primordial_upgrade_name = PRIMORDIAL_HUNTER
 	caste_desc = "A fast, powerful front line combatant."
 
 	caste_type_path = /mob/living/carbon/xenomorph/hunter
@@ -147,3 +148,44 @@
 
 	// *** Ranged Attack *** //
 	pounce_delay = 10.0 SECONDS
+
+/datum/xeno_caste/hunter/primordial
+	upgrade_name = "Primordial"
+	upgrade = XENO_UPGRADE_FOUR
+	caste_desc = "A silent but deadly killing machine. It looks frighteningly powerful"
+	ancient_message = "We are the ultimate predator. Let the hunt begin."
+
+	// *** Melee Attacks *** //
+	melee_damage = 24
+
+	// *** Speed *** //
+	speed = -1.4
+
+	// *** Plasma *** //
+	plasma_max = 200
+	plasma_gain = 18
+
+	// *** Health *** //
+	max_health = 290
+
+	// *** Evolution *** //
+	upgrade_threshold = 1320
+
+	// *** Defense *** //
+	soft_armor = list("melee" = 55, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 30, "acid" = 18)
+
+	// *** Ranged Attack *** //
+	pounce_delay = 10.0 SECONDS
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/activable/silence,
+		/datum/action/xeno_action/activable/pounce/hunter,
+		/datum/action/xeno_action/stealth/disguise,
+		/datum/action/xeno_action/activable/hunter_mark,
+		/datum/action/xeno_action/psychic_trace,
+		/datum/action/xeno_action/mirage,
+	)

@@ -14,6 +14,4 @@ import './ie8';
 import './dom4';
 import './css-om';
 import './inferno';
-
-// Fetch is required for Webpack HMR
 import 'unfetch/polyfill';

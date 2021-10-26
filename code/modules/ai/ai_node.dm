@@ -11,12 +11,13 @@
 	#else
 	invisibility = INVISIBILITY_ABSTRACT
 	#endif
-	///list of adjacent landmark nodes
-	var/list/adjacent_nodes
+	///Assoc list of adjacent landmark nodes by dir
+	var/list/adjacent_nodes = list()
 
 	///List of weights for scoring stuff happening here; ultilizes "identifiers" to differentiate different kinds of AI types looking at the same node.
 	var/list/weights = list(
 		IDENTIFIER_XENO = list(NODE_LAST_VISITED = 0),
+		IDENTIFIER_HUSK = list(NODE_LAST_VISITED = 0),
 		)
 
 /obj/effect/ai_node/Initialize()
@@ -38,10 +39,10 @@
 /obj/effect/ai_node/Destroy()
 	GLOB.allnodes -= src
 	//Remove our reference to self from nearby adjacent node's adjacent nodes
-	for(var/nodes in adjacent_nodes)
-		var/obj/effect/ai_node/node = nodes
-		node.adjacent_nodes -= src
-	adjacent_nodes?.Cut()
+	for(var/direction AS in adjacent_nodes)
+		var/obj/effect/ai_node/node = adjacent_nodes[direction]
+		node.make_adjacents()
+	adjacent_nodes.Cut()
 	return ..()
 
 /**
@@ -57,12 +58,13 @@
 /obj/effect/ai_node/proc/get_best_adj_node(list/weight_modifiers, identifier)
 	//No weight modifiers, return a adjacent random node
 	if(!length(weight_modifiers) || !identifier)
-		return pick(adjacent_nodes)
+		return adjacent_nodes[pick(adjacent_nodes)]
 
 	var/obj/effect/ai_node/node_to_return
 	var/current_best_node_score = -INFINITY
 	var/current_score = 0
-	for(var/obj/effect/ai_node/node AS in adjacent_nodes) //We keep a score for the nodes and see which one is best
+	for(var/direction in adjacent_nodes) //We keep a score for the nodes and see which one is best
+		var/obj/effect/ai_node/node = adjacent_nodes[direction]
 		current_score = 0
 		for(var/weight in weight_modifiers)
 			current_score += NODE_GET_VALUE_OF_WEIGHT(identifier, node, weight) * weight_modifiers[weight]
@@ -73,18 +75,19 @@
 
 	if(node_to_return)
 		return node_to_return
-	return pick(adjacent_nodes)
+	return adjacent_nodes[pick(adjacent_nodes)]
 
 ///Clears the adjacencies of src and repopulates it, it will consider nodes "adjacent" to src should it be less 15 turfs away
-/obj/effect/ai_node/proc/make_adjacents()
+/obj/effect/ai_node/proc/make_adjacents(bypass_diagonal_check = FALSE)
 	for(var/obj/effect/ai_node/node AS in GLOB.allnodes)
-		if(node == src || get_dist_euclide_square(src, node) > MAX_NODE_RANGE_SQUARED)
+		if(node == src || node.z != z || get_dist(src, node) > MAX_NODE_RANGE || (!bypass_diagonal_check && !Adjacent(node) && ISDIAGONALDIR(get_dir(src, node))))
+			continue
+		if(get_dist(src, adjacent_nodes["[get_dir(src, node)]"]) < get_dist(src, node))
 			continue
 		if(!is_in_line_of_sight(get_turf(node)))
 			continue
-
-		LAZYDISTINCTADD(adjacent_nodes ,node)
-		LAZYDISTINCTADD(node.adjacent_nodes, src)
+		adjacent_nodes["[get_dir(src, node)]"] = node
+		node.adjacent_nodes["[get_dir(node, src)]"] = src
 
 ///Returns true if the turf in argument is in line of sight
 /obj/effect/ai_node/proc/is_in_line_of_sight(turf/target_loc)

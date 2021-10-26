@@ -381,6 +381,75 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
+/datum/action/xeno_action/activable/tentacle
+	name = "Tentacle"
+	action_icon_state = "tail_attack"
+	mechanics_text = "Throw one of your tentacles forward to grab a tallhost or item."
+	ability_name = "Tentacle"
+	cooldown_timer = 20 SECONDS
+	plasma_cost = 200
+	keybind_signal = COMSIG_XENOABILITY_TENTACLE
+	///reference to beam tentacle
+	var/datum/beam/tentacle
+
+/datum/action/xeno_action/activable/tentacle/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(!isitem(A) && !ishuman(A))
+		if(!silent)
+			to_chat(owner, span_warning("We cant use that on [A]!"))
+		return FALSE
+	if(isliving(A))
+		var/mob/living/livingtarget = A
+		if(livingtarget.stat == DEAD)
+			if(!silent)
+				to_chat(owner, span_warning("We cant use that on [livingtarget], they're dead!"))
+			return FALSE
+	var/atom/movable/target = A
+	if(target.anchored)
+		if(!silent)
+			to_chat(owner, span_warning("[target] is anchored and cannot be moved!"))
+		return FALSE
+
+	var/turf/current = get_turf(owner)
+	var/turf/target_turf = get_turf(target)
+	if(current == target_turf)
+		return TRUE
+	if(get_dist(current, target_turf) > TENTACLE_ABILITY_RANGE)
+		return FALSE
+	current = get_step_towards(current, target_turf)
+	while((current != target_turf))
+		if(current.density)
+			if(!silent)
+				to_chat(owner, span_warning("We can't reach [target]!"))
+			return FALSE
+		current = get_step_towards(current, target_turf)
+
+
+/datum/action/xeno_action/activable/tentacle/use_ability(atom/movable/target)
+	tentacle = owner.beam(target,"curse0",'icons/effects/beam.dmi')
+	to_chat(owner, span_warning("We grab [target] with a tentacle!"))
+	target.balloon_alert_to_viewers("Grabbed!")
+	addtimer(CALLBACK(src, .proc/finish_grab, target, tentacle), 5)
+	playsound(target, 'sound/effects/blobattack.ogg', 40, 1)
+	succeed_activate()
+	add_cooldown()
+
+///after dramatic pause throws the target at the defiler
+/datum/action/xeno_action/activable/tentacle/proc/finish_grab(atom/movable/grabbed, datum/beam/tentacle)
+	RegisterSignal(grabbed, COMSIG_MOVABLE_IMPACT, .proc/delete_beam)
+	grabbed.throw_at(owner, TENTACLE_ABILITY_RANGE, 1, owner, FALSE)
+	if(isliving(grabbed))
+		var/mob/living/loser = grabbed
+		loser.apply_effects(stun = 1, weaken = 0.1)
+
+///signal handler to delete tetacle after we are done draggging owner along
+/datum/action/xeno_action/activable/tentacle/proc/delete_beam(datum/source, atom/impacted)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, COMSIG_MOVABLE_IMPACT)
+	QDEL_NULL(tentacle)
+
 #undef DEFILER_NEUROTOXIN
 #undef DEFILER_HEMODILE
 #undef DEFILER_TRANSVITOX

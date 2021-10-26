@@ -1,10 +1,5 @@
 //DEFINITIONS FOR ASSET DATUMS START HERE.
 
-/datum/asset/simple/tgui_common
-	keep_local_name = TRUE
-	assets = list(
-		"tgui-common.bundle.js" = file("tgui/public/tgui-common.bundle.js"),
-	)
 
 /datum/asset/simple/tgui
 	keep_local_name = TRUE
@@ -128,3 +123,10 @@
 	assets = list(
 		"ghost.png" = 'html/images/ghost.png'
 	)
+
+/datum/asset/spritesheet/blessingmenu
+	name = "blessingmenu"
+
+/datum/asset/spritesheet/blessingmenu/register()
+	InsertAll("", 'icons/UI_Icons/buyable_icons.dmi')
+	..()

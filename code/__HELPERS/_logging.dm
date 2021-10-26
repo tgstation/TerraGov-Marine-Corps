@@ -87,7 +87,8 @@
 
 
 /proc/log_asset(text)
-	WRITE_LOG(GLOB.world_asset_log, "ASSET: [text]")
+	if(CONFIG_GET(flag/log_asset))
+		WRITE_LOG(GLOB.world_asset_log, "ASSET: [text]")
 
 /proc/log_attack(text)
 	LAZYADD(GLOB.attack_log, "\[[stationTimestamp()]\] ATTACK: [text]")
@@ -184,6 +185,8 @@
 	if(CONFIG_GET(flag/log_hrefs))
 		WRITE_LOG(GLOB.world_href_log, "HREF: [text]")
 
+/proc/log_mob_tag(text)
+	WRITE_LOG(GLOB.world_mob_tag_log, "TAG: [text]")
 
 /proc/log_sql(text)
 	WRITE_LOG(GLOB.sql_error_log, "SQL: [text]")

@@ -19,6 +19,9 @@
 ///AI component state where we're moving towards *something*, probably something we want to hit
 #define MOVING_TO_ATOM "moving_to_an_atom"
 
+///Ai component state where the ai tries to flee to heal
+#define MOVING_TO_SAFETY "moving_to_safety"
+
 ///A define for a node variable which is the last world.time that a AI visited it
 #define NODE_LAST_VISITED "node_last_visited"
 
@@ -28,16 +31,17 @@
  * This is mainly used for deciding what weights are to be looked at when determing a node waypoint of going towards
  */
 #define IDENTIFIER_XENO "identifies_xeno"
+#define IDENTIFIER_HUSK "identifies_husk"
+
 
 //Flags for the get_nearest_target
 #define TARGET_HUMAN_TURRETS (1<<0)
 #define TARGET_XENO_TURRETS (1<<1)
 #define TARGET_HUMAN (1<<2)
 #define TARGET_XENO (1<<3)
+#define TARGET_UNMANNED_VEHICLE (1<<4)
 
-#define TARGET_ALL (TARGET_HUMAN_TURRETS|TARGET_XENO_TURRETS|TARGET_HUMAN|TARGET_XENO)
-
-#define MAX_NODE_RANGE_SQUARED 256
+#define MAX_NODE_RANGE 15
 
 GLOBAL_LIST_EMPTY(allnodes)
 

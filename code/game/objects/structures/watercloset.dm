@@ -169,6 +169,11 @@
 /obj/machinery/shower/Initialize()
 	. = ..()
 	create_reagents(2)
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_EXITED = .proc/on_exited,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 
 /obj/effect/mist
@@ -243,17 +248,16 @@
 				mymist = null
 				ismist = FALSE
 
-/obj/machinery/shower/Crossed(atom/movable/O)
-	. = ..()
+/obj/machinery/shower/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
+	SIGNAL_HANDLER
 	wash(O)
 	if(ismob(O))
 		mobpresent += 1
 		check_heat(O)
 
-/obj/machinery/shower/Uncrossed(atom/movable/O)
+/obj/machinery/shower/proc/on_exited(datum/source, atom/movable/O, direction)
 	if(ismob(O))
 		mobpresent -= 1
-	..()
 
 //Yes, showers are super powerful as far as washing goes.
 /obj/machinery/shower/proc/wash(atom/movable/O as obj|mob)

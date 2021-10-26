@@ -77,6 +77,8 @@
 				display_class = "mentorooc"
 			if("Maintainer")
 				display_class = "maintainerooc"
+			if("Art Maintainer")
+				display_class = "maintainerooc"
 			if("Debugger", "Contributor")
 				display_class = "contributorooc"
 			else
@@ -171,7 +173,7 @@
 			continue
 		if(!(C.mob in GLOB.xeno_mob_list) && !(C.mob in GLOB.observer_list) || check_other_rights(C, R_ADMIN, FALSE)) // If the client is a xeno, an observer, and not an admin.
 			continue
-		
+
 		var/display_name = mob.name
 		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
 		if(!(mob in GLOB.xeno_mob_list) && admin) // If the verb caller is an admin and not a xeno mob, use their fakekey or key instead.
@@ -221,7 +223,7 @@
 	if(mob.stat == DEAD && !admin)
 		to_chat(src, span_warning("You must be alive to use MOOC."))
 		return
-	if(!(mob in GLOB.human_mob_list) && !admin)
+	if(!((mob in GLOB.human_mob_list) || (mob in GLOB.ai_list)) && !admin)
 		to_chat(src, span_warning("You must be a human to use MOOC."))
 		return
 
@@ -263,15 +265,15 @@
 	for(var/client/C AS in GLOB.clients)
 		if(!(C.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!(C.mob in GLOB.human_mob_list) && !(C.mob in GLOB.observer_list) || check_other_rights(C, R_ADMIN, FALSE)) // If the client is a human, an observer, and not an admin.
+		if(!(C.mob in GLOB.human_mob_list) && !(C.mob in GLOB.observer_list) && !(C.mob in GLOB.ai_list) || check_other_rights(C, R_ADMIN, FALSE)) // If the client is a human, an observer, and not an admin.
 			continue
 
 		// If the verb caller is an admin and not a human mob, use their key, or if they're stealthmode, hide their key instead.
 		var/display_name = mob.name
 		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
-		if(!(mob in GLOB.human_mob_list) && admin)  // If the verb caller is an admin and not a human mob, use their fakekey or key instead.
+		if(!((mob in GLOB.human_mob_list) || (mob in GLOB.ai_list)) && admin)  // If the verb caller is an admin and not a human mob, use their fakekey or key instead.
 			display_name = display_key
-		
+
 		var/avoid_highlight = C == src
 		to_chat(C, "<font color='#B75800'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
@@ -284,7 +286,7 @@
 
 		var/display_name = mob.name
 		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
-		if(!(mob in GLOB.human_mob_list) && admin) // If the verb caller is an admin and not a human mob, use their fakekey or key instead.
+		if(!((mob in GLOB.human_mob_list) || (mob in GLOB.ai_list)) && admin) // If the verb caller is an admin and not a human mob, use their fakekey or key instead.
 			display_name = display_key
 		display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>" // Admins get a clickable player panel.
 		if(!holder?.fakekey) // Show their key and their fakekey if they have one.

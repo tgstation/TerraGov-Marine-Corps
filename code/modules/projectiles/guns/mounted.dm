@@ -26,7 +26,7 @@
 ///TL-102, now with full auto. It is not a superclass of deployed guns, however there are a few varients.
 /obj/item/weapon/gun/tl102
 	name = "\improper TL-102 mounted heavy smartgun"
-	desc = "The TL-102 heavy machinegun, it's too heavy to be wielded or operated without the tripod. IFF capable. No extra work required, just deploy it with unique action. Can be repaired with a blowtorch once deployed."
+	desc = "The TL-102 heavy machinegun, it's too heavy to be wielded or operated without the tripod. IFF capable. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
 
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -85,6 +85,7 @@
 
 	current_mag = /obj/item/ammo_magazine/tl102/hsg_nest
 
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable/tl102/nest,
 	)
@@ -150,3 +151,59 @@
 	max_integrity = 150
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
+
+
+//-------------------------------------------------------
+//T-27 Medium Machine Gun
+
+/obj/item/weapon/gun/standard_mmg
+	name = "\improper T-27 medium machinegun"
+	desc = "The T-27 is the T-29s aging IFF-less cousin, made for rapid accurate machinegun fire in a short amount of time, you could use it while standing, not a great idea. Use the tripod for actual combat. It uses 10x27mm boxes."
+	flags_equip_slot = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_BULKY
+	icon = 'icons/Marine/marine-mmg.dmi'
+	icon_state = "t27"
+	item_state = "t27"
+	caliber = CALIBER_10X25_CASELESS // codex
+	max_shells = 100 //codex
+	force = 40
+	aim_slowdown = 1.2
+	wield_delay = 2 SECONDS
+	fire_sound =  'sound/weapons/guns/fire/t27.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	current_mag = /obj/item/ammo_magazine/standard_mmg
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/stock/irremoveable/t27,
+	)
+
+	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/t27)
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 20,"rail_x" = 18, "rail_y" = 22, "under_x" = 28, "under_y" = 13, "stock_x" = 0, "stock_y" = 0)
+
+	flags_item = IS_DEPLOYABLE|TWOHANDED
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.1 SECONDS
+	aim_speed_modifier = 5
+	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
+
+
+	scatter = 80 // you're not firing this standing.
+	deployed_scatter_change = -70 // innumerable amount of reduced scatter when deployed,
+	recoil = 3
+	scatter_unwielded = 85
+	fire_delay = 0.15 SECONDS
+	burst_amount = 1
+	deploy_time = 1 SECONDS
+	undeploy_time = 0.5 SECONDS
+	max_integrity = 200

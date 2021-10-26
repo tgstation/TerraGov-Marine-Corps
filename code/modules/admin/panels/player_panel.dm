@@ -2,7 +2,7 @@
 	set category = "Admin"
 	set name = "Player Panel"
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_BAN))
 		return
 
 	var/dat = {"<html>
@@ -305,7 +305,7 @@
 	set category = "Admin"
 	set name = "Player Panel Extended"
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_BAN))
 		return
 
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
@@ -465,6 +465,7 @@
 		<a href='?src=[ref];transform=vatgrown;mob=[REF(M)]'>Vatgrown</a> |
 		<a href='?src=[ref];transform=monkey;mob=[REF(M)]'>Monkey</a> |
 		<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a> |
+		<a href='?src=[ref];transform=husk;mob=[REF(M)]'>Husk</a> |
 		<br> Alien Tier 0:
 		<a href='?src=[ref];transform=larva;mob=[REF(M)]'>Larva</a> |
 		<br> Alien Tier 1:

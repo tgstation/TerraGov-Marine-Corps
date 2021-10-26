@@ -1,9 +1,21 @@
-//-------------------------------------------------------
-//SNIPER RIFLES
-//Keyword rifles. They are subtype of rifles, but still contained here as a specialist weapon.
+/*
+This file contains:
 
-//Because this parent type did not exist
-//Note that this means that snipers will have a slowdown of 3, due to the scope
+Sniper rifles
+Miniguns
+Pepperball gun
+Rocket launchers
+
+*/
+
+
+/*-------------------------------------------------------
+SNIPER RIFLES
+Keyword rifles. They are subtype of rifles, but still contained here as a specialist weapon.
+
+Because this parent type did not exist
+Note that this means that snipers will have a slowdown of 3, due to the scope
+*/
 /obj/item/weapon/gun/rifle/sniper
 	aim_slowdown = 1
 	gun_skill_category = GUN_SKILL_RIFLES
@@ -37,6 +49,8 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/scope/antimaterial,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/sniperbarrel,
+		/obj/item/attachable/scope/pmc,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
@@ -231,6 +245,14 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 	flags_item_map_variant = NONE
+	attachable_allowed = list(
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/scope/antimaterial,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/sniperbarrel,
+		/obj/item/attachable/scope/pmc,
+	)
 	starting_attachment_types = list(/obj/item/attachable/scope/pmc, /obj/item/attachable/sniperbarrel)
 
 	fire_delay = 1.5 SECONDS
@@ -274,6 +296,7 @@
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/slavic,
+		/obj/item/attachable/slavicbarrel,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -331,7 +354,7 @@
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
@@ -486,345 +509,43 @@
 	else
 		return current_mag.current_rounds
 
-//-------------------------------------------------------
-//GRENADE LAUNCHER
-
-/obj/item/weapon/gun/launcher/m92
-	name = "\improper T-26 grenade launcher"
-	desc = "A heavy, 6-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
-	icon_state = "m92"
-	item_state = "m92"
-	max_shells = 6 //codex
-	caliber = CALIBER_40MM //codex
-	load_method = SINGLE_CASING //codex
-	w_class = WEIGHT_CLASS_BULKY
-	throw_speed = 2
-	throw_range = 10
-	force = 5.0
-	wield_delay = 0.6 SECONDS
-	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
-	fire_rattle = 'sound/weapons/guns/fire/grenadelauncher.ogg'
-	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
-	var/list/grenades = list()
-	var/max_grenades = 6
-	aim_slowdown = 1
-	general_codex_key = "explosive weapons"
-	attachable_allowed = list(
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/scope/mini,
-	)
-
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	gun_skill_category = GUN_SKILL_FIREARMS
-	var/datum/effect_system/smoke_spread/smoke
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
-
-	fire_delay = 1.8 SECONDS
 
 
-/obj/item/weapon/gun/launcher/m92/Initialize()
-	. = ..()
-	for(var/i in 1 to max_grenades)
-		grenades += new /obj/item/explosive/grenade(src)
 
-/obj/item/weapon/gun/launcher/m92/update_icon(mob/user)
-	update_item_state(user)
-	update_mag_overlay(user)
-
-/obj/item/weapon/gun/launcher/m92/examine_ammo_count(mob/user)
-	if(!length(grenades) || (get_dist(user, src) > 2 && user != loc))
-		return
-	to_chat(user, span_notice(" It is loaded with <b>[length(grenades)] / [max_grenades]</b> grenades."))
-
-
-/obj/item/weapon/gun/launcher/m92/attackby(obj/item/I, mob/user, params)
-	if(!istype(I, /obj/item/explosive/grenade))
-		return ..()
-
-	if(length(grenades) >= max_grenades)
-		to_chat(user, span_warning("The grenade launcher cannot hold more grenades!"))
-		return
-
-	if(!user.transferItemToLoc(I, src))
-		return
-
-	grenades += I
-	playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
-	to_chat(user, span_notice("You put [I] in the grenade launcher."))
-	to_chat(user, span_info("Now storing: [grenades.len] / [max_grenades] grenades."))
-
-/obj/item/weapon/gun/launcher/m92/Fire()
-	if(!gun_user || !target)
-		return
-	if(gun_user.do_actions)
-		return
-	if(!able_to_fire(gun_user))
-		return
-	if(gun_on_cooldown(gun_user))
-		return
-	if(gun_user.skills.getRating("firearms") < 0 && !do_after(gun_user, 0.8 SECONDS, TRUE, src))
-		return
-	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		to_chat(gun_user, span_notice("You cannot fire [src] while it is not deployed."))
-		return
-	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT) && !master_gun && CHECK_BITFIELD(flags_gun_features, GUN_ATTACHMENT_FIRE_ONLY))
-		to_chat(gun_user, span_notice("You cannot fire [src] without it attached to a gun!"))
-		return
-	if(get_dist(target, gun_user) <= 2)
-		to_chat(gun_user, span_warning("The grenade launcher beeps a warning noise. You are too close!"))
-		return
-	if(!length(grenades))
-		to_chat(gun_user, span_warning("The grenade launcher is empty."))
-		return
-	fire_grenade(target, gun_user)
-	var/obj/screen/ammo/A = gun_user.hud_used.ammo
-	A.update_hud(gun_user)
-
-
-//Doesn't use most of any of these. Listed for reference.
-/obj/item/weapon/gun/launcher/m92/load_into_chamber()
-	return
-
-
-/obj/item/weapon/gun/launcher/m92/reload_into_chamber()
-	return
-
-
-/obj/item/weapon/gun/launcher/m92/unload(mob/user)
-	if(length(grenades))
-		var/obj/item/explosive/grenade/nade = grenades[length(grenades)] //Grab the last one.
-		if(user)
-			user.put_in_hands(nade)
-			playsound(user, unload_sound, 25, 1)
-		else
-			nade.loc = get_turf(src)
-		grenades -= nade
-	else
-		to_chat(user, span_warning("It's empty!"))
-	return TRUE
-
-
-/obj/item/weapon/gun/launcher/m92/proc/fire_grenade(atom/target, mob/user)
-	playsound(user.loc, cocked_sound, 25, 1)
-	last_fired = world.time
-	visible_message(span_danger("[user] fired a grenade!"))
-	to_chat(user, span_warning("You fire the grenade launcher!"))
-	var/obj/item/explosive/grenade/F = grenades[1]
-	grenades -= F
-	F.loc = user.loc
-	F.throw_range = 20
-	if(F?.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
-		log_explosion("[key_name(user)] fired a grenade [F] from [src] at [AREACOORD(user.loc)].")
-		log_combat(user, src, "fired a grenade [F] from [src]")
-		F.det_time = min(10, F.det_time)
-		F.launched = TRUE
-		F.activate()
-		F.throwforce += F.launchforce //Throws with signifcantly more force than a standard marine can.
-		F.throw_at(target, 20, 3, user)
-		playsound(F.loc, fire_sound, 50, 1)
-		if(fire_animation)
-			flick("[fire_animation]", src)
-
-/obj/item/weapon/gun/launcher/m92/get_ammo_type()
-	if(length(grenades) == 0)
-		return list("empty", "empty")
-	else
-		var/obj/item/explosive/grenade/F = grenades[1]
-		return list(F.hud_state, F.hud_state_empty)
-
-/obj/item/weapon/gun/launcher/m92/get_ammo_count()
-	return length(grenades)
+// PEPPERBALL GUN
 
 //-------------------------------------------------------
-//T-70 Grenade Launcher.
+//TLLL-12
 
-/obj/item/weapon/gun/launcher/m92/standardmarine
-	name = "\improper T-70 grenade launcher"
-	desc = "The T-70 is the standard grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
+/obj/item/weapon/gun/rifle/pepperball
+	name = "\improper TLLL-12 pepperball gun"
+	desc = "The TLLL-12 is ostensibly riot control device used by the TGMC in spiffy colors, working through a SAN ball that sends a short acting neutralizing chemical to knock out it's target, or weaken them. Guranteed to work on just about everything. Uses SAN Ball Holders as magazines."
 	icon = 'icons/Marine/gun64.dmi'
-	icon_state = "t70"
-	item_state = "t70"
-	fire_animation = "t70_fire"
-	max_shells = 6 //codex
-	caliber = CALIBER_40MM //codex
-	load_method = SINGLE_CASING //codex
-	w_class = WEIGHT_CLASS_BULKY
-	flags_equip_slot = ITEM_SLOT_BACK
-	throw_speed = 2
-	throw_range = 10
-	force = 5.0
-	wield_delay = 1 SECONDS
-	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
-	fire_rattle = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
-	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
-	aim_slowdown = 1.2
-	general_codex_key = "explosive weapons"
-	attachable_allowed = list(
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/flashlight,
-		/obj/item/attachable/scope/mini,
-	)
-
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	starting_attachment_types = list(/obj/item/attachable/stock/t70stock)
-	gun_skill_category = GUN_SKILL_FIREARMS
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 11, "stock_y" = 12)
-
-	fire_delay = 1.2 SECONDS
-
-/obj/item/weapon/gun/launcher/m92/standardmarine/Initialize()
-	. = ..()
-	grenades.Cut(1,0)
-
-
-/obj/item/weapon/gun/launcher/m92/mini_grenade
-	name = "underslung grenade launcher"
-	desc = "A weapon-mounted, reloadable, two-shot grenade launcher."
-	icon = 'icons/Marine/marine-weapons.dmi'
-	icon_state = "grenade"
-	w_class = WEIGHT_CLASS_BULKY
-	max_shells = 2
-	max_grenades = 2
-	fire_delay = 1 SECONDS
-	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
-	attachable_allowed = list()
-
-	slot = ATTACHMENT_SLOT_UNDER
-	attach_delay = 3 SECONDS
-	detach_delay = 3 SECONDS
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
-	pixel_shift_x = 14
-	pixel_shift_y = 18
-
-
-/obj/item/weapon/gun/launcher/m92/mini_grenade/invisable
-	flags_attach_features = NONE
-
-/obj/item/weapon/gun/launcher/m81
-	name = "\improper T-81 grenade launcher"
-	desc = "A lightweight, single-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
-	icon_state = "m81"
-	item_state = "m81"
-	max_shells = 1 //codex
-	caliber = CALIBER_40MM //codex
-	load_method = SINGLE_CASING //codex
-	w_class = WEIGHT_CLASS_BULKY
+	icon_state = "pepperball"
+	item_state = "pepperball"
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
-	throw_speed = 2
-	throw_range = 10
-	force = 5.0
-	wield_delay = 0.2 SECONDS
-	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
-	fire_rattle = 'sound/weapons/guns/fire/grenadelauncher.ogg'
-	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
-	aim_slowdown = 1
-	gun_skill_category = GUN_SKILL_FIREARMS
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER
-	attachable_allowed = list()
-	general_codex_key = "explosive weapons"
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
-	fire_delay = 1.05 SECONDS
-	/// The loaded grenade
-	var/obj/item/explosive/grenade/grenade
-	/// What type of grenade can be loaded
-	var/grenade_type_allowed = /obj/item/explosive/grenade
+	max_shells = 70 //codex
+	caliber = CALIBER_PEPPERBALL
+	current_mag = /obj/item/ammo_magazine/rifle/pepperball
+	force = 30 // two shots weeds as it has no bayonet
+	wield_delay = 0.5 SECONDS // Very fast to put up.
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	attachable_allowed = list(
+		/obj/item/attachable/buildasentry,
+	) // One
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 
-/obj/item/weapon/gun/launcher/m81/Initialize(mapload, spawn_empty)
-	. = ..()
-	if(!spawn_empty)
-		grenade = new grenade_type_allowed()
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER
 
-/obj/item/weapon/gun/launcher/m81/update_icon()
-	icon_state = grenade ? base_gun_icon : base_gun_icon + "_e"
+	fire_delay = 0.1 SECONDS
+	burst_amount = 1
+	accuracy_mult = 1.75
+	recoil = 0
+	accuracy_mult_unwielded = 0.75
+	scatter = -5
+	scatter_unwielded = 5
 
-
-/obj/item/weapon/gun/launcher/m81/examine_ammo_count(mob/user)
-	if(!grenade || (get_dist(user, src) > 2 && user != loc))
-		return
-	to_chat(user, span_notice("It is loaded with [grenade]."))
-
-
-/obj/item/weapon/gun/launcher/m81/attackby(obj/item/I, mob/user, params)
-	if(!istype(I, /obj/item/explosive/grenade))
-		return ..()
-
-	if(!istype(I, grenade_type_allowed))
-		to_chat(user, span_warning("[src] can't use this type of grenade!"))
-		return
-
-	if(grenade)
-		to_chat(user, span_warning("The grenade launcher cannot hold more grenades!"))
-		return
-
-	if(!user.transferItemToLoc(I, src))
-		return
-
-	grenade = I
-	to_chat(user, span_notice("You put [I] in [src]."))
-	update_icon()
-
-/obj/item/weapon/gun/launcher/m81/afterattack(atom/target, mob/user, flag)
-	if(!able_to_fire(user))
-		return
-	if(gun_on_cooldown(user))
-		return
-	if(get_dist(target,user) <= 2)
-		to_chat(user, span_warning("[src] beeps a warning noise. You are too close!"))
-		return
-	if(!grenade)
-		to_chat(user, span_warning("[src] is empty."))
-		return
-	fire_grenade(target, user)
-	playsound(user.loc, cocked_sound, 25, 1)
-
-//Doesn't use most of any of these. Listed for reference.
-/obj/item/weapon/gun/launcher/m81/load_into_chamber()
-	return
-
-/obj/item/weapon/gun/launcher/m81/reload_into_chamber()
-	return
-
-/obj/item/weapon/gun/launcher/m81/unload(mob/user)
-	if(!grenade)
-		to_chat(user, span_warning("It's empty!"))
-		return TRUE
-	if(user)
-		user.put_in_hands(grenade)
-		playsound(user, unload_sound, 25, 1)
-	else
-		grenade.loc = get_turf(src)
-	grenade = null
-	update_icon()
-	return TRUE
-
-/obj/item/weapon/gun/launcher/m81/proc/fire_grenade(atom/target, mob/user)
-	set waitfor = 0
-	last_fired = world.time
-	user.visible_message(span_danger("[user] fired [grenade]!"), \
-						span_warning("You fire [src]!"))
-	var/obj/item/explosive/grenade/F = grenade
-	grenade = null
-	F.launched = TRUE
-	F.loc = user.loc
-	F.throw_range = 20
-	F.throw_at(target, 20, 2, user)
-	update_icon()
-	if(F?.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
-		log_explosion("[key_name(user)] fired a grenade [F] from \a [src] at [AREACOORD(user.loc)].")
-		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F] from \a [src].")
-		F.icon_state = initial(F.icon_state) + "_active"
-		F.activate(user)
-		F.updateicon()
-		playsound(F.loc, fire_sound, 50, 1)
-		addtimer(CALLBACK(F, /obj/item/explosive/grenade.proc/prime), 1 SECONDS)
-
-/obj/item/weapon/gun/launcher/m81/riot
-	name = "\improper M81 riot grenade launcher"
-	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by Nanotrasen security during riots."
-	grenade_type_allowed = /obj/item/explosive/grenade/chem_grenade
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	req_access = list(ACCESS_MARINE_BRIG)
-
+	placed_overlay_iconstate = "pepper"
 
 //-------------------------------------------------------
 //M5 RPG
@@ -858,14 +579,12 @@
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
-	var/datum/effect_system/smoke_spread/smoke
-
 	fire_delay = 1 SECONDS
 	recoil = 3
 	scatter = -100
-
 	placed_overlay_iconstate = "sadar"
-
+	///the smoke effect after firing
+	var/datum/effect_system/smoke_spread/smoke
 
 /obj/item/weapon/gun/launcher/rocket/Initialize(mapload, spawn_empty)
 	. = ..()
@@ -889,7 +608,6 @@
 		return TRUE
 
 	. = ..()
-
 
 	//loaded_rocket.current_rounds = max(loaded_rocket.current_rounds - 1, 0)
 
@@ -1196,39 +914,3 @@
 	burst_amount = 1
 	accuracy_mult = 2
 	recoil = 0
-
-
-// PEPPERBALL GUN
-
-//-------------------------------------------------------
-//TLLL-12
-
-/obj/item/weapon/gun/rifle/pepperball
-	name = "\improper TLLL-12 pepperball gun"
-	desc = "The TLLL-12 is ostensibly riot control device used by the TGMC in spiffy colors, working through a SAN ball that sends a short acting neutralizing chemical to knock out it's target, or weaken them. Guranteed to work on just about everything. Uses SAN Ball Holders as magazines."
-	icon = 'icons/Marine/gun64.dmi'
-	icon_state = "pepperball"
-	item_state = "pepperball"
-	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
-	max_shells = 70 //codex
-	caliber = CALIBER_PEPPERBALL
-	current_mag = /obj/item/ammo_magazine/rifle/pepperball
-	force = 30 // two shots weeds as it has no bayonet
-	wield_delay = 0.5 SECONDS // Very fast to put up.
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
-	attachable_allowed = list(
-		/obj/item/attachable/buildasentry,
-	) // One
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER
-
-	fire_delay = 0.1 SECONDS
-	burst_amount = 1
-	accuracy_mult = 1.75
-	recoil = 0
-	accuracy_mult_unwielded = 0.75
-	scatter = -5
-	scatter_unwielded = 5
-
-	placed_overlay_iconstate = "pepper"
