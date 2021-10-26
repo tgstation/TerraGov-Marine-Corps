@@ -985,10 +985,9 @@ datum/ammo/bullet/revolver/tp44
 	name = "high caliber rifle bullet"
 	hud_state = "minigun"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
-	damage = 80
+	damage = 50
 	penetration = 30
-	sundering = 7.5
-	accurate_range_min = 2
+	sundering = 2
 	damage_falloff = 0.25
 
 /*
@@ -1543,7 +1542,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/energy/lasgun/marine/pistol
 	name = "pistol laser bolt"
-	damage = 25
+	damage = 20
 	penetration = 5
 	hitscan_effect_icon = "beam_particle"
 

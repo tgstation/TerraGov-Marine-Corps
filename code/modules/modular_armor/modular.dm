@@ -601,6 +601,7 @@
 		/obj/item/armor_module/storage/helmet,
 
 		/obj/item/armor_module/armor/visor/marine/eva,
+		/obj/item/armor_module/armor/visor/marine/eva/skull,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eva, /obj/item/armor_module/storage/helmet)

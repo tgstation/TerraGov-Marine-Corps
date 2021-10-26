@@ -39,6 +39,7 @@
 		/datum/action/xeno_action/change_form,
 		/datum/action/xeno_action/return_to_core,
 		/datum/action/xeno_action/activable/rally_hive/hivemind,
+		/datum/action/xeno_action/activable/command_minions,
 	)
 
 /datum/xeno_caste/hivemind/on_caste_applied(mob/xenomorph)
