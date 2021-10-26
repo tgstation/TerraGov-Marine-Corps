@@ -821,7 +821,7 @@ and you're good to go.
 
 	play_fire_sound(loc)
 	muzzle_flash(firing_angle, master_gun ? gun_user : loc)
-	simulate_recoil(dual_wield, gun_user, firing_angle)
+	simulate_recoil(dual_wield, firing_angle)
 
 	//This is where the projectile leaves the barrel and deals with projectile code only.
 	//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -886,7 +886,7 @@ and you're good to go.
 		setup_bullet_accuracy(projectile_to_fire, user) //We add any damage effects that we need.
 		projectile_to_fire.setDir(get_dir(user, M))
 		projectile_to_fire.distance_travelled = get_dist(user, M)
-		simulate_recoil(1, user, Get_Angle(user, M)) // 1 is a scalar value not boolean
+		simulate_recoil(1, Get_Angle(user, M)) // 1 is a scalar value not boolean
 		play_fire_sound(user)
 
 		if(projectile_to_fire.ammo.bonus_projectiles_amount)
@@ -938,7 +938,7 @@ and you're good to go.
 	var/actual_sound = (active_attachable?.fire_sound) ? active_attachable.fire_sound : fire_sound
 	var/sound_volume = (HAS_TRAIT(src, TRAIT_GUN_SILENCED) && !active_attachable) ? 25 : 60
 	playsound(user, actual_sound, sound_volume, 1)
-	simulate_recoil(2, user, Get_Angle(user, M))
+	simulate_recoil(2, Get_Angle(user, M))
 	var/obj/item/weapon/gun/revolver/current_revolver = src
 	log_combat(user, null, "committed suicide with [src].")
 	message_admins("[ADMIN_TPMONTY(user)] committed suicide with [src].")
@@ -1170,7 +1170,7 @@ and you're good to go.
 		return 0
 
 
-/obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, mob/gun_user, firing_angle)
+/obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, firing_angle)
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED) || !gun_user)
 		return TRUE
 	var/total_recoil = recoil_bonus
