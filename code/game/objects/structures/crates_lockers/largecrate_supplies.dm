@@ -200,6 +200,8 @@
 		/obj/item/storage/box/visual/magazine/compact/standard_machinepistol/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_carbine/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/martini/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/tx11/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/tx15/flechette/full = 1,

@@ -488,6 +488,8 @@
 	var/max_overlays = 0
 	///Overlay icon_state to display on the box when it is closed
 	var/closed_overlay
+	///Overlay icon_state to display on the box when it is open
+	var/open_overlay
 
 /obj/item/storage/box/visual/Initialize(mapload, ...)
 	. = ..()
@@ -523,8 +525,8 @@
 
 /obj/item/storage/box/visual/attack_self(mob/user)
 	deployed = TRUE
-	update_icon()
 	user.dropItemToGround(src)
+	update_icon()
 	pixel_x = 0 //Big sprite so lets not shift it around.
 	pixel_y = 0
 
@@ -582,11 +584,14 @@
 /obj/item/storage/box/visual/update_overlays()
 	. = ..()
 
-	if(!deployed)
+	if(deployed)
+		if(open_overlay)
+			. += image('icons/obj/items/storage/storage_boxes.dmi', icon_state = open_overlay)
+	else
 		icon_state = "[initial(icon_state)]"
 		if(closed_overlay)
 			. += image('icons/obj/items/storage/storage_boxes.dmi', icon_state = closed_overlay)
-		return
+		return // We early exit here since we don't draw the insides when it's closed.
 	if(variety > max_overlays) // Too many items inside so lets make it cluttered
 		return
 
@@ -627,15 +632,10 @@
 	storage_slots = 32 // 8 images x 4 items
 	max_storage_space = 64	//SMG and pistol sized (tiny and small) mags can fit all 32 slots, normal (LMG and AR) fit 21
 	can_hold = list(
-		/obj/item/ammo_magazine/packet/acp,
-		/obj/item/ammo_magazine/packet/p10x24mm,
-		/obj/item/ammo_magazine/packet/p10x26mm,
-		/obj/item/ammo_magazine/packet/p10x27mm,
-		/obj/item/ammo_magazine/packet/p9mm,
+		/obj/item/ammo_magazine/packet,
 		/obj/item/ammo_magazine/flamer_tank,
 		/obj/item/ammo_magazine/handful,
 		/obj/item/ammo_magazine/m412l1_hpr,
-		/obj/item/ammo_magazine/packet/magnum,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/ammo_magazine/railgun,
 		/obj/item/ammo_magazine/revolver,
@@ -741,6 +741,19 @@
 	spawn_number = 40
 	spawn_type = /obj/item/ammo_magazine/pistol/vp70
 
+
+/obj/item/storage/box/visual/magazine/compact/derringer
+	name = "Derringer ammo packet box"
+	desc = "A box specifically designed to hold a large amount of Derringer ammo packets."
+	closed_overlay = "mag_box_small_overlay_derringer"
+	can_hold = list(
+		/obj/item/ammo_magazine/pistol/derringer,
+	)
+
+/obj/item/storage/box/visual/magazine/compact/derringer/full
+	spawn_number = 40
+	spawn_type = /obj/item/ammo_magazine/pistol/derringer
+
 /obj/item/storage/box/visual/magazine/compact/plasma_pistol
 	name = "TX-7 plasma cell box"
 	desc = "A box specifically designed to hold a large amount of TX-7 plasma cells."
@@ -819,6 +832,46 @@
 	spawn_number = 30
 	spawn_type = /obj/item/ammo_magazine/rifle/standard_carbine
 
+/obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle
+	name = "T-21 magazine box"
+	desc = "A box specifically designed to hold a large amount of T-21 magazines."
+	storage_slots = 30
+	closed_overlay = "mag_box_small_overlay_t21"
+	can_hold = list(
+		/obj/item/ammo_magazine/rifle/standard_skirmishrifle,
+	)
+
+/obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle/full
+	spawn_number = 30
+	spawn_type = /obj/item/ammo_magazine/rifle/standard_skirmishrifle
+
+/obj/item/storage/box/visual/magazine/compact/martini
+	name = "Martini Henry ammo packet box"
+	desc = "A box specifically designed to hold a large amount of Martini ammo packets."
+	storage_slots = 30
+	closed_overlay = "mag_box_small_overlay_martini"
+	can_hold = list(
+		/obj/item/ammo_magazine/rifle/martini,
+	)
+
+/obj/item/storage/box/visual/magazine/compact/martini/full
+	spawn_number = 30
+	spawn_type = /obj/item/ammo_magazine/rifle/martini
+
+/obj/item/storage/box/visual/magazine/compact/standard_smartrifle
+	name = "T-25 magazine box"
+	desc = "A box specifically designed to hold a large amount of T-25 smartgun magazines."
+	storage_slots = 30
+	closed_overlay = "mag_box_small_overlay_t25"
+	can_hold = list(
+		/obj/item/ammo_magazine/rifle/standard_smartrifle,
+	)
+
+/obj/item/storage/box/visual/magazine/compact/standard_smartrifle/full
+	spawn_number = 30
+	spawn_type = /obj/item/ammo_magazine/rifle/standard_smartrifle
+
+
 /obj/item/storage/box/visual/magazine/compact/tx11
 	name = "TX-11 magazine box"
 	desc = "A box specifically designed to hold a large amount of TX-11 magazines."
@@ -832,31 +885,18 @@
 	spawn_number = 30
 	spawn_type = /obj/item/ammo_magazine/rifle/tx11
 
-/obj/item/storage/box/visual/magazine/compact/lasrifle
-	name = "TX-73 cell box"
-	desc = "A box specifically designed to hold a large amount of TX-73 cells."
+/obj/item/storage/box/visual/magazine/compact/pepperball
+	name = "Pepperball canister box"
+	desc = "A box specifically designed to hold a large amount of Pepperball canisters."
 	storage_slots = 30
-	closed_overlay = "mag_box_small_overlay_tx73"
+	closed_overlay = "mag_box_small_overlay_pepperball"
 	can_hold = list(
-		/obj/item/cell/lasgun/lasrifle,
+		/obj/item/ammo_magazine/rifle/pepperball,
 	)
 
-/obj/item/storage/box/visual/magazine/compact/lasrifle/full
+/obj/item/storage/box/visual/magazine/compact/pepperball/full
 	spawn_number = 30
-	spawn_type = /obj/item/cell/lasgun/lasrifle
-
-/obj/item/storage/box/visual/magazine/compact/lasrifle/marine
-	name = "Terra Experimental cell box"
-	desc = "A box specifically designed to hold a large amount of Terra Experimental cells."
-	storage_slots = 30
-	closed_overlay = "mag_box_small_overlay_te"
-	can_hold = list(
-		/obj/item/cell/lasgun/lasrifle/marine,
-	)
-
-/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full
-	spawn_number = 30
-	spawn_type = /obj/item/cell/lasgun/lasrifle/marine
+	spawn_type = /obj/item/ammo_magazine/rifle/pepperball
 
 /obj/item/storage/box/visual/magazine/compact/tx15
 	name = "TX-15 magazine box"
@@ -883,6 +923,53 @@
 /obj/item/storage/box/visual/magazine/compact/tx15/slug/full
 	spawn_number = 30
 	spawn_type = /obj/item/ammo_magazine/rifle/tx15_slug
+
+/obj/item/storage/box/visual/magazine/compact/sectoid_rifle
+	name = "Suspicious glowing box"
+	desc = "A purple glowing box with a big TOP SECRET label as well as conspiracy talkpoints printed topside. What a load of gibberish!"
+	storage_slots = 30
+	closed_overlay = "mag_box_small_overlay_sectoid_rifle"
+	open_overlay = "mag_box_small_overlay_sectoid_rifle_open"
+	can_hold = list(
+		/obj/item/ammo_magazine/rifle/sectoid_rifle,
+	)
+
+/obj/item/storage/box/visual/magazine/compact/sectoid_rifle/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	if(deployed)
+		to_chat(user, "The inside is smeared with some purple glowy goo. Better not touch it.")
+
+/obj/item/storage/box/visual/magazine/compact/sectoid_rifle/full
+	spawn_number = 30
+	spawn_type = /obj/item/ammo_magazine/rifle/sectoid_rifle
+
+// -Energy-
+
+/obj/item/storage/box/visual/magazine/compact/lasrifle
+	name = "TX-73 cell box"
+	desc = "A box specifically designed to hold a large amount of TX-73 cells."
+	storage_slots = 30
+	closed_overlay = "mag_box_small_overlay_tx73"
+	can_hold = list(
+		/obj/item/cell/lasgun/lasrifle,
+	)
+
+/obj/item/storage/box/visual/magazine/compact/lasrifle/full
+	spawn_number = 30
+	spawn_type = /obj/item/cell/lasgun/lasrifle
+
+/obj/item/storage/box/visual/magazine/compact/lasrifle/marine
+	name = "Terra Experimental cell box"
+	desc = "A box specifically designed to hold a large amount of Terra Experimental cells."
+	storage_slots = 30
+	closed_overlay = "mag_box_small_overlay_te"
+	can_hold = list(
+		/obj/item/cell/lasgun/lasrifle/marine,
+	)
+
+/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full
+	spawn_number = 30
+	spawn_type = /obj/item/cell/lasgun/lasrifle/marine
 
 // -Marksmen-
 
@@ -965,6 +1052,19 @@
 /obj/item/storage/box/visual/magazine/compact/standard_gpmg/full
 	spawn_number = 30
 	spawn_type = /obj/item/ammo_magazine/standard_gpmg
+
+/obj/item/storage/box/visual/magazine/compact/standard_smartmachinegun
+	name = "T-29 drum box"
+	desc = "A box specifically designed to hold a large amount of T-29 drum magazines."
+	storage_slots = 30
+	closed_overlay = "mag_box_small_overlay_t29"
+	can_hold = list(
+		/obj/item/ammo_magazine/standard_smartmachinegun,
+	)
+
+/obj/item/storage/box/visual/magazine/compact/standard_smartmachinegun/full
+	spawn_number = 30
+	spawn_type = /obj/item/ammo_magazine/standard_smartmachinegun
 
 // --GRENADE BOXES--
 /obj/item/storage/box/visual/grenade

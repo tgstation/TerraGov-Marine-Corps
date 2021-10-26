@@ -132,6 +132,7 @@
 	icon_state = "pk-9_tranq"
 	max_rounds = 8
 	gun_type = /obj/item/weapon/gun/pistol/c99
+	icon_state_mini = "mag_pistol_green"
 
 /obj/item/ammo_magazine/pistol/c99
 	name = "\improper PK-9 hollowpoint magazine (.22)"
