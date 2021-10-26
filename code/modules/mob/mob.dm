@@ -57,7 +57,7 @@
 		stat("Time Dilation:", "[round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
 
 	if(client?.holder?.rank?.rights)
-		if(client.holder.rank.rights & (R_ADMIN|R_DEBUG))
+		if(client.holder.rank.rights & (R_DEBUG))
 			if(statpanel("MC"))
 				stat("CPU:", "[world.cpu]")
 				stat("Instances:", "[num2text(length(world.contents), 10)]")
