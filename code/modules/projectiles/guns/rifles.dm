@@ -285,7 +285,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_CAN_POINTBLANK
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	starting_attachment_types = list(/obj/item/attachable/scope/mini)
-	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 18,"rail_x" = 20, "rail_y" = 24, "under_x" = 25, "under_y" = 12, "stock_x" = 14, "stock_y" = 10)
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 17,"rail_x" = 24, "rail_y" = 23, "under_x" = 30, "under_y" = 10, "stock_x" = 14, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 3
