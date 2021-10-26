@@ -44,7 +44,6 @@
 /mob/living/carbon/xenomorph/king/on_death()
 	. = ..()
 	SSmonitor.stats.king--
-	
 
 ///resin pod that creates the king xeno after a delay
 /obj/structure/resin/king_pod
@@ -63,12 +62,10 @@
 	. = ..()
 	ownerhive = hivenumber
 	addtimer(CALLBACK(src, .proc/choose_king), KING_SUMMON_TIMER_DURATION)
-	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 
 /obj/structure/resin/king_pod/Destroy()
 	future_king = null
 	return ..()
-
 
 /obj/structure/resin/king_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	if(X != future_king)
