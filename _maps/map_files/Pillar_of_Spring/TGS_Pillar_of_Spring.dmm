@@ -14814,9 +14814,6 @@
 /turf/open/floor/plating,
 /area/mainship/living/briefing)
 "TK" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 10
-	},
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
