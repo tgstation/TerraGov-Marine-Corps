@@ -1196,7 +1196,6 @@ and you're good to go.
 		return TRUE
 
 
-
 /obj/item/weapon/gun/proc/muzzle_flash(angle, atom/movable/flash_loc)
 	if(!muzzle_flash || muzzle_flash.applied)
 		return
