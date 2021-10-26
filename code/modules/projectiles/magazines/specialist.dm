@@ -106,24 +106,26 @@
 	flags_magazine = NONE
 	reload_delay = 60
 
-	attack_self(mob/user)
-		if(current_rounds <= 0)
-			to_chat(user, span_notice("You begin taking apart the empty tube frame..."))
-			if(do_after(user, 10, TRUE, src))
-				user.visible_message("[user] deconstructs the rocket tube frame.",span_notice("You take apart the empty frame."))
-				var/obj/item/stack/sheet/metal/M = new(get_turf(user))
-				M.amount = 2
-				user.drop_held_item()
-				qdel(src)
-		else
-			to_chat(user, "Not with a missile inside!")
+/obj/item/ammo_magazine/attack_self(mob/user)
+	if(current_rounds > 0)
+		to_chat(user, span_notice("Not with a missile inside!"))
+		return
+	to_chat(user, span_notice("You begin taking apart the empty tube frame..."))
+	if(!do_after(user, 10, TRUE, src))
+		return
+	user.visible_message("[user] deconstructs the rocket tube frame.",span_notice("You take apart the empty frame."))
+	var/obj/item/stack/sheet/metal/metal = new(get_turf(user))
+	metal.amount = 2
+	user.drop_held_item()
+	qdel(src)
 
-	update_icon()
-		overlays.Cut()
-		if(current_rounds <= 0)
-			name = "empty rocket frame"
-			desc = "A spent rocket rube. Activate it to deconstruct it and receive some materials."
-			icon_state = type == /obj/item/ammo_magazine/rocket/m57a4? "quad_rocket_e" : "rocket_e"
+/obj/item/ammo_magazine/update_icon
+	overlays.Cut()
+	if(current_rounds > 0)
+		return
+	name = "empty rocket frame"
+	desc = "A spent rocket rube. Activate it to deconstruct it and receive some materials."
+	icon_state = istype(src, /obj/item/ammo_magazine/rocket/m57a4) ? "quad_rocket_e" : "rocket_e"
 
 //-------------------------------------------------------
 //T-152

@@ -372,6 +372,7 @@
 	name = "single action revolver"
 	desc = "you should not be seeing this."
 	allowed_ammo_type = /obj/item/ammo_magazine/internal/revolver/m44
+	reciever_flags = RECIEVER_HANDFULS|RECIEVER_CYCLES|RECIEVER_TOGGLES|RECIEVER_TOGGLES_EJECTS|RECIEVER_REQUIRES_OPERATION
 
 
 

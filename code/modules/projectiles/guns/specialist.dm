@@ -50,7 +50,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/scope/antimaterial,
 		/obj/item/attachable/buildasentry,
 	)
-
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	starting_attachment_types = list(/obj/item/attachable/scope/antimaterial, /obj/item/attachable/sniperbarrel)
 
@@ -60,6 +59,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 2
 
 	placed_overlay_iconstate = "antimat"
+	
 
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/Initialize()
@@ -67,11 +67,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	LT = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-LASER_LAYER)
 	integrated_laze = new(src)
 
-/obj/item/weapon/gun/rifle/sniper/antimaterial/Fire()
-	if(!able_to_fire(gun_user))
-		return
-	if(gun_on_cooldown(gun_user))
-		return
+/obj/item/weapon/gun/rifle/sniper/antimaterial/do_fire(obj/object_to_fire)
 	if(targetmarker_primed)
 		if(!iscarbon(target))
 			return
@@ -118,12 +114,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	return TRUE
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/do_unique_action(mob/user)
-	return TRUE
-
-/obj/item/weapon/gun/rifle/sniper/antimaterial/unique_action(mob/user)
-	. = ..()
-	if(!.)
-		return
 	if(!targetmarker_primed && !targetmarker_on)
 		return laser_on(user)
 	return laser_off(user)
@@ -408,23 +398,23 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	SSmonitor.stats.miniguns_in_use -= src
 	return ..()
 
-/* Remember this idiot.
-/obj/item/weapon/gun/minigun/reload_into_chamber(mob/living/carbon/user)
-	var/obj/item/minigun_powerpack/power_pack = user.back
-	if(!istype(power_pack))
-		return default_magazine_type.current_rounds
+
+/obj/item/weapon/gun/minigun/finish_fire()
+	. = ..()
+	if(!istype(gun_user.back, /obj/item/minigun_powerpack))
+		return
+	var/obj/item/minigun_powerpack/power_pack = gun_user.back
 	if(shells_fired_now >= shells_fired_max && power_pack.rounds_remaining > 0) // If shells fired exceeds shells needed to reload, and we have ammo.
 		addtimer(CALLBACK(src, .proc/auto_reload, user, power_pack), 0.5 SECONDS)
-	else
-		shells_fired_now++
+		return
+	shells_fired_now++
 
-	return default_magazine_type.current_rounds
 
 /obj/item/weapon/gun/minigun/proc/auto_reload(mob/minigunner, obj/item/minigun_powerpack/power_pack)
-	if(power_pack?.loc == minigunner)
-		power_pack.attack_self(minigunner, TRUE)
+	if(power_pack?.loc != minigunner)
+		return
+	power_pack.attack_self(minigunner, TRUE)
 
-*/
 
 // PEPPERBALL GUN
 
