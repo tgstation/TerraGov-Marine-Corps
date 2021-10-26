@@ -194,31 +194,31 @@ GLOBAL_LIST_INIT(additional_admin_item_slot_list, list(
 ///All the vendor types which the automated loadout vendor can take items from.
 GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 	FACTION_NEUTRAL = list(
-		/obj/machinery/vending/marine/shared,
+		/obj/machinery/vending/weapons,
 		/obj/machinery/vending/uniform_supply,
 		/obj/machinery/vending/armor_supply,
 		/obj/machinery/vending/marineFood,
 		/obj/machinery/vending/MarineMed,
-		/obj/machinery/vending/marine/shared/cigarette,
-		/obj/machinery/vending/marine/shared/cigarette/colony,
+		/obj/machinery/vending/cigarette,
+		/obj/machinery/vending/cigarette/colony,
 	),
 	FACTION_TERRAGOV = list(
-		/obj/machinery/vending/marine/shared/hvh/team_one,
+		/obj/machinery/vending/weapons/hvh/team_one,
 		/obj/machinery/vending/uniform_supply,
 		/obj/machinery/vending/armor_supply/loyalist,
 		/obj/machinery/vending/marineFood,
 		/obj/machinery/vending/MarineMed,
-		/obj/machinery/vending/marine/shared/cigarette,
-		/obj/machinery/vending/marine/shared/cigarette/colony,
+		/obj/machinery/vending/cigarette,
+		/obj/machinery/vending/cigarette/colony,
 	),
 	FACTION_TERRAGOV_REBEL = list(
-		/obj/machinery/vending/marine/shared/hvh,
+		/obj/machinery/vending/weapons/hvh,
 		/obj/machinery/vending/uniform_supply,
 		/obj/machinery/vending/armor_supply/rebel,
 		/obj/machinery/vending/marineFood,
 		/obj/machinery/vending/MarineMed/rebel,
-		/obj/machinery/vending/marine/shared/cigarette,
-		/obj/machinery/vending/marine/shared/cigarette/colony,
+		/obj/machinery/vending/cigarette,
+		/obj/machinery/vending/cigarette/colony,
 	),
 ))
 

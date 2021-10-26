@@ -423,7 +423,7 @@
 /area/lv624/lazarus/internal_affairs)
 "LM" = (
 /obj/machinery/firealarm,
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/internal_affairs)
 "MR" = (

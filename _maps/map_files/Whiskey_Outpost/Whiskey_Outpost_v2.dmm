@@ -1370,7 +1370,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "fx" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "fy" = (
@@ -3873,7 +3873,7 @@
 	},
 /area/whiskey_outpost)
 "rb" = (
-/obj/machinery/vending/marine/cargo_supply,
+/obj/machinery/vending/cargo_supply,
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "rc" = (
@@ -3970,7 +3970,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "rs" = (
@@ -4826,7 +4826,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "AL" = (
@@ -4936,7 +4936,7 @@
 	},
 /area/whiskey_outpost)
 "BM" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -5162,7 +5162,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "Dq" = (
@@ -5687,7 +5687,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced,
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "Jf" = (
@@ -5732,7 +5732,7 @@
 	},
 /area/whiskey_outpost)
 "JD" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /turf/open/floor/plating,
 /area/whiskey_outpost)
 "JH" = (
@@ -5892,7 +5892,7 @@
 /area/whiskey_outpost)
 "Lz" = (
 /obj/structure/window/reinforced,
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "LF" = (
@@ -5960,7 +5960,7 @@
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "Mh" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -5995,7 +5995,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "Mt" = (
@@ -6631,7 +6631,7 @@
 /turf/open/floor/asteroidfloor,
 /area/whiskey_outpost/outside/east)
 "TL" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /turf/open/ground/jungle/path,
 /area/whiskey_outpost)
 "TP" = (
@@ -7027,7 +7027,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "Zj" = (

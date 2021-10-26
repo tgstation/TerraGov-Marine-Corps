@@ -11968,7 +11968,7 @@
 	},
 /area/desert_dam/building/administration/hallway)
 "aXP" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor{
 	icon_state = "dark2"
 	},
@@ -12821,7 +12821,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor/prison,
 /area/desert_dam/building/water_treatment_two/hallway)
 "baM" = (
@@ -13548,7 +13548,7 @@
 	},
 /area/desert_dam/building/administration/overseer_office)
 "bed" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -25663,7 +25663,7 @@
 	},
 /area/desert_dam/interior/dam_interior/break_room)
 "bZm" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor{
 	dir = 1;
 	icon_state = "whiteyellow"
@@ -26032,7 +26032,7 @@
 	},
 /area/desert_dam/building/warehouse/breakroom)
 "caw" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor/prison{
 	dir = 1;
 	icon_state = "darkyellow2"
@@ -27098,7 +27098,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_telecoms)
 "ceH" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor/wood,
 /area/desert_dam/building/bar/bar)
 "ceJ" = (
@@ -37196,7 +37196,7 @@
 	},
 /area/desert_dam/building/hydroponics/hydroponics_breakroom)
 "cTo" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor/prison{
 	dir = 8;
 	icon_state = "sterile_white"
@@ -39332,7 +39332,7 @@
 	},
 /area/desert_dam/building/cafeteria/cafeteria)
 "deF" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor/prison{
 	icon_state = "sterile_white"
 	},
@@ -40546,7 +40546,7 @@
 	},
 /area/desert_dam/building/cafeteria/loading)
 "dlF" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor/prison{
 	icon_state = "sterile_white"
 	},
@@ -42375,7 +42375,7 @@
 	},
 /area/desert_dam/building/dorms/hallway_northwing)
 "dBt" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor/prison{
 	dir = 9;
 	icon_state = "greenfull"
@@ -68897,7 +68897,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_hydro)
 "xFl" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/blue,
 /area/desert_dam/exterior/valley/tradeship)
 "xFu" = (

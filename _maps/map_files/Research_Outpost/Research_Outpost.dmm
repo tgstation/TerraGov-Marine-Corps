@@ -3074,7 +3074,7 @@
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/hallway/central)
 "oS" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
 	},
@@ -3368,7 +3368,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/central)
 "qv" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -5282,7 +5282,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/south_cent)
 "Ac" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
@@ -8326,7 +8326,7 @@
 	},
 /area/outpost/science/research)
 "Pj" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/tile/dark/red2{
 	dir = 6
 	},

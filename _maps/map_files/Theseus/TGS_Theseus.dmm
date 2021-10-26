@@ -513,7 +513,7 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/hallways/starboard_umbilical)
 "abT" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "abU" = (
@@ -558,7 +558,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "acc" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
@@ -749,7 +749,7 @@
 	},
 /area/mainship/hull/port_hull)
 "acG" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -2439,7 +2439,7 @@
 /turf/open/floor/plating,
 /area/mainship/living/cafeteria_starboard)
 "aXi" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aXm" = (
@@ -3187,7 +3187,7 @@
 	},
 /area/mainship/living/starboard_emb)
 "bgK" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -4406,7 +4406,7 @@
 	},
 /area/mainship/medical/medical_science)
 "bpe" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway)
 "bpf" = (
@@ -5210,7 +5210,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "bwQ" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /turf/open/floor/mainship/green{
 	dir = 4
 	},
@@ -7509,7 +7509,7 @@
 	},
 /area/mainship/living/port_emb)
 "bUy" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -8290,7 +8290,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "ced" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "cef" = (
@@ -8903,7 +8903,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/lower_engineering)
 "cUI" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -9149,7 +9149,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "dqb" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -10618,7 +10618,7 @@
 /turf/open/floor/mainship/orange,
 /area/mainship/squads/alpha)
 "gbU" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/silver{
 	dir = 6
 	},
@@ -13360,7 +13360,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
 "loD" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/silver{
 	dir = 5
 	},
@@ -13874,7 +13874,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "mdE" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
@@ -14551,7 +14551,7 @@
 	},
 /area/mainship/command/bridge)
 "noV" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -15653,9 +15653,6 @@
 	},
 /area/mainship/command/cic)
 "pqc" = (
-/obj/machinery/door_timer/cell_1{
-	dir = 1
-	},
 /obj/structure/cable,
 /turf/open/floor/mainship/red{
 	dir = 1
@@ -17454,7 +17451,7 @@
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "sBJ" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapons,
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
@@ -17750,7 +17747,7 @@
 	},
 /area/mainship/living/basketball)
 "tmb" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
@@ -20227,7 +20224,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/vending/marine/cargo_supply,
+/obj/machinery/vending/cargo_supply,
 /turf/open/floor/mainship/green{
 	dir = 4
 	},

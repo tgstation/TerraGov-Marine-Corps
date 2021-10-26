@@ -278,7 +278,7 @@
 	var/turf/target = locate(current_turf.x + x_offset,current_turf.y + y_offset,current_turf.z)
 	GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(target, user)
 	var/warhead_type = GLOB.marine_main_ship.orbital_cannon.tray.warhead.name
-	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_warning("NOTICE - Orbital bombardment triggered by ground operator. Warhead type: [warhead_type]. Target: [AREACOORD_NO_Z(current_turf)]"))
 		playsound(AI,'sound/machines/triple_beep.ogg', 25, 1, 20)
 	to_chat(user, span_notice("FIRING REQUEST RECIEVED. CLEAR TARGET AREA"))
