@@ -330,6 +330,9 @@
 /mob/living/carbon/xenomorph/defender/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/defender/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //---DEFENDER END---//
 //============//
 //----WARRIOR START----//

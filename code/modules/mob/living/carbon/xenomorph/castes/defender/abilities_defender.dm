@@ -363,3 +363,75 @@
 	X.heal_overall_damage(25, 25, TRUE)
 	add_cooldown()
 	return succeed_activate()
+
+
+// ***************************************
+// *********** Centrifugal force
+// ***************************************
+/datum/action/xeno_action/activable/centrifugal_force
+	name = "Centrifugal force"
+	action_icon_state = "centrifugal_force"
+	mechanics_text = "Rapidly spin and hit all adjacent humans around you, knocking them away and down. Uses double plasma when crest is active."
+	ability_name = "centrifugal force"
+	plasma_cost = 15
+	use_state_flags = XACT_USE_CRESTED
+	cooldown_timer = 30 SECONDS
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_signal = COMSIG_XENOABILITY_CENTRIFUGAL_FORCE
+	///bool whether we should take a random step this tick
+	var/step_tick = FALSE
+	///timer hash for the timer we use when spinning
+	var/spin_loop_timer
+
+/datum/action/xeno_action/activable/centrifugal_force/can_use_action(silent, override_flags)
+	. = ..()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.crest_defense && X.plasma_stored < (plasma_cost * 2))
+		to_chat(X, span_xenowarning("We don't have enough plasma, we need [(plasma_cost * 2) - X.plasma_stored] more plasma!"))
+		return FALSE
+
+/datum/action/xeno_action/activable/centrifugal_force/action_activate()
+	if(spin_loop_timer)
+		deltimer(spin_loop_timer)
+		spin_loop_timer = null
+		return
+	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER))
+		return fail_activate()
+	owner.visible_message(span_xenowarning("\The [owner] starts swinging its tail in a circle!"), \
+		span_xenowarning("We start swinging our tail in a wide circle!"))
+	do_spin() //kick it off
+
+	spin_loop_timer = addtimer(CALLBACK(src, .proc/do_spin), 5, TIMER_STOPPABLE)
+	add_cooldown()
+
+/// runs a spin, then starts the timer for a new spin if needed
+/datum/action/xeno_action/activable/centrifugal_force/proc/do_spin()
+	spin_loop_timer = null
+	var/mob/living/carbon/xenomorph/X = owner
+	X.spin(4, 1)
+	playsound(X, pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg'), 25, 1) //Sound effects
+
+	for(var/mob/living/carbon/human/slapped in orange(1, X))
+		step_away(slapped, src, 1, 2)
+		if(slapped.stat == DEAD)
+			continue
+		var/damage = X.xeno_caste.melee_damage/2
+		var/affecting = slapped.get_limb(ran_zone(null, 0))
+		if(!affecting)
+			affecting = slapped.get_limb("chest")
+		var/armor_block = slapped.run_armor_check(affecting, "melee")
+		slapped.apply_damage(damage, BRUTE, affecting, armor_block)
+		slapped.apply_damage(damage, STAMINA, updating_health = TRUE)
+		slapped.Paralyze(3)
+		shake_camera(slapped, 2, 1)
+
+		to_chat(slapped, span_xenowarning("We are struck by \the [X]'s flying tail!"))
+		playsound(slapped, 'sound/weapons/alien_claw_block.ogg', 50, 1)
+
+	succeed_activate(X.crest_defense ? plasma_cost * 2 : plasma_cost)
+	if(step_tick)
+		step(X, pick(GLOB.alldirs))
+	step_tick = !step_tick
+
+	if(can_use_action(X, XACT_IGNORE_COOLDOWN))
+		spin_loop_timer = addtimer(CALLBACK(src, .proc/do_spin), 5, TIMER_STOPPABLE)
