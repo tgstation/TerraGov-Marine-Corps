@@ -357,14 +357,18 @@
 	reagents.add_reagent(/datum/reagent/water, reagents.maximum_volume)
 	water_count = reagents.maximum_volume
 
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/get_ammo_count()
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/update_ammo_count()
 	if(hydro_active)
-		return max(water_count,0)
+		ammo = max(water_count, 0)
+		max_rounds = reagents.maximum_volume
+		return
 	return ..()
 
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/get_ammo_type()
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/get_ammo()
 	if(hydro_active)
-		return list("water","water_empty")
+		QDEL_NULL(ammo)
+		ammo = new /datum/ammo/water()
+		return
 	return ..()
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/examine(mob/user)

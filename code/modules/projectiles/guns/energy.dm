@@ -350,7 +350,7 @@
 
 	to_chat(user, initial(choice.message_to_user))
 	user.hud_used.update_ammo_hud(user, src)
-	if(!in_chamber || !length(chamber_items)])
+	if(!in_chamber || !length(chamber_items))
 		return
 	QDEL_NULL(in_chamber)
 
