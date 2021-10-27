@@ -49,7 +49,8 @@
 	opacity = FALSE
 	anchored = TRUE
 	max_integrity = 5
-	layer = RESIN_STRUCTURE_LAYER
+	layer = UPPER_ITEM_LAYER
+	alpha = 160
 	destroy_sound = "alien_resin_break"
 	///The hugger inside our trap
 	var/obj/item/clothing/mask/facehugger/hugger = null
