@@ -16,6 +16,11 @@
 	var/table_prefix = "" //used in update_icon()
 	max_integrity = RAZORWIRE_MAX_HEALTH
 	var/soak = 5
+	
+/obj/structure/razorwire/foam
+	desc = "A bundle of barbed wire supported by metal rods, crudely built by iron-consuming nanites. Weld them to bring them to their full strength."
+	max_integrity = RAZORWIRE_MAX_HEALTH
+	obj_integrity = RAZORWIRE_MAX_HEALTH/2
 
 /obj/structure/razorwire/deconstruct(disassembled = TRUE)
 	if(disassembled)
