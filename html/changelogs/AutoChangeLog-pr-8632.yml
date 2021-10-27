@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - rscdel: "Old Battle rifle sprite."
+  - balance: "BR has 3 round burst fire now  0.1 burst delay, 0.15 extra delay. No further changes."

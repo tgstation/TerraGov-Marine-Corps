@@ -1,6 +1,0 @@
-author: "SpaceLoveSs13"
-delete-after: True
-changes: 
-  - rscadd: "Creates new permission R_LOG"
-  - admin: "Admins will need R_LOG permission added to them once this gets merged."
-  - server: "Keyholders can now give new permission R_LOG"

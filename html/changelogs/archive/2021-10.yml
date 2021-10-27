@@ -210,3 +210,30 @@
   - balance: PPSh magazines now have proper size, the normal mags being SMALL like
       the T-90 magazines and extended mags being NORMAL like T-12 magazines.
   - balance: xenos don't get healing debuff from being hive leaderless on crash anymore.
+2021-10-25:
+  RipGrayson:
+  - rscadd: Added Chigusa support for the AI pathing.
+  - bugfix: Removes some incorrectly stacked resin landmarks on Chigusa.
+  - bugfix: Removes a ship area that was incorrectly applied to Chigusa caves.
+  - balance: Weeded the entire colony section on Big Red.
+  SpaceLoveSs13:
+  - rscadd: Creates new permission R_LOG
+  - admin: Admins will need R_LOG permission added to them once this gets merged.
+  - server: Keyholders can now give new permission R_LOG
+2021-10-26:
+  hyper2snyper:
+  - bugfix: Fixes a bug where guns that didnt allow their starting attachments didnt
+      get their starting attachments.
+  jroinc:
+  - balance: makes ungas sad
+2021-10-27:
+  EvilMelonTheSecond:
+  - bugfix: Tac bino can't laze through cams anymore
+  RipGrayson:
+  - balance: Big Red no longer has strange invincible walls in the SE caves complex.
+  SpaceLoveSs13:
+  - admin: Perms change
+  - server: perms change
+  SplinterGP:
+  - expansion: replaces recoil screenshake animation with an actual recoil animation
+      thats based on which direction you shoot.
