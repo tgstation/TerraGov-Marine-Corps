@@ -234,7 +234,7 @@
  */
 /obj/item/sidecar
 	name = "motorbike sidecar"
-	desc = "A detached motorbike sidecar"
+	desc = "A detached sidecar for TGMC motorbikes, which can be attached to them, allowing a second passenger. Use a wrench to dettach the sidecar."
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "sidecar"
 
