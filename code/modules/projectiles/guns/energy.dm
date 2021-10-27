@@ -209,6 +209,7 @@
 		/obj/item/attachable/heatlens,
 		/obj/item/attachable/efflens,
 		/obj/item/attachable/pulselens,
+		/obj/item/attachable/stock/lasgun,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
@@ -422,7 +423,7 @@
 	force = 8 //Well, it's not complicted compared to the original.
 	ammo = /datum/ammo/energy/lasgun/M43/practice
 	cell_type = /obj/item/cell/lasgun/M43/practice
-	attachable_allowed = list()
+	attachable_allowed = list(/obj/item/attachable/stock/lasgun/practice)
 	starting_attachment_types = list(/obj/item/attachable/stock/lasgun/practice)
 	muzzle_flash_color = COLOR_DISABLER_BLUE
 

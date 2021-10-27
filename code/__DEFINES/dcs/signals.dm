@@ -607,6 +607,7 @@
 #define COMSIG_XENOABILITY_CREST_DEFENSE "xenoability_crest_defense"
 #define COMSIG_XENOABILITY_FORTIFY "xenoability_fortify"
 #define COMSIG_XENOABILITY_REGENERATE_SKIN "xenoability_regenerate_skin"
+#define COMSIG_XENOABILITY_CENTRIFUGAL_FORCE "xenoability_centrifugal_force"
 
 #define COMSIG_XENOABILITY_EMIT_NEUROGAS "xenoability_emit_neurogas"
 #define COMSIG_XENOABILITY_SELECT_REAGENT "xenoability_select_reagent"
