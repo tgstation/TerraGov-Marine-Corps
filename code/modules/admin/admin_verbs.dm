@@ -478,13 +478,13 @@
 	set name = "asay"
 	set hidden = TRUE
 
+	if(!msg)
+		return
+
 	if(!check_rights(R_ASAY))
 		return
 
 	msg = emoji_parse(copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN))
-
-	if(!msg)
-		return
 
 	var/list/pinged_admin_clients = check_admin_pings(msg, TRUE)
 	if(length(pinged_admin_clients) && pinged_admin_clients[ADMINSAY_PING_UNDERLINE_NAME_INDEX])
