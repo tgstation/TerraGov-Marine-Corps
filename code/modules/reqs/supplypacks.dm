@@ -1072,7 +1072,7 @@ MEDICAL
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,
 	)
-	cost = 50
+	cost = 35
 	containertype = /obj/structure/closet/crate/secure/surgery
 	access = ACCESS_MARINE_MEDBAY
 
