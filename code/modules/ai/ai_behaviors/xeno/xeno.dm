@@ -89,18 +89,16 @@
 /datum/ai_behavior/xeno/deal_with_obstacle(datum/source, direction)
 	var/turf/obstacle_turf = get_step(mob_parent, direction)
 	for(var/thing in obstacle_turf.contents)
-		if(isstructure(thing))
-			if(istype(thing, /obj/structure/window_frame))
-				if(locate(/obj/machinery/door/poddoor/shutters) in obstacle_turf)
-					return
-				mob_parent.loc = obstacle_turf
-				mob_parent.next_move_slowdown += 1 SECONDS
+		if(istype(thing, /obj/structure/window_frame))
+			mob_parent.loc = obstacle_turf
+			mob_parent.next_move_slowdown += 1 SECONDS
+			return COMSIG_OBSTACLE_DEALT_WITH
+		if(istype(thing, /obj/structure/closet))
+			var/obj/structure/closet/closet = thing
+			if(closet.open(mob_parent))
 				return COMSIG_OBSTACLE_DEALT_WITH
-			if(istype(thing, /obj/structure/closet))
-				var/obj/structure/closet/closet = thing
-				if(closet.open(mob_parent))
-					return COMSIG_OBSTACLE_DEALT_WITH
-				return
+			return
+		if(isstructure(thing))
 			var/obj/structure/obstacle = thing
 			if(obstacle.resistance_flags & XENO_DAMAGEABLE)
 				INVOKE_ASYNC(src, .proc/attack_target, null, obstacle)
@@ -111,13 +109,19 @@
 				continue
 			if(lock.operating) //Airlock already doing something
 				continue
-			if(lock.welded) //It's welded, can't force that open
+			if(lock.welded || lock.locked) //It's welded or locked, can't force that open
 				INVOKE_ASYNC(src, .proc/attack_target, null, thing) //ai is cheating
 				continue
 			lock.open(TRUE)
 			return COMSIG_OBSTACLE_DEALT_WITH
-	if(ISDIAGONALDIR(direction))
-		return deal_with_obstacle(null, turn(direction, -45)) || deal_with_obstacle(null, turn(direction, 45))
+	if(ISDIAGONALDIR(direction) && (deal_with_obstacle(null, turn(direction, -45)) & COMSIG_OBSTACLE_DEALT_WITH || deal_with_obstacle(null, turn(direction, 45)) & COMSIG_OBSTACLE_DEALT_WITH))
+		return COMSIG_OBSTACLE_DEALT_WITH
+	//Ok we found nothing, yet we are still blocked. Check for blockers on our current turf
+	obstacle_turf = get_turf(mob_parent)
+	for(var/obj/structure/obstacle in obstacle_turf.contents)
+		if(obstacle.dir & direction && obstacle.resistance_flags & XENO_DAMAGEABLE)
+			INVOKE_ASYNC(src, .proc/attack_target, null, obstacle)
+			return COMSIG_OBSTACLE_DEALT_WITH
 
 /datum/ai_behavior/xeno/cleanup_current_action(next_action)
 	. = ..()
