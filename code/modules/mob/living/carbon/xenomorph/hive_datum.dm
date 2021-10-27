@@ -30,6 +30,8 @@
 	var/list/buyable_upgrades = list()
 	///assoc list name = upgraderef
 	var/list/datum/hive_upgrade/upgrades_by_name = list()
+	///Its an int showing the count of living kings
+	var/king_present = 0
 
 // ***************************************
 // *********** Init
