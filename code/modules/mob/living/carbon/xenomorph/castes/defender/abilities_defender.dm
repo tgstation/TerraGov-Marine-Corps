@@ -371,7 +371,7 @@
 /datum/action/xeno_action/activable/centrifugal_force
 	name = "Centrifugal force"
 	action_icon_state = "centrifugal_force"
-	mechanics_text = "Rapidly spin and hit all adjacent humans around you, knocking them away and down."
+	mechanics_text = "Rapidly spin and hit all adjacent humans around you, knocking them away and down. Uses double plasma when crest is active."
 	ability_name = "centrifugal force"
 	plasma_cost = 15
 	use_state_flags = XACT_USE_CRESTED
@@ -404,6 +404,7 @@
 	spin_loop_timer = addtimer(CALLBACK(src, .proc/do_spin), 5, TIMER_STOPPABLE)
 	add_cooldown()
 
+/// runs a spin, then starts the timer for a new spin if needed
 /datum/action/xeno_action/activable/centrifugal_force/proc/do_spin()
 	spin_loop_timer = null
 	var/mob/living/carbon/xenomorph/X = owner
