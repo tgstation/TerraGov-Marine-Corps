@@ -1,0 +1,4 @@
+author: "Alterist"
+delete-after: True
+changes: 
+  - imagedel: "deleted duplicated cryogenics icons"
