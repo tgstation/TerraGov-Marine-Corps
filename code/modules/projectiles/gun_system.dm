@@ -967,7 +967,10 @@
 		return FALSE
 
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED) && !force)
-		to_chat(user, span_warning("[src] is closed!"))
+		if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES))
+			to_chat(user, span_warning("[src] is closed!"))
+		else
+			to_chat(user, span_warning("You cannot reload [src]!"))
 		return FALSE
 
 	if((length(chamber_items) == max_chamber_items))
@@ -1033,6 +1036,12 @@
 /obj/item/weapon/gun/proc/unload(mob/living/user)
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return FALSE
+	if(CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED))
+		if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES))
+			to_chat(user, span_warning("You have to open [src] first!"))
+		else
+			to_chat(user, span_warning("You cannot unload [src]!"))
+		return
 	if(!length(chamber_items))
 		if(!in_chamber)
 			return FALSE
