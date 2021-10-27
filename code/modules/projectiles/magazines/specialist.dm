@@ -294,12 +294,11 @@
 	icon_state = "powerpack"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BACK
+	flags_magazine = MAGAZINE_WORN
 	w_class = WEIGHT_CLASS_HUGE
-	var/obj/item/cell/pcell = null
 	current_rounds = 500
 	max_rounds = 500
 	actions_types = list(/datum/action/item_action/toggle)
-	var/reloading = FALSE
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
 /obj/item/ammo_magazine/minigun_powerpack/snow
