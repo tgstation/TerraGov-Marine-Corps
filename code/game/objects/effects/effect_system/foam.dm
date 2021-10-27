@@ -49,7 +49,7 @@
 
 		var/turf/open/T = mystery_turf
 		if(T.allow_construction) //No loopholes.
-			new /obj/structure/razorwire(loc)
+			new /obj/structure/razorwire/foam(loc)
 	flick("[icon_state]-disolve", src)
 	QDEL_IN(src, 5)
 
