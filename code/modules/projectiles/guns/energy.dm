@@ -49,7 +49,13 @@
 	scatter = 10
 	scatter_unwielded = 15
 
-
+/obj/item/weapon/gun/energy/taser/able_to_fire(mob/living/user)
+	. = ..()
+	if (!.)
+		return
+	if(user.skills.getRating("police") < SKILL_POLICE_MP)
+		to_chat(user, span_warning("You don't seem to know how to use [src]..."))
+		return FALSE
 
 //-------------------------------------------------------
 //Lasguns
@@ -96,6 +102,60 @@
 
 	rounds_to_draw = 500
 	fire_delay = 4 SECONDS
+
+/obj/item/weapon/gun/energy/lasgun/do_unique_action(mob/user, dont_operate = FALSE)
+	QDEL_NULL(in_chamber)
+	if(ammo_diff == null)
+		to_chat(user, "[icon2html(src, user)] You need an appropriate lens to enable overcharge mode.")
+		return
+	if(overcharge == FALSE)
+		if(!length(chamber_items))
+			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
+			to_chat(user, span_warning("You attempt to toggle on [src]'s overcharge mode but you have no battery loaded."))
+			return
+		if(rounds < ENERGY_OVERCHARGE_AMMO_COST)
+			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
+			to_chat(user, span_warning("You attempt to toggle on [src]'s overcharge mode but your battery pack lacks adequate charge to do so."))
+			return
+		//While overcharge is active, double ammo consumption, and
+		playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
+		charge_cost = ENERGY_OVERCHARGE_AMMO_COST
+		ammo = GLOB.ammo_list[ammo_diff]
+		fire_delay += 7 // 1 shot per second fire rate
+		fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
+		overcharge = TRUE
+	else
+		playsound(user, 'sound/weapons/emitter2.ogg', 5, 0, 2)
+		charge_cost = ENERGY_STANDARD_AMMO_COST
+		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43]
+		fire_delay -= 7
+		fire_sound = 'sound/weapons/guns/fire/laser.ogg'
+		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
+		overcharge = FALSE
+
+	//load_into_chamber()
+
+	user?.hud_used.update_ammo_hud(user, src)
+
+	return TRUE
+
+/obj/item/weapon/gun/energy/lasgun/update_icon(mob/user)
+	var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
+	icon_state = "[base_gun_icon]_[cell_charge]"
+	update_mag_overlay(user)
+	update_item_state(user)
+
+/obj/item/weapon/gun/energy/lasgun/update_item_state(mob/user)
+	. = item_state
+	var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
+	item_state = "[initial(icon_state)]_[cell_charge][flags_item & WIELDED ? "_w" : ""]"
+	if(. != item_state && ishuman(user)) // what is this.
+		var/mob/living/carbon/human/human_user = user
+		if(src == human_user.l_hand)
+			human_user.update_inv_l_hand()
+		else if (src == human_user.r_hand)
+			human_user.update_inv_r_hand()
 
 //-------------------------------------------------------
 //M43 Sunfury Lasgun MK1
@@ -290,6 +350,11 @@
 
 	to_chat(user, initial(choice.message_to_user))
 	user.hud_used.update_ammo_hud(user, src)
+	if(!in_chamber || !length(chamber_items)])
+		return
+	QDEL_NULL(in_chamber)
+
+	in_chamber = get_ammo_object(chamber_items[current_chamber_position])
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/update_item_state(mob/user) //Without this override icon states for wielded guns won't show. because lasgun overrides and this has no charge icons
 	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"

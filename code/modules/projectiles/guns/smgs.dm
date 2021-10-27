@@ -3,6 +3,7 @@
 	unload_sound = 'sound/weapons/guns/interact/smg_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/smg_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/smg_cocked.ogg'
+	type_of_casings = "bullet"
 
 	muzzleflash_iconstate = "muzzle_flash_light"
 	load_method = MAGAZINE //codex
@@ -36,6 +37,7 @@
 	caliber = CALIBER_10X20_CASELESS //codex
 	max_shells = 30 //codex
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
+	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/standard_machinepistol
 
 	w_class = WEIGHT_CLASS_NORMAL
@@ -83,6 +85,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	wield_delay = 0.5 SECONDS
 	force = 20
+	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/standard_smg
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -136,6 +139,7 @@
 	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
 	flags_equip_slot = ITEM_SLOT_BACK
+	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/m25
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,

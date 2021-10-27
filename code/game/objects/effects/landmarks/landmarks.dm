@@ -224,9 +224,9 @@
 			handful_to_generate.generate_handful(ammo_to_spawn, initial(gun_to_spawn.caliber), initial(ammo_to_spawn.handful_amount), gun_to_spawn.type)
 		return
 
-	var/obj/item/ammo_magazine/gun_mag = gun_to_spawn.default_ammo_type
+	var/obj/item/ammo_to_spawn = gun_to_spawn.default_ammo_type
 	for(var/i in 1 to 3) //hardcoded 3 mags.
-		new gun_mag (get_turf(src))
+		new ammo_to_spawn (get_turf(src))
 
 /obj/effect/landmark/weapon_spawn/proc/choose_weapon()
 	weapon_to_spawn = pick(weapon_list)

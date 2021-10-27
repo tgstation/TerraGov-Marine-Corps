@@ -34,7 +34,7 @@
 
 /obj/machinery/deployable/mounted/AltClick(mob/user)
 	. = ..()
-	if(!Adjacent(user) || user.lying_angle || user.incapacitated())
+	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user)) //Damn you zack, yoinking mags from pipes as a runner.
 		return
 	var/obj/item/weapon/gun/internal_gun = internal_item
 	internal_gun.unload(internal_gun, user)
@@ -42,6 +42,8 @@
 
 /obj/machinery/deployable/mounted/attack_hand_alternate(mob/living/user)
 	. = ..()
+	if(!ishuman(user))
+		return
 	var/obj/item/weapon/gun/internal_gun = internal_item
 	internal_gun.do_unique_action(internal_gun, user)
 

@@ -10,18 +10,7 @@
 	unload_sound = 'sound/weapons/guns/interact/revolver_unload.ogg'
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	hand_reload_sound = 'sound/weapons/guns/interact/revolver_load.ogg'
-	///Sound played when revolvers chamber is spun.
-	var/spin_sound = 'sound/effects/spin.ogg'
-	///Sound played when thud?
-	var/thud_sound = 'sound/effects/thud.ogg'
-	///Delay between gun tricks
-	var/trick_delay = 6
-	///Time of last trick
-	var/recent_trick //So they're not spamming tricks.
-	///If the gun is able to play Russian Roulette
-	var/russian_roulette = FALSE //God help you if you do this.
-	///Whether the chamber can be spun for Russian Roulette. If False the chamber can be spun.
-	var/catchworking = TRUE
+	type_of_casings = "bullet"
 	load_method = SINGLE_CASING|SPEEDLOADER //codex
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	actions_types = list(/datum/action/item_action/aim_mode)
@@ -43,6 +32,19 @@
 	recoil_unwielded = 3
 
 	placed_overlay_iconstate = "revolver"
+
+	///Sound played when revolvers chamber is spun.
+	var/spin_sound = 'sound/effects/spin.ogg'
+	///Sound played when thud?
+	var/thud_sound = 'sound/effects/thud.ogg'
+	///Delay between gun tricks
+	var/trick_delay = 6
+	///Time of last trick
+	var/recent_trick //So they're not spamming tricks.
+	///If the gun is able to play Russian Roulette
+	var/russian_roulette = FALSE //God help you if you do this.
+	///Whether the chamber can be spun for Russian Roulette. If False the chamber can be spun.
+	var/catchworking = TRUE
 
 
 /obj/item/weapon/gun/revolver/verb/revolvertrick()

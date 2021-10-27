@@ -8,7 +8,6 @@
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = null
 	item_state = "ammo_mag" //PLACEHOLDER. This ensures the mag doesn't use the icon state instead.
-	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	materials = list(/datum/material/metal = 100)
@@ -16,6 +15,8 @@
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 2
 	throw_range = 6
+	///Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
+	var/bonus_overlay = null 
 	///This is a typepath for the type of bullet the magazine holds, it is cast so that it can draw the variable handful_amount from default_ammo in create_handful()
 	var/datum/ammo/bullet/default_ammo = /datum/ammo/bullet/
 	///Generally used for energy weapons

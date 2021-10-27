@@ -59,18 +59,31 @@
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features
-#define GUN_CAN_POINTBLANK (1<<1)
-#define GUN_UNUSUAL_DESIGN (1<<2)
-#define GUN_AMMO_COUNTER (1<<3)
-#define GUN_WIELDED_FIRING_ONLY (1<<4)
-#define GUN_ALLOW_SYNTHETIC (1<<5)
-#define GUN_WIELDED_STABLE_FIRING_ONLY (1<<6)
-#define GUN_IFF (1<<7)
-#define GUN_DEPLOYED_FIRE_ONLY (1<<8)
-#define GUN_IS_ATTACHMENT (1<<9)
-#define GUN_ATTACHMENT_FIRE_ONLY (1<<10)
-#define GUN_IS_SENTRY (1<<11)
-#define GUN_ENERGY (1<<12)
+#define GUN_CAN_POINTBLANK (1<<0)
+#define GUN_UNUSUAL_DESIGN (1<<1)
+#define GUN_AMMO_COUNTER (1<<2)
+#define GUN_WIELDED_FIRING_ONLY (1<<3)
+#define GUN_ALLOW_SYNTHETIC (1<<4)
+#define GUN_WIELDED_STABLE_FIRING_ONLY (1<<5)
+#define GUN_IFF (1<<6)
+#define GUN_DEPLOYED_FIRE_ONLY (1<<7)
+#define GUN_IS_ATTACHMENT (1<<8)
+#define GUN_ATTACHMENT_FIRE_ONLY (1<<9)
+#define GUN_IS_SENTRY (1<<10)
+#define GUN_ENERGY (1<<11)
+
+//reciever_flags. Used to determin how the gun cycles, what kind of ammo it uses, etc.
+#define RECIEVER_REQUIRES_OPERATION (1<<0)
+#define RECIEVER_MAGAZINES (1<<1)
+#define RECIEVER_HANDFULS (1<<2)
+#define RECIEVER_TOGGLES (1<<3)
+#define RECIEVER_CLOSED (1<<4)
+#define RECIEVER_CYCLES (1<<5)
+#define RECIEVER_AUTO_EJECT (1<<6)
+#define RECIEVER_INTERNAL (1<<7)
+#define RECIEVER_TOGGLES_EJECTS (1<<8)
+#define RECIEVER_LOCKS (1<<9)
+
 
 #define FLAMER_IS_LIT (1<<0)
 #define FLAMER_NO_LIT_OVERLAY (1<<1)
@@ -94,21 +107,6 @@
 #define MAGAZINE_REFILLABLE (1<<0)
 #define MAGAZINE_HANDFUL (1<<1)
 #define MAGAZINE_WORN (1<<2)
-#define MAGAZINE_INTERNAL (1<<3)
-
-
-#define RECIEVER_REQUIRES_OPERATION (1<<0)
-#define RECIEVER_MAGAZINES (1<<1)
-#define RECIEVER_HANDFULS (1<<2)
-#define RECIEVER_TOGGLES (1<<3)
-#define RECIEVER_CLOSED (1<<4)
-#define RECIEVER_CYCLES (1<<5)
-#define RECIEVER_AUTO_EJECT (1<<6)
-#define RECIEVER_INTERNAL (1<<7)
-#define RECIEVER_TOGGLES_EJECTS (1<<8)
-#define RECIEVER_LOCKS (1<<9)
-
-
 
 //Slowdown from various armors.
 #define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up

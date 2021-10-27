@@ -84,6 +84,25 @@
 		return
 	light_pilot(FALSE)
 
+/obj/item/weapon/gun/flamer/reload(obj/item/new_mag, mob/living/user)
+	. = ..()
+	if(!.)
+		return
+	var/obj/item/ammo_magazine/magazine = new_mag
+	var/datum/ammo/flamethrower/flamer_ammo = magazine.default_ammo
+	fire_delay = initial(flamer_ammo.fire_delay)
+	if(attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE])
+		light_pilot(TRUE)
+	gun_user?.hud_used.update_ammo_hud(gun_user, src)
+
+/obj/item/weapon/gun/flamer/unload(mob/living/user)
+	. = ..()
+	if(!.)
+		return
+	fire_delay = initial(fire_delay)
+	light_pilot(FALSE)
+	gun_user?.hud_used.update_ammo_hud(gun_user, src)
+
 ///Makes the sound of the flamer being lit, and applies the overlay.
 /obj/item/weapon/gun/flamer/proc/light_pilot(light)
 	if(CHECK_BITFIELD(flags_flamer_features, FLAMER_IS_LIT) && light)
@@ -110,6 +129,8 @@
 
 /obj/item/weapon/gun/flamer/click_empty(mob/user)
 	playsound(src, 'sound/weapons/guns/interact/flamethrower_off.ogg', 25, 1)
+
+
 
 
 /obj/item/weapon/gun/flamer/able_to_fire(mob/user)
@@ -214,7 +235,7 @@
 	if(!length(turfs_to_burn))
 		return FALSE
 
-	var/datum/ammo/flamethrower/loaded_ammo = CHECK_BITFIELD(flags_flamer_features, FLAMER_USES_GUN_FLAMES) ? ammo : default_ammo_type.default_ammo
+	var/datum/ammo/flamethrower/loaded_ammo = CHECK_BITFIELD(flags_flamer_features, FLAMER_USES_GUN_FLAMES) ? ammo : chamber_items[current_chamber_position].vars[ammo_type_var]
 	var/burn_level = initial(loaded_ammo.burnlevel) * burn_level_mod
 	var/burn_time = initial(loaded_ammo.burntime) * burn_time_mod
 	var/fire_color = initial(loaded_ammo.fire_color)
@@ -336,7 +357,15 @@
 	reagents.add_reagent(/datum/reagent/water, reagents.maximum_volume)
 	water_count = reagents.maximum_volume
 
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/get_ammo_count()
+	if(hydro_active)
+		return max(water_count,0)
+	return ..()
 
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/get_ammo_type()
+	if(hydro_active)
+		return list("water","water_empty")
+	return ..()
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/examine(mob/user)
 	. = ..()
@@ -352,7 +381,7 @@
 		light_pilot(FALSE)
 	else
 		hydro_active = FALSE
-		if (default_ammo_type?.current_rounds > 0)
+		if (rounds > 0)
 			light_pilot(TRUE)
 	user.hud_used.update_ammo_hud(user, src)
 	SEND_SIGNAL(src, COMSIG_ITEM_HYDRO_CANNON_TOGGLED)

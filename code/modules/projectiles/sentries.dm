@@ -372,14 +372,14 @@
 /obj/machinery/deployable/mounted/sentry/proc/check_next_shot(datum/source, atom/gun_target, obj/item/weapon/gun/gun)
 	SIGNAL_HANDLER
 	var/obj/item/weapon/gun/internal_gun = internal_item
-	if(CHECK_BITFIELD(internal_gun.reciever_flags, RECIEVER_REQUIRES_OPERATION))
+	if(CHECK_BITFIELD(internal_gun.reciever_flags, RECIEVER_REQUIRES_OPERATION) && length(internal_gun.chamber_items))
 		internal_gun.unique_action()
 	if(get_dist(src, gun_target) >= range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
 		internal_gun.stop_fire()
 		return
 	if(internal_gun.gun_firemode != GUN_FIREMODE_SEMIAUTO)
 		return
-	addtimer(CALLBACK(src, .proc/sentry_start_fire), internal_gun.fire_delay) //This schedules the next shot if the gun is on semi-automatic. This is so that semi-automatic guns fire once every two seconds.
+	addtimer(CALLBACK(src, .proc/sentry_start_fire), internal_gun.fire_delay) //This schedules the next shot if the gun is on semi-automatic. This is so that semi-automatic guns don't fire once every two seconds.
 
 ///Sees if theres a target to shoot, then handles firing.
 /obj/machinery/deployable/mounted/sentry/proc/sentry_start_fire()

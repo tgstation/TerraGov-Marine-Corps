@@ -12,6 +12,7 @@
 	accuracy_mult = 1.15
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	reciever_flags = RECIEVER_HANDFULS
+	type_of_casings = "shell"
 	allowed_ammo_type = /obj/item/ammo_magazine/handful
 	aim_slowdown = 0.35
 	wield_delay = 0.6 SECONDS //Shotguns are really easy to put up to fire, since they are designed for CQC (at least compared to a rifle)
