@@ -226,3 +226,14 @@
       get their starting attachments.
   jroinc:
   - balance: makes ungas sad
+2021-10-27:
+  EvilMelonTheSecond:
+  - bugfix: Tac bino can't laze through cams anymore
+  RipGrayson:
+  - balance: Big Red no longer has strange invincible walls in the SE caves complex.
+  SpaceLoveSs13:
+  - admin: Perms change
+  - server: perms change
+  SplinterGP:
+  - expansion: replaces recoil screenshake animation with an actual recoil animation
+      thats based on which direction you shoot.
