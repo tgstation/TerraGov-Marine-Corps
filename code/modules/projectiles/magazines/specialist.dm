@@ -82,14 +82,6 @@
 	gun_type = /obj/item/weapon/gun/rifle/tx8
 	icon_state_mini = "mag_rifle_big_blue"
 
-//-------------------------------------------------------
-//MINIGUN-Powerpack edition
-/obj/item/ammo_magazine/internal/minigun
-	name = "integrated minigun belt"
-	icon_state = "minigun"
-	caliber = CALIBER_762X51
-	max_rounds = 100
-	default_ammo = /datum/ammo/bullet/minigun
 
 //-------------------------------------------------------
 //M5 RPG
@@ -106,7 +98,7 @@
 	flags_magazine = NONE
 	reload_delay = 60
 
-/obj/item/ammo_magazine/attack_self(mob/user)
+/obj/item/ammo_magazine/rocket/attack_self(mob/user)
 	if(current_rounds > 0)
 		to_chat(user, span_notice("Not with a missile inside!"))
 		return
@@ -119,7 +111,7 @@
 	user.drop_held_item()
 	qdel(src)
 
-/obj/item/ammo_magazine/update_icon
+/obj/item/ammo_magazine/rocket/update_icon()
 	overlays.Cut()
 	if(current_rounds > 0)
 		return
@@ -294,3 +286,27 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	gun_type = /obj/item/weapon/gun/rifle/pepperball
 	icon_state_mini = "mag_rifle"
+
+/obj/item/ammo_magazine/minigun_powerpack
+	name = "\improper T-100 powerpack"
+	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the T-100 Minigun System.\nClick the icon in the top left to reload your M56."
+	icon = 'icons/obj/items/storage/storage.dmi'
+	icon_state = "powerpack"
+	flags_atom = CONDUCT
+	flags_equip_slot = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_HUGE
+	var/obj/item/cell/pcell = null
+	current_rounds = 500
+	max_rounds = 500
+	actions_types = list(/datum/action/item_action/toggle)
+	var/reloading = FALSE
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
+
+/obj/item/ammo_magazine/minigun_powerpack/snow
+	icon_state = "s_powerpack"
+
+/obj/item/ammo_magazine/minigun_powerpack/fancy
+	icon_state = "powerpackw"
+
+/obj/item/ammo_magazine/minigun_powerpack/merc
+	icon_state = "powerpackp"

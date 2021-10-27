@@ -372,7 +372,7 @@
 /obj/machinery/deployable/mounted/sentry/proc/check_next_shot(datum/source, atom/gun_target, obj/item/weapon/gun/gun)
 	SIGNAL_HANDLER
 	var/obj/item/weapon/gun/internal_gun = internal_item
-	if(CHECK_BITFIELD(internal_gun.flags_gun_features, GUN_PUMP_REQUIRED))
+	if(CHECK_BITFIELD(internal_gun.reciever_flags, RECIEVER_REQUIRES_OPERATION))
 		internal_gun.unique_action()
 	if(get_dist(src, gun_target) >= range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
 		internal_gun.stop_fire()

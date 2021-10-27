@@ -36,7 +36,7 @@
 	fire_sound = 'sound/weapons/guns/fire/hmg2.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 
-	default_magazine_type = /obj/item/ammo_magazine/tl102
+	default_ammo_type = /obj/item/ammo_magazine/tl102
 
 	scatter = 20
 	fire_delay = 0.25 SECONDS
@@ -48,7 +48,7 @@
 	burst_scatter_mult = -2
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
 
 	attachable_allowed = list(
@@ -72,7 +72,7 @@
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "entrenched"
 
-	default_magazine_type = /obj/item/ammo_magazine/tl102/hsg_nest
+	default_ammo_type = /obj/item/ammo_magazine/tl102/hsg_nest
 
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable/tl102/nest,
@@ -96,7 +96,7 @@
 	aim_slowdown = 3
 	wield_delay = 5 SECONDS
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_IFF
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_IFF
 
 // This is a deployed IFF-less MACHINEGUN, has 500 rounds, drums do not fit anywhere but your belt slot and your back slot. But it has 500 rounds. That's nice.
 
@@ -113,7 +113,7 @@
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 	caliber = CALIBER_10X28
 
-	default_magazine_type = /obj/item/ammo_magazine/heavymachinegun
+	default_ammo_type = /obj/item/ammo_magazine/heavymachinegun
 
 
 	scatter = 25
@@ -122,7 +122,7 @@
 	burst_amount = 1
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
 	attachable_allowed = list(
@@ -161,7 +161,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
-	default_magazine_type = /obj/item/ammo_magazine/standard_mmg
+	default_ammo_type = /obj/item/ammo_magazine/standard_mmg
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/magnetic_harness,
@@ -177,7 +177,7 @@
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 20,"rail_x" = 18, "rail_y" = 22, "under_x" = 28, "under_y" = 13, "stock_x" = 0, "stock_y" = 0)
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS

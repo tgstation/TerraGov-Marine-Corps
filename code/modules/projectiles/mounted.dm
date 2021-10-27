@@ -68,7 +68,7 @@
 	gun.reload(ammo_magazine, user)
 	update_icon_state()
 
-	if(!CHECK_BITFIELD(gun.flags_gun_features, GUN_PUMP_REQUIRED))
+	if(!CHECK_BITFIELD(gun.reciever_flags, RECIEVER_REQUIRES_OPERATION))
 		return
 	gun.do_unique_action(gun, user)
 

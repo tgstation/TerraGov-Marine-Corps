@@ -30,7 +30,7 @@
 	gun_on_cooldown() //For custom cooldown checks. By default it takes into account the user's skills.
 
 	load_into_chamber() //This can get complicated, but if the gun doesn't take attachments that fire bullets from
-	the Fire() process, just set them to null and leave the if(default_magazine_type && default_magazine_type.current_rounds > 0) check.
+	the Fire() process, just set them to null and leave the if(default_ammo_type && default_ammo_type.current_rounds > 0) check.
 	The idea here is that if the gun can find a valid bullet to fire, subtract the ammo.
 	This must return positive to continue the fire cycle.
 
@@ -95,7 +95,7 @@
 	do_unique_action(user)
 
 /obj/item/weapon/gun/attack_hand(mob/living/user)
-	if(loc != user)
+	if(user.get_inactive_held_item() != src)
 		return ..()
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES) && CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION))
 		do_unique_action(user, TRUE)
@@ -114,7 +114,8 @@
 
 
 /obj/item/weapon/gun/attackby(obj/item/I, mob/user, params)
-	. = ..()
+	if(user.get_inactive_held_item() != src)
+		return ..()
 	reload(I, user)
 
 
@@ -292,7 +293,7 @@ should be alright.
 	if(src != user.r_hand && src != user.l_hand)
 		to_chat(user, span_warning("[src] must be in your hand to do that."))
 		return
-	if(flags_gun_features & GUN_INTERNAL_MAG)
+	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES) && max_chamber_items > 1)
 		to_chat(user, span_warning("Can't do tactical reloads with [src]."))
 		return
 	//no tactical reload for the untrained.
@@ -301,7 +302,7 @@ should be alright.
 		return
 	if(!istype(src, new_magazine.gun_type))
 		return
-	if(chamber_items[current_chamber_position])
+	if(length(chamber_items))
 		unload(user)
 		to_chat(user, span_notice("You start a tactical reload."))
 	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
@@ -856,7 +857,7 @@ should be alright.
 	//This works, but it's also pretty slow in comparison to the updated method.
 	var/turf/current_turf = get_turf(src)
 	var/obj/item/ammo_casing/casing = locate() in current_turf
-	var/icon/I = new( 'icons/obj/items/ammo.dmi', default_magazine_type.icon_spent, pick(1,2,4,5,6,8,9,10) ) //Feeding dir is faster than doing Turn().
+	var/icon/I = new( 'icons/obj/items/ammo.dmi', default_ammo_type.icon_spent, pick(1,2,4,5,6,8,9,10) ) //Feeding dir is faster than doing Turn().
 	I.Shift(pick(1,2,4,5,6,8,9,10),rand(0,11))
 	if(casing) //If there is already something on the ground, takes the firs thing it finds. Can take a long time if there are a lot of things.
 		//Still better than making a billion casings.
@@ -875,25 +876,25 @@ should be alright.
 //most efficient. Also, this particular example crashes the client upon Blend(). Not sure what is causing it,
 //but the code was entirely replaced so it's irrelevant now. ~N
 //If the gun has spent shells and we either have no ammo remaining or we're reloading it on the go.
-if(default_magazine_type.casings_to_eject.len && casing_override) //We have some spent casings to eject.
+if(default_ammo_type.casings_to_eject.len && casing_override) //We have some spent casings to eject.
 	var/turf/current_turf = get_turf(src)
 	var/obj/item/ammo_casing/casing = locate() in current_turf
 	var/icon/G
 
 	if(!casing)
 		//Feeding dir is faster than doing Turn().
-		G = new( 'icons/obj/items/ammo.dmi', default_magazine_type.icon_spent, pick(1,2,4,5,6,8,9,10) ) //We make a new icon.
+		G = new( 'icons/obj/items/ammo.dmi', default_ammo_type.icon_spent, pick(1,2,4,5,6,8,9,10) ) //We make a new icon.
 		G.Shift(pick(1,2,4,5,6,8,9,10),rand(0,11)) //Shift it randomy.
 		var/obj/item/ammo_casing/new_casing = new(current_turf) //Then we create a new casing.
 		new_casing.icon = G //We give this new casing the icon we just generated.
 		casing = new_casing //Our casing from earlier is now this csaing.
-		default_magazine_type.casings_to_eject.Cut(1,2) //Cut the list so that it's one less.
+		default_ammo_type.casings_to_eject.Cut(1,2) //Cut the list so that it's one less.
 		playsound(current_turf, sound_to_play, 20, 1) //Play the sound.
 
 	G = casing.icon //Get the icon from the casing icon if it spawned or was there previously.
 	var/i
-	for(i = 1 to default_magazine_type.casings_to_eject.len) //We want to run this for each item in the list.
-		var/icon/I = new( 'icons/obj/items/ammo.dmi', default_magazine_type.icon_spent, pick(1,2,4,5,6,8,9,10) )
+	for(i = 1 to default_ammo_type.casings_to_eject.len) //We want to run this for each item in the list.
+		var/icon/I = new( 'icons/obj/items/ammo.dmi', default_ammo_type.icon_spent, pick(1,2,4,5,6,8,9,10) )
 		I.Shift(pick(1,2,4,5,6,8,9,10),rand(0,11))
 		G.Blend(I,ICON_OVERLAY) //<---- Crashes the client. //Blend them two in, with I overlaying what's already there.
 		playsound(current_turf, sound_to_play, 20, 1)
@@ -902,9 +903,9 @@ if(default_magazine_type.casings_to_eject.len && casing_override) //We have some
 	casing.icon = G
 	if(casing.name != "spent casings")
 		casing.name += "s"
-	default_magazine_type.casings_to_eject = list() //Empty list.
+	default_ammo_type.casings_to_eject = list() //Empty list.
 
 else if(!casing_override)//So we're not reloading/emptying, we're firing the gun.
 	//I would add a check here for attachables, but you can't fit the masterkey on a revolver/shotgun.
-	default_magazine_type.casings_to_eject += ammo.casing_type //Other attachables are processed beforehand and don't matter here.
+	default_ammo_type.casings_to_eject += ammo.casing_type //Other attachables are processed beforehand and don't matter here.
 */

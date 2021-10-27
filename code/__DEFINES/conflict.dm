@@ -70,6 +70,7 @@
 #define GUN_IS_ATTACHMENT (1<<9)
 #define GUN_ATTACHMENT_FIRE_ONLY (1<<10)
 #define GUN_IS_SENTRY (1<<11)
+#define GUN_ENERGY (1<<12)
 
 #define FLAMER_IS_LIT (1<<0)
 #define FLAMER_NO_LIT_OVERLAY (1<<1)
@@ -103,10 +104,9 @@
 #define RECIEVER_CLOSED (1<<4)
 #define RECIEVER_CYCLES (1<<5)
 #define RECIEVER_AUTO_EJECT (1<<6)
-#define RECIEVER_CASING (1<<7)
-#define RECIEVER_INTERNAL (1<<8)
-#define RECIEVER_TOGGLES_EJECTS (1<<9)
-#define RECIEVER_LOCKS (1<<10)
+#define RECIEVER_INTERNAL (1<<7)
+#define RECIEVER_TOGGLES_EJECTS (1<<8)
+#define RECIEVER_LOCKS (1<<9)
 
 
 

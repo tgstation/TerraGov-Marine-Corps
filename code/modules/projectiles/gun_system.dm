@@ -58,6 +58,10 @@
 	var/cocked_message
 	///Message for a pump lock.
 	var/cock_locked_message
+	///Message for when the chamber is opened.
+	var/chamber_opened_message
+	///Message for when the chamber is closed.
+	var/chamber_closed_message
 
 	///Animation of the gun Cocking.
 	var/cock_animation
@@ -108,7 +112,7 @@
 	var/current_chamber_position = 1
 
 	///Flags to determin guns ammo/operation.
-	var/reciever_flags = RECIEVER_MAGAZINES
+	var/reciever_flags = RECIEVER_MAGAZINES|RECIEVER_AUTO_EJECT
 
 	///Types of casing it ejects.
 	var/type_of_casings = null
@@ -119,7 +123,7 @@
 	///Stored ammo datum.
 	var/datum/ammo/ammo = /datum/ammo/bullet
 	///Default magazine to spawn with.
-	var/obj/item/ammo_magazine/default_magazine_type = /obj/item/ammo_magazine
+	var/obj/item/ammo_magazine/default_ammo_type = /obj/item/ammo_magazine
 	///If you try to reload the gun with the type or subtype of this it will succeed. Even if it is not listed in allowed_ammo_types. This is primarily for guns that are fine will selecting a whole type to allow.
 	var/obj/item/allowed_ammo_type = /obj/item/ammo_magazine
 	///List of allowed specific types. If trying to reload with something in this list it will succeed. This is mainly for use in internal magazine weapons or scenarios where you do not want to inclue a whole subtype.
@@ -145,7 +149,7 @@
 */
 
 	///Innate carateristics of that gun
-	var/flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
+	var/flags_gun_features = GUN_CAN_POINTBLANK
 	///Current selected firemode of the gun.
 	var/gun_firemode = GUN_FIREMODE_SEMIAUTO
 	///List of allowed firemodes.
@@ -349,14 +353,19 @@
 
 	ammo = new ammo()
 	if(!spawn_empty)
-		if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
-			INVOKE_ASYNC(src, .proc/reload, new default_magazine_type())
-			return
+		if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS) || CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
+			var/obj/item/ammo_magazine/ammo_type = default_ammo_type
+			if(!CHECK_BITFIELD(initial(ammo_type.flags_magazine), MAGAZINE_HANDFUL) || CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
+				INVOKE_ASYNC(src, .proc/reload, new default_ammo_type())
+				return
 		for(var/i = 0, i <= max_chamber_items, i++)
-			var/obj/object_to_insert = new default_magazine_type()
-			if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
-				var/obj/item/ammo_magazine/handful = object_to_insert
-				handful.current_rounds = 1
+			var/obj/object_to_insert
+			if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
+				var/obj/item/ammo_magazine/handful/handful = new /obj/item/ammo_magazine/handful()
+				handful.generate_handful(default_ammo_type, caliber, 1, type)
+				object_to_insert = handful
+			else
+				object_to_insert = new default_ammo_type()
 			INVOKE_ASYNC(src, .proc/reload, object_to_insert)
 	update_icon()
 
@@ -394,7 +403,7 @@
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
 	set_gun_user(null)
 	active_attachable?.removed_from_inventory(user)
-	if(chamber_items[current_chamber_position].loc == src)
+	if(!length(chamber_items) || chamber_items[current_chamber_position].loc == src)
 		return
 	unload(chamber_items[current_chamber_position], user)
 	update_icon()
@@ -437,12 +446,12 @@
 	set_gun_user(null)
 
 /obj/item/weapon/gun/update_icon(mob/user)
-	if(!length(chamber_items))
+	if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES) && CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED))
+		icon_state = base_gun_icon + "_o"
+	else if(!length(chamber_items))
 		icon_state = base_gun_icon + "_e"
 	else if(chamber_items[current_chamber_position].loc != src)
 		icon_state = base_gun_icon + "_l"
-	else if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES) && CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED))
-		icon_state = base_gun_icon + "_o"
 	else
 		icon_state = base_gun_icon
 
@@ -504,7 +513,7 @@
 
 /obj/item/weapon/gun/proc/examine_ammo_count(mob/user)
 	var/list/dat = list()
-	if(!(flags_gun_features & (GUN_INTERNAL_MAG|GUN_UNUSUAL_DESIGN))) //Internal mags and unusual guns have their own stuff set.
+	if(!CHECK_BITFIELD(flags_gun_features, GUN_UNUSUAL_DESIGN) || !CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES)) //Internal mags and unusual guns have their own stuff set.
 		if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES))
 			dat += "[CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED) ? "It is open. \n" : "It is closed. \n"]"
 		if(rounds > 0)
@@ -876,17 +885,25 @@
 
 ///Called after the gun fires. Handles the amunition side of firing.
 /obj/item/weapon/gun/proc/post_fire()
-	in_chamber = null
+	if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
+		QDEL_NULL(in_chamber)
+	else
+		in_chamber = null
+	update_ammo_count()
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION))
 		return
 	cycle(null)
-	if(rounds <= 0 && CHECK_BITFIELD(reciever_flags, RECIEVER_AUTO_EJECT) && CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
-		playsound(src, empty_sound, 25, 1)
-		unload()
+	if(rounds > 0 || !CHECK_BITFIELD(reciever_flags, RECIEVER_AUTO_EJECT) || !CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
 		return
+	playsound(src, empty_sound, 25, 1)
+	unload()
+
 
 ///Performs the unique action. Can be overwritten.
 /obj/item/weapon/gun/proc/do_unique_action(mob/user, dont_operate = FALSE)
+	if(!length(chamber_items) && in_chamber)
+		unload(user)
+		return
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION) && !dont_operate)
 		if(last_cocked + cock_delay > world.time)
 			return
@@ -918,9 +935,13 @@
 		playsound(src, opened_sound, 25, 1)
 		if(shell_eject_animation)
 			flick("[shell_eject_animation]", src)
+		if(chamber_opened_message)
+			to_chat(user, span_notice(chamber_opened_message))
 	else
 		ENABLE_BITFIELD(reciever_flags, RECIEVER_CLOSED)
 		playsound(src, cocked_sound, 25, 1)
+		if(chamber_closed_message)
+			to_chat(user, span_notice(chamber_opened_message))
 	update_icon()
 
 
@@ -958,24 +979,25 @@
 			new_mag.forceMove(src)
 			user?.temporarilyRemoveItemFromInventory(new_mag)
 		if(!in_chamber)
-			cycle(user)
+			cycle(user, FALSE)
 		update_icon()
 		update_ammo_count()
-		user?.hud_used.update_ammo_hud(user, src)
 		to_chat(user, span_notice("You reload [src] with [new_mag]."))
 		return
 
-	var/obj/items_to_insert = new_mag
+	var/list/obj/items_to_insert = list()
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
 		var/obj/item/ammo_magazine/mag = new_mag
 		if(CHECK_BITFIELD(mag.flags_magazine, MAGAZINE_HANDFUL))
 			if(mag.current_rounds > 1)
 				items_to_insert += mag.create_handful(null, 1)
-			playsound(src, reload_sound, 25, 1)
+			else
+				items_to_insert += mag
+			playsound(src, hand_reload_sound, 25, 1)
 		else
 			for(var/i = 0, i <= mag.current_rounds, i++)
 				items_to_insert += mag.create_handful(null, 1)
-			playsound(src, hand_reload_sound, 25, 1)
+			playsound(src, reload_sound, 25, 1)
 
 	chamber_items += items_to_insert
 	for(var/obj/obj_to_insert in items_to_insert)
@@ -983,32 +1005,37 @@
 		user?.temporarilyRemoveItemFromInventory(obj_to_insert)
 	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
 		playsound(src, reload_sound, 25, 1)
-	if(in_chamber)
-		return
+	if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS) && !CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION) && !in_chamber)
+		cycle(user, FALSE)
 	get_ammo()
 	update_ammo_count()
-	update_icon()
-	user?.hud_used.update_ammo_hud(user, src)
 
 ///Handles unloading. Called on attackhand.
 /obj/item/weapon/gun/proc/unload(mob/living/user)
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
 	if(!length(chamber_items))
-		if(in_chamber)
-			if(user)
-				user.put_in_hands(in_chamber)
-			else
-				in_chamber.forceMove(get_turf(src))
-			in_chamber = null
+		if(!in_chamber)
 			return
-		return cycle(user)
+		var/obj/obj_in_chamber = in_chamber
+		if(istype(in_chamber, /obj/projectile))
+			var/obj/projectile/projectile_in_chamber = obj_in_chamber
+			var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
+			new_handful.generate_handful(projectile_in_chamber.ammo.name, caliber, 1, type)
+			obj_in_chamber = new_handful
+			QDEL_NULL(in_chamber)
+		if(user)
+			user.put_in_hands(obj_in_chamber)
+		else
+			obj_in_chamber.forceMove(get_turf(src))
+		in_chamber = null
+		update_ammo_count()
+		return
 
 	var/obj/item/mag = chamber_items[current_chamber_position]
 	playsound(src, unload_sound, 25, 1, 5)
 	user?.visible_message(span_notice("[user] unloads [mag] from [src]."),
 	span_notice("You unload [mag] from [src]."), null, 4)
-	update_ammo_count()
 	if(user)
 		user.put_in_hands(chamber_items[current_chamber_position])
 	else
@@ -1016,7 +1043,7 @@
 	chamber_items -= mag
 	mag.update_icon()
 	update_icon()
-	user?.hud_used.update_ammo_hud(user, src)
+	update_ammo_count()
 
 
 ///Returns an object that will be put into the guns chamber.
@@ -1026,24 +1053,26 @@
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
 		chamber_items[current_chamber_position].vars[current_rounds_var] -= rounds_to_draw
 		return get_ammo_object(chamber_items[current_chamber_position])
-	return chamber_items[current_chamber_position]
+	var/object_to_chamber = chamber_items[current_chamber_position]
+	chamber_items -= object_to_chamber
+	return object_to_chamber
 
 ///Cycles the gun, handles ammunition draw
-/obj/item/weapon/gun/proc/cycle(mob/living/user)
-	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
-		var/thing_to_delete = chamber_items[current_chamber_position]
-		chamber_items -= thing_to_delete
-		qdel(thing_to_delete)
+/obj/item/weapon/gun/proc/cycle(mob/living/user, after_fire = TRUE)
+	if(!length(chamber_items))
 		update_ammo_count()
+		return
 	if((CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES) && !CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES)) || (CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES) && CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES) && chamber_items[current_chamber_position].vars[current_rounds_var] <= 0))
 		var/next_chamber_position = current_chamber_position + 1
 		if(next_chamber_position > max_chamber_items)
 			next_chamber_position = 1
 		current_chamber_position = next_chamber_position
-	if((!user && CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION)) || !rounds)
+	if((!user && CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION)) || (!rounds && after_fire))
 		return
 	in_chamber = return_obj_to_fire()
 	update_ammo_count()
+	if(!after_fire)
+		return
 	make_casing()
 
 ///Generates a casing.
@@ -1086,20 +1115,19 @@
 
 ///Sets and returns the guns ammo type from the current magazine.
 /obj/item/weapon/gun/proc/get_ammo()
-	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS) && !CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES) || !length(chamber_items))
+	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS) && !CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES) || !ammo_type_var)
 		return
-	var/ammo_type
-	if(ammo_type_var)
-		ammo_type = chamber_items[current_chamber_position].vars[ammo_type_var]
-	else
-		ammo_type = ammo
+	if(!length(chamber_items))
+		return ammo
+	var/ammo_type = chamber_items[current_chamber_position].vars[ammo_type_var]
+	QDEL_NULL(ammo)
 	ammo = new ammo_type()
 	return ammo
 
 ///Updates the guns rounds and max_rounds vars based on the contents of chamber_items
 /obj/item/weapon/gun/proc/update_ammo_count()
 	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
-		rounds = length(chamber_items) + in_chamber ? 1 : 0
+		rounds = length(chamber_items) + (in_chamber ? 1 : 0)
 		max_rounds = max_chamber_items
 		return
 	var/total_rounds
@@ -1107,8 +1135,10 @@
 	for(var/obj/chamber_item in chamber_items)
 		total_rounds += chamber_item.vars[current_rounds_var]
 		total_max_rounds += chamber_item.vars[max_rounds_var]
-	rounds = total_rounds + in_chamber ? 1 : 0
+	rounds = total_rounds + (in_chamber ? 1 : 0)
 	max_rounds = total_max_rounds
+	update_icon()
+	gun_user?.hud_used.update_ammo_hud(gun_user, src)
 
 ///Disconnects from a worn magazine.
 /obj/item/weapon/gun/proc/drop_connected_mag(datum/source, mob/user)
@@ -1195,7 +1225,7 @@
 
 /obj/item/weapon/gun/proc/play_fire_sound(mob/user)
 	//Guns with low ammo have their firing sound
-	var/firing_sndfreq = ((rounds / max_rounds) > 0.25) ? FALSE : 55000
+	var/firing_sndfreq = ((rounds / (max_rounds ? max_rounds : max_shells)) > 0.25) ? FALSE : 55000
 	if(HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 		playsound(user, fire_sound, 25, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 		return

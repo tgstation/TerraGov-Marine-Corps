@@ -1,17 +1,8 @@
-
-
-/*
-Shotguns always start with an ammo buffer and they work by alternating ammo and ammo_buffer1
-in order to fire off projectiles. This is only done to enable burst fire for the shotgun.
-Consequently, the shotgun should never fire more than three projectiles on burst as that
-can cause issues with ammo types getting mixed up during the burst.
-*/
-
 /obj/item/weapon/gun/shotgun
 	w_class = WEIGHT_CLASS_BULKY
 	force = 14.0
 	caliber = CALIBER_12G //codex
-	max_shells = 9 //codex
+	max_chamber_items = 9 //codex
 	load_method = SINGLE_CASING //codex
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
@@ -19,7 +10,9 @@ can cause issues with ammo types getting mixed up during the burst.
 	cocked_sound = 'sound/weapons/guns/interact/shotgun_reload.ogg'
 	opened_sound = 'sound/weapons/guns/interact/shotgun_open.ogg'
 	accuracy_mult = 1.15
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	reciever_flags = RECIEVER_HANDFULS
+	allowed_ammo_type = /obj/item/ammo_magazine/handful
 	aim_slowdown = 0.35
 	wield_delay = 0.6 SECONDS //Shotguns are really easy to put up to fire, since they are designed for CQC (at least compared to a rifle)
 	gun_skill_category = GUN_SKILL_SHOTGUNS
@@ -46,8 +39,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = "mk221"
 	item_state = "mk221"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
-	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/combat
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/reddot,
@@ -83,8 +76,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = "t39"
 	item_state = "t39"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
-	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/combat
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -123,8 +116,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	slot = ATTACHMENT_SLOT_UNDER
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
-	flags_gun_features = GUN_IS_ATTACHMENT|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_CAN_POINTBLANK
-	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/masterkey
+	flags_gun_features = GUN_IS_ATTACHMENT|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_CAN_POINTBLANK
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	recoil = 0
 	pixel_shift_x = 14
 	pixel_shift_y = 18
@@ -138,8 +131,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "dshotgun"
 	item_state = "dshotgun"
-	max_shells = 2 //codex
-	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/double
+	max_chamber_items = 2 //codex
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	fire_sound = 'sound/weapons/guns/fire/shotgun_heavy.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'
 	cocked_sound = null //We don't want this.
@@ -151,7 +144,8 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/magnetic_harness,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_PUMP_REQUIRED
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	reciever_flags = RECIEVER_TOGGLES|RECIEVER_TOGGLES_EJECTS|RECIEVER_HANDFULS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 21,"rail_x" = 15, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
 
 	fire_delay = 2
@@ -171,7 +165,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	item_state = "sshotgun"
 	flags_equip_slot = ITEM_SLOT_BELT
 	attachable_allowed = list()
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 18, "under_y" = 16, "stock_x" = 18, "stock_y" = 16)
 
 	fire_delay = 2
@@ -191,8 +185,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "ts34"
 	item_state = "ts34"
-	max_shells = 2 //codex
-	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/double
+	max_chamber_items = 2 //codex
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	fire_sound = 'sound/weapons/guns/fire/shotgun_heavy.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'
 	cocked_sound = null //We don't want this.
@@ -209,7 +203,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/scope/mini,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 21, "under_y" = 13, "stock_x" = 13, "stock_y" = 16)
 
 	fire_delay = 5
@@ -232,10 +226,10 @@ can cause issues with ammo types getting mixed up during the burst.
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "v10"
 	item_state = "v10"
-	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/pump
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/shotgun_pump.ogg'
-	max_shells = 9
+	max_chamber_items = 9
 	cock_delay = 1.4 SECONDS
 
 	attachable_allowed = list(
@@ -254,8 +248,10 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_PUMP_REQUIRED
-	reciever_flags = RECIEVER_INTERNAL|RECIEVER_HANDFULS|RECIEVER_REQUIRES_OPERATION
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	reciever_flags = RECIEVER_INTERNAL|RECIEVER_HANDFULS|RECIEVER_REQUIRES_OPERATION|RECIEVER_LOCKS
+	cocked_message = "You rack the pump."
+	cock_locked_message = "The pump is locked! Fire it first!"
 	max_chamber_items = 8
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
@@ -280,7 +276,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	fire_sound = 'sound/weapons/guns/fire/shotgun_cmb.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_cmb_insert.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/shotgun_cmb_pump.ogg'
-	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/pump/CMB
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/gyro,
@@ -321,8 +317,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = CALIBER_762X54 //codex
 	load_method = SINGLE_CASING //codex
-	max_shells = 5 //codex
-	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/pump/bolt
+	max_chamber_items = 5 //codex
+	default_ammo_type = /datum/ammo/bullet/sniper/svd
 	gun_skill_category = GUN_SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 	attachable_allowed = list(
@@ -338,7 +334,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/buildasentry,
 	)
 	flags_item_map_variant = NONE
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_PUMP_REQUIRED
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 37, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/mosin,
@@ -375,9 +371,9 @@ can cause issues with ammo types getting mixed up during the burst.
 	shell_eject_animation = "martini_flick"
 	caliber = CALIBER_557 //codex
 	muzzle_flash_lum = 7
-	max_shells = 1 //codex
+	max_chamber_items = 1 //codex
 	ammo = /datum/ammo/bullet/sniper/martini
-	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/martini
+	default_ammo_type = /datum/ammo/bullet/sniper/martini
 	gun_skill_category = GUN_SKILL_RIFLES
 	fire_sound = 'sound/weapons/guns/fire/martini.ogg'
 	reload_sound = 'sound/weapons/guns/interact/martini_reload.ogg'
@@ -395,7 +391,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/buildasentry,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_PUMP_REQUIRED
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 23,"rail_x" = 17, "rail_y" = 25, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
 
 	fire_delay = 1 SECONDS
@@ -424,15 +420,15 @@ can cause issues with ammo types getting mixed up during the burst.
 	w_class = WEIGHT_CLASS_TINY
 	caliber = CALIBER_41RIM //codex
 	muzzle_flash_lum = 5
-	max_shells = 2 //codex
+	max_chamber_items = 2 //codex
 	ammo = /datum/ammo/bullet/pistol/superheavy/derringer
-	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/derringer
+	default_ammo_type = /datum/ammo/bullet/pistol/superheavy/derringer
 	fire_sound = 'sound/weapons/guns/fire/mateba.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/martini_cocked.ogg'
 	opened_sound = 'sound/weapons/guns/interact/martini_open.ogg'
 	attachable_allowed = list()
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 
 	fire_delay = 0.5 SECONDS
 	scatter = 30
@@ -461,8 +457,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = CALIBER_44 //codex
 	load_method = SINGLE_CASING //codex
-	max_shells = 10 //codex
-	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/pump/lever
+	max_chamber_items = 10 //codex
+	default_ammo_type = /datum/ammo/bullet/revolver/tp44
 	gun_skill_category = GUN_SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
 	flags_item_map_variant = NONE
@@ -474,7 +470,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/bayonet,
 	)
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 
 	fire_delay = 8
 	accuracy_mult = 1.30
@@ -500,8 +496,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = CALIBER_44 //codex
 	load_method = SINGLE_CASING //codex
-	max_shells = 14 //codex
-	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/pump/lever/repeater
+	max_chamber_items = 14 //codex
+	default_ammo_type = /datum/ammo/bullet/revolver/tp44
 	gun_skill_category = GUN_SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
 	flags_item_map_variant = NONE
@@ -515,7 +511,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/motiondetector,
 	)
 	attachable_offset = list ("muzzle_x" = 45, "muzzle_y" = 23,"rail_x" = 21, "rail_y" = 23, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.3 SECONDS
 	aim_speed_modifier = 2
@@ -544,8 +540,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = CALIBER_410
 	load_method = SINGLE_CASING
-	max_shells = 10
-	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/pump/lever/mbx900
+	max_chamber_items = 10
+	default_ammo_type = /datum/ammo/bullet/shotgun/mbx900_buckshot
 	gun_skill_category = GUN_SKILL_SHOTGUNS
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
 
@@ -585,9 +581,9 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = "t35"
 	item_state = "t35"
 	cock_animation = "t35_pump"
-	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/pump
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	fire_sound = 'sound/weapons/guns/fire/t35.ogg'
-	max_shells = 9
+	max_chamber_items = 9
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -624,10 +620,10 @@ can cause issues with ammo types getting mixed up during the burst.
 
 //buckshot variants
 /obj/item/weapon/gun/shotgun/pump/t35/pointman
-	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/pump/buckshot
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 
 /obj/item/weapon/gun/shotgun/pump/t35/nonstandard
-	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/pump/buckshot
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	starting_attachment_types = list(/obj/item/attachable/stock/t35stock, /obj/item/attachable/angledgrip, /obj/item/attachable/magnetic_harness)
 
 //-------------------------------------------------------
@@ -640,11 +636,11 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = "zx-76"
 	item_state = "zx-76"
 	flags_equip_slot = ITEM_SLOT_BACK
-	max_shells = 10 //codex
+	max_chamber_items = 10 //codex
 	caliber = CALIBER_12G //codex
 	load_method = SINGLE_CASING //codex
 	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'
-	default_magazine_type = /obj/item/ammo_magazine/internal/shotgun/scout
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	aim_slowdown = 0.45
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,

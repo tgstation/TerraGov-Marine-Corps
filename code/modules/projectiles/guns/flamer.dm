@@ -214,7 +214,7 @@
 	if(!length(turfs_to_burn))
 		return FALSE
 
-	var/datum/ammo/flamethrower/loaded_ammo = CHECK_BITFIELD(flags_flamer_features, FLAMER_USES_GUN_FLAMES) ? ammo : default_magazine_type.default_ammo
+	var/datum/ammo/flamethrower/loaded_ammo = CHECK_BITFIELD(flags_flamer_features, FLAMER_USES_GUN_FLAMES) ? ammo : default_ammo_type.default_ammo
 	var/burn_level = initial(loaded_ammo.burnlevel) * burn_level_mod
 	var/burn_time = initial(loaded_ammo.burntime) * burn_time_mod
 	var/fire_color = initial(loaded_ammo.fire_color)
@@ -293,7 +293,7 @@
 	fire_delay = 2.5 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 
-	default_magazine_type = /obj/item/ammo_magazine/flamer_tank/mini
+	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/mini
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/unremovable/invisible)
 	attachable_allowed = list(
 		/obj/item/attachable/flamer_nozzle/unremovable/invisible,
@@ -313,7 +313,7 @@
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard
 	name = "\improper TL-84 flamethrower"
 	desc = "The TL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Use unique action to use hydro cannon"
-	default_magazine_type = /obj/item/ammo_magazine/flamer_tank/large
+	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "tl84"
 	item_state = "tl84"
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY
@@ -352,7 +352,7 @@
 		light_pilot(FALSE)
 	else
 		hydro_active = FALSE
-		if (default_magazine_type?.current_rounds > 0)
+		if (default_ammo_type?.current_rounds > 0)
 			light_pilot(TRUE)
 	user.hud_used.update_ammo_hud(user, src)
 	SEND_SIGNAL(src, COMSIG_ITEM_HYDRO_CANNON_TOGGLED)

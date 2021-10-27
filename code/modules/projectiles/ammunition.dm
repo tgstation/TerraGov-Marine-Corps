@@ -135,7 +135,7 @@
 	source.current_rounds -= amount_difference
 	current_rounds += amount_difference
 
-	if(source.current_rounds <= 0 && CHECK_BITFIELD(flags_magazine, MAGAZINE_HANDFUL)) //We want to delete it if it's a handful.
+	if(source.current_rounds <= 0 && CHECK_BITFIELD(source.flags_magazine, MAGAZINE_HANDFUL)) //We want to delete it if it's a handful.
 		user?.temporarilyRemoveItemFromInventory(source)
 		QDEL_NULL(source) //Dangerous. Can mean future procs break if they reference the source. Have to account for this.
 	else
@@ -210,9 +210,6 @@
 	attack_speed = 3 // should make reloading less painful
 	icon_state_mini = "bullets"
 
-
-// A pre-set version of the buckshot shells for the sake of pre-set marine jobs. Sorry Terra.
-// BUT IT HAS TO BE DONE.
 /obj/item/ammo_magazine/handful/buckshot
 	name = "handful of shotgun buckshot shells (12g)"
 	icon_state = "shotgun buckshot shell"

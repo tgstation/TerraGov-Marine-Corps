@@ -35,7 +35,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/sniper_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/sniper_reload.ogg'
-	default_magazine_type = /obj/item/ammo_magazine/sniper
+	default_ammo_type = /obj/item/ammo_magazine/sniper
 	force = 12
 	wield_delay = 12 //Ends up being 1.6 seconds due to scope
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
@@ -50,7 +50,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/scope/antimaterial,
 		/obj/item/attachable/buildasentry,
 	)
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	starting_attachment_types = list(/obj/item/attachable/scope/antimaterial, /obj/item/attachable/sniperbarrel)
 
 	fire_delay = 2.5 SECONDS
@@ -59,7 +59,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 2
 
 	placed_overlay_iconstate = "antimat"
-	
+
 
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/Initialize()
@@ -227,10 +227,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	unload_sound = 'sound/weapons/guns/interact/sniper_heavy_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/sniper_heavy_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/sniper_heavy_cocked.ogg'
-	default_magazine_type = /obj/item/ammo_magazine/sniper/elite
+	default_ammo_type = /obj/item/ammo_magazine/sniper/elite
 	force = 17
 	attachable_allowed = list()
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 	flags_item_map_variant = NONE
 	starting_attachment_types = list(/obj/item/attachable/scope/pmc, /obj/item/attachable/sniperbarrel)
@@ -266,7 +266,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	unload_sound = 'sound/weapons/guns/interact/svd_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/svd_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/svd_cocked.ogg'
-	default_magazine_type = /obj/item/ammo_magazine/sniper/svd
+	default_ammo_type = /obj/item/ammo_magazine/sniper/svd
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
@@ -277,7 +277,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/scope/slavic,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 22, "under_x" = 24, "under_y" = 13, "stock_x" = 20, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/attachable/scope/slavic, /obj/item/attachable/slavicbarrel)
 	actions_types = list(/datum/action/item_action/aim_mode)
@@ -308,7 +308,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	unload_sound = 'sound/weapons/guns/interact/m4ra_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m4ra_cocked.ogg'
-	default_magazine_type = /obj/item/ammo_magazine/rifle/tx8
+	default_ammo_type = /obj/item/ammo_magazine/rifle/tx8
 	force = 16
 	aim_slowdown = 0.45
 	attachable_allowed = list(
@@ -335,7 +335,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	gun_skill_category = GUN_SKILL_FIREARMS
 	attachable_offset = list("muzzle_x" = 44, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 25, "under_x" = 27, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
@@ -365,16 +365,14 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	unload_sound = 'sound/weapons/guns/interact/minigun_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
-	default_magazine_type = /obj/item/ammo_magazine/internal/minigun
+	default_ammo_type = /obj/item/ammo_magazine/minigun_powerpack
+	allowed_ammo_type = /obj/item/ammo_magazine/minigun_powerpack
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
 	wield_delay = 12
-	var/shells_fired_max = 50 //minigun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
-	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
-
 	gun_skill_category = GUN_SKILL_FIREARMS
 	aim_slowdown = 0.8
-	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
@@ -388,8 +386,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
 
-
-
 /obj/item/weapon/gun/minigun/Initialize()
 	. = ..()
 	SSmonitor.stats.miniguns_in_use += src
@@ -397,23 +393,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/minigun/Destroy()
 	SSmonitor.stats.miniguns_in_use -= src
 	return ..()
-
-
-/obj/item/weapon/gun/minigun/finish_fire()
-	. = ..()
-	if(!istype(gun_user.back, /obj/item/minigun_powerpack))
-		return
-	var/obj/item/minigun_powerpack/power_pack = gun_user.back
-	if(shells_fired_now >= shells_fired_max && power_pack.rounds_remaining > 0) // If shells fired exceeds shells needed to reload, and we have ammo.
-		addtimer(CALLBACK(src, .proc/auto_reload, user, power_pack), 0.5 SECONDS)
-		return
-	shells_fired_now++
-
-
-/obj/item/weapon/gun/minigun/proc/auto_reload(mob/minigunner, obj/item/minigun_powerpack/power_pack)
-	if(power_pack?.loc != minigunner)
-		return
-	power_pack.attack_self(minigunner, TRUE)
 
 
 // PEPPERBALL GUN
@@ -430,7 +409,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	max_shells = 70 //codex
 	caliber = CALIBER_PEPPERBALL
-	default_magazine_type = /obj/item/ammo_magazine/rifle/pepperball
+	default_ammo_type = /obj/item/ammo_magazine/rifle/pepperball
 	force = 30 // two shots weeds as it has no bayonet
 	wield_delay = 0.5 SECONDS // Very fast to put up.
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
@@ -439,7 +418,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	) // One
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AMMO_COUNTER
 
 	fire_delay = 0.1 SECONDS
 	burst_amount = 1
@@ -463,7 +442,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	caliber = CALIBER_84MM //codex
 	load_method = SINGLE_CASING //codex
 	materials = list(/datum/material/metal = 10000)
-	default_magazine_type = /obj/item/ammo_magazine/rocket
+	default_ammo_type = /obj/item/ammo_magazine/rocket
 	flags_equip_slot = NONE
 	w_class = WEIGHT_CLASS_HUGE
 	force = 15
@@ -527,7 +506,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	caliber = CALIBER_84MM //codex
 	load_method = SINGLE_CASING //codex
 	materials = list(/datum/material/metal = 10000)
-	default_magazine_type = /obj/item/ammo_magazine/rocket/sadar
+	default_ammo_type = /obj/item/ammo_magazine/rocket/sadar
 	flags_equip_slot = NONE
 	w_class = WEIGHT_CLASS_HUGE
 	force = 15
@@ -571,7 +550,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	max_shells = 4 //codex
 	caliber = CALIBER_ROCKETARRAY //codex
 	load_method = MAGAZINE //codex
-	default_magazine_type = /obj/item/ammo_magazine/rocket/m57a4/ds
+	default_ammo_type = /obj/item/ammo_magazine/rocket/m57a4/ds
 	aim_slowdown = 2.75
 	attachable_allowed = list(
 		/obj/item/attachable/buildasentry,
@@ -591,7 +570,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	desc = "The T-57 is posssibly the most awful man portable weapon. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles with nearly no force to the rocket. Enough said."
 	icon_state = "t57"
 	item_state = "t57"
-	default_magazine_type = /obj/item/ammo_magazine/rocket/m57a4
+	default_ammo_type = /obj/item/ammo_magazine/rocket/m57a4
 
 
 
@@ -608,7 +587,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	caliber = CALIBER_67MM //codex
 	load_method = SINGLE_CASING //codex
 	materials = list(/datum/material/metal = 10000)
-	default_magazine_type = /obj/item/ammo_magazine/rocket/recoilless
+	default_ammo_type = /obj/item/ammo_magazine/rocket/recoilless
 	flags_equip_slot = NONE
 	w_class = WEIGHT_CLASS_HUGE
 	force = 15
@@ -643,7 +622,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	max_shells = 1 //codex
 	caliber = CALIBER_84MM //codex
 	load_method = SINGLE_CASING //codex
-	default_magazine_type = /obj/item/ammo_magazine/rocket/oneuse
+	default_ammo_type = /obj/item/ammo_magazine/rocket/oneuse
 	flags_equip_slot = ITEM_SLOT_BELT
 	attachable_allowed = list(/obj/item/attachable/magnetic_harness)
 
@@ -661,7 +640,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 
 /obj/item/weapon/gun/launcher/rocket/oneuse/examine_ammo_count(mob/user)
-	if(default_magazine_type?.current_rounds)
+	if(default_ammo_type?.current_rounds)
 		to_chat(user, "It's loaded.")
 	else
 		to_chat(user, "It's empty.")
@@ -682,7 +661,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/sniper_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/sniper_reload.ogg'
-	default_magazine_type = /obj/item/ammo_magazine/railgun
+	default_ammo_type = /obj/item/ammo_magazine/railgun
 	force = 40
 	wield_delay = 1.75 SECONDS //You're not quick drawing this.
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
@@ -690,7 +669,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/magnetic_harness,
 	)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 
 	fire_delay = 1 SECONDS
 	burst_amount = 1

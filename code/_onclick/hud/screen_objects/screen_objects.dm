@@ -704,7 +704,7 @@
 	if(!user?.client?.screen.Find(src))
 		return
 
-	if(!G || !(G.flags_gun_features & GUN_AMMO_COUNTER) || !G.get_ammo())
+	if(!G || !(G.flags_gun_features & GUN_AMMO_COUNTER))
 		remove_hud(user)
 		return
 
