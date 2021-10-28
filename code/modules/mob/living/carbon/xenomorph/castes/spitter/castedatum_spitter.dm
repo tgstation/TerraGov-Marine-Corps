@@ -11,7 +11,7 @@
 	melee_damage = 17
 
 	// *** Speed *** //
-	speed = -0.8
+	speed = -0.4
 
 	// *** Plasma *** //
 	plasma_max = 650
@@ -70,7 +70,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Speed *** //
-	speed = -0.8
+	speed = -0.5
 
 	// *** Plasma *** //
 	plasma_max = 800
@@ -100,7 +100,7 @@
 	melee_damage = 20
 
 	// *** Speed *** //
-	speed = -0.8
+	speed = -0.6
 
 	// *** Plasma *** //
 	plasma_max = 875
@@ -130,7 +130,7 @@
 	melee_damage = 20
 
 	// *** Speed *** //
-	speed = -0.8
+	speed = -0.7
 
 	// *** Plasma *** //
 	plasma_max = 925
