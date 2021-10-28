@@ -94,9 +94,12 @@
 #define STEALTH_TRAIT "stealth" //From hunter stealth
 #define REVIVE_TO_CRIT_TRAIT "revive_to_crit"
 #define GUN_TRAIT "gun" //Traits related to guns
+#define HUSK_TRAIT "husk"
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
 
+//added b grilling a food
+#define TRAIT_FOOD_GRILLED "food_grilled"
 
 //mob traits
 #define TRAIT_KNOCKEDOUT "knockedout" //Forces the user to stay unconscious.
@@ -137,3 +140,5 @@
 
 // item traits
 #define TRAIT_T_RAY_VISIBLE "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
+// turf traits
+#define TRAIT_TURF_FREEZE_BULLET "freeze_bullet" //Stop projectiles on this tiles

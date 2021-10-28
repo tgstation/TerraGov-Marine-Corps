@@ -53,8 +53,14 @@
 	var/accuracy_mult 			= 1				//Multiplier. Increased and decreased through attachments. Multiplies the projectile's accuracy by this number.
 	var/damage_mult 			= 1				//Same as above, for damage.
 	var/damage_falloff_mult 	= 1				//Same as above, for damage bleed (falloff)
-	var/recoil 					= 0				//Screen shake when the weapon is fired.
+	///Recoil applied when gun is fired wielded.
+	var/recoil 					= 0
+	///Recoil applied when gun is fired unwielded.
 	var/recoil_unwielded 		= 0
+	///a multiplier of the duration the recoil takes to go back to normal view, this is (recoil*recoil_backtime_multiplier)+1
+	var/recoil_backtime_multiplier = 2
+	///this is how much deviation the gun recoil can have, recoil pushes the screen towards the reverse angle you shot + some deviation which this is the max.
+	var/recoil_deviation = 22.5
 	var/scatter					= 20				//How much the bullet scatters when fired.
 	var/scatter_unwielded 		= 20
 	var/burst_scatter_mult		= 3				//Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
@@ -204,7 +210,7 @@
 
 	setup_firemodes()
 	AddComponent(/datum/component/automatedfire/autofire, fire_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
-	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachable_allowed, attachable_offset, starting_attachment_types, null, null, null, attachment_overlays)
+	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachable_allowed, attachable_offset, starting_attachment_types, null, CALLBACK(src, .proc/on_attachment_attach), CALLBACK(src, .proc/on_attachment_detach), attachment_overlays)
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT))
 		AddElement(/datum/element/attachment, slot, icon, .proc/on_attach, .proc/on_detach, .proc/activate, .proc/can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, "firearms", SKILL_FIREARMS_DEFAULT, 'sound/machines/click.ogg')
 
@@ -259,6 +265,9 @@
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
 	set_gun_user(null)
 	active_attachable?.removed_from_inventory(user)
+	if(!current_mag || current_mag.loc == src)
+		return
+	unload(user)
 
 ///Set the user in argument as gun_user
 /obj/item/weapon/gun/proc/set_gun_user(mob/user)
@@ -300,7 +309,7 @@
 /obj/item/weapon/gun/update_icon(mob/user)
 	if(!current_mag)
 		icon_state = base_gun_icon + "_e"
-	else if(istype(current_mag, /obj/item/ammo_magazine/flamer_tank/backtank)) //Moved this here so that the flamer icon change will function with attachables.
+	else if(current_mag.loc != src)
 		icon_state = base_gun_icon + "_l"
 	else
 		icon_state = base_gun_icon
@@ -316,11 +325,11 @@
 			var/datum/action/action = action_to_update
 			action.update_button_icon()
 
-	update_item_state(user)
-	update_mag_overlay(user)
+	update_item_state()
+	update_mag_overlay()
 
 
-/obj/item/weapon/gun/update_item_state(mob/user)
+/obj/item/weapon/gun/update_item_state()
 	item_state = "[base_gun_icon][flags_item & WIELDED ? "_w" : ""]"
 
 
@@ -340,7 +349,7 @@
 		if(!istype(attachable, /obj/item/weapon/gun))
 			continue
 		var/obj/item/weapon/gun/gun_attachable = attachable
-		if(istype(attachable, /obj/item/weapon/gun/launcher))
+		if(istype(attachable, /obj/item/weapon/gun/grenade_launcher))
 			continue
 		var/chamber = in_chamber ? 1 : 0
 		dat += gun_attachable.current_mag ? "([gun_attachable.current_mag.current_rounds + chamber]/[gun_attachable.current_mag.max_rounds])" : "(Unloaded)"
@@ -481,17 +490,20 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			replace_magazine(user, magazine)
 	else
 		current_mag = magazine
-		magazine.loc = src
+		if(!CHECK_BITFIELD(magazine.flags_magazine, AMMUNITION_WORN))
+			magazine.loc = src
 		replace_ammo(,magazine)
 		if(!in_chamber)
 			load_into_chamber()
+	magazine.on_inserted(src)
 
 	update_icon(user)
 	user.hud_used.update_ammo_hud(user, src)
 	return TRUE
 
 /obj/item/weapon/gun/proc/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
-	user.transferItemToLoc(magazine, src) //Click!
+	if(!CHECK_BITFIELD(magazine.flags_magazine, AMMUNITION_WORN))
+		user.transferItemToLoc(magazine, src) //Click!
 	current_mag = magazine
 	replace_ammo(user,magazine)
 	if(!in_chamber)
@@ -512,22 +524,31 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(!reload_override && ((flags_gun_features & (GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)) || HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING)))
 		return FALSE
 
-	if((!current_mag || isnull(current_mag) || current_mag.loc != src) && !(flags_gun_features & GUN_ENERGY))
+	if((!current_mag || isnull(current_mag) || (current_mag.loc != src && !CHECK_BITFIELD(current_mag.flags_magazine, AMMUNITION_WORN))) && !(flags_gun_features & GUN_ENERGY))
 		return cock(user)
 
-	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
-		current_mag.loc = get_turf(src) //Drop it on the ground.
-	else
-		user.put_in_hands(current_mag)
+	if(!CHECK_BITFIELD(current_mag.flags_magazine, AMMUNITION_WORN))
+		if(drop_override || !user) //If we want to drop it on the ground or there's no user.
+			current_mag.loc = get_turf(src) //Drop it on the ground.
+		else
+			user.put_in_hands(current_mag)
 
 	playsound(loc, unload_sound, 25, 1, 5)
 	user?.visible_message(span_notice("[user] unloads [current_mag] from [src]."),
 	span_notice("You unload [current_mag] from [src]."), null, 4)
+	current_mag.on_removed(src)
 	current_mag.update_icon()
+	UnregisterSignal(current_mag, COMSIG_ITEM_REMOVED_INVENTORY)
 	current_mag = null
 	user.hud_used.update_ammo_hud(user, src)
 	update_icon(user)
 	return TRUE
+
+///This is called when a connected worn magazine is dropped. This unloads it.
+/obj/item/weapon/gun/proc/drop_connected_mag(datum/source, mob/user)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/unload, user)
+	UnregisterSignal(source, COMSIG_ITEM_REMOVED_INVENTORY)
 
 
 //Manually cock the gun
@@ -646,7 +667,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		return
 	set_target(get_turf_on_clickcatcher(object, gun_user, params))
 	if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
-		if(!Fire() || windup_checked == WEAPON_WINDUP_CHECKING)
+		if(!INVOKE_ASYNC(src, .proc/Fire) || windup_checked == WEAPON_WINDUP_CHECKING)
 			return
 		reset_fire()
 		return
@@ -732,7 +753,9 @@ and you're good to go.
 		stack_trace("null ammo while create_bullet(). User: [usr]")
 		chambered = GLOB.ammo_list[/datum/ammo/bullet] //Slap on a default bullet if somehow ammo wasn't passed.
 
-	var/obj/projectile/P = new /obj/projectile()
+	var/proj_type = chambered.flags_ammo_behavior & AMMO_HITSCAN ? /obj/projectile/hitscan : /obj/projectile
+
+	var/obj/projectile/P = new proj_type(null, chambered.hitscan_effect_icon)
 	P.generate_bullet(chambered)
 	return P
 
@@ -763,6 +786,7 @@ and you're good to go.
 		//						   			   \\
 //----------------------------------------------------------
 
+///Wrapper proc to complete the whole firing process.
 /obj/item/weapon/gun/proc/Fire()
 	if(!target || (!gun_user && !istype(loc, /obj/machinery/deployable/mounted/sentry)) || (!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)))
 		return
@@ -774,6 +798,13 @@ and you're good to go.
 		click_empty(gun_user)
 		return
 
+	if(!do_fire(projectile_to_fire))
+		return
+	finish_fire()
+	return TRUE
+
+///Actually fires the gun, sets up the projectile and fires it.
+/obj/item/weapon/gun/proc/do_fire(obj/projectile/projectile_to_fire)
 	var/firer
 	if(istype(loc, /obj/machinery/deployable/mounted/sentry) && !gun_user)
 		firer = loc
@@ -792,7 +823,7 @@ and you're good to go.
 
 	play_fire_sound(loc)
 	muzzle_flash(firing_angle, master_gun ? gun_user : loc)
-	simulate_recoil(dual_wield, gun_user)
+	simulate_recoil(dual_wield, firing_angle)
 
 	//This is where the projectile leaves the barrel and deals with projectile code only.
 	//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -804,19 +835,24 @@ and you're good to go.
 	if(fire_animation) //Fires gun firing animation if it has any. ex: rotating barrel
 		flick("[fire_animation]", src)
 
-	last_fired = world.time
-	reload_into_chamber(gun_user)
-	if(gun_user?.client)
-		gun_user.hud_used.update_ammo_hud(gun_user, src)
-	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
-	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && CHECK_BITFIELD(flags_item, IS_DEPLOYED) && CHECK_BITFIELD(turret_flags, TURRET_RADIAL) && !gun_user)
-		sentry_battery.charge -= sentry_battery_drain
-		if(sentry_battery.charge <= 0)
-			DISABLE_BITFIELD(turret_flags, TURRET_RADIAL)
-			sentry_battery.forceMove(get_turf(src))
-			sentry_battery.charge = 0
-			sentry_battery = null
 	return TRUE
+
+///Performs the after firing functions.
+/obj/item/weapon/gun/proc/finish_fire()
+	last_fired = world.time
+
+	reload_into_chamber(gun_user)
+	gun_user?.hud_used.update_ammo_hud(gun_user, src)
+	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
+	if(!CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) || !CHECK_BITFIELD(flags_item, IS_DEPLOYED) || !CHECK_BITFIELD(turret_flags, TURRET_RADIAL) || gun_user)
+		return
+	sentry_battery.charge -= sentry_battery_drain
+	if(sentry_battery.charge >= 0)
+		return
+	DISABLE_BITFIELD(turret_flags, TURRET_RADIAL)
+	sentry_battery.forceMove(get_turf(src))
+	sentry_battery.charge = 0
+	sentry_battery = null
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)) // If it can't point blank, you can't suicide and such.
@@ -831,7 +867,7 @@ and you're good to go.
 	if(M.status_flags & INCORPOREAL) //Can't attack the incorporeal
 		return ..()
 
-	if(M != user && user.a_intent == INTENT_HARM)
+	if(M != user && (M.faction != user.faction || user.a_intent == INTENT_HARM))
 		. = ..()
 		if(!.)
 			return
@@ -852,7 +888,7 @@ and you're good to go.
 		setup_bullet_accuracy(projectile_to_fire, user) //We add any damage effects that we need.
 		projectile_to_fire.setDir(get_dir(user, M))
 		projectile_to_fire.distance_travelled = get_dist(user, M)
-		simulate_recoil(1, user) // 1 is a scalar value not boolean
+		simulate_recoil(1, Get_Angle(user, M)) // 1 is a scalar value not boolean
 		play_fire_sound(user)
 
 		if(projectile_to_fire.ammo.bonus_projectiles_amount)
@@ -904,7 +940,7 @@ and you're good to go.
 	var/actual_sound = (active_attachable?.fire_sound) ? active_attachable.fire_sound : fire_sound
 	var/sound_volume = (HAS_TRAIT(src, TRAIT_GUN_SILENCED) && !active_attachable) ? 25 : 60
 	playsound(user, actual_sound, sound_volume, 1)
-	simulate_recoil(2, user)
+	simulate_recoil(2, Get_Angle(user, M))
 	var/obj/item/weapon/gun/revolver/current_revolver = src
 	log_combat(user, null, "committed suicide with [src].")
 	message_admins("[ADMIN_TPMONTY(user)] committed suicide with [src].")
@@ -1136,8 +1172,8 @@ and you're good to go.
 		return 0
 
 
-/obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, mob/user)
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED) || !user)
+/obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, firing_angle)
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED) || !gun_user)
 		return TRUE
 	var/total_recoil = recoil_bonus
 	if(flags_item & WIELDED && wielded_stable() || master_gun)
@@ -1146,14 +1182,19 @@ and you're good to go.
 		total_recoil += recoil_unwielded
 		if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 			total_recoil += 1
-	if(!user.skills.getRating("firearms")) //no training in any firearms
+	if(!gun_user.skills.getRating("firearms")) //no training in any firearms
 		total_recoil += 2
 	else
-		var/recoil_tweak = user.skills.getRating(gun_skill_category)
+		var/recoil_tweak = gun_user.skills.getRating(gun_skill_category)
 		if(recoil_tweak)
 			total_recoil -= recoil_tweak * 2
-	if(total_recoil > 0 && ishuman(user))
-		shake_camera(user, total_recoil + 1, total_recoil)
+
+
+	var/actual_angle = firing_angle + rand(-recoil_deviation, recoil_deviation) + 180
+	if(actual_angle > 360)
+		actual_angle -= 360
+	if(total_recoil > 0)
+		recoil_camera(gun_user, total_recoil + 1, (total_recoil * recoil_backtime_multiplier)+1, total_recoil, actual_angle)
 		return TRUE
 
 

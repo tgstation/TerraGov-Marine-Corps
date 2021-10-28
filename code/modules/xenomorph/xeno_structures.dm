@@ -9,6 +9,11 @@
 	. = ..()
 	if(!(xeno_structure_flags & IGNORE_WEED_REMOVAL))
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, .proc/weed_removed)
+	GLOB.xeno_structure += src
+
+/obj/structure/xeno/Destroy()
+	GLOB.xeno_structure -= src
+	return ..()
 
 /obj/structure/xeno/ex_act(severity)
 	switch(severity)
@@ -48,11 +53,15 @@
 	destroy_sound = "alien_resin_break"
 	///The hugger inside our trap
 	var/obj/item/clothing/mask/facehugger/hugger = null
+	///connection list for huggers
+	var/static/list/listen_connections = list(
+		COMSIG_ATOM_ENTERED = .proc/trigger_hugger_trap,
+	)
 
 /obj/structure/xeno/trap/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
-	RegisterSignal(src, COMSIG_MOVABLE_CROSSED_BY, .proc/trigger_hugger_trap) //Set up the trap signal on our turf
+	AddElement(/datum/element/connect_loc, listen_connections)
 
 /obj/structure/xeno/trap/ex_act(severity)
 	switch(severity)
@@ -101,7 +110,7 @@
 	icon_state = "trap0"
 
 ///Triggers the hugger trap
-/obj/structure/xeno/trap/proc/trigger_hugger_trap(datum/source, atom/movable/AM, oldloc)
+/obj/structure/xeno/trap/proc/trigger_hugger_trap(datum/source, atom/movable/AM, oldloc, oldlocs)
 	SIGNAL_HANDLER
 	if(!iscarbon(AM) || !hugger)
 		return
@@ -365,6 +374,10 @@ TUNNEL
 	src.creator = creator
 	RegisterSignal(creator, COMSIG_PARENT_QDELETING, .proc/clear_creator)
 	update_icon()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/xeno/acidwell/Destroy()
 	creator = null
@@ -483,8 +496,8 @@ TUNNEL
 	update_icon()
 	to_chat(X,span_xenonotice("We add acid to [src]. It is currently has <b>[charges] / [XENO_ACID_WELL_MAX_CHARGES] charges</b>.") )
 
-/obj/structure/xeno/acidwell/Crossed(atom/A)
-	. = ..()
+/obj/structure/xeno/acidwell/proc/on_cross(datum/source, atom/movable/A, oldloc, oldlocs)
+	SIGNAL_HANDLER
 	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
 		return
 	if(iscarbon(A))
@@ -635,6 +648,11 @@ TUNNEL
 			RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/resin_silo_proxy_alert)
 
 	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = "silo")
+	if(SSticker.mode?.flags_round_type & MODE_SPAWNING_MINIONS)
+		SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, null)
+		SSspawning.spawnerdata[src].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
+		SSspawning.spawnerdata[src].max_allowed_mobs = max(1, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count * 0.5)
+
 	return INITIALIZE_HINT_LATELOAD
 
 
@@ -1017,6 +1035,8 @@ TUNNEL
 	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, TURRET_SCAN_RANGE))
 		if(nearby_human.stat == DEAD)
 			continue
+		if(nearby_human.get_xeno_hivenumber() == associated_hive.hivenumber)
+			continue
 		potential_hostiles += nearby_human
 	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))
 		if(associated_hive == nearby_xeno.hive) //Xenomorphs not in our hive will be attacked as well!
@@ -1115,3 +1135,25 @@ TUNNEL
 			take_damage(500)
 		if(EXPLODE_LIGHT)
 			take_damage(300)
+
+/obj/structure/xeno/spawner
+	name = "spawner"
+	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things."
+	icon = 'icons/Xeno/3x3building.dmi'
+	icon_state = "spawner"
+	bound_width = 96
+	bound_height = 96
+	max_integrity = 500
+	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
+	xeno_structure_flags = IGNORE_WEED_REMOVAL
+
+/obj/structure/xeno/spawner/Initialize()
+	. = ..()
+	GLOB.xeno_spawner += src
+	SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, null)
+	SSspawning.spawnerdata[src].required_increment = max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
+	SSspawning.spawnerdata[src].max_allowed_mobs = max(2, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count)
+
+/obj/structure/xeno/spawner/Destroy()
+	GLOB.xeno_spawner -= src
+	return ..()

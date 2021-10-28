@@ -313,6 +313,7 @@
 	..()
 
 /turf/open/lavaland/lava/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
 	if(burn_stuff(arrived))
 		START_PROCESSING(SSobj, src)
 

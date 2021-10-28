@@ -111,26 +111,6 @@
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, attachment_offsets, starting_attachments, null, null, null, attachment_overlays)
 	update_icon()
 
-/obj/item/clothing/suit/modular/pas11x/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(!istype(I, /obj/item/facepaint/) || !length(icon_state_variants))
-		return
-	var/obj/item/facepaint/paint = I
-	if(paint.uses < 1)
-		to_chat(user, span_warning("\the [paint] is out of color!"))
-		return
-	paint.uses--
-	var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
-
-	if(!variant)
-		return
-	
-	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
-		return
-
-	current_variant = variant
-	update_icon()
-
 
 /obj/item/clothing/suit/modular/equipped(mob/user, slot)
 	. = ..()
@@ -251,12 +231,32 @@
 	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
 		. += "<br> It has a [attachments_by_slot[ATTACHMENT_SLOT_STORAGE]] installed."
 
-/obj/item/clothing/suit/modular/pas11x
-	name = "\improper PAS-11X pattern armored vest"
-	desc = "A modified version of the PAS-11 that has been fit with Jaeger module attach points in order to give use to the surplus armor left while being able to compete with the X-02 Exoskeleton. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
-	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
-	icon_state = "pas11"
-	item_state = "pas11"
+/obj/item/clothing/suit/modular/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!istype(I, /obj/item/facepaint) || !length(icon_state_variants))
+		return
+	var/obj/item/facepaint/paint = I
+	if(paint.uses < 1)
+		to_chat(user, span_warning("\the [paint] is out of color!"))
+		return
+	paint.uses--
+	var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
+
+	if(!variant)
+		return
+
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return
+
+	current_variant = variant
+	update_icon()
+
+/obj/item/clothing/suit/modular/xenonauten
+	name = "\improper Xenonauten-M pattern armored vest"
+	desc = "A XN-M vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a medium variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 50, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
+	icon_state = "medium"
+	item_state = "medium"
 	slowdown = 0.5
 
 	attachments_allowed = list(
@@ -279,19 +279,37 @@
 	)
 
 	icon_state_variants = list(
-		"green",
+		"drab",
 		"black",
-		"brown",
-		"white",
+		"desert",
+		"snow",
 	)
 
-	current_variant = "brown"
+	current_variant = "black"
 
-/obj/item/clothing/suit/modular/pas11x/update_icon()
+
+
+/*/obj/item/clothing/suit/modular/xenonauten/update_icon()
 	. = ..()
 	if(item_state == icon_state)
 		return
-	item_state = icon_state
+	item_state = icon_state*/
+
+/obj/item/clothing/suit/modular/xenonauten/light
+	name = "\improper Xenonauten-L pattern armored vest"
+	desc = "A XN-L vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a light variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	soft_armor = list("melee" = 35, "bullet" = 55, "laser" = 55, "energy" = 50, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 45)
+	icon_state = "light"
+	item_state = "light"
+	slowdown = 0.3
+
+/obj/item/clothing/suit/modular/xenonauten/heavy
+	name = "\improper Xenonauten-H pattern armored vest"
+	desc = "A XN-H vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a heavy variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 65, "energy" = 50, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 55)
+	icon_state = "heavy"
+	item_state = "heavy"
+	slowdown = 0.7
 
 /** Core helmet module */
 /obj/item/clothing/head/modular
@@ -416,7 +434,7 @@
 
 		if(!variant)
 			return
-	
+
 		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 			return
 
@@ -583,6 +601,7 @@
 		/obj/item/armor_module/storage/helmet,
 
 		/obj/item/armor_module/armor/visor/marine/eva,
+		/obj/item/armor_module/armor/visor/marine/eva/skull,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eva, /obj/item/armor_module/storage/helmet)
@@ -654,7 +673,7 @@
 
 /obj/item/clothing/head/modular/marine/m10x
 	name = "\improper M10X pattern marine helmet"
-	desc = "A standard M10 Pattern Helmet modified with attach points. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
+	desc = "A standard M10 Pattern Helmet with attach points. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
 	icon = 'icons/mob/modular/m10.dmi'
 	icon_state = "helmet_icon"
 	icon_override = null
@@ -675,7 +694,6 @@
 		/obj/item/armor_module/module/welding,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
-
 		/obj/item/armor_module/storage/helmet,
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
@@ -689,16 +707,7 @@
 		"white",
 	)
 
-	current_variant = "brown"
-
-/obj/item/clothing/head/modular/marine/m10x/standard
-
-/obj/item/clothing/head/modular/marine/m10x/tech
-	name = "\improper M10X technician helmet"
-
-
-/obj/item/clothing/head/modular/marine/m10x/corpsman
-	name = "\improper M10X corpsman helmet"
+	current_variant = "black"
 
 /obj/item/clothing/head/modular/marine/m10x/heavy
 	name = "\improper M10XE pattern marine helmet"

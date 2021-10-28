@@ -190,13 +190,15 @@
 /datum/action/xeno_action/activable/pounce/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/pounce/ai_should_use(target)
+/datum/action/xeno_action/activable/pounce/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 6)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
 
 // ***************************************
@@ -390,9 +392,8 @@
 
 	var/turf/T = get_turf(X) //location of after image SFX
 	playsound(T, pick('sound/effects/throw.ogg','sound/effects/alien_tail_swipe1.ogg', 'sound/effects/alien_tail_swipe2.ogg'), 25, 1) //sound effects
-	var/obj/effect/temp_visual/xenomorph/runner_afterimage/A
+	var/obj/effect/temp_visual/xenomorph/afterimage/A
 	for(var/i=0 to 2) //number of after images
-		A = new /obj/effect/temp_visual/xenomorph/runner_afterimage(T) //Create the after image.
+		A = new /obj/effect/temp_visual/xenomorph/afterimage(T, owner) //Create the after image.
 		A.pixel_x = pick(rand(X.pixel_x * 3, X.pixel_x * 1.5), rand(0, X.pixel_x * -1)) //Variation on the X position
-		A.dir = X.dir //match the direction of the runner
 

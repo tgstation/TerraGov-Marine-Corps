@@ -130,12 +130,19 @@
 	icon_state = "smoke"
 	density = FALSE
 
+/obj/effect/forcefield/fog/passable_fog/Initialize()
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 /obj/effect/forcefield/fog/passable_fog/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	return TRUE
 
-/obj/effect/forcefield/fog/passable_fog/Crossed(atom/movable/mover, oldloc)
-	. = ..()
+/obj/effect/forcefield/fog/passable_fog/proc/on_cross(datum/source, atom/movable/mover, oldloc, oldlocs)
+	SIGNAL_HANDLER
 	if(!opacity)
 		return
 	set_opacity(FALSE)

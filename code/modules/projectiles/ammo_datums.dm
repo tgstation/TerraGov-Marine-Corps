@@ -41,6 +41,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/flags_ammo_behavior = NONE
 	///Determines what color our bullet will be when it flies
 	var/bullet_color = COLOR_WHITE
+	///If this ammo is hitscan, the icon of beam coming out from the gun
+	var/hitscan_effect_icon = "beam"
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
 	return
@@ -159,8 +161,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		victim.apply_damage(proj.damage * 0.1, proj.ammo.damage_type, null, armor_block, updating_health = TRUE)
 
 /datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle)
+	var/effect_icon = ""
+	var/proj_type = /obj/projectile
+	if(istype(main_proj, /obj/projectile/hitscan))
+		proj_type = /obj/projectile/hitscan
+		var/obj/projectile/hitscan/main_proj_hitscan = main_proj
+		effect_icon = main_proj_hitscan.effect_icon
 	for(var/i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
-		var/obj/projectile/new_proj = new /obj/projectile(main_proj.loc)
+		var/obj/projectile/new_proj = new proj_type(main_proj.loc, effect_icon)
 		if(bonus_projectiles_type)
 			new_proj.generate_bullet(GLOB.ammo_list[bonus_projectiles_type])
 			var/obj/item/weapon/gun/g = source
@@ -977,10 +985,9 @@ datum/ammo/bullet/revolver/tp44
 	name = "high caliber rifle bullet"
 	hud_state = "minigun"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
-	damage = 80
+	damage = 50
 	penetration = 30
-	sundering = 7.5
-	accurate_range_min = 2
+	sundering = 2
 	damage_falloff = 0.25
 
 /*
@@ -1457,10 +1464,12 @@ datum/ammo/bullet/revolver/tp44
 // TE Lasers //
 
 /datum/ammo/energy/lasgun/marine
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN
 	damage = 20
 	penetration = 10
 	sundering = 1
 	max_range = 30
+	hitscan_effect_icon = "beam"
 
 /datum/ammo/energy/lasgun/marine/overcharge
 	name = "overcharged laser bolt"
@@ -1469,6 +1478,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 40
 	penetration = 20
 	sundering = 2
+	hitscan_effect_icon = "beam_heavy"
 
 /datum/ammo/energy/lasgun/marine/blast
 	name = "wide range laser blast"
@@ -1484,6 +1494,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 35
 	penetration = 20
 	sundering = 1
+	hitscan_effect_icon = "pu_laser"
 
 /datum/ammo/energy/lasgun/marine/spread
 	name = "additional laser blast"
@@ -1496,6 +1507,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 35
 	penetration = 20
 	sundering = 1
+	hitscan_effect_icon = "pu_laser"
 
 /datum/ammo/energy/lasgun/marine/autolaser
 	name = "machine laser bolt"
@@ -1505,6 +1517,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/energy/lasgun/marine/autolaser/efficiency
 	name = "efficient machine laser bolt"
 	damage = 8.5
+	hitscan_effect_icon = "beam_particle"
 
 /datum/ammo/energy/lasgun/marine/sniper
 	name = "sniper laser bolt"
@@ -1514,6 +1527,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 4
 	max_range = 40
 	damage_falloff = 0
+	hitscan_effect_icon = "beam_heavy"
 
 /datum/ammo/energy/lasgun/marine/sniper_heat
 	name = "sniper heat bolt"
@@ -1522,14 +1536,15 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 2.5
 	damage = 40
 	penetration = 0
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
 	sundering = 1
-
+	hitscan_effect_icon = "u_laser_beam"
 
 /datum/ammo/energy/lasgun/marine/pistol
 	name = "pistol laser bolt"
-	damage = 25
+	damage = 20
 	penetration = 5
+	hitscan_effect_icon = "beam_particle"
 
 /datum/ammo/energy/lasgun/marine/pistol/disabler
 	name = "disabler bolt"
@@ -1538,6 +1553,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 70
 	penetration = 0
 	damage_type = STAMINA
+	hitscan_effect_icon = "stun"
 
 /datum/ammo/energy/lasgun/marine/pistol/heat
 	name = "microwave heat bolt"
@@ -1546,8 +1562,9 @@ datum/ammo/bullet/revolver/tp44
 	damage = 20
 	shell_speed = 2.5
 	penetration = 10
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
 	sundering = 0.5
+	hitscan_effect_icon = "beam_incen"
 
 /datum/ammo/energy/lasgun/pistol/disabler/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)

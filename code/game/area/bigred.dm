@@ -50,6 +50,10 @@
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambilava3.ogg')
 	minimap_color = MINIMAP_AREA_CAVES
 
+/area/bigredv2/caves/rock
+	name = "Enclosed Area"
+	icon_state = "white"
+
 /area/bigredv2/caves/north
 	name = "Northern Caves"
 	icon_state = "north"

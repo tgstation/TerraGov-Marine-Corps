@@ -7,6 +7,7 @@
 	action_icon_state = "resting"
 	mechanics_text = "Rest on weeds to regenerate health and plasma."
 	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY
+	keybind_signal = COMSIG_XENOABILITY_REST
 
 /datum/action/xeno_action/xeno_resting/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -131,7 +132,7 @@
 		plant_weeds(owner)
 
 /datum/action/xeno_action/activable/plant_weeds/use_ability(atom/A)
-	plant_weeds(A)
+	plant_weeds(max_range ? A : get_turf(owner))
 
 ////Plant a weeds node on the selected atom
 /datum/action/xeno_action/activable/plant_weeds/proc/plant_weeds(atom/A)
@@ -189,8 +190,7 @@
 /datum/action/xeno_action/activable/plant_weeds/ai_should_use(target)
 	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return ..()
-	if(locate(/obj/effect/alien/weeds/node) in owner.loc) //NODE SPAMMMM
-		//There's already a node on this loc don't plant anything
+	if(locate(/obj/effect/alien/weeds) in owner.loc)
 		return ..()
 	return TRUE
 
@@ -888,13 +888,17 @@
 /datum/action/xeno_action/activable/xeno_spit/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/xeno_spit/ai_should_use(target)
+/datum/action/xeno_action/activable/xeno_spit/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 6)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(!owner.line_of_sight(target))
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
 
 
@@ -1115,6 +1119,23 @@
 	GLOB.round_statistics.xeno_rally_hive++ //statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_rally_hive")
 
+/datum/action/xeno_action/activable/rally_minion
+	name = "Rally Minions"
+	action_icon_state = "rally_minions"
+	mechanics_text = "Rallies the minions around you, asking them to follow you if they don't have a leader already. 60 second cooldown."
+	ability_name = "rally minions"
+	plasma_cost = 0
+	keybind_signal = COMSIG_XENOABILITY_RALLY_MINION
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	cooldown_timer = 60 SECONDS
+	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
+
+/datum/action/xeno_action/activable/rally_minion/use_ability()
+	succeed_activate()
+	add_cooldown()
+	owner.emote("roar")
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_MINION_RALLY, owner)
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 /mob/living/carbon/xenomorph/proc/add_abilities()
@@ -1142,8 +1163,6 @@
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 	gamemode_flags = ABILITY_DISTRESS
 	plasma_cost = 100
-	///How much psy points it give
-	var/psy_points_reward = PSY_DRAIN_REWARD
 	///How much larva points it gives (8 points for one larva in distress)
 	var/larva_point_reward = 1
 
@@ -1211,7 +1230,8 @@
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
 		victim.med_hud_set_status()
-
+	var/psy_points_reward = PSY_DRAIN_REWARD_MIN + (HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count / HIGH_PLAYER_POP * (PSY_DRAIN_REWARD_MAX - PSY_DRAIN_REWARD_MIN))
+	psy_points_reward = clamp(psy_points_reward, PSY_DRAIN_REWARD_MIN, PSY_DRAIN_REWARD_MAX)
 	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_points(larva_point_reward)

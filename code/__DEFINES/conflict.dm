@@ -55,6 +55,7 @@
 #define AMMO_SENTRY (1<<14) //Used to identify ammo from sentry guns and other automated sources
 #define AMMO_FLAME (1<<15) //Used to identify flamethrower projectiles and similar projectiles
 #define AMMO_IFF (1<<16) //Used to identify ammo that have intrinsec IFF properties
+#define AMMO_HITSCAN (1<<17) //If the projectile from this ammo is hitscan
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features
@@ -76,6 +77,13 @@
 #define GUN_IS_SENTRY (1<<15)
 #define GUN_PUMP_REQUIRED (1<<16)
 
+#define FLAMER_IS_LIT (1<<0)
+#define FLAMER_NO_LIT_OVERLAY (1<<1)
+#define FLAMER_USES_GUN_FLAMES (1<<2)
+
+#define FLAMER_STREAM_STRAIGHT "straight"
+#define FLAMER_STREAM_CONE "cone"
+
 #define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
 #define GUN_FIREMODE_BURSTFIRE "burst-fire mode"
 #define GUN_FIREMODE_AUTOMATIC "automatic fire mode"
@@ -88,8 +96,9 @@
 #define ATTACH_SAME_ICON (1<<2)
 
 //Ammo magazine defines, for flags_magazine
-#define AMMUNITION_REFILLABLE 1
-#define AMMUNITION_HANDFUL 2
+#define AMMUNITION_REFILLABLE (1<<0)
+#define AMMUNITION_HANDFUL (1<<1)
+#define AMMUNITION_WORN (1<<2)
 
 //Slowdown from various armors.
 #define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up

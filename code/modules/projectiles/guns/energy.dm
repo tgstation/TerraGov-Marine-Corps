@@ -88,6 +88,9 @@
 	else
 		return FLOOR(cell.charge / max(charge_cost, 1),1)
 
+/obj/item/weapon/gun/energy/muzzle_flash()
+	return
+
 // energy guns, however, do not use gun rattles.
 /obj/item/weapon/gun/energy/play_fire_sound(mob/user)
 	if(HAS_TRAIT(src, TRAIT_GUN_SILENCED))
@@ -206,6 +209,7 @@
 		/obj/item/attachable/heatlens,
 		/obj/item/attachable/efflens,
 		/obj/item/attachable/pulselens,
+		/obj/item/attachable/stock/lasgun,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
@@ -273,14 +277,12 @@
 	return in_chamber
 
 /obj/item/weapon/gun/energy/lasgun/reload_into_chamber(mob/user)
-	if(!active_attachable && cell) //We don't need to check for the mag if an attachment was used to shoot.
-		if(cell) //If there is no mag, we can't reload.
-			if(overcharge && cell.charge < ENERGY_OVERCHARGE_AMMO_COST && cell.charge >= ENERGY_STANDARD_AMMO_COST) //Revert to standard shot if we don't have enough juice for overcharge, but enough for the standard mode
-				cock(user)
-				return
-			if(cell.charge < charge_cost && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
-				unload(user,1,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
-				playsound(src, empty_sound, 25, 1)
+	if(overcharge && cell.charge < ENERGY_OVERCHARGE_AMMO_COST && cell.charge >= ENERGY_STANDARD_AMMO_COST) //Revert to standard shot if we don't have enough juice for overcharge, but enough for the standard mode
+		cock(user)
+		return
+	if(cell.charge < charge_cost && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
+		unload(user,1,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
+		playsound(src, empty_sound, 25, 1)
 
 	return TRUE
 
@@ -289,8 +291,8 @@
 /obj/item/weapon/gun/energy/lasgun/update_icon(mob/user)
 	var/cell_charge = (!cell || cell.charge <= 0) ? 0 : CEILING((cell.charge / max(cell.maxcharge, 1)) * 100, 25)
 	icon_state = "[base_gun_icon]_[cell_charge]"
-	update_mag_overlay(user)
-	update_item_state(user)
+	update_mag_overlay()
+	update_item_state()
 
 
 /obj/item/weapon/gun/energy/lasgun/update_item_state(mob/user)
@@ -421,7 +423,7 @@
 	force = 8 //Well, it's not complicted compared to the original.
 	ammo = /datum/ammo/energy/lasgun/M43/practice
 	cell_type = /obj/item/cell/lasgun/M43/practice
-	attachable_allowed = list()
+	attachable_allowed = list(/obj/item/attachable/stock/lasgun/practice)
 	starting_attachment_types = list(/obj/item/attachable/stock/lasgun/practice)
 	muzzle_flash_color = COLOR_DISABLER_BLUE
 
@@ -446,7 +448,7 @@
 	cell_type = /obj/item/cell/lasgun/lasrifle
 	charge_cost = 10
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)//Lasrifle has special behavior for fire mode, be carefull
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -481,9 +483,7 @@
 	var/fire_delay = 0
 	///Gives guns a burst amount, editable.
 	var/burst_amount = 0
-	///gives firemode selections for guns.
-	var/gun_firemode_list
-	///The gun firing sound of this mode.
+	///The gun firing sound of this mode
 	var/fire_sound = null
 	///What message it sends to the user when you switch to this mode.
 	var/message_to_user = ""
@@ -555,7 +555,7 @@
 	cell_type = /obj/item/cell/lasgun/lasrifle/marine
 	charge_cost = 12
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -597,6 +597,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "ter"
 
+
 /datum/lasrifle/base/energy_rifle_mode/overcharge
 	charge_cost = 30
 	ammo = /datum/ammo/energy/lasgun/marine/overcharge
@@ -626,8 +627,8 @@
 	ammo_diff = null
 	cell_type = /obj/item/cell/lasgun/lasrifle/marine
 	charge_cost = 20
-	gun_firemode = GUN_FIREMODE_AUTOMATIC
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	gun_firemode = GUN_FIREMODE_SEMIAUTO
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -642,11 +643,10 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 23, "muzzle_y" = 22,"rail_x" = 12, "rail_y" = 22, "under_x" = 16, "under_y" = 14, "stock_x" = 22, "stock_y" = 12)
 
-	aim_slowdown = 0.2
 	wield_delay = 0.6 SECONDS
 	scatter = 0
 	scatter_unwielded = 0
-	fire_delay = 0.25 SECONDS
+	fire_delay = 0.15 SECONDS
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.9
 	scatter_unwielded = 0
@@ -660,7 +660,7 @@
 /datum/lasrifle/base/energy_pistol_mode/standard
 	charge_cost = 20
 	ammo = /datum/ammo/energy/lasgun/marine/pistol
-	fire_delay = 0.25 SECONDS
+	fire_delay = 0.15 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Pistol Standard.ogg'
 	message_to_user = "You set the laser pistol's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -705,7 +705,7 @@
 	cell_type = /obj/item/cell/lasgun/lasrifle/marine
 	charge_cost = 15
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -714,7 +714,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
@@ -735,7 +735,6 @@
 	scatter_unwielded = 15
 	damage_falloff_mult = 0.5
 	mode_list = list(
-
 		"Auto burst standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard,
 		"Automatic standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard/automatic,
 		"Spread" = /datum/lasrifle/base/energy_carbine_mode/base/spread,
@@ -762,7 +761,7 @@
 	burst_amount = 1
 	fire_sound = 'sound/weapons/guns/fire/Laser Carbine Scatter.ogg'
 	message_to_user = "You set the laser carbine's charge mode to spread."
-	fire_mode = GUN_FIREMODE_AUTOMATIC
+	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tec"
 	radial_icon_state = "laser_spread"
 
@@ -785,15 +784,15 @@
 	cell_type = /obj/item/cell/lasgun/lasrifle/marine
 	charge_cost = 50
 	damage_falloff_mult = 0
-	gun_firemode = GUN_FIREMODE_AUTOMATIC
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	gun_firemode = GUN_FIREMODE_SEMIAUTO
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/unremovable/laser_sniper_scope,
-		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
@@ -802,10 +801,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 18,"rail_x" = 19, "rail_y" = 19, "under_x" = 28, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/laser_sniper_scope)
-	aim_fire_delay = 0.5 SECONDS
-	aim_speed_modifier = 2
 
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_slowdown = 0.7
 	wield_delay = 0.7 SECONDS
 	scatter = 0
@@ -825,7 +821,7 @@
 	ammo = /datum/ammo/energy/lasgun/marine/sniper
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to standard fire."
-	fire_mode = GUN_FIREMODE_AUTOMATIC
+	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tes"
 
 /datum/lasrifle/base/energy_sniper_mode/heat
@@ -834,7 +830,7 @@
 	ammo = /datum/ammo/energy/lasgun/marine/sniper_heat
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to wave heat."
-	fire_mode = GUN_FIREMODE_AUTOMATIC
+	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tes"
 	radial_icon_state = "laser_heat"
 
@@ -855,7 +851,7 @@
 	cell_type = /obj/item/cell/lasgun/lasrifle/marine
 	charge_cost = 4
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -864,7 +860,7 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
-		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,

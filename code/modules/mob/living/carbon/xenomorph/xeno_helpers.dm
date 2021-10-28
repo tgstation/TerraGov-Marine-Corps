@@ -23,22 +23,25 @@
 /mob/living/carbon/xenomorph/get_death_threshold()
 	return xeno_caste.crit_health
 
-///Helper proc for giving the rally hive ability appropriately
-/mob/living/carbon/xenomorph/proc/give_rally_hive_ability()
+///Helper proc for giving the rally abilities
+/mob/living/carbon/xenomorph/proc/give_rally_abilities()
+	if(!actions_by_path[/datum/action/xeno_action/activable/rally_hive])
+		var/datum/action/xeno_action/activable/rally_hive/rally = new /datum/action/xeno_action/activable/rally_hive
+		rally.give_action(src)
+	if(!actions_by_path[/datum/action/xeno_action/activable/rally_minion])
+		var/datum/action/xeno_action/activable/rally_minion/rally = new /datum/action/xeno_action/activable/rally_minion
+		rally.give_action(src)
 
-	if(actions_by_path[/datum/action/xeno_action/activable/rally_hive]) //We already have Rally Hive; abort.
-		return
-
-	var/datum/action/xeno_action/activable/rally_hive/rally = new /datum/action/xeno_action/activable/rally_hive
-
-	rally.give_action(src)
 
 ///Helper proc for removing the rally hive ability appropriately
 /mob/living/carbon/xenomorph/proc/remove_rally_hive_ability()
 
 	var/datum/action/xeno_action/activable/rally_hive/rally = actions_by_path[/datum/action/xeno_action/activable/rally_hive]
 
-	if(!rally) //We don't have Rally Hive; abort.
-		return
+	if(rally)
+		rally.remove_action(src)
+	var/datum/action/xeno_action/activable/rally_minion/rally_minion = actions_by_path[/datum/action/xeno_action/activable/rally_minion]
 
-	rally.remove_action(src)
+	if(rally_minion) //We don't have Rally Hive; abort.
+		rally_minion.remove_action(src)
+

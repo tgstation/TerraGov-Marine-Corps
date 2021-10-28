@@ -605,6 +605,14 @@
 	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	scannable = TRUE
 
+/datum/reagent/medicine/peridaxon_plus/on_mob_add(mob/living/L, metabolism)
+	if(TIMER_COOLDOWN_CHECK(L, name))
+		return
+	L.adjustCloneLoss(5*effect_str)
+
+/datum/reagent/medicine/peridaxon_plus/on_mob_delete(mob/living/L, metabolism)
+	TIMER_COOLDOWN_START(L, name, 30 SECONDS)
+
 /datum/reagent/medicine/peridaxon_plus/on_mob_life(mob/living/L, metabolism)
 	L.reagents.add_reagent(/datum/reagent/toxin,5)
 	L.adjustStaminaLoss(10*effect_str)
@@ -713,6 +721,14 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5 //10u
 	scannable = TRUE
 	custom_metabolism = REAGENTS_METABOLISM * 2.5
+
+/datum/reagent/medicine/quickclotplus/on_mob_add(mob/living/L, metabolism)
+	if(TIMER_COOLDOWN_CHECK(L, name))
+		return
+	L.adjustCloneLoss(5*effect_str)
+
+/datum/reagent/medicine/quickclotplus/on_mob_delete(mob/living/L, metabolism)
+	TIMER_COOLDOWN_START(L, name, 30 SECONDS)
 
 /datum/reagent/medicine/quickclotplus/on_mob_life(mob/living/L, metabolism)
 	var/mob/living/carbon/human/H = L
