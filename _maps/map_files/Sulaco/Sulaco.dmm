@@ -12936,8 +12936,8 @@
 /area/sulaco/maintenance/upperdeck_north_maint)
 "gKw" = (
 /obj/effect/decal/warning_stripes,
-/obj/structure/dropship_equipment/fuel/cooling_system,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/dropship_equipment/electronics/spotlights,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "gKE" = (
@@ -16422,11 +16422,6 @@
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
-"mRR" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/dropship_equipment/electronics/spotlights,
-/turf/open/floor/prison,
-/area/sulaco/hangar/storage)
 "mTN" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor/plating,
@@ -19552,10 +19547,6 @@
 	dir = 1
 	},
 /area/mainship/shipboard/weapon_room)
-"sgS" = (
-/obj/structure/dropship_equipment/electronics/spotlights,
-/turf/open/floor/prison,
-/area/sulaco/hangar/storage)
 "shi" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/plating/platebotc,
@@ -20283,7 +20274,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "tld" = (
-/obj/structure/dropship_equipment/electronics/targeting_system,
+/obj/structure/dropship_equipment/mg_holder,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "tlU" = (
@@ -20346,7 +20337,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/dropship_equipment/mg_holder,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "tqa" = (
@@ -23003,11 +22993,6 @@
 	dir = 8
 	},
 /area/mainship/living/basketball)
-"yfI" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/dropship_equipment/electronics/targeting_system,
-/turf/open/floor/prison,
-/area/sulaco/hangar/storage)
 "yfM" = (
 /obj/structure/table/mainship,
 /obj/item/storage/box/nt_mre,
@@ -23131,7 +23116,7 @@
 /area/sulaco/hangar/storage)
 "yle" = (
 /obj/effect/decal/warning_stripes,
-/obj/structure/dropship_equipment/fuel/fuel_enhancer,
+/obj/structure/dropship_equipment/electronics/spotlights,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "ylT" = (
@@ -63172,11 +63157,11 @@ aPF
 aPF
 ykt
 gKw
-yfI
+jYO
 mqC
 aUL
-sgS
-mRR
+pWS
+jYO
 bYM
 aWh
 aWh

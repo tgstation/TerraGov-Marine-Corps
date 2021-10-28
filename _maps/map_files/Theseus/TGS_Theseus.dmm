@@ -5078,7 +5078,7 @@
 	},
 /area/mainship/medical/surgery_hallway)
 "bvD" = (
-/obj/structure/dropship_equipment/electronics/targeting_system,
+/obj/structure/dropship_equipment/operatingtable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bvJ" = (
@@ -7836,10 +7836,6 @@
 /obj/machinery/landinglight/ds2/delaythree,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"bYK" = (
-/obj/structure/dropship_equipment/fuel/cooling_system,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "bYM" = (
 /obj/machinery/landinglight/ds1/delaytwo,
 /turf/open/floor/mainship/mono,
@@ -8455,8 +8451,7 @@
 	},
 /area/mainship/hallways/hangar)
 "ckg" = (
-/obj/structure/dropship_equipment/electronics/spotlights,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/orange,
 /area/mainship/hallways/hangar)
 "ckq" = (
 /obj/machinery/landinglight/ds2/delaytwo{
@@ -8552,7 +8547,7 @@
 /turf/open/floor/mainship/red/full,
 /area/mainship/command/cic)
 "cqq" = (
-/obj/structure/dropship_equipment/fuel/fuel_enhancer,
+/obj/structure/dropship_equipment/electronics/spotlights,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "crY" = (
@@ -10564,15 +10559,10 @@
 /turf/open/floor/mainship/green,
 /area/mainship/squads/req)
 "gav" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
-/turf/open/floor/mainship/orange{
-	dir = 6
-	},
+/turf/open/floor/mainship/orange,
 /area/mainship/hallways/hangar)
 "gaW" = (
 /obj/structure/cable,
@@ -10883,8 +10873,10 @@
 	},
 /area/mainship/medical/upper_medical)
 "gGw" = (
-/obj/structure/dropship_equipment/mg_holder,
-/turf/open/floor/mainship/mono,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/turf/open/floor/mainship/orange/corner,
 /area/mainship/hallways/hangar)
 "gGE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -12629,8 +12621,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "kaw" = (
-/obj/structure/dropship_equipment/sentry_holder,
-/turf/open/floor/mainship/mono,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "kbP" = (
 /obj/structure/table/reinforced,
@@ -12979,7 +12971,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -13926,14 +13917,6 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/engine_core)
-"mnL" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
-/area/mainship/hallways/hangar)
 "moi" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/silver/corner{
@@ -19076,12 +19059,8 @@
 	},
 /area/mainship/shipboard/port_point_defense)
 "vNA" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/mainship/orange{
-	dir = 6
-	},
+/obj/structure/dropship_equipment/sentry_holder,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "vND" = (
 /obj/structure/toilet{
@@ -19958,7 +19937,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "xCC" = (
-/obj/structure/dropship_equipment/operatingtable,
+/obj/structure/dropship_equipment/mg_holder,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "xCV" = (
@@ -20371,10 +20350,13 @@
 /turf/open/floor/mainship/orange,
 /area/mainship/hallways/hangar)
 "yjZ" = (
+/obj/machinery/light,
 /obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/orange{
 	dir = 6
 	},
-/turf/open/floor/mainship/orange/corner,
 /area/mainship/hallways/hangar)
 "ykh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -42448,10 +42430,10 @@ hKQ
 bbQ
 bYm
 kxg
-yjZ
-mnL
-mnL
-kIy
+uns
+uns
+uns
+uns
 gav
 bgb
 qae
@@ -42705,11 +42687,11 @@ tqC
 uJT
 vXp
 fme
-yji
+uns
+uns
+uns
 kaw
-kaw
-kaw
-kaw
+ckg
 bgb
 aVn
 aVk
@@ -42962,10 +42944,10 @@ bla
 bPR
 bgb
 xSH
-yji
-gGw
-xCC
-ckg
+uns
+uns
+uns
+uns
 ckg
 bgb
 aVl
@@ -43219,11 +43201,11 @@ bla
 bbQ
 bgb
 yes
-ppE
-vVR
-vVR
-vVR
-qYe
+gGw
+kIy
+kIy
+kIy
+yjZ
 bgb
 aVl
 aVk
@@ -43476,10 +43458,10 @@ bla
 bbQ
 bgb
 hnY
-yjZ
-mnL
-mnL
-mnL
+yji
+vNA
+vNA
+vNA
 vNA
 bgb
 aVl
@@ -43734,10 +43716,10 @@ bbQ
 bgb
 ebt
 woA
-bbQ
+xCC
 bvD
 cqq
-bYK
+cqq
 bgb
 aVn
 aVk
