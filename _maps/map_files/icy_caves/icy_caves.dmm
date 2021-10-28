@@ -5202,7 +5202,7 @@
 /turf/open/floor/freezer,
 /area/icy_caves/outpost/dorms)
 "FB" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "FF" = (

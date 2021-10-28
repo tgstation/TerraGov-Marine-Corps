@@ -5700,7 +5700,7 @@
 /area/magmoor/cave/west)
 "edW" = (
 /obj/machinery/vending/nanomed,
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/infocenter)
 "een" = (
@@ -9428,7 +9428,7 @@
 	},
 /area/magmoor/medical/patient)
 "gJu" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
 "gJB" = (
@@ -13974,7 +13974,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/east)
 "kdf" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/storage)
 "kdh" = (
@@ -22305,7 +22305,7 @@
 	},
 /area/magmoor/cave/south)
 "pTF" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor/wood,
 /area/magmoor/command/conference)
 "pTM" = (
@@ -33885,7 +33885,7 @@
 	},
 /area/magmoor/hydroponics/north)
 "xgV" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "xhu" = (

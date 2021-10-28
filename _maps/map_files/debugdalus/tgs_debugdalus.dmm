@@ -98,7 +98,7 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aau" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aav" = (
@@ -167,7 +167,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "aaG" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -180,7 +180,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "aaH" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -1315,7 +1315,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "afJ" = (
-/obj/machinery/vending/marine/cargo_supply,
+/obj/machinery/vending/cargo_supply,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "afM" = (
