@@ -708,11 +708,11 @@
 		remove_hud(user)
 		return
 
-	var/datum/ammo/ammo_type = G.get_ammo()
+	var/list/ammo_type = G.get_ammo_list()
 	var/rounds = G.rounds
 
-	var/hud_state = ammo_type.hud_state
-	var/hud_state_empty = ammo_type.hud_state_empty
+	var/hud_state = ammo_type[1]
+	var/hud_state_empty = ammo_type[2]
 
 	overlays.Cut()
 

@@ -16,6 +16,7 @@
 	ammo_type_var = null
 	gun_type_var = null
 	magazine_flags_var = null
+	magazine_overlay_var = null
 
 /obj/item/weapon/gun/energy/muzzle_flash()
 	return

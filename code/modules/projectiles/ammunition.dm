@@ -16,7 +16,7 @@
 	throw_speed = 2
 	throw_range = 6
 	///Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
-	var/bonus_overlay = null 
+	var/bonus_overlay = null
 	///This is a typepath for the type of bullet the magazine holds, it is cast so that it can draw the variable handful_amount from default_ammo in create_handful()
 	var/datum/ammo/bullet/default_ammo = /datum/ammo/bullet/
 	///Generally used for energy weapons
@@ -390,6 +390,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 		icon_state = "[initial(icon_state)]_deployed"
 	else
 		icon_state = "[initial(icon_state)]_empty"
+	ammo_type = GLOB.ammo_list[ammo_type]
 
 
 /obj/item/shotgunbox/attack_self(mob/user)

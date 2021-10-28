@@ -221,7 +221,7 @@
 		var/datum/ammo/ammo_to_spawn = gun_to_spawn.default_ammo_type
 		for(var/i in 1 to 3)
 			handful_to_generate = new (get_turf(src))
-			handful_to_generate.generate_handful(ammo_to_spawn, initial(gun_to_spawn.caliber), initial(ammo_to_spawn.handful_amount), gun_to_spawn.type)
+			handful_to_generate.generate_handful(GLOB.ammo_list[ammo_to_spawn], initial(gun_to_spawn.caliber), initial(ammo_to_spawn.handful_amount), gun_to_spawn.type)
 		return
 
 	var/obj/item/ammo_to_spawn = gun_to_spawn.default_ammo_type
