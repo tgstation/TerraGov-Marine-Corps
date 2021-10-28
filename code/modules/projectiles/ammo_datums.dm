@@ -985,10 +985,9 @@ datum/ammo/bullet/revolver/tp44
 	name = "high caliber rifle bullet"
 	hud_state = "minigun"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
-	damage = 80
+	damage = 50
 	penetration = 30
-	sundering = 7.5
-	accurate_range_min = 2
+	sundering = 2
 	damage_falloff = 0.25
 
 /*
@@ -1543,7 +1542,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/energy/lasgun/marine/pistol
 	name = "pistol laser bolt"
-	damage = 25
+	damage = 20
 	penetration = 5
 	hitscan_effect_icon = "beam_particle"
 
@@ -1655,7 +1654,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
-	spit_cost = 70
+	spit_cost = 55
 	added_spit_delay = 0
 	damage_type = STAMINA
 	accurate_range = 5
@@ -1745,7 +1744,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
 	added_spit_delay = 0
-	spit_cost = 120
+	spit_cost = 100
 	damage = 40
 	smoke_strength = 0.9
 	reagent_transfer_amount = 9.5
@@ -1829,7 +1828,7 @@ datum/ammo/bullet/revolver/tp44
 	sound_bounce	= "acid_bounce"
 	damage_type = BURN
 	added_spit_delay = 5
-	spit_cost = 75
+	spit_cost = 50
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE
 	armor_type = "acid"
 	damage = 18
@@ -1851,7 +1850,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
 	added_spit_delay = 2
-	spit_cost = 90
+	spit_cost = 70
 	damage = 30
 
 /datum/ammo/xeno/acid/heavy/turret

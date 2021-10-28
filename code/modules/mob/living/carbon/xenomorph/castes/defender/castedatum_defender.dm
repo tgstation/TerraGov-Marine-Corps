@@ -3,6 +3,7 @@
 	display_name = "Defender"
 	upgrade_name = ""
 	caste_desc = "An alien with an armored crest. It looks like it's still developing."
+	primordial_upgrade_name = PRIMORDIAL_DEFENDER
 
 	caste_type_path = /mob/living/carbon/xenomorph/defender
 
@@ -144,3 +145,46 @@
 	crest_defense_armor = 30
 	crest_defense_slowdown = 0.8
 	fortify_armor = 55
+
+/datum/xeno_caste/defender/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "Alien with an incredibly tough and armored head crest able to endure even the strongest hits."
+	upgrade = XENO_UPGRADE_FOUR
+	primordial_message = "We are the aegis of the hive. Let nothing pierce our guard."
+
+	// *** Melee Attacks *** //
+	melee_damage = 21
+
+	// *** Speed *** //
+	speed = -0.6
+
+	// *** Plasma *** //
+	plasma_max = 200
+	plasma_gain = 15
+
+	// *** Health *** //
+	max_health = 320
+
+	// *** Evolution *** //
+	upgrade_threshold = 660
+
+	// *** Defense *** //
+	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_2, "bio" = 30, "rad" = 30, "fire" = 40, "acid" = 30)
+
+	// *** Defender Abilities *** //
+	crest_defense_armor = 30
+	crest_defense_slowdown = 0.8
+	fortify_armor = 55
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/headbite,
+		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/toggle_crest_defense,
+		/datum/action/xeno_action/fortify,
+		/datum/action/xeno_action/activable/forward_charge,
+		/datum/action/xeno_action/tail_sweep,
+		/datum/action/xeno_action/activable/regenerate_skin,
+		/datum/action/xeno_action/activable/centrifugal_force,
+	)

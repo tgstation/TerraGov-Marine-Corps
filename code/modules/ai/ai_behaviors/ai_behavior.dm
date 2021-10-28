@@ -33,7 +33,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	///When this timer is up, we force a change of node to ensure that the ai will never stay stuck trying to go to a specific node
 	var/anti_stuck_timer
 	///Minimum health percentage before the ai tries to run away
-	var/minimum_health = 0.3
+	var/minimum_health = 0.4
 
 /datum/ai_behavior/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
@@ -71,9 +71,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 //We finished moving to a node, let's pick a random nearby one to travel to
 /datum/ai_behavior/proc/finished_node_move()
 	SIGNAL_HANDLER
-	if(current_node == goal_node)
-		goal_node = null
-		goal_nodes = null
 	look_for_next_node(FALSE)
 
 //Cleans up signals related to the action and element(s)
@@ -84,14 +81,26 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	mob_parent.RemoveElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
 
 ///Cleanup old state vars, start the movement towards our new target
-/datum/ai_behavior/proc/change_action(next_action, atom/next_target)
+/datum/ai_behavior/proc/change_action(next_action, atom/next_target, special_distance_to_maintain)
 	cleanup_current_action(next_action)
+	#ifdef TESTING
+	switch(next_action)
+		if(MOVING_TO_NODE)
+			message_admins("[mob_parent] goes to a new node")
+			flick("x2_animate", next_target)
+		if(MOVING_TO_ATOM)
+			message_admins("[mob_parent] moves toward [next_target]")
+		if(MOVING_TO_SAFETY)
+			message_admins("[mob_parent] wants to escape from [next_target]")
+		if(ESCORTING_ATOM)
+			message_admins("[mob_parent] escorts [next_target]")
+	#endif
 	if(next_action)
 		current_action = next_action
 	if(current_action == ESCORTING_ATOM)
 		distance_to_maintain = 2 //Don't stay too close
 	else
-		distance_to_maintain = initial(distance_to_maintain)
+		distance_to_maintain = isnull(special_distance_to_maintain) ? initial(distance_to_maintain) : special_distance_to_maintain
 	if(next_target)
 		atom_to_walk_to = next_target
 		mob_parent.AddElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
@@ -106,16 +115,16 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(should_reset_goal_nodes)
 		goal_nodes = null
 	if(ignore_current_node || !current_node) //We don't have a current node, let's find the closest in our LOS
-		var/closest_distance = MAX_NODE_RANGE_SQUARED //squared because we are using the cheap get dist
+		var/closest_distance = MAX_NODE_RANGE //squared because we are using the cheap get dist
 		var/avoid_node = current_node
 		current_node = null
 		for(var/obj/effect/ai_node/ai_node AS in GLOB.allnodes)
 			if(ai_node == avoid_node)
 				continue
-			if(get_dist_euclide_square(ai_node, mob_parent) >= closest_distance)
+			if(ai_node.z != mob_parent.z || get_dist(ai_node, mob_parent) >= closest_distance)
 				continue
 			current_node = ai_node
-			closest_distance = get_dist_euclide_square(ai_node, mob_parent) //Probably not needed to cache the get_dist
+			closest_distance = get_dist(ai_node, mob_parent) //Probably not needed to cache the get_dist
 		if(current_node)
 			change_action(MOVING_TO_NODE, current_node)
 		return
@@ -123,15 +132,13 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		if(!length(goal_nodes))
 			goal_nodes = get_node_path(current_node, goal_node)
 		if(!length(goal_nodes))
-			goal_node = null
+			current_node = null
 			look_for_next_node()
 			return
 		current_node = goal_nodes[length(goal_nodes)]
 		goal_nodes.len--
-	else if(identifier)
-		current_node = current_node.get_best_adj_node(list(NODE_LAST_VISITED = -1))
 	else
-		current_node = pick(current_node.adjacent_nodes)
+		current_node = current_node.get_best_adj_node(list(NODE_LAST_VISITED = -1), identifier)
 	current_node.set_weight(identifier, NODE_LAST_VISITED, world.time)
 	change_action(MOVING_TO_NODE, current_node)
 

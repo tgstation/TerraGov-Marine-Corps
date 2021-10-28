@@ -67,41 +67,6 @@
 
 	return shock_damage
 
-
-/mob/living/carbon/proc/swap_hand()
-	var/obj/item/wielded_item = get_active_held_item()
-	if(wielded_item && (wielded_item.flags_item & WIELDED)) //this segment checks if the item in your hand is twohanded.
-		var/obj/item/weapon/twohanded/offhand/offhand = get_inactive_held_item()
-		if(offhand && (offhand.flags_item & WIELDED))
-			to_chat(src, span_warning("Your other hand is too busy holding \the [offhand.name]"))
-			return
-		else
-			wielded_item.unwield(src) //Get rid of it.
-	hand = !hand
-	SEND_SIGNAL(src, COMSIG_CARBON_SWAPPED_HANDS)
-	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
-		hud_used.l_hand_hud_object.update_icon(hand)
-		hud_used.r_hand_hud_object.update_icon(!hand)
-		if(hand)	//This being 1 means the left hand is in use
-			hud_used.l_hand_hud_object.add_overlay("hand_active")
-		else
-			hud_used.r_hand_hud_object.add_overlay("hand_active")
-	return
-
-/mob/living/carbon/proc/activate_hand(selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
-
-	if(istext(selhand))
-		selhand = lowertext(selhand)
-
-		if(selhand == "right" || selhand == "r")
-			selhand = 0
-		if(selhand == "left" || selhand == "l")
-			selhand = 1
-
-	if(selhand != src.hand)
-		swap_hand()
-
-
 /mob/living/carbon/vomit()
 	if(stat == DEAD) //Corpses don't puke
 		return

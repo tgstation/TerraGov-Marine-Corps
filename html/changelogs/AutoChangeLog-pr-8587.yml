@@ -1,4 +1,0 @@
-author: "Walarks"
-delete-after: True
-changes: 
-  - bugfix: "fixed aim mode activating when after unwielding"

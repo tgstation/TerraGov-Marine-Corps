@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - rscadd: "Added round end sounds (including custom tgmc ones), can be toggled"

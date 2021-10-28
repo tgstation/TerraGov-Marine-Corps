@@ -57,7 +57,7 @@
 		stat("Time Dilation:", "[round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
 
 	if(client?.holder?.rank?.rights)
-		if(client.holder.rank.rights & (R_ADMIN|R_DEBUG))
+		if(client.holder.rank.rights & (R_DEBUG))
 			if(statpanel("MC"))
 				stat("CPU:", "[world.cpu]")
 				stat("Instances:", "[num2text(length(world.contents), 10)]")
@@ -177,7 +177,7 @@
 		if(M == src && self_message) //the src always see the main message or self message
 			msg = self_message
 
-			if(visible_message_flags & COMBAT_MESSAGE && M.client.prefs.mute_self_combat_messages)
+			if((visible_message_flags & COMBAT_MESSAGE) && M.client.prefs.mute_self_combat_messages)
 				continue
 
 		else
@@ -187,7 +187,7 @@
 
 				msg = blind_message
 
-			if(visible_message_flags & COMBAT_MESSAGE && M.client.prefs.mute_others_combat_messages)
+			if((visible_message_flags & COMBAT_MESSAGE) && M.client.prefs.mute_others_combat_messages)
 				continue
 
 		if(visible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, visible_message_flags) && !is_blind(M))
@@ -445,6 +445,7 @@
 		return
 	var/mob/dragged = dropping
 	dragged.show_inv(user)
+
 
 /mob/living/carbon/xenomorph/MouseDrop_T(atom/dropping, atom/user)
 	return

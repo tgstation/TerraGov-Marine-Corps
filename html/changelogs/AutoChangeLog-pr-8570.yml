@@ -1,4 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - code_imp: "TGUI has been updated and now certain stuff load considerably faster, other changes were done but its more dev-side and dont affect players."
