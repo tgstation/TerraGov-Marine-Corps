@@ -12,7 +12,6 @@
 	..()
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, /datum/ai_behavior.proc/deal_with_obstacle)
 	RegisterSignal(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), .proc/refresh_abilities)
-	RegisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/check_for_critical_health)
 	refresh_abilities()
 	mob_parent.a_intent = INTENT_HARM //Killing time
 	src.can_heal = can_heal
@@ -69,20 +68,23 @@
 				cleanup_current_action()
 				late_initialize()
 				return
+			if(can_heal && living_parent.health <= minimum_health * living_parent.maxHealth)//We are low health, run away
+				distance_to_maintain = INFINITY
+				target_distance = 15 //Run away
+				change_action(MOVING_TO_SAFETY, next_target)
+				return
 			if(next_target == atom_to_walk_to)//We didn't find a better target
 				return
 			change_action(null, next_target)//We found a better target, change course!
 		if(MOVING_TO_SAFETY)
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 			if(!next_target)//We are safe, try to find some weeds
+				distance_to_maintain = initial(distance_to_maintain)
 				target_distance = initial(target_distance)
 				cleanup_current_action()
 				late_initialize()
-				RegisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/check_for_critical_health)
 				return
-			if(next_target == atom_to_walk_to)
-				return
-			change_action(null, next_target, INFINITY)
+			change_action(null, next_target)
 
 /datum/ai_behavior/xeno/deal_with_obstacle(datum/source, direction)
 	var/turf/obstacle_turf = get_step(mob_parent, direction)
@@ -174,8 +176,6 @@
 			return FALSE
 		return FALSE
 	if(living_mob.resting)//Already resting
-		if(living_mob.on_fire)
-			living_mob.do_resist()
 		return TRUE
 	SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
 	RegisterSignal(mob_parent, COMSIG_XENOMORPH_HEALTH_REGEN, .proc/check_for_health)
@@ -195,19 +195,6 @@
 	if(healing.health >= healing.maxHealth && healing.plasma_stored + plasma_data[1] >= healing.xeno_caste.plasma_max * healing.xeno_caste.plasma_regen_limit)
 		SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
 		UnregisterSignal(mob_parent, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_PLASMA_REGEN))
-
-///Called each time the ai takes damage; if we are below a certain health threshold, try to retreat
-/datum/ai_behavior/xeno/proc/check_for_critical_health(datum/source, damage)
-	SIGNAL_HANDLER
-	var/mob/living/living_mob = mob_parent
-	if(!can_heal || living_mob.health - damage > minimum_health * living_mob.maxHealth)
-		return
-	var/atom/next_target = get_nearest_target(mob_parent, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
-	if(!next_target)
-		return
-	target_distance = 15
-	change_action(MOVING_TO_SAFETY, next_target, INFINITY)
-	UnregisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE)
 
 /datum/ai_behavior/xeno/ranged
 	distance_to_maintain = 5

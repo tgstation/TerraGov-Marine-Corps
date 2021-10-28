@@ -2,6 +2,9 @@
 	set name = "Resist"
 	set category = "IC"
 
+	if(next_move > world.time)
+		return
+
 	do_resist()
 
 
