@@ -730,15 +730,8 @@
 /datum/reagent/medicine/quickclotplus/on_mob_delete(mob/living/L, metabolism)
 	TIMER_COOLDOWN_START(L, name, 30 SECONDS)
 
-/datum/reagent/medicine/quickclotplus/on_mob_life(mob/living/L, metabolism)
-	var/mob/living/carbon/human/H = L
-	for(var/datum/limb/X in H.limbs)
-		for(var/datum/wound/W in X.wounds)
-			if(W.internal)
-				W.damage = max(0, W.damage - (2.5*effect_str))
-				X.update_damages()
-				if (X.update_icon())
-					X.owner.UpdateDamageIcon(1)
+/datum/reagent/medicine/quickclotplus/on_mob_life(mob/living/L, metabolism) // deleted lines 734-741 cause JPR told me to
+	
 	L.reagents.add_reagent(/datum/reagent/toxin,5)
 	L.reagent_shock_modifier -= PAIN_REDUCTION_FULL
 	L.adjustStaminaLoss(15*effect_str)
