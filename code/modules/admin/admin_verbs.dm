@@ -76,11 +76,11 @@
 
 /// Will apply on every xeno a multiplicative buff on health, regen and damage.
 /datum/admins/proc/set_xeno_stat_buffs()
-	set category = "Fun"
+	set category = "Debug"
 	set name = "Set Xeno Buffs"
 	set desc = "Allows you to change stats on all xeno. It is a multiplicator buff, so input 1 to put back everything to normal"
 
-	if(!check_rights(R_FUN))
+	if(!check_rights(R_DEBUG))
 		return
 
 	var/multiplicator_buff_wanted = input("Input the factor that will multiply xeno stat", "1 is normal stat, 2 is doubling health, regen and melee attack") as num
@@ -255,7 +255,7 @@
 	set category = "Admin"
 	set name = "Get Server Logs"
 
-	if(!check_rights(R_LOG))
+	if(!check_rights(R_ADMIN))
 		return
 
 	usr.client.holder.browse_server_logs()
@@ -266,7 +266,7 @@
 	set name = "Get Current Logs"
 	set desc = "View/retrieve logfiles for the current round."
 
-	if(!check_rights(R_LOG))
+	if(!check_rights(R_ADMIN))
 		return
 
 	usr.client.holder.browse_server_logs("[GLOB.log_directory]/")
@@ -277,7 +277,7 @@
 	set name = "Get Server Logs Folder"
 	set desc = "Please use responsibly."
 
-	if(!check_rights(R_LOG))
+	if(!check_rights(R_ADMIN))
 		return
 
 	if(alert("Due to the way BYOND handles files, you WILL need a click macro. This function is also recurive and prone to fucking up, especially if you select the wrong folder. Are you absolutely sure you want to proceed?", "WARNING", "Yes", "No") != "Yes")
@@ -291,7 +291,7 @@
 
 
 /datum/admins/proc/browse_server_logs(path = "data/logs/")
-	if(!check_rights(R_LOG))
+	if(!check_rights(R_ADMIN))
 		return
 
 	path = browse_files(path)
@@ -313,7 +313,7 @@
 
 
 /datum/admins/proc/recursive_download(folder)
-	if(!check_rights(R_LOG))
+	if(!check_rights(R_ADMIN))
 		return
 
 	var/files = flist(folder)
@@ -361,7 +361,7 @@
 
 
 /datum/admins/proc/browse_files(root = "data/logs/", max_iterations = 20, list/valid_extensions = list("txt", "log", "htm", "html"))
-	if(!check_rights(R_LOG))
+	if(!check_rights(R_ADMIN))
 		return
 
 	var/path = root
@@ -392,7 +392,7 @@
 
 
 /datum/admins/proc/show_individual_logging_panel(mob/M, source = LOGSRC_CLIENT, type = INDIVIDUAL_ATTACK_LOG)
-	if(!check_rights(R_LOG))
+	if(!check_rights(R_ADMIN))
 		return
 
 	if(!istype(M))

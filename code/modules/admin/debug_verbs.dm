@@ -447,10 +447,10 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 
 /datum/admins/proc/spatial_agent()
-	set category = "Fun"
+	set category = "Debug"
 	set name = "Spatial Agent"
 
-	if(!check_rights(R_FUN))
+	if(!check_rights(R_DEBUG))
 		return
 
 	var/mob/M = usr
