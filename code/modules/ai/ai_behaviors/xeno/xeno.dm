@@ -121,7 +121,7 @@
 	. = ..()
 	if(next_action == MOVING_TO_NODE)
 		return
-	if(!isliving(mob_parent))
+	if(!isxeno(mob_parent))
 		return
 	var/mob/living/living_mob = mob_parent
 	if(can_heal && living_mob.resting)

@@ -76,7 +76,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior/proc/cleanup_current_action(next_action)
 	if(current_action == MOVING_TO_NODE && next_action != MOVING_TO_NODE)
 		current_node = null
-	if(current_action == ESCORTING_ATOM)
+	if(current_action == ESCORTING_ATOM && next_action != ESCORTING_ATOM)
 		clean_escorted_atom()
 	unregister_action_signals(current_action)
 	mob_parent.RemoveElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
@@ -184,11 +184,11 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 ///clean the escorted atom var to avoid harddels
 /datum/ai_behavior/proc/clean_escorted_atom()
 	SIGNAL_HANDLER
+	if(!escorted_atom)
+		return
 	escorted_atom = null
 	base_action = initial(base_action)
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, .proc/set_escorted_atom)
-	if(current_action == ESCORTING_ATOM)
-		look_for_next_node()
 
 ///Set the target distance to be normal (initial) or very low (almost passive)
 /datum/ai_behavior/proc/set_agressivity(datum/source, should_be_agressive = TRUE)
