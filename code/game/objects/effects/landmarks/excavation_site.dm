@@ -12,7 +12,7 @@
 		/obj/item/research_resource/xeno/tier_one,
 	)
 
-/obj/effect/landmark/excavation_site/New(loc, spawner)
+/obj/effect/landmark/excavation_site/Initialize(loc, spawner)
 	. = ..()
 	src.spawner = spawner
 	SSminimaps.add_marker(src, 2, hud_flags = MINIMAP_FLAG_EXCAVATION_ZONE, iconstate = "excavation_site")

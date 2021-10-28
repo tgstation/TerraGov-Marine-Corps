@@ -10,7 +10,7 @@
 
 ///Spawn an excavation site
 /obj/effect/landmark/excavation_site_spawner/proc/spawn_excavation_site()
-	spawned_site = new(src.loc)
+	spawned_site = new(loc)
 	spawned_site.spawner = src
 
 ///Escavates the spawner's excavation site
