@@ -121,6 +121,8 @@
 	. = ..()
 	if(next_action == MOVING_TO_NODE)
 		return
+	if(!isliving(mob_parent))
+		return
 	var/mob/living/living_mob = mob_parent
 	if(can_heal && living_mob.resting)
 		SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
