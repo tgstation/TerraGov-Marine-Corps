@@ -35,6 +35,7 @@
 	aim_speed_modifier = 0.65
 	scatter = 0
 	scatter_unwielded = 0
+	akimbo_additional_delay = 0.9
 
 	placed_overlay_iconstate = "pistol"
 
