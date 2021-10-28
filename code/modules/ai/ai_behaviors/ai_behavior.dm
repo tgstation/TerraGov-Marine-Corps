@@ -41,13 +41,13 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		stack_trace("An ai behavior was initialized without a parent to assign it to; destroying mind. Mind type: [type]")
 		qdel(src)
 		return
+	mob_parent = parent_to_assign
 	//We always use the escorted atom as our reference point for looking for target. So if we don't have any escorted atom, we take ourselve as the reference
 	if(escorted_atom)
-		set_escorted_atom(escorted_atom)
+		set_escorted_atom(null, escorted_atom)
 	else
 		src.escorted_atom = parent_to_assign
 		RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, .proc/set_escorted_atom)
-	mob_parent = parent_to_assign
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, .proc/set_goal_node)
 	goal_node = GLOB.goal_nodes[identifier]
 	START_PROCESSING(SSprocessing, src)
@@ -169,7 +169,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 ///Set the escorted atom
 /datum/ai_behavior/proc/set_escorted_atom(datum/source, atom/atom_to_escort)
 	SIGNAL_HANDLER
-	if(atom_to_escort.get_xeno_hivenumber() != mob_parent.get_xeno_hivenumber())
+	if(!atom_to_escort || atom_to_escort.get_xeno_hivenumber() != mob_parent.get_xeno_hivenumber())
 		return
 	if(get_dist(atom_to_escort, mob_parent) > target_distance)
 		return
