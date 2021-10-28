@@ -591,7 +591,7 @@
 		icon_state = "[initial(icon_state)]"
 		if(closed_overlay)
 			. += image('icons/obj/items/storage/storage_boxes.dmi', icon_state = closed_overlay)
-		return // We early exit here since we don't draw the insides when it's closed.
+		return // We early return here since we don't draw the insides when it's closed.
 	if(variety > max_overlays) // Too many items inside so lets make it cluttered
 		return
 
