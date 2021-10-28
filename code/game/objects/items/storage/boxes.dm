@@ -584,14 +584,15 @@
 /obj/item/storage/box/visual/update_overlays()
 	. = ..()
 
-	if(deployed)
-		if(open_overlay)
-			. += image('icons/obj/items/storage/storage_boxes.dmi', icon_state = open_overlay)
-	else
+	if(!deployed)
 		icon_state = "[initial(icon_state)]"
 		if(closed_overlay)
 			. += image('icons/obj/items/storage/storage_boxes.dmi', icon_state = closed_overlay)
 		return // We early return here since we don't draw the insides when it's closed.
+
+	if(open_overlay)
+		. += image('icons/obj/items/storage/storage_boxes.dmi', icon_state = open_overlay)
+
 	if(variety > max_overlays) // Too many items inside so lets make it cluttered
 		return
 
