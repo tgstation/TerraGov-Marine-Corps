@@ -126,7 +126,7 @@
 	icon_state = "m41a"
 	max_rounds = 95
 	gun_type = /obj/item/weapon/gun/rifle/m41a
-
+	icon_state_mini = "mag_rifle_big"
 
 
 //-------------------------------------------------------
@@ -140,6 +140,7 @@
 	default_ammo = /datum/ammo/bullet/rifle/ak47
 	max_rounds = 40
 	gun_type = /obj/item/weapon/gun/rifle/ak47
+	icon_state_mini = "mag_rifle_big"
 
 /obj/item/ammo_magazine/rifle/ak47/extended
 	name = "\improper AK extended magazine (7.62x39mm)"
@@ -147,7 +148,6 @@
 	icon_state = "ak47_ext"
 	bonus_overlay = "ak47_ex"
 	max_rounds = 60
-	icon_state_mini = "mag_rifle_big_yellow"
 
 
 
@@ -162,6 +162,7 @@
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 30 //Also comes in 30 and 100 round Beta-C mag.
 	gun_type = /obj/item/weapon/gun/rifle/m16
+	icon_state_mini = "mag_rifle_big"
 
 //-------------------------------------------------------
 //FAMAS RIFLE
@@ -229,6 +230,7 @@
 	default_ammo = /datum/ammo/bullet/rifle/ak47
 	max_rounds = 42
 	gun_type = /obj/item/weapon/gun/rifle/type71
+	icon_state_mini = "mag_rifle_big"
 
 //TX-16 AUTOMATIC SHOTGUN
 
@@ -279,7 +281,7 @@
 	default_ammo = /datum/ammo/bullet/smartgun/smartrifle
 	max_rounds = 80
 	gun_type = /obj/item/weapon/gun/rifle/standard_smartrifle
-	icon_state_mini = "mag_rifle"
+	icon_state_mini = "mag_rifle_big"
 
 
 
@@ -294,6 +296,7 @@
 	default_ammo = /datum/ammo/energy/plasma
 	max_rounds = 20
 	gun_type = /obj/item/weapon/gun/rifle/sectoid_rifle
+	icon_state_mini = "mag_rifle_purple"
 
 //-------------------------------------------------------
 //Marine magazine sniper, or the TL-127.
