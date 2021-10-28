@@ -817,7 +817,6 @@
 	ability_name = "xeno spit"
 	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
 	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
-	plasma_cost = 10
 	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/xeno_spit/update_button_icon()
