@@ -21,7 +21,7 @@
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 400
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED
@@ -36,5 +36,5 @@
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/activable/forward_charge,
+		/datum/action/xeno_action/activable/forward_charge/unprecise,
 	)
