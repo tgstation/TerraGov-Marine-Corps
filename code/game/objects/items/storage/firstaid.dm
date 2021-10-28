@@ -287,7 +287,8 @@
 	greyscale_config = /datum/greyscale_config/pillbottle
 	greyscale_colors = "#d9cd07#f2cdbb" //default colors
 	var/pill_type_to_fill //type of pill to use to fill in the bottle in New()
-	var/list/colorable_colors ///required variable for facepaint recoloring script
+	///required variable for facepaint recoloring script
+	var/list/colorable_colors
 
 
 /obj/item/storage/pill_bottle/Initialize(mapload, ...)
