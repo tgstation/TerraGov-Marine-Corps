@@ -523,7 +523,7 @@
 		if(CHARGE_CRUSH)
 			Paralyze(CHARGE_SPEED(charge_datum) * 20)
 		if(CHARGE_BULL_HEADBUTT)
-			Paralyze(CHARGE_SPEED(charge_datum) * 20)
+			Paralyze(CHARGE_SPEED(charge_datum) * 30)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)
