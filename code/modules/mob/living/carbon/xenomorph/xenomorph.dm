@@ -103,7 +103,7 @@
 	//We don't have a nicknumber yet, assign one to stick with us
 	if(!nicknumber || nicknumber == "Undefined")
 		if(xeno_caste.caste_flags & CASTE_HAS_RANDOM_NAME)
-			nicknumber = pick(xeno_minions_name)
+			nicknumber = pick(GLOB.xeno_minions_name)
 			return
 		var/tempnumber = rand(1, 999)
 		var/list/xenolist = hive.get_all_xenos(FALSE)
