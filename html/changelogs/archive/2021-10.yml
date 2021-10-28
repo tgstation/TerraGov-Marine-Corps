@@ -237,3 +237,17 @@
   SplinterGP:
   - expansion: replaces recoil screenshake animation with an actual recoil animation
       thats based on which direction you shoot.
+2021-10-28:
+  Alterist:
+  - imagedel: deleted duplicated cryogenics icons
+  BraveMole:
+  - bugfix: Fix monitor not resetting correctly
+  - balance: King is unique, but not time locked
+  - bugfix: Fix medic and engineer uniform not being in loadout vendor
+  - expansion: Ai better at retreating and can resist fire
+  Pariah919:
+  - rscdel: Old Battle rifle sprite.
+  - balance: BR has 3 round burst fire now  0.1 burst delay, 0.15 extra delay. No
+      further changes.
+  Wayland-Smithy:
+  - bugfix: Fixed +ASAY permission error displaying even when canceling the input.
