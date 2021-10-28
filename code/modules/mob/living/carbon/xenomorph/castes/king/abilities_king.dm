@@ -170,3 +170,60 @@
 
 	add_cooldown()
 	succeed_activate()
+
+// ***************************************
+// *********** Stomp
+// ***************************************
+/datum/action/xeno_action/activable/stomp
+	name = "Stomp"
+	action_icon_state = "stomp"
+	mechanics_text = "Knocks all adjacent targets away and down."
+	ability_name = "stomp"
+	plasma_cost = 100
+	cooldown_timer = 20 SECONDS
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_signal = COMSIG_XENOABILITY_STOMP
+
+/datum/action/xeno_action/activable/stomp/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+	succeed_activate()
+	add_cooldown()
+
+	GLOB.round_statistics.crusher_stomps++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomps")
+
+	playsound(X.loc, 'sound/effects/bang.ogg', 25, 0)
+	X.visible_message(span_xenodanger("[X] smashes into the ground!"), \
+	span_xenodanger("We smash into the ground!"))
+	X.create_stomp() //Adds the visual effect. Wom wom wom
+
+	for(var/mob/living/M in range(1, get_turf(X)))
+		if(X.issamexenohive(M) || M.stat == DEAD || isnestedhost(M))
+			continue
+		var/distance = get_dist(M, X)
+		var/damage = X.xeno_caste.stomp_damage/max(1, distance + 1)
+		if(distance == 0) //If we're on top of our victim, give him the full impact
+			GLOB.round_statistics.crusher_stomp_victims++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomp_victims")
+			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE, TRUE)
+			M.Paralyze(4 SECONDS)
+			to_chat(M, span_highdanger("You are stomped on by [X]!"))
+			shake_camera(M, 3, 3)
+		else
+			step_away(M, X, 1) //Knock away
+			shake_camera(M, 2, 2)
+			to_chat(M, span_highdanger("You reel from the shockwave of [X]'s stomp!"))
+			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE, TRUE)
+			M.Paralyze(1.0 SECONDS)
+
+/datum/action/xeno_action/activable/stomp/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/stomp/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 1)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	return TRUE
