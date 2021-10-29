@@ -730,7 +730,7 @@
 /datum/reagent/medicine/quickclotplus/on_mob_delete(mob/living/L, metabolism)
 	TIMER_COOLDOWN_START(L, name, 30 SECONDS)
 
-/datum/reagent/medicine/quickclotplus/on_mob_life(mob/living/L, metabolism) // deleted lines 734-741 cause JPR told me to
+/datum/reagent/medicine/quickclotplus/on_mob_life(mob/living/L, metabolism) // IB heal is handled in modules/organs/limbs.dm
 	
 	L.reagents.add_reagent(/datum/reagent/toxin,5)
 	L.reagent_shock_modifier -= PAIN_REDUCTION_FULL
