@@ -574,6 +574,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 				W.open_wound(0.1 * wound_update_accuracy)
 			if(bicardose >= 30)	//overdose of bicaridine begins healing IB
 				W.damage = max(0, W.damage - 0.2)
+				if(old_qc > 0)
+                W.damage = max(0, W.damage - 2.5)
 			if(old_qc >= 5)	//overdose of QC+ heals IB extremely fast.
 				W.damage = max(0, W.damage - 5)
 
