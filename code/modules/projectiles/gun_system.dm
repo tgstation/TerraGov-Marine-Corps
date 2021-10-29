@@ -105,10 +105,10 @@
 	var/obj/in_chamber
 	///List of stored ammunition items.
 	var/list/obj/chamber_items = list()
-	///Maximum allowed chamber items.
+	///Maximum allowed chamber items. If the gun has RECIEVER_TOGGLES then the total amount in the gun will be the one here. If not, the gun will be able to contain this number + the chamber. If this is zero and doesnt use magazines, reloading will go directly into the chamber. 
 	var/max_chamber_items = 1
 
-	///Current selected position of chamber_items
+	///Current selected position of chamber_items, this will determin the next item to be inserted into the chamber. If the gun uses magazines it will be the position of the magazine to be used. If the gun cycles (revolvers), this number will increase by one everytime it cycles until it reaches max_chamber_items, then it will revert back to one.
 	var/current_chamber_position = 1
 
 	///Flags to determin guns ammo/operation.
@@ -459,7 +459,7 @@
 /obj/item/weapon/gun/update_icon(mob/user)
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES) && !CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED))
 		icon_state = base_gun_icon + "_o"
-	else if(!length(chamber_items) || !rounds)
+	else if((!length(chamber_items) && max_chamber_items) || !rounds)
 		icon_state = base_gun_icon + "_e"
 	else if(current_chamber_position <= length(chamber_items) && chamber_items[current_chamber_position] && chamber_items[current_chamber_position].loc != src)
 		icon_state = base_gun_icon + "_l"
@@ -1053,40 +1053,44 @@
 		return TRUE
 
 	var/list/obj/items_to_insert = list()
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
-		var/obj/item/ammo_magazine/mag = new_mag
-		if(CHECK_BITFIELD(mag.flags_magazine, MAGAZINE_HANDFUL))
-			if(mag.current_rounds > 1)
-				items_to_insert += mag.create_handful(null, 1)
+	if(max_chamber_items)
+		if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
+			var/obj/item/ammo_magazine/mag = new_mag
+			if(CHECK_BITFIELD(mag.flags_magazine, MAGAZINE_HANDFUL))
+				if(mag.current_rounds > 1)
+					items_to_insert += mag.create_handful(null, 1)
+				else
+					items_to_insert += mag
+				playsound(src, hand_reload_sound, 25, 1)
 			else
-				items_to_insert += mag
-			playsound(src, hand_reload_sound, 25, 1)
+				if((length(chamber_items) && !CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES)) || (CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES) && rounds))
+					to_chat(user, span_warning("[src] must be completely empty to use the [mag]!"))
+					return FALSE
+				var/rounds_to_fill = mag.current_rounds < max_chamber_items ? mag.current_rounds : max_chamber_items
+				for(var/i = 0, i < rounds_to_fill, i++)
+					items_to_insert += mag.create_handful(null, 1)
+				playsound(src, reload_sound, 25, 1)
 		else
-			if((length(chamber_items) && !CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES)) || (CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES) && rounds))
-				to_chat(user, span_warning("[src] must be completely empty to use the [mag]!"))
-				return FALSE
-			var/rounds_to_fill = mag.current_rounds < max_chamber_items ? mag.current_rounds : max_chamber_items
-			for(var/i = 0, i < rounds_to_fill, i++)
-				items_to_insert += mag.create_handful(null, 1)
-			playsound(src, reload_sound, 25, 1)
+			items_to_insert += new_mag
+
+		if(CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES))
+			for(var/obj/object_to_insert in items_to_insert)
+				for(var/i = 1, i <= length(chamber_items), i++)
+					if(chamber_items[i])
+						continue
+					chamber_items[i] = object_to_insert
+					break
+		else
+			chamber_items += items_to_insert
 	else
 		items_to_insert += new_mag
-
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES))
-		for(var/obj/object_to_insert in items_to_insert)
-			for(var/i = 1, i <= length(chamber_items), i++)
-				if(chamber_items[i])
-					continue
-				chamber_items[i] = object_to_insert
-				break
-	else
-		chamber_items += items_to_insert
+		in_chamber = new_mag
 	for(var/obj/obj_to_insert in items_to_insert)
 		obj_to_insert.forceMove(src)
 		user?.temporarilyRemoveItemFromInventory(obj_to_insert)
 	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
 		playsound(src, reload_sound, 25, 1)
-	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION) && !CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES) && !in_chamber)
+	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION) && !CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES) && !in_chamber && max_chamber_items)
 		cycle(user, FALSE)
 	get_ammo()
 	update_ammo_count()
