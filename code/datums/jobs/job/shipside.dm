@@ -267,6 +267,95 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	jobtype = /datum/job/terragov/command/staffofficer/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
+/datum/job/terragov/police
+	job_category = JOB_CAT_POLICE
+	selection_color = "#ffdddd"
+	supervisors = "the acting captain"
+	exp_type_department = EXP_TYPE_POLICE
+
+
+//Military Police
+/datum/job/terragov/police/officer
+	title = MASTER_AT_ARMS
+	paygrade = "PO"
+	comm_title = "MA"
+	total_positions = 5
+	access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
+	minimal_access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY)
+	skills_type = /datum/skills/MP
+	display_order = JOB_DISPLAY_ORDER_MILITARY_POLICE
+	outfit = /datum/outfit/job/police/officer
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
+
+
+/datum/job/terragov/police/officer/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"You are here to grief, grief, and grief.
+Failure to do so may result in a job ban.
+Your primary job is to uphold the <a href='https://tgstation13.org/wiki/TGMC:Military_Law'>Law of the Strongest</a>, and bring chaos and anarchy aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
+In addition, you are tasked with the security of high-ranking personnel, including the command staff. Use them as you please!"})
+
+
+
+/datum/outfit/job/police/officer
+	name = MASTER_AT_ARMS
+	jobtype = /datum/job/terragov/police/officer
+
+	id = /obj/item/card/id
+	belt = /obj/item/storage/belt/security/MP/full
+	ears = /obj/item/radio/headset/mainship/mcom
+	w_uniform = /obj/item/clothing/under/marine/mp
+	wear_suit = /obj/item/clothing/suit/storage/marine/MP
+	shoes = /obj/item/clothing/shoes/marine
+	glasses = /obj/item/clothing/glasses/sunglasses/sechud
+	gloves = /obj/item/clothing/gloves/black
+	head = /obj/item/clothing/head/tgmcberet/red
+	r_store = /obj/item/storage/pouch/general/medium
+	back = /obj/item/storage/backpack/satchel/sec
+
+
+//Command Master at Arms
+/datum/job/terragov/police/chief
+	title = COMMAND_MASTER_AT_ARMS
+	paygrade = "O2"
+	comm_title = "CMA"
+	selection_color = "#ffaaaa"
+	total_positions = 1
+	access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
+	minimal_access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RO)
+	skills_type = /datum/skills/CMP
+	display_order = JOB_DISPLAY_ORDER_CHIEF_MP
+	outfit = /datum/outfit/job/police/chief
+	exp_requirements = XP_REQ_INTERMEDIATE
+	exp_type = EXP_TYPE_REGULAR_ALL
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
+
+
+/datum/job/terragov/police/chief/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"You just took this to be able to soft grief poor other players, admit it. You are so lame you took the chief of the boyscout, please feel bad.
+Failure to do anything or nothing result in a job ban.
+Your primary job is to uphold the <a href='https://tgstation13.org/wiki/TGMC:Military_Law'>Law of the Strongest</a>, and bring chaos and anarchy aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
+In addition, you are tasked with the security of high-ranking personnel, including the command staff. Use them as you please!"})
+
+/datum/outfit/job/police/chief
+	name = COMMAND_MASTER_AT_ARMS
+	jobtype = /datum/job/terragov/police/chief
+
+	id = /obj/item/card/id/silver
+	belt = /obj/item/storage/belt/security/MP/full
+	ears = /obj/item/radio/headset/mainship/mcom
+	w_uniform = /obj/item/clothing/under/marine/officer/warrant
+	wear_suit = /obj/item/clothing/suit/storage/marine/MP
+	shoes = /obj/item/clothing/shoes/marine
+	glasses = /obj/item/clothing/glasses/sunglasses/sechud
+	gloves = /obj/item/clothing/gloves/black
+	head = /obj/item/clothing/head/tgmcberet/wo
+	r_store = /obj/item/storage/pouch/general/large
+	back = /obj/item/storage/backpack/security
+
 //Pilot Officer
 /datum/job/terragov/command/pilot
 	title = PILOT_OFFICER
