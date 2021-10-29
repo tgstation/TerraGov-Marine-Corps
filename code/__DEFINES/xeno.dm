@@ -51,6 +51,7 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 #define PRIMORDIAL_RAVAGER "Primordial Ravager"
 #define PRIMORDIAL_CRUSHER "Primordial Crusher"
 #define PRIMORDIAL_HUNTER "Primordial Hunter"
+#define PRIMORDIAL_DEFENDER "Primordial Defender"
 
 GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 	/mob/living/carbon/xenomorph/beetle/ai,

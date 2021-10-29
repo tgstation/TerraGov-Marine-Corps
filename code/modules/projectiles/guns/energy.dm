@@ -98,7 +98,6 @@
 		return
 	playsound(user, fire_sound, 60)
 
-
 /obj/item/weapon/gun/energy/taser
 	name = "taser gun"
 	desc = "An advanced stun device capable of firing balls of ionized electricity. Used for nonlethal takedowns."
@@ -209,6 +208,7 @@
 		/obj/item/attachable/heatlens,
 		/obj/item/attachable/efflens,
 		/obj/item/attachable/pulselens,
+		/obj/item/attachable/stock/lasgun,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
@@ -422,7 +422,7 @@
 	force = 8 //Well, it's not complicted compared to the original.
 	ammo = /datum/ammo/energy/lasgun/M43/practice
 	cell_type = /obj/item/cell/lasgun/M43/practice
-	attachable_allowed = list()
+	attachable_allowed = list(/obj/item/attachable/stock/lasgun/practice)
 	starting_attachment_types = list(/obj/item/attachable/stock/lasgun/practice)
 	muzzle_flash_color = COLOR_DISABLER_BLUE
 
@@ -642,6 +642,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 23, "muzzle_y" = 22,"rail_x" = 12, "rail_y" = 22, "under_x" = 16, "under_y" = 14, "stock_x" = 22, "stock_y" = 12)
 
+	akimbo_additional_delay = 0.9
 	wield_delay = 0.6 SECONDS
 	scatter = 0
 	scatter_unwielded = 0

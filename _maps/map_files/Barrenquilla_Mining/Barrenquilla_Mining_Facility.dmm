@@ -487,7 +487,7 @@
 /turf/open/lavaland/lava,
 /area/barren/cave/east)
 "cB" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/grimy,
 /area/barren/civilian/workdorm)
@@ -9163,7 +9163,7 @@
 /turf/open/floor,
 /area/barren/cave/lz1)
 "VW" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)

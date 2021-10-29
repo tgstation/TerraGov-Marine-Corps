@@ -217,9 +217,9 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	. = ..()
 	if(!.)
 		return
-	if(SSticker.round_start_time + INVOKE_KING_TIME_LOCK > world.time)
+	if(buyer.hive.king_present)
 		if(!silent)
-			to_chat(buyer, span_warning("It is too soon to summon a king!"))
+			to_chat(buyer, span_xenowarning("Another king is alive already!"))
 		return FALSE
 
 /datum/hive_upgrade/xenos/king/on_buy(mob/living/carbon/xenomorph/buyer)
@@ -285,3 +285,9 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Replaces the hunters stealth ability with the ability to disguise itself as any object."
 	psypoint_cost = 125
 	icon = "primohunter"
+
+/datum/hive_upgrade/primordial/defender
+	name = PRIMORDIAL_DEFENDER
+	desc = "Unlocks the primordial defenders centrifugal force. An ability that allows them to rapidly spin and attack enemies nearby."
+	psypoint_cost = 75
+	icon = "primodefender"

@@ -210,3 +210,64 @@
   - balance: PPSh magazines now have proper size, the normal mags being SMALL like
       the T-90 magazines and extended mags being NORMAL like T-12 magazines.
   - balance: xenos don't get healing debuff from being hive leaderless on crash anymore.
+2021-10-25:
+  RipGrayson:
+  - rscadd: Added Chigusa support for the AI pathing.
+  - bugfix: Removes some incorrectly stacked resin landmarks on Chigusa.
+  - bugfix: Removes a ship area that was incorrectly applied to Chigusa caves.
+  - balance: Weeded the entire colony section on Big Red.
+  SpaceLoveSs13:
+  - rscadd: Creates new permission R_LOG
+  - admin: Admins will need R_LOG permission added to them once this gets merged.
+  - server: Keyholders can now give new permission R_LOG
+2021-10-26:
+  hyper2snyper:
+  - bugfix: Fixes a bug where guns that didnt allow their starting attachments didnt
+      get their starting attachments.
+  jroinc:
+  - balance: makes ungas sad
+2021-10-27:
+  EvilMelonTheSecond:
+  - bugfix: Tac bino can't laze through cams anymore
+  RipGrayson:
+  - balance: Big Red no longer has strange invincible walls in the SE caves complex.
+  SpaceLoveSs13:
+  - admin: Perms change
+  - server: perms change
+  SplinterGP:
+  - expansion: replaces recoil screenshake animation with an actual recoil animation
+      thats based on which direction you shoot.
+2021-10-28:
+  Alterist:
+  - imagedel: deleted duplicated cryogenics icons
+  BraveMole:
+  - bugfix: Fix monitor not resetting correctly
+  - balance: King is unique, but not time locked
+  - bugfix: Fix medic and engineer uniform not being in loadout vendor
+  - expansion: Ai better at retreating and can resist fire
+  Pariah919:
+  - rscdel: Old Battle rifle sprite.
+  - balance: BR has 3 round burst fire now  0.1 burst delay, 0.15 extra delay. No
+      further changes.
+  Wayland-Smithy:
+  - bugfix: Fixed +ASAY permission error displaying even when canceling the input.
+2021-10-29:
+  AseFantome:
+  - bugfix: fixed widowmaker sprite
+  BraveMole:
+  - balance: Explosions can damage weapon vendor
+  - balance: Space is buffed
+  - balance: Reduce xeno spits plasma cost
+  - balance: Akimbo refactor, you shoot guns alternatively balance; Akimbo accuracy
+      maluses removed
+  - balance: Remove storage limitation on guns
+  - bugfix: Hypotrays can no longer be used as barricades
+  Pariah919:
+  - bugfix: The TGMC forgot to roll out the proper fire group mechanism for their
+      battle rifles, this has now been fixed. The BR has burst fire.
+  QualityVan:
+  - rscdel: Removed internal organs from bioprinters, since you can't remove/insert
+      those anyway.
+  TheOneAndMightyRed:
+  - rscadd: Added new ammo boxes for newer guns
+  - imageadd: added some ammo box icons as well as mini item icons

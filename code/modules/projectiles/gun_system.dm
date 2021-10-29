@@ -53,8 +53,14 @@
 	var/accuracy_mult 			= 1				//Multiplier. Increased and decreased through attachments. Multiplies the projectile's accuracy by this number.
 	var/damage_mult 			= 1				//Same as above, for damage.
 	var/damage_falloff_mult 	= 1				//Same as above, for damage bleed (falloff)
-	var/recoil 					= 0				//Screen shake when the weapon is fired.
+	///Recoil applied when gun is fired wielded.
+	var/recoil 					= 0
+	///Recoil applied when gun is fired unwielded.
 	var/recoil_unwielded 		= 0
+	///a multiplier of the duration the recoil takes to go back to normal view, this is (recoil*recoil_backtime_multiplier)+1
+	var/recoil_backtime_multiplier = 2
+	///this is how much deviation the gun recoil can have, recoil pushes the screen towards the reverse angle you shot + some deviation which this is the max.
+	var/recoil_deviation = 22.5
 	var/scatter					= 20				//How much the bullet scatters when fired.
 	var/scatter_unwielded 		= 20
 	var/burst_scatter_mult		= 3				//Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
@@ -123,7 +129,7 @@
 	var/general_codex_key = "guns"
 
 	///The mob holding the gun
-	var/mob/gun_user
+	var/mob/living/gun_user
 	///The atom targeted by the user
 	var/atom/target
 	///How many bullets the gun fired while bursting/auto firing
@@ -137,6 +143,8 @@
 	var/upper_akimbo_accuracy = 2
 	///determines lower accuracy modifier in akimbo
 	var/lower_akimbo_accuracy = 1
+	///If fire delay is 1 second, and akimbo_additional_delay is 0.5, then you'll have to wait 1 second * 0.5 to fire the second gun
+	var/akimbo_additional_delay = 0.5
 
 	///If the gun is deployable, the time it takes for the weapon to deploy.
 	var/deploy_time = 0
@@ -653,6 +661,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			return
 		if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
 			dual_wield = TRUE
+			if(gun_user.get_inactive_held_item() == src && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
+				return
 		if(gun_user.in_throw_mode)
 			return
 		if(gun_user.Adjacent(object)) //Dealt with by attack code
@@ -805,7 +815,7 @@ and you're good to go.
 	else
 		firer = gun_user
 	apply_gun_modifiers(projectile_to_fire, target, firer)
-	setup_bullet_accuracy(projectile_to_fire, gun_user, shots_fired, dual_wield) //User can be passed as null.
+	setup_bullet_accuracy(projectile_to_fire, gun_user, shots_fired) //User can be passed as null.
 
 	var/firing_angle = get_angle_with_scatter((gun_user || get_turf(src)), target, get_scatter(projectile_to_fire.scatter, gun_user), projectile_to_fire.p_x, projectile_to_fire.p_y)
 
@@ -817,7 +827,7 @@ and you're good to go.
 
 	play_fire_sound(loc)
 	muzzle_flash(firing_angle, master_gun ? gun_user : loc)
-	simulate_recoil(dual_wield, gun_user)
+	simulate_recoil(dual_wield, firing_angle)
 
 	//This is where the projectile leaves the barrel and deals with projectile code only.
 	//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -838,6 +848,11 @@ and you're good to go.
 	reload_into_chamber(gun_user)
 	gun_user?.hud_used.update_ammo_hud(gun_user, src)
 	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
+	if(dual_wield && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
+		var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
+		if(inactive_gun.get_ammo_count())
+			inactive_gun.last_fired = max(world.time - fire_delay * (1 - akimbo_additional_delay), inactive_gun.last_fired)
+			gun_user.swap_hand()
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) || !CHECK_BITFIELD(flags_item, IS_DEPLOYED) || !CHECK_BITFIELD(turret_flags, TURRET_RADIAL) || gun_user)
 		return
 	sentry_battery.charge -= sentry_battery_drain
@@ -882,7 +897,7 @@ and you're good to go.
 		setup_bullet_accuracy(projectile_to_fire, user) //We add any damage effects that we need.
 		projectile_to_fire.setDir(get_dir(user, M))
 		projectile_to_fire.distance_travelled = get_dist(user, M)
-		simulate_recoil(1, user) // 1 is a scalar value not boolean
+		simulate_recoil(1, Get_Angle(user, M)) // 1 is a scalar value not boolean
 		play_fire_sound(user)
 
 		if(projectile_to_fire.ammo.bonus_projectiles_amount)
@@ -934,7 +949,7 @@ and you're good to go.
 	var/actual_sound = (active_attachable?.fire_sound) ? active_attachable.fire_sound : fire_sound
 	var/sound_volume = (HAS_TRAIT(src, TRAIT_GUN_SILENCED) && !active_attachable) ? 25 : 60
 	playsound(user, actual_sound, sound_volume, 1)
-	simulate_recoil(2, user)
+	simulate_recoil(2, Get_Angle(user, M))
 	var/obj/item/weapon/gun/revolver/current_revolver = src
 	log_combat(user, null, "committed suicide with [src].")
 	message_admins("[ADMIN_TPMONTY(user)] committed suicide with [src].")
@@ -1079,7 +1094,7 @@ and you're good to go.
 	projectile_to_fire.damage_marine_falloff = iff_marine_damage_falloff
 
 
-/obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)
+/obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1)
 	var/gun_accuracy_mult = accuracy_mult_unwielded
 	var/gun_accuracy_mod = 0
 	var/gun_scatter = scatter_unwielded
@@ -1097,7 +1112,7 @@ and you're good to go.
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
 
 	if(dual_wield) //akimbo firing gives terrible accuracy
-		gun_scatter += 10*rand(upper_akimbo_accuracy, lower_akimbo_accuracy)
+		gun_scatter += 8 * rand(upper_akimbo_accuracy, lower_akimbo_accuracy)
 
 	if(user)
 		// Apply any skill-based bonuses to accuracy
@@ -1166,8 +1181,8 @@ and you're good to go.
 		return 0
 
 
-/obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, mob/user)
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED) || !user)
+/obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, firing_angle)
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED) || !gun_user)
 		return TRUE
 	var/total_recoil = recoil_bonus
 	if(flags_item & WIELDED && wielded_stable() || master_gun)
@@ -1176,14 +1191,19 @@ and you're good to go.
 		total_recoil += recoil_unwielded
 		if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 			total_recoil += 1
-	if(!user.skills.getRating("firearms")) //no training in any firearms
+	if(!gun_user.skills.getRating("firearms")) //no training in any firearms
 		total_recoil += 2
 	else
-		var/recoil_tweak = user.skills.getRating(gun_skill_category)
+		var/recoil_tweak = gun_user.skills.getRating(gun_skill_category)
 		if(recoil_tweak)
 			total_recoil -= recoil_tweak * 2
-	if(total_recoil > 0 && ishuman(user))
-		shake_camera(user, total_recoil + 1, total_recoil)
+
+
+	var/actual_angle = firing_angle + rand(-recoil_deviation, recoil_deviation) + 180
+	if(actual_angle > 360)
+		actual_angle -= 360
+	if(total_recoil > 0)
+		recoil_camera(gun_user, total_recoil + 1, (total_recoil * recoil_backtime_multiplier)+1, total_recoil, actual_angle)
 		return TRUE
 
 

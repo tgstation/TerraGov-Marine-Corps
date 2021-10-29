@@ -251,6 +251,12 @@
 	description = "Regenerate your skin, restoring some health and removing all armor sunder."
 	keybind_signal = COMSIG_XENOABILITY_REGENERATE_SKIN
 
+/datum/keybinding/xeno/centrifugal_force
+	name = "centrifugal_force"
+	full_name = "Defender: Centrifugal Force"
+	description = "Rapidly spin and hit all adjacent humans around you, knocking them away and down."
+	keybind_signal = COMSIG_XENOABILITY_CENTRIFUGAL_FORCE
+
 /datum/keybinding/xeno/emit_neurogas
 	name = "emit_neurogas"
 	full_name = "Defiler: Emit Neurogas"
@@ -515,6 +521,18 @@
 	full_name = "Rally Hive"
 	description = "Rallies the hive to a target location."
 	keybind_signal = COMSIG_XENOABILITY_RALLY_HIVE
+
+/datum/keybinding/xeno/rally_minion
+	name = "rally_minion"
+	full_name = "Rally Minions"
+	description = "Rallies the minions to a target location, or yourself."
+	keybind_signal = COMSIG_XENOABILITY_RALLY_MINION
+
+/datum/keybinding/xeno/command_minions
+	name = "command_minion"
+	full_name = "Command Minions"
+	description = "Order the minions escorting you to be either agressive or passive."
+	keybind_signal = COMSIG_XENOABILITY_MINION_BEHAVIOUR
 
 /datum/keybinding/xeno/healing_infusion
 	name = "healing_infusion"

@@ -35,7 +35,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	///When this timer is up, we force a change of node to ensure that the ai will never stay stuck trying to go to a specific node
 	var/anti_stuck_timer
 	///Minimum health percentage before the ai tries to run away
-	var/minimum_health = 0.3
+	var/minimum_health = 0.4
 
 /datum/ai_behavior/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
@@ -43,14 +43,13 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		stack_trace("An ai behavior was initialized without a parent to assign it to; destroying mind. Mind type: [type]")
 		qdel(src)
 		return
+	mob_parent = parent_to_assign
 	//We always use the escorted atom as our reference point for looking for target. So if we don't have any escorted atom, we take ourselve as the reference
 	if(escorted_atom)
-		src.escorted_atom = escorted_atom
+		set_escorted_atom(null, escorted_atom)
 	else
 		src.escorted_atom = parent_to_assign
 		RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, .proc/set_escorted_atom)
-	RegisterSignal(escorted_atom, COMSIG_PARENT_QDELETING, .proc/clean_escorted_atom)
-	mob_parent = parent_to_assign
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, .proc/set_goal_node)
 	goal_node = GLOB.goal_nodes[identifier]
 	START_PROCESSING(SSprocessing, src)
@@ -80,6 +79,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior/proc/cleanup_current_action(next_action)
 	if(current_action == MOVING_TO_NODE && next_action != MOVING_TO_NODE)
 		current_node = null
+	if(current_action == ESCORTING_ATOM && next_action != ESCORTING_ATOM)
+		clean_escorted_atom()
 	unregister_action_signals(current_action)
 	mob_parent.RemoveElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
 
@@ -105,7 +106,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(current_action == FOLLOWING_PATH)
 		distance_to_maintain = 0
 	else if(current_action == ESCORTING_ATOM)
-		distance_to_maintain = 2 //Don't stay too close
+		distance_to_maintain = 1 //Don't stay too close
 	else
 		distance_to_maintain = isnull(special_distance_to_maintain) ? initial(distance_to_maintain) : special_distance_to_maintain
 	if(next_target)
@@ -195,22 +196,31 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 ///Set the escorted atom
 /datum/ai_behavior/proc/set_escorted_atom(datum/source, atom/atom_to_escort)
 	SIGNAL_HANDLER
-	if(atom_to_escort.get_xeno_hivenumber() != mob_parent.get_xeno_hivenumber())
+	if(!atom_to_escort || atom_to_escort.get_xeno_hivenumber() != mob_parent.get_xeno_hivenumber())
 		return
 	if(get_dist(atom_to_escort, mob_parent) > target_distance)
 		return
 	INVOKE_ASYNC(mob_parent, /mob/living.proc/emote, "roar")
 	escorted_atom = atom_to_escort
+	RegisterSignal(escorted_atom, COMSIG_PARENT_QDELETING, .proc/clean_escorted_atom)
+	RegisterSignal(escorted_atom, ESCORTING_ATOM_BEHAVIOUR_CHANGED, .proc/set_agressivity)
+	base_action = ESCORTING_ATOM
 	change_action(ESCORTING_ATOM, escorted_atom)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
 
 ///clean the escorted atom var to avoid harddels
 /datum/ai_behavior/proc/clean_escorted_atom()
 	SIGNAL_HANDLER
+	if(!escorted_atom)
+		return
 	escorted_atom = null
+	base_action = initial(base_action)
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, .proc/set_escorted_atom)
-	if(current_action == ESCORTING_ATOM)
-		look_for_next_node()
+
+///Set the target distance to be normal (initial) or very low (almost passive)
+/datum/ai_behavior/proc/set_agressivity(datum/source, should_be_agressive = TRUE)
+	SIGNAL_HANDLER
+	target_distance = should_be_agressive ? initial(target_distance) : 2
 
 ///Clean the goal node
 /datum/ai_behavior/proc/clean_goal_node()
