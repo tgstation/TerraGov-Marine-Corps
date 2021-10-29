@@ -1,4 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - bugfix: "The TGMC forgot to roll out the proper fire group mechanism for their battle rifles, this has now been fixed. The BR has burst fire."

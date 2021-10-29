@@ -1,6 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - balance: "Akimbo refactor, you shoot guns alternatively
-balance; Akimbo accuracy maluses removed"
-  - balance: "Remove storage limitation on guns"

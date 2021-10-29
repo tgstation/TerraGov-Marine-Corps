@@ -1,4 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - rscdel: "Removed internal organs from bioprinters, since you can't remove/insert those anyway."
