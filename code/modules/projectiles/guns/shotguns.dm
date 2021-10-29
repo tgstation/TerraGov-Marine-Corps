@@ -322,6 +322,7 @@
 	default_ammo_type = /datum/ammo/bullet/sniper/svd
 	gun_skill_category = GUN_SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
+	cocked_message = "You work the bolt."
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/scope/mini,
@@ -462,6 +463,7 @@
 	default_ammo_type = /datum/ammo/bullet/revolver/tp44
 	gun_skill_category = GUN_SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
+	cocked_message = "You work the lever."
 	flags_item_map_variant = NONE
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,

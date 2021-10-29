@@ -382,7 +382,8 @@
 	desc = "you should not be seeing this."
 	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
 	allowed_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
-	reciever_flags = RECIEVER_HANDFULS|RECIEVER_CYCLES|RECIEVER_TOGGLES|RECIEVER_TOGGLES_EJECTS|RECIEVER_REQUIRES_OPERATION
+	reciever_flags = RECIEVER_HANDFULS|RECIEVER_CYCLES|RECIEVER_TOGGLES|RECIEVER_TOGGLES_EJECTS|RECIEVER_REQUIRES_OPERATION|RECIEVER_LOCKS
+	cocked_message = "You prime the hammer."
 
 
 
