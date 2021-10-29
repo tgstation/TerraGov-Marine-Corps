@@ -489,7 +489,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_FIRE_IMMUNE (1<<5)
 #define CASTE_EVOLUTION_ALLOWED (1<<6)
 #define CASTE_IS_INTELLIGENT (1<<7) // A hive leader or able to use more human controls
-#define CASTE_DECAY_PROOF (1<<8)
+#define CAN_RIDE_CRUSHER (1<<8)//Can ride a crusher
 #define CASTE_CAN_BE_LEADER (1<<9)
 #define CASTE_HIDE_IN_STATUS (1<<10)
 #define CASTE_QUICK_HEAL_STANDING (1<<11) // Xenomorphs heal standing same if they were resting.
@@ -501,7 +501,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_CAN_CORRUPT_GENERATOR (1<<17) //Can corrupt a generator
 #define CASTE_IS_BUILDER (1<<18) //whether we are classified as a builder caste
 #define CAN_BECOME_KING (1<<19) //Can be choose to become a king
-#define CAN_RIDE_CRUSHER (1<<20) //Can ride a crusher
+
 
 //Charge-Crush
 #define CHARGE_OFF 0
