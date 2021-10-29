@@ -91,6 +91,7 @@
 
 	muzzleflash_iconstate = "muzzle_flash_laser"
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT
+	reciever_flags = RECIEVER_MAGAZINES|RECIEVER_AUTO_EJECT|RECIEVER_NO_HANDFULS
 	actions_types = list()
 	wield_delay = 0.5 SECONDS
 	muzzle_flash_color = COLOR_GREEN

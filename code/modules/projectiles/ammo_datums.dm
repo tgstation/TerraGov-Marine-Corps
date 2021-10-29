@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	for(var/i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
 		var/obj/projectile/new_proj = new proj_type(main_proj.loc, effect_icon)
 		if(bonus_projectiles_type)
-			new_proj.generate_bullet(GLOB.ammo_list[bonus_projectiles_type])
+			new_proj.generate_bullet(bonus_projectiles_type)
 			var/obj/item/weapon/gun/g = source
 			if(source) //Check for the source so we don't runtime if we have bonus projectiles from a non-gun source like a Spitter
 				new_proj.damage *= g.damage_mult //Bonus or reduced damage based on damage modifiers on the gun.
@@ -2080,6 +2080,8 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/water
 	name = "water"
 	hud_state = "water"
+	hud_state_empty = "water_empty"
+
 /datum/ammo/rocket/toy
 	name = "\improper toy rocket"
 	damage = 1

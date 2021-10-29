@@ -131,7 +131,7 @@
 		damage -= max(damage - ammo.damage * 0.5, 0)
 
 /obj/projectile/proc/generate_bullet(ammo_datum, bonus_damage = 0, reagent_multiplier = 0)
-	ammo 		= ammo_datum
+	ammo 		= GLOB.ammo_list[ammo_datum]
 	name 		= ammo.name
 	icon_state 	= ammo.icon_state
 	damage 		= ammo.damage + bonus_damage //Mainly for emitters.

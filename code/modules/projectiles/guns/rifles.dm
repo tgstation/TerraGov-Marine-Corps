@@ -1000,7 +1000,7 @@
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
 	max_shells = 20//codex stuff
-	ammo = /datum/ammo/energy/plasma
+	ammo_datum_type = /datum/ammo/energy/plasma
 	muzzleflash_iconstate = "muzzle_flash_pulse"
 	default_ammo_type = /obj/item/ammo_magazine/rifle/sectoid_rifle
 	wield_delay = 0.4 SECONDS
@@ -1057,7 +1057,8 @@
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	reciever_flags = RECIEVER_REQUIRES_OPERATION|RECIEVER_MAGAZINES
+	reciever_flags = RECIEVER_REQUIRES_OPERATION|RECIEVER_MAGAZINES|RECIEVER_LOCKS
+	cocked_message = "You rack the bolt!"
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 9, "stock_y" = 12)
 	actions_types = list(/datum/action/item_action/aim_mode)

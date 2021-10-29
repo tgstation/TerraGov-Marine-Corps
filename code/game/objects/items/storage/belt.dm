@@ -708,7 +708,7 @@
 		if(user.l_hand && user.r_hand || length(gun.chamber_items))
 			gun.tactical_reload(mag, user)
 		else
-			gun.reload(user, mag)
+			gun.reload(mag, user)
 		orient2hud()
 		return
 

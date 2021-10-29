@@ -73,14 +73,13 @@
 
 /obj/item/ammo_magazine/attackby(obj/item/I, mob/user, params)
 	. = ..()
-
 	if(!istype(I, /obj/item/ammo_magazine))
 		if(!CHECK_BITFIELD(flags_magazine, MAGAZINE_WORN) || !istype(I, /obj/item/weapon/gun) || loc != user || !istype(I, gun_type))
 			return ..()
 		var/obj/item/weapon/gun/gun = I
 		if(!CHECK_BITFIELD(gun.reciever_flags, RECIEVER_MAGAZINES))
 			return ..()
-		if(!gun.reload(user))
+		if(!gun.reload(src, user))
 			return
 		gun.RegisterSignal(src, COMSIG_ITEM_REMOVED_INVENTORY, /obj/item/weapon/gun.proc/drop_connected_mag)
 		return

@@ -34,12 +34,13 @@
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle)
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
+	reciever_flags = RECIEVER_MAGAZINES|RECIEVER_NO_HANDFULS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23, "flamer_nozzle_x" = 33, "flamer_nozzle_y" = 20)
 	fire_delay = 4
 
 	placed_overlay_iconstate = "flamer"
 
-	ammo = /datum/ammo/flamethrower
+	ammo_datum_type = /datum/ammo/flamethrower
 	///Max range of the flamer in tiles.
 	var/flame_max_range = 6
 	///Travel speed of the flames in seconds.
@@ -232,16 +233,16 @@
 				continue
 			turfs_to_burn -= turf_to_check
 
-	if(!length(turfs_to_burn))
+	if(!length(turfs_to_burn) || !length(chamber_items))
 		return FALSE
 
-	var/datum/ammo/flamethrower/loaded_ammo = CHECK_BITFIELD(flags_flamer_features, FLAMER_USES_GUN_FLAMES) ? ammo : chamber_items[current_chamber_position].vars[ammo_type_var]
+	var/datum/ammo/flamethrower/loaded_ammo = CHECK_BITFIELD(flags_flamer_features, FLAMER_USES_GUN_FLAMES) ? ammo_datum_type : chamber_items[current_chamber_position].vars[ammo_type_var]
 	var/burn_level = initial(loaded_ammo.burnlevel) * burn_level_mod
 	var/burn_time = initial(loaded_ammo.burntime) * burn_time_mod
 	var/fire_color = initial(loaded_ammo.fire_color)
 
 	for(var/turf/turf_to_ignite AS in turfs_to_burn)
-		if(rounds)
+		if(!rounds)
 			light_pilot(FALSE)
 			return FALSE
 		flame_turf(turf_to_ignite, gun_user, burn_time, burn_level, fire_color)
@@ -359,15 +360,14 @@
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/update_ammo_count()
 	if(hydro_active)
-		ammo = max(water_count, 0)
+		rounds = max(water_count, 0)
 		max_rounds = reagents.maximum_volume
 		return
 	return ..()
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/get_ammo()
 	if(hydro_active)
-		QDEL_NULL(ammo)
-		ammo = new /datum/ammo/water()
+		ammo_datum_type = /datum/ammo/water
 		return
 	return ..()
 

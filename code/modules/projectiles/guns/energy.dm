@@ -5,11 +5,11 @@
 /obj/item/weapon/gun/energy
 	attachable_allowed = list()
 	rounds_to_draw = 10 //100 shots.
-	flags_gun_features = GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_PERCENTAGE
 	general_codex_key = "energy weapons"
 
 	placed_overlay_iconstate = "laser"
-	reciever_flags = RECIEVER_MAGAZINES
+	reciever_flags = RECIEVER_MAGAZINES|RECIEVER_NO_HANDFULS
 	allowed_ammo_type = /obj/item/cell
 	current_rounds_var = "charge"
 	max_rounds_var = "maxcharge"
@@ -36,11 +36,11 @@
 	item_state = "taser"
 	muzzle_flash = null //TO DO.
 	fire_sound = 'sound/weapons/guns/fire/taser.ogg'
-	ammo = /datum/ammo/energy/taser
+	ammo_datum_type  = /datum/ammo/energy/taser
 	default_ammo_type = /obj/item/cell/lasgun/lasrifle/marine
 	allowed_ammo_type = /obj/item/cell/lasgun/lasrifle/marine
 	rounds_to_draw = 500
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_ALLOW_SYNTHETIC
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_ALLOW_SYNTHETIC
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
 
@@ -67,14 +67,14 @@
 	reload_sound = 'sound/weapons/guns/interact/rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 	load_method = CELL //codex
-	ammo = /datum/ammo/energy/lasgun
+	ammo_datum_type  = /datum/ammo/energy/lasgun
 	flags_equip_slot = ITEM_SLOT_BACK
 	muzzleflash_iconstate = "muzzle_flash_laser"
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
 	overcharge = FALSE
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER
-	reciever_flags = RECIEVER_MAGAZINES|RECIEVER_AUTO_EJECT
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_PERCENTAGE
+	reciever_flags = RECIEVER_MAGAZINES|RECIEVER_AUTO_EJECT|RECIEVER_NO_HANDFULS
 	aim_slowdown = 0.75
 	wield_delay = 1 SECONDS
 	gun_skill_category = GUN_SKILL_RIFLES
@@ -97,8 +97,8 @@
 	icon_state = "m43"
 	item_state = "m43"
 	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
-	ammo = /datum/ammo/energy/tesla
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER
+	ammo_datum_type  = /datum/ammo/energy/tesla
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_PERCENTAGE
 	muzzle_flash_color = COLOR_TESLA_BLUE
 
 	rounds_to_draw = 500
@@ -121,7 +121,7 @@
 		//While overcharge is active, double ammo consumption, and
 		playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
 		charge_cost = ENERGY_OVERCHARGE_AMMO_COST
-		ammo = GLOB.ammo_list[ammo_diff]
+		ammo_type_var = ammo_diff
 		fire_delay += 7 // 1 shot per second fire rate
 		fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
@@ -129,7 +129,7 @@
 	else
 		playsound(user, 'sound/weapons/emitter2.ogg', 5, 0, 2)
 		charge_cost = ENERGY_STANDARD_AMMO_COST
-		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43]
+		ammo_datum_type = /datum/ammo/energy/lasgun/M43
 		fire_delay -= 7
 		fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
@@ -169,7 +169,7 @@
 	item_state = "m43"
 	max_shots = 50 //codex stuff
 	load_method = CELL //codex stuff
-	ammo = /datum/ammo/energy/lasgun/M43
+	ammo_datum_type = /datum/ammo/energy/lasgun/M43
 	ammo_diff = null
 	rounds_to_draw = ENERGY_STANDARD_AMMO_COST
 	attachable_allowed = list(
@@ -192,7 +192,7 @@
 		/obj/item/attachable/pulselens,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_PERCENTAGE
 	starting_attachment_types = list(/obj/item/attachable/stock/lasgun)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 
@@ -221,12 +221,12 @@
 	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
 	max_shots = 100//codex stuff
 	load_method = CELL //codex stuff
-	ammo = /datum/ammo/energy/lasgun/pulsebolt
+	ammo_datum_type = /datum/ammo/energy/lasgun/pulsebolt
 	muzzleflash_iconstate = "muzzle_flash_pulse"
 	rounds_to_draw = ENERGY_STANDARD_AMMO_COST
 	muzzle_flash_color = COLOR_PULSE_BLUE
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_PERCENTAGE
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 
 	fire_delay = 8
@@ -242,7 +242,7 @@
 	name = "\improper M43-P Sunfury Lasgun MK1"
 	desc = "An accurate, recoilless laser based battle rifle, based on the outdated M43 design. Only accepts practice power cells and it doesn't have a charge selector. Uses power cells instead of ballistic magazines."
 	force = 8 //Well, it's not complicted compared to the original.
-	ammo = /datum/ammo/energy/lasgun/M43/practice
+	ammo_datum_type = /datum/ammo/energy/lasgun/M43/practice
 	attachable_allowed = list()
 	starting_attachment_types = list(/obj/item/attachable/stock/lasgun/practice)
 	muzzle_flash_color = COLOR_DISABLER_BLUE
@@ -263,7 +263,7 @@
 	item_state = "tx73"
 	max_shots = 50 //codex stuff
 	load_method = CELL //codex stuff
-	ammo = /datum/ammo/energy/lasgun/M43
+	ammo_datum_type = /datum/ammo/energy/lasgun/M43
 	ammo_diff = null
 	rounds_to_draw = 10
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
@@ -283,7 +283,7 @@
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 	)
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_PERCENTAGE
 	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
@@ -300,7 +300,7 @@
 	///how much power the gun uses on this mode when shot.
 	var/rounds_to_draw = 0
 	///the ammo datum this mode is.
-	var/datum/ammo/ammo = null
+	var/datum/ammo/ammo_datum_type = null
 	///how long it takes between each shot of that mode, same as gun fire delay.
 	var/fire_delay = 0
 	///Gives guns a burst amount, editable.
@@ -338,7 +338,7 @@
 
 
 	rounds_to_draw = initial(choice.rounds_to_draw)
-	ammo = GLOB.ammo_list[initial(choice.ammo)]
+	ammo_datum_type = initial(choice.ammo_datum_type)
 	fire_delay = initial(choice.fire_delay)
 	burst_amount = initial(choice.burst_amount)
 	fire_sound = initial(choice.fire_sound)
@@ -377,7 +377,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_shots = 50 //codex stuff
 	load_method = CELL //codex stuff
-	ammo = /datum/ammo/energy/lasgun/marine
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
 	rounds_to_draw = 12
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
@@ -416,7 +416,7 @@
 
 /datum/lasrifle/base/energy_rifle_mode/standard
 	rounds_to_draw = 12
-	ammo = /datum/ammo/energy/lasgun/marine
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	fire_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	message_to_user = "You set the laser rifle's charge mode to standard fire."
@@ -426,7 +426,7 @@
 
 /datum/lasrifle/base/energy_rifle_mode/overcharge
 	rounds_to_draw = 30
-	ammo = /datum/ammo/energy/lasgun/marine/overcharge
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/overcharge
 	fire_delay = 0.45 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser overcharge standard.ogg'
 	message_to_user = "You set the laser rifle's charge mode to overcharge."
@@ -449,7 +449,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	max_shots = 30 //codex stuff
 	load_method = CELL //codex stuff
-	ammo = /datum/ammo/energy/lasgun/marine
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
 	rounds_to_draw = 20
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
@@ -485,7 +485,7 @@
 
 /datum/lasrifle/base/energy_pistol_mode/standard
 	rounds_to_draw = 20
-	ammo = /datum/ammo/energy/lasgun/marine/pistol
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol
 	fire_delay = 0.25 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Pistol Standard.ogg'
 	message_to_user = "You set the laser pistol's charge mode to standard fire."
@@ -494,7 +494,7 @@
 
 /datum/lasrifle/base/energy_pistol_mode/disabler
 	rounds_to_draw = 80
-	ammo = /datum/ammo/energy/lasgun/marine/pistol/disabler
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol/disabler
 	fire_delay = 10
 	fire_sound = 'sound/weapons/guns/fire/disabler.ogg'
 	message_to_user = "You set the laser pistol's charge mode to disabler fire."
@@ -504,7 +504,7 @@
 
 /datum/lasrifle/base/energy_pistol_mode/heat
 	rounds_to_draw = 110
-	ammo = /datum/ammo/energy/lasgun/marine/pistol/heat
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol/heat
 	fire_delay = 0.5 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the laser pistol's charge mode to wave heat."
@@ -526,7 +526,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_shots = 40 //codex stuff
 	load_method = CELL //codex stuff
-	ammo = /datum/ammo/energy/lasgun/marine
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
 	rounds_to_draw = 15
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
@@ -567,7 +567,7 @@
 
 /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard ///I know this seems tacky, but if I make auto burst a standard firemode it somehow buffs spread's fire delay.
 	rounds_to_draw = 15
-	ammo = /datum/ammo/energy/lasgun/marine
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	fire_delay = 0.2 SECONDS
 	burst_amount = 4
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
@@ -581,7 +581,7 @@
 
 /datum/lasrifle/base/energy_carbine_mode/base/spread
 	rounds_to_draw = 60
-	ammo = /datum/ammo/energy/lasgun/marine/blast
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/blast
 	fire_delay = 1.5 SECONDS
 	burst_amount = 1
 	fire_sound = 'sound/weapons/guns/fire/Laser Carbine Scatter.ogg'
@@ -604,7 +604,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_shots = 12 //codex stuff
 	load_method = CELL //codex stuff
-	ammo = /datum/ammo/energy/lasgun/marine/sniper
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	ammo_diff = null
 	rounds_to_draw = 50
 	damage_falloff_mult = 0
@@ -642,7 +642,7 @@
 /datum/lasrifle/base/energy_sniper_mode/standard
 	rounds_to_draw = 50
 	fire_delay = 1 SECONDS
-	ammo = /datum/ammo/energy/lasgun/marine/sniper
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
@@ -651,7 +651,7 @@
 /datum/lasrifle/base/energy_sniper_mode/heat
 	rounds_to_draw = 150
 	fire_delay = 1 SECONDS
-	ammo = /datum/ammo/energy/lasgun/marine/sniper_heat
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper_heat
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to wave heat."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
@@ -670,7 +670,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_shots = 150 //codex stuff
 	load_method = CELL //codex stuff
-	ammo = /datum/ammo/energy/lasgun/marine/autolaser
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser
 	ammo_diff = null
 	rounds_to_draw = 4
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
@@ -707,7 +707,7 @@
 
 /datum/lasrifle/base/energy_mg_mode/standard
 	rounds_to_draw = 4
-	ammo = /datum/ammo/energy/lasgun/marine/autolaser
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser
 	fire_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
 	message_to_user = "You set the machine laser's charge mode to standard fire."
@@ -715,7 +715,7 @@
 	icon_state = "tem"
 
 /datum/lasrifle/base/energy_mg_mode/standard/efficiency
-	ammo = /datum/ammo/energy/lasgun/marine/autolaser/efficiency
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/efficiency
 	fire_delay = 0.15 SECONDS
 	rounds_to_draw = 3
 	message_to_user = "You set the machine laser's charge mode to efficiency mode."

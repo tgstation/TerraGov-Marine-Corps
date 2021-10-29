@@ -20,7 +20,7 @@
 	gun_skill_category = GUN_SKILL_PISTOLS
 
 	reciever_flags = RECIEVER_HANDFULS|RECIEVER_CYCLES|RECIEVER_TOGGLES|RECIEVER_TOGGLES_EJECTS
-	max_chamber_items = 6
+	max_chamber_items = 7
 	allowed_ammo_type = /obj/item/ammo_magazine/revolver
 	allowed_ammo_types = list(/obj/item/ammo_magazine/handful)
 

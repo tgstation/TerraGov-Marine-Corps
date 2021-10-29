@@ -110,11 +110,11 @@
 	if(living_user.get_active_held_item() != src && living_user.get_inactive_held_item() != src)
 		return
 
-	unload(living_user)
+	active_attachable.unload(living_user)
 
 
 /obj/item/weapon/gun/attackby(obj/item/I, mob/user, params)
-	if(user.get_inactive_held_item() != src)
+	if(user.get_inactive_held_item() != src || istype(I, /obj/item/attachable) || isgun(I))
 		return ..()
 	reload(I, user)
 
@@ -125,7 +125,7 @@
 	if(!active_attachable)
 		return
 
-	active_attachable.attackby(I, user, params)
+	active_attachable.reload(I, user)
 
 /obj/item/weapon/gun/mob_can_equip(mob/user)
 	//Cannot equip wielded items or items burst firing.

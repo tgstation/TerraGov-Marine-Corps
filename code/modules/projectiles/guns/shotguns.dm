@@ -189,7 +189,7 @@
 	max_chamber_items = 2 //codex
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	fire_sound = 'sound/weapons/guns/fire/shotgun_heavy.ogg'
-	reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'
+	hand_reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'
 	cocked_sound = null //We don't want this.
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -250,7 +250,7 @@
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
-	reciever_flags = RECIEVER_INTERNAL|RECIEVER_HANDFULS|RECIEVER_REQUIRES_OPERATION|RECIEVER_LOCKS
+	reciever_flags = RECIEVER_HANDFULS|RECIEVER_REQUIRES_OPERATION|RECIEVER_LOCKS
 	cocked_message = "You rack the pump."
 	cock_locked_message = "The pump is locked! Fire it first!"
 	max_chamber_items = 8
@@ -373,7 +373,7 @@
 	caliber = CALIBER_557 //codex
 	muzzle_flash_lum = 7
 	max_chamber_items = 1 //codex
-	ammo = /datum/ammo/bullet/sniper/martini
+	ammo_datum_type = /datum/ammo/bullet/sniper/martini
 	default_ammo_type = /datum/ammo/bullet/sniper/martini
 	gun_skill_category = GUN_SKILL_RIFLES
 	fire_sound = 'sound/weapons/guns/fire/martini.ogg'
@@ -422,7 +422,7 @@
 	caliber = CALIBER_41RIM //codex
 	muzzle_flash_lum = 5
 	max_chamber_items = 2 //codex
-	ammo = /datum/ammo/bullet/pistol/superheavy/derringer
+	ammo_datum_type = /datum/ammo/bullet/pistol/superheavy/derringer
 	default_ammo_type = /datum/ammo/bullet/pistol/superheavy/derringer
 	fire_sound = 'sound/weapons/guns/fire/mateba.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'

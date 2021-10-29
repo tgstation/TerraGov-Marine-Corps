@@ -296,6 +296,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	flags_magazine = MAGAZINE_WORN
 	w_class = WEIGHT_CLASS_HUGE
+	gun_type = /obj/item/weapon/gun/minigun
 	current_rounds = 500
 	max_rounds = 500
 	actions_types = list(/datum/action/item_action/toggle)

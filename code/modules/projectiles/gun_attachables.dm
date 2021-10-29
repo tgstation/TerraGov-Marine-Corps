@@ -1478,7 +1478,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		/obj/machinery/deployable/mounted,
 		/obj/machinery/miner,
 	)
-	if(master_gun.ammo && CHECK_BITFIELD(master_gun.ammo.flags_ammo_behavior, AMMO_ENERGY) || istype(master_gun, /obj/item/weapon/gun/energy)) //If the guns ammo is energy, the sentry will shoot at things past windows.
+	if(master_gun.ammo_datum_type && CHECK_BITFIELD(initial(master_gun.ammo_datum_type.flags_ammo_behavior), AMMO_ENERGY) || istype(master_gun, /obj/item/weapon/gun/energy)) //If the guns ammo is energy, the sentry will shoot at things past windows.
 		master_gun.ignored_terrains += list(
 			/obj/structure/window,
 			/obj/structure/window/reinforced,
@@ -1559,7 +1559,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_y = 17
 	stream_type = FLAMER_STREAM_CONE
 
-///Funny red wide nozzle that can fill entire screens with flames. Admeme only. 
+///Funny red wide nozzle that can fill entire screens with flames. Admeme only.
 /obj/item/attachable/flamer_nozzle/wide/red
 	name = "red spray flamer nozzle"
 	desc = "It is red, therefore its obviously more effective."

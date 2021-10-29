@@ -8,7 +8,8 @@ The Grenade Launchers
 /obj/item/weapon/gun/grenade_launcher
 	w_class = WEIGHT_CLASS_BULKY
 	gun_skill_category = GUN_SKILL_FIREARMS
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	reciever_flags = NONE
 	throw_speed = 2
 	throw_range = 10
 	force = 5
@@ -22,6 +23,7 @@ The Grenade Launchers
 	var/max_range = 15
 
 	allowed_ammo_type = /obj/item/explosive/grenade
+	allowed_ammo_types = list()
 	reciever_flags = NONE
 
 
@@ -40,7 +42,7 @@ The Grenade Launchers
 	var/obj/item/explosive/grenade/grenade_to_launch = object_to_fire
 	var/turf/user_turf = get_turf(src)
 	grenade_to_launch.forceMove(user_turf)
-	gun_user.visible_message(span_danger("[gun_user] fired a grenade!"), span_warning("You fire [src]!"))
+	gun_user?.visible_message(span_danger("[gun_user] fired a grenade!"), span_warning("You fire [src]!"))
 	log_explosion("[key_name(gun_user)] fired a grenade ([grenade_to_launch]) from [src] at [AREACOORD(user_turf)].")
 	log_combat(gun_user, src, "fired a grenade ([grenade_to_launch]) from [src]")
 	play_fire_sound(loc)
@@ -48,10 +50,16 @@ The Grenade Launchers
 	grenade_to_launch.launched = TRUE
 	grenade_to_launch.activate(gun_user)
 	grenade_to_launch.throwforce += grenade_to_launch.launchforce
-	grenade_to_launch.throw_at(target, max_range, 3, gun_user)
+	grenade_to_launch.throw_at(target, max_range, 3, (gun_user ? gun_user : loc))
 	if(fire_animation)
 		flick("[fire_animation]", src)
 	return TRUE
+
+/obj/item/weapon/gun/grenade_launcher/get_ammo_list()
+	if(!in_chamber)
+		return ..()
+	var/obj/item/explosive/grenade/grenade = in_chamber
+	return list(grenade.hud_state, grenade.hud_state_empty)
 
 //-------------------------------------------------------
 //T-70 Grenade Launcher.
@@ -69,7 +77,7 @@ The Grenade Launchers
 	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
 	aim_slowdown = 1.2
-	attachable_allowed = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight, /obj/item/attachable/scope/mini)
+	attachable_allowed = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight, /obj/item/attachable/scope/mini, /obj/item/attachable/buildasentry)
 	starting_attachment_types = list(/obj/item/attachable/stock/t70stock)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 11, "stock_y" = 12)
 	fire_delay = 1.2 SECONDS
@@ -95,6 +103,7 @@ The Grenade Launchers
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	pixel_shift_x = 14
 	pixel_shift_y = 18
+	allowed_ammo_type = null
 	allowed_ammo_types = list(
 		/obj/item/explosive/grenade,
 		/obj/item/explosive/grenade/incendiary,

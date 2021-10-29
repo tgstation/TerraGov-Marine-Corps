@@ -71,6 +71,7 @@
 #define GUN_ATTACHMENT_FIRE_ONLY (1<<9)
 #define GUN_IS_SENTRY (1<<10)
 #define GUN_ENERGY (1<<11)
+#define GUN_AMMO_COUNT_BY_PERCENTAGE (1<<12)
 
 //reciever_flags. Used to determin how the gun cycles, what kind of ammo it uses, etc.
 #define RECIEVER_REQUIRES_OPERATION (1<<0)
@@ -80,10 +81,9 @@
 #define RECIEVER_CLOSED (1<<4)
 #define RECIEVER_CYCLES (1<<5)
 #define RECIEVER_AUTO_EJECT (1<<6)
-#define RECIEVER_INTERNAL (1<<7)
-#define RECIEVER_TOGGLES_EJECTS (1<<8)
-#define RECIEVER_LOCKS (1<<9)
-
+#define RECIEVER_TOGGLES_EJECTS (1<<7)
+#define RECIEVER_LOCKS (1<<8)
+#define RECIEVER_NO_HANDFULS (1<<9)
 
 #define FLAMER_IS_LIT (1<<0)
 #define FLAMER_NO_LIT_OVERLAY (1<<1)
