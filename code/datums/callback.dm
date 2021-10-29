@@ -68,9 +68,8 @@
 	var/list/calling_arguments = length(args) > 2 ? args.Copy(3) : null
 
 	if (thingtocall == GLOBAL_PROC)
-		call(proctocall)(arglist(calling_arguments))
-	else
-		call(thingtocall, proctocall)(arglist(calling_arguments))
+		return call(proctocall)(arglist(calling_arguments))
+	return call(thingtocall, proctocall)(arglist(calling_arguments))
 
 /datum/callback/proc/Invoke(...)
 	if(!usr)

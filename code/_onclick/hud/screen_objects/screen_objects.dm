@@ -710,9 +710,7 @@
 
 	var/list/ammo_type = G.get_ammo_list()
 	var/rounds
-	if(!G.max_rounds)
-		rounds = 0
-	else if(CHECK_BITFIELD(G.flags_gun_features, GUN_AMMO_COUNT_BY_PERCENTAGE))
+	if(G.max_rounds && CHECK_BITFIELD(G.flags_gun_features, GUN_AMMO_COUNT_BY_PERCENTAGE))
 		rounds = round((G.rounds / G.max_rounds) * 100)
 	else
 		rounds = G.rounds

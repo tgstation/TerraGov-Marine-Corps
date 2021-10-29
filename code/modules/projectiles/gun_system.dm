@@ -105,7 +105,7 @@
 	var/obj/in_chamber
 	///List of stored ammunition items.
 	var/list/obj/chamber_items = list()
-	///Maximum allowed chamber items. If the gun has RECIEVER_TOGGLES then the total amount in the gun will be the one here. If not, the gun will be able to contain this number + the chamber. If this is zero and doesnt use magazines, reloading will go directly into the chamber. 
+	///Maximum allowed chamber items. If the gun has RECIEVER_TOGGLES then the total amount in the gun will be the one here. If not, the gun will be able to contain this number + the chamber. If this is zero and doesnt use magazines, reloading will go directly into the chamber.
 	var/max_chamber_items = 1
 
 	///Current selected position of chamber_items, this will determin the next item to be inserted into the chamber. If the gun uses magazines it will be the position of the magazine to be used. If the gun cycles (revolvers), this number will increase by one everytime it cycles until it reaches max_chamber_items, then it will revert back to one.
@@ -363,7 +363,7 @@
 		if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS) || CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
 			var/obj/item/ammo_magazine/ammo_type = default_ammo_type
 			if(!CHECK_BITFIELD(initial(ammo_type.flags_magazine), MAGAZINE_HANDFUL) || CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
-				var/thing_to_reload = new default_ammo_type()
+				var/thing_to_reload = new default_ammo_type(src)
 				if(!INVOKE_ASYNC(src, .proc/reload, thing_to_reload, null, TRUE))
 					qdel(thing_to_reload)
 				return
@@ -374,7 +374,7 @@
 				handful.generate_handful(default_ammo_type, caliber, 1, type)
 				object_to_insert = handful
 			else
-				object_to_insert = new default_ammo_type()
+				object_to_insert = new default_ammo_type(src)
 			if(!INVOKE_ASYNC(src, .proc/reload, object_to_insert, null, TRUE))
 				qdel(object_to_insert)
 	update_icon()
@@ -539,8 +539,8 @@
 			dat += "[CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED) ? "It is closed. \n" : "It is open. \n"]"
 		if(rounds > 0)
 			if(flags_gun_features & GUN_AMMO_COUNTER)
-				if(CHECK_BITFIELD(flags_gun_features, GUN_AMMO_COUNT_BY_PERCENTAGE))
-					dat += "Ammo counter shows [round(rounds / (max_rounds ? max_rounds : 0) * 100)] percent remaining.<br>"
+				if(max_rounds && CHECK_BITFIELD(flags_gun_features, GUN_AMMO_COUNT_BY_PERCENTAGE))
+					dat += "Ammo counter shows [round((rounds / max_rounds) * 100)] percent remaining.<br>"
 				else
 					dat += "Ammo counter shows [rounds] round\s remaining.<br>"
 			else
@@ -911,6 +911,10 @@
 
 ///Called after the gun fires. Handles the amunition side of firing.
 /obj/item/weapon/gun/proc/post_fire()
+	if(!max_chamber_items)
+		in_chamber = null
+		update_ammo_count()
+		return
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES))
 		casings_to_eject++
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
@@ -1006,7 +1010,7 @@
 			to_chat(user, span_warning("You cannot reload [src]!"))
 		return FALSE
 
-	if((length(chamber_items) >= max_chamber_items))
+	if((length(chamber_items) >= max_chamber_items) && max_chamber_items)
 		if(!CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES))
 			to_chat(user, span_warning("There is no room for [new_mag]!"))
 			return FALSE
@@ -1094,6 +1098,7 @@
 		cycle(user, FALSE)
 	get_ammo()
 	update_ammo_count()
+	update_icon()
 	return TRUE
 
 ///Handles unloading. Called on attackhand.
@@ -1144,10 +1149,10 @@
 		chamber_items[mag] = null
 	else
 		chamber_items -= mag
-	mag.update_icon()
-	update_icon()
 	update_ammo_count()
 	get_ammo()
+	mag.update_icon()
+	update_icon()
 	return TRUE
 
 
