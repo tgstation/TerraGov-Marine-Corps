@@ -11,9 +11,11 @@
 
 /datum/action/xeno_action/activable/drain/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
-	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/gorger/X = owner
 	if(!.)
 		return
+	if(!iscarbon(A))
+		return FALSE
 	if(!A.can_sting())
 		to_chat(owner, span_warning("This won't do!"))
 		return FALSE
@@ -26,7 +28,7 @@
 	return TRUE
 
 /datum/action/xeno_action/activable/drain/use_ability(mob/living/carbon/A)
-	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/gorger/X = owner
 	X.do_attack_animation(A, ATTACK_EFFECT_GRAB)
 	X.emote("roar")
 	A.drop_all_held_items()
@@ -58,13 +60,15 @@
 	cooldown_timer = 2 SECONDS
 	plasma_cost = 0
 	use_state_flags = XACT_TARGET_SELF
-	COOLDOWN_DECLARE(rejuvenate_self_cooldown)
+
+/datum/action/xeno_action/activable/give_action(mob/living/L)
+	. = ..()
 
 /datum/action/xeno_action/activable/rejuvenate/can_use_ability(atom/target, silent = FALSE, override_flags) //it is set up to only return true on specific xeno or human targets
 	. = ..()
-	var/mob/living/carbon/xenomorph/X = owner
 	if(!.)
 		return
+	var/mob/living/carbon/xenomorph/gorger/X = owner
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(H.stat != DEAD)
@@ -97,7 +101,7 @@
 	return FALSE
 
 /datum/action/xeno_action/activable/rejuvenate/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/gorger/X = owner
 	if(ishuman(A))
 		var/mob/living/carbon/human/target = A
 		while(X.health < X.maxHealth && do_after(X, 2 SECONDS, TRUE, A, BUSY_ICON_HOSTILE))
@@ -105,13 +109,13 @@
 			X.adjust_sunder(-1.5)
 			target.blood_volume -= 2
 		to_chat(X, span_notice("We feel fully restored."))
-	elese if(A == X)
+	else if(A == X)
 		var/mob/living/carbon/xenomorph/target = A
 		X.blood_bank -= 10
 		to_chat(X, span_notice("Blood bank: [X.blood_bank]%"))
 		to_chat(X, span_notice("We tap into our reserves for nourishment."))
 		target.apply_status_effect(/datum/status_effect/xeno_rejuvenate, 5 SECONDS)
-		COOLDOWN_START(src, rejuvenate_self_cooldown, 20 SECONDS)
+		COOLDOWN_START(X, rejuvenate_self_cooldown, 20 SECONDS)
 	else
 		var/mob/living/carbon/xenomorph/target = A
 		if(!do_mob(X, A, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
@@ -143,7 +147,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/carnage/use_ability()
-	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/gorger/X = owner
 	X.apply_status_effect(/datum/status_effect/xeno_carnage, 20 SECONDS)
 	succeed_activate()
 	add_cooldown()
@@ -162,7 +166,7 @@
 
 /datum/action/xeno_action/activable/feast/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
-	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/gorger/X = owner
 	if(!.)
 		return FALSE
 	if(X.blood_bank < 100 && !X.has_status_effect(STATUS_EFFECT_XENO_FEAST))
@@ -171,7 +175,7 @@
 	return TRUE
 
 /datum/action/xeno_action/activable/feast/use_ability()
-	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/gorger/X = owner
 	if(!X.has_status_effect(STATUS_EFFECT_XENO_FEAST))
 		X.emote("roar")
 		X.visible_message(X, span_notice("The [X] starts to overflow with vitality!"))

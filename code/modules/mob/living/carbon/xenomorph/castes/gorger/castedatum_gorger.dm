@@ -12,9 +12,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 15
 
-	// *** Tackle *** //
-	tackle_damage = 15
-
 	// *** Speed *** //
 	speed = -0.7
 
@@ -54,9 +51,6 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Tackle *** //
-	tackle_damage = 15
-
 	// *** Speed *** //
 	speed = -0.8
 
@@ -82,9 +76,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 20
 
-	// *** Tackle *** //
-	tackle_damage = 20
-
 	// *** Speed *** //
 	speed = -0.9
 
@@ -109,9 +100,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
-
-	// *** Tackle *** //
-	tackle_damage = 20
 
 	// *** Speed *** //
 	speed = -1

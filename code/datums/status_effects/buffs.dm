@@ -12,7 +12,8 @@
 	to_chat(owner, span_notice("We feel our wounds close up and plasma reserves refilling."))
 	X.adjustBruteLoss(-X.maxHealth*0.1)
 	X.adjustFireLoss(-X.maxHealth*0.1)
-	X.gain_plasma(X.xeno_caste.plasma_max*0.25)
+	if(X.caste_flags & CAN_BE_GIVEN_PLASMA)
+		X.gain_plasma(X.xeno_caste.plasma_max*0.25)
 
 /datum/status_effect/xeno_carnage
 	id = "xeno_carnage"
@@ -31,17 +32,17 @@
 
 /datum/status_effect/xeno_carnage/proc/carnage_slash(datum/source, mob/living/target, damage)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/X = owner
-	X.blood_bank += min(5, 100 - X.blood_bank)
-	to_chat(X, span_notice("Blood bank: [X.blood_bank]%"))
-	X.adjustBruteLoss(-damage)
-	X.adjustFireLoss(-damage)
-	if(X.has_status_effect(STATUS_EFFECT_XENO_FEAST))
-		for(var/mob/living/carbon/xenomorph/H in range(4, owner))
-			if(H != X)
-				H.adjustBruteLoss(-damage*0.7)
-				H.adjustFireLoss(-damage*0.7)
-				to_chat(H, span_notice("You feel your wounds being restored by [X]'s pheromones."))
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	owner_xeno.blood_bank += min(5, 100 - owner_xeno.blood_bank)
+	to_chat(owner_xeno, span_notice("Blood bank: [owner_xeno.blood_bank]%"))
+	owner_xeno.adjustBruteLoss(-damage)
+	owner_xeno.adjustFireLoss(-damage)
+	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
+		for(var/mob/living/carbon/xenomorph/target_xeno AS in cheap_get_xenos_near(owner_xeno, 4))
+			if(target_xeno != owner_xeno)
+				target_xeno.adjustBruteLoss(-damage*0.7)
+				target_xeno.adjustFireLoss(-damage*0.7)
+				to_chat(target_xeno, span_notice("You feel your wounds being restored by [owner_xeno]'s pheromones."))
 
 /datum/status_effect/xeno_feast
 	id = "xeno_feast"

@@ -12,3 +12,6 @@
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
 	mob_size = MOB_SIZE_BIG
+
+	///Cooldown for using rejuvenate on self
+	COOLDOWN_DECLARE(rejuvenate_self_cooldown)
