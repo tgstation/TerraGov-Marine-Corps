@@ -81,7 +81,6 @@
 #define INIT_ORDER_SHUTTLE -21
 #define INIT_ORDER_PATH -50
 #define INIT_ORDER_EXPLOSIONS -69
-#define INIT_ORDER_RESEARCH -77
 #define INIT_ORDER_EXCAVATION -78
 #define INIT_ORDER_CHAT -100 //Should be last to ensure chat remains smooth during init.
 

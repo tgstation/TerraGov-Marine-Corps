@@ -15,7 +15,7 @@
 SUBSYSTEM_DEF(excavation)
 	name = "Excavation"
 	init_order = INIT_ORDER_EXCAVATION
-	flags = SS_BACKGROUND
+	flags = SS_BACKGROUND | SS_NO_INIT
 	wait = 5 MINUTES
 
 	///Landmarks that can spawn excavation sites
@@ -26,7 +26,9 @@ SUBSYSTEM_DEF(excavation)
 	var/excavations_count = 0
 
 /datum/controller/subsystem/excavation/fire()
-	while (excavations_count < MAX_ACTIVE_EXCAVATIONS && excavation_site_spawners.len > 0)
+	if(excavation_site_spawners.len <= 0)
+		return
+	for(var/i in 0 to MAX_ACTIVE_EXCAVATIONS - excavations_count - 1)
 		spawnExcavation()
 
 ///Creates an excavation landmark at a random area from eligible areas

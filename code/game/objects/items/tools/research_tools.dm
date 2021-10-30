@@ -5,13 +5,13 @@
 	///Skill level needed to use the tool
 	var/skill_threshold = SKILL_MEDICAL_EXPERT
 
+#define RESEARCH_DELAY 2 SECONDS
+
 /obj/item/tool/research/xeno_analyzer
 	name = "xenomorph analyzer"
 	desc = "A tool for analyzing xenomorphs for research material. Just click on a xenomorph."
 	icon = 'icons/obj/items/surgery_tools.dmi'
 	icon_state = "predator_bonesaw"
-	///Delay to perform research
-	var/static/research_delay = 2 SECONDS
 	///List of rewards for each xeno tier
 	var/static/list/xeno_tier_rewards = list(
 		XENO_TIER_ZERO = list(
@@ -45,7 +45,7 @@
 		to_chat(user, "You need higher [skill_type] skill.")
 		return ..()
 
-	if(!do_after(user, research_delay, TRUE, target_xeno, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
+	if(!do_after(user, RESEARCH_DELAY, TRUE, target_xeno, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
 		return ..()
 
 	if(HAS_TRAIT(target_xeno, TRAIT_RESEARCHED))
@@ -60,6 +60,8 @@
 	ADD_TRAIT(target_xeno, TRAIT_RESEARCHED, TRAIT_RESEARCHED)
 
 	return ..()
+
+#undef RESEARCH_DELAY
 
 /obj/item/tool/research/excavation_tool
 	name = "subterrain scanner and excavator"

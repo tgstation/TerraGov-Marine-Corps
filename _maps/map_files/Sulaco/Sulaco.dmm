@@ -12702,7 +12702,7 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
-/obj/machinery/computer/researchcomp,
+/obj/machinery/researchcomp,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -12882,7 +12882,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "gVQ" = (
-/obj/machinery/computer/researchcomp,
+/obj/machinery/researchcomp,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},

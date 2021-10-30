@@ -409,7 +409,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
-/obj/machinery/computer/researchcomp,
+/obj/machinery/researchcomp,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -12685,7 +12685,7 @@
 "Ns" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
-/obj/machinery/computer/researchcomp,
+/obj/machinery/researchcomp,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},

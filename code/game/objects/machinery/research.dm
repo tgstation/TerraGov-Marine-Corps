@@ -2,7 +2,17 @@
  * Research system
  */
 
-/obj/machinery/computer/researchcomp
+//Bucket names
+#define RES_MONEY "money"
+#define RES_XENO "xeno"
+
+//Reward tiers
+#define RES_TIER_BASIC "basic"
+#define RES_TIER_COMMON "common"
+#define RES_TIER_UNCOMMON "uncommon"
+#define RES_TIER_RARE "rare"
+
+/obj/machinery/researchcomp
 	name = "research console"
 	desc = "A console for performing complex computations. Release the stabilizers to move it around."
 	icon = 'icons/obj/machines/bepis.dmi'
@@ -16,29 +26,68 @@
 	///UI holder
 	var/researching = FALSE
 
-/obj/machinery/computer/researchcomp/Initialize()
+	///Research reward tiers
+	var/list/reward_tiers = list(
+		RES_TIER_BASIC,
+		RES_TIER_COMMON,
+		RES_TIER_UNCOMMON,
+		RES_TIER_RARE
+		)
+
+	///List of rewards for each category
+	var/static/list/rewards_lists = list(
+		RES_MONEY = list(
+			RES_TIER_BASIC = list(
+				/obj/item/research_product/money/basic,
+				/obj/item/research_product/money/common,
+			),
+			RES_TIER_COMMON = list(
+				/obj/item/research_product/money/common,
+				/obj/item/research_product/money/uncommon,
+			),
+			RES_TIER_UNCOMMON = list(
+				/obj/item/research_product/money/uncommon,
+				/obj/item/implanter/blade,
+			),
+			RES_TIER_RARE = list(
+				/obj/item/research_product/money/rare,
+			),
+		),
+		RES_XENO = list(
+			RES_TIER_BASIC = list(
+				/obj/item/research_product/money/basic,
+				/obj/item/research_product/money/common,
+			),
+			RES_TIER_COMMON = list(
+				/obj/item/research_product/money/uncommon,
+			),
+			RES_TIER_UNCOMMON = list(
+				/obj/item/research_product/money/uncommon,
+				/obj/item/implanter/chem/blood,
+			),
+			RES_TIER_RARE = list(
+				/obj/item/research_product/money/rare,
+				/obj/item/implanter/cloak,
+			),
+		),
+	)
+
+/obj/machinery/researchcomp/Initialize()
 	. = ..()
 	construct_insertable_resources_desc()
 
-/obj/machinery/computer/researchcomp/examine(user)
+/obj/machinery/researchcomp/examine(user)
 	. = ..()
 	to_chat(user, span_notice(allowed_resources_desc))
 
-/obj/machinery/computer/researchcomp/update_icon()
-	..()
-	if(init_resource)
-		icon_state = "chamber_loaded"
-	else
-		icon_state = "chamber"
-
 ///Creates the description of usable resources for starting research
-/obj/machinery/computer/researchcomp/proc/construct_insertable_resources_desc()
+/obj/machinery/researchcomp/proc/construct_insertable_resources_desc()
 	allowed_resources_desc = ""
 	allowed_resources_desc += "<br><b>Insertable material:</b><br>"
 	for(var/obj/resource AS in typesof(/obj/item/research_resource))
 		allowed_resources_desc += " >[initial(resource.name)]<br>"
 
-/obj/machinery/computer/researchcomp/attackby(obj/item/I, mob/user, params)
+/obj/machinery/researchcomp/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(researching || !istype(I, /obj/item/research_resource))
 		return
@@ -48,13 +97,13 @@
 
 	replace_init_resource(usr, I)
 
-/obj/machinery/computer/researchcomp/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/researchcomp/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Research", name)
 		ui.open()
 
-/obj/machinery/computer/researchcomp/ui_static_data(mob/user)
+/obj/machinery/researchcomp/ui_static_data(mob/user)
 	. = ..()
 
 	.["anchored"] = anchored
@@ -71,7 +120,7 @@
 		"icon" = icon2base64(resource_icon)
 	)
 
-	var/list/research_rewards = SSresearch.rewards[init_resource.research_type]
+	var/list/research_rewards = rewards_lists[init_resource.research_type]
 	.["init_resource"]["rewards"] = list()
 	for(var/tier in research_rewards)
 		var/list/reward_tier = list(
@@ -86,7 +135,7 @@
 
 		.["init_resource"]["rewards"] += list(reward_tier)
 
-/obj/machinery/computer/researchcomp/ui_act(action, params)
+/obj/machinery/researchcomp/ui_act(action, params)
 	. = ..()
 	if(.)
 		return
@@ -115,7 +164,7 @@
 			update_static_data(usr)
 
 ///Inserts/Replaces the resource used to being research
-/obj/machinery/computer/researchcomp/proc/replace_init_resource(mob/living/user, obj/item/new_resource)
+/obj/machinery/researchcomp/proc/replace_init_resource(mob/living/user, obj/item/new_resource)
 	if(init_resource)
 		init_resource.forceMove(drop_location())
 		if(user && Adjacent(user) && !issiliconoradminghost(user))
@@ -129,20 +178,44 @@
 	update_static_data(usr)
 
 ///Begins the research process
-/obj/machinery/computer/researchcomp/proc/start_research(mob/living/user, research_time)
+/obj/machinery/researchcomp/proc/start_research(mob/living/user, research_time)
 	icon_state = "chamber_active_loaded"
 	researching = TRUE
 	addtimer(CALLBACK(src, .proc/finish_research), research_time)
 
 ///Handles the research process completing
-/obj/machinery/computer/researchcomp/proc/finish_research()
+/obj/machinery/researchcomp/proc/finish_research()
 	flick("chamber_flash",src)
-	SSresearch.research_item(src, init_resource, init_resource.research_type)
+	research_item(src, init_resource, init_resource.research_type)
 	qdel(init_resource)
 	init_resource = null
 	icon_state = "chamber"
 	researching = FALSE
 	update_static_data(usr)
+
+///Generates rewards from a research resource
+/obj/machinery/researchcomp/proc/research_item(atom/rewards_position, obj/item/research_resource/resource, bucket)
+	var/list/potential_rewards = rewards_lists[bucket]
+	var/list/earned_rewards = list()
+
+	generate_research_rewards_list(resource, potential_rewards, earned_rewards)
+
+	var/turf/drop_loc = get_turf(rewards_position)
+	for (var/obj/item AS in earned_rewards)
+		item.forceMove(drop_loc)
+
+
+/obj/machinery/researchcomp/proc/generate_research_rewards_list(obj/item/research_resource/resource, list/potential_rewards, list/earned_rewards)
+	for (var/tier in reward_tiers)
+		var/tier_prob = resource.reward_probs[tier]
+		if (!prob(tier_prob))
+			continue
+
+		var/list/tier_rewards = potential_rewards[tier]
+		//getting random item from the list of items at the tier
+		var/item_typepath = pick(tier_rewards)
+		var/obj/item = new item_typepath
+		earned_rewards += item
 
 ///
 ///Research materials
