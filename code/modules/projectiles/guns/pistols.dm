@@ -187,7 +187,7 @@
 	accuracy_mult = 1.20 //Has a forced laser sight.
 	accuracy_mult_unwielded = 0.95
 	recoil = -2
-	recoil_unwielded = -2
+	recoil_unwielded = 2
 
 /obj/item/weapon/gun/pistol/standard_heavypistol/suppressed
 	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/flashlight) //Tacticool
@@ -195,42 +195,53 @@
 //-------------------------------------------------------
 //M1911
 
-/obj/item/weapon/gun/pistol/m1911
+/obj/item/weapon/gun/pistol/standard_heavypistol/m1911
 	name = "\improper M1911 service pistol"
 	desc = "A M1911 chambered in .45 ACP. An archaic weapon, yet its popular and extremely reliable mechanism provided a template for many semi-automatic pistols to come."
 	icon_state = "m1911"
 	item_state = "m1911"
 	caliber = CALIBER_45ACP //codex
-	max_shells = 10 //codex
 	fire_sound = 'sound/weapons/guns/fire/colt.ogg'
 	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/m1911
+	current_mag = /obj/item/ammo_magazine/pistol/standard_heavypistol
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
+	)
 
-	fire_delay = 0.175 SECONDS
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.85
 	damage_mult = 1.15
-	recoil = -2
-	recoil_unwielded = -1
+	recoil_unwielded = 3
 
-/obj/item/weapon/gun/pistol/m1911/custom
+/obj/item/weapon/gun/pistol/standard_heavypistol/m1911/custom
 	name = "\improper M1911A1 custom pistol"
 	desc = "A 20th century military firearm that received several modifications. It seems to have been lovingly taken care of and passed down the family. Lacks an auto magazine eject feature."
 	icon_state = "m1911c"
 	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/lasersight,
+		/obj/item/attachable/compensator,
 		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/quickfire,
+		/obj/item/attachable/lasersight,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 22,"rail_x" = 13, "rail_y" = 24, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.15 SECONDS
 
