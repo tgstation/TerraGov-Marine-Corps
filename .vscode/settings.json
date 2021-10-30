@@ -9,12 +9,7 @@
     	"**/.yarn": true,
     	"**/.pnp.*": true
 	},
-	"workbench.editorAssociations": [
-		{
-			"filenamePattern": "*.dmi",
-			"viewtype": "imagePreview.previewEditor"
-		}
-	],
+	"workbench.editorAssociations": {},
 	"files.eol": "\n",
 	"gitlens.advanced.blame.customArguments": ["-w"],
 	"tgstationTestExplorer.project.resultsType": "json",
