@@ -129,7 +129,7 @@
 	var/general_codex_key = "guns"
 
 	///The mob holding the gun
-	var/mob/gun_user
+	var/mob/living/gun_user
 	///The atom targeted by the user
 	var/atom/target
 	///How many bullets the gun fired while bursting/auto firing
@@ -143,6 +143,8 @@
 	var/upper_akimbo_accuracy = 2
 	///determines lower accuracy modifier in akimbo
 	var/lower_akimbo_accuracy = 1
+	///If fire delay is 1 second, and akimbo_additional_delay is 0.5, then you'll have to wait 1 second * 0.5 to fire the second gun
+	var/akimbo_additional_delay = 0.5
 
 	///If the gun is deployable, the time it takes for the weapon to deploy.
 	var/deploy_time = 0
@@ -659,6 +661,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			return
 		if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
 			dual_wield = TRUE
+			if(gun_user.get_inactive_held_item() == src && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
+				return
 		if(gun_user.in_throw_mode)
 			return
 		if(gun_user.Adjacent(object)) //Dealt with by attack code
@@ -811,7 +815,7 @@ and you're good to go.
 	else
 		firer = gun_user
 	apply_gun_modifiers(projectile_to_fire, target, firer)
-	setup_bullet_accuracy(projectile_to_fire, gun_user, shots_fired, dual_wield) //User can be passed as null.
+	setup_bullet_accuracy(projectile_to_fire, gun_user, shots_fired) //User can be passed as null.
 
 	var/firing_angle = get_angle_with_scatter((gun_user || get_turf(src)), target, get_scatter(projectile_to_fire.scatter, gun_user), projectile_to_fire.p_x, projectile_to_fire.p_y)
 
@@ -844,6 +848,11 @@ and you're good to go.
 	reload_into_chamber(gun_user)
 	gun_user?.hud_used.update_ammo_hud(gun_user, src)
 	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
+	if(dual_wield && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
+		var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
+		if(inactive_gun.get_ammo_count())
+			inactive_gun.last_fired = max(world.time - fire_delay * (1 - akimbo_additional_delay), inactive_gun.last_fired)
+			gun_user.swap_hand()
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) || !CHECK_BITFIELD(flags_item, IS_DEPLOYED) || !CHECK_BITFIELD(turret_flags, TURRET_RADIAL) || gun_user)
 		return
 	sentry_battery.charge -= sentry_battery_drain
@@ -1085,7 +1094,7 @@ and you're good to go.
 	projectile_to_fire.damage_marine_falloff = iff_marine_damage_falloff
 
 
-/obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)
+/obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1)
 	var/gun_accuracy_mult = accuracy_mult_unwielded
 	var/gun_accuracy_mod = 0
 	var/gun_scatter = scatter_unwielded
@@ -1103,7 +1112,7 @@ and you're good to go.
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
 
 	if(dual_wield) //akimbo firing gives terrible accuracy
-		gun_scatter += 10*rand(upper_akimbo_accuracy, lower_akimbo_accuracy)
+		gun_scatter += 8 * rand(upper_akimbo_accuracy, lower_akimbo_accuracy)
 
 	if(user)
 		// Apply any skill-based bonuses to accuracy

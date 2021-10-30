@@ -383,22 +383,6 @@ SUBSYSTEM_DEF(minimaps)
 	minimap_flags = MINIMAP_FLAG_MARINE
 	marker_flags = MINIMAP_FLAG_MARINE
 
-/datum/action/minimap/alpha
-	minimap_flags = MINIMAP_FLAG_ALPHA
-	marker_flags = MINIMAP_FLAG_ALPHA|MINIMAP_FLAG_MARINE
-
-/datum/action/minimap/bravo
-	minimap_flags = MINIMAP_FLAG_BRAVO
-	marker_flags = MINIMAP_FLAG_BRAVO|MINIMAP_FLAG_MARINE
-
-/datum/action/minimap/charlie
-	minimap_flags = MINIMAP_FLAG_CHARLIE
-	marker_flags = MINIMAP_FLAG_CHARLIE|MINIMAP_FLAG_MARINE
-
-/datum/action/minimap/delta
-	minimap_flags = MINIMAP_FLAG_DELTA
-	marker_flags = MINIMAP_FLAG_DELTA|MINIMAP_FLAG_MARINE
-
 /datum/action/minimap/ai
 	minimap_flags = MINIMAP_FLAG_MARINE
 	marker_flags = MINIMAP_FLAG_MARINE
@@ -408,22 +392,6 @@ SUBSYSTEM_DEF(minimaps)
 	minimap_flags = MINIMAP_FLAG_MARINE_REBEL
 	marker_flags = MINIMAP_FLAG_MARINE_REBEL
 
-/datum/action/minimap/alpha/rebel
-	minimap_flags = MINIMAP_FLAG_ALPHA_REBEL
-	marker_flags = MINIMAP_FLAG_ALPHA_REBEL|MINIMAP_FLAG_MARINE_REBEL
-
-/datum/action/minimap/bravo/rebel
-	minimap_flags = MINIMAP_FLAG_BRAVO_REBEL
-	marker_flags = MINIMAP_FLAG_BRAVO_REBEL|MINIMAP_FLAG_MARINE_REBEL
-
-/datum/action/minimap/charlie/rebel
-	minimap_flags = MINIMAP_FLAG_CHARLIE_REBEL
-	marker_flags = MINIMAP_FLAG_CHARLIE_REBEL|MINIMAP_FLAG_MARINE_REBEL
-
-/datum/action/minimap/delta/rebel
-	minimap_flags = MINIMAP_FLAG_DELTA_REBEL
-	marker_flags = MINIMAP_FLAG_DELTA_REBEL|MINIMAP_FLAG_MARINE_REBEL
-
 /datum/action/minimap/observer
-	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_REBEL
+	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_REBEL|MINIMAP_FLAG_EXCAVATION_ZONE
 	marker_flags = NONE

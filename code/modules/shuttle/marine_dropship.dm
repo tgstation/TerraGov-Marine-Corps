@@ -10,8 +10,7 @@
 
 
 /obj/docking_port/stationary/marine_dropship/on_crash()
-	for(var/i in GLOB.apcs_list) //break APCs
-		var/obj/machinery/power/apc/A = i
+	for(var/obj/machinery/power/apc/A AS in GLOB.apcs_list) //break APCs
 		if(!is_mainship_level(A.z))
 			continue
 		if(prob(A.crash_break_probability))
@@ -1221,7 +1220,7 @@
 				visible_message(span_notice("Destination updated, recalculating route."))
 			else
 				visible_message(span_notice("Shuttle departing. Please stand away from the doors."))
-				for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+				for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 					if(!AI.client)
 						continue
 					to_chat(AI, span_info("[src] was commanded remotely to take off."))

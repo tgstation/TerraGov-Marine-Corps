@@ -346,8 +346,7 @@
 
 	//try to find the brain player in the decapitated head and put them back in control of the human
 	if(!client && !mind) //if another player took control of the human, we don't want to kick them out.
-		for(var/i in GLOB.head_list)
-			var/obj/item/limb/head/H = i
+		for(var/obj/item/limb/head/H AS in GLOB.head_list)
 			if(!H.brainmob)
 				continue
 

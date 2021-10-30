@@ -102,7 +102,7 @@
 
 /// Return TRUE if this handful should be buyable, aka if it's corresponding aka box is in a linked vendor
 /proc/is_handful_buyable(ammo_type)
-	for(var/datum/vending_product/item_datum AS in GLOB.vending_records[/obj/machinery/vending/marine/shared])
+	for(var/datum/vending_product/item_datum AS in GLOB.vending_records[/obj/machinery/vending/weapon])
 		var/product_path = item_datum.product_path
 		if(!ispath(product_path, /obj/item/ammo_magazine))
 			continue

@@ -25,7 +25,7 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 	user.visible_message(span_notice("[user] throws [src] into the air!"),
 		span_notice("You throw [src] into the air!"))
 
-	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_notice("NOTICE - \"Huginn\" ROC-58 Observer has been deployed at [AREACOORD_NO_Z(user)]."))
 	var/obj/machinery/camera/deployable/newcam = new(get_turf(user))
 	var/dat

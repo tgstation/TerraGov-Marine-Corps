@@ -201,7 +201,7 @@
 	if(!powered())
 		return
 
-	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		if(!AI.client)
 			continue
 		to_chat(AI, span_notice("[src] has been desactived at [myarea]"))
