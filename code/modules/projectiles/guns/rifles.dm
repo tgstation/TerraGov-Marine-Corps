@@ -255,7 +255,7 @@
 	aim_slowdown = 0.55
 	wield_delay = 0.7 SECONDS
 	force = 20
-	max_shells = 10 //codex
+	max_shells = 35 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/standard_br
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -285,7 +285,7 @@
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_CAN_POINTBLANK
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/attachable/scope/mini)
 	attachable_offset = list("muzzle_x" = 49, "muzzle_y" = 17,"rail_x" = 27, "rail_y" = 21, "under_x" = 33, "under_y" = 7, "stock_x" = 14, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
@@ -299,7 +299,6 @@
 	extra_delay = 0.15 SECONDS
 	accuracy_mult = 1.25
 	scatter = -10
-	burst_amount = 1
 
 //-------------------------------------------------------
 //M412 Pulse Rifle
