@@ -217,9 +217,9 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	. = ..()
 	if(!.)
 		return
-	if(buyer.hive.king_present)
+	if(SSticker.round_start_time + INVOKE_KING_TIME_LOCK > world.time)
 		if(!silent)
-			to_chat(buyer, span_xenowarning("Another king is alive already!"))
+			to_chat(buyer, span_warning("It is too soon to summon a king!"))
 		return FALSE
 
 /datum/hive_upgrade/xenos/king/on_buy(mob/living/carbon/xenomorph/buyer)
