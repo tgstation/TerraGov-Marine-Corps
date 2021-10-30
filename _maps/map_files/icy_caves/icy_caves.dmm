@@ -3344,7 +3344,6 @@
 /turf/open/floor/tile/dark/green2,
 /area/icy_caves/outpost/medbay)
 "ss" = (
-/obj/item/weapon/gun/syringe,
 /turf/open/floor/tile/dark/green2,
 /area/icy_caves/outpost/medbay)
 "st" = (
