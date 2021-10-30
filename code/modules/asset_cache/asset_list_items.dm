@@ -1,48 +1,37 @@
 //DEFINITIONS FOR ASSET DATUMS START HERE.
 
-/datum/asset/simple/tgui_common
-	keep_local_name = TRUE
-	assets = list(
-		"tgui-common.bundle.js" = 'tgui/public/tgui-common.bundle.js',
-	)
 
 /datum/asset/simple/tgui
 	keep_local_name = TRUE
 	assets = list(
-		"tgui.bundle.js" = 'tgui/public/tgui.bundle.js',
-		"tgui.bundle.css" = 'tgui/public/tgui.bundle.css',
+		"tgui.bundle.js" = file("tgui/public/tgui.bundle.js"),
+		"tgui.bundle.css" = file("tgui/public/tgui.bundle.css"),
 	)
 
 /datum/asset/simple/tgui_panel
 	keep_local_name = TRUE
 	assets = list(
-		"tgui-panel.bundle.js" = 'tgui/public/tgui-panel.bundle.js',
-		"tgui-panel.bundle.css" = 'tgui/public/tgui-panel.bundle.css',
+		"tgui-panel.bundle.js" = file("tgui/public/tgui-panel.bundle.js"),
+		"tgui-panel.bundle.css" = file("tgui/public/tgui-panel.bundle.css"),
 	)
 
-/datum/asset/simple/namespaced/changelog
+/datum/asset/simple/inventory
 	assets = list(
-		"88x31.png" = 'html/images/88x31.png',
-		"bug-minus.png" = 'html/images/bug-minus.png',
-		"cross-circle.png" = 'html/images/cross-circle.png',
-		"hard-hat-exclamation.png" = 'html/images/hard-hat-exclamation.png',
-		"image-minus.png" = 'html/images/image-minus.png',
-		"image-plus.png" = 'html/images/image-plus.png',
-		"music-minus.png" = 'html/images/music-minus.png',
-		"music-plus.png" = 'html/images/music-plus.png',
-		"tick-circle.png" = 'html/images/tick-circle.png',
-		"wrench-screwdriver.png" = 'html/images/wrench-screwdriver.png',
-		"spell-check.png" = 'html/images/spell-check.png',
-		"burn-exclamation.png" = 'html/images/burn-exclamation.png',
-		"chevron.png" = 'html/images/chevron.png',
-		"chevron-expand.png" = 'html/images/chevron-expand.png',
-		"scales.png" = 'html/images/scales.png',
-		"coding.png" = 'html/images/coding.png',
-		"ban.png" = 'html/images/ban.png',
-		"chrome-wrench.png" = 'html/images/chrome-wrench.png',
-		"changelog.css" = 'html/browser/changelog.css'
+		"inventory-glasses.png" = 'icons/UI_Icons/inventory/glasses.png',
+		"inventory-head.png" = 'icons/UI_Icons/inventory/head.png',
+		"inventory-mask.png" = 'icons/UI_Icons/inventory/mask.png',
+		"inventory-ears.png" = 'icons/UI_Icons/inventory/ears.png',
+		"inventory-uniform.png" = 'icons/UI_Icons/inventory/uniform.png',
+		"inventory-suit.png" = 'icons/UI_Icons/inventory/suit.png',
+		"inventory-gloves.png" = 'icons/UI_Icons/inventory/gloves.png',
+		"inventory-hand_l.png" = 'icons/UI_Icons/inventory/hand_l.png',
+		"inventory-hand_r.png" = 'icons/UI_Icons/inventory/hand_r.png',
+		"inventory-shoes.png" = 'icons/UI_Icons/inventory/shoes.png',
+		"inventory-suit_storage.png" = 'icons/UI_Icons/inventory/suit_storage.png',
+		"inventory-belt.png" = 'icons/UI_Icons/inventory/belt.png',
+		"inventory-back.png" = 'icons/UI_Icons/inventory/back.png',
+		"inventory-pocket.png" = 'icons/UI_Icons/inventory/pocket.png',
 	)
-	parents = list("changelog.html" = 'html/changelog.html')
 
 /datum/asset/simple/irv
 	assets = list(
@@ -73,6 +62,14 @@
 	)
 	parents = list("font-awesome.css" = 'html/font-awesome/css/all.min.css')
 
+/datum/asset/simple/namespaced/tgfont
+	assets = list(
+		"tgfont.eot" = file("tgui/packages/tgfont/dist/tgfont.eot"),
+		"tgfont.woff2" = file("tgui/packages/tgfont/dist/tgfont.woff2"),
+	)
+	parents = list(
+		"tgfont.css" = file("tgui/packages/tgfont/dist/tgfont.css")
+	)
 
 /datum/asset/spritesheet/chat
 	name = "chat"
@@ -126,3 +123,10 @@
 	assets = list(
 		"ghost.png" = 'html/images/ghost.png'
 	)
+
+/datum/asset/spritesheet/blessingmenu
+	name = "blessingmenu"
+
+/datum/asset/spritesheet/blessingmenu/register()
+	InsertAll("", 'icons/UI_Icons/buyable_icons.dmi')
+	..()

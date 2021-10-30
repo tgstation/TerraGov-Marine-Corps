@@ -1,7 +1,7 @@
 /obj/item/implant
 	name = "implant"
 	icon_state = "implant"
-	embedding = list("embedded_flags" = EMBEDDEED_DEL_ON_HOLDER_DEL, "embed_process_chance" = 0, "embed_chance" = 0, "embedded_fall_chance" = 0)
+	embedding = list("embedded_flags" = EMBEDDED_DEL_ON_HOLDER_DEL, "embed_process_chance" = 0, "embed_chance" = 0, "embedded_fall_chance" = 0)
 	///Whether this implant has been implanted inside a human yet
 	var/implanted = FALSE
 	///Owner mob this implant is inserted to
@@ -26,7 +26,6 @@
 
 /obj/item/implant/Initialize(mapload)
 	. = ..()
-	GLOB.implant_list += src
 	if(flags_implant & GRANT_ACTIVATION_ACTION)
 		activation_action = new(src, src)
 	if(allow_reagents)
@@ -40,7 +39,6 @@
 	unimplant()
 	QDEL_NULL(activation_action)
 	part?.implants -= src
-	GLOB.implant_list -= src
 	return ..()
 
 /obj/item/implant/ui_action_click(mob/user, datum/action/item_action/action)
@@ -59,7 +57,7 @@
 	if(!ishuman(target))
 		return FALSE
 	if(!(user.zone_selected in allowed_limbs))
-		to_chat(user, "<span class='warning'>You cannot implant this into that limb!</span>")
+		to_chat(user, span_warning("You cannot implant this into that limb!"))
 		return FALSE
 	return implant(target, user)
 
@@ -107,7 +105,7 @@
 
 ///Destroys and makes the implant unusable
 /obj/item/implant/proc/meltdown()
-	to_chat(implant_owner, "<span class='warning'>You feel something melting inside [part ? "your [part.display_name]" : "you"]!</span>")
+	to_chat(implant_owner, span_warning("You feel something melting inside [part ? "your [part.display_name]" : "you"]!"))
 	part.take_damage_limb(0, 15)
 
 	name = "melted implant"

@@ -9,8 +9,9 @@
 
 	Note that AI have no need for the adjacency proc, and so this proc is a lot cleaner.
 */
+
 /mob/living/silicon/ai/DblClickOn(atom/A, params)
-	if(control_disabled || incapacitated())
+	if(control_disabled || incapacitated() || controlling)
 		return
 
 	if(ismob(A))
@@ -24,7 +25,10 @@
 		return
 	next_click = world.time + 1
 
-	if(!can_interact_with(A))
+	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, A, params) & COMSIG_MOB_CLICK_CANCELED)
+		return
+
+	if(!controlling && !can_interact_with(A))
 		return
 
 	if(multicam_on)
@@ -44,7 +48,7 @@
 	var/turf/pixel_turf = get_turf_pixel(A)
 	if(isnull(pixel_turf))
 		return
-	if(!can_see(A))
+	if(!controlling && !can_see(A))
 		if(isturf(A)) //On unmodified clients clicking the static overlay clicks the turf underneath
 			return //So there's no point messaging admins
 		message_admins("[ADMIN_LOOKUPFLW(src)] might be running a modified client! (failed can_see on AI click of [A] (Turf Loc: [ADMIN_VERBOSEJMP(pixel_turf)]))")
@@ -62,11 +66,11 @@
 	if(modifiers["shift"])
 		ShiftClickOn(A)
 		return
-	if(modifiers["alt"]) // alt and alt-gr (rightalt)
-		AltClickOn(A)
-		return
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
+		return
+	if(modifiers["alt"]) // alt and alt-gr (rightalt)
+		AltClickOn(A)
 		return
 
 	if(world.time <= next_move)
@@ -81,6 +85,8 @@
 	it functions and re-insert it above.
 */
 /mob/living/silicon/ai/UnarmedAttack(atom/A, has_proximity, modifiers)
+	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
+		return
 	A.attack_ai(src)
 
 /mob/living/silicon/ai/RangedAttack(atom/A)
@@ -105,10 +111,6 @@
 /mob/living/silicon/ai/CtrlClickOn(atom/A)
 	A.AICtrlClick(src)
 
-/mob/living/silicon/ai/AltClickOn(atom/A)
-	A.AIAltClick(src)
-
-
 /*
 	The following criminally helpful code is just the previous code cleaned up;
 	I have no idea why it was in atoms.dm instead of respective files.
@@ -119,68 +121,47 @@
 /atom/proc/AICtrlClick()
 	return
 
-/atom/proc/AIAltClick(mob/living/silicon/ai/user)
-	AltClick(user)
-
 /atom/proc/AIShiftClick()
 	return
 
 /atom/proc/AICtrlShiftClick()
 	return
 
-
-/* Holopads */
-/obj/machinery/holopad/AIAltClick(mob/living/silicon/ai/user)
-	if(z != user.z)
-		return
-
-	hangup_all_calls()
-
-
 /* Airlocks */
 /obj/machinery/door/airlock/AICtrlClick(mob/living/silicon/ai/user) // Bolts doors
-	if(z != user.z)
+	if(aiControlDisabled)
+		to_chat(user, span_notice("[src] AI remote control has been disabled."))
 		return
-
 	if(locked)
-		bolt_raise(usr)
+		bolt_raise(user)
 	else if(hasPower())
-		bolt_drop(usr)
-
-
-/obj/machinery/door/airlock/AIAltClick(mob/living/silicon/ai/user) // Eletrifies doors.
-	if(z != user.z)
-		return
-
-	if(!secondsElectrified)
-		shock_perm(usr)
-	else
-		shock_restore(usr)
-
+		bolt_drop(user)
 
 /obj/machinery/door/airlock/AIShiftClick(mob/living/silicon/ai/user)  // Opens and closes doors!
-	if(z != user.z)
+	if(aiControlDisabled)
+		to_chat(user, span_notice("[src] AI remote control has been disabled."))
 		return
+	user_toggle_open(user)
 
-	user_toggle_open(usr)
+/obj/machinery/door/airlock/dropship_hatch/AICtrlClick(mob/living/silicon/ai/user)
+	return
+
+/obj/machinery/door/airlock/hatch/cockpit/AICtrlClick(mob/living/silicon/ai/user)
+	return
+
 
 
 /* APC */
 /obj/machinery/power/apc/AICtrlClick(mob/living/silicon/ai/user) // turns off/on APCs.
-	if(z != user.z)
-		return
-	toggle_breaker(usr)
+	toggle_breaker(user)
 
 /* Firealarm */
-/obj/machinery/firealarm/AICtrlClick(mob/living/silicon/ai/user) // turn on the fire alarm
-	if(z != user.z)
-		return
-	alarm()
-
-/obj/machinery/firealarm/AICtrlShiftClick(mob/living/silicon/ai/user) // turn off the fire alarm
-	if(z != user.z)
-		return
-	reset()
+/obj/machinery/firealarm/AICtrlClick(mob/living/silicon/ai/user) // toggle the fire alarm
+	var/area/A = get_area(src)
+	if(A.flags_alarm_state & ALARM_WARNING_FIRE)
+		reset()
+	else
+		alarm()
 
 
 //

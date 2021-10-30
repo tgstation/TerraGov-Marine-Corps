@@ -66,6 +66,8 @@
 				flag = R_SERVER
 			if("DEBUG")
 				flag = R_DEBUG
+			if("RUNTIME")
+				flag = R_RUNTIME
 			if("PERMISSIONS")
 				flag = R_PERMISSIONS
 			if("COLOR")
@@ -78,6 +80,8 @@
 				flag = R_SPAWN
 			if("DBRANKS")
 				flag = R_DBRANKS
+			if("LOG")
+				flag = R_LOG
 			if("EVERYTHING")
 				flag = R_EVERYTHING
 			if("@")

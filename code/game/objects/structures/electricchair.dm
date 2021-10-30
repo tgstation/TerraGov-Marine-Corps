@@ -38,8 +38,8 @@
 	for(var/m in buckled_mobs)
 		var/mob/living/buckled_mob = m
 		buckled_mob.adjustFireLoss(85)
-		to_chat(buckled_mob, "<span class='danger'>You feel a deep shock course through your body!</span>")
+		to_chat(buckled_mob, span_danger("You feel a deep shock course through your body!"))
 		sleep(1)
 		buckled_mob.adjustFireLoss(85)
 		buckled_mob.Stun(20 MINUTES)
-	visible_message("<span class='danger'>The electric chair went off!</span>", "<span class='danger'>You hear a deep sharp shock!</span>")
+	visible_message(span_danger("The electric chair went off!"), span_danger("You hear a deep sharp shock!"))

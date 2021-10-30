@@ -34,10 +34,10 @@
 	if (M.stat != CONSCIOUS || !ishuman(M))
 		return
 	if (occupant)
-		to_chat(user, "<span class='boldnotice'>The scanner is already occupied!</span>")
+		to_chat(user, span_boldnotice("The scanner is already occupied!"))
 		return
 	if (M.abiotic())
-		to_chat(user, "<span class='boldnotice'>Subject cannot have abiotic items on.</span>")
+		to_chat(user, span_boldnotice("Subject cannot have abiotic items on."))
 		return
 	M.forceMove(src)
 	occupant = M
@@ -91,14 +91,14 @@
 		return
 
 	else if(occupant)
-		to_chat(user, "<span class='warning'>The scanner is already occupied!</span>")
+		to_chat(user, span_warning("The scanner is already occupied!"))
 		return
 
 	var/obj/item/grab/G = I
 	if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
 		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
 		if(!C.bodybag_occupant)
-			to_chat(user, "<span class='warning'>The stasis bag is empty!</span>")
+			to_chat(user, span_warning("The stasis bag is empty!"))
 			return
 		M = C.bodybag_occupant
 		C.open()
@@ -110,7 +110,7 @@
 		return
 
 	if(M.abiotic())
-		to_chat(user, "<span class='warning'>Subject cannot have abiotic items on.</span>")
+		to_chat(user, span_warning("Subject cannot have abiotic items on."))
 		return
 
 	M.forceMove(src)
@@ -215,7 +215,7 @@
 	if(!occupant)
 		return
 	if(!hasHUD(user,"medical"))
-		to_chat(user, "<span class='notice'>It contains: [occupant].</span>")
+		to_chat(user, span_notice("It contains: [occupant]."))
 		return
 	var/mob/living/carbon/human/H = occupant
 	for(var/datum/data/record/R in GLOB.datacore.medical) //Again, for consistency with other medical machines/devices

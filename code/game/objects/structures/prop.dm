@@ -54,8 +54,7 @@
 	machine_stat |= BROKEN
 	update_icon()
 
-/obj/machinery/prop/mainship/computer/update_icon()
-	..()
+/obj/machinery/prop/mainship/computer/update_icon_state()
 	icon_state = initial(icon_state)
 	if(machine_stat & BROKEN)
 		icon_state += "b"
@@ -63,17 +62,6 @@
 		icon_state = initial(icon_state)
 		icon_state += "0"
 
-/obj/machinery/prop/mainship/CICmap
-	name = "map table"
-	desc = "A table that displays a map of the current target location"
-
-	density = TRUE
-	anchored = TRUE
-	use_power = IDLE_POWER_USE
-	idle_power_usage = 20
-
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "maptable"
 
 //Nonpower using props
 
@@ -108,7 +96,7 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "sensor_comp1"
 
-/obj/structure/prop/mainship/sensor_computer1/sd	
+/obj/structure/prop/mainship/sensor_computer1/sd
 	name = "self destruct status computer"
 
 /obj/structure/prop/mainship/sensor_computer2
@@ -117,7 +105,7 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "sensor_comp2"
 
-/obj/structure/prop/mainship/sensor_computer2/sd	
+/obj/structure/prop/mainship/sensor_computer2/sd
 	name = "self destruct regulator"
 
 /obj/structure/prop/mainship/sensor_computer3
@@ -127,7 +115,7 @@
 	icon_state = "sensor_comp3"
 
 /obj/structure/prop/mainship/sensor_computer3/sd
-	name = "tempature regulator"	
+	name = "tempature regulator"
 
 /obj/structure/prop/mainship/missile_tube
 	name = "\improper Mk 33 ASAT launcher system"
@@ -153,7 +141,7 @@
 	if(istype(I, /obj/item/dogtag))
 		var/obj/item/dogtag/D = I
 		if(D.fallen_names)
-			to_chat(user, "<span class='notice'>You add [D] to [src].</span>")
+			to_chat(user, span_notice("You add [D] to [src]."))
 			if(!fallen_list)
 				fallen_list = list()
 			fallen_list += D.fallen_names
@@ -171,7 +159,7 @@
 				faltext += "[fallen_list[i]], "
 			else
 				faltext += fallen_list[i]
-		to_chat(user, "<span class='notice'>To our fallen soldiers:</span> <b>[faltext]</b>.")
+		to_chat(user, "[span_notice("To our fallen soldiers:")] <b>[faltext]</b>.")
 
 
 /obj/structure/prop/mainship/particle_cannon
@@ -205,6 +193,13 @@
 
 /obj/structure/prop/mainship/hangar_stencil/two
 	icon_state = "dropship2"
+
+/obj/structure/prop/mainship/brokengen //all the aesthetics of having a generator without any of the function
+	name = "\improper G-11 geothermal generator"
+	desc = "A thermoelectric generator sitting atop a plasma-filled borehole. The powercell is missing and strange lines of text scroll by on its status panel, you get the feeling there's no fixing it."
+	icon = 'icons/turf/geothermal.dmi'
+	icon_state = "destroyedgen"
+	resistance_flags = RESIST_ALL //normal generators can't be destroyed, so for appearances our fake ones can't be destroyed either.
 
 /obj/structure/prop/mainship/cannon_cables
 	name = "\improper Cannon cables"

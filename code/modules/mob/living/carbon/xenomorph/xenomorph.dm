@@ -11,6 +11,8 @@
 	set_datum()
 	time_of_birth = world.time
 	add_inherent_verbs()
+	var/datum/action/minimap/xeno/mini = new
+	mini.give_action(src)
 	add_abilities()
 
 	create_reagents(1000)
@@ -56,31 +58,42 @@
 	if(!job) //It might be setup on spawn.
 		setup_job()
 
-	AddComponent(/datum/component/bump_attack)
-
 	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
 	hive.update_tier_limits()
+	if(CONFIG_GET(flag/xenos_on_strike))
+		replace_by_ai()
+	if(z) //Larva are initiated in null space
+		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
 
-/mob/living/carbon/xenomorph/proc/set_datum()
+///Change the caste of the xeno. If restore health is true, then health is set to the new max health
+/mob/living/carbon/xenomorph/proc/set_datum(restore_health_and_plasma = TRUE)
 	if(!caste_base_type)
 		CRASH("xeno spawned without a caste_base_type set")
 	if(!GLOB.xeno_caste_datums[caste_base_type])
 		CRASH("error finding base type")
 	if(!GLOB.xeno_caste_datums[caste_base_type][upgrade])
 		CRASH("error finding datum")
+	if(xeno_caste)
+		xeno_caste.on_caste_removed(src)
 	var/datum/xeno_caste/X = GLOB.xeno_caste_datums[caste_base_type][upgrade]
 	if(!istype(X))
 		CRASH("error with caste datum")
 	xeno_caste = X
-
-	plasma_stored = xeno_caste.plasma_max
-	maxHealth = xeno_caste.max_health
-	health = maxHealth
+	xeno_caste.on_caste_applied(src)
+	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
+	if(restore_health_and_plasma)
+		plasma_stored = xeno_caste.plasma_max
+		health = maxHealth
 	setXenoCasteSpeed(xeno_caste.speed)
 	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
 	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
 	warding_aura = 0 //Resets aura for reapplying armor
+
+///Will multiply the base max health of this xeno by GLOB.xeno_stat_multiplicator_buff
+/mob/living/carbon/xenomorph/proc/apply_health_stat_buff()
+	maxHealth = max(xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff, 10)
+	health = min(health, maxHealth)
 
 /mob/living/carbon/xenomorph/set_armor_datum()
 	return //Handled in set_datum()
@@ -130,6 +143,8 @@
 			return 2
 		if(XENO_UPGRADE_THREE)
 			return 3
+		if(XENO_UPGRADE_FOUR)
+			return 4
 
 /mob/living/carbon/xenomorph/proc/upgrade_next()
 	switch(upgrade)
@@ -142,7 +157,9 @@
 		if(XENO_UPGRADE_TWO)
 			return XENO_UPGRADE_THREE
 		if(XENO_UPGRADE_THREE)
-			return XENO_UPGRADE_THREE
+			return XENO_UPGRADE_FOUR
+		if(XENO_UPGRADE_FOUR)
+			return XENO_UPGRADE_FOUR
 
 /mob/living/carbon/xenomorph/proc/upgrade_prev()
 	switch(upgrade)
@@ -156,6 +173,8 @@
 			return XENO_UPGRADE_ONE
 		if(XENO_UPGRADE_THREE)
 			return XENO_UPGRADE_TWO
+		if(XENO_UPGRADE_FOUR)
+			return XENO_UPGRADE_THREE
 
 /mob/living/carbon/xenomorph/proc/setup_job()
 	var/datum/job/xenomorph/xeno_job = SSjob.type_occupations[xeno_caste.job_type]
@@ -163,11 +182,23 @@
 		CRASH("Unemployment has reached to a xeno, who has failed to become a [xeno_caste.job_type]")
 	apply_assigned_role_to_spawn(xeno_job)
 
+/mob/living/carbon/xenomorph/proc/grabbed_self_attack()
+	SIGNAL_HANDLER
+	if(!(xeno_caste.caste_flags & CAN_RIDE_CRUSHER) || !isxenocrusher(pulling))
+		return NONE
+	var/mob/living/carbon/xenomorph/crusher/grabbed = pulling
+	if(grabbed.stat == CONSCIOUS && stat == CONSCIOUS)
+		INVOKE_ASYNC(grabbed, /mob/living/carbon/xenomorph/crusher/proc.carry_xeno, src, TRUE)
+		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
+	return NONE
+
+///Initiate of form changing on the xeno
+/mob/living/carbon/xenomorph/proc/change_form()
+	return
 
 /mob/living/carbon/xenomorph/examine(mob/user)
 	..()
-	if(isxeno(user) && xeno_caste.caste_desc)
-		to_chat(user, xeno_caste.caste_desc)
+	to_chat(user, xeno_caste.caste_desc)
 
 	if(stat == DEAD)
 		to_chat(user, "It is DEAD. Kicked the bucket. Off to that great hive in the sky.")
@@ -223,11 +254,8 @@
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
-		if(L.stat == UNCONSCIOUS && !bypass_crit_delay)
-			if(!do_mob(src, L , XENO_PULL_CHARGE_TIME, BUSY_ICON_HOSTILE))
-				return FALSE
-		if(L.stat == DEAD) //Can't drag dead human bodies
-			to_chat(usr,"<span class='xenowarning'>This looks gross, better not touch it</span>")
+		if(L.stat == DEAD && (SSticker.mode?.flags_round_type & MODE_DEAD_GRAB_FORBIDDEN)) //Can't drag dead human bodies in distress
+			to_chat(usr,span_xenowarning("This looks gross, better not touch it."))
 			return FALSE
 		do_attack_animation(L, ATTACK_EFFECT_GRAB)
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
@@ -240,18 +268,20 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/pull_response(mob/puller)
+	if(stat != CONSCIOUS) // If the Xeno is unconscious, don't fight back against a grab/pull
+		return TRUE
+	if(!ishuman(puller))
+		return TRUE
 	var/mob/living/carbon/human/H = puller
-	if(stat == CONSCIOUS && H.species?.count_human) // If the Xeno is conscious, fight back against a grab/pull
-		H.Paralyze(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
-		playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
-		H.visible_message("<span class='warning'>[H] tried to pull [src] but instead gets a tail swipe to the head!</span>")
-		H.stop_pulling()
-		return FALSE
-	return TRUE
+	H.Paralyze(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
+	playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
+	H.visible_message(span_warning("[H] tried to pull [src] but instead gets a tail swipe to the head!"))
+	H.stop_pulling()
+	return FALSE
 
 /mob/living/carbon/xenomorph/resist_grab()
 	if(pulledby.grab_state)
-		visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
+		visible_message(span_danger("[src] has broken free of [pulledby]'s grip!"), null, null, 5)
 	pulledby.stop_pulling()
 	. = 1
 
@@ -276,7 +306,10 @@
 	hud_to_add.add_hud_to(src)
 	hud_to_add = GLOB.huds[DATA_HUD_XENO_TACTICAL] //Allows us to see xeno tactical elements clearly via HUD elements
 	hud_to_add.add_hud_to(src)
-
+	hud_to_add = GLOB.huds[DATA_HUD_MEDICAL_PAIN]
+	hud_to_add.add_hud_to(src)
+	hud_to_add = GLOB.huds[DATA_HUD_XENO_DEBUFF]
+	hud_to_add.add_hud_to(src)
 
 /mob/living/carbon/xenomorph/point_to_atom(atom/A, turf/T)
 	//xeno leader get a bit arrow and less cooldown
@@ -308,50 +341,28 @@
 	if(!hud_used?.locate_leader)
 		return
 	var/obj/screen/LL_dir = hud_used.locate_leader
-	if (!tracked)
+	if(!tracked)
 		if(hive.living_xeno_ruler)
-			tracked = hive.living_xeno_ruler
+			set_tracked(hive.living_xeno_ruler)
 		else
 			LL_dir.icon_state = "trackoff"
 			return
 
-	if (isxeno(tracked))
-		var/mob/living/carbon/xenomorph/xeno_tracked = tracked
-		if(QDELETED(xeno_tracked))
-			tracked = null
-			return
-		if(xeno_tracked == src) // No need to track ourselves
-			LL_dir.icon_state = "trackoff"
-			return
-		if(xeno_tracked.z != z || get_dist(src,xeno_tracked) < 1)
-			LL_dir.icon_state = "trackondirect"
-			return
-		var/area/A = get_area(src.loc)
-		var/area/QA = get_area(xeno_tracked.loc)
-		if(A.fake_zlevel == QA.fake_zlevel)
-			LL_dir.icon_state = "trackon"
-			LL_dir.setDir(get_dir(src, xeno_tracked))
-			return
-
+	if(tracked == src) // No need to track ourselves
+		LL_dir.icon_state = "trackoff"
+		return
+	if(tracked.z != z || get_dist(src, tracked) < 1)
 		LL_dir.icon_state = "trackondirect"
 		return
+	var/area/A = get_area(loc)
+	var/area/QA = get_area(tracked.loc)
+	if(A.fake_zlevel == QA.fake_zlevel)
+		LL_dir.icon_state = "trackon"
+		LL_dir.setDir(get_dir(src, tracked))
+		return
 
-	if (isresinsilo(tracked))
-		var/mob/living/carbon/xenomorph/silo_tracked = tracked
-		if(QDELETED(silo_tracked))
-			tracked = null
-			return
-		if(silo_tracked.z != z || get_dist(src,silo_tracked) < 1)
-			LL_dir.icon_state = "trackondirect"
-			return
-
-		var/area/A = get_area(src.loc)
-		var/area/QA = get_area(silo_tracked.loc)
-		if(A.fake_zlevel == QA.fake_zlevel)
-			LL_dir.icon_state = "trackon"
-			LL_dir.setDir(get_dir(src, silo_tracked))
-			return
-		LL_dir.icon_state = "trackondirect"
+	LL_dir.icon_state = "trackondirect"
+	return
 
 
 /mob/living/carbon/xenomorph/clear_leader_tracking()
@@ -367,12 +378,6 @@
 		zoom_out()
 	return ..()
 
-/mob/living/carbon/xenomorph/ghostize(can_reenter_corpse)
-	. = ..()
-	if(!. || can_reenter_corpse)
-		return
-	set_afk_status(MOB_RECENTLY_DISCONNECTED, 5 SECONDS)
-
 /mob/living/carbon/xenomorph/set_stat(new_stat)
 	. = ..()
 	if(isnull(.))
@@ -383,3 +388,11 @@
 		if(DEAD, CONSCIOUS)
 			if(. == UNCONSCIOUS)
 				see_in_dark = xeno_caste.conscious_see_in_dark
+
+///Kick the player from this mob, replace it by a more competent ai
+/mob/living/carbon/xenomorph/proc/replace_by_ai()
+	to_chat(src, span_warning("Sorry, your skill level was deemed too low by our automatic skill check system. Your body has as such been given to a more capable brain, our state of the art AI technology piece. Do not hesitate to take back your body after you've improved!"))
+	ghostize(TRUE)//Can take back its body
+	GLOB.offered_mob_list -= src
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
+	a_intent = INTENT_HARM

@@ -30,6 +30,8 @@
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 
+	w_class = WEIGHT_CLASS_SMALL
+
 	var/max_uses = 50
 	var/uses = 0
 	var/failmsg = ""
@@ -54,11 +56,11 @@
 			return
 
 		if(!G.use(1))
-			to_chat(user, "<span class='warning'>You need one sheet of glass to replace lights.</span>")
+			to_chat(user, span_warning("You need one sheet of glass to replace lights."))
 			return
 
 		AddUses(5)
-		to_chat(user, "<span class='notice'>You insert a piece of glass into \the [src]. You have [uses] lights remaining.</span>")
+		to_chat(user, span_notice("You insert a piece of glass into \the [src]. You have [uses] lights remaining."))
 
 	else if(istype(I, /obj/item/light_bulb))
 		var/obj/item/light_bulb/L = I
@@ -101,7 +103,7 @@
 	if(target.status != LIGHT_OK)
 		if(CanUse(U))
 			if(!Use(U)) return
-			to_chat(U, "<span class='notice'>You replace the [target.fitting] with the [src].</span>")
+			to_chat(U, span_notice("You replace the [target.fitting] with the [src]."))
 
 			if(target.status != LIGHT_EMPTY)
 

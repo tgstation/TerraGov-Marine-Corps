@@ -22,24 +22,24 @@
 		name = "light switch ([area.name])"
 
 	src.on = src.area.lightswitch
-	updateicon()
+	update_icon()
 
-/obj/machinery/light_switch/proc/updateicon()
+/obj/machinery/light_switch/update_icon_state()
 	if(machine_stat & NOPOWER)
 		icon_state = "light-p"
-	else
-		if(on)
-			icon_state = "light1"
-		else
-			icon_state = "light0"
+		return
+	icon_state = "light[on]"
+
+/obj/machinery/light_switch/update_overlays()
+	. = ..()
+	if(machine_stat & NOPOWER)
+		return
+	. += emissive_appearance(icon, "light[on]_emissive")
 
 /obj/machinery/light_switch/examine(mob/user)
-	..()
+	. = ..()
 	to_chat(user, "It is [on? "on" : "off"].")
 
-
-/obj/machinery/light_switch/attack_paw(mob/living/carbon/human/user)
-	src.attack_hand(user)
 
 /obj/machinery/light_switch/attack_hand(mob/living/user)
 	. = ..()
@@ -60,7 +60,7 @@
 		else
 			machine_stat |= NOPOWER
 
-		updateicon()
+		update_icon()
 
 /obj/machinery/light_switch/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))

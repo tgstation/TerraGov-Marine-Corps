@@ -12,6 +12,16 @@
 	var/list/can_hold = list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/bypass_w_limit = list() //a list of objects which this item can store despite not passing the w_class limit
+	/**
+	 * Associated list of types and their max count, formatted as
+	 * 	storage_type_limits = list(
+	 * 		/obj/A = 3,
+	 * 	)
+	 *
+	 * Any inserted objects will decrement the allowed count of every listed type which matches or is a parent of that object.
+	 * With entries for both /obj/A and /obj/A/B, inserting a B requires non-zero allowed count remaining for, and reduces, both.
+	 */
+	var/list/storage_type_limits
 	var/list/click_border_start = list() //In slotless storage, stores areas where clicking will refer to the associated item
 	var/list/click_border_end = list()
 	var/max_w_class = 2 //Max size of objects that this object can store (in effect only if can_hold isn't set)
@@ -37,6 +47,8 @@
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
 	var/opened = 0 //Has it been opened before?
 	var/list/content_watchers = list() //list of mobs currently seeing the storage's contents
+	///How long does it take to put items into or out of this, in ticks
+	var/access_delay = 0
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
 	if(!ishuman(usr))
@@ -285,7 +297,6 @@
 		I.attack_hand(usr)
 		return
 
-
 /datum/numbered_display
 	var/obj/item/sample_object
 	var/number
@@ -340,23 +351,23 @@
 		return FALSE //Means the item is already in the storage item
 	if(storage_slots != null && contents.len >= storage_slots)
 		if(warning)
-			to_chat(usr, "<span class='notice'>[src] is full, make some space.</span>")
+			to_chat(usr, span_notice("[src] is full, make some space."))
 		return FALSE //Storage item is full
 
 	if(length(can_hold))
 		if(!is_type_in_typecache(W, can_hold))
 			if(warning)
-				to_chat(usr, "<span class='notice'>[src] cannot hold [W].</span>")
+				to_chat(usr, span_notice("[src] cannot hold [W]."))
 			return FALSE
 
 	if(is_type_in_typecache(W, cant_hold)) //Check for specific items which this container can't hold.
 		if(warning)
-			to_chat(usr, "<span class='notice'>[src] cannot hold [W].</span>")
+			to_chat(usr, span_notice("[src] cannot hold [W]."))
 		return FALSE
 
 	if(!is_type_in_typecache(W, bypass_w_limit) && W.w_class > max_w_class)
 		if(warning)
-			to_chat(usr, "<span class='notice'>[W] is too long for this [src].</span>")
+			to_chat(usr, span_notice("[W] is too long for this [src]."))
 		return FALSE
 
 	var/sum_storage_cost = W.w_class
@@ -365,14 +376,22 @@
 
 	if(sum_storage_cost > max_storage_space)
 		if(warning)
-			to_chat(usr, "<span class='notice'>[src] is full, make some space.</span>")
+			to_chat(usr, span_notice("[src] is full, make some space."))
 		return FALSE
 
 	if(W.w_class >= w_class && istype(W, /obj/item/storage) && !is_type_in_typecache(W.type, bypass_w_limit))
 		if(!istype(src, /obj/item/storage/backpack/holding))	//bohs should be able to hold backpacks again. The override for putting a boh in a boh is in backpack.dm.
 			if(warning)
-				to_chat(usr, "<span class='notice'>[src] cannot hold [W] as it's a storage item of the same size.</span>")
+				to_chat(usr, span_notice("[src] cannot hold [W] as it's a storage item of the same size."))
 			return FALSE //To prevent the stacking of same sized storage items.
+
+	for(var/limited_type in storage_type_limits)
+		if(!istype(W, limited_type))
+			continue
+		if(storage_type_limits[limited_type] == 0)
+			if(warning)
+				to_chat(usr, span_warning("[src] can't fit any more of those.") )
+			return FALSE
 
 	if(istype(W, /obj/item/tool/hand_labeler))
 		var/obj/item/tool/hand_labeler/L = W
@@ -383,56 +402,97 @@
 
 	return TRUE
 
-//This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted. That's done by can_be_inserted()
-//The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
-//such as when picking up all the items on a tile with one click.
-//user can be null, it refers to the potential mob doing the insertion.
-/obj/item/storage/proc/handle_item_insertion(obj/item/W, prevent_warning = 0, mob/user)
-	if(!istype(W)) return 0
-	if(user && W.loc == user)
-		if(!user.transferItemToLoc(W, src))
-			return 0
+/**
+ * This proc handles the delay associated with a storage object.
+ * If there is no delay, or the delay is negative, it simply returns TRUE.
+ * Should return true if the access delay is completed successfully.
+ */
+/obj/item/storage/proc/handle_access_delay(obj/item/accessed, mob/user, taking_out = TRUE, alert_user = TRUE)
+	if(!access_delay || !should_access_delay(accessed, user, taking_out))
+		return TRUE
+
+	if(LAZYLEN(user.do_actions))
+		to_chat(user, span_warning("You are busy doing something else!"))
+		return FALSE
+
+	if(!alert_user)
+		return do_after(user, access_delay, TRUE, src, ignore_turf_checks=TRUE)
+
+	to_chat(user, "<span class='notice'>You begin to [taking_out ? "take" : "put"] [accessed] [taking_out ? "out of" : "into"] [src]")
+	if(!do_after(user, access_delay, TRUE, src, ignore_turf_checks=TRUE))
+		to_chat(user, span_warning("You fumble [accessed]!"))
+		return FALSE
+	return TRUE
+
+/**
+ * This proc checks to see if we should actually delay access in this scenario
+ * This proc should return TRUE or FALSE
+ */
+/obj/item/storage/proc/should_access_delay(obj/item/accessed, mob/user, taking_out)
+	return FALSE
+
+/**
+ * This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted.
+ * That's done by can_be_inserted()
+ * The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
+ * such as when picking up all the items on a tile with one click.
+ * user can be null, it refers to the potential mob doing the insertion.
+ */
+/obj/item/storage/proc/handle_item_insertion(obj/item/item, prevent_warning = 0, mob/user)
+	if(!istype(item))
+		return FALSE
+	if(!handle_access_delay(item, user, taking_out=FALSE))
+		item.forceMove(item.drop_location())
+		return FALSE
+	if(user && item.loc == user)
+		if(!user.transferItemToLoc(item, src))
+			return FALSE
 	else
-		W.forceMove(src)
-	W.on_enter_storage(src)
+		item.forceMove(src)
+	item.on_enter_storage(src)
 	if(user)
-		if (user.client && user.s_active != src)
-			user.client.screen -= W
+		if (user.s_active != src)
+			user.client?.screen -= item
 		if(!prevent_warning)
-			var/visidist = W.w_class >= 3 ? 3 : 1
-			user.visible_message("<span class='notice'>[usr] puts [W] into [src].</span>",\
-								"<span class='notice'>You put \the [W] into [src].</span>",\
+			var/visidist = item.w_class >= 3 ? 3 : 1
+			user.visible_message(span_notice("[user] puts [item] into [src]."),\
+								span_notice("You put \the [item] into [src]."),\
 								null, visidist)
 	orient2hud()
 	for(var/mob/M in can_see_content())
 		show_to(M)
 	if (storage_slots)
-		W.mouse_opacity = 2 //not having to click the item's tiny sprite to take it out of the storage.
+		item.mouse_opacity = 2 //not having to click the item's tiny sprite to take it out of the storage.
 	update_icon()
-	return 1
+	for(var/limited_type in storage_type_limits)
+		if(istype(item, limited_type))
+			storage_type_limits[limited_type] -= 1
+	return TRUE
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
-/obj/item/storage/proc/remove_from_storage(obj/item/I, atom/new_location)
-	if(!istype(I))
+/obj/item/storage/proc/remove_from_storage(obj/item/item, atom/new_location, mob/user)
+	if(!istype(item))
 		return FALSE
 
-	for(var/i in can_see_content())
-		var/mob/M = i
+	if(!handle_access_delay(item, user))
+		return FALSE
+
+	for(var/mob/M AS in can_see_content())
 		if(!M.client)
 			continue
-		M.client.screen -= I
+		M.client.screen -= item
 
 	if(new_location)
 		if(ismob(new_location))
-			I.layer = ABOVE_HUD_LAYER
-			I.plane = ABOVE_HUD_PLANE
-			I.pickup(new_location)
+			item.layer = ABOVE_HUD_LAYER
+			item.plane = ABOVE_HUD_PLANE
+			item.pickup(new_location)
 		else
-			I.layer = initial(I.layer)
-			I.plane = initial(I.plane)
-		I.forceMove(new_location)
+			item.layer = initial(item.layer)
+			item.plane = initial(item.plane)
+		item.forceMove(new_location)
 	else
-		I.moveToNullspace()
+		item.moveToNullspace()
 
 	orient2hud()
 
@@ -440,11 +500,16 @@
 		var/mob/M = i
 		show_to(M)
 
-	if(!QDELETED(I))
-		I.on_exit_storage(src)
-		I.mouse_opacity = initial(I.mouse_opacity)
+	if(!QDELETED(item))
+		item.on_exit_storage(src)
+		item.mouse_opacity = initial(item.mouse_opacity)
 
 	update_icon()
+
+	for(var/limited_type in storage_type_limits)
+		if(istype(item, limited_type))
+			storage_type_limits[limited_type] += 1
+
 	return TRUE
 
 //This proc is called when you want to place an item into the storage item.
@@ -506,8 +571,13 @@
 	var/turf/T = get_turf(src)
 	hide_from(usr)
 	for(var/obj/item/I in contents)
-		remove_from_storage(I, T)
+		remove_from_storage(I, T, usr)
 
+/// Delete everything that's inside the storage
+/obj/item/storage/proc/delete_contents()
+	for(var/obj/item/I AS in contents)
+		I.on_exit_storage(src)
+		qdel(I)
 
 /obj/item/storage/Initialize(mapload, ...)
 	. = ..()
@@ -629,7 +699,7 @@
 		close(M)
 
 	// Now make the cardboard
-	to_chat(user, "<span class='notice'>You fold [src] flat.</span>")
+	to_chat(user, span_notice("You fold [src] flat."))
 	new foldable(get_turf(src))
 	qdel(src)
 //BubbleWrap END
@@ -705,10 +775,17 @@
 
 
 /obj/item/storage/AltClick(mob/user)
-	if(!ishuman(user) || !length(contents) || isturf(loc))
-		return ..()
+	attempt_draw_object(user)
+
+/obj/item/storage/attack_hand_alternate(mob/living/user)
+	attempt_draw_object(user)
+
+///attempts to get the first possible object from this container
+/obj/item/storage/proc/attempt_draw_object(mob/living/user)
+	if(!ishuman(user) || user.incapacitated() || !length(contents) || isturf(loc))
+		return
 	if(user.get_active_held_item())
-		return ..() //User is already holding something.
+		return //User is already holding something.
 	var/obj/item/drawn_item = contents[length(contents)]
 	drawn_item.attack_hand(user)
 

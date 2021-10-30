@@ -8,6 +8,11 @@
 	var/caste_type_path = null
 
 	var/ancient_message = ""
+	///primordial message that is shown when a caste becomes primordial
+	var/primordial_message = ""
+
+	///name of primordial upgrade this caste looks for, keep this as define
+	var/primordial_upgrade_name = ""
 
 	var/tier = XENO_TIER_ZERO
 	var/upgrade = XENO_UPGRADE_ZERO
@@ -32,8 +37,6 @@
 	var/tacklemin = 1
 	///The maximum amount of random paralyze applied to a human upon being 'pulled' multiplied by 20 ticks
 	var/tacklemax = 1
-	///How much STAMINA damage a xeno deals when tackling
-	var/tackle_damage = 20
 
 	// *** Speed *** //
 	var/speed = 1
@@ -50,6 +53,8 @@
 	var/plasma_max = 10
 	///How much plasma a caste gains every life tick.
 	var/plasma_gain = 5
+	///up to how % much plasma regens in decimals, generally used if you have a special way of regeninng plasma.
+	var/plasma_regen_limit = 1
 
 	// *** Health *** //
 	///Maximum health a caste has.
@@ -141,6 +146,8 @@
 	var/bomb_strength = 0
 	///Delay between firing the bombard ability for boilers
 	var/bomb_delay = 0
+	///Used to reduce cooldown for the boiler
+	var/ammo_multiplier = 0
 
 	// *** Carrier Abilities *** //
 	///maximum amount of huggers a carrier can carry at one time.
@@ -183,8 +190,38 @@
 	///Base range of Blink
 	var/wraith_blink_range = WRAITH_BLINK_RANGE
 
+	// *** Hunter Abilities ***
+	///Damage breakpoint to knock out of stealth
+	var/stealth_break_threshold = 0
+
 	///the 'abilities' available to a caste.
 	var/list/actions
+
+	///The iconstate for the xeno on the minimap
+	var/minimap_icon = "xeno"
+	///The iconstate for leadered xenos on the minimap
+	var/minimap_leadered_icon = "xenoleader"
+	///The iconstate of the plasma bar, format used is "[plasma_icon_state][amount]"
+	var/plasma_icon_state = "plasma"
+
+	///How quickly the caste enters vents
+	var/vent_enter_speed = XENO_DEFAULT_VENT_ENTER_TIME
+	///How quickly the caste enters vents
+	var/vent_exit_speed = XENO_DEFAULT_VENT_EXIT_TIME
+	///Whether the caste enters and crawls through vents silently
+	var/silent_vent_crawl = FALSE
+
+///Add needed component to the xeno
+/datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
+	xenomorph.AddComponent(/datum/component/bump_attack)
+	if(caste_flags & CAN_RIDE_CRUSHER)
+		xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, /mob/living/carbon/xenomorph.proc/grabbed_self_attack)
+
+/datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
+	var/datum/component/bump_attack = xenomorph.GetComponent(/datum/component/bump_attack)
+	bump_attack?.RemoveComponent()
+	if(caste_flags & CAN_RIDE_CRUSHER)
+		xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)
 
 /mob/living/carbon/xenomorph
 	name = "Drone"
@@ -208,7 +245,7 @@
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
-	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
+	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD)
 	buckle_flags = NONE
 	faction = FACTION_XENO
 	initial_language_holder = /datum/language_holder/xeno
@@ -243,9 +280,8 @@
 	var/sunder = 0 // sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values
 	var/fire_resist_modifier = 0
 
-	var/obj/structure/tunnel/start_dig = null
+	var/obj/structure/xeno/tunnel/start_dig = null
 	var/datum/ammo/xeno/ammo = null //The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
-	var/pslash_delay = 0
 
 	var/evo_points = 0 //Current # of evolution points. Max is 1000.
 	var/list/upgrades_bought = list()
@@ -269,7 +305,7 @@
 
 	var/list/datum/action/xeno_abilities = list()
 	var/datum/action/xeno_action/activable/selected_ability
-	var/selected_resin = /obj/structure/bed/nest //which resin structure to build when we secrete resin
+	var/selected_resin = /turf/closed/wall/resin/regenerating //which resin structure to build when we secrete resin
 	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile //which reagent to slash with using reagent slash
 
 	//Naming variables
@@ -285,6 +321,9 @@
 	var/frenzy_new = 0
 	var/warding_new = 0
 	var/recovery_new = 0
+
+	///Multiplicative melee damage modifier; referenced by attack_alien.dm, most notably attack_alien_harm
+	var/xeno_melee_damage_modifier = 1
 
 	var/xeno_mobhud = FALSE //whether the xeno mobhud is activated or not.
 
@@ -315,8 +354,13 @@
 	var/savage_used = FALSE
 
 	// *** Ravager vars *** //
-	var/ignore_pain = FALSE // when true the rav will not go into crit or take crit damage.
-	var/ignore_pain_state = 0 // how far "dead" the rav has got while ignoring pain.
+	/// when true the rav will not go into crit or take crit damage.
+	var/endure = FALSE
+	///when true the rav leeches healing off of hitting marines
+	var/vampirism
+
+	// *** Carrier vars *** //
+	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
 
 	//Notification spam controls
 	var/recent_notice = 0
@@ -324,7 +368,10 @@
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
 
-	///The xenos/silo currently tracked by the xeno_tracker arrow
-	var/tracked
+	///The xenos/silo/nuke currently tracked by the xeno_tracker arrow
+	var/atom/tracked
+
+	///Are we the roony version of this xeno
+	var/is_a_rouny = FALSE
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

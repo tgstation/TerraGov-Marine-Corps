@@ -5,7 +5,6 @@
 /proc/random_body_type()
 	return pick(GLOB.body_types_list)
 
-
 /proc/random_hair_style(gender, species = "Human")
 	var/list/valid_hairstyles = list()
 	for(var/hairstyle in GLOB.hair_styles_list)
@@ -44,8 +43,7 @@
 
 
 /proc/get_playable_species()
-	var/list/playable_species = list(GLOB.roundstart_species)
-	return playable_species
+	return GLOB.roundstart_species
 
 
 /proc/do_mob(mob/user, mob/target, delay = 30, user_display, target_display, prog_bar = PROGRESS_GENERIC, ignore_flags = NONE, datum/callback/extra_checks)
@@ -155,7 +153,7 @@
 
 /proc/random_unique_name(gender, attempts_to_find_unique_name = 10)
 	for(var/i in 1 to attempts_to_find_unique_name)
-		. = GLOB.namepool[/datum/namepool/clf].get_random_name(gender)
+		. = GLOB.namepool[/datum/namepool].get_random_name(gender)
 
 		if(!findname(.))
 			break
@@ -181,7 +179,7 @@
 /// Displays a message in deadchat, sent by source. Source is not linkified, message is, to avoid stuff like character names to be linkified.
 /// Automatically gives the class deadsay to the whole message (message + source)
 /proc/deadchat_broadcast(message, source = null, mob/follow_target = null, turf/turf_target = null, speaker_key = null, message_type = DEADCHAT_REGULAR)
-	message = "<span class='deadsay'>[source]<span class='linkify'>[message]</span></span>"
+	message = span_deadsay("[source][span_linkify("[message]")]")
 	for(var/mob/M in GLOB.player_list)
 		var/chat_toggles = TOGGLES_CHAT_DEFAULT
 		var/deadchat_toggles = TOGGLES_DEADCHAT_DEFAULT
@@ -226,6 +224,6 @@
 				var/turf_link = TURF_LINK(M, turf_target)
 				rendered_message = "[turf_link] [message]"
 
-			to_chat(M, rendered_message)
+			to_chat(M, rendered_message, avoid_highlighting = speaker_key == M.key)
 		else
-			to_chat(M, message)
+			to_chat(M, message, avoid_highlighting = speaker_key == M.key)

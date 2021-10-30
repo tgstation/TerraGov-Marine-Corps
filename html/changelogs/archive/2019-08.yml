@@ -1,0 +1,145 @@
+2019-08-02:
+  MoXuT0:
+  - imageadd: Replaced colors on some medical equipment from blue to green.
+  grinkgo:
+  - tweak: Cigars actually have nicotine in them now.
+  - tweak: Cigarette packets now contain 200% more cigarettes!
+2019-08-03:
+  psykzz:
+  - rscadd: You can now drag a body over the sleeper, autodoc, cryo, and bodyscanner
+      to enter.
+2019-08-04:
+  Francinum:
+  - bugfix: Focus Chat now relays text to the input.
+  - rscadd: Focus Chat now allows unprintable keys to be used as hotkeys.
+  LaKiller8:
+  - balance: You can now equip the spec cloak with any armor.
+  Maciekkub:
+  - tweak: toggles deaf when unconscious
+  grinkgo:
+  - balance: The officer and captain's cloak are now worn on the back and have limited
+      storage, so you can have both aesthetic AND utility!
+  - balance: Two flasks should be able to fit in helmets now.
+  psykzz:
+  - rscadd: A new verb has been added to preferences that allows you to set your own
+      custom css for goonchat.
+2019-08-08:
+  LaKiller8:
+  - tweak: Synths can now understand xenos, but can't speak with them.
+  - tweak: Synths now have a permanent medhud.
+  - tweak: Added the much-wanted clientside FPS preference.
+2019-08-09:
+  DoctorMad:
+  - tweak: Shotgun's incendiary slugs now deal brute damage when hitting someone.
+      Still sets them on fire.
+  LaKiller8:
+  - tweak: The synth can now use the taser.
+  psykzz:
+  - rscadd: 'New lowpop gamemode: Crash (name pending)'
+2019-08-11:
+  grinkgo:
+  - tweak: Intelligence Officer has been reverted to Staff Officer.
+2019-08-12:
+  LaKiller8:
+  - tweak: Xenos without night vision should now be able to tell if they are in a
+      lit area better without being completely blinded.
+  - tweak: You can now change your AI name, remember to follow the rules folks!
+  MoXuT0:
+  - imageadd: Added Terra Gov logo to briefing room of Theseus.
+  psykzz:
+  - balance: tactical binoculars allow you to see in the dark
+2019-08-16:
+  Alterist:
+  - imageadd: EAT Bars are now ENRG Bars, same "Great" taste, new packaging!
+  - imageadd: Jones now shows up on your head when you equip him
+  LaKiller8:
+  - balance: Queen larval growth has been removed.
+  grinkgo:
+  - rscadd: Added the G8 general utility pouch to the synth vendor.
+  - rscdel: Removed the HealthMate HUD from the Essential Synthetic Set
+  - balance: N2, N3, and M3 variant armors can now hold a machete scabbard.
+  psykzz:
+  - rscadd: CAS has been re-enabled
+2019-08-17:
+  Francinum:
+  - soundadd: Faxes now sound reasonable.
+  LaKiller8:
+  - tweak: The pizza ERT is now admin only.
+  grinkgo:
+  - rscadd: Marine essential clothing sets now come with a boot knife included.
+2019-08-19:
+  DalekThePerson:
+  - balance: Decreased the time it takes to dig into the ground and acid blob launch
+      by 1 seconds each. And increases the cooldown between bombards by 10 seconds.
+  LaKiller8:
+  - balance: Marines can now destroy almost anything using bullets.
+  - tweak: The AI can no longer toggle it's floor bolts, dropship crash disables them
+      automatically.
+2019-08-22:
+  (Arachnidnexus):
+  - imageadd: added new icons for the nuke disk generators
+  Rohesie:
+  - rscadd: Full-auto and autoburst modes added, along with actions to toggle those.
+      Dakka-dakka!
+  grinkgo:
+  - rscadd: Added some holopads around the Theseus.
+2019-08-23:
+  Rohesie:
+  - balance: M41A, lasgun, flechettes, smartgun and grenade launcher nerfed to different
+      degrees to account for the xeno warding nerf.
+2019-08-25:
+  Compadre Sonoliento(sprites) Kuro(Idea) MetroidLover(Editing and recoloring sprites):
+  - imageadd: New B18 sprites with a darker look and glowing colored visor
+2019-08-26:
+  Rohesie:
+  - rscadd: Reworked projectiles to use pixel movement (but not collisions, those
+      are still tile-based), tracking the clicked pixel (unless a mob is clicked,
+      in which case it will aim for the center of the target's tile for maximum accuracy,
+      or unless scatter happens) in a straight line. For most bullets (rifles, SMGs,
+      pistols, revolvers) the difference will be subtle at best, given how fast they
+      are. It is more noticeable in tasers. For lasguns and faster projectiles the
+      moving animation is outright disabled.
+  - bugfix: Fixed a speed inconsistency of old projectiles, which would make bullet
+      speed lower if you clicked closer to your own sprite.
+  - balance: Tweaked accuracy to make the calculations a bit more sane. This may impact
+      on it as reproducing the exact same behavior is hard, but it can be more easily
+      adjusted now.
+  - balance: Once a sniper acquires a target through its laser market it will no longer
+      need to click on it to aim it. Any shots while active will be auto-targeted
+      to it.
+  - balance: Projectile speeds reduced all round the board. Xeno projectiles are slow,
+      so you can see them traveling. Non-slug shotgun shells are slow and more visible.
+      Slugs and regular bullets are fast, and hard to see. Sniper bullets and lasers
+      are very fast, and even harder to see.
+  - balance: Scatter is now angle-based, so it doesn't matter if the target (where
+      you click) is near or far. Maximum scatter is 45 degrees in either direction.
+      Extra projectiles (additional buckshot and flechettes) have a smoother, less
+      random scatter, firing in a cone.
+  - balance: Smartgun slowdown while wielded increased some to make it more defensive
+      and less mobile..
+  psykzz:
+  - balance: (Crash Only) Xenos now start with the first tier already unlocked.
+  - balance: bullets are now able to pass the fog barriers
+2019-08-28:
+  Rohesie:
+  - balance: Xenos with devoured hosts can no longer cross the fog.
+  psykzz:
+  - rscadd: Marines lose when leaving without a nuke set on crash
+2019-08-30:
+  Ghommie:
+  - bugfix: Patches up an issue with storage items and cryo. No more loadsa pills
+      cluttering your stored items list, empty pill bottles, MREs etcetera.
+  psykzz:
+  - rscadd: message to the xenos when crash nuke is set.
+2019-08-31:
+  Rohesie:
+  - rscadd: Girders reworked. Wall construction formula tweaked. Marines can build
+      reinforced walls now.
+  - tweak: Structure hitchance tweaked. The direction they are facing matters once
+      again (barricades, flipped tables). Even unflipped tables and window frames
+      have a chance, though lower, to stop bullets. Accuracy modifiers, distance between
+      shooter and obstacle, and effective accuracy range of the bullet all affect
+      it.
+  - bugfix: Windoors no longer block lasers.
+  - rscadd: You can now repair beat-up barricades you couldn't before by adding two
+      sheets of metal/plasteel to them and then welding them.

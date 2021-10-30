@@ -2,6 +2,7 @@
 	name = "mob"
 	density = TRUE
 	layer = MOB_LAYER
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	animate_movement = SLIDE_STEPS
 	datum_flags = DF_USE_TAG
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
@@ -90,3 +91,5 @@
 
 	/// Can they interact with station electronics
 	var/has_unlimited_silicon_privilege = 0
+	///The faction this mob belongs to
+	var/faction = FACTION_NEUTRAL

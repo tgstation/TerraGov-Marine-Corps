@@ -171,12 +171,12 @@
 
 	if(C.internal)
 		C.internal = null
-		to_chat(C, "<span class='notice'>No longer running on internals.</span>")
+		C.balloon_alert(C, "No longer running on internals")
 		icon_state = "internal0"
 		return
 
 	if(!istype(C.wear_mask, /obj/item/clothing/mask))
-		to_chat(C, "<span class='notice'>You are not wearing a mask.</span>")
+		C.balloon_alert(C, "You are not wearing a mask")
 		return TRUE
 
 	var/list/nicename = null
@@ -224,14 +224,14 @@
 				bestpressure = t.pressure
 
 	if(best)
-		to_chat(C, "<span class='notice'>You are now running on internals from [tankcheck[best]] on your [nicename[best]].</span>")
+		C.balloon_alert(C, "Running on internals from [tankcheck[best]] from [nicename[best]]")
 		C.internal = tankcheck[best]
 
 
 	if(C.internal)
 		icon_state = "internal1"
 	else
-		to_chat(C, "<span class='notice'>You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ",breathes)] tank.</span>")
+		C.balloon_alert(C, "You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ",breathes)] tank")
 
 
 /obj/screen/mov_intent
@@ -453,7 +453,7 @@
 
 	if(choice != selecting)
 		selecting = choice
-		update_icon(usr)
+		update_icon(user)
 	return TRUE
 
 /obj/screen/zone_sel/update_icon(mob/user)
@@ -495,9 +495,9 @@
 		return
 	var/mob/living/living_user = usr
 	if(living_user.getStaminaLoss() < 0 && living_user.max_stamina_buffer)
-		to_chat(living_user, "<span class='notice'>Your stamina buffer is <b>[(-living_user.getStaminaLoss() * 100 / living_user.max_stamina_buffer)]%</b> full.</span>")
+		living_user.balloon_alert(living_user, "Stamina buffer:[(-living_user.getStaminaLoss() * 100 / living_user.max_stamina_buffer)]%")
 		return
-	to_chat(living_user, "<span class='notice'>You have <b>[living_user.getStaminaLoss()]</b> stamina loss.<br></span>")
+	living_user.balloon_alert(living_user, "You have [living_user.getStaminaLoss()] stamina loss")
 
 
 /obj/screen/component_button
@@ -515,12 +515,15 @@
 	icon_state = "template"
 	var/datum/action/source_action
 
-/obj/screen/action_button/Click()
+/obj/screen/action_button/Click(location, control, params)
 	if(!usr || !source_action)
 		return TRUE
 	if(usr.next_move >= world.time)
 		return TRUE
-
+	var/list/modifiers = params2list(params)
+	if(modifiers["right"])
+		source_action.alternate_action_activate()
+		return
 	if(source_action.can_use_action(FALSE, NONE, TRUE))
 		source_action.action_activate()
 	else
@@ -528,7 +531,7 @@
 
 /obj/screen/action_button/Destroy()
 	source_action = null
-	. = ..()
+	return ..()
 
 /obj/screen/action_button/proc/get_button_screen_loc(button_number)
 	var/row = round((button_number-1)/13) //13 is max amount of buttons per row
@@ -590,8 +593,8 @@
 	var/obj/item/weapon/gun/G = .
 	if(!G)
 		return
-	var/obj/item/attachable/flashlight/F = G.rail
-	if(F?.activate_attachment(usr))
+	var/obj/item/attachable/flashlight/F = LAZYACCESS(G.attachments_by_slot, ATTACHMENT_SLOT_RAIL)
+	if(F?.activate(usr))
 		playsound(usr, F.activation_sound, 15, 1)
 
 /obj/screen/firearms/magazine
@@ -673,17 +676,21 @@
 	name = "ammo"
 	icon = 'icons/mob/ammoHUD.dmi'
 	icon_state = "ammo"
-	screen_loc = ui_ammo
+	screen_loc = ui_ammo1
 	var/warned = FALSE
+	///List of possible screen locs
+	var/static/list/ammo_screen_loc_list = list(ui_ammo1, ui_ammo2, ui_ammo3 ,ui_ammo4)
 
 
-/obj/screen/ammo/proc/add_hud(mob/living/user)
+/obj/screen/ammo/proc/add_hud(mob/living/user, obj/item/weapon/gun/G)
+
+	if(isnull(G))
+		CRASH("/obj/screen/ammo/proc/add_hud() has been called from [src] without the required param of G")
+
 	if(!user?.client)
 		return
 
-	var/obj/item/weapon/gun/G = user.get_active_held_item()
-
-	if(!G?.hud_enabled || !(G.flags_gun_features & GUN_AMMO_COUNTER))
+	if(!CHECK_BITFIELD(G.flags_gun_features, GUN_AMMO_COUNTER))
 		return
 
 	user.client.screen += src
@@ -693,13 +700,11 @@
 	user?.client?.screen -= src
 
 
-/obj/screen/ammo/proc/update_hud(mob/living/user)
+/obj/screen/ammo/proc/update_hud(mob/living/user, obj/item/weapon/gun/G)
 	if(!user?.client?.screen.Find(src))
 		return
 
-	var/obj/item/weapon/gun/G = user.get_active_held_item()
-
-	if(!istype(G) || !(G.flags_gun_features & GUN_AMMO_COUNTER) || !G.hud_enabled || !G.get_ammo_type() || isnull(G.get_ammo_count()))
+	if(!G || !(G.flags_gun_features & GUN_AMMO_COUNTER) || !G.get_ammo_type() || isnull(G.get_ammo_count()))
 		remove_hud(user)
 		return
 
@@ -764,11 +769,17 @@
 /obj/screen/arrow/proc/add_hud(mob/living/carbon/tracker_input, atom/target_input)
 	if(!tracker_input?.client)
 		return
-
 	tracker = tracker_input
 	target = target_input
 	tracker.client.screen += src
+	RegisterSignal(tracker, COMSIG_PARENT_QDELETING, .proc/kill_arrow)
+	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/kill_arrow)
 	process() //Ping immediately after parameters have been set
+
+///Stop the arrow to avoid runtime and hard del
+/obj/screen/arrow/proc/kill_arrow()
+	SIGNAL_HANDLER
+	qdel(src)
 
 /obj/screen/arrow/Initialize() //Self-deletes
 	. = ..()
@@ -776,6 +787,8 @@
 	QDEL_IN(src, duration)
 
 /obj/screen/arrow/process() //We ping the target, revealing its direction with an arrow
+	if(!target || !tracker)
+		return PROCESS_KILL
 	if(target.z != tracker.z || get_dist(tracker, target) < 2 || tracker == target)
 		alpha = 0
 	else
@@ -784,13 +797,15 @@
 		transform = turn(transform, Get_Angle(tracker, target))
 
 /obj/screen/arrow/Destroy()
+	target = null
+	tracker = null
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
 
 /obj/screen/arrow/leader_tracker_arrow
 	name = "hive leader tracker arrow"
-	icon_state = "Blue_arrow"	
+	icon_state = "Blue_arrow"
 	duration = XENO_RALLYING_POINTER_DURATION
 
 /obj/screen/arrow/silo_damaged_arrow
@@ -808,12 +823,18 @@
 	icon_state = "Attack_arrow"
 	duration = ORDER_DURATION
 
-/obj/screen/arrow/regroup_order_arrow
+/obj/screen/arrow/rally_order_arrow
 	name = "Rally order arrow"
-	icon_state = "Regroup_arrow"
-	duration = ORDER_DURATION
+	icon_state = "Rally_arrow"
+	duration = RALLY_ORDER_DURATION
 
 /obj/screen/arrow/defend_order_arrow
 	name = "Defend order arrow"
 	icon_state = "Defend_arrow"
 	duration = ORDER_DURATION
+
+/obj/screen/arrow/hunter_mark_arrow
+	name = "hunter mark arrow"
+	icon_state = "Red_arrow"
+	duration = HUNTER_PSYCHIC_TRACE_COOLDOWN
+	color = COLOR_ORANGE

@@ -279,7 +279,7 @@
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()
 	if(icon_state == "title_painting1")
-		icon_state = "title_painting[rand(0,13)]"
+		icon_state = "title_painting[rand(0,15)]"
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
@@ -352,6 +352,10 @@
 	icon_state = "cult0"
 	walltype = "cult"
 
+/turf/closed/wall/clock
+	name = "brass wall"
+	desc = "An intricate pattern of brass masterfully crafted into a sturdy wall. Looking at it instills a strange sense of pride in you."
+	icon_state = "clockwork_wall"
 
 /turf/closed/wall/vault
 	icon_state = "rockvault"

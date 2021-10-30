@@ -27,19 +27,19 @@
 
 	if((A.is_drainable() && !A.is_refillable()) && get_dist(src,A) <= 1)
 		if(!A.reagents.total_volume)
-			to_chat(user, "<span class='warning'>[A] is empty.</span>")
+			to_chat(user, span_warning("[A] is empty."))
 			return
 
 		if(reagents.holder_full())
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			to_chat(user, span_warning("[src] is full."))
 			return
 
 		var/trans = A.reagents.trans_to(src, A:amount_per_transfer_from_this)
-		to_chat(user, "<span class='notice'>You fill \the [src] with [trans] units of the contents of \the [A].</span>")
+		to_chat(user, span_notice("You fill \the [src] with [trans] units of the contents of \the [A]."))
 		return
 
 	if(reagents.total_volume < amount_per_transfer_from_this)
-		to_chat(user, "<span class='notice'>[src] is empty!</span>")
+		to_chat(user, span_notice("[src] is empty!"))
 		return
 
 	if(safety)
@@ -80,7 +80,7 @@
 		return
 	amount_per_transfer_from_this = next_in_list(amount_per_transfer_from_this, possible_transfer_amounts)
 	spray_size = next_in_list(spray_size, spray_sizes)
-	to_chat(user, "<span class='notice'>You adjusted the pressure nozzle. You'll now use [amount_per_transfer_from_this] units per spray.</span>")
+	to_chat(user, span_notice("You adjusted the pressure nozzle. You'll now use [amount_per_transfer_from_this] units per spray."))
 
 /obj/item/reagent_containers/spray/verb/empty()
 
@@ -91,7 +91,7 @@
 	if (tgui_alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", list("Yes", "No")) != "Yes")
 		return
 	if(isturf(usr.loc))
-		to_chat(usr, "<span class='notice'>You empty \the [src] onto the floor.</span>")
+		to_chat(usr, span_notice("You empty \the [src] onto the floor."))
 		reagents.reaction(usr.loc)
 		addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
 

@@ -7,17 +7,17 @@
 	icon_broken = "fridgebroken"
 	icon_off = "fridge1"
 
-/obj/structure/closet/secure_closet/freezer/update_icon()
+/obj/structure/closet/secure_closet/freezer/update_icon_state()
 	if(broken)
 		icon_state = icon_broken
+		return
+	if(opened)
+		icon_state = icon_opened
+		return
+	if(locked)
+		icon_state = icon_locked
 	else
-		if(!opened)
-			if(locked)
-				icon_state = icon_locked
-			else
-				icon_state = icon_closed
-		else
-			icon_state = icon_opened
+		icon_state = icon_closed
 
 /obj/structure/closet/secure_closet/freezer/kitchen
 	name = "Kitchen Cabinet"

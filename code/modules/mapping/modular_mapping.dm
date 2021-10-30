@@ -118,3 +118,10 @@
 	modular_id = "EORG"
 	template_width = 46
 	template_height = 46
+
+/datum/map_template/modular/end_of_round/basketball
+	name = "Basketball Arena"
+	mappath = "_maps/modularmaps/EORG/basketball.dmm"
+	modular_id = "EORG"
+	template_width = 46
+	template_height = 46

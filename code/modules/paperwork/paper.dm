@@ -66,7 +66,7 @@
 			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
 			onclose(user, "[name]")
 	else
-		to_chat(user, "<span class='notice'>It is too far away to read.</span>")
+		to_chat(user, span_notice("It is too far away to read."))
 
 
 /obj/item/paper/verb/rename()
@@ -97,23 +97,23 @@
 
 /obj/item/paper/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(user.zone_selected == "eyes")
-		user.visible_message("<span class='notice'>You show the paper to [M]. </span>", \
-			"<span class='notice'> [user] holds up a paper and shows it to [M]. </span>")
+		user.visible_message(span_notice("You show the paper to [M]. "), \
+			span_notice(" [user] holds up a paper and shows it to [M]. "))
 		examine(M)
 
 	else if(user.zone_selected == "mouth") // lipstick wiping
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H == user)
-				to_chat(user, "<span class='notice'>You wipe off the lipstick with [src].</span>")
+				to_chat(user, span_notice("You wipe off the lipstick with [src]."))
 				H.lip_style = null
 				H.update_body()
 			else
-				user.visible_message("<span class='warning'>[user] begins to wipe [H]'s lipstick off with \the [src].</span>", \
-									"<span class='notice'>You begin to wipe off [H]'s lipstick.</span>")
+				user.visible_message(span_warning("[user] begins to wipe [H]'s lipstick off with \the [src]."), \
+									span_notice("You begin to wipe off [H]'s lipstick."))
 				if(do_after(user, 10, TRUE, H, BUSY_ICON_FRIENDLY))
-					user.visible_message("<span class='notice'>[user] wipes [H]'s lipstick off with \the [src].</span>", \
-										"<span class='notice'>You wipe off [H]'s lipstick.</span>")
+					user.visible_message(span_notice("[user] wipes [H]'s lipstick off with \the [src]."), \
+										span_notice("You wipe off [H]'s lipstick."))
 					H.lip_style = null
 					H.update_body()
 
@@ -233,7 +233,7 @@
 				qdel(src)
 
 			else
-				to_chat(user, "<span class='warning'>You must hold \the [P] steady to burn \the [src].</span>")
+				to_chat(user, span_warning("You must hold \the [P] steady to burn \the [src]."))
 
 
 /obj/item/paper/Topic(href, href_list)
@@ -281,7 +281,7 @@
 		if(istype(I, /obj/item/paper/carbon))
 			var/obj/item/paper/carbon/C = I
 			if(!C.iscopy && !C.copied)
-				to_chat(user, "<span class='notice'>Take off the carbon copy first.</span>")
+				to_chat(user, span_notice("Take off the carbon copy first."))
 				return
 		if(loc != user)
 			return
@@ -292,7 +292,7 @@
 			B.name = I.name
 		user.dropItemToGround(I)
 		user.dropItemToGround(src)
-		to_chat(user, "<span class='notice'>You clip \the [I] to [src].</span>")
+		to_chat(user, span_notice("You clip \the [I] to [src]."))
 		B.attach_doc(src, user, TRUE)
 		B.attach_doc(I, user, TRUE)
 		user.put_in_hands(B)
@@ -309,7 +309,7 @@
 		var/image/stampoverlay = image('icons/obj/items/paper.dmi')
 		var/x
 		var/y
-		if(istype(I, /obj/item/tool/stamp/captain) || istype(I, /obj/item/tool/stamp/centcomm))
+		if(istype(I, /obj/item/tool/stamp/captain) || istype(I, /obj/item/tool/stamp/centcom))
 			x = rand(-2, 0)
 			y = rand(-1, 2)
 		else
@@ -330,7 +330,7 @@
 		stamped += I.type
 		overlays += stampoverlay
 
-		to_chat(user, "<span class='notice'>You stamp the paper with your rubber stamp.</span>")
+		to_chat(user, span_notice("You stamp the paper with your rubber stamp."))
 		playsound(src, 'sound/items/stamp.ogg', 15, 1)
 
 	else if(I.heat >= 400)
@@ -438,8 +438,14 @@ then, for every time you included a field, increment fields. */
 /obj/item/paper/chemsystem
 	name = "Vali manual"
 	info = {"<b>How to use the Vali system</b><BR>
-	The Vali system uses green blood to empower reagents inside of your body.<BR>
+	The Vali system uses green blood to provide healing and other effects.<BR>
 	Green blood is collected by attacking with a connected weapon.<BR>
+	<BR>
+	<b>Active effect:</b><BR>
+	> You get brute and burn healing every 2 seconds.<BR>
+	> For the first 20 seconds you also get stamina regeneration every 2 seconds that gets decreased to 0 over time.<BR>
+	> These effects get boosted and new effects might be added for the time the system is active, if you have certain amount of certain reagents at the time of activation.
+	For this check the reagent information from the configurations menu.<BR>
 	<BR>
 	<b>Configurations menu:</b><BR>
 	From here you can configure the system.<BR>
@@ -457,3 +463,47 @@ then, for every time you included a field, increment fields. */
 	> When you are holding a filled liquid holder, you can load its contents into the Vali system's reagent tank.<BR>
 	> When you are holding an empty liquid holder, you can empty the Vali's reagent tank into it.<BR>
 	> When you aren't holding a liquid holder, you can pick whether you would like the internal tank's reagents to be automatically injected on activation or not.<BR>"}
+
+/obj/item/paper/brassnote
+	name = "Brass Note"
+	icon = 'icons/obj/items/paper.dmi'
+	icon_state = "brassplate"
+	info = {"...Gur Rzvarapr fcbxr nzbatfg uvf sbyybjref va gur sbhy cynvaf bs gur nfura jbeyq jvgu juvpu gurl ynvq gurve urnqf, naq ol gur jvyy bs gur Vzzbegny Whfgvpne, naq gur gbbyf bs gur zvtugl Nezbere, gurl pbafgehpgrq n gbby fb inyvnag naq cbjreshy gung gur qrivyvfu ubhaqf bs Ane'fvr pbhyq qb anhtug ohg dhnxr nzbatfg gurzfryirf nf gur Oenff Tniry chevsvrq gur jbeyq nebhaq vg."}
+
+/obj/item/paper/xenofinance
+	name = "To T. Jackson"
+	info = {"Boss, I know i'm the one who handles this place's finances, but are you KIDDING ME? Have you not even looked at the things we're importing? Why are we buying so much relating to our science department? <BR>
+	How much can you even research down here? And don't think I didn't notice you almost doubled our mining staff! Not to mention how our general security has been replaced by these new PMCs. <BR>
+	We had to build an entire second dormitory for all these new workers! You NEED to have a look at our balance, because if we don't make some changes soon, this place is going under! - F. Arrek"}
+
+/obj/item/paper/xenoresearch1
+	name = "Project X^2.I, 1"
+	info = {"This is Xenobiologist Dr. Evan Reiker, reporting our current progress in the X^2 project. From the samples we've been able to grow in the lab, we've discovered a lot about these creatures. <BR>
+	We haven't had much time, but we've been able to "tap into" per-se, some aspects of their biology, namely with the new 'XT-S' HUD device. As long as we don't allow a full specimen to be grown, <BR>
+	we should be perfectly fine."}
+
+/obj/item/paper/xenoresearch2
+	name = "Project X^2.I, 2"
+	info = {"This is, again, Dr. Evan Reiker of the X^2 project. The Site Manager has forced us to drop our other projects and focus on growing full specimens. <BR>
+	We've tried to reason with him about it, however he just thinks that these new PMCs can handle any potential breaches. He doesn't understand the full capability of these creatures. <BR>
+	We're pressing on and trying to do it as safely as possible. On the bright side, it has helped us learn more about the species, including potentially psychic aspects regarding their leader castes. Atleast we're getting more funding."}
+
+/obj/item/paper/xenoresearch3
+	name = "Proje- Oh who the fuck cares."
+	info = {"That coniving son of a bitch! Research has continually been asked by the S.M to hand over some of our fully-grown subjects for "Off-site testing", like we believe him. <BR>
+	Everyone here thinks that he's selling these damn things for profit. It'd make sense since we didn't make too much money to begin with. Does he really not understand the severity of this? <BR>
+	Not even that, he's also cutting our security funding because "Nothing's happened yet, and it costs money!" of course it costs money, because money is all you care about, isn't it? <BR>
+	I'm still on the payroll, so I can't just get in his face about this, but when these papers get out, hot damn if he isn't gonna get the government's ass on him. - E. Reiker"}
+
+/obj/item/paper/clockresearch1
+	name = "Weird Project"
+	info = {"The science boys over at the lab keep talking about this weird project they're trying to get me to help them work on. No clue what they're on about, something about clocks? <BR>
+	Whatever it is, they need to shut up about it! I've told them over and over again that we're focusing on xenobiology, and we can't just shift gears (heh) to some magical cult thing nobody's ever heard of! <BR>
+	I swear, if they don't shut up about this, I'm gonna have that catwalk up north broken! - T. Jackson"}
+
+/obj/item/paper/clockresearch2
+	name = "Bloodied note"
+	info = {"After doing some ultrasound examination of the strange cave formation, we've uncovered a strange metallic device. It seems to be capable of accepting data discs from the images <BR>
+	we've uncovered. This is a massive breakthrough in our progress! We haven't breached into the area yet, but we've moved in some consoles in case it's compatible with the technology we have. <BR>
+	Though, it seems there's another chamber in front of it. Scans show some kind of moving figures, though the scanner might just be broken or misinterpreting some basalt dust."}
+

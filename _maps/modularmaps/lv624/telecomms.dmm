@@ -7,6 +7,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/brown{
 	dir = 9
 	},
@@ -78,6 +79,20 @@
 	dir = 9
 	},
 /area/lv624/lazarus/comms)
+"k" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/ai_node,
+/turf/open/floor/tile/brown{
+	dir = 9
+	},
+/area/lv624/lazarus/comms)
+"l" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/brown{
+	dir = 9
+	},
+/area/lv624/lazarus/comms)
 "m" = (
 /obj/structure/extinguisher_cabinet,
 /turf/open/floor/tile/brown{
@@ -101,6 +116,16 @@
 "p" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
+/turf/open/floor/tile/brown{
+	dir = 9
+	},
+/area/lv624/lazarus/comms)
+"q" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/brown{
 	dir = 9
 	},
@@ -358,7 +383,7 @@ x
 x
 x
 x
-x
+l
 x
 x
 x
@@ -438,7 +463,7 @@ B
 (8,1,1) = {"
 d
 V
-V
+k
 V
 V
 V
@@ -448,7 +473,7 @@ u
 V
 V
 V
-V
+k
 V
 d
 "}
@@ -528,7 +553,7 @@ R
 x
 x
 x
-L
+q
 x
 x
 x

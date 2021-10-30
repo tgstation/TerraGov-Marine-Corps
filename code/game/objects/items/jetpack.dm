@@ -1,4 +1,6 @@
 #define FUEL_USE 5
+#define FUEL_INDICATOR_FULL 35
+#define FUEL_INDICATOR_HALF_FULL 20
 #define JETPACK_COOLDOWN_TIME 10 SECONDS
 
 /obj/item/jetpack_marine
@@ -8,12 +10,13 @@
 	icon_state = "jetpack_marine"
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
+	obj_flags = CAN_BE_HIT
 	///maximum amount of fuel in the jetpack
-	var/fuel_max = 60
+	var/fuel_max = 75
 	///current amount of fuel in the jetpack
-	var/fuel_left = 60
+	var/fuel_left = 75
 	///threshold to change the jetpack fuel indicator
-	var/fuel_indicator = 40
+	var/fuel_indicator = FUEL_INDICATOR_FULL
 	///How quick you will fly (warning, it rounds up to the nearest integer)
 	var/speed = 1
 	///How long the jetpack allows you to fly over things
@@ -117,21 +120,21 @@
 	SIGNAL_HANDLER
 	var/mob/living/carbon/human/human_user = usr
 	if(human_user.incapacitated() || human_user.lying_angle)
-		return 
+		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_JETPACK))
-		to_chat(human_user,"<span class='warning'>You cannot use the jetpack yet!</span>")
-		return 
+		to_chat(human_user,span_warning("You cannot use the jetpack yet!"))
+		return
 	if(fuel_left < FUEL_USE)
-		to_chat(human_user,"<span class='warning'>The jetpack ran out of fuel!</span>")
+		to_chat(human_user,span_warning("The jetpack ran out of fuel!"))
 		return
 	INVOKE_ASYNC(src, .proc/use_jetpack, A, human_user)
 
 /obj/item/jetpack_marine/update_overlays()
 	. = ..()
 	switch(fuel_indicator)
-		if(40)
+		if(FUEL_INDICATOR_FULL)
 			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackfull")
-		if(20)
+		if(FUEL_INDICATOR_HALF_FULL)
 			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackhalffull")
 		if(FUEL_USE)
 			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackalmostempty")
@@ -146,8 +149,11 @@
 /obj/item/jetpack_marine/proc/change_fuel_indicator()
 	if(fuel_left-fuel_indicator > 0)
 		return
-	if (fuel_left >= 20)
-		fuel_indicator = 20
+	if (fuel_left >= FUEL_INDICATOR_FULL)
+		fuel_indicator = FUEL_INDICATOR_FULL
+		return
+	if (fuel_left >= FUEL_INDICATOR_HALF_FULL)
+		fuel_indicator = FUEL_INDICATOR_HALF_FULL
 		return
 	if (fuel_left >= FUEL_USE)
 		fuel_indicator = FUEL_USE
@@ -159,13 +165,32 @@
 		return ..()
 	var/obj/structure/reagent_dispensers/fueltank/FT = target
 	if(FT.reagents.total_volume == 0)
-		to_chat(user, "<span class='warning'>Out of fuel!</span>")
-		return ..()
+		to_chat(user, span_warning("Out of fuel!"))
+		return
 
 	var/fuel_transfer_amount = min(FT.reagents.total_volume, (fuel_max - fuel_left))
 	FT.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 	fuel_left += fuel_transfer_amount
-	fuel_indicator = 40
+	fuel_indicator = FUEL_INDICATOR_FULL
+	change_fuel_indicator()
 	update_icon()
 	playsound(loc, 'sound/effects/refill.ogg', 30, 1, 3)
-	to_chat(user, "<span class='notice'>You refill [src] with [target].</span>")
+	to_chat(user, span_notice("You refill [src] with [target]."))
+
+/obj/item/jetpack_marine/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!istype(I, /obj/item/ammo_magazine/flamer_tank))
+		return
+	var/obj/item/ammo_magazine/flamer_tank/FT = I
+	if(FT.current_rounds == 0)
+		to_chat(user, span_warning("Out of fuel!"))
+		return
+
+	var/fuel_transfer_amount = min(FT.current_rounds, (fuel_max - fuel_left))
+	FT.current_rounds -= fuel_transfer_amount
+	fuel_left += fuel_transfer_amount
+	fuel_indicator = FUEL_INDICATOR_FULL
+	change_fuel_indicator()
+	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+	to_chat(user, span_notice("You refill [src] with [I]."))
+	update_icon()

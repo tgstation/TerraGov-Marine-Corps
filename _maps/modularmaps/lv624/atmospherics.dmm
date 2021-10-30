@@ -112,14 +112,6 @@
 "iN" = (
 /turf/closed/wall,
 /area/lv624/lazarus/atmos)
-"jB" = (
-/obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 1;
-	name = "\improper Atmospherics Condenser"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/atmos)
 "jW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -224,6 +216,7 @@
 "ut" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "vn" = (
@@ -349,6 +342,12 @@
 	icon_state = "bcircuitoff"
 	},
 /area/lv624/lazarus/atmos)
+"CP" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/atmos)
 "CS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -357,6 +356,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "Dp" = (
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "DR" = (
@@ -375,6 +375,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/effect/decal/cleanable/blood,
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "En" = (
@@ -414,6 +415,7 @@
 /obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "IT" = (
@@ -472,10 +474,6 @@
 	dir = 4
 	},
 /area/lv624/lazarus/atmos)
-"My" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/atmos)
 "MA" = (
 /obj/machinery/light,
 /obj/effect/decal/warning_stripes/thin{
@@ -484,6 +482,9 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
+/area/lv624/lazarus/atmos)
+"Nt" = (
+/turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "Nw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -506,6 +507,11 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
+/area/lv624/lazarus/atmos)
+"Ps" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/tile/dark/brown2,
 /area/lv624/lazarus/atmos)
 "PD" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -571,6 +577,8 @@
 "Ub" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "UH" = (
@@ -689,7 +697,7 @@ Ln
 dA
 SU
 Rn
-Dp
+Nt
 at
 qq
 AF
@@ -706,7 +714,7 @@ Vq
 iN
 Tt
 QR
-Dp
+Nt
 iN
 tO
 qq
@@ -749,19 +757,19 @@ UH
 lX
 "}
 (8,1,1) = {"
-jB
-SU
+dr
+Ps
 Ub
-My
+kc
 ut
-My
-My
+kc
+kc
 Hy
 xV
 IT
 kc
 kc
-kc
+CP
 QP
 dr
 "}
@@ -791,7 +799,7 @@ iN
 iN
 DR
 Vm
-Dp
+Nt
 iN
 iN
 eI
@@ -808,7 +816,7 @@ kI
 iN
 WZ
 CS
-Dp
+Nt
 iN
 LL
 qq
@@ -825,10 +833,10 @@ gi
 dA
 SU
 DW
-Dp
+Nt
 at
 qq
-Dp
+Nt
 Wz
 lX
 ef

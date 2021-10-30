@@ -6,7 +6,7 @@
 		return
 	var/total_burn	= 0
 	var/total_brute	= 0
-	for(var/datum/limb/O in limbs)	//hardcoded to streamline things a bit
+	for(var/datum/limb/O AS in limbs)	//hardcoded to streamline things a bit
 		total_brute	+= O.brute_dam
 		total_burn	+= O.burn_dam
 
@@ -23,8 +23,8 @@
 
 	var/health_deficiency = max((maxHealth - health), staminaloss)
 
-	if(health_deficiency >= 40)
-		add_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN, TRUE, 0, NONE, TRUE, health_deficiency / 25)
+	if(health_deficiency >= 50)
+		add_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN, TRUE, 0, NONE, TRUE, health_deficiency / 50)
 	else
 		remove_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN)
 
@@ -158,12 +158,12 @@
 
 
 /mob/living/carbon/human/getCloneLoss()
-	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN))
+	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN|ROBOTIC_LIMBS))
 		cloneloss = 0
 	return ..()
 
 /mob/living/carbon/human/setCloneLoss(amount)
-	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN))
+	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN|ROBOTIC_LIMBS))
 		cloneloss = 0
 	else
 		..()
@@ -171,7 +171,7 @@
 /mob/living/carbon/human/adjustCloneLoss(amount)
 	..()
 
-	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN))
+	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN|ROBOTIC_LIMBS))
 		cloneloss = 0
 		return
 
@@ -205,11 +205,13 @@
 
 /mob/living/carbon/human/adjustOxyLoss(amount, forced = FALSE)
 	if(species.species_flags & NO_BREATHE && !forced)
+		oxyloss = 0
 		return
 	return ..()
 
 /mob/living/carbon/human/setOxyLoss(amount, forced = FALSE)
 	if(species.species_flags & NO_BREATHE && !forced)
+		oxyloss = 0
 		return
 	return ..()
 
@@ -274,7 +276,7 @@
 	if(!parts.len)
 		return
 	var/datum/limb/picked = pick(parts)
-	if(picked.heal_limb_damage(brute, burn, updating_health))
+	if(picked.heal_limb_damage(brute, burn, updating_health = updating_health))
 		UpdateDamageIcon()
 	if(updating_health)
 		updatehealth()
@@ -341,9 +343,9 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 
 	if(protection_aura)
 		if(brute)
-			brute = round(brute * ((15 - protection_aura) / 15))
+			brute = round(brute * ((10 - protection_aura) / 10))
 		if(burn)
-			burn = round(burn * ((15 - protection_aura) / 15))
+			burn = round(burn * ((10 - protection_aura) / 10))
 
 	SEND_SIGNAL(src, COMSIG_HUMAN_DAMAGE_TAKEN, brute + burn)
 

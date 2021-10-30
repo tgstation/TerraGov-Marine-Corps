@@ -290,6 +290,21 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	animate(pixel_x=oldx, pixel_y=oldy, time=1)
 
 
+///Makes a recoil-like animation on the mob camera.
+/proc/recoil_camera(mob/M, duration, backtime_duration, strength, angle)
+	if(!M?.client)
+		return
+	strength *= world.icon_size
+	var/oldx = M.client.pixel_x
+	var/oldy = M.client.pixel_y
+
+	//get pixels to move the camera in an angle
+	var/mpx = sin(angle) * strength
+	var/mpy = cos(angle) * strength
+	animate(M.client, pixel_x = oldx+mpx, pixel_y = oldy+mpy, time = duration, flags = ANIMATION_RELATIVE)
+	animate(pixel_x = oldx, pixel_y = oldy, time = backtime_duration, easing = BACK_EASING)
+
+
 /proc/findname(msg)
 	for(var/mob/M in GLOB.mob_list)
 		if (M.real_name == text("[msg]"))
@@ -372,7 +387,8 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 
 
 /mob/proc/restrained(ignore_checks)
-	return
+	SHOULD_CALL_PARENT(TRUE)
+	return HAS_TRAIT(src, TRAIT_HANDS_BLOCKED)
 
 
 /mob/proc/incapacitated(ignore_restrained, restrained_flags)
@@ -435,7 +451,7 @@ mob/proc/get_standard_bodytemperature()
 	var/full_enter_link
 	if (enter_link)
 		full_enter_link = "<a href='byond://?src=[REF(O)];[enter_link]'>[(enter_text) ? "[enter_text]" : "(Claim)"]</a>"
-	to_chat(O, "[(extra_large) ? "<br><hr>" : ""]<span class='deadsay'>[message][(enter_link) ? " [full_enter_link]" : ""][track_link]</span>[(extra_large) ? "<hr><br>" : ""]")
+	to_chat(O, "[(extra_large) ? "<br><hr>" : ""][span_deadsay("[message][(enter_link) ? " [full_enter_link]" : ""][track_link]")][(extra_large) ? "<hr><br>" : ""]")
 	if(ghost_sound)
 		SEND_SOUND(O, sound(ghost_sound, volume = notify_volume, channel = CHANNEL_NOTIFY))
 	if(flashwindow)
@@ -491,7 +507,7 @@ mob/proc/get_standard_bodytemperature()
 	. = list("[type]")
 
 
-/// Try to perform a unique action on the current active held item.
+/// Try to perform a unique action on the held items
 /mob/living/carbon/human/proc/do_unique_action()
 	SIGNAL_HANDLER
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
@@ -499,14 +515,8 @@ mob/proc/get_standard_bodytemperature()
 		return
 
 	var/obj/item/active_item = get_active_held_item()
-	if(!istype(active_item))
+	if((istype(active_item) && active_item.unique_action(src) != COMSIG_KB_NOT_ACTIVATED) || client?.prefs.unique_action_use_active_hand)
 		return
-
-	active_item.unique_action(src)
-
-/mob/living/carbon/human/proc/do_activate_rail_attachment()
-	SIGNAL_HANDLER
-
-	var/obj/item/weapon/gun/active_gun = get_active_firearm(src)
-	active_gun?.toggle_rail_attachment()
-	return COMSIG_KB_ACTIVATED
+	var/obj/item/inactive_item = get_inactive_held_item()
+	if(istype(inactive_item))
+		inactive_item.unique_action(src)

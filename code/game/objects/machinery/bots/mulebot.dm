@@ -68,6 +68,7 @@
 
 /obj/machinery/bot/mulebot/Destroy()
 	QDEL_NULL(wires)
+	QDEL_NULL(cell)
 	return ..()
 
 
@@ -88,11 +89,11 @@
 
 	else if(iswrench(I))
 		if(obj_integrity >= max_integrity)
-			to_chat(user, "<span class='notice'>[src] does not need a repair!</span>")
+			to_chat(user, span_notice("[src] does not need a repair!"))
 			return
 
 		repair_damage(25)
-		user.visible_message("<span class='warning'> [user] repairs [src]!</span>", "<span class='notice'> You repair [src]!</span>")
+		user.visible_message(span_warning(" [user] repairs [src]!"), span_notice(" You repair [src]!"))
 
 	else if(load && ismob(load))  // chance to knock off rider
 		if(!prob(1 + I.force * 2))
@@ -100,7 +101,7 @@
 			return
 
 		unload(0)
-		user.visible_message("<span class='warning'> [user] knocks [load] off [src] with \the [I]!</span>", "<span class='warning'> You knock [load] off [src] with \the [I]!</span>")
+		user.visible_message(span_warning(" [user] knocks [load] off [src] with \the [I]!"), span_warning(" You knock [load] off [src] with \the [I]!"))
 
 
 /obj/machinery/bot/mulebot/ex_act(severity)
@@ -117,7 +118,7 @@
 	if(prob(50) && !isnull(load))
 		unload(0)
 	if(prob(25))
-		visible_message("<span class='warning'> Something shorts out inside [src]!</span>")
+		visible_message(span_warning(" Something shorts out inside [src]!"))
 		wires.cut_random()
 	..()
 	return 1
@@ -202,14 +203,14 @@
 				locked = !locked
 				updateUsrDialog()
 			else
-				to_chat(usr, "<span class='warning'>Access denied.</span>")
+				to_chat(usr, span_warning("Access denied."))
 				return
 		if("power")
 			if (on)
 				turn_off()
 			else if (cell && !open)
 				if (!turn_on())
-					to_chat(usr, "<span class='warning'>You can't switch on [src].</span>")
+					to_chat(usr, span_warning("You can't switch on [src]."))
 					return
 			else
 				return
@@ -223,7 +224,7 @@
 				usr.put_in_active_hand(cell)
 				cell = null
 
-				usr.visible_message("<span class='notice'> [usr] removes the power cell from [src].</span>", "<span class='notice'> You remove the power cell from [src].</span>")
+				usr.visible_message(span_notice(" [usr] removes the power cell from [src]."), span_notice(" You remove the power cell from [src]."))
 				updateUsrDialog()
 
 		if("cellinsert")
@@ -234,7 +235,7 @@
 						cell = C
 						C.forceMove(src)
 
-						usr.visible_message("<span class='notice'> [usr] inserts a power cell into [src].</span>", "<span class='notice'> You insert the power cell into [src].</span>")
+						usr.visible_message(span_notice(" [usr] inserts a power cell into [src]."), span_notice(" You insert the power cell into [src]."))
 						updateUsrDialog()
 
 
@@ -635,7 +636,7 @@
 		return ..()
 
 	var/mob/living/L = A
-	visible_message("<span class='warning'>[src] knocks over [L]!</span>")
+	visible_message(span_warning("[src] knocks over [L]!"))
 	L.stop_pulling()
 	L.Paralyze(10 SECONDS)
 
@@ -643,7 +644,7 @@
 // called from mob/living/carbon/human/Crossed()
 // when mulebot is in the same loc
 /obj/machinery/bot/mulebot/proc/RunOver(mob/living/carbon/human/H)
-	visible_message("<span class='warning'> [src] drives over [H]!</span>")
+	visible_message(span_warning(" [src] drives over [H]!"))
 	playsound(loc, 'sound/effects/splat.ogg', 25, 1)
 
 	var/damage = rand(5,15)

@@ -96,23 +96,7 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 		var/datum/emote/E = new path()
 		E.emote_list[E.key] = E
 
-	// Keybindings
-	for(var/KB in subtypesof(/datum/keybinding))
-		var/datum/keybinding/keybinding = KB
-		if(!initial(keybinding.keybind_signal))
-			continue
-		var/datum/keybinding/instance = new keybinding
-		GLOB.keybindings_by_name[instance.name] = instance
-
-		// Classic
-		if(LAZYLEN(instance.classic_keys))
-			for(var/bound_key in instance.classic_keys)
-				LAZYADD(GLOB.classic_keybinding_list_by_key[bound_key], list(instance.name))
-
-		// Hotkey
-		if(LAZYLEN(instance.hotkey_keys))
-			for(var/bound_key in instance.hotkey_keys)
-				LAZYADD(GLOB.hotkey_keybinding_list_by_key[bound_key], list(instance.name))
+	init_keybindings()
 
 	for(var/i in 1 to 21)
 		GLOB.randomized_pill_icons += "pill[i]"
@@ -153,10 +137,6 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 
 		if(length(D.required_reagents))
 			for(var/result in D.results)
-				GLOB.chemical_required_reagents[result] = list(
-					"catalysts" = D.required_catalysts,
-					"reagents" = D.required_reagents
-				)
 
 			for(var/reaction in D.required_reagents)
 				reaction_ids += reaction

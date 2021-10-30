@@ -1,11 +1,3 @@
-#define EMOTE_VISIBLE 1
-#define EMOTE_AUDIBLE 2
-
-#define EMOTE_VARY 				(1<<0) //vary the pitch
-#define EMOTE_FORCED_AUDIO 		(1<<1) //can only code call this event instead of the player.
-#define EMOTE_MUZZLE_IGNORE 	(1<<2) //Will only work if the emote is EMOTE_AUDIBLE
-#define EMOTE_RESTRAINT_CHECK 	(1<<3) //Checks if the mob is restrained before performing the emote
-
 /datum/emote
 	var/key = "" //What calls the emote
 	var/key_third_person = "" //This will also call the emote
@@ -23,6 +15,8 @@
 	var/stat_allowed = CONSCIOUS
 	var/sound //Sound to play when emote is called
 	var/flags_emote = NONE
+	/// Cooldown between two uses of that emote. Every emote has its own coodldown
+	var/cooldown = 2 SECONDS
 
 	var/static/list/emote_list = list()
 
@@ -71,20 +65,29 @@
 	if(tmp_sound && (!(flags_emote & EMOTE_FORCED_AUDIO) || !intentional))
 		playsound(user, tmp_sound, 50, flags_emote & EMOTE_VARY)
 
-	for(var/i in GLOB.dead_mob_list)
-		var/mob/M = i
-		if(isnewplayer(M) || !M.client)
-			continue
-		var/T = get_turf(user)
-		if(!(M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) || (M in viewers(T, null)))
-			continue
-		M.show_message("[FOLLOW_LINK(M, user)] [dchatmsg]")
+	if(user.client)
+		for(var/i in GLOB.dead_mob_list)
+			var/mob/M = i
+			if(isnewplayer(M) || !M.client)
+				continue
+			var/T = get_turf(user)
+			if(!(M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) || (M in viewers(T, null)))
+				continue
+			M.show_message("[FOLLOW_LINK(M, user)] [dchatmsg]")
 
 	if(emote_type == EMOTE_AUDIBLE)
 		user.audible_message(msg, audible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix)
 	else
 		user.visible_message(msg, visible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix)
 
+/// For handling emote cooldown, return true to allow the emote to happen
+/datum/emote/proc/check_cooldown(mob/user, intentional)
+	if(!intentional)
+		return TRUE
+	if(TIMER_COOLDOWN_CHECK(user, "emote[key]"))
+		return FALSE
+	TIMER_COOLDOWN_START(user, "emote[key]", cooldown)
+	return TRUE
 
 /datum/emote/proc/get_sound(mob/living/user)
 	return sound //by default just return this var.
@@ -134,22 +137,25 @@
 			return FALSE
 
 		if(sound || get_sound(user))
+			if(HAS_TRAIT(user, TRAIT_MUTED))
+				user.balloon_alert(user, "You are muted!")
+				return FALSE
 			if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_EMOTE))
-				to_chat(user, "<span class='notice'>You just did an audible emote. Wait a while.</span>")
+				user.balloon_alert(user, "You just did an audible emote")
 				return FALSE
 			else
 				TIMER_COOLDOWN_START(user, COOLDOWN_EMOTE, 8 SECONDS)
 
 		if(user.client)
 			if(user.client.prefs.muted & MUTE_IC)
-				to_chat(user, "<span class='warning'>You cannot send emotes (muted).</span>")
+				to_chat(user, span_warning("You cannot send emotes (muted)."))
 				return FALSE
 
 			if(user.client.handle_spam_prevention(message, MUTE_IC))
 				return FALSE
 
 			if(is_banned_from(user.ckey, "Emote"))
-				to_chat(user, "<span class='warning'>You cannot send emotes (banned).</span>")
+				to_chat(user, span_warning("You cannot send emotes (banned)."))
 				return FALSE
 
 	if(status_check && !is_type_in_typecache(user, mob_type_ignore_stat_typecache))
@@ -159,9 +165,9 @@
 
 			switch(user.stat)
 				if(UNCONSCIOUS)
-					to_chat(user, "<span class='notice'>You cannot [key] while unconscious.</span>")
+					to_chat(user, span_notice("You cannot [key] while unconscious."))
 				if(DEAD)
-					to_chat(user, "<span class='notice'>You cannot [key] while dead.</span>")
+					to_chat(user, span_notice("You cannot [key] while dead."))
 
 			return FALSE
 
@@ -171,11 +177,20 @@
 				if(L.incapacitated())
 					if(!intentional)
 						return FALSE
-					to_chat(user, "<span class='notice'>You cannot [key] while stunned.</span>")
+					user.balloon_alert(user, "You cannot [key] while stunned")
 					return FALSE
+
+		if(flags_emote & EMOTE_ARMS_CHECK)
+			///okay snapper
+			var/mob/living/carbon/snapper = user
+			var/datum/limb/left_hand = snapper.get_limb("l_hand")
+			var/datum/limb/right_hand = snapper.get_limb("r_hand")
+			if((!left_hand.is_usable()) && (!right_hand.is_usable()))
+				to_chat(user, span_notice("You cannot [key] without a working hand."))
+				return FALSE
 
 		if((flags_emote & EMOTE_RESTRAINT_CHECK) && user.restrained())
 			if(!intentional)
 				return FALSE
-			to_chat(user, "<span class='notice'>You cannot [key] while restrained.</span>")
+			user.balloon_alert(user, "You cannot [key] while restrained")
 			return FALSE

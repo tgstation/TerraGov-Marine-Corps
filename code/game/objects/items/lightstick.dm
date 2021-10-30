@@ -9,13 +9,19 @@
 	icon_state = "lightstick_blue0"
 	var/s_color = "blue"
 
-/obj/item/lightstick/Crossed(mob/living/L)
+/obj/item/lightstick/Initialize()
 	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/item/lightstick/proc/on_cross(datum/source, mob/living/L, oldloc, oldlocs)
 	if(!anchored || !istype(L) || isxenolarva(L))
 		return
 	if(L.mob_size != MOB_SIZE_BIG && prob(80))
 		return
-	visible_message("<span class='danger'>[L] tramples the [src]!</span>")
+	visible_message(span_danger("[L] tramples the [src]!"))
 	playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
 	if(isxeno(L) && prob(40))
 		qdel(src)

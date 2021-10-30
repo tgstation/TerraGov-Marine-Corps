@@ -45,8 +45,8 @@
 
 
 /mob/living/carbon/human/proc/set_undefibbable()
+	SEND_SIGNAL(src, COMSIG_HUMAN_SET_UNDEFIBBABLE)
 	ADD_TRAIT(src, TRAIT_UNDEFIBBABLE , TRAIT_UNDEFIBBABLE)
-	ADD_TRAIT(src, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	SSmobs.stop_processing(src) //Last round of processing.
 
 	if(CHECK_BITFIELD(status_flags, XENO_HOST))
@@ -55,4 +55,8 @@
 			qdel(parasite)
 		DISABLE_BITFIELD(status_flags, XENO_HOST)
 
-	med_hud_set_status()
+	if(SSticker.mode.flags_round_type & MODE_TWO_HUMAN_FACTIONS)
+		job.add_job_positions(1)
+	if(hud_list)
+		med_hud_set_status()
+

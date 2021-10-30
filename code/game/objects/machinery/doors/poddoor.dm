@@ -185,6 +185,10 @@
 	name = "\improper Combat Information Center Blast Door"
 	id = "cic_lockdown"
 
+/obj/machinery/door/poddoor/mainship/open/cic/rebel
+	name = "\improper Combat Information Center Blast Door"
+	id = "cic_lockdown_rebel"
+
 /obj/machinery/door/poddooor/mainship/hangar
 	name = "\improper Hangar Lockdown"
 	id = "hangar_lockdown"

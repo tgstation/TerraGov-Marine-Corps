@@ -20,7 +20,7 @@
 		traits += "It's best fired with a two-handed grip."
 
 
-	if(flags_gun_features & GUN_TRIGGER_SAFETY)
+	if(HAS_TRAIT(src, TRAIT_GUN_SAFETY))
 		traits += "It has a safety switch. Alt-Click it to toggle safety."
 
 	if(scope_zoom) //flawed, unless you check the codex for the first time when the scope is attached, this won't show. works for sniper rifles though.
@@ -133,10 +133,11 @@
 /datum/codex_entry/energy_weapons
 	display_name = "energy weapons"
 	mechanics_text = "This weapon is an energy weapon; they run on battery charge rather than traditional ammunition. You can recharge \
-		an energy weapon by placing it in a wall-mounted or table-mounted charger such as those found in Medical or around the \
-		place. In addition, energy weapons, if compatible, can be recharged via energy-fed battery cells acting as magazines, \
+		an energy weapon by placing it in a table-mounted or field-deployed charger such as those found in Medical or around the \
+		area. In addition, energy weapons, if compatible, can be recharged via energy-fed battery cells acting as magazines, \
 		which can also be recharged at chargers. Most energy weapons' projectiles can go straight through windows and hit whatever \
 		is on the other side, and have very fast projectiles, making them accurate and useful against distant targets. \
+		Some (like the TE series of weapons) have hitscan properties, allowing the weapon to hit the target instantly. \
 		<br>"
 	lore_text = "\"OPERATOR\", the tagline and marketing tactic of energy weapons (usually lasguns) in the 25th century, \
 		especially made popular with the rise of the xenomorph threat in 2414. Energy weapons are usually famed by private security firms \
@@ -191,7 +192,7 @@
 	Though high unit cost didn't allow it to be more widely adopted it was eventually decided that it would meet limited adoption for Marksmen and be designated the T-26."
 
 /datum/codex_entry/battle_rifle
-	associated_paths = list(/obj/item/weapon/gun/rifle/m4ra)
+	associated_paths = list(/obj/item/weapon/gun/rifle/tx8)
 	lore_text = "The M45A was born from a commission order from the TGMC to the company which made the M42A and M56 smartgun systems. <br><br>\
 	The reason for this commission order resulted from complaints from light infantry and scout units about the poor accuracy of the new T-26 \
 	carbine at longer ranges and the large size of the T-29 making close combat uncomfortable eventually reached the higher ups, who kept getting \
@@ -218,15 +219,6 @@
 	It's a rather rare sight due to the current doctrine adopted by the TGMC not using heavy explosives often, so it's a rather \
 	rare sight outside of specialized users. and the rising prevalence of shipside combat making it dangerous to fire inside those \
 	spaces makes it even used less. Not that it makes it any less dangerous on an open field."
-
-/datum/codex_entry/smartgun
-	associated_paths = list(/obj/item/weapon/gun/smartgun)
-	lore_text = "The T-90A's design is the one used by most forces under the world who use the M56 4-kit smartgun system, \
-	it has several different other names depending on the user but the one used by the TGMC is defined as T-90A. <br><br>\
-	The M56 4-piece system was adopted when the technology eventually developed a practical point as older systems required \
-	a much heavier powerpack or assistant to carry ammunition due to the lack of an autoloading system. After these problems \
-	were solved with the powerpacks autoloading system and eventual size reductions to allow for more practical use of the gun \
-	inside combat, the M56 system was offered to the TGMC and was eventually met with adoption after combat tests showed good results."
 
 /datum/codex_entry/standard_shotgun
 	associated_paths = list(/obj/item/weapon/gun/shotgun/pump/t35)

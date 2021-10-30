@@ -68,14 +68,6 @@
 		master.update_icon()
 
 
-/obj/item/assembly_holder/Crossed(atom/movable/AM)
-	. = ..()
-	if(a_left)
-		a_left.Crossed(AM)
-	if(a_right)
-		a_right.Crossed(AM)
-
-
 /obj/item/assembly_holder/on_found(mob/finder)
 	if(a_left)
 		a_left.on_found(finder)
@@ -113,7 +105,7 @@
 	. = ..()
 	if(.)
 		return TRUE
-	to_chat(user, "<span class='notice'>You disassemble [src]!</span>")
+	to_chat(user, span_notice("You disassemble [src]!"))
 	if(a_left)
 		a_left.on_detach()
 		a_left = null
@@ -126,7 +118,7 @@
 
 /obj/item/assembly_holder/attack_self(mob/user)
 	if(!a_left || !a_right)
-		to_chat(user, "<span class='danger'>Assembly part missing!</span>")
+		to_chat(user, span_danger("Assembly part missing!"))
 		return
 	if(istype(a_left,a_right.type))//If they are the same type it causes issues due to window code
 		switch(tgui_alert(user, "Which side would you like to use?", null, list("Left","Right")))

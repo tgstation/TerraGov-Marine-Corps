@@ -38,7 +38,7 @@
 #define ui_movi "EAST-2:26,SOUTH:5"
 #define ui_zonesel "EAST-1:28,SOUTH:5"
 #define ui_acti_alt "EAST-1:28,1:5" //alternative intent switcher for when the interface is hidden (F12)
-#define ui_crafting	"EAST-4:22,SOUTH:5"
+#define ui_crafting "EAST-4:22,SOUTH:5"
 #define ui_building "EAST-4:22,SOUTH:21"
 #define ui_language_menu "EAST-4:6,SOUTH:21"
 
@@ -52,11 +52,11 @@
 #define ui_gun3 "EAST-2:26,4:7"
 #define ui_gun_select "EAST-1:28,3:7"
 
-#define ui_gun_burst 		"EAST-3:-8,1:+5"
-#define ui_gun_railtoggle	"EAST-3:-21,1:+13"
-#define ui_gun_eject 		"EAST-3:-12,1:+5"
-#define ui_gun_attachment 	"EAST-3:-10,1:+5"
-#define ui_gun_unique 		"EAST-3:-4,1:+2"
+#define ui_gun_burst "EAST-3:-8,1:+5"
+#define ui_gun_railtoggle "EAST-3:-21,1:+13"
+#define ui_gun_eject "EAST-3:-12,1:+5"
+#define ui_gun_attachment "EAST-3:-10,1:+5"
+#define ui_gun_unique "EAST-3:-4,1:+2"
 
 //Upper-middle right (alerts)
 #define ui_alert1 "EAST-1:28,CENTER+5:27"
@@ -83,7 +83,10 @@
 #define UI_STAMINA "EAST-1:28,CENTER-2:13"
 #define ui_health "EAST-1:28,CENTER-1:15"
 #define ui_internal "EAST-1:28,CENTER:17"
-#define ui_ammo "EAST-1:28,CENTER+1:25"
+#define ui_ammo1 "EAST-1:28,CENTER+1:25"
+#define ui_ammo2 "EAST-1:28,CENTER+2:27"
+#define ui_ammo3 "EAST-1:28,CENTER+3:29"
+#define ui_ammo4 "EAST-1:28,CENTER+4:31"
 
 									//borgs
 #define ui_borg_health "EAST-1:28,6:13" //borgs have the health display where humans have the bodytemp indicator.

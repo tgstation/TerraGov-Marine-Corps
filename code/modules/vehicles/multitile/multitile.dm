@@ -192,44 +192,21 @@ Vehicles are placed on the map by a spawner or admin verb
 	setDir(old_dir) //Preserve the direction you're facing when moving backwards
 	return TRUE
 
-/obj/vehicle/multitile/root/Initialize()
-	. = ..()
-	var/datum/coords/C = new
-	C.x_pos = 0
-	C.y_pos = 0
-	C.y_pos = 0
-	linked_objs[C] = src
 
-/obj/vehicle/multitile/root/proc/load_hitboxes(datum/coords/dimensions, datum/coords/root_pos)
+/obj/vehicle/multitile/root/proc/load_hitboxes()
 	return
 
-/obj/vehicle/multitile/root/proc/load_entrance_marker(datum/coords/rel_pos)
+/obj/vehicle/multitile/root/proc/load_entrance_marker()
 	return
 
 //Saves where everything is so we can revert
 /obj/vehicle/multitile/root/proc/save_locs()
 
-	for(var/datum/coords/C in linked_objs)
-		var/atom/movable/A = linked_objs[C]
-		//Shit, something killed it, now we hope it was a hitbox and redraw it
-		//Check for turfs since cdel changes the loc but doesn't make it null
-		if(!istype(A.loc, /turf))
-			var/turf/T = locate(x + C.x_pos, y + C.y_pos, z + C.z_pos)
-			A = new hitbox_type(T)
-			linked_objs[C] = A
-		old_locs[A] = A.loc
+
 
 //We were unable to move, so revert everything we may have done so far
 /obj/vehicle/multitile/root/proc/revert_locs()
 
-	for(var/datum/coords/C in linked_objs)
-		var/atom/movable/A = linked_objs[C]
-		A.loc = old_locs[A]
-		if(istype(A, /obj))
-			var/obj/O = A
-			for(var/m in O.buckled_mobs)
-				var/mob/buckled_mob = m
-				buckled_mob.forceMove(old_locs[A])
 
 //Forces the root object to move so everything can update relative to it
 /obj/vehicle/multitile/root/proc/move_root(direction)
@@ -249,38 +226,7 @@ Vehicles are placed on the map by a spawner or admin verb
 /obj/vehicle/multitile/root/proc/try_move(list/objs, direction, is_rotation = FALSE)
 
 	var/list/blocked = list() //What couldn't move this time
-	for(var/datum/coords/C in objs) //objs is an associative list like linked_objs
-		var/atom/movable/A = objs[C]
-		var/turf/T = locate(x + C.x_pos, y + C.y_pos, z + C.z_pos)
-		if(is_rotation) //Special case for rotations where two hitboxes need to swap locations
-			//Fun fact, there's actually a bug in this part of the algorithm
-			//Not all hitboxes want to switch locations, so sometimes a hitbox can end up in vastly the wrong location
-			//BUT, then the hitbox that ends of up in the wrong place tries to move later on
-			//The only instance where this can cause problems is if you have two hitboxes tryign to move to the same tile
-			//If you do, you're probably doing something wrong
-			var/obj/vehicle/multitile/M
-			for(var/i in T) //Get the one to swap with
-				if(istype(i, /obj/vehicle/multitile))
-					M = i
-					break
-			if(istype(M))
-				var/turf/interim = M.loc
-				A.forceMove(M.loc) //Swap that shit
-				M.forceMove(interim)
-				for(var/m in M.buckled_mobs)
-					var/mob/buckled_mob = m
-					buckled_mob.forceMove(M.loc)
-				if(istype(A, /obj))
-					var/obj/O = A
-					for(var/m in O.buckled_mobs)
-						var/mob/buckled_mob = m
-						buckled_mob.forceMove(O.loc)
 
-			else if(!A.Move(T))
-				blocked[C] = A //We couldn't move, so remember that and try again next time
-		else
-			if(!step(A, direction))
-				blocked[C] = A //We couldn't move, so remember that and try again next time
 
 	if(length(blocked) == length(objs))
 		return FALSE //No more things can move, return false
@@ -297,15 +243,4 @@ Vehicles are placed on the map by a spawner or admin verb
 //Applies the 2D transformation matrix to the saved coords
 /obj/vehicle/multitile/root/proc/rotate_coords(deg)
 
-	for(var/datum/coords/C in linked_objs)
 
-		var/atom/movable/A = linked_objs[C]
-		A.setDir(turn(A.dir, deg)) //Turn the thing at that tile
-
-		//Update coords
-		var/new_x = C.x_pos*cos(deg) - C.y_pos*sin(deg)
-		var/new_y = C.x_pos*sin(deg) + C.y_pos*cos(deg)
-		new_x = round(new_x, 1)
-		new_y = round(new_y, 1) //Sometimes using the rotation matrix gets you off by 1e-5 or so
-		C.x_pos = new_x
-		C.y_pos = new_y

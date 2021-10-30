@@ -6,46 +6,57 @@ SUBSYSTEM_DEF(vote)
 
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 
-	var/initiator = null
-	var/started_time = null
-	var/time_remaining = 0
-	var/mode = null
-	var/question = null
+	/// Available choices in the vote
 	var/list/choices = list()
+	/// What choice each player took, if any
+	var/list/choice_by_ckey = list()
+	/// Who started the vote
+	var/initiator
+	/// On what subject the vote is about
+	var/mode
+	/// The question that will be asked
+	var/question
+	/// When the vote was started
+	var/started_time
+	/// How long till the vote is resolved
+	var/time_remaining
+	/// Who already voted
 	var/list/voted = list()
+	/// Who can vote
 	var/list/voting = list()
+	/// If a vote is currently taking place
+	var/vote_happening = FALSE
+	/// The timer id of the shipmap vote
+	var/shipmap_timer_id
 
-
+// Called by master_controller
 /datum/controller/subsystem/vote/fire()
-	if(mode)
-		time_remaining = round((started_time + CONFIG_GET(number/vote_period) - world.time)/10)
+	if(!mode)
+		return
+	time_remaining = round((started_time + CONFIG_GET(number/vote_period) - world.time)/10)
+	if(time_remaining < 0)
+		result()
+		SStgui.close_uis(src)
+		reset()
 
-		if(time_remaining < 0)
-			result()
-			for(var/client/C in voting)
-				C << browse(null, "window=vote")
-			reset()
-		else
-			var/datum/browser/client_popup
-			for(var/client/C in voting)
-				client_popup = new(C, "vote", "Voting Panel")
-				client_popup.set_window_options("can_close=0")
-				client_popup.set_content(interface(C))
-				client_popup.open(FALSE)
-
-
+/// Stop the current vote and reset everything
 /datum/controller/subsystem/vote/proc/reset()
+	choices.Cut()
+	choice_by_ckey.Cut()
 	initiator = null
-	time_remaining = 0
 	mode = null
 	question = null
-	choices.Cut()
+	time_remaining = 0
 	voted.Cut()
 	voting.Cut()
+	vote_happening = FALSE
+
 	remove_action_buttons()
 
 
+/// Tally the results and give the winner
 /datum/controller/subsystem/vote/proc/get_result()
+	//get the highest number of votes
 	var/greatest_votes = 0
 	var/total_votes = 0
 	for(var/option in choices)
@@ -53,6 +64,7 @@ SUBSYSTEM_DEF(vote)
 		total_votes += votes
 		if(votes > greatest_votes)
 			greatest_votes = votes
+	//default-vote for everyone who didn't vote
 	if(!CONFIG_GET(flag/default_no_vote) && length(choices))
 		var/list/non_voters = GLOB.directory.Copy()
 		non_voters -= voted
@@ -77,6 +89,7 @@ SUBSYSTEM_DEF(vote)
 				. += option
 
 
+/// Announce the votes tally to everyone
 /datum/controller/subsystem/vote/proc/announce_result()
 	var/list/winners = get_result()
 	var/text
@@ -89,23 +102,25 @@ SUBSYSTEM_DEF(vote)
 			var/votes = choices[choices[i]]
 			if(!votes)
 				votes = 0
-			text += "<br><b>[choices[i]]:</b> [votes]"
+			text += "\n<b>[choices[i]]:</b> [votes]"
 		if(mode != "custom")
 			if(length(winners) > 1)
-				text = "<br><b>Vote Tied Between:</b>"
+				text = "\n<b>Vote Tied Between:</b>"
 				for(var/option in winners)
-					text += "<br>[FOURSPACES][option]"
+					text += "\n\t[option]"
 			. = pick(winners)
-			text += "<br><b>Vote Result: [.]</b>"
+			text += "\n<b>Vote Result: [.]</b>"
 		else
-			text += "<br><b>Did not vote:</b> [length(GLOB.clients) - length(voted)]"
+			text += "\n<b>Did not vote:</b> [length(GLOB.clients) - length(voted)]"
 	else
 		text += "<b>Vote Result: Inconclusive - No Votes!</b>"
 	log_vote(text)
+	vote_happening = FALSE
 	remove_action_buttons()
-	to_chat(world, "<br><font color='purple'>[text]</font>")
+	to_chat(world, "\n<font color='purple'>[text]</font>")
 
 
+/// Apply the result of the vote if it's possible
 /datum/controller/subsystem/vote/proc/result()
 	. = announce_result()
 	var/restart = FALSE
@@ -115,6 +130,10 @@ SUBSYSTEM_DEF(vote)
 				if(. == "Restart Round")
 					restart = TRUE
 			if("gamemode")
+				if(. == "Civil War")
+					deltimer(shipmap_timer_id)
+					var/datum/map_config/VM = config.maplist[SHIP_MAP]["Twin Pillars"]
+					SSmapping.changemap(VM, SHIP_MAP)
 				if(GLOB.master_mode != .)
 					SSticker.save_mode(.)
 					if(SSticker.HasRoundStarted())
@@ -128,45 +147,57 @@ SUBSYSTEM_DEF(vote)
 				var/datum/map_config/VM = config.maplist[SHIP_MAP][.]
 				SSmapping.changemap(VM, SHIP_MAP)
 	if(restart)
-		var/active_admins = 0
+		var/active_admins = FALSE
 		for(var/client/C in GLOB.admins)
-			if(!C.is_afk() && check_other_rights(C, R_SERVER, FALSE))
+			if(!C.is_afk() && check_rights_for(C, R_SERVER))
 				active_admins = TRUE
 				break
 		if(!active_admins)
-			SSticker.Reboot("Restart vote successful.", "restart vote")
+			// No delay in case the restart is due to lag
+			SSticker.Reboot("Restart vote successful.", "restart vote", 1)
 		else
 			to_chat(world, "<span style='boltnotice'>Notice:Restart vote will not restart the server automatically because there are active admins on.</span>")
 			message_admins("A restart vote has passed, but there are active admins on with +SERVER, so it has been canceled. If you wish, you may restart the server.")
 
 
+
+/// Register the vote of one player
 /datum/controller/subsystem/vote/proc/submit_vote(vote)
-	if(mode)
-		if(CONFIG_GET(flag/no_dead_vote) && usr.stat == DEAD && !check_other_rights(usr.client, R_ADMIN, FALSE))
-			return FALSE
-		if(!(usr.ckey in voted))
-			if(vote && 1 <= vote && vote <= length(choices))
-				voted += usr.ckey
-				choices[choices[vote]]++
-				return vote
-	return FALSE
-
-
-/datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key)
 	if(!mode)
-		if(started_time)
+		return FALSE
+	if(CONFIG_GET(flag/no_dead_vote) && usr.stat == DEAD && !usr.client.holder)
+		return FALSE
+	if(!vote || vote < 1 || vote > length(choices))
+		return FALSE
+	// If user has already voted, remove their specific vote
+	if(usr.ckey in voted)
+		choices[choices[choice_by_ckey[usr.ckey]]]--
+	else
+		voted += usr.ckey
+	choice_by_ckey[usr.ckey] = vote
+	choices[choices[vote]]++
+	return vote
+
+/// Start the vote, and prepare the choices to send to everyone
+/datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key, ignore_delay = FALSE)
+	//Server is still intializing.
+	if(!Master.current_runlevel)
+		to_chat(usr, span_warning("Cannot start vote, server is not done initializing."))
+		return FALSE
+	var/lower_admin = FALSE
+	if(initiator_key)
+		var/ckey = ckey(initiator_key)
+		if(GLOB.admin_datums[ckey])
+			lower_admin = TRUE
+
+	if(!mode)
+		if(started_time && !ignore_delay)
 			var/next_allowed_time = (started_time + CONFIG_GET(number/vote_delay))
 			if(mode)
-				to_chat(usr, "<span class='warning'>There is already a vote in progress! please wait for it to finish.</span>")
+				to_chat(usr, span_warning("There is already a vote in progress! please wait for it to finish."))
 				return FALSE
-
-			var/admin = FALSE
-			var/ckey = ckey(initiator_key)
-			if(GLOB.admin_datums[ckey] || initiator_key == "SERVER")
-				admin = TRUE
-
-			if(next_allowed_time > world.time && !admin)
-				to_chat(usr, "<span class='warning'>A vote was initiated recently, you must wait [DisplayTimeText(next_allowed_time-world.time)] before a new vote can be started!</span>")
+			if(next_allowed_time > world.time && !lower_admin)
+				to_chat(usr, span_warning("A vote was initiated recently, you must wait [DisplayTimeText(next_allowed_time-world.time)] before a new vote can be started!"))
 				return FALSE
 
 		reset()
@@ -174,11 +205,26 @@ SUBSYSTEM_DEF(vote)
 			if("restart")
 				choices.Add("Restart Round", "Continue Playing")
 			if("gamemode")
-				choices.Add(config.votable_modes)
+				for(var/datum/game_mode/mode AS in config.votable_modes)
+					var/players = length(GLOB.clients)
+					if(mode.time_between_round && (world.realtime - SSpersistence.last_modes_round_date[mode.name]) < mode.time_between_round)
+						continue
+					if(istype(mode, /datum/game_mode/civil_war) && SSticker.current_state < GAME_STATE_PLAYING && SSmapping.configs[SHIP_MAP].map_name != MAP_TWIN_PILLARS)
+						continue
+					if(players > mode.maximum_players)
+						continue
+					if(players < mode.required_players)
+						continue
+					choices.Add(mode.config_tag)
 			if("groundmap")
+				if(!lower_admin && SSmapping.groundmap_voted)
+					to_chat(usr, span_warning("The next ground map has already been selected."))
+					return FALSE
 				var/list/maps = list()
-				for(var/i in config.maplist[GROUND_MAP])
-					var/datum/map_config/VM = config.maplist[GROUND_MAP][i]
+				if(!config.maplist)
+					return
+				for(var/map in config.maplist[GROUND_MAP])
+					var/datum/map_config/VM = config.maplist[GROUND_MAP][map]
 					if(!VM.voteweight)
 						continue
 					if(VM.config_max_users || VM.config_min_users)
@@ -187,27 +233,31 @@ SUBSYSTEM_DEF(vote)
 							continue
 						if(VM.config_min_users && players < VM.config_min_users)
 							continue
-					maps += i
-
-				choices.Add(maps)
-				if(length(choices) < 2)
-					return FALSE
+					maps += VM.map_name
+					shuffle_inplace(maps)
+				for(var/valid_map in maps)
+					choices.Add(valid_map)
 			if("shipmap")
+				if(!lower_admin && SSmapping.shipmap_voted)
+					to_chat(usr, span_warning("The next ship map has already been selected."))
+					return FALSE
 				var/list/maps = list()
-				for(var/i in config.maplist[SHIP_MAP])
-					var/datum/map_config/VM = config.maplist[SHIP_MAP][i]
+				if(!config.maplist)
+					return
+				for(var/map in config.maplist[SHIP_MAP])
+					var/datum/map_config/VM = config.maplist[SHIP_MAP][map]
 					if(!VM.voteweight)
 						continue
 					if(VM.config_max_users || VM.config_min_users)
 						var/players = length(GLOB.clients)
-						if(players > VM.config_max_users)
+						if(VM.config_max_users && players > VM.config_max_users)
 							continue
-						if(players < VM.config_min_users)
+						if(VM.config_min_users && players < VM.config_min_users)
 							continue
-					maps += i
-				choices.Add(maps)
-				if(length(choices) < 2)
-					return FALSE
+					maps += VM.map_name
+					shuffle_inplace(maps)
+				for(var/valid_map in maps)
+					choices.Add(valid_map)
 			if("custom")
 				question = stripped_input(usr, "What is the vote for?")
 				if(!question)
@@ -222,14 +272,15 @@ SUBSYSTEM_DEF(vote)
 		mode = vote_type
 		initiator = initiator_key
 		started_time = world.time
-		var/text = "[capitalize(mode)] vote started by [initiator]."
+		var/text = "[capitalize(mode)] vote started by [initiator ? initiator : "server"]."
 		if(mode == "custom")
 			text += "<br>[question]"
 		log_vote(text)
 		var/vp = CONFIG_GET(number/vote_period)
-		SEND_SOUND(world, sound('sound/ambience/votestart.ogg', channel = CHANNEL_NOTIFY))
-		to_chat(world, "<br><font color='purple'><b>[text]</b><br>Type <b>vote</b> or click <a href='?src=[REF(src)]'>here</a> to place your votes.<br>You have [DisplayTimeText(vp)] to vote.</font>")
+		SEND_SOUND(world, sound('sound/ambience/votestart.ogg', channel = CHANNEL_NOTIFY, volume = 50))
+		to_chat(world, "<br><font color='purple'><b>[text]</b><br>Type <b>vote</b> or click on vote action (top left) to place your votes.<br>You have [DisplayTimeText(vp)] to vote.</font>")
 		time_remaining = round(vp/10)
+		vote_happening = TRUE
 		for(var/c in GLOB.clients)
 			var/client/C = c
 			var/datum/action/innate/vote/V = new
@@ -240,120 +291,109 @@ SUBSYSTEM_DEF(vote)
 		return TRUE
 	return FALSE
 
+/mob/verb/vote()
+	set category = "OOC"
+	set name = "Vote"
+	SSvote.ui_interact(usr)
 
-/datum/controller/subsystem/vote/proc/interface(client/C)
-	if(!C)
-		return
-	var/admin = FALSE
-	if(check_other_rights(C, R_ADMIN, FALSE))
-		admin = TRUE
-	voting |= C
+///Starts the automatic map vote at the end of each round
+/datum/controller/subsystem/vote/proc/automatic_vote()
+	initiate_vote("gamemode", null, TRUE)
+	shipmap_timer_id = addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap", null, TRUE), CONFIG_GET(number/vote_period) + 3 SECONDS, TIMER_STOPPABLE)
+	addtimer(CALLBACK(src, .proc/initiate_vote, "groundmap", null, TRUE), CONFIG_GET(number/vote_period) * 2 + 6 SECONDS)
 
-	if(mode)
-		if(question)
-			. += "<h2>Vote: '[question]'</h2>"
-		else
-			. += "<h2>Vote: [capitalize(mode)]</h2>"
-		. += "Time Left: [time_remaining] s<hr><ul>"
-		for(var/i = 1 to length(choices))
-			var/votes = choices[choices[i]]
-			if(!votes)
-				votes = 0
-			. += "<li><a href='?_src_=vote;vote=[i]'>[choices[i]]</a> ([votes] votes)</li>"
-		. += "</ul><hr>"
-		if(admin)
-			. += "(<a href='?_src_=vote;vote=cancel'>Cancel Vote</a>) "
-	else
-		. += "<h2>Start a vote:</h2><hr><ul><li>"
+/datum/controller/subsystem/vote/ui_state()
+	return GLOB.always_state
 
-		var/avr = CONFIG_GET(flag/allow_vote_restart)
-		if(avr || admin)
-			. += "<a href='?_src_=vote;vote=restart'>Restart</a>"
-		else
-			. += "<font color='grey'>Restart (Disallowed)</font>"
-		if(admin)
-			. += "[FOURSPACES](<a href='?_src_=vote;vote=toggle_restart'>[avr ? "Allowed" : "Disallowed"]</a>)"
-		. += "</li><li>"
+/datum/controller/subsystem/vote/ui_interact(mob/user, datum/tgui/ui)
+	// Tracks who is voting
+	if(!(user.client?.ckey in voting))
+		voting += user.client?.ckey
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Vote")
+		ui.open()
 
-		var/avm = CONFIG_GET(flag/allow_vote_mode)
-		if((length(GLOB.clients) > CONFIG_GET(number/maximum_clients_for_gamemode_vote)))
-			avm = FALSE
-		if(avm || admin)
-			. += "<a href='?_src_=vote;vote=gamemode'>GameMode</a>"
-		else
-			. += "<font color='grey'>GameMode (Disallowed)</font>"
+/datum/controller/subsystem/vote/ui_data(mob/user)
+	var/list/data = list(
+		"choices" = list(),
+		"lower_admin" = !!user.client?.holder,
+		"mode" = mode,
+		"question" = question,
+		"selected_choice" = choice_by_ckey[user.client?.ckey],
+		"time_remaining" = time_remaining,
+		"upper_admin" = check_rights_for(user.client, R_ADMIN),
+		"voting" = list(),
+		"allow_vote_groundmap" = CONFIG_GET(flag/allow_vote_groundmap),
+		"allow_vote_shipmap" = CONFIG_GET(flag/allow_vote_shipmap),
+		"allow_vote_mode" = CONFIG_GET(flag/allow_vote_mode),
+		"allow_vote_restart" = CONFIG_GET(flag/allow_vote_restart),
+		"vote_happening" = vote_happening,
+	)
 
-		if(admin)
-			. += "[FOURSPACES](<a href='?_src_=vote;vote=toggle_gamemode'>[avm ? "Allowed" : "Disallowed"]</a>)"
+	if(!!user.client?.holder)
+		data["voting"] = voting
 
-		. += "</li><hr>"
+	for(var/key in choices)
+		data["choices"] += list(list(
+			"name" = key,
+			"votes" = choices[key] || 0
+		))
 
-		if(admin)
-			. += "<li><a href='?_src_=vote;vote=groundmap'>Ground Map Vote</a></li>"
-			. += "<li><a href='?_src_=vote;vote=shipmap'>Ship Map Vote</a></li>"
-			. += "<li><a href='?_src_=vote;vote=custom'>Custom</a></li>"
-		. += "</ul><hr>"
-	. += "<a href='?_src_=vote;vote=close'>Close</a>"
+	return data
 
-
-/datum/controller/subsystem/vote/can_interact(mob/user)
-	return TRUE
-
-
-/datum/controller/subsystem/vote/Topic(href, list/href_list, hsrc)
+/datum/controller/subsystem/vote/ui_act(action, params)
 	. = ..()
 	if(.)
 		return
 
-	if(!usr?.client)
-		return
+	var/upper_admin = FALSE
+	if(usr.client.holder)
+		if(check_rights_for(usr.client, R_ADMIN))
+			upper_admin = TRUE
 
-	switch(href_list["vote"])
-		if("close")
-			voting -= usr.client
-			DIRECT_OUTPUT(usr, browse(null, "window=vote"))
-			return
+	switch(action)
 		if("cancel")
-			if(check_other_rights(usr.client, R_ADMIN, FALSE) && alert(usr, "Are you sure you want to cancel the vote?", "Cancel Vote", "Yes", "No") == "Yes")
+			if(usr.client.holder)
+				usr.log_message("[key_name_admin(usr)] cancelled a vote.", LOG_ADMIN)
+				message_admins("[key_name_admin(usr)] has cancelled the current vote.")
 				reset()
-				to_chat(world, "<b><font color='purple'>The vote has been cancelled.</font></b>")
 		if("toggle_restart")
-			if(check_other_rights(usr.client, R_ADMIN, FALSE))
+			if(usr.client.holder && upper_admin)
 				CONFIG_SET(flag/allow_vote_restart, !CONFIG_GET(flag/allow_vote_restart))
 		if("toggle_gamemode")
-			if(check_other_rights(usr.client, R_ADMIN, FALSE))
+			if(usr.client.holder && upper_admin)
 				CONFIG_SET(flag/allow_vote_mode, !CONFIG_GET(flag/allow_vote_mode))
+		if("toggle_groundmap")
+			if(usr.client.holder && upper_admin)
+				CONFIG_SET(flag/allow_vote_groundmap, !CONFIG_GET(flag/allow_vote_groundmap))
+		if("toggle_shipmap")
+			if(usr.client.holder && upper_admin)
+				CONFIG_SET(flag/allow_vote_shipmap, !CONFIG_GET(flag/allow_vote_shipmap))
 		if("restart")
-			if(CONFIG_GET(flag/allow_vote_restart) || check_other_rights(usr.client, R_ADMIN, FALSE))
-				initiate_vote("restart", usr.key)
+			if(CONFIG_GET(flag/allow_vote_restart) || usr.client.holder)
+				initiate_vote("restart",usr.key)
 		if("gamemode")
-			if(CONFIG_GET(flag/allow_vote_mode) || check_other_rights(usr.client, R_ADMIN, FALSE))
-				initiate_vote("gamemode", usr.key)
-		if("custom")
-			if(check_other_rights(usr.client, R_ADMIN, FALSE))
-				initiate_vote("custom", usr.key)
+			if(CONFIG_GET(flag/allow_vote_mode) || usr.client.holder)
+				initiate_vote("gamemode",usr.key)
 		if("groundmap")
-			if(check_other_rights(usr.client, R_ADMIN, FALSE))
-				initiate_vote("groundmap", usr.key)
+			if(CONFIG_GET(flag/allow_vote_groundmap) || usr.client.holder)
+				initiate_vote("groundmap",usr.key)
 		if("shipmap")
-			if(check_other_rights(usr.client, R_ADMIN, FALSE))
-				initiate_vote("shipmap", usr.key)
-		else
-			submit_vote(round(text2num(href_list["vote"])))
-	usr.vote()
-
-
-/mob/verb/vote()
-	set category = "OOC"
-	set name = "Vote"
-
-	var/datum/browser/popup = new(src, "vote", "Voting Panel")
-	popup.set_window_options("can_close=0")
-	popup.set_content(SSvote.interface(client))
-	popup.open(FALSE)
+			if(CONFIG_GET(flag/allow_vote_shipmap) || usr.client.holder)
+				initiate_vote("shipmap",usr.key)
+		if("custom")
+			if(usr.client.holder)
+				initiate_vote("custom",usr.key)
+		if("vote")
+			submit_vote(round(text2num(params["index"])))
+	return TRUE
 
 /datum/controller/subsystem/vote/proc/remove_action_buttons()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_REMOVE_VOTE_BUTTON)
+
+/datum/controller/subsystem/vote/ui_close(mob/user)
+	voting -= user.client?.ckey
 
 /datum/action/innate/vote
 	name = "Vote!"
@@ -372,7 +412,6 @@ SUBSYSTEM_DEF(vote)
 
 /datum/action/innate/vote/action_activate()
 	owner.vote()
-	remove_vote_action()
 
 /datum/action/innate/vote/proc/remove_from_client()
 	if(!owner)

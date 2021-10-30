@@ -257,6 +257,10 @@
 		. += "[seperator]+MENTOR"
 	if(rights & R_DBRANKS)
 		. += "[seperator]+DBRANKS"
+	if(rights & R_RUNTIME)
+		. += "[seperator]+RUNTIME"
+	if(rights & R_LOG)
+		. += "[seperator]+LOG"
 
 
 /proc/ui_style2icon(ui_style)
@@ -273,6 +277,12 @@
 			return 'icons/mob/screen/clockwork.dmi'
 		if("White")
 			return 'icons/mob/screen/White.dmi'
+		if("Glass")
+			return 'icons/mob/screen/glass.dmi'
+		if("Minimalist")
+			return 'icons/mob/screen/minimalist.dmi'
+		if("Holo")
+			return 'icons/mob/screen/holo.dmi'
 	return 'icons/mob/screen/midnight.dmi'
 
 

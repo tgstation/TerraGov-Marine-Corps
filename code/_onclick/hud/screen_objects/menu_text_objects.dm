@@ -12,8 +12,8 @@
 	screen_loc = "CENTER"
 	maptext_height = 480
 	maptext_width = 480
-	maptext_x = 3
-	maptext_y = 5
+	maptext_x = 5
+	maptext_y = 7
 	maptext = "If you see this yell at coders"
 
 /**
@@ -25,19 +25,18 @@
  * This proc sets the maptext of the screen obj when it's updated
  */
 /obj/screen/text/lobby/proc/set_text()
+	SIGNAL_HANDLER
 	return
 
 /obj/screen/text/lobby/title
-	maptext = "<span class=menutext>Welcome to TGMC</span>"
+	maptext = "<span class=menutitle>Welcome to TGMC</span>"
 
 /obj/screen/text/lobby/title/Initialize()
 	. = ..()
-	maptext = "<span class=menutext>Welcome to TGMC[SSmapping?.configs ? " - [SSmapping.configs[SHIP_MAP].map_name]" : ""]</span>"
-	var/matrix/M = matrix()
-	M.Scale(1.1, 1.1)//make text bigger for title page
-	transform = M
+	maptext = "<span class=menutitle>Welcome to TGMC[SSmapping?.configs ? " - [SSmapping.configs[SHIP_MAP].map_name]" : ""]</span>"
 
 
+INITIALIZE_IMMEDIATE(/obj/screen/text/lobby/year)
 /obj/screen/text/lobby/year
 	maptext = "<span class=menutext>Current Year: Loading...</span>"
 
@@ -49,6 +48,8 @@
 /obj/screen/text/lobby/owners_char
 	screen_loc = "CENTER-7,CENTER-7"
 	maptext = "<span class=menutext>Loading...</span>"
+	///Bool, whether we registered to listen for charachter updates already
+	var/registered = FALSE
 
 /obj/screen/text/lobby/owners_char/Initialize(mapload)
 	. = ..()
@@ -59,6 +60,9 @@
 
 /obj/screen/text/lobby/owners_char/set_text()
 	maptext = "<span class=menutext>Current character: [hud.mymob.client ? hud.mymob.client.prefs.real_name : "Unknown User"]</span>"
+	if(!registered)
+		RegisterSignal(hud.mymob.client, COMSIG_CLIENT_PREFERENCES_UIACTED, .proc/set_text)
+		registered = TRUE
 
 ///Clickable UI lobby objects which do stuff on Click() when pressed
 /obj/screen/text/lobby/clickable
@@ -110,7 +114,6 @@
 	. = ..()
 	var/mob/new_player/player = hud.mymob
 	player.try_to_observe()
-
 
 /obj/screen/text/lobby/clickable/ready
 	maptext = "<span class=menutext>You are: Not Ready</span>"

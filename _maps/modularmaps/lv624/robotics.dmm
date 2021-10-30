@@ -53,20 +53,22 @@
 "hh" = (
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
-"hi" = (
-/obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 1;
-	name = "\improper Robotics Dome"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating,
-/area/lv624/lazarus/robotics)
 "hk" = (
 /obj/machinery/optable,
 /obj/machinery/light/small{
 	dir = 4
 	},
 /turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+"iP" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
 /area/lv624/lazarus/robotics)
 "jg" = (
 /turf/open/floor/tile/vault,
@@ -119,6 +121,9 @@
 /area/lv624/lazarus/robotics)
 "pu" = (
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
@@ -134,6 +139,7 @@
 /area/lv624/lazarus/robotics)
 "qA" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/ai_node,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -183,12 +189,6 @@
 /obj/structure/table,
 /obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp,
 /turf/open/floor/plating/platebot,
-/area/lv624/lazarus/robotics)
-"yH" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/tile/vault{
-	dir = 8
-	},
 /area/lv624/lazarus/robotics)
 "zl" = (
 /obj/machinery/light/small{
@@ -268,6 +268,7 @@
 /area/lv624/lazarus/robotics)
 "GE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
@@ -334,6 +335,17 @@
 /area/lv624/lazarus/robotics)
 "TB" = (
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/lazarus/robotics)
+"TM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -361,10 +373,9 @@
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "Yr" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
-	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
+/obj/effect/ai_node,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -504,19 +515,19 @@ JD
 Dy
 "}
 (8,1,1) = {"
-hi
+Gz
 GE
-yH
-yH
-yH
-yH
-yH
+TM
+jP
+jP
+jP
+jP
 Yr
 jP
 jP
 jP
 jP
-jP
+TM
 Ne
 Gz
 "}
@@ -579,7 +590,7 @@ hh
 hh
 CR
 jg
-TB
+iP
 PQ
 CR
 hh

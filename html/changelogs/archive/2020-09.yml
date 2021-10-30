@@ -1,0 +1,328 @@
+2020-09-02:
+  Hathkar:
+  - rscadd: More guns/ammo to Magmoor
+  - balance: Miners close to LZs in Magmoor. Stop fob camping
+  Pariah919:
+  - rscdel: Removed IS and Ammo magazine from being acquireable at all.
+  - balance: Removed IS and ammo magazine storages from modular armor. Reversed overall
+      storage creep. General storage only holds 2 items.
+  - balance: Baldur lights are no longer free in vendors. Baldur now costs 10 points
+      in req and is only 1 per module like the other modules.
+  Spyroshark:
+  - bugfix: You can no longer get infinite metal by recycling in the autolathe.
+2020-09-04:
+  2whatever2:
+  - tweak: Raises the cool down on ravagers charge and raises the plasma cost (6 seconds
+      to 10, 250 plasma to 300 plasma)
+  Hathkar:
+  - rscadd: Req windoors are now secure windoors
+  - code_imp: Made secure windoors a parent type
+  - code_imp: Rearranged var-edits on the map files to be in alphabetical order
+  - code_imp: Resin, catwalk, vent, and scrubber layers.
+  - code_imp: Weeds can now be planted and spread to catwalks. Incidentally, this
+      makes it so that pipes/wires are layered under resin.
+  - code_imp: Girders now check the turf they're on before being wrenched down.
+2020-09-05:
+  Hathkar:
+  - rscadd: Added missing landing zone lights to maps
+  - rscadd: Missing wires and APCs in landing zones.
+  - rscadd: More easily identifiable cave areas to BigRed (No more Unknown Area for
+      all caves)
+  - tweak: Moved landing zone shutters 1 tile out further so marines can see what
+      they need to barricade
+  - soundadd: Added footstep sounds for catwalks, snow, ice, and concrete.
+  - soundadd: Ported some ambience from TG.
+  - rscadd: Sulaco Power/Pipe networks are less awful
+  - rscadd: Sulaco has a new firing range near req, with a ladder
+  - rscadd: Synth prep room moved, synth spawn put inside
+  - rscadd: A few new tiles
+  - bugfix: Missing APCs
+  - tweak: Moved some rooms around on the Sulaco.
+  - tweak: Changed the Sulaco's tileset and appearance.
+  - tweak: Sulaco is slightly less awful to be on.
+  - rscadd: Outer hull to the Pillar of Spring
+  - rscdel: Spec prep sent to the next dimension
+  - tweak: Moved PoS firing range to prep
+  - tweak: Moved self server req vendors to prep
+  - tweak: Moved escape shuttle to firing range's former spot
+  - tweak: Expanded SD to take up the shuttle's former spot
+  psykzz:
+  - tweak: unrelenting force can be used directly from a keybinding
+2020-09-06:
+  Hathkar:
+  - bugfix: Adds missing surplus clothes vendor to PoS.
+  - bugfix: PoS walls.
+2020-09-07:
+  2whatever2:
+  - balance: Incendiary OB flames were changed to the same stats as X fuel (Burn Intensity
+      36, Duration 40) Old stats were 25 Intensity and 25 Duration.
+  Hathkar:
+  - rscadd: More synth clothing options
+  - balance: Reduced synth melee damage
+  - balance: Synths can no longer wear heavier armors (Unless synth restrictions are
+      off)
+  - balance: Synths have increased natural brute and burn resistance
+  - balance: Reduced synth max HP from 150 to 125
+  - balance: Old synths are now equally as skilled as regular synths
+  - balance: Some suit's exosuit slots can now hold some more items like flashlights/knives
+  - code_imp: Synths and old synths are now identical stat-wise, the only difference
+      is cosmetic
+  - bugfix: Old Synths should now actually get their synthetic names
+  - bugfix: Made synth blood description make a bit more sense
+  - bugfix: Armors can now hold the attachable bayonet knives, just like the older
+      knives
+  - tweak: More PoS stuff
+  - bugfix: Fixed an area in Prison. The APC now actually works.
+  TiviPlus:
+  - bugfix: fixed a broken helmet sprite
+  - bugfix: fixed ghosts using OB consoles
+  - bugfix: fixed crawling through walls with shutters on them
+2020-09-12:
+  David-Stormwell:
+  - rscadd: Added a Automatic NV, IFF Sniper rifle. Auto Sniper sprite courtesy of
+      Kuro.
+  - imageadd: added some icons for the Auto Sniper and NV scope. NV scope courtesy
+      of TheBrimmer231.
+  - imagedel: Replaced the old NV scope with the new one.
+  Hathkar:
+  - rscadd: Reroutes Sulaco's disposal network
+  - rscadd: New windows on the Sulaco
+  - rscdel: Removes old grille+fulltile windows on the Sulaco
+  - tweak: Sulaco req should be a bit less cramped now
+  - bugfix: Missing APCs, wires, pipes
+  - imageadd: New walls, windows, tiles to the Sulaco.
+  RenGusta:
+  - balance: buffed GL firerate
+  - balance: nerfed GL wielded speed
+  Spyroshark:
+  - balance: Bump autoattacks will no longer target people laying down or knocked
+      down.
+  TiviPlus:
+  - tweak: Makes it more clear that soulless players are still revivable
+2020-09-13:
+  TiviPlus:
+  - balance: Added slightly more access to cargo console
+  - bugfix: Req consoles will now check for access correctly
+  - rscadd: Modular mapping
+  - rscadd: The civres pool on prison now has two random versions
+2020-09-14:
+  MacBlaze1 & Chaznoodles:
+  - bugfix: facehuggers now go idle when they drop from a xenos hand
+  - bugfix: 'facehuggers now go idle in gas feature: carriers now can throw facehuggers
+      in 1 click if they click on a tile and still have the previous way to throw
+      them elsewise'
+  SplinterGP:
+  - balance: balances PAS armor to be more like base medium jaeger.
+  - balance: all jaeger arm and legpieces are now the same with only cosmetic differences.
+  - balance: reduces jaeger armor to intended, they got a small speed buff in return.
+  - imageadd: adds shooting and pump/bolt animation to GL-70, T-35, mosin and mateba.
+  - rscadd: added code to allow shooting and pump/bolt animation to guns.
+  TiviPlus:
+  - code_imp: Fully removed magic armor
+  - code_imp: regenning walls process better
+  jroinc:
+  - balance: Lowered both flamer fire delays from 2 seconds to 0.4 seconds.
+  - balance: Lowered welding fuel backpacks capacity from 600 and 700 to 500 for both.
+  - balance: Lowered razorwire HP from 200 to 100.
+2020-09-16:
+  Hathkar:
+  - tweak: More Sulaco tiles
+  - bugfix: Sulaco req shutters
+  TiviPlus:
+  - rscadd: TG beams
+  - rscadd: So far admin only tesla gun that shoots and damages nearby enemies with
+      its projectiles as it gets close
+  Vondiech:
+  - tweak: The TGMC is now distributing blueprints of a revised bigbury ship, fixing
+      small issues that was brought up about it.
+2020-09-18:
+  2whatever2:
+  - tweak: 0.5 slowdown to 0.4 and adds angle grip to it's attachment list.
+  - balance: Crusher's stomp now does 40 minimum damage and 60 maximum damage and
+      2 second paralyze (Old stats 80 minimum damage & 100 maximum damage)
+  Chaznoodles:
+  - rscadd: Larva embryos can now be sold to Requisitions. How much are you willing
+      to forgo those precious advanced drugs?
+  - rscadd: New items added to Requisitions, including stealthy cloaks, armageddon
+      in four doses and a method to send things skywards with ease. Sell the world.
+  - rscdel: Removed some unused Surplus weapons and regular weapons. We've got enough
+      of those in the vendors.
+  - tweak: Requisitions pricing tweaked across the board using information from Electric's
+      previous PR to encourage buying things, but still at a cost.
+  - tweak: Specialist gear is now cheaper, but doesn't come with ammunition. B17 and
+      B18 have been dropped in price due to it piling up in the belowdecks. Please,
+      we're drowning in it.
+  - tweak: Miner crate prices have been upped somewhat, to account for a slower Requisitions
+      points gain and slower crate generation.
+  - tweak: Default ammunition in big ammo boxes upped from 600 to 800. Regular ammo
+      boxes added to Requisitions listings.
+  Hathkar:
+  - rscadd: Booze-o-mat Vendor in CL's quarters on the Pillar
+  - rscadd: 5 hidden bottles of vodka on the Pillar
+  TiviPlus:
+  - code_imp: Removed a unused subsytem
+  - rscadd: Machetes and Knives can now be used to scalp dead xenos
+  - rscadd: clicking on tables with items will now place them where you click
+  - code_imp: DMDoc will use typepaths
+  carlarctg:
+  - tweak: first aid pouch with injectors is now named combat injector pouch
+  - imageadd: new sprite for combat injector pouch
+2020-09-19:
+  Chaznoodles:
+  - tweak: Doubles the number of quikdeploys per Requisitions purchase.
+  Hathkar:
+  - rscadd: The Sulaco now has a memorial above the briefing room.
+  - rscadd: Added a tip explaining how to use dogtags on memorials.
+  - rscdel: Removed an outdated tip on ammo types.
+  Pariah919:
+  - balance: bc nerfed suppressor buffed. BC gives halve the damage buff and gives
+      you -75% accuracy and 30 scatter. Suppressor no longer has any damage malus
+  - balance: sawn off no longer has a damage multiplier
+  Wayland-Smithy:
+  - bugfix: Xenos can no longer evolve to the wrong castes after regressing.
+  psykzz:
+  - rscadd: marine cloning, gives marines a way to respawn every 15mins that isn't
+      tied to the typical respawn mechanic.
+  - balance: captain got a buff in skills.
+2020-09-20:
+  BurgerBB:
+  - balance: Taking damage as a Xenomorph disables PASSIVE regeneration for 10 seconds.
+      When the 10 seconds are up, you regenerate your health at 0% strength, but it
+      increases by 5% every second, up to 100%.
+  - balance: A regeneration aura changes this behavior by disabling the 10 second
+      cooldown, and regenerating your health by  0% strength, but it increases by
+      7.5% every second, up to 100%.
+2020-09-21:
+  TiviPlus:
+  - bugfix: fixed linter error
+2020-09-22:
+  TiviPlus:
+  - refactor: Updated asset cache, expect speed
+2020-09-23:
+  Hathkar:
+  - tweak: Pillar of Spring Cateen/Prep room rearranged (again)
+  SplinterGP:
+  - balance: M10 marine helmet armor values changed with jaeger armor values change,
+      now default to jaeger helmet as PAS-11 is defaulted with medium jaeger.
+  XSlayer300:
+  - rscadd: Added more information about the USL's language strings (both elite and
+      normal.)
+  - rscadd: Now USL (and moths) will speak in their language by default, use :0 to
+      speak in Galactic Common again.
+  - rscadd: Marine shoes now come with knives available at GHMME vendors (with the
+      help of Tivi).
+  - rscadd: Added the intro text for both survivor and AI.
+  - rscadd: Made the "You survived the attack... until now" text support more maps
+      for survivors.
+  - rscadd: Added more dreaming strings.
+  - rscadd: Added a more obvious indicator when you die (that differentiates between
+      species!), now new players are encouraged not to disconnect when they will die
+      (with the help of Hugh).
+  - rscdel: Removed a legacy text about Cargo techs.
+  - tweak: Enlarged the ERT role text (You are a... [role]!).
+  - tweak: Enhanced the Language menu.
+  - tweak: Talking to the ERT radio with ; now goes to whatever ERT channel is meant
+      for (bugged, somehow the frequency is for the Alamo instead)
+  - bugfix: Fixed both SoM and (unused) Echo headsets.
+  - spellcheck: Removed an uneeded end quotation in "X human\s on the ship."
+  - spellcheck: Added "a / an" to the job intro text (for the AI).
+  - spellcheck: Renamed the ERT headsets.
+  - spellcheck: Other misc. respellings.
+  - balance: Buffed ERT helmets to prevent decap and to make them equal to their Jaeger
+      counterparts.
+  - rscadd: You can now emphasis in the say verb. By || italics ||, ++ bold ++ or
+      __ underline __
+  - rscadd: Muzzleflashes are now animated, based off from CM13.
+2020-09-25:
+  MJP, Kuro:
+  - rscadd: Added a recoilless rifle and bag for it. Added it to SL vendors. Added
+      it to req.
+  Pariah919:
+  - balance: fc can no longer use smartguns effectively
+  TiviPlus:
+  - rscadd: Deployable Cams
+  - rscadd: Del log for debug
+  - bugfix: Fixes weather damaging when inside objects
+  - bugfix: You will now only scalp when on harm intent
+  - bugfix: Fixes some invalid code comments
+  - bugfix: STs can use req consoles again
+  - tweak: dropship table will layer consistently and will relay clicks by powerloaders
+  - tweak: Buckets can now be slashed
+  - rscadd: Captain, corpsmen, smartgunners, engineers and squadleads now have playtime
+      based paygrades
+  - bugfix: Fixes defenders having bad names and spelling
+  - bugfix: fixes pillar having destructible walls
+  Vondiech:
+  - bugfix: The TGMC apologizes after one of their interns accidentally deleted the
+      canterbury systems spots for crashing on Magmoor, they have now rectified this
+      issue.
+2020-09-26:
+  Hathkar:
+  - rscadd: Dirt on the floors in the Sulaco
+  - tweak: Sulaco SD is slightly easier to defend
+  Pariah919:
+  - rscadd: Added leporazine packets to the fire medkit in place of a advanced burn
+      kit.
+  TiviPlus:
+  - bugfix: Keys no longer have a lifetime of 15 keypresses, meaning you can ctrl+movement
+      keys ad infinitum again.
+  - rscadd: Pressing Esc now has the same effect as releasing all held/pressed keys
+      from the keyboard. Handy if one gets stuck.
+  - tweak: Removed the old functionality in which Esc would delete what's on the input
+      bar when not focused. Remove/backspace still does that.
+  - bugfix: Fixes space amazon denying your request across the mortal barrier
+  - rscadd: Adds hivelord Jelly and Jelly node hivelord abilities
+  - rscadd: Xenos can use Jelly inhand to become fire immune for a short duration
+      (and will glow red during this time), or have it used on them by a queen or
+      hivelord, which apply it faster.
+  - rscadd: The Jelly node will produce jelly on a timer and can be harvested by clicking
+      on it
+  - bugfix: fire multipliers will be applied correctly
+  - bugfix: fixed asset oversight that probably broke things
+  - bugfix: Fixes screenwide red xenos
+2020-09-27:
+  Fikou:
+  - bugfix: fixes offduty gamemode process
+  - bugfix: fixes officer cloaks not spawning in officer lockers
+  - rscadd: adds an autolathe to crash ships
+  - bugfix: fixes acting squad leaders not getting order abilities
+  - bugfix: fixes uniform vendors not having marine radios, additionally theres now
+      a new radio type just for those radios
+  - bugfix: fixes squad huds not being removed when you drop a radio
+  Hathkar:
+  - tweak: Icy Caves Colony area re-work
+  - bugfix: Fixed case where a xeno major was instead being recorded as a xeno minor
+  Pariah919:
+  - rscadd: Added new medkit pouch sprites.
+  - rscdel: Removed the useless medical pouch, removed useless small/medium pouches.
+  - tweak: Tweaked how medkit pouch works to literally be a medkit in your pocket.
+  TiviPlus:
+  - spellcheck: fixed an unrecognizable mess type
+  - bugfix: Fixes linter throwing an error in a code block
+  Wayland-Smithy:
+  - bugfix: Fixes ghosts smooth movement not syncing with what they orbit.
+  - bugfix: Fixes ghosts orbits of xenos ending when they evolve.
+  - tweak: Xeno leaders are now louder over Hivemind making their orders easier to
+      distinguish as such.
+2020-09-30:
+  Eskjjlj:
+  - tweak: Boilers can now see farther zoomed at the cost of not being able to see
+      behind them.
+  Fikou:
+  - bugfix: you can sell embryos on asrs pad now
+  - tweak: adds black vest to marine vendor
+  - rscadd: adds a new version of debugdalus
+  - tweak: makes id console access things nicer
+  - balance: rebalances logistics access across jobs
+  - bugfix: fixes a bunch of bugs with id console
+  - tweak: underbarrel attachments now dont deactivate on pb
+  - tweak: you can now switch binocular mode with altclick
+  Hathkar:
+  - bugfix: Fixed synths being able to wear jaegar armor.
+  - tweak: Icy Caves adjustments
+  - tweak: LZs easier to defend early on
+  TiviPlus:
+  - code_imp: Rendering is faster, server crashes will happen less
+  Wayland-Smithy:
+  - bugfix: Fixed goonchat showing the red "You are AFK" message while you are connected
+      and playing.

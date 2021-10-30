@@ -33,12 +33,24 @@
 	. = ..()
 	if(orient == "RIGHT")
 		icon_state = "sleeperconsole-r"
-		connected = locate(/obj/machinery/sleeper, get_step(src, EAST))
-		connected.connected = src
+		set_connected(locate(/obj/machinery/sleeper, get_step(src, EAST)))
 	else
-		connected = locate(/obj/machinery/sleeper, get_step(src, WEST))
-		connected.connected = src
+		set_connected(locate(/obj/machinery/sleeper, get_step(src, WEST)))
+	connected?.set_connected(src)
 
+///Set the connected var
+/obj/machinery/sleep_console/proc/set_connected(obj/future_connected)
+	if(connected)
+		UnregisterSignal(connected, COMSIG_PARENT_QDELETING)
+	connected = null
+	if(future_connected)
+		connected = future_connected
+		RegisterSignal(connected, COMSIG_PARENT_QDELETING, .proc/clean_connected)
+
+///Clean the connected var
+/obj/machinery/sleep_console/proc/clean_connected()
+	SIGNAL_HANDLER
+	set_connected(null)
 
 /obj/machinery/sleep_console/interact(mob/user)
 	. = ..()
@@ -112,7 +124,7 @@
 	if(href_list["chemical"] && connected && connected.occupant)
 		var/datum/reagent/R = text2path(href_list["chemical"])
 		if (connected.occupant.stat == DEAD)
-			to_chat(usr, "<span class='warning'>This person has no life for to preserve anymore.</span>")
+			to_chat(usr, span_warning("This person has no life for to preserve anymore."))
 		else if(!(R in connected.available_chemicals))
 			message_admins("[ADMIN_TPMONTY(usr)] has tried to inject an invalid chem with the sleeper. Looks like an exploit attempt, or a bug.")
 		else
@@ -178,6 +190,20 @@
 		go_out()
 		H.gib()
 
+///Set the connected var
+/obj/machinery/sleeper/proc/set_connected(obj/future_connected)
+	if(connected)
+		UnregisterSignal(connected, COMSIG_PARENT_QDELETING)
+	connected = null
+	if(future_connected)
+		connected = future_connected
+		RegisterSignal(connected, COMSIG_PARENT_QDELETING, .proc/clean_connected)
+
+///Clean the connected var
+/obj/machinery/sleeper/proc/clean_connected()
+	SIGNAL_HANDLER
+	set_connected(null)
+
 /obj/machinery/sleeper/Destroy()
 	//clean up; end stasis; remove from processing
 	if(occupant)
@@ -200,7 +226,7 @@
 	if(filtering)
 		feedback += " Dialysis is active."
 	if(!hasHUD(user,"medical"))
-		to_chat(user, "<span class='notice'>It contains: [occupant].[feedback]</span>")
+		to_chat(user, span_notice("It contains: [occupant].[feedback]"))
 		return
 	var/mob/living/carbon/human/H = occupant
 	for(var/datum/data/record/R in GLOB.datacore.medical)
@@ -221,7 +247,7 @@
 	if(!hasHUD(usr,"medical"))
 		return
 	if(get_dist(usr, src) > 7)
-		to_chat(usr, "<span class='warning'>[src] is too far away.</span>")
+		to_chat(usr, span_warning("[src] is too far away."))
 		return
 	if(!ishuman(occupant))
 		return
@@ -267,7 +293,7 @@
 
 	if(istype(I, /obj/item/reagent_containers/glass))
 		if(beaker)
-			to_chat(user, "<span class='warning'>The sleeper has a beaker already.</span>")
+			to_chat(user, span_warning("The sleeper has a beaker already."))
 			return
 
 		if(!user.transferItemToLoc(I, src))
@@ -287,7 +313,7 @@
 		return
 
 	if(occupant)
-		to_chat(user, "<span class='notice'>The sleeper is already occupied!</span>")
+		to_chat(user, span_notice("The sleeper is already occupied!"))
 		return
 
 
@@ -381,14 +407,14 @@
 	if(occupant && occupant.reagents)
 		if(occupant.reagents.get_reagent_amount(chemical) + amount <= 20)
 			occupant.reagents.add_reagent(chemical, amount)
-			to_chat(user, "<span class='notice'>Occupant now has [occupant.reagents.get_reagent_amount(chemical)] units of [available_chemicals[chemical]] in his/her bloodstream.</span>")
+			to_chat(user, span_notice("Occupant now has [occupant.reagents.get_reagent_amount(chemical)] units of [available_chemicals[chemical]] in his/her bloodstream."))
 			return
-	to_chat(user, "<span class='warning'>There's no occupant in the sleeper or the subject has too many chemicals!</span>")
+	to_chat(user, span_warning("There's no occupant in the sleeper or the subject has too many chemicals!"))
 
 
 /obj/machinery/sleeper/proc/check(mob/living/user)
 	if(occupant)
-		to_chat(user, text("<span class='boldnotice'>Occupant ([]) Statistics:</span>", occupant))
+		to_chat(user, span_boldnotice("Occupant ([occupant]) Statistics:"))
 		var/t1
 		switch(occupant.stat)
 			if(0)
@@ -404,14 +430,14 @@
 		to_chat(user, text("[]\t -Respiratory Damage %: []</font>", (occupant.getOxyLoss() < 60 ? "<span color='#487553'> " : "<font color='#b54646'> "), occupant.getOxyLoss()))
 		to_chat(user, text("[]\t -Toxin Content %: []</font>", (occupant.getToxLoss() < 60 ? "<font color='#487553'> " : "<font color='#b54646'> "), occupant.getToxLoss()))
 		to_chat(user, text("[]\t -Burn Severity %: []</font>", (occupant.getFireLoss() < 60 ? "<font color='#487553'> " : "<font color='#b54646'> "), occupant.getFireLoss()))
-		to_chat(user, "<span class='notice'>Expected time till occupant can safely awake: (note: If health is below 20% these times are inaccurate)</span>")
-		to_chat(user, "<span class='notice'>\t [occupant.AmountUnconscious() * 0.1] second\s (if around 1 or 2 the sleeper is keeping them asleep.)</span>")
+		to_chat(user, span_notice("Expected time till occupant can safely awake: (note: If health is below 20% these times are inaccurate)"))
+		to_chat(user, span_notice("\t [occupant.AmountUnconscious() * 0.1] second\s (if around 1 or 2 the sleeper is keeping them asleep.)"))
 		if(beaker)
-			to_chat(user, "<span class='notice'>\t Dialysis Output Beaker has [beaker.reagents.maximum_volume - beaker.reagents.total_volume] of free space remaining.</span>")
+			to_chat(user, span_notice("\t Dialysis Output Beaker has [beaker.reagents.maximum_volume - beaker.reagents.total_volume] of free space remaining."))
 		else
-			to_chat(user, "<span class='notice'>No Dialysis Output Beaker loaded.</span>")
+			to_chat(user, span_notice("No Dialysis Output Beaker loaded."))
 	else
-		to_chat(user, "<span class='notice'>There is no one inside!</span>")
+		to_chat(user, span_notice("There is no one inside!"))
 
 
 /obj/machinery/sleeper/verb/eject()
@@ -446,7 +472,7 @@
 		return
 
 	if(occupant)
-		to_chat(user, "<span class='notice'>The sleeper is already occupied!</span>")
+		to_chat(user, span_notice("The sleeper is already occupied!"))
 		return
 
 	if(ismob(M.pulledby))

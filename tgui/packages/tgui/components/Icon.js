@@ -7,7 +7,7 @@
  */
 
 import { classes, pureComponentHooks } from 'common/react';
-import { Box } from './Box';
+import { computeBoxClassName, computeBoxProps } from './Box';
 
 const FA_OUTLINE_REGEX = /-o$/;
 
@@ -17,31 +17,42 @@ export const Icon = props => {
     size,
     spin,
     className,
-    style = {},
     rotation,
     inverse,
     ...rest
   } = props;
+  const boxProps = computeBoxProps(rest);
   if (size) {
-    style['font-size'] = (size * 100) + '%';
+    if (!boxProps.style) {
+      boxProps.style = {};
+    }
+    boxProps.style['font-size'] = (size * 100) + '%';
   }
   if (typeof rotation === 'number') {
-    style['transform'] = `rotate(${rotation}deg)`;
+    if (!boxProps.style) {
+      boxProps.style = {};
+    }
+    boxProps.style['transform'] = `rotate(${rotation}deg)`;
   }
-  const faRegular = FA_OUTLINE_REGEX.test(name);
-  const faName = name.replace(FA_OUTLINE_REGEX, '');
+  let iconClass = "";
+  if (name.startsWith("tg-")) {
+    // tgfont icon
+    iconClass = name;
+  } else {
+    // font awesome icon
+    const faRegular = FA_OUTLINE_REGEX.test(name);
+    const faName = name.replace(FA_OUTLINE_REGEX, '');
+    iconClass = (faRegular ? 'far ' : 'fas ') + 'fa-'+ faName + (spin ? " fa-spin" : "");
+  }
   return (
-    <Box
-      as="i"
+    <i
       className={classes([
         'Icon',
+        iconClass,
         className,
-        faRegular ? 'far' : 'fas',
-        'fa-' + faName,
-        spin && 'fa-spin',
+        computeBoxClassName(rest),
       ])}
-      style={style}
-      {...rest} />
+      {...boxProps} />
   );
 };
 
@@ -55,16 +66,15 @@ export const IconStack = props => {
     ...rest
   } = props;
   return (
-    <Box
-      as="span"
+    <span
       class={classes([
         'IconStack',
         className,
+        computeBoxClassName(rest),
       ])}
-      style={style}
-      {...rest}>
+      {...computeBoxProps(rest)}>
       {children}
-    </Box>
+    </span>
   );
 };
 

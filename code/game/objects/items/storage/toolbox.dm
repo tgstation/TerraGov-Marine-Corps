@@ -26,7 +26,6 @@
 		new /obj/item/flashlight(src)
 	else
 		new /obj/item/flashlight/flare(src)
-	new /obj/item/radio(src)
 
 
 /obj/item/storage/toolbox/mechanical

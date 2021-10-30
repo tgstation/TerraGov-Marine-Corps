@@ -8,6 +8,7 @@
 	icon = 'icons/effects/explosion.dmi'
 	icon_state = "grenade"
 	duration = 0.8 SECONDS
+	pixel_x = -16
 
 //unsorted miscellaneous temporary visuals
 /obj/effect/temp_visual/dir_setting/bloodsplatter
@@ -61,11 +62,8 @@
 	duration = 0.5 SECONDS
 
 
-/obj/effect/temp_visual/xenomorph/runner_afterimage
-	name = "runner afterimage"
-	desc = "It has become speed.."
-	icon = 'icons/Xeno/2x2_Xenos.dmi' //They are now like, 2x1 or something
-	icon_state = "Runner Walking"
+/obj/effect/temp_visual/xenomorph/afterimage
+	name = "afterimage"
 	layer = MOB_LAYER
 	alpha = 64 //Translucent
 	duration = 0.5 SECONDS
@@ -74,18 +72,13 @@
 	anchored = FALSE
 	animate_movement = SLIDE_STEPS
 
-/obj/effect/temp_visual/xenomorph/roony_afterimage
-	name = "roony afterimage"
-	desc = "It has become speed.."
-	icon = 'icons/Xeno/2x2_Xenos.dmi' //They are now like, 2x1 or something
-	icon_state = "Roony Walking"
-	layer = MOB_LAYER
-	alpha = 64 //Translucent
-	duration = 0.5 SECONDS
-	density = FALSE
-	opacity = FALSE
-	anchored = FALSE
-	animate_movement = SLIDE_STEPS
+/obj/effect/temp_visual/xenomorph/afterimage/Initialize(mapload, atom/owner)
+	. = ..()
+	appearance = owner.appearance
+	setDir(owner.dir)
+	alpha = initial(alpha)
+	layer = initial(layer)
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/temp_visual/heavyimpact
 	name = "heavy impact"
@@ -96,16 +89,17 @@
 /obj/effect/temp_visual/order
 	icon = 'icons/Marine/marine-items.dmi'
 	var/icon_state_on
-	hud_possible = list(SQUAD_HUD)
+	hud_possible = list(SQUAD_HUD_TERRAGOV, SQUAD_HUD_REBEL)
 	duration = ORDER_DURATION
 	layer = TURF_LAYER
 
-/obj/effect/temp_visual/order/Initialize(mapload)
+/obj/effect/temp_visual/order/Initialize(mapload, faction)
 	. = ..()
 	prepare_huds()
-	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD]
+	var/hud_type = faction == FACTION_TERRAGOV ? DATA_HUD_SQUAD_TERRAGOV : DATA_HUD_SQUAD_REBEL
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[hud_type]
 	squad_hud.add_to_hud(src)
-	set_visuals()
+	set_visuals(faction)
 
 /obj/effect/temp_visual/order/attack_order
 	name = "attack order"
@@ -119,14 +113,20 @@
 	name = "retreat order"
 	icon_state_on = "retreat"
 
+/obj/effect/temp_visual/order/rally_order
+	name = "rally order"
+	icon_state_on = "rally"
+	duration = RALLY_ORDER_DURATION
+
 ///Set visuals for the hud
-/obj/effect/temp_visual/order/proc/set_visuals()
-	var/image/holder = hud_list[SQUAD_HUD]
+/obj/effect/temp_visual/order/proc/set_visuals(faction)
+	var/hud_type = faction == FACTION_TERRAGOV ? SQUAD_HUD_TERRAGOV : SQUAD_HUD_REBEL
+	var/image/holder = hud_list[hud_type]
 	if(!holder)
 		return
 	holder.icon = 'icons/Marine/marine-items.dmi'
 	holder.icon_state = icon_state_on
-	hud_list[SQUAD_HUD] = holder
+	hud_list[hud_type] = holder
 
 /obj/effect/temp_visual/healing
 	name = "healing"
@@ -153,3 +153,15 @@
 	icon_state = "bhole3"
 	layer = ABOVE_LYING_MOB_LAYER
 	duration = WRAITH_BANISH_BASE_DURATION+1 //So we don't delete our contents early
+
+/obj/effect/temp_visual/acid_splatter
+	name = "acid_splatter"
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "splatter"
+	duration = 0.8 SECONDS
+
+/obj/effect/temp_visual/acid_bath
+	name = "acid bath"
+	icon = 'icons/obj/items/projectiles.dmi'
+	icon_state = "boiler_gas"
+	duration = 0.8 SECONDS

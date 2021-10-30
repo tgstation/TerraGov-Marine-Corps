@@ -19,13 +19,13 @@
 	if(general_entry && general_entry.mechanics_text)
 		attach_strings += general_entry.mechanics_text
 
-	if(slot == "muzzle")
+	if(slot == ATTACHMENT_SLOT_MUZZLE)
 		attach_strings += "This attaches to the muzzle slot on most weapons.<br>"
-	if(slot == "rail")
+	if(slot == ATTACHMENT_SLOT_RAIL)
 		attach_strings += "This attaches to the rail slot on most weapons.<br>"
-	if(slot == "stock")
+	if(slot == ATTACHMENT_SLOT_STOCK)
 		attach_strings += "This attaches to the stock slot on most weapons.<br>"
-	if(slot == "under")
+	if(slot == ATTACHMENT_SLOT_UNDER)
 		attach_strings += "This attaches to the underbarrel slot on most weapons.<br>"
 
 	if(flags_attach_features & ATTACH_REMOVABLE)
@@ -34,19 +34,14 @@
 	if(flags_attach_features & ATTACH_ACTIVATION)
 		attach_strings += "This needs to be activated to be used."
 
-	if(flags_attach_features & ATTACH_RELOADABLE)
-		attach_strings += "This can be reloaded with the appropriate ammunition."
-
 	attach_strings += "<br><U>Always on modifications</U>:<br>"
 
-	if(max_range)
-		attach_strings += "This attachment has a max range of [max_range] tiles."
 	if(damage_mod)
 		attach_strings += "Damage: [damage_mod * 100]%"
 	if(damage_falloff_mod)
 		attach_strings += "Damage falloff: [damage_falloff_mod * 100]%"
 	if(burst_scatter_mod)
-		attach_strings += "Scatter chance: [burst_scatter_mod * 100]%"
+		attach_strings += "Burst scatter multiplier: [burst_scatter_mod]"
 	if(silence_mod)
 		attach_strings += "This can silence the weapon if it is attached."
 	if(light_mod)
@@ -67,8 +62,6 @@
 		attach_strings += "Aim Mode slowdow modifier: [aim_mode_movement_mult*100]%"
 	if(movement_acc_penalty_mod)
 		attach_strings += "Running accuracy penalty: [movement_acc_penalty_mod * 100]%"
-	if(max_rounds)
-		attach_strings += "This attachment can hold [max_rounds] of its ammunition."
 	if(scope_zoom_mod)
 		attach_strings += "This has optical glass allowing for magnification and viewing long distances."
 	if(aim_speed_mod)

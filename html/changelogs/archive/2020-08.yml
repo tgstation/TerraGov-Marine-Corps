@@ -1,0 +1,177 @@
+2020-08-01:
+  Hathkar:
+  - bugfix: Removed an r-wall in a doorway
+  - bugfix: Some tile locations
+  Pariah919:
+  - rscadd: Added new sord and sheath for fc.
+  - balance: Removed FCs SG, added sord.
+  Sibg:
+  - rscadd: The FC vendor
+  - rscadd: The FC now has its own access
+  TiviPlus:
+  - code_imp: Purged duplicate icons and compressed the rest
+  - rscadd: Jerry cans can now be used to douse people and tiles in fuel to light
+      them with flamers or lighters. Available in the req operations vendor
+  bobbahbrown:
+  - rscadd: Runechat now runs under its own subsystem, this should improve performance
+      and allow for finer control over its performance.
+2020-08-02:
+  InterroLouis:
+  - tweak: Synths can use hydro cannon
+  TiviPlus:
+  - rscadd: Added a modular helmet binoculars module that is not yet available in
+      vendors
+  - bugfix: The G8 pouch states that it can hold drum and box magazines
+  - bugfix: Hunters can no longer give hallucinations to dead people
+2020-08-04:
+  Hathkar:
+  - bugfix: Missing floor tiles
+  - bugfix: Shutters and Wall fix for LZ1 on LV
+  Pariah919:
+  - balance: Ravager deals 10 more damage. Every xenomorph but runner has gained 50
+      health.
+  TiviPlus:
+  - rscadd: Mirage grenade that when triggered creates fake copies of you that run
+      up to enemies
+2020-08-06:
+  Pariah919:
+  - bugfix: you no longer get the powerpack from the fc vendor
+2020-08-08:
+  Hughgent, Nixon:
+  - rscadd: Plantable flags, declare this land yours!
+  TiviPlus:
+  - bugfix: Jerry cans will now pour on resin
+  - rscadd: Midround events system
+  - rscadd: Added tgui-next intel computers and a intel event
+  - bugfix: Cleaned up some refs
+  - rscadd: Spatial agent suit
+  - tweak: Spatial agent glasses are nodrop
+  ike709 and bobbahbrown:
+  - rscadd: Admins can now see your bans on (some) other servers.
+2020-08-09:
+  TiviPlus:
+  - rscadd: helmet modules now have a overlay when attached
+2020-08-10:
+  Vondiech:
+  - rscadd: The TGMC has shipped out blueprints for a ship ment for crash operations
+      made to have a higher capacity for more marines.
+  - tweak: The TGMC has, alongside with shipping out the blueprints, decided that
+      Marine Squad Leaders should have access to the crash operation cockpits aswell
+2020-08-11:
+  Karl-Franz-I:
+  - rscadd: Added the heavy helmet variant to surplus vendors.
+  TiviPlus:
+  - code_imp: Better cooldown macros
+  - bugfix: fixed lazylist qdelling
+  psykzz:
+  - refactor: how deadchat is handled
+2020-08-12:
+  TiviPlus:
+  - rscadd: As of yet unavailabe NV scope
+  - balance: Engi jaeger pouches can hold tools
+2020-08-17:
+  Hughgent:
+  - bugfix: Standard Revolver rail attachments no longer hover.
+  Skoglol:
+  - admin: Added a few new buildmode modes. Outfit, to quickly apply or remove outfits.
+      Delete, to quickly delete any atoms. Slightly overhauled the copy proc used
+      here and in supply pods, now compatible with most mobs.
+  psykzz:
+  - balance: plasma regen is no longer affected by recovery pheroes
+  - balance: nerfs the pacman
+  - bugfix: fixes the map loader to assign the correct traits
+  - code_imp: Added more units tests
+2020-08-18:
+  Hathkar:
+  - bugfix: Fixed some duplicate pipes on the Sulaco
+  TiviPlus:
+  - rscadd: New escape pod tgui
+  - rscadd: New Antenna helmet module
+  - rscadd: Helmet modules now available in surplus/standard vendors and req
+  - bugfix: added missing descriptions
+  - code_imp: Removed a duplicate proc
+  - balance: Removes SG in the POS and adds tazers to POS armoury
+2020-08-19:
+  TiviPlus:
+  - rscadd: Weather
+  - rscadd: Analyzers can be used inhand to predict weather
+  - rscadd: Ice Colony and Icy caves now have snow
+  - rscadd: Big red now has not-darude sandstorms; remember to get a mask to protect
+      yourself from the stronger storms!
+  - rscadd: LV has rain
+  - code_imp: Removed a useless area var
+  - rscdel: Removed an unused map
+2020-08-21:
+  Karl-Franz-I:
+  - rscadd: Added the Paladin-12 pump shotgun as an alternate choice for marines.
+  Pariah919:
+  - balance: added the single shot gl to marine vendors and it can be fired one handed
+2020-08-23:
+  Hathkar:
+  - rscadd: Logging for fuel puddles
+  - bugfix: Grief puddles are now logged
+  - code_imp: Logging for fuel puddles
+2020-08-24:
+  Danaleja2005:
+  - rscadd: add a new floor (industrial)
+  - imageadd: icon of floor
+  psykzz:
+  - tweak: you now firemans carry people by dragging and clicking yourself.
+2020-08-25:
+  TiviPlus:
+  - rscadd: Xenos now have IC names
+  - admin: '...yes you have to follow naming rules'
+  - bugfix: fixed paygrades
+  - balance: Nerfed storm damage and slightly decreased probability f harmful storms
+  - bugfix: fixed storms gibbing people
+  - bugfix: Modular helmet icons will update on use correctly
+  - bugfix: Modular helmet binoculars will deactivate correctly
+  - bugfix: Modular helmet welding helmet will update tint correctly
+  - bugfix: fixed conveyor switches being interactable and slightly changes conveyor
+      code
+  - code_imp: /area cleanup
+  - rscadd: Tame-ased runechat layering
+  - bugfix: Runechat emotes will now not show correctly
+  - bugfix: Fixes mimir helmet order giving the wrong module
+2020-08-26:
+  Hathkar:
+  - rscadd: More req vendors on the Pillar of Spring
+  - rscadd: One boxed sentry in req for each ship
+  - rscadd: Welder packs on the Sulaco
+  - rscadd: More hand labelers on the Sulaco
+  - rscdel: Moved said vendors to the area the Pilot's quarters used to be
+  - rscdel: Metal and plasteel on Thesus and Sulaco
+  - rscdel: Spec Prep on the Sulaco
+  - rscdel: ColMarTech Engineer System Vendors on ships that had more than 1
+  - rscdel: Several metal barrels on the Theseus, as they gave 10 metal each
+  - balance: Each ship should have ~200 metal and 60 plasteel
+  Pariah919:
+  - balance: smartgunner sights now only have 5 tiles of night vision, rather than
+      8
+2020-08-28:
+  TiviPlus:
+  - bugfix: Razorwire can no longer be repaired when it's at full health
+  - code_imp: cleaned up razorwire code a bit
+  psykzz:
+  - rscadd: Squad marines now rank up from E1 to E3 based on playtime
+2020-08-30:
+  Hathkar:
+  - rscadd: 'New map: Magmoor Digsite IV'
+  - rscadd: New icon files
+  - tweak: Lava's light range
+  - bugfix: Minor tile fixes on maps
+  - imageadd: New icon files
+  - imagedel: deleted duplicate icons
+  - code_imp: New map objects
+  - config: New map
+2020-08-31:
+  David-Stormwell:
+  - balance: Ravager's slashing is decreased.
+  - balance: rebalanced all Xenomorph tackling damage to be more normalized
+  Spyroshark:
+  - rscadd: Requisitions can now order an ASRS Bluespace Selling Point to remotely
+      sell valubles on the planet.
+  TiviPlus:
+  - rscadd: Config for changelog to automatically open if theres new changes
+  - balance: LV has more rainproof areas and more accurate areas
+  - bugfix: Paygrades will display on comms correctly

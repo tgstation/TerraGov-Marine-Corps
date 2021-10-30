@@ -9,9 +9,20 @@
     	"**/.yarn": true,
     	"**/.pnp.*": true
 	},
-	"workbench.editorAssociations": {},
+	"workbench.editorAssociations": {
+		"*.dmi": "imagePreview.previewEditor"
+	},
 	"files.eol": "\n",
 	"gitlens.advanced.blame.customArguments": ["-w"],
 	"tgstationTestExplorer.project.resultsType": "json",
+	"[javascript]": {
+		"editor.rulers": [80]
+	},
+	"[typescript]": {
+		"editor.rulers": [80]
+	},
+	"[scss]": {
+		"editor.rulers": [80]
+	},
 	"tgstationTestExplorer.project.DMEName": "tgmc.dme"
 }

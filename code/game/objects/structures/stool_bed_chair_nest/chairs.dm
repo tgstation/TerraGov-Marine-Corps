@@ -68,7 +68,7 @@
 	. = ..()
 
 	if(iswrench(I))
-		to_chat(user, "<span class='warning'>You can only deconstruct this by welding it down!</span>")
+		to_chat(user, span_warning("You can only deconstruct this by welding it down!"))
 
 	else if(iswelder(I))
 		if(user.do_actions)
@@ -76,8 +76,8 @@
 		var/obj/item/tool/weldingtool/WT = I
 
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to weld down \the [src].</span>",
-			"<span class='notice'>You fumble around figuring out how to weld down \the [src].</span>")
+			user.visible_message(span_notice("[user] fumbles around figuring out how to weld down \the [src]."),
+			span_notice("You fumble around figuring out how to weld down \the [src]."))
 			var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_METAL - user.skills.getRating("engineer"))
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				return
@@ -85,14 +85,14 @@
 		if(!WT.remove_fuel(0, user))
 			return
 
-		user.visible_message("<span class='notice'>[user] begins welding down \the [src].</span>",
-		"<span class='notice'>You begin welding down \the [src].</span>")
+		user.visible_message(span_notice("[user] begins welding down \the [src]."),
+		span_notice("You begin welding down \the [src]."))
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_FRIENDLY))
-			to_chat(user, "<span class='warning'>You need to stand still!</span>")
+			to_chat(user, span_warning("You need to stand still!"))
 			return
-		user.visible_message("<span class='notice'>[user] welds down \the [src].</span>",
-		"<span class='notice'>You weld down \the [src].</span>")
+		user.visible_message(span_notice("[user] welds down \the [src]."),
+		span_notice("You weld down \the [src]."))
 		if(buildstacktype)
 			new buildstacktype(loc, buildstackamount)
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
@@ -189,7 +189,7 @@
 		victim.apply_effect(6, STUTTER, blocked)
 		victim.apply_damage(10, BRUTE, def_zone, blocked)
 		UPDATEHEALTH(victim)
-	occupant.visible_message("<span class='danger'>[occupant] crashed into \the [A]!</span>")
+	occupant.visible_message(span_danger("[occupant] crashed into \the [A]!"))
 
 /obj/structure/bed/chair/office/light
 	icon_state = "officechair_white"
@@ -215,13 +215,13 @@
 	var/image/chairbar = null
 	var/chair_state = DROPSHIP_CHAIR_UNFOLDED
 	buildstacktype = 0
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	var/is_animating = 0
 
 /obj/structure/bed/chair/dropship/passenger/CanAllowThrough(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	. = ..()
 	if(chair_state == DROPSHIP_CHAIR_UNFOLDED && istype(mover, /obj/vehicle/multitile) && !is_animating)
-		visible_message("<span class='danger'>[mover] slams into [src] and breaks it!</span>")
+		visible_message(span_danger("[mover] slams into [src] and breaks it!"))
 		INVOKE_ASYNC(src, .proc/fold_down, TRUE)
 		return FALSE
 
@@ -281,8 +281,8 @@
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 	if(chair_state != DROPSHIP_CHAIR_BROKEN)
-		X.visible_message("<span class='warning'>[X] smashes \the [src], shearing the bolts!</span>",
-		"<span class='warning'>We smash \the [src], shearing the bolts!</span>")
+		X.visible_message(span_warning("[X] smashes \the [src], shearing the bolts!"),
+		span_warning("We smash \the [src], shearing the bolts!"))
 		fold_down(1)
 
 /obj/structure/bed/chair/dropship/passenger/attackby(obj/item/I, mob/user, params)
@@ -291,31 +291,31 @@
 	if(iswrench(I))
 		switch(chair_state)
 			if(DROPSHIP_CHAIR_UNFOLDED)
-				user.visible_message("<span class='warning'>[user] begins loosening the bolts on \the [src].</span>",
-				"<span class='warning'>You begin loosening the bolts on \the [src].</span>")
+				user.visible_message(span_warning("[user] begins loosening the bolts on \the [src]."),
+				span_warning("You begin loosening the bolts on \the [src]."))
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
 				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					return
 
-				user.visible_message("<span class='warning'>[user] loosens the bolts on \the [src], folding it into the decking.</span>",
-				"<span class='warning'>You loosen the bolts on \the [src], folding it into the decking.</span>")
+				user.visible_message(span_warning("[user] loosens the bolts on \the [src], folding it into the decking."),
+				span_warning("You loosen the bolts on \the [src], folding it into the decking."))
 				fold_down()
 
 			if(DROPSHIP_CHAIR_FOLDED)
-				user.visible_message("<span class='warning'>[user] begins unfolding \the [src].</span>",
-				"<span class='warning'>You begin unfolding \the [src].</span>")
+				user.visible_message(span_warning("[user] begins unfolding \the [src]."),
+				span_warning("You begin unfolding \the [src]."))
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
 				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					return
 
-				user.visible_message("<span class='warning'>[user] unfolds \the [src] from the floor and tightens the bolts.</span>",
-				"<span class='warning'>You unfold \the [src] from the floor and tighten the bolts.</span>")
+				user.visible_message(span_warning("[user] unfolds \the [src] from the floor and tightens the bolts."),
+				span_warning("You unfold \the [src] from the floor and tighten the bolts."))
 				unfold_up()
 
 			if(DROPSHIP_CHAIR_BROKEN)
-				to_chat(user, "<span class='warning'>\The [src] appears to be broken and needs welding.</span>")
+				to_chat(user, span_warning("\The [src] appears to be broken and needs welding."))
 				return
 
 	else if(iswelder(I) && chair_state == DROPSHIP_CHAIR_BROKEN)
@@ -324,13 +324,13 @@
 			return
 
 		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-		user.visible_message("<span class='warning'>[user] begins repairing \the [src].</span>",
-		"<span class='warning'>You begin repairing \the [src].</span>")
+		user.visible_message(span_warning("[user] begins repairing \the [src]."),
+		span_warning("You begin repairing \the [src]."))
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
-		user.visible_message("<span class='warning'>[user] repairs \the [src].</span>",
-		"<span class='warning'>You repair \the [src].</span>")
+		user.visible_message(span_warning("[user] repairs \the [src]."),
+		span_warning("You repair \the [src]."))
 		chair_state = DROPSHIP_CHAIR_FOLDED
 
 

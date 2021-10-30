@@ -6,38 +6,22 @@
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
+	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi')
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK	//ERROOOOO
 	max_w_class = 3
 	storage_slots = null
 	max_storage_space = 24
-	var/worn_accessible = FALSE //whether you can access its content while worn on the back
+	access_delay = 1.5 SECONDS
 
-/obj/item/storage/backpack/attack_hand(mob/living/user)
-	if(!worn_accessible && ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.back == src)
-/*			if(user.dropItemToGround(src))
-				pickup(user)
-				if(!user.put_in_active_hand(src))
-					dropped(user)
-*/
-			to_chat(H, "<span class='notice'>You can't look in [src] while it's on your back.</span>")
+/obj/item/storage/backpack/should_access_delay(obj/item/item, mob/user, taking_out)
+	if(!taking_out) // Always allow items to be tossed in instantly
+		return FALSE
+	if(ishuman(user))
+		var/mob/living/carbon/human/human_user = user
+		if(human_user.back == src)
 			return TRUE
-	return ..()
-
-
-/obj/item/storage/backpack/AltClick(mob/user)
-	if(!ishuman(user) || !length(contents) || isturf(loc))
-		return ..() //Return to fail and go back to base.
-	if(worn_accessible)
-		return ..() //Return to succeed and draw the item.
-	var/mob/living/carbon/human/human_user = user
-	if(human_user.back == src)
-		to_chat(human_user, "<span class='notice'>You can't look in [src] while it's on your back.</span>")
-		return
-	return ..()
-
+	return FALSE
 
 /obj/item/storage/backpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -45,27 +29,15 @@
 	if (use_sound)
 		playsound(loc, use_sound, 15, 1, 6)
 
-
 /obj/item/storage/backpack/equipped(mob/user, slot)
 	if(slot == SLOT_BACK)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
 		if(use_sound)
 			playsound(loc, use_sound, 15, 1, 6)
-		if(!worn_accessible && user.s_active == src) //currently looking into the backpack
-			close(user)
 	..()
 
 /obj/item/storage/backpack/dropped(mob/user)
 	mouse_opacity = initial(mouse_opacity)
-	..()
-
-
-/obj/item/storage/backpack/open(mob/user)
-	if(!worn_accessible && ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.back == src)
-			to_chat(H, "<span class='notice'>You can't access [src] while it's on your back.</span>")
-			return
 	..()
 
 /*
@@ -79,23 +51,24 @@
 	max_w_class = 4
 	max_storage_space = 28
 
-	proc/failcheck(mob/user as mob)
-		if (prob(src.reliability)) return 1 //No failure
-		if (prob(src.reliability))
-			to_chat(user, "<span class='warning'>The Bluespace portal resists your attempt to add another item.</span>")
-		else
-			to_chat(user, "<span class='warning'>The Bluespace generator malfunctions!</span>")
-			for (var/obj/O in src.contents) //it broke, delete what was in it
-				qdel(O)
-			crit_fail = 1
-			icon_state = "brokenpack"
+/obj/item/storage/backpack/holding/proc/failcheck(mob/user)
+	if (prob(reliability))
+		return TRUE //No failure
+	if (prob(reliability))
+		to_chat(user, span_warning("The Bluespace portal resists your attempt to add another item."))
+	else
+		to_chat(user, span_warning("The Bluespace generator malfunctions!"))
+		for (var/obj/O in src.contents) //it broke, delete what was in it
+			qdel(O)
+		crit_fail = 1
+		icon_state = "brokenpack"
 
 /obj/item/storage/backpack/holding/attackby(obj/item/I, mob/user, params)
 	if(crit_fail)
-		to_chat(user, "<span class='warning'>The Bluespace generator isn't working.</span>")
+		to_chat(user, span_warning("The Bluespace generator isn't working."))
 
 	else if(istype(I, /obj/item/storage/backpack/holding) && !I.crit_fail)
-		to_chat(user, "<span class='warning'>The Bluespace interfaces of the two devices conflict and malfunction.</span>")
+		to_chat(user, span_warning("The Bluespace interfaces of the two devices conflict and malfunction."))
 		qdel(I)
 
 	else
@@ -174,9 +147,9 @@
 	name = "leather satchel"
 	desc = "It's a very fancy satchel made with fine leather."
 	icon_state = "satchel"
-	worn_accessible = TRUE
 	storage_slots = null
 	max_storage_space = 15
+	access_delay = 0
 
 /obj/item/storage/backpack/satchel/withwallet/Initialize(mapload, ...)
 	. = ..()
@@ -288,7 +261,7 @@
 
 /obj/item/storage/backpack/marine/corpsman/Initialize(mapload, ...)
 	. = ..()
-	cell = new (src)
+	cell = new
 	icon_skin = icon_state
 	update_icon()
 
@@ -305,17 +278,17 @@
 		warning = "<span class='notice'>[src]'s defibrillator recharge unit cheerfully pings as it successfully recharges the defibrillator. "
 	cell.charge -= min(cell.charge, amount)
 	if(mention_charge)
-		to_chat(user, "<span class='notice'>[warning]<b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
+		to_chat(user, span_notice("[warning]<b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
 	update_icon()
 
 /obj/item/storage/backpack/marine/corpsman/examine(mob/user)
 	. = ..()
 	if(cell)
-		to_chat(user, "<span class='notice'>Its defibrillator recharge unit has a loaded power cell and its readout counter is active. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
+		to_chat(user, span_notice("Its defibrillator recharge unit has a loaded power cell and its readout counter is active. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
 	else
-		to_chat(user, "<span class='warning'>Its defibrillator recharge unit does not have a power cell installed!</span>")
+		to_chat(user, span_warning("Its defibrillator recharge unit does not have a power cell installed!"))
 
-/obj/item/storage/backpack/marine/corpsman/update_icon()
+/obj/item/storage/backpack/marine/corpsman/update_icon_state()
 	icon_state = icon_skin
 	if(cell?.charge >= 0)
 		switch(PERCENT(cell.charge/cell.maxcharge))
@@ -339,9 +312,9 @@
 				use_charge(user, charge_difference) //consume an appropriate amount of charge
 				D.dcell.charge += min(charge_difference, cell.charge) //Recharge the defibrillator battery with the lower of the difference between its present and max cap, or the remaining charge
 			else
-				to_chat(user, "<span class='warning'>This defibrillator is already at maximum charge!</span>")
+				to_chat(user, span_warning("This defibrillator is already at maximum charge!"))
 		else
-			to_chat(user, "<span class='warning'>[src]'s defibrillator recharge unit does not have a power cell installed!</span>")
+			to_chat(user, span_warning("[src]'s defibrillator recharge unit does not have a power cell installed!"))
 	else if(istype(W, /obj/item/cell))
 		if(user.drop_held_item())
 			W.loc = src
@@ -352,7 +325,7 @@
 				cell.update_icon()
 				user.put_in_hands(cell)
 			cell = W
-			to_chat(user, "<span class='notice'>[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
+			to_chat(user, span_notice("[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
 			playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, 1, 5)
 			update_icon()
 	return ..()
@@ -363,12 +336,14 @@
 	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and M56D emplacement parts."
 	icon_state = "marinepackt"
 	bypass_w_limit = list(
-		/obj/item/standard_hmg,
-		/obj/item/ammo_magazine/standard_hmg,
-		/obj/item/turret_top,
+		/obj/item/weapon/gun/sentry/big_sentry,
+		/obj/item/weapon/gun/sentry/mini,
+		/obj/item/weapon/gun/tl102,
+		/obj/item/ammo_magazine/tl102,
 		/obj/item/ammo_magazine/sentry,
 		/obj/item/ammo_magazine/minisentry,
-		/obj/item/marine_turret/mini,
+		/obj/item/mortal_shell,
+		/obj/item/mortar_kit,
 		/obj/item/stack/razorwire,
 		/obj/item/stack/sandbags,
 	)
@@ -377,9 +352,9 @@
 	name = "\improper TGMC satchel"
 	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel."
 	icon_state = "marinesat"
-	worn_accessible = TRUE
 	storage_slots = null
 	max_storage_space = 15
+	access_delay = 0
 
 /obj/item/storage/backpack/marine/satchel/green
 	name = "\improper TGMC satchel"
@@ -400,7 +375,7 @@
 	name = "\improper M3 sniper's smock"
 	desc = "A specially designed smock with pockets for all your sniper needs."
 	icon_state = "smock"
-	worn_accessible = TRUE
+	access_delay = 0
 
 //CLOAKS
 
@@ -481,7 +456,7 @@
 		return
 
 	if(SEND_SIGNAL(M, COMSIG_MOB_ENABLE_STEALTH) & STEALTH_ALREADY_ACTIVE)
-		to_chat(M, "<span class='warning'>You are already cloaked!</span>")
+		to_chat(M, span_warning("You are already cloaked!"))
 		return FALSE
 
 	if (camo_cooldown_timer)
@@ -493,7 +468,7 @@
 	wearer = M
 
 	RegisterSignal(wearer, COMSIG_MOB_ENABLE_STEALTH, .proc/on_other_activate)
-	M.visible_message("[M] fades into thin air!", "<span class='notice'>You activate your cloak's camouflage.</span>")
+	M.visible_message("[M] fades into thin air!", span_notice("You activate your cloak's camouflage."))
 	playsound(M.loc,'sound/effects/cloak_scout_on.ogg', 15, 1)
 
 	stealth_delay = world.time - SCOUT_CLOAK_STEALTH_DELAY
@@ -553,7 +528,7 @@
 
 	camo_active = FALSE
 
-	user.visible_message("<span class='warning'>[user.name] shimmers into existence!</span>", "<span class='danger'>Your cloak's camouflage has deactivated!</span>")
+	user.visible_message(span_warning("[user.name] shimmers into existence!"), span_danger("Your cloak's camouflage has deactivated!"))
 	playsound(user.loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
 	user.alpha = initial(user.alpha)
 
@@ -592,7 +567,7 @@
 	camo_energy = initial(camo_energy)
 	playsound(loc,'sound/effects/EMPulse.ogg', 25, 0, 1)
 	if(wearer)
-		to_chat(wearer, "<span class='danger'>Your thermal cloak has recalibrated and is ready to cloak again.</span>")
+		to_chat(wearer, span_danger("Your thermal cloak has recalibrated and is ready to cloak again."))
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/examine(mob/user)
 	. = ..()
@@ -607,7 +582,7 @@
 	if(camo_active)
 		details +=("It's currently active.</br>")
 
-	to_chat(user, "<span class='warning'>[details.Join(" ")]</span>")
+	to_chat(user, span_warning("[details.Join(" ")]"))
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user))
@@ -625,19 +600,19 @@
 	camo_energy = clamp(camo_energy - drain,0,initial(camo_energy))
 
 	if(!camo_energy) //Turn off the camo if we run out of energy.
-		to_chat(user, "<span class='danger'>Your thermal cloak lacks sufficient energy to remain active.</span>")
+		to_chat(user, span_danger("Your thermal cloak lacks sufficient energy to remain active."))
 		camo_off(user)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/damage_taken(datum/source, damage)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/human/wearer = source
 	if(damage >= 15)
-		to_chat(wearer, "<span class='danger'>Your cloak shimmers from the damage!</span>")
+		to_chat(wearer, span_danger("Your cloak shimmers from the damage!"))
 		apply_shimmer()
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/action_taken() //This is used by multiple signals passing different parameters.
 	SIGNAL_HANDLER
-	to_chat(wearer, "<span class='danger'>Your cloak shimmers from your actions!</span>")
+	to_chat(wearer, span_danger("Your cloak shimmers from your actions!"))
 	apply_shimmer()
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/apply_shimmer()
@@ -698,7 +673,7 @@
 	var/max_fuel = 260
 	storage_slots = null
 	max_storage_space = 15
-	worn_accessible = TRUE
+	access_delay = 0
 
 /obj/item/storage/backpack/marine/engineerpack/Initialize(mapload, ...)
 	. = ..()
@@ -712,13 +687,13 @@
 	if(iswelder(I))
 		var/obj/item/tool/weldingtool/T = I
 		if(T.welding)
-			to_chat(user, "<span class='warning'>That was close! However you realized you had the welder on and prevented disaster.</span>")
+			to_chat(user, span_warning("That was close! However you realized you had the welder on and prevented disaster."))
 			return
 		if(T.get_fuel() == T.max_fuel || !reagents.total_volume)
 			return ..()
 
 		reagents.trans_to(I, T.max_fuel)
-		to_chat(user, "<span class='notice'>Welder refilled!</span>")
+		to_chat(user, span_notice("Welder refilled!"))
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 
 	else if(istype(I, /obj/item/ammo_magazine/flamer_tank))
@@ -731,20 +706,8 @@
 		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		FT.current_rounds += fuel_transfer_amount
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		FT.caliber = "Fuel"
-		to_chat(user, "<span class='notice'>You refill [FT] with [lowertext(FT.caliber)].</span>")
-		FT.update_icon()
-
-	else if(istype(I, /obj/item/attachable/attached_gun/flamer))
-		var/obj/item/attachable/attached_gun/flamer/FT = I
-		if(FT.current_rounds == FT.max_rounds || !reagents.total_volume)
-			return ..()
-
-		var/fuel_transfer_amount = min(reagents.total_volume, (FT.max_rounds - FT.current_rounds))
-		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		FT.current_rounds += fuel_transfer_amount
-		playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)
-		to_chat(user, "<span class='notice'>You refill [FT] with fuel.</span>")
+		FT.caliber = CALIBER_FUEL
+		to_chat(user, span_notice("You refill [FT] with [lowertext(FT.caliber)]."))
 		FT.update_icon()
 
 	else
@@ -755,11 +718,11 @@
 		return
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume < max_fuel)
 		O.reagents.trans_to(src, max_fuel)
-		to_chat(user, "<span class='notice'>You crack the cap off the top of the pack and fill it back up again from the tank.</span>")
+		to_chat(user, span_notice("You crack the cap off the top of the pack and fill it back up again from the tank."))
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume == max_fuel)
-		to_chat(user, "<span class='notice'>The pack is already full!</span>")
+		to_chat(user, span_notice("The pack is already full!"))
 		return
 	..()
 
@@ -772,7 +735,7 @@
 	name = "\improper lightweight combat pack"
 	desc = "A small lightweight pack for expeditions and short-range operations."
 	icon_state = "ERT_satchel"
-	worn_accessible = TRUE
+	access_delay = 0
 
 /obj/item/storage/backpack/commando
 	name = "commando bag"
@@ -780,6 +743,7 @@
 	icon_state = "commandopack"
 	storage_slots = null
 	max_storage_space = 30
+	access_delay = 0
 
 /obj/item/storage/backpack/captain
 	name = "marine captain backpack"

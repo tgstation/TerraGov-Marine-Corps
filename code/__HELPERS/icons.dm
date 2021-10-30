@@ -957,7 +957,7 @@ ColorTone(rgb, tone)
 	fdel("tmp/dummySave.sav")  //if you get the idea to try and make this more optimized, make sure to still call unlock on the savefile after every write to unlock it.
 
 
-/proc/icon2html(thing, target, icon_state, dir = SOUTH, frame = 1, moving = FALSE)
+/proc/icon2html(thing, target, icon_state, dir = SOUTH, frame = 1, moving = FALSE, sourceonly = FALSE, extra_classes = null)
 	if(!thing)
 		return
 
@@ -977,17 +977,19 @@ ColorTone(rgb, tone)
 			return
 	if(!isicon(I))
 		if(isfile(thing)) //special snowflake
-			var/name = sanitize_filename("[generate_asset_name(thing)].png")
+			var/name = SANITIZE_FILENAME("[generate_asset_name(thing)].png")
 			SSassets.transport.register_asset(name, thing)
 			for(var/thing2 in targets)
 				SSassets.transport.send_assets(thing2, name)
-			return "<img class='icon icon-misc' src='[SSassets.transport.get_asset_url(name)]'>"
+			if(sourceonly)
+				return SSassets.transport.get_asset_url(name)
+			return "<img class='[extra_classes] icon icon-misc' src='[SSassets.transport.get_asset_url(name)]'>"
 		var/atom/A = thing
 
 		I = A.icon
 		if(isnull(icon_state))
 			icon_state = A.icon_state
-			if (!(icon_state in icon_states(I, 1)))
+			if(isnull(icon_state) || (isatom(thing) && A.flags_atom & HTML_USE_INITAL_ICON_1))
 				icon_state = initial(A.icon_state)
 				if (isnull(dir))
 					dir = initial(A.dir)
@@ -1009,11 +1011,13 @@ ColorTone(rgb, tone)
 	I = icon(I, icon_state, dir, frame, moving)
 
 	key = "[generate_asset_name(I)].png"
-	SSassets.transport.register_asset(key, I)
+	if(!SSassets.cache[key])
+		SSassets.transport.register_asset(key, I)
 	for(var/thing2 in targets)
 		SSassets.transport.send_assets(thing2, key)
-
-	return "<img class='icon icon-[icon_state]' src='[SSassets.transport.get_asset_url(key)]'>"
+	if(sourceonly)
+		return SSassets.transport.get_asset_url(key)
+	return "<img class='[extra_classes] icon icon-[icon_state]' src='[SSassets.transport.get_asset_url(key)]'>"
 
 
 /proc/icon2base64html(thing)

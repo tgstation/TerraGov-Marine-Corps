@@ -10,13 +10,13 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
  * Should a ai component get initialized while there's already enough instances of said thing, it will deny the initialization of the component but NOT the mob it's being attached to.
  * This is mainly here because admins keep on spamming AI without caring for the server's ability to handle hundreds/thousands of AI.
  */
-#define AI_INSTANCE_HARDCAP 100
+#define AI_INSTANCE_HARDCAP 200
 
 //The most basic of AI; can pathfind to a turf and path around objects in it's path if needed to
 /datum/component/ai_controller
 	var/datum/ai_behavior/ai_behavior //Calculates the action states to take and the parameters it gets; literally the brain
 
-/datum/component/ai_controller/Initialize(behavior_type)
+/datum/component/ai_controller/Initialize(behavior_type, atom/atom_to_escort)
 	. = ..()
 
 	if((length(GLOB.ai_instances_active) + 1) >= AI_INSTANCE_HARDCAP)
@@ -29,22 +29,15 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	if(isnull(behavior_type))
 		stack_trace("An AI controller was initialized without a mind to initialize parameter; component removed")
 		return COMPONENT_INCOMPATIBLE
-	var/atom/movable/movable_parent = parent
-	var/node_to_spawn_at //Temp storage holder for the node we will want to spawn at
+	ai_behavior = new behavior_type(src, parent, atom_to_escort, isliving(parent))
 	for(var/obj/effect/ai_node/node in range(7))
-		node_to_spawn_at = node
-		movable_parent.forceMove(node.loc)
+		ai_behavior.current_node = node
 		break
-	if(isnull(node_to_spawn_at))
-		stack_trace("An AI controller was being attached to a parent however it was unable to locate a node nearby to attach itself to; component removed.")
-		message_admins("Notice: An AI controller was initialized but wasn't close enough to a node; if you were spawning AI component users, then do it closer to a node.")
-		return COMPONENT_INCOMPATIBLE
-	//This is here so we only make a mind if there's a node nearby for the parent to go onto
-	ai_behavior = new behavior_type(src, parent)
-	ai_behavior.current_node = node_to_spawn_at
-	ai_behavior.late_initialize() //We gotta give the ai behavior things like what node to spawn at before it wants to start an action
-	RegisterSignal(parent, list(COMSIG_PARENT_PREQDELETED, COMSIG_MOB_DEATH), .proc/clean_up)
+	//Iniatialise the behavior of the ai
+	ai_behavior.late_initialize()
+	RegisterSignal(parent, COMSIG_MOB_DEATH, .proc/RemoveComponent)
 	RegisterSignal(parent, COMSIG_COMBAT_LOG, .proc/handle_combat_log)
+	RegisterSignal(parent, COMSIG_MOB_LOGIN, .proc/stop_controlling)
 	GLOB.ai_instances_active += src
 
 //Removes registered signals and action states, useful for scenarios like when the parent is destroyed or a client is taking over
@@ -52,14 +45,38 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	SIGNAL_HANDLER
 	return DONT_LOG
 
+/datum/component/ai_controller/RemoveComponent()
+	clean_up()
+	return ..()
+
 /datum/component/ai_controller/proc/clean_up()
 	SIGNAL_HANDLER
 	GLOB.ai_instances_active -= src
-	parent.RemoveElement(/datum/element/pathfinder)
 	UnregisterSignal(parent, COMSIG_COMBAT_LOG)
+	UnregisterSignal(parent, COMSIG_MOB_DEATH)
 	if(ai_behavior)
 		STOP_PROCESSING(SSprocessing, ai_behavior)
-		ai_behavior.unregister_action_signals(ai_behavior.cur_action)
+		ai_behavior.cleanup_current_action()
+		ai_behavior = null
+
+///Stop this ai controller from acting on the mob
+/datum/component/ai_controller/proc/stop_controlling()
+	SIGNAL_HANDLER
+	STOP_PROCESSING(SSprocessing, ai_behavior)
+	ai_behavior.cleanup_current_action()
+	GLOB.ai_instances_active -= src
+	RegisterSignal(parent, COMSIG_MOB_LOGOUT, .proc/resume_controlling)
+
+///Resume this ai controller process
+/datum/component/ai_controller/proc/resume_controlling()
+	SIGNAL_HANDLER
+	UnregisterSignal(parent, COMSIG_MOB_LOGOUT)
+	if((length(GLOB.ai_instances_active) + 1) >= AI_INSTANCE_HARDCAP)
+		message_admins("Notice: An AI controller failed resume because there's already too many AI controllers existing.")
+		return
+	START_PROCESSING(SSprocessing, ai_behavior)
+	ai_behavior.late_initialize()
+	GLOB.ai_instances_active += src
 
 /datum/component/ai_controller/Destroy()
 	clean_up()

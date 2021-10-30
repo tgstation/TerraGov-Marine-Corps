@@ -9,21 +9,6 @@
 	force = 10 //This is otherwise no different from a normal flashlight minus the flavour.
 	throwforce = 12 //"combat" flashlight
 
-
-/obj/item/coin/marine
-	name = "marine premium token"
-	desc = "A special coin meant to be inserted in a marine vendor in order to access a single premium equipment or device... or just to suffice your vices."
-	icon_state = "coin_adamantine"
-	flags_token = TOKEN_MARINE|TOKEN_GENERAL //when you do prefer a premium smoke over else.
-
-/obj/item/coin/marine/attackby(obj/item/I, mob/user, params) //To remove attaching a string functionality
-	return
-
-/obj/item/coin/marine/specialist
-	name = "marine specialist weapon token"
-	desc = "Insert this into a specialist vendor in order to access a single highly dangerous weapon."
-	flags_token = TOKEN_SPEC
-
 /obj/structure/broken_apc
 	name = "\improper M577 armored personnel carrier"
 	desc = "A large, armored behemoth capable of ferrying marines around. \nThis one is sitting nonfunctional."
@@ -108,6 +93,11 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
 	tastes = list("pizza" = 3, "vegetables" = 1)
 	bitesize = 1
+
+/obj/item/reagent_containers/food/snacks/mre_pack/meal4/req
+	desc = "This is supposedly a pizza MRE, fit for marine consumption. While it certainly looks like one, the first, active, primary, and only ingredient that went into it was a rounded metal plate. Maybe it'll taste better after it's sat in the ASRS for a while?"
+	list_reagents = list(/datum/reagent/iron = 8)
+	tastes = list("metal" = 3, "one of your teeth cracking" = 1)
 
 /obj/item/reagent_containers/food/snacks/mre_pack/meal5
 	name = "\improper TGMC Prepared Meal (monkey)"
@@ -225,3 +215,14 @@
 	. = ..()
 	if(slot == SLOT_BELT)
 		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
+
+/obj/item/compass
+	name = "compass"
+	desc = "A small compass that can tell you your coordinates on use."
+	icon_state = "compass"
+	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/compass/attack_self(mob/living/user)
+	. = ..()
+	var/turf/location = get_turf(src)
+	to_chat(user, span_notice("After looking at the [src] you can tell your general coordinates.") + span_bold(" LONGITUDE [location.x]. LATITUDE [location.y]."))

@@ -2,20 +2,15 @@
 	name = "Space"
 	requires_power = 1
 	always_unpowered = 1
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+	base_lighting_alpha = 255
+
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
 	ambience = list('sound/ambience/ambispace.ogg')
 	temperature = TCMB
 	pressure = 0
-
-/area/space/Entered(atom/movable/AM, atom/oldloc)
-	. = ..()
-	if(isliving(AM))
-		to_chat(AM, "<span class='danger'>The cold vacuum instantly freezes you, maybe this was a bad idea?</span>")
-		var/mob/living/spaceman = AM
-		spaceman.adjustFireLoss(600) //Bad idea, spessman.
+	flags_area = NO_DROPPOD
 
 /area/engine/
 	ambience = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
@@ -40,8 +35,8 @@
 
 /area/shuttle //DO NOT TURN THE dynamic_lighting STUFF ON FOR SHUTTLES. IT BREAKS THINGS.
 	requires_power = 0
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	outside = FALSE
+	flags_area = OB_CAS_IMMUNE
 
 /area/shuttle/arrival
 	name = "Abandoned Arrival Shuttle"
@@ -219,7 +214,8 @@
 	name = "start area"
 	icon_state = "start"
 	requires_power = 0
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	static_lighting = FALSE
+	base_lighting_alpha = 255
 
 
 /area/syndicate_mothership
@@ -259,7 +255,8 @@
 	name = "Abandoned Thunderdome"
 	icon_state = "thunder"
 	requires_power = FALSE
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	base_lighting_alpha = 255
+
 
 
 /area/tdome/tdome1
@@ -285,6 +282,8 @@
 /area/deathmatch
 	name = "End of Round Deathmatch Arena"
 	icon_state = "green"
+	base_lighting_alpha = 255
+
 	requires_power = 0
 
 
@@ -721,7 +720,9 @@
 /area/holodeck
 	name = "Abandoned Holodeck"
 	icon_state = "Holodeck"
-	dynamic_lighting = 0
+	static_lighting = FALSE
+	base_lighting_alpha = 255
+
 
 /area/holodeck/alphadeck
 	name = "Abandoned Holodeck Alpha"
@@ -860,7 +861,8 @@
 /area/solar
 	requires_power = 1
 	always_unpowered = 1
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	static_lighting = FALSE
+	base_lighting_alpha = 255
 
 	auxport
 		name = "Abandoned Fore Port Solar Array"
@@ -1293,6 +1295,8 @@
 	requires_power = 0
 	name = "Abandoned Test Room"
 	icon_state = "storage"
+	flags_area = NO_DROPPOD
+
 
 //DJSTATION
 
@@ -1379,3 +1383,11 @@
 /area/turret_protected/aisat
 	name = "Abandoned AI Satellite"
 	icon_state = "ai"
+
+/area/sensor_tower_1
+	name = "Sensor tower 1"
+	icon_state = "sensor"
+
+/area/sensor_tower_2
+	name = "Sensor tower 2"
+	icon_state = "sensor"

@@ -13,7 +13,7 @@
 	/// description of weather
 	var/desc = "Heavy gusts of wind blanket the area, periodically knocking down anyone caught in the open."
 	/// The message displayed in chat to foreshadow the weather's beginning
-	var/telegraph_message = "<span class='warning'>The wind begins to pick up.</span>"
+	var/telegraph_message = span_warning("The wind begins to pick up.")
 	/// In deciseconds, how long from the beginning of the telegraph until the weather begins
 	var/telegraph_duration = 300
 	/// The sound file played to everyone on an affected z-level
@@ -22,7 +22,7 @@
 	var/telegraph_overlay
 
 	/// Displayed in chat once the weather begins in earnest
-	var/weather_message = "<span class='userdanger'>The wind begins to blow ferociously!</span>"
+	var/weather_message = span_userdanger("The wind begins to blow ferociously!")
 	/// In deciseconds, how long the weather lasts once it begins
 	var/weather_duration = 1200
 	/// See above - this is the lowest possible duration
@@ -37,7 +37,7 @@
 	var/weather_color = null
 
 	/// Displayed once the weather is over
-	var/end_message = "<span class='danger'>The wind relents its assault.</span>"
+	var/end_message = span_danger("The wind relents its assault.")
 	/// In deciseconds, how long the "wind-down" graphic will appear before vanishing entirely
 	var/end_duration = 300
 	/// Sound that plays while weather is ending
@@ -105,13 +105,15 @@
 	weather_duration = rand(weather_duration_lower, weather_duration_upper)
 	START_PROCESSING(SSweather, src)
 	update_areas()
-	for(var/M in GLOB.player_list)
+	for(var/mob/M AS in GLOB.player_list)
 		var/turf/mob_turf = get_turf(M)
 		if(mob_turf && (mob_turf.z in impacted_z_levels))
 			if(telegraph_message)
 				to_chat(M, telegraph_message)
+			if(M?.client?.prefs?.toggles_sound & SOUND_WEATHER)
+				continue
 			if(telegraph_sound)
-				SEND_SOUND(M, sound(telegraph_sound))
+				SEND_SOUND(M, sound(telegraph_sound, volume = 60))
 	addtimer(CALLBACK(src, .proc/start), telegraph_duration)
 
 /**
@@ -127,9 +129,11 @@
 	stage = MAIN_STAGE
 	update_areas()
 	for(var/num in impacted_z_levels)
-		for(var/M in GLOB.humans_by_zlevel["[num]"])
+		for(var/mob/M AS in GLOB.humans_by_zlevel["[num]"])
 			if(weather_message)
 				to_chat(M, weather_message)
+			if(M?.client?.prefs?.toggles_sound & SOUND_WEATHER)
+				continue
 			if(weather_sound)
 				SEND_SOUND(M, sound(weather_sound))
 	addtimer(CALLBACK(src, .proc/wind_down), weather_duration)
@@ -147,9 +151,11 @@
 	stage = WIND_DOWN_STAGE
 	update_areas()
 	for(var/num in impacted_z_levels)
-		for(var/M in GLOB.humans_by_zlevel["[num]"])
+		for(var/mob/M AS in GLOB.humans_by_zlevel["[num]"])
 			if(end_message)
 				to_chat(M, end_message)
+			if(M.client?.prefs.toggles_sound & SOUND_WEATHER)
+				continue
 			if(end_sound)
 				SEND_SOUND(M, sound(end_sound))
 	addtimer(CALLBACK(src, .proc/end), end_duration)

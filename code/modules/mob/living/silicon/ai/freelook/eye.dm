@@ -44,7 +44,7 @@
 	if(!force_update && T == get_turf(src))
 		return //we are already here!
 	if(T)
-		forceMove(T)
+		abstract_move(T)
 	else
 		moveToNullspace()
 	if(use_static != USE_STATIC_NONE)
@@ -59,6 +59,7 @@
 		ai.light_cameras()
 	if(ai.master_multicam)
 		ai.master_multicam.refresh_view()
+	update_parallax_contents()
 
 
 /mob/camera/aiEye/Move()
@@ -134,7 +135,7 @@
 
 
 /mob/living/silicon/ai/proc/create_eye()
-	if(eyeobj)
+	if(!QDELETED(eyeobj))
 		return
 	eyeobj = new /mob/camera/aiEye()
 	all_eyes += eyeobj

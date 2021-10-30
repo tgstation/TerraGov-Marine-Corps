@@ -26,7 +26,7 @@
 	update_icon()
 
 
-/obj/machinery/button/update_icon()
+/obj/machinery/button/update_icon_state()
 	if(machine_stat & (NOPOWER|BROKEN))
 		icon_state = "[initial(icon_state)]-p"
 	else
@@ -46,7 +46,7 @@
 		return
 
 	if(!allowed(user))
-		to_chat(user, "<span class='danger'>Access Denied</span>")
+		to_chat(user, span_danger("Access Denied"))
 		flick("[initial(icon_state)]-denied", src)
 		return
 
@@ -103,7 +103,7 @@
 	id = "landing_zone"
 	use_power = NO_POWER_USE
 	resistance_flags = RESIST_ALL
-	req_access = list(ACCESS_MARINE_DROPSHIP)
+	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_DROPSHIP_REBEL)
 
 /obj/machinery/button/door/open_only/landing_zone/pulsed()
 	. = ..()
@@ -161,9 +161,6 @@
 	var/otherarea = null
 	var/id = 1
 
-	attack_paw(mob/user as mob)
-		return
-
 /obj/machinery/medical_help_button
 	name = "Medical attention required"
 	icon = 'icons/obj/stationobjs.dmi'
@@ -191,7 +188,7 @@
 	if(!istype(user))
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(user, "<span class='warning'>[src] doesn't seem to be working.</span>")
+		to_chat(user, span_warning("[src] doesn't seem to be working."))
 		return
 	if(active)
 		return
@@ -208,7 +205,7 @@
 	active = FALSE
 	update_icon()
 
-/obj/machinery/medical_help_button/update_icon()
+/obj/machinery/medical_help_button/update_icon_state()
 	if(machine_stat & NOPOWER)
 		icon_state = "doorctrl-p"
 	else

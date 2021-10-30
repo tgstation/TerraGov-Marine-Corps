@@ -1,4 +1,5 @@
 /datum/job/sectoid
+	job_category = JOB_CAT_MARINE
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/sectoid
@@ -24,8 +25,8 @@
 	shoes = /obj/item/clothing/shoes/sectoid
 	wear_suit = /obj/item/clothing/suit/armor/sectoid
 	gloves = /obj/item/clothing/gloves/sectoid
-	r_store = /obj/item/stack/medical/bruise_pack/sectoid
-	l_store = /obj/item/explosive/grenade/frag/sectoid
+	r_store = /obj/item/stack/medical/heal_pack/gauze/sectoid
+	l_store = /obj/item/explosive/grenade/sectoid
 	back = /obj/item/weapon/gun/rifle/sectoid_rifle
 
 
@@ -41,6 +42,7 @@
 
 //Sectoid Leader
 /datum/job/sectoid/leader
+	job_category = JOB_CAT_COMMAND
 	title = "Sectoid Leader"
 	outfit = /datum/outfit/job/sectoid/leader
 
@@ -58,8 +60,8 @@
 	shoes = /obj/item/clothing/shoes/sectoid
 	wear_suit = /obj/item/clothing/suit/armor/sectoid/shield
 	gloves = /obj/item/clothing/gloves/sectoid
-	r_store = /obj/item/stack/medical/bruise_pack/sectoid
-	l_store = /obj/item/explosive/grenade/frag/sectoid
+	r_store = /obj/item/stack/medical/heal_pack/gauze/sectoid
+	l_store = /obj/item/explosive/grenade/sectoid
 	back = /obj/item/weapon/gun/rifle/sectoid_rifle
 
 

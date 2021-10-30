@@ -8,8 +8,8 @@
 /area/lv624/lazarus/quartstorage)
 "as" = (
 /obj/structure/largecrate,
-/obj/item/explosive/grenade/frag/stick,
-/obj/item/explosive/grenade/frag/stick,
+/obj/item/explosive/grenade/stick,
+/obj/item/explosive/grenade/stick,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "bE" = (
@@ -23,6 +23,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "eh" = (
@@ -33,6 +34,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
+/obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "gi" = (
@@ -52,6 +55,13 @@
 /obj/item/roller,
 /obj/item/roller,
 /turf/open/floor/plating,
+/area/lv624/lazarus/quartstorage)
+"jb" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "ji" = (
 /obj/structure/rack,
@@ -83,14 +93,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
-"lQ" = (
-/obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 1;
-	name = "\improper Storage Dome"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage)
 "mj" = (
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
@@ -110,6 +112,7 @@
 /obj/item/stack/sheet/wood{
 	amount = 50
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "ov" = (
@@ -267,6 +270,12 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
+"Fq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/quartstorage)
 "Gt" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -280,6 +289,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/quartstorage)
+"HT" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "Ih" = (
@@ -299,6 +313,13 @@
 "Iu" = (
 /turf/template_noop,
 /area/template_noop)
+"Jl" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/quartstorage)
 "Lv" = (
 /obj/item/stack/sheet/wood{
 	amount = 50
@@ -408,6 +429,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "WN" = (
@@ -432,10 +454,6 @@
 /obj/structure/rack,
 /obj/item/storage/belt/utility/full,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage)
-"Zv" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 
 (1,1,1) = {"
@@ -558,10 +576,10 @@ Nw
 rz
 "}
 (8,1,1) = {"
-lQ
-Zv
+ze
+pF
 em
-eh
+HT
 vP
 mX
 YT
@@ -570,7 +588,7 @@ oA
 Ne
 Lv
 rF
-pF
+Fq
 pF
 ze
 "}
@@ -578,10 +596,10 @@ ze
 iE
 Nw
 Nw
-kz
-Cp
-Cp
-Cp
+Jl
+jb
+jb
+jb
 vk
 Ad
 Ad
