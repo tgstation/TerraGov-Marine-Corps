@@ -73,6 +73,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	gun_type = /obj/item/weapon/gun/shotgun/double/martini
 	max_rounds = 20
 	w_class = WEIGHT_CLASS_SMALL
+	icon_state_mini = "martini"
 
 /obj/item/ammo_magazine/pistol/derringer
 	name = "box of .40 rimfire pistol rounds"
@@ -83,6 +84,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	gun_type = /obj/item/weapon/gun/shotgun/double/derringer
 	max_rounds = 10
 	w_class = WEIGHT_CLASS_SMALL
+	icon_state_mini = "ammo_packet"
 
 /obj/item/ammo_magazine/shotgun/mbx900
 	name = "box of .410 sabot shells"

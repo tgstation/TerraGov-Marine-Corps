@@ -1,85 +1,12 @@
-///******MARINE VENDOR******///
-
-/obj/machinery/vending/marine
+/obj/machinery/vending/weapon
 	name = "\improper Automated Weapons Rack"
 	desc = "A automated weapon rack hooked up to a colossal storage of standard-issue weapons."
 	icon_state = "marinearmory"
 	icon_vend = "marinearmory-vend"
 	icon_deny = "marinearmory"
 	wrenchable = FALSE
-	tokensupport = TOKEN_MARINE
-
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
-	products = list(
-		/obj/item/weapon/gun/pistol/standard_pistol = 25,
-		/obj/item/ammo_magazine/pistol/standard_pistol = 30,
-		/obj/item/weapon/gun/pistol/standard_heavypistol = 10,
-		/obj/item/ammo_magazine/pistol/standard_heavypistol = 25,
-		/obj/item/weapon/gun/revolver/standard_revolver = 15,
-		/obj/item/ammo_magazine/revolver/standard_revolver = 25,
-		/obj/item/weapon/gun/smg/standard_machinepistol = 20,
-		/obj/item/ammo_magazine/smg/standard_machinepistol = 30,
-		/obj/item/weapon/gun/pistol/standard_pocketpistol = 25,
-		/obj/item/ammo_magazine/pistol/standard_pocketpistol = 50,
-		/obj/item/weapon/gun/smg/standard_smg = 20,
-		/obj/item/ammo_magazine/smg/standard_smg = 30,
-		/obj/item/weapon/gun/rifle/standard_carbine = 25,
-		/obj/item/ammo_magazine/rifle/standard_carbine = 25,
-		/obj/item/weapon/gun/rifle/standard_assaultrifle = 25,
-		/obj/item/ammo_magazine/rifle/standard_assaultrifle = 25,
-		/obj/item/weapon/gun/rifle/standard_lmg = 15,
-		/obj/item/ammo_magazine/standard_lmg = 30,
-		/obj/item/weapon/gun/rifle/standard_gpmg = 15,
-		/obj/item/ammo_magazine/standard_gpmg = 30,
-		/obj/item/weapon/gun/rifle/standard_dmr = 10,
-		/obj/item/ammo_magazine/rifle/standard_dmr = 25,
-		/obj/item/weapon/gun/rifle/standard_br = 10,
-		/obj/item/ammo_magazine/rifle/standard_br = 25,
-		/obj/item/weapon/gun/rifle/chambered = 20,
-		/obj/item/ammo_magazine/rifle/chamberedrifle = 20,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = 10,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper = 10,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = 10,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = 10,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = 10,
-		/obj/item/cell/lasgun/lasrifle/marine = 125,
-		/obj/item/weapon/gun/shotgun/pump/t35 = 10,
-		/obj/item/weapon/gun/shotgun/combat/standardmarine = 10,
-		/obj/item/ammo_magazine/shotgun = 10,
-		/obj/item/ammo_magazine/shotgun/buckshot = 10,
-		/obj/item/ammo_magazine/shotgun/flechette = 10,
-		/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
-		/obj/item/ammo_magazine/rifle/tx15_slug = 25,
-		/obj/item/ammo_magazine/rifle/tx15_flechette = 25,
-		/obj/item/weapon/gun/grenade_launcher/multinade_launcher = 10,
-		/obj/item/weapon/gun/grenade_launcher/single_shot = 15,
-		/obj/item/explosive/grenade = 30,
-		/obj/item/attachable/bayonetknife = 20,
-		/obj/item/weapon/throwing_knife = 5,
-		/obj/item/storage/box/m94 = 5,
-		/obj/item/attachable/flashlight = 10,
-		/obj/item/explosive/grenade/mirage = 5,
-		/obj/item/weapon/powerfist = 3,
-	)
-	prices = list()
-
-
-/obj/machinery/vending/marine/Initialize()
-	. = ..()
-	GLOB.marine_vendors.Add(src)
-
-/obj/machinery/vending/marine/Destroy()
-	GLOB.marine_vendors.Remove(src)
-	return ..()
-
-//What do grenade do against candy machine?
-/obj/machinery/vending/marine/ex_act(severity)
-	return
-
-//These vendors share all the same inventory if they are of same type
-/obj/machinery/vending/marine/shared
 	isshared = TRUE
-
 	contraband = list(/obj/item/explosive/grenade/smokebomb = 50)
 
 	products = list(
@@ -172,7 +99,7 @@
 			/obj/item/ammo_magazine/flamer_tank = 20,
 			/obj/item/weapon/shield/riot/marine = 6,
 			/obj/item/weapon/powerfist = -1,
-			/obj/item/weapon/throwing_knife = -1,
+			/obj/item/stack/throwing_knife = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
 			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
@@ -244,7 +171,7 @@
 		SEASONAL_GUNS = "Seasonal",
 	)
 
-/obj/machinery/vending/marine/shared/hvh
+/obj/machinery/vending/weapon/hvh
 
 	contraband = list(/obj/item/explosive/grenade/smokebomb = 50)
 
@@ -254,12 +181,16 @@
 			/obj/item/ammo_magazine/rifle/standard_assaultrifle = -1,
 			/obj/item/weapon/gun/rifle/standard_carbine = -1,
 			/obj/item/ammo_magazine/rifle/standard_carbine = -1,
+			/obj/item/weapon/gun/rifle/standard_skirmishrifle = -1,
+			/obj/item/ammo_magazine/rifle/standard_skirmishrifle = -1,
 			/obj/item/weapon/gun/rifle/tx11/scopeless = -1,
 			/obj/item/ammo_magazine/rifle/tx11 = -1,
 		),
 		"Energy Weapons" = list(
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
 			/obj/item/cell/lasgun/lasrifle/marine = -1,
 		),
@@ -271,6 +202,32 @@
 			/obj/item/weapon/gun/smg/ppsh = -1,
 			/obj/item/ammo_magazine/smg/ppsh = -1,
 			/obj/item/ammo_magazine/smg/ppsh/extended = -1,
+		),
+		"Marksman" = list(
+			/obj/item/weapon/gun/rifle/chambered = -1,
+			/obj/item/ammo_magazine/rifle/chamberedrifle = -1,
+			/obj/item/weapon/gun/shotgun/pump/bolt = -1,
+			/obj/item/ammo_magazine/rifle/bolt = -1,
+		),
+		"Shotgun" = list(
+			/obj/item/weapon/gun/shotgun/pump/t35 = -1,
+			/obj/item/weapon/gun/shotgun/combat/standardmarine = -1,
+			/obj/item/weapon/gun/shotgun/combat = -1,
+			/obj/item/weapon/gun/shotgun/pump/cmb = -1,
+			/obj/item/weapon/gun/shotgun/double/marine = -1,
+			/obj/item/storage/belt/gun/ts34/full = -1,
+			/obj/item/ammo_magazine/shotgun/buckshot = -1,
+			/obj/item/ammo_magazine/shotgun/flechette = -1,
+			/obj/item/weapon/gun/rifle/standard_autoshotgun = -1,
+			/obj/item/ammo_magazine/rifle/tx15_flechette = -1,
+		),
+		"Machinegun" = list(
+			/obj/item/weapon/gun/rifle/standard_lmg = -1,
+			/obj/item/ammo_magazine/standard_lmg = -1,
+			/obj/item/weapon/gun/rifle/standard_gpmg = -1,
+			/obj/item/ammo_magazine/standard_gpmg = -1,
+			/obj/item/weapon/gun/standard_mmg = 5,
+			/obj/item/ammo_magazine/standard_mmg = -1,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,
@@ -287,13 +244,19 @@
 			/obj/item/ammo_magazine/pistol/plasma_pistol = -1,
 		),
 		"Specialized" = list(
+			/obj/item/weapon/gun/grenade_launcher/multinade_launcher = -1,
+			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
+			/obj/item/weapon/gun/heavymachinegun = 1,
+			/obj/item/ammo_magazine/heavymachinegun = 4,
+			/obj/item/storage/box/recoilless_system = 2,
 			/obj/item/weapon/gun/flamer/big_flamer/marinestandard = 4,
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/ammo_magazine/flamer_tank/large = 20,
 			/obj/item/ammo_magazine/flamer_tank = 20,
 			/obj/item/weapon/shield/riot/marine = 6,
 			/obj/item/weapon/powerfist = -1,
-			/obj/item/weapon/throwing_knife = -1,
+			/obj/item/stack/throwing_knife = -1,
+			/obj/item/weapon/twohanded/spear/tactical = -1,
 			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
 		"Grenades" = list(
@@ -332,23 +295,33 @@
 
 		),
 		"Boxes" = list(
-		/obj/item/ammo_magazine/packet/p9mm = 100,
-		/obj/item/ammo_magazine/packet/acp = 100,
-		/obj/item/ammo_magazine/packet/magnum = 100,
-		/obj/item/ammo_magazine/packet/p10x24mm = 100,
-		/obj/item/ammo_magazine/packet/p10x26mm = 100,
-		/obj/item/ammo_magazine/packet/p10x27mm = 100,
-		/obj/item/ammo_magazine/packet/p492x34mm = 100,
-		/obj/item/storage/box/visual/magazine = 30,
-		/obj/item/storage/box/visual/grenade = 10,
+			/obj/item/ammo_magazine/packet/p9mm = 100,
+			/obj/item/ammo_magazine/packet/acp = 100,
+			/obj/item/ammo_magazine/packet/magnum = 100,
+			/obj/item/ammo_magazine/packet/p10x24mm = 100,
+			/obj/item/ammo_magazine/packet/p10x26mm = 100,
+			/obj/item/ammo_magazine/packet/p10x27mm = 100,
+			/obj/item/ammo_magazine/packet/p492x34mm = 100,
+			/obj/item/storage/box/visual/magazine = 30,
+			/obj/item/storage/box/visual/grenade = 10,
+		),
+		"Utility" = list(
+			/obj/item/flashlight/combat = -1,
+			/obj/item/attachable/bayonetknife = -1,
+			/obj/item/weapon/combat_knife = -1,
+			/obj/item/binoculars = -1,
+			/obj/item/compass = -1,
+			/obj/item/assembly/signaler = 20,
+			/obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine = -1,
+			/obj/item/jetpack_marine = 3,
 		),
 	)
 
-/obj/machinery/vending/marine/shared/hvh/team_one
+/obj/machinery/vending/weapon/hvh/team_one
 
-/obj/machinery/vending/marine/shared/hvh/team_two
+/obj/machinery/vending/weapon/hvh/team_two
 
-/obj/machinery/vending/marine/shared/cigarette
+/obj/machinery/vending/cigarette
 	name = "cigarette machine" //OCD had to be uppercase to look nice with the new formating
 	desc = "A specialized vending machine designed to contribute to your slow and uncomfortable death."
 	product_slogans = "There's no better time to start smokin'.;\
@@ -368,6 +341,8 @@
 	icon_state = "cigs"
 	icon_vend = null
 	icon_deny = null
+	wrenchable = FALSE
+	isshared = TRUE
 	products = list(
 		/obj/item/storage/fancy/cigarettes/luckystars = 50,
 		/obj/item/storage/fancy/chemrettes = 30,
@@ -380,7 +355,7 @@
 	premium = list(/obj/item/storage/fancy/cigar = 25)
 	seasonal_items = list()
 
-/obj/machinery/vending/marine/shared/cigarette/colony
+/obj/machinery/vending/cigarette/colony
 	product_slogans = "Koorlander Gold, for the refined palate.;Lady Fingers, for the dainty smoker.;Lady Fingers, treat your palete with pink!;The big blue K means a cool fresh day!;For the taste that cools your mood, look for the big blue K!;Refined smokers go for Gold!;Lady Fingers are preferred by women who appreciate a cool smoke.;Lady Fingers are the number one cigarette this side of Gateway!;The tobacco connoisseur prefers Koorlander Gold.;For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;The Colonial Administration Bureau would like to remind you that smoking kills."
 	product_ads = "For the taste that cools your mood, look for the big blue K!;Refined smokers go for Gold!;Lady Fingers are preferred by women who appreciate a cool smoke.;Lady Fingers are the number one cigarette this side of Gateway!;The tobacco connoisseur prefers Koorlander Gold.;For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;The Colonial Administration Bureau would like to remind you that smoking kills."
 	products = list(
@@ -390,7 +365,7 @@
 		/obj/item/tool/lighter/random = 20,
 	)
 
-/obj/machinery/vending/marine/cargo_supply
+/obj/machinery/vending/cargo_supply
 	name = "\improper Operational Supplies Vendor"
 	desc = "A large vendor for dispensing specialty and bulk supplies. Restricted to cargo personnel only."
 	icon_state = "synth"
@@ -438,6 +413,8 @@
 			/obj/item/storage/box/visual/magazine/compact/standard_machinepistol/full = 1,
 			/obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/full = 1,
 			/obj/item/storage/box/visual/magazine/compact/standard_carbine/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/martini/full = 1,
 			/obj/item/storage/box/visual/magazine/compact/tx11/full = 1,
 			/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full = 1,
 			/obj/item/storage/box/visual/magazine/compact/tx15/flechette/full = 1,
@@ -450,7 +427,7 @@
 		)
 	)
 
-/obj/machinery/vending/marine/cargo_supply/hvh
+/obj/machinery/vending/cargo_supply/hvh
 	products = list(
 		"Surplus Special Equipment" = list(
 			/obj/item/bodybag/tarp = 2,
@@ -479,6 +456,7 @@
 			/obj/item/storage/box/visual/magazine/compact/standard_machinepistol/full = 1,
 			/obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/full = 1,
 			/obj/item/storage/box/visual/magazine/compact/standard_carbine/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle/full = 1,
 			/obj/item/storage/box/visual/magazine/compact/tx11/full = 1,
 			/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full = 1,
 			/obj/item/storage/box/visual/magazine/compact/standard_dmr/full = 1,
@@ -489,7 +467,7 @@
 		)
 	)
 
-/obj/machinery/vending/marine/cargo_supply/hvh/rebel
+/obj/machinery/vending/cargo_supply/hvh/rebel
 	req_one_access = list(ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_LOGISTICS_REBEL)
 
 /obj/machinery/vending/lasgun
@@ -758,7 +736,6 @@
 	icon_state = "engiprep"
 	icon_deny = "engiprep-deny"
 	wrenchable = FALSE
-	tokensupport = TOKEN_ENGI
 
 	products = list(
 		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
@@ -935,6 +912,7 @@
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
 		"Clothing" = list(
+			/obj/item/clothing/under/marine = -1,
 			/obj/item/clothing/under/marine/standard =-1,
 			/obj/item/clothing/under/marine/camo =-1,
 			/obj/item/clothing/under/marine/camo/desert =-1,
@@ -1030,7 +1008,7 @@
 
 	prices = list()
 
-/obj/machinery/vending/marine/dress_supply
+/obj/machinery/vending/dress_supply
 	name = "\improper TerraGovTech dress uniform vendor"
 	desc = "A automated rack hooked up to a colossal storage of dress uniforms."
 	icon_state = "marineuniform"
@@ -1038,6 +1016,8 @@
 	icon_deny = "marineuniform"
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
 	product_ads = "Hey! You! Stop looking like a turtle and start looking like a TRUE soldier!;Dress whites, fresh off the ironing board!;Why kill in armor when you can kill in style?;These uniforms are so sharp you'd cut yourself just looking at them!"
+	wrenchable = FALSE
+	isshared = TRUE
 	products = list(
 		/obj/item/clothing/under/whites = -1,
 		/obj/item/clothing/head/white_dress = -1,

@@ -42,8 +42,7 @@
 	if(!emote)
 		return
 
-	for(var/i in GLOB.ai_status_displays)
-		var/obj/machinery/status_display/ai/SD = i
+	for(var/obj/machinery/status_display/ai/SD AS in GLOB.ai_status_displays)
 		SD.emotion = emote
 		SD.update()
 

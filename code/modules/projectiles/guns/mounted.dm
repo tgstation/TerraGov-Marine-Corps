@@ -1,10 +1,3 @@
-
-//I didnt know where else to put this, so Im bringing it from the deleted smartgun_mount.dm
-/obj/item/coin/marine/engineer
-	name = "marine engineer support token"
-	desc = "Insert this into a engineer vendor in order to access a support artillery weapon."
-	flags_token = TOKEN_ENGI
-
 ///box for storage of ammo and gun
 /obj/item/storage/box/tl102
 	name = "\improper TL-102 crate"
@@ -74,6 +67,7 @@
 
 	default_ammo_type = /obj/item/ammo_magazine/tl102/hsg_nest
 
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable/tl102/nest,
 	)
@@ -171,6 +165,7 @@
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/stock/irremoveable/t27,
 	)
 
 	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/t27)

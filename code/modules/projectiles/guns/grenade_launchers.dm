@@ -77,7 +77,12 @@ The Grenade Launchers
 	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
 	aim_slowdown = 1.2
-	attachable_allowed = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight, /obj/item/attachable/scope/mini, /obj/item/attachable/buildasentry)
+	attachable_allowed = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/stock/t70stock,
+	)
 	starting_attachment_types = list(/obj/item/attachable/stock/t70stock)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 11, "stock_y" = 12)
 	fire_delay = 1.2 SECONDS
@@ -112,7 +117,6 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/impact,
 		/obj/item/explosive/grenade/flare,
 	)
-
 
 /obj/item/weapon/gun/grenade_launcher/underslung/invisible
 	flags_attach_features = NONE

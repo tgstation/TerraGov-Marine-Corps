@@ -817,7 +817,6 @@
 	ability_name = "xeno spit"
 	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
 	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
-	plasma_cost = 10
 	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/xeno_spit/update_button_icon()
@@ -1094,7 +1093,7 @@
 ////////////////////
 /// Rally Hive
 ///////////////////
-/datum/action/xeno_action/activable/rally_hive
+/datum/action/xeno_action/rally_hive
 	name = "Rally Hive"
 	action_icon_state = "rally_hive"
 	mechanics_text = "Rallies the hive to a congregate at a target location, along with an arrow pointer. Gives the Hive your current health status. 60 second cooldown."
@@ -1105,9 +1104,7 @@
 	cooldown_timer = 60 SECONDS
 	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
 
-
-/datum/action/xeno_action/activable/rally_hive/use_ability()
-
+/datum/action/xeno_action/rally_hive/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 
 	xeno_message("Our leader [X] is rallying the hive to [AREACOORD_NO_Z(X.loc)]!", "xenoannounce", 6, X.hivenumber, FALSE, X, 'sound/voice/alien_distantroar_3.ogg',TRUE,null,/obj/screen/arrow/leader_tracker_arrow)
@@ -1119,7 +1116,7 @@
 	GLOB.round_statistics.xeno_rally_hive++ //statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_rally_hive")
 
-/datum/action/xeno_action/activable/rally_minion
+/datum/action/xeno_action/rally_minion
 	name = "Rally Minions"
 	action_icon_state = "rally_minions"
 	mechanics_text = "Rallies the minions around you, asking them to follow you if they don't have a leader already. 60 second cooldown."
@@ -1127,14 +1124,40 @@
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_RALLY_MINION
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	cooldown_timer = 60 SECONDS
+	cooldown_timer = 10 SECONDS
 	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
 
-/datum/action/xeno_action/activable/rally_minion/use_ability()
+/datum/action/xeno_action/rally_minion/action_activate()
 	succeed_activate()
 	add_cooldown()
 	owner.emote("roar")
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_MINION_RALLY, owner)
+	var/mob/living/carbon/xenomorph/xenoowner = owner
+	var/datum/action/xeno_action/set_agressivity/set_agressivity = xenoowner.actions_by_path[/datum/action/xeno_action/set_agressivity]
+	if(set_agressivity)
+		SEND_SIGNAL(owner, ESCORTING_ATOM_BEHAVIOUR_CHANGED, set_agressivity.minions_agressive) //New escorting ais should have the same behaviour as old one
+
+/datum/action/xeno_action/set_agressivity
+	name = "Set minions behavior"
+	action_icon_state = "minion_agressive"
+	mechanics_text = "Order the minions escorting you to be either agressive or passive."
+	ability_name = "set_agressivity"
+	plasma_cost = 0
+	keybind_signal = COMSIG_XENOABILITY_MINION_BEHAVIOUR
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
+	///If minions should be agressive
+	var/minions_agressive = TRUE
+
+/datum/action/xeno_action/set_agressivity/action_activate()
+	minions_agressive = !minions_agressive
+	SEND_SIGNAL(owner, ESCORTING_ATOM_BEHAVIOUR_CHANGED, minions_agressive)
+	update_button_icon()
+
+/datum/action/xeno_action/set_agressivity/update_button_icon()
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/actions.dmi', button, minions_agressive ? "minion_agressive" : "minion_passive")
+	return ..()
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1149,7 +1172,7 @@
 	for(var/action_datum in xeno_abilities)
 		qdel(action_datum)
 
-/datum/action/xeno_action/activable/rally_hive/hivemind //Halve the cooldown for Hiveminds as their relative omnipresence means they can actually make use of this lower cooldown.
+/datum/action/xeno_action/rally_hive/hivemind //Halve the cooldown for Hiveminds as their relative omnipresence means they can actually make use of this lower cooldown.
 	cooldown_timer = 30 SECONDS
 
 //*********

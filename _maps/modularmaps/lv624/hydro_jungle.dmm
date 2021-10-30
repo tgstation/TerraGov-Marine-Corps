@@ -96,8 +96,9 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "iF" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/jungle/vines,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
@@ -135,23 +136,19 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "ly" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/jungle/vines,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "mb" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/compound/ne)
-"nd" = (
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle7)
-"oY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
+"nd" = (
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle7)
 "qe" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/jungle/vines,
@@ -179,7 +176,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "vT" = (
@@ -548,7 +544,7 @@ Vq
 WT
 Ix
 Ix
-vS
+iF
 Ix
 xw
 jf
@@ -570,7 +566,7 @@ in
 Xh
 nd
 Ix
-ly
+vS
 uA
 Lr
 XQ
@@ -592,7 +588,7 @@ Vq
 la
 CE
 QV
-ly
+vS
 Ix
 Lr
 QG
@@ -614,7 +610,7 @@ WC
 Vq
 Vq
 da
-ly
+vS
 yi
 Xf
 MX
@@ -636,7 +632,7 @@ Vq
 Vq
 Fh
 da
-ly
+vS
 Ix
 GW
 jf
@@ -658,7 +654,7 @@ XX
 Vq
 Vq
 da
-ly
+vS
 Ix
 eo
 jf
@@ -680,7 +676,7 @@ CJ
 Vq
 Vq
 yd
-ly
+vS
 Ix
 Lr
 RS
@@ -702,7 +698,7 @@ ZF
 Vq
 Vq
 yd
-ly
+vS
 Ix
 Lr
 jf
@@ -724,7 +720,7 @@ kC
 Vq
 WC
 yd
-ly
+vS
 Ix
 QD
 jf
@@ -768,7 +764,7 @@ Vq
 UQ
 Is
 nd
-ly
+vS
 Ix
 Ix
 JB
@@ -795,14 +791,14 @@ Js
 Aq
 Js
 Js
-iF
+ly
 Js
 JU
 Bz
 Js
 Js
 Js
-oY
+mb
 Vg
 "}
 (13,1,1) = {"
@@ -971,7 +967,7 @@ CE
 xR
 Vy
 Mk
-mb
+Mk
 Mk
 vT
 Sx

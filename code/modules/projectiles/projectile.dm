@@ -17,6 +17,9 @@
 #define BULLET_FEEDBACK_SHRAPNEL (1<<4)
 #define BULLET_FEEDBACK_IMMUNE (1<<5)
 
+#define PROJECTILE_HIT 1
+#define PROJECTILE_FROZEN 2
+
 #define DAMAGE_REDUCTION_COEFFICIENT(armor) (0.1/((armor*armor*0.0001)+0.1)) //Armor offers diminishing returns.
 
 //The actual bullet objects.
@@ -284,14 +287,21 @@
 
 	var/first_move = min(projectile_speed, 1)
 	var/first_moves = projectile_speed
-	if(projectile_batch_move(first_move)) //Hit on first movement.
-		qdel(src)
-		return
+	switch(projectile_batch_move(first_move))
+		if(PROJECTILE_HIT) //Hit on first movement.
+			qdel(src)
+			return
+		if(PROJECTILE_FROZEN)
+			invisibility = 0
+			return
 	invisibility = 0 //Let there be light (visibility).
 	first_moves -= first_move
-	if(first_moves && projectile_batch_move(first_moves)) //First movement batch happens on the same tick.
-		qdel(src)
-		return
+	switch(first_moves && projectile_batch_move(first_moves))
+		if(PROJECTILE_HIT) //First movement batch happens on the same tick.
+			qdel(src)
+			return
+		if(PROJECTILE_FROZEN)
+			return
 
 	if(!suppress_light)
 		set_light_color(ammo.bullet_color)
@@ -308,9 +318,12 @@
 	if(!required_moves)
 		return //Slowpoke. Maybe next tick.
 
-	if(projectile_batch_move(required_moves))
-		qdel(src)
-		return PROCESS_KILL
+	switch(projectile_batch_move(required_moves))
+		if(PROJECTILE_HIT) //Hit on first movement.
+			qdel(src)
+			return PROCESS_KILL
+		if(PROJECTILE_FROZEN)
+			return PROCESS_KILL
 
 	if(ammo.flags_ammo_behavior & SPECIAL_PROCESS)
 		ammo.ammo_process(src, damage)
@@ -364,7 +377,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if(ISDIAGONALDIR(movement_dir)) //Diagonal case. We need to check the turf to cross to get there.
 			if(!x_offset || !y_offset) //Unless a coder screws up this won't happen. Buf if they do it will cause an infinite processing loop due to division by zero, so better safe than sorry.
 				stack_trace("projectile_batch_move called with diagonal movement_dir and offset-lacking. x_offset: [x_offset], y_offset: [y_offset].")
-				return TRUE
+				return PROJECTILE_HIT
 			var/turf/turf_crossed_by
 			var/pixel_moves_until_crossing_x_border
 			var/pixel_moves_until_crossing_y_border
@@ -435,6 +448,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 					y_pixel_dist_travelled += pixel_moves_until_crossing_y_border * y_offset
 				end_of_movement = i
 				break
+			if(HAS_TRAIT(turf_crossed_by, TRAIT_TURF_FREEZE_BULLET))
+				RegisterSignal(turf_crossed_by, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
+				permutated.Cut()
+				STOP_PROCESSING(SSprojectiles, src)
+				return PROJECTILE_FROZEN
 			if(turf_crossed_by == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
 				last_processed_turf = turf_crossed_by
 				ammo.on_hit_turf(turf_crossed_by, src)
@@ -484,6 +502,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if(scan_a_turf(next_turf, movement_dir))
 			end_of_movement = i
 			break
+		if(HAS_TRAIT(next_turf, TRAIT_TURF_FREEZE_BULLET))
+			RegisterSignal(next_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
+			permutated.Cut()
+			return PROJECTILE_FROZEN
 		if(next_turf == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
 			ammo.on_hit_turf(next_turf, src)
 			end_of_movement = i
@@ -495,7 +517,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(end_of_movement && last_processed_turf == loc)
 		last_projectile_move = world.time
-		return TRUE
+		return PROJECTILE_HIT
 
 	apx += x_pixel_dist_travelled
 	apy += y_pixel_dist_travelled
@@ -517,7 +539,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	last_projectile_move = world.time
 	if(end_of_movement) //We hit something ...probably!
-		return TRUE
+		return PROJECTILE_HIT
 	return FALSE //No hits ...yet!
 
 /obj/projectile/proc/scan_a_turf(turf/turf_to_scan, cardinal_move)
@@ -548,6 +570,12 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return TRUE
 
 	return FALSE
+
+///Signal handler to tell the projectile to move again
+/obj/projectile/proc/resume_move(datum/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
+	START_PROCESSING(SSprojectiles, src)
 
 
 //----------------------------------------------------------
@@ -911,14 +939,18 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	x_offset = round(sin(dir_angle), 0.01)
 	y_offset = round(cos(dir_angle), 0.01)
-	projectile_batch_move()
+	if(projectile_batch_move() == PROJECTILE_FROZEN)
+		permutated.Cut()
+		var/atom/movable/hitscan_projectile_effect/laser_effect = new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, effect_icon)
+		RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
+		laser_effect.RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, /atom/movable/hitscan_projectile_effect.proc/remove_effect)
+		return
 	qdel(src)
 
-/obj/projectile/hitscan/projectile_batch_move()
+/obj/projectile/hitscan/projectile_batch_move(first_projectile = TRUE)
 	var/end_of_movement = FALSE //In batch moves this loop, only if the projectile stopped.
 	var/turf/last_processed_turf = loc
-	var/list/obj/effect/laser_effects = list()
-	var/first_projectile = TRUE
+	var/list/atom/movable/hitscan_projectile_effect/laser_effects = list()
 	while(!end_of_movement)
 		distance_travelled++
 		//Here we take the projectile's absolute pixel coordinate + the travelled distance and use PROJ_ABS_PIXEL_TO_TURF to first convert it into tile coordinates, and then use those to locate the turf.
@@ -1003,6 +1035,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				ammo.on_hit_turf(turf_crossed_by, src)
 				end_of_movement = TRUE
 				break
+			if(HAS_TRAIT(turf_crossed_by, TRAIT_TURF_FREEZE_BULLET))
+				QDEL_LIST_IN(laser_effects, 1)
+				forceMove(turf_crossed_by)
+				return PROJECTILE_FROZEN
 			for(var/atom/movable/thing_to_uncross AS in uncross_scheduled) //We are leaving turf_crossed_by now.
 				if(QDELETED(thing_to_uncross))
 					continue
@@ -1038,6 +1074,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			ammo.do_at_max_range(src)
 			end_of_movement = TRUE
 			break
+		if(HAS_TRAIT(next_turf, TRAIT_TURF_FREEZE_BULLET))
+			QDEL_LIST_IN(laser_effects, 1)
+			forceMove(next_turf)
+			return PROJECTILE_FROZEN
 		if(first_projectile)
 			laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, "muzzle_"+effect_icon)
 			first_projectile = FALSE
@@ -1054,6 +1094,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, "muzzle_"+effect_icon)
 	laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, "impact_"+effect_icon)
 	QDEL_LIST_IN(laser_effects, 1)
+
+/obj/projectile/hitscan/resume_move(datum/source)
+	UnregisterSignal(source, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
+	projectile_batch_move(FALSE)
 
 /mob/living/carbon/human/bullet_act(obj/projectile/proj)
 	. = ..()
@@ -1301,6 +1345,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/proc/get_sunder()
 	return 0
+
+#undef PROJECTILE_HIT
+#undef PROJECTILE_FROZEN
 
 #undef BULLET_FEEDBACK_PEN
 #undef BULLET_FEEDBACK_SOAK

@@ -14,7 +14,7 @@
 	caliber = CALIBER_FUEL_THICK //Ultra Thick Napthal Fuel, from the lore book.
 	flags_magazine = NONE
 	icon_state_mini = "tank"
-	
+
 	default_ammo = /datum/ammo/flamethrower
 
 /obj/item/ammo_magazine/flamer_tank/mini
@@ -26,6 +26,7 @@
 	current_rounds = 25
 	max_rounds = 25
 	gun_type = /obj/item/weapon/gun/flamer/mini_flamer
+	icon_state_mini = "tank_orange_mini"
 
 /obj/item/ammo_magazine/flamer_tank/afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of ammo.
 
@@ -77,10 +78,10 @@
 	current_rounds = 500
 	reload_delay = 1 SECONDS
 	gun_type = /obj/item/weapon/gun/flamer
-	caliber = CALIBER_FUEL_THICK 
-	flags_magazine = MAGAZINE_WORN 
+	caliber = CALIBER_FUEL_THICK
+	flags_magazine = MAGAZINE_WORN
 	icon_state_mini = "tank"
-	
+
 	default_ammo = /datum/ammo/flamethrower
 
 /obj/item/ammo_magazine/flamer_tank/backtank/X

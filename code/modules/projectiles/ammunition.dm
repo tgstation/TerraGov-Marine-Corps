@@ -40,6 +40,15 @@
 	///the default mag icon state.
 	var/base_mag_icon
 
+	//Stats to modify on the gun, just like the attachments do, only has used ones add more as you need.
+	var/scatter_mod 	= 0
+	///Increases or decreases scatter chance but for onehanded firing.
+	var/scatter_unwielded_mod = 0
+	///Changes the slowdown amount when wielding a weapon by this value.
+	var/aim_speed_mod	= 0
+	///How long ADS takes (time before firing)
+	var/wield_delay_mod	= 0
+
 /obj/item/ammo_magazine/Initialize(mapload, spawn_empty)
 	. = ..()
 	base_mag_icon = icon_state
@@ -109,7 +118,20 @@
 		return
 	attackby(gun.active_attachable, user, params)
 
-///Generic proc to transfer ammo between ammo mags. Can work for anything, mags, handfuls, etc.
+/obj/item/ammo_magazine/proc/on_inserted(obj/item/weapon/gun/master_gun)
+	master_gun.scatter						+= scatter_mod
+	master_gun.scatter_unwielded			+= scatter_unwielded_mod
+	master_gun.aim_slowdown					+= aim_speed_mod
+	master_gun.wield_delay					+= wield_delay_mod
+
+
+/obj/item/ammo_magazine/proc/on_removed(obj/item/weapon/gun/master_gun)
+	master_gun.scatter						-= scatter_mod
+	master_gun.scatter_unwielded			-= scatter_unwielded_mod
+	master_gun.aim_slowdown					-= aim_speed_mod
+	master_gun.wield_delay					-= wield_delay_mod
+
+//Generic proc to transfer ammo between ammo mags. Can work for anything, mags, handfuls, etc.
 /obj/item/ammo_magazine/proc/transfer_ammo(obj/item/ammo_magazine/source, mob/user, transfer_amount = 1)
 	if(current_rounds >= max_rounds) //Does the mag actually need reloading?
 		to_chat(user, span_notice("[src] is already full."))

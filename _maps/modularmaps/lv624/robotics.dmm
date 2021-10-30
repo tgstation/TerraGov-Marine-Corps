@@ -60,6 +60,16 @@
 	},
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
+"iP" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/lazarus/robotics)
 "jg" = (
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
@@ -114,7 +124,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/ai_node,
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
@@ -130,6 +139,7 @@
 /area/lv624/lazarus/robotics)
 "qA" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/ai_node,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -211,7 +221,6 @@
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "BJ" = (
-/obj/effect/ai_node,
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
@@ -260,7 +269,6 @@
 "GE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/ai_node,
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
@@ -286,7 +294,6 @@
 "Ne" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/ai_node,
 /turf/open/floor/plating/warning,
 /area/lv624/lazarus/robotics)
 "Ny" = (
@@ -331,6 +338,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/lazarus/robotics)
+"TM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -502,7 +517,7 @@ Dy
 (8,1,1) = {"
 Gz
 GE
-jP
+TM
 jP
 jP
 jP
@@ -512,7 +527,7 @@ jP
 jP
 jP
 jP
-jP
+TM
 Ne
 Gz
 "}
@@ -575,7 +590,7 @@ hh
 hh
 CR
 jg
-TB
+iP
 PQ
 CR
 hh

@@ -150,7 +150,7 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	hardness = 1.5
 	layer = RESIN_STRUCTURE_LAYER
-	max_integrity = 50
+	max_integrity = 100
 	var/close_delay = 10 SECONDS
 
 	tiles_with = list(/turf/closed, /obj/structure/mineral_door/resin)

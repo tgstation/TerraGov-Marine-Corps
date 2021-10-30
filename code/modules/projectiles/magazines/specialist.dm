@@ -285,7 +285,7 @@
 	max_rounds = 70
 	w_class = WEIGHT_CLASS_NORMAL
 	gun_type = /obj/item/weapon/gun/rifle/pepperball
-	icon_state_mini = "mag_rifle"
+	icon_state_mini = "mag_pepperball"
 
 /obj/item/ammo_magazine/minigun_powerpack
 	name = "\improper T-100 powerpack"
