@@ -203,7 +203,7 @@
 	for (var/obj/item AS in earned_rewards)
 		item.forceMove(drop_loc)
 
-
+///Generates rewards using the resource's rarity modifiers and a list of potential rewards
 /obj/machinery/researchcomp/proc/generate_research_rewards_list(obj/item/research_resource/resource, list/potential_rewards, list/earned_rewards)
 	for (var/tier in reward_tiers)
 		var/tier_prob = resource.reward_probs[tier]
