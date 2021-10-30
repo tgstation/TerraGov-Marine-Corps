@@ -348,7 +348,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "be" = (
@@ -416,7 +416,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bt" = (
@@ -876,7 +876,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "RS" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 

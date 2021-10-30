@@ -11,6 +11,7 @@
 	default_ammo = /datum/ammo/bullet/machinegun
 	gun_type = /obj/item/weapon/gun/tl102
 	reload_delay = 5 SECONDS
+	icon_state_mini = "mag_tl102"
 
 ///This is the one that comes in the mapbound version of the TL-102, it has a stupid amount of ammo. Even more than the ammo counter can display.
 /obj/item/ammo_magazine/tl102/hsg_nest

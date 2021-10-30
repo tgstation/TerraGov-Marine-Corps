@@ -2532,7 +2532,7 @@
 "amG" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
 "amI" = (
@@ -2638,7 +2638,7 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/sulaco/engineering)
 "anG" = (
-/obj/machinery/vending/marine/cargo_supply,
+/obj/machinery/vending/cargo_supply,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "anI" = (
@@ -2897,7 +2897,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "apa" = (
@@ -4990,7 +4990,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "aym" = (
@@ -6919,7 +6919,7 @@
 /area/sulaco/hallway/central_hall3)
 "aIn" = (
 /obj/machinery/light,
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
 "aIo" = (
@@ -7203,7 +7203,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "aJW" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
 "aKb" = (
@@ -10326,7 +10326,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 8
 	},
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "bHC" = (
@@ -12958,7 +12958,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "gHU" = (
@@ -15248,7 +15248,7 @@
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/hangar/storage)
 "kOQ" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /turf/open/floor/prison/green{
 	dir = 4
 	},
@@ -16635,7 +16635,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "nfk" = (
@@ -17779,7 +17779,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "oTn" = (
@@ -19475,7 +19475,7 @@
 /turf/open/floor/prison,
 /area/sulaco/engineering/lower_engineering)
 "rQp" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
 "rQB" = (
@@ -19809,7 +19809,7 @@
 /turf/open/floor/cult,
 /area/sulaco/morgue)
 "stG" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "stV" = (
@@ -20324,7 +20324,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "teI" = (
@@ -21156,7 +21156,7 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
 "uDI" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
 "uFe" = (

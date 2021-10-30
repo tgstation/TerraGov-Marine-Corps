@@ -7730,7 +7730,7 @@
 	},
 /area/ice_colony/exterior/underground/caves/ice_w)
 "aBF" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor/tile/dark/blue2{
 	dir = 5
 	},
@@ -9704,7 +9704,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command/control)
 "aHz" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
 	},
@@ -10006,7 +10006,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
 "aIx" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
 "aIy" = (
@@ -11599,7 +11599,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/checkpoint)
 "aNV" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/checkpoint)
 "aNW" = (
@@ -12764,7 +12764,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/beta)
 "aRx" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
@@ -13248,7 +13248,7 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aSW" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -19489,7 +19489,7 @@
 	},
 /area/ice_colony/underground/hallway/north_west)
 "boo" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
 	},
@@ -24208,7 +24208,7 @@
 	},
 /area/ice_colony/underground/security/hallway)
 "bDw" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor/tile/dark/red2{
 	dir = 5
 	},
@@ -26036,7 +26036,7 @@
 /turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/command/checkpoint)
 "bJd" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
 	},

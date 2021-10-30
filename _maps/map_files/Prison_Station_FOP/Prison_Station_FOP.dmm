@@ -17164,7 +17164,7 @@
 /turf/closed/wall/r_wall/prison,
 /area/prison/cellblock/lowsec/ne)
 "bao" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -43734,7 +43734,7 @@
 /turf/open/floor/plating,
 /area/prison/command/office)
 "kPu" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor/prison/darkred/full,
 /area/prison/monorail/east)
 "kQt" = (
@@ -45941,7 +45941,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hallway/entrance)
 "rzd" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -46976,7 +46976,7 @@
 /turf/open/floor/prison,
 /area/prison/hangar/main)
 "uQX" = (
-/obj/machinery/vending/marine/shared/cigarette/colony,
+/obj/machinery/vending/cigarette/colony,
 /turf/open/floor/prison,
 /area/prison/execution)
 "uRJ" = (

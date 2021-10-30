@@ -446,6 +446,7 @@
 	var/mob/dragged = dropping
 	dragged.show_inv(user)
 
+
 /mob/living/carbon/xenomorph/MouseDrop_T(atom/dropping, atom/user)
 	return
 
