@@ -1,3 +1,4 @@
+///Should return a /datum/export_report if overriden
 /atom/movable/proc/supply_export(faction_selling)
 	return 0
 

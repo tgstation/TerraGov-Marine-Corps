@@ -1,4 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aG" = (
+/obj/machinery/firealarm,
+/obj/machinery/vending/cigarette/colony,
+/turf/open/floor/tile/blue/whiteblue,
+/area/lv624/lazarus/internal_affairs)
 "aK" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
@@ -162,6 +167,10 @@
 "lJ" = (
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
+"mT" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
 "no" = (
 /obj/structure/table/woodentable,
 /obj/machinery/computer/crew,
@@ -273,15 +282,6 @@
 "CI" = (
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
-"CY" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/blue/whiteblue{
-	dir = 8
-	},
-/area/lv624/lazarus/internal_affairs)
 "Dg" = (
 /obj/item/spacecash/c100{
 	pixel_x = -12
@@ -293,6 +293,15 @@
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 8
 	},
+/area/lv624/lazarus/internal_affairs)
+"Dj" = (
+/obj/machinery/door_control{
+	id = "secure_blast";
+	name = "Vault Access";
+	pixel_x = -25
+	},
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "EF" = (
 /turf/open/floor/tile/blue/whiteblue,
@@ -421,11 +430,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/internal_affairs)
-"LM" = (
-/obj/machinery/firealarm,
-/obj/machinery/vending/cigarette/colony,
-/turf/open/floor/tile/blue/whiteblue,
-/area/lv624/lazarus/internal_affairs)
 "MR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -444,14 +448,6 @@
 	},
 /turf/open/floor/podhatch/floor,
 /area/lv624/lazarus/internal_affairs)
-"NK" = (
-/obj/machinery/door_control{
-	id = "secure_blast";
-	name = "Vault Access";
-	pixel_x = -25
-	},
-/turf/open/floor/wood,
-/area/lv624/lazarus/internal_affairs)
 "NN" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/tile/blue/whiteblue{
@@ -463,6 +459,16 @@
 /obj/item/book/manual/chef_recipes,
 /obj/item/book/manual/nuclear,
 /turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"Oy" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/obj/structure/cable,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
+	},
 /area/lv624/lazarus/internal_affairs)
 "Pg" = (
 /turf/open/floor/tile/blue/whiteblue{
@@ -677,7 +683,7 @@ Hq
 Hq
 Vu
 Hx
-CI
+mT
 sS
 it
 EF
@@ -685,7 +691,7 @@ ky
 YP
 it
 CI
-CI
+mT
 no
 Vu
 Hq
@@ -765,7 +771,7 @@ gU
 hU
 hU
 hU
-CY
+Oy
 eE
 if
 hU
@@ -782,7 +788,7 @@ Xd
 WH
 Xd
 Xd
-LM
+aG
 MR
 Wx
 Xd
@@ -803,7 +809,7 @@ Qi
 xH
 jv
 Xd
-NK
+Dj
 CI
 cf
 Vu
@@ -813,7 +819,7 @@ Hq
 Hq
 Vu
 rO
-CI
+mT
 CI
 it
 EF
