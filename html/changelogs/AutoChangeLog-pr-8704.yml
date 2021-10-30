@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - admin: "Revert procs tab moving changes (spatial agent back in debug)"
-  - admin: "Fix log verbs not removed when deadmining"
