@@ -82,8 +82,7 @@
 
 ///Creates the description of usable resources for starting research
 /obj/machinery/researchcomp/proc/construct_insertable_resources_desc()
-	allowed_resources_desc = ""
-	allowed_resources_desc += "<br><b>Insertable material:</b><br>"
+	allowed_resources_desc = "<br><b>Insertable material:</b><br>"
 	for(var/obj/resource AS in typesof(/obj/item/research_resource))
 		allowed_resources_desc += " >[initial(resource.name)]<br>"
 
