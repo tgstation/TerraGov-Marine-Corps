@@ -1,13 +1,5 @@
 /**
  * Excavation event subsystem
- *
- * Goes through a list of areas of a certain map and marks a random tile
- * from several random areas from a list for excavation.
- * - make the excavation-compatible area list be generated once on initialization
- * - make tool for excavation
- * - excavation tiles are marked on minimap
- * - an item (tool for excavation?) makes the excavation sites visible on the minimap
- * - performing an excavation rewards from a list of rewards (rewards datums?)
  */
 
 #define MAX_ACTIVE_EXCAVATIONS 10
