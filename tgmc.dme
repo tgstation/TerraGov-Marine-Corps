@@ -537,7 +537,6 @@
 #include "code\game\objects\effects\effect_system\particle_effects.dm"
 #include "code\game\objects\effects\effect_system\smoke.dm"
 #include "code\game\objects\effects\landmarks\corpsespawner.dm"
-#include "code\game\objects\effects\landmarks\excavation_site.dm"
 #include "code\game\objects\effects\landmarks\excavation_site_spawner.dm"
 #include "code\game\objects\effects\landmarks\itemspawner.dm"
 #include "code\game\objects\effects\landmarks\landmarks.dm"
