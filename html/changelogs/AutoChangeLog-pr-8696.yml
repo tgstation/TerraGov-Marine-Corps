@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "Mantis is faster"
+  - balance: "Mantis ravage have a 0.5 seconds of windup"
