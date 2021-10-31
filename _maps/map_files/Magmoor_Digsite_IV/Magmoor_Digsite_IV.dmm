@@ -2455,7 +2455,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/item/weapon/gun/pistol/m1911,
+/obj/item/weapon/gun/pistol/standard_heavypistol/m1911,
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/lobby)
 "cfc" = (
