@@ -144,8 +144,8 @@
 #define SILO_BASE_OUTPUT_PER_MARINE 0.035
 /// This is used to ponderate the number of silo, so to reduces the diminishing returns of having more and more silos
 #define SILO_OUTPUT_PONDERATION 1.75
-//Time (after round start) before siloless timer can start
-#define MINIMUM_TIME_SILO_LESS_COLLAPSE 45 MINUTES
+//Time (after shutters open) before siloless timer can start
+#define MINIMUM_TIME_SILO_LESS_COLLAPSE 20 MINUTES
 
 #define INFESTATION_MARINE_DEPLOYMENT 0
 #define INFESTATION_MARINE_CRASHING 1
