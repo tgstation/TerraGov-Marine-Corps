@@ -29803,8 +29803,8 @@
 /obj/structure/table/mainship,
 /obj/structure/cable,
 /obj/item/clothing/tie/horrible,
-/obj/item/weapon/gun/pistol/m1911/custom,
-/obj/item/ammo_magazine/pistol/m1911,
+/obj/item/weapon/gun/pistol/standard_heavypistol/m1911/custom,
+/obj/item/ammo_magazine/pistol/standard_heavypistol,
 /turf/open/floor/wood,
 /area/magmoor/command/office/main)
 "uLE" = (
