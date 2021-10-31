@@ -1,0 +1,7 @@
+author: "KrabSpider"
+delete-after: True
+changes: 
+  - balance: "Tones down the calc for headbutt charge stun to (charge speed x 30) instead of (charge speed x 60)"
+  - balance: "Bull speed per step on charge increase to 0.15 from 0.10 (~-2 speed at maximum charge)"
+  - balance: "The minimum steps for Bulls to initiate a charge is now 5 from 6."
+  - balance: "Bull plasma multiplier increased to 2 from 1.8"
