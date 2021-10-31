@@ -50,7 +50,7 @@
 		to_chat(user, "You need higher [skill_type] skill.")
 		return ..()
 
-	if(!do_after(user, RESEARCH_DELAY, TRUE, target_xeno, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
+	if(user.do_actions || !do_after(user, RESEARCH_DELAY, TRUE, target_xeno, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
 		return ..()
 
 	if(HAS_TRAIT(target_xeno, TRAIT_RESEARCHED))
