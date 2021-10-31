@@ -1454,6 +1454,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\castes\king\king.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\larva\castedatum_larva.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\larva\larva.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\mantis\abilities_mantis.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\mantis\castedatum_mantis.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\mantis\mantis.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\praetorian\abilities_praetorian.dm"
