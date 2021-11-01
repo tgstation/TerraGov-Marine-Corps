@@ -404,8 +404,15 @@
 	plasma_cost = 75
 	cooldown_timer = 60 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_SNATCH
+	target_flags = XABB_MOB_TARGET
 	///Mutable appearance of the stolen item
 	var/mutable_appearance/stolen_appearance
+	///A list of slot to check for items, in order of priority
+	var/static/list/slots_to_steal_from = list(
+		SLOT_S_STORE,
+		SLOT_BACK,
+		SLOT_SHOES,
+	)
 
 /datum/action/xeno_action/activable/snatch/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -424,12 +431,10 @@
 	var/obj/item/stolen_item = victim.get_active_held_item()
 	if(!stolen_item)
 		stolen_item = victim.get_inactive_held_item()
-		if(!stolen_item)
-			stolen_item = victim.get_item_by_slot(SLOT_S_STORE)
-			if(!stolen_item)
-				stolen_item = victim.get_item_by_slot(SLOT_BACK)
-				if(!stolen_item)
-					stolen_item = victim.get_item_by_slot(SLOT_SHOES)
+		for(var/slot in slots_to_steal_from)
+			stolen_item = victim.get_item_by_slot(slot)
+			if(stolen_item)
+				break
 	if(!stolen_item)
 		to_chat(owner, span_xenowarning("They are too poor, and have nothing to steal!"))
 		return fail_activate()
