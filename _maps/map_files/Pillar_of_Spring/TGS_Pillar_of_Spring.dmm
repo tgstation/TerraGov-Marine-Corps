@@ -115,10 +115,6 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
-"av" = (
-/obj/structure/dropship_equipment/fuel/fuel_enhancer,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
 "aw" = (
 /obj/structure/ship_ammo/rocket/widowmaker,
 /turf/open/floor/mainship/floor,
@@ -216,10 +212,6 @@
 	dir = 8
 	},
 /area/mainship/hallways/hangar/droppod)
-"aQ" = (
-/obj/structure/dropship_equipment/fuel/cooling_system,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
 "aR" = (
 /obj/item/clothing/head/warning_cone,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -479,7 +471,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/mainship/cargo/arrow,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bI" = (
 /obj/machinery/light,
@@ -2603,7 +2595,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
-/turf/open/floor/mainship/cargo/arrow,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "iD" = (
 /obj/structure/filingcabinet,
@@ -2797,6 +2789,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/dropship_equipment/operatingtable,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -3439,15 +3432,6 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/command/cic)
-"kY" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/structure/dropship_equipment/electronics/targeting_system,
-/turf/open/floor/mainship/orange{
-	dir = 8
-	},
-/area/mainship/hallways/hangar)
 "kZ" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
@@ -3704,15 +3688,6 @@
 /obj/machinery/computer/emails,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
-"lM" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/structure/dropship_equipment/mg_holder,
-/turf/open/floor/mainship/orange{
-	dir = 8
-	},
-/area/mainship/hallways/hangar)
 "lN" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3860,7 +3835,6 @@
 	dir = 8
 	},
 /obj/effect/decal/warning_stripes/thin,
-/obj/structure/dropship_equipment/operatingtable,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -11919,6 +11893,7 @@
 /obj/machinery/firealarm{
 	dir = 8
 	},
+/obj/structure/dropship_equipment/mg_holder,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -49499,7 +49474,7 @@ Pa
 as
 as
 as
-as
+ap
 aR
 VG
 ci
@@ -49756,7 +49731,7 @@ Pa
 al
 al
 at
-av
+aA
 iB
 KN
 xo
@@ -50013,7 +49988,7 @@ Pa
 al
 al
 at
-aQ
+aA
 bH
 VG
 ci
@@ -50270,7 +50245,7 @@ Pa
 aq
 aF
 aF
-aF
+ap
 rI
 VG
 Yb
@@ -50806,8 +50781,8 @@ aA
 bn
 ja
 ke
-kY
-lM
+ke
+ke
 mj
 Np
 az
