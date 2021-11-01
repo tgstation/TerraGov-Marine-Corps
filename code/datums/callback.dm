@@ -68,8 +68,9 @@
 	var/list/calling_arguments = length(args) > 2 ? args.Copy(3) : null
 
 	if (thingtocall == GLOBAL_PROC)
-		return call(proctocall)(arglist(calling_arguments))
-	return call(thingtocall, proctocall)(arglist(calling_arguments))
+		call(proctocall)(arglist(calling_arguments))
+	else
+		call(thingtocall, proctocall)(arglist(calling_arguments))
 
 /datum/callback/proc/Invoke(...)
 	if(!usr)
@@ -121,8 +122,8 @@
 	//if(datum_flags & DF_VAR_EDITED)
 	//	return WrapAdminProcCall(object, delegate, calling_arguments)
 	if (object == GLOBAL_PROC)
-		call(delegate)(arglist(calling_arguments))
-	call(object, delegate)(arglist(calling_arguments))
+		return call(delegate)(arglist(calling_arguments))
+	return call(object, delegate)(arglist(calling_arguments))
 
 
 /datum/callback_select

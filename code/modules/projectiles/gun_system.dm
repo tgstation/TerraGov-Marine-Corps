@@ -125,7 +125,7 @@
 	///Stored ammo datum. I changed the var name because it was really annoying to find specific cases of 'ammo' in a file full of guns and ammunition.
 	var/datum/ammo/ammo_datum_type = /datum/ammo/bullet
 	///Default magazine to spawn with.
-	var/obj/item/ammo_magazine/default_ammo_type = null
+	var/default_ammo_type = null
 	///List of allowed specific types. If trying to reload with something in this list it will succeed. This is mainly for use in internal magazine weapons or scenarios where you do not want to inclue a whole subtype.
 	var/list/allowed_ammo_types = list(
 		/obj/item/ammo_magazine,
