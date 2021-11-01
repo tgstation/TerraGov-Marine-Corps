@@ -15,11 +15,8 @@
 	if(notransform) //If we're in true stasis don't bother processing life
 		return
 
-	if(stat == DEAD) //Dead, nothing else to do but this.
-		if(plasma_stored && !(xeno_caste.caste_flags & CASTE_DECAY_PROOF))
-			handle_decay()
-		else
-			SSmobs.stop_processing(src)
+	if(stat == DEAD)
+		SSmobs.stop_processing(src)
 		return
 	if(stat == UNCONSCIOUS)
 		if(is_zoomed)

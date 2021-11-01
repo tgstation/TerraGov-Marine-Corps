@@ -1,0 +1,4 @@
+author: "David-Stormwell"
+delete-after: True
+changes: 
+  - balance: "Decreased King's health by a average of -100, slashing increase to a max of 30 at ancient."

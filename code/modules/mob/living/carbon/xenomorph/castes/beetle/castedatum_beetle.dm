@@ -21,10 +21,10 @@
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 400
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_DO_NOT_ALERT_LOW_LIFE
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 25, "energy" = 20, "bomb" = XENO_BOMB_RESIST_2, "bio" = 20, "rad" = 20, "fire" = 30, "acid" = 20)
@@ -36,5 +36,5 @@
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/activable/forward_charge,
+		/datum/action/xeno_action/activable/forward_charge/unprecise,
 	)

@@ -349,7 +349,7 @@
 		/obj/item/attachable/flamer_nozzle,
 		/obj/item/attachable/flamer_nozzle/wide,
 	)
-	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock)
+	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock, /obj/item/attachable/hydro_cannon)
 	var/last_use
 	///If we are using the hydro cannon when clicking
 	var/hydro_active = FALSE
