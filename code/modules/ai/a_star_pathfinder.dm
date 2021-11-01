@@ -58,7 +58,7 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 		paths_to_check -= current_atom
 		//We looked through all atoms, we didn't find a way to get to our end points
 		if(!length(paths_to_check) || length(paths_checked) > PATHFINDER_MAX_TRIES)
-			CRASH("The pathfinder was unable to find a path to goal atom")
+			return
 		//We created a atom path for each adjacent atom, we sort every atoms by their heuristic score
 		sortTim(paths_to_check, /proc/cmp_path_step, TRUE) //Very cheap cause almost sorted
 		current_path = paths_to_check[paths_to_check[1]] //We take the atom with the smaller heuristic score (distance to goal + distance already made)

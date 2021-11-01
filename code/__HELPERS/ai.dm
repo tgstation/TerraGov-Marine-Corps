@@ -21,6 +21,8 @@
 
 ///Returns the nearest target that has the right target flag
 /proc/get_nearest_target(atom/source, distance, target_flags, attacker_faction, attacker_hive)
+	if(!source)
+		return
 	var/atom/nearest_target
 	var/shorter_distance = distance + 1
 	if(target_flags & TARGET_HUMAN)
