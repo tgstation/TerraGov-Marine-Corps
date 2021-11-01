@@ -52,6 +52,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, .proc/set_escorted_atom)
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, .proc/set_goal_node)
 	goal_node = GLOB.goal_nodes[identifier]
+	RegisterSignal(goal_node, COMSIG_PARENT_QDELETING, .proc/clean_goal_node)
 	START_PROCESSING(SSprocessing, src)
 
 /datum/ai_behavior/Destroy(force, ...)
@@ -189,6 +190,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	SIGNAL_HANDLER
 	if(src.identifier != identifier)
 		return
+	if(goal_node)
+		UnregisterSignal(goal_node, COMSIG_PARENT_QDELETING)
 	goal_node = new_goal_node
 	goal_nodes = null
 	RegisterSignal(goal_node, COMSIG_PARENT_QDELETING, .proc/clean_goal_node)
