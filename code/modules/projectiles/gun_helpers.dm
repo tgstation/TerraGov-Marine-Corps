@@ -94,6 +94,7 @@
 		return ..()
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES) && CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION))
 		unique_action(user, TRUE)
+		return
 	unload(user)
 
 /obj/item/weapon/gun/attack_hand_alternate(mob/user)

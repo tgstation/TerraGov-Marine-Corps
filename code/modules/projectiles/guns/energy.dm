@@ -10,12 +10,14 @@
 
 	placed_overlay_iconstate = "laser"
 	reciever_flags = RECIEVER_MAGAZINES|RECIEVER_NO_HANDFULS
+	default_ammo_type = /obj/item/cell
 	allowed_ammo_types = list(/obj/item/cell)
 	current_rounds_var = "charge"
 	max_rounds_var = "maxcharge"
 	ammo_type_var = null
 	magazine_flags_var = null
 	magazine_overlay_var = null
+	reload_delay_var = null
 
 /obj/item/weapon/gun/energy/muzzle_flash()
 	return

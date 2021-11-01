@@ -363,7 +363,7 @@
 	if(!spawn_empty && default_ammo_type)
 		if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS) || CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
 			var/obj/item/ammo_magazine/ammo_type = default_ammo_type
-			if(!CHECK_BITFIELD(initial(ammo_type.flags_magazine), MAGAZINE_HANDFUL) || CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
+			if((!ispath(ammo_type, /datum/ammo) && CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS)) || CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
 				var/thing_to_reload = new default_ammo_type(src)
 				INVOKE_ASYNC(src, .proc/reload, thing_to_reload, null, TRUE)
 				if(!(thing_to_reload in chamber_items))
@@ -462,6 +462,8 @@
 /obj/item/weapon/gun/update_icon(mob/user)
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES) && !CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED))
 		icon_state = base_gun_icon + "_o"
+	else if(CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION) && !in_chamber)
+		icon_state = base_gun_icon + "_u"
 	else if((!length(chamber_items) && max_chamber_items) || !rounds)
 		icon_state = base_gun_icon + "_e"
 	else if(current_chamber_position <= length(chamber_items) && chamber_items[current_chamber_position] && chamber_items[current_chamber_position].loc != src)
@@ -718,7 +720,7 @@
 	var/obj/projectile/projectile_to_fire = in_chamber //Load a bullet in or check for existing one.
 	if(!projectile_to_fire) //If there is nothing to fire, click.
 		click_empty(gun_user)
-		if(CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES))
+		if(CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES) && !CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION))
 			cycle(gun_user, FALSE)
 		return
 
@@ -1021,7 +1023,7 @@
 			if(mag.caliber != caliber)
 				to_chat(user, span_warning("Those handfuls cannot fit into [src]!"))
 				return FALSE
-		else 
+		else
 			to_chat(user, span_warning("[new_mag] cannot fit into [src]!"))
 			return FALSE
 
@@ -1073,8 +1075,8 @@
 			magazine.on_inserted(src)
 		if(!in_chamber && !CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION))
 			cycle(user, FALSE)
-		update_icon()
 		update_ammo_count()
+		update_icon()
 		to_chat(user, span_notice("You reload [src] with [new_mag]."))
 		return TRUE
 
@@ -1153,8 +1155,8 @@
 			else
 				obj_in_chamber.forceMove(get_turf(src))
 		in_chamber = null
-		update_ammo_count()
 		get_ammo()
+		update_ammo_count()
 		return TRUE
 
 	var/obj/item/mag = chamber_items[current_chamber_position]
@@ -1175,10 +1177,8 @@
 	if(istype(mag, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/magazine = mag
 		magazine.on_removed(src)
-	update_ammo_count()
 	get_ammo()
-	mag.update_icon()
-	update_icon()
+	update_ammo_count()
 	return TRUE
 
 
@@ -1210,6 +1210,7 @@
 		return
 	in_chamber = return_obj_to_fire()
 	update_ammo_count()
+	update_icon()
 	if(!after_fire || CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES))
 		return
 	make_casing()

@@ -41,11 +41,12 @@
 	placed_overlay_iconstate = "flamer"
 
 	ammo_datum_type = /datum/ammo/flamethrower
+	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large
 	allowed_ammo_types = list(
-		/obj/item/ammo_magazine/flamer_tank, 
-		/obj/item/ammo_magazine/flamer_tank/large, 
-		/obj/item/ammo_magazine/flamer_tank/large/X, 
-		/obj/item/ammo_magazine/flamer_tank/backtank, 
+		/obj/item/ammo_magazine/flamer_tank,
+		/obj/item/ammo_magazine/flamer_tank/large,
+		/obj/item/ammo_magazine/flamer_tank/large/X,
+		/obj/item/ammo_magazine/flamer_tank/backtank,
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 		)
 	///Max range of the flamer in tiles.

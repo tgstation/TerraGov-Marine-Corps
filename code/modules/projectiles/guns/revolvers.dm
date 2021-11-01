@@ -5,8 +5,8 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 	fire_sound = 'sound/weapons/guns/fire/44mag.ogg'
-	reload_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
-	cocked_sound = 'sound/weapons/guns/interact/revolver_spun.ogg'
+	reload_sound = 'sound/weapons/guns/interact/revolver_spun.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
 	unload_sound = 'sound/weapons/guns/interact/revolver_unload.ogg'
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	hand_reload_sound = 'sound/weapons/guns/interact/revolver_load.ogg'
@@ -384,6 +384,7 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_revolver)
 	reciever_flags = RECIEVER_HANDFULS|RECIEVER_CYCLES|RECIEVER_TOGGLES|RECIEVER_TOGGLES_EJECTS|RECIEVER_REQUIRES_OPERATION|RECIEVER_LOCKS
 	cocked_message = "You prime the hammer."
+	cock_delay = 0
 
 
 
