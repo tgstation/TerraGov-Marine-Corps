@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - balance: "Beetle forward charge can miss, as it's targeting the turf you are on, and not yourself directly. Just move away or on the side to doge"
-  - balance: "Beetle get 400 health (from 300 health) to compensate"
