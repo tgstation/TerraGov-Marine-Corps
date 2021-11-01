@@ -431,7 +431,7 @@
 				if(!stolen_item)
 					stolen_item = victim.get_item_by_slot(SLOT_SHOES)
 	if(!stolen_item)
-		to_chat(owner, span_xenowarning("There is nothing to steal on this poor man!"))
+		to_chat(owner, span_xenowarning("They are too poor, and have nothing to steal!"))
 		return fail_activate()
 	playsound(owner, 'sound/voice/alien_pounce2.ogg', 30)
 	victim.dropItemToGround(stolen_item, TRUE)
