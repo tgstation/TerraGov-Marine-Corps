@@ -399,7 +399,7 @@
 
 /datum/action/xeno_action/activable/snatch
 	name = "Snatch"
-	action_icon_state = "evasion"
+	action_icon_state = "snatch"
 	mechanics_text = "Take an item equipped by your target in your mouth, and carry it away."
 	plasma_cost = 75
 	cooldown_timer = 60 SECONDS
@@ -421,12 +421,12 @@
 	if(!ishuman(A))
 		to_chat(owner, span_xenowarning("You cannot steal from that target"))
 		return FALSE
+
+/datum/action/xeno_action/activable/snatch/use_ability(atom/A)
 	succeed_activate()
 	if(!do_after(owner, 0.5 SECONDS, FALSE, A, BUSY_ICON_HOSTILE))
 		to_chat(owner, span_xenowarning("Your victim moved, you failed to snatch an item"))
 		return FALSE
-
-/datum/action/xeno_action/activable/snatch/use_ability(atom/A)
 	var/mob/living/carbon/human/victim = A
 	var/obj/item/stolen_item = victim.get_active_held_item()
 	if(!stolen_item)
