@@ -291,3 +291,9 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Unlocks the primordial defenders centrifugal force. An ability that allows them to rapidly spin and attack enemies nearby."
 	psypoint_cost = 75
 	icon = "primodefender"
+
+/datum/hive_upgrade/primordial/runner
+	name = PRIMORDIAL_DEFENDER
+	desc = "Unlocks the primordial runner snatch ability. An ability that allows them to steal equipped items momentarily."
+	psypoint_cost = 75
+	icon = "primorunner"
