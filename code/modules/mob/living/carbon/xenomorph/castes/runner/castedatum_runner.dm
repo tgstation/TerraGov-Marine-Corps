@@ -153,8 +153,8 @@
 
 /datum/xeno_caste/runner/primordial
 	upgrade_name = "Primordial"
-	caste_desc = "Not what you want to run into in a dark alley. It looks extremely deadly."
-	primordial_message = "We are the fastest assassin of all time. Our speed is unmatched."
+	caste_desc = "A sprinting terror of the hive. It looks ancient and menacing."
+	primordial_message = "Nothing can outrun us. We are the swift death."
 	upgrade = XENO_UPGRADE_FOUR
 
 	savage_cooldown = 30 SECONDS

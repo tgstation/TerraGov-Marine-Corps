@@ -437,16 +437,18 @@
 	victim.dropItemToGround(stolen_item, TRUE)
 	stolen_item.forceMove(owner)
 	stolen_appearance = mutable_appearance(stolen_item.icon, stolen_item.icon_state)
+	stolen_appearance.layer = ABOVE_OBJ_LAYER
 	addtimer(CALLBACK(src, .proc/drop_item, stolen_item), 3 SECONDS)
 	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, .proc/owner_turned)
 	owner_turned(null, null, owner.dir)
 	add_cooldown()
 
+///Signal handler to update the item overlay when the owner is changing dir
 /datum/action/xeno_action/activable/snatch/proc/owner_turned(datum/source, old_dir, new_dir)
 	SIGNAL_HANDLER
 	if(!new_dir || new_dir == old_dir)
 		return
-	owner.underlays -= stolen_appearance
+	owner.overlays -= stolen_appearance
 	var/matrix/new_transform  = stolen_appearance.transform
 	switch(old_dir)
 		if(NORTH)
@@ -467,11 +469,12 @@
 		if(WEST)
 			new_transform.Translate(-5, 0)
 	stolen_appearance.transform = new_transform
-	owner.underlays += stolen_appearance
+	owner.overlays += stolen_appearance
 
+///Force the xeno owner to drop the stolen item
 /datum/action/xeno_action/activable/snatch/proc/drop_item(obj/item/stolen_item)
 	stolen_item.forceMove(get_turf(owner))
-	owner.underlays -= stolen_appearance
+	owner.overlays -= stolen_appearance
 	playsound(owner, 'sound/voice/alien_pounce2.ogg', 30, frequency = -1)
 	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
 
