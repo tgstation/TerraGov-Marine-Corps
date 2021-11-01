@@ -39,7 +39,7 @@
 
 	var/list/xeno_rewards = xeno_tier_rewards[target_xeno.tier]
 	if(!xeno_rewards)
-		to_chat(user, span_notice("You don't have data on how to research this."))
+		to_chat(user, span_notice("You can't research this."))
 		return ..()
 
 	if(HAS_TRAIT(target_xeno, TRAIT_RESEARCHED))
