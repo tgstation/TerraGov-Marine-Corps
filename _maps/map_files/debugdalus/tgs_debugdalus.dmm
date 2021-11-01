@@ -460,10 +460,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
-"abW" = (
-/obj/structure/dropship_equipment/electronics/targeting_system,
-/turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
 "abX" = (
 /obj/machinery/door/airlock/mainship/secure{
 	dir = 2;
@@ -479,10 +475,6 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/living/port_garden)
-"acd" = (
-/obj/structure/dropship_equipment/electronics/spotlights,
-/turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
 "acf" = (
 /obj/structure/cable,
 /obj/machinery/landinglight/ds1/delaytwo,
@@ -550,10 +542,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
-"acw" = (
-/obj/structure/dropship_equipment/fuel/fuel_enhancer,
-/turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
 "acx" = (
 /obj/machinery/power/monitor{
 	name = "Main Power Grid Monitoring"
@@ -590,7 +578,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "acE" = (
-/obj/structure/dropship_equipment/fuel/cooling_system,
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "acF" = (
@@ -951,7 +939,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "ael" = (
-/obj/structure/dropship_equipment/medevac_system,
+/obj/structure/dropship_equipment/electronics/spotlights,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "aen" = (
@@ -2695,10 +2683,6 @@
 /obj/machinery/landinglight/ds2{
 	dir = 4
 	},
-/turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
-"qcB" = (
-/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "qko" = (
