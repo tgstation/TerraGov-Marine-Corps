@@ -11487,7 +11487,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/dropship_equipment/sentry_holder,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "dLZ" = (
@@ -12936,8 +12935,8 @@
 /area/sulaco/maintenance/upperdeck_north_maint)
 "gKw" = (
 /obj/effect/decal/warning_stripes,
-/obj/structure/dropship_equipment/fuel/cooling_system,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/dropship_equipment/sentry_holder,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "gKE" = (
@@ -16134,6 +16133,7 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
 "mqC" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /obj/structure/dropship_equipment/sentry_holder,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
@@ -16494,7 +16494,7 @@
 /area/sulaco/maintenance/lower_maint2)
 "mRR" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/dropship_equipment/electronics/spotlights,
+/obj/structure/dropship_equipment/mg_holder,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "mTN" = (
@@ -19662,10 +19662,6 @@
 	dir = 1
 	},
 /area/mainship/shipboard/weapon_room)
-"sgS" = (
-/obj/structure/dropship_equipment/electronics/spotlights,
-/turf/open/floor/prison,
-/area/sulaco/hangar/storage)
 "shi" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/plating/platebotc,
@@ -20392,7 +20388,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "tld" = (
-/obj/structure/dropship_equipment/electronics/targeting_system,
+/obj/structure/dropship_equipment/electronics/spotlights,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "tlU" = (
@@ -20454,7 +20450,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/dropship_equipment/mg_holder,
+/obj/structure/dropship_equipment/electronics/spotlights,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "tqa" = (
@@ -20900,7 +20896,6 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/dropship_equipment/sentry_holder,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "udn" = (
@@ -23149,7 +23144,7 @@
 /area/mainship/living/basketball)
 "yfI" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/dropship_equipment/electronics/targeting_system,
+/obj/structure/dropship_equipment/sentry_holder,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "yfM" = (
@@ -23276,7 +23271,7 @@
 /area/sulaco/hangar/storage)
 "yle" = (
 /obj/effect/decal/warning_stripes,
-/obj/structure/dropship_equipment/fuel/fuel_enhancer,
+/obj/structure/dropship_equipment/sentry_holder,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "ylT" = (
@@ -63060,7 +63055,7 @@ tgw
 tgw
 ykt
 yle
-tkV
+mqC
 aUr
 aLt
 udn
@@ -63318,9 +63313,9 @@ tgw
 ykt
 gKw
 yfI
-mqC
+udn
 aUL
-sgS
+udn
 mRR
 bYM
 aWh
