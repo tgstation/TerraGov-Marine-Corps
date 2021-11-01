@@ -293,8 +293,6 @@ should be alright.
 	if(!user.skills.getRating("firearms"))
 		to_chat(user, span_warning("You don't know how to do tactical reloads."))
 		return
-	if(!istype(src, new_magazine.gun_type))
-		return
 	if(length(chamber_items))
 		unload(user)
 		to_chat(user, span_notice("You start a tactical reload."))
