@@ -472,8 +472,6 @@
 /datum/action/xeno_action/activable/snatch/proc/drop_item(obj/item/stolen_item)
 	stolen_item.forceMove(get_turf(owner))
 	owner.underlays -= stolen_appearance
-	stolen_appearance = null
-	owner.underlays += stolen_appearance
 	playsound(owner, 'sound/voice/alien_pounce2.ogg', 30, frequency = -1)
 	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
 
