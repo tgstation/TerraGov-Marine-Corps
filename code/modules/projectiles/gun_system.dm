@@ -140,8 +140,6 @@
 	var/magazine_flags_var = "flags_magazine"
 	///The var to draw from a 'magazine' for its default ammo var.
 	var/ammo_type_var = "default_ammo"
-	///The var to draw from a 'magazine' for its gun type.
-	var/gun_type_var = "gun_type"
 	///The var to draw from a 'magazine' for its reload delay.
 	var/reload_delay_var = "reload_delay"
 	///The var to draw from a 'magazine' for its bonus magazine var.
@@ -369,10 +367,11 @@
 			var/obj/item/ammo_magazine/ammo_type = default_ammo_type
 			if(!CHECK_BITFIELD(initial(ammo_type.flags_magazine), MAGAZINE_HANDFUL) || CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
 				var/thing_to_reload = new default_ammo_type(src)
-				if(!INVOKE_ASYNC(src, .proc/reload, thing_to_reload, null, TRUE))
-					qdel(thing_to_reload)
+				INVOKE_ASYNC(src, .proc/reload, thing_to_reload, null, TRUE)
+				if(!(thing_to_reload in chamber_items))
+					qdel(thing_to_reload) //If the item doesnt suceed in reloading, we dont want to keep it around.
 				return
-		for(var/i = 0, i <= max_chamber_items, i++)
+		for(var/i = 0, i < max_chamber_items + 1, i++)
 			var/obj/object_to_insert
 			if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
 				var/obj/item/ammo_magazine/handful/handful = new /obj/item/ammo_magazine/handful()
@@ -380,7 +379,8 @@
 				object_to_insert = handful
 			else
 				object_to_insert = new default_ammo_type(src)
-			if(!INVOKE_ASYNC(src, .proc/reload, object_to_insert, null, TRUE))
+			INVOKE_ASYNC(src, .proc/reload, object_to_insert, null, TRUE)
+			if(!(object_to_insert in chamber_items))
 				qdel(object_to_insert)
 	update_icon()
 
@@ -539,24 +539,26 @@
 		to_chat(user, span_notice("Ctrl-Click to remove the sentries battery."))
 
 /obj/item/weapon/gun/proc/examine_ammo_count(mob/user)
+	if(CHECK_BITFIELD(flags_gun_features, GUN_UNUSUAL_DESIGN) && CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES)) //Internal mags and unusual guns have their own stuff set.
+		return
 	var/list/dat = list()
-	if(!CHECK_BITFIELD(flags_gun_features, GUN_UNUSUAL_DESIGN) || !CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES)) //Internal mags and unusual guns have their own stuff set.
-		if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES))
-			dat += "[CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED) ? "It is closed. \n" : "It is open. \n"]"
-		if(rounds > 0)
-			if(flags_gun_features & GUN_AMMO_COUNTER)
-				if(max_rounds && CHECK_BITFIELD(flags_gun_features, GUN_AMMO_COUNT_BY_PERCENTAGE))
-					dat += "Ammo counter shows [round((rounds / max_rounds) * 100)] percent remaining.<br>"
-				else
-					dat += "Ammo counter shows [rounds] round\s remaining.<br>"
+	if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES))
+		dat += "[CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED) ? "It is closed. \n" : "It is open. \n"]"
+	if(rounds > 0)
+		if(flags_gun_features & GUN_AMMO_COUNTER)
+			if(max_rounds && CHECK_BITFIELD(flags_gun_features, GUN_AMMO_COUNT_BY_PERCENTAGE))
+				dat += "Ammo counter shows [round((rounds / max_rounds) * 100)] percent remaining.<br>"
 			else
-				dat += "It's loaded[in_chamber?" and has a round chambered":""].<br>"
+				dat += "Ammo counter shows [rounds] round\s remaining.<br>"
 		else
-			dat += "It's unloaded[in_chamber?" but has a round chambered":""].<br>"
-		if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES) && max_chamber_items > 1)
-			dat += "It has [length(chamber_items)] of [max_chamber_items] magazines loaded.\n"
-	if(dat)
-		to_chat(user, "[dat.Join(" ")]")
+			dat += "It's loaded[in_chamber?" and has a round chambered":""].<br>"
+	else
+		dat += "It's unloaded[in_chamber?" but has a round chambered":""].<br>"
+	if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES) && max_chamber_items > 1)
+		dat += "It has [length(chamber_items)] of [max_chamber_items] magazines loaded.\n"
+	if(!dat)
+		return
+	to_chat(user, "[dat.Join(" ")]")
 
 /obj/item/weapon/gun/wield(mob/user)
 	if(CHECK_BITFIELD(flags_gun_features, GUN_DEPLOYED_FIRE_ONLY))
@@ -945,7 +947,7 @@
 
 
 ///Performs the unique action. Can be overwritten.
-/obj/item/weapon/gun/proc/do_unique_action(mob/user, dont_operate = FALSE)
+/obj/item/weapon/gun/unique_action(mob/user, dont_operate = FALSE)
 	if(!length(chamber_items) && in_chamber && !CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES))
 		unload(user)
 		return
@@ -1035,9 +1037,6 @@
 		if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && ((allowed_ammo_type == sentry_battery_type && !sentry_battery && length(chamber_items) <= current_chamber_position && chamber_items[current_chamber_position]) || (allowed_ammo_type != sentry_battery_type && istype(new_mag, sentry_battery_type))))
 			reload_sentry_cell(new_mag, user)
 			return FALSE
-		if(gun_type_var && !istype(src, new_mag.vars[gun_type_var]))
-			to_chat(user, span_warning("[new_mag] cannot fit in [src]!"))
-			return FALSE
 		if(!new_mag.vars[current_rounds_var] && !force)
 			to_chat(user, span_notice("[new_mag] is empty!"))
 			return FALSE
@@ -1071,6 +1070,12 @@
 		update_ammo_count()
 		to_chat(user, span_notice("You reload [src] with [new_mag]."))
 		return TRUE
+
+	if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
+		var/obj/item/ammo_magazine/mag = new_mag
+		if(mag.caliber != caliber)
+			to_chat(user, span_warning("Those handfuls cannot fit into [src]!"))
+			return FALSE
 
 	var/list/obj/items_to_insert = list()
 	if(max_chamber_items)

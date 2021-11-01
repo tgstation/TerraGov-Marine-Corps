@@ -374,7 +374,6 @@
 
 ///Anything unique the item can do, like pumping a shotgun, spin or whatever.
 /obj/item/proc/unique_action(mob/user)
-	SHOULD_CALL_PARENT(TRUE)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_UNIQUE_ACTION, user) & COMSIG_KB_ACTIVATED)
 		return COMSIG_KB_ACTIVATED
 	return COMSIG_KB_NOT_ACTIVATED

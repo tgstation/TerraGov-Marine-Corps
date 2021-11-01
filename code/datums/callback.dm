@@ -121,8 +121,8 @@
 	//if(datum_flags & DF_VAR_EDITED)
 	//	return WrapAdminProcCall(object, delegate, calling_arguments)
 	if (object == GLOBAL_PROC)
-		return call(delegate)(arglist(calling_arguments))
-	return call(object, delegate)(arglist(calling_arguments))
+		call(delegate)(arglist(calling_arguments))
+	call(object, delegate)(arglist(calling_arguments))
 
 
 /datum/callback_select

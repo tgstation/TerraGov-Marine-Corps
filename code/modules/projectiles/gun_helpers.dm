@@ -89,11 +89,6 @@
 			//						   	  \\
 //----------------------------------------------------------
 
-
-/obj/item/weapon/gun/unique_action(mob/user)
-	. = ..()
-	do_unique_action(user)
-
 /obj/item/weapon/gun/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
 		return ..()
@@ -117,8 +112,6 @@
 	if(user.get_inactive_held_item() != src || istype(I, /obj/item/attachable) || isgun(I))
 		return ..()
 	reload(I, user)
-
-
 
 /obj/item/weapon/gun/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
@@ -848,67 +841,3 @@ should be alright.
 	SIGNAL_HANDLER
 	toggle_gun_safety()
 	return COMSIG_KB_ACTIVATED
-
-//----------------------------------------------------------
-				//				   	   \\
-				// UNUSED EXAMPLE CODE \\
-				//				  	   \\
-				//				   	   \\
-//----------------------------------------------------------
-
-	/*
-	//This works, but it's also pretty slow in comparison to the updated method.
-	var/turf/current_turf = get_turf(src)
-	var/obj/item/ammo_casing/casing = locate() in current_turf
-	var/icon/I = new( 'icons/obj/items/ammo.dmi', default_ammo_type.icon_spent, pick(1,2,4,5,6,8,9,10) ) //Feeding dir is faster than doing Turn().
-	I.Shift(pick(1,2,4,5,6,8,9,10),rand(0,11))
-	if(casing) //If there is already something on the ground, takes the firs thing it finds. Can take a long time if there are a lot of things.
-		//Still better than making a billion casings.
-		if(casing.name != "spent casings")
-			casing.name += "s"
-		I.Blend(casing.icon,ICON_UNDERLAY) //We want to overlay it on top.
-		casing.icon = I
-	else //If not, make one.
-		var/obj/item/ammo_casing/new_casing = new(current_turf)
-		new_casing.icon = I
-	playsound(current_turf, sound_to_play, 20, 1)
-	*/
-
-/*
-//Leaving this here because I think it's excellent code in terms of something you can do. But it is not the
-//most efficient. Also, this particular example crashes the client upon Blend(). Not sure what is causing it,
-//but the code was entirely replaced so it's irrelevant now. ~N
-//If the gun has spent shells and we either have no ammo remaining or we're reloading it on the go.
-if(default_ammo_type.casings_to_eject.len && casing_override) //We have some spent casings to eject.
-	var/turf/current_turf = get_turf(src)
-	var/obj/item/ammo_casing/casing = locate() in current_turf
-	var/icon/G
-
-	if(!casing)
-		//Feeding dir is faster than doing Turn().
-		G = new( 'icons/obj/items/ammo.dmi', default_ammo_type.icon_spent, pick(1,2,4,5,6,8,9,10) ) //We make a new icon.
-		G.Shift(pick(1,2,4,5,6,8,9,10),rand(0,11)) //Shift it randomy.
-		var/obj/item/ammo_casing/new_casing = new(current_turf) //Then we create a new casing.
-		new_casing.icon = G //We give this new casing the icon we just generated.
-		casing = new_casing //Our casing from earlier is now this csaing.
-		default_ammo_type.casings_to_eject.Cut(1,2) //Cut the list so that it's one less.
-		playsound(current_turf, sound_to_play, 20, 1) //Play the sound.
-
-	G = casing.icon //Get the icon from the casing icon if it spawned or was there previously.
-	var/i
-	for(i = 1 to default_ammo_type.casings_to_eject.len) //We want to run this for each item in the list.
-		var/icon/I = new( 'icons/obj/items/ammo.dmi', default_ammo_type.icon_spent, pick(1,2,4,5,6,8,9,10) )
-		I.Shift(pick(1,2,4,5,6,8,9,10),rand(0,11))
-		G.Blend(I,ICON_OVERLAY) //<---- Crashes the client. //Blend them two in, with I overlaying what's already there.
-		playsound(current_turf, sound_to_play, 20, 1)
-
-	G.Blend(casing.icon,ICON_UNDERLAY)
-	casing.icon = G
-	if(casing.name != "spent casings")
-		casing.name += "s"
-	default_ammo_type.casings_to_eject = list() //Empty list.
-
-else if(!casing_override)//So we're not reloading/emptying, we're firing the gun.
-	//I would add a check here for attachables, but you can't fit the masterkey on a revolver/shotgun.
-	default_ammo_type.casings_to_eject += ammo.casing_type //Other attachables are processed beforehand and don't matter here.
-*/

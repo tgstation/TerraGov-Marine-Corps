@@ -1,7 +1,3 @@
-
-
-
-
 /obj/item/ammo_magazine
 	name = "generic ammo"
 	desc = "A box of ammo."
@@ -27,8 +23,6 @@
 	var/current_rounds = -1
 	///How many rounds it can hold.
 	var/max_rounds = 7
-	///Path of the gun that it fits. Mags will fit any of the parent guns as well, so make sure you want this.
-	var/gun_type = null
 	///Set a timer for reloading mags. Higher is slower.
 	var/reload_delay = 0 SECONDS
 	///Delay for filling this magazine with another one.
@@ -83,7 +77,7 @@
 /obj/item/ammo_magazine/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(!istype(I, /obj/item/ammo_magazine))
-		if(!CHECK_BITFIELD(flags_magazine, MAGAZINE_WORN) || !istype(I, /obj/item/weapon/gun) || loc != user || !istype(I, gun_type))
+		if(!CHECK_BITFIELD(flags_magazine, MAGAZINE_WORN) || !istype(I, /obj/item/weapon/gun) || loc != user)
 			return ..()
 		var/obj/item/weapon/gun/gun = I
 		if(!CHECK_BITFIELD(gun.reciever_flags, RECIEVER_MAGAZINES))
@@ -171,7 +165,7 @@
 		return
 	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
 	var/rounds = transfer_amount ? min(current_rounds, transfer_amount) : min(current_rounds, initial(default_ammo.handful_amount))
-	new_handful.generate_handful(default_ammo, caliber, rounds, gun_type)
+	new_handful.generate_handful(default_ammo, caliber, rounds)
 	current_rounds -= rounds
 
 	if(user)
@@ -184,7 +178,8 @@
 		update_icon()
 		return new_handful
 
-/obj/item/ammo_magazine/proc/generate_handful(new_ammo, new_caliber, new_rounds, new_gun_type, maximum_rounds )
+///Called on a /ammo_magazine that wishes to be a handful. It generates all the data required for the handful.
+/obj/item/ammo_magazine/proc/generate_handful(new_ammo, new_caliber, new_rounds, maximum_rounds )
 	var/datum/ammo/ammo = GLOB.ammo_list[new_ammo]
 	var/ammo_name = ammo.name
 
@@ -198,7 +193,6 @@
 	else
 		max_rounds = ammo.handful_amount
 	current_rounds = new_rounds
-	gun_type = new_gun_type
 	update_icon()
 
 
@@ -206,7 +200,6 @@
 /obj/item/ammo_magazine/proc/match_ammo(obj/item/ammo_magazine/source)
 	caliber = source.caliber
 	default_ammo = source.default_ammo
-	gun_type = source.gun_type
 
 //~Art interjecting here for explosion when using flamer procs.
 /obj/item/ammo_magazine/flamer_fire_act()
