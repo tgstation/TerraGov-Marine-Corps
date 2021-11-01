@@ -372,7 +372,7 @@
 				if(!INVOKE_ASYNC(src, .proc/reload, thing_to_reload, null, TRUE))
 					qdel(thing_to_reload)
 				return
-		for(var/i = 0, i < max_chamber_items + 1, i++)
+		for(var/i = 0, i <= max_chamber_items, i++)
 			var/obj/object_to_insert
 			if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
 				var/obj/item/ammo_magazine/handful/handful = new /obj/item/ammo_magazine/handful()
