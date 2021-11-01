@@ -10,7 +10,7 @@
 
 	placed_overlay_iconstate = "laser"
 	reciever_flags = RECIEVER_MAGAZINES|RECIEVER_NO_HANDFULS
-	allowed_ammo_type = /obj/item/cell
+	allowed_ammo_types = list(/obj/item/cell)
 	current_rounds_var = "charge"
 	max_rounds_var = "maxcharge"
 	ammo_type_var = null
@@ -37,7 +37,7 @@
 	fire_sound = 'sound/weapons/guns/fire/taser.ogg'
 	ammo_datum_type  = /datum/ammo/energy/taser
 	default_ammo_type = /obj/item/cell/lasgun/lasrifle/marine
-	allowed_ammo_type = /obj/item/cell/lasgun/lasrifle/marine
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle/marine, /obj/item/cell/lasgun/lasrifle/marine/highcap)
 	rounds_to_draw = 500
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_ALLOW_SYNTHETIC
 	gun_skill_category = GUN_SKILL_PISTOLS
@@ -291,7 +291,7 @@
 	damage_falloff_mult = 0.25
 	fire_delay = 2
 	default_ammo_type = /obj/item/cell/lasgun/lasrifle/marine
-	allowed_ammo_type = /obj/item/cell/lasgun/lasrifle/marine
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle/marine, /obj/item/cell/lasgun/lasrifle/marine/highcap)
 
 	var/list/datum/lasrifle/base/mode_list = list(
 	)

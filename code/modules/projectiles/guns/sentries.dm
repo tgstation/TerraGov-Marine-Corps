@@ -28,6 +28,7 @@
 	flags_item = IS_DEPLOYABLE|TWOHANDED
 	deploy_time = 5 SECONDS
 
+	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry)
 	sentry_battery_type = /obj/item/cell/lasgun/lasrifle/marine
 
 /obj/item/storage/box/sentry
@@ -63,6 +64,7 @@
 
 	ammo_datum_type = /datum/ammo/bullet/turret
 	default_ammo_type = /obj/item/ammo_magazine/sentry
+	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry)
 
 	sentry_battery_drain = 50
 
@@ -96,6 +98,7 @@
 	flags_item = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 	turret_flags = TURRET_IMMOBILE|TURRET_RADIAL|TURRET_LOCKED|TURRET_ON
 	default_ammo_type = /obj/item/ammo_magazine/sentry/fob_sentry
+	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/fob_sentry)
 	sentry_battery_type = /obj/item/cell/lasgun/fob_sentry/cell
 
 /obj/item/weapon/gun/sentry/big_sentry/fob_sentry/rebel
@@ -132,6 +135,7 @@
 
 	ammo_datum_type = /datum/ammo/bullet/turret/mini
 	default_ammo_type = /obj/item/ammo_magazine/minisentry
+	allowed_ammo_types = list(/obj/item/ammo_magazine/minisentry)
 
 	fire_delay = 0.3 SECONDS
 	burst_delay = 0.2 SECONDS
@@ -151,6 +155,7 @@
 
 	ammo_datum_type = /datum/ammo/bullet/turret/gauss
 	default_ammo_type = /obj/item/ammo_magazine/sentry
+	allowed_ammo_types = list(default_ammo_type = /obj/item/ammo_magazine/sentry)
 
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
@@ -161,6 +166,7 @@
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IS_SENTRY
 	ammo_datum_type = /datum/ammo/bullet/turret/dumb
 	default_ammo_type = /obj/item/ammo_magazine/sentry_premade/dumb
+	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry_premade/dumb)
 	max_shells = 500
 	turret_flags = TURRET_ON|TURRET_IMMOBILE|TURRET_SAFETY|TURRET_RADIAL
 

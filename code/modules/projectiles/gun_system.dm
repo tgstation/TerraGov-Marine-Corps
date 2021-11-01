@@ -125,9 +125,7 @@
 	///Stored ammo datum. I changed the var name because it was really annoying to find specific cases of 'ammo' in a file full of guns and ammunition.
 	var/datum/ammo/ammo_datum_type = /datum/ammo/bullet
 	///Default magazine to spawn with.
-	var/obj/item/ammo_magazine/default_ammo_type = /obj/item/ammo_magazine
-	///If you try to reload the gun with the type or subtype of this it will succeed. Even if it is not listed in allowed_ammo_types. This is primarily for guns that are fine will selecting a whole type to allow.
-	var/obj/item/allowed_ammo_type = /obj/item/ammo_magazine
+	var/obj/item/ammo_magazine/default_ammo_type = null
 	///List of allowed specific types. If trying to reload with something in this list it will succeed. This is mainly for use in internal magazine weapons or scenarios where you do not want to inclue a whole subtype.
 	var/list/allowed_ammo_types = list(
 		/obj/item/ammo_magazine,
@@ -362,7 +360,7 @@
 		for(var/i = 0, i <= max_chamber_items, i++)
 			chamber_items.Add(null)
 
-	if(!spawn_empty)
+	if(!spawn_empty && default_ammo_type)
 		if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS) || CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
 			var/obj/item/ammo_magazine/ammo_type = default_ammo_type
 			if(!CHECK_BITFIELD(initial(ammo_type.flags_magazine), MAGAZINE_HANDFUL) || CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
@@ -1014,9 +1012,18 @@
 
 ///Handles reloading. Called on attack_by
 /obj/item/weapon/gun/proc/reload(obj/item/new_mag, mob/living/user, force = FALSE)
-	if((!(new_mag.type in allowed_ammo_types) && !istype(new_mag, allowed_ammo_type)))
-		to_chat(user, span_warning("[new_mag] cannot fit into [src]!"))
-		return FALSE
+	if(!(new_mag.type in allowed_ammo_types))
+		if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
+			var/obj/item/ammo_magazine/mag = new_mag
+			if(!CHECK_BITFIELD(mag.flags_magazine, MAGAZINE_HANDFUL)) //If the gun uses handfuls, it accepts all handfuls since it uses caliber to check if its allowed.
+				to_chat(user, span_warning("[new_mag] cannot fit into [src]!"))
+				return FALSE
+			if(mag.caliber != caliber)
+				to_chat(user, span_warning("Those handfuls cannot fit into [src]!"))
+				return FALSE
+		else 
+			to_chat(user, span_warning("[new_mag] cannot fit into [src]!"))
+			return FALSE
 
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED) && !force)
 		if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES))
@@ -1071,11 +1078,6 @@
 		to_chat(user, span_notice("You reload [src] with [new_mag]."))
 		return TRUE
 
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
-		var/obj/item/ammo_magazine/mag = new_mag
-		if(mag.caliber != caliber)
-			to_chat(user, span_warning("Those handfuls cannot fit into [src]!"))
-			return FALSE
 
 	var/list/obj/items_to_insert = list()
 	if(max_chamber_items)

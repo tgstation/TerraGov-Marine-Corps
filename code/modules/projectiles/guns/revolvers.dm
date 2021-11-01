@@ -21,8 +21,7 @@
 
 	reciever_flags = RECIEVER_HANDFULS|RECIEVER_CYCLES|RECIEVER_TOGGLES|RECIEVER_TOGGLES_EJECTS
 	max_chamber_items = 7
-	allowed_ammo_type = /obj/item/ammo_magazine/revolver
-	allowed_ammo_types = list(/obj/item/ammo_magazine/handful)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver)
 
 	movement_acc_penalty_mult = 2
 	fire_delay = 2
@@ -172,7 +171,8 @@
 	caliber =  CALIBER_44 //codex
 	max_shells = 7 //codex
 	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
-	allowed_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
+
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_revolver)
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -207,7 +207,7 @@
 	max_shells = 7 //codex
 	fire_sound = 'sound/weapons/guns/fire/ny.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/revolver/upp
-	allowed_ammo_type = /obj/item/ammo_magazine/revolver/upp
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/upp)
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -235,7 +235,7 @@
 	max_shells = 6 //codex
 	fire_sound = 'sound/weapons/guns/fire/revolver.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/revolver/small
-	allowed_ammo_type = /obj/item/ammo_magazine/revolver/small
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/small)
 	force = 6
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -268,7 +268,7 @@
 	max_shells = 6 //codex
 	fire_sound = 'sound/weapons/guns/fire/mateba.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/revolver/mateba
-	allowed_ammo_type = /obj/item/ammo_magazine/revolver/mateba
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/mateba)
 	force = 15
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -319,7 +319,7 @@
 	max_shells = 6 //codex
 	fire_sound = 'sound/weapons/guns/fire/revolver_light.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/revolver/cmb
-	allowed_ammo_type = /obj/item/ammo_magazine/revolver/cmb
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/cmb)
 	force = 12
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -350,7 +350,7 @@
 	caliber = CALIBER_45L //codex
 	max_shells = 5 //codex
 	default_ammo_type = /obj/item/ammo_magazine/revolver/judge
-	allowed_ammo_type = /obj/item/ammo_magazine/revolver/judge
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/judge)
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -381,7 +381,7 @@
 	name = "single action revolver"
 	desc = "you should not be seeing this."
 	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
-	allowed_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_revolver)
 	reciever_flags = RECIEVER_HANDFULS|RECIEVER_CYCLES|RECIEVER_TOGGLES|RECIEVER_TOGGLES_EJECTS|RECIEVER_REQUIRES_OPERATION|RECIEVER_LOCKS
 	cocked_message = "You prime the hammer."
 
@@ -398,7 +398,7 @@
 	caliber = CALIBER_44 //codex
 	max_shells = 6 //codex
 	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
-	allowed_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_revolver)
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,

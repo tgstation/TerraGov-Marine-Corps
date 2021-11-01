@@ -40,7 +40,6 @@
 	icon_state = "box_492x34mm"
 	default_ammo = /datum/ammo/bullet/rifle/hv
 	max_rounds = 210
-	gun_type = /obj/item/weapon/gun/rifle/tx11
 
 /obj/item/ammo_magazine/packet/t25
 	name = "box of 10x26mm (T-25)"
@@ -70,7 +69,6 @@
 	current_rounds = 49
 	max_rounds = 49
 	w_class = WEIGHT_CLASS_SMALL
-	gun_type = /obj/item/weapon/gun/revolver/standard_revolver
 
 /obj/item/ammo_magazine/packet/mateba
 	name = "packet of .454 casull"
@@ -79,7 +77,6 @@
 	caliber = CALIBER_454
 	current_rounds = 42
 	max_rounds = 42
-	gun_type = /obj/item/weapon/gun/revolver/mateba
 
 /obj/item/ammo_magazine/packet/acp
 	name = "packet of .45 ACP"

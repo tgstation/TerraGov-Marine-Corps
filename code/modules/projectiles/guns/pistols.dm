@@ -52,7 +52,7 @@
 	fire_sound = 'sound/weapons/guns/fire/tp14.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol
-	allowed_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pistol)
 
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
 
@@ -78,7 +78,7 @@
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/plasma_pistol
-	allowed_ammo_type = /obj/item/ammo_magazine/pistol/plasma_pistol
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/plasma_pistol)
 	type_of_casings = null
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
 	attachable_allowed = list(
@@ -137,7 +137,13 @@
 	max_shells = 14 //codex
 	fire_sound = 'sound/weapons/guns/fire/pistol_service.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol
-	allowed_ammo_type = /obj/item/ammo_magazine/pistol
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/pistol/hp,
+		/obj/item/ammo_magazine/pistol/ap,
+		/obj/item/ammo_magazine/pistol/incendiary,
+		/obj/item/ammo_magazine/pistol/extended,
+	)
 
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 19,"rail_x" = 19, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 
@@ -160,7 +166,7 @@
 	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_heavypistol
-	allowed_ammo_type = /obj/item/ammo_magazine/pistol/standard_heavypistol
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_heavypistol)
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
@@ -199,7 +205,7 @@
 	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/m1911
-	allowed_ammo_type = /obj/item/ammo_magazine/pistol/m1911
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/m1911)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 	reciever_flags = RECIEVER_MAGAZINES
 	fire_delay = 0.175 SECONDS
@@ -243,7 +249,7 @@
 	reload_sound = 'sound/weapons/guns/interact/beretta_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/beretta_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/g22
-	allowed_ammo_type = /obj/item/ammo_magazine/pistol/g22
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/g22, /obj/item/ammo_magazine/pistol/g22tranq)
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 	burst_amount = 3
 	accuracy_mult = 1.15
@@ -258,7 +264,7 @@
 	item_state = "g22"
 	caliber = CALIBER_9X19_TRANQUILIZER //codex
 	max_shells = 12 //codex
-	default_ammo_type =/obj/item/ammo_magazine/pistol/g22tranq
+	default_ammo_type = /obj/item/ammo_magazine/pistol/g22tranq
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 	starting_attachment_types = list(
 		/obj/item/attachable/lasersight,
@@ -288,7 +294,7 @@
 	reload_sound = 'sound/weapons/guns/interact/deagle_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/deagle_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/heavy
-	allowed_ammo_type = /obj/item/ammo_magazine/pistol/heavy
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/heavy)
 	force = 13
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -332,7 +338,7 @@
 	reload_sound = 'sound/weapons/guns/interact/c99_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/c99_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/c99
-	allowed_ammo_type = /obj/item/ammo_magazine/pistol/c99
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/c99, /obj/item/ammo_magazine/pistol/c99t)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
@@ -373,7 +379,7 @@
 	max_shells = 5 //codex
 	fire_sound = 'sound/weapons/guns/fire/pistol_holdout.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/holdout
-	allowed_ammo_type = /obj/item/ammo_magazine/pistol/holdout
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/holdout)
 	w_class = WEIGHT_CLASS_TINY
 	force = 2
 	attachable_allowed = list(
@@ -405,7 +411,7 @@
 	max_shells = 8 //codex
 	fire_sound = 'sound/weapons/guns/fire/tp17.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pocketpistol
-	allowed_ammo_type = /obj/item/ammo_magazine/pistol/standard_pocketpistol
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pocketpistol)
 	w_class = WEIGHT_CLASS_TINY
 	force = 5
 	attachable_allowed = list(
@@ -443,7 +449,7 @@
 	reload_sound = 'sound/weapons/guns/interact/hp_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/hp_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/highpower
-	allowed_ammo_type = /obj/item/ammo_magazine/pistol/highpower
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/highpower)
 	force = 10
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
@@ -474,7 +480,7 @@
 	reload_sound = 'sound/weapons/guns/interact/vp70_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/vp70_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/vp70
-	allowed_ammo_type = /obj/item/ammo_magazine/pistol/vp70
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/vp70)
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -518,7 +524,7 @@
 	reload_sound = 'sound/weapons/guns/interact/vp70_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/vp70_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/vp78
-	allowed_ammo_type = /obj/item/ammo_magazine/pistol/vp78
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/vp78)
 	force = 8
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 24, "under_x" = 23, "under_y" = 13, "stock_x" = 23, "stock_y" = 13)
 
@@ -544,7 +550,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	max_shells = 50 //codex
 	fire_sound = 'sound/weapons/guns/fire/beretta.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/auto9
-	allowed_ammo_type = /obj/item/ammo_magazine/pistol/auto9
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/auto9)
 	force = 15
 	attachable_allowed = list()
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
@@ -566,7 +572,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	caliber = CALIBER_70MANKEY //codex
 	max_shells = 300 //codex
 	default_ammo_type = /obj/item/ammo_magazine/pistol/chimp
-	allowed_ammo_type = /obj/item/ammo_magazine/pistol/chimp
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/chimp)
 	fire_sound = 'sound/weapons/guns/fire/chimp70.ogg'
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 8

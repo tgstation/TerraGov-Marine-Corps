@@ -37,6 +37,7 @@
 	max_shells = 36 //codex
 	force = 20
 	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_carbine
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_carbine)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
@@ -105,6 +106,7 @@
 	max_shells = 50 //codex
 	force = 20
 	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_assaultrifle
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_assaultrifle)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
@@ -180,6 +182,7 @@
 	force = 20
 	max_shells = 10 //codex
 	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_dmr
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_dmr)
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
@@ -245,6 +248,7 @@
 	force = 20
 	max_shells = 35 //codex
 	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_br
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_br)
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
@@ -305,6 +309,12 @@
 	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 40 //codex
 	default_ammo_type = /obj/item/ammo_magazine/rifle
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/ammo_magazine/rifle/extended,
+		/obj/item/ammo_magazine/rifle/incendiary,
+		/obj/item/ammo_magazine/rifle/ap,
+	)
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
@@ -405,6 +415,7 @@
 	wield_delay = 1.35 SECONDS
 	max_shells = 95 //codex
 	default_ammo_type = /obj/item/ammo_magazine/rifle/m41a
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/m41a)
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -450,6 +461,7 @@
 	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/rifle/ak47
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/ak47)
 	aim_slowdown = 0.7
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -489,6 +501,7 @@
 	reload_sound = 'sound/weapons/guns/interact/m16_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m16_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/rifle/m16
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/m16)
 	aim_slowdown = 0.4
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -558,6 +571,7 @@
 	reload_sound = 'sound/weapons/guns/interact/m16_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m16_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/rifle/famas
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/famas)
 	aim_slowdown = 0.4
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -612,6 +626,7 @@
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/standard_lmg
+	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_lmg)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
@@ -673,6 +688,7 @@
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/standard_gpmg
+	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_gpmg)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
@@ -732,6 +748,7 @@
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/m412l1_hpr
+	allowed_ammo_types = list(/obj/item/ammo_magazine/m412l1_hpr)
 	attachable_allowed = list(
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/reddot,
@@ -790,6 +807,7 @@
 	reload_sound = 'sound/weapons/guns/interact/type71_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/type71_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/rifle/type71
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/type71)
 	aim_slowdown = 0.6
 	wield_delay = 0.7 SECONDS
 	attachable_allowed = list(
@@ -871,6 +889,10 @@
 	max_shells = 12 //codex
 	force = 20
 	default_ammo_type = /obj/item/ammo_magazine/rifle/tx15_slug
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/tx15_slug,
+		/obj/item/ammo_magazine/rifle/tx15_flechette,
+	)
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -919,6 +941,7 @@
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/standard_smartmachinegun
+	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_smartmachinegun)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
@@ -966,6 +989,7 @@
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_smartrifle
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_smartrifle)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
@@ -1019,6 +1043,7 @@
 	ammo_datum_type = /datum/ammo/energy/plasma
 	muzzleflash_iconstate = "muzzle_flash_pulse"
 	default_ammo_type = /obj/item/ammo_magazine/rifle/sectoid_rifle
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/sectoid_rifle)
 	wield_delay = 0.4 SECONDS
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY
@@ -1063,6 +1088,7 @@
 	caliber = CALIBER_86X70 //codex
 	max_shells = 7 //codex
 	default_ammo_type = /obj/item/ammo_magazine/rifle/chamberedrifle
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/chamberedrifle)
 	attachable_allowed = list(
 		/obj/item/attachable/scope/unremovable/tl127,
 		/obj/item/attachable/stock/tl127stock,
@@ -1114,6 +1140,7 @@
 	caliber = CALIBER_86X70 //codex
 	max_shells = 20 //codex
 	default_ammo_type = /obj/item/ammo_magazine/rifle/autosniper
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/autosniper)
 	attachable_allowed = list(
 		/obj/item/attachable/autosniperbarrel,
 		/obj/item/attachable/scope/nightvision,
@@ -1159,6 +1186,7 @@
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/rifle/tx11
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/tx11)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
@@ -1208,6 +1236,7 @@
 	max_shells = 30 //codex
 	force = 20
 	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_skirmishrifle
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_skirmishrifle)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
@@ -1235,7 +1264,6 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-//	starting_attachment_types = list(/obj/item/attachable/stock/t12stock)
 	attachable_offset = list("muzzle_x" = 46, "muzzle_y" = 16,"rail_x" = 18, "rail_y" = 19, "under_x" = 34, "under_y" = 12, "stock_x" = 0, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.15 SECONDS
@@ -1267,6 +1295,7 @@
 	max_shells = 80 //codex
 	force = 20
 	default_ammo_type = /obj/item/ammo_magazine/rifle/alf_machinecarbine
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/alf_machinecarbine)
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
@@ -1309,6 +1338,7 @@
 	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/rifle/mkh
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/mkh)
 	aim_slowdown = 0.45
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,

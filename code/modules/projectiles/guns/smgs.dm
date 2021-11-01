@@ -39,6 +39,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/standard_machinepistol
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/standard_machinepistol)
 
 	w_class = WEIGHT_CLASS_NORMAL
 	attachable_allowed = list(
@@ -87,6 +88,7 @@
 	force = 20
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/standard_smg
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/standard_smg)
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
@@ -141,6 +143,11 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/m25
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/smg/m25,
+		/obj/item/ammo_magazine/smg/m25/ap,
+		/obj/item/ammo_magazine/smg/m25/extended,
+		)
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
@@ -216,6 +223,7 @@
 	max_shells = 30 //codex
 	fire_sound = 'sound/weapons/guns/fire/mp7.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/smg/mp7
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/mp7)
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
@@ -250,6 +258,7 @@
 	reload_sound = 'sound/weapons/guns/interact/skorpion_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/skorpion_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/smg/skorpion
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/skorpion)
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 23, "stock_y" = 15)
 
 	burst_delay = 0.2 SECONDS
@@ -277,6 +286,7 @@
 	reload_sound = 'sound/weapons/guns/interact/ppsh_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ppsh_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/smg/ppsh
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/ppsh)
 	attachable_allowed = list(
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
@@ -328,6 +338,7 @@
 	reload_sound = 'sound/weapons/guns/interact/uzi_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/uzi_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/smg/uzi
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/uzi)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
 	fire_delay = 0.15 SECONDS

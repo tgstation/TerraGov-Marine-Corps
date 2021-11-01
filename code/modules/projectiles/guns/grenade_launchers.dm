@@ -22,8 +22,32 @@ The Grenade Launchers
 	///the maximum range the launcher can fling the grenade, by default 15 tiles
 	var/max_range = 15
 
-	allowed_ammo_type = /obj/item/explosive/grenade
-	allowed_ammo_types = list()
+	allowed_ammo_types = list(
+		/obj/item/explosive/grenade,
+		/obj/item/explosive/grenade/training,
+		/obj/item/explosive/grenade/PMC,
+		/obj/item/explosive/grenade/m15,
+		/obj/item/explosive/grenade/stick,
+		/obj/item/explosive/grenade/upp,
+		/obj/item/explosive/grenade/sectoid,
+		/obj/item/explosive/grenade/incendiary,
+		/obj/item/explosive/grenade/incendiary/molotov,
+		/obj/item/explosive/grenade/smokebomb,
+		/obj/item/explosive/grenade/smokebomb/cloak,
+		/obj/item/explosive/grenade/smokebomb/drain,
+		/obj/item/explosive/grenade/phosphorus,
+		/obj/item/explosive/grenade/phosphorus/upp,
+		/obj/item/explosive/grenade/impact,
+		/obj/item/explosive/grenade/flare,
+		/obj/item/explosive/grenade/flare/cas,
+		/obj/item/explosive/grenade/chem_grenade,
+		/obj/item/explosive/grenade/chem_grenade/large,
+		/obj/item/explosive/grenade/chem_grenade/metalfoam,
+		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
+		/obj/item/explosive/grenade/chem_grenade/razorburn_large,
+		/obj/item/explosive/grenade/chem_grenade/incendiary,
+		/obj/item/explosive/grenade/chem_grenade/teargas,
+	)
 	reciever_flags = NONE
 
 
@@ -95,7 +119,7 @@ The Grenade Launchers
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "grenade"
 	max_shells = 2 //codex
-	max_chamber_items = 2
+	max_chamber_items = 1
 	fire_delay = 1 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
@@ -108,14 +132,20 @@ The Grenade Launchers
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	pixel_shift_x = 14
 	pixel_shift_y = 18
-	allowed_ammo_type = null
 	allowed_ammo_types = list(
 		/obj/item/explosive/grenade,
+		/obj/item/explosive/grenade/training,
+		/obj/item/explosive/grenade/stick,
+		/obj/item/explosive/grenade/upp,
 		/obj/item/explosive/grenade/incendiary,
+		/obj/item/explosive/grenade/incendiary/molotov,
 		/obj/item/explosive/grenade/smokebomb,
+		/obj/item/explosive/grenade/smokebomb/cloak,
+		/obj/item/explosive/grenade/smokebomb/drain,
 		/obj/item/explosive/grenade/phosphorus,
-		/obj/item/explosive/grenade/impact,
+		/obj/item/explosive/grenade/phosphorus/upp,
 		/obj/item/explosive/grenade/flare,
+		/obj/item/explosive/grenade/flare/cas,
 	)
 
 /obj/item/weapon/gun/grenade_launcher/underslung/invisible
@@ -155,7 +185,7 @@ The Grenade Launchers
 	flags_gun_features = NONE
 	gun_skill_category = GUN_SKILL_PISTOLS
 	fire_delay = 0.5 SECONDS
-	allowed_ammo_type = /obj/item/explosive/grenade/flare
+	allowed_ammo_types = list(/obj/item/explosive/grenade/flare, /obj/item/explosive/grenade/flare/cas)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/flaregun)
 
 /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine

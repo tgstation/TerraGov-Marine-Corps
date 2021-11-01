@@ -10,7 +10,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 15
 	default_ammo = /datum/ammo/bullet/sniper
-	gun_type = /obj/item/weapon/gun/rifle/sniper/antimaterial
 	reload_delay = 3
 	icon_state_mini = "mag_sniper"
 
@@ -33,7 +32,6 @@
 /obj/item/ammo_magazine/sniper/elite
 	name = "\improper M42C marksman magazine (10x99mm)"
 	default_ammo = /datum/ammo/bullet/sniper/elite
-	gun_type = /obj/item/weapon/gun/rifle/sniper/elite
 	caliber = CALIBER_10X99
 	icon_state = "m42c"
 	max_rounds = 6
@@ -48,7 +46,6 @@
 	icon_state = "svd"
 	default_ammo = /datum/ammo/bullet/sniper/svd
 	max_rounds = 10
-	gun_type = /obj/item/weapon/gun/rifle/sniper/svd
 	icon_state_mini = "mag_rifle"
 
 
@@ -62,7 +59,6 @@
 	caliber = CALIBER_10X28_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/tx8
 	max_rounds = 25
-	gun_type = /obj/item/weapon/gun/rifle/tx8
 	icon_state_mini = "mag_rifle_big"
 
 /obj/item/ammo_magazine/rifle/tx8/incendiary
@@ -71,7 +67,6 @@
 	caliber = CALIBER_10X28_CASELESS
 	icon_state = "tx8_incend"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/incendiary
-	gun_type = /obj/item/weapon/gun/rifle/tx8
 	icon_state_mini = "mag_rifle_big_red"
 
 /obj/item/ammo_magazine/rifle/tx8/impact
@@ -79,7 +74,6 @@
 	desc = "A magazine of overpressuered high velocity impact rounds for use in the TX-8 battle rifle. The TX-8 battle rifle is the only gun that can chamber these rounds."
 	icon_state = "tx8_impact"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/impact
-	gun_type = /obj/item/weapon/gun/rifle/tx8
 	icon_state_mini = "mag_rifle_big_blue"
 
 
@@ -94,7 +88,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket
-	gun_type = /obj/item/weapon/gun/launcher/rocket
 	flags_magazine = NONE
 	reload_delay = 60
 
@@ -130,7 +123,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket
-	gun_type = /obj/item/weapon/gun/launcher/rocket/sadar
 	flags_magazine = NONE
 	reload_delay = 60
 
@@ -146,16 +138,6 @@
 	default_ammo = /datum/ammo/rocket/wp
 	desc = "A highly destructive warhead that bursts into deadly flames on impact. Use this in hand to deconstruct it."
 
-/obj/item/ammo_magazine/internal/launcher/rocket/sadar
-	name = "\improper 84mm internal tube"
-	desc = "The internal tube of a T-152 rocket launcher."
-	caliber = CALIBER_84MM
-	default_ammo = /datum/ammo/rocket
-	gun_type = /obj/item/weapon/gun/launcher/rocket/sadar
-	max_rounds = 1
-	current_rounds = 0
-	reload_delay = 60
-
 //-------------------------------------------------------
 //T-160 recoilless rifle
 
@@ -167,7 +149,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless
-	gun_type = /obj/item/weapon/gun/launcher/rocket/recoillessrifle
 	flags_magazine = NONE
 	reload_delay = 30
 
@@ -179,7 +160,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless/light
-	gun_type = /obj/item/weapon/gun/launcher/rocket/recoillessrifle
 	flags_magazine = NONE
 	reload_delay = 10
 
@@ -191,18 +171,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless/heat
-	gun_type = /obj/item/weapon/gun/launcher/rocket/recoillessrifle
 	flags_magazine = NONE
-	reload_delay = 30
-
-
-/obj/item/ammo_magazine/internal/launcher/rocket/recoilless
-	name = "\improper 67mm internal tube"
-	desc = "The internal tube of a T-TBD recoilless rifle."
-	caliber = CALIBER_67MM
-	default_ammo = /datum/ammo/rocket/recoilless
-	max_rounds = 1
-	current_rounds = 0
 	reload_delay = 30
 
 
@@ -217,7 +186,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/oneuse
-	gun_type = /obj/item/weapon/gun/launcher/rocket/oneuse
 	flags_magazine = NONE
 	reload_delay = 30
 
@@ -240,7 +208,6 @@
 	icon_state = "quad_rocket"
 	max_rounds = 4
 	default_ammo = /datum/ammo/rocket/wp/quad
-	gun_type = /obj/item/weapon/gun/launcher/rocket/m57a4
 	reload_delay = 200
 
 /obj/item/ammo_magazine/rocket/m57a4/ds
@@ -271,7 +238,6 @@
 	max_rounds = 1
 	reload_delay = 20 //Hard to reload.
 	w_class = WEIGHT_CLASS_NORMAL
-	gun_type = /obj/item/weapon/gun/rifle/railgun
 	icon_state_mini = "mag_railgun"
 
 // pepperball
@@ -284,7 +250,6 @@
 	default_ammo = /datum/ammo/bullet/pepperball
 	max_rounds = 70
 	w_class = WEIGHT_CLASS_NORMAL
-	gun_type = /obj/item/weapon/gun/rifle/pepperball
 	icon_state_mini = "mag_pepperball"
 
 /obj/item/ammo_magazine/minigun_powerpack
@@ -296,7 +261,6 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	flags_magazine = MAGAZINE_WORN
 	w_class = WEIGHT_CLASS_HUGE
-	gun_type = /obj/item/weapon/gun/minigun
 	current_rounds = 500
 	max_rounds = 500
 	actions_types = list(/datum/action/item_action/toggle)

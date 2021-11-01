@@ -10,7 +10,6 @@
 	icon_state = "m44"
 	w_class = WEIGHT_CLASS_SMALL
 	max_rounds = 6
-	gun_type = /obj/item/weapon/gun/revolver/single_action/m44
 	icon_state_mini = "mag_revolver"
 
 /obj/item/ammo_magazine/revolver/marksman
@@ -34,14 +33,12 @@
 	icon_state = "tp44"
 	w_class = WEIGHT_CLASS_SMALL
 	max_rounds = 7
-	gun_type = /obj/item/weapon/gun/revolver/standard_revolver
 
 /obj/item/ammo_magazine/revolver/upp
 	name = "\improper N-Y speed loader (7.62x38mmR)"
 	default_ammo = /datum/ammo/bullet/revolver/small
 	caliber = CALIBER_762X38
 	icon_state = "ny762"
-	gun_type = /obj/item/weapon/gun/revolver/upp
 
 
 /obj/item/ammo_magazine/revolver/small
@@ -51,8 +48,6 @@
 	caliber = CALIBER_357
 	icon_state = "sw357"
 	max_rounds = 6
-	gun_type = /obj/item/weapon/gun/revolver/small
-
 
 /obj/item/ammo_magazine/revolver/mateba
 	name = "\improper Mateba speed loader (.454)"
@@ -60,8 +55,6 @@
 	caliber = CALIBER_454
 	icon_state = "mateba"
 	max_rounds = 6
-	gun_type = /obj/item/weapon/gun/revolver/mateba
-
 
 /obj/item/ammo_magazine/revolver/cmb
 	name = "\improper CMB revolver speed loader (.357)"
@@ -69,14 +62,12 @@
 	caliber = CALIBER_357
 	icon_state = "cmb"
 	max_rounds = 6
-	gun_type = /obj/item/weapon/gun/revolver/cmb
 
 /obj/item/ammo_magazine/revolver/judge
 	name = "\improper Judge speed loader (.45L)"
 	desc = "A revolver speed loader for the Judge, these rounds have a high velocity propellant, leading to next to no scatter and falloff."
 	default_ammo = /datum/ammo/bullet/revolver/marksman
 	caliber = CALIBER_45L
-	gun_type = /obj/item/weapon/gun/revolver/judge
 	max_rounds = 5
 	icon_state = "m_m44"
 

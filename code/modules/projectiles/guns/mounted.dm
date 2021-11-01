@@ -52,6 +52,10 @@
 		/obj/item/attachable/scope/unremovable/tl102,
 	)
 
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/tl102,
+	)
+
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
 
@@ -72,6 +76,10 @@
 		/obj/item/attachable/scope/unremovable/tl102/nest,
 	)
 
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/tl102,
+		/obj/item/ammo_magazine/tl102/hsg_nest,
+	)
 	flags_item =  IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 
 ///This is my meme version, the first version of the TL-102 to have auto-fire, revel in its presence.
@@ -108,7 +116,7 @@
 	caliber = CALIBER_10X28
 
 	default_ammo_type = /obj/item/ammo_magazine/heavymachinegun
-
+	allowed_ammo_types = list(/obj/item/ammo_magazine/heavymachinegun)
 
 	scatter = 25
 	fire_delay = 0.2 SECONDS
@@ -156,6 +164,7 @@
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/standard_mmg
+	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_mmg)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/magnetic_harness,

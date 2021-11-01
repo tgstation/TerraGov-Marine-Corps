@@ -41,6 +41,13 @@
 	placed_overlay_iconstate = "flamer"
 
 	ammo_datum_type = /datum/ammo/flamethrower
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/flamer_tank, 
+		/obj/item/ammo_magazine/flamer_tank/large, 
+		/obj/item/ammo_magazine/flamer_tank/large/X, 
+		/obj/item/ammo_magazine/flamer_tank/backtank, 
+		/obj/item/ammo_magazine/flamer_tank/backtank/X,
+		)
 	///Max range of the flamer in tiles.
 	var/flame_max_range = 6
 	///Travel speed of the flames in seconds.
@@ -307,6 +314,7 @@
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/mini
+	allowed_ammo_types = list(/obj/item/ammo_magazine/flamer_tank/mini)
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/unremovable/invisible)
 	attachable_allowed = list(
 		/obj/item/attachable/flamer_nozzle/unremovable/invisible,
