@@ -147,9 +147,6 @@
 
 ///Try to reload the turret of our vehicule
 /obj/vehicle/unmanned/proc/reload_turret(obj/item/ammo_magazine/ammo, mob/user)
-	if(!ispath(turret_path, ammo.gun_type))
-		to_chat(user, span_warning("This is not the right ammo!"))
-		return
 	user.visible_message(span_notice("[user] starts to reload [src] with [ammo]."), span_notice("You start to reload [src] with [ammo]."))
 	if(!do_after(user, 3 SECONDS, TRUE, src))
 		return

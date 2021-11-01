@@ -80,8 +80,8 @@
 					var/obj/item/ammo_magazine/A = loaded_mod
 					dat += "<b>Current rounds</b>: [A] [A.current_rounds]/[A.max_rounds]<br>"
 					dat += "<b>Caliber</b>: [A.caliber]<br>"
-					var/obj/item/hardpoint/H = A.gun_type
-					dat += "<b>Supported Hardpoint</b>: [initial(H.name)]<br>"
+					//var/obj/item/hardpoint/H = A.gun_type //Ima break this.
+					//dat += "<b>Supported Hardpoint</b>: [initial(H.name)]<br>"
 
 		if(TANKFAB_PRINTER)
 			dat += "<h3>Armor:</h3>"

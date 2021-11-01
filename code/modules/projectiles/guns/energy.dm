@@ -14,7 +14,6 @@
 	current_rounds_var = "charge"
 	max_rounds_var = "maxcharge"
 	ammo_type_var = null
-	gun_type_var = null
 	magazine_flags_var = null
 	magazine_overlay_var = null
 
@@ -87,7 +86,6 @@
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
 
-	gun_type_var = "gun_type"
 	reload_delay_var = "reload_delay"
 
 /obj/item/weapon/gun/energy/lasgun/tesla
@@ -103,7 +101,7 @@
 	rounds_to_draw = 500
 	fire_delay = 4 SECONDS
 
-/obj/item/weapon/gun/energy/lasgun/do_unique_action(mob/user, dont_operate = FALSE)
+/obj/item/weapon/gun/energy/lasgun/unique_action(mob/user, dont_operate = FALSE)
 	QDEL_NULL(in_chamber)
 	if(ammo_diff == null)
 		to_chat(user, "[icon2html(src, user)] You need an appropriate lens to enable overcharge mode.")
@@ -251,7 +249,7 @@
 	fire_delay = 0.33 SECONDS
 	aim_slowdown = 0.35
 
-/obj/item/weapon/gun/energy/lasgun/M43/practice/do_unique_action(mob/user)
+/obj/item/weapon/gun/energy/lasgun/M43/practice/unique_action(mob/user)
 	return
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle
@@ -318,7 +316,7 @@
 	///The icon state the radial menu will use.
 	var/radial_icon_state = "laser"
 
-/obj/item/weapon/gun/energy/lasgun/lasrifle/do_unique_action(mob/user)
+/obj/item/weapon/gun/energy/lasgun/lasrifle/unique_action(mob/user)
 	if(!user)
 		CRASH("switch_modes called with no user.")
 

@@ -691,7 +691,7 @@
 		return ..()
 	var/obj/item/weapon/gun/pistol/gun = I
 	for(var/obj/item/ammo_magazine/mag in contents)
-		if(!istype(gun, mag.gun_type))
+		if(!(mag.type in gun.allowed_ammo_types))
 			continue
 		if(user.l_hand && user.r_hand || length(gun.chamber_items))
 			gun.tactical_reload(mag, user)

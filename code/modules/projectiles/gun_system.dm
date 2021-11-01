@@ -1041,7 +1041,7 @@
 			return FALSE
 
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
-		if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && ((allowed_ammo_type == sentry_battery_type && !sentry_battery && length(chamber_items) <= current_chamber_position && chamber_items[current_chamber_position]) || (allowed_ammo_type != sentry_battery_type && istype(new_mag, sentry_battery_type))))
+		if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && (((sentry_battery_type in allowed_ammo_types) && !sentry_battery && length(chamber_items) <= current_chamber_position && chamber_items[current_chamber_position]) || (!(sentry_battery_type in allowed_ammo_types) && istype(new_mag, sentry_battery_type))))
 			reload_sentry_cell(new_mag, user)
 			return FALSE
 		if(!new_mag.vars[current_rounds_var] && !force)
