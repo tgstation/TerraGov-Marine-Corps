@@ -158,6 +158,6 @@ GLOBAL_LIST_INIT(xeno_minions_name, list(
 	"Manganalien",
 	"Fierralien",
 	"Tecnalien",
-	"FLuoralien",
+	"Fluoralien",
 	"Activialien",
 ))
