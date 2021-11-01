@@ -613,7 +613,7 @@
 			continue
 		if(istype(item_to_stock, /obj/item/weapon/gun))
 			var/obj/item/weapon/gun/G = item_to_stock
-			if(G.in_chamber || (G.default_ammo_type && !istype(G.default_ammo_type, /obj/item/ammo_magazine/internal)) || (istype(G.default_ammo_type, /obj/item/ammo_magazine/internal) && G.default_ammo_type.current_rounds > 0) )
+			if(G.rounds)
 				to_chat(user, span_warning("[G] is still loaded. Unload it before you can restock it."))
 				return
 			for(var/obj/item/attachable/A in G.contents) //Search for attachments on the gun. This is the easier method
