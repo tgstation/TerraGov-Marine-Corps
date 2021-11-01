@@ -9,7 +9,7 @@
 	slot = ATTACHMENT_SLOT_VISOR
 	///Initial hex color we use when applying the visor color
 	greyscale_colors = "#f7fb58"
-	flags_attach_features = ATTACH_SAME_ICON
+	flags_attach_features = ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 	///whether this helmet should be using its emissive overlay or not
 	var/visor_emissive_on = TRUE
 	///Whether or not the helmet is allowed to turn its emissive on or off.
@@ -60,7 +60,7 @@
 /obj/item/armor_module/armor/visor/proc/extra_examine(datum/source, mob/user)
 	to_chat(user, "Right click the helmet with paint to color the visor internal lighting.")
 	if(!istype(greyscale_config, /datum/greyscale_config/modular_helmet_visor))
-		return 
+		return
 	to_chat(user, "Right click the helmet to toggle the visor internal lighting.")
 
 /obj/item/armor_module/armor/visor/marine

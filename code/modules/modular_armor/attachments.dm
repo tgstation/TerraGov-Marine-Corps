@@ -22,7 +22,7 @@
 	///Pixel shift for the item overlay on the Y axis.
 	var/pixel_shift_y = 0
 	///Bitfield flags of various features.
-	var/flags_attach_features = ATTACH_REMOVABLE
+	var/flags_attach_features = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB
 	///Time it takes to attach.
 	var/attach_delay = 2 SECONDS
 	///Time it takes to detach.
@@ -30,7 +30,7 @@
 
 	///Light modifier for attachment to an armor piece
 	var/light_mod = 0
-	
+
 	///Assoc list that uses the parents type as a key. type = "new_icon_state". This will change the icon state depending on what type the parent is. If the list is empty, or the parent type is not within, it will have no effect.
 	var/list/variants_by_parent_type = list()
 
@@ -93,7 +93,7 @@
 	greyscale_config = /datum/greyscale_config/modularchest_infantry
 	greyscale_colors = "#444732"
 
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 
 	///optional assoc list of colors we can color this armor
 	var/list/colorable_colors

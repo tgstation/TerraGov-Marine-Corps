@@ -14,7 +14,15 @@
 #define ATTACH_SKILL_UPPER_THRESHOLD "attach_skill_upper_threshold"
 #define ATTACH_SOUND "attach_sound"
 #define EXTRA_VARS "extra_vars"
+#define MOB_OVERLAY_ICON "mob_overlay_icon"
+#define MOB_PIXEL_SHIFT_X "mob_pixel_shift_x"
+#define MOB_PIXEL_SHIFT_Y "mob_pixel_shift_y"
 
+//flags_attach_features
+#define ATTACH_REMOVABLE (1<<0)
+#define ATTACH_ACTIVATION (1<<1)
+#define ATTACH_SAME_ICON (1<<2)
+#define ATTACH_APPLY_ON_MOB (1<<3)
 
 //gun attachment slot defines
 #define ATTACHMENT_SLOT_RAIL "rail"

@@ -1127,6 +1127,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 ///applies any custom thing to the sprite, caled by make_worn_icon().
 /obj/item/proc/apply_custom(image/standing)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, standing)
 	return standing
 
 ///applies blood on the item, called by make_worn_icon().

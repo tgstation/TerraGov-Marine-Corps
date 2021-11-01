@@ -156,11 +156,7 @@
 	update_icon()
 
 /obj/item/clothing/suit/modular/apply_custom(image/standing)
-	for(var/key in attachment_overlays)
-		var/image/overlay = attachment_overlays[key]
-		if(!overlay)
-			continue
-		standing.overlays += overlay
+	. = ..()
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE] || !istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		return standing
 	var/obj/item/armor_module/storage/storage_module = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
@@ -501,11 +497,7 @@
 	update_clothing_icon()
 
 /obj/item/clothing/head/modular/apply_custom(image/standing)
-	for(var/key in attachment_overlays)
-		var/image/overlay = attachment_overlays[key]
-		if(!overlay)
-			continue
-		standing.overlays += overlay
+	. = ..()
 	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE] && istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		var/obj/item/armor_module/storage/storage_module = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 		if(storage_module.show_storage)
