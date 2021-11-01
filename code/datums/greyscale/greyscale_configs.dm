@@ -19,10 +19,6 @@
 	icon_file='icons/obj/items/chemistry.dmi'
 	json_config = 'code/datums/greyscale/json_configs/pillbottleround.json'
 
-/datum/greyscale_config/pillpacket
-	icon_file='icons/obj/items/chemistry.dmi'
-	json_config = 'code/datums/greyscale/json_configs/pillpacket.json'
-
 
 /*
  * MODULAR HELMETS
