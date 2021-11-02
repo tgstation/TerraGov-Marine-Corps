@@ -1759,7 +1759,8 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
 	smoke_strength = 1
-	reagent_transfer_amount = 10	
+	reagent_transfer_amount = 10
+	
 /datum/ammo/xeno/redspit
     name = "Light Sanguinal"
     icon_state = "xeno_sanguinal"
@@ -1778,6 +1779,7 @@ datum/ammo/bullet/revolver/tp44
     smoke_strength = 0.5
     smoke_range = 0
     reagent_transfer_amount = 9
+
 	var/list/datum/reagent/spit_lightsanguinal
 
 /datum/ammo/xeno/redspit/proc/set_reagents()
@@ -1785,29 +1787,38 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/redspit/on_hit_mob(mob/living/carbon/C, obj/projectile/P)
     drop_lightred_smoke(get_turf(C))
+
     if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
         return
+
     if(isnestedhost(C))
         return
+
     C.adjust_stagger(stagger_stacks) //stagger briefly; useful for support
     C.add_slowdown(slowdown_stacks) //slow em down
+	C.reagents.add_reagent_list(spit_lightsanguinal) //transfer reagents
+
     set_reagents()
-    C.reagents.add_reagent_list(spit_lightsanguinal) //transfer reagents
+
     return ..()
-	
+
 /datum/ammo/xeno/redspit/on_hit_obj(obj/O,obj/projectile/P)
     var/turf/T = get_turf(O)
     if(!T)
         T = get_turf(P)
+
     if(O.density && !(O.flags_atom & ON_BORDER))
-        T = get_turf(get_step(T, turn(P.dir, 180))) 
+        T = get_turf(get_step(T, turn(P.dir, 180)))
+
     drop_lightred_smoke(T)
 
 /datum/ammo/xeno/redspit/on_hit_turf(turf/T,obj/projectile/P)
     if(!T)
         T = get_turf(P)
+
     if(isclosedturf(T))
-        T = get_turf(get_step(T, turn(P.dir, 180))) //If the turf is closed, we instead drop in the location just prior to the turf
+        T = get_turf(get_step(T, turn(P.dir, 180)))
+
     drop_lightred_smoke(T)
 
 /datum/ammo/xeno/redspit/do_at_max_range(obj/projectile/P)
