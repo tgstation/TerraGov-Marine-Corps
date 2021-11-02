@@ -434,7 +434,7 @@
 	. = ..()
 	if(deployed_mg)
 		return
-	var/obj/item/weapon/gun/tl102/hsg_nest/new_gun = new() //Creates the internal gun of the deployed_mg first.
+	var/obj/item/weapon/gun/tl102/hsg_nest/new_gun = new(src) //Creates the internal gun of the deployed_mg first.
 	deployed_mg = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_mg. Therefore new_gun.loc = deployed_mg.
 
 /obj/structure/dropship_equipment/mg_holder/examine(mob/user)
