@@ -1759,8 +1759,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
 	smoke_strength = 1
-	reagent_transfer_amount = 10
-	
+	reagent_transfer_amount = 10	
 /datum/ammo/xeno/redspit
     name = "Light Sanguinal"
     icon_state = "xeno_sanguinal"
