@@ -1641,8 +1641,6 @@ datum/ammo/bullet/revolver/tp44
 	///List of reagents transferred upon spit impact if any
 	var/list/datum/reagent/spit_reagents
 	///Amount of reagents transferred upon spit impact if any
-	var/list/datum/reagent/spit_lightsanguinal
-	///var for lightsang
 	var/reagent_transfer_amount
 	///Amount of stagger stacks imposed on impact if any
 	var/stagger_stacks
@@ -1762,7 +1760,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/toxin/heavy/upgrade3
 	smoke_strength = 1
 	reagent_transfer_amount = 10
-	
+
 /datum/ammo/xeno/redspit
     name = "Light Sanguinal"
     icon_state = "xeno_sanguinal"
@@ -1781,7 +1779,8 @@ datum/ammo/bullet/revolver/tp44
     smoke_strength = 0.5
     smoke_range = 0
     reagent_transfer_amount = 9
-	
+/var/list/datum/reagent/spit_lightsanguinal
+
 /datum/ammo/xeno/redspit/proc/set_reagents()
     spit_lightsanguinal = list(/datum/reagent/toxin/xeno_lightsanguinal = reagent_transfer_amount)
 
@@ -1796,10 +1795,7 @@ datum/ammo/bullet/revolver/tp44
 
     C.adjust_stagger(stagger_stacks) //stagger briefly; useful for support
     C.add_slowdown(slowdown_stacks) //slow em down
-
     set_reagents()
-
-    return ..()
 
 /datum/ammo/xeno/redspit/on_hit_obj(obj/O,obj/projectile/P)
     var/turf/T = get_turf(O)

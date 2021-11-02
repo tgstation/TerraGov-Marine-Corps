@@ -642,7 +642,7 @@
 
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
 		L.adjustToxLoss(DEFILER_SANGUINAL_DAMAGE)
-	
+
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
 		L.adjustFireLoss(DEFILER_SANGUINAL_DAMAGE)
 
@@ -653,7 +653,7 @@
 		C.drip(DEFILER_SANGUINAL_DAMAGE) //Causes bleeding
 
 	return ..()
-	
+
 /datum/reagent/toxin/xeno_lightsanguinal
 	name = "light Sanguinal"
 	description = "A weaker version of the toxin Sanguinal, but just as deadly."
@@ -665,30 +665,29 @@
 	overdose_threshold = 10000
 	scannable = TRUE
 	toxpwr = 0
-	
+
 /datum/reagent/toxin/xeno_lightsanguinal/on_mob_life(mob/living/L, metabolism)
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //This makes marines regret stacking
 		L.adjustStaminaLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
-		
+
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
 		L.adjustToxLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
-		
+
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
 		L.adjustFireLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
-		
+
 	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine))
 		L.adjustOxyLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
-		
+
 	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/kelotane))
 		L.adjustFireLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
-		
+
 	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/bicaridine))
 		L.adjustBruteLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
-		
+
 	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon))
 		L.adjustOxyLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
-		
-return ..()
+		return
 
 /datum/reagent/zombium
 	name = "Zombium"
