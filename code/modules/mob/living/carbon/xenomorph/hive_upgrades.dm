@@ -303,3 +303,8 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Unlocks the primordial runner snatch ability. An ability that allows them to steal equipped items momentarily."
 	psypoint_cost = 125
 	icon = "primorunner"
+/datum/hive_upgrade/primordial/hivelord
+	name = PRIMORDIAL_HIVELORD
+	desc = "Unlocks the primordial hivelords traps, and upgrae it's corrosive acid to strong."
+	psypoint_cost = 125
+	icon = "primohivelord"
