@@ -593,6 +593,12 @@
 	description = "Recall a target from netherspace, ending Banish's effect."
 	keybind_signal = COMSIG_XENOABILITY_RECALL
 
+/datum/keybinding/xeno/timestop
+	name = "timestop"
+	full_name = "Wraith: Time stop"
+	description = "Freezes bullets in their course, and they will start to move again only after a certain time"
+	keybind_signal = COMSIG_XENOABILITY_TIMESTOP
+
 /datum/keybinding/xeno/nightfall
 	name = "nightfall"
 	full_name = "King: Nightfall"
