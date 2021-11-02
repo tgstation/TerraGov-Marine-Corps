@@ -12,3 +12,18 @@
       maximum charge)
   - balance: The minimum steps for Bulls to initiate a charge is now 5 from 6.
   - balance: Bull plasma multiplier increased to 2 from 1.8
+2021-11-02:
+  BraveMole:
+  - qol: Minions and hivemind no longer alert hive when low health, and the alert
+      will be smaller when they die
+  - balance: Remove body drag from crash
+  - qol: Akimbo doesn't force you to switch hands if the gun in your inactive hand
+      cannot be shot unwielded
+  - qol: Roomba is more expressive
+  David-Stormwell:
+  - balance: Decreased King's health by a average of -100, slashing increase to a
+      max of 30 at ancient.
+  Walarks:
+  - bugfix: fixes runtime when analyzing non-analyzable xenos
+  hyper2snyper:
+  - bugfix: fixes the missing hydro cannon on the marine flamer

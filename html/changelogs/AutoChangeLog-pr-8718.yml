@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - qol: "Akimbo doesn't force you to switch hands if the gun in your inactive hand cannot be shot unwielded"
