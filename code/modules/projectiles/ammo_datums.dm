@@ -1766,6 +1766,7 @@ datum/ammo/bullet/revolver/tp44
     icon_state = "xeno_sanguinal"
     bullet_color = COLOR_PALE_RED_GRAY
     flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
+	var/list/datum/reagent/spit_lightsanguinal
     spit_cost = 55
     added_spit_delay = 5
     damage_type = TOX
@@ -1779,8 +1780,7 @@ datum/ammo/bullet/revolver/tp44
     smoke_strength = 0.5
     smoke_range = 0
     reagent_transfer_amount = 9
-
-	var/list/datum/reagent/spit_lightsanguinal
+	
 
 /datum/ammo/xeno/redspit/proc/set_reagents()
     spit_lightsanguinal = list(/datum/reagent/toxin/xeno_lightsanguinal = reagent_transfer_amount)
@@ -1796,9 +1796,9 @@ datum/ammo/bullet/revolver/tp44
 
     C.adjust_stagger(stagger_stacks) //stagger briefly; useful for support
     C.add_slowdown(slowdown_stacks) //slow em down
-	C.reagents.add_reagent_list(spit_lightsanguinal) //transfer reagents
-
     set_reagents()
+	
+	C.reagents.add_reagent_list(spit_lightsanguinal)
 
     return ..()
 
