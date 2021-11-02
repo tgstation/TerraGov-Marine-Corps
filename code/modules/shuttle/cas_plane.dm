@@ -274,7 +274,7 @@
 	var/input = tgui_input_list(user, "Select a CAS target", "CAS targetting", GLOB.active_cas_targets)
 	if(!input)
 		input = GLOB.minidropship_start_loc
-	to_chat(user, span_warning("Targets detected, routing to target."))
+	to_chat(user, span_warning("Targets detected, routing to planet."))
 	give_eye_control(user)
 	eyeobj.setLoc(get_turf(input))
 
