@@ -1779,7 +1779,6 @@ datum/ammo/bullet/revolver/tp44
     smoke_strength = 0.5
     smoke_range = 0
     reagent_transfer_amount = 9
-
 var/list/datum/reagent/spit_lightsanguinal
 
 /datum/ammo/xeno/redspit/proc/set_reagents()
