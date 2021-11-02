@@ -1177,9 +1177,6 @@ and you're good to go.
 		if(scatter_tweak)
 			. -= scatter_tweak * 15
 
-	if(!prob(.)) //RNG at work.
-		return 0
-
 
 /obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, firing_angle)
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED) || !gun_user)
