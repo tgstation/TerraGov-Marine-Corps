@@ -6,6 +6,7 @@
 	caste_type_path = /mob/living/carbon/xenomorph/wraith
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
+	primordial_upgrade_name = PRIMORDIAL_WRAITH
 	wound_type = "wraith" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
@@ -135,7 +136,6 @@
 	upgrade_name = "Primordial"
 	caste_desc = "A xenomorph that has perfected the manipulation of space and time. Its movements appear quick and distorted."
 	primordial_message = "We control the very fabric of reality."
-	primordial_upgrade_name = PRIMORDIAL_WRAITH
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //

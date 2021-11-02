@@ -6,6 +6,7 @@
 	caste_type_path = /mob/living/carbon/xenomorph/ravager
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
+	primordial_upgrade_name = PRIMORDIAL_RAVAGER
 	wound_type = "ravager" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
@@ -142,7 +143,6 @@
 	upgrade_name = "Primordial"
 	caste_desc = "Red like the blood of those that try to stop its rampage."
 	primordial_message = "Our frenzy is eternal. Rip and tear, until it is done."
-	primordial_upgrade_name = PRIMORDIAL_RAVAGER
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //

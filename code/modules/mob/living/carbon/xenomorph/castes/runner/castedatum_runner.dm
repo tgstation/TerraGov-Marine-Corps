@@ -6,6 +6,7 @@
 	caste_type_path = /mob/living/carbon/xenomorph/runner
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
+	primordial_upgrade_name = PRIMORDIAL_RUNNER
 	wound_type = "runner" //used to match appropriate wound overlays
 
 	gib_anim = "gibbed-a-corpse-runner"
@@ -155,7 +156,6 @@
 	upgrade_name = "Primordial"
 	caste_desc = "A sprinting terror of the hive. It looks ancient and menacing."
 	primordial_message = "Nothing can outrun us. We are the swift death."
-	primordial_upgrade_name = PRIMORDIAL_RUNNER
 	upgrade = XENO_UPGRADE_FOUR
 
 	savage_cooldown = 30 SECONDS
