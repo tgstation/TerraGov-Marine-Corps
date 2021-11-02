@@ -155,6 +155,7 @@
 	upgrade_name = "Primordial"
 	caste_desc = "A sprinting terror of the hive. It looks ancient and menacing."
 	primordial_message = "Nothing can outrun us. We are the swift death."
+	primordial_upgrade_name = PRIMORDIAL_RUNNER
 	upgrade = XENO_UPGRADE_FOUR
 
 	savage_cooldown = 30 SECONDS

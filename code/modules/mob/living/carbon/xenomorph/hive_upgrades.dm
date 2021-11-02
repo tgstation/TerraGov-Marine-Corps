@@ -293,7 +293,13 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	icon = "primodefender"
 
 /datum/hive_upgrade/primordial/runner
-	name = PRIMORDIAL_DEFENDER
+	name = PRIMORDIAL_RUNNER
 	desc = "Unlocks the primordial runner snatch ability. An ability that allows them to steal equipped items momentarily."
 	psypoint_cost = 75
+	icon = "primorunner"
+
+/datum/hive_upgrade/primordial/wraith
+	name = PRIMORDIAL_WRAITH
+	desc = "Unlocks the primordial runner snatch ability. An ability that allows them to steal equipped items momentarily."
+	psypoint_cost = 125
 	icon = "primorunner"
