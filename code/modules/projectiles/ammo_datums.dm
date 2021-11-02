@@ -1623,6 +1623,7 @@ datum/ammo/bullet/revolver/tp44
 					Xeno Spits
 //================================================
 */
+
 /datum/ammo/xeno
 	icon_state = "neurotoxin"
 	ping = "ping_x"
@@ -1740,7 +1741,6 @@ datum/ammo/bullet/revolver/tp44
 	smoke_strength = 0.75
 	reagent_transfer_amount = 9.5
 
-
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
 	added_spit_delay = 0
@@ -1761,6 +1761,82 @@ datum/ammo/bullet/revolver/tp44
 	smoke_strength = 1
 	reagent_transfer_amount = 10
 
+/datum/ammo/xeno/redspit
+    name = "Light Sanguinal"
+    icon_state = "xeno_sanguinal"
+    bullet_color = COLOR_PALE_RED_GRAY
+    flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
+    spit_cost = 55
+    added_spit_delay = 5
+    damage_type = TOX
+    accurate_range = 5
+    max_range = 10
+    accuracy_var_low = 3
+    accuracy_var_high = 3
+    damage = 25
+    stagger_stacks = 0.5
+    slowdown_stacks = 0.5
+    smoke_strength = 0.5
+    smoke_range = 0
+    reagent_transfer_amount = 9
+
+var/list/datum/reagent/spit_lightsanguinal
+
+/datum/ammo/xeno/redspit/proc/set_reagents()
+    spit_lightsanguinal = list(/datum/reagent/toxin/xeno_lightsanguinal = reagent_transfer_amount)
+
+/datum/ammo/xeno/redspit/on_hit_mob(mob/living/carbon/C, obj/projectile/P)
+    drop_lightred_smoke(get_turf(C))
+
+    if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
+        return
+
+    if(isnestedhost(C))
+        return
+
+    C.adjust_stagger(stagger_stacks) //stagger briefly; useful for support
+    C.add_slowdown(slowdown_stacks) //slow em down
+
+    set_reagents()
+
+    C.reagents.add_reagent_list(spit_lightsanguinal) //transfer reagents
+
+    return ..()
+
+/datum/ammo/xeno/redspit/on_hit_obj(obj/O,obj/projectile/P)
+    var/turf/T = get_turf(O)
+    if(!T)
+        T = get_turf(P)
+
+    if(O.density && !(O.flags_atom & ON_BORDER))
+        T = get_turf(get_step(T, turn(P.dir, 180))) //If the object is dense and not a border object like barricades, we instead drop in the location just prior to the target
+
+    drop_lightred_smoke(T)
+
+/datum/ammo/xeno/redspit/on_hit_turf(turf/T,obj/projectile/P)
+    if(!T)
+        T = get_turf(P)
+
+    if(isclosedturf(T))
+        T = get_turf(get_step(T, turn(P.dir, 180))) //If the turf is closed, we instead drop in the location just prior to the turf
+
+    drop_lightred_smoke(T)
+
+/datum/ammo/xeno/redspit/do_at_max_range(obj/projectile/P)
+    drop_lightred_smoke(get_turf(P))
+
+/datum/ammo/xeno/redspit/set_smoke()
+    smoke_system = new /datum/effect_system/smoke_spread/xeno/lightsanguinal()
+
+/datum/ammo/xeno/redspit/proc/drop_lightred_smoke(turf/T)
+    if(T.density)
+        return
+
+    set_smoke()
+    smoke_system.strength = smoke_strength
+    smoke_system.set_up(smoke_range, T)
+    smoke_system.start()
+    smoke_system = null
 
 /datum/ammo/xeno/sticky
 	name = "sticky resin spit"
