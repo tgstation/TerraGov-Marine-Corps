@@ -380,6 +380,8 @@
 /obj/item/weapon/gun/revolver/single_action //This town aint big enuf fer the two of us
 	name = "single action revolver"
 	desc = "you should not be seeing this."
+	reload_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/revolver_spun.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_revolver)
 	reciever_flags = RECIEVER_HANDFULS|RECIEVER_CYCLES|RECIEVER_TOGGLES|RECIEVER_TOGGLES_EJECTS|RECIEVER_REQUIRES_OPERATION|RECIEVER_LOCKS
