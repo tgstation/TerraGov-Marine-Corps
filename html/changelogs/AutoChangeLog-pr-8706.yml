@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - qol: "Minions and hivemind no longer alert hive when low health, and the alert will be smaller when they die"
