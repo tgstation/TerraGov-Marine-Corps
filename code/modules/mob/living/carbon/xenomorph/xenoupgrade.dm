@@ -94,6 +94,9 @@
 /mob/living/carbon/xenomorph/runner/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/runner/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //-----RUNNER END-----//
 //================//
 //-----BULL START-----//
