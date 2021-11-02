@@ -1623,7 +1623,6 @@ datum/ammo/bullet/revolver/tp44
 					Xeno Spits
 //================================================
 */
-
 /datum/ammo/xeno
 	icon_state = "neurotoxin"
 	ping = "ping_x"
@@ -1741,6 +1740,7 @@ datum/ammo/bullet/revolver/tp44
 	smoke_strength = 0.75
 	reagent_transfer_amount = 9.5
 
+
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
 	added_spit_delay = 0
@@ -1760,7 +1760,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/toxin/heavy/upgrade3
 	smoke_strength = 1
 	reagent_transfer_amount = 10
-
+	
 /datum/ammo/xeno/redspit
     name = "Light Sanguinal"
     icon_state = "xeno_sanguinal"

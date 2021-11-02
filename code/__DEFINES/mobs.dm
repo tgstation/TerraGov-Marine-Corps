@@ -589,7 +589,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DEFILER_SANGUINAL_SMOKE_MULTIPLIER 0.03 //Amount the defile power is multiplied by which determines sanguinal smoke strength/size
 #define TENTACLE_ABILITY_RANGE 5
 
-
 //Spitter defines
 #define SPITTER_LIGHTSANGUINAL_DAMAGE 2
 #define SPITTER_LIGHTSANGUINAL_SMOKE_MULTIPLIER 0.03

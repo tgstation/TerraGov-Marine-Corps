@@ -468,44 +468,6 @@
 	purge_rate = 0
 
 
-/datum/reagent/toxin/xeno_lightsanguinal
-	name = "light Sanguinal"
-	description = "A weaker version of the toxin Sanguinal, but just as deadly."
-	reagent_state = LIQUID
-	color = "#f3491f"
-	custom_metabolism = 1
-	purge_list = list(/datum/reagent/hypervene, /datum/reagent/medicine/ryetalyn, /datum/reagent/medicine/dylovene)
-	purge_rate = 0.8
-	overdose_threshold = 10000
-	scannable = TRUE
-	toxpwr = 0
-
-/datum/reagent/toxin/xeno_lightsanguinal/on_mob_life(mob/living/L, metabolism)
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //This makes marines regret stacking
-		L.adjustStaminaLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
-		L.adjustToxLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
-		L.adjustFireLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine))
-		L.adjustOxyLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/kelotane))
-		L.adjustFireLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/bicaridine))
-		L.adjustBruteLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon))
-		L.adjustOxyLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
-
-	return ..()
-
-
-
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/power
 	switch(current_cycle)
@@ -689,6 +651,42 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.drip(DEFILER_SANGUINAL_DAMAGE) //Causes bleeding
+
+	return ..()
+
+/datum/reagent/toxin/xeno_lightsanguinal
+	name = "light Sanguinal"
+	description = "A weaker version of the toxin Sanguinal, but just as deadly."
+	reagent_state = LIQUID
+	color = "#f3491f"
+	custom_metabolism = 1
+	purge_list = list(/datum/reagent/hypervene, /datum/reagent/medicine/ryetalyn, /datum/reagent/medicine/dylovene)
+	purge_rate = 0.8
+	overdose_threshold = 10000
+	scannable = TRUE
+	toxpwr = 0
+
+/datum/reagent/toxin/xeno_lightsanguinal/on_mob_life(mob/living/L, metabolism)
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //This makes marines regret stacking
+		L.adjustStaminaLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+		L.adjustToxLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+		L.adjustFireLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine))
+		L.adjustOxyLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/kelotane))
+		L.adjustFireLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/bicaridine))
+		L.adjustBruteLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon))
+		L.adjustOxyLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
 
 	return ..()
 
