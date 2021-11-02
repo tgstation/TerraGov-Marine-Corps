@@ -157,12 +157,12 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	qdel(E)
 
 // ***************************************
-// *********** Hugger trap
+// ********* Trap
 // ***************************************
 /datum/action/xeno_action/place_trap
-	name = "Place hugger trap"
+	name = "Place trap"
 	action_icon_state = "place_trap"
-	mechanics_text = "Place a hole on weeds that can be filled with a hugger. Activates when a marine steps on it."
+	mechanics_text = "Place a hole on weeds that can be filled with a hugger or acid. Activates when a marine steps on it."
 	plasma_cost = 400
 	keybind_signal = COMSIG_XENOABILITY_PLACE_TRAP
 
@@ -188,10 +188,10 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	succeed_activate()
 
 	playsound(T, "alien_resin_build", 25)
-	GLOB.round_statistics.carrier_traps++
+	GLOB.round_statistics.trap_holes++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "carrier_traps")
-	new /obj/structure/xeno/trap(T)
-	to_chat(owner, span_xenonotice("We place a hugger trap on the weeds, it still needs a facehugger."))
+	new /obj/structure/xeno/trap(T, owner)
+	to_chat(owner, span_xenonotice("We place a trap on the weeds, but it still needs to be filled."))
 
 // ***************************************
 // *********** Spawn hugger
