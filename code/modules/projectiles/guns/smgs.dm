@@ -147,7 +147,7 @@
 		/obj/item/ammo_magazine/smg/m25,
 		/obj/item/ammo_magazine/smg/m25/ap,
 		/obj/item/ammo_magazine/smg/m25/extended,
-		)
+	)
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,

@@ -946,8 +946,14 @@
 	unload()
 
 
-///Performs the unique action. Can be overwritten.
+/*Performs the unique action. Can be overwritten.
+This does a few things, depending on the flags of the gun.
+If the gun doesn't Toggle it will perform a cycle, if it requires operation the gun will check the cycle against the cock delays.
+If the gun does toggle, Unique action will open the chamber. (Open the barrel on a DB, or the cylinder on a revolver.)
+*/
 /obj/item/weapon/gun/unique_action(mob/user, dont_operate = FALSE)
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
+		return
 	if(!length(chamber_items) && in_chamber && !CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES))
 		unload(user)
 		return
@@ -973,7 +979,7 @@
 	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES))
 		cycle(user, FALSE)
 		return
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED))
+	if(CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED)) //We want to open it.
 		DISABLE_BITFIELD(reciever_flags, RECIEVER_CLOSED)
 		playsound(src, opened_sound, 25, 1)
 		if(shell_eject_animation)
@@ -982,22 +988,22 @@
 			to_chat(user, span_notice(chamber_opened_message))
 		if(in_chamber)
 			if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
-				chamber_items[current_chamber_position].vars[current_rounds_var] += rounds_to_draw
+				chamber_items[current_chamber_position].vars[current_rounds_var] += rounds_to_draw //If the gun uses mags, it will refund the current mag.
 				QDEL_NULL(in_chamber)
 			else
-				chamber_items.Insert(current_chamber_position, in_chamber)
+				chamber_items.Insert(current_chamber_position, in_chamber) //Otherwise we insert in_chamber back into the chamber_items. We dont want in_chamber to be full when the gun is open.
 				in_chamber = null
 		if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES_EJECTS))
-			for(var/obj/object_to_eject in chamber_items)
+			for(var/obj/object_to_eject in chamber_items) //If the gun ejects on toggle, we wanna yeet the loaded items out.
 				if(user)
 					user.put_in_hands(object_to_eject)
 				else
 					object_to_eject.forceMove(get_turf(src))
-			for(var/i = 0, i < casings_to_eject, i++)
+			for(var/i = 0, i < casings_to_eject, i++) //Eject casings equal to the rounds fired between the last opening.
 				make_casing(null, FALSE)
 			casings_to_eject = 0
 			chamber_items = list()
-			if(CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES))
+			if(CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES)) //If the reciever cycles (like revolvers) we want to populate the chamber with null objects.
 				for(var/i = 0, i < max_chamber_items, i++)
 					chamber_items.Add(null)
 	else
@@ -1012,8 +1018,19 @@
 
 
 
-///Handles reloading. Called on attack_by
+/*Handles reloading. Called on attack_by
+Reload works in one of three ways, depending on the guns flags.
+First, if the gun is set to magazines, it will do checks based on the magazines vars and if it succeeds it will load the magazine.
+If the gun uses handfuls, the gun will create or take a handful with one round and insert those.
+If the gun does not use handfuls, or magazines. It will merely fill the gun with whatever item is inserted.
+*/
 /obj/item/weapon/gun/proc/reload(obj/item/new_mag, mob/living/user, force = FALSE)
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
+		return
+	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
+		if((!CHECK_BITFIELD(flags_gun_features, RECIEVER_MAGAZINES) && istype(new_mag, sentry_battery_type)) || (CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES) && ((sentry_battery_type in allowed_ammo_types) && !sentry_battery && length(chamber_items) <= current_chamber_position && chamber_items[current_chamber_position]) || (!(sentry_battery_type in allowed_ammo_types) && istype(new_mag, sentry_battery_type))))
+			reload_sentry_cell(new_mag, user)
+			return
 	if(!(new_mag.type in allowed_ammo_types))
 		if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
 			var/obj/item/ammo_magazine/mag = new_mag
@@ -1028,7 +1045,7 @@
 			return FALSE
 
 	if(CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED) && !force)
-		if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES))
+		if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES)) //RECIEVER_CLOSED without RECIEVER_TOGGLES means the gun is not allowed to reload. Period.
 			to_chat(user, span_warning("[src] is closed!"))
 		else
 			to_chat(user, span_warning("You cannot reload [src]!"))
@@ -1126,7 +1143,7 @@
 	update_icon()
 	return TRUE
 
-///Handles unloading. Called on attackhand.
+///Handles unloading. Called on attackhand. Draws the chamber_items out first, then in_chamber
 /obj/item/weapon/gun/proc/unload(mob/living/user, drop = TRUE)
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return FALSE

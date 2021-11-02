@@ -48,7 +48,7 @@
 		/obj/item/ammo_magazine/flamer_tank/large/X,
 		/obj/item/ammo_magazine/flamer_tank/backtank,
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
-		)
+	)
 	///Max range of the flamer in tiles.
 	var/flame_max_range = 6
 	///Travel speed of the flames in seconds.

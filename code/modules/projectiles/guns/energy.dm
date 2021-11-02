@@ -10,8 +10,8 @@
 
 	placed_overlay_iconstate = "laser"
 	reciever_flags = RECIEVER_MAGAZINES|RECIEVER_NO_HANDFULS
-	default_ammo_type = /obj/item/cell
-	allowed_ammo_types = list(/obj/item/cell)
+	default_ammo_type = /obj/item/cell/lasgun
+	allowed_ammo_types = list(/obj/item/cell/lasgun)
 	current_rounds_var = "charge"
 	max_rounds_var = "maxcharge"
 	ammo_type_var = null
