@@ -2030,7 +2030,7 @@ datum/ammo/bullet/revolver/tp44
 	set_reagents()
 
 /datum/ammo/xeno/redspit/on_hit_obj(obj/O,obj/projectile/P)
-var/turf/T = get_turf(O)
+	var/turf/T = get_turf(O)
 	if(!T)
 		T = get_turf(P)
 	if(O.density && !(O.flags_atom & ON_BORDER))
