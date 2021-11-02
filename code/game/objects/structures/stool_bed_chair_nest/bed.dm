@@ -333,6 +333,9 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/structure/bed/medevac_stretcher/Destroy()
 	QDEL_NULL(radio)
+	if(linked_beacon)
+		linked_beacon.linked_bed_deployed = null
+		linked_beacon = null
 	return ..()
 
 /obj/structure/bed/medevac_stretcher/update_icon()
