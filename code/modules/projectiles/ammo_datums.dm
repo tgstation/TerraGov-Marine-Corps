@@ -1785,39 +1785,29 @@ var/list/datum/reagent/spit_lightsanguinal
 
 /datum/ammo/xeno/redspit/on_hit_mob(mob/living/carbon/C, obj/projectile/P)
     drop_lightred_smoke(get_turf(C))
-
     if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
         return
-
     if(isnestedhost(C))
         return
-
     C.adjust_stagger(stagger_stacks) //stagger briefly; useful for support
     C.add_slowdown(slowdown_stacks) //slow em down
-
     set_reagents()
-
     C.reagents.add_reagent_list(spit_lightsanguinal) //transfer reagents
-
     return ..()
-
+	
 /datum/ammo/xeno/redspit/on_hit_obj(obj/O,obj/projectile/P)
     var/turf/T = get_turf(O)
     if(!T)
         T = get_turf(P)
-
     if(O.density && !(O.flags_atom & ON_BORDER))
-        T = get_turf(get_step(T, turn(P.dir, 180))) //If the object is dense and not a border object like barricades, we instead drop in the location just prior to the target
-
+        T = get_turf(get_step(T, turn(P.dir, 180))) 
     drop_lightred_smoke(T)
 
 /datum/ammo/xeno/redspit/on_hit_turf(turf/T,obj/projectile/P)
     if(!T)
         T = get_turf(P)
-
     if(isclosedturf(T))
         T = get_turf(get_step(T, turn(P.dir, 180))) //If the turf is closed, we instead drop in the location just prior to the turf
-
     drop_lightred_smoke(T)
 
 /datum/ammo/xeno/redspit/do_at_max_range(obj/projectile/P)
