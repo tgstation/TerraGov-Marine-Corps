@@ -1641,6 +1641,8 @@ datum/ammo/bullet/revolver/tp44
 	///List of reagents transferred upon spit impact if any
 	var/list/datum/reagent/spit_reagents
 	///Amount of reagents transferred upon spit impact if any
+	var/list/datum/reagent/spit_lightsanguinal
+	///var for lightsang
 	var/reagent_transfer_amount
 	///Amount of stagger stacks imposed on impact if any
 	var/stagger_stacks
@@ -1779,10 +1781,7 @@ datum/ammo/bullet/revolver/tp44
     smoke_strength = 0.5
     smoke_range = 0
     reagent_transfer_amount = 9
-
-	var/list/datum/reagent/spit_lightsanguinal
 	
-
 /datum/ammo/xeno/redspit/proc/set_reagents()
     spit_lightsanguinal = list(/datum/reagent/toxin/xeno_lightsanguinal = reagent_transfer_amount)
 
