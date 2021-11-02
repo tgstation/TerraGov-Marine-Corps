@@ -108,7 +108,6 @@
 
 	active_attachable.unload(living_user)
 
-
 /obj/item/weapon/gun/attackby(obj/item/I, mob/user, params)
 	if(user.get_inactive_held_item() != src || istype(I, /obj/item/attachable) || isgun(I))
 		return ..()
