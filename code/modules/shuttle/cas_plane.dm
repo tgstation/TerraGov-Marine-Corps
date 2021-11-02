@@ -268,13 +268,13 @@
 	if(eyeobj.eye_user)
 		to_chat(user, span_warning("CAS mode is already in-use!"))
 		return
-	if(!length(GLOB.active_cas_targets))
-		to_chat(user, span_warning("No active laser targets detected!"))
+	if(SSmonitor.human_on_ground <= 5)
+		to_chat(user, span_warning("The signal from the planet is too weak, we cannot route towards the battle field."))
 		return
-	to_chat(user, span_warning("Laser targets detected, routing to target."))
 	var/input = tgui_input_list(user, "Select a CAS target", "CAS targetting", GLOB.active_cas_targets)
 	if(!input)
-		return
+		input = GLOB.minidropship_start_loc
+	to_chat(user, span_warning("Targets detected, routing to target."))
 	give_eye_control(user)
 	eyeobj.setLoc(get_turf(input))
 
