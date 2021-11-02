@@ -200,8 +200,7 @@
 		var/neurotox_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin) + reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin/light)
 		var/hemodile_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)
 		var/transvitox_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)
-		var/sanguinal_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal)
-		var/lightsanguinal_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_lightsanguinal)
+		var/sanguinal_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal) + reagents.get_reagent_amount(/datum/reagent/toxin/xeno_lightsanguinal)
 
 		if(neurotox_amount > 10) //Blinking image for particularly high concentrations
 			xeno_reagent.overlays += neurotox_high_image
@@ -221,11 +220,6 @@
 		if(sanguinal_amount > 10)
 			xeno_reagent.overlays += sanguinal_high_image
 		else if(sanguinal_amount > 0)
-			xeno_reagent.overlays += sanguinal_image
-
-		if(lightsanguinal_amount > 10)
-			xeno_reagent.overlays += sanguinal_high_image
-		else if(lightsanguinal_amount > 0)
 			xeno_reagent.overlays += sanguinal_image
 
 	hud_list[XENO_REAGENT_HUD] = xeno_reagent

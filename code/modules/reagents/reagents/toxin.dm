@@ -667,15 +667,6 @@
 	toxpwr = 0
 
 /datum/reagent/toxin/xeno_lightsanguinal/on_mob_life(mob/living/L, metabolism)
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //This makes marines regret stacking
-		L.adjustStaminaLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
-		L.adjustToxLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
-		L.adjustFireLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
-
 	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine))
 		L.adjustOxyLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
 
@@ -685,8 +676,14 @@
 	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/bicaridine))
 		L.adjustBruteLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
 
-	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon))
+	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/paracetamol))
 		L.adjustOxyLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/tramadol))
+		L.adjustBruteLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/oxycodone))
+		L.adjustFireLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
 		return
 
 /datum/reagent/zombium
