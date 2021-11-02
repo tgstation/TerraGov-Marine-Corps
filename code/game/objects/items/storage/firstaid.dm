@@ -287,8 +287,6 @@
 	greyscale_config = /datum/greyscale_config/pillbottle
 	greyscale_colors = "#d9cd07#f2cdbb" //default colors
 	var/pill_type_to_fill //type of pill to use to fill in the bottle in New()
-	///required variable for facepaint recoloring script
-	var/list/colorable_colors
 
 
 /obj/item/storage/pill_bottle/Initialize(mapload, ...)
@@ -509,26 +507,22 @@
 	. = ..()
 	if(.)
 		return
-	if(!istype(I, /obj/item/facepaint) || istype(src, /obj/item/storage/pill_bottle/packet))
+	if(!istype(I, /obj/item/facepaint) || isnull(greyscale_config))
 		return
 
 	var/obj/item/facepaint/paint = I
 	if(paint.uses < 1)
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return
-	var/new_color
-	var/new_color2
-	if(colorable_colors)
-		new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
-		new_color2 = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
-	else
-		new_color = input(user, "Pick a color", "Pick color") as null|color
-		new_color2 = input(user, "Pick a color", "Pick color") as null|color
+	var/bottle_color
+	var/label_color
+	bottle_color = input(user, "Pick a color", "Pick color") as null|color
+	label_color = input(user, "Pick a color", "Pick color") as null|color
 
-	if(!new_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+	if(!bottle_color || !label_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
 
 
-	set_greyscale_colors(list(new_color,new_color2))
+	set_greyscale_colors(list(bottle_color,label_color))
 	paint.uses--
 	update_icon()

@@ -330,7 +330,6 @@
 	if(!(user.client in has_sprites))
 		spawn()
 			has_sprites += user.client
-			//for(var/i = 1 to MAX_PILL_BOTTLE_SPRITE)
 			user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "pill_canister1"), "pill_canister1.png")
 			user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "round_pill_bottle"), "round_pill_bottle.png")
 			for(var/i = 1 to MAX_PILL_SPRITE)
