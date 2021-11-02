@@ -653,7 +653,6 @@
 		C.drip(DEFILER_SANGUINAL_DAMAGE) //Causes bleeding
 
 	return ..()
-
 /datum/reagent/toxin/xeno_lightsanguinal
 	name = "light Sanguinal"
 	description = "A weaker version of the toxin Sanguinal, but just as deadly."
