@@ -2034,7 +2034,8 @@ datum/ammo/bullet/revolver/tp44
 	if(!T)
 		T = get_turf(P)
 	if(O.density && !(O.flags_atom & ON_BORDER))
-	T = get_turf(get_step(T, turn(P.dir, 180)))
+		T = get_turf(get_step(T, turn(P.dir, 180)))
+
 	drop_lightred_smoke(T)
 
 /datum/ammo/xeno/redspit/on_hit_turf(turf/T,obj/projectile/P)
