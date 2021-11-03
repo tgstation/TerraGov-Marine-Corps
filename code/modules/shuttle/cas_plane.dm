@@ -278,7 +278,7 @@
 		input = GLOB.minidropship_start_loc
 	if(!input)
 		return
-	to_chat(user, span_warning("Targets detected, routing to target."))
+	to_chat(user, span_warning("Targets detected, routing to planet."))
 	give_eye_control(user)
 	eyeobj.setLoc(get_turf(input))
 
