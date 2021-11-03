@@ -11,6 +11,8 @@
 
 	///Slot the attachment is able to occupy.
 	var/slot
+	///Icon sheet of the attachment overlays
+	var/attach_icon = null
 	///Proc typepath that is called when this is attached to something.
 	var/on_attach = .proc/on_attach
 	///Proc typepath that is called when this is detached from something.
@@ -27,6 +29,8 @@
 	var/attach_delay = 2 SECONDS
 	///Time it takes to detach.
 	var/detach_delay = 2 SECONDS
+	///Used for when the mob attach overlay icon is different than icon.
+	var/mob_overlay_icon
 
 	///Light modifier for attachment to an armor piece
 	var/light_mod = 0
@@ -36,11 +40,11 @@
 
 /obj/item/armor_module/Initialize()
 	. = ..()
-	AddElement(/datum/element/attachment, slot, icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay)
+	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, mob_overlay_icon = mob_overlay_icon)
 
 /// Called before a module is attached.
 /obj/item/armor_module/proc/can_attach(obj/item/attaching_to, mob/user)
-	if(!istype(attaching_to, /obj/item/clothing/suit/modular) && !istype(attaching_to, /obj/item/clothing/head/modular))
+	if(!istype(attaching_to, /obj/item/clothing/suit/modular) && !istype(attaching_to, /obj/item/clothing/head/modular) && !istype(attaching_to, /obj/item/clothing/under))
 		return FALSE
 	return TRUE
 

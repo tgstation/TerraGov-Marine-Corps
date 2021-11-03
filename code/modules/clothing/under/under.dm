@@ -9,6 +9,8 @@
 	flags_equip_slot = ITEM_SLOT_ICLOTHING
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	w_class = WEIGHT_CLASS_BULKY
+	blood_sprite_state = "uniformblood"
+	sprite_sheets = list("Vox" = 'icons/mob/species/vox/uniform.dmi')
 	var/has_sensor = 1//For the crew computer 2 = unable to change mode
 	var/sensor_mode = 3
 		/*
@@ -16,48 +18,75 @@
 		2 = Report detailed damages
 		3 = Report location
 		*/
-	var/obj/item/clothing/tie/hastie = null
 	var/displays_id = 1
-	var/rollable_sleeves = FALSE //can we roll the sleeves on this uniform?
-	var/rolled_sleeves = FALSE //are the sleeves currently rolled?
-	blood_sprite_state = "uniformblood"
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/uniform.dmi')
+	var/list/attachments_allowed = list(
+		/obj/item/armor_module/storage/uniform/webbing,
+		/obj/item/armor_module/storage/uniform/black_vest,
+		/obj/item/armor_module/storage/uniform/brown_vest,
+		/obj/item/armor_module/storage/uniform/white_vest,
+		/obj/item/armor_module/storage/uniform/white_vest/surgery,
+		/obj/item/armor_module/storage/uniform/white_vest/medic,
+		/obj/item/armor_module/storage/uniform/knifeharness,
+		/obj/item/armor_module/storage/uniform/holster,
+		/obj/item/armor_module/storage/uniform/holster/armpit,
+		/obj/item/armor_module/storage/uniform/holster/waist,
+		/obj/item/armor_module/storage/uniform/holobadge,
+		/obj/item/armor_module/storage/uniform/holobadge/cord,
+		/obj/item/clothing/tie,
+		/obj/item/clothing/tie/blue,
+		/obj/item/clothing/tie/red,
+		/obj/item/clothing/tie/horrible,
+		/obj/item/clothing/tie/stethoscope,
+		/obj/item/clothing/tie/medal,
+		/obj/item/clothing/tie/medal/conduct,
+		/obj/item/clothing/tie/medal/bronze_heart,
+		/obj/item/clothing/tie/medal/nobel_science,
+		/obj/item/clothing/tie/medal/silver,
+		/obj/item/clothing/tie/medal/silver/valor,
+		/obj/item/clothing/tie/medal/silver/security,
+		/obj/item/clothing/tie/medal/gold,
+		/obj/item/clothing/tie/medal/gold/captain,
+		/obj/item/clothing/tie/medal/gold/heroism,
+		/obj/item/clothing/tie/medal/letter/commendation,
+		/obj/item/clothing/tie/armband,
+		/obj/item/clothing/tie/armband/cargo,
+		/obj/item/clothing/tie/armband/engine,
+		/obj/item/clothing/tie/armband/science,
+		/obj/item/clothing/tie/armband/hydro,
+		/obj/item/clothing/tie/armband/med,
+		/obj/item/clothing/tie/armband/medgreen,
+	)
 
+	///Assoc list of available slots.
+	var/list/attachments_by_slot = list(
+		ATTACHMENT_SLOT_UNIFORM,
+		ATTACHMENT_SLOT_UNIFORM_TIE
+	)
+	///Typepath list of allowed attachment types.
+	var/list/adjustment_variants = list(
+		"Down" = "_d",
+	)
+	var/current_variant
 
-
-
-/obj/item/clothing/under/Destroy()
-	if(hastie)
-		qdel(hastie)
-		hastie = null
-	return ..()
-
-
+/obj/item/clothing/under/Initialize()
+	. = ..()
+	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed)
 
 /obj/item/clothing/under/update_clothing_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_w_uniform()
 
-/obj/item/clothing/under/attackby(obj/item/I, mob/user, params)
-	if(hastie)
-		hastie.attackby(I, user, params)
-		return TRUE
+/obj/item/clothing/under/get_worn_icon_state(slot_name, inhands)
+	. = ..()
+	. += current_variant
 
-	else if(!ishuman(user))
+/obj/item/clothing/under/attackby(obj/item/I, mob/user, params)
+	if(!ishuman(user))
 		return ..()
 
 	var/mob/living/carbon/human/H = user
-	if(!hastie && istype(I, /obj/item/clothing/tie))
-		var/obj/item/clothing/tie/T = I
-		if(!T.tie_check(src, user))
-			return ..()
-		user.drop_held_item()
-		hastie = T
-		hastie.on_attached(src, user)
-		H.update_inv_w_uniform()
-
-	else if(loc == user && istype(I, /obj/item/clothing/under) && src != I)
+	if(loc == user && istype(I, /obj/item/clothing/under) && src != I)
 		if(H.w_uniform != src)
 			return ..()
 
@@ -69,48 +98,38 @@
 	else
 		return ..()
 
-/obj/item/clothing/under/attack_hand(mob/living/user)
-	//only forward to the attached accessory if the clothing is equipped (not in a storage)
-	if(hastie && src.loc == user)
-		hastie.attack_hand(user)
-		return
-
-	if(ishuman(usr) && loc == user)	//make it harder to accidentally undress yourself
-		return
-
-	return ..()
-
 /obj/item/clothing/under/MouseDrop(obj/over_object as obj)
-	if (ishuman(usr))
-		//makes sure that the clothing is equipped so that we can't drag it into our hand from miles away.
-		if ((flags_item & NODROP) || loc != usr)
-			return
-
-		if (!usr.incapacitated() && !(usr.buckled && usr.lying_angle))
-			if(over_object)
-				switch(over_object.name)
-					if("r_hand")
-						usr.dropItemToGround(src)
-						usr.put_in_r_hand(src)
-					if("l_hand")
-						usr.dropItemToGround(src)
-						usr.put_in_l_hand(src)
+	if(!ishuman(usr))
+		return
+	//makes sure that the clothing is equipped so that we can't drag it into our hand from miles away.
+	if ((flags_item & NODROP) || loc != usr)
+		return
+	if(usr.incapacitated() || usr.buckled || usr.lying_angle)
+		return
+	if(!over_object)
+		return
+	switch(over_object.name)
+		if("r_hand")
+			usr.dropItemToGround(src)
+			usr.put_in_r_hand(src)
+		if("l_hand")
+			usr.dropItemToGround(src)
+			usr.put_in_l_hand(src)
 
 
 /obj/item/clothing/under/examine(mob/user)
-	..()
-	if(has_sensor)
-		switch(sensor_mode)
-			if(0)
-				to_chat(user, "Its sensors appear to be disabled.")
-			if(1)
-				to_chat(user, "Its binary life sensors appear to be enabled.")
-			if(2)
-				to_chat(user, "Its vital tracker appears to be enabled.")
-			if(3)
-				to_chat(user, "Its vital tracker and tracking beacon appear to be enabled.")
-	if(hastie)
-		to_chat(user, "\A [hastie] is clipped to it.")
+	. = ..()
+	if(!has_sensor)
+		return
+	switch(sensor_mode)
+		if(0)
+			to_chat(user, "Its sensors appear to be disabled.")
+		if(1)
+			to_chat(user, "Its binary life sensors appear to be enabled.")
+		if(2)
+			to_chat(user, "Its vital tracker appears to be enabled.")
+		if(3)
+			to_chat(user, "Its vital tracker and tracking beacon appear to be enabled.")
 
 /obj/item/clothing/under/proc/set_sensors(mob/living/user)
 	if (!istype(user))
@@ -168,51 +187,24 @@
 	set name = "Roll Down Jumpsuit"
 	set category = "Object"
 	set src in usr
-	if(!isliving(usr)) return
-	if(usr.stat) return
-
-	if(rollable_sleeves)
-		rolled_sleeves = !rolled_sleeves
-		var/full_coverage = CHEST|GROIN|LEGS|ARMS
-		if(rolled_sleeves)
-			var/partial_coverage = CHEST|GROIN|LEGS
-			var/final_coverage
-			//Marine uniforms can only roll up the sleeves, not wear it at the waist.
-			if(istype(src,/obj/item/clothing/under/marine))
-				final_coverage = copytext(icon_state,1,3) == "s_" ? full_coverage : partial_coverage
-			else final_coverage = partial_coverage & ~CHEST
-			flags_armor_protection = final_coverage
-		else
-			flags_armor_protection = full_coverage
-
-		flags_cold_protection = flags_armor_protection
-		flags_heat_protection = flags_armor_protection
-		update_clothing_icon()
-	else
-		to_chat(usr, span_warning("You cannot roll down the uniform!"))
-
-//proper proc to remove the uniform's tie (user optional)
-/obj/item/clothing/under/proc/remove_accessory(mob/user)
-	if(!hastie)
-		return
-
-	hastie.on_removed()
-	if(user)
-		user.put_in_hands(hastie)
-	hastie = null
-	update_clothing_icon()
-
-/obj/item/clothing/under/verb/removetie()
-	set name = "Remove Accessory"
-	set category = "Object"
-	set src in usr
 	if(!isliving(usr))
 		return
-	if(usr.stat) return
-
-	src.remove_accessory(usr)
-
-/obj/item/clothing/under/emp_act(severity)
-	if (hastie)
-		hastie.emp_act(severity)
-	..()
+	if(usr.stat)
+		return
+	if(!length(adjustment_variants))
+		to_chat(usr, span_warning("You cannot roll down the uniform!"))
+		return
+	var/variant = null
+	if(!current_variant || length(adjustment_variants) > 1)
+		if(length(adjustment_variants) == 1)
+			variant = adjustment_variants[1]
+		else
+			var/list/selection_list = list("Normal" = null)
+			selection_list += adjustment_variants
+			variant = tgui_input_list(usr, "Select Variant", "Variants", selection_list)
+	if(variant)
+		current_variant = adjustment_variants[variant]
+	else
+		current_variant = null
+	update_icon()
+	update_clothing_icon()

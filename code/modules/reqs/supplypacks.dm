@@ -873,12 +873,12 @@ CLOTHING
 
 /datum/supply_packs/clothing/webbing
 	name = "webbing"
-	contains = list(/obj/item/clothing/tie/storage/webbing)
+	contains = list(/obj/item/armor_module/storage/uniform/webbing)
 	cost = 2
 
 /datum/supply_packs/clothing/brown_vest
 	name = "brown_vest"
-	contains = list(/obj/item/clothing/tie/storage/brown_vest)
+	contains = list(/obj/item/armor_module/storage/uniform/brown_vest)
 	cost = 2
 
 /datum/supply_packs/clothing/revolver

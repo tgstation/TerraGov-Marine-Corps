@@ -23,6 +23,8 @@
 #define ATTACH_ACTIVATION (1<<1)
 #define ATTACH_SAME_ICON (1<<2)
 #define ATTACH_APPLY_ON_MOB (1<<3)
+#define ATTACH_SEPERATE_MOB_OVERLAY (1<<4)
+#define ATTACH_NO_HANDS (1<<5)
 
 //gun attachment slot defines
 #define ATTACHMENT_SLOT_RAIL "rail"
@@ -46,3 +48,6 @@
 #define ATTACHMENT_SLOT_HEAD_MODULE "head_module"
 #define ATTACHMENT_SLOT_VISOR "visor"
 
+
+#define ATTACHMENT_SLOT_UNIFORM "uniform"
+#define ATTACHMENT_SLOT_UNIFORM_TIE "tie"

@@ -286,6 +286,7 @@
 		M.update_inv_head()
 
 /obj/item/clothing/head/helmet/marine/apply_custom(image/standing)
+	. = ..()
 	var/image/I
 	for(var/i in helmet_overlays)
 		I = helmet_overlays[i]

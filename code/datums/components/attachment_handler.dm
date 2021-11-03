@@ -101,6 +101,13 @@
 
 	RegisterSignal(attachment, COMSIG_ATOM_UPDATE_ICON, .proc/update_parent_overlay)
 	update_parent_overlay()
+	if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
+		return
+	var/obj/parent_obj = parent
+	if(!ismob(parent_obj.loc))
+		return
+	var/mob/wearing_mob = parent_obj.loc
+	wearing_mob.regenerate_icons() ///Theres probably a better way to do this.
 
 ///This is the do_after and user checks for attaching.
 /datum/component/attachment_handler/proc/do_attach(obj/item/attachment, mob/attacher, list/attachment_data)
@@ -112,10 +119,11 @@
 	if(!can_attach(attachment, user, attachment_data))
 		return FALSE
 
-	var/obj/item/in_hand = user.get_inactive_held_item()
-	if(in_hand != parent)
-		to_chat(user, span_warning("You have to hold [parent] to do that!"))
-		return FALSE
+	if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_NO_HANDS))
+		var/obj/item/in_hand = user.get_inactive_held_item()
+		if(in_hand != parent)
+			to_chat(user, span_warning("You have to hold [parent] to do that!"))
+			return FALSE
 
 	var/do_after_icon_type = BUSY_ICON_GENERIC
 	var/attach_delay = attachment_data[ATTACH_DELAY]
@@ -276,7 +284,9 @@
 		var/list/attachment_data = attachment_data_by_slot[slot]
 
 		var/icon = attachment_data[OVERLAY_ICON]
-		var/icon_state = attachment.icon_state + "_a"
+		var/icon_state = attachment.icon_state
+		if(attachment_data[OVERLAY_ICON] == attachment.icon)
+			icon_state = attachment.icon_state + "_a"
 		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
 			icon_state = attachment.icon_state
 			icon = attachment.icon
@@ -305,7 +315,6 @@
 ///Updates the mob sprite of the attachment.
 /datum/component/attachment_handler/proc/apply_custom(datum/source, image/standing)
 	SIGNAL_HANDLER
-	var/obj/item/parent_item = parent
 	for(var/slot in slots)
 		var/obj/item/attachment = slots[slot]
 		if(!attachment)
@@ -313,7 +322,19 @@
 		var/list/attachment_data = attachment_data_by_slot[slot]
 		if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
 			continue
-		var/image/new_overlay = image(attachment.icon, source, attachment.icon_state + "_a", dir = parent_item.dir)
+		var/image/new_overlay
+		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
+			new_overlay = attachment.icon
+		else
+			var/suffix = "_a"
+			var/icon = attachment.icon
+			if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SEPERATE_MOB_OVERLAY))
+				if(attachment_data[MOB_OVERLAY_ICON])
+					icon = attachment_data[MOB_OVERLAY_ICON]
+					suffix = ""
+				else
+					suffix = "_m"
+			new_overlay = image(icon, icon_state = attachment.icon_state + suffix)
 		if(attachment_data[MOB_PIXEL_SHIFT_X])
 			new_overlay.pixel_x = attachment_data[MOB_PIXEL_SHIFT_X]
 		if(attachment_data[MOB_PIXEL_SHIFT_Y])

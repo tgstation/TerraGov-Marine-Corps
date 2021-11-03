@@ -547,13 +547,6 @@
 			if(!istype(src, /obj/item/restraints/handcuffs))
 				return FALSE
 			return TRUE
-		if(SLOT_ACCESSORY)
-			if(!istype(src, /obj/item/clothing/tie))
-				return FALSE
-			var/obj/item/clothing/under/U = H.w_uniform
-			if(!U || U.hastie)
-				return FALSE
-			return TRUE
 		if(SLOT_IN_BACKPACK)
 			if (!H.back || !istype(H.back, /obj/item/storage/backpack))
 				return FALSE
@@ -618,16 +611,6 @@
 				return FALSE
 			var/obj/item/storage/internal/T = S.pockets
 			if(T.can_be_inserted(src, warning))
-				return TRUE
-		if(SLOT_IN_ACCESSORY)
-			var/obj/item/clothing/under/U = H.w_uniform
-			if(!U?.hastie)
-				return FALSE
-			var/obj/item/clothing/tie/storage/T = U.hastie
-			if(!istype(T))
-				return FALSE
-			var/obj/item/storage/internal/S = T.hold
-			if(S.can_be_inserted(src, warning))
 				return TRUE
 	return FALSE //Unsupported slot
 
