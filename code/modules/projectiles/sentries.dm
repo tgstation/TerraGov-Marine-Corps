@@ -55,7 +55,7 @@
 	spark_system.attach(src)
 
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_INACCURATE))
-		gun.accuracy_mult *= 0.85
+		gun.accuracy_mult -= 0.15
 		gun.scatter += 10
 
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_HAS_CAMERA))
