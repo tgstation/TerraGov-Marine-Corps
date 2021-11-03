@@ -70,6 +70,7 @@
 
 /obj/item/clothing/under/Initialize()
 	. = ..()
+	attachments_allowed = string_list(attachments_allowed)
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed)
 
 /obj/item/clothing/under/update_clothing_icon()
