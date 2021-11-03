@@ -150,7 +150,7 @@
 #define SMOKE_NEURO_LIGHT (1<<16) //Effectively a sub-flag of Neuro; precludes higher impact effects
 #define SMOKE_HUGGER_PACIFY (1<<17) //Smoke that pacifies huggers in its area; mainly used for vision blocking smoke
 #define SMOKE_XENO_SANGUINAL (1<<18) //Toxic crimson smoke created by the Defiler's Defile ability.
-#define SMOKE_XENO_LIGHTSANGUINAL (1<<19) //spitter sanguinal
+#define SMOKE_XENO_LIGHT_SANGUINAL (1<<19) //spitter sanguinal
 
 //Incapacitated
 #define INCAPACITATED_IGNORE_RESTRAINED (1<<0)

@@ -38,7 +38,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 0.8 SECONDS
-	spit_types = list(/datum/ammo/xeno/acid/medium, /datum/ammo/xeno/toxin/redspit) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
+	spit_types = list(/datum/ammo/xeno/acid/medium, /datum/ammo/toxin/sanguinal/xeno_light_sanguinal) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
 
 	acid_spray_duration = 10 SECONDS
 	acid_spray_damage_on_hit = 35

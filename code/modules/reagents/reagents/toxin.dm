@@ -654,37 +654,35 @@
 
 	return ..()
 
-/datum/reagent/toxin/xeno_lightsanguinal
+/datum/reagent/toxin/xeno_sanguinal/xeno_light_sanguinal
 	name = "light Sanguinal"
 	description = "A weaker version of the toxin Sanguinal, but just as deadly."
 	reagent_state = LIQUID
 	color = "#f3491f"
 	custom_metabolism = 1
-	purge_list = list(/datum/reagent/hypervene, /datum/reagent/medicine/ryetalyn, /datum/reagent/medicine/dylovene)
-	purge_rate = 0.8
+	purge_list = null
 	overdose_threshold = 10000
 	scannable = TRUE
 	toxpwr = 0
 
-/datum/reagent/toxin/xeno_lightsanguinal/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/toxin/xeno_sanguinal/xeno_light_sanguinal/on_mob_life(mob/living/L, metabolism)
 	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine))
-		L.adjustOxyLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
+		L.adjustOxyLoss(SPITTER_LIGHT_SANGUINAL_DAMAGE)
 
 	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/kelotane))
-		L.adjustFireLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
+		L.adjustFireLoss(SPITTER_LIGHT_SANGUINAL_DAMAGE)
 
 	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/bicaridine))
-		L.adjustBruteLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
+		L.adjustBruteLoss(SPITTER_LIGHT_SANGUINAL_DAMAGE)
 
 	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/paracetamol))
-		L.adjustOxyLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
+		L.adjustOxyLoss(SPITTER_LIGHT_SANGUINAL_DAMAGE)
 
 	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/tramadol))
-		L.adjustBruteLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
+		L.adjustBruteLoss(SPITTER_LIGHT_SANGUINAL_DAMAGE)
 
 	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/oxycodone))
-		L.adjustFireLoss(SPITTER_LIGHTSANGUINAL_DAMAGE)
-		return
+		L.adjustFireLoss(SPITTER_LIGHT_SANGUINAL_DAMAGE)
 
 /datum/reagent/zombium
 	name = "Zombium"
