@@ -29,22 +29,22 @@
 	adjust_pain_speed_mod(.)
 
 
-/mob/living/carbon/proc/adjust_pain_speed_mod(old_shock_stage)
-	switch(shock_stage)
-		if(0 to 10)
-			if(old_shock_stage <= 10)
+/mob/living/carbon/proc/adjust_pain_speed_mod(old_traumatic_shock)
+	switch(traumatic_shock)
+		if(0 to 100)
+			if(old_traumatic_shock <= 100)
 				return
 			remove_movespeed_modifier(MOVESPEED_ID_PAIN)
-		if(10 to 30)
-			if(old_shock_stage > 10 || old_shock_stage <= 30)
+		if(100 to 125)
+			if(old_traumatic_shock > 100 || old_traumatic_shock <= 125)
 				return
 			add_movespeed_modifier(MOVESPEED_ID_PAIN, TRUE, 0, NONE, TRUE, 1)
-		if(30 to 50)
-			if(old_shock_stage > 30 || old_shock_stage <= 50)
+		if(125 to 150)
+			if(old_traumatic_shock > 125 || old_traumatic_shock <= 150)
 				return
 			add_movespeed_modifier(MOVESPEED_ID_PAIN, TRUE, 0, NONE, TRUE, 2)
-		if(50 to INFINITY)
-			if(old_shock_stage > 50)
+		if(150 to INFINITY)
+			if(old_traumatic_shock > 150)
 				return
 			add_movespeed_modifier(MOVESPEED_ID_PAIN, TRUE, 0, NONE, TRUE, 3)
 
