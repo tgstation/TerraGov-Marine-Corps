@@ -130,8 +130,10 @@
 
 /datum/reagent/medicine/oxycodone/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
-	//L.adjustShock_Stage(-1*effect_str)
 	L.apply_damage(0.2*effect_str, TOX)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.adjustShock_Stage(-1*effect_str)
 	return ..()
 
 /datum/reagent/medicine/oxycodone/overdose_process(mob/living/L, metabolism)
@@ -163,7 +165,9 @@
 
 /datum/reagent/medicine/hydrocodone/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
-	//L.adjustShock_Stage(-1*effect_str)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.adjustShock_Stage(-1*effect_str)
 	return ..()
 
 /datum/reagent/medicine/hydrocodone/overdose_process(mob/living/L, metabolism)
@@ -442,7 +446,6 @@
 
 /datum/reagent/medicine/neuraline/on_mob_life(mob/living/L)
 	L.reagent_shock_modifier += (2 * PAIN_REDUCTION_VERY_HEAVY)
-	//L.adjustShock_Stage(-volume * effect_str)
 	L.adjustDrowsyness(-5)
 	L.dizzy(-5)
 	L.stuttering = max(L.stuttering-5, 0)
@@ -458,6 +461,9 @@
 	L.adjustStaminaLoss(-30*effect_str)
 	L.heal_limb_damage(7.5*effect_str, 7.5*effect_str)
 	L.adjustToxLoss(3.75*effect_str)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.adjustShock_Stage(-volume*effect_str)
 	return ..()
 
 /datum/reagent/medicine/neuraline/overdose_process(mob/living/L, metabolism)
@@ -519,7 +525,9 @@
 	L.heal_limb_damage(10*effect_str, 10*effect_str)
 	L.adjustToxLoss(-2.5*effect_str)
 	L.adjustCloneLoss(effect_str)
-	//L.adjustShock_Stage(-5*effect_str)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.adjustShock_Stage(-5*effect_str)
 	return ..()
 
 /datum/reagent/medicine/russian_red/overdose_process(mob/living/L, metabolism)
