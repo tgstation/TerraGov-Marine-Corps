@@ -271,9 +271,13 @@
 	if(SSmonitor.human_on_ground <= 5)
 		to_chat(user, span_warning("The signal from the planet is too weak, we cannot route towards the battle field."))
 		return
-	var/input = tgui_input_list(user, "Select a CAS target", "CAS targetting", GLOB.active_cas_targets)
-	if(!input)
+	var/input
+	if(length(GLOB.active_cas_targets))
+		input = tgui_input_list(user, "Select a CAS target", "CAS targetting", GLOB.active_cas_targets)
+	else
 		input = GLOB.minidropship_start_loc
+	if(!input)
+		return
 	to_chat(user, span_warning("Targets detected, routing to target."))
 	give_eye_control(user)
 	eyeobj.setLoc(get_turf(input))
