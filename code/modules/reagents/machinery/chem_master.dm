@@ -191,7 +191,7 @@
 					return
 				var/bottle_label = reject_bad_text(input(user, "Label:", "Enter desired bottle label", null) as text|null)
 				var/obj/item/storage/pill_bottle/I = new/obj/item/storage/pill_bottle
-				if(pillbottlesprite == "2")//if the 2nd sprite is selected, use 2nd sprite
+				if(pillbottlesprite == "2")//if the "2" sprite is selected, use the round pill bottle sprite
 					I.set_greyscale_config(/datum/greyscale_config/pillbottleround)
 				if(bottle_label)
 					I.name = "[bottle_label] pill bottle"
