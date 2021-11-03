@@ -18376,7 +18376,7 @@
 /obj/item/clipboard,
 /obj/item/clothing/suit/armor/bulletproof,
 /obj/item/attachable/suppressor,
-/obj/item/clothing/tie/storage/holster,
+/obj/item/armor_module/storage/uniform/holster,
 /obj/item/portable_vendor/corporate,
 /turf/open/floor/carpet{
 	dir = 5;

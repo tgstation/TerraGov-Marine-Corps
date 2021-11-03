@@ -10699,9 +10699,9 @@
 "aKX" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/shotgun/incendiary,
-/obj/item/clothing/tie/storage/black_vest,
-/obj/item/clothing/tie/storage/black_vest,
-/obj/item/clothing/tie/storage/black_vest,
+/obj/item/armor_module/storage/uniform/black_vest,
+/obj/item/armor_module/storage/uniform/black_vest,
+/obj/item/armor_module/storage/uniform/black_vest,
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
 "aKY" = (

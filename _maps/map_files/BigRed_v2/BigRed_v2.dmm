@@ -1147,7 +1147,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "aeu" = (
-/obj/item/clothing/tie/storage/holster/armpit,
+/obj/item/armor_module/storage/uniform/holster/armpit,
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "aev" = (
@@ -1748,9 +1748,9 @@
 "agD" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/shotgun/incendiary,
-/obj/item/clothing/tie/storage/black_vest,
-/obj/item/clothing/tie/storage/black_vest,
-/obj/item/clothing/tie/storage/black_vest,
+/obj/item/armor_module/storage/uniform/black_vest,
+/obj/item/armor_module/storage/uniform/black_vest,
+/obj/item/armor_module/storage/uniform/black_vest,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "agE" = (
