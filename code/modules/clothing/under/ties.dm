@@ -150,3 +150,61 @@
 	name = "EMT armband"
 	desc = "An armband, worn by the crew to display which department they're assigned to. This one is white and green."
 	icon_state = "medgreen"
+
+/*
+	Holobadges are worn on the belt or neck, and can be used to show that the holder is an authorized
+	Security agent - the user details can be imprinted on the badge with a Security-access ID card
+*/
+
+/obj/item/clothing/tie/holobadge
+
+	name = "holobadge"
+	desc = "This glowing blue badge marks the holder as THE LAW."
+	icon_state = "holobadge"
+	flags_equip_slot = ITEM_SLOT_BELT
+
+	var/stored_name = null
+
+/obj/item/clothing/tie/holobadge/cord
+	icon_state = "holobadge-cord"
+	flags_equip_slot = ITEM_SLOT_MASK
+
+/obj/item/clothing/tie/holobadge/attack_self(mob/user as mob)
+	if(!stored_name)
+		to_chat(user, "Waving around a badge before swiping an ID would be pretty pointless.")
+		return
+	if(isliving(user))
+		user.visible_message(span_warning(" [user] displays [user.p_their()] TGMC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], TGMC Security."),span_warning(" You display your TGMC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], TGMC Security."))
+
+/obj/item/clothing/tie/holobadge/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/card/id))
+		var/obj/item/card/id/id_card = I
+
+		if(!(ACCESS_MARINE_BRIG in id_card.access))
+			to_chat(user, "[src] rejects your insufficient access rights.")
+			return
+
+		to_chat(user, "You imprint your ID details onto the badge.")
+		stored_name = id_card.registered_name
+		name = "holobadge ([stored_name])"
+		desc = "This glowing blue badge marks [stored_name] as THE LAW."
+
+
+/obj/item/clothing/tie/holobadge/attack(mob/living/carbon/human/M, mob/living/user)
+	if(isliving(user))
+		user.visible_message(span_warning(" [user] invades [M]'s personal space, thrusting [src] into [M.p_their()] face insistently."),span_warning(" You invade [M]'s personal space, thrusting [src] into [M.p_their()] face insistently. You are the law."))
+
+/obj/item/storage/box/holobadge
+	name = "holobadge box"
+	desc = "A box claiming to contain holobadges."
+
+/obj/item/storage/box/holobadge/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/clothing/tie/holobadge(src)
+	new /obj/item/clothing/tie/holobadge(src)
+	new /obj/item/clothing/tie/holobadge(src)
+	new /obj/item/clothing/tie/holobadge(src)
+	new /obj/item/clothing/tie/holobadge/cord(src)
+	new /obj/item/clothing/tie/holobadge/cord(src)

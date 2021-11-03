@@ -30,8 +30,6 @@
 		/obj/item/armor_module/storage/uniform/holster,
 		/obj/item/armor_module/storage/uniform/holster/armpit,
 		/obj/item/armor_module/storage/uniform/holster/waist,
-		/obj/item/armor_module/storage/uniform/holobadge,
-		/obj/item/armor_module/storage/uniform/holobadge/cord,
 		/obj/item/clothing/tie,
 		/obj/item/clothing/tie/blue,
 		/obj/item/clothing/tie/red,
@@ -55,6 +53,8 @@
 		/obj/item/clothing/tie/armband/hydro,
 		/obj/item/clothing/tie/armband/med,
 		/obj/item/clothing/tie/armband/medgreen,
+		/obj/item/clothing/tie/holobadge,
+		/obj/item/clothing/tie/holobadge/cord,
 	)
 
 	///Assoc list of available slots.
