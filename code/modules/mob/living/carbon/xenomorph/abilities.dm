@@ -818,6 +818,7 @@
 	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
 	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
 	target_flags = XABB_MOB_TARGET
+	var/current_target
 
 /datum/action/xeno_action/activable/xeno_spit/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -883,6 +884,9 @@
 	add_cooldown()
 
 	return succeed_activate()
+
+/datum/action/xeno_action/activable/xeno_spit/proc/fire()
+/datum/action/xeno_action/activable/xeno_spit/proc/change_target()
 
 /datum/action/xeno_action/activable/xeno_spit/ai_should_start_consider()
 	return TRUE
