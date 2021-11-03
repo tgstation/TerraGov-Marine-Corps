@@ -471,7 +471,7 @@
 	var/obj/item/weapon/gun/gun = internal_item
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_INACCURATE))
 		gun.accuracy_mult /= 0.85
-		gun.scatter += 10
+		gun.scatter -= 10
 
 
 /obj/machinery/deployable/mounted/sentry/buildasentry
