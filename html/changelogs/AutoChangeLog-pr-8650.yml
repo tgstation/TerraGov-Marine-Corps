@@ -1,0 +1,6 @@
+author: "chesse20"
+delete-after: True
+changes: 
+  - rscadd: "Recolor pill bottles with facepaint"
+  - expansion: "Produce both types of pill bottles with the chem-master"
+  - qol: "Changed some pill bottle colors to match their earlier appearances."
