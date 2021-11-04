@@ -1,0 +1,5 @@
+author: "AzonStarfall"
+delete-after: True
+changes: 
+  - rscdel: "Removed most Dropship Electronics modules, all Fuel modules, and the Dropship Medevac System."
+  - bugfix: "Remapped shipmaps to account for module removal."
