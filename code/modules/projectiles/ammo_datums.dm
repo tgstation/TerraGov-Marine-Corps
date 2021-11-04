@@ -1640,6 +1640,7 @@ datum/ammo/bullet/revolver/tp44
 	bullet_color = COLOR_LIME
 	///List of reagents transferred upon spit impact if any
 	var/list/datum/reagent/spit_reagents
+	var/list/datum/reagent/spit_reagents_sanguinal
 	///Amount of reagents transferred upon spit impact if any
 	var/reagent_transfer_amount
 	///Amount of stagger stacks imposed on impact if any
@@ -1994,21 +1995,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/boiler_gas/corrosive/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid()
 
-
-
-/datum/ammo/toxin/sanguinal
-	name = "Sanguinal"
-	var/list/datum/reagent/spit_reagents
-	var/added_spit_delay = 0
-	var/spit_cost = 5
-	var/reagent_transfer_amount
-	var/stagger_stacks
-	var/slowdown_stacks
-	var/datum/effect_system/smoke_spread/xeno/smoke_system
-	var/smoke_strength
-	var/smoke_range
-
-/datum/ammo/toxin/sanguinal/xeno_light_sanguinal
+/datum/ammo/xeno/xeno_light_sanguinal
 	name = "Light Sanguinal"
 	icon_state = "xeno_sanguinal"
 	bullet_color = COLOR_PALE_RED_GRAY
@@ -2027,48 +2014,8 @@ datum/ammo/bullet/revolver/tp44
 	smoke_range = 0
 	reagent_transfer_amount = 9
 
-/datum/ammo/toxin/sanguinal/xeno_light_sanguinal/proc/set_reagents()
+/datum/ammo/xeno/toxin/xeno_light_sanguinal/proc/set_reagents()
 	spit_reagents = list(/datum/reagent/toxin/xeno_sanguinal/xeno_light_sanguinal = reagent_transfer_amount)
-
-/datum/ammo/toxin/sanguinal/xeno_light_sanguinal/on_hit_mob(mob/living/carbon/C, obj/projectile/P)
-	drop_xeno_light_sanguinal_smoke(get_turf(C))
-	if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
-		return
-
-	if(isnestedhost(C))
-		return
-	C.adjust_stagger(stagger_stacks) //stagger briefly; useful for support
-	C.add_slowdown(slowdown_stacks) //slow em down
-
-/datum/ammo/toxin/sanguinal/xeno_light_sanguinal/on_hit_obj(obj/O,obj/projectile/P)
-	var/turf/T = get_turf(O)
-	if(!T)
-		T = get_turf(P)
-	if(O.density && !(O.flags_atom & ON_BORDER))
-		T = get_turf(get_step(T, turn(P.dir, 180)))
-
-	drop_xeno_light_sanguinal_smoke(T)
-
-/datum/ammo/toxin/sanguinal/xeno_light_sanguinal/on_hit_turf(turf/T,obj/projectile/P)
-	if(!T)
-		T = get_turf(P)
-	if(isclosedturf(T))
-		T = get_turf(get_step(T, turn(P.dir, 180)))
-
-	drop_xeno_light_sanguinal_smoke(T)
-
-/datum/ammo/toxin/sanguinal/xeno_light_sanguinal/set_smoke()
-	smoke_system = new /datum/effect_system/smoke_spread/xeno/light_sanguinal()
-
-/datum/ammo/toxin/sanguinal/xeno_light_sanguinal/proc/drop_xeno_light_sanguinal_smoke(turf/T)
-	if(T.density)
-		return
-
-	set_smoke()
-	smoke_system.strength = smoke_strength
-	smoke_system.set_up(smoke_range, T)
-	smoke_system.start()
-	smoke_system = null
 
 /*
 //================================================
