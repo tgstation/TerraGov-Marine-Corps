@@ -11,12 +11,12 @@
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 2
 	throw_range = 6
-	///Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
+	///Icon state in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
 	var/bonus_overlay = null
 	///This is a typepath for the type of bullet the magazine holds, it is cast so that it can draw the variable handful_amount from default_ammo in create_handful()
-	var/datum/ammo/bullet/default_ammo = /datum/ammo/bullet/
+	var/datum/ammo/bullet/default_ammo = /datum/ammo/bullet
 	///Generally used for energy weapons
-	var/datum/ammo/bullet/overcharge_ammo = /datum/ammo/bullet/
+	var/datum/ammo/bullet/overcharge_ammo = /datum/ammo/bullet
 	///This is used for matching handfuls to each other or whatever the mag is. The #Defines can be found in __DEFINES/calibers.dm
 	var/caliber = null
 	///Set this to something else for it not to start with different initial counts.
@@ -46,10 +46,7 @@
 /obj/item/ammo_magazine/Initialize(mapload, spawn_empty)
 	. = ..()
 	base_mag_icon = icon_state
-	if(spawn_empty)
-		current_rounds = 0
-	else
-		current_rounds = max_rounds
+	current_rounds = spawn_empty ? 0 : max_rounds
 	update_icon()
 
 /obj/item/ammo_magazine/update_icon_state()
@@ -80,7 +77,7 @@
 		if(!CHECK_BITFIELD(flags_magazine, MAGAZINE_WORN) || !istype(I, /obj/item/weapon/gun) || loc != user)
 			return ..()
 		var/obj/item/weapon/gun/gun = I
-		if(!CHECK_BITFIELD(gun.reciever_flags, RECIEVER_MAGAZINES))
+		if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_MAGAZINES))
 			return ..()
 		if(!gun.reload(src, user))
 			return
@@ -183,7 +180,7 @@
 	var/datum/ammo/ammo = GLOB.ammo_list[new_ammo]
 	var/ammo_name = ammo.name
 
-	name = "handful of [ammo_name + (ammo_name == "shotgun buckshot"? " ":"s ") + "([new_caliber])"]"
+	name = "handful of [ammo_name + " ([new_caliber])"]"
 	icon_state = ammo.handful_icon_state
 
 	default_ammo = new_ammo

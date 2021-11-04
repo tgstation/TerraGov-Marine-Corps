@@ -12,14 +12,14 @@
 	hand_reload_sound = 'sound/weapons/guns/interact/revolver_load.ogg'
 	type_of_casings = "bullet"
 	load_method = SINGLE_CASING|SPEEDLOADER //codex
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_speed_modifier = 0.75
 	aim_fire_delay = 0.25 SECONDS
 	wield_delay = 0.2 SECONDS //If you modify your revolver to be two-handed, it will still be fast to aim
 	gun_skill_category = GUN_SKILL_PISTOLS
 
-	reciever_flags = RECIEVER_HANDFULS|RECIEVER_CYCLES|RECIEVER_TOGGLES|RECIEVER_TOGGLES_EJECTS
+	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS
 	max_chamber_items = 7
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver)
 
@@ -50,23 +50,16 @@
 	set category = "Weapons"
 	set name = "Do a revolver trick"
 	set desc = "Show off to all your friends!"
-
-
-	var/obj/item/weapon/gun/revolver/G = get_active_firearm(usr)
-
-	if(!G)
+	var/obj/item/weapon/gun/revolver/gun = get_active_firearm(usr)
+	if(!gun)
 		return
-
-	if(!istype(G))
+	if(!istype(gun))
 		return
-
 	if(usr.do_actions)
 		return
-
 	if(zoom)
 		to_chat(usr, span_warning("You cannot conceviably do that while looking down \the [src]'s scope!"))
 		return
-
 	revolver_trick(usr)
 
 /obj/item/weapon/gun/revolver/proc/revolver_throw_catch(mob/living/carbon/human/user)
@@ -83,18 +76,19 @@
 		SEND_IMAGE(M, trick)
 	sleep(5)
 	trick.loc = null
-	if(loc && user)
-		invisibility = 0
-		playsound(user, thud_sound, 25, 1)
-		if(user.get_inactive_held_item())
-			user.visible_message("[user] catches [src] with the same hand!",span_notice(" You catch [src] as it spins in to your hand!"))
-		else
-			user.visible_message("[user] catches [src] with his other hand!",span_notice(" You snatch [src] with your other hand! Awesome!"))
-			user.temporarilyRemoveItemFromInventory(src)
-			user.put_in_inactive_hand(src)
-			user.swap_hand()
-			user.update_inv_l_hand(0)
-			user.update_inv_r_hand()
+	if(!loc || !user)
+		return
+	invisibility = 0
+	playsound(user, thud_sound, 25, 1)
+	if(user.get_inactive_held_item())
+		user.visible_message("[user] catches [src] with the same hand!",span_notice(" You catch [src] as it spins in to your hand!"))
+		return
+	user.visible_message("[user] catches [src] with his other hand!",span_notice(" You snatch [src] with your other hand! Awesome!"))
+	user.temporarilyRemoveItemFromInventory(src)
+	user.put_in_inactive_hand(src)
+	user.swap_hand()
+	user.update_inv_l_hand(0)
+	user.update_inv_r_hand()
 
 /obj/item/weapon/gun/revolver/proc/revolver_trick(mob/living/carbon/human/user)
 	if(world.time < (recent_trick + trick_delay) )
@@ -147,18 +141,11 @@
 	if(double)
 		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice(" You flick and spin [src] and [double]!"))
 		animation_wrist_flick(double, 1)
-	else user.visible_message("[user] deftly flicks and spins [src]!",span_notice(" You flick and spin [src]!"))
-
+	else 
+		user.visible_message("[user] deftly flicks and spins [src]!",span_notice(" You flick and spin [src]!"))
 	animation_wrist_flick(src, direction)
 	sleep(3)
 	if(loc && user) playsound(user, thud_sound, 25, 1)
-
-// revolvers do not make any sense when they have a rattle sound, so this is ignored.
-/obj/item/weapon/gun/revolver/play_fire_sound(mob/user)
-	if(HAS_TRAIT(src, TRAIT_GUN_SILENCED))
-		playsound(user, fire_sound, 25)
-		return
-	playsound(user, fire_sound, 60)
 
 //-------------------------------------------------------
 //TP-44 COMBAT REVOLVER
@@ -171,7 +158,6 @@
 	caliber =  CALIBER_44 //codex
 	max_shells = 7 //codex
 	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
-
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_revolver)
 	force = 8
 	attachable_allowed = list(
@@ -384,7 +370,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/revolver_spun.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_revolver)
-	reciever_flags = RECIEVER_HANDFULS|RECIEVER_CYCLES|RECIEVER_TOGGLES|RECIEVER_TOGGLES_EJECTS|RECIEVER_REQUIRES_OPERATION|RECIEVER_LOCKS
+	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS|AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION|AMMO_RECIEVER_UNIQUE_ACTION_LOCKS
 	cocked_message = "You prime the hammer."
 	cock_delay = 0
 

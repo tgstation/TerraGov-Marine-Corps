@@ -12,6 +12,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/flamethrower_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/flamethrower_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/flamethrower_reload.ogg'
+	muzzle_flash = null
 	aim_slowdown = 1.75
 	general_codex_key = "flame weapons"
 	attachable_allowed = list( //give it some flexibility.
@@ -34,7 +35,7 @@
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle)
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNT_BY_PERCENTAGE
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
-	reciever_flags = RECIEVER_MAGAZINES|RECIEVER_NO_HANDFULS
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23, "flamer_nozzle_x" = 33, "flamer_nozzle_y" = 20)
 	fire_delay = 4
 
@@ -128,10 +129,6 @@
 		update_icon()
 		return
 	overlays += lit_overlay
-
-/obj/item/weapon/gun/flamer/click_empty(mob/user)
-	playsound(src, 'sound/weapons/guns/interact/flamethrower_off.ogg', 25, 1)
-
 
 /obj/item/weapon/gun/flamer/able_to_fire(mob/user)
 	. = ..()

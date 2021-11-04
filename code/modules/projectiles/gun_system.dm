@@ -44,9 +44,9 @@
 	var/shell_eject_animation = null
 
 	///Sound of firing the gun.
-	var/fire_sound 		= 'sound/weapons/guns/fire/gunshot.ogg'
+	var/fire_sound = 'sound/weapons/guns/fire/gunshot.ogg'
 	///Does our gun have a unique sound when running out of ammo? If so, use this instead of pitch shifting.
-	var/fire_rattle		= null
+	var/fire_rattle = null
 	///World.time of last gun firing.
 	var/last_fired = 0
 
@@ -105,14 +105,14 @@
 	var/obj/in_chamber
 	///List of stored ammunition items.
 	var/list/obj/chamber_items = list()
-	///Maximum allowed chamber items. If the gun has RECIEVER_TOGGLES then the total amount in the gun will be the one here. If not, the gun will be able to contain this number + the chamber. If this is zero and doesnt use magazines, reloading will go directly into the chamber.
+	///Maximum allowed chamber items. If the gun has AMMO_RECIEVER_TOGGLES_OPEN then the total amount in the gun will be the one here. If not, the gun will be able to contain this number + the chamber. If this is zero and doesnt use magazines, reloading will go directly into the chamber.
 	var/max_chamber_items = 1
 
 	///Current selected position of chamber_items, this will determin the next item to be inserted into the chamber. If the gun uses magazines it will be the position of the magazine to be used. If the gun cycles (revolvers), this number will increase by one everytime it cycles until it reaches max_chamber_items, then it will revert back to one.
 	var/current_chamber_position = 1
 
 	///Flags to determin guns ammo/operation.
-	var/reciever_flags = RECIEVER_MAGAZINES|RECIEVER_AUTO_EJECT
+	var/reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT
 
 	///Types of casing it ejects.
 	var/type_of_casings = null
@@ -120,7 +120,7 @@
 	var/casings_to_eject
 
 	///If the gun uses a magazine, the gun will subtract this from the magazine every fire.
-	var/rounds_to_draw = 1
+	var/rounds_per_shot = 1
 
 	///Stored ammo datum. I changed the var name because it was really annoying to find specific cases of 'ammo' in a file full of guns and ammunition.
 	var/datum/ammo/ammo_datum_type = /datum/ammo/bullet
@@ -260,7 +260,7 @@
 	///List of offsets to make attachment overlays not look wonky.
 	var/list/attachable_offset = null
 	///List of allowed attachments, IT MUST INCLUDE THE STARTING ATTACHMENT TYPES OR THEY WILL NOT ATTACH.
-	var/list/attachable_allowed	= null
+	var/list/attachable_allowed = null
 	///This is only not null when a weapon attachment is activated. All procs of firing get passed to this when it is not null.
 	var/obj/item/weapon/gun/active_attachable = null
 	///The attachments this gun starts with on Init
@@ -356,22 +356,22 @@
 
 	GLOB.nightfall_toggleable_lights += src
 
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES))
-		for(var/i = 0, i <= max_chamber_items, i++)
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER))
+		for(var/i in 0 to max_chamber_items)
 			chamber_items.Add(null)
 
 	if(!spawn_empty && default_ammo_type)
-		if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS) || CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS) || CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
 			var/obj/item/ammo_magazine/ammo_type = default_ammo_type
-			if((!ispath(ammo_type, /datum/ammo) && CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS)) || CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
+			if((!ispath(ammo_type, /datum/ammo) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS)) || CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
 				var/thing_to_reload = new default_ammo_type(src)
 				INVOKE_ASYNC(src, .proc/reload, thing_to_reload, null, TRUE)
 				if(!(thing_to_reload in chamber_items))
 					qdel(thing_to_reload) //If the item doesnt suceed in reloading, we dont want to keep it around.
 				return
-		for(var/i = 0, i < max_chamber_items + 1, i++)
+		for(var/i in 0 to max_chamber_items)
 			var/obj/object_to_insert
-			if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
+			if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
 				var/obj/item/ammo_magazine/handful/handful = new /obj/item/ammo_magazine/handful()
 				handful.generate_handful(default_ammo_type, caliber, 1, type)
 				object_to_insert = handful
@@ -460,9 +460,9 @@
 	set_gun_user(null)
 
 /obj/item/weapon/gun/update_icon(mob/user)
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES) && !CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED))
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED))
 		icon_state = base_gun_icon + "_o"
-	else if(CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION) && !in_chamber)
+	else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !in_chamber)
 		icon_state = base_gun_icon + "_u"
 	else if((!length(chamber_items) && max_chamber_items) || !rounds)
 		icon_state = base_gun_icon + "_e"
@@ -489,15 +489,15 @@
 /obj/item/weapon/gun/proc/update_mag_overlay(mob/user)
 	var/image/overlay = attachment_overlays[ATTACHMENT_SLOT_MAGAZINE]
 	overlays -= overlay
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES) && length(chamber_items))
-		if(!magazine_overlay_var || !chamber_items[current_chamber_position].vars[magazine_overlay_var])
-			return
-		var/obj/item/current_mag = chamber_items[current_chamber_position]
-		overlay = image(current_mag.icon, src, current_mag.vars[magazine_overlay_var])
-		attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = overlay
-		overlays += overlay
+	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) || !length(chamber_items))
+		attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = null
 		return
-	attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = null
+	if(!magazine_overlay_var || !chamber_items[current_chamber_position].vars[magazine_overlay_var])
+		return
+	var/obj/item/current_mag = chamber_items[current_chamber_position]
+	overlay = image(current_mag.icon, src, current_mag.vars[magazine_overlay_var])
+	attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = overlay
+	overlays += overlay
 
 /obj/item/weapon/gun/update_item_state()
 	item_state = "[base_gun_icon][flags_item & WIELDED ? "_w" : ""]"
@@ -539,22 +539,24 @@
 		to_chat(user, span_notice("Ctrl-Click to remove the sentries battery."))
 
 /obj/item/weapon/gun/proc/examine_ammo_count(mob/user)
-	if(CHECK_BITFIELD(flags_gun_features, GUN_UNUSUAL_DESIGN) && CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES)) //Internal mags and unusual guns have their own stuff set.
+	if(CHECK_BITFIELD(flags_gun_features, GUN_UNUSUAL_DESIGN) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES)) //Internal mags and unusual guns have their own stuff set.
 		return
 	var/list/dat = list()
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES))
-		dat += "[CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED) ? "It is closed. \n" : "It is open. \n"]"
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
+		dat += "[CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED) ? "It is closed. \n" : "It is open. \n"]"
 	if(rounds > 0)
 		if(flags_gun_features & GUN_AMMO_COUNTER)
 			if(max_rounds && CHECK_BITFIELD(flags_gun_features, GUN_AMMO_COUNT_BY_PERCENTAGE))
 				dat += "Ammo counter shows [round((rounds / max_rounds) * 100)] percent remaining.<br>"
+			else if(max_rounds && CHECK_BITFIELD(flags_gun_features, GUN_AMMO_COUNT_BY_SHOTS_REMAINING))
+				dat += "Ammo counter shows [round(max_rounds / rounds)] shots remaining."
 			else
 				dat += "Ammo counter shows [rounds] round\s remaining.<br>"
 		else
 			dat += "It's loaded[in_chamber?" and has a round chambered":""].<br>"
 	else
 		dat += "It's unloaded[in_chamber?" but has a round chambered":""].<br>"
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES) && max_chamber_items > 1)
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && max_chamber_items > 1)
 		dat += "It has [length(chamber_items)] of [max_chamber_items] magazines loaded.\n"
 	if(!dat)
 		return
@@ -719,14 +721,47 @@
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
 	var/obj/projectile/projectile_to_fire = in_chamber //Load a bullet in or check for existing one.
 	if(!projectile_to_fire) //If there is nothing to fire, click.
-		click_empty(gun_user)
-		if(CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES) && !CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION))
+		playsound(src, dry_fire_sound, 25, 1, 5)
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 			cycle(gun_user, FALSE)
 		return
 
 	if(!do_fire(projectile_to_fire))
 		return
-	finish_fire()
+
+	last_fired = world.time
+	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
+	
+	if(!max_chamber_items)
+		in_chamber = null
+	else 
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
+			casings_to_eject++
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
+			QDEL_NULL(in_chamber)
+		else
+			in_chamber = null
+		if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
+			cycle(null)
+			if(rounds <= 0 && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
+				playsound(src, empty_sound, 25, 1)
+				unload()
+
+
+	gun_user?.hud_used.update_ammo_hud(gun_user, src)
+	update_icon()
+	if(dual_wield && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
+		var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
+		if(inactive_gun.rounds && !(inactive_gun.flags_gun_features & GUN_WIELDED_FIRING_ONLY))
+			inactive_gun.last_fired = max(world.time - fire_delay * (1 - akimbo_additional_delay), inactive_gun.last_fired)
+			gun_user.swap_hand()
+	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && CHECK_BITFIELD(flags_item, IS_DEPLOYED) && CHECK_BITFIELD(turret_flags, TURRET_RADIAL) && !gun_user)
+		sentry_battery.charge -= sentry_battery_drain
+		if(sentry_battery.charge < 0)
+			DISABLE_BITFIELD(turret_flags, TURRET_RADIAL)
+			sentry_battery.forceMove(get_turf(src))
+			sentry_battery.charge = 0
+			sentry_battery = null
 	return TRUE
 
 ///Actually fires the gun, sets up the projectile and fires it.
@@ -737,7 +772,7 @@
 	else
 		firer = gun_user
 	var/obj/projectile/projectile_to_fire = object_to_fire
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
 		projectile_to_fire = get_ammo_object()
 	apply_gun_modifiers(projectile_to_fire, target, firer)
 	setup_bullet_accuracy(projectile_to_fire, gun_user, shots_fired) //User can be passed as null.
@@ -748,10 +783,90 @@
 	if(!isobj(projectile_to_fire))
 		stack_trace("projectile malfunctioned while firing. User: [gun_user]")
 		return
-
-
 	play_fire_sound(loc)
-	muzzle_flash(firing_angle, master_gun ? gun_user : loc)
+
+	if(muzzle_flash && !muzzle_flash.applied)
+		var/flags_loc = master_gun ? gun_user : loc
+		var/prev_light = light_range
+		if(!light_on && (light_range <= muzzle_flash_lum))
+			set_light_range(muzzle_flash_lum)
+			set_light_color(muzzle_flash_color)
+			set_light_on(TRUE)
+			addtimer(CALLBACK(src, .proc/reset_light_range, prev_light), 1 SECONDS)
+		//Offset the pixels.
+		switch(firing_angle)
+			if(0, 360)
+				muzzle_flash.pixel_x = 0
+				muzzle_flash.pixel_y = 4
+				muzzle_flash.layer = initial(muzzle_flash.layer)
+			if(1 to 44)
+				muzzle_flash.pixel_x = round(4 * ((firing_angle) / 45))
+				muzzle_flash.pixel_y = 4
+				muzzle_flash.layer = initial(muzzle_flash.layer)
+			if(45)
+				muzzle_flash.pixel_x = 4
+				muzzle_flash.pixel_y = 4
+				muzzle_flash.layer = initial(muzzle_flash.layer)
+			if(46 to 89)
+				muzzle_flash.pixel_x = 4
+				muzzle_flash.pixel_y = round(4 * ((90 - firing_angle) / 45))
+				muzzle_flash.layer = initial(muzzle_flash.layer)
+			if(90)
+				muzzle_flash.pixel_x = 4
+				muzzle_flash.pixel_y = 0
+				muzzle_flash.layer = initial(muzzle_flash.layer)
+			if(91 to 134)
+				muzzle_flash.pixel_x = 4
+				muzzle_flash.pixel_y = round(-3 * ((firing_angle - 90) / 45))
+				muzzle_flash.layer = initial(muzzle_flash.layer)
+			if(135)
+				muzzle_flash.pixel_x = 4
+				muzzle_flash.pixel_y = -3
+				muzzle_flash.layer = initial(muzzle_flash.layer)
+			if(136 to 179)
+				muzzle_flash.pixel_x = round(4 * ((180 - firing_angle) / 45))
+				muzzle_flash.pixel_y = -3
+				muzzle_flash.layer = ABOVE_MOB_LAYER
+			if(180)
+				muzzle_flash.pixel_x = 0
+				muzzle_flash.pixel_y = -3
+				muzzle_flash.layer = ABOVE_MOB_LAYER
+			if(181 to 224)
+				muzzle_flash.pixel_x = round(-3 * ((firing_angle - 180) / 45))
+				muzzle_flash.pixel_y = -3
+				muzzle_flash.layer = ABOVE_MOB_LAYER
+			if(225)
+				muzzle_flash.pixel_x = -3
+				muzzle_flash.pixel_y = -3
+				muzzle_flash.layer = initial(muzzle_flash.layer)
+			if(226 to 269)
+				muzzle_flash.pixel_x = -3
+				muzzle_flash.pixel_y = round(-3 * ((270 - firing_angle) / 45))
+				muzzle_flash.layer = initial(muzzle_flash.layer)
+			if(270)
+				muzzle_flash.pixel_x = -3
+				muzzle_flash.pixel_y = 0
+				muzzle_flash.layer = initial(muzzle_flash.layer)
+			if(271 to 314)
+				muzzle_flash.pixel_x = -3
+				muzzle_flash.pixel_y = round(4 * ((firing_angle - 270) / 45))
+				muzzle_flash.layer = initial(muzzle_flash.layer)
+			if(315)
+				muzzle_flash.pixel_x = -3
+				muzzle_flash.pixel_y = 4
+				muzzle_flash.layer = initial(muzzle_flash.layer)
+			if(316 to 359)
+				muzzle_flash.pixel_x = round(-3 * ((360 - firing_angle) / 45))
+				muzzle_flash.pixel_y = 4
+				muzzle_flash.layer = initial(muzzle_flash.layer)
+
+		muzzle_flash.transform = null
+		muzzle_flash.transform = turn(muzzle_flash.transform, firing_angle)
+		flash_loc.vis_contents += muzzle_flash
+		muzzle_flash.applied = TRUE
+
+		addtimer(CALLBACK(src, .proc/remove_muzzle_flash, flash_loc, muzzle_flash), 0.2 SECONDS)
+
 	simulate_recoil(dual_wield, firing_angle)
 
 	//This is where the projectile leaves the barrel and deals with projectile code only.
@@ -765,29 +880,6 @@
 		flick("[fire_animation]", src)
 
 	return TRUE
-
-///Performs the after firing functions.
-/obj/item/weapon/gun/proc/finish_fire()
-	last_fired = world.time
-
-	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
-	post_fire()
-	gun_user?.hud_used.update_ammo_hud(gun_user, src)
-	update_icon()
-	if(dual_wield && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
-		var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
-		if(inactive_gun.rounds && !(inactive_gun.flags_gun_features & GUN_WIELDED_FIRING_ONLY))
-			inactive_gun.last_fired = max(world.time - fire_delay * (1 - akimbo_additional_delay), inactive_gun.last_fired)
-			gun_user.swap_hand()
-	if(!CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) || !CHECK_BITFIELD(flags_item, IS_DEPLOYED) || !CHECK_BITFIELD(turret_flags, TURRET_RADIAL) || gun_user)
-		return
-	sentry_battery.charge -= sentry_battery_drain
-	if(sentry_battery.charge >= 0)
-		return
-	DISABLE_BITFIELD(turret_flags, TURRET_RADIAL)
-	sentry_battery.forceMove(get_turf(src))
-	sentry_battery.charge = 0
-	sentry_battery = null
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)) // If it can't point blank, you can't suicide and such.
@@ -841,8 +933,7 @@
 		M.bullet_act(projectile_to_fire)
 		last_fired = world.time
 
-		if(!delete_bullet(projectile_to_fire))
-			QDEL_NULL(projectile_to_fire)
+		QDEL_NULL(projectile_to_fire)
 
 		user?.hud_used.update_ammo_hud(user, src)
 		return TRUE
@@ -863,7 +954,7 @@
 	var/obj/projectile/projectile_to_fire = in_chamber
 
 	if(!projectile_to_fire) //We actually have a projectile, let's move on.
-		click_empty(user)//If there's no projectile, we can't do much.
+		playsound(src, dry_fire_sound, 25, 1, 5)
 		ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
 		return
 
@@ -901,8 +992,7 @@
 
 	projectile_to_fire.play_damage_effect(user)
 
-	if(!delete_bullet(projectile_to_fire)) //If this proc DIDN'T delete the bullet, we're going to do so here.
-		QDEL_NULL(projectile_to_fire)
+	QDEL_NULL(projectile_to_fire)
 
 	ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
 
@@ -912,10 +1002,6 @@
 		return
 	active_attachable.attack(M, user)
 
-/obj/item/weapon/gun/proc/delete_bullet(obj/projectile/projectile_to_fire, refund = FALSE)
-	return FALSE
-
-
 //----------------------------------------------------------
 				//							\\
 				//         RELOADING        \\
@@ -924,43 +1010,22 @@
 //----------------------------------------------------------
 
 
-///Called after the gun fires. Handles the amunition side of firing.
-/obj/item/weapon/gun/proc/post_fire()
-	if(!max_chamber_items)
-		in_chamber = null
-		update_ammo_count()
-		return
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES))
-		casings_to_eject++
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
-		QDEL_NULL(in_chamber)
-	else
-		in_chamber = null
-	update_ammo_count()
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION))
-		return
-	cycle(null)
-	if(rounds > 0 || !CHECK_BITFIELD(reciever_flags, RECIEVER_AUTO_EJECT) || !CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
-		return
-	playsound(src, empty_sound, 25, 1)
-	unload()
-
-
-/*Performs the unique action. Can be overwritten.
-This does a few things, depending on the flags of the gun.
-If the gun doesn't Toggle it will perform a cycle, if it requires operation the gun will check the cycle against the cock delays.
-If the gun does toggle, Unique action will open the chamber. (Open the barrel on a DB, or the cylinder on a revolver.)
-*/
+/**
+ *  Performs the unique action. Can be overwritten.
+ *  This does a few things, depending on the flags of the gun.
+ *  If the gun doesn't Toggle it will perform a cycle, if it requires operation the gun will check the cycle against the cock delays.
+ *  If the gun does toggle, Unique action will open the chamber. (Open the barrel on a DB, or the cylinder on a revolver.)
+ */
 /obj/item/weapon/gun/unique_action(mob/user, dont_operate = FALSE)
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
-	if(!length(chamber_items) && in_chamber && !CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES))
+	if(!length(chamber_items) && in_chamber && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 		unload(user)
 		return
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION) && !dont_operate)
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !dont_operate)
 		if(last_cocked + cock_delay > world.time)
 			return
-		if(CHECK_BITFIELD(reciever_flags, RECIEVER_LOCKS) && in_chamber)
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_UNIQUE_ACTION_LOCKS) && in_chamber)
 			if(last_cock_message + cock_message_delay > world.time)
 				return
 			if(cock_locked_message)
@@ -976,24 +1041,24 @@ If the gun does toggle, Unique action will open the chamber. (Open the barrel on
 			flick("[cock_animation]", src)
 		last_cocked = world.time
 		return
-	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES))
+	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 		cycle(user, FALSE)
 		return
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED)) //We want to open it.
-		DISABLE_BITFIELD(reciever_flags, RECIEVER_CLOSED)
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)) //We want to open it.
+		DISABLE_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)
 		playsound(src, opened_sound, 25, 1)
 		if(shell_eject_animation)
 			flick("[shell_eject_animation]", src)
 		if(chamber_opened_message)
 			to_chat(user, span_notice(chamber_opened_message))
 		if(in_chamber)
-			if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
-				chamber_items[current_chamber_position].vars[current_rounds_var] += rounds_to_draw //If the gun uses mags, it will refund the current mag.
+			if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
+				chamber_items[current_chamber_position].vars[current_rounds_var] += rounds_per_shot //If the gun uses mags, it will refund the current mag.
 				QDEL_NULL(in_chamber)
 			else
 				chamber_items.Insert(current_chamber_position, in_chamber) //Otherwise we insert in_chamber back into the chamber_items. We dont want in_chamber to be full when the gun is open.
 				in_chamber = null
-		if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES_EJECTS))
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN_EJECTS))
 			for(var/obj/object_to_eject in chamber_items) //If the gun ejects on toggle, we wanna yeet the loaded items out.
 				if(user)
 					user.put_in_hands(object_to_eject)
@@ -1003,11 +1068,11 @@ If the gun does toggle, Unique action will open the chamber. (Open the barrel on
 				make_casing(null, FALSE)
 			casings_to_eject = 0
 			chamber_items = list()
-			if(CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES)) //If the reciever cycles (like revolvers) we want to populate the chamber with null objects.
+			if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER)) //If the reciever cycles (like revolvers) we want to populate the chamber with null objects.
 				for(var/i = 0, i < max_chamber_items, i++)
 					chamber_items.Add(null)
 	else
-		ENABLE_BITFIELD(reciever_flags, RECIEVER_CLOSED)
+		ENABLE_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)
 		playsound(src, cocked_sound, 25, 1)
 		if(chamber_closed_message)
 			to_chat(user, span_notice(chamber_opened_message))
@@ -1018,21 +1083,22 @@ If the gun does toggle, Unique action will open the chamber. (Open the barrel on
 
 
 
-/*Handles reloading. Called on attack_by
-Reload works in one of three ways, depending on the guns flags.
-First, if the gun is set to magazines, it will do checks based on the magazines vars and if it succeeds it will load the magazine.
-If the gun uses handfuls, the gun will create or take a handful with one round and insert those.
-If the gun does not use handfuls, or magazines. It will merely fill the gun with whatever item is inserted.
-*/
+/**
+ *  Handles reloading. Called on attack_by
+ *  Reload works in one of three ways, depending on the guns flags.
+ *  First, if the gun is set to magazines, it will do checks based on the magazines vars and if it succeeds it will load the magazine.
+ *  If the gun uses handfuls, the gun will create or take a handful with one round and insert those.
+ *  If the gun does not use handfuls, or magazines. It will merely fill the gun with whatever item is inserted.
+ */
 /obj/item/weapon/gun/proc/reload(obj/item/new_mag, mob/living/user, force = FALSE)
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
-		if((!CHECK_BITFIELD(flags_gun_features, RECIEVER_MAGAZINES) && istype(new_mag, sentry_battery_type)) || (CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES) && ((sentry_battery_type in allowed_ammo_types) && !sentry_battery && length(chamber_items) <= current_chamber_position && chamber_items[current_chamber_position]) || (!(sentry_battery_type in allowed_ammo_types) && istype(new_mag, sentry_battery_type))))
+		if((!CHECK_BITFIELD(flags_gun_features, AMMO_RECIEVER_MAGAZINES) && istype(new_mag, sentry_battery_type)) || (CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && ((sentry_battery_type in allowed_ammo_types) && !sentry_battery && length(chamber_items) <= current_chamber_position && chamber_items[current_chamber_position]) || (!(sentry_battery_type in allowed_ammo_types) && istype(new_mag, sentry_battery_type))))
 			reload_sentry_cell(new_mag, user)
 			return
 	if(!(new_mag.type in allowed_ammo_types))
-		if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
 			var/obj/item/ammo_magazine/mag = new_mag
 			if(!CHECK_BITFIELD(mag.flags_magazine, MAGAZINE_HANDFUL)) //If the gun uses handfuls, it accepts all handfuls since it uses caliber to check if its allowed.
 				to_chat(user, span_warning("[new_mag] cannot fit into [src]!"))
@@ -1044,22 +1110,22 @@ If the gun does not use handfuls, or magazines. It will merely fill the gun with
 			to_chat(user, span_warning("[new_mag] cannot fit into [src]!"))
 			return FALSE
 
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED) && !force)
-		if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES)) //RECIEVER_CLOSED without RECIEVER_TOGGLES means the gun is not allowed to reload. Period.
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED) && !force)
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN)) //AMMO_RECIEVER_CLOSED without AMMO_RECIEVER_TOGGLES_OPEN means the gun is not allowed to reload. Period.
 			to_chat(user, span_warning("[src] is closed!"))
 		else
 			to_chat(user, span_warning("You cannot reload [src]!"))
 		return FALSE
 
 	if((length(chamber_items) >= max_chamber_items) && max_chamber_items)
-		if(!CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES))
+		if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER))
 			to_chat(user, span_warning("There is no room for [new_mag]!"))
 			return FALSE
 		if(rounds >= max_chamber_items)
 			to_chat(user, span_warning("There is no room for [new_mag]!"))
 			return FALSE
 
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
 		if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && (((sentry_battery_type in allowed_ammo_types) && !sentry_battery && length(chamber_items) <= current_chamber_position && chamber_items[current_chamber_position]) || (!(sentry_battery_type in allowed_ammo_types) && istype(new_mag, sentry_battery_type))))
 			reload_sentry_cell(new_mag, user)
 			return FALSE
@@ -1073,7 +1139,7 @@ If the gun does not use handfuls, or magazines. It will merely fill the gun with
 			if(!do_after(user, new_mag.vars[reload_delay_var], TRUE, user))
 				to_chat(user, span_warning("Your reload was interupted!"))
 				return FALSE
-		if(CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES))
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER))
 			for(var/i = 1, i <= length(chamber_items), i++)
 				if(chamber_items[i])
 					continue
@@ -1090,7 +1156,7 @@ If the gun does not use handfuls, or magazines. It will merely fill the gun with
 		if(istype(new_mag, /obj/item/ammo_magazine))
 			var/obj/item/ammo_magazine/magazine = new_mag
 			magazine.on_inserted(src)
-		if(!in_chamber && !CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION))
+		if(!in_chamber && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 			cycle(user, FALSE)
 		update_ammo_count()
 		update_icon()
@@ -1100,7 +1166,7 @@ If the gun does not use handfuls, or magazines. It will merely fill the gun with
 
 	var/list/obj/items_to_insert = list()
 	if(max_chamber_items)
-		if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
 			var/obj/item/ammo_magazine/mag = new_mag
 			if(CHECK_BITFIELD(mag.flags_magazine, MAGAZINE_HANDFUL))
 				if(mag.current_rounds > 1)
@@ -1109,7 +1175,7 @@ If the gun does not use handfuls, or magazines. It will merely fill the gun with
 					items_to_insert += mag
 				playsound(src, hand_reload_sound, 25, 1)
 			else
-				if((length(chamber_items) && !CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES)) || (CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES) && rounds))
+				if((length(chamber_items) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER)) || (CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && rounds))
 					to_chat(user, span_warning("[src] must be completely empty to use the [mag]!"))
 					return FALSE
 				var/rounds_to_fill = mag.current_rounds < max_chamber_items ? mag.current_rounds : max_chamber_items
@@ -1119,7 +1185,7 @@ If the gun does not use handfuls, or magazines. It will merely fill the gun with
 		else
 			items_to_insert += new_mag
 
-		if(CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES))
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER))
 			for(var/obj/object_to_insert in items_to_insert)
 				for(var/i = 1, i <= length(chamber_items), i++)
 					if(chamber_items[i])
@@ -1134,9 +1200,9 @@ If the gun does not use handfuls, or magazines. It will merely fill the gun with
 	for(var/obj/obj_to_insert in items_to_insert)
 		obj_to_insert.forceMove(src)
 		user?.temporarilyRemoveItemFromInventory(obj_to_insert)
-	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
+	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
 		playsound(src, reload_sound, 25, 1)
-	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION) && !CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES) && !in_chamber && max_chamber_items)
+	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !in_chamber && max_chamber_items)
 		cycle(user, FALSE)
 	get_ammo()
 	update_ammo_count()
@@ -1147,8 +1213,8 @@ If the gun does not use handfuls, or magazines. It will merely fill the gun with
 /obj/item/weapon/gun/proc/unload(mob/living/user, drop = TRUE)
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return FALSE
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED))
-		if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES))
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED))
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 			to_chat(user, span_warning("You have to open [src] first!"))
 		else
 			to_chat(user, span_warning("You cannot unload [src]!"))
@@ -1158,7 +1224,7 @@ If the gun does not use handfuls, or magazines. It will merely fill the gun with
 			return FALSE
 		var/obj/obj_in_chamber
 		if(istype(in_chamber, /obj/projectile))
-			if(!CHECK_BITFIELD(reciever_flags, RECIEVER_NO_HANDFULS))
+			if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS))
 				var/obj/projectile/projectile_in_chamber = obj_in_chamber
 				var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
 				new_handful.generate_handful(projectile_in_chamber.ammo.type, caliber, 1, type)
@@ -1187,7 +1253,7 @@ If the gun does not use handfuls, or magazines. It will merely fill the gun with
 			user.put_in_hands(mag)
 		else
 			mag.forceMove(get_turf(src))
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES))
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER))
 		chamber_items[mag] = null
 	else
 		chamber_items -= mag
@@ -1198,46 +1264,44 @@ If the gun does not use handfuls, or magazines. It will merely fill the gun with
 	update_ammo_count()
 	return TRUE
 
-
-///Returns an object that will be put into the guns chamber.
-/obj/item/weapon/gun/proc/return_obj_to_fire()
-	if(current_chamber_position > length(chamber_items))
-		return null
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
-		chamber_items[current_chamber_position].vars[current_rounds_var] -= rounds_to_draw
-		return get_ammo_object()
-	var/object_to_chamber = chamber_items[current_chamber_position]
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES))
-		chamber_items[current_chamber_position] = null
-	else
-		chamber_items -= object_to_chamber
-	return object_to_chamber
-
 ///Cycles the gun, handles ammunition draw
 /obj/item/weapon/gun/proc/cycle(mob/living/user, after_fire = TRUE)
 	if(!length(chamber_items))
 		update_ammo_count()
 		return
-	if((CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES) && !CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES)) || (CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES) && CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES) && chamber_items[current_chamber_position].vars[current_rounds_var] <= 0))
+	if((CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES)) || (CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && chamber_items[current_chamber_position].vars[current_rounds_var] <= 0))
 		var/next_chamber_position = current_chamber_position + 1
 		if(next_chamber_position > max_chamber_items)
 			next_chamber_position = 1
 		current_chamber_position = next_chamber_position
-	if((!user && CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION)) || (!rounds && after_fire))
+	if((!user && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION)) || (!rounds && after_fire))
 		return
-	in_chamber = return_obj_to_fire()
+	var/new_in_chamber
+	if(current_chamber_position > length(chamber_items))
+		new_in_chamber = null
+	else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
+		chamber_items[current_chamber_position].vars[current_rounds_var] -= rounds_per_shot
+		new_in_chamber = get_ammo_object()
+	else
+		var/object_to_chamber = chamber_items[current_chamber_position]
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER))
+			chamber_items[current_chamber_position] = null
+		else
+			chamber_items -= object_to_chamber
+		new_in_chamber = object_to_chamber
+	in_chamber = new_in_chamber
 	update_ammo_count()
 	update_icon()
-	if(!after_fire || CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES))
+	if(!after_fire || CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 		return
 	make_casing()
 
 ///Generates a casing.
 /obj/item/weapon/gun/proc/make_casing(obj/item/magazine, after_fire = TRUE)
-	if(!type_of_casings || (current_chamber_position > length(chamber_items) && after_fire) || (!CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES) && !CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS)))
+	if(!type_of_casings || (current_chamber_position > length(chamber_items) && after_fire) || (!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS)))
 		return
 	var/num_of_casings
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES) && istype(chamber_items[current_chamber_position], /obj/item/ammo_magazine))
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && istype(chamber_items[current_chamber_position], /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/mag = magazine
 		num_of_casings = (mag && mag.used_casings) ? mag.used_casings : 1
 	else
@@ -1269,9 +1333,9 @@ If the gun does not use handfuls, or magazines. It will merely fill the gun with
 /obj/item/weapon/gun/proc/get_ammo()
 	var/ammo_type
 	if(in_chamber)
-		if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS))
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
 			ammo_type = in_chamber.vars[ammo_type_var]
-		else if(CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
+		else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
 			var/obj/projectile/projectile_in_chamber = in_chamber
 			ammo_type = projectile_in_chamber.ammo.type
 		else
@@ -1281,7 +1345,7 @@ If the gun does not use handfuls, or magazines. It will merely fill the gun with
 	if(!length(chamber_items) || !chamber_items[current_chamber_position] || current_chamber_position > length(chamber_items))
 		ammo_datum_type = null
 		return ammo_datum_type
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_HANDFULS) || CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES) && ammo_type_var)
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS) || CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && ammo_type_var)
 		ammo_type = chamber_items[current_chamber_position].vars[ammo_type_var]
 	else if(!ammo_type_var)
 		return ammo_datum_type
@@ -1297,9 +1361,9 @@ If the gun does not use handfuls, or magazines. It will merely fill the gun with
 
 ///Updates the guns rounds and max_rounds vars based on the contents of chamber_items
 /obj/item/weapon/gun/proc/update_ammo_count()
-	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES))
+	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
 		var/new_rounds = length(chamber_items) + (in_chamber ? 1 : 0)
-		if(CHECK_BITFIELD(reciever_flags, RECIEVER_CYCLES))
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER))
 			new_rounds = 0
 			for(var/obj/chamber_item in chamber_items)
 				if(!chamber_item)
@@ -1338,10 +1402,10 @@ If the gun does not use handfuls, or magazines. It will merely fill the gun with
 /obj/item/weapon/gun/proc/able_to_fire(mob/user)
 	if(!user || user.stat != CONSCIOUS || user.lying_angle)
 		return
-	if(rounds - rounds_to_draw < 0 && rounds)
+	if(rounds - rounds_per_shot < 0 && rounds)
 		to_chat(user, span_warning("Theres not enough rounds left to fire."))
 		return FALSE
-	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_CLOSED) && CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES))
+	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 		to_chat(user, span_warning("The chamber is open! Close it first."))
 		return FALSE
 	if(!user.dextrous)
@@ -1402,16 +1466,9 @@ If the gun does not use handfuls, or magazines. It will merely fill the gun with
 		to_chat(user, span_warning("[src] is not ready to fire again!"))
 	return TRUE
 
-
-/obj/item/weapon/gun/proc/click_empty(mob/user)
-	if(user)
-		user.hud_used.update_ammo_hud(user, src)
-		to_chat(user, span_warning("<b>*click*</b>"))
-	playsound(src, dry_fire_sound, 25, 1, 5)
-
 /obj/item/weapon/gun/proc/play_fire_sound(mob/user)
 	//Guns with low ammo have their firing sound
-	var/firing_sndfreq = ((rounds / (max_rounds ? max_rounds : max_shells)) > 0.25) ? FALSE : 55000
+	var/firing_sndfreq = CHECK_BITFIELD(flags_gun_features, GUN_NO_PITCH_SHIFT_NEAR_EMPTY) ? FALSE : ((rounds / (max_rounds ? max_rounds : max_shells)) > 0.25) ? FALSE : 55000
 	if(HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 		playsound(user, fire_sound, 25, firing_sndfreq ? TRUE : FALSE, frequency = firing_sndfreq)
 		return
@@ -1550,91 +1607,6 @@ If the gun does not use handfuls, or magazines. It will merely fill the gun with
 	if(total_recoil > 0)
 		recoil_camera(gun_user, total_recoil + 1, (total_recoil * recoil_backtime_multiplier)+1, total_recoil, actual_angle)
 		return TRUE
-
-
-/obj/item/weapon/gun/proc/muzzle_flash(angle, atom/movable/flash_loc)
-	if(!muzzle_flash || muzzle_flash.applied)
-		return
-	var/prev_light = light_range
-	if(!light_on && (light_range <= muzzle_flash_lum))
-		set_light_range(muzzle_flash_lum)
-		set_light_color(muzzle_flash_color)
-		set_light_on(TRUE)
-		addtimer(CALLBACK(src, .proc/reset_light_range, prev_light), 1 SECONDS)
-
-	//Offset the pixels.
-	switch(angle)
-		if(0, 360)
-			muzzle_flash.pixel_x = 0
-			muzzle_flash.pixel_y = 4
-			muzzle_flash.layer = initial(muzzle_flash.layer)
-		if(1 to 44)
-			muzzle_flash.pixel_x = round(4 * ((angle) / 45))
-			muzzle_flash.pixel_y = 4
-			muzzle_flash.layer = initial(muzzle_flash.layer)
-		if(45)
-			muzzle_flash.pixel_x = 4
-			muzzle_flash.pixel_y = 4
-			muzzle_flash.layer = initial(muzzle_flash.layer)
-		if(46 to 89)
-			muzzle_flash.pixel_x = 4
-			muzzle_flash.pixel_y = round(4 * ((90 - angle) / 45))
-			muzzle_flash.layer = initial(muzzle_flash.layer)
-		if(90)
-			muzzle_flash.pixel_x = 4
-			muzzle_flash.pixel_y = 0
-			muzzle_flash.layer = initial(muzzle_flash.layer)
-		if(91 to 134)
-			muzzle_flash.pixel_x = 4
-			muzzle_flash.pixel_y = round(-3 * ((angle - 90) / 45))
-			muzzle_flash.layer = initial(muzzle_flash.layer)
-		if(135)
-			muzzle_flash.pixel_x = 4
-			muzzle_flash.pixel_y = -3
-			muzzle_flash.layer = initial(muzzle_flash.layer)
-		if(136 to 179)
-			muzzle_flash.pixel_x = round(4 * ((180 - angle) / 45))
-			muzzle_flash.pixel_y = -3
-			muzzle_flash.layer = ABOVE_MOB_LAYER
-		if(180)
-			muzzle_flash.pixel_x = 0
-			muzzle_flash.pixel_y = -3
-			muzzle_flash.layer = ABOVE_MOB_LAYER
-		if(181 to 224)
-			muzzle_flash.pixel_x = round(-3 * ((angle - 180) / 45))
-			muzzle_flash.pixel_y = -3
-			muzzle_flash.layer = ABOVE_MOB_LAYER
-		if(225)
-			muzzle_flash.pixel_x = -3
-			muzzle_flash.pixel_y = -3
-			muzzle_flash.layer = initial(muzzle_flash.layer)
-		if(226 to 269)
-			muzzle_flash.pixel_x = -3
-			muzzle_flash.pixel_y = round(-3 * ((270 - angle) / 45))
-			muzzle_flash.layer = initial(muzzle_flash.layer)
-		if(270)
-			muzzle_flash.pixel_x = -3
-			muzzle_flash.pixel_y = 0
-			muzzle_flash.layer = initial(muzzle_flash.layer)
-		if(271 to 314)
-			muzzle_flash.pixel_x = -3
-			muzzle_flash.pixel_y = round(4 * ((angle - 270) / 45))
-			muzzle_flash.layer = initial(muzzle_flash.layer)
-		if(315)
-			muzzle_flash.pixel_x = -3
-			muzzle_flash.pixel_y = 4
-			muzzle_flash.layer = initial(muzzle_flash.layer)
-		if(316 to 359)
-			muzzle_flash.pixel_x = round(-3 * ((360 - angle) / 45))
-			muzzle_flash.pixel_y = 4
-			muzzle_flash.layer = initial(muzzle_flash.layer)
-
-	muzzle_flash.transform = null
-	muzzle_flash.transform = turn(muzzle_flash.transform, angle)
-	flash_loc.vis_contents += muzzle_flash
-	muzzle_flash.applied = TRUE
-
-	addtimer(CALLBACK(src, .proc/remove_muzzle_flash, flash_loc, muzzle_flash), 0.2 SECONDS)
 
 /obj/item/weapon/gun/proc/reset_light_range(lightrange)
 	set_light_range(lightrange)

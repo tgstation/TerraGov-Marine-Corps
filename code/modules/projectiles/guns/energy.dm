@@ -4,12 +4,12 @@
 
 /obj/item/weapon/gun/energy
 	attachable_allowed = list()
-	rounds_to_draw = 10 //100 shots.
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_PERCENTAGE
+	rounds_per_shot = 10 //100 shots.
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_PERCENTAGE|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	general_codex_key = "energy weapons"
 
 	placed_overlay_iconstate = "laser"
-	reciever_flags = RECIEVER_MAGAZINES|RECIEVER_NO_HANDFULS
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS
 	default_ammo_type = /obj/item/cell/lasgun
 	allowed_ammo_types = list(/obj/item/cell/lasgun)
 	current_rounds_var = "charge"
@@ -18,16 +18,7 @@
 	magazine_flags_var = null
 	magazine_overlay_var = null
 	reload_delay_var = null
-
-/obj/item/weapon/gun/energy/muzzle_flash()
-	return
-
-// energy guns, however, do not use gun rattles.
-/obj/item/weapon/gun/energy/play_fire_sound(mob/user)
-	if(HAS_TRAIT(src, TRAIT_GUN_SILENCED))
-		playsound(user, fire_sound, 25)
-		return
-	playsound(user, fire_sound, 60)
+	muzzle_flash = null
 
 /obj/item/weapon/gun/energy/taser
 	name = "taser gun"
@@ -39,8 +30,8 @@
 	ammo_datum_type  = /datum/ammo/energy/taser
 	default_ammo_type = /obj/item/cell/lasgun/lasrifle/marine
 	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle/marine)
-	rounds_to_draw = 500
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_ALLOW_SYNTHETIC
+	rounds_per_shot = 500
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_ALLOW_SYNTHETIC|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
 
@@ -73,8 +64,8 @@
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
 	overcharge = FALSE
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_PERCENTAGE
-	reciever_flags = RECIEVER_MAGAZINES|RECIEVER_AUTO_EJECT|RECIEVER_NO_HANDFULS
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_PERCENTAGE|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS
 	aim_slowdown = 0.75
 	wield_delay = 1 SECONDS
 	gun_skill_category = GUN_SKILL_RIFLES
@@ -97,10 +88,10 @@
 	item_state = "m43"
 	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
 	ammo_datum_type  = /datum/ammo/energy/tesla
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_PERCENTAGE
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_PERCENTAGE|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	muzzle_flash_color = COLOR_TESLA_BLUE
 
-	rounds_to_draw = 500
+	rounds_per_shot = 500
 	fire_delay = 4 SECONDS
 
 /obj/item/weapon/gun/energy/lasgun/unique_action(mob/user, dont_operate = FALSE)
@@ -170,7 +161,7 @@
 	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/M43
 	ammo_diff = null
-	rounds_to_draw = ENERGY_STANDARD_AMMO_COST
+	rounds_per_shot = ENERGY_STANDARD_AMMO_COST
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -192,7 +183,7 @@
 		/obj/item/attachable/stock/lasgun,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_PERCENTAGE
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_PERCENTAGE|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	starting_attachment_types = list(/obj/item/attachable/stock/lasgun)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 
@@ -223,10 +214,10 @@
 	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/pulsebolt
 	muzzleflash_iconstate = "muzzle_flash_pulse"
-	rounds_to_draw = ENERGY_STANDARD_AMMO_COST
+	rounds_per_shot = ENERGY_STANDARD_AMMO_COST
 	muzzle_flash_color = COLOR_PULSE_BLUE
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_PERCENTAGE
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_PERCENTAGE|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 
 	fire_delay = 8
@@ -265,7 +256,7 @@
 	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/M43
 	ammo_diff = null
-	rounds_to_draw = 10
+	rounds_per_shot = 10
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(
@@ -283,7 +274,7 @@
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 	)
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_PERCENTAGE
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_PERCENTAGE|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
@@ -298,7 +289,7 @@
 
 /datum/lasrifle/base
 	///how much power the gun uses on this mode when shot.
-	var/rounds_to_draw = 0
+	var/rounds_per_shot = 0
 	///the ammo datum this mode is.
 	var/datum/ammo/ammo_datum_type = null
 	///how long it takes between each shot of that mode, same as gun fire delay.
@@ -337,7 +328,7 @@
 	gun_firemode = initial(choice.fire_mode)
 
 
-	rounds_to_draw = initial(choice.rounds_to_draw)
+	rounds_per_shot = initial(choice.rounds_per_shot)
 	ammo_datum_type = initial(choice.ammo_datum_type)
 	fire_delay = initial(choice.fire_delay)
 	burst_amount = initial(choice.burst_amount)
@@ -379,7 +370,7 @@
 	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
-	rounds_to_draw = 12
+	rounds_per_shot = 12
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
@@ -397,7 +388,7 @@
 		/obj/item/attachable/buildasentry,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 21, "under_x" = 29, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
 	aim_slowdown = 0.4
@@ -415,7 +406,7 @@
 	)
 
 /datum/lasrifle/base/energy_rifle_mode/standard
-	rounds_to_draw = 12
+	rounds_per_shot = 12
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	fire_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
@@ -425,7 +416,7 @@
 
 
 /datum/lasrifle/base/energy_rifle_mode/overcharge
-	rounds_to_draw = 30
+	rounds_per_shot = 30
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/overcharge
 	fire_delay = 0.45 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser overcharge standard.ogg'
@@ -451,7 +442,7 @@
 	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
-	rounds_to_draw = 20
+	rounds_per_shot = 20
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 
@@ -465,7 +456,7 @@
 		/obj/item/attachable/lace,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	attachable_offset = list("muzzle_x" = 23, "muzzle_y" = 22,"rail_x" = 12, "rail_y" = 22, "under_x" = 16, "under_y" = 14, "stock_x" = 22, "stock_y" = 12)
 
 	akimbo_additional_delay = 0.9
@@ -484,7 +475,7 @@
 	)
 
 /datum/lasrifle/base/energy_pistol_mode/standard
-	rounds_to_draw = 20
+	rounds_per_shot = 20
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol
 	fire_delay = 0.15 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Pistol Standard.ogg'
@@ -493,7 +484,7 @@
 	icon_state = "tep"
 
 /datum/lasrifle/base/energy_pistol_mode/disabler
-	rounds_to_draw = 80
+	rounds_per_shot = 80
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol/disabler
 	fire_delay = 10
 	fire_sound = 'sound/weapons/guns/fire/disabler.ogg'
@@ -503,7 +494,7 @@
 	radial_icon_state = "laser_disabler"
 
 /datum/lasrifle/base/energy_pistol_mode/heat
-	rounds_to_draw = 110
+	rounds_per_shot = 110
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol/heat
 	fire_delay = 0.5 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
@@ -528,7 +519,7 @@
 	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
-	rounds_to_draw = 15
+	rounds_per_shot = 15
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
@@ -545,7 +536,7 @@
 		/obj/item/attachable/buildasentry,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 17, "rail_y" = 21, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
 	aim_slowdown = 0.2
@@ -566,7 +557,7 @@
 	)
 
 /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard ///I know this seems tacky, but if I make auto burst a standard firemode it somehow buffs spread's fire delay.
-	rounds_to_draw = 15
+	rounds_per_shot = 15
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	fire_delay = 0.2 SECONDS
 	burst_amount = 4
@@ -580,7 +571,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 
 /datum/lasrifle/base/energy_carbine_mode/base/spread
-	rounds_to_draw = 60
+	rounds_per_shot = 60
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/blast
 	fire_delay = 1.5 SECONDS
 	burst_amount = 1
@@ -606,7 +597,7 @@
 	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	ammo_diff = null
-	rounds_to_draw = 50
+	rounds_per_shot = 50
 	damage_falloff_mult = 0
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
@@ -622,7 +613,7 @@
 		/obj/item/attachable/buildasentry,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 18,"rail_x" = 19, "rail_y" = 19, "under_x" = 28, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/laser_sniper_scope)
 
@@ -640,7 +631,7 @@
 	)
 
 /datum/lasrifle/base/energy_sniper_mode/standard
-	rounds_to_draw = 50
+	rounds_per_shot = 50
 	fire_delay = 1 SECONDS
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
@@ -649,7 +640,7 @@
 	icon_state = "tes"
 
 /datum/lasrifle/base/energy_sniper_mode/heat
-	rounds_to_draw = 150
+	rounds_per_shot = 150
 	fire_delay = 1 SECONDS
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper_heat
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
@@ -672,7 +663,7 @@
 	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser
 	ammo_diff = null
-	rounds_to_draw = 4
+	rounds_per_shot = 4
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
@@ -689,7 +680,7 @@
 		/obj/item/attachable/buildasentry,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 24, "under_x" = 30, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
 
 	aim_slowdown = 1
@@ -706,7 +697,7 @@
 	)
 
 /datum/lasrifle/base/energy_mg_mode/standard
-	rounds_to_draw = 4
+	rounds_per_shot = 4
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser
 	fire_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
@@ -717,5 +708,5 @@
 /datum/lasrifle/base/energy_mg_mode/standard/efficiency
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/efficiency
 	fire_delay = 0.15 SECONDS
-	rounds_to_draw = 3
+	rounds_per_shot = 3
 	message_to_user = "You set the machine laser's charge mode to efficiency mode."

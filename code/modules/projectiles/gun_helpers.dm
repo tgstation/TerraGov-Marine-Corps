@@ -8,7 +8,7 @@
 /obj/item/weapon/gun/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
 		return ..()
-	if(CHECK_BITFIELD(reciever_flags, RECIEVER_TOGGLES) && CHECK_BITFIELD(reciever_flags, RECIEVER_REQUIRES_OPERATION))
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 		unique_action(user, TRUE)
 		return
 	unload(user)
@@ -202,7 +202,7 @@ should be alright.
 	if(src != user.r_hand && src != user.l_hand)
 		to_chat(user, span_warning("[src] must be in your hand to do that."))
 		return
-	if(!CHECK_BITFIELD(reciever_flags, RECIEVER_MAGAZINES) && max_chamber_items > 1)
+	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && max_chamber_items > 1)
 		to_chat(user, span_warning("Can't do tactical reloads with [src]."))
 		return
 	//no tactical reload for the untrained.
