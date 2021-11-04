@@ -92,7 +92,7 @@
 
 	muzzleflash_iconstate = "muzzle_flash_laser"
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT
-	reciever_flags = RECIEVER_MAGAZINES|RECIEVER_AUTO_EJECT|RECIEVER_NO_HANDFULS
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS
 	actions_types = list()
 	wield_delay = 0.5 SECONDS
 	muzzle_flash_color = COLOR_GREEN
@@ -207,7 +207,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/pistol/m1911
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/m1911)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
-	reciever_flags = RECIEVER_MAGAZINES
+	reciever_flags = AMMO_RECIEVER_MAGAZINES
 	fire_delay = 0.175 SECONDS
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.85

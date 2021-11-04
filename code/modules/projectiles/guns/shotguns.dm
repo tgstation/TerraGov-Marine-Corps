@@ -148,7 +148,7 @@
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
-	reciever_flags = RECIEVER_TOGGLES|RECIEVER_TOGGLES_EJECTS|RECIEVER_HANDFULS
+	reciever_flags = AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS|AMMO_RECIEVER_HANDFULS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 21,"rail_x" = 15, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
 
 	fire_delay = 2
@@ -252,7 +252,7 @@
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
-	reciever_flags = RECIEVER_HANDFULS|RECIEVER_REQUIRES_OPERATION|RECIEVER_LOCKS
+	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION|AMMO_RECIEVER_UNIQUE_ACTION_LOCKS
 	cocked_message = "You rack the pump."
 	cock_locked_message = "The pump is locked! Fire it first!"
 	max_chamber_items = 8

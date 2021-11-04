@@ -70,7 +70,7 @@
 	gun.reload(ammo_magazine, user)
 	update_icon_state()
 
-	if(!CHECK_BITFIELD(gun.reciever_flags, RECIEVER_REQUIRES_OPERATION))
+	if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 		return
 	gun.unique_action(gun, user)
 

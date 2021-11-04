@@ -141,11 +141,6 @@
 
 /obj/item/weapon/gun/flamer/do_fire(obj/projectile/projectile_to_fire)
 	playsound(loc, fire_sound, 50, 1)
-	start_stream()
-	return TRUE
-
-///Sets up the recursive proc for flaming.
-/obj/item/weapon/gun/flamer/proc/start_stream()
 	var/obj/item/attachable/flamer_nozzle/nozzle = attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE]
 	var/burn_type = nozzle.stream_type
 	var/old_turfs = list(get_turf(src))
@@ -162,6 +157,7 @@
 			if(ISDIAGONALDIR(dir_to_target))
 				range /= 2
 			recursive_flame_cone(1, old_turfs, dir_to_target, range, current_target)
+	return TRUE
 
 #define RECURSIVE_CHECK(old_turfs, range, current_target, iteration) (!length(old_turfs) || iteration > range || !current_target || (current_target in old_turfs))
 
@@ -242,7 +238,7 @@
 			light_pilot(FALSE)
 			return FALSE
 		flame_turf(turf_to_ignite, gun_user, burn_time, burn_level, fire_color)
-		post_fire()
+		chamber_items[current_chamber_position].vars[current_rounds_var]--
 	gun_user?.hud_used.update_ammo_hud(gun_user, src)
 	return TRUE
 

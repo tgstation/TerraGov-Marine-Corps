@@ -656,7 +656,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	load_method = SINGLE_CASING //codex
 	default_ammo_type = /obj/item/ammo_magazine/rocket/oneuse
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rocket/oneuse)
-	reciever_flags = RECIEVER_CLOSED|RECIEVER_MAGAZINES
+	reciever_flags = AMMO_RECIEVER_CLOSED|AMMO_RECIEVER_MAGAZINES
 	flags_equip_slot = ITEM_SLOT_BELT
 	attachable_allowed = list(/obj/item/attachable/magnetic_harness)
 
