@@ -7,11 +7,11 @@
 		return //Godmode or some other pain reducers. //Analgesic avoids all traumatic shock temporarily
 
 	switch(traumatic_shock)
-		if(200 to INFINITY)
-			adjustShock_Stage(5) //All of these adjust shock_stage based on traumatic_shock
+		if(200 to INFINITY) //All of these adjust shock_stage based on traumatic_shock
+			adjustShock_Stage(5+((traumatic_shock-200)*0.2)) //Uncapped max gain of shock_stage, depending on traumatic_shock.
 
 		if(150 to 200)
-			adjustShock_Stage(2)
+			adjustShock_Stage(1+((traumatic_shock-150)*0.08)) //smooth ramp from 1 to 5
 
 		if(100 to 150)
 			adjustShock_Stage(1)
@@ -33,7 +33,6 @@
 		if(30 to 39)
 			if(prob(20))
 				to_chat(src, span_danger("[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!"))
-			blur_eyes(2)
 			stuttering = max(stuttering, 5)
 		if(40 to 59)
 			if(prob(20))
@@ -47,9 +46,6 @@
 				emote("me", 1, " is having trouble standing.")
 			blur_eyes(2)
 			stuttering = max(stuttering, 5)
-			if(prob(2))
-				if(!lying_angle)
-					emote("me", 1, " is having trouble standing.")
 			adjust_stagger(3, FALSE, 3)
 			add_slowdown(3)
 			if(prob(20))
