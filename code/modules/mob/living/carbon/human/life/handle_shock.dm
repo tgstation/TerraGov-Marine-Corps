@@ -16,14 +16,14 @@
 		if(100 to 150)
 			adjustShock_Stage(1)
 
-		if(0 to 35)
+		if(5 to 35)
 			adjustShock_Stage(-1)
 
-		if(-40 to 0)
+		if(-30 to 5)
 			adjustShock_Stage(-2)
 
-		if(-INFINITY to -40)
-			adjustShock_Stage(-5)
+		if(-INFINITY to -30)
+			adjustShock_Stage(-4+((traumatic_shock+30)*0.2) //uncapped heal, 1 extra point per 5 traumatic_shock above threshold.
 
 	//This just adds up effects together at each step, with a few small exceptions. Preferable to copy and paste rather than have a billion if statements.
 	switch(shock_stage)
@@ -37,7 +37,7 @@
 		if(40 to 59)
 			if(prob(20))
 				to_chat(src, span_danger("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!"))
-			blur_eyes(2)
+			blur_eyes(1)
 			stuttering = max(stuttering, 5)
 			adjust_stagger(1, FALSE, 1)
 			add_slowdown(1)
