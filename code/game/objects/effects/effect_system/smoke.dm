@@ -320,7 +320,7 @@
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_SANGUINAL|SMOKE_GASP|SMOKE_COUGH
 
 //Weaker version of Sanguinal from defiler for spitter
-/obj/effect/particle_effect/smoke/xeno/light_sanguinal
+/obj/effect/particle_effect/smoke/xeno/xeno_light_sanguinal
 	lifetime = 5
 	alpha = 60
 	opacity = FALSE
@@ -381,8 +381,8 @@ datum/effect_system/smoke_spread/tactical
 /datum/effect_system/smoke_spread/xeno/sanguinal
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/sanguinal
 
-/datum/effect_system/smoke_spread/xeno/light_sanguinal
-	smoke_type = /obj/effect/particle_effect/smoke/xeno/light_sanguinal
+/datum/effect_system/smoke_spread/xeno/xeno_light_sanguinal
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/xeno_light_sanguinal
 
 /////////////////////////////////////////////
 // Chem smoke

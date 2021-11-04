@@ -654,7 +654,7 @@
 
 	return ..()
 
-/datum/reagent/toxin/xeno_sanguinal/xeno_light_sanguinal
+/datum/reagent/toxin/xeno_light_sanguinal
 	name = "light Sanguinal"
 	description = "A weaker version of the toxin Sanguinal, but just as deadly."
 	reagent_state = LIQUID
@@ -665,7 +665,7 @@
 	scannable = TRUE
 	toxpwr = 0
 
-/datum/reagent/toxin/xeno_sanguinal/xeno_light_sanguinal/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/toxin/xeno_light_sanguinal/on_mob_life(mob/living/L, metabolism)
 	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine))
 		L.adjustOxyLoss(SPITTER_LIGHT_SANGUINAL_DAMAGE)
 

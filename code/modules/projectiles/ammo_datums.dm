@@ -1640,7 +1640,6 @@ datum/ammo/bullet/revolver/tp44
 	bullet_color = COLOR_LIME
 	///List of reagents transferred upon spit impact if any
 	var/list/datum/reagent/spit_reagents
-	var/list/datum/reagent/spit_reagents_sanguinal
 	///Amount of reagents transferred upon spit impact if any
 	var/reagent_transfer_amount
 	///Amount of stagger stacks imposed on impact if any
@@ -1995,7 +1994,11 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/boiler_gas/corrosive/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid()
 
-/datum/ammo/xeno/xeno_light_sanguinal
+
+
+
+
+/datum/ammo/xeno/toxin/sanguinal
 	name = "Light Sanguinal"
 	icon_state = "xeno_sanguinal"
 	bullet_color = COLOR_PALE_RED_GRAY
@@ -2014,8 +2017,11 @@ datum/ammo/bullet/revolver/tp44
 	smoke_range = 0
 	reagent_transfer_amount = 9
 
-/datum/ammo/xeno/toxin/xeno_light_sanguinal/proc/set_reagents()
-	spit_reagents = list(/datum/reagent/toxin/xeno_sanguinal/xeno_light_sanguinal = reagent_transfer_amount)
+datum/ammo/xeno/toxin/set_reagent
+	spit_reagents = list(/datum/reagent/toxin/xeno_light_sanguinal = 9)
+
+/datum/ammo/xeno/toxin/set_smoke()
+	smoke_system = new /datum/effect_system/smoke_spread/xeno/xeno_light_sanguinal()
 
 /*
 //================================================

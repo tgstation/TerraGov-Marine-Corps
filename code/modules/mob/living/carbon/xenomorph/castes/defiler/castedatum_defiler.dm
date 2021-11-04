@@ -55,7 +55,7 @@
 	available_reagents_define = list(
 		/datum/reagent/toxin/xeno_hemodile,
 		/datum/reagent/toxin/xeno_transvitox,
-		/datum/reagent/toxin/xeno_neurotoxin,
+		/datum/reagent/toxin/xeno_neurotoxin
 	)
 
 	// *** Pheromones *** //
