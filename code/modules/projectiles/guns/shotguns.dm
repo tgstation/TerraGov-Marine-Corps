@@ -11,7 +11,7 @@
 	opened_sound = 'sound/weapons/guns/interact/shotgun_open.ogg'
 	accuracy_mult = 1.15
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
-	reciever_flags = RECIEVER_HANDFULS
+	reciever_flags = AMMO_RECIEVER_HANDFULS
 	type_of_casings = "shell"
 	allowed_ammo_types = list()
 	aim_slowdown = 0.35
