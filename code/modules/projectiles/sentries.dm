@@ -470,7 +470,7 @@
 	. = ..()
 	var/obj/item/weapon/gun/gun = internal_item
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_INACCURATE))
-		gun.accuracy_mult /= 0.85
+		gun.accuracy_mult += 0.15
 		gun.scatter -= 10
 
 
