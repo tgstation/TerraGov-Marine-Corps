@@ -520,6 +520,12 @@
 	item_state = "rounyplush"
 	attack_verb = list("slashes", "bites", "pounces")
 
+/obj/item/toy/plush/aweksey
+	name = "aweksey the femboy medic"
+	desc = "A soft and breedable Plushie of TGMC's famous femboi."
+	icon_state = "alekplush"
+	item_state = "alekplush"
+	attack_verb = list("snuggles")
 
 /obj/item/toy/beach_ball/basketball
 	name = "basketball"
