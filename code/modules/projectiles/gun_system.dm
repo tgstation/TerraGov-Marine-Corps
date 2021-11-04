@@ -86,13 +86,13 @@
  *
 */
 	///Sound for the gun firing when empty.
-	var/dry_fire_sound	= 'sound/weapons/guns/fire/empty.ogg'
+	var/dry_fire_sound = 'sound/weapons/guns/fire/empty.ogg'
 	///Sound of unloading the gun.
-	var/unload_sound 	= 'sound/weapons/flipblade.ogg'
+	var/unload_sound = 'sound/weapons/flipblade.ogg'
 	///Sound played when the gun auto ejects its magazine.
-	var/empty_sound 	= 'sound/weapons/guns/misc/empty_alarm.ogg'
+	var/empty_sound = 'sound/weapons/guns/misc/empty_alarm.ogg'
 	///Sound played for reloading.
-	var/reload_sound 	= null
+	var/reload_sound = null
 	///Sound for reloading by handfuls
 	var/hand_reload_sound
 
