@@ -23,7 +23,7 @@
 			adjustShock_Stage(-2)
 
 		if(-INFINITY to -30)
-			adjustShock_Stage(-4+((traumatic_shock+30)*0.2) //uncapped heal, 1 extra point per 5 traumatic_shock above threshold.
+			adjustShock_Stage(-4+((traumatic_shock+30)*0.2)) //uncapped heal, 1 extra point per 5 traumatic_shock above threshold.
 
 	//This just adds up effects together at each step, with a few small exceptions. Preferable to copy and paste rather than have a billion if statements.
 	switch(shock_stage)
