@@ -17,7 +17,6 @@
 	var/throw_range = 7
 	var/mob/pulledby = null
 	var/atom/movable/pulling
-	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
 	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
 	var/glide_modifier_flags = NONE
 
@@ -150,16 +149,16 @@
 
 	if(!direction)
 		direction = get_dir(src, newloc)
-	var/can_pass_diagonally = FALSE
+	var/can_pass_diagonally = NONE
 	if ((direction & (direction - 1))) //Check if the diagonal move is possible
 		if(direction & NORTH)
-			can_pass_diagonally = get_step(loc, NORTH)?.Enter(src) ? NORTH : 0
+			can_pass_diagonally = get_step(loc, NORTH)?.Enter(src) ? NORTH : NONE
 		if(!can_pass_diagonally && (direction & EAST))
-			can_pass_diagonally = get_step(loc, EAST)?.Enter(src) ? EAST : 0
+			can_pass_diagonally = get_step(loc, EAST)?.Enter(src) ? EAST : NONE
 		if(!can_pass_diagonally && (direction & WEST))
-			can_pass_diagonally = get_step(loc, WEST)?.Enter(src) ? WEST : 0
+			can_pass_diagonally = get_step(loc, WEST)?.Enter(src) ? WEST : NONE
 		if(!can_pass_diagonally && (direction & SOUTH))
-			can_pass_diagonally = get_step(loc, SOUTH)?.Enter(src) ? SOUTH : 0
+			can_pass_diagonally = get_step(loc, SOUTH)?.Enter(src) ? SOUTH : NONE
 		if(!can_pass_diagonally)
 			return
 
@@ -171,7 +170,7 @@
 	var/list/old_locs
 	if(is_multi_tile_object && isturf(loc))
 		old_locs = locs.Copy()
-		for(var/atom/exiting_loc as anything in old_locs)
+		for(var/atom/exiting_loc AS in old_locs)
 			if(!exiting_loc.Exit(src, direction))
 				return
 	else if(!loc.Exit(src, direction))
@@ -187,7 +186,7 @@
 				newloc.z
 				)
 		) // If this is a multi-tile object then we need to predict the new locs and check if they allow our entrance.
-		for(var/atom/entering_loc as anything in new_locs)
+		for(var/atom/entering_loc AS in new_locs)
 			if(!entering_loc.Enter(src))
 				return
 	else if(!newloc.Enter(src))
@@ -200,12 +199,12 @@
 	loc = newloc
 
 	if(old_locs) // This condition will only be true if it is a multi-tile object.
-		for(var/atom/exited_loc as anything in (old_locs - new_locs))
+		for(var/atom/exited_loc AS in (old_locs - new_locs))
 			exited_loc.Exited(src, direction)
 	else // Else there's just one loc to be exited.
 		oldloc.Exited(src, direction)
 
-	if(!loc || (loc == oldloc && oldloc != newloc))
+	if(!loc || loc == oldloc)
 		last_move = 0
 		return
 
@@ -235,7 +234,7 @@
 		else
 			var/pull_dir = get_dir(src, pulling)
 			//puller and pullee more than one tile away or in diagonal position
-			if(get_dist(src, pulling) > 1 || (moving_diagonally != SECOND_DIAG_STEP && ((pull_dir - 1) & pull_dir)))
+			if(get_dist(src, pulling) > 1 || (pull_dir - 1) & pull_dir)
 				pulling.moving_from_pull = src
 				pulling.Move(old_turf, get_dir(pulling, old_turf)) //the pullee tries to reach our previous position
 				pulling.moving_from_pull = null
@@ -848,7 +847,7 @@
 		if(pulling.anchored)
 			stop_pulling()
 			return
-	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1)		//separated from our puller and not in the middle of a diagonal move.
+	if(pulledby && get_dist(src, pulledby) > 1)		//separated from our puller and not in the middle of a diagonal move.
 		pulledby.stop_pulling()
 
 
