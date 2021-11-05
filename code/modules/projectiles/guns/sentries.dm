@@ -155,7 +155,7 @@
 
 	ammo_datum_type = /datum/ammo/bullet/turret/gauss
 	default_ammo_type = /obj/item/ammo_magazine/sentry
-	allowed_ammo_types = list(default_ammo_type = /obj/item/ammo_magazine/sentry)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry)
 
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE

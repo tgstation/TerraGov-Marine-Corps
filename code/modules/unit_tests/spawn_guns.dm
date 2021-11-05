@@ -6,7 +6,7 @@
 				Fail("[attachment_type] is specified as a starting attachment, however it is not an allowed attachment. Called from [gun].")
 		if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_HANDFULS) && gun.default_ammo_type && !(gun.default_ammo_type in gun.allowed_ammo_types))
 			Fail("[gun] has a specified default_ammo_type that is not present in the allowed_ammo_types.")
-		if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_MAGAZINES))
+		if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_MAGAZINES) || !length(allowed_ammo_types))
 			continue
 		for(var/allowed_ammo_type in gun.allowed_ammo_types)
 			var/obj/item/ammo = allocate(allowed_ammo_type)

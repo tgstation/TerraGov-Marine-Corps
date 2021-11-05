@@ -116,6 +116,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "masterkey"
 	attachable_allowed = list()
+	starting_attachment_types = list()
 	slot = ATTACHMENT_SLOT_UNDER
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
