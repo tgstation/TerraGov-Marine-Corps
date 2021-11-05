@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "Minions req reward reduced from 10 to 5 points"
