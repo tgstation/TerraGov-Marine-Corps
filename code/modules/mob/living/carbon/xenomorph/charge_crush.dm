@@ -159,6 +159,9 @@
 	if(charger.incapacitated())
 		return FALSE
 
+	if(charge_dir != charger.dir)
+		return FALSE
+
 	if(charger.pulledby)
 		return FALSE
 
