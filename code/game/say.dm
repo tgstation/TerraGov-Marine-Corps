@@ -231,8 +231,6 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		T.luminosity = 6 // This is the maximum luminosity
 		for(var/mob/M in view(R, T))
 			. += M
-		for(var/obj/O in view(R, T))
-			. += O
 		T.luminosity = lum
 
 	var/i = 0
