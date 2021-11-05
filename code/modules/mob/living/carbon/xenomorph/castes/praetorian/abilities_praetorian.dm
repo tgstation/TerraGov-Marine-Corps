@@ -123,3 +123,18 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	if(CHECK_BITFIELD(direction_flag, CONE_PART_MIDDLE_DIAG))
 		do_acid_cone_spray(next_normal_turf, distance_left - 1, facing, CONE_PART_DIAG_LEFT|CONE_PART_DIAG_RIGHT, spray)
 		do_acid_cone_spray(next_normal_turf, distance_left - 2, facing, (distance_left < 5) ? CONE_PART_MIDDLE : CONE_PART_MIDDLE_DIAG, spray)
+
+/datum/action/xeno_action/activable/crest_defense/praetorian
+	mechanics_text = "Increase your resistance to projectiles at the cost of move speed. Decreases fire rate."
+
+/datum/action/xeno_action/toggle_crest_defense/praetorian/action_activate()
+	. = ..()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.crest_defense)
+		X.spit_delay -= X.extra_spit_delay
+	else
+		X.spit_delay += X.extra_spit_delay
+	if(!istype(X.selected_ability, /datum/action/xeno_action/xeno_spit))
+		return
+	var/datum/action/xeno_action/xeno_spit/current_action
+	current_action.update_fire_delay()

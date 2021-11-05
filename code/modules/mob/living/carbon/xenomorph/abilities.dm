@@ -820,6 +820,9 @@
 	target_flags = XABB_MOB_TARGET
 	var/current_target
 
+/datum/action/xeno_action/activable/xeno_spit/Initialize()
+	. = ..()
+	AddComponent(/datum/component/automatedfire/autofire, get_cooldown(), _fire_mode = GUN_FIREMODE_AUTOMATIC,  _callback_reset_fire = CALLBACK(src, .proc/reset_fire), _callback_fire = CALLBACK(src, .proc/Fire))
 /datum/action/xeno_action/activable/xeno_spit/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
 	button.overlays.Cut()
@@ -828,6 +831,8 @@
 /datum/action/xeno_action/activable/xeno_spit/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability != src)
+		RegisterSignal(X, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
+		RegisterSignal(X, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
 		return ..()
 	for(var/i in 1 to X.xeno_caste.spit_types.len)
 		if(X.ammo == GLOB.ammo_list[X.xeno_caste.spit_types[i]])
@@ -838,6 +843,10 @@
 			break
 	to_chat(X, span_notice("We will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma)."))
 	update_button_icon()
+
+/datum/action/xeno_action/activable/xeno_spit/deselect()
+	UnregisterSignal(X, list(COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
+	return ..()
 
 /datum/action/xeno_action/activable/xeno_spit/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -861,13 +870,23 @@
 	return ..()
 
 /datum/action/xeno_action/activable/xeno_spit/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/xeno = owner
 
-	var/turf/current_turf = get_turf(owner)
-
-	if(!current_turf)
+	if(!current_target)
 		return fail_activate()
 
+	X.visible_message(span_xenowarning("\The [xeno] spits at \the [current_target]!"), \
+	span_xenowarning("We spit at \the [current_target]!") )
+
+	SEND_SIGNAL(src, COMSIG_XENO_FIRE)
+	xeno?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+
+	return succeed_activate()
+
+///Fires the spit projectile.
+/datum/action/xeno_action/activable/xeno_spit/proc/fire()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/turf/current_turf = get_turf(owner)
 	X.visible_message(span_xenowarning("\The [X] spits at \the [A]!"), \
 	span_xenowarning("We spit at \the [A]!") )
 	var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
@@ -878,15 +897,48 @@
 	newspit.generate_bullet(X.ammo, X.ammo.damage * SPIT_UPGRADE_BONUS(X))
 	newspit.permutated += X
 	newspit.def_zone = X.get_limbzone_target()
-
 	newspit.fire_at(A, X, null, X.ammo.max_range, X.ammo.shell_speed)
 
-	add_cooldown()
+	if(X.check_state() && X.ammo?.spit_cost <= X.plasma_stored)
+		return
+	stop_fire()
 
-	return succeed_activate()
+///Resets the autofire component.
+/datum/action/xeno_action/activable/xeno_spit/proc/reset_fire()
+	set_target(null)
+	owner?.client?.mouse_pointer_icon = initial(owner.client.mouse_pointer_icon)
 
-/datum/action/xeno_action/activable/xeno_spit/proc/fire()
-/datum/action/xeno_action/activable/xeno_spit/proc/change_target()
+///Changes the current target.
+/datum/action/xeno_action/activable/xeno_spit/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/xeno = owner
+	set_target(get_turf_on_clickcatcher(over_object, xeno, params))
+	xeno.face_atom(current_target)
+
+///Sets the current target and registers for qdel to prevent hardels
+/datum/action/xeno_action/activable/xeno_spit/proc/set_target(atom/object)
+	if(object == current_target || object == owner)
+		return
+	if(current_target)
+		UnregisterSignal(current_target, COMSIG_PARENT_QDELETING)
+	target = object
+	if(current_target)
+		RegisterSignal(current_target, COMSIG_PARENT_QDELETING, .proc/clean_target)
+
+///Cleans the current target in case of Hardel
+/datum/action/xeno_action/activable/xeno_spit/proc/clean_target()
+	SIGNAL_HANDLER
+	current_target = get_turf(current_target)
+
+///Stops the Autofire component and resets the current cursor.
+/datum/action/xeno_action/activable/xeno_spit/proc/stop_fire()
+	SIGNAL_HANDLER
+	owner?.client?.mouse_pointer_icon = initial(owner.client.mouse_pointer_icon)
+	SEND_SIGNAL(src, COMSIG_XENO_STOP_FIRE)
+
+///Updates the auto-fire components fire delay.
+/datum/action/xeno_action/activable/proc/update_fire_delay()
+	SEND_SIGNAL(src, COMSIG_XENO_AUTOFIREDELAY_MODIFIED, get_cooldown())
 
 /datum/action/xeno_action/activable/xeno_spit/ai_should_start_consider()
 	return TRUE
