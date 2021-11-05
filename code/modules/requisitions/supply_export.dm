@@ -9,7 +9,7 @@
 /mob/living/carbon/xenomorph/supply_export(faction_selling)
 	switch(tier)
 		if(XENO_TIER_MINION)
-			. = 10
+			. = 5
 		if(XENO_TIER_ZERO)
 			. = 15
 		if(XENO_TIER_ONE)
