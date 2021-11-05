@@ -1847,6 +1847,11 @@ datum/ammo/bullet/revolver/tp44
 	damage = 30
 	flags_ammo_behavior = AMMO_XENO
 
+/datum/ammo/xeno/acid/passthrough
+	name = "acid spittle"
+	damage = 30
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
+
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
 	added_spit_delay = 2
