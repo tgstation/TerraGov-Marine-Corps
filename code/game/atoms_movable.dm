@@ -247,6 +247,7 @@
 
 	if(LAZYLEN(buckled_mobs) && !handle_buckled_mob_movement(loc, direction)) //movement failed due to buckled mob(s)
 		return FALSE
+	return TRUE
 
 
 /atom/movable/Bump(atom/A)
