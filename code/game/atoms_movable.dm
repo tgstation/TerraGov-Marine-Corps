@@ -147,21 +147,21 @@
 		check_pulling()
 	if(!loc || !newloc || loc == newloc)
 		return FALSE
-	if ((direction & (direction - 1))) //Diagonal move checks
-		var/canpass = FALSE
-		if(direction & NORTH)
-			canpass = get_step(loc, NORTH).Enter(src)
-		if(!canpass && (direction & EAST))
-			canpass = get_step(loc, EAST).Enter(src)
-		if(!canpass && (direction & WEST))
-			canpass = get_step(loc, WEST).Enter(src)
-		if(!canpass && (direction & SOUTH))
-			canpass = get_step(loc, SOUTH).Enter(src)
-		if(!canpass)
-			return
 
 	if(!direction)
 		direction = get_dir(src, newloc)
+	var/can_pass_diagonally = FALSE
+	if ((direction & (direction - 1))) //Check if the diagonal move is possible
+		if(direction & NORTH)
+			can_pass_diagonally = get_step(loc, NORTH)?.Enter(src) ? NORTH : 0
+		if(!can_pass_diagonally && (direction & EAST))
+			can_pass_diagonally = get_step(loc, EAST)?.Enter(src) ? EAST : 0
+		if(!can_pass_diagonally && (direction & WEST))
+			can_pass_diagonally = get_step(loc, WEST)?.Enter(src) ? WEST : 0
+		if(!can_pass_diagonally && (direction & SOUTH))
+			can_pass_diagonally = get_step(loc, SOUTH)?.Enter(src) ? SOUTH : 0
+		if(!can_pass_diagonally)
+			return
 
 	if(!(flags_atom & DIRLOCK))
 		setDir(direction)
@@ -174,9 +174,8 @@
 		for(var/atom/exiting_loc as anything in old_locs)
 			if(!exiting_loc.Exit(src, direction))
 				return
-	else
-		if(!loc.Exit(src, direction))
-			return
+	else if(!loc.Exit(src, direction))
+		return
 
 	var/list/new_locs
 	if(is_multi_tile_object && isturf(newloc))
@@ -191,13 +190,10 @@
 		for(var/atom/entering_loc as anything in new_locs)
 			if(!entering_loc.Enter(src))
 				return
-			if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_MOVE, entering_loc))
-				return
-	else // Else just try to enter the single destination.
-		if(!newloc.Enter(src))
-			return
-		if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_MOVE, newloc))
-			return
+	else if(!newloc.Enter(src))
+		if(can_pass_diagonally)
+			Move(get_step(loc, can_pass_diagonally), can_pass_diagonally)
+		return
 
 	var/atom/oldloc = loc
 	move_stacks++
@@ -227,6 +223,9 @@
 
 	if(oldarea != newarea)
 		newarea.Entered(src, oldarea)
+
+	if(glide_size_override)
+		set_glide_size(glide_size_override)
 
 	Moved(oldloc, direction)
 
