@@ -131,7 +131,7 @@
 		/obj/item/ammo_magazine,
 	)
 	///The var to draw from a 'magazine' for its current rounds.
-	var/current_rounds_var = "current_rounds"
+	var/current_rounds_var = "current_rounds_test"
 	///The var to draw from a 'magazine' for its maximum rounds.
 	var/max_rounds_var = "max_rounds"
 	///The var to draw from a 'magazine' for its magazine flags.
