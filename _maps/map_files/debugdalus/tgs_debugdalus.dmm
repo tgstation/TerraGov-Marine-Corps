@@ -2337,10 +2337,6 @@
 /obj/machinery/landinglight/ds2,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
-"cpF" = (
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/mainship,
-/area/mainship/medical/medical_science)
 "cCb" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -2353,7 +2349,6 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
-/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "dwY" = (
@@ -2438,10 +2433,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
-"gMs" = (
-/obj/machinery/researchcomp,
-/turf/open/floor/mainship,
-/area/mainship/living/cryo_cells)
 "gOE" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
@@ -2482,8 +2473,6 @@
 "ieJ" = (
 /obj/structure/table/mainship,
 /obj/item/pizzabox/margherita,
-/obj/item/research_resource,
-/obj/item/tool/research/xeno_analyzer,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "ivf" = (
@@ -2517,10 +2506,6 @@
 	},
 /obj/machinery/light,
 /turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
-"juK" = (
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "jxJ" = (
 /obj/structure/cable,
@@ -2739,10 +2724,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
-"qOS" = (
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/mainship,
-/area/mainship/command/self_destruct)
 "qRv" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -2860,7 +2841,6 @@
 /obj/machinery/landinglight/ds2{
 	dir = 4
 	},
-/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/mainship/plate,
 /area/mainship/hallways/hangar)
 "vrS" = (
@@ -2870,8 +2850,6 @@
 "vsI" = (
 /obj/structure/table/mainship,
 /obj/item/storage/donut_box,
-/obj/item/tool/research/excavation_tool,
-/obj/item/radio/headset/mainship/res,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "vGl" = (
@@ -2948,7 +2926,6 @@
 /area/mainship/squads/req)
 "xFR" = (
 /obj/structure/cable,
-/obj/item/research_resource/xeno/tier_three,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "xIn" = (
@@ -4632,7 +4609,7 @@ bOu
 aeI
 bOu
 bOu
-juK
+bOu
 bOu
 bOu
 bOu
@@ -4741,7 +4718,7 @@ agN
 bhC
 bOu
 bOu
-juK
+bOu
 bOu
 bOu
 bOu
@@ -4792,7 +4769,7 @@ aav
 aay
 kso
 kso
-qOS
+kso
 kso
 kso
 abC
@@ -5265,7 +5242,7 @@ aab
 aae
 aaf
 afX
-gMs
+aae
 aal
 ieJ
 aab
@@ -5305,7 +5282,7 @@ ahq
 ahH
 ahZ
 tZD
-cpF
+tZD
 tZD
 aiV
 ahq
@@ -5417,7 +5394,7 @@ bOu
 bOu
 bOu
 bOu
-juK
+bOu
 bOu
 bOu
 agX
@@ -5468,7 +5445,7 @@ dwY
 bOu
 aht
 bOu
-juK
+bOu
 bOu
 bOu
 bOu
