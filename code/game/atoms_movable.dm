@@ -141,7 +141,6 @@
 
 /atom/movable/Move(atom/newloc, direction, glide_size_override)
 	var/atom/movable/pullee = pulling
-	var/turf/old_turf = loc
 	if(!moving_from_pull)
 		check_pulling()
 	if(!loc || !newloc || loc == newloc)
@@ -236,7 +235,7 @@
 			//puller and pullee more than one tile away or in diagonal position
 			if(get_dist(src, pulling) > 1 || (pull_dir - 1) & pull_dir)
 				pulling.moving_from_pull = src
-				pulling.Move(old_turf, get_dir(pulling, old_turf)) //the pullee tries to reach our previous position
+				pulling.Move(oldloc, get_dir(pulling, oldloc), glide_size_override) //the pullee tries to reach our previous position
 				pulling.moving_from_pull = null
 			check_pulling()
 
