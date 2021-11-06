@@ -78,7 +78,7 @@
 	. = ..()
 	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
-	if(!is_full_window() && !(get_dir(loc, target) == dir))
+	if(!is_full_window() && !(get_dir(loc, target) & dir))
 		return TRUE
 
 /obj/structure/window/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
