@@ -1832,7 +1832,7 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE
 	armor_type = "acid"
 	damage = 18
-	max_range = 8
+	max_range = 10
 	bullet_color = COLOR_PALE_GREEN_GRAY
 	///Duration of the acid puddles
 	var/puddle_duration = 1 SECONDS //Lasts 1-3 seconds
@@ -1849,9 +1849,10 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
-	added_spit_delay = 2
-	spit_cost = 70
-	damage = 30
+	added_spit_delay = 1
+	spit_cost = 60
+	shell_speed = 2.1
+	damage = 40
 
 /datum/ammo/xeno/acid/heavy/turret
 	damage = 20
