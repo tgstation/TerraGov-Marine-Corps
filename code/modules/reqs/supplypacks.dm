@@ -216,7 +216,7 @@ WEAPONS
 /datum/supply_packs/weapons/zx76
 	name = "ZX-76 Twin-Barrled Burst Shotgun"
 	contains = list(/obj/item/weapon/gun/shotgun/zx76)
-	cost = 90
+	cost = 100
 
 /datum/supply_packs/weapons/autosniper
 	name = "IFF Auto Sniper kit"
