@@ -191,10 +191,10 @@
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
 
-	scatter = 80 // you're not firing this standing.
+	scatter = 30 // you're not firing this standing.
 	deployed_scatter_change = -70 // innumerable amount of reduced scatter when deployed,
 	recoil = 3
-	scatter_unwielded = 85
+	scatter_unwielded = 45
 	fire_delay = 0.15 SECONDS
 	burst_amount = 1
 	deploy_time = 1 SECONDS
