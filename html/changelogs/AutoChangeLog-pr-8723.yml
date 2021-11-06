@@ -1,0 +1,4 @@
+author: "Sebbe9123"
+delete-after: True
+changes: 
+  - balance: "Removes armor from uniform and base exosuit, adds to armorplates instead."
