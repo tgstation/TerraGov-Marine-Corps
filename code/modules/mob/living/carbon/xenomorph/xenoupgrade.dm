@@ -230,6 +230,9 @@
 /mob/living/carbon/xenomorph/spitter/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/spitter/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //-----SPITTER END-----//
 //================//
 //SENTINEL ERT START

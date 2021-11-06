@@ -333,7 +333,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 		A = ability_target(A)
 		if(selected_ability.can_use_ability(A))
 			selected_ability.use_ability(A)
-			return TRUE
+			return CHECK_BITFIELD(selected_ability.use_state_flags, XACT_DO_AFTER_ATTACK) ? FALSE : TRUE
 
 /*
 	Right click

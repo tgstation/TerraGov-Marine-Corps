@@ -12,6 +12,7 @@
 #define XACT_IGNORE_COOLDOWN (1 << 11) // ignore cooldown
 #define XACT_IGNORE_DEAD_TARGET (1 << 12) // bypass checks of a dead target
 #define XACT_IGNORE_SELECTED_ABILITY (1 << 13) // bypass the check of the selected ability
+#define XACT_DO_AFTER_ATTACK (1 << 14) //Let the xeno attack the object and perform the ability.
 
 #define XABB_TURF_TARGET (1 << 0) // ability targets turfs
 #define XABB_MOB_TARGET (1 << 1) // ability targets mobs

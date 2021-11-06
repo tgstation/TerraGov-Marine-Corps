@@ -816,23 +816,29 @@
 	mechanics_text = "Spit neurotoxin or acid at your target up to 7 tiles away."
 	ability_name = "xeno spit"
 	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
-	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
+	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED|XACT_DO_AFTER_ATTACK
 	target_flags = XABB_MOB_TARGET
 	var/current_target
 
-/datum/action/xeno_action/activable/xeno_spit/Initialize()
+/datum/action/xeno_action/activable/xeno_spit/give_action(mob/living/L)
 	. = ..()
-	AddComponent(/datum/component/automatedfire/autofire, get_cooldown(), _fire_mode = GUN_FIREMODE_AUTOMATIC,  _callback_reset_fire = CALLBACK(src, .proc/reset_fire), _callback_fire = CALLBACK(src, .proc/Fire))
+	AddComponent(/datum/component/automatedfire/autofire, get_cooldown(), _fire_mode = GUN_FIREMODE_AUTOMATIC,  _callback_reset_fire = CALLBACK(src, .proc/reset_fire), _callback_fire = CALLBACK(src, .proc/fire))
+
 /datum/action/xeno_action/activable/xeno_spit/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/actions.dmi', button, "shift_spit_[X.ammo.icon_state]")
+
+/datum/action/xeno_action/activable/xeno_spit/on_xeno_upgrade()
+	. = ..()
+	update_fire_delay()
 
 /datum/action/xeno_action/activable/xeno_spit/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability != src)
 		RegisterSignal(X, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
 		RegisterSignal(X, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
+		RegisterSignal(X, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
 		return ..()
 	for(var/i in 1 to X.xeno_caste.spit_types.len)
 		if(X.ammo == GLOB.ammo_list[X.xeno_caste.spit_types[i]])
@@ -845,7 +851,7 @@
 	update_button_icon()
 
 /datum/action/xeno_action/activable/xeno_spit/deselect()
-	UnregisterSignal(X, list(COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG))
+	UnregisterSignal(owner, list(COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEDOWN))
 	return ..()
 
 /datum/action/xeno_action/activable/xeno_spit/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -870,25 +876,30 @@
 	return ..()
 
 /datum/action/xeno_action/activable/xeno_spit/use_ability(atom/A)
+	return
+
+///Starts the xeno firing.
+/datum/action/xeno_action/activable/xeno_spit/proc/start_fire(datum/source, atom/object, turf/location, control, params)
+	SIGNAL_HANDLER
+	var/list/modifiers = params2list(params)
+	if(!modifiers["right"] || modifiers["shift"] || modifiers["ctrl"] || modifiers["left"])
+		return
 	var/mob/living/carbon/xenomorph/xeno = owner
-
-	if(!current_target)
+	if(!xeno.check_state() || xeno.ammo?.spit_cost > xeno.plasma_stored)
 		return fail_activate()
-
-	X.visible_message(span_xenowarning("\The [xeno] spits at \the [current_target]!"), \
+	set_target(get_turf_on_clickcatcher(object, xeno, params))
+	if(!current_target)
+		return
+	xeno.visible_message(span_xenowarning("\The [xeno] spits at \the [current_target]!"), \
 	span_xenowarning("We spit at \the [current_target]!") )
 
 	SEND_SIGNAL(src, COMSIG_XENO_FIRE)
 	xeno?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 
-	return succeed_activate()
-
 ///Fires the spit projectile.
 /datum/action/xeno_action/activable/xeno_spit/proc/fire()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/turf/current_turf = get_turf(owner)
-	X.visible_message(span_xenowarning("\The [X] spits at \the [A]!"), \
-	span_xenowarning("We spit at \the [A]!") )
 	var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
 	playsound(X.loc, sound_to_play, 25, 1)
 
@@ -897,11 +908,13 @@
 	newspit.generate_bullet(X.ammo, X.ammo.damage * SPIT_UPGRADE_BONUS(X))
 	newspit.permutated += X
 	newspit.def_zone = X.get_limbzone_target()
-	newspit.fire_at(A, X, null, X.ammo.max_range, X.ammo.shell_speed)
+	newspit.fire_at(current_target, X, null, X.ammo.max_range, X.ammo.shell_speed)
 
 	if(X.check_state() && X.ammo?.spit_cost <= X.plasma_stored)
-		return
-	stop_fire()
+		succeed_activate()
+		return TRUE
+	fail_activate()
+	return FALSE
 
 ///Resets the autofire component.
 /datum/action/xeno_action/activable/xeno_spit/proc/reset_fire()
@@ -921,7 +934,7 @@
 		return
 	if(current_target)
 		UnregisterSignal(current_target, COMSIG_PARENT_QDELETING)
-	target = object
+	current_target = object
 	if(current_target)
 		RegisterSignal(current_target, COMSIG_PARENT_QDELETING, .proc/clean_target)
 
