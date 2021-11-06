@@ -11,19 +11,19 @@
 
 /datum/action/xeno_action/activable/drain/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
-	var/mob/living/carbon/xenomorph/X = owner
 	if(!.)
 		return
 	if(!iscarbon(A))
 		return FALSE
 	if(!A.can_sting())
-		to_chat(X, span_warning("This won't do!"))
+		to_chat(owner, span_xenowarning("This won't do!"))
 		return FALSE
+	var/mob/living/carbon/xenomorph/X = owner
 	if(X.plasma_stored >= X.xeno_caste.plasma_max)
-		to_chat(X, span_warning("No need, we feel sated for now..."))
+		to_chat(X, span_xenowarning("No need, we feel sated for now..."))
 		return FALSE
 	if(get_dist(X, A) > 1)
-		to_chat(X, span_warning("It is outside of our reach! We need to be closer!"))
+		to_chat(X, span_xenowarning("It is outside of our reach! We need to be closer!"))
 		return FALSE
 	return TRUE
 
@@ -35,7 +35,7 @@
 	X.visible_message(A, span_danger("The [X] grabs [A]!"))
 	A.SetImmobilized(2 SECONDS)
 	if(!do_after(X, 2 SECONDS, TRUE, A, BUSY_ICON_HOSTILE, ignore_turf_checks = FALSE))
-		to_chat(X, span_warning("Our meal is interrupted!"))
+		to_chat(X, span_xenowarning("Our meal is interrupted!"))
 		return
 	X.do_attack_animation(A, ATTACK_EFFECT_REDSTAB)
 	A.emote("scream")
@@ -69,17 +69,17 @@
 	. = ..()
 	if(!.)
 		return
-	var/mob/living/carbon/xenomorph/gorger/X = owner
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(H.stat != DEAD)
-			to_chat(X, span_notice("We can only use still, dead hosts to heal."))
+			to_chat(owner, span_notice("We can only use still, dead hosts to heal."))
 			return FALSE
-		else if(get_dist(X, H) > 1)
-			to_chat(X, span_notice("We need to be next to our meal."))
+		else if(get_dist(owner, H) > 1)
+			to_chat(owner, span_notice("We need to be next to our meal."))
 			return FALSE
 		return TRUE
 	if(isxeno(target))
+		var/mob/living/carbon/xenomorph/gorger/X = owner
 		if(X == target)
 			if(!COOLDOWN_CHECK(X, rejuvenate_self_cooldown))
 				to_chat(X, span_notice("We need another [round(COOLDOWN_TIMELEFT(X, rejuvenate_self_cooldown) / 10)] seconds before we can revitalize ourselves."))
@@ -97,12 +97,14 @@
 			if(isdead(target))
 				to_chat(X, span_notice("We can only help living sisters."))
 				return FALSE
+			if(!do_mob(X, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+				return FALSE
 		return TRUE
-	to_chat(X, span_notice("We can only drain or restore familiar biological lifeforms."))
+	to_chat(owner, span_notice("We can only drain or restore familiar biological lifeforms."))
 	return FALSE
 
 /datum/action/xeno_action/activable/rejuvenate/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/gorger/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(ishuman(A))
 		var/mob/living/carbon/human/target = A
 		while(X.health < X.maxHealth && do_after(X, 2 SECONDS, TRUE, A, BUSY_ICON_HOSTILE))
@@ -111,21 +113,15 @@
 			target.blood_volume -= 2
 		to_chat(X, span_notice("We feel fully restored."))
 	else if(A == X)
-		var/mob/living/carbon/xenomorph/target = A
 		X.use_plasma(self_plasma_cost)
-		to_chat(X, span_notice("We tap into our reserves for nourishment."))
-		target.apply_status_effect(/datum/status_effect/xeno_rejuvenate, self_rejuvenation_duration)
+		X.apply_status_effect(/datum/status_effect/xeno_rejuvenate, self_rejuvenation_duration)
 		COOLDOWN_START(X, rejuvenate_self_cooldown, 20 SECONDS)
+		to_chat(X, span_notice("We tap into our reserves for nourishment."))
 	else
-		var/mob/living/carbon/xenomorph/target = A
-		if(!do_mob(X, A, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
-			return
-		if(!X.line_of_sight(target) || get_dist(X, target) > 2)
-			to_chat(X, span_notice("Beyond our reach..."))
-			return
-		target.adjustBruteLoss(-X.maxHealth*0.3)
-		target.adjustFireLoss(-X.maxHealth*0.3)
 		X.use_plasma(ally_plasma_cost)
+		var/mob/living/carbon/xenomorph/target_xeno = A
+		target_xeno.adjustBruteLoss(-target_xeno.maxHealth*0.3)
+		target_xeno.adjustFireLoss(-target_xeno.maxHealth*0.3)
 	succeed_activate()
 	add_cooldown()
 
@@ -166,13 +162,13 @@
 
 /datum/action/xeno_action/activable/feast/use_ability()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(!X.has_status_effect(STATUS_EFFECT_XENO_FEAST))
-		X.emote("roar")
-		X.visible_message(X, span_notice("[X] begins to overflow with vitality!"))
-		X.apply_status_effect(/datum/status_effect/xeno_feast, 200 SECONDS, X.xeno_caste.feast_plasma_drain)
-		succeed_activate()
-		add_cooldown()
+	if(X.has_status_effect(STATUS_EFFECT_XENO_FEAST))
+		to_chat(X, span_notice("We decide to end our feast early..."))
+		X.remove_status_effect(STATUS_EFFECT_XENO_FEAST)
 		return
 
-	to_chat(X, span_notice("We decide to end our feast early..."))
-	X.remove_status_effect(STATUS_EFFECT_XENO_FEAST)
+	X.emote("roar")
+	X.visible_message(X, span_notice("[X] begins to overflow with vitality!"))
+	X.apply_status_effect(/datum/status_effect/xeno_feast, 200 SECONDS, X.xeno_caste.feast_plasma_drain)
+	succeed_activate()
+	add_cooldown()
