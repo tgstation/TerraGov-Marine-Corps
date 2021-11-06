@@ -4,31 +4,31 @@
 /datum/action/xeno_action/activable/drain
 	name = "Drain"
 	action_icon_state = "drain"
-	mechanics_text = "Hold a marine for 2s while draining 2% of their blood."
+	mechanics_text = "Hold a marine and drain some of their blood if held for the whole duration."
 	ability_name = "drain"
 	cooldown_timer = 15 SECONDS
-	plasma_cost = 50
+	plasma_cost = 0
 
 /datum/action/xeno_action/activable/drain/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
-	var/mob/living/carbon/xenomorph/gorger/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(!.)
 		return
 	if(!iscarbon(A))
 		return FALSE
 	if(!A.can_sting())
-		to_chat(owner, span_warning("This won't do!"))
+		to_chat(X, span_warning("This won't do!"))
 		return FALSE
-	if(X.blood_bank >= 100)
-		to_chat(owner, span_warning("No need, we feel sated for now..."))
+	if(X.plasma_stored >= X.xeno_caste.plasma_max)
+		to_chat(X, span_warning("No need, we feel sated for now..."))
 		return FALSE
-	if(get_dist(owner, A) > 1)
-		to_chat(owner, span_warning("It is outside of our reach! We need to be closer!"))
+	if(get_dist(X, A) > 1)
+		to_chat(X, span_warning("It is outside of our reach! We need to be closer!"))
 		return FALSE
 	return TRUE
 
 /datum/action/xeno_action/activable/drain/use_ability(mob/living/carbon/A)
-	var/mob/living/carbon/xenomorph/gorger/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	X.do_attack_animation(A, ATTACK_EFFECT_GRAB)
 	X.emote("roar")
 	A.drop_all_held_items()
@@ -43,9 +43,7 @@
 	X.visible_message(A, span_danger("The [X] stabs its tail into [A]!"))
 	A.apply_damage(damage = 20, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE)
 	playsound(A, "alien_claw_flesh", 25, TRUE)
-	A.blood_volume -= 10
-	X.blood_bank += min(10, 100 - X.blood_bank)
-	to_chat(X, span_notice("Blood bank: [X.blood_bank]%"))
+	X.gain_plasma(X.xeno_caste.drain_plasma_gain)
 	succeed_activate()
 	add_cooldown()
 
@@ -60,9 +58,12 @@
 	cooldown_timer = 2 SECONDS
 	plasma_cost = 0
 	use_state_flags = XACT_TARGET_SELF
-
-/datum/action/xeno_action/activable/give_action(mob/living/L)
-	. = ..()
+	///Cost of using ability on an ally
+	var/ally_plasma_cost = 20
+	///Cost of using ability on self
+	var/self_plasma_cost = 200
+	///Duration of rejuvenation buff on self
+	var/self_rejuvenation_duration = 5 SECONDS
 
 /datum/action/xeno_action/activable/rejuvenate/can_use_ability(atom/target, silent = FALSE, override_flags) //it is set up to only return true on specific xeno or human targets
 	. = ..()
@@ -83,15 +84,15 @@
 			if(!COOLDOWN_CHECK(X, rejuvenate_self_cooldown))
 				to_chat(X, span_notice("We need another [round(COOLDOWN_TIMELEFT(X, rejuvenate_self_cooldown) / 10)] seconds before we can revitalize ourselves."))
 				return FALSE
-			if(X.blood_bank < 10)
-				to_chat(X, span_notice("We need [10 - X.blood_bank]u more blood to revitalize ourselves."))
+			if(X.plasma_stored < self_plasma_cost)
+				to_chat(X, span_notice("We need [self_plasma_cost - X.plasma_stored]u more blood to revitalize ourselves."))
 				return FALSE
 		else
 			if(!X.line_of_sight(target) || get_dist(X, target) > 2)
 				to_chat(X, span_notice("It is beyond our reach, we must be close and our way clear."))
 				return FALSE
-			if(X.blood_bank < 5)
-				to_chat(X, span_notice("We need [5 - X.blood_bank]u more blood to restore a sister."))
+			if(X.plasma_stored < ally_plasma_cost)
+				to_chat(X, span_notice("We need [ally_plasma_cost - X.plasma_stored]u more blood to restore a sister."))
 				return FALSE
 			if(isdead(target))
 				to_chat(X, span_notice("We can only help living sisters."))
@@ -111,10 +112,9 @@
 		to_chat(X, span_notice("We feel fully restored."))
 	else if(A == X)
 		var/mob/living/carbon/xenomorph/target = A
-		X.blood_bank -= 10
-		to_chat(X, span_notice("Blood bank: [X.blood_bank]%"))
+		X.use_plasma(self_plasma_cost)
 		to_chat(X, span_notice("We tap into our reserves for nourishment."))
-		target.apply_status_effect(/datum/status_effect/xeno_rejuvenate, 5 SECONDS)
+		target.apply_status_effect(/datum/status_effect/xeno_rejuvenate, self_rejuvenation_duration)
 		COOLDOWN_START(X, rejuvenate_self_cooldown, 20 SECONDS)
 	else
 		var/mob/living/carbon/xenomorph/target = A
@@ -125,8 +125,7 @@
 			return
 		target.adjustBruteLoss(-X.maxHealth*0.3)
 		target.adjustFireLoss(-X.maxHealth*0.3)
-		X.blood_bank -= 5
-		to_chat(X, span_notice("Blood bank: [X.blood_bank]%"))
+		X.use_plasma(ally_plasma_cost)
 	succeed_activate()
 	add_cooldown()
 
@@ -139,16 +138,11 @@
 	mechanics_text = ""
 	ability_name = "carnage"
 	cooldown_timer = 40 SECONDS
-	plasma_cost = 100
-
-/datum/action/xeno_action/activable/carnage/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
+	plasma_cost = 0
 
 /datum/action/xeno_action/activable/carnage/use_ability()
-	var/mob/living/carbon/xenomorph/gorger/X = owner
-	X.apply_status_effect(/datum/status_effect/xeno_carnage, 20 SECONDS)
+	var/mob/living/carbon/xenomorph/X = owner
+	X.apply_status_effect(/datum/status_effect/xeno_carnage, 20 SECONDS, X.xeno_caste.carnage_plasma_gain)
 	succeed_activate()
 	add_cooldown()
 
@@ -162,27 +156,23 @@
 	mechanics_text = ""
 	ability_name = "feast"
 	cooldown_timer = 180 SECONDS
-	plasma_cost = 0
+	plasma_cost = 100
 
-/datum/action/xeno_action/activable/feast/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/xeno_action/activable/feast/can_use_ability(atom/target, silent, override_flags)
 	. = ..()
-	var/mob/living/carbon/xenomorph/gorger/X = owner
-	if(!.)
-		return FALSE
-	if(X.blood_bank < 100 && !X.has_status_effect(STATUS_EFFECT_XENO_FEAST))
-		to_chat(X, span_notice("We need [100 - X.blood_bank]% more blood to feast."))
-		return FALSE
-	return TRUE
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.has_status_effect(STATUS_EFFECT_XENO_FEAST))
+		return TRUE
 
 /datum/action/xeno_action/activable/feast/use_ability()
-	var/mob/living/carbon/xenomorph/gorger/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(!X.has_status_effect(STATUS_EFFECT_XENO_FEAST))
 		X.emote("roar")
-		X.visible_message(X, span_notice("The [X] starts to overflow with vitality!"))
-		X.apply_status_effect(/datum/status_effect/xeno_feast, 200 SECONDS)
+		X.visible_message(X, span_notice("[X] begins to overflow with vitality!"))
+		X.apply_status_effect(/datum/status_effect/xeno_feast, 200 SECONDS, X.xeno_caste.feast_plasma_drain)
+		succeed_activate()
+		add_cooldown()
 		return
-	else
-		to_chat(X, span_notice("We decide to end our feast early..."))
-		X.remove_status_effect(STATUS_EFFECT_XENO_FEAST)
-	succeed_activate()
-	add_cooldown()
+
+	to_chat(X, span_notice("We decide to end our feast early..."))
+	X.remove_status_effect(STATUS_EFFECT_XENO_FEAST)

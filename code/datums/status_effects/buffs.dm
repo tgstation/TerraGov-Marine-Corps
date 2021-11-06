@@ -4,7 +4,12 @@
 /datum/status_effect/xeno_rejuvenate/on_creation(mob/living/new_owner, set_duration)
 	owner = new_owner
 	duration = set_duration
+	new_owner.overlay_fullscreen("xeno_rejuvenate", /obj/screen/fullscreen/bloodlust)
 	return ..()
+
+/datum/status_effect/xeno_rejuvenate/on_remove()
+	. = ..()
+	owner.clear_fullscreen("xeno_rejuvenate", 0.7 SECONDS)
 
 /datum/status_effect/xeno_rejuvenate/tick()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -12,15 +17,18 @@
 	to_chat(owner, span_notice("We feel our wounds close up and plasma reserves refilling."))
 	X.adjustBruteLoss(-X.maxHealth*0.1)
 	X.adjustFireLoss(-X.maxHealth*0.1)
-	if(X.caste_flags & CAN_BE_GIVEN_PLASMA)
+	if(X.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA)
 		X.gain_plasma(X.xeno_caste.plasma_max*0.25)
 
 /datum/status_effect/xeno_carnage
 	id = "xeno_carnage"
+	///PLasma gain for each attack
+	var/plasma_gain_on_hit
 
-/datum/status_effect/xeno_carnage/on_creation(mob/living/new_owner, set_duration)
+/datum/status_effect/xeno_carnage/on_creation(mob/living/new_owner, set_duration, plasma_gain)
 	owner = new_owner
 	duration = set_duration
+	plasma_gain_on_hit = plasma_gain
 	to_chat(owner, span_notice("We give into our thirst!"))
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/carnage_slash)
 	return ..()
@@ -33,8 +41,7 @@
 /datum/status_effect/xeno_carnage/proc/carnage_slash(datum/source, mob/living/target, damage)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	owner_xeno.blood_bank += min(5, 100 - owner_xeno.blood_bank)
-	to_chat(owner_xeno, span_notice("Blood bank: [owner_xeno.blood_bank]%"))
+	owner_xeno.gain_plasma(plasma_gain_on_hit)
 	owner_xeno.adjustBruteLoss(-damage)
 	owner_xeno.adjustFireLoss(-damage)
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
@@ -46,19 +53,25 @@
 
 /datum/status_effect/xeno_feast
 	id = "xeno_feast"
+	var/plasma_drain
 
-/datum/status_effect/xeno_feast/on_creation(mob/living/new_owner, set_duration)
+/datum/status_effect/xeno_feast/on_creation(mob/living/new_owner, set_duration, plasma_drain)
 	owner = new_owner
 	duration = set_duration
+	src.plasma_drain = plasma_drain
+	new_owner.overlay_fullscreen("xeno_feast", /obj/screen/fullscreen/bloodlust)
 	return ..()
+
+/datum/status_effect/xeno_feast/on_remove()
+	. = ..()
+	owner.clear_fullscreen("xeno_feast", 0.7 SECONDS)
 
 /datum/status_effect/xeno_feast/tick()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(X.blood_bank < 5)
-		to_chat(X, span_notice("Our feast blood reserve runs dry..."))
+	if(X.plasma_stored < plasma_drain)
+		to_chat(X, span_notice("Our feast has come to an end..."))
 		X.remove_status_effect(/datum/status_effect/xeno_feast)
 		return
 	X.adjustBruteLoss(-X.maxHealth*0.1)
 	X.adjustFireLoss(-X.maxHealth*0.1)
-	X.blood_bank -= 5
-	to_chat(X, span_notice("Blood bank: [X.blood_bank]%"))
+	X.use_plasma(plasma_drain)
