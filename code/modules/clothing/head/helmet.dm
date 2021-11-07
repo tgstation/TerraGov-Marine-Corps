@@ -230,6 +230,7 @@
 		/obj/item/clothing/glasses,
 		/obj/item/reagent_containers/food/drinks/flask,
 		/obj/item/reagent_containers/food/snacks,
+		/obj/item/stack/medical/heal_pack,
 	)
 	cant_hold = list(
 		/obj/item/stack,
