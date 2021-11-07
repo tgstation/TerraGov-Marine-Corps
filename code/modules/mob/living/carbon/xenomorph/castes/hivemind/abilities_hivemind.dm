@@ -19,9 +19,6 @@
 	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
 	xenomorph_owner.change_form()
 
-/datum/action/xeno_action/command_minions
-	name = "Command minions"
-
 /datum/action/xeno_action/activable/command_minions
 	name = "Command minions"
 	action_icon_state = "rally_minions"

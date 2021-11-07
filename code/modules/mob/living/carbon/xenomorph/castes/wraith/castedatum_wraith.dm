@@ -6,6 +6,7 @@
 	caste_type_path = /mob/living/carbon/xenomorph/wraith
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
+	primordial_upgrade_name = PRIMORDIAL_WRAITH
 	wound_type = "wraith" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
@@ -42,8 +43,6 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/blink,
 		/datum/action/xeno_action/activable/banish,
 		/datum/action/xeno_action/recall,
@@ -134,7 +133,7 @@
 /datum/xeno_caste/wraith/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "A xenomorph that has perfected the manipulation of space and time. Its movements appear quick and distorted."
-	primordial_message = "We control the very fabric of reality." //Help
+	primordial_message = "Mastery is achieved when \'telling time\' becomes \'telling time what to do\'."
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //
@@ -159,8 +158,6 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/blink,
 		/datum/action/xeno_action/activable/banish,
 		/datum/action/xeno_action/recall,

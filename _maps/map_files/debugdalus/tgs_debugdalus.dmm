@@ -75,30 +75,12 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
-"aap" = (
-/obj/structure/table/mainship,
-/obj/item/storage/donut_box,
-/turf/open/floor/mainship,
-/area/mainship/living/cryo_cells)
 "aaq" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
-"aar" = (
-/obj/structure/cable,
-/turf/open/floor/mainship,
-/area/mainship/living/cryo_cells)
-"aas" = (
-/obj/structure/table/mainship,
-/obj/item/pizzabox/margherita,
-/turf/open/floor/mainship,
-/area/mainship/living/cryo_cells)
 "aat" = (
 /obj/machinery/vending/coffee,
-/turf/open/floor/mainship,
-/area/mainship/living/cryo_cells)
-"aau" = (
-/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aav" = (
@@ -161,32 +143,6 @@
 "aaF" = (
 /obj/machinery/marine_selector/gear/leader,
 /obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
-"aaG" = (
-/obj/machinery/vending/weapon,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
-"aaH" = (
-/obj/machinery/vending/weapon,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -504,10 +460,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
-"abW" = (
-/obj/structure/dropship_equipment/electronics/targeting_system,
-/turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
 "abX" = (
 /obj/machinery/door/airlock/mainship/secure{
 	dir = 2;
@@ -523,10 +475,6 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/living/port_garden)
-"acd" = (
-/obj/structure/dropship_equipment/electronics/spotlights,
-/turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
 "acf" = (
 /obj/structure/cable,
 /obj/machinery/landinglight/ds1/delaytwo,
@@ -594,10 +542,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
-"acw" = (
-/obj/structure/dropship_equipment/fuel/fuel_enhancer,
-/turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
 "acx" = (
 /obj/machinery/power/monitor{
 	name = "Main Power Grid Monitoring"
@@ -634,7 +578,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "acE" = (
-/obj/structure/dropship_equipment/fuel/cooling_system,
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "acF" = (
@@ -995,7 +939,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "ael" = (
-/obj/structure/dropship_equipment/medevac_system,
+/obj/structure/dropship_equipment/electronics/spotlights,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "aen" = (
@@ -1051,14 +995,6 @@
 /area/mainship/command/cic)
 "aeD" = (
 /obj/effect/landmark/start/job/corporateliaison,
-/turf/open/floor/mainship,
-/area/mainship/command/cic)
-"aeE" = (
-/obj/machinery/computer/communications,
-/obj/structure/table/mainship,
-/obj/structure/window/reinforced/toughened{
-	dir = 8
-	},
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "aeF" = (
@@ -1312,10 +1248,6 @@
 "afI" = (
 /obj/structure/bed/chair/office/light,
 /obj/effect/landmark/start/job/requisitionsofficer,
-/turf/open/floor/mainship,
-/area/mainship/squads/req)
-"afJ" = (
-/obj/machinery/vending/cargo_supply,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "afM" = (
@@ -2306,6 +2238,19 @@
 "aoJ" = (
 /turf/closed/wall/mainship,
 /area/mainship/command/telecomms)
+"apF" = (
+/obj/machinery/vending/weapon,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "auM" = (
 /obj/structure/bed/stool{
 	pixel_y = 8
@@ -2386,9 +2331,21 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"dkH" = (
+/obj/machinery/computer/communications,
+/obj/structure/table/mainship,
+/obj/structure/window/reinforced/toughened{
+	dir = 8
+	},
+/turf/open/floor/mainship,
+/area/mainship/command/cic)
 "dwY" = (
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"dPu" = (
+/obj/machinery/vending/cargo_supply,
+/turf/open/floor/mainship,
+/area/mainship/squads/req)
 "dZo" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
@@ -2468,17 +2425,6 @@
 /obj/machinery/light,
 /turf/open/floor/mainship,
 /area/mainship/hallways/exoarmor)
-"gOX" = (
-/obj/machinery/landinglight/ds2,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/machinery/landinglight/ds2{
-	dir = 4
-	},
-/turf/open/floor/mainship/plate,
-/area/mainship/hallways/hangar)
 "hlu" = (
 /obj/machinery/landinglight/ds2{
 	dir = 4
@@ -2512,6 +2458,11 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"ieJ" = (
+/obj/structure/table/mainship,
+/obj/item/pizzabox/margherita,
+/turf/open/floor/mainship,
+/area/mainship/living/cryo_cells)
 "ivf" = (
 /turf/open/floor/mainship/plate,
 /area/mainship/hallways/hangar)
@@ -2719,10 +2670,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
-"qcB" = (
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
 "qko" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship,
@@ -2734,6 +2681,23 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
+"qxC" = (
+/obj/machinery/vending/weapon,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
+"qBy" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/mainship,
+/area/mainship/living/cryo_cells)
 "qCi" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/toolbox,
@@ -2852,10 +2816,26 @@
 /obj/machinery/computer/orbital_cannon_console,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
+"uAp" = (
+/obj/machinery/landinglight/ds2,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin,
+/obj/machinery/landinglight/ds2{
+	dir = 4
+	},
+/turf/open/floor/mainship/plate,
+/area/mainship/hallways/hangar)
 "vrS" = (
 /obj/machinery/landinglight/ds2,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"vsI" = (
+/obj/structure/table/mainship,
+/obj/item/storage/donut_box,
+/turf/open/floor/mainship,
+/area/mainship/living/cryo_cells)
 "vGl" = (
 /obj/docking_port/stationary/marine_dropship/hangar/two,
 /turf/open/floor/plating,
@@ -2928,6 +2908,10 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
+"xFR" = (
+/obj/structure/cable,
+/turf/open/floor/mainship,
+/area/mainship/living/cryo_cells)
 "xIn" = (
 /obj/machinery/landinglight/ds2{
 	dir = 8
@@ -3808,7 +3792,7 @@ hlu
 hlu
 hlu
 kSz
-gOX
+uAp
 bOu
 bOu
 bOu
@@ -3940,8 +3924,8 @@ aaZ
 ada
 dwY
 dwY
-abW
-acd
+dwY
+dwY
 acs
 dwY
 ljx
@@ -3952,7 +3936,7 @@ adC
 vHf
 azU
 mXV
-aeE
+dkH
 aeT
 azU
 azU
@@ -4063,7 +4047,7 @@ nHZ
 dwY
 dwY
 dwY
-acw
+dwY
 acE
 aji
 adr
@@ -4124,7 +4108,7 @@ dwY
 dwY
 dwY
 dwY
-qcB
+dwY
 aji
 agd
 agt
@@ -5124,13 +5108,13 @@ aaf
 afX
 aac
 aal
-aap
+vsI
 aab
 wqS
-aaG
+qxC
 aaA
 aaS
-aaG
+qxC
 aaA
 aaS
 cCb
@@ -5184,7 +5168,7 @@ aah
 aak
 tmK
 aam
-aar
+xFR
 acL
 abi
 qEm
@@ -5244,13 +5228,13 @@ aaf
 afX
 aae
 aal
-aas
+ieJ
 aab
 wqS
-aaH
+apF
 aaA
 aaT
-aaH
+apF
 aaA
 aaT
 abi
@@ -5364,7 +5348,7 @@ aaf
 afX
 aae
 aal
-aau
+qBy
 aaw
 aaB
 aaI
@@ -6049,7 +6033,7 @@ xsM
 aek
 aek
 ecz
-afJ
+dPu
 aek
 agg
 ajF

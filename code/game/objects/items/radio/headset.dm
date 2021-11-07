@@ -412,6 +412,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	hud_type = DATA_HUD_SQUAD_REBEL
 	minimap_type = /datum/action/minimap/marine/rebel
 
+/obj/item/radio/headset/mainship/res
+	name = "research radio headset"
+	icon_state = "med_headset"
+	minimap_type = /datum/action/minimap/researcher
+
 /obj/item/radio/headset/mainship/doc
 	name = "medical radio headset"
 	icon_state = "med_headset"

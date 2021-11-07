@@ -82,7 +82,7 @@
 	icon_state_mini = "mag_dmr"
 
 /obj/item/ammo_magazine/rifle/standard_dmr/incendiary
-	name = "\improper T-64 incendiary magazine (10x27mm)"
+	name = "\improper T-37 incendiary magazine (10x27mm)"
 	desc = "A 10mm incendiary DMR magazine, carries less rounds however."
 	caliber = CALIBER_10X27_INCENDIARY_CASELESS
 	icon_state = "t37_incin"
