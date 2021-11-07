@@ -194,31 +194,31 @@ GLOBAL_LIST_INIT(additional_admin_item_slot_list, list(
 ///All the vendor types which the automated loadout vendor can take items from.
 GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 	FACTION_NEUTRAL = list(
-		/obj/machinery/vending/marine/shared,
+		/obj/machinery/vending/weapon,
 		/obj/machinery/vending/uniform_supply,
 		/obj/machinery/vending/armor_supply,
 		/obj/machinery/vending/marineFood,
 		/obj/machinery/vending/MarineMed,
-		/obj/machinery/vending/marine/shared/cigarette,
-		/obj/machinery/vending/marine/shared/cigarette/colony,
+		/obj/machinery/vending/cigarette,
+		/obj/machinery/vending/cigarette/colony,
 	),
 	FACTION_TERRAGOV = list(
-		/obj/machinery/vending/marine/shared/hvh/team_one,
+		/obj/machinery/vending/weapon/hvh/team_one,
 		/obj/machinery/vending/uniform_supply,
 		/obj/machinery/vending/armor_supply/loyalist,
 		/obj/machinery/vending/marineFood,
 		/obj/machinery/vending/MarineMed,
-		/obj/machinery/vending/marine/shared/cigarette,
-		/obj/machinery/vending/marine/shared/cigarette/colony,
+		/obj/machinery/vending/cigarette,
+		/obj/machinery/vending/cigarette/colony,
 	),
 	FACTION_TERRAGOV_REBEL = list(
-		/obj/machinery/vending/marine/shared/hvh,
+		/obj/machinery/vending/weapon/hvh,
 		/obj/machinery/vending/uniform_supply,
 		/obj/machinery/vending/armor_supply/rebel,
 		/obj/machinery/vending/marineFood,
 		/obj/machinery/vending/MarineMed/rebel,
-		/obj/machinery/vending/marine/shared/cigarette,
-		/obj/machinery/vending/marine/shared/cigarette/colony,
+		/obj/machinery/vending/cigarette,
+		/obj/machinery/vending/cigarette/colony,
 	),
 ))
 
@@ -662,6 +662,7 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/tool/shovel/etool = 1,
 		/obj/item/lightreplacer = 1,
 		/obj/item/circuitboard/general = 1,
+		/obj/item/clothing/under/marine/engineer = 1,
 	),
 	SQUAD_CORPSMAN = list(
 		/obj/item/bodybag/cryobag = 1,
@@ -674,6 +675,7 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone = 1,
 		/obj/item/storage/firstaid/adv = 1,
 		/obj/item/clothing/glasses/hud/health = 1,
+		/obj/item/clothing/under/marine/corpsman = 1,
 	),
 	SQUAD_SMARTGUNNER = list(
 		/obj/item/clothing/glasses/night/m56_goggles = 1,

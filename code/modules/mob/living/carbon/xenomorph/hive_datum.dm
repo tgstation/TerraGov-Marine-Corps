@@ -30,6 +30,8 @@
 	var/list/buyable_upgrades = list()
 	///assoc list name = upgraderef
 	var/list/datum/hive_upgrade/upgrades_by_name = list()
+	///Its an int showing the count of living kings
+	var/king_present = 0
 
 // ***************************************
 // *********** Init
@@ -1199,6 +1201,11 @@ to_chat will check for valid clients itself already so no need to double check f
 	return FALSE
 
 /obj/effect/alien/egg/get_xeno_hivenumber()
+	return hivenumber
+
+/obj/structure/xeno/trap/get_xeno_hivenumber()
+	if(hugger)
+		return hugger.hivenumber
 	return hivenumber
 
 /obj/item/xeno_egg/get_xeno_hivenumber()

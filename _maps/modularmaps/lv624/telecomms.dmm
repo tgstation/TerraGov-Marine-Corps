@@ -191,6 +191,12 @@
 	dir = 9
 	},
 /area/lv624/lazarus/comms)
+"A" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/brown{
+	dir = 9
+	},
+/area/lv624/lazarus/comms)
 "B" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -366,7 +372,7 @@ B
 B
 I
 m
-q
+x
 x
 I
 B
@@ -380,10 +386,10 @@ a
 B
 w
 x
+A
 x
 x
-x
-x
+q
 x
 x
 x
@@ -462,8 +468,8 @@ B
 "}
 (8,1,1) = {"
 d
-k
 V
+k
 V
 V
 V
@@ -473,8 +479,8 @@ u
 V
 V
 V
-V
 k
+V
 d
 "}
 (9,1,1) = {"
@@ -503,7 +509,7 @@ P
 P
 t
 L
-x
+A
 P
 P
 G
@@ -553,7 +559,7 @@ R
 x
 x
 x
-L
+l
 x
 x
 x
@@ -570,7 +576,7 @@ B
 B
 I
 x
-l
+L
 x
 I
 B

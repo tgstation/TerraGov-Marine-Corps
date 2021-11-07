@@ -1,10 +1,9 @@
 /datum/game_mode/infestation/crash
 	name = "Crash"
 	config_tag = "Crash"
-	flags_round_type = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT
+	flags_round_type = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT|MODE_DEAD_GRAB_FORBIDDEN
 	flags_landmarks = MODE_LANDMARK_SPAWN_MAP_ITEM
 	flags_xeno_abilities = ABILITY_CRASH
-
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/terragov/squad/engineer = 8,
@@ -89,8 +88,7 @@
 	for(var/i in GLOB.nuke_spawn_locs)
 		new /obj/machinery/nuclearbomb(i)
 
-	for(var/i in GLOB.shuttle_controls_list)
-		var/obj/machinery/computer/shuttle/shuttle_control/computer_to_disable = i
+	for(var/obj/machinery/computer/shuttle/shuttle_control/computer_to_disable AS in GLOB.shuttle_controls_list)
 		if(istype(computer_to_disable, /obj/machinery/computer/shuttle/shuttle_control/canterbury))
 			continue
 		computer_to_disable.machine_stat |= BROKEN

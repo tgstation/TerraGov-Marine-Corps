@@ -2,7 +2,7 @@
 	set category = "Debug"
 	set name = "Map template - Place"
 
-	if(!check_rights(R_DEBUG))
+	if(!check_rights(R_FUN))
 		return
 
 	var/datum/map_template/template
@@ -45,7 +45,7 @@
 	set category = "Debug"
 	set name = "Map Template - Upload"
 
-	if(!check_rights(R_DEBUG))
+	if(!check_rights(R_FUN))
 		return
 
 	var/map = input(usr, "Choose a Map Template to upload to template storage", "Upload Map Template") as null|file

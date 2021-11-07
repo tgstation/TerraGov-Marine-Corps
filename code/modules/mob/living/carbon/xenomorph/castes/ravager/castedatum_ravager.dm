@@ -6,6 +6,7 @@
 	caste_type_path = /mob/living/carbon/xenomorph/ravager
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
+	primordial_upgrade_name = PRIMORDIAL_RAVAGER
 	wound_type = "ravager" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //

@@ -14,6 +14,15 @@
 	var/stuck_counter = 0
 	///Admins can let it have a claymore
 	var/allow_claymore = FALSE
+	var/static/list/sentences = list(
+		"Clean up your bloody mess you ANIMAL!",
+		"Who teached you to leave your trash behind you? Your mom should be ashamed!",
+		"I will kick the ass of the next marine that i see leaving objects unattended!",
+		"I will report your behaviour to your superior, marine",
+		"Another day, another trash. Gosh, i would have left these marines in the cryo.",
+		"Another stinky sock. They really don't know the basics of hygiene",
+		"This is the most DISGUSTING room i have ever seen",
+	)
 
 /obj/machinery/roomba/Initialize(mapload)
 	. = ..()
@@ -46,6 +55,7 @@
 			break
 		newdir = null
 	if(!newdir)
+		say("DOOR STUCK, DOOOOR STUCK, AAAAAAH!")
 		return
 	step_to(src, get_step(src,newdir))
 
@@ -79,13 +89,17 @@
 ///Called when the roomba moves, sucks in all items held in the tile and sends them to cryo
 /obj/machinery/roomba/proc/suck_items()
 	SIGNAL_HANDLER
+	var/sucked_one = FALSE
 	for(var/obj/item/sucker in loc)
 		if(sucker.flags_item & NO_VACUUM)
-			return
+			continue
+		sucked_one = TRUE
 		sucker.store_in_cryo()
 		GLOB.cryoed_item_list[CRYO_REQ] += sucker
 		counter++
 	stuck_counter = 0
+	if(sucked_one && prob(2))
+		say(pick(sentences))
 
 /obj/machinery/roomba/attack_hand(mob/living/user)
 	. = ..()

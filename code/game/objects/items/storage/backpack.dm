@@ -13,9 +13,6 @@
 	storage_slots = null
 	max_storage_space = 24
 	access_delay = 1.5 SECONDS
-	storage_type_limits = list(
-		/obj/item/weapon/gun = 2,
-	)
 
 /obj/item/storage/backpack/should_access_delay(obj/item/item, mob/user, taking_out)
 	if(!taking_out) // Always allow items to be tossed in instantly

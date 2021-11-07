@@ -83,8 +83,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/attach_delay = 30
 	///How long in deciseconds it takes to detach a weapon with level 1 firearms training. Default is 30 seconds.
 	var/detach_delay = 30
-	///how long in deciseconds this adds to your base fire delay.
-	var/fire_delay_mod = 0
 	///Changes aim mode movement delay multiplicatively
 	var/aim_mode_movement_mult = 0
 	///Modifies projectile damage by a % when a marine gets passed, but not hit
@@ -1488,7 +1486,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			/obj/structure/window/framed/mainship,
 			/obj/structure/window/framed/prison,
 		)
-	master_gun.turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
+	master_gun.turret_flags |= TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
 	master_gun.AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, deploy_time, undeploy_time)
 	update_icon()
 
@@ -1498,7 +1496,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	DISABLE_BITFIELD(detaching_item.flags_gun_features, GUN_IS_SENTRY)
 	DISABLE_BITFIELD(detaching_item.flags_item, IS_DEPLOYABLE)
 	detaching_item.ignored_terrains = null
-	detaching_item.turret_flags = NONE
+	detaching_item.turret_flags &= ~(TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS)
 	battery = detaching_item.sentry_battery
 	battery?.forceMove(src)
 	detaching_item.sentry_battery = null
@@ -1559,7 +1557,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_y = 17
 	stream_type = FLAMER_STREAM_CONE
 
-///Funny red wide nozzle that can fill entire screens with flames. Admeme only. 
+///Funny red wide nozzle that can fill entire screens with flames. Admeme only.
 /obj/item/attachable/flamer_nozzle/wide/red
 	name = "red spray flamer nozzle"
 	desc = "It is red, therefore its obviously more effective."
