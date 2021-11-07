@@ -269,7 +269,7 @@
 		to_chat(user, span_warning("CAS mode is already in-use!"))
 		return
 	if(SSmonitor.human_on_ground <= 5)
-		to_chat(user, span_warning("The signal from the planet is too weak, we cannot route towards the battle field."))
+		to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
 		return
 	var/input
 	if(length(GLOB.active_cas_targets))
