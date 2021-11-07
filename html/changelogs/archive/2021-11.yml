@@ -46,3 +46,8 @@
       e\u0336t\u0336s\u0336 \u0336f\u0336r\u0336o\u0336m\u0336 \u0336b\u0336u\u0336\
       i\u0336l\u0336d\u0336a\u0336s\u0336e\u0336n\u0336t\u0336r\u0336y\u0336 Lowers\
       \ the accuracy of laser gun turrets"
+2021-11-07:
+  AzonStarfall:
+  - balance: Reduced price of the ZX Burst shotgun from 120 to 80.
+  Sebbe9123:
+  - balance: Removes armor from uniform and base exosuit, adds to armorplates instead.
