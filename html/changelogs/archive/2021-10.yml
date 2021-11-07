@@ -276,3 +276,11 @@
   - admin: Revert procs tab moving changes (spatial agent back in debug)
   - admin: Fix log verbs not removed when deadmining
   - expansion: Escorted xenos can make minions agressive/passive
+2021-10-31:
+  TiviPlus:
+  - bugfix: The answer to how many TGMC PRs it takes to give the Battle rifle burst
+      fire is now up to three
+  Walarks:
+  - rscadd: researcher content
+  - expansion: blood recovery implant(restores up to 200 blood), received from uncommon
+      xeno research

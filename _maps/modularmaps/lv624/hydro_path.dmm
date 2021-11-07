@@ -32,6 +32,10 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/main_hall)
+"hE" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle9)
 "hJ" = (
 /obj/machinery/floodlight/colony{
 	dir = 8
@@ -72,9 +76,7 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/compound/ne)
 "mC" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
@@ -152,6 +154,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
+"tI" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle9)
 "tQ" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
@@ -162,6 +169,11 @@
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle9)
+"uV" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle7)
 "vw" = (
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/plating/ground/dirt,
@@ -280,12 +292,16 @@
 	},
 /area/lv624/ground/jungle9)
 "HZ" = (
-/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "Id" = (
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
+"Im" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle7)
 "IA" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -343,6 +359,10 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle9)
+"Lq" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/ground/grass,
+/area/lv624/ground/compound/ne)
 "MK" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -354,9 +374,20 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle9)
+"Oi" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/ne)
 "On" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/main_hall)
+"Po" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/ne)
 "Pr" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -408,11 +439,6 @@
 /obj/structure/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
-"VM" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/compound/ne)
 "VQ" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
@@ -471,10 +497,10 @@ RA
 pI
 bA
 SX
-Id
+HZ
 YD
-mC
-Id
+Oi
+HZ
 Jv
 yC
 yG
@@ -493,10 +519,10 @@ YY
 px
 rd
 SX
-Id
-Id
+HZ
+HZ
 qj
-Id
+HZ
 Ss
 ls
 kt
@@ -515,10 +541,10 @@ Kk
 zh
 bA
 lF
-Id
-Id
+HZ
+HZ
 qj
-Id
+HZ
 Ss
 wt
 lf
@@ -528,19 +554,19 @@ DF
 DF
 DF
 TU
-lf
+tI
 Xt
 wT
 "}
 (4,1,1) = {"
-bA
+Im
 bA
 QM
 SX
-Id
-Id
+HZ
+HZ
 qj
-Id
+HZ
 Jv
 Yx
 Fv
@@ -559,15 +585,15 @@ bA
 bA
 bA
 SX
-Id
-Id
+HZ
+HZ
 qj
-Id
+HZ
 Ss
 yC
 se
 bv
-yC
+hE
 DF
 yC
 yC
@@ -581,10 +607,10 @@ ov
 RA
 pI
 lF
-Id
-Id
+HZ
+HZ
 qj
-Id
+HZ
 Ss
 yC
 DF
@@ -603,10 +629,10 @@ Pw
 KW
 yb
 SX
-Id
-Id
+HZ
+HZ
 qj
-Id
+HZ
 Jv
 se
 DF
@@ -625,10 +651,10 @@ Pz
 XC
 qD
 SX
-Id
-Id
+HZ
+HZ
 qj
-Id
+HZ
 Ss
 yC
 DF
@@ -647,10 +673,10 @@ bA
 Vd
 bA
 SX
-Id
-Id
+HZ
+HZ
 qj
-Id
+HZ
 Ss
 yC
 yC
@@ -669,10 +695,10 @@ ps
 ps
 bA
 lF
-Id
-Id
+HZ
+HZ
 qj
-Id
+HZ
 Jv
 nL
 nL
@@ -691,21 +717,21 @@ ps
 ps
 bA
 SX
-Id
-Id
+HZ
+HZ
 qj
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
+Po
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
 vw
-Id
+HZ
 EK
 "}
 (12,1,1) = {"
@@ -713,14 +739,14 @@ ps
 ps
 Vd
 SX
-Id
-Id
+HZ
+HZ
 Wt
 AV
 AV
 AV
 AV
-VM
+mC
 AV
 AV
 AV
@@ -735,21 +761,21 @@ ps
 ps
 bA
 lF
-Id
-Id
-Id
-Id
-Id
+HZ
+HZ
+HZ
+HZ
+HZ
 YD
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
 wl
 "}
 (14,1,1) = {"
@@ -757,21 +783,21 @@ PM
 bA
 bA
 SX
-Id
-Id
+HZ
 HZ
 Id
-Id
-Id
-Id
+HZ
+HZ
+HZ
 HZ
 Id
-Id
-Id
-Id
-Id
-Id
-Id
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
 fl
 "}
 (15,1,1) = {"
@@ -779,21 +805,21 @@ Kf
 RA
 pI
 SX
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
 wl
 "}
 (16,1,1) = {"
@@ -801,21 +827,21 @@ zj
 zj
 yb
 SX
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
-Id
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
 EK
 "}
 (17,1,1) = {"
@@ -829,15 +855,15 @@ lF
 II
 II
 ZU
-Id
 HZ
 Id
+HZ
 YD
-Id
-Id
-Id
-Id
-Id
+HZ
+HZ
+HZ
+HZ
+HZ
 EN
 "}
 (18,1,1) = {"
@@ -851,9 +877,9 @@ ov
 RA
 pI
 eg
-Id
-Id
-Id
+HZ
+HZ
+HZ
 ZU
 Pr
 Pr
@@ -873,9 +899,9 @@ Pw
 hJ
 yb
 eg
-Id
-Id
-Id
+HZ
+HZ
+HZ
 IA
 md
 QV
@@ -890,19 +916,19 @@ ps
 ps
 ps
 Vd
-rd
+uV
 pc
 XC
 qD
 ZU
-Id
-Id
-Id
+HZ
+HZ
+HZ
 IA
 GL
 QV
 xI
-wD
+Lq
 xI
 wD
 "}

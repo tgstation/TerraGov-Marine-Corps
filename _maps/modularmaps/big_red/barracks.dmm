@@ -34,18 +34,6 @@
 "bl" = (
 /turf/open/floor/tile/dark/blue2/corner,
 /area/bigredv2/outside/admin_building)
-"bE" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/blue2/corner,
-/area/bigredv2/outside/admin_building)
-"bY" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 6
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
 "ca" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -112,15 +100,6 @@
 /obj/structure/closet/secure_closet/personal/cabinet,
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
-"eG" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/blue2/corner{
-	dir = 4
-	},
-/area/bigredv2/outside/admin_building)
 "eX" = (
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
@@ -154,6 +133,13 @@
 	dir = 5
 	},
 /area/bigredv2/outside/admin_building)
+"fW" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
 "fY" = (
 /obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -177,19 +163,34 @@
 /obj/item/tool/pen/red,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
-"hi" = (
+"ht" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"if" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
+"ir" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
 /obj/effect/ai_node,
-/turf/open/floor/tile/dark/blue2/corner{
-	dir = 1
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
-"ht" = (
-/obj/machinery/vending/coffee,
-/turf/open/floor/tile/white,
+"iT" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
 /area/bigredv2/outside/admin_building)
 "jj" = (
 /obj/structure/table,
@@ -228,19 +229,15 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
-"lO" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/blue2{
-	dir = 8
-	},
-/area/bigredv2/outside/admin_building)
 "mv" = (
 /obj/machinery/photocopier,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
+/area/bigredv2/outside/admin_building)
+"mU" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "nt" = (
 /obj/machinery/computer/station_alert,
@@ -264,17 +261,29 @@
 "nH" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/admin_building)
+"nO" = (
+/obj/structure/window/reinforced,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grimy,
+/area/bigredv2/outside/admin_building)
 "nP" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
-"on" = (
-/obj/structure/window/reinforced{
-	dir = 8
+"oG" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
 	},
 /obj/effect/ai_node,
-/turf/open/floor/grimy,
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 1
+	},
 /area/bigredv2/outside/admin_building)
 "oS" = (
 /turf/open/floor/tile/dark/blue2{
@@ -304,14 +313,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
-"qt" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/blue2/corner{
-	dir = 4
-	},
-/area/bigredv2/outside/admin_building)
 "qw" = (
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
@@ -322,14 +323,6 @@
 	pixel_y = -32
 	},
 /turf/open/floor/tile/dark/blue2,
-/area/bigredv2/outside/admin_building)
-"qV" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/blue2{
-	dir = 4
-	},
 /area/bigredv2/outside/admin_building)
 "ru" = (
 /obj/structure/cable,
@@ -361,15 +354,20 @@
 "st" = (
 /turf/open/floor/tile/dark/blue2,
 /area/bigredv2/outside/admin_building)
-"sA" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 9
+"sx" = (
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /obj/effect/ai_node,
-/turf/open/floor/tile/dark/blue2{
-	dir = 4
+/turf/open/floor/grimy,
+/area/bigredv2/outside/admin_building)
+"td" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
 	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "te" = (
 /obj/structure/cable,
@@ -617,6 +615,16 @@
 	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
+"Fn" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
 "Fx" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -713,6 +721,24 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
+"Je" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/blue2{
+	dir = 9
+	},
+/area/bigredv2/outside/admin_building)
+"Jk" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/bigredv2/outside/admin_building)
 "JJ" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Operations Toilet"
@@ -774,14 +800,10 @@
 	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
-"LE" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 6
-	},
+"LB" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/blue2{
-	dir = 9
+	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
 "Mj" = (
@@ -810,18 +832,16 @@
 	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
-"MX" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 5
-	},
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
 "Ne" = (
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
+/area/bigredv2/outside/admin_building)
+"Nq" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/blue2/corner,
 /area/bigredv2/outside/admin_building)
 "NB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -885,6 +905,12 @@
 	},
 /turf/open/floor/tile/dark/blue2,
 /area/bigredv2/outside/admin_building)
+"OE" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/bigredv2/outside/admin_building)
 "OI" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -892,24 +918,8 @@
 	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
-"OO" = (
-/obj/structure/window/reinforced,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/grimy,
-/area/bigredv2/outside/admin_building)
 "Pb" = (
 /obj/machinery/computer/intel_computer,
-/turf/open/floor/tile/dark/blue2{
-	dir = 4
-	},
-/area/bigredv2/outside/admin_building)
-"Pc" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
@@ -931,12 +941,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
-	},
-/area/bigredv2/outside/admin_building)
-"QM" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/blue2{
-	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
 "QX" = (
@@ -966,6 +970,13 @@
 "SJ" = (
 /obj/structure/bed,
 /turf/open/floor/wood,
+/area/bigredv2/outside/admin_building)
+"SK" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "SW" = (
 /turf/open/floor/freezer,
@@ -1010,11 +1021,13 @@
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
-"Uz" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/blue2{
-	dir = 1
+"UA" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 8
 	},
+/obj/effect/ai_node,
+/turf/open/floor/grimy,
 /area/bigredv2/outside/admin_building)
 "UC" = (
 /obj/structure/table,
@@ -1109,17 +1122,17 @@
 	},
 /turf/open/floor/grimy,
 /area/bigredv2/outside/admin_building)
-"YJ" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/grimy,
-/area/bigredv2/outside/admin_building)
 "YR" = (
 /obj/machinery/computer3/server,
 /turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"Za" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 4
+	},
 /area/bigredv2/outside/admin_building)
 "Zj" = (
 /obj/machinery/door/airlock/mainship/command/free_access{
@@ -1221,7 +1234,7 @@ ep
 lq
 cD
 IN
-cD
+mU
 jj
 ep
 ep
@@ -1250,14 +1263,14 @@ fY
 cD
 NO
 ep
-LE
+Je
 JK
 nB
 MG
 JK
 nB
 nB
-MX
+td
 fc
 Yi
 "}
@@ -1265,7 +1278,7 @@ Yi
 ad
 ad
 CU
-OO
+nO
 kX
 Ed
 rM
@@ -1283,7 +1296,7 @@ Fx
 cK
 Pr
 Pr
-eG
+Fn
 st
 Yi
 "}
@@ -1292,7 +1305,7 @@ nH
 AM
 CU
 Bu
-on
+sx
 CU
 rM
 ep
@@ -1319,16 +1332,16 @@ UD
 gj
 gk
 XS
-YJ
+UA
 zl
 ud
-lO
-lO
+Jk
+Jk
 JK
 nB
 nB
 MG
-hi
+oG
 st
 ep
 VK
@@ -1431,15 +1444,15 @@ st
 ep
 Bz
 cD
-Fx
+fW
 fx
 Va
 ep
 ep
-Uz
+OE
 GK
 VC
-Pc
+if
 eX
 Yi
 "}
@@ -1560,7 +1573,7 @@ st
 ep
 fP
 Ne
-bY
+SK
 Sw
 Ne
 uI
@@ -1631,20 +1644,20 @@ SJ
 KL
 QX
 ee
-bE
+Nq
 HN
 HN
-qV
+iT
 Hg
 HN
 HN
 Eg
 Se
 dV
-qt
+Za
 ea
 HN
-sA
+ir
 Pr
 cK
 Pr
@@ -1839,17 +1852,17 @@ Oa
 SW
 be
 cD
-QM
+LB
 Pr
 Pr
 Pr
 Pr
-QM
+LB
 cK
 Pr
 Pr
 Pr
-QM
+LB
 Pr
 Pr
 cK

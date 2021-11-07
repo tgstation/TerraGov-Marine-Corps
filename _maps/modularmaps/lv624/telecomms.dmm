@@ -88,6 +88,10 @@
 	},
 /area/lv624/lazarus/comms)
 "l" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/brown{
 	dir = 9
@@ -121,10 +125,6 @@
 	},
 /area/lv624/lazarus/comms)
 "q" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/brown{
 	dir = 9
@@ -187,6 +187,12 @@
 "z" = (
 /obj/structure/table,
 /obj/item/radio/survivor,
+/turf/open/floor/tile/brown{
+	dir = 9
+	},
+/area/lv624/lazarus/comms)
+"A" = (
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/brown{
 	dir = 9
 	},
@@ -380,10 +386,10 @@ a
 B
 w
 x
+A
 x
 x
-x
-l
+q
 x
 x
 x
@@ -503,7 +509,7 @@ P
 P
 t
 L
-x
+A
 P
 P
 G
@@ -553,7 +559,7 @@ R
 x
 x
 x
-q
+l
 x
 x
 x

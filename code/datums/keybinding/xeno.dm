@@ -480,6 +480,12 @@
 	description = "Take evasive action, forcing non-friendly projectiles that would hit you to miss so long as you keep moving."
 	keybind_signal = COMSIG_XENOABILITY_EVASION
 
+/datum/keybinding/xeno/snatch
+	name = "snatch"
+	full_name = "Runner: Snatch"
+	description = "Take an item equipped by your target in your mouth, and carry it away."
+	keybind_signal = COMSIG_XENOABILITY_SNATCH
+
 /datum/keybinding/xeno/toggle_agility
 	name = "toggle_agility"
 	full_name = "Warrior: Toggle Agility"
@@ -586,6 +592,12 @@
 	full_name = "Wraith: Recall"
 	description = "Recall a target from netherspace, ending Banish's effect."
 	keybind_signal = COMSIG_XENOABILITY_RECALL
+
+/datum/keybinding/xeno/timestop
+	name = "timestop"
+	full_name = "Wraith: Time stop"
+	description = "Freezes bullets in their course, and they will start to move again only after a certain time"
+	keybind_signal = COMSIG_XENOABILITY_TIMESTOP
 
 /datum/keybinding/xeno/nightfall
 	name = "nightfall"
