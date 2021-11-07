@@ -13,7 +13,8 @@
 	melee_damage = 15
 
 	// *** Speed *** //
-	speed = -0.7
+	speed = -0.6
+	weeds_speed_mod = 0.2
 
 	// *** Plasma *** //
 	plasma_max = 200
@@ -30,7 +31,7 @@
 	deevolves_to = list(/mob/living/carbon/xenomorph/warrior, /mob/living/carbon/xenomorph/hivelord)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER|CASTE_INNATE_PLASMA_REGEN|CAN_BECOME_KING
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
@@ -59,7 +60,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Speed *** //
-	speed = -0.8
+	speed = -0.6
 
 	// *** Plasma *** //
 	plasma_max = 250
@@ -86,9 +87,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 20
 
-	// *** Speed *** //
-	speed = -0.9
-
 	// *** Plasma *** //
 	plasma_max = 300
 
@@ -113,9 +111,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
-
-	// *** Speed *** //
-	speed = -1
 
 	// *** Plasma *** //
 	plasma_max = 400

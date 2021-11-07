@@ -4,7 +4,7 @@
 /datum/action/xeno_action/activable/drain
 	name = "Drain"
 	action_icon_state = "drain"
-	mechanics_text = "Hold a marine and drain some of their blood if held for the whole duration."
+	mechanics_text = "Hold a marine and drain some of their blood if successful."
 	ability_name = "drain"
 	cooldown_timer = 15 SECONDS
 	plasma_cost = 0
@@ -36,6 +36,8 @@
 	A.SetImmobilized(2 SECONDS)
 	if(!do_after(X, 2 SECONDS, TRUE, A, BUSY_ICON_HOSTILE, ignore_turf_checks = FALSE))
 		to_chat(X, span_xenowarning("Our meal is interrupted!"))
+		succeed_activate()
+		add_cooldown()
 		return
 	X.do_attack_animation(A, ATTACK_EFFECT_REDSTAB)
 	A.emote("scream")
@@ -53,7 +55,7 @@
 /datum/action/xeno_action/activable/rejuvenate
 	name = "Rejuvenate/Transfusion"
 	action_icon_state = "Rejuvenate"
-	mechanics_text = "When used on self, drains 10 blood and restores 40% health over 5s. When used on another xenomorph, restores 30% of their health after 2s. When used on a dead human, you grab them and heal by draining their blood."
+	mechanics_text = "When used on self, drains blood and restores health over time. When used on another xenomorph, costs blood and restores some of their health. When used on a dead human, you heal gradually."
 	ability_name = "rejuvenate"
 	cooldown_timer = 2 SECONDS
 	plasma_cost = 0
@@ -131,7 +133,7 @@
 /datum/action/xeno_action/activable/carnage
 	name = "Carnage"
 	action_icon_state = "Carnage"
-	mechanics_text = ""
+	mechanics_text = "For a while your attacks drain blood and heal you. During Feast you also heal nearby allies."
 	ability_name = "carnage"
 	cooldown_timer = 40 SECONDS
 	plasma_cost = 0
@@ -149,7 +151,7 @@
 /datum/action/xeno_action/activable/feast
 	name = "Feast"
 	action_icon_state = "Feast"
-	mechanics_text = ""
+	mechanics_text = "Use a large amount of blood to get into a state of rejuvenation. During this time you use a small amount of blood and heal. You can cancel this early."
 	ability_name = "feast"
 	cooldown_timer = 180 SECONDS
 	plasma_cost = 100
