@@ -6,7 +6,7 @@
 	icon_state = "marine"
 	item_state = "marine"
 	flags_armor_protection = FEET
-	soft_armor = list("melee" = 30, "bullet" = 20, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 25)
+	soft_armor = list("melee" = 25, "bullet" = 15, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 20)
 	flags_cold_protection = FEET
 	flags_heat_protection = FEET
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE

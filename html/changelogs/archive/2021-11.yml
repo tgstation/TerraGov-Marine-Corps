@@ -27,3 +27,27 @@
   - bugfix: fixes runtime when analyzing non-analyzable xenos
   hyper2snyper:
   - bugfix: fixes the missing hydro cannon on the marine flamer
+2021-11-05:
+  AzonStarfall:
+  - rscdel: Removed most Dropship Electronics modules, all Fuel modules, and the Dropship
+      Medevac System.
+  - bugfix: Remapped shipmaps to account for module removal.
+  chesse20:
+  - rscadd: Recolor pill bottles with facepaint
+  - expansion: Produce both types of pill bottles with the chem-master
+  - qol: Changed some pill bottle colors to match their earlier appearances.
+2021-11-06:
+  BraveMole:
+  - balance: Scorpions now spit acid that can go through over xenos, rather than neurotox
+  - balance: Minions req reward reduced from 10 to 5 points
+  bowlofcereal:
+  - balance: "r\u0336e\u0336m\u0336o\u0336v\u0336e\u0336s\u0336 \u0336l\u0336a\u0336\
+      s\u0336e\u0336r\u0336g\u0336u\u0336n\u0336 \u0336t\u0336u\u0336r\u0336r\u0336\
+      e\u0336t\u0336s\u0336 \u0336f\u0336r\u0336o\u0336m\u0336 \u0336b\u0336u\u0336\
+      i\u0336l\u0336d\u0336a\u0336s\u0336e\u0336n\u0336t\u0336r\u0336y\u0336 Lowers\
+      \ the accuracy of laser gun turrets"
+2021-11-07:
+  AzonStarfall:
+  - balance: Reduced price of the ZX Burst shotgun from 120 to 80.
+  Sebbe9123:
+  - balance: Removes armor from uniform and base exosuit, adds to armorplates instead.
