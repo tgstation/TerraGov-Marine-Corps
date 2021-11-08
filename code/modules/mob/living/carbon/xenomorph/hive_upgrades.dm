@@ -300,9 +300,9 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 
 /datum/hive_upgrade/primordial/wraith
 	name = PRIMORDIAL_WRAITH
-	desc = "Unlocks the primordial runner snatch ability. An ability that allows them to steal equipped items momentarily."
+	desc = "Unlocks the primordial wraith timestop ability. An ability that allows them to freeze nearby projectiles."
 	psypoint_cost = 125
-	icon = "primorunner"
+	icon = "primowraith"
 
 /datum/hive_upgrade/primordial/hivelord
 	name = PRIMORDIAL_HIVELORD
