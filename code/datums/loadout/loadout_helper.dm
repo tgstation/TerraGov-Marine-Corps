@@ -90,8 +90,6 @@
 		return /datum/item_representation/modular_helmet
 	if(ispath(item_type, /obj/item/clothing/under))
 		return /datum/item_representation/uniform_representation
-	if(ispath(item_type, /obj/item/clothing/tie/storage))
-		return /datum/item_representation/tie
 	if(ispath(item_type, /obj/item/ammo_magazine/handful))
 		return /datum/item_representation/handful_representation
 	if(ispath(item_type, /obj/item/stack))

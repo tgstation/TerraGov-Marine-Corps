@@ -7,7 +7,6 @@
 	siemens_coefficient = 0.9
 	icon_state = "marine_jumpsuit"
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0) //No armor on non ERT uniforms.
-	rollable_sleeves = TRUE
 	has_sensor = 2
 
 /obj/item/clothing/under/marine/standard
@@ -44,7 +43,7 @@
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform. You suspect it's not as robust-proof as advertised."
 	siemens_coefficient = 0.9
 	icon_state = "marine_undersuit"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 	has_sensor = 2
 	flags_item_map_variant = null
 
@@ -54,19 +53,19 @@
 	icon_state = "s_marine_sniper"
 	item_state = "s_marine_sniper"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/marine/tanker
 	name = "\improper TGMC tanker uniform"
 	icon_state = "marine_tanker"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 	flags_item_map_variant = (ITEM_ICE_VARIANT|ITEM_ICE_PROTECTION)
 
 /obj/item/clothing/under/marine/mp
 	name = "military police uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented military police uniform. You suspect it's not as robust-proof as advertised."
 	icon_state = "MP_jumpsuit"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/marine/officer
 	name = "marine officer uniform"
@@ -159,7 +158,7 @@
 	desc = "A standard-issue Marine dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. doesn't seem to fit perfectly around the waist though."
 	siemens_coefficient = 0.9
 	icon_state = "marine_whites" //with thanks to Manezinho
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /*=========================RESPONDERS================================*/
 
@@ -169,18 +168,18 @@
 /obj/item/clothing/under/marine/imperial
 	name = "\improper Imperial uniform"
 	desc = "This uniform is given out to pretty much every soldier in the Imperium."
-	rollable_sleeves = FALSE // don't disrespect the EMPEROR!
+	adjustment_variants = list() // don't disrespect the EMPEROR!
 	icon_state = "guardjumpsuit"
 	item_state = "guardjumpsuit"
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 
 /obj/item/clothing/under/marine/veteran
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/marine/commissar
 	name = "\improper commissar uniform"
 	desc = "A commissars noble uniform."
-	rollable_sleeves = FALSE // don't disrespect the EMPEROR!
+	adjustment_variants = list() // don't disrespect the EMPEROR!
 	icon_state = "commissar_uniform"
 	item_state = "commissar_uniform"
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
@@ -320,25 +319,25 @@
 /obj/item/clothing/under/rank/chef/exec
 	name = "\improper Nanotrasen suit"
 	desc = "A formal white undersuit."
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/ro_suit
 	name = "requisition officer suit"
 	desc = "A nicely-fitting, kevlar-weaved, hazmat-tested, EMF-augmented requisition officer suit. You suspect it's not as robust-proof as advertised."
 	icon_state = "RO_jumpsuit"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/synthetic
 	name = "\improper TGMC Support Uniform"
 	desc = "A simple uniform made for Synthetic crewmembers."
 	icon_state = "rdalt"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/marine_cmo
 	name = "marine chief medical officer jumpsuit"
 	desc = "It's made of a special fiber that provides minor protection against biohazards."
 	icon_state = "marine_cmo"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 
 /obj/item/clothing/under/som
@@ -381,7 +380,7 @@
 	desc = "Additional structural armor plate used for mounting equipment on a combat robot."
 	item_state = "chest_rig"
 	icon_state = "chest_rig"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 	species_exception = list(/datum/species/robot)
 
 /obj/item/clothing/under/marine/robotic/mob_can_equip(mob/M, slot, warning, override_nodrop)

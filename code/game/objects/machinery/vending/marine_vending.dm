@@ -773,7 +773,7 @@
 	wrenchable = FALSE
 
 	products = list(
-		/obj/item/clothing/tie/storage/webbing = 1,
+		/obj/item/armor_module/storage/uniform/webbing = 1,
 		/obj/item/storage/box/t29_system = 1,
 		/obj/item/minigun_powerpack = 1,
 		/obj/item/storage/pouch/magazine/large = 1,
@@ -796,7 +796,7 @@
 	products = list(
 		/obj/item/clothing/suit/storage/marine/leader = 1,
 		/obj/item/clothing/head/modular/marine/m10x/leader = 1,
-		/obj/item/clothing/tie/storage/webbing = 1,
+		/obj/item/armor_module/storage/uniform/webbing = 1,
 		/obj/item/beacon/supply_beacon = 1,
 		/obj/item/beacon/orbital_bombardment_beacon = 1,
 		/obj/item/explosive/plastique = 1,
@@ -930,11 +930,11 @@
 			/obj/item/clothing/under/marine/robotic = -1,
 		),
 		"Webbings" = list(
-			/obj/item/clothing/tie/storage/black_vest = -1,
-			/obj/item/clothing/tie/storage/brown_vest = -1,
-			/obj/item/clothing/tie/storage/white_vest/medic = -1,
-			/obj/item/clothing/tie/storage/webbing = -1,
-			/obj/item/clothing/tie/storage/holster = -1,
+			/obj/item/armor_module/storage/uniform/black_vest = -1,
+			/obj/item/armor_module/storage/uniform/brown_vest = -1,
+			/obj/item/armor_module/storage/uniform/white_vest/medic = -1,
+			/obj/item/armor_module/storage/uniform/webbing = -1,
+			/obj/item/armor_module/storage/uniform/holster = -1,
 		),
 		"Belts" = list(
 			/obj/item/storage/belt/marine = -1,
