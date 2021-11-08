@@ -1,0 +1,4 @@
+author: "Mechanelize"
+delete-after: True
+changes: 
+  - spellcheck: "Fixed an incorrect word for Queen orders"
