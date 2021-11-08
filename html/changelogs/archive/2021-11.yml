@@ -51,3 +51,11 @@
   - balance: Reduced price of the ZX Burst shotgun from 120 to 80.
   Sebbe9123:
   - balance: Removes armor from uniform and base exosuit, adds to armorplates instead.
+2021-11-08:
+  BraveMole:
+  - expansion: Pathfinding improvement
+  - rscdel: Remove hunt
+  - balance: Silo collapse happens 15 minutes after shutter drop
+  - bugfix: Fix pill bottles being empty on loadouts sometimes
+  Walarks:
+  - bugfix: fixes SSexcavations runtime due to low spawner count
