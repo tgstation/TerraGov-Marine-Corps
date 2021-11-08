@@ -268,6 +268,12 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	psypoint_cost = 75
 	icon = "primosent"
 
+/datum/hive_upgrade/primordial/spitter
+	name = PRIMORDIAL_SPITTER
+	desc = "Decreases the spitters fire delay to epic proportions."
+	psypoint_cost = 125
+	icon = "primospitter"
+
 /datum/hive_upgrade/primordial/ravager
 	name = PRIMORDIAL_RAVAGER
 	desc = "Unlocks the primordial ravgers vampirism. A passive ability that increases the ravagers healing as it hits more enemies."
