@@ -435,7 +435,7 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 	succeed_activate()
 	add_cooldown()
 
-///after dramatic pause throws the target at the defiler
+///Signal handler to grab the target when we thentacle head hit something
 /datum/action/xeno_action/activable/tentacle/proc/finish_grab(datum/source, atom/movable/target)
 	SIGNAL_HANDLER
 	QDEL_NULL(tentacle)
