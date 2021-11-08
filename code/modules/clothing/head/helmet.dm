@@ -229,6 +229,7 @@
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
 		/obj/item/reagent_containers/food/drinks/flask,
+		/obj/item/reagent_containers/food/snacks,
 	)
 	cant_hold = list(
 		/obj/item/stack,
