@@ -62,12 +62,6 @@
 	plasma_cost = 0
 	use_state_flags = XACT_TARGET_SELF
 	target_flags = XABB_MOB_TARGET
-	///Cost of using ability on an ally
-	var/ally_plasma_cost = 20
-	///Cost of using ability on self
-	var/self_plasma_cost = 200
-	///Duration of rejuvenation buff on self
-	var/self_rejuvenation_duration = 5 SECONDS
 
 /datum/action/xeno_action/activable/rejuvenate/can_use_ability(atom/target, silent = FALSE, override_flags) //it is set up to only return true on specific xeno or human targets
 	. = ..()
@@ -92,9 +86,9 @@
 				if(!silent)
 					to_chat(X, span_notice("It is beyond our reach, we must be close and our way must be clear."))
 				return FALSE
-			if(X.plasma_stored < ally_plasma_cost)
+			if(X.plasma_stored < GORGER_REJUVENATE_ALLY_COST)
 				if(!silent)
-					to_chat(X, span_notice("We need [ally_plasma_cost - X.plasma_stored]u more blood to restore a sister."))
+					to_chat(X, span_notice("We need [GORGER_REJUVENATE_ALLY_COST - X.plasma_stored]u more blood to restore a sister."))
 				return FALSE
 			if(isdead(target))
 				if(!silent)
@@ -108,9 +102,9 @@
 			if(!silent)
 				to_chat(X, span_notice("We need another [round(COOLDOWN_TIMELEFT(X, rejuvenate_self_cooldown) / 10)] seconds before we can revitalize ourselves."))
 			return FALSE
-		if(X.plasma_stored < self_plasma_cost)
+		if(X.plasma_stored < GORGER_REJUVENATE_SELF_COST)
 			if(!silent)
-				to_chat(X, span_notice("We need [self_plasma_cost - X.plasma_stored]u more blood to revitalize ourselves."))
+				to_chat(X, span_notice("We need [GORGER_REJUVENATE_SELF_COST - X.plasma_stored]u more blood to revitalize ourselves."))
 			return FALSE
 		return TRUE
 
@@ -128,12 +122,12 @@
 			target.blood_volume -= 2
 		to_chat(X, span_notice("We feel fully restored."))
 	else if(A == X)
-		X.use_plasma(self_plasma_cost)
-		X.apply_status_effect(/datum/status_effect/xeno_rejuvenate, self_rejuvenation_duration)
+		X.use_plasma(GORGER_REJUVENATE_SELF_COST)
+		X.apply_status_effect(/datum/status_effect/xeno_rejuvenate, GORGER_REJUVENATE_SELF_DURATION)
 		COOLDOWN_START(X, rejuvenate_self_cooldown, 20 SECONDS)
 		to_chat(X, span_notice("We tap into our reserves for nourishment."))
 	else
-		X.use_plasma(ally_plasma_cost)
+		X.use_plasma(GORGER_REJUVENATE_ALLY_COST)
 		var/mob/living/carbon/xenomorph/target_xeno = A
 		target_xeno.adjustBruteLoss(-target_xeno.maxHealth*0.3)
 		target_xeno.adjustFireLoss(-target_xeno.maxHealth*0.3)

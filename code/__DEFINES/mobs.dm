@@ -571,6 +571,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CRUSHER_CHARGE_RAZORWIRE_MULTI 100
 #define CRUSHER_CHARGE_TANK_MULTI 100
 
+//gorger defines
+#define GORGER_REJUVENATE_ALLY_COST 20 //Cost of using ability on an ally
+#define GORGER_REJUVENATE_SELF_COST 80 //Cost of using ability on self
+#define GORGER_REJUVENATE_SELF_DURATION 5 SECONDS //Duration of rejuvenation buff on self
+
 //carrier defines
 #define CARRIER_HUGGER_THROW_SPEED 2
 #define CARRIER_HUGGER_THROW_DISTANCE 5
