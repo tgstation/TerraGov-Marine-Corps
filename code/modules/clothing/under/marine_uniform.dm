@@ -9,9 +9,6 @@
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0) //No armor on non ERT uniforms.
 	has_sensor = 2
 
-/obj/item/clothing/under/marine/standard
-	flags_item_map_variant = null
-
 // camo things stuff yeah!
 
 /obj/item/clothing/under/marine/camo
