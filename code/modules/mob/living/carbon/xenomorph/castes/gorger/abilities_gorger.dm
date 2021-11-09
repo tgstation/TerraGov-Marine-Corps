@@ -8,6 +8,7 @@
 	ability_name = "drain"
 	cooldown_timer = 15 SECONDS
 	plasma_cost = 0
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/drain/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -60,6 +61,7 @@
 	cooldown_timer = 2 SECONDS
 	plasma_cost = 0
 	use_state_flags = XACT_TARGET_SELF
+	target_flags = XABB_MOB_TARGET
 	///Cost of using ability on an ally
 	var/ally_plasma_cost = 20
 	///Cost of using ability on self
@@ -173,4 +175,75 @@
 	X.visible_message(X, span_notice("[X] begins to overflow with vitality!"))
 	X.apply_status_effect(/datum/status_effect/xeno_feast, 200 SECONDS, X.xeno_caste.feast_plasma_drain)
 	succeed_activate()
+	add_cooldown()
+
+/////////////////////////////////
+// Devour
+/////////////////////////////////
+/datum/action/xeno_action/activable/devour
+	name = "Devour"
+	action_icon_state = "regurgitate"
+	mechanics_text = "Devour your victim to be able to carry it faster."
+	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
+	plasma_cost = 0
+	target_flags = XABB_MOB_TARGET
+
+/datum/action/xeno_action/activable/devour/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!.)
+		return
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.eaten_mob)
+		return TRUE
+	if(!ishuman(A) || issynth(A))
+		to_chat(owner, span_warning("That wouldn't taste very good."))
+		return FALSE
+	var/mob/living/carbon/human/victim = A
+	if(owner.do_actions) //can't use if busy
+		return FALSE
+	if(!owner.Adjacent(victim)) //checks if owner next to target
+		return FALSE
+	if(!HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
+		if(!silent)
+			to_chat(owner, span_warning("This creature is struggling too much for us to devour it."))
+		return FALSE
+	if(victim.buckled)
+		if(!silent)
+			to_chat(owner, span_warning("[victim] is buckled to something."))
+		return FALSE
+	if(X.on_fire)
+		if(!silent)
+			to_chat(X, span_warning("We're too busy being on fire to do this!"))
+		return FALSE
+	for(var/obj/effect/forcefield/fog in range(1, X))
+		if(!silent)
+			to_chat(X, span_warning("We are too close to the fog."))
+		return FALSE
+
+/datum/action/xeno_action/activable/devour/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.eaten_mob)
+		var/channel = SSsounds.random_available_channel()
+		playsound(X, 'sound/vore/escape.ogg', 40, channel = channel)
+		if(!do_after(X, 3 SECONDS, FALSE, null, BUSY_ICON_DANGER))
+			to_chat(owner, span_warning("We moved too soon!"))
+			X.stop_sound_channel(channel)
+			return
+		X.eject_victim()
+		return
+
+	var/mob/living/carbon/human/victim = A
+	X.face_atom(victim)
+	X.visible_message(span_danger("[X] starts to devour [victim]!"), span_danger("We start to devour [victim]!"), null, 5)
+	succeed_activate()
+	var/channel = SSsounds.random_available_channel()
+	playsound(X, 'sound/vore/struggle.ogg', 40, channel = channel)
+	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
+		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
+		X.stop_sound_channel(channel)
+		return
+	owner.visible_message(span_warning("[X] devours [victim]!"), span_warning("We devour [victim]!"), null, 5)
+	victim.forceMove(X)
+	X.eaten_mob = victim
 	add_cooldown()

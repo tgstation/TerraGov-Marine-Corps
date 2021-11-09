@@ -278,7 +278,8 @@
 	var/max_grown = 200
 	var/time_of_birth
 
-	var/list/stomach_contents
+	///A mob the xeno ate
+	var/mob/living/carbon/eaten_mob
 
 	var/evolution_stored = 0 //How much evolution they have stored
 

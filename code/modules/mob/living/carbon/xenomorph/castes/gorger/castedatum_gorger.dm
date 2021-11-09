@@ -42,10 +42,13 @@
 	feast_plasma_drain = 20
 
 	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/drain,
 		/datum/action/xeno_action/activable/rejuvenate,
 		/datum/action/xeno_action/activable/carnage,
 		/datum/action/xeno_action/activable/feast,
+		/datum/action/xeno_action/activable/devour,
 	)
 
 /datum/xeno_caste/gorger/young

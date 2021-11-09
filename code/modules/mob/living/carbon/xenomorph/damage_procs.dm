@@ -8,9 +8,8 @@
 		return
 
 	if(severity < EXPLODE_LIGHT) //Actually means higher.
-		for(var/i in stomach_contents)
-			var/mob/living/carbon/prey = i
-			prey.ex_act(severity + 1)
+		if(eaten_mob)
+			eaten_mob.ex_act(severity + 1)
 	var/bomb_armor = soft_armor.getRating("bomb")
 	var/b_loss = 0
 	var/f_loss = 0
