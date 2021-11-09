@@ -53,7 +53,6 @@
 
 /datum/xeno_caste/gorger/young
 	upgrade_name = "Young"
-
 	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/gorger/mature
