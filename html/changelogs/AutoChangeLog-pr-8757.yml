@@ -1,0 +1,4 @@
+author: "chesse20"
+delete-after: True
+changes: 
+  - bugfix: "90% of the pills are no longer missing from the chemmaster"
