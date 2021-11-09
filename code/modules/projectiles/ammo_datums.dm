@@ -1654,7 +1654,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
-	spit_cost = 70
+	spit_cost = 55
 	added_spit_delay = 0
 	damage_type = STAMINA
 	accurate_range = 5
@@ -1744,7 +1744,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
 	added_spit_delay = 0
-	spit_cost = 120
+	spit_cost = 100
 	damage = 40
 	smoke_strength = 0.9
 	reagent_transfer_amount = 9.5
@@ -1828,7 +1828,7 @@ datum/ammo/bullet/revolver/tp44
 	sound_bounce	= "acid_bounce"
 	damage_type = BURN
 	added_spit_delay = 5
-	spit_cost = 75
+	spit_cost = 50
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE
 	armor_type = "acid"
 	damage = 18
@@ -1847,10 +1847,15 @@ datum/ammo/bullet/revolver/tp44
 	damage = 30
 	flags_ammo_behavior = AMMO_XENO
 
+/datum/ammo/xeno/acid/passthrough
+	name = "acid spittle"
+	damage = 30
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
+
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
 	added_spit_delay = 2
-	spit_cost = 90
+	spit_cost = 70
 	damage = 30
 
 /datum/ammo/xeno/acid/heavy/turret

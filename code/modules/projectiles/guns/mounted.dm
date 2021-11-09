@@ -1,10 +1,3 @@
-
-//I didnt know where else to put this, so Im bringing it from the deleted smartgun_mount.dm
-/obj/item/coin/marine/engineer
-	name = "marine engineer support token"
-	desc = "Insert this into a engineer vendor in order to access a support artillery weapon."
-	flags_token = TOKEN_ENGI
-
 ///box for storage of ammo and gun
 /obj/item/storage/box/tl102
 	name = "\improper TL-102 crate"

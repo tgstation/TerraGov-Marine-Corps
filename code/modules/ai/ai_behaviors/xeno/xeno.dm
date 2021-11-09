@@ -44,7 +44,7 @@
 	var/mob/living/living_parent = mob_parent
 	switch(current_action)
 		if(ESCORTING_ATOM)
-			if(get_dist(escorted_atom, mob_parent) > target_distance * 2)//We failed to reach our escorted atom
+			if(get_dist(escorted_atom, mob_parent) > 10)
 				cleanup_current_action()
 				base_action = MOVING_TO_NODE
 				late_initialize()
@@ -53,7 +53,7 @@
 			if(!next_target)
 				return
 			change_action(MOVING_TO_ATOM, next_target)
-		if(MOVING_TO_NODE)
+		if(MOVING_TO_NODE, FOLLOWING_PATH)
 			var/atom/next_target = get_nearest_target(mob_parent, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 			if(!next_target)
 				if(can_heal && living_parent.health <= minimum_health * 2 * living_parent.maxHealth)
@@ -87,18 +87,16 @@
 /datum/ai_behavior/xeno/deal_with_obstacle(datum/source, direction)
 	var/turf/obstacle_turf = get_step(mob_parent, direction)
 	for(var/thing in obstacle_turf.contents)
-		if(isstructure(thing))
-			if(istype(thing, /obj/structure/window_frame))
-				if(locate(/obj/machinery/door/poddoor/shutters) in obstacle_turf)
-					return
-				mob_parent.loc = obstacle_turf
-				mob_parent.next_move_slowdown += 1 SECONDS
+		if(istype(thing, /obj/structure/window_frame))
+			mob_parent.loc = obstacle_turf
+			mob_parent.next_move_slowdown += 1 SECONDS
+			return COMSIG_OBSTACLE_DEALT_WITH
+		if(istype(thing, /obj/structure/closet))
+			var/obj/structure/closet/closet = thing
+			if(closet.open(mob_parent))
 				return COMSIG_OBSTACLE_DEALT_WITH
-			if(istype(thing, /obj/structure/closet))
-				var/obj/structure/closet/closet = thing
-				if(closet.open(mob_parent))
-					return COMSIG_OBSTACLE_DEALT_WITH
-				return
+			return
+		if(isstructure(thing))
 			var/obj/structure/obstacle = thing
 			if(obstacle.resistance_flags & XENO_DAMAGEABLE)
 				INVOKE_ASYNC(src, .proc/attack_target, null, obstacle)
@@ -109,17 +107,25 @@
 				continue
 			if(lock.operating) //Airlock already doing something
 				continue
-			if(lock.welded) //It's welded, can't force that open
+			if(lock.welded || lock.locked) //It's welded or locked, can't force that open
 				INVOKE_ASYNC(src, .proc/attack_target, null, thing) //ai is cheating
 				continue
 			lock.open(TRUE)
 			return COMSIG_OBSTACLE_DEALT_WITH
-	if(ISDIAGONALDIR(direction))
-		return deal_with_obstacle(null, turn(direction, -45)) || deal_with_obstacle(null, turn(direction, 45))
+	if(ISDIAGONALDIR(direction) && (deal_with_obstacle(null, turn(direction, -45)) & COMSIG_OBSTACLE_DEALT_WITH || deal_with_obstacle(null, turn(direction, 45)) & COMSIG_OBSTACLE_DEALT_WITH))
+		return COMSIG_OBSTACLE_DEALT_WITH
+	//Ok we found nothing, yet we are still blocked. Check for blockers on our current turf
+	obstacle_turf = get_turf(mob_parent)
+	for(var/obj/structure/obstacle in obstacle_turf.contents)
+		if(obstacle.dir & direction && obstacle.resistance_flags & XENO_DAMAGEABLE)
+			INVOKE_ASYNC(src, .proc/attack_target, null, obstacle)
+			return COMSIG_OBSTACLE_DEALT_WITH
 
 /datum/ai_behavior/xeno/cleanup_current_action(next_action)
 	. = ..()
 	if(next_action == MOVING_TO_NODE)
+		return
+	if(!isxeno(mob_parent))
 		return
 	var/mob/living/living_mob = mob_parent
 	if(can_heal && living_mob.resting)

@@ -76,7 +76,7 @@
 
 /// Will apply on every xeno a multiplicative buff on health, regen and damage.
 /datum/admins/proc/set_xeno_stat_buffs()
-	set category = "Fun"
+	set category = "Debug"
 	set name = "Set Xeno Buffs"
 	set desc = "Allows you to change stats on all xeno. It is a multiplicator buff, so input 1 to put back everything to normal"
 
@@ -1205,7 +1205,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	for(var/obj/vehicle/multitile/root/cm_armored/CA in GLOB.tank_list)
+	for(var/obj/vehicle/multitile/root/cm_armored/CA AS in GLOB.tank_list)
 		CA.remove_all_players()
 
 		log_admin("[key_name(usr)] forcibly removed all players from [CA].")

@@ -34,7 +34,7 @@
 #define HTML_USE_INITAL_ICON_1 (1<<21)
 
 //turf-only flags
-#define NOJAUNT_1 (1<<0)
+#define AI_BLOCKED (1<<0) //Prevent ai from going onto this turf
 #define UNUSED_RESERVATION_TURF_1 (1<<1)
 /// If a turf can be made dirty at roundstart. This is also used in areas.
 #define CAN_BE_DIRTY_1 (1<<2)

@@ -16,16 +16,6 @@
 
 	//"Name" = list(location, matter, metal, time, isorganic)
 	var/list/products = list(
-		"heart (50 - Matter)" =   list(/obj/item/organ/heart,  50, 0, 350),
-		"lungs (40 - Matter)" =   list(/obj/item/organ/lungs,  40, 0, 350),
-		"kidneys (40 - Matter)" = list(/obj/item/organ/kidneys,40, 0, 250),
-		"eyes (30 - Matter)" =    list(/obj/item/organ/eyes,   30, 0, 250),
-		"liver (50 - Matter)" =   list(/obj/item/organ/liver,  50, 0, 250),
-		"synthetic heart (50 - Metal)" =   list(/obj/item/organ/heart/prosthetic,  0, 50, 450),
-		"synthetic lungs (40 - Metal)" =   list(/obj/item/organ/lungs/prosthetic,  0, 40, 450),
-		"synthetic kidneys (30 - Metal)" = list(/obj/item/organ/kidneys/prosthetic,0, 30, 450),
-		"synthetic eyes (30 - Metal)" =    list(/obj/item/organ/eyes/prosthetic,   0, 30, 450),
-		"synthetic liver (50 - Metal)" =   list(/obj/item/organ/liver/prosthetic,  0, 50, 450),
 		"synthetic left arm (125 - Metal)" =  list(/obj/item/robot_parts/l_arm,  0, LIMB_METAL_AMOUNT, LIMB_PRINTING_TIME),
 		"synthetic right arm (125 - Metal)" = list(/obj/item/robot_parts/r_arm,  0, LIMB_METAL_AMOUNT, LIMB_PRINTING_TIME),
 		"synthetic left leg (125 - Metal)" =  list(/obj/item/robot_parts/l_leg,  0, LIMB_METAL_AMOUNT, LIMB_PRINTING_TIME),

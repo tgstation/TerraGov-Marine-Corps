@@ -11,8 +11,8 @@
 
 /obj/structure/closet/secure_closet/engineering_chief/Initialize()
 	. = ..()
-	new /obj/item/clothing/tie/storage/webbing(src)
-	new /obj/item/clothing/tie/storage/brown_vest(src)
+	new /obj/item/armor_module/storage/uniform/webbing(src)
+	new /obj/item/armor_module/storage/uniform/brown_vest(src)
 	new /obj/item/clothing/head/hardhat/white(src)
 	new /obj/item/clothing/head/welding(src)
 	new /obj/item/clothing/gloves/yellow(src)
@@ -95,7 +95,7 @@
 
 /obj/structure/closet/secure_closet/engineering_personal/Initialize()
 	. = ..()
-	new /obj/item/clothing/tie/storage/brown_vest(src)
+	new /obj/item/armor_module/storage/uniform/brown_vest(src)
 	new /obj/item/storage/toolbox/mechanical(src)
 	if(!is_ground_level(z))
 		new /obj/item/radio/headset/mainship/st(src)
@@ -135,9 +135,9 @@
 /obj/structure/closet/secure_closet/atmos_personal/Initialize()
 	. = ..()
 	if (prob(70))
-		new /obj/item/clothing/tie/storage/brown_vest(src)
+		new /obj/item/armor_module/storage/uniform/brown_vest(src)
 	else
-		new /obj/item/clothing/tie/storage/webbing(src)
+		new /obj/item/armor_module/storage/uniform/webbing(src)
 	new /obj/item/clothing/suit/fire/firefighter(src)
 	new /obj/item/storage/backpack/industrial(src)
 	new /obj/item/flashlight(src)

@@ -127,7 +127,7 @@
 		else
 			to_chat(X, span_xenodanger("We attempt to savage our victim, but we aren't yet ready."))
 
-	playsound(X.loc, prob(95) ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, TRUE)
+	playsound(X.loc, 'sound/voice/alien_pounce.ogg', 25, TRUE)
 
 	pounce_complete()
 
@@ -396,4 +396,90 @@
 	for(var/i=0 to 2) //number of after images
 		A = new /obj/effect/temp_visual/xenomorph/afterimage(T, owner) //Create the after image.
 		A.pixel_x = pick(rand(X.pixel_x * 3, X.pixel_x * 1.5), rand(0, X.pixel_x * -1)) //Variation on the X position
+
+/datum/action/xeno_action/activable/snatch
+	name = "Snatch"
+	action_icon_state = "snatch"
+	mechanics_text = "Take an item equipped by your target in your mouth, and carry it away."
+	plasma_cost = 75
+	cooldown_timer = 60 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_SNATCH
+	target_flags = XABB_MOB_TARGET
+	///Mutable appearance of the stolen item
+	var/mutable_appearance/stolen_appearance
+	///A list of slot to check for items, in order of priority
+	var/static/list/slots_to_steal_from = list(
+		SLOT_S_STORE,
+		SLOT_BACK,
+		SLOT_SHOES,
+	)
+
+/datum/action/xeno_action/activable/snatch/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(!ishuman(A))
+		to_chat(owner, span_xenowarning("You cannot steal from that target"))
+		return FALSE
+
+/datum/action/xeno_action/activable/snatch/use_ability(atom/A)
+	succeed_activate()
+	if(!do_after(owner, 0.5 SECONDS, FALSE, A, BUSY_ICON_HOSTILE))
+		to_chat(owner, span_xenowarning("Your victim moved, you failed to snatch an item"))
+		return FALSE
+	var/mob/living/carbon/human/victim = A
+	var/obj/item/stolen_item = victim.get_active_held_item()
+	if(!stolen_item)
+		stolen_item = victim.get_inactive_held_item()
+		for(var/slot in slots_to_steal_from)
+			stolen_item = victim.get_item_by_slot(slot)
+			if(stolen_item)
+				break
+	if(!stolen_item)
+		to_chat(owner, span_xenowarning("They are too poor, and have nothing to steal!"))
+		return fail_activate()
+	playsound(owner, 'sound/voice/alien_pounce2.ogg', 30)
+	victim.dropItemToGround(stolen_item, TRUE)
+	stolen_item.forceMove(owner)
+	stolen_appearance = mutable_appearance(stolen_item.icon, stolen_item.icon_state)
+	stolen_appearance.layer = ABOVE_OBJ_LAYER
+	addtimer(CALLBACK(src, .proc/drop_item, stolen_item), 3 SECONDS)
+	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, .proc/owner_turned)
+	owner_turned(null, null, owner.dir)
+	add_cooldown()
+
+///Signal handler to update the item overlay when the owner is changing dir
+/datum/action/xeno_action/activable/snatch/proc/owner_turned(datum/source, old_dir, new_dir)
+	SIGNAL_HANDLER
+	if(!new_dir || new_dir == old_dir)
+		return
+	owner.overlays -= stolen_appearance
+	var/matrix/new_transform  = stolen_appearance.transform
+	switch(old_dir)
+		if(NORTH)
+			new_transform.Translate(-15, -12)
+		if(SOUTH)
+			new_transform.Translate(-15, 12)
+		if(EAST)
+			new_transform.Translate(-35, 0)
+		if(WEST)
+			new_transform.Translate(5, 0)
+	switch(new_dir)
+		if(NORTH)
+			new_transform.Translate(15, 12)
+		if(SOUTH)
+			new_transform.Translate(15, -12)
+		if(EAST)
+			new_transform.Translate(35, 0)
+		if(WEST)
+			new_transform.Translate(-5, 0)
+	stolen_appearance.transform = new_transform
+	owner.overlays += stolen_appearance
+
+///Force the xeno owner to drop the stolen item
+/datum/action/xeno_action/activable/snatch/proc/drop_item(obj/item/stolen_item)
+	stolen_item.forceMove(get_turf(owner))
+	owner.overlays -= stolen_appearance
+	playsound(owner, 'sound/voice/alien_pounce2.ogg', 30, frequency = -1)
+	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
 

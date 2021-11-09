@@ -540,7 +540,8 @@ GLOBAL_PROTECT(admin_verbs_log)
 		GLOB.admin_verbs_sound,
 		GLOB.admin_verbs_color,
 		GLOB.admin_verbs_varedit,
-		GLOB.admin_verbs_spawn
+		GLOB.admin_verbs_spawn,
+		GLOB.admin_verbs_log,
 		)
 
 

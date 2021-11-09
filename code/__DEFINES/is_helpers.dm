@@ -229,6 +229,8 @@
 
 #define isreagentcontainer(A) (istype(A, /obj/item/reagent_containers)) //Checks for if something is a reagent container.
 
+#define is_research_product(A) (istype(A, /obj/item/research_product)) //Checks if item is research item
+
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
 

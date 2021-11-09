@@ -1,0 +1,72 @@
+2021-11-01:
+  BraveMole:
+  - balance: Beetle forward charge can miss, as it's targeting the turf you are on,
+      and not yourself directly. Just move away or on the side to doge
+  - balance: Beetle get 400 health (from 300 health) to compensate
+  - balance: Mantis is faster
+  - balance: Mantis ravage have a 0.5 seconds of windup
+  KrabSpider:
+  - balance: Tones down the calc for headbutt charge stun to (charge speed x 30) instead
+      of (charge speed x 60)
+  - balance: Bull speed per step on charge increase to 0.15 from 0.10 (~-2 speed at
+      maximum charge)
+  - balance: The minimum steps for Bulls to initiate a charge is now 5 from 6.
+  - balance: Bull plasma multiplier increased to 2 from 1.8
+2021-11-02:
+  BraveMole:
+  - qol: Minions and hivemind no longer alert hive when low health, and the alert
+      will be smaller when they die
+  - balance: Remove body drag from crash
+  - qol: Akimbo doesn't force you to switch hands if the gun in your inactive hand
+      cannot be shot unwielded
+  - qol: Roomba is more expressive
+  David-Stormwell:
+  - balance: Decreased King's health by a average of -100, slashing increase to a
+      max of 30 at ancient.
+  Walarks:
+  - bugfix: fixes runtime when analyzing non-analyzable xenos
+  hyper2snyper:
+  - bugfix: fixes the missing hydro cannon on the marine flamer
+2021-11-05:
+  AzonStarfall:
+  - rscdel: Removed most Dropship Electronics modules, all Fuel modules, and the Dropship
+      Medevac System.
+  - bugfix: Remapped shipmaps to account for module removal.
+  chesse20:
+  - rscadd: Recolor pill bottles with facepaint
+  - expansion: Produce both types of pill bottles with the chem-master
+  - qol: Changed some pill bottle colors to match their earlier appearances.
+2021-11-06:
+  BraveMole:
+  - balance: Scorpions now spit acid that can go through over xenos, rather than neurotox
+  - balance: Minions req reward reduced from 10 to 5 points
+  bowlofcereal:
+  - balance: "r\u0336e\u0336m\u0336o\u0336v\u0336e\u0336s\u0336 \u0336l\u0336a\u0336\
+      s\u0336e\u0336r\u0336g\u0336u\u0336n\u0336 \u0336t\u0336u\u0336r\u0336r\u0336\
+      e\u0336t\u0336s\u0336 \u0336f\u0336r\u0336o\u0336m\u0336 \u0336b\u0336u\u0336\
+      i\u0336l\u0336d\u0336a\u0336s\u0336e\u0336n\u0336t\u0336r\u0336y\u0336 Lowers\
+      \ the accuracy of laser gun turrets"
+2021-11-07:
+  AzonStarfall:
+  - balance: Reduced price of the ZX Burst shotgun from 120 to 80.
+  Sebbe9123:
+  - balance: Removes armor from uniform and base exosuit, adds to armorplates instead.
+2021-11-08:
+  BraveMole:
+  - expansion: Pathfinding improvement
+  - rscdel: Remove hunt
+  - balance: Silo collapse happens 15 minutes after shutter drop
+  - bugfix: Fix pill bottles being empty on loadouts sometimes
+  Walarks:
+  - bugfix: fixes SSexcavations runtime due to low spawner count
+2021-11-09:
+  Lewdcifer:
+  - rscadd: Multiple berets and headbands added to the uniform vendor.
+  - balance: Packaged foods now fit in helmets.
+  - balance: Mantis Armblade implant; 60 > 75 force, 12 > 8 attack speed (faster).
+      Can now bump attack.
+  - bugfix: The tan beret no longer disappears every now and then.
+  Mechanelize:
+  - spellcheck: Fixed an incorrect word for Queen orders
+  hyper2snyper:
+  - refactor: Uniform and webbing/tie refactor

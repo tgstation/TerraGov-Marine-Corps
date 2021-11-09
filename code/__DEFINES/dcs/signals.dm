@@ -241,6 +241,7 @@
 #define COMSIG_UNMANNED_ABILITY_UPDATED "unmanned_ability_update"
 
 // /obj/item signals
+#define COMSIG_ITEM_APPLY_CUSTOM_OVERLAY "item_apply_custom_overlay" //from base of obj/item/apply_custom(): (/image/standing)
 #define COMSIG_ITEM_ATTACK "item_attack"						//from base of obj/item/attack(): (/mob/living/target, /mob/living/user)
 #define COMSIG_ITEM_ATTACK_ALTERNATE "item_attack_alt"			//from base of obj/item/attack_alternate(): (/mob/living/target, /mob/living/user)
 #define COMSIG_ITEM_ATTACK_SELF "item_attack_self"				//from base of obj/item/attack_self(): (/mob)
@@ -579,6 +580,7 @@
 #define COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS "xenoability_inject_egg_neurogas"
 #define COMSIG_XENOABILITY_RALLY_HIVE "xenoability_rally_hive"
 #define COMSIG_XENOABILITY_RALLY_MINION "xenoability_rally_minion"
+#define COMSIG_XENOABILITY_MINION_BEHAVIOUR "xenoability_minion_behavior"
 
 #define COMSIG_XENOABILITY_LONG_RANGE_SIGHT "xenoability_long_range_sight"
 #define COMSIG_XENOABILITY_TOGGLE_BOMB "xenoability_toggle_bomb"
@@ -654,6 +656,7 @@
 #define COMSIG_XENOABILITY_TOGGLE_SAVAGE "xenoability_toggle_savage"
 #define COMSIG_XENOABILITY_POUNCE "xenoability_pounce"
 #define COMSIG_XENOABILITY_EVASION "xenoability_evasion"
+#define COMSIG_XENOABILITY_SNATCH "xenoability_snatch"
 
 #define COMSIG_XENOABILITY_NEUROGAS_GRENADE "xenoability_neurogas_nade"
 
@@ -706,8 +709,11 @@
 
 // Action state signal that's sent whenever the action state has a distance maintained with the target being walked to
 #define COMSIG_STATE_MAINTAINED_DISTANCE "action_state_maintained_dist_with_target"
+	#define COMSIG_MAINTAIN_POSITION (1<<0)
 #define COMSIG_OBSTRUCTED_MOVE "unable_to_step_towards_thing" //Tried to step in a direction and there was a obstruction
 	#define COMSIG_OBSTACLE_DEALT_WITH (1<<0)
+
+#define COMSIG_PATHFINDER_SET_ATOM_TO_WALK_TO "set_atom_to_walk_to"
 
 // /datum/song signals
 
@@ -725,6 +731,7 @@
 
 //Signals for CIC orders
 #define COMSIG_ORDER_SELECTED "order_selected"
+#define COMSIG_ORDER_SENT "order_updated"
 
 //Signals for automatic fire at component
 #define COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT "start_shooting_at"
@@ -736,5 +743,5 @@
 	#define BURST_FIRING (1<<0)
 #define COMSIG_DISABLE_BURST_FIRE "disable_burst_fire"
 
-//Signals for CIC orders
-#define COMSIG_ORDER_SENT "order_updated"
+//Signals for ais
+#define ESCORTING_ATOM_BEHAVIOUR_CHANGED "escorting_behaviour_changed"

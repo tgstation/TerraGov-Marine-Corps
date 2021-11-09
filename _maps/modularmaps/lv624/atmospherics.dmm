@@ -27,6 +27,16 @@
 	dir = 8
 	},
 /area/lv624/lazarus/atmos)
+"ct" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/podhatch/floor{
+	icon_state = "bcircuitoff"
+	},
+/area/lv624/lazarus/atmos)
 "cU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -162,6 +172,11 @@
 	icon_state = "bcircuitoff"
 	},
 /area/lv624/lazarus/atmos)
+"mZ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/tile/dark/brown2,
+/area/lv624/lazarus/atmos)
 "nQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -190,6 +205,11 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
+/area/lv624/lazarus/atmos)
+"qf" = (
+/obj/item/stool,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "qq" = (
 /obj/item/stool,
@@ -342,12 +362,6 @@
 	icon_state = "bcircuitoff"
 	},
 /area/lv624/lazarus/atmos)
-"CP" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/atmos)
 "CS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -356,7 +370,6 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "Dp" = (
-/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "DR" = (
@@ -382,6 +395,12 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
+/area/lv624/lazarus/atmos)
+"Ep" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "EN" = (
 /obj/structure/cryofeed,
@@ -440,6 +459,13 @@
 	icon_state = "bcircuitoff"
 	},
 /area/lv624/lazarus/atmos)
+"Ke" = (
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/atmos)
 "Ks" = (
 /obj/structure/extinguisher_cabinet,
 /turf/open/floor/tile/dark/brown2/corner,
@@ -484,16 +510,8 @@
 	},
 /area/lv624/lazarus/atmos)
 "Nt" = (
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/atmos)
-"Nw" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
-	},
 /area/lv624/lazarus/atmos)
 "NM" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
@@ -507,11 +525,6 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/atmos)
-"Ps" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/floor/tile/dark/brown2,
 /area/lv624/lazarus/atmos)
 "PD" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -530,14 +543,6 @@
 /obj/structure/closet/secure_closet/atmos_personal,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
-	},
-/area/lv624/lazarus/atmos)
-"QP" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/cleanable/blood/drip,
-/obj/structure/cable,
-/turf/open/floor/tile/dark/brown2{
-	dir = 1
 	},
 /area/lv624/lazarus/atmos)
 "QR" = (
@@ -574,12 +579,13 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
-"Ub" = (
-/obj/effect/decal/cleanable/blood,
+"TS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/decal/cleanable/blood/drip,
 /obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/dark/brown2{
+	dir = 1
+	},
 /area/lv624/lazarus/atmos)
 "UH" = (
 /turf/open/floor/tile/dark/brown2/corner{
@@ -679,7 +685,7 @@ BD
 aX
 TE
 Tt
-Dp
+Nt
 Gh
 Mh
 GC
@@ -697,7 +703,7 @@ Ln
 dA
 SU
 Rn
-Nt
+Dp
 at
 qq
 AF
@@ -709,12 +715,12 @@ ef
 ef
 lX
 CJ
-Nw
+ct
 Vq
 iN
 Tt
 QR
-Nt
+Dp
 iN
 tO
 qq
@@ -758,8 +764,8 @@ lX
 "}
 (8,1,1) = {"
 dr
-Ps
-Ub
+mZ
+Ke
 kc
 ut
 kc
@@ -769,8 +775,8 @@ xV
 IT
 kc
 kc
-CP
-QP
+Ep
+TS
 dr
 "}
 (9,1,1) = {"
@@ -799,7 +805,7 @@ iN
 iN
 DR
 Vm
-Nt
+Dp
 iN
 iN
 eI
@@ -816,10 +822,10 @@ kI
 iN
 WZ
 CS
-Nt
+Dp
 iN
 LL
-qq
+qf
 En
 lX
 ef
@@ -833,10 +839,10 @@ gi
 dA
 SU
 DW
-Nt
+Dp
 at
 qq
-Nt
+Dp
 Wz
 lX
 ef
