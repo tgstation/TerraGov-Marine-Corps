@@ -103,7 +103,6 @@
 						/obj/item/tool/weldingtool,
 						/obj/item/tool/wirecutters,
 						/obj/item/analyzer,
-						/obj/item/clothing/under/marine/standard,
 						/obj/item/clothing/shoes/marine
 						)
 
