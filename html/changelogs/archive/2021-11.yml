@@ -59,3 +59,14 @@
   - bugfix: Fix pill bottles being empty on loadouts sometimes
   Walarks:
   - bugfix: fixes SSexcavations runtime due to low spawner count
+2021-11-09:
+  Lewdcifer:
+  - rscadd: Multiple berets and headbands added to the uniform vendor.
+  - balance: Packaged foods now fit in helmets.
+  - balance: Mantis Armblade implant; 60 > 75 force, 12 > 8 attack speed (faster).
+      Can now bump attack.
+  - bugfix: The tan beret no longer disappears every now and then.
+  Mechanelize:
+  - spellcheck: Fixed an incorrect word for Queen orders
+  hyper2snyper:
+  - refactor: Uniform and webbing/tie refactor
