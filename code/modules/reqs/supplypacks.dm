@@ -481,6 +481,12 @@ AMMO
 	cost = 5
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/ammo/scout_impact
+	name = "TX-8 scout impact magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx8/impact)
+	cost = 7
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/ammo/scout_incendiary
 	name = "TX-8 scout incendiary magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8/incendiary)
