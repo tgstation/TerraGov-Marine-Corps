@@ -913,7 +913,6 @@
 	products = list(
 		"Clothing" = list(
 			/obj/item/clothing/under/marine = -1,
-			/obj/item/clothing/under/marine/standard =-1,
 			/obj/item/clothing/under/marine/camo =-1,
 			/obj/item/clothing/under/marine/camo/desert =-1,
 			/obj/item/clothing/under/marine/camo/snow =-1,
