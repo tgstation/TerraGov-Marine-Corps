@@ -17,14 +17,17 @@
 	if(!iscarbon(A))
 		return FALSE
 	if(!A.can_sting())
-		to_chat(owner, span_xenowarning("This won't do!"))
+		if(!silent)
+			to_chat(owner, span_xenowarning("This won't do!"))
 		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.plasma_stored >= X.xeno_caste.plasma_max)
-		to_chat(X, span_xenowarning("No need, we feel sated for now..."))
+		if(!silent)
+			to_chat(X, span_xenowarning("No need, we feel sated for now..."))
 		return FALSE
 	if(get_dist(X, A) > 1)
-		to_chat(X, span_xenowarning("It is outside of our reach! We need to be closer!"))
+		if(!silent)
+			to_chat(X, span_xenowarning("It is outside of our reach! We need to be closer!"))
 		return FALSE
 	return TRUE
 
@@ -76,35 +79,43 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(H.stat != DEAD)
-			to_chat(owner, span_notice("We can only use still, dead hosts to heal."))
+			if(!silent)
+				to_chat(owner, span_notice("We can only use still, dead hosts to heal."))
 			return FALSE
-		else if(get_dist(owner, H) > 1)
-			to_chat(owner, span_notice("We need to be next to our meal."))
+		else if(!owner.Adjacent(target))
+			if(!silent)
+				to_chat(owner, span_notice("We need to be next to our meal."))
 			return FALSE
 		return TRUE
 	if(isxeno(target))
 		var/mob/living/carbon/xenomorph/gorger/X = owner
 		if(X == target)
 			if(!COOLDOWN_CHECK(X, rejuvenate_self_cooldown))
-				to_chat(X, span_notice("We need another [round(COOLDOWN_TIMELEFT(X, rejuvenate_self_cooldown) / 10)] seconds before we can revitalize ourselves."))
+				if(!silent)
+					to_chat(X, span_notice("We need another [round(COOLDOWN_TIMELEFT(X, rejuvenate_self_cooldown) / 10)] seconds before we can revitalize ourselves."))
 				return FALSE
 			if(X.plasma_stored < self_plasma_cost)
-				to_chat(X, span_notice("We need [self_plasma_cost - X.plasma_stored]u more blood to revitalize ourselves."))
+				if(!silent)
+					to_chat(X, span_notice("We need [self_plasma_cost - X.plasma_stored]u more blood to revitalize ourselves."))
 				return FALSE
 		else
 			if(!X.line_of_sight(target) || get_dist(X, target) > 2)
-				to_chat(X, span_notice("It is beyond our reach, we must be close and our way must be clear."))
+				if(!silent)
+					to_chat(X, span_notice("It is beyond our reach, we must be close and our way must be clear."))
 				return FALSE
 			if(X.plasma_stored < ally_plasma_cost)
-				to_chat(X, span_notice("We need [ally_plasma_cost - X.plasma_stored]u more blood to restore a sister."))
+				if(!silent)
+					to_chat(X, span_notice("We need [ally_plasma_cost - X.plasma_stored]u more blood to restore a sister."))
 				return FALSE
 			if(isdead(target))
-				to_chat(X, span_notice("We can only help living sisters."))
+				if(!silent)
+					to_chat(X, span_notice("We can only help living sisters."))
 				return FALSE
 			if(!do_mob(X, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 				return FALSE
 		return TRUE
-	to_chat(owner, span_notice("We can only drain or restore familiar biological lifeforms."))
+	if(!silent)
+		to_chat(owner, span_notice("We can only drain or restore familiar biological lifeforms."))
 	return FALSE
 
 /datum/action/xeno_action/activable/rejuvenate/use_ability(atom/A)
@@ -197,7 +208,8 @@
 	if(X.eaten_mob)
 		return TRUE
 	if(!ishuman(A) || issynth(A))
-		to_chat(owner, span_warning("That wouldn't taste very good."))
+		if(!silent)
+			to_chat(owner, span_warning("That wouldn't taste very good."))
 		return FALSE
 	var/mob/living/carbon/human/victim = A
 	if(owner.do_actions) //can't use if busy
