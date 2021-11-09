@@ -93,7 +93,7 @@
 				return FALSE
 		else
 			if(!X.line_of_sight(target) || get_dist(X, target) > 2)
-				to_chat(X, span_notice("It is beyond our reach, we must be close and our way clear."))
+				to_chat(X, span_notice("It is beyond our reach, we must be close and our way must be clear."))
 				return FALSE
 			if(X.plasma_stored < ally_plasma_cost)
 				to_chat(X, span_notice("We need [ally_plasma_cost - X.plasma_stored]u more blood to restore a sister."))
