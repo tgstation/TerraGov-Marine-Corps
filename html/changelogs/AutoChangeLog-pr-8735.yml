@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "Cas can begin fire mission without an active laser, flare and laser have better view range"
