@@ -25,7 +25,7 @@
 		if(!silent)
 			to_chat(X, span_xenowarning("No need, we feel sated for now..."))
 		return FALSE
-	if(get_dist(X, A) > 1)
+	if(!X.Adjacent(A))
 		if(!silent)
 			to_chat(X, span_xenowarning("It is outside of our reach! We need to be closer!"))
 		return FALSE
