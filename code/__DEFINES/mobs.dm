@@ -402,9 +402,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define FACEMASK_LAYER 15
 #define GOGGLES_LAYER 14	//For putting Ballistic goggles and potentially other things above masks
 #define HEAD_LAYER 13
-#define BACK_LAYER 12
-#define SUIT_LAYER 11 //Possible make this an overlay of somethign required to wear a belt?
-#define SUIT_STORE_LAYER 10
+#define SUIT_LAYER 12 //Possible make this an overlay of somethign required to wear a belt?
+#define SUIT_STORE_LAYER 11
+#define BACK_LAYER 10
 #define COLLAR_LAYER 9
 #define HANDCUFF_LAYER 8
 #define L_HAND_LAYER 6
