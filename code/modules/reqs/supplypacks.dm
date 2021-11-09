@@ -864,7 +864,7 @@ CLOTHING
 /datum/supply_packs/clothing/marine_outfits
 	name = "marine outfit"
 	contains = list(
-		/obj/item/clothing/under/marine/standard,
+		/obj/item/clothing/under/marine,
 		/obj/item/storage/belt/marine,
 		/obj/item/storage/backpack/marine/standard,
 		/obj/item/clothing/shoes/marine,
