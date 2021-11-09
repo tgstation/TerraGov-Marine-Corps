@@ -279,7 +279,7 @@
 			return
 
 		else if(href_list["change_pill"])
-			#define MAX_PILL_SPRITE 2//max icon state of the pill sprites
+			#define MAX_PILL_SPRITE 21 //max icon state of the pill sprites
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_PILL_SPRITE)
 				dat += "<tr><td><a href=\"?src=\ref[src]&pill_sprite=[i]\">Select</a><img src=\"pill[i].png\" /><br></td></tr>"
