@@ -5,7 +5,6 @@
 	name = "Drain"
 	action_icon_state = "drain"
 	mechanics_text = "Hold a marine and drain some of their blood if successful."
-	ability_name = "drain"
 	cooldown_timer = 15 SECONDS
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
@@ -18,7 +17,7 @@
 		return FALSE
 	if(!A.can_sting())
 		if(!silent)
-			to_chat(owner, span_xenowarning("This won't do!"))
+			to_chat(owner, span_xenowarning("We can't drain this!"))
 		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.plasma_stored >= X.xeno_caste.plasma_max)
@@ -31,6 +30,7 @@
 		return FALSE
 /datum/action/xeno_action/activable/drain/use_ability(mob/living/carbon/A)
 	var/mob/living/carbon/xenomorph/X = owner
+	X.face_atom(A)
 	X.do_attack_animation(A, ATTACK_EFFECT_GRAB)
 	X.emote("roar")
 	A.drop_all_held_items()
@@ -56,9 +56,8 @@
 // ***************************************
 /datum/action/xeno_action/activable/rejuvenate
 	name = "Rejuvenate/Transfusion"
-	action_icon_state = "Rejuvenate"
+	action_icon_state = "rejuvenation"
 	mechanics_text = "When used on self, drains blood and restores health over time. When used on another xenomorph, costs blood and restores some of their health. When used on a dead human, you heal gradually."
-	ability_name = "rejuvenate"
 	cooldown_timer = 2 SECONDS
 	plasma_cost = 0
 	use_state_flags = XACT_TARGET_SELF
@@ -85,18 +84,10 @@
 				to_chat(owner, span_notice("We need to be next to our meal."))
 			return FALSE
 		return TRUE
+
 	if(isxeno(target))
 		var/mob/living/carbon/xenomorph/gorger/X = owner
-		if(X == target)
-			if(!COOLDOWN_CHECK(X, rejuvenate_self_cooldown))
-				if(!silent)
-					to_chat(X, span_notice("We need another [round(COOLDOWN_TIMELEFT(X, rejuvenate_self_cooldown) / 10)] seconds before we can revitalize ourselves."))
-				return FALSE
-			if(X.plasma_stored < self_plasma_cost)
-				if(!silent)
-					to_chat(X, span_notice("We need [self_plasma_cost - X.plasma_stored]u more blood to revitalize ourselves."))
-				return FALSE
-		else
+		if(X != target)
 			if(!X.line_of_sight(target) || get_dist(X, target) > 2)
 				if(!silent)
 					to_chat(X, span_notice("It is beyond our reach, we must be close and our way must be clear."))
@@ -111,7 +102,18 @@
 				return FALSE
 			if(!do_mob(X, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 				return FALSE
+			return TRUE
+
+		if(!COOLDOWN_CHECK(X, rejuvenate_self_cooldown))
+			if(!silent)
+				to_chat(X, span_notice("We need another [round(COOLDOWN_TIMELEFT(X, rejuvenate_self_cooldown) / 10)] seconds before we can revitalize ourselves."))
+			return FALSE
+		if(X.plasma_stored < self_plasma_cost)
+			if(!silent)
+				to_chat(X, span_notice("We need [self_plasma_cost - X.plasma_stored]u more blood to revitalize ourselves."))
+			return FALSE
 		return TRUE
+
 	if(!silent)
 		to_chat(owner, span_notice("We can only drain or restore familiar biological lifeforms."))
 	return FALSE
@@ -143,9 +145,8 @@
 // ***************************************
 /datum/action/xeno_action/activable/carnage
 	name = "Carnage"
-	action_icon_state = "Carnage"
+	action_icon_state = "carnage"
 	mechanics_text = "For a while your attacks drain blood and heal you. During Feast you also heal nearby allies."
-	ability_name = "carnage"
 	cooldown_timer = 40 SECONDS
 	plasma_cost = 0
 
@@ -161,9 +162,8 @@
 
 /datum/action/xeno_action/activable/feast
 	name = "Feast"
-	action_icon_state = "Feast"
+	action_icon_state = "feast"
 	mechanics_text = "Use a large amount of blood to get into a state of rejuvenation. During this time you use a small amount of blood and heal. You can cancel this early."
-	ability_name = "feast"
 	cooldown_timer = 180 SECONDS
 	plasma_cost = 100
 
