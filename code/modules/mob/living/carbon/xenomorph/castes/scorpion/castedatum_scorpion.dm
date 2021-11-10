@@ -31,7 +31,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin)
+	spit_types = list(/datum/ammo/xeno/acid/passthrough)
 
 	minimap_icon = "xenominion"
 

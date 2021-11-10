@@ -52,8 +52,6 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/xenohide,
 		/datum/action/xeno_action/activable/pounce,
 		/datum/action/xeno_action/toggle_savage,
@@ -186,8 +184,6 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/xenohide,
 		/datum/action/xeno_action/activable/pounce,
 		/datum/action/xeno_action/toggle_savage,

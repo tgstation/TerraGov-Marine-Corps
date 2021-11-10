@@ -20,7 +20,8 @@ SUBSYSTEM_DEF(excavation)
 /datum/controller/subsystem/excavation/fire()
 	if(excavation_site_spawners.len <= 0)
 		return
-	for(var/i in 0 to MAX_ACTIVE_EXCAVATIONS - excavations_count - 1)
+	var/spawn_count = min(MAX_ACTIVE_EXCAVATIONS - excavations_count, excavation_site_spawners.len)
+	for(var/i in 0 to spawn_count - 1)
 		spawnExcavation()
 
 ///Creates an excavation landmark at a random area from eligible areas
