@@ -182,6 +182,10 @@
 	minimap_color = MINIMAP_AREA_CAVES
 
 //Caves
+/area/lv624/ground/caves/rock
+	name ="Enclosed Area"
+	icon_state = "white"
+
 /area/lv624/ground/caves/west1
 	name ="Western Caves"
 	icon_state = "away1"
