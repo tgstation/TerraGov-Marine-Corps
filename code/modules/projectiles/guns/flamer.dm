@@ -238,7 +238,7 @@
 			light_pilot(FALSE)
 			return FALSE
 		flame_turf(turf_to_ignite, gun_user, burn_time, burn_level, fire_color)
-		chamber_items[current_chamber_position].vars[current_rounds_var]--
+		adjust_current_rounds(-1)
 	gun_user?.hud_used.update_ammo_hud(gun_user, src)
 	return TRUE
 
