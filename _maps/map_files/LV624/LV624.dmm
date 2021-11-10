@@ -4765,8 +4765,7 @@
 /area/lv624/ground/river3)
 "aJc" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/sand8)
@@ -4903,8 +4902,7 @@
 /area/lv624/ground/sand8)
 "aJZ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
+	dir = 8
 	},
 /turf/open/floor/plating/warning{
 	dir = 2
@@ -6027,8 +6025,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
@@ -6220,9 +6217,7 @@
 	},
 /area/lv624/ground/jungle8)
 "aUp" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	on = 1
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/wood,
 /area/lv624/lazarus/chapel)
 "aUq" = (
@@ -7188,10 +7183,6 @@
 /area/lv624/ground/jungle3)
 "bcl" = (
 /obj/structure/bed,
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
-	},
 /mob/living/simple_animal/corgi/Lisa,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
@@ -8504,11 +8495,10 @@
 /turf/open/floor,
 /area/lv624/ground/compound/n)
 "bme" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
-	},
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4
+	},
 /turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "bmf" = (
@@ -9002,10 +8992,8 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle2)
 "bpA" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	on = 1
-	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
 	},
@@ -9166,9 +9154,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
 "bqF" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	on = 1
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -9241,8 +9227,7 @@
 /area/lv624/ground/compound/se)
 "brb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
+	dir = 4
 	},
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
@@ -9275,8 +9260,7 @@
 /area/lv624/ground/river1)
 "brf" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
+	dir = 8
 	},
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
@@ -11794,11 +11778,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
 "gXy" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
-	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4
+	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "gYm" = (
@@ -12146,8 +12129,7 @@
 /area/lv624/lazarus/canteen)
 "hHX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
+	dir = 8
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
@@ -13059,11 +13041,10 @@
 	},
 /area/lv624/ground/compound/se)
 "jQi" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
-	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4
+	},
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
 "jQy" = (
@@ -14915,11 +14896,10 @@
 	},
 /area/lv624/ground/jungle2)
 "obX" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
-	},
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4
+	},
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "ocQ" = (
@@ -15232,8 +15212,7 @@
 /area/lv624/ground/jungle6)
 "oWl" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
@@ -15260,8 +15239,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
+	dir = 8
 	},
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
@@ -15388,8 +15366,7 @@
 /area/lv624/lazarus/main_hall)
 "png" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
+	dir = 8
 	},
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
@@ -15975,8 +15952,7 @@
 /area/lv624/lazarus/research)
 "qEO" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 1;
-	on = 1
+	dir = 1
 	},
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
@@ -16423,8 +16399,7 @@
 /area/lv624/ground/jungle5)
 "ruj" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
+	dir = 4
 	},
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
@@ -16535,12 +16510,11 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "rHK" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
-	},
 /obj/structure/cable,
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8
+	},
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -17279,11 +17253,10 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "tmd" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 1;
-	on = 1
-	},
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1
+	},
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "tmG" = (
@@ -18078,10 +18051,8 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "uWG" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	on = 1
-	},
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "uWK" = (
@@ -18376,8 +18347,7 @@
 "vBy" = (
 /obj/structure/window/reinforced/tinted,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
@@ -18425,11 +18395,10 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "vJf" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
-	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4
+	},
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 2
 	},
