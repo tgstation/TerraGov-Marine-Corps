@@ -1506,12 +1506,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 
 /obj/item/attachable/shoulder_mount
-	name = "test"
-	desc = ""
+	name = "Experimental Shoulder Attachment Point"
+	desc = "A brand new advance in combat. This device, once attached to a firearm, will allow the firearm to be mounted onto any piece of modular armor. Once attached to the armor and activated, the gun will fire when the user chooses. Once attached to the armor, right clicking the armor with an empty hand will select what click will fire the armor (middle, right, left). Right clicking with ammunition will reload the gun. Using the unique action keybind will perform the guns unique action only when the gun is active."
 	icon = 'icons/mob/modular/shoulder_gun.dmi'
 	icon_state = "shoulder_gun"
 	slot = ATTACHMENT_SLOT_RAIL
 	pixel_shift_x = 13
+	///What click the gun will fire on.
 	var/fire_mode = "right"
 
 /obj/item/attachable/shoulder_mount/on_attach(attaching_item, mob/user)
@@ -1552,18 +1553,20 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		var/datum/action/action = action_to_update
 		action.update_button_icon()
 
+///Handles the gun attaching to the armor.
 /obj/item/attachable/shoulder_mount/proc/handle_armor_attach(datum/source, attaching_item, mob/user)
 	SIGNAL_HANDLER
 	if(!istype(attaching_item, /obj/item/clothing/suit/modular))
 		return
 	master_gun.set_gun_user(null)
-	RegisterSignal(attaching_item, COMSIG_ITEM_EQUIPPED_TO_SLOT, .proc/handle_activations)
+	RegisterSignal(attaching_item, COMSIG_ITEM_EQUIPPED, .proc/handle_activations)
 	RegisterSignal(attaching_item, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, .proc/switch_mode)
 	RegisterSignal(attaching_item, COMSIG_PARENT_ATTACKBY_ALTERNATE, .proc/reload_gun)
 	if(CHECK_BITFIELD(master_gun.flags_gun_features, GUN_PUMP_REQUIRED))
 		RegisterSignal(master_gun, COMSIG_MOB_GUN_FIRED, .proc/after_fire)
 	master_gun.icon_state = master_gun.placed_overlay_iconstate
 
+///Handles the gun detaching from the armor.
 /obj/item/attachable/shoulder_mount/proc/handle_armor_detach(datum/source, detaching_item, mob/user)
 	SIGNAL_HANDLER
 	if(!istype(detaching_item, /obj/item/clothing/suit/modular))
@@ -1576,9 +1579,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
 	update_icon(user)
 	master_gun.icon_state = master_gun.base_gun_icon
-	UnregisterSignal(detaching_item, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, COMSIG_PARENT_ATTACKBY_ALTERNATE, COMSIG_MOB_GUN_FIRED))
+	UnregisterSignal(detaching_item, list(COMSIG_ITEM_EQUIPPED, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, COMSIG_PARENT_ATTACKBY_ALTERNATE, COMSIG_MOB_GUN_FIRED))
 
-
+///Sets up the action.
 /obj/item/attachable/shoulder_mount/proc/handle_activations(datum/source, mob/equipper, slot)
 	if(!isliving(equipper))
 		return
@@ -1594,6 +1597,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		var/datum/action/item_action/toggle/new_action = new(src)
 		new_action.give_action(equipper)
 
+///Performs the firing.
 /obj/item/attachable/shoulder_mount/proc/handle_firing(datum/source, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
 	var/list/modifiers = params2list(params)
@@ -1605,6 +1609,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		return
 	master_gun.start_fire(source, object, location, control, null, TRUE)
 
+///Switches click fire modes.
 /obj/item/attachable/shoulder_mount/proc/switch_mode(datum/source, mob/living/user)
 	SIGNAL_HANDLER
 	switch(fire_mode)
@@ -1618,10 +1623,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			fire_mode = "right"
 			to_chat(user, span_notice("[master_gun] will now fire on a 'right click'."))
 
+///Reloads the gun
 /obj/item/attachable/shoulder_mount/proc/reload_gun(datum/source, obj/item/attacking_item, mob/living/user)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(master_gun, /obj/item/weapon/gun.proc/reload, user, attacking_item)
 
+///Performs the unique action after firing.
 /obj/item/attachable/shoulder_mount/proc/after_fire(datum/source, atom/target, obj/item/weapon/gun/fired_gun)
 	SIGNAL_HANDLER
 	master_gun.cock()

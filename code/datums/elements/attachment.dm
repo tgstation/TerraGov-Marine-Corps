@@ -15,7 +15,7 @@
 			SLOT = slot, //Slot the attachment fits into, is a string.
 			OVERLAY_ICON = overlay_icon ? overlay_icon : target_item.icon, //Icon sheet of the overlay.
 			ON_ATTACH = on_attach, //Callback for what the attachment does on attach. Can be null.
-			ON_DETACH = on_detach, //Callback for what the attachment does on detach. Can be null. 
+			ON_DETACH = on_detach, //Callback for what the attachment does on detach. Can be null.
 			ON_ACTIVATE = on_activate, //Activation proc for attachment. Can be null.
 			CAN_ATTACH = can_attach, //Callback that is called on attach to determine by the attachment whether or not it can attach to the item.
 			PIXEL_SHIFT_X = pixel_shift_x, //Pixel shift on X Axis for the attachments overlay.
@@ -30,6 +30,10 @@
 		)
 
 	RegisterSignal(target, COMSIG_ITEM_IS_ATTACHING, .proc/on_attaching)
+
+/datum/element/attachment/Detach(datum/source, force)
+	. = ..()
+	UnregisterSignal(source, COMSIG_ITEM_IS_ATTACHING)
 
 ///Fills list_to_fill with attachment_data
 /datum/element/attachment/proc/on_attaching(datum/source, mob/attacher, list/list_to_fill)
