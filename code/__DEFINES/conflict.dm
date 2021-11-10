@@ -77,21 +77,22 @@
 #define GUN_IS_SENTRY (1<<15)
 #define GUN_PUMP_REQUIRED (1<<16)
 
+#define FLAMER_IS_LIT (1<<0)
+#define FLAMER_NO_LIT_OVERLAY (1<<1)
+#define FLAMER_USES_GUN_FLAMES (1<<2)
+
+#define FLAMER_STREAM_STRAIGHT "straight"
+#define FLAMER_STREAM_CONE "cone"
+
 #define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
 #define GUN_FIREMODE_BURSTFIRE "burst-fire mode"
 #define GUN_FIREMODE_AUTOMATIC "automatic fire mode"
 #define GUN_FIREMODE_AUTOBURST "auto-burst-fire mode"
 
-//Gun attachable related flags.
-//flags_attach_features
-#define ATTACH_REMOVABLE (1<<0)
-#define ATTACH_ACTIVATION (1<<1)
-#define ATTACH_SAME_ICON (1<<2)
-#define ATTACH_BYPASS_ALLOWED_LIST (1<<3)
-
 //Ammo magazine defines, for flags_magazine
-#define AMMUNITION_REFILLABLE 1
-#define AMMUNITION_HANDFUL 2
+#define AMMUNITION_REFILLABLE (1<<0)
+#define AMMUNITION_HANDFUL (1<<1)
+#define AMMUNITION_WORN (1<<2)
 
 //Slowdown from various armors.
 #define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up

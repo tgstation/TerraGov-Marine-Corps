@@ -29,6 +29,8 @@
 	issue_order_focus.give_action(src)
 	var/datum/action/innate/order/rally_order/send_rally_order = new
 	send_rally_order.give_action(src)
+	var/datum/action/innate/message_squad/screen_orders = new
+	screen_orders.give_action(src)
 
 	//makes order hud visible
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_ORDER]
@@ -197,7 +199,6 @@
 	<BR><B>Suit Storage:</B> <A href='?src=[REF(src)];item=[SLOT_S_STORE]'>[(s_store ? s_store : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(s_store, /obj/item/tank) && !internal) ? " <A href='?src=[REF(src)];internal=1'>Set Internal</A>" : "")]
 	<BR>
 	[handcuffed ? "<BR><A href='?src=[REF(src)];item=[SLOT_HANDCUFFED]'>Handcuffed</A>" : ""]
-	[suit?.hastie ? "<BR><A href='?src=[REF(src)];tie=1'>Remove Accessory</A>" : ""]
 	[internal ? "<BR><A href='?src=[REF(src)];internal=1'>Remove Internal</A>" : ""]
 	<BR><A href='?src=[REF(src)];splints=1'>Remove Splints</A>
 	<BR><A href='?src=[REF(src)];pockets=1'>Empty Pockets</A>
@@ -437,21 +438,6 @@
 							limbcount++
 					if(limbcount)
 						new /obj/item/stack/medical/splint(loc, limbcount)
-
-	if(href_list["tie"])
-		if(!usr.do_actions)
-			if(w_uniform && istype(w_uniform, /obj/item/clothing/under))
-				var/obj/item/clothing/under/U = w_uniform
-				if(U.hastie)
-					log_combat(usr, src, "attempted to remove accessory ([U.hastie])")
-					if(istype(U.hastie, /obj/item/clothing/tie/holobadge) || istype(U.hastie, /obj/item/clothing/tie/medal))
-						visible_message(span_danger("[usr] tears off \the [U.hastie] from [src]'s [U]!"), null, null, 5)
-					else
-						visible_message(span_danger("[usr] is trying to take off \a [U.hastie] from [src]'s [U]!"), null, null, 5)
-						if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_HOSTILE))
-							if(U == w_uniform && U.hastie)
-								U.remove_accessory(usr)
-
 	if(href_list["sensor"])
 		if(!usr.do_actions)
 

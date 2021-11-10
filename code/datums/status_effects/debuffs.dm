@@ -379,5 +379,5 @@
 	to_chat(new_owner, span_danger("The cold vacuum instantly freezes you, maybe this was a bad idea?"))
 
 /datum/status_effect/spacefreeze/tick()
-	owner.adjustFireLoss(5)
+	owner.adjustFireLoss(40)
 

@@ -54,6 +54,10 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
+	if(CHECK_BITFIELD(gun.turret_flags, TURRET_INACCURATE))
+		gun.accuracy_mult -= 0.15
+		gun.scatter += 10
+
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_HAS_CAMERA))
 		camera = new (src)
 		camera.network = list("military")
@@ -372,7 +376,7 @@
 			continue
 		potential_targets += nearby_human
 	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))
-		if(nearby_xeno.stat == DEAD || CHECK_BITFIELD(nearby_xeno.status_flags, INCORPOREAL)) //So wraiths wont be shot at when in phase shift
+		if(nearby_xeno.stat == DEAD || HAS_TRAIT(nearby_xeno, TRAIT_TURRET_HIDDEN) || CHECK_BITFIELD(nearby_xeno.status_flags, INCORPOREAL)) //So wraiths wont be shot at when in phase shift
 			continue
 		potential_targets += nearby_xeno
 	return potential_targets.len
@@ -460,6 +464,14 @@
 
 		distance = buffer_distance
 		return nearby_target
+
+
+/obj/machinery/deployable/mounted/sentry/disassemble(mob/user)
+	. = ..()
+	var/obj/item/weapon/gun/gun = internal_item
+	if(CHECK_BITFIELD(gun.turret_flags, TURRET_INACCURATE))
+		gun.accuracy_mult += 0.15
+		gun.scatter -= 10
 
 
 /obj/machinery/deployable/mounted/sentry/buildasentry

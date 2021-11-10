@@ -155,9 +155,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 							multipler += 0.15
 						if(PAIN_REDUCTION_HEAVY to PAIN_REDUCTION_VERY_HEAVY)
 							multipler += 0.25
-						if(PAIN_REDUCTION_VERY_HEAVY to PAIN_REDUCTION_FULL)
-							multipler += 0.40
-						if(PAIN_REDUCTION_FULL to INFINITY)
+						if(PAIN_REDUCTION_VERY_HEAVY to INFINITY)
 							multipler += 0.45
 					if(M.shock_stage > 100) //Being near to unconsious is good in this case
 						multipler += 0.25

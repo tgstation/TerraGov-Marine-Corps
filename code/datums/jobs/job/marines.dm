@@ -260,7 +260,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	wear_suit = /obj/item/clothing/suit/storage/marine
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
-	head = /obj/item/clothing/head/modular/marine/m10x/corpsman
+	head = /obj/item/clothing/head/modular/marine/m10x
 	l_store = /obj/item/storage/pouch/medkit/equippedcorpsman
 	r_store = /obj/item/storage/pouch/medical/equippedcorpsman
 	glasses = /obj/item/clothing/glasses/hud/health
@@ -374,7 +374,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	wear_suit = /obj/item/clothing/suit/storage/marine/smartgunner
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
-	head = /obj/item/clothing/head/modular/marine/m10x/standard
+	head = /obj/item/clothing/head/modular/marine/m10x
 	l_store = /obj/item/storage/pouch/firstaid/full
 	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun
 	glasses = /obj/item/clothing/glasses/night/m56_goggles

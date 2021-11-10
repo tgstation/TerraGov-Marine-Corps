@@ -73,6 +73,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	gun_type = /obj/item/weapon/gun/shotgun/double/martini
 	max_rounds = 20
 	w_class = WEIGHT_CLASS_SMALL
+	icon_state_mini = "martini"
 
 /obj/item/ammo_magazine/pistol/derringer
 	name = "box of .40 rimfire pistol rounds"
@@ -83,6 +84,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	gun_type = /obj/item/weapon/gun/shotgun/double/derringer
 	max_rounds = 10
 	w_class = WEIGHT_CLASS_SMALL
+	icon_state_mini = "ammo_packet"
 
 /obj/item/ammo_magazine/shotgun/mbx900
 	name = "box of .410 sabot shells"
@@ -119,7 +121,7 @@ also doesn't really matter. You can only reload them with handfuls.
 /obj/item/ammo_magazine/internal/shotgun
 	name = "shotgun tube"
 	desc = "An internal magazine. It is not supposed to be seen or removed."
-	default_ammo = /datum/ammo/bullet/shotgun/slug
+	default_ammo = /datum/ammo/bullet/shotgun/flechette
 	caliber = CALIBER_12G
 	max_rounds = 8
 	chamber_closed = 0

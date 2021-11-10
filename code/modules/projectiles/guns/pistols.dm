@@ -35,6 +35,7 @@
 	aim_speed_modifier = 0.65
 	scatter = 0
 	scatter_unwielded = 0
+	akimbo_additional_delay = 0.9
 
 	placed_overlay_iconstate = "pistol"
 
@@ -348,6 +349,7 @@
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/suppressor/unremovable/invisible,
 		/obj/item/attachable/shoulder_mount,
 	)
 

@@ -17,7 +17,7 @@
 /turf/open/floor/tile/white,
 /area/tdome)
 "af" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "ag" = (

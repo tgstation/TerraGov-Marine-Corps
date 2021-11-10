@@ -288,6 +288,7 @@
 	greyscale_colors = "#d9cd07#f2cdbb" //default colors
 	var/pill_type_to_fill //type of pill to use to fill in the bottle in New()
 
+
 /obj/item/storage/pill_bottle/Initialize(mapload, ...)
 	. = ..()
 	if(pill_type_to_fill)
@@ -321,7 +322,7 @@
 	name = "kelotane pill bottle"
 	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/kelotane
-	greyscale_colors = "#d9cd07#FFFFFF"
+	greyscale_colors = "#CC9900#FFFFFF"
 
 /obj/item/storage/pill_bottle/dermaline
 	name = "dermaline pill bottle"
@@ -334,14 +335,14 @@
 	name = "dylovene pill bottle"
 	desc = "Contains pills that heal toxic damage and purge toxins and neurotoxins of all kinds."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dylovene
-	greyscale_colors = "#72C939#ffffff"
+	greyscale_colors = "#669900#ffffff"
 
 /obj/item/storage/pill_bottle/inaprovaline
 	name = "inaprovaline pill bottle"
 	desc = "Contains pills that prevent wounds from getting worse on their own."
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/inaprovaline
-	greyscale_colors = "#C89CCD#ffffff"
+	greyscale_colors = "#9966CC#ffffff"
 
 /obj/item/storage/pill_bottle/tramadol
 	name = "tramadol pill bottle"
@@ -366,7 +367,7 @@
 	name = "bicaridine pill bottle"
 	desc = "Contains pills that heal cuts and bruises, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/bicaridine
-	greyscale_colors = "#FA2A38#ffffff"
+	greyscale_colors = "#DA0000#ffffff"
 
 /obj/item/storage/pill_bottle/meralyne
 	name = "meralyne pill bottle"
@@ -393,7 +394,7 @@
 /obj/item/storage/pill_bottle/imidazoline
 	name = "imidazoline pill bottle"
 	desc = "Contains pills that heal eye damage."
-
+	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/imidazoline
 	greyscale_colors = "#F7A151#ffffff" //orange like carrots
 
@@ -418,7 +419,7 @@
 	icon_state = "pill_canistertall"
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/quickclot
-	greyscale_colors = "#A55EFC#ffffff"
+	greyscale_colors = "#5ed75e#ffffff"
 
 /obj/item/storage/pill_bottle/hypervene
 	name = "hypervene pill bottle"
@@ -447,7 +448,7 @@
 	desc = "Containts highly illegal drugs. Trade heart for speed."
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_containers/pill/zoom
-	greyscale_colors = "#4D79C5#ffffff"
+	greyscale_colors = "#ef3ad4#ffffff"
 
 //Pill bottles with identification locks.
 
@@ -501,3 +502,27 @@
 	req_access = list(ACCESS_NT_CORPORATE)
 	req_id_role = CORPORATE_LIAISON
 	scan_name = TRUE
+
+/obj/item/storage/pill_bottle/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return
+	if(!istype(I, /obj/item/facepaint) || isnull(greyscale_config))
+		return
+
+	var/obj/item/facepaint/paint = I
+	if(paint.uses < 1)
+		to_chat(user, span_warning("\the [paint] is out of color!"))
+		return
+	var/bottle_color
+	var/label_color
+	bottle_color = input(user, "Pick a color", "Pick color") as null|color
+	label_color = input(user, "Pick a color", "Pick color") as null|color
+
+	if(!bottle_color || !label_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return
+
+
+	set_greyscale_colors(list(bottle_color,label_color))
+	paint.uses--
+	update_icon()

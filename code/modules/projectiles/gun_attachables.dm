@@ -83,8 +83,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/attach_delay = 30
 	///How long in deciseconds it takes to detach a weapon with level 1 firearms training. Default is 30 seconds.
 	var/detach_delay = 30
-	///how long in deciseconds this adds to your base fire delay.
-	var/fire_delay_mod = 0
 	///Changes aim mode movement delay multiplicatively
 	var/aim_mode_movement_mult = 0
 	///Modifies projectile damage by a % when a marine gets passed, but not hit
@@ -1488,18 +1486,18 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			/obj/structure/window/framed/mainship,
 			/obj/structure/window/framed/prison,
 		)
-	master_gun.turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
+	master_gun.turret_flags |= TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
 	master_gun.AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, deploy_time, undeploy_time)
 	update_icon()
 
 /obj/item/attachable/buildasentry/on_detach(detaching_item, mob/user)
 	. = ..()
-	var/obj/item/weapon/gun/detaching_gun = detaching_item
-	DISABLE_BITFIELD(detaching_gun.flags_gun_features, GUN_IS_SENTRY)
-	DISABLE_BITFIELD(detaching_gun.flags_item, IS_DEPLOYABLE)
-	detaching_gun.ignored_terrains = null
-	detaching_gun.turret_flags = NONE
-	battery = detaching_gun.sentry_battery
+	var/obj/item/weapon/gun/detaching_item = attaching_item
+	DISABLE_BITFIELD(detaching_item.flags_gun_features, GUN_IS_SENTRY)
+	DISABLE_BITFIELD(detaching_item.flags_item, IS_DEPLOYABLE)
+	detaching_item.ignored_terrains = null
+	detaching_item.turret_flags &= ~(TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS)
+	battery = detaching_item.sentry_battery
 	battery?.forceMove(src)
 	detaching_gun.sentry_battery = null
 	detaching_gun.RemoveElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, deploy_time, undeploy_time)
@@ -1632,6 +1630,66 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/shoulder_mount/proc/after_fire(datum/source, atom/target, obj/item/weapon/gun/fired_gun)
 	SIGNAL_HANDLER
 	master_gun.cock()
+/obj/item/attachable/flamer_nozzle
+	name = "standard flamer nozzle"
+	desc = "The standard flamer nozzle. This one fires a stream of fire for direct and accurate flames. Though not as area filling as its counterpart, this one excels at directed frontline combat."
+	icon_state = "flame_directional"
+	slot = ATTACHMENT_SLOT_FLAMER_NOZZLE
+	attach_delay = 2 SECONDS
+	detach_delay = 2 SECONDS
+
+	///This is pulled when the parent flamer fires, it determins how the parent flamers fire stream acts.
+	var/stream_type = FLAMER_STREAM_STRAIGHT
+
+	///Modifier for burn level of attached flamer. Percentage based.
+	var/burn_level_mod = 1
+	///Modifier for burn time of attached flamer. Percentage based.
+	var/burn_time_mod = 1
+	///Range modifier of attached flamer. Numerically based.
+	var/range_modifier = 0
+	///Damage multiplier for mobs caught in the initial stream of fire of the attached flamer.
+	var/mob_flame_damage_mod = 1
+
+/obj/item/attachable/flamer_nozzle/on_attach(attaching_item, mob/user)
+	. = ..()
+	if(!istype(attaching_item, /obj/item/weapon/gun/flamer))
+		return
+	var/obj/item/weapon/gun/flamer/flamer = attaching_item
+	flamer.burn_level_mod *= burn_level_mod
+	flamer.burn_time_mod *= burn_time_mod
+	flamer.flame_max_range += range_modifier
+	flamer.mob_flame_damage_mod *= mob_flame_damage_mod
+
+/obj/item/attachable/flamer_nozzle/on_detach(attaching_item, mob/user)
+	. = ..()
+	if(!istype(attaching_item, /obj/item/weapon/gun/flamer))
+		return
+	var/obj/item/weapon/gun/flamer/flamer = attaching_item
+	flamer.burn_level_mod /= burn_level_mod
+	flamer.burn_time_mod /= burn_time_mod
+	flamer.flame_max_range -= range_modifier
+	flamer.mob_flame_damage_mod /= mob_flame_damage_mod
+
+/obj/item/attachable/flamer_nozzle/unremovable
+	flags_attach_features = NONE
+
+/obj/item/attachable/flamer_nozzle/unremovable/invisible
+	icon_state = null
+
+/obj/item/attachable/flamer_nozzle/wide
+	name = "spray flamer nozzle"
+	desc = "This specialized nozzle sprays the flames of an attached flamer in a much more broad way than the standard nozzle. It serves for wide area denial as opposed to offensive directional flaming."
+	icon_state = "flame_wide"
+	range_modifier = -3
+	pixel_shift_y = 17
+	stream_type = FLAMER_STREAM_CONE
+
+///Funny red wide nozzle that can fill entire screens with flames. Admeme only.
+/obj/item/attachable/flamer_nozzle/wide/red
+	name = "red spray flamer nozzle"
+	desc = "It is red, therefore its obviously more effective."
+	icon_state = "flame_wide_red"
+	range_modifier = 0
 
 ///This is called when an attachment gun (src) attaches to a gun.
 /obj/item/weapon/gun/proc/on_attach(obj/item/attached_to, mob/user)
@@ -1687,3 +1745,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 ///Called when the attachment is trying to be attached. If the attachment is allowed to go through, return TRUE.
 /obj/item/weapon/gun/proc/can_attach(obj/item/attaching_to, mob/attacher)
 	return TRUE
+
+///Called when an attachment is attached to this gun (src).
+/obj/item/weapon/gun/proc/on_attachment_attach(/obj/item/attaching_here, mob/attacher)
+	return
+///Called when an attachment is detached from this gun (src).
+/obj/item/weapon/gun/proc/on_attachment_detach(/obj/item/detaching_here, mob/attacher)
+	return

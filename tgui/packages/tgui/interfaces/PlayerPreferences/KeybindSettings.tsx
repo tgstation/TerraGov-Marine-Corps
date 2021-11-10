@@ -18,12 +18,12 @@ export const KeybindSettings = (props, context) => {
   const [
     captureSentence,
     setCaptureSentence,
-  ] = useLocalState<KeybindSentenceCapture>(
+  ] = useLocalState<KeybindSentenceCapture|null>(
     context, `setCaptureSentence`, null);
   const [
     filter,
     setFilter,
-  ] = useLocalState<string>(context, `keybind-filter`, null);
+  ] = useLocalState<string|null>(context, `keybind-filter`, null);
 
   const filterSearch = (kb:KeybindingsData) =>
     !filter // If we don't have a filter, don't filter
@@ -47,7 +47,7 @@ export const KeybindSettings = (props, context) => {
       title="Keybindings"
       buttons={resetButton}>
       {captureSentence && (
-        <TextInputModal 
+        <TextInputModal
           label="Chose a custom sentence"
           button_text="Confirm"
           onSubmit={(input) => {

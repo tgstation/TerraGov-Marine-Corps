@@ -5,7 +5,7 @@
 	var/list/attachment_data
 
 //on_attach, on_detach, on_activate and can_attach are all proc paths that get turned into callbacks when they are called.
-/datum/element/attachment/Attach(datum/target, slot, overlay_icon, on_attach, on_detach, on_activate, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound, extra_vars)
+/datum/element/attachment/Attach(datum/target, slot, overlay_icon, on_attach, on_detach, on_activate, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound, mob_overlay_icon, mob_pixel_shift_x, mob_pixel_shift_y, extra_vars)
 	. = ..()
 	if(!isitem(target))
 		return ELEMENT_INCOMPATIBLE
@@ -26,6 +26,9 @@
 			ATTACH_SKILL = attach_skill, //Skill used in attaching and detaching. Can be null. If user does not meet the skill requirement the attach delay and detach delay is doubled.
 			ATTACH_SKILL_UPPER_THRESHOLD = attach_skill_upper_threshold, //Skill threshold for a bonus on attaching and detaching. If use meets the upper threshold the attach delay and detach delay will be halved.
 			ATTACH_SOUND = attach_sound, //Sound played on attach and detach.
+			MOB_OVERLAY_ICON = mob_overlay_icon ? mob_overlay_icon : overlay_icon,
+			MOB_PIXEL_SHIFT_X = mob_pixel_shift_x, //Pixel shift X for a mob sprite.
+			MOB_PIXEL_SHIFT_Y = mob_pixel_shift_y, //Pixel shift Y for a mob sprite.
 			EXTRA_VARS = extra_vars, //List of extra vars for other uses.
 		)
 

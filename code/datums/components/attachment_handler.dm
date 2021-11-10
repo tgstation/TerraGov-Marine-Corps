@@ -29,7 +29,7 @@
 	src.can_attach = can_attach
 	src.attachment_offsets = attachment_offsets
 	attachable_overlays = overlays //This is incase the parent wishes to have a stored reference to this list.
-	attachable_overlays += slots 
+	attachable_overlays += slots
 
 	var/obj/parent_object = parent
 	if(length(starting_attachmments) && parent_object.loc) //Attaches starting attachments if the object is not instantiated in nullspace. If it is created in null space, such as in a loadout vendor. It wont create default attachments.
@@ -44,6 +44,7 @@
 
 	RegisterSignal(parent, COMSIG_CLICK_ALT, .proc/start_detach) //For Detaching
 	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/clean_references) //Dels attachments.
+	RegisterSignal(parent, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, .proc/apply_custom)
 
 ///Starts processing the attack, and whether or not the attachable can attack.
 /datum/component/attachment_handler/proc/start_handle_attachment(datum/source, obj/attacking, mob/attacker)
@@ -67,7 +68,7 @@
 				return
 		if(!do_attach(attachment, attacher, attachment_data))
 			return
-	
+
 	var/slot = attachment_data[SLOT]
 	if(!attacher && (!(slot in slots) || !(attachment.type in attachables_allowed))) //No more black market attachment combos.
 		QDEL_NULL(attachment)
@@ -102,6 +103,13 @@
 
 	RegisterSignal(attachment, COMSIG_ATOM_UPDATE_ICON, .proc/update_parent_overlay)
 	update_parent_overlay()
+	if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
+		return
+	var/obj/parent_obj = parent
+	if(!ismob(parent_obj.loc))
+		return
+	var/mob/wearing_mob = parent_obj.loc
+	wearing_mob.regenerate_icons() ///Theres probably a better way to do this.
 
 ///This is the do_after and user checks for attaching.
 /datum/component/attachment_handler/proc/do_attach(obj/item/attachment, mob/attacher, list/attachment_data)
@@ -113,10 +121,11 @@
 	if(!can_attach(attachment, user, attachment_data))
 		return FALSE
 
-	var/obj/item/in_hand = user.get_inactive_held_item()
-	if(in_hand != parent)
-		to_chat(user, span_warning("You have to hold [parent] to do that!"))
-		return FALSE
+	if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_NO_HANDS))
+		var/obj/item/in_hand = user.get_inactive_held_item()
+		if(in_hand != parent)
+			to_chat(user, span_warning("You have to hold [parent] to do that!"))
+			return FALSE
 
 	var/do_after_icon_type = BUSY_ICON_GENERIC
 	var/attach_delay = attachment_data[ATTACH_DELAY]
@@ -143,7 +152,7 @@
 	playsound(user, attachment_data[ATTACH_SOUND], 15, 1, 4)
 	return TRUE
 
-///Checks the current slots of the parent and if there are attachments that can be removed in those slots. Basically it makes sure theres room for the attachment. 
+///Checks the current slots of the parent and if there are attachments that can be removed in those slots. Basically it makes sure theres room for the attachment.
 /datum/component/attachment_handler/proc/can_attach(obj/item/attachment, mob/living/user, list/attachment_data)
 	if(!length(slots)) //If there is no slots, it cannot be attached to. Currently this has no use. But I had a thought about making attachments that can add/remove slots.
 		return FALSE
@@ -280,7 +289,9 @@
 		var/list/attachment_data = attachment_data_by_slot[slot]
 
 		var/icon = attachment_data[OVERLAY_ICON]
-		var/icon_state = attachment.icon_state + "_a"
+		var/icon_state = attachment.icon_state
+		if(attachment_data[OVERLAY_ICON] == attachment.icon)
+			icon_state = attachment.icon_state + "_a"
 		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
 			icon_state = attachment.icon_state
 			icon = attachment.icon
@@ -301,10 +312,39 @@
 		var/pixel_shift_y = attachment_data[PIXEL_SHIFT_Y] ? attachment_data[PIXEL_SHIFT_Y] : 0
 
 		overlay.pixel_x = slot_x - pixel_shift_x
-		overlay.pixel_y = slot_y - pixel_shift_y    
+		overlay.pixel_y = slot_y - pixel_shift_y
 
 		attachable_overlays[slot] = overlay
 		parent_item.overlays += overlay
+
+///Updates the mob sprite of the attachment.
+/datum/component/attachment_handler/proc/apply_custom(datum/source, image/standing)
+	SIGNAL_HANDLER
+	for(var/slot in slots)
+		var/obj/item/attachment = slots[slot]
+		if(!attachment)
+			continue
+		var/list/attachment_data = attachment_data_by_slot[slot]
+		if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
+			continue
+		var/image/new_overlay
+		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
+			new_overlay = attachment.icon
+		else
+			var/suffix = "_a"
+			var/icon = attachment.icon
+			if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SEPERATE_MOB_OVERLAY))
+				if(attachment_data[MOB_OVERLAY_ICON])
+					icon = attachment_data[MOB_OVERLAY_ICON]
+					suffix = ""
+				else
+					suffix = "_m"
+			new_overlay = image(icon, icon_state = attachment.icon_state + suffix)
+		if(attachment_data[MOB_PIXEL_SHIFT_X])
+			new_overlay.pixel_x = attachment_data[MOB_PIXEL_SHIFT_X]
+		if(attachment_data[MOB_PIXEL_SHIFT_Y])
+			new_overlay.pixel_y = attachment_data[MOB_PIXEL_SHIFT_Y]
+		standing.overlays += new_overlay
 
 ///Deletes the attachments when the parent deletes.
 /datum/component/attachment_handler/proc/clean_references()

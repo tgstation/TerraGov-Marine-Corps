@@ -1,9 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "Zombies are no longer shot by xeno turrets"
-  - bugfix: "Zombies no longer prevent the game from stopping"
-  - bugfix: "Zombies no longer attract huggers"
-  - bugfix: "Zombies cannot stop xenos from hijacking"
-  - bugfix: "Zombies cannot open doors at a distance"
-  - bugfix: "No drop objects like shields were not dropped, fixed"

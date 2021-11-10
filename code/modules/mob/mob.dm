@@ -38,6 +38,7 @@
 		stack_trace("Invalid type [skills.type] found in .skills during /mob Initialize()")
 	update_config_movespeed()
 	update_movespeed(TRUE)
+	log_mob_tag("\[[tag]\] CREATED: [key_name(src)]")
 
 
 /mob/Stat()
@@ -56,7 +57,7 @@
 		stat("Time Dilation:", "[round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
 
 	if(client?.holder?.rank?.rights)
-		if(client.holder.rank.rights & (R_ADMIN|R_DEBUG))
+		if(client.holder.rank.rights & (R_DEBUG))
 			if(statpanel("MC"))
 				stat("CPU:", "[world.cpu]")
 				stat("Instances:", "[num2text(length(world.contents), 10)]")
@@ -176,7 +177,7 @@
 		if(M == src && self_message) //the src always see the main message or self message
 			msg = self_message
 
-			if(visible_message_flags & COMBAT_MESSAGE && M.client.prefs.mute_self_combat_messages)
+			if((visible_message_flags & COMBAT_MESSAGE) && M.client.prefs.mute_self_combat_messages)
 				continue
 
 		else
@@ -186,7 +187,7 @@
 
 				msg = blind_message
 
-			if(visible_message_flags & COMBAT_MESSAGE && M.client.prefs.mute_others_combat_messages)
+			if((visible_message_flags & COMBAT_MESSAGE) && M.client.prefs.mute_others_combat_messages)
 				continue
 
 		if(visible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, visible_message_flags) && !is_blind(M))
@@ -337,20 +338,6 @@
 		B.remove_from_storage(W, user = src)
 		put_in_hands(W)
 		return TRUE
-	else if(istype(I, /obj/item/clothing/under))
-		var/obj/item/clothing/under/U = I
-		if(!U.hastie)
-			return FALSE
-		var/obj/item/clothing/tie/storage/T = U.hastie
-		if(!istype(T) || !T.hold)
-			return FALSE
-		var/obj/item/storage/internal/S = T.hold
-		if(!length(S.contents))
-			return FALSE
-		var/obj/item/W = S.contents[length(S.contents)]
-		S.remove_from_storage(W, user = src)
-		put_in_hands(W)
-		return TRUE
 	else if(istype(I, /obj/item/clothing/suit/storage))
 		var/obj/item/clothing/suit/storage/S = I
 		if(!S.pockets)
@@ -444,6 +431,7 @@
 		return
 	var/mob/dragged = dropping
 	dragged.show_inv(user)
+
 
 /mob/living/carbon/xenomorph/MouseDrop_T(atom/dropping, atom/user)
 	return
@@ -693,10 +681,6 @@
 			old_area = get_area(oldLoc)
 		if(new_area && old_area != new_area)
 			new_area.Entered(AM, oldLoc)
-		for(var/atom/movable/CR in destination)
-			if(CR in conga_line)
-				continue
-			CR.Crossed(AM)
 		if(oldLoc)
 			AM.Moved(oldLoc, move_dir)
 		var/mob/M = AM
@@ -821,6 +805,8 @@
 		mind.name = newname
 		if(mind.key)
 			log_played_names(mind.key, newname) //Just in case the mind is unsynced at the moment.
+
+	log_mob_tag("\[[tag]\] RENAMED: [key_name(src)]")
 
 	return TRUE
 

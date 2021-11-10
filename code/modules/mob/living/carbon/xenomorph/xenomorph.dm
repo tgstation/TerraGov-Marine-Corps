@@ -79,9 +79,7 @@
 	var/datum/xeno_caste/X = GLOB.xeno_caste_datums[caste_base_type][upgrade]
 	if(!istype(X))
 		CRASH("error with caste datum")
-	var/marked_target = xeno_caste?.marked_target
 	xeno_caste = X
-	xeno_caste.marked_target = marked_target
 	xeno_caste.on_caste_applied(src)
 	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
 	if(restore_health_and_plasma)
@@ -257,7 +255,7 @@
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
 		if(L.stat == DEAD && (SSticker.mode?.flags_round_type & MODE_DEAD_GRAB_FORBIDDEN)) //Can't drag dead human bodies in distress
-			to_chat(usr,span_xenowarning("This looks gross, better not touch it"))
+			to_chat(usr,span_xenowarning("This looks gross, better not touch it."))
 			return FALSE
 		do_attack_animation(L, ATTACK_EFFECT_GRAB)
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN

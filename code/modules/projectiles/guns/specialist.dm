@@ -49,6 +49,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/scope/antimaterial,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/sniperbarrel,
+		/obj/item/attachable/scope/pmc,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -244,6 +246,14 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 	flags_item_map_variant = NONE
+	attachable_allowed = list(
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/scope/antimaterial,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/sniperbarrel,
+		/obj/item/attachable/scope/pmc,
+	)
 	starting_attachment_types = list(/obj/item/attachable/scope/pmc, /obj/item/attachable/sniperbarrel)
 
 	fire_delay = 1.5 SECONDS
@@ -287,6 +297,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/slavic,
+		/obj/item/attachable/slavicbarrel,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER

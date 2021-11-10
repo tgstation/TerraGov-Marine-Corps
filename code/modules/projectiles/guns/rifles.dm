@@ -58,6 +58,7 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/stock/t18stock,
+		/obj/item/attachable/t18barrel,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/extended_barrel,
@@ -125,6 +126,7 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/stock/t12stock,
+		/obj/item/attachable/t12barrel,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/extended_barrel,
@@ -242,9 +244,10 @@
 
 /obj/item/weapon/gun/rifle/standard_br
 	name = "\improper T-64 battle rifle"
-	desc = "The T-64 is the TerraGov Marine Corps main battle rifle. It is known for its consistent ability to perform well at most ranges, and close range stopping power. It is mostly used by people who prefer a bigger round than the average. Lacks burst fire. Uses 10x27mm caseless caliber."
+	desc = "The T-64 is the TerraGov Marine Corps main battle rifle. It is known for its consistent ability to perform well at most ranges, and close range stopping power. It is mostly used by people who prefer a bigger round than the average. Uses 10x27mm caseless caliber."
 	icon_state = "t64"
 	item_state = "t64"
+	icon = 'icons/Marine/gun64.dmi'
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	fire_sound = 'sound/weapons/guns/fire/t64.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/t64_low.ogg'
@@ -255,7 +258,7 @@
 	aim_slowdown = 0.55
 	wield_delay = 0.7 SECONDS
 	force = 20
-	max_shells = 10 //codex
+	max_shells = 35 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/standard_br
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -286,18 +289,20 @@
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_CAN_POINTBLANK
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	starting_attachment_types = list(/obj/item/attachable/stock/br,/obj/item/attachable/scope/mini)
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 17, "rail_y" = 18, "under_x" = 25, "under_y" = 12, "stock_x" = 14, "stock_y" = 10)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	starting_attachment_types = list(/obj/item/attachable/scope/mini)
+	attachable_offset = list("muzzle_x" = 49, "muzzle_y" = 17,"rail_x" = 27, "rail_y" = 21, "under_x" = 33, "under_y" = 7, "stock_x" = 14, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 3
 
 	fire_delay = 0.35 SECONDS
 	damage_mult = 0.5 //uses the marksman bullet, like the DMR.
+	burst_amount = 3
+	burst_delay = 0.1 SECONDS
+	extra_delay = 0.15 SECONDS
 	accuracy_mult = 1.25
 	scatter = -10
-	burst_amount = 1
 
 //-------------------------------------------------------
 //M412 Pulse Rifle
@@ -387,6 +392,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/irremoveable/rifle,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -430,6 +436,8 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/irremoveable/m41a,
+		/obj/item/weapon/gun/grenade_launcher/underslung/invisible,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -468,6 +476,7 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/ak47,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -649,6 +658,7 @@
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/attachable/t42barrel,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -764,6 +774,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/irremoveable/rifle,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -830,6 +841,9 @@
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/weapon/gun/flamer/mini_flamer/unremovable,
+		/obj/item/attachable/suppressor/unremovable/invisible,
+		/obj/item/attachable/scope/unremovable,
 	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -942,6 +956,8 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/t29stock,
+		/obj/item/attachable/t29barrel,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -1077,6 +1093,7 @@
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
 		/obj/item/attachable/scope/unremovable/tl127,
+		/obj/item/attachable/stock/tl127stock,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
@@ -1132,7 +1149,7 @@
 
 /obj/item/weapon/gun/rifle/standard_autosniper
 	name = "\improper T-81 automatic sniper rifle"
-	desc = "The T-81 is the TerraGov Marine Corps's automatic sniper rifle. It is rather well-known for it's night vision scope and IFF ammo, it however lacks a burst fire mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 8.6x70mm caseless IFF caliber."
+	desc = "The T-81 is the TerraGov Marine Corps's automatic sniper rifle usually married to it's iconic NVG/KTLD scope combo. It's users use it for it's high rate of fire for it's class, and has decent performance in any range. Uses 8.6x70mm caseless with specialized pressures for IFF fire."
 	icon_state = "t81"
 	item_state = "t81"
 	fire_sound = 'sound/weapons/guns/fire/sniper.ogg'
@@ -1140,9 +1157,8 @@
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = CALIBER_86X70 //codex
-	max_shells = 7 //codex
+	max_shells = 20 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/autosniper
-	type_of_casings = "cartridge"
 	attachable_allowed = list(
 		/obj/item/attachable/autosniperbarrel,
 		/obj/item/attachable/scope/nightvision,
@@ -1162,7 +1178,7 @@
 	)
 
 	burst_amount = 0
-	fire_delay = 1.75 SECONDS
+	fire_delay = 0.5 SECONDS
 	accuracy_mult = 1.35
 	accuracy_mult_unwielded = 0.7
 	scatter = -30

@@ -317,6 +317,17 @@
 			L.Unconscious(10 SECONDS)
 	return ..()
 
+/datum/reagent/toxin/pain
+	name = "Liquid Pain"
+	description = "This is a chemical used to simulate specific pain levels for testing. Pain is equal to the total volume."
+	custom_metabolism = 0
+	toxpwr = 0
+	taste_description = "ow ow ow"
+
+/datum/reagent/toxin/pain/on_mob_life(mob/living/L, metabolism)
+	L.reagent_pain_modifier = volume
+	return ..()
+
 /datum/reagent/toxin/beer2	//disguised as normal beer
 	name = "Beer"
 	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. The fermentation appears to be incomplete." //If the players manage to analyze this, they deserve to know something is wrong.
@@ -429,10 +440,24 @@
 	taste_description = "poor life choices, followed by burning agony"
 	reagent_state = LIQUID
 	color = "#535E66" // rgb: 83, 94, 102
+	custom_metabolism = REAGENTS_METABOLISM * 5
+
+/datum/reagent/toxin/nanites/on_mob_add(mob/living/L, metabolism)
+	to_chat(L, span_userdanger("Your body begins to twist and deform! Get out of the razorburn!"))
+	. = ..()
 
 /datum/reagent/toxin/nanites/on_mob_life(mob/living/L, metabolism)
-	L.apply_damages(5*effect_str, 3*effect_str, 3*effect_str) //DO NOT DRINK THIS. Seriously!
-	L.blood_volume -= 10
+	L.apply_damages(2.5*effect_str, 1.5*effect_str, 1.5*effect_str) //DO NOT DRINK THIS. Seriously!
+	L.blood_volume -= 5
+	if(current_cycle > 5)
+		L.apply_damages(2.5*effect_str, 1.5*effect_str, 1.5*effect_str)
+		L.blood_volume -= 5
+		holder.remove_reagent(/datum/reagent/toxin/nanites, (current_cycle * 0.2) - 1)
+	if(volume > 100)
+		var/turf/location = get_turf(holder.my_atom)
+		location.visible_message(span_danger("Holy shit! They just exploded into a ball of razorwire! Dear god!"))
+		L.gib()
+		new /obj/structure/razorwire(location)
 	return ..()
 
 /datum/reagent/toxin/xeno_neurotoxin

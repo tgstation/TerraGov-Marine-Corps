@@ -37,8 +37,7 @@
 	if(outgoing_call)
 		outgoing_call.ConnectionFailure(src)
 
-	for(var/I in holo_calls)
-		var/datum/holocall/HC = I
+	for(var/datum/holocall/HC AS in holo_calls)
 		HC.ConnectionFailure(src)
 
 	for (var/I in masters)
@@ -84,8 +83,7 @@
 		if(on_network)
 			var/one_answered_call = FALSE
 			var/one_unanswered_call = FALSE
-			for(var/I in holo_calls)
-				var/datum/holocall/HC = I
+			for(var/datum/holocall/HC AS in holo_calls)
 				if(HC.connected_holopad != src)
 					dat += "<a href='?src=[REF(src)];connectcall=[REF(HC)]'>Answer call from [get_area(HC.calling_holopad)]</a><br>"
 					one_unanswered_call = TRUE
@@ -95,8 +93,7 @@
 			if(one_answered_call && one_unanswered_call)
 				dat += "=====================================================<br>"
 			//we loop twice for formatting
-			for(var/I in holo_calls)
-				var/datum/holocall/HC = I
+			for(var/datum/holocall/HC AS in holo_calls)
 				if(HC.connected_holopad == src)
 					dat += "<a href='?src=[REF(src)];disconnectcall=[REF(HC)]'>Disconnect call from [HC.user]</a><br>"
 
@@ -126,7 +123,7 @@
 			temp = "You requested an AI's presence.<BR>"
 			temp += "<A href='?src=[REF(src)];mainmenu=1'>Main Menu</A>"
 			var/area/area = get_area(src)
-			for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+			for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 				if(!AI.client)
 					continue
 				to_chat(AI, span_info("Your presence is requested at <a href='?src=[REF(AI)];jumptoholopad=[REF(src)]'>\the [area]</a>."))
@@ -374,7 +371,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 			else
 				transfered = TRUE
 		//All is good.
-		holo.forceMove(new_turf)
+		holo.abstract_move(new_turf)
 		if(!transfered)
 			update_holoray(user,new_turf)
 	return TRUE

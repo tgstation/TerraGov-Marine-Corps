@@ -30,6 +30,8 @@
 	var/list/buyable_upgrades = list()
 	///assoc list name = upgraderef
 	var/list/datum/hive_upgrade/upgrades_by_name = list()
+	///Its an int showing the count of living kings
+	var/king_present = 0
 
 // ***************************************
 // *********** Init
@@ -592,6 +594,12 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal // subtype for easier typechecking and overrides
 	hive_flags = HIVE_CAN_HIJACK
 
+///Signal handler to tell the hive to check for siloless in MINIMUM_TIME_SILO_LESS_COLLAPSE
+/datum/hive_status/normal/proc/set_siloless_collapse_timer()
+	SIGNAL_HANDLER
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY))
+	addtimer(CALLBACK(src, .proc/handle_silo_death_timer, TRUE), MINIMUM_TIME_SILO_LESS_COLLAPSE)
+
 /datum/hive_status/normal/on_queen_death(mob/living/carbon/xenomorph/queen/Q)
 	if(living_xeno_queen != Q)
 		return FALSE
@@ -776,10 +784,10 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/proc/handle_silo_death_timer()
 	return
 
-/datum/hive_status/normal/handle_silo_death_timer()
-	if(!(SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN))
-		return
-	if(world.time < MINIMUM_TIME_SILO_LESS_COLLAPSE)
+/datum/hive_status/normal/handle_silo_death_timer(bypass_flag = FALSE)
+	if(bypass_flag)
+		hive_flags |= HIVE_CAN_COLLAPSE_FROM_SILO
+	else if(!(hive_flags & HIVE_CAN_COLLAPSE_FROM_SILO))
 		return
 	var/datum/game_mode/infestation/distress/D = SSticker.mode
 	if(D.round_stage != INFESTATION_MARINE_DEPLOYMENT)
@@ -1199,6 +1207,11 @@ to_chat will check for valid clients itself already so no need to double check f
 	return FALSE
 
 /obj/effect/alien/egg/get_xeno_hivenumber()
+	return hivenumber
+
+/obj/structure/xeno/trap/get_xeno_hivenumber()
+	if(hugger)
+		return hugger.hivenumber
 	return hivenumber
 
 /obj/item/xeno_egg/get_xeno_hivenumber()
