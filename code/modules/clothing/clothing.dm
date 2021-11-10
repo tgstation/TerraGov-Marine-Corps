@@ -4,6 +4,16 @@
 	/// Resets the armor on clothing since by default /objs get 100 bio armor
 	soft_armor = list()
 
+	///Assoc list of available slots.
+	var/list/attachments_by_slot = list()
+	///Typepath list of allowed attachment types.
+	var/list/attachments_allowed = list()
+
+	///Pixel offsets for specific attachment slots. Is not used currently.
+	var/list/attachment_offsets = list()
+	///List of attachment types that is attached to the object on initialize.
+	var/list/starting_attachments = list()
+
 	/// Bitflags used to determine the state of the armor (light on, overlay used, or reinfornced), currently support flags are in [equipment.dm:100]
 	var/flags_armor_features = NONE
 
@@ -13,6 +23,12 @@
 
 	/// Used by headgear mostly to affect accuracy
 	var/accuracy_mod = 0
+
+/obj/item/clothing/Initialize()
+	. = ..()
+	if(!length(attachments_allowed) || !length(attachments_by_slot))
+		return
+	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, attachment_offsets, starting_attachments, null, null, null)
 
 
 /obj/item/clothing/equipped(mob/user, slot)

@@ -7,7 +7,7 @@
 	slowdown = 0
 
 	///Reference to parent modular armor suit.
-	var/obj/item/clothing/suit/modular/parent
+	var/obj/item/clothing/parent
 
 	///Slot the attachment is able to occupy.
 	var/slot
@@ -44,8 +44,6 @@
 
 /// Called before a module is attached.
 /obj/item/armor_module/proc/can_attach(obj/item/attaching_to, mob/user)
-	if(!istype(attaching_to, /obj/item/clothing/suit/modular) && !istype(attaching_to, /obj/item/clothing/head/modular) && !istype(attaching_to, /obj/item/clothing/under))
-		return FALSE
 	return TRUE
 
 /// Called when the module is added to the armor.
