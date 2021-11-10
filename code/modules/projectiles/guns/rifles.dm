@@ -292,13 +292,13 @@
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 3
 
-	fire_delay = 0.35 SECONDS
-	burst_amount = 3
-	burst_delay = 0.13 SECONDS
+	fire_delay = 0.30 SECONDS
+	burst_amount = 2
+	burst_delay = 0.15 SECONDS
 	extra_delay = 0.25 SECONDS
 	accuracy_mult = 1.25
 	scatter = -10
-
+	damage_falloff_mult = 0.4
 //-------------------------------------------------------
 //M412 Pulse Rifle
 

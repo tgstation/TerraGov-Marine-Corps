@@ -102,7 +102,7 @@
 	icon_state = "t64"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/light_dmr
-	max_rounds = 30
+	max_rounds = 35
 	gun_type = /obj/item/weapon/gun/rifle/standard_br
 	icon_state_mini = "mag_rifle_big"
 

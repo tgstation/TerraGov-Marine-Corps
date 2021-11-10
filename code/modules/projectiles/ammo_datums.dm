@@ -593,11 +593,11 @@ datum/ammo/bullet/revolver/tp44
 	name = "light marksman bullet"
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
-	damage_falloff = 0.65
+	damage_falloff = 0.7
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	penetration = 7
-	damage = 30
-	sundering = 1.5
+	penetration = 10
+	damage = 35
+	sundering = 1.75
 
 /datum/ammo/bullet/rifle/light_dmr/incendiary
 	name = "incendiary light marksman bullet"
