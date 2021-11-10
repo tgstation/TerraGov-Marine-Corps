@@ -826,7 +826,7 @@
 
 /datum/action/xeno_action/activable/xeno_spit/remove_action(mob/living/L)
 	. = ..()
-	GetComponent(/datum/component/automatedfire/autofire).RemoveComponent()
+	qdel(GetComponent(/datum/component/automatedfire/autofire))
 
 
 /datum/action/xeno_action/activable/xeno_spit/update_button_icon()
