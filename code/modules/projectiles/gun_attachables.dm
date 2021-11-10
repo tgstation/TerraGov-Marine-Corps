@@ -1512,6 +1512,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 13
 	///What click the gun will fire on.
 	var/fire_mode = "right"
+	///Blacklist of item types not allowed to be in the users hand to fire the gun.
+	var/list/in_hand_items_blacklist = list(
+		/obj/item/weapon/gun,
+		/obj/item/weapon/shield,
+	)
 
 /obj/item/attachable/shoulder_mount/on_attach(attaching_item, mob/user)
 	. = ..()
@@ -1605,6 +1610,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(!istype(master_gun.loc, /obj/item/clothing/suit/modular) || master_gun.loc.loc != source)
 		return
 	if(source.Adjacent(object))
+		return
+	var/mob/living/user = master_gun.gun_user
+	var/active_hand = user.get_active_held_item()
+	var/inactive_hand = user.get_inactive_held_item()
+	for(var/item_blacklisted in in_hand_items_blacklist)
+		if(!istype(active_hand, item_blacklisted) && !istype(inactive_hand, item_blacklisted))
+			continue
+		to_chat(user, span_warning("[src] beeps. Guns or shields in your hands are interfering with its targetting. Aborting."))
 		return
 	master_gun.start_fire(source, object, location, control, null, TRUE)
 
