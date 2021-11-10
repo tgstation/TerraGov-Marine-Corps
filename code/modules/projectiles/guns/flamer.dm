@@ -228,7 +228,7 @@
 	if(!length(turfs_to_burn) || !length(chamber_items))
 		return FALSE
 
-	var/datum/ammo/flamethrower/loaded_ammo = CHECK_BITFIELD(flags_flamer_features, FLAMER_USES_GUN_FLAMES) ? ammo_datum_type : get_magazine_default_ammo()
+	var/datum/ammo/flamethrower/loaded_ammo = CHECK_BITFIELD(flags_flamer_features, FLAMER_USES_GUN_FLAMES) ? ammo_datum_type : get_magazine_default_ammo(chamber_items[current_chamber_position])
 	var/burn_level = initial(loaded_ammo.burnlevel) * burn_level_mod
 	var/burn_time = initial(loaded_ammo.burntime) * burn_time_mod
 	var/fire_color = initial(loaded_ammo.fire_color)
@@ -238,7 +238,8 @@
 			light_pilot(FALSE)
 			return FALSE
 		flame_turf(turf_to_ignite, gun_user, burn_time, burn_level, fire_color)
-		adjust_current_rounds(-1)
+		adjust_current_rounds(chamber_items[current_chamber_position], -1)
+		rounds--
 	gun_user?.hud_used.update_ammo_hud(gun_user, src)
 	return TRUE
 

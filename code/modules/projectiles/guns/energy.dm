@@ -14,34 +14,34 @@
 	allowed_ammo_types = list(/obj/item/cell/lasgun)
 	muzzle_flash = null
 
-/obj/item/weapon/gun/energy/get_current_rounds()
-	if(!length(chamber_items))
+/obj/item/weapon/gun/energy/get_current_rounds(obj/item/mag)
+	if(!mag)
 		return null
-	var/obj/item/cell/lasgun/cell = chamber_items[current_chamber_position]
+	var/obj/item/cell/lasgun/cell = mag
 	return cell.charge
 
-/obj/item/weapon/gun/energy/adjust_current_rounds(new_rounds)
-	if(!length(chamber_items))
+/obj/item/weapon/gun/energy/adjust_current_rounds(obj/item/mag, new_rounds)
+	if(!mag)
 		return
-	var/obj/item/cell/lasgun/cell = chamber_items[current_chamber_position]
+	var/obj/item/cell/lasgun/cell = mag
 	cell.charge += new_rounds
 
-/obj/item/weapon/gun/energy/get_max_rounds()
-	if(!length(chamber_items))
+/obj/item/weapon/gun/energy/get_max_rounds(obj/item/mag)
+	if(!mag)
 		return null
-	var/obj/item/cell/lasgun/cell = chamber_items[current_chamber_position]
+	var/obj/item/cell/lasgun/cell = mag
 	return cell.maxcharge
 
-/obj/item/weapon/gun/energy/get_magazine_default_ammo()
+/obj/item/weapon/gun/energy/get_magazine_default_ammo(obj/item/mag)
 	return null
 
-/obj/item/weapon/gun/energy/get_flags_magazine_features()
+/obj/item/weapon/gun/energy/get_flags_magazine_features(obj/item/mag)
 	return null
 
-/obj/item/weapon/gun/energy/get_magazine_overlay()
+/obj/item/weapon/gun/energy/get_magazine_overlay(obj/item/mag)
 	return null
 
-/obj/item/weapon/gun/energy/get_magazine_reload_delay()
+/obj/item/weapon/gun/energy/get_magazine_reload_delay(obj/item/mag)
 	return null
 
 
