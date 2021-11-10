@@ -22,6 +22,8 @@
 
 	var/status_flags = CANSTUN|CANKNOCKDOWN|CANKNOCKOUT|CANPUSH|CANUNCONSCIOUS	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
 	var/generic_canpass = TRUE
+	///TRUE if we should not push or shuffle on bump/enter
+	var/moving_diagonally = FALSE
 
 	var/initial_language_holder = /datum/language_holder
 	var/datum/language_holder/language_holder
@@ -139,6 +141,9 @@
 	loc = new_loc
 	Moved(old_loc)
 
+#define SET_CARDINAL_DIR(flags_atom, direction, can_pass_diagonally)\
+if(!(flags_atom & DIRLOCK)){setDir(direction &~ can_pass_diagonally)}
+
 /atom/movable/Move(atom/newloc, direction, glide_size_override)
 	var/atom/movable/pullee = pulling
 	if(!moving_from_pull)
@@ -148,31 +153,36 @@
 
 	if(!direction)
 		direction = get_dir(src, newloc)
-	var/can_pass_diagonally = NONE
-	if ((direction & (direction - 1))) //Check if the diagonal move is possible
-		if(direction & NORTH)
-			can_pass_diagonally = get_step(loc, NORTH)?.Enter(src) ? NORTH : NONE
-		if(!can_pass_diagonally && (direction & EAST))
-			can_pass_diagonally = get_step(loc, EAST)?.Enter(src) ? EAST : NONE
-		if(!can_pass_diagonally && (direction & WEST))
-			can_pass_diagonally = get_step(loc, WEST)?.Enter(src) ? WEST : NONE
-		if(!can_pass_diagonally && (direction & SOUTH))
-			can_pass_diagonally = get_step(loc, SOUTH)?.Enter(src) ? SOUTH : NONE
-		if(!can_pass_diagonally)
-			return
 
-	if(!(flags_atom & DIRLOCK))
-		setDir(direction)
+	var/can_pass_diagonally = NONE
+	if (direction & (direction - 1)) //Check if the first part of the diagonal move is possible
+		moving_diagonally = TRUE
+		if(!(flags_atom & DIRLOCK))
+			setDir(direction) //We first set the direction to prevent going through dir sensible object
+		if((direction & NORTH) && get_step(loc, NORTH)?.Enter(src))
+			can_pass_diagonally = NORTH
+		else if((direction & EAST) && get_step(loc, EAST)?.Enter(src))
+			can_pass_diagonally =  EAST
+		else if((direction & WEST) && get_step(loc, WEST)?.Enter(src))
+			can_pass_diagonally = WEST
+		else if((direction & SOUTH) && get_step(loc, SOUTH)?.Enter(src))
+			can_pass_diagonally = SOUTH
+		else
+			moving_diagonally = FALSE
+			return
+		moving_diagonally = FALSE
 
 	var/is_multi_tile_object = bound_width > 32 || bound_height > 32
 
 	var/list/old_locs
 	if(is_multi_tile_object && isturf(loc))
-		old_locs = locs.Copy()
+		old_locs = locs // locs is a special list, this is effectively the same as .Copy() but with less steps
 		for(var/atom/exiting_loc AS in old_locs)
 			if(!exiting_loc.Exit(src, direction))
+				SET_CARDINAL_DIR(flags_atom, direction, can_pass_diagonally)
 				return
 	else if(!loc.Exit(src, direction))
+		SET_CARDINAL_DIR(flags_atom, direction, can_pass_diagonally)
 		return
 
 	var/list/new_locs
@@ -187,11 +197,18 @@
 		) // If this is a multi-tile object then we need to predict the new locs and check if they allow our entrance.
 		for(var/atom/entering_loc AS in new_locs)
 			if(!entering_loc.Enter(src))
+				SET_CARDINAL_DIR(flags_atom, direction, can_pass_diagonally)
 				return
-	else if(!newloc.Enter(src))
-		if(can_pass_diagonally)
-			Move(get_step(loc, can_pass_diagonally), can_pass_diagonally)
-		return
+	else
+		var/enter_return_value = newloc.Enter(src)
+		if(!(enter_return_value & TURF_CAN_ENTER))
+			if(can_pass_diagonally && !(enter_return_value & TURF_ENTER_ALREADY_MOVED))
+				Move(get_step(loc, can_pass_diagonally), can_pass_diagonally)
+				return
+			SET_CARDINAL_DIR(flags_atom, direction, can_pass_diagonally)
+			return
+
+	SET_CARDINAL_DIR(flags_atom, direction, can_pass_diagonally)
 
 	var/atom/oldloc = loc
 	move_stacks++
