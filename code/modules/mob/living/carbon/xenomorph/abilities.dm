@@ -894,7 +894,7 @@
 	span_xenowarning("We spit at \the [current_target]!") )
 
 	SEND_SIGNAL(src, COMSIG_XENO_FIRE)
-	xeno?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+	xeno?.client?.mouse_pointer_icon = 'icons/effects/xeno_target.dmi'
 
 ///Fires the spit projectile.
 /datum/action/xeno_action/activable/xeno_spit/proc/fire()
