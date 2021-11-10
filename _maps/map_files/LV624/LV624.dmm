@@ -7280,9 +7280,7 @@
 /area/lv624/lazarus/security)
 "bcW" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp{
-	on = 0
-	},
+/obj/item/flashlight/lamp,
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 8
 	},
