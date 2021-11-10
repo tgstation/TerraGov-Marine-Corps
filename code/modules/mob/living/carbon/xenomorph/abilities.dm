@@ -729,11 +729,17 @@
 	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
 	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED|XACT_DO_AFTER_ATTACK
 	target_flags = XABB_MOB_TARGET
+	///Current target that the xeno is targeting. This is for aiming.
 	var/current_target
 
 /datum/action/xeno_action/activable/xeno_spit/give_action(mob/living/L)
 	. = ..()
 	AddComponent(/datum/component/automatedfire/autofire, get_cooldown(), _fire_mode = GUN_FIREMODE_AUTOMATIC,  _callback_reset_fire = CALLBACK(src, .proc/reset_fire), _callback_fire = CALLBACK(src, .proc/fire))
+
+/datum/action/xeno_action/activable/xeno_spit/remove_action(mob/living/L)
+	. = ..()
+	qdel(GetComponent(/datum/component/automatedfire/autofire))
+
 
 /datum/action/xeno_action/activable/xeno_spit/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
