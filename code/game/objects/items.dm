@@ -1054,7 +1054,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	//Get the required information about the base icon
 	var/icon/icon2use = get_worn_icon_file(body_type = body_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
 	var/state2use = get_worn_icon_state(slot_name = slot_name, inhands = inhands)
-	var/layer2use = worn_layer ? -worn_layer : -default_layer
+	var/layer2use = !inhands && worn_layer ? -worn_layer : -default_layer
 
 	//Snowflakey inhand icons in a specific slot
 	if(inhands && icon2use == icon_override)

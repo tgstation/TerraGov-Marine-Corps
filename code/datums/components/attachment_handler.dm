@@ -29,7 +29,7 @@
 	src.can_attach = can_attach
 	src.attachment_offsets = attachment_offsets
 	attachable_overlays = overlays //This is incase the parent wishes to have a stored reference to this list.
-	attachable_overlays += slots 
+	attachable_overlays += slots
 
 	var/obj/parent_object = parent
 	if(length(starting_attachmments) && parent_object.loc) //Attaches starting attachments if the object is not instantiated in nullspace. If it is created in null space, such as in a loadout vendor. It wont create default attachments.
@@ -67,7 +67,7 @@
 				return
 		if(!do_attach(attachment, attacher, attachment_data))
 			return
-	
+
 	var/slot = attachment_data[SLOT]
 	if(!attacher && (!(slot in slots) || !(attachment.type in attachables_allowed))) //No more black market attachment combos.
 		QDEL_NULL(attachment)
@@ -141,7 +141,7 @@
 	playsound(user, attachment_data[ATTACH_SOUND], 15, 1, 4)
 	return TRUE
 
-///Checks the current slots of the parent and if there are attachments that can be removed in those slots. Basically it makes sure theres room for the attachment. 
+///Checks the current slots of the parent and if there are attachments that can be removed in those slots. Basically it makes sure theres room for the attachment.
 /datum/component/attachment_handler/proc/can_attach(obj/item/attachment, mob/living/user, list/attachment_data)
 	if(!length(slots)) //If there is no slots, it cannot be attached to. Currently this has no use. But I had a thought about making attachments that can add/remove slots.
 		return FALSE
@@ -280,7 +280,7 @@
 			icon_state = attachment.icon_state
 			icon = attachment.icon
 
-		overlay = image(icon, parent_item, icon_state)
+		overlay = image(icon, parent_item, icon_state, attachment.worn_layer)
 
 		var/slot_x = 0 //This and slot_y are for the event that the parent did not have an overlay_offsets. In that case the offsets default to 0
 		var/slot_y = 0
@@ -296,7 +296,7 @@
 		var/pixel_shift_y = attachment_data[PIXEL_SHIFT_Y] ? attachment_data[PIXEL_SHIFT_Y] : 0
 
 		overlay.pixel_x = slot_x - pixel_shift_x
-		overlay.pixel_y = slot_y - pixel_shift_y    
+		overlay.pixel_y = slot_y - pixel_shift_y
 
 		attachable_overlays[slot] = overlay
 		parent_item.overlays += overlay
