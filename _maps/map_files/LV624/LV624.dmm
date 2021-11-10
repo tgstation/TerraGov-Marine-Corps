@@ -16604,7 +16604,6 @@
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "rSz" = (
-/obj/machinery/deployable,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/armory)
@@ -17475,10 +17474,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/main_hall)
-"tMF" = (
-/obj/machinery/deployable,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/armory)
 "tNv" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 8
@@ -43870,7 +43865,7 @@ bgm
 bgm
 prT
 bhw
-tMF
+bhw
 rSz
 bgm
 bjR
