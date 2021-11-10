@@ -1380,36 +1380,50 @@
 
 ///Getter to draw current rounds. Overwrite if the magazine is not a /ammo_magazine
 /obj/item/weapon/gun/proc/get_current_rounds()
+	if(!length(chamber_items))
+		return null
 	var/obj/item/ammo_magazine/mag = chamber_items[current_chamber_position]
 	return mag.current_rounds
 
 ///Adds or subtracts rounds from the magazine.
 /obj/item/weapon/gun/proc/adjust_current_rounds(new_rounds)
+	if(!length(chamber_items))
+		return
 	var/obj/item/ammo_magazine/mag = chamber_items[current_chamber_position]
 	mag.current_rounds += new_rounds
 
 ///Getter to draw max rounds.
 /obj/item/weapon/gun/proc/get_max_rounds()
+	if(!length(chamber_items))
+		return null
 	var/obj/item/ammo_magazine/mag = chamber_items[current_chamber_position]
 	return mag.max_rounds
 
 ///Getter to draw flags_magazine features. If the mag has none, overwrite and return null.
 /obj/item/weapon/gun/proc/get_flags_magazine_features()
+	if(!length(chamber_items))
+		return null
 	var/obj/item/ammo_magazine/mag = chamber_items[current_chamber_position]
 	return mag.flags_magazine
 
 ///Getter to draw default ammo type. If the mag has none, overwrite and return null.
 /obj/item/weapon/gun/proc/get_magazine_default_ammo()
+	if(!length(chamber_items))
+		return null
 	var/obj/item/ammo_magazine/mag = chamber_items[current_chamber_position]
 	return mag.default_ammo
 
 ///Getter to draw reload delay. If the mag has none, overwrite and return null.
 /obj/item/weapon/gun/proc/get_magazine_reload_delay()
+	if(!length(chamber_items))
+		return null
 	var/obj/item/ammo_magazine/mag = chamber_items[current_chamber_position]
 	return mag.reload_delay
 
 ///Getter to draw the magazine overlay on the gun. If the mag has none, overwrite and return null.
 /obj/item/weapon/gun/proc/get_magazine_overlay()
+	if(!length(chamber_items))
+		return null
 	var/obj/item/ammo_magazine/mag = chamber_items[current_chamber_position]
 	return mag.bonus_overlay
 

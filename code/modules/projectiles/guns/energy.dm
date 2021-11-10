@@ -15,14 +15,20 @@
 	muzzle_flash = null
 
 /obj/item/weapon/gun/energy/get_current_rounds()
+	if(!length(chamber_items))
+		return null
 	var/obj/item/cell/lasgun/cell = chamber_items[current_chamber_position]
 	return cell.charge
 
 /obj/item/weapon/gun/energy/adjust_current_rounds(new_rounds)
+	if(!length(chamber_items))
+		return
 	var/obj/item/cell/lasgun/cell = chamber_items[current_chamber_position]
 	cell.charge += new_rounds
 
 /obj/item/weapon/gun/energy/get_max_rounds()
+	if(!length(chamber_items))
+		return null
 	var/obj/item/cell/lasgun/cell = chamber_items[current_chamber_position]
 	return cell.maxcharge
 
@@ -99,6 +105,8 @@
 	lower_akimbo_accuracy = 3
 
 /obj/item/weapon/gun/energy/lasgun/get_magazine_reload_delay()
+	if(!length(chamber_items))
+		return null
 	var/obj/item/cell/lasgun/cell = chamber_items[current_chamber_position]
 	return cell.reload_delay
 
