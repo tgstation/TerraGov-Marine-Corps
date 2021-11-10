@@ -51,6 +51,7 @@
 			),
 			RES_TIER_RARE = list(
 				/obj/item/research_product/money/rare,
+				/obj/item/attachable/shoulder_mount,
 			),
 		),
 		RES_XENO = list(
@@ -64,6 +65,7 @@
 			RES_TIER_UNCOMMON = list(
 				/obj/item/research_product/money/uncommon,
 				/obj/item/implanter/chem/blood,
+				/obj/item/attachable/shoulder_mount,
 			),
 			RES_TIER_RARE = list(
 				/obj/item/research_product/money/rare,

@@ -826,7 +826,12 @@ and you're good to go.
 
 
 	play_fire_sound(loc)
-	muzzle_flash(firing_angle, master_gun ? gun_user : loc)
+	var/flash_loc
+	if(master_gun || !istype(loc, /obj/machinery/deployable/mounted))
+		flash_loc = gun_user
+	else
+		flash_loc = loc
+	muzzle_flash(firing_angle, flash_loc)
 	simulate_recoil(dual_wield, firing_angle)
 
 	//This is where the projectile leaves the barrel and deals with projectile code only.

@@ -331,8 +331,8 @@
 		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
 			new_overlay = attachment.icon
 		else
-			var/suffix = "_a"
-			var/icon = attachment.icon
+			var/icon = attachment_data[OVERLAY_ICON]
+			var/suffix = icon == attachment.icon ? "_a" : ""
 			if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SEPERATE_MOB_OVERLAY))
 				if(attachment_data[MOB_OVERLAY_ICON])
 					icon = attachment_data[MOB_OVERLAY_ICON]

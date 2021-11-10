@@ -1492,12 +1492,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/buildasentry/on_detach(detaching_item, mob/user)
 	. = ..()
-	var/obj/item/weapon/gun/detaching_item = attaching_item
-	DISABLE_BITFIELD(detaching_item.flags_gun_features, GUN_IS_SENTRY)
-	DISABLE_BITFIELD(detaching_item.flags_item, IS_DEPLOYABLE)
-	detaching_item.ignored_terrains = null
-	detaching_item.turret_flags &= ~(TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS)
-	battery = detaching_item.sentry_battery
+	var/obj/item/weapon/gun/detaching_gun = detaching_item
+	DISABLE_BITFIELD(detaching_gun.flags_gun_features, GUN_IS_SENTRY)
+	DISABLE_BITFIELD(detaching_gun.flags_item, IS_DEPLOYABLE)
+	detaching_gun.ignored_terrains = null
+	detaching_gun.turret_flags &= ~(TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS)
+	battery = detaching_gun.sentry_battery
 	battery?.forceMove(src)
 	detaching_gun.sentry_battery = null
 	detaching_gun.RemoveElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, deploy_time, undeploy_time)
@@ -1505,7 +1505,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/shoulder_mount
 	name = "Experimental Shoulder Attachment Point"
-	desc = "A brand new advance in combat. This device, once attached to a firearm, will allow the firearm to be mounted onto any piece of modular armor. Once attached to the armor and activated, the gun will fire when the user chooses. Once attached to the armor, right clicking the armor with an empty hand will select what click will fire the armor (middle, right, left). Right clicking with ammunition will reload the gun. Using the unique action keybind will perform the guns unique action only when the gun is active."
+	desc = "A brand new advance in combat technology. This device, once attached to a firearm, will allow the firearm to be mounted onto any piece of modular armor. Once attached to the armor and activated, the gun will fire when the user chooses. Once attached to the armor, right clicking the armor with an empty hand will select what click will fire the armor (middle, right, left). Right clicking with ammunition will reload the gun. Using the unique action keybind will perform the guns unique action only when the gun is active."
 	icon = 'icons/mob/modular/shoulder_gun.dmi'
 	icon_state = "shoulder_gun"
 	slot = ATTACHMENT_SLOT_RAIL
@@ -1516,15 +1516,15 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/shoulder_mount/on_attach(attaching_item, mob/user)
 	. = ..()
 	var/obj/item/weapon/gun/attaching_gun = attaching_item
-	ENABLE_BITFIELD(flags_attach_features, ATTACH_BYPASS_ALLOWED_LIST)
+	ENABLE_BITFIELD(flags_attach_features, ATTACH_BYPASS_ALLOWED_LIST|ATTACH_APPLY_ON_MOB)
 	attaching_gun.AddElement(/datum/element/attachment, ATTACHMENT_SLOT_MODULE, icon, null, null, null, null, 0, 0, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound)
 	RegisterSignal(attaching_gun, COMSIG_ATTACHMENT_ATTACHED, .proc/handle_armor_attach)
 	RegisterSignal(attaching_gun, COMSIG_ATTACHMENT_DETACHED, .proc/handle_armor_detach)
 
 /obj/item/attachable/shoulder_mount/on_detach(detaching_item, mob/user)
 	var/obj/item/weapon/gun/detaching_gun = detaching_item
-	detaching_gun.RemoveElement(/datum/element/attachment, ATTACHMENT_SLOT_MODULE, icon, null, null, null, null, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound)
-	DISABLE_BITFIELD(flags_attach_features, ATTACH_BYPASS_ALLOWED_LIST)
+	detaching_gun.RemoveElement(/datum/element/attachment, ATTACHMENT_SLOT_MODULE, icon, null, null, null, null, 0, 0, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound)
+	DISABLE_BITFIELD(flags_attach_features, ATTACH_BYPASS_ALLOWED_LIST|ATTACH_APPLY_ON_MOB)
 	UnregisterSignal(detaching_gun, list(COMSIG_ATTACHMENT_ATTACHED, COMSIG_ATTACHMENT_DETACHED))
 	return ..()
 
@@ -1562,7 +1562,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	RegisterSignal(attaching_item, COMSIG_PARENT_ATTACKBY_ALTERNATE, .proc/reload_gun)
 	if(CHECK_BITFIELD(master_gun.flags_gun_features, GUN_PUMP_REQUIRED))
 		RegisterSignal(master_gun, COMSIG_MOB_GUN_FIRED, .proc/after_fire)
-	master_gun.icon_state = master_gun.placed_overlay_iconstate
+	master_gun.base_gun_icon = master_gun.placed_overlay_iconstate
 
 ///Handles the gun detaching from the armor.
 /obj/item/attachable/shoulder_mount/proc/handle_armor_detach(datum/source, detaching_item, mob/user)
@@ -1576,7 +1576,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		break
 	overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
 	update_icon(user)
-	master_gun.icon_state = master_gun.base_gun_icon
+	master_gun.base_gun_icon = initial(master_gun.icon_state)
+	master_gun.update_icon()
 	UnregisterSignal(detaching_item, list(COMSIG_ITEM_EQUIPPED, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, COMSIG_PARENT_ATTACKBY_ALTERNATE, COMSIG_MOB_GUN_FIRED))
 
 ///Sets up the action.
