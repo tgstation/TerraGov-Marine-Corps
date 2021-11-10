@@ -12,13 +12,28 @@
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS
 	default_ammo_type = /obj/item/cell/lasgun
 	allowed_ammo_types = list(/obj/item/cell/lasgun)
-	current_rounds_var = "charge"
-	max_rounds_var = "maxcharge"
-	ammo_type_var = null
-	magazine_flags_var = null
-	magazine_overlay_var = null
-	reload_delay_var = null
 	muzzle_flash = null
+
+/obj/item/weapon/gun/energy/get_current_rounds()
+	var/obj/item/cell/lasgun/cell = chamber_items[current_chamber_position]
+	return cell.charge
+
+/obj/item/weapon/gun/energy/get_max_rounds()
+	var/obj/item/cell/lasgun/cell = chamber_items[current_chamber_position]
+	return cell.maxcharge
+
+/obj/item/weapon/gun/energy/get_magazine_default_ammo()
+	return null
+
+/obj/item/weapon/gun/energy/get_flags_magazine_features()
+	return null
+
+/obj/item/weapon/gun/energy/get_magazine_overlay()
+	return null
+
+/obj/item/weapon/gun/energy/get_magazine_reload_delay()
+	return null
+
 
 /obj/item/weapon/gun/energy/taser
 	name = "taser gun"
@@ -79,7 +94,9 @@
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
 
-	reload_delay_var = "reload_delay"
+/obj/item/weapon/gun/energy/lasgun/get_magazine_reload_delay()
+	var/obj/item/cell/lasgun/cell = chamber_items[current_chamber_position]
+	return cell.reload_delay
 
 /obj/item/weapon/gun/energy/lasgun/tesla
 	name = "\improper M43-T tesla shock rifle"

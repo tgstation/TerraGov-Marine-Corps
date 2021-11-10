@@ -130,19 +130,6 @@
 	var/list/allowed_ammo_types = list(
 		/obj/item/ammo_magazine,
 	)
-	///The var to draw from a 'magazine' for its current rounds.
-	var/current_rounds_var = "current_rounds"
-	///The var to draw from a 'magazine' for its maximum rounds.
-	var/max_rounds_var = "max_rounds"
-	///The var to draw from a 'magazine' for its magazine flags.
-	var/magazine_flags_var = "flags_magazine"
-	///The var to draw from a 'magazine' for its default ammo var.
-	var/ammo_type_var = "default_ammo"
-	///The var to draw from a 'magazine' for its reload delay.
-	var/reload_delay_var = "reload_delay"
-	///The var to draw from a 'magazine' for its bonus magazine var.
-	var/magazine_overlay_var = "bonus_overlay"
-
 
 /*
  * Operation Vars
@@ -492,10 +479,10 @@
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) || !length(chamber_items))
 		attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = null
 		return
-	if(!magazine_overlay_var || !chamber_items[current_chamber_position].vars[magazine_overlay_var])
+	if(!get_magazine_overlay())
 		return
 	var/obj/item/current_mag = chamber_items[current_chamber_position]
-	overlay = image(current_mag.icon, src, current_mag.vars[magazine_overlay_var])
+	overlay = image(current_mag.icon, src, get_magazine_overlay())
 	attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = overlay
 	overlays += overlay
 
@@ -1053,7 +1040,7 @@
 			to_chat(user, span_notice(chamber_opened_message))
 		if(in_chamber)
 			if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
-				chamber_items[current_chamber_position].vars[current_rounds_var] += rounds_per_shot //If the gun uses mags, it will refund the current mag.
+				adjust_current_rounds(rounds_per_shot)  //If the gun uses mags, it will refund the current mag.
 				QDEL_NULL(in_chamber)
 			else
 				chamber_items.Insert(current_chamber_position, in_chamber) //Otherwise we insert in_chamber back into the chamber_items. We dont want in_chamber to be full when the gun is open.
@@ -1129,14 +1116,14 @@
 		if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && (((sentry_battery_type in allowed_ammo_types) && !sentry_battery && length(chamber_items) <= current_chamber_position && chamber_items[current_chamber_position]) || (!(sentry_battery_type in allowed_ammo_types) && istype(new_mag, sentry_battery_type))))
 			reload_sentry_cell(new_mag, user)
 			return FALSE
-		if(!new_mag.vars[current_rounds_var] && !force)
+		if(!get_current_rounds() && !force)
 			to_chat(user, span_notice("[new_mag] is empty!"))
 			return FALSE
-		if(magazine_flags_var && CHECK_BITFIELD(new_mag.vars[magazine_flags_var], MAGAZINE_WORN) && user && user.get_active_held_item() == new_mag)
+		if(get_flags_magazine_features() && CHECK_BITFIELD(get_flags_magazine_features(), MAGAZINE_WORN) && user && user.get_active_held_item() == new_mag)
 			return FALSE
-		if(reload_delay_var && new_mag.vars[reload_delay_var] != 0 && user && !force)
+		if(get_magazine_reload_delay() && get_magazine_reload_delay() != 0 && user && !force)
 			to_chat(user, span_notice("You begin reloading [src] with [new_mag]."))
-			if(!do_after(user, new_mag.vars[reload_delay_var], TRUE, user))
+			if(!do_after(user, get_magazine_reload_delay(), TRUE, user))
 				to_chat(user, span_warning("Your reload was interupted!"))
 				return FALSE
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER))
@@ -1150,7 +1137,7 @@
 		get_ammo()
 		if(user)
 			playsound(src, reload_sound, 25, 1)
-		if(!magazine_flags_var || (magazine_flags_var && !CHECK_BITFIELD(new_mag.vars[magazine_flags_var], MAGAZINE_WORN)))
+		if(!get_flags_magazine_features() || (get_flags_magazine_features() && !CHECK_BITFIELD(get_flags_magazine_features(), MAGAZINE_WORN)))
 			new_mag.forceMove(src)
 			user?.temporarilyRemoveItemFromInventory(new_mag)
 		if(istype(new_mag, /obj/item/ammo_magazine))
@@ -1269,7 +1256,7 @@
 	if(!length(chamber_items))
 		update_ammo_count()
 		return
-	if((CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES)) || (CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && chamber_items[current_chamber_position].vars[current_rounds_var] <= 0))
+	if((CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES)) || (CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && get_current_rounds() <= 0))
 		var/next_chamber_position = current_chamber_position + 1
 		if(next_chamber_position > max_chamber_items)
 			next_chamber_position = 1
@@ -1280,7 +1267,7 @@
 	if(current_chamber_position > length(chamber_items))
 		new_in_chamber = null
 	else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
-		chamber_items[current_chamber_position].vars[current_rounds_var] -= rounds_per_shot
+		adjust_current_rounds(-rounds_per_shot)
 		new_in_chamber = get_ammo_object()
 	else
 		var/object_to_chamber = chamber_items[current_chamber_position]
@@ -1334,7 +1321,7 @@
 	var/ammo_type
 	if(in_chamber)
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
-			ammo_type = in_chamber.vars[ammo_type_var]
+			ammo_type = get_magazine_default_ammo()
 		else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
 			var/obj/projectile/projectile_in_chamber = in_chamber
 			ammo_type = projectile_in_chamber.ammo.type
@@ -1345,9 +1332,9 @@
 	if(!length(chamber_items) || !chamber_items[current_chamber_position] || current_chamber_position > length(chamber_items))
 		ammo_datum_type = null
 		return ammo_datum_type
-	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS) || CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && ammo_type_var)
-		ammo_type = chamber_items[current_chamber_position].vars[ammo_type_var]
-	else if(!ammo_type_var)
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS) || CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && get_magazine_default_ammo())
+		ammo_type = get_magazine_default_ammo()
+	else if(!get_magazine_default_ammo())
 		return ammo_datum_type
 	else
 		ammo_type = initial(ammo_datum_type)
@@ -1378,8 +1365,8 @@
 	var/total_rounds
 	var/total_max_rounds
 	for(var/obj/chamber_item in chamber_items)
-		total_rounds += chamber_item.vars[current_rounds_var]
-		total_max_rounds += chamber_item.vars[max_rounds_var]
+		total_rounds += get_current_rounds()
+		total_max_rounds += get_max_rounds()
 	rounds = total_rounds + (in_chamber ? 1 : 0)
 	max_rounds = total_max_rounds
 	update_icon()
@@ -1391,6 +1378,40 @@
 	UnregisterSignal(source, COMSIG_ITEM_REMOVED_INVENTORY)
 	unload(user, FALSE)
 
+///Getter to draw current rounds. Overwrite if the magazine is not a /ammo_magazine
+/obj/item/weapon/gun/proc/get_current_rounds()
+	var/obj/item/ammo_magazine/mag = chamber_items[current_chamber_position]
+	return mag.current_rounds
+
+///Adds or subtracts rounds from the magazine.
+/obj/item/weapon/gun/proc/adjust_current_rounds(new_rounds)
+	var/obj/item/ammo_magazine/mag = chamber_items[current_chamber_position]
+	mag.current_rounds += new_rounds
+
+///Getter to draw max rounds.
+/obj/item/weapon/gun/proc/get_max_rounds()
+	var/obj/item/ammo_magazine/mag = chamber_items[current_chamber_position]
+	return mag.max_rounds
+
+///Getter to draw flags_magazine features. If the mag has none, overwrite and return null.
+/obj/item/weapon/gun/proc/get_flags_magazine_features()
+	var/obj/item/ammo_magazine/mag = chamber_items[current_chamber_position]
+	return mag.flags_magazine
+
+///Getter to draw default ammo type. If the mag has none, overwrite and return null.
+/obj/item/weapon/gun/proc/get_magazine_default_ammo()
+	var/obj/item/ammo_magazine/mag = chamber_items[current_chamber_position]
+	return mag.default_ammo
+
+///Getter to draw reload delay. If the mag has none, overwrite and return null.
+/obj/item/weapon/gun/proc/get_magazine_reload_delay()
+	var/obj/item/ammo_magazine/mag = chamber_items[current_chamber_position]
+	return mag.reload_delay
+
+///Getter to draw the magazine overlay on the gun. If the mag has none, overwrite and return null.
+/obj/item/weapon/gun/proc/get_magazine_overlay()
+	var/obj/item/ammo_magazine/mag = chamber_items[current_chamber_position]
+	return mag.bonus_overlay
 
 //----------------------------------------------------------
 				//							\\
