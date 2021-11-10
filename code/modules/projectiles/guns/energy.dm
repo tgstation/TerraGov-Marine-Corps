@@ -18,6 +18,10 @@
 	var/obj/item/cell/lasgun/cell = chamber_items[current_chamber_position]
 	return cell.charge
 
+/obj/item/weapon/gun/energy/adjust_current_rounds(new_rounds)
+	var/obj/item/cell/lasgun/cell = chamber_items[current_chamber_position]
+	cell.charge += new_rounds
+
 /obj/item/weapon/gun/energy/get_max_rounds()
 	var/obj/item/cell/lasgun/cell = chamber_items[current_chamber_position]
 	return cell.maxcharge
@@ -128,7 +132,7 @@
 		//While overcharge is active, double ammo consumption, and
 		playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
 		charge_cost = ENERGY_OVERCHARGE_AMMO_COST
-		ammo_type_var = ammo_diff
+		ammo_datum_type = ammo_diff
 		fire_delay += 7 // 1 shot per second fire rate
 		fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
