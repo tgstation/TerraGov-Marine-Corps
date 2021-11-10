@@ -70,3 +70,17 @@
   - spellcheck: Fixed an incorrect word for Queen orders
   hyper2snyper:
   - refactor: Uniform and webbing/tie refactor
+2021-11-10:
+  BraveMole:
+  - balance: Cas can begin fire mission without an active laser, flare and laser have
+      better view range
+  Lewdcifer:
+  - bugfix: Berets and headbands no longer share names.
+  - bugfix: General storage icon offsets fixed.
+  chesse20:
+  - bugfix: 90% of the pills are no longer missing from the chemmaster
+  jroinc:
+  - balance: Rebalanced pain. It now takes slightly longer to affect you in any way,
+      but it takes more than just popping a pill of Tramadol while missing an arm
+      and having 100 damage to make it go away instantly. Yes, this would have worked
+      before.
