@@ -1867,15 +1867,6 @@
 /obj/structure/largecrate/random,
 /turf/open/floor,
 /area/lv624/ground/sand5)
-"any" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable,
-/turf/open/floor/wood,
-/area/lv624/lazarus/chapel)
 "anz" = (
 /turf/open/floor/plating/warning{
 	dir = 10
@@ -2156,10 +2147,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "apH" = (
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /obj/structure/table,
 /obj/machinery/door_control{
 	id = "OR2";
@@ -2764,17 +2751,6 @@
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6)
-"aup" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/green/greentaupe{
-	dir = 1
-	},
-/area/lv624/lazarus/hydroponics)
 "aut" = (
 /obj/effect/decal/remains/xeno,
 /turf/closed/wall/mineral/sandstone,
@@ -3493,14 +3469,6 @@
 /area/lv624/lazarus/medbay)
 "ayH" = (
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
@@ -4278,16 +4246,6 @@
 /obj/structure/fence,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
-"aEL" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/research)
 "aEN" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/research)
@@ -4409,10 +4367,6 @@
 "aFL" = (
 /obj/machinery/power/apc/drained{
 	dir = 8
-	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/purple/taupepurple{
@@ -4872,42 +4826,13 @@
 "aJu" = (
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
-"aJv" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/research)
 "aJw" = (
 /obj/machinery/door/airlock/mainship/research/free_access{
 	name = "\improper Research Dome"
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/research)
-"aJx" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "aJA" = (
@@ -5042,11 +4967,6 @@
 	},
 /area/lv624/lazarus/fitness)
 "aKn" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -5061,20 +4981,6 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/sand9)
-"aKq" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/purple/whitepurplecorner{
-	dir = 4
-	},
-/area/lv624/lazarus/fitness)
 "aKr" = (
 /obj/effect/ai_node,
 /turf/open/floor,
@@ -5415,16 +5321,6 @@
 /turf/open/floor,
 /area/lv624/ground/jungle7)
 "aMB" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
@@ -5969,11 +5865,6 @@
 /area/lv624/lazarus/sleep_male)
 "aRl" = (
 /obj/structure/table,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/docking_port/stationary/crashmode,
 /obj/structure/cable,
 /turf/open/floor/tile/purple/taupepurple{
@@ -5981,11 +5872,6 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "aRm" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
@@ -6012,16 +5898,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "aRB" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor{
 	dir = 8;
@@ -6370,19 +6246,10 @@
 /area/lv624/lazarus/chapel)
 "aUu" = (
 /obj/structure/flora/ausbushes/leafybush,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "aUx" = (
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/tile/whiteyellow/full,
@@ -6425,11 +6292,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "aUM" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -6526,11 +6388,6 @@
 	},
 /area/lv624/lazarus/security)
 "aVH" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -6539,11 +6396,6 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "aVI" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -6555,11 +6407,6 @@
 /obj/machinery/door/window,
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -6569,11 +6416,6 @@
 "aVK" = (
 /obj/structure/bed/chair{
 	dir = 8
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6640,11 +6482,6 @@
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aWi" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/chapel{
 	dir = 8
@@ -6726,20 +6563,11 @@
 	},
 /area/lv624/ground/jungle7)
 "aWN" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/structure/cable,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aWQ" = (
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/chapel{
 	dir = 1
@@ -6940,11 +6768,6 @@
 /turf/open/floor,
 /area/lv624/ground/jungle7)
 "aYE" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -6964,11 +6787,6 @@
 	},
 /area/lv624/ground/jungle8)
 "aYI" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/tile/white,
@@ -6979,10 +6797,6 @@
 /area/lv624/ground/jungle8)
 "aYL" = (
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
@@ -7091,24 +6905,10 @@
 	dir = 9
 	},
 /area/lv624/lazarus/hydroponics)
-"aZF" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/main_hall)
 "aZH" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/item/ammo_casing,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/tile/blue/whiteblue{
@@ -7164,49 +6964,13 @@
 /area/lv624/ground/jungle7)
 "bau" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/main_hall)
-"bav" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/main_hall)
 "baw" = (
 /obj/item/ammo_casing,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/main_hall)
@@ -7216,11 +6980,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 10
 	},
@@ -7228,11 +6987,6 @@
 "bay" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/main_hall)
@@ -7244,26 +6998,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "baA" = (
 /obj/structure/flora/ausbushes/grassybush,
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
@@ -7390,11 +7129,6 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle7)
 "bbD" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 8
@@ -7421,11 +7155,6 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/lazarus/atmos/outside)
 "bbX" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -7439,24 +7168,10 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
-"bcc" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/main_hall)
 "bcd" = (
 /obj/effect/decal/cleanable/blood,
 /obj/item/ammo_casing,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 5
 	},
@@ -7524,22 +7239,12 @@
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
 "bcA" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
 "bcE" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
@@ -7593,11 +7298,6 @@
 /area/lv624/lazarus/security)
 "bcZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/open/floor{
 	dir = 2;
 	icon_state = "whitegreen"
@@ -7777,25 +7477,11 @@
 	dir = 10
 	},
 /area/lv624/lazarus/security)
-"beH" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/main_hall)
 "beI" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 2
 	},
 /obj/item/ammo_casing,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 2
@@ -7808,16 +7494,6 @@
 /obj/item/ammo_casing,
 /obj/item/ammo_magazine/smg/uzi/extended,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "beL" = (
@@ -7872,10 +7548,6 @@
 /area/lv624/lazarus/security)
 "bfx" = (
 /obj/machinery/power/apc,
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
 /obj/structure/cable,
 /turf/open/floor{
 	icon_state = "red"
@@ -7884,11 +7556,6 @@
 "bfz" = (
 /obj/structure/flora/grass/green,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/effect/ai_node,
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
@@ -8001,11 +7668,6 @@
 /area/lv624/lazarus/armory)
 "bgq" = (
 /obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
@@ -8028,11 +7690,6 @@
 /area/lv624/lazarus/kitchen)
 "bgw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "bgz" = (
@@ -8105,11 +7762,6 @@
 "bgW" = (
 /obj/structure/flora/grass/both,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "bgZ" = (
@@ -8117,11 +7769,6 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "bhb" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
@@ -8146,11 +7793,6 @@
 	},
 /area/lv624/ground/jungle8)
 "bhn" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/atmos)
 "bhp" = (
@@ -8165,14 +7807,6 @@
 /turf/open/ground/grass/beach{
 	dir = 1
 	},
-/area/lv624/lazarus/atmos)
-"bht" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/ground/grass/grass2,
 /area/lv624/lazarus/atmos)
 "bhv" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -8296,24 +7930,7 @@
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/lv624/lazarus/medbay)
-"biu" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/grimy,
-/area/lv624/lazarus/captain)
 "biw" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -8334,11 +7951,6 @@
 "biD" = (
 /obj/machinery/light/small{
 	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -8382,10 +7994,6 @@
 /area/lv624/ground/jungle6)
 "biQ" = (
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
@@ -8419,11 +8027,6 @@
 	},
 /area/lv624/ground/jungle7)
 "bjc" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
@@ -8456,11 +8059,6 @@
 	},
 /area/lv624/ground/jungle5)
 "bjk" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/structure/cable,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
@@ -8524,11 +8122,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "bjC" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
@@ -8537,11 +8130,6 @@
 "bjE" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /obj/structure/cable,
 /turf/open/floor,
@@ -8553,31 +8141,10 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/compound/n)
-"bjJ" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/green/greentaupe{
-	dir = 1
-	},
-/area/lv624/lazarus/hydroponics)
 "bjK" = (
 /obj/machinery/smartfridge,
 /turf/open/floor/tile/green/greentaupe{
@@ -8615,25 +8182,7 @@
 "bjR" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/captain)
-"bjT" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/main_hall)
 "bjU" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -8645,11 +8194,6 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Nexus Dome Female Dormitories"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8811,11 +8355,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/effect/ai_node,
 /turf/open/floor,
@@ -8829,14 +8368,6 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/compound/n)
-"blo" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/engineering)
 "blq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8918,11 +8449,6 @@
 	},
 /area/lv624/ground/river1)
 "blS" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
@@ -9184,14 +8710,6 @@
 "bnt" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/se)
-"bnu" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "bnw" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/structure/sign/botany{
@@ -9244,11 +8762,6 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle5)
 "bnS" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
@@ -9256,10 +8769,6 @@
 "bnV" = (
 /obj/machinery/power/geothermal,
 /obj/structure/lattice,
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
 /turf/open/floor/plating/warning{
 	dir = 5
 	},
@@ -9267,10 +8776,6 @@
 "bnW" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
-	},
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
 	},
 /obj/machinery/power/monitor,
 /turf/open/floor/tile/dark,
@@ -9342,15 +8847,6 @@
 	dir = 8
 	},
 /area/lv624/ground/jungle6)
-"bow" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/secure_storage)
 "box" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8;
@@ -9392,11 +8888,6 @@
 /turf/open/floor,
 /area/lv624/ground/compound/n)
 "boK" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -9413,33 +8904,9 @@
 	dir = 1
 	},
 /area/lv624/lazarus/engineering)
-"boM" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/plating/warning{
-	dir = 1
-	},
-/area/lv624/lazarus/engineering)
 "boN" = (
 /obj/structure/sign/electricshock{
 	dir = 2
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9512,11 +8979,6 @@
 	},
 /area/lv624/ground/jungle3)
 "bpq" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
@@ -9527,11 +8989,6 @@
 	},
 /area/lv624/ground/jungle5)
 "bps" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/effect/landmark/nuke_spawn,
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -9716,16 +9173,6 @@
 	dir = 2
 	},
 /area/lv624/lazarus/medbay)
-"bqG" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/compound/sw)
 "bqH" = (
 /obj/structure/table,
 /obj/item/folder/blue,
@@ -9745,11 +9192,6 @@
 	},
 /area/lv624/ground/jungle5)
 "bqN" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -9902,10 +9344,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "brB" = (
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
 /obj/machinery/power/geothermal,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
@@ -10006,15 +9444,6 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
-"bsd" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor,
-/area/lv624/ground/compound/n)
 "bsf" = (
 /obj/structure/sign/botany{
 	dir = 4
@@ -10040,17 +9469,6 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle7)
-"bsn" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/compound/n)
 "bsp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -10068,28 +9486,9 @@
 /turf/open/floor/marking/bot,
 /area/shuttle/drop2/lz2)
 "bvp" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
-"bwt" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/secure_storage)
 "bwL" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
@@ -10148,30 +9547,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
-/area/lv624/lazarus/main_hall)
-"bCN" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "bDk" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -10209,25 +9587,11 @@
 /area/lv624/ground/compound/n)
 "bIs" = (
 /obj/structure/flora/ausbushes/brflowers,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
-"bJw" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/compound/n)
 "bJC" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
@@ -10255,14 +9619,6 @@
 /obj/item/clothing/head/soft/grey,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
-"bLC" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "bMR" = (
 /obj/structure/flora/tree/jungle,
 /turf/open/floor/plating/ground/dirt,
@@ -10287,11 +9643,6 @@
 "bQd" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/jungle/vines/heavy,
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /turf/open/ground/grass/grass2,
 /area/lv624/lazarus/atmos)
 "bQu" = (
@@ -10363,11 +9714,6 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle4)
 "bYV" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -10398,11 +9744,6 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cbR" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -10476,11 +9817,6 @@
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "ckF" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
@@ -10530,11 +9866,6 @@
 /area/lv624/ground/compound/sw)
 "cqH" = (
 /obj/structure/table/woodentable,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -10580,21 +9911,6 @@
 	dir = 1
 	},
 /area/lv624/ground/river1)
-"cvH" = (
-/obj/machinery/door/airlock/mainship/engineering/free_access{
-	name = "\improper Engineering Dome"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "cwi" = (
 /turf/open/ground/coast/corner,
 /area/lv624/ground/sand7)
@@ -10707,11 +10023,6 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/fitness)
 "cIl" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
@@ -10719,11 +10030,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "cIu" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
@@ -10761,24 +10067,6 @@
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
-"cMu" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "cNu" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -10829,27 +10117,12 @@
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "cQj" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
 /area/lv624/lazarus/engineering)
 "cQC" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor{
@@ -10860,11 +10133,6 @@
 "cQF" = (
 /obj/machinery/door/airlock/mainship/command/locked/free_access{
 	name = "\improper Nexus Dome Marshal's Quarter"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -11034,11 +10302,6 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/main_hall)
 "dfv" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/freezer,
@@ -11087,20 +10350,12 @@
 /area/lv624/ground/compound/se)
 "dll" = (
 /obj/machinery/power/apc,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /obj/structure/cable,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "dlH" = (
 /obj/machinery/power/geothermal,
 /obj/structure/lattice,
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
 /turf/open/floor/plating/warning{
 	dir = 9
 	},
@@ -11166,16 +10421,6 @@
 /area/lv624/lazarus/main_hall)
 "dwp" = (
 /obj/structure/flora/ausbushes/grassybush,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
@@ -11492,16 +10737,6 @@
 	},
 /area/lv624/ground/jungle6)
 "exo" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/tile/bar,
@@ -11541,11 +10776,6 @@
 /area/lv624/lazarus/internal_affairs)
 "eAV" = (
 /obj/structure/bed/stool,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -11560,11 +10790,6 @@
 "eCB" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/item/ammo_casing,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
@@ -11665,11 +10890,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "eNs" = (
@@ -11701,11 +10921,6 @@
 /area/lv624/lazarus/quartstorage)
 "eRT" = (
 /obj/structure/sink,
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
@@ -11845,11 +11060,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
@@ -11924,16 +11134,6 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "frX" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -12053,14 +11253,6 @@
 "fGB" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/compound/n)
-"fHj" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/ground/grass/grass2,
-/area/lv624/lazarus/atmos)
 "fIi" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/compound/n)
@@ -12093,11 +11285,6 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "fMX" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
@@ -12365,11 +11552,6 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "gnU" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
@@ -12455,11 +11637,6 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/jungle6)
 "gAx" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
@@ -12486,11 +11663,6 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "gEa" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -12563,15 +11735,6 @@
 	dir = 1
 	},
 /area/shuttle/drop1/lz1)
-"gNX" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/compound/n)
 "gOH" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall,
@@ -12597,11 +11760,6 @@
 /turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/internal_affairs)
 "gSB" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
@@ -12636,11 +11794,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
 "gXy" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
 	on = 1
@@ -12684,11 +11837,6 @@
 	},
 /area/lv624/lazarus/internal_affairs)
 "hbN" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -12741,11 +11889,6 @@
 /obj/machinery/door/airlock/mainship/generic/corporate{
 	dir = 4;
 	name = "Corporate Dome"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -12822,11 +11965,6 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "hmt" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/tile/white,
@@ -12956,11 +12094,6 @@
 	},
 /area/lv624/ground/compound/n)
 "hBr" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -13152,11 +12285,6 @@
 	},
 /area/lv624/lazarus/main_hall)
 "hZg" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
@@ -13181,26 +12309,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
-"idC" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/compound/n)
-"idI" = (
-/obj/structure/foamedmetal,
-/obj/structure/jungle/vines/heavy,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/ground/grass/grass2,
-/area/lv624/lazarus/atmos)
 "ifb" = (
 /obj/item/trash/raisins,
 /turf/open/floor/tile/white,
@@ -13348,16 +12456,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
-"iBn" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
-/area/lv624/lazarus/engineering)
 "iBr" = (
 /obj/effect/ai_node,
 /turf/open/floor,
@@ -13375,10 +12473,6 @@
 "iCQ" = (
 /obj/machinery/power/geothermal,
 /obj/structure/lattice,
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
@@ -13395,10 +12489,6 @@
 "iDE" = (
 /obj/machinery/power/apc/drained{
 	dir = 4
-	},
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
 	},
 /obj/structure/cable,
 /turf/open/floor/grimy,
@@ -13425,24 +12515,6 @@
 	dir = 1
 	},
 /area/shuttle/drop1/lz1)
-"iJF" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/engineering)
 "iKv" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
@@ -13455,11 +12527,6 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
 "iKK" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor{
@@ -13519,11 +12586,6 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/shuttle/drop1/lz1)
 "iQF" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -13555,11 +12617,6 @@
 /turf/open/floor/plating,
 /area/lv624/ground/compound)
 "iSZ" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
@@ -13569,11 +12626,6 @@
 "iUG" = (
 /obj/machinery/door/airlock/mainship/security/locked/free_access{
 	name = "\improper Nexus Dome Marshal Office"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /obj/structure/cable,
 /turf/open/floor,
@@ -13707,11 +12759,6 @@
 	},
 /obj/item/ammo_casing,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "jkP" = (
@@ -13775,11 +12822,6 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "jqi" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/tile/barber,
@@ -13838,11 +12880,6 @@
 	dir = 1;
 	name = "\improper Leisure Dome"
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/tile/purple/whitepurple{
@@ -13852,11 +12889,6 @@
 "jxG" = (
 /obj/structure/barricade/wooden{
 	dir = 8
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -13903,11 +12935,6 @@
 /obj/structure/flora/ausbushes/stalkybush,
 /obj/item/ammo_casing,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "jAE" = (
@@ -13967,11 +12994,6 @@
 /area/lv624/ground/jungle9)
 "jGu" = (
 /obj/item/stack/sheet/wood,
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
@@ -14037,11 +13059,6 @@
 	},
 /area/lv624/ground/compound/se)
 "jQi" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
 	on = 1
@@ -14258,11 +13275,6 @@
 /turf/closed/wall/r_wall,
 /area/shuttle/drop2/lz2)
 "ksD" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
@@ -14304,11 +13316,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
@@ -14334,11 +13341,6 @@
 "kAN" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	name = "\improper Engineering Dome"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
@@ -14536,14 +13538,6 @@
 	},
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
-"kSD" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/freezer,
-/area/lv624/lazarus/kitchen)
 "kTr" = (
 /obj/structure/largecrate/random,
 /obj/machinery/light{
@@ -14668,11 +13662,6 @@
 /area/lv624/lazarus/research)
 "lem" = (
 /obj/machinery/door/airlock/colony/engineering/nexusstorage/open,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -14696,11 +13685,6 @@
 /turf/open/ground/river,
 /area/lv624/ground/jungle4)
 "lfO" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
@@ -14730,11 +13714,6 @@
 	},
 /area/shuttle/drop1/lz1)
 "ljc" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -14793,14 +13772,6 @@
 /obj/item/weapon/gun/flamer,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
-"lqm" = (
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/machinery/power/geothermal,
-/turf/open/floor/plating,
-/area/lv624/lazarus/engineering)
 "lqA" = (
 /obj/structure/jungle/vines,
 /turf/closed/wall,
@@ -14823,15 +13794,6 @@
 /obj/machinery/computer/crew,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
-"lsr" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/main_hall)
 "ltf" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
@@ -14845,10 +13807,6 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/hop)
 "ltz" = (
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /obj/machinery/power/terminal{
 	dir = 1;
 	icon_state = "term"
@@ -14899,11 +13857,6 @@
 	},
 /area/lv624/lazarus/sleep_male)
 "lyB" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -15065,18 +14018,6 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
-"lTQ" = (
-/obj/structure/flora/ausbushes/grassybush,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/grass,
-/area/lv624/lazarus/main_hall)
 "lVd" = (
 /obj/structure/jungle/vines/heavy,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -15087,10 +14028,6 @@
 "lVA" = (
 /obj/machinery/power/geothermal,
 /obj/structure/lattice,
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
@@ -15297,11 +14234,6 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "mrU" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
@@ -15332,11 +14264,6 @@
 	},
 /area/lv624/lazarus/research)
 "mxa" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -15353,11 +14280,6 @@
 "mxl" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "\improper Nexus Dome Chapel"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/white,
@@ -15430,11 +14352,6 @@
 /area/shuttle/drop1/lz1)
 "mEg" = (
 /obj/structure/foamedmetal,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "mEA" = (
@@ -15554,11 +14471,6 @@
 	},
 /area/lv624/lazarus/atmos)
 "mXE" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/freezer,
@@ -15567,16 +14479,6 @@
 /obj/machinery/light,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -15587,10 +14489,6 @@
 /area/lv624/lazarus/engineering)
 "mYo" = (
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
@@ -15602,11 +14500,6 @@
 /turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "mZk" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor{
@@ -15789,16 +14682,6 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "nxd" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
@@ -15808,11 +14691,6 @@
 "nxm" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
@@ -15843,11 +14721,6 @@
 	},
 /area/lv624/ground/jungle4)
 "nBE" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/tile/purple/whitepurplecorner{
@@ -15869,23 +14742,9 @@
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/ground/river,
 /area/lv624/ground/jungle6)
-"nEG" = (
-/obj/machinery/power/smes/buildable/empty{
-	dir = 1
-	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/turf/open/floor/plating/platebotc,
-/area/lv624/lazarus/engineering)
 "nEI" = (
 /obj/machinery/power/geothermal,
 /obj/structure/lattice,
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
 /turf/open/floor/plating/warning{
 	dir = 10
 	},
@@ -15963,11 +14822,6 @@
 "nOV" = (
 /obj/structure/flora/grass/green,
 /obj/structure/jungle/vines/heavy,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /turf/open/ground/grass/grass2,
 /area/lv624/lazarus/atmos)
 "nPr" = (
@@ -15988,11 +14842,6 @@
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
 "nTi" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
@@ -16016,10 +14865,6 @@
 "nVm" = (
 /obj/structure/jungle/vines,
 /obj/machinery/power/apc,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /turf/open/ground/grass/grass2,
 /area/lv624/lazarus/atmos)
 "nVr" = (
@@ -16123,11 +14968,6 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "ojJ" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -16187,11 +15027,6 @@
 	},
 /area/lv624/ground/jungle9)
 "oqS" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -16203,11 +15038,6 @@
 /turf/closed/wall,
 /area/lv624/ground/compound/ne)
 "oti" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /obj/effect/ai_node,
 /turf/open/ground/grass/grass2,
 /area/lv624/lazarus/atmos)
@@ -16231,21 +15061,11 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "owe" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
 "owu" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
@@ -16260,11 +15080,6 @@
 "owU" = (
 /obj/machinery/door/airlock/colony/engineering/smes{
 	dir = 1
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
@@ -16334,11 +15149,6 @@
 	name = "\improper Engineering Dome"
 	},
 /obj/structure/jungle/vines/heavy,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/engineering)
 "oGX" = (
@@ -16433,14 +15243,6 @@
 	},
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
-"oXl" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "oXD" = (
 /obj/machinery/landinglight/ds1/delayone{
 	dir = 1
@@ -16529,16 +15331,6 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/canteen)
 "piM" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/tile/purple/whitepurplecorner{
@@ -16733,17 +15525,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating,
 /area/lv624/lazarus/internal_affairs)
-"pzD" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/compound/sw)
 "pAj" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/effect/decal/cleanable/blood/splatter/animated,
@@ -16840,11 +15621,6 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "pKu" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
@@ -16916,11 +15692,6 @@
 	name = "\improper Research Dome"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
@@ -16929,11 +15700,6 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "pSl" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/tile/white,
@@ -16950,11 +15716,6 @@
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
 	opacity = 0
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -16976,38 +15737,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "pUh" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/open/floor/plating,
-/area/lv624/lazarus/engineering)
-"pUG" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
 /area/lv624/lazarus/engineering)
 "pVx" = (
 /turf/open/floor/tile/white/warningstripe{
@@ -17020,10 +15750,6 @@
 "pWs" = (
 /obj/machinery/power/apc/drained{
 	dir = 8
-	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
 	},
 /obj/structure/cable,
 /turf/open/floor/freezer,
@@ -17162,11 +15888,6 @@
 /obj/machinery/door/airlock/mainship/command/free_access{
 	name = "\improper Nexus Dome Command Quarter"
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -17174,11 +15895,6 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/hop)
 "qss" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /turf/open/floor/tile/chapel{
 	dir = 1
 	},
@@ -17209,11 +15925,6 @@
 /obj/structure/flora/bush,
 /obj/machinery/atmospherics/pipe/manifold4w/cyan/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "qzg" = (
@@ -17241,30 +15952,12 @@
 /area/lv624/ground/compound/c)
 "qAM" = (
 /obj/item/ammo_casing,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor{
 	dir = 1;
 	icon_state = "whitegreen"
 	},
 /area/lv624/lazarus/main_hall)
-"qDO" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "qEn" = (
 /obj/machinery/floodlight/colony{
 	dir = 4
@@ -17294,19 +15987,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "qHG" = (
 /obj/machinery/power/apc,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/internal_affairs)
@@ -17416,11 +16100,6 @@
 	},
 /area/shuttle/drop1/lz1)
 "qTb" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -17573,11 +16252,6 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle9)
 "rdX" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
@@ -17603,11 +16277,6 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "reH" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/freezer,
@@ -17866,11 +16535,6 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "rHK" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
 	on = 1
@@ -17943,11 +16607,6 @@
 /turf/open/floor/freezer,
 /area/lv624/lazarus/research)
 "rPL" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -17989,11 +16648,6 @@
 "rSR" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/item/ammo_casing,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -18139,11 +16793,6 @@
 	id = "secure_blast";
 	name = "\improper Secure Armory Blast Door"
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -18179,14 +16828,6 @@
 	dir = 1
 	},
 /area/shuttle/drop2/lz2)
-"skN" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/engineering)
 "smy" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/tile/purple/whitepurplecorner{
@@ -18284,17 +16925,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
-"svz" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/tile/bar,
-/area/lv624/lazarus/canteen)
 "svN" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/machinery/floodlight/colony{
@@ -18302,15 +16932,6 @@
 	},
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
-"svS" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/grass,
-/area/lv624/lazarus/main_hall)
 "swh" = (
 /obj/structure/jungle/plantbot1,
 /obj/structure/jungle/vines,
@@ -18370,15 +16991,6 @@
 "sEx" = (
 /turf/open/floor/marking/warning,
 /area/lv624/ground/jungle3)
-"sEV" = (
-/obj/structure/jungle/vines/heavy,
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/open/ground/grass/grass2,
-/area/lv624/lazarus/atmos)
 "sFY" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
@@ -18398,11 +17010,6 @@
 /turf/closed/wall,
 /area/lv624/lazarus/canteen)
 "sGu" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/wood,
 /area/lv624/lazarus/chapel)
@@ -18568,15 +17175,6 @@
 /obj/effect/spawner/modularmap/lv624/domes,
 /turf/open/space/basic,
 /area/lv624/lazarus/robotics)
-"tcF" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating,
-/area/lv624/lazarus/engineering)
 "tcH" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle9)
@@ -18587,11 +17185,6 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "tda" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
@@ -18686,11 +17279,6 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "tmd" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
 	on = 1
@@ -18728,11 +17316,6 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "tsB" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -18808,11 +17391,6 @@
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "txv" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -19081,11 +17659,6 @@
 	},
 /area/shuttle/drop2/lz2)
 "ugM" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
@@ -19142,11 +17715,6 @@
 	},
 /area/lv624/lazarus/atmos)
 "ulT" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/tile/white,
@@ -19204,10 +17772,6 @@
 /area/lv624/lazarus/hop)
 "uqz" = (
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
@@ -19244,11 +17808,6 @@
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
 "uut" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -19292,15 +17851,6 @@
 	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
-"uyh" = (
-/obj/structure/jungle/vines/heavy,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/ground/grass/grass2,
-/area/lv624/lazarus/atmos)
 "uzd" = (
 /obj/structure/closet,
 /obj/item/clothing/shoes/laceup,
@@ -19376,11 +17926,6 @@
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "uGM" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
@@ -19418,11 +17963,6 @@
 	dir = 1;
 	name = "\improper Nexus Dome Bathroom"
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/freezer,
@@ -19456,11 +17996,6 @@
 	},
 /obj/machinery/door/airlock/colony/research/dome{
 	dir = 1
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -19542,16 +18077,6 @@
 	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
-"uWq" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/ai_node,
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/main_hall)
 "uWG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
@@ -19583,10 +18108,6 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "uXW" = (
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
@@ -19663,11 +18184,6 @@
 "vgi" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 1
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/grass,
@@ -19791,11 +18307,6 @@
 /turf/open/floor,
 /area/lv624/ground/jungle6)
 "vuY" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/tile/bar,
@@ -19816,15 +18327,6 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
-"vwM" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/effect/ai_node,
-/turf/open/floor/freezer,
-/area/lv624/lazarus/kitchen)
 "vxM" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
@@ -19891,16 +18393,6 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "vEW" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -19914,17 +18406,6 @@
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
-"vGB" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/main_hall)
 "vGG" = (
 /obj/item/shard,
 /obj/structure/window_frame/colony/reinforced,
@@ -19982,11 +18463,6 @@
 	id = "secure_blast";
 	name = "\improper Secure Armory Blast Door"
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
@@ -20027,10 +18503,6 @@
 /area/lv624/lazarus/canteen)
 "vQq" = (
 /obj/machinery/power/apc,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/lv624/lazarus/hop)
@@ -20057,11 +18529,6 @@
 "vSS" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/item/ammo_casing,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -20130,19 +18597,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
-"vZj" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/engineering)
 "vZL" = (
 /obj/structure/cargo_container/nt{
 	dir = 1
@@ -20232,11 +18686,6 @@
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "whF" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/tile/barber,
@@ -20263,11 +18712,6 @@
 /area/lv624/lazarus/atmos)
 "wqT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/structure/flora/ausbushes/leafybush,
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
@@ -20325,11 +18769,6 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle9)
 "wxC" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -20345,10 +18784,6 @@
 "wyf" = (
 /obj/machinery/light{
 	dir = 4
-	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
 	},
 /obj/machinery/power/geothermal,
 /turf/open/floor/plating,
@@ -20447,11 +18882,6 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "wIK" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
@@ -20460,16 +18890,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "wIO" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
@@ -20478,11 +18898,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "wJE" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
@@ -20514,11 +18929,6 @@
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
 "wNw" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -20609,11 +19019,6 @@
 /obj/structure/barricade/wooden{
 	dir = 8
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -20639,11 +19044,6 @@
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "wTB" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -20654,11 +19054,6 @@
 /area/lv624/lazarus/sleep_female)
 "wTT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "wWN" = (
@@ -20676,11 +19071,6 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	name = "\improper Nexus Dome Freezer"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -20717,10 +19107,6 @@
 	},
 /area/lv624/lazarus/hop)
 "xaG" = (
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /obj/machinery/power/terminal{
 	dir = 1;
 	icon_state = "term"
@@ -20753,11 +19139,6 @@
 /area/lv624/ground/jungle3)
 "xdC" = (
 /obj/structure/table,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
@@ -20860,11 +19241,6 @@
 /area/lv624/lazarus/quartstorage/outdoors)
 "xot" = (
 /obj/structure/coatrack,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "xpg" = (
@@ -20910,15 +19286,6 @@
 	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
-"xtX" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/blue/whitebluefull,
-/area/lv624/lazarus/internal_affairs)
 "xua" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 8
@@ -20946,11 +19313,6 @@
 /turf/open/floor/grass,
 /area/lv624/lazarus/internal_affairs)
 "xxr" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -21041,15 +19403,6 @@
 /obj/machinery/power/smes/buildable/empty{
 	dir = 1
 	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/engineering)
 "xJs" = (
@@ -21092,10 +19445,6 @@
 /area/lv624/ground/caves/rock)
 "xLK" = (
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
@@ -21105,11 +19454,6 @@
 /area/lv624/lazarus/main_hall)
 "xMs" = (
 /obj/structure/flora/ausbushes/grassybush,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
@@ -21143,11 +19487,6 @@
 /area/lv624/ground/jungle9)
 "xNG" = (
 /obj/structure/flora/ausbushes/grassybush,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -21217,11 +19556,6 @@
 /area/lv624/ground/jungle9)
 "xTa" = (
 /obj/effect/decal/cleanable/blood/oil,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
@@ -30930,7 +29264,7 @@ bla
 uXW
 kwn
 fjN
-bow
+bpq
 bpq
 sRj
 hmi
@@ -31153,7 +29487,7 @@ nVb
 aCP
 sRj
 jxq
-bwt
+bpq
 jxq
 sRj
 rij
@@ -31597,7 +29931,7 @@ nVb
 rbe
 sRj
 box
-bwt
+bpq
 box
 sRj
 mHW
@@ -31819,7 +30153,7 @@ bmA
 vhi
 iYw
 sRj
-bwt
+bpq
 sRj
 cJx
 vhi
@@ -32041,7 +30375,7 @@ bmz
 nJa
 nVb
 sRj
-bwt
+bpq
 sRj
 isL
 yjz
@@ -32263,7 +30597,7 @@ bla
 mee
 tjb
 sRj
-bwt
+bpq
 sRj
 isL
 yjz
@@ -34701,10 +33035,10 @@ syR
 cnX
 syR
 ksD
-bqG
-bqG
-bqG
-bqG
+syR
+syR
+syR
+syR
 fMX
 aZl
 beo
@@ -35354,7 +33688,7 @@ dLA
 nHg
 aZd
 qHG
-xtX
+bcz
 wKQ
 aZd
 nuN
@@ -38679,11 +37013,11 @@ wNw
 ugM
 ugM
 ugM
-bqG
-bqG
-bqG
-bqG
-bqG
+syR
+syR
+syR
+syR
+syR
 vEW
 aZl
 beo
@@ -39351,10 +37685,10 @@ aES
 bbo
 aZl
 bcE
-bqG
-bqG
-pzD
-bqG
+syR
+syR
+cnX
+syR
 yaB
 yaB
 yaB
@@ -39992,7 +38326,7 @@ xmz
 ojJ
 hmt
 pRI
-aEL
+hmt
 hmt
 hmt
 ulT
@@ -40211,7 +38545,7 @@ mws
 lej
 aLD
 mVu
-aJv
+aJA
 paJ
 aLD
 qQz
@@ -40655,7 +38989,7 @@ ktn
 ley
 aEN
 mYo
-aJx
+aJA
 mws
 aEN
 jzZ
@@ -41586,7 +39920,7 @@ bjH
 bjH
 bjH
 vJe
-cvH
+hsd
 bpM
 bjH
 bjH
@@ -41803,7 +40137,7 @@ cXB
 kRD
 bjH
 bjH
-tcF
+bvp
 bnS
 bnS
 xTa
@@ -42025,7 +40359,7 @@ cXB
 nTR
 bjH
 pvy
-iBn
+gAx
 dlH
 iCQ
 iCQ
@@ -42232,7 +40566,7 @@ bjc
 bjc
 bjc
 bhn
-bht
+mkJ
 oti
 huf
 rTB
@@ -42247,16 +40581,16 @@ cXB
 iDB
 bjH
 tKa
-iBn
-vZj
-iJF
-iJF
-iJF
-boM
 gAx
-lqm
+pUh
+pUh
+pUh
+pUh
+boL
+gAx
+brB
 wyf
-lqm
+brB
 vJe
 brx
 bpx
@@ -42455,7 +40789,7 @@ aMm
 aMm
 pEO
 cXB
-fHj
+mkJ
 nig
 haS
 aXi
@@ -42465,11 +40799,11 @@ mgb
 pJt
 haS
 kKz
-sEV
-idI
+cXB
+nTR
 oGS
 mEg
-pUG
+cQj
 bnV
 lVA
 lVA
@@ -42636,14 +40970,14 @@ bdZ
 boI
 bjI
 blk
-bsd
-bJw
-bJw
-bJw
-bJw
-bJw
-bJw
-gNX
+boI
+hTn
+hTn
+hTn
+hTn
+hTn
+hTn
+bsg
 iuG
 aAb
 aAb
@@ -42654,7 +40988,7 @@ lgl
 lSN
 aIG
 vcI
-aKq
+aKn
 aGh
 qZf
 rhv
@@ -42677,7 +41011,7 @@ rLk
 rLk
 vqz
 kRD
-fHj
+mkJ
 huf
 kBy
 vCm
@@ -42687,11 +41021,11 @@ bgc
 msI
 qRy
 bhr
-uyh
+cXB
 iDB
 bjH
 bkF
-blo
+pUh
 ttQ
 ttQ
 ttQ
@@ -42865,7 +41199,7 @@ dJR
 aAb
 aAb
 aAb
-bsn
+aDC
 aDa
 aAb
 aAb
@@ -42876,7 +41210,7 @@ pIL
 aGh
 aGh
 smy
-aKq
+aKn
 pVx
 qZh
 qZh
@@ -42899,7 +41233,7 @@ nWt
 iRL
 aZo
 pEO
-uyh
+cXB
 huf
 kBy
 rTB
@@ -42909,7 +41243,7 @@ gKf
 ghS
 tZQ
 bhr
-uyh
+cXB
 cXB
 bjH
 bqs
@@ -43078,7 +41412,7 @@ arW
 aUg
 axm
 brq
-bjJ
+avC
 azm
 axm
 bnl
@@ -43087,7 +41421,7 @@ dPJ
 bnl
 dJR
 aAb
-bsn
+aDC
 aAb
 aAb
 aAb
@@ -43098,7 +41432,7 @@ aGh
 aGh
 nhk
 aGh
-aKq
+aKn
 ukh
 qZL
 qZL
@@ -43135,7 +41469,7 @@ nOV
 cXB
 bjH
 ucA
-qDO
+ixz
 fVy
 bqs
 stj
@@ -43300,7 +41634,7 @@ brq
 brq
 axm
 biQ
-aup
+avC
 blq
 axm
 brq
@@ -43309,7 +41643,7 @@ brq
 axm
 fIi
 aAb
-bsn
+aDC
 aAb
 aAb
 aAb
@@ -43320,7 +41654,7 @@ aGh
 aGh
 aGh
 aGh
-aKq
+aKn
 pXR
 aLH
 aLH
@@ -43356,8 +41690,8 @@ mJs
 qzm
 qzm
 bjH
-oXl
-skN
+ixz
+ixz
 bmM
 bqs
 xLK
@@ -43531,7 +41865,7 @@ aBy
 brq
 fIi
 aAb
-bsn
+aDC
 aDa
 aAb
 aAb
@@ -43542,7 +41876,7 @@ aGh
 aGh
 aGh
 aGh
-aKq
+aKn
 aGh
 aGh
 aGh
@@ -43580,7 +41914,7 @@ xnf
 bjH
 xJp
 ltz
-bLC
+ixz
 bqs
 pmH
 wxC
@@ -43755,8 +42089,8 @@ fGB
 aAb
 gSB
 hBr
-idC
-idC
+fXa
+fXa
 jxx
 nBE
 jqi
@@ -43802,9 +42136,9 @@ pOJ
 bjH
 xJp
 xaG
-cMu
+ixz
 owU
-bnu
+ixz
 eAV
 vJI
 bqs
@@ -44022,9 +42356,9 @@ xYe
 bin
 pOJ
 bjH
-nEG
+xJp
 ltz
-skN
+ixz
 bqs
 stj
 cwk
@@ -46006,7 +44340,7 @@ izm
 aYb
 aNz
 aNz
-bjT
+kAs
 aNz
 aPp
 bgm
@@ -46683,7 +45017,7 @@ axY
 ctl
 bgV
 aiQ
-biu
+yfp
 xot
 bjP
 bkN
@@ -47558,7 +45892,7 @@ sGu
 sGu
 sGu
 mxl
-uWq
+bmU
 mZk
 aRB
 kVp
@@ -47775,14 +46109,14 @@ xAk
 aTL
 aUr
 aXs
-any
+aXs
 aXs
 aXs
 aXs
 aYc
 ifw
 bbB
-bav
+hXk
 bbB
 bbB
 thB
@@ -48003,8 +46337,8 @@ jcl
 jcl
 jcl
 aYL
-aZF
-bCN
+tmZ
+hXk
 rkE
 aXz
 bgV
@@ -48226,7 +46560,7 @@ fht
 beD
 aNz
 tmZ
-bav
+hXk
 aNz
 aNz
 beD
@@ -48448,7 +46782,7 @@ aXy
 aNz
 aNz
 tmZ
-bav
+hXk
 aNz
 aNz
 aNz
@@ -48676,7 +47010,7 @@ xbL
 xfO
 ifb
 aNz
-beH
+tmZ
 umj
 tvE
 vga
@@ -48898,14 +47232,14 @@ rYb
 eWg
 tmZ
 tmZ
-beH
 tmZ
 tmZ
 tmZ
 tmZ
 tmZ
 tmZ
-bjT
+tmZ
+kAs
 tmZ
 tmZ
 kAs
@@ -49324,22 +47658,22 @@ kyg
 bmi
 jGu
 xMs
-svS
+wTT
 bgq
-svS
+wTT
 aUu
-svS
+wTT
 dwp
 vgi
 eCB
 qAM
-bcc
-uWq
+kyg
+bmU
 aZH
 baw
 bcd
 jkb
-lsr
+kyg
 bcZ
 jAj
 beK
@@ -50224,7 +48558,7 @@ aXy
 aNz
 aNz
 tmZ
-vGB
+hXk
 aNz
 aNz
 aNz
@@ -50668,7 +49002,7 @@ hVU
 hVU
 aNz
 tmZ
-vGB
+hXk
 aXz
 aNz
 sGt
@@ -50684,7 +49018,7 @@ txm
 xHF
 bmk
 dll
-vwM
+qLZ
 ndP
 yiA
 mdj
@@ -50906,7 +49240,7 @@ biC
 qPY
 bmk
 lCV
-kSD
+biC
 lTu
 mdj
 mdj
@@ -51783,7 +50117,7 @@ bbh
 aNz
 pDe
 bjz
-svz
+tcY
 beP
 dhl
 bmk
@@ -52000,7 +50334,7 @@ qSA
 hVU
 aYR
 jAE
-lTQ
+xNG
 bbh
 aNz
 djQ
@@ -52666,7 +51000,7 @@ fkS
 aNz
 aNz
 tmZ
-bav
+hXk
 aNz
 aNz
 aNz
@@ -52888,7 +51222,7 @@ aXE
 aNz
 aPp
 aWn
-bav
+hXk
 aNz
 aPp
 aNz
