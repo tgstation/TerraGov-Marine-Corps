@@ -824,6 +824,11 @@
 	. = ..()
 	AddComponent(/datum/component/automatedfire/autofire, get_cooldown(), _fire_mode = GUN_FIREMODE_AUTOMATIC,  _callback_reset_fire = CALLBACK(src, .proc/reset_fire), _callback_fire = CALLBACK(src, .proc/fire))
 
+/datum/action/xeno_action/activable/xeno_spit/remove_action(mob/living/L)
+	. = ..()
+	GetComponent(/datum/component/automatedfire/autofire).RemoveComponent()
+
+
 /datum/action/xeno_action/activable/xeno_spit/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
 	button.overlays.Cut()
