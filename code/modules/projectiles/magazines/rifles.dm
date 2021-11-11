@@ -109,7 +109,7 @@
 /obj/item/ammo_magazine/rifle/standard_br/incendiary
 	name = "\improper T-64 BR incendiary magazine (10x26.5mm)"
 	desc = "A 10mm incendiary battle rifle magazine, carries less rounds however."
-	caliber = CALIBER_10X265_INCENDIARY_CASELESS
+	caliber = CALIBER_10X265_CASELESS
 	icon_state = "t64_incin"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/light_dmr/incendiary
