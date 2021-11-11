@@ -84,3 +84,6 @@
       but it takes more than just popping a pill of Tramadol while missing an arm
       and having 100 damage to make it go away instantly. Yes, this would have worked
       before.
+2021-11-11:
+  ivanmixo:
+  - bugfix: Command can't haunt you with rally orders from beyond the grave.
