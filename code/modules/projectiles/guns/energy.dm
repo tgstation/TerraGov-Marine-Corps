@@ -15,10 +15,8 @@
 	muzzle_flash = null
 
 /obj/item/weapon/gun/energy/get_current_rounds(obj/item/mag)
-	if(!mag)
-		return null
 	var/obj/item/cell/lasgun/cell = mag
-	return cell.charge
+	return cell?.charge
 
 /obj/item/weapon/gun/energy/adjust_current_rounds(obj/item/mag, new_rounds)
 	if(!mag)
@@ -27,16 +25,14 @@
 	cell.charge += new_rounds
 
 /obj/item/weapon/gun/energy/get_max_rounds(obj/item/mag)
-	if(!mag)
-		return null
 	var/obj/item/cell/lasgun/cell = mag
-	return cell.maxcharge
+	return cell?.maxcharge
 
 /obj/item/weapon/gun/energy/get_magazine_default_ammo(obj/item/mag)
 	return null
 
 /obj/item/weapon/gun/energy/get_flags_magazine_features(obj/item/mag)
-	return null
+	return NONE
 
 /obj/item/weapon/gun/energy/get_magazine_overlay(obj/item/mag)
 	return null
@@ -104,11 +100,9 @@
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
 
-/obj/item/weapon/gun/energy/lasgun/get_magazine_reload_delay()
-	if(!length(chamber_items))
-		return null
-	var/obj/item/cell/lasgun/cell = chamber_items[current_chamber_position]
-	return cell.reload_delay
+/obj/item/weapon/gun/energy/lasgun/get_magazine_reload_delay(obj/item/mag)
+	var/obj/item/cell/lasgun/cell = new_mag
+	return cell?.reload_delay
 
 /obj/item/weapon/gun/energy/lasgun/tesla
 	name = "\improper M43-T tesla shock rifle"

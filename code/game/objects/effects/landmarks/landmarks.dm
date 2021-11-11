@@ -213,8 +213,7 @@
 		return
 
 	if(!gun_to_spawn.default_ammo_type)
-		stack_trace("Attempted to spawn ammo for a gun that has no default_ammo_type. Someone make a bugreport for this weapon [initial(gun_to_spawn.name)] as related to the tiered weapon spawning.")
-		return
+		CRASH("Attempted to spawn ammo for a gun that has no default_ammo_type. Someone make a bugreport for this weapon [initial(gun_to_spawn.name)] as related to the tiered weapon spawning.")
 
 	if(CHECK_BITFIELD(gun_to_spawn.reciever_flags, AMMO_RECIEVER_HANDFULS) && istype(gun_to_spawn.default_ammo_type, /datum/ammo))
 		var/obj/item/ammo_magazine/handful/handful_to_generate

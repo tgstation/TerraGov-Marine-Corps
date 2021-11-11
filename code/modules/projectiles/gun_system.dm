@@ -1113,13 +1113,16 @@
 			return FALSE
 
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
-		if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && (((sentry_battery_type in allowed_ammo_types) && !sentry_battery && length(chamber_items) <= current_chamber_position && chamber_items[current_chamber_position]) || (!(sentry_battery_type in allowed_ammo_types) && istype(new_mag, sentry_battery_type))))
+		if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && ( \
+				((sentry_battery_type in allowed_ammo_types) && !sentry_battery && length(chamber_items) <= current_chamber_position && chamber_items[current_chamber_position]) || \
+				(!(sentry_battery_type in allowed_ammo_types) && istype(new_mag, sentry_battery_type))))
 			reload_sentry_cell(new_mag, user)
 			return FALSE
 		if(!get_current_rounds(new_mag) && !force)
 			to_chat(user, span_notice("[new_mag] is empty!"))
 			return FALSE
-		if(get_flags_magazine_features(new_mag) && CHECK_BITFIELD(get_flags_magazine_features(new_mag), MAGAZINE_WORN) && user && user.get_active_held_item() == new_mag)
+		var/flags_magazine_features = get_flags_magazine_features(new_mag)
+		if(flags_magazine_features && CHECK_BITFIELD(flags_magazine_features, MAGAZINE_WORN) && user && user.get_active_held_item() == new_mag)
 			return FALSE
 		if(get_magazine_reload_delay(new_mag) > 0 && user && !force)
 			to_chat(user, span_notice("You begin reloading [src] with [new_mag]."))
@@ -1137,7 +1140,7 @@
 		get_ammo()
 		if(user)
 			playsound(src, reload_sound, 25, 1)
-		if(!get_flags_magazine_features(new_mag) || (get_flags_magazine_features(new_mag) && !CHECK_BITFIELD(get_flags_magazine_features(new_mag), MAGAZINE_WORN)))
+		if(!flags_magazine_features || (flags_magazine_features && !CHECK_BITFIELD(flags_magazine_features, MAGAZINE_WORN)))
 			new_mag.forceMove(src)
 			user?.temporarilyRemoveItemFromInventory(new_mag)
 		if(istype(new_mag, /obj/item/ammo_magazine))
@@ -1380,52 +1383,40 @@
 
 ///Getter to draw current rounds. Overwrite if the magazine is not a /ammo_magazine
 /obj/item/weapon/gun/proc/get_current_rounds(obj/item/mag)
-	if(!mag)
-		return null
 	var/obj/item/ammo_magazine/magazine = mag
-	return magazine.current_rounds
+	return magazine?.current_rounds
 
 ///Adds or subtracts rounds from the magazine.
 /obj/item/weapon/gun/proc/adjust_current_rounds(obj/item/mag, new_rounds)
 	if(!mag)
-		return null
+		return
 	var/obj/item/ammo_magazine/magazine = mag
 	magazine.current_rounds += new_rounds
 
 ///Getter to draw max rounds.
 /obj/item/weapon/gun/proc/get_max_rounds(obj/item/mag)
-	if(!mag)
-		return null
 	var/obj/item/ammo_magazine/magazine = mag
-	return magazine.max_rounds
+	return magazine?.max_rounds
 
 ///Getter to draw flags_magazine features. If the mag has none, overwrite and return null.
 /obj/item/weapon/gun/proc/get_flags_magazine_features(obj/item/mag)
-	if(!mag)
-		return null
 	var/obj/item/ammo_magazine/magazine = mag
-	return magazine.flags_magazine
+	return magazine ? magazine.flags_magazine : NONE
 
 ///Getter to draw default ammo type. If the mag has none, overwrite and return null.
 /obj/item/weapon/gun/proc/get_magazine_default_ammo(obj/item/mag)
-	if(!mag)
-		return null
 	var/obj/item/ammo_magazine/magazine = mag
-	return magazine.default_ammo
+	return magazine?.default_ammo
 
 ///Getter to draw reload delay. If the mag has none, overwrite and return null.
 /obj/item/weapon/gun/proc/get_magazine_reload_delay(obj/item/mag)
-	if(!mag)
-		return null
 	var/obj/item/ammo_magazine/magazine = mag
-	return magazine.reload_delay
+	return magazine?.reload_delay
 
 ///Getter to draw the magazine overlay on the gun. If the mag has none, overwrite and return null.
 /obj/item/weapon/gun/proc/get_magazine_overlay(obj/item/mag)
-	if(!mag)
-		return null
 	var/obj/item/ammo_magazine/magazine = mag
-	return magazine.bonus_overlay
+	return magazine?.bonus_overlay
 
 //----------------------------------------------------------
 				//							\\
