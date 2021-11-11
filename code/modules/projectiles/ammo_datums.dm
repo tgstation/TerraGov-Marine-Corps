@@ -657,8 +657,7 @@ datum/ammo/bullet/revolver/tp44
 	bullet_color = COLOR_TAN_ORANGE
 
 /datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, shake = 1, slowdown = 1, weaken = 1)
-	drop_flame(get_turf(M))
+	staggerstun(M, P, shake = 1, knockback = 2, slowdown = 1)
 
 /datum/ammo/bullet/shotgun/flechette
 	name = "shotgun flechette shell"
