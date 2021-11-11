@@ -650,23 +650,15 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "shotgun_fire"
 	damage_type = BRUTE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING
-	accuracy = -10
 	max_range = 15
-	damage = 40
-	penetration = 20
+	damage = 80
+	penetration = 25
 	sundering = 2
 	bullet_color = COLOR_TAN_ORANGE
 
-/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/victim, obj/projectile/proj)
-	airburst(victim, proj)
-	knockback(victim, proj)
-
-/datum/ammo/bullet/shotgun/incendiary/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	airburst(target_obj, proj)
-
-/datum/ammo/bullet/shotgun/incendiary/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	airburst(target_turf, proj)
-
+/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, shake = 1, slowdown = 1, weaken = 1)
+	drop_flame(get_turf(M))
 
 /datum/ammo/bullet/shotgun/flechette
 	name = "shotgun flechette shell"
