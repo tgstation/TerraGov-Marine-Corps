@@ -19,7 +19,7 @@
 	var/last_dam = -1
 	var/supported = FALSE
 	///How many instances of damage the limb can take before its splints fall off
-	var/splint_health = 0
+	var/splint_time = 0
 
 	var/datum/armor/soft_armor
 	var/datum/armor/hard_armor
@@ -336,11 +336,11 @@
 		owner.custom_pain("You feel something rip in your [display_name]!", 1)
 
 	if(limb_status & LIMB_SPLINTED) //If they have it splinted and no splint health, the splint won't hold.
-		if(splint_health <= 0)
+		if(splint_time <= 0)
 			remove_limb_flags(LIMB_SPLINTED)
 			to_chat(owner, span_userdanger("The splint on your [display_name] comes apart!"))
 		else
-			splint_health = max(splint_health - damage, 0)
+			splint_time = max(splint_time - 5, 0) //if you get hit, it still removes 10 seconds of splint time, thirty hits per level of medic.
 
 	// first check whether we can widen an existing wound
 	var/datum/wound/W
@@ -557,6 +557,17 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	if((limb_status & LIMB_ROBOT)) //Robotic limbs don't heal or get worse.
 		return
+
+	if(limb_status & LIMB_SPLINTED) //Splints gradually break over time.
+		if(splint_time <= 0)
+			remove_limb_flags(LIMB_SPLINTED)
+			to_chat(owner, span_userdanger("The splint on your [display_name] comes apart!"))
+		else
+			if(world.time - last_move_time > 30)
+				return
+			splint_time = max(splint_time - 1, 0) //splint health decrements by one per lifetick, unless it's been more than 10 seconds since your last move.
+			if(splint_time <= 30 && prob(20))
+				to_chat(owner, span_danger("The splint on your [display_name] starts to loosen and tear!"))
 
 	for(var/datum/wound/W in wounds)
 		// wounds can disappear after 10 minutes at the earliest
@@ -1069,7 +1080,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			new /datum/effect_system/spark_spread(owner, owner, 5, 0, TRUE, 1 SECONDS)
 
 
-/datum/limb/proc/apply_splints(obj/item/stack/medical/splint/S, applied_health, mob/living/user, mob/living/carbon/human/target)
+/datum/limb/proc/apply_splints(obj/item/stack/medical/splint/S, applied_time, mob/living/user, mob/living/carbon/human/target)
 
 	if(!istype(user))
 		return
@@ -1078,7 +1089,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		to_chat(user, span_warning("There's nothing there to splint!"))
 		return FALSE
 
-	if(limb_status & LIMB_SPLINTED && applied_health <= splint_health)
+	if(limb_status & LIMB_SPLINTED && applied_time <= splint_time)
 		to_chat(user, span_warning("This limb is already splinted!"))
 		return FALSE
 
@@ -1086,7 +1097,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	var/text1 = span_warning("[user] finishes applying [S] to [target]'s [display_name].")
 	var/text2 = span_notice("You finish applying [S] to [target]'s [display_name].")
 
-	if(target == user) //If self splinting, multiply delay by 4
+	if(target == user) //If self splinting, multiply delay by 3
 		delay *= 3
 		text1 = span_warning("[user] successfully applies [S] to their [display_name].")
 		text2 = span_notice("You successfully apply [S] to your [display_name].")
@@ -1099,7 +1110,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		"[text1]",
 		"[text2]")
 		add_limb_flags(LIMB_SPLINTED)
-		splint_health = applied_health
+		splint_time = applied_time
 		return TRUE
 
 
