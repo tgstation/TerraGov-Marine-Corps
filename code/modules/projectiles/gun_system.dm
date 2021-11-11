@@ -1388,10 +1388,8 @@
 
 ///Adds or subtracts rounds from the magazine.
 /obj/item/weapon/gun/proc/adjust_current_rounds(obj/item/mag, new_rounds)
-	if(!mag)
-		return
 	var/obj/item/ammo_magazine/magazine = mag
-	magazine.current_rounds += new_rounds
+	magazine?.current_rounds += new_rounds
 
 ///Getter to draw max rounds.
 /obj/item/weapon/gun/proc/get_max_rounds(obj/item/mag)

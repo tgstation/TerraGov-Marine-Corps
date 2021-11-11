@@ -19,10 +19,8 @@
 	return cell?.charge
 
 /obj/item/weapon/gun/energy/adjust_current_rounds(obj/item/mag, new_rounds)
-	if(!mag)
-		return
 	var/obj/item/cell/lasgun/cell = mag
-	cell.charge += new_rounds
+	cell?.charge += new_rounds
 
 /obj/item/weapon/gun/energy/get_max_rounds(obj/item/mag)
 	var/obj/item/cell/lasgun/cell = mag
