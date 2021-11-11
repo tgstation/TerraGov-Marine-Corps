@@ -255,7 +255,7 @@
 	aim_slowdown = 0.55
 	wield_delay = 0.7 SECONDS
 	force = 20
-	max_shells = 30 //codex
+	max_shells = 35 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/standard_br
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -294,8 +294,8 @@
 
 	fire_delay = 0.30 SECONDS
 	burst_amount = 2
-	burst_delay = 0.15 SECONDS
-	extra_delay = 0.25 SECONDS
+	burst_delay = 0.12 SECONDS
+	extra_delay = 0.20 SECONDS
 	accuracy_mult = 1.25
 	scatter = -10
 	damage_falloff_mult = 0.4
