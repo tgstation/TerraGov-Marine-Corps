@@ -12993,6 +12993,12 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle3)
+"jHS" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
 "jId" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
@@ -13014,8 +13020,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "jLN" = (
-/obj/structure/table/woodentable,
-/obj/machinery/computer/rdconsole,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "jMh" = (
@@ -13121,7 +13126,7 @@
 	},
 /area/lv624/ground/jungle9)
 "kfC" = (
-/obj/structure/rack,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -15556,6 +15561,7 @@
 	name = "Science Wing Lockdown";
 	pixel_x = -25
 	},
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "pHM" = (
@@ -17038,7 +17044,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "sMu" = (
-/obj/structure/bookcase,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "sMS" = (
@@ -17578,6 +17584,12 @@
 	dir = 8
 	},
 /area/lv624/ground/jungle6)
+"ubh" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 5
+	},
+/area/lv624/lazarus/research)
 "ubu" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -39154,7 +39166,7 @@ bkQ
 bmb
 bmO
 bis
-vTe
+jHS
 vTe
 brS
 vTe
@@ -39390,7 +39402,7 @@ aAb
 aAb
 aAb
 sgl
-aLF
+ubh
 aLF
 lfh
 aEN
