@@ -298,7 +298,7 @@
 	extra_delay = 0.20 SECONDS
 	accuracy_mult = 1.25
 	scatter = -10
-	damage_falloff_mult = 0.4
+	damage_falloff_mult = 0.65
 //-------------------------------------------------------
 //M412 Pulse Rifle
 
