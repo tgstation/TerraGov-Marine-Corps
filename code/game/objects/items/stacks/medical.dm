@@ -239,8 +239,8 @@
 	max_amount = 5
 	skill_level_needed = SKILL_MEDICAL_PRACTICED
 	unskilled_delay = SKILL_TASK_TOUGH
-	///How much splint time per medical skill is applied, in 10-second chunks
-	var/applied_splint_time = 30
+	///How much splint time per medical skill is applied, in 2-second chunks. 5 min per skill level.
+	var/applied_splint_time = 150
 
 
 /obj/item/stack/medical/splint/attack(mob/living/carbon/M, mob/user)
