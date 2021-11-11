@@ -222,14 +222,12 @@
 	else //Upgrade process finished or impossible
 		stat("Upgrade Progress:", "(FINISHED)")
 
-	if(xeno_caste.max_health > 0)
-		stat("Health:", "[health]/[xeno_caste.max_health]")
+	stat("Health:", "[health]/[xeno_caste.max_health]")
 
 	if(xeno_caste.plasma_max > 0)
 		stat("Plasma:", "[plasma_stored]/[xeno_caste.plasma_max]")
 
-	if(xeno_caste.max_health > 0)
-		stat("Sunder:", "[sunder]/[100]")
+	stat("Sunder:", "[sunder]/[100]")
 
 	//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
 	var/msg_holder = ""
