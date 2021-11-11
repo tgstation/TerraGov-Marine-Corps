@@ -227,7 +227,7 @@
 	if(xeno_caste.plasma_max > 0)
 		stat("Plasma:", "[plasma_stored]/[xeno_caste.plasma_max]")
 
-	stat("Sunder:", "[sunder]/[100]")
+	stat("Sunder:", "[100-sunder]% armor left")
 
 	//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
 	var/msg_holder = ""
