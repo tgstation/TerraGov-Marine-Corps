@@ -239,8 +239,8 @@
 	max_amount = 5
 	skill_level_needed = SKILL_MEDICAL_PRACTICED
 	unskilled_delay = SKILL_TASK_TOUGH
-	///How much splint health per medical skill is applied
-	var/applied_splint_health = 15
+	///How much splint time per medical skill is applied, in 10-second chunks
+	var/applied_splint_time = 30
 
 
 /obj/item/stack/medical/splint/attack(mob/living/carbon/M, mob/user)
@@ -277,7 +277,7 @@
 			user.visible_message(span_warning("[user] starts to apply [src] to [user.p_their()] [limb]."),
 			span_notice("You start to apply [src] to your [limb], hold still."))
 
-		if(affecting.apply_splints(src, user == M ? (applied_splint_health*max(user.skills.getRating("medical") - 1, 0)) : applied_splint_health*user.skills.getRating("medical"), user, M)) // Referenced in external organ helpers.
+		if(affecting.apply_splints(src, user == M ? (applied_splint_time*max(user.skills.getRating("medical") + 1, 0)) : applied_splint_time*user.skills.getRating("medical"), user, M)) // Referenced in external organ helpers.
 			use(1)
 
 #undef BANDAGE
