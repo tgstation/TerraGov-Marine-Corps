@@ -101,7 +101,7 @@
 	lower_akimbo_accuracy = 3
 
 /obj/item/weapon/gun/energy/lasgun/get_magazine_reload_delay(obj/item/mag)
-	var/obj/item/cell/lasgun/cell = new_mag
+	var/obj/item/cell/lasgun/cell = mag
 	return cell?.reload_delay
 
 /obj/item/weapon/gun/energy/lasgun/tesla
