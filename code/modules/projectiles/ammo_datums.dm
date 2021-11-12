@@ -651,8 +651,8 @@ datum/ammo/bullet/revolver/tp44
 	damage_type = BRUTE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING
 	max_range = 15
-	damage = 80
-	penetration = 25
+	damage = 65
+	penetration = 15
 	sundering = 2
 	bullet_color = COLOR_TAN_ORANGE
 
