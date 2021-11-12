@@ -826,11 +826,7 @@ and you're good to go.
 
 
 	play_fire_sound(loc)
-	var/flash_loc
-	if(master_gun || !istype(loc, /obj/machinery/deployable/mounted))
-		flash_loc = gun_user
-	else
-		flash_loc = loc
+	var/flash_loc = (master_gun || !istype(loc, /obj/machinery/deployable/mounted)) ? gun_user : loc
 	muzzle_flash(firing_angle, flash_loc)
 	simulate_recoil(dual_wield, firing_angle)
 
