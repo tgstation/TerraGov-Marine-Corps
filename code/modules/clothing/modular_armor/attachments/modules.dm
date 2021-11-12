@@ -171,7 +171,7 @@
 	soft_armor = list("bomb" = 40)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_boomimmune_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_boomimmune_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_boomimmune_xn")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_bombimmune_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_bombimmune_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_bombimmune_xn")
 
 /**
  * Extra armor module
