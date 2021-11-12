@@ -1552,9 +1552,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.set_gun_user(user)
 		RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, .proc/handle_firing)
 		master_gun.RegisterSignal(user, COMSIG_MOB_MOUSEDRAG, /obj/item/weapon/gun.proc/change_target)
-	for(var/action_to_update AS in actions)
-		var/datum/action/action = action_to_update
-		action.update_button_icon()
+	for(var/datum/action/action_to_update AS in actions)
+		action_to_update.update_button_icon()
 
 ///Handles the gun attaching to the armor.
 /obj/item/attachable/shoulder_mount/proc/handle_armor_attach(datum/source, attaching_item, mob/user)
