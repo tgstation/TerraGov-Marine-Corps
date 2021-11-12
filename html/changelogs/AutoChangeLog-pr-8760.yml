@@ -1,0 +1,5 @@
+author: "KrabSpider"
+delete-after: True
+changes: 
+  - balance: "Deletes stagger and screenshake from A19 impact."
+  - balance: "Damage increase to 30."
