@@ -70,6 +70,8 @@
 		if(!isitem(thing_in_content))
 			continue
 		item_representation_type = item2representation_type(thing_in_content.type)
+		if(item_representation_type == /datum/item_representation/storage) //Storage nested in storage tends to be erased by jatum, so just give the default content
+			item_representation_type = /datum/item_representation
 		contents += new item_representation_type(thing_in_content)
 
 /datum/item_representation/storage/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
