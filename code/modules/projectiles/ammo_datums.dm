@@ -1919,11 +1919,11 @@ datum/ammo/bullet/revolver/tp44
 	armor_type = "bio"
 	accuracy_var_high = 10
 	max_range = 30
-	damage = 50
+	damage = 40
 	damage_type = STAMINA
 	penetration = 40
 	bullet_color = BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR
-	reagent_transfer_amount = 30
+	reagent_transfer_amount = 50
 
 ///Set up the list of reagents the spit transfers upon impact
 /datum/ammo/xeno/boiler_gas/proc/set_reagents()
@@ -1936,7 +1936,7 @@ datum/ammo/bullet/revolver/tp44
 	if(!istype(victim) || victim.stat == DEAD || victim.issamexenohive(proj.firer))
 		return
 
-	victim.Paralyze(1 SECONDS)
+	victim.Paralyze(2 SECONDS)
 	victim.blur_eyes(11)
 	victim.adjustDrowsyness(12)
 
@@ -1983,16 +1983,16 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
 	armor_type = "acid"
 	danger_message = span_danger("A glob of acid lands with a splat and explodes into corrosive bile!")
-	damage = 50
+	damage = 70
 	damage_type = BURN
-	penetration = 40
+	penetration = 50
 	bullet_color = BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR
 
 /datum/ammo/xeno/boiler_gas/corrosive/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	drop_nade(get_turf(proj), proj.firer)
-	victim.Paralyze(1 SECONDS)
-	victim.blur_eyes(1)
-	victim.adjustDrowsyness(1)
+	victim.Paralyze(2 SECONDS)
+	victim.blur_eyes(0.5)
+	victim.adjustDrowsyness(0.5)
 
 /datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
