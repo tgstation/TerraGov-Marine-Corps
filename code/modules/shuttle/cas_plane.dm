@@ -244,7 +244,7 @@
 /obj/docking_port/mobile/marine_dropship/casplane/proc/update_state(datum/source, mode)
 	if(state == PLANE_STATE_DEACTIVATED)
 		return
-	if(!is_mainship_level(z))
+	if(!is_mainship_level(z) || mode != "idle")
 		state = PLANE_STATE_FLYING
 	else
 		for(var/i in engines)
