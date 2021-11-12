@@ -897,7 +897,7 @@
 		return
 	if(old_z == new_z)
 		return
-	if(is_ground_level(old_z))
+	if(is_ground_level(new_z))
 		hud_used.remove_parallax(src)
 		return
 	hud_used.create_parallax(src)
