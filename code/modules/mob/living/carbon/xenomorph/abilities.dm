@@ -799,7 +799,8 @@
 /datum/action/xeno_action/activable/xeno_spit/proc/start_fire(datum/source, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
 	var/list/modifiers = params2list(params)
-	if(!modifiers["right"] || modifiers["shift"] || modifiers["ctrl"] || modifiers["left"])
+	if(((modifiers["right"] || modifiers["middle"]) && (modifiers["shift"] || modifiers["ctrl"] || modifiers["left"])) || \
+	((modifiers["left"] && modifiers["shift"]) && (modifiers["ctrl"] || modifiers["middle"] || modifiers["right"])))
 		return
 	var/mob/living/carbon/xenomorph/xeno = owner
 	if(!xeno.check_state() || xeno.ammo?.spit_cost > xeno.plasma_stored)
