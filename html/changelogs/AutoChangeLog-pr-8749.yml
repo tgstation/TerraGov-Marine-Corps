@@ -1,0 +1,5 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - expansion: "helmets now layer under armor."
+  - bugfix: "Hlin now appears on xenonauten properly."
