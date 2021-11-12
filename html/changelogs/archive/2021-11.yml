@@ -87,3 +87,6 @@
 2021-11-11:
   ivanmixo:
   - bugfix: Command can't haunt you with rally orders from beyond the grave.
+2021-11-12:
+  ILOVEUNGA:
+  - qol: Health and sunder stats added to xeno gamepanel.
