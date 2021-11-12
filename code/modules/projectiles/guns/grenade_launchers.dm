@@ -19,8 +19,7 @@ The Grenade Launchers
 	fire_rattle = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	general_codex_key = "explosive weapons"
-	///the maximum range the launcher can fling the grenade, by default 15 tiles
-	var/max_range = 15
+	default_ammo_type = /obj/item/explosive/grenade
 
 	allowed_ammo_types = list(
 		/obj/item/explosive/grenade,
@@ -50,6 +49,8 @@ The Grenade Launchers
 	)
 	reciever_flags = NONE
 
+	///the maximum range the launcher can fling the grenade, by default 15 tiles
+	var/max_range = 15
 
 /obj/item/weapon/gun/grenade_launcher/able_to_fire(mob/user)
 	. = ..()
@@ -146,6 +147,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/phosphorus/upp,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/explosive/grenade/flare/cas,
+		/obj/item/explosive/grenade/impact,
 	)
 
 /obj/item/weapon/gun/grenade_launcher/underslung/invisible

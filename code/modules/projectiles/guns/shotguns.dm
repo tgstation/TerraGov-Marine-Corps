@@ -2,7 +2,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	force = 14.0
 	caliber = CALIBER_12G //codex
-	max_chamber_items = 9 //codex
+	max_chamber_items = 8 //codex
 	load_method = SINGLE_CASING //codex
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
@@ -115,6 +115,7 @@
 	desc = "A weapon-mounted, three-shot shotgun. Reloadable with buckshot. The short barrel reduces the ammo's effectiveness, but allows it to be fired one handed."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "masterkey"
+	max_chamber_items = 2
 	attachable_allowed = list()
 	starting_attachment_types = list()
 	slot = ATTACHMENT_SLOT_UNDER
@@ -233,7 +234,7 @@
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/shotgun_pump.ogg'
-	max_chamber_items = 9
+	max_chamber_items = 8
 	cock_delay = 1.4 SECONDS
 
 	attachable_allowed = list(
@@ -256,8 +257,6 @@
 	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION|AMMO_RECIEVER_UNIQUE_ACTION_LOCKS
 	cocked_message = "You rack the pump."
 	cock_locked_message = "The pump is locked! Fire it first!"
-	max_chamber_items = 8
-
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
 
 	fire_delay = 20
@@ -322,7 +321,7 @@
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = CALIBER_762X54 //codex
 	load_method = SINGLE_CASING //codex
-	max_chamber_items = 5 //codex
+	max_chamber_items = 4 //codex
 	default_ammo_type = /datum/ammo/bullet/sniper/svd
 	gun_skill_category = GUN_SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
@@ -464,7 +463,7 @@
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = CALIBER_44 //codex
 	load_method = SINGLE_CASING //codex
-	max_chamber_items = 10 //codex
+	max_chamber_items = 9 //codex
 	default_ammo_type = /datum/ammo/bullet/revolver/tp44
 	gun_skill_category = GUN_SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
@@ -504,7 +503,7 @@
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = CALIBER_44 //codex
 	load_method = SINGLE_CASING //codex
-	max_chamber_items = 14 //codex
+	max_chamber_items = 13 //codex
 	default_ammo_type = /datum/ammo/bullet/revolver/tp44
 	gun_skill_category = GUN_SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
@@ -548,7 +547,7 @@
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = CALIBER_410
 	load_method = SINGLE_CASING
-	max_chamber_items = 10
+	max_chamber_items = 9
 	default_ammo_type = /datum/ammo/bullet/shotgun/mbx900_buckshot
 	gun_skill_category = GUN_SKILL_SHOTGUNS
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
@@ -591,7 +590,7 @@
 	cock_animation = "t35_pump"
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	fire_sound = 'sound/weapons/guns/fire/t35.ogg'
-	max_chamber_items = 9
+	max_chamber_items = 8
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -644,7 +643,7 @@
 	icon_state = "zx-76"
 	item_state = "zx-76"
 	flags_equip_slot = ITEM_SLOT_BACK
-	max_chamber_items = 10 //codex
+	max_chamber_items = 9 //codex
 	caliber = CALIBER_12G //codex
 	load_method = SINGLE_CASING //codex
 	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'

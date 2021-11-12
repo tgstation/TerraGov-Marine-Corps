@@ -87,7 +87,7 @@
 	if(!CHECK_BITFIELD(flags_magazine, MAGAZINE_REFILLABLE)) //and a refillable magazine
 		return
 
-	if(src != user.get_inactive_held_item()) //It has to be held.
+	if(src != user.get_inactive_held_item() && !CHECK_BITFIELD(flags_magazine, MAGAZINE_HANDFUL)) //It has to be held.
 		to_chat(user, span_notice("Try holding [src] before you attempt to restock it."))
 		return
 
@@ -218,7 +218,7 @@
 	current_rounds = 1 // So it doesn't get autofilled for no reason.
 	max_rounds = 5 // For shotguns, though this will be determined by the handful type when generated.
 	flags_atom = CONDUCT|DIRLOCK
-	flags_magazine = MAGAZINE_HANDFUL
+	flags_magazine = MAGAZINE_HANDFUL|MAGAZINE_REFILLABLE
 	attack_speed = 3 // should make reloading less painful
 	icon_state_mini = "bullets"
 

@@ -355,6 +355,9 @@
 				INVOKE_ASYNC(src, .proc/reload, thing_to_reload, null, TRUE)
 				if(!(thing_to_reload in chamber_items))
 					qdel(thing_to_reload) //If the item doesnt suceed in reloading, we dont want to keep it around.
+				if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
+					ENABLE_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)
+				update_icon()
 				return
 		for(var/i in 0 to max_chamber_items)
 			var/obj/object_to_insert
@@ -367,6 +370,8 @@
 			INVOKE_ASYNC(src, .proc/reload, object_to_insert, null, TRUE)
 			if(!(object_to_insert in chamber_items))
 				qdel(object_to_insert)
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
+		ENABLE_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)
 	update_icon()
 
 /obj/item/weapon/gun/Destroy()
@@ -730,7 +735,7 @@
 			in_chamber = null
 		if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 			cycle(null)
-			if(rounds <= 0 && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
+			if(length(chamber_items) && !get_current_rounds(chamber_items[current_chamber_position]) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
 				playsound(src, empty_sound, 25, 1)
 				unload()
 
@@ -885,44 +890,11 @@
 		. = ..()
 		if(!.)
 			return
-
+		set_target(M)
 		if(gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
-			set_target(M)
 			SEND_SIGNAL(src, COMSIG_GUN_FIRE)
 			return TRUE
-
-		//Point blanking simulates firing the bullet proper but without actually firing it.
-		var/obj/projectile/projectile_to_fire = in_chamber
-		if(!projectile_to_fire) //We actually have a projectile, let's move on. We're going to simulate the fire cycle.
-			return // no ..(), already invoked above
-
-		user.visible_message(span_danger("[user] fires [src] point blank at [M]!"))
-		apply_gun_modifiers(projectile_to_fire, M, user)
-		setup_bullet_accuracy(projectile_to_fire, user) //We add any damage effects that we need.
-		projectile_to_fire.setDir(get_dir(user, M))
-		projectile_to_fire.distance_travelled = get_dist(user, M)
-		simulate_recoil(1, Get_Angle(user, M)) // 1 is a scalar value not boolean
-		play_fire_sound(user)
-
-		if(projectile_to_fire.ammo.bonus_projectiles_amount)
-			var/obj/projectile/BP
-			for(var/i = 1 to projectile_to_fire.ammo.bonus_projectiles_amount)
-				BP = new /obj/projectile(M.loc)
-				BP.generate_bullet(GLOB.ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
-				BP.damage *= damage_mult
-				BP.setDir(get_dir(user, M))
-				BP.distance_travelled = get_dist(user, M)
-				BP.ammo.on_hit_mob(M, BP)
-				M.bullet_act(BP)
-				qdel(BP)
-
-		projectile_to_fire.ammo.on_hit_mob(M, projectile_to_fire)
-		M.bullet_act(projectile_to_fire)
-		last_fired = world.time
-
-		QDEL_NULL(projectile_to_fire)
-
-		user?.hud_used.update_ammo_hud(user, src)
+		Fire()
 		return TRUE
 
 	if(M != user || user.zone_selected != "mouth")
@@ -1046,18 +1018,40 @@
 				chamber_items.Insert(current_chamber_position, in_chamber) //Otherwise we insert in_chamber back into the chamber_items. We dont want in_chamber to be full when the gun is open.
 				in_chamber = null
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN_EJECTS))
-			for(var/obj/object_to_eject in chamber_items) //If the gun ejects on toggle, we wanna yeet the loaded items out.
-				if(user)
-					user.put_in_hands(object_to_eject)
+			if(length(chamber_items))
+				if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
+					for(var/obj/object_to_eject in chamber_items) //If the gun ejects on toggle, we wanna yeet the loaded items out.
+						if(user)
+							user.put_in_hands(object_to_eject)
+						else
+							object_to_eject.forceMove(get_turf(src))
 				else
-					object_to_eject.forceMove(get_turf(src))
+					var/obj/item/ammo_magazine/handful_to_fill = chamber_items[1]
+					var/list/obj/item/objects_to_eject = list(handful_to_fill)
+					for(var/obj/item/ammo_magazine/handful_to_eject in chamber_items)
+						if(handful_to_eject == handful_to_fill)
+							continue
+						if(handful_to_eject.default_ammo != handful_to_fill.default_ammo)
+							handful_to_fill = handful_to_eject
+							objects_to_eject += handful_to_fill
+							continue
+						handful_to_fill.transfer_ammo(handful_to_eject, user, handful_to_eject.current_rounds)
+						if(handful_to_fill.current_rounds < handful_to_fill.max_rounds)
+							continue
+						handful_to_fill = handful_to_eject
+						objects_to_eject += handful_to_fill
+					for(var/obj/object_to_eject in objects_to_eject)
+						if(user)
+							user.put_in_hands(object_to_eject)
+						else
+							object_to_eject.forceMove(get_turf(src))
+				chamber_items = list()
+				if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER)) //If the reciever cycles (like revolvers) we want to populate the chamber with null objects.
+					for(var/i = 0, i < max_chamber_items, i++)
+						chamber_items.Add(null)
 			for(var/i = 0, i < casings_to_eject, i++) //Eject casings equal to the rounds fired between the last opening.
 				make_casing(null, FALSE)
 			casings_to_eject = 0
-			chamber_items = list()
-			if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER)) //If the reciever cycles (like revolvers) we want to populate the chamber with null objects.
-				for(var/i = 0, i < max_chamber_items, i++)
-					chamber_items.Add(null)
 	else
 		ENABLE_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)
 		playsound(src, cocked_sound, 25, 1)
@@ -1066,8 +1060,6 @@
 		cycle(user, FALSE)
 	update_ammo_count()
 	update_icon()
-
-
 
 
 /**
@@ -1228,6 +1220,7 @@
 			else
 				obj_in_chamber.forceMove(get_turf(src))
 		in_chamber = null
+		obj_in_chamber.update_icon()
 		get_ammo()
 		update_ammo_count()
 		return TRUE
@@ -1250,13 +1243,14 @@
 	if(istype(mag, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/magazine = mag
 		magazine.on_removed(src)
+	mag.update_icon()
 	get_ammo()
 	update_ammo_count()
 	return TRUE
 
 ///Cycles the gun, handles ammunition draw
 /obj/item/weapon/gun/proc/cycle(mob/living/user, after_fire = TRUE)
-	if(!length(chamber_items))
+	if(!length(chamber_items) || (CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && !get_current_rounds(chamber_items[current_chamber_position])))
 		update_ammo_count()
 		return
 	if((CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES)) || (CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && get_current_rounds(chamber_items[current_chamber_position]) <= 0))
