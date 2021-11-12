@@ -204,7 +204,7 @@ if(!(flags_atom & DIRLOCK)){setDir(direction &~ can_pass_diagonally)}
 		if(!(enter_return_value & TURF_CAN_ENTER))
 			if(can_pass_diagonally && !(enter_return_value & TURF_ENTER_ALREADY_MOVED))
 				Move(get_step(loc, can_pass_diagonally), can_pass_diagonally)
-				return
+				return TRUE
 			SET_CARDINAL_DIR(flags_atom, direction, can_pass_diagonally)
 			return
 
