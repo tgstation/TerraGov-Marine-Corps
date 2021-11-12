@@ -1827,12 +1827,12 @@ datum/ammo/bullet/revolver/tp44
 	sound_hit 	 = "acid_hit"
 	sound_bounce	= "acid_bounce"
 	damage_type = BURN
-	added_spit_delay = 5
+	added_spit_delay = 4
 	spit_cost = 50
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE
 	armor_type = "acid"
 	damage = 18
-	max_range = 8
+	max_range = 10
 	bullet_color = COLOR_PALE_GREEN_GRAY
 	///Duration of the acid puddles
 	var/puddle_duration = 1 SECONDS //Lasts 1-3 seconds
@@ -1844,7 +1844,8 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
-	damage = 30
+	damage = 35
+	shell_speed = 3.5
 	flags_ammo_behavior = AMMO_XENO
 
 /datum/ammo/xeno/acid/passthrough
@@ -1902,12 +1903,12 @@ datum/ammo/bullet/revolver/tp44
 
 ///For the Spitter's Scatterspit ability
 /datum/ammo/xeno/acid/heavy/scatter
-	damage = 10
+	damage = 15
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
 	bonus_projectiles_type = /datum/ammo/xeno/acid/heavy/scatter
-	bonus_projectiles_amount = 6
-	bonus_projectiles_scatter = 3
-	max_range = 8
+	bonus_projectiles_amount = 5
+	bonus_projectiles_scatter = 2
+	max_range = 10
 	puddle_duration = 1 SECONDS //Lasts 2-4 seconds
 
 /datum/ammo/xeno/boiler_gas
