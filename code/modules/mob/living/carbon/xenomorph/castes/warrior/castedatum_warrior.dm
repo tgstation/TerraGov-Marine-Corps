@@ -6,6 +6,7 @@
 	caste_type_path = /mob/living/carbon/xenomorph/warrior
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
+	primordial_upgrade_name = PRIMORDIAL_WARRIOR
 	wound_type = "warrior" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
@@ -138,3 +139,25 @@
 	// *** Warrior Abilities *** //
 	agility_speed_increase = -0.6
 	agility_speed_armor = -30
+
+/datum/xeno_caste/warrior/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "Alien with an incredibly tough and armored head crest able to endure even the strongest hits."
+	primordial_message = "WIP"
+	upgrade = XENO_UPGRADE_FOUR
+
+	// *** Melee Attacks *** //
+	//TODO
+
+	// *** Speed *** //
+	speed = -0.5
+
+	// *** Plasma *** //
+	plasma_max = 120
+	plasma_gain = 12
+
+	// *** Health *** //
+	//TODO
+
+	// *** Defense *** //
+	//TODO
