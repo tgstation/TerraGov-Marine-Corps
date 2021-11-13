@@ -8428,7 +8428,7 @@
 /area/lv624/lazarus/quart)
 "aUX" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/tile/whiteyellow/full,d
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aUY" = (
 /obj/machinery/bot/mulebot,
