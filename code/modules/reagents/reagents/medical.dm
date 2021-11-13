@@ -29,8 +29,8 @@
 		L.adjustFireLoss(-fire_loss * 0.30)
 		for(var/datum/internal_organ/I in H.internal_organs)
 			if(I.damage)
-				if(I.damage > 15)
-					continue
+				if(I.damage < 15)
+					return
 				I.heal_organ_damage((I.damage-15) *effect_str)
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
@@ -479,8 +479,8 @@
 		L.adjustFireLoss(-fire_loss * 0.20)
 		for(var/datum/internal_organ/I in H.internal_organs)
 			if(I.damage)
-				if(I.damage > 29)
-					continue
+				if(I.damage < 29)
+					return
 				I.heal_organ_damage((I.damage-29) *effect_str)
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
@@ -574,8 +574,8 @@
 		L.adjustFireLoss(-fire_loss * 0.20)
 		for(var/datum/internal_organ/I in H.internal_organs)
 			if(I.damage)
-				if(I.damage > 29)
-					continue
+				if(I.damage < 29)
+					return
 				I.heal_organ_damage((I.damage-29) *effect_str)
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
