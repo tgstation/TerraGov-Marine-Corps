@@ -70,7 +70,7 @@
 	if(owner.do_actions)
 		return FALSE
 
-	if(ishuman(target))
+	if(ishuman(target) && !issynth(target))
 		var/mob/living/carbon/human/H = target
 		if(H.stat != DEAD || !HAS_TRAIT(H, TRAIT_UNDEFIBBABLE))
 			if(!silent)
@@ -114,7 +114,7 @@
 	if(ishuman(A))
 		var/mob/living/carbon/human/target = A
 		while(target.blood_volume > GORGER_REJUVENATE_BLOOD_DRAIN && X.health < X.maxHealth && do_after(X, 2 SECONDS, TRUE, A, BUSY_ICON_HOSTILE))
-			X.heal_wounds(1.6, TRUE)
+			X.heal_wounds(2.2, TRUE)
 			X.adjust_sunder(-1.5)
 			target.blood_volume -= GORGER_REJUVENATE_BLOOD_DRAIN
 		to_chat(X, span_notice("We feel fully restored."))
