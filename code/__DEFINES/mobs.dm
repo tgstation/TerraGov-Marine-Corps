@@ -573,8 +573,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //gorger defines
 #define GORGER_REJUVENATE_ALLY_COST 20 //Cost of using ability on an ally
+#define GORGER_REJUVENATE_ALLY_COOLDOWN 2 SECONDS //Cooldown of casting rejuvenation on an ally
 #define GORGER_REJUVENATE_SELF_COST 80 //Cost of using ability on self
 #define GORGER_REJUVENATE_SELF_DURATION 5 SECONDS //Duration of rejuvenation buff on self
+#define GORGER_REJUVENATE_BLOOD_DRAIN 20 //Amount of plasma drained when feeding on something
+#define GORGER_FEAST_DURATION -1 //lasts indefinitely, self-cancelled when insufficient plasma left
 
 //carrier defines
 #define CARRIER_HUGGER_THROW_SPEED 2

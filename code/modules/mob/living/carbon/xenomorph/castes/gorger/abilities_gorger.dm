@@ -51,6 +51,8 @@
 	succeed_activate()
 	add_cooldown()
 
+#define REJUVENATE_ALLY "rejuvenate_ally_cooldown"
+
 // ***************************************
 // *********** Rejuvenate/Transfusion
 // ***************************************
@@ -58,81 +60,78 @@
 	name = "Rejuvenate/Transfusion"
 	action_icon_state = "rejuvenation"
 	mechanics_text = "When used on self, drains blood and restores health over time. When used on another xenomorph, costs blood and restores some of their health. When used on a dead human, you heal gradually."
-	cooldown_timer = 2 SECONDS
+	cooldown_timer = 20 SECONDS
 	plasma_cost = 0
 	use_state_flags = XACT_TARGET_SELF
 	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/rejuvenate/can_use_ability(atom/target, silent = FALSE, override_flags) //it is set up to only return true on specific xeno or human targets
 	. = ..()
-	if(!.)
-		return
+	if(owner.do_actions)
+		return FALSE
+
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		if(H.stat != DEAD)
+		if(H.stat != DEAD || !HAS_TRAIT(H, TRAIT_UNDEFIBBABLE))
 			if(!silent)
-				to_chat(owner, span_notice("We can only use still, dead hosts to heal."))
+				to_chat(owner, span_notice("We can only use still, fully dead hosts to heal."))
 			return FALSE
-		else if(!owner.Adjacent(target))
+		if(!owner.Adjacent(target))
 			if(!silent)
 				to_chat(owner, span_notice("We need to be next to our meal."))
 			return FALSE
 		return TRUE
 
-	if(isxeno(target))
-		var/mob/living/carbon/xenomorph/gorger/X = owner
-		if(X != target)
-			if(!X.line_of_sight(target) || get_dist(X, target) > 2)
-				if(!silent)
-					to_chat(X, span_notice("It is beyond our reach, we must be close and our way must be clear."))
-				return FALSE
-			if(X.plasma_stored < GORGER_REJUVENATE_ALLY_COST)
-				if(!silent)
-					to_chat(X, span_notice("We need [GORGER_REJUVENATE_ALLY_COST - X.plasma_stored]u more blood to restore a sister."))
-				return FALSE
-			if(isdead(target))
-				if(!silent)
-					to_chat(X, span_notice("We can only help living sisters."))
-				return FALSE
-			if(!do_mob(X, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
-				return FALSE
-			return TRUE
+	if(!isxeno(target))
+		if(!silent)
+			to_chat(owner, span_notice("We can only drain or restore familiar biological lifeforms."))
+		return FALSE
 
-		if(!COOLDOWN_CHECK(X, rejuvenate_self_cooldown))
-			if(!silent)
-				to_chat(X, span_notice("We need another [round(COOLDOWN_TIMELEFT(X, rejuvenate_self_cooldown) / 10)] seconds before we can revitalize ourselves."))
-			return FALSE
-		if(X.plasma_stored < GORGER_REJUVENATE_SELF_COST)
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X != target)
+		if(TIMER_COOLDOWN_CHECK(X, REJUVENATE_ALLY))
 			if(!silent)
 				to_chat(X, span_notice("We need [GORGER_REJUVENATE_SELF_COST - X.plasma_stored]u more blood to revitalize ourselves."))
 			return FALSE
+		if(!X.line_of_sight(target) || get_dist(X, target) > 2)
+			if(!silent)
+				to_chat(X, span_notice("It is beyond our reach, we must be close and our way must be clear."))
+			return FALSE
+		if(X.plasma_stored < GORGER_REJUVENATE_ALLY_COST)
+			if(!silent)
+				to_chat(X, span_notice("We need [GORGER_REJUVENATE_ALLY_COST - X.plasma_stored]u more blood to restore a sister."))
+			return FALSE
+		if(isdead(target))
+			if(!silent)
+				to_chat(X, span_notice("We can only help living sisters."))
+			return FALSE
+		if(!do_mob(X, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+			return FALSE
 		return TRUE
-
-	if(!silent)
-		to_chat(owner, span_notice("We can only drain or restore familiar biological lifeforms."))
-	return FALSE
 
 /datum/action/xeno_action/activable/rejuvenate/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	if(ishuman(A))
 		var/mob/living/carbon/human/target = A
-		while(X.health < X.maxHealth && do_after(X, 2 SECONDS, TRUE, A, BUSY_ICON_HOSTILE))
-			X.heal_wounds(1.1, TRUE)
+		while(target.blood_volume > GORGER_REJUVENATE_BLOOD_DRAIN && X.health < X.maxHealth && do_after(X, 2 SECONDS, TRUE, A, BUSY_ICON_HOSTILE))
+			X.heal_wounds(1.6, TRUE)
 			X.adjust_sunder(-1.5)
-			target.blood_volume -= 2
+			target.blood_volume -= GORGER_REJUVENATE_BLOOD_DRAIN
 		to_chat(X, span_notice("We feel fully restored."))
 	else if(A == X)
 		X.use_plasma(GORGER_REJUVENATE_SELF_COST)
 		X.apply_status_effect(/datum/status_effect/xeno_rejuvenate, GORGER_REJUVENATE_SELF_DURATION)
-		COOLDOWN_START(X, rejuvenate_self_cooldown, 20 SECONDS)
 		to_chat(X, span_notice("We tap into our reserves for nourishment."))
+		add_cooldown()
 	else
 		X.use_plasma(GORGER_REJUVENATE_ALLY_COST)
+		TIMER_COOLDOWN_START(X, REJUVENATE_ALLY, GORGER_REJUVENATE_ALLY_COOLDOWN)
 		var/mob/living/carbon/xenomorph/target_xeno = A
 		target_xeno.adjustBruteLoss(-target_xeno.maxHealth*0.3)
 		target_xeno.adjustFireLoss(-target_xeno.maxHealth*0.3)
 	succeed_activate()
-	add_cooldown()
+
+#undef REJUVENATE_ALLY
 
 // ***************************************
 // *********** Carnage
@@ -160,10 +159,15 @@
 	mechanics_text = "Use a large amount of blood to get into a state of rejuvenation. During this time you use a small amount of blood and heal. You can cancel this early."
 	cooldown_timer = 180 SECONDS
 	plasma_cost = 100
+	///Adds a cooldown to deactivation to avoid accidental cancel
+	COOLDOWN_DECLARE(misclick_prevention)
 
 /datum/action/xeno_action/activable/feast/can_use_ability(atom/target, silent, override_flags)
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
+
+	if(!COOLDOWN_CHECK(src, misclick_prevention))
+		return FALSE
 	if(X.has_status_effect(STATUS_EFFECT_XENO_FEAST))
 		return TRUE
 
@@ -176,7 +180,8 @@
 
 	X.emote("roar")
 	X.visible_message(X, span_notice("[X] begins to overflow with vitality!"))
-	X.apply_status_effect(/datum/status_effect/xeno_feast, 200 SECONDS, X.xeno_caste.feast_plasma_drain)
+	X.apply_status_effect(/datum/status_effect/xeno_feast, GORGER_FEAST_DURATION, X.xeno_caste.feast_plasma_drain)
+	COOLDOWN_START(src, misclick_prevention, 2 SECONDS)
 	succeed_activate()
 	add_cooldown()
 
