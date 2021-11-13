@@ -351,10 +351,6 @@
 	var/fortify = 0
 	var/crest_defense = 0
 
-	// Gorger vars
-	///Cooldown for using rejuvenate on self
-	COOLDOWN_DECLARE(rejuvenate_self_cooldown)
-
 	//Leader vars
 	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen
 	var/leader_current_aura = "" //Pheromone type inherited from Queen
