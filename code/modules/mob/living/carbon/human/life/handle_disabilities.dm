@@ -12,11 +12,11 @@
 				to_chat(src, span_danger("It becomes hard to see for some reason."))
 				blur_eyes(10)
 		if(7 to 9)
-			if((hand && get_held_item()) && getBrainLoss())
+			if((hand && get_held_item()) && getBrainLoss() >= 5)
 				to_chat(src, span_danger("Your hand won't respond properly, you drop what you're holding."))
 				drop_held_item()
 		if(10 to 12)
-			if(!lying_angle && getBrainLoss())
+			if(!lying_angle && getBrainLoss() >= 5)
 				to_chat(src, span_danger("Your legs won't respond properly, you fall down."))
 				set_resting(TRUE)
 
