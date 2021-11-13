@@ -2,7 +2,7 @@ SUBSYSTEM_DEF(pathfinder)
 	name = "Pathfinder"
 	flags = SS_NO_INIT
 	priority = FIRE_PRIORITY_PATHFINDING
-	wait = 1
+	wait = 2
 	///List of all pathfinding datum with information on the mob and the target
 	var/list/datum/pathfinding_datum/pathfinding_datums_list = list()
 	///The current run list
