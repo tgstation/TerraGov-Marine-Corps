@@ -61,7 +61,7 @@
 /datum/status_effect/xeno_carnage
 	id = "xeno_carnage"
 	alert_type = /obj/screen/alert/status_effect/xeno_carnage
-	///PLasma gain for each attack
+	///Plasma gain for each attack
 	var/plasma_gain_on_hit
 
 /datum/status_effect/xeno_carnage/on_creation(mob/living/new_owner, set_duration, plasma_gain)
