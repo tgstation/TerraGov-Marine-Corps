@@ -23,8 +23,10 @@
 		return
 	if(health_ratio < -0.5 && volume > 14) //If you are in crit, and someone injects at least 15u into you at once, you will heal 30% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
-		L.adjustBruteLoss(L.getBruteLoss * 0.30)
-		L.adjustFireLoss(L.getFireLoss * 0.30)
+		var/brute_loss = L.getBruteLoss()
+		var/fire_loss = L.getFireLoss()
+		L.adjustBruteLoss(brute_loss * 0.30)
+		L.adjustFireLoss(fire_loss * 0.30)
 		for(var/datum/internal_organ/I in H.internal_organs)
 			if(I.damage)
 				if(I.damage > 15)
@@ -471,8 +473,10 @@
 		return
 	if(health_ratio < -0.5 && volume > 3) //If you are in crit, and someone injects at least 3u into you, you will heal 20% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
-		L.adjustBruteLoss(L.getBruteLoss * 0.20)
-		L.adjustFireLoss(L.getFireLoss * 0.20)
+		var/brute_loss = L.getBruteLoss()
+		var/fire_loss = L.getFireLoss()
+		L.adjustBruteLoss(brute_loss * 0.20)
+		L.adjustFireLoss(fire_loss * 0.20)
 		for(var/datum/internal_organ/I in H.internal_organs)
 			if(I.damage)
 				if(I.damage > 29)
@@ -564,8 +568,10 @@
 		return
 	if(health_ratio < -0.5 && volume > 9) //If you are in crit, and someone injects at least 9u into you, you will heal 20% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
-		L.adjustBruteLoss(L.getBruteLoss * 0.20)
-		L.adjustFireLoss(L.getFireLoss * 0.20)
+		var/brute_loss = L.getBruteLoss()
+		var/fire_loss = L.getFireLoss()
+		L.adjustBruteLoss(brute_loss * 0.20)
+		L.adjustFireLoss(fire_loss * 0.20)
 		for(var/datum/internal_organ/I in H.internal_organs)
 			if(I.damage)
 				if(I.damage > 29)
