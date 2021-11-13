@@ -4,33 +4,59 @@
 /datum/action/xeno_action/activable/drain
 	name = "Drain"
 	action_icon_state = "drain"
-	mechanics_text = "Hold a marine and drain some of their blood if successful."
+	mechanics_text = "Stagger a marine and drain some of their blood. When used on a dead human, you heal gradually and don't gain blood."
 	cooldown_timer = 15 SECONDS
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/drain/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
-	if(!.)
-		return
-	if(!iscarbon(A))
-		return FALSE
-	if(!A.can_sting())
+	if(!ishuman(A) || issynth(A))
 		if(!silent)
 			to_chat(owner, span_xenowarning("We can't drain this!"))
 		return FALSE
+
 	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/human/H = A
+	if(!X.Adjacent(H))
+		if(!silent)
+			to_chat(owner, span_notice("We need to be next to our meal."))
+		return FALSE
+
+	if(H.stat == DEAD)
+		if(owner.do_actions)
+			return FALSE
+		if(!HAS_TRAIT(H, TRAIT_UNDEFIBBABLE))
+			if(!silent)
+				to_chat(owner, span_notice("We can only use fully dead hosts to heal."))
+			return FALSE
+		if(H.blood_volume < GORGER_REJUVENATE_BLOOD_DRAIN)
+			if(!silent)
+				to_chat(owner, span_notice("Our meal has no blood... How sad!"))
+			return FALSE
+		return TRUE
+
+	if(!.)
+		return
+
 	if(X.plasma_stored >= X.xeno_caste.plasma_max)
 		if(!silent)
 			to_chat(X, span_xenowarning("No need, we feel sated for now..."))
 		return FALSE
-	if(!X.Adjacent(A))
-		if(!silent)
-			to_chat(X, span_xenowarning("It is outside of our reach! We need to be closer!"))
-		return FALSE
 
 /datum/action/xeno_action/activable/drain/use_ability(mob/living/carbon/A)
 	var/mob/living/carbon/xenomorph/X = owner
+	if(A.stat == DEAD)
+		var/mob/living/carbon/human/target = A
+		while(X.health < X.maxHealth && do_after(X, 2 SECONDS, TRUE, target, BUSY_ICON_HOSTILE))
+			if(target.blood_volume < GORGER_REJUVENATE_BLOOD_DRAIN)
+				to_chat(owner, span_notice("Our meal has no blood... How sad!"))
+				return
+			X.heal_wounds(2.2, TRUE)
+			X.adjust_sunder(-1.5)
+			target.blood_volume -= GORGER_REJUVENATE_BLOOD_DRAIN
+		to_chat(X, span_notice("We feel fully restored."))
+		return
 	X.face_atom(A)
 	X.emote("roar")
 	A.drop_all_held_items()
@@ -53,7 +79,7 @@
 /datum/action/xeno_action/activable/rejuvenate
 	name = "Rejuvenate/Transfusion"
 	action_icon_state = "rejuvenation"
-	mechanics_text = "When used on self, drains blood and restores health over time. When used on another xenomorph, costs blood and restores some of their health. When used on a dead human, you heal gradually."
+	mechanics_text = "When used on self, drains blood and restores health over time. When used on another xenomorph, costs blood and restores some of their health."
 	cooldown_timer = 20 SECONDS
 	plasma_cost = 0
 	use_state_flags = XACT_TARGET_SELF
@@ -61,28 +87,9 @@
 
 /datum/action/xeno_action/activable/rejuvenate/can_use_ability(atom/target, silent = FALSE, override_flags) //it is set up to only return true on specific xeno or human targets
 	. = ..()
-	if(owner.do_actions)
-		return FALSE
-
-	if(ishuman(target) && !issynth(target))
-		var/mob/living/carbon/human/H = target
-		if(H.stat != DEAD || !HAS_TRAIT(H, TRAIT_UNDEFIBBABLE))
-			if(!silent)
-				to_chat(owner, span_notice("We can only use still, fully dead hosts to heal."))
-			return FALSE
-		if(H.blood_volume < GORGER_REJUVENATE_BLOOD_DRAIN)
-			if(!silent)
-				to_chat(owner, span_notice("Our meal has no blood... How sad!"))
-			return FALSE
-		if(!owner.Adjacent(target))
-			if(!silent)
-				to_chat(owner, span_notice("We need to be next to our meal."))
-			return FALSE
-		return TRUE
-
 	if(!isxeno(target))
 		if(!silent)
-			to_chat(owner, span_notice("We can only drain or restore familiar biological lifeforms."))
+			to_chat(owner, span_notice("We can only restore familiar biological lifeforms."))
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/X = owner
@@ -109,14 +116,7 @@
 
 /datum/action/xeno_action/activable/rejuvenate/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
-	if(ishuman(A))
-		var/mob/living/carbon/human/target = A
-		while(target.blood_volume > GORGER_REJUVENATE_BLOOD_DRAIN && X.health < X.maxHealth && do_after(X, 2 SECONDS, TRUE, A, BUSY_ICON_HOSTILE))
-			X.heal_wounds(2.2, TRUE)
-			X.adjust_sunder(-1.5)
-			target.blood_volume -= GORGER_REJUVENATE_BLOOD_DRAIN
-		to_chat(X, span_notice("We feel fully restored."))
-	else if(A == X)
+	if(A == X)
 		X.use_plasma(GORGER_REJUVENATE_SELF_COST)
 		X.apply_status_effect(/datum/status_effect/xeno_rejuvenate, GORGER_REJUVENATE_SELF_DURATION)
 		to_chat(X, span_notice("We tap into our reserves for nourishment."))
@@ -138,6 +138,7 @@
 	name = "Carnage"
 	action_icon_state = "carnage"
 	mechanics_text = "For a while your attacks drain blood and heal you. During Feast you also heal nearby allies."
+	use_state_flags = XACT_IGNORE_SELECTED_ABILITY|XACT_KEYBIND_USE_ABILITY
 	cooldown_timer = 40 SECONDS
 	plasma_cost = 0
 
@@ -155,6 +156,7 @@
 	name = "Feast"
 	action_icon_state = "feast"
 	mechanics_text = "Use a large amount of blood to get into a state of rejuvenation. During this time you use a small amount of blood and heal. You can cancel this early."
+	use_state_flags = XACT_IGNORE_SELECTED_ABILITY|XACT_KEYBIND_USE_ABILITY
 	cooldown_timer = 180 SECONDS
 	plasma_cost = 0
 	///Adds a cooldown to deactivation to avoid accidental cancel
