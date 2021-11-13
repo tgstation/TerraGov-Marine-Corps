@@ -90,3 +90,12 @@
 2021-11-12:
   ILOVEUNGA:
   - qol: Health and sunder stats added to xeno gamepanel.
+2021-11-13:
+  BraveMole:
+  - bugfix: Fix sticky weeds not accellerating xeno
+  KrabSpider:
+  - balance: Deletes stagger and screenshake from A19 impact.
+  - balance: Damage increase to 30.
+  SplinterGP:
+  - expansion: helmets now layer under armor.
+  - bugfix: Hlin now appears on xenonauten properly.
