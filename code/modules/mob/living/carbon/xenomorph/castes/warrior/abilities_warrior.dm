@@ -534,26 +534,18 @@
 	mechanics_text = "WIP"
 	range = 2
 
-/datum/action/xeno_action/activable/punch/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return
-
-	if(!isliving(A)) //If we're not grappling something, we should be flinging something living and adjacent
-		if(!silent)
-			to_chat(owner, span_xenodanger("We have nothing to toss!"))
-		return FALSE
-
-	succeed_activate()
-	add_cooldown()
-
 /datum/action/xeno_action/activable/punch/jab/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/human/target = A
 	var/target_zone = check_zone(X.zone_selected)
 	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
+
+	X.actions_by_path[/datum/action/xeno_action/activable/punch/jab].clear_cooldown()
 	if(!target.punch_act(X, damage, target_zone, jab = TRUE))
 		return fail_activate()
+
+	GLOB.round_statistics.warrior_punches++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
 
 	X.actions_by_path[/datum/action/xeno_action/activable/punch/weak].clear_cooldown() //Clear punch cooldown
 	succeed_activate()
@@ -599,11 +591,13 @@
 /datum/action/xeno_action/activable/uppercut/can_use_ability(atom/A, silent = FALSE, override_flags)
 	.=..()
 
-	if(!isliving(A) || !owner.Adjacent(A) || isxeno(A))
+	if(!isliving(A) || isxeno(A))
 		if(!silent)
 			to_chat(owner, span_xenodanger("We cannot uppercut this target!"))
 		return FALSE
-
+	if(!owner.Adjacent(A))
+		if(!silent)
+			to_chat(owner, span_xenodanger("Our target must be closer!"))
 	return TRUE
 
 /datum/action/xeno_action/activable/uppercut/use_ability(atom/A)
@@ -624,6 +618,7 @@
 		target.Losebreath(2) //figure out how this works
 	if(combo>=6)
 		target.AdjustSleeping(4 SECONDS, ignore_canstun = TRUE)
+		target.SpinAnimation(loop = 1)
 		to_chat(X, span_highdanger("LIGHTS OUT."))
 
 	target.apply_damage(damage, BRUTE, "chest") //No uppercuts in the groin
