@@ -144,7 +144,7 @@
 	else
 		src.location = get_turf(location)
 
-	src.spread_amount = round(sqrt(spread_amount / 3), 0)
+	src.spread_amount = round(sqrt(spread_amount / 3))
 	carry.copy_to(carrying_reagents, carry.total_volume)
 	src.foam_flags = foam_flags
 
