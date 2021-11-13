@@ -159,13 +159,13 @@ if(!(flags_atom & DIRLOCK)){setDir(direction &~ can_pass_diagonally)}
 		moving_diagonally = TRUE
 		if(!(flags_atom & DIRLOCK))
 			setDir(direction) //We first set the direction to prevent going through dir sensible object
-		if((direction & NORTH) && get_step(loc, NORTH)?.Enter(src))
+		if((direction & NORTH) && get_step(loc, NORTH)?.Enter(src) && get_step(loc, NORTH).Exit(src, direction & ~NORTH))
 			can_pass_diagonally = NORTH
-		else if((direction & EAST) && get_step(loc, EAST)?.Enter(src))
+		else if((direction & EAST) && get_step(loc, EAST)?.Enter(src) && get_step(loc, EAST).Exit(src, direction & ~EAST))
 			can_pass_diagonally =  EAST
-		else if((direction & WEST) && get_step(loc, WEST)?.Enter(src))
+		else if((direction & WEST) && get_step(loc, WEST)?.Enter(src) && get_step(loc, WEST).Exit(src, direction & ~WEST))
 			can_pass_diagonally = WEST
-		else if((direction & SOUTH) && get_step(loc, SOUTH)?.Enter(src))
+		else if((direction & SOUTH) && get_step(loc, SOUTH)?.Enter(src) && get_step(loc, SOUTH).Exit(src, direction & ~SOUTH))
 			can_pass_diagonally = SOUTH
 		else
 			moving_diagonally = FALSE
