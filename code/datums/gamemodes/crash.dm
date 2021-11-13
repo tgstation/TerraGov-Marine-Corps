@@ -27,8 +27,10 @@
 
 	// Round start info
 	var/starting_squad = "Alpha"
-
+	///How long between two larva check
 	var/larva_check_interval = 2 MINUTES
+	///Last time larva balance was checked
+	var/last_larva_check
 	bioscan_interval = 0
 
 
@@ -120,8 +122,9 @@
 /datum/game_mode/infestation/crash/process()
 	. = ..()
 
-	if(world.time > larva_check_interval)
+	if(world.time > last_larva_check + larva_check_interval)
 		balance_scales()
+		last_larva_check = world.time
 
 /datum/game_mode/infestation/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
 	shuttle_landed = TRUE
