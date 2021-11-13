@@ -28,6 +28,7 @@
 		if(!silent)
 			to_chat(X, span_xenowarning("It is outside of our reach! We need to be closer!"))
 		return FALSE
+
 /datum/action/xeno_action/activable/drain/use_ability(mob/living/carbon/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	X.face_atom(A)
