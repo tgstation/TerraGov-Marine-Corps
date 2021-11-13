@@ -39,7 +39,7 @@
 	playsound(A, "alien_claw_flesh", 25, TRUE)
 	A.emote("scream")
 	A.apply_damage(damage = 20, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE)
-	A.ParalyzeNoChain(0.5 SECONDS)
+	A.ParalyzeNoChain(0.25 SECONDS)
 	A.blur_eyes(1)
 	X.gain_plasma(X.xeno_caste.drain_plasma_gain)
 	succeed_activate()
@@ -156,7 +156,7 @@
 	action_icon_state = "feast"
 	mechanics_text = "Use a large amount of blood to get into a state of rejuvenation. During this time you use a small amount of blood and heal. You can cancel this early."
 	cooldown_timer = 180 SECONDS
-	plasma_cost = 100
+	plasma_cost = 0
 	///Adds a cooldown to deactivation to avoid accidental cancel
 	COOLDOWN_DECLARE(misclick_prevention)
 
