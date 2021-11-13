@@ -277,7 +277,7 @@
 			user.visible_message(span_warning("[user] starts to apply [src] to [user.p_their()] [limb]."),
 			span_notice("You start to apply [src] to your [limb], hold still."))
 
-		if(affecting.apply_splints(src, user == M ? (applied_splint_time*max(user.skills.getRating("medical") + 1, 0)) : applied_splint_time*user.skills.getRating("medical"), user, M)) // Referenced in external organ helpers.
+		if(affecting.apply_splints(src, user == M ? (applied_splint_time*max(user.skills.getRating("medical") - 1, 1)) : applied_splint_time*user.skills.getRating("medical") + 1, user, M)) // Referenced in external organ helpers.
 			use(1)
 
 #undef BANDAGE
