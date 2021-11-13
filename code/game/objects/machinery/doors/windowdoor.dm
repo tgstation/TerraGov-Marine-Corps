@@ -66,13 +66,7 @@
 /obj/machinery/door/window/Bumped(atom/movable/bumper)
 	if(operating || !density)
 		return
-	if(!(isliving(bumper)))
-		var/obj/machinery/bot/bot = bumper
-		if(istype(bot))
-			if(density && check_access(bot.botcard))
-				open_and_close()
-			else
-				do_animate("deny")
+	if(!isliving(bumper))
 		return
 	var/mob/living/living_bumper = bumper
 	if (living_bumper.mob_size <= MOB_SIZE_SMALL || living_bumper.restrained())
