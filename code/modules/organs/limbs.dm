@@ -18,7 +18,7 @@
 	var/max_size = 0
 	var/last_dam = -1
 	var/supported = FALSE
-	///How many instances of damage the limb can take before its splints fall off
+	///How long a splint stays on for, in ticks.
 	var/splint_time = 0
 
 	var/datum/armor/soft_armor
@@ -563,7 +563,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			remove_limb_flags(LIMB_SPLINTED)
 			to_chat(owner, span_userdanger("The splint on your [display_name] comes apart!"))
 		else
-			if(world.time - last_move_time > 30)
+			if(world.time - owner.last_move_time > 30)
 				return
 			splint_time = max(splint_time - 1, 0) //splint health decrements by one per lifetick, unless it's been more than 10 seconds since your last move.
 			if(splint_time <= 30 && prob(20))
