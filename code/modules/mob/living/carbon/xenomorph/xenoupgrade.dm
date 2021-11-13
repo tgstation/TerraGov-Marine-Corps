@@ -110,6 +110,9 @@
 /mob/living/carbon/xenomorph/bull/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/bull/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //-----BULL END-----//
 //================//
 //-----DRONE START-----//

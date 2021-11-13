@@ -149,7 +149,7 @@
 
 /datum/action/xeno_action/ready_charge/proc/check_momentum(newdir)
 	var/mob/living/carbon/xenomorph/charger = owner
-	if(newdir && (ISDIAGONALDIR(newdir) || charge_dir != newdir)) //Check for null direction from help shuffle signals
+	if((newdir && ISDIAGONALDIR(newdir) || charge_dir != newdir) && !agile_charge) //Check for null direction from help shuffle signals
 		return FALSE
 
 	if(next_move_limit && world.time > next_move_limit)
@@ -161,7 +161,7 @@
 	if(charger.incapacitated())
 		return FALSE
 
-	if((charge_dir != charger.dir || charger.moving_diagonally) && agile_charge)
+	if((charge_dir != charger.dir || charger.moving_diagonally) && !agile_charge)
 		return FALSE
 
 	if(charger.pulledby)

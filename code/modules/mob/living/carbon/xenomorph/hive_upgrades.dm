@@ -306,6 +306,12 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 
 /datum/hive_upgrade/primordial/hivelord
 	name = PRIMORDIAL_HIVELORD
-	desc = "Unlocks the primordial hivelords traps, and upgrae it's corrosive acid to strong."
+	desc = "Unlocks the primordial hivelords traps, and upgrade it's corrosive acid to strong."
 	psypoint_cost = 125
 	icon = "primohivelord"
+
+/datum/hive_upgrade/primordial/bull
+	name = PRIMORDIAL_BULL
+	desc = "Unlocks the primordial bull agile charge, which allows him to change direction while charging, even diagonally"
+	psypoint_cost = 125
+	icon = "primobull"
