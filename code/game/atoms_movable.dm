@@ -273,7 +273,6 @@ if(!(flags_atom & DIRLOCK)){setDir(direction &~ can_pass_diagonally)}
 	. = ..()
 	if(throwing)
 		throw_impact(A)
-		. = TRUE
 		if(QDELETED(A))
 			return
 	A.Bumped(src)
