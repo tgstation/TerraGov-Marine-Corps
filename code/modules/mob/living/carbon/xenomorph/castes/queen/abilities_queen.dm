@@ -20,7 +20,7 @@
 	var/txt = stripped_input(src, "Set the hive's orders to what? Leave blank to clear it.", "Hive Orders")
 
 	if(txt)
-		xeno_message("<B>The Queen has given a new order. Check Status panel for details.</B>", "xenoannounce", 6,hivenumber)
+		xeno_message("<B>The Queen has given a new order. Check Game panel for details.</B>", "xenoannounce", 6,hivenumber)
 		hive.hive_orders = txt
 	else
 		hive.hive_orders = ""

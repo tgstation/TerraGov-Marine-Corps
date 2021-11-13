@@ -6,12 +6,11 @@
 
 
 //Pain or shock reduction for different reagents
-#define PAIN_REDUCTION_VERY_LIGHT -10 //alkysine
-#define PAIN_REDUCTION_LIGHT -25 //inaprovaline
-#define PAIN_REDUCTION_MEDIUM -40 //synaptizine
-#define PAIN_REDUCTION_HEAVY -50 //paracetamol
-#define PAIN_REDUCTION_VERY_HEAVY -80 //tramadol
-#define PAIN_REDUCTION_FULL -200 //oxycodone, neuraline
+#define PAIN_REDUCTION_VERY_LIGHT -5 //alkysine
+#define PAIN_REDUCTION_LIGHT -15 //inaprovaline
+#define PAIN_REDUCTION_MEDIUM -25 //synaptizine
+#define PAIN_REDUCTION_HEAVY -35 //paracetamol
+#define PAIN_REDUCTION_VERY_HEAVY -50 //tramadol
 
 
 //Nutrition
@@ -445,6 +444,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_ACID_WELL_MAX_CHARGES 5 //Maximum number of charges for the acid well
 
 #define HIVE_CAN_HIJACK (1<<0)
+#define HIVE_CAN_COLLAPSE_FROM_SILO (1<<1)
 
 #define XENO_PULL_CHARGE_TIME 2 SECONDS
 #define XENO_SLOWDOWN_REGEN 0.4
@@ -489,7 +489,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_FIRE_IMMUNE (1<<5)
 #define CASTE_EVOLUTION_ALLOWED (1<<6)
 #define CASTE_IS_INTELLIGENT (1<<7) // A hive leader or able to use more human controls
-#define CASTE_DECAY_PROOF (1<<8)
+#define CASTE_DO_NOT_ALERT_LOW_LIFE (1<<8) //Doesn't alert the hive when at low life, and is quieter when dying
 #define CASTE_CAN_BE_LEADER (1<<9)
 #define CASTE_HIDE_IN_STATUS (1<<10)
 #define CASTE_QUICK_HEAL_STANDING (1<<11) // Xenomorphs heal standing same if they were resting.

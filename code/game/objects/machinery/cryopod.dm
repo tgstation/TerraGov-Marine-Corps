@@ -311,20 +311,6 @@
 		items = I.store_in_cryo(items)
 	return ..()
 
-/obj/item/clothing/under/store_in_cryo(list/items, nullspace_it = TRUE)
-	if(hastie)
-		var/obj/item/TIE = hastie
-		remove_accessory()
-		items = TIE.store_in_cryo(items)
-	return ..()
-
-/obj/item/clothing/tie/storage/store_in_cryo(list/items, nullspace_it = TRUE)
-	for(var/O in hold)
-		var/obj/item/I = O
-		hold.remove_from_storage(I, loc)
-		items = I.store_in_cryo(items)
-	return ..()
-
 /obj/machinery/cryopod/attackby(obj/item/I, mob/user, params)
 	. = ..()
 

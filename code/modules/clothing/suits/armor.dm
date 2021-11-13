@@ -59,7 +59,7 @@
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
-	soft_armor = list("melee" = 35, "bullet" = 45, "laser" = 45, "energy" = 20, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 25)
+	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 25, "bomb" = 30, "bio" = 5, "rad" = 5, "fire" = 25, "acid" = 30)
 	slowdown = 0.25
 	allowed = list(
 		/obj/item/weapon/gun,

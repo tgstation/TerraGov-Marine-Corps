@@ -21,7 +21,7 @@
 	max_health = 100
 
 	// *** Flags *** //
-	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_FIRE_IMMUNE|CASTE_IS_BUILDER
+	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_FIRE_IMMUNE|CASTE_IS_BUILDER|CASTE_DO_NOT_ALERT_LOW_LIFE
 
 	can_hold_eggs = CANNOT_HOLD_EGGS
 
@@ -39,7 +39,7 @@
 		/datum/action/xeno_action/change_form,
 		/datum/action/xeno_action/return_to_core,
 		/datum/action/xeno_action/rally_hive/hivemind,
-		/datum/action/xeno_action/command_minions,
+		/datum/action/xeno_action/activable/command_minions,
 	)
 
 /datum/xeno_caste/hivemind/on_caste_applied(mob/xenomorph)
@@ -69,5 +69,5 @@
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/activable/secrete_resin/ranged/slow,
 		/datum/action/xeno_action/rally_hive/hivemind,
-		/datum/action/xeno_action/command_minions,
+		/datum/action/xeno_action/activable/command_minions,
 	)

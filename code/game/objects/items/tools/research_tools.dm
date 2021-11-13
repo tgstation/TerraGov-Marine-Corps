@@ -37,6 +37,11 @@
 
 	var/mob/living/carbon/xenomorph/target_xeno = M
 
+	var/list/xeno_rewards = xeno_tier_rewards[target_xeno.tier]
+	if(!xeno_rewards)
+		to_chat(user, span_notice("You can't research this."))
+		return ..()
+
 	if(HAS_TRAIT(target_xeno, TRAIT_RESEARCHED))
 		to_chat(user, span_notice("[target_xeno] has already been probed."))
 		return ..()
@@ -45,14 +50,12 @@
 		to_chat(user, "You need higher [skill_type] skill.")
 		return ..()
 
-	if(!do_after(user, RESEARCH_DELAY, TRUE, target_xeno, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
+	if(user.do_actions || !do_after(user, RESEARCH_DELAY, TRUE, target_xeno, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
 		return ..()
 
 	if(HAS_TRAIT(target_xeno, TRAIT_RESEARCHED))
 		to_chat(user, span_notice("[target_xeno] has already been probed."))
 		return ..()
-
-	var/list/xeno_rewards = xeno_tier_rewards[target_xeno.tier]
 
 	var/reward_typepath = pick(xeno_rewards)
 	var/obj/reward = new reward_typepath

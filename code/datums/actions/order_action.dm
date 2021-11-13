@@ -36,6 +36,9 @@
 	if(TIMER_COOLDOWN_CHECK(owner, COOLDOWN_CIC_ORDERS))
 		to_chat(owner, span_warning("Your last order was too recent."))
 		return FALSE
+	if(owner.stat)
+		to_chat(owner, span_warning("You can not issue an order in your current state."))
+		return FALSE
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
 /datum/action/innate/order/proc/send_order(atom/target, datum/squad/squad, faction = FACTION_TERRAGOV)
