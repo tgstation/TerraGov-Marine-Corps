@@ -108,6 +108,23 @@
 			if (prob(3))	//about once every 30 seconds
 				take_damage(1, prob(30))
 
+	//Process natural and assisted healing
+	var/peridaxon = owner.reagents.has_reagent(/datum/reagent/medicine/peridaxon)
+	var/inaprovaline = owner.reagents.has_reagent(/datum/reagent/medicine/inaprovaline)
+	var/organ_heal_chance = 0
+	var/organ_hurt_chance = 0
+	organ_heal_chance = 20 + (20*peridaxon) + (10*inaprovaline) - (2*damage)
+	if(prob(organ_heal_chance))
+		heal_organ_damage(0.2)
+
+	//And process natural hurting
+	if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
+		return
+	if(is_broken())
+		organ_hurt_chance = (2*damage) - (40*inaprovaline)
+		if(prob(organ_hurt_chance))
+			take_damage(0.2)
+
 /datum/internal_organ/proc/take_damage(amount, silent= FALSE)
 	if(SSticker.mode?.flags_round_type & MODE_NO_PERMANENT_WOUNDS)
 		return
@@ -217,7 +234,7 @@
 			owner.drip(10)
 		if(prob(50))
 			owner.emote("me", 1, "gasps for air!")
-			owner.Losebreath(4)
+			owner.Losebreath(2 + (damage/30))
 
 /datum/internal_organ/lungs/prosthetic
 	robotic = ORGAN_ROBOT
@@ -253,7 +270,7 @@
 			else
 				var/datum/internal_organ/O = pick(owner.internal_organs)
 				if(O)
-					O.take_damage(0.2  * PROCESS_ACCURACY, TRUE)
+					O.take_damage((0.2 * PROCESS_ACCURACY), TRUE)
 
 		// Heal a bit if needed and we're not busy. This allows recovery from low amounts of toxins.
 		if(!owner.drunkenness && owner.getToxLoss() <= 15 && min_bruised_damage > damage > 0)
