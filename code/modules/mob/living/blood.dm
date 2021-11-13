@@ -36,7 +36,7 @@
 					blood_volume = max(blood_volume - 0.5, 0)
 				else
 					heart_multi = 0.5
-					blood_volume = max(blood_volume - 1.3, 0)
+					blood_volume = max(blood_volume - ((heart.damage/30) + 0.3), 0)
 			else
 				heart_multi = 1
 
