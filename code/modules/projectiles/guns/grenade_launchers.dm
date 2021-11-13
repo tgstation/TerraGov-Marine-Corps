@@ -173,6 +173,7 @@ The Grenade Launchers
 /obj/item/weapon/gun/grenade_launcher/single_shot/riot
 	name = "\improper M81 riot grenade launcher"
 	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by Nanotrasen security during riots."
+	default_ammo_type = null
 	allowed_ammo_types = list(/obj/item/explosive/grenade/chem_grenade)
 	req_access = list(ACCESS_MARINE_BRIG)
 
@@ -187,6 +188,7 @@ The Grenade Launchers
 	flags_gun_features = NONE
 	gun_skill_category = GUN_SKILL_PISTOLS
 	fire_delay = 0.5 SECONDS
+	default_ammo_type = /obj/item/explosive/grenade/flare
 	allowed_ammo_types = list(/obj/item/explosive/grenade/flare, /obj/item/explosive/grenade/flare/cas)
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/flaregun)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/flaregun)
