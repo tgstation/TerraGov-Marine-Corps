@@ -98,7 +98,7 @@
 		light_pilot(TRUE)
 	gun_user?.hud_used.update_ammo_hud(gun_user, src)
 
-/obj/item/weapon/gun/flamer/unload(mob/living/user)
+/obj/item/weapon/gun/flamer/unload(mob/living/user, drop = TRUE, after_fire = FALSE)
 	. = ..()
 	if(!.)
 		return

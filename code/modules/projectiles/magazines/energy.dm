@@ -10,6 +10,8 @@
 	icon_state_mini = "mag_cell"
 	var/base_ammo_icon = "m43"
 	var/reload_delay = 0
+	///Magazine flags.
+	var/flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER
 
 /obj/item/cell/lasgun/tesla// Large special battery
 	name = "\improper Energy Rifle battery"

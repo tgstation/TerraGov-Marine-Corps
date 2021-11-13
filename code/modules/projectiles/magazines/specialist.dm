@@ -86,9 +86,9 @@
 	caliber = CALIBER_84MM
 	icon_state = "rocket"
 	w_class = WEIGHT_CLASS_NORMAL
+	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket
-	flags_magazine = NONE
 	reload_delay = 60
 
 /obj/item/ammo_magazine/rocket/attack_self(mob/user)
@@ -123,7 +123,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket
-	flags_magazine = NONE
 	reload_delay = 60
 
 /obj/item/ammo_magazine/rocket/sadar/ap
@@ -149,7 +148,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless
-	flags_magazine = NONE
 	reload_delay = 30
 
 /obj/item/ammo_magazine/rocket/recoilless/light
@@ -160,7 +158,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless/light
-	flags_magazine = NONE
 	reload_delay = 10
 
 /obj/item/ammo_magazine/rocket/recoilless/heat
@@ -171,7 +168,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless/heat
-	flags_magazine = NONE
 	reload_delay = 30
 
 
@@ -186,7 +182,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/oneuse
-	flags_magazine = NONE
 	reload_delay = 30
 
 /obj/item/ammo_magazine/internal/launcher/rocket/oneuse
@@ -261,9 +256,9 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	flags_magazine = MAGAZINE_WORN
 	w_class = WEIGHT_CLASS_HUGE
+	default_ammo = /datum/ammo/bullet/minigun
 	current_rounds = 500
 	max_rounds = 500
-	actions_types = list(/datum/action/item_action/toggle)
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
 /obj/item/ammo_magazine/minigun_powerpack/snow

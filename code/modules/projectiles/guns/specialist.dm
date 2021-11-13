@@ -400,6 +400,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	aim_speed_modifier = 12
 
 	fire_delay = 0.15 SECONDS
+	windup_delay = 0.4 SECONDS
+	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	scatter = 10
 	recoil = 2
 	recoil_unwielded = 4
@@ -487,6 +489,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 3
 	scatter = -100
 	placed_overlay_iconstate = "sadar"
+	windup_delay = 0.4 SECONDS
 	///the smoke effect after firing
 	var/datum/effect_system/smoke_spread/smoke
 

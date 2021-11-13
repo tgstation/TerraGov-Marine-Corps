@@ -165,6 +165,10 @@
 	var/lower_akimbo_accuracy = 1
 	///If fire delay is 1 second, and akimbo_additional_delay is 0.5, then you'll have to wait 1 second * 0.5 to fire the second gun
 	var/akimbo_additional_delay = 0.5
+	///Delay for the gun winding up before firing.
+	var/windup_delay = 0
+	///Sound played during windup.
+	var/windup_sound
 	///Used if a weapon need windup before firing
 	var/windup_checked = WEAPON_WINDUP_NOT_CHECKED
 
@@ -411,8 +415,7 @@
 	active_attachable?.removed_from_inventory(user)
 	if(!length(chamber_items) || !chamber_items[current_chamber_position] || chamber_items[current_chamber_position].loc == src)
 		return
-	unload(user, FALSE)
-	update_icon()
+	drop_connected_mag(chamber_items[current_chamber_position], user)
 
 ///Set the user in argument as gun_user
 /obj/item/weapon/gun/proc/set_gun_user(mob/user)
@@ -708,7 +711,17 @@
 
 ///Wrapper proc to complete the whole firing process.
 /obj/item/weapon/gun/proc/Fire()
-	if(!target || (!gun_user && !istype(loc, /obj/machinery/deployable/mounted/sentry)) || (!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)))
+	if(!target || (!gun_user && !istype(loc, /obj/machinery/deployable/mounted/sentry)) || (!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)) || windup_checked == WEAPON_WINDUP_CHECKING)
+		return
+	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
+		windup_checked = WEAPON_WINDUP_CHECKING
+		playsound(loc, windup_sound, 30, TRUE)
+		if(!do_after(gun_user, windup_delay, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
+			windup_checked = WEAPON_WINDUP_NOT_CHECKED
+			return
+		windup_checked = WEAPON_WINDUP_CHECKED
+	if(!target)
+		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
 	var/obj/projectile/projectile_to_fire = in_chamber //Load a bullet in or check for existing one.
@@ -716,9 +729,11 @@
 		playsound(src, dry_fire_sound, 25, 1, 5)
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 			cycle(gun_user, FALSE)
+		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 
 	if(!do_fire(projectile_to_fire))
+		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 
 	last_fired = world.time
@@ -737,8 +752,7 @@
 			cycle(null)
 			if(length(chamber_items) && !get_current_rounds(chamber_items[current_chamber_position]) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
 				playsound(src, empty_sound, 25, 1)
-				unload()
-
+				unload(after_fire = TRUE)
 
 	gun_user?.hud_used.update_ammo_hud(gun_user, src)
 	update_icon()
@@ -1192,7 +1206,7 @@
 	return TRUE
 
 ///Handles unloading. Called on attackhand. Draws the chamber_items out first, then in_chamber
-/obj/item/weapon/gun/proc/unload(mob/living/user, drop = TRUE)
+/obj/item/weapon/gun/proc/unload(mob/living/user, drop = TRUE, after_fire = FALSE)
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return FALSE
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED))
@@ -1231,7 +1245,7 @@
 	playsound(src, unload_sound, 25, 1, 5)
 	user?.visible_message(span_notice("[user] unloads [mag] from [src]."),
 	span_notice("You unload [mag] from [src]."), null, 4)
-	if(drop)
+	if(drop && !(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && CHECK_BITFIELD(get_flags_magazine_features(mag), MAGAZINE_WORN)))
 		if(user)
 			user.put_in_hands(mag)
 		else
@@ -1243,6 +1257,10 @@
 	if(istype(mag, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/magazine = mag
 		magazine.on_removed(src)
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && CHECK_BITFIELD(get_flags_magazine_features(mag), MAGAZINE_REFUND_IN_CHAMBER) && !after_fire)
+		QDEL_NULL(in_chamber)
+		adjust_current_rounds(mag, rounds_per_shot)
+	UnregisterSignal(mag, COMSIG_ITEM_REMOVED_INVENTORY)
 	mag.update_icon()
 	get_ammo()
 	update_ammo_count()
@@ -1327,7 +1345,6 @@
 		ammo_datum_type = ammo_type
 		return ammo_datum_type
 	if(!length(chamber_items) || !chamber_items[current_chamber_position] || current_chamber_position > length(chamber_items))
-		ammo_datum_type = null
 		return ammo_datum_type
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS) || CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && get_magazine_default_ammo(chamber_items[current_chamber_position]))
 		ammo_type = get_magazine_default_ammo(chamber_items[current_chamber_position])
@@ -1372,7 +1389,6 @@
 ///Disconnects from a worn magazine.
 /obj/item/weapon/gun/proc/drop_connected_mag(datum/source, mob/user)
 	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_ITEM_REMOVED_INVENTORY)
 	unload(user, FALSE)
 
 ///Getter to draw current rounds. Overwrite if the magazine is not a /ammo_magazine
