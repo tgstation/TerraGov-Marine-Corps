@@ -221,6 +221,36 @@
 	description = "Charges up the crushers charge, then unleashes the full bulk of the crusher into a direction."
 	keybind_signal = COMSIG_XENOABILITY_ADVANCE
 
+/datum/keybinding/xeno/devour
+	name = "devour"
+	full_name = "Gorger: Devour"
+	description = "Devour your victim to be able to carry it faster."
+	keybind_signal = COMSIG_XENOABILITY_DEVOUR
+
+/datum/keybinding/xeno/drain
+	name = "drain"
+	full_name = "Gorger: Drain"
+	description = "Stagger a marine and drain some of their blood. When used on a dead human, you heal gradually and don't gain blood."
+	keybind_signal = COMSIG_XENOABILITY_DRAIN
+
+/datum/keybinding/xeno/rejuvenate
+	name = "rejuvenate/transfusion"
+	full_name = "Gorger: Rejuvenate/Transfusion"
+	description = "When used on self, drains blood and restores health over time. When used on another xenomorph, costs blood and restores some of their health."
+	keybind_signal = COMSIG_XENOABILITY_REJUVENATE
+
+/datum/keybinding/xeno/carnage
+	name = "carnage"
+	full_name = "Gorger: Carnage"
+	description = "For a while your attacks drain blood and heal you. During Feast you also heal nearby allies."
+	keybind_signal = COMSIG_XENOABILITY_CARNAGE
+
+/datum/keybinding/xeno/feast
+	name = "feast"
+	full_name = "Gorger: Feast"
+	description = "Enter a state of rejuvenation. During this time you use a small amount of blood and heal. You can cancel this early."
+	keybind_signal = COMSIG_XENOABILITY_FEAST
+
 /datum/keybinding/xeno/forward_charge
 	name = "forward charge"
 	full_name = "Defender: Forward charge"
