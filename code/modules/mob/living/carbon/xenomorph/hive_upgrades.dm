@@ -291,9 +291,10 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Unlocks the primordial defenders centrifugal force. An ability that allows them to rapidly spin and attack enemies nearby."
 	psypoint_cost = 75
 	icon = "primodefender"
+
 /datum/hive_upgrade/primordial/warrior
 	name = PRIMORDIAL_WARRIOR
-	desc = "Unlocks the primordial warriors WIP. DESC WIP."
+	desc = "Unlocks the primordial warriors jab and uppercut at the cost of lunge and grapple toss. A ranged ability reset and a powerful finisher."
 	psypoint_cost = 125
 	icon = "primowarrior"
 

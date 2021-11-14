@@ -669,6 +669,8 @@
 #define COMSIG_XENOABILITY_FLING "xenoability_fling"
 #define COMSIG_XENOABILITY_PUNCH "xenoability_punch"
 #define COMSIG_XENOABILITY_GRAPPLE_TOSS "xenoability_grapple_toss"
+#define COMSIG_XENOABILITY_JAB "xenoability_jab"
+#define COMSIG_XENOABILITY_UPPERCUT "xenoability_uppercut"
 
 #define COMSIG_XENOABILITY_PLACE_WARP_BEACON "xenoability_place_warp_shadow"
 #define COMSIG_XENOABILITY_HYPERPOSITION "xenoability_hyperposition"

@@ -440,19 +440,15 @@
 	Shake(4, 4, 2 SECONDS)
 	return TRUE
 
-/mob/living/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone, jab = FALSE)
-	var/punch_description = "powerful"
-	var/stagger_stacks = 3
-	var/slowdown_stacks = 3
-
-	if(pulledby == X && !jab) //If we're being grappled by the Warrior punching us, it's gonna do extra damage and debuffs; combolicious, jabs don't interact with grapples
+/mob/living/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, confuse = FALSE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
+	if(pulledby == X) //If we're being grappled by the Warrior punching us, it's gonna do extra damage and debuffs; combolicious
 		damage *= 2
 		slowdown_stacks *= 2
 		stagger_stacks *= 2
 		ParalyzeNoChain(0.5 SECONDS)
 		punch_description = "devastating"
 
-	if(iscarbon(src) && !isxeno(src)) //Xenos don't have limbs really
+	if(iscarbon(src))
 		var/mob/living/carbon/carbon_victim = src
 		var/datum/limb/L = carbon_victim.get_limb(target_zone)
 
@@ -465,16 +461,27 @@
 			to_chat(src, span_danger("The splint on your [L.display_name] comes apart!"))
 
 		L.take_damage_limb(damage, 0, FALSE, FALSE, run_armor_check(target_zone))
+	if(confuse)
+		Confused(2 SECONDS)
 
-	else
-		if(jab) //jabs have additional effects on top of cooldown reduction
-			punch_description = "precise"
-			slowdown_stacks *= 3
-			stagger_stacks *= 3
-			Confused(2 SECONDS)
-			apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
-		else
-			apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
+	if(push)
+		var/facing = get_dir(X, src)
+
+		if(loc == X.loc) //If they're sharing our location we still want to punch them away
+			facing = X.dir
+
+		var/turf/T = X.loc
+		var/turf/temp = X.loc
+
+		for (var/x in 1 to 2)
+			temp = get_step(T, facing)
+			if (!temp)
+				break
+			T = temp
+
+		throw_at(T, 2, 1, X, 1) //Punch em away
+
+	apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
 
 	var/target_location_feedback = get_living_limb_descriptive_name(target_zone)
 	X.visible_message(span_xenodanger("\The [X] hits [src] in the [target_location_feedback] with a [punch_description] punch!"), \
@@ -491,22 +498,6 @@
 	apply_damage(damage, STAMINA, updating_health = TRUE) //Armor penetrating stamina also applies.
 	shake_camera(src, 2, 1)
 	Shake(4, 4, 2 SECONDS)
-
-	if(!jab) //Jab doesn't push the target away
-		var/facing = get_dir(X, src)
-		if(loc == X.loc) //If they're sharing our location we still want to punch them away
-			facing = X.dir
-
-		var/turf/T = X.loc
-		var/turf/temp = X.loc
-
-		for (var/x in 1 to 2)
-			temp = get_step(T, facing)
-			if (!temp)
-				break
-			T = temp
-
-		throw_at(T, 2, 1, X, 1) //Punch em away
 
 	return TRUE
 
@@ -531,34 +522,34 @@
 /datum/action/xeno_action/activable/punch/jab
 	name = "Jab"
 	action_icon_state = "jab"
-	mechanics_text = "WIP"
+	mechanics_text = "Precisely strike your target from further away, slowing and confusing them. Resets punch cooldown."
+	plasma_cost = 10
 	range = 2
+	keybind_signal = COMSIG_XENOABILITY_JAB
 
 /datum/action/xeno_action/activable/punch/jab/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/human/target = A
 	var/target_zone = check_zone(X.zone_selected)
-	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
+	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier * 0.5 //50% of regular punch damage
 
-	if(!target.punch_act(X, damage, target_zone, jab = TRUE))
+	if(!target.punch_act(X, damage, target_zone, push = FALSE, confuse = TRUE, punch_description = "precise", stagger_stacks = 6, slowdown_stacks = 6))
 		return fail_activate()
 
 	GLOB.round_statistics.warrior_punches++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
-
 
 	var/datum/action/xeno_action/activable/uppercut/uppercut_ability = X.actions_by_path[/datum/action/xeno_action/activable/uppercut]
 	var/datum/action/xeno_action/punch = X.actions_by_path[/datum/action/xeno_action/activable/punch/weak]
 	var/list/combo_list = uppercut_ability.combo
 	punch.clear_cooldown() //Clear punch cooldown
 
-	if(combo_list.Find(A.name)) //Do we already have a combo against them?
-		combo_list[A.name]++
-
-	else
-		combo_list[A.name] = 1
+	combo_list[A.name]++
+	if(combo_list[A.name] >= WARRIOR_PERFECT_COMBO_THRESHOLD)
+		to_chat(target, span_highdanger("It looks like [X] is predicting our movements, we should back off!"))
 
 	addtimer(CALLBACK(uppercut_ability,/datum/action/xeno_action/activable/uppercut.proc/clear_combo, A), WARRIOR_COMBO_FADEOUT_TIME, TIMER_OVERRIDE|TIMER_UNIQUE)
+
 	succeed_activate()
 	add_cooldown()
 
@@ -567,16 +558,21 @@
 // ***************************************
 
 /datum/action/xeno_action/activable/punch/weak
-	mechanics_text = "WIP"
-	range = 1
+	mechanics_text = "Strike a target has, weaker than a regular punch. Resets jab cooldown and reduces uppercut cooldown."
+	plasma_cost = 10
 
 /datum/action/xeno_action/activable/punch/weak/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
-	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier * 0.8 //80% of regular damage
+	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier * 0.5
 	var/target_zone = check_zone(X.zone_selected)
 
-	if(!A.punch_act(X, damage, target_zone))
-		return fail_activate()
+	if(isliving(A))
+		var/mob/living/target = A
+		if(!target.punch_act(X, damage, target_zone, push = FALSE,  punch_description = "swift")) //Doesn't push away so it's easier to combo with jab
+			return fail_activate()
+	else
+		if(!A.punch_act(X, damage, target_zone))
+			return fail_activate()
 
 	GLOB.round_statistics.warrior_punches++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
@@ -587,10 +583,10 @@
 		var/list/combo_list = uppercut_ability.combo
 		jab.clear_cooldown()
 
-		if(combo_list.Find(A.name)) //Do we already have a combo against them?
-			combo_list[A.name]++
-		else
-			combo_list[A.name] = 1
+
+		combo_list[A.name]++
+		if(combo_list[A.name] >= WARRIOR_PERFECT_COMBO_THRESHOLD)
+			to_chat(target, span_highdanger("It looks like [X] is predicting our movements, we should back off!"))
 		addtimer(CALLBACK(uppercut_ability,/datum/action/xeno_action/activable/uppercut.proc/clear_combo, A), WARRIOR_COMBO_FADEOUT_TIME, TIMER_OVERRIDE|TIMER_UNIQUE)
 
 	succeed_activate()
@@ -603,20 +599,23 @@
 /datum/action/xeno_action/activable/uppercut
 	name = "Uppercut"
 	action_icon_state = "punch"
-	mechanics_text = "WIP"
+	mechanics_text = "Inflicts debilitating damage to a nearby target depending on how many times you recently hit them with jab and punch."
 	ability_name = "uppercut"
 	plasma_cost = 12
 	cooldown_timer = 10 SECONDS
 	target_flags = XABB_MOB_TARGET
-	var/combo[0] //Who did we combo recently ?
-	var/combo_timer[0] //How much time is left on each combo ?
+	keybind_signal = COMSIG_XENOABILITY_UPPERCUT
+	var/combo[0] //Who did we punch/jab recently and how many times ?
+
 /datum/action/xeno_action/activable/uppercut/can_use_ability(atom/A, silent = FALSE, override_flags)
 	.=..()
 
-	if(!isliving(A) || isxeno(A))
+	var/mob/living/L = A
+	if(!isliving(A) || isxeno(A) || L.stat == DEAD)
 		if(!silent)
 			to_chat(owner, span_xenodanger("We cannot uppercut this target!"))
 		return FALSE
+
 	if(!owner.Adjacent(A))
 		if(!silent)
 			to_chat(owner, span_xenodanger("Our target must be closer!"))
@@ -626,11 +625,11 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/target = A
 	var/current_combo = combo[target.name]
-	var/damage = min(X.xeno_caste.melee_damage +  X.xeno_caste.melee_damage * (current_combo/2), 100)
+	var/damage = min(X.xeno_caste.melee_damage +  X.xeno_caste.melee_damage * (current_combo/2), 200)
 	var/cameraShake = min(1/2 * current_combo, 4)
 	X.face_atom(A)
-	X.do_attack_animation(A, ATTACK_EFFECT_YELLOWPUNCH)
-	X.do_attack_animation(A, ATTACK_EFFECT_DISARM2)
+	X.do_attack_animation(A, ATTACK_EFFECT_SMASH)
+	X.do_attack_animation(A, ATTACK_EFFECT_PUNCH)
 
 	X.visible_message(span_xenodanger("\The [X] uppercuts [A]!"), \
 		span_xenodanger("We uppercut [A] with all our might!"), visible_message_flags = COMBAT_MESSAGE)
@@ -641,12 +640,14 @@
 		target.ParalyzeNoChain(2 SECONDS)
 	if(current_combo >= WARRIOR_PERFECT_COMBO_THRESHOLD)
 		target.Sleeping(4 SECONDS, ignore_canstun = TRUE)
-		target.SpinAnimation(loops = 1)
+		//Figure out a good animation
 		to_chat(X, span_highdanger("LIGHTS OUT."))
 
 	clear_combo(A)
 	target.apply_damage(damage, BRUTE, "head")
 	shake_camera(A, 2, cameraShake)
+	succeed_activate()
+	add_cooldown()
 	return
 
 /datum/action/xeno_action/activable/uppercut/proc/clear_combo(mob/living/carbon/A)

@@ -140,12 +140,12 @@
 
 /datum/xeno_caste/warrior/primordial
 	upgrade_name = "Primordial"
-	caste_desc = "Alien with an incredibly tough and armored head crest able to endure even the strongest hits."
-	primordial_message = "WIP"
+	caste_desc = "A champion of the hive, methodically shatters its opponents with punches rather slashes."
+	primordial_message = "Our rhythm is unmatched and our strikes lethal, no single foe can stand against us."
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //
-	//TODO
+	melee_damage = 23
 
 	// *** Speed *** //
 	speed = -0.5
@@ -155,17 +155,23 @@
 	plasma_gain = 12
 
 	// *** Health *** //
-	//TODO
+	max_health = 350
+
+	// *** Evolution *** //
+	upgrade_threshold = 1320
 
 	// *** Defense *** //
-	//TODO
+	soft_armor = list("melee" = 42, "bullet" = 55, "laser" = 55, "energy" = 42, "bomb" = XENO_BOMB_RESIST_2, "bio" = 50, "rad" = 50, "fire" = 55, "acid" = 50)
+
+	// *** Warrior Abilities *** //
+	agility_speed_increase = -0.6
+	agility_speed_armor = -30
+
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/toggle_agility,
-		/datum/action/xeno_action/activable/lunge,
 		/datum/action/xeno_action/activable/fling,
-		/datum/action/xeno_action/activable/toss,
 		/datum/action/xeno_action/activable/punch/weak,
 		/datum/action/xeno_action/activable/punch/jab,
 		/datum/action/xeno_action/activable/uppercut,
