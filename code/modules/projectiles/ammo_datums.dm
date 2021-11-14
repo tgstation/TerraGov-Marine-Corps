@@ -589,7 +589,7 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 15
 	sundering = 2
 
-/datum/ammo/bullet/rifle/light_dmr
+/datum/ammo/bullet/rifle/standard_br
 	name = "light marksman bullet"
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
@@ -598,7 +598,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 30
 	sundering = 1
 
-/datum/ammo/bullet/rifle/light_dmr/incendiary
+/datum/ammo/bullet/rifle/standard_br/incendiary
 	name = "incendiary light marksman bullet"
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"

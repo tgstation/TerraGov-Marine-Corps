@@ -32,7 +32,7 @@
 	name = "box of 10x26.5mm"
 	desc = "A box containing 100 rounds of 10x26.5mm caseless."
 	caliber = CALIBER_10x265_CASELESS
-	default_ammo = /datum/ammo/bullet/rifle/light_dmr
+	default_ammo = /datum/ammo/bullet/rifle/standard_br
 	current_rounds = 100
 	max_rounds = 100
 
