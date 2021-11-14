@@ -515,6 +515,19 @@
 		return FALSE
 	return TRUE
 
+/datum/action/xeno_action/activable/punch/proc/add_to_combo(mob/living/A)
+	var/datum/action/xeno_action/activable/uppercut/uppercut_ability = owner.actions_by_path[/datum/action/xeno_action/activable/uppercut]
+	var/list/combo_list = uppercut_ability.combo
+	combo_list[A.name]++
+
+	if(combo_list[A.name] >= WARRIOR_PERFECT_COMBO_THRESHOLD)
+		to_chat(A, span_highdanger("It looks like [owner] is predicting our movements, we should back off!"))
+	var/image/counter = image(null, target, null)
+	counter.maptext = combo_list[A.name]
+	owner.client.images += counter
+
+	addtimer(CALLBACK(uppercut_ability,/datum/action/xeno_action/activable/uppercut.proc/clear_combo, A), WARRIOR_COMBO_FADEOUT_TIME, TIMER_OVERRIDE|TIMER_UNIQUE)
+
 // ***************************************
 // *********** Jab
 // ***************************************
@@ -538,20 +551,18 @@
 
 	GLOB.round_statistics.warrior_punches++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
-
-	var/datum/action/xeno_action/activable/uppercut/uppercut_ability = X.actions_by_path[/datum/action/xeno_action/activable/uppercut]
 	var/datum/action/xeno_action/punch = X.actions_by_path[/datum/action/xeno_action/activable/punch/weak]
-	var/list/combo_list = uppercut_ability.combo
 	punch.clear_cooldown() //Clear punch cooldown
-
-	combo_list[A.name]++
-	if(combo_list[A.name] >= WARRIOR_PERFECT_COMBO_THRESHOLD)
-		to_chat(target, span_highdanger("It looks like [X] is predicting our movements, we should back off!"))
-
-	addtimer(CALLBACK(uppercut_ability,/datum/action/xeno_action/activable/uppercut.proc/clear_combo, A), WARRIOR_COMBO_FADEOUT_TIME, TIMER_OVERRIDE|TIMER_UNIQUE)
+	add_to_combo(target)
 
 	succeed_activate()
 	add_cooldown()
+
+/datum/action/xeno_action/activable/punch/jab/on_cooldown_finish()
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, span_xenodanger("We gather enough strength to jab again."))
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	return ..()
 
 // ***************************************
 // *********** Weak punch
@@ -578,16 +589,11 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
 
 	if(isliving(A))
+		var/mob/living/target = A
 		var/datum/action/xeno_action/jab = X.actions_by_path[/datum/action/xeno_action/activable/punch/jab]
-		var/datum/action/xeno_action/activable/uppercut/uppercut_ability = X.actions_by_path[/datum/action/xeno_action/activable/uppercut]
-		var/list/combo_list = uppercut_ability.combo
 		jab.clear_cooldown()
 
-
-		combo_list[A.name]++
-		if(combo_list[A.name] >= WARRIOR_PERFECT_COMBO_THRESHOLD)
-			to_chat(target, span_highdanger("It looks like [X] is predicting our movements, we should back off!"))
-		addtimer(CALLBACK(uppercut_ability,/datum/action/xeno_action/activable/uppercut.proc/clear_combo, A), WARRIOR_COMBO_FADEOUT_TIME, TIMER_OVERRIDE|TIMER_UNIQUE)
+		add_to_combo(target)
 
 	succeed_activate()
 	add_cooldown()
@@ -650,5 +656,11 @@
 	add_cooldown()
 	return
 
-/datum/action/xeno_action/activable/uppercut/proc/clear_combo(mob/living/carbon/A)
+/datum/action/xeno_action/activable/uppercut/on_cooldown_finish()
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, span_xenodanger("We gather enough strength to uppercut again."))
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	return ..()
+
+/datum/action/xeno_action/activable/uppercut/proc/clear_combo(mob/living/A)
 	combo.Remove(A.name)
