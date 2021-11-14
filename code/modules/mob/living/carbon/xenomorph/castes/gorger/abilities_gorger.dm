@@ -130,10 +130,10 @@
 			if(target_human.blood_volume < GORGER_REJUVENATE_BLOOD_DRAIN)
 				to_chat(owner, span_notice("Our meal has no blood... How sad!"))
 				return
-			owner_xeno.heal_wounds(2.2, TRUE)
-			owner_xeno.adjust_sunder(-1.5)
-			target_human.blood_volume -= GORGER_REJUVENATE_BLOOD_DRAIN
-		to_chat(owner_xeno, span_notice("We feel fully restored."))
+			X.heal_wounds(2.2, TRUE)
+			X.adjust_sunder(-0.5)
+			target.blood_volume -= GORGER_REJUVENATE_BLOOD_DRAIN
+		to_chat(X, span_notice("We feel fully restored."))
 		return
 	owner_xeno.face_atom(target)
 	owner_xeno.emote("roar")
