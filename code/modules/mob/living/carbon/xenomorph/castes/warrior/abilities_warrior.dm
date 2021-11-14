@@ -467,7 +467,6 @@
 		L.take_damage_limb(damage, 0, FALSE, FALSE, run_armor_check(target_zone))
 
 	else
-		var/target_location_feedback = get_living_limb_descriptive_name(target_zone)
 		if(jab) //jabs have additional effects on top of cooldown reduction
 			punch_description = "precise"
 			slowdown_stacks *= 3
@@ -476,9 +475,10 @@
 			apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
 		else
 			apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
-		X.visible_message(span_xenodanger("\The [X] hits [src] in the [target_location_feedback] with a [punch_description] punch!"), \
-			span_xenodanger("We hit [src] in the [target_location_feedback] with a [punch_description] punch!"), visible_message_flags = COMBAT_MESSAGE)
 
+	var/target_location_feedback = get_living_limb_descriptive_name(target_zone)
+	X.visible_message(span_xenodanger("\The [X] hits [src] in the [target_location_feedback] with a [punch_description] punch!"), \
+		span_xenodanger("We hit [src] in the [target_location_feedback] with a [punch_description] punch!"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg'), 50, 1)
 	X.face_atom(src) //Face the target so you don't look like an idiot
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
@@ -540,14 +540,25 @@
 	var/target_zone = check_zone(X.zone_selected)
 	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
 
-	X.actions_by_path[/datum/action/xeno_action/activable/punch/jab].clear_cooldown()
 	if(!target.punch_act(X, damage, target_zone, jab = TRUE))
 		return fail_activate()
 
 	GLOB.round_statistics.warrior_punches++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
 
-	X.actions_by_path[/datum/action/xeno_action/activable/punch/weak].clear_cooldown() //Clear punch cooldown
+
+	var/datum/action/xeno_action/activable/uppercut/uppercut_ability = X.actions_by_path[/datum/action/xeno_action/activable/uppercut]
+	var/datum/action/xeno_action/punch = X.actions_by_path[/datum/action/xeno_action/activable/punch/weak]
+	var/list/combo_list = uppercut_ability.combo
+	punch.clear_cooldown() //Clear punch cooldown
+
+	if(combo_list.Find(A.name)) //Do we already have a combo against them?
+		combo_list[A.name]++
+
+	else
+		combo_list[A.name] = 1
+
+	addtimer(CALLBACK(uppercut_ability,/datum/action/xeno_action/activable/uppercut.proc/clear_combo, A), WARRIOR_COMBO_FADEOUT_TIME, TIMER_OVERRIDE|TIMER_UNIQUE)
 	succeed_activate()
 	add_cooldown()
 
@@ -570,7 +581,18 @@
 	GLOB.round_statistics.warrior_punches++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
 
-	X.actions_by_path[/datum/action/xeno_action/activable/punch/jab].clear_cooldown()
+	if(isliving(A))
+		var/datum/action/xeno_action/jab = X.actions_by_path[/datum/action/xeno_action/activable/punch/jab]
+		var/datum/action/xeno_action/activable/uppercut/uppercut_ability = X.actions_by_path[/datum/action/xeno_action/activable/uppercut]
+		var/list/combo_list = uppercut_ability.combo
+		jab.clear_cooldown()
+
+		if(combo_list.Find(A.name)) //Do we already have a combo against them?
+			combo_list[A.name]++
+		else
+			combo_list[A.name] = 1
+		addtimer(CALLBACK(uppercut_ability,/datum/action/xeno_action/activable/uppercut.proc/clear_combo, A), WARRIOR_COMBO_FADEOUT_TIME, TIMER_OVERRIDE|TIMER_UNIQUE)
+
 	succeed_activate()
 	add_cooldown()
 
@@ -586,8 +608,8 @@
 	plasma_cost = 12
 	cooldown_timer = 10 SECONDS
 	target_flags = XABB_MOB_TARGET
-	var/combo = 0
-
+	var/combo[0] //Who did we combo recently ?
+	var/combo_timer[0] //How much time is left on each combo ?
 /datum/action/xeno_action/activable/uppercut/can_use_ability(atom/A, silent = FALSE, override_flags)
 	.=..()
 
@@ -601,27 +623,31 @@
 	return TRUE
 
 /datum/action/xeno_action/activable/uppercut/use_ability(atom/A)
-	var/damage = 0 * combo //Todo
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/target = A
-
+	var/current_combo = combo[target.name]
+	var/damage = min(X.xeno_caste.melee_damage +  X.xeno_caste.melee_damage * (current_combo/2), 100)
+	var/cameraShake = min(1/2 * current_combo, 4)
 	X.face_atom(A)
 	X.do_attack_animation(A, ATTACK_EFFECT_YELLOWPUNCH)
 	X.do_attack_animation(A, ATTACK_EFFECT_DISARM2)
 
-	X.visible_message(span_xenodanger("\The [X] uppercuts [A] in the chest!"), \
-		span_xenodanger("We uppercut [A] in the chest with all our might!"), visible_message_flags = COMBAT_MESSAGE)
+	X.visible_message(span_xenodanger("\The [X] uppercuts [A]!"), \
+		span_xenodanger("We uppercut [A] with all our might!"), visible_message_flags = COMBAT_MESSAGE)
 
-	if(combo>=2)
-		target.Paralyze(2 SECONDS)
-	if(combo>=4)
-		target.Losebreath(2) //figure out how this works
-	if(combo>=6)
-		target.AdjustSleeping(4 SECONDS, ignore_canstun = TRUE)
-		target.SpinAnimation(loop = 1)
+	if(current_combo >= WARRIOR_WEAK_COMBO_THRESHOLD)
+		target.KnockdownNoChain(1 SECONDS)
+	if(current_combo >= WARRIOR_AVERAGE_COMBO_THRESHOLD)
+		target.ParalyzeNoChain(2 SECONDS)
+	if(current_combo >= WARRIOR_PERFECT_COMBO_THRESHOLD)
+		target.Sleeping(4 SECONDS, ignore_canstun = TRUE)
+		target.SpinAnimation(loops = 1)
 		to_chat(X, span_highdanger("LIGHTS OUT."))
 
-	target.apply_damage(damage, BRUTE, "chest") //No uppercuts in the groin
-	shake_camera(A, 2, 1)
-	//target.Shake(4, 4, 2 SECONDS)
+	clear_combo(A)
+	target.apply_damage(damage, BRUTE, "head")
+	shake_camera(A, 2, cameraShake)
 	return
+
+/datum/action/xeno_action/activable/uppercut/proc/clear_combo(mob/living/carbon/A)
+	combo.Remove(A.name)
