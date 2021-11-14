@@ -421,8 +421,7 @@
 				return
 	if(pulling == AM)
 		stop_pulling()
-	if(AM.Move(get_step(AM.loc, dir_to_target), dir_to_target, glide_size))
-		. = Move(get_step(loc, dir_to_target), dir_to_target)
+	AM.Move(get_step(AM.loc, dir_to_target), dir_to_target, glide_size)
 	now_pushing = FALSE
 
 
