@@ -15,9 +15,6 @@
 	. = ..()
 	if(!.)
 		return
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(owner_xeno.eaten_mob)
-		return TRUE
 	if(!ishuman(target) || issynth(target))
 		if(!silent)
 			to_chat(owner, span_warning("That wouldn't taste very good."))
@@ -35,6 +32,7 @@
 		if(!silent)
 			to_chat(owner, span_warning("[victim] is buckled to something."))
 		return FALSE
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(owner_xeno.on_fire)
 		if(!silent)
 			to_chat(owner_xeno, span_warning("We're too busy being on fire to do this!"))
@@ -44,19 +42,23 @@
 			to_chat(owner_xeno, span_warning("We are too close to the fog."))
 		return FALSE
 
-/datum/action/xeno_action/activable/devour/use_ability(atom/target)
+/datum/action/xeno_action/activable/devour/action_activate()
+	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(owner_xeno.eaten_mob)
-		var/channel = SSsounds.random_available_channel()
-		playsound(owner_xeno, 'sound/vore/escape.ogg', 40, channel = channel)
-		if(!do_after(owner_xeno, 3 SECONDS, FALSE, null, BUSY_ICON_DANGER))
-			to_chat(owner, span_warning("We moved too soon!"))
-			owner_xeno.stop_sound_channel(channel)
-			return
-		owner_xeno.eject_victim()
+	if(!owner_xeno.eaten_mob)
 		return
 
+	var/channel = SSsounds.random_available_channel()
+	playsound(owner_xeno, 'sound/vore/escape.ogg', 40, channel = channel)
+	if(!do_after(owner_xeno, 3 SECONDS, FALSE, null, BUSY_ICON_DANGER))
+		to_chat(owner, span_warning("We moved too soon!"))
+		owner_xeno.stop_sound_channel(channel)
+		return
+	owner_xeno.eject_victim()
+
+/datum/action/xeno_action/activable/devour/use_ability(atom/target)
 	var/mob/living/carbon/human/victim = target
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.face_atom(victim)
 	owner_xeno.visible_message(span_danger("[owner_xeno] starts to devour [victim]!"), span_danger("We start to devour [victim]!"), null, 5)
 	succeed_activate()
@@ -130,10 +132,10 @@
 			if(target_human.blood_volume < GORGER_REJUVENATE_BLOOD_DRAIN)
 				to_chat(owner, span_notice("Our meal has no blood... How sad!"))
 				return
-			X.heal_wounds(2.2, TRUE)
-			X.adjust_sunder(-0.5)
+			owner_xeno.heal_wounds(2.2, TRUE)
+			owner_xeno.adjust_sunder(-0.5)
 			target.blood_volume -= GORGER_REJUVENATE_BLOOD_DRAIN
-		to_chat(X, span_notice("We feel fully restored."))
+		to_chat(owner_xeno, span_notice("We feel fully restored."))
 		return
 	owner_xeno.face_atom(target)
 	owner_xeno.emote("roar")
@@ -167,7 +169,7 @@
 	name = "Rejuvenate/Transfusion"
 	action_icon_state = "rejuvenation"
 	mechanics_text = "When used on self, drains blood and restores health over time. When used on another xenomorph, costs blood and restores some of their health."
-	use_state_flags = XACT_TARGET_SELF|XACT_KEYBIND_USE_ABILITY
+	use_state_flags = XACT_TARGET_SELF
 	cooldown_timer = 20 SECONDS
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
@@ -238,16 +240,18 @@
 	name = "Carnage"
 	action_icon_state = "carnage"
 	mechanics_text = "For a while your attacks drain blood and heal you. During Feast you also heal nearby allies."
-	use_state_flags = XACT_IGNORE_SELECTED_ABILITY|XACT_KEYBIND_USE_ABILITY
+	use_state_flags = XACT_TARGET_SELF|XACT_IGNORE_SELECTED_ABILITY
 	cooldown_timer = 40 SECONDS
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_CARNAGE
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
 
-/datum/action/xeno_action/activable/carnage/use_ability()
+/datum/action/xeno_action/activable/carnage/use_ability(atom/A)
+	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.apply_status_effect(/datum/status_effect/xeno_carnage, 20 SECONDS, owner_xeno.xeno_caste.carnage_plasma_gain)
-	succeed_activate()
 	add_cooldown()
+	succeed_activate()
 
 /datum/action/xeno_action/activable/carnage/ai_should_use(atom/target)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
@@ -274,6 +278,7 @@
 	cooldown_timer = 180 SECONDS
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_FEAST
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	///Adds a cooldown to deactivation to avoid accidental cancel
 	COOLDOWN_DECLARE(misclick_prevention)
 
@@ -286,7 +291,8 @@
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
 		return TRUE
 
-/datum/action/xeno_action/activable/feast/use_ability()
+/datum/action/xeno_action/activable/feast/use_ability(atom/A)
+	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
 		to_chat(owner_xeno, span_notice("We decide to end our feast early..."))
@@ -297,8 +303,8 @@
 	owner_xeno.visible_message(owner_xeno, span_notice("[owner_xeno] begins to overflow with vitality!"))
 	owner_xeno.apply_status_effect(/datum/status_effect/xeno_feast, GORGER_FEAST_DURATION, owner_xeno.xeno_caste.feast_plasma_drain)
 	COOLDOWN_START(src, misclick_prevention, 2 SECONDS)
-	succeed_activate()
 	add_cooldown()
+	succeed_activate()
 
 /datum/action/xeno_action/activable/feast/ai_should_use(atom/target)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
