@@ -34,7 +34,7 @@
  * This is mainly used for deciding what weights are to be looked at when determing a node waypoint of going towards
  */
 #define IDENTIFIER_XENO "identifies_xeno"
-#define IDENTIFIER_HUSK "identifies_husk"
+#define IDENTIFIER_ZOMBIE "identifies_zombie"
 
 
 //Flags for the get_nearest_target

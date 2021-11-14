@@ -693,11 +693,11 @@
 	L.adjustOxyLoss(5)
 	L.adjustToxLoss(5)
 
-///Signal handler preparing the source to become a husk
+///Signal handler preparing the source to become a zombie
 /datum/reagent/zombium/proc/zombify(mob/living/carbon/human/H)
 	SIGNAL_HANDLER
 	UnregisterSignal(H, COMSIG_HUMAN_SET_UNDEFIBBABLE)
 	if(!H.has_working_organs())
 		return
 	H.do_jitter_animation(1000)
-	addtimer(CALLBACK(H, /mob/living/carbon/human.proc/revive_to_crit, TRUE, TRUE), SSticker.mode?.husk_transformation_time)
+	addtimer(CALLBACK(H, /mob/living/carbon/human.proc/revive_to_crit, TRUE, TRUE), SSticker.mode?.zombie_transformation_time)

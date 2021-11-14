@@ -424,7 +424,7 @@
 	. = ..()
 	if(.)
 		return
-	if(!ismob(dropping) || isxeno(user) || isxeno(dropping) || ishusk(user))
+	if(!ismob(dropping) || isxeno(user) || isxeno(dropping) || iszombie(user))
 		return
 	// If not dragged onto myself or dragging my own sprite onto myself
 	if(user != src || dropping == user)

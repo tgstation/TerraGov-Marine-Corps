@@ -121,6 +121,6 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 	SIGNAL_HANDLER
 	qdel(src)
 
-/obj/effect/ai_node/goal/husk
-	name = "Ai husk goal"
-	identifier = IDENTIFIER_HUSK
+/obj/effect/ai_node/goal/zombie
+	name = "Ai zombie goal"
+	identifier = IDENTIFIER_ZOMBIE
