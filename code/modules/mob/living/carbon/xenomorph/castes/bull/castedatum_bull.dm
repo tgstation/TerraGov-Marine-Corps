@@ -123,8 +123,8 @@
 
 /datum/xeno_caste/bull/primordial
 	upgrade_name = "Primordial"
-	caste_desc = "A fast and agile hit-and-runner that nothing will stop." //Help
-	primordial_message = ""
+	caste_desc = "Bloodthirsty horned devil of the hive. Stay away from its path."
+	primordial_message = "We are the spearhead of the hive. Run them all down."
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //
