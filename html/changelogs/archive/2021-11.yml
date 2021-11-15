@@ -99,3 +99,16 @@
   SplinterGP:
   - expansion: helmets now layer under armor.
   - bugfix: Hlin now appears on xenonauten properly.
+2021-11-14:
+  BraveMole:
+  - bugfix: Fix not being able to take ssd mobs
+  - bugfix: Cas infinite fuel
+  - bugfix: fix dead mobs in ssdmoblist
+2021-11-15:
+  BraveMole:
+  - bugfix: Fix cas not being able to launch mission despite marines already on ground
+  KrabSpider:
+  - balance: Incendiary slugs now deal 65 damage, 10 AP.
+  - balance: incendiary slugs are now as accurate as regular bullets.
+  - code_imp: Removes airburst from incendiary slugs. Adds staggerstun to them.
+  - balance: Incendiary slugs knockback by 2 and slow.
