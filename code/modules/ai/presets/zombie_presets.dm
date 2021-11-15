@@ -2,7 +2,7 @@
 
 /mob/living/carbon/human/species/zombie/ai/stay/Initialize()
 	. = ..()
-	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie, get_turf(src))
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie/idle, null)
 
 /mob/living/carbon/human/species/zombie/ai/patrol
 

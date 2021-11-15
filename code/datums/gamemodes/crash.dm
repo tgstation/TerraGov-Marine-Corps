@@ -2,7 +2,6 @@
 	name = "Crash"
 	config_tag = "Crash"
 	flags_round_type = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT|MODE_DEAD_GRAB_FORBIDDEN
-	flags_landmarks = MODE_LANDMARK_SPAWN_MAP_ITEM
 	flags_xeno_abilities = ABILITY_CRASH
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
@@ -94,6 +93,14 @@
 		computer_to_disable.machine_stat |= BROKEN
 		computer_to_disable.update_icon()
 
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, .proc/on_nuclear_diffuse)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
+	
+	if(!(flags_round_type & MODE_INFESTATION))
+		return
+
 	for(var/i in GLOB.alive_xeno_list)
 		if(isxenolarva(i)) // Larva
 			var/mob/living/carbon/xenomorph/larva/X = i
@@ -102,10 +109,6 @@
 			var/mob/living/carbon/xenomorph/X = i
 			X.upgrade_stored = X.xeno_caste.upgrade_threshold
 
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
-	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
-	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, .proc/on_nuclear_diffuse)
-	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
 	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(HN)
 		RegisterSignal(HN, COMSIG_XENOMORPH_POSTEVOLVING, .proc/on_xeno_evolve)
@@ -126,10 +129,6 @@
 /datum/game_mode/infestation/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
 	shuttle_landed = TRUE
 	shuttle.crashing = FALSE
-
-	// We delay this a little because the shuttle takes some time to land, and we want to the xenos to know the position of the marines.
-	bioscan_interval = world.time + 30 SECONDS
-
 
 /datum/game_mode/infestation/crash/check_finished(force_end)
 	if(round_finished)

@@ -83,6 +83,11 @@
 			if(next_target == atom_to_walk_to)
 				return
 			change_action(null, next_target, INFINITY)
+		if(IDLE)
+			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
+			if(!next_target)
+				return
+			change_action(MOVING_TO_ATOM, next_target)
 
 /datum/ai_behavior/xeno/deal_with_obstacle(datum/source, direction)
 	var/turf/obstacle_turf = get_step(mob_parent, direction)

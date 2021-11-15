@@ -68,10 +68,6 @@
 
 
 /datum/game_mode/proc/pre_setup()
-
-	if(flags_landmarks & MODE_LANDMARK_SPAWN_MAP_ITEM)
-		spawn_map_items()
-
 	if(flags_landmarks & MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE)
 		for(var/turf/T AS in GLOB.lz1_shuttle_console_turfs_list)
 			new /obj/machinery/computer/shuttle/shuttle_control/dropship/rebel(T)

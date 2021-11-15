@@ -48,7 +48,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(escorted_atom)
 		set_escorted_atom(null, escorted_atom)
 	else
-		src.escorted_atom = parent_to_assign
 		RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, .proc/set_escorted_atom)
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, .proc/set_goal_node)
 	goal_node = GLOB.goal_nodes[identifier]
@@ -69,6 +68,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 			look_for_next_node()
 		if(ESCORTING_ATOM)
 			change_action(ESCORTING_ATOM, escorted_atom)
+		if(IDLE)
+			change_action(IDLE)
 
 //We finished moving to a node, let's pick a random nearby one to travel to
 /datum/ai_behavior/proc/finished_node_move()
@@ -101,6 +102,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 			message_admins("[mob_parent] escorts [next_target]")
 		if(FOLLOWING_PATH)
 			message_admins("[mob_parent] moves toward [next_target] as part of its path")
+		if(IDLE)
+			message_admins("[mob_parent] is idle")
 	#endif
 	if(next_action)
 		current_action = next_action
@@ -199,7 +202,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 ///Set the escorted atom
 /datum/ai_behavior/proc/set_escorted_atom(datum/source, atom/atom_to_escort)
 	SIGNAL_HANDLER
-	if(!atom_to_escort || atom_to_escort.get_xeno_hivenumber() != mob_parent.get_xeno_hivenumber())
+	if(!atom_to_escort || atom_to_escort.get_xeno_hivenumber() != mob_parent.get_xeno_hivenumber() || mob_parent.ckey)
 		return
 	if(get_dist(atom_to_escort, mob_parent) > target_distance)
 		return
@@ -216,6 +219,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	SIGNAL_HANDLER
 	if(!escorted_atom)
 		return
+	UnregisterSignal(escorted_atom, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(escorted_atom, ESCORTING_ATOM_BEHAVIOUR_CHANGED)
 	escorted_atom = null
 	base_action = initial(base_action)
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, .proc/set_escorted_atom)

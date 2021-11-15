@@ -30,7 +30,7 @@
 /datum/species/zombie/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	H.set_undefibbable()
-	H.faction = FACTION_XENO
+	H.faction = FACTION_ZOMBIE
 	H.language_holder = new default_language_holder()
 	H.setOxyLoss(0)
 	H.setToxLoss(0)
@@ -48,6 +48,10 @@
 	H.job = new /datum/job/zombie //Prevent from skewing the respawn timer if you take a zombie, it's a ghost role after all
 	for(var/datum/action/action AS in H.actions)
 		action.remove_action(H)
+	var/datum/action/rally_zombie/rally_zombie = new
+	rally_zombie.give_action(H)
+	var/datum/action/set_agressivity/set_zombie_behaviour = new
+	set_zombie_behaviour.give_action(H)
 
 /datum/species/zombie/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
@@ -55,6 +59,8 @@
 	health_hud.remove_hud_from(H)
 	qdel(H.r_hand)
 	qdel(H.l_hand)
+	for(var/datum/action/action AS in H.actions)
+		action.remove_action(H)
 
 /datum/species/zombie/handle_unique_behavior(mob/living/carbon/human/H)
 	if(prob(10))
@@ -167,3 +173,30 @@
 	slowdown = -0.5
 	heal_rate = 20
 	total_health = 200
+
+/datum/action/rally_zombie
+	name = "Rally Zombies"
+	action_icon_state = "rally_minions"
+
+/datum/action/rally_zombie/action_activate()
+	owner.emote("roar")
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_MINION_RALLY, owner)
+	var/datum/action/set_agressivity/set_agressivity = owner.actions_by_path[/datum/action/set_agressivity]
+	if(set_agressivity)
+		SEND_SIGNAL(owner, ESCORTING_ATOM_BEHAVIOUR_CHANGED, set_agressivity.zombies_agressive) //New escorting ais should have the same behaviour as old one
+
+/datum/action/set_agressivity
+	name = "Set other zombie behavior"
+	action_icon_state = "minion_agressive"
+	///If zombies should be agressive
+	var/zombies_agressive = TRUE
+
+/datum/action/set_agressivity/action_activate()
+	zombies_agressive = !zombies_agressive
+	SEND_SIGNAL(owner, ESCORTING_ATOM_BEHAVIOUR_CHANGED, zombies_agressive)
+	update_button_icon()
+
+/datum/action/set_agressivity/update_button_icon()
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/actions.dmi', button, zombies_agressive ? "minion_agressive" : "minion_passive")
+	return ..()
