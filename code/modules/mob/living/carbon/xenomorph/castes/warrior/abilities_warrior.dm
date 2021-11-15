@@ -520,7 +520,7 @@
 	var/list/combo_list = uppercut_ability.combo
 	combo_list[A.name]++
 
-	if(combo_list[A.name] >= WARRIOR_PERFECT_COMBO_THRESHOLD)
+	if(combo_list[A.name] == WARRIOR_PERFECT_COMBO_THRESHOLD)
 		to_chat(A, span_highdanger("It looks like [owner] is predicting our movements, we should back off!"))
 
 	var/image/counter = image(null, A, null) //Visual clue for the warrior on how much combo each mob has
@@ -573,7 +573,7 @@
 // ***************************************
 
 /datum/action/xeno_action/activable/punch/weak
-	mechanics_text = "Strike a target has, weaker than a regular punch. Resets jab cooldown and reduces uppercut cooldown."
+	mechanics_text = "Strike a target, weaker than a regular punch. Resets jab cooldown."
 	plasma_cost = 10
 
 /datum/action/xeno_action/activable/punch/weak/use_ability(atom/A)
@@ -651,9 +651,11 @@
 		target.Sleeping(4 SECONDS, ignore_canstun = TRUE)
 		//Figure out a good animation
 		to_chat(X, span_highdanger("LIGHTS OUT."))
+		X.emote("roar")
 
+	playsound(A, 'sound/weapons/punch2.ogg', 50)
 	clear_combo(A)
-	target.apply_damage(damage, BRUTE, "head")
+	target.apply_damage(damage, BRUTE, "head", target.run_armor_check("head"))
 	shake_camera(A, 2, cameraShake)
 	succeed_activate()
 	add_cooldown()
