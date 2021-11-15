@@ -573,7 +573,7 @@
 // ***************************************
 
 /datum/action/xeno_action/activable/punch/weak
-	mechanics_text = "Strike a target has, weaker than a regular punch. Resets jab cooldown and reduces uppercut cooldown."
+	mechanics_text = "Strike a target, weaker than a regular punch. Resets jab cooldown and reduces uppercut cooldown."
 	plasma_cost = 10
 
 /datum/action/xeno_action/activable/punch/weak/use_ability(atom/A)
