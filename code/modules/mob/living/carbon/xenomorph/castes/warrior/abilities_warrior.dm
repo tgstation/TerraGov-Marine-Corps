@@ -317,6 +317,7 @@
 	cooldown_timer = 10 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
 	target_flags = XABB_MOB_TARGET
+	///The punch range, 1 would be adjacent.
 	var/range = 1
 
 /datum/action/xeno_action/activable/punch/on_cooldown_finish()
@@ -515,23 +516,22 @@
 		return FALSE
 	return TRUE
 
-/datum/action/xeno_action/activable/punch/proc/add_to_combo(mob/living/A)
+/datum/action/xeno_action/activable/punch/proc/add_to_combo(mob/living/target)
 	var/datum/action/xeno_action/activable/uppercut/uppercut_ability = owner.actions_by_path[/datum/action/xeno_action/activable/uppercut]
-	var/list/combo_list = uppercut_ability.combo
-	combo_list[A.name]++
+	uppercut_ability.combo[REF(target)]++
 
-	if(combo_list[A.name] == WARRIOR_PERFECT_COMBO_THRESHOLD)
-		to_chat(A, span_highdanger("It looks like [owner] is predicting our movements, we should back off!"))
+	if(uppercut_ability.combo[REF(target)] == WARRIOR_PERFECT_COMBO_THRESHOLD)
+		to_chat(target, span_highdanger("It looks like [owner] is predicting our movements, we should back off!"))
 
-	var/image/counter = image(null, A, null) //Visual clue for the warrior on how much combo each mob has
-	counter.maptext = MAPTEXT("[combo_list[A.name]]")
+	var/image/counter = image(null, target, null) //Visual clue for the warrior on how much combo each mob has
+	counter.maptext = MAPTEXT("[uppercut_ability.combo[REF(target)]]")
 	owner.client.images += counter
 
 	addtimer(CALLBACK(src,.proc/clear_counter, counter), WARRIOR_COMBO_FADEOUT_TIME)
-	addtimer(CALLBACK(uppercut_ability, /datum/action/xeno_action/activable/uppercut.proc/clear_combo, A, counter), WARRIOR_COMBO_FADEOUT_TIME, TIMER_OVERRIDE|TIMER_UNIQUE)
+	addtimer(CALLBACK(uppercut_ability, /datum/action/xeno_action/activable/uppercut.proc/clear_combo, target, counter), WARRIOR_COMBO_FADEOUT_TIME, TIMER_OVERRIDE|TIMER_UNIQUE)
 
 /datum/action/xeno_action/activable/punch/proc/clear_counter(image/counter)
-	del(counter)
+	owner.client.images.Remove(counter)
 
 // ***************************************
 // *********** Jab
@@ -616,7 +616,7 @@
 	target_flags = XABB_MOB_TARGET
 	keybind_signal = COMSIG_XENOABILITY_UPPERCUT
 	/// Who did we punch/jab recently and how many times ?
-	var/list/combo
+	var/combo[0]
 
 /datum/action/xeno_action/activable/uppercut/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -636,9 +636,9 @@
 /datum/action/xeno_action/activable/uppercut/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/target = A
-	var/current_combo = combo[target.name]
+	var/current_combo = combo[REF(A)]
 	var/damage = min(X.xeno_caste.melee_damage +  X.xeno_caste.melee_damage * (current_combo/2), 200)
-	var/cameraShake = min(1/2 * current_combo, 4)
+	var/camera_shake = min(1/2 * current_combo, 4)
 	X.face_atom(A)
 	X.do_attack_animation(A, ATTACK_EFFECT_SMASH)
 	X.do_attack_animation(A, ATTACK_EFFECT_PUNCH)
@@ -659,7 +659,7 @@
 	playsound(A, 'sound/weapons/punch2.ogg', 50)
 	clear_combo(A)
 	target.apply_damage(damage, BRUTE, "head", target.run_armor_check("head"))
-	shake_camera(A, 2, cameraShake)
+	shake_camera(A, 2, camera_shake)
 	succeed_activate()
 	add_cooldown()
 	return
@@ -670,5 +670,5 @@
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
-/datum/action/xeno_action/activable/uppercut/proc/clear_combo(mob/living/A)
-	combo.Remove(A.name)
+/datum/action/xeno_action/activable/uppercut/proc/clear_combo(mob/living/target)
+	combo.Remove(REF(target))
