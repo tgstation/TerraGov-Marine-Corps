@@ -194,10 +194,6 @@ should be alright.
 
 ///This performs a tactical reload with src using new_magazine to load the gun.
 /obj/item/weapon/gun/proc/tactical_reload(obj/item/ammo_magazine/new_magazine, mob/living/carbon/human/user)
-	if(active_attachable)
-		active_attachable.tactical_reload(new_magazine, user)
-		return
-
 	if(!istype(user) || user.incapacitated(TRUE))
 		return
 	if(src != user.r_hand && src != user.l_hand)

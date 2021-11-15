@@ -176,8 +176,8 @@
 		return new_handful
 
 ///Called on a /ammo_magazine that wishes to be a handful. It generates all the data required for the handful.
-/obj/item/ammo_magazine/proc/generate_handful(new_ammo, new_caliber, new_rounds, maximum_rounds )
-	var/datum/ammo/ammo = GLOB.ammo_list[new_ammo]
+/obj/item/ammo_magazine/proc/generate_handful(new_ammo, new_caliber, new_rounds, maximum_rounds)
+	var/datum/ammo/ammo = ispath(new_ammo) ? GLOB.ammo_list[new_ammo] : new_ammo
 	var/ammo_name = ammo.name
 
 	name = "handful of [ammo_name + " ([new_caliber])"]"
@@ -387,10 +387,15 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "ammoboxslug"
 	w_class = WEIGHT_CLASS_HUGE
+	///Current stored rounds
 	var/current_rounds = 200
+	///Maximum stored rounds
 	var/max_rounds = 200
+	///Ammunition type
 	var/ammo_type = /datum/ammo/bullet/shotgun/slug
+	///Whether the box is deployed or not.
 	var/deployed = FALSE
+	///Caliber of the rounds stored.
 	var/caliber = CALIBER_12G
 
 
@@ -443,7 +448,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/obj/item/ammo_magazine/handful/H = new
 	var/rounds = min(current_rounds, 5)
 
-	H.generate_handful(ammo_type, caliber, rounds, /obj/item/weapon/gun/shotgun)
+	H.generate_handful(ammo_type, caliber, rounds, initial(ammo_type.handful_amount))
 	current_rounds -= rounds
 
 	user.put_in_hands(H)

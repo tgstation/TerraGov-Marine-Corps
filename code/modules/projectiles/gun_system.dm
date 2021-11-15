@@ -514,7 +514,7 @@
 		if(!istype(attachable, /obj/item/weapon/gun))
 			continue
 		var/obj/item/weapon/gun/gun_attachable = attachable
-		var/chamber = in_chamber ? 1 : 0
+		var/chamber = in_chamber ? rounds_per_shot : 0
 		dat += gun_attachable.rounds ? "([gun_attachable.rounds + chamber]/[gun_attachable.max_rounds])" : "(Unloaded)"
 
 	if(dat)
@@ -544,7 +544,7 @@
 			if(max_rounds && CHECK_BITFIELD(flags_gun_features, GUN_AMMO_COUNT_BY_PERCENTAGE))
 				dat += "Ammo counter shows [round((rounds / max_rounds) * 100)] percent remaining.<br>"
 			else if(max_rounds && CHECK_BITFIELD(flags_gun_features, GUN_AMMO_COUNT_BY_SHOTS_REMAINING))
-				dat += "Ammo counter shows [round(max_rounds / rounds)] shots remaining."
+				dat += "Ammo counter shows [round(max_rounds / rounds_per_shot)] shots remaining."
 			else
 				dat += "Ammo counter shows [rounds] round\s remaining.<br>"
 		else
@@ -710,7 +710,7 @@
 //----------------------------------------------------------
 
 ///Wrapper proc to complete the whole firing process.
-/obj/item/weapon/gun/proc/Fire()
+/obj/item/weapon/gun/proc/Fire(instant_hit = FALSE)
 	if(!target || (!gun_user && !istype(loc, /obj/machinery/deployable/mounted/sentry)) || (!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)) || windup_checked == WEAPON_WINDUP_CHECKING)
 		return
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
@@ -732,7 +732,7 @@
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 
-	if(!do_fire(projectile_to_fire))
+	if(!do_fire(projectile_to_fire, instant_hit))
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 
@@ -750,9 +750,9 @@
 			in_chamber = null
 		if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 			cycle(null)
-			if(length(chamber_items) && !get_current_rounds(chamber_items[current_chamber_position]) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
-				playsound(src, empty_sound, 25, 1)
-				unload(after_fire = TRUE)
+		if(length(chamber_items) && (get_current_rounds(chamber_items[current_chamber_position]) - rounds_per_shot) <= 0 && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
+			playsound(src, empty_sound, 25, 1)
+			unload(after_fire = TRUE)
 
 	gun_user?.hud_used.update_ammo_hud(gun_user, src)
 	update_icon()
@@ -771,7 +771,7 @@
 	return TRUE
 
 ///Actually fires the gun, sets up the projectile and fires it.
-/obj/item/weapon/gun/proc/do_fire(obj/object_to_fire)
+/obj/item/weapon/gun/proc/do_fire(obj/object_to_fire, instant_hit)
 	var/firer
 	if(istype(loc, /obj/machinery/deployable/mounted/sentry) && !gun_user)
 		firer = loc
@@ -875,10 +875,27 @@
 
 	simulate_recoil(dual_wield, firing_angle)
 
-	//This is where the projectile leaves the barrel and deals with projectile code only.
-	//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-	projectile_to_fire.fire_at(target, master_gun ? gun_user : loc, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
-	//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	if(instant_hit)
+		var/list/obj/projectile/projectiles_to_hit = list()
+		projectiles_to_hit += projectile_to_fire
+		if(projectile_to_fire.ammo.bonus_projectile_amount)
+			var/obj/projectile/bonus_projectile
+			for(var/i = 1 to projectile_to_fire.ammo.bonus_projectile_amount)
+				bonus_projectile = new /obj/projectile(target.loc)
+				bonus_projectile.generate_bullet(projectile_to_fire.ammo.bonus_projectiles_type)
+				bonus_projectile.damage *= damage_mult
+				bonus_projectile += projectile_to_hit
+		for(var/obj/projectile/projectile_to_hit AS in projectiles_to_hit)
+			projectile_to_hit.setDir(get_dir(gun_user, target))
+			projectile_to_hit.distance_travelled = get_dist(gun_user, target)
+			projectile_to_hit.ammo.on_hit(target, projectile_to_hit)
+			if(isliving(target))
+				var/mob/living/mob_to_hit = target
+				target.bullet_act(projectile_to_hit)
+			QDEL_NULL(projectile_to_hit)
+	else
+		projectile_to_fire.fire_at(target, master_gun ? gun_user : loc, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
+
 
 	shots_fired++
 
@@ -908,7 +925,7 @@
 		if(gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
 			SEND_SIGNAL(src, COMSIG_GUN_FIRE)
 			return TRUE
-		Fire()
+		Fire(TRUE)
 		return TRUE
 
 	if(M != user || user.zone_selected != "mouth")
@@ -1363,7 +1380,7 @@
 ///Updates the guns rounds and max_rounds vars based on the contents of chamber_items
 /obj/item/weapon/gun/proc/update_ammo_count()
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
-		var/new_rounds = length(chamber_items) + (in_chamber ? 1 : 0)
+		var/new_rounds = length(chamber_items) + (in_chamber ? rounds_per_shot : 0)
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER))
 			new_rounds = 0
 			for(var/obj/chamber_item in chamber_items)
@@ -1373,7 +1390,7 @@
 			if(in_chamber)
 				new_rounds++
 		rounds = new_rounds
-		max_rounds = max_chamber_items
+		max_rounds = max_chamber_items + 1
 		gun_user?.hud_used.update_ammo_hud(gun_user, src)
 		return
 	var/total_rounds
@@ -1381,7 +1398,8 @@
 	for(var/obj/chamber_item in chamber_items)
 		total_rounds += get_current_rounds(chamber_item)
 		total_max_rounds += get_max_rounds(chamber_item)
-	rounds = total_rounds + (in_chamber ? 1 : 0)
+	total_max_rounds += rounds_per_shot
+	rounds = total_rounds + (in_chamber ? rounds_per_shot : 0)
 	max_rounds = total_max_rounds
 	update_icon()
 	gun_user?.hud_used.update_ammo_hud(gun_user, src)

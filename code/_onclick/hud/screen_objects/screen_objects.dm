@@ -714,6 +714,8 @@
 		rounds = round((G.rounds / G.max_rounds) * 100)
 	else if(G.max_rounds && CHECK_BITFIELD(G.flags_gun_features, GUN_AMMO_COUNT_BY_SHOTS_REMAINING))
 		rounds = round(G.max_rounds / G.rounds)
+	else if (G.rounds && CHECK_BITFIELD(G.flags_gun_features, GUN_AMMO_COUNT_BY_SHOTS_REMAINING))
+		rounds = round(G.max_rounds / G.rounds_per_shot)
 	else
 		rounds = G.rounds
 	var/hud_state = ammo_type[1]
