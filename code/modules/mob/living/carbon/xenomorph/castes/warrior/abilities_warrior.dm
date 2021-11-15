@@ -615,7 +615,8 @@
 	cooldown_timer = 10 SECONDS
 	target_flags = XABB_MOB_TARGET
 	keybind_signal = COMSIG_XENOABILITY_UPPERCUT
-	var/combo[0] //Who did we punch/jab recently and how many times ?
+	/// Who did we punch/jab recently and how many times ?
+	var/list/combo
 
 /datum/action/xeno_action/activable/uppercut/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
