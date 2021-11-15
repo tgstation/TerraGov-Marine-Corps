@@ -475,7 +475,7 @@
 /datum/reagent/toxin/xeno_neurotoxin/light
 	name = "Light Neurotoxin"
 	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time. This one seems to be weaker enough to not remove other chemicals."
-	purge_list = null
+	purge_list = list(/datum/reagent/medicine)
 	purge_rate = 0
 
 
@@ -486,10 +486,12 @@
 			power = (2*effect_str) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
 			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		if(21 to 45)
+			purge_rate = (purge_rate == 1) ? 1 : 0.2
 			power = (6*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
 			L.jitter(4) //Shows that things are bad
 		if(46 to INFINITY)
+			purge_rate = (purge_rate == 1) ? 1 : 1
 			power = (15*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
 			L.jitter(8) //Shows that things are *really* bad
