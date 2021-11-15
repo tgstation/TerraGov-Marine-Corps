@@ -418,8 +418,13 @@
 	. = ..()
 	if(!.)
 		return
+	if(!owner.Adjacent(A))
+		if(!silent)
+			to_chat(owner, span_xenodanger("Our target must be adjacent!"))
+		return FALSE
 	if(!ishuman(A))
-		to_chat(owner, span_xenowarning("You cannot steal from that target"))
+		if(!silent)
+			to_chat(owner, span_xenowarning("You cannot steal from that target"))
 		return FALSE
 
 /datum/action/xeno_action/activable/snatch/use_ability(atom/A)

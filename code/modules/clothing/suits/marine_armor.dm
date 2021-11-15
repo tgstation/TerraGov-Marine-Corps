@@ -72,6 +72,7 @@
 	user?.update_inv_wear_suit()
 
 /obj/item/clothing/suit/storage/marine/apply_custom(image/standing)
+	. = ..()
 	var/image/I
 	for(var/i in armor_overlays)
 		I = armor_overlays[i]

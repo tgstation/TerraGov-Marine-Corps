@@ -113,11 +113,18 @@
 					if(loadout.version < 8)
 						if("[armor.item_type]" == "/obj/item/clothing/suit/modular/pas11x")
 							armor.item_type = /obj/item/clothing/suit/modular/xenonauten
+				var/datum/item_representation/uniform_representation/uniform = loadout.item_list[slot_w_uniform_str]
+				if(istype(uniform, /datum/item_representation/uniform_representation))
+					if(loadout.version < 9)
+						uniform.current_variant = null
+						uniform.attachments = list()
 				var/message_to_send = "Please note: The loadout code has been updated and due to that:"
 				if(loadout.version < 7)
 					message_to_send += "<br>any modular helmet/suit has been removed from it due to the transitioning of loadout version 6 to 7."
 				if(loadout.version < 8)
 					message_to_send += "<br>any PAS11 armor/M10x helmet has been removed from it due to the transitioning of loadout version 7 to 8(Xenonauten Addition)."
+				if(loadout.version < 9)
+					message_to_send += "<br>any uniforms have had their webbings/accessory removed due to the transitioning of loadout version 8 to 9."
 				loadout.version = CURRENT_LOADOUT_VERSION
 				message_to_send += "<br>This loadout is now on version [loadout.version]"
 				to_chat(ui.user, span_warning(message_to_send))
@@ -156,11 +163,18 @@
 					if(loadout.version < 8)
 						if("[armor.item_type]" == "/obj/item/clothing/suit/modular/pas11x")
 							armor.item_type = /obj/item/clothing/suit/modular/xenonauten
+				var/datum/item_representation/uniform_representation/uniform = loadout.item_list[slot_w_uniform_str]
+				if(istype(uniform, /datum/item_representation/uniform_representation))
+					if(loadout.version < 9)
+						uniform.current_variant = null
+						uniform.attachments = list()
 				var/message_to_send = "Please note: The loadout code has been updated and due to that:"
 				if(loadout.version < 7)
 					message_to_send += "<br>any modular helmet/suit has been removed from it due to the transitioning of loadout version 6 to 7."
 				if(loadout.version < 8)
 					message_to_send += "<br>any PAS11 armor/M10x helmet has been removed from it due to the transitioning of loadout version 7 to 8(Xenonauten Addition)."
+				if(loadout.version < 9)
+					message_to_send += "<br>any uniforms have had their webbings/accessory removed due to the transitioning of loadout version 8 to 9."
 				loadout.version = CURRENT_LOADOUT_VERSION
 				message_to_send += "<br>This loadout is now on version [loadout.version]"
 				to_chat(ui.user, span_warning(message_to_send))

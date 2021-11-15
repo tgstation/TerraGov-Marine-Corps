@@ -1141,6 +1141,7 @@
 #include "code\modules\clothing\modular_armor\attachments\leg_plates.dm"
 #include "code\modules\clothing\modular_armor\attachments\modules.dm"
 #include "code\modules\clothing\modular_armor\attachments\storage.dm"
+#include "code\modules\clothing\modular_armor\attachments\uniform.dm"
 #include "code\modules\clothing\modular_armor\attachments\visors.dm"
 #include "code\modules\clothing\outfits\vv_outfit.dm"
 #include "code\modules\clothing\shoes\colour.dm"

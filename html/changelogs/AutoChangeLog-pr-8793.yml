@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "Fix crash larva delay not existing (now, 2 minutes between each larva)"

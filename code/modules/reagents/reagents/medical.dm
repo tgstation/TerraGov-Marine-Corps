@@ -129,8 +129,11 @@
 	to_chat(L, span_userdanger("You feel a burst of energy revitalize you all of a sudden! You can do anything!"))
 
 /datum/reagent/medicine/oxycodone/on_mob_life(mob/living/L, metabolism)
-	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
+	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
 	L.apply_damage(0.2*effect_str, TOX)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.setShock_Stage(min(C.shock_stage - 1*effect_str, 150)) //you can still paincrit if under ludicrous situations, but you can't go into deep shock
 	return ..()
 
 /datum/reagent/medicine/oxycodone/overdose_process(mob/living/L, metabolism)
@@ -140,7 +143,7 @@
 
 /datum/reagent/medicine/oxycodone/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(3*effect_str, TOX)
-	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
+	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
@@ -161,7 +164,10 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/hydrocodone/on_mob_life(mob/living/L, metabolism)
-	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
+	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.setShock_Stage(min(C.shock_stage - 1*effect_str, 150)) //you can still paincrit if under ludicrous situations, but you can't go into deep shock
 	return ..()
 
 /datum/reagent/medicine/hydrocodone/overdose_process(mob/living/L, metabolism)
@@ -209,7 +215,7 @@
 	if(L.bodytemperature > target_temp)
 		L.adjust_bodytemperature(-2.5*TEMPERATURE_DAMAGE_COEFFICIENT*effect_str, target_temp)
 	if(volume > 10)
-		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
 	if(volume > 20)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		L.heal_limb_damage(0, 0.5*effect_str)
@@ -310,7 +316,7 @@
 	L.adjustToxLoss(-0.4*effect_str)
 	L.heal_limb_damage(0.8*effect_str, 0.8*effect_str)
 	if(volume > 10)
-		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
 	if(volume > 20)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	return ..()
@@ -439,7 +445,7 @@
 	scannable = FALSE
 
 /datum/reagent/medicine/neuraline/on_mob_life(mob/living/L)
-	L.reagent_shock_modifier += PAIN_REDUCTION_FULL
+	L.reagent_shock_modifier += (2 * PAIN_REDUCTION_VERY_HEAVY)
 	L.adjustDrowsyness(-5)
 	L.dizzy(-5)
 	L.stuttering = max(L.stuttering-5, 0)
@@ -455,6 +461,9 @@
 	L.adjustStaminaLoss(-30*effect_str)
 	L.heal_limb_damage(7.5*effect_str, 7.5*effect_str)
 	L.adjustToxLoss(3.75*effect_str)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.setShock_Stage(min(C.shock_stage - volume*effect_str, 150)) //will pull a target out of deep paincrit instantly, if he's in it
 	return ..()
 
 /datum/reagent/medicine/neuraline/overdose_process(mob/living/L, metabolism)
@@ -516,6 +525,9 @@
 	L.heal_limb_damage(10*effect_str, 10*effect_str)
 	L.adjustToxLoss(-2.5*effect_str)
 	L.adjustCloneLoss(effect_str)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.setShock_Stage(min(C.shock_stage - 5*effect_str, 150)) //removes a target from deep paincrit instantly
 	return ..()
 
 /datum/reagent/medicine/russian_red/overdose_process(mob/living/L, metabolism)
@@ -643,7 +655,7 @@
 /datum/reagent/medicine/bicaridine/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(effect_str, 0)
 	if(volume > 10)
-		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
 	if(volume > 20)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		L.heal_limb_damage(0.5*effect_str, 0)
@@ -740,7 +752,7 @@
 				if (X.update_icon())
 					X.owner.UpdateDamageIcon(1)
 	L.reagents.add_reagent(/datum/reagent/toxin,5)
-	L.reagent_shock_modifier -= PAIN_REDUCTION_FULL
+	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY
 	L.adjustStaminaLoss(15*effect_str)
 	return ..()
 
@@ -1143,7 +1155,7 @@
 	L.apply_damages(2*effect_str, 2*effect_str)
 	if(prob(50)) //violent vomiting
 		L.vomit()
-	L.reagent_shock_modifier -= PAIN_REDUCTION_FULL //Unlimited agony.
+	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY * 4 //Unlimited agony.
 
 
 /datum/reagent/medicine/roulettium
@@ -1154,7 +1166,7 @@
 	taste_description = "Poor life choices"
 
 /datum/reagent/medicine/roulettium/on_mob_life(mob/living/L, metabolism)
-	L.reagent_shock_modifier += PAIN_REDUCTION_FULL
+	L.reagent_shock_modifier += PAIN_REDUCTION_VERY_HEAVY * 4
 	L.adjustToxLoss(-30*effect_str)
 	L.heal_limb_damage(30*effect_str, 30*effect_str)
 	L.adjustStaminaLoss(-30*effect_str)

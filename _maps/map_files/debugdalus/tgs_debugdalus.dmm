@@ -1604,7 +1604,7 @@
 	},
 /obj/item/clothing/suit/armor/bulletproof,
 /obj/item/attachable/suppressor,
-/obj/item/clothing/tie/storage/holster,
+/obj/item/armor_module/storage/uniform/holster,
 /obj/structure/closet/cabinet,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
