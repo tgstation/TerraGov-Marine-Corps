@@ -392,7 +392,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	///Maximum stored rounds
 	var/max_rounds = 200
 	///Ammunition type
-	var/ammo_type = /datum/ammo/bullet/shotgun/slug
+	var/datum/ammo/ammo_type = /datum/ammo/bullet/shotgun/slug
 	///Whether the box is deployed or not.
 	var/deployed = FALSE
 	///Caliber of the rounds stored.
