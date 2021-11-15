@@ -878,20 +878,24 @@
 	if(instant_hit)
 		var/list/obj/projectile/projectiles_to_hit = list()
 		projectiles_to_hit += projectile_to_fire
-		if(projectile_to_fire.ammo.bonus_projectile_amount)
+		if(projectile_to_fire.ammo.bonus_projectiles_amount)
 			var/obj/projectile/bonus_projectile
-			for(var/i = 1 to projectile_to_fire.ammo.bonus_projectile_amount)
+			for(var/i = 1 to projectile_to_fire.ammo.bonus_projectiles_amount)
 				bonus_projectile = new /obj/projectile(target.loc)
 				bonus_projectile.generate_bullet(projectile_to_fire.ammo.bonus_projectiles_type)
 				bonus_projectile.damage *= damage_mult
-				bonus_projectile += projectile_to_hit
+				projectiles_to_hit += bonus_projectile
 		for(var/obj/projectile/projectile_to_hit AS in projectiles_to_hit)
 			projectile_to_hit.setDir(get_dir(gun_user, target))
 			projectile_to_hit.distance_travelled = get_dist(gun_user, target)
-			projectile_to_hit.ammo.on_hit(target, projectile_to_hit)
-			if(isliving(target))
-				var/mob/living/mob_to_hit = target
-				target.bullet_act(projectile_to_hit)
+			if(istype(target, /mob))
+				var/mob/mob_to_hit = target
+				projectile_to_hit.ammo.on_hit_mob(target, projectile_to_hit)
+				mob_to_hit.bullet_act(projectile_to_hit)
+			if(isobj(target))
+				projectile_to_hit.ammo.on_hit_obj(target, projectile_to_hit)
+			if(isturf(target))
+				projectile_to_hit.ammo.on_hit_turf(target, projectile_to_hit)
 			QDEL_NULL(projectile_to_hit)
 	else
 		projectile_to_fire.fire_at(target, master_gun ? gun_user : loc, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
