@@ -732,7 +732,7 @@
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 
-	if(!do_fire(projectile_to_fire, instant_hit))
+	if(!do_fire(projectile_to_fire))
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 
