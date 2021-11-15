@@ -528,7 +528,7 @@
 	owner.client.images += counter
 
 	addtimer(CALLBACK(src,.proc/clear_counter, counter), WARRIOR_COMBO_FADEOUT_TIME)
-	addtimer(CALLBACK(uppercut_ability,/datum/action/xeno_action/activable/uppercut.proc/clear_combo, A, counter), WARRIOR_COMBO_FADEOUT_TIME, TIMER_OVERRIDE|TIMER_UNIQUE)
+	addtimer(CALLBACK(uppercut_ability, /datum/action/xeno_action/activable/uppercut.proc/clear_combo, A, counter), WARRIOR_COMBO_FADEOUT_TIME, TIMER_OVERRIDE|TIMER_UNIQUE)
 
 /datum/action/xeno_action/activable/punch/proc/clear_counter(image/counter)
 	del(counter)
