@@ -618,7 +618,9 @@
 	var/combo[0] //Who did we punch/jab recently and how many times ?
 
 /datum/action/xeno_action/activable/uppercut/can_use_ability(atom/A, silent = FALSE, override_flags)
-	.=..()
+	. = ..()
+	if(!.)
+		return
 
 	var/mob/living/L = A
 	if(!isliving(A) || isxeno(A) || L.stat == DEAD)
