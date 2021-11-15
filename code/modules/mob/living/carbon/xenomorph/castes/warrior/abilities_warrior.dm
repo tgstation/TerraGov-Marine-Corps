@@ -608,7 +608,7 @@
 
 /datum/action/xeno_action/activable/uppercut
 	name = "Uppercut"
-	action_icon_state = "punch"
+	action_icon_state = "uppercut"
 	mechanics_text = "Inflicts debilitating damage to a nearby target depending on how many times you recently hit them with jab and punch."
 	ability_name = "uppercut"
 	plasma_cost = 12
