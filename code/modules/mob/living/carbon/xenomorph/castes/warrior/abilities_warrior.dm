@@ -522,16 +522,20 @@
 
 	if(combo_list[A.name] >= WARRIOR_PERFECT_COMBO_THRESHOLD)
 		to_chat(A, span_highdanger("It looks like [owner] is predicting our movements, we should back off!"))
-	var/image/counter = image(null, target, null)
-	counter.maptext = combo_list[A.name]
+
+	var/image/counter = image(null, A, null) //Visual clue for the warrior on how much combo each mob has
+	counter.maptext = MAPTEXT("[combo_list[A.name]]")
 	owner.client.images += counter
 
-	addtimer(CALLBACK(uppercut_ability,/datum/action/xeno_action/activable/uppercut.proc/clear_combo, A), WARRIOR_COMBO_FADEOUT_TIME, TIMER_OVERRIDE|TIMER_UNIQUE)
+	addtimer(CALLBACK(src,.proc/clear_counter, counter), WARRIOR_COMBO_FADEOUT_TIME)
+	addtimer(CALLBACK(uppercut_ability,/datum/action/xeno_action/activable/uppercut.proc/clear_combo, A, counter), WARRIOR_COMBO_FADEOUT_TIME, TIMER_OVERRIDE|TIMER_UNIQUE)
+
+/datum/action/xeno_action/activable/punch/proc/clear_counter(image/counter)
+	del(counter)
 
 // ***************************************
 // *********** Jab
 // ***************************************
-
 /datum/action/xeno_action/activable/punch/jab
 	name = "Jab"
 	action_icon_state = "jab"
