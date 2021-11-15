@@ -710,7 +710,7 @@
 //----------------------------------------------------------
 
 ///Wrapper proc to complete the whole firing process.
-/obj/item/weapon/gun/proc/Fire(instant_hit = FALSE)
+/obj/item/weapon/gun/proc/Fire()
 	if(!target || (!gun_user && !istype(loc, /obj/machinery/deployable/mounted/sentry)) || (!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)) || windup_checked == WEAPON_WINDUP_CHECKING)
 		return
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
@@ -771,7 +771,7 @@
 	return TRUE
 
 ///Actually fires the gun, sets up the projectile and fires it.
-/obj/item/weapon/gun/proc/do_fire(obj/object_to_fire, instant_hit)
+/obj/item/weapon/gun/proc/do_fire(obj/object_to_fire)
 	var/firer
 	if(istype(loc, /obj/machinery/deployable/mounted/sentry) && !gun_user)
 		firer = loc
@@ -875,31 +875,7 @@
 
 	simulate_recoil(dual_wield, firing_angle)
 
-	if(instant_hit)
-		var/list/obj/projectile/projectiles_to_hit = list()
-		projectiles_to_hit += projectile_to_fire
-		if(projectile_to_fire.ammo.bonus_projectiles_amount)
-			var/obj/projectile/bonus_projectile
-			for(var/i = 1 to projectile_to_fire.ammo.bonus_projectiles_amount)
-				bonus_projectile = new /obj/projectile(target.loc)
-				bonus_projectile.generate_bullet(projectile_to_fire.ammo.bonus_projectiles_type)
-				bonus_projectile.damage *= damage_mult
-				projectiles_to_hit += bonus_projectile
-		for(var/obj/projectile/projectile_to_hit AS in projectiles_to_hit)
-			projectile_to_hit.setDir(get_dir(gun_user, target))
-			projectile_to_hit.distance_travelled = get_dist(gun_user, target)
-			if(istype(target, /mob))
-				var/mob/mob_to_hit = target
-				projectile_to_hit.ammo.on_hit_mob(target, projectile_to_hit)
-				mob_to_hit.bullet_act(projectile_to_hit)
-			if(isobj(target))
-				projectile_to_hit.ammo.on_hit_obj(target, projectile_to_hit)
-			if(isturf(target))
-				projectile_to_hit.ammo.on_hit_turf(target, projectile_to_hit)
-			QDEL_NULL(projectile_to_hit)
-	else
-		projectile_to_fire.fire_at(target, master_gun ? gun_user : loc, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
-
+	projectile_to_fire.fire_at(target, master_gun ? gun_user : loc, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 
 	shots_fired++
 
@@ -929,7 +905,7 @@
 		if(gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
 			SEND_SIGNAL(src, COMSIG_GUN_FIRE)
 			return TRUE
-		Fire(TRUE)
+		Fire()
 		return TRUE
 
 	if(M != user || user.zone_selected != "mouth")

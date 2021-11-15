@@ -281,6 +281,18 @@
 	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
 		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle)
 
+	if(shooter.Adjacent(target))
+		if(ismob(target))
+			var/mob/mob_to_hit = target
+			ammo.on_hit_mob(mob_to_hit, src)
+			mob_to_hit.bullet_act(src)
+		if(isobj(target))
+			ammo.on_hit_obj(target, src)
+		if(isturf(target))
+			ammo.on_hit_turf(target, src)
+		qdel(src)
+		return
+
 	var/matrix/rotate = matrix() //Change the bullet angle.
 	rotate.Turn(dir_angle)
 	transform = rotate
@@ -936,6 +948,18 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	//If we have the the right kind of ammo, we can fire several projectiles at once.
 	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
 		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle)
+
+	if(shooter.Adjacent(target))
+		if(ismob(target))
+			var/mob/mob_to_hit = target
+			ammo.on_hit_mob(mob_to_hit, src)
+			mob_to_hit.bullet_act(src)
+		if(isobj(target))
+			ammo.on_hit_obj(target, src)
+		if(isturf(target))
+			ammo.on_hit_turf(target, src)
+		qdel(src)
+		return
 
 	x_offset = round(sin(dir_angle), 0.01)
 	y_offset = round(cos(dir_angle), 0.01)
