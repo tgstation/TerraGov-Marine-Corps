@@ -1,13 +1,12 @@
 //Alphabetical order of civilian jobs.
 
 /obj/item/clothing/under/rank
-	rollable_sleeves = TRUE
 
 /obj/item/clothing/under/rank/bartender
 	desc = "It looks like it could use some more flair."
 	name = "bartender's uniform"
 	icon_state = "barman"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/captain //Alright, technically not a 'civilian' but its better then giving a .dm file for a single define.
 	desc = "It's a blue jumpsuit with some gold markings denoting the rank of \"Captain\"."
@@ -32,7 +31,7 @@
 	name = "chaplain's jumpsuit"
 	icon_state = "chaplain"
 	item_state = "bl_suit"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/chef
 	desc = "It's an apron which is given only to the most <b>hardcore</b> chefs."
@@ -48,7 +47,7 @@
 	name = "clown suit"
 	desc = "<i>'HONK!'</i>"
 	icon_state = "clown"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/head_of_personnel
 	desc = "It's a jumpsuit worn by someone who works in the position of \"Head of Personnel\"."
@@ -60,7 +59,7 @@
 	desc = "A blue jacket and red tie, with matching red cuffs! Snazzy. Wearing this makes you feel more important than your job title does."
 	name = "head of personnel's suit"
 	icon_state = "hopwhimsy"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/hydroponics
 	desc = "It's a jumpsuit designed to protect against minor plant-related hazards."
@@ -73,7 +72,7 @@
 	desc = "The plain, professional attire of an Internal Affairs Agent. The collar is <i>immaculately</i> starched."
 	name = "Internal Affairs uniform"
 	icon_state = "internalaffairs"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/janitor
 	desc = "It's the official uniform of the station's janitor. It has minor protection from biohazards."
@@ -84,7 +83,7 @@
 /obj/item/clothing/under/lawyer
 	desc = "Slick threads."
 	name = "Lawyer suit"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/lawyer/black
 	name = "black Lawyer suit"
@@ -110,7 +109,7 @@
 /obj/item/clothing/under/lawyer/purpsuit
 	name = "Purple Suit"
 	icon_state = "lawyer_purp"
-	rollable_sleeves = TRUE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/lawyer/oldman
 	name = "Old Man's Suit"
@@ -121,13 +120,13 @@
 	name = "sensible suit"
 	desc = "It's very... sensible."
 	icon_state = "red_suit"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/mime
 	name = "mime's outfit"
 	desc = "It's not very colourful."
 	icon_state = "mime"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/miner
 	desc = "It's a snappy jumpsuit with a sturdy set of overalls. It is very dirty."

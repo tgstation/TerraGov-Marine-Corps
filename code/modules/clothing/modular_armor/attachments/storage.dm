@@ -66,7 +66,7 @@
 	if(loc == user)
 		storage.open(user)
 		return
-	return ..()	
+	return ..()
 
 /obj/item/storage/internal/modular
 	max_storage_space = 2

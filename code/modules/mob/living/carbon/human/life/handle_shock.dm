@@ -2,28 +2,28 @@
 
 /mob/living/carbon/human/handle_shock()
 	. = ..()
-	if(status_flags & GODMODE || analgesic || (species && species.species_flags & NO_PAIN) || stat == DEAD)
+	if(status_flags & GODMODE || analgesic || (species && species.species_flags & NO_PAIN))
 		setShock_Stage(0)
 		return //Godmode or some other pain reducers. //Analgesic avoids all traumatic shock temporarily
 
 	switch(traumatic_shock)
-		if(200 to INFINITY)
-			setShock_Stage(max(shock_stage + 5, 150)) //Indescribable pain. At this point, you will immediately be knocked down, with shock stage set to 150.
+		if(200 to INFINITY) //All of these adjust shock_stage based on traumatic_shock
+			adjustShock_Stage(5+((traumatic_shock-200)*0.2)) //Uncapped max gain of shock_stage, depending on traumatic_shock.
 
 		if(150 to 200)
-			adjustShock_Stage(2) //If their shock exceeds 150, add more to their shock stage, regardless of health.
+			adjustShock_Stage(1+((traumatic_shock-150)*0.08)) //smooth ramp from 1 to 5
 
 		if(100 to 150)
-			adjustShock_Stage(1) //If their shock exceeds 100, add more to their shock stage, regardless of health.
+			adjustShock_Stage(1)
 
-		if(75 to 100)
-			setShock_Stage(min(shock_stage - 1, 120)) //No greater than 120
+		if(5 to 35)
+			adjustShock_Stage(-1)
 
-		if(50 to 75)
-			setShock_Stage(min(shock_stage - 2, 80))
+		if(-30 to 5)
+			adjustShock_Stage(-2)
 
-		if(-INFINITY to 50)
-			setShock_Stage(min(shock_stage - 5, 60)) //When we have almost no pain remaining. No greater than 60, reduced by 10 each time.
+		if(-INFINITY to -30)
+			adjustShock_Stage(-4+((traumatic_shock+30)*0.2)) //uncapped heal, 1 extra point per 5 traumatic_shock above threshold.
 
 	//This just adds up effects together at each step, with a few small exceptions. Preferable to copy and paste rather than have a billion if statements.
 	switch(shock_stage)
@@ -33,12 +33,11 @@
 		if(30 to 39)
 			if(prob(20))
 				to_chat(src, span_danger("[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!"))
-			blur_eyes(2)
 			stuttering = max(stuttering, 5)
 		if(40 to 59)
 			if(prob(20))
 				to_chat(src, span_danger("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!"))
-			blur_eyes(2)
+			blur_eyes(1)
 			stuttering = max(stuttering, 5)
 			adjust_stagger(1, FALSE, 1)
 			add_slowdown(1)
@@ -47,9 +46,6 @@
 				emote("me", 1, " is having trouble standing.")
 			blur_eyes(2)
 			stuttering = max(stuttering, 5)
-			if(prob(2))
-				if(!lying_angle)
-					emote("me", 1, " is having trouble standing.")
 			adjust_stagger(3, FALSE, 3)
 			add_slowdown(3)
 			if(prob(20))

@@ -381,15 +381,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set category = "Ghost"
 	set name = "Try to take SSD mob"
 
-	if(GLOB.key_to_time_of_death[key] + TIME_BEFORE_TAKING_BODY < world.time && !started_as_observer)
+	if(GLOB.key_to_time_of_death[key] + TIME_BEFORE_TAKING_BODY > world.time && !started_as_observer)
 		to_chat(src, span_warning("You died too recently to be able to take a new mob."))
 		return
 
 	var/list/mob/living/free_ssd_mobs = list()
 	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
-		if(isnull(ssd_mob))
-			LAZYREMOVE(GLOB.ssd_living_mobs, src)
-			continue
 		if(is_centcom_level(ssd_mob.z))
 			continue
 		if(ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)

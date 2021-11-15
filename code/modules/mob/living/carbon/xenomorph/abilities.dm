@@ -16,95 +16,6 @@
 	X.lay_down()
 	return succeed_activate()
 
-//*********
-// Headbite
-//*********
-/datum/action/xeno_action/activable/headbite
-	name = "Headbite"
-	action_icon_state = "headbite"
-	mechanics_text = "Permanently kill a target."
-	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
-	keybind_signal = COMSIG_XENOABILITY_HEADBITE
-	plasma_cost = 100
-	gamemode_flags = ABILITY_HUNT
-
-/datum/action/xeno_action/activable/headbite/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..() //do after checking the below stuff
-	if(!.)
-		return
-	if(!iscarbon(A))
-		return FALSE
-	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/carbon/victim = A //target of ability
-	if(X.do_actions) //can't use if busy
-		return FALSE
-	if(!X.Adjacent(victim)) //checks if owner next to target
-		return FALSE
-	if(X.on_fire)
-		if(!silent)
-			to_chat(X, span_warning("We're too busy being on fire to do this!"))
-		return FALSE
-	if(victim.stat != DEAD)
-		if(!silent)
-			to_chat(X, span_warning("This creature is struggling too much for us to aim precisely."))
-		return FALSE
-	if(victim.headbitten)
-		if(!silent)
-			to_chat(X, span_warning("This creature has already been headbitten."))
-		return FALSE
-	if(victim.chestburst)
-		if(!silent)
-			to_chat(X, span_warning("This creature has already served its purpose."))
-		return FALSE
-	if(X.issamexenohive(victim)) //checks if target and victim are in the same hive
-		if(!silent)
-			to_chat(X, span_warning("We can't bring ourselves to harm a fellow sister to this magnitude."))
-		return FALSE
-	if(issynth(victim)) //checks if target is a synth
-		if(!silent)
-			to_chat(X, span_warning("We have no reason to bite this non-living thing."))
-		return FALSE
-	X.face_atom(victim) //Face towards the target so we don't look silly
-	X.visible_message(span_xenowarning("\The [X] begins opening its mouth and extending a second jaw towards \the [victim]."), \
-	span_danger("We prepare our inner jaw for a finishing blow on \the [victim]!"), null, 20)
-	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
-		X.visible_message(span_xenowarning("\The [X] retracts its inner jaw."), \
-		span_danger("We retract our inner jaw."), null, 20)
-		return FALSE
-	succeed_activate() //dew it
-
-/datum/action/xeno_action/activable/headbite/use_ability(mob/M)
-	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/carbon/victim = M
-
-	X.visible_message(span_xenodanger("\The [X] viciously bites into \the [victim]'s head with its inner jaw!"), \
-	span_xenodanger("We suddenly bite into the \the [victim]'s head with our second jaw!"))
-
-	if(ishuman(victim))
-		var/mob/living/carbon/human/H = victim
-		victim.emote_burstscream()
-		var/datum/internal_organ/O
-		O = H.internal_organs_by_name["brain"] //This removes (and later garbage collects) the organ. No brain means instant death.
-		H.internal_organs_by_name -= "brain"
-		H.internal_organs -= O
-		ADD_TRAIT(H, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED) //for xeno hud
-		if(HAS_TRAIT(H, TRAIT_UNDEFIBBABLE)) //If true then force a hud update because SSmobs will not
-			H.med_hud_set_status()
-		else
-			H.set_undefibbable()
-
-	X.do_attack_animation(victim, ATTACK_EFFECT_BITE)
-	playsound(victim, pick( 'sound/weapons/alien_tail_attack.ogg', 'sound/weapons/alien_bite1.ogg'), 50)
-	victim.death()
-	victim.headbitten = TRUE
-	victim.update_headbite()
-
-	log_combat(victim, owner, "was headbitten.")
-	log_game("[key_name(victim)] was headbitten at [AREACOORD(victim.loc)].")
-
-	GLOB.round_statistics.xeno_headbites++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_headbites")
-
 // ***************************************
 // *********** Drone-y abilities
 // ***************************************
@@ -1042,52 +953,6 @@
 	succeed_activate()
 	add_cooldown()
 
-////////////////////
-/// Build hunt den
-///////////////////
-/datum/action/xeno_action/activable/build_hunt_den
-	name = "Create Hunting Den"
-	action_icon_state = "resin_silo"
-	mechanics_text = "Create a new hunting den, using 3 headbiten corpses."
-	ability_name = "build hunt den"
-	plasma_cost = 150
-	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
-	cooldown_timer = 60 SECONDS
-	gamemode_flags = ABILITY_HUNT
-	/// How long does it take to build
-	var/build_time = 10 SECONDS
-	/// how many dead / non-chestbursted mobs are required to build the silo
-	var/required_mobs = 3
-
-/datum/action/xeno_action/activable/build_hunt_den/use_ability(atom/A)
-	var/list/mob/living/valid_mobs = list()
-	for(var/thing in get_turf(A))
-		if(!ishuman(thing))
-			continue
-		var/mob/living/turf_mob = thing
-		if(turf_mob.stat == DEAD && turf_mob.chestburst == 0)
-			valid_mobs += turf_mob
-
-	if(length(valid_mobs) < required_mobs)
-		to_chat(owner, span_warning("There are not enough dead bodies, we need [required_mobs] bodies for a silo!"))
-		return fail_activate()
-
-	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
-		return fail_activate()
-
-	var/obj/structure/xeno/silo/hivesilo = new(get_step(A, SOUTHWEST))
-
-	var/moved_human_number = 0
-	for(var/mob/living/to_use AS in valid_mobs)
-		if(moved_human_number >= required_mobs)
-			break
-		to_use.chestburst = 2
-		to_use.update_burst()
-		to_use.forceMove(hivesilo)
-		moved_human_number++
-
-	succeed_activate()
-
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////
@@ -1164,7 +1029,7 @@
 /mob/living/carbon/xenomorph/proc/add_abilities()
 	for(var/action_path in xeno_caste.actions)
 		var/datum/action/xeno_action/action = new action_path()
-		if(SSticker.mode.flags_xeno_abilities & action.gamemode_flags)
+		if(SSticker.mode?.flags_xeno_abilities & action.gamemode_flags)
 			action.give_action(src)
 
 
@@ -1262,85 +1127,6 @@
 
 	log_combat(victim, owner, "was drained.")
 	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")
-
-/////////////////////////////////
-// Devour
-/////////////////////////////////
-/datum/action/xeno_action/activable/devour
-	name = "Devour"
-	action_icon_state = "regurgitate"
-	mechanics_text = "Devour your victim to be able to carry it faster."
-	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
-	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
-	plasma_cost = 100
-	gamemode_flags = ABILITY_HUNT
-
-/datum/action/xeno_action/activable/devour/can_use_ability(atom/A, silent, override_flags)
-	. = ..()
-	if(!.)
-		return
-	var/mob/living/carbon/xenomorph/X = owner
-	if(LAZYLEN(X.stomach_contents)) //Only one thing in the stomach at a time, please
-		succeed_activate()
-	if(!ishuman(A) || issynth(A))
-		to_chat(owner, span_warning("That wouldn't taste very good."))
-		return FALSE
-	var/mob/living/carbon/human/victim = A
-	if(owner.do_actions) //can't use if busy
-		return FALSE
-	if(!owner.Adjacent(victim)) //checks if owner next to target
-		return FALSE
-	if(victim.stat != DEAD)
-		if(!silent)
-			to_chat(owner, span_warning("This creature is struggling too much for us to devour it."))
-		return FALSE
-	if(victim.buckled)
-		if(!silent)
-			to_chat(owner, span_warning("[victim] is buckled to something."))
-		return FALSE
-	if(X.on_fire)
-		if(!silent)
-			to_chat(X, span_warning("We're too busy being on fire to do this!"))
-		return FALSE
-	for(var/obj/effect/forcefield/fog in range(1, X))
-		if(!silent)
-			to_chat(X, span_warning("We are too close to the fog."))
-		return FALSE
-	X.face_atom(victim)
-	X.visible_message(span_danger("[X] starts to devour [victim]!"), \
-	span_danger("We start to devour [victim]!"), null, 5)
-
-	succeed_activate()
-
-/datum/action/xeno_action/activable/devour/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-	if(!LAZYLEN(X.stomach_contents))
-		. = ..()
-		return
-	var/channel = SSsounds.random_available_channel()
-	playsound(X, 'sound/vore/escape.ogg', 40, channel = channel)
-	if(!do_after(X, 3 SECONDS, FALSE, null, BUSY_ICON_DANGER))
-		to_chat(owner, span_warning("We moved too soon!"))
-		X.stop_sound_channel(channel)
-		return fail_activate()
-	X.eject_victim()
-
-/datum/action/xeno_action/activable/devour/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
-	if(LAZYLEN(X.stomach_contents))
-		return
-	var/mob/living/carbon/human/victim = A
-	var/channel = SSsounds.random_available_channel()
-	playsound(X, 'sound/vore/struggle.ogg', 40, channel = channel)
-	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
-		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
-		X.stop_sound_channel(channel)
-		return fail_activate()
-	owner.visible_message(span_warning("[X] devours [victim]!"), \
-	span_warning("We devour [victim]!"), null, 5)
-	LAZYADD(X.stomach_contents, victim)
-	victim.forceMove(X)
-
 
 /////////////////////////////////
 // Cocoon
