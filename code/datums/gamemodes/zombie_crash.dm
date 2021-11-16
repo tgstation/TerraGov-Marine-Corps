@@ -12,8 +12,8 @@
 		/datum/job/terragov/silicon/synthetic = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
 	)
-    ///How many points can be spent by the zombie overmind
-    var/zombie_points = 0
+	///How many points can be spent by the zombie overmind
+	var/zombie_points = 0
 
 /datum/game_mode/infestation/crash/zombie/on_nuke_started(datum/source, obj/machinery/nuclearbomb/nuke)
 	return
