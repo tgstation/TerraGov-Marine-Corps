@@ -76,9 +76,11 @@ SUBSYSTEM_DEF(pathfinder)
 ///Remove a target mob from the pathfinding system
 /datum/controller/subsystem/pathfinder/proc/remove_from_pathfinding(mob/target)
 	UnregisterSignal(target, COMSIG_PATHFINDER_SET_ATOM_TO_WALK_TO)
+	var/index = 1
 	for(var/datum/pathfinding_datum/pathfinding_datum AS in pathfinding_datums_list)
 		if(pathfinding_datum.mob_parent == target) //We don't break here, to ensure there is no duplicate being left
-			pathfinding_datums_list -= pathfinding_datum
+			pathfinding_datums_list.Cut(index, index)
+		index++
 
 /datum/pathfinding_datum
 	///The mob that is controlled by the pathfinder
