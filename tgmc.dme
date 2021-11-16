@@ -263,7 +263,6 @@
 #include "code\controllers\subsystem\processing\fastprocess.dm"
 #include "code\controllers\subsystem\processing\instruments.dm"
 #include "code\controllers\subsystem\processing\obj.dm"
-#include "code\controllers\subsystem\processing\pathfinding.dm"
 #include "code\controllers\subsystem\processing\processing.dm"
 #include "code\controllers\subsystem\processing\projectiles.dm"
 #include "code\controllers\subsystem\processing\slowprocess.dm"
