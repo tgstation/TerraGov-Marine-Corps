@@ -112,7 +112,10 @@
 				continue
 			lock.open(TRUE)
 			return COMSIG_OBSTACLE_DEALT_WITH
-	if(ISDIAGONALDIR(direction) && (deal_with_obstacle(null, turn(direction, -45)) & COMSIG_OBSTACLE_DEALT_WITH || deal_with_obstacle(null, turn(direction, 45)) & COMSIG_OBSTACLE_DEALT_WITH))
+		if(istype(thing, /obj/vehicle))
+			INVOKE_ASYNC(src, .proc/attack_target, null, thing)
+			return COMSIG_OBSTACLE_DEALT_WITH
+	if(ISDIAGONALDIR(direction) && ((deal_with_obstacle(null, turn(direction, -45)) & COMSIG_OBSTACLE_DEALT_WITH) || (deal_with_obstacle(null, turn(direction, 45)) & COMSIG_OBSTACLE_DEALT_WITH)))
 		return COMSIG_OBSTACLE_DEALT_WITH
 	//Ok we found nothing, yet we are still blocked. Check for blockers on our current turf
 	obstacle_turf = get_turf(mob_parent)
