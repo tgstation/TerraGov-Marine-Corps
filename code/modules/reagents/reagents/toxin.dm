@@ -490,7 +490,7 @@
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
 			L.jitter(4) //Shows that things are bad
 		if(46 to INFINITY)
-			purge_rate = (purge_rate == 1) ? 1 : 1
+			purge_rate = 1
 			power = (15*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
 			L.jitter(8) //Shows that things are *really* bad
