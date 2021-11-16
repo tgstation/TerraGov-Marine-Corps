@@ -681,7 +681,7 @@
 	max_shells = 250 //codex
 	force = 35
 	aim_slowdown = 1.2
-	wield_delay = 1.5 SECONDS
+	wield_delay = 2 SECONDS
 	fire_sound =  'sound/weapons/guns/fire/GPMG.ogg'
 	fire_rattle =  'sound/weapons/guns/fire/GPMG_low.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
@@ -713,7 +713,7 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 23, "under_x" = 25, "under_y" = 14, "stock_x" = 11, "stock_y" = 14)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.2 SECONDS
+	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 6
 
 	fire_delay = 0.15 SECONDS
