@@ -1,10 +1,12 @@
 /mob/living/carbon/human/species/zombie/ai/stay
+	race = "Zombie"
 
 /mob/living/carbon/human/species/zombie/ai/stay/Initialize()
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie/idle, null)
 
 /mob/living/carbon/human/species/zombie/ai/patrol
+	race = "Zombie"
 
 /mob/living/carbon/human/species/zombie/ai/patrol/Initialize()
 	. = ..()
@@ -19,6 +21,9 @@
 
 /mob/living/carbon/human/species/zombie/ai/patrol/tank
 	race = "Tank zombie"
+
+/mob/living/carbon/human/species/zombie/ai/patrol/strong
+	race = "Strong zombie"
 
 /obj/effect/zombie_basic_pack
 	name = "Template for 6 basic zombies, plus a leader"

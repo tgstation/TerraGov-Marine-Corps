@@ -85,7 +85,7 @@
 	race = "Skeleton"
 
 /mob/living/carbon/human/species/zombie
-	race = "Zombie"
+	race = "Strong zombie"
 
 /mob/living/carbon/human/species/zombie/Initialize()
 	. = ..()

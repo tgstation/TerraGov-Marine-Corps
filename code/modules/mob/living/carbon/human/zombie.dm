@@ -174,6 +174,10 @@
 	heal_rate = 20
 	total_health = 200
 
+/datum/species/zombie/strong/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	. = ..()
+	H.color = COLOR_MAROON
+
 /datum/action/rally_zombie
 	name = "Rally Zombies"
 	action_icon_state = "rally_minions"
