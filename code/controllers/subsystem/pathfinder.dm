@@ -79,7 +79,7 @@ SUBSYSTEM_DEF(pathfinder)
 	var/index = 1
 	for(var/datum/pathfinding_datum/pathfinding_datum AS in pathfinding_datums_list)
 		if(pathfinding_datum.mob_parent == target) //We don't break here, to ensure there is no duplicate being left
-			pathfinding_datums_list.Cut(index, index)
+			pathfinding_datums_list.Cut(index, index + 1)
 		index++
 
 /datum/pathfinding_datum
