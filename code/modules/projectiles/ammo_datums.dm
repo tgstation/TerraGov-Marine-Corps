@@ -1996,7 +1996,7 @@ datum/ammo/bullet/revolver/tp44
 
 
 /datum/ammo/xeno/boiler_gas/lance
-	name = "pressized glob of gas"
+	name = "pressurized glob of gas"
 	icon_state = "boiler_gas2"	//Alt sprite?
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS	//As opposed to normal globs, these will pass by the target tile if they hit nothing.
 	danger_message = span_danger("A pressurized glob of acid lands with a nasty splat and explodes into noxious fumes!")
@@ -2047,7 +2047,7 @@ datum/ammo/bullet/revolver/tp44
 	turf_smoke.start()
 
 /datum/ammo/xeno/boiler_gas/lance/corrosive
-	name = "pressized glob of acid"
+	name = "pressurized glob of acid"
 	icon_state = "boiler_gas"	//Alt sprite?
 	sound_hit 	 = "acid_hit"
 	sound_bounce	= "acid_bounce"
