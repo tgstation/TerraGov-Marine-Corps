@@ -79,7 +79,7 @@
 		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas/corrosive]
 		to_chat(X, span_notice("We will now fire corrosive acid. This is lethal!"))
 	else if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
-		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas/lance/corrosive]
+		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas/corrosive/lance]
 		to_chat(X, span_notice("We will now fire a pressurized corrosive lance. This lethal!"))
 	else
 		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
@@ -89,7 +89,7 @@
 /datum/action/xeno_action/toggle_bomb_advanced/update_button_icon()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	button.overlays.Cut()
-	if(X.ammo?.type == /datum/ammo/xeno/boiler_gas/corrosive || X.ammo?.type == /datum/ammo/xeno/boiler_gas/lance/corrosive)
+	if(X.ammo?.type == /datum/ammo/xeno/boiler_gas/corrosive || X.ammo?.type == /datum/ammo/xeno/boiler_gas/corrosive/lance)
 		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb1")	//Alternate sprites for acid lance would be good
 	else
 		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb0")	//ditto
@@ -120,7 +120,7 @@
 		return
 
 	succeed_activate()
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive || X.ammo.type == /datum/ammo/xeno/boiler_gas/lance/corrosive)
+	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive || X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive/lance)
 		X.corrosive_ammo++
 		to_chat(X, span_notice("We prepare a corrosive acid globule."))
 	else
@@ -233,7 +233,7 @@
 	if(!istype(target))
 		return
 
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive || X.ammo.type == /datum/ammo/xeno/boiler_gas/lance/corrosive)
+	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive || X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive/lance)
 		if(X.corrosive_ammo <= 0)
 			to_chat(X, span_warning("We have no corrosive globules available."))
 			return
@@ -258,7 +258,7 @@
 	P.generate_bullet(X.ammo)
 	P.fire_at(target, X, null, X.ammo.max_range, X.ammo.shell_speed)
 	playsound(X, 'sound/effects/blobattack.ogg', 25, 1)
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive || X.ammo.type == /datum/ammo/xeno/boiler_gas/lance/corrosive)
+	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive || X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive/lance)
 		GLOB.round_statistics.boiler_acid_smokes++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_acid_smokes")
 		X.corrosive_ammo--

@@ -59,7 +59,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/proc/on_hit_obj(obj/O, obj/projectile/proj) //Special effects when hitting objects.
 	return
 
-/datum/ammo/proc/on_leave_turf(turf/T, atom/firer)	//Special effects for leaving a turf.
+///Special effects for leaving a turf. Only called if the projectile has AMMO_HAS_LEAVE_TURF_BEHAVIOR enabled
+/datum/ammo/proc/on_leave_turf(turf/T, atom/firer)	
 	return
 
 /datum/ammo/proc/knockback(mob/victim, obj/projectile/proj, max_range = 2)
@@ -1918,6 +1919,35 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 40
 	bullet_color = BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR
 	reagent_transfer_amount = 30
+	///On a direct hit, how long is the target paralyzed?
+	var/hit_paralyze_time = 1 SECONDS
+	///On a direct hit, how much do the victim's eyes get blurred?
+	var/hit_eye_blur = 11
+	///On a direct hit, how much drowsyness gets added to the target?
+	var/hit_drowsyness = 12
+	///Does the gas spread have a fixed range? -1 for no, 0+ for a fixed range. This prevents scaling from caste age.
+	var/fixed_spread_range = -1
+	///Which type is the smoke we leave on passed tiles, provided the projectile has AMMO_HAS_LEAVE_TURF_BEHAVIOR enabled?
+	var/passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light	
+	///We're going to reuse one smoke spread system repeatedly to cut down on processing.
+	var/datum/effect_system/smoke_spread/xeno/trail_spread_system
+
+/datum/ammo/xeno/boiler_gas/on_leave_turf(turf/T, atom/firer)
+	if(isxeno(firer))
+		var/mob/living/carbon/xenomorph/X = firer
+		trail_spread_system.strength = X.xeno_caste.bomb_strength
+	trail_spread_system.set_up(0, T)
+	trail_spread_system.start()
+
+/datum/ammo/xeno/boiler_gas/New()
+	. = ..()
+	if((flags_ammo_behavior & AMMO_HAS_LEAVE_TURF_BEHAVIOR) && passed_turf_smoke_type)
+		trail_spread_system = new passed_turf_smoke_type(only_once = FALSE)
+
+/datum/ammo/xeno/boiler_gas/Destroy()
+	if(trail_spread_system)
+		qdel(trail_spread_system)
+	return ..()
 
 ///Set up the list of reagents the spit transfers upon impact
 /datum/ammo/xeno/boiler_gas/proc/set_reagents()
@@ -1930,11 +1960,11 @@ datum/ammo/bullet/revolver/tp44
 	if(!istype(victim) || victim.stat == DEAD || victim.issamexenohive(proj.firer))
 		return
 
-	victim.Paralyze(1 SECONDS)
-	victim.blur_eyes(11)
-	victim.adjustDrowsyness(12)
+	victim.Paralyze(hit_paralyze_time)
+	victim.blur_eyes(hit_eye_blur)
+	victim.adjustDrowsyness(hit_drowsyness)
 
-	if(!iscarbon(victim))
+	if(!reagent_transfer_amount || !iscarbon(victim))
 		return
 
 	var/mob/living/carbon/carbon_victim = victim
@@ -1963,7 +1993,10 @@ datum/ammo/bullet/revolver/tp44
 	if(isxeno(firer))
 		var/mob/living/carbon/xenomorph/X = firer
 		smoke_system.strength = X.xeno_caste.bomb_strength
-		range = max(2, range + X.upgrade_as_number())
+		if(fixed_spread_range == -1)
+			range = max(2, range + X.upgrade_as_number())
+		else
+			range = fixed_spread_range
 	smoke_system.set_up(range, T)
 	smoke_system.start()
 	smoke_system = null
@@ -1981,12 +2014,10 @@ datum/ammo/bullet/revolver/tp44
 	damage_type = BURN
 	penetration = 40
 	bullet_color = BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR
-
-/datum/ammo/xeno/boiler_gas/corrosive/on_hit_mob(mob/living/victim, obj/projectile/proj)
-	drop_nade(get_turf(proj), proj.firer)
-	victim.Paralyze(1 SECONDS)
-	victim.blur_eyes(1)
-	victim.adjustDrowsyness(1)
+	hit_paralyze_time = 1 SECONDS
+	hit_eye_blur = 1
+	hit_drowsyness = 1
+	reagent_transfer_amount = 0
 
 /datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
@@ -1994,89 +2025,36 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/boiler_gas/corrosive/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid()
 
-
 /datum/ammo/xeno/boiler_gas/lance
 	name = "pressurized glob of gas"
 	icon_state = "boiler_gas2"	//Alt sprite?
-	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_HAS_LEAVE_TURF_BEHAVIOR	//As opposed to normal globs, these will pass by the target tile if they hit nothing.
+	///As opposed to normal globs, this will pass by the target tile if they hit nothing.
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_HAS_LEAVE_TURF_BEHAVIOR
 	danger_message = span_danger("A pressurized glob of acid lands with a nasty splat and explodes into noxious fumes!")
 	max_range = 40
 	damage = 75
 	penetration = 60
 	reagent_transfer_amount = 55
-	var/passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light	//Which type is the smoke we leave on passed tiles?
-	var/datum/effect_system/smoke_spread/xeno/trail_spread_system	//We're going to reuse one smoke spread system repeatedly to cut down on processing.
+	passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light	
+	hit_paralyze_time = 2 SECONDS
+	hit_eye_blur = 16
+	hit_drowsyness = 18
+	fixed_spread_range = 2
 
-//Close to a copy of parent on_hit_mob, but needed due to some different values
-/datum/ammo/xeno/boiler_gas/lance/on_hit_mob(mob/living/victim, obj/projectile/proj)
-	drop_nade(get_turf(proj), proj.firer)
-
-	if(!istype(victim) || victim.stat == DEAD || victim.issamexenohive(proj.firer))
-		return
-
-	victim.Paralyze(2 SECONDS)
-	victim.blur_eyes(16)
-	victim.adjustDrowsyness(18)
-
-	if(!iscarbon(victim))
-		return
-
-	var/mob/living/carbon/carbon_victim = victim
-	set_reagents()
-	var/armor_block = (1 - carbon_victim.run_armor_check(BODY_ZONE_CHEST, armor_type) * 0.01) //Check the target's armor mod; default to chest
-	for(var/reagent_id in spit_reagents) //modify by armor
-		spit_reagents[reagent_id] *= armor_block
-
-	carbon_victim.reagents.add_reagent_list(spit_reagents) //transfer reagents
-
-/datum/ammo/xeno/boiler_gas/lance/drop_nade(turf/T, atom/firer, range)
-	set_smoke()
-	if(isxeno(firer))
-		var/mob/living/carbon/xenomorph/X = firer
-		smoke_system.strength = X.xeno_caste.bomb_strength
-	smoke_system.set_up(2, T)	//Very low glob hit smoke range
-	smoke_system.start()
-	smoke_system = null
-	T.visible_message(danger_message)
-
-/datum/ammo/xeno/boiler_gas/lance/on_leave_turf(turf/T, atom/firer)
-	if(isxeno(firer))
-		var/mob/living/carbon/xenomorph/X = firer
-		trail_spread_system.strength = X.xeno_caste.bomb_strength
-	trail_spread_system.set_up(0, T)
-	trail_spread_system.start()
-
-/datum/ammo/xeno/boiler_gas/lance/New()
-	. = ..()
-	trail_spread_system = new passed_turf_smoke_type(only_once = FALSE)
-
-/datum/ammo/xeno/boiler_gas/lance/Destroy()
-	if(trail_spread_system)
-		qdel(trail_spread_system)
-	return ..()
-
-/datum/ammo/xeno/boiler_gas/lance/corrosive
+/datum/ammo/xeno/boiler_gas/corrosive/lance
 	name = "pressurized glob of acid"
 	icon_state = "boiler_gas"	//Alt sprite?
-	sound_hit 	 = "acid_hit"
-	sound_bounce	= "acid_bounce"
-	armor_type = "acid"
+	///As opposed to normal globs, this will pass by the target tile if they hit nothing.
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_HAS_LEAVE_TURF_BEHAVIOR
 	danger_message = span_danger("A pressurized glob of acid lands with a concerning hissing sound and explodes into corrosive bile!")
-	damage_type = BURN
-	bullet_color = BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR
+	max_range = 40
+	damage = 75
+	penetration = 60
 	passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/acid/light
-
-/datum/ammo/xeno/boiler_gas/lance/corrosive/set_smoke()
-	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid()
-
-/datum/ammo/xeno/boiler_gas/lance/corrosive/on_shield_block(mob/victim, obj/projectile/proj)
-	airburst(victim, proj)
-
-/datum/ammo/xeno/boiler_gas/lance/corrosive/on_hit_mob(mob/living/victim, obj/projectile/proj)
-	drop_nade(get_turf(proj), proj.firer)
-	victim.Paralyze(1.5 SECONDS)
-	victim.blur_eyes(4)
-	victim.adjustDrowsyness(2)
+	hit_paralyze_time = 1.5 SECONDS
+	hit_eye_blur = 4
+	hit_drowsyness = 2
+	fixed_spread_range = 2
 
 /*
 //================================================
