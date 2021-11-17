@@ -2004,7 +2004,8 @@ datum/ammo/bullet/revolver/tp44
 	damage = 75
 	penetration = 60
 	reagent_transfer_amount = 55
-	var/passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light
+	var/passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light	//Which type is the smoke we leave on passed tiles?
+	var/datum/effect_system/smoke_spread/xeno/trail_spread_system	//We're going to reuse one smoke spread system repeatedly to cut down on processing.
 
 //Close to a copy of parent on_hit_mob, but needed due to some different values
 /datum/ammo/xeno/boiler_gas/lance/on_hit_mob(mob/living/victim, obj/projectile/proj)
@@ -2039,12 +2040,20 @@ datum/ammo/bullet/revolver/tp44
 	T.visible_message(danger_message)
 
 /datum/ammo/xeno/boiler_gas/lance/on_leave_turf(turf/T, atom/firer)
-	var/datum/effect_system/smoke_spread/xeno/turf_smoke = new passed_turf_smoke_type()
 	if(isxeno(firer))
 		var/mob/living/carbon/xenomorph/X = firer
-		turf_smoke.strength = X.xeno_caste.bomb_strength
-	turf_smoke.set_up(0, T)
-	turf_smoke.start()
+		trail_spread_system.strength = X.xeno_caste.bomb_strength
+	trail_spread_system.set_up(0, T)
+	trail_spread_system.start()
+
+/datum/ammo/xeno/boiler_gas/lance/New()
+	. = ..()
+	trail_spread_system = new passed_turf_smoke_type(only_once = FALSE)
+
+/datum/ammo/xeno/boiler_gas/lance/Destroy()
+	if(trail_spread_system)
+		qdel(trail_spread_system)
+	return ..()
 
 /datum/ammo/xeno/boiler_gas/lance/corrosive
 	name = "pressurized glob of acid"
