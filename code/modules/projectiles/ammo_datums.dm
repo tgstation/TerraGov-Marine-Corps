@@ -2007,7 +2007,7 @@ datum/ammo/bullet/revolver/tp44
 	var/passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light
 
 //Close to a copy of parent on_hit_mob, but needed due to some different values
-/datum/ammo/xeno/boiler_gas/on_hit_mob(mob/living/victim, obj/projectile/proj)
+/datum/ammo/xeno/boiler_gas/lance/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	drop_nade(get_turf(proj), proj.firer)
 
 	if(!istype(victim) || victim.stat == DEAD || victim.issamexenohive(proj.firer))
