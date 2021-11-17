@@ -208,6 +208,10 @@
 	name ="Central Caves"
 	icon_state = "away4" //meh
 
+/area/lv624/ground/caves/central2
+	name ="Central Caves"
+	icon_state = "away3"
+
 /area/lv624/ground/caves/west2
 	name ="North Western Caves"
 	icon_state = "cave"
