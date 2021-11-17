@@ -519,7 +519,7 @@
 
 /datum/reagent/toxin/xeno_neurotoxin/light/on_mob_life(mob/living/L, metabolism)
 	.=..()
-	if(current_cycle > 21 && purge_rate < 1)
+	if(current_cycle >= 21 && current_cycle <= 45)
 		purge_rate = 0.2
 
 	return
