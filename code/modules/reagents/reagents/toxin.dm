@@ -489,7 +489,7 @@
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
 			L.jitter(4) //Shows that things are bad
 		if(46 to INFINITY)
-			purge_rate = 1
+			purge_rate = 1 //Even toxins with no purge will start purging in the last stage
 			power = (15*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
 			L.jitter(8) //Shows that things are *really* bad
@@ -519,7 +519,7 @@
 
 /datum/reagent/toxin/xeno_neurotoxin/light/on_mob_life(mob/living/L, metabolism)
 	.=..()
-	if(current_cycle >= 21 && current_cycle <= 45)
+	if(current_cycle >= 21 && current_cycle <= 45) //Light neurotox starts purging meds when in second stage, all neurotox purges in last stage
 		purge_rate = 0.2
 
 	return
