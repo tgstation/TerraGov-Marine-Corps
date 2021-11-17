@@ -262,12 +262,6 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	psypoint_cost = 225
 	icon = "primodefiler"
 
-/datum/hive_upgrade/primordial/boiler
-	name = PRIMORDIAL_BOILER
-	desc = "Unlocks the primordial boiler's access to acid lances, direct-hit focussed bombardment types that leave a gas trail where they pass."
-	psypoint_cost = 225
-	//icon = "primoboiler" - needs icon
-
 /datum/hive_upgrade/primordial/sentinel
 	name = PRIMORDIAL_SENTINEL
 	desc = "Unlocks the primordial sentinels neurogas grenade. Allows them to throw a grenade that emits gas in an area."
@@ -321,3 +315,9 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Unlocks the primordial bull agile charge, which allows him to change direction while charging, even diagonally"
 	psypoint_cost = 125
 	icon = "primobull"
+
+/datum/hive_upgrade/primordial/boiler
+	name = PRIMORDIAL_BOILER
+	desc = "Unlocks the primordial boiler's access to acid lances, direct-hit focussed bombardment types that leave a gas trail where they pass."
+	psypoint_cost = 225
+	//icon = "primoboiler" - needs icon
