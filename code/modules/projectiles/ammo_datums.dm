@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/proc/on_hit_obj(obj/O, obj/projectile/proj) //Special effects when hitting objects.
 	return
 
-/datum/ammo/proc/on_leave_turf(turf/T)	//Special effects for leaving a turf.
+/datum/ammo/proc/on_leave_turf(turf/T, atom/firer)	//Special effects for leaving a turf.
 	return
 
 /datum/ammo/proc/knockback(mob/victim, obj/projectile/proj, max_range = 2)
