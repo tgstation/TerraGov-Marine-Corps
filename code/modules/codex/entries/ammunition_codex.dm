@@ -28,6 +28,9 @@
 
 		if(ammo.flags_ammo_behavior & SPECIAL_PROCESS)
 			entry.mechanics_text += "Secondary effect: hits nearby targets in-flight.<br>"
+		
+		if(ammo.flags_ammo_behavior & AMMO_HAS_LEAVE_TURF_BEHAVIOR)
+			entry.mechanics_text += "Secondary effect: affects tiles travelled through.<br>"
 
 		if(ammo.penetration)
 			entry.mechanics_text += "Armor penetration: [ammo.penetration]<br>"
