@@ -507,12 +507,6 @@
 /turf/open/space/is_weedable()
 	return FALSE
 
-/turf/open/ground/grass/is_weedable()
-	return FALSE
-
-/turf/open/floor/plating/ground/dirtgrassborder/is_weedable()
-	return FALSE
-
 /turf/open/ground/river/is_weedable()
 	return FALSE
 
