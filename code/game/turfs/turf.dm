@@ -868,7 +868,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		if(C.obscuredTurfs[src])
 			vis_contents += GLOB.cameranet.vis_contents_opaque
 		else
-			vis_contents += GLOB.cameranet.vis_contents_opaque
+			vis_contents -= GLOB.cameranet.vis_contents_opaque
 
 
 /turf/AllowDrop()

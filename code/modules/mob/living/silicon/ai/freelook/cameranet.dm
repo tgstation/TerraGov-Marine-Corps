@@ -82,7 +82,7 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 		for(var/datum/camerachunk/chunk AS in add)
 			chunk.add(eye)
 
-		if(!eye.visibleCameraChunks.len)
+		if(!length(eye.visibleCameraChunks))
 			var/client/client = eye.GetViewerClient()
 			if(client && eye.use_static)
 				client.images -= obscured
@@ -149,13 +149,15 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 
 
 /datum/cameranet/proc/checkTurfVis(turf/position)
+	if(!position)
+		return FALSE
 	var/datum/camerachunk/chunk = getCameraChunk(position.x, position.y, position.z)
-	if(chunk)
-		if(chunk.changed)
-			chunk.hasChanged(1) // Update now, no matter if it's visible or not.
-		if(chunk.visibleTurfs[position])
-			return TRUE
-	return FALSE
+	if(!chunk)
+		return FALSE
+	if(chunk.changed)
+		chunk.hasChanged(TRUE) // Update now, no matter if it's visible or not.
+	if(chunk.visibleTurfs[position])
+		return TRUE
 
 /datum/cameranet/proc/stat_entry()
 	if(!statclick)

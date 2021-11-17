@@ -10,7 +10,7 @@
 	var/list/visibleCameraChunks = list()
 	var/mob/living/silicon/ai/ai = null
 	var/relay_speech = TRUE
-	var/use_static = FALSE
+	var/use_static = TRUE
 	var/static_visibility_range = 16
 	var/ai_detector_visible = TRUE
 	var/ai_detector_color = "#FF0000"
