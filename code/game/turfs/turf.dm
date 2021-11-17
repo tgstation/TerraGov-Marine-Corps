@@ -866,9 +866,9 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	var/datum/camerachunk/C = GLOB.cameranet.chunkGenerated(x, y, z)
 	if(C)
 		if(C.obscuredTurfs[src])
-			vis_contents += GLOB.cameranet.vis_contents_objects
+			vis_contents += GLOB.cameranet.vis_contents_opaque
 		else
-			vis_contents -= GLOB.cameranet.vis_contents_objects
+			vis_contents += GLOB.cameranet.vis_contents_opaque
 
 
 /turf/AllowDrop()
