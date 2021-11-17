@@ -489,7 +489,7 @@
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
 			L.jitter(4) //Shows that things are bad
 		if(46 to INFINITY)
-			purge_rate = 1 //Even toxins with no purge will start purging in the last stage
+			purge_rate = 1 //Even neurotoxins with no purge will start purging in the last stage
 			power = (15*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
 			L.jitter(8) //Shows that things are *really* bad
