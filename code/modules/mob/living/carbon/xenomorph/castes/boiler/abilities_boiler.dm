@@ -62,6 +62,39 @@
 		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb0")
 	return ..()
 
+
+/datum/action/xeno_action/toggle_bomb_advanced
+	name = "Toggle Advanced Bombard Type"
+	action_icon_state = "toggle_bomb0"
+	mechanics_text = "Switches Boiler Bombard type between Corrosive- and Neurotoxin globs, aswell as their alternate direct-hit focussed lance versions."
+	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB
+
+/datum/action/xeno_action/toggle_bomb_advanced/action_activate()
+	var/mob/living/carbon/xenomorph/boiler/X = owner
+	if(X.ammo.type == /datum/ammo/xeno/boiler_gas)
+		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas/lance]
+		to_chat(X, span_notice("We will now fire a pressurized neurotoxic lance. This is barely nonlethal."))
+	else if(X.ammo.type == /datum/ammo/xeno/boiler_gas/lance)
+		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas/corrosive]
+		to_chat(X, span_notice("We will now fire corrosive acid. This is lethal!"))
+	else if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
+		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas/lance/corrosive]
+		to_chat(X, span_notice("We will now fire a pressurized corrosive lance. This lethal!"))
+	else
+		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
+		to_chat(X, span_notice("We will now fire neurotoxic gas. This is nonlethal."))
+	update_button_icon()
+
+/datum/action/xeno_action/toggle_bomb_advanced/update_button_icon()
+	var/mob/living/carbon/xenomorph/boiler/X = owner
+	button.overlays.Cut()
+	if(X.ammo?.type == /datum/ammo/xeno/boiler_gas/corrosive || X.ammo?.type == /datum/ammo/xeno/boiler_gas/lance/corrosive)
+		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb1")	//Alternate sprites for acid lance would be good
+	else
+		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb0")	//ditto
+	return ..()
+
 // ***************************************
 // *********** Gas cloud bomb maker
 // ***************************************
@@ -87,7 +120,7 @@
 		return
 
 	succeed_activate()
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
+	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive || X.ammo.type == /datum/ammo/xeno/boiler_gas/lance/corrosive)
 		X.corrosive_ammo++
 		to_chat(X, span_notice("We prepare a corrosive acid globule."))
 	else
@@ -200,7 +233,7 @@
 	if(!istype(target))
 		return
 
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
+	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive || X.ammo.type == /datum/ammo/xeno/boiler_gas/lance/corrosive)
 		if(X.corrosive_ammo <= 0)
 			to_chat(X, span_warning("We have no corrosive globules available."))
 			return
@@ -225,7 +258,7 @@
 	P.generate_bullet(X.ammo)
 	P.fire_at(target, X, null, X.ammo.max_range, X.ammo.shell_speed)
 	playsound(X, 'sound/effects/blobattack.ogg', 25, 1)
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
+	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive || X.ammo.type == /datum/ammo/xeno/boiler_gas/lance/corrosive)
 		GLOB.round_statistics.boiler_acid_smokes++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_acid_smokes")
 		X.corrosive_ammo--

@@ -59,6 +59,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/proc/on_hit_obj(obj/O, obj/projectile/proj) //Special effects when hitting objects.
 	return
 
+/datum/ammo/proc/on_leave_turf(turf/T)	//Special effects for leaving a turf.
+	return
+
 /datum/ammo/proc/knockback(mob/victim, obj/projectile/proj, max_range = 2)
 	if(!victim || victim == proj.firer)
 		CRASH("knockback called [victim ? "without a mob target" : "while the mob target was the firer"]")
@@ -1990,6 +1993,81 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/boiler_gas/corrosive/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid()
+
+
+/datum/ammo/xeno/boiler_gas/lance
+	name = "pressized glob of gas"
+	icon_state = "boiler_gas2"	//Alt sprite?
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS	//As opposed to normal globs, these will pass by the target tile if they hit nothing.
+	danger_message = span_danger("A pressurized glob of acid lands with a nasty splat and explodes into noxious fumes!")
+	max_range = 40
+	damage = 75
+	penetration = 60
+	reagent_transfer_amount = 55
+	var/passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light
+
+//Close to a copy of parent on_hit_mob, but needed due to some different values
+/datum/ammo/xeno/boiler_gas/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	drop_nade(get_turf(proj), proj.firer)
+
+	if(!istype(victim) || victim.stat == DEAD || victim.issamexenohive(proj.firer))
+		return
+
+	victim.Paralyze(2 SECONDS)
+	victim.blur_eyes(16)
+	victim.adjustDrowsyness(18)
+
+	if(!iscarbon(victim))
+		return
+
+	var/mob/living/carbon/carbon_victim = victim
+	set_reagents()
+	var/armor_block = (1 - carbon_victim.run_armor_check(BODY_ZONE_CHEST, armor_type) * 0.01) //Check the target's armor mod; default to chest
+	for(var/reagent_id in spit_reagents) //modify by armor
+		spit_reagents[reagent_id] *= armor_block
+
+	carbon_victim.reagents.add_reagent_list(spit_reagents) //transfer reagents
+
+/datum/ammo/xeno/boiler_gas/lance/drop_nade(turf/T, atom/firer, range)
+	set_smoke()
+	if(isxeno(firer))
+		var/mob/living/carbon/xenomorph/X = firer
+		smoke_system.strength = X.xeno_caste.bomb_strength
+	smoke_system.set_up(2, T)	//Very low glob hit smoke range
+	smoke_system.start()
+	smoke_system = null
+	T.visible_message(danger_message)
+
+/datum/ammo/xeno/boiler_gas/lance/on_leave_turf(turf/T, atom/firer)
+	var/datum/effect_system/smoke_spread/xeno/turf_smoke = new passed_turf_smoke_type()
+	if(isxeno(firer))
+		var/mob/living/carbon/xenomorph/X = firer
+		turf_smoke.strength = X.xeno_caste.bomb_strength
+	turf_smoke.set_up(0, T)
+	turf_smoke.start()
+
+/datum/ammo/xeno/boiler_gas/lance/corrosive
+	name = "pressized glob of acid"
+	icon_state = "boiler_gas"	//Alt sprite?
+	sound_hit 	 = "acid_hit"
+	sound_bounce	= "acid_bounce"
+	armor_type = "acid"
+	danger_message = span_danger("A pressurized glob of acid lands with a concerning hissing sound and explodes into corrosive bile!")
+	damage_type = BURN
+	bullet_color = BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR
+	passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/acid/light
+
+/datum/ammo/xeno/boiler_gas/lance/corrosive/set_smoke()
+	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid()
+
+/datum/ammo/xeno/boiler_gas/lance/corrosive/on_shield_block(mob/victim, obj/projectile/proj)
+	airburst(victim, proj)
+
+/datum/ammo/xeno/boiler_gas/lance/corrosive/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	drop_nade(get_turf(proj), proj.firer)
+	victim.Paralyze(1.5 SECONDS)
+	victim.blur_eyes(4)
+	victim.adjustDrowsyness(2)
 
 /*
 //================================================
