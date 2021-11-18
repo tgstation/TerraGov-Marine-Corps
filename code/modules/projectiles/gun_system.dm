@@ -772,11 +772,7 @@
 
 ///Actually fires the gun, sets up the projectile and fires it.
 /obj/item/weapon/gun/proc/do_fire(obj/object_to_fire)
-	var/firer
-	if(istype(loc, /obj/machinery/deployable/mounted/sentry) && !gun_user)
-		firer = loc
-	else
-		firer = gun_user
+	var/firer = (istype(loc, /obj/machinery/deployable/mounted/sentry) && !gun_user) ? loc : gun_user
 	var/obj/projectile/projectile_to_fire = object_to_fire
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
 		projectile_to_fire = get_ammo_object()

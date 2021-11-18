@@ -28,7 +28,7 @@
 
 	///Iff signal of the sentry. If the /gun has a set IFF then this will be the same as that. If not the sentry will get its IFF signal from the deployer
 	var/iff_signal = NONE
-
+	///List of terrains/structures/machines that the sentry ignores for targetting. (If a window is inside the list, the sentry will shot at targets even if the window breaks los) For accuracy, this is on a specific typepath base and not istype().
 	var/list/ignored_terrains
 
 //------------------------------------------------------------------
