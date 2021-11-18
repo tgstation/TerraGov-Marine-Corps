@@ -78,12 +78,12 @@
 		for(var/name in mappings)
 			var/url = mappings[name]
 			// Not encoding since asset strings are considered safe
-			if(copytext(name, -4) == ".css")
+			if(copytext_char(name, -4) == ".css")
 				inline_assets_str += "Byond.loadCss('[url]', true);\n"
-			else if(copytext(name, -3) == ".js")
+			else if(copytext_char(name, -3) == ".js")
 				inline_assets_str += "Byond.loadJs('[url]', true);\n"
 		asset.send(client)
-	if(length(inline_assets_str))
+	if(length_char(inline_assets_str))
 		inline_assets_str = "<script>\n" + inline_assets_str + "</script>\n"
 	html = replacetextEx(html, "<!-- tgui:assets -->\n", inline_assets_str)
 	// Inject custom HTML

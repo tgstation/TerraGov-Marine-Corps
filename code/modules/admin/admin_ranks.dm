@@ -46,7 +46,7 @@
 		log_admin_private("[key_name(usr)] has tried to elevate permissions!")
 		message_admins("[ADMIN_TPMONTY(usr)] has tried to elevate permissions!")
 		return
-	var/list/keywords = splittext(group, " ")
+	var/list/keywords = splittext_char(group, " ")
 	var/flag = 0
 	for(var/k in keywords)
 		switch(k)
@@ -132,7 +132,7 @@
 	var/ranks_text = file2text("config/admin_ranks.txt")
 	var/datum/admin_rank/previous_rank
 	var/regex/admin_ranks_regex = new(@"^Name\s*=\s*(.+?)\s*\n+Include\s*=\s*([\l @]*?)\s*\n+Exclude\s*=\s*([\l @]*?)\s*\n+Edit\s*=\s*([\l @]*?)\s*\n*$", "gm")
-	while(admin_ranks_regex.Find(ranks_text))
+	while(admin_ranks_regex.Find_char(ranks_text))
 		var/datum/admin_rank/R = new(admin_ranks_regex.group[1])
 		if(!R)
 			continue
@@ -217,7 +217,7 @@
 	//ckeys listed in admins.txt are always made admins before sql loading is attempted
 	var/admins_text = file2text("config/admins.txt")
 	var/regex/admins_regex = new(@"^(?!#)(.+?)\s+=\s+(.+)", "gm")
-	while(admins_regex.Find(admins_text))
+	while(admins_regex.Find_char(admins_text))
 		new /datum/admins(rank_names[admins_regex.group[2]], ckey(admins_regex.group[1]), TRUE)
 	if(!CONFIG_GET(flag/admin_legacy_system) || dbfail)
 		var/datum/db_query/query_load_admins = SSdbcore.NewQuery("SELECT ckey, `rank` FROM [format_table_name("admin")] ORDER BY `rank`")

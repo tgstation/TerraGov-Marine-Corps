@@ -53,7 +53,7 @@ In TGS3 it will always be sent to all connected designated game chats.
 	var/list/channels_to_use = list()
 	for(var/I in world.TgsChatChannelInfo())
 		var/datum/tgs_chat_channel/channel = I
-		var/list/applicable_tags = splittext(channel.custom_tag, ",")
+		var/list/applicable_tags = splittext_char(channel.custom_tag, ",")
 		if(channel_tag in applicable_tags)
 			channels_to_use += channel
 
@@ -67,6 +67,6 @@ In TGS3 it will always be sent to all connected designated game chats.
  * message - The message to send.
  */
 /proc/send2adminchat(category, message)
-	category = replacetext(replacetext(category, "\proper", ""), "\improper", "")
-	message = replacetext(replacetext(message, "\proper", ""), "\improper", "")
+	category = replacetext_char(replacetext_char(category, "\proper", ""), "\improper", "")
+	message = replacetext_char(replacetext_char(message, "\proper", ""), "\improper", "")
 	world.TgsTargetedChatBroadcast("[category] | [message]", TRUE)

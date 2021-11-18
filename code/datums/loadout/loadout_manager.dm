@@ -87,7 +87,7 @@
 			var/loadout_id = params["loadout_id"]
 			if(isnull(loadout_id))
 				return
-			var/list/items = splittext(loadout_id, "//")
+			var/list/items = splittext_char(loadout_id, "//")
 			if(length(items) != 3)
 				to_chat(ui.user, span_warning("Wrong format!"))
 				return

@@ -83,7 +83,7 @@
 			if(childlist)
 				var/childname = "[child]"
 				if(childname == "[child.type]")
-					var/list/tree = splittext(childname, "/")
+					var/list/tree = splittext_char(childname, "/")
 					childname = tree[length(tree)]
 				.[child.type] = "parent=[url_encode(type)];name=[childname]"
 				. += childlist
@@ -96,9 +96,9 @@
 		entry["parent"] = "[type]"
 		entry["name"] = verbpath.desc
 		if(verbpath.name[1] == "@")
-			entry["command"] = copytext(verbpath.name, length(verbpath.name[1]) + 1)
+			entry["command"] = copytext_char(verbpath.name, length_char(verbpath.name[1]) + 1)
 		else
-			entry["command"] = replacetext(verbpath.name, " ", "-")
+			entry["command"] = replacetext_char(verbpath.name, " ", "-")
 
 		.[verbpath] = HandleVerb(arglist(list(entry, verbpath) + args))
 

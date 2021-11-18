@@ -62,7 +62,7 @@
 
 	var/static/regex/area_or_turf = regex(@"/(turf|area)/")
 	for(var/path in report.bad_paths)
-		if(area_or_turf.Find("[path]", 1, 1))
+		if(area_or_turf.Find_char("[path]", 1, 1))
 			report.loadable = FALSE
 
 	// check for tiles with the wrong number of turfs or areas

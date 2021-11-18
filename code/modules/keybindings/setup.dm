@@ -7,7 +7,7 @@
 	var/erase_output = ""
 	var/list/macro_set = params2list(winget(src, "default.*", "command")) // The third arg doesnt matter here as we're just removing them all
 	for(var/k in 1 to length(macro_set))
-		var/list/split_name = splittext(macro_set[k], ".")
+		var/list/split_name = splittext_char(macro_set[k], ".")
 		var/macro_name = "[split_name[1]].[split_name[2]]" // [3] is "command"
 		erase_output = "[erase_output];[macro_name].parent=null"
 	winset(src, null, erase_output)

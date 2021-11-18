@@ -93,11 +93,11 @@
 /datum/song/proc/ParseSong(text)
 	set waitfor = FALSE
 	//split into lines
-	lines = splittext(text, "\n")
+	lines = splittext_char(text, "\n")
 	if(lines.len)
 		var/bpm_string = "BPM: "
-		if(findtext(lines[1], bpm_string, 1, length(bpm_string) + 1))
-			var/divisor = text2num(copytext(lines[1], length(bpm_string) + 1)) || 120 // default
+		if(findtext_char(lines[1], bpm_string, 1, length_char(bpm_string) + 1))
+			var/divisor = text2num(copytext_char(lines[1], length_char(bpm_string) + 1)) || 120 // default
 			tempo = sanitize_tempo(600 / round(divisor, 1))
 			lines.Cut(1, 2)
 		else
@@ -171,8 +171,8 @@
 			return
 		if(lines.len > MUSIC_MAXLINES)
 			return
-		if(length(newline) > MUSIC_MAXLINECHARS)
-			newline = copytext(newline, 1, MUSIC_MAXLINECHARS)
+		if(length_char(newline) > MUSIC_MAXLINECHARS)
+			newline = copytext_char(newline, 1, MUSIC_MAXLINECHARS)
 		lines.Add(newline)
 
 	else if(href_list["deleteline"])

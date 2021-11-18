@@ -77,7 +77,7 @@
 #define ROUNDSTART_LOGOUT_REPORT_TIME 10 MINUTES //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
 
 #define SPAM_TRIGGER_TIME_PERIOD 10 SECONDS //The time period for checking spammy messages
-#define SPAM_TRIGGER_WEIGHT_FORMULA(message) length(message) / 200
+#define SPAM_TRIGGER_WEIGHT_FORMULA(message) length_char(message) / 200
 #define SPAM_TRIGGER_WARNING 7	//Number of messages required per the time period before the spam-prevention will warn you
 #define SPAM_TRIGGER_AUTOMUTE 10	//Number of messages required per the time period before the spam-prevention will automute you
 #define SPAM_TRIGGER_WEIGHT_WARNING 2.5 //The weight required per the time period before the spam-prevention will warn you

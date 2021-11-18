@@ -435,13 +435,13 @@ REAGENT SCANNER
 				dat += advice
 
 	if(hud_mode)
-		dat = replacetext(dat, "\n", "<br>")
-		dat = replacetext(dat, "\t", "&emsp;")
-		dat = replacetext(dat, "class='warning'", "style='color:red;'")
-		dat = replacetext(dat, "class='scanner'", "style='color:red;'")
-		dat = replacetext(dat, "class='scannerb'", "style='color:red; font-weight: bold;'")
-		dat = replacetext(dat, "class='scannerburn'", "style='color:#FFA500;'")
-		dat = replacetext(dat, "class='scannerburnb'", "style='color:#FFA500; font-weight: bold;'")
+		dat = replacetext_char(dat, "\n", "<br>")
+		dat = replacetext_char(dat, "\t", "&emsp;")
+		dat = replacetext_char(dat, "class='warning'", "style='color:red;'")
+		dat = replacetext_char(dat, "class='scanner'", "style='color:red;'")
+		dat = replacetext_char(dat, "class='scannerb'", "style='color:red; font-weight: bold;'")
+		dat = replacetext_char(dat, "class='scannerburn'", "style='color:#FFA500;'")
+		dat = replacetext_char(dat, "class='scannerburnb'", "style='color:#FFA500; font-weight: bold;'")
 		user << browse(dat, "window=handscanner;size=500x400")
 	else
 		user.show_message(dat, 1)

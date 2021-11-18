@@ -340,7 +340,7 @@
 
 	web_sound_input = trim(web_sound_input)
 
-	if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
+	if(findtext_char(web_sound_input, ":") && !findtext_char(web_sound_input, GLOB.is_http_protocol))
 		to_chat(usr, span_warning("Non-http(s) URIs are not allowed."))
 		to_chat(usr, span_warning("For youtube-dl shortcuts like ytsearch: please use the appropriate full url from the website."))
 		return
@@ -381,7 +381,7 @@
 			else
 				return
 
-	if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
+	if(web_sound_url && !findtext_char(web_sound_url, GLOB.is_http_protocol))
 		to_chat(usr, span_warning("BLOCKED: Content URL not using http(s) protocol"))
 		to_chat(usr, span_warning("The media provider returned a content URL that isn't using the HTTP or HTTPS protocol"))
 		return

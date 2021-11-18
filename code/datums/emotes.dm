@@ -53,7 +53,7 @@
 	if(!msg)
 		return
 
-	var/end = copytext(msg, length(message))
+	var/end = copytext_char(msg, length_char(message))
 	if(!(end in list("!", ".", "?", ":", "\"", "-")))
 		msg += "."
 
@@ -94,12 +94,12 @@
 
 
 /datum/emote/proc/replace_pronoun(mob/user, message)
-	if(findtext(message, "their"))
-		message = replacetext(message, "their", user.p_their())
-	if(findtext(message, "them"))
-		message = replacetext(message, "them", user.p_them())
-	if(findtext(message, "%s"))
-		message = replacetext(message, "%s", user.p_s())
+	if(findtext_char(message, "their"))
+		message = replacetext_char(message, "their", user.p_their())
+	if(findtext_char(message, "them"))
+		message = replacetext_char(message, "them", user.p_them())
+	if(findtext_char(message, "%s"))
+		message = replacetext_char(message, "%s", user.p_s())
 	return message
 
 
@@ -120,7 +120,7 @@
 
 
 /datum/emote/proc/select_param(mob/user, params)
-	return replacetext(message_param, "%t", params)
+	return replacetext_char(message_param, "%t", params)
 
 
 /datum/emote/proc/can_run_emote(mob/user, status_check = TRUE, intentional = FALSE)

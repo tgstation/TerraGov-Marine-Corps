@@ -101,8 +101,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"])
 		return GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"]
 
-	var/brute_state = copytext(damage_state, 1, 2)
-	var/burn_state = copytext(damage_state, 2)
+	var/brute_state = copytext_char(damage_state, 1, 2)
+	var/burn_state = copytext_char(damage_state, 2)
 	var/icon/brute_state_icon = icon('icons/mob/dam_human.dmi', "[species.brute_damage_icon_state]_[brute_state]")
 	var/icon/burn_state_icon = icon('icons/mob/dam_human.dmi', "[species.burn_damage_icon_state]_[burn_state]")
 	var/icon/damage_mask_icon = icon(species.damage_mask_icon, body_part)

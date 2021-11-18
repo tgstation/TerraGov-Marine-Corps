@@ -76,6 +76,6 @@
 		if(!sign_type)
 			return
 
-		sign_type = replacetext(lowertext(sign_type), " ", "")
+		sign_type = replacetext_char(lowertext(sign_type), " ", "")
 		ChangeSign(sign_type)
 		to_chat(user, "You change the barsign.")

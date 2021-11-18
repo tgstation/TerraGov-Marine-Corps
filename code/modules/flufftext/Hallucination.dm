@@ -233,11 +233,11 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		var/chosen = specific_message
 		if(!chosen)
 			chosen = capitalize(pick(speak_messages))
-		chosen = replacetext(chosen, "%TARGETNAME%", target_name)
-		if(copytext(chosen, 1, 9) == "#stutter") // 9 = #stutter length
-			chosen = stutter(copytext(chosen, 9))
-		if(copytext(chosen, 1, 6) == "#slur") // 6 = #slur length
-			chosen = slur(copytext(chosen, 6))
+		chosen = replacetext_char(chosen, "%TARGETNAME%", target_name)
+		if(copytext_char(chosen, 1, 9) == "#stutter") // 9 = #stutter length
+			chosen = stutter(copytext_char(chosen, 9))
+		if(copytext_char(chosen, 1, 6) == "#slur") // 6 = #slur length
+			chosen = slur(copytext_char(chosen, 6))
 
 		var/image/speech_overlay = image('icons/mob/talk.dmi', person, "default0", layer = ABOVE_MOB_LAYER)
 		var/message = target.compose_message(person, understood_language, chosen, null, list(person.speech_span), face_name = TRUE)
@@ -250,7 +250,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		var/chosen = specific_message
 		if(!chosen)
 			chosen = capitalize(pick(radio_messages))
-		chosen = replacetext(chosen, "%TARGETNAME%", target_name)
+		chosen = replacetext_char(chosen, "%TARGETNAME%", target_name)
 		var/list/humans = list()
 		for(var/mob/living/carbon/human/H in GLOB.alive_human_list)
 			if(H == target)

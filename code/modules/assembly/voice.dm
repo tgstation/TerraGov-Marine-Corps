@@ -65,7 +65,7 @@
 	. = FALSE
 	switch(mode)
 		if(INCLUSIVE_MODE)
-			if(findtext(raw_message, recorded))
+			if(findtext_char(raw_message, recorded))
 				. = TRUE
 		if(EXCLUSIVE_MODE)
 			if(raw_message == recorded)

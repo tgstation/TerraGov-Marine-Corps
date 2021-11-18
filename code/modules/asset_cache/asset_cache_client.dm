@@ -16,7 +16,7 @@
 	var/list/preloaded_assets = json_decode(json)
 
 	for (var/preloaded_asset in preloaded_assets)
-		if (copytext(preloaded_asset, findlasttext(preloaded_asset, ".")+1) in list("js", "jsm", "htm", "html"))
+		if (copytext_char(preloaded_asset, findlasttext_char(preloaded_asset, ".")+1) in list("js", "jsm", "htm", "html"))
 			preloaded_assets -= preloaded_asset
 			continue
 	sent_assets |= preloaded_assets

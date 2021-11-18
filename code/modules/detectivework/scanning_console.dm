@@ -77,14 +77,14 @@
 		if(filter_list["name"])
 			add = 0
 			for(var/filter in filter_list["name"])
-				if(findtext(cur.fields["name"], filter))
+				if(findtext_char(cur.fields["name"], filter))
 					add = 1
 					break
 
 		if(filter_list["area"])
 			add = 0
 			for(var/filter in filter_list["area"])
-				if(findtext(cur.fields["area"], filter))
+				if(findtext_char(cur.fields["area"], filter))
 					add = 1
 					break
 
@@ -95,7 +95,7 @@
 				var/print = prints[pid]
 				if (is_complete_print(print))
 					for(var/filter in filter_list["fprints"])
-						if(findtext(print, filter))
+						if(findtext_char(print, filter))
 							add = 1
 							break
 
@@ -103,7 +103,7 @@
 			add = 0
 			for(var/fiber in cur.fields["fibers"])
 				for(var/filter in filter_list["fibers"])
-					if(findtext(fiber, filter))
+					if(findtext_char(fiber, filter))
 						add = 1
 						break
 
@@ -111,14 +111,14 @@
 			add = 0
 			for(var/DNA in cur.fields["blood"])
 				for(var/filter in filter_list["blood"])
-					if(findtext(DNA, filter))
+					if(findtext_char(DNA, filter))
 						add = 1
 						break
 
 		if(filter_list["label"])
 			add = 0
 			for(var/filter in filter_list["label"])
-				if(cur.fields["label"] && findtext(cur.fields["label"], filter))
+				if(cur.fields["label"] && findtext_char(cur.fields["label"], filter))
 					add = 1
 					break
 		if (add)

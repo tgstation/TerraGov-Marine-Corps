@@ -150,7 +150,7 @@
 	allow_custom_shuttles = json["allow_custom_shuttles"] != FALSE
 
 	if(json["announce_text"] && maptype == SHIP_MAP)
-		announce_text = replacetext(json["announce_text"], "###SHIPNAME###", map_name)
+		announce_text = replacetext_char(json["announce_text"], "###SHIPNAME###", map_name)
 
 	if(json["armor"])
 		armor_style = json["armor"]

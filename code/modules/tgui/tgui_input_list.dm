@@ -102,7 +102,7 @@
 		if(!i)
 			continue
 
-		var/string_key = whitelistedWords.Replace("[i]", "")
+		var/string_key = whitelistedWords.Replace_char("[i]", "")
 
 		//avoids duplicated keys E.g: when areas have the same name
 		string_key = avoid_assoc_duplicate_keys(string_key, repeat_items)

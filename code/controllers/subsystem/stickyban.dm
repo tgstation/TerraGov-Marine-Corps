@@ -171,7 +171,7 @@ SUBSYSTEM_DEF(stickyban)
 	var/list/sqlips = list()
 
 	if (ban["keys"])
-		var/list/keys = splittext(ban["keys"], ",")
+		var/list/keys = splittext_char(ban["keys"], ",")
 		for (var/key in keys)
 			var/list/sqlckey = list()
 			sqlckey["stickyban"] = ckey
@@ -180,7 +180,7 @@ SUBSYSTEM_DEF(stickyban)
 			sqlckeys[++sqlckeys.len] = sqlckey
 
 	if (ban["whitelist"])
-		var/list/keys = splittext(ban["whitelist"], ",")
+		var/list/keys = splittext_char(ban["whitelist"], ",")
 		for (var/key in keys)
 			var/list/sqlckey = list()
 			sqlckey["stickyban"] = ckey
@@ -189,7 +189,7 @@ SUBSYSTEM_DEF(stickyban)
 			sqlckeys[++sqlckeys.len] = sqlckey
 
 	if (ban["computer_id"])
-		var/list/cids = splittext(ban["computer_id"], ",")
+		var/list/cids = splittext_char(ban["computer_id"], ",")
 		for (var/cid in cids)
 			var/list/sqlcid = list()
 			sqlcid["stickyban"] = ckey
@@ -197,7 +197,7 @@ SUBSYSTEM_DEF(stickyban)
 			sqlcids[++sqlcids.len] = sqlcid
 
 	if (ban["IP"])
-		var/list/ips = splittext(ban["IP"], ",")
+		var/list/ips = splittext_char(ban["IP"], ",")
 		for (var/ip in ips)
 			var/list/sqlip = list()
 			sqlip["stickyban"] = ckey

@@ -284,8 +284,8 @@
 		return
 
 	// Taking something out of the storage screen (including clicking on item border overlay)
-	var/list/screen_loc_params = splittext(PL["screen-loc"], ",")
-	var/list/screen_loc_X = splittext(screen_loc_params[1],":")
+	var/list/screen_loc_params = splittext_char(PL["screen-loc"], ",")
+	var/list/screen_loc_X = splittext_char(screen_loc_params[1],":")
 	var/click_x = text2num(screen_loc_X[1]) * 32 + text2num(screen_loc_X[2]) - 144
 
 	for(var/i = 1 to length(S.click_border_start))

@@ -255,11 +255,11 @@ SUBSYSTEM_DEF(mapping)
 		else if (t[1] == "#")
 			continue
 
-		var/pos = findtext(t, " ")
+		var/pos = findtext_char(t, " ")
 		var/name = null
 
 		if (pos)
-			name = lowertext(copytext(t, 1, pos))
+			name = lowertext(copytext_char(t, 1, pos))
 
 		else
 			name = lowertext(t)

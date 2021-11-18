@@ -77,7 +77,7 @@
 			refresh_preview()
 
 /datum/greyscale_modify_menu/proc/ReadColorsFromString(colorString)
-	var/list/raw_colors = splittext(colorString, "#")
+	var/list/raw_colors = splittext_char(colorString, "#")
 	split_colors = list()
 	for(var/i in 2 to length(raw_colors))
 		split_colors += "#[raw_colors[i]]"

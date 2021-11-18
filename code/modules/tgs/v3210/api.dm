@@ -42,19 +42,19 @@
 	return new /datum/tgs_version("3.2.1.3")
 
 /datum/tgs_api/v3210/proc/trim_left(text)
-	for (var/i = 1 to length(text))
-		if (text2ascii(text, i) > 32)
-			return copytext(text, i)
+	for (var/i = 1 to length_char(text))
+		if (text2ascii_char(text, i) > 32)
+			return copytext_char(text, i)
 	return ""
 
 /datum/tgs_api/v3210/proc/trim_right(text)
-	for (var/i = length(text), i > 0, i--)
-		if (text2ascii(text, i) > 32)
-			return copytext(text, 1, i + 1)
+	for (var/i = length_char(text), i > 0, i--)
+		if (text2ascii_char(text, i) > 32)
+			return copytext_char(text, 1, i + 1)
 	return ""
 
 /datum/tgs_api/v3210/proc/file2list(filename)
-	return splittext(trim_left(trim_right(file2text(filename))), "\n")
+	return splittext_char(trim_left(trim_right(file2text(filename))), "\n")
 
 /datum/tgs_api/v3210/OnWorldNew(minimum_required_security_level)
 	. = FALSE
@@ -66,11 +66,11 @@
 
 	var/list/logs = file2list(".git/logs/HEAD")
 	if(logs.len)
-		logs = splittext(logs[logs.len - 1], " ")
+		logs = splittext_char(logs[logs.len - 1], " ")
 		commit = logs[2]
 	logs = file2list(".git/logs/refs/remotes/origin/master")
 	if(logs.len)
-		originmastercommit = splittext(logs[logs.len - 1], " ")[2]
+		originmastercommit = splittext_char(logs[logs.len - 1], " ")[2]
 
 	if(world.system_type != MS_WINDOWS)
 		TGS_ERROR_LOG("This API version is only supported on Windows. Not running on Windows. Aborting initialization!")

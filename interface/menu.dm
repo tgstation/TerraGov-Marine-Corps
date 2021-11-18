@@ -77,9 +77,9 @@ GLOBAL_LIST_EMPTY(menulist)
 		return
 
 	if(verbpath.name[1] == "@")
-		winset(C, null, list2params(list("command" = copytext(verbpath.name, length(verbpath.name[1]) + 1))))
+		winset(C, null, list2params(list("command" = copytext_char(verbpath.name, length_char(verbpath.name[1]) + 1))))
 	else
-		winset(C, null, list2params(list("command" = replacetext(verbpath.name, " ", "-"))))
+		winset(C, null, list2params(list("command" = replacetext_char(verbpath.name, " ", "-"))))
 
 
 /datum/verbs/menu/Icon/Size

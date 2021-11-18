@@ -66,7 +66,7 @@
 	overlays += T
 
 	name = lowertext("[fullname] sandwich")
-	if(length(name) > 80) name = "[pick(list("absurd","colossal","enormous","ridiculous"))] sandwich"
+	if(length_char(name) > 80) name = "[pick(list("absurd","colossal","enormous","ridiculous"))] sandwich"
 	w_class = CEILING(clamp((ingredients.len/2),1,3),1)
 
 /obj/item/reagent_containers/food/snacks/csandwich/Destroy()

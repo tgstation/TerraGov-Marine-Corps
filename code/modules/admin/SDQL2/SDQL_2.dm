@@ -1056,12 +1056,12 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 	if(is_proper_datum(object))
 		D = object
 
-	if (object == world && (!long || expression[start + 1] == ".") && !(expression[start] in exclude) && copytext(expression[start], 1, 3) != "SS") //3 == length("SS") + 1
+	if (object == world && (!long || expression[start + 1] == ".") && !(expression[start] in exclude) && copytext_char(expression[start], 1, 3) != "SS") //3 == length("SS") + 1
 		to_chat(usr, span_danger("World variables are not allowed to be accessed. Use global."))
 		return null
 
 	else if(expression [start] == "{" && long)
-		if(lowertext(copytext(expression[start + 1], 1, 3)) != "0x") //3 == length("0x") + 1
+		if(lowertext(copytext_char(expression[start + 1], 1, 3)) != "0x") //3 == length("0x") + 1
 			to_chat(usr, span_danger("Invalid pointer syntax: [expression[start + 1]]"))
 			return null
 		v = locate("\[[expression[start + 1]]]")
@@ -1171,14 +1171,14 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 			if("SSweeds")
 				v = SSweeds
 			else
-				if(copytext(expression[start], 1, 3) == "SS") //Subsystem //3 == length("SS") + 1
+				if(copytext_char(expression[start], 1, 3) == "SS") //Subsystem //3 == length("SS") + 1
 					var/SSname = copytext_char(expression[start], 3)
-					var/SSlength = length(SSname)
+					var/SSlength = length_char(SSname)
 					var/datum/controller/subsystem/SS
 					var/SSmatch
 					for(var/_SS in Master.subsystems)
 						SS = _SS
-						if(copytext("[SS.type]", -SSlength) == SSname)
+						if(copytext_char("[SS.type]", -SSlength) == SSname)
 							SSmatch = SS
 							break
 					if(!SSmatch)
@@ -1216,10 +1216,10 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 
 	var/word = ""
 	var/list/query_list = list()
-	var/len = length(query_text)
+	var/len = length_char(query_text)
 	var/char = ""
 
-	for(var/i = 1, i <= len, i += length(char))
+	for(var/i = 1, i <= len, i += length_char(char))
 		char = query_text[i]
 
 		if(char in whitespace)
@@ -1239,7 +1239,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 				query_list += word
 				word = ""
 
-			var/char2 = query_text[i + length(char)]
+			var/char2 = query_text[i + length_char(char)]
 
 			if(char2 in multi[char])
 				query_list += "[char][char2]"
@@ -1255,13 +1255,13 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 
 			word = "'"
 
-			for(i += length(char), i <= len, i += length(char))
+			for(i += length_char(char), i <= len, i += length_char(char))
 				char = query_text[i]
 
 				if(char == "'")
-					if(query_text[i + length(char)] == "'")
+					if(query_text[i + length_char(char)] == "'")
 						word += "'"
-						i += length(query_text[i + length(char)])
+						i += length_char(query_text[i + length_char(char)])
 
 					else
 						break
@@ -1283,13 +1283,13 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 
 			word = "\""
 
-			for(i += length(char), i <= len, i += length(char))
+			for(i += length_char(char), i <= len, i += length_char(char))
 				char = query_text[i]
 
 				if(char == "\"")
-					if(query_text[i + length(char)] == "'")
+					if(query_text[i + length_char(char)] == "'")
 						word += "\""
-						i += length(query_text[i + length(char)])
+						i += length_char(query_text[i + length_char(char)])
 
 					else
 						break

@@ -18,7 +18,7 @@
 	if(!label)
 		to_chat(user, span_notice("No label set."))
 		return
-	if(length(A.name) + length(label) > 64)
+	if(length_char(A.name) + length_char(label) > 64)
 		to_chat(user, span_notice("Label too big."))
 		return
 	if(!labels_left)
