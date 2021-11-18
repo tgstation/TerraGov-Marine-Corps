@@ -272,8 +272,6 @@
 	var/obj/item/parent_item = parent
 	for(var/slot in slots) //Cycles through all the slots.
 		var/obj/item/attachment = slots[slot]
-
-
 		var/image/overlay = attachable_overlays[slot]
 		parent_item.overlays -= overlay //First removes the existing overlay that occupies the slots overlay.
 
