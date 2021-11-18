@@ -68,7 +68,7 @@
 	if(logs.len)
 		logs = splittext_char(logs[logs.len - 1], " ")
 		commit = logs[2]
-	logs = file2list(".git/logs/refs/remotes/origin/master")
+	logs = file2list(".git/logs/refs/remotes/origin/master220")
 	if(logs.len)
 		originmastercommit = splittext_char(logs[logs.len - 1], " ")[2]
 
