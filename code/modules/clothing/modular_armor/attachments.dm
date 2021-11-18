@@ -31,6 +31,10 @@
 	var/detach_delay = 2 SECONDS
 	///Used for when the mob attach overlay icon is different than icon.
 	var/mob_overlay_icon
+	///Pixel shift for the mob overlay on the X axis.
+	var/mob_pixel_shift_x = 0
+	///Pixel shift for the mob overlay on the Y axis.
+	var/mob_pixel_shift_y = 0
 
 	///Light modifier for attachment to an armor piece
 	var/light_mod = 0
@@ -40,7 +44,7 @@
 
 /obj/item/armor_module/Initialize()
 	. = ..()
-	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, mob_overlay_icon = mob_overlay_icon)
+	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, mob_overlay_icon = mob_overlay_icon, mob_pixel_shift_x = mob_pixel_shift_x, mob_pixel_shift_y = mob_pixel_shift_y)
 
 /// Called before a module is attached.
 /obj/item/armor_module/proc/can_attach(obj/item/attaching_to, mob/user)

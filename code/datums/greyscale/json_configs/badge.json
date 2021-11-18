@@ -1,0 +1,74 @@
+{
+	"in_hand": [
+		{
+			"type": "icon_state",
+			"icon_state": "in_hand",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	],
+	"beret_forward": [
+		{
+			"type": "icon_state",
+			"icon_state": "badge_beretf",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	],
+	"beret_side": [
+		{
+			"type": "icon_state",
+			"icon_state": "badge_berets",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	],
+	"left_arm": [
+		{
+			"type": "icon_state",
+			"icon_state": "badge_larm",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	],
+	"left_chest": [
+		{
+			"type": "icon_state",
+			"icon_state": "badge_lchest",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	],
+	"left_helm": [
+		{
+			"type": "icon_state",
+			"icon_state": "badge_lhelm",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	],
+	"right_arm": [
+		{
+			"type": "icon_state",
+			"icon_state": "badge_rarm",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	],
+	"right_chest": [
+		{
+			"type": "icon_state",
+			"icon_state": "badge_rchest",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	],
+	"right_helm": [
+		{
+			"type": "icon_state",
+			"icon_state": "badge_rhelm",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		}
+	]
+}

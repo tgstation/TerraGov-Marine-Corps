@@ -168,180 +168,30 @@
 	icon_file = 'icons/obj/items/grenade.dmi'
 	json_config = 'code/datums/greyscale/json_configs/xenogrenade.json'
 
+/*
+ * COLORABLE BADGES
+ */
+
 /datum/greyscale_config/badge
+	json_config = 'code/datums/greyscale/json_configs/badge.json'
 	icon_file = 'icons/mob/modular/badge/shield.dmi'
-	json_config = 'code/datums/greyscale/json_configs/badge/badge_left_chest.json'
 
-/datum/greyscale_config/badge/lchest
+/datum/greyscale_config/badge/shield
 
-/datum/greyscale_config/badge/lchest/triangle
+/datum/greyscale_config/badge/triangle
 	icon_file = 'icons/mob/modular/badge/triangle.dmi'
 
-/datum/greyscale_config/badge/lchest/circle
+/datum/greyscale_config/badge/circle
 	icon_file = 'icons/mob/modular/badge/circle.dmi'
 
-/datum/greyscale_config/badge/lchest/square
+/datum/greyscale_config/badge/square
 	icon_file = 'icons/mob/modular/badge/square.dmi'
 
-/datum/greyscale_config/badge/lchest/V
+/datum/greyscale_config/badge/V
 	icon_file = 'icons/mob/modular/badge/V.dmi'
 
-/datum/greyscale_config/badge/lchest/lambda
+/datum/greyscale_config/badge/lambda
 	icon_file = 'icons/mob/modular/badge/lambda.dmi'
 
-/datum/greyscale_config/badge/lchest/circle2
-	icon_file = 'icons/mob/modular/badge/circle2.dmi'
-
-/datum/greyscale_config/badge/rchest
-	icon_file = 'icons/mob/modular/badge/shield.dmi'
-	json_config = 'code/datums/greyscale/json_configs/badge/badge_right_chest.json'
-
-/datum/greyscale_config/badge/rchest/triangle
-	icon_file = 'icons/mob/modular/badge/triangle.dmi'
-
-/datum/greyscale_config/badge/rchest/circle
-	icon_file = 'icons/mob/modular/badge/circle.dmi'
-
-/datum/greyscale_config/badge/rchest/square
-	icon_file = 'icons/mob/modular/badge/square.dmi'
-
-/datum/greyscale_config/badge/rchest/V
-	icon_file = 'icons/mob/modular/badge/V.dmi'
-
-/datum/greyscale_config/badge/rchest/lambda
-	icon_file = 'icons/mob/modular/badge/lambda.dmi'
-
-/datum/greyscale_config/badge/rchest/circle2
-	icon_file = 'icons/mob/modular/badge/circle2.dmi'
-
-/datum/greyscale_config/badge/rarm
-	icon_file = 'icons/mob/modular/badge/shield.dmi'
-	json_config = 'code/datums/greyscale/json_configs/badge/badge_right_arm.json'
-
-/datum/greyscale_config/badge/rarm/triangle
-	icon_file = 'icons/mob/modular/badge/triangle.dmi'
-
-/datum/greyscale_config/badge/rarm/circle
-	icon_file = 'icons/mob/modular/badge/circle.dmi'
-
-/datum/greyscale_config/badge/rarm/square
-	icon_file = 'icons/mob/modular/badge/square.dmi'
-
-/datum/greyscale_config/badge/rarm/V
-	icon_file = 'icons/mob/modular/badge/V.dmi'
-
-/datum/greyscale_config/badge/rarm/lambda
-	icon_file = 'icons/mob/modular/badge/lambda.dmi'
-
-/datum/greyscale_config/badge/rarm/circle2
-	icon_file = 'icons/mob/modular/badge/circle2.dmi'
-
-/datum/greyscale_config/badge/larm
-	icon_file = 'icons/mob/modular/badge/shield.dmi'
-	json_config = 'code/datums/greyscale/json_configs/badge/badge_left_arm.json'
-
-/datum/greyscale_config/badge/larm/triangle
-	icon_file = 'icons/mob/modular/badge/triangle.dmi'
-
-/datum/greyscale_config/badge/larm/circle
-	icon_file = 'icons/mob/modular/badge/circle.dmi'
-
-/datum/greyscale_config/badge/larm/square
-	icon_file = 'icons/mob/modular/badge/square.dmi'
-
-/datum/greyscale_config/badge/larm/V
-	icon_file = 'icons/mob/modular/badge/V.dmi'
-
-/datum/greyscale_config/badge/larm/lambda
-	icon_file = 'icons/mob/modular/badge/lambda.dmi'
-
-/datum/greyscale_config/badge/larm/circle2
-	icon_file = 'icons/mob/modular/badge/circle2.dmi'
-
-/datum/greyscale_config/badge/beretf
-	icon_file = 'icons/mob/modular/badge/shield.dmi'
-	json_config = 'code/datums/greyscale/json_configs/badge/badge_beret_forward.json'
-
-/datum/greyscale_config/badge/beretf/triangle
-	icon_file = 'icons/mob/modular/badge/triangle.dmi'
-
-/datum/greyscale_config/badge/beretf/circle
-	icon_file = 'icons/mob/modular/badge/circle.dmi'
-
-/datum/greyscale_config/badge/beretf/square
-	icon_file = 'icons/mob/modular/badge/square.dmi'
-
-/datum/greyscale_config/badge/beretf/V
-	icon_file = 'icons/mob/modular/badge/V.dmi'
-
-/datum/greyscale_config/badge/beretf/lambda
-	icon_file = 'icons/mob/modular/badge/lambda.dmi'
-
-/datum/greyscale_config/badge/beretf/circle2
-	icon_file = 'icons/mob/modular/badge/circle2.dmi'
-
-/datum/greyscale_config/badge/berets
-	icon_file = 'icons/mob/modular/badge/shield.dmi'
-	json_config = 'code/datums/greyscale/json_configs/badge/badge_beret_side.json'
-
-/datum/greyscale_config/badge/berets/triangle
-	icon_file = 'icons/mob/modular/badge/triangle.dmi'
-
-/datum/greyscale_config/badge/berets/circle
-	icon_file = 'icons/mob/modular/badge/circle.dmi'
-
-/datum/greyscale_config/badge/berets/square
-	icon_file = 'icons/mob/modular/badge/square.dmi'
-
-/datum/greyscale_config/badge/berets/V
-	icon_file = 'icons/mob/modular/badge/V.dmi'
-
-/datum/greyscale_config/badge/berets/lambda
-	icon_file = 'icons/mob/modular/badge/lambda.dmi'
-
-/datum/greyscale_config/badge/berets/circle2
-	icon_file = 'icons/mob/modular/badge/circle2.dmi'
-
-/datum/greyscale_config/badge/lhelm
-	icon_file = 'icons/mob/modular/badge/shield.dmi'
-	json_config = 'code/datums/greyscale/json_configs/badge/badge_left_helm.json'
-
-/datum/greyscale_config/badge/lhelm/triangle
-	icon_file = 'icons/mob/modular/badge/triangle.dmi'
-
-/datum/greyscale_config/badge/lhelm/circle
-	icon_file = 'icons/mob/modular/badge/circle.dmi'
-
-/datum/greyscale_config/badge/lhelm/square
-	icon_file = 'icons/mob/modular/badge/square.dmi'
-
-/datum/greyscale_config/badge/lhelm/V
-	icon_file = 'icons/mob/modular/badge/V.dmi'
-
-/datum/greyscale_config/badge/lhelm/lambda
-	icon_file = 'icons/mob/modular/badge/lambda.dmi'
-
-/datum/greyscale_config/badge/lhelm/circle2
-	icon_file = 'icons/mob/modular/badge/circle2.dmi'
-
-/datum/greyscale_config/badge/rhelm
-	icon_file = 'icons/mob/modular/badge/shield.dmi'
-	json_config = 'code/datums/greyscale/json_configs/badge/badge_right_helm.json'
-
-/datum/greyscale_config/badge/rhelm/triangle
-	icon_file = 'icons/mob/modular/badge/triangle.dmi'
-
-/datum/greyscale_config/badge/rhelm/circle
-	icon_file = 'icons/mob/modular/badge/circle.dmi'
-
-/datum/greyscale_config/badge/rhelm/square
-	icon_file = 'icons/mob/modular/badge/square.dmi'
-
-/datum/greyscale_config/badge/rhelm/V
-	icon_file = 'icons/mob/modular/badge/V.dmi'
-
-/datum/greyscale_config/badge/rhelm/lambda
-	icon_file = 'icons/mob/modular/badge/lambda.dmi'
-
-/datum/greyscale_config/badge/rhelm/circle2
+/datum/greyscale_config/badge/circle2
 	icon_file = 'icons/mob/modular/badge/circle2.dmi'
