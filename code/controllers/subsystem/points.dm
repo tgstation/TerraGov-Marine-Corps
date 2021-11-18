@@ -177,8 +177,8 @@ SUBSYSTEM_DEF(points)
 		return
 	if(length(ckey_shopping_cart) > 20)
 		return
-	// if(NON_ASCII_CHECK(reason))
-	// 	return
+	if(NON_ASCII_CYRILLIC_CHECK(reason))
+		return
 	if(length(reason) > MAX_LENGTH_REQ_REASON)
 		reason = copytext_char(reason, 1, MAX_LENGTH_REQ_REASON)
 	var/list/datum/supply_order/orders = process_cart(user, ckey_shopping_cart)

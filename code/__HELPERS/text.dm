@@ -42,11 +42,11 @@
  * * Presence of the <, >, \ and / characters.
  * * Presence of ASCII special control characters (horizontal tab and new line not included).
  * */
-/proc/reject_bad_text(text, max_length = 512, ascii_only = TRUE)
-	if(ascii_only)
+/proc/reject_bad_text(text, max_length = 512, ascii_cyrillic_only = TRUE)
+	if(ascii_cyrillic_only)
 		if(length_char(text) > max_length)
 			return null
-		var/static/regex/non_ascii = regex(@"[^\x20-\x7E\t\n]")
+		var/static/regex/non_ascii = regex(@"[^\x20-\x7E\u0410-\u044F\u0401\u0451\t\n]")
 		if(non_ascii.Find_char(text))
 			return null
 	else if(length_char(text) > max_length)
@@ -85,7 +85,7 @@
 #define LETTERS_DETECTED 4
 
 //Filters out undesirable characters from names
-/proc/reject_bad_name(t_in, allow_numbers = FALSE, max_length = MAX_NAME_LEN, ascii_only = TRUE)
+/proc/reject_bad_name(t_in, allow_numbers = FALSE, max_length = MAX_NAME_LEN, ascii_cyrillic_only = TRUE)
 	if(!t_in)
 		return //Rejects the input if it is null
 
@@ -101,13 +101,13 @@
 		char = t_in[i]
 
 		switch(text2ascii_char(char))
-			// A  .. Z
-			if(65 to 90)			//Uppercase Letters
+			// A  .. Z, А .. Я, Ё
+			if(65 to 90, 1040 to 1071, 1025)			//Uppercase Letters
 				number_of_alphanumeric++
 				last_char_group = LETTERS_DETECTED
 
-			// a  .. z
-			if(97 to 122)			//Lowercase Letters
+			// a  .. z, а .. я, ё
+			if(97 to 122, 1072 to 1103, 1105)			//Lowercase Letters
 				if(last_char_group == NO_CHARS_DETECTED || last_char_group == SPACES_DETECTED || last_char_group == SYMBOLS_DETECTED) //start of a word
 					char = uppertext(char)
 				number_of_alphanumeric++
@@ -138,8 +138,8 @@
 					continue
 				last_char_group = SPACES_DETECTED
 
-			if(127 to INFINITY)
-				if(ascii_only)
+			if(127 to 1024, 1026 to 1039, 1104, 1106 to INFINITY)
+				if(ascii_cyrillic_only)
 					continue
 				last_char_group = SYMBOLS_DETECTED //for now, we'll treat all non-ascii characters like symbols even though most are letters
 
@@ -266,7 +266,6 @@
 
 //Used in preferences' SetFlavorText and human's set_flavor verb
 //Previews a string of len or less length
-// TODO: check length
 /proc/TextPreview(string, length = 40)
 	if(length_char(string) > length(string))
 		if(length_char(string) > length)
