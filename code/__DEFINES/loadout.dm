@@ -151,8 +151,8 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 
 GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 	/obj/item/clothing/glasses/night/m56_goggles = list(CAT_ESS, "M26 head mounted sight", 0, "white"),
-	/obj/item/weapon/gun/rifle/standard_smartmachinegun = list(CAT_LEDSUP, "T-26 Smartmachinegun", 30 , "white"),
-	/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_LEDSUP, "T-26 Smartmachinegun ammo", 5 , "black"),
+	/obj/item/weapon/gun/rifle/standard_smartmachinegun = list(CAT_LEDSUP, "T-29 Smartmachinegun", 30 , "white"),
+	/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_LEDSUP, "T-29 Smartmachinegun ammo", 5 , "black"),
 	/obj/item/weapon/gun/rifle/standard_smartrifle = list(CAT_LEDSUP, "T-25 smartrifle", 30 , "white"),
 	/obj/item/ammo_magazine/rifle/standard_smartrifle = list(CAT_LEDSUP, "T-25 smartrifle ammo", 2 , "black"),
 	))

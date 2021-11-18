@@ -244,7 +244,7 @@
 /obj/docking_port/mobile/marine_dropship/casplane/proc/update_state(datum/source, mode)
 	if(state == PLANE_STATE_DEACTIVATED)
 		return
-	if(!is_mainship_level(z))
+	if(!is_mainship_level(z) || mode != SHUTTLE_IDLE)
 		state = PLANE_STATE_FLYING
 	else
 		for(var/i in engines)
@@ -268,6 +268,7 @@
 	if(eyeobj.eye_user)
 		to_chat(user, span_warning("CAS mode is already in-use!"))
 		return
+	SSmonitor.process_human_positions()
 	if(SSmonitor.human_on_ground <= 5)
 		to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
 		return
