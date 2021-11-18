@@ -91,7 +91,6 @@
 		/obj/item/armor_module/storage/engineering,
 		/obj/item/armor_module/storage/medical,
 		/obj/item/armor_module/storage/integrated,
-
 		/obj/item/armor_module/armor/badge,
 	)
 	light_range = 5
@@ -267,7 +266,6 @@
 		/obj/item/armor_module/storage/engineering,
 		/obj/item/armor_module/storage/medical,
 		/obj/item/armor_module/storage/integrated,
-
 		/obj/item/armor_module/armor/badge,
 	)
 
@@ -333,7 +331,6 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-
 		/obj/item/armor_module/armor/badge,
 	)
 
@@ -510,11 +507,8 @@
 		/obj/item/armor_module/module/welding,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
-
 		/obj/item/armor_module/storage/helmet,
-
 		/obj/item/armor_module/armor/visor/marine,
-
 		/obj/item/armor_module/armor/badge,
 	)
 
@@ -532,11 +526,8 @@
 		/obj/item/armor_module/module/welding,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
-
 		/obj/item/armor_module/storage/helmet,
-
 		/obj/item/armor_module/armor/visor/marine/skirmisher,
-
 		/obj/item/armor_module/armor/badge,
 	)
 
@@ -554,9 +545,7 @@
 		/obj/item/armor_module/module/welding,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
-
 		/obj/item/armor_module/storage/helmet,
-
 		/obj/item/armor_module/armor/visor/marine/assault,
 	)
 
@@ -574,12 +563,9 @@
 		/obj/item/armor_module/module/welding,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
-
 		/obj/item/armor_module/storage/helmet,
-
 		/obj/item/armor_module/armor/visor/marine/eva,
 		/obj/item/armor_module/armor/visor/marine/eva/skull,
-
 		/obj/item/armor_module/armor/badge,
 	)
 
@@ -623,11 +609,8 @@
 		/obj/item/armor_module/module/welding,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
-
 		/obj/item/armor_module/storage/helmet,
-
 		/obj/item/armor_module/armor/visor/marine/scout,
-
 		/obj/item/armor_module/armor/badge,
 	)
 
@@ -646,9 +629,7 @@
 		/obj/item/armor_module/module/welding,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
-
 		/obj/item/armor_module/storage/helmet,
-
 		/obj/item/armor_module/armor/badge,
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
@@ -680,7 +661,6 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-
 		/obj/item/armor_module/armor/badge,
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
