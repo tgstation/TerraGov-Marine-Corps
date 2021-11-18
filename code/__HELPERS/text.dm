@@ -1,4 +1,4 @@
-#define strip_improper(input_text) replacetext(replacetext(input_text, "\proper", ""), "\improper", "")
+#define strip_improper(input_text) replacetext_char(replacetext_char(input_text, "\proper", ""), "\improper", "")
 
 
 
@@ -9,17 +9,17 @@
 /proc/readd_quotes(t)
 	var/list/repl_chars = list("&#34;" = "\"", "&#39;" = "\"")
 	for(var/char in repl_chars)
-		var/index = findtext(t, char)
+		var/index = findtext_char(t, char)
 		while(index)
-			t = copytext(t, 1, index) + repl_chars[char] + copytext(t, index + 5)
-			index = findtext(t, char)
+			t = copytext_char(t, 1, index) + repl_chars[char] + copytext_char(t, index + 5)
+			index = findtext_char(t, char)
 	return t
 
 
 /// Runs byond's html encoding sanitization proc, after replacing new-lines and tabs for the # character.
 /proc/sanitize(text)
 	var/static/regex/regex = regex(@"[\n\t]", "g")
-	return html_encode(regex.Replace(text, "#"))
+	return html_encode(regex.Replace_char(text, "#"))
 
 
 /// Runs STRIP_HTML_SIMPLE and sanitize.
@@ -44,18 +44,18 @@
  * */
 /proc/reject_bad_text(text, max_length = 512, ascii_only = TRUE)
 	if(ascii_only)
-		if(length(text) > max_length)
+		if(length_char(text) > max_length)
 			return null
 		var/static/regex/non_ascii = regex(@"[^\x20-\x7E\t\n]")
-		if(non_ascii.Find(text))
+		if(non_ascii.Find_char(text))
 			return null
 	else if(length_char(text) > max_length)
 		return null
 	var/static/regex/non_whitespace = regex(@"\S")
-	if(!non_whitespace.Find(text))
+	if(!non_whitespace.Find_char(text))
 		return null
 	var/static/regex/bad_chars = regex(@"[\\<>/\x00-\x08\x11-\x1F]")
-	if(bad_chars.Find(text))
+	if(bad_chars.Find_char(text))
 		return null
 	return text
 
@@ -65,7 +65,7 @@
 /proc/stripped_input(mob/user, message = "", title = "", default = "", max_length = MAX_MESSAGE_LEN, no_trim = FALSE)
 	var/name = input(user, message, title, default) as text|null
 	if(no_trim)
-		return copytext(html_encode(name), 1, max_length)
+		return copytext_char(html_encode(name), 1, max_length)
 	else
 		return trim(html_encode(name), max_length) //trim is "outside" because html_encode can expand single symbols into multiple symbols (such as turning < into &lt;)
 
@@ -73,7 +73,7 @@
 /proc/stripped_multiline_input(mob/user, message = "", title = "", default = "", max_length=MAX_MESSAGE_LEN, no_trim=FALSE)
 	var/name = input(user, message, title, default) as message|null
 	if(no_trim)
-		return copytext(html_encode(name), 1, max_length)
+		return copytext_char(html_encode(name), 1, max_length)
 	else
 		return trim(html_encode(name), max_length)
 
@@ -92,15 +92,15 @@
 	var/number_of_alphanumeric = 0
 	var/last_char_group = NO_CHARS_DETECTED
 	var/t_out = ""
-	var/t_len = length(t_in)
+	var/t_len = length_char(t_in)
 	var/charcount = 0
 	var/char = ""
 
 
-	for(var/i = 1, i <= t_len, i += length(char))
+	for(var/i = 1, i <= t_len, i += length_char(char))
 		char = t_in[i]
 
-		switch(text2ascii(char))
+		switch(text2ascii_char(char))
 			// A  .. Z
 			if(65 to 90)			//Uppercase Letters
 				number_of_alphanumeric++
@@ -184,18 +184,18 @@
 
 //Returns a string with reserved characters and spaces before the first letter removed
 /proc/trim_left(text)
-	for(var/i in 1 to length(text))
-		if(text2ascii(text, i) <= 32)
+	for(var/i in 1 to length_char(text))
+		if(text2ascii_char(text, i) <= 32)
 			continue
-		return copytext(text, i)
+		return copytext_char(text, i)
 	return ""
 
 
 //Returns a string with reserved characters and spaces after the last letter removed
 /proc/trim_right(text)
-	for(var/i = length(text), i > 0, i--)
-		if(text2ascii(text, i) > 32)
-			return copytext(text, 1, i + 1)
+	for(var/i = length_char(text), i > 0, i--)
+		if(text2ascii_char(text, i) > 32)
+			return copytext_char(text, 1, i + 1)
 	return ""
 
 
@@ -211,7 +211,7 @@
 	. = t
 	if(t)
 		. = t[1]
-		return uppertext(.) + copytext(t, 1 + length(.))
+		return uppertext(.) + copytext_char(t, 1 + length_char(.))
 
 
 /proc/stringmerge(text,compare,replace = "*")
@@ -222,8 +222,8 @@
 	var/text_it = 1 //iterators
 	var/comp_it = 1
 	var/newtext_it = 1
-	var/text_length = length(text)
-	var/comp_length = length(compare)
+	var/text_length = length_char(text)
+	var/comp_length = length_char(compare)
 	while(comp_it <= comp_length && text_it <= text_length)
 		var/a = text[text_it]
 		var/b = compare[comp_it]
@@ -231,14 +231,14 @@
 //(no way to know what it was supposed to be)
 		if(a != b)
 			if(a == replace) //if A is the replacement char
-				newtext = copytext(newtext, 1, newtext_it) + b + copytext(newtext, newtext_it + length(newtext[newtext_it]))
+				newtext = copytext_char(newtext, 1, newtext_it) + b + copytext_char(newtext, newtext_it + length_char(newtext[newtext_it]))
 			else if(b == replace) //if B is the replacement char
-				newtext = copytext(newtext, 1, newtext_it) + a + copytext(newtext, newtext_it + length(newtext[newtext_it]))
+				newtext = copytext_char(newtext, 1, newtext_it) + a + copytext_char(newtext, newtext_it + length_char(newtext[newtext_it]))
 			else //The lists disagree, Uh-oh!
 				return 0
-		text_it += length(a)
-		comp_it += length(b)
-		newtext_it += length(newtext[newtext_it])
+		text_it += length_char(a)
+		comp_it += length_char(b)
+		newtext_it += length_char(newtext[newtext_it])
 
 	return newtext
 
@@ -249,9 +249,9 @@
 	if(!text || !character)
 		return 0
 	var/count = 0
-	var/lentext = length(text)
+	var/lentext = length_char(text)
 	var/a = ""
-	for(var/i = 1, i <= lentext, i += length(a))
+	for(var/i = 1, i <= lentext, i += length_char(a))
 		a = text[i]
 		if(a == character)
 			count++
@@ -266,38 +266,39 @@
 
 //Used in preferences' SetFlavorText and human's set_flavor verb
 //Previews a string of len or less length
+// TODO: check length
 /proc/TextPreview(string, length = 40)
 	if(length_char(string) > length(string))
 		if(length_char(string) > length)
 			return "[copytext_char(string, 1, 37)]..."
-		if(!length(string))
+		if(!length_char(string))
 			return "\[...\]"
 		return string
-	if(!length(string))
+	if(!length_char(string))
 		return "\[...\]"
-	if(length(string) > length)
-		return "[copytext(string, 1, 37)]..."
+	if(length_char(string) > length)
+		return "[copytext_char(string, 1, 37)]..."
 	return string
 
 
 //Used for applying byonds text macros to strings that are loaded at runtime
 /proc/apply_text_macros(string)
-	var/next_backslash = findtext(string, "\\")
+	var/next_backslash = findtext_char(string, "\\")
 	if(!next_backslash)
 		return string
 
-	var/leng = length(string)
+	var/leng = length_char(string)
 
-	var/next_space = findtext(string, " ", next_backslash + length(string[next_backslash]))
+	var/next_space = findtext_char(string, " ", next_backslash + length_char(string[next_backslash]))
 	if(!next_space)
 		next_space = leng - next_backslash
 
 	if(!next_space)	//trailing bs
 		return string
 
-	var/base = next_backslash == 1 ? "" : copytext(string, 1, next_backslash)
-	var/macro = lowertext(copytext(string, next_backslash + length(string[next_backslash]), next_space))
-	var/rest = next_backslash > leng ? "" : copytext(string, next_space + length(string[next_space]))
+	var/base = next_backslash == 1 ? "" : copytext_char(string, 1, next_backslash)
+	var/macro = lowertext(copytext_char(string, next_backslash + length_char(string[next_backslash]), next_space))
+	var/rest = next_backslash > leng ? "" : copytext_char(string, next_space + length_char(string[next_space]))
 
 	//See https://secure.byond.com/docs/ref/info.html#/DM/text/macros
 	switch(macro)
@@ -349,15 +350,15 @@ GLOBAL_PROTECT(sanitize)
 
 /proc/noscript(text)
 	for(var/i in GLOB.sanitize)
-		text = replacetext(text, i, "")
+		text = replacetext_char(text, i, "")
 	return text
 
 /proc/sanitizediscord(text)
-	text = replacetext(text, "\improper", "")
-	text = replacetext(text, "\proper", "")
-	text = replacetext(text, "<@", "")
-	text = replacetext(text, "@here", "")
-	text = replacetext(text, "@everyone", "")
+	text = replacetext_char(text, "\improper", "")
+	text = replacetext_char(text, "\proper", "")
+	text = replacetext_char(text, "<@", "")
+	text = replacetext_char(text, "@here", "")
+	text = replacetext_char(text, "@everyone", "")
 	return text
 
 

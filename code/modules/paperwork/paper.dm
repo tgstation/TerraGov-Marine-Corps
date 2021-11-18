@@ -41,7 +41,7 @@
 
 	if(info != initial(info))
 		info = html_encode(info)
-		info = replacetext(info, "\n", "<BR>")
+		info = replacetext_char(info, "\n", "<BR>")
 		info = parsepencode(info)
 
 	update_icon()
@@ -60,10 +60,10 @@
 	if(in_range(user, src) || isobserver(user)) //You need to be next to the paper in order to read it.
 		if(!(isobserver(user) || ishuman(user) || issilicon(user)))
 			// Show scrambled paper if they aren't a ghost, human, or silicone.
-			usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
+			usr << browse("<HTML><meta charset='UTF-8'><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
 			onclose(user, "[name]")
 		else
-			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
+			user << browse("<HTML><meta charset='UTF-8'><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
 			onclose(user, "[name]")
 	else
 		. += span_notice("It is too far away to read.")
@@ -87,11 +87,11 @@
 	else //cyborg or AI not seeing through a camera
 		dist = get_dist(src, user)
 	if(dist < 2)
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
+		usr << browse("<HTML><meta charset='UTF-8'><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
 		onclose(usr, "[name]")
 	else
 		//Show scrambled paper
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
+		usr << browse("<HTML><meta charset='UTF-8'><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
 		onclose(usr, "[name]")
 
 
@@ -124,36 +124,36 @@
 	while(locid < 15)	//hey whoever decided a while(1) was a good idea here, i hate you
 		var/istart = 0
 		if(links)
-			istart = findtext(info_links, "<span class=\"paper_field\">", laststart)
+			istart = findtext_char(info_links, "<span class=\"paper_field\">", laststart)
 		else
-			istart = findtext(info, "<span class=\"paper_field\">", laststart)
+			istart = findtext_char(info, "<span class=\"paper_field\">", laststart)
 
 		if(istart == 0)
 			return	//No field found with matching id
 
 		if(links)
-			laststart = istart + length(info_links[istart])
+			laststart = istart + length_char(info_links[istart])
 		else
-			laststart = istart + length(info[istart])
+			laststart = istart + length_char(info[istart])
 		locid++
 		if(locid == id)
 			var/iend = 1
 			if(links)
-				iend = findtext(info_links, "</span>", istart)
+				iend = findtext_char(info_links, "</span>", istart)
 			else
-				iend = findtext(info, "</span>", istart)
+				iend = findtext_char(info, "</span>", istart)
 
 			//textindex = istart+26
 			textindex = iend
 			break
 
 	if(links)
-		var/before = copytext(info_links, 1, textindex)
-		var/after = copytext(info_links, textindex)
+		var/before = copytext_char(info_links, 1, textindex)
+		var/after = copytext_char(info_links, textindex)
 		info_links = before + text + after
 	else
-		var/before = copytext(info, 1, textindex)
-		var/after = copytext(info, textindex)
+		var/before = copytext_char(info, 1, textindex)
+		var/after = copytext_char(info, textindex)
 		info = before + text + after
 		updateinfolinks()
 
@@ -179,7 +179,7 @@
 	//Count the fields
 	var/laststart = 1
 	while(fields < 15)
-		var/i = findtext(t, "<span class=\"paper_field\">", laststart)
+		var/i = findtext_char(t, "<span class=\"paper_field\">", laststart)
 		if(i==0)
 			break
 		laststart = i+1
@@ -188,7 +188,7 @@
 
 
 /obj/item/paper/proc/openhelp(mob/user as mob)
-	user << browse({"<HTML><HEAD><TITLE>Pen Help</TITLE></HEAD>
+	user << browse({"<HTML><meta charset='UTF-8'><HEAD><TITLE>Pen Help</TITLE></HEAD>
 	<BODY>
 		<b><center>Crayon&Pen commands</center></b><br>
 		<br>
@@ -258,7 +258,7 @@
 		if(src.loc != usr && !src.Adjacent(usr) && !((istype(src.loc, /obj/item/clipboard) || istype(src.loc, /obj/item/folder)) && (src.loc.loc == usr || src.loc.Adjacent(usr)) ) )
 			return
 
-		t = replacetext(t, "\n", "<BR>")
+		t = replacetext_char(t, "\n", "<BR>")
 		t = parsepencode(t, i, usr, iscrayon) // Encode everything from pencode to html
 
 		if(id!="end")
@@ -267,7 +267,7 @@
 			info += t // Oh, he wants to edit to the end of the file, let him.
 			updateinfolinks()
 
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]") // Update the window
+		usr << browse("<HTML><meta charset='UTF-8'><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]") // Update the window
 
 		playsound(loc, pick('sound/items/write1.ogg','sound/items/write2.ogg'), 15, 1)
 
@@ -298,7 +298,7 @@
 		user.put_in_hands(B)
 
 	else if(istype(I, /obj/item/tool/pen) || istype(I, /obj/item/toy/crayon))
-		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]")
+		user << browse("<HTML><meta charset='UTF-8'><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]")
 
 	else if(istype(I, /obj/item/tool/stamp))
 		if((!in_range(src, user) && loc != user && !(istype(loc, /obj/item/clipboard)) && loc.loc != user && user.get_active_held_item() != I))

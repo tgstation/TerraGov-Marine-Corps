@@ -64,8 +64,8 @@
 				else			//no toner? shitty copies for you!
 					c.info = "<font color = #808080>"
 				var/copied = copy.info
-				copied = replacetext(copied, "<font face='Verdana' color=", "<font face='Verdana' nocolor=")	//state of the art techniques in action
-				copied = replacetext(copied, "<font face='Comic Sans MS' color=", "<font face='Comic Sans MS' nocolor=")	//This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.
+				copied = replacetext_char(copied, "<font face='Verdana' color=", "<font face='Verdana' nocolor=")	//state of the art techniques in action
+				copied = replacetext_char(copied, "<font face='Comic Sans MS' color=", "<font face='Comic Sans MS' nocolor=")	//This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.
 				c.info += copied
 				c.info += "</font>"
 				c.name = copy.name

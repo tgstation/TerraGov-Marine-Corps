@@ -87,7 +87,7 @@ GLOBAL_VAR(restart_counter)
 		if(GLOB.round_id)
 			GLOB.log_directory += "[GLOB.round_id]"
 		else
-			var/timestamp = replacetext(time_stamp(), ":", ".")
+			var/timestamp = replacetext_char(time_stamp(), ":", ".")
 			GLOB.log_directory += "[timestamp]"
 	else
 		GLOB.log_directory = "data/logs/[override_dir]"
@@ -149,7 +149,7 @@ GLOBAL_VAR(restart_counter)
 		return
 
 	var/list/filtering_whitelist = CONFIG_GET(keyed_list/topic_filtering_whitelist)
-	var/host = splittext(addr, ":")
+	var/host = splittext_char(addr, ":")
 	if(!filtering_whitelist[host[1]]) // We only ever check the host, not the port (if provided)
 		if(length(T) >= MAX_TOPIC_LEN)
 			log_admin_private("[addr] banned from topic calls for a round for too long status message")

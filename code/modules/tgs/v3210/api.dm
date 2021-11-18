@@ -28,7 +28,7 @@
 
 #define SERVICE_RETURN_SUCCESS "SUCCESS"
 
-#define TGS_FILE2LIST(filename) (splittext(trim_left(trim_right(file2text(filename))), "\n"))
+#define TGS_FILE2LIST(filename) (splittext_char(trim_left(trim_right(file2text(filename))), "\n"))
 
 /datum/tgs_api/v3210
 	var/reboot_mode = REBOOT_MODE_NORMAL
@@ -44,15 +44,15 @@
 	return new /datum/tgs_version("3.2.1.3")
 
 /datum/tgs_api/v3210/proc/trim_left(text)
-	for (var/i = 1 to length(text))
-		if (text2ascii(text, i) > 32)
-			return copytext(text, i)
+	for (var/i = 1 to length_char(text))
+		if (text2ascii_char(text, i) > 32)
+			return copytext_char(text, i)
 	return ""
 
 /datum/tgs_api/v3210/proc/trim_right(text)
-	for (var/i = length(text), i > 0, i--)
-		if (text2ascii(text, i) > 32)
-			return copytext(text, 1, i + 1)
+	for (var/i = length_char(text), i > 0, i--)
+		if (text2ascii_char(text, i) > 32)
+			return copytext_char(text, 1, i + 1)
 	return ""
 
 /datum/tgs_api/v3210/OnWorldNew(minimum_required_security_level)
@@ -65,7 +65,7 @@
 
 	var/list/logs = TGS_FILE2LIST(".git/logs/HEAD")
 	if(logs.len)
-		logs = splittext(logs[logs.len], " ")
+		logs = splittext_char(logs[logs.len], " ")
 		if (logs.len >= 2)
 			commit = logs[2]
 		else
@@ -73,7 +73,7 @@
 
 	logs = TGS_FILE2LIST(".git/logs/refs/remotes/origin/master")
 	if(logs.len)
-		logs = splittext(logs[logs.len], " ")
+		logs = splittext_char(logs[logs.len], " ")
 		if (logs.len >= 2)
 			originmastercommit = logs[2]
 		else

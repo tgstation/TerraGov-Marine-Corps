@@ -380,7 +380,7 @@
 	.["all_weapons"] = list()
 	for(var/i in equipments)
 		var/obj/structure/dropship_equipment/weapon/weapon = i
-		.["all_weapons"] += list(list("name"= sanitize(copytext(weapon.name,1,MAX_MESSAGE_LEN)), "ammo" = weapon?.ammo_equipped?.ammo_count, "eqp_tag" = element_nbr))
+		.["all_weapons"] += list(list("name"= sanitize(copytext_char(weapon.name,1,MAX_MESSAGE_LEN)), "ammo" = weapon?.ammo_equipped?.ammo_count, "eqp_tag" = element_nbr))
 		if(weapon == active_weapon)
 			.["active_weapon_tag"] = element_nbr
 		element_nbr++
@@ -390,7 +390,7 @@
 	.["active_weapon_max_ammo"] = null
 	.["active_weapon_ammo_name"] =  null
 	if(active_weapon)
-		.["active_weapon_name"] = sanitize(copytext(active_weapon?.name,1,MAX_MESSAGE_LEN))
+		.["active_weapon_name"] = sanitize(copytext_char(active_weapon?.name,1,MAX_MESSAGE_LEN))
 		if(active_weapon.ammo_equipped)
 			.["active_weapon_ammo"] = active_weapon.ammo_equipped.ammo_count
 			.["active_weapon_max_ammo"] = active_weapon.ammo_equipped.max_ammo_count

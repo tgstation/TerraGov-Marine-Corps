@@ -1,4 +1,4 @@
-/// CDN Webroot asset transport. 
+/// CDN Webroot asset transport.
 /datum/asset_transport/webroot
 	name = "CDN Webroot asset transport"
 
@@ -43,10 +43,10 @@
 	return "[url][get_asset_suffex(asset_cache_item)]"
 
 /datum/asset_transport/webroot/proc/get_asset_suffex(datum/asset_cache_item/asset_cache_item)
-	var/base = "[copytext(asset_cache_item.hash, 1, 3)]/"
+	var/base = "[copytext_char(asset_cache_item.hash, 1, 3)]/"
 	var/filename = "asset.[asset_cache_item.hash][asset_cache_item.ext]"
 	if (length(asset_cache_item.namespace))
-		base = "namespaces/[copytext(asset_cache_item.namespace, 1, 3)]/[asset_cache_item.namespace]/"
+		base = "namespaces/[copytext_char(asset_cache_item.namespace, 1, 3)]/[asset_cache_item.namespace]/"
 		if (!asset_cache_item.namespace_parent)
 			filename = "[asset_cache_item.name]"
 	return base + filename
@@ -59,7 +59,7 @@
 	if (!islist(asset_list))
 		asset_list = list(asset_list)
 	for (var/asset_name in asset_list)
-		var/datum/asset_cache_item/ACI = asset_list[asset_name] 
+		var/datum/asset_cache_item/ACI = asset_list[asset_name]
 		if (!istype(ACI))
 			ACI = SSassets.cache[asset_name]
 		if (!ACI)
@@ -69,7 +69,7 @@
 			legacy_assets[asset_name] = ACI
 	if (length(legacy_assets))
 		. = ..(client, legacy_assets)
-	
+
 
 /// webroot slow asset sending - does nothing.
 /datum/asset_transport/webroot/send_assets_slow(client/client, list/files, filerate)

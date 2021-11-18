@@ -22,7 +22,7 @@
 
 
 /datum/tgs_chat_command/ahelp/Run(datum/tgs_chat_user/sender, params)
-	var/list/all_params = splittext(params, " ")
+	var/list/all_params = splittext_char(params, " ")
 	if(length(all_params) < 2)
 		return "Insufficient parameters"
 	var/target = all_params[1]
@@ -80,7 +80,7 @@
 	var/list/text_res = results.Copy(1, 3)
 	var/list/refs = results[4]
 	var/list/names = results[5]
-	. = "[text_res.Join("\n")][length(refs) ? "\nRefs: [refs.Join(" ")]" : ""][length(names) ? "\nText: [replacetext(names.Join(" "), "<br>", "")]" : ""]"
+	. = "[text_res.Join("\n")][length(refs) ? "\nRefs: [refs.Join(" ")]" : ""][length(names) ? "\nText: [replacetext_char(names.Join(" "), "<br>", "")]" : ""]"
 
 
 /datum/tgs_chat_command/reload_admins

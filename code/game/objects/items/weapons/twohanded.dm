@@ -54,9 +54,9 @@
 
 	toggle_wielded(user, FALSE)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNWIELD, user)
-	var/sf = findtext(name, " (Wielded)", -10) // 10 == length(" (Wielded)")
+	var/sf = findtext_char(name, " (Wielded)", -10) // 10 == length(" (Wielded)")
 	if(sf)
-		name = copytext(name, 1, sf)
+		name = copytext_char(name, 1, sf)
 	else
 		name = "[initial(name)]"
 	update_item_state()

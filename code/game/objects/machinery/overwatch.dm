@@ -605,7 +605,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		if(E.fields["name"] == wanted_marine.real_name)
 			for (var/datum/data/record/R in GLOB.datacore.security)
 				if (R.fields["id"] == E.fields["id"])
-					if(!findtext(R.fields["ma_crim"],"Insubordination."))
+					if(!findtext_char(R.fields["ma_crim"],"Insubordination."))
 						R.fields["criminal"] = "*Arrest*"
 						if(R.fields["ma_crim"] == "None")
 							R.fields["ma_crim"]	= "Insubordination."

@@ -41,7 +41,7 @@
 	name_part1 = pick("the Automatic ", "Farmer ", "Lord ", "Professor ", "the Cuban ", "the Evil ", "the Dread King ", "the Space ", "Lord ", "the Great ", "Duke ", "General ")
 	name_part2 = pick("Melonoid", "Murdertron", "Sorcerer", "Ruin", "Jeff", "Ectoplasm", "Crushulon", "Uhangoid", "Vhakoid", "Peteoid", "slime", "Griefer", "ERPer", "Lizard Man", "Unicorn")
 
-	enemy_name = replacetext((name_part1 + name_part2), "the ", "")
+	enemy_name = replacetext_char((name_part1 + name_part2), "the ", "")
 	name = (name_action + name_part1 + name_part2)
 
 

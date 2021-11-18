@@ -307,7 +307,7 @@
 		var/datum/verbs/menu/topmenu = thing
 		var/topmenuname = "[topmenu]"
 		if(topmenuname == "[topmenu.type]")
-			var/list/tree = splittext(topmenuname, "/")
+			var/list/tree = splittext_char(topmenuname, "/")
 			topmenuname = tree[length(tree)]
 		winset(src, "[topmenu.type]", "parent=menu;name=[url_encode(topmenuname)]")
 		var/list/entries = topmenu.Generate_list(src)
@@ -564,7 +564,7 @@
 			log_access(reject_message)
 			message_admins(span_adminnotice("[reject_message]"))
 			var/message = CONFIG_GET(string/panic_bunker_message)
-			message = replacetext(message, "%minutes%", living_recs)
+			message = replacetext_char(message, "%minutes%", living_recs)
 			to_chat(src, message)
 			var/list/connectiontopic_a = params2list(connectiontopic)
 			var/list/panic_addr = CONFIG_GET(string/panic_server_address)
@@ -652,7 +652,7 @@
 	var/F = file2text(http["CONTENT"])
 	if(F)
 		var/regex/R = regex("joined = \"(\\d{4}-\\d{2}-\\d{2})\"")
-		if(R.Find(F))
+		if(R.Find_char(F))
 			. = R.group[1]
 		else
 			CRASH("Age check regex failed for [src.ckey]")
@@ -678,7 +678,7 @@
 		var/F = file2text(http["CONTENT"])
 		if(F)
 			var/regex/R = regex("\\tkey = \"(.+)\"")
-			if(R.Find(F))
+			if(R.Find_char(F))
 				var/web_key = R.group[1]
 				var/datum/db_query/query_update_byond_key = SSdbcore.NewQuery(
 					"UPDATE [format_table_name("player")] SET byond_key = :byond_key WHERE ckey = :ckey",

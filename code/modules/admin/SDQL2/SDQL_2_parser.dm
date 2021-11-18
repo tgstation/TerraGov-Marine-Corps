@@ -591,8 +591,8 @@
 	if(token(i) == "null")
 		node += "null"
 		i++
-	else if(lowertext(copytext(token(i), 1, 3)) == "0x" && isnum(hex2num(copytext(token(i), 3))))//3 == length("0x") + 1
-		node += hex2num(copytext(token(i), 3))
+	else if(lowertext(copytext_char(token(i), 1, 3)) == "0x" && isnum(hex2num(copytext_char(token(i), 3))))//3 == length("0x") + 1
+		node += hex2num(copytext_char(token(i), 3))
 		i++
 	else if(isnum(text2num(token(i))))
 		node += text2num(token(i))
@@ -602,7 +602,7 @@
 	else if(token(i)[1] == "\[") // Start a list.
 		i = array(i, node)
 
-	else if(copytext(token(i), 1, 3) == "@\[")//3 == length("@\[") + 1
+	else if(copytext_char(token(i), 1, 3) == "@\[")//3 == length("@\[") + 1
 		i = selectors_array(i, node)
 
 	else if(token(i)[1] == "/")

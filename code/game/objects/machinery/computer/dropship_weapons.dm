@@ -36,7 +36,7 @@
 	var/element_nbr = 1
 	for(var/X in shuttle.equipments)
 		var/obj/structure/dropship_equipment/E = X
-		.["equipment_data"] += list(list("name"= sanitize(copytext(E.name,1,MAX_MESSAGE_LEN)), "eqp_tag" = element_nbr, "is_weapon" = (E.dropship_equipment_flags & IS_WEAPON), "is_interactable" = (E.dropship_equipment_flags & IS_INTERACTABLE)))
+		.["equipment_data"] += list(list("name"= sanitize(copytext_char(E.name,1,MAX_MESSAGE_LEN)), "eqp_tag" = element_nbr, "is_weapon" = (E.dropship_equipment_flags & IS_WEAPON), "is_interactable" = (E.dropship_equipment_flags & IS_INTERACTABLE)))
 		element_nbr++
 
 	.["selected_eqp_name"] = ""
@@ -45,10 +45,10 @@
 	.["selected_eqp_max_ammo_amt"] = 0
 	.["screen_mode"] = 0
 	if(selected_equipment)
-		.["selected_eqp_name"] = sanitize(copytext(selected_equipment.name,1,MAX_MESSAGE_LEN))
+		.["selected_eqp_name"] = sanitize(copytext_char(selected_equipment.name,1,MAX_MESSAGE_LEN))
 		.["selected_eqp"] = .["selected_eqp_name"]
 		if(selected_equipment.ammo_equipped)
-			.["selected_eqp_ammo_name"] = sanitize(copytext(selected_equipment.ammo_equipped.name,1,MAX_MESSAGE_LEN))
+			.["selected_eqp_ammo_name"] = sanitize(copytext_char(selected_equipment.ammo_equipped.name,1,MAX_MESSAGE_LEN))
 			.["selected_eqp_ammo_amt"] = selected_equipment.ammo_equipped.ammo_count
 			.["selected_eqp_max_ammo_amt"] = selected_equipment.ammo_equipped.max_ammo_count
 		.["screen_mode"] = selected_equipment.screen_mode

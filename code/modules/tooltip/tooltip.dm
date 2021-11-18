@@ -63,8 +63,8 @@ Notes:
 	showing = TRUE
 
 	// Strip macros from item names
-	title = replacetext(title, "\proper", "")
-	title = replacetext(title, "\improper", "")
+	title = replacetext_char(title, "\proper", "")
+	title = replacetext_char(title, "\improper", "")
 
 	if(!content && title)
 		content = title

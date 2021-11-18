@@ -2,10 +2,10 @@
 /mob/proc/emote(act, m_type, message, intentional = FALSE)
 	act = lowertext(act)
 	var/param = message
-	var/custom_param = findtext(act, " ")
+	var/custom_param = findtext_char(act, " ")
 	if(custom_param)
-		param = copytext(act, custom_param + length(act[custom_param]))
-		act = copytext(act, 1, custom_param)
+		param = copytext_char(act, custom_param + length_char(act[custom_param]))
+		act = copytext_char(act, 1, custom_param)
 
 	var/datum/emote/E
 	E = E.emote_list[act]

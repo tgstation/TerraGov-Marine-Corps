@@ -950,8 +950,8 @@ ColorTone(rgb, tone)
 	var/savefile/dummySave = new("tmp/dummySave.sav")
 	WRITE_FILE(dummySave["dummy"], icon)
 	var/iconData = dummySave.ExportText("dummy")
-	var/list/partial = splittext(iconData, "{")
-	. = replacetext(copytext_char(partial[2], 3, -5), "\n", "")  //if cleanup fails we want to still return the correct base64
+	var/list/partial = splittext_char(iconData, "{")
+	. = replacetext_char(copytext_char(partial[2], 3, -5), "\n", "")  //if cleanup fails we want to still return the correct base64
 	dummySave.Unlock()
 	dummySave = null
 	fdel("tmp/dummySave.sav")  //if you get the idea to try and make this more optimized, make sure to still call unlock on the savefile after every write to unlock it.

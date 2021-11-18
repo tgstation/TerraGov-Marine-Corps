@@ -650,7 +650,7 @@
 			var/kb_name = params["name"]
 			if(!kb_name)
 				return
-			var/list/part = splittext(kb_name, ":")
+			var/list/part = splittext_char(kb_name, ":")
 			var/id = text2num(part[2])
 			var/datum/custom_emote/emote = custom_emotes[id]
 			var/new_message = params["sentence"]
@@ -663,7 +663,7 @@
 			var/kb_name = params["name"]
 			if(!kb_name)
 				return
-			var/list/part = splittext(kb_name, ":")
+			var/list/part = splittext_char(kb_name, ":")
 			var/id = text2num(part[2])
 			var/datum/custom_emote/emote = custom_emotes[id]
 			emote.spoken_emote = !emote.spoken_emote

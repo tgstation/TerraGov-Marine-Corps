@@ -62,7 +62,7 @@
 
 			for(var/obj/machinery/power/apc/A in L)
 
-				t += copytext(add_trailing("\The [A.area]", 30, " "), 1, 30)
+				t += copytext_char(add_trailing("\The [A.area]", 30, " "), 1, 30)
 				t += " [S[A.equipment+1]] [S[A.lighting+1]] [S[A.environ+1]] [add_leading(num2text(A.lastused_total), 6, " ")]  [A.cell ? "[add_leading(num2text(round(A.cell.percent())), 3, " ")]% [chg[A.charging+1]]" : "  N/C"]<BR>"
 				total_demand += A.lastused_total
 

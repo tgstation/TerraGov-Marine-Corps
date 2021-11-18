@@ -200,8 +200,8 @@
 /datum/species/human/prefs_name(datum/preferences/prefs)
 	. = ..()
 	if(CONFIG_GET(flag/humans_need_surnames))
-		var/firstspace = findtext(., " ")
-		if(!firstspace || firstspace == length(.))
+		var/firstspace = findtext_char(., " ")
+		if(!firstspace || firstspace == length_char(.))
 			. += " " + pick(SSstrings.get_list_from_file("names/last_name"))
 
 /datum/species/synthetic/prefs_name(datum/preferences/prefs)

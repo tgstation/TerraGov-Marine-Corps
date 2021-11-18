@@ -145,7 +145,7 @@ obj/structure/door_assembly
 	. = ..()
 
 	if(istype(I, /obj/item/tool/pen))
-		var/t = copytext(stripped_input(user, "Enter the name for the door.", name, created_name), 1, MAX_NAME_LEN)
+		var/t = copytext_char(stripped_input(user, "Enter the name for the door.", name, created_name), 1, MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, user) && loc != user)

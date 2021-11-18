@@ -58,7 +58,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 	if(chance >= 100)
 		return original_msg
 
-	var/list/words = splittext(original_msg," ")
+	var/list/words = splittext_char(original_msg," ")
 	var/list/new_words = list()
 
 	var/new_msg = ""
@@ -287,11 +287,11 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 
 /mob/living/proc/get_key(message)
 	var/prefix = message[1]
-	if(length(message) >= 2 && (prefix in GLOB.department_radio_prefixes))
+	if(length_char(message) >= 2 && (prefix in GLOB.department_radio_prefixes))
 		return lowertext(message[2])
 
 /mob/living/proc/get_message_language(message)
-	if(length(message) >= 2 && message[1] == ",")
+	if(length_char(message) >= 2 && message[1] == ",")
 		var/key = message[2]
 		for(var/ld in GLOB.all_languages)
 			var/datum/language/LD = ld
@@ -308,7 +308,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		message = slur(message)
 
 		// check for and apply punctuation
-	var/end = copytext(message, length(message))
+	var/end = copytext_char(message, length_char(message))
 	if(!(end in list("!", ".", "?", ":", "\"", "-")))
 		message += "."
 

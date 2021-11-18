@@ -232,7 +232,7 @@
 	var/element_nbr = 1
 	for(var/X in shuttle?.equipments)
 		var/obj/structure/dropship_equipment/E = X
-		.["equipment_data"] += list(list("name"= sanitize(copytext(E.name,1,MAX_MESSAGE_LEN)), "eqp_tag" = element_nbr, "is_weapon" = (E.dropship_equipment_flags & IS_WEAPON), "is_interactable" = (E.dropship_equipment_flags & IS_INTERACTABLE)))
+		.["equipment_data"] += list(list("name"= sanitize(copytext_char(E.name,1,MAX_MESSAGE_LEN)), "eqp_tag" = element_nbr, "is_weapon" = (E.dropship_equipment_flags & IS_WEAPON), "is_interactable" = (E.dropship_equipment_flags & IS_INTERACTABLE)))
 		element_nbr++
 
 

@@ -66,7 +66,7 @@
 	if(CHAT_FILTER_CHECK(new_bomb_message))
 		to_chat(user, "This warcry is prohibited from IC chat.")
 		return FALSE
-	if(findtext(new_bomb_message, regex(bad_warcries_regex, "i")))
+	if(findtext_char(new_bomb_message, regex(bad_warcries_regex, "i")))
 		to_chat(user, "This warcry is prohibited from IC chat.")
 		return FALSE
 	bomb_message = new_bomb_message

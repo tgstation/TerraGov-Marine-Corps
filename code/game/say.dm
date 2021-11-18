@@ -138,7 +138,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		return verb_yell
 	else if(language)
 		var/datum/language/L = GLOB.language_datum_instances[language]
-		return L.get_spoken_verb(copytext_char(input, length(input)))
+		return L.get_spoken_verb(copytext_char(input, length_char(input)))
 	else if(ending == "?")
 		return verb_ask
 	else if(ending == "!")

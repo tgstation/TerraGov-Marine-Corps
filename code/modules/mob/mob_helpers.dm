@@ -137,10 +137,10 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	if(probability <= 0)
 		return phrase
 	phrase = html_decode(phrase)
-	var/leng = length(phrase)
+	var/leng = length_char(phrase)
 	. = ""
 	var/char = ""
-	for(var/i = 1, i <= leng, i += length(char))
+	for(var/i = 1, i <= leng, i += length_char(char))
 		char = phrase[i]
 		if(char == " " || !prob(probability))
 			. += char
@@ -153,11 +153,11 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
  */
 /proc/slur(phrase)
 	phrase = html_decode(phrase)
-	var/leng = length(phrase)
+	var/leng = length_char(phrase)
 	. = ""
 	var/newletter = ""
 	var/rawchar = ""
-	for(var/i = 1, i <= leng, i += length(rawchar))
+	for(var/i = 1, i <= leng, i += length_char(rawchar))
 		rawchar = newletter = phrase[i]
 		if(rand(1, 3) == 3)
 			var/lowerletter = lowertext(newletter)
@@ -184,11 +184,11 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 /// Makes you talk like you got cult stunned, which is slurring but with some dark messages
 /proc/cultslur(phrase) // Inflicted on victims of a stun talisman
 	phrase = html_decode(phrase)
-	var/leng = length(phrase)
+	var/leng = length_char(phrase)
 	. = ""
 	var/newletter = ""
 	var/rawchar = ""
-	for(var/i = 1, i <= leng, i += length(rawchar))
+	for(var/i = 1, i <= leng, i += length_char(rawchar))
 		rawchar = newletter = phrase[i]
 		if(rand(1, 2) == 2)
 			var/lowerletter = lowertext(newletter)
@@ -228,11 +228,11 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 ///Adds stuttering to the message passed in
 /proc/stutter(phrase)
 	phrase = html_decode(phrase)
-	var/leng = length(phrase)
+	var/leng = length_char(phrase)
 	. = ""
 	var/newletter = ""
 	var/rawchar
-	for(var/i = 1, i <= leng, i += length(rawchar))
+	for(var/i = 1, i <= leng, i += length_char(rawchar))
 		rawchar = newletter = phrase[i]
 		if(prob(80) && !(lowertext(newletter) in list("a", "e", "i", "o", "u", " ")))
 			if(prob(10))
@@ -257,8 +257,8 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	. = ""
 	var/rawchar = ""
 	var/letter = ""
-	var/lentext = length(text)
-	for(var/i = 1, i <= lentext, i += length(rawchar))
+	var/lentext = length_char(text)
+	for(var/i = 1, i <= lentext, i += length_char(rawchar))
 		rawchar = letter = text[i]
 		if(prob(chance))
 			if(replace_characters)

@@ -126,8 +126,8 @@
 			/mob = "M"
 		)
 		for (var/tn in TYPES_SHORTCUTS)
-			if(copytext(typename, 1, length("[tn]/") + 1) == "[tn]/" /*findtextEx(typename,"[tn]/",1,2)*/ )
-				typename = TYPES_SHORTCUTS[tn] + copytext(typename, length("[tn]/"))
+			if(copytext_char(typename, 1, length_char("[tn]/") + 1) == "[tn]/" /*findtextEx_char(typename,"[tn]/",1,2)*/ )
+				typename = TYPES_SHORTCUTS[tn] + copytext_char(typename, length_char("[tn]/"))
 				break
 		.[typename] = type
 
@@ -150,7 +150,7 @@
 	var/list/matches = new
 	for(var/key in L)
 		var/value = L[key]
-		if(findtext("[key]", filter) || findtext("[value]", filter))
+		if(findtext_char("[key]", filter) || findtext_char("[value]", filter))
 			matches[key] = value
 	return matches
 
@@ -202,7 +202,7 @@
 			src << browse_rsc(sprite, "vv[hash].png")
 
 	title = "[D] ([REF(D)]) = [type]"
-	var/formatted_type = replacetext("[type]", "/", "<wbr>/")
+	var/formatted_type = replacetext_char("[type]", "/", "<wbr>/")
 
 	var/sprite_text
 	if(sprite)
@@ -292,7 +292,7 @@
 				variable_html += D.vv_get_var(V)
 
 	var/html = {"
-<html>
+<html><meta charset='UTF-8'>
 	<head>
 		<title>[title]</title>
 		<style>
