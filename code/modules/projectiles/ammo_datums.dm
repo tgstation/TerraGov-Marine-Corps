@@ -1847,6 +1847,13 @@ datum/ammo/bullet/revolver/tp44
 	damage = 30
 	flags_ammo_behavior = AMMO_XENO
 
+/datum/ammo/xeno/acid/auto
+	name = "acid spatter"
+	damage = 10
+	flags_ammo_behavior = AMMO_XENO
+	spit_cost = 25
+	added_spit_delay = 0
+
 /datum/ammo/xeno/acid/passthrough
 	name = "acid spittle"
 	damage = 30
