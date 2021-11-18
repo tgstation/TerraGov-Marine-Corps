@@ -61,7 +61,6 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.face_atom(victim)
 	owner_xeno.visible_message(span_danger("[owner_xeno] starts to devour [victim]!"), span_danger("We start to devour [victim]!"), null, 5)
-	succeed_activate()
 	var/channel = SSsounds.random_available_channel()
 	playsound(owner_xeno, 'sound/vore/struggle.ogg', 40, channel = channel)
 	if(!do_after(owner_xeno, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = owner_xeno.health))))
@@ -124,41 +123,33 @@
 			to_chat(owner_xeno, span_xenowarning("No need, we feel sated for now..."))
 		return FALSE
 
-/datum/action/xeno_action/activable/drain/use_ability(mob/living/carbon/target)
+/datum/action/xeno_action/activable/drain/use_ability(mob/living/carbon/human/target_human)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(target.stat == DEAD)
-		var/mob/living/carbon/human/target_human = target
+	if(target_human.stat == DEAD)
 		while(owner_xeno.health < owner_xeno.maxHealth && do_after(owner_xeno, 2 SECONDS, TRUE, target_human, BUSY_ICON_HOSTILE))
 			if(target_human.blood_volume < GORGER_REJUVENATE_BLOOD_DRAIN)
 				to_chat(owner, span_notice("Our meal has no blood... How sad!"))
 				return
 			owner_xeno.heal_wounds(2.2, TRUE)
 			owner_xeno.adjust_sunder(-0.5)
-			target.blood_volume -= GORGER_REJUVENATE_BLOOD_DRAIN
+			target_human.blood_volume -= GORGER_REJUVENATE_BLOOD_DRAIN
 		to_chat(owner_xeno, span_notice("We feel fully restored."))
 		return
-	owner_xeno.face_atom(target)
+	owner_xeno.face_atom(target_human)
 	owner_xeno.emote("roar")
-	target.drop_all_held_items()
-	owner_xeno.do_attack_animation(target, ATTACK_EFFECT_REDSTAB)
-	owner_xeno.visible_message(target, span_danger("The [owner_xeno] stabs its tail into [target]!"))
-	playsound(target, "alien_claw_flesh", 25, TRUE)
-	target.emote("scream")
-	target.apply_damage(damage = 20, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE)
-	target.ParalyzeNoChain(0.25 SECONDS)
-	target.blur_eyes(1)
+	target_human.drop_all_held_items()
+	owner_xeno.do_attack_animation(target_human, ATTACK_EFFECT_REDSTAB)
+	owner_xeno.visible_message(target_human, span_danger("The [owner_xeno] stabs its tail into [target_human]!"))
+	playsound(target_human, "alien_claw_flesh", 25, TRUE)
+	target_human.emote("scream")
+	target_human.apply_damage(damage = 20, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE)
+	target_human.ParalyzeNoChain(0.25 SECONDS)
+	target_human.blur_eyes(1)
 	owner_xeno.gain_plasma(owner_xeno.xeno_caste.drain_plasma_gain)
-	succeed_activate()
 	add_cooldown()
 
 /datum/action/xeno_action/activable/drain/ai_should_use(atom/target)
-	if(!ishuman(target))
-		return FALSE
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	// no draining for plasma when full-ish plasma
-	if(owner_xeno.xeno_caste.plasma_max - owner_xeno.plasma_stored < owner_xeno.xeno_caste.drain_plasma_gain)
-		return FALSE
-	return can_use_ability(target, TRUE) ? TRUE : ..()
+	return can_use_ability(target, TRUE)
 
 #define REJUVENATE_ALLY "rejuvenate_ally_cooldown"
 
@@ -211,13 +202,13 @@
 		owner_xeno.apply_status_effect(/datum/status_effect/xeno_rejuvenate, GORGER_REJUVENATE_SELF_DURATION)
 		to_chat(owner_xeno, span_notice("We tap into our reserves for nourishment."))
 		add_cooldown()
-	else
-		owner_xeno.use_plasma(GORGER_REJUVENATE_ALLY_COST)
-		TIMER_COOLDOWN_START(owner_xeno, REJUVENATE_ALLY, GORGER_REJUVENATE_ALLY_COOLDOWN)
-		var/mob/living/carbon/xenomorph/target_xeno = target
-		target_xeno.adjustBruteLoss(-target_xeno.maxHealth * GORGER_REJUVENATE_ALLY_PERCENTAGE)
-		target_xeno.adjustFireLoss(-target_xeno.maxHealth * GORGER_REJUVENATE_ALLY_PERCENTAGE)
-	succeed_activate()
+		return
+
+	owner_xeno.use_plasma(GORGER_REJUVENATE_ALLY_COST)
+	TIMER_COOLDOWN_START(owner_xeno, REJUVENATE_ALLY, GORGER_REJUVENATE_ALLY_COOLDOWN)
+	var/mob/living/carbon/xenomorph/target_xeno = target
+	target_xeno.adjustBruteLoss(-target_xeno.maxHealth * GORGER_REJUVENATE_ALLY_PERCENTAGE)
+	target_xeno.adjustFireLoss(-target_xeno.maxHealth * GORGER_REJUVENATE_ALLY_PERCENTAGE)
 
 /datum/action/xeno_action/activable/rejuvenate/ai_should_use(atom/target)
 	// no healing non-xeno
@@ -229,7 +220,7 @@
 	// no overhealing
 	if(target_xeno.health > target_xeno.maxHealth * GORGER_REJUVENATE_ALLY_PERCENTAGE)
 		return FALSE
-	return can_use_ability(target, TRUE) ? TRUE : ..()
+	return can_use_ability(target, TRUE)
 
 #undef REJUVENATE_ALLY
 
@@ -251,17 +242,17 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_CARNAGE, 20 SECONDS, owner_xeno.xeno_caste.carnage_plasma_gain)
 	add_cooldown()
-	succeed_activate()
 
 /datum/action/xeno_action/activable/carnage/ai_should_use(atom/target)
+	if(!iscarbon(target))
+		return FALSE
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(owner_xeno.plasma_stored > owner_xeno.xeno_caste.plasma_max * 0.8 && owner_xeno.health > owner_xeno.maxHealth * 0.9)
 		return FALSE
 	// nothing gained by slashing allies
 	if(target.get_xeno_hivenumber() == owner_xeno.get_xeno_hivenumber())
 		return FALSE
-
-	return can_use_ability(target) ? TRUE : ..()
+	return can_use_ability(target, TRUE)
 
 // ***************************************
 // *********** Feast
@@ -301,7 +292,6 @@
 	owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_FEAST, GORGER_FEAST_DURATION, owner_xeno.xeno_caste.feast_plasma_drain)
 	COOLDOWN_START(src, misclick_prevention, 2 SECONDS)
 	add_cooldown()
-	succeed_activate()
 
 /datum/action/xeno_action/activable/feast/ai_should_use(atom/target)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
@@ -314,5 +304,4 @@
 	// should use the ability when there is enough resource for the buff to tick a moderate amount of times
 	if(owner_xeno.plasma_stored / owner_xeno.xeno_caste.feast_plasma_drain < 7)
 		return FALSE
-
-	return can_use_ability(target) ? TRUE : ..()
+	return can_use_ability(target, TRUE)
