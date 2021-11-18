@@ -93,11 +93,11 @@
 /datum/song/proc/ParseSong(text)
 	set waitfor = FALSE
 	//split into lines
-	lines = splittext_char(text, "\n")
+	lines = splittext(text, "\n")
 	if(lines.len)
 		var/bpm_string = "BPM: "
-		if(findtext_char(lines[1], bpm_string, 1, length_char(bpm_string) + 1))
-			var/divisor = text2num(copytext_char(lines[1], length_char(bpm_string) + 1)) || 120 // default
+		if(findtext(lines[1], bpm_string, 1, length(bpm_string) + 1))
+			var/divisor = text2num(copytext(lines[1], length(bpm_string) + 1)) || 120 // default
 			tempo = sanitize_tempo(600 / round(divisor, 1))
 			lines.Cut(1, 2)
 		else
@@ -107,7 +107,7 @@
 			lines.Cut(MUSIC_MAXLINES + 1)
 		var/linenum = 1
 		for(var/l in lines)
-			if(length_char(l) > MUSIC_MAXLINECHARS)
+			if(length(l) > MUSIC_MAXLINECHARS)
 				to_chat(usr, "Line [linenum] too long!")
 				lines.Remove(l)
 			else
@@ -137,11 +137,11 @@
 			if(!in_range(parent, usr))
 				return
 
-			if(length_char(t) >= MUSIC_MAXLINES * MUSIC_MAXLINECHARS)
+			if(length(t) >= MUSIC_MAXLINES * MUSIC_MAXLINECHARS)
 				var/cont = input(usr, "Your message is too long! Would you like to continue editing it?", "", "yes") in list("yes", "no")
 				if(cont == "no")
 					break
-		while(length_char(t) > MUSIC_MAXLINES * MUSIC_MAXLINECHARS)
+		while(length(t) > MUSIC_MAXLINES * MUSIC_MAXLINECHARS)
 		ParseSong(t)
 
 	else if(href_list["help"])
@@ -171,8 +171,8 @@
 			return
 		if(lines.len > MUSIC_MAXLINES)
 			return
-		if(length_char(newline) > MUSIC_MAXLINECHARS)
-			newline = copytext_char(newline, 1, MUSIC_MAXLINECHARS)
+		if(length(newline) > MUSIC_MAXLINECHARS)
+			newline = copytext(newline, 1, MUSIC_MAXLINECHARS)
 		lines.Add(newline)
 
 	else if(href_list["deleteline"])
