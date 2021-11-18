@@ -109,21 +109,14 @@
 				take_damage(1, prob(30))
 
 	//Process natural and assisted healing
-	var/peridaxon = owner.reagents.has_reagent(/datum/reagent/medicine/peridaxon)
-	var/inaprovaline = owner.reagents.has_reagent(/datum/reagent/medicine/inaprovaline)
-	var/organ_heal_chance = 0
-	var/organ_hurt_chance = 0
-	organ_heal_chance = 20 + (20*peridaxon) + (10*inaprovaline) - (2*damage)
-	if(prob(organ_heal_chance))
-		heal_organ_damage(0.2)
-
+	if(prob(20 + (20*(owner.reagents.has_reagent(/datum/reagent/medicine/peridaxon, 0.05))) + (10*(owner.reagents.has_reagent(/datum/reagent/medicine/inaprovaline, 0.05))) - (2*damage)))
+		heal_organ_damage(0.2) //20% base chance, +20% if inaprov, +10% if peridaxon, -2% per point of damage
 	//And process natural hurting
 	if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
 		return
 	if(is_broken())
-		organ_hurt_chance = (2*damage) - (40*inaprovaline)
-		if(prob(organ_hurt_chance))
-			take_damage(0.2)
+		if(prob((2*damage) - (40*(owner.reagents.has_reagent(/datum/reagent/medicine/inaprovaline, 0.05)))))
+			take_damage(0.2) //60% base chance +2% per point of damage over 30, -40% if inaprov is in you, blocked fully if peridaxon is in you.
 
 /datum/internal_organ/proc/take_damage(amount, silent= FALSE)
 	if(SSticker.mode?.flags_round_type & MODE_NO_PERMANENT_WOUNDS)
@@ -234,7 +227,7 @@
 			owner.drip(10)
 		if(prob(50))
 			owner.emote("me", 1, "gasps for air!")
-			owner.Losebreath(2 + (damage/30))
+			owner.Losebreath(1 + (damage/10))
 
 /datum/internal_organ/lungs/prosthetic
 	robotic = ORGAN_ROBOT
