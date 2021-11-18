@@ -70,12 +70,14 @@
 	plasma_gain_on_hit = plasma_gain
 	to_chat(owner, span_notice("We give into our thirst!"))
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/carnage_slash)
+	owner.add_filter(id, 5, rays_filter(size = 25, color = "#c50021", offset = 200, density = 50, y = 7))
 	return ..()
 
 /datum/status_effect/xeno_carnage/on_remove()
 	. = ..()
 	to_chat(owner, span_notice("Our bloodlust subsides..."))
 	UnregisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/carnage_slash)
+	owner.remove_filter(id)
 
 ///Handles logic to be performed for each attack during the duration of the buff
 /datum/status_effect/xeno_carnage/proc/carnage_slash(datum/source, mob/living/target, damage)
@@ -110,12 +112,16 @@
 	owner = new_owner
 	duration = set_duration
 	src.plasma_drain = plasma_drain
-	new_owner.overlay_fullscreen("xeno_feast", /obj/screen/fullscreen/bloodlust)
+	owner.overlay_fullscreen("xeno_feast", /obj/screen/fullscreen/bloodlust)
+	owner.add_filter("[id]2", 2, outline_filter(2, "#61132360"))
+	owner.add_filter("[id]1", 1, wave_filter(0.72, 0.24, 0.4, 0.5))
 	return ..()
 
 /datum/status_effect/xeno_feast/on_remove()
 	. = ..()
 	owner.clear_fullscreen("xeno_feast", 0.7 SECONDS)
+	owner.remove_filter("[id]2")
+	owner.remove_filter("[id]1")
 
 /datum/status_effect/xeno_feast/tick()
 	var/mob/living/carbon/xenomorph/X = owner

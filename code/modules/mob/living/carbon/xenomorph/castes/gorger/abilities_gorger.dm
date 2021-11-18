@@ -249,16 +249,13 @@
 /datum/action/xeno_action/activable/carnage/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	owner_xeno.apply_status_effect(/datum/status_effect/xeno_carnage, 20 SECONDS, owner_xeno.xeno_caste.carnage_plasma_gain)
+	owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_CARNAGE, 20 SECONDS, owner_xeno.xeno_caste.carnage_plasma_gain)
 	add_cooldown()
 	succeed_activate()
 
 /datum/action/xeno_action/activable/carnage/ai_should_use(atom/target)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(owner_xeno.plasma_stored > owner_xeno.xeno_caste.plasma_max * 0.8)
-		// ability is primarily used for plasma gain, so should be used even at full health
-		if(owner_xeno.health > owner_xeno.maxHealth * 0.9)
-			return FALSE
+	if(owner_xeno.plasma_stored > owner_xeno.xeno_caste.plasma_max * 0.8 && owner_xeno.health > owner_xeno.maxHealth * 0.9)
 		return FALSE
 	// nothing gained by slashing allies
 	if(target.get_xeno_hivenumber() == owner_xeno.get_xeno_hivenumber())
@@ -301,7 +298,7 @@
 
 	owner_xeno.emote("roar")
 	owner_xeno.visible_message(owner_xeno, span_notice("[owner_xeno] begins to overflow with vitality!"))
-	owner_xeno.apply_status_effect(/datum/status_effect/xeno_feast, GORGER_FEAST_DURATION, owner_xeno.xeno_caste.feast_plasma_drain)
+	owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_FEAST, GORGER_FEAST_DURATION, owner_xeno.xeno_caste.feast_plasma_drain)
 	COOLDOWN_START(src, misclick_prevention, 2 SECONDS)
 	add_cooldown()
 	succeed_activate()
