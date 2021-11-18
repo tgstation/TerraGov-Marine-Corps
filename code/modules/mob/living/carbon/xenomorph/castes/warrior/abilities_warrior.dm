@@ -368,7 +368,7 @@
 
 /datum/action/xeno_action/activable/punch/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/warrior/X = owner
-	var/damage = X.xeno_caste.melee_damage
+	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
 	var/target_zone = check_zone(X.zone_selected)
 
 	if(X.empower())
