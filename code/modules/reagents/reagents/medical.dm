@@ -17,22 +17,19 @@
 	trait_flags = TACHYCARDIC
 
 /datum/reagent/medicine/inaprovaline/on_mob_add(mob/living/L, metabolism)
-	var/health_ratio = L.health / L.maxHealth
 	var/mob/living/carbon/human/H = L
 	if(TIMER_COOLDOWN_CHECK(L, name))
 		return
-	if(health_ratio < -0.5 && volume > 14) //If you are in crit, and someone injects at least 15u into you at once, you will heal 30% of your physical damage instantly.
+	if(L.health < H.health_threshold_crit && volume > 14) //If you are in crit, and someone injects at least 15u into you at once, you will heal 30% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
-		var/brute_loss = L.getBruteLoss()
-		var/fire_loss = L.getFireLoss()
-		L.adjustBruteLoss(-brute_loss * 0.30)
-		L.adjustFireLoss(-fire_loss * 0.30)
+		L.adjustBruteLoss(-L.getBruteLoss() * 0.30)
+		L.adjustFireLoss(-L.getFireLoss() * 0.30)
 		L.jitter(5)
-		for(var/datum/internal_organ/I in H.internal_organs)
+		for(var/datum/internal_organ/I AS in H.internal_organs)
 			if(I.damage)
-				if(I.damage < 15)
+				if(I.damage < 29)
 					return
-				I.heal_organ_damage((I.damage-15) *effect_str)
+				I.heal_organ_damage((I.damage-29) *effect_str)
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
 /datum/reagent/medicine/inaprovaline/on_mob_life(mob/living/L, metabolism)
@@ -468,18 +465,15 @@
 	scannable = FALSE
 
 /datum/reagent/medicine/neuraline/on_mob_add(mob/living/L, metabolism)
-	var/health_ratio = L.health / L.maxHealth
 	var/mob/living/carbon/human/H = L
 	if(TIMER_COOLDOWN_CHECK(L, name))
 		return
-	if(health_ratio < -0.5 && volume > 3) //If you are in crit, and someone injects at least 3u into you, you will heal 20% of your physical damage instantly.
+	if(L.health < H.health_threshold_crit && volume > 3) //If you are in crit, and someone injects at least 3u into you, you will heal 20% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
-		var/brute_loss = L.getBruteLoss()
-		var/fire_loss = L.getFireLoss()
-		L.adjustBruteLoss(-brute_loss * 0.20)
-		L.adjustFireLoss(-fire_loss * 0.20)
+		L.adjustBruteLoss(-L.getBruteLoss() * 0.20)
+		L.adjustFireLoss(-L.getFireLoss() * 0.20)
 		L.jitter(10)
-		for(var/datum/internal_organ/I in H.internal_organs)
+		for(var/datum/internal_organ/I AS in H.internal_organs)
 			if(I.damage)
 				if(I.damage < 29)
 					return
@@ -564,18 +558,15 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/russian_red/on_mob_add(mob/living/L, metabolism)
-	var/health_ratio = L.health / L.maxHealth
 	var/mob/living/carbon/human/H = L
 	if(TIMER_COOLDOWN_CHECK(L, name))
 		return
-	if(health_ratio < -0.5 && volume > 9) //If you are in crit, and someone injects at least 9u into you, you will heal 20% of your physical damage instantly.
+	if(L.health < H.health_threshold_crit && volume > 9) //If you are in crit, and someone injects at least 9u into you, you will heal 20% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
-		var/brute_loss = L.getBruteLoss()
-		var/fire_loss = L.getFireLoss()
-		L.adjustBruteLoss(-brute_loss * 0.20)
-		L.adjustFireLoss(-fire_loss * 0.20)
+		L.adjustBruteLoss(-L.getBruteLoss() * 0.20)
+		L.adjustFireLoss(-L.getFireLoss() * 0.20)
 		L.jitter(10)
-		for(var/datum/internal_organ/I in H.internal_organs)
+		for(var/datum/internal_organ/I AS in H.internal_organs)
 			if(I.damage)
 				if(I.damage < 29)
 					return
