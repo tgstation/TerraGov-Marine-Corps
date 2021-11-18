@@ -1163,7 +1163,6 @@
 
 /atom/movable/proc/on_hearing_sensitive_trait_loss()
 	SIGNAL_HANDLER
-
 	UnregisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_HEARING_SENSITIVE))
 	for(var/atom/movable/location as anything in get_nested_locs(src) + src)
 		LAZYREMOVEASSOC(location.important_recursive_contents, RECURSIVE_CONTENTS_HEARING_SENSITIVE, src)
