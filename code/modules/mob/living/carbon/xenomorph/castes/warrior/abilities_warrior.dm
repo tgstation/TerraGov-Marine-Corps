@@ -109,6 +109,7 @@
 	succeed_activate()
 	add_cooldown()
 	X.throw_at(get_step_towards(A, X), 6, 2, X)
+	X.give_combo()
 	return TRUE
 
 ///Check if we are close enough to lunge, and if yes, grab neck
@@ -170,7 +171,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/fling/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/warrior/X = owner
 	var/mob/living/victim = A
 	var/facing = get_dir(X, victim)
 	var/fling_distance = 4
@@ -189,17 +190,23 @@
 
 	var/turf/T = X.loc
 	var/turf/temp = X.loc
+	var/empowered = X.empower() //Should it knockdown everyone down its path ?
 
 	for (var/x in 1 to fling_distance)
 		temp = get_step(T, facing)
 		if (!temp)
 			break
+		if(empowered)
+			for(var/i in temp)
+				if(ishuman(i))
+					var/mob/living/carbon/human/pin = i //Bowling pins
+					pin.KnockdownNoChain(1 SECONDS)
 		T = temp
+
 	X.do_attack_animation(victim, ATTACK_EFFECT_DISARM2)
 	victim.throw_at(T, fling_distance, 1, X, 1)
 
 	shake_camera(victim, 2, 1)
-
 	succeed_activate()
 	add_cooldown()
 
@@ -258,7 +265,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/toss/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/warrior/X = owner
 	var/atom/movable/target = owner.pulling
 	var/fling_distance = 4
 	var/stagger_slow_stacks = 3
@@ -266,7 +273,6 @@
 	var/big_mob_message
 
 	X.face_atom(A)
-
 	GLOB.round_statistics.warrior_flings++ //I'm going to consider this a fling for the purpose of statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_flings")
 
@@ -291,10 +297,11 @@
 		victim.ParalyzeNoChain(stun_duration)
 		shake_camera(victim, 2, 1)
 
+	if(X.empower())
+		fling_distance *= 2
 	target.forceMove(get_turf(X)) //First force them into our space so we can toss them behind us without problems
 	X.do_attack_animation(target, ATTACK_EFFECT_DISARM2)
 	target.throw_at(get_turf(A), fling_distance, 1, X, 1)
-
 	X.visible_message(span_xenowarning("\The [X] throws [target] away[big_mob_message]!"), \
 	span_xenowarning("We throw [target] away[big_mob_message]!"))
 
@@ -360,10 +367,11 @@
 
 
 /datum/action/xeno_action/activable/punch/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
-	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
+	var/mob/living/carbon/xenomorph/warrior/X = owner
+	var/damage = X.xeno_caste.melee_damage
 	var/target_zone = check_zone(X.zone_selected)
 
+	if(X.empower())
 	if(!A.punch_act(X, damage, target_zone))
 		return fail_activate()
 
@@ -441,7 +449,7 @@
 	Shake(4, 4, 2 SECONDS)
 	return TRUE
 
-/mob/living/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone, push = TRUE, confuse = FALSE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
+/mob/living/punch_act(mob/living/carbon/xenomorph/warrior/X, damage, target_zone, push = TRUE, confuse = FALSE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
 	if(pulledby == X) //If we're being grappled by the Warrior punching us, it's gonna do extra damage and debuffs; combolicious
 		damage *= 2
 		slowdown_stacks *= 2
@@ -483,7 +491,6 @@
 		throw_at(T, 2, 1, X, 1) //Punch em away
 
 	apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
-
 	var/target_location_feedback = get_living_limb_descriptive_name(target_zone)
 	X.visible_message(span_xenodanger("\The [X] hits [src] in the [target_location_feedback] with a [punch_description] punch!"), \
 		span_xenodanger("We hit [src] in the [target_location_feedback] with a [punch_description] punch!"), visible_message_flags = COMBAT_MESSAGE)
@@ -516,23 +523,6 @@
 		return FALSE
 	return TRUE
 
-/datum/action/xeno_action/activable/punch/proc/add_to_combo(mob/living/target)
-	var/datum/action/xeno_action/activable/uppercut/uppercut_ability = owner.actions_by_path[/datum/action/xeno_action/activable/uppercut]
-	uppercut_ability.combo[REF(target)]++
-
-	if(uppercut_ability.combo[REF(target)] == WARRIOR_PERFECT_COMBO_THRESHOLD)
-		to_chat(target, span_highdanger("It looks like [owner] is predicting our movements, we should back off!"))
-
-	var/image/counter = image(null, target, null) //Visual clue for the warrior on how much combo each mob has
-	counter.maptext = MAPTEXT("[uppercut_ability.combo[REF(target)]]")
-	owner.client.images += counter
-
-	addtimer(CALLBACK(src,.proc/clear_counter, counter), WARRIOR_COMBO_FADEOUT_TIME)
-	addtimer(CALLBACK(uppercut_ability, /datum/action/xeno_action/activable/uppercut.proc/clear_combo, target, counter), WARRIOR_COMBO_FADEOUT_TIME, TIMER_OVERRIDE|TIMER_UNIQUE)
-
-/datum/action/xeno_action/activable/punch/proc/clear_counter(image/counter)
-	owner.client.images.Remove(counter)
-
 // ***************************************
 // *********** Jab
 // ***************************************
@@ -545,20 +535,17 @@
 	keybind_signal = COMSIG_XENOABILITY_JAB
 
 /datum/action/xeno_action/activable/punch/jab/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/warrior/X = owner
 	var/mob/living/carbon/human/target = A
 	var/target_zone = check_zone(X.zone_selected)
-	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier * 0.5 //50% of regular punch damage
+	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
 
-	if(!target.punch_act(X, damage, target_zone, push = FALSE, confuse = TRUE, punch_description = "precise", stagger_stacks = 6, slowdown_stacks = 6))
+	if(!target.punch_act(X, damage, target_zone, push = FALSE, confuse = FALSE, punch_description = "precise", stagger_stacks = 6, slowdown_stacks = 6))
 		return fail_activate()
-
+	if(X.empower())
+		target.adjust_blurriness(5)
 	GLOB.round_statistics.warrior_punches++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
-	var/datum/action/xeno_action/punch = X.actions_by_path[/datum/action/xeno_action/activable/punch/weak]
-	punch.clear_cooldown() //Clear punch cooldown
-	add_to_combo(target)
-
 	succeed_activate()
 	add_cooldown()
 
@@ -567,40 +554,6 @@
 	to_chat(X, span_xenodanger("We gather enough strength to jab again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
-
-// ***************************************
-// *********** Weak punch
-// ***************************************
-
-/datum/action/xeno_action/activable/punch/weak
-	mechanics_text = "Strike a target, weaker than a regular punch. Resets jab cooldown."
-	plasma_cost = 10
-
-/datum/action/xeno_action/activable/punch/weak/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
-	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier * 0.5
-	var/target_zone = check_zone(X.zone_selected)
-
-	if(isliving(A))
-		var/mob/living/target = A
-		if(!target.punch_act(X, damage, target_zone, push = FALSE,  punch_description = "swift")) //Doesn't push away so it's easier to combo with jab
-			return fail_activate()
-	else
-		if(!A.punch_act(X, damage, target_zone))
-			return fail_activate()
-
-	GLOB.round_statistics.warrior_punches++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
-
-	if(isliving(A))
-		var/mob/living/target = A
-		var/datum/action/xeno_action/jab = X.actions_by_path[/datum/action/xeno_action/activable/punch/jab]
-		jab.clear_cooldown()
-
-		add_to_combo(target)
-
-	succeed_activate()
-	add_cooldown()
 
 // ***************************************
 // *********** Uppercut
@@ -645,16 +598,8 @@
 
 	X.visible_message(span_xenodanger("\The [X] uppercuts [A]!"), \
 		span_xenodanger("We uppercut [A] with all our might!"), visible_message_flags = COMBAT_MESSAGE)
-
-	if(current_combo >= WARRIOR_WEAK_COMBO_THRESHOLD)
-		target.KnockdownNoChain(1 SECONDS)
-	if(current_combo >= WARRIOR_AVERAGE_COMBO_THRESHOLD)
-		target.ParalyzeNoChain(2 SECONDS)
-	if(current_combo >= WARRIOR_PERFECT_COMBO_THRESHOLD)
-		target.Sleeping(4 SECONDS, ignore_canstun = TRUE)
-		//Figure out a good animation
-		to_chat(X, span_highdanger("LIGHTS OUT."))
-		X.emote("roar")
+	to_chat(X, span_highdanger("LIGHTS OUT."))
+	X.emote("roar")
 
 	playsound(A, 'sound/weapons/punch2.ogg', 50)
 	clear_combo(A)
@@ -672,3 +617,9 @@
 
 /datum/action/xeno_action/activable/uppercut/proc/clear_combo(mob/living/target)
 	combo.Remove(REF(target))
+
+/datum/action/xeno_action/activable/proc/enhance_icon()
+	src.background_icon_state = "borders_center"
+
+/datum/action/xeno_action/activable/proc/clear_icon()
+	src.background_icon_state = "template"

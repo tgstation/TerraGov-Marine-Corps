@@ -653,9 +653,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Warrior defines
 
-#define WARRIOR_WEAK_COMBO_THRESHOLD 2
-#define WARRIOR_AVERAGE_COMBO_THRESHOLD 3
-#define WARRIOR_PERFECT_COMBO_THRESHOLD 4 //How many stacks of combo are needed to reach maximum effect
+#define WARRIOR_COMBO_THRESHOLD 2 //After how many abilities should warrior get an empowered cast (2 meaning the 3rd one is empowered)
 #define WARRIOR_COMBO_FADEOUT_TIME 5 SECONDS //How much time does it take for a combo to completely disappear
 
 //Larva defines
