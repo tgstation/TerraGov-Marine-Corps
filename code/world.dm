@@ -6,5 +6,6 @@
 	cache_lifespan = 0	//stops player uploaded stuff from being kept in the rsc past the current session
 	hub = "Exadv1.spacestation13"
 	fps = 20
+	name = "\[RU] SS220 TerraGov Marine Corps"
 
-#define RECOMMENDED_VERSION 511
+#define RECOMMENDED_VERSION 514
