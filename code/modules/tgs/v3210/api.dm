@@ -71,7 +71,7 @@
 		else
 			TGS_ERROR_LOG("Error parsing commit logs")
 
-	logs = TGS_FILE2LIST(".git/logs/refs/remotes/origin/master")
+	logs = TGS_FILE2LIST(".git/logs/refs/remotes/origin/master220")
 	if(logs.len)
 		logs = splittext_char(logs[logs.len], " ")
 		if (logs.len >= 2)
