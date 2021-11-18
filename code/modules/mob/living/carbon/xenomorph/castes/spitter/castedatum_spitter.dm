@@ -163,7 +163,7 @@
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 310
 
 	// *** Evolution *** //
 	upgrade_threshold = 1320
@@ -172,4 +172,5 @@
 	soft_armor = list("melee" = 25, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 35, "acid" = 20)
 
 	// *** Ranged Attack *** //
-	spit_delay = -0.2 SECONDS //The acid the spitter fires adds 0.5 Seconds to the delay, this allows the delay I want.
+	spit_delay = 0.3 SECONDS
+	spit_types = list(/datum/ammo/xeno/acid/auto)
