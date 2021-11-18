@@ -52,7 +52,7 @@
 	if(!map)
 		return
 
-	if(copytext("[map]", -4) != ".dmm")//4 == length(".dmm")
+	if(copytext_char("[map]", -4) != ".dmm")//4 == length(".dmm")
 		to_chat(usr, span_warning("Filename must end in '.dmm': [map]"))
 		return
 

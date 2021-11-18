@@ -64,9 +64,9 @@
 
 
 /mob/living/carbon/xenomorph/get_saymode(message, talk_key)
-	if(copytext(message, 1, 2) == ";")
+	if(copytext_char(message, 1, 2) == ";")
 		return SSradio.saymodes["a"]
-	else if(copytext(message, 1, 3) == ".a" || copytext(message, 1, 3) == ":a")
+	else if(copytext_char(message, 1, 3) == ".a" || copytext_char(message, 1, 3) == ":a")
 		return SSradio.saymodes["a"]
 	else
 		return SSradio.saymodes[talk_key]

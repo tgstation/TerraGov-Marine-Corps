@@ -925,7 +925,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/list/adminhelp_ignored_words = list("unknown", "the", "a", "an", "of", "monkey", "alien", "as", "i")
 
 	//explode the input msg into a list
-	var/list/msglist = splittext(msg, " ")
+	var/list/msglist = splittext_char(msg, " ")
 
 	//generate keywords lookup
 	var/list/surnames = list()
@@ -939,7 +939,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			indexing += M.mind.name
 
 		for(var/string in indexing)
-			var/list/L = splittext(string, " ")
+			var/list/L = splittext_char(string, " ")
 			var/surname_found = 0
 			//surnames
 			for(var/i = length(L), i >= 1, i--)
@@ -1000,7 +1000,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
  */
 /proc/check_admin_pings(msg, adminonly = FALSE)
 	//explode the input msg into a list
-	var/list/msglist = splittext(msg, " ")
+	var/list/msglist = splittext_char(msg, " ")
 	var/list/admins_to_ping = list()
 
 	var/i = 0
@@ -1008,7 +1008,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		i++
 		if(word[1] != "@")
 			continue
-		var/ckey_check = lowertext(copytext(word, 2))
+		var/ckey_check = lowertext(copytext_char(word, 2))
 		var/client/client_check = GLOB.directory[ckey_check]
 		if(client_check?.holder)
 			if(adminonly && (!(client_check.holder.rank.rights & R_ASAY)))

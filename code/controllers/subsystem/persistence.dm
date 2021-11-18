@@ -119,9 +119,9 @@ SUBSYSTEM_DEF(persistence)
 /datum/controller/subsystem/persistence/proc/seasons_info_message()
 	var/message = ""
 	for(var/season_entry in season_progress)
-		var/season_name = jointext(splittext("[season_entry]", "_"), " ")
-		var/season_name_first_letter = uppertext(copytext(season_name, 1, 2))
-		var/season_name_remainder = copytext(season_name, 2, length(season_name) + 1)
+		var/season_name = jointext(splittext_char("[season_entry]", "_"), " ")
+		var/season_name_first_letter = uppertext(copytext_char(season_name, 1, 2))
+		var/season_name_remainder = copytext_char(season_name, 2, length_char(season_name) + 1)
 		season_name = season_name_first_letter + season_name_remainder
 		message += span_seasons_announce("<b>[season_name]</b> - season [season_progress[season_entry][CURRENT_SEASON_NUMBER]]<br>")
 		message += span_season_additional_info("<b>Title:</b> [season_progress[season_entry][CURRENT_SEASON_NAME]]<br>")

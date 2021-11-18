@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `ckey` varchar(32) NOT NULL,
   `rank` varchar(32) NOT NULL,
   PRIMARY KEY (`ckey`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 -- Dumping structure for table feedback.admin_log
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `admin_log` (
   `target` varchar(32) NOT NULL,
   `log` varchar(1000) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 -- Dumping structure for table feedback.admin_ranks
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `admin_ranks` (
   `exclude_flags` smallint(5) unsigned NOT NULL,
   `can_edit_flags` smallint(5) unsigned NOT NULL,
   PRIMARY KEY (`rank`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 -- Dumping structure for table feedback.ban
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `ban` (
   KEY `idx_ban_isbanned` (`ckey`,`role`,`unbanned_datetime`,`expiration_time`),
   KEY `idx_ban_isbanned_details` (`ckey`,`ip`,`computerid`,`role`,`unbanned_datetime`,`expiration_time`),
   KEY `idx_ban_count` (`bantime`,`a_ckey`,`applies_to_admins`,`unbanned_datetime`,`expiration_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 -- Dumping structure for table feedback.connection_log
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `connection_log` (
   `ip` int(10) unsigned NOT NULL,
   `computerid` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 -- Dumping structure for table feedback.death
@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `death` (
   `last_words` varchar(255) DEFAULT NULL,
   `suicide` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 -- Dumping structure for table feedback.feedback
@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `feedback` (
   `key_type` enum('text','amount','tally','nested tally','associative') NOT NULL,
   `json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 -- Dumping structure for table feedback.messages
@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   KEY `idx_msg_ckey_time` (`targetckey`,`timestamp`,`deleted`),
   KEY `idx_msg_type_ckeys_time` (`type`,`targetckey`,`adminckey`,`timestamp`,`deleted`),
   KEY `idx_msg_type_ckey_time_odr` (`type`,`targetckey`,`timestamp`,`deleted`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 -- Dumping structure for table feedback.player
@@ -176,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `player` (
   PRIMARY KEY (`ckey`),
   KEY `idx_player_cid_ckey` (`computerid`,`ckey`),
   KEY `idx_player_ip_ckey` (`ip`,`ckey`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 -- Dumping structure for table feedback.poll_option
@@ -193,7 +193,7 @@ CREATE TABLE IF NOT EXISTS `poll_option` (
   `deleted` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `idx_pop_pollid` (`pollid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 -- Dumping structure for table feedback.poll_question
@@ -216,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `poll_question` (
   KEY `idx_pquest_question_time_ckey` (`question`,`starttime`,`endtime`,`createdby_ckey`,`createdby_ip`),
   KEY `idx_pquest_time_deleted_id` (`starttime`,`endtime`, `deleted`, `id`),
   KEY `idx_pquest_id_time_type_admin` (`id`,`starttime`,`endtime`,`polltype`,`adminonly`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 -- Dumping structure for table feedback.poll_textreply
@@ -231,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `poll_textreply` (
   `deleted` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `idx_ptext_pollid_ckey` (`pollid`,`ckey`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 -- Dumping structure for table feedback.poll_vote
@@ -248,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `poll_vote` (
   PRIMARY KEY (`id`),
   KEY `idx_pvote_pollid_ckey` (`pollid`,`ckey`),
   KEY `idx_pvote_optionid_ckey` (`optionid`,`ckey`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 -- Dumping structure for table feedback.role_time
@@ -257,7 +257,7 @@ CREATE TABLE IF NOT EXISTS `role_time` (
   `job` varchar(32) NOT NULL,
   `minutes` int(10) unsigned NOT NULL,
   PRIMARY KEY (`ckey`,`job`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 -- Dumping structure for table feedback.role_time_log
@@ -271,7 +271,7 @@ CREATE TABLE IF NOT EXISTS `role_time_log` (
   KEY `ckey` (`ckey`),
   KEY `job` (`job`),
   KEY `datetime` (`datetime`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 -- Dumping structure for table feedback.round
@@ -289,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `round` (
   `end_state` varchar(64) DEFAULT NULL,
   `map_name` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 -- Dumping structure for table feedback.schema_revision
@@ -298,7 +298,7 @@ CREATE TABLE IF NOT EXISTS `schema_revision` (
   `minor` tinyint(3) unsigned NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`major`,`minor`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data exporting was unselected.
 -- Dumping structure for table feedback.stickyban
@@ -308,7 +308,7 @@ CREATE TABLE IF NOT EXISTS `stickyban` (
   `banning_admin` varchar(32) NOT NULL,
   `datetime` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`ckey`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Table structure for table `stickyban_matched_ckey`

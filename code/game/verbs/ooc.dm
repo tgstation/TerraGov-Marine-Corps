@@ -18,8 +18,8 @@
 
 	if(!msg)
 		return
-	if(NON_ASCII_CHECK(msg))
-		return
+	// if(NON_ASCII_CHECK(msg))
+	// 	return
 
 	msg = emoji_parse(msg)
 
@@ -39,7 +39,7 @@
 			return
 		if(handle_spam_prevention(msg, MUTE_OOC))
 			return
-		if(findtext(msg, "byond://"))
+		if(findtext_char(msg, "byond://"))
 			to_chat(src, span_danger("Advertising other servers is not allowed."))
 			log_admin_private("[key_name(usr)] has attempted to advertise in OOC: [msg]")
 			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in OOC: [msg]")
@@ -142,8 +142,8 @@
 
 	if(!msg)
 		return
-	if(NON_ASCII_CHECK(msg))
-		return
+	// if(NON_ASCII_CHECK(msg))
+	// 	return
 
 	msg = emoji_parse(msg)
 
@@ -160,7 +160,7 @@
 			return
 		if(handle_spam_prevention(msg, MUTE_OOC))
 			return
-		if(findtext(msg, "byond://"))
+		if(findtext_char(msg, "byond://"))
 			to_chat(src, span_danger("Advertising other servers is not allowed."))
 			log_admin_private("[key_name(usr)] has attempted to advertise in OOC: [msg]")
 			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in OOC: [msg]")
@@ -236,8 +236,8 @@
 
 	if(!msg)
 		return
-	if(NON_ASCII_CHECK(msg))
-		return
+	// if(NON_ASCII_CHECK(msg))
+	// 	return
 
 	msg = emoji_parse(msg)
 
@@ -254,7 +254,7 @@
 			return
 		if(handle_spam_prevention(msg, MUTE_OOC))
 			return
-		if(findtext(msg, "byond://"))
+		if(findtext_char(msg, "byond://"))
 			to_chat(src, span_danger("Advertising other servers is not allowed."))
 			log_admin_private("[key_name(usr)] has attempted to advertise in OOC: [msg]")
 			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in OOC: [msg]")
@@ -346,7 +346,7 @@
 			return
 		if(handle_spam_prevention(msg, MUTE_LOOC))
 			return
-		if(findtext(msg, "byond://"))
+		if(findtext_char(msg, "byond://"))
 			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
 			log_admin_private("[key_name(usr)] has attempted to advertise in LOOC: [msg]")
 			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in LOOC: [msg]")
@@ -435,14 +435,14 @@
 
 	// Calculate desired pixel width using window size and aspect ratio
 	var/sizes = params2list(winget(src, "mainwindow.split;mapwindow", "size"))
-	var/map_size = splittext(sizes["mapwindow.size"], "x")
+	var/map_size = splittext_char(sizes["mapwindow.size"], "x")
 	var/height = text2num(map_size[2])
 	var/desired_width = round(height * aspect_ratio)
 	if (text2num(map_size[1]) == desired_width)
 		// Nothing to do
 		return
 
-	var/split_size = splittext(sizes["mainwindow.split.size"], "x")
+	var/split_size = splittext_char(sizes["mainwindow.split.size"], "x")
 	var/split_width = text2num(split_size[1])
 
 	// Calculate and apply a best estimate
@@ -454,7 +454,7 @@
 	var/delta
 	for(var/safety in 1 to 10)
 		var/after_size = winget(src, "mapwindow", "size")
-		map_size = splittext(after_size, "x")
+		map_size = splittext_char(after_size, "x")
 		var/got_width = text2num(map_size[1])
 
 		if (got_width == desired_width)

@@ -78,7 +78,7 @@
 //TODO replace thise usage with the byond proc
 //Converts a string into a list by splitting the string at each delimiter found. (discarding the seperator)
 /proc/text2list(text, delimiter = "\n")
-	var/delim_len = length(delimiter)
+	var/delim_len = length_char(delimiter)
 	if(delim_len < 1)
 		return list(text)
 
@@ -86,8 +86,8 @@
 	var/last_found = 1
 	var/found
 	do
-		found = findtext(text, delimiter, last_found, 0)
-		. += copytext(text, last_found, found)
+		found = findtext_char(text, delimiter, last_found, 0)
+		. += copytext_char(text, last_found, found)
 		last_found = found + delim_len
 	while(found)
 
@@ -290,8 +290,8 @@
 //returns an empty list if the file doesn't exist
 /proc/file2list(filename, seperator = "\n", trim = TRUE)
 	if(trim)
-		return splittext(trim(file2text(filename)),seperator)
-	return splittext(file2text(filename),seperator)
+		return splittext_char(trim(file2text(filename)),seperator)
+	return splittext_char(file2text(filename),seperator)
 
 
 //returns a string the last bit of a type, without the preceeding '/'
@@ -313,12 +313,12 @@
 		if(/turf)
 			return "turf"
 		else //regex everything else (works for /proc too)
-			return lowertext(replacetext("[the_type]", "[type2parent(the_type)]/", ""))
+			return lowertext(replacetext_char("[the_type]", "[type2parent(the_type)]/", ""))
 
 
 /proc/type2parent(child)
 	var/string_type = "[child]"
-	var/last_slash = findlasttext(string_type, "/")
+	var/last_slash = findlasttext_char(string_type, "/")
 	if(last_slash == 1)
 		switch(child)
 			if(/datum)
@@ -329,7 +329,7 @@
 				return /atom
 			else
 				return /datum
-	return text2path(copytext(string_type, 1, last_slash))
+	return text2path(copytext_char(string_type, 1, last_slash))
 
 
 /proc/string2listofvars(t_string, datum/var_source)
@@ -338,25 +338,25 @@
 
 	. = list()
 
-	var/var_found = findtext(t_string, "\[") //Not the actual variables, just a generic "should we even bother" check
+	var/var_found = findtext_char(t_string, "\[") //Not the actual variables, just a generic "should we even bother" check
 	if(var_found)
 		//Find var names
 
 		// "A dog said hi [name]!"
-		// splittext() --> list("A dog said hi ","name]!"
+		// splittext_char() --> list("A dog said hi ","name]!"
 		// jointext() --> "A dog said hi name]!"
-		// splittext() --> list("A","dog","said","hi","name]!")
+		// splittext_char() --> list("A","dog","said","hi","name]!")
 
-		t_string = replacetext(t_string,"\[","\[ ")//Necessary to resolve "word[var_name]" scenarios
-		var/list/list_value = splittext(t_string,"\[")
+		t_string = replacetext_char(t_string,"\[","\[ ")//Necessary to resolve "word[var_name]" scenarios
+		var/list/list_value = splittext_char(t_string,"\[")
 		var/intermediate_stage = jointext(list_value, null)
 
-		list_value = splittext(intermediate_stage," ")
+		list_value = splittext_char(intermediate_stage," ")
 		for(var/value in list_value)
-			if(!findtext(value, "]"))
+			if(!findtext_char(value, "]"))
 				continue
 
-			value = splittext(value, "]") //"name]!" --> list("name","!")
+			value = splittext_char(value, "]") //"name]!" --> list("name","!")
 			for(var/A in value)
 				if(!var_source.vars.Find(A))
 					continue
@@ -381,4 +381,4 @@
 /// Return html to load a url.
 /// for use inside of browse() calls to html assets that might be loaded on a cdn.
 /proc/url2htmlloader(url)
-	return {"<html><head><meta http-equiv="refresh" content="0;URL='[url]'"/></head><body onLoad="parent.location='[url]'"></body></html>"}
+	return {"<html><head><meta http-equiv="refresh" content="0;URL='[url]';charset=UTF-8"/></head><body onLoad="parent.location='[url]'"></body></html>"}

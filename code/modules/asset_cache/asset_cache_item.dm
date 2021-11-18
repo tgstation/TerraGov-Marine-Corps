@@ -31,9 +31,9 @@
 		if (!hash)
 			CRASH("invalid asset sent to asset cache")
 	src.name = name
-	var/extstart = findlasttext(name, ".")
+	var/extstart = findlasttext_char(name, ".")
 	if (extstart)
-		ext = ".[copytext(name, extstart+1)]"
+		ext = ".[copytext_char(name, extstart+1)]"
 	resource = file
 
 /datum/asset_cache_item/vv_edit_var(var_name, var_value)

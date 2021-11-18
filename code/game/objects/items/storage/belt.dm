@@ -693,7 +693,7 @@
 	else
 		playsound(src,sheatheSound, 15, 1)
 		underlays -= gun_underlay
-		icon_state = copytext(icon_state,1,-2)
+		icon_state = copytext_char(icon_state,1,-2)
 		item_state = icon_state
 		qdel(gun_underlay)
 		gun_underlay = null

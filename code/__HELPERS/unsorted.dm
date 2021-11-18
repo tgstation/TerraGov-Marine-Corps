@@ -677,11 +677,11 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 /proc/params2turf(scr_loc, turf/origin, client/C)
 	if(!scr_loc || !origin)
 		return
-	var/tX = splittext(scr_loc, ",")
-	var/tY = splittext(tX[2], ":")
+	var/tX = splittext_char(scr_loc, ",")
+	var/tY = splittext_char(tX[2], ":")
 	var/tZ = origin.z
 	tY = tY[1]
-	tX = splittext(tX[1], ":")
+	tX = splittext_char(tX[1], ":")
 	tX = tX[1]
 	var/list/actual_view = getviewsize(C ? C.view : WORLD_VIEW)
 	tX = clamp(origin.x + text2num(tX) - round(actual_view[1] * 0.5) + (round(C?.pixel_x / 32)) - 1, 1, world.maxx)
@@ -772,7 +772,7 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 	return FALSE
 
 /proc/format_text(text)
-	return replacetext(replacetext(text,"\proper ",""),"\improper ","")
+	return replacetext_char(replacetext_char(text,"\proper ",""),"\improper ","")
 
 ///Returns a string based on the weight class define used as argument
 /proc/weight_class_to_text(w_class)

@@ -27,7 +27,7 @@
 			extensions += "|"
 		extensions += "[i]"
 	var/regex/valid_ext = new("\\.([extensions])$", "i")
-	if( !fexists(path) || !(valid_ext.Find(path)) )
+	if( !fexists(path) || !(valid_ext.Find_char(path)) )
 		to_chat(src, "<font color='red'>Error: browse_files(): File not found/Invalid file([path]).</font>")
 		return
 	return path
@@ -57,14 +57,14 @@
 		var/list/new_filenames = flist(current_dir)
 		for(var/new_filename in new_filenames)
 			// if filename ends in / it is a directory, append to currdir
-			if(findtext(new_filename, "/", -1))
+			if(findtext_char(new_filename, "/", -1))
 				jobs += current_dir + new_filename
 			else
 				filenames += current_dir + new_filename
 	return filenames
 
 /proc/pathflatten(path)
-	return replacetext(path, "/", "_")
+	return replacetext_char(path, "/", "_")
 
 
 //Sends resource files to client cache

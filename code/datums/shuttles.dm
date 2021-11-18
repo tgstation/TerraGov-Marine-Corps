@@ -41,7 +41,7 @@
 	var/key
 	var/list/models = cached_map.grid_models
 	for(key in models)
-		if(findtext(models[key], "[/obj/docking_port/mobile]")) // Yay compile time checks
+		if(findtext_char(models[key], "[/obj/docking_port/mobile]")) // Yay compile time checks
 			break // This works by assuming there will ever only be one mobile dock in a template at most
 
 	for(var/i in cached_map.gridSets)
@@ -50,7 +50,7 @@
 		for(var/line in gset.gridLines)
 			var/xcrd = gset.xcrd
 			for(var/j in 1 to length(line) step cached_map.key_len)
-				if(key == copytext(line, j, j + cached_map.key_len))
+				if(key == copytext_char(line, j, j + cached_map.key_len))
 					port_x_offset = xcrd
 					port_y_offset = ycrd
 					return

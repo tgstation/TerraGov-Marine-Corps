@@ -60,7 +60,7 @@
 	var/stored_index = 1
 
 	//multiz lool
-	while(dmmRegex.Find(tfile, stored_index))
+	while(dmmRegex.Find_char(tfile, stored_index))
 		stored_index = dmmRegex.next
 
 		// "aa" = (/type{vars=blah})
@@ -68,9 +68,9 @@
 			var/key = dmmRegex.group[1]
 			if(grid_models[key]) // Duplicate model keys are ignored in DMMs
 				continue
-			if(key_len != length(key))
+			if(key_len != length_char(key))
 				if(!key_len)
-					key_len = length(key)
+					key_len = length_char(key)
 				else
 					CRASH("Inconsistent key length in DMM")
 			if(!measureOnly)
@@ -97,7 +97,7 @@
 			bounds[MAP_MINZ] = min(bounds[MAP_MINZ], gridSet.zcrd)
 			bounds[MAP_MAXZ] = max(bounds[MAP_MAXZ], gridSet.zcrd)
 
-			var/list/gridLines = splittext(dmmRegex.group[6], "\n")
+			var/list/gridLines = splittext_char(dmmRegex.group[6], "\n")
 			gridSet.gridLines = gridLines
 
 			var/leadingBlanks = 0
@@ -119,7 +119,7 @@
 
 			var/maxx = gridSet.xcrd
 			if(gridLines.len) //Not an empty map
-				maxx = max(maxx, gridSet.xcrd + length(gridLines[1]) / key_len - 1)
+				maxx = max(maxx, gridSet.xcrd + length_char(gridLines[1]) / key_len - 1)
 
 			bounds[MAP_MAXX] = clamp(max(bounds[MAP_MAXX], maxx), x_lower, x_upper)
 		CHECK_TICK
@@ -166,7 +166,7 @@
 				continue
 			if(ycrd <= world.maxy && ycrd >= 1)
 				var/xcrd = gset.xcrd + x_offset - 1
-				for(var/tpos = 1 to length(line) - key_len + 1 step key_len)
+				for(var/tpos = 1 to length_char(line) - key_len + 1 step key_len)
 					if((xcrd - x_offset + 1) < x_lower || (xcrd - x_offset + 1) > x_upper)			//Same as above.
 						++xcrd
 						continue								//X cropping.
@@ -177,7 +177,7 @@
 							world.maxx = xcrd
 
 					if(xcrd >= 1)
-						var/model_key = copytext(line, tpos, tpos + key_len)
+						var/model_key = copytext_char(line, tpos, tpos + key_len)
 						var/no_afterchange = no_changeturf || zexpansion
 						if(!no_afterchange || (model_key != space_key))
 							var/list/cache = modelCache[model_key]
@@ -237,12 +237,12 @@
 			//finding next member (e.g /turf/unsimulated/wall{icon_state = "rock"} or /area/mine/explored)
 			dpos = find_next_delimiter_position(model, old_position, ",", "{", "}") //find next delimiter (comma here) that's not within {...}
 
-			var/full_def = trim_text(copytext(model, old_position, dpos)) //full definition, e.g : /obj/foo/bar{variables=derp}
-			var/variables_start = findtext(full_def, "{")
-			var/path_text = trim_text(copytext(full_def, 1, variables_start))
+			var/full_def = trim_text(copytext_char(model, old_position, dpos)) //full definition, e.g : /obj/foo/bar{variables=derp}
+			var/variables_start = findtext_char(full_def, "{")
+			var/path_text = trim_text(copytext_char(full_def, 1, variables_start))
 			var/atom_def = text2path(path_text) //path definition, e.g /obj/foo/bar
 			if(dpos)
-				old_position = dpos + length(model[dpos])
+				old_position = dpos + length_char(model[dpos])
 
 			if(!ispath(atom_def, /atom)) // Skip the item if the path does not exist.  Fix your crap, mappers!
 				if(bad_paths)
@@ -254,7 +254,7 @@
 			var/list/fields = list()
 
 			if(variables_start)//if there's any variable
-				full_def = copytext(full_def, variables_start + length(full_def[variables_start]), -length(copytext_char(full_def, -1))) //removing the last '}'
+				full_def = copytext_char(full_def, variables_start + length_char(full_def[variables_start]), -length_char(copytext_char(full_def, -1))) //removing the last '}'
 				fields = readlist(full_def, ";")
 				if(fields.len)
 					if(!trim(fields[fields.len]))
@@ -389,22 +389,22 @@
 //optionally removes quotes before and after the text (for variable name)
 /datum/parsed_map/proc/trim_text(what as text,trim_quotes=0)
 	if(trim_quotes)
-		return trimQuotesRegex.Replace(what, "")
+		return trimQuotesRegex.Replace_char(what, "")
 	else
-		return trimRegex.Replace(what, "")
+		return trimRegex.Replace_char(what, "")
 
 
 //find the position of the next delimiter,skipping whatever is comprised between opening_escape and closing_escape
 //returns 0 if reached the last delimiter
 /datum/parsed_map/proc/find_next_delimiter_position(text as text,initial_position as num, delimiter=",",opening_escape="\"",closing_escape="\"")
 	var/position = initial_position
-	var/next_delimiter = findtext(text,delimiter,position,0)
-	var/next_opening = findtext(text,opening_escape,position,0)
+	var/next_delimiter = findtext_char(text,delimiter,position,0)
+	var/next_opening = findtext_char(text,opening_escape,position,0)
 
 	while((next_opening != 0) && (next_opening < next_delimiter))
-		position = findtext(text,closing_escape,next_opening + 1,0)+1
-		next_delimiter = findtext(text,delimiter,position,0)
-		next_opening = findtext(text,opening_escape,position,0)
+		position = findtext_char(text,closing_escape,next_opening + 1,0)+1
+		next_delimiter = findtext_char(text,delimiter,position,0)
+		next_opening = findtext_char(text,opening_escape,position,0)
 
 	return next_delimiter
 
@@ -424,17 +424,17 @@
 		position = find_next_delimiter_position(text,old_position,delimiter)
 
 		// check if this is a simple variable (as in list(var1, var2)) or an associative one (as in list(var1="foo",var2=7))
-		var/equal_position = findtext(text,"=",old_position, position)
+		var/equal_position = findtext_char(text,"=",old_position, position)
 
-		var/trim_left = trim_text(copytext(text,old_position,(equal_position ? equal_position : position)))
+		var/trim_left = trim_text(copytext_char(text,old_position,(equal_position ? equal_position : position)))
 		var/left_constant = delimiter == ";" ? trim_left : parse_constant(trim_left)
 		if(position)
-			old_position = position + length(text[position])
+			old_position = position + length_char(text[position])
 
 		if(equal_position && !isnum(left_constant))
 			// Associative var, so do the association.
 			// Note that numbers cannot be keys - the RHS is dropped if so.
-			var/trim_right = trim_text(copytext(text, equal_position + length(text[equal_position]), position))
+			var/trim_right = trim_text(copytext_char(text, equal_position + length_char(text[equal_position]), position))
 			var/right_constant = parse_constant(trim_right)
 			.[left_constant] = right_constant
 
@@ -449,11 +449,11 @@
 
 	// string
 	if(text[1] == "\"")
-		return copytext(text, length(text[1]) + 1, findtext(text, "\"", length(text[1]) + 1))
+		return copytext_char(text, length_char(text[1]) + 1, findtext_char(text, "\"", length_char(text[1]) + 1))
 
 	// list
-	if(copytext(text, 1, 6) == "list(")//6 == length("list(") + 1
-		return readlist(copytext(text, 6, -1))
+	if(copytext_char(text, 1, 6) == "list(")//6 == length("list(") + 1
+		return readlist(copytext_char(text, 6, -1))
 
 	// typepath
 	var/path = text2path(text)

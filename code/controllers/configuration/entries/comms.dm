@@ -2,7 +2,7 @@
 	protection = CONFIG_ENTRY_HIDDEN
 
 /datum/config_entry/string/comms_key/ValidateAndSet(str_val)
-	return str_val != "default_pwd" && length(str_val) > 6 && ..()
+	return str_val != "default_pwd" && length_char(str_val) > 6 && ..()
 
 /datum/config_entry/keyed_list/cross_server
 	key_mode = KEY_MODE_TEXT
@@ -14,7 +14,7 @@
 	if(.)
 		var/list/newv = list()
 		for(var/I in config_entry_value)
-			newv[replacetext(I, "+", " ")] = config_entry_value[I]
+			newv[replacetext_char(I, "+", " ")] = config_entry_value[I]
 		config_entry_value = newv
 
 /datum/config_entry/keyed_list/cross_server/ValidateListEntry(key_name, key_value)

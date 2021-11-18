@@ -157,6 +157,6 @@
 
 /datum/greyscale_config/proc/ParseColorString(color_string)
 	. = list()
-	var/list/split_colors = splittext(color_string, "#")
+	var/list/split_colors = splittext_char(color_string, "#")
 	for(var/color in 2 to length(split_colors))
 		. += "#[split_colors[color]]"

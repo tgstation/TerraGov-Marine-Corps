@@ -11,7 +11,7 @@
 /datum/fluff_email/mainship/iwantout
 	title = "RE: I want out.."
 
-	entry_text = {"<html>
+	entry_text = {"<html><meta charset='UTF-8'>
 					Okay, yep, I know what you're saying. Stilettos aren't safe, you want out of my sharp stick business,
 					and sooner or later we're going to get hung upside down from our ankles by the MPs, stuffed in a freezer
 					in the lower decks, and tossed to the nearest military tribunal in a sack in six to eight weeks.
@@ -32,7 +32,7 @@
 
 /datum/fluff_email/mainship/thermalcloak
 	title = "M68 Thermal Cloak.."
-	entry_text = {"<html>
+	entry_text = {"<html><meta charset='UTF-8'>
 					Are you sure these things are safe, man? I just tried one on during a training exercise back at Bernice 378, took a wrong turn,
 					and wound up on an outdoor firing range being used by another Battalion (5th "Hammerheads" I think?). Now typically, somebody would have spotted me,
 					the range officer would have called for a ceasefire, the captain gives me a slap on the wrist, and I claim 'emotional trauma' and get served warm cookies
@@ -47,7 +47,7 @@
 
 /datum/fluff_email/mainship/snow
 	title = "Snow? Where the hell is all the snow?"
-	entry_text = {"<html>
+	entry_text = {"<html><meta charset='UTF-8'>
 					Why were we issued these damn snow uniforms in the first place? We've been around the sector almost three dozen times and we've
 					yet to put them to use. They even issued us bulky kits to repaint our rifles, pistols and shotguns to match the cold weather gear,
 					and masks to keep us warm. But what's the point? They're just taking up a fourth of the cargo hold, half infested with moths we picked
@@ -61,7 +61,7 @@
 
 /datum/fluff_email/mainship/hawaianpizza
 	title = "Hawaiian Pizza in the MREs?"
-	entry_text = {"<html>
+	entry_text = {"<html><meta charset='UTF-8'>
 					I swear this must have been a joke, but the other day I opened up my MRE packet to come face to face with a 'Hawaiian Pizza" packet.
 					Of course, I had already cut the seal open (otherwise I'd have fenced it to the Damien twins from Bravo Squad and have retired by now),
 					but the smell was horrendous! I guess pineapple just doesn't stow well. I neglected to check the date, but it must have been an old issue,
@@ -79,7 +79,7 @@
 
 /datum/fluff_email/mainship/themajor
 	title = "The Major?"
-	entry_text = {"<html>
+	entry_text = {"<html><meta charset='UTF-8'>
 					I keep forgetting what the new Major's name is. I got quizzed by one of the jackass staff officers last week about the captain's name,
 					and I absolutely spilled my marbles. PCF Mable was watching too, and she probably thinks I've got rocks in my head. I know it's been weeks
 					since the new captain took over, but for some reason the name keeps escaping me when it matters. Either the cryo-sleepers are juicing my

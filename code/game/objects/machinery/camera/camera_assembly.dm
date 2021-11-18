@@ -137,7 +137,7 @@
 	if(!input)
 		to_chat(user, span_warning("No network entered."))
 		return
-	var/list/tempnetwork = splittext(input, ",")
+	var/list/tempnetwork = splittext_char(input, ",")
 	if(!length(tempnetwork))
 		to_chat(user, span_warning("Invalid network entry."))
 		return

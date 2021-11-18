@@ -139,10 +139,10 @@
 			if(P && (P.loc == src) && istype(P, /obj/item/paper) )
 
 				if(!(ishuman(usr) || isobserver(usr) || issilicon(usr)))
-					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", "window=[P.name]")
+					usr << browse("<HTML><meta charset='UTF-8'><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", "window=[P.name]")
 					onclose(usr, "[P.name]")
 				else
-					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>", "window=[P.name]")
+					usr << browse("<HTML><meta charset='UTF-8'><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>", "window=[P.name]")
 					onclose(usr, "[P.name]")
 
 		else if(href_list["look"])

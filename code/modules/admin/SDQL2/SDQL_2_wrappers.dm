@@ -35,7 +35,7 @@
 
 
 /proc/_copytext(T, Start = 1, End = 0)
-	return copytext(T, Start, End)
+	return copytext_char(T, Start, End)
 
 
 /proc/_cos(X)
@@ -170,7 +170,7 @@
 
 
 /proc/_replacetext(Haystack, Needle, Replacement, Start = 1,End = 0)
-	return replacetext(Haystack, Needle, Replacement, Start, End)
+	return replacetext_char(Haystack, Needle, Replacement, Start, End)
 
 
 /proc/_replacetextEx(Haystack, Needle, Replacement, Start = 1,End = 0)

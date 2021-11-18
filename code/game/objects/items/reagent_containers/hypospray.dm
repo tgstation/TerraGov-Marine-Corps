@@ -35,7 +35,7 @@
 		reagents.clear_reagents()
 
 /obj/item/reagent_containers/hypospray/proc/label(mob/user)
-	var/str = copytext(reject_bad_text(input(user,"Hypospray label text?", "Set label", "")), 1, MAX_NAME_LEN)
+	var/str = copytext_char(reject_bad_text(input(user,"Hypospray label text?", "Set label", "")), 1, MAX_NAME_LEN)
 	if(!length(str))
 		to_chat(user, span_notice("Invalid text."))
 		return

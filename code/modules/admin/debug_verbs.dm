@@ -77,7 +77,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		return
 
 	//strip away everything but the proc name
-	var/list/proclist = splittext(procname, "/")
+	var/list/proclist = splittext_char(procname, "/")
 	if(!length(proclist))
 		return
 
@@ -315,7 +315,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_SPAWN) || !object)
 		return
 
-	var/list/preparsed = splittext(object,":")
+	var/list/preparsed = splittext_char(object,":")
 	var/path = preparsed[1]
 	var/amount = 1
 	if(preparsed.len > 1)

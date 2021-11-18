@@ -93,7 +93,7 @@
 
 
 /// Is something in the IC chat filter? This is config dependent.
-#define CHAT_FILTER_CHECK(text) (config.ic_filter_regex && findtext(text, config.ic_filter_regex))
+#define CHAT_FILTER_CHECK(text) (config.ic_filter_regex && findtext_char(text, config.ic_filter_regex))
 
 //for whether AI eyes see static, and whether it is mouse-opaque or not
 #define USE_STATIC_NONE 0

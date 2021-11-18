@@ -164,7 +164,7 @@
 	var/rounds_max
 	rounds_max = gun.max_rounds
 	. = list(
-		"name" = copytext(name, 2),
+		"name" = copytext_char(name, 2),
 		"rounds_max" = rounds_max,
 		"fire_mode" = gun.gun_firemode,
 		"health_max" = max_integrity,
