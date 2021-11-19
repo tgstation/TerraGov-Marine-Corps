@@ -7,7 +7,7 @@
 	density = TRUE
 	anchored = TRUE
 	layer = WINDOW_LAYER
-	flags_atom = ON_BORDER
+	flags_atom = ON_BORDER|DIRLOCK
 	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	coverage = 20
 	var/dismantle = FALSE //If we're dismantling the window properly no smashy smashy
@@ -228,11 +228,6 @@
 		return FALSE
 
 	setDir(turn(dir, 270))
-
-/obj/structure/window/Move()
-	var/ini_dir = dir
-	. = ..()
-	setDir(ini_dir)
 
 //This proc is used to update the icons of nearby windows.
 /obj/structure/window/proc/update_nearby_icons()

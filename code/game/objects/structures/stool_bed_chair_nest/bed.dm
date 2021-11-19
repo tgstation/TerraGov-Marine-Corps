@@ -103,9 +103,9 @@ obj/structure/bed/Destroy()
 	return ..()
 
 
-/obj/structure/bed/Move(NewLoc, direct)
+/obj/structure/bed/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
-	if(. && buckled_bodybag && buckled_bodybag.loc != NewLoc && !handle_buckled_bodybag_movement(loc, direct)) //Movement fails if buckled mob's move fails.
+	if(buckled_bodybag?.loc != NewLoc && !handle_buckled_bodybag_movement(loc, direct)) //Movement fails if buckled mob's move fails.
 		return FALSE
 
 /obj/structure/bed/proc/handle_buckled_bodybag_movement(NewLoc, direct)

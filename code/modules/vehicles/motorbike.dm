@@ -80,10 +80,8 @@
 	if(motor_pack.handle_mousedrop(usr, over_object))
 		return ..()
 
-/obj/vehicle/ridden/motorbike/Move(direction)
+/obj/vehicle/ridden/motorbike/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
-	if(!.)
-		return
 	if(!LAZYLEN(buckled_mobs)) // dont use fuel or make noise unless we're being used
 		return
 	fuel_count--

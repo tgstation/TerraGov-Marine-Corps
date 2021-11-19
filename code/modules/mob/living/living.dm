@@ -201,7 +201,7 @@
 	. = ..()
 
 	if(pulledby)
-		if(get_dist(src, pulledby) > 1 && (pulledby != moving_from_pull))//separated from our puller and not in the middle of a diagonal move.
+		if(get_dist(src, pulledby) > 1 && (pulledby != moving_from_pull))//separated from our puller
 			pulledby.stop_pulling()
 		else if(isliving(pulledby))
 			var/mob/living/living_puller = pulledby

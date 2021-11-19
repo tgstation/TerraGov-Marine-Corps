@@ -2,8 +2,6 @@
 	layer = OBJ_LAYER
 	glide_size = 8
 	appearance_flags = TILE_BOUND|PIXEL_SCALE
-	///how many times a this movable had movement procs called on it since Moved() was last called
-	var/move_stacks = 0
 	var/last_move = null
 	var/last_move_time = 0
 	var/anchored = FALSE
@@ -137,13 +135,28 @@
  */
 /atom/movable/proc/abstract_move(atom/new_loc)
 	var/atom/old_loc = loc
-	move_stacks++
 	loc = new_loc
 	Moved(old_loc)
 
-#define SET_CARDINAL_DIR(flags_atom, direction, can_pass_diagonally)\
-if(!(flags_atom & DIRLOCK)){setDir(direction &~ can_pass_diagonally)}
-
+/**
+ * The move proc is responsible for (in order):
+ * - Checking if you can move out of the current loc (The exit proc, which calls on_exit through the connect_loc)
+ * - Checking if you can move into the new loc (The enter proc, which calls on_enter through the connect_loc and is also overwritten by some atoms)
+ *   This is where most bumps take place
+ * - If you can do both, then it changes the loc var calls Exited on the old loc, and Entered on the new loc
+ * - After that, it does some area checks, calls Moved and handle pulling/buckled mobs.area
+ * 
+ * A diagonal move is slightly different as everything is called twice (once for each direction)
+ * In order of calling:
+ * - Check if you can exit the current loc
+ * - Check if it's a diagonal move
+ * - If yes, take a cardinal move, check if you could exit the turf in that direction, and then if you can enter it (This calls on_exit and on_enter)
+ * - "Simulate" a cardinal move by calling Exited, Entered and Moved. We are not changing the loc here because this would mess with pushing/shuffling
+ * - Check if you can enter the final new loc
+ * - Do the rest of the Move proc normally
+ * 
+ * Warning : Doesn't support well multi-tile diagonal moves
+ */
 /atom/movable/Move(atom/newloc, direction, glide_size_override)
 	var/atom/movable/pullee = pulling
 	if(!moving_from_pull)
@@ -154,36 +167,48 @@ if(!(flags_atom & DIRLOCK)){setDir(direction &~ can_pass_diagonally)}
 	if(!direction)
 		direction = get_dir(src, newloc)
 
-	var/can_pass_diagonally = NONE
-	if (direction & (direction - 1)) //Check if the first part of the diagonal move is possible
-		moving_diagonally = TRUE
-		if(!(flags_atom & DIRLOCK))
-			setDir(direction) //We first set the direction to prevent going through dir sensible object
-		if((direction & NORTH) && get_step(loc, NORTH)?.Enter(src) && get_step(loc, NORTH).Exit(src, direction & ~NORTH))
-			can_pass_diagonally = NORTH
-		else if((direction & EAST) && get_step(loc, EAST)?.Enter(src) && get_step(loc, EAST).Exit(src, direction & ~EAST))
-			can_pass_diagonally =  EAST
-		else if((direction & WEST) && get_step(loc, WEST)?.Enter(src) && get_step(loc, WEST).Exit(src, direction & ~WEST))
-			can_pass_diagonally = WEST
-		else if((direction & SOUTH) && get_step(loc, SOUTH)?.Enter(src) && get_step(loc, SOUTH).Exit(src, direction & ~SOUTH))
-			can_pass_diagonally = SOUTH
-		else
-			moving_diagonally = FALSE
-			return
-		moving_diagonally = FALSE
-
 	var/is_multi_tile_object = bound_width > 32 || bound_height > 32
-
 	var/list/old_locs
 	if(is_multi_tile_object && isturf(loc))
 		old_locs = locs // locs is a special list, this is effectively the same as .Copy() but with less steps
 		for(var/atom/exiting_loc AS in old_locs)
 			if(!exiting_loc.Exit(src, direction))
-				SET_CARDINAL_DIR(flags_atom, direction, can_pass_diagonally)
 				return
+	
 	else if(!loc.Exit(src, direction))
-		SET_CARDINAL_DIR(flags_atom, direction, can_pass_diagonally)
 		return
+	
+	var/atom/oldloc
+
+	var/can_pass_diagonally = NONE
+	if (direction & (direction - 1)) //Check if the first part of the diagonal move is possible
+		moving_diagonally = TRUE
+		if(!(flags_atom & DIRLOCK))
+			setDir(direction) //We first set the direction to prevent going through dir sensible object
+		if((direction & NORTH) && get_step(loc, NORTH)?.Exit(src, direction & ~NORTH) && get_step(loc, NORTH).Enter(src))
+			can_pass_diagonally = NORTH
+		else if((direction & SOUTH) && get_step(loc, SOUTH)?.Exit(src, direction & ~SOUTH) && get_step(loc, SOUTH).Enter(src))
+			can_pass_diagonally = SOUTH
+		else if((direction & EAST) && get_step(loc, EAST)?.Exit(src, direction & ~EAST) && get_step(loc, EAST).Enter(src))
+			can_pass_diagonally =  EAST
+		else if((direction & WEST) && get_step(loc, WEST)?.Exit(src, direction & ~WEST) && get_step(loc, WEST).Enter(src))
+			can_pass_diagonally = WEST
+		else
+			moving_diagonally = FALSE
+			return
+		moving_diagonally = FALSE
+		//Properly enter and exit the can_pass_diagonally tile. We don't change the loc here because this would mess with pushing/shuffling
+		loc.Exited(src, can_pass_diagonally)
+		oldloc = get_step(loc, can_pass_diagonally) //This might looks weird, but it will be the old loc for the rest of the move proc.
+		oldloc.Entered(src, loc, null)
+		Moved(loc, can_pass_diagonally)
+		if(!(flags_atom & DIRLOCK)) //We want to set the direction to be the one of the "second" diagonal move, aka not can_pass_diagonally
+			setDir(direction &~ can_pass_diagonally)
+	
+	else 
+		oldloc = loc
+		if(!(flags_atom & DIRLOCK))
+			setDir(direction)
 
 	var/list/new_locs
 	if(is_multi_tile_object && isturf(newloc))
@@ -196,22 +221,17 @@ if(!(flags_atom & DIRLOCK)){setDir(direction &~ can_pass_diagonally)}
 				)
 		) // If this is a multi-tile object then we need to predict the new locs and check if they allow our entrance.
 		for(var/atom/entering_loc AS in new_locs)
-			if(!entering_loc.Enter(src))
-				SET_CARDINAL_DIR(flags_atom, direction, can_pass_diagonally)
+			if(!entering_loc.Enter(src) || SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_MOVE, entering_loc) & COMPONENT_MOVABLE_BLOCK_PRE_MOVE)
 				return
 	else
 		var/enter_return_value = newloc.Enter(src)
 		if(!(enter_return_value & TURF_CAN_ENTER))
 			if(can_pass_diagonally && !(enter_return_value & TURF_ENTER_ALREADY_MOVED))
-				Move(get_step(loc, can_pass_diagonally), can_pass_diagonally)
-				return TRUE
-			SET_CARDINAL_DIR(flags_atom, direction, can_pass_diagonally)
+				loc =  oldloc							//We failed to finish our diagonal move. 
+				if(!(flags_atom & DIRLOCK)) 			//we didn't do it earlier because it allows to push/shuffle diagonally
+					setDir(can_pass_diagonally)			//We also set the dir correctly so it doesn't look weird
 			return
-
-	SET_CARDINAL_DIR(flags_atom, direction, can_pass_diagonally)
-
-	var/atom/oldloc = loc
-	move_stacks++
+	
 	loc = newloc
 
 	if(old_locs) // This condition will only be true if it is a multi-tile object.
@@ -329,14 +349,7 @@ if(!(flags_atom & DIRLOCK)){setDir(direction &~ can_pass_diagonally)}
 	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, movement_dir, forced, old_locs)
 	if(length(client_mobs_in_contents))
 		update_parallax_contents()
-
-	move_stacks--
-	if(move_stacks > 0) //we want only the first Moved() call in the stack to send this signal, all the other ones have an incorrect old_loc
-		return
-	if(move_stacks < 0)
-		stack_trace("move_stacks is negative in Moved()!")
-		move_stacks = 0 //setting it to 0 so that we dont get every movable with negative move_stacks runtiming on every movement
-
+	
 	if(pulledby)
 		SEND_SIGNAL(src, COMSIG_MOVABLE_PULL_MOVED, old_loc, movement_dir, forced, old_locs)
 	//Cycle through the light sources on this atom and tell them to update.
@@ -363,7 +376,6 @@ if(!(flags_atom & DIRLOCK)){setDir(direction &~ can_pass_diagonally)}
 
 /atom/movable/proc/doMove(atom/destination)
 	. = FALSE
-	move_stacks++
 	var/atom/oldloc = loc
 	if(destination)
 		if(pulledby)

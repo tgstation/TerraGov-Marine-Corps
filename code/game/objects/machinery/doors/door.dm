@@ -245,17 +245,5 @@
 	if(!density && !operating && !locked && !welded && autoclose)
 		close()
 
-/obj/machinery/door/Move(new_loc, new_dir)
-	. = ..()
-
-	if(width > 1)
-		var/turf/T = get_turf(src)
-		var/expansion_dir = initial(dir)
-
-		for(var/t in fillers)
-			var/obj/effect/opacifier/O = t
-			T = get_step(T,expansion_dir)
-			O.loc = T
-
 /obj/machinery/door/morgue
 	icon = 'icons/obj/doors/doormorgue.dmi'
