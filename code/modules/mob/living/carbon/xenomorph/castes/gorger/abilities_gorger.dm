@@ -211,6 +211,9 @@
 	target_xeno.adjustFireLoss(-target_xeno.maxHealth * GORGER_REJUVENATE_ALLY_PERCENTAGE)
 
 /datum/action/xeno_action/activable/rejuvenate/ai_should_use(atom/target)
+	if(owner.health < owner.maxHealth * 0.6 && can_use_ability(owner, TRUE))
+		use_ability(owner)
+		return FALSE
 	// no healing non-xeno
 	if(!isxeno(target))
 		return FALSE
@@ -218,7 +221,7 @@
 	if(target_xeno.get_xeno_hivenumber() != owner.get_xeno_hivenumber())
 		return FALSE
 	// no overhealing
-	if(target_xeno.health > target_xeno.maxHealth * GORGER_REJUVENATE_ALLY_PERCENTAGE)
+	if(target_xeno.health > target_xeno.maxHealth * (1 - GORGER_REJUVENATE_ALLY_PERCENTAGE))
 		return FALSE
 	return can_use_ability(target, TRUE)
 
