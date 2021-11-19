@@ -210,7 +210,7 @@
 /proc/capitalize(t)
 	. = t
 	if(t)
-		. = t[1]
+		. = copytext_char(t, 1, 2)
 		return uppertext(.) + copytext_char(t, 1 + length_char(.))
 
 
@@ -225,20 +225,20 @@
 	var/text_length = length_char(text)
 	var/comp_length = length_char(compare)
 	while(comp_it <= comp_length && text_it <= text_length)
-		var/a = text[text_it]
-		var/b = compare[comp_it]
+		var/a = copytext_char(text, text_it, text_it+1)
+		var/b = copytext_char(compare, comp_it, comp_it+1)
 //if it isn't both the same letter, or if they are both the replacement character
 //(no way to know what it was supposed to be)
 		if(a != b)
 			if(a == replace) //if A is the replacement char
-				newtext = copytext_char(newtext, 1, newtext_it) + b + copytext_char(newtext, newtext_it + length_char(newtext[newtext_it]))
+				newtext = copytext_char(newtext, 1, newtext_it) + b + copytext_char(newtext, newtext_it + length_char(copytext_char(newtext, newtext_it, newtext_it+1)))
 			else if(b == replace) //if B is the replacement char
-				newtext = copytext_char(newtext, 1, newtext_it) + a + copytext_char(newtext, newtext_it + length_char(newtext[newtext_it]))
+				newtext = copytext_char(newtext, 1, newtext_it) + a + copytext_char(newtext, newtext_it + length_char(copytext_char(newtext, newtext_it, newtext_it+1)))
 			else //The lists disagree, Uh-oh!
 				return 0
 		text_it += length_char(a)
 		comp_it += length_char(b)
-		newtext_it += length_char(newtext[newtext_it])
+		newtext_it += length_char(copytext_char(newtext, newtext_it, newtext_it+1))
 
 	return newtext
 
@@ -252,7 +252,7 @@
 	var/lentext = length_char(text)
 	var/a = ""
 	for(var/i = 1, i <= lentext, i += length_char(a))
-		a = text[i]
+		a = copytext_char(text, i, i+1)
 		if(a == character)
 			count++
 	return count
@@ -288,7 +288,7 @@
 
 	var/leng = length_char(string)
 
-	var/next_space = findtext_char(string, " ", next_backslash + length_char(string[next_backslash]))
+	var/next_space = findtext_char(string, " ", next_backslash + length_char(copytext_char(string, next_backslash, next_backslash+1)))
 	if(!next_space)
 		next_space = leng - next_backslash
 
@@ -296,8 +296,8 @@
 		return string
 
 	var/base = next_backslash == 1 ? "" : copytext_char(string, 1, next_backslash)
-	var/macro = lowertext(copytext_char(string, next_backslash + length_char(string[next_backslash]), next_space))
-	var/rest = next_backslash > leng ? "" : copytext_char(string, next_space + length_char(string[next_space]))
+	var/macro = lowertext(copytext_char(string, next_backslash + length_char(copytext_char(string, next_backslash, next_backslash+1)), next_space))
+	var/rest = next_backslash > leng ? "" : copytext_char(string, next_space + length_char(copytext_char(string, next_space, next_space+1)))
 
 	//See https://secure.byond.com/docs/ref/info.html#/DM/text/macros
 	switch(macro)
