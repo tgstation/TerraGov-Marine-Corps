@@ -98,7 +98,7 @@
 
 
 	for(var/i = 1, i <= t_len, i += length_char(char))
-		char = t_in[i]
+		char = copytext_char(t_in, i, i+1)
 
 		switch(text2ascii_char(char))
 			// A  .. Z, А .. Я, Ё
