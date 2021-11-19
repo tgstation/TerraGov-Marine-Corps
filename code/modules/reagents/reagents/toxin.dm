@@ -518,7 +518,7 @@
 	return ..()
 
 /datum/reagent/toxin/xeno_neurotoxin/light/on_mob_life(mob/living/L, metabolism)
-	.=..()
+	. = .. ()
 	if(current_cycle >= 21 && current_cycle <= 45) //Light neurotox starts purging meds when in second stage, all neurotox purges in last stage
 		purge_rate = 0.2
 
