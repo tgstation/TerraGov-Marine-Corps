@@ -52,3 +52,16 @@
 
 /obj/effect/decal/sandedge/corner2
 	icon_state = "sandcorner2"
+
+/obj/effect/decal/sandytile
+	name = "sand"
+	gender = PLURAL
+	density = FALSE
+	anchored = TRUE
+	layer = TURF_LAYER
+	icon = 'icons/turf/ground_map.dmi'
+	icon_state = "sandyfloor"
+	mouse_opacity = 0
+
+/obj/effect/decal/sandytile/sandyplating
+	icon_state = "sandyplating"

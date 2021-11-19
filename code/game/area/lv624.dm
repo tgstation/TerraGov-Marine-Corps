@@ -381,6 +381,11 @@
 	outside = TRUE
 	always_unpowered = TRUE
 
+/area/lv624/lazarus/sandtemple
+	name = "\improper Mysterious Temple"
+	icon_state = "sandtemple"
+	always_unpowered = TRUE
+
 /area/lv624/lazarus/relay
 	name = "\improper Secret Relay Room"
 	icon_state = "tcomsatcham"

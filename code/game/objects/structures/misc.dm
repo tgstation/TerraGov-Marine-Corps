@@ -20,6 +20,9 @@
 	icon_state = "showcase_5"
 	desc = "A stand with the empty shell of a mech bolted to it."
 
+/obj/structure/showcase/six
+	icon_state = "showcase_6"
+
 /obj/structure/showcase/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
@@ -159,8 +162,15 @@ obj/item/alienjar
 	icon = 'icons/obj/structures/structures.dmi'
 	desc = "Stairs.  You walk up and down them."
 	icon_state = "rampbottom"
+	layer = TURF_LAYER
 	density = FALSE
 	opacity = FALSE
+
+/obj/structure/stairs/corner
+	icon_state = "staircorners"
+
+/obj/structure/stairs/cornerdark //darker version for the darkened ramp bottoms
+	icon_state = "staircornersdark"
 
 /obj/structure/stairs/railstairs
 	icon = 'icons/obj/structures/railstairs.dmi'
