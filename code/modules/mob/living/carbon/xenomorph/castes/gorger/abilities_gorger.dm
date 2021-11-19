@@ -278,6 +278,10 @@
 		return FALSE
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
 		return TRUE
+	if(owner_xeno.plasma_stored < owner_xeno.xeno_caste.feast_plasma_drain * 10)
+		if(!silent)
+			to_chat(owner_xeno, span_notice("Not enough to begin a feast. We need [owner_xeno.xeno_caste.feast_plasma_drain * 10]."))
+		return FALSE
 
 /datum/action/xeno_action/activable/feast/use_ability(atom/A)
 	. = ..()
