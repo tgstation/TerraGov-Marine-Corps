@@ -1,14 +1,15 @@
 SUBSYSTEM_DEF(radio)
 	name = "Radio"
-	flags = SS_NO_FIRE|SS_NO_INIT
+	flags = SS_NO_FIRE
 
 	var/list/datum/radio_frequency/frequencies = list()
 	var/list/saymodes = list()
 
-/datum/controller/subsystem/radio/PreInit(timeofday)
+/datum/controller/subsystem/radio/Initialize(timeofday)
 	for(var/_SM in subtypesof(/datum/saymode))
 		var/datum/saymode/SM = new _SM()
 		saymodes[SM.key] = SM
+		saymodes[sanitize_en_string_to_ru_string(SM.key)] = SM
 	return ..()
 
 
