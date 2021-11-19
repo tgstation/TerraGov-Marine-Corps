@@ -1220,7 +1220,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 	var/char = ""
 
 	for(var/i = 1, i <= len, i += length_char(char))
-		char = query_text[i]
+		char = copytext_char(query_text, i, i+1)
 
 		if(char in whitespace)
 			if(word != "")
@@ -1239,7 +1239,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 				query_list += word
 				word = ""
 
-			var/char2 = query_text[i + length_char(char)]
+			var/char2 = copytext_char(query_text, i + length_char(char), i + length_char(char) + 1)
 
 			if(char2 in multi[char])
 				query_list += "[char][char2]"
@@ -1256,12 +1256,12 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 			word = "'"
 
 			for(i += length_char(char), i <= len, i += length_char(char))
-				char = query_text[i]
+				char = copytext_char(query_text, i, i+1)
 
 				if(char == "'")
-					if(query_text[i + length_char(char)] == "'")
+					if(copytext_char(query_text, i + length_char(char), i + length_char(char) + 1) == "'")
 						word += "'"
-						i += length_char(query_text[i + length_char(char)])
+						i += length_char(copytext_char(query_text, i + length_char(char), i + length_char(char) + 1))
 
 					else
 						break
@@ -1287,9 +1287,9 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 				char = query_text[i]
 
 				if(char == "\"")
-					if(query_text[i + length_char(char)] == "'")
+					if(copytext_char(query_text, i + length_char(char), i + length_char(char) + 1) == "'")
 						word += "\""
-						i += length_char(query_text[i + length_char(char)])
+						i += length_char(copytext_char(query_text, i + length_char(char), i + length_char(char) + 1))
 
 					else
 						break
