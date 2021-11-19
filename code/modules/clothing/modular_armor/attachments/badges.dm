@@ -5,22 +5,20 @@
 	greyscale_colors = "#afafad"
 	icon_state = "in_hand"
 	slot = ATTACHMENT_SLOT_BADGE
-	pixel_shift_x = 8
-	pixel_shift_y = 8
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB|ATTACH_NO_HANDS|ATTACH_SAME_ICON
 	///List of selectable styles for where the badge is worn.
 	var/list/style_list = list(
-		"Beret Front" = "beret_forward",
-		"Beret Side" = "beret_side",
-		"Left Shoulder" = "left_arm",
-		"Right Shoulder" = "right_arm",
-		"Left Chest" = "left_chest",
-		"Right Chest" = "right_chest",
-		"Left Helmet" = "left_helm",
-		"Right Helmet" = "right_helm",
+		"Beret Front",
+		"Beret Side",
+		"Left Shoulder",
+		"Right Shoulder",
+		"Left Chest",
+		"Right Chest",
+		"Left Helmet",
+		"Right Helmet",
 	)
 	///Current selected badge style. This is the icon_state for the greyscale config used for the mob sprite.
-	var/current_style = "left_chest"
+	var/current_style = "Left Chest"
 	///List of selectable shapes.
 	var/list/shape_list = list(
 		"Shield" = /datum/greyscale_config/badge/shield,
@@ -34,13 +32,11 @@
 
 /obj/item/armor_module/armor/badge/Initialize()
 	. = ..()
-	style_list = string_list(style_list)
-	shape_list = string_list(shape_list)
 	update_icon()
 
 /obj/item/armor_module/armor/badge/examine(mob/user)
 	. = ..()
-	to_chat(user, span_notice("Its current style is set to [style_list[current_style]]"))
+	to_chat(user, span_notice("Its current style is set to [current_style]"))
 
 /obj/item/armor_module/armor/badge/limit_colorable_colors(faction)
 	return
@@ -48,14 +44,14 @@
 /obj/item/armor_module/armor/badge/can_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	var/allowed = TRUE
-	if((current_style == "beret_forward" || current_style == "beret_side") && !(istype(attaching_to, /obj/item/clothing/head/tgmcberet) || istype(attaching_to, /obj/item/clothing/head/beret)))
+	if((current_style == "Beret Front" || current_style == "Beret Side") && !(istype(attaching_to, /obj/item/clothing/head/tgmcberet) || istype(attaching_to, /obj/item/clothing/head/beret)))
 		allowed = FALSE
-	if((current_style == "left_shoulder" || current_style == "right_shoulder" || current_style == "left_chest" || current_style == "right_chest") && !(istype(attaching_to, /obj/item/clothing/suit) || istype(attaching_to, /obj/item/clothing/under)))
+	if((current_style == "Left Shoulder" || current_style == "Right Shoulder" || current_style == "Left Chest" || current_style == "Right Chest") && !(istype(attaching_to, /obj/item/clothing/suit) || istype(attaching_to, /obj/item/clothing/under)))
 		allowed = FALSE
-	if((current_style == "left_helm" || current_style == "right_helm") && !(istype(attaching_to, /obj/item/clothing/head)))
+	if((current_style == "Left Helmet" || current_style == "Right Helmet") && !(istype(attaching_to, /obj/item/clothing/head)))
 		allowed = FALSE
 	if(!allowed)
-		to_chat(user, span_warning("The currently selected style, [style_list[current_style]] is not compatable with [attaching_to]."))
+		to_chat(user, span_warning("The currently selected style, ([current_style]), is not compatable with [attaching_to]."))
 	return allowed
 
 /obj/item/armor_module/armor/badge/on_attach(obj/item/attaching_to, mob/user)
@@ -80,7 +76,7 @@
 	if(!do_after(living_user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
 	if(new_style)
-		icon_state = style_list[new_style]
+		current_style = new_style
 	if(new_shape)
 		set_greyscale_config(shape_list[new_shape])
 	update_icon()

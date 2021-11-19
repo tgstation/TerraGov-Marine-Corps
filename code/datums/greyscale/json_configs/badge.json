@@ -7,7 +7,7 @@
 			"color_ids": [ 1 ]
 		}
 	],
-	"beret_forward": [
+	"Beret Front": [
 		{
 			"type": "icon_state",
 			"icon_state": "badge_beretf",
@@ -15,7 +15,7 @@
 			"color_ids": [ 1 ]
 		}
 	],
-	"beret_side": [
+	"Beret Side": [
 		{
 			"type": "icon_state",
 			"icon_state": "badge_berets",
@@ -23,7 +23,7 @@
 			"color_ids": [ 1 ]
 		}
 	],
-	"left_arm": [
+	"Left Shoulder": [
 		{
 			"type": "icon_state",
 			"icon_state": "badge_larm",
@@ -31,7 +31,7 @@
 			"color_ids": [ 1 ]
 		}
 	],
-	"left_chest": [
+	"Left Chest": [
 		{
 			"type": "icon_state",
 			"icon_state": "badge_lchest",
@@ -39,7 +39,7 @@
 			"color_ids": [ 1 ]
 		}
 	],
-	"left_helm": [
+	"Left Helmet": [
 		{
 			"type": "icon_state",
 			"icon_state": "badge_lhelm",
@@ -47,7 +47,7 @@
 			"color_ids": [ 1 ]
 		}
 	],
-	"right_arm": [
+	"Right Shoulder": [
 		{
 			"type": "icon_state",
 			"icon_state": "badge_rarm",
@@ -55,7 +55,7 @@
 			"color_ids": [ 1 ]
 		}
 	],
-	"right_chest": [
+	"Right Chest": [
 		{
 			"type": "icon_state",
 			"icon_state": "badge_rchest",
@@ -63,7 +63,7 @@
 			"color_ids": [ 1 ]
 		}
 	],
-	"right_helm": [
+	"Right Helmet": [
 		{
 			"type": "icon_state",
 			"icon_state": "badge_rhelm",

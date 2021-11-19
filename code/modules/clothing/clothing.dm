@@ -4,7 +4,7 @@
 	/// Resets the armor on clothing since by default /objs get 100 bio armor
 	soft_armor = list()
 
-	///Assoc list of available slots.
+	///Assoc list of available slots. Since this keeps track of all currently equiped attachments per object, this cannot be a string_list()
 	var/list/attachments_by_slot = list()
 	///Typepath list of allowed attachment types.
 	var/list/attachments_allowed = list()
@@ -17,7 +17,6 @@
 	/// Bitflags used to determine the state of the armor (light on, overlay used, or reinfornced), currently support flags are in [equipment.dm:100]
 	var/flags_armor_features = NONE
 
-
 	/// used for headgear, masks, and glasses, to see how much they protect eyes from bright lights.
 	var/eye_protection = 0
 
@@ -26,9 +25,7 @@
 
 /obj/item/clothing/Initialize()
 	. = ..()
-	attachments_by_slot = string_list(attachments_by_slot)
 	attachments_allowed = string_list(attachments_allowed)
-	attachment_offsets = string_list(attachment_offsets)
 	starting_attachments = string_list(starting_attachments)
 	if(!length(attachments_allowed) || !length(attachments_by_slot))
 		return
@@ -106,6 +103,8 @@
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
 	siemens_coefficient = 0.9
 	w_class = WEIGHT_CLASS_NORMAL
+	attachments_by_slot = list(ATTACHMENT_SLOT_BADGE)
+	attachments_allowed = list(/obj/item/armor_module/armor/badge)
 	var/supporting_limbs = NONE
 	var/blood_overlay_type = "suit"
 	var/fire_resist = T0C + 100
