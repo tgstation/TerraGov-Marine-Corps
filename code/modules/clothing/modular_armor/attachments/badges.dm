@@ -1,6 +1,6 @@
 /obj/item/armor_module/armor/badge
-	name = "E7 Chameleon Badge"
-	desc = "The E7 Chameloen Badge uses brand new and revolutionary technology to make your gear look even cooler. It is capable of changing into a variety of different shapes (Alt-Click), changing colors (Attack with Green Facepaint), and attaching to nearly all clothing, helmets, berets, and or armor!"
+	name = "7E Chameleon Badge"
+	desc = "The 7E Chameloen Badge uses brand new and revolutionary technology to make your gear look even cooler. It is capable of changing into a variety of different shapes (Alt-Click), changing colors (Attack with Green Facepaint), and attaching to nearly all clothing, helmets, berets, and or armor!"
 	greyscale_config = /datum/greyscale_config/badge/shield
 	greyscale_colors = "#afafad"
 	icon_state = "in_hand"
