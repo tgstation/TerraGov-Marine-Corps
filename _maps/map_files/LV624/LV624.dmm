@@ -5421,18 +5421,16 @@
 	},
 /area/lv624/ground/river2)
 "bDl" = (
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
-	},
-/obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
-	},
 /obj/item/stack/sheet/animalhide/xeno{
 	name = "Lurker Hide"
 	},
 /obj/structure/table/mainship,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whiteyellowfull"
@@ -6703,11 +6701,10 @@
 	},
 /area/lv624/lazarus/main_hall)
 "dat" = (
-/obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
-	},
 /obj/structure/table/mainship,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "dbE" = (
@@ -6921,15 +6918,13 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "drU" = (
-/obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
-	},
 /obj/structure/table/mainship,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whiteyellowfull"
@@ -9141,18 +9136,16 @@
 	},
 /area/lv624/lazarus/research)
 "gdm" = (
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
-	},
-/obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
-	},
 /obj/item/stack/sheet/animalhide/xeno{
 	name = "Warrior hide"
 	},
 /obj/structure/table/mainship,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whiteyellowfull"
@@ -9307,16 +9300,14 @@
 /turf/closed/wall/wood,
 /area/lv624/ground/jungle8)
 "gmL" = (
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
-	},
-/obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
-	},
 /obj/structure/table/mainship,
 /obj/item/restraints/handcuffs/cyborg,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whiteyellowfull"
@@ -12597,11 +12588,10 @@
 	},
 /area/lv624/lazarus/overgrown)
 "kkP" = (
-/obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
-	},
 /obj/structure/table/mainship,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whiteyellowfull"
@@ -15726,15 +15716,13 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "ojZ" = (
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
-	},
-/obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
-	},
 /obj/structure/table/mainship,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "okf" = (
@@ -18182,20 +18170,18 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "rqQ" = (
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
-	},
-/obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
-	},
 /obj/item/stack/sheet/animalhide/xeno{
 	color = "#524e4e";
 	desc = "An old hide from a fearsome creature.";
 	name = "hunter hide"
 	},
 /obj/structure/table/mainship,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whiteyellowfull"
