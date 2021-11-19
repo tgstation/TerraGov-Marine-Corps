@@ -221,7 +221,7 @@
 				)
 		) // If this is a multi-tile object then we need to predict the new locs and check if they allow our entrance.
 		for(var/atom/entering_loc AS in new_locs)
-			if(!entering_loc.Enter(src) || SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_MOVE, entering_loc) & COMPONENT_MOVABLE_BLOCK_PRE_MOVE)
+			if(!entering_loc.Enter(src))
 				return
 	else
 		var/enter_return_value = newloc.Enter(src)

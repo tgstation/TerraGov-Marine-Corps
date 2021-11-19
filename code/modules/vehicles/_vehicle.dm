@@ -155,5 +155,4 @@
 /obj/vehicle/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
 	if(trailer)
-		var/dir_to_move = get_dir(trailer.loc, newloc)
-		step(trailer, dir_to_move)
+		trailer.Move(old_loc, movement_dir)
