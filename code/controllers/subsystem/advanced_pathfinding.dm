@@ -47,10 +47,8 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 
 ///Returns the most optimal path to get from starting atom to goal atom
 /proc/get_path(atom/starting_atom, atom/goal_atom, pathing_type = NODE_PATHING)
-	if(starting_atom.z != goal_atom.z)
-		CRASH("Start atom and goal atom were not on the same z level")
-	if(starting_atom == goal_atom)
-		CRASH("Start atom and goal atom were identical")
+	if(starting_atom.z != goal_atom.z || starting_atom == goal_atom)
+		return
 	var/list/datum/path_step/paths_to_check = list()
 	var/atom/current_atom = starting_atom
 	var/list/datum/path_step/paths_checked = list()
