@@ -61,7 +61,7 @@
 	var/reading_tag = TRUE
 	while(tag_position)
 		if(reading_tag)
-			if(text_to_play[tag_position] == ">")
+			if(copytext_char(text_to_play, tag_position, tag_position+1) == ">")
 				reading_tag = FALSE
 				lines_to_skip += tag_position
 			else
