@@ -24,10 +24,10 @@ Contains most of the procs that are called when a mob is attacked by something
 
 				dropItemToGround(c_hand)
 				if (affected.limb_status & LIMB_ROBOT)
-					emote("me", 1, "drops what they were holding, their [affected.display_name] malfunctioning!")
+					emote("me", 1, "drops what they were holding, [p_their()] [affected.display_name] malfunctioning!")
 				else
 					var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
-					emote("me", 1, "[(species && species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [affected.display_name]!")
+					emote("me", 1, "[(species && species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in [p_their()] [affected.display_name]!")
 
 	return ..()
 
@@ -431,7 +431,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(!internal_organs_by_name["heart"])
 		to_chat(user, span_notice("[src] no longer has a heart."))
 		return
-	if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE) && get_ghost())
+	if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
 		to_chat(user, span_warning("You cannot resolve yourself to destroy [src]'s heart, as [p_they()] can still be saved!"))
 		return
 	to_chat(user, span_notice("You start to remove [src]'s heart, preventing [p_them()] from rising again!"))

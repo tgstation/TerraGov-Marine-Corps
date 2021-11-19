@@ -42,6 +42,7 @@ export const BlessingMenu = (props, context) => {
 
   return (
     <Window
+      theme="xeno"
       title={"Queen Mothers blessings"}
       width={500}
       height={600}>

@@ -124,7 +124,39 @@
 
 /obj/effect/alien/weeds/sticky/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	. = ..()
-	AddElement(/datum/element/slowing_on_crossed, WEED_SLOWDOWN)
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/slow_down_crosser
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/effect/alien/weeds/sticky/proc/slow_down_crosser(datum/source, atom/movable/crosser)
+	SIGNAL_HANDLER
+	if(crosser.throwing || crosser.buckled)
+		return
+
+	if(isvehicle(crosser))
+		var/obj/vehicle/vehicle = crosser
+		vehicle.last_move_time += WEED_SLOWDOWN
+		return
+
+	if(isxeno(crosser))
+		var/mob/living/carbon/xenomorph/X = crosser
+		X.next_move_slowdown += X.xeno_caste.weeds_speed_mod
+		return
+
+	if(!ishuman(crosser))
+		return
+
+	if(CHECK_MULTIPLE_BITFIELDS(crosser.flags_pass, HOVERING))
+		return
+
+	var/mob/living/carbon/human/victim = crosser
+
+	if(victim.lying_angle)
+		return
+
+	victim.next_move_slowdown += WEED_SLOWDOWN
+
 
 /obj/effect/alien/weeds/resting
 	name = "resting weeds"
@@ -238,7 +270,33 @@
 
 /obj/effect/alien/weeds/node/sticky/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	. = ..()
-	AddElement(/datum/element/slowing_on_crossed, WEED_SLOWDOWN)
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/slow_down_crosser
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/effect/alien/weeds/node/sticky/proc/slow_down_crosser(datum/source, atom/movable/crosser)
+	SIGNAL_HANDLER
+	if(crosser.throwing || crosser.buckled)
+		return
+
+	if(isvehicle(crosser))
+		var/obj/vehicle/vehicle = crosser
+		vehicle.last_move_time += WEED_SLOWDOWN
+		return
+
+	if(!ishuman(crosser))
+		return
+
+	if(CHECK_MULTIPLE_BITFIELDS(crosser.flags_pass, HOVERING))
+		return
+
+	var/mob/living/carbon/human/victim = crosser
+
+	if(victim.lying_angle)
+		return
+
+	victim.next_move_slowdown += WEED_SLOWDOWN
 
 //Resting weed node
 /obj/effect/alien/weeds/node/resting

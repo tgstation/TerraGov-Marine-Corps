@@ -181,6 +181,7 @@
 	span_danger("We strike [target] with [flavour] precision!"))
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
+	target.ParalyzeNoChain(1 SECONDS)
 
 	cancel_stealth()
 
@@ -195,9 +196,9 @@
 	handle_stealth()
 
 	if(owner.last_move_intent > world.time - 20) //Stealth halves the rate of plasma recovery on weeds, and eliminates it entirely while moving
-		plasma_mod += 0.0
+		plasma_mod[1] *= 0.5
 	else
-		plasma_mod += 0.5
+		plasma_mod[1] = 0
 
 /datum/action/xeno_action/stealth/proc/sneak_attack_zone()
 	SIGNAL_HANDLER
@@ -205,35 +206,38 @@
 		return
 	return COMSIG_ACCURATE_ZONE
 
-/datum/action/xeno_action/stealth/fun
+/datum/action/xeno_action/stealth/disguise
+	name = "Disguise"
 	mechanics_text = "Disguise yourself as the enemy. Uses plasma to move."
 	///the regular appearance of the hunter
 	var/old_appearance
 
-/datum/action/xeno_action/stealth/fun/action_activate()
+/datum/action/xeno_action/stealth/disguise/action_activate()
 	if(stealth)
 		cancel_stealth()
 		return TRUE
-
 	var/mob/living/carbon/xenomorph/xenoowner = owner
-	if(!xenoowner.xeno_caste.marked_target)
-		to_chat(owner, span_warning("We have no target to disguise into"))
+	var/datum/action/xeno_action/activable/hunter_mark/mark = xenoowner.actions_by_path[/datum/action/xeno_action/activable/hunter_mark]
+
+	if(!mark.marked_target)
+		to_chat(owner, span_warning("We have no target to disguise into!"))
 		return
-	if(ishuman(xenoowner.xeno_caste.marked_target))
+	if(ishuman(mark.marked_target))
 		to_chat(owner, "You cannot turn into a human!")
 		return
 	old_appearance = xenoowner.appearance
 	ADD_TRAIT(xenoowner, TRAIT_MOB_ICON_UPDATE_BLOCKED, STEALTH_TRAIT)
 	return ..()
 
-/datum/action/xeno_action/stealth/fun/cancel_stealth()
+/datum/action/xeno_action/stealth/disguise/cancel_stealth()
 	. = ..()
 	owner.appearance = old_appearance
 	REMOVE_TRAIT(owner, TRAIT_MOB_ICON_UPDATE_BLOCKED, STEALTH_TRAIT)
 
-/datum/action/xeno_action/stealth/fun/handle_stealth()
+/datum/action/xeno_action/stealth/disguise/handle_stealth()
 	var/mob/living/carbon/xenomorph/xenoowner = owner
-	xenoowner.appearance = xenoowner.xeno_caste.marked_target.appearance
+	var/datum/action/xeno_action/activable/hunter_mark/mark = xenoowner.actions_by_path[/datum/action/xeno_action/activable/hunter_mark]
+	xenoowner.appearance = mark.marked_target.appearance
 	xenoowner.underlays.Cut()
 	xenoowner.use_plasma(owner.m_intent == MOVE_INTENT_WALK ? HUNTER_STEALTH_WALK_PLASMADRAIN : HUNTER_STEALTH_RUN_PLASMADRAIN)
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
@@ -258,6 +262,8 @@
 	plasma_cost = 25
 	keybind_signal = COMSIG_XENOABILITY_HUNTER_MARK
 	cooldown_timer = 60 SECONDS
+	///the target marked
+	var/atom/movable/marked_target
 
 /datum/action/xeno_action/activable/hunter_mark/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -266,12 +272,12 @@
 
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if((!isliving(A) && !CONFIG_GET(flag/fun_allowed)) || !ismovable(A))
+	if(!isliving(A) && (X.xeno_caste.upgrade != XENO_UPGRADE_FOUR) || !ismovable(A))
 		if(!silent)
 			to_chat(X, span_xenowarning("We cannot psychically mark this target!"))
 		return FALSE
 
-	if(A == X.xeno_caste.marked_target)
+	if(A == marked_target)
 		if(!silent)
 			to_chat(X, span_xenowarning("This is already our target!"))
 		return FALSE
@@ -305,12 +311,12 @@
 		to_chat(X, span_xenowarning("We lost line of sight to the target!"))
 		return fail_activate()
 
-	if(X.xeno_caste.marked_target) //If we have an existing target, remove the registration.
-		UnregisterSignal(X.xeno_caste.marked_target, COMSIG_PARENT_QDELETING)
+	if(marked_target)
+		UnregisterSignal(marked_target, COMSIG_PARENT_QDELETING)
 
-	X.xeno_caste.marked_target = A //Set our target
+	marked_target = A
 
-	RegisterSignal(X.xeno_caste.marked_target, COMSIG_PARENT_QDELETING, .proc/unset_target) //For var clean up
+	RegisterSignal(marked_target, COMSIG_PARENT_QDELETING, .proc/unset_target) //For var clean up
 
 	to_chat(X, span_xenodanger("We psychically mark [A] as our quarry."))
 	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1)
@@ -318,15 +324,14 @@
 	succeed_activate()
 
 	GLOB.round_statistics.hunter_marks++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "hunter_marks") //Statistics
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "hunter_marks")
 	add_cooldown()
 
 ///Nulls the target of our hunter's mark
 /datum/action/xeno_action/activable/hunter_mark/proc/unset_target()
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/X = owner
-	UnregisterSignal(X.xeno_caste.marked_target, COMSIG_PARENT_QDELETING)
-	X.xeno_caste.marked_target = null //Nullify hunter's mark target and clear the var
+	UnregisterSignal(marked_target, COMSIG_PARENT_QDELETING)
+	marked_target = null //Nullify hunter's mark target and clear the var
 
 // ***************************************
 // *********** Psychic Trace
@@ -343,13 +348,14 @@
 	. = ..()
 
 	var/mob/living/carbon/xenomorph/X = owner
+	var/datum/action/xeno_action/activable/hunter_mark/mark = X.actions_by_path[/datum/action/xeno_action/activable/hunter_mark]
 
-	if(!X.xeno_caste.marked_target)
+	if(!mark.marked_target)
 		if(!silent)
 			to_chat(owner, span_xenowarning("We have no target we can trace!"))
 		return FALSE
 
-	if(X.xeno_caste.marked_target.z != owner.z)
+	if(mark.marked_target.z != owner.z)
 		if(!silent)
 			to_chat(owner, span_xenowarning("Our target is too far away, and is beyond our senses!"))
 		return FALSE
@@ -357,13 +363,13 @@
 
 /datum/action/xeno_action/psychic_trace/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-
-	to_chat(X, span_xenodanger("We sense our quarry <b>[X.xeno_caste.marked_target]</b> is currently located in <b>[AREACOORD_NO_Z(X.xeno_caste.marked_target)]</b> and is <b>[get_dist(X, X.xeno_caste.marked_target)]</b> tiles away. It is <b>[calculate_mark_health(X.xeno_caste.marked_target)]</b> and <b>[X.xeno_caste.marked_target.status_flags & XENO_HOST ? "impregnated" : "barren"]</b>."))
+	var/datum/action/xeno_action/activable/hunter_mark/mark = X.actions_by_path[/datum/action/xeno_action/activable/hunter_mark]
+	to_chat(X, span_xenodanger("We sense our quarry <b>[mark.marked_target]</b> is currently located in <b>[AREACOORD_NO_Z(mark.marked_target)]</b> and is <b>[get_dist(X, mark.marked_target)]</b> tiles away. It is <b>[calculate_mark_health(mark.marked_target)]</b> and <b>[mark.marked_target.status_flags & XENO_HOST ? "impregnated" : "barren"]</b>."))
 	X.playsound_local(X, 'sound/effects/ghost2.ogg', 10, 0, 1)
 
 	var/obj/screen/arrow/hunter_mark_arrow/arrow_hud = new
 	//Prepare the tracker object and set its parameters
-	arrow_hud.add_hud(X, X.xeno_caste.marked_target) //set the tracker parameters
+	arrow_hud.add_hud(X, mark.marked_target) //set the tracker parameters
 	arrow_hud.process() //Update immediately
 
 	add_cooldown()
@@ -450,7 +456,8 @@
 				continue
 
 		var/silence_multiplier = 1
-		if(X.xeno_caste.marked_target == target) //Double debuff stacks for the marked target
+		var/datum/action/xeno_action/activable/hunter_mark/mark = X.actions_by_path[/datum/action/xeno_action/activable/hunter_mark]
+		if(mark?.marked_target == target) //Double debuff stacks for the marked target
 			silence_multiplier = HUNTER_SILENCE_MULTIPLIER
 		to_chat(target, span_danger("Your mind convulses at the touch of something ominous as the world seems to blur, your voice dies in your throat, and everything falls silent!") ) //Notify privately
 		target.playsound_local(target, 'sound/effects/ghost.ogg', 25, 0, 1)

@@ -19,6 +19,12 @@
 ///AI component state where we're moving towards *something*, probably something we want to hit
 #define MOVING_TO_ATOM "moving_to_an_atom"
 
+///Ai component state where the ai tries to flee to heal
+#define MOVING_TO_SAFETY "moving_to_safety"
+
+///Ai component state where the ai is following a tile path
+#define FOLLOWING_PATH "following path"
+
 ///A define for a node variable which is the last world.time that a AI visited it
 #define NODE_LAST_VISITED "node_last_visited"
 
@@ -38,7 +44,8 @@
 #define TARGET_XENO (1<<3)
 #define TARGET_UNMANNED_VEHICLE (1<<4)
 
-#define MAX_NODE_RANGE_SQUARED 256
+#define MAX_NODE_RANGE 15
+#define PATHFINDER_MAX_TRIES 200
 
 GLOBAL_LIST_EMPTY(allnodes)
 

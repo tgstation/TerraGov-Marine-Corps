@@ -143,11 +143,6 @@
 	var/shut_up = FALSE
 	///If the vending machine is hacked, makes the items on contraband list available.
 	var/extended_inventory = FALSE
-	///Whatever coin we have inside, should totally be replaced by something else.
-	var/obj/item/coin/coin
-	///What type of token we support.
-	var/tokensupport = TOKEN_GENERAL
-
 	/// 1 = requires PIN and checks accounts.  0 = You slide an ID, it vends, SPACE COMMUNISM!
 	var/check_accounts = 0
 	///Current cash card.
@@ -338,25 +333,6 @@
 
 		attack_hand(user)
 
-	else if(istype(I, /obj/item/coin))
-		var/obj/item/coin/C = I
-
-		if(coin)
-			to_chat(user, span_warning("[src] already has [coin] inserted"))
-
-		else if(!length(premium) && !isshared)
-			to_chat(user, span_warning("[src] doesn't have a coin slot."))
-
-		else if(C.flags_token & tokensupport)
-			if(!user.transferItemToLoc(C, src))
-				return
-
-			coin = C
-			to_chat(user, span_notice("You insert \the [C] into \the [src]"))
-
-		else
-			to_chat(user, span_warning("\The [src] rejects \the [C]."))
-
 	else if(istype(I, /obj/item/card))
 		var/obj/item/card/C = I
 		scan_card(C)
@@ -379,8 +355,14 @@
 		anchored = !anchored
 		if(anchored)
 			user.visible_message("[user] tightens the bolts securing \the [src] to the floor.", "You tighten the bolts securing \the [src] to the floor.")
+			var/turf/current_turf = get_turf(src)
+			if(current_turf && density)
+				current_turf.flags_atom |= AI_BLOCKED
 		else
 			user.visible_message("[user] unfastens the bolts securing \the [src] to the floor.", "You unfasten the bolts securing \the [src] to the floor.")
+			var/turf/current_turf = get_turf(src)
+			if(current_turf && density)
+				current_turf.flags_atom &= ~AI_BLOCKED
 
 	else if(istype(I, /obj/item))
 		var/obj/item/to_stock = I
@@ -514,7 +496,6 @@
 	if(currently_vending)
 		.["currently_vending"] = MAKE_VENDING_RECORD_DATA(currently_vending)
 	.["extended"] = extended_inventory
-	.["coin"] = coin ? coin.name : null
 	.["isshared"] = isshared
 
 /obj/machinery/vending/ui_act(action, list/params)
@@ -524,17 +505,6 @@
 	if(!powered())
 		return
 	switch(action)
-		if("remove_coin")
-			if(!coin)
-				to_chat(usr, "There is no coin in this machine.")
-				return
-
-			coin.forceMove(loc)
-			coin = null
-			usr.put_in_hands(coin)
-			to_chat(usr, span_notice("You remove the [coin] from the [src]"))
-			. = TRUE
-
 		if("vend")
 			if(!allowed(usr) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety))
 				to_chat(usr, span_warning("Access denied."))
@@ -579,21 +549,6 @@
 
 	if(R.category == CAT_HIDDEN && !extended_inventory)
 		return
-
-	if(R.category == CAT_COIN)
-		if(!coin)
-			to_chat(user, span_notice("You need to insert a coin to get this item."))
-			return
-		if(coin.string_attached)
-			if(prob(50))
-				to_chat(user, span_notice("You successfully pull the coin out before the [src] could swallow it."))
-			else
-				to_chat(user, span_notice("You weren't able to pull the coin out fast enough, the machine ate it, string and all."))
-				qdel(coin)
-				coin = null
-		else
-			qdel(coin)
-			coin = null
 
 	vend_ready = 0 //One thing at a time!!
 	R.amount--

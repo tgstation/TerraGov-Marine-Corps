@@ -31,8 +31,7 @@
 /proc/get_bbox_of_atoms(list/atoms)
 	var/list/list_x = list()
 	var/list/list_y = list()
-	for(var/_a in atoms)
-		var/atom/a = _a
+	for(var/atom/a AS in atoms)
 		list_x += a.x
 		list_y += a.y
 	return list(
@@ -57,7 +56,7 @@
 	. = list()
 	// Returns a list of mobs who can hear any of the radios given in @radios
 	var/list/speaker_coverage = list()
-	for(var/obj/item/radio/R in radios)
+	for(var/obj/item/radio/R AS in radios)
 		if(!R)
 			continue
 
@@ -84,8 +83,7 @@
 /proc/get_alien_candidate()
 	var/mob/dead/observer/picked
 
-	for(var/i in GLOB.observer_list)
-		var/mob/dead/observer/O = i
+	for(var/mob/dead/observer/O AS in GLOB.observer_list)
 		//Players without preferences or jobbaned players cannot be drafted.
 		if(!O.key || !O.mind || !O.client?.prefs || !(O.client.prefs.be_special & (BE_ALIEN|BE_ALIEN_UNREVIVABLE)) || is_banned_from(O.ckey, ROLE_XENOMORPH))
 			continue
@@ -122,12 +120,12 @@
 	remove_from?.images -= image
 
 /proc/remove_images_from_clients(image/I, list/show_to)
-	for(var/client/C in show_to)
+	for(var/client/C AS in show_to)
 		C.images -= I
 
 
 /proc/flick_overlay(image/I, list/show_to, duration)
-	for(var/client/C in show_to)
+	for(var/client/C AS in show_to)
 		C.images += I
 	addtimer(CALLBACK(GLOBAL_PROC, /proc/remove_images_from_clients, I, show_to), duration, TIMER_CLIENT_TIME)
 
@@ -161,19 +159,15 @@
 /proc/get_active_player_count(alive_check = FALSE, afk_check = FALSE, faction_check = FALSE, faction = FACTION_NEUTRAL)
 	// Get active players who are playing in the round
 	var/active_players = 0
-	for(var/i = 1; i <= GLOB.player_list.len; i++)
-		var/mob/M = GLOB.player_list[i]
-		if(!(M && M.client))
+	for(var/mob/M  in GLOB.player_list)
+		if(!M?.client)
 			continue
 		if(alive_check && M.stat == DEAD)
 			continue
 		else if(afk_check && M.client.is_afk())
 			continue
 		else if(faction_check)
-			if(!isliving(M))
-				continue
-			var/mob/living/living = M
-			if(faction != living.faction)
+			if(faction != M.faction)
 				continue
 		else if(isnewplayer(M)) // exclude people in the lobby
 			continue

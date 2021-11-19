@@ -173,7 +173,7 @@ Make the TGMC proud!"})
 	belt = /obj/item/storage/large_holster/blade/officer/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/exec
-	wear_suit = /obj/item/clothing/suit/modular/pas11x
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/marine/officer
 	head = /obj/item/clothing/head/tgmcberet/fc
@@ -866,7 +866,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	jobtype = /datum/job/terragov/medical/researcher
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/medical
-	ears = /obj/item/radio/headset/mainship/doc
+	ears = /obj/item/radio/headset/mainship/res
 	w_uniform = /obj/item/clothing/under/marine/officer/researcher
 	wear_suit = /obj/item/clothing/suit/storage/labcoat/armored_coat
 	shoes = /obj/item/clothing/shoes/laceup
@@ -877,6 +877,13 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	r_store = /obj/item/reagent_containers/glass/bottle/lemoline
 	l_store = /obj/item/storage/pouch/autoinjector/advanced/full
 	back = /obj/item/storage/backpack/marine/satchel
+
+/datum/outfit/job/medical/researcher/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	var/obj/item/storage/backpack/respack = H.back
+	var/obj/item/tool/research/xeno_analyzer/res_an = new
+	respack.handle_item_insertion(res_an, TRUE, null)
+	var/obj/item/tool/research/excavation_tool/res_ex = new
+	respack.handle_item_insertion(res_ex, TRUE, null)
 
 /datum/outfit/job/medical/researcher/rebel
 	jobtype = /datum/job/terragov/medical/researcher/rebel

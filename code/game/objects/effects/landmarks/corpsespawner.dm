@@ -48,6 +48,9 @@
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_humans_created")
 	victim.real_name = name
 	victim.death(silent = TRUE) //Kills the new mob
+	GLOB.dead_human_list -= victim
+	GLOB.dead_mob_list -= victim
+	GLOB.mob_list -= victim
 	victim.timeofdeath = -CONFIG_GET(number/revive_grace_period)
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	victim.med_hud_set_status()
@@ -55,17 +58,6 @@
 	switch(death_type)
 		if(COCOONED_DEATH) //Just cocooned
 			new /obj/structure/cocoon/opened_cocoon(loc)
-		if(SILO_DEATH) //Headbite and siloed
-			var/datum/internal_organ/brain
-			brain = victim.internal_organs_by_name["brain"] //This removes (and later garbage collects) the organ. No brain means instant death.
-			victim.internal_organs_by_name -= "brain"
-			victim.internal_organs -= brain
-			victim.headbitten = TRUE
-			victim.chestburst = 2
-			victim.update_burst()
-			victim.update_headbite()
-			if(length(GLOB.xeno_resin_silos))
-				victim.loc = pick(GLOB.xeno_resin_silos)
 		if(HEADBITE_DEATH) //Headbite but left there
 			var/datum/internal_organ/brain
 			brain = victim.internal_organs_by_name["brain"] //This removes (and later garbage collects) the organ. No brain means instant death.

@@ -111,6 +111,9 @@
 
 /datum/game_mode/proc/post_setup()
 	addtimer(CALLBACK(src, .proc/display_roundstart_logout_report), ROUNDSTART_LOGOUT_REPORT_TIME)
+	if(flags_round_type & MODE_SILO_RESPAWN)
+		var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
+		HN.RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), /datum/hive_status/normal.proc/set_siloless_collapse_timer)
 	if(!SSdbcore.Connect())
 		return
 	var/sql
@@ -392,8 +395,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.weeds_planted] weed nodes planted."
 	if(GLOB.round_statistics.weeds_destroyed)
 		dat += "[GLOB.round_statistics.weeds_destroyed] weed tiles removed."
-	if(GLOB.round_statistics.carrier_traps)
-		dat += "[GLOB.round_statistics.carrier_traps] hidey holes for huggers were made."
+	if(GLOB.round_statistics.trap_holes)
+		dat += "[GLOB.round_statistics.trap_holes] holes for acid and huggers were made."
 	if(GLOB.round_statistics.sentinel_neurotoxin_stings)
 		dat += "[GLOB.round_statistics.sentinel_neurotoxin_stings] number of times Sentinels stung."
 	if(GLOB.round_statistics.defiler_defiler_stings)
@@ -463,6 +466,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 				continue
 			if(H.status_flags & XENO_HOST)
 				continue
+			if(H.faction == FACTION_XENO)
+				continue
 			if(isspaceturf(H.loc))
 				continue
 			num_humans++
@@ -480,7 +485,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 				continue
 			if(isspaceturf(X.loc))
 				continue
-
+			if(X.xeno_caste.upgrade == XENO_UPGRADE_BASETYPE) //Ais don't count
+				continue
 			// Never count hivemind
 			if(isxenohivemind(X))
 				continue

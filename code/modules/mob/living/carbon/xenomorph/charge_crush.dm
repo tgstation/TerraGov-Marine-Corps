@@ -31,6 +31,8 @@
 	var/crush_living_damage = 20
 	var/next_special_attack = 0 //Little var to keep track on special attack timers.
 	var/plasma_use_multiplier = 1
+	///If this charge should keep momentum on dir change and if it can charge diagonally
+	var/agile_charge = FALSE
 
 
 /datum/action/xeno_action/ready_charge/give_action(mob/living/L)
@@ -82,7 +84,7 @@
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(charger.is_charging == CHARGE_OFF)
 		return
-	if(!old_dir || !new_dir || old_dir == new_dir) //Check for null direction from help shuffle signals
+	if(!old_dir || !new_dir || old_dir == new_dir || agile_charge) //Check for null direction from help shuffle signals
 		return
 	do_stop_momentum()
 
@@ -147,7 +149,7 @@
 
 /datum/action/xeno_action/ready_charge/proc/check_momentum(newdir)
 	var/mob/living/carbon/xenomorph/charger = owner
-	if(newdir && (ISDIAGONALDIR(newdir) || charge_dir != newdir)) //Check for null direction from help shuffle signals
+	if((newdir && ISDIAGONALDIR(newdir) || charge_dir != newdir) && !agile_charge) //Check for null direction from help shuffle signals
 		return FALSE
 
 	if(next_move_limit && world.time > next_move_limit)
@@ -159,7 +161,7 @@
 	if(charger.incapacitated())
 		return FALSE
 
-	if(charge_dir != charger.dir || charger.moving_diagonally)
+	if((charge_dir != charger.dir || charger.moving_diagonally) && !agile_charge)
 		return FALSE
 
 	if(charger.pulledby)
@@ -320,11 +322,11 @@
 
 /datum/action/xeno_action/ready_charge/bull_charge
 	charge_type = CHARGE_BULL
-	speed_per_step = 0.1
-	steps_for_charge = 6
+	speed_per_step = 0.15
+	steps_for_charge = 5
 	max_steps_buildup = 10
 	crush_living_damage = 15
-	plasma_use_multiplier = 1.8
+	plasma_use_multiplier = 2
 
 
 /datum/action/xeno_action/ready_charge/bull_charge/give_action(mob/living/L)
@@ -358,6 +360,9 @@
 			charge_type = CHARGE_BULL_GORE
 			crush_sound = "alien_tail_attack"
 			to_chat(owner, span_notice("Now goring on impact."))
+
+/datum/action/xeno_action/ready_charge/bull_charge/agile_charge
+	agile_charge = TRUE
 
 
 // ***************************************
@@ -523,7 +528,7 @@
 		if(CHARGE_CRUSH)
 			Paralyze(CHARGE_SPEED(charge_datum) * 20)
 		if(CHARGE_BULL_HEADBUTT)
-			Paralyze(CHARGE_SPEED(charge_datum) * 60)
+			Paralyze(CHARGE_SPEED(charge_datum) * 25)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)

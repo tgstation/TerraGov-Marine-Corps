@@ -37,7 +37,7 @@
 	var/list/datum/internal_organ/internal_organs
 
 	/// Message that displays when you feel pain from this limb
-	var/damage_msg = span_warning(" You feel an intense pain")
+	var/damage_msg = span_warning("You feel an intense pain")
 	var/broken_description
 
 	var/surgery_open_stage = 0
@@ -365,16 +365,18 @@
 	//Creating wound
 	var/wound_type = get_wound_type(type, damage)
 
-	if(wound_type)
-		W = new wound_type(damage)
+	if(!wound_type)
+		return
+	W = new wound_type(damage)
 
-		//Check whether we can add the wound to an existing wound
-		for(var/datum/wound/other in wounds)
-			if(other.can_merge(W))
-				other.merge_wound(W)
-				W = null // to signify that the wound was added
-				break
-		if(W) wounds += W
+	//Check whether we can add the wound to an existing wound
+	for(var/datum/wound/other AS in wounds)
+		if(other.can_merge(W))
+			other.merge_wound(W)
+			W = null // to signify that the wound was added
+			break
+	if(W)
+		wounds += W
 
 
 /****************************************************
@@ -1058,12 +1060,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(prob(15))
 			owner.dropItemToGround(c_hand)
 			var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
-			owner.emote("me", 1, "[(owner.species && owner.species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [hand_name]!")
+			owner.emote("me", 1, "[(owner.species && owner.species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what [owner.p_they()] [owner.p_were()] holding in their [hand_name]!")
 			return
 	if(is_malfunctioning())
 		if(prob(5))
 			owner.dropItemToGround(c_hand)
-			owner.emote("me", 1, "drops what they were holding, their [hand_name] malfunctioning!")
+			owner.emote("me", 1, "drops what they were holding, [owner.p_their()] [hand_name] malfunctioning!")
 			new /datum/effect_system/spark_spread(owner, owner, 5, 0, TRUE, 1 SECONDS)
 
 

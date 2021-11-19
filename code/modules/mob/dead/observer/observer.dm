@@ -91,7 +91,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!T)
 		T = pick(GLOB.latejoin)
 
-	forceMove(T)
+	abstract_move(T)
 
 	if(!name)
 		name = random_unique_name(gender)
@@ -175,7 +175,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			return
 
 		var/mob/dead/observer/A = usr
-		A.forceMove(T)
+		A.abstract_move(T)
 		return
 
 	else if(href_list["claim"])
@@ -228,7 +228,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos)
 			if(resin_silo.associated_hive == GLOB.hive_datums[XENO_HIVE_NORMAL] && num2text(resin_silo.number_silo) == silo_number)
 				var/mob/dead/observer/ghost = usr
-				ghost.forceMove(resin_silo.loc)
+				ghost.abstract_move(resin_silo.loc)
 				break
 
 /mob/proc/ghostize(can_reenter_corpse = TRUE)
@@ -269,7 +269,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!T)
 		stack_trace("no latejoin landmark detected")
 
-	ghost.forceMove(T)
+	ghost.abstract_move(T)
 
 	return ghost
 
@@ -286,13 +286,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/dead/observer/Move(atom/newloc, direct)
 	if(updatedir)
 		setDir(direct)//only update dir if we actually need it, so overlays won't spin on base sprites that don't have directions of their own
-	var/oldloc = loc
 
 	if(newloc)
-		forceMove(newloc)
+		abstract_move(newloc)
 		update_parallax_contents()
 	else
-		forceMove(get_turf(src))  //Get out of closets and such as a ghost
+		abstract_move(get_turf(src))  //Get out of closets and such as a ghost
 		if((direct & NORTH) && y < world.maxy)
 			y++
 		else if((direct & SOUTH) && y > 1)
@@ -302,7 +301,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		else if((direct & WEST) && x > 1)
 			x--
 
-	Moved(oldloc, direct)
 
 
 /mob/dead/observer/can_use_hands()
@@ -383,15 +381,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set category = "Ghost"
 	set name = "Try to take SSD mob"
 
-	if(GLOB.key_to_time_of_death[key] + TIME_BEFORE_TAKING_BODY < world.time && !started_as_observer)
+	if(GLOB.key_to_time_of_death[key] + TIME_BEFORE_TAKING_BODY > world.time && !started_as_observer)
 		to_chat(src, span_warning("You died too recently to be able to take a new mob."))
 		return
 
 	var/list/mob/living/free_ssd_mobs = list()
 	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
-		if(isnull(ssd_mob))
-			LAZYREMOVE(GLOB.ssd_living_mobs, src)
-			continue
 		if(is_centcom_level(ssd_mob.z))
 			continue
 		if(ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
@@ -489,7 +484,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!A)
 		return
 
-	forceMove(pick(get_area_turfs(A)))
+	abstract_move(pick(get_area_turfs(A)))
 	update_parallax_contents()
 
 

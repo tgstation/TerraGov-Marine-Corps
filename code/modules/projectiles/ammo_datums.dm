@@ -41,6 +41,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/flags_ammo_behavior = NONE
 	///Determines what color our bullet will be when it flies
 	var/bullet_color = COLOR_WHITE
+	///If this ammo is hitscan, the icon of beam coming out from the gun
+	var/hitscan_effect_icon = "beam"
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
 	return
@@ -159,8 +161,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		victim.apply_damage(proj.damage * 0.1, proj.ammo.damage_type, null, armor_block, updating_health = TRUE)
 
 /datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle)
+	var/effect_icon = ""
+	var/proj_type = /obj/projectile
+	if(istype(main_proj, /obj/projectile/hitscan))
+		proj_type = /obj/projectile/hitscan
+		var/obj/projectile/hitscan/main_proj_hitscan = main_proj
+		effect_icon = main_proj_hitscan.effect_icon
 	for(var/i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
-		var/obj/projectile/new_proj = new /obj/projectile(main_proj.loc)
+		var/obj/projectile/new_proj = new proj_type(main_proj.loc, effect_icon)
 		if(bonus_projectiles_type)
 			new_proj.generate_bullet(GLOB.ammo_list[bonus_projectiles_type])
 			var/obj/item/weapon/gun/g = source
@@ -191,6 +199,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/proc/drop_nade(turf/T)
 	return
+
+///called on projectile process() when SPECIAL_PROCESS flag is active
+/datum/ammo/proc/ammo_process(obj/projectile/proj, damage)
+	CRASH("ammo_process called with unimplemented process!")
+
 
 
 /*
@@ -547,12 +560,12 @@ datum/ammo/bullet/revolver/tp44
 	name = "high velocity impact bullet"
 	hud_state = "hivelo_impact"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	damage = 25
+	damage = 30
 	penetration = 45
 	sundering = 5
 
 /datum/ammo/bullet/rifle/tx8/impact/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, max_range = 20, stagger = 2, slowdown = 1, knockback = 1)
+	staggerstun(M, P, max_range = 20, slowdown = 1, knockback = 1, shake = 0)
 
 /datum/ammo/bullet/rifle/ak47
 	name = "crude heavy rifle bullet"
@@ -637,23 +650,14 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "shotgun_fire"
 	damage_type = BRUTE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING
-	accuracy = -10
 	max_range = 15
-	damage = 40
-	penetration = 20
+	damage = 65
+	penetration = 15
 	sundering = 2
 	bullet_color = COLOR_TAN_ORANGE
 
-/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/victim, obj/projectile/proj)
-	airburst(victim, proj)
-	knockback(victim, proj)
-
-/datum/ammo/bullet/shotgun/incendiary/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	airburst(target_obj, proj)
-
-/datum/ammo/bullet/shotgun/incendiary/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	airburst(target_turf, proj)
-
+/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, shake = 0, knockback = 2, slowdown = 1)
 
 /datum/ammo/bullet/shotgun/flechette
 	name = "shotgun flechette shell"
@@ -972,10 +976,9 @@ datum/ammo/bullet/revolver/tp44
 	name = "high caliber rifle bullet"
 	hud_state = "minigun"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
-	damage = 80
+	damage = 50
 	penetration = 30
-	sundering = 7.5
-	accurate_range_min = 2
+	sundering = 2
 	damage_falloff = 0.25
 
 /*
@@ -1323,12 +1326,14 @@ datum/ammo/bullet/revolver/tp44
 	icon_state = "tesla"
 	hud_state = "taser"
 	hud_state_empty = "battery_empty"
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_CHAINING
+	flags_ammo_behavior = AMMO_ENERGY|SPECIAL_PROCESS
 	shell_speed = 0.1
 	damage = 20
 	penetration = 20
 	bullet_color = COLOR_TESLA_BLUE
 
+/datum/ammo/energy/tesla/ammo_process(obj/projectile/proj, damage)
+	zap_beam(proj, 4, damage)
 
 /datum/ammo/energy/droidblast
 	name = "energetic plasma bolt"
@@ -1450,10 +1455,12 @@ datum/ammo/bullet/revolver/tp44
 // TE Lasers //
 
 /datum/ammo/energy/lasgun/marine
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN
 	damage = 20
 	penetration = 10
 	sundering = 1
 	max_range = 30
+	hitscan_effect_icon = "beam"
 
 /datum/ammo/energy/lasgun/marine/overcharge
 	name = "overcharged laser bolt"
@@ -1462,6 +1469,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 40
 	penetration = 20
 	sundering = 2
+	hitscan_effect_icon = "beam_heavy"
 
 /datum/ammo/energy/lasgun/marine/blast
 	name = "wide range laser blast"
@@ -1477,6 +1485,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 35
 	penetration = 20
 	sundering = 1
+	hitscan_effect_icon = "pu_laser"
 
 /datum/ammo/energy/lasgun/marine/spread
 	name = "additional laser blast"
@@ -1489,6 +1498,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 35
 	penetration = 20
 	sundering = 1
+	hitscan_effect_icon = "pu_laser"
 
 /datum/ammo/energy/lasgun/marine/autolaser
 	name = "machine laser bolt"
@@ -1498,6 +1508,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/energy/lasgun/marine/autolaser/efficiency
 	name = "efficient machine laser bolt"
 	damage = 8.5
+	hitscan_effect_icon = "beam_particle"
 
 /datum/ammo/energy/lasgun/marine/sniper
 	name = "sniper laser bolt"
@@ -1507,6 +1518,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 4
 	max_range = 40
 	damage_falloff = 0
+	hitscan_effect_icon = "beam_heavy"
 
 /datum/ammo/energy/lasgun/marine/sniper_heat
 	name = "sniper heat bolt"
@@ -1515,14 +1527,15 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 2.5
 	damage = 40
 	penetration = 0
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
 	sundering = 1
-
+	hitscan_effect_icon = "u_laser_beam"
 
 /datum/ammo/energy/lasgun/marine/pistol
 	name = "pistol laser bolt"
-	damage = 25
+	damage = 20
 	penetration = 5
+	hitscan_effect_icon = "beam_particle"
 
 /datum/ammo/energy/lasgun/marine/pistol/disabler
 	name = "disabler bolt"
@@ -1531,6 +1544,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 70
 	penetration = 0
 	damage_type = STAMINA
+	hitscan_effect_icon = "stun"
 
 /datum/ammo/energy/lasgun/marine/pistol/heat
 	name = "microwave heat bolt"
@@ -1539,8 +1553,9 @@ datum/ammo/bullet/revolver/tp44
 	damage = 20
 	shell_speed = 2.5
 	penetration = 10
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
 	sundering = 0.5
+	hitscan_effect_icon = "beam_incen"
 
 /datum/ammo/energy/lasgun/pistol/disabler/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)
@@ -1630,7 +1645,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
-	spit_cost = 70
+	spit_cost = 55
 	added_spit_delay = 0
 	damage_type = STAMINA
 	accurate_range = 5
@@ -1720,7 +1735,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
 	added_spit_delay = 0
-	spit_cost = 120
+	spit_cost = 100
 	damage = 40
 	smoke_strength = 0.9
 	reagent_transfer_amount = 9.5
@@ -1804,7 +1819,7 @@ datum/ammo/bullet/revolver/tp44
 	sound_bounce	= "acid_bounce"
 	damage_type = BURN
 	added_spit_delay = 5
-	spit_cost = 75
+	spit_cost = 50
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE
 	armor_type = "acid"
 	damage = 18
@@ -1823,10 +1838,15 @@ datum/ammo/bullet/revolver/tp44
 	damage = 30
 	flags_ammo_behavior = AMMO_XENO
 
+/datum/ammo/xeno/acid/passthrough
+	name = "acid spittle"
+	damage = 30
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
+
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
 	added_spit_delay = 2
-	spit_cost = 90
+	spit_cost = 70
 	damage = 30
 
 /datum/ammo/xeno/acid/heavy/turret

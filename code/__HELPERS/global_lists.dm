@@ -137,10 +137,6 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 
 		if(length(D.required_reagents))
 			for(var/result in D.results)
-				GLOB.chemical_required_reagents[result] = list(
-					"catalysts" = D.required_catalysts,
-					"reagents" = D.required_reagents
-				)
 
 			for(var/reaction in D.required_reagents)
 				reaction_ids += reaction

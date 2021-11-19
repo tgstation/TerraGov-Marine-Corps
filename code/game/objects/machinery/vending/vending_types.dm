@@ -179,6 +179,8 @@
 			/obj/item/clothing/glasses/hud/health = 2,
 			/obj/item/storage/belt/medical = 2,
 			/obj/item/reagent_containers/syringe = 20,
+			/obj/item/tool/research/xeno_analyzer = 5,
+			/obj/item/tool/research/excavation_tool = 5,
 		),
 	)
 
@@ -189,6 +191,7 @@
 		/obj/item/reagent_containers/glass/bottle/neurotoxin/light = 1,
 		/obj/item/reagent_containers/glass/bottle/xeno_hemodile = 1,
 		/obj/item/reagent_containers/glass/bottle/xeno_transvitox = 1,
+		/obj/item/reagent_containers/glass/bottle/xeno_sanguinal = 1,
 	)
 
 	idle_power_usage = 211

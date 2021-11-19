@@ -70,17 +70,10 @@
 
 	//uniform
 	if(w_uniform && !skipjumpsuit)
-		//Ties
-		var/tie_msg
-		if(istype(w_uniform,/obj/item/clothing/under))
-			var/obj/item/clothing/under/U = w_uniform
-			if(U.hastie)
-				tie_msg += " with [icon2html(U.hastie, user)] \a [U.hastie]"
-
 		if(w_uniform.blood_overlay)
-			msg += "[span_warning("[t_He] [t_is] wearing [icon2html(w_uniform, user)] [w_uniform.gender==PLURAL?"some":"a"] [(w_uniform.blood_color != "#030303") ? "blood" : "oil"]-stained [w_uniform.name][tie_msg]!")]\n"
+			msg += "[span_warning("[t_He] [t_is] wearing [icon2html(w_uniform, user)] [w_uniform.gender==PLURAL?"some":"a"] [(w_uniform.blood_color != "#030303") ? "blood" : "oil"]-stained [w_uniform.name]!")]\n"
 		else
-			msg += "[t_He] [t_is] wearing [icon2html(w_uniform, user)] \a [w_uniform][tie_msg].\n"
+			msg += "[t_He] [t_is] wearing [icon2html(w_uniform, user)] \a [w_uniform].\n"
 
 	//head
 	if(head)

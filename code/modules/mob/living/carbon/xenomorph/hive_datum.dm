@@ -18,6 +18,8 @@
 	var/list/list/xenos_by_zlevel = list()
 	///list of evo towers
 	var/list/obj/structure/xeno/evotower/evotowers = list()
+	///list of upgrade towers
+	var/list/obj/structure/xeno/maturitytower/maturitytowers = list()
 	var/tier3_xeno_limit
 	var/tier2_xeno_limit
 	///Queue of all observer wanting to join xeno side
@@ -28,6 +30,8 @@
 	var/list/buyable_upgrades = list()
 	///assoc list name = upgraderef
 	var/list/datum/hive_upgrade/upgrades_by_name = list()
+	///Its an int showing the count of living kings
+	var/king_present = 0
 
 // ***************************************
 // *********** Init
@@ -110,6 +114,8 @@
 /datum/hive_status/proc/get_total_xeno_number() // unsafe for use by gamemode code
 	. = 0
 	for(var/t in xenos_by_tier)
+		if(t == XENO_TIER_MINION)
+			continue
 		. += length(xenos_by_tier[t])
 
 /datum/hive_status/proc/post_add(mob/living/carbon/xenomorph/X)
@@ -189,10 +195,16 @@
 	return xenos
 
 
-///fetches number of bonus points given to the hive,
+///fetches number of bonus evo points given to the hive
 /datum/hive_status/proc/get_evolution_boost()
 	. = 0
 	for(var/obj/structure/xeno/evotower/tower AS in evotowers)
+		. += tower.boost_amount
+
+///fetches number of bonus upgrade points given to the hive
+/datum/hive_status/proc/get_upgrade_boost()
+	. = 0
+	for(var/obj/structure/xeno/maturitytower/tower AS in maturitytowers)
 		. += tower.boost_amount
 
 // ***************************************
@@ -303,7 +315,7 @@
 	if(!xenos_by_typepath[X.caste_base_type].Remove(X))
 		stack_trace("failed to remove a xeno from hive status typepath list, nothing was removed!?")
 		return FALSE
-	
+
 	LAZYREMOVE(xenos_by_zlevel["[X.z]"], X)
 
 	UnregisterSignal(X, COMSIG_MOVABLE_Z_CHANGED)
@@ -359,7 +371,7 @@
 /datum/hive_status/proc/add_leader(mob/living/carbon/xenomorph/X)
 	xeno_leader_list += X
 	X.queen_chosen_lead = TRUE
-	X.give_rally_hive_ability()
+	X.give_rally_abilities()
 
 /datum/hive_status/proc/remove_leader(mob/living/carbon/xenomorph/X)
 	xeno_leader_list -= X
@@ -582,6 +594,12 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal // subtype for easier typechecking and overrides
 	hive_flags = HIVE_CAN_HIJACK
 
+///Signal handler to tell the hive to check for siloless in MINIMUM_TIME_SILO_LESS_COLLAPSE
+/datum/hive_status/normal/proc/set_siloless_collapse_timer()
+	SIGNAL_HANDLER
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY))
+	addtimer(CALLBACK(src, .proc/handle_silo_death_timer, TRUE), MINIMUM_TIME_SILO_LESS_COLLAPSE)
+
 /datum/hive_status/normal/on_queen_death(mob/living/carbon/xenomorph/queen/Q)
 	if(living_xeno_queen != Q)
 		return FALSE
@@ -722,10 +740,10 @@ to_chat will check for valid clients itself already so no need to double check f
 	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid a cruel death!")
 	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, .proc/on_hijack_depart)
 
-	for(var/obj/structure/xeno/silo/silo AS in GLOB.xeno_resin_silos)
-		if(!is_ground_level(silo.z))
+	for(var/obj/structure/xeno/structure AS in GLOB.xeno_structure)
+		if(!is_ground_level(structure.z))
 			continue
-		qdel(silo)
+		qdel(structure)
 
 	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS_ADVANCED)
 		SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
@@ -750,6 +768,8 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(isxenohivemind(boarder))
 			continue
 		INVOKE_ASYNC(boarder, /mob/living.proc/gib)
+		if(boarder.xeno_caste.tier == XENO_TIER_MINION)
+			continue
 		left_behind++
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	if(left_behind)
@@ -764,10 +784,10 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/proc/handle_silo_death_timer()
 	return
 
-/datum/hive_status/normal/handle_silo_death_timer()
-	if(!(SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN))
-		return
-	if(world.time < MINIMUM_TIME_SILO_LESS_COLLAPSE)
+/datum/hive_status/normal/handle_silo_death_timer(bypass_flag = FALSE)
+	if(bypass_flag)
+		hive_flags |= HIVE_CAN_COLLAPSE_FROM_SILO
+	else if(!(hive_flags & HIVE_CAN_COLLAPSE_FROM_SILO))
 		return
 	var/datum/game_mode/infestation/distress/D = SSticker.mode
 	if(D.round_stage != INFESTATION_MARINE_DEPLOYMENT)
@@ -1187,6 +1207,11 @@ to_chat will check for valid clients itself already so no need to double check f
 	return FALSE
 
 /obj/effect/alien/egg/get_xeno_hivenumber()
+	return hivenumber
+
+/obj/structure/xeno/trap/get_xeno_hivenumber()
+	if(hugger)
+		return hugger.hivenumber
 	return hivenumber
 
 /obj/item/xeno_egg/get_xeno_hivenumber()

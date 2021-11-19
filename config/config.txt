@@ -200,9 +200,6 @@ GUEST_BAN
 ## Comment this out to disable checking for the cid randomizer dll. (disabled if database isn't enabled or connected)
 CHECK_RANDOMIZER
 
-##Set this number to the maximum number of players you want, after which game mode votes cannot be started
-MAXIMUM_CLIENTS_FOR_GAMEMODE_VOTE 40
-
 ## Uncomment these to set a custom respawn timer; the delay is in ticks.
 #MARINE_RESPAWN 18000
 #XENO_RESPAWN 1200
@@ -227,3 +224,6 @@ DEFAULT_VIEW_SQUARE 15x15
 
 ## Once a typepath causes overrun from hard deletes this many times, stop hard deleting it on garbage collection failures. (set to 0 to disable)
 #HARD_DELETES_OVERRUN_LIMIT 0
+
+## Uncomment if you think xenos are struggling against marines
+#XENOS_ON_STRIKE

@@ -204,11 +204,11 @@
 
 /obj/effect/landmark/weapon_spawn/proc/spawn_associated_ammo(obj/item/weapon/gun/gun_to_spawn)
 	//fuck you grenade launchers you snowflake pieces of shit
-	if(istype(gun_to_spawn, /obj/item/weapon/gun/launcher/m92) || istype(gun_to_spawn, /obj/item/weapon/gun/launcher/m81))
+	if(istype(gun_to_spawn, /obj/item/weapon/gun/grenade_launcher/multinade_launcher) || istype(gun_to_spawn, /obj/item/weapon/gun/grenade_launcher/single_shot))
 		new /obj/item/storage/box/visual/grenade/frag (get_turf(src))
 		return
 
-	if(istype(gun_to_spawn, /obj/item/weapon/gun/launcher/m81/flare))
+	if(istype(gun_to_spawn, /obj/item/weapon/gun/grenade_launcher/single_shot/flare))
 		new /obj/item/storage/box/m94 (get_turf(src))
 		return
 
@@ -254,7 +254,7 @@
 	weapon_list = list(
 		/obj/item/weapon/gun/energy/lasgun/M43/practice,
 		/obj/item/weapon/gun/energy/lasgun/tesla,
-		/obj/item/weapon/gun/launcher/m81/flare,
+		/obj/item/weapon/gun/grenade_launcher/single_shot/flare,
 		/obj/item/weapon/gun/pistol/standard_pistol,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
 		/obj/item/weapon/gun/pistol/rt3,
@@ -278,7 +278,7 @@
 		/obj/item/weapon/katana/replica,
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/combat_knife/upp,
-		/obj/item/weapon/throwing_knife,
+		/obj/item/stack/throwing_knife,
 		/obj/item/weapon/unathiknife,
 		/obj/item/weapon/chainofcommand,
 		/obj/item/weapon/broken_bottle,
@@ -360,7 +360,7 @@
 		/obj/item/weapon/gun/rifle/sniper/antimaterial,
 		/obj/item/weapon/gun/rifle/railgun,
 		/obj/item/weapon/gun/rifle/sniper/svd,
-		/obj/item/weapon/gun/launcher/m81,
+		/obj/item/weapon/gun/grenade_launcher/single_shot,
 		/obj/item/weapon/gun/rifle/standard_smartmachinegun,
 		/obj/item/weapon/gun/rifle/sectoid_rifle,
 		/obj/item/weapon/gun/rifle/tx8,
@@ -381,7 +381,7 @@
 		/obj/item/weapon/gun/launcher/rocket,
 		/obj/item/weapon/gun/launcher/rocket/m57a4,
 		/obj/item/weapon/gun/minigun,
-		/obj/item/weapon/gun/launcher/m92,
+		/obj/item/weapon/gun/grenade_launcher/multinade_launcher,
 		/obj/item/weapon/gun/energy/lasgun/pulse,
 	)
 

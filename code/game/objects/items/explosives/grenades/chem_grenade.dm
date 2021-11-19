@@ -170,12 +170,6 @@
 	prime()
 
 
-/obj/item/explosive/grenade/chem_grenade/Crossed(atom/movable/AM)
-	. = ..()
-	if(nadeassembly)
-		nadeassembly.Crossed(AM)
-
-
 /obj/item/explosive/grenade/chem_grenade/prime()
 	if(stage != CG_READY)
 		return
@@ -242,6 +236,7 @@
 	desc = "Contains construction nanites ready to turn a small area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
 	icon_state = "grenade_razorburn"
 	stage = CG_READY
+	icon_state_mini = "grenade_chem_yellow"
 
 
 /obj/item/explosive/grenade/chem_grenade/razorburn_smol/Initialize(mapload, ...)
@@ -261,6 +256,7 @@
 	desc = "Contains construction nanites ready to turn a large area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
 	icon_state = "grenade_large_razorburn"
 	stage = CG_READY
+	icon_state_mini = "grenade_chem_yellow"
 
 
 /obj/item/explosive/grenade/chem_grenade/razorburn_large/Initialize(mapload, ...)

@@ -216,7 +216,7 @@ WEAPONS
 /datum/supply_packs/weapons/zx76
 	name = "ZX-76 Twin-Barrled Burst Shotgun"
 	contains = list(/obj/item/weapon/gun/shotgun/zx76)
-	cost = 120
+	cost = 100
 
 /datum/supply_packs/weapons/autosniper
 	name = "IFF Auto Sniper kit"
@@ -873,12 +873,12 @@ CLOTHING
 
 /datum/supply_packs/clothing/webbing
 	name = "webbing"
-	contains = list(/obj/item/clothing/tie/storage/webbing)
+	contains = list(/obj/item/armor_module/storage/uniform/webbing)
 	cost = 2
 
 /datum/supply_packs/clothing/brown_vest
 	name = "brown_vest"
-	contains = list(/obj/item/clothing/tie/storage/brown_vest)
+	contains = list(/obj/item/armor_module/storage/uniform/brown_vest)
 	cost = 2
 
 /datum/supply_packs/clothing/revolver
@@ -1708,7 +1708,7 @@ FACTORY
 /datum/supply_packs/factory/pizzarefill
 	name = "Nanotrasen \"Eat healthy!\" margerita pizza kit refill"
 	contains = list(/obj/item/factory_refill/pizza)
-	cost = 20
+	cost = 29 //allows a one point profit if all pizzas are processed and sold back to ASRS
 
 /datum/supply_packs/factory/smartrifle_ammo_refill
 	name = "Smart rifle bullet parts refill"

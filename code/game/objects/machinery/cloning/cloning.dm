@@ -21,7 +21,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	if(COOLDOWN_CHECK(src, relay_cooldown))
 		return
 	COOLDOWN_START(src, relay_cooldown, 2 SECONDS)
-	user.visible_message("You hear something bang on the window of \the [src]", "The door won't budge")
+	user.visible_message("You hear something bang on the window of \the [src]", "The door won't budge!")
 	return FALSE
 
 
@@ -76,19 +76,19 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 		// Try to find the machine nearby
 		linked_machine = locate() in range(1)
 		if(!linked_machine)
-			visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'connection not available'.</span>")
+			visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'Connection not available'.</span>")
 			return TRUE
 
 		linked_machine.linked_console = src
-		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps as its boots up and connects to \the [linked_machine]</span>")
+		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps as its boots up and connects to \the [linked_machine].</span>")
 		return TRUE
 
 	if(linked_machine.occupant || linked_machine.timerid)
-		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'already processing clone'.</span>")
+		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'Already processing clone'.</span>")
 		return TRUE
 
 	if(!linked_machine.beaker || linked_machine.beaker.reagents.total_volume < linked_machine.biomass_required)
-		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'not enough biomass'.</span>")
+		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'Not enough biomass'.</span>")
 		return TRUE
 
 
@@ -144,7 +144,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 		return
 
 	if(user.a_intent == INTENT_HARM)
-		user.visible_message(span_notice("[src] bangs on the glass"), span_notice("You bang on the glass"))
+		user.visible_message(span_notice("[user] bangs on the glass."), span_notice("You bang on the glass."))
 		return TRUE
 
 	if(!beaker)
