@@ -1564,11 +1564,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "flame_wide_red"
 	range_modifier = 0
 
-/obj/item/weapon/gun/rifle/pepperball/pepperball_mini
-	name = "mini pepperball gun"
-	desc = "An attachable version of the TLLL-12 pepperball gun. It has a smaller magazine size and has a slower rate of fire."
-	attach_delay = 3
-
 ///This is called when an attachment gun (src) attaches to a gun.
 /obj/item/weapon/gun/proc/on_attach(obj/item/attached_to, mob/user)
 	if(!istype(attached_to, /obj/item/weapon/gun))
