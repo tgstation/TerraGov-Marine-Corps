@@ -3325,11 +3325,10 @@
 /turf/open/ground/river,
 /area/lv624/ground/sand2)
 "aQc" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 8;
-	tag = "icon-comfychair (EAST)"
-	},
 /obj/structure/jungle/vines,
+/obj/structure/bed/chair/comfy/black{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "aQf" = (
@@ -7181,12 +7180,11 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "dLQ" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 4;
-	tag = "icon-comfychair (EAST)"
-	},
 /obj/effect/decal/sandytile,
 /obj/structure/jungle/vines,
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whiteyellowfull"
@@ -12144,11 +12142,10 @@
 	},
 /area/lv624/ground/compound/sw)
 "jKx" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 8;
-	tag = "icon-comfychair (EAST)"
-	},
 /obj/effect/decal/sandytile,
+/obj/structure/bed/chair/comfy/black{
+	dir = 8
+	},
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whiteyellowfull"
@@ -12627,8 +12624,7 @@
 /area/lv624/lazarus/armory)
 "knh" = (
 /obj/structure/bed/chair/comfy/black{
-	dir = 1;
-	tag = "icon-comfychair (EAST)"
+	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
@@ -16648,8 +16644,7 @@
 /area/shuttle/drop1/lz1)
 "puz" = (
 /obj/structure/bed/chair/comfy/black{
-	dir = 8;
-	tag = "icon-comfychair (EAST)"
+	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
@@ -18081,11 +18076,10 @@
 	},
 /area/lv624/lazarus/main_hall)
 "riG" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 4;
-	tag = "icon-comfychair (EAST)"
-	},
 /obj/effect/decal/sandytile,
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whiteyellowfull"
