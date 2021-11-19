@@ -15,10 +15,8 @@ SUBSYSTEM_DEF(pathfinder)
 	var/list/currentrun = src.currentrun
 
 	for(var/datum/pathfinding_datum/pathfinding_datum AS in currentrun)
-		if(!pathfinding_datum)
-			continue
 		var/mob/mob_to_process = pathfinding_datum.mob_parent
-		if(!mob_to_process.canmove || mob_to_process.do_actions)
+		if(!mob_to_process?.canmove || mob_to_process.do_actions)
 			continue
 
 		//Okay it can actually physically move, but has it moved too recently?
