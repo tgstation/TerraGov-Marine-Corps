@@ -58,7 +58,6 @@
 	return ..()
 
 /datum/reagent/medicine/ryetalyn/overdose_process(mob/living/L, metabolism)
-	L.Confused(40 SECONDS)
 	L.apply_damage(effect_str, TOX)
 
 /datum/reagent/medicine/ryetalyn/overdose_crit_process(mob/living/L, metabolism)
@@ -908,7 +907,6 @@
 		L.Stun(20)
 	if(prob(20))
 		L.hallucination += 15
-		L.AdjustConfused(60)
 
 
 /datum/reagent/medicine/ultrazine/addiction_act_stage3(mob/living/L, metabolism)
@@ -919,7 +917,6 @@
 		L.Stun(30)
 	if(prob(20))
 		L.hallucination += 20
-		L.AdjustConfused(10 SECONDS)
 		L.dizzy(60)
 	L.adjustToxLoss(0.1*effect_str)
 	L.adjustBrainLoss(0.1*effect_str, TRUE)
@@ -933,7 +930,6 @@
 		L.do_jitter_animation(200)
 	if(prob(20))
 		L.hallucination += 30
-		L.AdjustConfused(14 SECONDS)
 		L.dizzy(80)
 	L.adjustToxLoss(0.3*effect_str)
 	L.adjustBrainLoss(0.1*effect_str, TRUE)
@@ -1246,7 +1242,7 @@
 			if(prob(5))
 				L.adjustStaminaLoss(1*effect_str)
 	return ..()
-	
+
 /datum/reagent/medicine/research/quietus/on_mob_delete(mob/living/L, metabolism)
 	to_chat(L, span_danger("You convulse as your body violently rejects the suicide drug!"))
 	L.adjustToxLoss(30*effect_str)
@@ -1305,17 +1301,17 @@
 			if(volume < 30) //smol injection will self-replicate up to 30u using 240u of blood.
 				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.15)
 				L.blood_volume -= 2
-			
+
 			if(volume < 35) //allows 10 ticks of healing for 20 points of free heal to lower scratch damage bloodloss amounts.
 				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.1)
-			
+
 			if (volume >5 && L.getBruteLoss()) //Unhealed IB wasting nanites is an INTENTIONAL feature.
 				L.heal_limb_damage(2*effect_str, 0)
 				L.adjustToxLoss(0.1*effect_str)
 				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
 				if(prob(40))
 					to_chat(L, span_notice("Your cuts and bruises begin to scab over rapidly!"))
-				
+
 			if (volume > 5 && L.getFireLoss())
 				L.heal_limb_damage(0, 2*effect_str)
 				L.adjustToxLoss(0.1*effect_str)
