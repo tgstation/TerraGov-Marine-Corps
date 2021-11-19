@@ -76,6 +76,8 @@
 	return TRUE
 
 /datum/hud/proc/update_parallax_pref(mob/viewmob)
+	if(is_ground_level(viewmob.z))
+		return
 	remove_parallax(viewmob)
 	create_parallax(viewmob)
 	update_parallax(viewmob)
