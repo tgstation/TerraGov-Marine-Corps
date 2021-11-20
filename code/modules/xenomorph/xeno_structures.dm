@@ -208,13 +208,13 @@
 		to_chat(X, span_xenonotice("We remove the facehugger from [src]."))
 		return
 	var/datum/action/xeno_action/activable/corrosive_acid/acid_action = locate(/datum/action/xeno_action/activable/corrosive_acid) in X.actions
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
+	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
 		if(!do_after(X, 3 SECONDS, TRUE, src))
 			return
 		set_trap_type(TRAP_SMOKE_ACID)
 		smoke = new /datum/effect_system/smoke_spread/xeno/acid
 		smoke.set_up(1, get_turf(src))
-	else if(X.ammo.type == /datum/ammo/xeno/boiler_gas)
+	else if(istype(X.ammo, /datum/ammo/xeno/boiler_gas))
 		if(!do_after(X, 2 SECONDS, TRUE, src))
 			return
 		set_trap_type(TRAP_SMOKE_NEURO)

@@ -38,14 +38,14 @@
 	. = ..()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	if((X.corrosive_ammo + X.neuro_ammo) >= X.xeno_caste.max_ammo)
-		if((X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive && X.neuro_ammo==0) || (X.ammo.type == /datum/ammo/xeno/boiler_gas && X.corrosive_ammo==0))
+		if((istype(X.ammo, /datum/ammo/xeno/boiler_gas/corrosive) && X.neuro_ammo==0) || (istype(X.ammo, /datum/ammo/xeno/boiler_gas) && X.corrosive_ammo==0))
 			if (!silent)
 				to_chat(X, span_warning("We won't be able to carry this kind of globule"))
 			return FALSE
 
 /datum/action/xeno_action/toggle_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas)
+	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas))
 		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas/corrosive]
 		to_chat(X, span_notice("We will now fire corrosive acid. This is lethal!"))
 	else
@@ -120,7 +120,7 @@
 		return
 
 	succeed_activate()
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive || X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive/lance)
+	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
 		X.corrosive_ammo++
 		to_chat(X, span_notice("We prepare a corrosive acid globule."))
 	else
@@ -233,7 +233,7 @@
 	if(!istype(target))
 		return
 
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive || X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive/lance)
+	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
 		if(X.corrosive_ammo <= 0)
 			to_chat(X, span_warning("We have no corrosive globules available."))
 			return
@@ -258,7 +258,7 @@
 	P.generate_bullet(X.ammo)
 	P.fire_at(target, X, null, X.ammo.max_range, X.ammo.shell_speed)
 	playsound(X, 'sound/effects/blobattack.ogg', 25, 1)
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive || X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive/lance)
+	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
 		GLOB.round_statistics.boiler_acid_smokes++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_acid_smokes")
 		X.corrosive_ammo--

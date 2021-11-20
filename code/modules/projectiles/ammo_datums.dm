@@ -1946,7 +1946,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/boiler_gas/Destroy()
 	if(trail_spread_system)
-		qdel(trail_spread_system)
+		QDEL_NULL(trail_spread_system)
 	return ..()
 
 ///Set up the list of reagents the spit transfers upon impact
