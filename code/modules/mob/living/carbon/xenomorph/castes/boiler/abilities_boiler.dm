@@ -4,6 +4,7 @@
 #define BOILER_GLOB_NEURO_LANCE	"neuro_lance_glob"
 #define BOILER_GLOB_ACID_LANCE	"acid_lance_glob"
 
+///List of globs, keyed by icon state. Used for radial selection.
 GLOBAL_LIST_INIT(boiler_glob_list, list(
 		BOILER_GLOB_NEURO = /datum/ammo/xeno/boiler_gas,
 		BOILER_GLOB_ACID = /datum/ammo/xeno/boiler_gas/corrosive,
@@ -11,7 +12,7 @@ GLOBAL_LIST_INIT(boiler_glob_list, list(
 		BOILER_GLOB_ACID_LANCE = /datum/ammo/xeno/boiler_gas/corrosive/lance,
 		))
 
-///List for glob images.
+///List of glob action button images, used for radial selection.
 GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		BOILER_GLOB_NEURO = image('icons/mob/actions.dmi', icon_state = BOILER_GLOB_NEURO),
 		BOILER_GLOB_ACID = image('icons/mob/actions.dmi', icon_state = BOILER_GLOB_ACID),
@@ -90,6 +91,11 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		return 
 	INVOKE_ASYNC(src, .proc/select_glob_radial)
 
+/**
+ * Opens a radial menu to select a glob in and sets current ammo to the selected result.
+ * * On selecting nothing, merely keeps current ammo.
+ * * Dynamically adjusts to which globs a boiler has access too, though this isn't too relevant unless someone adds more.
+**/
 /datum/action/xeno_action/toggle_bomb/proc/select_glob_radial()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	var/list/available_globs = list()
