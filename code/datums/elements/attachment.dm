@@ -36,7 +36,7 @@
 
 /datum/element/attachment/Detach(datum/source, force)
 	UnregisterSignal(source, COMSIG_ITEM_IS_ATTACHING)
-	. = ..()
+	return ..()
 
 ///Fills list_to_fill with attachment_data
 /datum/element/attachment/proc/on_attaching(datum/source, mob/attacher, list/list_to_fill)

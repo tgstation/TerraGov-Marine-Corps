@@ -1504,8 +1504,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 
 /obj/item/attachable/shoulder_mount
-	name = "Experimental Shoulder Attachment Point"
-	desc = "A brand new advance in combat technology. This device, once attached to a firearm, will allow the firearm to be mounted onto any piece of modular armor. Once attached to the armor and activated, the gun will fire when the user chooses. Once attached to the armor, right clicking the armor with an empty hand will select what click will fire the armor (middle, right, left). Right clicking with ammunition will reload the gun. Using the unique action keybind will perform the guns unique action only when the gun is active."
+	name = "experimental shoulder attachment point"
+	desc = "A brand new advance in combat technology. This device, once attached to a firearm, will allow the firearm to be mounted onto any piece of modular armor. Once attached to the armor and activated, the gun will fire when the user chooses.\nOnce attached to the armor, <b>right clicking</b> the armor with an empty hand will select what click will fire the armor (middle, right, left). <b>Right clicking</b> with ammunition will reload the gun. Using the <b>Unique Action</b> keybind will perform the weapon's unique action only when the gun is active."
 	icon = 'icons/mob/modular/shoulder_gun.dmi'
 	icon_state = "shoulder_gun"
 	slot = ATTACHMENT_SLOT_RAIL
@@ -1552,9 +1552,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.set_gun_user(user)
 		RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, .proc/handle_firing)
 		master_gun.RegisterSignal(user, COMSIG_MOB_MOUSEDRAG, /obj/item/weapon/gun.proc/change_target)
-	for(var/action_to_update AS in actions)
-		var/datum/action/action = action_to_update
-		action.update_button_icon()
+	for(var/datum/action/action_to_update AS in actions)
+		action_to_update.update_button_icon()
 
 ///Handles the gun attaching to the armor.
 /obj/item/attachable/shoulder_mount/proc/handle_armor_attach(datum/source, attaching_item, mob/user)
