@@ -94,7 +94,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /**
  * Opens a radial menu to select a glob in and sets current ammo to the selected result.
  * * On selecting nothing, merely keeps current ammo.
- * * Dynamically adjusts to which globs a boiler has access too, though this isn't too relevant unless someone adds more.
+ * * Dynamically adjusts depending on which globs a boiler has access to, provided the global lists are maintained, though this fact isn't too relevant unless someone adds more.
 **/
 /datum/action/xeno_action/toggle_bomb/proc/select_glob_radial()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
