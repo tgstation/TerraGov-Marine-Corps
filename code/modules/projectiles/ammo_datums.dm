@@ -1909,6 +1909,10 @@ datum/ammo/bullet/revolver/tp44
 	name = "glob of gas"
 	icon_state = "boiler_gas2"
 	ping = "ping_x"
+	///Key used for icon stuff during bombard ammo selection.
+	var/icon_key = BOILER_GLOB_NEURO	
+	///This text will show up when a boiler selects this ammo. Span proc should be applied when this var is used.
+	var/select_text = "We will now fire neurotoxic gas. This is nonlethal."
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
 	var/danger_message = span_danger("A glob of acid lands with a splat and explodes into noxious fumes!")
 	armor_type = "bio"
@@ -2007,6 +2011,8 @@ datum/ammo/bullet/revolver/tp44
 	icon_state = "boiler_gas"
 	sound_hit 	 = "acid_hit"
 	sound_bounce	= "acid_bounce"
+	icon_key = BOILER_GLOB_ACID
+	select_text = "We will now fire corrosive acid. This is lethal!"
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
 	armor_type = "acid"
 	danger_message = span_danger("A glob of acid lands with a splat and explodes into corrosive bile!")
@@ -2027,7 +2033,8 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/boiler_gas/lance
 	name = "pressurized glob of gas"
-	icon_state = "boiler_gas2"	//Alt sprite?
+	icon_key = BOILER_GLOB_NEURO_LANCE
+	select_text = "We will now fire a pressurized neurotoxic lance. This is barely nonlethal."
 	///As opposed to normal globs, this will pass by the target tile if they hit nothing.
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_HAS_LEAVE_TURF_BEHAVIOR
 	danger_message = span_danger("A pressurized glob of acid lands with a nasty splat and explodes into noxious fumes!")
@@ -2043,7 +2050,8 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/boiler_gas/corrosive/lance
 	name = "pressurized glob of acid"
-	icon_state = "boiler_gas"	//Alt sprite?
+	icon_key = BOILER_GLOB_ACID_LANCE
+	select_text = "We will now fire a pressurized corrosive lance. This lethal!"
 	///As opposed to normal globs, this will pass by the target tile if they hit nothing.
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_HAS_LEAVE_TURF_BEHAVIOR
 	danger_message = span_danger("A pressurized glob of acid lands with a concerning hissing sound and explodes into corrosive bile!")

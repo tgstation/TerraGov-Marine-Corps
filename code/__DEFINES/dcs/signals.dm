@@ -584,6 +584,7 @@
 
 #define COMSIG_XENOABILITY_LONG_RANGE_SIGHT "xenoability_long_range_sight"
 #define COMSIG_XENOABILITY_TOGGLE_BOMB "xenoability_toggle_bomb"
+#define COMSIG_XENOABILITY_TOGGLE_BOMB_RADIAL "xenoability_toggle_bomb_radial"
 #define COMSIG_XENOABILITY_CREATE_BOMB "xenoability_create_bomb"
 #define COMSIG_XENOABILITY_BOMBARD "xenoability_bombard"
 

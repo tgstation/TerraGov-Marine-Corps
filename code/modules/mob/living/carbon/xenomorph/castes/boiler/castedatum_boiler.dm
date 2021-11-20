@@ -40,6 +40,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 4 SECONDS
+	spit_types = list(/datum/ammo/xeno/boiler_gas, /datum/ammo/xeno/boiler_gas/corrosive)
 
 	// *** Boiler Abilities *** //
 	max_ammo = 4
@@ -203,6 +204,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
+	spit_types = list(/datum/ammo/xeno/boiler_gas, /datum/ammo/xeno/boiler_gas/lance, /datum/ammo/xeno/boiler_gas/corrosive, /datum/ammo/xeno/boiler_gas/corrosive/lance)
 
 	acid_spray_damage_on_hit = 47
 	acid_spray_structure_damage = 69
@@ -221,6 +223,6 @@
 		/datum/action/xeno_action/create_boiler_bomb,
 		/datum/action/xeno_action/activable/bombard,
 		/datum/action/xeno_action/toggle_long_range,
-		/datum/action/xeno_action/toggle_bomb_advanced,
+		/datum/action/xeno_action/toggle_bomb,
 		/datum/action/xeno_action/activable/spray_acid/line/boiler,
 	)
