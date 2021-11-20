@@ -318,6 +318,6 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 
 /datum/hive_upgrade/primordial/boiler
 	name = PRIMORDIAL_BOILER
-	desc = "Unlocks the primordial boiler's access to acid lances, direct-hit focussed bombardment types that leave a gas trail where they pass."
+	desc = "Unlocks the primordial boiler's access to neurotoxin- and acid lances, direct-hit focussed bombardment types that leave a gas trail where they pass."
 	psypoint_cost = 225
 	icon = "primoboiler"

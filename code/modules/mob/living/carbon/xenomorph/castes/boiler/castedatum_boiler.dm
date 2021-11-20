@@ -181,7 +181,6 @@
 	caste_desc = "A horrendously effective alien siege engine."
 	upgrade = XENO_UPGRADE_FOUR
 	primordial_message = "We have refined the art of bombardement to perfection. End them before they can utter a desperate plea."
-	//"We are the master of ranged artillery. Let's bring death from above."
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
