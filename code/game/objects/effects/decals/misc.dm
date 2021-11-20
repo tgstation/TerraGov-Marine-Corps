@@ -65,3 +65,16 @@
 
 /obj/effect/decal/sandytile/sandyplating
 	icon_state = "sandyplating"
+
+/obj/effect/decal/riverdecal
+	name = "river"
+	gender = PLURAL
+	density = FALSE
+	anchored = TRUE
+	layer = DISPOSAL_PIPE_LAYER
+	icon = 'icons/turf/ground_map.dmi'
+	icon_state = "riverdecal"
+	mouse_opacity = 0
+
+/obj/effect/decal/riverdecal/edge
+	icon_state = "riverdecaledge"
