@@ -68,3 +68,8 @@
 		show_message("(<a href='byond://?src=[REF(src)];watch_xeno_name=[X.nicknumber]'>F</a>) [X.hivemind_start()] [span_message("hisses, '[message]'")][X.hivemind_end()]", 2)
 	else
 		return ..()
+
+/mob/living/carbon/xenomorph/get_saymode(message, talk_key)
+	if(message[1] == ";")
+		return SSradio.saymodes["a"]
+	return ..()
