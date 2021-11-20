@@ -141,6 +141,8 @@
 			/obj/item/ammo_magazine/flamer_tank/mini = -1,
 			/obj/item/weapon/gun/grenade_launcher/underslung = -1,
 			/obj/item/attachable/motiondetector = -1,
+			/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
+			/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini,
 		),
 		"Boxes" = list(
 		/obj/item/ammo_magazine/packet/p9mm = 100,

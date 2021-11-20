@@ -2014,6 +2014,14 @@ datum/ammo/bullet/revolver/tp44
 		var/mob/living/carbon/xenomorph/X = victim
 		X.use_plasma(0.05 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
 
+/datum/ammo/bullet/pepperball/pepperball_mini						//TODO: Pretty redundant implementation, perhaps assign a var for the multiplier instead.
+	damage = 40
+
+/datum/ammo/bullet/pepperball/pepperball_mini/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	if(isxeno(victim))
+		var/mob/living/carbon/xenomorph/X = victim
+		X.use_plasma(0.03 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
+
 /datum/ammo/alloy_spike
 	name = "alloy spike"
 	ping = "ping_s"

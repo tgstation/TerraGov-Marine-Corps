@@ -290,12 +290,14 @@
 	default_ammo = /datum/ammo/bullet/pepperball
 	max_rounds = 70
 	w_class = WEIGHT_CLASS_NORMAL
-	gun_type = /obj/item/weapon/gun/rifle/pepperball
+	gun_type = /obj/item/weapon/gun/rifle/pepperball/
 	icon_state_mini = "mag_pepperball"
 
 /obj/item/ammo_magazine/rifle/pepperball/pepperball_mini
-	name = "small pepperball canister (SAN balls)"
+	name = "small pepperball canister (SAN balls)"			//TODO: pepperball gun can't take mini ammo, but mini can take regular pepperball ammo
 	desc = "A small canister for use with the miniature pepperball gun."
 	icon_state = "pepperball" //TODO: Custom Sprite
+	default_ammo = /datum/ammo/bullet/pepperball/pepperball_mini
 	max_rounds = 20
+	gun_type = /obj/item/weapon/gun/rifle/pepperball/pepperball_mini
 	icon_state_mini = "mag_pepperball" //TODO: Custom Sprite

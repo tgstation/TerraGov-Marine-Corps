@@ -547,21 +547,22 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	placed_overlay_iconstate = "pepper"
 
-//-------------------------------------------------------
 
 /obj/item/weapon/gun/rifle/pepperball/pepperball_mini	//TODO: firemode currently has to be changed before attaching the gun
-	name = "mini pepperball gun"						
+	name = "mini pepperball gun"
 	desc = "An attachable version of the TLLL-12 pepperball gun. It has a smaller magazine size and has a slower rate of fire."
 	icon = 'icons/Marine/gun64.dmi' //TODO: Custom Sprite
 	slot = ATTACHMENT_SLOT_UNDER
 	max_shells = 20
 	current_mag = /obj/item/ammo_magazine/rifle/pepperball/pepperball_mini
 	attachable_allowed = list()
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	flags_gun_features = GUN_IS_ATTACHMENT | GUN_AUTO_EJECTOR | GUN_WIELDED_FIRING_ONLY | GUN_ATTACHMENT_FIRE_ONLY
 
 	fire_delay = 0.2 SECONDS
 	attach_delay = 3
 
+//-------------------------------------------------------
 //M5 RPG
 
 /obj/item/weapon/gun/launcher/rocket
