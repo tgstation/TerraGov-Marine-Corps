@@ -1,6 +1,0 @@
-author: "KrabSpider"
-delete-after: True
-changes: 
-  - balance: "10x26.5mm light marksman bullets for the T-64, meaning the T-64 Battle Rifle no longer shares the same caliber or ammo with the T-37 DMR."
-  - balance: "extra delay increased to 0.35"
-  - imageadd: "t-64 ammo packets"

@@ -120,3 +120,9 @@
   RandomGamer123:
   - bugfix: The in-chat notification of a new primary/secondary objective now actually
       shows the proper location of it.
+2021-11-20:
+  KrabSpider:
+  - balance: 10x26.5mm light marksman bullets for the T-64, meaning the T-64 Battle
+      Rifle no longer shares the same caliber or ammo with the T-37 DMR.
+  - balance: extra delay increased to 0.35
+  - imageadd: t-64 ammo packets
