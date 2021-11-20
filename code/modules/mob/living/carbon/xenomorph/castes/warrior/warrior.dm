@@ -11,7 +11,15 @@
 	old_x = -16
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
-
+	///How many stacks of combo do we have ? Interacts with every ability.
+	var/combo = 0
+	///Abilities with empowered interactions
+	var/list/empowerable_actions = list(
+		/datum/action/xeno_action/activable/fling,
+		/datum/action/xeno_action/activable/toss,
+		/datum/action/xeno_action/activable/punch,
+		/datum/action/xeno_action/activable/punch/jab,
+	)
 // ***************************************
 // *********** Icons
 // ***************************************
@@ -76,42 +84,35 @@
 		return
 	..()
 
-///Handles primordial warrior empowered abilities, return TRUE if the ability should be empowered.
+// ***************************************
+// *********** Primordial procs
+// ***************************************
+///Handles primordial warrior empowered abilities, returns TRUE if the ability should be empowered.
 /mob/living/carbon/xenomorph/warrior/proc/empower()
 	if(upgrade != XENO_UPGRADE_FOUR)
 		return FALSE
-	var/datum/xeno_caste/warrior/primordial/caste = xeno_caste
-	if(caste.combo >= WARRIOR_COMBO_THRESHOLD) //Fully stacked, clear all the stacks and return TRUE.
-		//Update abilities icons
-		src.emote("roar")
-		src.clear_combo()
+	if(combo >= WARRIOR_COMBO_THRESHOLD) //Fully stacked, clear all the stacks and return TRUE.
+		emote("roar")
+		clear_combo()
 		return TRUE
-	var/image/counter = image(null, src, null) //Visual clue for the warrior
-	caste.combo++
-	counter.maptext = MAPTEXT("[caste.combo]")
-	src.client.images += counter
-	//for(var/datum/action/xeno_action/activable/i in caste.actions)
-	//	var/image/x = image('icons/mob/actions.dmi', null, "borders_center")
-	//	x.y = 7
-	//	i.button.overlays += x
-	//	i.update_button_icon()
-	addtimer(CALLBACK(src,.proc/clear_counter, counter), WARRIOR_COMBO_FADEOUT_TIME)
-	addtimer(CALLBACK(src, .proc/clear_combo, counter), WARRIOR_COMBO_FADEOUT_TIME, TIMER_OVERRIDE|TIMER_UNIQUE)
+	give_combo()
 	return FALSE
 
-/mob/living/carbon/xenomorph/warrior/proc/give_combo() //Only useful for lunge because it gives stacks but doesn't consume any, use empower() otherwise.
+/mob/living/carbon/xenomorph/warrior/proc/give_combo() //Handles visuals aswell
 	if(upgrade != XENO_UPGRADE_FOUR)
 		return FALSE
-	var/datum/xeno_caste/warrior/primordial/caste = xeno_caste
-	caste.combo++
+	combo++
+	if(combo >= WARRIOR_COMBO_THRESHOLD)
+		for(var/datum/action/xeno_action/A in actions)
+			if(A.type in empowerable_actions)
+				A.add_empowered_frame()
+				A.update_button_icon()
+	addtimer(CALLBACK(src, .proc/clear_combo), WARRIOR_COMBO_FADEOUT_TIME, TIMER_OVERRIDE|TIMER_UNIQUE)
 	return TRUE
 
 /mob/living/carbon/xenomorph/warrior/proc/clear_combo()
-	var/datum/xeno_caste/warrior/primordial/caste = xeno_caste
-	caste.combo = 0
-	//for(var/datum/action/xeno_action/activable/i in caste.actions)
-	//	i.clear_icon()
-	//	i.update_button_icon()
-
-/mob/living/carbon/xenomorph/warrior/proc/clear_counter(image/counter)
-	src.client.images.Remove(counter)
+	for(var/datum/action/xeno_action/A in actions)
+		if(A.type in empowerable_actions)
+			A.remove_empowered_frame()
+			A.update_button_icon()
+	combo = 0

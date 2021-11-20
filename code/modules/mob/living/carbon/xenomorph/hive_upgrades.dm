@@ -294,7 +294,7 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 
 /datum/hive_upgrade/primordial/warrior
 	name = PRIMORDIAL_WARRIOR
-	desc = "Unlocks the primordial warriors jab and uppercut at the cost of lunge and grapple toss. A ranged ability reset and a powerful finisher."
+	desc = "Unlocks the primordial warriors jab and empowered abilities. A ranged punch, on primordial every 3rd ability cast from a warrior will be an improved version of itself."
 	psypoint_cost = 125
 	icon = "primowarrior"
 

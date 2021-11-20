@@ -143,8 +143,6 @@
 	caste_desc = "A champion of the hive, methodically shatters its opponents with punches rather slashes."
 	primordial_message = "Our rhythm is unmatched and our strikes lethal, no single foe can stand against us."
 	upgrade = XENO_UPGRADE_FOUR
-	//How many stacks of combo do we have ? Interacts with every ability.
-	var/combo = 0
 
 	// *** Melee Attacks *** //
 	melee_damage = 23

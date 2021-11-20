@@ -106,10 +106,16 @@
 	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, .proc/clean_lunge_target)
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/check_if_lunge_possible)
 	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/clean_lunge_target)
+
+	X.throw_at(get_step_towards(A, X), 6, 2, X)
+	if(X.pulling) //If we managed to grab something, select grapple toss
+		var/datum/action/xeno_action/activable/toss/grapple_toss = X.actions_by_path[/datum/action/xeno_action/activable/toss]
+		grapple_toss.action_activate()
+		if(!isxeno(X.pulling))
+			X.give_combo()
+
 	succeed_activate()
 	add_cooldown()
-	X.throw_at(get_step_towards(A, X), 6, 2, X)
-	X.give_combo()
 	return TRUE
 
 ///Check if we are close enough to lunge, and if yes, grab neck
@@ -201,6 +207,7 @@
 				if(ishuman(i))
 					var/mob/living/carbon/human/pin = i //Bowling pins
 					pin.KnockdownNoChain(1 SECONDS)
+					to_chat(pin, span_highdanger("[victim] crashes into us!"))
 		T = temp
 
 	X.do_attack_animation(victim, ATTACK_EFFECT_DISARM2)
@@ -372,6 +379,7 @@
 	var/target_zone = check_zone(X.zone_selected)
 
 	if(X.empower())
+		damage *= 1.5
 	if(!A.punch_act(X, damage, target_zone))
 		return fail_activate()
 
@@ -449,7 +457,7 @@
 	Shake(4, 4, 2 SECONDS)
 	return TRUE
 
-/mob/living/punch_act(mob/living/carbon/xenomorph/warrior/X, damage, target_zone, push = TRUE, confuse = FALSE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
+/mob/living/punch_act(mob/living/carbon/xenomorph/warrior/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
 	if(pulledby == X) //If we're being grappled by the Warrior punching us, it's gonna do extra damage and debuffs; combolicious
 		damage *= 2
 		slowdown_stacks *= 2
@@ -470,8 +478,6 @@
 			to_chat(src, span_danger("The splint on your [L.display_name] comes apart!"))
 
 		L.take_damage_limb(damage, 0, FALSE, FALSE, run_armor_check(target_zone))
-	if(confuse)
-		Confused(2 SECONDS)
 
 	if(push)
 		var/facing = get_dir(X, src)
@@ -529,7 +535,7 @@
 /datum/action/xeno_action/activable/punch/jab
 	name = "Jab"
 	action_icon_state = "jab"
-	mechanics_text = "Precisely strike your target from further away, slowing and confusing them. Resets punch cooldown."
+	mechanics_text = "Precisely strike your target from further away, heavily slowing them."
 	plasma_cost = 10
 	range = 2
 	keybind_signal = COMSIG_XENOABILITY_JAB
@@ -540,10 +546,12 @@
 	var/target_zone = check_zone(X.zone_selected)
 	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
 
-	if(!target.punch_act(X, damage, target_zone, push = FALSE, confuse = FALSE, punch_description = "precise", stagger_stacks = 6, slowdown_stacks = 6))
+	if(!target.punch_act(X, damage, target_zone, push = FALSE, punch_description = "precise", stagger_stacks = 3, slowdown_stacks = 6))
 		return fail_activate()
 	if(X.empower())
-		target.adjust_blurriness(5)
+		target.overlay_fullscreen_timer(3 SECONDS, 10, "jab", /obj/screen/fullscreen/flash) //Would prefer if it was extremely distorted, but bluriness doesn't make the cut.
+		to_chat(target, span_highdanger("The concussion from the [X]'s blow blinds us!"))
+		target.Confused(3 SECONDS) //Does literally nothing for now, will have to re-add confusion code.
 	GLOB.round_statistics.warrior_punches++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
 	succeed_activate()
@@ -554,72 +562,3 @@
 	to_chat(X, span_xenodanger("We gather enough strength to jab again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
-
-// ***************************************
-// *********** Uppercut
-// ***************************************
-
-/datum/action/xeno_action/activable/uppercut
-	name = "Uppercut"
-	action_icon_state = "uppercut"
-	mechanics_text = "Inflicts debilitating damage to a nearby target depending on how many times you recently hit them with jab and punch."
-	ability_name = "uppercut"
-	plasma_cost = 12
-	cooldown_timer = 10 SECONDS
-	target_flags = XABB_MOB_TARGET
-	keybind_signal = COMSIG_XENOABILITY_UPPERCUT
-	/// Who did we punch/jab recently and how many times ?
-	var/combo[0]
-
-/datum/action/xeno_action/activable/uppercut/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return
-
-	var/mob/living/L = A
-	if(!isliving(A) || isxeno(A) || L.stat == DEAD)
-		if(!silent)
-			to_chat(owner, span_xenodanger("We cannot uppercut this target!"))
-		return FALSE
-
-	if(!owner.Adjacent(A))
-		if(!silent)
-			to_chat(owner, span_xenodanger("Our target must be closer!"))
-
-/datum/action/xeno_action/activable/uppercut/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/target = A
-	var/current_combo = combo[REF(A)]
-	var/damage = min(X.xeno_caste.melee_damage +  X.xeno_caste.melee_damage * (current_combo/2), 200)
-	var/camera_shake = min(1/2 * current_combo, 4)
-	X.face_atom(A)
-	X.do_attack_animation(A, ATTACK_EFFECT_SMASH)
-	X.do_attack_animation(A, ATTACK_EFFECT_PUNCH)
-
-	X.visible_message(span_xenodanger("\The [X] uppercuts [A]!"), \
-		span_xenodanger("We uppercut [A] with all our might!"), visible_message_flags = COMBAT_MESSAGE)
-	to_chat(X, span_highdanger("LIGHTS OUT."))
-	X.emote("roar")
-
-	playsound(A, 'sound/weapons/punch2.ogg', 50)
-	clear_combo(A)
-	target.apply_damage(damage, BRUTE, "head", target.run_armor_check("head"))
-	shake_camera(A, 2, camera_shake)
-	succeed_activate()
-	add_cooldown()
-	return
-
-/datum/action/xeno_action/activable/uppercut/on_cooldown_finish()
-	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, span_xenodanger("We gather enough strength to uppercut again."))
-	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
-	return ..()
-
-/datum/action/xeno_action/activable/uppercut/proc/clear_combo(mob/living/target)
-	combo.Remove(REF(target))
-
-/datum/action/xeno_action/activable/proc/enhance_icon()
-	src.background_icon_state = "borders_center"
-
-/datum/action/xeno_action/activable/proc/clear_icon()
-	src.background_icon_state = "template"

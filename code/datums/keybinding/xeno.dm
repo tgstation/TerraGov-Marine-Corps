@@ -522,12 +522,6 @@
 	description = "Precisely strike your target from further away, slowing and confusing them. Resets punch cooldown."
 	keybind_signal = COMSIG_XENOABILITY_JAB
 
-/datum/keybinding/xeno/uppercut
-	name = "uppercut"
-	full_name = "Warrior: Uppercut"
-	description = "Inflicts debilitating damage to a nearby target depending on how many times you recently hit them with jab and punch."
-	keybind_signal = COMSIG_XENOABILITY_UPPERCUT
-
 /datum/keybinding/xeno/inject_egg_neurogas
 	name = "inject_egg_neurogas"
 	full_name = "Inject Egg (Neurogas)"
