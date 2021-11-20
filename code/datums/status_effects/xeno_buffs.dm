@@ -48,8 +48,11 @@
 	to_chat(owner, span_notice("We feel our wounds close up and plasma reserves refilling."))
 
 	var/mob/living/carbon/xenomorph/X = owner
-	X.adjustBruteLoss(-X.maxHealth*0.1)
-	X.adjustFireLoss(-X.maxHealth*0.1)
+	var/amount = X.maxHealth*0.1
+
+	HEAL_XENO_DAMAGE(X, amount)
+	adjustOverheal(X, amount)
+
 	if(X.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA)
 		X.gain_plasma(X.xeno_caste.plasma_max*0.25)
 
@@ -64,28 +67,31 @@
 	///Plasma gain for each attack
 	var/plasma_gain_on_hit
 
-/datum/status_effect/xeno_carnage/on_creation(mob/living/new_owner, set_duration, plasma_gain)
+/datum/status_effect/xeno_carnage/on_creation(mob/living/new_owner, set_duration, plasma_gain, list/c_matrix)
 	owner = new_owner
 	duration = set_duration
 	plasma_gain_on_hit = plasma_gain
 	to_chat(owner, span_notice("We give into our thirst!"))
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/carnage_slash)
 	owner.add_filter(id, 5, rays_filter(size = 25, color = "#c50021", offset = 200, density = 50, y = 7))
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	var/matrix_mod = owner_xeno.health / owner_xeno.maxHealth
+	owner.add_filter("[id]m", 4, color_matrix_filter(list(1 + matrix_mod,0,0,0, -matrix_mod * 1.5,1,0,0, matrix_mod * 0.8,0,1,0, 0,0,0,1, 0,0,0,0)))
 	return ..()
 
 /datum/status_effect/xeno_carnage/on_remove()
 	. = ..()
 	to_chat(owner, span_notice("Our bloodlust subsides..."))
 	UnregisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/carnage_slash)
-	owner.remove_filter(id)
+	owner.remove_filter(list(id, "[id]m"))
 
 ///Handles logic to be performed for each attack during the duration of the buff
 /datum/status_effect/xeno_carnage/proc/carnage_slash(datum/source, mob/living/target, damage)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.gain_plasma(plasma_gain_on_hit)
-	owner_xeno.adjustBruteLoss(-damage)
-	owner_xeno.adjustFireLoss(-damage)
+	var/heal_amount = damage
+	HEAL_XENO_DAMAGE(owner_xeno, heal_amount)
 
 	if(!owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
 		return
@@ -93,8 +99,8 @@
 	for(var/mob/living/carbon/xenomorph/target_xeno AS in cheap_get_xenos_near(owner_xeno, 4))
 		if(target_xeno == owner_xeno)
 			continue
-		target_xeno.adjustBruteLoss(-damage*0.7)
-		target_xeno.adjustFireLoss(-damage*0.7)
+		heal_amount = damage * 0.7
+		HEAL_XENO_DAMAGE(target_xeno, heal_amount)
 		to_chat(target_xeno, span_notice("You feel your wounds being restored by [owner_xeno]'s pheromones."))
 
 /obj/screen/alert/status_effect/xeno_feast
@@ -120,15 +126,14 @@
 /datum/status_effect/xeno_feast/on_remove()
 	. = ..()
 	owner.clear_fullscreen("xeno_feast", 0.7 SECONDS)
-	owner.remove_filter("[id]2")
-	owner.remove_filter("[id]1")
+	owner.remove_filter(list("[id]1", "[id]2"))
 
 /datum/status_effect/xeno_feast/tick()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.plasma_stored < plasma_drain)
 		to_chat(X, span_notice("Our feast has come to an end..."))
-		X.remove_status_effect(/datum/status_effect/xeno_feast)
+		X.remove_status_effect(STATUS_EFFECT_XENO_FEAST)
 		return
-	X.adjustBruteLoss(-X.maxHealth*0.1)
-	X.adjustFireLoss(-X.maxHealth*0.1)
+	var/heal_amount = X.maxHealth*0.15
+	HEAL_XENO_DAMAGE(X, heal_amount)
 	X.use_plasma(plasma_drain)

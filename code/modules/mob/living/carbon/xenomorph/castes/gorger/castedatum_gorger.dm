@@ -23,7 +23,7 @@
 	plasma_icon_state = "fury"
 
 	// *** Health *** //
-	max_health = 600
+	max_health = 400
 
 	// *** Evolution *** //
 	upgrade_threshold = 250
@@ -37,7 +37,8 @@
 	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = XENO_BOMB_RESIST_1, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 
 	// *** Gorger Abilities *** //
-	drain_plasma_gain = 20
+	overheal_max = 200
+	drain_plasma_gain = 10
 	carnage_plasma_gain = 4
 	feast_plasma_drain = 20
 
@@ -68,7 +69,7 @@
 	plasma_max = 250
 
 	// *** Health *** //
-	max_health = 650
+	max_health = 450
 
 	// *** Evolution *** //
 	upgrade_threshold = 500
@@ -77,7 +78,8 @@
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_1, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 
 	// *** Gorger Abilities *** //
-	drain_plasma_gain = 25
+	overheal_max = 225
+	drain_plasma_gain = 10
 	carnage_plasma_gain = 6
 
 /datum/xeno_caste/gorger/elder
@@ -93,7 +95,7 @@
 	plasma_max = 300
 
 	// *** Health *** //
-	max_health = 700
+	max_health = 500
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000
@@ -102,7 +104,8 @@
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_1, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
 	// *** Gorger Abilities *** //
-	drain_plasma_gain = 30
+	overheal_max = 250
+	drain_plasma_gain = 15
 	carnage_plasma_gain = 8
 
 /datum/xeno_caste/gorger/ancient
@@ -118,7 +121,7 @@
 	plasma_max = 400
 
 	// *** Health *** //
-	max_health = 800
+	max_health = 600
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000
@@ -127,5 +130,6 @@
 	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_1, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
 
 	// *** Gorger Abilities *** //
-	drain_plasma_gain = 40
+	overheal_max = 275
+	drain_plasma_gain = 20
 	carnage_plasma_gain = 10

@@ -160,6 +160,13 @@
 
 	return damage
 
+///Handles overheal for xeno receiving damage
+#define HANDLE_OVERHEAL(amount) \
+	if(overheal) { \
+		var/reduction = min(amount, overheal); \
+		amount -= reduction; \
+		adjustOverheal(src, -reduction); \
+	} \
 
 /mob/living/carbon/xenomorph/adjustBruteLoss(amount, updating_health = FALSE)
 
@@ -167,6 +174,8 @@
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BRUTE_DAMAGE, amount, amount_mod)
 	for(var/i in amount_mod)
 		amount -= i
+
+	HANDLE_OVERHEAL(amount)
 
 	bruteloss = max(bruteloss + amount, 0)
 
@@ -181,10 +190,14 @@
 	for(var/i in amount_mod)
 		amount -= i
 
+	HANDLE_OVERHEAL(amount)
+
 	fireloss = max(fireloss + amount, 0)
 
 	if(updating_health)
 		updatehealth()
+
+#undef HANDLE_OVERHEAL
 
 /mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)
 	if(!damage)

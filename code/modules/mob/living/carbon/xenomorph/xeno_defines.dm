@@ -172,6 +172,8 @@
 	var/crest_toss_distance = 0
 
 	// *** Gorger Abilities *** //
+	///Maximum amount of overheal that can be gained
+	var/overheal_max = 0
 	///Amount of plasma gained from draining someone
 	var/drain_plasma_gain = 0
 	///Amount of plasma gained from clashing after activating carnage
@@ -343,6 +345,9 @@
 
 	//Pounce vars
 	var/usedPounce = 0
+
+	// Gorger vars
+	var/overheal = 0
 
 	// Warrior vars
 	var/agility = 0		// 0 - upright, 1 - all fours

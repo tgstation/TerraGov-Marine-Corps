@@ -137,15 +137,24 @@
 		return
 	owner_xeno.face_atom(target_human)
 	owner_xeno.emote("roar")
-	target_human.drop_all_held_items()
-	owner_xeno.do_attack_animation(target_human, ATTACK_EFFECT_REDSTAB)
-	owner_xeno.visible_message(target_human, span_danger("The [owner_xeno] stabs its tail into [target_human]!"))
-	playsound(target_human, "alien_claw_flesh", 25, TRUE)
-	target_human.emote("scream")
-	target_human.apply_damage(damage = 20, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE)
+	ADD_TRAIT(owner_xeno, TRAIT_HANDS_BLOCKED, src)
+	for(var/i = 0; i < GORGER_DRAIN_INSTANCES; i++)
+		owner_xeno.do_attack_animation(target_human, ATTACK_EFFECT_REDSTAB)
+		owner_xeno.visible_message(target_human, span_danger("The [owner_xeno] stabs its tail into [target_human]!"))
+		playsound(target_human, "alien_claw_flesh", 25, TRUE)
+		target_human.emote("scream")
+		target_human.apply_damage(damage = 2, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE)
+
+		adjustOverheal(owner_xeno, GORGER_DRAIN_OVERHEAL)
+		owner_xeno.gain_plasma(owner_xeno.xeno_caste.drain_plasma_gain)
+
+		target_human.AdjustImmobilized(GORGER_DRAIN_DELAY)
+		if(i == GORGER_DRAIN_INSTANCES || !do_after(owner_xeno, GORGER_DRAIN_DELAY, FALSE, target_human, ignore_turf_checks = FALSE))
+			target_human.AdjustImmobilized(-GORGER_DRAIN_DELAY)
+			break
+	REMOVE_TRAIT(owner_xeno, TRAIT_HANDS_BLOCKED, src)
 	target_human.ParalyzeNoChain(0.25 SECONDS)
 	target_human.blur_eyes(1)
-	owner_xeno.gain_plasma(owner_xeno.xeno_caste.drain_plasma_gain)
 	add_cooldown()
 
 /datum/action/xeno_action/activable/drain/ai_should_use(atom/target)
@@ -207,8 +216,8 @@
 	owner_xeno.use_plasma(GORGER_REJUVENATE_ALLY_COST)
 	TIMER_COOLDOWN_START(owner_xeno, REJUVENATE_ALLY, GORGER_REJUVENATE_ALLY_COOLDOWN)
 	var/mob/living/carbon/xenomorph/target_xeno = target
-	target_xeno.adjustBruteLoss(-target_xeno.maxHealth * GORGER_REJUVENATE_ALLY_PERCENTAGE)
-	target_xeno.adjustFireLoss(-target_xeno.maxHealth * GORGER_REJUVENATE_ALLY_PERCENTAGE)
+	var/heal_amount = target_xeno.maxHealth * GORGER_REJUVENATE_ALLY_PERCENTAGE
+	HEAL_XENO_DAMAGE(target_xeno, heal_amount)
 
 /datum/action/xeno_action/activable/rejuvenate/ai_should_use(atom/target)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
@@ -236,7 +245,7 @@
 	action_icon_state = "carnage"
 	mechanics_text = "For a while your attacks drain blood and heal you. During Feast you also heal nearby allies."
 	use_state_flags = XACT_TARGET_SELF|XACT_IGNORE_SELECTED_ABILITY
-	cooldown_timer = 40 SECONDS
+	cooldown_timer = 0 SECONDS
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_CARNAGE
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
@@ -244,6 +253,9 @@
 /datum/action/xeno_action/activable/carnage/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_CARNAGE))
+		owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_CARNAGE)
+		return
 	owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_CARNAGE, 20 SECONDS, owner_xeno.xeno_caste.carnage_plasma_gain)
 	add_cooldown()
 
@@ -257,6 +269,9 @@
 	if(target.get_xeno_hivenumber() == owner_xeno.get_xeno_hivenumber())
 		return FALSE
 	return can_use_ability(target, TRUE)
+
+/proc/add_color(red = 0, green = 0, blue = 0)
+	return list(1 + red,-green/2,-blue/2,0, -red/2,1 + green,-blue/2,0, -red/2,-green/2,1 + blue,0, 0,0,0,1, 0,0,0,0)
 
 // ***************************************
 // *********** Feast
