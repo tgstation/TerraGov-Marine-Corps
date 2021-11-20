@@ -885,7 +885,7 @@
 "akK" = (
 /obj/item/weapon/gun/smg/uzi,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "akT" = (
 /obj/structure/rack,
 /obj/structure/window/reinforced{
@@ -1179,7 +1179,7 @@
 /obj/item/ammo_casing,
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aoN" = (
 /obj/effect/landmark/sensor_tower,
 /turf/open/floor/plating,
@@ -1306,7 +1306,7 @@
 "aqa" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aqd" = (
 /obj/structure/girder/displaced,
 /turf/closed/shuttle/wall3,
@@ -1438,7 +1438,7 @@
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "arM" = (
 /obj/effect/landmark/corpsespawner/security{
 	corpsehelmet = /obj/item/clothing/head/tgmccap/req;
@@ -2004,7 +2004,7 @@
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aym" = (
 /turf/closed/wall/cult,
 /area/lv624/ground/caves/rock)
@@ -2308,7 +2308,7 @@
 /turf/open/floor/plating/warning{
 	dir = 9
 	},
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aCw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -2326,7 +2326,7 @@
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aCA" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand3)
@@ -2334,13 +2334,13 @@
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aCK" = (
 /obj/machinery/floodlight,
 /turf/open/floor/plating/warning{
 	dir = 5
 	},
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aCL" = (
 /turf/open/floor/marking/loadingarea{
 	dir = 1
@@ -2401,7 +2401,7 @@
 "aDB" = (
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aDF" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
@@ -2423,7 +2423,7 @@
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aDK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -2434,11 +2434,11 @@
 "aDM" = (
 /obj/item/ammo_magazine/smg/uzi/extended,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aDN" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aDP" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
@@ -2449,7 +2449,7 @@
 /obj/item/ammo_casing,
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aEc" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4;
@@ -2460,11 +2460,11 @@
 /obj/machinery/floodlight,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aEp" = (
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aEz" = (
 /obj/structure/flora/tree/jungle/small,
 /turf/open/ground/grass,
@@ -2477,7 +2477,7 @@
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aEN" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -2492,7 +2492,7 @@
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aES" = (
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
@@ -2511,7 +2511,7 @@
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aFf" = (
 /obj/machinery/vending/nanomed{
 	dir = 8
@@ -2547,11 +2547,11 @@
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aFw" = (
 /obj/item/attachable/reddot,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aFx" = (
 /turf/open/floor/marking/warning,
 /area/lv624/ground/sand2)
@@ -2614,7 +2614,7 @@
 /obj/effect/decal/cleanable/blood,
 /obj/item/weapon/gun/smg/uzi,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aGH" = (
 /obj/structure/fence,
 /turf/open/floor/plating,
@@ -2625,20 +2625,20 @@
 	},
 /obj/item/healthanalyzer,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aGP" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aGS" = (
 /obj/effect/decal/remains/human,
 /obj/structure/table/reinforced/flipped{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aGV" = (
 /obj/structure/showcase{
 	desc = "An ancient, dusty tomb with strange alien writing. It's best not to touch it.";
@@ -2650,7 +2650,7 @@
 "aGW" = (
 /obj/item/flashlight/lantern,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aGZ" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
@@ -2778,12 +2778,12 @@
 	},
 /obj/item/explosive/grenade/incendiary,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aIP" = (
 /obj/item/attachable/bayonet,
 /obj/item/ammo_magazine/smg/uzi/extended,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aIQ" = (
 /obj/structure/girder,
 /turf/open/ground/river,
@@ -2812,18 +2812,18 @@
 "aJc" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aJg" = (
 /obj/effect/decal/remains/human,
 /obj/item/weapon/gun/smg/m25,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aJp" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aJr" = (
 /obj/effect/landmark/xeno_resin_door,
 /obj/effect/ai_node,
@@ -2917,7 +2917,7 @@
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aKZ" = (
 /obj/structure/catwalk,
 /turf/open/ground/river,
@@ -2929,25 +2929,25 @@
 /obj/item/explosive/grenade/m15,
 /obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aLk" = (
 /turf/open/ground/river,
 /area/lv624/ground/jungle7)
 "aLn" = (
 /obj/item/attachable/quickfire,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aLu" = (
 /obj/structure/table,
 /obj/item/storage/belt/marine,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aLB" = (
 /obj/item/ammo_magazine/smg/m25,
 /obj/item/ammo_magazine/smg/m25,
 /obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aLC" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -3018,11 +3018,11 @@
 	},
 /obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aLX" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aMf" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -3033,7 +3033,7 @@
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aMo" = (
 /obj/structure/fence,
 /turf/open/floor/plating/catwalk,
@@ -3139,14 +3139,14 @@
 "aNE" = (
 /obj/machinery/floodlight,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aNK" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 8
 	},
 /obj/item/weapon/gun/smg/m25,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aNM" = (
 /obj/item/weapon/baseballbat/metal,
 /obj/item/weapon/baseballbat/metal{
@@ -3162,19 +3162,19 @@
 /obj/item/storage/backpack/marine,
 /obj/item/explosive/grenade/incendiary,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aNT" = (
 /obj/machinery/floodlight,
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aNZ" = (
 /obj/structure/table,
 /obj/item/ammo_casing,
 /obj/item/weapon/gun/pistol/holdout,
 /obj/item/attachable/suppressor,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aOj" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river2)
@@ -3185,7 +3185,7 @@
 /obj/item/explosive/grenade/incendiary,
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aOB" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
@@ -3238,7 +3238,7 @@
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aPe" = (
 /turf/closed/wall,
 /area/lv624/ground/river2)
@@ -3250,7 +3250,7 @@
 /obj/item/ammo_casing,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aPs" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 8
@@ -3259,12 +3259,12 @@
 /obj/item/ammo_casing,
 /obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aPD" = (
 /obj/effect/decal/remains/human,
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aPE" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/o2{
@@ -3277,19 +3277,19 @@
 	},
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aPF" = (
 /obj/effect/decal/remains/human,
 /obj/item/ammo_casing,
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aPG" = (
 /obj/item/ammo_casing,
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aPI" = (
 /turf/open/ground/coast/corner2{
 	dir = 2
@@ -3495,17 +3495,17 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aSI" = (
 /obj/item/ammo_casing,
 /obj/item/weapon/gun/pistol/rt3,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aSR" = (
 /obj/effect/decal/cleanable/blood,
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aSV" = (
 /obj/structure/jungle/plantbot1,
 /turf/open/ground/grass,
@@ -3516,7 +3516,7 @@
 	},
 /obj/item/attachable/suppressor,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aSY" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -3593,7 +3593,7 @@
 	},
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aUA" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 2
@@ -3601,14 +3601,14 @@
 /obj/effect/decal/remains/human,
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aUW" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 2
 	},
 /obj/item/explosive/grenade/incendiary,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aUZ" = (
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/ground/river,
@@ -3738,13 +3738,13 @@
 /obj/item/ammo_casing,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aWR" = (
 /obj/effect/decal/remains/human,
 /obj/item/ammo_casing,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aWT" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 4
@@ -3753,7 +3753,7 @@
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "aXc" = (
 /obj/structure/jungle/plantbot1/alien,
 /turf/open/ground/river,
@@ -3979,7 +3979,7 @@
 /turf/open/floor/plating/warning{
 	dir = 10
 	},
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "bbc" = (
 /turf/open/ground/coast/corner2{
 	dir = 8
@@ -4009,7 +4009,7 @@
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "bbq" = (
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/ground/grass/beach{
@@ -4033,7 +4033,7 @@
 /turf/open/floor/plating/warning{
 	dir = 6
 	},
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "bbz" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -8284,6 +8284,13 @@
 /obj/structure/jungle/planttop1,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle2)
+"eZB" = (
+/obj/structure/fence,
+/obj/effect/decal/riverdecal/edge{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/lv624/ground/sand8)
 "eZJ" = (
 /obj/item/reagent_containers/food/snacks/worm,
 /turf/open/floor/plating/ground/dirt,
@@ -11526,6 +11533,9 @@
 /obj/item/trash/candy,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
+"iMC" = (
+/turf/open/floor/plating,
+/area/lv624/lazarus/tablefort)
 "iMS" = (
 /obj/structure/table,
 /obj/item/tool/extinguisher,
@@ -14618,6 +14628,14 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/se)
+"myQ" = (
+/obj/structure/fence,
+/obj/effect/decal/riverdecal/edge{
+	dir = 4
+	},
+/obj/effect/decal/riverdecal/edge,
+/turf/open/floor/plating,
+/area/lv624/ground/sand8)
 "myR" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -17808,7 +17826,7 @@
 "qzM" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/plating,
-/area/lv624/ground/sand2)
+/area/lv624/lazarus/tablefort)
 "qzQ" = (
 /obj/structure/jungle/vines,
 /obj/structure/flora/ausbushes/fullgrass,
@@ -21828,6 +21846,7 @@
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 8
 	},
+/obj/effect/decal/riverdecal,
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "uYE" = (
@@ -47687,14 +47706,14 @@ agv
 ayp
 arI
 aDM
-avm
-avm
+iMC
+iMC
 aDM
-avm
+iMC
 aNE
 aPm
-avm
-avm
+iMC
+iMC
 aWN
 aDB
 bbk
@@ -47866,12 +47885,12 @@ arI
 aDN
 aoH
 aGu
-avm
-avm
+iMC
+iMC
 aDN
-avm
-avm
-avm
+iMC
+iMC
+iMC
 aoH
 aEp
 aEW
@@ -48040,9 +48059,9 @@ agv
 uQc
 ayp
 aCy
-avm
+iMC
 aEp
-avm
+iMC
 aIO
 aLd
 aNK
@@ -48050,7 +48069,7 @@ aPs
 aSG
 aEp
 aEp
-avm
+iMC
 aEW
 ajG
 ajG
@@ -48222,12 +48241,12 @@ aoH
 aqa
 aIP
 aqa
-avm
+iMC
 aPD
 aSI
-avm
+iMC
 aEp
-avm
+iMC
 aEW
 ajG
 ajG
@@ -48401,11 +48420,11 @@ aDM
 aLn
 aNR
 aLB
-avm
+iMC
 aUz
 aEp
 aEp
-avm
+iMC
 aSY
 amk
 aIN
@@ -48748,7 +48767,7 @@ agv
 agv
 agv
 aCD
-avm
+iMC
 aoH
 aGS
 aJc
@@ -48758,8 +48777,8 @@ aPF
 aEp
 aUW
 aDN
-avm
-avm
+iMC
+iMC
 aMf
 aMf
 bcm
@@ -48926,16 +48945,16 @@ avN
 agv
 arI
 aEp
-avm
+iMC
 aoH
 aJg
-avm
-avm
+iMC
+iMC
 aEp
 aDM
-avm
+iMC
 aEp
-avm
+iMC
 aEW
 ajG
 ajG
@@ -49102,15 +49121,15 @@ agv
 agv
 apR
 arI
-avm
+iMC
 aEp
-avm
+iMC
 aJp
 aLQ
 aOm
 aLQ
 aSX
-avm
+iMC
 aEp
 aJc
 aEW
@@ -49282,11 +49301,11 @@ arI
 aEp
 aFw
 aEp
-avm
+iMC
 aLX
 aDN
-avm
-avm
+iMC
+iMC
 qzM
 aWR
 aDM
@@ -49456,15 +49475,15 @@ agv
 agv
 ayp
 arI
-avm
+iMC
 aDN
 aGW
 aDB
 aDN
 aNE
-avm
+iMC
 aEp
-avm
+iMC
 aLn
 akK
 aEW
@@ -51062,7 +51081,7 @@ ajR
 ajR
 ajR
 beS
-aGH
+eZB
 gHK
 xpM
 iGO
@@ -51239,7 +51258,7 @@ ajR
 ajR
 ajR
 ajR
-aGH
+eAr
 nlJ
 pEl
 ajR
@@ -51416,7 +51435,7 @@ aXc
 ajR
 ajR
 ajR
-aGH
+eAr
 nlJ
 pEl
 mLu
@@ -52124,7 +52143,7 @@ ajR
 ajR
 ajR
 ajR
-aGH
+myQ
 kyU
 gMl
 hKP

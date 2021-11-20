@@ -386,6 +386,11 @@
 	icon_state = "sandtemple"
 	always_unpowered = TRUE
 
+/area/lv624/lazarus/tablefort
+	name = "\improper Table Fort"
+	icon_state = "tablefort"
+	always_unpowered = TRUE
+
 /area/lv624/lazarus/relay
 	name = "\improper Secret Relay Room"
 	icon_state = "tcomsatcham"
