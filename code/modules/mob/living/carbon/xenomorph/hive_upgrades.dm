@@ -320,4 +320,4 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	name = PRIMORDIAL_BOILER
 	desc = "Unlocks the primordial boiler's access to acid lances, direct-hit focussed bombardment types that leave a gas trail where they pass."
 	psypoint_cost = 225
-	//icon = "primoboiler" - needs icon
+	icon = "primoboiler"
