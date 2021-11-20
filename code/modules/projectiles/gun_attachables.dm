@@ -1644,6 +1644,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/shoulder_mount/proc/after_fire(datum/source, atom/target, obj/item/weapon/gun/fired_gun)
 	SIGNAL_HANDLER
 	master_gun.cock(master_gun.gun_user)
+
 /obj/item/attachable/flamer_nozzle
 	name = "standard flamer nozzle"
 	desc = "The standard flamer nozzle. This one fires a stream of fire for direct and accurate flames. Though not as area filling as its counterpart, this one excels at directed frontline combat."

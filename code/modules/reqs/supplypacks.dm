@@ -828,6 +828,11 @@ ARMOR
 	contains = list(/obj/item/armor_module/module/hlin_explosive_armor)
 	cost = 12
 
+/datum/supply_packs/armor/modular/attachments/shoulder_gun
+	name = "Experimental Shoulder Attachment Point"
+	contains = list(/obj/item/attachable/shoulder_mount)
+	cost = 30
+
 /*******************************************************************************
 CLOTHING
 *******************************************************************************/
