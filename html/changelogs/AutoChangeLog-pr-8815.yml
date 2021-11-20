@@ -1,0 +1,4 @@
+author: "KrabSpider"
+delete-after: True
+changes: 
+  - balance: "kills stam drain from tanglefoot."
