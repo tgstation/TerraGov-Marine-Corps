@@ -245,7 +245,7 @@
 	action_icon_state = "carnage"
 	mechanics_text = "For a while your attacks drain blood and heal you. During Feast you also heal nearby allies."
 	use_state_flags = XACT_TARGET_SELF|XACT_IGNORE_SELECTED_ABILITY
-	cooldown_timer = 0 SECONDS
+	cooldown_timer = 40 SECONDS
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_CARNAGE
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
