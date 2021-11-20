@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "Make it twice as fast to use recurring injection as a xeno. Also, if you fail to inject any toxin, you don't get a cooldown, (plasma is still used)."
