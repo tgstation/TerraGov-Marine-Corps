@@ -350,33 +350,9 @@
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER))
 		for(var/i in 0 to max_chamber_items)
 			chamber_items.Add(null)
-
-	if(!spawn_empty && default_ammo_type)
-		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS) || CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
-			var/obj/item/ammo_magazine/ammo_type = default_ammo_type
-			if((!ispath(ammo_type, /datum/ammo) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS)) || CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
-				var/thing_to_reload = new default_ammo_type(src)
-				INVOKE_ASYNC(src, .proc/reload, thing_to_reload, null, TRUE)
-				if(!(thing_to_reload in chamber_items))
-					qdel(thing_to_reload) //If the item doesnt suceed in reloading, we dont want to keep it around.
-				if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
-					ENABLE_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)
-				update_icon()
-				return
-		for(var/i in 0 to max_chamber_items)
-			var/obj/object_to_insert
-			if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
-				var/obj/item/ammo_magazine/handful/handful = new /obj/item/ammo_magazine/handful()
-				handful.generate_handful(default_ammo_type, caliber, 1, type)
-				object_to_insert = handful
-			else
-				object_to_insert = new default_ammo_type(src)
-			INVOKE_ASYNC(src, .proc/reload, object_to_insert, null, TRUE)
-			if(!(object_to_insert in chamber_items))
-				qdel(object_to_insert)
-	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
-		ENABLE_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)
-	update_icon()
+	if(spawn_empty)
+		return
+	INVOKE_ASYNC(src, .proc/fill_gun)
 
 /obj/item/weapon/gun/Destroy()
 	active_attachable = null
@@ -750,7 +726,7 @@
 			in_chamber = null
 		if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 			cycle(null)
-		if(length(chamber_items) && (get_current_rounds(chamber_items[current_chamber_position]) - rounds_per_shot) <= 0 && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
+		if(length(chamber_items) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && (get_current_rounds(chamber_items[current_chamber_position]) - rounds_per_shot) <= 0)
 			playsound(src, empty_sound, 25, 1)
 			unload(after_fire = TRUE)
 
@@ -999,7 +975,7 @@
 			playsound(user, 'sound/weapons/throwtap.ogg', 25, 1)
 			last_cock_message = world.time
 			return
-		cycle(user)
+		cycle(user, FALSE)
 		playsound(src, cocked_sound, 25, 1)
 		if(cocked_message)
 			to_chat(user, span_notice(cocked_message))
@@ -1197,6 +1173,34 @@
 	update_ammo_count()
 	update_icon()
 	return TRUE
+
+///Fills the gun with ammunition. This is not inlined with Initialize because it could be used outside and needs to sleep.
+/obj/item/weapon/gun/proc/fill_gun()
+	if(!default_ammo_type)
+		return
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS) || CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
+		var/obj/item/ammo_magazine/ammo_type = default_ammo_type
+		if((!ispath(ammo_type, /datum/ammo) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS)) || CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
+			var/thing_to_reload = new default_ammo_type(src)
+			if(!reload(thing_to_reload, null, TRUE))
+				qdel(thing_to_reload) //If the item doesnt suceed in reloading, we dont want to keep it around.
+			if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
+				ENABLE_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)
+			update_icon()
+			return
+	for(var/i in 0 to max_chamber_items)
+		var/obj/object_to_insert
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
+			var/obj/item/ammo_magazine/handful/handful = new /obj/item/ammo_magazine/handful()
+			handful.generate_handful(default_ammo_type, caliber, 1, type)
+			object_to_insert = handful
+		else
+			object_to_insert = new default_ammo_type(src)
+		if(!reload(object_to_insert, null, TRUE))
+			qdel(object_to_insert)
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
+		ENABLE_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)
+	update_icon()
 
 ///Handles unloading. Called on attackhand. Draws the chamber_items out first, then in_chamber
 /obj/item/weapon/gun/proc/unload(mob/living/user, drop = TRUE, after_fire = FALSE)

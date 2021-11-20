@@ -406,7 +406,6 @@ Turn() or Shift() as there is virtually no overhead. ~N
 		icon_state = "[initial(icon_state)]_deployed"
 	else
 		icon_state = "[initial(icon_state)]_empty"
-	ammo_type = GLOB.ammo_list[ammo_type]
 
 
 /obj/item/shotgunbox/attack_self(mob/user)

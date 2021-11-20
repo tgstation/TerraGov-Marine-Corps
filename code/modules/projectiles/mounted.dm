@@ -37,7 +37,7 @@
 	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user)) //Damn you zack, yoinking mags from pipes as a runner.
 		return
 	var/obj/item/weapon/gun/internal_gun = internal_item
-	internal_gun.unload(internal_gun, user)
+	internal_gun.unload(user)
 	update_icon()
 
 /obj/machinery/deployable/mounted/attack_hand_alternate(mob/living/user)
@@ -63,8 +63,8 @@
 ///Reloads the internal_item
 /obj/machinery/deployable/mounted/proc/reload(mob/user, ammo_magazine)
 	var/obj/item/weapon/gun/gun = internal_item
-	if(gun.chamber_items[gun.current_chamber_position])
-		gun.unload(gun, user)
+	if(length(gun.chamber_items))
+		gun.unload(user)
 		update_icon_state()
 
 	gun.reload(ammo_magazine, user)
