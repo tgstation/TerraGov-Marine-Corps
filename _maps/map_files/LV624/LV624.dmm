@@ -2930,9 +2930,6 @@
 /obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/plating,
 /area/lv624/lazarus/tablefort)
-"aLk" = (
-/turf/open/ground/river,
-/area/lv624/ground/jungle7)
 "aLn" = (
 /obj/item/attachable/quickfire,
 /turf/open/floor/plating,
@@ -5874,7 +5871,6 @@
 /obj/item/ammo_casing,
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
@@ -6644,12 +6640,6 @@
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
-"cWA" = (
-/obj/effect/decal/riverdecal,
-/turf/open/ground/coast{
-	icon_state = "beachcorner"
-	},
-/area/lv624/ground/river3)
 "cWR" = (
 /obj/structure/jungle/vines/heavy{
 	pixel_y = 24
@@ -6815,7 +6805,6 @@
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "dkq" = (
-/obj/effect/decal/riverdecal,
 /obj/effect/decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/river3)
@@ -7101,13 +7090,6 @@
 	dir = 8
 	},
 /area/shuttle/drop1/lz1)
-"dBX" = (
-/obj/effect/decal/riverdecal,
-/turf/open/ground/coast{
-	dir = 1;
-	icon_state = "beachcorner"
-	},
-/area/lv624/ground/river3)
 "dCs" = (
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/structure/cable,
@@ -7168,12 +7150,6 @@
 "dIO" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle10)
-"dJo" = (
-/obj/effect/decal/riverdecal/edge{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/lv624/ground/sand8)
 "dJr" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
@@ -7779,7 +7755,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "erK" = (
-/obj/effect/decal/riverdecal,
 /turf/open/ground/coast{
 	dir = 6
 	},
@@ -7919,10 +7894,6 @@
 	dir = 4
 	},
 /area/lv624/lazarus/quartstorage/outdoors)
-"eCG" = (
-/obj/effect/decal/riverdecal,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/river3)
 "eDs" = (
 /obj/structure/platform_decoration{
 	dir = 8
@@ -8626,12 +8597,6 @@
 "fvl" = (
 /turf/closed/wall,
 /area/lv624/ground/compound/se)
-"fvm" = (
-/obj/effect/decal/riverdecal,
-/turf/open/ground/coast{
-	dir = 5
-	},
-/area/lv624/ground/river3)
 "fvn" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/grille,
@@ -11405,11 +11370,6 @@
 /obj/structure/fence,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
-"iFf" = (
-/turf/open/floor/plating/ground/dirtgrassborder/corner2{
-	dir = 1
-	},
-/area/lv624/ground/jungle4)
 "iFv" = (
 /obj/effect/decal/sandytile,
 /obj/structure/stairs/cornerdark,
@@ -12038,6 +11998,11 @@
 	dir = 8
 	},
 /area/lv624/ground/jungle9)
+"jun" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/riverdecal,
+/turf/open/floor,
+/area/lv624/ground/river2)
 "jvj" = (
 /obj/structure/table,
 /obj/structure/mirror{
@@ -13894,14 +13859,6 @@
 	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
-"lIn" = (
-/obj/effect/decal/riverdecal/edge{
-	dir = 1
-	},
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
-/area/lv624/ground/sand8)
 "lIu" = (
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -15939,12 +15896,6 @@
 	},
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
-"ofL" = (
-/obj/effect/decal/riverdecal,
-/turf/open/ground/coast{
-	dir = 9
-	},
-/area/lv624/ground/river3)
 "ogC" = (
 /obj/machinery/landinglight/ds1/delayone{
 	dir = 8
@@ -16436,10 +16387,6 @@
 	dir = 1;
 	icon_state = "beachcorner"
 	},
-/area/lv624/ground/river3)
-"oMP" = (
-/obj/effect/decal/riverdecal,
-/turf/open/ground/coast,
 /area/lv624/ground/river3)
 "oOc" = (
 /obj/structure/jungle/vines,
@@ -17285,12 +17232,6 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle6)
-"pOk" = (
-/obj/effect/decal/riverdecal,
-/turf/open/ground/coast{
-	dir = 1
-	},
-/area/lv624/ground/river3)
 "pOl" = (
 /obj/structure/jungle/vines,
 /turf/closed/wall,
@@ -18259,10 +18200,6 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle3)
-"qXo" = (
-/obj/effect/decal/riverdecal,
-/turf/open/ground/coast/corner2,
-/area/lv624/ground/river3)
 "qYn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -19092,12 +19029,6 @@
 /obj/structure/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/lazarus/atmos/outside)
-"rSS" = (
-/obj/effect/decal/riverdecal,
-/turf/open/ground/coast/corner2{
-	dir = 1
-	},
-/area/lv624/ground/river3)
 "rTp" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
@@ -19967,6 +19898,7 @@
 /area/lv624/lazarus/research)
 "sWt" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 4
 	},
@@ -20233,6 +20165,12 @@
 	dir = 9
 	},
 /area/lv624/lazarus/hydroponics)
+"tiU" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/lv624/ground/jungle6)
 "tjj" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 1;
@@ -24218,12 +24156,6 @@
 	dir = 2
 	},
 /area/lv624/lazarus/medbay)
-"xAY" = (
-/obj/effect/decal/riverdecal,
-/turf/open/ground/coast{
-	dir = 4
-	},
-/area/lv624/ground/river3)
 "xAZ" = (
 /obj/machinery/door/airlock/colony/medical/domestorage{
 	dir = 1
@@ -24712,12 +24644,6 @@
 	dir = 2
 	},
 /area/lv624/lazarus/medbay)
-"xYO" = (
-/obj/effect/decal/riverdecal,
-/turf/open/ground/coast/corner{
-	dir = 4
-	},
-/area/lv624/ground/river3)
 "xYV" = (
 /obj/structure/jungle/vines,
 /obj/structure/jungle/vines/heavy,
@@ -35394,7 +35320,7 @@ xJs
 xJs
 xJs
 cCI
-iFf
+cfx
 tIo
 haT
 vzI
@@ -35551,7 +35477,7 @@ mOs
 mOs
 auJ
 qWF
-sdf
+tiU
 sdf
 sWt
 tYg
@@ -46846,7 +46772,7 @@ ajz
 ajz
 awR
 ajz
-aLk
+ajz
 aZu
 aWM
 arW
@@ -49321,7 +49247,7 @@ bea
 kIl
 ajz
 kIl
-tkm
+jun
 aPe
 kIl
 iEQ
@@ -49669,7 +49595,7 @@ ajG
 alo
 bmi
 akq
-lIn
+aKG
 aND
 ajz
 ajz
@@ -49846,7 +49772,7 @@ bdH
 alm
 aJY
 akq
-lIn
+aKG
 aNA
 ajz
 aWa
@@ -52314,7 +52240,7 @@ axO
 aMp
 agv
 agv
-dJo
+aSz
 mLu
 ajR
 mLu
@@ -58346,8 +58272,8 @@ ayO
 aFF
 aFU
 aHH
-ofL
-rSS
+brN
+aKl
 aHH
 bom
 aFF
@@ -58522,10 +58448,10 @@ wWW
 tSV
 dEy
 aFU
-ofL
-xYO
-dBX
-rSS
+brN
+brS
+oMh
+aKl
 bom
 bsh
 aDP
@@ -58699,10 +58625,10 @@ gIe
 pbA
 bQm
 aFU
-pOk
+bom
 dkq
-eCG
-oMP
+aFF
+aFU
 bom
 bsl
 arW
@@ -58876,10 +58802,10 @@ oZK
 sDl
 bQm
 aFU
-pOk
-eCG
-cWA
-qXo
+bom
+aFF
+wNp
+xpC
 bom
 bsl
 arW
@@ -59053,8 +58979,8 @@ oZK
 qyo
 bQm
 aFU
-fvm
-xAY
+heV
+aHF
 erK
 aHH
 bom
