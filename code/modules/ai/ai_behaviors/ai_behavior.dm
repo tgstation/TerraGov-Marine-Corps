@@ -172,8 +172,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	goal_nodes = get_path(current_node, goal_node, NODE_PATHING)
 	if(!length(goal_nodes))
 		current_node = null
-		look_for_next_node()
-		return
 	look_for_next_node()
 
 ///Signal handler when we reached our current tile goal
