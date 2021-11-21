@@ -219,16 +219,6 @@
 	dir = 1
 	},
 /area/mainship/engineering/engineering_workshop)
-"aP" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hull/port_hull)
 "aQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6654,6 +6644,17 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
+"zK" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/starboard_hull)
 "zM" = (
 /obj/machinery/computer/camera_advanced/overwatch/bravo,
 /turf/open/floor/mainship/mono,
@@ -7915,6 +7916,7 @@
 /obj/effect/decal/warning_stripes/thick{
 	icon_state = "N-corner"
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/port_hull)
 "Ew" = (
@@ -10299,6 +10301,17 @@
 	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
+"NA" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/port_hull)
 "NB" = (
 /obj/structure/dropship_equipment/sentry_holder,
 /turf/open/floor/mainship/cargo,
@@ -23182,7 +23195,7 @@ Pi
 Pi
 Pi
 Pi
-aP
+HA
 Pp
 Pi
 Pi
@@ -23198,7 +23211,7 @@ Pp
 Pi
 Pi
 Pi
-Pi
+Wc
 Pp
 Pi
 Pi
@@ -24634,7 +24647,7 @@ Dy
 Dy
 tv
 xz
-rD
+NA
 fD
 XE
 OS
@@ -24991,7 +25004,7 @@ XE
 XE
 XE
 Vb
-rD
+NA
 vj
 rQ
 Kp
@@ -32455,7 +32468,7 @@ ZK
 pG
 XE
 vH
-DS
+zK
 Kc
 Xh
 oP
@@ -34475,7 +34488,7 @@ ZK
 pG
 XE
 vH
-DS
+zK
 Kc
 Xh
 oP
@@ -42565,7 +42578,7 @@ pG
 XE
 XE
 Mx
-DS
+zK
 Ag
 jC
 uO
@@ -43784,7 +43797,7 @@ tU
 tU
 PT
 tU
-tU
+eM
 tU
 PT
 tU
@@ -43801,7 +43814,7 @@ tU
 tU
 tU
 tU
-PT
+dR
 tU
 tU
 tU
@@ -43818,7 +43831,7 @@ tU
 PT
 tU
 tU
-tU
+eM
 PT
 tU
 tU
