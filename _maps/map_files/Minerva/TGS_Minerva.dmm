@@ -997,6 +997,13 @@
 	dir = 10
 	},
 /area/mainship/hallways/hangar)
+"dL" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/computer/ordercomp,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_hallway)
 "dM" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -1842,10 +1849,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"gE" = (
-/obj/structure/dropship_equipment/weapon/heavygun,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/hangar)
 "gG" = (
 /obj/machinery/door/airlock/mainship/security/glass{
 	name = "Artillery Control"
@@ -2181,7 +2184,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
 "hS" = (
-/obj/structure/ship_ammo/minirocket,
+/obj/structure/ship_ammo/minirocket/illumination,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "hT" = (
@@ -5094,6 +5097,17 @@
 	},
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
+"tr" = (
+/obj/structure/rack,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/electrical{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/flashlight,
+/obj/item/radio,
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/command/self_destruct)
 "tu" = (
 /obj/machinery/cryopod/right,
 /obj/machinery/light{
@@ -5599,12 +5613,6 @@
 	dir = 8
 	},
 /area/mainship/medical/medical_science)
-"vs" = (
-/obj/structure/ship_ammo/minirocket/illumination,
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 1
-	},
-/area/mainship/hallways/hangar)
 "vt" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -6232,9 +6240,7 @@
 /area/mainship/command/cic)
 "xO" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 1
-	},
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "xP" = (
 /obj/structure/table/mainship,
@@ -6679,11 +6685,6 @@
 "zS" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
-"zT" = (
-/obj/structure/ship_ammo/heavygun,
-/obj/machinery/camera/autoname/mainship,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
 "zU" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -9272,8 +9273,8 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "JB" = (
-/obj/structure/ship_ammo/minirocket/illumination,
 /obj/structure/cable,
+/obj/structure/ship_ammo/minirocket,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "JE" = (
@@ -9287,9 +9288,7 @@
 /area/mainship/engineering/engine_core)
 "JG" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 1
-	},
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "JH" = (
 /obj/machinery/door/airlock/mainship/generic/pilot/bunk{
@@ -10017,6 +10016,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
+/obj/machinery/computer/crew,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "Mt" = (
@@ -10882,10 +10882,6 @@
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/mainship/research,
 /area/mainship/medical/medical_science)
-"PP" = (
-/obj/machinery/computer/crew,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "PQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -10971,12 +10967,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/general)
-"Qh" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 1
-	},
-/area/mainship/hallways/hangar)
 "Qi" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/living/pilotbunks)
@@ -11291,6 +11281,11 @@
 	dir = 4
 	},
 /area/mainship/engineering/engineering_workshop)
+"Rw" = (
+/obj/machinery/camera/autoname/mainship,
+/obj/structure/ship_ammo/heavygun,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "Rx" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/box/cups{
@@ -13484,10 +13479,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
 "ZF" = (
-/obj/structure/ship_ammo/minirocket/illumination,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/ship_ammo/minirocket,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "ZH" = (
@@ -28609,8 +28604,8 @@ ZK
 ZK
 ZK
 ZK
-ZK
 Ro
+Dx
 Dx
 Dx
 Dx
@@ -28811,8 +28806,8 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
+XE
 XE
 XE
 XE
@@ -29013,12 +29008,12 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 iD
 sn
 sn
+iD
 sn
 sn
 sn
@@ -29215,12 +29210,12 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 iD
 kl
 kl
+TT
 TT
 ZF
 JB
@@ -29417,10 +29412,10 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 iD
+sG
 sG
 sG
 sG
@@ -29619,13 +29614,13 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 iD
 Fm
 oS
-GU
+oS
+oS
 GU
 XO
 eB
@@ -29821,13 +29816,13 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 iD
 hS
 hS
-vs
+IQ
+SF
 GU
 SC
 iY
@@ -30023,12 +30018,12 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 iD
-bW
-bW
+hS
+hS
+IQ
 xO
 qI
 BM
@@ -30225,13 +30220,13 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 iD
-zT
+Rw
 bW
-Qh
+IQ
+kH
 GU
 st
 Lv
@@ -30427,12 +30422,12 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 iD
 bW
 bW
+IQ
 JG
 Cv
 Sq
@@ -30629,13 +30624,13 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 iD
-sG
-sG
+bW
+bW
 IQ
+SF
 GU
 SC
 iY
@@ -30831,14 +30826,14 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 iD
 mm
 cq
-GU
-gE
+SF
+sG
+cq
 aN
 eB
 eB
@@ -31033,10 +31028,10 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 iD
+SF
 SF
 SF
 SF
@@ -31235,12 +31230,12 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 iD
 sG
 GD
+SF
 sG
 Ns
 rK
@@ -31437,9 +31432,9 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
+iD
 iD
 iD
 iD
@@ -31639,8 +31634,8 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
+XE
 XE
 XE
 XE
@@ -31841,8 +31836,8 @@ ZK
 ZK
 ZK
 ZK
-ZK
 gV
+bk
 bk
 bk
 bk
@@ -33118,7 +33113,7 @@ Yx
 Wt
 sn
 uq
-hi
+tr
 hi
 hi
 VP
@@ -33926,7 +33921,7 @@ TQ
 EV
 sn
 uq
-hi
+tr
 hi
 hi
 VP
@@ -35073,8 +35068,8 @@ ZK
 ZK
 ZK
 ZK
-ZK
 Ro
+Dx
 Dx
 Dx
 Dx
@@ -35275,8 +35270,8 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
+XE
 XE
 XE
 XE
@@ -35477,9 +35472,9 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
+BS
 BS
 BS
 BS
@@ -35679,10 +35674,10 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 BS
+uZ
 uZ
 Pc
 uZ
@@ -35881,10 +35876,10 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 BS
+qG
 qG
 qG
 qG
@@ -36083,10 +36078,10 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 BS
+uZ
 uZ
 uZ
 uZ
@@ -36285,11 +36280,11 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 BS
 hP
+uZ
 uZ
 uZ
 uZ
@@ -36317,13 +36312,13 @@ Ad
 ml
 lW
 dy
-PP
+UC
 At
 sO
 sO
 At
 At
-Mf
+dL
 iq
 Ux
 nB
@@ -36487,11 +36482,11 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 BS
 EL
+dM
 dM
 dM
 kh
@@ -36689,11 +36684,11 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 BS
 Kl
+uZ
 uZ
 uZ
 uZ
@@ -36891,10 +36886,10 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 BS
+qG
 qG
 qG
 qG
@@ -37093,11 +37088,11 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 BS
 hP
+uZ
 uZ
 uZ
 uZ
@@ -37295,10 +37290,10 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 BS
+uZ
 uZ
 uZ
 uZ
@@ -37497,10 +37492,10 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 BS
+qG
 qG
 qG
 qG
@@ -37699,10 +37694,10 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
 BS
+uZ
 uZ
 IG
 uZ
@@ -37901,9 +37896,9 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
 XE
+BS
 BS
 BS
 BS
@@ -38103,8 +38098,8 @@ ZK
 ZK
 ZK
 ZK
-ZK
 pG
+XE
 XE
 XE
 XE
@@ -38305,8 +38300,8 @@ ZK
 ZK
 ZK
 ZK
-ZK
 gV
+bk
 bk
 bk
 bk
