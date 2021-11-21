@@ -81,7 +81,7 @@
 /datum/action/xeno_action/activable/drain
 	name = "Drain"
 	action_icon_state = "drain"
-	mechanics_text = "Stagger a marine and drain some of their blood. When used on a dead human, you heal gradually and don't gain blood."
+	mechanics_text = "Hold a marine for some time and drain their blood, while gaining overheal. You can't attack during this time and can be shot by the marine. When used on a dead human, you heal gradually and don't gain blood."
 	use_state_flags = XACT_KEYBIND_USE_ABILITY
 	cooldown_timer = 15 SECONDS
 	plasma_cost = 0
