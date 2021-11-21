@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - code_imp: "Make get_hearers_in_view more performant"

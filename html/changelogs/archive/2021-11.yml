@@ -126,3 +126,11 @@
       Rifle no longer shares the same caliber or ammo with the T-37 DMR.
   - balance: extra delay increased to 0.35
   - imageadd: t-64 ammo packets
+2021-11-21:
+  BraveMole:
+  - code_imp: Make get_hearers_in_view more performant
+  - code_imp: Better perf with cameras
+  - balance: Make it twice as fast to use recurring injection as a xeno. Also, if
+      you fail to inject any toxin, you don't get a cooldown, (plasma is still used).
+  KrabSpider:
+  - balance: kills stam drain from tanglefoot.
