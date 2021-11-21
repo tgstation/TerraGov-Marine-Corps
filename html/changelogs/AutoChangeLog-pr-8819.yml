@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - imageadd: "added some icons for guns on suit slot to be like on back but on the left side."
