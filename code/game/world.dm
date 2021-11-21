@@ -335,15 +335,6 @@ GLOBAL_VAR(restart_counter)
 	else
 		hub_password = "SORRYNOPASSWORD"
 
-/world/proc/change_fps(new_value = 20)
-	if(new_value <= 0)
-		CRASH("change_fps() called with [new_value] new_value.")
-	if(fps == new_value)
-		return //No change required.
-
-	fps = new_value
-	on_tickrate_change()
-
 
 /world/proc/change_tick_lag(new_value = 0.5)
 	if(new_value <= 0)
