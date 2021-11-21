@@ -250,40 +250,14 @@ Master controller and performance related.
 	if(.)
 		Master.UpdateTickRate()
 
-/datum/config_entry/number/fps
-	config_entry_value = 20
-	integer = FALSE
-	min_val = 1
-	max_val = 100   //byond will start crapping out at 50, so this is just ridic
-	var/sync_validate = FALSE
-
-/datum/config_entry/number/fps/ValidateAndSet(str_val)
-	. = ..()
-	if(.)
-		sync_validate = TRUE
-		var/datum/config_entry/number/ticklag/TL = config.entries_by_type[/datum/config_entry/number/ticklag]
-		if(!TL.sync_validate)
-			TL.ValidateAndSet(10 / config_entry_value)
-		sync_validate = FALSE
-
 /datum/config_entry/number/ticklag
 	config_entry_value = 0.5
 	integer = FALSE
 	var/sync_validate = FALSE
 
-/datum/config_entry/number/ticklag/New()	//ticklag weirdly just mirrors fps
-	var/datum/config_entry/CE = /datum/config_entry/number/fps
-	config_entry_value = 10 / initial(CE.config_entry_value)
-	return ..()
 
 /datum/config_entry/number/ticklag/ValidateAndSet(str_val)
 	. = text2num(str_val) > 0 && ..()
-	if(.)
-		sync_validate = TRUE
-		var/datum/config_entry/number/fps/FPS = config.entries_by_type[/datum/config_entry/number/fps]
-		if(!FPS.sync_validate)
-			FPS.ValidateAndSet(10 / config_entry_value)
-		sync_validate = FALSE
 
 /datum/config_entry/number/tick_limit_mc_init	//SSinitialization throttling
 	config_entry_value = TICK_LIMIT_MC_INIT_DEFAULT
