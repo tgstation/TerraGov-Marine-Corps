@@ -325,7 +325,6 @@
 		var/list/attachment_data = attachment_data_by_slot[slot]
 		if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
 			continue
-		var/image/new_overlay
 		var/icon = attachment.icon
 		var/icon_state = attachment.icon_state
 		var/suffix = ""
@@ -336,8 +335,9 @@
 				else
 					suffix = "_m"
 			else
-				suffix = "_a"
-		new_overlay = image(icon, source, icon_state + suffix)
+				icon = attachment_data[OVERLAY_ICON]
+				suffix = attachment.icon == attachment_data[MOB_OVERLAY_ICON] ? "_a" : ""
+		var/image/new_overlay = image(icon, source, icon_state + suffix)
 		if(attachment_data[MOB_PIXEL_SHIFT_X])
 			new_overlay.pixel_x += attachment_data[MOB_PIXEL_SHIFT_X]
 		if(attachment_data[MOB_PIXEL_SHIFT_Y])
