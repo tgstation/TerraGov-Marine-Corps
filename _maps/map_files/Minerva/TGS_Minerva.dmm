@@ -936,6 +936,11 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
+"dx" = (
+/turf/open/floor/mainship/terragov/north{
+	dir = 1
+	},
+/area/space)
 "dy" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -4177,6 +4182,11 @@
 	},
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
+"pD" = (
+/turf/open/floor/mainship/terragov/north{
+	dir = 9
+	},
+/area/space)
 "pE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9097,6 +9107,11 @@
 "IV" = (
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
+"IW" = (
+/turf/open/floor/mainship/terragov/north{
+	dir = 8
+	},
+/area/space)
 "IY" = (
 /obj/machinery/light{
 	dir = 1
@@ -10568,6 +10583,9 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
+"OH" = (
+/turf/open/floor/mainship/terragov/north,
+/area/space)
 "OI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -11193,6 +11211,10 @@
 /obj/structure/prop/mainship/sensor_computer3,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/command/cic)
+"Rh" = (
+/obj/structure/window/framed/mainship/hull,
+/turf/open/floor/plating,
+/area/mainship/shipboard/starboard_missiles)
 "Ri" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -12626,6 +12648,11 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
+"WI" = (
+/turf/open/floor/mainship/terragov/north{
+	dir = 10
+	},
+/area/space)
 "WL" = (
 /turf/closed/wall/mainship,
 /area/mainship/living/bridgebunks)
@@ -13415,6 +13442,11 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar/droppod)
+"Zx" = (
+/turf/open/floor/mainship/terragov{
+	dir = 1
+	},
+/area/space)
 "Zz" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -23385,12 +23417,12 @@ sU
 Af
 Af
 sU
-sU
-sU
-sU
-sU
-sU
-sU
+xz
+xz
+xz
+xz
+xz
+xz
 BL
 fD
 XE
@@ -23592,7 +23624,7 @@ Vf
 xz
 tD
 lK
-sU
+xz
 rD
 fD
 XE
@@ -23996,7 +24028,7 @@ UB
 xz
 Uy
 xz
-sU
+xz
 rD
 fD
 XE
@@ -24198,7 +24230,7 @@ gy
 Hq
 gy
 AR
-sU
+xz
 rD
 fD
 XE
@@ -24400,7 +24432,7 @@ VS
 rh
 rh
 tv
-sU
+xz
 BL
 fD
 XE
@@ -24602,7 +24634,7 @@ fC
 Dy
 Dy
 tv
-sU
+xz
 rD
 fD
 XE
@@ -24804,7 +24836,7 @@ Nw
 Rm
 Rm
 Rm
-sU
+xz
 rD
 fD
 XE
@@ -25006,7 +25038,7 @@ Rp
 lx
 Rm
 Rm
-sU
+xz
 rD
 fD
 XE
@@ -25208,7 +25240,7 @@ KK
 Qz
 Uh
 Rm
-sU
+xz
 BL
 fD
 XE
@@ -25410,7 +25442,7 @@ gG
 xz
 xz
 mR
-sU
+xz
 rD
 fD
 XE
@@ -25612,7 +25644,7 @@ ro
 LB
 LB
 LB
-fD
+rS
 rD
 fD
 XE
@@ -26016,7 +26048,7 @@ LB
 Na
 LB
 Sg
-fD
+rS
 Vd
 ua
 fD
@@ -26766,18 +26798,18 @@ ZK
 ZK
 ZK
 ZK
-XE
-OD
-OD
-OD
-OD
-OD
-OD
-OD
-OD
-OD
-OD
-OD
+pG
+fD
+fD
+fD
+fD
+fD
+fD
+fD
+fD
+fD
+fD
+fD
 sM
 OD
 GT
@@ -26969,7 +27001,7 @@ ZK
 ZK
 Ro
 XE
-OD
+fD
 jX
 Pp
 Pi
@@ -27171,7 +27203,7 @@ ZK
 ZK
 pG
 XE
-OD
+fD
 sM
 XC
 cL
@@ -27373,7 +27405,7 @@ ZK
 ZK
 pG
 gK
-OD
+fD
 rD
 XC
 WV
@@ -28181,7 +28213,7 @@ ZK
 pG
 XE
 gK
-OD
+fD
 rD
 XC
 mI
@@ -28383,7 +28415,7 @@ ZK
 pG
 XE
 XE
-OD
+fD
 rD
 XC
 DP
@@ -28585,7 +28617,7 @@ Dx
 XE
 XE
 XE
-OD
+fD
 sM
 XC
 XC
@@ -28787,7 +28819,7 @@ XE
 XE
 XE
 XE
-OD
+fD
 rD
 Yb
 GU
@@ -30861,14 +30893,14 @@ Jw
 Lc
 WP
 wk
-Jw
-Jw
-Jw
-Jw
-Jw
-Jw
-Jw
-Jw
+BG
+BG
+BG
+BG
+BG
+BG
+BG
+BG
 Jw
 Io
 Io
@@ -36114,13 +36146,13 @@ LD
 LD
 LD
 rB
-No
-No
-No
-No
-No
-No
-No
+fo
+fo
+fo
+fo
+fo
+fo
+fo
 No
 Io
 Io
@@ -40967,7 +40999,7 @@ OJ
 GM
 JF
 Jl
-fo
+No
 No
 No
 XE
@@ -41169,7 +41201,7 @@ OJ
 xC
 JF
 DS
-UW
+ko
 XE
 XE
 XE
@@ -41371,7 +41403,7 @@ OJ
 GM
 JF
 DS
-UW
+ko
 XE
 bk
 wM
@@ -41573,7 +41605,7 @@ JF
 JF
 JF
 YF
-UW
+ko
 OS
 ZK
 ZK
@@ -44162,7 +44194,7 @@ wr
 Gf
 RV
 RV
-RJ
+Rh
 XJ
 XE
 XE
@@ -44364,7 +44396,7 @@ HU
 RV
 RV
 RV
-RJ
+Rh
 XE
 XE
 XE
@@ -44566,7 +44598,7 @@ wr
 RV
 if
 WM
-RJ
+Rh
 XE
 XE
 XE
@@ -44765,9 +44797,9 @@ RJ
 RJ
 RJ
 RJ
-RJ
-RJ
-RJ
+Rh
+Rh
+Rh
 RJ
 XE
 XE
@@ -44960,14 +44992,14 @@ ZK
 gV
 XE
 XE
+bk
+bk
+bk
 XE
 XE
 XE
-OS
-OE
-lm
-EG
-pG
+XE
+XE
 XE
 XE
 XE
@@ -45161,14 +45193,14 @@ ZK
 ZK
 ZK
 pG
+OS
+pD
+IW
+WI
+pG
 XE
 XE
 XE
-XE
-XE
-Dx
-Dx
-Dx
 XE
 XE
 XE
@@ -45363,11 +45395,11 @@ ZK
 ZK
 ZK
 pG
-XE
-XE
-XE
-XE
-XE
+OS
+dx
+Zx
+OH
+pG
 XE
 XE
 XE
@@ -45565,11 +45597,11 @@ ZK
 ZK
 ZK
 pG
-XE
-XE
-XE
-XE
-XE
+OS
+OE
+lm
+EG
+pG
 XE
 XE
 XE
@@ -45768,9 +45800,9 @@ ZK
 ZK
 pG
 XE
-XE
-XE
-XE
+Dx
+Dx
+Dx
 XE
 XE
 bk
