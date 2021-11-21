@@ -429,6 +429,10 @@
 "by" = (
 /turf/open/floor/mainship/terragov/north,
 /area/mainship/hallways/hangar)
+"bA" = (
+/obj/vehicle/ridden/powerloader,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "bD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -34321,7 +34325,7 @@ SF
 ak
 YZ
 kZ
-SF
+bA
 SF
 ak
 SF
@@ -39156,9 +39160,9 @@ ol
 yZ
 HD
 fW
-iw
-Dm
-zE
+cp
+FK
+yP
 fW
 Ux
 hw
@@ -39357,10 +39361,10 @@ ol
 ol
 ol
 ol
-vg
+HC
 ol
 og
-XV
+AD
 fW
 Ux
 hw
@@ -39559,10 +39563,10 @@ mj
 AL
 GP
 ol
-vg
+HC
 ol
 bJ
-AD
+XV
 fW
 wf
 Ll
@@ -39762,9 +39766,9 @@ Em
 GP
 ol
 fW
-iw
-zB
-zE
+eI
+dC
+yP
 fW
 Ux
 hw
@@ -40772,9 +40776,9 @@ Ds
 GP
 Lk
 fW
-cp
-FK
-yP
+iw
+Dm
+zE
 fW
 OR
 ge
@@ -40973,10 +40977,10 @@ xJ
 lO
 MY
 ol
-HC
+vg
 ol
 og
-AD
+XV
 fW
 Ux
 hw
@@ -41175,10 +41179,10 @@ ol
 Vq
 ol
 ol
-HC
+vg
 ol
 bJ
-XV
+AD
 fW
 Mf
 hw
@@ -41378,9 +41382,9 @@ gR
 yZ
 RN
 fW
-eI
-dC
-yP
+iw
+zB
+zE
 fW
 Ux
 hw
