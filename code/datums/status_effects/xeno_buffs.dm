@@ -56,6 +56,12 @@
 	if(X.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA)
 		X.gain_plasma(X.xeno_caste.plasma_max*0.25)
 
+///Calculates the effectiveness of parts of the status based on plasma of owner
+#define CALC_PLASMA_MOD(xeno) \
+	(clamp(1 - xeno.plasma_stored / owner_xeno.xeno_caste.plasma_max, 0.2, 0.8) + 0.2)
+#define HIGN_THRESHOLD 0.6
+#define KNOCKDOWN_DURATION 1 SECONDS
+
 /obj/screen/alert/status_effect/xeno_carnage
 	name = "Carnage"
 	desc = "Your attacks restore health."
@@ -64,44 +70,76 @@
 /datum/status_effect/xeno_carnage
 	id = "xeno_carnage"
 	alert_type = /obj/screen/alert/status_effect/xeno_carnage
-	///Plasma gain for each attack
+	///Effects modifier based on plasma amount on status application
+	var/plasma_mod
+	///Plasma gain on attack
 	var/plasma_gain_on_hit
+	///Health or overhealing received on attack
+	var/healing_on_hit
 
-/datum/status_effect/xeno_carnage/on_creation(mob/living/new_owner, set_duration, plasma_gain, list/c_matrix)
+/datum/status_effect/xeno_carnage/on_creation(mob/living/new_owner, set_duration, plasma_gain, healing, movement_speed_max)
 	owner = new_owner
 	duration = set_duration
-	plasma_gain_on_hit = plasma_gain
+
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	plasma_mod = CALC_PLASMA_MOD(owner_xeno)
+
+	plasma_gain_on_hit = plasma_gain * plasma_mod
+	healing_on_hit = healing * plasma_mod
+	owner_xeno.add_movespeed_modifier(MOVESPEED_ID_GORGER_CARNAGE, TRUE, 0, NONE, TRUE, movement_speed_max * plasma_mod)
+
 	to_chat(owner, span_notice("We give into our thirst!"))
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/carnage_slash)
+
 	owner.add_filter(id, 5, rays_filter(size = 25, color = "#c50021", offset = 200, density = 50, y = 7))
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	var/matrix_mod = owner_xeno.health / owner_xeno.maxHealth
-	owner.add_filter("[id]m", 4, color_matrix_filter(list(1 + matrix_mod,0,0,0, -matrix_mod * 1.5,1,0,0, matrix_mod * 0.8,0,1,0, 0,0,0,1, 0,0,0,0)))
+	if(plasma_mod >= HIGN_THRESHOLD)
+		owner.add_filter("[id]m", 4, color_matrix_filter(list(1 + plasma_mod,0,0,0, -(0.5 + plasma_mod * 1),1,0,0, plasma_mod * 0.8,0,1,0, 0,0,0,1, 0,0,0,0)))
+
 	return ..()
 
 /datum/status_effect/xeno_carnage/on_remove()
 	. = ..()
+	owner.remove_movespeed_modifier(MOVESPEED_ID_GORGER_CARNAGE)
 	to_chat(owner, span_notice("Our bloodlust subsides..."))
 	UnregisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/carnage_slash)
 	owner.remove_filter(list(id, "[id]m"))
+	REMOVE_TRAIT(owner, TRAIT_HANDS_BLOCKED, src)
 
-///Handles logic to be performed for each attack during the duration of the buff
+///Calls slash proc
 /datum/status_effect/xeno_carnage/proc/carnage_slash(datum/source, mob/living/target, damage)
 	SIGNAL_HANDLER
+	UnregisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING)
+	INVOKE_ASYNC(src, .proc/do_carnage_slash, source, target, damage)
+
+///Performs on-attack logic
+/datum/status_effect/xeno_carnage/proc/do_carnage_slash(datum/source, mob/living/target, damage)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	owner_xeno.gain_plasma(plasma_gain_on_hit)
-	var/heal_amount = damage
-	HEAL_XENO_DAMAGE(owner_xeno, heal_amount)
+	var/owner_heal = healing_on_hit
+	HEAL_XENO_DAMAGE(owner_xeno, owner_heal)
+	adjustOverheal(owner_xeno, owner_heal * 0.5)
 
-	if(!owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
-		return
+	if(plasma_mod >= HIGN_THRESHOLD)
+		owner_xeno.AdjustImmobilized(KNOCKDOWN_DURATION)
+		ADD_TRAIT(owner_xeno, TRAIT_HANDS_BLOCKED, src)
+		target.AdjustKnockdown(KNOCKDOWN_DURATION)
 
-	for(var/mob/living/carbon/xenomorph/target_xeno AS in cheap_get_xenos_near(owner_xeno, 4))
-		if(target_xeno == owner_xeno)
-			continue
-		heal_amount = damage * 0.7
-		HEAL_XENO_DAMAGE(target_xeno, heal_amount)
-		to_chat(target_xeno, span_notice("You feel your wounds being restored by [owner_xeno]'s pheromones."))
+		if(do_after(owner_xeno, KNOCKDOWN_DURATION, FALSE, target, ignore_turf_checks = FALSE))
+			owner_xeno.gain_plasma(plasma_gain_on_hit)
+
+	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
+		for(var/mob/living/carbon/xenomorph/target_xeno AS in cheap_get_xenos_near(owner_xeno, 4))
+			if(target_xeno == owner_xeno)
+				continue
+			var/heal_amount = healing_on_hit
+			HEAL_XENO_DAMAGE(target_xeno, heal_amount)
+			new /obj/effect/temp_visual/telekinesis(get_turf(target_xeno))
+			to_chat(target_xeno, span_notice("You feel your wounds being restored by [owner_xeno]'s pheromones."))
+
+	owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_CARNAGE)
+
+#undef CALC_PLASMA_MOD
+#undef HIGN_THRESHOLD
+#undef KNOCKDOWN_DURATION
 
 /obj/screen/alert/status_effect/xeno_feast
 	name = "Feast"

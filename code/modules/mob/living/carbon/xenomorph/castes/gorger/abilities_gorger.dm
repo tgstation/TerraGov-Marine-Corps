@@ -243,9 +243,9 @@
 /datum/action/xeno_action/activable/carnage
 	name = "Carnage"
 	action_icon_state = "carnage"
-	mechanics_text = "For a while your attacks drain blood and heal you. During Feast you also heal nearby allies."
+	mechanics_text = "Enter a state of thirst, gaining movement and healing on your next attack, scaling with missing blood. If your blood is below a certain %, you also knockdown your victim and drain some blood, during which you can't move."
 	use_state_flags = XACT_TARGET_SELF|XACT_IGNORE_SELECTED_ABILITY
-	cooldown_timer = 40 SECONDS
+	cooldown_timer = 15 SECONDS
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_CARNAGE
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
@@ -256,7 +256,7 @@
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_CARNAGE))
 		owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_CARNAGE)
 		return
-	owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_CARNAGE, 20 SECONDS, owner_xeno.xeno_caste.carnage_plasma_gain)
+	owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_CARNAGE, 10 SECONDS, owner_xeno.xeno_caste.carnage_plasma_gain, owner_xeno.maxHealth * GORGER_CARNAGE_HEAL, GORGER_CARNAGE_MOVEMENT)
 	add_cooldown()
 
 /datum/action/xeno_action/activable/carnage/ai_should_use(atom/target)

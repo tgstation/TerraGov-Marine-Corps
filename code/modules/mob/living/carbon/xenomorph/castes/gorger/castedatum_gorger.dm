@@ -39,7 +39,7 @@
 	// *** Gorger Abilities *** //
 	overheal_max = 200
 	drain_plasma_gain = 10
-	carnage_plasma_gain = 4
+	carnage_plasma_gain = 25
 	feast_plasma_drain = 20
 
 	actions = list(
@@ -80,7 +80,7 @@
 	// *** Gorger Abilities *** //
 	overheal_max = 225
 	drain_plasma_gain = 10
-	carnage_plasma_gain = 6
+	carnage_plasma_gain = 30
 
 /datum/xeno_caste/gorger/elder
 	upgrade_name = "Elder"
@@ -106,7 +106,7 @@
 	// *** Gorger Abilities *** //
 	overheal_max = 250
 	drain_plasma_gain = 15
-	carnage_plasma_gain = 8
+	carnage_plasma_gain = 35
 
 /datum/xeno_caste/gorger/ancient
 	upgrade_name = "Ancient"
@@ -132,4 +132,4 @@
 	// *** Gorger Abilities *** //
 	overheal_max = 275
 	drain_plasma_gain = 20
-	carnage_plasma_gain = 10
+	carnage_plasma_gain = 40
