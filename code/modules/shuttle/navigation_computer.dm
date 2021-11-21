@@ -344,7 +344,7 @@
 
 /mob/camera/aiEye/remote/shuttle_docker
 	visible_icon = FALSE
-	use_static = USE_STATIC_NONE
+	use_static = FALSE
 	var/list/placement_images = list()
 	var/list/placed_images = list()
 	/// If it is possible to have night vision, if false the user will get turf vision

@@ -28,6 +28,14 @@
 	current_rounds = 150
 	max_rounds = 150
 
+/obj/item/ammo_magazine/packet/p10x265mm
+	name = "box of 10x26.5mm"
+	desc = "A box containing 100 rounds of 10x26.5mm caseless."
+	caliber = CALIBER_10x265_CASELESS
+	default_ammo = /datum/ammo/bullet/rifle/standard_br
+	current_rounds = 100
+	max_rounds = 100
+
 /obj/item/ammo_magazine/packet/p10x27mm
 	name = "box of 10x27mm"
 	desc = "A box containing 100 rounds of 10x27mm caseless.."

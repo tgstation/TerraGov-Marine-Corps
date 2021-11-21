@@ -84,3 +84,53 @@
       but it takes more than just popping a pill of Tramadol while missing an arm
       and having 100 damage to make it go away instantly. Yes, this would have worked
       before.
+2021-11-11:
+  ivanmixo:
+  - bugfix: Command can't haunt you with rally orders from beyond the grave.
+2021-11-12:
+  ILOVEUNGA:
+  - qol: Health and sunder stats added to xeno gamepanel.
+2021-11-13:
+  BraveMole:
+  - bugfix: Fix sticky weeds not accellerating xeno
+  KrabSpider:
+  - balance: Deletes stagger and screenshake from A19 impact.
+  - balance: Damage increase to 30.
+  SplinterGP:
+  - expansion: helmets now layer under armor.
+  - bugfix: Hlin now appears on xenonauten properly.
+2021-11-14:
+  BraveMole:
+  - bugfix: Fix not being able to take ssd mobs
+  - bugfix: Cas infinite fuel
+  - bugfix: fix dead mobs in ssdmoblist
+2021-11-15:
+  BraveMole:
+  - bugfix: Fix cas not being able to launch mission despite marines already on ground
+  KrabSpider:
+  - balance: Incendiary slugs now deal 65 damage, 10 AP.
+  - balance: incendiary slugs are now as accurate as regular bullets.
+  - code_imp: Removes airburst from incendiary slugs. Adds staggerstun to them.
+  - balance: Incendiary slugs knockback by 2 and slow.
+2021-11-16:
+  AzonStarfall:
+  - bugfix: Fixed T-29 name in the SG vendor.
+  BraveMole:
+  - bugfix: Fix crash larva delay not existing (now, 2 minutes between each larva)
+  RandomGamer123:
+  - bugfix: The in-chat notification of a new primary/secondary objective now actually
+      shows the proper location of it.
+2021-11-20:
+  KrabSpider:
+  - balance: 10x26.5mm light marksman bullets for the T-64, meaning the T-64 Battle
+      Rifle no longer shares the same caliber or ammo with the T-37 DMR.
+  - balance: extra delay increased to 0.35
+  - imageadd: t-64 ammo packets
+2021-11-21:
+  BraveMole:
+  - code_imp: Make get_hearers_in_view more performant
+  - code_imp: Better perf with cameras
+  - balance: Make it twice as fast to use recurring injection as a xeno. Also, if
+      you fail to inject any toxin, you don't get a cooldown, (plasma is still used).
+  KrabSpider:
+  - balance: kills stam drain from tanglefoot.

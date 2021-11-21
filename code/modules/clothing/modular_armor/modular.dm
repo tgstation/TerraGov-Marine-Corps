@@ -41,16 +41,16 @@
 	gas_transfer_coefficient = 1
 
 	actions_types = list(/datum/action/item_action/toggle)
-	///Assoc list of available slots.
-	var/list/attachments_by_slot = list(
+
+	attachments_by_slot = list(
 		ATTACHMENT_SLOT_CHESTPLATE,
 		ATTACHMENT_SLOT_SHOULDER,
 		ATTACHMENT_SLOT_KNEE,
 		ATTACHMENT_SLOT_MODULE,
 		ATTACHMENT_SLOT_STORAGE,
+		ATTACHMENT_SLOT_BADGE,
 	)
-	///Typepath list of allowed attachment types.
-	var/list/attachments_allowed = list(
+	attachments_allowed = list(
 		/obj/item/armor_module/armor/chest/marine,
 		/obj/item/armor_module/armor/legs/marine,
 		/obj/item/armor_module/armor/arms/marine,
@@ -91,26 +91,20 @@
 		/obj/item/armor_module/storage/engineering,
 		/obj/item/armor_module/storage/medical,
 		/obj/item/armor_module/storage/integrated,
-
+		/obj/item/armor_module/armor/badge,
 	)
-	///Pixel offsets for specific attachment slots. Is not used currently.
-	var/list/attachment_offsets = list()
-	///List of attachment types that is attached to the object on initialize.
-	var/list/starting_attachments = list()
-	///List of the attachment overlays.
-	var/list/attachment_overlays = list()
+	light_range = 5
+
 	///List of icon_state suffixes for armor varients.
 	var/list/icon_state_variants = list()
 	///Current varient selected.
 	var/current_variant
-	/// Misc stats
-	light_range = 5
+	///Uniform type that is allowed to be worn with this.
+	var/allowed_uniform_type = /obj/item/clothing/under/marine
 
 /obj/item/clothing/suit/modular/Initialize()
 	. = ..()
-	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, attachment_offsets, starting_attachments, null, null, null, attachment_overlays)
-	update_icon()
-
+	update_icon() //Update for greyscale.
 
 /obj/item/clothing/suit/modular/equipped(mob/user, slot)
 	. = ..()
@@ -169,8 +163,8 @@
 /obj/item/clothing/suit/modular/mob_can_equip(mob/user, slot, warning)
 	if(slot == SLOT_WEAR_SUIT && ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/clothing/under/marine/undersuit = H.w_uniform
-		if(!istype(undersuit))
+		var/obj/item/clothing/under/undersuit = H.w_uniform
+		if(!istype(undersuit, allowed_uniform_type))
 			to_chat(user, span_warning("You must be wearing a marine jumpsuit to equip this."))
 			return FALSE
 	return ..()
@@ -272,6 +266,7 @@
 		/obj/item/armor_module/storage/engineering,
 		/obj/item/armor_module/storage/medical,
 		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
 	)
 
 	icon_state_variants = list(
@@ -283,13 +278,7 @@
 
 	current_variant = "black"
 
-
-
-/*/obj/item/clothing/suit/modular/xenonauten/update_icon()
-	. = ..()
-	if(item_state == icon_state)
-		return
-	item_state = icon_state*/
+	allowed_uniform_type = /obj/item/clothing/under
 
 /obj/item/clothing/suit/modular/xenonauten/light
 	name = "\improper Xenonauten-L pattern armored vest"
@@ -328,20 +317,13 @@
 	greyscale_config = /datum/greyscale_config/modularhelmet_infantry
 	greyscale_colors = "#5B6036"
 
-	/// How long it takes to attach or detach to this item
-	var/equip_delay = 3 SECONDS
-
-	///optional assoc list of colors we can color this armor
-	var/list/colorable_colors
-
-	///Assoc list of available slots.
-	var/list/attachments_by_slot = list(
+	attachments_by_slot = list(
 		ATTACHMENT_SLOT_VISOR,
 		ATTACHMENT_SLOT_STORAGE,
 		ATTACHMENT_SLOT_HEAD_MODULE,
+		ATTACHMENT_SLOT_BADGE,
 	)
-	///Typepath list of allowed attachment types.
-	var/list/attachments_allowed = list(
+	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
@@ -349,14 +331,11 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
+		/obj/item/armor_module/armor/badge,
 	)
 
-	///Pixel offsets for specific attachment slots. Is not used currently.
-	var/list/attachment_offsets = list()
-	///List of attachment types that is attached to the object on initialize.
-	var/list/starting_attachments = list()
-	///List of the attachment overlays.
-	var/list/attachment_overlays = list()
+	///optional assoc list of colors we can color this armor
+	var/list/colorable_colors
 
 	///Pixel offset on the X axis for how the helmet sits on the mob without a visor.
 	var/visorless_offset_x = 0
@@ -367,10 +346,9 @@
 	///Current varient selected.
 	var/current_variant
 
-/obj/item/clothing/head/modular/Initialize(mapload)
+/obj/item/clothing/head/modular/Initialize()
 	. = ..()
-	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, attachment_offsets, starting_attachments, null, null, null, attachment_overlays)
-	update_icon()
+	update_icon() //Update for greyscale.
 
 /obj/item/clothing/head/modular/update_icon()
 	. = ..()
@@ -529,10 +507,9 @@
 		/obj/item/armor_module/module/welding,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
-
 		/obj/item/armor_module/storage/helmet,
-
 		/obj/item/armor_module/armor/visor/marine,
+		/obj/item/armor_module/armor/badge,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)
@@ -549,10 +526,9 @@
 		/obj/item/armor_module/module/welding,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
-
 		/obj/item/armor_module/storage/helmet,
-
 		/obj/item/armor_module/armor/visor/marine/skirmisher,
+		/obj/item/armor_module/armor/badge,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/skirmisher, /obj/item/armor_module/storage/helmet)
@@ -569,10 +545,9 @@
 		/obj/item/armor_module/module/welding,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
-
 		/obj/item/armor_module/storage/helmet,
-
 		/obj/item/armor_module/armor/visor/marine/assault,
+		/obj/item/armor_module/armor/badge,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/assault, /obj/item/armor_module/storage/helmet)
@@ -589,11 +564,10 @@
 		/obj/item/armor_module/module/welding,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
-
 		/obj/item/armor_module/storage/helmet,
-
 		/obj/item/armor_module/armor/visor/marine/eva,
 		/obj/item/armor_module/armor/visor/marine/eva/skull,
+		/obj/item/armor_module/armor/badge,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eva, /obj/item/armor_module/storage/helmet)
@@ -618,6 +592,8 @@
 		/obj/item/armor_module/storage/helmet,
 
 		/obj/item/armor_module/armor/visor/marine/eod,
+
+		/obj/item/armor_module/armor/badge,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/eod, /obj/item/armor_module/storage/helmet)
@@ -634,10 +610,9 @@
 		/obj/item/armor_module/module/welding,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
-
 		/obj/item/armor_module/storage/helmet,
-
 		/obj/item/armor_module/armor/visor/marine/scout,
+		/obj/item/armor_module/armor/badge,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/scout, /obj/item/armor_module/storage/helmet)
@@ -655,8 +630,8 @@
 		/obj/item/armor_module/module/welding,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
-
 		/obj/item/armor_module/storage/helmet,
+		/obj/item/armor_module/armor/badge,
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 
@@ -687,6 +662,7 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
+		/obj/item/armor_module/armor/badge,
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 	visorless_offset_x = 0
