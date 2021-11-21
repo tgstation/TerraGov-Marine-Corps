@@ -138,10 +138,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		return
 	if(goal_node && goal_node != current_node)
 		if(!length(goal_nodes))
-			goal_nodes = get_path(current_node, goal_node, NODE_PATHING)
-		if(!length(goal_nodes))
-			current_node = null
-			look_for_next_node()
+			SSadvanced_pathfinding.node_pathfinding_to_do += src
 			return
 		current_node = goal_nodes[length(goal_nodes)]
 		goal_nodes.len--
@@ -154,8 +151,14 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior/proc/deal_with_obstacle(datum/source, direction)
 	SIGNAL_HANDLER
 
+///Register on advanced pathfinding subsytem to get a tile pathfinding
+/datum/ai_behavior/proc/ask_for_pathfinding()
+	SSadvanced_pathfinding.tile_pathfinding_to_do += src
+
 ///Look for the a* tile path to get to atom_to_walk_to
 /datum/ai_behavior/proc/look_for_tile_path()
+	if(!current_node)
+		return
 	turfs_in_path = get_path(get_turf(mob_parent), get_turf(current_node), TILE_PATHING)
 	if(!length(turfs_in_path))
 		cleanup_current_action()
@@ -163,6 +166,13 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		return
 	change_action(FOLLOWING_PATH, turfs_in_path[length(turfs_in_path)])
 	turfs_in_path.len--
+
+///Look for the a* node path to get to goal_node
+/datum/ai_behavior/proc/look_for_node_path()
+	goal_nodes = get_path(current_node, goal_node, NODE_PATHING)
+	if(!length(goal_nodes))
+		current_node = null
+	look_for_next_node()
 
 ///Signal handler when we reached our current tile goal
 /datum/ai_behavior/proc/finished_path_move()
@@ -241,7 +251,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	switch(action_type)
 		if(MOVING_TO_NODE)
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/finished_node_move)
-			anti_stuck_timer = addtimer(CALLBACK(src, .proc/look_for_tile_path, TRUE, TRUE), 10 SECONDS, TIMER_STOPPABLE)
+			anti_stuck_timer = addtimer(CALLBACK(src, .proc/ask_for_pathfinding, TRUE, TRUE), 10 SECONDS, TIMER_STOPPABLE)
 		if(FOLLOWING_PATH)
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/finished_path_move)
 			anti_stuck_timer = addtimer(CALLBACK(src, .proc/look_for_next_node, TRUE, TRUE), 10 SECONDS, TIMER_STOPPABLE)
