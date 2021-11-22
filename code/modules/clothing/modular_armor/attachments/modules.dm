@@ -18,7 +18,7 @@
 	slowdown = 0
 	light_mod = 4 /// The boost to armor shoulder light
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular = "mod_lamp_j")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular = "mod_lamp_j", /obj/item/clothing/suit/modular/robot = "mod_lamp_r",  /obj/item/clothing/suit/modular/robot/light = "mod_lamp_r",  /obj/item/clothing/suit/modular/robot/heavy = "mod_lamp_r")
 
 /**
  * Mini autodoc module
@@ -87,7 +87,7 @@
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 	slowdown = 0.3
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular = "mod_armor_j")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular = "mod_armor_j", /obj/item/clothing/suit/modular/robot = "mod_armor_r",  /obj/item/clothing/suit/modular/robot/light = "mod_armor_r",  /obj/item/clothing/suit/modular/robot/heavy = "mod_armor_r")
 
 /obj/item/armor_module/module/tyr_extra_armor/mark1
 	name = "\improper Mark 1 Tyr Armor Reinforcement"
@@ -117,7 +117,7 @@
 	soft_armor = list("bio" = 40, "rad" = 50, "acid" = 30)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular = "mod_biohazard_j")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular = "mod_biohazard_j", /obj/item/clothing/suit/modular/robot = "mod_biohazard_r",  /obj/item/clothing/suit/modular/robot/light = "mod_biohazard_r",  /obj/item/clothing/suit/modular/robot/heavy = "mod_biohazard_r")
 	///siemens coefficient mod for gas protection.
 	var/siemens_coefficient_mod = -0.9
 	///permeability coefficient mod for gas protection.
@@ -163,6 +163,7 @@
 		/obj/item/clothing/head/modular/marine/eva/skull = "mimir_head_j",
 		/obj/item/clothing/head/modular/marine/eod = "mimir_head_j",
 		/obj/item/clothing/head/modular/marine/infantry = "mimir_head_j",
+		/obj/item/clothing/head/helmet/marine/robot = "mimir_head_j",
 	)
 
 /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1 //gas protection
@@ -180,7 +181,7 @@
 	soft_armor = list("bomb" = 40)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular = "mod_boomimmune_j")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular = "mod_boomimmune_j", /obj/item/clothing/suit/modular/robot = "mod_boomimmune_r",  /obj/item/clothing/suit/modular/robot/light = "mod_boomimmune_r",  /obj/item/clothing/suit/modular/robot/heavy = "mod_boomimmune_r")
 
 /**
  * Extra armor module
@@ -194,7 +195,7 @@
 	soft_armor = list("melee" = 0, "bullet" = 40, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular = "mod_ff_j")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular = "mod_ff_j", /obj/item/clothing/suit/modular/robot = "mod_ff_r",  /obj/item/clothing/suit/modular/robot/light = "mod_ff_r",  /obj/item/clothing/suit/modular/robot/heavy = "mod_ff_r")
 
 /obj/item/armor_module/module/chemsystem
 	name = "Vali chemical enhancement module"
