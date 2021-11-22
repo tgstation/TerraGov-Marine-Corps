@@ -17,6 +17,7 @@
 #define MOB_OVERLAY_ICON "mob_overlay_icon"
 #define MOB_PIXEL_SHIFT_X "mob_pixel_shift_x"
 #define MOB_PIXEL_SHIFT_Y "mob_pixel_shift_y"
+#define ATTACHMENT_LAYER "attachment_layer"
 
 //flags_attach_features
 #define ATTACH_REMOVABLE (1<<0)

@@ -293,9 +293,10 @@
 		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
 			icon_state = attachment.icon_state
 			icon = attachment.icon
-
-		overlay = image(icon, parent_item, icon_state, attachment.worn_layer)
-
+		if(attachment_data[ATTACHMENT_LAYER])
+			overlay = image(icon, parent_item, icon_state, attachment_data[ATTACHMENT_LAYER])
+		else
+			overlay = image(icon, parent_item, icon_state)
 		var/slot_x = 0 //This and slot_y are for the event that the parent did not have an overlay_offsets. In that case the offsets default to 0
 		var/slot_y = 0
 		for(var/attachment_slot in attachment_offsets)
@@ -330,14 +331,18 @@
 		var/suffix = ""
 		if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
 			if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SEPERATE_MOB_OVERLAY))
-				if(attachment_data[MOB_OVERLAY_ICON])
+				if(attachment_data[MOB_OVERLAY_ICON] != attachment_data[OVERLAY_ICON])
 					icon = attachment_data[MOB_OVERLAY_ICON]
 				else
 					suffix = "_m"
 			else
 				icon = attachment_data[OVERLAY_ICON]
-				suffix = attachment.icon == attachment_data[MOB_OVERLAY_ICON] ? "_a" : ""
-		var/image/new_overlay = image(icon, source, icon_state + suffix)
+				suffix = attachment.icon == icon ? "_a" : ""
+		var/image/new_overlay
+		if(attachment_data[ATTACHMENT_LAYER])
+			new_overlay = image(icon, source, icon_state + suffix, attachment_data[ATTACHMENT_LAYER])
+		else
+			new_overlay = image(icon, source, icon_state + suffix)
 		if(attachment_data[MOB_PIXEL_SHIFT_X])
 			new_overlay.pixel_x += attachment_data[MOB_PIXEL_SHIFT_X]
 		if(attachment_data[MOB_PIXEL_SHIFT_Y])
