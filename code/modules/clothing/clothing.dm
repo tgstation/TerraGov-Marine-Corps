@@ -126,7 +126,7 @@
 		/obj/item/armor_module/storage/medical,
 		/obj/item/armor_module/storage/integrated,
 		/obj/item/armor_module/armor/badge,
-		)
+	)
 	var/supporting_limbs = NONE
 	var/blood_overlay_type = "suit"
 	var/fire_resist = T0C + 100
