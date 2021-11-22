@@ -3,7 +3,7 @@
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_MODULE,
 		ATTACHMENT_SLOT_BADGE,
-		)
+	)
 
 
 /obj/item/clothing/suit/storage/Initialize()
