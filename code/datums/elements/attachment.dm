@@ -29,7 +29,7 @@
 			MOB_OVERLAY_ICON = mob_overlay_icon ? mob_overlay_icon : overlay_icon,
 			MOB_PIXEL_SHIFT_X = mob_pixel_shift_x, //Pixel shift X for a mob sprite.
 			MOB_PIXEL_SHIFT_Y = mob_pixel_shift_y, //Pixel shift Y for a mob sprite.
-			ATTACHMENT_LAYER = attachment_layer ? attachment_layer : FLY_LAYER, //Layer for the attachment overlay to be applied to. FLY_LAYER is the default state for layer in icon()
+			ATTACHMENT_LAYER = attachment_layer, //Layer for the attachment overlay to be applied to.
 			EXTRA_VARS = extra_vars, //List of extra vars for other uses.
 		)
 

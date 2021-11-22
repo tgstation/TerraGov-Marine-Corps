@@ -1564,8 +1564,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	RegisterSignal(attaching_item, COMSIG_ITEM_EQUIPPED, .proc/handle_activations)
 	RegisterSignal(attaching_item, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, .proc/switch_mode)
 	RegisterSignal(attaching_item, COMSIG_PARENT_ATTACKBY_ALTERNATE, .proc/reload_gun)
-	if(CHECK_BITFIELD(master_gun.flags_gun_features, GUN_PUMP_REQUIRED))
-		RegisterSignal(master_gun, COMSIG_MOB_GUN_FIRED, .proc/after_fire)
+	RegisterSignal(master_gun, COMSIG_MOB_GUN_FIRED, .proc/after_fire)
 	master_gun.base_gun_icon = master_gun.placed_overlay_iconstate
 	master_gun.update_icon()
 
@@ -1583,7 +1582,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	update_icon(user)
 	master_gun.base_gun_icon = initial(master_gun.icon_state)
 	master_gun.update_icon()
-	UnregisterSignal(detaching_item, list(COMSIG_ITEM_EQUIPPED, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, COMSIG_PARENT_ATTACKBY_ALTERNATE, COMSIG_MOB_GUN_FIRED))
+	UnregisterSignal(detaching_item, list(COMSIG_ITEM_EQUIPPED, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, COMSIG_PARENT_ATTACKBY_ALTERNATE))
+	UnregisterSignal(master_gun, COMSIG_MOB_GUN_FIRED)
+	UnregisterSignal(user, COMSIG_MOB_MOUSEDOWN)
 
 ///Sets up the action.
 /obj/item/attachable/shoulder_mount/proc/handle_activations(datum/source, mob/equipper, slot)
@@ -1642,10 +1643,15 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(master_gun, /obj/item/weapon/gun.proc/reload, user, attacking_item)
 
-///Performs the unique action after firing.
+///Performs the unique action after firing and checks to see if the user is still able to fire.
 /obj/item/attachable/shoulder_mount/proc/after_fire(datum/source, atom/target, obj/item/weapon/gun/fired_gun)
 	SIGNAL_HANDLER
-	master_gun.cock(master_gun.gun_user)
+	if(CHECK_BITFIELD(master_gun.flags_gun_features, GUN_PUMP_REQUIRED))
+		master_gun.cock(master_gun.gun_user)
+	var/mob/living/user = master_gun.gun_user
+	if(user.stat == CONSCIOUS && !user.lying_angle && !LAZYACCESS(user.do_actions, src) && user.dextrous && (CHECK_BITFIELD(master_gun.flags_gun_features, GUN_ALLOW_SYNTHETIC) || CONFIG_GET(flag/allow_synthetic_gun_use) || !issynth(user)))
+		return
+	master_gun.stop_fire()
 
 /obj/item/attachable/flamer_nozzle
 	name = "standard flamer nozzle"
