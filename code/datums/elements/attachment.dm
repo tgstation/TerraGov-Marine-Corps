@@ -5,7 +5,7 @@
 	var/list/attachment_data
 
 //on_attach, on_detach, on_activate and can_attach are all proc paths that get turned into callbacks when they are called.
-/datum/element/attachment/Attach(datum/target, slot, overlay_icon, on_attach, on_detach, on_activate, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound, mob_overlay_icon, mob_pixel_shift_x, mob_pixel_shift_y, attachment_layer = null, extra_vars)
+/datum/element/attachment/Attach(datum/target, slot, overlay_icon, on_attach, on_detach, on_activate, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound, mob_overlay_icon, mob_pixel_shift_x, mob_pixel_shift_y, attachment_layer, extra_vars)
 	. = ..()
 	if(!isitem(target))
 		return ELEMENT_INCOMPATIBLE
@@ -29,7 +29,7 @@
 			MOB_OVERLAY_ICON = mob_overlay_icon ? mob_overlay_icon : overlay_icon,
 			MOB_PIXEL_SHIFT_X = mob_pixel_shift_x, //Pixel shift X for a mob sprite.
 			MOB_PIXEL_SHIFT_Y = mob_pixel_shift_y, //Pixel shift Y for a mob sprite.
-			ATTACHMENT_LAYER = attachment_layer, //Layer for the attachment overlay to be applied to.
+			ATTACHMENT_LAYER = attachment_layer ? attachment_layer : FLY_LAYER, //Layer for the attachment overlay to be applied to. FLY_LAYER is the default state for layer in icon()
 			EXTRA_VARS = extra_vars, //List of extra vars for other uses.
 		)
 

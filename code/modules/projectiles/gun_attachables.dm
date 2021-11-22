@@ -1522,13 +1522,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	. = ..()
 	var/obj/item/weapon/gun/attaching_gun = attaching_item
 	ENABLE_BITFIELD(flags_attach_features, ATTACH_BYPASS_ALLOWED_LIST|ATTACH_APPLY_ON_MOB)
-	attaching_gun.AddElement(/datum/element/attachment, ATTACHMENT_SLOT_MODULE, icon, null, null, null, null, 0, 0, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound)
+	attaching_gun.AddElement(/datum/element/attachment, ATTACHMENT_SLOT_MODULE, icon, null, null, null, null, 0, 0, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound, attachment_layer = COLLAR_LAYER)
 	RegisterSignal(attaching_gun, COMSIG_ATTACHMENT_ATTACHED, .proc/handle_armor_attach)
 	RegisterSignal(attaching_gun, COMSIG_ATTACHMENT_DETACHED, .proc/handle_armor_detach)
 
 /obj/item/attachable/shoulder_mount/on_detach(detaching_item, mob/user)
 	var/obj/item/weapon/gun/detaching_gun = detaching_item
-	detaching_gun.RemoveElement(/datum/element/attachment, ATTACHMENT_SLOT_MODULE, icon, null, null, null, null, 0, 0, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound)
+	detaching_gun.RemoveElement(/datum/element/attachment, ATTACHMENT_SLOT_MODULE, icon, null, null, null, null, 0, 0, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound, attachment_layer = COLLAR_LAYER)
 	DISABLE_BITFIELD(flags_attach_features, ATTACH_BYPASS_ALLOWED_LIST|ATTACH_APPLY_ON_MOB)
 	UnregisterSignal(detaching_gun, list(COMSIG_ATTACHMENT_ATTACHED, COMSIG_ATTACHMENT_DETACHED))
 	return ..()
