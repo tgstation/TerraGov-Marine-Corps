@@ -134,3 +134,15 @@
       you fail to inject any toxin, you don't get a cooldown, (plasma is still used).
   KrabSpider:
   - balance: kills stam drain from tanglefoot.
+2021-11-22:
+  BraveMole:
+  - code_imp: Pathfinding should no longer murder server in very-high pop
+  DeltaFire15:
+  - bugfix: Fixed Ravager primordial vampirism not working.
+  SplinterGP:
+  - imageadd: added some icons for guns on suit slot to be like on back but on the
+      left side.
+  hyper2snyper:
+  - rscadd: 'New thing: The 7E Chameleon Badge. Colorable Badge that can be found
+      in the surplus uniform vendor. Recolorable by facepaint and restyleable by Alt
+      Click. Can attach to armor, berets, uniform and helmets.'
