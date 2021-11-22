@@ -107,7 +107,7 @@
 		ATTACHMENT_SLOT_MODULE,
 		ATTACHMENT_SLOT_STORAGE,
 		ATTACHMENT_SLOT_BADGE,
-		)
+	)
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
