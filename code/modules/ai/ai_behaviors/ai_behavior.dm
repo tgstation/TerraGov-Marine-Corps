@@ -157,7 +157,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 ///Look for the a* tile path to get to atom_to_walk_to
 /datum/ai_behavior/proc/look_for_tile_path()
-	if(!current_node)
+	if(!current_node || QDELETED(current_node))
 		return
 	turfs_in_path = get_path(get_turf(mob_parent), get_turf(current_node), TILE_PATHING)
 	if(!length(turfs_in_path))
@@ -169,6 +169,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 ///Look for the a* node path to get to goal_node
 /datum/ai_behavior/proc/look_for_node_path()
+	if(QDELETED(goal_node) || !goal_node || QDELETED(current_node) || !current_node)
+		return
 	goal_nodes = get_path(current_node, goal_node, NODE_PATHING)
 	if(!length(goal_nodes))
 		current_node = null
