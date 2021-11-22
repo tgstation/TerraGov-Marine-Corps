@@ -28,6 +28,16 @@
 	icon_state_mini = "mag_sniper_blue"
 
 
+/obj/item/ammo_magazine/rifle/chamberedrifle/flak
+	name = "TL-127 bolt action rifle flak magazine"
+	desc = "A box magazine filled with 8.6x70mm rifle flak rounds for the TL-127."
+	caliber = CALIBER_86X70
+	icon_state = "tl127_flak"
+	default_ammo = /datum/ammo/bullet/sniper/pfc/flak
+	max_rounds = 7
+	gun_type = /obj/item/weapon/gun/rifle/chambered
+	icon_state_mini = "mag_sniper_blue"
+
 //M42C magazine
 
 /obj/item/ammo_magazine/sniper/elite
