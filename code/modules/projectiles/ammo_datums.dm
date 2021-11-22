@@ -560,12 +560,12 @@ datum/ammo/bullet/revolver/tp44
 	name = "high velocity impact bullet"
 	hud_state = "hivelo_impact"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	damage = 25
+	damage = 30
 	penetration = 45
 	sundering = 5
 
 /datum/ammo/bullet/rifle/tx8/impact/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, max_range = 20, stagger = 2, slowdown = 1, knockback = 1)
+	staggerstun(M, P, max_range = 20, slowdown = 1, knockback = 1, shake = 0)
 
 /datum/ammo/bullet/rifle/ak47
 	name = "crude heavy rifle bullet"
@@ -588,6 +588,23 @@ datum/ammo/bullet/revolver/tp44
 	scatter = -15
 	penetration = 15
 	sundering = 2
+
+/datum/ammo/bullet/rifle/standard_br
+	name = "light marksman bullet"
+	hud_state = "hivelo"
+	hud_state_empty = "hivelo_empty"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	penetration = 10
+	damage = 30
+	sundering = 1
+
+/datum/ammo/bullet/rifle/standard_br/incendiary
+	name = "incendiary light marksman bullet"
+	hud_state = "hivelo"
+	hud_state_empty = "hivelo_empty"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
+	damage = 25
+	sundering = 0
 
 /datum/ammo/bullet/rifle/standard_dmr/incendiary
 	name = "incendiary marksman bullet"
@@ -650,23 +667,14 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "shotgun_fire"
 	damage_type = BRUTE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING
-	accuracy = -10
 	max_range = 15
-	damage = 40
-	penetration = 20
+	damage = 65
+	penetration = 15
 	sundering = 2
 	bullet_color = COLOR_TAN_ORANGE
 
-/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/victim, obj/projectile/proj)
-	airburst(victim, proj)
-	knockback(victim, proj)
-
-/datum/ammo/bullet/shotgun/incendiary/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	airburst(target_obj, proj)
-
-/datum/ammo/bullet/shotgun/incendiary/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	airburst(target_turf, proj)
-
+/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, shake = 0, knockback = 2, slowdown = 1)
 
 /datum/ammo/bullet/shotgun/flechette
 	name = "shotgun flechette shell"

@@ -51,3 +51,98 @@
   - balance: Reduced price of the ZX Burst shotgun from 120 to 80.
   Sebbe9123:
   - balance: Removes armor from uniform and base exosuit, adds to armorplates instead.
+2021-11-08:
+  BraveMole:
+  - expansion: Pathfinding improvement
+  - rscdel: Remove hunt
+  - balance: Silo collapse happens 15 minutes after shutter drop
+  - bugfix: Fix pill bottles being empty on loadouts sometimes
+  Walarks:
+  - bugfix: fixes SSexcavations runtime due to low spawner count
+2021-11-09:
+  Lewdcifer:
+  - rscadd: Multiple berets and headbands added to the uniform vendor.
+  - balance: Packaged foods now fit in helmets.
+  - balance: Mantis Armblade implant; 60 > 75 force, 12 > 8 attack speed (faster).
+      Can now bump attack.
+  - bugfix: The tan beret no longer disappears every now and then.
+  Mechanelize:
+  - spellcheck: Fixed an incorrect word for Queen orders
+  hyper2snyper:
+  - refactor: Uniform and webbing/tie refactor
+2021-11-10:
+  BraveMole:
+  - balance: Cas can begin fire mission without an active laser, flare and laser have
+      better view range
+  Lewdcifer:
+  - bugfix: Berets and headbands no longer share names.
+  - bugfix: General storage icon offsets fixed.
+  chesse20:
+  - bugfix: 90% of the pills are no longer missing from the chemmaster
+  jroinc:
+  - balance: Rebalanced pain. It now takes slightly longer to affect you in any way,
+      but it takes more than just popping a pill of Tramadol while missing an arm
+      and having 100 damage to make it go away instantly. Yes, this would have worked
+      before.
+2021-11-11:
+  ivanmixo:
+  - bugfix: Command can't haunt you with rally orders from beyond the grave.
+2021-11-12:
+  ILOVEUNGA:
+  - qol: Health and sunder stats added to xeno gamepanel.
+2021-11-13:
+  BraveMole:
+  - bugfix: Fix sticky weeds not accellerating xeno
+  KrabSpider:
+  - balance: Deletes stagger and screenshake from A19 impact.
+  - balance: Damage increase to 30.
+  SplinterGP:
+  - expansion: helmets now layer under armor.
+  - bugfix: Hlin now appears on xenonauten properly.
+2021-11-14:
+  BraveMole:
+  - bugfix: Fix not being able to take ssd mobs
+  - bugfix: Cas infinite fuel
+  - bugfix: fix dead mobs in ssdmoblist
+2021-11-15:
+  BraveMole:
+  - bugfix: Fix cas not being able to launch mission despite marines already on ground
+  KrabSpider:
+  - balance: Incendiary slugs now deal 65 damage, 10 AP.
+  - balance: incendiary slugs are now as accurate as regular bullets.
+  - code_imp: Removes airburst from incendiary slugs. Adds staggerstun to them.
+  - balance: Incendiary slugs knockback by 2 and slow.
+2021-11-16:
+  AzonStarfall:
+  - bugfix: Fixed T-29 name in the SG vendor.
+  BraveMole:
+  - bugfix: Fix crash larva delay not existing (now, 2 minutes between each larva)
+  RandomGamer123:
+  - bugfix: The in-chat notification of a new primary/secondary objective now actually
+      shows the proper location of it.
+2021-11-20:
+  KrabSpider:
+  - balance: 10x26.5mm light marksman bullets for the T-64, meaning the T-64 Battle
+      Rifle no longer shares the same caliber or ammo with the T-37 DMR.
+  - balance: extra delay increased to 0.35
+  - imageadd: t-64 ammo packets
+2021-11-21:
+  BraveMole:
+  - code_imp: Make get_hearers_in_view more performant
+  - code_imp: Better perf with cameras
+  - balance: Make it twice as fast to use recurring injection as a xeno. Also, if
+      you fail to inject any toxin, you don't get a cooldown, (plasma is still used).
+  KrabSpider:
+  - balance: kills stam drain from tanglefoot.
+2021-11-22:
+  BraveMole:
+  - code_imp: Pathfinding should no longer murder server in very-high pop
+  DeltaFire15:
+  - bugfix: Fixed Ravager primordial vampirism not working.
+  SplinterGP:
+  - imageadd: added some icons for guns on suit slot to be like on back but on the
+      left side.
+  hyper2snyper:
+  - rscadd: 'New thing: The 7E Chameleon Badge. Colorable Badge that can be found
+      in the surplus uniform vendor. Recolorable by facepaint and restyleable by Alt
+      Click. Can attach to armor, berets, uniform and helmets.'

@@ -317,6 +317,17 @@
 			L.Unconscious(10 SECONDS)
 	return ..()
 
+/datum/reagent/toxin/pain
+	name = "Liquid Pain"
+	description = "This is a chemical used to simulate specific pain levels for testing. Pain is equal to the total volume."
+	custom_metabolism = 0
+	toxpwr = 0
+	taste_description = "ow ow ow"
+
+/datum/reagent/toxin/pain/on_mob_life(mob/living/L, metabolism)
+	L.reagent_pain_modifier = volume
+	return ..()
+
 /datum/reagent/toxin/beer2	//disguised as normal beer
 	name = "Beer"
 	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. The fermentation appears to be incomplete." //If the players manage to analyze this, they deserve to know something is wrong.

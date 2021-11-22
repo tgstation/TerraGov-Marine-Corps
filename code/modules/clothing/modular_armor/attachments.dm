@@ -7,10 +7,12 @@
 	slowdown = 0
 
 	///Reference to parent modular armor suit.
-	var/obj/item/clothing/suit/modular/parent
+	var/obj/item/clothing/parent
 
 	///Slot the attachment is able to occupy.
 	var/slot
+	///Icon sheet of the attachment overlays
+	var/attach_icon = null
 	///Proc typepath that is called when this is attached to something.
 	var/on_attach = .proc/on_attach
 	///Proc typepath that is called when this is detached from something.
@@ -22,26 +24,30 @@
 	///Pixel shift for the item overlay on the Y axis.
 	var/pixel_shift_y = 0
 	///Bitfield flags of various features.
-	var/flags_attach_features = ATTACH_REMOVABLE
+	var/flags_attach_features = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB
 	///Time it takes to attach.
 	var/attach_delay = 2 SECONDS
 	///Time it takes to detach.
 	var/detach_delay = 2 SECONDS
+	///Used for when the mob attach overlay icon is different than icon.
+	var/mob_overlay_icon
+	///Pixel shift for the mob overlay on the X axis.
+	var/mob_pixel_shift_x = 0
+	///Pixel shift for the mob overlay on the Y axis.
+	var/mob_pixel_shift_y = 0
 
 	///Light modifier for attachment to an armor piece
 	var/light_mod = 0
-	
+
 	///Assoc list that uses the parents type as a key. type = "new_icon_state". This will change the icon state depending on what type the parent is. If the list is empty, or the parent type is not within, it will have no effect.
 	var/list/variants_by_parent_type = list()
 
 /obj/item/armor_module/Initialize()
 	. = ..()
-	AddElement(/datum/element/attachment, slot, icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay)
+	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, mob_overlay_icon = mob_overlay_icon, mob_pixel_shift_x = mob_pixel_shift_x, mob_pixel_shift_y = mob_pixel_shift_y)
 
 /// Called before a module is attached.
 /obj/item/armor_module/proc/can_attach(obj/item/attaching_to, mob/user)
-	if(!istype(attaching_to, /obj/item/clothing/suit/modular) && !istype(attaching_to, /obj/item/clothing/head/modular))
-		return FALSE
 	return TRUE
 
 /// Called when the module is added to the armor.
@@ -93,7 +99,7 @@
 	greyscale_config = /datum/greyscale_config/modularchest_infantry
 	greyscale_colors = "#444732"
 
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 
 	///optional assoc list of colors we can color this armor
 	var/list/colorable_colors

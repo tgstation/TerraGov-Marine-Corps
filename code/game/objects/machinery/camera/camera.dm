@@ -343,6 +343,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	network = list("laser targets")
 	resistance_flags = RESIST_ALL
+	view_range = 12
 
 /obj/machinery/camera/laser_cam/Initialize(mapload, laser_name)
 	. = ..()
