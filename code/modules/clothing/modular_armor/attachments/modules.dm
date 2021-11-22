@@ -163,7 +163,7 @@
 		/obj/item/clothing/head/modular/marine/eva/skull = "mimir_head_j",
 		/obj/item/clothing/head/modular/marine/eod = "mimir_head_j",
 		/obj/item/clothing/head/modular/marine/infantry = "mimir_head_j",
-		)
+	)
 
 /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1 //gas protection
 	name = "Mark 1 Mimir Environmental Helmet System"
