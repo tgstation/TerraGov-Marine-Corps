@@ -64,7 +64,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	if(length(X.xeno_caste.spit_types) > 2)
 		return	//They might just be skipping past a invalid type
 	if((X.corrosive_ammo + X.neuro_ammo) >= X.xeno_caste.max_ammo)
-		if((istype(X.ammo, /datum/ammo/xeno/boiler_gas/corrosive) && X.neuro_ammo==0) || (istype(X.ammo, /datum/ammo/xeno/boiler_gas) && X.corrosive_ammo==0))
+		if((X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive && X.neuro_ammo==0) || (X.ammo.type == /datum/ammo/xeno/boiler_gas && X.corrosive_ammo==0))
 			if (!silent)
 				to_chat(X, span_warning("We won't be able to carry this kind of globule"))
 			return FALSE
@@ -99,13 +99,11 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/xeno_action/toggle_bomb/proc/select_glob_radial()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	var/list/available_globs = list()
-	for(var/spit_path in X.xeno_caste.spit_types)
-		var/datum/ammo/xeno/boiler_gas/glob_type = spit_path
-		var/glob_key = initial(glob_type.icon_key)
-		var/glob_image = GLOB.boiler_glob_image_list[glob_key]
+	for(var/datum/ammo/xeno/boiler_gas/glob_type AS in X.xeno_caste.spit_types)
+		var/glob_image = GLOB.boiler_glob_image_list[initial(glob_type.icon_key)]
 		if(!glob_image)
 			continue
-		available_globs[glob_key] = glob_image
+		available_globs[initial(glob_type.icon_key)] = glob_image
 			
 	var/glob_choice = show_radial_menu(owner, owner, available_globs, radius = 48)
 	if(!glob_choice)
