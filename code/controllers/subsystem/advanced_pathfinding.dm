@@ -1,3 +1,28 @@
+SUBSYSTEM_DEF(advanced_pathfinding)
+	name = "advanced_pathfinding"
+	priority = FIRE_PRIORITY_ADVANCED_PATHFINDING
+	wait = 1 SECONDS
+	flags = SS_NO_INIT
+	///List of ai_behaviour datum asking for a tile pathfinding
+	var/list/datum/ai_behavior/tile_pathfinding_to_do = list()
+	///List of ai_behaviour datum asking for a tile pathfinding
+	var/list/datum/ai_behavior/node_pathfinding_to_do = list()
+
+/datum/controller/subsystem/advanced_pathfinding/fire()
+	for(var/datum/ai_behavior/ai_behavior AS in node_pathfinding_to_do)
+		ai_behavior.look_for_node_path()
+		node_pathfinding_to_do -= ai_behavior
+		if (MC_TICK_CHECK)
+			return
+	for(var/datum/ai_behavior/ai_behavior AS in tile_pathfinding_to_do)
+		ai_behavior.look_for_tile_path()
+		tile_pathfinding_to_do -= ai_behavior
+		if (MC_TICK_CHECK)
+			return
+
+/datum/controller/subsystem/advanced_pathfinding/stat_entry()
+	..("Node pathfinding : [length(node_pathfinding_to_do)] || Tile pathfinding : [length(tile_pathfinding_to_do)]")
+
 #define NODE_PATHING "node_pathing" //Looking through the network of nodes the best node path
 #define TILE_PATHING "tile_pathing" //Looking the best tile path
 GLOBAL_LIST_EMPTY(goal_nodes)
@@ -22,10 +47,8 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 
 ///Returns the most optimal path to get from starting atom to goal atom
 /proc/get_path(atom/starting_atom, atom/goal_atom, pathing_type = NODE_PATHING)
-	if(starting_atom.z !=goal_atom.z)
-		CRASH("Start atom and goal atom were not on the same z level")
-	if(starting_atom == goal_atom)
-		CRASH("Start atom and goal atom were identical")
+	if(starting_atom.z != goal_atom.z || starting_atom == goal_atom)
+		return
 	var/list/datum/path_step/paths_to_check = list()
 	var/atom/current_atom = starting_atom
 	var/list/datum/path_step/paths_checked = list()

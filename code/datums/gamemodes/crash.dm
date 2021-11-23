@@ -26,8 +26,10 @@
 
 	// Round start info
 	var/starting_squad = "Alpha"
-
+	///How long between two larva check
 	var/larva_check_interval = 2 MINUTES
+	///Last time larva balance was checked
+	var/last_larva_check
 	bioscan_interval = 0
 
 
@@ -123,8 +125,9 @@
 /datum/game_mode/infestation/crash/process()
 	. = ..()
 
-	if(world.time > larva_check_interval)
+	if(world.time > last_larva_check + larva_check_interval)
 		balance_scales()
+		last_larva_check = world.time
 
 /datum/game_mode/infestation/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
 	shuttle_landed = TRUE
@@ -234,16 +237,13 @@
 	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+	if(stored_larva)
+		return //No need for respawns
 	var/num_xenos = xeno_hive.get_total_xeno_number() + stored_larva
-	var/larvapoints = (get_total_joblarvaworth() - (num_xenos * xeno_job.job_points_needed )) / xeno_job.job_points_needed
 	if(!num_xenos)
-		if(!length(GLOB.xeno_resin_silos))
-			check_finished(TRUE)
-			return //RIP benos.
-		if(stored_larva)
-			return //No need for respawns nor to end the game. They can use their burrowed larvas.
 		xeno_job.add_job_positions(1)
 		return
-	if(round(larvapoints, 1) < 1)
+	var/larva_surplus = (get_total_joblarvaworth() - (num_xenos * xeno_job.job_points_needed )) / xeno_job.job_points_needed
+	if(larva_surplus < 1)
 		return //Things are balanced, no burrowed needed
 	xeno_job.add_job_positions(1)

@@ -272,8 +272,6 @@
 	var/obj/item/parent_item = parent
 	for(var/slot in slots) //Cycles through all the slots.
 		var/obj/item/attachment = slots[slot]
-
-
 		var/image/overlay = attachable_overlays[slot]
 		parent_item.overlays -= overlay //First removes the existing overlay that occupies the slots overlay.
 
@@ -323,22 +321,23 @@
 		if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
 			continue
 		var/image/new_overlay
-		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
-			new_overlay = attachment.icon
-		else
-			var/suffix = "_a"
-			var/icon = attachment.icon
+
+		var/icon = attachment.icon
+		var/icon_state = attachment.icon_state
+		var/suffix = ""
+		if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
 			if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SEPERATE_MOB_OVERLAY))
 				if(attachment_data[MOB_OVERLAY_ICON])
 					icon = attachment_data[MOB_OVERLAY_ICON]
-					suffix = ""
 				else
 					suffix = "_m"
-			new_overlay = image(icon, icon_state = attachment.icon_state + suffix)
+			else
+				suffix = "_a"
+		new_overlay = image(icon, source, icon_state + suffix)
 		if(attachment_data[MOB_PIXEL_SHIFT_X])
-			new_overlay.pixel_x = attachment_data[MOB_PIXEL_SHIFT_X]
+			new_overlay.pixel_x += attachment_data[MOB_PIXEL_SHIFT_X]
 		if(attachment_data[MOB_PIXEL_SHIFT_Y])
-			new_overlay.pixel_y = attachment_data[MOB_PIXEL_SHIFT_Y]
+			new_overlay.pixel_y += attachment_data[MOB_PIXEL_SHIFT_Y]
 		standing.overlays += new_overlay
 
 ///Deletes the attachments when the parent deletes.
