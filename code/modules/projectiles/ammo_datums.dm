@@ -1000,7 +1000,8 @@ datum/ammo/bullet/revolver/tp44
 	damage_falloff = 0.25
 
 /datum/ammo/bullet/sniper/pfc/flak/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, knockback = 3, slowdown = 1, shake = 1, max_range = 20)
+	staggerstun(M, P, knockback = 4, slowdown = 1, stagger = 1, max_range = 20)
+
 
 /datum/ammo/bullet/sniper/auto
 	name = "high caliber rifle bullet"
