@@ -22,7 +22,7 @@
 	. = ..()
 	if(.)
 		return
-	if(!user.client)
+	if(!user?.client)
 		return
 	if(!map)
 		map = SSminimaps.fetch_minimap_object(targetted_zlevel, allowed_flags)

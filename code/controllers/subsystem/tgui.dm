@@ -62,7 +62,7 @@ SUBSYSTEM_DEF(tgui)
  * return datum/tgui
  */
 /datum/controller/subsystem/tgui/proc/request_pooled_window(mob/user)
-	if(!user.client)
+	if(!user?.client)
 		return null
 	var/list/windows = user.client.tgui_windows
 	var/window_id
