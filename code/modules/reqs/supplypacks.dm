@@ -478,7 +478,7 @@ AMMO
 /datum/supply_packs/ammo/pfcflak
 	name = "Tl-127 Flak Magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/chamberedrifle/flak)
-	cost = 11
+	cost = 5
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/scout_regular
