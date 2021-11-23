@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(advanced_pathfinding)
-	name = "advanced_pathfinding"
+	name = "Advanced_pathfinding"
 	priority = FIRE_PRIORITY_ADVANCED_PATHFINDING
 	wait = 1 SECONDS
 	flags = SS_NO_INIT
