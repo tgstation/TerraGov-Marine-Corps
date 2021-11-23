@@ -281,15 +281,10 @@
 	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
 		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle, target)
 
-	if(shooter.Adjacent(target))
-		if(ismob(target))
-			var/mob/mob_to_hit = target
-			ammo.on_hit_mob(mob_to_hit, src)
-			mob_to_hit.bullet_act(src)
-		if(isobj(target))
-			ammo.on_hit_obj(target, src)
-		if(isturf(target))
-			ammo.on_hit_turf(target, src)
+	if(shooter.Adjacent(target) && ismob(target))
+		var/mob/mob_to_hit = target
+		ammo.on_hit_mob(mob_to_hit, src)
+		mob_to_hit.bullet_act(src)
 		qdel(src)
 		return
 
@@ -949,15 +944,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
 		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle)
 
-	if(shooter.Adjacent(target))
-		if(ismob(target))
-			var/mob/mob_to_hit = target
-			ammo.on_hit_mob(mob_to_hit, src)
-			mob_to_hit.bullet_act(src)
-		if(isobj(target))
-			ammo.on_hit_obj(target, src)
-		if(isturf(target))
-			ammo.on_hit_turf(target, src)
+	if(shooter.Adjacent(target) && ismob(target))
+		var/mob/mob_to_hit = target
+		ammo.on_hit_mob(mob_to_hit, src)
+		mob_to_hit.bullet_act(src)
 		qdel(src)
 		return
 
