@@ -7817,6 +7817,7 @@
 /area/mainship/hallways/port_hallway)
 "CN" = (
 /obj/machinery/power/apc/mainship,
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
 "CO" = (
@@ -9404,11 +9405,6 @@
 	dir = 10
 	},
 /area/mainship/engineering/engineering_workshop)
-"IC" = (
-/obj/machinery/computer/supplydrop_console,
-/obj/structure/table/mainship,
-/turf/open/floor/plating,
-/area/mainship/squads/req)
 "ID" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -37731,11 +37727,11 @@ Ux
 iq
 Ux
 At
-jL
-IC
+zq
 jA
 zu
 EX
+QF
 dy
 dw
 ZH
