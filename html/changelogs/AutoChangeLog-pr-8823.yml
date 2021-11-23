@@ -1,4 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - bugfix: "Lunging at an adjacent target as warrior will grab them."

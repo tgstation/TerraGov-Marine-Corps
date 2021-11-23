@@ -146,3 +146,8 @@
   - rscadd: 'New thing: The 7E Chameleon Badge. Colorable Badge that can be found
       in the surplus uniform vendor. Recolorable by facepaint and restyleable by Alt
       Click. Can attach to armor, berets, uniform and helmets.'
+2021-11-23:
+  QualityVan:
+  - bugfix: Lunging at an adjacent target as warrior will grab them.
+  Three333Digit:
+  - balance: adds armor to job berets
