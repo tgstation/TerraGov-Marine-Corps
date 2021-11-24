@@ -941,6 +941,7 @@
 			/obj/item/clothing/shoes/white = -1,
 			/obj/item/clothing/gloves/white = -1,
 			/obj/item/clothing/under/marine/robotic = -1,
+			/obj/item/armor_module/armor/badge = -1,
 		),
 		"Webbings" = list(
 			/obj/item/armor_module/storage/uniform/black_vest = -1,
