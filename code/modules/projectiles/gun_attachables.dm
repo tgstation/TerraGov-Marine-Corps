@@ -1084,6 +1084,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A non-standard heavy stock for the T-35 shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
 	slot = ATTACHMENT_SLOT_STOCK
 	wield_delay_mod = 0.4 SECONDS
+	melee_mod = 21
 	icon_state = "t35stock"
 	accuracy_mod = 0.15
 	recoil_mod = -3
