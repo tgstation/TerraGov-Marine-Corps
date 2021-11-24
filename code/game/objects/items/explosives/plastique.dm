@@ -109,7 +109,7 @@
 		explosion(plant_target, 0, 0, 0, 1)
 		qdel(src)
 		return
-	explosion(plant_target, 0, 0, 0, 0, 0, 1, 0, 1)
+	explosion(plant_target, 0, 0, 1, 0, 0, 1, 0, 1)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	smoke.set_up(smokeradius, loc, 11)
 	smoke.start()
