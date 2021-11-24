@@ -71,7 +71,7 @@
 	gender = PLURAL
 	density = FALSE
 	anchored = TRUE
-	layer = DISPOSAL_PIPE_LAYER
+	layer = XENO_WEEDS_LAYER
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "riverdecal"
 	mouse_opacity = 0
