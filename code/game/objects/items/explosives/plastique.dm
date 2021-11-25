@@ -7,17 +7,17 @@
 	item_state = "plasticx"
 	flags_item = NOBLUDGEON
 	w_class = WEIGHT_CLASS_TINY
-	/// whether the plastic explosive is armed or not, false by default
+	/// whether the plastic explosive is armed or not
 	var/armed = FALSE
-	/// the default timer is 10 seconds, can be configured by the player
+	/// the time it takes for the c4 to detonate
 	var/timer = 10
 	/// the plastic explosive has not detonated yet
 	var/detonation_pending
 	/// which atom the plastique explosive is planted on
 	var/atom/plant_target = null
-	/// smoke type created when the grenade is primed
+	/// smoke type created when the c4 detonates
 	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
-	/// radius this smoke grenade will encompass
+	/// radius this smoke will encompass
 	var/smokeradius = 2
 
 /obj/item/explosive/plastique/Destroy()
