@@ -465,7 +465,7 @@
 		<a href='?src=[ref];transform=vatgrown;mob=[REF(M)]'>Vatgrown</a> |
 		<a href='?src=[ref];transform=monkey;mob=[REF(M)]'>Monkey</a> |
 		<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a> |
-		<a href='?src=[ref];transform=husk;mob=[REF(M)]'>Husk</a> |
+		<a href='?src=[ref];transform=zombie;mob=[REF(M)]'>Zombie</a> |
 		<br> Alien Tier 0:
 		<a href='?src=[ref];transform=larva;mob=[REF(M)]'>Larva</a> |
 		<br> Alien Tier 1:
