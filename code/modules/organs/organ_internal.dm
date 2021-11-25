@@ -114,8 +114,7 @@
 	//And process natural hurting
 	if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
 		return
-	if(is_broken())
-		if(prob((2*damage) - (40*(owner.reagents.has_reagent(/datum/reagent/medicine/inaprovaline, 0.05)))))
+	if(is_broken() && (prob((2*damage) - (40*(owner.reagents.has_reagent(/datum/reagent/medicine/inaprovaline, 0.05))))))
 			take_damage(0.2) //60% base chance +2% per point of damage over 30, -40% if inaprov is in you, blocked fully if peridaxon is in you.
 
 /datum/internal_organ/proc/take_damage(amount, silent= FALSE)
