@@ -77,8 +77,8 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		X.ammo = GLOB.ammo_list[spit_types[1]]
 	else
 		X.ammo = GLOB.ammo_list[spit_types[(found_pos%length(spit_types))+1]]	//Loop around if we would exceed the length
-	var/datum/ammo/xeno/boiler_gas/BG = X.ammo
-	to_chat(X, span_notice(BG.select_text))
+	var/datum/ammo/xeno/boiler_gas/boiler_glob = X.ammo
+	to_chat(X, span_notice(boiler_glob.select_text))
 	update_button_icon()
 
 /datum/action/xeno_action/toggle_bomb/alternate_action_activate()
@@ -110,15 +110,15 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		return
 	var/referenced_path = GLOB.boiler_glob_list[glob_choice]
 	X.ammo = GLOB.ammo_list[referenced_path]
-	var/datum/ammo/xeno/boiler_gas/BG = X.ammo
-	to_chat(X, span_notice(BG.select_text))
+	var/datum/ammo/xeno/boiler_gas/boiler_glob = X.ammo
+	to_chat(X, span_notice(boiler_glob.select_text))
 	update_button_icon()
 
 /datum/action/xeno_action/toggle_bomb/update_button_icon()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	button.overlays.Cut()
-	var/datum/ammo/xeno/boiler_gas/BG = X.ammo	//Should be safe as this always selects a ammo.
-	button.overlays += image('icons/mob/actions.dmi', button, BG.icon_key)
+	var/datum/ammo/xeno/boiler_gas/boiler_glob = X.ammo	//Should be safe as this always selects a ammo.
+	button.overlays += image('icons/mob/actions.dmi', button, boiler_glob.icon_key)
 	return ..()
 
 // ***************************************

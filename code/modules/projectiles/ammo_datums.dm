@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/proc/on_hit_obj(obj/O, obj/projectile/proj) //Special effects when hitting objects.
 	return
 
-///Special effects for leaving a turf. Only called if the projectile has AMMO_HAS_LEAVE_TURF_BEHAVIOR enabled
+///Special effects for leaving a turf. Only called if the projectile has AMMO_LEAVE_TURF enabled
 /datum/ammo/proc/on_leave_turf(turf/T, atom/firer)	
 	return
 
@@ -1964,7 +1964,7 @@ datum/ammo/bullet/revolver/tp44
 	var/hit_drowsyness = 12
 	///Does the gas spread have a fixed range? -1 for no, 0+ for a fixed range. This prevents scaling from caste age.
 	var/fixed_spread_range = -1
-	///Which type is the smoke we leave on passed tiles, provided the projectile has AMMO_HAS_LEAVE_TURF_BEHAVIOR enabled?
+	///Which type is the smoke we leave on passed tiles, provided the projectile has AMMO_LEAVE_TURF enabled?
 	var/passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light	
 	///We're going to reuse one smoke spread system repeatedly to cut down on processing.
 	var/datum/effect_system/smoke_spread/xeno/trail_spread_system
@@ -1976,9 +1976,17 @@ datum/ammo/bullet/revolver/tp44
 	trail_spread_system.set_up(0, T)
 	trail_spread_system.start()
 
+/datum/ammo/xeno/boiler_gas/proc/enhance_trap(obj/structure/xeno/trap/trap, mob/living/carbon/xenomorph/user_xeno)
+	if(!do_after(user_xeno, 2 SECONDS, TRUE, trap))
+		return FALSE
+	trap.set_trap_type(TRAP_SMOKE_NEURO)
+	trap.smoke = new /datum/effect_system/smoke_spread/xeno/neuro/medium
+	trap.smoke.set_up(2, get_turf(trap))
+	return TRUE
+
 /datum/ammo/xeno/boiler_gas/New()
 	. = ..()
-	if((flags_ammo_behavior & AMMO_HAS_LEAVE_TURF_BEHAVIOR) && passed_turf_smoke_type)
+	if((flags_ammo_behavior & AMMO_LEAVE_TURF) && passed_turf_smoke_type)
 		trail_spread_system = new passed_turf_smoke_type(only_once = FALSE)
 
 /datum/ammo/xeno/boiler_gas/Destroy()
@@ -2058,6 +2066,14 @@ datum/ammo/bullet/revolver/tp44
 	hit_drowsyness = 1
 	reagent_transfer_amount = 0
 
+/datum/ammo/xeno/boiler_gas/corrosive/enhance_trap(obj/structure/xeno/trap/trap, mob/living/carbon/xenomorph/user_xeno)
+	if(!do_after(user_xeno, 3 SECONDS, TRUE, trap))
+		return FALSE
+	trap.set_trap_type(TRAP_SMOKE_ACID)
+	trap.smoke = new /datum/effect_system/smoke_spread/xeno/neuro/medium
+	trap.smoke.set_up(1, get_turf(trap))
+	return TRUE
+
 /datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
 
@@ -2069,7 +2085,7 @@ datum/ammo/bullet/revolver/tp44
 	icon_key = BOILER_GLOB_NEURO_LANCE
 	select_text = "We will now fire a pressurized neurotoxic lance. This is barely nonlethal."
 	///As opposed to normal globs, this will pass by the target tile if they hit nothing.
-	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_HAS_LEAVE_TURF_BEHAVIOR
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_LEAVE_TURF
 	danger_message = span_danger("A pressurized glob of acid lands with a nasty splat and explodes into noxious fumes!")
 	max_range = 40
 	damage = 75
@@ -2086,7 +2102,7 @@ datum/ammo/bullet/revolver/tp44
 	icon_key = BOILER_GLOB_ACID_LANCE
 	select_text = "We will now fire a pressurized corrosive lance. This lethal!"
 	///As opposed to normal globs, this will pass by the target tile if they hit nothing.
-	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_HAS_LEAVE_TURF_BEHAVIOR
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_LEAVE_TURF
 	danger_message = span_danger("A pressurized glob of acid lands with a concerning hissing sound and explodes into corrosive bile!")
 	max_range = 40
 	damage = 75
