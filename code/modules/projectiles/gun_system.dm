@@ -351,6 +351,7 @@
 		for(var/i in 0 to max_chamber_items)
 			chamber_items.Add(null)
 	if(spawn_empty)
+		update_icon()
 		return
 	INVOKE_ASYNC(src, .proc/fill_gun)
 
@@ -433,7 +434,7 @@
 /obj/item/weapon/gun/update_icon(mob/user)
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED))
 		icon_state = base_gun_icon + "_o"
-	else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !in_chamber)
+	else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !in_chamber && length(chamber_items))
 		icon_state = base_gun_icon + "_u"
 	else if((!length(chamber_items) && max_chamber_items) || !rounds)
 		icon_state = base_gun_icon + "_e"
@@ -726,10 +727,10 @@
 			in_chamber = null
 		if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 			cycle(null)
-		if(length(chamber_items) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && (get_current_rounds(chamber_items[current_chamber_position]) - rounds_per_shot) <= 0)
+		if(length(chamber_items) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && (get_current_rounds(chamber_items[current_chamber_position]) - (!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) ? rounds_per_shot : 0)) < 0)
 			playsound(src, empty_sound, 25, 1)
 			unload(after_fire = TRUE)
-
+	update_ammo_count()
 	gun_user?.hud_used.update_ammo_hud(gun_user, src)
 	update_icon()
 	if(dual_wield && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
@@ -1204,7 +1205,7 @@
 
 ///Handles unloading. Called on attackhand. Draws the chamber_items out first, then in_chamber
 /obj/item/weapon/gun/proc/unload(mob/living/user, drop = TRUE, after_fire = FALSE)
-	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING) && !after_fire)
 		return FALSE
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED))
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
