@@ -6,17 +6,14 @@
 	icon_state = "plastic-explosive_off"
 	item_state = "plasticx"
 	flags_item = NOBLUDGEON
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_TINY
 	var/armed = FALSE
 	var/timer = 10
 	var/detonation_pending
-	
 	/// which atom the plastique explosive is planted on
 	var/atom/plant_target = null
-	
 	/// smoke type created when the grenade is primed
 	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
-	
 	///radius this smoke grenade will encompass
 	var/smokeradius = 2
 
