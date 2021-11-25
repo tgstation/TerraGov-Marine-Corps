@@ -95,12 +95,6 @@
 /// Is something in the IC chat filter? This is config dependent.
 #define CHAT_FILTER_CHECK(text) (config.ic_filter_regex && findtext(text, config.ic_filter_regex))
 
-//for whether AI eyes see static, and whether it is mouse-opaque or not
-#define USE_STATIC_NONE 0
-#define USE_STATIC_TRANSPARENT 1
-#define USE_STATIC_OPAQUE 2
-
-
 #define CINEMATIC_DEFAULT 1
 #define CINEMATIC_SELFDESTRUCT 2
 #define CINEMATIC_SELFDESTRUCT_MISS 3

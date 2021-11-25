@@ -58,6 +58,7 @@
 #define ismoth(H) (is_species(H, /datum/species/moth))
 #define issectoid(H) (is_species(H, /datum/species/sectoid))
 #define ishumanbasic(H) (is_species(H, /datum/species/human))
+#define iszombie(H) (is_species(H, /datum/species/zombie))
 
 //Monkey species and subtypes
 #define ismonkey(H) (is_species(H, /datum/species/monkey))
@@ -227,6 +228,8 @@
 #define isdroid(A) (istype(A, /obj/vehicle/unmanned/droid))
 
 #define isreagentcontainer(A) (istype(A, /obj/item/reagent_containers)) //Checks for if something is a reagent container.
+
+#define is_research_product(A) (istype(A, /obj/item/research_product)) //Checks if item is research item
 
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))

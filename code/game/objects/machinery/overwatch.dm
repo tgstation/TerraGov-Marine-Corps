@@ -327,7 +327,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			var/input = stripped_input(usr, "What will be the squad's primary objective?", "Primary Objective")
 			if(input)
 				current_squad.primary_objective = input + " ([worldtime2text()])"
-				current_squad.message_squad("Your primary objective has changed. See Status pane for details.")
+				current_squad.message_squad("Your primary objective has changed. See Game panel for details.")
 				if(issilicon(usr))
 					to_chat(usr, span_boldnotice("Primary objective of squad '[current_squad]' set."))
 				visible_message(span_boldnotice("Primary objective of squad '[current_squad]' set."))
@@ -335,7 +335,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			var/input = stripped_input(usr, "What will be the squad's secondary objective?", "Secondary Objective")
 			if(input)
 				current_squad.secondary_objective = input + " ([worldtime2text()])"
-				current_squad.message_squad("Your secondary objective has changed. See Status pane for details.")
+				current_squad.message_squad("Your secondary objective has changed. See Game panel for details.")
 				if(issilicon(usr))
 					to_chat(usr, span_boldnotice("Secondary objective of squad '[current_squad]' set."))
 				visible_message(span_boldnotice("Secondary objective of squad '[current_squad]' set."))
@@ -494,7 +494,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	busy = TRUE //All set, let's do this.
 	var/warhead_type = GLOB.marine_main_ship.orbital_cannon.tray.warhead.name	//For the AI and Admin logs.
 
-	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_warning("NOTICE - Orbital bombardment triggered from overwatch consoles. Warhead type: [warhead_type]. Target: [AREACOORD_NO_Z(T)]"))
 		playsound(AI,'sound/machines/triple_beep.ogg', 25, 1, 20)
 

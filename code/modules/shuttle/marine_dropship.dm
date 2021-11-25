@@ -10,8 +10,7 @@
 
 
 /obj/docking_port/stationary/marine_dropship/on_crash()
-	for(var/i in GLOB.apcs_list) //break APCs
-		var/obj/machinery/power/apc/A = i
+	for(var/obj/machinery/power/apc/A AS in GLOB.apcs_list) //break APCs
 		if(!is_mainship_level(A.z))
 			continue
 		if(prob(A.crash_break_probability))
@@ -230,6 +229,8 @@
 
 ///Announce that the dropship will departure soon
 /obj/docking_port/mobile/marine_dropship/proc/prepare_going_to_previous_destination()
+	if(hijack_state != HIJACK_STATE_NORMAL)
+		return
 	cycle_timer = addtimer(CALLBACK(src, .proc/go_to_previous_destination), 20 SECONDS, TIMER_STOPPABLE)
 	priority_announce("Dropship taking off in 20 seconds towards [previous.name]", "Dropship Automatic Departure")
 
@@ -423,6 +424,8 @@
 		for(var/m in GLOB.humans_by_zlevel["[i]"])
 			var/mob/living/carbon/human/H = m
 			if(isnestedhost(H))
+				continue
+			if(H.faction == FACTION_XENO)
 				continue
 			humans_on_ground++
 	if(length(GLOB.alive_human_list) && ((humans_on_ground / length(GLOB.alive_human_list)) > ALIVE_HUMANS_FOR_CALLDOWN))
@@ -1217,7 +1220,7 @@
 				visible_message(span_notice("Destination updated, recalculating route."))
 			else
 				visible_message(span_notice("Shuttle departing. Please stand away from the doors."))
-				for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+				for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 					if(!AI.client)
 						continue
 					to_chat(AI, span_info("[src] was commanded remotely to take off."))

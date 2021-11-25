@@ -27,8 +27,6 @@
 		adjustFireLoss(12)
 		blur_eyes(2)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_PLASMALOSS))
-		adjustToxLoss(0.25)
-		adjustStaminaLoss(3)
 		blur_eyes(2)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
 		adjustOxyLoss(4 + S.strength * 2)

@@ -346,8 +346,7 @@
 
 	//try to find the brain player in the decapitated head and put them back in control of the human
 	if(!client && !mind) //if another player took control of the human, we don't want to kick them out.
-		for(var/i in GLOB.head_list)
-			var/obj/item/limb/head/H = i
+		for(var/obj/item/limb/head/H AS in GLOB.head_list)
 			if(!H.brainmob)
 				continue
 
@@ -418,11 +417,11 @@
 			addtimer(CALLBACK(src, .proc/finish_revive_to_crit, FALSE, should_zombify), 10 SECONDS)
 			return
 		REMOVE_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
-		if(should_zombify || istype(species, /datum/species/husk))
-			AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/husk/patrolling, src) //Zombie patrol
+		if(should_zombify || istype(species, /datum/species/zombie))
+			AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie/patrolling, src) //Zombie patrol
 			a_intent = INTENT_HARM
 	if(should_zombify)
-		set_species("Strong husk")
+		set_species("Strong zombie")
 		faction = FACTION_XENO
 	heal_limbs(- health)
 	set_stat(CONSCIOUS)

@@ -19,6 +19,7 @@
 	icon_file='icons/obj/items/chemistry.dmi'
 	json_config = 'code/datums/greyscale/json_configs/pillbottleround.json'
 
+
 /*
  * MODULAR HELMETS
  */
@@ -166,3 +167,31 @@
 /datum/greyscale_config/xenogrenade
 	icon_file = 'icons/obj/items/grenade.dmi'
 	json_config = 'code/datums/greyscale/json_configs/xenogrenade.json'
+
+/*
+ * COLORABLE BADGES
+ */
+
+/datum/greyscale_config/badge
+	json_config = 'code/datums/greyscale/json_configs/badge.json'
+	icon_file = 'icons/mob/modular/badge/shield.dmi'
+
+/datum/greyscale_config/badge/shield
+
+/datum/greyscale_config/badge/triangle
+	icon_file = 'icons/mob/modular/badge/triangle.dmi'
+
+/datum/greyscale_config/badge/circle
+	icon_file = 'icons/mob/modular/badge/circle.dmi'
+
+/datum/greyscale_config/badge/square
+	icon_file = 'icons/mob/modular/badge/square.dmi'
+
+/datum/greyscale_config/badge/V
+	icon_file = 'icons/mob/modular/badge/V.dmi'
+
+/datum/greyscale_config/badge/lambda
+	icon_file = 'icons/mob/modular/badge/lambda.dmi'
+
+/datum/greyscale_config/badge/circle2
+	icon_file = 'icons/mob/modular/badge/circle2.dmi'

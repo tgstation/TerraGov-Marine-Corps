@@ -29,13 +29,13 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	if(isnull(behavior_type))
 		stack_trace("An AI controller was initialized without a mind to initialize parameter; component removed")
 		return COMPONENT_INCOMPATIBLE
-	ai_behavior = new behavior_type(src, parent, atom_to_escort)
+	ai_behavior = new behavior_type(src, parent, atom_to_escort, isliving(parent))
 	for(var/obj/effect/ai_node/node in range(7))
 		ai_behavior.current_node = node
 		break
 	//Iniatialise the behavior of the ai
 	ai_behavior.late_initialize()
-	RegisterSignal(parent, list(COMSIG_PARENT_PREQDELETED, COMSIG_MOB_DEATH), .proc/RemoveComponent)
+	RegisterSignal(parent, COMSIG_MOB_DEATH, .proc/RemoveComponent)
 	RegisterSignal(parent, COMSIG_COMBAT_LOG, .proc/handle_combat_log)
 	RegisterSignal(parent, COMSIG_MOB_LOGIN, .proc/stop_controlling)
 	GLOB.ai_instances_active += src
@@ -53,11 +53,11 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	SIGNAL_HANDLER
 	GLOB.ai_instances_active -= src
 	UnregisterSignal(parent, COMSIG_COMBAT_LOG)
-	UnregisterSignal(parent, list(COMSIG_PARENT_PREQDELETED, COMSIG_MOB_DEATH))
+	UnregisterSignal(parent, COMSIG_MOB_DEATH)
 	if(ai_behavior)
 		STOP_PROCESSING(SSprocessing, ai_behavior)
 		ai_behavior.cleanup_current_action()
-		QDEL_NULL(ai_behavior)
+		ai_behavior = null
 
 ///Stop this ai controller from acting on the mob
 /datum/component/ai_controller/proc/stop_controlling()

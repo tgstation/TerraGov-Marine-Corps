@@ -82,7 +82,7 @@
 	icon_state_mini = "mag_dmr"
 
 /obj/item/ammo_magazine/rifle/standard_dmr/incendiary
-	name = "\improper T-64 incendiary magazine (10x27mm)"
+	name = "\improper T-37 incendiary magazine (10x27mm)"
 	desc = "A 10mm incendiary DMR magazine, carries less rounds however."
 	caliber = CALIBER_10X27_INCENDIARY_CASELESS
 	icon_state = "t37_incin"
@@ -96,23 +96,23 @@
 //T64 BR
 
 /obj/item/ammo_magazine/rifle/standard_br
-	name = "\improper T-64 magazine (10x27mm)"
+	name = "\improper T-64 magazine (10x26mm)"
 	desc = "A 10mm battle rifle magazine."
-	caliber = CALIBER_10x27_CASELESS
+	caliber = CALIBER_10x265_CASELESS
 	icon_state = "t64"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
+	default_ammo = /datum/ammo/bullet/rifle/standard_br
 	max_rounds = 35
 	gun_type = /obj/item/weapon/gun/rifle/standard_br
 	icon_state_mini = "mag_rifle_big"
 
 /obj/item/ammo_magazine/rifle/standard_br/incendiary
-	name = "\improper T-64 BR incendiary magazine (10x27mm)"
+	name = "\improper T-64 BR incendiary magazine (10x26.5mm)"
 	desc = "A 10mm incendiary battle rifle magazine, carries less rounds however."
-	caliber = CALIBER_10X27_INCENDIARY_CASELESS
 	icon_state = "t64_incin"
+	caliber = CALIBER_10x265_CASELESS
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle/standard_dmr/incendiary
+	default_ammo = /datum/ammo/bullet/rifle/standard_br/incendiary
 	max_rounds = 35
 	gun_type = /obj/item/weapon/gun/rifle/standard_br
 	icon_state_mini = "mag_rifle_big_red"
@@ -126,7 +126,7 @@
 	icon_state = "m41a"
 	max_rounds = 95
 	gun_type = /obj/item/weapon/gun/rifle/m41a
-
+	icon_state_mini = "mag_rifle_big"
 
 
 //-------------------------------------------------------
@@ -140,6 +140,7 @@
 	default_ammo = /datum/ammo/bullet/rifle/ak47
 	max_rounds = 40
 	gun_type = /obj/item/weapon/gun/rifle/ak47
+	icon_state_mini = "mag_rifle_big"
 
 /obj/item/ammo_magazine/rifle/ak47/extended
 	name = "\improper AK extended magazine (7.62x39mm)"
@@ -147,7 +148,6 @@
 	icon_state = "ak47_ext"
 	bonus_overlay = "ak47_ex"
 	max_rounds = 60
-	icon_state_mini = "mag_rifle_big_yellow"
 
 
 
@@ -162,6 +162,7 @@
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 30 //Also comes in 30 and 100 round Beta-C mag.
 	gun_type = /obj/item/weapon/gun/rifle/m16
+	icon_state_mini = "mag_rifle_big"
 
 //-------------------------------------------------------
 //FAMAS RIFLE
@@ -229,6 +230,7 @@
 	default_ammo = /datum/ammo/bullet/rifle/ak47
 	max_rounds = 42
 	gun_type = /obj/item/weapon/gun/rifle/type71
+	icon_state_mini = "mag_rifle_big"
 
 //TX-16 AUTOMATIC SHOTGUN
 
@@ -279,7 +281,7 @@
 	default_ammo = /datum/ammo/bullet/smartgun/smartrifle
 	max_rounds = 80
 	gun_type = /obj/item/weapon/gun/rifle/standard_smartrifle
-	icon_state_mini = "mag_rifle"
+	icon_state_mini = "mag_rifle_big"
 
 
 
@@ -294,6 +296,7 @@
 	default_ammo = /datum/ammo/energy/plasma
 	max_rounds = 20
 	gun_type = /obj/item/weapon/gun/rifle/sectoid_rifle
+	icon_state_mini = "mag_rifle_purple"
 
 //-------------------------------------------------------
 //Marine magazine sniper, or the TL-127.
@@ -311,11 +314,11 @@
 //Marine magazine automatic sniper, or the T-81.
 /obj/item/ammo_magazine/rifle/autosniper
 	name = "\improper T-81 automatic sniper rifle magazine"
-	desc = "A box magazine filled with 8.6x70mm rifle rounds for the T-81."
+	desc = "A box magazine filled with low pressure 8.6x70mm rifle rounds for the T-81."
 	caliber = CALIBER_86X70
 	icon_state = "t81"
 	default_ammo = /datum/ammo/bullet/sniper/auto
-	max_rounds = 12
+	max_rounds = 20
 	gun_type = /obj/item/weapon/gun/rifle/standard_autosniper
 	icon_state_mini = "mag_sniper"
 

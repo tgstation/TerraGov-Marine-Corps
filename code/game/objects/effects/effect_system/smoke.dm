@@ -41,6 +41,11 @@
 		addtimer(CALLBACK(src, /obj/effect/particle_effect/smoke.proc/spread_smoke), expansion_speed)
 	create_reagents(500)
 	START_PROCESSING(SSobj, src)
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_EXITED = .proc/on_exited
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/effect/particle_effect/smoke/Destroy()
 	if(lifetime && CHECK_BITFIELD(smoke_traits, SMOKE_CAMO))
@@ -77,16 +82,16 @@
 	apply_smoke_effect(get_turf(src))
 	return TRUE
 
-/obj/effect/particle_effect/smoke/Crossed(atom/movable/O)
-	. = ..()
+/obj/effect/particle_effect/smoke/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
+	SIGNAL_HANDLER
 	if(isliving(O))
 		O.effect_smoke(src)
 		return
 	if(CHECK_BITFIELD(smoke_traits, SMOKE_NERF_BEAM) && istype(O, /obj/projectile))
 		O.effect_smoke(src)
 
-/obj/effect/particle_effect/smoke/Uncrossed(mob/living/M)
-	. = ..()
+/obj/effect/particle_effect/smoke/proc/on_exited(datum/source, mob/living/M, direction)
+	SIGNAL_HANDLER
 	if(CHECK_BITFIELD(smoke_traits, SMOKE_CAMO) && istype(M))
 		var/obj/effect/particle_effect/smoke/S = locate() in get_turf(M)
 		if(!CHECK_BITFIELD(S?.smoke_traits, SMOKE_CAMO))

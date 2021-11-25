@@ -1,4 +1,0 @@
-author: "jroinc"
-delete-after: True
-changes: 
-  - balance: "Nanites now have a \"safe zone\" where they won't cost blood for the first ~20 damage they heal in a given length of time. This should lower the odds of being \"scratch damaged\" to bloodloss death."

@@ -215,6 +215,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
 
+/datum/keybinding/xeno/advance
+	name = "advance"
+	full_name = "Crusher: Rapid Advance"
+	description = "Charges up the crushers charge, then unleashes the full bulk of the crusher into a direction."
+	keybind_signal = COMSIG_XENOABILITY_ADVANCE
+
 /datum/keybinding/xeno/forward_charge
 	name = "forward charge"
 	full_name = "Defender: Forward charge"
@@ -244,6 +250,12 @@
 	full_name = "Defender: Regenerate Skin"
 	description = "Regenerate your skin, restoring some health and removing all armor sunder."
 	keybind_signal = COMSIG_XENOABILITY_REGENERATE_SKIN
+
+/datum/keybinding/xeno/centrifugal_force
+	name = "centrifugal_force"
+	full_name = "Defender: Centrifugal Force"
+	description = "Rapidly spin and hit all adjacent humans around you, knocking them away and down."
+	keybind_signal = COMSIG_XENOABILITY_CENTRIFUGAL_FORCE
 
 /datum/keybinding/xeno/emit_neurogas
 	name = "emit_neurogas"
@@ -438,6 +450,12 @@
 	description = "While active, you will temporarily recover plasma and sunder and gain a bonus to speed and melee damage in proportion to the percentage of your missing health. At negative HP your ability cooldowns reset and your slash damage restores health."
 	keybind_signal = COMSIG_XENOABILITY_RAGE
 
+/datum/keybinding/xeno/ravager_vampirism
+	name = "togglevampirism"
+	full_name = "Ravager: Toggle vampirism"
+	description = "While active, will increase the ravagers healing for a while for every time it hits a new enemy. Effects stack."
+	keybind_signal = COMSIG_XENOABILITY_VAMPIRISM
+
 /datum/keybinding/xeno/ravage
 	name = "ravage"
 	full_name = "Ravager: Ravage"
@@ -461,6 +479,12 @@
 	full_name = "Runner: Evasion"
 	description = "Take evasive action, forcing non-friendly projectiles that would hit you to miss so long as you keep moving."
 	keybind_signal = COMSIG_XENOABILITY_EVASION
+
+/datum/keybinding/xeno/snatch
+	name = "snatch"
+	full_name = "Runner: Snatch"
+	description = "Take an item equipped by your target in your mouth, and carry it away."
+	keybind_signal = COMSIG_XENOABILITY_SNATCH
 
 /datum/keybinding/xeno/toggle_agility
 	name = "toggle_agility"
@@ -503,6 +527,18 @@
 	full_name = "Rally Hive"
 	description = "Rallies the hive to a target location."
 	keybind_signal = COMSIG_XENOABILITY_RALLY_HIVE
+
+/datum/keybinding/xeno/rally_minion
+	name = "rally_minion"
+	full_name = "Rally Minions"
+	description = "Rallies the minions to a target location, or yourself."
+	keybind_signal = COMSIG_XENOABILITY_RALLY_MINION
+
+/datum/keybinding/xeno/command_minions
+	name = "command_minion"
+	full_name = "Command Minions"
+	description = "Order the minions escorting you to be either agressive or passive."
+	keybind_signal = COMSIG_XENOABILITY_MINION_BEHAVIOUR
 
 /datum/keybinding/xeno/healing_infusion
 	name = "healing_infusion"
@@ -556,6 +592,12 @@
 	full_name = "Wraith: Recall"
 	description = "Recall a target from netherspace, ending Banish's effect."
 	keybind_signal = COMSIG_XENOABILITY_RECALL
+
+/datum/keybinding/xeno/timestop
+	name = "timestop"
+	full_name = "Wraith: Time stop"
+	description = "Freezes bullets in their course, and they will start to move again only after a certain time"
+	keybind_signal = COMSIG_XENOABILITY_TIMESTOP
 
 /datum/keybinding/xeno/nightfall
 	name = "nightfall"

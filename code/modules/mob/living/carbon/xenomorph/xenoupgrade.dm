@@ -35,7 +35,7 @@
 			break
 
 	if(queen_chosen_lead)
-		give_rally_hive_ability() //Give them back their rally hive ability
+		give_rally_abilities() //Give them back their rally hive ability
 
 	switch(upgrade)
 		//FIRST UPGRADE
@@ -94,6 +94,9 @@
 /mob/living/carbon/xenomorph/runner/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/runner/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //-----RUNNER END-----//
 //================//
 //-----BULL START-----//
@@ -106,6 +109,9 @@
 
 /mob/living/carbon/xenomorph/bull/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/bull/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //-----BULL END-----//
 //================//
@@ -164,6 +170,9 @@
 /mob/living/carbon/xenomorph/hivelord/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/hivelord/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----HIVELORD END----//
 //================//
 
@@ -191,6 +200,9 @@
 
 /mob/living/carbon/xenomorph/ravager/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/ravager/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----RAVAGER END----//
 //================//
@@ -221,6 +233,9 @@
 /mob/living/carbon/xenomorph/spitter/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/spitter/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //-----SPITTER END-----//
 //================//
 //SENTINEL ERT START
@@ -249,6 +264,9 @@
 
 /mob/living/carbon/xenomorph/hunter/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/hunter/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----HUNTER END----//
 //================//
@@ -295,6 +313,9 @@
 /mob/living/carbon/xenomorph/crusher/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/crusher/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //---CRUSHER END---//
 //============//
 //---BOILER START---//
@@ -320,6 +341,9 @@
 
 /mob/living/carbon/xenomorph/defender/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/defender/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //---DEFENDER END---//
 //============//
@@ -377,3 +401,6 @@
 
 /mob/living/carbon/xenomorph/wraith/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/wraith/primordial
+	upgrade = XENO_UPGRADE_FOUR

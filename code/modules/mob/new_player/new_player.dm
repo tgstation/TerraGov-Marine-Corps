@@ -375,7 +375,7 @@
 			CRASH("Invalid latejoin spawn location type")
 
 		to_chat(src, span_notice("Now teleporting."))
-		observer.forceMove(T)
+		observer.abstract_move(T)
 	else
 		failed = TRUE
 

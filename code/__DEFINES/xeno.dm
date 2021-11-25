@@ -9,6 +9,13 @@
 #define XENO_TURRET_ACID_ICONSTATE "acid_turret"
 #define XENO_TURRET_STICKY_ICONSTATE "resin_turret"
 
+#define TRAP_HUGGER "hugger"
+#define TRAP_SMOKE_NEURO "neurotoxin gas"
+#define TRAP_SMOKE_ACID "acid gas"
+#define TRAP_ACID_WEAK "weak acid"
+#define TRAP_ACID_NORMAL "acid"
+#define TRAP_ACID_STRONG "strong acid"
+
 //List of weed types
 GLOBAL_LIST_INIT(weed_type_list, typecacheof(list(
 		/obj/effect/alien/weeds/node,
@@ -48,3 +55,19 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 #define PRIMORDIAL_SHRIKE "Primordial Shrike"
 #define PRIMORDIAL_DEFILER "Primordial Defiler"
 #define PRIMORDIAL_SENTINEL "Primordial Sentinel"
+#define PRIMORDIAL_SPITTER "Primordial Spitter"
+#define PRIMORDIAL_RAVAGER "Primordial Ravager"
+#define PRIMORDIAL_CRUSHER "Primordial Crusher"
+#define PRIMORDIAL_HUNTER "Primordial Hunter"
+#define PRIMORDIAL_DEFENDER "Primordial Defender"
+#define PRIMORDIAL_RUNNER "Primordial Runner"
+#define PRIMORDIAL_WRAITH "Primordial Wraith"
+#define PRIMORDIAL_HIVELORD "Primordial Hivelord"
+#define PRIMORDIAL_BULL "Primordial Bull"
+
+GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
+	/mob/living/carbon/xenomorph/beetle/ai,
+	/mob/living/carbon/xenomorph/mantis/ai,
+	/mob/living/carbon/xenomorph/scorpion/ai,
+))
+

@@ -1,3 +1,4 @@
+///Should return a /datum/export_report if overriden
 /atom/movable/proc/supply_export(faction_selling)
 	return 0
 
@@ -7,6 +8,8 @@
 
 /mob/living/carbon/xenomorph/supply_export(faction_selling)
 	switch(tier)
+		if(XENO_TIER_MINION)
+			. = 5
 		if(XENO_TIER_ZERO)
 			. = 15
 		if(XENO_TIER_ONE)

@@ -1727,7 +1727,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
 "bJK" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing/rebel)
 "bKa" = (
@@ -3088,7 +3088,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/vending/marine/shared/hvh/team_one,
+/obj/machinery/vending/weapon/hvh/team_one,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "cUq" = (
@@ -6374,7 +6374,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "fLR" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
 "fLS" = (
@@ -6541,7 +6541,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
 "fRS" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "fSe" = (
@@ -8577,7 +8577,7 @@
 	},
 /obj/item/clothing/suit/armor/bulletproof,
 /obj/item/attachable/suppressor,
-/obj/item/clothing/tie/storage/holster,
+/obj/item/armor_module/storage/uniform/holster,
 /turf/open/floor/carpet{
 	dir = 9;
 	icon_state = "carpetside"
@@ -8924,7 +8924,7 @@
 /area/mainship/command/cic/rebel)
 "icU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/vending/marine/shared/hvh/team_one,
+/obj/machinery/vending/weapon/hvh/team_one,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "ied" = (
@@ -10441,7 +10441,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering/rebel)
 "jCA" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /obj/item/coin/iron,
 /turf/open/floor/mainship/black{
 	dir = 4
@@ -11862,7 +11862,7 @@
 	},
 /area/mainship/command/self_destruct/rebel)
 "kNc" = (
-/obj/machinery/vending/marine/cargo_supply/hvh/rebel,
+/obj/machinery/vending/cargo_supply/hvh/rebel,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req/rebel)
 "kNf" = (
@@ -12061,7 +12061,7 @@
 	},
 /area/space)
 "kUj" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop/rebel)
 "kUD" = (
@@ -12332,7 +12332,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway/rebel)
 "lcR" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard/rebel)
 "ldI" = (
@@ -13182,7 +13182,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced,
-/obj/machinery/vending/marine/shared/hvh,
+/obj/machinery/vending/weapon/hvh,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "lMS" = (
@@ -13945,7 +13945,7 @@
 	},
 /obj/item/clothing/suit/armor/bulletproof,
 /obj/item/attachable/suppressor,
-/obj/item/clothing/tie/storage/holster,
+/obj/item/armor_module/storage/uniform/holster,
 /turf/open/floor/carpet{
 	dir = 9;
 	icon_state = "carpetside"
@@ -14441,7 +14441,7 @@
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
 "nba" = (
-/obj/machinery/vending/marine/shared/hvh,
+/obj/machinery/vending/weapon/hvh,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks/rebel)
 "nbr" = (
@@ -15098,7 +15098,7 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/port_atmos/rebel)
 "nEt" = (
-/obj/machinery/vending/marine/cargo_supply/hvh,
+/obj/machinery/vending/cargo_supply/hvh,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "nEE" = (
@@ -16408,7 +16408,7 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/starboard_umbilical)
 "oGK" = (
-/obj/machinery/vending/marine/shared/hvh,
+/obj/machinery/vending/weapon/hvh,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
 "oGY" = (
@@ -16749,7 +16749,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
 "oUj" = (
-/obj/machinery/vending/marine/shared/hvh,
+/obj/machinery/vending/weapon/hvh,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
@@ -16940,7 +16940,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "pcb" = (
-/obj/machinery/vending/marine/shared/hvh,
+/obj/machinery/vending/weapon/hvh,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
@@ -18929,7 +18929,7 @@
 	},
 /area/mainship/hallways/hangar)
 "qLu" = (
-/obj/machinery/vending/marine/shared/hvh,
+/obj/machinery/vending/weapon/hvh,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "qLC" = (
@@ -19232,7 +19232,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engine_monitoring)
 "raH" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /obj/item/coin/iron,
 /turf/open/floor/mainship/black{
 	dir = 4
@@ -20073,7 +20073,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "rPw" = (
-/obj/machinery/vending/marine/shared/cigarette,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "rPz" = (
@@ -20261,7 +20261,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/vending/marine/shared/hvh,
+/obj/machinery/vending/weapon/hvh,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "rXg" = (
@@ -20280,7 +20280,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles/rebel)
 "rYU" = (
-/obj/machinery/vending/marine/shared/hvh,
+/obj/machinery/vending/weapon/hvh,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
@@ -21752,7 +21752,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "tnb" = (
-/obj/machinery/vending/marine/shared/hvh/team_one,
+/obj/machinery/vending/weapon/hvh/team_one,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "tnc" = (
@@ -23340,7 +23340,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop/rebel)
 "uzH" = (
-/obj/machinery/vending/marine/shared/hvh/team_one,
+/obj/machinery/vending/weapon/hvh/team_one,
 /turf/open/floor/mainship/red/full,
 /area/mainship/command/cic)
 "uzM" = (
@@ -23914,7 +23914,7 @@
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
 "vcA" = (
-/obj/machinery/vending/marine/shared/hvh,
+/obj/machinery/vending/weapon/hvh,
 /turf/open/floor/mainship/red/full,
 /area/mainship/command/cic/rebel)
 "vdN" = (
@@ -24922,7 +24922,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/vending/marine/shared/hvh/team_one,
+/obj/machinery/vending/weapon/hvh/team_one,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "vZZ" = (
@@ -24957,7 +24957,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "wbE" = (
-/obj/machinery/vending/marine/shared/hvh,
+/obj/machinery/vending/weapon/hvh,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req/rebel)
 "wbQ" = (
@@ -27333,7 +27333,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
 "xYh" = (
-/obj/machinery/vending/marine/shared/hvh,
+/obj/machinery/vending/weapon/hvh,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range/rebel)
 "xYC" = (
