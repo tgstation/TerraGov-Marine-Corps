@@ -579,7 +579,7 @@
 /area/mainship/shipboard/firing_range)
 "cb" = (
 /obj/machinery/door_control{
-	id = reqaccess;
+	id = "reqaccess";
 	name = "Requisitions Access";
 	pixel_x = 26
 	},
@@ -1239,10 +1239,6 @@
 /obj/machinery/door_control/mainship/cic{
 	pixel_x = -7;
 	pixel_y = 9
-	},
-/obj/machinery/door_control/mainship/cic/hangar{
-	pixel_x = -7;
-	pixel_y = 2
 	},
 /obj/machinery/door_control/mainship/cic/armory{
 	pixel_x = -7;
@@ -3138,7 +3134,7 @@
 "lp" = (
 /obj/machinery/door/poddoor/shutters{
 	dir = 2;
-	id = reqaccess
+	id = "reqaccess"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -4197,7 +4193,7 @@
 "oW" = (
 /obj/machinery/door/poddoor/shutters{
 	dir = 2;
-	id = reqaccess
+	id = "reqaccess"
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
@@ -4365,7 +4361,7 @@
 /area/mainship/command/cic)
 "pF" = (
 /obj/machinery/door/poddoor/shutters{
-	id = reqaccess
+	id = "reqaccess"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -5656,6 +5652,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"uL" = (
+/obj/machinery/door/window/secure/bridge{
+	dir = 2
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/airoom)
 "uN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -11269,6 +11271,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/port_hull)
+"Pj" = (
+/obj/machinery/light,
+/obj/structure/window/reinforced/toughened{
+	dir = 8
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/airoom)
 "Pk" = (
 /obj/machinery/power/apc/mainship{
 	dir = 4
@@ -12527,6 +12536,9 @@
 /area/mainship/engineering/engine_core)
 "Ue" = (
 /obj/machinery/light,
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
 "Uf" = (
@@ -43229,7 +43241,7 @@ WC
 bf
 RA
 Tl
-ke
+uL
 MB
 Xy
 DS
@@ -43432,7 +43444,7 @@ bf
 RA
 gZ
 ke
-Ue
+Pj
 Xy
 YF
 ko
