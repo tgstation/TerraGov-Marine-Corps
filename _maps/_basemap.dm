@@ -21,6 +21,7 @@
 		#include "map_files\Barrenquilla_Mining\Barrenquilla_Mining_Facility.dmm"
 		#include "map_files\Magmoor_Digsite_IV\Magmoor_Digsite_IV.dmm"
 		#include "map_files\Twin_Pillars\Twin_Pillars.dmm"
+		#include "map_files\Minerva\TGS_Minerva.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif
