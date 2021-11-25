@@ -111,7 +111,7 @@
 			return FALSE
 		if(target_human.blood_volume < GORGER_REJUVENATE_BLOOD_DRAIN)
 			if(!silent)
-				to_chat(owner_xeno, span_notice("Our meal has no blood... How sad!"))
+				to_chat(owner_xeno, span_notice("Our meal doesn't have enough blood... How sad!"))
 			return FALSE
 		return TRUE
 
@@ -127,12 +127,14 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(target_human.stat == DEAD)
 		while(owner_xeno.health < owner_xeno.maxHealth && do_after(owner_xeno, 2 SECONDS, TRUE, target_human, BUSY_ICON_HOSTILE))
-			if(target_human.blood_volume < GORGER_REJUVENATE_BLOOD_DRAIN)
-				to_chat(owner, span_notice("Our meal has no blood... How sad!"))
-				return
+			target_human.blood_volume -= GORGER_REJUVENATE_BLOOD_DRAIN
+			var/target_blood = target_human.blood_volume
 			owner_xeno.heal_wounds(2.2, TRUE)
 			owner_xeno.adjust_sunder(-0.5)
-			target_human.blood_volume -= GORGER_REJUVENATE_BLOOD_DRAIN
+			target_human.hud_list[HEART_STATUS_HUD].alpha = 255 * (target_human.blood_volume / BLOOD_VOLUME_NORMAL)
+			if(target_blood < GORGER_REJUVENATE_BLOOD_DRAIN)
+				to_chat(owner, span_notice("Our meal doesn't have enough blood... How sad!"))
+				return
 		to_chat(owner_xeno, span_notice("We feel fully restored."))
 		return
 	owner_xeno.face_atom(target_human)
