@@ -10,9 +10,15 @@
 	var/armed = FALSE
 	var/timer = 10
 	var/detonation_pending
-	var/atom/plant_target = null //which atom the plastique explosive is planted on
-	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad // smoke type created when the grenade is primed
-	var/smokeradius = 2 //radius this smoke grenade will encompass
+	
+	/// which atom the plastique explosive is planted on
+	var/atom/plant_target = null
+	
+	/// smoke type created when the grenade is primed
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
+	
+	///radius this smoke grenade will encompass
+	var/smokeradius = 2
 
 /obj/item/explosive/plastique/Destroy()
 	plant_target = null
