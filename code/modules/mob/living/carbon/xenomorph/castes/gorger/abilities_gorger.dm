@@ -208,7 +208,7 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(target == owner_xeno)
 		owner_xeno.use_plasma(GORGER_REJUVENATE_SELF_COST)
-		owner_xeno.apply_status_effect(/datum/status_effect/xeno_rejuvenate, GORGER_REJUVENATE_SELF_DURATION)
+		owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_REJUVENATE, GORGER_REJUVENATE_SELF_DURATION)
 		to_chat(owner_xeno, span_notice("We tap into our reserves for nourishment."))
 		add_cooldown()
 		return
@@ -253,9 +253,6 @@
 /datum/action/xeno_action/activable/carnage/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_CARNAGE))
-		owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_CARNAGE)
-		return
 	owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_CARNAGE, 10 SECONDS, owner_xeno.xeno_caste.carnage_plasma_gain, owner_xeno.maxHealth * GORGER_CARNAGE_HEAL, GORGER_CARNAGE_MOVEMENT)
 	add_cooldown()
 
@@ -269,9 +266,6 @@
 	if(target.get_xeno_hivenumber() == owner_xeno.get_xeno_hivenumber())
 		return FALSE
 	return can_use_ability(target, TRUE)
-
-/proc/add_color(red = 0, green = 0, blue = 0)
-	return list(1 + red,-green/2,-blue/2,0, -red/2,1 + green,-blue/2,0, -red/2,-green/2,1 + blue,0, 0,0,0,1, 0,0,0,0)
 
 // ***************************************
 // *********** Feast

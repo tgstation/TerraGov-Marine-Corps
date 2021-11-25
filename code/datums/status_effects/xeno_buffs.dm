@@ -51,7 +51,7 @@
 	var/amount = X.maxHealth*0.1
 
 	HEAL_XENO_DAMAGE(X, amount)
-	adjustOverheal(X, amount)
+	adjustOverheal(X, amount / 2)
 
 	if(X.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA)
 		X.gain_plasma(X.xeno_caste.plasma_max*0.25)
@@ -89,6 +89,7 @@
 	owner_xeno.add_movespeed_modifier(MOVESPEED_ID_GORGER_CARNAGE, TRUE, 0, NONE, TRUE, movement_speed_max * plasma_mod)
 
 	to_chat(owner, span_notice("We give into our thirst!"))
+	owner_xeno.emote("roar")
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/carnage_slash)
 
 	owner.add_filter(id, 5, rays_filter(size = 25, color = "#c50021", offset = 200, density = 50, y = 7))
@@ -172,6 +173,7 @@
 		to_chat(X, span_notice("Our feast has come to an end..."))
 		X.remove_status_effect(STATUS_EFFECT_XENO_FEAST)
 		return
-	var/heal_amount = X.maxHealth*0.15
+	var/heal_amount = X.maxHealth*0.1
 	HEAL_XENO_DAMAGE(X, heal_amount)
+	adjustOverheal(X, heal_amount / 2)
 	X.use_plasma(plasma_drain)
