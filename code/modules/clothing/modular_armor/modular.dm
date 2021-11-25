@@ -311,14 +311,6 @@
 	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45,"acid" = 50)
 	slowdown = 0.5
 	attachments_allowed = list(
-		/obj/item/armor_module/module/better_shoulder_lamp,
-		/obj/item/armor_module/module/tyr_extra_armor,
-		/obj/item/armor_module/module/tyr_extra_armor/mark1,
-		/obj/item/armor_module/module/mimir_environment_protection,
-		/obj/item/armor_module/module/mimir_environment_protection/mark1,
-		/obj/item/armor_module/module/hlin_explosive_armor,
-		/obj/item/armor_module/module/ballistic_armor,
-
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/engineering,
