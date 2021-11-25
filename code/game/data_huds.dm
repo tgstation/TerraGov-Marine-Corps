@@ -263,6 +263,7 @@
 			if(!HAS_TRAIT(src, TRAIT_PSY_DRAINED))
 				infection_hud.icon_state = "psy_drain"
 			if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE ))
+				hud_list[HEART_STATUS_HUD].icon_state = "still_heart"
 				status_hud.icon_state = "huddead"
 				return TRUE
 			if(!client)
@@ -370,6 +371,9 @@
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno
 	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
+
+/datum/atom_hud/xeno_heart
+	hud_icons = list(HEART_STATUS_HUD)
 
 /mob/living/proc/hud_set_sunder()
 	return

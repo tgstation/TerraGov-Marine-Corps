@@ -12,3 +12,7 @@
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
 	mob_size = MOB_SIZE_BIG
+
+/mob/living/carbon/xenomorph/gorger/Initialize(mapload)
+	. = ..()
+	GLOB.huds[DATA_HUD_XENO_HEART].add_hud_to(src)
