@@ -1631,7 +1631,7 @@ datum/ammo/bullet/revolver/tp44
 	var/added_spit_delay = 0 //used to make cooldown of the different spits vary.
 	var/spit_cost = 5
 	armor_type = "bio"
-	shell_speed = 1
+	shell_speed = 2
 	accuracy = 40
 	accurate_range = 15
 	max_range = 15
