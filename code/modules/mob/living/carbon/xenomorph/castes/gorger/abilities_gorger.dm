@@ -123,6 +123,16 @@
 			to_chat(owner_xeno, span_xenowarning("No need, we feel sated for now..."))
 		return FALSE
 
+#define DO_DRAIN_ACTION(owner_xeno, target_human) \
+	owner_xeno.do_attack_animation(target_human, ATTACK_EFFECT_REDSTAB);\
+	owner_xeno.visible_message(target_human, span_danger("The [owner_xeno] stabs its tail into [target_human]!"));\
+	playsound(target_human, "alien_claw_flesh", 25, TRUE);\
+	target_human.emote("scream");\
+	target_human.apply_damage(damage = 2, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE);\
+\
+	adjustOverheal(owner_xeno, GORGER_DRAIN_OVERHEAL);\
+	owner_xeno.gain_plasma(owner_xeno.xeno_caste.drain_plasma_gain)
+
 /datum/action/xeno_action/activable/drain/use_ability(mob/living/carbon/human/target_human)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(target_human.stat == DEAD)
@@ -140,23 +150,19 @@
 	owner_xeno.face_atom(target_human)
 	owner_xeno.emote("roar")
 	ADD_TRAIT(owner_xeno, TRAIT_HANDS_BLOCKED, src)
-	for(var/i = 0; i < GORGER_DRAIN_INSTANCES; i++)
-		owner_xeno.do_attack_animation(target_human, ATTACK_EFFECT_REDSTAB)
-		owner_xeno.visible_message(target_human, span_danger("The [owner_xeno] stabs its tail into [target_human]!"))
-		playsound(target_human, "alien_claw_flesh", 25, TRUE)
-		target_human.emote("scream")
-		target_human.apply_damage(damage = 2, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE)
-
-		adjustOverheal(owner_xeno, GORGER_DRAIN_OVERHEAL)
-		owner_xeno.gain_plasma(owner_xeno.xeno_caste.drain_plasma_gain)
-
+	DO_DRAIN_ACTION(owner_xeno, target_human)
+	for(var/i = 0; i < GORGER_DRAIN_INSTANCES - 1; i++)
 		target_human.AdjustImmobilized(GORGER_DRAIN_DELAY)
-		if(i == GORGER_DRAIN_INSTANCES || !do_after(owner_xeno, GORGER_DRAIN_DELAY, FALSE, target_human, ignore_turf_checks = FALSE))
+		if(!do_after(owner_xeno, GORGER_DRAIN_DELAY, FALSE, target_human, ignore_turf_checks = FALSE))
 			target_human.AdjustImmobilized(-GORGER_DRAIN_DELAY)
 			break
+		DO_DRAIN_ACTION(owner_xeno, target_human)
+
 	REMOVE_TRAIT(owner_xeno, TRAIT_HANDS_BLOCKED, src)
 	target_human.blur_eyes(1)
 	add_cooldown()
+
+#undef DO_DRAIN_ACTION
 
 /datum/action/xeno_action/activable/drain/ai_should_use(atom/target)
 	return can_use_ability(target, TRUE)
