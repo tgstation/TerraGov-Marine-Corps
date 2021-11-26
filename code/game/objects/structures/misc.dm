@@ -23,6 +23,11 @@
 /obj/structure/showcase/six
 	icon_state = "showcase_6"
 
+/obj/machinery/showcase/mulebot
+	name = "Mulebot"
+	desc = "A Multiple Utility Load Effector bot."
+	icon_state = "mulebot0"
+
 /obj/structure/showcase/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
