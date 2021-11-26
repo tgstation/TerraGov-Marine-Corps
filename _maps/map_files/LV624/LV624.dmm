@@ -23989,7 +23989,7 @@
 /area/shuttle/drop1/lz1)
 "xCh" = (
 /obj/effect/decal/cleanable/blood/oil,
-/obj/machinery/bot/mulebot,
+/obj/machinery/showcase/mulebot,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "xCo" = (
