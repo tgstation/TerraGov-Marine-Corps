@@ -173,7 +173,7 @@
 		to_chat(X, span_notice("Our feast has come to an end..."))
 		X.remove_status_effect(STATUS_EFFECT_XENO_FEAST)
 		return
-	var/heal_amount = X.maxHealth*0.8
+	var/heal_amount = X.maxHealth*0.08
 	HEAL_XENO_DAMAGE(X, heal_amount)
 	adjustOverheal(X, heal_amount / 2)
 	X.use_plasma(plasma_drain)
