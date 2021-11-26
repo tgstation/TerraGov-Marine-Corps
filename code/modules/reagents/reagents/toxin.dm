@@ -475,7 +475,6 @@
 /datum/reagent/toxin/xeno_neurotoxin/light
 	name = "Light Neurotoxin"
 	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time. This one seems to be weaker enough to not remove other chemicals."
-	purge_list = null
 	purge_rate = 0
 
 
@@ -517,6 +516,13 @@
 
 	return ..()
 
+/datum/reagent/toxin/xeno_neurotoxin/light/on_mob_life(mob/living/L, metabolism)
+	. = .. ()
+	switch(current_cycle)
+		if(21 to 45)
+			purge_rate = 0.2
+		if(46 to INFINITY)
+			purge_rate = 1
 
 /datum/reagent/toxin/xeno_growthtoxin
 	name = "Larval Accelerant"
