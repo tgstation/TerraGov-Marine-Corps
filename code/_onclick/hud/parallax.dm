@@ -2,7 +2,7 @@
 /datum/hud/proc/create_parallax(mob/viewmob)
 	var/mob/screenmob = viewmob || mymob
 	var/client/C = screenmob.client
-	if (!apply_parallax_pref(viewmob) || is_ground_level(viewmob.z)) //don't want shit computers to crash when specing someone with insane parallax, so use the viewer's pref
+	if (!apply_parallax_pref(viewmob)) //don't want shit computers to crash when specing someone with insane parallax, so use the viewer's pref
 		return
 
 	if(!length(C.parallax_layers_cached))
