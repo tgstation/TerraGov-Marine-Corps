@@ -158,3 +158,6 @@
   hyper2snyper:
   - rscadd: Xeno spit now uses autofire.
   - rscadd: 'Primordial Spitter: now with an incredible automatic firerate.'
+2021-11-26:
+  BraveMole:
+  - rscadd: Zombie player can rally nearby zombie to make funny waves
