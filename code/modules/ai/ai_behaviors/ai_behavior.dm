@@ -84,7 +84,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(current_action == ESCORTING_ATOM && next_action != ESCORTING_ATOM)
 		clean_escorted_atom()
 	unregister_action_signals(current_action)
-	mob_parent.RemoveElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
+	SSpathfinder.remove_from_pathfinding(mob_parent)
 
 ///Cleanup old state vars, start the movement towards our new target
 /datum/ai_behavior/proc/change_action(next_action, atom/next_target, special_distance_to_maintain)
@@ -115,7 +115,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		distance_to_maintain = isnull(special_distance_to_maintain) ? initial(distance_to_maintain) : special_distance_to_maintain
 	if(next_target)
 		atom_to_walk_to = next_target
-		mob_parent.AddElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
+		SSpathfinder.add_to_pathfinding(mob_parent, atom_to_walk_to, distance_to_maintain, sidestep_prob)
 	register_action_signals(current_action)
 	if(current_action == MOVING_TO_SAFETY)
 		mob_parent.a_intent = INTENT_HELP

@@ -8431,11 +8431,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aUY" = (
-/obj/machinery/bot/mulebot{
-	auto_pickup = 0;
-	auto_return = 0;
-	on = 0
-	},
+/obj/machinery/bot/mulebot,
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)

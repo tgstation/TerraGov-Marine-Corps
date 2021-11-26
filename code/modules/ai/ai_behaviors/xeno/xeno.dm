@@ -64,7 +64,7 @@
 			if(escorted_atom && get_dist(escorted_atom, mob_parent) > target_distance)
 				change_action(ESCORTING_ATOM, escorted_atom)
 				return
-			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
+			var/atom/next_target = get_nearest_target(mob_parent, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 			if(!next_target)//We didn't find a target
 				cleanup_current_action()
 				late_initialize()
@@ -117,7 +117,10 @@
 				continue
 			lock.open(TRUE)
 			return COMSIG_OBSTACLE_DEALT_WITH
-	if(ISDIAGONALDIR(direction) && (deal_with_obstacle(null, turn(direction, -45)) & COMSIG_OBSTACLE_DEALT_WITH || deal_with_obstacle(null, turn(direction, 45)) & COMSIG_OBSTACLE_DEALT_WITH))
+		if(istype(thing, /obj/vehicle))
+			INVOKE_ASYNC(src, .proc/attack_target, null, thing)
+			return COMSIG_OBSTACLE_DEALT_WITH
+	if(ISDIAGONALDIR(direction) && ((deal_with_obstacle(null, turn(direction, -45)) & COMSIG_OBSTACLE_DEALT_WITH) || (deal_with_obstacle(null, turn(direction, 45)) & COMSIG_OBSTACLE_DEALT_WITH)))
 		return COMSIG_OBSTACLE_DEALT_WITH
 	//Ok we found nothing, yet we are still blocked. Check for blockers on our current turf
 	obstacle_turf = get_turf(mob_parent)
