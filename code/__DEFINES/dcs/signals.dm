@@ -310,6 +310,11 @@
 #define COMSIG_MOB_GUN_FIRED "mob_gun_fired"
 #define COMSIG_MOB_GUN_AUTOFIRED "mob_gun_autofired"
 
+#define COMSIG_XENO_FIRE "xeno_fire"
+#define COMSIG_XENO_STOP_FIRE "xeno_stop_fire"
+#define COMSIG_XENO_AUTOFIREDELAY_MODIFIED "xeno_firedelay_modified"
+
+
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()
 

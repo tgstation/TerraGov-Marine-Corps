@@ -240,7 +240,7 @@
 
 
 /mob/living/silicon/ai/proc/camera_visibility(mob/camera/aiEye/moved_eye)
-	GLOB.cameranet.visibility(moved_eye, client, all_eyes, USE_STATIC_OPAQUE)
+	GLOB.cameranet.visibility(moved_eye, client, all_eyes, TRUE)
 
 
 /mob/living/silicon/ai/proc/can_see(atom/A)
@@ -275,8 +275,8 @@
 		GLOB.cameranet.visibility(eyeobj, client, all_eyes, initial(eyeobj?.use_static))
 	else
 		sight = NONE
-		eyeobj?.use_static = USE_STATIC_NONE
-		GLOB.cameranet.visibility(eyeobj, client, all_eyes, USE_STATIC_NONE)
+		eyeobj?.use_static = FALSE
+		GLOB.cameranet.visibility(eyeobj, client, all_eyes, FALSE)
 	if(camera_light_on)
 		light_cameras()
 	if(istype(A, /obj/machinery/camera))

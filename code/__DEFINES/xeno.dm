@@ -55,6 +55,7 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 #define PRIMORDIAL_SHRIKE "Primordial Shrike"
 #define PRIMORDIAL_DEFILER "Primordial Defiler"
 #define PRIMORDIAL_SENTINEL "Primordial Sentinel"
+#define PRIMORDIAL_SPITTER "Primordial Spitter"
 #define PRIMORDIAL_RAVAGER "Primordial Ravager"
 #define PRIMORDIAL_CRUSHER "Primordial Crusher"
 #define PRIMORDIAL_HUNTER "Primordial Hunter"
@@ -62,6 +63,7 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 #define PRIMORDIAL_RUNNER "Primordial Runner"
 #define PRIMORDIAL_WRAITH "Primordial Wraith"
 #define PRIMORDIAL_HIVELORD "Primordial Hivelord"
+#define PRIMORDIAL_BULL "Primordial Bull"
 
 GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 	/mob/living/carbon/xenomorph/beetle/ai,

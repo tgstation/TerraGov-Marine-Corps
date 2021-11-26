@@ -51,3 +51,5 @@
 
 #define ATTACHMENT_SLOT_UNIFORM "uniform"
 #define ATTACHMENT_SLOT_UNIFORM_TIE "tie"
+
+#define ATTACHMENT_SLOT_BADGE "badge"

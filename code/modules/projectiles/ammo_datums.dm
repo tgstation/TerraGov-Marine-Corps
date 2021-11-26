@@ -589,6 +589,23 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 15
 	sundering = 2
 
+/datum/ammo/bullet/rifle/standard_br
+	name = "light marksman bullet"
+	hud_state = "hivelo"
+	hud_state_empty = "hivelo_empty"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	penetration = 10
+	damage = 30
+	sundering = 1
+
+/datum/ammo/bullet/rifle/standard_br/incendiary
+	name = "incendiary light marksman bullet"
+	hud_state = "hivelo"
+	hud_state_empty = "hivelo_empty"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
+	damage = 25
+	sundering = 0
+
 /datum/ammo/bullet/rifle/standard_dmr/incendiary
 	name = "incendiary marksman bullet"
 	hud_state = "hivelo_fire"
@@ -1846,6 +1863,13 @@ datum/ammo/bullet/revolver/tp44
 	name = "acid spatter"
 	damage = 30
 	flags_ammo_behavior = AMMO_XENO
+
+/datum/ammo/xeno/acid/auto
+	name = "light acid spatter"
+	damage = 10
+	flags_ammo_behavior = AMMO_XENO
+	spit_cost = 25
+	added_spit_delay = 0
 
 /datum/ammo/xeno/acid/passthrough
 	name = "acid spittle"
