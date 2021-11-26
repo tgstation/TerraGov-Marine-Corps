@@ -381,7 +381,7 @@
 			/obj/item/minigun_powerpack = 2,
 			/obj/item/ammo_magazine/shotgun/mbx900 = 2,
 			/obj/item/bodybag/tarp = 2,
-			/obj/item/explosive/plastique = 2,
+			/obj/item/explosive/plastique = 5,
 			/obj/item/minerupgrade/automatic = 3,
 			/obj/item/fulton_extraction_pack = 2,
 			/obj/item/clothing/suit/storage/marine/harness/boomvest = 20,
@@ -431,7 +431,7 @@
 	products = list(
 		"Surplus Special Equipment" = list(
 			/obj/item/bodybag/tarp = 2,
-			/obj/item/explosive/plastique = 2,
+			/obj/item/explosive/plastique = 5,
 			/obj/item/minerupgrade/automatic = 3,
 			/obj/item/radio/headset/mainship/marine/alpha = -1,
 			/obj/item/radio/headset/mainship/marine/bravo = -1,
@@ -799,7 +799,7 @@
 		/obj/item/armor_module/storage/uniform/webbing = 1,
 		/obj/item/beacon/supply_beacon = 1,
 		/obj/item/beacon/orbital_bombardment_beacon = 1,
-		/obj/item/explosive/plastique = 1,
+		/obj/item/explosive/plastique = 2,
 		/obj/item/explosive/grenade/smokebomb = 3,
 		/obj/item/binoculars/tactical = 1,
 		/obj/item/ammo_magazine/pistol/hp = 2,

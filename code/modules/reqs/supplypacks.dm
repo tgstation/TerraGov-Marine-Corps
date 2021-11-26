@@ -314,7 +314,7 @@ WEAPONS
 /datum/supply_packs/weapons/plastique
 	name = "C4 plastic explosive"
 	contains = list(/obj/item/explosive/plastique)
-	cost = 5
+	cost = 3
 
 /datum/supply_packs/weapons/mortar
 	name = "M402 mortar crate"
