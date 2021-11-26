@@ -1976,6 +1976,14 @@ datum/ammo/bullet/revolver/tp44
 	trail_spread_system.set_up(0, T)
 	trail_spread_system.start()
 
+/**
+ * Loads a trap with a gas cloud depending on current glob type
+ * Called when something with a boiler glob as current ammo interacts with an empty resin trap.
+ * * Args:
+ * * trap: The trap being loaded
+ * * user_xeno: The xeno interacting with the trap
+ * * Returns: TRUE on success, FALSE on failure.
+**/
 /datum/ammo/xeno/boiler_gas/proc/enhance_trap(obj/structure/xeno/trap/trap, mob/living/carbon/xenomorph/user_xeno)
 	if(!do_after(user_xeno, 2 SECONDS, TRUE, trap))
 		return FALSE
