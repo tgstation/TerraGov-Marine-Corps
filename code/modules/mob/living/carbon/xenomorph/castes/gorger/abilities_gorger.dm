@@ -155,7 +155,6 @@
 			target_human.AdjustImmobilized(-GORGER_DRAIN_DELAY)
 			break
 	REMOVE_TRAIT(owner_xeno, TRAIT_HANDS_BLOCKED, src)
-	target_human.ParalyzeNoChain(0.25 SECONDS)
 	target_human.blur_eyes(1)
 	add_cooldown()
 
