@@ -1,0 +1,4 @@
+author: "EvilMelonTheSecond"
+delete-after: True
+changes: 
+  - balance: "Light neurotox now has purge if metabolized too long"
