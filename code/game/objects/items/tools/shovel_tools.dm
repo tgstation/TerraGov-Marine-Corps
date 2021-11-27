@@ -67,9 +67,6 @@
 		return
 
 	if(isturf(target))
-		if (sharp)
-			shovelspeed = 10
-			
 		if(!dirt_amt)
 			var/turf/T = target
 			var/turfdirt = T.get_dirt_type()
@@ -182,6 +179,7 @@
 		return
 	sharp = IS_SHARP_ITEM_SIMPLE
 	name = "sharpened " + name
+	shovelspeed = 10
 	force = 60
 	update_icon()
 
