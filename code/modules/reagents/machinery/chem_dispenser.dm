@@ -58,8 +58,6 @@
 	)
 
 	var/list/recording_recipe
-	///Whether untrained people get a delay when using it
-	var/needs_medical_training = TRUE
 	///If TRUE, we'll clear a recipe we click on instead of dispensing it
 	var/clearing_recipe = FALSE
 
@@ -174,15 +172,6 @@
 	. = ..()
 	if(.)
 		return
-
-	if(needs_medical_training && ishuman(usr))
-		var/mob/living/carbon/human/user = usr
-		if(!user.skills.getRating("medical"))
-			if(user.do_actions)
-				return
-			to_chat(user, span_notice("You start fiddling with \the [src]..."))
-			if(!do_after(user, SKILL_TASK_EASY, TRUE, src, BUSY_ICON_UNSKILLED))
-				return
 
 	switch(action)
 		if("amount")
@@ -411,8 +400,6 @@
 		/datum/reagent/consumable/ethanol/thirteenloko,
 		/datum/reagent/consumable/drink/grapesoda,
 	)
-	needs_medical_training = FALSE
-
 
 /obj/machinery/chem_dispenser/beer
 	icon_state = "booze_dispenser"
@@ -452,4 +439,3 @@
 		/datum/reagent/consumable/drink/watermelonjuice,
 		/datum/reagent/consumable/drink/berryjuice,
 	)
-	needs_medical_training = FALSE
