@@ -1845,7 +1845,6 @@
 /area/sulaco/medbay/cmo)
 "ahS" = (
 /obj/structure/table/mainship,
-/obj/item/tool/pickaxe/plasmacutter,
 /obj/item/cell/high,
 /obj/item/cell/high,
 /obj/item/clothing/glasses/welding,
