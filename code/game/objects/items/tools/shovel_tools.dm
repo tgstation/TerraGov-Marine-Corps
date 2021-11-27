@@ -67,6 +67,9 @@
 		return
 
 	if(isturf(target))
+		if (sharp)
+			shovelspeed = 10
+			
 		if(!dirt_amt)
 			var/turf/T = target
 			var/turfdirt = T.get_dirt_type()
