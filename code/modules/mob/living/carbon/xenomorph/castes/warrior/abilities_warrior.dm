@@ -213,7 +213,7 @@
 			for(var/i in temp)
 				if(ishuman(i))
 					var/mob/living/carbon/human/pin = i //Bowling pins
-					pin.KnockdownNoChain(1 SECONDS)
+					pin.KnockdownNoChain(2 SECONDS)
 					to_chat(pin, span_highdanger("[victim] crashes into us!"))
 		T = temp
 
