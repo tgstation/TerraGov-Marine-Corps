@@ -98,6 +98,8 @@
 	if(attachment_data[ON_ATTACH])
 		var/datum/callback/attachment_on_attach = CALLBACK(attachment, attachment_data[ON_ATTACH])
 		attachment_on_attach.Invoke(parent, attacker)
+	SEND_SIGNAL(attachment, COMSIG_ATTACHMENT_ATTACHED, parent, attacker)
+	SEND_SIGNAL(parent, COMSIG_ATTACHMENT_ATTACHED_TO_ITEM, attachment, attacker)
 
 	RegisterSignal(attachment, COMSIG_ATOM_UPDATE_ICON, .proc/update_parent_overlay)
 	update_parent_overlay()
@@ -157,7 +159,7 @@
 
 	var/slot = attachment_data[SLOT]
 
-	if(!(slot in slots) || !(attachment.type in attachables_allowed)) //If theres no slot on parent, or if the attachment type isnt allowed, returns FALSE.
+	if(!(slot in slots) || (!(attachment.type in attachables_allowed) && !CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_BYPASS_ALLOWED_LIST))) //If theres no slot on parent, or if the attachment type isnt allowed, returns FALSE.
 		to_chat(user, span_warning("You cannot attach [attachment] to [parent]!"))
 		return FALSE
 
@@ -261,6 +263,9 @@
 		var/datum/callback/attachment_on_detach = CALLBACK(attachment, attachment_data[ON_DETACH])
 		attachment_on_detach.Invoke(parent, user)
 
+	SEND_SIGNAL(attachment, COMSIG_ATTACHMENT_DETACHED, parent, user)
+	SEND_SIGNAL(parent, COMSIG_ATTACHMENT_DETACHED_FROM_ITEM, attachment, user)
+
 ///This is for other objects to be able to attach things without the need for a user.
 /datum/component/attachment_handler/proc/attach_without_user(datum/source, obj/item/attachment)
 	SIGNAL_HANDLER
@@ -288,9 +293,7 @@
 		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
 			icon_state = attachment.icon_state
 			icon = attachment.icon
-
-		overlay = image(icon, parent_item, icon_state, attachment.worn_layer)
-
+		overlay = image(icon, parent_item, icon_state, attachment_data[ATTACHMENT_LAYER])
 		var/slot_x = 0 //This and slot_y are for the event that the parent did not have an overlay_offsets. In that case the offsets default to 0
 		var/slot_y = 0
 		for(var/attachment_slot in attachment_offsets)
@@ -320,20 +323,20 @@
 		var/list/attachment_data = attachment_data_by_slot[slot]
 		if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
 			continue
-		var/image/new_overlay
-
 		var/icon = attachment.icon
 		var/icon_state = attachment.icon_state
 		var/suffix = ""
 		if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
 			if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SEPERATE_MOB_OVERLAY))
-				if(attachment_data[MOB_OVERLAY_ICON])
+				if(attachment_data[MOB_OVERLAY_ICON] != attachment_data[OVERLAY_ICON])
 					icon = attachment_data[MOB_OVERLAY_ICON]
 				else
 					suffix = "_m"
 			else
-				suffix = "_a"
-		new_overlay = image(icon, source, icon_state + suffix)
+				icon = attachment_data[OVERLAY_ICON]
+				suffix = attachment.icon == icon ? "_a" : ""
+		var/image/new_overlay
+		new_overlay = image(icon, source, icon_state + suffix, attachment_data[ATTACHMENT_LAYER])
 		if(attachment_data[MOB_PIXEL_SHIFT_X])
 			new_overlay.pixel_x += attachment_data[MOB_PIXEL_SHIFT_X]
 		if(attachment_data[MOB_PIXEL_SHIFT_Y])
