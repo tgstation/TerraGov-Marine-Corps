@@ -1,6 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "Minions no longer move when unconcious or dead"
-  - bugfix: "Minions no longer stuck by opened req railing"
-  - refactor: "Refactor pathfinding"

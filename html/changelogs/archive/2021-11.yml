@@ -161,3 +161,17 @@
 2021-11-26:
   BraveMole:
   - rscadd: Zombie player can rally nearby zombie to make funny waves
+2021-11-27:
+  BraveMole:
+  - bugfix: Minions no longer move when unconcious or dead
+  - bugfix: Minions no longer stuck by opened req railing
+  - refactor: Refactor pathfinding
+  EvilMelonTheSecond:
+  - balance: Light neurotox now has purge if metabolized too long
+  Lewdcifer:
+  - balance: 'C4 rebalance: no skill requirement, deploys faster, mostly silent, creates
+      smoke when detonating, now has a backblast around it, reduced inventory size.
+      C4 made cheaper in reqs, vendors now have more C4 by default.'
+  hyper2snyper:
+  - rscadd: Adds the Shoulder Gun Module, a new gun attachment/armor module that is
+      a t3-4 drop from the researcher console.
