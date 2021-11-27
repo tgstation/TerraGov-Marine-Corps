@@ -216,7 +216,7 @@ WEAPONS
 /datum/supply_packs/weapons/zx76
 	name = "ZX-76 Twin-Barrled Burst Shotgun"
 	contains = list(/obj/item/weapon/gun/shotgun/zx76)
-	cost = 120
+	cost = 100
 
 /datum/supply_packs/weapons/autosniper
 	name = "IFF Auto Sniper kit"
@@ -314,7 +314,7 @@ WEAPONS
 /datum/supply_packs/weapons/plastique
 	name = "C4 plastic explosive"
 	contains = list(/obj/item/explosive/plastique)
-	cost = 5
+	cost = 3
 
 /datum/supply_packs/weapons/mortar
 	name = "M402 mortar crate"
@@ -873,12 +873,12 @@ CLOTHING
 
 /datum/supply_packs/clothing/webbing
 	name = "webbing"
-	contains = list(/obj/item/clothing/tie/storage/webbing)
+	contains = list(/obj/item/armor_module/storage/uniform/webbing)
 	cost = 2
 
 /datum/supply_packs/clothing/brown_vest
 	name = "brown_vest"
-	contains = list(/obj/item/clothing/tie/storage/brown_vest)
+	contains = list(/obj/item/armor_module/storage/uniform/brown_vest)
 	cost = 2
 
 /datum/supply_packs/clothing/revolver

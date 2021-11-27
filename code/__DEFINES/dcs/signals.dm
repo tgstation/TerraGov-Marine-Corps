@@ -241,6 +241,7 @@
 #define COMSIG_UNMANNED_ABILITY_UPDATED "unmanned_ability_update"
 
 // /obj/item signals
+#define COMSIG_ITEM_APPLY_CUSTOM_OVERLAY "item_apply_custom_overlay" //from base of obj/item/apply_custom(): (/image/standing)
 #define COMSIG_ITEM_ATTACK "item_attack"						//from base of obj/item/attack(): (/mob/living/target, /mob/living/user)
 #define COMSIG_ITEM_ATTACK_ALTERNATE "item_attack_alt"			//from base of obj/item/attack_alternate(): (/mob/living/target, /mob/living/user)
 #define COMSIG_ITEM_ATTACK_SELF "item_attack_self"				//from base of obj/item/attack_self(): (/mob)
@@ -285,6 +286,11 @@
 
 #define COMSIG_ITEM_UNDEPLOY "item_undeploy" //from base of /obj/machinery/deployable
 
+#define COMSIG_ATTACHMENT_ATTACHED "attachment_attached"
+#define COMSIG_ATTACHMENT_ATTACHED_TO_ITEM "attachment_attached_to_item"
+#define COMSIG_ATTACHMENT_DETACHED "attachment_detached"
+#define COMSIG_ATTACHMENT_DETACHED_FROM_ITEM "attachment_detached_from_item"
+
 #define COMSIG_LOADOUT_VENDOR_VENDED_GUN_ATTACHMENT "loadout_vended_gun_attachment" //from base of /datum/item_representation/gun_attachement/proc/install_on_gun() : (/obj/item/attachment)
 #define COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT "loadout_vended_armor_attachment" //from base of /datum/item_representation/armor_module/proc/install_on_armor() : (/obj/item/attachment)
 
@@ -308,6 +314,11 @@
 #define COMSIG_GUN_USER_SET "gun_user_set"
 #define COMSIG_MOB_GUN_FIRED "mob_gun_fired"
 #define COMSIG_MOB_GUN_AUTOFIRED "mob_gun_autofired"
+
+#define COMSIG_XENO_FIRE "xeno_fire"
+#define COMSIG_XENO_STOP_FIRE "xeno_stop_fire"
+#define COMSIG_XENO_AUTOFIREDELAY_MODIFIED "xeno_firedelay_modified"
+
 
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()
@@ -655,6 +666,7 @@
 #define COMSIG_XENOABILITY_TOGGLE_SAVAGE "xenoability_toggle_savage"
 #define COMSIG_XENOABILITY_POUNCE "xenoability_pounce"
 #define COMSIG_XENOABILITY_EVASION "xenoability_evasion"
+#define COMSIG_XENOABILITY_SNATCH "xenoability_snatch"
 
 #define COMSIG_XENOABILITY_NEUROGAS_GRENADE "xenoability_neurogas_nade"
 
@@ -707,8 +719,11 @@
 
 // Action state signal that's sent whenever the action state has a distance maintained with the target being walked to
 #define COMSIG_STATE_MAINTAINED_DISTANCE "action_state_maintained_dist_with_target"
+	#define COMSIG_MAINTAIN_POSITION (1<<0)
 #define COMSIG_OBSTRUCTED_MOVE "unable_to_step_towards_thing" //Tried to step in a direction and there was a obstruction
 	#define COMSIG_OBSTACLE_DEALT_WITH (1<<0)
+
+#define COMSIG_PATHFINDER_SET_ATOM_TO_WALK_TO "set_atom_to_walk_to"
 
 // /datum/song signals
 

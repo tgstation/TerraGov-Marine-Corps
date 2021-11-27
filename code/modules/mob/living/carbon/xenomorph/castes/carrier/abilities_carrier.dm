@@ -58,7 +58,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 			return succeed_activate()
 
 	var/obj/item/clothing/mask/facehugger/F = X.get_active_held_item()
-	if(!F) //empty active hand
+	if(!istype(F) || F.stat == DEAD) //empty active hand
 		//if no hugger in active hand, we take one from our storage
 		if(!X.huggers)
 			to_chat(X, span_warning("We don't have any facehuggers to use!"))
@@ -69,10 +69,6 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 		X.put_in_active_hand(F)
 		to_chat(X, span_xenonotice("We grab one of the facehuggers in our storage. Now sheltering: [X.huggers] / [X.xeno_caste.huggers_max]."))
-
-	if(!istype(F)) //something else in our hand
-		to_chat(X, span_warning("We need a facehugger in our hand to throw one!"))
-		return fail_activate()
 
 	if(!cooldown_id)
 		X.dropItemToGround(F)
@@ -157,12 +153,12 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	qdel(E)
 
 // ***************************************
-// *********** Hugger trap
+// ********* Trap
 // ***************************************
 /datum/action/xeno_action/place_trap
-	name = "Place hugger trap"
+	name = "Place trap"
 	action_icon_state = "place_trap"
-	mechanics_text = "Place a hole on weeds that can be filled with a hugger. Activates when a marine steps on it."
+	mechanics_text = "Place a hole on weeds that can be filled with a hugger or acid. Activates when a marine steps on it."
 	plasma_cost = 400
 	keybind_signal = COMSIG_XENOABILITY_PLACE_TRAP
 
@@ -188,10 +184,10 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	succeed_activate()
 
 	playsound(T, "alien_resin_build", 25)
-	GLOB.round_statistics.carrier_traps++
+	GLOB.round_statistics.trap_holes++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "carrier_traps")
-	new /obj/structure/xeno/trap(T)
-	to_chat(owner, span_xenonotice("We place a hugger trap on the weeds, it still needs a facehugger."))
+	new /obj/structure/xeno/trap(T, owner)
+	to_chat(owner, span_xenonotice("We place a trap on the weeds, but it still needs to be filled."))
 
 // ***************************************
 // *********** Spawn hugger

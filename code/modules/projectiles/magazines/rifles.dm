@@ -88,22 +88,22 @@
 //T64 BR
 
 /obj/item/ammo_magazine/rifle/standard_br
-	name = "\improper T-64 magazine (10x27mm)"
+	name = "\improper T-64 magazine (10x26mm)"
 	desc = "A 10mm battle rifle magazine."
-	caliber = CALIBER_10x27_CASELESS
+	caliber = CALIBER_10x265_CASELESS
 	icon_state = "t64"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
+	default_ammo = /datum/ammo/bullet/rifle/standard_br
 	max_rounds = 35
 	icon_state_mini = "mag_rifle_big"
 
 /obj/item/ammo_magazine/rifle/standard_br/incendiary
-	name = "\improper T-64 BR incendiary magazine (10x27mm)"
+	name = "\improper T-64 BR incendiary magazine (10x26.5mm)"
 	desc = "A 10mm incendiary battle rifle magazine, carries less rounds however."
-	caliber = CALIBER_10X27_INCENDIARY_CASELESS
 	icon_state = "t64_incin"
+	caliber = CALIBER_10x265_CASELESS
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle/standard_dmr/incendiary
+	default_ammo = /datum/ammo/bullet/rifle/standard_br/incendiary
 	max_rounds = 35
 	icon_state_mini = "mag_rifle_big_red"
 

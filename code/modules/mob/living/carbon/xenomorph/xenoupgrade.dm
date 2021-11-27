@@ -94,6 +94,9 @@
 /mob/living/carbon/xenomorph/runner/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/runner/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //-----RUNNER END-----//
 //================//
 //-----BULL START-----//
@@ -106,6 +109,9 @@
 
 /mob/living/carbon/xenomorph/bull/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/bull/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //-----BULL END-----//
 //================//
@@ -163,6 +169,9 @@
 
 /mob/living/carbon/xenomorph/hivelord/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/hivelord/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----HIVELORD END----//
 //================//
@@ -223,6 +232,9 @@
 
 /mob/living/carbon/xenomorph/spitter/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/spitter/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //-----SPITTER END-----//
 //================//

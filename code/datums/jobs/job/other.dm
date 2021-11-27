@@ -89,5 +89,5 @@
 	head = /obj/item/clothing/head/xenos
 	wear_suit = /obj/item/clothing/suit/xenos
 
-/datum/job/husk
+/datum/job/zombie
 	title = "Oh god run"

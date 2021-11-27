@@ -99,12 +99,6 @@
 #define GUN_FIREMODE_AUTOMATIC "automatic fire mode"
 #define GUN_FIREMODE_AUTOBURST "auto-burst-fire mode"
 
-//Gun attachable related flags.
-//flags_attach_features
-#define ATTACH_REMOVABLE (1<<0)
-#define ATTACH_ACTIVATION (1<<1)
-#define ATTACH_SAME_ICON (1<<2)
-
 //Ammo magazine defines, for flags_magazine
 #define MAGAZINE_REFILLABLE (1<<0)
 #define MAGAZINE_HANDFUL (1<<1)

@@ -324,7 +324,7 @@
 			visible_message(span_xenowarning("[src] crawls into [T]!"))
 			forceMove(T)
 			T.hugger = src
-			T.icon_state = "trap1"
+			T.set_trap_type(TRAP_HUGGER)
 			go_idle(TRUE)
 			return FALSE
 		kill_hugger()

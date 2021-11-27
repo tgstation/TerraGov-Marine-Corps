@@ -765,7 +765,7 @@
 	play_fire_sound(loc)
 
 	if(muzzle_flash && !muzzle_flash.applied)
-		var/atom/movable/flash_loc = master_gun ? gun_user : loc
+		var/flash_loc = (master_gun || !istype(loc, /obj/machinery/deployable/mounted)) ? gun_user : loc
 		var/prev_light = light_range
 		if(!light_on && (light_range <= muzzle_flash_lum))
 			set_light_range(muzzle_flash_lum)

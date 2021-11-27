@@ -23,6 +23,7 @@
 		/obj/item/attachable/flamer_nozzle,
 		/obj/item/attachable/flamer_nozzle/wide,
 		/obj/item/attachable/flamer_nozzle/wide/red,
+		/obj/item/attachable/shoulder_mount,
 		)
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_MUZZLE,

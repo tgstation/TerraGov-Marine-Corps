@@ -65,6 +65,7 @@
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
@@ -134,6 +135,7 @@
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
@@ -207,6 +209,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_CAN_POINTBLANK
@@ -232,7 +235,7 @@
 
 /obj/item/weapon/gun/rifle/standard_br
 	name = "\improper T-64 battle rifle"
-	desc = "The T-64 is the TerraGov Marine Corps main battle rifle. It is known for its consistent ability to perform well at most ranges, and close range stopping power. It is mostly used by people who prefer a bigger round than the average. Uses 10x27mm caseless caliber."
+	desc = "The T-64 is the TerraGov Marine Corps main battle rifle. It is known for its consistent ability to perform well at most ranges, and close range stopping power. It is mostly used by people who prefer a bigger round than the average. Uses 10x26.5smm caseless caliber."
 	icon_state = "t64"
 	item_state = "t64"
 	icon = 'icons/Marine/gun64.dmi'
@@ -242,7 +245,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
-	caliber = CALIBER_10x27_CASELESS //codex
+	caliber = CALIBER_10x265_CASELESS //codex
 	aim_slowdown = 0.55
 	wield_delay = 0.7 SECONDS
 	force = 20
@@ -274,6 +277,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_CAN_POINTBLANK
@@ -285,13 +289,11 @@
 	aim_speed_modifier = 3
 
 	fire_delay = 0.35 SECONDS
-	damage_mult = 0.5 //uses the marksman bullet, like the DMR.
 	burst_amount = 3
-	burst_delay = 0.1 SECONDS
-	extra_delay = 0.15 SECONDS
+	burst_delay = 0.10 SECONDS
+	extra_delay = 0.35 SECONDS
 	accuracy_mult = 1.25
 	scatter = -10
-
 //-------------------------------------------------------
 //M412 Pulse Rifle
 
@@ -338,6 +340,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
@@ -386,6 +389,7 @@
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/stock/irremoveable/rifle,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 9, "stock_y" = 15)
@@ -431,6 +435,7 @@
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/stock/irremoveable/m41a,
 		/obj/item/weapon/gun/grenade_launcher/underslung/invisible,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
@@ -469,6 +474,7 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/stock/ak47,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
@@ -525,6 +531,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
@@ -706,6 +713,7 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
@@ -767,6 +775,7 @@
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/stock/irremoveable/rifle,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
@@ -955,6 +964,7 @@
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/stock/t29stock,
 		/obj/item/attachable/t29barrel,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF

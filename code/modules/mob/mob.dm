@@ -39,6 +39,7 @@
 	update_config_movespeed()
 	update_movespeed(TRUE)
 	log_mob_tag("\[[tag]\] CREATED: [key_name(src)]")
+	become_hearing_sensitive()
 
 
 /mob/Stat()
@@ -338,20 +339,6 @@
 		B.remove_from_storage(W, user = src)
 		put_in_hands(W)
 		return TRUE
-	else if(istype(I, /obj/item/clothing/under))
-		var/obj/item/clothing/under/U = I
-		if(!U.hastie)
-			return FALSE
-		var/obj/item/clothing/tie/storage/T = U.hastie
-		if(!istype(T) || !T.hold)
-			return FALSE
-		var/obj/item/storage/internal/S = T.hold
-		if(!length(S.contents))
-			return FALSE
-		var/obj/item/W = S.contents[length(S.contents)]
-		S.remove_from_storage(W, user = src)
-		put_in_hands(W)
-		return TRUE
 	else if(istype(I, /obj/item/clothing/suit/storage))
 		var/obj/item/clothing/suit/storage/S = I
 		if(!S.pockets)
@@ -438,7 +425,7 @@
 	. = ..()
 	if(.)
 		return
-	if(!ismob(dropping) || isxeno(user) || isxeno(dropping) || ishusk(user))
+	if(!ismob(dropping) || isxeno(user) || isxeno(dropping) || iszombie(user))
 		return
 	// If not dragged onto myself or dragging my own sprite onto myself
 	if(user != src || dropping == user)

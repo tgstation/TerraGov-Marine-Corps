@@ -3,6 +3,7 @@
 /obj/item/storage/pill_bottle/packet
 	name = "Pill packet"
 	desc = "Containts pills. Once you take them out they don't go back in."
+	greyscale_config = null //this line stops pill packets from turning into pill bottles
 	icon_state = "pill_packet"
 	cant_hold = list(/obj/item/reagent_containers/pill) //Nada. Once you take the pills out. They don't come back in.
 	storage_slots = 4

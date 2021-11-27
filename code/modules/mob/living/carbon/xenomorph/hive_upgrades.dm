@@ -268,6 +268,12 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	psypoint_cost = 75
 	icon = "primosent"
 
+/datum/hive_upgrade/primordial/spitter
+	name = PRIMORDIAL_SPITTER
+	desc = "Decreases the spitters fire delay to epic proportions."
+	psypoint_cost = 125
+	icon = "primospitter"
+
 /datum/hive_upgrade/primordial/ravager
 	name = PRIMORDIAL_RAVAGER
 	desc = "Unlocks the primordial ravgers vampirism. A passive ability that increases the ravagers healing as it hits more enemies."
@@ -291,3 +297,27 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Unlocks the primordial defenders centrifugal force. An ability that allows them to rapidly spin and attack enemies nearby."
 	psypoint_cost = 75
 	icon = "primodefender"
+
+/datum/hive_upgrade/primordial/runner
+	name = PRIMORDIAL_RUNNER
+	desc = "Unlocks the primordial runner snatch ability. An ability that allows them to steal equipped items momentarily."
+	psypoint_cost = 75
+	icon = "primorunner"
+
+/datum/hive_upgrade/primordial/wraith
+	name = PRIMORDIAL_WRAITH
+	desc = "Unlocks the primordial wraith timestop ability. An ability that allows them to freeze nearby projectiles."
+	psypoint_cost = 125
+	icon = "primowraith"
+
+/datum/hive_upgrade/primordial/hivelord
+	name = PRIMORDIAL_HIVELORD
+	desc = "Unlocks the primordial hivelords traps, and upgrade it's corrosive acid to strong."
+	psypoint_cost = 125
+	icon = "primohivelord"
+
+/datum/hive_upgrade/primordial/bull
+	name = PRIMORDIAL_BULL
+	desc = "Unlocks the primordial bull agile charge, which allows him to change direction while charging, even diagonally"
+	psypoint_cost = 125
+	icon = "primobull"

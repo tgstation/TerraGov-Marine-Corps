@@ -176,9 +176,13 @@
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
 	action_activate()
-	owner.canmove = FALSE
-	addtimer(VARSET_CALLBACK(owner, canmove, TRUE), windup_time)
+	LAZYINCREMENT(owner.do_actions, target)
+	addtimer(CALLBACK(src, .proc/decrease_do_action, target), windup_time)
 	return TRUE
+
+///Decrease the do_actions of the owner
+/datum/action/xeno_action/activable/forward_charge/proc/decrease_do_action(atom/target)
+	LAZYDECREMENT(owner.do_actions, target)
 
 // ***************************************
 // *********** Crest defense

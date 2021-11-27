@@ -9,6 +9,7 @@
 	anchored = FALSE
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	obj_flags = CAN_BE_HIT
+	resistance_flags = XENO_DAMAGEABLE
 	COOLDOWN_DECLARE(cooldown_vehicle_move)
 	///mob = bitflags of their control level.
 	var/list/mob/occupants

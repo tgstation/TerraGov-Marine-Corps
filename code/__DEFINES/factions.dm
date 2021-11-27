@@ -2,6 +2,7 @@
 #define FACTION_TERRAGOV "TerraGov"
 #define FACTION_TERRAGOV_REBEL "TerraGov Rebel"
 #define FACTION_XENO "Xeno"
+#define FACTION_ZOMBIE "Zombie"
 #define FACTION_CLF "Colonial Liberation Force"
 #define FACTION_DEATHSQUAD "Deathsquad"
 #define FACTION_FREELANCERS "Freelancers"

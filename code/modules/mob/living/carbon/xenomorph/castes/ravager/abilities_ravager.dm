@@ -479,11 +479,10 @@
 	SIGNAL_HANDLER
 	if(!leech_count)
 		return
-	var/count = leech_count
 	//heals 10% extra per leeched
-	count /= 10
-	count += 1
-	heal_data += count
+	var/heal_mod = 1 + (leech_count/10)
+	
+	heal_data[1] = (heal_data[1] * heal_mod)
 
 ///Adds the slashed mob to tracked damage mobs
 /datum/action/xeno_action/vampirism/proc/on_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)

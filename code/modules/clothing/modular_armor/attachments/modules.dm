@@ -83,6 +83,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_armor"
 	item_state = "mod_armor_a"
+	attachment_layer = COLLAR_LAYER
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 	slowdown = 0.3
 	slot = ATTACHMENT_SLOT_MODULE
@@ -170,7 +171,7 @@
 	soft_armor = list("bomb" = 40)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_boomimmune_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_boomimmune_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_boomimmune_xn")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_bombimmune_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_bombimmune_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_bombimmune_xn")
 
 /**
  * Extra armor module
@@ -213,7 +214,7 @@
 	icon_state = "welding_head"
 	item_state = "welding_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
 	///Mod for extra eye protection when activated.
 	var/eye_protection_mod = 2
@@ -259,7 +260,7 @@
 	flags_item = DOES_NOT_NEED_HANDS
 	zoom_tile_offset = 11
 	zoom_viewsize = 12
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 
 /obj/item/armor_module/module/binoculars/activate(mob/living/user)
@@ -288,7 +289,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "antenna_head"
 	item_state = "antenna_head_a"
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	/// Reference to the datum used by the supply drop console
 	var/datum/supply_beacon/beacon_datum

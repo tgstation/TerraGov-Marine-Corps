@@ -52,6 +52,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/sniperbarrel,
 		/obj/item/attachable/scope/pmc,
+		/obj/item/attachable/shoulder_mount,
 	)
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	starting_attachment_types = list(/obj/item/attachable/scope/antimaterial, /obj/item/attachable/sniperbarrel)
@@ -437,6 +438,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	attachable_allowed = list(
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	) // One
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 
@@ -477,6 +479,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -547,6 +550,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -584,6 +588,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	aim_slowdown = 2.75
 	attachable_allowed = list(
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	general_codex_key = "explosive weapons"
@@ -635,6 +640,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
