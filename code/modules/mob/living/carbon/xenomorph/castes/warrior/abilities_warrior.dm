@@ -93,7 +93,7 @@
 	return TRUE
 
 /datum/action/xeno_action/activable/lunge/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/warrior/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
 	GLOB.round_statistics.warrior_lunges++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_lunges")
@@ -101,19 +101,19 @@
 	span_xenowarning("We lunge at [A]!"))
 
 	X.add_filter("warrior_lunge", 2, gauss_blur_filter(3))
-
 	lunge_target = A
+	//Select grapple toss.
+	var/datum/action/xeno_action/activable/toss/grapple_toss = X.actions_by_path[/datum/action/xeno_action/activable/toss]
+	grapple_toss.action_activate()
+
 	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, .proc/clean_lunge_target)
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/check_if_lunge_possible)
 	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/clean_lunge_target)
 	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/finish_lunge)
 	X.throw_at(get_step_towards(A, X), 6, 2, X)
-	if(X.pulling) //If we managed to grab something, select grapple toss
-		var/datum/action/xeno_action/activable/toss/grapple_toss = X.actions_by_path[/datum/action/xeno_action/activable/toss]
-		grapple_toss.action_activate()
-		if(!isxeno(X.pulling))
-			X.give_combo()
 
+	if(X.pulling && !isxeno(X.pulling)) //If we grabbed something give us combo.
+		X.empower(empowerable = FALSE) //Doesn't have a special interaction
 	succeed_activate()
 	add_cooldown()
 	return TRUE
@@ -184,7 +184,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/fling/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/warrior/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/victim = A
 	var/facing = get_dir(X, victim)
 	var/fling_distance = 4
@@ -279,7 +279,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/toss/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/warrior/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/movable/target = owner.pulling
 	var/fling_distance = 4
 	var/stagger_slow_stacks = 3
@@ -381,7 +381,7 @@
 
 
 /datum/action/xeno_action/activable/punch/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/warrior/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
 	var/target_zone = check_zone(X.zone_selected)
 
@@ -548,7 +548,7 @@
 	keybind_signal = COMSIG_XENOABILITY_JAB
 
 /datum/action/xeno_action/activable/punch/jab/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/warrior/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/human/target = A
 	var/target_zone = check_zone(X.zone_selected)
 	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
