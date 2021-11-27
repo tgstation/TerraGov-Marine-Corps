@@ -168,7 +168,7 @@
 	name = "foamed metal"
 	desc = "A lightweight foamed metal wall."
 	resistance_flags = XENO_DAMAGEABLE
-	max_integrity = 200
+	max_integrity = 120
 
 /obj/structure/foamedmetal/fire_act() //flamerwallhacks go BRRR
 	take_damage(10, BURN, "fire")
