@@ -84,6 +84,7 @@
 /datum/action/proc/remove_selected_frame()
 	button.vis_contents -= selected_frame
 
+///Adds an outline around the ability button
 /datum/action/proc/add_empowered_frame()
 	button.vis_contents += empowered_frame
 

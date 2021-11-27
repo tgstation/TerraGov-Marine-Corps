@@ -106,7 +106,7 @@
 	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, .proc/clean_lunge_target)
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/check_if_lunge_possible)
 	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/clean_lunge_target)
-  RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/finish_lunge)
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/finish_lunge)
 	X.throw_at(get_step_towards(A, X), 6, 2, X)
 	if(X.pulling) //If we managed to grab something, select grapple toss
 		var/datum/action/xeno_action/activable/toss/grapple_toss = X.actions_by_path[/datum/action/xeno_action/activable/toss]

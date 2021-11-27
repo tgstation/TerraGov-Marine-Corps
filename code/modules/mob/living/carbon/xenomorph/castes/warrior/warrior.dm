@@ -98,20 +98,22 @@
 	give_combo()
 	return FALSE
 
-/mob/living/carbon/xenomorph/warrior/proc/give_combo() //Handles visuals aswell
+///Primordial warriors empowered ability trigger when they get 3 combo stacks, handles visuals aswell.
+/mob/living/carbon/xenomorph/warrior/proc/give_combo()
 	if(upgrade != XENO_UPGRADE_FOUR)
 		return FALSE
 	combo++
 	if(combo >= WARRIOR_COMBO_THRESHOLD)
-		for(var/datum/action/xeno_action/A in actions)
+		for(var/datum/action/xeno_action/A AS in actions)
 			if(A.type in empowerable_actions)
 				A.add_empowered_frame()
 				A.update_button_icon()
 	addtimer(CALLBACK(src, .proc/clear_combo), WARRIOR_COMBO_FADEOUT_TIME, TIMER_OVERRIDE|TIMER_UNIQUE)
 	return TRUE
 
+///Removes all combo stacks from the warrior, removes the frame around the ability buttons.
 /mob/living/carbon/xenomorph/warrior/proc/clear_combo()
-	for(var/datum/action/xeno_action/A in actions)
+	for(var/datum/action/xeno_action/A AS in actions)
 		if(A.type in empowerable_actions)
 			A.remove_empowered_frame()
 			A.update_button_icon()
