@@ -103,7 +103,25 @@
 	item_state = "tyr_head_a"
 	soft_armor = list("melee" = 15, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "tyr_head_xn")
+	variants_by_parent_type = list(
+		/obj/item/clothing/head/modular/marine = "tyr_head_j",
+		/obj/item/clothing/head/modular/marine/skirmisher = "tyr_head_j",
+		/obj/item/clothing/head/modular/marine/scout = "tyr_head_j",
+		/obj/item/clothing/head/modular/marine/assault = "tyr_head_j",
+		/obj/item/clothing/head/modular/marine/eva = "tyr_head_j",
+		/obj/item/clothing/head/modular/marine/eva/skull = "tyr_head_j",
+		/obj/item/clothing/head/modular/marine/eod = "tyr_head_j",
+		/obj/item/clothing/head/modular/marine/infantry = "tyr_head_j",
+		/obj/item/clothing/head/helmet/marine/robot = "tyr_head_j",
+	)
+
+/obj/item/armor_module/module/tyr_head/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	ENABLE_BITFIELD(parent.flags_armor_features, ARMOR_NO_DECAP)
+
+/obj/item/armor_module/module/tyr_head/on_detach(obj/item/detaching_from, mob/user)
+	DISABLE_BITFIELD(parent.flags_armor_features, ARMOR_NO_DECAP)
+	return ..()
 
 /**
  * Environment protecttion module
