@@ -14795,11 +14795,9 @@
 /area/mainship/command/self_destruct)
 "TO" = (
 /obj/structure/rack,
-/obj/item/tool/pickaxe/plasmacutter,
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/tool/pickaxe/plasmacutter,
 /obj/item/storage/belt/utility/full,
 /obj/item/storage/belt/utility/full,
 /obj/item/tool/weldpack,
