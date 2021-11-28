@@ -157,7 +157,7 @@
 		return
 	folded = !folded
 	if(folded)
-		w_class = WEIGHT_CLASS_NORMAL
+		w_class = WEIGHT_CLASS_SMALL
 		force = 2
 	else
 		w_class = WEIGHT_CLASS_BULKY
