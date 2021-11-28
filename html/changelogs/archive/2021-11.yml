@@ -175,3 +175,12 @@
   hyper2snyper:
   - rscadd: Adds the Shoulder Gun Module, a new gun attachment/armor module that is
       a t3-4 drop from the researcher console.
+2021-11-28:
+  DeltaFire15:
+  - bugfix: Exiting a cryo tube will no longer cause weird hearing behavior.
+  Franky2025:
+  - expansion: Added damn tomato juice to booze dispensers
+  Three333Digit:
+  - balance: Increases the storage slot of the engineering storage module to 5 The
+      storage module can now hold ~~filled sandbags,~~ razorwire, handheld charger,
+      c4, razorburn grenades, detpack, signaler, circuitboards, and the light replacer

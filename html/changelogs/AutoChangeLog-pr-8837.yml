@@ -1,4 +1,0 @@
-author: "DeltaFire15"
-delete-after: True
-changes: 
-  - bugfix: "Exiting a cryo tube will no longer cause weird hearing behavior."
