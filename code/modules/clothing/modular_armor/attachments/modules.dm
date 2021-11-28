@@ -120,7 +120,8 @@
 	ENABLE_BITFIELD(parent.flags_armor_features, ARMOR_NO_DECAP)
 
 /obj/item/armor_module/module/tyr_head/on_detach(obj/item/detaching_from, mob/user)
-	DISABLE_BITFIELD(parent.flags_armor_features, ARMOR_NO_DECAP)
+	if(!CHECK_BITFIELD(initial(parent.flags_armor_features, ARMOR_NO_DECAP))
+		DISABLE_BITFIELD(parent.flags_armor_features, ARMOR_NO_DECAP)
 	return ..()
 
 /**
