@@ -22,9 +22,6 @@
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/plating/dmg1,
 /area/icy_caves/caves/crashed_ship)
-"af" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/lv624/lazarus/console)
 "ag" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/effect/landmark/nuke_spawn,
@@ -53,9 +50,14 @@
 /turf/open/floor/plating/dmg1,
 /area/icy_caves/caves/crashed_ship)
 "am" = (
-/obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/plating/icefloor,
-/area/lv624/lazarus/console)
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "an" = (
 /obj/structure/xenoautopsy/tank/broken,
 /obj/effect/decal/cleanable/blood/xeno,
@@ -66,10 +68,6 @@
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
-"ap" = (
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
 "aq" = (
 /obj/structure/xenoautopsy/tank/broken,
 /turf/open/floor/plating/mainship,
@@ -528,6 +526,17 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
+"bW" = (
+/obj/structure/cryofeed/right{
+	name = "\improper coolant feed"
+	},
+/turf/open/floor/podhatch/floor{
+	icon_state = "bcircuitoff"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "bX" = (
 /turf/closed/ice_rock/singlePart,
 /area/icy_caves/caves)
@@ -570,6 +579,14 @@
 	dir = 8
 	},
 /area/icy_caves/caves/northern)
+"ch" = (
+/obj/effect/decal/cleanable/blood/xtracks,
+/obj/effect/ai_node,
+/turf/open/shuttle/dropship/floor,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "ci" = (
 /turf/closed/ice/thin/junction,
 /area/icy_caves/caves/northern)
@@ -596,6 +613,24 @@
 	dir = 4
 	},
 /area/icy_caves/caves/northern)
+"co" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/mainship/tcomms,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "cp" = (
 /obj/item/lightstick/anchored,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -633,7 +668,10 @@
 /turf/closed/ice/corner{
 	dir = 4
 	},
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "cv" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/thin/junction{
@@ -656,6 +694,34 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/end,
 /area/icy_caves/caves/northern)
+"cD" = (
+/obj/item/tool/surgery/circular_saw,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"cE" = (
+/turf/open/floor/tile/purple/whitepurplecorner{
+	dir = 1
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"cF" = (
+/obj/structure/lattice,
+/obj/structure/monorail{
+	dir = 9
+	},
+/obj/structure/monorail{
+	dir = 5
+	},
+/turf/open/shuttle/escapepod/plain,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "cI" = (
 /turf/closed/ice/thin/single,
 /area/icy_caves/caves/northern)
@@ -671,6 +737,13 @@
 	dir = 8
 	},
 /area/icy_caves/caves/northern)
+"cL" = (
+/obj/structure/monorail,
+/turf/open/floor/mainship_hull,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "cM" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
@@ -695,10 +768,31 @@
 	dir = 1
 	},
 /area/icy_caves/caves/northern)
+"cV" = (
+/turf/open/floor/tile/white/warningstripe{
+	dir = 1
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "cW" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/ice/thin/corner,
-/area/icy_caves/caves/west)
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2
+	},
+/turf/open/space/basic,
+/area/space)
+"cX" = (
+/obj/structure/largecrate/supply,
+/obj/machinery/camera/autoname/mainship/dropship_one{
+	dir = 8;
+	pixel_x = 16
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "cY" = (
 /turf/closed/ice/thin/corner{
 	dir = 8
@@ -717,7 +811,7 @@
 /turf/closed/ice/thin/junction{
 	dir = 1
 	},
-/area/icy_caves/caves/west)
+/area/icy_caves/caves/northern)
 "de" = (
 /turf/closed/ice/thin/junction{
 	dir = 1
@@ -738,6 +832,16 @@
 	dir = 1
 	},
 /area/icy_caves/caves/west)
+"di" = (
+/obj/machinery/camera/autoname/mainship/dropship_one{
+	dir = 8;
+	pixel_x = 16
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "dj" = (
 /turf/closed/ice,
 /area/icy_caves/caves/west)
@@ -768,6 +872,25 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
+"ds" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"du" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "dw" = (
 /turf/closed/ice_rock/singleEnd{
 	dir = 4
@@ -828,28 +951,29 @@
 /turf/closed/ice/thin/intersection,
 /area/icy_caves/caves/northern)
 "dL" = (
-/obj/structure/closet/crate/science,
-/obj/item/stack/sheet/mineral/phoron/medium_stack,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
-"dM" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "dN" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "dO" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
-"dP" = (
-/turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "dQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -892,14 +1016,13 @@
 "dY" = (
 /turf/closed/ice/thin/end,
 /area/icy_caves/caves/east)
-"dZ" = (
-/obj/machinery/power/port_gen/pacman,
-/turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
 "ea" = (
 /obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "eb" = (
 /turf/closed/ice/end,
 /area/icy_caves/caves/west)
@@ -911,12 +1034,15 @@
 "ed" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "eg" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/plating/ground/ice,
+/turf/open/floor/tile/dark,
 /area/icy_caves/caves/west)
 "eh" = (
 /obj/effect/decal/cleanable/blood/splatter,
@@ -924,13 +1050,13 @@
 /area/icy_caves/caves/west)
 "ei" = (
 /obj/effect/landmark/corpsespawner/pmc,
-/turf/open/floor/plating/ground/ice,
+/turf/open/floor/tile/dark,
 /area/icy_caves/caves/west)
 "ej" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/plating/ground/ice,
+/turf/open/floor/tile/dark,
 /area/icy_caves/caves/west)
 "em" = (
 /obj/effect/decal/cleanable/blood,
@@ -991,27 +1117,22 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
 "ev" = (
-/obj/structure/closet/crate,
-/obj/item/storage/box/lightstick/red,
-/obj/item/storage/box/lightstick/red,
-/obj/item/storage/box/lightstick,
-/obj/item/storage/box/lightstick,
-/obj/item/tool/pickaxe/plasmacutter,
-/obj/effect/spawner/random/powercell,
-/obj/item/clothing/glasses/welding,
-/obj/item/explosive/plastique,
-/obj/machinery/light/small{
-	dir = 8
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "ew" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 6
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 8
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "ex" = (
 /obj/machinery/door/airlock/mainship/secure/locked/free_access{
 	name = "\improper Mining Storage"
@@ -1021,7 +1142,10 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "ey" = (
 /turf/closed/ice,
 /area/icy_caves/caves/crashed_ship)
@@ -1046,10 +1170,26 @@
 	dir = 9
 	},
 /area/icy_caves/caves/northern)
+"eC" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "Canteen"
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"eD" = (
+/obj/structure/table,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "eF" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
-/turf/open/floor/plating/ground/ice,
+/turf/open/floor/tile/dark,
 /area/icy_caves/caves/west)
 "eG" = (
 /obj/machinery/light{
@@ -1093,28 +1233,40 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
 "eM" = (
-/obj/structure/closet/crate,
-/obj/item/storage/box/lightstick/red,
-/obj/item/storage/box/lightstick/red,
-/obj/item/storage/box/lightstick,
-/obj/item/storage/box/lightstick,
-/obj/item/tool/pickaxe/plasmacutter,
-/obj/effect/spawner/random/powercell,
-/obj/item/explosive/plastique,
 /turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "eN" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"eO" = (
+/obj/structure/table/reinforced,
+/obj/item/tool/surgery/scalpel/laser3,
+/obj/item/reagent_containers/spray/pepper,
+/turf/open/floor/tile/purple/whitepurplecorner{
+	dir = 8
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "eP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "eR" = (
 /turf/closed/ice/end{
 	dir = 1
@@ -1122,18 +1274,21 @@
 /area/icy_caves/caves/south)
 "eS" = (
 /obj/machinery/light,
-/turf/open/floor/plating/ground/ice,
+/turf/open/floor/tile/dark,
 /area/icy_caves/caves/west)
 "eT" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "eU" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /obj/effect/landmark/corpsespawner/pmc,
-/turf/open/floor/plating/ground/ice,
+/turf/open/floor/tile/dark,
 /area/icy_caves/caves/west)
 "eV" = (
 /obj/structure/ore_box,
@@ -1187,13 +1342,28 @@
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/fire,
 /turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"fc" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "fd" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/powercell,
 /obj/effect/spawner/random/powercell,
 /turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "fe" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/tech_supply,
@@ -1204,7 +1374,10 @@
 /obj/item/clothing/glasses/welding,
 /obj/machinery/light/small,
 /turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "ff" = (
 /obj/structure/rack,
 /obj/structure/rack,
@@ -1212,7 +1385,10 @@
 /obj/effect/spawner/random/toolbox,
 /obj/item/clothing/glasses/welding,
 /turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "fg" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/tool,
@@ -1220,7 +1396,10 @@
 /obj/effect/spawner/random/tool,
 /obj/item/storage/belt/utility/full,
 /turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "fh" = (
 /turf/closed/ice/thin/junction,
 /area/icy_caves/caves/south)
@@ -1255,6 +1434,13 @@
 	dir = 1
 	},
 /area/icy_caves/caves/east)
+"fq" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "fs" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -1310,6 +1496,19 @@
 	dir = 9
 	},
 /area/icy_caves/caves/south)
+"fD" = (
+/obj/machinery/power/apc/drained,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "bright_clean2"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "fE" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
@@ -1328,6 +1527,12 @@
 	dir = 1
 	},
 /area/icy_caves/caves/south)
+"fI" = (
+/turf/closed/ice/thin,
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "fK" = (
 /turf/closed/ice/thin/corner{
 	dir = 1
@@ -1478,17 +1683,61 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
+"gK" = (
+/obj/structure/largecrate/supply/explosives,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "gL" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
 	},
 /turf/closed/ice_rock/corners,
 /area/icy_caves/caves)
+"gM" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/mainship/cargo,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "gN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/east)
+"gP" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/xtracks,
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "bright_clean2"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"gQ" = (
+/obj/structure/dropship_piece/one/corner/middleright,
+/turf/open/floor/mainship_hull/dir{
+	dir = 10
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "gS" = (
 /turf/closed/ice/thin/end{
 	dir = 8
@@ -1511,12 +1760,29 @@
 	},
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
+"gZ" = (
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "hb" = (
 /turf/closed/ice/junction,
 /area/icy_caves/caves/south)
 "hc" = (
 /turf/closed/ice/straight,
 /area/icy_caves/caves/east)
+"hd" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "he" = (
 /turf/closed/ice/junction{
 	dir = 4
@@ -1625,6 +1891,16 @@
 	dir = 8
 	},
 /area/icy_caves/caves/east)
+"hG" = (
+/obj/structure/table/reinforced,
+/obj/item/book/manual/research_and_development,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 4
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "hI" = (
 /obj/effect/landmark/xeno_resin_door,
 /obj/effect/ai_node,
@@ -1635,6 +1911,11 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
+"hM" = (
+/turf/closed/ice_rock/corners{
+	dir = 10
+	},
+/area/icy_caves/caves/northern)
 "hO" = (
 /turf/closed/ice/thin/single,
 /area/icy_caves/caves/east)
@@ -1646,6 +1927,14 @@
 /obj/structure/ore_box,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
+"hT" = (
+/obj/machinery/vending/medical,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "hU" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/ice,
@@ -1653,6 +1942,15 @@
 "hV" = (
 /turf/closed/ice_rock/singlePart,
 /area/icy_caves/caves/south)
+"hW" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "hX" = (
 /obj/effect/landmark/excavation_site_spawner,
 /obj/effect/ai_node,
@@ -1690,6 +1988,31 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
+"in" = (
+/obj/structure/cable,
+/turf/closed/wall/r_wall/unmeltable,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"io" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
+"ip" = (
+/obj/structure/closet/l3closet/janitor,
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "iu" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -1701,7 +2024,17 @@
 /obj/structure/cable,
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"iD" = (
+/obj/structure/largecrate/random/barrel/yellow,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "iG" = (
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
@@ -1717,13 +2050,33 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/snow/layer0,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
+"iN" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "iQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
+"iS" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "iT" = (
 /turf/closed/ice/end{
 	dir = 1
@@ -1742,11 +2095,51 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
+"jc" = (
+/obj/machinery/door/poddoor/mainship,
+/turf/open/shuttle/dropship/floor,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"jd" = (
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "je" = (
 /turf/closed/ice/thin/corner{
 	dir = 1
 	},
 /area/icy_caves/outpost/outside)
+"jf" = (
+/obj/item/stool,
+/obj/effect/decal/cleanable/vomit,
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"jk" = (
+/obj/structure/table/mainship,
+/obj/item/tool/surgery/cautery,
+/obj/item/tool/surgery/retractor,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"jo" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "bright_clean2"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "jt" = (
 /obj/machinery/floodlight/landing,
 /obj/effect/decal/warning_stripes,
@@ -1778,6 +2171,13 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
+"jC" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "jE" = (
 /obj/structure/table/reinforced,
 /obj/effect/landmark/dropship_console_spawn_lz1,
@@ -1789,12 +2189,27 @@
 	},
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ2)
+"jI" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/plating,
+/area/icy_caves/outpost/mining/west)
 "jJ" = (
 /obj/machinery/landinglight/ds1/delayone{
 	dir = 8
 	},
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ2)
+"jL" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "jM" = (
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = /obj/item/storage/backpack/satchel/norm;
@@ -1850,6 +2265,25 @@
 	dir = 4
 	},
 /area/icy_caves/outpost/research)
+"jX" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"jY" = (
+/obj/machinery/door/airlock/mainship/security,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "ka" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -1869,6 +2303,13 @@
 "ke" = (
 /turf/closed/ice/junction,
 /area/icy_caves/outpost/outside)
+"kf" = (
+/obj/machinery/computer3/server/rack,
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "kg" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/mining/east)
@@ -1895,6 +2336,14 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside)
+"kn" = (
+/turf/closed/ice/thin/end{
+	dir = 1
+	},
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "ko" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -2039,6 +2488,17 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
+"kR" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/security/wooden_tv,
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "bright_clean2"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "kS" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -2067,6 +2527,15 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/office)
+"kY" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "lc" = (
 /turf/closed/ice/straight{
 	dir = 4
@@ -2138,6 +2607,29 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
+"lu" = (
+/obj/structure/lattice,
+/obj/structure/dropship_piece/one/front/left,
+/obj/structure/monorail{
+	dir = 5
+	},
+/obj/structure/monorail{
+	dir = 9
+	},
+/turf/open/shuttle/escapepod/plain,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"lv" = (
+/obj/machinery/door/poddoor/two_tile_ver,
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 4
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "lx" = (
 /obj/machinery/light{
 	dir = 8
@@ -2147,7 +2639,10 @@
 "lA" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "lB" = (
 /obj/structure/table,
 /obj/structure/paper_bin,
@@ -2162,7 +2657,10 @@
 /turf/closed/ice/junction{
 	dir = 1
 	},
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "lD" = (
 /obj/structure/table,
 /turf/open/floor/tile/dark/brown2{
@@ -2178,6 +2676,12 @@
 	dir = 5
 	},
 /area/icy_caves/caves)
+"lH" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/snow/layer0,
+/area/icy_caves/outpost/mining/west)
 "lM" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -2189,6 +2693,17 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/research)
+"lO" = (
+/obj/effect/decal/cleanable/blood/xtracks,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "bright_clean2"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "lP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -2201,6 +2716,15 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
+"lR" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "lS" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
@@ -2228,6 +2752,15 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
+"ma" = (
+/obj/structure/dropship_piece/one/corner/middleleft,
+/turf/open/floor/mainship_hull/dir{
+	dir = 6
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "mb" = (
 /turf/closed/ice/thin/intersection,
 /area/icy_caves/outpost/LZ1)
@@ -2243,14 +2776,42 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/refinery)
+"mg" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "mh" = (
 /turf/closed/ice/thin/junction{
 	dir = 4
 	},
 /area/icy_caves/outpost/outside)
 "mi" = (
-/turf/closed/ice/thin/end,
-/area/icy_caves/outpost/LZ1)
+/turf/closed/wall/r_wall/unmeltable,
+/area/lv624/lazarus/console)
+"mj" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/obj/machinery/camera/autoname/mainship/dropship_one{
+	dir = 4;
+	pixel_x = -16
+	},
+/turf/open/floor/mainship/tcomms,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "mk" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
 /turf/open/floor/plating,
@@ -2275,6 +2836,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
+"mq" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "mr" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
@@ -2294,9 +2862,31 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
+"mu" = (
+/obj/machinery/vending/security,
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "bright_clean2"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "mv" = (
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves)
+/turf/closed/ice_rock/corners,
+/area/space)
+"mw" = (
+/obj/structure/bookcase/manuals/research_and_development,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 9
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "mx" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 8
@@ -2416,6 +3006,14 @@
 /obj/item/storage/donut_box,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
+"mV" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "mY" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -2425,6 +3023,13 @@
 /obj/item/storage/firstaid/o2,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
+"mZ" = (
+/obj/effect/decal/cleanable/blood/xtracks,
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "nb" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -2508,11 +3113,44 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside)
+"ns" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "nu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
+"nv" = (
+/obj/structure/table,
+/obj/item/corncob,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"nw" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/structure/cable,
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"nx" = (
+/obj/structure/window/framed/colony,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/icy_caves/outpost/mining/west)
 "ny" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/ice_rock/single,
@@ -2521,11 +3159,34 @@
 /obj/docking_port/stationary/crashmode,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
+"nB" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "nD" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark,
-/area/icy_caves/caves/west)
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"nF" = (
+/obj/structure/janitorialcart,
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "nH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -2536,6 +3197,13 @@
 "nI" = (
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/LZ2)
+"nK" = (
+/obj/structure/largecrate/random/barrel/green,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "nL" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/outside/center)
@@ -2585,6 +3253,9 @@
 	dir = 10
 	},
 /area/icy_caves/outpost/garage)
+"od" = (
+/turf/open/floor/plating/ground/snow/layer0,
+/area/icy_caves/outpost/mining/west)
 "of" = (
 /turf/closed/ice/thin/end{
 	dir = 4
@@ -2618,6 +3289,17 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
+"op" = (
+/obj/structure/prop/mainship/sensor_computer3/sd,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/tcomms,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "or" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/structure/cable,
@@ -2635,6 +3317,16 @@
 	},
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ2)
+"oz" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/obj/structure/xenoautopsy/tank,
+/turf/open/shuttle/dropship/seven,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "oA" = (
 /obj/machinery/landinglight/ds1{
 	dir = 1
@@ -2665,6 +3357,13 @@
 /obj/structure/closet/secure_closet/miner,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
+"oM" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "oO" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -2672,10 +3371,45 @@
 "oP" = (
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/LZ2)
+"oQ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8
+	},
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "bright_clean2"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"oR" = (
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "bright_clean2"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "oS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
+"oT" = (
+/obj/structure/largecrate/supply/floodlights,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "oU" = (
 /obj/item/tool/pickaxe,
 /obj/structure/rack,
@@ -2688,11 +3422,22 @@
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
+"pa" = (
+/turf/closed/wall,
+/area/icy_caves/outpost/outside)
 "pb" = (
 /turf/closed/ice_rock/corners{
 	dir = 9
 	},
 /area/icy_caves/caves/west)
+"pc" = (
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "97"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "pf" = (
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = /obj/item/storage/backpack/satchel/norm;
@@ -2714,6 +3459,15 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
+"ph" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "pj" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
@@ -2722,9 +3476,11 @@
 /turf/closed/ice/straight,
 /area/icy_caves/caves/northern)
 "pl" = (
-/obj/structure/ore_box,
-/turf/open/floor/plating,
-/area/icy_caves/outpost/mining/west)
+/turf/closed/wall/r_wall/unmeltable,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "pm" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/structure/cable,
@@ -2733,7 +3489,10 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "po" = (
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
@@ -2744,6 +3503,15 @@
 	dir = 1
 	},
 /area/icy_caves/caves)
+"pr" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/structure/cable,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "ps" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/dmg1,
@@ -2752,8 +3520,17 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/refinery)
+"pu" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/obj/item/clothing/head/warning_cone,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "pw" = (
-/obj/structure/ore_box,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -2796,6 +3573,14 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/outside)
+"pE" = (
+/obj/structure/cable,
+/obj/structure/cable,
+/turf/closed/wall/r_wall,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "pF" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/smg/m25,
@@ -2806,18 +3591,69 @@
 /obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
+"pH" = (
+/turf/closed/ice_rock/corners{
+	dir = 10
+	},
+/area/icy_caves/caves/west)
+"pL" = (
+/obj/effect/decal/cleanable/blood/xtracks,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"pN" = (
+/obj/structure/janitorialcart,
+/turf/open/floor/plating/plating_catwalk,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "pO" = (
 /obj/item/ammo_casing,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
+"pP" = (
+/obj/structure/closet/crate,
+/obj/item/storage/box/lightstick/red,
+/obj/item/storage/box/lightstick/red,
+/obj/item/storage/box/lightstick,
+/obj/item/storage/box/lightstick,
+/obj/item/tool/pickaxe/plasmacutter,
+/obj/effect/spawner/random/powercell,
+/obj/item/explosive/plastique,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "pR" = (
 /obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
+"pS" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "pT" = (
 /obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "pU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -2838,10 +3674,18 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
+"pZ" = (
+/obj/item/paper/crumpled/bloody,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "qa" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/icy_caves/outpost/outside)
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
+	},
+/area/space)
 "qb" = (
 /obj/machinery/conveyor{
 	dir = 5
@@ -2872,7 +3716,10 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "qg" = (
 /obj/structure/closet/secure_closet/miner,
 /turf/open/floor/plating,
@@ -2895,6 +3742,16 @@
 /obj/item/tool/pickaxe,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
+"qk" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "ql" = (
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
@@ -2959,6 +3816,12 @@
 "qz" = (
 /turf/closed/ice_rock/single,
 /area/icy_caves/caves)
+"qA" = (
+/turf/open/floor/plating/ground/snow/layer1,
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "qB" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark,
@@ -2988,12 +3851,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
-"qM" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/snow/layer0,
-/area/icy_caves/outpost/outside)
 "qN" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -3011,6 +3868,9 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
+"qR" = (
+/turf/closed/ice_rock/northWall,
+/area/icy_caves/caves/west)
 "qS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -3075,6 +3935,14 @@
 "rf" = (
 /turf/closed/ice/thin/end,
 /area/icy_caves/caves/northern)
+"rg" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 5
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "rh" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/machinery/door/airlock/multi_tile/mainship/research{
@@ -3082,6 +3950,16 @@
 	},
 /turf/open/floor/tile/dark/purple2,
 /area/icy_caves/outpost/research)
+"rk" = (
+/obj/structure/table/reinforced,
+/obj/structure/xenoautopsy,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 1
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "rl" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
@@ -3102,7 +3980,10 @@
 /turf/closed/ice/thin/end{
 	dir = 4
 	},
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "rq" = (
 /obj/structure/closet/fireaxecabinet,
 /turf/closed/wall/r_wall,
@@ -3445,6 +4326,14 @@
 	},
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
+"sG" = (
+/obj/structure/bed/chair,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "sH" = (
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
@@ -3479,6 +4368,16 @@
 /obj/item/weapon/gun/rifle/ak47,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
+"ta" = (
+/obj/effect/decal/cleanable/vomit,
+/obj/machinery/camera{
+	dir = 5
+	},
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "tb" = (
 /obj/structure/sink,
 /obj/machinery/light{
@@ -3532,6 +4431,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
+"tp" = (
+/obj/item/lightstick/anchored,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/west)
 "tq" = (
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/ice,
@@ -3549,12 +4452,19 @@
 	dir = 2
 	},
 /turf/closed/ice/junction,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "tw" = (
 /turf/closed/ice_rock/singleEnd{
 	dir = 1
 	},
 /area/icy_caves/outpost/outside)
+"tx" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/refinery)
 "tB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -3582,6 +4492,14 @@
 	dir = 4
 	},
 /area/icy_caves/outpost/engineering)
+"tF" = (
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 4
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "tH" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/research)
@@ -3632,6 +4550,14 @@
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/garage)
+"tT" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/med_data,
+/turf/open/floor/mainship/mono,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "tU" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -3701,6 +4627,22 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/medbay)
+"ul" = (
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "96"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"un" = (
+/obj/effect/decal/cleanable/blood/xtracks,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "uo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -3723,6 +4665,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/LZ2)
+"uu" = (
+/obj/effect/decal/cleanable/blood/xtracks,
+/turf/open/floor/plating/plating_catwalk,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "uv" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/grilledcheese,
@@ -3731,6 +4680,19 @@
 "uw" = (
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
+"ux" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/mass_spectrometer/adv,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 5
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "uy" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -3772,11 +4734,22 @@
 /turf/closed/ice/straight{
 	dir = 4
 	},
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "uN" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
+"uO" = (
+/turf/closed/shuttle/dropship3/transparent{
+	icon_state = "98"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "uP" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
@@ -3803,6 +4776,16 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/medbay)
+"uT" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "uX" = (
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
@@ -3834,6 +4817,15 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
+"ve" = (
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "vf" = (
 /turf/closed/ice/thin/intersection,
 /area/icy_caves/outpost/outside)
@@ -3884,6 +4876,13 @@
 	dir = 6
 	},
 /area/icy_caves/outpost/garage)
+"vr" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/ice/thin/straight,
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "vs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -3894,6 +4893,10 @@
 /obj/structure/bed/roller,
 /turf/open/floor/tile/dark/green2,
 /area/icy_caves/outpost/medbay)
+"vv" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/r_wall,
+/area/icy_caves/caves/northern)
 "vx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
@@ -3955,17 +4958,29 @@
 "vR" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice/thin/end,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "vS" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
+"vT" = (
+/turf/closed/wall/r_wall,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "vV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
 	},
 /turf/closed/ice/corner,
-/area/icy_caves/caves/east)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "vX" = (
 /obj/item/flashlight,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -4000,10 +5015,24 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
+"wf" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "wg" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/freezer,
 /area/icy_caves/outpost/dorms)
+"wh" = (
+/obj/structure/morgue/crematorium,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "wi" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/tile/dark/green2{
@@ -4032,6 +5061,23 @@
 	dir = 8
 	},
 /area/icy_caves/caves/northern)
+"wq" = (
+/obj/machinery/light,
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "bright_clean2"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"ws" = (
+/obj/machinery/atmospherics/components/unary/cryo_cell,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "wu" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
@@ -4062,6 +5108,16 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/medbay)
+"wG" = (
+/obj/effect/spawner/gibspawner/human,
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "bright_clean2"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "wH" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark/brown2,
@@ -4081,7 +5137,18 @@
 "wN" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
+"wO" = (
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "wP" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -4095,10 +5162,32 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/garage)
+"wT" = (
+/obj/structure/lattice,
+/obj/structure/monorail{
+	dir = 5
+	},
+/obj/structure/monorail{
+	dir = 9
+	},
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2
+	},
+/turf/open/shuttle/escapepod/plain,
+/area/space)
 "wW" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
+"wY" = (
+/obj/machinery/camera{
+	dir = 5
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "wZ" = (
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
@@ -4152,6 +5241,24 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
+"xo" = (
+/obj/structure/closet/crate,
+/obj/item/storage/box/lightstick/red,
+/obj/item/storage/box/lightstick/red,
+/obj/item/storage/box/lightstick,
+/obj/item/storage/box/lightstick,
+/obj/item/tool/pickaxe/plasmacutter,
+/obj/effect/spawner/random/powercell,
+/obj/item/clothing/glasses/welding,
+/obj/item/explosive/plastique,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "xr" = (
 /obj/machinery/mineral/stacking_machine,
 /obj/machinery/conveyor{
@@ -4159,6 +5266,12 @@
 	},
 /turf/open/floor/plating,
 /area/icy_caves/outpost/refinery)
+"xs" = (
+/turf/closed/ice_rock/corners,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "xu" = (
 /obj/structure/cargo_container/green,
 /turf/open/floor/plating,
@@ -4210,6 +5323,13 @@
 "xR" = (
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/garage)
+"xS" = (
+/obj/machinery/computer3/server,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "xT" = (
 /turf/open/floor/tile/dark/green2/corner{
 	dir = 4
@@ -4222,13 +5342,47 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
+"xW" = (
+/obj/structure/largecrate/supply/explosives/mortar_flare,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "xX" = (
 /turf/closed/ice/thin/straight,
 /area/icy_caves/caves/south)
+"xZ" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	dir = 2
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "ya" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/ice_rock/single,
 /area/icy_caves/caves)
+"yb" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "bright_clean2"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"yd" = (
+/obj/structure/monorail,
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2
+	},
+/turf/open/floor/mainship_hull,
+/area/space)
 "yg" = (
 /obj/structure/bookcase/manuals,
 /obj/machinery/light{
@@ -4242,6 +5396,15 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
+"yi" = (
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "bright_clean2"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "yj" = (
 /obj/structure/closet/crate/secure/weapon,
 /obj/item/weapon/gun/smg/m25,
@@ -4273,6 +5436,13 @@
 "yx" = (
 /turf/closed/wall,
 /area/icy_caves/outpost/engineering)
+"yz" = (
+/obj/structure/bed/chair,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "yB" = (
 /turf/closed/ice/thin/junction{
 	dir = 8
@@ -4289,6 +5459,14 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
+"yF" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2
+	},
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
+	},
+/area/space)
 "yG" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -4297,6 +5475,15 @@
 	dir = 8
 	},
 /area/icy_caves/caves)
+"yH" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "yJ" = (
 /obj/structure/closet/crate/construction,
 /obj/item/cell/hyper,
@@ -4333,20 +5520,23 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/garage)
-"yW" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
+"yV" = (
+/obj/effect/spawner/gibspawner/human,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
 	},
-/turf/closed/ice_rock/singlePart{
-	dir = 6
-	},
-/area/icy_caves/outpost/outside)
-"zb" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/turf/closed/ice_rock/fourway,
-/area/icy_caves/outpost/outside)
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"ze" = (
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "zh" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -4355,6 +5545,14 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
+"zi" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/closed/ice_rock/corners{
+	dir = 9
+	},
+/area/icy_caves/caves)
 "zk" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice_rock/singleT{
@@ -4368,7 +5566,10 @@
 /turf/closed/ice/corner{
 	dir = 8
 	},
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "zm" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
@@ -4394,6 +5595,21 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2/corner,
 /area/icy_caves/outpost/garage)
+"zt" = (
+/turf/open/floor/tile/white/warningstripe{
+	dir = 6
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"zu" = (
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor,
+/turf/open/floor/mainship/red/full,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "zw" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -4414,6 +5630,9 @@
 /obj/structure/ore_box,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/refinery)
+"zB" = (
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/west)
 "zC" = (
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/tile/dark,
@@ -4498,6 +5717,17 @@
 	dir = 9
 	},
 /area/icy_caves/outpost/medbay)
+"zZ" = (
+/obj/machinery/door/airlock/mainship/secure/locked/free_access{
+	dir = 1;
+	id = "safe_room";
+	name = "\improper Lambda Lab Secure Storage"
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Aa" = (
 /obj/item/storage/box/flashbangs,
 /obj/item/storage/box/m94,
@@ -4507,6 +5737,10 @@
 /obj/structure/closet/crate/secure/explosives,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
+"Ab" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/west)
 "Ad" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -4516,6 +5750,9 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/garage)
+"Ae" = (
+/turf/closed/ice_rock/eastWall,
+/area/icy_caves/caves/northern)
 "Ag" = (
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 4
@@ -4551,6 +5788,15 @@
 /obj/machinery/processor,
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
+"Aq" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/snow,
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "Ar" = (
 /obj/structure/closet/crate/secure/ammo,
 /obj/item/ammo_magazine/smg/m25,
@@ -4648,6 +5894,12 @@
 	dir = 4
 	},
 /area/icy_caves/outpost/refinery)
+"AJ" = (
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "AK" = (
 /turf/closed/ice/end{
 	dir = 1
@@ -4665,6 +5917,25 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
+"AQ" = (
+/obj/machinery/disposal,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"AR" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 1
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "AS" = (
 /obj/machinery/power/geothermal,
 /obj/machinery/light/small{
@@ -4715,6 +5986,10 @@
 	dir = 4
 	},
 /area/icy_caves/caves)
+"Bb" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/icy_caves/caves/west)
 "Bd" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -4727,6 +6002,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
+"Bf" = (
+/turf/open/floor/tile/dark/green2{
+	dir = 8
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Bi" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/prison/kitchen,
@@ -4741,6 +6024,15 @@
 	dir = 1
 	},
 /area/icy_caves/caves/east)
+"Bo" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Bq" = (
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/prison/kitchen,
@@ -4748,6 +6040,12 @@
 "Bs" = (
 /turf/open/floor/podhatch/floor,
 /area/icy_caves/outpost/engineering)
+"Bt" = (
+/turf/open/floor/plating/ground/snow/layer2,
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "Bu" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -4778,6 +6076,25 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/east)
+"BB" = (
+/obj/structure/cryofeed,
+/turf/open/floor/podhatch/floor{
+	icon_state = "bcircuitoff"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"BF" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "BI" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -4786,6 +6103,15 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
+"BJ" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship_hull/dir{
+	dir = 4
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "BL" = (
 /turf/closed/ice/end{
 	dir = 8
@@ -4795,6 +6121,24 @@
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/dorms)
+"BN" = (
+/turf/closed/shuttle/dropship3{
+	icon_state = "50"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"BO" = (
+/obj/machinery/door/airlock/multi_tile/secure{
+	dir = 2
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "BP" = (
 /turf/closed/ice/junction{
 	dir = 4
@@ -4830,6 +6174,15 @@
 	},
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
+"BW" = (
+/obj/structure/bed/chair/comfy{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "BX" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4839,10 +6192,31 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "BY" = (
-/turf/closed/ice/thin/end{
-	dir = 8
+/obj/structure/lattice,
+/obj/structure/monorail{
+	dir = 6
 	},
-/area/icy_caves/outpost/LZ1)
+/obj/structure/monorail{
+	dir = 10
+	},
+/turf/open/shuttle/escapepod/plain,
+/area/space)
+"BZ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"Ch" = (
+/obj/machinery/computer3/server/rack,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Ci" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
@@ -4856,6 +6230,24 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/research)
+"Cm" = (
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"Cq" = (
+/turf/closed/ice/thin/end{
+	dir = 4
+	},
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "Cs" = (
 /obj/item/ammo_casing,
 /turf/open/floor/wood,
@@ -4877,6 +6269,23 @@
 /obj/item/clothing/shoes/rainbow,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
+"CH" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 10
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"CI" = (
+/obj/machinery/door/poddoor/two_tile_ver,
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 8
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "CN" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/south)
@@ -4904,12 +6313,22 @@
 	dir = 9
 	},
 /area/icy_caves/outpost/refinery)
+"CX" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "CZ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/snow/layer0,
-/area/icy_caves/outpost/LZ2)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "Dc" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/up,
 /turf/open/floor/tile/dark,
@@ -4948,6 +6367,16 @@
 	},
 /turf/open/floor/freezer,
 /area/icy_caves/outpost/dorms)
+"Dm" = (
+/obj/structure/largecrate/random/secure,
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "bright_clean2"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Dn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -4955,6 +6384,18 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
+"Do" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "bright_clean2"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Dp" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice_rock/singleEnd{
@@ -5001,10 +6442,24 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice_rock/single,
 /area/icy_caves/caves)
+"DF" = (
+/obj/structure/largecrate/random/secure,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "DG" = (
 /obj/effect/decal/cleanable/blood/writing,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
+"DH" = (
+/obj/structure/cable,
+/obj/structure/cable,
+/turf/closed/ice/end{
+	dir = 1
+	},
+/area/icy_caves/caves/northern)
 "DJ" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
@@ -5020,7 +6475,10 @@
 /turf/closed/ice/thin/corner{
 	dir = 8
 	},
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "DM" = (
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 10
@@ -5031,6 +6489,21 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
+"DU" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 4
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"DV" = (
+/obj/structure/mopbucket,
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "DW" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -5041,6 +6514,14 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/garage)
+"DX" = (
+/turf/closed/ice_rock/corners{
+	dir = 9
+	},
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "DY" = (
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
@@ -5049,6 +6530,15 @@
 	dir = 6
 	},
 /area/icy_caves/caves/west)
+"Ea" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 2
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Eb" = (
 /obj/effect/landmark/excavation_site_spawner,
 /obj/effect/ai_node,
@@ -5073,6 +6563,14 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
+"Eh" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2
+	},
+/turf/open/floor/mainship_hull/dir{
+	dir = 4
+	},
+/area/space)
 "Ej" = (
 /obj/structure/table,
 /obj/item/stack/nanopaste,
@@ -5080,6 +6578,14 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/medbay)
+"Ek" = (
+/obj/structure/table/mainship,
+/obj/item/storage/toolbox/electrical,
+/turf/open/floor/plating/plating_catwalk,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "El" = (
 /obj/structure/table/reinforced,
 /obj/effect/landmark/dropship_console_spawn_lz2,
@@ -5090,7 +6596,10 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/snow/layer1,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "Ep" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
@@ -5116,10 +6625,21 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
+"Ex" = (
+/obj/effect/decal/cleanable/mucus,
+/obj/structure/table,
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Ey" = (
 /obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "Ez" = (
 /obj/structure/bed,
 /turf/open/floor/wood,
@@ -5167,20 +6687,49 @@
 /area/icy_caves/caves/south)
 "EO" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/wall/r_wall,
-/area/icy_caves/outpost/outside)
+/turf/closed/ice/thin/junction,
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
+"EP" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "EQ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice/thin/corner{
 	dir = 4
 	},
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "ES" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
 	},
 /turf/closed/ice_rock/westWall,
 /area/icy_caves/caves)
+"EU" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"EX" = (
+/obj/structure/largecrate/supply/floodlights,
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "EZ" = (
 /obj/item/ammo_casing,
 /obj/structure/cable,
@@ -5219,6 +6768,22 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
+"Fj" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"Fk" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Fm" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -5236,6 +6801,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
+"Fq" = (
+/obj/effect/spawner/gibspawner/human,
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Fr" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark/purple2{
@@ -5271,9 +6843,31 @@
 	dir = 1
 	},
 /area/icy_caves/caves/northern)
+"Fw" = (
+/turf/open/floor/tile/white/warningstripe{
+	dir = 4
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Fy" = (
 /turf/open/floor/freezer,
 /area/icy_caves/outpost/dorms)
+"FB" = (
+/obj/machinery/light,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"FE" = (
+/obj/effect/decal/cleanable/blood/xtracks,
+/turf/open/shuttle/dropship/floor,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "FF" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -5317,6 +6911,16 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
+"FR" = (
+/obj/machinery/door/poddoor/mainship{
+	dir = 1;
+	id = "tcomms"
+	},
+/turf/open/floor/mainship_hull/dir,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "FU" = (
 /obj/structure/cargo_container/ch_red,
 /turf/open/floor/plating,
@@ -5357,6 +6961,35 @@
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
+"Gf" = (
+/obj/effect/spawner/gibspawner/human,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"Gh" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/power/monitor{
+	name = "Core Power Monitoring"
+	},
+/obj/structure/table/mainship,
+/obj/structure/cable,
+/turf/open/floor/mainship/tcomms,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"Gj" = (
+/obj/machinery/computer/operating,
+/obj/structure/table/reinforced,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Gk" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -5387,12 +7020,23 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/medbay)
+"Gs" = (
+/turf/closed/ice_rock/corners,
+/area/icy_caves/caves/northern)
 "Gu" = (
 /turf/closed/ice,
 /area/icy_caves/outpost/outside)
 "Gw" = (
 /turf/closed/wall,
 /area/icy_caves/outpost/refinery)
+"Gx" = (
+/obj/structure/mopbucket,
+/obj/machinery/power/apc/drained,
+/turf/open/floor/plating/plating_catwalk,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Gz" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice_rock/singleT,
@@ -5406,6 +7050,18 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/security)
+"GE" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"GF" = (
+/turf/closed/wall,
+/area/icy_caves/caves/west)
 "GH" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/ice,
@@ -5417,7 +7073,10 @@
 /turf/closed/ice/thin/corner{
 	dir = 1
 	},
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "GK" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
@@ -5438,6 +7097,38 @@
 	dir = 4
 	},
 /area/icy_caves/caves)
+"GN" = (
+/obj/structure/lattice,
+/obj/structure/monorail{
+	dir = 9
+	},
+/obj/structure/monorail{
+	dir = 5
+	},
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2
+	},
+/turf/open/shuttle/escapepod/plain,
+/area/space)
+"GO" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
+"GQ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "bright_clean2"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "GR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -5452,6 +7143,13 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
+"GU" = (
+/obj/structure/barricade/guardrail,
+/turf/open/shuttle/dropship/floor,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "GV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -5479,6 +7177,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/engineering)
+"He" = (
+/obj/effect/decal/cleanable/blood/xtracks,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Hf" = (
 /turf/closed/wall,
 /area/icy_caves/outpost/dorms)
@@ -5498,10 +7203,24 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/engineering)
+"Hj" = (
+/obj/structure/table/mainship,
+/obj/machinery/recharger,
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "bright_clean2"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Hl" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "Hm" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -5526,6 +7245,13 @@
 /obj/machinery/light/small,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
+"Hw" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/closed/wall/r_wall,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "HA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -5539,10 +7265,13 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "HC" = (
-/turf/closed/ice_rock/singlePart{
+/obj/structure/monorail,
+/obj/structure/lattice,
+/obj/structure/monorail{
 	dir = 4
 	},
-/area/icy_caves/outpost/LZ1)
+/turf/open/floor/mainship_hull,
+/area/space)
 "HE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -5560,13 +7289,24 @@
 /obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "HJ" = (
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/tile/dark/green2{
 	dir = 4
 	},
 /area/icy_caves/outpost/medbay)
+"HL" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 6
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "HM" = (
 /obj/item/ammo_casing,
 /turf/open/floor/tile/dark/brown2/corner{
@@ -5581,6 +7321,27 @@
 /obj/item/clothing/head/nun_hood,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
+"HP" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"HQ" = (
+/obj/structure/bed/chair/comfy{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "HR" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -5597,6 +7358,24 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
+"HT" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"HU" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "HV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice_rock/corners{
@@ -5620,12 +7399,38 @@
 "Ie" = (
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
+"If" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/turf/open/floor/mainship/cargo,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"Ig" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/icy_caves/outpost/outside)
 "Ih" = (
 /obj/structure/cargo_container/green{
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
+"Ij" = (
+/obj/structure/largecrate/random/barrel/green,
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Ik" = (
 /obj/structure/table,
 /obj/item/storage/box/flashbangs,
@@ -5634,9 +7439,15 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/security)
+"Il" = (
+/turf/closed/ice_rock/southWall,
+/area/icy_caves/caves/northern)
 "Im" = (
 /turf/open/floor/plating/ground/snow,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "In" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -5668,6 +7479,15 @@
 	dir = 4
 	},
 /area/icy_caves/outpost/garage)
+"Iu" = (
+/obj/structure/dropship_piece/one/cockpit/left,
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Iv" = (
 /obj/structure/ore_box,
 /turf/open/floor/plating,
@@ -5723,12 +7543,29 @@
 	},
 /turf/open/floor/tile/dark/red2,
 /area/icy_caves/outpost/security)
+"II" = (
+/obj/item/paper/crumpled/bloody/csheet,
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "IJ" = (
 /obj/machinery/vending/security,
 /turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
 /area/icy_caves/outpost/security)
+"IK" = (
+/obj/structure/table,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "IO" = (
 /obj/structure/closet/crate/construction,
 /obj/item/stack/sheet/metal/medium_stack,
@@ -5740,6 +7577,17 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
+"IP" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship_hull/dir{
+	dir = 4
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "IR" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
@@ -5753,10 +7601,35 @@
 "IT" = (
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
+"IU" = (
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 4
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "IX" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
+"IY" = (
+/obj/item/tool/surgery/hemostat,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"IZ" = (
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Je" = (
 /turf/closed/ice/thin/end{
 	dir = 8
@@ -5796,7 +7669,16 @@
 /turf/closed/ice/thin/junction{
 	dir = 4
 	},
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
+"Jn" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Jo" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
@@ -5812,7 +7694,10 @@
 /turf/closed/ice/end{
 	dir = 1
 	},
-/area/icy_caves/caves/east)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "Jq" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/tile/dark,
@@ -5859,6 +7744,16 @@
 /obj/item/lightstick/anchored,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
+"JF" = (
+/obj/machinery/vending/cola,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "JH" = (
 /obj/structure/table,
 /obj/item/reagent_containers/spray/pepper,
@@ -5891,6 +7786,19 @@
 	dir = 5
 	},
 /area/icy_caves/caves)
+"JR" = (
+/obj/structure/lattice,
+/obj/structure/monorail{
+	dir = 5
+	},
+/obj/structure/monorail{
+	dir = 9
+	},
+/turf/open/shuttle/escapepod/plain,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "JS" = (
 /obj/structure/closet/crate/freezer/rations,
 /turf/open/floor/tile/dark,
@@ -5901,6 +7809,10 @@
 	dir = 6
 	},
 /area/icy_caves/outpost/medbay)
+"JW" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/outside/center)
 "JX" = (
 /turf/closed/ice/end,
 /area/icy_caves/caves/south)
@@ -5918,6 +7830,12 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/office)
+"Kd" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/brown2/corner{
+	dir = 1
+	},
+/area/icy_caves/outpost/refinery)
 "Ke" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -6008,12 +7926,24 @@
 "KJ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/snow,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "KK" = (
 /turf/closed/ice_rock/singleEnd{
 	dir = 1
 	},
 /area/icy_caves/caves/south)
+"KL" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "KM" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 9
@@ -6025,6 +7955,14 @@
 /obj/item/clothing/suit/hgpirate,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
+"KP" = (
+/turf/closed/shuttle/dropship3{
+	icon_state = "43"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "KS" = (
 /turf/open/floor/tile/dark/red2{
 	dir = 5
@@ -6043,6 +7981,17 @@
 "KZ" = (
 /turf/closed/wall,
 /area/icy_caves/outpost/garage)
+"La" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/white/warningstripe{
+	dir = 4
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Lb" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/tile/dark,
@@ -6086,12 +8035,43 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
+"Lo" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	on = 1
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"Lp" = (
+/turf/open/floor/tile/white/warningstripe,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Lq" = (
 /obj/machinery/power/geothermal,
 /obj/machinery/light/small,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/engineering)
+"Lr" = (
+/obj/item/shard,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 4
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"Ls" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Lt" = (
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = null;
@@ -6111,6 +8091,13 @@
 "Lv" = (
 /turf/closed/ice/thin,
 /area/icy_caves/outpost/outside)
+"Lw" = (
+/obj/structure/closet/l3closet/virology,
+/turf/open/floor/plating/plating_catwalk,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Lx" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 10
@@ -6141,6 +8128,16 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
+"LF" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "LH" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/colonist,
@@ -6187,7 +8184,10 @@
 /turf/closed/ice/thin/end{
 	dir = 8
 	},
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "LQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -6243,6 +8243,23 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
+"Me" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"Mf" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/red/full,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Mg" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 5
@@ -6288,10 +8305,21 @@
 	dir = 9
 	},
 /area/icy_caves/caves)
+"Mq" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "Ms" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "Mt" = (
 /obj/item/ammo_casing,
 /turf/open/floor/tile/dark/red2{
@@ -6306,12 +8334,45 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
+"Mv" = (
+/obj/machinery/optable,
+/obj/effect/decal/cleanable/blood/xtracks,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"Mw" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
+"Mx" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Mz" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice/corner{
 	dir = 4
 	},
 /area/icy_caves/outpost/LZ1)
+"MA" = (
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "MB" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -6327,6 +8388,11 @@
 	dir = 8
 	},
 /area/icy_caves/caves/south)
+"MH" = (
+/turf/closed/ice/thin/end{
+	dir = 1
+	},
+/area/icy_caves/caves)
 "MJ" = (
 /turf/closed/ice/corner{
 	dir = 1
@@ -6368,6 +8434,14 @@
 /obj/machinery/space_heater,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/office)
+"MT" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/cheeseburger,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "MV" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -6379,6 +8453,27 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
+"MX" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 4
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"MY" = (
+/obj/item/reagent_containers/spray/pepper,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "MZ" = (
 /obj/machinery/door/airlock/mainship/command/free_access{
 	dir = 1;
@@ -6430,7 +8525,10 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "Np" = (
 /turf/closed/ice/intersection,
 /area/icy_caves/outpost/outside)
@@ -6447,7 +8545,10 @@
 /obj/structure/cable,
 /obj/effect/landmark/fob_sentry,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "Nt" = (
 /obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/tile/dark,
@@ -6488,6 +8589,12 @@
 	},
 /turf/open/floor/tile/dark/brown2/corner,
 /area/icy_caves/outpost/refinery)
+"NH" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/outside)
 "NJ" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -6509,6 +8616,16 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/garage)
+"NM" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "NN" = (
 /obj/structure/filingcabinet,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -6540,6 +8657,25 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/outside)
+"NU" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"NW" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/obj/structure/xenoautopsy/tank/escaped,
+/turf/open/shuttle/dropship/seven,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Ob" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark,
@@ -6548,6 +8684,19 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
+"Od" = (
+/obj/structure/lattice,
+/obj/structure/monorail{
+	dir = 6
+	},
+/obj/structure/monorail{
+	dir = 10
+	},
+/turf/open/shuttle/escapepod/plain,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Oe" = (
 /obj/structure/table,
 /turf/open/floor/tile/dark/brown2{
@@ -6598,7 +8747,19 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
+"Ox" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/mainship/tcomms,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Oy" = (
 /obj/docking_port/mobile/crashmode/bigbury,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -6615,7 +8776,10 @@
 "OD" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "OE" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/dark/brown2,
@@ -6636,9 +8800,10 @@
 /turf/open/floor/wood,
 /area/icy_caves/outpost/office)
 "OI" = (
-/obj/machinery/computer/intel_computer,
-/turf/open/floor/plating,
-/area/icy_caves/outpost/mining/west)
+/turf/open/floor/mainship_hull/dir{
+	dir = 4
+	},
+/area/space)
 "OJ" = (
 /turf/closed/ice/end,
 /area/icy_caves/outpost/outside)
@@ -6654,6 +8819,12 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside)
+"OP" = (
+/turf/open/floor/mainship/red/full,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "OQ" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/kitchen,
@@ -6665,9 +8836,26 @@
 /obj/structure/cargo_container/gorg,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
+"Pc" = (
+/obj/structure/dropship_piece/one/corner/middleleft,
+/obj/structure/dropship_piece/one/corner/middleright,
+/turf/open/floor/mainship_hull/dir,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Pd" = (
 /turf/closed/wall,
 /area/icy_caves/outpost/security)
+"Pg" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Pi" = (
 /turf/closed/ice/corner{
 	dir = 8
@@ -6688,6 +8876,15 @@
 	dir = 8
 	},
 /area/icy_caves/caves/south)
+"Pp" = (
+/obj/effect/decal/cleanable/blood/xtracks,
+/turf/open/floor/tile/white/warningstripe{
+	dir = 5
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Pq" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
@@ -6726,7 +8923,10 @@
 /turf/closed/ice/junction{
 	dir = 8
 	},
-/area/icy_caves/caves/east)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "PD" = (
 /turf/closed/ice/corner{
 	dir = 4
@@ -6751,6 +8951,16 @@
 	dir = 8
 	},
 /area/icy_caves/caves)
+"PN" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8;
+	welded = 1
+	},
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "PO" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
@@ -6795,6 +9005,12 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/office)
+"PZ" = (
+/turf/open/floor/tile/dark/green2,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Qa" = (
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
@@ -6813,6 +9029,14 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/medbay)
+"Qg" = (
+/obj/structure/prop/mainship/sensor_computer2,
+/obj/structure/cable,
+/turf/open/floor/mainship/tcomms,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Qh" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 6
@@ -6829,6 +9053,20 @@
 "Qk" = (
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
+"Qn" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/floor,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"Qo" = (
+/turf/closed/ice_rock/corners{
+	dir = 9
+	},
+/area/icy_caves/caves/northern)
 "Qp" = (
 /turf/closed/ice_rock/singleEnd{
 	dir = 8
@@ -6862,6 +9100,15 @@
 /obj/effect/decal/cleanable/blood/writing,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
+"QD" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/red/full,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "QF" = (
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/plating,
@@ -6905,6 +9152,18 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/outside)
+"QQ" = (
+/obj/structure/bed/chair/comfy{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "QR" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark/brown2,
@@ -7009,6 +9268,18 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
+"Rt" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Ru" = (
 /obj/structure/table/woodentable,
 /obj/structure/paper_bin,
@@ -7018,6 +9289,30 @@
 "Rv" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves)
+"Rw" = (
+/obj/structure/lattice,
+/obj/structure/dropship_piece/one/front/right,
+/obj/structure/monorail{
+	dir = 9
+	},
+/obj/structure/monorail{
+	dir = 5
+	},
+/turf/open/shuttle/escapepod/plain,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"Rx" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/blood,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 4
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Ry" = (
 /turf/closed/ice_rock/singleEnd{
 	dir = 8
@@ -7069,6 +9364,21 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
+"RL" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/west)
+"RM" = (
+/obj/structure/monorail,
+/obj/structure/lattice,
+/obj/structure/monorail{
+	dir = 4
+	},
+/turf/open/floor/mainship_hull,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "RN" = (
 /turf/closed/ice_rock/corners{
 	dir = 5
@@ -7112,6 +9422,26 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
+"Se" = (
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 8
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"Sf" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "bright_clean2"
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Sg" = (
 /turf/closed/ice/end{
 	dir = 4
@@ -7121,8 +9451,14 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/ice_rock/single,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/caves)
+"Si" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/icy_caves/outpost/outside)
 "Sk" = (
 /obj/machinery/space_heater,
 /turf/open/floor/tile/dark/red2{
@@ -7152,16 +9488,24 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/security)
+"Ss" = (
+/obj/structure/dropship_piece/one/cockpit/right,
+/turf/open/floor/mainship_hull/dir{
+	dir = 4
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Sv" = (
 /turf/closed/ice_rock/singleT{
 	dir = 4
 	},
 /area/icy_caves/caves/south)
 "Sw" = (
-/turf/closed/ice_rock/singleEnd{
-	dir = 4
-	},
-/area/icy_caves/outpost/LZ1)
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/open/floor/plating/icefloor,
+/area/lv624/lazarus/console)
 "Sy" = (
 /turf/open/floor/tile/dark/green2/corner{
 	dir = 8
@@ -7189,18 +9533,13 @@
 "SI" = (
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
-"SJ" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/turf/closed/ice_rock/singlePart{
-	dir = 4
-	},
-/area/icy_caves/outpost/outside)
 "SM" = (
 /obj/structure/closet/crate/internals,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
+"SO" = (
+/turf/closed/ice_rock/eastWall,
+/area/icy_caves/caves/west)
 "SP" = (
 /turf/closed/ice_rock/singleT{
 	dir = 1
@@ -7231,6 +9570,15 @@
 	},
 /turf/closed/ice_rock/fourway,
 /area/icy_caves/caves)
+"SY" = (
+/obj/structure/bookcase/manuals/research_and_development,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 1
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Tb" = (
 /turf/closed/ice_rock/singleT{
 	dir = 1
@@ -7251,21 +9599,67 @@
 /turf/closed/ice_rock/singleEnd{
 	dir = 8
 	},
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
+"Th" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
+"Tj" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/outside)
 "Tk" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside/center)
+"Tl" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "Tm" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/open/floor/plating/ground/snow/layer2,
-/area/icy_caves/outpost/outside)
+/turf/closed/ice/thin/straight,
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "Tr" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
+"Ts" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"Tt" = (
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	name = "Monorail Passage Door"
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Tu" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 1
@@ -7279,6 +9673,23 @@
 	dir = 5
 	},
 /area/icy_caves/caves)
+"Tx" = (
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
+	name = "\improper Lambda Lab"
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"Tz" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "TB" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
@@ -7289,6 +9700,21 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/garage)
+"TC" = (
+/turf/open/floor/plating/ground/snow/layer0,
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
+"TD" = (
+/obj/machinery/camera{
+	dir = 9
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "TE" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -7310,6 +9736,12 @@
 "TJ" = (
 /turf/closed/ice/intersection,
 /area/icy_caves/caves/east)
+"TK" = (
+/turf/open/floor/mainship/red,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "TL" = (
 /obj/structure/cargo_container/gorg{
 	dir = 4
@@ -7319,12 +9751,23 @@
 "TM" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/LZ1)
+"TN" = (
+/obj/effect/spawner/gibspawner/human,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "TQ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
 /turf/open/floor/plating/ground/snow/layer1,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "TR" = (
 /obj/structure/table/flipped,
 /turf/open/floor/tile/dark/red2{
@@ -7334,7 +9777,10 @@
 "TT" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "TU" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/docking_port/mobile/crashmode/bigbury,
@@ -7358,6 +9804,16 @@
 	dir = 6
 	},
 /area/icy_caves/caves)
+"TZ" = (
+/obj/structure/lattice,
+/obj/structure/monorail{
+	dir = 10
+	},
+/obj/structure/monorail{
+	dir = 6
+	},
+/turf/open/shuttle/escapepod/plain,
+/area/space)
 "Ub" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -7398,7 +9854,10 @@
 	dir = 2
 	},
 /turf/closed/ice/intersection,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "Uk" = (
 /turf/closed/ice/thin/end,
 /area/icy_caves/caves/south)
@@ -7413,19 +9872,32 @@
 	dir = 1
 	},
 /turf/closed/ice/intersection,
-/area/icy_caves/caves/east)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "Uq" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4
 	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "Us" = (
 /turf/closed/ice_rock/singleT{
 	dir = 8
 	},
 /area/icy_caves/caves/south)
+"Ut" = (
+/obj/effect/spawner/gibspawner/human,
+/turf/open/shuttle/dropship/floor,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Uu" = (
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/LZ1)
@@ -7493,6 +9965,13 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/security)
+"UR" = (
+/obj/structure/largecrate/supply/medicine/medivend,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "US" = (
 /obj/structure/table,
 /obj/item/clothing/suit/chef/classic,
@@ -7504,6 +9983,13 @@
 /obj/item/clothing/shoes/blue,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
+"UU" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "UV" = (
 /turf/closed/ice_rock/singleEnd{
 	dir = 8
@@ -7524,6 +10010,14 @@
 /obj/item/analyzer,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
+"UZ" = (
+/obj/structure/dropship_piece/one/corner/middleright,
+/obj/structure/dropship_piece/one/corner/middleleft,
+/turf/open/floor/mainship_hull/dir,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Vb" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 10
@@ -7557,6 +10051,13 @@
 /obj/item/storage/fancy/vials,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/research)
+"Vj" = (
+/obj/effect/decal/cleanable/blood/gibs/limb,
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Vk" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow,
@@ -7565,18 +10066,51 @@
 /obj/structure/table,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
+"Vq" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/turf/open/floor/mainship/cargo,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Vr" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
 	},
 /turf/closed/ice_rock/southWall,
 /area/icy_caves/caves)
+"Vs" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"Vt" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 9
+	},
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Vu" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice/thin/corner{
 	dir = 1
 	},
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "Vx" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
@@ -7598,6 +10132,10 @@
 	dir = 4
 	},
 /area/icy_caves/caves/west)
+"VC" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/icy_caves/outpost/outside/center)
 "VD" = (
 /obj/structure/largecrate/supply/medicine/iv,
 /turf/open/floor/plating,
@@ -7630,6 +10168,21 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/security)
+"VL" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/turf/open/floor/mainship/cargo,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "VM" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/security)
@@ -7660,6 +10213,15 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
+"VS" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/closed/wall/r_wall,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "VT" = (
 /turf/closed/ice/thin/straight,
 /area/icy_caves/outpost/LZ1)
@@ -7687,6 +10249,14 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
+"VZ" = (
+/obj/item/shard,
+/obj/effect/decal/cleanable/blood/xtracks,
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Wa" = (
 /obj/structure/largecrate/supply/explosives,
 /obj/item/explosive/plastique,
@@ -7699,20 +10269,77 @@
 	},
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ1)
+"Wc" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	dir = 2;
+	name = "Canteen"
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"Wd" = (
+/obj/effect/decal/cleanable/blood/xtracks,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "We" = (
 /turf/closed/ice/junction{
 	dir = 1
 	},
 /area/icy_caves/outpost/outside/center)
 "Wg" = (
-/obj/effect/landmark/fob_sentry_rebel,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/icy_caves/outpost/outside)
+/turf/closed/ice/thin/straight,
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
+"Wi" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Wj" = (
 /turf/closed/ice/thin/end{
 	dir = 4
 	},
 /area/icy_caves/caves/south)
+"Wm" = (
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"Wp" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"Wr" = (
+/obj/machinery/door/airlock/mainship/maint,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"Ws" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/west)
 "Wt" = (
 /obj/structure/table/reinforced,
 /obj/item/restraints/handcuffs,
@@ -7724,7 +10351,10 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/snow/layer2,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "Ww" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -7733,12 +10363,35 @@
 	dir = 9
 	},
 /area/icy_caves/caves)
+"Wx" = (
+/turf/open/floor/plating/ground/snow/layer2,
+/area/icy_caves/caves/west)
+"Wy" = (
+/turf/open/shuttle/dropship/floor,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "WA" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
 /turf/closed/ice/thin/end,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
+"WB" = (
+/obj/machinery/vending/dinnerware,
+/obj/machinery/camera/autoname/mainship/dropship_one{
+	dir = 8;
+	pixel_x = 16
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "WD" = (
 /turf/open/floor/plating/ground/snow,
 /area/icy_caves/outpost/LZ1)
@@ -7749,12 +10402,36 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
+"WF" = (
+/obj/structure/cable,
+/turf/closed/wall/r_wall,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"WG" = (
+/turf/closed/ice_rock/corners,
+/area/icy_caves/caves/west)
 "WI" = (
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/outside)
 "WK" = (
 /turf/open/floor/mech_bay_recharge_floor,
 /area/icy_caves/outpost/LZ1)
+"WO" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"WP" = (
+/obj/effect/decal/cleanable/vomit,
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "WQ" = (
 /turf/closed/ice/thin/end{
 	dir = 8
@@ -7780,6 +10457,28 @@
 /obj/item/clothing/head/pirate,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
+"WW" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"WX" = (
+/obj/machinery/computer3/laptop,
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "WY" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/medbay)
@@ -7801,6 +10500,15 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
+"Xh" = (
+/obj/structure/bed/chair/comfy{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Xi" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -7874,6 +10582,33 @@
 /obj/item/storage/box/visual/grenade/teargas,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
+"Xy" = (
+/obj/structure/dropship_piece/one/front,
+/obj/structure/monorail,
+/turf/open/floor/mainship_hull,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"Xz" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
+"XA" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/east)
+"XD" = (
+/obj/item/shard,
+/turf/open/shuttle/dropship/floor,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "XF" = (
 /turf/closed/ice/corner,
 /area/icy_caves/caves/west)
@@ -7908,6 +10643,16 @@
 "XJ" = (
 /turf/closed/ice_rock/singleEnd,
 /area/icy_caves/caves/west)
+"XL" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/obj/structure/xenoautopsy/tank/alien,
+/turf/open/shuttle/dropship/seven,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "XM" = (
 /obj/structure/bed/chair,
 /obj/effect/landmark/corpsespawner/colonist,
@@ -7948,7 +10693,10 @@
 /turf/closed/ice/thin/junction{
 	dir = 1
 	},
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "XU" = (
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 1
@@ -7991,6 +10739,13 @@
 	dir = 1
 	},
 /area/icy_caves/caves)
+"Yh" = (
+/obj/machinery/power/apc/drained,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Yi" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark/green2{
@@ -8003,6 +10758,15 @@
 	},
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ1)
+"Yk" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Ym" = (
 /obj/structure/rack,
 /obj/item/clothing/shoes/swat,
@@ -8025,14 +10789,20 @@
 /turf/closed/ice/thin/junction{
 	dir = 8
 	},
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "Yv" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "Yw" = (
 /obj/machinery/landinglight/ds1/delayone{
 	dir = 8
@@ -8061,6 +10831,19 @@
 "YA" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/kitchen)
+"YB" = (
+/obj/structure/lattice,
+/obj/structure/monorail{
+	dir = 10
+	},
+/obj/structure/monorail{
+	dir = 6
+	},
+/turf/open/shuttle/escapepod/plain,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "YF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -8072,8 +10855,11 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/ice_rock/singleT,
-/area/icy_caves/outpost/outside)
+/turf/open/floor/plating/ground/snow/layer2,
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "YI" = (
 /turf/closed/ice/thin/end{
 	dir = 1
@@ -8098,6 +10884,18 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/garage)
+"YP" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "YQ" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/space)
@@ -8113,6 +10911,17 @@
 "YT" = (
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
+"YV" = (
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "YW" = (
 /turf/closed/ice,
 /area/icy_caves/caves/south)
@@ -8178,6 +10987,15 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/LZ1)
+"Zl" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "Zm" = (
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/LZ1)
@@ -8248,7 +11066,10 @@
 "ZE" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "ZF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -8289,10 +11110,20 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/snow/layer1,
-/area/icy_caves/outpost/outside)
+/area/icy_caves/outpost/mining{
+	icon_state = "bluenew";
+	name = "can build here"
+	})
 "ZU" = (
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
+"ZV" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 "ZW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -8311,6 +11142,15 @@
 	dir = 9
 	},
 /area/icy_caves/caves)
+"ZZ" = (
+/obj/structure/morgue{
+	dir = 2
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern{
+	icon_state = "bluenew";
+	name = "Monorail & research"
+	})
 
 (1,1,1) = {"
 YQ
@@ -8470,12 +11310,12 @@ YQ
 "}
 (2,1,1) = {"
 YQ
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
+mi
+mi
+mi
+mv
+mv
+mv
 Yf
 Yf
 Yf
@@ -8626,6 +11466,12 @@ YQ
 "}
 (3,1,1) = {"
 YQ
+mi
+Sw
+mi
+mv
+mv
+mv
 Yf
 Yf
 Yf
@@ -8653,22 +11499,16 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
+WF
+WF
+WF
+WF
+WF
+WF
+vT
+vT
+vT
+vT
 Yf
 Yf
 Yf
@@ -8782,6 +11622,12 @@ YQ
 "}
 (4,1,1) = {"
 YQ
+mi
+mi
+mi
+mv
+mv
+mv
 Yf
 Yf
 Yf
@@ -8809,22 +11655,16 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
+WF
+mw
+cE
+ta
+hW
+kY
+Vj
+AJ
+eO
+vT
 Yf
 Yf
 Yf
@@ -8938,6 +11778,12 @@ YQ
 "}
 (5,1,1) = {"
 YQ
+mv
+mv
+mv
+mv
+mv
+mv
 Yf
 Yf
 Yf
@@ -8965,22 +11811,16 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
+WF
+SY
+AJ
+AJ
+jf
+Ex
+II
+AJ
+kf
+vT
 Yf
 Yf
 Yf
@@ -9094,6 +11934,12 @@ YQ
 "}
 (6,1,1) = {"
 YQ
+mv
+mv
+mv
+mv
+mv
+mv
 Yf
 Yf
 Yf
@@ -9121,6 +11967,16 @@ Yf
 Yf
 Yf
 Yf
+WF
+AR
+VZ
+AJ
+AJ
+Fq
+AJ
+AJ
+kf
+vT
 Yf
 Yf
 Yf
@@ -9173,40 +12029,24 @@ Yf
 Yf
 Yf
 Yf
+MH
+MH
 Yf
 Yf
+MH
+MH
+re
 Yf
+MH
+MH
 Yf
 Yf
 Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
+qy
+qy
 Yf
 Yf
 Yf
@@ -9283,6 +12123,16 @@ Yf
 Yf
 Yf
 Yf
+WF
+rk
+AJ
+WP
+AJ
+AJ
+MY
+gZ
+yH
+vT
 Yf
 Yf
 Yf
@@ -9333,38 +12183,28 @@ Yf
 Yf
 Yf
 Yf
+MH
+YI
+YI
+YI
+ZU
+ZU
+ZU
+GF
+re
+re
+re
+MH
 Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
+MH
+MH
+qy
+qy
+qy
+MH
 Yf
 Yf
 Yf
@@ -9372,7 +12212,7 @@ Yf
 Yf
 qy
 RC
-WD
+TM
 UE
 WK
 Yj
@@ -9411,6 +12251,27 @@ Yf
 Yf
 Yf
 Yf
+WF
+WF
+WF
+WF
+WF
+WF
+WF
+WF
+WF
+WF
+WF
+WF
+WF
+WF
+WF
+WF
+WF
+WF
+WF
+WF
+WF
 Yf
 Yf
 Yf
@@ -9418,37 +12279,16 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
+WF
+ux
+hG
+Rx
+AJ
+AJ
+HU
+AJ
+Lr
+vT
 Yf
 Yf
 Yf
@@ -9500,35 +12340,35 @@ Yf
 Yf
 Yf
 Yf
+ZU
+YI
+ZU
+ZU
+Wx
+Wx
+Bb
+WI
+WI
+WI
+WI
+MH
 Yf
 Yf
 Yf
+MH
+MH
+WI
+WI
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qy
-aG
-Ww
-Sw
+MH
+MH
+MH
+MH
+DX
+kn
+zi
+TM
 UE
 WT
 Yn
@@ -9567,6 +12407,27 @@ Yf
 Yf
 Yf
 Yf
+WF
+Qg
+mj
+GQ
+yb
+vT
+Ls
+eM
+EU
+wY
+eM
+EU
+DF
+nK
+vT
+eM
+EU
+eM
+LF
+eM
+WF
 Yf
 Yf
 Yf
@@ -9574,37 +12435,16 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
+WF
+EP
+EP
+vT
+AJ
+AJ
+HU
+AJ
+GE
+vT
 Yf
 Yf
 Yf
@@ -9653,38 +12493,38 @@ Yf
 Yf
 Yf
 Yf
+MH
+MH
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
-VU
-qz
+ZU
+ZU
+gx
+ZU
+ZU
+ZU
+Bb
+WI
+pa
+Si
+WI
+WI
+MH
+MH
+MH
+MH
+pa
+Si
+WI
+WI
+MH
+MH
+MH
+Bt
+Bt
+DX
+DX
 Sh
-HC
+TM
 UE
 Xa
 Yn
@@ -9723,57 +12563,57 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-re
-re
-re
-re
-re
-re
-re
+WF
+op
+Ox
+yi
+Dm
+vT
+eM
+eM
+eM
+eM
+He
+eM
+eM
+iD
+vT
+eM
+eM
+eM
+BZ
+eM
+WF
+WF
+WF
+WF
+WF
+WF
+WF
+WF
+WF
+eM
+He
+vT
+EP
+eM
+YP
+EP
+vT
+vT
+vT
+vT
+vT
+vT
+vT
+vT
+vT
+vT
+vT
+vT
+vT
+vT
+vT
 Yf
 Yf
 Yf
@@ -9810,36 +12650,36 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
-aK
-VU
-yW
+YI
+ZU
+ZU
+ZU
+ZU
+ZU
+ZU
+ZU
+Bb
+WI
+Tj
+SI
+SI
+SI
+SI
+SI
+SI
+SI
+SI
+WI
+WI
+WI
+WI
+WI
+WI
+Bt
+Bt
+DX
+Im
+YH
 TM
 UE
 Xq
@@ -9874,62 +12714,62 @@ YQ
 "}
 (11,1,1) = {"
 YQ
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-af
-af
-af
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
-dy
-dy
-dy
-dy
-dy
-dy
-dy
+pl
+pl
+pl
+pl
+pl
+WF
+Gh
+co
+oR
+lO
+iN
+Tz
+Tz
+Wm
+ph
+Tz
+Tz
+Tz
+Tz
+iN
+Tz
+Tz
+Tz
+UU
+eM
+Xz
+eM
+eM
+wY
+EU
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+cV
+IU
+MX
+Lp
+eM
+eM
+eM
+eM
+EU
+eM
+LF
+eM
+vT
+eM
+Mx
+NM
+xo
+pP
+vT
 bD
 Yf
 Yf
@@ -9966,35 +12806,35 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qy
-XH
-XH
+ZU
+gx
+ez
+ZU
+ZU
+ZU
+ZU
+ZU
+Bb
+WI
+WI
+SI
+SI
+SI
+SI
+SI
+SI
+SI
+SI
+AW
+WI
+WI
+WI
+WI
+WI
+Bt
+Bt
+Bt
+Im
 YH
 TM
 uw
@@ -10030,62 +12870,62 @@ YQ
 "}
 (12,1,1) = {"
 YQ
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-af
+pl
+bW
+bW
+bW
+bW
+in
+mu
+yi
+oQ
+yi
+zu
+TK
+eM
+eM
+BZ
+eM
+eM
+eM
+eM
+Wp
+eM
+eM
+eM
+Wd
+Tz
 am
-af
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
-dy
+Tz
+Tz
+Tz
+Tz
+TN
+Tz
+Yk
+eM
+eM
+eM
+eM
+Pp
+Fw
+La
+zt
+eM
+eM
+eM
+He
+eM
+eM
+BZ
+eM
+vT
 dL
-dZ
+eM
 ev
 eM
 fb
-dy
+vT
 bD
 Yf
 Yf
@@ -10122,36 +12962,36 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
+ZU
+ZU
+ZU
+ZU
+ZU
+ZU
 re
 re
 re
-re
-re
-re
-re
-re
-re
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-re
-re
-qy
-qz
-qz
-qz
-YH
+WI
+WI
+SI
+SI
+WI
+WI
+WI
+WI
+SI
+SI
+WI
+WI
+WI
+WI
+WI
+WI
+fq
+Bt
+Bt
+Bt
+Tm
 TM
 iJ
 WT
@@ -10186,62 +13026,62 @@ YQ
 "}
 (13,1,1) = {"
 YQ
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-af
-af
-af
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
-dy
-dM
-ap
+pl
+BB
+BB
+BB
+BB
+nw
+Sf
+yi
+wG
+yi
+OP
+TK
+eM
+eM
+BZ
+eM
+dL
+eM
+eM
+eM
+eM
+eM
+eM
+BZ
+eM
+ev
+He
+eM
+eM
+eM
+eM
+eM
+Wi
+Tz
+Tz
+Tz
+Tz
+Tz
+Tz
+UU
+eM
+eM
+eM
+Gf
+eM
+eM
+eM
+BZ
+eM
+zZ
+eM
+eM
 ix
 eN
 fd
-dy
+vT
 bD
 Yf
 Yf
@@ -10278,36 +13118,36 @@ Yf
 Yf
 re
 re
-re
-re
-re
-re
-re
-re
+ZU
+ZU
+ZU
+ZU
+Di
+Di
 lG
 lX
 lG
-lX
-lG
-lX
-lG
-re
-re
-re
-re
-re
-Yf
-Yf
-Yf
-Yf
-qs
-VU
-aG
-aH
-TW
-VU
-qz
-SJ
+AW
+WI
+SI
+SI
+WI
+pD
+WI
+WI
+SI
+SI
+WI
+WI
+WI
+WI
+WI
+WI
+Bt
+Bt
+Bt
+Bt
+YH
 TM
 bU
 Xa
@@ -10342,62 +13182,62 @@ YQ
 "}
 (14,1,1) = {"
 YQ
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
-dy
+pl
+bW
+bW
+bW
+bW
+nw
+gP
+jo
+yi
+yi
+EP
+eM
+eM
+eM
+BZ
+eM
+eM
+eM
+eM
+EP
+eM
+eM
+eM
+BZ
+eM
+Xz
+eM
+eM
+eM
+eM
+eM
+eM
+pL
+eM
+eM
+eM
+eM
+eM
+eM
+Wi
+Tz
+un
+Tz
+Tz
+Tz
+Tz
+Tz
+HP
+un
+Hw
 dN
-dP
+Tz
 ew
 eP
 fe
-dy
+vT
 bD
 Yf
 Yf
@@ -10431,39 +13271,39 @@ re
 re
 re
 re
-re
-qy
-lX
-mv
-mv
-mv
-bX
-pq
-lG
+ZU
+ZU
+SF
+ZU
+ZU
+ZU
+ZU
+Di
+Mg
 ec
 Vb
 eY
-Vb
-eY
-Vb
-eY
-qz
-qz
-qz
-eY
-re
-re
-re
-re
-re
-qy
-XH
-lX
-aK
-lX
-eY
-Qh
-zb
+Ig
+WI
+SI
+SI
+WI
+WI
+WI
+WI
+SI
+SI
+WI
+WI
+MH
+qs
+WI
+WI
+Bt
+Bt
+Bt
+Wg
+Tf
 Tb
 XW
 Xq
@@ -10498,62 +13338,62 @@ YQ
 "}
 (15,1,1) = {"
 YQ
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
-dy
+pl
+BB
+BB
+BB
+BB
+WF
+fD
+yi
+Do
+wq
+vT
+Bo
+eM
+eM
+BZ
+eM
+He
+eM
+eM
+vT
+eM
+dL
+eM
+BZ
+eM
+WF
+eM
+eM
+eM
+eM
+eM
+eM
+BZ
+Pg
+ve
+eM
+eM
+eM
+eM
+BZ
+eM
+eM
+Pg
+TD
+eM
+eM
+eM
+eM
+eM
+vT
 dO
 ea
-dQ
+WW
 eT
 ff
-dy
+vT
 bD
 Yf
 Yf
@@ -10586,39 +13426,39 @@ TW
 dj
 Di
 XF
-Di
-XF
-qz
-mv
+DZ
 ZU
 ZU
+SF
+ZU
+gx
 ZU
 ZU
-aG
-eY
+RG
+ec
 fT
 xI
 xI
 xI
+nx
+od
+lH
+nx
 xI
 xI
 xI
-xI
-xI
-xI
-xI
-pq
-aG
-pq
-lG
-lX
-pq
-lG
-XH
-XH
-XH
-qz
-Qp
+SI
+SI
+WI
+MH
+Yf
+Yf
+MH
+WI
+Bt
+Bt
+Bt
+Wg
 Tf
 Ml
 XW
@@ -10654,62 +13494,62 @@ YQ
 "}
 (16,1,1) = {"
 YQ
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
-dy
+pl
+pl
+pl
+pl
+pl
+vT
+wO
+yi
+Hj
+kR
+vT
+eM
+eM
+dL
+ds
+eM
+eM
+eM
+FB
+vT
+gK
+cX
+eM
+BZ
+eM
+pE
+WF
+WF
+WF
+ev
+BO
+WF
+VS
+vT
+vT
+vT
+vT
+vT
+eM
+YP
+vT
+vT
+vT
+vT
+vT
+Wr
+vT
+vT
+vT
+vT
 nD
 ed
-ZW
-dP
+nB
+eM
 fg
-dy
+vT
 bD
 Yf
 Yf
@@ -10741,39 +13581,39 @@ XH
 qz
 ZU
 gz
-Jg
-Jg
-DK
-ez
-ZU
-ZU
 ZU
 ZU
 ZU
 ez
+SF
 ZU
+ZU
+ZU
+ZU
+ez
+SF
 ZU
 nO
 oI
 wW
-pl
+oI
 pw
-OI
+oI
 pf
 oZ
 oK
 xI
-VU
-lX
-pq
-WS
-eY
-VU
-XH
-aG
-TW
-qz
+SI
+SI
 WI
+MH
+Yf
+Yf
+Yf
+MH
+Bt
+Bt
+Bt
 Wg
 Tm
 Uu
@@ -10810,62 +13650,62 @@ YQ
 "}
 (17,1,1) = {"
 YQ
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
-dy
-dy
-dy
+mv
+xs
+xs
+xs
+xs
+vT
+jY
+vT
+EP
+EP
+vT
+pu
+vT
+vT
+vT
+eM
+VL
+Vq
+eM
+vT
+vT
+vT
+vT
+BZ
+eM
+WF
+Gs
+WF
+hT
+eM
+eM
+eM
+AQ
+vT
+Gs
+Gs
+Gs
+vT
+eM
+BZ
+vT
+DV
+EX
+jd
+jd
+jd
+vT
+Gs
+Il
+vT
+vT
+vT
 ex
-dy
-dy
-dy
+vT
+vT
+vT
 bh
 Yf
 Yf
@@ -10883,12 +13723,12 @@ eb
 ZU
 ZU
 ZU
+SF
 ZU
 ZU
 ZU
 ZU
-ZU
-ZU
+SF
 ZU
 ZU
 ez
@@ -10897,8 +13737,8 @@ ZU
 ZU
 ZU
 ZU
-gz
-DK
+ZU
+ZU
 ez
 ZU
 dx
@@ -10907,7 +13747,7 @@ gA
 Mg
 ZU
 ZU
-ZU
+SF
 fT
 xI
 oJ
@@ -10919,18 +13759,18 @@ oI
 oI
 oU
 xI
-eY
-bH
-VU
-XH
-aG
-aI
-TW
-qz
-WI
-WI
-WI
-XO
+SI
+SI
+MH
+Yf
+Yf
+Yf
+qs
+qs
+Bt
+Bt
+Bt
+Bt
 TQ
 Uu
 bU
@@ -10966,70 +13806,70 @@ YQ
 "}
 (18,1,1) = {"
 YQ
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
-lX
-TW
+YQ
+YQ
+pl
+pl
+pl
+vT
+OP
+OP
+OP
+OP
+OP
+OP
+Mf
+OP
+vT
+vT
+Se
+CI
+vT
+vT
+Vt
+CH
+vT
+mg
+eM
+WF
+Gs
+WF
+tT
+eM
+pZ
+IY
+BZ
+vT
+Gs
+Gs
+Gs
+vT
+eM
+Wi
+Ts
+ZV
+ZV
+Vs
+Jn
+Jn
+vT
+Gs
+Il
+bI
+XP
 eg
 ZW
 eU
-VU
-lX
-lG
-bD
-Yf
-Yf
-Yf
-qy
-nM
-nM
+dw
+DZ
+Mg
+qR
+WG
+WG
+WG
+pb
+SD
+SD
 ZU
 ZU
 ZU
@@ -11039,12 +13879,12 @@ ZU
 ZU
 ez
 ZU
-ZU
+SF
 Eb
 ZU
 ZU
 gx
-ZU
+SF
 ez
 ZU
 gx
@@ -11075,18 +13915,18 @@ qo
 qO
 oU
 xI
-VU
-XH
-qH
-TW
-qz
+NH
+SI
 WI
+MH
+MH
+MH
 WI
-WI
-WI
-XO
-XO
-XO
+MH
+Bt
+qA
+qA
+qA
 TQ
 UE
 XW
@@ -11121,71 +13961,71 @@ Yf
 YQ
 "}
 (19,1,1) = {"
-YQ
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
-bH
-ZU
-eh
+cW
+qa
+yF
+jL
+Me
+Me
+Me
+Me
+Me
+Me
+iS
+Me
+Me
+Me
+Me
+Iu
+BN
+jc
+jc
+BN
+BN
+BN
+ma
+EP
+BZ
+eM
+WF
+Gs
+WF
+Ch
+eM
+cD
+eM
+pL
+vT
+Gs
+Gs
+Gs
+vT
+Lo
+UU
+vT
+nF
+mZ
+PN
+Lw
+Lw
+vT
+Gs
+Il
+bR
+SR
+RL
 ZW
-ZU
-Vb
-aI
-eY
-bD
-Yf
-Yf
-qy
-lX
-WS
-eY
+zB
+Lx
+Ga
+ec
+qR
+WG
+WG
+pb
+DZ
+Rj
+ec
 gx
 ZU
 ZU
@@ -11218,7 +14058,7 @@ Lx
 ec
 ZU
 ZU
-ZU
+gx
 da
 DK
 xI
@@ -11231,18 +14071,18 @@ pX
 oI
 oU
 xI
-eY
-aG
-eY
+SI
+SI
 WI
 WI
 WI
 WI
 WI
 WI
-WI
-XO
-XO
+Bt
+Bt
+qA
+qA
 TQ
 WD
 XW
@@ -11277,70 +14117,70 @@ Yf
 YQ
 "}
 (20,1,1) = {"
-YQ
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
-Vb
-TW
-ZU
+cW
+BY
+wT
+Od
+JR
+Od
+JR
+Od
+JR
+Od
+JR
+Od
+JR
+Od
+lu
+ul
+Fk
+FE
+Wy
+GU
+NW
+XL
+Pc
+Tt
+BZ
+eM
+WF
+Gs
+WF
+WX
+eM
+Gf
+Mv
+ns
+vT
+vT
+vT
+vT
+vT
+eM
+BZ
+vT
+vT
+vT
+vT
+vT
+vT
+vT
+Gs
+Il
+bJ
+XP
+zB
 ZW
-eh
+RL
 ZU
 Di
 XF
-bh
-re
-qy
-aG
-WS
-eY
+pH
+SO
+pb
+RG
+Rj
+ec
 ZU
 ZU
 ZU
@@ -11387,20 +14227,20 @@ qp
 oI
 oK
 xI
+SI
+SI
 XO
-XO
-XO
 WI
 WI
 WI
 WI
 WI
-WI
-AW
-XO
-XO
-TQ
-UE
+Bt
+fq
+qA
+qA
+Aq
+Ml
 gI
 UE
 WD
@@ -11433,69 +14273,69 @@ Yf
 YQ
 "}
 (21,1,1) = {"
-YQ
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
-Di
+cW
+HC
+yd
+RM
+cL
+RM
+cL
+RM
+cL
+RM
+cL
+RM
+cL
+RM
+Xy
+pc
+Ut
+Wy
+ch
+Wy
+Wy
+GU
+FR
+Tt
+BZ
+eM
+WF
+Gs
+WF
+xS
+eM
+IY
+jk
+BZ
+vT
+EX
+jd
+ze
+vT
+eM
+BZ
+vT
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Il
+PD
 eb
 ei
 ZW
-ZU
+zB
 Xu
 Jg
 DK
-lX
-pq
-lG
+DZ
+dh
+Mg
 fT
-XH
+dD
 ZU
 ez
 ZU
@@ -11541,7 +14381,7 @@ oI
 ig
 wW
 oI
-oI
+jI
 nO
 SI
 SI
@@ -11551,12 +14391,12 @@ WI
 WI
 WI
 WI
-WI
-XO
-XO
-XO
-TQ
-Uu
+Bt
+qA
+qA
+qA
+Tm
+Ml
 Vk
 XW
 bU
@@ -11589,69 +14429,69 @@ Yf
 YQ
 "}
 (22,1,1) = {"
-YQ
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-re
-re
-re
-re
-re
-Yf
-Yf
-re
-re
-qy
-do
+cW
+TZ
+GN
+YB
+cF
+YB
+cF
+YB
+cF
+YB
+cF
+YB
+cF
+YB
+Rw
+uO
+Qn
+Wy
+XD
+GU
+oz
+oz
+UZ
+Tt
+BZ
+dL
+WF
+Gs
+WF
+Gj
+cD
+wY
+eM
+ds
+vT
+Ij
+jd
+jd
+Ea
+He
+BZ
+vT
+Ae
+Ae
+Ae
+Gs
+Gs
+Ae
+Ae
+Qo
+ce
 ZU
-ZU
+zB
 ZW
-ZU
+zB
 Xu
 Jg
 eb
-bH
-qz
-XH
-qz
-qz
+hn
+xa
+dD
+xa
+xa
 ez
 ZU
 DZ
@@ -11704,18 +14544,18 @@ SI
 Za
 XO
 WI
+AW
 WI
-WI
 XO
-XO
-XO
-XO
-XO
+qA
+qA
+qA
+qA
 LP
-UE
-UE
-UE
-WD
+VT
+VT
+VT
+VT
 WD
 uw
 vi
@@ -11728,7 +14568,7 @@ Nr
 jE
 Zm
 bq
-BY
+Ml
 UE
 UE
 UE
@@ -11737,7 +14577,7 @@ uw
 uw
 Zm
 WD
-UE
+Ml
 VU
 VU
 uc
@@ -11745,65 +14585,65 @@ bD
 YQ
 "}
 (23,1,1) = {"
-YQ
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
-PD
-pk
+cW
+OI
+Eh
+IP
+DU
+DU
+DU
+DU
+BJ
+DU
+DU
+DU
+DU
+DU
+DU
+Ss
+KP
+jc
+jc
+KP
+KP
+KP
+gQ
+EP
+BZ
+eM
+WF
+Gs
+WF
+ws
+He
+eM
+ZZ
+eM
+vT
+vT
+vT
+vT
+vT
+eM
+BZ
+vT
 cJ
 bA
 Nd
-bh
-qy
-bX
-pq
-TW
-da
+hM
+Qo
+cd
+Tu
+XP
+ot
 eb
-ZU
+zB
 ZW
-ZU
+zB
 Xu
 Jg
 XF
-XH
+dD
 fi
 gp
 Sn
@@ -11840,11 +14680,11 @@ ZU
 ZU
 lj
 ZU
-ZU
+gx
 EB
 EB
 ez
-ZU
+SF
 XO
 XO
 XO
@@ -11863,15 +14703,15 @@ XO
 XO
 XO
 XO
-XO
-WI
-XO
-lW
+qA
+Bt
+qA
+kn
 Yq
 VT
-Nr
-UE
-UE
+VT
+VT
+VT
 Zm
 uw
 vi
@@ -11882,18 +14722,18 @@ UE
 AB
 mb
 Nr
-TM
-TM
+JA
+JA
 JA
 fN
-mi
-UE
+Ml
+Ml
 Zm
 uw
 uw
 Zm
-UE
-aG
+Ml
+XH
 WS
 WS
 Ww
@@ -11902,60 +14742,60 @@ YQ
 "}
 (24,1,1) = {"
 YQ
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-re
-re
-qy
-ce
-PD
+YQ
+YQ
+pl
+pl
+pl
+vT
+OP
+OP
+OP
+OP
+OP
+OP
+QD
+OP
+vT
+vT
+tF
+lv
+vT
+vT
+rg
+HL
+vT
+mg
+eM
+WF
+Gs
+WF
+wh
+TD
+Pg
+ZZ
+ve
+vT
+Gs
+Gs
+Ae
+vT
+eM
+BZ
+vT
 cK
 bM
 Fu
-qz
-lX
-TW
+bS
+bI
+XP
 qT
-cW
-dp
+cP
+Sg
 ZU
-eh
+RL
 ZW
-ZU
+zB
 ZU
 dp
 do
@@ -11999,8 +14839,8 @@ Bw
 ZU
 ZU
 cY
-ZU
-ZU
+gx
+SF
 XO
 Za
 Za
@@ -12019,10 +14859,10 @@ XO
 XO
 XO
 XO
-WI
-XO
-XO
-XO
+Bt
+qA
+qA
+qA
 TT
 EQ
 XT
@@ -12043,13 +14883,13 @@ EO
 rp
 Vu
 vR
-TT
-ZE
+vr
+vr
 Hl
 Hl
 ZE
-TT
-TT
+vr
+vr
 PL
 PL
 HV
@@ -12058,60 +14898,60 @@ YQ
 "}
 (25,1,1) = {"
 YQ
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qy
-VU
-VU
-qz
-ce
-Sg
+mv
+mv
+mv
+mv
+mv
+vT
+Wr
+vT
+vT
+Zl
+Zl
+Zl
+vT
+vT
+vT
+eM
+gM
+If
+eM
+vT
+vT
+vT
+vT
+BZ
+eM
+WF
+Gs
+WF
+vT
+vT
+vT
+vT
+vT
+vT
+Gs
+Qo
+bP
+vT
+eM
+BZ
+vT
 yh
 SR
 Sg
-aG
-eY
+Io
+eB
 qT
 IC
 dd
+SR
 ZU
-ZU
-ZU
+zB
 ZW
-ZU
+zB
 eh
 ZU
 dp
@@ -12156,7 +14996,7 @@ fz
 ZU
 ZU
 ja
-ZU
+SF
 XO
 XO
 XO
@@ -12176,37 +15016,37 @@ Za
 XO
 XO
 XO
-XO
-XO
-XO
-XO
-of
-of
+qA
+qA
+qA
+qA
+Cq
+Cq
 Ey
-XO
-XO
-SI
-Dn
-Za
-Za
+qA
+qA
+MA
+qk
+TC
+TC
 Im
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-Za
-SI
-SI
-Za
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+TC
+MA
+MA
+TC
 Ey
-XO
-XO
+qA
+qA
 qz
 bD
 Yf
@@ -12214,47 +15054,47 @@ YQ
 "}
 (26,1,1) = {"
 YQ
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-re
-qy
-lX
-WS
-WS
-TW
-Sg
-SR
+mv
+mv
+mv
+mv
+mv
+vT
+Jn
+pN
+vT
+eM
+eM
+dL
+LF
+eM
+eM
+eM
+eM
+dL
+eM
+eM
+EU
+pS
+eM
+Wi
+HT
+WF
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Ae
+Qo
+bI
+Rh
+vT
+eM
+yV
+vT
 cb
 SR
 SR
@@ -12265,9 +15105,9 @@ cg
 df
 ZU
 ZU
-ZU
+zB
 ZW
-ZU
+zB
 ZU
 gx
 jb
@@ -12280,14 +15120,14 @@ ZU
 ZU
 ZU
 ZU
-ZU
+SF
 ZU
 ZU
 ZU
 ZU
 gx
 ZU
-ZU
+SF
 ZU
 ZU
 ZU
@@ -12309,7 +15149,7 @@ ZU
 dE
 Sn
 xa
-xa
+dE
 ez
 ZU
 ht
@@ -12332,37 +15172,37 @@ CV
 Za
 Za
 Za
-Za
-Za
-Za
-XO
-XO
-XO
-XO
-Za
-Za
-SI
-Dn
-Za
-Za
-Za
-Za
-Za
-Za
-Za
-Za
-Za
-Za
-Za
-Za
-Za
-Za
-SI
-SI
-Za
-Za
-Za
-XO
+TC
+TC
+TC
+qA
+qA
+qA
+qA
+TC
+TC
+MA
+qk
+TC
+TC
+TC
+TC
+TC
+TC
+TC
+TC
+TC
+TC
+TC
+TC
+TC
+TC
+MA
+MA
+TC
+TC
+TC
+qA
 bF
 Yf
 Yf
@@ -12370,47 +15210,47 @@ YQ
 "}
 (27,1,1) = {"
 YQ
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-re
-qy
+mv
+mv
+mv
+mv
+mv
+vT
+oT
+Jn
+vT
+Bo
+eM
+eM
+BZ
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+pL
+eM
+WF
+Gs
+Gs
+Gs
+Gs
+Gs
+Ae
+Qo
 PD
 Ho
-Vb
-eY
-XH
-SR
-SR
-SR
+bJ
+eB
+vT
+eM
+YP
+vT
 yh
 SR
 SR
@@ -12421,9 +15261,9 @@ SR
 dg
 ZU
 gx
-ZU
+zB
 ZW
-ez
+Ws
 ZU
 ZU
 SF
@@ -12436,14 +15276,14 @@ ZU
 ZU
 ZU
 gx
-ZU
+SF
 ZU
 ZU
 ez
 ZU
 ZU
 ZU
-ZU
+SF
 ZU
 ez
 gx
@@ -12488,37 +15328,37 @@ pY
 Al
 vy
 vy
-Al
-vy
-vy
-vy
-vy
-vy
+Mw
+Mq
+Mq
+Mq
+Mq
+Mq
 Nn
-vy
-vy
-Al
+Mq
+Mq
+Mw
 qf
-SI
-SI
-SI
-SI
-SI
-SI
-SI
-Ln
-SI
-SI
-SI
-SI
-SI
-SI
-SI
-Ln
-SI
-SI
-Ln
-XO
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+Th
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+Th
+MA
+MA
+Th
+qA
 bD
 Yf
 Yf
@@ -12526,37 +15366,37 @@ YQ
 "}
 (28,1,1) = {"
 YQ
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qy
+mv
+mv
+mv
+mv
+mv
+vT
+Ek
+uu
+vT
+eM
+eM
+eM
+BZ
+eM
+He
+eM
+eM
+eM
+lR
+lR
+eM
+eM
+eM
+Cm
+eM
+WF
+Gs
+Gs
+Gs
+Gs
+Qo
 PD
 bA
 VI
@@ -12564,9 +15404,9 @@ Ho
 yh
 SR
 SR
-SR
-im
-SR
+eM
+uT
+eM
 yh
 wo
 SR
@@ -12577,7 +15417,7 @@ we
 dg
 ZU
 ZU
-ZU
+zB
 dQ
 eF
 ZU
@@ -12592,7 +15432,7 @@ ZU
 ZU
 ZU
 ZU
-ZU
+SF
 gx
 ZU
 ZU
@@ -12630,7 +15470,7 @@ XO
 XO
 XO
 XO
-qa
+XO
 XO
 XO
 XO
@@ -12644,17 +15484,17 @@ SI
 SI
 SI
 SI
-SI
-SI
-SI
-SI
-SI
-SI
-Dn
-SI
-SI
-SI
-SI
+MA
+MA
+MA
+MA
+MA
+MA
+qk
+MA
+MA
+MA
+MA
 SI
 SI
 SI
@@ -12671,10 +15511,10 @@ SI
 SI
 SI
 SI
-SI
-SI
-SI
-XO
+MA
+MA
+MA
+qA
 bD
 Yf
 Yf
@@ -12687,31 +15527,31 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
+vT
+Gx
+YV
+vT
+eM
+eM
+eM
+Wi
+Tz
+Tz
+Tz
+Tz
+du
+Hw
+Hw
+sG
+Tz
+Tz
+UU
+eM
+WF
+Gs
+Gs
+Gs
+Il
 PD
 Fu
 ot
@@ -12720,9 +15560,9 @@ bl
 yh
 SR
 im
-SR
-bl
-ok
+eM
+Cm
+eM
 cO
 VI
 Nd
@@ -12733,9 +15573,9 @@ SR
 dg
 gx
 ZU
-ZU
+zB
 ZW
-ZU
+zB
 ZU
 ZU
 dx
@@ -12767,7 +15607,7 @@ ZU
 ZU
 ez
 ZU
-ZU
+SF
 ZU
 ZU
 ZU
@@ -12781,7 +15621,7 @@ ZU
 ZU
 YI
 cY
-ZU
+SF
 XO
 XO
 XO
@@ -12791,7 +15631,7 @@ WI
 WI
 WI
 XO
-XO
+np
 XO
 XO
 Za
@@ -12805,12 +15645,12 @@ XO
 XO
 XO
 XO
-SI
-Dn
-Za
-Za
-Za
-Za
+MA
+qk
+TC
+TC
+TC
+TC
 XO
 XO
 XO
@@ -12843,31 +15683,31 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
+vT
+ip
+hd
+Ts
+Tz
+Tz
+Tz
+UU
+eM
+di
+Pg
+eM
+KL
+vT
+vT
+yz
+eM
+eM
+BZ
+eM
+WF
+Gs
+Gs
+Gs
+Il
 ce
 ot
 by
@@ -12876,9 +15716,9 @@ SR
 yh
 SR
 wo
-GH
-SR
-SR
+mq
+BZ
+eM
 yh
 Lm
 by
@@ -12889,9 +15729,9 @@ SR
 DZ
 Mg
 ZU
-ZU
+zB
 ZW
-ZU
+zB
 ZU
 Xu
 Jg
@@ -12923,21 +15763,21 @@ ZU
 ZU
 kE
 ZU
+SF
+ZU
+ZU
+ZU
+gx
 ZU
 ZU
 ZU
 ZU
-ZU
-ZU
-ZU
-ZU
-ZU
-ZU
-ZU
+SF
+gx
 ez
 ZU
 ZU
-ZU
+SF
 ZU
 XO
 AW
@@ -12999,31 +15839,31 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
+vT
+vT
+vT
+WF
+eM
+eM
+eM
+BZ
+vT
+vT
+vT
+xW
+eM
+Rt
+fc
+eM
+eM
+eM
+BZ
+He
+WF
+Gs
+Gs
+Gs
+Il
 ce
 ce
 SR
@@ -13032,10 +15872,10 @@ SR
 yh
 PD
 Fu
-SR
-bl
-SR
-yh
+eM
+Cm
+FB
+vv
 SR
 bl
 im
@@ -13045,9 +15885,9 @@ Io
 Rj
 Rj
 Mg
-ZU
+zB
 ZW
-ZU
+zB
 Xu
 VB
 Jg
@@ -13088,12 +15928,12 @@ ZU
 Qd
 ZU
 ZU
+SF
 ZU
 ZU
 ZU
-ZU
-ZU
-ZU
+gx
+SF
 ZU
 WI
 WI
@@ -13158,28 +15998,28 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qy
+WF
+dL
+eM
+eM
+BZ
+vT
+xs
+vT
+cX
+eM
+eM
+eM
+eM
+eM
+eM
+BZ
+FB
+WF
+Gs
+Gs
+Gs
+Qo
 ce
 Sg
 SR
@@ -13188,9 +16028,9 @@ SR
 kl
 bM
 VI
-Nd
-SR
-wo
+eM
+BZ
+eM
 yh
 yh
 yh
@@ -13201,7 +16041,7 @@ cP
 Lx
 Rj
 ec
-ZU
+zB
 ZW
 eS
 dy
@@ -13263,7 +16103,7 @@ sk
 sx
 Pq
 Pq
-XU
+Kd
 DY
 DY
 gB
@@ -13314,28 +16154,28 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
-qz
+WF
+eM
+eM
+eM
+BZ
+vT
+xs
+vT
+UR
+eM
+dL
+eM
+eM
+eM
+eM
+BZ
+eM
+WF
+Gs
+Gs
+Il
+bS
 Sg
 SR
 SR
@@ -13344,9 +16184,9 @@ SR
 cs
 bN
 Lm
-VI
-pk
-VI
+eM
+BZ
+eM
 Ho
 SR
 SR
@@ -13357,9 +16197,9 @@ KU
 EB
 dD
 gx
-ZU
+zB
 ZW
-ZU
+zB
 YI
 ft
 EB
@@ -13470,28 +16310,28 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
-VU
+WF
+eM
+eM
+eM
+ns
+vT
+xs
+vT
+vT
+eM
+vT
+vT
+eM
+eM
+Gf
+BZ
+eM
+WF
+Gs
+Gs
+Il
+bP
 qT
 rf
 SR
@@ -13500,10 +16340,10 @@ cj
 ct
 cn
 bN
-Sg
-bN
-Sg
-SR
+eM
+BZ
+eM
+rf
 SR
 im
 SR
@@ -13513,9 +16353,9 @@ qT
 de
 ZU
 ZU
-ZU
+zB
 ZW
-ZU
+zB
 ZU
 dE
 de
@@ -13567,7 +16407,7 @@ eb
 SD
 Gw
 qc
-DY
+tx
 qQ
 RZ
 DY
@@ -13624,30 +16464,30 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
-nM
+WF
+WF
+WF
+EP
+eM
+Wc
+BF
+vT
+xs
+xs
+vT
+eM
+vT
+vT
+eM
+eM
+eM
+BZ
+eM
+WF
+Gs
+Gs
+Il
+QZ
 KU
 rf
 SR
@@ -13656,9 +16496,9 @@ SR
 cs
 cn
 cn
-bN
-cn
-qT
+eM
+BZ
+eM
 rf
 SR
 SR
@@ -13669,9 +16509,9 @@ IC
 Bw
 EB
 BQ
-ZU
+zB
 ZW
-gx
+Ab
 ZU
 YI
 de
@@ -13780,41 +16620,41 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
-qH
-TW
+WF
+eM
+EU
+eM
+Bf
+Bf
+BZ
+vT
+vT
+vT
+vT
+Bo
+eM
+eM
+eM
+eM
+dL
+BZ
+eM
+WF
+Gs
+Gs
+Il
+cc
+XP
 SR
 SR
 SR
 cj
 cv
 IC
-IC
-bT
-cn
-KU
+ci
+eM
+BZ
+eM
 rf
 SR
 SR
@@ -13825,9 +16665,9 @@ KU
 cY
 dE
 Sn
-ZU
+zB
 ZW
-ZU
+zB
 ZU
 fi
 de
@@ -13936,31 +16776,31 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-re
-qy
-qH
-lG
+WF
+eM
+eM
+dL
+Gf
+eM
+BZ
+eM
+eM
+vT
+eM
+Fj
+Tz
+Tz
+Tz
+Tz
+Tz
+UU
+eM
+WF
+Gs
+Ae
+Qo
+cc
+bL
 bp
 SR
 bl
@@ -13968,9 +16808,9 @@ cj
 cw
 cm
 ci
-Xw
-Xw
-rf
+eM
+BZ
+eM
 SR
 Zb
 SR
@@ -13981,9 +16821,9 @@ PD
 XF
 Di
 eb
-ZU
+zB
 ZW
-ZU
+zB
 YI
 fz
 cY
@@ -14028,7 +16868,7 @@ dp
 gS
 dD
 ZU
-ZU
+gx
 ZU
 dx
 xa
@@ -14092,41 +16932,41 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
+WF
+Xh
+Xh
+eM
+eM
+eM
+HQ
+Xh
+eM
+EP
+eM
+eM
+eM
+eM
+eM
+eM
+eM
+BZ
+FB
+WF
+Il
 PD
 Nd
-Vb
-eY
+bJ
+eB
 SR
 SR
 bI
 XP
 cx
 QK
-cn
-qT
-Zt
-qT
+dF
+Bo
+BZ
+eM
 rf
 PI
 PI
@@ -14137,9 +16977,9 @@ Fu
 da
 DK
 ZU
-ZU
+zB
 ZW
-ZU
+zB
 Xu
 xP
 xP
@@ -14248,27 +17088,27 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
+WF
+MT
+eD
+eM
+eM
+eM
+nv
+MT
+PZ
+eC
+eM
+eM
+eM
+eM
+eM
+eM
+He
+BZ
+eM
+WF
+Il
 ce
 Lm
 Nd
@@ -14280,9 +17120,9 @@ bI
 Tu
 bL
 ci
-cm
-KU
-bT
+eM
+BZ
+eM
 SR
 SR
 SR
@@ -14293,9 +17133,9 @@ Lm
 DK
 ZU
 ZU
-ZU
+zB
 ZW
-ZU
+zB
 ZU
 RG
 fB
@@ -14404,27 +17244,27 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-re
-re
-re
-re
-re
-qy
+WF
+eD
+eD
+eM
+He
+eM
+IK
+eD
+PZ
+eM
+eM
+dL
+eM
+eM
+eM
+eM
+eM
+BZ
+eM
+WF
+Qo
 ce
 PD
 by
@@ -14436,9 +17276,9 @@ Rh
 XP
 QZ
 QK
-QK
-SR
-SR
+eM
+BZ
+eM
 SR
 im
 bl
@@ -14449,9 +17289,9 @@ im
 ZU
 ZU
 ZU
-ZU
+zB
 ZW
-ez
+Ws
 ZU
 RG
 fS
@@ -14483,7 +17323,7 @@ ZU
 ZU
 ZU
 ZU
-ZU
+SF
 ZU
 ZU
 ZU
@@ -14560,26 +17400,26 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
-lX
-pq
-TW
-bX
-lG
+WF
+BW
+BW
+eM
+eM
+eM
+QQ
+BW
+eM
+EP
+di
+Pg
+eM
+eM
+eM
+eM
+eM
+BZ
+eM
+WF
 PD
 by
 Sg
@@ -14592,9 +17432,9 @@ bR
 Io
 Rh
 XP
-im
-SR
-SR
+WO
+BZ
+eM
 SR
 SR
 SR
@@ -14605,9 +17445,9 @@ SR
 ZU
 ZU
 ZU
-ZU
+zB
 rP
-ZU
+zB
 RG
 fB
 Rj
@@ -14639,8 +17479,8 @@ ZU
 gx
 ZU
 ZU
-ZU
-ZU
+SF
+gx
 ZU
 ZU
 ZU
@@ -14716,26 +17556,26 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-qs
-bH
-qT
-Ir
-Zt
-XH
+WF
+Yh
+eM
+Fj
+Tz
+Tz
+IZ
+dL
+FB
+WF
+WF
+WF
+WF
+WF
+eM
+eM
+dL
+BZ
+eM
+WF
 ot
 Ho
 SR
@@ -14747,10 +17587,10 @@ cc
 Rh
 XP
 Ry
-SR
-SR
-SR
-SR
+eM
+eM
+BZ
+eM
 bN
 SR
 SR
@@ -14761,9 +17601,9 @@ PD
 XF
 ZU
 ZU
-ZU
+zB
 ZW
-ZU
+zB
 DZ
 Rj
 Rj
@@ -14872,41 +17712,41 @@ Yf
 Yf
 Yf
 Yf
+WF
+eM
+eM
+WB
+JF
+CX
+eM
+eM
+eM
+WF
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-re
-qy
-bH
-KU
-IC
-IC
-Zt
-Sg
+WF
+Bo
+eM
+eM
+BZ
+eM
+Xz
 SR
 SR
 SR
 SR
 SR
+dF
 Io
 ca
 Ry
 bS
 SR
-im
-SR
-SR
-qT
+WO
+eM
+BZ
+eM
 cm
 SR
 SR
@@ -14917,9 +17757,9 @@ VI
 Om
 XF
 ZU
-ZU
+zB
 ZW
-ZU
+zB
 Lx
 Ga
 Ga
@@ -15028,41 +17868,41 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-Yf
+WF
+WF
+WF
+WF
+WF
+WF
+WF
+WF
+WF
+WF
 Yf
 Yf
 qs
-lX
-pq
-WS
-TW
-KU
-cg
-bT
-SR
-im
-SR
-bP
-SR
-SR
-SR
-bJ
-XP
-SR
-SR
-SR
-SR
-cj
-IC
+WF
+LF
+eM
+eM
+BZ
+eM
+Tx
+eM
+WO
+eM
+eM
+eM
+EU
+eM
+eM
+eM
+eM
+eM
+LF
+eM
+BZ
+WF
 bT
 SR
 SR
@@ -15073,9 +17913,9 @@ by
 Di
 DK
 xa
-ZU
+zB
 ZW
-ZU
+zB
 gx
 ZU
 ZU
@@ -15197,28 +18037,28 @@ Yf
 Yf
 Yf
 qs
-bH
-lX
-eY
-SR
-SR
-SR
-SR
-SR
-SR
-Io
-eB
-SR
-SR
-SR
-SR
-SR
-SR
-SR
-SR
-PD
-Nd
-QK
+WF
+NU
+Tz
+Tz
+HP
+Tz
+mV
+Tz
+Tz
+Tz
+Tz
+Tz
+Tz
+Tz
+Tz
+Tz
+Tz
+Tz
+HP
+Tz
+jX
+WF
 SR
 im
 SR
@@ -15229,9 +18069,9 @@ PD
 DK
 dw
 dw
-ZU
+zB
 ZW
-ez
+Ws
 ZU
 ZU
 ZU
@@ -15257,9 +18097,9 @@ Lx
 Mg
 dE
 Sn
-ZU
-ZU
-ZU
+SF
+SF
+SF
 dE
 Bw
 Bw
@@ -15353,28 +18193,28 @@ Yf
 Yf
 Yf
 qs
-bH
-bH
-SR
-bp
-SR
-SR
-SR
-SR
-SR
-SR
-SR
-SR
-bl
-SR
-im
-we
-SR
-SR
-ok
-VI
-VI
-Ho
+WF
+eM
+eM
+dL
+eM
+eM
+pr
+eM
+eM
+eM
+eM
+eM
+dL
+eM
+WO
+jC
+eM
+eM
+DH
+WF
+WF
+WF
 SR
 SR
 SR
@@ -15387,7 +18227,7 @@ Rj
 dy
 ej
 ZW
-ZU
+zB
 fi
 ft
 EB
@@ -15509,13 +18349,13 @@ Yf
 Yf
 re
 qy
-bH
-XH
-SR
-SR
-SR
-PD
-Nd
+WF
+Xz
+ev
+xZ
+Xz
+WF
+WF
 aX
 bN
 bN
@@ -15541,9 +18381,9 @@ Tu
 dh
 Ga
 dD
-ZU
+zB
 ZW
-ZU
+zB
 dE
 Bw
 fz
@@ -15669,7 +18509,7 @@ XH
 SR
 SR
 SR
-PD
+SR
 VI
 VI
 Nd
@@ -15697,9 +18537,9 @@ Tu
 dh
 XJ
 ZU
-ZU
+zB
 ZW
-ZU
+zB
 fi
 Bw
 ft
@@ -15853,9 +18693,9 @@ Zt
 dj
 dx
 ZU
-ZU
+zB
 ZW
-BQ
+tp
 dE
 cY
 dE
@@ -16009,9 +18849,9 @@ QK
 Xu
 Jg
 eb
-ZU
+zB
 ZW
-ZU
+zB
 ZU
 Xu
 xP
@@ -16165,9 +19005,9 @@ Ir
 EB
 do
 dj
-ZU
+zB
 ZW
-ZU
+zB
 ZU
 Xu
 xP
@@ -16321,9 +19161,9 @@ IC
 de
 do
 ZU
-ZU
+zB
 ZW
-ZU
+zB
 DZ
 Mg
 fT
@@ -16477,9 +19317,9 @@ cg
 ME
 xb
 Yp
-ym
+Td
 gG
-ym
+Td
 EM
 fC
 dC
@@ -16633,9 +19473,9 @@ Tu
 fx
 Qw
 MM
-ym
+Td
 gG
-ym
+Td
 YS
 KK
 Iy
@@ -16661,9 +19501,9 @@ dC
 dC
 hb
 Yp
-ym
-ym
-ym
+ij
+ij
+ij
 YS
 gT
 ZB
@@ -16789,9 +19629,9 @@ qT
 Uk
 YK
 ym
-ym
+Td
 gG
-ym
+Td
 ym
 fF
 UL
@@ -16945,9 +19785,9 @@ IC
 Uk
 dz
 ym
-ym
+Td
 gG
-ym
+Td
 ym
 ym
 Wj
@@ -17094,7 +19934,7 @@ ci
 rf
 SR
 SR
-SR
+im
 SR
 cn
 QK
@@ -17279,7 +20119,7 @@ ym
 ym
 ym
 ym
-ym
+Be
 ym
 gX
 ym
@@ -17294,7 +20134,7 @@ li
 lx
 li
 li
-li
+VC
 li
 li
 lx
@@ -17423,7 +20263,7 @@ Td
 Qs
 Td
 Td
-Td
+Qs
 fE
 Td
 Td
@@ -17456,7 +20296,7 @@ my
 my
 my
 my
-my
+JW
 my
 my
 my
@@ -17750,7 +20590,7 @@ Td
 Td
 Td
 Td
-Td
+Qs
 Td
 Td
 Td
@@ -17758,7 +20598,7 @@ Td
 xE
 my
 my
-my
+JW
 my
 my
 my
@@ -17873,7 +20713,7 @@ pk
 Ho
 SR
 SR
-SR
+im
 SR
 SR
 wo
@@ -17891,7 +20731,7 @@ Be
 ym
 ym
 ym
-ym
+Be
 ym
 ym
 ym
@@ -17923,7 +20763,7 @@ li
 li
 li
 li
-li
+VC
 li
 li
 li
@@ -18851,7 +21691,7 @@ Xj
 Je
 ym
 ym
-ym
+Be
 ym
 Wj
 fh
@@ -19165,7 +22005,7 @@ Uk
 ym
 cl
 ym
-ym
+Be
 dT
 Wj
 SA
@@ -19791,7 +22631,7 @@ YW
 hb
 Yp
 ym
-ym
+Be
 ym
 ym
 Ps
@@ -20230,7 +23070,7 @@ Ps
 ym
 ym
 ym
-ym
+Be
 ym
 ym
 ym
@@ -20257,7 +23097,7 @@ YW
 YW
 hb
 JX
-ym
+Be
 ym
 ym
 ym
@@ -20546,7 +23386,7 @@ ST
 ST
 ym
 ym
-ym
+Be
 ym
 ym
 ym
@@ -21026,7 +23866,7 @@ ym
 ym
 gT
 gq
-ym
+Be
 ym
 ym
 fF
@@ -21174,7 +24014,7 @@ ZB
 gq
 ym
 ym
-ym
+Be
 ym
 xb
 MM
@@ -21201,7 +24041,7 @@ JX
 cl
 ym
 ym
-ym
+Be
 ym
 ym
 ym
@@ -21344,7 +24184,7 @@ fx
 ym
 cl
 ym
-ym
+Be
 ym
 ym
 QL
@@ -21362,7 +24202,7 @@ ym
 ym
 ym
 ym
-ym
+Be
 ym
 ym
 ym
@@ -21650,7 +24490,7 @@ ym
 ym
 ym
 ym
-ym
+Be
 ym
 ym
 ym
@@ -21664,7 +24504,7 @@ TH
 ym
 ym
 ym
-ym
+Be
 ym
 ZP
 Ps
@@ -21966,7 +24806,7 @@ Je
 dT
 ym
 ym
-ym
+Be
 ym
 ym
 ym
@@ -22129,7 +24969,7 @@ ym
 Qw
 Yp
 zQ
-ym
+Be
 ym
 YK
 KK
@@ -22296,7 +25136,7 @@ ZB
 fx
 Ps
 ym
-ym
+Be
 ym
 fF
 fW
@@ -22755,7 +25595,7 @@ fp
 TJ
 TV
 YT
-YT
+eK
 JD
 Bn
 xN
@@ -23348,7 +26188,7 @@ YT
 fo
 YT
 YT
-YT
+eK
 YT
 Tr
 dq
@@ -24121,7 +26961,7 @@ SR
 SR
 wo
 YT
-YT
+eK
 Bz
 YT
 YT
@@ -24301,7 +27141,7 @@ fy
 lc
 YT
 YT
-YT
+eK
 YT
 YT
 YT
@@ -24427,7 +27267,7 @@ Xw
 Xw
 rf
 SR
-SR
+im
 SR
 ok
 VI
@@ -24661,10 +27501,10 @@ qG
 qm
 Ee
 tH
-WI
-WI
-WI
-WI
+Bt
+Bt
+Bt
+Bt
 GY
 Gu
 bh
@@ -24777,39 +27617,39 @@ XO
 XO
 XO
 km
-WI
-WI
-WI
-XO
-XO
-XO
-XO
-WI
-WI
-WI
-XO
-XO
-Za
-XO
-XO
-XO
-WI
-WI
-WI
-XO
-km
-XO
-XO
-XO
-WI
-WI
-WI
-WI
-WI
-of
-WI
-WI
-XO
+Bt
+Bt
+Bt
+qA
+qA
+qA
+qA
+Bt
+Bt
+Bt
+qA
+qA
+TC
+qA
+qA
+qA
+Bt
+Bt
+Bt
+qA
+GO
+qA
+qA
+qA
+Bt
+Bt
+Bt
+Bt
+Bt
+Cq
+Bt
+Bt
+qA
 tH
 Ck
 nH
@@ -24817,10 +27657,10 @@ hh
 vM
 fu
 tH
-WI
-WI
-WI
-WI
+Bt
+Bt
+Bt
+Bt
 GZ
 GY
 Gu
@@ -24904,7 +27744,7 @@ YT
 AU
 Bz
 AU
-YT
+eK
 YT
 fR
 gw
@@ -24933,39 +27773,39 @@ XO
 Za
 XO
 XO
-WI
-WI
-XO
-Za
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-WI
-WI
-WI
-WI
-WI
-XO
-Za
-XO
-XO
-WI
+Bt
+Bt
+qA
+TC
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+Bt
+Bt
+Bt
+Bt
+Bt
+qA
+TC
+qA
+qA
+Bt
 OD
-WI
-WI
-WI
-WI
-XO
-XO
-XO
+Bt
+Bt
+Bt
+Bt
+qA
+qA
+qA
 tH
 CC
 jU
@@ -24973,8 +27813,8 @@ UH
 po
 rn
 tH
-WI
-WI
+Bt
+Bt
 xM
 Gu
 bh
@@ -25089,39 +27929,39 @@ XO
 XO
 XO
 XO
-OO
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-XO
-Za
-XO
-XO
-XO
-WI
-WI
-WI
-XO
-XO
-XO
-XO
-XO
+Tl
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+qA
+TC
+qA
+qA
+qA
+Bt
+Bt
+Bt
+qA
+qA
+qA
+qA
+qA
 tH
 Mh
 kK
@@ -25129,8 +27969,8 @@ rh
 Mh
 tH
 tH
-WI
-WI
+Bt
+Bt
 GZ
 GY
 BL
@@ -25245,48 +28085,48 @@ XO
 Za
 Za
 Za
-Za
-Za
-oO
-Za
-Za
-Za
-Za
-XO
-XO
-Za
-Za
-oO
-Za
-Za
-Za
-Za
-Za
-Za
-Za
-Za
+TC
+TC
+wf
+TC
+TC
+TC
+TC
+qA
+qA
+TC
+TC
+wf
+TC
+TC
+TC
+TC
+TC
+TC
+TC
+TC
 Uq
-SI
-SI
-SI
-XO
-XO
-XO
-XO
-np
-SI
-SI
-SI
-SI
-SI
-SI
-FV
-SI
-XO
-XO
-XO
-WI
-WI
+MA
+MA
+MA
+qA
+qA
+qA
+qA
+oM
+MA
+MA
+MA
+MA
+MA
+MA
+io
+MA
+qA
+qA
+qA
+Bt
+Bt
 AK
 KV
 xM
@@ -25401,49 +28241,49 @@ vy
 vy
 vy
 vy
-vy
-vy
-vy
-vy
-vy
-vy
-vy
-vy
-vy
-vy
+Mq
+Mq
+Mq
+Mq
+Mq
+Mq
+Mq
+Mq
+Mq
+Mq
 Ns
-vy
-vy
-vy
-vy
-vy
-vy
-vy
-vy
+Mq
+Mq
+Mq
+Mq
+Mq
+Mq
+Mq
+Mq
 Yv
 Ow
-vy
-vy
-vy
-vy
-vy
-vy
-vy
+Mq
+Mq
+Mq
+Mq
+Mq
+Mq
+Mq
 Ns
-vy
-vy
-vy
-vy
-vy
-vy
+Mq
+Mq
+Mq
+Mq
+Mq
+Mq
 qf
-SI
-Za
-Za
-Za
-XO
-XO
-WI
+MA
+TC
+TC
+TC
+qA
+qA
+Bt
 BL
 xM
 bD
@@ -25513,7 +28353,7 @@ SR
 SR
 SR
 SR
-SR
+im
 SR
 SR
 SR
@@ -25527,7 +28367,7 @@ AU
 AU
 dI
 eI
-AU
+XA
 AU
 AU
 YT
@@ -25557,11 +28397,11 @@ YT
 XO
 np
 Za
-Za
-Za
-oO
-Za
-Za
+TC
+TC
+wf
+TC
+TC
 lA
 lA
 wN
@@ -25593,12 +28433,12 @@ wN
 wN
 wN
 lA
-XO
-XO
-XO
-Za
-XO
-XO
+qA
+qA
+qA
+TC
+qA
+qA
 AK
 KV
 xM
@@ -25713,11 +28553,11 @@ fo
 WI
 XO
 XO
-XO
-XO
-XO
-Za
-lW
+qA
+qA
+qA
+TC
+kn
 Jm
 jO
 Hh
@@ -25749,14 +28589,14 @@ mh
 jO
 XO
 iK
-XO
-XO
-Lv
-XO
-Za
-XO
-WI
-WI
+qA
+qA
+fI
+qA
+TC
+qA
+Bt
+Bt
 BL
 xM
 Yf
@@ -25869,10 +28709,10 @@ Tc
 WI
 XO
 XO
-XO
-XO
-XO
-Za
+qA
+qA
+qA
+TC
 pR
 GI
 Vc
@@ -25905,13 +28745,13 @@ wm
 of
 XO
 iK
-XO
-WI
-Lv
-XO
-Za
-XO
-XO
+qA
+Bt
+fI
+qA
+TC
+qA
+qA
 AK
 NT
 xM
@@ -26025,11 +28865,11 @@ gt
 fZ
 XO
 WI
-XO
-Lv
-Za
-Za
-WI
+qA
+fI
+TC
+TC
+Bt
 Wu
 oP
 Zx
@@ -26061,12 +28901,12 @@ Lv
 Zx
 XO
 iK
-XO
-XO
-Lv
-XO
-XO
-XO
+qA
+qA
+fI
+qA
+qA
+qA
 AK
 zy
 NT
@@ -26181,11 +29021,11 @@ oW
 RN
 WI
 WI
-WI
-XO
-XO
-Za
-XO
+Bt
+qA
+qA
+TC
+qA
 Wu
 CP
 vf
@@ -26217,13 +29057,13 @@ Hh
 vf
 jO
 En
-Za
-XO
-XO
-XO
-Za
-XO
-WI
+TC
+qA
+qA
+qA
+TC
+qA
+Bt
 GZ
 KV
 bF
@@ -26337,11 +29177,11 @@ Yf
 qs
 WI
 WI
-WI
-XO
-XO
-Za
-XO
+Bt
+qA
+qA
+TC
+qA
 Wu
 oP
 je
@@ -26374,11 +29214,11 @@ vf
 QO
 WA
 pT
-XO
-Za
-XO
-XO
-WI
+qA
+TC
+qA
+qA
+Bt
 lX
 lG
 Gu
@@ -26493,12 +29333,12 @@ Yf
 qs
 WI
 WI
-XO
-Lv
-XO
-XO
-XO
-qM
+qA
+fI
+qA
+qA
+qA
+CZ
 wa
 oP
 je
@@ -26529,11 +29369,11 @@ QO
 wm
 oP
 En
-Za
-Za
-XO
-XO
-WI
+TC
+TC
+qA
+qA
+Bt
 lX
 WS
 eY
@@ -26633,7 +29473,7 @@ YT
 YT
 YT
 YT
-YT
+eK
 YT
 YT
 YT
@@ -26649,12 +29489,12 @@ Yf
 qs
 WI
 WI
-XO
-XO
-np
-XO
-Za
-qM
+qA
+qA
+oM
+qA
+TC
+CZ
 nI
 nI
 nI
@@ -26685,10 +29525,10 @@ nI
 oP
 oP
 iK
-XO
-XO
-XO
-WI
+qA
+qA
+qA
+Bt
 lX
 WS
 eY
@@ -26772,7 +29612,7 @@ XP
 Sg
 SR
 SR
-SR
+im
 YT
 dq
 YT
@@ -26805,11 +29645,11 @@ Yf
 qs
 WI
 XO
-XO
-XO
-XO
-XO
-XO
+qA
+qA
+qA
+qA
+qA
 ZS
 oP
 oP
@@ -26841,9 +29681,9 @@ oP
 Hh
 mI
 iK
-XO
-XO
-WI
+qA
+qA
+Bt
 lX
 WS
 eY
@@ -26997,7 +29837,7 @@ oP
 of
 wa
 En
-XO
+qA
 aG
 pq
 WS
@@ -27393,7 +30233,7 @@ QK
 SR
 SR
 SR
-SR
+im
 SR
 SR
 Zy
