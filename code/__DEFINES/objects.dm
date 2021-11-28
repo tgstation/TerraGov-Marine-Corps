@@ -92,7 +92,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define PLASMACUTTER_VHIGH_MOD 3
 #define PLASMACUTTER_CUT_DELAY 30
 #define PLASMACUTTER_RESIN_MULTIPLIER 2
-#define PLASMACUTTER_BASE_COST 2000
+#define PLASMACUTTER_BASE_COST 1000
 
 //MEDEVAC DEFINES
 #define MEDEVAC_COOLDOWN 1500 //150 seconds or 2,5 minutes aka 2 minutes and 30 secs
