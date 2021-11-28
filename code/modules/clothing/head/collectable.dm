@@ -4,6 +4,7 @@
 /obj/item/clothing/head/collectable
 	name = "collectable hat"
 	desc = "A rare collectable hat."
+	attachments_allowed = list(/obj/item/armor_module/armor/badge)
 
 /obj/item/clothing/head/collectable/petehat
 	name = "ultra rare hat"
