@@ -1902,12 +1902,12 @@ datum/ammo/bullet/revolver/tp44
 
 ///For the Spitter's Scatterspit ability
 /datum/ammo/xeno/acid/heavy/scatter
-	damage = 25
+	damage = 20
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
 	bonus_projectiles_type = /datum/ammo/xeno/acid/heavy/scatter
 	bonus_projectiles_amount = 6
 	bonus_projectiles_scatter = 2
-	max_range = 10
+	max_range = 8
 	puddle_duration = 1 SECONDS //Lasts 2-4 seconds
 
 /datum/ammo/xeno/boiler_gas
