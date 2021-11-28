@@ -510,6 +510,7 @@
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
 		to_chat(user, span_notice("Ctrl-Click to remove the sentries battery."))
 
+///Gives the user a description of the ammunition remaining, as well as other information pertaining to reloading/ammo.
 /obj/item/weapon/gun/proc/examine_ammo_count(mob/user)
 	if(CHECK_BITFIELD(flags_gun_features, GUN_UNUSUAL_DESIGN) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES)) //Internal mags and unusual guns have their own stuff set.
 		return
@@ -719,7 +720,7 @@
 	if(!max_chamber_items)
 		in_chamber = null
 	else
-		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) || CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 			casings_to_eject++
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
 			QDEL_NULL(in_chamber)
@@ -858,16 +859,9 @@
 	return TRUE
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
-	if(!CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)) // If it can't point blank, you can't suicide and such.
-		return ..()
-
-	if(!able_to_fire(user))
-		return ..()
-
-	if(gun_on_cooldown(user))
-		return ..()
-
-	if(M.status_flags & INCORPOREAL) //Can't attack the incorporeal
+	if(!CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK) || !able_to_fire(user) || gun_on_cooldown(user) || CHECK_BITFIELD(M.status_flags, INCORPOREAL)) // If it can't point blank, you can't suicide and such.
+		if(master_gun)
+			return
 		return ..()
 
 	if(M != user && (M.faction != user.faction || user.a_intent == INTENT_HARM))
@@ -880,6 +874,9 @@
 			return TRUE
 		Fire()
 		return TRUE
+
+	if(master_gun)
+		return
 
 	if(M != user || user.zone_selected != "mouth")
 		return ..()
@@ -940,10 +937,10 @@
 	ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
 
 /obj/item/weapon/gun/attack_alternate(mob/living/M, mob/living/user)
-	. = ..()
-	if(!active_attachable)
+	if(active_attachable)
+		active_attachable.attack(M, user)
 		return
-	active_attachable.attack(M, user)
+	return ..()
 
 //----------------------------------------------------------
 				//							\\
@@ -962,7 +959,7 @@
 /obj/item/weapon/gun/unique_action(mob/user, dont_operate = FALSE)
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
-	if(!length(chamber_items) && in_chamber && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
+	if(!length(chamber_items) && in_chamber && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 		unload(user)
 		return
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !dont_operate)
@@ -978,6 +975,9 @@
 			return
 		cycle(user, FALSE)
 		playsound(src, cocked_sound, 25, 1)
+		if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && casings_to_eject)
+			make_casing()
+			casings_to_eject = 0
 		if(cocked_message)
 			to_chat(user, span_notice(cocked_message))
 		if(cock_animation)
@@ -1191,9 +1191,10 @@
 			return
 	for(var/i in 0 to max_chamber_items)
 		var/obj/object_to_insert
-		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS) && ispath(default_ammo_type, /datum/ammo))
+			var/datum/ammo/ammo_type = default_ammo_type
 			var/obj/item/ammo_magazine/handful/handful = new /obj/item/ammo_magazine/handful()
-			handful.generate_handful(default_ammo_type, caliber, 1, type)
+			handful.generate_handful(ammo_type, caliber, 1, initial(ammo_type.handful_amount))
 			object_to_insert = handful
 		else
 			object_to_insert = new default_ammo_type(src)
@@ -1221,7 +1222,7 @@
 			if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS))
 				var/obj/projectile/projectile_in_chamber = obj_in_chamber
 				var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-				new_handful.generate_handful(projectile_in_chamber.ammo.type, caliber, 1, type)
+				new_handful.generate_handful(projectile_in_chamber.ammo.type, caliber, 1, projectile_in_chamber.ammo.handful_amount)
 				obj_in_chamber = new_handful
 			QDEL_NULL(in_chamber)
 		else

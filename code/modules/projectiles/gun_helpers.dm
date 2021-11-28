@@ -189,7 +189,7 @@ should be alright.
 //tactical reloads
 /obj/item/weapon/gun/MouseDrop_T(atom/dropping, mob/living/carbon/human/user)
 	if(istype(dropping, /obj/item/ammo_magazine))
-		tactical_reload(dropping,user)
+		tactical_reload(dropping, user)
 	return ..()
 
 ///This performs a tactical reload with src using new_magazine to load the gun.
@@ -199,7 +199,7 @@ should be alright.
 	if(src != user.r_hand && src != user.l_hand)
 		to_chat(user, span_warning("[src] must be in your hand to do that."))
 		return
-	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && max_chamber_items > 1)
+	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) || max_chamber_items > 1)
 		to_chat(user, span_warning("Can't do tactical reloads with [src]."))
 		return
 	//no tactical reload for the untrained.
@@ -210,7 +210,7 @@ should be alright.
 		unload(user)
 		to_chat(user, span_notice("You start a tactical reload."))
 	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
-	if(!do_after(user,tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
+	if(!do_after(user, tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
 		return
 	if(istype(new_magazine.loc, /obj/item/storage))
 		var/obj/item/storage/S = new_magazine.loc
