@@ -184,3 +184,12 @@
   - balance: Increases the storage slot of the engineering storage module to 5 The
       storage module can now hold ~~filled sandbags,~~ razorwire, handheld charger,
       c4, razorburn grenades, detpack, signaler, circuitboards, and the light replacer
+2021-11-29:
+  Lewdcifer:
+  - balance: 'Plasma Cutter nerf: damage multiplier against resin x4 > x2.'
+  - balance: Metal Foam health 200 > 120.
+  Three333Digit:
+  - balance: Buffs shovel speed of sharpened etool from 20 to 10
+  vilereaver41:
+  - balance: scatter is now 2
+  - balance: projectile damage is now 20 from 10.
