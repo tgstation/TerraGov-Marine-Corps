@@ -378,7 +378,7 @@
 			/obj/item/ammo_magazine/rifle/autosniper = 3,
 			/obj/item/ammo_magazine/rifle/tx8 = 3,
 			/obj/item/ammo_magazine/rocket/sadar = 3,
-			/obj/item/minigun_powerpack = 2,
+			/obj/item/ammo_magazine/minigun_powerpack = 2,
 			/obj/item/ammo_magazine/shotgun/mbx900 = 2,
 			/obj/item/bodybag/tarp = 2,
 			/obj/item/explosive/plastique = 5,
@@ -775,7 +775,7 @@
 	products = list(
 		/obj/item/armor_module/storage/uniform/webbing = 1,
 		/obj/item/storage/box/t29_system = 1,
-		/obj/item/minigun_powerpack = 1,
+		/obj/item/ammo_magazine/minigun_powerpack = 1,
 		/obj/item/storage/pouch/magazine/large = 1,
 		/obj/item/clothing/mask/gas = 1,
 	)

@@ -1476,7 +1476,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		/obj/machinery/deployable/mounted,
 		/obj/machinery/miner,
 	)
-	if(master_gun.ammo && CHECK_BITFIELD(master_gun.ammo.flags_ammo_behavior, AMMO_ENERGY) || istype(master_gun, /obj/item/weapon/gun/energy)) //If the guns ammo is energy, the sentry will shoot at things past windows.
+	if(master_gun.ammo_datum_type && CHECK_BITFIELD(initial(master_gun.ammo_datum_type.flags_ammo_behavior), AMMO_ENERGY) || istype(master_gun, /obj/item/weapon/gun/energy)) //If the guns ammo is energy, the sentry will shoot at things past windows.
 		master_gun.ignored_terrains += list(
 			/obj/structure/window,
 			/obj/structure/window/reinforced,
@@ -1646,8 +1646,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 ///Performs the unique action after firing and checks to see if the user is still able to fire.
 /obj/item/attachable/shoulder_mount/proc/after_fire(datum/source, atom/target, obj/item/weapon/gun/fired_gun)
 	SIGNAL_HANDLER
-	if(CHECK_BITFIELD(master_gun.flags_gun_features, GUN_PUMP_REQUIRED))
-		master_gun.cock(master_gun.gun_user)
+	if(CHECK_BITFIELD(master_gun.flags_gun_features, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
+		INVOKE_ASYNC(master_gun, /obj/item/weapon/gun.proc/unique_action, master_gun.gun_user)
 	var/mob/living/user = master_gun.gun_user
 	if(user.stat == CONSCIOUS && !user.lying_angle && !LAZYACCESS(user.do_actions, src) && user.dextrous && (CHECK_BITFIELD(master_gun.flags_gun_features, GUN_ALLOW_SYNTHETIC) || CONFIG_GET(flag/allow_synthetic_gun_use) || !issynth(user)))
 		return

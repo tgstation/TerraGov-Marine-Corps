@@ -134,7 +134,7 @@
 		damage -= max(damage - ammo.damage * 0.5, 0)
 
 /obj/projectile/proc/generate_bullet(ammo_datum, bonus_damage = 0, reagent_multiplier = 0)
-	ammo 		= ammo_datum
+	ammo = ispath(ammo_datum) ? GLOB.ammo_list[ammo_datum] : ammo_datum
 	name 		= ammo.name
 	icon_state 	= ammo.icon_state
 	damage 		= ammo.damage + bonus_damage //Mainly for emitters.
@@ -279,7 +279,14 @@
 
 	//If we have the the right kind of ammo, we can fire several projectiles at once.
 	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
-		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle)
+		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle, target)
+
+	if(shooter.Adjacent(target) && ismob(target))
+		var/mob/mob_to_hit = target
+		ammo.on_hit_mob(mob_to_hit, src)
+		mob_to_hit.bullet_act(src)
+		qdel(src)
+		return
 
 	var/matrix/rotate = matrix() //Change the bullet angle.
 	rotate.Turn(dir_angle)
@@ -936,6 +943,13 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	//If we have the the right kind of ammo, we can fire several projectiles at once.
 	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
 		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle)
+
+	if(shooter.Adjacent(target) && ismob(target))
+		var/mob/mob_to_hit = target
+		ammo.on_hit_mob(mob_to_hit, src)
+		mob_to_hit.bullet_act(src)
+		qdel(src)
+		return
 
 	x_offset = round(sin(dir_angle), 0.01)
 	y_offset = round(cos(dir_angle), 0.01)

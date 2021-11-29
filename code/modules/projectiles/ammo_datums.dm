@@ -160,7 +160,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/armor_block = victim.run_armor_check(null, proj.ammo.armor_type)
 		victim.apply_damage(proj.damage * 0.1, proj.ammo.damage_type, null, armor_block, updating_health = TRUE)
 
-/datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle)
+/datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle, target)
 	var/effect_icon = ""
 	var/proj_type = /obj/projectile
 	if(istype(main_proj, /obj/projectile/hitscan))
@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	for(var/i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
 		var/obj/projectile/new_proj = new proj_type(main_proj.loc, effect_icon)
 		if(bonus_projectiles_type)
-			new_proj.generate_bullet(GLOB.ammo_list[bonus_projectiles_type])
+			new_proj.generate_bullet(bonus_projectiles_type)
 			var/obj/item/weapon/gun/g = source
 			if(source) //Check for the source so we don't runtime if we have bonus projectiles from a non-gun source like a Spitter
 				new_proj.damage *= g.damage_mult //Bonus or reduced damage based on damage modifiers on the gun.
@@ -184,7 +184,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_angle += 360
 		else if(new_angle > 360)
 			new_angle -= 360
-		new_proj.fire_at(null, shooter, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
+		new_proj.fire_at(shooter.Adjacent(target) ? target : null, shooter, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
 
 /datum/ammo/proc/drop_flame(turf/T)
@@ -2108,6 +2108,8 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/water
 	name = "water"
 	hud_state = "water"
+	hud_state_empty = "water_empty"
+
 /datum/ammo/rocket/toy
 	name = "\improper toy rocket"
 	damage = 1

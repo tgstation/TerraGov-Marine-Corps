@@ -15,7 +15,6 @@
 	icon_state = "m25"
 	max_rounds = 60
 	w_class = WEIGHT_CLASS_SMALL
-	gun_type = /obj/item/weapon/gun/smg/m25
 
 /obj/item/ammo_magazine/smg/m25/ap
 	name = "\improper MR-25 AP magazine (10x20mm)"
@@ -39,7 +38,6 @@
 	icon_state = "t19"
 	max_rounds = 30
 	w_class = WEIGHT_CLASS_SMALL
-	gun_type = /obj/item/weapon/gun/smg/standard_machinepistol
 
 //-------------------------------------------------------
 //T-90 SMG ammo
@@ -51,7 +49,6 @@
 	icon_state = "t90"
 	max_rounds = 50
 	w_class = WEIGHT_CLASS_SMALL
-	gun_type = /obj/item/weapon/gun/smg/standard_smg
 	icon_state_mini = "mag_t90"
 
 //-------------------------------------------------------
@@ -63,7 +60,6 @@
 	default_ammo = /datum/ammo/bullet/smg/ap
 	caliber = CALIBER_46X30
 	icon_state = "mp7"
-	gun_type = /obj/item/weapon/gun/smg/mp7
 	max_rounds = 30
 
 
@@ -75,7 +71,6 @@
 	desc = "A .32ACP caliber magazine for the CZ-81."
 	caliber = CALIBER_32ACP
 	icon_state = "skorpion"
-	gun_type = /obj/item/weapon/gun/smg/skorpion
 	max_rounds = 20 //Can also be 10.
 
 
@@ -90,7 +85,6 @@
 	caliber = CALIBER_762X25
 	icon_state = "ppsh"
 	max_rounds = 42
-	gun_type = /obj/item/weapon/gun/smg/ppsh
 
 
 /obj/item/ammo_magazine/smg/ppsh/extended
@@ -112,7 +106,6 @@
 	caliber = CALIBER_9X21
 	icon_state = "uzi"
 	max_rounds = 32
-	gun_type = /obj/item/weapon/gun/smg/uzi
 
 /obj/item/ammo_magazine/smg/uzi/extended
 	name = "\improper GAL9 extended magazine (9mm)"
