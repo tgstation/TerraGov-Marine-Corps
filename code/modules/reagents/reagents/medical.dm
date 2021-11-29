@@ -16,6 +16,22 @@
 	scannable = TRUE
 	trait_flags = TACHYCARDIC
 
+/datum/reagent/medicine/inaprovaline/on_mob_add(mob/living/L, metabolism)
+	var/mob/living/carbon/human/H = L
+	if(TIMER_COOLDOWN_CHECK(L, name))
+		return
+	if(L.health < H.health_threshold_crit && volume > 14) //If you are in crit, and someone injects at least 15u into you at once, you will heal 30% of your physical damage instantly.
+		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
+		L.adjustBruteLoss(-L.getBruteLoss() * 0.30)
+		L.adjustFireLoss(-L.getFireLoss() * 0.30)
+		L.jitter(5)
+		for(var/datum/internal_organ/I AS in H.internal_organs)
+			if(I.damage)
+				if(I.damage < 29)
+					return
+				I.heal_organ_damage((I.damage-29) *effect_str)
+		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
+
 /datum/reagent/medicine/inaprovaline/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_LIGHT
 	if(metabolism & IS_VOX)
@@ -125,6 +141,8 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/oxycodone/on_mob_add(mob/living/L, metabolism)
+	if(TIMER_COOLDOWN_CHECK(L, name))
+		return
 	L.adjustStaminaLoss(-20*effect_str)
 	to_chat(L, span_userdanger("You feel a burst of energy revitalize you all of a sudden! You can do anything!"))
 
@@ -152,7 +170,7 @@
 
 /datum/reagent/medicine/oxycodone/on_mob_delete(mob/living/L, metabolism)
 	to_chat(L, span_userdanger("The room spins slightly as you start to come down off your painkillers!"))
-	addtimer(CALLBACK(L, /mob/living.proc/Paralyze, 3), 10 SECONDS)
+	TIMER_COOLDOWN_START(L, name, 60 SECONDS)
 
 /datum/reagent/medicine/hydrocodone
 	name = "Hydrocodone"
@@ -405,6 +423,8 @@
 	purge_rate = 5
 
 /datum/reagent/medicine/synaptizine/on_mob_add(mob/living/L, metabolism)
+	if(TIMER_COOLDOWN_CHECK(L, name))
+		return
 	L.adjustStaminaLoss(-30*effect_str)
 	to_chat(L, span_userdanger("You feel a burst of energy as the stimulants course through you! Time to go!"))
 
@@ -433,7 +453,7 @@
 
 /datum/reagent/medicine/synaptizine/on_mob_delete(mob/living/L, metabolism)
 	to_chat(L, span_userdanger("The room spins as you start to come down off your stimulants!"))
-	addtimer(CALLBACK(L, /mob/living.proc/Paralyze, 15), 10 SECONDS)
+	TIMER_COOLDOWN_START(L, name, 60 SECONDS)
 
 /datum/reagent/medicine/neuraline //injected by neurostimulator implant and medic-only injector
 	name = "Neuraline"
@@ -443,6 +463,22 @@
 	overdose_threshold = 5
 	overdose_crit_threshold = 6
 	scannable = FALSE
+
+/datum/reagent/medicine/neuraline/on_mob_add(mob/living/L, metabolism)
+	var/mob/living/carbon/human/H = L
+	if(TIMER_COOLDOWN_CHECK(L, name))
+		return
+	if(L.health < H.health_threshold_crit && volume > 3) //If you are in crit, and someone injects at least 3u into you, you will heal 20% of your physical damage instantly.
+		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
+		L.adjustBruteLoss(-L.getBruteLoss() * 0.20)
+		L.adjustFireLoss(-L.getFireLoss() * 0.20)
+		L.jitter(10)
+		for(var/datum/internal_organ/I AS in H.internal_organs)
+			if(I.damage)
+				if(I.damage < 29)
+					return
+				I.heal_organ_damage((I.damage-29) *effect_str)
+		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
 /datum/reagent/medicine/neuraline/on_mob_life(mob/living/L)
 	L.reagent_shock_modifier += (2 * PAIN_REDUCTION_VERY_HEAVY)
@@ -517,9 +553,25 @@
 	description = "An emergency generic treatment with extreme side effects."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = REAGENTS_METABOLISM * 5
-	overdose_threshold = REAGENTS_OVERDOSE/2   //so it makes the OD threshold effectively 15 so two pills  is too much but one is fine
+	overdose_threshold = REAGENTS_OVERDOSE/2   //so it makes the OD threshold effectively 15 so two pills is too much but one is fine
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2.5 //and this makes the Critical OD 20
 	scannable = TRUE
+
+/datum/reagent/medicine/russian_red/on_mob_add(mob/living/L, metabolism)
+	var/mob/living/carbon/human/H = L
+	if(TIMER_COOLDOWN_CHECK(L, name))
+		return
+	if(L.health < H.health_threshold_crit && volume > 9) //If you are in crit, and someone injects at least 9u into you, you will heal 20% of your physical damage instantly.
+		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
+		L.adjustBruteLoss(-L.getBruteLoss() * 0.20)
+		L.adjustFireLoss(-L.getFireLoss() * 0.20)
+		L.jitter(10)
+		for(var/datum/internal_organ/I AS in H.internal_organs)
+			if(I.damage)
+				if(I.damage < 29)
+					return
+				I.heal_organ_damage((I.damage-29) *effect_str)
+		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
 /datum/reagent/medicine/russian_red/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(10*effect_str, 10*effect_str)
