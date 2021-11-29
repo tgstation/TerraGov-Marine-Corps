@@ -125,60 +125,6 @@
 	..()
 	return QDEL_HINT_IWILLGC
 
-/turf/proc/multiz_turf_del(turf/T, dir)
-	SEND_SIGNAL(src, COMSIG_TURF_MULTIZ_DEL, T, dir)
-
-/turf/proc/multiz_turf_new(turf/T, dir)
-	SEND_SIGNAL(src, COMSIG_TURF_MULTIZ_NEW, T, dir)
-
-
-///direction is direction of travel of air. zPassIn doesn't necessarily pass an atom!
-/turf/proc/zPassIn(atom/movable/A, direction, turf/source)
-	return FALSE
-
-///direction is direction of travel of air
-/turf/proc/zPassOut(atom/movable/A, direction, turf/destination)
-	return FALSE
-
-/turf/proc/zImpact(atom/movable/A, levels = 1, turf/prev_turf)
-	var/flags = NONE
-	var/mov_name = A.name
-	for(var/i in contents)
-		var/atom/thing = i
-		flags |= thing.intercept_zImpact(A, levels)
-		if(CHECK_BITFIELD(flags, FALL_STOP_INTERCEPTING))
-			break
-	if(prev_turf && !CHECK_BITFIELD(flags, FALL_NO_MESSAGE))
-		prev_turf.visible_message(span_danger("[mov_name] falls through [prev_turf]!"))
-	if(CHECK_BITFIELD(flags, FALL_INTERCEPTED))
-		return
-	if(zFall(A, levels + 1))
-		return FALSE
-	A.visible_message(span_danger("[A] crashes into [src]!"))
-	A.onZImpact(src, levels)
-	return TRUE
-
-/turf/proc/can_zFall(atom/movable/A, levels = 1, turf/target)
-	SHOULD_BE_PURE(TRUE)
-	return zPassOut(A, DOWN, target) && target.zPassIn(A, DOWN, src)
-
-/turf/proc/zFall(atom/movable/A, levels = 1, force = FALSE)
-	var/turf/target = get_step_multiz(src, DOWN)
-	if(!target || (!isobj(A) && !ismob(A)))
-		return FALSE
-	if(!force && (!can_zFall(A, levels, target) || !A.can_zFall(src, levels, target, DOWN)))
-		return FALSE
-	A.zfalling = TRUE
-	A.forceMove(target)
-	A.zfalling = FALSE
-	target.zImpact(A, levels, src)
-	return TRUE
-
-
-
-
-
-
 /// WARNING WARNING
 /// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
 /// It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf

@@ -49,43 +49,11 @@
 
 	update_icon()
 
-	AddElement(/datum/element/turf_z_transparency, FALSE)
 	return INITIALIZE_HINT_NORMAL
 
 
 /turf/open/space/update_icon_state()
 	icon_state = SPACE_ICON_STATE
-
-/turf/open/openspace/zPassIn(atom/movable/A, direction, turf/source)
-	if(direction == DOWN)
-		for(var/obj/object in contents)
-			if(!CHECK_BITFIELD(object.obj_flags, BLOCK_Z_IN_DOWN))
-				continue
-			return FALSE
-		return TRUE
-	if(direction == UP)
-		for(var/obj/object in contents)
-			if(!CHECK_BITFIELD(object.obj_flags, BLOCK_Z_IN_UP))
-				continue
-			return FALSE
-		return TRUE
-	return FALSE
-
-/turf/open/openspace/zPassOut(atom/movable/A, direction, turf/destination)
-	if(A.anchored)
-		return FALSE
-	if(direction == DOWN)
-		for(var/obj/O in contents)
-			if(O.obj_flags & BLOCK_Z_OUT_DOWN)
-				return FALSE
-		return TRUE
-	if(direction == UP)
-		for(var/obj/O in contents)
-			if(O.obj_flags & BLOCK_Z_OUT_UP)
-				return FALSE
-		return TRUE
-	return FALSE
-
 
 /turf/open/space/attackby(obj/item/I, mob/user, params)
 	. = ..()

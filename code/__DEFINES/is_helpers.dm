@@ -31,8 +31,6 @@
 
 #define ismineralturf(A) (istype(A, /turf/closed/mineral))
 
-#define istransparentturf(A) (HAS_TRAIT(A, TURF_Z_TRANSPARENT_TRAIT))
-
 
 //Mobs
 #define isliving(A) (istype(A, /mob/living))
