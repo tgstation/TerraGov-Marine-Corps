@@ -1,0 +1,5 @@
+author: "jroinc"
+delete-after: True
+changes: 
+  - rscdel: "Removed stun on oxy and synap expiration, replaced with a 10-second timer."
+  - balance: "If you are in crit and are given a dose of inaprov, you will heal 30% of your physical damage instantly and set any organs with more than 15 damage to 15 damage. Russian Red and Neuraline do the same thing, but 20% and 29 damage respectively. All three medicines have a 300-second cooldown before they'll perform the critheal function again."
