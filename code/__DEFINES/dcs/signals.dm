@@ -221,6 +221,9 @@
 #define COMSIG_TURF_THROW_ENDED_HERE "turf_throw_ended_here"						//From atom/movable/throw_at, sent right after a throw ends
 #define COMSIG_TURF_RESUME_PROJECTILE_MOVE "resume_projetile"
 
+#define COMSIG_TURF_MULTIZ_DEL "turf_multiz_del" //from base of turf/multiz_turf_del(): (turf/source, direction)
+#define COMSIG_TURF_MULTIZ_NEW "turf_multiz_new" //from base of turf/multiz_turf_new: (turf/source, direction)
+
 // /obj signals
 #define COMSIG_OBJ_SETANCHORED "obj_setanchored"				//called in /obj/structure/setAnchored(): (value)
 #define COMSIG_OBJ_DECONSTRUCT "obj_deconstruct"				//from base of obj/deconstruct(): (disassembled)
