@@ -286,7 +286,10 @@
 	reload_sound = 'sound/weapons/guns/interact/ppsh_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ppsh_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/smg/ppsh
-	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/ppsh)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/smg/ppsh,
+		/obj/item/ammo_magazine/smg/ppsh/extended,
+	)
 	attachable_allowed = list(
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
