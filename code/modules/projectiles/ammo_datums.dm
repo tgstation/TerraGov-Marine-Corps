@@ -993,8 +993,8 @@ datum/ammo/bullet/revolver/tp44
 	name = "high caliber flak rifle bullet"
 	hud_state = "sniper_supersonic"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
-	damage = 70
-	penetration = 30
+	damage = 40
+	penetration = 10
 	sundering = 10
 	accurate_range_min = 2
 	damage_falloff = 0.25
