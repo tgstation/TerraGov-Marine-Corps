@@ -4,6 +4,10 @@
 #define CAN_BE_HIT (1<<1) //can this be bludgeoned by items?
 #define PROJ_IGNORE_DENSITY (1<<2) // If non-dense structures can still get hit by projectiles
 #define LIGHT_CAN_BE_SHUT (1<<3) // Is sensible to nightfall ability, and its light will be turned off
+#define BLOCK_Z_OUT_DOWN (1<<4)  // Should this object block z falling from loc?
+#define BLOCK_Z_OUT_UP (1<<5) // Should this object block z uprise from loc?
+#define BLOCK_Z_IN_DOWN (1<<6) // Should this object block z falling from above?
+#define BLOCK_Z_IN_UP (1<<7) // Should this object block z uprise from below?
 
 //Fire and Acid stuff, for resistance_flags
 #define INDESTRUCTIBLE (1<<0) //doesn't take damage
