@@ -178,7 +178,7 @@
 	accuracy_mult_unwielded = 0.85
 	accuracy_mult = 1
 	scatter_unwielded = 15
-	scatter = 2.5
+	scatter = 0
 	recoil = 0
 	recoil_unwielded = 0.75
 
