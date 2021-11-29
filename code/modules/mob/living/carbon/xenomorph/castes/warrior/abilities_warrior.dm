@@ -104,7 +104,8 @@
 	lunge_target = A
 	//Select grapple toss.
 	var/datum/action/xeno_action/activable/toss/grapple_toss = X.actions_by_path[/datum/action/xeno_action/activable/toss]
-	grapple_toss.action_activate()
+	if(grapple_toss)
+		grapple_toss.action_activate()
 
 	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, .proc/clean_lunge_target)
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/check_if_lunge_possible)
@@ -210,11 +211,9 @@
 		if (!temp)
 			break
 		if(empowered)
-			for(var/i in temp)
-				if(ishuman(i))
-					var/mob/living/carbon/human/pin = i //Bowling pins
-					pin.KnockdownNoChain(2 SECONDS)
-					to_chat(pin, span_highdanger("[victim] crashes into us!"))
+			for(var/mob/living/carbon/human/human in temp)
+				human.KnockdownNoChain(2 SECONDS) //Bowling pins
+				to_chat(human, span_highdanger("[victim] crashes into us!"))
 		T = temp
 
 	X.do_attack_animation(victim, ATTACK_EFFECT_DISARM2)
