@@ -160,7 +160,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/armor_block = victim.run_armor_check(null, proj.ammo.armor_type)
 		victim.apply_damage(proj.damage * 0.1, proj.ammo.damage_type, null, armor_block, updating_health = TRUE)
 
-/datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle)
+/datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle, target)
 	var/effect_icon = ""
 	var/proj_type = /obj/projectile
 	if(istype(main_proj, /obj/projectile/hitscan))
@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	for(var/i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
 		var/obj/projectile/new_proj = new proj_type(main_proj.loc, effect_icon)
 		if(bonus_projectiles_type)
-			new_proj.generate_bullet(GLOB.ammo_list[bonus_projectiles_type])
+			new_proj.generate_bullet(bonus_projectiles_type)
 			var/obj/item/weapon/gun/g = source
 			if(source) //Check for the source so we don't runtime if we have bonus projectiles from a non-gun source like a Spitter
 				new_proj.damage *= g.damage_mult //Bonus or reduced damage based on damage modifiers on the gun.
@@ -184,7 +184,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_angle += 360
 		else if(new_angle > 360)
 			new_angle -= 360
-		new_proj.fire_at(null, shooter, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
+		new_proj.fire_at(shooter.Adjacent(target) ? target : null, shooter, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
 
 /datum/ammo/proc/drop_flame(turf/T)
@@ -369,7 +369,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 datum/ammo/bullet/revolver/tp44
 	name = "standard revolver bullet"
-	damage = 40
+	damage = 30
+	penetration = 20
+	sundering = 1.5
 
 /datum/ammo/bullet/revolver/tp44/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 0, slowdown = 0.5, knockback = 0, shake = 0)
@@ -560,12 +562,12 @@ datum/ammo/bullet/revolver/tp44
 	name = "high velocity impact bullet"
 	hud_state = "hivelo_impact"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	damage = 30
+	damage = 25
 	penetration = 45
 	sundering = 5
 
 /datum/ammo/bullet/rifle/tx8/impact/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, max_range = 20, slowdown = 1, knockback = 1, shake = 0)
+	staggerstun(M, P, max_range = 20, stagger = 2, slowdown = 1, knockback = 1)
 
 /datum/ammo/bullet/rifle/ak47
 	name = "crude heavy rifle bullet"
@@ -667,14 +669,23 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "shotgun_fire"
 	damage_type = BRUTE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING
+	accuracy = -10
 	max_range = 15
-	damage = 65
-	penetration = 15
+	damage = 40
+	penetration = 20
 	sundering = 2
 	bullet_color = COLOR_TAN_ORANGE
 
-/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, shake = 0, knockback = 2, slowdown = 1)
+/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/victim, obj/projectile/proj)
+	airburst(victim, proj)
+	knockback(victim, proj)
+
+/datum/ammo/bullet/shotgun/incendiary/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	airburst(target_obj, proj)
+
+/datum/ammo/bullet/shotgun/incendiary/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	airburst(target_turf, proj)
+
 
 /datum/ammo/bullet/shotgun/flechette
 	name = "shotgun flechette shell"
@@ -988,6 +999,20 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 7.5
 	accurate_range_min = 2
 	damage_falloff = 0.25
+
+/datum/ammo/bullet/sniper/pfc/flak
+	name = "high caliber flak rifle bullet"
+	hud_state = "sniper_supersonic"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
+	damage = 40
+	penetration = 10
+	sundering = 10
+	accurate_range_min = 2
+	damage_falloff = 0.25
+
+/datum/ammo/bullet/sniper/pfc/flak/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, knockback = 4, slowdown = 1, stagger = 1, max_range = 40)
+
 
 /datum/ammo/bullet/sniper/auto
 	name = "high caliber rifle bullet"
@@ -1855,6 +1880,13 @@ datum/ammo/bullet/revolver/tp44
 	damage = 30
 	flags_ammo_behavior = AMMO_XENO
 
+/datum/ammo/xeno/acid/auto
+	name = "light acid spatter"
+	damage = 10
+	flags_ammo_behavior = AMMO_XENO
+	spit_cost = 25
+	added_spit_delay = 0
+
 /datum/ammo/xeno/acid/passthrough
 	name = "acid spittle"
 	damage = 30
@@ -1910,11 +1942,11 @@ datum/ammo/bullet/revolver/tp44
 
 ///For the Spitter's Scatterspit ability
 /datum/ammo/xeno/acid/heavy/scatter
-	damage = 10
+	damage = 20
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
 	bonus_projectiles_type = /datum/ammo/xeno/acid/heavy/scatter
 	bonus_projectiles_amount = 6
-	bonus_projectiles_scatter = 3
+	bonus_projectiles_scatter = 2
 	max_range = 8
 	puddle_duration = 1 SECONDS //Lasts 2-4 seconds
 
@@ -2092,6 +2124,8 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/water
 	name = "water"
 	hud_state = "water"
+	hud_state_empty = "water_empty"
+
 /datum/ammo/rocket/toy
 	name = "\improper toy rocket"
 	damage = 1

@@ -314,7 +314,7 @@ WEAPONS
 /datum/supply_packs/weapons/plastique
 	name = "C4 plastic explosive"
 	contains = list(/obj/item/explosive/plastique)
-	cost = 5
+	cost = 3
 
 /datum/supply_packs/weapons/mortar
 	name = "M402 mortar crate"
@@ -475,6 +475,12 @@ AMMO
 	cost = 10
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/ammo/pfcflak
+	name = "Tl-127 Flak Magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/chamberedrifle/flak)
+	cost = 5
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/ammo/scout_regular
 	name = "TX-8 scout magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8)
@@ -632,7 +638,7 @@ AMMO
 
 /datum/supply_packs/ammo/minigun
 	name = "Minigun Powerpack"
-	contains = list(/obj/item/minigun_powerpack)
+	contains = list(/obj/item/ammo_magazine/minigun_powerpack)
 	cost = 5
 
 /datum/supply_packs/ammo/back_fuel_tank

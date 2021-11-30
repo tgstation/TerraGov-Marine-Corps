@@ -22,6 +22,9 @@
 ///Ai component state where the ai tries to flee to heal
 #define MOVING_TO_SAFETY "moving_to_safety"
 
+///Ai component state where the ai just does nothing
+#define IDLE "idle"
+
 ///Ai component state where the ai is following a tile path
 #define FOLLOWING_PATH "following path"
 
@@ -34,7 +37,7 @@
  * This is mainly used for deciding what weights are to be looked at when determing a node waypoint of going towards
  */
 #define IDENTIFIER_XENO "identifies_xeno"
-#define IDENTIFIER_HUSK "identifies_husk"
+#define IDENTIFIER_ZOMBIE "identifies_zombie"
 
 
 //Flags for the get_nearest_target

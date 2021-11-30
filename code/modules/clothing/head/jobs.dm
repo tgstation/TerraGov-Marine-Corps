@@ -60,7 +60,8 @@
 	desc = "A beret, an artists favorite headwear."
 	icon_state = "beret"
 	siemens_coefficient = 0.9
-	flags_armor_protection = NONE
+	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
+	flags_armor_features = ARMOR_NO_DECAP
 
 //Security
 /obj/item/clothing/head/beret/sec
@@ -83,7 +84,6 @@
 	name = "engineering beret"
 	desc = "A beret with the engineering insignia emblazoned on it. For engineers that are more inclined towards style than safety."
 	icon_state = "e_beret_badge"
-	flags_armor_features = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/beret/jan
 	name = "purple beret"
