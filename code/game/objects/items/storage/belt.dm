@@ -441,8 +441,9 @@
 
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/M = I
-
-		if(M.flags_magazine & AMMUNITION_REFILLABLE)
+		if(CHECK_BITFIELD(M.flags_magazine, MAGAZINE_HANDFUL))
+			return ..()
+		if(M.flags_magazine & MAGAZINE_REFILLABLE)
 			if(!M.current_rounds)
 				to_chat(user, span_warning("[M] is empty."))
 				return
@@ -691,12 +692,12 @@
 		return ..()
 	var/obj/item/weapon/gun/pistol/gun = I
 	for(var/obj/item/ammo_magazine/mag in contents)
-		if(!istype(gun, mag.gun_type))
+		if(!(mag.type in gun.allowed_ammo_types))
 			continue
-		if(user.l_hand && user.r_hand || gun.current_mag)
+		if(user.l_hand && user.r_hand || length(gun.chamber_items))
 			gun.tactical_reload(mag, user)
 		else
-			gun.reload(user, mag)
+			gun.reload(mag, user)
 		orient2hud()
 		return
 

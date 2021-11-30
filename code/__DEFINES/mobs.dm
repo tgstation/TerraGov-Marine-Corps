@@ -6,12 +6,11 @@
 
 
 //Pain or shock reduction for different reagents
-#define PAIN_REDUCTION_VERY_LIGHT -10 //alkysine
-#define PAIN_REDUCTION_LIGHT -25 //inaprovaline
-#define PAIN_REDUCTION_MEDIUM -40 //synaptizine
-#define PAIN_REDUCTION_HEAVY -50 //paracetamol
-#define PAIN_REDUCTION_VERY_HEAVY -80 //tramadol
-#define PAIN_REDUCTION_FULL -200 //oxycodone, neuraline
+#define PAIN_REDUCTION_VERY_LIGHT -5 //alkysine
+#define PAIN_REDUCTION_LIGHT -15 //inaprovaline
+#define PAIN_REDUCTION_MEDIUM -25 //synaptizine
+#define PAIN_REDUCTION_HEAVY -35 //paracetamol
+#define PAIN_REDUCTION_VERY_HEAVY -50 //tramadol
 
 
 //Nutrition
@@ -459,11 +458,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define PLASMA_TRANSFER_AMOUNT 100
 
-#define XENO_LARVAL_AMOUNT_RECURRING 10
-#define XENO_LARVAL_CHANNEL_TIME 0.5 SECONDS
+#define XENO_LARVAL_AMOUNT_RECURRING 5
+#define XENO_LARVAL_CHANNEL_TIME 0.25 SECONDS
 
-#define XENO_NEURO_AMOUNT_RECURRING 10
-#define XENO_NEURO_CHANNEL_TIME 0.5 SECONDS
+#define XENO_NEURO_AMOUNT_RECURRING 5
+#define XENO_NEURO_CHANNEL_TIME 0.25 SECONDS
 
 #define XENO_HEALTH_ALERT_TRIGGER_PERCENT 0.25 //If a xeno is damaged while its current hit points are less than this percent of its maximum, we send out an alert to the hive
 #define XENO_HEALTH_ALERT_TRIGGER_THRESHOLD 50 //If a xeno is damaged while its current hit points are less than this amount, we send out an alert to the hive

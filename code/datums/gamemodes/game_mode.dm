@@ -28,8 +28,8 @@
 	var/list/points_per_faction
 	/// When are the shutters dropping
 	var/shutters_drop_time = 30 MINUTES
-	///Time before becoming a husk when going undefibbable
-	var/husk_transformation_time = 30 SECONDS
+	///Time before becoming a zombie when going undefibbable
+	var/zombie_transformation_time = 30 SECONDS
 	/** The time between two rounds of this gamemode. If it's zero, this mode i always votable.
 	 * It an integer in ticks, set in config. If it's 8 HOURS, it means that it will be votable again 8 hours
 	 * after the end of the last round with the gamemode type
@@ -68,10 +68,6 @@
 
 
 /datum/game_mode/proc/pre_setup()
-
-	if(flags_landmarks & MODE_LANDMARK_SPAWN_MAP_ITEM)
-		spawn_map_items()
-
 	if(flags_landmarks & MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE)
 		for(var/turf/T AS in GLOB.lz1_shuttle_console_turfs_list)
 			new /obj/machinery/computer/shuttle/shuttle_control/dropship/rebel(T)

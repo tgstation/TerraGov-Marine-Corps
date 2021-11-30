@@ -374,10 +374,7 @@
 
 ///Anything unique the item can do, like pumping a shotgun, spin or whatever.
 /obj/item/proc/unique_action(mob/user)
-	SHOULD_CALL_PARENT(TRUE)
-	if(SEND_SIGNAL(src, COMSIG_ITEM_UNIQUE_ACTION, user) & COMSIG_KB_ACTIVATED)
-		return COMSIG_KB_ACTIVATED
-	return COMSIG_KB_NOT_ACTIVATED
+	return
 
 ///Used to enable/disable an item's bump attack. Grouped in a proc to make sure the signal or flags aren't missed
 /obj/item/proc/toggle_item_bump_attack(mob/user, enable_bump_attack)
@@ -1037,7 +1034,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	//Get the required information about the base icon
 	var/icon/icon2use = get_worn_icon_file(body_type = body_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
 	var/state2use = get_worn_icon_state(slot_name = slot_name, inhands = inhands)
-	var/layer2use = worn_layer ? -worn_layer : -default_layer
+	var/layer2use = !inhands && worn_layer ? -worn_layer : -default_layer
 
 	//Snowflakey inhand icons in a specific slot
 	if(inhands && icon2use == icon_override)

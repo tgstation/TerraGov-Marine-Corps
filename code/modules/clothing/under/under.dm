@@ -19,7 +19,7 @@
 		3 = Report location
 		*/
 	var/displays_id = 1
-	var/list/attachments_allowed = list(
+	attachments_allowed = list(
 		/obj/item/armor_module/storage/uniform/webbing,
 		/obj/item/armor_module/storage/uniform/black_vest,
 		/obj/item/armor_module/storage/uniform/brown_vest,
@@ -30,6 +30,7 @@
 		/obj/item/armor_module/storage/uniform/holster,
 		/obj/item/armor_module/storage/uniform/holster/armpit,
 		/obj/item/armor_module/storage/uniform/holster/waist,
+		/obj/item/armor_module/armor/badge,
 		/obj/item/clothing/tie,
 		/obj/item/clothing/tie/blue,
 		/obj/item/clothing/tie/red,
@@ -58,9 +59,10 @@
 	)
 
 	///Assoc list of available slots.
-	var/list/attachments_by_slot = list(
+	attachments_by_slot = list(
 		ATTACHMENT_SLOT_UNIFORM,
-		ATTACHMENT_SLOT_UNIFORM_TIE
+		ATTACHMENT_SLOT_UNIFORM_TIE,
+		ATTACHMENT_SLOT_BADGE,
 	)
 	///Typepath list of allowed attachment types.
 	var/list/adjustment_variants = list(
@@ -71,7 +73,6 @@
 /obj/item/clothing/under/Initialize()
 	. = ..()
 	attachments_allowed = string_list(attachments_allowed)
-	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed)
 
 /obj/item/clothing/under/update_clothing_icon()
 	if (ismob(src.loc))

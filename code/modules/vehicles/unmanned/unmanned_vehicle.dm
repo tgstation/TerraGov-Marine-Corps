@@ -12,7 +12,6 @@
 	move_delay = 2.5	//set this to limit the speed of the vehicle
 	max_integrity = 300
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
-	resistance_flags = XENO_DAMAGEABLE
 	flags_atom = BUMP_ATTACKABLE
 	soft_armor = list("melee" = 25, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
 	/// Path of "turret" attached
@@ -147,7 +146,7 @@
 
 ///Try to reload the turret of our vehicule
 /obj/vehicle/unmanned/proc/reload_turret(obj/item/ammo_magazine/ammo, mob/user)
-	if(!ispath(turret_path, ammo.gun_type))
+	if(!ispath(ammo.type, initial(turret_path.ammo_type)))
 		to_chat(user, span_warning("This is not the right ammo!"))
 		return
 	user.visible_message(span_notice("[user] starts to reload [src] with [ammo]."), span_notice("You start to reload [src] with [ammo]."))
