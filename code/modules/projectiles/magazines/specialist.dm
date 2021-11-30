@@ -35,7 +35,6 @@
 	icon_state = "tl127_flak"
 	default_ammo = /datum/ammo/bullet/sniper/pfc/flak
 	max_rounds = 7
-	gun_type = /obj/item/weapon/gun/rifle/chambered
 	icon_state_mini = "mag_sniper_blue"
 
 //M42C magazine
