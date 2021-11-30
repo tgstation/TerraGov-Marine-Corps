@@ -12,7 +12,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 40
-	gun_type = /obj/item/weapon/gun/rifle/m412
 	icon_state_mini = "mag_rifle"
 
 /obj/item/ammo_magazine/rifle/extended
@@ -20,7 +19,6 @@
 	desc = "A 10mm assault extended rifle magazine."
 	icon_state = "m412_ext"
 	max_rounds = 60
-	gun_type = /obj/item/weapon/gun/rifle/m412
 	icon_state_mini = "mag_rifle_big_yellow"
 
 /obj/item/ammo_magazine/rifle/incendiary
@@ -28,7 +26,6 @@
 	desc = "A 10mm assault rifle magazine."
 	icon_state = "m412_incendiary"
 	default_ammo = /datum/ammo/bullet/rifle/incendiary
-	gun_type = /obj/item/weapon/gun/rifle/m412
 	icon_state_mini = "mag_rifle_big_red"
 
 /obj/item/ammo_magazine/rifle/ap
@@ -36,7 +33,6 @@
 	desc = "A 10mm armor piercing magazine."
 	icon_state = "m412_ap"
 	default_ammo = /datum/ammo/bullet/rifle/ap
-	gun_type = /obj/item/weapon/gun/rifle/m412
 	icon_state_mini = "mag_rifle_big_green"
 
 //-------------------------------------------------------
@@ -50,7 +46,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 36
-	gun_type = /obj/item/weapon/gun/rifle/standard_carbine
 	icon_state_mini = "mag_rifle_big"
 
 //-------------------------------------------------------
@@ -64,7 +59,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 50
-	gun_type = /obj/item/weapon/gun/rifle/standard_assaultrifle
 	icon_state_mini = "mag_rifle_big"
 
 //-------------------------------------------------------
@@ -78,7 +72,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
 	max_rounds = 20
-	gun_type = /obj/item/weapon/gun/rifle/standard_dmr
 	icon_state_mini = "mag_dmr"
 
 /obj/item/ammo_magazine/rifle/standard_dmr/incendiary
@@ -89,7 +82,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_dmr/incendiary
 	max_rounds = 15
-	gun_type = /obj/item/weapon/gun/rifle/standard_dmr
 	icon_state_mini = "mag_dmr_red"
 
 //-------------------------------------------------------
@@ -103,7 +95,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_br
 	max_rounds = 35
-	gun_type = /obj/item/weapon/gun/rifle/standard_br
 	icon_state_mini = "mag_rifle_big"
 
 /obj/item/ammo_magazine/rifle/standard_br/incendiary
@@ -114,7 +105,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_br/incendiary
 	max_rounds = 35
-	gun_type = /obj/item/weapon/gun/rifle/standard_br
 	icon_state_mini = "mag_rifle_big_red"
 
 //-------------------------------------------------------
@@ -125,7 +115,6 @@
 	desc = "A semi-rectangular box of rounds for the HK-11 Pulse Rifle."
 	icon_state = "m41a"
 	max_rounds = 95
-	gun_type = /obj/item/weapon/gun/rifle/m41a
 	icon_state_mini = "mag_rifle_big"
 
 
@@ -139,7 +128,6 @@
 	icon_state = "ak47"
 	default_ammo = /datum/ammo/bullet/rifle/ak47
 	max_rounds = 40
-	gun_type = /obj/item/weapon/gun/rifle/ak47
 	icon_state_mini = "mag_rifle_big"
 
 /obj/item/ammo_magazine/rifle/ak47/extended
@@ -161,7 +149,6 @@
 	icon_state = "m16" //PLACEHOLDER
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 30 //Also comes in 30 and 100 round Beta-C mag.
-	gun_type = /obj/item/weapon/gun/rifle/m16
 	icon_state_mini = "mag_rifle_big"
 
 //-------------------------------------------------------
@@ -174,7 +161,6 @@
 	icon_state = "famas"
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 24
-	gun_type = /obj/item/weapon/gun/rifle/famas
 
 //-------------------------------------------------------
 //T-42 Light Machine Gun
@@ -187,7 +173,6 @@
 	default_ammo = /datum/ammo/bullet/rifle
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 120
-	gun_type = /obj/item/weapon/gun/rifle/standard_lmg
 	icon_state_mini = "mag_t42"
 
 //-------------------------------------------------------
@@ -201,7 +186,6 @@
 	default_ammo = /datum/ammo/bullet/rifle/machinegun
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 250
-	gun_type = /obj/item/weapon/gun/rifle/standard_gpmg
 	reload_delay = 3 SECONDS
 	icon_state_mini = "mag_gpmg"
 
@@ -216,7 +200,6 @@
 	default_ammo = /datum/ammo/bullet/rifle
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 200
-	gun_type = /obj/item/weapon/gun/rifle/m412l1_hpr
 	icon_state_mini = "mag_gpmg"
 
 //-------------------------------------------------------
@@ -229,7 +212,6 @@
 	icon_state = "type_71"
 	default_ammo = /datum/ammo/bullet/rifle/ak47
 	max_rounds = 42
-	gun_type = /obj/item/weapon/gun/rifle/type71
 	icon_state_mini = "mag_rifle_big"
 
 //TX-16 AUTOMATIC SHOTGUN
@@ -241,7 +223,6 @@
 	icon_state = "tx15_flechette"
 	default_ammo = /datum/ammo/bullet/shotgun/tx15_flechette
 	max_rounds = 12
-	gun_type = /obj/item/weapon/gun/rifle/standard_autoshotgun
 	icon_state_mini = "mag_tx15_flechette"
 
 /obj/item/ammo_magazine/rifle/tx15_slug
@@ -251,7 +232,6 @@
 	icon_state = "tx15_slug"
 	default_ammo = /datum/ammo/bullet/shotgun/tx15_slug
 	max_rounds = 12
-	gun_type = /obj/item/weapon/gun/rifle/standard_autoshotgun
 	icon_state_mini = "mag_tx15_slug"
 
 //-------------------------------------------------------
@@ -265,7 +245,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/smartmachinegun
 	max_rounds = 200
-	gun_type = /obj/item/weapon/gun/rifle/standard_smartmachinegun
 	reload_delay = 2.5 SECONDS
 	icon_state_mini = "mag_t29"
 
@@ -280,7 +259,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/smartgun/smartrifle
 	max_rounds = 80
-	gun_type = /obj/item/weapon/gun/rifle/standard_smartrifle
 	icon_state_mini = "mag_rifle_big"
 
 
@@ -295,7 +273,6 @@
 	icon_state = "alien_rifle"
 	default_ammo = /datum/ammo/energy/plasma
 	max_rounds = 20
-	gun_type = /obj/item/weapon/gun/rifle/sectoid_rifle
 	icon_state_mini = "mag_rifle_purple"
 
 //-------------------------------------------------------
@@ -307,7 +284,6 @@
 	icon_state = "tl127"
 	default_ammo = /datum/ammo/bullet/sniper/pfc
 	max_rounds = 7
-	gun_type = /obj/item/weapon/gun/rifle/chambered
 	icon_state_mini = "mag_sniper"
 
 //-------------------------------------------------------
@@ -319,7 +295,6 @@
 	icon_state = "t81"
 	default_ammo = /datum/ammo/bullet/sniper/auto
 	max_rounds = 20
-	gun_type = /obj/item/weapon/gun/rifle/standard_autosniper
 	icon_state_mini = "mag_sniper"
 
 //-------------------------------------------------------
@@ -331,7 +306,6 @@
 	icon_state = "tx11"
 	default_ammo = /datum/ammo/bullet/rifle/hv
 	max_rounds = 70
-	gun_type = /obj/item/weapon/gun/rifle/tx11
 	icon_state_mini = "mag_tx11"
 
 //-------------------------------------------------------
@@ -343,7 +317,6 @@
 	icon_state = "t21"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	max_rounds = 30
-	gun_type = /obj/item/weapon/gun/rifle/standard_skirmishrifle
 	icon_state_mini = "mag_rifle"
 
 //ALF-51B
@@ -357,7 +330,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 80
 	reload_delay = 1 SECONDS
-	gun_type = /obj/item/weapon/gun/rifle/alf_machinecarbine
 	icon_state_mini = "mag_t42"
 
 //-------------------------------------------------------
@@ -370,5 +342,4 @@
 	icon_state = "mkh98"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	max_rounds = 26
-	gun_type = /obj/item/weapon/gun/rifle/mkh
 	icon_state_mini = "mag_rifle"

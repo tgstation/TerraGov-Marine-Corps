@@ -139,30 +139,36 @@
 
 /obj/item/storage/internal/modular/engineering
 	max_storage_space = 15
-	storage_slots = 4
+	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_BULKY
-	bypass_w_limit = list(
-		/obj/item/stack/barbed_wire,
-		/obj/item/stack/sheet,
-		/obj/item/stack/rods,
-		/obj/item/stack/cable_coil,
-		/obj/item/tool/shovel/etool,
-		/obj/item/stack/sandbags_empty,
-	)
 	can_hold = list(
 		/obj/item/stack/barbed_wire,
 		/obj/item/stack/sheet,
 		/obj/item/stack/rods,
 		/obj/item/stack/cable_coil,
-		/obj/item/tool/shovel/etool,
 		/obj/item/stack/sandbags_empty,
+		/obj/item/stack/razorwire,
+		/obj/item/tool/shovel/etool,
 		/obj/item/tool/wrench,
 		/obj/item/tool/weldingtool,
 		/obj/item/tool/wirecutters,
 		/obj/item/tool/crowbar,
 		/obj/item/tool/screwdriver,
+		/obj/item/tool/handheld_charger,
 		/obj/item/multitool,
 		/obj/item/binoculars/tactical/range,
+		/obj/item/explosive/plastique,
+		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
+		/obj/item/explosive/grenade/chem_grenade/razorburn_large,
+		/obj/item/cell/apc,
+		/obj/item/cell/high,
+		/obj/item/cell/rtg,
+		/obj/item/cell/super,
+		/obj/item/cell/potato,
+		/obj/item/assembly/signaler,
+		/obj/item/detpack,
+		/obj/item/circuitboard,
+		/obj/item/lightreplacer,
 	)
 	cant_hold = list()
 

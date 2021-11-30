@@ -314,7 +314,7 @@ WEAPONS
 /datum/supply_packs/weapons/plastique
 	name = "C4 plastic explosive"
 	contains = list(/obj/item/explosive/plastique)
-	cost = 5
+	cost = 3
 
 /datum/supply_packs/weapons/mortar
 	name = "M402 mortar crate"
@@ -638,7 +638,7 @@ AMMO
 
 /datum/supply_packs/ammo/minigun
 	name = "Minigun Powerpack"
-	contains = list(/obj/item/minigun_powerpack)
+	contains = list(/obj/item/ammo_magazine/minigun_powerpack)
 	cost = 5
 
 /datum/supply_packs/ammo/back_fuel_tank

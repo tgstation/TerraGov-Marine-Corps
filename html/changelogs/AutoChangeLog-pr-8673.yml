@@ -1,0 +1,8 @@
+author: "hyper2snyper"
+delete-after: True
+changes: 
+  - rscadd: "Adds the GL to BAS"
+  - balance: "Minigun powerpack is now just a worn magazine like the back fuel tank for the flamer."
+  - bugfix: "Fixes attachment weapons using their unwielded stats for firing when attached."
+  - code_imp: "Redoes nearly half of the gun code."
+  - refactor: "Refactors: GLs, Lasguns, Shotguns, Revolvers, TL-127, And reloading/operation in general."

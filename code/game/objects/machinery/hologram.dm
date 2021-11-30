@@ -30,6 +30,7 @@
 
 /obj/machinery/holopad/Initialize()
 	. = ..()
+	become_hearing_sensitive()
 	if(on_network)
 		holopads += src
 
