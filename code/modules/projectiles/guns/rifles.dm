@@ -1098,7 +1098,10 @@
 	caliber = CALIBER_86X70 //codex
 	max_shells = 7 //codex
 	default_ammo_type = /obj/item/ammo_magazine/rifle/chamberedrifle
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/chamberedrifle)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/chamberedrifle,
+		/obj/item/ammo_magazine/rifle/chamberedrifle/flak,
+	)
 	attachable_allowed = list(
 		/obj/item/attachable/scope/unremovable/tl127,
 		/obj/item/attachable/stock/tl127stock,
