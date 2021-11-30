@@ -262,9 +262,11 @@
 	},
 /area/sulaco/medbay/chemistry)
 "aaU" = (
-/obj/machinery/vending/nanomed,
-/turf/closed/wall/mainship/white,
-/area/sulaco/medbay/storage2)
+/obj/machinery/vending/nanomed{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "aaV" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -926,6 +928,9 @@
 	dir = 4
 	},
 /obj/structure/bed/chair/wheelchair{
+	dir = 4
+	},
+/obj/machinery/vending/nanomed{
 	dir = 4
 	},
 /turf/open/floor/prison/whitegreen/corner{
@@ -1729,9 +1734,16 @@
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/cmo)
 "agA" = (
-/obj/machinery/vending/nanomed,
-/turf/closed/wall/mainship/gray/outer,
-/area/sulaco/bridge/office)
+/obj/structure/bed/chair/wheelchair{
+	dir = 4
+	},
+/obj/machinery/vending/nanomed{
+	dir = 4
+	},
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 4
+	},
+/area/sulaco/medbay/storage2)
 "agJ" = (
 /obj/machinery/shower{
 	pixel_y = 15
@@ -2225,6 +2237,11 @@
 	dir = 4
 	},
 /obj/machinery/marine_selector/clothes/commander,
+/obj/machinery/vending/nanomed{
+	dir = 8;
+	pixel_x = -1;
+	pixel_y = -1
+	},
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
 "akF" = (
@@ -2872,12 +2889,14 @@
 	},
 /area/sulaco/bridge)
 "aoU" = (
-/obj/machinery/vending/nanomed{
-	dir = 8
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 9
+	},
+/obj/machinery/vending/nanomed{
+	dir = 8;
+	pixel_x = -1;
+	pixel_y = -1
 	},
 /turf/open/floor/prison/red{
 	dir = 1
@@ -8773,10 +8792,6 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"aTq" = (
-/obj/machinery/vending/nanomed,
-/turf/closed/wall/mainship/gray,
-/area/sulaco/hangar/storage)
 "aTt" = (
 /obj/structure/rack,
 /obj/item/storage/box/sentry,
@@ -45722,7 +45737,7 @@ aaa
 aaa
 nzi
 pLJ
-agA
+pLJ
 pLJ
 pLJ
 aob
@@ -53815,8 +53830,8 @@ aaQ
 aaQ
 aaQ
 aaQ
-aaU
-aaU
+aaQ
+aaQ
 aaQ
 afC
 aaQ
@@ -54073,7 +54088,7 @@ adR
 act
 acU
 adk
-adR
+agA
 aeE
 yfW
 adi
@@ -61256,7 +61271,7 @@ tgw
 tgw
 tha
 kOr
-aTq
+bYM
 qMR
 oLl
 lwx
@@ -61513,7 +61528,7 @@ tgw
 tgw
 gQS
 kOr
-udn
+aaU
 udn
 aUL
 jYO
