@@ -1000,6 +1000,20 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range_min = 2
 	damage_falloff = 0.25
 
+/datum/ammo/bullet/sniper/pfc/flak
+	name = "high caliber flak rifle bullet"
+	hud_state = "sniper_supersonic"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
+	damage = 40
+	penetration = 10
+	sundering = 10
+	accurate_range_min = 2
+	damage_falloff = 0.25
+
+/datum/ammo/bullet/sniper/pfc/flak/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, knockback = 4, slowdown = 1, stagger = 1, max_range = 40)
+
+
 /datum/ammo/bullet/sniper/auto
 	name = "high caliber rifle bullet"
 	hud_state = "minigun"
