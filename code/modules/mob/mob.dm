@@ -39,6 +39,7 @@
 	update_config_movespeed()
 	update_movespeed(TRUE)
 	log_mob_tag("\[[tag]\] CREATED: [key_name(src)]")
+	become_hearing_sensitive()
 
 
 /mob/Stat()
@@ -424,7 +425,7 @@
 	. = ..()
 	if(.)
 		return
-	if(!ismob(dropping) || isxeno(user) || isxeno(dropping) || ishusk(user))
+	if(!ismob(dropping) || isxeno(user) || isxeno(dropping) || iszombie(user))
 		return
 	// If not dragged onto myself or dragging my own sprite onto myself
 	if(user != src || dropping == user)
@@ -876,3 +877,14 @@
 		client.movingmob.client_mobs_in_contents -= src
 		UNSETEMPTY(client.movingmob.client_mobs_in_contents)
 		client.movingmob = null
+
+/mob/onTransitZ(old_z, new_z)
+	. = ..()
+	if(!client || !hud_used)
+		return
+	if(old_z == new_z)
+		return
+	if(is_ground_level(new_z))
+		hud_used.remove_parallax(src)
+		return
+	hud_used.create_parallax(src)

@@ -12,13 +12,7 @@
 /obj/machinery/deployable/mounted/update_icon_state(mob/user)
 	. = ..()
 	var/obj/item/weapon/gun/gun = internal_item
-	var/has_mag
-	if(istype(gun, /obj/item/weapon/gun/energy))
-		var/obj/item/weapon/gun/energy/energy_gun = gun
-		has_mag = energy_gun.cell
-	else
-		has_mag = gun.current_mag
-	if(!has_mag)
+	if(!length(gun.chamber_items) || !gun.chamber_items[gun.current_chamber_position])
 		icon_state = default_icon_state + "_e"
 	else
 		icon_state = default_icon_state
@@ -40,7 +34,7 @@
 
 /obj/machinery/deployable/mounted/AltClick(mob/user)
 	. = ..()
-	if(!Adjacent(user) || user.lying_angle || user.incapacitated())
+	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user)) //Damn you zack, yoinking mags from pipes as a runner.
 		return
 	var/obj/item/weapon/gun/internal_gun = internal_item
 	internal_gun.unload(user)
@@ -48,8 +42,10 @@
 
 /obj/machinery/deployable/mounted/attack_hand_alternate(mob/living/user)
 	. = ..()
+	if(!ishuman(user))
+		return
 	var/obj/item/weapon/gun/internal_gun = internal_item
-	internal_gun.cock(user)
+	internal_gun.unique_action(internal_gun, user)
 
 /obj/machinery/deployable/mounted/attackby(obj/item/I, mob/user, params) //This handles reloading the gun, if its in acid cant touch it.
 	. = ..()
@@ -67,36 +63,16 @@
 ///Reloads the internal_item
 /obj/machinery/deployable/mounted/proc/reload(mob/user, ammo_magazine)
 	var/obj/item/weapon/gun/gun = internal_item
-	if(istype(ammo_magazine, /obj/item/cell) && istype(gun, /obj/item/weapon/gun/energy))
-		gun.reload(user, ammo_magazine)
-		return
-	if(!istype(ammo_magazine, /obj/item/ammo_magazine))
-		return
-
-	var/obj/item/ammo_magazine/ammo = ammo_magazine
-
-	if(istype(ammo_magazine, /obj/item/ammo_magazine/handful))
-		gun.reload(user, ammo)
-		update_icon_state()
-		return
-
-	if(!istype(gun, ammo.gun_type))
-		return
-
-	if(ammo.current_rounds <= 0)
-		to_chat(user, span_warning("[ammo] is empty!"))
-		return
-
-	if(gun.current_mag)
-		gun.unload(user,0,1)
+	if(length(gun.chamber_items))
+		gun.unload(user)
 		update_icon_state()
 
-	gun.reload(user, ammo)
+	gun.reload(ammo_magazine, user)
 	update_icon_state()
 
-	if(!CHECK_BITFIELD(gun.flags_gun_features, GUN_PUMP_REQUIRED))
+	if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 		return
-	gun.cock()
+	gun.unique_action(gun, user)
 
 
 ///This is called when a user tries to operate the gun

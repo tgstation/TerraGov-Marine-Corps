@@ -10,7 +10,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 15
 	default_ammo = /datum/ammo/bullet/sniper
-	gun_type = /obj/item/weapon/gun/rifle/sniper/antimaterial
 	reload_delay = 3
 	icon_state_mini = "mag_sniper"
 
@@ -28,12 +27,18 @@
 	icon_state_mini = "mag_sniper_blue"
 
 
+/obj/item/ammo_magazine/rifle/chamberedrifle/flak
+	name = "TL-127 bolt action rifle flak magazine"
+	desc = "A box magazine filled with 8.6x70mm rifle flak rounds for the TL-127."
+	icon_state = "tl127_flak"
+	default_ammo = /datum/ammo/bullet/sniper/pfc/flak
+	icon_state_mini = "mag_sniper_blue"
+
 //M42C magazine
 
 /obj/item/ammo_magazine/sniper/elite
 	name = "\improper M42C marksman magazine (10x99mm)"
 	default_ammo = /datum/ammo/bullet/sniper/elite
-	gun_type = /obj/item/weapon/gun/rifle/sniper/elite
 	caliber = CALIBER_10X99
 	icon_state = "m42c"
 	max_rounds = 6
@@ -48,7 +53,6 @@
 	icon_state = "svd"
 	default_ammo = /datum/ammo/bullet/sniper/svd
 	max_rounds = 10
-	gun_type = /obj/item/weapon/gun/rifle/sniper/svd
 	icon_state_mini = "mag_rifle"
 
 
@@ -62,7 +66,6 @@
 	caliber = CALIBER_10X28_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/tx8
 	max_rounds = 25
-	gun_type = /obj/item/weapon/gun/rifle/tx8
 	icon_state_mini = "mag_rifle_big"
 
 /obj/item/ammo_magazine/rifle/tx8/incendiary
@@ -71,7 +74,6 @@
 	caliber = CALIBER_10X28_CASELESS
 	icon_state = "tx8_incend"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/incendiary
-	gun_type = /obj/item/weapon/gun/rifle/tx8
 	icon_state_mini = "mag_rifle_big_red"
 
 /obj/item/ammo_magazine/rifle/tx8/impact
@@ -79,17 +81,8 @@
 	desc = "A magazine of overpressuered high velocity impact rounds for use in the TX-8 battle rifle. The TX-8 battle rifle is the only gun that can chamber these rounds."
 	icon_state = "tx8_impact"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/impact
-	gun_type = /obj/item/weapon/gun/rifle/tx8
 	icon_state_mini = "mag_rifle_big_blue"
 
-//-------------------------------------------------------
-//MINIGUN-Powerpack edition
-/obj/item/ammo_magazine/internal/minigun
-	name = "integrated minigun belt"
-	icon_state = "minigun"
-	caliber = CALIBER_762X51
-	max_rounds = 100
-	default_ammo = /datum/ammo/bullet/minigun
 
 //-------------------------------------------------------
 //M5 RPG
@@ -100,30 +93,31 @@
 	caliber = CALIBER_84MM
 	icon_state = "rocket"
 	w_class = WEIGHT_CLASS_NORMAL
+	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket
-	gun_type = /obj/item/weapon/gun/launcher/rocket
-	flags_magazine = NONE
 	reload_delay = 60
 
-	attack_self(mob/user)
-		if(current_rounds <= 0)
-			to_chat(user, span_notice("You begin taking apart the empty tube frame..."))
-			if(do_after(user, 10, TRUE, src))
-				user.visible_message("[user] deconstructs the rocket tube frame.",span_notice("You take apart the empty frame."))
-				var/obj/item/stack/sheet/metal/M = new(get_turf(user))
-				M.amount = 2
-				user.drop_held_item()
-				qdel(src)
-		else
-			to_chat(user, "Not with a missile inside!")
+/obj/item/ammo_magazine/rocket/attack_self(mob/user)
+	if(current_rounds > 0)
+		to_chat(user, span_notice("Not with a missile inside!"))
+		return
+	to_chat(user, span_notice("You begin taking apart the empty tube frame..."))
+	if(!do_after(user, 10, TRUE, src))
+		return
+	user.visible_message("[user] deconstructs the rocket tube frame.",span_notice("You take apart the empty frame."))
+	var/obj/item/stack/sheet/metal/metal = new(get_turf(user))
+	metal.amount = 2
+	user.drop_held_item()
+	qdel(src)
 
-	update_icon()
-		overlays.Cut()
-		if(current_rounds <= 0)
-			name = "empty rocket frame"
-			desc = "A spent rocket rube. Activate it to deconstruct it and receive some materials."
-			icon_state = type == /obj/item/ammo_magazine/rocket/m57a4? "quad_rocket_e" : "rocket_e"
+/obj/item/ammo_magazine/rocket/update_icon()
+	overlays.Cut()
+	if(current_rounds > 0)
+		return
+	name = "empty rocket frame"
+	desc = "A spent rocket rube. Activate it to deconstruct it and receive some materials."
+	icon_state = istype(src, /obj/item/ammo_magazine/rocket/m57a4) ? "quad_rocket_e" : "rocket_e"
 
 //-------------------------------------------------------
 //T-152
@@ -136,8 +130,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket
-	gun_type = /obj/item/weapon/gun/launcher/rocket/sadar
-	flags_magazine = NONE
 	reload_delay = 60
 
 /obj/item/ammo_magazine/rocket/sadar/ap
@@ -152,16 +144,6 @@
 	default_ammo = /datum/ammo/rocket/wp
 	desc = "A highly destructive warhead that bursts into deadly flames on impact. Use this in hand to deconstruct it."
 
-/obj/item/ammo_magazine/internal/launcher/rocket/sadar
-	name = "\improper 84mm internal tube"
-	desc = "The internal tube of a T-152 rocket launcher."
-	caliber = CALIBER_84MM
-	default_ammo = /datum/ammo/rocket
-	gun_type = /obj/item/weapon/gun/launcher/rocket/sadar
-	max_rounds = 1
-	current_rounds = 0
-	reload_delay = 60
-
 //-------------------------------------------------------
 //T-160 recoilless rifle
 
@@ -173,8 +155,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless
-	gun_type = /obj/item/weapon/gun/launcher/rocket/recoillessrifle
-	flags_magazine = NONE
 	reload_delay = 30
 
 /obj/item/ammo_magazine/rocket/recoilless/light
@@ -185,8 +165,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless/light
-	gun_type = /obj/item/weapon/gun/launcher/rocket/recoillessrifle
-	flags_magazine = NONE
 	reload_delay = 10
 
 /obj/item/ammo_magazine/rocket/recoilless/heat
@@ -197,18 +175,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless/heat
-	gun_type = /obj/item/weapon/gun/launcher/rocket/recoillessrifle
-	flags_magazine = NONE
-	reload_delay = 30
-
-
-/obj/item/ammo_magazine/internal/launcher/rocket/recoilless
-	name = "\improper 67mm internal tube"
-	desc = "The internal tube of a T-TBD recoilless rifle."
-	caliber = CALIBER_67MM
-	default_ammo = /datum/ammo/rocket/recoilless
-	max_rounds = 1
-	current_rounds = 0
 	reload_delay = 30
 
 
@@ -223,8 +189,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/oneuse
-	gun_type = /obj/item/weapon/gun/launcher/rocket/oneuse
-	flags_magazine = NONE
 	reload_delay = 30
 
 /obj/item/ammo_magazine/internal/launcher/rocket/oneuse
@@ -246,7 +210,6 @@
 	icon_state = "quad_rocket"
 	max_rounds = 4
 	default_ammo = /datum/ammo/rocket/wp/quad
-	gun_type = /obj/item/weapon/gun/launcher/rocket/m57a4
 	reload_delay = 200
 
 /obj/item/ammo_magazine/rocket/m57a4/ds
@@ -277,7 +240,6 @@
 	max_rounds = 1
 	reload_delay = 20 //Hard to reload.
 	w_class = WEIGHT_CLASS_NORMAL
-	gun_type = /obj/item/weapon/gun/rifle/railgun
 	icon_state_mini = "mag_railgun"
 
 // pepperball
@@ -290,5 +252,27 @@
 	default_ammo = /datum/ammo/bullet/pepperball
 	max_rounds = 70
 	w_class = WEIGHT_CLASS_NORMAL
-	gun_type = /obj/item/weapon/gun/rifle/pepperball
 	icon_state_mini = "mag_pepperball"
+
+/obj/item/ammo_magazine/minigun_powerpack
+	name = "\improper T-100 powerpack"
+	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the T-100 Minigun System.\nClick the icon in the top left to reload your M56."
+	icon = 'icons/obj/items/storage/storage.dmi'
+	icon_state = "powerpack"
+	flags_atom = CONDUCT
+	flags_equip_slot = ITEM_SLOT_BACK
+	flags_magazine = MAGAZINE_WORN
+	w_class = WEIGHT_CLASS_HUGE
+	default_ammo = /datum/ammo/bullet/minigun
+	current_rounds = 500
+	max_rounds = 500
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
+
+/obj/item/ammo_magazine/minigun_powerpack/snow
+	icon_state = "s_powerpack"
+
+/obj/item/ammo_magazine/minigun_powerpack/fancy
+	icon_state = "powerpackw"
+
+/obj/item/ammo_magazine/minigun_powerpack/merc
+	icon_state = "powerpackp"

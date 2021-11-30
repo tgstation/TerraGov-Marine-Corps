@@ -619,7 +619,7 @@
 			continue
 		if(istype(item_to_stock, /obj/item/weapon/gun))
 			var/obj/item/weapon/gun/G = item_to_stock
-			if(G.in_chamber || (G.current_mag && !istype(G.current_mag, /obj/item/ammo_magazine/internal)) || (istype(G.current_mag, /obj/item/ammo_magazine/internal) && G.current_mag.current_rounds > 0) )
+			if(G.rounds)
 				to_chat(user, span_warning("[G] is still loaded. Unload it before you can restock it."))
 				return
 			for(var/obj/item/attachable/A in G.contents) //Search for attachments on the gun. This is the easier method
@@ -631,14 +631,6 @@
 			var/obj/item/ammo_magazine/A = item_to_stock
 			if(A.current_rounds < A.max_rounds)
 				to_chat(user, span_warning("[A] isn't full. Fill it before you can restock it."))
-				return
-		else if(istype(item_to_stock, /obj/item/minigun_powerpack))
-			var/obj/item/minigun_powerpack/P = item_to_stock
-			if(!P.pcell)
-				to_chat(user, span_warning("The [P] doesn't have a cell. You must put one in before you can restock it."))
-				return
-			if(P.pcell.charge < P.pcell.maxcharge)
-				to_chat(user, span_warning("The [P] cell isn't full. You must recharge it before you can restock it."))
 				return
 		else if(istype(item_to_stock, /obj/item/cell))
 			var/obj/item/cell/cell = item_to_stock

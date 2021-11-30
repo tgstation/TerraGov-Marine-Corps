@@ -67,8 +67,6 @@
 	var/caliber = ""
 	/// The maxium of rounds this handful can contains
 	var/max_rounds = 0
-	/// The type of gun this handful can feed
-	var/gun_type
 
 /datum/item_representation/handful_representation/New(obj/item/item_to_copy)
 	if(!item_to_copy)
@@ -81,11 +79,10 @@
 	ammo = handful_to_copy.default_ammo
 	caliber = handful_to_copy.caliber
 	max_rounds = handful_to_copy.max_rounds
-	gun_type = handful_to_copy.gun_type
 
 /datum/item_representation/handful_representation/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	if(!is_handful_buyable(ammo))
 		return
 	var/obj/item/ammo_magazine/handful/handful = new item_type(master)
-	handful.generate_handful(ammo, caliber, max_rounds, gun_type, max_rounds)
+	handful.generate_handful(ammo, caliber, max_rounds, max_rounds)
 	return handful
