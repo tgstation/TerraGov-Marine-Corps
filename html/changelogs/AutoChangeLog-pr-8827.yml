@@ -1,0 +1,5 @@
+author: "KrabSpider"
+delete-after: True
+changes: 
+  - rscadd: "Tl-127 flak rifle rounds. Available through requisitions for a mere 5 points a pop. Causes deals a mighty blow to targets as they're knocked back 4 tiles. 1 stagger, 1 slow, 4 knockback."
+  - imageadd: "Tl-127 flak mags"
