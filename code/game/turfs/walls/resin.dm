@@ -128,7 +128,7 @@
 	ScrapeAway()
 
 
-/turf/closed/wall/resin/ChangeTurf(newtype)
+/turf/closed/wall/resin/ChangeTurf(path, list/new_baseturfs, flags)
 	. = ..()
 	if(.)
 		var/turf/T

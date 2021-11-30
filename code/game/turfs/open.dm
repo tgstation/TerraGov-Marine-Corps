@@ -55,6 +55,8 @@
 
 
 	..()
+	if(!arrived.zfalling)
+		zFall(arrived)
 
 
 

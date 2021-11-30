@@ -590,6 +590,10 @@ Proc for attack log creation, because really why not
 	filter_data = null
 	filters = null
 
+
+/atom/proc/intercept_zImpact(atom/movable/hitting_atom, levels = 1)
+	. |= SEND_SIGNAL(src, COMSIG_ATOM_INTERCEPT_Z_FALL, hitting_atom, levels)
+
 /*
 	Atom Colour Priority System
 	A System that gives finer control over which atom colour to colour the atom with.

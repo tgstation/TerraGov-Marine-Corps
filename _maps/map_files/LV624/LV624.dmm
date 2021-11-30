@@ -13039,6 +13039,12 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
+"diy" = (
+/obj/structure/stairs/north,
+/turf/open/floor/marking/loadingarea{
+	dir = 8
+	},
+/area/shuttle/drop1/lz1)
 "dmz" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -13486,6 +13492,10 @@
 	dir = 8
 	},
 /area/lv624/lazarus/engineering)
+"eGD" = (
+/obj/structure/stairs/north,
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "eGR" = (
 /obj/item/stack/sheet/metal,
 /obj/effect/landmark/weed_node,
@@ -44743,7 +44753,7 @@ biG
 vuD
 iEQ
 iEQ
-iEQ
+diy
 iEQ
 iEQ
 vuD
@@ -44922,7 +44932,7 @@ xwC
 vuD
 jLA
 vuD
-jLA
+eGD
 vuD
 jLA
 vuD

@@ -138,3 +138,9 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 #define LIGHT_BURNED 3
 
 GLOBAL_VAR_INIT(geothermal_generator_ammount, 0)
+
+// possible bitflag return values of intercept_zImpact(atom/movable/AM, levels = 1) calls
+#define FALL_INTERCEPTED (1<<0) //Stops the movable from falling further and crashing on the ground
+#define FALL_NO_MESSAGE (1<<1) //Used to suppress the "[A] falls through [old_turf]" messages where it'd make little sense at all, like going downstairs.
+#define FALL_STOP_INTERCEPTING (1<<2) //Used in situations where halting the whole "intercept" loop would be better, like supermatter dusting (and thus deleting) the atom.
+

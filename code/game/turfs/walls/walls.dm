@@ -57,7 +57,7 @@
 			qdel(M)
 
 
-/turf/closed/wall/ChangeTurf(newtype)
+/turf/closed/wall/ChangeTurf(path, list/new_baseturfs, flags)
 	if(acided_hole)
 		qdel(acided_hole)
 		acided_hole = null

@@ -61,6 +61,12 @@
 	 */
 	var/list/important_recursive_contents
 
+	///If false, the object cannot be z moved at all.
+	var/can_be_z_moved = TRUE
+	///True while the object is falling through z levels.
+	var/zfalling = FALSE
+
+
 //===========================================================================
 /atom/movable/Initialize(mapload, ...)
 	. = ..()
@@ -138,6 +144,49 @@
 /atom/movable/update_overlays()
 	. = ..()
 	. += update_emissive_block()
+
+///Check for if the atom can move to the next Z
+/atom/movable/proc/can_zFall(turf/source, levels = 1, turf/target, direction)
+	if(!direction)
+		direction = DOWN
+	if(!source)
+		source = get_turf(src)
+		if(!source)
+			return FALSE
+	if(!target)
+		target = get_step_multiz(source, direction)
+		if(!target)
+			return FALSE
+	return !throwing
+
+///Called when the object lands.
+/atom/movable/proc/onZImpact(turf/impacted_turf, levels)
+	var/atom/highest = impacted_turf
+	for(var/atom/hurt_atom as anything in impacted_turf.contents)
+		if(!hurt_atom.density)
+			continue
+		if(isobj(hurt_atom) || ismob(hurt_atom))
+			if(hurt_atom.layer > highest.layer)
+				highest = hurt_atom
+	INVOKE_ASYNC(src, .proc/SpinAnimation, 5, 2)
+	return TRUE
+
+///For physical constraints to travelling up/down.
+/atom/movable/proc/can_zTravel(turf/destination, direction)
+	var/turf/current_turf = get_turf(src)
+	if(!current_turf)
+		return FALSE
+	if(!direction)
+		if(!destination)
+			return FALSE
+		direction = get_dir(current_turf, destination)
+	if(direction != UP && direction != DOWN)
+		return FALSE
+	if(!destination)
+		destination = get_step_multiz(src, direction)
+		if(!destination)
+			return FALSE
+	return current_turf.zPassOut(src, direction, destination) && destination.zPassIn(src, direction, current_turf)
 
 /**
  * meant for movement with zero side effects. only use for objects that are supposed to move "invisibly" (like camera mobs or ghosts)
