@@ -58,8 +58,23 @@
 	if(!arrived.zfalling)
 		zFall(arrived)
 
+//direction is direction of travel of A
+/turf/open/zPassIn(atom/movable/A, direction, turf/source)
+	if(direction == DOWN)
+		for(var/obj/O in contents)
+			if(O.obj_flags & BLOCK_Z_IN_DOWN)
+				return FALSE
+		return TRUE
+	return FALSE
 
-
+//direction is direction of travel of A
+/turf/open/zPassOut(atom/movable/A, direction, turf/destination)
+	if(direction == UP)
+		for(var/obj/O in contents)
+			if(O.obj_flags & BLOCK_Z_OUT_UP)
+				return FALSE
+		return TRUE
+	return FALSE
 
 /turf/open/examine(mob/user)
 	..()
