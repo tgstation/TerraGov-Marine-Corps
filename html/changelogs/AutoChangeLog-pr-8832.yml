@@ -1,0 +1,4 @@
+author: "TooFewSecrets"
+delete-after: True
+changes: 
+  - balance: "Most Ravager super rage stat bonuses halved (rage above 0 HP unaffected). Less damage, speed, lifesteal, sunder recovery, and endure bonus health. Immunities are still given by super rage."
