@@ -18,7 +18,7 @@
 	slowdown = 0
 	light_mod = 4 /// The boost to armor shoulder light
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular = "mod_lamp_j", /obj/item/clothing/suit/modular/robot = "mod_lamp_r",  /obj/item/clothing/suit/modular/robot/light = "mod_lamp_r",  /obj/item/clothing/suit/modular/robot/heavy = "mod_lamp_r")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_lamp_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_lamp_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_lamp_xn")
 
 /**
  * Mini autodoc module
@@ -31,7 +31,7 @@
 	item_state = "mod_autodoc_a"
 	slowdown = 0.25
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular = "mod_autodoc_j")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_autodoc_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_autodoc_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_autodoc_xn")
 	var/static/list/supported_limbs = list(CHEST, GROIN, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT)
 
 /obj/item/armor_module/module/valkyrie_autodoc/on_attach(obj/item/attaching_to, mob/user)
@@ -63,7 +63,7 @@
 	/// How much the suit light is modified by
 	light_mod = -2
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular = "mod_fire_j")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_fire_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_fire_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_fire_xn")
 
 /obj/item/armor_module/module/fire_proof/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
@@ -87,7 +87,7 @@
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 	slowdown = 0.3
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular = "mod_armor_j", /obj/item/clothing/suit/modular/robot = "mod_armor_r",  /obj/item/clothing/suit/modular/robot/light = "mod_armor_r",  /obj/item/clothing/suit/modular/robot/heavy = "mod_armor_r")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_armor_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_armor_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_armor_xn")
 
 /obj/item/armor_module/module/tyr_extra_armor/mark1
 	name = "\improper Mark 1 Tyr Armor Reinforcement"
@@ -103,26 +103,7 @@
 	item_state = "tyr_head_a"
 	soft_armor = list("melee" = 15, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(
-		/obj/item/clothing/head/modular/marine = "tyr_head_j",
-		/obj/item/clothing/head/modular/marine/skirmisher = "tyr_head_j",
-		/obj/item/clothing/head/modular/marine/scout = "tyr_head_j",
-		/obj/item/clothing/head/modular/marine/assault = "tyr_head_j",
-		/obj/item/clothing/head/modular/marine/eva = "tyr_head_j",
-		/obj/item/clothing/head/modular/marine/eva/skull = "tyr_head_j",
-		/obj/item/clothing/head/modular/marine/eod = "tyr_head_j",
-		/obj/item/clothing/head/modular/marine/infantry = "tyr_head_j",
-		/obj/item/clothing/head/helmet/marine/robot = "tyr_head_j",
-	)
-
-/obj/item/armor_module/module/tyr_head/on_attach(obj/item/attaching_to, mob/user)
-	. = ..()
-	ENABLE_BITFIELD(parent.flags_armor_features, ARMOR_NO_DECAP)
-
-/obj/item/armor_module/module/tyr_head/on_detach(obj/item/detaching_from, mob/user)
-	if(!CHECK_BITFIELD(initial(parent.flags_armor_features), ARMOR_NO_DECAP))
-		DISABLE_BITFIELD(parent.flags_armor_features, ARMOR_NO_DECAP)
-	return ..()
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "tyr_head_xn")
 
 /**
  * Environment protecttion module
@@ -136,7 +117,7 @@
 	soft_armor = list("bio" = 40, "rad" = 50, "acid" = 30)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular = "mod_biohazard_j", /obj/item/clothing/suit/modular/robot = "mod_biohazard_r",  /obj/item/clothing/suit/modular/robot/light = "mod_biohazard_r",  /obj/item/clothing/suit/modular/robot/heavy = "mod_biohazard_r")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_biohazard_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_biohazard_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_biohazard_xn")
 	///siemens coefficient mod for gas protection.
 	var/siemens_coefficient_mod = -0.9
 	///permeability coefficient mod for gas protection.
@@ -173,17 +154,7 @@
 	soft_armor = list("bio" = 40, "rad" = 50, "acid" = 30)
 	slowdown = 0
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(
-		/obj/item/clothing/head/modular/marine = "mimir_head_j",
-		/obj/item/clothing/head/modular/marine/skirmisher = "mimir_head_j",
-		/obj/item/clothing/head/modular/marine/scout = "mimir_head_j",
-		/obj/item/clothing/head/modular/marine/assault = "mimir_head_j",
-		/obj/item/clothing/head/modular/marine/eva = "mimir_head_j",
-		/obj/item/clothing/head/modular/marine/eva/skull = "mimir_head_j",
-		/obj/item/clothing/head/modular/marine/eod = "mimir_head_j",
-		/obj/item/clothing/head/modular/marine/infantry = "mimir_head_j",
-		/obj/item/clothing/head/helmet/marine/robot = "mimir_head_j",
-	)
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "mimir_head_xn")
 
 /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1 //gas protection
 	name = "Mark 1 Mimir Environmental Helmet System"
@@ -200,7 +171,7 @@
 	soft_armor = list("bomb" = 40)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular = "mod_boomimmune_j", /obj/item/clothing/suit/modular/robot = "mod_boomimmune_r",  /obj/item/clothing/suit/modular/robot/light = "mod_boomimmune_r",  /obj/item/clothing/suit/modular/robot/heavy = "mod_boomimmune_r")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_bombimmune_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_bombimmune_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_bombimmune_xn")
 
 /**
  * Extra armor module
@@ -214,7 +185,7 @@
 	soft_armor = list("melee" = 0, "bullet" = 40, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/suit/modular = "mod_ff_j", /obj/item/clothing/suit/modular/robot = "mod_ff_r",  /obj/item/clothing/suit/modular/robot/light = "mod_ff_r",  /obj/item/clothing/suit/modular/robot/heavy = "mod_ff_r")
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_ff_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_ff_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_ff_xn")
 
 /obj/item/armor_module/module/chemsystem
 	name = "Vali chemical enhancement module"

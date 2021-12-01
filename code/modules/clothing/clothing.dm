@@ -103,11 +103,7 @@
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
 	siemens_coefficient = 0.9
 	w_class = WEIGHT_CLASS_NORMAL
-	attachments_by_slot = list(
-		ATTACHMENT_SLOT_MODULE,
-		ATTACHMENT_SLOT_STORAGE,
-		ATTACHMENT_SLOT_BADGE,
-	)
+	attachments_by_slot = list(ATTACHMENT_SLOT_BADGE)
 	attachments_allowed = list(/obj/item/armor_module/armor/badge)
 	var/supporting_limbs = NONE
 	var/blood_overlay_type = "suit"

@@ -198,25 +198,6 @@
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 30, "bomb" = 25, "bio" = 30, "rad" = 0, "fire" = 20, "acid" = 30)
 	slowdown = 0.2
-	attachments_allowed = list(
-		/obj/item/armor_module/module/better_shoulder_lamp,
-		/obj/item/armor_module/module/valkyrie_autodoc,
-		/obj/item/armor_module/module/fire_proof,
-		/obj/item/armor_module/module/tyr_extra_armor,
-		/obj/item/armor_module/module/tyr_extra_armor/mark1,
-		/obj/item/armor_module/module/mimir_environment_protection,
-		/obj/item/armor_module/module/mimir_environment_protection/mark1,
-		/obj/item/armor_module/module/hlin_explosive_armor,
-		/obj/item/armor_module/module/ballistic_armor,
-		/obj/item/armor_module/module/chemsystem,
-
-		/obj/item/armor_module/storage/general,
-		/obj/item/armor_module/storage/ammo_mag,
-		/obj/item/armor_module/storage/engineering,
-		/obj/item/armor_module/storage/medical,
-		/obj/item/armor_module/storage/integrated,
-		/obj/item/armor_module/armor/badge,
-	)
 
 /obj/item/clothing/suit/storage/snow_suit
 	name = "snow suit"
