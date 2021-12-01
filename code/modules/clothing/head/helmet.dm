@@ -688,6 +688,12 @@ obj/item/clothing/head/helmet/marine/pilot/green
 	species_exception = list(/datum/species/robot)
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 10, "acid" = 50)
+	attachments_allowed = list(
+		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
+		/obj/item/armor_module/armor/badge,
+	)
 
 /obj/item/clothing/head/helmet/marine/robot/mob_can_equip(mob/M, slot, warning, override_nodrop)
 	. = ..()
