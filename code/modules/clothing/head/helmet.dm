@@ -348,6 +348,7 @@
 	resistance_flags = UNACIDABLE
 	anti_hug = 6
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
+	attachments_allowed = list()
 
 /obj/item/clothing/head/helmet/marine/grenadier
 	name = "\improper B17 helmet"
@@ -360,6 +361,7 @@
 	flags_item = SYNTH_RESTRICTED
 	anti_hug = 4
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
+	attachments_allowed = list()
 
 /obj/item/clothing/head/helmet/marine/scout
 	name = "\improper M3-S helmet"
