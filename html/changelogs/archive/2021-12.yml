@@ -1,0 +1,14 @@
+2021-12-01:
+  BraveMole:
+  - code_imp: Remove parallax when on ground
+  KrabSpider:
+  - rscadd: Tl-127 flak rifle rounds. Available through requisitions for a mere 5
+      points a pop. Causes deals a mighty blow to targets as they're knocked back
+      4 tiles. 1 stagger, 1 slow, 4 knockback.
+  - imageadd: Tl-127 flak mags
+  Lewdcifer:
+  - balance: TP-44 fire delay 0.15 > 0.2.
+  hyper2snyper:
+  - rscadd: Cowboy boots + Leather Jacket and Leather Jacket with webbing.
+  - rscadd: Droon
+  - rscadd: Rave-ager
