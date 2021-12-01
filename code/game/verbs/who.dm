@@ -128,7 +128,7 @@
 
 	else
 		for(var/client/C in GLOB.admins)
-			if(check_other_rights(C, R_ADMIN, FALSE) && !C.holder.fakekey)
+			if(check_other_rights(C, R_ADMIN, FALSE))
 				msg += "\t[C] - [C.holder.rank]\n"
 				num_admins_online++
 			else if(is_mentor(C))

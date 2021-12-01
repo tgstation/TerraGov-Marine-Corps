@@ -52,7 +52,7 @@
 
 /datum/admins/proc/stealth_mode()
 	set category = "Admin"
-	set name = "Stealth Mode"
+	set name = "Afkmode"
 	set desc = "Allows you to change your ckey for non-admins to see."
 
 	if(!check_rights(R_ADMIN))
