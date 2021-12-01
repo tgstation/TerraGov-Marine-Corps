@@ -5248,7 +5248,6 @@
 /area/icy_caves/caves)
 "zM" = (
 /obj/machinery/landinglight/ds1/delaytwo,
-/obj/machinery/floodlight/landing,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "zN" = (
@@ -5268,9 +5267,9 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "zS" = (
-/turf/closed/ice/end{
-	dir = 4
-	},
+/obj/machinery/landinglight/ds1/delaytwo,
+/obj/machinery/floodlight/landing,
+/turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "zT" = (
 /obj/machinery/iv_drip,
@@ -5345,12 +5344,6 @@
 /obj/structure/dropship_equipment/weapon/rocket_pod,
 /turf/open/shuttle/dropship/floor,
 /area/space)
-"Ag" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/LZ1)
 "Ah" = (
 /obj/effect/landmark/corpsespawner/security{
 	corpsebelt = /obj/item/weapon/gun/revolver/cmb;
@@ -6575,7 +6568,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "GU" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/ds1/delayone{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -7172,7 +7165,8 @@
 /turf/closed/ice/end,
 /area/icy_caves/caves/south)
 "JY" = (
-/turf/closed/ice/thin/single,
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating,
 /area/icy_caves/outpost/LZ1)
 "Ka" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -7493,7 +7487,7 @@
 	},
 /area/icy_caves/outpost/garage)
 "LL" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/ds1/delaytwo{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
@@ -8918,7 +8912,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "TI" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/ds1/delaythree{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -9017,8 +9011,10 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "Ud" = (
-/obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating,
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "Ug" = (
 /obj/machinery/power/apc/drained,
@@ -9294,7 +9290,9 @@
 /turf/closed/ice/intersection,
 /area/icy_caves/caves/northern)
 "VJ" = (
-/obj/machinery/landinglight/ds1/delaytwo,
+/obj/machinery/landinglight/ds1{
+	dir = 8
+	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "VK" = (
@@ -9397,12 +9395,6 @@
 /obj/item/explosive/plastique,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
-"Wb" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/LZ1)
 "Wc" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 2;
@@ -9518,10 +9510,8 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/outside)
 "WK" = (
-/obj/machinery/landinglight/ds1{
-	dir = 8
-	},
-/turf/open/floor/tile/dark,
+/obj/docking_port/stationary/marine_dropship/lz1,
+/turf/open/floor/plating,
 /area/icy_caves/outpost/LZ1)
 "WO" = (
 /obj/effect/landmark/weed_node,
@@ -9546,7 +9536,7 @@
 /turf/closed/ice_rock/fourway,
 /area/icy_caves/caves)
 "WT" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/ds1{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
@@ -9644,18 +9634,20 @@
 	},
 /area/icy_caves/caves)
 "Xq" = (
-/obj/docking_port/stationary/marine_dropship/lz1,
-/turf/open/floor/plating,
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "Xr" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/dmg3,
 /area/icy_caves/caves/crashed_ship)
 "Xs" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/ds1/delaythree{
 	dir = 4
 	},
-/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "Xu" = (
@@ -10801,23 +10793,23 @@ UE
 UE
 fq
 Uu
-qz
-aG
-pq
-aI
-pq
-eY
-zS
-JY
-JY
-zS
-aG
-pq
-aI
-pq
-eY
-XH
-qz
+Uu
+Uu
+Uu
+Uu
+Uu
+Uu
+Uu
+Uu
+Uu
+Uu
+Uu
+Uu
+Uu
+Uu
+Uu
+Uu
+Uu
 lX
 Bu
 bD
@@ -10951,29 +10943,29 @@ TW
 qz
 wL
 uw
-uw
-uw
-Ag
-Ag
-LL
-Wb
+Xs
+Xs
 WT
-Ag
-LL
-Wb
-WT
-Ag
-Wb
-Wb
-WT
-Ag
+Ud
 LL
 Xs
 WT
-Ag
+Ud
 LL
 Xs
+Ud
+Ud
+LL
+Xs
+WT
+Xq
+LL
+Xs
+WT
+Xq
 Yj
+uw
+uw
 Vb
 Ww
 bD
@@ -11106,12 +11098,10 @@ ED
 qz
 UM
 uw
-uw
-uw
-VJ
+zM
 Yn
 Yn
-Ud
+JY
 Yn
 Yn
 Yn
@@ -11119,7 +11109,7 @@ Yn
 Yn
 Yn
 Yn
-Ud
+JY
 Yn
 Yn
 Yn
@@ -11128,8 +11118,10 @@ Yn
 Yn
 Yn
 Yn
-Ud
+JY
 Yw
+uw
+uw
 VU
 uc
 bD
@@ -11262,9 +11254,7 @@ RC
 TM
 uw
 uw
-dW
-uw
-VJ
+zM
 Yn
 Yn
 Yn
@@ -11286,6 +11276,8 @@ Yn
 Yn
 Yn
 Yw
+uw
+uw
 qH
 Ww
 bD
@@ -11418,9 +11410,7 @@ zi
 TM
 uw
 uw
-uw
-uw
-VJ
+zM
 Yn
 Yn
 Yn
@@ -11442,6 +11432,8 @@ Yn
 Yn
 Yn
 Yw
+uw
+uw
 XH
 Ne
 Yf
@@ -11574,9 +11566,7 @@ Sh
 sK
 bU
 uw
-uw
-uw
-VJ
+zM
 Yn
 Yn
 Yn
@@ -11598,6 +11588,8 @@ Yn
 Yn
 Yn
 Yw
+uw
+uw
 VU
 Ne
 Yf
@@ -11730,9 +11722,7 @@ Tf
 TM
 bU
 uw
-uw
-uw
-VJ
+zM
 Yn
 Yn
 Yn
@@ -11754,6 +11744,8 @@ Yn
 Yn
 Yn
 Yw
+uw
+uw
 bH
 Ne
 Yf
@@ -11886,9 +11878,7 @@ Tf
 TM
 bU
 uw
-uw
-uw
-zM
+zS
 Yn
 Yn
 Yn
@@ -11899,7 +11889,7 @@ Yn
 Yn
 Yn
 Yn
-Xq
+WK
 Yn
 Yn
 Yn
@@ -11910,6 +11900,8 @@ Yn
 Yn
 Yn
 Yw
+uw
+uw
 bH
 Ne
 Yf
@@ -12042,9 +12034,7 @@ Aq
 TM
 bU
 uw
-uw
-uw
-VJ
+zM
 Yn
 Yn
 Yn
@@ -12066,6 +12056,8 @@ Yn
 Yn
 Yn
 Yw
+uw
+uw
 bH
 Ne
 Yf
@@ -12198,9 +12190,7 @@ YH
 TM
 bU
 uw
-uw
-dW
-VJ
+zM
 Yn
 Yn
 Yn
@@ -12222,6 +12212,8 @@ Yn
 Yn
 Yn
 Yw
+uw
+uw
 bH
 Ne
 Yf
@@ -12354,9 +12346,7 @@ Tf
 Tb
 XW
 uw
-uw
-uw
-VJ
+zM
 Yn
 Yn
 Yn
@@ -12378,6 +12368,8 @@ Yn
 Yn
 Yn
 Yw
+uw
+uw
 XH
 Ne
 Yf
@@ -12510,9 +12502,7 @@ Tf
 Ml
 XW
 uw
-uw
-uw
-VJ
+zM
 Yn
 Yn
 Yn
@@ -12534,6 +12524,8 @@ Yn
 Yn
 Yn
 Yw
+uw
+uw
 VU
 Ne
 Yf
@@ -12666,12 +12658,10 @@ TQ
 Uu
 Vk
 uw
-uw
-uw
-VJ
+zM
 Yn
 Yn
-Ud
+JY
 Yn
 Yn
 Yn
@@ -12679,7 +12669,7 @@ Yn
 Yn
 Yn
 Yn
-Ud
+JY
 Yn
 Yn
 Yn
@@ -12688,8 +12678,10 @@ Yn
 Yn
 Yn
 Yn
-Ud
+JY
 Yw
+uw
+uw
 qH
 Ne
 Yf
@@ -12823,29 +12815,29 @@ Uu
 bU
 uw
 uw
-uw
-uw
-GU
-MO
 TI
-WK
-GU
 MO
+GU
+VJ
 TI
-GU
-GU
 MO
-TI
-WK
 GU
+TI
+TI
 MO
-TI
-WK
 GU
+VJ
+TI
+MO
+GU
+VJ
+TI
 MO
 MO
 MO
 ZK
+uw
+uw
 XH
 Ne
 Yf
