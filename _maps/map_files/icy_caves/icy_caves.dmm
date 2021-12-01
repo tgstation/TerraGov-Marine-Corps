@@ -9680,9 +9680,8 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "Xy" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 1;
-	id = "tcomms"
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2
 	},
 /turf/open/shuttle/dropship/floor,
 /area/icy_caves/caves/northern)
@@ -11937,8 +11936,8 @@ Zl
 Zl
 Zl
 Zl
-Wp
 Zl
+Wp
 Zl
 Zl
 Wd
@@ -13946,11 +13945,11 @@ YQ
 "}
 (25,1,1) = {"
 YQ
-mv
-mv
-mv
-mv
-mv
+Yf
+Yf
+Yf
+Yf
+Yf
 dF
 Wr
 dF
@@ -14102,11 +14101,11 @@ YQ
 "}
 (26,1,1) = {"
 YQ
-mv
-mv
-mv
-mv
-mv
+Yf
+Yf
+Yf
+Yf
+Yf
 dF
 Jn
 pN
@@ -14258,11 +14257,11 @@ YQ
 "}
 (27,1,1) = {"
 YQ
-mv
-mv
-mv
-mv
-mv
+Yf
+Yf
+Yf
+Yf
+Yf
 dF
 oT
 Jn
@@ -14414,11 +14413,11 @@ YQ
 "}
 (28,1,1) = {"
 YQ
-mv
-mv
-mv
-mv
-mv
+Yf
+Yf
+Yf
+Yf
+Yf
 dF
 Ek
 uu
