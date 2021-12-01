@@ -7,7 +7,6 @@
 	item_state = "chefhat"
 	desc = "The commander in chef's head wear."
 	siemens_coefficient = 0.9
-	attachments_allowed = list(/obj/item/armor_module/armor/badge)
 
 //Captain: This probably shouldn't be space-worthy
 /obj/item/clothing/head/caphat
@@ -17,7 +16,6 @@
 	item_state = "caphat"
 	siemens_coefficient = 0.9
 	anti_hug = 1
-	attachments_allowed = list(/obj/item/armor_module/armor/badge)
 
 //Captain: This probably shouldn't be space-worthy
 /obj/item/clothing/head/helmet/cap
@@ -31,7 +29,6 @@
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
 	flags_armor_protection = NONE
-	attachments_allowed = list(/obj/item/armor_module/armor/badge)
 
 //Chaplain
 /obj/item/clothing/head/chaplain_hood
@@ -42,7 +39,6 @@
 	flags_inv_hide = HIDEEARS|HIDEALLHAIR
 	siemens_coefficient = 0.9
 	flags_armor_protection = HEAD|EYES
-	attachments_allowed = list(/obj/item/armor_module/armor/badge)
 
 //Chaplain
 /obj/item/clothing/head/nun_hood
@@ -52,7 +48,6 @@
 	flags_inventory = COVEREYES
 	flags_inv_hide = HIDEEARS|HIDEALLHAIR
 	siemens_coefficient = 0.9
-	attachments_allowed = list(/obj/item/armor_module/armor/badge)
 
 //Mime
 /obj/item/clothing/head/beret
@@ -97,7 +92,6 @@
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs."
 	icon_state = "surgcap_blue"
 	flags_inv_hide = HIDETOPHAIR
-	attachments_allowed = list(/obj/item/armor_module/armor/badge)
 
 /obj/item/clothing/head/surgery/purple
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs. This one is deep purple."

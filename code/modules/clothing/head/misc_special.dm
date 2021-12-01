@@ -27,7 +27,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	anti_hug = 2
 	eye_protection = 2
-	attachments_allowed = list(/obj/item/armor_module/armor/badge)
 	var/hug_memory = 0 //Variable to hold the "memory" of how many anti-hugs remain.  Because people were abusing the fuck out of it.
 
 /obj/item/clothing/head/welding/Initialize()

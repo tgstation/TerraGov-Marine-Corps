@@ -17,6 +17,15 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	flags_armor_features = ARMOR_NO_DECAP
 	flags_item = SYNTH_RESTRICTED
+	attachments_allowed = list(
+		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
+		/obj/item/armor_module/armor/badge,
+	)
 
 /obj/item/clothing/head/ruggedhelm
 	name = "rugged helmet"
