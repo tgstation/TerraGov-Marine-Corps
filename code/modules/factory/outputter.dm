@@ -158,3 +158,6 @@
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	refill_type = /obj/item/factory_part/smartgunner_rifle_box
 	refill_amount = 15
+
+	desc = "A box with round metal plates inside. Used to refill Outputters."
+	refill_amount = 20
