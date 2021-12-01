@@ -198,15 +198,6 @@
 	icon_state = "helmet"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	max_integrity = 5
-	attachments_allowed = list(
-		/obj/item/armor_module/module/tyr_head,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
-		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
-		/obj/item/armor_module/module/welding,
-		/obj/item/armor_module/module/binoculars,
-		/obj/item/armor_module/module/antenna,
-		/obj/item/armor_module/armor/badge,
-	)
 	var/list/helmet_overlays
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
@@ -348,7 +339,6 @@
 	resistance_flags = UNACIDABLE
 	anti_hug = 6
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
-	attachments_allowed = list()
 
 /obj/item/clothing/head/helmet/marine/grenadier
 	name = "\improper B17 helmet"
@@ -361,7 +351,6 @@
 	flags_item = SYNTH_RESTRICTED
 	anti_hug = 4
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
-	attachments_allowed = list()
 
 /obj/item/clothing/head/helmet/marine/scout
 	name = "\improper M3-S helmet"
@@ -688,12 +677,6 @@ obj/item/clothing/head/helmet/marine/pilot/green
 	species_exception = list(/datum/species/robot)
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 10, "acid" = 50)
-	attachments_allowed = list(
-		/obj/item/armor_module/module/welding,
-		/obj/item/armor_module/module/binoculars,
-		/obj/item/armor_module/module/antenna,
-		/obj/item/armor_module/armor/badge,
-	)
 
 /obj/item/clothing/head/helmet/marine/robot/mob_can_equip(mob/M, slot, warning, override_nodrop)
 	. = ..()

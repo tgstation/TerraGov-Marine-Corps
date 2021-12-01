@@ -129,19 +129,6 @@
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	slowdown = 0
 	flags_atom = NONE
-	attachments_allowed = list(
-		/obj/item/armor_module/module/better_shoulder_lamp,
-		/obj/item/armor_module/module/valkyrie_autodoc,
-		/obj/item/armor_module/module/fire_proof,
-		/obj/item/armor_module/module/tyr_extra_armor,
-		/obj/item/armor_module/module/tyr_extra_armor/mark1,
-		/obj/item/armor_module/module/mimir_environment_protection,
-		/obj/item/armor_module/module/mimir_environment_protection/mark1,
-		/obj/item/armor_module/module/hlin_explosive_armor,
-		/obj/item/armor_module/module/ballistic_armor,
-		/obj/item/armor_module/module/chemsystem,
-		/obj/item/armor_module/armor/badge,
-	)
 
 /obj/item/clothing/suit/storage/marine/M3IS
 	name = "\improper M3-IS pattern marine armor"
@@ -817,6 +804,38 @@
 /obj/item/clothing/suit/storage/marine/som/leader/hvh
 	soft_armor = list("melee" = 55, "bullet" = 75, "laser" = 75, "energy" = 60, "bomb" = 60, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 65)
 
+/obj/item/clothing/suit/storage/marine/robot
+	name = "XR-1 armor plating"
+	desc = "Medium armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	icon_state = "robot_armor_medium"
+	item_state = "robot_armor_medium"
+	species_exception = list(/datum/species/robot)
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
+	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45,"acid" = 50)
+	slowdown = 0.5
+
+/obj/item/clothing/suit/storage/marine/robot/mob_can_equip(mob/M, slot, warning, override_nodrop)
+	. = ..()
+	if(!isrobot(M))
+		to_chat(M, span_warning("You can't equip this as it requires mounting bolts on your body!"))
+		return FALSE
+
+/obj/item/clothing/suit/storage/marine/robot/light
+	name = "XR-1-L armor plating"
+	desc = "Light armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	icon_state = "robot_armor_light"
+	item_state = "robot_armor_light"
+	soft_armor = list("melee" = 35, "bullet" = 55, "laser" = 50, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45,"acid" = 45)
+	slowdown = 0.3
+
+/obj/item/clothing/suit/storage/marine/robot/heavy
+	name = "XR-1-H armor plating"
+	desc = "Heavy armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	icon_state = "robot_armor_heavy"
+	item_state = "robot_armor_heavy"
+	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45,"acid" = 55)
+	slowdown = 0.7
+
 /obj/item/clothing/suit/storage/marine/harness/cowboy
 	name = "reinforced reather jacket with webbing"
 	desc = "The 'reinforced leather' is more of a selling point to captains and the like who would like to consider the cool jacket to actually be of use. However, in all circumstances that matter, this will provide no armor. It does come with a nice harness for storage on the front."
@@ -836,4 +855,3 @@
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
 	)
 	flags_item_map_variant = NONE
-

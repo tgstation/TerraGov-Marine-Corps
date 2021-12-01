@@ -296,51 +296,6 @@
 	item_state = "heavy"
 	slowdown = 0.7
 
-/obj/item/clothing/suit/modular/robot
-	name = "XR-1 armor plating"
-	desc = "Medium armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
-	icon_state = "robot_armor_medium"
-	item_state = "robot_armor_medium"
-	icon = 'icons/obj/clothing/cm_suits.dmi'
-	item_icons = list(
-		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
-	species_exception = list(/datum/species/robot)
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
-	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45,"acid" = 50)
-	slowdown = 0.5
-	attachments_allowed = list(
-		/obj/item/armor_module/storage/general,
-		/obj/item/armor_module/storage/ammo_mag,
-		/obj/item/armor_module/storage/engineering,
-		/obj/item/armor_module/storage/medical,
-		/obj/item/armor_module/storage/integrated,
-		/obj/item/armor_module/armor/badge,
-	)
-
-/obj/item/clothing/suit/modular/robot/mob_can_equip(mob/M, slot, warning, override_nodrop)
-	. = ..()
-	if(!isrobot(M))
-		to_chat(M, span_warning("You can't equip this as it requires mounting bolts on your body!"))
-		return FALSE
-
-/obj/item/clothing/suit/modular/robot/light
-	name = "XR-1-L armor plating"
-	desc = "Light armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
-	icon_state = "robot_armor_light"
-	item_state = "robot_armor_light"
-	soft_armor = list("melee" = 35, "bullet" = 55, "laser" = 50, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45,"acid" = 45)
-	slowdown = 0.3
-
-/obj/item/clothing/suit/modular/robot/heavy
-	name = "XR-1-H armor plating"
-	desc = "Heavy armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
-	icon_state = "robot_armor_heavy"
-	item_state = "robot_armor_heavy"
-	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45,"acid" = 55)
-	slowdown = 0.7
-
 /** Core helmet module */
 /obj/item/clothing/head/modular
 	name = "Jaeger Pattern Helmet"

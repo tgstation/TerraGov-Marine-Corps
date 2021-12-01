@@ -4,7 +4,6 @@
 	icon_state = "boom_vest"
 	flags_item_map_variant = NONE
 	flags_armor_features = NONE
-	attachments_allowed = list()
 	///Warcry to yell upon detonation
 	var/bomb_message
 	///List of warcries that are not allowed.
