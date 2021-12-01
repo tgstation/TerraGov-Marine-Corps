@@ -141,7 +141,7 @@
 	if(double)
 		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice(" You flick and spin [src] and [double]!"))
 		animation_wrist_flick(double, 1)
-	else 
+	else
 		user.visible_message("[user] deftly flicks and spins [src]!",span_notice(" You flick and spin [src]!"))
 	animation_wrist_flick(src, direction)
 	sleep(3)
@@ -156,7 +156,7 @@
 	icon_state = "tp44"
 	item_state = "tp44"
 	caliber =  CALIBER_44 //codex
-	max_shells = 7 //codex
+	max_chamber_items = 7 //codex
 	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_revolver)
 	force = 8
@@ -191,7 +191,7 @@
 	icon_state = "ny762"
 	item_state = "ny762"
 	caliber = CALIBER_762X38 //codex
-	max_shells = 7 //codex
+	max_chamber_items = 7 //codex
 	fire_sound = 'sound/weapons/guns/fire/ny.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/revolver/upp
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/upp)
@@ -219,7 +219,7 @@
 	icon_state = "rebota"
 	item_state = "sw357"
 	caliber = CALIBER_357 //codex
-	max_shells = 6 //codex
+	max_chamber_items = 6 //codex
 	fire_sound = 'sound/weapons/guns/fire/revolver.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/revolver/small
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/small)
@@ -252,7 +252,7 @@
 	fire_animation = "mateba_fire"
 	muzzleflash_iconstate = "muzzle_flash"
 	caliber = CALIBER_454 //codex
-	max_shells = 6 //codex
+	max_chamber_items = 6 //codex
 	fire_sound = 'sound/weapons/guns/fire/mateba.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/revolver/mateba
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/mateba)
@@ -304,7 +304,7 @@
 	icon_state = "cmb"
 	item_state = "cmb"
 	caliber = CALIBER_357 //codex
-	max_shells = 6 //codex
+	max_chamber_items = 6 //codex
 	fire_sound = 'sound/weapons/guns/fire/revolver_light.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/revolver/cmb
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/cmb)
@@ -336,9 +336,12 @@
 	item_state = "m44"
 	fire_animation = "judge_fire"
 	caliber = CALIBER_45L //codex
-	max_shells = 5 //codex
+	max_chamber_items = 5 //codex
 	default_ammo_type = /obj/item/ammo_magazine/revolver/judge
-	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/judge)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/revolver/judge,
+		/obj/item/ammo_magazine/revolver/judge/buckshot,
+	)
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -369,7 +372,7 @@
 	name = "single action revolver"
 	desc = "you should not be seeing this."
 	reload_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
-	cocked_sound = 'sound/weapons/guns/interact/revolver_spun.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_revolver)
 	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS|AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION|AMMO_RECIEVER_UNIQUE_ACTION_LOCKS
@@ -387,9 +390,9 @@
 	icon_state = "m44"
 	item_state = "m44"
 	caliber = CALIBER_44 //codex
-	max_shells = 6 //codex
-	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
-	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_revolver)
+	max_chamber_items = 6
+	default_ammo_type = /obj/item/ammo_magazine/revolver
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver)
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,

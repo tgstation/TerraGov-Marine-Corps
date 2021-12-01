@@ -1641,7 +1641,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 ///Reloads the gun
 /obj/item/attachable/shoulder_mount/proc/reload_gun(datum/source, obj/item/attacking_item, mob/living/user)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(master_gun, /obj/item/weapon/gun.proc/reload, user, attacking_item)
+	INVOKE_ASYNC(master_gun, /obj/item/weapon/gun.proc/reload, attacking_item, user)
 
 ///Performs the unique action after firing and checks to see if the user is still able to fire.
 /obj/item/attachable/shoulder_mount/proc/after_fire(datum/source, atom/target, obj/item/weapon/gun/fired_gun)
