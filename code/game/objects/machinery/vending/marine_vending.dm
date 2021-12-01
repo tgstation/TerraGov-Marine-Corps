@@ -835,9 +835,9 @@
 			/obj/item/clothing/suit/cowboy = -1,
 			/obj/item/clothing/suit/armor/vest/pilot = -1,
 			/obj/item/facepaint/green = -1,
-			/obj/item/clothing/suit/storage/marine/robot/light = -1,
-			/obj/item/clothing/suit/storage/marine/robot = -1,
-			/obj/item/clothing/suit/storage/marine/robot/heavy = -1,
+			/obj/item/clothing/suit/modular/robot/light = -1,
+			/obj/item/clothing/suit/modular/robot = -1,
+			/obj/item/clothing/suit/modular/robot/heavy = -1,
 		),
 		"Helmets" = list(
 			/obj/item/clothing/head/modular/marine/m10x = -1,
