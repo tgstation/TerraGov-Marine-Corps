@@ -201,7 +201,6 @@
 	else if(!(flags_atom & DIRLOCK))
 		setDir(direction)
 
-	var/atom/oldloc = loc
 	var/list/new_locs
 	if(is_multi_tile_object && isturf(newloc))
 		new_locs = block(
@@ -219,15 +218,10 @@
 		var/enter_return_value = newloc.Enter(src)
 		if(!(enter_return_value & TURF_CAN_ENTER))
 			if(can_pass_diagonally && !(enter_return_value & TURF_ENTER_ALREADY_MOVED))
-				//We failed to enter the second tile, make the move to the first tile
-				loc.Exited(src, can_pass_diagonally)
-				loc = get_step(loc, can_pass_diagonally)
-				loc.Entered(src, loc, null)
-				Moved(oldloc, can_pass_diagonally)
-				if(!(flags_atom & DIRLOCK))
-					setDir(can_pass_diagonally)	//We set the dir correctly so it doesn't look weird
+				return Move(get_step(loc, can_pass_diagonally), can_pass_diagonally)
 			return
 
+	var/atom/oldloc = loc
 	loc = newloc
 
 	if(old_locs) // This condition will only be true if it is a multi-tile object.
