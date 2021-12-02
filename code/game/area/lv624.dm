@@ -27,7 +27,7 @@
 	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/lv624/ground/jungle4
-	name ="Western Jungle"
+	name ="Central Western Jungle"
 	icon_state = "west"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 	minimap_color = MINIMAP_AREA_JUNGLE
@@ -59,6 +59,12 @@
 /area/lv624/ground/jungle9
 	name ="Central Jungle"
 	icon_state = "central"
+	ambience = list('sound/ambience/jungle_amb1.ogg')
+	minimap_color = MINIMAP_AREA_JUNGLE
+
+/area/lv624/ground/jungle10
+	name ="Western Jungle"
+	icon_state = "west2"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 	minimap_color = MINIMAP_AREA_JUNGLE
 
@@ -173,6 +179,10 @@
 	icon_state = "storage"
 	outside = FALSE
 
+/area/lv624/ground/central2
+	name ="North Central Caves"
+	icon_state = "away3"
+
 /area/lv624/ground/caves //Does not actually exist
 	name ="Caves"
 	icon_state = "cave"
@@ -182,6 +192,10 @@
 	minimap_color = MINIMAP_AREA_CAVES
 
 //Caves
+/area/lv624/ground/caves/rock //catchall for closed turfs we want immune to rain/easily visible to map editing tools
+	name ="Enclosed Area"
+	icon_state = "white"
+
 /area/lv624/ground/caves/west1
 	name ="Western Caves"
 	icon_state = "away1"
@@ -194,6 +208,10 @@
 	name ="Central Caves"
 	icon_state = "away4" //meh
 
+/area/lv624/ground/caves/central2
+	name ="Central Caves"
+	icon_state = "away3"
+
 /area/lv624/ground/caves/west2
 	name ="North Western Caves"
 	icon_state = "cave"
@@ -202,13 +220,17 @@
 	name ="North Eastern Caves"
 	icon_state = "cave"
 
-/area/lv624/ground/caves/central2
-	name ="North Central Caves"
-	icon_state = "away3" //meh
-
 /area/lv624/ground/caves/central3
 	name ="South Central Caves"
-	icon_state = "away2" //meh
+	icon_state = "away2"
+
+/area/lv624/ground/caves/central5
+	name ="South Western Central Caves"
+	icon_state = "purple"
+
+/area/lv624/ground/caves/central4
+	name ="South Western Caves"
+	icon_state = "yellow"
 
 //Lazarus landing
 /area/lv624/lazarus
@@ -326,6 +348,10 @@
 	name = "\improper Internal Affairs"
 	icon_state = "law"
 
+/area/lv624/lazarus/corporate_affairs
+	name = "\improper Corporate Affairs"
+	icon_state = "law"
+
 /area/lv624/lazarus/robotics
 	name = "\improper Robotics"
 	icon_state = "ass_line"
@@ -342,6 +368,28 @@
 	name = "\improper Hydroponics"
 	icon_state = "hydro"
 	ceiling = CEILING_GLASS
+
+/area/lv624/lazarus/bar
+	name = "\improper Bar"
+	icon_state = "kitchen"
+	ceiling = CEILING_GLASS
+
+/area/lv624/lazarus/overgrown
+	name = "\improper Overgrown Dome"
+	icon_state = "construction"
+	ceiling = CEILING_NONE
+	outside = TRUE
+	always_unpowered = TRUE
+
+/area/lv624/lazarus/sandtemple
+	name = "\improper Mysterious Temple"
+	icon_state = "sandtemple"
+	always_unpowered = TRUE
+
+/area/lv624/lazarus/tablefort
+	name = "\improper Table Fort"
+	icon_state = "tablefort"
+	always_unpowered = TRUE
 
 /area/lv624/lazarus/relay
 	name = "\improper Secret Relay Room"
