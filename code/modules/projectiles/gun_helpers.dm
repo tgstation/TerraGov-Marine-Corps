@@ -699,6 +699,8 @@ should be alright.
 	aim_fire_delay_mods -= source
 	RECALCULATE_AIM_MODE_FIRE_DELAY
 
+#undef RECALCULATE_AIM_MODE_FIRE_DELAY
+
 /obj/item/weapon/gun/proc/toggle_auto_aim_mode(mob/living/carbon/human/user) //determines whether toggle_aim_mode activates at the end of gun/wield proc
 
 	if(CHECK_BITFIELD(flags_item, WIELDED) || CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if gun is wielded it toggles aim mode directly instead
