@@ -145,7 +145,7 @@
  *   This is where most bumps take place
  * - If you can do both, then it changes the loc var calls Exited on the old loc, and Entered on the new loc
  * - After that, it does some area checks, calls Moved and handle pulling/buckled mobs.area
- * 
+ *
  * A diagonal move is slightly different as everything is called twice (once for each direction)
  * In order of calling:
  * - Check if you can exit the current loc
@@ -154,7 +154,7 @@
  * - "Simulate" a cardinal move by calling Exited, Entered and Moved. We are not changing the loc here because this would mess with pushing/shuffling
  * - Check if you can enter the final new loc
  * - Do the rest of the Move proc normally
- * 
+ *
  * Warning : Doesn't support well multi-tile diagonal moves
  */
 /atom/movable/Move(atom/newloc, direction, glide_size_override)
@@ -174,11 +174,9 @@
 		for(var/atom/exiting_loc AS in old_locs)
 			if(!exiting_loc.Exit(src, direction))
 				return
-	
+
 	else if(!loc.Exit(src, direction))
 		return
-	
-	var/atom/oldloc
 
 	var/can_pass_diagonally = NONE
 	if (direction & (direction - 1)) //Check if the first part of the diagonal move is possible
@@ -197,19 +195,13 @@
 			moving_diagonally = FALSE
 			return
 		moving_diagonally = FALSE
-		//Properly enter and exit the can_pass_diagonally tile. We don't change the loc here because this would mess with pushing/shuffling
-		loc.Exited(src, can_pass_diagonally)
-		oldloc = get_step(loc, can_pass_diagonally) //This might looks weird, but it will be the old loc for the rest of the move proc.
-		oldloc.Entered(src, loc, null)
-		Moved(loc, can_pass_diagonally)
 		if(!(flags_atom & DIRLOCK)) //We want to set the direction to be the one of the "second" diagonal move, aka not can_pass_diagonally
 			setDir(direction &~ can_pass_diagonally)
-	
-	else 
-		oldloc = loc
-		if(!(flags_atom & DIRLOCK))
-			setDir(direction)
 
+	else if(!(flags_atom & DIRLOCK))
+		setDir(direction)
+
+	var/atom/oldloc = loc
 	var/list/new_locs
 	if(is_multi_tile_object && isturf(newloc))
 		new_locs = block(
@@ -227,11 +219,15 @@
 		var/enter_return_value = newloc.Enter(src)
 		if(!(enter_return_value & TURF_CAN_ENTER))
 			if(can_pass_diagonally && !(enter_return_value & TURF_ENTER_ALREADY_MOVED))
-				loc =  oldloc							//We failed to finish our diagonal move. 
-				if(!(flags_atom & DIRLOCK)) 			//we didn't do it earlier because it allows to push/shuffle diagonally
-					setDir(can_pass_diagonally)			//We also set the dir correctly so it doesn't look weird
+				//We failed to enter the second tile, make the move to the first tile
+				loc.Exited(src, can_pass_diagonally)
+				loc = get_step(loc, can_pass_diagonally)
+				loc.Entered(src, loc, null)
+				Moved(oldloc, can_pass_diagonally)
+				if(!(flags_atom & DIRLOCK))
+					setDir(can_pass_diagonally)	//We set the dir correctly so it doesn't look weird
 			return
-	
+
 	loc = newloc
 
 	if(old_locs) // This condition will only be true if it is a multi-tile object.
@@ -349,7 +345,7 @@
 	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, movement_dir, forced, old_locs)
 	if(length(client_mobs_in_contents))
 		update_parallax_contents()
-	
+
 	if(pulledby)
 		SEND_SIGNAL(src, COMSIG_MOVABLE_PULL_MOVED, old_loc, movement_dir, forced, old_locs)
 	//Cycle through the light sources on this atom and tell them to update.
