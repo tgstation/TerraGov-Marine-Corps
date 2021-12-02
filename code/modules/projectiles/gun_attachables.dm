@@ -87,14 +87,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/aim_mode_movement_mult = 0
 	///Modifies projectile damage by a % when a marine gets passed, but not hit
 	var/shot_marine_damage_falloff = 0
-	///How much of the aim mode fire rate debuff is removed %-wise
-	var/aim_mode_fire_rate_debuff_reduction = 0
-	/*
-	 * Contains the removed amount from the aim mode fire rate debuff
-	 * so that the same amount that was removed is returned
-	 * in the case of multiple things modifying the gun's var by a %
-	 */
-	var/cached_aim_mode_debuff_fire_rate = 0
+	///Modifies aim mode fire rate debuff by a %
+	var/aim_mode_delay_mod = 0
 
 	///the delay between shots, for attachments that fire stuff
 	var/attachment_firing_delay = 0
@@ -157,8 +151,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.scatter_unwielded			+= scatter_unwielded_mod
 	master_gun.aim_speed_modifier			+= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	+= shot_marine_damage_falloff
-	cached_aim_mode_debuff_fire_rate = master_gun.aim_fire_delay * aim_mode_fire_rate_debuff_reduction
-	master_gun.aim_fire_delay 				-= cached_aim_mode_debuff_fire_rate
+	master_gun.add_aim_mode_fire_delay(name, initial(master_gun.aim_fire_delay)*aim_mode_delay_mod)
 	if(delay_mod)
 		master_gun.modify_fire_delay(delay_mod)
 	if(burst_delay_mod)
@@ -212,10 +205,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.scatter_unwielded			-= scatter_unwielded_mod
 	master_gun.aim_speed_modifier			-= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	-= shot_marine_damage_falloff
-	master_gun.aim_fire_delay 				+= cached_aim_mode_debuff_fire_rate
-	if(HAS_TRAIT(master_gun, TRAIT_GUN_IS_AIMING))
-		master_gun.modify_fire_delay(cached_aim_mode_debuff_fire_rate)
-	cached_aim_mode_debuff_fire_rate = 0
+	master_gun.remove_aim_mode_fire_delay(name)
 	if(delay_mod)
 		master_gun.modify_fire_delay(-delay_mod)
 	if(burst_delay_mod)
@@ -514,7 +504,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	slot = ATTACHMENT_SLOT_RAIL
 	accuracy_mod = 0.15
 	accuracy_unwielded_mod = 0.1
-	aim_mode_fire_rate_debuff_reduction = 0.5
+	aim_mode_delay_mod = -0.5
 
 /obj/item/attachable/m16sight
 	name = "M16 iron sights"
@@ -1232,7 +1222,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/deployment_scatter_mod = -20
 	///bonus to burst scatter applied when the bipod is deployed
 	var/deployment_burst_scatter_mod = -3
-
+	///bonus to aim mode delay when the bipod is deployed
+	var/deployment_aim_mode_delay_mod = -1
 
 /obj/item/attachable/bipod/activate(mob/living/user, turn_off)
 	if(bipod_deployed)
@@ -1244,6 +1235,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.recoil -= deployment_recoil_mod
 		master_gun.scatter -= deployment_scatter_mod
 		master_gun.burst_scatter_mult -= deployment_burst_scatter_mod
+		master_gun.remove_aim_mode_fire_delay(name)
 		icon_state = "bipod"
 		UnregisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED))
 		UnregisterSignal(master_user, COMSIG_MOVABLE_MOVED)
@@ -1268,6 +1260,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.recoil += deployment_recoil_mod
 		master_gun.scatter += deployment_scatter_mod
 		master_gun.burst_scatter_mult += deployment_burst_scatter_mod
+		master_gun.add_aim_mode_fire_delay(name, initial(master_gun.aim_fire_delay)*deployment_aim_mode_delay_mod)
 		icon_state = "bipod-on"
 
 	for(var/i in master_gun.actions)
