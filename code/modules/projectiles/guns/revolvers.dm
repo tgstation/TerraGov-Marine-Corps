@@ -141,7 +141,7 @@
 	if(double)
 		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice(" You flick and spin [src] and [double]!"))
 		animation_wrist_flick(double, 1)
-	else 
+	else
 		user.visible_message("[user] deftly flicks and spins [src]!",span_notice(" You flick and spin [src]!"))
 	animation_wrist_flick(src, direction)
 	sleep(3)
@@ -174,7 +174,7 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 19)
-	fire_delay = 0.2 SECONDS
+	fire_delay = 2 SECONDS
 	accuracy_mult_unwielded = 0.85
 	accuracy_mult = 1
 	scatter_unwielded = 15
