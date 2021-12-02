@@ -1,7 +1,0 @@
-author: "hyper2snyper"
-delete-after: True
-changes: 
-  - rscadd: "All tgmc suits can now take jaeger modules. All berets can now take helmet modules."
-  - rscadd: "Robot armor is now modular. It no longer has internal storage but can take the storage modules."
-  - bugfix: "fixed the hlin sprite not appearing."
-  - bugfix: "fixed the armored labcoat being one pixel too far to the right."
