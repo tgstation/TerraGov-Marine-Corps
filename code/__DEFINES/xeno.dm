@@ -64,6 +64,7 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 #define PRIMORDIAL_WRAITH "Primordial Wraith"
 #define PRIMORDIAL_HIVELORD "Primordial Hivelord"
 #define PRIMORDIAL_BULL "Primordial Bull"
+#define PRIMORDIAL_BOILER "Primordial Boiler"
 
 GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 	/mob/living/carbon/xenomorph/beetle/ai,

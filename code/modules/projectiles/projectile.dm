@@ -490,6 +490,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 					x_pixel_dist_travelled += pixel_moves_until_crossing_x_border * x_offset
 					y_pixel_dist_travelled += pixel_moves_until_crossing_x_border * y_offset
 				break
+			if(ammo.flags_ammo_behavior & AMMO_LEAVE_TURF)
+				ammo.on_leave_turf(turf_crossed_by, firer)
 		if(length(uncross_scheduled)) //Time to exit the last turf entered, if the diagonal movement didn't handle it already.
 			for(var/j in uncross_scheduled)
 				var/atom/movable/thing_to_uncross = j
@@ -503,6 +505,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			uncross_scheduled.len = 0
 			if(end_of_movement)
 				break
+		if(ammo.flags_ammo_behavior & AMMO_LEAVE_TURF)
+			ammo.on_leave_turf(last_processed_turf, firer)
 		x_pixel_dist_travelled += 32 * x_offset
 		y_pixel_dist_travelled += 32 * y_offset
 		last_processed_turf = next_turf
@@ -1064,6 +1068,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			uncross_scheduled.Cut()
 			if(end_of_movement)
 				break
+			if(ammo.flags_ammo_behavior & AMMO_LEAVE_TURF)
+				ammo.on_leave_turf(turf_crossed_by, firer)
 		if(length(uncross_scheduled)) //Time to exit the last turf entered, if the diagonal movement didn't handle it already.
 			for(var/atom/movable/thing_to_uncross AS in uncross_scheduled)
 				if(QDELETED(thing_to_uncross))
@@ -1076,6 +1082,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			uncross_scheduled.len = 0
 			if(end_of_movement)
 				break
+		if(ammo.flags_ammo_behavior & AMMO_LEAVE_TURF)
+			ammo.on_leave_turf(last_processed_turf, firer)
 		last_processed_turf = next_turf
 		if(scan_a_turf(next_turf, movement_dir))
 			end_of_movement = TRUE

@@ -321,3 +321,9 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Unlocks the primordial bull agile charge, which allows him to change direction while charging, even diagonally"
 	psypoint_cost = 125
 	icon = "primobull"
+
+/datum/hive_upgrade/primordial/boiler
+	name = PRIMORDIAL_BOILER
+	desc = "Unlocks the primordial boiler's access to neurotoxin- and acid lances, direct-hit focussed bombardment types that leave a gas trail where they pass."
+	psypoint_cost = 225
+	icon = "primoboiler"
