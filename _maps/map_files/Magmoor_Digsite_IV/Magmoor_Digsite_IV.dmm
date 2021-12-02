@@ -4278,6 +4278,7 @@
 	dir = 10
 	},
 /obj/structure/cable,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -32547,7 +32548,6 @@
 /turf/open/floor/grass,
 /area/magmoor/hydroponics)
 "wiH" = (
-/obj/machinery/vending/nanomed,
 /obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/infocenter)
