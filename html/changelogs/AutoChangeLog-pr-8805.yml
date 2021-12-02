@@ -1,0 +1,4 @@
+author: "DeltaFire15"
+delete-after: True
+changes: 
+  - rscadd: "Boiler bombard type selection now has access to radials if you have more than two available glob types."
