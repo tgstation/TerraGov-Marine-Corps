@@ -152,9 +152,8 @@
 	ADD_TRAIT(owner_xeno, TRAIT_HANDS_BLOCKED, src)
 	DO_DRAIN_ACTION(owner_xeno, target_human)
 	for(var/i = 0; i < GORGER_DRAIN_INSTANCES - 1; i++)
-		target_human.AdjustImmobilized(GORGER_DRAIN_DELAY)
+		target_human.Immobilize(GORGER_DRAIN_DELAY)
 		if(!do_after(owner_xeno, GORGER_DRAIN_DELAY, FALSE, target_human, ignore_turf_checks = FALSE))
-			target_human.AdjustImmobilized(-GORGER_DRAIN_DELAY)
 			break
 		DO_DRAIN_ACTION(owner_xeno, target_human)
 
