@@ -1222,8 +1222,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/deployment_scatter_mod = -20
 	///bonus to burst scatter applied when the bipod is deployed
 	var/deployment_burst_scatter_mod = -3
-	///bonus to aim mode delay when the bipod is deployed
-	var/deployment_aim_mode_delay_mod = -1
+	///bonus to aim mode delay by % when the bipod is deployed
+	var/deployment_aim_mode_delay_mod = -0.5
 
 /obj/item/attachable/bipod/activate(mob/living/user, turn_off)
 	if(bipod_deployed)
