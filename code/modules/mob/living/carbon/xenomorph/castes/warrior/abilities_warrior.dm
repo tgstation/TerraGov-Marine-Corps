@@ -465,6 +465,7 @@
 		slowdown_stacks *= 2
 		stagger_stacks *= 2
 		ParalyzeNoChain(0.5 SECONDS)
+		X.stop_pulling()
 		punch_description = "devastating"
 
 	if(iscarbon(src))
