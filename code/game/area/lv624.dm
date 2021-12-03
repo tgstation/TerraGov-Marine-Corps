@@ -386,6 +386,11 @@
 	icon_state = "sandtemple"
 	always_unpowered = TRUE
 
+/area/lv624/lazarus/sandtemple/sideroom //needed to allow nuke generator within temple to function
+	name = "\improper Mysterious Temple"
+	icon_state = "purple"
+	requires_power = FALSE
+
 /area/lv624/lazarus/tablefort
 	name = "\improper Table Fort"
 	icon_state = "tablefort"
