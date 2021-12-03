@@ -1013,14 +1013,8 @@
 	var/turf/current_turf = get_turf(owner)
 
 	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
-	if(!alien_weeds)
-		to_chat(owner, span_warning("Our eggs wouldn't grow well enough here. Lay them on resin."))
-		return FALSE
 
 	if(!do_after(owner, 3 SECONDS, FALSE, alien_weeds))
-		return FALSE
-
-	if(!current_turf.check_alien_construction(owner) || !current_turf.check_disallow_alien_fortification(owner))
 		return FALSE
 
 	owner.visible_message(span_xenowarning("\The [owner] has laid an egg!"), \
