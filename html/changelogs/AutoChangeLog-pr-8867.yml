@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - bugfix: "Removed extra Magmoor nuke."
-  - bugfix: "Patched some holes in xeno spawn protection on Magmoor."

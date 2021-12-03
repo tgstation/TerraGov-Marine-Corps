@@ -1,9 +1,0 @@
-author: "hyper2snyper"
-delete-after: True
-changes: 
-  - bugfix: "Fixes shoulder gun reloading."
-  - bugfix: "Fixes revolver ammo counts."
-  - bugfix: "Fixes unique action when there is a magazine in a rifle."
-  - bugfix: "fixes flamers using +1 fuel per tile"
-  - bugfix: "fixes flamers not being able to torch xeno turrets."
-  - bugfix: "fixes tactical reloading with a worn ammo magazine."

@@ -24,3 +24,35 @@
       take the storage modules.
   - bugfix: fixed the hlin sprite not appearing.
   - bugfix: fixed the armored labcoat being one pixel too far to the right.
+2021-12-03:
+  AzonStarfall:
+  - rscadd: Adds the TGS Minerva, a new shipmap.
+  - config: Adds Minerva to the shipmaps config.
+  DeltaFire15:
+  - rscadd: Boiler bombard type selection now has access to radials if you have more
+      than two available glob types.
+  RipGrayson:
+  - imageadd: Added some directionals for mounted NanoMeds.
+  - imageadd: Added new sprites for mounted NanoMeds.
+  - rscadd: Added Tablefort back to LV624 beach.
+  - rscadd: LV624 has several new domes to fight in.
+  - expansion: Expanded LV624 colony.
+  - balance: Completely overhauled the Sand Temple.
+  - balance: Overhauled half of LV624 caves.
+  - balance: Pre-weed density in certain parts of the colony has been increased.
+  - balance: LV624 LZ2 has been shifted again, this time without a direct connection
+      to caves.
+  - bugfix: Fixed pipes not properly connecting to modular domes on LV624
+  - imageadd: Ported robotic showcase from TG
+  - imageadd: Added a few area icons
+  - imageadd: Added icons for corner variants of stairs
+  - imageadd: Added river decals for flooded areas
+  - bugfix: Removed extra Magmoor nuke.
+  - bugfix: Patched some holes in xeno spawn protection on Magmoor.
+  hyper2snyper:
+  - bugfix: Fixes shoulder gun reloading.
+  - bugfix: Fixes revolver ammo counts.
+  - bugfix: Fixes unique action when there is a magazine in a rifle.
+  - bugfix: fixes flamers using +1 fuel per tile
+  - bugfix: fixes flamers not being able to torch xeno turrets.
+  - bugfix: fixes tactical reloading with a worn ammo magazine.

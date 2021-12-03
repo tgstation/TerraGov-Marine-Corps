@@ -1,5 +1,0 @@
-author: "AzonStarfall"
-delete-after: True
-changes: 
-  - rscadd: "Adds the TGS Minerva, a new shipmap."
-  - config: "Adds Minerva to the shipmaps config."
