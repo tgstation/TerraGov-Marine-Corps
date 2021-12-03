@@ -7502,6 +7502,13 @@
 /area/lv624/ground/jungle3)
 "eDX" = (
 /obj/machinery/button/door/open_only/landing_zone/lz2,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
@@ -7825,6 +7832,20 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle1)
+"eYJ" = (
+/obj/machinery/button/door/open_only/landing_zone{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/marking/warning{
+	dir = 10
+	},
+/area/shuttle/drop1/lz1)
 "eYL" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -22691,16 +22712,11 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/armory)
 "wnt" = (
-/obj/structure/window/reinforced{
+/obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/button/door/open_only/landing_zone,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/marking/warning{
-	dir = 1
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
 	},
 /area/shuttle/drop1/lz1)
 "wnB" = (
@@ -57201,7 +57217,7 @@ qnx
 nGb
 hWp
 teJ
-iOa
+eYJ
 iPZ
 sst
 gbL
@@ -57553,7 +57569,7 @@ fsa
 ehT
 tMe
 tMe
-wnt
+hWp
 tbe
 tbe
 tbe
@@ -58436,7 +58452,7 @@ tMe
 hfJ
 ugy
 ugy
-ugy
+wnt
 nZf
 tGn
 tGn
@@ -58790,7 +58806,7 @@ dPz
 rOZ
 cSr
 cSr
-fIj
+cSr
 cSr
 cSr
 cSr
