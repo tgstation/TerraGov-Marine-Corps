@@ -1,0 +1,4 @@
+author: "KrabSpider"
+delete-after: True
+changes: 
+  - balance: "Leicester Repeater damage multiplier increased to 2x from 1.5x."
