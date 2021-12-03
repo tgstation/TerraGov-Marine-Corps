@@ -151,7 +151,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.scatter_unwielded			+= scatter_unwielded_mod
 	master_gun.aim_speed_modifier			+= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	+= shot_marine_damage_falloff
-	master_gun.add_aim_mode_fire_delay(name, initial(master_gun.aim_fire_delay)*aim_mode_delay_mod)
+	master_gun.add_aim_mode_fire_delay(name, initial(master_gun.aim_fire_delay) * aim_mode_delay_mod)
 	if(delay_mod)
 		master_gun.modify_fire_delay(delay_mod)
 	if(burst_delay_mod)
