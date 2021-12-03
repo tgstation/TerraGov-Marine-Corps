@@ -1260,7 +1260,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.recoil += deployment_recoil_mod
 		master_gun.scatter += deployment_scatter_mod
 		master_gun.burst_scatter_mult += deployment_burst_scatter_mod
-		master_gun.add_aim_mode_fire_delay(name, initial(master_gun.aim_fire_delay)*deployment_aim_mode_delay_mod)
+		master_gun.add_aim_mode_fire_delay(name, initial(master_gun.aim_fire_delay) * deployment_aim_mode_delay_mod)
 		icon_state = "bipod-on"
 
 	for(var/i in master_gun.actions)
