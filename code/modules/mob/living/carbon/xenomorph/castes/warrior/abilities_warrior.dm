@@ -102,10 +102,6 @@
 
 	X.add_filter("warrior_lunge", 2, gauss_blur_filter(3))
 	lunge_target = A
-	//Select grapple toss.
-	var/datum/action/xeno_action/activable/toss/grapple_toss = X.actions_by_path[/datum/action/xeno_action/activable/toss]
-	if(grapple_toss)
-		grapple_toss.action_activate()
 
 	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, .proc/clean_lunge_target)
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/check_if_lunge_possible)
