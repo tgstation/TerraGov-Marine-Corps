@@ -200,7 +200,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/marineFood,
 		/obj/machinery/vending/MarineMed,
 		/obj/machinery/vending/cigarette,
-		/obj/machinery/vending/cigarette/colony,
+		/obj/machinery/vending/tool,
 	),
 	FACTION_TERRAGOV = list(
 		/obj/machinery/vending/weapon/hvh/team_one,
@@ -209,7 +209,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/marineFood,
 		/obj/machinery/vending/MarineMed,
 		/obj/machinery/vending/cigarette,
-		/obj/machinery/vending/cigarette/colony,
+		/obj/machinery/vending/tool,
 	),
 	FACTION_TERRAGOV_REBEL = list(
 		/obj/machinery/vending/weapon/hvh,
@@ -218,7 +218,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/marineFood,
 		/obj/machinery/vending/MarineMed/rebel,
 		/obj/machinery/vending/cigarette,
-		/obj/machinery/vending/cigarette/colony,
+		/obj/machinery/vending/tool,
 	),
 ))
 
