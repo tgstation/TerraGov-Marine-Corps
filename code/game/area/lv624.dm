@@ -400,3 +400,13 @@
 	name = "\improper Shuttle Console"
 	icon_state = "tcomsatcham"
 	flags_area = NO_DROPPOD
+
+/area/lv624/lazarus/spaceport
+	name = "\improper Eastern Space Port"
+	icon_state = "landingzone1"
+	flags_area = NO_DROPPOD
+
+/area/lv624/lazarus/spaceport2
+	name = "\improper Western Space Port"
+	icon_state = "landingzone2"
+	flags_area = NO_DROPPOD
