@@ -682,12 +682,14 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(double_check == "Pick another silo")
 			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos)
 		else if(double_check != "Yes")
+			remove_from_larva_candidate_queue(xeno_candidate)
 			return FALSE
 	else
 		chosen_silo = possible_silos[1]
 		xeno_candidate.forceMove(get_turf(chosen_silo))
 		var/check = tgui_alert(xeno_candidate, "Spawn as a xeno?", "Spawn location", list("Yes", "Abort"), timeout = 20 SECONDS)
 		if(check != "Yes")
+			remove_from_larva_candidate_queue(xeno_candidate)
 			return FALSE
 
 	if(QDELETED(chosen_silo) || !xeno_candidate?.client)
