@@ -680,6 +680,7 @@ should be alright.
 		if((GUN_FIREMODE_AUTOMATIC in gun_firemode_list) && !(GUN_FIREMODE_AUTOBURST in gun_firemode_list))
 			add_firemode(GUN_FIREMODE_AUTOBURST, user)
 
+///Calculates aim_fire_delay, can't be below 0
 #define RECALCULATE_AIM_MODE_FIRE_DELAY \
 	var/modification_value = 0; \
 	for(var/key in aim_fire_delay_mods) { \
@@ -691,10 +692,12 @@ should be alright.
 		modify_fire_delay(aim_fire_delay - old_delay); \
 	}
 
+///Adds an aim_fire_delay modificatio value
 /obj/item/weapon/gun/proc/add_aim_mode_fire_delay(source, value)
 	aim_fire_delay_mods[source] = value
 	RECALCULATE_AIM_MODE_FIRE_DELAY
 
+///Removes an aim_fire_delay modificatio value
 /obj/item/weapon/gun/proc/remove_aim_mode_fire_delay(source)
 	aim_fire_delay_mods -= source
 	RECALCULATE_AIM_MODE_FIRE_DELAY
