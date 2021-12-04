@@ -150,8 +150,7 @@
 	owner_xeno.face_atom(target_human)
 	owner_xeno.emote("roar")
 	ADD_TRAIT(owner_xeno, TRAIT_HANDS_BLOCKED, src)
-	DO_DRAIN_ACTION(owner_xeno, target_human)
-	for(var/i = 0; i < GORGER_DRAIN_INSTANCES - 1; i++)
+	for(var/i = 0; i < GORGER_DRAIN_INSTANCES; i++)
 		target_human.Immobilize(GORGER_DRAIN_DELAY)
 		if(!do_after(owner_xeno, GORGER_DRAIN_DELAY, FALSE, target_human, ignore_turf_checks = FALSE))
 			break
@@ -177,7 +176,7 @@
 	mechanics_text = "When used on self, drains blood and restores health over time. When used on another xenomorph, costs blood and restores some of their health."
 	use_state_flags = XACT_TARGET_SELF
 	cooldown_timer = 20 SECONDS
-	plasma_cost = 0
+	plasma_cost = GORGER_REJUVENATE_SELF_COST
 	target_flags = XABB_MOB_TARGET
 	keybind_signal = COMSIG_XENOABILITY_REJUVENATE
 
@@ -190,6 +189,8 @@
 
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(owner_xeno != target)
+		if(owner_xeno.do_actions)
+			return FALSE
 		if(TIMER_COOLDOWN_CHECK(owner_xeno, REJUVENATE_ALLY))
 			if(!silent)
 				to_chat(owner_xeno, span_notice("We need [GORGER_REJUVENATE_SELF_COST - owner_xeno.plasma_stored]u more blood to revitalize ourselves."))
@@ -210,13 +211,16 @@
 			return FALSE
 		return TRUE
 
+	if(!.)
+		return
+
 /datum/action/xeno_action/activable/rejuvenate/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(target == owner_xeno)
-		owner_xeno.use_plasma(GORGER_REJUVENATE_SELF_COST)
 		owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_REJUVENATE, GORGER_REJUVENATE_SELF_DURATION)
 		to_chat(owner_xeno, span_notice("We tap into our reserves for nourishment."))
 		add_cooldown()
+		succeed_activate()
 		return
 
 	owner_xeno.use_plasma(GORGER_REJUVENATE_ALLY_COST)

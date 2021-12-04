@@ -18,8 +18,8 @@
 
 	// *** Plasma *** //
 	plasma_max = 200
-	plasma_gain = 10
-	plasma_regen_limit = 0.05
+	plasma_gain = 0
+	plasma_regen_limit = 0
 	plasma_icon_state = "fury"
 
 	// *** Health *** //
@@ -38,7 +38,7 @@
 
 	// *** Gorger Abilities *** //
 	overheal_max = 200
-	drain_plasma_gain = 10
+	drain_plasma_gain = 20
 	carnage_plasma_gain = 25
 	feast_plasma_drain = 20
 
@@ -79,7 +79,7 @@
 
 	// *** Gorger Abilities *** //
 	overheal_max = 225
-	drain_plasma_gain = 10
+	drain_plasma_gain = 20
 	carnage_plasma_gain = 30
 
 /datum/xeno_caste/gorger/elder
@@ -105,7 +105,7 @@
 
 	// *** Gorger Abilities *** //
 	overheal_max = 250
-	drain_plasma_gain = 15
+	drain_plasma_gain = 30
 	carnage_plasma_gain = 35
 
 /datum/xeno_caste/gorger/ancient
@@ -131,5 +131,5 @@
 
 	// *** Gorger Abilities *** //
 	overheal_max = 275
-	drain_plasma_gain = 20
+	drain_plasma_gain = 40
 	carnage_plasma_gain = 40

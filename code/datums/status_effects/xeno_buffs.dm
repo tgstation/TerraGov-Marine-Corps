@@ -45,16 +45,13 @@
 
 /datum/status_effect/xeno_rejuvenate/tick()
 	new /obj/effect/temp_visual/telekinesis(get_turf(owner))
-	to_chat(owner, span_notice("We feel our wounds close up and plasma reserves refilling."))
+	to_chat(owner, span_notice("We feel our wounds close up."))
 
 	var/mob/living/carbon/xenomorph/X = owner
 	var/amount = X.maxHealth*0.1
 
 	HEAL_XENO_DAMAGE(X, amount)
 	adjustOverheal(X, amount / 2)
-
-	if(X.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA)
-		X.gain_plasma(X.xeno_caste.plasma_max*0.25)
 
 ///Calculates the effectiveness of parts of the status based on plasma of owner
 #define CALC_PLASMA_MOD(xeno) \
