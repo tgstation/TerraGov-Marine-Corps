@@ -72,7 +72,6 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 18, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 2
 
@@ -142,7 +141,6 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/attachable/stock/t12stock)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 23, "under_x" = 20, "under_y" = 11, "stock_x" = 0, "stock_y" = 13)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 2
 
@@ -216,7 +214,6 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	starting_attachment_types = list(/obj/item/attachable/scope/mini/dmr)
 	attachable_offset = list("muzzle_x" = 48, "muzzle_y" = 21,"rail_x" = 21, "rail_y" = 24, "under_x" = 31, "under_y" = 15, "stock_x" = 14, "stock_y" = 10)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 2
 
@@ -284,7 +281,6 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/attachable/scope/mini)
 	attachable_offset = list("muzzle_x" = 49, "muzzle_y" = 17,"rail_x" = 27, "rail_y" = 21, "under_x" = 33, "under_y" = 7, "stock_x" = 14, "stock_y" = 10)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 3
 
@@ -537,7 +533,6 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 47, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 24, "under_x" = 37, "under_y" = 14, "stock_x" = 19, "stock_y" = 13)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 2.5
 
@@ -664,7 +659,6 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/t42stock)
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.18 SECONDS
 	aim_speed_modifier = 5
 
@@ -721,7 +715,6 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/t60stock)
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 23, "under_x" = 25, "under_y" = 14, "stock_x" = 11, "stock_y" = 14)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 6
 
@@ -783,7 +776,6 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 9, "stock_y" = 15)
 	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/rifle)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.15 SECONDS
 	aim_speed_modifier = 2
 
@@ -850,7 +842,6 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 24, "under_x" = 34, "under_y" = 16, "stock_x" = 19, "stock_y" = 13)
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.125 SECONDS
 	aim_speed_modifier = 2
 
@@ -1117,7 +1108,6 @@
 	cocked_message = "You rack the bolt!"
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 9, "stock_y" = 12)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 1 SECONDS
 
 	starting_attachment_types = list(
@@ -1216,7 +1206,6 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
 	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11, /obj/item/attachable/scope/mini/tx11)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 19, "stock_y" = 23)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.125 SECONDS
 
 	fire_delay = 0.225 SECONDS
@@ -1278,7 +1267,6 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 46, "muzzle_y" = 16,"rail_x" = 18, "rail_y" = 19, "under_x" = 34, "under_y" = 12, "stock_x" = 0, "stock_y" = 13)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.15 SECONDS
 	aim_speed_modifier = 2.5
 
