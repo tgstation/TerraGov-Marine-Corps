@@ -12,5 +12,9 @@
 	if(!.)
 		return
 	action_activate()
-	owner.canmove = FALSE
-	addtimer(VARSET_CALLBACK(owner, canmove, TRUE), windup_time)
+	LAZYINCREMENT(owner.do_actions, target)
+	addtimer(CALLBACK(src, .proc/decrease_do_action, target), windup_time)
+
+///Decrease the do_actions of the owner
+/datum/action/xeno_action/activable/ravage/slow/proc/decrease_do_action(atom/target)
+	LAZYDECREMENT(owner.do_actions, target)

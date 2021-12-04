@@ -58,7 +58,7 @@
 #define ismoth(H) (is_species(H, /datum/species/moth))
 #define issectoid(H) (is_species(H, /datum/species/sectoid))
 #define ishumanbasic(H) (is_species(H, /datum/species/human))
-#define ishusk(H) (is_species(H, /datum/species/husk))
+#define iszombie(H) (is_species(H, /datum/species/zombie))
 
 //Monkey species and subtypes
 #define ismonkey(H) (is_species(H, /datum/species/monkey))

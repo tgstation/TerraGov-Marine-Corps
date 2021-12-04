@@ -1246,8 +1246,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	return hivenumber
 
 /mob/living/carbon/human/get_xeno_hivenumber()
-	if(faction == FACTION_XENO)
-		return XENO_HIVE_NORMAL
+	if(faction == FACTION_ZOMBIE)
+		return FACTION_ZOMBIE
 	return FALSE
 
 

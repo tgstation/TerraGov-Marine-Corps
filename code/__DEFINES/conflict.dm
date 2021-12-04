@@ -56,26 +56,38 @@
 #define AMMO_FLAME (1<<15) //Used to identify flamethrower projectiles and similar projectiles
 #define AMMO_IFF (1<<16) //Used to identify ammo that have intrinsec IFF properties
 #define AMMO_HITSCAN (1<<17) //If the projectile from this ammo is hitscan
+#define AMMO_LEAVE_TURF (1<<18) //If the projectile does something with on_leave_turf()
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features
 #define GUN_CAN_POINTBLANK (1<<0)
 #define GUN_UNUSUAL_DESIGN (1<<1)
-#define GUN_SHOTGUN_CHAMBER (1<<2)
-#define GUN_INTERNAL_MAG (1<<3)
-#define GUN_AUTO_EJECTOR (1<<4)
-#define GUN_AMMO_COUNTER (1<<5)
-#define GUN_LOAD_INTO_CHAMBER (1<<6)
-#define GUN_ENERGY (1<<7)
-#define GUN_WIELDED_FIRING_ONLY (1<<8)
-#define GUN_ALLOW_SYNTHETIC (1<<9)
-#define GUN_WIELDED_STABLE_FIRING_ONLY (1<<10)
-#define GUN_IFF (1<<11)
-#define GUN_DEPLOYED_FIRE_ONLY (1<<12)
-#define GUN_IS_ATTACHMENT (1<<13)
-#define GUN_ATTACHMENT_FIRE_ONLY (1<<14)
-#define GUN_IS_SENTRY (1<<15)
-#define GUN_PUMP_REQUIRED (1<<16)
+#define GUN_AMMO_COUNTER (1<<2)
+#define GUN_WIELDED_FIRING_ONLY (1<<3)
+#define GUN_ALLOW_SYNTHETIC (1<<4)
+#define GUN_WIELDED_STABLE_FIRING_ONLY (1<<5)
+#define GUN_IFF (1<<6)
+#define GUN_DEPLOYED_FIRE_ONLY (1<<7)
+#define GUN_IS_ATTACHMENT (1<<8)
+#define GUN_ATTACHMENT_FIRE_ONLY (1<<9)
+#define GUN_IS_SENTRY (1<<10)
+#define GUN_ENERGY (1<<11)
+#define GUN_AMMO_COUNT_BY_PERCENTAGE (1<<12)
+#define GUN_AMMO_COUNT_BY_SHOTS_REMAINING (1<<13)
+#define GUN_NO_PITCH_SHIFT_NEAR_EMPTY (1<<14)
+
+//reciever_flags. Used to determin how the gun cycles, what kind of ammo it uses, etc.
+#define AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION (1<<0)
+	#define AMMO_RECIEVER_UNIQUE_ACTION_LOCKS (1<<1)
+#define AMMO_RECIEVER_MAGAZINES (1<<2)
+	#define AMMO_RECIEVER_AUTO_EJECT (1<<3)
+#define AMMO_RECIEVER_HANDFULS (1<<4)
+#define AMMO_RECIEVER_TOGGLES_OPEN (1<<5)
+	#define AMMO_RECIEVER_TOGGLES_OPEN_EJECTS (1<<6)
+#define AMMO_RECIEVER_CLOSED (1<<7)
+#define AMMO_RECIEVER_ROTATES_CHAMBER (1<<8)
+#define AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS (1<<9)
+#define AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE (1<<10)
 
 #define FLAMER_IS_LIT (1<<0)
 #define FLAMER_NO_LIT_OVERLAY (1<<1)
@@ -90,9 +102,10 @@
 #define GUN_FIREMODE_AUTOBURST "auto-burst-fire mode"
 
 //Ammo magazine defines, for flags_magazine
-#define AMMUNITION_REFILLABLE (1<<0)
-#define AMMUNITION_HANDFUL (1<<1)
-#define AMMUNITION_WORN (1<<2)
+#define MAGAZINE_REFILLABLE (1<<0)
+#define MAGAZINE_HANDFUL (1<<1)
+#define MAGAZINE_WORN (1<<2)
+#define MAGAZINE_REFUND_IN_CHAMBER (1<<3)
 
 //Slowdown from various armors.
 #define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up

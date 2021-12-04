@@ -4428,7 +4428,6 @@
 	amount = 50
 	},
 /obj/item/tool/hand_labeler,
-/obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
@@ -5958,6 +5957,11 @@
 /area/mainship/squads/req)
 "bGm" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/machinery/vending/nanomed{
+	dir = 8;
+	pixel_x = -1;
+	pixel_y = -1
+	},
 /turf/open/floor/mainship/green{
 	dir = 6
 	},

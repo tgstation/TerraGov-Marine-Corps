@@ -424,6 +424,7 @@
 		/datum/reagent/consumable/sugar,
 		/datum/reagent/consumable/drink/orangejuice,
 		/datum/reagent/consumable/drink/limejuice,
+		/datum/reagent/consumable/drink/tomatojuice,
 		/datum/reagent/consumable/drink/cold/sodawater,
 		/datum/reagent/consumable/drink/cold/tonic,
 		/datum/reagent/consumable/ethanol/beer,

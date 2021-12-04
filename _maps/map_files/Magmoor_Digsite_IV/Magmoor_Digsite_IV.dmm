@@ -4278,6 +4278,7 @@
 	dir = 10
 	},
 /obj/structure/cable,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -5905,6 +5906,7 @@
 /area/magmoor/medical/storage)
 "egY" = (
 /obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/mainship/sterile/purple/side,
 /area/magmoor/research/containment)
 "egZ" = (
@@ -11507,6 +11509,11 @@
 	},
 /turf/open/floor/freezer,
 /area/magmoor/civilian/clean/toilet)
+"ikO" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/concrete,
+/area/magmoor/cave/west)
 "ikS" = (
 /obj/structure/table/mainship,
 /obj/item/storage/pill_bottle/packet/paracetamol,
@@ -16266,6 +16273,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/storage/south)
+"lGS" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/concrete,
+/area/magmoor/cave/west)
 "lHp" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -32537,7 +32548,6 @@
 /turf/open/floor/grass,
 /area/magmoor/hydroponics)
 "wiH" = (
-/obj/machinery/vending/nanomed,
 /obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/infocenter)
@@ -32561,6 +32571,18 @@
 /obj/structure/flora/rock/alt2,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/west)
+"wjJ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/oil,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/concrete,
+/area/magmoor/cave/southwest)
 "wjL" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -34055,10 +34077,12 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
 "wZo" = (
-/obj/effect/decal/warning_stripes,
-/obj/machinery/nuclearbomb,
-/turf/open/floor/mainship/mono,
-/area/magmoor/security/storage)
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/mainship/sterile/purple/corner{
+	dir = 8
+	},
+/area/magmoor/research/containment)
 "wZx" = (
 /obj/structure/toilet{
 	dir = 1
@@ -35648,6 +35672,10 @@
 "xUd" = (
 /turf/open/lavaland/basalt/cave,
 /area/magmoor/cave/south)
+"xUh" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/concrete,
+/area/magmoor/cave/southwest)
 "xUm" = (
 /obj/structure/bed,
 /obj/item/bedsheet/red,
@@ -38774,7 +38802,7 @@ rwF
 rwF
 rwF
 fIc
-kal
+uHe
 fHm
 fHm
 fHm
@@ -41129,15 +41157,15 @@ lqn
 mkG
 fIc
 owr
-owr
-owr
-gkG
-gkG
-gkG
-gkG
-gkG
-gkG
-gkG
+lGS
+lGS
+xUh
+xUh
+xUh
+xUh
+xUh
+xUh
+xUh
 gkG
 osF
 oRQ
@@ -41362,7 +41390,7 @@ lqn
 erq
 fIc
 dBh
-owr
+lGS
 owr
 ppI
 ppI
@@ -41370,7 +41398,7 @@ lVv
 ppI
 ppI
 gkG
-gkG
+xUh
 gkG
 tcR
 oRQ
@@ -41553,7 +41581,7 @@ cQP
 cQP
 bCo
 bCo
-qlL
+afo
 aum
 aum
 aum
@@ -41595,7 +41623,7 @@ lqn
 fIc
 fIc
 owr
-owr
+lGS
 ppI
 ppI
 mMX
@@ -41603,7 +41631,7 @@ mpq
 nvr
 ppI
 ppI
-gkG
+xUh
 gkG
 tcR
 tcR
@@ -41828,7 +41856,7 @@ eud
 erE
 fIc
 owr
-owr
+lGS
 ppI
 mgU
 mOv
@@ -41836,7 +41864,7 @@ ndD
 cvY
 nNI
 ppI
-gkG
+xUh
 gkG
 tcR
 tcR
@@ -42061,7 +42089,7 @@ ixk
 lqn
 erq
 owr
-owr
+lGS
 ppI
 miO
 cvY
@@ -42069,7 +42097,7 @@ mII
 nNR
 nNS
 ppI
-gkG
+xUh
 gkG
 osF
 tcR
@@ -42294,7 +42322,7 @@ kMo
 lqn
 fIc
 owr
-owr
+lGS
 ppI
 mjq
 mpq
@@ -42302,7 +42330,7 @@ mII
 mpq
 nNU
 ppI
-gkG
+xUh
 gkG
 tcR
 tcR
@@ -42527,7 +42555,7 @@ kMo
 lqn
 fIc
 dBh
-owr
+lGS
 lVv
 mpq
 mpq
@@ -42535,7 +42563,7 @@ nes
 cvY
 mpq
 lVv
-gkG
+xUh
 gkG
 tcR
 tcR
@@ -42760,7 +42788,7 @@ kMo
 lqn
 fIc
 owr
-owr
+lGS
 ppI
 moB
 mpq
@@ -42768,7 +42796,7 @@ nez
 mpq
 nNV
 ppI
-gkG
+xUh
 gkG
 tcR
 tcR
@@ -42993,7 +43021,7 @@ kMo
 lqn
 fIc
 owr
-owr
+lGS
 ppI
 mpv
 mpq
@@ -43001,7 +43029,7 @@ mII
 mpq
 nOr
 ppI
-gkG
+xUh
 gkG
 tcR
 pJi
@@ -43226,7 +43254,7 @@ kMo
 lqn
 fIc
 ciu
-owr
+lGS
 ppI
 mqW
 mpq
@@ -43234,7 +43262,7 @@ lZF
 mWO
 nOw
 ppI
-gkG
+xUh
 gkG
 tcR
 wwg
@@ -43459,7 +43487,7 @@ kMo
 eud
 erE
 owr
-owr
+lGS
 ppI
 ppI
 mpN
@@ -43467,7 +43495,7 @@ mJL
 nwG
 ppI
 ppI
-gkG
+xUh
 xWl
 tcR
 wwg
@@ -43692,7 +43720,7 @@ vaJ
 kWR
 lqn
 owr
-owr
+lGS
 owr
 ppI
 ppI
@@ -43700,7 +43728,7 @@ mLA
 ppI
 ppI
 gkG
-gkG
+xUh
 gkG
 tcR
 wwg
@@ -43925,15 +43953,15 @@ ocK
 kXo
 lhe
 owr
-ciu
-owr
-gkG
-gkG
-mMY
-gkG
-gkG
-gkG
-gkG
+ikO
+lGS
+xUh
+xUh
+wjJ
+xUh
+xUh
+xUh
+xUh
 gkG
 tcR
 odI
@@ -64506,7 +64534,7 @@ uAj
 hIK
 vcX
 chG
-wZo
+lqo
 alN
 eRz
 vcX
@@ -68346,7 +68374,7 @@ bbq
 bjG
 aDM
 tpd
-bEu
+wZo
 tsp
 tsp
 bXy

@@ -1,93 +1,17 @@
-/*
-	NOTES
-
-	if(burst_toggled && burst_firing) return
-	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-	That should be on for most procs that deal with the gun doing some action. We do not want
-	the gun to suddenly begin to fire when you're doing something else to it that could mess it up.
-	As a general safety, make sure you remember this.
-
-
-	Guns, on the front end, function off a three tier process. To successfully create some unique gun
-	that has a special method of firing, you need to override these procs.
-
-	New() //You can typically leave this one alone unless you need for the gun to do something on spawn.
-	Guns that use the regular system of chamber fire should load_into_chamber() on New().
-
-	reload() //If the gun doesn't use the normal methods of reloading, like revolvers or shotguns which use
-	handfuls, you will need to specify just how it reloads. User can be passed as null.
-
-	unload() //Same deal. If it's some unique unload method, you need to put that here. User can be passed as null.
-
-	make_casing() //What the gun does to make a casing. If it just shoots them out (or doesn't make casings), the
-	regular proc is fine. This proc uses .dir and icon_state to change the number of bullets spawned, and is the
-	fastest I could make it. One thing to note about it is that if more casings are desired, they have to be
-	pregenerated, usually by hand.
-
-	able_to_fire() //Unless the gun has some special check to see whether or not it may fire, you don't need this.
-	You can see examples of how this is modified in smartgun/sadar code, along with others. Return ..() on a success.
-
-	gun_on_cooldown() //For custom cooldown checks. By default it takes into account the user's skills.
-
-	load_into_chamber() //This can get complicated, but if the gun doesn't take attachments that fire bullets from
-	the Fire() process, just set them to null and leave the if(current_mag && current_mag.current_rounds > 0) check.
-	The idea here is that if the gun can find a valid bullet to fire, subtract the ammo.
-	This must return positive to continue the fire cycle.
-
-	ready_in_chamber() //If the load_into_chamber is identical to the base outside of the actual bullet getting loaded,
-	then you can use this in order to save on overrides. This primarily goes for anything that uses attachments like
-	any standard firing cycle (attachables that fire through the firing cycle).
-
-	reload_into_chamber() //The is the back action of the fire cycle that tells the gun to do all the stuff it needs
-	to in order to prepare for the next fire cycle. This will be called if the gun fired successfully, per bullet.
-	This is also where the gun will make a casing. So if your gun doesn't handle casings the regular way, modify it.
-	Also where the gun will do final attachment calculations if the gun fired an attachment bullet.
-	This must return positive to continue burst firing or so that you don't hear *click*.
-
-	delete_bullet() //Important for point blanking, but can be called on for other reasons (that are
-	not currently used).
-	This is also used to delete the bullet when you directly fire a bullet without going through the Fire() process,
-	like with the mentioned point blanking/suicide.
-
-
-	Other procs are pretty self explanatory, and what is listed above is what you should usually change for unusual
-	cases. So long as the gun can return true on able_to_fire() then move on to load_into_chamber() and finally
-	reload_into_chamber(), you're in good shape. Those three procs basically make up the fire cycle, and if they
-	function correctly, everything else will follow.
-
-	This system is incredibly robust and can be used for anything from single bullet carbines to high-end energy
-	weapons. So long as the steps are followed, it will work without issue. Some guns ignore active attachables,
-	since they currently do not use them, but if that changes, the related procs must also change.
-
-	Energy guns, or guns that don't really use magazines, can gut this system a bit. You can see examples in the taser.
-
-	Ammo is loaded dynamically based on parent type through a global list. It is located in global_lists.dm under
-	__HELPERS. So never create new() datums, as the datum should just be referenced through the global list instead.
-	This cuts down on unnecessary overhead, and makes bullets always have an ammo type, even if the parent weapon is
-	somehow deleted or some such. Null ammo in the projectile flight stage shoulder NEVER exist. If it does, something
-	has gone wrong elsewhere and should be looked at. Do not simply add if(ammo) checks. If the system is working correctly,
-	you will never need them.
-
-	The guns also have bitflags for various functions, so refer to those in case you want to create something unique.
-	They're all pretty straight forward; silenced comes from attachments only, so don't try to set it as the default.
-	If you want a silenced gun, attach a silencer to it on New() that cannot be removed.
-
-	~N
-
-	TODO:
-
-	Add more muzzle flashes and gun sounds. Energy weapons, spear launcher, and taser for example.
-	Add more guns, or unique guns. The framework should be there.
-	Add ping for energy guns like the taser and plasma caster.
-	Move the mind checks for damage and stun to actual files, or rework it somehow.
-*/
-
 //----------------------------------------------------------
 			//							  \\
 			// EQUIPMENT AND INTERACTION  \\
 			//							  \\
 			//						   	  \\
 //----------------------------------------------------------
+
+/obj/item/weapon/gun/attack_hand(mob/living/user)
+	if(user.get_inactive_held_item() != src)
+		return ..()
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
+		unique_action(user, TRUE)
+		return
+	unload(user)
 
 /obj/item/weapon/gun/attack_hand_alternate(mob/user)
 	. = ..()
@@ -100,12 +24,18 @@
 
 	active_attachable.unload(living_user)
 
+/obj/item/weapon/gun/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(user.get_inactive_held_item() != src || istype(I, /obj/item/attachable) || isgun(I))
+		return
+	reload(I, user)
+
 /obj/item/weapon/gun/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
 	if(!active_attachable)
 		return
 
-	active_attachable.attackby(I, user, params)
+	active_attachable.reload(I, user)
 
 /obj/item/weapon/gun/mob_can_equip(mob/user)
 	//Cannot equip wielded items or items burst firing.
@@ -113,15 +43,6 @@
 		return
 	unwield(user)
 	return ..()
-
-
-/obj/item/weapon/gun/attack_hand(mob/living/user)
-	var/obj/item/weapon/gun/in_hand = user.get_inactive_held_item()
-	if(in_hand == src && (flags_item & TWOHANDED))
-		unload(user)//It has to be held if it's a two hander.
-		return
-	else
-		return ..()
 
 
 /obj/item/weapon/gun/throw_at(atom/target, range, speed, thrower)
@@ -210,40 +131,16 @@ should be alright.
 
 /obj/item/weapon/gun/attack_self(mob/user)
 	. = ..()
-
 	//There are only two ways to interact here.
-	if(flags_item & TWOHANDED)
-		if(flags_item & WIELDED)
-			unwield(user)//Trying to unwield it
-		else
-			wield(user)//Trying to wield it
-	else
-		unload(user)//We just unload it.
+	if(!CHECK_BITFIELD(flags_item, TWOHANDED))
+		return
+	if(flags_item & WIELDED)
+		unwield(user)//Trying to unwield it
+		return
+	wield(user)//Trying to wield it
 
 
-//Clicking stuff onto the gun.
-//Attachables & Reloading
-/obj/item/weapon/gun/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return
 
-	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
-		return
-
-	if(istype(I, /obj/item/cell) && !istype(src, /obj/item/weapon/gun/energy) && CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY)) //If the sentry is an energy-gun, the battery is handled in /gun/energy/reload()
-		reload_sentry_cell(I, user)
-		return
-
-	if(istype(I, /obj/item/ammo_magazine) && check_inactive_hand(user))
-		var/obj/item/ammo_magazine/magazine = I
-		if(CHECK_BITFIELD(magazine.flags_magazine,  AMMUNITION_WORN))
-			return
-		reload(user, magazine)
-		return
-	if(istype(I, /obj/item/cell) && check_inactive_hand(user))
-		reload(user, I)
-		return
 
 ///Reloads the sentry battery. This is used both in the gun, and called from /deployed/mounted/sentry
 /obj/item/weapon/gun/proc/reload_sentry_cell(obj/item/cell/cell, mob/user)
@@ -292,40 +189,35 @@ should be alright.
 //tactical reloads
 /obj/item/weapon/gun/MouseDrop_T(atom/dropping, mob/living/carbon/human/user)
 	if(istype(dropping, /obj/item/ammo_magazine))
-		tactical_reload(dropping,user)
+		tactical_reload(dropping, user)
 	return ..()
 
 ///This performs a tactical reload with src using new_magazine to load the gun.
 /obj/item/weapon/gun/proc/tactical_reload(obj/item/ammo_magazine/new_magazine, mob/living/carbon/human/user)
-	if(active_attachable)
-		active_attachable.tactical_reload(new_magazine, user)
-		return
-
 	if(!istype(user) || user.incapacitated(TRUE))
 		return
 	if(src != user.r_hand && src != user.l_hand)
 		to_chat(user, span_warning("[src] must be in your hand to do that."))
 		return
-	if(flags_gun_features & GUN_INTERNAL_MAG)
+	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) || max_chamber_items > 1)
 		to_chat(user, span_warning("Can't do tactical reloads with [src]."))
 		return
 	//no tactical reload for the untrained.
 	if(!user.skills.getRating("firearms"))
 		to_chat(user, span_warning("You don't know how to do tactical reloads."))
 		return
-	if(!istype(src, new_magazine.gun_type))
-		return
-	if(current_mag)
-		unload(user,0,1)
+	if(length(chamber_items))
+		unload(user)
 		to_chat(user, span_notice("You start a tactical reload."))
 	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
-	if(!do_after(user,tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
+	if(!do_after(user, tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
 		return
 	if(istype(new_magazine.loc, /obj/item/storage))
 		var/obj/item/storage/S = new_magazine.loc
 		S.remove_from_storage(new_magazine, get_turf(user), user)
-	user.put_in_any_hand_if_possible(new_magazine)
-	reload(user, new_magazine)
+	if(!CHECK_BITFIELD(get_flags_magazine_features(new_magazine), MAGAZINE_WORN))
+		user.put_in_any_hand_if_possible(new_magazine)
+	reload(new_magazine, user)
 
 //----------------------------------------------------------
 				//						 \\
@@ -362,17 +254,6 @@ should be alright.
 			continue
 		return TRUE
 	return FALSE
-
-///updates the magazine overlay if it needs to be updated
-/obj/item/weapon/gun/proc/update_mag_overlay()
-	var/image/overlay = attachment_overlays[ATTACHMENT_SLOT_MAGAZINE]
-	overlays -= overlay
-	if(current_mag && current_mag.bonus_overlay)
-		overlay = image(current_mag.icon, src, current_mag.bonus_overlay)
-		attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = overlay
-		overlays += overlay
-	else
-		attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = null
 
 
 /obj/item/weapon/gun/proc/update_force_list()
@@ -649,7 +530,7 @@ should be alright.
 	set name = "Unload Weapon (Weapon)"
 	set desc = "Removes the magazine from your current gun and drops it on the ground, or clears the chamber if your gun is already empty."
 
-	unload(usr,,1) //We want to drop the mag on the ground.
+	unload(usr) //We want to drop the mag on the ground.
 
 
 /mob/living/carbon/human/verb/use_unique_action()
@@ -776,12 +657,6 @@ should be alright.
 		return FALSE
 	return TRUE
 
-/obj/item/weapon/gun/proc/get_ammo_type()
-	return FALSE
-
-/obj/item/weapon/gun/proc/get_ammo_count()
-	return FALSE
-
 
 /obj/item/weapon/gun/proc/modify_fire_delay(value, mob/user)
 	fire_delay += value
@@ -805,6 +680,30 @@ should be alright.
 			add_firemode(GUN_FIREMODE_BURSTFIRE, user)
 		if((GUN_FIREMODE_AUTOMATIC in gun_firemode_list) && !(GUN_FIREMODE_AUTOBURST in gun_firemode_list))
 			add_firemode(GUN_FIREMODE_AUTOBURST, user)
+
+///Calculates aim_fire_delay, can't be below 0
+#define RECALCULATE_AIM_MODE_FIRE_DELAY \
+	var/modification_value = 0; \
+	for(var/key in aim_fire_delay_mods) { \
+		modification_value += aim_fire_delay_mods[key]; \
+	}; \
+	var/old_delay = aim_fire_delay; \
+	aim_fire_delay = max(initial(aim_fire_delay) + modification_value, 0); \
+	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING)) { \
+		modify_fire_delay(aim_fire_delay - old_delay); \
+	}
+
+///Adds an aim_fire_delay modificatio value
+/obj/item/weapon/gun/proc/add_aim_mode_fire_delay(source, value)
+	aim_fire_delay_mods[source] = value
+	RECALCULATE_AIM_MODE_FIRE_DELAY
+
+///Removes an aim_fire_delay modificatio value
+/obj/item/weapon/gun/proc/remove_aim_mode_fire_delay(source)
+	aim_fire_delay_mods -= source
+	RECALCULATE_AIM_MODE_FIRE_DELAY
+
+#undef RECALCULATE_AIM_MODE_FIRE_DELAY
 
 /obj/item/weapon/gun/proc/toggle_auto_aim_mode(mob/living/carbon/human/user) //determines whether toggle_aim_mode activates at the end of gun/wield proc
 
@@ -878,67 +777,3 @@ should be alright.
 	SIGNAL_HANDLER
 	toggle_gun_safety()
 	return COMSIG_KB_ACTIVATED
-
-//----------------------------------------------------------
-				//				   	   \\
-				// UNUSED EXAMPLE CODE \\
-				//				  	   \\
-				//				   	   \\
-//----------------------------------------------------------
-
-	/*
-	//This works, but it's also pretty slow in comparison to the updated method.
-	var/turf/current_turf = get_turf(src)
-	var/obj/item/ammo_casing/casing = locate() in current_turf
-	var/icon/I = new( 'icons/obj/items/ammo.dmi', current_mag.icon_spent, pick(1,2,4,5,6,8,9,10) ) //Feeding dir is faster than doing Turn().
-	I.Shift(pick(1,2,4,5,6,8,9,10),rand(0,11))
-	if(casing) //If there is already something on the ground, takes the firs thing it finds. Can take a long time if there are a lot of things.
-		//Still better than making a billion casings.
-		if(casing.name != "spent casings")
-			casing.name += "s"
-		I.Blend(casing.icon,ICON_UNDERLAY) //We want to overlay it on top.
-		casing.icon = I
-	else //If not, make one.
-		var/obj/item/ammo_casing/new_casing = new(current_turf)
-		new_casing.icon = I
-	playsound(current_turf, sound_to_play, 20, 1)
-	*/
-
-/*
-//Leaving this here because I think it's excellent code in terms of something you can do. But it is not the
-//most efficient. Also, this particular example crashes the client upon Blend(). Not sure what is causing it,
-//but the code was entirely replaced so it's irrelevant now. ~N
-//If the gun has spent shells and we either have no ammo remaining or we're reloading it on the go.
-if(current_mag.casings_to_eject.len && casing_override) //We have some spent casings to eject.
-	var/turf/current_turf = get_turf(src)
-	var/obj/item/ammo_casing/casing = locate() in current_turf
-	var/icon/G
-
-	if(!casing)
-		//Feeding dir is faster than doing Turn().
-		G = new( 'icons/obj/items/ammo.dmi', current_mag.icon_spent, pick(1,2,4,5,6,8,9,10) ) //We make a new icon.
-		G.Shift(pick(1,2,4,5,6,8,9,10),rand(0,11)) //Shift it randomy.
-		var/obj/item/ammo_casing/new_casing = new(current_turf) //Then we create a new casing.
-		new_casing.icon = G //We give this new casing the icon we just generated.
-		casing = new_casing //Our casing from earlier is now this csaing.
-		current_mag.casings_to_eject.Cut(1,2) //Cut the list so that it's one less.
-		playsound(current_turf, sound_to_play, 20, 1) //Play the sound.
-
-	G = casing.icon //Get the icon from the casing icon if it spawned or was there previously.
-	var/i
-	for(i = 1 to current_mag.casings_to_eject.len) //We want to run this for each item in the list.
-		var/icon/I = new( 'icons/obj/items/ammo.dmi', current_mag.icon_spent, pick(1,2,4,5,6,8,9,10) )
-		I.Shift(pick(1,2,4,5,6,8,9,10),rand(0,11))
-		G.Blend(I,ICON_OVERLAY) //<---- Crashes the client. //Blend them two in, with I overlaying what's already there.
-		playsound(current_turf, sound_to_play, 20, 1)
-
-	G.Blend(casing.icon,ICON_UNDERLAY)
-	casing.icon = G
-	if(casing.name != "spent casings")
-		casing.name += "s"
-	current_mag.casings_to_eject = list() //Empty list.
-
-else if(!casing_override)//So we're not reloading/emptying, we're firing the gun.
-	//I would add a check here for attachables, but you can't fit the masterkey on a revolver/shotgun.
-	current_mag.casings_to_eject += ammo.casing_type //Other attachables are processed beforehand and don't matter here.
-*/

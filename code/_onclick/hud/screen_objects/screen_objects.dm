@@ -704,13 +704,18 @@
 	if(!user?.client?.screen.Find(src))
 		return
 
-	if(!G || !(G.flags_gun_features & GUN_AMMO_COUNTER) || !G.get_ammo_type() || isnull(G.get_ammo_count()))
+	if(!G || !(G.flags_gun_features & GUN_AMMO_COUNTER))
 		remove_hud(user)
 		return
 
-	var/list/ammo_type = G.get_ammo_type()
-	var/rounds = G.get_ammo_count()
-
+	var/list/ammo_type = G.get_ammo_list()
+	var/rounds
+	if(G.max_rounds && G.rounds && CHECK_BITFIELD(G.flags_gun_features, GUN_AMMO_COUNT_BY_PERCENTAGE))
+		rounds = round((G.rounds / G.max_rounds) * 100)
+	else if (G.rounds && CHECK_BITFIELD(G.flags_gun_features, GUN_AMMO_COUNT_BY_SHOTS_REMAINING))
+		rounds = round(G.rounds / G.rounds_per_shot)
+	else
+		rounds = G.rounds
 	var/hud_state = ammo_type[1]
 	var/hud_state_empty = ammo_type[2]
 
@@ -730,7 +735,7 @@
 			spawn(20)
 				user.client.screen -= F
 				qdel(F)
-				if(G.get_ammo_count() == 0)
+				if(G.rounds == 0)
 					overlays += empty
 	else
 		warned = FALSE

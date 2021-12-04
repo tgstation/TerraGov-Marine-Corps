@@ -1,0 +1,68 @@
+2021-12-01:
+  BraveMole:
+  - code_imp: Remove parallax when on ground
+  KrabSpider:
+  - rscadd: Tl-127 flak rifle rounds. Available through requisitions for a mere 5
+      points a pop. Causes deals a mighty blow to targets as they're knocked back
+      4 tiles. 1 stagger, 1 slow, 4 knockback.
+  - imageadd: Tl-127 flak mags
+  Lewdcifer:
+  - balance: TP-44 fire delay 0.15 > 0.2.
+  hyper2snyper:
+  - rscadd: Cowboy boots + Leather Jacket and Leather Jacket with webbing.
+  - rscadd: Droon
+  - rscadd: Rave-ager
+2021-12-02:
+  TooFewSecrets:
+  - balance: Most Ravager super rage stat bonuses halved (rage above 0 HP unaffected).
+      Less damage, speed, lifesteal, sunder recovery, and endure bonus health. Immunities
+      are still given by super rage.
+  hyper2snyper:
+  - rscadd: All tgmc suits can now take jaeger modules. All berets can now take helmet
+      modules.
+  - rscadd: Robot armor is now modular. It no longer has internal storage but can
+      take the storage modules.
+  - bugfix: fixed the hlin sprite not appearing.
+  - bugfix: fixed the armored labcoat being one pixel too far to the right.
+2021-12-03:
+  AzonStarfall:
+  - rscadd: Adds the TGS Minerva, a new shipmap.
+  - config: Adds Minerva to the shipmaps config.
+  DeltaFire15:
+  - rscadd: Boiler bombard type selection now has access to radials if you have more
+      than two available glob types.
+  RipGrayson:
+  - imageadd: Added some directionals for mounted NanoMeds.
+  - imageadd: Added new sprites for mounted NanoMeds.
+  - rscadd: Added Tablefort back to LV624 beach.
+  - rscadd: LV624 has several new domes to fight in.
+  - expansion: Expanded LV624 colony.
+  - balance: Completely overhauled the Sand Temple.
+  - balance: Overhauled half of LV624 caves.
+  - balance: Pre-weed density in certain parts of the colony has been increased.
+  - balance: LV624 LZ2 has been shifted again, this time without a direct connection
+      to caves.
+  - bugfix: Fixed pipes not properly connecting to modular domes on LV624
+  - imageadd: Ported robotic showcase from TG
+  - imageadd: Added a few area icons
+  - imageadd: Added icons for corner variants of stairs
+  - imageadd: Added river decals for flooded areas
+  - bugfix: Removed extra Magmoor nuke.
+  - bugfix: Patched some holes in xeno spawn protection on Magmoor.
+  hyper2snyper:
+  - bugfix: Fixes shoulder gun reloading.
+  - bugfix: Fixes revolver ammo counts.
+  - bugfix: Fixes unique action when there is a magazine in a rifle.
+  - bugfix: fixes flamers using +1 fuel per tile
+  - bugfix: fixes flamers not being able to torch xeno turrets.
+  - bugfix: fixes tactical reloading with a worn ammo magazine.
+2021-12-04:
+  BraveMole:
+  - bugfix: No more primo exploit with queen devo
+  KrabSpider:
+  - balance: Leicester Repeater damage multiplier increased to 2x from 1.5x.
+  SpaceLoveSs13:
+  - admin: varedit does varediting.
+  Walarks:
+  - expansion: adds 50% aim mode delay removal to deployed bipod, which combined with
+      red dot reaches 100% (yes, GPMG enjoyers)

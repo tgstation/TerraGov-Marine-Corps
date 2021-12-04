@@ -1,0 +1,7 @@
+author: "vilereaver41"
+delete-after: True
+changes: 
+  - rscadd: "new area northeast of caves."
+  - balance: "West-LZ1 to make it a bit more open north of it. also made lz1 bigger so marines got more room"
+  - balance: "the pre shutter open no-build zone has been reduced."
+  - balance: "added more weed nodes and doors in caves for quality of life."

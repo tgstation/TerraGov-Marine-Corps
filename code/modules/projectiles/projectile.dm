@@ -134,7 +134,7 @@
 		damage -= max(damage - ammo.damage * 0.5, 0)
 
 /obj/projectile/proc/generate_bullet(ammo_datum, bonus_damage = 0, reagent_multiplier = 0)
-	ammo 		= ammo_datum
+	ammo = ispath(ammo_datum) ? GLOB.ammo_list[ammo_datum] : ammo_datum
 	name 		= ammo.name
 	icon_state 	= ammo.icon_state
 	damage 		= ammo.damage + bonus_damage //Mainly for emitters.
@@ -279,7 +279,14 @@
 
 	//If we have the the right kind of ammo, we can fire several projectiles at once.
 	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
-		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle)
+		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle, target)
+
+	if(shooter.Adjacent(target) && ismob(target))
+		var/mob/mob_to_hit = target
+		ammo.on_hit_mob(mob_to_hit, src)
+		mob_to_hit.bullet_act(src)
+		qdel(src)
+		return
 
 	var/matrix/rotate = matrix() //Change the bullet angle.
 	rotate.Turn(dir_angle)
@@ -483,6 +490,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 					x_pixel_dist_travelled += pixel_moves_until_crossing_x_border * x_offset
 					y_pixel_dist_travelled += pixel_moves_until_crossing_x_border * y_offset
 				break
+			if(ammo.flags_ammo_behavior & AMMO_LEAVE_TURF)
+				ammo.on_leave_turf(turf_crossed_by, firer)
 		if(length(uncross_scheduled)) //Time to exit the last turf entered, if the diagonal movement didn't handle it already.
 			for(var/j in uncross_scheduled)
 				var/atom/movable/thing_to_uncross = j
@@ -496,6 +505,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			uncross_scheduled.len = 0
 			if(end_of_movement)
 				break
+		if(ammo.flags_ammo_behavior & AMMO_LEAVE_TURF)
+			ammo.on_leave_turf(last_processed_turf, firer)
 		x_pixel_dist_travelled += 32 * x_offset
 		y_pixel_dist_travelled += 32 * y_offset
 		last_processed_turf = next_turf
@@ -937,6 +948,13 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
 		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle)
 
+	if(shooter.Adjacent(target) && ismob(target))
+		var/mob/mob_to_hit = target
+		ammo.on_hit_mob(mob_to_hit, src)
+		mob_to_hit.bullet_act(src)
+		qdel(src)
+		return
+
 	x_offset = round(sin(dir_angle), 0.01)
 	y_offset = round(cos(dir_angle), 0.01)
 	if(projectile_batch_move() == PROJECTILE_FROZEN)
@@ -1050,6 +1068,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			uncross_scheduled.Cut()
 			if(end_of_movement)
 				break
+			if(ammo.flags_ammo_behavior & AMMO_LEAVE_TURF)
+				ammo.on_leave_turf(turf_crossed_by, firer)
 		if(length(uncross_scheduled)) //Time to exit the last turf entered, if the diagonal movement didn't handle it already.
 			for(var/atom/movable/thing_to_uncross AS in uncross_scheduled)
 				if(QDELETED(thing_to_uncross))
@@ -1062,6 +1082,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			uncross_scheduled.len = 0
 			if(end_of_movement)
 				break
+		if(ammo.flags_ammo_behavior & AMMO_LEAVE_TURF)
+			ammo.on_leave_turf(last_processed_turf, firer)
 		last_processed_turf = next_turf
 		if(scan_a_turf(next_turf, movement_dir))
 			end_of_movement = TRUE

@@ -72,10 +72,6 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	if(!can_buy(buyer, FALSE))
 		return FALSE
 
-	if(SSpoints.xeno_points_by_hive[buyer.hivenumber] < psypoint_cost)
-		to_chat(buyer, span_xenowarning("Someone used all the psych points while we were building!"))
-		return FALSE
-
 	var/turf/buildloc = get_step(buyer, SOUTHWEST)
 
 	var/atom/built = new building_type(buildloc, buyer.hivenumber)
@@ -106,15 +102,10 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
 		return FALSE
 
-/datum/hive_upgrade/building/silo/on_buy(mob/living/carbon/xenomorph/buyer)
-
 	for(var/obj/structure/xeno/silo/silo AS in GLOB.xeno_resin_silos)
 		if(get_dist(silo, buyer) < 15)
 			to_chat(buyer, span_xenowarning("Another silo is too close!"))
 			return FALSE
-
-	return ..()
-
 /datum/hive_upgrade/building/evotower
 	name = "Evolution Tower"
 	desc = "Constructs a tower that increases the rate of evolution point generation by 1.25 times per tower."
@@ -148,7 +139,9 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	icon = "acidturret"
 	psypoint_cost = XENO_TURRET_PRICE
 	flags_gamemode = ABILITY_DISTRESS
+	///How long to build one turret
 	var/build_time = 15 SECONDS
+	///What type of turret is built
 	var/turret_type = /obj/structure/xeno/xeno_turret
 
 /datum/hive_upgrade/defence/turret/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
@@ -174,14 +167,16 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 
 	if(!T.check_alien_construction(buyer, silent = silent, planned_building = /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(buyer))
 		return FALSE
+
+	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
+		if(get_dist(turret, buyer) < 6)
+			if(!silent)
+				to_chat(buyer, span_xenowarning("Another turret is too close!"))
+			return FALSE
+
 	return TRUE
 
 /datum/hive_upgrade/defence/turret/on_buy(mob/living/carbon/xenomorph/buyer)
-	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
-		if(get_dist(turret, buyer) < 6)
-			to_chat(buyer, span_xenowarning("Another turret is too close!"))
-			return FALSE
-
 	if(!do_after(buyer, build_time, TRUE, buyer, BUSY_ICON_BUILD))
 		return FALSE
 
@@ -226,6 +221,8 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	to_chat(buyer, span_xenonotice("We begin constructing a psychic echo chamber for the Queen Mother..."))
 	if(!do_after(buyer, 15 SECONDS, FALSE, buyer, BUSY_ICON_HOSTILE))
 		return FALSE
+	if(!can_buy(buyer, FALSE))
+		return FALSE
 	var/obj/structure/resin/king_pod = new /obj/structure/resin/king_pod(get_turf(buyer), buyer.hivenumber)
 	log_game("[key_name(buyer)] has created a pod in [AREACOORD(buyer)]")
 	xeno_message("<B>[buyer] has created a king pod at [get_area(buyer)]. Defend it until the Queen Mother summons a king!</B>", hivenumber = buyer.hivenumber, target = king_pod, arrow_type = /obj/screen/arrow/leader_tracker_arrow)
@@ -267,6 +264,12 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Unlocks the primordial sentinels neurogas grenade. Allows them to throw a grenade that emits gas in an area."
 	psypoint_cost = 75
 	icon = "primosent"
+
+/datum/hive_upgrade/primordial/spitter
+	name = PRIMORDIAL_SPITTER
+	desc = "Decreases the spitters fire delay to epic proportions."
+	psypoint_cost = 125
+	icon = "primospitter"
 
 /datum/hive_upgrade/primordial/ravager
 	name = PRIMORDIAL_RAVAGER
@@ -315,3 +318,9 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Unlocks the primordial bull agile charge, which allows him to change direction while charging, even diagonally"
 	psypoint_cost = 125
 	icon = "primobull"
+
+/datum/hive_upgrade/primordial/boiler
+	name = PRIMORDIAL_BOILER
+	desc = "Unlocks the primordial boiler's access to neurotoxin- and acid lances, direct-hit focussed bombardment types that leave a gas trail where they pass."
+	psypoint_cost = 225
+	icon = "primoboiler"
