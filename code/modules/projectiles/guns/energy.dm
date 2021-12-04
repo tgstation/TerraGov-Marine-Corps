@@ -106,8 +106,8 @@
 /obj/item/weapon/gun/energy/lasgun/tesla
 	name = "\improper M43-T tesla shock rifle"
 	desc = "A prototype TGMC energy rifle that fires balls of elecricity that shock all those near them, it is meant to drain the plasma of unidentified creatures from within, limiting their abilities. Handle only with insulated clothing. Reloaded with power cells."
-	icon_state = "m43"
-	item_state = "m43"
+	icon_state = "tesla"
+	item_state = "tesla"
 	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
 	ammo_datum_type  = /datum/ammo/energy/tesla
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
