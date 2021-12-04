@@ -1317,7 +1317,7 @@
 	switch(current_cycle)
 		if(1 to 24)
 			if(L.stat == UNCONSCIOUS)
-				L.heal_limb_damage(0.2*current_cycle*effect_str, 0.2*current_cycle*effect_str)
+				L.heal_limb_damage(0.4*current_cycle*effect_str, 0.4*current_cycle*effect_str)
 			if(prob(20) && L.stat != UNCONSCIOUS)
 				to_chat(L, span_notice("You feel as though you should be sleeping for the medicine to work."))
 		if(25)
