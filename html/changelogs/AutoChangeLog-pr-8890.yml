@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "No more multi king"
+  - bugfix: "Xeno turrets no longer can be placed next to each other by spamming"
