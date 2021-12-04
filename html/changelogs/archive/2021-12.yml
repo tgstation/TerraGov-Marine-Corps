@@ -56,3 +56,13 @@
   - bugfix: fixes flamers using +1 fuel per tile
   - bugfix: fixes flamers not being able to torch xeno turrets.
   - bugfix: fixes tactical reloading with a worn ammo magazine.
+2021-12-04:
+  BraveMole:
+  - bugfix: No more primo exploit with queen devo
+  KrabSpider:
+  - balance: Leicester Repeater damage multiplier increased to 2x from 1.5x.
+  SpaceLoveSs13:
+  - admin: varedit does varediting.
+  Walarks:
+  - expansion: adds 50% aim mode delay removal to deployed bipod, which combined with
+      red dot reaches 100% (yes, GPMG enjoyers)
