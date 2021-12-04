@@ -11641,7 +11641,7 @@
 	name = "\improper Corporate Dome Blast Door"
 	},
 /obj/structure/cable,
-/turf/closed/wall/r_wall,
+/turf/open/floor,
 /area/lv624/lazarus/corporate_affairs)
 "jAj" = (
 /obj/structure/jungle/plantbot1,
@@ -13924,6 +13924,12 @@
 	icon_state = "whiteyellow"
 	},
 /area/lv624/lazarus/main_hall)
+"miq" = (
+/obj/effect/ai_node,
+/turf/open/ground/coast{
+	dir = 1
+	},
+/area/lv624/ground/river1)
 "miC" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/dirt,
@@ -19509,7 +19515,7 @@
 	id = "corporate_blast";
 	name = "\improper Corporate Dome Blast Door"
 	},
-/turf/closed/wall/r_wall,
+/turf/open/floor,
 /area/lv624/lazarus/corporate_affairs)
 "sVn" = (
 /obj/structure/flora/ausbushes/fernybush,
@@ -25641,12 +25647,12 @@ lXk
 blI
 lXk
 blI
-lXk
+fWE
 blI
 lXk
 lXk
 lXk
-lXk
+fWE
 jUj
 jUj
 jUj
@@ -25988,7 +25994,7 @@ xLJ
 jUj
 jUj
 lXk
-lXk
+fWE
 auy
 lXk
 lXk
@@ -26004,14 +26010,14 @@ auy
 lXk
 lXk
 lXk
-lXk
+fWE
 lXk
 lXk
 lXk
 auy
 suc
 lXk
-lXk
+fWE
 lXk
 lXk
 lXk
@@ -26172,22 +26178,22 @@ lXk
 lXk
 lXk
 lXk
-fWE
+lXk
 lXk
 lXk
 jUj
 jUj
-lXk
 fWE
 lXk
-fWE
+lXk
+lXk
 lXk
 lXk
 jUj
 jUj
 lXk
 suc
-fWE
+lXk
 lXk
 auy
 lXk
@@ -26350,15 +26356,15 @@ blI
 lXk
 blI
 lXk
-blI
+blP
 lXk
 lXk
+fWE
+lXk
+fWE
 lXk
 lXk
-lXk
-lXk
-lXk
-lXk
+fWE
 auy
 jUj
 jUj
@@ -26839,12 +26845,12 @@ xLJ
 xLJ
 xLJ
 xLJ
-abc
-abc
-abc
-abc
-abc
-abc
+aQE
+aQE
+aQE
+aQE
+aQE
+aQE
 xLJ
 xLJ
 xLJ
@@ -27014,16 +27020,16 @@ xLJ
 xLJ
 xLJ
 xLJ
+aQE
+aQE
+aQE
 abc
 abc
 abc
 abc
-abc
-abc
-abc
-abc
-abc
-abc
+aQE
+aQE
+aQE
 xLJ
 xLJ
 xLJ
@@ -27050,7 +27056,7 @@ xLJ
 jUj
 lXk
 lXk
-lXk
+fWE
 lXk
 lXk
 lXk
@@ -27200,7 +27206,7 @@ abc
 abc
 abc
 abc
-abc
+aXq
 abc
 xLJ
 xLJ
@@ -27226,7 +27232,7 @@ xLJ
 xLJ
 jUj
 lXk
-lXk
+fWE
 jUj
 lXk
 lXk
@@ -27235,15 +27241,15 @@ lXk
 auy
 lXk
 lXk
-lXk
-lXk
-vdq
-lXk
-lXk
+fWE
 lXk
 vdq
 fWE
 lXk
+lXk
+vdq
+lXk
+fWE
 lXk
 lXk
 lXk
@@ -27619,7 +27625,7 @@ lnl
 jrR
 jdc
 kBt
-gBt
+miq
 vTe
 vqf
 xLz
@@ -27951,7 +27957,7 @@ lXk
 jUj
 jUj
 lXk
-lXk
+fWE
 lXk
 jUj
 xLJ
@@ -28127,7 +28133,7 @@ lXk
 lXk
 jUj
 jUj
-lXk
+fWE
 lXk
 jUj
 jUj
@@ -28288,7 +28294,7 @@ xLJ
 xLJ
 xLJ
 jUj
-lXk
+fWE
 lXk
 lXk
 lXk
@@ -28464,20 +28470,20 @@ xLJ
 xLJ
 xLJ
 lXk
-lXk
+fWE
 lXk
 lXk
 lXk
 auy
 lXk
 lXk
-auy
+fEq
 lXk
 lXk
 lXk
 lXk
 lXk
-lXk
+fWE
 auy
 lXk
 lXk
@@ -28649,7 +28655,6 @@ lXk
 jUj
 jUj
 lXk
-fWE
 lXk
 lXk
 lXk
@@ -28657,7 +28662,8 @@ lXk
 lXk
 lXk
 lXk
-fWE
+lXk
+lXk
 jUj
 jUj
 xLJ
@@ -29533,7 +29539,7 @@ lXk
 lXk
 lXk
 lXk
-lXk
+fWE
 lXk
 lXk
 jUj
@@ -38567,7 +38573,7 @@ cSd
 aIm
 aIm
 aIm
-aIm
+aNt
 aIm
 aIm
 xzu
@@ -38743,7 +38749,7 @@ aIm
 aIm
 aIm
 aIm
-aNt
+aIm
 aIm
 aNt
 aIm
@@ -39974,7 +39980,7 @@ aIm
 xLJ
 xLJ
 xLJ
-aNt
+aIm
 cSd
 aIm
 aIm
@@ -57977,8 +57983,8 @@ xLJ
 xLJ
 aah
 aah
-aaD
 aah
+aaD
 aah
 aal
 aah
@@ -58508,7 +58514,7 @@ aah
 aah
 aah
 aah
-aaD
+aah
 aal
 aah
 aah
