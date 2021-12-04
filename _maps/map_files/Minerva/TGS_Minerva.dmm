@@ -7355,6 +7355,10 @@
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/engine,
 /area/mainship/engineering/port_atmos)
+"zM" = (
+/obj/structure/sign/safety/EVA,
+/turf/closed/wall/mainship,
+/area/mainship/living/grunt_rnr)
 "zN" = (
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/sterile/corner,
@@ -10017,6 +10021,7 @@
 /area/mainship/engineering/port_atmos)
 "IS" = (
 /obj/structure/toilet,
+/obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "IT" = (
@@ -11152,10 +11157,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/grunt_rnr)
-"MB" = (
-/obj/structure/sign/safety/EVA,
-/turf/closed/wall/mainship,
-/area/mainship/hallways/starboard_hallway)
 "MC" = (
 /obj/machinery/suit_storage_unit/carbon_unit,
 /obj/machinery/camera/autoname/mainship{
@@ -11263,10 +11264,6 @@
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
-"Nh" = (
-/obj/machinery/suit_storage_unit/carbon_unit,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_hallway)
 "Ni" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
@@ -11283,7 +11280,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
 "Nm" = (
 /obj/structure/cable,
@@ -26543,9 +26540,9 @@ xg
 IQ
 JS
 IQ
-IQ
+zM
 LQ
-MB
+MI
 Ne
 NO
 Pn
@@ -26644,7 +26641,7 @@ JR
 IQ
 LR
 MC
-Nh
+by
 NO
 Pn
 Ql
