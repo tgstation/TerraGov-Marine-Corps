@@ -5573,12 +5573,9 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "cmD" = (
-/obj/structure/jungle/vines,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
-/turf/open/floor/plating/ground/dirtgrassborder/corner{
-	dir = 8
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
 	},
 /area/lv624/ground/jungle6)
 "cmE" = (
@@ -7287,8 +7284,8 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/open/floor/plating/ground/dirtgrassborder/corner2{
-	dir = 8
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
 	},
 /area/lv624/ground/jungle6)
 "epV" = (
@@ -8077,10 +8074,8 @@
 "fom" = (
 /obj/effect/decal/remains/human,
 /obj/structure/jungle/vines,
-/turf/open/floor/plating/ground/dirtgrassborder{
-	dir = 4
-	},
-/area/lv624/ground/jungle6)
+/turf/closed/gm/dense,
+/area/lv624/ground/caves/rock)
 "foU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9850,10 +9845,6 @@
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle5)
-"hmt" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/gm/dense,
-/area/lv624/ground/jungle6)
 "hmG" = (
 /obj/machinery/floodlight/colony,
 /turf/open/ground/grass,
@@ -12130,10 +12121,6 @@
 	icon_state = "grimy"
 	},
 /area/lv624/lazarus/bar)
-"keR" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle6)
 "keT" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -14750,9 +14737,7 @@
 /area/lv624/ground/jungle3)
 "ncS" = (
 /obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/plating/ground/dirtgrassborder/corner2{
-	dir = 8
-	},
+/turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "ndh" = (
 /obj/structure/platform_decoration{
@@ -16916,12 +16901,6 @@
 /obj/effect/decal/riverdecal,
 /turf/open/ground/river,
 /area/lv624/ground/river2)
-"pRI" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
-/turf/closed/gm/dense,
-/area/lv624/ground/jungle6)
 "pRL" = (
 /obj/machinery/landinglight/ds1{
 	dir = 4
@@ -20836,10 +20815,6 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/spaceport2)
-"ulT" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/floor/plating/ground/dirtgrassborder,
-/area/lv624/ground/jungle6)
 "ulW" = (
 /obj/structure/filingcabinet,
 /obj/machinery/light/small{
@@ -20893,8 +20868,8 @@
 /area/lv624/lazarus/engineering)
 "uof" = (
 /obj/effect/landmark/fob_sentry,
-/turf/open/floor/plating/ground/dirtgrassborder/corner2,
-/area/lv624/ground/jungle6)
+/turf/closed/gm/dense,
+/area/lv624/ground/caves/rock)
 "uoH" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -21307,10 +21282,6 @@
 "uNG" = (
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
-/area/lv624/ground/jungle6)
-"uNL" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "uNU" = (
 /obj/machinery/landinglight/ds1/delaythree,
@@ -23053,12 +23024,6 @@
 	dir = 2
 	},
 /area/lv624/lazarus/medbay)
-"wJE" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/floor/plating/ground/dirtgrassborder{
-	dir = 1
-	},
-/area/lv624/ground/jungle6)
 "wJG" = (
 /obj/machinery/floodlight/colony,
 /turf/open/ground/grass,
@@ -35617,9 +35582,9 @@ rRx
 rRx
 rRx
 rRx
-tSf
-tSf
-tSf
+rRx
+rRx
+rRx
 rRx
 rRx
 rRx
@@ -39152,8 +39117,8 @@ tSf
 aFp
 gLs
 ctO
-mAq
-uoM
+ctO
+ctO
 ctO
 gLs
 ctO
@@ -39329,8 +39294,8 @@ tSf
 tSf
 tSf
 tSf
-aFp
-pER
+tSf
+tSf
 tSf
 tSf
 tSf
@@ -39505,14 +39470,14 @@ kdu
 rhp
 rhp
 rhp
-ulT
-uNL
-uNL
-wJE
-keR
-hmt
-hmt
-pRI
+rhp
+rhp
+rhp
+rhp
+rhp
+rhp
+rhp
+kdu
 tSf
 eDX
 vvX
@@ -39681,15 +39646,15 @@ mOs
 mOs
 mOs
 mOs
-aWF
+mOs
 uof
-nny
-nny
+mOs
+avd
 ncS
-aWF
-qZg
+avd
+auJ
 fom
-cmD
+hrS
 tSf
 nfE
 pSL
@@ -39858,15 +39823,15 @@ mOs
 mOs
 vgb
 rpD
-nny
-nny
-kPD
-nny
-nny
-kPD
-nny
-nny
-epU
+aWF
+aWF
+cmD
+aWF
+aWF
+cmD
+aWF
+iuG
+kdu
 tSf
 rOf
 vvX
@@ -40042,8 +40007,8 @@ nny
 nny
 nny
 obc
-nny
-pZM
+kYP
+epU
 tSf
 aFp
 mAq
