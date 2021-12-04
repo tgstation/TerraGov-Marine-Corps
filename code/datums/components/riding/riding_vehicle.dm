@@ -96,6 +96,19 @@
 	ride_check_flags = RIDER_NEEDS_LEGS | RIDER_NEEDS_ARMS
 	vehicle_move_delay = 4
 
+/datum/component/riding/vehicle/powerloader/Initialize(mob/living/riding_mob, force, ride_check_flags, potion_boost)
+	. = ..()
+	if(SSmonitor.gamestate != SHUTTERS_CLOSED)
+		return
+	vehicle_move_delay = 0.5
+	RegisterSignal(src, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), .proc/regain_move_delay)
+
+///Returns the loader's movement speed to normal after prep is over
+/datum/component/riding/vehicle/powerloader/proc/regain_move_delay(datum/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(src, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED))
+	vehicle_move_delay = initial(vehicle_move_delay)
+
 /datum/component/riding/vehicle/powerloader/handle_specials()
 	. = ..()
 	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 2), TEXT_SOUTH = list(0, 2), TEXT_EAST = list(0, 2), TEXT_WEST = list(0, 2)))
