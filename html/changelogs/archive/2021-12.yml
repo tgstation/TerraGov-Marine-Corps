@@ -66,3 +66,14 @@
   Walarks:
   - expansion: adds 50% aim mode delay removal to deployed bipod, which combined with
       red dot reaches 100% (yes, GPMG enjoyers)
+2021-12-05:
+  BraveMole:
+  - bugfix: No more multi king
+  - bugfix: Xeno turrets no longer can be placed next to each other by spamming
+  - bugfix: Fix free electronic pouches being full
+  vilereaver41:
+  - rscadd: new area northeast of caves.
+  - balance: West-LZ1 to make it a bit more open north of it. also made lz1 bigger
+      so marines got more room
+  - balance: the pre shutter open no-build zone has been reduced.
+  - balance: added more weed nodes and doors in caves for quality of life.
