@@ -550,7 +550,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
