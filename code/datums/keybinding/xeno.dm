@@ -173,12 +173,6 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_THROW_HUGGER
 
-/datum/keybinding/xeno/retrieve_egg
-	name = "retrieve_egg"
-	full_name = "Carrier: Retrieve Egg"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_RETRIEVE_EGG
-
 /datum/keybinding/xeno/place_trap
 	name = "place_trap"
 	full_name = "Carrier: Place Trap"
