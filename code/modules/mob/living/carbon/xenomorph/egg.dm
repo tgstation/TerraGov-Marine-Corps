@@ -1,15 +1,3 @@
-/obj/item/xeno_egg
-	name = "egg"
-	desc = "Some sort of egg."
-	icon = 'icons/Xeno/Effects.dmi'
-	icon_state = "egg_item"
-	w_class = WEIGHT_CLASS_GIGANTIC
-	flags_atom = CRITICAL_ATOM
-	flags_item = NOBLUDGEON
-	throw_range = 1
-	layer = MOB_LAYER
-	var/hivenumber = XENO_HIVE_NORMAL
-
 /obj/effect/alien/egg
 	name = "theoretical egg"
 	density = FALSE

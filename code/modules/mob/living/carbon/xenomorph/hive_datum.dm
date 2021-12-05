@@ -1214,9 +1214,6 @@ to_chat will check for valid clients itself already so no need to double check f
 		return hugger.hivenumber
 	return hivenumber
 
-/obj/item/xeno_egg/get_xeno_hivenumber()
-	return hivenumber
-
 /obj/item/alien_embryo/get_xeno_hivenumber()
 	return hivenumber
 
