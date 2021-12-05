@@ -162,7 +162,7 @@
 
 ///Handles overheal for xeno receiving damage
 #define HANDLE_OVERHEAL(amount) \
-	if(overheal && amount < 0) { \
+	if(overheal && amount > 0) { \
 		var/reduction = min(amount, overheal); \
 		amount -= reduction; \
 		adjustOverheal(src, -reduction); \
