@@ -2154,6 +2154,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 70
 	penetration = 0
 	shrapnel_chance = 0
+	var/drain_multiplier = 0.05
 
 /datum/ammo/bullet/pepperball/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	if(isxeno(victim))
