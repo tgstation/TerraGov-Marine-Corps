@@ -44,7 +44,7 @@
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/psydrain/free,
 		/datum/action/xeno_action/activable/drain,
 		/datum/action/xeno_action/activable/rejuvenate,
 		/datum/action/xeno_action/activable/carnage,

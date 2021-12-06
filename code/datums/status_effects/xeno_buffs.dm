@@ -106,6 +106,8 @@
 ///Calls slash proc
 /datum/status_effect/xeno_carnage/proc/carnage_slash(datum/source, mob/living/target, damage)
 	SIGNAL_HANDLER
+	if(!ishuman(target) || issynth(target))
+		return
 	UnregisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING)
 	INVOKE_ASYNC(src, .proc/do_carnage_slash, source, target, damage)
 

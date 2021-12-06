@@ -1,3 +1,6 @@
+/datum/action/xeno_action/activable/psydrain/free
+	plasma_cost = 0
+
 /////////////////////////////////
 // Devour
 /////////////////////////////////
@@ -33,6 +36,10 @@
 			to_chat(owner, span_warning("[victim] is buckled to something."))
 		return FALSE
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	if(owner_xeno.eaten_mob)
+		if(!silent)
+			to_chat(owner_xeno, span_warning("You have already swallowed one."))
+		return FALSE
 	if(owner_xeno.on_fire)
 		if(!silent)
 			to_chat(owner_xeno, span_warning("We're too busy being on fire to do this!"))
@@ -50,7 +57,7 @@
 
 	var/channel = SSsounds.random_available_channel()
 	playsound(owner_xeno, 'sound/vore/escape.ogg', 40, channel = channel)
-	if(!do_after(owner_xeno, 3 SECONDS, FALSE, null, BUSY_ICON_DANGER))
+	if(!do_after(owner_xeno, GORGER_REGURGITATE_DELAY, FALSE, null, BUSY_ICON_DANGER))
 		to_chat(owner, span_warning("We moved too soon!"))
 		owner_xeno.stop_sound_channel(channel)
 		return
@@ -63,7 +70,7 @@
 	owner_xeno.visible_message(span_danger("[owner_xeno] starts to devour [victim]!"), span_danger("We start to devour [victim]!"), null, 5)
 	var/channel = SSsounds.random_available_channel()
 	playsound(owner_xeno, 'sound/vore/struggle.ogg', 40, channel = channel)
-	if(!do_after(owner_xeno, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = owner_xeno.health))))
+	if(!do_after(owner_xeno, GORGER_DEVOUR_DELAY, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = owner_xeno.health))))
 		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
 		owner_xeno.stop_sound_channel(channel)
 		return
@@ -130,16 +137,20 @@
 	target_human.emote("scream");\
 	target_human.apply_damage(damage = 2, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE);\
 \
-	adjustOverheal(owner_xeno, GORGER_DRAIN_OVERHEAL);\
+	var/drain_healing = GORGER_DRAIN_HEAL;\
+	HEAL_XENO_DAMAGE(owner_xeno, drain_healing);\
+	adjustOverheal(owner_xeno, drain_healing);\
 	owner_xeno.gain_plasma(owner_xeno.xeno_caste.drain_plasma_gain)
 
 /datum/action/xeno_action/activable/drain/use_ability(mob/living/carbon/human/target_human)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(target_human.stat == DEAD)
-		while(owner_xeno.health < owner_xeno.maxHealth && do_after(owner_xeno, 2 SECONDS, TRUE, target_human, BUSY_ICON_HOSTILE))
+		var/overheal_gain = 0
+		while(XENO_IS_DAMAGED_FULL(owner_xeno) && do_after(owner_xeno, 2 SECONDS, TRUE, target_human, BUSY_ICON_HOSTILE))
 			target_human.blood_volume -= GORGER_REJUVENATE_BLOOD_DRAIN
 			var/target_blood = target_human.blood_volume
-			owner_xeno.heal_wounds(2.2, TRUE)
+			overheal_gain = owner_xeno.heal_wounds(2.2, TRUE)
+			adjustOverheal(owner_xeno, overheal_gain)
 			owner_xeno.adjust_sunder(-0.5)
 			target_human.hud_list[HEART_STATUS_HUD].alpha = 255 * (target_human.blood_volume / BLOOD_VOLUME_NORMAL)
 			if(target_blood < GORGER_REJUVENATE_BLOOD_DRAIN)
@@ -324,7 +335,7 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	// cancel the buff when at full health to conserve plasma, otherwise don't cancel
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
-		return owner_xeno.health == owner_xeno.maxHealth
+		return XENO_IS_DAMAGED(owner_xeno)
 	// small damage has more efficient alternatives to be healed with
 	if(owner_xeno.health > owner_xeno.maxHealth * 0.7)
 		return FALSE

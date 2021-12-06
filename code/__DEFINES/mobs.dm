@@ -571,9 +571,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CRUSHER_CHARGE_TANK_MULTI 100
 
 //gorger defines
+#define GORGER_REGURGITATE_DELAY 1 SECONDS
+#define GORGER_DEVOUR_DELAY 2 SECONDS
 #define GORGER_DRAIN_INSTANCES 2 // amuont of times the target is drained
 #define GORGER_DRAIN_DELAY 1 SECONDS // time needed to drain a marine once
-#define GORGER_DRAIN_OVERHEAL 40 // overheal gained each time the target is drained
+#define GORGER_DRAIN_HEAL 40 // overheal gained each time the target is drained
 #define GORGER_REJUVENATE_ALLY_COST 20 // cost of using ability on an ally
 #define GORGER_REJUVENATE_ALLY_COOLDOWN 2 SECONDS //cooldown of casting rejuvenation on an ally
 #define GORGER_REJUVENATE_ALLY_PERCENTAGE 0.3 // percent of health healed on ally xeno
