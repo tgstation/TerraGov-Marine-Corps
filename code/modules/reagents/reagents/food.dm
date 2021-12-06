@@ -76,6 +76,51 @@
 	counterlist_normalise(taste_amounts)
 
 	data = taste_amounts
+//various flavors of nutriment for protein bars
+/datum/reagent/consumable/protein
+	name = "Protein Mix"
+	description = "All the vitamins, minerals, and carbohydrates the body with a unique flavor"
+	nutriment_factor = 15
+	color = "#664330" // rgb: 102, 67, 48
+	taste_description = "nutraloafed food"
+	var/brute_heal = 1
+	var/burn_heal = 0
+	var/blood_gain = 0.4
+
+/datum/reagent/consumable/protein/on_mob_life(mob/living/L, metabolism)
+	if(prob(50))
+		L.heal_limb_damage(brute_heal, burn_heal)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		if(C.blood_volume < BLOOD_VOLUME_NORMAL)
+			C.blood_volume += blood_gain
+
+	return ..()
+
+/datum/reagent/consumable/protein/mint
+	name = "Mint Protein Mix"
+	taste_description = "minty protein"
+/datum/reagent/consumable/protein/grape
+	name = "Grape Protein Mix"
+	taste_description = "artifical grape"
+/datum/reagent/consumable/protein/mystery
+	name = "Crayon Protein Mix"
+	taste_description = "crayons"
+/datum/reagent/consumable/protein/darkchocolate
+	name = "Dark chocolate Protein Mix"
+	taste_description = "bitter dark chocolate"
+/datum/reagent/consumable/protein/milkchocolate
+	name = "Milk Chocolate Protein Mix"
+	taste_description = "off flavor milk chocolate"
+/datum/reagent/consumable/protein/rasplime
+	name = "Raspberry Lime Protein Mix"
+	taste_description = "sour raspberry and lime"
+/datum/reagent/consumable/protein/chicken
+	name = "Chicken Protein Mix"
+	taste_description = "powdered chicken"
+/datum/reagent/consumable/protein/blueberry
+	name = "Blueberry Protein Mix"
+	taste_description = "blueberry"
 
 /datum/reagent/consumable/sugar
 	name = "Sugar"

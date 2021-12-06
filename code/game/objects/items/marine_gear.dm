@@ -60,46 +60,48 @@
 	name = "stale TGMC protein bar"
 	desc = "The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute."
 	greyscale_colors = "#f37d43" //default colors
-	tastes = list("nutraloafed food" = 25)
+	list_reagents = list(/datum/reagent/consumable/protein = 8)
 /obj/item/reagent_containers/food/snacks/protein_pack_base/two
 	name = "mint TGMC protein bar"
 	desc = "Stale old protien bar, with an almost minty freshness to it, but not fresh enough"
 	greyscale_colors = "#61b36e"
-	tastes = list("minty" = 25)
+	list_reagents = list(/datum/reagent/consumable/protein/mint = 8)
 /obj/item/reagent_containers/food/snacks/protein_pack_base/three
 	name = "grape TGMC protein bar"
 	desc = "Not the good type of grape flavor, tastes like medicine. Fills you up just as well as any protein bar."
 	greyscale_colors = "#9900ff"
 	tastes = list("artifical grape" = 25)
+	list_reagents = list(/datum/reagent/consumable/protein/grape = 8)
 /obj/item/reagent_containers/food/snacks/protein_pack_base/four
 	name = "mystery TGMC protein bar"
 	desc = "Some say they have tasted one of these and tasted their favorite childhood meal, especially for squad marines. Most say this tastes like crayons, though it fills like any other protein bar you've seen."
 	greyscale_colors = "#ffffff"
-	tastes = list("crayons" = 25)
+	list_reagents = list(/datum/reagent/consumable/protein/mystery = 8)
 /obj/item/reagent_containers/food/snacks/protein_pack_base/five
 	name = "dark chocolate TGMC protein bar"
 	desc = "The dark chocolate flavor helps it out a bit, but its still a cheap protein bar."
 	greyscale_colors = "#5a3b1d"
+	list_reagents = list(/datum/reagent/consumable/protein/darkchocolate = 8)
 /obj/item/reagent_containers/food/snacks/protein_pack_base/six
 	name = "milk chocolate TGMC protein bar"
 	desc = "A nice milky addition to a otherwise bland protein taste."
 	greyscale_colors = "#efc296"
-	tastes = list("off flavor milk chocolate" = 25)
+	list_reagents = list(/datum/reagent/consumable/protein/milkchocolate = 8)
 /obj/item/reagent_containers/food/snacks/protein_pack_base/seven
 	name = "raspberry lime TGMC protein bar"
 	desc = "A flavored protein bar, some might say a bit too strongly flavored for their tastes."
 	greyscale_colors = "#ff0066"
-	tastes = list("raspberry" = 25,"lime" = 25)
+	list_reagents = list(/datum/reagent/consumable/protein/rasplime = 8)
 /obj/item/reagent_containers/food/snacks/protein_pack_base/eight
 	name = "chicken TGMC protein bar"
 	desc = "Protein bar covered with chicken powder one might find in ramen. Get some extra sodium with your protein."
 	greyscale_colors = "#cccc00"
-	tastes = list("chicken and salt" = 25)
+	list_reagents = list(/datum/reagent/consumable/protein/chicken = 8)
 /obj/item/reagent_containers/food/snacks/protein_pack_base/nine
 	name = "blueberry TGMC protein bar"
 	desc = "A nice blueberry crunch into your otherwise stale and boring protein bar."
 	greyscale_colors = "#4e39c5"
-	tastes = list("blueberry" = 25)
+	list_reagents = list(/datum/reagent/consumable/protein/blueberry = 8)
 
 /obj/item/reagent_containers/food/snacks/protein_pack
 
