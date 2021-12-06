@@ -117,7 +117,6 @@
 		/obj/item/reagent_containers/food/snacks/protein_pack_base/seven,
 		/obj/item/reagent_containers/food/snacks/protein_pack_base/eight,
 		/obj/item/reagent_containers/food/snacks/protein_pack_base/nine)
-	//var/obj/item/I = new protein_bar(src.loc)
 	new protein_bar(src.loc)
 	qdel(src)
 
