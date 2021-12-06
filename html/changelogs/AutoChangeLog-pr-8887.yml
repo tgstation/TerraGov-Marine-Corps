@@ -1,0 +1,5 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - imageadd: "Added a unique sprite for LZ lockdown overrides."
+  - imageadd: "Added directional sprites for LZ lockdown overrides."

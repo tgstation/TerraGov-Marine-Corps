@@ -4057,6 +4057,7 @@
 	dir = 1
 	},
 /obj/structure/table/mainship,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "sf" = (
@@ -4593,10 +4594,7 @@
 	},
 /area/whiskey_outpost)
 "xz" = (
-/obj/machinery/vending/nanomed{
-	dir = 8
-	},
-/obj/machinery/light,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/sterile/dark,
 /area/whiskey_outpost)
 "xD" = (
@@ -5579,14 +5577,6 @@
 /obj/item/storage/box/visual/magazine/compact/standard_carbine/full,
 /obj/item/storage/box/visual/magazine/compact/standard_carbine/full,
 /turf/open/floor/prison,
-/area/whiskey_outpost)
-"Ib" = (
-/obj/structure/bed,
-/obj/item/bedsheet/medical,
-/obj/machinery/vending/nanomed{
-	dir = 8
-	},
-/turf/open/floor/mainship/sterile/dark,
 /area/whiskey_outpost)
 "If" = (
 /obj/structure/barricade/sandbags{
@@ -17558,7 +17548,7 @@ hB
 hB
 hB
 bd
-th
+xz
 th
 th
 th
@@ -18476,12 +18466,12 @@ hc
 hc
 hc
 bd
-Ib
+bN
 jD
 th
 th
 th
-xz
+Kn
 bd
 ZR
 Pv

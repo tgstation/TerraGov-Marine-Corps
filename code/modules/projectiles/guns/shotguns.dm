@@ -530,7 +530,7 @@
 	fire_delay = 10
 	accuracy_mult = 1.20
 	accuracy_mult_unwielded = 0.8
-	damage_mult = 1.5
+	damage_mult = 2
 	damage_falloff_mult = 0.5
 	scatter = -5
 	scatter_unwielded = 15

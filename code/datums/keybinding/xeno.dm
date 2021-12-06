@@ -149,6 +149,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB
 
+/datum/keybinding/xeno/toggle_bomb_radial
+	name = "toggle_bomb_radial"
+	full_name = "Boiler: Select Bombard Type (Radial)"
+	description = "Will use the default toggle if you have two or less available glob types."
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB_RADIAL
+
 /datum/keybinding/xeno/create_bomb
 	name = "create_bomb"
 	full_name = "Boiler: Create Bombard Ammo"

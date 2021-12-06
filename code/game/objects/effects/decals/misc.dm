@@ -52,3 +52,29 @@
 
 /obj/effect/decal/sandedge/corner2
 	icon_state = "sandcorner2"
+
+/obj/effect/decal/sandytile
+	name = "sand"
+	gender = PLURAL
+	density = FALSE
+	anchored = TRUE
+	layer = TURF_LAYER
+	icon = 'icons/turf/ground_map.dmi'
+	icon_state = "sandyfloor"
+	mouse_opacity = 0
+
+/obj/effect/decal/sandytile/sandyplating
+	icon_state = "sandyplating"
+
+/obj/effect/decal/riverdecal
+	name = "river"
+	gender = PLURAL
+	density = FALSE
+	anchored = TRUE
+	layer = XENO_WEEDS_LAYER
+	icon = 'icons/turf/ground_map.dmi'
+	icon_state = "riverdecal"
+	mouse_opacity = 0
+
+/obj/effect/decal/riverdecal/edge
+	icon_state = "riverdecaledge"

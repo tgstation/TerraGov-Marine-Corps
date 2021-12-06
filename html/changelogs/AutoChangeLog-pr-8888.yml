@@ -1,0 +1,4 @@
+author: "KrabSpider"
+delete-after: True
+changes: 
+  - rscadd: "Mateba speedloaders, scout rifle magazines, and railgun magazine factorio refills are now available through cargo. Please don't blow anything up."

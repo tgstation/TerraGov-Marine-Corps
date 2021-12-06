@@ -149,6 +149,8 @@
 	src.foam_flags = foam_flags
 
 /datum/effect_system/foam_spread/start()
+	if(spread_amount <= 0)
+		return
 	var/obj/effect/particle_effect/foam/F = new(location)
 	var/foamcolor = mix_color_from_reagents(carrying_reagents.reagent_list)
 	carrying_reagents.copy_to(F, carrying_reagents.total_volume/spread_amount)

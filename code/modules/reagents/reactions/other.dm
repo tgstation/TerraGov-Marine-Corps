@@ -187,6 +187,7 @@
 /datum/chemical_reaction/razorburn
 	name = "Razorburn Gas"
 	required_reagents = list(/datum/reagent/foaming_agent = 1, /datum/reagent/toxin/nanites = 1)
+	required_catalysts = list(/datum/reagent/toxin/nanites = 7)
 
 /datum/chemical_reaction/razorburn/on_reaction(datum/reagents/holder, created_volume)
 	var/turf/location = get_turf(holder.my_atom)
@@ -194,7 +195,6 @@
 	var/datum/effect_system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, RAZOR_FOAM)
 	s.start()
-	holder.clear_reagents()
 
 /datum/chemical_reaction/foaming_agent
 	name = "Foaming Agent"

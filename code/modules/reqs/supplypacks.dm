@@ -1725,3 +1725,18 @@ FACTORY
 	name = "Claymore parts refill"
 	contains = list(/obj/item/factory_refill/claymore)
 	cost = 10
+
+/datum/supply_packs/factory/mateba_speedloader_refill
+	name = "Mateba autorevolver speedloader assembly refill"
+	contains = list(/obj/item/factory_refill/mateba_speedloader_refill)
+	cost = 20
+
+/datum/supply_packs/factory/railgun_magazine_refill
+	name = "Railgun magazine assembly refill"
+	contains = list(/obj/item/factory_refill/railgun_magazine_refill)
+	cost = 20
+
+/datum/supply_packs/factory/scout_rifle_magazine_refill
+	name = "TX-8 scout rifle magazine assembly refill"
+	contains = list(/obj/item/factory_refill/scout_rifle_magazine_refill)
+	cost = 50
