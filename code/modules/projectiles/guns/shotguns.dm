@@ -508,7 +508,7 @@
 	caliber = CALIBER_44 //codex
 	load_method = SINGLE_CASING //codex
 	max_chamber_items = 13 //codex
-	default_ammo_type = /datum/ammo/bullet/revolver/tp44
+	default_ammo_type = /datum/ammo/bullet/rifle/magnum
 	gun_skill_category = GUN_SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
 	flags_item_map_variant = NONE

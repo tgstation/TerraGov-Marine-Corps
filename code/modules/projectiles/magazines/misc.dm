@@ -115,3 +115,11 @@
 	current_rounds = 150
 	max_rounds = 150
 
+/obj/item/ammo_magazine/packet/repeater
+	name = "packet of .44 rimfire"
+	desc = "A packet of .44 rimfire.."
+	caliber = CALIBER_44RIM
+	default_ammo = /datum/ammo/bullet/rifle/magnum
+	w_class = WEIGHT_CLASS_SMALL
+	current_rounds = 50
+	max_rounds = 50
