@@ -10,6 +10,7 @@
 	///Initial hex color we use when applying the visor color
 	greyscale_colors = "#f7fb58"
 	flags_attach_features = ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
+	colorable_allowed = COLOR_WHEEL_ONLY
 	///whether this helmet should be using its emissive overlay or not
 	var/visor_emissive_on = TRUE
 	///Whether or not the helmet is allowed to turn its emissive on or off.

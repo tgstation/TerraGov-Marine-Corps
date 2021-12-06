@@ -89,6 +89,11 @@
  *  These include Leg plates, Chest plates, Shoulder Plates and Visors. This could be expanded to anything that functions like armor and has greyscale functionality.
  */
 
+#define COLOR_WHEEL_ALLOWED 1
+#define COLOR_WHEEL_NOT_ALLOWED 2
+#define COLOR_WHEEL_ONLY 3
+#define NOT_COLORABLE 4
+
 /obj/item/armor_module/armor
 	name = "modular armor - armor module"
 	icon = 'icons/mob/modular/modular_armor.dmi'
@@ -100,12 +105,28 @@
 	slowdown = 0
 
 	greyscale_config = /datum/greyscale_config/modularchest_infantry
-	greyscale_colors = "#444732"
+	greyscale_colors = "#1d2426#352c34#504247#6d5957#958677"
 
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 
 	///optional assoc list of colors we can color this armor
-	var/list/colorable_colors
+	var/list/colorable_colors = list(
+		"Drab" = "#1d2426#241d16#363021#444732#665f44",
+		"Brown" = "#1d2426#1f1007#2c190c#3d2414#60452b",
+		"Snow" = "#1d2426#5d5353#897b7b#aca194#d5ccc3",
+		"Desert" = "#1d2426#352c34#504247#6d5957#958677",
+		"Red" = "#1d2426#370a0d#4d1313#672122#a84d46",
+		"Green" = "#1d2426#12200c#192d14#28402b#486b41",
+		"Purple" = "#1d2426#230b20#32122c#461f3f#733d65",
+		"Black" = "#1d2426#18181b#232427#35363c#474a50",
+		"Blue" = "#1d2426#111f28#182634#243548#435872",
+		"Yellow" = "#1d2426#5c5027#6f6633#837b41#9f9a5d",
+		"Aqua" = "#1d2426#062624#0b3535#154949#2c6e73",
+		"Orange" = "#1d2426#492213#652c16#85391e#c16737",
+		"Grey" = "#1d2426#262626#3f3f3f#5a5a5a#828282",
+	)
+	///Some defines to determin if the armor piece is allowed to be recolored.
+	var/colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
 
 /obj/item/armor_module/armor/Initialize()
 	. = ..()
@@ -135,6 +156,9 @@
 	if(.)
 		return
 
+	if(colorable_allowed == NOT_COLORABLE || (!length(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED))
+		return
+
 	if(!istype(I, /obj/item/facepaint))
 		return
 
@@ -143,10 +167,20 @@
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return
 
+	var/selection = (colorable_allowed == COLOR_WHEEL_ALLOWED) ? list("Color Wheel", "Preset Colors") : "Preset Colors"
+	if(colorable_allowed == COLOR_WHEEL_ONLY)
+		selection = "Color Wheel"
+	else if(colorable_allowed == COLOR_WHEEL_ALLOWED )
+		selection = list("Color Wheel", "Preset Colors")
+		selection = tgui_input_list(user, "Choose a color setting", "Choose setting", selection)
+	else if(colorable_allowed != COLOR_WHEEL_ONLY)
+		selection = "Preset Colors"
+	if(!selection)
+		return
 	var/new_color
-	if(colorable_colors)
+	if(selection == "Preset Colors")
 		new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
-	else
+	else if(selection == "Color Wheel" && (colorable_allowed == COLOR_WHEEL_ALLOWED || colorable_allowed == COLOR_WHEEL_ONLY))
 		new_color = input(user, "Pick a color", "Pick color") as null|color
 
 	if(!new_color)
