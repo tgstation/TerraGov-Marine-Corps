@@ -804,7 +804,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/button/door/open_only/landing_zone{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/magmoor/landing)
@@ -33262,7 +33262,7 @@
 /area/magmoor/compound/east)
 "wAs" = (
 /obj/machinery/button/door/open_only/landing_zone/lz2{
-	dir = 8
+	dir = 4
 	},
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
