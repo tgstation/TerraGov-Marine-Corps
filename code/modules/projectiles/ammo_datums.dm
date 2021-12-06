@@ -541,6 +541,20 @@ datum/ammo/bullet/revolver/tp44
 	damage = 20
 	penetration = 10
 
+/datum/ammo/bullet/rifle/repeater
+	name = "high impact rifle bullet"
+	hud_state = "revolver_heavy"
+	hud_state_empty = "revolver_empty"
+	damage = 65
+	penetration = 20
+	shrapnel_chance = 5
+	sundering = 1.25
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+
+/datum/ammo/bullet/rifle/magnum/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, max_range = 4, slowdown = 2, stagger = 1, shake = 0.5)
+
+
 /datum/ammo/bullet/rifle/tx8
 	name = "A19 high velocity bullet"
 	hud_state = "hivelo"
