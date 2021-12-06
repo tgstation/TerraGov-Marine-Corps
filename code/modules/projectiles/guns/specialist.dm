@@ -461,10 +461,12 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon = 'icons/Marine/gun64.dmi' //TODO: Custom Sprite
 	slot = ATTACHMENT_SLOT_UNDER
 	max_shells = 20
-	current_mag = /obj/item/ammo_magazine/rifle/pepperball/pepperball_mini
+	default_ammo_type = /obj/item/ammo_magazine/rifle/pepperball/pepperball_mini
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini)
+	force = 5
 	attachable_allowed = list()
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	flags_gun_features = GUN_IS_ATTACHMENT | GUN_AUTO_EJECTOR | GUN_WIELDED_FIRING_ONLY | GUN_ATTACHMENT_FIRE_ONLY
+	flags_gun_features = GUN_IS_ATTACHMENT | GUN_WIELDED_FIRING_ONLY | GUN_ATTACHMENT_FIRE_ONLY
 
 	fire_delay = 0.2 SECONDS
 	attach_delay = 3

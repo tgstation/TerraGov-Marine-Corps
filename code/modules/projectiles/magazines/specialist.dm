@@ -252,7 +252,6 @@
 	default_ammo = /datum/ammo/bullet/pepperball
 	max_rounds = 70
 	w_class = WEIGHT_CLASS_NORMAL
-	gun_type = /obj/item/weapon/gun/rifle/pepperball/
 	icon_state_mini = "mag_pepperball"
 
 /obj/item/ammo_magazine/rifle/pepperball/pepperball_mini
@@ -261,8 +260,6 @@
 	icon_state = "pepperball" //TODO: Custom Sprite
 	default_ammo = /datum/ammo/bullet/pepperball/pepperball_mini
 	max_rounds = 20
-	gun_type = /obj/item/weapon/gun/rifle/pepperball/pepperball_mini
-	icon_state_mini = "mag_pepperball" //TODO: Custom Sprite
 
 /obj/item/ammo_magazine/minigun_powerpack
 	name = "\improper T-100 powerpack"
