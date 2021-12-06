@@ -548,7 +548,7 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 
 /datum/ammo/bullet/rifle/magnum/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, max_range = 5, slowdown = 2, stagger = 1, shake = 0.5)
+	staggerstun(M, P, max_range = 4, slowdown = 2, stagger = 1, shake = 0.5)
 
 
 /datum/ammo/bullet/rifle/tx8
