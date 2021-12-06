@@ -29,9 +29,9 @@
 	pixel_y = rand(-3,3)
 	pixel_x = rand(-3,3)
 	var/list/randompick = list(
-		/obj/item/reagent_containers/food/snacks/protein_pack,
-		/obj/item/reagent_containers/food/snacks/protein_pack,
-		/obj/item/reagent_containers/food/snacks/protein_pack,
+		/obj/item/reagent_containers/food/snacks/protein_pack_base/one,
+		/obj/item/reagent_containers/food/snacks/protein_pack_base/five,
+		/obj/item/reagent_containers/food/snacks/protein_pack_base/six,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal1,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal2,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal3,
@@ -57,46 +57,46 @@
 	greyscale_config = /datum/greyscale_config/protein
 
 /obj/item/reagent_containers/food/snacks/protein_pack_base/one
-	name = "Stale TGMC protein bar"
+	name = "stale TGMC protein bar"
 	desc = "The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute."
 	greyscale_colors = "#f37d43" //default colors
 	tastes = list("nutraloafed food" = 25)
 /obj/item/reagent_containers/food/snacks/protein_pack_base/two
-	name = "Minty TGMC protein bar"
+	name = "mint TGMC protein bar"
 	desc = "Stale old protien bar, with an almost minty freshness to it, but not fresh enough"
 	greyscale_colors = "#61b36e"
 	tastes = list("minty" = 25)
 /obj/item/reagent_containers/food/snacks/protein_pack_base/three
-	name = "Grape TGMC protein bar"
+	name = "grape TGMC protein bar"
 	desc = "Not the good type of grape flavor, tastes like medicine. Fills you up just as well as any protein bar."
 	greyscale_colors = "#9900ff"
 	tastes = list("artifical grape" = 25)
 /obj/item/reagent_containers/food/snacks/protein_pack_base/four
-	name = "Mystery TGMC protein bar"
-	desc = "Some say they have tasted one of these and tasted their favorite childhood meal. Most say it tastes like crayons"
+	name = "mystery TGMC protein bar"
+	desc = "Some say they have tasted one of these and tasted their favorite childhood meal, especially for squad marines. Most say this tastes like crayons, though it fills like any other protein bar you've seen."
 	greyscale_colors = "#ffffff"
 	tastes = list("crayons" = 25)
 /obj/item/reagent_containers/food/snacks/protein_pack_base/five
-	name = "Dark Chocolate TGMC protein bar"
+	name = "dark chocolate TGMC protein bar"
 	desc = "The dark chocolate flavor helps it out a bit, but its still a cheap protein bar."
 	greyscale_colors = "#5a3b1d"
 /obj/item/reagent_containers/food/snacks/protein_pack_base/six
-	name = "Milk Chocolate TGMC protein bar"
+	name = "milk chocolate TGMC protein bar"
 	desc = "A nice milky addition to a otherwise bland protein taste."
 	greyscale_colors = "#efc296"
 	tastes = list("off flavor milk chocolate" = 25)
 /obj/item/reagent_containers/food/snacks/protein_pack_base/seven
-	name = "Raspberry Lime TGMC protein bar"
-	desc = "A flavored protein bar, some might say a bit too strongly flavored."
+	name = "raspberry lime TGMC protein bar"
+	desc = "A flavored protein bar, some might say a bit too strongly flavored for their tastes."
 	greyscale_colors = "#ff0066"
 	tastes = list("raspberry" = 25,"lime" = 25)
 /obj/item/reagent_containers/food/snacks/protein_pack_base/eight
-	name = "Chicken TGMC protein bar"
+	name = "chicken TGMC protein bar"
 	desc = "Protein bar covered with chicken powder one might find in ramen. Get some extra sodium with your protein."
 	greyscale_colors = "#cccc00"
 	tastes = list("chicken and salt" = 25)
 /obj/item/reagent_containers/food/snacks/protein_pack_base/nine
-	name = "Blueberry TGMC protein bar"
+	name = "blueberry TGMC protein bar"
 	desc = "A nice blueberry crunch into your otherwise stale and boring protein bar."
 	greyscale_colors = "#4e39c5"
 	tastes = list("blueberry" = 25)
@@ -104,7 +104,7 @@
 /obj/item/reagent_containers/food/snacks/protein_pack
 
 	name = "TGMC protein bar"
-	desc = "This text should not be displayed"
+	desc = "A protien bar produced for the TGMC, comes in many flavors"// this text is only seen at the vending machine, the actual item should never exist.
 /obj/item/reagent_containers/food/snacks/protein_pack/New()
 	. = ..()
 	var/protein_bar = pick(
