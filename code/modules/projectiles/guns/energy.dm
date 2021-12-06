@@ -107,7 +107,7 @@
 	name = "\improper M43-T tesla shock rifle"
 	desc = "A prototype TGMC energy rifle that fires balls of elecricity that shock all those near them, it is meant to drain the plasma of unidentified creatures from within, limiting their abilities. Handle only with insulated clothing. Reloaded with power cells."
 	icon_state = "tesla"
-	item_state = "tx73"
+	item_state = "tesla"
 	icon = 'icons/Marine/gun64.dmi'
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
