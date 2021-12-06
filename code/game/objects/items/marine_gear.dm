@@ -44,7 +44,8 @@
 		new picked(src)
 
 
-/obj/item/reagent_containers/food/snacks/protein_pack
+/obj/item/reagent_containers/food/snacks/protein_pack_base
+
 	name = "stale TGMC protein bar"
 	desc = "The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute."
 	icon_state = "yummers"
@@ -53,6 +54,73 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
 	bitesize = 4
 	tastes = list("nutraloafed food" = 7, "cocoa" = 1)
+	greyscale_config = /datum/greyscale_config/protein
+
+/obj/item/reagent_containers/food/snacks/protein_pack_base/one
+	name = "Stale TGMC protein bar"
+	desc = "The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute."
+	greyscale_colors = "#f37d43" //default colors
+	tastes = list("nutraloafed food" = 25)
+/obj/item/reagent_containers/food/snacks/protein_pack_base/two
+	name = "Minty TGMC protein bar"
+	desc = "Stale old protien bar, with an almost minty freshness to it, but not fresh enough"
+	greyscale_colors = "#61b36e"
+	tastes = list("minty" = 25)
+/obj/item/reagent_containers/food/snacks/protein_pack_base/three
+	name = "Grape TGMC protein bar"
+	desc = "Not the good type of grape flavor, tastes like medicine. Fills you up just as well as any protein bar."
+	greyscale_colors = "#9900ff"
+	tastes = list("artifical grape" = 25)
+/obj/item/reagent_containers/food/snacks/protein_pack_base/four
+	name = "Mystery TGMC protein bar"
+	desc = "Some say they have tasted one of these and tasted their favorite childhood meal. Most say it tastes like crayons"
+	greyscale_colors = "#ffffff"
+	tastes = list("crayons" = 25)
+/obj/item/reagent_containers/food/snacks/protein_pack_base/five
+	name = "Dark Chocolate TGMC protein bar"
+	desc = "The dark chocolate flavor helps it out a bit, but its still a cheap protein bar."
+	greyscale_colors = "#5a3b1d"
+/obj/item/reagent_containers/food/snacks/protein_pack_base/six
+	name = "Milk Chocolate TGMC protein bar"
+	desc = "A nice milky addition to a otherwise bland protein taste."
+	greyscale_colors = "#efc296"
+	tastes = list("off flavor milk chocolate" = 25)
+/obj/item/reagent_containers/food/snacks/protein_pack_base/seven
+	name = "Raspberry Lime TGMC protein bar"
+	desc = "A flavored protein bar, some might say a bit too strongly flavored."
+	greyscale_colors = "#ff0066"
+	tastes = list("raspberry" = 25,"lime" = 25)
+/obj/item/reagent_containers/food/snacks/protein_pack_base/eight
+	name = "Chicken TGMC protein bar"
+	desc = "Protein bar covered with chicken powder one might find in ramen. Get some extra sodium with your protein."
+	greyscale_colors = "#cccc00"
+	tastes = list("chicken and salt" = 25)
+/obj/item/reagent_containers/food/snacks/protein_pack_base/nine
+	name = "Blueberry TGMC protein bar"
+	desc = "A nice blueberry crunch into your otherwise stale and boring protein bar."
+	greyscale_colors = "#4e39c5"
+	tastes = list("blueberry" = 25)
+
+/obj/item/reagent_containers/food/snacks/protein_pack
+
+	name = "TGMC protein bar"
+	desc = "This text should not be displayed"
+/obj/item/reagent_containers/food/snacks/protein_pack/New()
+	. = ..()
+	var/protein_bar = pick(
+		/obj/item/reagent_containers/food/snacks/protein_pack_base/one,
+		/obj/item/reagent_containers/food/snacks/protein_pack_base/two,
+		/obj/item/reagent_containers/food/snacks/protein_pack_base/three,
+		/obj/item/reagent_containers/food/snacks/protein_pack_base/four,
+		/obj/item/reagent_containers/food/snacks/protein_pack_base/five,
+		/obj/item/reagent_containers/food/snacks/protein_pack_base/six,
+		/obj/item/reagent_containers/food/snacks/protein_pack_base/seven,
+		/obj/item/reagent_containers/food/snacks/protein_pack_base/eight,
+		/obj/item/reagent_containers/food/snacks/protein_pack_base/nine)
+	//var/obj/item/I = new protein_bar(src.loc)
+	new protein_bar(src.loc)
+	qdel(src)
+
 
 
 /obj/item/reagent_containers/food/snacks/mre_pack
