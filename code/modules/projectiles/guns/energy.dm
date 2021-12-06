@@ -50,7 +50,7 @@
 	ammo_datum_type  = /datum/ammo/energy/taser
 	default_ammo_type = /obj/item/cell/lasgun/lasrifle/marine
 	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle/marine)
-	rounds_per_shot = 100
+	rounds_per_draw = 100
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_ALLOW_SYNTHETIC|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
