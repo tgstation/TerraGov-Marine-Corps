@@ -116,6 +116,14 @@
 
 	rounds_per_shot = 500
 	fire_delay = 4 SECONDS
+	turret_flags = TURRET_INACCURATE
+	attachable_allowed = list(
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+	)
 
 /obj/item/weapon/gun/energy/lasgun/unique_action(mob/user, dont_operate = FALSE)
 	QDEL_NULL(in_chamber)
