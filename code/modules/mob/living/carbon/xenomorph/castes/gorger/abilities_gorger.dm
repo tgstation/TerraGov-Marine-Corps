@@ -116,7 +116,7 @@
 			if(!silent)
 				to_chat(owner_xeno, span_notice("We can only use fully dead hosts to heal."))
 			return FALSE
-		if(target_human.blood_volume < GORGER_REJUVENATE_BLOOD_DRAIN)
+		if(target_human.blood_volume < GORGER_DRAIN_BLOOD_DRAIN)
 			if(!silent)
 				to_chat(owner_xeno, span_notice("Our meal doesn't have enough blood... How sad!"))
 			return FALSE
@@ -147,13 +147,13 @@
 	if(target_human.stat == DEAD)
 		var/overheal_gain = 0
 		while(XENO_IS_DAMAGED_FULL(owner_xeno) && do_after(owner_xeno, 2 SECONDS, TRUE, target_human, BUSY_ICON_HOSTILE))
-			target_human.blood_volume -= GORGER_REJUVENATE_BLOOD_DRAIN
+			target_human.blood_volume -= GORGER_DRAIN_BLOOD_DRAIN
 			var/target_blood = target_human.blood_volume
 			overheal_gain = owner_xeno.heal_wounds(2.2, TRUE)
 			adjustOverheal(owner_xeno, overheal_gain)
 			owner_xeno.adjust_sunder(-0.5)
 			target_human.hud_list[HEART_STATUS_HUD].alpha = 255 * (target_human.blood_volume / BLOOD_VOLUME_NORMAL)
-			if(target_blood < GORGER_REJUVENATE_BLOOD_DRAIN)
+			if(target_blood < GORGER_DRAIN_BLOOD_DRAIN)
 				to_chat(owner, span_notice("Our meal doesn't have enough blood... How sad!"))
 				return
 		to_chat(owner_xeno, span_notice("We feel fully restored."))

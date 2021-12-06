@@ -576,12 +576,12 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define GORGER_DRAIN_INSTANCES 2 // amuont of times the target is drained
 #define GORGER_DRAIN_DELAY 1 SECONDS // time needed to drain a marine once
 #define GORGER_DRAIN_HEAL 40 // overheal gained each time the target is drained
+#define GORGER_DRAIN_BLOOD_DRAIN 20 // amount of plasma drained when feeding on something
 #define GORGER_REJUVENATE_ALLY_COST 20 // cost of using ability on an ally
 #define GORGER_REJUVENATE_ALLY_COOLDOWN 2 SECONDS //cooldown of casting rejuvenation on an ally
 #define GORGER_REJUVENATE_ALLY_PERCENTAGE 0.3 // percent of health healed on ally xeno
 #define GORGER_REJUVENATE_SELF_COST 80 // cost of using ability on self
 #define GORGER_REJUVENATE_SELF_DURATION 5 SECONDS // duration of rejuvenation buff on self
-#define GORGER_REJUVENATE_BLOOD_DRAIN 20 // amount of plasma drained when feeding on something
 #define GORGER_CARNAGE_HEAL 0.2
 #define GORGER_CARNAGE_MOVEMENT -0.5
 #define GORGER_FEAST_DURATION -1 // lasts indefinitely, self-cancelled when insufficient plasma left
