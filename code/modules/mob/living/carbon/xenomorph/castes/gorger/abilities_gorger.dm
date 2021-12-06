@@ -336,7 +336,7 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	// cancel the buff when at full health to conserve plasma, otherwise don't cancel
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
-		return XENO_IS_DAMAGED(owner_xeno)
+		return !XENO_IS_DAMAGED(owner_xeno)
 	// small damage has more efficient alternatives to be healed with
 	if(owner_xeno.health > owner_xeno.maxHealth * 0.7)
 		return FALSE
