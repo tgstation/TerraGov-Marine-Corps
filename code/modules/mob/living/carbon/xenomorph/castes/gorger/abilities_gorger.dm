@@ -239,6 +239,7 @@
 	var/mob/living/carbon/xenomorph/target_xeno = target
 	var/heal_amount = target_xeno.maxHealth * GORGER_REJUVENATE_ALLY_PERCENTAGE
 	HEAL_XENO_DAMAGE(target_xeno, heal_amount)
+	adjustOverheal(target_xeno, heal_amount)
 
 /datum/action/xeno_action/activable/rejuvenate/ai_should_use(atom/target)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner

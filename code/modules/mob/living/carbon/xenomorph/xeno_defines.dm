@@ -173,7 +173,7 @@
 
 	// *** Gorger Abilities *** //
 	///Maximum amount of overheal that can be gained
-	var/overheal_max = 0
+	var/overheal_max = 150
 	///Amount of plasma gained from draining someone
 	var/drain_plasma_gain = 0
 	///Amount of plasma gained from clashing after activating carnage
