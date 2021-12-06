@@ -470,21 +470,26 @@
 		update_icon()
 		return
 
-	var/selection = (colorable_allowed == COLOR_WHEEL_ALLOWED) ? list("Color Wheel", "Preset Colors") : "Preset Colors"
-	if(colorable_allowed != COLOR_WHEEL_ONLY)
-		selection = "Color Wheel"
-	else if(colorable_allowed == COLOR_WHEEL_ALLOWED )
-		selection = list("Color Wheel", "Preset Colors")
-		selection = tgui_input_list(user, "Choose a color setting", "Choose setting", selection)
-	else if(colorable_allowed != COLOR_WHEEL_ONLY)
-		selection = "Preset Colors"
+	var/selection
+
+	switch(colorable_allowed)
+		if(COLOR_WHEEL_ONLY)
+			selection = "Color Wheel"
+		if(COLOR_WHEEL_ALLOWED)
+			selection = list("Color Wheel", "Preset Colors")
+			selection = tgui_input_list(user, "Choose a color setting", "Choose setting", selection)
+		if(COLOR_WHEEL_NOT_ALLOWED)
+			selection = "Preset Colors"
+
 	if(!selection)
 		return
+
 	var/new_color
-	if(selection == "Preset Colors")
-		new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
-	else if(selection == "Color Wheel" && colorable_colors == COLOR_WHEEL_ALLOWED)
-		new_color = input(user, "Pick a color", "Pick color") as null|color
+	switch(selection)
+		if("Preset Colors")
+			new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
+		if("Color Wheel")
+			new_color = input(user, "Pick a color", "Pick color") as null|color
 
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return

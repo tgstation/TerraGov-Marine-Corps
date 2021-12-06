@@ -113,6 +113,10 @@
 					if(loadout.version < 8)
 						if("[armor.item_type]" == "/obj/item/clothing/suit/modular/pas11x")
 							armor.item_type = /obj/item/clothing/suit/modular/xenonauten
+					for(var/datum/item_representation/armor_module/colored/module AS in armor.attachments)
+						if(ispath(module.item_type, /obj/item/armor_modules/armor/badge) || ispath(module.item_type, /obj/item/armor_modules/armor/visor) || loadout.version >= 10)
+							continue
+						module.greyscale_colors = initial(module.item_type.greyscale_colors)
 				var/datum/item_representation/uniform_representation/uniform = loadout.item_list[slot_w_uniform_str]
 				if(istype(uniform, /datum/item_representation/uniform_representation))
 					if(loadout.version < 9)
@@ -125,6 +129,8 @@
 					message_to_send += "<br>any PAS11 armor/M10x helmet has been removed from it due to the transitioning of loadout version 7 to 8(Xenonauten Addition)."
 				if(loadout.version < 9)
 					message_to_send += "<br>any uniforms have had their webbings/accessory removed due to the transitioning of loadout version 8 to 9."
+				if(loadout.version < 10)
+					message_to_send += "<br>any modular armor pieces and jaeger helmets have had their colors reset due to the new color/greyscale system."
 				loadout.version = CURRENT_LOADOUT_VERSION
 				message_to_send += "<br>This loadout is now on version [loadout.version]"
 				to_chat(ui.user, span_warning(message_to_send))
@@ -163,6 +169,10 @@
 					if(loadout.version < 8)
 						if("[armor.item_type]" == "/obj/item/clothing/suit/modular/pas11x")
 							armor.item_type = /obj/item/clothing/suit/modular/xenonauten
+					for(var/datum/item_representation/armor_module/colored/module AS in armor.attachments)
+						if(ispath(module.item_type, /obj/item/armor_modules/armor/badge) || ispath(module.item_type, /obj/item/armor_modules/armor/visor) || loadout.version >= 10)
+							continue
+						module.greyscale_colors = initial(module.item_type.greyscale_colors)
 				var/datum/item_representation/uniform_representation/uniform = loadout.item_list[slot_w_uniform_str]
 				if(istype(uniform, /datum/item_representation/uniform_representation))
 					if(loadout.version < 9)
@@ -175,6 +185,8 @@
 					message_to_send += "<br>any PAS11 armor/M10x helmet has been removed from it due to the transitioning of loadout version 7 to 8(Xenonauten Addition)."
 				if(loadout.version < 9)
 					message_to_send += "<br>any uniforms have had their webbings/accessory removed due to the transitioning of loadout version 8 to 9."
+				if(loadout.version < 10)
+					message_to_send += "<br>any modular armor pieces and jaeger helmets have had their colors reset due to the new color/greyscale system."
 				loadout.version = CURRENT_LOADOUT_VERSION
 				message_to_send += "<br>This loadout is now on version [loadout.version]"
 				to_chat(ui.user, span_warning(message_to_send))

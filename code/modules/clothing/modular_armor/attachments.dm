@@ -89,11 +89,6 @@
  *  These include Leg plates, Chest plates, Shoulder Plates and Visors. This could be expanded to anything that functions like armor and has greyscale functionality.
  */
 
-#define COLOR_WHEEL_ALLOWED 1
-#define COLOR_WHEEL_NOT_ALLOWED 2
-#define COLOR_WHEEL_ONLY 3
-#define NOT_COLORABLE 4
-
 /obj/item/armor_module/armor
 	name = "modular armor - armor module"
 	icon = 'icons/mob/modular/modular_armor.dmi'
@@ -167,21 +162,26 @@
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return
 
-	var/selection = (colorable_allowed == COLOR_WHEEL_ALLOWED) ? list("Color Wheel", "Preset Colors") : "Preset Colors"
-	if(colorable_allowed == COLOR_WHEEL_ONLY)
-		selection = "Color Wheel"
-	else if(colorable_allowed == COLOR_WHEEL_ALLOWED )
-		selection = list("Color Wheel", "Preset Colors")
-		selection = tgui_input_list(user, "Choose a color setting", "Choose setting", selection)
-	else if(colorable_allowed != COLOR_WHEEL_ONLY)
-		selection = "Preset Colors"
+	var/selection
+
+	switch(colorable_allowed)
+		if(COLOR_WHEEL_ONLY)
+			selection = "Color Wheel"
+		if(COLOR_WHEEL_ALLOWED)
+			selection = list("Color Wheel", "Preset Colors")
+			selection = tgui_input_list(user, "Choose a color setting", "Choose setting", selection)
+		if(COLOR_WHEEL_NOT_ALLOWED)
+			selection = "Preset Colors"
+
 	if(!selection)
 		return
+
 	var/new_color
-	if(selection == "Preset Colors")
-		new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
-	else if(selection == "Color Wheel" && (colorable_allowed == COLOR_WHEEL_ALLOWED || colorable_allowed == COLOR_WHEEL_ONLY))
-		new_color = input(user, "Pick a color", "Pick color") as null|color
+	switch(selection)
+		if("Preset Colors")
+			new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
+		if("Color Wheel")
+			new_color = input(user, "Pick a color", "Pick color") as null|color
 
 	if(!new_color)
 		return
