@@ -347,7 +347,7 @@
 	removed_type = /obj/item/organ/brain/xeno
 	robotic_type = null
 
-/datum/internal_organ/brain/husk
+/datum/internal_organ/brain/zombie
 	vital = FALSE
 
 /datum/internal_organ/eyes

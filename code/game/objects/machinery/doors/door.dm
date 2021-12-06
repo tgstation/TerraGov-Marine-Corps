@@ -82,13 +82,6 @@
 		for(var/m in O.buckled_mobs)
 			Bumped(m)
 
-	if(istype(AM, /obj/machinery/bot))
-		var/obj/machinery/bot/bot = AM
-		if(src.check_access(bot.botcard))
-			if(density)
-				open()
-		return
-
 
 /obj/machinery/door/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()

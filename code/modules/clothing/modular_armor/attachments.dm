@@ -7,7 +7,7 @@
 	slowdown = 0
 
 	///Reference to parent modular armor suit.
-	var/obj/item/clothing/suit/modular/parent
+	var/obj/item/clothing/parent
 
 	///Slot the attachment is able to occupy.
 	var/slot
@@ -31,6 +31,10 @@
 	var/detach_delay = 2 SECONDS
 	///Used for when the mob attach overlay icon is different than icon.
 	var/mob_overlay_icon
+	///Pixel shift for the mob overlay on the X axis.
+	var/mob_pixel_shift_x = 0
+	///Pixel shift for the mob overlay on the Y axis.
+	var/mob_pixel_shift_y = 0
 
 	///Light modifier for attachment to an armor piece
 	var/light_mod = 0
@@ -38,14 +42,15 @@
 	///Assoc list that uses the parents type as a key. type = "new_icon_state". This will change the icon state depending on what type the parent is. If the list is empty, or the parent type is not within, it will have no effect.
 	var/list/variants_by_parent_type = list()
 
+	///Layer for the attachment to be applied to.
+	var/attachment_layer
+
 /obj/item/armor_module/Initialize()
 	. = ..()
-	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, mob_overlay_icon = mob_overlay_icon)
+	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, mob_overlay_icon = mob_overlay_icon, mob_pixel_shift_x = mob_pixel_shift_x, mob_pixel_shift_y = mob_pixel_shift_y, attachment_layer = attachment_layer)
 
 /// Called before a module is attached.
 /obj/item/armor_module/proc/can_attach(obj/item/attaching_to, mob/user)
-	if(!istype(attaching_to, /obj/item/clothing/suit/modular) && !istype(attaching_to, /obj/item/clothing/head/modular) && !istype(attaching_to, /obj/item/clothing/under))
-		return FALSE
 	return TRUE
 
 /// Called when the module is added to the armor.

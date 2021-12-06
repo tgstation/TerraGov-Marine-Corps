@@ -111,6 +111,9 @@
 /turf/open/floor/mainship/ai
 	icon_state = "ai_floors"
 
+/turf/open/floor/mainship/sandtemple
+	icon_state = "sandtemplefloor"
+
 /turf/open/floor/mainship/sterile
 	icon_state = "sterile_green"
 

@@ -314,7 +314,7 @@ WEAPONS
 /datum/supply_packs/weapons/plastique
 	name = "C4 plastic explosive"
 	contains = list(/obj/item/explosive/plastique)
-	cost = 5
+	cost = 3
 
 /datum/supply_packs/weapons/mortar
 	name = "M402 mortar crate"
@@ -475,6 +475,12 @@ AMMO
 	cost = 10
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/ammo/pfcflak
+	name = "Tl-127 Flak Magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/chamberedrifle/flak)
+	cost = 5
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/ammo/scout_regular
 	name = "TX-8 scout magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8)
@@ -632,7 +638,7 @@ AMMO
 
 /datum/supply_packs/ammo/minigun
 	name = "Minigun Powerpack"
-	contains = list(/obj/item/minigun_powerpack)
+	contains = list(/obj/item/ammo_magazine/minigun_powerpack)
 	cost = 5
 
 /datum/supply_packs/ammo/back_fuel_tank
@@ -1719,3 +1725,18 @@ FACTORY
 	name = "Claymore parts refill"
 	contains = list(/obj/item/factory_refill/claymore)
 	cost = 10
+
+/datum/supply_packs/factory/mateba_speedloader_refill
+	name = "Mateba autorevolver speedloader assembly refill"
+	contains = list(/obj/item/factory_refill/mateba_speedloader_refill)
+	cost = 20
+
+/datum/supply_packs/factory/railgun_magazine_refill
+	name = "Railgun magazine assembly refill"
+	contains = list(/obj/item/factory_refill/railgun_magazine_refill)
+	cost = 20
+
+/datum/supply_packs/factory/scout_rifle_magazine_refill
+	name = "TX-8 scout rifle magazine assembly refill"
+	contains = list(/obj/item/factory_refill/scout_rifle_magazine_refill)
+	cost = 50

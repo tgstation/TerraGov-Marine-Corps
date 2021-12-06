@@ -569,10 +569,10 @@
 	if(!holder)
 		return
 	var/obj/item/weapon/gun/gun = internal_item
-	if(!gun.current_mag)
+	if(!gun.rounds)
 		holder.icon_state = "plasma0"
 		return
-	var/amount = round(gun.current_mag.current_rounds * 100 / gun.current_mag.max_rounds, 10)
+	var/amount = gun.max_rounds ? round(gun.rounds * 100 / gun.max_rounds, 10) : 0
 	holder.icon_state = "plasma[amount]"
 
 ///Makes unmanned vehicle ammo visible

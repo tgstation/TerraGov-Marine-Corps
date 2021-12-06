@@ -35261,13 +35261,15 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
 "xaL" = (
-/obj/machinery/button/door/open_only/landing_zone,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+/obj/machinery/button/door/open_only/landing_zone{
 	dir = 8
 	},
 /obj/structure/window/reinforced{
-	dir = 4
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/ice_colony/exterior/surface/landing_pad2)
@@ -42761,7 +42763,7 @@ aaa
 bSw
 aae
 aai
-xaL
+xGZ
 xGZ
 xGZ
 xGZ
@@ -42780,7 +42782,7 @@ ajW
 xGZ
 adB
 xGZ
-xGZ
+xaL
 xGZ
 uxH
 hOW

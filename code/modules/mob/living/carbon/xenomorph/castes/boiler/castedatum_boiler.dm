@@ -3,6 +3,7 @@
 	display_name = "Boiler"
 	upgrade_name = ""
 	caste_desc = "Gross!"
+	primordial_upgrade_name = PRIMORDIAL_BOILER
 
 	caste_type_path = /mob/living/carbon/xenomorph/boiler
 
@@ -39,6 +40,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 4 SECONDS
+	spit_types = list(/datum/ammo/xeno/boiler_gas, /datum/ammo/xeno/boiler_gas/corrosive)
 
 	// *** Boiler Abilities *** //
 	max_ammo = 4
@@ -173,3 +175,53 @@
 	bomb_strength = 1.3
 
 	bomb_delay = 27 SECONDS
+
+/datum/xeno_caste/boiler/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "A horrendously effective alien siege engine."
+	upgrade = XENO_UPGRADE_FOUR
+	primordial_message = "We have refined the art of bombardement to perfection. End them before they can utter a desperate plea."
+
+	// *** Melee Attacks *** //
+	melee_damage = 20
+
+	// *** Speed *** //
+	speed = 0.1
+
+	// *** Plasma *** //
+	plasma_max = 1000
+	plasma_gain = 50
+
+	// *** Health *** //
+	max_health = 325
+
+	// *** Evolution *** //
+	upgrade_threshold = 2750
+
+	// *** Defense *** //
+	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 37, "rad" = 37, "fire" = 45, "acid" = 37)
+
+	// *** Ranged Attack *** //
+	spit_delay = 1 SECONDS
+	spit_types = list(/datum/ammo/xeno/boiler_gas, /datum/ammo/xeno/boiler_gas/lance, /datum/ammo/xeno/boiler_gas/corrosive, /datum/ammo/xeno/boiler_gas/corrosive/lance)
+
+	acid_spray_damage_on_hit = 47
+	acid_spray_structure_damage = 69
+
+	// *** Boiler Abilities *** //
+	max_ammo = 7
+	bomb_strength = 1.3
+
+	bomb_delay = 27 SECONDS
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/place_acidwell,
+		/datum/action/xeno_action/activable/corrosive_acid/strong,
+		/datum/action/xeno_action/create_boiler_bomb,
+		/datum/action/xeno_action/activable/bombard,
+		/datum/action/xeno_action/toggle_long_range,
+		/datum/action/xeno_action/toggle_bomb,
+		/datum/action/xeno_action/activable/spray_acid/line/boiler,
+	)

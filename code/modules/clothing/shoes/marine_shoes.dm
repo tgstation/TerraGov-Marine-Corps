@@ -152,3 +152,9 @@
 	flags_item = NODROP|DELONDROP
 	soft_armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
 	flags_inventory = NOSLIPPING
+
+/obj/item/clothing/shoes/cowboy
+	name = "sturdy western boots"
+	desc = "As sturdy as they are old fashioned these will keep your ankles from snake bites on any planet. These cannot store anything, but has extra fashion with those unneeded spurs on their heels."
+	icon_state = "cboots"
+	item_state = "cboots"

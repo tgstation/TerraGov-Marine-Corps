@@ -3534,6 +3534,7 @@
 /obj/item/bedsheet/captain,
 /obj/effect/landmark/start/job/captain,
 /mob/living/simple_animal/cat/Jones,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/carpet{
 	dir = 1;
 	icon_state = "carpetside"
@@ -5225,6 +5226,9 @@
 /area/mainship/command/corporateliaison)
 "qI" = (
 /obj/machinery/photocopier,
+/obj/machinery/vending/nanomed{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "qJ" = (
@@ -6413,9 +6417,6 @@
 	pixel_y = 6
 	},
 /obj/item/storage/firstaid/adv,
-/obj/machinery/vending/nanomed{
-	pixel_y = 25
-	},
 /obj/item/storage/firstaid/toxin{
 	pixel_x = -4;
 	pixel_y = 3
@@ -7512,9 +7513,16 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/upper_engineering)
 "xK" = (
-/obj/machinery/vending/nanomed,
-/turf/closed/wall/mainship,
-/area/mainship/shipboard/port_missiles)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/medical/lower_medical)
 "xL" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -8963,6 +8971,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
+/obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/starboard_missiles)
 "Cj" = (
@@ -9659,6 +9668,7 @@
 /area/mainship/medical/lower_medical)
 "Ea" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles)
 "Eb" = (
@@ -10063,6 +10073,9 @@
 	dir = 8
 	},
 /obj/machinery/vending/MarineMed,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -10708,6 +10721,7 @@
 	dir = 4;
 	on = 1
 	},
+/obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
 "HB" = (
@@ -12961,9 +12975,11 @@
 /turf/closed/wall/mainship,
 /area/mainship/command/cic)
 "NY" = (
-/obj/machinery/vending/nanomed,
-/turf/closed/wall/mainship,
-/area/mainship/squads/req)
+/obj/machinery/vending/nanomed{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/aft_hallway)
 "NZ" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
@@ -12998,8 +13014,8 @@
 /area/mainship/shipboard/port_missiles)
 "Og" = (
 /obj/machinery/vending/nanomed,
-/turf/closed/wall/mainship,
-/area/mainship/shipboard/starboard_missiles)
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/aft_hallway)
 "Oh" = (
 /obj/machinery/door/airlock/mainship/generic/corporate{
 	dir = 8
@@ -13017,10 +13033,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
-"Oi" = (
-/obj/machinery/vending/nanomed,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway)
 "Oj" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -13063,10 +13075,6 @@
 	},
 /turf/open/shuttle/escapepod/five,
 /area/mainship/command/self_destruct)
-"Oq" = (
-/obj/machinery/vending/nanomed,
-/turf/closed/wall/mainship,
-/area/mainship/engineering/lower_engineering)
 "Or" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -14127,12 +14135,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/weapon_room)
-"Rz" = (
-/obj/machinery/vending/nanomed{
-	dir = 1
-	},
-/turf/closed/wall/mainship,
-/area/mainship/living/commandbunks)
 "RA" = (
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
 	dir = 1
@@ -15421,6 +15423,9 @@
 /area/mainship/hallways/port_hallway)
 "VJ" = (
 /obj/machinery/iv_drip,
+/obj/machinery/vending/nanomed{
+	dir = 8
+	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -15804,10 +15809,6 @@
 	dir = 8
 	},
 /area/mainship/squads/general)
-"Xd" = (
-/obj/machinery/vending/nanomed,
-/turf/closed/wall/mainship,
-/area/mainship/command/corporateliaison)
 "Xe" = (
 /obj/machinery/line_nexter,
 /turf/open/floor/mainship/cargo/arrow{
@@ -15850,9 +15851,6 @@
 /obj/item/roller,
 /obj/item/roller,
 /obj/item/roller,
-/obj/machinery/light{
-	dir = 4
-	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -40544,7 +40542,7 @@ El
 Tg
 CV
 bZ
-Rz
+Kb
 lm
 nb
 rw
@@ -41285,7 +41283,7 @@ rc
 lE
 dt
 dt
-xK
+fP
 Ea
 Ow
 fP
@@ -42599,7 +42597,7 @@ xp
 uM
 uM
 uM
-Xd
+uM
 KE
 gi
 rm
@@ -43918,7 +43916,7 @@ OL
 Aq
 Cg
 yq
-Oq
+OL
 HA
 zD
 LL
@@ -45143,7 +45141,7 @@ nk
 nk
 nk
 nk
-MT
+xK
 fs
 ic
 ic
@@ -45921,7 +45919,7 @@ Kn
 nI
 Km
 ic
-rF
+Og
 wu
 rF
 ea
@@ -46178,7 +46176,7 @@ ic
 ic
 ic
 ic
-Oi
+rF
 wu
 rF
 PB
@@ -49773,7 +49771,7 @@ Tb
 Tb
 qG
 qG
-NY
+qG
 qG
 Tb
 Tb
@@ -50030,7 +50028,7 @@ rF
 rF
 FC
 AB
-rF
+NY
 rF
 rF
 rF
@@ -52079,7 +52077,7 @@ rc
 eU
 nw
 nw
-Og
+eF
 Ci
 Ra
 Br
