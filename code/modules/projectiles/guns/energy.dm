@@ -104,8 +104,9 @@
 	return cell?.reload_delay
 
 /obj/item/weapon/gun/energy/lasgun/tesla
-	name = "\improper M43-T tesla shock rifle"
-	desc = "A prototype TGMC energy rifle that fires balls of elecricity that shock all those near them, it is meant to drain the plasma of unidentified creatures from within, limiting their abilities. Handle only with insulated clothing. Reloaded with power cells."
+	name = "\improper Terra Experimental tesla shock rifle"
+	desc = "A Terra Experimental energy rifle that fires balls of elecricity that shock all those near them, it is meant to drain the plasma of unidentified creatures from within, limiting their abilities. Unlike the other TE Laser weapons, lasers don't come out of this weird weapon. As with all TE Laser weapons, they 
+use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts. Uses standard Terra Experimental  (abbreviated as TE) power cells."
 	icon_state = "tesla"
 	item_state = "tesla"
 	icon = 'icons/Marine/gun64.dmi'
