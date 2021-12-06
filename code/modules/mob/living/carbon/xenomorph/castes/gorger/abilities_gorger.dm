@@ -184,7 +184,7 @@
 /datum/action/xeno_action/activable/rejuvenate
 	name = "Rejuvenate/Transfusion"
 	action_icon_state = "rejuvenation"
-	mechanics_text = "When used on self, drains blood and restores health over time. When used on another xenomorph, costs blood and restores some of their health."
+	mechanics_text = "When used on self, drains blood and restores health over time. When used on another xenomorph, costs blood and restores some of their health or overheals."
 	use_state_flags = XACT_TARGET_SELF
 	cooldown_timer = 20 SECONDS
 	plasma_cost = GORGER_REJUVENATE_SELF_COST
