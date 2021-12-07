@@ -29,7 +29,7 @@
 		STOP_PROCESSING(SSslowprocess, src)
 		user.clear_fullscreen("machine", 5)
 
-/obj/vehicle/unmanned/droid/welder_act(mob/living/user, obj/item/I)	//used to heal the droid
+/obj/vehicle/unmanned/droid/welder_act(mob/living/user, obj/item/I)
 	if(user.do_actions)
 		balloon_alert(user, "You're already busy!")
 		return FALSE
