@@ -674,14 +674,13 @@ datum/ammo/bullet/revolver/tp44
 	damage_type = BRUTE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING
 	max_range = 15
-	damage = 65
+	damage = 70
 	penetration = 15
 	sundering = 2
 	bullet_color = COLOR_TAN_ORANGE
 
 /datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, shake = 0, knockback = 2, slowdown = 1)
-	drop_flame(get_turf(M))
 
 /datum/ammo/bullet/shotgun/flechette
 	name = "shotgun flechette shell"
