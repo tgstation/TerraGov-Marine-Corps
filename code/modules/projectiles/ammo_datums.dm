@@ -2161,7 +2161,7 @@ datum/ammo/bullet/revolver/tp44
 		var/mob/living/carbon/xenomorph/X = victim
 		X.use_plasma(drain_multiplier * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
 
-/datum/ammo/bullet/pepperball/pepperball_mini						//TODO: Pretty redundant implementation, perhaps assign a var for the multiplier instead.
+/datum/ammo/bullet/pepperball/pepperball_mini
 	damage = 40
 	drain_multiplier = 0.03
 

@@ -255,9 +255,9 @@
 	icon_state_mini = "mag_pepperball"
 
 /obj/item/ammo_magazine/rifle/pepperball/pepperball_mini
-	name = "small pepperball canister (SAN balls)"			//TODO: pepperball gun can't take mini ammo, but mini can take regular pepperball ammo
+	name = "small pepperball canister (SAN balls)"
 	desc = "A small canister for use with the miniature pepperball gun."
-	icon_state = "pepperball" //TODO: Custom Sprite
+	icon_state = "pepperball_mini"
 	default_ammo = /datum/ammo/bullet/pepperball/pepperball_mini
 	max_rounds = 20
 
