@@ -83,9 +83,12 @@
 	nutriment_factor = 15
 	color = "#664330" // rgb: 102, 67, 48
 	taste_description = "nutraloafed food"
-	var/brute_heal = 1///how much brute damage protein mix can heal on metabolism tic
-	var/burn_heal = 0///how much burn damage protein mix can heal on metabolism tic
-	var/blood_gain = 0.4///how much blood is gained on metabolism tic
+	///how much brute damage protein mix can heal on metabolism tic
+	var/brute_heal = 1
+	///how much burn damage protein mix can heal on metabolism tic
+	var/burn_heal = 0
+	///how much blood is gained on metabolism tic
+	var/blood_gain = 0.4
 
 /datum/reagent/consumable/protein/on_mob_life(mob/living/L, metabolism)
 	if(prob(50))
