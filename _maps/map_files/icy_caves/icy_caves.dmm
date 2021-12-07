@@ -2294,6 +2294,11 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark/green2/corner,
 /area/icy_caves/outpost/medbay)
+"kH" = (
+/obj/machinery/landinglight/ds1/delaytwo,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/LZ1)
 "kJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -3203,6 +3208,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "pj" = (
@@ -3857,9 +3863,12 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
 "sb" = (
+/obj/machinery/light{
+	dir = 1
+	},
 /obj/effect/ai_node,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/icy_caves/outpost/LZ1)
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern)
 "sc" = (
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4717,6 +4726,7 @@
 /area/icy_caves/caves/northern)
 "wq" = (
 /obj/machinery/light,
+/obj/effect/ai_node,
 /turf/open/floor/prison{
 	dir = 10;
 	icon_state = "bright_clean2"
@@ -4912,6 +4922,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
+"xx" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/icy_caves/caves)
 "xA" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -5113,6 +5127,10 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
+"yP" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/icy_caves/outpost/LZ1)
 "yR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -7668,6 +7686,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "Mz" = (
@@ -7761,6 +7780,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 4
 	},
@@ -7823,6 +7843,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "Np" = (
@@ -9456,8 +9477,10 @@
 	},
 /area/icy_caves/caves/south)
 "Wm" = (
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
 /obj/effect/ai_node,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "Wp" = (
@@ -11277,7 +11300,7 @@ RC
 TM
 uw
 uw
-zM
+kH
 Yn
 Yn
 Yn
@@ -11787,20 +11810,20 @@ co
 oR
 lO
 iN
+ss
 Tz
 Tz
-Wm
 ph
 Tz
 Tz
-Tz
+ss
 Tz
 Tz
 kd
 ss
 Tz
 UU
-Zl
+dL
 Xz
 Zl
 Zl
@@ -11810,7 +11833,7 @@ Zl
 Zl
 Zl
 Zl
-Zl
+dL
 Zl
 Zl
 cV
@@ -11821,10 +11844,10 @@ Zl
 Zl
 Zl
 Zl
-EU
+IZ
 Zl
 LF
-Zl
+dL
 dF
 Zl
 Mx
@@ -11875,14 +11898,14 @@ ZU
 ZU
 ZU
 ZU
-ZU
+ez
 Bb
+AW
 WI
-WI
 SI
 SI
 SI
-SI
+Ln
 SI
 SI
 SI
@@ -11891,10 +11914,10 @@ AW
 WI
 XO
 XO
-XO
+np
 WI
 Uu
-Uu
+fq
 Uu
 Ml
 Tf
@@ -11923,7 +11946,7 @@ Yn
 Yn
 Yn
 Yw
-uw
+dW
 uw
 bH
 Ne
@@ -12042,14 +12065,14 @@ WI
 WI
 WI
 SI
-SI
+Ln
 WI
 WI
 WI
 WI
 WI
 WI
-sb
+UE
 Uu
 Uu
 Uu
@@ -12057,7 +12080,7 @@ Aq
 TM
 bU
 uw
-zM
+kH
 Yn
 Yn
 Yn
@@ -12109,10 +12132,10 @@ Zl
 Zl
 Zl
 Zl
-Zl
+dL
 Zl
 BZ
-Zl
+dL
 ev
 He
 Zl
@@ -12259,7 +12282,7 @@ Zl
 Zl
 Zl
 BZ
-dL
+Zl
 Zl
 Zl
 Zl
@@ -12267,14 +12290,14 @@ Zl
 EP
 Zl
 Zl
-eF
+BZ
 Zl
 Xz
 Zl
 Zl
 Zl
 Zl
-dL
+Zl
 Zl
 pL
 Zl
@@ -12359,7 +12382,7 @@ WI
 WI
 MH
 qs
-WI
+AW
 WI
 Uu
 Uu
@@ -12411,13 +12434,13 @@ yi
 Do
 wq
 dF
-Bo
+sb
 Zl
 Zl
 eF
 Zl
 He
-Zl
+dL
 Zl
 Zl
 dF
@@ -12434,21 +12457,21 @@ Zl
 Zl
 BZ
 Pg
-ve
+Wm
 Zl
 Zl
 Zl
 Zl
-BZ
+eF
 Zl
 Zl
 Pg
 TD
 Zl
+dL
 Zl
 Zl
-Zl
-Zl
+dL
 dF
 dO
 ea
@@ -12518,7 +12541,7 @@ Yf
 MH
 WI
 Uu
-Uu
+fq
 sD
 Ml
 Tf
@@ -12569,7 +12592,7 @@ kR
 dF
 Zl
 Zl
-dL
+Zl
 ds
 Zl
 Zl
@@ -12978,22 +13001,22 @@ qO
 oU
 xI
 NH
-SI
+Ln
 WI
 jI
 jI
-jI
+xx
 WI
 jI
 Uu
-UE
+yP
 UE
 UE
 TQ
 UE
 XW
 uw
-uw
+dW
 uw
 uw
 uw
@@ -13015,7 +13038,7 @@ uw
 uw
 uw
 uw
-uw
+dW
 uw
 VU
 Ne
@@ -13602,7 +13625,7 @@ pB
 xI
 xI
 Za
-SI
+Ln
 XO
 XO
 WI
@@ -13610,7 +13633,7 @@ AW
 WI
 XO
 UE
-UE
+yP
 UE
 UE
 LP
