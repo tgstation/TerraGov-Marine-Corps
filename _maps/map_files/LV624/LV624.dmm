@@ -2587,10 +2587,6 @@
 /area/lv624/ground/sand8)
 "aLO" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door_control{
-	id = "nexus_blast";
-	name = "Nexus Lockdown"
-	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 4
 	},
@@ -2698,9 +2694,9 @@
 /area/lv624/ground/caves/central5)
 "aNz" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "science_blast";
-	name = "Science Wing Lockdown";
-	pixel_x = 25
+	name = "Science Wing Lockdown"
 	},
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
@@ -11881,9 +11877,9 @@
 /area/lv624/lazarus/sleep_male)
 "jLr" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "corporate_blast";
-	name = "Dome Lockdown";
-	pixel_y = -25
+	name = "Dome Lockdown"
 	},
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
@@ -12989,6 +12985,10 @@
 	},
 /obj/machinery/light/small{
 	dir = 1
+	},
+/obj/machinery/door_control{
+	id = "nexus_blast";
+	name = "Nexus Lockdown"
 	},
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 2
@@ -17055,12 +17055,12 @@
 	},
 /area/lv624/ground/compound/c)
 "pXE" = (
-/obj/machinery/door_control{
-	id = "science_blast";
-	name = "Science Wing Lockdown";
-	pixel_x = -25
-	},
 /obj/machinery/computer/intel_computer,
+/obj/machinery/door_control{
+	dir = 4;
+	id = "science_blast";
+	name = "Science Wing Lockdown"
+	},
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
 "pZy" = (
@@ -19379,9 +19379,9 @@
 /area/lv624/lazarus/medbay)
 "sOK" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "secure_blast";
-	name = "Vault Access";
-	pixel_x = -25
+	name = "Vault Access"
 	},
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
@@ -21961,6 +21961,7 @@
 /area/lv624/ground/river2)
 "vBa" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "OR1";
 	name = "OR1 Shutters";
 	pixel_x = 30
@@ -22093,6 +22094,7 @@
 "vKh" = (
 /obj/item/reagent_containers/spray/surgery,
 /obj/machinery/door_control{
+	dir = 4;
 	id = "OR2";
 	name = "OR2 Shutters";
 	pixel_x = -30
@@ -23572,6 +23574,7 @@
 /area/lv624/ground/compound/c)
 "xhG" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "secure_blast";
 	name = "Vault Access";
 	pixel_x = 25

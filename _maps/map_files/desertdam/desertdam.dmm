@@ -907,11 +907,6 @@
 /area/desert_dam/exterior/valley/valley_labs)
 "aet" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door_control{
-	id = "dam_checkpoint_north";
-	name = "Checkpoint Lockdown";
-	req_access = null
-	},
 /turf/open/floor/prison{
 	dir = 9;
 	icon_state = "red"
@@ -6271,6 +6266,7 @@
 "axy" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door_control{
+	dir = 8;
 	id = "dam_checkpoint_northeast";
 	name = "Checkpoint Lockdown";
 	req_access = null
@@ -7835,10 +7831,6 @@
 	},
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "aDT" = (
-/obj/machinery/door_control{
-	id = "medstorage3";
-	name = "Medical Secure Shutters"
-	},
 /turf/closed/wall{
 	name = "reinforced metal wall"
 	},
@@ -7956,6 +7948,10 @@
 "aEu" = (
 /obj/effect/decal/warning_stripes{
 	icon_state = "S"
+	},
+/obj/machinery/door_control{
+	id = "medstorage3";
+	name = "Medical Secure Shutters"
 	},
 /turf/open/floor/prison{
 	dir = 8;
@@ -10712,11 +10708,15 @@
 /area/desert_dam/exterior/valley/valley_northwest)
 "aSa" = (
 /obj/machinery/door_control{
-	id = "northpath1";
-	name = "North LZ Shutters"
+	dir = 8;
+	id = "dam_checkpoint_north";
+	name = "Checkpoint Lockdown";
+	req_access = null
 	},
-/turf/closed/wall/r_wall,
-/area/desert_dam/exterior/landing/landing_pad_one_external)
+/turf/open/floor/prison{
+	icon_state = "red"
+	},
+/area/desert_dam/interior/lab_northeast/east_lab_west_entrance)
 "aSe" = (
 /obj/structure/cable,
 /turf/open/floor{
@@ -10816,6 +10816,10 @@
 "aSx" = (
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/machinery/door_control{
+	id = "northpath1";
+	name = "North LZ Shutters"
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/landing/landing_pad_one_external)
@@ -11286,12 +11290,20 @@
 	},
 /area/desert_dam/building/water_treatment_two/hallway)
 "aUW" = (
-/obj/machinery/door_control{
-	id = "port_authority2";
-	name = "Port Admin Lockdown Shutters"
+/obj/effect/decal/warning_stripes{
+	icon_state = "E"
 	},
-/turf/closed/wall/r_wall/chigusa,
-/area/desert_dam/exterior/landing/landing_pad_two_external)
+/obj/item/clothing/head/warning_cone,
+/obj/machinery/door_control{
+	id = "hangar_dam_1";
+	name = "Hangar Shutters";
+	req_access = null
+	},
+/turf/open/floor/prison{
+	dir = 4;
+	icon_state = "darkyellow2"
+	},
+/area/desert_dam/interior/dam_interior/hanger)
 "aUX" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -13075,13 +13087,17 @@
 	},
 /area/desert_dam/building/administration/hallway)
 "bbV" = (
+/obj/structure/cable,
 /obj/machinery/door_control{
-	id = "hangar_dam_1";
-	name = "Hangar Shutters";
+	id = "dam_stormlock_central";
+	name = "Storm Shutter Lockdown";
 	req_access = null
 	},
-/turf/closed/wall/r_wall/unmeltable,
-/area/desert_dam/interior/dam_interior/hanger)
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "floor_plate"
+	},
+/area/desert_dam/interior/dam_interior/west_tunnel)
 "bbW" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor{
 	dir = 1;
@@ -13260,6 +13276,11 @@
 	name = "\improper Cargo Bay Hangar"
 	},
 /obj/structure/cable,
+/obj/machinery/door_control{
+	id = "cargo_hangar1";
+	name = "Warehouse Shutters";
+	req_access = null
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/warehouse/warehouse)
 "bcT" = (
@@ -17627,11 +17648,14 @@
 /area/desert_dam/interior/dam_interior/hanger)
 "buI" = (
 /obj/machinery/door_control{
-	id = "hangar_dam_2";
+	dir = 1;
+	id = "dam_shutter_hangar";
 	name = "Hangar Shutters";
 	req_access = null
 	},
-/turf/closed/wall/r_wall,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 4
+	},
 /area/desert_dam/interior/dam_interior/hanger)
 "buJ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -18540,14 +18564,12 @@
 /area/desert_dam/interior/dam_interior/hanger)
 "byr" = (
 /obj/machinery/door_control{
-	id = "dam_shutter_hangar";
-	name = "Hangar Shutters";
+	id = "dam_stormlock_east";
+	name = "Storm Shutter Lockdown";
 	req_access = null
 	},
-/turf/closed/wall{
-	name = "reinforced metal wall"
-	},
-/area/desert_dam/interior/dam_interior/hanger)
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "bys" = (
 /obj/machinery/light{
 	dir = 8
@@ -22421,13 +22443,17 @@
 	},
 /area/desert_dam/building/security/southern_hallway)
 "bNg" = (
+/obj/machinery/light{
+	dir = 1
+	},
 /obj/machinery/door_control{
-	id = "dam_stormlock_east";
-	name = "Storm Shutter Lockdown";
+	dir = 8;
+	id = "warehouse_dam_2";
+	name = "Warehouse Shutters";
 	req_access = null
 	},
-/turf/closed/wall/r_wall/chigusa,
-/area/desert_dam/interior/dam_interior/east_tunnel_entrance)
+/turf/open/floor/prison,
+/area/desert_dam/building/cafeteria/loading)
 "bNi" = (
 /turf/open/floor/prison,
 /area/desert_dam/building/security/warden)
@@ -23468,15 +23494,13 @@
 	},
 /area/desert_dam/building/warehouse/breakroom)
 "bRB" = (
+/obj/structure/cable,
 /obj/machinery/door_control{
-	id = "dam_stormlock_central";
-	name = "Storm Shutter Lockdown";
-	req_access = null
+	id = "port_authority2";
+	name = "Port Admin Lockdown Shutters"
 	},
-/turf/closed/wall/r_wall/chigusa{
-	name = "reinforced metal wall"
-	},
-/area/desert_dam/interior/dam_interior/west_tunnel)
+/turf/open/floor/prison,
+/area/desert_dam/exterior/landing/landing_pad_two_external)
 "bRC" = (
 /obj/structure/bedsheetbin,
 /obj/structure/table/reinforced,
@@ -34075,12 +34099,12 @@
 /area/desert_dam/exterior/valley/valley_cargo)
 "cGN" = (
 /obj/machinery/door_control{
-	id = "cargo_hangar1";
+	id = "warehouse_dam_2";
 	name = "Warehouse Shutters";
 	req_access = null
 	},
-/turf/closed/wall/r_wall,
-/area/desert_dam/building/warehouse/warehouse)
+/turf/open/floor/prison,
+/area/desert_dam/building/water_treatment_one/garage)
 "cGP" = (
 /obj/machinery/light,
 /turf/open/floor/prison{
@@ -34474,11 +34498,6 @@
 	},
 /area/desert_dam/building/warehouse/warehouse)
 "cIo" = (
-/obj/machinery/door_control{
-	id = "cargo_hangar2";
-	name = "Warehouse Shutters";
-	req_access = null
-	},
 /obj/structure/cable,
 /turf/closed/wall{
 	name = "reinforced metal wall"
@@ -34692,16 +34711,6 @@
 	icon_state = "sterile_white"
 	},
 /area/desert_dam/building/medical/east_wing_hallway)
-"cIY" = (
-/obj/machinery/door_control{
-	id = "cargo_hangar3";
-	name = "Warehouse Shutters";
-	req_access = null
-	},
-/turf/closed/wall{
-	name = "reinforced metal wall"
-	},
-/area/desert_dam/building/warehouse/loading)
 "cIZ" = (
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 4;
@@ -34718,6 +34727,10 @@
 	},
 /obj/effect/decal/warning_stripes{
 	icon_state = "N"
+	},
+/obj/machinery/door_control{
+	id = "tradeshipjerrycabot";
+	name = "Jerry Cabot Lockdown Shutters"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/warehouse/warehouse)
@@ -35013,6 +35026,11 @@
 	},
 /obj/effect/decal/warning_stripes{
 	icon_state = "N"
+	},
+/obj/machinery/door_control{
+	id = "cargo_hangar3";
+	name = "Warehouse Shutters";
+	req_access = null
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/building/warehouse/loading)
@@ -39895,16 +39913,6 @@
 	icon_state = "bright_clean"
 	},
 /area/desert_dam/building/hydroponics/hydroponics)
-"dgN" = (
-/obj/machinery/door_control{
-	id = "dam_stormlock_north2";
-	name = "Storm Shutter Lockdown";
-	req_access = null
-	},
-/turf/closed/wall/r_wall/chigusa{
-	name = "reinforced metal wall"
-	},
-/area/desert_dam/interior/dam_interior/south_tunnel)
 "dgO" = (
 /obj/machinery/vending/hydronutrients,
 /turf/open/floor/prison,
@@ -46483,16 +46491,6 @@
 	icon_state = "bright_clean"
 	},
 /area/desert_dam/building/water_treatment_one/control_room)
-"dVz" = (
-/obj/machinery/door_control{
-	id = "warehouse_dam_2";
-	name = "Warehouse Shutters";
-	req_access = null
-	},
-/turf/closed/wall{
-	name = "reinforced metal wall"
-	},
-/area/desert_dam/building/water_treatment_one/garage)
 "dVA" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
@@ -48219,14 +48217,6 @@
 "eeL" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/prison,
-/area/desert_dam/building/cafeteria/loading)
-"eeM" = (
-/obj/machinery/door_control{
-	id = "warehouse_dam_2";
-	name = "Warehouse Shutters";
-	req_access = null
-	},
-/turf/closed/wall,
 /area/desert_dam/building/cafeteria/loading)
 "eeP" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
@@ -52514,13 +52504,6 @@
 	icon_state = "bright_clean2"
 	},
 /area/desert_dam/building/administration/hallway)
-"hXP" = (
-/obj/machinery/door_control{
-	id = "tradeshipjerrycabot";
-	name = "Jerry Cabot Lockdown Shutters"
-	},
-/turf/closed/wall/mainship/outer/canterbury,
-/area/desert_dam/exterior/valley/tradeship)
 "hXS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -59784,6 +59767,10 @@
 /area/desert_dam/exterior/valley/valley_crashsite)
 "oTn" = (
 /obj/structure/closet/cabinet,
+/obj/machinery/door_control{
+	id = "tradeshipjerrycabot";
+	name = "Jerry Cabot Lockdown Shutters"
+	},
 /turf/open/floor/mainship/mono,
 /area/desert_dam/exterior/valley/tradeship)
 "oTs" = (
@@ -61252,6 +61239,10 @@
 /obj/item/tool/crowbar,
 /obj/effect/spawner/random/tool,
 /obj/effect/ai_node,
+/obj/machinery/door_control{
+	id = "port_authority1";
+	name = "Port Admin Lockdown Shutters"
+	},
 /turf/open/floor/prison,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
 "qet" = (
@@ -62473,13 +62464,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/west_tunnel)
-"rvz" = (
-/obj/machinery/door_control{
-	id = "port_authority1";
-	name = "Port Admin Lockdown Shutters"
-	},
-/turf/closed/wall/r_wall/chigusa,
-/area/desert_dam/exterior/landing/landing_pad_three_external)
 "rvL" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -62637,6 +62621,11 @@
 /obj/item/clothing/head/warning_cone,
 /obj/structure/cable,
 /obj/structure/cable,
+/obj/machinery/door_control{
+	id = "hangar_dam_2";
+	name = "Hangar Shutters";
+	req_access = null
+	},
 /turf/open/floor/prison{
 	dir = 8;
 	icon_state = "darkyellow2"
@@ -66014,6 +66003,12 @@
 /area/desert_dam/exterior/valley/valley_crashsite)
 "uXp" = (
 /obj/effect/ai_node,
+/obj/machinery/door_control{
+	dir = 4;
+	id = "dam_stormlock_north2";
+	name = "Storm Shutter Lockdown";
+	req_access = null
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement{
 	icon_state = "cement13"
 	},
@@ -71428,7 +71423,7 @@ dTs
 dTs
 dTs
 hQr
-rvz
+hQr
 qeb
 jOV
 peV
@@ -74245,7 +74240,7 @@ qMp
 gHp
 fdf
 vlt
-hXP
+wMF
 oTn
 pmo
 wGx
@@ -74327,8 +74322,8 @@ aQU
 aQU
 wTE
 bhe
-bbV
-blw
+nnb
+aUW
 tFX
 bjx
 bjx
@@ -74584,8 +74579,8 @@ bhA
 bst
 bhT
 agP
-afc
-byr
+buI
+bhu
 bhu
 qyD
 bzi
@@ -77522,7 +77517,7 @@ cNo
 cNo
 cNo
 aMI
-cGN
+aMI
 bcS
 cIZ
 cNR
@@ -78031,7 +78026,7 @@ dTs
 tZQ
 tZQ
 tZQ
-aSa
+xfr
 aSx
 djG
 hUj
@@ -80177,7 +80172,7 @@ aiZ
 aiZ
 jJy
 aoE
-buI
+wwd
 rBR
 xtf
 xtf
@@ -86414,7 +86409,7 @@ cQm
 cQm
 cQm
 cZB
-cIY
+cZB
 cKg
 cNl
 cQb
@@ -88985,8 +88980,8 @@ sLx
 bED
 dVt
 fCg
-dVz
-dtp
+dsJ
+cGN
 dtp
 dtp
 dtp
@@ -90298,8 +90293,8 @@ aDs
 cZK
 aDD
 aDx
-bNg
-ncm
+acw
+byr
 suJ
 cEv
 bgn
@@ -99572,7 +99567,7 @@ asA
 aow
 aue
 vGn
-avq
+aSa
 aow
 dTs
 dTs
@@ -102643,8 +102638,8 @@ dTs
 dTs
 dTs
 dTs
-bRB
-vGm
+biy
+bbV
 aCP
 bZc
 bjO
@@ -104784,7 +104779,7 @@ dTs
 bID
 bID
 bID
-dgN
+bID
 bID
 bID
 bID
@@ -119408,8 +119403,8 @@ cmN
 dTs
 dTs
 sAs
-aUW
-hso
+fYm
+bRB
 rHX
 hso
 rHX
@@ -120789,7 +120784,7 @@ heR
 goi
 dbP
 dap
-dcx
+bNg
 dgf
 dhh
 dhh
@@ -121023,7 +121018,7 @@ dbP
 dEz
 dek
 dap
-eeM
+dbL
 eeR
 eeS
 eeS

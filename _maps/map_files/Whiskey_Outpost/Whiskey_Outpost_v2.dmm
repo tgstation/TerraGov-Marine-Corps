@@ -506,14 +506,9 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/whiskey_outpost)
 "ck" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1;
-	pixel_y = 1
-	},
 /obj/machinery/door_control/unmeltable{
 	id = "sekritbunker";
-	name = "Shelter access";
-	pixel_x = 27
+	name = "Shelter access"
 	},
 /turf/open/floor/prison,
 /area/whiskey_outpost)
@@ -1623,16 +1618,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
-"gC" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/machinery/door_control/unmeltable{
-	id = "sekritbunker";
-	name = "Shelter access";
-	pixel_x = 27;
-	pixel_y = -27
-	},
-/turf/open/floor/prison/plate,
-/area/whiskey_outpost)
 "gD" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
@@ -5877,6 +5862,11 @@
 /obj/structure/closet/secure_closet/guncabinet/incendiary,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
+	},
+/obj/machinery/door_control/unmeltable{
+	dir = 1;
+	id = "sekritbunker";
+	name = "Shelter access"
 	},
 /turf/open/floor/prison/plate,
 /area/whiskey_outpost)
@@ -17943,9 +17933,9 @@ SB
 HQ
 HQ
 HQ
-gC
+sL
 RA
-ck
+av
 HQ
 HQ
 aY
@@ -18099,7 +18089,7 @@ Ek
 Lv
 ac
 ac
-HQ
+ck
 HQ
 aZ
 ac

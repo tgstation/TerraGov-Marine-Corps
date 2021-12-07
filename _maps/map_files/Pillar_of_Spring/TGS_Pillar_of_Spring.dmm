@@ -475,9 +475,6 @@
 /area/mainship/hallways/hangar)
 "bI" = (
 /obj/machinery/light,
-/obj/machinery/door_control/mainship/ammo{
-	pixel_y = -32
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
 	},
@@ -883,9 +880,6 @@
 /obj/structure/cable,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
-	},
-/obj/machinery/door_control/mainship/droppod{
-	pixel_y = -32
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/droppod)
@@ -3028,10 +3022,6 @@
 "jU" = (
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/general)
-"jW" = (
-/obj/machinery/door_control/mainship/engineering/armory,
-/turf/closed/wall/mainship,
-/area/mainship/engineering/upper_engineering)
 "jX" = (
 /obj/structure/closet/l3closet/virology,
 /obj/machinery/light{
@@ -3257,9 +3247,7 @@
 /area/mainship/command/corporateliaison)
 "kE" = (
 /obj/structure/table/mainship,
-/obj/machinery/door_control/mainship/req{
-	pixel_y = -5
-	},
+/obj/machinery/door_control/old/req,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "kF" = (
@@ -4142,6 +4130,7 @@
 	dir = 8
 	},
 /obj/machinery/camera/autoname/mainship,
+/obj/machinery/door_control/mainship/droppod,
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 4
 	},
@@ -6718,16 +6707,16 @@
 	dir = 8
 	},
 /obj/structure/table/mainship,
-/obj/machinery/door_control/mainship/cic{
-	pixel_x = -7;
+/obj/machinery/door_control/old/cic{
+	pixel_x = -4;
 	pixel_y = 9
 	},
-/obj/machinery/door_control/mainship/cic/hangar{
-	pixel_x = -7;
+/obj/machinery/door_control/old/cic/hangar{
+	pixel_x = -4;
 	pixel_y = 2
 	},
-/obj/machinery/door_control/mainship/cic/armory{
-	pixel_x = -7;
+/obj/machinery/door_control/old/cic/armory{
+	pixel_x = -4;
 	pixel_y = -5
 	},
 /obj/machinery/light,
@@ -7783,6 +7772,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
+/obj/machinery/door_control/mainship/engineering/armory,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "yz" = (
@@ -8141,6 +8131,12 @@
 	dir = 8
 	},
 /area/mainship/medical/operating_room_one)
+"zB" = (
+/obj/machinery/door_control/mainship/ammo{
+	dir = 8
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/hallways/hangar)
 "zC" = (
 /turf/closed/wall/mainship,
 /area/mainship/engineering/engine_core)
@@ -9090,7 +9086,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door_control/mainship/droppod{
-	pixel_x = 32
+	dir = 8
 	},
 /turf/open/floor/stairs/rampbottom{
 	dir = 1
@@ -9862,8 +9858,11 @@
 /area/mainship/living/briefing)
 "EF" = (
 /obj/structure/table/woodentable,
-/obj/machinery/door_control/mainship/corporate,
 /obj/machinery/light,
+/obj/machinery/door_control/old/ai{
+	id = "cl_shutters";
+	name = "Privacy Shutters"
+	},
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "EG" = (
@@ -16152,7 +16151,7 @@
 	dir = 2
 	},
 /obj/machinery/door_control/mainship/ammo{
-	pixel_x = 32
+	dir = 8
 	},
 /turf/open/floor/stairs/rampbottom{
 	dir = 1
@@ -47509,7 +47508,7 @@ SA
 OK
 wY
 OR
-jW
+OK
 yy
 zs
 yx
@@ -51271,7 +51270,7 @@ Pa
 kB
 kB
 kB
-kB
+zB
 kB
 kB
 az
