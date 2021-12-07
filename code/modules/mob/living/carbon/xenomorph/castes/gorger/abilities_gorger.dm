@@ -184,7 +184,7 @@
 /datum/action/xeno_action/activable/rejuvenate
 	name = "Rejuvenate/Transfusion"
 	action_icon_state = "rejuvenation"
-	mechanics_text = "When used on self, drains blood and restores health over time. When used on another xenomorph, costs blood and restores some of their health or overheals at half efficiency."
+	mechanics_text = "When used on self, drains blood and restores health over time. When used on another xenomorph, costs blood and restores some of their health or overheals."
 	use_state_flags = XACT_TARGET_SELF
 	cooldown_timer = 20 SECONDS
 	plasma_cost = GORGER_REJUVENATE_SELF_COST
@@ -239,7 +239,7 @@
 	var/mob/living/carbon/xenomorph/target_xeno = target
 	var/heal_amount = target_xeno.maxHealth * GORGER_REJUVENATE_ALLY_PERCENTAGE
 	HEAL_XENO_DAMAGE(target_xeno, heal_amount)
-	adjustOverheal(target_xeno, heal_amount/2)
+	adjustOverheal(target_xeno, heal_amount)
 
 /datum/action/xeno_action/activable/rejuvenate/ai_should_use(atom/target)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
