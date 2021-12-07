@@ -581,14 +581,27 @@
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
-		/obj/item/reagent_containers/food/snacks/protein_pack = -1,
-		/obj/item/reagent_containers/food/snacks/mre_pack/meal1 = -1,
-		/obj/item/reagent_containers/food/snacks/mre_pack/meal2 = -1,
-		/obj/item/reagent_containers/food/snacks/mre_pack/meal3 = -1,
-		/obj/item/reagent_containers/food/snacks/mre_pack/meal4 = -1,
-		/obj/item/reagent_containers/food/snacks/mre_pack/meal6 = -1,
-		/obj/item/storage/box/MRE = -1,
-		/obj/item/reagent_containers/food/drinks/flask = -1,
+		"Food and Drink" = list(
+			/obj/item/reagent_containers/food/snacks/protein_pack = -1,
+			/obj/item/reagent_containers/food/snacks/mre_pack/meal1 = -1,
+			/obj/item/reagent_containers/food/snacks/mre_pack/meal2 = -1,
+			/obj/item/reagent_containers/food/snacks/mre_pack/meal3 = -1,
+			/obj/item/reagent_containers/food/snacks/mre_pack/meal4 = -1,
+			/obj/item/reagent_containers/food/snacks/mre_pack/meal6 = -1,
+			/obj/item/storage/box/MRE = -1,
+			/obj/item/reagent_containers/food/drinks/flask = -1,
+		),
+		"Protein Bar Supply" = list(
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/one = 20, //wont spawn in loadouts without being in a vendor
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/two = 20,
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/three = 20,
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/four = 20,
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/five = 20,
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/six = 20,
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/seven = 20,
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/eight = 20,
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/nine = 20
+		),
 	)
 //Christmas inventory
 /*
@@ -597,10 +610,11 @@
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas3 = 25)*/
 	contraband = list(
 		/obj/item/reagent_containers/food/drinks/flask/marine = 10,
-					/obj/item/reagent_containers/food/snacks/mre_pack/meal5 = 15)
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal5 = 15,
+)
 	vend_delay = 15
 	//product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
-	product_ads = "Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork."
+	product_ads = "Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork.; 9 Flavors of Protein!; You'll never guess the mystery flavor!"
 
 
 /obj/machinery/vending/MarineMed
