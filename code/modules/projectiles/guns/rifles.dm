@@ -1210,6 +1210,7 @@
 		/obj/item/attachable/stock/irremoveable/tx11,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/scope/marine,
 	)
 
 	flags_gun_features = GUN_AMMO_COUNTER
@@ -1220,7 +1221,7 @@
 	aim_fire_delay = 0.125 SECONDS
 
 	fire_delay = 0.225 SECONDS
-	extra_delay = 0.5 SECONDS
+	extra_delay = 0.25 SECONDS
 	burst_amount = 3
 	burst_delay = 0.05 SECONDS
 	accuracy_mult_unwielded = 0.5

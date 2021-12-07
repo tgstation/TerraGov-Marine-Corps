@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	return
 
 ///Special effects for leaving a turf. Only called if the projectile has AMMO_LEAVE_TURF enabled
-/datum/ammo/proc/on_leave_turf(turf/T, atom/firer)	
+/datum/ammo/proc/on_leave_turf(turf/T, atom/firer)
 	return
 
 /datum/ammo/proc/knockback(mob/victim, obj/projectile/proj, max_range = 2)
@@ -519,6 +519,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 20
 	penetration = 20
 	sundering = 1.25
+	shell_speed = 3
 
 /datum/ammo/bullet/rifle/heavy
 	name = "heavy rifle bullet"
@@ -1959,7 +1960,7 @@ datum/ammo/bullet/revolver/tp44
 	icon_state = "boiler_gas2"
 	ping = "ping_x"
 	///Key used for icon stuff during bombard ammo selection.
-	var/icon_key = BOILER_GLOB_NEURO	
+	var/icon_key = BOILER_GLOB_NEURO
 	///This text will show up when a boiler selects this ammo. Span proc should be applied when this var is used.
 	var/select_text = "We will now fire neurotoxic gas. This is nonlethal."
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
@@ -1981,7 +1982,7 @@ datum/ammo/bullet/revolver/tp44
 	///Does the gas spread have a fixed range? -1 for no, 0+ for a fixed range. This prevents scaling from caste age.
 	var/fixed_spread_range = -1
 	///Which type is the smoke we leave on passed tiles, provided the projectile has AMMO_LEAVE_TURF enabled?
-	var/passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light	
+	var/passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light
 	///We're going to reuse one smoke spread system repeatedly to cut down on processing.
 	var/datum/effect_system/smoke_spread/xeno/trail_spread_system
 
@@ -2115,7 +2116,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 75
 	penetration = 60
 	reagent_transfer_amount = 55
-	passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light	
+	passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light
 	hit_paralyze_time = 2 SECONDS
 	hit_eye_blur = 16
 	hit_drowsyness = 18
