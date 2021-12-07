@@ -1,5 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - qol: "requisition has a free supply beacon; now it's a skill and communication issue if requisition doesn't have a supply beacon deployed in planetside"
-  - balance: "round start supply beacon without a round start SL, FC, or synthetic"

@@ -928,7 +928,6 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
-		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
