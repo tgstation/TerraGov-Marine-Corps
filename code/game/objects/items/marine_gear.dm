@@ -114,7 +114,7 @@
 /obj/item/reagent_containers/food/snacks/protein_pack
 	name = "TGMC protein bar"
 	desc = "A protien bar produced for the TGMC, comes in many flavors"// this text is only seen at the vending machine, the actual item should never exist.
-/obj/item/reagent_containers/food/snacks/protein_pack/New()
+/obj/item/reagent_containers/food/snacks/protein_pack/Initialize()
 	. = ..()
 	var/protein_bar = pick( ///which protein bar gets picked to generated when a protein_pack is spawned.
 		/obj/item/reagent_containers/food/snacks/protein_pack_base/one,
@@ -128,8 +128,6 @@
 		/obj/item/reagent_containers/food/snacks/protein_pack_base/nine)
 	new protein_bar(src.loc)
 	qdel(src)
-
-
 
 /obj/item/reagent_containers/food/snacks/mre_pack
 	name = "\improper generic MRE pack"
