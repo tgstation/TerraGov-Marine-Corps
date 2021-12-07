@@ -26,14 +26,24 @@
 	icon_living = "german_shep"
 	icon_dead = "german_shep_dead"
 
+	/mob/living/simple_animal/corgi/german_shepherd
+	name = "\improper german shepherd"
+	real_name = "german shepherd"
+	desc = "It's a german shepherd."
+	icon = 'icons/mob/pets.dmi'
+	icon_state = "german_shep"
+	icon_living = "german_shep"
+	icon_dead = "german_shep_dead"
 
-/mob/living/simple_animal/corgi/pug
-	name = "\improper pug"
-	real_name = "pug"
-	desc = "It's a pug."
-	icon_state = "pug"
-	icon_living = "pug"
-	icon_dead = "pug_dead"
+
+/mob/living/simple_animal/corgi/Ranger
+	name = "Ranger"
+	real_name = "Ranger"
+	gender = MALE
+	desc = "That's Ranger, your friendly k9. He has seen the terror of xenomorphs, so it's best to be nice to him. RANGER LEAD THE WAY!"
+	icon_state = "ranger"
+	icon_living = "ranger"
+	icon_dead = "ranger_dead"
 
 
 /mob/living/simple_animal/corgi/exoticcorgi
