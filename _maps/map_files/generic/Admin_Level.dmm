@@ -405,6 +405,10 @@
 	name = "reinforced hull"
 	},
 /area/centcom)
+"eh" = (
+/obj/structure/table/mainship,
+/turf/open/floor/prison/plate,
+/area/valhalla)
 "ev" = (
 /obj/machinery/light{
 	dir = 8
@@ -435,6 +439,10 @@
 "hp" = (
 /turf/closed/wall/indestructible,
 /area/start)
+"hz" = (
+/obj/machinery/roomba,
+/turf/open/floor/prison/plate,
+/area/valhalla)
 "ji" = (
 /obj/effect/landmark/newplayer_start,
 /turf/open/floor,
@@ -465,6 +473,14 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo,
+/area/valhalla)
+"pg" = (
+/obj/machinery/smartfridge,
+/turf/open/floor/prison/plate,
+/area/valhalla)
+"pR" = (
+/obj/machinery/chem_dispenser/valhalla,
+/turf/open/floor/prison/plate,
 /area/valhalla)
 "ss" = (
 /obj/structure/window/reinforced{
@@ -516,6 +532,10 @@
 /obj/item/clothing/suit/storage/militia,
 /turf/open/floor/plating/mainship,
 /area/valhalla)
+"yv" = (
+/obj/machinery/vending/medical/valhalla,
+/turf/open/floor/prison/plate,
+/area/valhalla)
 "zJ" = (
 /obj/machinery/vending/valhalla_req,
 /turf/open/floor/prison/plate,
@@ -534,6 +554,10 @@
 /obj/machinery/vending/MarineMed/valhalla,
 /turf/open/floor/prison/plate,
 /area/valhalla)
+"DI" = (
+/obj/machinery/chem_master,
+/turf/open/floor/prison/plate,
+/area/valhalla)
 "Fi" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/machinery/light,
@@ -547,8 +571,24 @@
 /obj/effect/landmark/start/job/fallen,
 /turf/open/floor/prison/plate,
 /area/valhalla)
+"IN" = (
+/obj/structure/table/mainship,
+/obj/machinery/reagentgrinder,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/glass/beaker/large,
+/turf/open/floor/prison/plate,
+/area/valhalla)
 "Jc" = (
 /obj/machinery/vending/armor_supply,
+/turf/open/floor/prison/plate,
+/area/valhalla)
+"Jy" = (
+/obj/structure/table/mainship,
+/obj/item/mass_spectrometer,
+/obj/item/reagent_scanner,
+/obj/item/tool/hand_labeler,
+/obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/prison/plate,
 /area/valhalla)
 "Kn" = (
@@ -618,6 +658,24 @@
 /area/valhalla)
 "Yb" = (
 /obj/machinery/marine_selector/gear/leader/valhalla,
+/turf/open/floor/prison/plate,
+/area/valhalla)
+"ZN" = (
+/obj/structure/table/mainship,
+/obj/item/storage/box/beakers{
+	pixel_x = -7;
+	pixel_y = 7
+	},
+/obj/item/storage/box/pillbottles{
+	pixel_x = 7;
+	pixel_y = 7
+	},
+/obj/item/storage/box/syringes{
+	pixel_x = -7
+	},
+/obj/item/storage/box/autoinjectors{
+	pixel_x = 7
+	},
 /turf/open/floor/prison/plate,
 /area/valhalla)
 "ZY" = (
@@ -1225,7 +1283,7 @@ fx
 fx
 fx
 fx
-fx
+hz
 fx
 fx
 fx
@@ -1634,7 +1692,7 @@ kY
 ss
 fx
 fx
-fx
+FC
 fx
 fx
 fx
@@ -1880,7 +1938,7 @@ kY
 ss
 fx
 fx
-fx
+FC
 fx
 fx
 fx
@@ -2199,11 +2257,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-Ti
+Nw
+eh
+Jy
+ZN
+IN
 fx
 fx
 fx
@@ -2281,17 +2339,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
 Ti
+eh
 fx
 fx
 fx
 fx
 fx
 fx
+fx
+fx
+hz
 fx
 fx
 fx
@@ -2363,11 +2421,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
 Ti
+pg
+fx
+fx
+fx
 fx
 fx
 fx
@@ -2445,11 +2503,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
 Ti
+eh
+fx
+fx
+fx
 fx
 fx
 FC
@@ -2527,11 +2585,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
 Ti
+eh
+fx
+fx
+fx
 fx
 fx
 zJ
@@ -2609,11 +2667,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
 Ti
+eh
+pR
+yv
+DI
 oM
 fx
 fx
@@ -2691,10 +2749,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+Nw
+Ti
+Ti
+Ti
 Nw
 Nw
 Ti

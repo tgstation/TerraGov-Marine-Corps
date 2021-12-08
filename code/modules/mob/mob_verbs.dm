@@ -112,6 +112,7 @@
 		new_fallen.delete_equipment(TRUE)
 		new_fallen.equipOutfit(valhalla_job.outfit, FALSE)
 		new_fallen.regenerate_icons()
+	valhalla_job.after_spawn(new_fallen)
 
 	log_game("[key_name(usr)] has joined Valhalla.")
 
