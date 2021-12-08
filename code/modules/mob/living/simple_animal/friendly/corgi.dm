@@ -26,15 +26,6 @@
 	icon_living = "german_shep"
 	icon_dead = "german_shep_dead"
 
-	/mob/living/simple_animal/corgi/german_shepherd
-	name = "\improper german shepherd"
-	real_name = "german shepherd"
-	desc = "It's a german shepherd."
-	icon = 'icons/mob/pets.dmi'
-	icon_state = "german_shep"
-	icon_living = "german_shep"
-	icon_dead = "german_shep_dead"
-
 
 /mob/living/simple_animal/corgi/Ranger
 	name = "Ranger"
