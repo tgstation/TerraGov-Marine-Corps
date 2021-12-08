@@ -162,7 +162,7 @@
 
 	// *** Plasma *** //
 	plasma_max = 925
-	plasma_gain = 30
+	plasma_gain = 33
 
 	// *** Health *** //
 	max_health = 310
