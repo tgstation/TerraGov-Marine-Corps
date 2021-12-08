@@ -5,7 +5,7 @@
 /datum/job/fallen/after_spawn(mob/living/new_mob, mob/M, latejoin)
 	if(!ishuman(new_mob))
 		return
-	RegisterSignal(new_mob, COMSIG_MOB_DEATH, COMSIG_MOB_LOGOUT, .proc/delete_mob)
+	RegisterSignal(new_mob, list(COMSIG_MOB_DEATH, COMSIG_MOB_LOGOUT), .proc/delete_mob)
 
 ///Delete the mob when you log out or when it's dead
 /datum/job/fallen/proc/delete_mob(mob/living/source)
