@@ -439,10 +439,6 @@
 "hp" = (
 /turf/closed/wall/indestructible,
 /area/start)
-"hz" = (
-/obj/machinery/roomba,
-/turf/open/floor/prison/plate,
-/area/valhalla)
 "ji" = (
 /obj/effect/landmark/newplayer_start,
 /turf/open/floor,
@@ -473,10 +469,6 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo,
-/area/valhalla)
-"pg" = (
-/obj/machinery/smartfridge,
-/turf/open/floor/prison/plate,
 /area/valhalla)
 "pR" = (
 /obj/machinery/chem_dispenser/valhalla,
@@ -536,6 +528,10 @@
 /obj/machinery/vending/medical/valhalla,
 /turf/open/floor/prison/plate,
 /area/valhalla)
+"yF" = (
+/obj/machinery/smartfridge,
+/turf/open/floor/prison/plate,
+/area/valhalla)
 "zJ" = (
 /obj/machinery/vending/valhalla_req,
 /turf/open/floor/prison/plate,
@@ -556,6 +552,10 @@
 /area/valhalla)
 "DI" = (
 /obj/machinery/chem_master,
+/turf/open/floor/prison/plate,
+/area/valhalla)
+"EO" = (
+/obj/machinery/roomba,
 /turf/open/floor/prison/plate,
 /area/valhalla)
 "Fi" = (
@@ -863,10 +863,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+Nw
+Ti
+Ti
+Ti
 Nw
 Nw
 Ti
@@ -945,11 +945,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
 Ti
+eh
+Jy
+ZN
+IN
 ev
 fx
 fx
@@ -1027,11 +1027,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
 Ti
+eh
+fx
+fx
+fx
 fx
 fx
 zJ
@@ -1109,11 +1109,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
 Ti
+yF
+fx
+fx
+fx
 fx
 fx
 FC
@@ -1191,11 +1191,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
 Ti
+eh
+fx
+fx
+fx
 fx
 fx
 fx
@@ -1273,17 +1273,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
 Ti
+eh
 fx
 fx
 fx
 fx
 fx
-hz
+fx
+fx
+fx
+EO
 fx
 fx
 fx
@@ -1355,11 +1355,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
 Ti
+eh
+pR
+yv
+DI
 fx
 fx
 fx
@@ -2257,7 +2257,7 @@ aa
 aa
 aa
 aa
-Nw
+Ti
 eh
 Jy
 ZN
@@ -2349,7 +2349,7 @@ fx
 fx
 fx
 fx
-hz
+EO
 fx
 fx
 fx
@@ -2422,7 +2422,7 @@ aa
 aa
 aa
 Ti
-pg
+yF
 fx
 fx
 fx
