@@ -31,10 +31,12 @@
 	name = "Ranger"
 	real_name = "Ranger"
 	gender = MALE
-	desc = "That's Ranger, your friendly k9. He has seen the terror of xenomorphs, so it's best to be nice to him. RANGER LEAD THE WAY!"
+	desc = "That's Ranger, your friendly and fierce k9. He has seen the terror of Xenomorphs, so it's best to be nice to him. <b>RANGER LEAD THE WAY</b>!"
 	icon_state = "ranger"
 	icon_living = "ranger"
 	icon_dead = "ranger_dead"
+	health = 300
+	maxHealth = 300 //Foreshadowing the health of other K9
 
 
 /mob/living/simple_animal/corgi/exoticcorgi
