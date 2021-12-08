@@ -842,12 +842,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	LAZYREMOVE(candidate, observer)
 	UnregisterSignal(observer, COMSIG_PARENT_QDELETING)
 	observer.larva_position = 0
-	for(var/action in observer.actions)
-		if(!istype(action, /datum/action/observer_action/join_larva_queue))
-			continue
-		var/datum/action/observer_action/join_larva_queue/join = action
-		join.remove_selected_frame()
-		break
+	var/datum/action/observer_action/join_larva_queue/join = observer.actions_by_path[/datum/action/observer_action/join_larva_queue]
+	join.remove_selected_frame()
 	to_chat(observer, span_warning("You left the Larva queue."))
 	var/mob/dead/observer/observer_in_queue
 	for(var/i in 1 to LAZYLEN(candidate))
