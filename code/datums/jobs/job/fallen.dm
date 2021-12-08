@@ -1,22 +1,19 @@
 /datum/job/fallen
-	title = "PFC ghost"
+	title = SQUAD_MARINE
 	outfit = /datum/outfit/job/marine/standard
 
-/datum/job/fallen/return_spawn_turf()
-    return pick(GLOB.spawns_by_job[/datum/job/fallen])
-
 /datum/job/fallen/engineer
-	title = "Engineer ghost"
+	title = SQUAD_ENGINEER
 	outfit = /datum/outfit/job/marine/engineer
 
 /datum/job/fallen/corpsman
-	title = "Corpsman ghost"
+	title = SQUAD_CORPSMAN
 	outfit = /datum/outfit/job/marine/corpsman
 
 /datum/job/fallen/smartgunner
-	title = "Smartgunner ghost"
+	title = SQUAD_SMARTGUNNER
 	outfit = /datum/outfit/job/marine/smartgunner
 
 /datum/job/fallen/leader
-	title = "Leader ghost"
+	title = SQUAD_LEADER
 	outfit = /datum/outfit/job/marine/leader

@@ -405,9 +405,6 @@
 	name = "reinforced hull"
 	},
 /area/centcom)
-"eh" = (
-/turf/open/floor/light,
-/area/valhalla)
 "ev" = (
 /obj/machinery/light{
 	dir = 8
@@ -1225,13 +1222,13 @@ aa
 Ti
 fx
 fx
-eh
 fx
 fx
-eh
 fx
 fx
-eh
+fx
+fx
+fx
 fx
 Ov
 Nw
@@ -1624,12 +1621,12 @@ Ti
 xm
 WD
 WD
-eh
+WD
 xm
 WD
 WD
 WD
-eh
+WD
 WD
 WD
 WD
@@ -1638,10 +1635,10 @@ ss
 fx
 fx
 fx
-eh
 fx
 fx
-eh
+fx
+fx
 fx
 Tc
 Nw
@@ -1870,12 +1867,12 @@ Ti
 WD
 WD
 WD
-eh
 WD
 WD
 WD
 WD
-eh
+WD
+WD
 WD
 xm
 WD
@@ -1884,10 +1881,10 @@ ss
 fx
 fx
 fx
-eh
 fx
 fx
-eh
+fx
+fx
 fx
 sY
 Nw
@@ -2291,13 +2288,13 @@ aa
 Ti
 fx
 fx
-eh
 fx
 fx
-eh
 fx
 fx
-eh
+fx
+fx
+fx
 fx
 Yb
 Nw

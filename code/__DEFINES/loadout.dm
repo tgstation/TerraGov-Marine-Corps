@@ -220,6 +220,14 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/cigarette/colony,
 	),
+	FACTION_VALHALLA = list(
+		/obj/machinery/vending/weapon/valhalla,
+		/obj/machinery/vending/uniform_supply,
+		/obj/machinery/vending/armor_supply,
+		/obj/machinery/vending/marineFood,
+		/obj/machinery/vending/MarineMed/valhalla,
+		/obj/machinery/vending/cigarette,
+	)
 ))
 
 GLOBAL_LIST_INIT(marine_clothes_listed_products, list(
