@@ -390,6 +390,10 @@
 "cr" = (
 /turf/open/floor/mainship/cargo,
 /area/centcom/supplypod/loading/ert)
+"da" = (
+/obj/effect/landmark/start/job/fallen,
+/turf/open/floor/prison/plate,
+/area/space)
 "dv" = (
 /obj/item/stack/medical/heal_pack/ointment,
 /obj/item/stack/medical/heal_pack/ointment,
@@ -402,7 +406,7 @@
 	},
 /area/centcom)
 "eh" = (
-/obj/machinery/loadout_vendor,
+/obj/machinery/loadout_vendor/valhalla,
 /turf/open/floor/prison/plate,
 /area/space)
 "ev" = (
@@ -1569,10 +1573,10 @@ Ov
 Nw
 Nw
 Nw
+da
 Nw
 Nw
-Nw
-Nw
+da
 Nw
 Nw
 pW
@@ -2589,10 +2593,10 @@ Nw
 Nw
 Nw
 Nw
+da
 Nw
 Nw
-Nw
-Nw
+da
 Nw
 Nw
 ss

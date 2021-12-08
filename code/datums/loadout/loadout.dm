@@ -141,6 +141,9 @@
 		return
 	switch(action)
 		if("equipLoadout")
+			if(loadout_vendor.no_restriction_vendor)
+				equip_mob(ui.user)
+				return
 			if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_EQUIPPED))
 				ui.user.balloon_alert(ui.user, "The vendor is still reloading")
 				return

@@ -10,6 +10,8 @@
 	req_one_access = null
 	///The faction of this loadout vendor
 	var/faction = FACTION_NEUTRAL
+	///If this is a vendor with no restriction
+	var/no_restriction_vendor = FALSE
 
 /obj/machinery/loadout_vendor/can_interact(mob/user)
 	. = ..()
@@ -42,3 +44,6 @@
 
 /obj/machinery/loadout_vendor/rebel
 	faction = FACTION_TERRAGOV_REBEL
+
+/obj/machinery/loadout_vendor/valhalla
+	no_restriction_vendor = TRUE
