@@ -1,0 +1,6 @@
+author: "Pill-U"
+delete-after: True
+changes: 
+  - rscadd: "Add pepperball attachment"
+  - rscadd: "Add ammo for the pepperball attachment"
+  - rscadd: "Sprites for both"
