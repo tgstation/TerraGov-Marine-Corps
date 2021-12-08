@@ -39,19 +39,6 @@ export const Cargo = (props, context) => {
     ? supplypacks[selectedMenu]
     : null;
 
-  const [
-    filter,
-    setFilter,
-  ] = useLocalState(context, `pack-name-filter`, null);
-  
-  const filterSearch = (pack) =>
-    !filter // If we don't have a filter, don't filter
-      ? true // Show everything
-      : pack
-        ?.name
-        ?.toLowerCase()
-        .includes(filter.toLowerCase()); // simple contains search
-
   return (
     <Window
       width={900}
@@ -639,9 +626,7 @@ export const CargoRequest = (props, context) => {
               <OrderList type={deniedrequests} readOnly={1} />
             )}
             {!!selectedPackCat
-              && (<Category 
-                selectedPackCat={selectedPackCat}
-              />)}
+              && (<Category selectedPackCat={selectedPackCat} />)}
           </Window.Content>
         </Flex.Item>
       </Flex>
