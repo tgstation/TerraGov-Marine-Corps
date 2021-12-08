@@ -1231,6 +1231,7 @@
 			/obj/item/weapon/gun/minigun = -1,
 			/obj/item/ammo_magazine/minigun_powerpack = -1,
 			/obj/item/weapon/gun/standard_mmg = -1,
+			/obj/item/ammo_magazine/standard_mmg = -1,
 			/obj/item/weapon/gun/rifle/standard_smartmachinegun = -1,
 			/obj/item/ammo_magazine/standard_smartmachinegun = -1,
 			/obj/item/weapon/gun/rifle/standard_smartrifle = -1,
