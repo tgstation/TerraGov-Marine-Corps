@@ -77,3 +77,33 @@
       so marines got more room
   - balance: the pre shutter open no-build zone has been reduced.
   - balance: added more weed nodes and doors in caves for quality of life.
+2021-12-07:
+  AzonStarfall:
+  - bugfix: Adds exterior access button to Minerva's Drop Pod doors.
+  BraveMole:
+  - balance: razorwire microdosing is dead
+  KrabSpider:
+  - rscadd: Mateba speedloaders, scout rifle magazines, and railgun magazine factorio
+      refills are now available through cargo. Please don't blow anything up.
+  RipGrayson:
+  - imageadd: Added a unique sprite for LZ lockdown overrides.
+  - imageadd: Added directional sprites for LZ lockdown overrides.
+  novaepee:
+  - qol: requisition has a free supply beacon; now it's a skill and communication
+      issue if requisition doesn't have a supply beacon deployed in planetside
+  - balance: round start supply beacon without a round start SL, FC, or synthetic
+2021-12-08:
+  Lewdcifer:
+  - balance: T-152 RPG no longer accepts the shoulder gun module.
+  - balance: TX-15 autoshotgun no longer accepts masterkey shotguns.
+  RipGrayson:
+  - balance: Moved LV624 Sand Temple resin silo farther north.
+  - balance: Moved LV624 nuke disc generators farther apart.
+  - bugfix: Fixed Engineering dome's southern pipe connection being broken.
+  - bugfix: Fixed LV624 SW sand temple being subject to acid rain.
+  - bugfix: Fixed LV624 beachside filtration plant being outdoors.
+  - bugfix: Fixed an exceedingly obscure bug involving not being able to build tables
+      at LV624 LZs.
+  chesse20:
+  - rscadd: 8 new flavors of protein bars
+  - refactor: made protein bars grayscale

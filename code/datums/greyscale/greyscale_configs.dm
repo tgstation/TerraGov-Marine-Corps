@@ -195,3 +195,9 @@
 
 /datum/greyscale_config/badge/circle2
 	icon_file = 'icons/mob/modular/badge/circle2.dmi'
+/*
+ * FOOD
+ */
+/datum/greyscale_config/protein
+	json_config = 'code/datums/greyscale/json_configs/protein.json'
+	icon_file = 'icons/obj/items/food.dmi'
