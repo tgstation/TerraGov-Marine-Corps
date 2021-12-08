@@ -35,6 +35,8 @@
 	var/obj/effect/alien/hivemindcore/core
 	///The minimum health we can have
 	var/minimum_health = -300
+	///Cached list of xeno abilities of the other form, so we can keep the cooldown timer
+	var/list/datum/action/other_actions
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
 	. = ..()
@@ -80,10 +82,8 @@
 	adjustBruteLoss(20 * XENO_RESTING_HEAL, TRUE)
 
 /mob/living/carbon/xenomorph/hivemind/Destroy()
-	if(!QDELETED(core))
-		QDEL_NULL(core)
-	else
-		core = null
+	QDEL_NULL(core)
+	QDEL_LIST(other_actions)
 	upgrade = XENO_UPGRADE_BASETYPE
 	return ..()
 
@@ -124,8 +124,7 @@
 		throwpass = FALSE
 		upgrade = XENO_UPGRADE_MANIFESTATION
 		set_datum(FALSE)
-		remove_abilities()
-		add_abilities()
+		swap_abilities()
 		update_wounds()
 		update_icon()
 		return
@@ -138,10 +137,23 @@
 	throwpass = initial(throwpass)
 	upgrade = XENO_UPGRADE_BASETYPE
 	set_datum(FALSE)
-	remove_abilities()
-	add_abilities()
+	swap_abilities()
 	update_wounds()
 	update_icon()
+
+///Give hivemind the correct abilities for its form
+/mob/living/carbon/xenomorph/hivemind/proc/swap_abilities()
+	var/list/datum/action/chached_actions = other_actions?.Copy()
+	other_actions = xeno_abilities?.Copy()
+	for(var/datum/action/action AS in xeno_abilities)
+		action.remove_action(src, TRUE)
+	if(!length(chached_actions))
+		add_abilities()
+		return
+	for(var/datum/action/action AS in chached_actions)
+		action.give_action(src)
+
+
 
 /mob/living/carbon/xenomorph/hivemind/flamer_fire_act()
 	return_to_core()
