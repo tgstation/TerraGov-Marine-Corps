@@ -1327,8 +1327,6 @@
 				L.heal_limb_damage(10*effect_str, 10*effect_str)
 				L.adjustCloneLoss(-0.2*effect_str-(0.02*(L.maxHealth - L.health)))
 				holder.remove_reagent(/datum/reagent/medicine/research/somolent, 0.6)
-			if(prob(20) && L.stat != UNCONSCIOUS)
-			to_chat(L, span_notice("You feel a very stong urge to sleep."))
 			if(prob(50) && L.stat != UNCONSCIOUS)
 				L.adjustStaminaLoss((current_cycle*0.75 - 14)*effect_str)
 	return ..()
