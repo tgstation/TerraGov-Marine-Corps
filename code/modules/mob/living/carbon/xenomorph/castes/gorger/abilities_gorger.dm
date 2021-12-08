@@ -146,7 +146,7 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(target_human.stat == DEAD)
 		var/overheal_gain = 0
-		while(XENO_IS_DAMAGED_FULL(owner_xeno) && do_after(owner_xeno, 2 SECONDS, TRUE, target_human, BUSY_ICON_HOSTILE))
+		while((owner_xeno.health < owner_xeno.maxHealth || owner_xeno.overheal < owner_xeno.xeno_caste.overheal_max) &&do_after(owner_xeno, 2 SECONDS, TRUE, target_human, BUSY_ICON_HOSTILE))
 			target_human.blood_volume -= GORGER_DRAIN_BLOOD_DRAIN
 			var/target_blood = target_human.blood_volume
 			overheal_gain = owner_xeno.heal_wounds(2.2, TRUE)
@@ -203,8 +203,6 @@
 		if(owner_xeno.do_actions)
 			return FALSE
 		if(TIMER_COOLDOWN_CHECK(owner_xeno, REJUVENATE_ALLY))
-			if(!silent)
-				to_chat(owner_xeno, span_notice("We need [GORGER_REJUVENATE_SELF_COST - owner_xeno.plasma_stored]u more blood to revitalize ourselves."))
 			return FALSE
 		if(!owner_xeno.line_of_sight(target) || get_dist(owner_xeno, target) > 2)
 			if(!silent)
@@ -240,6 +238,8 @@
 	var/heal_amount = target_xeno.maxHealth * GORGER_REJUVENATE_ALLY_PERCENTAGE
 	HEAL_XENO_DAMAGE(target_xeno, heal_amount)
 	adjustOverheal(target_xeno, heal_amount)
+	if(target_xeno.overheal)
+		target_xeno.balloon_alert(owner_xeno, "Overheal: [target_xeno.overheal]/[target_xeno.xeno_caste.overheal_max]")
 
 /datum/action/xeno_action/activable/rejuvenate/ai_should_use(atom/target)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
@@ -336,7 +336,7 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	// cancel the buff when at full health to conserve plasma, otherwise don't cancel
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
-		return !XENO_IS_DAMAGED(owner_xeno)
+		return owner_xeno.health == owner_xeno.maxHealth
 	// small damage has more efficient alternatives to be healed with
 	if(owner_xeno.health > owner_xeno.maxHealth * 0.7)
 		return FALSE

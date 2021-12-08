@@ -72,12 +72,6 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 	/mob/living/carbon/xenomorph/scorpion/ai,
 ))
 
-///Checks if xeno has damage
-#define XENO_IS_DAMAGED(xeno) (xeno.health < xeno.maxHealth)
-
-///Checks if xeno has damage or missing overheal
-#define XENO_IS_DAMAGED_FULL(xeno) (XENO_IS_DAMAGED(xeno) || xeno.overheal < xeno.xeno_caste.overheal_max)
-
 ///Heals a xeno, respecting different types of damage
 #define HEAL_XENO_DAMAGE(xeno, amount) do { \
 	var/fire_loss = xeno.getFireLoss(); \
