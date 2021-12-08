@@ -672,7 +672,7 @@ ARMOR
 /datum/supply_packs/armor/riot
 	name = "Heavy Riot Armor Set"
 	contains = list(
-		/obj/item/clothing/suit/armor/riot/marine,
+		/obj/item/clothing/glasses/night/imager_goggles,
 		/obj/item/clothing/head/helmet/riot,
 	)
 	cost = 30
