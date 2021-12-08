@@ -6,6 +6,7 @@
 	caste_type_path = /mob/living/carbon/xenomorph/spitter
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
+	var/channel_time = 0
 
 	// *** Melee Attacks *** //
 	melee_damage = 17
@@ -41,9 +42,9 @@
 	spit_types = list(/datum/ammo/xeno/acid/medium) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
 
 	acid_spray_duration = 10 SECONDS
-	acid_spray_damage_on_hit = 35
-	acid_spray_damage = 16
-	acid_spray_structure_damage = 45
+	acid_spray_damage_on_hit = 25
+	acid_spray_damage = 10
+	acid_spray_structure_damage = 35
 
 
 	// *** Abilities *** //
@@ -72,7 +73,7 @@
 
 	// *** Plasma *** //
 	plasma_max = 800
-	plasma_gain = 25
+	plasma_gain = 28
 
 	// *** Health *** //
 	max_health = 270
@@ -102,7 +103,7 @@
 
 	// *** Plasma *** //
 	plasma_max = 875
-	plasma_gain = 28
+	plasma_gain = 30
 
 	// *** Health *** //
 	max_health = 290
@@ -123,6 +124,7 @@
 	caste_desc = "A ranged destruction machine."
 	ancient_message = "We are a master of ranged stuns and damage. Go forth and conquer."
 	upgrade = XENO_UPGRADE_THREE
+	channel_time = 0
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
@@ -132,7 +134,7 @@
 
 	// *** Plasma *** //
 	plasma_max = 925
-	plasma_gain = 30
+	plasma_gain = 33
 
 	// *** Health *** //
 	max_health = 310

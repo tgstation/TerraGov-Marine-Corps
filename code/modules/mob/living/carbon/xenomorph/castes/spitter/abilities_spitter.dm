@@ -6,8 +6,8 @@
 	action_icon_state = "spray_acid"
 	mechanics_text = "Spray a line of dangerous acid at your target."
 	ability_name = "spray acid"
-	plasma_cost = 250
-	cooldown_timer = 30 SECONDS
+	plasma_cost = 320
+	cooldown_timer = 20 SECONDS
 
 /datum/action/xeno_action/activable/spray_acid/line/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -18,7 +18,7 @@
 
 	X.face_atom(target) //Face target so we don't look stupid
 
-	if(X.do_actions || !do_after(X, 5, TRUE, target, BUSY_ICON_DANGER))
+	if(X.do_actions || !do_after(X, 0.4, TRUE, target, BUSY_ICON_DANGER))
 		return
 
 	if(!can_use_ability(A, TRUE, override_flags = XACT_IGNORE_SELECTED_ABILITY))
@@ -111,6 +111,7 @@
 	plasma_cost = 280
 	cooldown_timer = 5 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_SCATTER_SPIT
+
 
 /datum/action/xeno_action/activable/scatter_spit/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/X = owner
