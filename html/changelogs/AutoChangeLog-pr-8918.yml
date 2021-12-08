@@ -1,0 +1,4 @@
+author: "KrabSpider"
+delete-after: True
+changes: 
+  - balance: "Incendiary slugs, yet again, no longer have airburst and do normal damage. Again."
