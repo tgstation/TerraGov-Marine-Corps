@@ -422,6 +422,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -571,6 +572,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -649,6 +651,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -717,6 +720,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
 	)
 
