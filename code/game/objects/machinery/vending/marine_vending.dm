@@ -497,11 +497,11 @@
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
-		/obj/item/storage/fancy/cigarettes/luckystars = 50,
-		/obj/item/storage/fancy/chemrettes = 30,
-		/obj/item/storage/box/matches = 15,
-		/obj/item/tool/lighter/random = 25,
-		/obj/item/tool/lighter/zippo = 10,
+		/obj/item/storage/fancy/cigarettes/luckystars = -1,
+		/obj/item/storage/fancy/chemrettes = -1,
+		/obj/item/storage/box/matches = -1,
+		/obj/item/tool/lighter/random = -1,
+		/obj/item/tool/lighter/zippo = -1,
 	)
 
 	contraband = list(/obj/item/clothing/mask/cigarette/cigar/havana = 5)
