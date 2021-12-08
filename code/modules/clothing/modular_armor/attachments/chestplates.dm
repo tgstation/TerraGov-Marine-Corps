@@ -7,7 +7,6 @@
 	icon_state = "infantry_chest"
 	greyscale_config = /datum/greyscale_config/modularchest_infantry
 	slot = ATTACHMENT_SLOT_CHESTPLATE
-	colorable_allowed = NOT_COLORABLE
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
 /obj/item/armor_module/armor/chest/update_item_sprites()

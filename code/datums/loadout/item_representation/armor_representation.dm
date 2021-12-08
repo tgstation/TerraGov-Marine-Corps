@@ -145,18 +145,12 @@
 	. = ..()
 	if(!.)
 		return
-	var/obj/item/armor_module/armor/armor = .
-	if(armor.colorable_allowed == COLOR_WHEEL_NOT_ALLOWED || armor.colorable_allowed == NOT_COLORABLE)
-		var/color_in_list = FALSE
-		for(var/color in armor.colorable_colors)
-			if(armor.colorable_colors[color] != greyscale_colors)
-				continue
-			color_in_list = TRUE
-			break
-		if(!color_in_list)
-			return
+
+	// var/obj/item/armor_module/armor/armor = .
+	/* To be included in the merge. Commented out to avoid screwing with loadouts until merge.
 	armor.set_greyscale_colors(greyscale_colors)
 	armor.update_icon()
+	*/
 
 /datum/item_representation/armor_module/storage
 	///Storage repressentation of storage modules.

@@ -382,12 +382,21 @@
 	///optional assoc list of colors we can color this armor
 	var/list/colorable_colors = list(
 		"Drab" = "#1d2426#241d16#363021#444732#665f44",
+		"Brown" = "#1d2426#1f1007#2c190c#3d2414#60452b",
 		"Snow" = "#1d2426#5d5353#897b7b#aca194#d5ccc3",
 		"Desert" = "#1d2426#352c34#504247#6d5957#958677",
+		"Red" = "#1d2426#370a0d#4d1313#672122#a84d46",
+		"Green" = "#1d2426#12200c#192d14#28402b#486b41",
+		"Purple" = "#1d2426#230b20#32122c#461f3f#733d65",
 		"Black" = "#1d2426#18181b#232427#35363c#474a50",
+		"Blue" = "#1d2426#111f28#182634#243548#435872",
+		"Yellow" = "#1d2426#5c5027#6f6633#837b41#9f9a5d",
+		"Aqua" = "#1d2426#062624#0b3535#154949#2c6e73",
+		"Orange" = "#1d2426#492213#652c16#85391e#c16737",
+		"Grey" = "#1d2426#262626#3f3f3f#5a5a5a#828282",
 	)
 	///Some defines to determin if the armor piece is allowed to be recolored.
-	var/colorable_allowed = NOT_COLORABLE
+	var/colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
 	///Pixel offset on the X axis for how the helmet sits on the mob without a visor.
 	var/visorless_offset_x = 0
 	///Pixel offset on the Y axis for how the helmet sits on the mob without a visor.

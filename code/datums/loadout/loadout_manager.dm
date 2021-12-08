@@ -114,7 +114,7 @@
 						if("[armor.item_type]" == "/obj/item/clothing/suit/modular/pas11x")
 							armor.item_type = /obj/item/clothing/suit/modular/xenonauten
 					for(var/datum/item_representation/armor_module/colored/module AS in armor.attachments)
-						if(ispath(module.item_type, /obj/item/armor_module/armor/badge) || ispath(module.item_type, /obj/item/armor_module/armor/visor) || loadout.version >= 10)
+						if(ispath(module.item_type, /obj/item/armor_module/armor/badge) || loadout.version >= 10)
 							continue
 						module.greyscale_colors = initial(module.item_type.greyscale_colors)
 				var/datum/item_representation/uniform_representation/uniform = loadout.item_list[slot_w_uniform_str]
@@ -170,7 +170,7 @@
 						if("[armor.item_type]" == "/obj/item/clothing/suit/modular/pas11x")
 							armor.item_type = /obj/item/clothing/suit/modular/xenonauten
 					for(var/datum/item_representation/armor_module/colored/module AS in armor.attachments)
-						if(ispath(module.item_type, /obj/item/armor_module/armor/badge) || ispath(module.item_type, /obj/item/armor_module/armor/visor) || loadout.version >= 10)
+						if(ispath(module.item_type, /obj/item/armor_module/armor/badge) || loadout.version >= 10)
 							continue
 						module.greyscale_colors = initial(module.item_type.greyscale_colors)
 				var/datum/item_representation/uniform_representation/uniform = loadout.item_list[slot_w_uniform_str]

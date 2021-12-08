@@ -39,17 +39,10 @@
 	if(!greyscale_colors)
 		modular_helmet.update_icon()
 		return
-	if(modular_helmet.colorable_allowed == COLOR_WHEEL_NOT_ALLOWED || modular_helmet.colorable_allowed == NOT_COLORABLE)
-		var/color_in_list = FALSE
-		for(var/color in modular_helmet.colorable_colors)
-			if(modular_helmet.colorable_colors[color] != greyscale_colors)
-				continue
-			color_in_list = TRUE
-			break
-		if(!color_in_list)
-			return
+	/* Ditto here
 	modular_helmet.set_greyscale_colors(greyscale_colors)
 	modular_helmet.update_icon()
+	*/
 
 /datum/item_representation/modular_helmet/get_tgui_data()
 	var/list/tgui_data = list()
