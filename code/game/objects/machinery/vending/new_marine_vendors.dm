@@ -278,6 +278,7 @@
 
 /obj/machinery/marine_selector/clothes/engi/valhalla
 	vendor_role = /datum/job/fallen/engineer
+	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/medic
 	name = "GHMME Automated Corpsman Closet"
@@ -316,6 +317,7 @@
 
 /obj/machinery/marine_selector/clothes/medic/valhalla
 	vendor_role = /datum/job/fallen/corpsman
+	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/smartgun
 	name = "GHMME Automated Smartgunner Closet"
@@ -354,6 +356,7 @@
 
 /obj/machinery/marine_selector/clothes/smartgun/valhalla
 	vendor_role = /datum/job/fallen/smartgunner
+	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/leader
 	name = "GHMME Automated Leader Closet"
@@ -392,6 +395,7 @@
 
 /obj/machinery/marine_selector/clothes/leader/valhalla
 	vendor_role = /datum/job/fallen/leader
+	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/commander
 	name = "GHMME Automated Commander Closet"
@@ -512,6 +516,7 @@
 
 /obj/machinery/marine_selector/gear/medic/valhalla
 	vendor_role = /datum/job/fallen/corpsman
+	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/engi
 	name = "NEXUS Automated Engineer Equipment Rack"
@@ -529,6 +534,7 @@
 
 /obj/machinery/marine_selector/gear/engi/valhalla
 	vendor_role = /datum/job/fallen/engineer
+	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/smartgun
 	name = "NEXUS Automated Smartgunner Equipment Rack"
@@ -546,6 +552,7 @@
 
 /obj/machinery/marine_selector/gear/smartgun/valhalla
 	vendor_role = /datum/job/fallen/smartgunner
+	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/leader
 	name = "NEXUS Automated Squad Leader Equipment Rack"
@@ -563,6 +570,7 @@
 
 /obj/machinery/marine_selector/gear/leader/valhalla
 	vendor_role = /datum/job/fallen/leader
+	lock_flags = JOB_LOCK
 
 
 /obj/effect/essentials_set

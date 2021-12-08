@@ -391,6 +391,7 @@
 #include "code\datums\jobs\squads.dm"
 #include "code\datums\jobs\job\clf.dm"
 #include "code\datums\jobs\job\deathsquad.dm"
+#include "code\datums\jobs\job\fallen.dm"
 #include "code\datums\jobs\job\freelancers.dm"
 #include "code\datums\jobs\job\imperium.dm"
 #include "code\datums\jobs\job\job.dm"
