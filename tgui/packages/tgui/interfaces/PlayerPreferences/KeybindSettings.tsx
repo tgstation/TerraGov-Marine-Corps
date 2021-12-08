@@ -60,7 +60,7 @@ export const KeybindSettings = (props, context) => {
         />
       )}
       <Box>
-        Search: <Input onInput={(_e, value) => setFilter(value)} />
+      <Input onInput={(_e, value) => setFilter(value)} />
       </Box>
       <Grid>
         <Grid.Column>

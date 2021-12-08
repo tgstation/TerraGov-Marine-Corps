@@ -7,8 +7,7 @@ import { map } from 'common/collections';
 const category_icon = {
   'Operations': "parachute-box",
   'Weapons': "fighter-jet",
-  'Attachments': "microchip",
-  'Ammo': "space-shuttle",
+  'Explosives': "bomb",
   'Armor': "hard-hat",
   'Clothing': "tshirt",
   'Medical': "medkit",
@@ -31,7 +30,6 @@ export const Cargo = (props, context) => {
   const {
     supplypacks,
     approvedrequests,
-    export_history,
     deniedrequests,
     shopping_history,
     awaiting_delivery,
@@ -40,6 +38,19 @@ export const Cargo = (props, context) => {
   const selectedPackCat = supplypacks[selectedMenu]
     ? supplypacks[selectedMenu]
     : null;
+
+  const [
+    filter,
+    setFilter,
+  ] = useLocalState(context, `pack-name-filter`, null);
+  
+  const filterSearch = (pack) =>
+    !filter // If we don't have a filter, don't filter
+      ? true // Show everything
+      : pack
+        ?.name
+        ?.toLowerCase()
+        .includes(filter.toLowerCase()); // simple contains search
 
   return (
     <Window
@@ -488,6 +499,18 @@ const Category = (props, context) => {
     level,
   } = props;
 
+  const [
+    filter,
+    setFilter,
+  ] = useLocalState(context, `pack-name-filter`, null);
+
+  const filterSearch = (entry) =>
+    !filter // If we don't have a filter, don't filter
+      ? true // Show everything
+      : entry
+        ?.toLowerCase()
+        .includes(filter.toLowerCase()); // simple contains search
+
   return (
     <Section level={level || 1} title={
       <>
@@ -496,7 +519,7 @@ const Category = (props, context) => {
       </>
     }>
       <Table>
-        { selectedPackCat.map(entry => {
+        { selectedPackCat.filter(filterSearch).map(entry => {
           const shop_list = shopping_list[entry] || 0;
           const count = shop_list ? shop_list.count : 0;
           const {
@@ -616,7 +639,9 @@ export const CargoRequest = (props, context) => {
               <OrderList type={deniedrequests} readOnly={1} />
             )}
             {!!selectedPackCat
-              && (<Category selectedPackCat={selectedPackCat} />)}
+              && (<Category 
+                selectedPackCat={selectedPackCat}
+              />)}
           </Window.Content>
         </Flex.Item>
       </Flex>
