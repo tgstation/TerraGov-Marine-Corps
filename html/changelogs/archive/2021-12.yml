@@ -92,3 +92,18 @@
   - qol: requisition has a free supply beacon; now it's a skill and communication
       issue if requisition doesn't have a supply beacon deployed in planetside
   - balance: round start supply beacon without a round start SL, FC, or synthetic
+2021-12-08:
+  Lewdcifer:
+  - balance: T-152 RPG no longer accepts the shoulder gun module.
+  - balance: TX-15 autoshotgun no longer accepts masterkey shotguns.
+  RipGrayson:
+  - balance: Moved LV624 Sand Temple resin silo farther north.
+  - balance: Moved LV624 nuke disc generators farther apart.
+  - bugfix: Fixed Engineering dome's southern pipe connection being broken.
+  - bugfix: Fixed LV624 SW sand temple being subject to acid rain.
+  - bugfix: Fixed LV624 beachside filtration plant being outdoors.
+  - bugfix: Fixed an exceedingly obscure bug involving not being able to build tables
+      at LV624 LZs.
+  chesse20:
+  - rscadd: 8 new flavors of protein bars
+  - refactor: made protein bars grayscale

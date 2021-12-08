@@ -1,9 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - balance: "Moved LV624 Sand Temple resin silo farther north."
-  - balance: "Moved LV624 nuke disc generators farther apart."
-  - bugfix: "Fixed Engineering dome's southern pipe connection being broken."
-  - bugfix: "Fixed LV624 SW sand temple being subject to acid rain."
-  - bugfix: "Fixed LV624 beachside filtration plant being outdoors."
-  - bugfix: "Fixed an exceedingly obscure bug involving not being able to build tables at LV624 LZs."
