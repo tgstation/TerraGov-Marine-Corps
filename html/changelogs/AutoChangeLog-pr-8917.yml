@@ -1,0 +1,5 @@
+author: "KrabSpider"
+delete-after: True
+changes: 
+  - balance: "TX-11 extra delay decreased to 0.25 from 0.5."
+  - balance: "TX-11 scope zoom increased to 7 from 5. Stop littering."

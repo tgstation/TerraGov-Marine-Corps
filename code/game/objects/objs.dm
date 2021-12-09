@@ -1,5 +1,5 @@
 /obj
-	animate_movement = 2
+	animate_movement = SLIDE_STEPS
 	speech_span = SPAN_ROBOT
 	interaction_flags = INTERACT_OBJ_DEFAULT
 

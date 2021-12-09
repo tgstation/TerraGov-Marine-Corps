@@ -1,3 +1,26 @@
+//Defines for boiler globs. Their icon states, specifically. Also used to reference their typepaths and for the radials.
+#define BOILER_GLOB_NEURO "neuro_glob"
+#define BOILER_GLOB_ACID "acid_glob"
+#define BOILER_GLOB_NEURO_LANCE	"neuro_lance_glob"
+#define BOILER_GLOB_ACID_LANCE	"acid_lance_glob"
+
+///List of globs, keyed by icon state. Used for radial selection.
+GLOBAL_LIST_INIT(boiler_glob_list, list(
+		BOILER_GLOB_NEURO = /datum/ammo/xeno/boiler_gas,
+		BOILER_GLOB_ACID = /datum/ammo/xeno/boiler_gas/corrosive,
+		BOILER_GLOB_NEURO_LANCE = /datum/ammo/xeno/boiler_gas/lance,
+		BOILER_GLOB_ACID_LANCE = /datum/ammo/xeno/boiler_gas/corrosive/lance,
+		))
+
+///List of glob action button images, used for radial selection.
+GLOBAL_LIST_INIT(boiler_glob_image_list, list(
+		BOILER_GLOB_NEURO = image('icons/mob/actions.dmi', icon_state = BOILER_GLOB_NEURO),
+		BOILER_GLOB_ACID = image('icons/mob/actions.dmi', icon_state = BOILER_GLOB_ACID),
+		BOILER_GLOB_NEURO_LANCE = image('icons/mob/actions.dmi', icon_state = BOILER_GLOB_NEURO_LANCE),
+		BOILER_GLOB_ACID_LANCE = image('icons/mob/actions.dmi', icon_state = BOILER_GLOB_ACID_LANCE),
+		))
+
+
 // ***************************************
 // *********** Long range sight
 // ***************************************
@@ -30,13 +53,16 @@
 /datum/action/xeno_action/toggle_bomb
 	name = "Toggle Bombard Type"
 	action_icon_state = "toggle_bomb0"
-	mechanics_text = "Switches Boiler Bombard type between Corrosive Acid and Neurotoxin."
+	mechanics_text = "Switches Boiler Bombard type between available glob types."
 	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB
+	alternate_keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB_RADIAL
 
 /datum/action/xeno_action/toggle_bomb/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
+	if(length(X.xeno_caste.spit_types) > 2)
+		return	//They might just be skipping past a invalid type
 	if((X.corrosive_ammo + X.neuro_ammo) >= X.xeno_caste.max_ammo)
 		if((X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive && X.neuro_ammo==0) || (X.ammo.type == /datum/ammo/xeno/boiler_gas && X.corrosive_ammo==0))
 			if (!silent)
@@ -45,21 +71,54 @@
 
 /datum/action/xeno_action/toggle_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas)
-		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas/corrosive]
-		to_chat(X, span_notice("We will now fire corrosive acid. This is lethal!"))
+	var/list/spit_types = X.xeno_caste.spit_types
+	var/found_pos = spit_types.Find(X.ammo?.type)
+	if(!found_pos)
+		X.ammo = GLOB.ammo_list[spit_types[1]]
 	else
-		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
-		to_chat(X, span_notice("We will now fire neurotoxic gas. This is nonlethal."))
+		X.ammo = GLOB.ammo_list[spit_types[(found_pos%length(spit_types))+1]]	//Loop around if we would exceed the length
+	var/datum/ammo/xeno/boiler_gas/boiler_glob = X.ammo
+	to_chat(X, span_notice(boiler_glob.select_text))
+	update_button_icon()
+
+/datum/action/xeno_action/toggle_bomb/alternate_action_activate()
+	. = COMSIG_KB_ACTIVATED
+	var/mob/living/carbon/xenomorph/boiler/X = owner
+	if(!can_use_action())
+		return
+	if(length(X.xeno_caste.spit_types) <= 2)	//If we only have two or less glob types, we just use default select anyways.
+		action_activate()
+		return 
+	INVOKE_ASYNC(src, .proc/select_glob_radial)
+
+/**
+ * Opens a radial menu to select a glob in and sets current ammo to the selected result.
+ * * On selecting nothing, merely keeps current ammo.
+ * * Dynamically adjusts depending on which globs a boiler has access to, provided the global lists are maintained, though this fact isn't too relevant unless someone adds more.
+**/
+/datum/action/xeno_action/toggle_bomb/proc/select_glob_radial()
+	var/mob/living/carbon/xenomorph/boiler/X = owner
+	var/list/available_globs = list()
+	for(var/datum/ammo/xeno/boiler_gas/glob_type AS in X.xeno_caste.spit_types)
+		var/glob_image = GLOB.boiler_glob_image_list[initial(glob_type.icon_key)]
+		if(!glob_image)
+			continue
+		available_globs[initial(glob_type.icon_key)] = glob_image
+			
+	var/glob_choice = show_radial_menu(owner, owner, available_globs, radius = 48)
+	if(!glob_choice)
+		return
+	var/referenced_path = GLOB.boiler_glob_list[glob_choice]
+	X.ammo = GLOB.ammo_list[referenced_path]
+	var/datum/ammo/xeno/boiler_gas/boiler_glob = X.ammo
+	to_chat(X, span_notice(boiler_glob.select_text))
 	update_button_icon()
 
 /datum/action/xeno_action/toggle_bomb/update_button_icon()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	button.overlays.Cut()
-	if(X.ammo?.type == /datum/ammo/xeno/boiler_gas/corrosive)
-		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb1")
-	else
-		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb0")
+	var/datum/ammo/xeno/boiler_gas/boiler_glob = X.ammo	//Should be safe as this always selects a ammo.
+	button.overlays += image('icons/mob/actions.dmi', button, boiler_glob.icon_key)
 	return ..()
 
 // ***************************************
@@ -87,7 +146,7 @@
 		return
 
 	succeed_activate()
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
+	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
 		X.corrosive_ammo++
 		to_chat(X, span_notice("We prepare a corrosive acid globule."))
 	else
@@ -200,7 +259,7 @@
 	if(!istype(target))
 		return
 
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
+	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
 		if(X.corrosive_ammo <= 0)
 			to_chat(X, span_warning("We have no corrosive globules available."))
 			return
@@ -225,7 +284,7 @@
 	P.generate_bullet(X.ammo)
 	P.fire_at(target, X, null, X.ammo.max_range, X.ammo.shell_speed)
 	playsound(X, 'sound/effects/blobattack.ogg', 25, 1)
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
+	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
 		GLOB.round_statistics.boiler_acid_smokes++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_acid_smokes")
 		X.corrosive_ammo--

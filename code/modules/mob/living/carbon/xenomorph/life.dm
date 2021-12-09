@@ -15,11 +15,8 @@
 	if(notransform) //If we're in true stasis don't bother processing life
 		return
 
-	if(stat == DEAD) //Dead, nothing else to do but this.
-		if(plasma_stored && !(xeno_caste.caste_flags & CASTE_DECAY_PROOF))
-			handle_decay()
-		else
-			SSmobs.stop_processing(src)
+	if(stat == DEAD)
+		SSmobs.stop_processing(src)
 		return
 	if(stat == UNCONSCIOUS)
 		if(is_zoomed)
@@ -60,11 +57,11 @@
 		updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
 		return
 	var/turf/T = loc
-	if(!T || !istype(T))
+	if(!istype(T))
 		return
 
 	var/ruler_healing_penalty = 0.5
-	if(hive?.living_xeno_ruler?.loc?.z == T.z || xeno_caste.caste_flags & CASTE_CAN_HEAL_WITHOUT_QUEEN) //if the living queen's z-level is the same as ours.
+	if(hive?.living_xeno_ruler?.loc?.z == T.z || xeno_caste.caste_flags & CASTE_CAN_HEAL_WITHOUT_QUEEN || (SSticker?.mode.flags_round_type & MODE_XENO_RULER)) //if the living queen's z-level is the same as ours.
 		ruler_healing_penalty = 1
 	var/obj/effect/alien/weeds/weed = locate() in T
 	if(weed || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
@@ -117,10 +114,10 @@
 		amount *= regen_power
 	amount *= multiplier * GLOB.xeno_stat_multiplicator_buff
 
-	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, src)
-
-	var/remainder = max(0, amount-getBruteLoss())
-	adjustBruteLoss(-amount)
+	var/list/heal_data = list(amount)
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, heal_data)
+	var/remainder = max(0, heal_data[1]-getBruteLoss())
+	adjustBruteLoss(-heal_data[1])
 	adjustFireLoss(-remainder)
 
 /mob/living/carbon/xenomorph/proc/handle_living_plasma_updates()
@@ -141,14 +138,6 @@
 	if(HAS_TRAIT(src, TRAIT_NOPLASMAREGEN))
 		hud_set_plasma()
 		return
-	var/list/plasma_mod = list()
-
-	SEND_SIGNAL(src, COMSIG_XENOMORPH_PLASMA_REGEN, plasma_mod)
-
-
-	var/plasma_gain_multiplier = 1
-	for(var/i in plasma_mod)
-		plasma_gain_multiplier *= i
 
 	var/obj/effect/alien/weeds/weeds = locate() in T
 
@@ -163,7 +152,11 @@
 
 	plasma_gain *= weeds ? weeds.resting_buff : 1
 
-	gain_plasma(plasma_gain * plasma_gain_multiplier)
+	var/list/plasma_mod = list(plasma_gain)
+
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_PLASMA_REGEN, plasma_mod)
+
+	gain_plasma(plasma_mod[1])
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
 
 /mob/living/carbon/xenomorph/proc/handle_aura_emiter()

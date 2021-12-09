@@ -4,48 +4,28 @@ SUBSYSTEM_DEF(weeds_decay)
 	runlevels = RUNLEVEL_LOBBY|RUNLEVEL_SETUP|RUNLEVEL_GAME|RUNLEVEL_POSTGAME
 	wait = 5 SECONDS
 
-	/// List of decaying nodes on the map
-	var/list/decaying = list()
+	/// List of decaying weeds on the map
+	var/list/obj/effect/alien/weeds/decaying_list = list()
 
 /datum/controller/subsystem/weeds_decay/stat_entry()
-	return ..("Decay Nodes: [length(decaying)]")
+	return ..("Decay Nodes: [length(decaying_list)]")
 
 /datum/controller/subsystem/weeds_decay/fire(resumed = FALSE)
-
-	for(var/A in decaying)
+	for(var/obj/effect/alien/weeds/weed AS in decaying_list)
 		if(MC_TICK_CHECK)
 			return
 
-		var/turf/T = A
-		if(QDELETED(T))
-			decaying -= T
-			continue
-
-		var/obj/effect/alien/weeds/W = locate() in T
-		if(QDELETED(W) || W.parent_node || istype(W, /obj/effect/alien/weeds/node))
-			decaying -= T
+		if(QDELETED(weed))
+			decaying_list -= weed
 			continue
 
 		var/decay_chance = 100
 		for(var/direction in GLOB.cardinals)
-			var/turf/adj = get_step(T, direction)
+			var/turf/adj = get_step(weed, direction)
 			if(locate(/obj/effect/alien/weeds) in adj)
 				decay_chance -= rand(15, 20)
 
 		if(prob(decay_chance))
-			W.parent_node = null // So it wont try to regrow
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, W), rand(3, 10 SECONDS))
-			decaying -= T
-
-/datum/controller/subsystem/weeds_decay/proc/decay_weeds(obj/effect/alien/weeds/node/node)
-	for(var/X in node.node_turfs)
-		var/turf/T = X
-
-		// Skip if there is not a weed there
-		var/obj/effect/alien/weeds/W = locate() in T
-		if(!W || W.parent_node != node)
-			continue
-
-		W.parent_node = null // mark this null otherwise the weed regrows
-		decaying += T
+			addtimer(CALLBACK(weed, /obj/effect/alien/weeds.proc/check_for_parent_node), rand(3, 10 SECONDS))
+			decaying_list -= weed
 

@@ -10,8 +10,7 @@ GLOBAL_LIST_INIT(typecache_living, typecacheof(/mob/living))
 GLOBAL_LIST_INIT(ignored_atoms, typecacheof(list(/mob/dead, /obj/effect/landmark, /obj/docking_port, /obj/effect/particle_effect/sparks, /obj/effect/DPtarget, /obj/effect/supplypod_selector)))
 
 GLOBAL_LIST_INIT(hvh_restricted_items_list, typecacheof(list(
-	/obj/item/armor_module/attachable/ballistic_armor,
+	/obj/item/armor_module/module/ballistic_armor,
 	/obj/item/attachable/scope,
-	/obj/item/clothing/suit/storage/marine/pasvest,
-	/obj/item/clothing/suit/modular/pas11x,
+	/obj/item/clothing/suit/modular/xenonauten,
 )))

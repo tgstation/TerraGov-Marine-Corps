@@ -224,8 +224,6 @@
 
 
 	else
-		if(new_caste_type == /mob/living/carbon/xenomorph/runner & CONFIG_GET(flag/roony))//If the fun config is set, every runner is a roony
-			new_caste_type = /mob/living/carbon/xenomorph/roony
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
 
 		tierzeros = hive.get_total_tier_zeros()
@@ -362,18 +360,18 @@
 		// Retaining blue crowned leadership on minimap past evolution.
 		var/datum/xeno_caste/original = /datum/xeno_caste
 		// Xenos with specialized icons (Queen, King, Shrike) do not need to have their icon returned to normal
-		if(new_xeno.xeno_caste.minimap_icon == initial(original.minimap_icon))	
+		if(new_xeno.xeno_caste.minimap_icon == initial(original.minimap_icon))
 			SSminimaps.remove_marker(new_xeno)
 			SSminimaps.add_marker(new_xeno, new_xeno.z, MINIMAP_FLAG_XENO, new_xeno.xeno_caste.minimap_leadered_icon)
 
-	if(upgrade == XENO_UPGRADE_THREE)
+	if(upgrade == XENO_UPGRADE_THREE || upgrade == XENO_UPGRADE_FOUR)
 		switch(tier)
 			if(XENO_TIER_TWO)
 				SSmonitor.stats.ancient_T2--
 			if(XENO_TIER_THREE)
 				SSmonitor.stats.ancient_T3--
 
-	new_xeno.upgrade_stored = upgrade_stored
+	new_xeno.upgrade_stored = max(upgrade_stored, new_xeno.upgrade_stored)
 	while(new_xeno.upgrade_possible() && new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold)
 		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
 	var/obj/screen/zone_sel/selector = new_xeno.hud_used.zone_sel

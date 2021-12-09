@@ -6,10 +6,12 @@
 #define CALIBER_9X19 "9x19mm Parabellum"
 #define CALIBER_9X19_TRANQUILIZER "9x19mm Tranquilizer"
 #define CALIBER_45ACP ".45 ACP"
+#define CALIBER_45L ".45 Long"
 #define CALIBER_22LR ".22 LR"
 #define CALIBER_380ACP ".380 ACP"
 #define CALIBER_PLASMA "Ionized Plasma Bolt" //TX-7 Plasma Pistol
 #define CALIBER_50AE ".50 AE"
+#define CALIBER_41RIM ".41 Rimfire" //Derringer
 #define CALIBER_70MANKEY ".70 Mankey" //Don't ask
 
 // Revolvers
@@ -29,6 +31,7 @@
 #define CALIBER_10X24_CASELESS "10x24mm caseless"
 #define CALIBER_10X25_CASELESS "10x25mm caseless"
 #define CALIBER_10x27_CASELESS "10x27mm caseless"
+#define CALIBER_10x265_CASELESS "10x26.5mm caseless"
 #define CALIBER_762X39 "7.62x39mm"
 #define CALIBER_556X45 "5.56x45mm"
 #define CALIBER_16G "16 gauge" //Autoshotty, but coded like a rifle so eeh

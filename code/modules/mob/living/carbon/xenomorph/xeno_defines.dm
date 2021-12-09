@@ -8,6 +8,11 @@
 	var/caste_type_path = null
 
 	var/ancient_message = ""
+	///primordial message that is shown when a caste becomes primordial
+	var/primordial_message = ""
+
+	///name of primordial upgrade this caste looks for, keep this as define
+	var/primordial_upgrade_name = ""
 
 	var/tier = XENO_TIER_ZERO
 	var/upgrade = XENO_UPGRADE_ZERO
@@ -206,6 +211,18 @@
 	///Whether the caste enters and crawls through vents silently
 	var/silent_vent_crawl = FALSE
 
+///Add needed component to the xeno
+/datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
+	xenomorph.AddComponent(/datum/component/bump_attack)
+	if(caste_flags & CAN_RIDE_CRUSHER)
+		xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, /mob/living/carbon/xenomorph.proc/grabbed_self_attack)
+
+/datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
+	var/datum/component/bump_attack = xenomorph.GetComponent(/datum/component/bump_attack)
+	bump_attack?.RemoveComponent()
+	if(caste_flags & CAN_RIDE_CRUSHER)
+		xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)
+
 /mob/living/carbon/xenomorph
 	name = "Drone"
 	desc = "What the hell is THAT?"
@@ -336,6 +353,8 @@
 	// *** Ravager vars *** //
 	/// when true the rav will not go into crit or take crit damage.
 	var/endure = FALSE
+	///when true the rav leeches healing off of hitting marines
+	var/vampirism
 
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
@@ -348,5 +367,8 @@
 
 	///The xenos/silo/nuke currently tracked by the xeno_tracker arrow
 	var/atom/tracked
+
+	///Are we the roony version of this xeno
+	var/is_a_rouny = FALSE
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

@@ -63,7 +63,9 @@
 			if(tgui_alert(usr, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No"), 0) != "Yes")
 				DEATHTIME_MESSAGE(usr)
 				return
-			log_admin("[key_name(usr)] used his admin power to bypass respawn before his timer was over")
+			var/admin_message = "[key_name(usr)] used his admin power to bypass respawn before his timer was over"
+			log_admin(admin_message)
+			message_admins(admin_message)
 		else
 			DEATHTIME_MESSAGE(usr)
 			return
@@ -80,6 +82,8 @@
 		return
 
 	var/mob/new_player/M = new /mob/new_player()
+	if(SSticker.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS)
+		M.faction = faction
 	if(!client)
 		qdel(M)
 		return

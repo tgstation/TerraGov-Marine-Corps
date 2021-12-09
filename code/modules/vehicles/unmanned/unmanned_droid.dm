@@ -29,6 +29,35 @@
 		STOP_PROCESSING(SSslowprocess, src)
 		user.clear_fullscreen("machine", 5)
 
+/obj/vehicle/unmanned/droid/welder_act(mob/living/user, obj/item/I)
+	if(user.do_actions)
+		balloon_alert(user, "You're already busy!")
+		return FALSE
+	if(obj_integrity >= max_integrity)
+		balloon_alert(user, "This doesn't need repairs")
+		return TRUE
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+		balloon_alert_to_viewers("[user] tries to repair the droid" , ignored_mobs = user)
+		balloon_alert(user, "You try to repair the droid")
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(I, /obj/item/tool/weldingtool.proc/isOn)))
+			return FALSE
+	balloon_alert_to_viewers("[user] begins repairing the droid", ignored_mobs = user)
+	balloon_alert(user, "You begin repairing the droid")
+	if(!do_after(user, 2 SECONDS, extra_checks = CALLBACK(I, /obj/item/tool/weldingtool.proc/isOn)))
+		balloon_alert_to_viewers("[user] stops repairing the droid")
+		return
+	if(!I.use_tool(src, user, 0, volume=50, amount=1))
+		return TRUE
+	obj_integrity += min(10, max_integrity-obj_integrity)
+	hud_set_machine_health()
+	if(obj_integrity == max_integrity)
+		balloon_alert_to_viewers("Fully repaired!")
+	else
+		balloon_alert_to_viewers("[user] repairs the droid", ignored_mobs = user)
+		balloon_alert(user, "You finish repairing the droid")
+	return TRUE
+
 ///stealth droid, like the normal droid but with stealthing ability on rclick
 /obj/vehicle/unmanned/droid/scout
 	name = "XN-43-S combat droid"

@@ -1,5 +1,5 @@
 /mob/living/carbon/proc/has_smoke_protection()
-	if(stat == DEAD) //they don't breath
+	if(stat == DEAD || species.species_flags & NO_BREATHE) //they don't breath
 		return TRUE
 	return FALSE
 
@@ -27,8 +27,6 @@
 		adjustFireLoss(12)
 		blur_eyes(2)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_PLASMALOSS))
-		adjustToxLoss(0.25)
-		adjustStaminaLoss(3)
 		blur_eyes(2)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
 		adjustOxyLoss(4 + S.strength * 2)

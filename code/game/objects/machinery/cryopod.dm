@@ -245,6 +245,8 @@
 
 	GLOB.real_names_joined -= real_name
 
+	GLOB.key_to_time_of_death[key] = world.time
+
 	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
 
 	//Make an announcement and log the person entering storage.
@@ -306,20 +308,6 @@
 	for(var/O in pockets)
 		var/obj/item/I = O
 		pockets.remove_from_storage(I, loc)
-		items = I.store_in_cryo(items)
-	return ..()
-
-/obj/item/clothing/under/store_in_cryo(list/items, nullspace_it = TRUE)
-	if(hastie)
-		var/obj/item/TIE = hastie
-		remove_accessory()
-		items = TIE.store_in_cryo(items)
-	return ..()
-
-/obj/item/clothing/tie/storage/store_in_cryo(list/items, nullspace_it = TRUE)
-	for(var/O in hold)
-		var/obj/item/I = O
-		hold.remove_from_storage(I, loc)
 		items = I.store_in_cryo(items)
 	return ..()
 

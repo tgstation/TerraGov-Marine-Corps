@@ -17,6 +17,10 @@
 
 /obj/effect/decal/cleanable/liquid_fuel/Initialize(mapload, amt = 1, logs = TRUE, newDir)
 	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 	amount = amt
 	burn_lvl = rand(0, 25)
 	fire_lvl = rand(5,30)
@@ -35,8 +39,9 @@
 	fuel_spread()
 	RegisterSignal(loc, COMSIG_TURF_THROW_ENDED_HERE, .proc/ignite_check_wrapper)
 
-/obj/effect/decal/cleanable/liquid_fuel/Crossed(atom/movable/AM)
-	. = ..()
+///called when someonething moves over the fuel
+/obj/effect/decal/cleanable/liquid_fuel/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
+	SIGNAL_HANDLER
 	if(AM.throwing)
 		return	//If something lands on our turf, it's caught via signal instead
 	check_ignite(AM)

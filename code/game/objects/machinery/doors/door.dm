@@ -41,6 +41,8 @@
 
 	if(width > 1)
 		handle_multidoor()
+	var/turf/current_turf = get_turf(src)
+	current_turf.flags_atom &= ~ AI_BLOCKED
 
 /obj/machinery/door/Destroy()
 	for(var/o in fillers)
@@ -79,13 +81,6 @@
 		var/obj/O = AM
 		for(var/m in O.buckled_mobs)
 			Bumped(m)
-
-	if(istype(AM, /obj/machinery/bot))
-		var/obj/machinery/bot/bot = AM
-		if(src.check_access(bot.botcard))
-			if(density)
-				open()
-		return
 
 
 /obj/machinery/door/CanAllowThrough(atom/movable/mover, turf/target)

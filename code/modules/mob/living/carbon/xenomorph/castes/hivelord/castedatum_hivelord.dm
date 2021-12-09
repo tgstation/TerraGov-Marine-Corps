@@ -5,6 +5,7 @@
 	caste_desc = "A builder of REALLY BIG hives."
 	caste_type_path = /mob/living/carbon/xenomorph/hivelord
 	tier = XENO_TIER_TWO
+	primordial_upgrade_name = PRIMORDIAL_HIVELORD
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "hivelord" //used to match appropriate wound overlays
 
@@ -51,16 +52,12 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/cocoon,
-		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/healing_infusion,
 		/datum/action/xeno_action/place_acidwell,
-		/datum/action/xeno_action/activable/secrete_resin/hivelord,
-		/datum/action/xeno_action/activable/build_silo,
-		/datum/action/xeno_action/activable/build_hunt_den,
-		/datum/action/xeno_action/activable/build_turret,
+		/datum/action/xeno_action/activable/secrete_resin/ranged,
+		/datum/action/xeno_action/blessing_menu,
 		/datum/action/xeno_action/activable/transfer_plasma/improved,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/build_tunnel,
@@ -167,3 +164,55 @@
 	// *** Pheromones *** //
 	aura_strength = 3
 
+
+/datum/xeno_caste/hivelord/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "Ultimate builder of the hive. It seems twitchy and is constantly building something"
+	primordial_message = "We are the master architect of the hive. Let the world be covered in resin."
+	upgrade = XENO_UPGRADE_FOUR
+
+	// *** Melee Attacks *** //
+	melee_damage = 20
+
+	// *** Speed *** //
+	speed = 0.1
+
+	// *** Plasma *** //
+	plasma_max = 2400
+	plasma_gain = 65
+
+	// *** Health *** //
+	max_health = 350
+
+	// *** Evolution *** //
+	upgrade_threshold = 1320
+
+	// *** Defense *** //
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 30, "acid" = 20)
+
+	// *** Ranged Attack *** //
+	spit_delay = 1.3 SECONDS
+	spit_types = list(/datum/ammo/xeno/sticky)
+
+	// *** Pheromones *** //
+	aura_strength = 3
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/cocoon,
+		/datum/action/xeno_action/activable/plant_weeds,
+		/datum/action/xeno_action/activable/healing_infusion,
+		/datum/action/xeno_action/place_acidwell,
+		/datum/action/xeno_action/activable/secrete_resin/ranged,
+		/datum/action/xeno_action/blessing_menu,
+		/datum/action/xeno_action/activable/transfer_plasma/improved,
+		/datum/action/xeno_action/activable/corrosive_acid/strong,
+		/datum/action/xeno_action/place_trap,
+		/datum/action/xeno_action/build_tunnel,
+		/datum/action/xeno_action/toggle_speed,
+		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/create_jelly,
+		/datum/action/xeno_action/place_jelly_pod,
+	)

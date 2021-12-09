@@ -295,6 +295,7 @@
 						cached_addictions.Add(new_reagent)
 				if(R.volume < R.overdose_threshold && R.overdosed && R.overdose_threshold)
 					R.overdosed = FALSE
+					need_mob_update += R.on_overdose_stop(L, quirks)
 				if(R.volume < R.overdose_crit_threshold && R.overdosed_crit && R.overdose_crit_threshold)
 					R.overdosed_crit = FALSE
 				if(R.overdosed)

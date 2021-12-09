@@ -6,7 +6,7 @@
 	icon_state = "marine"
 	item_state = "marine"
 	flags_armor_protection = FEET
-	soft_armor = list("melee" = 30, "bullet" = 20, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 25)
+	soft_armor = list("melee" = 25, "bullet" = 15, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 20)
 	flags_cold_protection = FEET
 	flags_heat_protection = FEET
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
@@ -21,13 +21,19 @@
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
+		/obj/item/weapon/gun/shotgun/double/derringer,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/weapon/throwing_knife,
+		/obj/item/stack/throwing_knife,
 	)
 
 /obj/item/clothing/shoes/marine/Initialize()
 	. = ..()
 	pockets = new pockets(src)
+
+/obj/item/clothing/shoes/marine/Destroy()
+	QDEL_NULL(pockets)
+	return ..()
+
 
 /obj/item/clothing/shoes/marine/attack_hand(mob/living/user)
 	if(pockets.handle_attack_hand(user))
@@ -146,3 +152,9 @@
 	flags_item = NODROP|DELONDROP
 	soft_armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
 	flags_inventory = NOSLIPPING
+
+/obj/item/clothing/shoes/cowboy
+	name = "sturdy western boots"
+	desc = "As sturdy as they are old fashioned these will keep your ankles from snake bites on any planet. These cannot store anything, but has extra fashion with those unneeded spurs on their heels."
+	icon_state = "cboots"
+	item_state = "cboots"

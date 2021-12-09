@@ -29,6 +29,8 @@
 	issue_order_focus.give_action(src)
 	var/datum/action/innate/order/rally_order/send_rally_order = new
 	send_rally_order.give_action(src)
+	var/datum/action/innate/message_squad/screen_orders = new
+	screen_orders.give_action(src)
 
 	//makes order hud visible
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_ORDER]
@@ -108,6 +110,11 @@
 			stat(null, "You are affected by a HOLD order.")
 		if(marksman_aura)
 			stat(null, "You are affected by a FOCUS order.")
+		var/datum/game_mode/mode = SSticker.mode
+		if(mode.flags_round_type & MODE_WIN_POINTS)
+			stat("Points needed to win:", mode.win_points_needed)
+			stat("Loyalists team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) : 0)
+			stat("Rebels team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) : 0)
 
 /mob/living/carbon/human/ex_act(severity)
 	if(status_flags & GODMODE)
@@ -192,7 +199,6 @@
 	<BR><B>Suit Storage:</B> <A href='?src=[REF(src)];item=[SLOT_S_STORE]'>[(s_store ? s_store : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(s_store, /obj/item/tank) && !internal) ? " <A href='?src=[REF(src)];internal=1'>Set Internal</A>" : "")]
 	<BR>
 	[handcuffed ? "<BR><A href='?src=[REF(src)];item=[SLOT_HANDCUFFED]'>Handcuffed</A>" : ""]
-	[suit?.hastie ? "<BR><A href='?src=[REF(src)];tie=1'>Remove Accessory</A>" : ""]
 	[internal ? "<BR><A href='?src=[REF(src)];internal=1'>Remove Internal</A>" : ""]
 	<BR><A href='?src=[REF(src)];splints=1'>Remove Splints</A>
 	<BR><A href='?src=[REF(src)];pockets=1'>Empty Pockets</A>
@@ -432,21 +438,6 @@
 							limbcount++
 					if(limbcount)
 						new /obj/item/stack/medical/splint(loc, limbcount)
-
-	if(href_list["tie"])
-		if(!usr.do_actions)
-			if(w_uniform && istype(w_uniform, /obj/item/clothing/under))
-				var/obj/item/clothing/under/U = w_uniform
-				if(U.hastie)
-					log_combat(usr, src, "attempted to remove accessory ([U.hastie])")
-					if(istype(U.hastie, /obj/item/clothing/tie/holobadge) || istype(U.hastie, /obj/item/clothing/tie/medal))
-						visible_message(span_danger("[usr] tears off \the [U.hastie] from [src]'s [U]!"), null, null, 5)
-					else
-						visible_message(span_danger("[usr] is trying to take off \a [U.hastie] from [src]'s [U]!"), null, null, 5)
-						if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_HOSTILE))
-							if(U == w_uniform && U.hastie)
-								U.remove_accessory(usr)
-
 	if(href_list["sensor"])
 		if(!usr.do_actions)
 
@@ -947,6 +938,7 @@
 
 	INVOKE_ASYNC(src, .proc/regenerate_icons)
 	INVOKE_ASYNC(src, .proc/update_body)
+	INVOKE_ASYNC(src, .proc/update_hair)
 	INVOKE_ASYNC(src, .proc/restore_blood)
 
 	if(!(species.species_flags & NO_STAMINA))
@@ -991,7 +983,7 @@
 				light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/lit_gun in contents)
-			var/obj/item/attachable/flashlight/lit_rail_flashlight = LAZYACCESS(lit_gun.attachments, ATTACHMENT_SLOT_RAIL)
+			var/obj/item/attachable/flashlight/lit_rail_flashlight = LAZYACCESS(lit_gun.attachments_by_slot, ATTACHMENT_SLOT_RAIL)
 			if(!isattachmentflashlight(lit_rail_flashlight))
 				continue
 			lit_rail_flashlight.turn_light(src, FALSE, 0, FALSE, forced)

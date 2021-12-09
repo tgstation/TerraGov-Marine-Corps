@@ -81,13 +81,15 @@
 /datum/action/xeno_action/activable/lunge/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/lunge/ai_should_use(target)
+/datum/action/xeno_action/activable/lunge/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 2)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
 
 /datum/action/xeno_action/activable/lunge/use_ability(atom/A)
@@ -103,7 +105,7 @@
 	lunge_target = A
 	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, .proc/clean_lunge_target)
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/check_if_lunge_possible)
-	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/clean_lunge_target)
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/finish_lunge)
 	succeed_activate()
 	add_cooldown()
 	X.throw_at(get_step_towards(A, X), 6, 2, X)
@@ -115,6 +117,13 @@
 	if(!lunge_target.Adjacent(source))
 		return
 	lunge_grab(source, lunge_target)
+
+///Do a last check to see if we can grab the target, and then clean up after the throw. Handles an in-place lunge.
+/datum/action/xeno_action/activable/lunge/proc/finish_lunge(datum/source)
+	SIGNAL_HANDLER
+	check_if_lunge_possible(source)
+	if(lunge_target) //Still couldn't get them.
+		clean_lunge_target()
 
 /// Null lunge target and reset throw vars
 /datum/action/xeno_action/activable/lunge/proc/clean_lunge_target()
@@ -216,13 +225,15 @@
 /datum/action/xeno_action/activable/fling/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/fling/ai_should_use(target)
+/datum/action/xeno_action/activable/fling/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 1)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
 
 // ***************************************
@@ -506,11 +517,13 @@
 /datum/action/xeno_action/activable/punch/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/punch/ai_should_use(target)
+/datum/action/xeno_action/activable/punch/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 1)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE

@@ -204,17 +204,22 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 		new/datum/stack_recipe("TP-44 mag box", /obj/item/storage/box/visual/magazine/compact/standard_revolver), \
 		new/datum/stack_recipe("TP-17 mag box", /obj/item/storage/box/visual/magazine/compact/standard_pocketpistol), \
 		new/datum/stack_recipe("88M4 mag box", /obj/item/storage/box/visual/magazine/compact/vp70), \
+		new/datum/stack_recipe("Derringer packet box", /obj/item/storage/box/visual/magazine/compact/derringer), \
 		new/datum/stack_recipe("TX-8 plasma cell box", /obj/item/storage/box/visual/magazine/compact/plasma_pistol), \
 		)), \
 	new/datum/stack_recipe_list("smg boxes",list( \
 		new/datum/stack_recipe("T-90 mag box", /obj/item/storage/box/visual/magazine/compact/standard_smg), \
 		new/datum/stack_recipe("T-19 mag box", /obj/item/storage/box/visual/magazine/compact/standard_machinepistol), \
 		new/datum/stack_recipe("PPSh drum mag box", /obj/item/storage/box/visual/magazine/compact/ppsh), \
+		new/datum/stack_recipe("Pepperball canister box", /obj/item/storage/box/visual/magazine/compact/pepperball), \
 		)), \
 	new/datum/stack_recipe_list("rifle boxes",list( \
 		new/datum/stack_recipe("T-12 mag box", /obj/item/storage/box/visual/magazine/compact/standard_assaultrifle), \
 		new/datum/stack_recipe("T-18 mag box", /obj/item/storage/box/visual/magazine/compact/standard_carbine), \
+		new/datum/stack_recipe("T-21 mag box", /obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle), \
 		new/datum/stack_recipe("TX-11 mag box", /obj/item/storage/box/visual/magazine/compact/tx11), \
+		new/datum/stack_recipe("T-25 mag box", /obj/item/storage/box/visual/magazine/compact/standard_smartrifle), \
+		new/datum/stack_recipe("Martini Henry packet box", /obj/item/storage/box/visual/magazine/compact/martini), \
 		new/datum/stack_recipe("TE cell box", /obj/item/storage/box/visual/magazine/compact/lasrifle/marine), \
 		new/datum/stack_recipe("TX-15 mag box", /obj/item/storage/box/visual/magazine/compact/tx15), \
 		)), \
@@ -227,6 +232,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 	new/datum/stack_recipe_list("machinegun boxes",list( \
 		new/datum/stack_recipe("T-42 drum mag box", /obj/item/storage/box/visual/magazine/compact/standard_lmg), \
 		new/datum/stack_recipe("T-60 mag box", /obj/item/storage/box/visual/magazine/compact/standard_gpmg), \
+		new/datum/stack_recipe("T-29 drum box", /obj/item/storage/box/visual/magazine/compact/standard_smartmachinegun), \
 		)) \
 	))
 
