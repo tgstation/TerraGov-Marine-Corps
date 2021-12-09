@@ -712,7 +712,6 @@
 	name = "Jaeger Pattern Infantry-Open Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings and no visor."
 	icon_state = "infantryopen_helmet"
-	greyscale_colors = "#5B6036"
 	greyscale_config = /datum/greyscale_config/modularhelmet_infantry_open
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
