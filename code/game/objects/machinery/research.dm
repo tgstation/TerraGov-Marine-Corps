@@ -44,6 +44,7 @@
 			RES_TIER_COMMON = list(
 				/obj/item/research_product/money/common,
 				/obj/item/research_product/money/uncommon,
+				/obj/item/attachable/lever_action,
 			),
 			RES_TIER_UNCOMMON = list(
 				/obj/item/research_product/money/uncommon,
@@ -61,6 +62,7 @@
 			),
 			RES_TIER_COMMON = list(
 				/obj/item/research_product/money/uncommon,
+				/obj/item/attachable/lever_action,
 			),
 			RES_TIER_UNCOMMON = list(
 				/obj/item/research_product/money/uncommon,
