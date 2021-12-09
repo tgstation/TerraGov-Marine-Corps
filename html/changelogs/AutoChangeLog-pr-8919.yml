@@ -1,0 +1,5 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - bugfix: "Fixed a couple improperly rotated shutters in Big Red."
+  - imageadd: "Added some new directional sprites for door buttons."
