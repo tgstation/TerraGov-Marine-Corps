@@ -21,6 +21,10 @@ map desertdam
 	minplayers 90
 endmap
 
+map millitary_port
+	minplayers 40
+endmap
+
 map bigred_v2
 	minplayers 25
 endmap
