@@ -18,13 +18,13 @@
 		//Blood regeneration if there is some space
 		if(blood_volume < BLOOD_VOLUME_NORMAL)
 			blood_volume += 0.1 // regenerate blood VERY slowly
-
+		
+		heart_multi = initial(heart_multi)
+		
 		// Damaged heart virtually reduces the blood volume, as the blood isn't
 		// being pumped properly anymore.
 		if(species && species.has_organ["heart"])
 			var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
-
-			heart_multi = initial(heart_multi)
 
 			if(!heart)
 				heart_multi *= 0.5 //you'd die in seconds but you can't remove internal organs even with varediting.
