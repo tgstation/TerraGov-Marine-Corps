@@ -74,7 +74,7 @@
 	name = picked[1]
 	desc = picked[2]
 	set_greyscale_colors(picked[3])
-	src.reagents.add_reagent(picked[4],protein_to_add)
+	reagents.add_reagent(picked[4],protein_to_add)
 
 
 /obj/item/reagent_containers/food/snacks/mre_pack
