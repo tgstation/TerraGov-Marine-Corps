@@ -114,21 +114,43 @@
 /obj/item/reagent_containers/food/snacks/protein_pack
 	name = "TGMC protein bar"
 	desc = "A protien bar produced for the TGMC, comes in many flavors"// this text is only seen at the vending machine, the actual item should never exist.
+	icon_state = "yummers"
+	filling_color = "#ED1169"
+	w_class = WEIGHT_CLASS_TINY
+	//list_reagents = list(/datum/reagent/consumable/nutriment = 8)
+	bitesize = 4
+	greyscale_config = /datum/greyscale_config/protein
 
 /obj/item/reagent_containers/food/snacks/protein_pack/Initialize()
 	. = ..()
-	var/protein_bar = pick( ///which protein bar gets picked to generated when a protein_pack is spawned.
-		/obj/item/reagent_containers/food/snacks/protein_pack_base/one,
-		/obj/item/reagent_containers/food/snacks/protein_pack_base/two,
-		/obj/item/reagent_containers/food/snacks/protein_pack_base/three,
-		/obj/item/reagent_containers/food/snacks/protein_pack_base/four,
-		/obj/item/reagent_containers/food/snacks/protein_pack_base/five,
-		/obj/item/reagent_containers/food/snacks/protein_pack_base/six,
-		/obj/item/reagent_containers/food/snacks/protein_pack_base/seven,
-		/obj/item/reagent_containers/food/snacks/protein_pack_base/eight,
-		/obj/item/reagent_containers/food/snacks/protein_pack_base/nine)
-	new protein_bar(src.loc)
-	qdel(src)
+
+//do something like this
+//var/static/list/options = (list("Stale Protein bar", "Fuck its stale", "stale_protein"), list("Protein Bar", "It's not stale", "stale_protein"))
+//var/static/list/pickedoption = pick(options)
+//name = pickedoption[1]
+//desc = pickedoption[2]
+//icon_state = pickedoption[3]
+	var/list/randlist = list(
+		list("stale TGMC protein bar","The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute.","#f37d43",/datum/reagent/consumable/protein),
+		list("mint TGMC protein bar","Stale old protien bar, with an almost minty freshness to it, but not fresh enough","#61b36e",/datum/reagent/consumable/protein/mint)
+	)
+	var/list/picked = pick(randlist)
+	name = picked[1]
+	desc = picked[2]
+	set_greyscale_colors(picked[3])
+	src.reagents.add_reagent(picked[4],8)
+//	var/protein_bar = pick( ///which protein bar gets picked to generated when a protein_pack is spawned.
+//		/obj/item/reagent_containers/food/snacks/protein_pack_base/one,
+//		/obj/item/reagent_containers/food/snacks/protein_pack_base/two,
+//		/obj/item/reagent_containers/food/snacks/protein_pack_base/three,
+//		/obj/item/reagent_containers/food/snacks/protein_pack_base/four,
+//		/obj/item/reagent_containers/food/snacks/protein_pack_base/five,
+//		/obj/item/reagent_containers/food/snacks/protein_pack_base/six,
+//		/obj/item/reagent_containers/food/snacks/protein_pack_base/seven,
+//		/obj/item/reagent_containers/food/snacks/protein_pack_base/eight,
+//		/obj/item/reagent_containers/food/snacks/protein_pack_base/nine)
+//	new protein_bar(src.loc)
+//	qdel(src)
 
 /obj/item/reagent_containers/food/snacks/mre_pack
 	name = "\improper generic MRE pack"
