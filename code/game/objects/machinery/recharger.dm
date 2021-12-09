@@ -82,9 +82,9 @@ obj/machinery/recharger/process()
 	else
 		if(istype(charging, /obj/item/weapon/gun/energy/taser))
 			var/obj/item/weapon/gun/energy/taser/E = charging
-			if(!E.cell.fully_charged())
-				E.cell.give(active_power_usage*GLOB.CELLRATE)
-				percent_charge_complete = E.cell.percent()
+			if(!E.rounds)
+				E.rounds += active_power_usage * GLOB.CELLRATE
+				percent_charge_complete = E.rounds * 100 / E.max_rounds
 				update_icon()
 			else
 				percent_charge_complete = 100

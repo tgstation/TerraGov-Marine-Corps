@@ -6,6 +6,13 @@
 	var/obj/item/clothing/suit/coat
 	var/list/allowed = list(/obj/item/clothing/suit/storage/labcoat, /obj/item/clothing/suit/storage/det_suit, /obj/item/clothing/suit/bomber)
 
+/obj/structure/coatrack/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 /obj/structure/coatrack/attack_hand(mob/living/user)
 	if(coat)
 		user.visible_message("[user] takes [coat] off \the [src].", "You take [coat] off the \the [src]")
@@ -29,16 +36,17 @@
 	update_icon()
 
 
-/obj/structure/coatrack/Crossed(atom/movable/AM)
-	. = ..()
-	if(!coat)
-		for(var/T in allowed)
-			if(istype(AM,T))
-				src.visible_message("[AM] lands on \the [src].")
-				coat = AM
-				coat.forceMove(src)
-				update_icon()
-				break
+/obj/structure/coatrack/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
+	SIGNAL_HANDLER
+	if(coat)
+		return
+	for(var/T in allowed)
+		if(istype(AM,T))
+			src.visible_message("[AM] lands on \the [src].")
+			coat = AM
+			coat.forceMove(src)
+			update_icon()
+			break
 
 
 /obj/structure/coatrack/update_icon()

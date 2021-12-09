@@ -244,7 +244,7 @@
 /obj/docking_port/mobile/marine_dropship/casplane/proc/update_state(datum/source, mode)
 	if(state == PLANE_STATE_DEACTIVATED)
 		return
-	if(!is_mainship_level(z))
+	if(!is_mainship_level(z) || mode != SHUTTLE_IDLE)
 		state = PLANE_STATE_FLYING
 	else
 		for(var/i in engines)
@@ -268,13 +268,18 @@
 	if(eyeobj.eye_user)
 		to_chat(user, span_warning("CAS mode is already in-use!"))
 		return
-	if(!length(GLOB.active_cas_targets))
-		to_chat(user, span_warning("No active laser targets detected!"))
+	SSmonitor.process_human_positions()
+	if(SSmonitor.human_on_ground <= 5)
+		to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
 		return
-	to_chat(user, span_warning("Laser targets detected, routing to target."))
-	var/input = tgui_input_list(user, "Select a CAS target", "CAS targetting", GLOB.active_cas_targets)
+	var/input
+	if(length(GLOB.active_cas_targets))
+		input = tgui_input_list(user, "Select a CAS target", "CAS targetting", GLOB.active_cas_targets)
+	else
+		input = GLOB.minidropship_start_loc
 	if(!input)
 		return
+	to_chat(user, span_warning("Targets detected, routing to area of operations."))
 	give_eye_control(user)
 	eyeobj.setLoc(get_turf(input))
 

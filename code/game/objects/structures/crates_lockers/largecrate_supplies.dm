@@ -124,7 +124,7 @@
 /obj/structure/largecrate/supply/weapons/flamers
 	name = "\improper M240A1 incinerator weapons chest (x4)"
 	desc = "A weapons chest containing four M240A1 incinerator units."
-	supplies = list(/obj/item/weapon/gun/flamer = 4)
+	supplies = list(/obj/item/weapon/gun/flamer/big_flamer = 4)
 
 /obj/structure/largecrate/supply/weapons/hpr
 	name = "\improper T-42 LMG weapons chest (x2)"
@@ -200,6 +200,8 @@
 		/obj/item/storage/box/visual/magazine/compact/standard_machinepistol/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_carbine/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/martini/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/tx11/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/tx15/flechette/full = 1,

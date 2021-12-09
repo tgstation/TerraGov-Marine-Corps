@@ -53,7 +53,7 @@ export const ChemDispenser = (props, context) => {
               {!recording && (
                 <Box inline mx={1}>
                   <Button
-                    color="transparent"
+                    color={data.clearingRecipe ? "red" : "transparent"}
                     content="Clear recipes"
                     onClick={() => act('clear_recipes')} />
                 </Box>

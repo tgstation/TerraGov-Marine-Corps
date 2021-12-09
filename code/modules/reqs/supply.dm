@@ -131,9 +131,10 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		return 2
 	return ..()
 
-/obj/docking_port/mobile/supply/proc/buy()
+/obj/docking_port/mobile/supply/proc/buy(mob/user)
 	if(!length(SSpoints.shoppinglist[faction]))
 		return
+	log_game("Supply pack orders have been purchased by [key_name(user)]")
 
 	var/list/empty_turfs = list()
 	for(var/place in shuttle_areas)
@@ -479,7 +480,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 						var/datum/supply_packs/SP = SSpoints.supply_packs[i]
 						cart_cost += SP.cost * shopping_cart[SP.type]
 					var/excess_points = SSpoints.supply_points[ui_user.faction] - cart_cost
-					var/number_to_buy = round(excess_points / P.cost)
+					var/number_to_buy = min(round(excess_points / P.cost), 20) //hard cap at 20
 					if(shopping_cart[P.type])
 						shopping_cart[P.type] += number_to_buy
 					else
@@ -496,7 +497,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 					addtimer(CALLBACK(supply_shuttle, /obj/docking_port/mobile/supply/proc/sell), 15 SECONDS)
 			else
 				var/obj/docking_port/D = SSshuttle.getDock(home_id)
-				supply_shuttle.buy()
+				supply_shuttle.buy(usr)
 				playsound(D.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
 				SSshuttle.moveShuttle(shuttle_id, home_id, TRUE)
 			. = TRUE
@@ -622,3 +623,47 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	if(!SU)
 		SU = new(src)
 	return SU.interact(user)
+
+/obj/item/storage/backpack/marine/radiopack
+	name = "\improper TGMC radio operator backpack"
+	desc = "A backpack that resembles the ones old-age radio operator soldiers would use."
+	icon_state = "radiopack"
+	///Var for the window pop-up
+	var/datum/supply_ui/requests/supply_interface
+	/// Reference to the datum used by the supply drop console
+	var/datum/supply_beacon/beacon_datum
+
+/obj/item/storage/backpack/marine/radiopack/examine(mob/user)
+	. = ..()
+	to_chat(user, span_notice("Right-Click with empty hand to open requisitions interface."))
+	to_chat(user, span_notice("Activate in hand to create a supply beacon signal."))
+
+/obj/item/storage/backpack/marine/radiopack/attack_hand_alternate(mob/living/user)
+	if(!allowed(user))
+		return ..()
+	if(!supply_interface)
+		supply_interface = new(src)
+	return supply_interface.interact(user)
+
+/obj/item/storage/backpack/marine/radiopack/attack_self(mob/living/user)
+	if(beacon_datum)
+		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+		QDEL_NULL(beacon_datum)
+		user.show_message(span_warning("The [src] beeps and states, \"Your last position is no longer accessible by the supply console"), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
+		return
+	if(!is_ground_level(user.z))
+		to_chat(user, span_warning("You have to be on the planet to use this or it won't transmit."))
+		return FALSE
+	var/area/A = get_area(user)
+	if(A?.ceiling >= CEILING_METAL)
+		to_chat(user, span_warning("You have to be outside or under a glass ceiling to activate this."))
+		return
+	var/turf/location = get_turf(src)
+	beacon_datum = new /datum/supply_beacon(user.name, user.loc, user.faction, 4 MINUTES)
+	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, .proc/clean_beacon_datum)
+	user.show_message(span_notice("The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
+
+/// Signal handler to nullify beacon datum
+/obj/item/storage/backpack/marine/radiopack/proc/clean_beacon_datum()
+	SIGNAL_HANDLER
+	beacon_datum = null

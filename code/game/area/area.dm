@@ -60,9 +60,6 @@
 	///Used to decide what the maximum time between ambience is
 	var/max_ambience_cooldown = 120 SECONDS
 
-
-
-
 /area/New()
 	// This interacts with the map loader, so it needs to be set immediately
 	// rather than waiting for atoms to initialize.
@@ -318,3 +315,9 @@
 
 /area/return_gas()
 	return gas_type
+
+///Set this area as a contested zone, that will monitors which faction controls it.
+/area/proc/set_to_contested()
+	if(SSminimaps.initialized)
+		stack_trace("An area was set as contested after SSminimap was initiliazed, it won't be colored")
+	minimap_color = MINIMAP_AREA_CONTESTED_ZONE

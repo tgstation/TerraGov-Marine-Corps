@@ -11,6 +11,15 @@
 	icon_file = 'icons/obj/items/screwdriver.dmi'
 	json_config = 'code/datums/greyscale/json_configs/screwdriver_inhand_right.json'
 
+/datum/greyscale_config/pillbottle
+	icon_file='icons/obj/items/chemistry.dmi'
+	json_config = 'code/datums/greyscale/json_configs/pillbottle.json'
+
+/datum/greyscale_config/pillbottleround
+	icon_file='icons/obj/items/chemistry.dmi'
+	json_config = 'code/datums/greyscale/json_configs/pillbottleround.json'
+
+
 /*
  * MODULAR HELMETS
  */
@@ -36,7 +45,7 @@
 
 /datum/greyscale_config/modularhelmet_eva_skull
 	icon_file = 'icons/mob/modular/eva.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularhelmet_eva_skull.json'
+	json_config = 'code/datums/greyscale/json_configs/modularhelmet.json'
 
 /datum/greyscale_config/modularhelmet_scout
 	icon_file = 'icons/mob/modular/scout.dmi'
@@ -132,25 +141,63 @@
  * MODULAR VISORS
  */
 
-/datum/greyscale_config/modular_helmet_visor_emissive
+/datum/greyscale_config/modular_helmet_visor
 	icon_file = 'icons/mob/modular/infantry.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modular_visor_emissive.json'
+	json_config = 'code/datums/greyscale/json_configs/modular_visor.json'
 
-/datum/greyscale_config/modular_helmet_visor_emissive/assault
+/datum/greyscale_config/modular_helmet_visor/assault
 	icon_file = 'icons/mob/modular/assault.dmi'
 
-/datum/greyscale_config/modular_helmet_visor_emissive/eod
+/datum/greyscale_config/modular_helmet_visor/eod
 	icon_file = 'icons/mob/modular/eod.dmi'
 
-/datum/greyscale_config/modular_helmet_visor_emissive/eva
+/datum/greyscale_config/modular_helmet_visor/eva
 	icon_file = 'icons/mob/modular/eva.dmi'
 
-/datum/greyscale_config/modular_helmet_visor_emissive/scout
+/datum/greyscale_config/modular_helmet_visor/scout
 	icon_file = 'icons/mob/modular/scout.dmi'
 
-/datum/greyscale_config/modular_helmet_visor_emissive/skirmisher
+/datum/greyscale_config/modular_helmet_visor/skirmisher
 	icon_file = 'icons/mob/modular/skirmisher.dmi'
 
-/datum/greyscale_config/modular_helmet_visor_emissive_skull
+/datum/greyscale_config/modular_helmet_visor_skull
 	icon_file = 'icons/mob/modular/eva.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modular_visor_emissive_skull.json'
+	json_config = 'code/datums/greyscale/json_configs/modular_visor_skull.json'
+
+/datum/greyscale_config/xenogrenade
+	icon_file = 'icons/obj/items/grenade.dmi'
+	json_config = 'code/datums/greyscale/json_configs/xenogrenade.json'
+
+/*
+ * COLORABLE BADGES
+ */
+
+/datum/greyscale_config/badge
+	json_config = 'code/datums/greyscale/json_configs/badge.json'
+	icon_file = 'icons/mob/modular/badge/shield.dmi'
+
+/datum/greyscale_config/badge/shield
+
+/datum/greyscale_config/badge/triangle
+	icon_file = 'icons/mob/modular/badge/triangle.dmi'
+
+/datum/greyscale_config/badge/circle
+	icon_file = 'icons/mob/modular/badge/circle.dmi'
+
+/datum/greyscale_config/badge/square
+	icon_file = 'icons/mob/modular/badge/square.dmi'
+
+/datum/greyscale_config/badge/V
+	icon_file = 'icons/mob/modular/badge/V.dmi'
+
+/datum/greyscale_config/badge/lambda
+	icon_file = 'icons/mob/modular/badge/lambda.dmi'
+
+/datum/greyscale_config/badge/circle2
+	icon_file = 'icons/mob/modular/badge/circle2.dmi'
+/*
+ * FOOD
+ */
+/datum/greyscale_config/protein
+	json_config = 'code/datums/greyscale/json_configs/protein.json'
+	icon_file = 'icons/obj/items/food.dmi'

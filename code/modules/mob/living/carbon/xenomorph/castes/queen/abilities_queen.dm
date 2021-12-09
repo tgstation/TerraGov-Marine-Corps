@@ -20,7 +20,7 @@
 	var/txt = stripped_input(src, "Set the hive's orders to what? Leave blank to clear it.", "Hive Orders")
 
 	if(txt)
-		xeno_message("<B>The Queen has given a new order. Check Status panel for details.</B>", "xenoannounce", 6,hivenumber)
+		xeno_message("<B>The Queen has given a new order. Check Game panel for details.</B>", "xenoannounce", 6,hivenumber)
 		hive.hive_orders = txt
 	else
 		hive.hive_orders = ""
@@ -129,79 +129,16 @@
 /datum/action/xeno_action/activable/screech/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/screech/ai_should_use(target)
+/datum/action/xeno_action/activable/screech/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 4)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
-
-// ***************************************
-// *********** Gut
-// ***************************************
-/datum/action/xeno_action/activable/gut
-	name = "Gut"
-	action_icon_state = "gut"
-	ability_name = "gut"
-	plasma_cost = 200
-
-/datum/action/xeno_action/activable/gut/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(TIMER_COOLDOWN_CHECK(X, COOLDOWN_GUT))
-		return FALSE
-	if(!iscarbon(A))
-		return FALSE
-	if(!owner.Adjacent(A))
-		return FALSE
-	var/mob/living/carbon/victim = A
-	if(issynth(victim))
-		var/datum/limb/head/synthhead = victim.get_limb("head")
-		if(synthhead.limb_status & LIMB_DESTROYED)
-			return FALSE
-	if(locate(/obj/item/alien_embryo) in victim) //Maybe they ate it??
-		var/mob/living/carbon/human/H = victim
-		if(CHECK_BITFIELD(H.status_flags, XENO_HOST))
-			if(victim.stat != DEAD) //Not dead yet.
-				if(!silent)
-					to_chat(owner, span_xenowarning("The host and child are still alive!"))
-				return FALSE
-			else if(istype(H) && !HAS_TRAIT(H, TRAIT_UNDEFIBBABLE )) //Dead code
-				if(!silent)
-					to_chat(owner, span_xenowarning("The child may still hatch! Not yet!"))
-				return FALSE
-	if(owner.issamexenohive(victim))
-		if(!silent)
-			to_chat(owner, span_warning("We can't bring ourselves to harm a fellow sister to this magnitude."))
-		return FALSE
-
-/datum/action/xeno_action/activable/gut/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/queen/X = owner
-	var/mob/living/carbon/victim = A
-
-	succeed_activate()
-
-	TIMER_COOLDOWN_START(X, COOLDOWN_GUT, 5 SECONDS)
-
-	X.visible_message(span_xenowarning("\The [X] begins slowly lifting \the [victim] into the air."), \
-	span_xenowarning("We begin focusing our anger as we slowly lift \the [victim] into the air."))
-	if(!do_mob(X, victim, 80, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
-		return fail_activate()
-	if(!can_use_ability(victim,TRUE,XACT_IGNORE_PLASMA))
-		return fail_activate()
-	if(victim.loc != X.loc)
-		return fail_activate()
-	X.visible_message(span_xenodanger("\The [X] viciously smashes and wrenches \the [victim] apart!"), \
-	span_xenodanger("We suddenly unleash pure anger on \the [victim], instantly wrenching [victim.p_them()] apart!"))
-	X.emote("roar")
-	log_combat(victim, X, "gibbed")
-	victim.gib() //Splut
-	X.stop_pulling()
-
 
 // ***************************************
 // *********** Overwatch
@@ -452,55 +389,6 @@
 	SSminimaps.add_marker(selected_xeno, selected_xeno.z, MINIMAP_FLAG_XENO, selected_xeno.xeno_caste.minimap_leadered_icon)
 
 // ***************************************
-// *********** Queen heal
-// ***************************************
-/datum/action/xeno_action/activable/queen_heal
-	name = "Heal Xenomorph"
-	action_icon_state = "heal_xeno"
-	mechanics_text = "Heals a target Xenomorph"
-	plasma_cost = 150
-	cooldown_timer = 16 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_QUEEN_HEAL
-
-
-/datum/action/xeno_action/activable/queen_heal/can_use_ability(atom/target, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(!isxeno(target))
-		return FALSE
-	var/mob/living/carbon/xenomorph/patient = target
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
-		if(!silent)
-			to_chat(owner, span_warning("It's too late. This sister won't be coming back."))
-		return FALSE
-	if(!(patient.xeno_caste.caste_flags & CASTE_CAN_BE_QUEEN_HEALED))
-		if(!silent)
-			to_chat(owner, span_xenowarning("We can't heal that caste."))
-			return FALSE
-	var/mob/living/carbon/xenomorph/healer = owner
-	if(healer.z != patient.z)
-		if(!silent)
-			to_chat(healer, span_xenowarning("They are too far away to do this."))
-		return FALSE
-	if(patient.health >= patient.maxHealth)
-		if(!silent)
-			to_chat(healer, span_warning("[patient] is at full health."))
-		return FALSE
-
-
-/datum/action/xeno_action/activable/queen_heal/use_ability(atom/target)
-	var/mob/living/carbon/xenomorph/patient = target
-	add_cooldown()
-	patient.adjustBruteLoss(-100)
-	patient.adjustFireLoss(-100)
-	patient.adjust_sunder(-10)
-	succeed_activate()
-	to_chat(owner, span_xenonotice("We channel our plasma to heal [target]'s wounds."))
-	to_chat(patient, span_xenonotice("We feel our wounds heal. Bless the Queen!"))
-
-
-// ***************************************
 // *********** Queen plasma
 // ***************************************
 /datum/action/xeno_action/activable/queen_give_plasma
@@ -643,46 +531,7 @@
 
 	to_chat(T, span_xenowarning("The queen is deevolving us for the following reason: [reason]"))
 
-	var/xeno_type = new_caste.caste_type_path
-
-	//From there, the new xeno exists, hopefully
-	var/mob/living/carbon/xenomorph/new_xeno = new xeno_type(get_turf(T))
-
-	if(!istype(new_xeno))
-		//Something went horribly wrong!
-		stack_trace("[X] tried to deevolve [X.observed_xeno] but their new_xeno wasn't a xeno at all.")
-		if(new_xeno)
-			qdel(new_xeno)
-		return
-
-	for(var/obj/item/W in T.contents) //Drop stuff
-		T.dropItemToGround(W)
-
-	if(T.mind)
-		T.mind.transfer_to(new_xeno)
-	else
-		new_xeno.key = T.key
-
-	//Pass on the unique nicknumber, then regenerate the new mob's name now that our player is inside
-	new_xeno.nicknumber = T.nicknumber
-	new_xeno.generate_name()
-
-	if(T.xeno_mobhud)
-		var/datum/atom_hud/H = GLOB.huds[DATA_HUD_XENO_STATUS]
-		H.add_hud_to(new_xeno) //keep our mobhud choice
-		new_xeno.xeno_mobhud = TRUE
-
-	new_xeno.visible_message(span_xenodanger("A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [T]."), \
-	span_xenodanger("[X] makes us regress into our previous form."))
-
-	if(T.queen_chosen_lead)
-		new_xeno.queen_chosen_lead = TRUE
-		new_xeno.hud_set_queen_overwatch()
-
-	SEND_SIGNAL(T, COMSIG_XENOMORPH_DEEVOLVED, new_xeno)
-
-	// this sets the right datum
-	new_xeno.upgrade_xeno(T.upgrade_next()) //a young Crusher de-evolves into a MATURE Hunter
+	X.do_evolve(new_caste.caste_type_path, new_caste.caste_name, TRUE)
 
 	log_game("[key_name(X)] has deevolved [key_name(T)]. Reason: [reason]")
 	message_admins("[ADMIN_TPMONTY(X)] has deevolved [ADMIN_TPMONTY(T)]. Reason: [reason]")
@@ -691,37 +540,3 @@
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
 	qdel(T)
 	X.use_plasma(600)
-
-/datum/action/xeno_action/summon_king
-	name = "Summon Xenomorph King"
-	action_icon_state = "grow_ovipositor"
-	mechanics_text = "Deploy a pod to summon a xeno king."
-	plasma_cost = 0 //hive points cost
-	keybind_signal = COMSIG_XENOABILITY_SUMMON_KING_POD
-	gamemode_flags = ABILITY_DISTRESS
-	psych_cost = XENO_KING_PRICE
-
-/datum/action/xeno_action/summon_king/can_use_action(silent, override_flags)
-	. = ..()
-	if(!.)
-		return
-	var/mob/living/carbon/xenomorph/X = owner
-	if(SSticker.round_start_time + INVOKE_KING_TIME_LOCK > world.time)
-		if(!silent)
-			to_chat(owner, span_warning("It is too soon to summon a king!"))
-		return FALSE
-	if(SSpoints.xeno_points_by_hive[X.hivenumber] <= psych_cost)
-		if(!silent)
-			to_chat(owner, span_warning("Our hive does not have enough psychic energy to summon a King, we need [psych_cost] points!"))
-		return FALSE
-
-/datum/action/xeno_action/summon_king/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, span_xenonotice("We begin constructing a psychic echo chamber for the Queen Mother..."))
-	if(!do_after(X, 15 SECONDS, FALSE, X, BUSY_ICON_HOSTILE))
-		return fail_activate()
-	SSpoints.xeno_points_by_hive[X.hivenumber] -= psych_cost
-	var/obj/structure/resin/king_pod = new /obj/structure/resin/king_pod(X.loc, X.hivenumber)
-	log_game("[key_name(X)] has created a pod in [AREACOORD(X)]")
-	xeno_message("<B>[X] has created a king pod at [get_area(X)]. Defend it until the Queen Mother summons a king!</B>", hivenumber = X.hivenumber, target = king_pod, arrow_type = /obj/screen/arrow/leader_tracker_arrow)
-	priority_announce("WARNING: Psychic anomaly detected at [get_area(X)]. Assault of the area reccomended.", "TGMC Intel Division")

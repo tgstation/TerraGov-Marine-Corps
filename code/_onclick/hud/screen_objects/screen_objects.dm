@@ -593,8 +593,8 @@
 	var/obj/item/weapon/gun/G = .
 	if(!G)
 		return
-	var/obj/item/attachable/flashlight/F = LAZYACCESS(G.attachments, ATTACHMENT_SLOT_RAIL)
-	if(F?.activate_attachment(usr))
+	var/obj/item/attachable/flashlight/F = LAZYACCESS(G.attachments_by_slot, ATTACHMENT_SLOT_RAIL)
+	if(F?.activate(usr))
 		playsound(usr, F.activation_sound, 15, 1)
 
 /obj/screen/firearms/magazine
@@ -676,19 +676,21 @@
 	name = "ammo"
 	icon = 'icons/mob/ammoHUD.dmi'
 	icon_state = "ammo"
-	screen_loc = ui_ammo
+	screen_loc = ui_ammo1
 	var/warned = FALSE
+	///List of possible screen locs
+	var/static/list/ammo_screen_loc_list = list(ui_ammo1, ui_ammo2, ui_ammo3 ,ui_ammo4)
 
 
 /obj/screen/ammo/proc/add_hud(mob/living/user, obj/item/weapon/gun/G)
 
-	if(!G)
+	if(isnull(G))
 		CRASH("/obj/screen/ammo/proc/add_hud() has been called from [src] without the required param of G")
 
 	if(!user?.client)
 		return
 
-	if((user.get_active_held_item() != G && user.get_inactive_held_item() != G && !CHECK_BITFIELD(G.flags_item, IS_DEPLOYED)) || !G.hud_enabled || !CHECK_BITFIELD(G.flags_gun_features, GUN_AMMO_COUNTER))
+	if(!CHECK_BITFIELD(G.flags_gun_features, GUN_AMMO_COUNTER))
 		return
 
 	user.client.screen += src
@@ -702,13 +704,18 @@
 	if(!user?.client?.screen.Find(src))
 		return
 
-	if(!G || !(G.flags_gun_features & GUN_AMMO_COUNTER) || !G.hud_enabled || !G.get_ammo_type() || isnull(G.get_ammo_count()))
+	if(!G || !(G.flags_gun_features & GUN_AMMO_COUNTER))
 		remove_hud(user)
 		return
 
-	var/list/ammo_type = G.get_ammo_type()
-	var/rounds = G.get_ammo_count()
-
+	var/list/ammo_type = G.get_ammo_list()
+	var/rounds
+	if(G.max_rounds && G.rounds && CHECK_BITFIELD(G.flags_gun_features, GUN_AMMO_COUNT_BY_PERCENTAGE))
+		rounds = round((G.rounds / G.max_rounds) * 100)
+	else if (G.rounds && CHECK_BITFIELD(G.flags_gun_features, GUN_AMMO_COUNT_BY_SHOTS_REMAINING))
+		rounds = round(G.rounds / G.rounds_per_shot)
+	else
+		rounds = G.rounds
 	var/hud_state = ammo_type[1]
 	var/hud_state_empty = ammo_type[2]
 
@@ -728,7 +735,7 @@
 			spawn(20)
 				user.client.screen -= F
 				qdel(F)
-				if(G.get_ammo_count() == 0)
+				if(G.rounds == 0)
 					overlays += empty
 	else
 		warned = FALSE

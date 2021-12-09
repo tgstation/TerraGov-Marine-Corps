@@ -309,10 +309,14 @@
 /turf/open/lavaland/lava/single/corners
 	icon_state = "single_corners"
 
-/turf/open/lavaland/lava/New()
-	..()
+/turf/open/lavaland/lava/Initialize()
+	. = ..()
+	var/turf/current_turf = get_turf(src)
+	if(current_turf && density)
+		current_turf.flags_atom |= AI_BLOCKED
 
 /turf/open/lavaland/lava/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
 	if(burn_stuff(arrived))
 		START_PROCESSING(SSobj, src)
 
@@ -366,6 +370,9 @@
 			to_chat(user, span_notice("You construct a heatproof catwalk."))
 			playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
 			ChangeTurf(/turf/open/lavaland/catwalk/built)
+			var/turf/current_turf = get_turf(src)
+			if(current_turf && density)
+				current_turf.flags_atom &= ~AI_BLOCKED
 		else
 			to_chat(user, span_warning("You need four rods to build a heatproof catwalk."))
 		return
@@ -427,4 +434,7 @@
 		return
 	deconstructing = FALSE
 	playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
+	var/turf/current_turf = get_turf(src)
+	if(current_turf)
+		current_turf.flags_atom |= AI_BLOCKED
 	ChangeTurf(/turf/open/lavaland/lava)

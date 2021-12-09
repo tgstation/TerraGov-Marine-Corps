@@ -19,7 +19,7 @@
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 500
+	max_health = 450
 
 	// *** Evolution *** //
 	upgrade_threshold = 350
@@ -38,15 +38,15 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/cocoon,
-		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/activable/nightfall,
 		/datum/action/xeno_action/activable/gravity_crush,
 		/datum/action/xeno_action/toggle_pheromones,
-		/datum/action/xeno_action/activable/rally_hive,
+		/datum/action/xeno_action/rally_hive,
+		/datum/action/xeno_action/rally_minion,
+		/datum/action/xeno_action/set_agressivity,
 	)
 
 
@@ -66,7 +66,7 @@
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 600
+	max_health = 500
 
 	// *** Evolution *** //
 	upgrade_threshold = 500
@@ -77,15 +77,15 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/cocoon,
-		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/activable/nightfall,
 		/datum/action/xeno_action/activable/gravity_crush,
 		/datum/action/xeno_action/toggle_pheromones,
-		/datum/action/xeno_action/activable/rally_hive,
+		/datum/action/xeno_action/rally_hive,
+		/datum/action/xeno_action/rally_minion,
+		/datum/action/xeno_action/set_agressivity,
 	)
 
 
@@ -95,7 +95,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 25
 
 	// *** Speed *** //
 	speed = -0.2
@@ -105,7 +105,7 @@
 	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 700
+	max_health = 600
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000
@@ -119,16 +119,16 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/cocoon,
-		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/activable/nightfall,
 		/datum/action/xeno_action/activable/gravity_crush,
 		/datum/action/xeno_action/psychic_summon,
 		/datum/action/xeno_action/toggle_pheromones,
-		/datum/action/xeno_action/activable/rally_hive,
+		/datum/action/xeno_action/rally_hive,
+		/datum/action/xeno_action/rally_minion,
+		/datum/action/xeno_action/set_agressivity,
 	)
 
 /datum/xeno_caste/king/ancient
@@ -137,7 +137,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 30
 
 	// *** Speed *** //
 	speed = -0.3
@@ -147,7 +147,7 @@
 	plasma_gain = 70
 
 	// *** Health *** //
-	max_health = 800
+	max_health = 700
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000
@@ -164,14 +164,14 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/cocoon,
-		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/activable/nightfall,
 		/datum/action/xeno_action/activable/gravity_crush,
 		/datum/action/xeno_action/psychic_summon,
 		/datum/action/xeno_action/toggle_pheromones,
-		/datum/action/xeno_action/activable/rally_hive,
+		/datum/action/xeno_action/rally_hive,
+		/datum/action/xeno_action/rally_minion,
+		/datum/action/xeno_action/set_agressivity,
 	)

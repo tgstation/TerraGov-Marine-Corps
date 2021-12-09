@@ -16,7 +16,7 @@
 		return 0
 	if(!isnull(open_step) && affected.surgery_open_stage != open_step)
 		return 0
-	if(target_zone == "head" && target.species && (target.species.species_flags & IS_SYNTHETIC))
+	if(target_zone == "head" && target.species && (target.species.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS)))
 		return 1
 	if(affected.limb_status & LIMB_ROBOT)
 		return 0
@@ -107,7 +107,7 @@
 		/obj/item/tool/kitchen/knife = 75,
 		/obj/item/shard = 50,
 		/obj/item/weapon/combat_knife = 25,
-		/obj/item/weapon/throwing_knife = 15,
+		/obj/item/stack/throwing_knife = 15,
 		/obj/item/weapon/claymore/mercsword = 1,
 	)
 

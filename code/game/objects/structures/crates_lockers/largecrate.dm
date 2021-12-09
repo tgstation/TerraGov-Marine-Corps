@@ -231,16 +231,16 @@
 	var/list/stuff = list(
 					/obj/item/weapon/gun/pistol/rt3 = /obj/item/ammo_magazine/pistol/hp,
 					/obj/item/weapon/gun/pistol/rt3 = /obj/item/ammo_magazine/pistol/ap,
-					/obj/item/weapon/gun/revolver/m44 = /obj/item/ammo_magazine/revolver/marksman,
-					/obj/item/weapon/gun/revolver/m44 = /obj/item/ammo_magazine/revolver/heavy,
+					/obj/item/weapon/gun/revolver/single_action/m44 = /obj/item/ammo_magazine/revolver/marksman,
+					/obj/item/weapon/gun/revolver/single_action/m44 = /obj/item/ammo_magazine/revolver/heavy,
 					/obj/item/weapon/gun/shotgun/pump/t35 = /obj/item/ammo_magazine/shotgun,
 					/obj/item/weapon/gun/shotgun/pump/t35 = /obj/item/ammo_magazine/shotgun/incendiary,
 					/obj/item/weapon/gun/shotgun/combat = /obj/item/ammo_magazine/shotgun,
-					/obj/item/weapon/gun/flamer = /obj/item/ammo_magazine/flamer_tank,
+					/obj/item/weapon/gun/flamer/big_flamer = /obj/item/ammo_magazine/flamer_tank,
 					/obj/item/weapon/gun/pistol/rt3 = /obj/item/ammo_magazine/pistol/incendiary,
 					/obj/item/weapon/gun/rifle/standard_assaultrifle = /obj/item/ammo_magazine/rifle/standard_assaultrifle,
 					/obj/item/weapon/gun/rifle/standard_lmg = /obj/item/ammo_magazine/standard_lmg,
-					/obj/item/weapon/gun/launcher/m81 = /obj/item/explosive/grenade/phosphorus
+					/obj/item/weapon/gun/grenade_launcher/single_shot = /obj/item/explosive/grenade/phosphorus
 					)
 
 /obj/structure/largecrate/guns/Initialize()

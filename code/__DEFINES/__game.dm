@@ -16,6 +16,8 @@
 #define MAP_PILLAR_OF_SPRING "Pillar of Spring"
 #define MAP_SULACO "Sulaco"
 #define MAP_THESEUS "Theseus"
+#define MAP_MINERVA "Minerva"
+#define MAP_TWIN_PILLARS "Twin Pillars"
 
 
 #define SEE_INVISIBLE_MINIMUM 5

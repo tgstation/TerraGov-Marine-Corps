@@ -49,8 +49,8 @@
 	list_reagents = list(
 		/datum/reagent/medicine/bicaridine = 10,
 		/datum/reagent/medicine/kelotane = 10,
+		/datum/reagent/medicine/dylovene = 5,
 		/datum/reagent/medicine/tramadol = 5,
-		/datum/reagent/medicine/ryetalyn = 5,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced
@@ -261,11 +261,11 @@
 		/datum/reagent/medicine/rezadone = 15,
 	)
 
-/obj/item/reagent_containers/hypospray/autoinjector/hydrocodone //made for debugging
-	name = "hydrocodone autoinjector"
-	desc = "An auto-injector loaded with hydrocodone."
+/obj/item/reagent_containers/hypospray/autoinjector/pain //made for debugging
+	name = "liquid pain autoinjector"
+	desc = "An auto-injector loaded with liquid pain. Ow."
 	icon_state = "autoinjector-6"
-	amount_per_transfer_from_this = 4
+	amount_per_transfer_from_this = 20
 	volume = 100
 
-	list_reagents = list(/datum/reagent/medicine/hydrocodone = 100)
+	list_reagents = list(/datum/reagent/toxin/pain = 100)

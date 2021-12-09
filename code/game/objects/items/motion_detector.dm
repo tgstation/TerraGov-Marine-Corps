@@ -51,7 +51,6 @@
 	name = "tactical sensor"
 	desc = "A device that detects hostile movement. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface."
 	icon_state = "minidetector"
-	attach_icon = "motion_detector"
 	slot = ATTACHMENT_SLOT_RAIL
 	attachment_action_type = /datum/action/item_action/toggle/motion_detector
 	/// Who's using this item
@@ -69,7 +68,7 @@
 	clean_operator()
 	return ..()
 
-/obj/item/attachable/motiondetector/activate_attachment(mob/user, turn_off)
+/obj/item/attachable/motiondetector/activate(mob/user, turn_off)
 	if(operator)
 		clean_operator()
 		return
@@ -85,14 +84,14 @@
 	SIGNAL_HANDLER
 	if(equipping != master_gun)
 		return
-	activate_attachment(source)
+	activate(source)
 
-/obj/item/attachable/motiondetector/detach_from_master_gun()
+/obj/item/attachable/motiondetector/on_detach()
 	. = ..()
 	clean_operator()
 
 /obj/item/attachable/motiondetector/attack_self(mob/user)
-	activate_attachment(user)
+	activate(user)
 
 /obj/item/attachable/motiondetector/update_icon()
 	. = ..()
@@ -101,6 +100,14 @@
 
 /obj/item/attachable/motiondetector/update_icon_state()
 	icon_state = initial(icon_state) + (isnull(operator) ? "" : "_on")
+
+/obj/item/attachable/motiondetector/equipped(mob/user, slot)
+	. = ..()
+	if(!ishandslot(slot))
+		clean_operator()
+
+/obj/item/attachable/motiondetector/removed_from_inventory(mob/user)
+	clean_operator()
 
 /// Signal handler to clean out user vars
 /obj/item/attachable/motiondetector/proc/clean_operator()
