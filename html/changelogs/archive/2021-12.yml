@@ -107,3 +107,14 @@
   chesse20:
   - rscadd: 8 new flavors of protein bars
   - refactor: made protein bars grayscale
+2021-12-09:
+  KrabSpider:
+  - imageadd: Pill packets in first aid pouches are now color coded for your convenience.
+      Please remember these pills are not candy. Medics please stop feeding the Marines
+      candy...
+  - balance: Incendiary slugs, yet again, no longer have airburst and do normal damage.
+      Again.
+  Pill-U:
+  - rscadd: Add pepperball attachment
+  - rscadd: Add ammo for the pepperball attachment
+  - rscadd: Sprites for both
