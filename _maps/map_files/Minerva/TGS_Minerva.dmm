@@ -145,7 +145,7 @@
 /area/mainship/command/self_destruct)
 "aI" = (
 /obj/machinery/door_control/mainship/ammo{
-	pixel_y = -32
+	dir = 1
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -469,12 +469,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
-"bx" = (
-/obj/machinery/door_control/mainship/ammo{
-	pixel_x = 32
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "by" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
@@ -567,6 +561,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bP" = (
+/obj/machinery/door_control/mainship/ammo,
 /turf/open/floor/mainship/orange{
 	dir = 9
 	},
@@ -1192,12 +1187,6 @@
 /area/mainship/command/corporateliaison)
 "es" = (
 /obj/structure/table/woodentable,
-/obj/machinery/door_control/mainship/corporate{
-	id = "wyoffice";
-	name = "Window Shutters";
-	pixel_x = -7;
-	pixel_y = 9
-	},
 /obj/item/tool/stamp/internalaffairs{
 	pixel_y = 6
 	},
@@ -1582,9 +1571,9 @@
 	dir = 4
 	},
 /obj/machinery/door_control/unmeltable{
+	dir = 4;
 	id = "tadstorage";
-	name = "Tadpole Storage Door Control";
-	pixel_x = -24
+	name = "Tadpole Storage Door Control"
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
@@ -1936,9 +1925,9 @@
 /area/mainship/medical/chemistry)
 "gV" = (
 /obj/machinery/door_control/unmeltable{
+	dir = 4;
 	id = "tadstorage";
-	name = "Tadpole Storage Door Control";
-	pixel_x = -24
+	name = "Tadpole Storage Door Control"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -6100,17 +6089,15 @@
 	},
 /obj/structure/bed/chair/office/dark,
 /obj/machinery/door_control{
+	dir = 4;
 	id = "reqaccess2";
-	name = "Requisitions Access";
-	pixel_x = -22
+	name = "Requisitions Access"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "vT" = (
 /obj/structure/table/mainship,
-/obj/machinery/door_control/mainship/req{
-	pixel_y = -5
-	},
+/obj/machinery/door_control/old/req,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "vU" = (
@@ -6149,9 +6136,9 @@
 /area/mainship/squads/req)
 "wc" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "reqaccess";
-	name = "Requisitions Access";
-	pixel_x = 26
+	name = "Requisitions Access"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -7513,6 +7500,14 @@
 	dir = 4
 	},
 /area/mainship/living/cafeteria_starboard)
+"Al" = (
+/obj/machinery/door_control/unmeltable{
+	dir = 1;
+	id = "prepblastnorth";
+	name = "Dropship Prep door control"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "Am" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar/droppod)
@@ -7722,7 +7717,7 @@
 /area/mainship/medical/lower_medical)
 "AQ" = (
 /obj/machinery/door_control/mainship/droppod{
-	pixel_y = -32
+	dir = 1
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -9106,9 +9101,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/evacuation)
 "FJ" = (
-/obj/machinery/door_control/mainship/droppod{
-	pixel_y = 30
-	},
+/obj/machinery/door_control/mainship/droppod,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
 "FK" = (
@@ -12126,7 +12119,7 @@
 	on = 1
 	},
 /obj/machinery/door_control/ai/exterior{
-	pixel_y = -25
+	dir = 1
 	},
 /turf/open/floor/mainship/ai,
 /area/mainship/command/airoom)
@@ -12167,7 +12160,7 @@
 	dir = 8
 	},
 /obj/machinery/door_control/ai/exterior{
-	pixel_y = -25
+	dir = 1
 	},
 /turf/open/floor/mainship/ai,
 /area/mainship/command/airoom)
@@ -12254,13 +12247,17 @@
 /turf/open/floor/plating,
 /area/mainship/command/cic)
 "Qy" = (
-/obj/machinery/door_control/unmeltable{
-	id = "prepblastnorth";
-	name = "Dropship Prep door control";
-	pixel_y = 12
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/turf/closed/wall/mainship,
-/area/mainship/hallways/hangar)
+/obj/machinery/door_control/mainship/corporate{
+	id = "wyoffice";
+	name = "Window Shutters";
+	pixel_x = -7;
+	pixel_y = 9
+	},
+/turf/open/floor/wood,
+/area/mainship/command/corporateliaison)
 "QA" = (
 /obj/machinery/door/poddoor/mainship/umbilical/south{
 	dir = 2;
@@ -12621,8 +12618,7 @@
 /obj/machinery/vending/lasgun,
 /obj/machinery/door_control/unmeltable{
 	id = "prepblastnorth";
-	name = "Dropship Prep door control";
-	pixel_y = 27
+	name = "Dropship Prep door control"
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
@@ -12880,6 +12876,10 @@
 	pixel_y = 6
 	},
 /obj/item/tool/pen,
+/obj/machinery/door_control/old/cic{
+	pixel_x = -4;
+	pixel_y = 5
+	},
 /turf/open/floor/mainship/purple,
 /area/mainship/command/cic)
 "Tc" = (
@@ -14077,20 +14077,13 @@
 /area/mainship/command/self_destruct)
 "Xt" = (
 /obj/structure/table/mainship,
-/obj/machinery/door_control/mainship/cic{
-	pixel_x = -7;
-	pixel_y = 9
-	},
-/obj/machinery/door_control/mainship/cic/armory{
-	pixel_x = -7;
-	pixel_y = -5
-	},
 /obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
+/obj/machinery/door_control/old/cic/armory,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/command/cic)
 "Xu" = (
@@ -19249,7 +19242,7 @@ bK
 cz
 cZ
 bE
-dF
+Qy
 es
 eZ
 er
@@ -20518,7 +20511,7 @@ VC
 NA
 az
 aZ
-bx
+VC
 VC
 VC
 VC
@@ -21741,8 +21734,8 @@ ez
 ez
 hN
 iy
-VC
-Qy
+Al
+OS
 RQ
 Tq
 Vg

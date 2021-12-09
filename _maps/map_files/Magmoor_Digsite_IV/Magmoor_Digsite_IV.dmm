@@ -3278,8 +3278,7 @@
 	},
 /obj/machinery/door_control{
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_y = 24
+	name = "Requesition Secure Storage"
 	},
 /turf/open/floor/mainship/orange{
 	dir = 1
@@ -3634,9 +3633,9 @@
 /area/magmoor/cave/northwest)
 "cQx" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "mining_garage";
-	name = "Mining Garage";
-	pixel_x = -24
+	name = "Mining Garage"
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -4537,9 +4536,9 @@
 /area/magmoor/medical/breakroom)
 "dqq" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "mining_garage";
-	name = "Mining Garage";
-	pixel_x = 24
+	name = "Mining Garage"
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/northwest)
@@ -6226,9 +6225,9 @@
 /area/magmoor/cave/central)
 "euT" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "refinery2";
-	name = "Refinery 1 Shutter Control";
-	pixel_y = -24
+	name = "Refinery 1 Shutter Control"
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/west)
@@ -7088,9 +7087,9 @@
 /area/magmoor/cave/central)
 "fbH" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_y = -24
+	name = "Requesition Secure Storage"
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -7726,9 +7725,9 @@
 /area/magmoor/civilian/cook)
 "fvI" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "refinery1";
-	name = "Refinery 1 Shutter Control";
-	pixel_y = -24
+	name = "Refinery 1 Shutter Control"
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/west)
@@ -8736,8 +8735,7 @@
 "ggu" = (
 /obj/machinery/door_control{
 	id = "refinery1";
-	name = "Refinery 1 Shutter Control";
-	pixel_y = 24
+	name = "Refinery 1 Shutter Control"
 	},
 /turf/open/floor/plating,
 /area/magmoor/mining/refinery)
@@ -9138,8 +9136,7 @@
 "guA" = (
 /obj/machinery/door_control{
 	id = "refinery2";
-	name = "Refinery 1 Shutter Control";
-	pixel_y = 24
+	name = "Refinery 1 Shutter Control"
 	},
 /turf/open/floor/plating,
 /area/magmoor/mining/refinery)
@@ -13090,9 +13087,9 @@
 	dir = 8
 	},
 /obj/machinery/door_control{
+	dir = 4;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_x = -24
+	name = "Requesition Secure Storage"
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
@@ -15513,9 +15510,9 @@
 	dir = 6
 	},
 /obj/machinery/door_control{
+	dir = 1;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_y = -24
+	name = "Requesition Secure Storage"
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/northeast)
@@ -16108,9 +16105,9 @@
 	dir = 6
 	},
 /obj/machinery/door_control{
+	dir = 8;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_x = 24
+	name = "Requesition Secure Storage"
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/northeast)
@@ -16480,9 +16477,9 @@
 	dir = 10
 	},
 /obj/machinery/door_control{
+	dir = 4;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_x = -24
+	name = "Requesition Secure Storage"
 	},
 /turf/open/floor/mainship/orange{
 	dir = 8
@@ -18551,9 +18548,9 @@
 	dir = 5
 	},
 /obj/machinery/door_control{
+	dir = 8;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_x = 24
+	name = "Requesition Secure Storage"
 	},
 /turf/open/floor/mainship/orange{
 	dir = 4
@@ -18599,9 +18596,9 @@
 	dir = 9
 	},
 /obj/machinery/door_control{
+	dir = 4;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_x = -24
+	name = "Requesition Secure Storage"
 	},
 /turf/open/floor/mainship/orange{
 	dir = 8
@@ -19095,9 +19092,9 @@
 /area/magmoor/civilian/chapel)
 "nKK" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_y = -24
+	name = "Requesition Secure Storage"
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -21361,9 +21358,9 @@
 	dir = 4
 	},
 /obj/machinery/door_control{
+	dir = 8;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_x = 24
+	name = "Requesition Secure Storage"
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
@@ -23454,6 +23451,7 @@
 /area/magmoor/civilian/cook)
 "qvH" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "req_sec_storage";
 	name = "Requesition Secure Storage";
 	pixel_x = 24
@@ -28780,9 +28778,9 @@
 /area/magmoor/cave/west)
 "tTz" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_x = -24
+	name = "Requesition Secure Storage"
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -29272,9 +29270,10 @@
 	dir = 6
 	},
 /obj/machinery/door_control{
+	dir = 1;
 	id = "req_sec_storage";
 	name = "Requesition Secure Storage";
-	pixel_y = -24
+	pixel_y = -1
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/west)
@@ -30263,9 +30262,9 @@
 	dir = 6
 	},
 /obj/machinery/door_control{
+	dir = 1;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_y = -24
+	name = "Requesition Secure Storage"
 	},
 /turf/open/floor/mainship/orange,
 /area/magmoor/cargo/processing)
