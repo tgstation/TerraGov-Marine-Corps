@@ -15695,6 +15695,13 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
+"WD" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/mob/living/simple_animal/corgi/Ranger,
+/turf/open/floor/mainship/black/corner{
+	dir = 4
+	},
+/area/mainship/squads/general)
 "WE" = (
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
@@ -54418,7 +54425,7 @@ Wr
 Yg
 WV
 CD
-Wr
+WD
 uL
 WV
 CD

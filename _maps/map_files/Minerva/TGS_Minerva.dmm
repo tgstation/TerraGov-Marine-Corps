@@ -525,10 +525,6 @@
 	},
 /area/mainship/command/corporateliaison)
 "bK" = (
-/mob/living/simple_animal/corgi/pug{
-	name = "\improper Isaac";
-	real_name = "Isaac"
-	},
 /turf/open/floor/carpet{
 	dir = 1;
 	icon_state = "carpetside"
@@ -6174,6 +6170,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/mob/living/simple_animal/corgi/Ranger,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cryo_cells)
 "wg" = (
