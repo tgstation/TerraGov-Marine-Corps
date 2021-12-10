@@ -47,16 +47,29 @@
 	user.set_machine(src)
 	song.ui_interact(user)
 
+/obj/item/instrument/AltClick(mob/user)
+	if(!can_interact(user))
+		return ..()
+	if(!ishuman(user))
+		return ..()
+	if(!(user.l_hand == src || user.r_hand == src))
+		return ..()
+	TOGGLE_BITFIELD(flags_item, NODROP)
+	if(CHECK_BITFIELD(flags_item, NODROP))
+		to_chat(user, "<span class='warning'>You tighten the strap of [src] around your hand!</span>")
+	else
+		to_chat(user, "<span class='notice'>You loosen the strap of [src] around your hand!</span>")
+
 /obj/item/instrument/violin
 	name = "space violin"
-	desc = "A wooden musical instrument with four strings and a bow. \"The devil went down to space, he was looking for an assistant to grief.\ " Alt-click to tighten the strap."
+	desc = "A wooden musical instrument with four strings and a bow. Alt-click to tighten the strap. \"The devil went down to space, he was looking for an assistant to grief.\""
 	icon_state = "violin"
 	hitsound = "swing_hit"
 	allowed_instrument_ids = "violin"
 
 /obj/item/instrument/violin/golden
 	name = "golden violin"
-	desc = "A golden musical instrument with four strings and a bow. \"The devil went down to space, he was looking for an assistant to grief.\" Alt-click to tighten the strap."
+	desc = "A golden musical instrument with four strings and a bow. Alt-click to tighten the strap. \"The devil went down to space, he was looking for an assistant to grief.\""
 	icon_state = "golden_violin"
 
 /obj/item/instrument/piano_synth
