@@ -1,0 +1,4 @@
+author: "Derrick2Electricboogaloo"
+delete-after: True
+changes: 
+  - bugfix: "Deployable Camera in req comes in pack of 3 as intended."
