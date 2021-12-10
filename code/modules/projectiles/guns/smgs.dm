@@ -341,7 +341,7 @@
 	reload_sound = 'sound/weapons/guns/interact/uzi_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/uzi_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/smg/uzi
-	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/uzi)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/uzi, /obj/item/ammo_magazine/smg/uzi/extended)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
 	fire_delay = 0.15 SECONDS
