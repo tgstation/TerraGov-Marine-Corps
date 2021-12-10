@@ -3056,6 +3056,11 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/library)
+"ok" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/start/job/xenomorph,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
 "om" = (
 /obj/item/tool/pickaxe,
 /obj/effect/ai_node,
@@ -9611,6 +9616,10 @@
 /obj/machinery/door/poddoor/two_tile_ver,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/c)
+"TH" = (
+/obj/effect/landmark/start/job/xenomorph,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
 "TI" = (
 /obj/structure/curtain,
 /turf/open/floor/mainship/sterile/side{
@@ -57543,11 +57552,11 @@ gt
 gt
 UG
 UG
-UG
-UG
-UG
-UG
-UG
+TH
+TH
+TH
+TH
+TH
 OO
 UG
 hE
@@ -57800,11 +57809,11 @@ gt
 gt
 UG
 UG
-UG
-UG
+TH
+TH
 UG
 no
-UG
+TH
 UG
 UG
 hE
@@ -58057,11 +58066,11 @@ HN
 HN
 UG
 UG
+TH
+TH
 UG
 UG
-UG
-UG
-UG
+TH
 UG
 UG
 hE
@@ -58314,11 +58323,11 @@ gt
 HN
 UG
 UG
+TH
+TH
 UG
 UG
-UG
-UG
-UG
+TH
 UG
 UG
 hE
@@ -58571,11 +58580,11 @@ gt
 HN
 gt
 UG
-UG
-UG
-UG
-UG
-UG
+TH
+TH
+TH
+TH
+TH
 UG
 UG
 hE
@@ -58828,11 +58837,11 @@ gt
 HN
 gt
 gt
-UG
-UG
-OO
-UG
-UG
+TH
+TH
+ok
+TH
+TH
 BX
 UG
 hE
