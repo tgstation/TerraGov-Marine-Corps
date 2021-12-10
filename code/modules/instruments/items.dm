@@ -49,19 +49,19 @@
 
 /obj/item/instrument/violin
 	name = "space violin"
-	desc = "A wooden musical instrument with four strings and a bow. \"The devil went down to space, he was looking for an assistant to grief.\""
+	desc = "A wooden musical instrument with four strings and a bow. \"The devil went down to space, he was looking for an assistant to grief.\ " Alt-click to tighten the strap."
 	icon_state = "violin"
 	hitsound = "swing_hit"
 	allowed_instrument_ids = "violin"
 
 /obj/item/instrument/violin/golden
 	name = "golden violin"
-	desc = "A golden musical instrument with four strings and a bow. \"The devil went down to space, he was looking for an assistant to grief.\""
+	desc = "A golden musical instrument with four strings and a bow. \"The devil went down to space, he was looking for an assistant to grief.\" Alt-click to tighten the strap."
 	icon_state = "golden_violin"
 
 /obj/item/instrument/piano_synth
 	name = "synthesizer"
-	desc = "An advanced electronic synthesizer that can be used as various instruments."
+	desc = "An advanced electronic synthesizer that can be used as various instruments. Alt-click to tighten the strap."
 	icon_state = "synth"
 	allowed_instrument_ids = "piano"
 
@@ -71,7 +71,7 @@
 
 /obj/item/instrument/banjo
 	name = "banjo"
-	desc = "A drum with a neck and strings."
+	desc = "A drum with a neck and strings. Alt-click to tighten the strap."
 	icon_state = "banjo"
 	attack_verb = list("scruggs-styles", "hum-diggitys", "shin-digs", "clawhammers")
 	hitsound = 'sound/weapons/banjoslap.ogg'
@@ -79,7 +79,7 @@
 
 /obj/item/instrument/guitar
 	name = "guitar"
-	desc = "It's made of wood and has bronze strings."
+	desc = "It's made of wood and has bronze strings. Alt-click to tighten the strap."
 	icon_state = "guitar"
 	attack_verb = list("serenades", "crashes", "smashes")
 	hitsound = 'sound/weapons/stringsmash.ogg'
@@ -87,7 +87,7 @@
 
 /obj/item/instrument/eguitar
 	name = "electric guitar"
-	desc = "Makes all your shredding needs possible."
+	desc = "Makes all your shredding needs possible. Alt-click to tighten the strap."
 	icon_state = "eguitar"
 	force = 12
 	attack_verb = list("shreds", "crashes", "smashes")
@@ -96,45 +96,45 @@
 
 /obj/item/instrument/glockenspiel
 	name = "glockenspiel"
-	desc = "Smooth metal bars perfect for any marching band."
+	desc = "Smooth metal bars perfect for any marching band. Alt-click to tighten the strap."
 	icon_state = "glockenspiel"
 	allowed_instrument_ids = list("glockenspiel","crvibr", "sgmmbox", "r3celeste")
 
 /obj/item/instrument/accordion
 	name = "accordion"
-	desc = "Monkey not included."
+	desc = "Monkey not included. Alt-click to tighten the strap."
 	icon_state = "accordion"
 	allowed_instrument_ids = list("crack", "crtango", "accordion")
 
 /obj/item/instrument/trumpet
 	name = "trumpet"
-	desc = "To announce the arrival of the king!"
+	desc = "To announce the arrival of the king! Alt-click to tighten the strap."
 	icon_state = "trumpet"
 	allowed_instrument_ids = "crtrumpet"
 
 /obj/item/instrument/saxophone
 	name = "saxophone"
-	desc = "This soothing sound will be sure to leave your audience in tears."
+	desc = "This soothing sound will be sure to leave your audience in tears. Alt-click to tighten the strap."
 	icon_state = "saxophone"
 	allowed_instrument_ids = "saxophone"
 
 
 /obj/item/instrument/trombone
 	name = "trombone"
-	desc = "How can any pool table ever hope to compete?"
+	desc = "How can any pool table ever hope to compete? Alt-click to tighten the strap."
 	icon_state = "trombone"
 	allowed_instrument_ids = list("crtrombone", "crbrass", "trombone")
 
 /obj/item/instrument/recorder
 	name = "recorder"
-	desc = "Just like in school, playing ability and all."
+	desc = "Just like in school, playing ability and all. Alt-click to tighten the strap. Alt-click to tighten the strap."
 	force = 5
 	icon_state = "recorder"
 	allowed_instrument_ids = "recorder"
 
 /obj/item/instrument/harmonica
 	name = "harmonica"
-	desc = "For when you get a bad case of the space blues."
+	desc = "For when you get a bad case of the space blues. Alt-click to tighten the strap."
 	icon_state = "harmonica"
 	allowed_instrument_ids = list("crharmony", "harmonica")
 	flags_equip_slot = ITEM_SLOT_MASK
@@ -157,7 +157,7 @@
 
 /obj/item/instrument/bikehorn
 	name = "gilded bike horn"
-	desc = "An exquisitely decorated bike horn, capable of honking in a variety of notes."
+	desc = "An exquisitely decorated bike horn, capable of honking in a variety of notes. Alt-click to tighten the strap."
 	icon_state = "bike_horn"
 	allowed_instrument_ids = list("bikehorn", "honk")
 	attack_verb = list("beautifully honks")
