@@ -102,7 +102,7 @@
 		to_chat(usr, span_boldnotice("You must be dead to use this!"))
 		return
 
-	var/datum/job/valhalla_job = tgui_input_list(usr, "What job would you like to have in valhalla?", "Join Valhalla", GLOB.jobs_fallen_all)
+	var/datum/job/valhalla_job = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. What job would you like to have?", "Join Valhalla", GLOB.jobs_fallen_all)
 	if(!valhalla_job)
 		return
 	var/mob/living/carbon/human/new_fallen = new(pick(GLOB.spawns_by_job[/datum/job/fallen]))
