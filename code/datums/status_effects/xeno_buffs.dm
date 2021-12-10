@@ -37,8 +37,6 @@
 	var/tick_damage_limit
 	///Amount of damage taken this tick
 	var/tick_damage
-	///Icon added on the mob when the buff is active
-	var/static/image/effect_overlay = image('icons/mob/hud.dmi', null, "rejuvenate_vis", pixel_x = 28)
 
 /datum/status_effect/xeno_rejuvenate/on_creation(mob/living/new_owner, set_duration, tick_damage_limit)
 	owner = new_owner
@@ -46,15 +44,13 @@
 	src.tick_damage_limit = tick_damage_limit
 	RegisterSignal(owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), .proc/handle_damage_taken)
 	owner.add_movespeed_modifier(MOVESPEED_ID_GORGER_REJUVENATE, TRUE, 0, NONE, TRUE, GORGER_REJUVENATE_SELF_SLOWDOWN)
-	owner.overlay_fullscreen("xeno_rejuvenate", /obj/screen/fullscreen/bloodlust)
-	owner.overlays += effect_overlay
+	owner.add_filter("[id]m", 0, outline_filter(2, "#455d5762"))
 	return ..()
 
 /datum/status_effect/xeno_rejuvenate/on_remove()
 	. = ..()
 	owner.remove_movespeed_modifier(MOVESPEED_ID_GORGER_REJUVENATE)
-	owner.clear_fullscreen("xeno_rejuvenate", 0.7 SECONDS)
-	owner.overlays -= effect_overlay
+	owner.remove_filter("[id]m")
 
 /datum/status_effect/xeno_rejuvenate/tick()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
