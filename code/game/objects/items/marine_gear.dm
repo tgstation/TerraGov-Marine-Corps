@@ -58,7 +58,7 @@
 	///list of producable protein bars
 	var/list/randlist = list(
 		list("stale TGMC protein bar","The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute.","#f37d43",/datum/reagent/consumable/protein),
-		list("mint TGMC protein bar","Stale old protien bar, with an almost minty freshness to it, but not fresh enough","#61b36e",/datum/reagent/consumable/protein/mint),
+		list("mint TGMC protein bar","A stale old protein bar, with an almost minty freshness to it, but not fresh enough.","#61b36e",/datum/reagent/consumable/protein/mint),
 		list("grape TGMC protein bar","Not the good type of grape flavor, tastes like medicine. Fills you up just as well as any protein bar.","#9900ff",/datum/reagent/consumable/protein/grape),
 		list("mystery TGMC protein bar","Some say they have tasted one of these and tasted their favorite childhood meal, especially for squad marines. Most say this tastes like crayons, though it fills like any other protein bar you've seen.","#ffffff",/datum/reagent/consumable/protein/mystery),
 		list("dark chocolate TGMC protein bar","The dark chocolate flavor helps it out a bit, but its still a cheap protein bar.","#5a3b1d",/datum/reagent/consumable/protein/darkchocolate),
