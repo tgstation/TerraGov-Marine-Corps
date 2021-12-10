@@ -31,27 +31,56 @@
 
 /datum/status_effect/xeno_rejuvenate
 	id = "xeno_rejuvenate"
+	tick_interval = 2 SECONDS
 	alert_type = /obj/screen/alert/status_effect/xeno_rejuvenate
+	///Amount of damage taken before reduction kicks in
+	var/tick_damage_limit
+	///Amount of damage taken this tick
+	var/tick_damage
+	var/static/image/effect_overlay = image('icons/mob/hud.dmi', null, "rejuvenate_vis", pixel_x = 28)
 
-/datum/status_effect/xeno_rejuvenate/on_creation(mob/living/new_owner, set_duration)
+/datum/status_effect/xeno_rejuvenate/on_creation(mob/living/new_owner, set_duration, tick_damage_limit)
 	owner = new_owner
 	duration = set_duration
-	new_owner.overlay_fullscreen("xeno_rejuvenate", /obj/screen/fullscreen/bloodlust)
+	src.tick_damage_limit = tick_damage_limit
+	RegisterSignal(owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), .proc/handle_damage_taken)
+	owner.add_movespeed_modifier(MOVESPEED_ID_GORGER_REJUVENATE, TRUE, 0, NONE, TRUE, GORGER_REJUVENATE_SELF_SLOWDOWN)
+	owner.overlay_fullscreen("xeno_rejuvenate", /obj/screen/fullscreen/bloodlust)
+	owner.overlays += effect_overlay
 	return ..()
 
 /datum/status_effect/xeno_rejuvenate/on_remove()
 	. = ..()
+	owner.remove_movespeed_modifier(MOVESPEED_ID_GORGER_REJUVENATE)
 	owner.clear_fullscreen("xeno_rejuvenate", 0.7 SECONDS)
+	owner.overlays -= effect_overlay
 
 /datum/status_effect/xeno_rejuvenate/tick()
-	new /obj/effect/temp_visual/telekinesis(get_turf(owner))
-	to_chat(owner, span_notice("We feel our wounds close up."))
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	if(owner_xeno.plasma_stored < GORGER_REJUVENATE_SELF_DRAIN)
+		to_chat(owner_xeno, span_notice("Not enough substance to sustain ourselves..."))
+		owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_REJUVENATE)
+		return
 
-	var/mob/living/carbon/xenomorph/X = owner
-	var/amount = X.maxHealth*0.1
+	owner_xeno.plasma_stored -= GORGER_REJUVENATE_SELF_DRAIN
+	new /obj/effect/temp_visual/telekinesis(get_turf(owner_xeno))
+	to_chat(owner_xeno, span_notice("We feel our wounds close up."))
 
-	HEAL_XENO_DAMAGE(X, amount)
-	adjustOverheal(X, amount / 2)
+	var/amount = owner_xeno.maxHealth*GORGER_REJUVENATE_SELF_AMOUNT
+	HEAL_XENO_DAMAGE(owner_xeno, amount)
+	tick_damage = 0
+
+/datum/status_effect/xeno_rejuvenate/proc/handle_damage_taken(datum/source, amount, list/amount_mod)
+	SIGNAL_HANDLER
+	tick_damage += amount
+	if(tick_damage < tick_damage_limit)
+		return
+	var/modified_amount = amount
+	for(var/i in amount_mod)
+		modified_amount -= i
+
+	amount_mod += GORGER_REJUVENATE_SELF_DMG_REDUCTION(modified_amount)
+
 
 ///Calculates the effectiveness of parts of the status based on plasma of owner
 #define CALC_PLASMA_MOD(xeno) \

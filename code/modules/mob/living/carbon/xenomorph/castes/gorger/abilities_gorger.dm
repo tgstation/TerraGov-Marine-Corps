@@ -149,7 +149,7 @@
 		while((owner_xeno.health < owner_xeno.maxHealth || owner_xeno.overheal < owner_xeno.xeno_caste.overheal_max) &&do_after(owner_xeno, 2 SECONDS, TRUE, target_human, BUSY_ICON_HOSTILE))
 			target_human.blood_volume -= GORGER_DRAIN_BLOOD_DRAIN
 			var/target_blood = target_human.blood_volume
-			overheal_gain = owner_xeno.heal_wounds(2.2, TRUE)
+			overheal_gain = owner_xeno.heal_wounds(2.2)
 			adjustOverheal(owner_xeno, overheal_gain)
 			owner_xeno.adjust_sunder(-0.5)
 			target_human.hud_list[HEART_STATUS_HUD].alpha = 255 * (target_human.blood_volume / BLOOD_VOLUME_NORMAL)
@@ -184,10 +184,10 @@
 /datum/action/xeno_action/activable/rejuvenate
 	name = "Rejuvenate/Transfusion"
 	action_icon_state = "rejuvenation"
-	mechanics_text = "When used on self, drains blood and restores health over time. When used on another xenomorph, costs blood and restores some of their health or overheals."
+	mechanics_text = "When used on self, drains blood continuosly, slow you down and reduces damage taken, while restoring health over time. When used on another xenomorph, costs blood and restores some of their health or overheals."
 	use_state_flags = XACT_TARGET_SELF
-	cooldown_timer = 20 SECONDS
-	plasma_cost = GORGER_REJUVENATE_SELF_COST
+	cooldown_timer = 4 SECONDS
+	plasma_cost = GORGER_REJUVENATE_SELF_DRAIN
 	target_flags = XABB_MOB_TARGET
 	keybind_signal = COMSIG_XENOABILITY_REJUVENATE
 
@@ -226,9 +226,12 @@
 /datum/action/xeno_action/activable/rejuvenate/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(target == owner_xeno)
-		owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_REJUVENATE, GORGER_REJUVENATE_SELF_DURATION)
-		to_chat(owner_xeno, span_notice("We tap into our reserves for nourishment."))
-		add_cooldown()
+		if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_REJUVENATE))
+			owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_REJUVENATE)
+			add_cooldown()
+			return
+		owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_REJUVENATE, GORGER_REJUVENATE_SELF_DURATION, owner_xeno.maxHealth * GORGER_REJUVENATE_SELF_THRESHOLD)
+		to_chat(owner_xeno, span_notice("We tap into our reserves for nourishment, our carapace thickening."))
 		succeed_activate()
 		return
 
