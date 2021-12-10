@@ -115,3 +115,12 @@
 	current_rounds = 150
 	max_rounds = 150
 
+/obj/item/ammo_magazine/packet/p44rim
+	name = "packet of .44 Rimfire"
+	desc = "A packet containing 50 rounds of .44 rimfire.."
+	caliber = CALIBER_44RIM
+	icon_state = "box_44rim"
+	default_ammo = /datum/ammo/bullet/rifle/repeater
+	w_class = WEIGHT_CLASS_SMALL
+	current_rounds = 50
+	max_rounds = 50
