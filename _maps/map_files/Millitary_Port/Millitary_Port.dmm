@@ -309,8 +309,8 @@
 /area/shuttle/drop1/lz1)
 "bI" = (
 /obj/machinery/vending/nanomed,
-/turf/closed/wall/wood,
-/area/bigredv2/outside/library)
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/c)
 "bJ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral,
@@ -4137,10 +4137,9 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
 "tm" = (
-/obj/structure/cable,
 /obj/machinery/vending/nanomed,
-/turf/closed/wall/mainship/outer/canterbury,
-/area/bigredv2/outside/c)
+/turf/open/floor/plating/mainship,
+/area/bigredv2/outside/library)
 "tn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -5315,10 +5314,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/outside/medical)
-"yB" = (
-/obj/machinery/vending/nanomed,
-/turf/closed/wall/mainship,
-/area/bigredv2/outside/c)
 "yC" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -5870,11 +5865,11 @@
 /area/bigredv2/outside/c)
 "Bo" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/colony_floodlight_switch,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/engineering)
 "Bp" = (
@@ -6659,6 +6654,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/engineering)
 "Fg" = (
@@ -10427,7 +10423,6 @@
 /area/arrival/start)
 "Xi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/vending/nanomed,
 /turf/closed/wall/mainship,
 /area/bigredv2/outside/engineering)
 "Xj" = (
@@ -10627,6 +10622,7 @@
 	},
 /area/bigredv2/outside/library)
 "Yh" = (
+/obj/machinery/vending/nanomed,
 /turf/open/floor/carpet{
 	dir = 5;
 	icon_state = "carpetside"
@@ -24434,7 +24430,7 @@ QI
 oB
 QI
 QI
-yB
+Hi
 Yh
 rU
 rU
@@ -26243,10 +26239,10 @@ fn
 QI
 zr
 fE
+tm
 pe
 pe
-pe
-bI
+Qn
 ez
 ez
 hQ
@@ -31881,8 +31877,8 @@ AN
 xS
 ry
 Zs
-tm
-gN
+Zs
+bI
 Zs
 Zs
 hF
@@ -49875,7 +49871,7 @@ gt
 gt
 ce
 LQ
-JO
+iU
 iU
 xW
 iU
