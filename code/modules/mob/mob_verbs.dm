@@ -95,7 +95,7 @@
 	set category = "OOC"
 
 	if(!GLOB.valhalla_allowed)
-		to_chat(usr, span_notice("Valhalla is disabled"))
+		to_chat(usr, span_notice("Valhalla is currently disabled!"))
 		return
 	
 	if(stat != DEAD)
