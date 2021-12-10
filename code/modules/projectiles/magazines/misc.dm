@@ -118,7 +118,7 @@
 /obj/item/ammo_magazine/packet/repeater
 	name = "packet of .44 rimfire"
 	desc = "A packet of .44 rimfire.."
-	icon_state = "box_44rim_mag"
+	icon_state = "box_44_rim_mag"
 	caliber = CALIBER_44RIM
 	default_ammo = /datum/ammo/bullet/rifle/magnum
 	w_class = WEIGHT_CLASS_SMALL
