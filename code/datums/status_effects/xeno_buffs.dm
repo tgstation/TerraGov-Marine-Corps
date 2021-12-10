@@ -37,6 +37,7 @@
 	var/tick_damage_limit
 	///Amount of damage taken this tick
 	var/tick_damage
+	///Icon added on the mob when the buff is active
 	var/static/image/effect_overlay = image('icons/mob/hud.dmi', null, "rejuvenate_vis", pixel_x = 28)
 
 /datum/status_effect/xeno_rejuvenate/on_creation(mob/living/new_owner, set_duration, tick_damage_limit)
@@ -70,6 +71,7 @@
 	HEAL_XENO_DAMAGE(owner_xeno, amount)
 	tick_damage = 0
 
+///Handles damage received when the status effect is active
 /datum/status_effect/xeno_rejuvenate/proc/handle_damage_taken(datum/source, amount, list/amount_mod)
 	SIGNAL_HANDLER
 	tick_damage += amount
