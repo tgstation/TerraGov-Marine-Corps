@@ -146,14 +146,13 @@
  * - If you can do both, then it changes the loc var calls Exited on the old loc, and Entered on the new loc
  * - After that, it does some area checks, calls Moved and handle pulling/buckled mobs.area
  *
- * A diagonal move is slightly different as everything is called twice (once for each direction)
+ * A diagonal move is slightly different as Moved, entered and exited is called only once
  * In order of calling:
  * - Check if you can exit the current loc
  * - Check if it's a diagonal move
- * - If yes, take a cardinal move, check if you could exit the turf in that direction, and then if you can enter it (This calls on_exit and on_enter)
- * - "Simulate" a cardinal move by calling Exited, Entered and Moved. We are not changing the loc here because this would mess with pushing/shuffling
+ * - If yes, check if you could exit the turf in that direction, and then if you can enter it (This calls on_exit and on_enter)
  * - Check if you can enter the final new loc
- * - Do the rest of the Move proc normally
+ * - Do the rest of the Move proc normally (Moved, entered, exited, check area change etc)
  *
  * Warning : Doesn't support well multi-tile diagonal moves
  */
