@@ -118,3 +118,16 @@
   - rscadd: Add pepperball attachment
   - rscadd: Add ammo for the pepperball attachment
   - rscadd: Sprites for both
+2021-12-10:
+  KrabSpider:
+  - balance: TX-11 extra delay decreased to 0.25 from 0.5.
+  - balance: TX-11 scope zoom increased to 7 from 5. Stop littering.
+  Pill-U:
+  - rscdel: Remove carriers retrieve egg ability
+  - rscdel: Remove egg item.
+  - qol: Lay egg now plants the egg on the ground
+  RipGrayson:
+  - bugfix: Fixed a couple improperly rotated shutters in Big Red.
+  - imageadd: Added some new directional sprites for door buttons.
+  kait:
+  - balance: rebalanced somolent

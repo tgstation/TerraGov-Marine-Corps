@@ -1,6 +1,0 @@
-author: "Pill-U"
-delete-after: True
-changes: 
-  - rscdel: "Remove carriers retrieve egg ability"
-  - rscdel: "Remove egg item."
-  - qol: "Lay egg now plants the egg on the ground"
