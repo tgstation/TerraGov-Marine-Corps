@@ -48,11 +48,7 @@
 	song.ui_interact(user)
 
 /obj/item/instrument/AltClick(mob/user)
-	if(!can_interact(user))
-		return ..()
-	if(!ishuman(user))
-		return ..()
-	if(!(user.l_hand == src || user.r_hand == src))
+	if(!(user.l_hand == src || user.r_hand == src) || !can_interact(user) || !ishuman(user))
 		return ..()
 	TOGGLE_BITFIELD(flags_item, NODROP)
 	if(CHECK_BITFIELD(flags_item, NODROP))
