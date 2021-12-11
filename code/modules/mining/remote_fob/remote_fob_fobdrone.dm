@@ -11,8 +11,8 @@ GLOBAL_LIST_INIT(blocked_remotebuild_objs, typecacheof(list(/obj/machinery/compu
 	use_static = FALSE
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
 	light_system = MOVABLE_LIGHT
-	light_range = 10
-	light_power = 8
+	light_range = 6
+	light_power = 4
 	light_on = TRUE
 
 	var/area/starting_area
