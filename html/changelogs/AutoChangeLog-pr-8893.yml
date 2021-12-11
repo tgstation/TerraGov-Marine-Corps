@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - qol: "Window flashs and there is a loud sound played when it's your turn to be a larva (larva queue)"
