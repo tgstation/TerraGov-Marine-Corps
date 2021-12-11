@@ -138,7 +138,7 @@
 	storage =  /obj/item/storage/internal/modular/engineering
 
 /obj/item/storage/internal/modular/engineering
-	max_storage_space = 15
+	max_storage_space = 30
 	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_BULKY
 	can_hold = list(
