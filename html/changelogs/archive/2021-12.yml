@@ -131,3 +131,15 @@
   - imageadd: Added some new directional sprites for door buttons.
   kait:
   - balance: rebalanced somolent
+2021-12-11:
+  ATHATH:
+  - bugfix: Not having a heart now halves your effective blood level, as it was intended
+      to.
+  - bugfix: Disconnecting someone's heart from the rest of their body via surgery
+      will now impose the same effects on their blood level (and effective blood level)
+      that breaking their heart would.
+  Derrick2Electricboogaloo:
+  - bugfix: Deployable Camera in req comes in pack of 3 as intended.
+  Vondiech:
+  - bugfix: Pill packets are now visible again with the new sprites that were added
+      to them.

@@ -1,5 +1,0 @@
-author: "ATHATH"
-delete-after: True
-changes: 
-  - bugfix: "Not having a heart now halves your effective blood level, as it was intended to."
-  - bugfix: "Disconnecting someone's heart from the rest of their body via surgery will now impose the same effects on their blood level (and effective blood level) that breaking their heart would."

@@ -1,4 +1,0 @@
-author: "Vondiech"
-delete-after: True
-changes: 
-  - bugfix: "Pill packets are now visible again with the new sprites that were added to them."
