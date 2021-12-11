@@ -57,24 +57,25 @@
 	. = ..()
 	///list of producable protein bars
 	var/list/randlist = list(
-		list("stale TGMC protein bar","The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute.","#f37d43",/datum/reagent/consumable/protein),
-		list("mint TGMC protein bar","A stale old protein bar, with an almost minty freshness to it, but not fresh enough.","#61b36e",/datum/reagent/consumable/protein/mint),
-		list("grape TGMC protein bar","Not the good type of grape flavor, tastes like medicine. Fills you up just as well as any protein bar.","#9900ff",/datum/reagent/consumable/protein/grape),
-		list("mystery TGMC protein bar","Some say they have tasted one of these and tasted their favorite childhood meal, especially for squad marines. Most say this tastes like crayons, though it fills like any other protein bar you've seen.","#ffffff",/datum/reagent/consumable/protein/mystery),
-		list("dark chocolate TGMC protein bar","The dark chocolate flavor helps it out a bit, but its still a cheap protein bar.","#5a3b1d",/datum/reagent/consumable/protein/darkchocolate),
-		list("milk chocolate TGMC protein bar","A nice milky addition to a otherwise bland protein taste.","#efc296",/datum/reagent/consumable/protein/milkchocolate),
-		list("raspberry lime TGMC protein bar","A flavored protein bar, some might say a bit too strongly flavored for their tastes.","#ff0066",/datum/reagent/consumable/protein/rasplime),
-		list("chicken TGMC protein bar","Protein bar covered with chicken powder one might find in ramen. Get some extra sodium with your protein.","#cccc00",/datum/reagent/consumable/protein/chicken),
-		list("blueberry TGMC protein bar","A nice blueberry crunch into your otherwise stale and boring protein bar.","#4e39c5",/datum/reagent/consumable/protein/blueberry)
+		list("stale TGMC protein bar","The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute.","#f37d43","nutraloafed food" = 1),
+		list("mint TGMC protein bar","A stale old protien bar, with an almost minty freshness to it, but not fresh enough","#61b36e","minty protein" = 1),
+		list("grape TGMC protein bar","Not the good type of grape flavor, tastes like medicine. Fills you up just as well as any protein bar.","#9900ff","artifical grape"= 1),
+		list("mystery TGMC protein bar","Some say they have tasted one of these and tasted their favorite childhood meal, especially for squad marines. Most say this tastes like crayons, though it fills like any other protein bar you've seen.","#ffffff","crayons" = 1),
+		list("dark chocolate TGMC protein bar","The dark chocolate flavor helps it out a bit, but its still a cheap protein bar.","#5a3b1d","bitter dark chocolate" = 1),
+		list("milk chocolate TGMC protein bar","A nice milky addition to a otherwise bland protein taste.","#efc296","off flavor milk chocolate" = 1),
+		list("raspberry lime TGMC protein bar","A flavored protein bar, some might say a bit too strongly flavored for their tastes.","#ff0066","sour raspberry and lime" = 1),
+		list("chicken TGMC protein bar","Protein bar covered with chicken powder one might find in ramen. Get some extra sodium with your protein.","#cccc00","powdered chicken" = 1),
+		list("blueberry TGMC protein bar","A nice blueberry crunch into your otherwise stale and boring protein bar.","#4e39c5","blueberry" = 1)
 	)
 	///list of protein bar stats to change
 	var/list/picked = pick(randlist)
 	///amount of protein mix to put inside protein bars (8 to emulate old protein mec
-	var/protein_to_add = 8 //no magic numbers
+	//var/protein_to_add = 8 //no magic numbers
 	name = picked[1]
 	desc = picked[2]
 	set_greyscale_colors(picked[3])
-	reagents.add_reagent(picked[4],protein_to_add)
+	//reagents.add_reagent(picked[4],protein_to_add)
+	tastes = picked[4]
 
 
 /obj/item/reagent_containers/food/snacks/mre_pack

@@ -102,35 +102,35 @@
 
 /datum/reagent/consumable/protein/mint
 	name = "Mint Protein Mix"
-	taste_description = "minty protein"
+	//taste_description = "minty protein"
 
 /datum/reagent/consumable/protein/grape
 	name = "Grape Protein Mix"
-	taste_description = "artifical grape"
+	//taste_description = "artifical grape"
 
 /datum/reagent/consumable/protein/mystery
 	name = "Crayon Protein Mix"
-	taste_description = "crayons"
+	//taste_description = "crayons"
 
 /datum/reagent/consumable/protein/darkchocolate
 	name = "Dark chocolate Protein Mix"
-	taste_description = "bitter dark chocolate"
+	//taste_description = "bitter dark chocolate"
 
 /datum/reagent/consumable/protein/milkchocolate
 	name = "Milk Chocolate Protein Mix"
-	taste_description = "off flavor milk chocolate"
+	//taste_description = "off flavor milk chocolate"
 
 /datum/reagent/consumable/protein/rasplime
 	name = "Raspberry Lime Protein Mix"
-	taste_description = "sour raspberry and lime"
+	//taste_description = "sour raspberry and lime"
 
 /datum/reagent/consumable/protein/chicken
 	name = "Chicken Protein Mix"
-	taste_description = "powdered chicken"
+	//taste_description = "powdered chicken"
 
 /datum/reagent/consumable/protein/blueberry
 	name = "Blueberry Protein Mix"
-	taste_description = "blueberry"
+	//taste_description = "blueberry"
 
 /datum/reagent/consumable/sugar
 	name = "Sugar"
