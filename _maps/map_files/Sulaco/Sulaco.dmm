@@ -7472,6 +7472,10 @@
 "aLk" = (
 /turf/open/floor/prison/green/full,
 /area/sulaco/marine)
+"aLl" = (
+/mob/living/simple_animal/cat/martin,
+/turf/open/floor/prison,
+/area/sulaco/cargo/office)
 "aLm" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -46884,7 +46888,7 @@ cvJ
 kXs
 vIy
 vdG
-alk
+aLl
 alk
 aqh
 arC

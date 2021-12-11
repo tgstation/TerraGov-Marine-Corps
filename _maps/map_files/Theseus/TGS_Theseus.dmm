@@ -11381,6 +11381,12 @@
 "hES" = (
 /turf/closed/wall/mainship,
 /area/mainship/hallways/port_hallway)
+"hFj" = (
+/mob/living/simple_animal/cat/martin,
+/turf/open/floor/mainship/green/corner{
+	dir = 4
+	},
+/area/mainship/squads/req)
 "hFp" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/plating/plating_catwalk,
@@ -61723,7 +61729,7 @@ bJB
 qNK
 bnF
 cnU
-jFn
+hFj
 nfz
 nMf
 ruj

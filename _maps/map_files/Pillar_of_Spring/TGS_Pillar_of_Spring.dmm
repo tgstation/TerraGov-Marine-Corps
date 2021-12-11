@@ -5740,6 +5740,11 @@
 /obj/machinery/marine_selector/clothes/leader,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
+"sy" = (
+/obj/structure/disposalpipe/segment,
+/mob/living/simple_animal/cat/martin,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "sz" = (
 /obj/machinery/holopad,
 /turf/open/floor/mainship/mono,
@@ -47973,7 +47978,7 @@ rF
 kP
 de
 pO
-WS
+sy
 WS
 WS
 WS
