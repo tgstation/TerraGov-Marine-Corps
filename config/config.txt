@@ -132,6 +132,13 @@ LOBBY_MUSIC 12 https://youtu.be/guXqg_Bnl74 1 180
 LOBBY_MUSIC 13 https://youtu.be/JUNROUfqJr0 1 180
 #I know the darkness from inside
 LOBBY_MUSIC 14 https://youtu.be/Zo60Lx5KXEI 1 180
+#I Left My Home
+LOBBY_MUSIC 15 https://youtu.be/wktDhK5wBx4 1 180
+#Mama Told Johnny Not to Go Downtown
+LOBBY_MUSIC 16 https://youtu.be/n1kFFoHIFwU 1 180
+#She Wore A Yellow Ribbon
+LOBBY MUSIC 17 https://youtu.be/Lu7le9EXSEs 1 180
+
 
 ## TOPIC RATE LIMITING
 ## This allows you to limit how many topic calls (clicking on an interface window) the client can do in any given game second and/or game minute.
