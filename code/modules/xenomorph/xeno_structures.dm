@@ -699,7 +699,7 @@ TUNNEL
 	bound_width = 96
 	bound_height = 96
 	max_integrity = 1000
-	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
+	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE | PLASMACUTTER_IMMUNE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL
 	///How many larva points one silo produce in one minute
 	var/larva_spawn_rate = 0.5
@@ -751,7 +751,8 @@ TUNNEL
 		newt.tunnel_desc = "[AREACOORD_NO_Z(newt)]"
 		newt.name += " [name]"
 
-/obj/structure/xeno/silo/obj_destruction(damage_amount, damage_type, damage_flag)
+/obj/structure/xeno/silo/Destroy()
+	GLOB.xeno_resin_silos -= src
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 		associated_hive.xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /obj/screen/arrow/silo_damaged_arrow)
@@ -759,11 +760,6 @@ TUNNEL
 		associated_hive = null
 		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 		playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
-	return ..()
-
-
-/obj/structure/xeno/silo/Destroy()
-	GLOB.xeno_resin_silos -= src
 
 	for(var/i in contents)
 		var/atom/movable/AM = i
