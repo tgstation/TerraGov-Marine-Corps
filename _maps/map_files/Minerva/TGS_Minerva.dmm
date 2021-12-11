@@ -1436,6 +1436,7 @@
 /area/mainship/hull/port_hull)
 "eR" = (
 /obj/vehicle/ridden/powerloader,
+/obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -2208,6 +2209,10 @@
 /obj/structure/sign/pods,
 /turf/closed/wall/mainship,
 /area/mainship/living/evacuation)
+"hv" = (
+/obj/machinery/loadout_vendor,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/general)
 "hw" = (
 /turf/open/floor/mainship/floor,
 /area/mainship/living/evacuation)
@@ -2569,13 +2574,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
-"iH" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/loadout_vendor,
-/turf/open/floor/mainship/floor,
-/area/mainship/squads/general)
 "iK" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 2;
@@ -3157,14 +3155,14 @@
 /turf/open/floor/mainship/research,
 /area/mainship/medical/medical_science)
 "kX" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/effect/landmark/start/job/researcher,
 /turf/open/floor/mainship/research,
 /area/mainship/medical/medical_science)
 "kY" = (
 /obj/machinery/vending/weapon,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/mainship/research,
 /area/mainship/medical/medical_science)
 "kZ" = (
@@ -4333,6 +4331,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/silver{
 	dir = 5
 	},
@@ -4637,7 +4636,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/silver/corner{
 	dir = 8
 	},
@@ -4659,6 +4657,7 @@
 	},
 /obj/effect/ai_node,
 /obj/structure/disposalpipe/segment/corner,
+/obj/structure/cable,
 /turf/open/floor/mainship/silver{
 	dir = 4
 	},
@@ -4976,7 +4975,6 @@
 /turf/open/floor/mainship/research,
 /area/mainship/medical/medical_science)
 "qJ" = (
-/obj/structure/cable,
 /turf/open/floor/mainship/silver{
 	dir = 8
 	},
@@ -4985,6 +4983,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
+/obj/structure/cable,
 /turf/open/floor/mainship/silver{
 	dir = 4
 	},
@@ -5317,6 +5316,13 @@
 "rY" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
+"rZ" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/port_hull)
 "sa" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -5477,13 +5483,13 @@
 /area/mainship/living/evacuation)
 "sE" = (
 /obj/machinery/door/airlock/multi_tile/mainship/research,
-/obj/structure/cable,
 /turf/open/floor/mainship/silver/full,
 /area/mainship/medical/medical_science)
 "sF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
+/obj/structure/cable,
 /turf/open/floor/mainship/silver/full,
 /area/mainship/medical/medical_science)
 "sG" = (
@@ -5606,6 +5612,11 @@
 /obj/item/frame/table,
 /obj/item/frame/table,
 /obj/structure/rack,
+/obj/machinery/door_control{
+	dir = 8;
+	id = "reqaccess";
+	name = "Requisitions Access"
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "sX" = (
@@ -5714,6 +5725,10 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/port_hallway)
+"ts" = (
+/obj/machinery/door/airlock/mainship/marine/requisitions,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "tu" = (
 /obj/structure/closet/emcloset,
 /obj/item/clothing/mask/gas,
@@ -5819,12 +5834,6 @@
 	dir = 1
 	},
 /area/mainship/medical/lower_medical)
-"tP" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/mainship/medical/lower_medical)
 "tQ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -5839,6 +5848,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -6499,14 +6509,6 @@
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
-/area/mainship/squads/req)
-"wc" = (
-/obj/machinery/door_control{
-	dir = 8;
-	id = "reqaccess";
-	name = "Requisitions Access"
-	},
-/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "wd" = (
 /obj/structure/cable,
@@ -9272,11 +9274,6 @@
 /area/mainship/living/numbertwobunks)
 "ES" = (
 /obj/structure/closet/secure_closet/medical2,
-/obj/item/tool/kitchen/knife/butcher{
-	blood_overlay = null;
-	desc = "A huge thing used for chopping and chopping up meat. You sense this one has been involved in something terrible, best not to question it.";
-	name = "Stainless butcher's cleaver"
-	},
 /obj/item/limb/l_hand,
 /obj/item/limb/l_arm,
 /turf/open/floor/mainship/sterile/dark,
@@ -9781,9 +9778,10 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip{
-	pixel_x = -10;
-	pixel_y = 13
+	pixel_x = -15;
+	pixel_y = 18
 	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_two)
 "Gb" = (
@@ -12605,6 +12603,14 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"Pe" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/mainship/squads/general)
 "Pf" = (
 /obj/machinery/recycler{
 	dir = 8
@@ -13545,6 +13551,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/self_destruct)
+"Ss" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "St" = (
 /obj/vehicle/unmanned/droid/scout,
 /obj/machinery/mech_bay_recharge_port{
@@ -19463,7 +19473,7 @@ XE
 XE
 fD
 ep
-eS
+rZ
 fx
 Le
 gQ
@@ -20449,8 +20459,8 @@ gm
 bE
 hK
 iw
-jk
-kq
+vw
+ns
 kX
 mi
 ns
@@ -21047,7 +21057,7 @@ pD
 qJ
 qJ
 sE
-tP
+qM
 uX
 vK
 wB
@@ -21712,7 +21722,7 @@ ua
 az
 OS
 bT
-VC
+Ss
 VC
 aW
 dO
@@ -24969,7 +24979,7 @@ sq
 sW
 gY
 gY
-wc
+gY
 wR
 SA
 yC
@@ -25067,7 +25077,7 @@ SA
 SA
 ul
 ul
-SA
+ts
 SA
 SA
 cj
@@ -25165,7 +25175,7 @@ jM
 jM
 WS
 WS
-jM
+WS
 eg
 dC
 rL
@@ -25464,8 +25474,8 @@ sr
 sr
 yG
 zW
-sr
-sr
+hv
+hv
 Dq
 zW
 sr
@@ -25562,11 +25572,11 @@ ta
 uq
 yG
 tc
-ta
-iH
+tc
+tc
 Dq
 tc
-tc
+uq
 tc
 vk
 sr
@@ -25661,7 +25671,7 @@ tc
 yJ
 Pl
 KY
-Pl
+Pe
 Dt
 FN
 md
