@@ -117,7 +117,7 @@
 
 /obj/item/ammo_magazine/packet/p4570
 	name = "packet of .45-70"
-	desc = "A packet containing 50 rounds of .45-70 Government.."
+	desc = "A packet containing 50 rounds of .45-70 Government."
 	caliber = CALIBER_4570
 	icon_state = "box_44rim_mag"
 	default_ammo = /datum/ammo/bullet/rifle/repeater
