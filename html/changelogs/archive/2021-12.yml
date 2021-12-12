@@ -143,3 +143,9 @@
   Vondiech:
   - bugfix: Pill packets are now visible again with the new sprites that were added
       to them.
+2021-12-12:
+  BraveMole:
+  - qol: Window flashs and there is a loud sound played when it's your turn to be
+      a larva (larva queue)
+  Vondiech:
+  - bugfix: You can now put in the extended gal-9 clip into the UZI again.
