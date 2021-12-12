@@ -208,8 +208,8 @@
 	notify_ghosts("<b>[user]</b> has just fired \the <b>[src]</b> !", source = T, action = NOTIFY_JUMP)
 
 
-/obj/structure/orbital_cannon/proc/impact_callback(target,inaccurate_fuel)
-	tray.warhead.warhead_impact(target, inaccurate_fuel)
+/obj/structure/orbital_cannon/proc/impact_callback(target)
+	tray.warhead.warhead_impact(target)
 
 	ob_cannon_busy = FALSE
 	chambered_tray = FALSE
