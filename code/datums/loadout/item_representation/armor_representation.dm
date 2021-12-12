@@ -145,12 +145,10 @@
 	. = ..()
 	if(!.)
 		return
-
-	// var/obj/item/armor_module/armor/armor = .
-	/* To be included in the merge. Commented out to avoid screwing with loadouts until merge.
-	armor.set_greyscale_colors(greyscale_colors)
+	var/obj/item/armor_module/armor/armor = .
+	if(greyscale_colors)
+		armor.set_greyscale_colors(greyscale_colors)
 	armor.update_icon()
-	*/
 
 /datum/item_representation/armor_module/storage
 	///Storage repressentation of storage modules.

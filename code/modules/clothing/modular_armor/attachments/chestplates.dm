@@ -7,24 +7,6 @@
 	icon_state = "infantry_chest"
 	greyscale_config = /datum/greyscale_config/modularchest_infantry
 	slot = ATTACHMENT_SLOT_CHESTPLATE
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
-
-/obj/item/armor_module/armor/chest/update_item_sprites()
-	var/new_color
-	switch(SSmapping.configs[GROUND_MAP].armor_style)
-		if(MAP_ARMOR_STYLE_JUNGLE)
-			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
-				new_color = "#1d2426#241d16#363021#444732#665f44"
-		if(MAP_ARMOR_STYLE_ICE)
-			if(flags_item_map_variant & ITEM_ICE_VARIANT)
-				new_color = "#1d2426#5d5353#897b7b#aca194#d5ccc3"
-		if(MAP_ARMOR_STYLE_PRISON)
-			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
-				new_color = "#1d2426#18181b#232427#35363c#474a50"
-	set_greyscale_colors(new_color)
-	update_icon()
-
-
 
 /obj/item/armor_module/armor/chest/marine
 	name = "\improper Jaeger Pattern Medium Infantry chestplates"

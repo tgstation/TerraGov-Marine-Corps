@@ -20,6 +20,7 @@
 		"Purple" = "#4a2c69#6c4691#8e6da3",
 		"Blue" = "#2b6666#448e8e#6d9e9e",
 	)
+	flags_item_map_variant = NONE
 	///whether this helmet should be using its emissive overlay or not
 	var/visor_emissive_on = TRUE
 	///Whether or not the helmet is allowed to turn its emissive on or off.
