@@ -8,4 +8,3 @@
 			Fail("[gun] has a specified default_ammo_type that is not present in the allowed_ammo_types.")
 		if(!(gun.fire_delay * 10 % 5)) //a%0.5 doesn't work, thanks byond
 			Fail("[gun] has a fire delay that's not a multiple of 0.5.")
-		
