@@ -143,9 +143,20 @@
 			to_chat(user, span_warning("No warhead in the tray, cancelling chambering operation."))
 		return
 
-	if(tray.fuel_amt < 1)
-		if(user)
-			to_chat(user, span_warning("No solid fuel in the tray, cancelling chambering operation."))
+	var/required_fuel = 0
+
+	switch(tray.warhead.warhead_kind)
+		if("explosive")
+			required_fuel = GLOB.marine_main_ship?.ob_type_fuel_requirements[1]
+		if("incendiary")
+			required_fuel = GLOB.marine_main_ship?.ob_type_fuel_requirements[2]
+		if("cluster")
+			required_fuel = GLOB.marine_main_ship?.ob_type_fuel_requirements[3]
+		if("plasma")
+			required_fuel = GLOB.marine_main_ship?.ob_type_fuel_requirements[4]
+
+	if(required_fuel > tray.fuel_amt)
+		to_chat(user, span_warning("Not enough solid fuel in tray to accurately fire warhead, cancelling chambering."))
 		return
 
 	flick("OBC_chambering",src)
@@ -181,20 +192,7 @@
 
 	ob_cannon_busy = TRUE
 
-	var/inaccurate_fuel = 0
-
-	switch(tray.warhead.warhead_kind)
-		if("explosive")
-			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[1] - tray.fuel_amt)
-		if("incendiary")
-			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[2] - tray.fuel_amt)
-		if("cluster")
-			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[3] - tray.fuel_amt)
-		if("plasma")
-			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[4] - tray.fuel_amt)
-
-	var/turf/target = locate(T.x + inaccurate_fuel * pick(-3,3),T.y + inaccurate_fuel * pick(-3,3),T.z)
-
+	var/turf/target = locate(T.x,T.y,T.z)
 	playsound_z_humans(target.z, 'sound/effects/OB_warning_announce.ogg', 100) //for marines on ground
 	playsound(target, 'sound/effects/OB_warning_announce_novoiceover.ogg', 125, FALSE, 30, 10) //VOX-less version for xenomorphs
 	playsound_z(z, 'sound/effects/OB_warning_announce.ogg', 100) //for the ship
@@ -202,7 +200,7 @@
 	var/impact_time = 10 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3))
 
 	addtimer(CALLBACK(src, /obj/structure/orbital_cannon/proc/handle_ob_firing_effects, target), impact_time - (0.5 SECONDS))
-	var/impact_timerid = addtimer(CALLBACK(src, /obj/structure/orbital_cannon.proc/impact_callback, target, inaccurate_fuel), impact_time, TIMER_STOPPABLE)
+	var/impact_timerid = addtimer(CALLBACK(src, /obj/structure/orbital_cannon.proc/impact_callback, target), impact_time, TIMER_STOPPABLE)
 
 	var/canceltext = "Warhead: [tray.warhead.warhead_kind]. Impact at [ADMIN_VERBOSEJMP(target)] <a href='?_src_=holder;[HrefToken(TRUE)];cancelob=[impact_timerid]'>\[CANCEL OB\]</a>"
 	message_admins("[span_prefix("OB FIRED:")] <span class='message linkify'> [canceltext]</span>")
