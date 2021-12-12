@@ -4511,6 +4511,7 @@
 /area/mainship/shipboard/port_missiles)
 "pd" = (
 /obj/structure/rack,
+/obj/item/tool/crowbar/red,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles)
 "pf" = (
@@ -4865,6 +4866,7 @@
 /area/mainship/shipboard/starboard_missiles)
 "qk" = (
 /obj/structure/rack,
+/obj/item/tool/crowbar/red,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/starboard_missiles)
 "ql" = (
@@ -7381,6 +7383,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/general)
+"yI" = (
+/obj/machinery/roomba,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "yJ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -7855,6 +7861,10 @@
 	dir = 8
 	},
 /area/mainship/living/cryo_cells)
+"Ab" = (
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/living/grunt_rnr)
 "Ac" = (
 /obj/machinery/light{
 	dir = 1
@@ -7935,10 +7945,6 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
-"Ap" = (
-/obj/machinery/roomba,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/briefing)
 "Aq" = (
 /obj/structure/table/mainship,
 /obj/item/pizzabox,
@@ -8021,6 +8027,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lounge)
+"AC" = (
+/obj/structure/sign/nosmoking_2,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/general)
 "AD" = (
 /obj/structure/closet/secure_closet/medical2,
 /turf/open/floor/mainship/sterile/dark,
@@ -8280,13 +8290,6 @@
 /obj/structure/cable,
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
-"Bs" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic/cryo{
-	dir = 1
-	},
-/obj/structure/sign/nosmoking_2,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/general)
 "Bu" = (
 /obj/machinery/power/apc/mainship{
 	dir = 8
@@ -8373,6 +8376,7 @@
 /obj/machinery/alarm{
 	dir = 8
 	},
+/obj/item/paper/hydroponics,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_garden)
 "BN" = (
@@ -8496,6 +8500,9 @@
 /area/mainship/medical/lower_medical)
 "Cd" = (
 /obj/machinery/vending/MarineMed,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -8513,16 +8520,6 @@
 /area/mainship/hallways/hangar)
 "Cg" = (
 /turf/closed/wall/mainship,
-/area/mainship/living/briefing)
-"Ch" = (
-/obj/structure/flora/pottedplant/twentyone,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/alarm{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "Ci" = (
 /turf/open/floor/mainship/mono,
@@ -8705,9 +8702,6 @@
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "CV" = (
-/obj/machinery/light{
-	dir = 4
-	},
 /obj/structure/rack,
 /obj/item/defibrillator,
 /obj/item/defibrillator,
@@ -8715,6 +8709,9 @@
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -8763,6 +8760,7 @@
 	},
 /area/mainship/living/briefing)
 "Dg" = (
+/obj/machinery/alarm,
 /turf/open/floor/mainship/orange{
 	dir = 5
 	},
@@ -9132,6 +9130,9 @@
 /obj/machinery/vending/MarineMed,
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
@@ -10481,6 +10482,10 @@
 	dir = 1
 	},
 /area/mainship/medical/chemistry)
+"In" = (
+/obj/machinery/computer/arcade,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/living/grunt_rnr)
 "Io" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -10652,6 +10657,7 @@
 /obj/structure/mirror{
 	pixel_y = 28
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/living/grunt_rnr)
 "IU" = (
@@ -11276,6 +11282,7 @@
 /obj/machinery/power/apc/mainship{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -12905,7 +12912,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/port_atmos)
 "Qg" = (
@@ -14338,6 +14344,13 @@
 "UZ" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
+"Vb" = (
+/obj/structure/table/mainship,
+/obj/item/paper/crumpled,
+/turf/open/floor/mainship/sterile/purple/side{
+	dir = 4
+	},
+/area/mainship/medical/chemistry)
 "Vc" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -15415,6 +15428,7 @@
 /area/mainship/command/airoom)
 "YV" = (
 /obj/structure/table/mainship,
+/obj/item/paper/crumpled,
 /turf/open/floor/mainship/sterile/purple/corner{
 	dir = 1
 	},
@@ -20975,7 +20989,7 @@ Gb
 GS
 HQ
 Iq
-sc
+Vb
 eK
 wd
 sc
@@ -23907,7 +23921,7 @@ xS
 Ot
 Io
 Jo
-Ch
+Lp
 Db
 Bp
 bm
@@ -24404,7 +24418,7 @@ Fm
 Gs
 Cg
 HV
-Ap
+Ci
 Jy
 Ci
 Cl
@@ -24880,7 +24894,7 @@ gY
 gY
 gY
 gY
-gY
+yI
 gY
 wQ
 SA
@@ -25664,7 +25678,7 @@ mE
 sr
 sY
 us
-tc
+AC
 sr
 tc
 tc
@@ -26747,7 +26761,7 @@ sr
 sr
 sr
 yG
-Bs
+Ah
 sr
 sr
 DB
@@ -26954,7 +26968,7 @@ yf
 HY
 IK
 IK
-IK
+Ab
 IK
 IK
 Mw
@@ -27344,7 +27358,7 @@ Fx
 xd
 yf
 xg
-IK
+In
 IK
 IK
 IK
