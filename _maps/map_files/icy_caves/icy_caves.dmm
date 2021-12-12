@@ -208,26 +208,14 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "aR" = (
-/obj/structure/closet/crate/weapon,
-/obj/item/weapon/energy/sword,
-/obj/item/weapon/gun/rifle/m16,
-/obj/item/ammo_magazine/rifle/m16,
-/obj/item/ammo_magazine/rifle/m16,
-/obj/item/ammo_magazine/rifle/m16,
-/obj/item/ammo_magazine/rifle/m16,
-/obj/item/ammo_magazine/rifle/m16,
-/obj/item/ammo_magazine/rifle/m16,
-/obj/item/ammo_magazine/rifle/m16,
-/obj/item/ammo_magazine/rifle/m16,
+/obj/structure/largecrate/lisa,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "aS" = (
-/obj/structure/closet/crate/explosives,
-/obj/item/storage/box/visual/grenade/frag,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
+/obj/structure/closet/crate/freezer/rations,
+/obj/item/storage/box/MRE,
+/obj/item/storage/box/MRE,
+/obj/item/storage/box/MRE,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "aT" = (
@@ -252,16 +240,7 @@
 /turf/closed/ice,
 /area/icy_caves/caves/northern)
 "aY" = (
-/obj/structure/closet/crate/ammo,
-/obj/item/ammo_magazine/rifle/bolt,
-/obj/item/ammo_magazine/rifle/bolt,
-/obj/item/ammo_magazine/rifle/bolt,
-/obj/item/ammo_magazine/rifle/bolt,
-/obj/item/ammo_magazine/rifle/bolt,
-/obj/item/ammo_magazine/rifle/bolt,
-/obj/item/ammo_magazine/rifle/bolt,
-/obj/item/ammo_magazine/rifle/bolt,
-/obj/item/ammo_magazine/rifle/bolt,
+/obj/structure/closet/crate/radiation,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "ba" = (
@@ -344,11 +323,11 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "bq" = (
-/obj/structure/rack,
 /obj/item/tool/shovel,
 /obj/item/tool/shovel,
 /obj/item/tool/shovel,
 /obj/item/tool/shovel,
+/obj/structure/rack/nometal,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/LZ1)
 "br" = (
@@ -360,14 +339,9 @@
 	},
 /area/icy_caves/outpost/refinery)
 "bs" = (
-/obj/structure/closet/crate/medical,
 /obj/item/defibrillator,
 /obj/item/storage/firstaid/adv,
-/obj/item/storage/firstaid/adv,
 /obj/item/storage/firstaid/fire,
-/obj/item/reagent_containers/glass/beaker/bluespace,
-/obj/item/reagent_containers/glass/beaker/bluespace,
-/obj/item/reagent_containers/glass/beaker/bluespace,
 /obj/item/reagent_containers/glass/beaker/bluespace,
 /obj/item/reagent_containers/glass/beaker/bluespace,
 /obj/item/reagent_containers/glass/beaker/bluespace,
@@ -932,6 +906,10 @@
 	},
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
+"el" = (
+/obj/item/clothing/suit/radiation,
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/crashed_ship)
 "em" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
@@ -1616,6 +1594,10 @@
 	},
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
+"hB" = (
+/obj/item/clothing/head/radiation,
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/crashed_ship)
 "hD" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/plating/ground/ice,
@@ -2883,7 +2865,7 @@
 /area/icy_caves/outpost/mining/east)
 "qi" = (
 /obj/item/tool/pickaxe,
-/obj/structure/rack,
+/obj/structure/rack/nometal,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
 "qj" = (
@@ -2891,8 +2873,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/rack,
 /obj/item/tool/pickaxe,
+/obj/structure/rack/nometal,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
 "ql" = (
@@ -3559,8 +3541,8 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "tC" = (
-/obj/structure/rack,
 /obj/structure/largecrate/random/case/small,
+/obj/structure/rack/nometal,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "tD" = (
@@ -4498,9 +4480,8 @@
 /obj/item/storage/box/flashbangs,
 /obj/item/storage/box/m94,
 /obj/item/storage/box/m94,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/structure/closet/crate/secure/explosives,
+/obj/structure/closet/crate/secure/phoron,
+/obj/item/stack/sheet/mineral/phoron,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "Ad" = (
@@ -4774,6 +4755,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/east)
+"BD" = (
+/obj/structure/largecrate/random/secure,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/garage)
 "BI" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -4935,7 +4920,7 @@
 /turf/open/floor/freezer,
 /area/icy_caves/outpost/dorms)
 "Dk" = (
-/obj/structure/rack,
+/obj/structure/rack/nometal,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "Dl" = (
@@ -5613,6 +5598,10 @@
 /obj/structure/cable,
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
+"Id" = (
+/obj/structure/cargo_container/gorg,
+/turf/open/floor/plating,
+/area/icy_caves/outpost/garage)
 "Ie" = (
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
@@ -5726,14 +5715,15 @@
 	},
 /area/icy_caves/outpost/security)
 "IO" = (
-/obj/structure/closet/crate/construction,
-/obj/item/stack/sheet/metal/medium_stack,
-/obj/item/stack/sheet/plasteel/medium_stack,
-/obj/item/stack/sandbags_empty{
-	amount = 25
-	},
-/obj/item/stack/barbed_wire/half_stack,
 /obj/effect/landmark/excavation_site_spawner,
+/obj/structure/closet/crate/hydroponics,
+/obj/item/seeds/tomatoseed{
+	pixel_y = -5
+	},
+/obj/item/seeds/potatoseed{
+	pixel_x = -5
+	},
+/obj/item/seeds/sunflowerseed,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "IR" = (
@@ -5914,6 +5904,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/office)
+"Kc" = (
+/obj/structure/rack/nometal,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/garage)
 "Ke" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -6520,7 +6514,6 @@
 /obj/item/storage/box/lightstick,
 /obj/effect/spawner/random/powercell,
 /obj/item/clothing/glasses/welding,
-/obj/item/explosive/plastique,
 /obj/item/newspaper,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
@@ -6658,9 +6651,10 @@
 /turf/closed/ice,
 /area/icy_caves/caves/east)
 "OZ" = (
-/obj/structure/cargo_container/gorg,
+/obj/item/tool/pickaxe,
+/obj/structure/rack/nometal,
 /turf/open/floor/plating,
-/area/icy_caves/outpost/garage)
+/area/icy_caves/outpost/mining/west)
 "Pd" = (
 /turf/closed/wall,
 /area/icy_caves/outpost/security)
@@ -6892,8 +6886,8 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "QM" = (
-/obj/structure/rack,
 /obj/structure/largecrate/random/case,
+/obj/structure/rack/nometal,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "QO" = (
@@ -7307,9 +7301,10 @@
 /turf/closed/ice/intersection,
 /area/icy_caves/caves/east)
 "TL" = (
-/obj/structure/cargo_container/gorg{
-	dir = 4
-	},
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/fire,
+/obj/structure/closet/crate/secure/surgery,
+/obj/item/storage/firstaid/regular,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "TM" = (
@@ -7599,7 +7594,9 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "VE" = (
-/obj/structure/largecrate/random/secure,
+/obj/structure/cargo_container/gorg{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "VG" = (
@@ -7651,6 +7648,7 @@
 "VR" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
 	dir = 1;
+	locked = 1;
 	name = "\improper Underground Security Armory"
 	},
 /obj/structure/cable,
@@ -7684,9 +7682,9 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "Wa" = (
-/obj/structure/largecrate/supply/explosives,
 /obj/item/explosive/plastique,
 /obj/item/explosive/plastique,
+/obj/structure/largecrate/random/case/double,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "Wb" = (
@@ -7864,10 +7862,9 @@
 /turf/closed/ice/thin/straight,
 /area/icy_caves/caves/northern)
 "Xx" = (
-/obj/structure/closet/crate/explosives,
-/obj/item/storage/box/m94,
-/obj/item/storage/box/m94,
-/obj/item/storage/box/visual/grenade/teargas,
+/obj/structure/closet/crate/internals,
+/obj/item/storage/box/MRE,
+/obj/item/storage/box/MRE,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "XF" = (
@@ -7930,8 +7927,8 @@
 /obj/item/storage/box/lightstick,
 /obj/item/storage/box/lightstick,
 /obj/effect/spawner/random/powercell,
-/obj/item/explosive/plastique,
 /obj/item/weapon/gun/pistol/holdout,
+/obj/item/stack/sheet/mineral/phoron,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "XS" = (
@@ -8164,11 +8161,10 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "Zk" = (
-/obj/machinery/button/door/open_only/landing_zone,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
+/obj/machinery/button/door/open_only/landing_zone{
+	pixel_x = -5
 	},
+/obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -10913,7 +10909,7 @@ oI
 oI
 oI
 oI
-oU
+OZ
 xI
 eY
 bH
@@ -13277,7 +13273,7 @@ XO
 WI
 KZ
 Lu
-Sm
+TL
 tQ
 tQ
 Sm
@@ -14530,8 +14526,8 @@ Dk
 Aa
 Qa
 bE
-OZ
-Dk
+Qa
+Id
 Nc
 XR
 tQ
@@ -14686,7 +14682,7 @@ xu
 Ar
 yj
 bE
-TL
+SM
 VE
 Nc
 tQ
@@ -15310,8 +15306,8 @@ KZ
 KZ
 KZ
 tI
-xR
-xR
+BD
+Kc
 iZ
 KZ
 KZ
@@ -24075,7 +24071,7 @@ eJ
 eJ
 MQ
 sH
-sH
+hB
 MQ
 sH
 aj
@@ -24547,7 +24543,7 @@ sH
 MQ
 aS
 IO
-sH
+el
 sH
 MQ
 bz
