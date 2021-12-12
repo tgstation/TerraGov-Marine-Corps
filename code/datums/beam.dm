@@ -172,6 +172,8 @@
 			continue
 		if(living in blacklistmobs)
 			continue
+		if(!(living.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA))
+			continue
 		source.beam(living, icon_state="lightning[rand(1,12)]", time = 3, maxdistance = zap_range + 2)
 		living.apply_status_effect(/datum/status_effect/noplasmaregen, 10 SECONDS/length(.))
 		living.apply_status_effect(/datum/status_effect/plasmadrain, 10 SECONDS/length(.))
