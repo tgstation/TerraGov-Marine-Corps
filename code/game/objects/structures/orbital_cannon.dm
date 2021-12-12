@@ -193,7 +193,7 @@
 		if("plasma")
 			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[4] - tray.fuel_amt)
 
-	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
+	var/turf/target = locate(T.x + inaccurate_fuel * pick(-3,3),T.y + inaccurate_fuel * pick(-3,3),T.z)
 
 	playsound_z_humans(target.z, 'sound/effects/OB_warning_announce.ogg', 100) //for marines on ground
 	playsound(target, 'sound/effects/OB_warning_announce_novoiceover.ogg', 125, FALSE, 30, 10) //VOX-less version for xenomorphs
