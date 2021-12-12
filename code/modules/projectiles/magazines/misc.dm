@@ -115,10 +115,10 @@
 	current_rounds = 150
 	max_rounds = 150
 
-/obj/item/ammo_magazine/packet/p44rim
-	name = "packet of .44 Rimfire"
-	desc = "A packet containing 50 rounds of .44 rimfire.."
-	caliber = CALIBER_44RIM
+/obj/item/ammo_magazine/packet/p4570
+	name = "packet of .45-70"
+	desc = "A packet containing 50 rounds of .45-70 Government.."
+	caliber = CALIBER_4570
 	icon_state = "box_44rim_mag"
 	default_ammo = /datum/ammo/bullet/rifle/repeater
 	w_class = WEIGHT_CLASS_SMALL
