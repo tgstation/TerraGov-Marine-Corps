@@ -212,33 +212,20 @@
 		new /obj/item/storage/box/m94 (get_turf(src))
 		return
 
-	if(istype(gun_to_spawn, /obj/item/weapon/gun/energy))
-		var/obj/item/weapon/gun/energy/energy_gun_to_spawn = gun_to_spawn
-		for(var/i in 1 to 3)
-			new energy_gun_to_spawn.cell_type (get_turf(src))
+	if(!gun_to_spawn.default_ammo_type)
 		return
 
-	if(!gun_to_spawn.current_mag)
-		stack_trace("Attempted to spawn ammo for a gun that has no current_mag. Someone make a bugreport for this weapon [initial(gun_to_spawn.name)] as related to the tiered weapon spawning.")
-		return
-	var/obj/item/ammo_magazine/gun_mag = gun_to_spawn.current_mag.type
-
-	if(istype(gun_to_spawn, /obj/item/weapon/gun/shotgun))
+	if(CHECK_BITFIELD(gun_to_spawn.reciever_flags, AMMO_RECIEVER_HANDFULS) && istype(gun_to_spawn.default_ammo_type, /datum/ammo))
 		var/obj/item/ammo_magazine/handful/handful_to_generate
+		var/datum/ammo/ammo_to_spawn = gun_to_spawn.default_ammo_type
 		for(var/i in 1 to 3)
 			handful_to_generate = new (get_turf(src))
-			handful_to_generate.generate_handful(initial(gun_mag.default_ammo), initial(gun_mag.caliber), 5, /obj/item/weapon/gun/shotgun)
+			handful_to_generate.generate_handful(GLOB.ammo_list[ammo_to_spawn], initial(gun_to_spawn.caliber), initial(ammo_to_spawn.handful_amount), gun_to_spawn.type)
 		return
 
-	if(istype(gun_to_spawn, /obj/item/weapon/gun/revolver))
-		var/obj/item/ammo_magazine/handful/handful_to_generate
-		for(var/i in 1 to 3)
-			handful_to_generate = new (get_turf(src))
-			handful_to_generate.generate_handful(initial(gun_mag.default_ammo), initial(gun_mag.caliber), 8, /obj/item/weapon/gun/revolver)
-		return
-
+	var/obj/item/ammo_to_spawn = gun_to_spawn.default_ammo_type
 	for(var/i in 1 to 3) //hardcoded 3 mags.
-		new gun_mag (get_turf(src))
+		new ammo_to_spawn (get_turf(src))
 
 /obj/effect/landmark/weapon_spawn/proc/choose_weapon()
 	weapon_to_spawn = pick(weapon_list)

@@ -252,14 +252,7 @@
 /obj/item/reagent_containers/glass/bucket/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(isprox(I))
-		to_chat(user, "You add [I] to [src].")
-		qdel(I)
-		user.put_in_hands(new /obj/item/frame/bucket_sensor)
-		user.dropItemToGround(src)
-		qdel(src)
-
-	else if(istype(I, /obj/item/tool/mop))
+	if(istype(I, /obj/item/tool/mop))
 		if(reagents.total_volume < 1)
 			to_chat(user, "[src] is out of water!</span>")
 			return

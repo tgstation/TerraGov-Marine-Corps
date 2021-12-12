@@ -235,13 +235,13 @@
 	. = ..()
 	switch(dir)
 		if(NORTH)
-			pixel_y = -28
+			pixel_y = -14
 		if(SOUTH)
 			pixel_y = 26
 		if(EAST)
-			pixel_x = -30
+			pixel_x = -19
 		if(WEST)
-			pixel_x = 25
+			pixel_x = 21
 
 
 /obj/machinery/vending/security

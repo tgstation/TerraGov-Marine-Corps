@@ -73,6 +73,8 @@
 				display_class = "trialminooc"
 			if("Admin Candidate", "Admin Observer")
 				display_class = "candiminooc"
+			if("Event Admin", "Event Staff")
+				display_class = "eventminooc"
 			if("Mentor")
 				display_class = "mentorooc"
 			if("Maintainer")

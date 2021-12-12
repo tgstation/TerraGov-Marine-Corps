@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(advanced_pathfinding)
-	name = "advanced_pathfinding"
+	name = "Advanced_pathfinding"
 	priority = FIRE_PRIORITY_ADVANCED_PATHFINDING
 	wait = 1 SECONDS
 	flags = SS_NO_INIT
@@ -144,6 +144,6 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 	SIGNAL_HANDLER
 	qdel(src)
 
-/obj/effect/ai_node/goal/husk
-	name = "Ai husk goal"
-	identifier = IDENTIFIER_HUSK
+/obj/effect/ai_node/goal/zombie
+	name = "Ai zombie goal"
+	identifier = IDENTIFIER_ZOMBIE

@@ -12,8 +12,8 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/flamethrower_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/flamethrower_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/flamethrower_reload.ogg'
+	muzzle_flash = null
 	aim_slowdown = 1.75
-	current_mag = /obj/item/ammo_magazine/flamer_tank
 	general_codex_key = "flame weapons"
 	attachable_allowed = list( //give it some flexibility.
 		/obj/item/attachable/flashlight,
@@ -23,6 +23,7 @@
 		/obj/item/attachable/flamer_nozzle,
 		/obj/item/attachable/flamer_nozzle/wide,
 		/obj/item/attachable/flamer_nozzle/wide/red,
+		/obj/item/attachable/shoulder_mount,
 		)
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_MUZZLE,
@@ -35,12 +36,21 @@
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle)
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23, "flamer_nozzle_x" = 33, "flamer_nozzle_y" = 20)
 	fire_delay = 4
 
 	placed_overlay_iconstate = "flamer"
 
-	ammo = /datum/ammo/flamethrower
+	ammo_datum_type = /datum/ammo/flamethrower
+	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/flamer_tank,
+		/obj/item/ammo_magazine/flamer_tank/large,
+		/obj/item/ammo_magazine/flamer_tank/large/X,
+		/obj/item/ammo_magazine/flamer_tank/backtank,
+		/obj/item/ammo_magazine/flamer_tank/backtank/X,
+	)
 	///Max range of the flamer in tiles.
 	var/flame_max_range = 6
 	///Travel speed of the flames in seconds.
@@ -62,35 +72,13 @@
 
 /obj/item/weapon/gun/flamer/Initialize()
 	. = ..()
-	if(!current_mag)
+	if(!rounds)
 		return
 	light_pilot(TRUE)
 
-/obj/item/weapon/gun/flamer/examine_ammo_count(mob/user)
-	if(current_mag)
-		to_chat(user, "The fuel gauge shows the current tank is [round(current_mag.get_ammo_percent())]% full!")
-		return
-	to_chat(user, "[src] has no fuel tank!")
-
-/obj/item/weapon/gun/flamer/get_ammo_type()
-	if(!ammo)
-		return list("unknown", "unknown")
-	else
-		return list(initial(ammo.hud_state), initial(ammo.hud_state_empty))
-
-/obj/item/weapon/gun/flamer/get_ammo_count()
-	if(!current_mag)
-		return 0
-	return current_mag.current_rounds
-
-/obj/item/weapon/gun/flamer/load_into_chamber(mob/user)
-	if(!current_mag || current_mag.current_rounds <= 0)
-		return FALSE
-	return TRUE
-
 /obj/item/weapon/gun/flamer/on_attachment_attach(obj/item/attaching_here, mob/attacher)
 	. = ..()
-	if(!istype(attaching_here, /obj/item/attachable/flamer_nozzle) || !current_mag)
+	if(!istype(attaching_here, /obj/item/attachable/flamer_nozzle) || !rounds)
 		return
 	light_pilot(TRUE)
 
@@ -100,17 +88,18 @@
 		return
 	light_pilot(FALSE)
 
-/obj/item/weapon/gun/flamer/reload(mob/user, obj/item/ammo_magazine/magazine)
+/obj/item/weapon/gun/flamer/reload(obj/item/new_mag, mob/living/user)
 	. = ..()
 	if(!.)
 		return
+	var/obj/item/ammo_magazine/magazine = new_mag
 	var/datum/ammo/flamethrower/flamer_ammo = magazine.default_ammo
 	fire_delay = initial(flamer_ammo.fire_delay)
 	if(attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE])
 		light_pilot(TRUE)
 	gun_user?.hud_used.update_ammo_hud(gun_user, src)
 
-/obj/item/weapon/gun/flamer/unload(mob/user, reload_override, drop_override)
+/obj/item/weapon/gun/flamer/unload(mob/living/user, drop = TRUE, after_fire = FALSE)
 	. = ..()
 	if(!.)
 		return
@@ -142,10 +131,6 @@
 		return
 	overlays += lit_overlay
 
-/obj/item/weapon/gun/flamer/click_empty(mob/user)
-	playsound(src, 'sound/weapons/guns/interact/flamethrower_off.ogg', 25, 1)
-
-
 /obj/item/weapon/gun/flamer/able_to_fire(mob/user)
 	. = ..()
 	if(!.)
@@ -157,11 +142,6 @@
 
 /obj/item/weapon/gun/flamer/do_fire(obj/projectile/projectile_to_fire)
 	playsound(loc, fire_sound, 50, 1)
-	start_stream()
-	return TRUE
-
-///Sets up the recursive proc for flaming.
-/obj/item/weapon/gun/flamer/proc/start_stream()
 	var/obj/item/attachable/flamer_nozzle/nozzle = attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE]
 	var/burn_type = nozzle.stream_type
 	var/old_turfs = list(get_turf(src))
@@ -178,13 +158,14 @@
 			if(ISDIAGONALDIR(dir_to_target))
 				range /= 2
 			recursive_flame_cone(1, old_turfs, dir_to_target, range, current_target)
+	return TRUE
 
 #define RECURSIVE_CHECK(old_turfs, range, current_target, iteration) (!length(old_turfs) || iteration > range || !current_target || (current_target in old_turfs))
 
 
 ///Flames recursively a straight path.
 /obj/item/weapon/gun/flamer/proc/recursive_flame_straight(iteration, list/turf/old_turfs, list/turf/path_to_target, range, current_target)
-	if(current_mag?.current_rounds <= 0)
+	if(!rounds)
 		light_pilot(FALSE)
 		return
 
@@ -202,7 +183,7 @@
 
 ///Flames recursively a cone.
 /obj/item/weapon/gun/flamer/proc/recursive_flame_cone(iteration, list/turf/old_turfs, dir_to_target, range, current_target)
-	if(current_mag?.current_rounds <= 0)
+	if(!rounds)
 		light_pilot(FALSE)
 		return
 
@@ -241,24 +222,25 @@
 			turfs_to_burn -= turf_to_check
 			continue
 		for(var/obj/object in turf_to_check)
-			if(!object.density || object.throwpass || istype(object, /obj/structure/mineral_door/resin))
+			if(!object.density || object.throwpass || istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno))
 				continue
 			turfs_to_burn -= turf_to_check
 
-	if(!length(turfs_to_burn))
+	if(!length(turfs_to_burn) || !length(chamber_items))
 		return FALSE
 
-	var/datum/ammo/flamethrower/loaded_ammo = CHECK_BITFIELD(flags_flamer_features, FLAMER_USES_GUN_FLAMES) ? ammo : current_mag.default_ammo
+	var/datum/ammo/flamethrower/loaded_ammo = CHECK_BITFIELD(flags_flamer_features, FLAMER_USES_GUN_FLAMES) ? ammo_datum_type : get_magazine_default_ammo(chamber_items[current_chamber_position])
 	var/burn_level = initial(loaded_ammo.burnlevel) * burn_level_mod
 	var/burn_time = initial(loaded_ammo.burntime) * burn_time_mod
 	var/fire_color = initial(loaded_ammo.fire_color)
 
 	for(var/turf/turf_to_ignite AS in turfs_to_burn)
-		if(current_mag?.current_rounds <= 0)
+		if(!rounds)
 			light_pilot(FALSE)
 			return FALSE
 		flame_turf(turf_to_ignite, gun_user, burn_time, burn_level, fire_color)
-		current_mag.current_rounds--
+		adjust_current_rounds(chamber_items[current_chamber_position], -1)
+		rounds--
 	gun_user?.hud_used.update_ammo_hud(gun_user, src)
 	return TRUE
 
@@ -327,7 +309,8 @@
 	fire_delay = 2.5 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 
-	current_mag = /obj/item/ammo_magazine/flamer_tank/mini
+	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/mini
+	allowed_ammo_types = list(/obj/item/ammo_magazine/flamer_tank/mini)
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/unremovable/invisible)
 	attachable_allowed = list(
 		/obj/item/attachable/flamer_nozzle/unremovable/invisible,
@@ -347,7 +330,7 @@
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard
 	name = "\improper TL-84 flamethrower"
 	desc = "The TL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Use unique action to use hydro cannon"
-	current_mag = /obj/item/ammo_magazine/flamer_tank/large
+	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "tl84"
 	item_state = "tl84"
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY
@@ -376,19 +359,24 @@
 	reagents.add_reagent(/datum/reagent/water, reagents.maximum_volume)
 	water_count = reagents.maximum_volume
 
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/update_ammo_count()
+	if(hydro_active)
+		rounds = max(water_count, 0)
+		max_rounds = reagents.maximum_volume
+		return
+	return ..()
 
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/get_ammo()
+	if(hydro_active)
+		ammo_datum_type = /datum/ammo/water
+		return
+	return ..()
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/examine(mob/user)
 	. = ..()
 	to_chat(user, span_notice("Its hydro cannon contains [reagents.get_reagent_amount(/datum/reagent/water)]/[reagents.maximum_volume] units of water!"))
 
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/cock(mob/user)
-	return TRUE
-
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/unique_action(mob/user)
-	. = ..()
-	if(!.)
-		return
 	var/obj/item/attachable/hydro_cannon/hydro = LAZYACCESS(attachments_by_slot, ATTACHMENT_SLOT_UNDER)
 	if(!istype(hydro))
 		return FALSE
@@ -398,7 +386,7 @@
 		light_pilot(FALSE)
 	else
 		hydro_active = FALSE
-		if (current_mag?.current_rounds > 0)
+		if (rounds > 0)
 			light_pilot(TRUE)
 	user.hud_used.update_ammo_hud(user, src)
 	SEND_SIGNAL(src, COMSIG_ITEM_HYDRO_CANNON_TOGGLED)
@@ -443,15 +431,7 @@
 		user.hud_used.update_ammo_hud(user, src)
 		return
 
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/get_ammo_count()
-	if (hydro_active)
-		return max(water_count,0)
-	return ..()
 
-/obj/item/weapon/gun/flamer/big_flamer/marinestandard/get_ammo_type()
-	if (hydro_active)
-		return list("water","water_empty")
-	return ..()
 
 /turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	//extinguish any flame present

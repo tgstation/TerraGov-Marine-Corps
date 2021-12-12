@@ -835,3 +835,23 @@
 	item_state = "robot_armor_heavy"
 	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45,"acid" = 55)
 	slowdown = 0.7
+
+/obj/item/clothing/suit/storage/marine/harness/cowboy
+	name = "reinforced reather jacket with webbing"
+	desc = "The 'reinforced leather' is more of a selling point to captains and the like who would like to consider the cool jacket to actually be of use. However, in all circumstances that matter, this will provide no armor. It does come with a nice harness for storage on the front."
+	icon_state = "leather_jacket_webbing"
+	item_state = "leather_jacket_webbing"
+	flags_item_map_variant = NONE
+
+/obj/item/clothing/suit/cowboy
+	name = "reinforced leather jacket"
+	icon_state = "leather_jacket"
+	item_state = "leather_jacket"
+	desc = "The 'reinforced leather' is more of a selling point to captains and the like who would like to consider the cool jacket to actually be of use. However, in all circumstances that matter, this will provide no armor. This one has decided it is too cool for pockets, and thus, has none."
+	icon = 'icons/obj/clothing/cm_suits.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	flags_item_map_variant = NONE

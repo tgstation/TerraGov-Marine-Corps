@@ -727,17 +727,35 @@
 	mechanics_text = "Spit neurotoxin or acid at your target up to 7 tiles away."
 	ability_name = "xeno spit"
 	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
-	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
+	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED|XACT_DO_AFTER_ATTACK
 	target_flags = XABB_MOB_TARGET
+	///Current target that the xeno is targeting. This is for aiming.
+	var/current_target
+
+/datum/action/xeno_action/activable/xeno_spit/give_action(mob/living/L)
+	. = ..()
+	AddComponent(/datum/component/automatedfire/autofire, get_cooldown(), _fire_mode = GUN_FIREMODE_AUTOMATIC,  _callback_reset_fire = CALLBACK(src, .proc/reset_fire), _callback_fire = CALLBACK(src, .proc/fire))
+
+/datum/action/xeno_action/activable/xeno_spit/remove_action(mob/living/L)
+	. = ..()
+	qdel(GetComponent(/datum/component/automatedfire/autofire))
+
 
 /datum/action/xeno_action/activable/xeno_spit/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/actions.dmi', button, "shift_spit_[X.ammo.icon_state]")
 
+/datum/action/xeno_action/activable/xeno_spit/on_xeno_upgrade()
+	. = ..()
+	update_fire_delay()
+
 /datum/action/xeno_action/activable/xeno_spit/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability != src)
+		RegisterSignal(X, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
+		RegisterSignal(X, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
+		RegisterSignal(X, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
 		return ..()
 	for(var/i in 1 to X.xeno_caste.spit_types.len)
 		if(X.ammo == GLOB.ammo_list[X.xeno_caste.spit_types[i]])
@@ -748,6 +766,10 @@
 			break
 	to_chat(X, span_notice("We will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma)."))
 	update_button_icon()
+
+/datum/action/xeno_action/activable/xeno_spit/deselect()
+	UnregisterSignal(owner, list(COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEDOWN))
+	return ..()
 
 /datum/action/xeno_action/activable/xeno_spit/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -771,15 +793,34 @@
 	return ..()
 
 /datum/action/xeno_action/activable/xeno_spit/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
+	if(!owner.GetComponent(/datum/component/ai_controller)) //If its not an ai it will register to listen for clicks instead of use this proc. We want to call start_fire from here only if the owner is an ai.
+		return
+	start_fire(object = A)
 
-	var/turf/current_turf = get_turf(owner)
-
-	if(!current_turf)
+///Starts the xeno firing.
+/datum/action/xeno_action/activable/xeno_spit/proc/start_fire(datum/source, atom/object, turf/location, control, params)
+	SIGNAL_HANDLER
+	var/list/modifiers = params2list(params)
+	if(((modifiers["right"] || modifiers["middle"]) && (modifiers["shift"] || modifiers["ctrl"] || modifiers["left"])) || \
+	((modifiers["left"] && modifiers["shift"]) && (modifiers["ctrl"] || modifiers["middle"] || modifiers["right"])) || \
+	(modifiers["left"] && !modifiers["shift"]))
+		return
+	var/mob/living/carbon/xenomorph/xeno = owner
+	if(!xeno.check_state() || xeno.ammo?.spit_cost > xeno.plasma_stored)
 		return fail_activate()
+	set_target(get_turf_on_clickcatcher(object, xeno, params))
+	if(!current_target)
+		return
+	xeno.visible_message(span_xenowarning("\The [xeno] spits at \the [current_target]!"), \
+	span_xenowarning("We spit at \the [current_target]!") )
 
-	X.visible_message(span_xenowarning("\The [X] spits at \the [A]!"), \
-	span_xenowarning("We spit at \the [A]!") )
+	SEND_SIGNAL(src, COMSIG_XENO_FIRE)
+	xeno?.client?.mouse_pointer_icon = 'icons/effects/xeno_target.dmi'
+
+///Fires the spit projectile.
+/datum/action/xeno_action/activable/xeno_spit/proc/fire()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/turf/current_turf = get_turf(owner)
 	var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
 	playsound(X.loc, sound_to_play, 25, 1)
 
@@ -788,12 +829,50 @@
 	newspit.generate_bullet(X.ammo, X.ammo.damage * SPIT_UPGRADE_BONUS(X))
 	newspit.permutated += X
 	newspit.def_zone = X.get_limbzone_target()
+	newspit.fire_at(current_target, X, null, X.ammo.max_range, X.ammo.shell_speed)
 
-	newspit.fire_at(A, X, null, X.ammo.max_range, X.ammo.shell_speed)
+	if(X.check_state() && X.ammo?.spit_cost <= X.plasma_stored)
+		succeed_activate()
+		return TRUE
+	fail_activate()
+	return FALSE
 
-	add_cooldown()
+///Resets the autofire component.
+/datum/action/xeno_action/activable/xeno_spit/proc/reset_fire()
+	set_target(null)
+	owner?.client?.mouse_pointer_icon = initial(owner.client.mouse_pointer_icon)
 
-	return succeed_activate()
+///Changes the current target.
+/datum/action/xeno_action/activable/xeno_spit/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/xeno = owner
+	set_target(get_turf_on_clickcatcher(over_object, xeno, params))
+	xeno.face_atom(current_target)
+
+///Sets the current target and registers for qdel to prevent hardels
+/datum/action/xeno_action/activable/xeno_spit/proc/set_target(atom/object)
+	if(object == current_target || object == owner)
+		return
+	if(current_target)
+		UnregisterSignal(current_target, COMSIG_PARENT_QDELETING)
+	current_target = object
+	if(current_target)
+		RegisterSignal(current_target, COMSIG_PARENT_QDELETING, .proc/clean_target)
+
+///Cleans the current target in case of Hardel
+/datum/action/xeno_action/activable/xeno_spit/proc/clean_target()
+	SIGNAL_HANDLER
+	current_target = get_turf(current_target)
+
+///Stops the Autofire component and resets the current cursor.
+/datum/action/xeno_action/activable/xeno_spit/proc/stop_fire()
+	SIGNAL_HANDLER
+	owner?.client?.mouse_pointer_icon = initial(owner.client.mouse_pointer_icon)
+	SEND_SIGNAL(src, COMSIG_XENO_STOP_FIRE)
+
+///Updates the auto-fire components fire delay.
+/datum/action/xeno_action/activable/proc/update_fire_delay()
+	SEND_SIGNAL(src, COMSIG_XENO_AUTOFIREDELAY_MODIFIED, get_cooldown())
 
 /datum/action/xeno_action/activable/xeno_spit/ai_should_start_consider()
 	return TRUE
@@ -928,27 +1007,28 @@
 	cooldown_timer = 12 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LAY_EGG
 
-
-/datum/action/xeno_action/lay_egg/action_activate()
+/datum/action/xeno_action/lay_egg/action_activate(mob/living/carbon/xenomorph/user)
 	var/mob/living/carbon/xenomorph/xeno = owner
 	var/turf/current_turf = get_turf(owner)
 
-	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
-	if(!alien_weeds)
-		to_chat(owner, span_warning("Our eggs wouldn't grow well enough here. Lay them on resin."))
-		return FALSE
+	if(!current_turf.check_alien_construction(owner))
+		return fail_activate()
 
-	if(!do_after(owner, 3 SECONDS, FALSE, alien_weeds))
-		return FALSE
+	if(!(locate(/obj/effect/alien/weeds) in current_turf))
+		to_chat(user, span_xenowarning("Our eggs wouldn't grow well enough here. Lay them on resin."))
+		return fail_activate()
 
-	if(!current_turf.check_alien_construction(owner) || !current_turf.check_disallow_alien_fortification(owner))
-		return FALSE
+	owner.visible_message(span_xenonotice("[owner] starts planting an egg."), \
+		span_xenonotice("We start planting an egg."), null, 5)
 
-	owner.visible_message(span_xenowarning("\The [owner] has laid an egg!"), \
-		span_xenowarning("We have laid an egg!"))
+	if(!do_after(owner, 2.5 SECONDS, TRUE, current_turf, BUSY_ICON_BUILD, extra_checks = CALLBACK(current_turf, /turf/proc/check_alien_construction, owner)))
+		return fail_activate()
 
-	new /obj/item/xeno_egg(current_turf, xeno.hivenumber)
-	playsound(owner.loc, 'sound/effects/splat.ogg', 25)
+	if(!locate(/obj/effect/alien/weeds) in current_turf)
+		return fail_activate()
+
+	new /obj/effect/alien/egg/hugger(current_turf, xeno.hivenumber)
+	playsound(current_turf, 'sound/effects/splat.ogg', 15, 1)
 
 	succeed_activate()
 	add_cooldown()

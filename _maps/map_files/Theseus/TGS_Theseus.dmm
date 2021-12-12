@@ -3306,9 +3306,9 @@
 /area/mainship/living/commandbunks)
 "bie" = (
 /obj/machinery/door_control/mainship/checkpoint{
+	dir = 8;
 	id = "ammo2";
-	name = "Ammo Storage";
-	pixel_x = 30
+	name = "Ammo Storage"
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -4428,7 +4428,6 @@
 	amount = 50
 	},
 /obj/item/tool/hand_labeler,
-/obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
@@ -5958,6 +5957,11 @@
 /area/mainship/squads/req)
 "bGm" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/machinery/vending/nanomed{
+	dir = 8;
+	pixel_x = -1;
+	pixel_y = -1
+	},
 /turf/open/floor/mainship/green{
 	dir = 6
 	},
@@ -6197,16 +6201,12 @@
 /area/mainship/engineering/lower_engine_monitoring)
 "bJe" = (
 /obj/machinery/door_control/mainship/checkpoint{
+	dir = 8;
 	id = "ammo2";
-	name = "Ammo Storage";
-	pixel_x = 30
+	name = "Ammo Storage"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/hangar)
-"bJg" = (
-/obj/machinery/door_control/mainship/droppod,
-/turf/closed/wall/mainship,
-/area/mainship/hallways/hangar/droppod)
 "bJw" = (
 /obj/machinery/landinglight/ds1/delayone{
 	dir = 8
@@ -9292,16 +9292,15 @@
 /area/mainship/squads/delta)
 "dIh" = (
 /obj/structure/table/mainship,
-/obj/machinery/door_control{
-	id = "Brig Lockdown";
-	name = "Brig Lockdown";
-	pixel_y = 10
-	},
 /obj/machinery/flasher_button{
 	id = "Brig Flash";
 	name = "Brig Flash"
 	},
-/obj/machinery/light,
+/obj/machinery/door_control{
+	dir = 1;
+	id = "Brig Lockdown";
+	name = "Brig Lockdown"
+	},
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/brig)
 "dIX" = (
@@ -10214,7 +10213,7 @@
 /area/mainship/shipboard/port_point_defense)
 "fzU" = (
 /obj/machinery/door_control/mainship/corporate{
-	pixel_x = -25
+	dir = 4
 	},
 /turf/open/floor/carpet{
 	dir = 10;
@@ -10557,7 +10556,7 @@
 /area/mainship/living/officer_study)
 "geJ" = (
 /obj/structure/table/mainship,
-/obj/machinery/door_control/mainship/req,
+/obj/machinery/door_control/old/req,
 /turf/open/floor/mainship/green{
 	dir = 8
 	},
@@ -10747,9 +10746,7 @@
 /area/mainship/living/pilotbunks)
 "gzJ" = (
 /obj/structure/cable,
-/obj/machinery/door_control/ai/exterior{
-	pixel_y = 25
-	},
+/obj/machinery/door_control/ai/exterior,
 /turf/open/floor/mainship/ai,
 /area/mainship/living/numbertwobunks)
 "gAi" = (
@@ -11339,9 +11336,9 @@
 /area/mainship/engineering/ce_room)
 "hBs" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "or1privacyshutter";
-	name = "Privacy Shutters";
-	pixel_x = -25
+	name = "Privacy Shutters"
 	},
 /obj/machinery/holosign_switch{
 	id = "or1sign";
@@ -12958,7 +12955,6 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "kLp" = (
-/mob/living/simple_animal/corgi/pug,
 /turf/open/floor/carpet{
 	icon_state = "carpetside"
 	},
@@ -13788,6 +13784,7 @@
 	dir = 9
 	},
 /obj/effect/ai_node,
+/obj/machinery/door_control/mainship/droppod,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "lXL" = (
@@ -15070,7 +15067,7 @@
 "ojL" = (
 /obj/structure/cable,
 /obj/machinery/door_control/ai/exterior{
-	pixel_y = -25
+	dir = 1
 	},
 /turf/open/floor/mainship/ai,
 /area/mainship/living/numbertwobunks)
@@ -15125,7 +15122,7 @@
 /area/mainship/medical/lower_medical)
 "ovC" = (
 /obj/machinery/door_control/ai/interior{
-	pixel_x = -25
+	dir = 4
 	},
 /turf/open/floor/mainship/ai,
 /area/mainship/living/numbertwobunks)
@@ -15679,7 +15676,7 @@
 	dir = 1
 	},
 /obj/machinery/door_control/mainship/corporate{
-	pixel_x = -25
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
@@ -15696,12 +15693,12 @@
 /area/mainship/living/bridgebunks)
 "pzh" = (
 /obj/structure/table/mainship,
-/obj/machinery/door_control/mainship/cic{
+/obj/machinery/door_control/old/cic{
 	id = "CIC Lockdown";
 	pixel_x = -7;
 	pixel_y = 9
 	},
-/obj/machinery/door_control/mainship/cic{
+/obj/machinery/door_control/old/cic{
 	id = "bot_armory";
 	name = "Armory Lockdown";
 	pixel_x = -7;
@@ -16178,9 +16175,6 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/machinery/door_control/mainship/corporate{
-	pixel_y = -25
-	},
 /turf/open/floor/mainship/silver,
 /area/mainship/hallways/bow_hallway)
 "qrI" = (
@@ -16338,6 +16332,7 @@
 	dir = 8
 	},
 /obj/machinery/computer/secure_data,
+/obj/machinery/light,
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/brig)
 "qDC" = (
@@ -16813,6 +16808,9 @@
 /obj/machinery/firealarm{
 	dir = 4
 	},
+/obj/machinery/door_control/mainship/corporate{
+	pixel_y = -25
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "rAT" = (
@@ -17196,7 +17194,7 @@
 "siP" = (
 /obj/structure/cable,
 /obj/machinery/door_control/ai/exterior{
-	pixel_y = -25
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/starboard_hull)
@@ -17259,9 +17257,9 @@
 /area/mainship/command/cic)
 "soL" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "eorprivacyshutter";
-	name = "Privacy Shutters";
-	pixel_x = 25
+	name = "Privacy Shutters"
 	},
 /obj/machinery/holosign_switch{
 	id = "eorsign";
@@ -17475,9 +17473,9 @@
 /area/mainship/hallways/repair_bay)
 "sOM" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "or2privacyshutter";
-	name = "Privacy Shutters";
-	pixel_x = -25
+	name = "Privacy Shutters"
 	},
 /obj/machinery/holosign_switch{
 	id = "or2sign";
@@ -18364,7 +18362,7 @@
 /area/mainship/living/grunt_rnr)
 "uwz" = (
 /obj/machinery/door_control/ai/interior{
-	pixel_x = 25
+	dir = 8
 	},
 /obj/structure/cable,
 /obj/machinery/light{
@@ -19021,9 +19019,9 @@
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/machinery/door_control/mainship/cic{
+	dir = 8;
 	id = "CIC Checkpoint Shutters";
-	name = "CIC Checkpoint Shutters";
-	pixel_x = 25
+	name = "CIC Checkpoint Shutters"
 	},
 /obj/item/tool/pen,
 /turf/open/floor/mainship/silver/full,
@@ -19376,6 +19374,16 @@
 "wpN" = (
 /turf/open/floor/wood,
 /area/mainship/medical/surgery_hallway)
+"wqR" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/mob/living/simple_animal/corgi/Ranger,
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/mainship/living/cryo_cells)
 "wqU" = (
 /obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship,
@@ -20004,9 +20012,7 @@
 /area/mainship/hallways/bow_hallway)
 "xGk" = (
 /obj/machinery/holopad,
-/obj/machinery/door_control/ai/exterior{
-	pixel_y = 25
-	},
+/obj/machinery/door_control/ai/exterior,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
 "xGI" = (
@@ -48589,7 +48595,7 @@ byG
 byG
 adp
 bCL
-bJg
+blt
 lXa
 wxQ
 bYM
@@ -67361,7 +67367,7 @@ bry
 hNu
 buK
 bws
-hNu
+wqR
 buK
 bAS
 bCf

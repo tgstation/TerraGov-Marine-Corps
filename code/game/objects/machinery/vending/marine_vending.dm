@@ -88,6 +88,7 @@
 		"Specialized" = list(
 			/obj/item/weapon/gun/grenade_launcher/multinade_launcher = -1,
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
+			/obj/item/weapon/gun/energy/lasgun/tesla = 2,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 4,
 			/obj/item/weapon/gun/rifle/pepperball = 4,
@@ -141,6 +142,8 @@
 			/obj/item/ammo_magazine/flamer_tank/mini = -1,
 			/obj/item/weapon/gun/grenade_launcher/underslung = -1,
 			/obj/item/attachable/motiondetector = -1,
+			/obj/item/weapon/gun/rifle/pepperball/pepperball_mini = -1,
+			/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini = -1,
 		),
 		"Boxes" = list(
 		/obj/item/ammo_magazine/packet/p9mm = 100,
@@ -375,13 +378,14 @@
 	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
 	products = list(
 		"Surplus Special Equipment" = list(
+			/obj/item/beacon/supply_beacon = 1,
 			/obj/item/ammo_magazine/rifle/autosniper = 3,
 			/obj/item/ammo_magazine/rifle/tx8 = 3,
 			/obj/item/ammo_magazine/rocket/sadar = 3,
-			/obj/item/minigun_powerpack = 2,
+			/obj/item/ammo_magazine/minigun_powerpack = 2,
 			/obj/item/ammo_magazine/shotgun/mbx900 = 2,
 			/obj/item/bodybag/tarp = 2,
-			/obj/item/explosive/plastique = 2,
+			/obj/item/explosive/plastique = 5,
 			/obj/item/minerupgrade/automatic = 3,
 			/obj/item/fulton_extraction_pack = 2,
 			/obj/item/clothing/suit/storage/marine/harness/boomvest = 20,
@@ -431,7 +435,7 @@
 	products = list(
 		"Surplus Special Equipment" = list(
 			/obj/item/bodybag/tarp = 2,
-			/obj/item/explosive/plastique = 2,
+			/obj/item/explosive/plastique = 5,
 			/obj/item/minerupgrade/automatic = 3,
 			/obj/item/radio/headset/mainship/marine/alpha = -1,
 			/obj/item/radio/headset/mainship/marine/bravo = -1,
@@ -579,14 +583,27 @@
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
-		/obj/item/reagent_containers/food/snacks/protein_pack = -1,
-		/obj/item/reagent_containers/food/snacks/mre_pack/meal1 = -1,
-		/obj/item/reagent_containers/food/snacks/mre_pack/meal2 = -1,
-		/obj/item/reagent_containers/food/snacks/mre_pack/meal3 = -1,
-		/obj/item/reagent_containers/food/snacks/mre_pack/meal4 = -1,
-		/obj/item/reagent_containers/food/snacks/mre_pack/meal6 = -1,
-		/obj/item/storage/box/MRE = -1,
-		/obj/item/reagent_containers/food/drinks/flask = -1,
+		"Food and Drink" = list(
+			/obj/item/reagent_containers/food/snacks/protein_pack = -1,
+			/obj/item/reagent_containers/food/snacks/mre_pack/meal1 = -1,
+			/obj/item/reagent_containers/food/snacks/mre_pack/meal2 = -1,
+			/obj/item/reagent_containers/food/snacks/mre_pack/meal3 = -1,
+			/obj/item/reagent_containers/food/snacks/mre_pack/meal4 = -1,
+			/obj/item/reagent_containers/food/snacks/mre_pack/meal6 = -1,
+			/obj/item/storage/box/MRE = -1,
+			/obj/item/reagent_containers/food/drinks/flask = -1,
+		),
+		"Protein Bar Supply" = list(
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/one = 20, //wont spawn in loadouts without being in a vendor
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/two = 20,
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/three = 20,
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/four = 20,
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/five = 20,
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/six = 20,
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/seven = 20,
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/eight = 20,
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/nine = 20
+		),
 	)
 //Christmas inventory
 /*
@@ -595,10 +612,11 @@
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas3 = 25)*/
 	contraband = list(
 		/obj/item/reagent_containers/food/drinks/flask/marine = 10,
-					/obj/item/reagent_containers/food/snacks/mre_pack/meal5 = 15)
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal5 = 15,
+)
 	vend_delay = 15
 	//product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
-	product_ads = "Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork."
+	product_ads = "Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork.; 9 Flavors of Protein!; You'll never guess the mystery flavor!"
 
 
 /obj/machinery/vending/MarineMed
@@ -775,7 +793,7 @@
 	products = list(
 		/obj/item/armor_module/storage/uniform/webbing = 1,
 		/obj/item/storage/box/t29_system = 1,
-		/obj/item/minigun_powerpack = 1,
+		/obj/item/ammo_magazine/minigun_powerpack = 1,
 		/obj/item/storage/pouch/magazine/large = 1,
 		/obj/item/clothing/mask/gas = 1,
 	)
@@ -799,7 +817,7 @@
 		/obj/item/armor_module/storage/uniform/webbing = 1,
 		/obj/item/beacon/supply_beacon = 1,
 		/obj/item/beacon/orbital_bombardment_beacon = 1,
-		/obj/item/explosive/plastique = 1,
+		/obj/item/explosive/plastique = 2,
 		/obj/item/explosive/grenade/smokebomb = 3,
 		/obj/item/binoculars/tactical = 1,
 		/obj/item/ammo_magazine/pistol/hp = 2,
@@ -831,6 +849,8 @@
 			/obj/item/clothing/suit/modular/xenonauten/heavy = -1,
 			/obj/item/clothing/suit/modular = -1,
 			/obj/item/clothing/suit/storage/marine/harness = -1,
+			/obj/item/clothing/suit/storage/marine/harness/cowboy = -1,
+			/obj/item/clothing/suit/cowboy = -1,
 			/obj/item/clothing/suit/armor/vest/pilot = -1,
 			/obj/item/facepaint/green = -1,
 			/obj/item/clothing/suit/storage/marine/robot/light = -1,
@@ -920,6 +940,7 @@
 			/obj/item/clothing/under/marine/jaeger =-1,
 			/obj/item/clothing/gloves/marine =-1,
 			/obj/item/clothing/shoes/marine/full = -1,
+			/obj/item/clothing/shoes/cowboy = -1,
 			/obj/item/clothing/head/slouch = -1,
 			/obj/item/clothing/head/headband/red = -1,
 			/obj/item/clothing/head/headband/rambo = -1,
@@ -977,7 +998,7 @@
 			/obj/item/storage/pouch/med_lolipops = -1,
 			/obj/item/storage/pouch/autoinjector = -1,
 			/obj/item/storage/pouch/construction = -1,
-			/obj/item/storage/pouch/electronics/full = -1,
+			/obj/item/storage/pouch/electronics = -1,
 			/obj/item/storage/pouch/tools/full = -1,
 			/obj/item/storage/pouch/field_pouch = -1,
 			/obj/item/storage/pouch/general/large = -1,
