@@ -93,7 +93,7 @@
 
 	fire_delay = 0.5
 	burst_amount = 3
-	burst_delay = 0.1
+	burst_delay = 0.1 SECONDS
 
 	aim_slowdown = 3
 	wield_delay = 5 SECONDS
