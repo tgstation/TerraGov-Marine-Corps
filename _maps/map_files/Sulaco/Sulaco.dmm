@@ -20624,7 +20624,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/basketball)
 "tBp" = (
-/mob/living/simple_animal/corgi/Ranger,
+/mob/living/simple_animal/corgi/ranger,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
 "tBy" = (
