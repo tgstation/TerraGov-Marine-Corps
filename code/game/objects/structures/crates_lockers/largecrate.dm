@@ -58,7 +58,7 @@
 
 /obj/structure/largecrate/lisa
 	icon_state = "lisacrate"
-	spawn_type = /mob/living/simple_animal/corgi/Lisa
+	spawn_type = /mob/living/simple_animal/corgi/lisa
 	spawn_amount = 1
 
 
