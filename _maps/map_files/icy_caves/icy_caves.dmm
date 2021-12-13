@@ -4048,11 +4048,11 @@
 /area/icy_caves/outpost/LZ2)
 "sV" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/rifle/ak47,
-/obj/item/ammo_magazine/rifle/ak47,
-/obj/item/ammo_magazine/rifle/ak47,
-/obj/item/ammo_magazine/rifle/ak47,
-/obj/item/weapon/gun/rifle/ak47,
+/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/weapon/gun/rifle/mpi_km,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "ta" = (
