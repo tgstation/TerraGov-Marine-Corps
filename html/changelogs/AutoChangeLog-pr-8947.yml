@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscadd: "Floppa and Martin, the req caracal"
+  - imageadd: "floppa sprites!"
