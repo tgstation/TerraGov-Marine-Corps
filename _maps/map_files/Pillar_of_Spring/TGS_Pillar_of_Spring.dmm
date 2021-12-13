@@ -15696,7 +15696,7 @@
 /area/mainship/living/grunt_rnr)
 "WD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/mob/living/simple_animal/corgi/Ranger,
+/mob/living/simple_animal/corgi/ranger,
 /turf/open/floor/mainship/black/corner{
 	dir = 4
 	},
