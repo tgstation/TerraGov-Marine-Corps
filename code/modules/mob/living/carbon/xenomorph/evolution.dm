@@ -260,7 +260,7 @@
 	span_xenonotice("We begin to twist and contort."))
 	do_jitter_animation(1000)
 
-	if(!do_after(src, 25, FALSE, null, BUSY_ICON_CLOCK))
+	if(!forced && !do_after(src, 25, FALSE, null, BUSY_ICON_CLOCK))
 		to_chat(src, span_warning("We quiver, but nothing happens. We must hold still while evolving."))
 		return
 
@@ -326,8 +326,8 @@
 	transfer_observers_to(new_xeno)
 
 	if(new_xeno.health - getBruteLoss(src) - getFireLoss(src) > 0) //Cmon, don't kill the new one! Shouldnt be possible though
-		new_xeno.bruteloss = src.bruteloss //Transfers the damage over.
-		new_xeno.fireloss = src.fireloss //Transfers the damage over.
+		new_xeno.bruteloss = bruteloss //Transfers the damage over.
+		new_xeno.fireloss = fireloss //Transfers the damage over.
 		new_xeno.updatehealth()
 
 	if(xeno_mobhud)
@@ -374,7 +374,7 @@
 	new_xeno.upgrade_stored = max(upgrade_stored, new_xeno.upgrade_stored)
 	while(new_xeno.upgrade_possible() && new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold)
 		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
-	var/obj/screen/zone_sel/selector = new_xeno.hud_used.zone_sel
+	var/obj/screen/zone_sel/selector = new_xeno.hud_used?.zone_sel
 	selector?.set_selected_zone(zone_selected, new_xeno)
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)
