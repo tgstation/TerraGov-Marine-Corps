@@ -4,9 +4,6 @@
 	desc = "yummy"
 	icon = 'icons/obj/items/food.dmi'
 	icon_state = null
-	//description of taste
-	var/taste_description = null
-
 	var/bitesize = 1
 	var/bitecount = 0
 	var/trash = null
@@ -14,7 +11,6 @@
 	var/slices_num
 	var/package = FALSE
 	center_of_mass = list("x"=15, "y"=15)
-
 	var/list/tastes // for example list("crisps" = 2, "salt" = 1)
 
 /obj/item/reagent_containers/food/snacks/create_reagents(max_vol, new_flags, list/init_reagents, data)

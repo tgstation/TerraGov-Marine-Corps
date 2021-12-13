@@ -57,7 +57,7 @@
 /obj/item/reagent_containers/food/snacks/protein_pack/Initialize()
 	. = ..()
 	///list of producable protein bars
-	var/list/randlist = list(
+	var/static/list/randlist = list(
 		list("stale TGMC protein bar","The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute.","#f37d43",list("nutraloafed food" = 1)),
 		list("mint TGMC protein bar","A stale old protien bar, with an almost minty freshness to it, but not fresh enough","#61b36e",list("minty protein" = 1)),
 		list("grape TGMC protein bar","Not the good type of grape flavor, tastes like medicine. Fills you up just as well as any protein bar.","#9900ff",list("artifical grape" = 1)),
