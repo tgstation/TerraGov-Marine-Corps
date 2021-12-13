@@ -49,7 +49,6 @@
 	icon_state = "yummers"
 	filling_color = "#ED1169"
 	w_class = WEIGHT_CLASS_TINY
-	//list_reagents = list(/datum/reagent/consumable/nutriment = 8)
 	bitesize = 4
 	greyscale_config = /datum/greyscale_config/protein
 	tastes = list(("flavored protein bar") = 1)
