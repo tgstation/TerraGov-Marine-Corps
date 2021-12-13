@@ -573,7 +573,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/bullet/rifle/tx8/impact/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, max_range = 20, stagger = 2, slowdown = 1, knockback = 1)
 
-/datum/ammo/bullet/rifle/ak47
+/datum/ammo/bullet/rifle/mpi_km
 	name = "crude heavy rifle bullet"
 	hud_state = "rifle_heavy"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING

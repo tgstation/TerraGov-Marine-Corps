@@ -1501,14 +1501,14 @@ Imports
 	cost = 5
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/imports/ak47
+/datum/supply_packs/imports/mpi_km
 	name = "AK-47 Assault Rifle"
-	contains = list(/obj/item/weapon/gun/rifle/ak47)
+	contains = list(/obj/item/weapon/gun/rifle/mpi_km)
 	cost = 5
 
-/datum/supply_packs/imports/ak47/ammo
+/datum/supply_packs/imports/mpi_km/ammo
 	name = "AK-47 Assault Rifle Ammo"
-	contains = list(/obj/item/ammo_magazine/rifle/ak47)
+	contains = list(/obj/item/ammo_magazine/rifle/mpi_km)
 	cost = 1
 
 /datum/supply_packs/imports/mkh
