@@ -595,13 +595,13 @@
 	switch(SSmapping.configs[GROUND_MAP].armor_style)
 		if(MAP_ARMOR_STYLE_JUNGLE)
 			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
-				new_color = COLOR_DRAB
+				new_color = ARMOR_PALETTE_DRAB
 		if(MAP_ARMOR_STYLE_ICE)
 			if(flags_item_map_variant & ITEM_ICE_VARIANT)
-				new_color = COLOR_SNOW
+				new_color = ARMOR_PALETTE_SNOW
 		if(MAP_ARMOR_STYLE_PRISON)
 			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
-				new_color = COLOR_BLACK
+				new_color = ARMOR_PALETTE_BLACK
 	set_greyscale_colors(new_color)
 	update_icon()
 
