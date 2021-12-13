@@ -1,0 +1,7 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - balance: "Icy Caves is back to it's original self, without the lab complex to the NW of the map."
+  - balance: "All Icy Caves plasma cutters have been replaced with pickaxes."
+  - balance: "The Icy Caves pirate coat has been replaced with a regular colonist uniform."
+  - balance: "Barrels no longer drop 10 metal by default when destroyed."
