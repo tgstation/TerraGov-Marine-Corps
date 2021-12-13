@@ -73,9 +73,6 @@
 	if(!isturf(loc))
 		return FALSE
 
-	if(!line_of_sight(A)) //Target is no longer visible to us.
-		return FALSE
-
 	if(!A.mouse_opacity) //Can't click it? can't point at it.
 		return FALSE
 
