@@ -45,7 +45,7 @@
 	var/stat_attack = CONSCIOUS //Mobs with stat_attack to UNCONSCIOUS will attempt to attack things that are unconscious, Mobs with stat_attack set to DEAD will attempt to attack the dead.
 	var/stat_exclusive = FALSE //Mobs with this set to TRUE will exclusively attack things defined by stat_attack, stat_attack DEAD means they will only attack corpses
 	var/attack_same = 0 //Set us to 1 to allow us to attack our own faction
-	var/atom/targets_from = null //all range/attack/etc. calculations should be done from this atom, defaults to the mob itself, useful for Vehicles and such
+	var/atom/movable/targets_from = null //all range/attack/etc. calculations should be done from this atom, defaults to the mob itself, useful for Vehicles and such
 	var/attack_all_objects = FALSE //if true, equivalent to having a wanted_objects list containing ALL objects.
 
 	var/lose_patience_timer_id //id for a timer to call LoseTarget(), used to stop mobs fixating on a target they can't reach
@@ -128,7 +128,7 @@
 		. = hearers(vision_range, targets_from) - src //Remove self, so we don't suicide
 
 		for(var/HM in range(vision_range, targets_from))
-			if(can_see(targets_from, HM, vision_range))
+			if(targets_from.line_of_sight(HM, vision_range))
 				. += HM
 	else
 		. = list()

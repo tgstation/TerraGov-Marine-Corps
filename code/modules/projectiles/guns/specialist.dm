@@ -144,7 +144,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		laser_off(user)
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 		return
-	if(!can_see(user, laser_target, length=24))
+	if(!user.line_of_sight(laser_target, 24))
 		laser_off()
 		to_chat(user, span_danger("You lose sight of your target!"))
 		playsound(user,'sound/machines/click.ogg', 25, 1)
