@@ -8,7 +8,7 @@
 	name = "standard visor"
 	slot = ATTACHMENT_SLOT_VISOR
 	///Initial hex color we use when applying the visor color
-	greyscale_colors = VISOR_COLOR_GOLD
+	greyscale_colors = VISOR_PALETTE_GOLD
 	flags_attach_features = ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 	colorable_colors = list(
 		"Gold" = VISOR_PALETTE_GOLD,
