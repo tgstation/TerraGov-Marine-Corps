@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - bugfix: "the Hypertext in old chat to reload TGUI Chat when it doens't load now works"
