@@ -11,14 +11,14 @@
 	greyscale_colors = VISOR_COLOR_GOLD
 	flags_attach_features = ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 	colorable_colors = list(
-		"Gold" = VISOR_COLOR_GOLD,
-		"Silver" = VISOR_COLOR_SILVER,
-		"Green" = VISOR_COLOR_GREEN,
-		"Black" = VISOR_COLOR_BLACK,
-		"Orange" = VISOR_COLOR_ORANGE,
-		"Red" = VISOR_COLOR_RED,
-		"Purple" = VISOR_COLOR_PURPLE,
-		"Blue" = VISOR_COLOR_BLUE,
+		"Gold" = VISOR_PALETTE_GOLD,
+		"Silver" = VISOR_PALETTE_SILVER,
+		"Green" = VISOR_PALETTE_GREEN,
+		"Black" = VISOR_PALETTE_BLACK,
+		"Orange" = VISOR_PALETTE_ORANGE,
+		"Red" = VISOR_PALETTE_RED,
+		"Purple" = VISOR_PALETTE_PURPLE,
+		"Blue" = VISOR_PALETTE_BLUE,
 	)
 	flags_item_map_variant = NONE
 	///whether this helmet should be using its emissive overlay or not

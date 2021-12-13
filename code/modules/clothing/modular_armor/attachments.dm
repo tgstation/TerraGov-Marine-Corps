@@ -100,7 +100,7 @@
 	slowdown = 0
 
 	greyscale_config = /datum/greyscale_config/modularchest_infantry
-	greyscale_colors = COLOR_DESERT
+	greyscale_colors = ARMOR_PALETTE_DESERT
 
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 
@@ -108,19 +108,19 @@
 
 	///optional assoc list of colors we can color this armor
 	var/list/colorable_colors = list(
-		"Drab" = COLOR_DRAB,
-		"Brown" = COLOR_BROWN,
-		"Snow" = COLOR_SNOW,
-		"Desert" = COLOR_DESERT,
-		"Red" = COLOR_RED,
-		"Green" = COLOR_GREEN,
-		"Purple" = COLOR_PURPLE,
-		"Black" = COLOR_BLACK,
-		"Blue" = COLOR_BLUE,
-		"Yellow" = COLOR_YELLOW,
-		"Aqua" = COLOR_AQUA,
-		"Orange" = COLOR_ORANGE,
-		"Grey" = COLOR_GREY,
+		"Drab" = ARMOR_PALETTE_DRAB,
+		"Brown" = ARMOR_PALETTE_BROWN,
+		"Snow" = ARMOR_PALETTE_SNOW,
+		"Desert" = ARMOR_PALETTE_DESERT,
+		"Red" = ARMOR_PALETTE_RED,
+		"Green" = ARMOR_PALETTE_GREEN,
+		"Purple" = ARMOR_PALETTE_PURPLE,
+		"Black" = ARMOR_PALETTE_BLACK,
+		"Blue" = ARMOR_PALETTE_BLUE,
+		"Yellow" = ARMOR_PALETTE_YELLOW,
+		"Aqua" = ARMOR_PALETTE_AQUA,
+		"Orange" = ARMOR_PALETTE_ORANGE,
+		"Grey" = ARMOR_PALETTE_GREY,
 	)
 	///Some defines to determin if the armor piece is allowed to be recolored.
 	var/colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
@@ -135,13 +135,13 @@
 	switch(SSmapping.configs[GROUND_MAP].armor_style)
 		if(MAP_ARMOR_STYLE_JUNGLE)
 			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
-				new_color = COLOR_DRAB
+				new_color = ARMOR_PALETTE_DRAB
 		if(MAP_ARMOR_STYLE_ICE)
 			if(flags_item_map_variant & ITEM_ICE_VARIANT)
-				new_color = COLOR_SNOW
+				new_color = ARMOR_PALETTE_SNOW
 		if(MAP_ARMOR_STYLE_PRISON)
 			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
-				new_color = COLOR_BLACK
+				new_color = ARMOR_PALETTE_BLACK
 	set_greyscale_colors(new_color)
 	update_icon()
 

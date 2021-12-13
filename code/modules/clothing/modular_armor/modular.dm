@@ -360,7 +360,7 @@
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
 	greyscale_config = /datum/greyscale_config/modularhelmet_infantry
-	greyscale_colors = COLOR_DESERT
+	greyscale_colors = ARMOR_PALETTE_DESERT
 
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_VISOR,
@@ -381,19 +381,19 @@
 
 	///optional assoc list of colors we can color this armor
 	var/list/colorable_colors = list(
-		"Drab" = COLOR_DRAB,
-		"Brown" = COLOR_BROWN,
-		"Snow" = COLOR_SNOW,
-		"Desert" = COLOR_DESERT,
-		"Red" = COLOR_RED,
-		"Green" = COLOR_GREEN,
-		"Purple" = COLOR_PURPLE,
-		"Black" = COLOR_BLACK,
-		"Blue" = COLOR_BLUE,
-		"Yellow" = COLOR_YELLOW,
-		"Aqua" = COLOR_AQUA,
-		"Orange" = COLOR_ORANGE,
-		"Grey" = COLOR_GREY,
+		"Drab" = ARMOR_PALETTE_DRAB,
+		"Brown" = ARMOR_PALETTE_BROWN,
+		"Snow" = ARMOR_PALETTE_SNOW,
+		"Desert" = ARMOR_PALETTE_DESERT,
+		"Red" = ARMOR_PALETTE_RED,
+		"Green" = ARMOR_PALETTE_GREEN,
+		"Purple" = ARMOR_PALETTE_PURPLE,
+		"Black" = ARMOR_PALETTE_BLACK,
+		"Blue" = ARMOR_PALETTE_BLUE,
+		"Yellow" = ARMOR_PALETTE_YELLOW,
+		"Aqua" = ARMOR_PALETTE_AQUA,
+		"Orange" = ARMOR_PALETTE_ORANGE,
+		"Grey" = ARMOR_PALETTE_GREY,
 	)
 	///Some defines to determin if the armor piece is allowed to be recolored.
 	var/colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
