@@ -4,6 +4,9 @@
 	desc = "yummy"
 	icon = 'icons/obj/items/food.dmi'
 	icon_state = null
+	//description of taste
+	var/taste_description = null
+
 	var/bitesize = 1
 	var/bitecount = 0
 	var/trash = null
@@ -11,6 +14,7 @@
 	var/slices_num
 	var/package = FALSE
 	center_of_mass = list("x"=15, "y"=15)
+
 	var/list/tastes // for example list("crisps" = 2, "salt" = 1)
 
 /obj/item/reagent_containers/food/snacks/create_reagents(max_vol, new_flags, list/init_reagents, data)
@@ -22,7 +26,7 @@
 	reagents.my_atom = src
 	for(var/rid in init_reagents)
 		var/amount = list_reagents[rid]
-		if(type == /datum/reagent/consumable/nutriment)
+		if(rid == /datum/reagent/consumable/nutriment)
 			reagents.add_reagent(rid, amount, tastes.Copy())
 		else
 			reagents.add_reagent(rid, amount, data)
@@ -229,7 +233,6 @@
 				N.visible_message(span_warning("[N] nibbles away at [src]."), "")
 			//N.emote("nibbles away at the [src]")
 			N.health = min(N.health + 1, N.maxHealth)
-
 
 ////////////////////////////////////////////////////////////////////////////////
 /// FOOD END
