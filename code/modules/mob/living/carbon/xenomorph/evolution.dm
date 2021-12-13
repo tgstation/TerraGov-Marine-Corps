@@ -100,7 +100,7 @@
 		to_chat(src, span_warning("We must be at full plasma to evolve."))
 		return
 
-	if (agility || fortify || crest_defense)
+	if (agility || fortify || crest_defense || !density)
 		to_chat(src, span_warning("We cannot evolve while in this stance."))
 		return
 
