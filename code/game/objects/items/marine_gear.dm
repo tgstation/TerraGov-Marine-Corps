@@ -68,8 +68,6 @@
 
 /obj/item/reagent_containers/food/snacks/protein_pack/Initialize()
 	. = ..()
-
-
 	///list of protein bar stats to change
 	var/list/picked = pick(randlist)
 	name = picked[1]
