@@ -730,7 +730,6 @@ TUNNEL
 		SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, null)
 		SSspawning.spawnerdata[src].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
 		SSspawning.spawnerdata[src].max_allowed_mobs = max(1, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count * 0.5)
-	RegisterSignal(src, COMSIG_PARENT_QDELETING, .proc/on_destroy)
 
 	return INITIALIZE_HINT_LATELOAD
 
@@ -752,20 +751,7 @@ TUNNEL
 		newt.tunnel_desc = "[AREACOORD_NO_Z(newt)]"
 		newt.name += " [name]"
 
-/obj/structure/xeno/silo/Destroy()
-	GLOB.xeno_resin_silos -= src
-	STOP_PROCESSING(SSslowprocess, src)
-	return ..()
-
-/obj/structure/xeno/silo/proc/on_destroy()
-	SIGNAL_HANDLER
-
-	for(var/i in contents)
-		var/atom/movable/AM = i
-		AM.forceMove(get_step(center_turf, pick(CARDINAL_ALL_DIRS)))
-	silo_area = null
-	center_turf = null
-
+/obj/structure/xeno/silo/obj_destruction(damage_amount, damage_type, damage_flag)
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 		associated_hive.xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /obj/screen/arrow/silo_damaged_arrow)
@@ -773,6 +759,20 @@ TUNNEL
 		associated_hive = null
 		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 		playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
+	return ..()
+
+/obj/structure/xeno/silo/Destroy()
+	GLOB.xeno_resin_silos -= src
+
+	for(var/i in contents)
+		var/atom/movable/AM = i
+		AM.forceMove(get_step(center_turf, pick(CARDINAL_ALL_DIRS)))
+
+	silo_area = null
+	center_turf = null
+
+	STOP_PROCESSING(SSslowprocess, src)
+	return ..()
 
 /obj/structure/xeno/silo/examine(mob/user)
 	. = ..()
