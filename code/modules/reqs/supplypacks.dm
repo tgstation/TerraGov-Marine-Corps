@@ -1240,7 +1240,7 @@ ENGINEERING
 /datum/supply_packs/engineering/floodlight
 	name = "Combat Grade Floodlight"
 	contains = list(/obj/machinery/floodlightcombat)
-	cost = 5
+	cost = 10
 
 /datum/supply_packs/engineering/advanced_generator
 	name = "Wireless power generator"

@@ -26,7 +26,7 @@
 	for(var/atom/light AS in GLOB.nightfall_toggleable_lights)
 		if(isnull(light.loc) || (owner.loc.z != light.loc.z) || (get_dist(owner, light) >= range))
 			continue
-		light.turn_light(null, FALSE, duration, TRUE, TRUE)
+		light.turn_light(null, FALSE, duration, TRUE, TRUE, TRUE)
 
 
 // ***************************************
