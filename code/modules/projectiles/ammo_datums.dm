@@ -527,6 +527,16 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 10
 	sundering = 1.25
 
+/datum/ammo/bullet/rifle/repeater
+	name = "heavy impact rifle bullet"
+	hud_state = "revolver_heavy"
+	damage = 70
+	penetration = 20
+	sundering = 1.25
+
+/datum/ammo/bullet/rifle/repeater/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, max_range = 4, slowdown = 2, stagger = 1, shake = 0.5)
+
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
 	hud_state = "rifle_fire"
