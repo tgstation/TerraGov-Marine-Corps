@@ -312,15 +312,10 @@
 	hud_to_add.add_hud_to(src)
 
 /mob/living/carbon/xenomorph/point_to_atom(atom/A, turf/T)
-	//xeno leader get a bit arrow and less cooldown
-	if(queen_chosen_lead || isxenoqueen(src))
-		TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
-		new /obj/effect/overlay/temp/point/big(T)
-	else
-		TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 5 SECONDS)
-		new /obj/effect/overlay/temp/point(T)
+	TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
+	new /obj/effect/overlay/temp/point/big(T)
 	visible_message("<b>[src]</b> points to [A]")
-	return 1
+	return TRUE
 
 /mob/living/carbon/xenomorph/get_permeability_protection()
 	return XENO_PERM_COEFF
