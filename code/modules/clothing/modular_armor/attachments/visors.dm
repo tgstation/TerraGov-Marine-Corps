@@ -8,17 +8,17 @@
 	name = "standard visor"
 	slot = ATTACHMENT_SLOT_VISOR
 	///Initial hex color we use when applying the visor color
-	greyscale_colors = "#6a5b2d#928446#a59770"
+	greyscale_colors = VISOR_COLOR_GOLD
 	flags_attach_features = ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 	colorable_colors = list(
-		"Gold" = "#6a5b2d#928446#a59770",
-		"Silver" = "#9db4c0#c2dfe3#e0fbfc",
-		"Green" = "#8fc0a9#c8d5b9#faf3dd",
-		"Black" = "#353340#4c4a59#686671",
-		"Orange" = "#944224#bf5934#c8825e",
-		"Red" = "#682c2c#914545#a3736e",
-		"Purple" = "#4a2c69#6c4691#8e6da3",
-		"Blue" = "#2b6666#448e8e#6d9e9e",
+		"Gold" = VISOR_COLOR_GOLD,
+		"Silver" = VISOR_COLOR_SILVER,
+		"Green" = VISOR_COLOR_GREEN,
+		"Black" = VISOR_COLOR_BLACK,
+		"Orange" = VISOR_COLOR_ORANGE,
+		"Red" = VISOR_COLOR_RED,
+		"Purple" = VISOR_COLOR_PURPLE,
+		"Blue" = VISOR_COLOR_BLUE,
 	)
 	flags_item_map_variant = NONE
 	///whether this helmet should be using its emissive overlay or not

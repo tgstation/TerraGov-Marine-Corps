@@ -360,7 +360,7 @@
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
 	greyscale_config = /datum/greyscale_config/modularhelmet_infantry
-	greyscale_colors = "#1d2426#352c34#504247#6d5957#958677"
+	greyscale_colors = COLOR_DESERT
 
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_VISOR,
@@ -381,19 +381,19 @@
 
 	///optional assoc list of colors we can color this armor
 	var/list/colorable_colors = list(
-		"Drab" = "#1d2426#241d16#363021#444732#665f44",
-		"Brown" = "#1d2426#1f1007#2c190c#3d2414#60452b",
-		"Snow" = "#1d2426#5d5353#897b7b#aca194#d5ccc3",
-		"Desert" = "#1d2426#352c34#504247#6d5957#958677",
-		"Red" = "#1d2426#370a0d#4d1313#672122#a84d46",
-		"Green" = "#1d2426#12200c#192d14#28402b#486b41",
-		"Purple" = "#1d2426#230b20#32122c#461f3f#733d65",
-		"Black" = "#1d2426#18181b#232427#35363c#474a50",
-		"Blue" = "#1d2426#111f28#182634#243548#435872",
-		"Yellow" = "#1d2426#5c5027#6f6633#837b41#9f9a5d",
-		"Aqua" = "#1d2426#062624#0b3535#154949#2c6e73",
-		"Orange" = "#1d2426#492213#652c16#85391e#c16737",
-		"Grey" = "#1d2426#262626#3f3f3f#5a5a5a#828282",
+		"Drab" = COLOR_DRAB,
+		"Brown" = COLOR_BROWN,
+		"Snow" = COLOR_SNOW,
+		"Desert" = COLOR_DESERT,
+		"Red" = COLOR_RED,
+		"Green" = COLOR_GREEN,
+		"Purple" = COLOR_PURPLE,
+		"Black" = COLOR_BLACK,
+		"Blue" = COLOR_BLUE,
+		"Yellow" = COLOR_YELLOW,
+		"Aqua" = COLOR_AQUA,
+		"Orange" = COLOR_ORANGE,
+		"Grey" = COLOR_GREY,
 	)
 	///Some defines to determin if the armor piece is allowed to be recolored.
 	var/colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
@@ -588,20 +588,20 @@
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
+	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT
 
 /obj/item/clothing/head/modular/marine/update_item_sprites()
 	var/new_color
 	switch(SSmapping.configs[GROUND_MAP].armor_style)
 		if(MAP_ARMOR_STYLE_JUNGLE)
 			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
-				new_color = "#1d2426#241d16#363021#444732#665f44"
+				new_color = COLOR_DRAB
 		if(MAP_ARMOR_STYLE_ICE)
 			if(flags_item_map_variant & ITEM_ICE_VARIANT)
-				new_color = "#1d2426#5d5353#897b7b#aca194#d5ccc3"
+				new_color = COLOR_SNOW
 		if(MAP_ARMOR_STYLE_PRISON)
 			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
-				new_color = "#1d2426#18181b#232427#35363c#474a50"
+				new_color = COLOR_BLACK
 	set_greyscale_colors(new_color)
 	update_icon()
 
