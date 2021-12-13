@@ -253,6 +253,14 @@
 	dir = 8
 	},
 /area/mainship/living/briefing)
+"aS" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/mainship/floor,
+/area/mainship/engineering/engineering_workshop)
 "aT" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -881,12 +889,9 @@
 /obj/structure/cable,
 /turf/open/floor/grass,
 /area/mainship/living/port_garden)
-"cR" = (
-/obj/item/clothing/head/helmet/marine/leader,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/port_garden)
 "cS" = (
 /obj/effect/ai_node,
+/obj/item/paper/memorial,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_garden)
 "cT" = (
@@ -1536,14 +1541,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"fh" = (
-/obj/structure/closet/crate/weapon,
-/turf/open/floor/plating,
-/area/mainship/squads/req)
-"fi" = (
-/obj/structure/closet/crate/medical,
-/turf/open/floor/plating,
-/area/mainship/squads/req)
 "fj" = (
 /obj/structure/sign/electricshock{
 	name = "Engineer Preparations"
@@ -1718,14 +1715,6 @@
 	dir = 8
 	},
 /area/mainship/hallways/hangar)
-"fL" = (
-/obj/structure/closet/crate/construction,
-/turf/open/floor/plating,
-/area/mainship/squads/req)
-"fM" = (
-/obj/structure/closet/crate/ammo,
-/turf/open/floor/plating,
-/area/mainship/squads/req)
 "fN" = (
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/red{
@@ -1891,15 +1880,9 @@
 /area/mainship/hallways/hangar)
 "gq" = (
 /obj/effect/decal/warning_stripes/thick,
-/obj/structure/closet/crate,
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/plating,
-/area/mainship/squads/req)
-"gr" = (
-/obj/effect/decal/warning_stripes/thick,
-/obj/structure/closet/crate,
 /turf/open/floor/plating,
 /area/mainship/squads/req)
 "gs" = (
@@ -2298,10 +2281,12 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/structure/closet/crate/weapon,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "hQ" = (
 /obj/structure/cable,
+/obj/structure/closet/crate/medical,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "hR" = (
@@ -2763,10 +2748,7 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "jx" = (
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
+/obj/structure/closet/crate,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "jy" = (
@@ -2822,6 +2804,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
+"jH" = (
+/obj/structure/closet/crate/construction,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "jI" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/structure/cable,
@@ -3026,16 +3012,16 @@
 "kt" = (
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/lower_medical)
+"ku" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/blood/oil/streak,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/engineering_workshop)
 "kv" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
-"kw" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
 "kx" = (
 /obj/machinery/door/airlock/mainship/maint{
@@ -6853,17 +6839,6 @@
 	},
 /area/mainship/living/cafeteria_starboard)
 "xf" = (
-/obj/machinery/vending/marineFood,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
@@ -8247,6 +8222,16 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
+"Bk" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "Bl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
@@ -8714,6 +8699,10 @@
 	dir = 4
 	},
 /area/mainship/medical/lower_medical)
+"CW" = (
+/obj/structure/closet/crate/ammo,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "CX" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -10261,6 +10250,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/mirror,
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
@@ -10651,9 +10641,6 @@
 	},
 /obj/structure/sink/bathroom{
 	pixel_y = 14
-	},
-/obj/structure/mirror{
-	pixel_y = 28
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mainship/sterile/dark,
@@ -13814,6 +13801,10 @@
 	dir = 1
 	},
 /area/mainship/engineering/port_atmos)
+"Tn" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/mainship/floor,
+/area/mainship/engineering/engineering_workshop)
 "To" = (
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/plating,
@@ -15155,8 +15146,6 @@
 /area/mainship/command/airoom)
 "Yb" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
-/obj/item/clothing/under/mime,
-/obj/item/clothing/mask/gas/mime,
 /turf/open/floor/mainship/red{
 	dir = 10
 	},
@@ -15297,6 +15286,25 @@
 	dir = 5
 	},
 /area/mainship/command/self_destruct)
+"Yw" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/turf/open/floor/mainship/black{
+	dir = 8
+	},
+/area/mainship/living/cafeteria_starboard)
 "Yx" = (
 /obj/machinery/power/apc/mainship{
 	dir = 4
@@ -23605,8 +23613,8 @@ eD
 fK
 gp
 gW
-VC
 iF
+VC
 VC
 dz
 az
@@ -23797,14 +23805,14 @@ Jo
 SA
 ea
 ea
-fh
-fL
+ea
+ea
 gq
 gX
 hP
-gY
+jH
 jx
-kv
+Bk
 lo
 mr
 nz
@@ -23895,14 +23903,14 @@ pO
 SA
 eb
 ea
-fi
-fM
-gr
+ea
+ea
+gt
 gY
 hQ
-gY
+CW
+jx
 jz
-gY
 lo
 mu
 gY
@@ -23999,8 +24007,8 @@ gt
 gY
 hR
 hS
+hS
 jA
-kw
 lp
 mv
 mv
@@ -24427,7 +24435,7 @@ NH
 OE
 PL
 QO
-QO
+Tn
 TB
 Vs
 NH
@@ -25013,7 +25021,7 @@ zU
 MX
 NH
 OK
-PN
+aS
 QW
 Sk
 TD
@@ -25654,7 +25662,7 @@ aO
 ID
 To
 cq
-cR
+cs
 dn
 Hn
 ei
@@ -26385,7 +26393,7 @@ Mv
 Jo
 NH
 Pg
-PY
+ku
 Rd
 NH
 TR
@@ -26858,12 +26866,12 @@ wX
 ya
 yO
 Ai
-Ai
-ya
+wZ
+Yw
 DG
 Ai
-Ai
-ya
+wZ
+Yw
 Hx
 xg
 IJ
@@ -27442,7 +27450,7 @@ ib
 ib
 Ef
 ho
-wZ
+xd
 yf
 yX
 Ar
@@ -27540,7 +27548,7 @@ ib
 ib
 VV
 ho
-wZ
+xd
 yf
 yY
 As
