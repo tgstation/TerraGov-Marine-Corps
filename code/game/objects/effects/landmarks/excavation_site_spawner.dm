@@ -16,7 +16,6 @@
 ///Setup an excavation
 /obj/effect/landmark/excavation_site_spawner/proc/spawn_excavation_site()
 	rewards_typepath = pick(rewards_datums)
-	SSminimaps.add_marker(src, 2, hud_flags = MINIMAP_FLAG_EXCAVATION_ZONE, iconstate = initial(rewards_typepath.map_icon))
 
 ///Perform an excavation and revert the spawner to inactive state
 /obj/effect/landmark/excavation_site_spawner/proc/excavate_site()
@@ -24,7 +23,6 @@
 	rewards_instance.drop_rewards(src)
 	qdel(rewards_instance)
 	rewards_typepath = null
-	SSminimaps.remove_marker(src)
 
 ///Excavation rewards buckets
 /datum/excavation_rewards

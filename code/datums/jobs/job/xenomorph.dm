@@ -48,10 +48,6 @@
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	HS.give_larva_to_next_in_queue()
 
-/datum/job/xenomorph/after_spawn(mob/living/carbon/xenomorph/xeno, mob/M, latejoin)
-	. = ..()
-	SSminimaps.add_marker(xeno, xeno.z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno.xeno_caste.minimap_icon)
-
 /datum/job/xenomorph/queen
 	title = ROLE_XENO_QUEEN
 	req_admin_notify = TRUE

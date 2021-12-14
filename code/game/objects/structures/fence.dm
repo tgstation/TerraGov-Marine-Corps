@@ -9,7 +9,6 @@
 	layer = WINDOW_LAYER
 	max_integrity = 150 //Its cheap but still viable to repair, cant be moved around, about 7 runner hits to take down
 	resistance_flags = XENO_DAMAGEABLE
-	minimap_color = MINIMAP_FENCE
 	var/cut = FALSE //Cut fences can be passed through
 	var/junction = 0 //Because everything is terrible, I'm making this a fence-level var
 	var/basestate = "fence"

@@ -12,62 +12,51 @@
 	name ="Southeast Jungle"
 	icon_state = "southeast"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
-	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/lv624/ground/jungle2
 	name ="Southern Jungle"
 	icon_state = "south"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
-	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/lv624/ground/jungle3
 	name ="Southwest Jungle"
 	icon_state = "southwest"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
-	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/lv624/ground/jungle4
 	name ="Central Western Jungle"
 	icon_state = "west"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
-	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/lv624/ground/jungle5
 	name ="Eastern Jungle"
 	icon_state = "east"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
-	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/lv624/ground/jungle6
 	name ="Northwest Jungle"
 	icon_state = "northwest"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
-	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/lv624/ground/jungle7
 	name ="Northern Jungle"
 	icon_state = "north"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
-	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/lv624/ground/jungle8
 	name ="Northeast Jungle"
 	icon_state = "northeast"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
-	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/lv624/ground/jungle9
 	name ="Central Jungle"
 	icon_state = "central"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
-	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/lv624/ground/jungle10
 	name ="Western Jungle"
 	icon_state = "west2"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
-	minimap_color = MINIMAP_AREA_JUNGLE
-
 //Sand
 /area/lv624/ground/sand1
 	name = "\improper Western Barrens"
@@ -189,7 +178,6 @@
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambisin4.ogg')
 	ceiling = CEILING_DEEP_UNDERGROUND
 	outside = FALSE
-	minimap_color = MINIMAP_AREA_CAVES
 
 //Caves
 /area/lv624/ground/caves/rock //catchall for closed turfs we want immune to rain/easily visible to map editing tools
@@ -238,13 +226,11 @@
 	icon_state = "green"
 	ceiling = CEILING_METAL
 	outside = FALSE
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv624/lazarus/atmos
 	name = "\improper Atmospherics"
 	icon_state = "atmos"
 	ceiling = CEILING_GLASS
-	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv624/lazarus/atmos/outside
 	name = "\improper Atmospherics Area"
@@ -262,8 +248,6 @@
 /area/lv624/lazarus/medbay
 	name = "\improper Medbay"
 	icon_state = "medbay"
-	minimap_color = MINIMAP_AREA_MEDBAY
-
 /area/lv624/lazarus/armory
 	name = "\improper Armory"
 	icon_state = "armory"
@@ -271,7 +255,6 @@
 /area/lv624/lazarus/security
 	name = "\improper Security"
 	icon_state = "security"
-	minimap_color = MINIMAP_AREA_SEC
 
 /area/lv624/lazarus/captain
 	name = "\improper Commandant's Quarters"
@@ -342,7 +325,6 @@
 /area/lv624/lazarus/secure_storage
 	name = "\improper Secure Storage"
 	icon_state = "storage"
-	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv624/lazarus/internal_affairs
 	name = "\improper Internal Affairs"
@@ -399,7 +381,6 @@
 /area/lv624/lazarus/relay
 	name = "\improper Secret Relay Room"
 	icon_state = "tcomsatcham"
-	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv624/lazarus/console
 	name = "\improper Shuttle Console"

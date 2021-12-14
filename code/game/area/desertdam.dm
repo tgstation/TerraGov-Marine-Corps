@@ -74,7 +74,6 @@
 
 //Dam Interior
 /area/desert_dam/interior/dam_interior
-	minimap_color = MINIMAP_AREA_ENGI
 	outside = FALSE
 /area/desert_dam/interior/dam_interior/engine_room
 	name = "Engineering Generator Room"
@@ -106,22 +105,18 @@
 /area/desert_dam/interior/dam_interior/north_tunnel
 	name = "Engineering Northern Tunnel"
 	icon_state = "blue-red"
-	minimap_color = MINIMAP_AREA_COLONY
 /area/desert_dam/interior/dam_interior/west_tunnel
 	name = "Engineering Western Tunnel"
 	icon_state = "yellow"
 /area/desert_dam/interior/dam_interior/central_tunnel
 	name = "Engineering Central Tunnel"
 	icon_state = "red"
-	minimap_color = MINIMAP_AREA_COLONY
 /area/desert_dam/interior/dam_interior/south_tunnel
 	name = "Engineering Southern Tunnel"
 	icon_state = "purple"
-	minimap_color = MINIMAP_AREA_ENGI
 /area/desert_dam/interior/dam_interior/northeastern_tunnel
 	name = "Engineering Northeastern Tunnel"
 	icon_state = "green"
-	minimap_color = MINIMAP_AREA_COLONY
 /area/desert_dam/interior/dam_interior/CE_office
 	name = "Engineering Chief Engineer's Office"
 	icon_state = "yellow"
@@ -152,7 +147,6 @@
 /area/desert_dam/interior/dam_interior/western_dam_cave
 	name = "Engineering West Entrance"
 	icon_state = "red"
-	minimap_color = MINIMAP_AREA_CAVES
 /area/desert_dam/interior/dam_interior/office
 	name = "Engineering Office"
 	icon_state = "red"
@@ -167,15 +161,12 @@
 /area/desert_dam/interior/dam_interior/north_tunnel_entrance
 	name = "Engineering North Tunnel Entrance"
 	icon_state = "yellow"
-	minimap_color = MINIMAP_AREA_SEC
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance
 	name = "Engineering East Tunnel Entrance"
 	icon_state = "yellow"
-	minimap_color = MINIMAP_AREA_SEC
 /area/desert_dam/interior/dam_interior/south_tunnel_entrance
 	name = "Engineering South Tunnel Entrance"
 	icon_state = "red"
-	minimap_color = MINIMAP_AREA_SEC
 
 /area/desert_dam/interior/caves
 	name = "Caves"
@@ -183,16 +174,13 @@
 	outside = FALSE
 	icon_state = "red"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambisin4.ogg')
-	minimap_color = MINIMAP_AREA_CAVES
 
 /area/desert_dam/interior/caves/northern_caves
 	name = "Northern Caves"
 	icon_state = "red"
-	minimap_color = MINIMAP_AREA_CAVES
 /area/desert_dam/interior/caves/east_caves
 	name = "Eastern Caves"
 	icon_state = "red"
-	minimap_color = MINIMAP_AREA_CAVES
 
 /area/desert_dam/interior/caves/central_caves
 	name = "Central Caves"
@@ -221,7 +209,6 @@
 /area/desert_dam/building/substation
 	name = "Substation"
 	icon = 'icons/turf/dam_areas.dmi'
-	minimap_color = MINIMAP_AREA_ENGI
 
 /area/desert_dam/building/substation/northwest
 	name = "Command Substation"
@@ -319,7 +306,6 @@
 
 //Medical
 /area/desert_dam/building/medical
-	minimap_color = MINIMAP_AREA_MEDBAY
 /area/desert_dam/building/medical/garage
 	name = "Medical Garage"
 	icon_state = "garage"
@@ -419,7 +405,6 @@
 /area/desert_dam/building/telecommunication
 	name = "Telecommunications"
 	icon_state = "yellow"
-	minimap_color = MINIMAP_AREA_ENGI
 
 //Water Treatment Plant 1
 /area/desert_dam/building/water_treatment_one
@@ -510,7 +495,6 @@
 
 //Security
 /area/desert_dam/building/security
-	minimap_color = MINIMAP_AREA_SEC
 /area/desert_dam/building/security/prison
 	name = "Security Prison"
 	icon_state = "sec_prison"
@@ -573,7 +557,6 @@
 
 //Mining area
 /area/desert_dam/building/mining
-	minimap_color = MINIMAP_AREA_ENGI
 /area/desert_dam/building/mining/workshop
 	name = "Mining Workshop"
 	icon_state = "yellow"
@@ -675,44 +658,37 @@
 
 /area/desert_dam/exterior/landing
 	always_unpowered = FALSE
-	
+
 //Landing Pad for the Alamo. THIS IS NOT THE SHUTTLE AREA
 /area/desert_dam/exterior/landing/landing_pad_one
 	name = "Airstrip Landing Pad"
 	icon_state = "landing_pad"
-	minimap_color = MINIMAP_AREA_LZ
 /area/desert_dam/exterior/landing/landing_pad_one_external
 	name = "Airstrip Landing Valley"
 	icon_state = "landing_pad_ext"
-	minimap_color = MINIMAP_AREA_COLONY
 
 
 //Landing Pad for the Normandy. THIS IS NOT THE SHUTTLE AREA
 /area/desert_dam/exterior/landing/landing_pad_two
 	name = "Eastern Aerodrome Landing Pad"
 	icon_state = "landing_pad"
-	minimap_color = MINIMAP_AREA_LZ
 /area/desert_dam/exterior/landing/landing_pad_two_external
 	name = "Eastern Landing Valley"
 	icon_state = "landing_pad_ext"
-	minimap_color = MINIMAP_AREA_COLONY
 
 //Landing Pad for the abandoned tradeship, not used for transit. THIS IS NOT THE SHUTTLE AREA
 /area/desert_dam/exterior/landing/landing_pad_three
 	name = "Aerodrome Landing Pad"
 	icon_state = "landing_pad"
-	minimap_color = MINIMAP_AREA_LZ
 /area/desert_dam/exterior/landing/landing_pad_three_external
 	name = "Aerodrome Landing Valley"
 	icon_state = "landing_pad_ext"
-	minimap_color = MINIMAP_AREA_COLONY
 
 //Valleys
 //Near LZ
 //TODO: incorporate valleys and substrations for floodlight coverage
 
 /area/desert_dam/exterior/valley
-	minimap_color = MINIMAP_AREA_COLONY
 /area/desert_dam/exterior/valley/valley_northwest
 	name = "Northwest Valley"
 	icon_state = "valley_north_west"
@@ -749,7 +725,6 @@
 /area/desert_dam/exterior/valley/valley_crashsite
 	name = "Crash Site Valley"
 	icon_state = "yellow"
-	minimap_color = MINIMAP_AREA_CAVES
 /area/desert_dam/exterior/valley/north_valley_dam
 	name = "North Dam Valley"
 	icon_state = "valley"

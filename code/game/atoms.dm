@@ -91,9 +91,6 @@
 	///Reference to atom being orbited
 	var/atom/orbit_target
 
-	///The color this atom will be if we choose to draw it on the minimap
-	var/minimap_color = MINIMAP_SOLID
-
 /*
 We actually care what this returns, since it can return different directives.
 Not specifically here, but in other variations of this. As a general safety,

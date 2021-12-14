@@ -639,6 +639,28 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/wipe_color_and_text, wipe_colours), 10 SECONDS)
 
+/client/proc/generate_minimaps()
+	set name = "Generate Minimaps for a loaded map"
+	set category = "Debug"
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	var/list/minimaps = list()
+	for(var/datum/game_map/M as anything in SSminimap.minimaps)
+		minimaps[M.name] = M
+
+	var/result = tgui_input_list(usr, "Select map", "Select map", minimaps)
+	if(!result)
+		return
+
+	var/datum/game_map/map_to_generate = minimaps[result]
+
+	if(tgui_alert(usr, "Are you sure you want to do this? This could lag the server for a considerable amount of time!", "Confirmation", list("Yes", "No")) == "No")
+		return
+
+	map_to_generate.generate_map()
+
 /datum/admins/proc/wipe_color_and_text(list/atom/wiping)
 	for(var/i in wiping)
 		var/atom/atom_to_clean = i

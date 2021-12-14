@@ -94,7 +94,6 @@
 	animate(pixel_z = 10, time = 1 SECONDS)
 	animate(pixel_z = 15, time = 1 SECONDS)
 	animate(pixel_z = 10, time = 1 SECONDS)
-	animate(pixel_z = SCREEN_PIXEL_SIZE, time = 1 SECONDS)
 
 
 /obj/item/fulton_extraction_pack/proc/cleanup_extraction()

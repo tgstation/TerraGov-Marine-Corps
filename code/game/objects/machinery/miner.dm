@@ -52,7 +52,6 @@
 
 /obj/machinery/miner/Initialize()
 	. = ..()
-	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_off")
 	start_processing()
 
 /obj/machinery/miner/update_icon()
@@ -255,8 +254,6 @@
 /obj/machinery/miner/process()
 	if(miner_status != MINER_RUNNING)
 		stop_processing()
-		SSminimaps.remove_marker(src)
-		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_off")
 		return
 	if(add_tick >= required_ticks)
 		if(miner_upgrade_type == MINER_AUTOMATED)
@@ -310,7 +307,5 @@
 			miner_status = MINER_SMALL_DAMAGE
 		if(100 to INFINITY)
 			start_processing()
-			SSminimaps.remove_marker(src)
-			SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on")
 			miner_status = MINER_RUNNING
 	update_icon()

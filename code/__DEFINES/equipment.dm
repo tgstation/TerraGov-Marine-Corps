@@ -30,6 +30,8 @@
 #define ADMIN_SPAWNED (1<<14)
 /// Can this atom be bumped attack
 #define BUMP_ATTACKABLE (1<<15)
+#define SHOW_ON_MINIMAP	(1<<16)
+#define TURF_HIDE_MINIMAP (1<<17)
 /// Should we use the initial icon for display? Mostly used by overlay only objects
 #define HTML_USE_INITAL_ICON_1 (1<<21)
 

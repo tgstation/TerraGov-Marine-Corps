@@ -87,6 +87,20 @@
 			Insert("language-[icon_state]", icon, icon_state=icon_state)
 	..()
 
+/datum/asset/simple/minimap
+	var/name = "minimap"
+
+/datum/asset/simple/minimap/register()
+	for(var/datum/game_map/GM as anything in SSminimap.minimaps)
+		var/asset = GM.generated_map
+		if (!asset)
+			continue
+		asset = fcopy_rsc(asset) //dedupe
+		var/asset_name = SANITIZE_FILENAME("minimap.[GM.name].png")
+		var/datum/asset_cache_item/ACI = SSassets.transport.register_asset(asset_name, asset)
+		ACI.keep_local_name = TRUE
+		assets[asset_name] = ACI
+
 /datum/asset/simple/namespaced/common
 	assets = list("padlock.png"	= 'html/images/padlock.png')
 	parents = list("common.css" = 'html/browser/common.css')

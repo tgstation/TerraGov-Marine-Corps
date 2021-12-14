@@ -11,8 +11,6 @@
 	set_datum()
 	time_of_birth = world.time
 	add_inherent_verbs()
-	var/datum/action/minimap/xeno/mini = new
-	mini.give_action(src)
 	add_abilities()
 
 	create_reagents(1000)
@@ -63,8 +61,6 @@
 	hive.update_tier_limits()
 	if(CONFIG_GET(flag/xenos_on_strike))
 		replace_by_ai()
-	if(z) //Larva are initiated in null space
-		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
 
 ///Change the caste of the xeno. If restore health is true, then health is set to the new max health
 /mob/living/carbon/xenomorph/proc/set_datum(restore_health_and_plasma = TRUE)

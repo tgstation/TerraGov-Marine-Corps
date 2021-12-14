@@ -16,14 +16,12 @@
 	ceiling = CEILING_NONE
 	icon_state="red"
 	outside = FALSE
-	minimap_color = MINIMAP_AREA_LZ
 
 /area/outpost/lz2
 	name = "Landing Zone 2"
 	ceiling = CEILING_NONE
 	icon_state="red"
 	outside = FALSE
-	minimap_color = MINIMAP_AREA_LZ
 
 
 
@@ -44,7 +42,6 @@
 	name = "Cargo Security Outpost"
 	icon_state="brig"
 	ceiling = CEILING_GLASS
-	minimap_color = MINIMAP_AREA_SEC
 
 
 // Cave Areas, cave.
@@ -54,7 +51,6 @@
 	icon_state="cave"
 	ceiling = CEILING_NONE
 	outside = FALSE
-	minimap_color = MINIMAP_AREA_CAVES
 
 /area/outpost/caves/central
 	name = "Central Caves"
@@ -110,7 +106,6 @@
 	name = "Yard"
 	icon_state="thunder"
 	ceiling = CEILING_NONE
-	minimap_color = MINIMAP_AREA_COLONY
 
 /area/outpost/yard/central
 	name = "Central Yard"
@@ -171,7 +166,6 @@
 	name = "Arrivals Security Outpost"
 	icon_state="brig"
 	ceiling = CEILING_GLASS
-	minimap_color = MINIMAP_AREA_SEC
 
 
 
@@ -227,13 +221,11 @@
 	icon_state="blue"
 	ceiling = CEILING_GLASS
 	outside = FALSE
-	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/outpost/medbay/security
 	name="Medbay Security Outpost"
 	icon_state="blue"
 	ceiling = CEILING_GLASS
-	minimap_color = MINIMAP_AREA_SEC
 
 /area/outpost/medbay/storage
 	name="Medbay Storage"
@@ -303,7 +295,6 @@
 	name = "Science Security Outpost"
 	icon_state="brig"
 	ceiling = CEILING_METAL
-	minimap_color = MINIMAP_AREA_SEC
 
 /area/outpost/science/hydponics
 	// LOCAL DEGENERATE BOTANIST STOLE THE CHEM DISPENSER AGAIN
@@ -345,7 +336,6 @@
 	icon_state="engine"
 	ceiling = CEILING_GLASS
 	outside = FALSE
-	minimap_color = MINIMAP_AREA_ENGI
 
 /area/outpost/engineering/hallway
 	name = "Engineering Hallway"
@@ -356,7 +346,6 @@
 	name = "Engineering Security Outpost"
 	icon_state="engine"
 	ceiling = CEILING_GLASS
-	minimap_color = MINIMAP_AREA_SEC
 
 /area/outpost/engineering/engine
 	name = "Engine Room"

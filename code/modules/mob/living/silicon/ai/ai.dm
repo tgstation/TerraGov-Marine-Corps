@@ -88,7 +88,6 @@
 	var/datum/action/innate/order/defend_order/send_defend_order = new
 	var/datum/action/innate/order/retreat_order/send_retreat_order = new
 	var/datum/action/control_vehicle/control = new
-	var/datum/action/minimap/ai/mini = new
 	send_attack_order.target = src
 	send_attack_order.give_action(src)
 	send_defend_order.target = src
@@ -96,7 +95,6 @@
 	send_retreat_order.target = src
 	send_retreat_order.give_action(src)
 	control.give_action(src)
-	mini.give_action(src)
 
 /mob/living/silicon/ai/Destroy()
 	GLOB.ai_list -= src

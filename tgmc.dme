@@ -1290,6 +1290,7 @@
 #include "code\modules\mapping\space_management\space_reservation.dm"
 #include "code\modules\mapping\space_management\traits.dm"
 #include "code\modules\mapping\space_management\zlevel_manager.dm"
+#include "code\modules\minimap\minimap.dm"
 #include "code\modules\mining\alloys.dm"
 #include "code\modules\mining\drill.dm"
 #include "code\modules\mining\machine_processing.dm"

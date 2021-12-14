@@ -43,21 +43,3 @@
 	user.visible_message(span_notice("[user] captured [src]! For the [human_user.faction]s"), span_notice("You captured [src]! For the [human_user.faction]s"))
 	faction = human_user.faction
 	update_icon()
-
-/obj/structure/sensor_tower/update_icon()
-	. = ..()
-	update_control_minimap_icon()
-
-///Update the minimap blips to show who is controlling this area
-/obj/structure/sensor_tower/proc/update_control_minimap_icon()
-	switch(faction)
-		if(FACTION_TERRAGOV)
-			SSminimaps.remove_marker(src)
-			SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "loyalist_zone")
-		if(FACTION_TERRAGOV_REBEL)
-			SSminimaps.remove_marker(src)
-			SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "rebel_zone")
-		else
-			SSminimaps.remove_marker(src)
-			SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "neutral_zone")
-

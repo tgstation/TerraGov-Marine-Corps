@@ -356,15 +356,6 @@
 	selected_xeno.hud_set_queen_overwatch()
 	selected_xeno.handle_xeno_leader_pheromones(xeno_ruler)
 
-	var/datum/xeno_caste/original = /datum/xeno_caste
-	// Xenos with specialized icons (Queen, King, Shrike) do not need to have their icon returned to normal
-	if(selected_xeno.xeno_caste.minimap_icon != initial(original.minimap_icon))
-		return
-
-	SSminimaps.remove_marker(selected_xeno)
-	SSminimaps.add_marker(selected_xeno, selected_xeno.z, MINIMAP_FLAG_XENO, selected_xeno.xeno_caste.minimap_icon)
-
-
 /datum/action/xeno_action/set_xeno_lead/proc/set_xeno_leader(mob/living/carbon/xenomorph/selected_xeno, feedback = TRUE)
 	var/mob/living/carbon/xenomorph/xeno_ruler = owner
 	if(!(selected_xeno.xeno_caste.caste_flags & CASTE_CAN_BE_LEADER))
@@ -379,14 +370,6 @@
 	selected_xeno.hud_set_queen_overwatch()
 	selected_xeno.handle_xeno_leader_pheromones(xeno_ruler)
 	notify_ghosts("\ [xeno_ruler] has designated [selected_xeno] as a Hive Leader", source = selected_xeno, action = NOTIFY_ORBIT)
-
-	var/datum/xeno_caste/original = /datum/xeno_caste
-	// Xenos with specialized icons (Queen, King, Shrike) do not get their icon changed
-	if(selected_xeno.xeno_caste.minimap_icon != initial(original.minimap_icon))
-		return
-
-	SSminimaps.remove_marker(selected_xeno)
-	SSminimaps.add_marker(selected_xeno, selected_xeno.z, MINIMAP_FLAG_XENO, selected_xeno.xeno_caste.minimap_leadered_icon)
 
 // ***************************************
 // *********** Queen plasma
