@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 /obj/machinery/telecomms
 	icon = 'icons/obj/machines/telecomms.dmi'
 	anchored = TRUE
-	resistance_flags = UNACIDABLE
+	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
 	var/list/links = list() // list of machines this machine is linked to
 	var/traffic = 0 // value increases as traffic increases
 	var/netspeed = 5 // how much traffic to lose per tick (50 gigabytes/second * netspeed)
