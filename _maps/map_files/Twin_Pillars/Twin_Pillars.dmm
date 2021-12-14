@@ -10363,7 +10363,7 @@
 	dir = 1
 	},
 /obj/machinery/door/window/secure/bridge,
-/mob/living/simple_animal/corgi/Ian,
+/mob/living/simple_animal/corgi/ian,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "jzc" = (
@@ -18719,7 +18719,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/mob/living/simple_animal/corgi/Ian,
+/mob/living/simple_animal/corgi/ian,
 /obj/machinery/door/window/secure/bridge/rebel,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic/rebel)
