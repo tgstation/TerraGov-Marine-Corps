@@ -194,6 +194,12 @@
 /obj/effect/landmark/thunderdome/one,
 /turf/open/floor/plating,
 /area/tdome/tdome1)
+"aQ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/valhalla)
 "aR" = (
 /turf/open/floor/podhatch/floor,
 /area/tdome)
@@ -295,6 +301,10 @@
 /obj/structure/bed/chair,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
+"bA" = (
+/obj/structure/flora/pottedplant,
+/turf/open/floor/wood,
+/area/valhalla)
 "bB" = (
 /obj/structure/table,
 /turf/open/floor/tile/red/yellowfull,
@@ -365,6 +375,13 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
+"bU" = (
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/valhalla)
 "cf" = (
 /turf/open/floor/mainship{
 	icon_state = "test_floor5"
@@ -375,12 +392,21 @@
 	icon_state = "test_floor5"
 	},
 /area/centcom/supplypod/flyMeToTheMoon)
+"ck" = (
+/turf/open/floor/mainship/emerald,
+/area/valhalla)
 "cm" = (
 /turf/open/floor/mainship/cargo,
 /area/centcom/supplypod/loading/three)
 "cn" = (
 /turf/open/floor/mainship/cargo,
 /area/centcom/supplypod/loading/four)
+"co" = (
+/turf/open/floor/carpet{
+	dir = 10;
+	icon_state = "carpetside"
+	},
+/area/valhalla)
 "cp" = (
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/supplypod/loading/three)
@@ -390,9 +416,33 @@
 "cr" = (
 /turf/open/floor/mainship/cargo,
 /area/centcom/supplypod/loading/ert)
+"ct" = (
+/obj/item/clothing/gloves/boxing/yellow,
+/turf/open/floor/mainship/orange{
+	dir = 5
+	},
+/area/valhalla)
+"cy" = (
+/obj/structure/table/gamblingtable,
+/turf/open/floor/carpet{
+	dir = 8;
+	icon_state = "carpetside"
+	},
+/area/valhalla)
 "cE" = (
 /obj/machinery/marine_selector/clothes/leader/valhalla,
 /turf/open/floor/prison/plate,
+/area/valhalla)
+"cT" = (
+/obj/structure/table/woodentable,
+/obj/machinery/reagentgrinder,
+/turf/open/floor/wood,
+/area/valhalla)
+"du" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/plain,
 /area/valhalla)
 "dv" = (
 /obj/item/stack/medical/heal_pack/ointment,
@@ -400,6 +450,12 @@
 /obj/item/stack/medical/heal_pack/ointment,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
+"dw" = (
+/obj/machinery/chem_dispenser/soda,
+/obj/structure/table/woodentable,
+/obj/item/book/manual/barman_recipes,
+/turf/open/floor/wood,
+/area/valhalla)
 "dX" = (
 /turf/closed/wall/mainship/outer{
 	name = "reinforced hull"
@@ -415,14 +471,86 @@
 	},
 /turf/open/floor/prison/plate,
 /area/valhalla)
+"eB" = (
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/valhalla)
 "fx" = (
 /turf/open/floor/prison/plate,
+/area/valhalla)
+"fA" = (
+/obj/machinery/griddle,
+/turf/open/floor/prison/sterilewhite,
+/area/valhalla)
+"fJ" = (
+/turf/open/floor/prison/sterilewhite,
+/area/valhalla)
+"fR" = (
+/obj/structure/window/reinforced/toughened,
+/obj/structure/bed/chair/comfy{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/valhalla)
+"fY" = (
+/turf/closed/wall/mainship/gray/outer,
+/area/space)
+"gd" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/vending/cigarette/colony,
+/turf/open/floor/wood,
+/area/valhalla)
+"gp" = (
+/obj/structure/rack,
+/obj/item/reagent_containers/food/condiment/saltshaker,
+/obj/item/reagent_containers/food/condiment/saltshaker,
+/obj/item/reagent_containers/food/condiment/saltshaker,
+/obj/item/reagent_containers/food/condiment/saltshaker,
+/obj/item/reagent_containers/food/condiment/saltshaker,
+/obj/item/reagent_containers/food/condiment/saltshaker,
+/obj/item/reagent_containers/food/condiment/peppermill,
+/obj/item/reagent_containers/food/condiment/peppermill,
+/obj/item/reagent_containers/food/condiment/peppermill,
+/obj/item/reagent_containers/food/condiment/peppermill,
+/obj/item/storage/box/monkeycubes,
+/obj/item/reagent_containers/food/condiment/peppermill,
+/obj/item/reagent_containers/food/condiment/peppermill,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/item/reagent_containers/food/snacks/flour,
+/obj/item/reagent_containers/food/snacks/flour,
+/obj/item/reagent_containers/food/snacks/flour,
+/turf/open/floor/freezer,
+/area/valhalla)
+"gt" = (
+/turf/open/floor/light,
+/area/valhalla)
+"gz" = (
+/obj/structure/prop/mainship/valmoric,
+/turf/open/floor/grass,
 /area/valhalla)
 "gO" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/prison/plate,
+/area/valhalla)
+"gQ" = (
+/obj/structure/prop/mainship/ship_memorial{
+	desc = "A ship memorial dedicated to the triumphs of the TGMC and the fallen marines of this ship. On the left there are grand tales of victory etched into the slab. On the right there is a list of famous marines who have fallen in combat serving the TGMC. There seems to be an etch of three spikes on the free space below."
+	},
+/turf/open/floor/plating/mainship,
+/area/valhalla)
+"gS" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 8
+	},
+/turf/open/floor/wood,
 /area/valhalla)
 "hk" = (
 /obj/structure/table,
@@ -439,6 +567,35 @@
 "hp" = (
 /turf/closed/wall/indestructible,
 /area/start)
+"hH" = (
+/obj/item/reagent_containers/food/snacks/grown/poppy{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/turf/open/floor/grass,
+/area/valhalla)
+"iL" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/closet/crate/freezer,
+/obj/item/reagent_containers/food/snacks/dough,
+/obj/item/reagent_containers/food/snacks/dough,
+/obj/item/reagent_containers/food/snacks/dough,
+/obj/item/reagent_containers/food/snacks/dough,
+/obj/item/reagent_containers/food/snacks/dough,
+/obj/item/reagent_containers/food/snacks/dough,
+/obj/item/reagent_containers/food/snacks/dough,
+/obj/item/reagent_containers/food/snacks/dough,
+/obj/item/reagent_containers/food/snacks/dough,
+/obj/item/reagent_containers/food/snacks/dough,
+/obj/item/reagent_containers/food/snacks/grown/potato,
+/obj/item/reagent_containers/food/snacks/grown/potato,
+/obj/item/reagent_containers/food/snacks/grown/potato,
+/obj/item/reagent_containers/food/snacks/grown/potato,
+/obj/item/reagent_containers/food/snacks/grown/potato,
+/turf/open/floor/freezer,
+/area/valhalla)
 "ji" = (
 /obj/effect/landmark/newplayer_start,
 /turf/open/floor,
@@ -447,6 +604,29 @@
 /obj/machinery/vending/dress_supply,
 /turf/open/floor/prison/plate,
 /area/valhalla)
+"jQ" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/valhalla)
+"jW" = (
+/obj/machinery/recycler,
+/turf/open/floor/mainship/mono,
+/area/valhalla)
+"kd" = (
+/turf/open/floor/carpet{
+	dir = 6;
+	icon_state = "carpetside"
+	},
+/area/valhalla)
+"ku" = (
+/obj/structure/table/woodentable,
+/turf/open/floor/carpet{
+	dir = 6;
+	icon_state = "carpetside"
+	},
+/area/valhalla)
 "kw" = (
 /obj/structure/prop/mainship/toolboxforacause2020,
 /turf/open/floor/tile/red/redblue/full,
@@ -454,9 +634,62 @@
 "kx" = (
 /turf/closed/wall/indestructible/splashscreen,
 /area/start)
+"kH" = (
+/obj/structure/table/mainship,
+/obj/item/reagent_containers/glass/rag,
+/obj/item/tool/kitchen/utensil/knife,
+/turf/open/floor/prison/sterilewhite,
+/area/valhalla)
+"kI" = (
+/turf/open/floor/freezer,
+/area/valhalla)
+"kU" = (
+/obj/machinery/door/window{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/valhalla)
 "kY" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/stripesquare,
+/area/valhalla)
+"lp" = (
+/obj/structure/flora/ausbushes/sunnybush,
+/turf/open/floor/grass,
+/area/valhalla)
+"lv" = (
+/obj/structure/bed/chair/sofa{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/grimy,
+/area/valhalla)
+"me" = (
+/obj/item/storage/firstaid/regular{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/structure/closet/secure_closet/personal/cabinet,
+/turf/open/floor/wood,
+/area/valhalla)
+"mv" = (
+/obj/structure/table/woodentable,
+/turf/open/floor/carpet{
+	dir = 5;
+	icon_state = "carpetside"
+	},
+/area/valhalla)
+"nc" = (
+/obj/machinery/vending/dinnerware,
+/turf/open/floor/prison/sterilewhite,
+/area/valhalla)
+"nD" = (
+/obj/structure/bed/chair/sofa/right{
+	dir = 8
+	},
+/turf/open/floor/wood,
 /area/valhalla)
 "oM" = (
 /obj/machinery/light{
@@ -464,15 +697,94 @@
 	},
 /turf/open/floor/prison/plate,
 /area/valhalla)
+"oV" = (
+/obj/item/clothing/gloves/boxing/green,
+/turf/open/floor/mainship/emerald{
+	dir = 6
+	},
+/area/valhalla)
+"oW" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/radio/intercom/general{
+	dir = 1
+	},
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/turf/open/floor/prison/sterilewhite,
+/area/valhalla)
 "oY" = (
 /obj/structure/window/reinforced{
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo,
 /area/valhalla)
+"pu" = (
+/turf/open/floor/mainship/mono,
+/area/valhalla)
+"py" = (
+/obj/machinery/light,
+/turf/open/floor/mainship/sterile/plain,
+/area/valhalla)
+"pD" = (
+/obj/structure/table/mainship,
+/obj/item/tool/kitchen/utensil/fork,
+/obj/item/tool/kitchen/rollingpin,
+/turf/open/floor/prison/sterilewhite,
+/area/valhalla)
 "pR" = (
 /obj/machinery/chem_dispenser/valhalla,
 /turf/open/floor/prison/plate,
+/area/valhalla)
+"pX" = (
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/valhalla)
+"qB" = (
+/turf/open/floor/mainship/sterile/plain,
+/area/valhalla)
+"qK" = (
+/obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/item/reagent_containers/food/snacks/meatballspagetti,
+/obj/item/reagent_containers/food/snacks/grilledcheese,
+/obj/item/reagent_containers/food/snacks/cheeseburger,
+/obj/item/reagent_containers/food/snacks/soylentgreen,
+/obj/item/reagent_containers/food/snacks/spesslaw,
+/obj/item/reagent_containers/food/snacks/stuffing,
+/obj/item/reagent_containers/food/snacks/tofurkey,
+/obj/item/reagent_containers/food/snacks/waffles,
+/turf/open/floor/wood,
+/area/valhalla)
+"qZ" = (
+/obj/structure/window/reinforced/toughened,
+/obj/structure/table/woodentable,
+/turf/open/floor/wood,
+/area/valhalla)
+"rm" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/grass,
+/area/valhalla)
+"rx" = (
+/obj/structure/table/reinforced,
+/obj/item/tool/kitchen/utensil/knife,
+/obj/item/reagent_containers/food/condiment/saltshaker,
+/obj/item/reagent_containers/food/condiment/saltshaker,
+/obj/item/reagent_containers/food/condiment/peppermill,
+/turf/open/floor/prison/sterilewhite,
+/area/valhalla)
+"rP" = (
+/obj/structure/table/woodentable,
+/obj/machinery/chem_dispenser/soda,
+/turf/open/floor/wood,
+/area/valhalla)
+"rZ" = (
+/turf/open/floor/wood,
 /area/valhalla)
 "ss" = (
 /obj/structure/window/reinforced{
@@ -491,6 +803,10 @@
 /obj/machinery/vending/marineFood,
 /turf/open/floor/prison/plate,
 /area/valhalla)
+"tG" = (
+/obj/machinery/door/window,
+/turf/open/floor/freezer,
+/area/valhalla)
 "tW" = (
 /obj/machinery/igniter,
 /obj/machinery/light{
@@ -498,11 +814,43 @@
 	},
 /turf/open/floor,
 /area/tdome)
+"uc" = (
+/turf/open/floor/mainship/orange{
+	dir = 1
+	},
+/area/valhalla)
+"ul" = (
+/obj/structure/table/reinforced,
+/obj/item/book/manual/chef_recipes,
+/obj/item/tool/kitchen/knife/butcher,
+/obj/item/tool/kitchen/rollingpin,
+/obj/item/clothing/head/chefhat,
+/obj/item/clothing/suit/chef/classic,
+/obj/item/clothing/suit/chef,
+/turf/open/floor/prison/sterilewhite,
+/area/valhalla)
+"ut" = (
+/obj/structure/flora/ausbushes/brflowers,
+/turf/open/floor/grass,
+/area/valhalla)
+"uC" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/grass,
+/area/valhalla)
 "uK" = (
 /obj/structure/window/reinforced{
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo,
+/area/valhalla)
+"uT" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/grass,
+/area/valhalla)
+"vb" = (
+/obj/structure/table/gamblingtable,
+/obj/item/toy/deck/kotahi,
+/turf/open/floor/carpet,
 /area/valhalla)
 "vc" = (
 /obj/structure/reagent_dispensers/beerkeg,
@@ -512,17 +860,83 @@
 	},
 /turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
+"ve" = (
+/obj/structure/table/reinforced,
+/obj/machinery/microwave,
+/obj/structure/closet/walllocker/emerglocker{
+	dir = 4
+	},
+/turf/open/floor/prison/sterilewhite,
+/area/valhalla)
+"vE" = (
+/obj/structure/bed/chair/sofa/corner{
+	dir = 4
+	},
+/turf/open/floor/grimy,
+/area/valhalla)
+"vH" = (
+/obj/structure/table/woodentable,
+/turf/open/floor/carpet{
+	dir = 4;
+	icon_state = "carpetside"
+	},
+/area/valhalla)
+"vJ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/valhalla)
+"vV" = (
+/obj/machinery/vending/dinnerware,
+/turf/open/floor/wood,
+/area/valhalla)
+"vW" = (
+/obj/structure/disposalpipe/segment,
+/turf/closed/wall/mainship/gray/outer,
+/area/valhalla)
+"vY" = (
+/obj/structure/table/woodentable,
+/turf/open/floor/grimy,
+/area/valhalla)
+"wd" = (
+/obj/structure/bed/stool,
+/turf/open/floor/carpet{
+	icon_state = "carpetside"
+	},
+/area/valhalla)
+"wg" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/grown/banana,
+/turf/open/floor/wood,
+/area/valhalla)
 "wi" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/tile/white,
 /area/tdome)
+"wp" = (
+/obj/structure/table/woodentable,
+/turf/open/floor/wood,
+/area/valhalla)
 "xm" = (
 /obj/structure/target_stake,
 /obj/item/target,
 /obj/item/clothing/suit/storage/militia,
 /turf/open/floor/plating/mainship,
+/area/valhalla)
+"xy" = (
+/obj/structure/table/woodentable,
+/obj/item/flashlight/lamp,
+/turf/open/floor/carpet{
+	dir = 1;
+	icon_state = "carpetside"
+	},
+/area/valhalla)
+"xJ" = (
+/obj/machinery/light,
+/turf/open/floor/grass,
 /area/valhalla)
 "yv" = (
 /obj/machinery/vending/medical/valhalla,
@@ -536,16 +950,57 @@
 /obj/machinery/vending/valhalla_req,
 /turf/open/floor/prison/plate,
 /area/valhalla)
+"AS" = (
+/obj/item/clothing/gloves/boxing/blue,
+/turf/open/floor/mainship/blue{
+	dir = 10
+	},
+/area/valhalla)
+"Bj" = (
+/obj/structure/bed/stool,
+/turf/open/floor/carpet{
+	dir = 6;
+	icon_state = "carpetside"
+	},
+/area/valhalla)
+"Ca" = (
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/valhalla)
 "Cf" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor,
 /area/tdome)
+"Cj" = (
+/obj/structure/sink{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/prison/sterilewhite,
+/area/valhalla)
+"Cm" = (
+/turf/open/floor/stairs/rampbottom{
+	dir = 4
+	},
+/area/valhalla)
+"Cp" = (
+/obj/structure/disposalpipe/segment/corner,
+/turf/open/floor/mainship/mono,
+/area/valhalla)
 "Dh" = (
 /obj/machinery/light,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
+"Do" = (
+/obj/machinery/gibber,
+/turf/open/floor/prison/sterilewhite,
+/area/valhalla)
 "Dy" = (
 /obj/machinery/vending/MarineMed/valhalla,
 /turf/open/floor/prison/plate,
@@ -553,6 +1008,37 @@
 "DI" = (
 /obj/machinery/chem_master,
 /turf/open/floor/prison/plate,
+/area/valhalla)
+"DQ" = (
+/obj/structure/bed/chair,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/valhalla)
+"DY" = (
+/obj/structure/bed/chair/sofa/right{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/valhalla)
+"Eg" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/brflowers,
+/turf/open/floor/grass,
+/area/valhalla)
+"El" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	dir = 2;
+	name = "Bar"
+	},
+/turf/open/floor/mainship/mono,
+/area/valhalla)
+"EN" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 4
+	},
+/turf/open/floor/wood,
 /area/valhalla)
 "EO" = (
 /obj/machinery/roomba,
@@ -567,6 +1053,25 @@
 /obj/machinery/vending/weapon/valhalla,
 /turf/open/floor/prison/plate,
 /area/valhalla)
+"GC" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/valhalla)
+"GK" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 4
+	},
+/turf/open/floor/grimy,
+/area/valhalla)
+"Hi" = (
+/obj/structure/table/woodentable,
+/turf/open/floor/carpet{
+	dir = 9;
+	icon_state = "carpetside"
+	},
+/area/valhalla)
 "In" = (
 /obj/effect/landmark/start/job/fallen,
 /turf/open/floor/prison/plate,
@@ -579,9 +1084,47 @@
 /obj/item/reagent_containers/glass/beaker/large,
 /turf/open/floor/prison/plate,
 /area/valhalla)
+"IO" = (
+/obj/structure/bed/chair/sofa/right,
+/turf/open/floor/carpet{
+	dir = 9;
+	icon_state = "carpetside"
+	},
+/area/valhalla)
+"IR" = (
+/obj/structure/window/framed/mainship/hull,
+/turf/open/floor/mainship/mono,
+/area/valhalla)
+"IT" = (
+/obj/structure/bed/chair/comfy{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/carpet{
+	icon_state = "carpetside"
+	},
+/area/valhalla)
+"IU" = (
+/turf/open/floor/mainship/blue,
+/area/valhalla)
 "Jc" = (
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/prison/plate,
+/area/valhalla)
+"Jg" = (
+/obj/structure/table/woodentable,
+/obj/item/ashtray/plastic,
+/turf/open/floor/carpet{
+	dir = 1;
+	icon_state = "carpetside"
+	},
+/area/valhalla)
+"Jw" = (
+/obj/structure/window/reinforced/toughened,
+/obj/structure/bed/chair/comfy{
+	dir = 8
+	},
+/turf/open/floor/wood,
 /area/valhalla)
 "Jy" = (
 /obj/structure/table/mainship,
@@ -591,16 +1134,106 @@
 /obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/prison/plate,
 /area/valhalla)
+"JI" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/valhalla)
+"JO" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/sunnybush,
+/turf/open/floor/grass,
+/area/valhalla)
+"JR" = (
+/obj/structure/bed/stool,
+/turf/open/floor/carpet,
+/area/valhalla)
 "Kn" = (
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/prison/plate,
+/area/valhalla)
+"Ks" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/valhalla)
+"KG" = (
+/turf/open/floor/mainship/emerald{
+	dir = 4
+	},
 /area/valhalla)
 "KP" = (
 /obj/machinery/loadout_vendor/valhalla,
 /turf/open/floor/prison/plate,
 /area/valhalla)
+"Lm" = (
+/turf/open/floor/mainship/red{
+	dir = 8
+	},
+/area/valhalla)
+"Ls" = (
+/obj/machinery/chem_dispenser/beer,
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/shaker,
+/turf/open/floor/wood,
+/area/valhalla)
+"Lw" = (
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/valhalla)
+"LL" = (
+/obj/structure/platform,
+/turf/open/floor/wood,
+/area/valhalla)
+"LS" = (
+/obj/structure/table/woodentable,
+/turf/open/floor/carpet{
+	dir = 10;
+	icon_state = "carpetside"
+	},
+/area/valhalla)
+"LY" = (
+/obj/structure/table/gamblingtable,
+/turf/open/floor/carpet{
+	dir = 4;
+	icon_state = "carpetside"
+	},
+/area/valhalla)
+"Mm" = (
+/obj/machinery/door/window/right,
+/turf/open/floor/mainship/mono,
+/area/valhalla)
+"Mw" = (
+/obj/item/clothing/gloves/boxing,
+/turf/open/floor/mainship/red{
+	dir = 9
+	},
+/area/valhalla)
+"MJ" = (
+/obj/structure/kitchenspike,
+/turf/open/floor/freezer,
+/area/valhalla)
+"Nj" = (
+/obj/structure/bed/chair/sofa/left,
+/turf/open/floor/carpet{
+	dir = 5;
+	icon_state = "carpetside"
+	},
+/area/valhalla)
 "Nw" = (
 /turf/closed/wall/mainship/gray/outer,
+/area/valhalla)
+"Or" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1;
+	id = 1;
+	name = "\improper Quarters 1"
+	},
+/turf/open/floor/mainship/mono,
 /area/valhalla)
 "Ot" = (
 /obj/machinery/light,
@@ -610,12 +1243,25 @@
 /obj/machinery/marine_selector/gear/smartgun/valhalla,
 /turf/open/floor/prison/plate,
 /area/valhalla)
+"Oz" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/coffee,
+/turf/open/floor/carpet{
+	dir = 1;
+	icon_state = "carpetside"
+	},
+/area/valhalla)
 "OG" = (
 /turf/open/ai_visible,
 /area/ai_multicam_room)
 "OM" = (
 /obj/machinery/marine_selector/clothes/smartgun/valhalla,
 /turf/open/floor/prison/plate,
+/area/valhalla)
+"OS" = (
+/obj/structure/table/woodentable,
+/obj/machinery/light,
+/turf/open/floor/wood,
 /area/valhalla)
 "OV" = (
 /obj/machinery/marine_selector/clothes/engi/valhalla,
@@ -625,9 +1271,46 @@
 /obj/machinery/marine_selector/gear/medic/valhalla,
 /turf/open/floor/prison/plate,
 /area/valhalla)
+"Pr" = (
+/obj/structure/table/mainship,
+/obj/item/pizzabox/meat{
+	pixel_y = 8
+	},
+/turf/open/floor/prison/sterilewhite,
+/area/valhalla)
+"Qc" = (
+/obj/structure/table/woodentable,
+/obj/item/trash/tray,
+/turf/open/floor/wood,
+/area/valhalla)
 "QC" = (
 /obj/machinery/marine_selector/clothes/medic/valhalla,
 /turf/open/floor/prison/plate,
+/area/valhalla)
+"QK" = (
+/obj/structure/table/woodentable,
+/obj/machinery/light,
+/obj/item/trash/tray,
+/turf/open/floor/wood,
+/area/valhalla)
+"Rn" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/floor/grass,
+/area/valhalla)
+"RG" = (
+/obj/structure/bed/stool,
+/turf/open/floor/carpet{
+	dir = 9;
+	icon_state = "carpetside"
+	},
+/area/valhalla)
+"SE" = (
+/turf/open/floor/grass,
+/area/valhalla)
+"SN" = (
+/obj/machinery/microwave,
+/obj/structure/table/woodentable,
+/turf/open/floor/wood,
 /area/valhalla)
 "Tc" = (
 /obj/machinery/vending/cigarette,
@@ -636,6 +1319,55 @@
 "Ti" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/prison/plate,
+/area/valhalla)
+"Tk" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/glass/rag,
+/obj/item/reagent_containers/spray/cleaner,
+/turf/open/floor/carpet{
+	dir = 5;
+	icon_state = "carpetside"
+	},
+/area/valhalla)
+"TE" = (
+/obj/structure/bed/stool,
+/turf/open/floor/carpet{
+	dir = 8;
+	icon_state = "carpetside"
+	},
+/area/valhalla)
+"TG" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 1
+	},
+/turf/open/floor/grimy,
+/area/valhalla)
+"TM" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/grass,
+/area/valhalla)
+"TQ" = (
+/obj/structure/device/piano,
+/turf/open/floor/carpet,
+/area/valhalla)
+"TT" = (
+/obj/machinery/light,
+/obj/machinery/disposal,
+/turf/open/floor/wood,
+/area/valhalla)
+"Uv" = (
+/obj/structure/table/woodentable,
+/obj/structure/sink{
+	pixel_y = 15
+	},
+/turf/open/floor/wood,
+/area/valhalla)
+"UL" = (
+/turf/open/space/basic,
+/area/valhalla)
+"Vz" = (
+/turf/closed/wall/mainship/outer,
 /area/valhalla)
 "VE" = (
 /obj/effect/landmark/ai_multicam_room,
@@ -647,6 +1379,17 @@
 	},
 /turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
+"Wh" = (
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/valhalla)
+"WB" = (
+/obj/structure/bed/chair/sofa,
+/turf/open/floor/carpet{
+	dir = 1;
+	icon_state = "carpetside"
+	},
+/area/valhalla)
 "WC" = (
 /obj/machinery/light{
 	dir = 4
@@ -656,9 +1399,58 @@
 "WD" = (
 /turf/open/floor/plating/mainship,
 /area/valhalla)
+"WJ" = (
+/obj/machinery/processor,
+/turf/open/floor/prison/sterilewhite,
+/area/valhalla)
+"Xa" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/valhalla)
+"Xc" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/valhalla)
+"Xg" = (
+/obj/structure/table/woodentable,
+/turf/open/floor/carpet{
+	dir = 1;
+	icon_state = "carpetside"
+	},
+/area/valhalla)
+"XM" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/valhalla)
+"XO" = (
+/obj/structure/bed/stool,
+/turf/open/floor/wood,
+/area/valhalla)
 "Yb" = (
 /obj/machinery/marine_selector/gear/leader/valhalla,
 /turf/open/floor/prison/plate,
+/area/valhalla)
+"Ys" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/valhalla)
+"Zc" = (
+/obj/structure/bed/chair,
+/turf/open/floor/wood,
+/area/valhalla)
+"Zs" = (
+/turf/open/floor/mainship/blue{
+	dir = 8
+	},
 /area/valhalla)
 "ZN" = (
 /obj/structure/table/mainship,
@@ -1355,7 +2147,7 @@ aa
 aa
 aa
 aa
-Ti
+Nw
 eh
 pR
 yv
@@ -1436,7 +2228,7 @@ Ti
 Ti
 Ti
 Ti
-Ti
+Nw
 Nw
 Nw
 Nw
@@ -2174,7 +2966,7 @@ Ti
 Ti
 Ti
 Ti
-Ti
+Nw
 Nw
 Nw
 Nw
@@ -2257,7 +3049,7 @@ aa
 aa
 aa
 aa
-Ti
+Nw
 eh
 Jy
 ZN
@@ -2750,23 +3542,23 @@ aa
 aa
 aa
 Nw
-Ti
-Ti
-Ti
 Nw
 Nw
-Ti
-Ti
-Ti
-Ti
-Ti
-Ti
-Ti
-Ti
-Ti
 Nw
 Nw
-aa
+Nw
+Nw
+Nw
+Nw
+Nw
+Nw
+pu
+El
+Nw
+Nw
+Nw
+Nw
+Nw
 aa
 dX
 cm
@@ -2832,23 +3624,23 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+kI
+kI
+kI
+Nw
+gQ
+uT
+TM
+ut
+Nw
+du
+py
+Nw
+uT
+ut
+uT
+Nw
 aa
 dX
 cm
@@ -2914,23 +3706,23 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+gp
+kI
+MJ
+Nw
+rm
+uC
+Rn
+Eg
+Ti
+qB
+qB
+Ti
+hH
+gz
+xJ
+Nw
 aa
 dX
 cm
@@ -2996,23 +3788,23 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+iL
+tG
+Nw
+Nw
+UL
+lp
+uC
+JO
+Ti
+qB
+qB
+Ti
+SE
+SE
+uT
+Nw
 aa
 dX
 dX
@@ -3077,24 +3869,24 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+Nw
+ve
+fJ
+Nw
+Nw
+Nw
+Nw
+Nw
+Nw
+Nw
+pu
+El
+Nw
+Nw
+Nw
+Nw
+Nw
 aa
 dX
 cn
@@ -3159,24 +3951,24 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+ul
+fJ
+fJ
+nc
+rZ
+rZ
+GK
+lv
+vE
+Nw
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+Nw
 aa
 dX
 cn
@@ -3241,24 +4033,24 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Ti
+rx
+fJ
+fJ
+fJ
+rZ
+rZ
+vY
+vY
+TG
+Nw
+rZ
+rZ
+rZ
+IO
+cy
+co
+Nw
 aa
 dX
 cn
@@ -3323,24 +4115,24 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Ti
+Do
+fJ
+fJ
+pD
+rZ
+rZ
+rZ
+rZ
+rZ
+Or
+rZ
+rZ
+rZ
+WB
+vb
+IT
+Nw
 aa
 dX
 cn
@@ -3405,24 +4197,24 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Ti
+WJ
+fJ
+fJ
+Pr
+rZ
+rZ
+rZ
+rZ
+TT
+Nw
+rZ
+rZ
+rZ
+Nj
+LY
+kd
+Nw
 aa
 dX
 cn
@@ -3487,24 +4279,24 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+oW
+Cj
+fA
+kH
+rZ
+rZ
+rZ
+wg
+me
+Nw
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+Nw
 aa
 dX
 cn
@@ -3569,24 +4361,24 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+Nw
+Nw
+Nw
+Nw
+Nw
+Nw
+Nw
+Nw
+Nw
+Nw
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+Nw
 aa
 dX
 dX
@@ -3655,20 +4447,20 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Ti
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+Nw
 aa
 dX
 cr
@@ -3737,20 +4529,20 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Ti
+rZ
+rZ
+rZ
+rZ
+EN
+DY
+rZ
+EN
+DY
+rZ
+GC
+GC
+Nw
 aa
 dX
 cr
@@ -3819,20 +4611,20 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+qK
+rZ
+fR
+rZ
+Hi
+LS
+rZ
+Hi
+LS
+LL
+TQ
+rZ
+Nw
 aa
 dX
 cr
@@ -3901,20 +4693,20 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+vV
+rZ
+qZ
+rZ
+mv
+ku
+rZ
+mv
+ku
+LL
+JR
+rZ
+Nw
 aa
 dX
 cr
@@ -3983,20 +4775,20 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+rP
+rZ
+Jw
+rZ
+nD
+gS
+rZ
+nD
+gS
+rZ
+Xa
+Cm
+Nw
 aa
 dX
 cr
@@ -4063,22 +4855,22 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+Nw
+Nw
+Nw
+Nw
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+Nw
 aa
 dX
 dX
@@ -4145,22 +4937,22 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+pu
+pu
+eB
+vW
+bU
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+EN
+DY
+Nw
 aa
 aa
 aa
@@ -4227,22 +5019,22 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+pu
+eB
+Ca
+Nw
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+Qc
+OS
+Nw
 aa
 aa
 aa
@@ -4309,22 +5101,22 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+pu
+jW
+pu
+Nw
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+nD
+gS
+Nw
 aa
 aa
 aa
@@ -4391,22 +5183,22 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+pu
+vJ
+Nw
+Nw
+rZ
+RG
+TE
+co
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+Nw
 aa
 aa
 aa
@@ -4473,22 +5265,22 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+pu
+Cp
+vW
+bU
+rZ
+Tk
+vH
+wd
+rZ
+rZ
+rZ
+rZ
+EN
+DY
+Nw
 aa
 aa
 aa
@@ -4555,22 +5347,22 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+Nw
+Nw
+Nw
+Ks
+rZ
+rZ
+Hi
+wd
+rZ
+rZ
+rZ
+rZ
+wp
+QK
+Nw
 aa
 aa
 aa
@@ -4640,19 +5432,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+vV
+rZ
+rZ
+Jg
+wd
+rZ
+rZ
+rZ
+rZ
+nD
+gS
+Nw
 aa
 aa
 aa
@@ -4722,19 +5514,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+dw
+rZ
+rZ
+Oz
+wd
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+Nw
 aa
 aa
 aa
@@ -4804,19 +5596,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+Uv
+rZ
+XO
+Xg
+wd
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+Nw
 aa
 aa
 aa
@@ -4886,19 +5678,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Ti
+Ls
+rZ
+rZ
+Xg
+wd
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+Nw
 aa
 aa
 aa
@@ -4968,19 +5760,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Ti
+SN
+rZ
+rZ
+xy
+wd
+rZ
+rZ
+rZ
+rZ
+rZ
+rZ
+Nw
 aa
 aa
 aa
@@ -5050,19 +5842,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Ti
+cT
+rZ
+aQ
+mv
+Bj
+rZ
+rZ
+rZ
+rZ
+gd
+bA
+Nw
 aa
 aa
 aa
@@ -5132,19 +5924,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+Nw
+Nw
+Nw
+Nw
+Nw
+IR
+kU
+IR
+Nw
+Nw
+Nw
+Nw
 aa
 aa
 aa
@@ -5219,11 +6011,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+fY
+Xc
+rZ
+Wh
+Nw
 aa
 aa
 aa
@@ -5298,17 +6090,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+Nw
+Nw
+Nw
+Ys
+rZ
+Ys
+Nw
+Nw
+Nw
+Nw
 aa
 aa
 aa
@@ -5380,17 +6172,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+gt
+rZ
+Ys
+Ys
+rZ
+Ys
+Ys
+rZ
+gt
+Nw
 aa
 aa
 aa
@@ -5462,17 +6254,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+rZ
+Vz
+IR
+IR
+kU
+IR
+IR
+Vz
+rZ
+Nw
 aa
 aa
 aa
@@ -5544,17 +6336,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Ti
+Zc
+IR
+Mw
+Lm
+pu
+Zs
+AS
+IR
+JI
+Nw
 aa
 aa
 aa
@@ -5626,17 +6418,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Ti
+Zc
+IR
+Lw
+qB
+qB
+qB
+IU
+IR
+JI
+Nw
 aa
 aa
 aa
@@ -5708,17 +6500,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Ti
+DQ
+IR
+pu
+qB
+qB
+qB
+pu
+IR
+XM
+Nw
 aa
 aa
 aa
@@ -5790,17 +6582,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Ti
+Zc
+IR
+uc
+qB
+qB
+qB
+ck
+IR
+JI
+Nw
 aa
 aa
 aa
@@ -5872,17 +6664,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Ti
+Zc
+IR
+ct
+pX
+pu
+KG
+oV
+IR
+JI
+Nw
 aa
 aa
 aa
@@ -5954,17 +6746,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+rZ
+Vz
+IR
+IR
+Mm
+IR
+IR
+Vz
+rZ
+Nw
 aa
 aa
 aa
@@ -6036,17 +6828,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+gt
+rZ
+jQ
+jQ
+aQ
+jQ
+jQ
+rZ
+gt
+Nw
 aa
 aa
 aa
@@ -6118,17 +6910,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Nw
+Nw
+Nw
+Nw
+Nw
+Nw
+Nw
+Nw
+Nw
+Nw
+Nw
 aa
 aa
 aa
