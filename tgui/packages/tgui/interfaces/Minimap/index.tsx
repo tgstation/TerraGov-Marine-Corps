@@ -39,12 +39,15 @@ export const Minimap = (props, context) => {
   };
 
   const globalToLocal = (coord : Coordinate) => {
+    logger.log('backgroundx:', background_loc.x);
+    logger.log('backgroundy:', background_loc.y);
     const newCoord : Coordinate = {
       x: coord.x * icon_size + background_loc.x,
       y: (map_size_tile_y - coord.y) * icon_size + background_loc.y,
     };
-
-    if (newCoord.x < 0 || newCoord.x > icon_size * view_size
+    logger.log('newcoordx:', newCoord.x);
+    logger.log('newcoordy:', newCoord.y);
+    if (newCoord.x < -icon_size || newCoord.x > icon_size * view_size
       || newCoord.y < 0 || newCoord.y > icon_size * view_size) {
       return null;
     }
@@ -70,6 +73,9 @@ export const Minimap = (props, context) => {
                 'width': `${icon_size * view_size}px`,
                 'height': `${icon_size * view_size}px`,
               }}
+              position="absolute"
+              left={`${minimapPadding}px`}
+              top={`${minimapPadding}px`}
             >
               {visible_objects_data.map(objet_data => {
                 const local_coord : Coordinate|null  
@@ -78,7 +84,7 @@ export const Minimap = (props, context) => {
                 return (
                   <MinimapObject
                     key={objet_data.name}
-                    objectdata={objet_data}
+                    coordinate={local_coord}
                   />
                 );
               })}

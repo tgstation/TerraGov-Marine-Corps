@@ -7,7 +7,7 @@ const logger = createLogger('coordinate');
 export const MinimapObject = (props: MinimapObjectProp, context) => {
   
   const {
-    objectdata,
+    coordinate,
     ...rest
   } = props;
 
@@ -17,8 +17,8 @@ export const MinimapObject = (props: MinimapObjectProp, context) => {
       width="10%"
       {...rest}
       position="absolute"
-      left={`${objectdata.coordinate.x+icon_size/2}px`}
-      top={`${objectdata.coordinate.y+icon_size}px`}
+      left={`${coordinate.x + icon_size}px`}
+      top={`${coordinate.y - icon_size * 2}px`}
     >
       <Stack vertical fill>
         <Stack.Item>

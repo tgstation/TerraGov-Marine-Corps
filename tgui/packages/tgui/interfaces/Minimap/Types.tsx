@@ -18,7 +18,7 @@ export type MinimapData = {
 }
 
 export type MinimapObjectProp = {
-  objectdata : ObjectData;
+  coordinate : Coordinate;
 }
 
 export const icon_size : number = 8;
