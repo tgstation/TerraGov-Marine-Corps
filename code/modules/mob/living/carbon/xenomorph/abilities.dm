@@ -113,7 +113,7 @@
 	if(is_type_in_typecache(a_area, GLOB.wraith_no_incorporeal_pass_areas) && SSmonitor.gamestate == SHUTTERS_CLOSED)
 		to_chat(owner, span_warning("You cannot plant weeds here yet!"))
 		return FALSE
-	if(!owner.line_of_sight(get_turf(A)))
+	if(!line_of_sight(owner, get_turf(A)))
 		to_chat(owner, span_warning("You cannot plant weeds without line of sight!"))
 		return FALSE
 	return ..()
@@ -189,7 +189,7 @@
 		to_chat(X, span_warning("We can't do that here."))
 		return fail_activate()
 
-	if(!owner.line_of_sight(T))
+	if(!line_of_sight(owner, T))
 		to_chat(owner, span_warning("You cannot secrete resin without line of sight!"))
 		return fail_activate()
 
@@ -884,7 +884,7 @@
 		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
-	if(!owner.line_of_sight(target))
+	if(!line_of_sight(owner, target))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
