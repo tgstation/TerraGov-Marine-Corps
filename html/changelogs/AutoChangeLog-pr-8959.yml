@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - code_imp: "Unit test for guns expanded. Also put the fire delays at their correct values, have no effect on gameplay"
