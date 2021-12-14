@@ -275,7 +275,7 @@
 	muzzle_flash_color = COLOR_DISABLER_BLUE
 
 	damage_falloff_mult = 1
-	fire_delay = 0.33 SECONDS
+	fire_delay = 0.35 SECONDS
 	aim_slowdown = 0.35
 
 /obj/item/weapon/gun/energy/lasgun/M43/practice/unique_action(mob/user)

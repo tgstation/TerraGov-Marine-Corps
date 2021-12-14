@@ -168,7 +168,7 @@
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.9
 	scatter = 20
-	fire_delay = 0.175 SECONDS
+	fire_delay = 0.2 SECONDS
 	scatter_unwielded = 30
 	aim_slowdown = 0.15
 	burst_amount = 3
@@ -309,7 +309,7 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 21, "under_x" = 26, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.125 SECONDS
+	aim_fire_delay = 0.15 SECONDS
 	aim_speed_modifier = 2.5
 
 	starting_attachment_types = list(
