@@ -116,25 +116,24 @@ GLOBAL_LIST_INIT(jobs_to_icon, list(
 	return GLOB.always_state
 
 /datum/game_map/proc/get_coord(var/atom/A)
-	. = list(A.x, A.y)
-
-
-	.[COORD_X] -= bounds[BOUND_MIN_X]-1
-	.[COORD_Y] -= bounds[BOUND_MIN_Y]-1
+	. = list()
+	.["x"] = A.x - bounds[BOUND_MIN_X]-1
+	.["y"] = A.y - bounds[BOUND_MIN_Y]-1
 
 /datum/game_map/ui_data(mob/user)
 	. = list()
-	.["player_coord"] = get_coord(user)
-	.["player_name"] = user.name
-
-	.["player_data"] = player_data
+	.["player_data"] = list(
+		"name" = user.name,
+		"coordinate" = get_coord(user),
+	)
+	.["visible_objects_data"] = list(.["player_data"])
 
 /datum/game_map/ui_static_data(mob/user)
 	. = list()
 	.["map_size_x"] = generated_map.Width()
 	.["map_size_y"] = generated_map.Height()
 	.["map_name"] = name
-	.["icon_size"] = icon_size
+	.["view_size"] = 32
 
 /datum/game_map/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -150,6 +149,27 @@ GLOBAL_LIST_INIT(jobs_to_icon, list(
 /datum/game_map/proc/update_ui_wrapper(var/mob/M)
 	SIGNAL_HANDLER
 	SStgui.try_update_ui(M, src)
+
+/mob/dead/observer/verb/view_map()
+	set name = "View Current Map"
+	set category = "Ghost"
+
+	var/datum/game_map/target_map
+	var/turf/T = get_turf(loc)
+	if(!T)
+		to_chat(usr, span_notice("[icon2html(src)] Unable to determine your current location!"))
+		return
+
+	for(var/datum/game_map/potential_map as anything in SSminimap.minimaps)
+		if(potential_map.zlevel.z_value == T.z)
+			target_map = potential_map
+			break
+
+	if(!target_map)
+		to_chat(usr, span_notice("[icon2html(src)] Unable to find a map for the current area you are in!"))
+		return
+
+	target_map.ui_interact(usr)
 
 
 #undef BOUND_MIN_X

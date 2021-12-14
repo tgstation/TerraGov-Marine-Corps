@@ -1,8 +1,8 @@
-import { Box, Icon, Stack } from '../../components';
-import { useLocalState } from '../../backend';
+import { Box, Stack } from '../../components';
 import { MinimapObjectProp, icon_size } from './Types';
+import { createLogger } from '../../logging';
 
-
+const logger = createLogger('coordinate');
 
 export const MinimapObject = (props: MinimapObjectProp, context) => {
   
@@ -10,8 +10,6 @@ export const MinimapObject = (props: MinimapObjectProp, context) => {
     objectdata,
     ...rest
   } = props;
-
-  const [selectedName, setSelectedName] = useLocalState(context, "selected_name", null);
 
   return (
     <Box
@@ -32,23 +30,6 @@ export const MinimapObject = (props: MinimapObjectProp, context) => {
             width={`${icon_size}px`}
             height={`${icon_size}px`}
           />
-        </Stack.Item>
-        <Stack.Item ml={`${icon_size}px`} mt={`${icon_size}px`}>
-          <Box
-            position="absolute"
-            px={1}
-            py={1}
-            className={`Minimap__InfoBox${
-              selectedName === objectdata.name? "--detailed" : ""}`}
-          >
-            <Stack>
-              {selectedName === objectdata.name && (
-                <Stack.Item>
-                  <Icon name={objectdata.image} />
-                </Stack.Item>
-              )}
-            </Stack>
-          </Box>
         </Stack.Item>
       </Stack>
     </Box>

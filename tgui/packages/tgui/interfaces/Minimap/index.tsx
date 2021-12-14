@@ -1,8 +1,11 @@
-import { useBackend, useLocalState } from '../../backend';
+import { useBackend } from '../../backend';
 import { Box, Stack } from '../../components';
 import { Window } from '../../layouts';
 import { MinimapObject } from './MapObject';
 import { MinimapData, Coordinate, icon_size, minimapPadding } from './Types';
+import { createLogger } from '../../logging';
+
+const logger = createLogger('coordinate');
 
 export const Minimap = (props, context) => {
   const { data } = useBackend<MinimapData>(context);
@@ -15,7 +18,8 @@ export const Minimap = (props, context) => {
     visible_objects_data,
   } = data;
 
-  const [selectedName, setSelectedName] = useLocalState(context, "selected_name", null);
+  logger.log('x:', player_data.coordinate.x);
+  logger.log('y:', player_data.coordinate.y);
 
   const map_size_tile_x = (map_size_x / icon_size);
   const map_size_tile_y = (map_size_y / icon_size);

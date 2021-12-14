@@ -6,7 +6,6 @@ export type Coordinate = {
 export type ObjectData = {
   name : string,
   coordinate : Coordinate,
-  image : string;
 }
 
 export type MinimapData = {
