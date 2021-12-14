@@ -894,10 +894,6 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
-"IZ" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade,
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
 "JM" = (
 /obj/machinery/marine_selector/gear/smartgun,
 /turf/open/floor/mainship/mono,
@@ -1063,10 +1059,6 @@
 /obj/effect/landmark/start/job/crash/cmo,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
-"Vy" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade,
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
 "Wb" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -1099,8 +1091,8 @@
 	dir = 2
 	},
 /obj/machinery/door_control{
-	id = "aft_engine_podlock";
-	pixel_x = 32
+	dir = 8;
+	id = "aft_engine_podlock"
 	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury)
@@ -1283,7 +1275,7 @@ Rd
 jq
 ab
 iy
-Vy
+WY
 ac
 tP
 ab
@@ -1463,7 +1455,7 @@ an
 an
 an
 an
-IZ
+WY
 an
 gv
 bW

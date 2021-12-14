@@ -12,6 +12,8 @@
 /atom/movable/vis_obj/action/selected_frame
 	icon_state = "selected_frame"
 
+/atom/movable/vis_obj/action/empowered_frame
+	icon_state = "borders_center"
 
 /atom/movable/vis_obj/action/fmode_single
 	icon_state = "fmode_single"

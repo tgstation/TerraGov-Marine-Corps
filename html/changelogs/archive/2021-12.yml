@@ -66,3 +66,113 @@
   Walarks:
   - expansion: adds 50% aim mode delay removal to deployed bipod, which combined with
       red dot reaches 100% (yes, GPMG enjoyers)
+2021-12-05:
+  BraveMole:
+  - bugfix: No more multi king
+  - bugfix: Xeno turrets no longer can be placed next to each other by spamming
+  - bugfix: Fix free electronic pouches being full
+  vilereaver41:
+  - rscadd: new area northeast of caves.
+  - balance: West-LZ1 to make it a bit more open north of it. also made lz1 bigger
+      so marines got more room
+  - balance: the pre shutter open no-build zone has been reduced.
+  - balance: added more weed nodes and doors in caves for quality of life.
+2021-12-07:
+  AzonStarfall:
+  - bugfix: Adds exterior access button to Minerva's Drop Pod doors.
+  BraveMole:
+  - balance: razorwire microdosing is dead
+  KrabSpider:
+  - rscadd: Mateba speedloaders, scout rifle magazines, and railgun magazine factorio
+      refills are now available through cargo. Please don't blow anything up.
+  RipGrayson:
+  - imageadd: Added a unique sprite for LZ lockdown overrides.
+  - imageadd: Added directional sprites for LZ lockdown overrides.
+  novaepee:
+  - qol: requisition has a free supply beacon; now it's a skill and communication
+      issue if requisition doesn't have a supply beacon deployed in planetside
+  - balance: round start supply beacon without a round start SL, FC, or synthetic
+2021-12-08:
+  Lewdcifer:
+  - balance: T-152 RPG no longer accepts the shoulder gun module.
+  - balance: TX-15 autoshotgun no longer accepts masterkey shotguns.
+  RipGrayson:
+  - balance: Moved LV624 Sand Temple resin silo farther north.
+  - balance: Moved LV624 nuke disc generators farther apart.
+  - bugfix: Fixed Engineering dome's southern pipe connection being broken.
+  - bugfix: Fixed LV624 SW sand temple being subject to acid rain.
+  - bugfix: Fixed LV624 beachside filtration plant being outdoors.
+  - bugfix: Fixed an exceedingly obscure bug involving not being able to build tables
+      at LV624 LZs.
+  chesse20:
+  - rscadd: 8 new flavors of protein bars
+  - refactor: made protein bars grayscale
+2021-12-09:
+  KrabSpider:
+  - imageadd: Pill packets in first aid pouches are now color coded for your convenience.
+      Please remember these pills are not candy. Medics please stop feeding the Marines
+      candy...
+  - balance: Incendiary slugs, yet again, no longer have airburst and do normal damage.
+      Again.
+  Pill-U:
+  - rscadd: Add pepperball attachment
+  - rscadd: Add ammo for the pepperball attachment
+  - rscadd: Sprites for both
+2021-12-10:
+  KrabSpider:
+  - balance: TX-11 extra delay decreased to 0.25 from 0.5.
+  - balance: TX-11 scope zoom increased to 7 from 5. Stop littering.
+  Pill-U:
+  - rscdel: Remove carriers retrieve egg ability
+  - rscdel: Remove egg item.
+  - qol: Lay egg now plants the egg on the ground
+  RipGrayson:
+  - bugfix: Fixed a couple improperly rotated shutters in Big Red.
+  - imageadd: Added some new directional sprites for door buttons.
+  kait:
+  - balance: rebalanced somolent
+2021-12-11:
+  ATHATH:
+  - bugfix: Not having a heart now halves your effective blood level, as it was intended
+      to.
+  - bugfix: Disconnecting someone's heart from the rest of their body via surgery
+      will now impose the same effects on their blood level (and effective blood level)
+      that breaking their heart would.
+  Derrick2Electricboogaloo:
+  - bugfix: Deployable Camera in req comes in pack of 3 as intended.
+  Vondiech:
+  - bugfix: Pill packets are now visible again with the new sprites that were added
+      to them.
+2021-12-12:
+  BraveMole:
+  - qol: Window flashs and there is a loud sound played when it's your turn to be
+      a larva (larva queue)
+  Vondiech:
+  - bugfix: You can now put in the extended gal-9 clip into the UZI again.
+2021-12-14:
+  AzonStarfall:
+  - bugfix: Fixes a few issues on the Minerva, such as explosive radios.
+  KrabSpider:
+  - balance: .45-70 Goverment Rifle Cartridges for the  leicester repeater. 70 damage/20
+      AP/1.25 sunder from 60 damage/ 20 AP/1.5 sunder. Bullets stagger and slow within
+      a 4 tile range (from a weak slow at all ranges).
+  - imageadd: .45-70 Government Packets
+  - imageadd: New Leicester Repeater sprite. Much thanks to SilentMP5A5, otherwise
+      known by many as Ocelot.
+  RipGrayson:
+  - balance: Icy Caves is back to it's original self, without the lab complex to the
+      NW of the map.
+  - balance: All Icy Caves plasma cutters have been replaced with pickaxes.
+  - balance: The Icy Caves pirate coat has been replaced with a regular colonist uniform.
+  - balance: Barrels no longer drop 10 metal by default when destroyed.
+  Slotbot:
+  - balance: tesla gun doesn't drain plasma from xenos who have special plasma management,
+      other tesla debuffs remain the same
+  SplinterGP:
+  - bugfix: the Hypertext in old chat to reload TGUI Chat when it doens't load now
+      works
+  Vondiech:
+  - balance: You can now store MRE's in your combat boots for a mid-fight snack!
+  novaepee:
+  - rscadd: Floppa and Martin, the req caracal
+  - imageadd: floppa sprites!

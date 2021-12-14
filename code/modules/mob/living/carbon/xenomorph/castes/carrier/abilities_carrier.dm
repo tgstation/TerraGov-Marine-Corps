@@ -96,63 +96,6 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		to_chat(src, span_warning("We can't carry any more facehuggers!"))
 
 // ***************************************
-// *********** Retrieve egg
-// ***************************************
-/datum/action/xeno_action/activable/retrieve_egg
-	name = "Retrieve Egg"
-	action_icon_state = "retrieve_egg"
-	mechanics_text = "Store an egg on your body for future use. The egg has to be unplanted."
-	ability_name = "retrieve egg"
-	keybind_signal = COMSIG_XENOABILITY_RETRIEVE_EGG
-	use_state_flags = XACT_USE_LYING
-
-/datum/action/xeno_action/activable/retrieve_egg/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/carrier/X = owner
-	X.retrieve_egg(A)
-
-/mob/living/carbon/xenomorph/carrier/proc/retrieve_egg(atom/T)
-	if(!T)
-		return
-
-	if(!check_state())
-		return
-
-	//target a hugger on the ground to store it directly
-	if(istype(T, /obj/item/xeno_egg))
-		var/obj/item/xeno_egg/E = T
-		if(isturf(E.loc) && Adjacent(E))
-			store_egg(E)
-			return
-
-	var/obj/item/xeno_egg/E = get_active_held_item()
-	if(!E) //empty active hand
-		//if no hugger in active hand, we take one from our storage
-		if(eggs_cur <= 0)
-			to_chat(src, span_warning("We don't have any eggs to use!"))
-			return
-		E = new()
-		E.hivenumber = hivenumber
-		eggs_cur--
-		put_in_active_hand(E)
-		to_chat(src, span_xenonotice("We grab one of the eggs in our storage. Now sheltering: [eggs_cur] / [xeno_caste.eggs_max]."))
-		return
-
-	if(!istype(E)) //something else in our hand
-		to_chat(src, span_warning("We need an empty hand to grab one of our stored eggs!"))
-		return
-
-/mob/living/carbon/xenomorph/carrier/proc/store_egg(obj/item/xeno_egg/E)
-	if(!issamexenohive(E))
-		to_chat(src, span_warning("That egg is tainted!"))
-		return
-	if(eggs_cur >= xeno_caste.eggs_max)
-		to_chat(src, span_warning("We can't carry more eggs on ourselves."))
-		return
-	eggs_cur++
-	to_chat(src, span_notice("We store the egg and carry it for safekeeping. Now sheltering: [eggs_cur] / [xeno_caste.eggs_max]."))
-	qdel(E)
-
-// ***************************************
 // ********* Trap
 // ***************************************
 /datum/action/xeno_action/place_trap

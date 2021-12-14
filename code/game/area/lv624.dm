@@ -386,6 +386,11 @@
 	icon_state = "sandtemple"
 	always_unpowered = TRUE
 
+/area/lv624/lazarus/sandtemple/sideroom //needed to allow nuke generator within temple to function
+	name = "\improper Mysterious Temple"
+	icon_state = "purple"
+	requires_power = FALSE
+
 /area/lv624/lazarus/tablefort
 	name = "\improper Table Fort"
 	icon_state = "tablefort"
@@ -399,4 +404,14 @@
 /area/lv624/lazarus/console
 	name = "\improper Shuttle Console"
 	icon_state = "tcomsatcham"
+	flags_area = NO_DROPPOD
+
+/area/lv624/lazarus/spaceport
+	name = "\improper Eastern Space Port"
+	icon_state = "landingzone1"
+	flags_area = NO_DROPPOD
+
+/area/lv624/lazarus/spaceport2
+	name = "\improper Western Space Port"
+	icon_state = "landingzone2"
 	flags_area = NO_DROPPOD
