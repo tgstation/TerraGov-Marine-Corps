@@ -1398,7 +1398,6 @@
 #include "code\modules\mob\living\carbon\xenomorph\damage_procs.dm"
 #include "code\modules\mob\living\carbon\xenomorph\death.dm"
 #include "code\modules\mob\living\carbon\xenomorph\egg.dm"
-#include "code\modules\mob\living\carbon\xenomorph\egg_item.dm"
 #include "code\modules\mob\living\carbon\xenomorph\embryo.dm"
 #include "code\modules\mob\living\carbon\xenomorph\emote.dm"
 #include "code\modules\mob\living\carbon\xenomorph\evo_datum.dm"

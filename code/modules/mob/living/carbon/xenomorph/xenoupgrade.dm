@@ -361,6 +361,9 @@
 /mob/living/carbon/xenomorph/warrior/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/warrior/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----WARRIOR END----//
 //============//
 //----DEFILER START----//

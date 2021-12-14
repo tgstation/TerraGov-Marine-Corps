@@ -1007,27 +1007,28 @@
 	cooldown_timer = 12 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LAY_EGG
 
-
-/datum/action/xeno_action/lay_egg/action_activate()
+/datum/action/xeno_action/lay_egg/action_activate(mob/living/carbon/xenomorph/user)
 	var/mob/living/carbon/xenomorph/xeno = owner
 	var/turf/current_turf = get_turf(owner)
 
-	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
-	if(!alien_weeds)
-		to_chat(owner, span_warning("Our eggs wouldn't grow well enough here. Lay them on resin."))
-		return FALSE
+	if(!current_turf.check_alien_construction(owner))
+		return fail_activate()
 
-	if(!do_after(owner, 3 SECONDS, FALSE, alien_weeds))
-		return FALSE
+	if(!(locate(/obj/effect/alien/weeds) in current_turf))
+		to_chat(user, span_xenowarning("Our eggs wouldn't grow well enough here. Lay them on resin."))
+		return fail_activate()
 
-	if(!current_turf.check_alien_construction(owner) || !current_turf.check_disallow_alien_fortification(owner))
-		return FALSE
+	owner.visible_message(span_xenonotice("[owner] starts planting an egg."), \
+		span_xenonotice("We start planting an egg."), null, 5)
 
-	owner.visible_message(span_xenowarning("\The [owner] has laid an egg!"), \
-		span_xenowarning("We have laid an egg!"))
+	if(!do_after(owner, 2.5 SECONDS, TRUE, current_turf, BUSY_ICON_BUILD, extra_checks = CALLBACK(current_turf, /turf/proc/check_alien_construction, owner)))
+		return fail_activate()
 
-	new /obj/item/xeno_egg(current_turf, xeno.hivenumber)
-	playsound(owner.loc, 'sound/effects/splat.ogg', 25)
+	if(!locate(/obj/effect/alien/weeds) in current_turf)
+		return fail_activate()
+
+	new /obj/effect/alien/egg/hugger(current_turf, xeno.hivenumber)
+	playsound(current_turf, 'sound/effects/splat.ogg', 15, 1)
 
 	succeed_activate()
 	add_cooldown()

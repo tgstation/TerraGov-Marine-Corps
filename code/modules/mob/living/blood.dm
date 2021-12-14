@@ -18,7 +18,9 @@
 		//Blood regeneration if there is some space
 		if(blood_volume < BLOOD_VOLUME_NORMAL)
 			blood_volume += 0.1 // regenerate blood VERY slowly
-
+		
+		heart_multi = initial(heart_multi)
+		
 		// Damaged heart virtually reduces the blood volume, as the blood isn't
 		// being pumped properly anymore.
 		if(species && species.has_organ["heart"])
@@ -27,20 +29,16 @@
 			if(!heart)
 				heart_multi *= 0.5 //you'd die in seconds but you can't remove internal organs even with varediting.
 
-			if(!(reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05) && heart.damage > 1)
-				if(heart.damage < heart.min_bruised_damage)
-					heart_multi = 0.9
-					blood_volume = max(blood_volume - 0.1, 0) //nulls regeneration
-				else if(heart.damage < heart.min_broken_damage)
-					heart_multi = 0.7
-					blood_volume = max(blood_volume - 0.5, 0)
-				else
-					heart_multi = 0.5
+			if(heart && reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) < 0.05 && heart.damage > 1)
+				if(heart.is_broken())
+					heart_multi *= 0.5
 					blood_volume = max(blood_volume - 1.3, 0)
-			else
-				heart_multi = 1
-
-
+				else if(heart.is_bruised())
+					heart_multi *= 0.7
+					blood_volume = max(blood_volume - 0.5, 0)	
+				else
+					heart_multi *= 0.9
+					blood_volume = max(blood_volume - 0.1, 0) //nulls regeneration
 
 
 

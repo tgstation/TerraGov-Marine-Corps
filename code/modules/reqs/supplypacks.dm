@@ -81,9 +81,13 @@ OPERATIONS
 	cost = 6
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/operations/deployablecams
+/datum/supply_packs/operations/deployable_camera
 	name = "3 Deployable Cameras"
-	contains = list(/obj/item/deployable_camera)
+	contains = list(
+		/obj/item/deployable_camera,
+		/obj/item/deployable_camera,
+		/obj/item/deployable_camera,
+	)
 	cost = 2
 
 /datum/supply_packs/operations/exportpad

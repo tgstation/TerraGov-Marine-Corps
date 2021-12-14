@@ -173,8 +173,9 @@
 		if(living in blacklistmobs)
 			continue
 		source.beam(living, icon_state="lightning[rand(1,12)]", time = 3, maxdistance = zap_range + 2)
-		living.apply_status_effect(/datum/status_effect/noplasmaregen, 10 SECONDS/length(.))
-		living.apply_status_effect(/datum/status_effect/plasmadrain, 10 SECONDS/length(.))
+		if(living.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA)
+			living.apply_status_effect(/datum/status_effect/noplasmaregen, 10 SECONDS/length(.))
+			living.apply_status_effect(/datum/status_effect/plasmadrain, 10 SECONDS/length(.))
 		living.adjust_stagger(1)
 		living.add_slowdown(2)
 		log_attack("[living] was zapped by [source]")

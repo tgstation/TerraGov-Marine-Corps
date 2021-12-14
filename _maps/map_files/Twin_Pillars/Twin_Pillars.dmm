@@ -9229,6 +9229,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks/rebel)
+"isA" = (
+/obj/machinery/door/airlock/mainship/maint/rebel{
+	dir = 2
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull/rebel)
 "isH" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
@@ -13710,12 +13716,10 @@
 	dir = 8
 	},
 /obj/structure/table/mainship,
-/obj/machinery/door_control/mainship/cic/rebel{
-	pixel_x = -7;
+/obj/machinery/door_control/old/cic/rebel{
 	pixel_y = 9
 	},
-/obj/machinery/door_control/mainship/cic/armory/rebel{
-	pixel_x = -7;
+/obj/machinery/door_control/old/cic/armory/rebel{
 	pixel_y = -5
 	},
 /obj/machinery/light,
@@ -15622,7 +15626,6 @@
 /area/mainship/hallways/starboard_umbilical/rebel)
 "oes" = (
 /obj/structure/table/woodentable,
-/obj/machinery/door_control/mainship/corporate,
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison/rebel)
@@ -18254,6 +18257,9 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
+/obj/machinery/door_control/mainship/corporate{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison/rebel)
 "qnF" = (
@@ -19464,9 +19470,7 @@
 	pixel_y = 3
 	},
 /obj/item/whistle,
-/obj/machinery/door_control/mainship/req{
-	pixel_y = -5
-	},
+/obj/machinery/door_control/old/req,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "roo" = (
@@ -21218,9 +21222,7 @@
 	pixel_y = 3
 	},
 /obj/item/whistle,
-/obj/machinery/door_control/mainship/req/rebel{
-	pixel_y = -5
-	},
+/obj/machinery/door_control/old/rebel,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req/rebel)
 "sQc" = (
@@ -21842,12 +21844,10 @@
 	dir = 8
 	},
 /obj/structure/table/mainship,
-/obj/machinery/door_control/mainship/cic{
-	pixel_x = -7;
+/obj/machinery/door_control/old/cic{
 	pixel_y = 9
 	},
-/obj/machinery/door_control/mainship/cic/armory{
-	pixel_x = -7;
+/obj/machinery/door_control/old/cic/armory{
 	pixel_y = -5
 	},
 /obj/machinery/light,
@@ -27304,7 +27304,7 @@
 /area/mainship/command/cic)
 "xXF" = (
 /obj/structure/table/mainship,
-/obj/machinery/door_control/mainship/checkpoint/south,
+/obj/machinery/door_control/old/checkpoint/south,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
 "xYh" = (
@@ -27338,7 +27338,7 @@
 /area/mainship/medical/medical_science)
 "xZA" = (
 /obj/structure/table/mainship,
-/obj/machinery/door_control/mainship/checkpoint/south,
+/obj/machinery/door_control/old/checkpoint/south,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical/rebel)
 "xZN" = (
@@ -38539,7 +38539,7 @@ juv
 juv
 ieP
 wnQ
-rKR
+isA
 saY
 jVD
 edB

@@ -1162,16 +1162,17 @@
 	},
 /area/sulaco/medbay)
 "adU" = (
-/obj/machinery/door_control{
-	id = "mbayexit";
-	name = "medbay exit";
-	normaldoorcontrol = 1;
-	pixel_y = 28
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/turf/open/floor/prison/whitegreen/corner{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/area/sulaco/medbay)
+/obj/machinery/door_control/mainship/droppod,
+/turf/open/floor/prison/arrow/clean{
+	dir = 8
+	},
+/area/sulaco/hangar/droppod)
 "adV" = (
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -1520,6 +1521,11 @@
 "aeN" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
+	},
+/obj/machinery/door_control/mainship/medbay{
+	dir = 4;
+	id = "Medbay";
+	name = "Medbay Lockdown"
 	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
@@ -2426,10 +2432,9 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/structure/cable,
 /obj/machinery/door_control/unmeltable{
+	dir = 1;
 	id = "Research";
-	name = "Research Lock down";
-	pixel_x = 1;
-	pixel_y = -21
+	name = "Research Lock down"
 	},
 /turf/open/floor/prison/whitegreen{
 	dir = 6
@@ -3381,10 +3386,9 @@
 /area/sulaco/hallway/central_hall)
 "arm" = (
 /obj/machinery/door_control/mainship/checkpoint{
+	dir = 4;
 	id = "bar";
-	name = "Briefing Shutters";
-	pixel_x = -30;
-	pixel_y = -2
+	name = "Briefing Shutters"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
@@ -3445,21 +3449,21 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/door_control/mainship/medbay{
-	id = "Medbay";
-	name = "Medbay Lockdown";
-	pixel_x = -6;
-	pixel_y = -3
-	},
-/obj/machinery/door_control/mainship/cic{
-	id = "sb blast";
-	name = "Fore Lockdown";
-	pixel_x = -6;
-	pixel_y = 6
-	},
 /obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
+	},
+/obj/machinery/door_control/old/cic{
+	id = "sb blast";
+	name = "Fore Lockdown";
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/machinery/door_control/old/medbay{
+	id = "Medbay";
+	name = "Medbay Lockdown";
+	pixel_x = -5;
+	pixel_y = -3
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/bridge)
@@ -4201,26 +4205,25 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/machinery/door_control/unmeltable{
-	id = "Research";
-	name = "Research Lock down";
-	pixel_x = 7
-	},
-/obj/machinery/door_control/mainship/cic{
+/obj/machinery/door_control/old/cic{
 	id = "bridge blast";
 	name = "Bridge Blast Door Control";
-	pixel_x = -6;
+	pixel_x = -5;
 	pixel_y = 8
 	},
-/obj/machinery/door_control/mainship/cic{
+/obj/machinery/door_control/old/cic{
 	id = "port blast";
 	name = "Aft Lockdown";
-	pixel_x = -6
+	pixel_x = -5
 	},
-/obj/machinery/door_control/ai{
-	id = "AICoreShutter";
+/obj/machinery/door_control/old/unmeltable{
+	id = "Research";
+	name = "Research Lock down";
+	pixel_x = 8
+	},
+/obj/machinery/door_control/old/ai{
 	name = "AI Core Lockdown";
-	pixel_x = 7;
+	pixel_x = 8;
 	pixel_y = 8
 	},
 /turf/open/floor/prison/bright_clean,
@@ -4625,9 +4628,9 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door_control/mainship/engineering{
 	desc = "A remote control-switch for the engine control room blast doors.";
+	dir = 1;
 	id = "EngineBlast";
-	name = "Engine Room Blast Doors";
-	pixel_y = -3
+	name = "Engine Room Blast Doors"
 	},
 /turf/open/floor/prison/darkyellow/full,
 /area/sulaco/engineering/engine_monitoring)
@@ -6346,6 +6349,9 @@
 /area/sulaco/hallway/central_hall2)
 "aEx" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/door_control/ai/exterior{
+	dir = 8
+	},
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
 "aEz" = (
@@ -6585,8 +6591,13 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/weapon_room)
 "aFK" = (
-/obj/machinery/door_control/ai/exterior,
-/turf/closed/wall/mainship/gray,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/machinery/door_control/ai/interior{
+	dir = 1
+	},
+/turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
 "aFR" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -7322,11 +7333,9 @@
 /obj/structure/table/mainship,
 /obj/item/disk/botany,
 /obj/item/radio,
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/req{
 	id = "mfshydroponics";
-	name = "Lockdown Shutter-Control Hydroponics";
-	pixel_x = 5;
-	pixel_y = 9
+	name = "Lockdown Shutter-Control Hydroponics"
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hydro)
@@ -7463,6 +7472,10 @@
 "aLk" = (
 /turf/open/floor/prison/green/full,
 /area/sulaco/marine)
+"aLl" = (
+/mob/living/simple_animal/cat/martin,
+/turf/open/floor/prison,
+/area/sulaco/cargo/office)
 "aLm" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -8354,6 +8367,11 @@
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
 	},
+/obj/machinery/door_control/mainship/corporate{
+	id = "wyoffice";
+	name = "Window Shutters";
+	pixel_y = -5
+	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "aQY" = (
@@ -9087,9 +9105,9 @@
 /area/sulaco/hallway/lower_main_hall)
 "aVJ" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "eastblast";
-	name = "Observation Windows";
-	pixel_x = 30
+	name = "Observation Windows"
 	},
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -9654,11 +9672,6 @@
 /obj/item/tool/stamp/internalaffairs{
 	pixel_y = 6
 	},
-/obj/machinery/door_control/mainship/corporate{
-	id = "wyoffice";
-	name = "Window Shutters";
-	pixel_y = -5
-	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "baQ" = (
@@ -10089,9 +10102,9 @@
 /area/sulaco/hydro)
 "bjL" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "eastblast";
-	name = "Observation Windows";
-	pixel_x = 30
+	name = "Observation Windows"
 	},
 /obj/machinery/vending/engivend,
 /turf/open/floor/prison,
@@ -10633,10 +10646,9 @@
 /obj/item/stack/sheet/mineral/phoron/medium_stack,
 /obj/item/stack/sheet/mineral/phoron/medium_stack,
 /obj/machinery/door_control/unmeltable{
+	dir = 8;
 	id = "prepblasteast";
-	name = "Dropship Prep door control";
-	pixel_x = 24;
-	pixel_y = 3
+	name = "Dropship Prep door control"
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
@@ -10738,25 +10750,25 @@
 	dir = 4;
 	pixel_x = 17
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/old{
 	id = "mfsoutershutters";
 	name = "Lockdown Shutter-Control Outer Shutters";
 	pixel_x = -7;
 	pixel_y = -2
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/old{
 	id = "mfsouterhallwayshutters";
 	name = "Lockdown Shutter-Control Outer Hallway Shutters";
 	pixel_x = -7;
 	pixel_y = 10
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/old{
 	id = "mfshydroponics";
 	name = "Lockdown Shutter-Control Hydroponics";
 	pixel_x = -7;
 	pixel_y = 4
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/old{
 	id = "mfsinnerhwshutters";
 	name = "Lockdown Shutter-Control Inner Hallway Shutters";
 	pixel_x = 2;
@@ -11678,14 +11690,13 @@
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
 "ehi" = (
-/obj/machinery/door_control/mainship/medbay{
-	id = "Medbay";
-	name = "Medbay Lockdown";
-	pixel_x = 8;
-	pixel_y = 1
+/obj/machinery/door_control/mainship/req{
+	dir = 8;
+	id = "qm_warehouse";
+	name = "RO Warehouse Shutters"
 	},
-/turf/closed/wall/mainship/white,
-/area/sulaco/medbay/cmo)
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo)
 "ehA" = (
 /obj/structure/rack,
 /obj/item/tool/crowbar/red,
@@ -12072,9 +12083,9 @@
 /area/sulaco/hallway/lower_foreship)
 "eRL" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "eastblast";
-	name = "Observation Windows";
-	pixel_x = 30
+	name = "Observation Windows"
 	},
 /obj/machinery/vending/tool,
 /turf/open/floor/prison,
@@ -12437,12 +12448,6 @@
 /obj/machinery/holosign_switch{
 	id = "or2sign";
 	pixel_x = 5;
-	pixel_y = 10
-	},
-/obj/machinery/door_control{
-	id = "or2privacyshutter";
-	name = "Privacy Shutters";
-	pixel_x = -5;
 	pixel_y = 10
 	},
 /turf/closed/wall/mainship/white{
@@ -14662,6 +14667,7 @@
 /area/sulaco/marine)
 "jQS" = (
 /obj/machinery/camera/autoname,
+/obj/machinery/door_control/mainship/droppod,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "jRa" = (
@@ -14885,8 +14891,10 @@
 	},
 /area/sulaco/medbay)
 "kio" = (
-/obj/machinery/door_control/ai/interior,
-/turf/closed/wall/mainship/gray,
+/obj/machinery/door_control/ai/interior{
+	dir = 8
+	},
+/turf/open/floor/mainship/tcomms,
 /area/sulaco/command/ai)
 "kiJ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
@@ -15816,12 +15824,6 @@
 	pixel_x = 5;
 	pixel_y = 10
 	},
-/obj/machinery/door_control{
-	id = "or1privacyshutter";
-	name = "Privacy Shutters";
-	pixel_x = -5;
-	pixel_y = 10
-	},
 /turf/closed/wall/mainship/white{
 	desc = "A huge chunk of metal used to seperate space from the ship";
 	name = "Outer Hull";
@@ -16223,6 +16225,11 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
 /obj/item/reagent_containers/spray/surgery,
+/obj/machinery/door_control{
+	dir = 4;
+	id = "or1privacyshutter";
+	name = "Privacy Shutters"
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -17478,11 +17485,9 @@
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
 "oAd" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/req{
 	id = "mfsoutershutters";
-	name = "Lockdown Shutter-Control Outer Shutters";
-	pixel_x = 1;
-	pixel_y = 24
+	name = "Lockdown Shutter-Control Outer Shutters"
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
@@ -18645,10 +18650,9 @@
 /area/sulaco/liaison/quarters)
 "qvV" = (
 /obj/machinery/door_control/unmeltable{
+	dir = 4;
 	id = "prepblasteast";
-	name = "Dropship Prep door control";
-	pixel_x = -22;
-	pixel_y = 3
+	name = "Dropship Prep door control"
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
@@ -19062,8 +19066,7 @@
 /obj/machinery/camera/autoname,
 /obj/machinery/door_control/unmeltable{
 	id = "s_umbilical";
-	name = "Air Lock Door Control";
-	pixel_y = 26
+	name = "Air Lock Door Control"
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
@@ -20624,6 +20627,10 @@
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/wood,
 /area/mainship/living/basketball)
+"tBp" = (
+/mob/living/simple_animal/corgi/Ranger,
+/turf/open/floor/prison/sterilewhite,
+/area/sulaco/cafeteria)
 "tBy" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/closed/wall/mainship/gray,
@@ -20670,9 +20677,23 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "tGO" = (
-/obj/machinery/door_control/mainship/droppod,
-/turf/closed/wall/mainship/gray,
-/area/sulaco/hangar/droppod)
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/machinery/door_control{
+	id = "mbayexit";
+	name = "medbay exit";
+	normaldoorcontrol = 1;
+	pixel_y = 28
+	},
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 4
+	},
+/area/sulaco/medbay)
 "tIj" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -21526,17 +21547,6 @@
 /obj/structure/ship_ammo/rocket/widowmaker,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
-"vfr" = (
-/obj/machinery/door_control/mainship/req{
-	id = "qm_warehouse";
-	name = "RO Warehouse Shutters";
-	pixel_y = -25
-	},
-/obj/structure/window/framed/mainship/gray/toughened,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro,
-/obj/machinery/door/firedoor/mainship,
-/turf/open/floor/plating/platebotc,
-/area/sulaco/cargo)
 "vfs" = (
 /turf/open/floor/plating,
 /area/sulaco/bridge/office)
@@ -21655,6 +21665,11 @@
 /obj/machinery/power/apc/mainship{
 	dir = 4
 	},
+/obj/machinery/door_control{
+	dir = 4;
+	id = "or2privacyshutter";
+	name = "Privacy Shutters"
+	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/surgery_two)
 "vtv" = (
@@ -21758,16 +21773,11 @@
 /area/sulaco/medbay/west)
 "vIy" = (
 /obj/structure/table/mainship,
-/obj/machinery/door_control/mainship/req{
+/obj/machinery/door_control/old/req,
+/obj/machinery/door_control/old/req{
 	id = "Reqshutters";
 	name = "Req Lockdown";
-	pixel_x = -6;
-	pixel_y = -1;
-	resistance_flags = 3
-	},
-/obj/machinery/door_control/mainship/req{
-	pixel_x = -6;
-	pixel_y = 8
+	pixel_y = 9
 	},
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
@@ -22066,8 +22076,7 @@
 "whS" = (
 /obj/machinery/door_control/mainship/req{
 	id = "qm_warehouse";
-	name = "RO Warehouse Shutters";
-	pixel_y = 25
+	name = "RO Warehouse Shutters"
 	},
 /obj/machinery/light{
 	dir = 1
@@ -22734,9 +22743,9 @@
 	dir = 1
 	},
 /obj/machinery/door_control/unmeltable{
+	dir = 1;
 	id = "s_umbilical";
-	name = "Air Lock Door Control";
-	pixel_y = -20
+	name = "Air Lock Door Control"
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
@@ -42009,7 +42018,7 @@ xHY
 euR
 wol
 una
-giO
+una
 vgl
 bvV
 dIn
@@ -42501,7 +42510,7 @@ lSB
 pAt
 qhI
 aKD
-oRM
+tBp
 fZX
 oRM
 abz
@@ -46879,7 +46888,7 @@ cvJ
 kXs
 vIy
 vdG
-alk
+aLl
 alk
 aqh
 arC
@@ -48925,7 +48934,7 @@ bPM
 bPM
 bPM
 aLn
-bPM
+ehi
 miH
 uxf
 utJ
@@ -49188,7 +49197,7 @@ lpY
 exd
 exd
 exd
-vfr
+exd
 lpY
 whS
 vSd
@@ -49875,7 +49884,7 @@ aGC
 lsW
 jHb
 svy
-jHb
+kio
 aAI
 aVR
 mRd
@@ -50122,17 +50131,17 @@ aon
 aoi
 aAI
 aEv
-aFK
 aAI
-aFK
+aAI
+aAI
 aAI
 aOH
-aEP
-kio
+aFK
+aAI
 aAI
 aAI
 aFz
-kio
+aAI
 aAI
 mRd
 aTi
@@ -51005,8 +51014,8 @@ dJm
 hNA
 oXn
 aaJ
-adU
-esb
+adf
+tGO
 adf
 vtC
 ovJ
@@ -52803,7 +52812,7 @@ fVo
 fVo
 aeF
 aeK
-ehi
+fVo
 fVo
 fmW
 ade
@@ -57915,7 +57924,7 @@ aaa
 nzi
 mDu
 bWf
-baj
+adU
 baj
 baj
 baj
@@ -58434,9 +58443,9 @@ rFM
 rFM
 rFM
 vhM
-tGO
 xca
-tGO
+xca
+xca
 jQS
 tgw
 wXL
