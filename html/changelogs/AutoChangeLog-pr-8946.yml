@@ -1,6 +1,0 @@
-author: "KrabSpider"
-delete-after: True
-changes: 
-  - balance: ".45-70 Goverment Rifle Cartridges for the  leicester repeater. 70 damage/20 AP/1.25 sunder from 60 damage/ 20 AP/1.5 sunder. Bullets stagger and slow within a 4 tile range (from a weak slow at all ranges)."
-  - imageadd: ".45-70 Government Packets"
-  - imageadd: "New Leicester Repeater sprite. Much thanks to SilentMP5A5, otherwise known by many as Ocelot."

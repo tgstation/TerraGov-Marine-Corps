@@ -149,3 +149,30 @@
       a larva (larva queue)
   Vondiech:
   - bugfix: You can now put in the extended gal-9 clip into the UZI again.
+2021-12-14:
+  AzonStarfall:
+  - bugfix: Fixes a few issues on the Minerva, such as explosive radios.
+  KrabSpider:
+  - balance: .45-70 Goverment Rifle Cartridges for the  leicester repeater. 70 damage/20
+      AP/1.25 sunder from 60 damage/ 20 AP/1.5 sunder. Bullets stagger and slow within
+      a 4 tile range (from a weak slow at all ranges).
+  - imageadd: .45-70 Government Packets
+  - imageadd: New Leicester Repeater sprite. Much thanks to SilentMP5A5, otherwise
+      known by many as Ocelot.
+  RipGrayson:
+  - balance: Icy Caves is back to it's original self, without the lab complex to the
+      NW of the map.
+  - balance: All Icy Caves plasma cutters have been replaced with pickaxes.
+  - balance: The Icy Caves pirate coat has been replaced with a regular colonist uniform.
+  - balance: Barrels no longer drop 10 metal by default when destroyed.
+  Slotbot:
+  - balance: tesla gun doesn't drain plasma from xenos who have special plasma management,
+      other tesla debuffs remain the same
+  SplinterGP:
+  - bugfix: the Hypertext in old chat to reload TGUI Chat when it doens't load now
+      works
+  Vondiech:
+  - balance: You can now store MRE's in your combat boots for a mid-fight snack!
+  novaepee:
+  - rscadd: Floppa and Martin, the req caracal
+  - imageadd: floppa sprites!

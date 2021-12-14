@@ -1,4 +1,0 @@
-author: "Slotbot"
-delete-after: True
-changes: 
-  - balance: "tesla gun doesn't drain plasma from xenos who have special plasma management, other tesla debuffs remain the same"
