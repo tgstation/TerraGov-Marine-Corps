@@ -5,7 +5,7 @@
 	icon = 'icons/effects/warning_stripes.dmi'
 	anchored = TRUE
 	density = FALSE
-	resistance_flags = RESIST_ALL
+	resistance_flags = UNACIDABLE
 	layer = ABOVE_TURF_LAYER
 	/// The faction of this supply drop
 	var/faction = FACTION_TERRAGOV

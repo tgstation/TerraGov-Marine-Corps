@@ -9,7 +9,7 @@
 	icon_state = "intel_computer"
 	circuit = /obj/item/circuitboard/computer/intel_computer
 
-	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
+	resistance_flags = UNACIDABLE
 	interaction_flags = INTERACT_MACHINE_TGUI
 
 	///Whether this computer is activated by the event yet

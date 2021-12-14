@@ -238,7 +238,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	density = FALSE
 	anchored = TRUE
 	layer = ABOVE_TURF_LAYER
-	resistance_flags = INDESTRUCTIBLE
+	resistance_flags = UNACIDABLE
 
 #undef DROPPOD_READY
 #undef DROPPOD_ACTIVE

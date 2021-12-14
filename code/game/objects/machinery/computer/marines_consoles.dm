@@ -4,7 +4,7 @@
 	icon_state = "id"
 	req_access = list(ACCESS_MARINE_LOGISTICS)
 	circuit = /obj/item/circuitboard/computer/card
-	resistance_flags = INDESTRUCTIBLE
+	resistance_flags = UNACIDABLE
 	var/obj/item/card/id/scan = null
 	var/obj/item/card/id/modify = null
 	var/authenticated = 0.0
@@ -342,7 +342,7 @@
 	desc = "You can use this to change someone's squad."
 	icon_state = "guest"
 	req_access = list(ACCESS_MARINE_LOGISTICS)
-	resistance_flags = INDESTRUCTIBLE
+	resistance_flags = UNACIDABLE
 	var/obj/item/card/id/modify = null
 	var/screen = 0 //0: main, 1: squad menu
 	///Which faction this computer belongs to
