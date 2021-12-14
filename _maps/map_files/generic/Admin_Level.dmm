@@ -666,6 +666,10 @@
 	},
 /turf/open/floor/grimy,
 /area/valhalla)
+"lY" = (
+/mob/living/simple_animal/corgi/Ranger,
+/turf/open/floor/prison/plate,
+/area/valhalla)
 "me" = (
 /obj/item/storage/firstaid/regular{
 	pixel_x = 3;
@@ -1281,6 +1285,10 @@
 "Qc" = (
 /obj/structure/table/woodentable,
 /obj/item/trash/tray,
+/turf/open/floor/wood,
+/area/valhalla)
+"Qw" = (
+/mob/living/simple_animal/cat/kitten,
 /turf/open/floor/wood,
 /area/valhalla)
 "QC" = (
@@ -2733,7 +2741,7 @@ fx
 FC
 fx
 fx
-fx
+lY
 fx
 fx
 sY
@@ -5844,7 +5852,7 @@ aa
 aa
 Ti
 cT
-rZ
+Qw
 aQ
 mv
 Bj
