@@ -18,9 +18,6 @@ export const Minimap = (props, context) => {
     visible_objects_data,
   } = data;
 
-  logger.log('x:', player_data.coordinate.x);
-  logger.log('y:', player_data.coordinate.y);
-
   const map_size_tile_x = (map_size_x / icon_size);
   const map_size_tile_y = (map_size_y / icon_size);
 
@@ -28,25 +25,22 @@ export const Minimap = (props, context) => {
 
   const background_loc : Coordinate = {
     x: Math.max(
-      Math.min(0, -(player_data.coordinate.x - view_offset) * icon_size),
+      Math.min(0, -(player_data.coordinate.x - view_offset + 1.5) * icon_size),
       -(map_size_tile_x - view_size) * icon_size
     ),
     y: Math.max(
       Math.min(0, 
-        -(map_size_tile_y - player_data.coordinate.y-view_offset) * icon_size),
+        -(map_size_tile_y - player_data.coordinate.y -view_offset - 1.5)
+         * icon_size),
       -(map_size_tile_y - view_size) * icon_size
     ),
   };
 
   const globalToLocal = (coord : Coordinate) => {
-    logger.log('backgroundx:', background_loc.x);
-    logger.log('backgroundy:', background_loc.y);
     const newCoord : Coordinate = {
       x: coord.x * icon_size + background_loc.x,
       y: (map_size_tile_y - coord.y) * icon_size + background_loc.y,
     };
-    logger.log('newcoordx:', newCoord.x);
-    logger.log('newcoordy:', newCoord.y);
     if (newCoord.x < -icon_size || newCoord.x > icon_size * view_size
       || newCoord.y < 0 || newCoord.y > icon_size * view_size) {
       return null;
