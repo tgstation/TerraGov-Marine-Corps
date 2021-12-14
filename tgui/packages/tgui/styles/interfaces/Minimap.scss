@@ -16,11 +16,11 @@ $move-speed: 0.3s !default;
   transition: background-position $move-speed linear;
 }
 
-.Minimap__Player {
+.Minimap__Object {
   transition: top $move-speed linear, left $move-speed linear;
 }
 
-.Minimap__Player_Icon {
+.Minimap__Object_Icon {
   border-radius: 50%;
   pointer-events: none;
 }

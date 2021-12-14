@@ -1,0 +1,87 @@
+import { useBackend, useLocalState } from '../../backend';
+import { Box, Stack } from '../../components';
+import { Window } from '../../layouts';
+import { MinimapObject } from './MapObject';
+import { MinimapData, Coordinate, icon_size, minimapPadding } from './Types';
+
+export const Minimap = (props, context) => {
+  const { data } = useBackend<MinimapData>(context);
+  const {
+    map_name,
+    map_size_x,
+    map_size_y,
+    view_size,
+    player_data,
+    visible_objects_data,
+  } = data;
+
+  const [selectedName, setSelectedName] = useLocalState(context, "selected_name", null);
+
+  const map_size_tile_x = (map_size_x / icon_size);
+  const map_size_tile_y = (map_size_y / icon_size);
+
+  const view_offset = view_size / 2;
+
+  const background_loc : Coordinate = {
+    x: Math.max(
+      Math.min(0, -(player_data.coordinate.x - view_offset) * icon_size),
+      -(map_size_tile_x - view_size) * icon_size
+    ),
+    y: Math.max(
+      Math.min(0, 
+        -(map_size_tile_y - player_data.coordinate.y-view_offset) * icon_size),
+      -(map_size_tile_y - view_size) * icon_size
+    ),
+  };
+
+  const globalToLocal = (coord : Coordinate) => {
+    const newCoord : Coordinate = {
+      x: coord.x * icon_size + background_loc.x,
+      y: (map_size_tile_y - coord.y) * icon_size + background_loc.y,
+    };
+
+    if (newCoord.x < 0 || newCoord.x > icon_size * view_size
+      || newCoord.y < 0 || newCoord.y > icon_size * view_size) {
+      return null;
+    }
+    return newCoord;
+  };
+
+  return (
+    <Window
+      width={icon_size * view_size + minimapPadding * 2}
+      height={icon_size * view_size + minimapPadding * 2 + 30}
+      theme="engi"
+    >
+      <Window.Content id="minimap">
+        <Stack justify="space-around">
+          <Stack.Item>
+            <Box
+              className="Minimap__Map"
+              style={{
+                'background-image': `url('minimap.${map_name}.png')`,
+                'background-repeat': "no-repeat",
+                'background-position-x': `${background_loc.x}px`,
+                'background-position-y': `${background_loc.y}px`,
+                'width': `${icon_size * view_size}px`,
+                'height': `${icon_size * view_size}px`,
+              }}
+            >
+              {visible_objects_data.map(objet_data => {
+                const local_coord : Coordinate|null  
+                  = globalToLocal(objet_data.coordinate);
+                if (!local_coord) return;
+                return (
+                  <MinimapObject
+                    key={objet_data.name}
+                    objectdata={objet_data}
+                  />
+                );
+              })}
+            </Box>
+          </Stack.Item>
+        </Stack>
+      </Window.Content>
+    </Window>
+  );
+};
