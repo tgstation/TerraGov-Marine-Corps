@@ -2432,6 +2432,7 @@
 /area/ice_colony/exterior/surface/cliff)
 "ajQ" = (
 /obj/machinery/door_control{
+	dir = 4;
 	name = "Storage Unit Control";
 	pixel_x = -24
 	},
@@ -7039,9 +7040,9 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "azq" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "colony_E_armory";
-	name = "Colony Emergency Armory";
-	pixel_y = -26
+	name = "Colony Emergency Armory"
 	},
 /turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/dorms)
@@ -9248,9 +9249,9 @@
 /area/ice_colony/surface/garage/two)
 "aGo" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "garage_ice_2";
-	name = "garage shutter control";
-	pixel_y = -30
+	name = "garage shutter control"
 	},
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/garage/two)
@@ -9528,6 +9529,7 @@
 /area/ice_colony/exterior/surface/clearing/pass)
 "aHb" = (
 /obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
 	id = "garage_ice_1";
 	name = "\improper Garage Shutters"
 	},
@@ -9544,6 +9546,7 @@
 /area/ice_colony/surface/garage/two)
 "aHd" = (
 /obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
 	id = "garage_ice_2";
 	name = "\improper Garage Shutters"
 	},
@@ -9815,9 +9818,9 @@
 /area/ice_colony/surface/garage/one)
 "aHU" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "st_17";
-	name = "Storage Unit Lock";
-	pixel_x = 24
+	name = "Storage Unit Lock"
 	},
 /turf/open/floor/tile/vault{
 	dir = 8
@@ -9825,9 +9828,9 @@
 /area/ice_colony/surface/storage_unit/power)
 "aHV" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "st_17";
-	name = "Storage Unit Lock";
-	pixel_x = -24
+	name = "Storage Unit Lock"
 	},
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/surface/storage_unit/power)
@@ -11697,9 +11700,9 @@
 /area/ice_colony/surface/storage_unit/research)
 "aOv" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "st_19";
-	name = "Storage Unit Lock";
-	pixel_y = -24
+	name = "Storage Unit Lock"
 	},
 /turf/open/floor/tile/vault{
 	dir = 8
@@ -11961,9 +11964,9 @@
 /area/ice_colony/surface/research)
 "aPn" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "research_entrance";
-	name = "Research Entrance Lock";
-	pixel_x = 24
+	name = "Research Entrance Lock"
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
@@ -13125,9 +13128,9 @@
 "aSM" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/machinery/door_control{
+	dir = 8;
 	id = "researchoutside";
-	name = "Research Garage Lock";
-	pixel_x = 24
+	name = "Research Garage Lock"
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
@@ -15404,12 +15407,9 @@
 /area/ice_colony/exterior/surface/clearing/pass)
 "aZY" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "researchoutside";
-	name = "Research Garage Lock";
-	pixel_x = -24
-	},
-/obj/machinery/light{
-	dir = 8
+	name = "Research Garage Lock"
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/surface/research)
@@ -16290,12 +16290,9 @@
 /area/ice_colony/exterior/underground/caves/ice_se)
 "bcZ" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "research_entrance";
-	name = "Research Entrance Lock";
-	pixel_x = -24
-	},
-/obj/machinery/light{
-	dir = 8
+	name = "Research Entrance Lock"
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/surface/research)
@@ -16582,9 +16579,9 @@
 /area/ice_colony/underground/requesition)
 "bdW" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "undergroundhangarwest";
-	name = "Underground Hangar Lock";
-	pixel_y = -24
+	name = "Underground Hangar Lock"
 	},
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/hangar)
@@ -17041,9 +17038,9 @@
 /area/ice_colony/surface/excavation/storage)
 "bfy" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "westhangar";
-	name = "West Hangar";
-	pixel_x = 24
+	name = "West Hangar"
 	},
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/underground/hangar)
@@ -17058,8 +17055,7 @@
 "bfB" = (
 /obj/machinery/door_control{
 	id = "st_19";
-	name = "Storage Unit Lock";
-	pixel_y = 24
+	name = "Storage Unit Lock"
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
@@ -17761,9 +17757,9 @@
 /area/ice_colony/underground/responsehangar)
 "bhX" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_y = -24
+	name = "Requesition Secure Storage"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark/brown2,
@@ -17908,8 +17904,7 @@
 "biL" = (
 /obj/machinery/door_control{
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_y = 24
+	name = "Requesition Secure Storage"
 	},
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/tile/vault{
@@ -17980,9 +17975,9 @@
 "biW" = (
 /obj/structure/cable,
 /obj/machinery/door_control{
+	dir = 1;
 	id = "undergroundhangarpower";
-	name = "Underground Hangar Lock";
-	pixel_y = -24
+	name = "Underground Hangar Lock"
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/underground/hangar)
@@ -19760,9 +19755,9 @@
 /area/ice_colony/underground/engineering)
 "bpA" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "Colony_PMC_Hangar";
-	name = "Hangar Shutters";
-	pixel_x = 24
+	name = "Hangar Shutters"
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -21420,9 +21415,9 @@
 	dir = 4
 	},
 /obj/machinery/door_control{
+	dir = 1;
 	id = "hangar_ice_1";
-	name = "hangar shutter control";
-	pixel_y = -30
+	name = "hangar shutter control"
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
@@ -21913,9 +21908,9 @@
 	dir = 4
 	},
 /obj/machinery/door_control{
+	dir = 1;
 	id = "hangar_ice_2";
-	name = "hangar shutter control";
-	pixel_y = -30
+	name = "hangar shutter control"
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -24041,9 +24036,10 @@
 /area/ice_colony/underground/security/hallway)
 "bDi" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "westhangar";
 	name = "West Hangar";
-	pixel_x = -24
+	pixel_x = -1
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
@@ -26763,9 +26759,9 @@
 /area/ice_colony/exterior/surface/valley/south)
 "bLP" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "colony_sec_armory";
-	name = "Colony Secure Armory";
-	pixel_y = -26
+	name = "Colony Secure Armory"
 	},
 /turf/open/floor/tile/dark/red2,
 /area/ice_colony/underground/security/armory)
@@ -26887,9 +26883,9 @@
 /area/ice_colony/underground/hallway/south_east)
 "bMj" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "Colony_PMC_Hangar";
-	name = "Hangar Shutters";
-	pixel_x = -24
+	name = "Hangar Shutters"
 	},
 /turf/open/floor/tile/dark/red2{
 	dir = 8
@@ -27465,9 +27461,9 @@
 /area/ice_colony/underground/crew/disposals)
 "bOb" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "undergroundhangarsouth";
-	name = "Underground Hangar Lock";
-	pixel_x = -24
+	name = "Underground Hangar Lock"
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 8
@@ -28257,9 +28253,9 @@
 	dir = 4
 	},
 /obj/machinery/door_control{
+	dir = 8;
 	id = "mining_garage";
-	name = "Mining Garage";
-	pixel_x = 24
+	name = "Mining Garage"
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/surface/excavationbarracks)
@@ -28296,9 +28292,9 @@
 	dir = 8
 	},
 /obj/machinery/door_control{
+	dir = 4;
 	id = "mining_garage";
-	name = "Mining Garage";
-	pixel_x = -24
+	name = "Mining Garage"
 	},
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 4
@@ -34678,6 +34674,12 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice/straight,
 /area/ice_colony/exterior/underground/caves)
+"tTQ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/valley/southwest)
 "tWU" = (
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor/tile/dark/blue2{
@@ -50569,11 +50571,11 @@ vlr
 vlr
 vlr
 vlr
-vlr
+tTQ
 bcZ
 ujM
 vlr
-vlr
+tTQ
 aZY
 aUO
 aVv

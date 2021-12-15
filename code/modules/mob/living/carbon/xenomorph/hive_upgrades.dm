@@ -295,6 +295,12 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	psypoint_cost = 75
 	icon = "primodefender"
 
+/datum/hive_upgrade/primordial/warrior
+	name = PRIMORDIAL_WARRIOR
+	desc = "Unlocks the primordial warriors jab and empowered abilities. A ranged punch, on primordial every 3rd ability cast from a warrior will be an improved version of itself."
+	psypoint_cost = 125
+	icon = "primowarrior"
+
 /datum/hive_upgrade/primordial/runner
 	name = PRIMORDIAL_RUNNER
 	desc = "Unlocks the primordial runner snatch ability. An ability that allows them to steal equipped items momentarily."

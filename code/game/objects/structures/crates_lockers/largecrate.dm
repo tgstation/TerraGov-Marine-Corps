@@ -5,6 +5,7 @@
 	icon_state = "densecrate"
 	density = TRUE
 	anchored = FALSE
+	var/dropmetal = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 100
 	hit_sound = 'sound/effects/woodhit.ogg'
@@ -57,7 +58,7 @@
 
 /obj/structure/largecrate/lisa
 	icon_state = "lisacrate"
-	spawn_type = /mob/living/simple_animal/corgi/Lisa
+	spawn_type = /mob/living/simple_animal/corgi/lisa
 	spawn_amount = 1
 
 
@@ -140,7 +141,8 @@
 
 
 /obj/structure/largecrate/random/barrel/deconstruct(disassembled = TRUE)
-	new /obj/item/stack/sheet/metal/small_stack(src)
+	if(dropmetal)
+		new /obj/item/stack/sheet/metal/small_stack(src)
 	return ..()
 
 
@@ -169,6 +171,7 @@
 	desc = "A blue storage barrel"
 	icon_state = "barrel_blue"
 	hit_sound = 'sound/effects/metalhit.ogg'
+	dropmetal = FALSE
 
 /obj/structure/largecrate/random/barrel/blue
 	name = "blue barrel"
