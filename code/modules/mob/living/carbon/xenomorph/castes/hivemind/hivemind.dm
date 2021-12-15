@@ -55,6 +55,7 @@
 		setBruteLoss(0)
 		setFireLoss(-minimum_health)
 		change_form()
+		remove_status_effect(/datum/status_effect/spacefreeze)
 	health = maxHealth - getFireLoss() - getBruteLoss()
 	med_hud_set_health()
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))

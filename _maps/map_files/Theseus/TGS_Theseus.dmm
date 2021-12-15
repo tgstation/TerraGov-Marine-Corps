@@ -19385,7 +19385,7 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/mob/living/simple_animal/corgi/Ranger,
+/mob/living/simple_animal/corgi/ranger,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},

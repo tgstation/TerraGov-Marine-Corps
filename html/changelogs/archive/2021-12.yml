@@ -176,3 +176,11 @@
   novaepee:
   - rscadd: Floppa and Martin, the req caracal
   - imageadd: floppa sprites!
+2021-12-15:
+  BraveMole:
+  - bugfix: Fix light replacing exploit
+  - code_imp: Unit test for guns expanded. Also put the fire delays at their correct
+      values, have no effect on gameplay
+  - bugfix: Fix hivemind space freeze bug
+  novaepee:
+  - bugfix: code
