@@ -176,79 +176,55 @@
 /datum/action/xeno_action/activable/drain/ai_should_use(atom/target)
 	return can_use_ability(target, TRUE)
 
-#define REJUVENATE_ALLY "rejuvenate_ally_cooldown"
-
 // ***************************************
-// *********** Rejuvenate/Transfusion
+// *********** Transfusion
 // ***************************************
-/datum/action/xeno_action/activable/rejuvenate
-	name = "Rejuvenate/Transfusion"
-	action_icon_state = "rejuvenation"
-	mechanics_text = "When used on self, drains blood continuosly, slows you down and reduces damage taken, while restoring health over time. When used on another xenomorph, costs blood and restores some of their health or overheals."
-	use_state_flags = XACT_TARGET_SELF
-	cooldown_timer = 4 SECONDS
-	plasma_cost = GORGER_REJUVENATE_SELF_DRAIN
+/datum/action/xeno_action/activable/transfusion
+	name = "Transfusion"
+	action_icon_state = "transfusion"
+	mechanics_text = "Restores some of the health of another xenomorph, or overheals, at the cost of blood."
+	//When used on self, drains blood continuosly, slows you down and reduces damage taken, while restoring health over time.
+	cooldown_timer = 2 SECONDS
+	plasma_cost = 20
 	target_flags = XABB_MOB_TARGET
 	keybind_signal = COMSIG_XENOABILITY_REJUVENATE
 
-/datum/action/xeno_action/activable/rejuvenate/can_use_ability(atom/target, silent = FALSE, override_flags) //it is set up to only return true on specific xeno or human targets
+/datum/action/xeno_action/activable/transfusion/can_use_ability(atom/target, silent = FALSE, override_flags) //it is set up to only return true on specific xeno or human targets
 	. = ..()
+	if(!.)
+		return
+
 	if(!isxeno(target))
 		if(!silent)
 			to_chat(owner, span_notice("We can only restore familiar biological lifeforms."))
 		return FALSE
 
+	if(owner.do_actions)
+		return FALSE
+	if(!owner.line_of_sight(target) || get_dist(owner, target) > 2)
+		if(!silent)
+			to_chat(owner, span_notice("It is beyond our reach, we must be close and our way must be clear."))
+		return FALSE
+	if(isdead(target))
+		if(!silent)
+			to_chat(owner, span_notice("We can only help living sisters."))
+		return FALSE
+	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		return FALSE
+	return TRUE
+
+/datum/action/xeno_action/activable/transfusion/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(owner_xeno != target)
-		if(owner_xeno.do_actions)
-			return FALSE
-		if(TIMER_COOLDOWN_CHECK(owner_xeno, REJUVENATE_ALLY))
-			return FALSE
-		if(!owner_xeno.line_of_sight(target) || get_dist(owner_xeno, target) > 2)
-			if(!silent)
-				to_chat(owner_xeno, span_notice("It is beyond our reach, we must be close and our way must be clear."))
-			return FALSE
-		if(owner_xeno.plasma_stored < GORGER_REJUVENATE_ALLY_COST)
-			if(!silent)
-				to_chat(owner_xeno, span_notice("We need [GORGER_REJUVENATE_ALLY_COST - owner_xeno.plasma_stored]u more blood to restore a sister."))
-			return FALSE
-		if(isdead(target))
-			if(!silent)
-				to_chat(owner_xeno, span_notice("We can only help living sisters."))
-			return FALSE
-		if(!do_mob(owner_xeno, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
-			return FALSE
-		return TRUE
-
-	if(!.)
-		return
-
-/datum/action/xeno_action/activable/rejuvenate/use_ability(atom/target)
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(target == owner_xeno)
-		if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_REJUVENATE))
-			owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_REJUVENATE)
-			add_cooldown()
-			return
-		owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_REJUVENATE, GORGER_REJUVENATE_SELF_DURATION, owner_xeno.maxHealth * GORGER_REJUVENATE_SELF_THRESHOLD)
-		to_chat(owner_xeno, span_notice("We tap into our reserves for nourishment, our carapace thickening."))
-		succeed_activate()
-		return
-
-	owner_xeno.use_plasma(GORGER_REJUVENATE_ALLY_COST)
-	TIMER_COOLDOWN_START(owner_xeno, REJUVENATE_ALLY, GORGER_REJUVENATE_ALLY_COOLDOWN)
 	var/mob/living/carbon/xenomorph/target_xeno = target
-	var/heal_amount = target_xeno.maxHealth * GORGER_REJUVENATE_ALLY_PERCENTAGE
+	var/heal_amount = target_xeno.maxHealth * GORGER_TRANSFUSION_HEAL
 	HEAL_XENO_DAMAGE(target_xeno, heal_amount)
 	adjustOverheal(target_xeno, heal_amount)
 	if(target_xeno.overheal)
 		target_xeno.balloon_alert(owner_xeno, "Overheal: [target_xeno.overheal]/[target_xeno.xeno_caste.overheal_max]")
+	add_cooldown()
+	succeed_activate()
 
-/datum/action/xeno_action/activable/rejuvenate/ai_should_use(atom/target)
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(owner_xeno.health < owner_xeno.maxHealth * 0.6 && can_use_ability(owner_xeno, TRUE))
-		use_ability(owner_xeno)
-		return FALSE
+/datum/action/xeno_action/activable/transfusion/ai_should_use(atom/target)
 	// no healing non-xeno
 	if(!isxeno(target))
 		return FALSE
@@ -256,11 +232,99 @@
 	if(target_xeno.get_xeno_hivenumber() != owner.get_xeno_hivenumber())
 		return FALSE
 	// no overhealing
-	if(target_xeno.health > target_xeno.maxHealth * (1 - GORGER_REJUVENATE_ALLY_PERCENTAGE))
+	if(target_xeno.health > target_xeno.maxHealth * (1 - GORGER_REJUVENATE_HEAL))
 		return FALSE
 	return can_use_ability(target, TRUE)
 
-#undef REJUVENATE_ALLY
+// ***************************************
+// *********** Rejuvenate
+// ***************************************
+#define REJUVENATE_MISCLICK_CD "rejuvenate_misclick"
+/datum/action/xeno_action/activable/rejuvenate
+	name = "Rejuvenate"
+	action_icon_state = "rejuvenation"
+	mechanics_text = "Drains blood continuosly, slows you down and reduces damage taken, while restoring some health over time. Cancel by activating again"
+	cooldown_timer = 4 SECONDS
+	plasma_cost = GORGER_REJUVENATE_COST
+	target_flags = XABB_MOB_TARGET
+	keybind_signal = COMSIG_XENOABILITY_REJUVENATE
+
+/datum/action/xeno_action/activable/rejuvenate/can_activate()
+	. = ..()
+	if(!.)
+		return
+	if(TIMER_COOLDOWN_CHECK(owner, REJUVENATE_MISCLICK_CD))
+		return FALSE
+
+/datum/action/xeno_action/activable/rejuvenate/action_activate()
+	. = ..()
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_REJUVENATE))
+		owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_REJUVENATE)
+		add_cooldown()
+		return
+	owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_REJUVENATE, GORGER_REJUVENATE_DURATION, owner_xeno.maxHealth * GORGER_REJUVENATE_THRESHOLD)
+	to_chat(owner_xeno, span_notice("We tap into our reserves for nourishment, our carapace thickening."))
+	succeed_activate()
+	TIMER_COOLDOWN_START(owner_xeno, REJUVENATE_MISCLICK_CD, 1 SECONDS)
+
+/datum/action/xeno_action/activable/rejuvenate/ai_should_use(atom/target)
+	return FALSE
+
+#undef REJUVENATE_MISCLICK_CD
+
+// ***************************************
+// *********** Psychic Link
+// ***************************************
+/datum/action/xeno_action/activable/psychic_link
+	name = "Psychic Link"
+	action_icon_state = "psychic_link"
+	mechanics_text = "Link to a xenomorph and take some damage in their place. During this time, you can't move. Use rest action to cancel."
+	cooldown_timer = 50 SECONDS
+	plasma_cost = 0
+	target_flags = XABB_MOB_TARGET
+	keybind_signal = COMSIG_XENOABILITY_REJUVENATE
+
+/datum/action/xeno_action/activable/psychic_link/can_use_ability(atom/target, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(owner.do_actions)
+		return FALSE
+	if(!isxeno(target))
+		if(!silent)
+			to_chat(owner, span_notice("We can only link to familiar biological lifeforms."))
+		return FALSE
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	if(owner_xeno.health <= owner_xeno.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH)
+		if(!silent)
+			to_chat(owner, span_notice("You are too hurt to link."))
+		return FALSE
+	if(!owner.line_of_sight(target) || get_dist(owner, target) > GORGER_PSYCHIC_LINK_RANGE)
+		if(!silent)
+			to_chat(owner, span_notice("It is beyond our reach, we must be close and our way must be clear."))
+		return FALSE
+	if(!do_mob(owner, target, GORGER_PSYCHIC_LINK_CHANNEL, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		return FALSE
+	return TRUE
+
+/datum/action/xeno_action/activable/psychic_link/use_ability(atom/target)
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK, -1, target, GORGER_PSYCHIC_LINK_RANGE, GORGER_PSYCHIC_LINK_REDIRECT, owner_xeno.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH)
+	target.balloon_alert(owner_xeno, "Link successul.")
+	owner_xeno.balloon_alert(target, "[owner_xeno] has linked to you.")
+	owner_xeno.set_resting(TRUE, TRUE)
+	RegisterSignal(owner_xeno, COMSIG_XENOMORPH_UNREST, .proc/cancel_psychic_link)
+	add_cooldown()
+	succeed_activate()
+
+///Cancels the status effect
+/datum/action/xeno_action/activable/psychic_link/proc/cancel_psychic_link(datum/source)
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
+
+/datum/action/xeno_action/activable/psychic_link/ai_should_use(atom/target)
+	return FALSE
 
 // ***************************************
 // *********** Carnage
@@ -275,7 +339,7 @@
 	keybind_signal = COMSIG_XENOABILITY_CARNAGE
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 
-/datum/action/xeno_action/activable/carnage/use_ability(atom/A)
+/datum/action/xeno_action/activable/carnage/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_CARNAGE, 10 SECONDS, owner_xeno.xeno_caste.carnage_plasma_gain, owner_xeno.maxHealth * GORGER_CARNAGE_HEAL, GORGER_CARNAGE_MOVEMENT)
@@ -300,7 +364,7 @@
 	name = "Feast"
 	action_icon_state = "feast"
 	mechanics_text = "Enter a state of rejuvenation. During this time you use a small amount of blood and heal. You can cancel this early."
-	use_state_flags = XACT_IGNORE_SELECTED_ABILITY|XACT_KEYBIND_USE_ABILITY
+	use_state_flags = XACT_TARGET_SELF|XACT_IGNORE_SELECTED_ABILITY
 	cooldown_timer = 180 SECONDS
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_FEAST
@@ -321,7 +385,7 @@
 			to_chat(owner_xeno, span_notice("Not enough to begin a feast. We need [owner_xeno.xeno_caste.feast_plasma_drain * 10] blood."))
 		return FALSE
 
-/datum/action/xeno_action/activable/feast/use_ability(atom/A)
+/datum/action/xeno_action/activable/feast/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))

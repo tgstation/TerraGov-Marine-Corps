@@ -43,33 +43,37 @@
 	duration = set_duration
 	src.tick_damage_limit = tick_damage_limit
 	RegisterSignal(owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), .proc/handle_damage_taken)
-	owner.add_movespeed_modifier(MOVESPEED_ID_GORGER_REJUVENATE, TRUE, 0, NONE, TRUE, GORGER_REJUVENATE_SELF_SLOWDOWN)
+	owner.add_movespeed_modifier(MOVESPEED_ID_GORGER_REJUVENATE, TRUE, 0, NONE, TRUE, GORGER_REJUVENATE_SLOWDOWN)
 	owner.add_filter("[id]m", 0, outline_filter(2, "#455d5762"))
 	return ..()
 
 /datum/status_effect/xeno_rejuvenate/on_remove()
 	. = ..()
+	UnregisterSignal(owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
 	owner.remove_movespeed_modifier(MOVESPEED_ID_GORGER_REJUVENATE)
 	owner.remove_filter("[id]m")
 
 /datum/status_effect/xeno_rejuvenate/tick()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(owner_xeno.plasma_stored < GORGER_REJUVENATE_SELF_DRAIN)
+	if(owner_xeno.plasma_stored < GORGER_REJUVENATE_COST)
 		to_chat(owner_xeno, span_notice("Not enough substance to sustain ourselves..."))
 		owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_REJUVENATE)
 		return
 
-	owner_xeno.plasma_stored -= GORGER_REJUVENATE_SELF_DRAIN
+	owner_xeno.plasma_stored -= GORGER_REJUVENATE_COST
 	new /obj/effect/temp_visual/telekinesis(get_turf(owner_xeno))
 	to_chat(owner_xeno, span_notice("We feel our wounds close up."))
 
-	var/amount = owner_xeno.maxHealth*GORGER_REJUVENATE_SELF_AMOUNT
+	var/amount = owner_xeno.maxHealth * GORGER_REJUVENATE_HEAL
 	HEAL_XENO_DAMAGE(owner_xeno, amount)
 	tick_damage = 0
 
 ///Handles damage received when the status effect is active
 /datum/status_effect/xeno_rejuvenate/proc/handle_damage_taken(datum/source, amount, list/amount_mod)
 	SIGNAL_HANDLER
+	if(amount <= 0)
+		return
+
 	tick_damage += amount
 	if(tick_damage < tick_damage_limit)
 		return
@@ -77,8 +81,89 @@
 	for(var/i in amount_mod)
 		modified_amount -= i
 
-	amount_mod += GORGER_REJUVENATE_SELF_DMG_REDUCTION(modified_amount)
+	amount_mod += min(modified_amount * 0.7, 40)
 
+#define PSYCHIC_LINK_COLOR "#2a888360"
+#define TARGET_ID "[id][owner]"
+#define CALC_DAMAGE_REDUCTION(amount, amount_mod) \
+	if(amount <= 0) { \
+		return; \
+	}; \
+	var/remaining_health = owner.health - minimum_health; \
+	amount = min(amount * redirect_mod, remaining_health); \
+	amount_mod += amount
+
+/datum/status_effect/xeno_psychic_link
+	id = "xeno_psychic_link"
+	tick_interval = 2 SECONDS
+	///Xenomorph the owner is linked to
+	var/mob/living/carbon/xenomorph/target_mob
+	///How far apart the linked mobs can be
+	var/link_range
+	///Percentage of damage to be redirected
+	var/redirect_mod
+	///Minimum health threshold before the effect is deactivated
+	var/minimum_health
+
+/datum/status_effect/xeno_psychic_link/on_creation(mob/living/new_owner, set_duration, mob/living/carbon/target_mob, link_range, redirect_mod, minimum_health)
+	owner = new_owner
+	duration = set_duration
+	src.target_mob = target_mob
+	src.link_range = link_range
+	src.redirect_mod = redirect_mod
+	src.minimum_health = minimum_health
+	RegisterSignal(target_mob, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
+	RegisterSignal(target_mob, COMSIG_XENOMORPH_BURN_DAMAGE, .proc/handle_burn_damage)
+	RegisterSignal(target_mob, COMSIG_XENOMORPH_BRUTE_DAMAGE, .proc/handle_brute_damage)
+	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/handle_mob_dead)
+	RegisterSignal(target_mob, COMSIG_MOB_DEATH, .proc/handle_mob_dead)
+	owner.add_filter("[id]m", 2, outline_filter(2, PSYCHIC_LINK_COLOR))
+	target_mob.add_filter(TARGET_ID, 2, outline_filter(2, PSYCHIC_LINK_COLOR))
+	var/link_message = "[owner] has linked to you and is redirecting some of your injuries. If they get too hurt, the link may be broken. "
+	if(link_range > 0)
+		link_message += "Keep within [link_range] tiles to maintain it."
+	to_chat(target_mob, span_xenonotice(link_message))
+	return ..()
+
+/datum/status_effect/xeno_psychic_link/on_remove()
+	. = ..()
+	UnregisterSignal(target_mob, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+	owner.remove_filter("[id]m")
+	target_mob.remove_filter(TARGET_ID)
+	to_chat(target_mob, span_xenonotice("[owner] has unlinked from you."))
+
+///Handles the link breaking due to dying
+/datum/status_effect/xeno_psychic_link/proc/handle_mob_dead(datum/source)
+	SIGNAL_HANDLER
+	owner.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
+
+///Handles the link breaking due to distance
+/datum/status_effect/xeno_psychic_link/proc/handle_dist(datum/source)
+	SIGNAL_HANDLER
+	if(get_dist(owner, target_mob) > link_range)
+		to_chat(target_mob, span_xenowarning("You have moved too far away from [owner]."))
+		to_chat(owner, span_xenowarning("[target_mob] has moved too far away."))
+		owner.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
+
+///Transfers mitigated burn damage
+/datum/status_effect/xeno_psychic_link/proc/handle_burn_damage(datum/source, amount, list/amount_mod)
+	SIGNAL_HANDLER
+	CALC_DAMAGE_REDUCTION(amount, amount_mod)
+	owner.adjustFireLoss(amount)
+	if(owner.health <= minimum_health)
+		owner.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
+
+///Transfers mitigated brute damage
+/datum/status_effect/xeno_psychic_link/proc/handle_brute_damage(datum/source, amount, list/amount_mod)
+	SIGNAL_HANDLER
+	CALC_DAMAGE_REDUCTION(amount, amount_mod)
+	owner.adjustBruteLoss(amount)
+	if(owner.health <= minimum_health)
+		owner.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
+
+#undef PSYCHIC_LINK_COLOR
+#undef TARGET_ID
+#undef CALC_DAMAGE_REDUCTION
 
 ///Calculates the effectiveness of parts of the status based on plasma of owner
 #define CALC_PLASMA_MOD(xeno) \

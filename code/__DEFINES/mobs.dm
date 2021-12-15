@@ -577,15 +577,16 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define GORGER_DRAIN_DELAY 1 SECONDS // time needed to drain a marine once
 #define GORGER_DRAIN_HEAL 40 // overheal gained each time the target is drained
 #define GORGER_DRAIN_BLOOD_DRAIN 20 // amount of plasma drained when feeding on something
-#define GORGER_REJUVENATE_ALLY_COST 20 // cost of using ability on an ally
-#define GORGER_REJUVENATE_ALLY_COOLDOWN 2 SECONDS //cooldown of casting rejuvenation on an ally
-#define GORGER_REJUVENATE_ALLY_PERCENTAGE 0.3 // percent of health healed on ally xeno
-#define GORGER_REJUVENATE_SELF_DURATION -1
-#define GORGER_REJUVENATE_SELF_DRAIN 20
-#define GORGER_REJUVENATE_SELF_SLOWDOWN 6
-#define GORGER_REJUVENATE_SELF_AMOUNT 0.05
-#define GORGER_REJUVENATE_SELF_THRESHOLD 0.20
-#define GORGER_REJUVENATE_SELF_DMG_REDUCTION(damage) min(damage * 0.7, 40)
+#define GORGER_TRANSFUSION_HEAL 0.3 // in %
+#define GORGER_REJUVENATE_DURATION -1
+#define GORGER_REJUVENATE_COST 20
+#define GORGER_REJUVENATE_SLOWDOWN 6
+#define GORGER_REJUVENATE_HEAL 0.05 //in %
+#define GORGER_REJUVENATE_THRESHOLD 0.20 //in %
+#define GORGER_PSYCHIC_LINK_CHANNEL 10 SECONDS
+#define GORGER_PSYCHIC_LINK_RANGE 6
+#define GORGER_PSYCHIC_LINK_REDIRECT 0.5 //in %
+#define GORGER_PSYCHIC_LINK_MIN_HEALTH 0.2 //in %
 #define GORGER_CARNAGE_HEAL 0.2
 #define GORGER_CARNAGE_MOVEMENT -0.5
 #define GORGER_FEAST_DURATION -1 // lasts indefinitely, self-cancelled when insufficient plasma left

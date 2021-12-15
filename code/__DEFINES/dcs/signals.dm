@@ -449,6 +449,9 @@
 #define COMSIG_XENOMORPH_HEALTH_REGEN "xenomorph_health_regen"
 #define COMSIG_XENOMORPH_SUNDER_REGEN "xenomorph_sunder_regen"
 
+#define COMSIG_XENOMORPH_REST "xenomorph_rest"
+#define COMSIG_XENOMORPH_UNREST "xenomorph_unrest"
+
 #define COMSIG_XENOMORPH_ZONE_SELECT "xenomorph_zone_select"
 	#define COMSIG_ACCURATE_ZONE (1<<0)
 

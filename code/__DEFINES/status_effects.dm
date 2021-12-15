@@ -19,6 +19,8 @@
 
 #define STATUS_EFFECT_XENO_REJUVENATE /datum/status_effect/xeno_rejuvenate
 
+#define STATUS_EFFECT_XENO_PSYCHIC_LINK /datum/status_effect/xeno_psychic_link
+
 #define STATUS_EFFECT_XENO_CARNAGE /datum/status_effect/xeno_carnage
 
 #define STATUS_EFFECT_XENO_FEAST /datum/status_effect/xeno_feast
