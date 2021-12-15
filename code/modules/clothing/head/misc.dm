@@ -7,6 +7,7 @@
 	item_state = "centhat"
 	siemens_coefficient = 0.9
 	flags_armor_protection = NONE
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/clothing/head/hairflower
 	name = "hair flower pin"
