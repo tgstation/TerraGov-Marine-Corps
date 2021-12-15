@@ -52,7 +52,6 @@
 	bitesize = 4
 	greyscale_config = /datum/greyscale_config/protein
 	tastes = list(("flavored protein bar") = 1)
-	//list of producable protein bars
 	var/static/list/randlist = list(
 		list("stale TGMC protein bar","The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute.","#f37d43",list("nutraloafed food" = 1)),
 		list("mint TGMC protein bar","A stale old protien bar, with an almost minty freshness to it, but not fresh enough","#61b36e",list("minty protein" = 1)),
@@ -67,7 +66,7 @@
 
 /obj/item/reagent_containers/food/snacks/protein_pack/Initialize()
 	. = ..()
-	///list of protein bar stats to change
+	//list of protein bar stats to change
 	var/list/picked = pick(randlist)
 	name = picked[1]
 	desc = picked[2]
