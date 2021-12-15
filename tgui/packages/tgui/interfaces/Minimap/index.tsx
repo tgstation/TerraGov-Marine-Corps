@@ -1,7 +1,7 @@
 import { useBackend } from '../../backend';
 import { Box, Stack } from '../../components';
 import { Window } from '../../layouts';
-import { MinimapObject } from './MapObject';
+import { MinimapBlip } from './MinimapBlip';
 import { MinimapData, Coordinate, icon_size, minimapPadding } from './Types';
 import { createLogger } from '../../logging';
 
@@ -29,7 +29,7 @@ export const Minimap = (props, context) => {
       -(map_size_tile_x - view_size) * icon_size
     ),
     y: Math.max(
-      Math.min(0, 
+      Math.min(0,
         -(map_size_tile_y - player_data.coordinate.y -view_offset - 1.5)
          * icon_size),
       -(map_size_tile_y - view_size) * icon_size
@@ -72,11 +72,11 @@ export const Minimap = (props, context) => {
               top={`${minimapPadding}px`}
             >
               {visible_objects_data.map(objet_data => {
-                const local_coord : Coordinate|null  
+                const local_coord : Coordinate|null
                   = globalToLocal(objet_data.coordinate);
                 if (!local_coord) return;
                 return (
-                  <MinimapObject
+                  <MinimapBlip
                     key={objet_data.name}
                     coordinate={local_coord}
                   />

@@ -1,11 +1,11 @@
 import { Box, Stack } from '../../components';
-import { MinimapObjectProp, icon_size } from './Types';
+import { MinimapBlipProp, icon_size } from './Types';
 import { createLogger } from '../../logging';
 
 const logger = createLogger('coordinate');
 
-export const MinimapObject = (props: MinimapObjectProp, context) => {
-  
+export const MinimapBlip = (props: MinimapBlipProp, context) => {
+
   const {
     coordinate,
     ...rest
@@ -13,7 +13,7 @@ export const MinimapObject = (props: MinimapObjectProp, context) => {
 
   return (
     <Box
-      className="Minimap__Object"
+      className="Minimap__Blip"
       width="10%"
       {...rest}
       position="absolute"
@@ -24,7 +24,7 @@ export const MinimapObject = (props: MinimapObjectProp, context) => {
         <Stack.Item>
           <Box
             as="span"
-            className="Minimap__Object_Icon"
+            className="Minimap__Blip_icon"
             position="absolute"
             backgroundColor="white"
             width={`${icon_size}px`}

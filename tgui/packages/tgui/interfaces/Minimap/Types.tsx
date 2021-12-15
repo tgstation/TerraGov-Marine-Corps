@@ -17,7 +17,7 @@ export type MinimapData = {
   visible_objects_data : ObjectData[];
 }
 
-export type MinimapObjectProp = {
+export type MinimapBlipProp = {
   coordinate : Coordinate;
 }
 

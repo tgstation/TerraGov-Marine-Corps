@@ -16,11 +16,11 @@ $move-speed: 0.3s !default;
   transition: background-position $move-speed linear;
 }
 
-.Minimap__Object {
+.Minimap__Blip {
   transition: top $move-speed linear, left $move-speed linear;
 }
 
-.Minimap__Object_Icon {
+.Minimap__Blip_icon {
   border-radius: 50%;
   pointer-events: none;
 }
