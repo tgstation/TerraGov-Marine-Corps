@@ -187,7 +187,7 @@
 	cooldown_timer = 2 SECONDS
 	plasma_cost = 20
 	target_flags = XABB_MOB_TARGET
-	keybind_signal = COMSIG_XENOABILITY_REJUVENATE
+	keybind_signal = COMSIG_XENOABILITY_TRANSFUSION
 
 /datum/action/xeno_action/activable/transfusion/can_use_ability(atom/target, silent = FALSE, override_flags) //it is set up to only return true on specific xeno or human targets
 	. = ..()
@@ -243,13 +243,13 @@
 /datum/action/xeno_action/activable/rejuvenate
 	name = "Rejuvenate"
 	action_icon_state = "rejuvenation"
-	mechanics_text = "Drains blood continuosly, slows you down and reduces damage taken, while restoring some health over time. Cancel by activating again"
+	mechanics_text = "Drains blood continuosly, slows you down and reduces damage taken, while restoring some health over time. Cancel by activating again."
 	cooldown_timer = 4 SECONDS
 	plasma_cost = GORGER_REJUVENATE_COST
 	target_flags = XABB_MOB_TARGET
 	keybind_signal = COMSIG_XENOABILITY_REJUVENATE
 
-/datum/action/xeno_action/activable/rejuvenate/can_activate()
+/datum/action/xeno_action/activable/rejuvenate/can_use_action(silent, override_flags, selecting)
 	. = ..()
 	if(!.)
 		return
@@ -283,7 +283,7 @@
 	cooldown_timer = 50 SECONDS
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
-	keybind_signal = COMSIG_XENOABILITY_REJUVENATE
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_LINK
 
 /datum/action/xeno_action/activable/psychic_link/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -334,13 +334,11 @@
 	name = "Carnage"
 	action_icon_state = "carnage"
 	mechanics_text = "Enter a state of thirst, gaining movement and healing on your next attack, scaling with missing blood. If your blood is below a certain %, you also knockdown your victim and drain some blood, during which you can't move."
-	use_state_flags = XACT_TARGET_SELF|XACT_IGNORE_SELECTED_ABILITY
 	cooldown_timer = 15 SECONDS
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_CARNAGE
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
 
-/datum/action/xeno_action/activable/carnage/action_activate()
+/datum/action/xeno_action/activable/carnage/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_CARNAGE, 10 SECONDS, owner_xeno.xeno_caste.carnage_plasma_gain, owner_xeno.maxHealth * GORGER_CARNAGE_HEAL, GORGER_CARNAGE_MOVEMENT)
@@ -360,24 +358,21 @@
 // ***************************************
 // *********** Feast
 // ***************************************
-
+#define FEAST_MISCLICK_CD "feast_misclick"
 /datum/action/xeno_action/activable/feast
 	name = "Feast"
 	action_icon_state = "feast"
 	mechanics_text = "Enter a state of rejuvenation. During this time you use a small amount of blood and heal. You can cancel this early."
-	use_state_flags = XACT_TARGET_SELF|XACT_IGNORE_SELECTED_ABILITY
 	cooldown_timer = 180 SECONDS
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_FEAST
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	///Adds a cooldown to deactivation to avoid accidental cancel
 	COOLDOWN_DECLARE(misclick_prevention)
 
 /datum/action/xeno_action/activable/feast/can_use_ability(atom/target, silent, override_flags)
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-
-	if(!COOLDOWN_CHECK(src, misclick_prevention))
+	if(TIMER_COOLDOWN_CHECK(owner_xeno, FEAST_MISCLICK_CD))
 		return FALSE
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
 		return TRUE
@@ -386,7 +381,7 @@
 			to_chat(owner_xeno, span_notice("Not enough to begin a feast. We need [owner_xeno.xeno_caste.feast_plasma_drain * 10] blood."))
 		return FALSE
 
-/datum/action/xeno_action/activable/feast/action_activate()
+/datum/action/xeno_action/activable/feast/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
@@ -412,3 +407,5 @@
 	if(owner_xeno.plasma_stored / owner_xeno.xeno_caste.feast_plasma_drain < 7)
 		return FALSE
 	return can_use_ability(target, TRUE)
+
+#undef FEAST_MISCLICK_CD

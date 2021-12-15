@@ -233,11 +233,23 @@
 	description = "Stagger a marine and drain some of their blood. When used on a dead human, you heal gradually and don't gain blood."
 	keybind_signal = COMSIG_XENOABILITY_DRAIN
 
+/datum/keybinding/xeno/transfusion
+	name = "transfusion"
+	full_name = "Gorger: Transfusion"
+	description = "Restores some of the health of another xenomorph, or overheals, at the cost of blood."
+	keybind_signal = COMSIG_XENOABILITY_TRANSFUSION
+
 /datum/keybinding/xeno/rejuvenate
-	name = "rejuvenate/transfusion"
-	full_name = "Gorger: Rejuvenate/Transfusion"
-	description = "When used on self, drains blood and restores health over time. When used on another xenomorph, costs blood and restores some of their health."
+	name = "rejuvenate"
+	full_name = "Gorger: Rejuvenate"
+	description = "Drains blood continuosly, slows you down and reduces damage taken, while restoring some health over time. Cancel by activating again."
 	keybind_signal = COMSIG_XENOABILITY_REJUVENATE
+
+/datum/keybinding/xeno/psychic_link
+	name = "psychic link"
+	full_name = "Gorger: Psychic Link"
+	description = "Link to a xenomorph and take some damage in their place. During this time, you can't move. Use rest action to cancel."
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_LINK
 
 /datum/keybinding/xeno/carnage
 	name = "carnage"

@@ -142,7 +142,7 @@
 /datum/status_effect/xeno_psychic_link/proc/handle_dist(datum/source)
 	SIGNAL_HANDLER
 	if(get_dist(owner, target_mob) > link_range)
-		to_chat(target_mob, span_xenowarning("Are too far away from [owner]."))
+		to_chat(target_mob, span_xenowarning("You are too far away from [owner]."))
 		to_chat(owner, span_xenowarning("[target_mob] is too far away."))
 		owner.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
 
