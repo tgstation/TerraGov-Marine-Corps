@@ -6,6 +6,7 @@ export type Coordinate = {
 export type ObjectData = {
   name : string,
   coordinate : Coordinate,
+  image? : string,
 }
 
 export type MinimapData = {
@@ -19,6 +20,7 @@ export type MinimapData = {
 
 export type MinimapBlipProp = {
   coordinate : Coordinate;
+  image? : string,
 }
 
 export const icon_size : number = 8;

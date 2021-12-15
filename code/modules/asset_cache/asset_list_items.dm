@@ -33,6 +33,11 @@
 		"inventory-pocket.png" = 'icons/UI_Icons/inventory/pocket.png',
 	)
 
+/datum/asset/simple/minimap_blip
+	assets = list(
+		"alpha_engi.png" = 'icons/UI_Icons/minimap_blips/alpha_engi.png',
+	)
+
 /datum/asset/simple/irv
 	assets = list(
 		"jquery-ui.custom-core-widgit-mouse-sortable-min.js" = 'html/IRV/jquery-ui.custom-core-widgit-mouse-sortable-min.js',
