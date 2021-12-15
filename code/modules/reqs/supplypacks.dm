@@ -1502,7 +1502,7 @@ Imports
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/imports/mpi_km
-	name = "AK-47 Assault Rifle"
+	name = "MPi-KM Assault Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/mpi_km)
 	cost = 5
 
