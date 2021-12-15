@@ -127,7 +127,7 @@
 	owner_xeno.visible_message(target_human, span_danger("[owner_xeno] stabs its tail into [target_human]!"));\
 	playsound(target_human, "alien_claw_flesh", 25, TRUE);\
 	target_human.emote("scream");\
-	target_human.apply_damage(damage = 2, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE);\
+	target_human.apply_damage(damage = 4, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE);\
 \
 	var/drain_healing = GORGER_DRAIN_HEAL;\
 	HEAL_XENO_DAMAGE(owner_xeno, drain_healing);\
