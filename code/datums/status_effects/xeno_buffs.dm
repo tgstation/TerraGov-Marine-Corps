@@ -112,11 +112,12 @@
 	src.link_range = link_range
 	src.redirect_mod = redirect_mod
 	src.minimum_health = minimum_health
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
 	RegisterSignal(target_mob, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
-	RegisterSignal(target_mob, COMSIG_XENOMORPH_BURN_DAMAGE, .proc/handle_burn_damage)
-	RegisterSignal(target_mob, COMSIG_XENOMORPH_BRUTE_DAMAGE, .proc/handle_brute_damage)
 	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/handle_mob_dead)
 	RegisterSignal(target_mob, COMSIG_MOB_DEATH, .proc/handle_mob_dead)
+	RegisterSignal(target_mob, COMSIG_XENOMORPH_BURN_DAMAGE, .proc/handle_burn_damage)
+	RegisterSignal(target_mob, COMSIG_XENOMORPH_BRUTE_DAMAGE, .proc/handle_brute_damage)
 	owner.add_filter("[id]m", 2, outline_filter(2, PSYCHIC_LINK_COLOR))
 	target_mob.add_filter(TARGET_ID, 2, outline_filter(2, PSYCHIC_LINK_COLOR))
 	var/link_message = "[owner] has linked to you and is redirecting some of your injuries. If they get too hurt, the link may be broken. "
@@ -141,8 +142,8 @@
 /datum/status_effect/xeno_psychic_link/proc/handle_dist(datum/source)
 	SIGNAL_HANDLER
 	if(get_dist(owner, target_mob) > link_range)
-		to_chat(target_mob, span_xenowarning("You have moved too far away from [owner]."))
-		to_chat(owner, span_xenowarning("[target_mob] has moved too far away."))
+		to_chat(target_mob, span_xenowarning("Are too far away from [owner]."))
+		to_chat(owner, span_xenowarning("[target_mob] is too far away."))
 		owner.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
 
 ///Transfers mitigated burn damage
