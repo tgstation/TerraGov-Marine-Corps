@@ -1507,7 +1507,7 @@ Imports
 	cost = 5
 
 /datum/supply_packs/imports/mpi_km/ammo
-	name = "AK-47 Assault Rifle Ammo"
+	name = "MPi-KM Assault Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/mpi_km)
 	cost = 1
 
