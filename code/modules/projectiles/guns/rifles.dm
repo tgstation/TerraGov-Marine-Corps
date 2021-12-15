@@ -65,6 +65,7 @@
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -135,6 +136,7 @@
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -209,6 +211,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -277,6 +280,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -340,6 +344,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -389,6 +394,7 @@
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/stock/irremoveable/rifle,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -531,6 +537,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -598,6 +605,7 @@
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
@@ -657,6 +665,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/t42barrel,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
 	flags_gun_features = GUN_AMMO_COUNTER
@@ -665,7 +674,7 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.18 SECONDS
+	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 5
 
 	fire_delay = 0.2 SECONDS
@@ -774,6 +783,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/stock/irremoveable/rifle,
 		/obj/item/attachable/shoulder_mount,
 	)
@@ -842,6 +852,7 @@
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/weapon/gun/flamer/mini_flamer/unremovable,
 		/obj/item/attachable/suppressor/unremovable/invisible,
 		/obj/item/attachable/scope/unremovable,
@@ -851,7 +862,7 @@
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 24, "under_x" = 34, "under_y" = 16, "stock_x" = 19, "stock_y" = 13)
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.125 SECONDS
+	aim_fire_delay = 0.15 SECONDS
 	aim_speed_modifier = 2
 
 	fire_delay = 0.25 SECONDS
@@ -917,9 +928,9 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
-		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY //Its a shotgun type weapon effectively, most shotgun type weapons shouldn't be able to point blank 1 handed.
@@ -1023,6 +1034,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
@@ -1098,7 +1110,10 @@
 	caliber = CALIBER_86X70 //codex
 	max_shells = 7 //codex
 	default_ammo_type = /obj/item/ammo_magazine/rifle/chamberedrifle
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/chamberedrifle)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/chamberedrifle,
+		/obj/item/ammo_magazine/rifle/chamberedrifle/flak,
+	)
 	attachable_allowed = list(
 		/obj/item/attachable/scope/unremovable/tl127,
 		/obj/item/attachable/stock/tl127stock,
@@ -1207,6 +1222,7 @@
 		/obj/item/attachable/stock/irremoveable/tx11,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/scope/marine,
 	)
 
 	flags_gun_features = GUN_AMMO_COUNTER
@@ -1214,10 +1230,10 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11, /obj/item/attachable/scope/mini/tx11)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 19, "stock_y" = 23)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.125 SECONDS
+	aim_fire_delay = 0.15 SECONDS
 
-	fire_delay = 0.225 SECONDS
-	extra_delay = 0.5 SECONDS
+	fire_delay = 0.25 SECONDS
+	extra_delay = 0.25 SECONDS
 	burst_amount = 3
 	burst_delay = 0.05 SECONDS
 	accuracy_mult_unwielded = 0.5
@@ -1270,6 +1286,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER

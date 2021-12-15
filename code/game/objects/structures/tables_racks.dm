@@ -579,6 +579,7 @@
 	anchored = TRUE
 	throwpass = TRUE	//You can throw objects over this, despite it's density.
 	climbable = TRUE
+	var/dropmetal = TRUE   //if true drop metal when destroyed; mostly used when we need large amounts of racks without marines hoarding the metal 
 	max_integrity = 40
 	resistance_flags = XENO_DAMAGEABLE
 	var/parts = /obj/item/frame/rack
@@ -631,12 +632,15 @@
 		deconstruct(FALSE)
 
 /obj/structure/rack/deconstruct(disassembled = TRUE)
-	if(disassembled && parts)
+	if(disassembled && parts && dropmetal)
 		new parts(loc)
-	else
+	else if(dropmetal)
 		new /obj/item/stack/sheet/metal(loc)
 	density = FALSE
 	return ..()
+
+/obj/structure/rack/nometal
+	dropmetal = FALSE
 
 #undef TABLE_STATUS_WEAKENED
 #undef TABLE_STATUS_FIRM

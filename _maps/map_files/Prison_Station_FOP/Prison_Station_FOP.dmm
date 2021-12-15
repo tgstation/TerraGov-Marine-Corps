@@ -476,10 +476,6 @@
 /area/prison/research/secret/biolab)
 "adl" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door_control{
-	id = "biological_testing_1";
-	name = "Containment Shutter Control"
-	},
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -521,10 +517,6 @@
 	dir = 8
 	},
 /obj/effect/decal/warning_stripes/thin,
-/obj/machinery/door_control{
-	id = "biological_testing_2";
-	name = "Containment Shutter Control"
-	},
 /turf/open/floor/prison/plate,
 /area/prison/research/secret/biolab)
 "adr" = (
@@ -6253,6 +6245,7 @@
 	dir = 1
 	},
 /obj/machinery/door_control{
+	dir = 4;
 	id = "research_secret";
 	name = "Classified Research Lockdown"
 	},
@@ -35623,17 +35616,17 @@
 /area/prison/security/armory/riot)
 "cgV" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "riot_armory";
-	name = "Riot Armory Access";
-	pixel_x = -24
+	name = "Riot Armory Access"
 	},
 /turf/open/floor/prison/darkred/full,
 /area/prison/security)
 "cgX" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "lethal_armory";
-	name = "Lethal Armory Access";
-	pixel_x = 24
+	name = "Lethal Armory Access"
 	},
 /turf/open/floor/prison/darkred/full,
 /area/prison/security)
@@ -38789,8 +38782,8 @@
 /area/prison/execution)
 "crf" = (
 /obj/machinery/door_control{
-	id = "execution";
-	pixel_x = 24
+	dir = 8;
+	id = "execution"
 	},
 /turf/open/floor/prison/bright_clean,
 /area/prison/execution)
@@ -38927,9 +38920,9 @@
 /area/prison/disposal)
 "crz" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "disposals";
-	name = "Disposals Shutter";
-	pixel_x = -24
+	name = "Disposals Shutter"
 	},
 /turf/open/floor/plating,
 /area/prison/disposal)
@@ -39003,10 +38996,9 @@
 /area/prison/pirate)
 "crS" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "pirate_cargo";
-	name = "Cargo Door Control";
-	pixel_x = 24;
-	pixel_y = 5
+	name = "Cargo Door Control"
 	},
 /turf/open/shuttle,
 /area/prison/pirate)
@@ -42761,6 +42753,15 @@
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
 /area/prison/pirate)
+"hMx" = (
+/obj/machinery/door_control{
+	id = "biological_testing_2";
+	name = "Containment Shutter Control"
+	},
+/turf/open/floor/prison/whitepurple{
+	dir = 1
+	},
+/area/prison/research/secret/biolab)
 "hNa" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
@@ -46939,6 +46940,15 @@
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
+"tBE" = (
+/obj/machinery/door_control{
+	id = "biological_testing_1";
+	name = "Containment Shutter Control"
+	},
+/turf/open/floor/prison/whitepurple{
+	dir = 1
+	},
+/area/prison/research/secret/biolab)
 "tDi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
@@ -86102,7 +86112,7 @@ nwF
 acJ
 acU
 adl
-adx
+tBE
 adK
 svM
 svM
@@ -88415,7 +88425,7 @@ acF
 acF
 acX
 adq
-adx
+hMx
 uhB
 aej
 aeH

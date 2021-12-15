@@ -385,7 +385,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	unload_sound = 'sound/weapons/guns/interact/minigun_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
-	default_ammo_type = /obj/item/ammo_magazine/minigun_powerpack
+	default_ammo_type = null
 	allowed_ammo_types = list(/obj/item/ammo_magazine/minigun_powerpack)
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
@@ -453,6 +453,25 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	scatter_unwielded = 5
 
 	placed_overlay_iconstate = "pepper"
+
+
+/obj/item/weapon/gun/rifle/pepperball/pepperball_mini
+	name = "mini pepperball gun"
+	desc = "An attachable version of the TLLL-12 pepperball gun. It has a smaller magazine size and has a slower rate of fire."
+	icon_state = "pepperball_mini"
+	slot = ATTACHMENT_SLOT_UNDER
+	max_shells = 20
+	default_ammo_type = /obj/item/ammo_magazine/rifle/pepperball/pepperball_mini
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini)
+	force = 5
+	attachable_allowed = list()
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	flags_gun_features = GUN_IS_ATTACHMENT | GUN_WIELDED_FIRING_ONLY | GUN_ATTACHMENT_FIRE_ONLY | GUN_AMMO_COUNTER
+	fire_delay = 0.2 SECONDS
+	attach_delay = 3 SECONDS
+	detach_delay = 3 SECONDS
+	pixel_shift_x = 18
+	pixel_shift_y = 16
 
 //-------------------------------------------------------
 //M5 RPG
@@ -550,7 +569,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER

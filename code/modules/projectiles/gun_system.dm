@@ -212,6 +212,8 @@
 	var/iff_marine_damage_falloff = 0
 	///Determines how fire delay is changed when aim mode is active
 	var/aim_fire_delay = 0
+	///Holds the values modifying aim_fire_delay
+	var/list/aim_fire_delay_mods = list()
 	///Determines character slowdown from aim mode. Default is 66%
 	var/aim_speed_modifier = 6
 
@@ -1220,7 +1222,7 @@
 		var/obj/obj_in_chamber
 		if(istype(in_chamber, /obj/projectile))
 			if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS))
-				var/obj/projectile/projectile_in_chamber = obj_in_chamber
+				var/obj/projectile/projectile_in_chamber = in_chamber
 				var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
 				new_handful.generate_handful(projectile_in_chamber.ammo.type, caliber, 1, projectile_in_chamber.ammo.handful_amount)
 				obj_in_chamber = new_handful
@@ -1250,7 +1252,7 @@
 		else
 			mag.forceMove(get_turf(src))
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER))
-		chamber_items[mag] = null
+		chamber_items[chamber_items.Find(mag)] = null
 	else
 		chamber_items -= mag
 	if(istype(mag, /obj/item/ammo_magazine))
@@ -1281,7 +1283,17 @@
 	if(current_chamber_position > length(chamber_items))
 		new_in_chamber = null
 	else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
-		adjust_current_rounds(chamber_items[current_chamber_position], -rounds_per_shot)
+		if(!after_fire && in_chamber && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS))
+			playsound(src, cocked_sound, 25, 1)
+			if(cocked_message)
+				to_chat(user, span_notice(cocked_message))
+			var/obj/projectile/projectile_in_chamber = in_chamber
+			var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
+			new_handful.generate_handful(projectile_in_chamber.ammo.type, caliber, 1, projectile_in_chamber.ammo.handful_amount)
+			user.put_in_any_hand_if_possible(new_handful)
+			QDEL_NULL(in_chamber)
+		if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE))
+			adjust_current_rounds(chamber_items[current_chamber_position], -rounds_per_shot)
 		new_in_chamber = get_ammo_object()
 	else
 		var/object_to_chamber = chamber_items[current_chamber_position]

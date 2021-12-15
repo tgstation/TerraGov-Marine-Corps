@@ -56,7 +56,7 @@
 
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
 
-	fire_delay = 0.125 SECONDS
+	fire_delay = 0.15 SECONDS
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.95
 	scatter = -5
@@ -183,7 +183,7 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 22,"rail_x" = 13, "rail_y" = 24, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
-	fire_delay = 0.175 SECONDS
+	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.20 //Has a forced laser sight.
 	accuracy_mult_unwielded = 0.95
 	recoil = -2
@@ -210,7 +210,7 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/m1911)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 	reciever_flags = AMMO_RECIEVER_MAGAZINES
-	fire_delay = 0.175 SECONDS
+	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.85
 	damage_mult = 1.15
@@ -360,7 +360,7 @@
 	//Making the gun have an invisible silencer since it's supposed to have one.
 	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable/invisible)
 
-	fire_delay = 0.175 SECONDS
+	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.65
 	accuracy_mult_unwielded = 1.5
 	scatter = 0
@@ -429,7 +429,7 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20,"rail_x" = 21, "rail_y" = 15, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
 
-	fire_delay = 0.125 SECONDS
+	fire_delay = 0.15 SECONDS
 	recoil = -2
 	recoil_unwielded = -2
 	accuracy_mult = 1.1

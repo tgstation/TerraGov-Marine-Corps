@@ -149,6 +149,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB
 
+/datum/keybinding/xeno/toggle_bomb_radial
+	name = "toggle_bomb_radial"
+	full_name = "Boiler: Select Bombard Type (Radial)"
+	description = "Will use the default toggle if you have two or less available glob types."
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB_RADIAL
+
 /datum/keybinding/xeno/create_bomb
 	name = "create_bomb"
 	full_name = "Boiler: Create Bombard Ammo"
@@ -166,12 +172,6 @@
 	full_name = "Carrier: Throw Hugger"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_THROW_HUGGER
-
-/datum/keybinding/xeno/retrieve_egg
-	name = "retrieve_egg"
-	full_name = "Carrier: Retrieve Egg"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_RETRIEVE_EGG
 
 /datum/keybinding/xeno/place_trap
 	name = "place_trap"
@@ -515,6 +515,12 @@
 	full_name = "Warrior: Punch"
 	description = "Punch a hostile creature, a structure or piece of machinery. Damage and status durations are doubled vs creatures you are grabbing. Damage is quadrupled vs structures and machinery."
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
+
+/datum/keybinding/xeno/jab
+	name = "jab"
+	full_name = "Warrior: Jab"
+	description = "Precisely strike your target from further away, slowing and confusing them. Resets punch cooldown."
+	keybind_signal = COMSIG_XENOABILITY_JAB
 
 /datum/keybinding/xeno/inject_egg_neurogas
 	name = "inject_egg_neurogas"

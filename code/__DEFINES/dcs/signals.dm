@@ -594,11 +594,11 @@
 
 #define COMSIG_XENOABILITY_LONG_RANGE_SIGHT "xenoability_long_range_sight"
 #define COMSIG_XENOABILITY_TOGGLE_BOMB "xenoability_toggle_bomb"
+#define COMSIG_XENOABILITY_TOGGLE_BOMB_RADIAL "xenoability_toggle_bomb_radial"
 #define COMSIG_XENOABILITY_CREATE_BOMB "xenoability_create_bomb"
 #define COMSIG_XENOABILITY_BOMBARD "xenoability_bombard"
 
 #define COMSIG_XENOABILITY_THROW_HUGGER "xenoability_throw_hugger"
-#define COMSIG_XENOABILITY_RETRIEVE_EGG "xenoability_retrieve_egg"
 #define COMSIG_XENOABILITY_PLACE_TRAP "xenoability_place_trap"
 #define COMSIG_XENOABILITY_SPAWN_HUGGER "xenoability_spawn_hugger"
 #define COMSIG_XENOABILITY_SWITCH_HUGGER "xenoability_switch_hugger"
@@ -679,6 +679,7 @@
 #define COMSIG_XENOABILITY_FLING "xenoability_fling"
 #define COMSIG_XENOABILITY_PUNCH "xenoability_punch"
 #define COMSIG_XENOABILITY_GRAPPLE_TOSS "xenoability_grapple_toss"
+#define COMSIG_XENOABILITY_JAB "xenoability_jab"
 
 #define COMSIG_XENOABILITY_PLACE_WARP_BEACON "xenoability_place_warp_shadow"
 #define COMSIG_XENOABILITY_HYPERPOSITION "xenoability_hyperposition"

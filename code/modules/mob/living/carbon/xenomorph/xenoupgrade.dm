@@ -329,6 +329,9 @@
 /mob/living/carbon/xenomorph/boiler/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/boiler/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //---BOILER END---//
 //============//
 //---DEFENDER START---//
@@ -357,6 +360,9 @@
 
 /mob/living/carbon/xenomorph/warrior/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/warrior/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----WARRIOR END----//
 //============//

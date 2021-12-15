@@ -81,9 +81,13 @@ OPERATIONS
 	cost = 6
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/operations/deployablecams
+/datum/supply_packs/operations/deployable_camera
 	name = "3 Deployable Cameras"
-	contains = list(/obj/item/deployable_camera)
+	contains = list(
+		/obj/item/deployable_camera,
+		/obj/item/deployable_camera,
+		/obj/item/deployable_camera,
+	)
 	cost = 2
 
 /datum/supply_packs/operations/exportpad
@@ -473,6 +477,12 @@ AMMO
 	name = "Box of Incendiary Slugs"
 	contains = list(/obj/item/ammo_magazine/shotgun/incendiary)
 	cost = 10
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/ammo/pfcflak
+	name = "Tl-127 Flak Magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/chamberedrifle/flak)
+	cost = 5
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/ammo/scout_regular
@@ -1719,3 +1729,18 @@ FACTORY
 	name = "Claymore parts refill"
 	contains = list(/obj/item/factory_refill/claymore)
 	cost = 10
+
+/datum/supply_packs/factory/mateba_speedloader_refill
+	name = "Mateba autorevolver speedloader assembly refill"
+	contains = list(/obj/item/factory_refill/mateba_speedloader_refill)
+	cost = 20
+
+/datum/supply_packs/factory/railgun_magazine_refill
+	name = "Railgun magazine assembly refill"
+	contains = list(/obj/item/factory_refill/railgun_magazine_refill)
+	cost = 20
+
+/datum/supply_packs/factory/scout_rifle_magazine_refill
+	name = "TX-8 scout rifle magazine assembly refill"
+	contains = list(/obj/item/factory_refill/scout_rifle_magazine_refill)
+	cost = 50

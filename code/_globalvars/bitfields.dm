@@ -401,6 +401,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		),
 	"flags_ammo_behavior" = list(
 		"AMMO_EXPLOSIVE" = AMMO_EXPLOSIVE,
+		"AMMO_LEAVE_TURF" = AMMO_LEAVE_TURF,
 		"AMMO_XENO" = AMMO_XENO,
 		"AMMO_ENERGY" = AMMO_ENERGY,
 		"AMMO_ROCKET" = AMMO_ROCKET,

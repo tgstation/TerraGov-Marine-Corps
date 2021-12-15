@@ -215,7 +215,8 @@ should be alright.
 	if(istype(new_magazine.loc, /obj/item/storage))
 		var/obj/item/storage/S = new_magazine.loc
 		S.remove_from_storage(new_magazine, get_turf(user), user)
-	user.put_in_any_hand_if_possible(new_magazine)
+	if(!CHECK_BITFIELD(get_flags_magazine_features(new_magazine), MAGAZINE_WORN))
+		user.put_in_any_hand_if_possible(new_magazine)
 	reload(new_magazine, user)
 
 //----------------------------------------------------------
@@ -679,6 +680,30 @@ should be alright.
 			add_firemode(GUN_FIREMODE_BURSTFIRE, user)
 		if((GUN_FIREMODE_AUTOMATIC in gun_firemode_list) && !(GUN_FIREMODE_AUTOBURST in gun_firemode_list))
 			add_firemode(GUN_FIREMODE_AUTOBURST, user)
+
+///Calculates aim_fire_delay, can't be below 0
+#define RECALCULATE_AIM_MODE_FIRE_DELAY \
+	var/modification_value = 0; \
+	for(var/key in aim_fire_delay_mods) { \
+		modification_value += aim_fire_delay_mods[key]; \
+	}; \
+	var/old_delay = aim_fire_delay; \
+	aim_fire_delay = max(initial(aim_fire_delay) + modification_value, 0); \
+	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING)) { \
+		modify_fire_delay(aim_fire_delay - old_delay); \
+	}
+
+///Adds an aim_fire_delay modificatio value
+/obj/item/weapon/gun/proc/add_aim_mode_fire_delay(source, value)
+	aim_fire_delay_mods[source] = value
+	RECALCULATE_AIM_MODE_FIRE_DELAY
+
+///Removes an aim_fire_delay modificatio value
+/obj/item/weapon/gun/proc/remove_aim_mode_fire_delay(source)
+	aim_fire_delay_mods -= source
+	RECALCULATE_AIM_MODE_FIRE_DELAY
+
+#undef RECALCULATE_AIM_MODE_FIRE_DELAY
 
 /obj/item/weapon/gun/proc/toggle_auto_aim_mode(mob/living/carbon/human/user) //determines whether toggle_aim_mode activates at the end of gun/wield proc
 

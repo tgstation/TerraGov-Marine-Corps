@@ -688,3 +688,7 @@
 /mob/living/carbon/xenomorph/proc/clean_tracked(atom/to_track)
 	SIGNAL_HANDLER
 	tracked = null
+
+///Handles empowered abilities, should return TRUE if the ability should be empowered. Empowerable should be FALSE if the ability cannot itself be empowered but has interactions with empowerable abilities
+/mob/living/carbon/xenomorph/proc/empower(empowerable = TRUE)
+	return FALSE

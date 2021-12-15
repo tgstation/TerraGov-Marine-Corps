@@ -498,17 +498,17 @@
 
 /obj/item/weapon/gun/shotgun/pump/lever/repeater
 	name = "Leicester Repeater"
-	desc = "The gun that won the west or so they say. But space is a very different kind of frontier all together, chambered for .44 magnum."
+	desc = "The gun that won the west or so they say. But space is a very different kind of frontier all together, chambered for .45-70 Governemnt."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "leicrepeater"
 	item_state = "leicrepeater"
 	fire_sound = 'sound/weapons/guns/fire/leveraction.ogg'//I like how this one sounds.
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
-	caliber = CALIBER_44 //codex
+	caliber = CALIBER_4570 //codex
 	load_method = SINGLE_CASING //codex
 	max_chamber_items = 13 //codex
-	default_ammo_type = /datum/ammo/bullet/revolver/tp44
+	default_ammo_type = /datum/ammo/bullet/rifle/repeater
 	gun_skill_category = GUN_SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
 	flags_item_map_variant = NONE
@@ -530,7 +530,6 @@
 	fire_delay = 10
 	accuracy_mult = 1.20
 	accuracy_mult_unwielded = 0.8
-	damage_mult = 1.5
 	damage_falloff_mult = 0.5
 	scatter = -5
 	scatter_unwielded = 15

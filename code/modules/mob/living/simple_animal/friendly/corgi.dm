@@ -17,14 +17,26 @@
 	speak_chance = 1
 	turns_per_move = 10
 
+/mob/living/simple_animal/corgi/german_shepherd
+	name = "\improper german shepherd"
+	real_name = "german shepherd"
+	desc = "It's a german shepherd."
+	icon = 'icons/mob/pets.dmi'
+	icon_state = "german_shep"
+	icon_living = "german_shep"
+	icon_dead = "german_shep_dead"
 
-/mob/living/simple_animal/corgi/pug
-	name = "\improper pug"
-	real_name = "pug"
-	desc = "It's a pug."
-	icon_state = "pug"
-	icon_living = "pug"
-	icon_dead = "pug_dead"
+
+/mob/living/simple_animal/corgi/ranger
+	name = "Ranger"
+	real_name = "Ranger"
+	gender = MALE
+	desc = "That's Ranger, your friendly and fierce k9. He has seen the terror of Xenomorphs, so it's best to be nice to him. <b>RANGER LEAD THE WAY</b>!"
+	icon_state = "ranger"
+	icon_living = "ranger"
+	icon_dead = "ranger_dead"
+	health = 300
+	maxHealth = 300 //Foreshadowing the health of other K9
 
 
 /mob/living/simple_animal/corgi/exoticcorgi
@@ -41,7 +53,7 @@
 	add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
 
 
-/mob/living/simple_animal/corgi/Ian
+/mob/living/simple_animal/corgi/ian
 	name = "Ian"
 	real_name = "Ian"
 	gender = MALE
@@ -98,7 +110,7 @@
 	icon_dead = "void_puppy_dead"
 
 
-/mob/living/simple_animal/corgi/Lisa
+/mob/living/simple_animal/corgi/lisa
 	name = "Lisa"
 	real_name = "Lisa"
 	gender = FEMALE
