@@ -1121,6 +1121,7 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 9, "stock_y" = 12)
 	aim_fire_delay = 1 SECONDS
+	actions_types = list(/datum/action/item_action/aim_mode)
 
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable/tl127,
