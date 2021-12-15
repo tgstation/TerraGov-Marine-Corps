@@ -112,14 +112,6 @@
 	if(target_human.stat == DEAD)
 		if(owner_xeno.do_actions)
 			return FALSE
-		if(!HAS_TRAIT(target_human, TRAIT_UNDEFIBBABLE))
-			if(!silent)
-				to_chat(owner_xeno, span_notice("We can only use fully dead hosts to heal."))
-			return FALSE
-		if(target_human.blood_volume < GORGER_DRAIN_BLOOD_DRAIN)
-			if(!silent)
-				to_chat(owner_xeno, span_notice("Our meal doesn't have enough blood... How sad!"))
-			return FALSE
 		return TRUE
 
 	if(!.)
@@ -132,7 +124,7 @@
 
 #define DO_DRAIN_ACTION(owner_xeno, target_human) \
 	owner_xeno.do_attack_animation(target_human, ATTACK_EFFECT_REDSTAB);\
-	owner_xeno.visible_message(target_human, span_danger("The [owner_xeno] stabs its tail into [target_human]!"));\
+	owner_xeno.visible_message(target_human, span_danger("[owner_xeno] stabs its tail into [target_human]!"));\
 	playsound(target_human, "alien_claw_flesh", 25, TRUE);\
 	target_human.emote("scream");\
 	target_human.apply_damage(damage = 2, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE);\
@@ -147,15 +139,9 @@
 	if(target_human.stat == DEAD)
 		var/overheal_gain = 0
 		while((owner_xeno.health < owner_xeno.maxHealth || owner_xeno.overheal < owner_xeno.xeno_caste.overheal_max) &&do_after(owner_xeno, 2 SECONDS, TRUE, target_human, BUSY_ICON_HOSTILE))
-			target_human.blood_volume -= GORGER_DRAIN_BLOOD_DRAIN
-			var/target_blood = target_human.blood_volume
 			overheal_gain = owner_xeno.heal_wounds(2.2)
 			adjustOverheal(owner_xeno, overheal_gain)
 			owner_xeno.adjust_sunder(-0.5)
-			target_human.hud_list[HEART_STATUS_HUD].alpha = 255 * (target_human.blood_volume / BLOOD_VOLUME_NORMAL)
-			if(target_blood < GORGER_DRAIN_BLOOD_DRAIN)
-				to_chat(owner, span_notice("Our meal doesn't have enough blood... How sad!"))
-				return
 		to_chat(owner_xeno, span_notice("We feel fully restored."))
 		return
 	owner_xeno.face_atom(target_human)
