@@ -88,6 +88,7 @@
 		"Specialized" = list(
 			/obj/item/weapon/gun/grenade_launcher/multinade_launcher = -1,
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
+			/obj/item/weapon/gun/energy/lasgun/tesla = 2,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 4,
 			/obj/item/weapon/gun/rifle/pepperball = 4,
@@ -141,6 +142,8 @@
 			/obj/item/ammo_magazine/flamer_tank/mini = -1,
 			/obj/item/weapon/gun/grenade_launcher/underslung = -1,
 			/obj/item/attachable/motiondetector = -1,
+			/obj/item/weapon/gun/rifle/pepperball/pepperball_mini = -1,
+			/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini = -1,
 		),
 		"Boxes" = list(
 		/obj/item/ammo_magazine/packet/p9mm = 100,
@@ -152,6 +155,7 @@
 		/obj/item/ammo_magazine/packet/p10x26mm = 100,
 		/obj/item/ammo_magazine/packet/p10x27mm = 100,
 		/obj/item/ammo_magazine/packet/p492x34mm = 100,
+		/obj/item/ammo_magazine/packet/p4570 = 100,
 		/obj/item/storage/box/visual/magazine = 30,
 		/obj/item/storage/box/visual/grenade = 10,
 		),
@@ -302,6 +306,7 @@
 			/obj/item/ammo_magazine/packet/p10x26mm = 100,
 			/obj/item/ammo_magazine/packet/p10x27mm = 100,
 			/obj/item/ammo_magazine/packet/p492x34mm = 100,
+			/obj/item/ammo_magazine/packet/p4570 = 100,
 			/obj/item/storage/box/visual/magazine = 30,
 			/obj/item/storage/box/visual/grenade = 10,
 		),
@@ -375,6 +380,7 @@
 	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
 	products = list(
 		"Surplus Special Equipment" = list(
+			/obj/item/beacon/supply_beacon = 1,
 			/obj/item/ammo_magazine/rifle/autosniper = 3,
 			/obj/item/ammo_magazine/rifle/tx8 = 3,
 			/obj/item/ammo_magazine/rocket/sadar = 3,
@@ -579,14 +585,27 @@
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
-		/obj/item/reagent_containers/food/snacks/protein_pack = -1,
-		/obj/item/reagent_containers/food/snacks/mre_pack/meal1 = -1,
-		/obj/item/reagent_containers/food/snacks/mre_pack/meal2 = -1,
-		/obj/item/reagent_containers/food/snacks/mre_pack/meal3 = -1,
-		/obj/item/reagent_containers/food/snacks/mre_pack/meal4 = -1,
-		/obj/item/reagent_containers/food/snacks/mre_pack/meal6 = -1,
-		/obj/item/storage/box/MRE = -1,
-		/obj/item/reagent_containers/food/drinks/flask = -1,
+		"Food and Drink" = list(
+			/obj/item/reagent_containers/food/snacks/protein_pack = -1,
+			/obj/item/reagent_containers/food/snacks/mre_pack/meal1 = -1,
+			/obj/item/reagent_containers/food/snacks/mre_pack/meal2 = -1,
+			/obj/item/reagent_containers/food/snacks/mre_pack/meal3 = -1,
+			/obj/item/reagent_containers/food/snacks/mre_pack/meal4 = -1,
+			/obj/item/reagent_containers/food/snacks/mre_pack/meal6 = -1,
+			/obj/item/storage/box/MRE = -1,
+			/obj/item/reagent_containers/food/drinks/flask = -1,
+		),
+		"Protein Bar Supply" = list(
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/one = 20, //wont spawn in loadouts without being in a vendor
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/two = 20,
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/three = 20,
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/four = 20,
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/five = 20,
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/six = 20,
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/seven = 20,
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/eight = 20,
+			/obj/item/reagent_containers/food/snacks/protein_pack_base/nine = 20
+		),
 	)
 //Christmas inventory
 /*
@@ -595,10 +614,11 @@
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas3 = 25)*/
 	contraband = list(
 		/obj/item/reagent_containers/food/drinks/flask/marine = 10,
-					/obj/item/reagent_containers/food/snacks/mre_pack/meal5 = 15)
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal5 = 15,
+)
 	vend_delay = 15
 	//product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
-	product_ads = "Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork."
+	product_ads = "Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork.; 9 Flavors of Protein!; You'll never guess the mystery flavor!"
 
 
 /obj/machinery/vending/MarineMed
@@ -980,7 +1000,7 @@
 			/obj/item/storage/pouch/med_lolipops = -1,
 			/obj/item/storage/pouch/autoinjector = -1,
 			/obj/item/storage/pouch/construction = -1,
-			/obj/item/storage/pouch/electronics/full = -1,
+			/obj/item/storage/pouch/electronics = -1,
 			/obj/item/storage/pouch/tools/full = -1,
 			/obj/item/storage/pouch/field_pouch = -1,
 			/obj/item/storage/pouch/general/large = -1,

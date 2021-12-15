@@ -72,10 +72,6 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	if(!can_buy(buyer, FALSE))
 		return FALSE
 
-	if(SSpoints.xeno_points_by_hive[buyer.hivenumber] < psypoint_cost)
-		to_chat(buyer, span_xenowarning("Someone used all the psych points while we were building!"))
-		return FALSE
-
 	var/turf/buildloc = get_step(buyer, SOUTHWEST)
 
 	var/atom/built = new building_type(buildloc, buyer.hivenumber)
@@ -106,15 +102,10 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
 		return FALSE
 
-/datum/hive_upgrade/building/silo/on_buy(mob/living/carbon/xenomorph/buyer)
-
 	for(var/obj/structure/xeno/silo/silo AS in GLOB.xeno_resin_silos)
 		if(get_dist(silo, buyer) < 15)
 			to_chat(buyer, span_xenowarning("Another silo is too close!"))
 			return FALSE
-
-	return ..()
-
 /datum/hive_upgrade/building/evotower
 	name = "Evolution Tower"
 	desc = "Constructs a tower that increases the rate of evolution point generation by 1.25 times per tower."
@@ -148,7 +139,9 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	icon = "acidturret"
 	psypoint_cost = XENO_TURRET_PRICE
 	flags_gamemode = ABILITY_DISTRESS
+	///How long to build one turret
 	var/build_time = 15 SECONDS
+	///What type of turret is built
 	var/turret_type = /obj/structure/xeno/xeno_turret
 
 /datum/hive_upgrade/defence/turret/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
@@ -174,14 +167,16 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 
 	if(!T.check_alien_construction(buyer, silent = silent, planned_building = /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(buyer))
 		return FALSE
+
+	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
+		if(get_dist(turret, buyer) < 6)
+			if(!silent)
+				to_chat(buyer, span_xenowarning("Another turret is too close!"))
+			return FALSE
+
 	return TRUE
 
 /datum/hive_upgrade/defence/turret/on_buy(mob/living/carbon/xenomorph/buyer)
-	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
-		if(get_dist(turret, buyer) < 6)
-			to_chat(buyer, span_xenowarning("Another turret is too close!"))
-			return FALSE
-
 	if(!do_after(buyer, build_time, TRUE, buyer, BUSY_ICON_BUILD))
 		return FALSE
 
@@ -225,6 +220,8 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 /datum/hive_upgrade/xenos/king/on_buy(mob/living/carbon/xenomorph/buyer)
 	to_chat(buyer, span_xenonotice("We begin constructing a psychic echo chamber for the Queen Mother..."))
 	if(!do_after(buyer, 15 SECONDS, FALSE, buyer, BUSY_ICON_HOSTILE))
+		return FALSE
+	if(!can_buy(buyer, FALSE))
 		return FALSE
 	var/obj/structure/resin/king_pod = new /obj/structure/resin/king_pod(get_turf(buyer), buyer.hivenumber)
 	log_game("[key_name(buyer)] has created a pod in [AREACOORD(buyer)]")
@@ -297,6 +294,12 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Unlocks the primordial defenders centrifugal force. An ability that allows them to rapidly spin and attack enemies nearby."
 	psypoint_cost = 75
 	icon = "primodefender"
+
+/datum/hive_upgrade/primordial/warrior
+	name = PRIMORDIAL_WARRIOR
+	desc = "Unlocks the primordial warriors jab and empowered abilities. A ranged punch, on primordial every 3rd ability cast from a warrior will be an improved version of itself."
+	psypoint_cost = 125
+	icon = "primowarrior"
 
 /datum/hive_upgrade/primordial/runner
 	name = PRIMORDIAL_RUNNER

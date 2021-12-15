@@ -254,6 +254,13 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_pepperball"
 
+/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini
+	name = "small pepperball canister (SAN balls)"
+	desc = "A small canister for use with the miniature pepperball gun."
+	icon_state = "pepperball_mini"
+	default_ammo = /datum/ammo/bullet/pepperball/pepperball_mini
+	max_rounds = 20
+
 /obj/item/ammo_magazine/minigun_powerpack
 	name = "\improper T-100 powerpack"
 	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the T-100 Minigun System.\nClick the icon in the top left to reload your M56."

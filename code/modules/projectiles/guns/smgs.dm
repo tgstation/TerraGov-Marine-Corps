@@ -167,7 +167,7 @@
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.9
 	scatter = 20
-	fire_delay = 0.175 SECONDS
+	fire_delay = 0.2 SECONDS
 	scatter_unwielded = 30
 	aim_slowdown = 0.15
 	burst_amount = 3
@@ -307,7 +307,7 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 21, "under_x" = 26, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
-	aim_fire_delay = 0.125 SECONDS
+	aim_fire_delay = 0.15 SECONDS
 	aim_speed_modifier = 2.5
 
 	starting_attachment_types = list(
@@ -339,7 +339,7 @@
 	reload_sound = 'sound/weapons/guns/interact/uzi_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/uzi_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/smg/uzi
-	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/uzi)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/uzi, /obj/item/ammo_magazine/smg/uzi/extended)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
 	fire_delay = 0.15 SECONDS

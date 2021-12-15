@@ -72,6 +72,8 @@
 
 	if(tgui_Topic(href_list))
 		return
+	if(href_list["reload_tguipanel"])
+		nuke_chat()
 
 	//Logs all hrefs.
 	log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")

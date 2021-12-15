@@ -514,7 +514,6 @@
 
 /datum/reagent/cryptobiolin/on_mob_life(mob/living/L, metabolism)
 	L.dizzy(2)
-	L.Confused(40 SECONDS)
 	return ..()
 
 /datum/reagent/cryptobiolin/overdose_process(mob/living/L, metabolism)

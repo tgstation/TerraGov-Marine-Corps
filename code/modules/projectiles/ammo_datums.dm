@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	return
 
 ///Special effects for leaving a turf. Only called if the projectile has AMMO_LEAVE_TURF enabled
-/datum/ammo/proc/on_leave_turf(turf/T, atom/firer)	
+/datum/ammo/proc/on_leave_turf(turf/T, atom/firer)
 	return
 
 /datum/ammo/proc/knockback(mob/victim, obj/projectile/proj, max_range = 2)
@@ -527,6 +527,16 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 10
 	sundering = 1.25
 
+/datum/ammo/bullet/rifle/repeater
+	name = "heavy impact rifle bullet"
+	hud_state = "revolver_heavy"
+	damage = 70
+	penetration = 20
+	sundering = 1.25
+
+/datum/ammo/bullet/rifle/repeater/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, max_range = 4, slowdown = 2, stagger = 1, shake = 0.5)
+
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
 	hud_state = "rifle_fire"
@@ -673,23 +683,14 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "shotgun_fire"
 	damage_type = BRUTE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING
-	accuracy = -10
 	max_range = 15
-	damage = 40
-	penetration = 20
+	damage = 70
+	penetration = 15
 	sundering = 2
 	bullet_color = COLOR_TAN_ORANGE
 
-/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/victim, obj/projectile/proj)
-	airburst(victim, proj)
-	knockback(victim, proj)
-
-/datum/ammo/bullet/shotgun/incendiary/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	airburst(target_obj, proj)
-
-/datum/ammo/bullet/shotgun/incendiary/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	airburst(target_turf, proj)
-
+/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, shake = 0, knockback = 2, slowdown = 1)
 
 /datum/ammo/bullet/shotgun/flechette
 	name = "shotgun flechette shell"
@@ -1959,7 +1960,7 @@ datum/ammo/bullet/revolver/tp44
 	icon_state = "boiler_gas2"
 	ping = "ping_x"
 	///Key used for icon stuff during bombard ammo selection.
-	var/icon_key = BOILER_GLOB_NEURO	
+	var/icon_key = BOILER_GLOB_NEURO
 	///This text will show up when a boiler selects this ammo. Span proc should be applied when this var is used.
 	var/select_text = "We will now fire neurotoxic gas. This is nonlethal."
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
@@ -1981,7 +1982,7 @@ datum/ammo/bullet/revolver/tp44
 	///Does the gas spread have a fixed range? -1 for no, 0+ for a fixed range. This prevents scaling from caste age.
 	var/fixed_spread_range = -1
 	///Which type is the smoke we leave on passed tiles, provided the projectile has AMMO_LEAVE_TURF enabled?
-	var/passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light	
+	var/passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light
 	///We're going to reuse one smoke spread system repeatedly to cut down on processing.
 	var/datum/effect_system/smoke_spread/xeno/trail_spread_system
 
@@ -2115,7 +2116,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 75
 	penetration = 60
 	reagent_transfer_amount = 55
-	passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light	
+	passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light
 	hit_paralyze_time = 2 SECONDS
 	hit_eye_blur = 16
 	hit_drowsyness = 18
@@ -2154,11 +2155,17 @@ datum/ammo/bullet/revolver/tp44
 	damage = 70
 	penetration = 0
 	shrapnel_chance = 0
+	///percentage of xenos total plasma to drain when hit by a pepperball
+	var/drain_multiplier = 0.05
 
 /datum/ammo/bullet/pepperball/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/X = victim
-		X.use_plasma(0.05 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
+		X.use_plasma(drain_multiplier * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
+
+/datum/ammo/bullet/pepperball/pepperball_mini
+	damage = 40
+	drain_multiplier = 0.03
 
 /datum/ammo/alloy_spike
 	name = "alloy spike"
