@@ -1,0 +1,7 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - expansion: "adds a new xeno caste"
+  - expansion: "gives all xenos 150 max overheal to be used for gorger ability"
+  - bugfix: "pre-spawned humans now have the non-defibbable trait"
+  - bugfix: "attack animation no longer cancels other animations on same object as long as both have the ANIMATION_PARALLEL flag"
