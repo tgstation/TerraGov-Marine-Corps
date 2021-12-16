@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - qol: "You can point even in darkness (if you can see it, like xenos do). Cooldown is 1 second for everyone"
