@@ -1,0 +1,7 @@
+author: "chesse20"
+delete-after: True
+changes: 
+  - rscdel: "You can no longer vend specific flavors of protein bars"
+  - bugfix: "Stopped filling your hands with fake protein bars"
+  - bugfix: "nutriment has taste as intended"
+  - qol: "Protein bars now vend into your hands as they should"
