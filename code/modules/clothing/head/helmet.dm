@@ -293,7 +293,7 @@
 	for(var/i in helmet_overlays)
 		I = helmet_overlays[i]
 		if(I)
-			I = image('icons/mob/helmet_garb.dmi',src,I.icon_state)
+			I = image('icons/mob/modular/modular_helmet_storage.dmi',src,I.icon_state)
 			standing.overlays += I
 
 
