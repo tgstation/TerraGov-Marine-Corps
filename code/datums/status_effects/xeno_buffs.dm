@@ -78,10 +78,10 @@
 	if(tick_damage < tick_damage_limit)
 		return
 
-	amount_mod += min(amount * 0.7, 40)
+	amount_mod += min(amount * 0.75, 40)
 
 #define PSYCHIC_LINK_COLOR "#2a888360"
-#define TARGET_ID "[id][owner]"
+#define TARGET_ID "[id][owner.ckey]"
 #define CALC_DAMAGE_REDUCTION(amount, amount_mod) \
 	if(amount <= 0) { \
 		return; \

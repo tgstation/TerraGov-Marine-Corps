@@ -58,6 +58,7 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 #define PRIMORDIAL_SPITTER "Primordial Spitter"
 #define PRIMORDIAL_RAVAGER "Primordial Ravager"
 #define PRIMORDIAL_CRUSHER "Primordial Crusher"
+#define PRIMORDIAL_GORGER "Primordial Gorger"
 #define PRIMORDIAL_HUNTER "Primordial Hunter"
 #define PRIMORDIAL_DEFENDER "Primordial Defender"
 #define PRIMORDIAL_RUNNER "Primordial Runner"

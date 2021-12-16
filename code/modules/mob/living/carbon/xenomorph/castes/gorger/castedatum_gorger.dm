@@ -4,6 +4,9 @@
 	upgrade_name = ""
 	caste_desc = "A frightening looking, bulky alien creature that drips with a familiar red fluid."
 	caste_type_path = /mob/living/carbon/xenomorph/gorger
+	ancient_message = "We are eternal. We will persevere where others will dry and wither."
+	primordial_message = "There is nothing we can't withstand."
+	primordial_upgrade_name = PRIMORDIAL_GORGER
 
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -48,7 +51,6 @@
 		/datum/action/xeno_action/activable/psychic_link,
 		/datum/action/xeno_action/activable/drain,
 		/datum/action/xeno_action/activable/transfusion,
-		/datum/action/xeno_action/activable/rejuvenate,
 		/datum/action/xeno_action/activable/carnage,
 		/datum/action/xeno_action/activable/feast,
 		/datum/action/xeno_action/activable/devour,
@@ -112,8 +114,7 @@
 
 /datum/xeno_caste/gorger/ancient
 	upgrade_name = "Ancient"
-	caste_desc = "Being within mere eyeshot of this hulking, dripping monstrosity fills you with a deep, unshakeable sense of unease."
-	ancient_message = "We are eternal. We will persevere where others will dry and wither."
+	caste_desc = "Being within mere eyeshot of this hulking monstrosity fills you with a deep, unshakeable sense of unease."
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
@@ -135,3 +136,40 @@
 	overheal_max = 275
 	drain_plasma_gain = 40
 	carnage_plasma_gain = 40
+
+/datum/xeno_caste/gorger/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "Being within mere eyeshot of this hulking monstrosity fills you with a deep, unshakeable sense of unease. You are unsure if you can even harm it."
+	upgrade = XENO_UPGRADE_FOUR
+
+	// *** Melee Attacks *** //
+	melee_damage = 20
+
+	// *** Plasma *** //
+	plasma_max = 400
+
+	// *** Health *** //
+	max_health = 600
+
+	// *** Evolution *** //
+	upgrade_threshold = 1000
+
+	// *** Defense *** //
+	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_1, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
+
+	// *** Gorger Abilities *** //
+	overheal_max = 275
+	drain_plasma_gain = 40
+	carnage_plasma_gain = 40
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain/free,
+		/datum/action/xeno_action/activable/psychic_link,
+		/datum/action/xeno_action/activable/drain,
+		/datum/action/xeno_action/activable/transfusion,
+		/datum/action/xeno_action/activable/rejuvenate,
+		/datum/action/xeno_action/activable/carnage,
+		/datum/action/xeno_action/activable/feast,
+		/datum/action/xeno_action/activable/devour,
+	)

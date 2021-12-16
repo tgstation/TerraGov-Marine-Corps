@@ -329,6 +329,9 @@
 /mob/living/carbon/xenomorph/gorger/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/gorger/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //---GORGER END---//
 //============//
 //---BOILER START---//
