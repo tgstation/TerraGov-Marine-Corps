@@ -106,7 +106,7 @@
 
 
 /obj/machinery/floodlightcombat/examine(mob/user)
-	..()
+	. = ..()
 	if(!cell)
 		to_chat(user, span_notice("It has no cell installed"))
 		return
@@ -145,10 +145,10 @@
 
 /obj/machinery/floodlightcombat/process()
 	cell.charge -= energy_consummed
-	if(cell.charge <= 0)
-		cell.charge = 0
-		turn_light(null, FALSE, forced = TRUE)
+	if(cell.charge > 0)
 		return
+	cell.charge = 0
+	turn_light(null, FALSE, forced = TRUE)
 
 /obj/machinery/floodlightcombat/attackby(obj/item/I, mob/user, params)
 	if(!ishuman(user))
