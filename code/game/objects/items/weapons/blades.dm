@@ -201,7 +201,8 @@
 	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' spear. An advanced weapon that has the ability to apply a variety of debilitating effects when loaded with certain reagents. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
 	icon_state = "vali_spear"
 	item_state = "vali_spear"
-	force = 75
+	flags_equip_slot = ITEM_SLOT_BACK
+	force = 50
 	reach = 2
 
 /obj/item/weapon/claymore/mercsword
