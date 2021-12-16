@@ -103,7 +103,7 @@
 			/obj/item/stack/throwing_knife = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
 			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
-			/obj/item/weapon/claymore/harvester/spear = 3,
+			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 		),
 		"Grenades" = list(
 			/obj/item/explosive/grenade = 600,
