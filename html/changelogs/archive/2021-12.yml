@@ -184,3 +184,16 @@
   - bugfix: Fix hivemind space freeze bug
   novaepee:
   - bugfix: code
+2021-12-16:
+  BraveMole:
+  - bugfix: Fix carrier timing exploit
+  - bugfix: Fix some untangle razor wire bug
+  - qol: Prevent bad name by randomising the name on species change
+  - bugfix: Fix tarp getting spotted by minions
+  - bugfix: Fix storage nested in storage. Aka, pills and synrigue case in pouches
+      or things like that
+  - bugfix: Fix marine knife boot not updating sprite
+  - bugfix: Deevo from queen works as intended
+  - bugfix: Wraith can no longer regress while shifted
+  novaepee:
+  - imageadd: New carrier sprites!
