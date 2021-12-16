@@ -667,7 +667,7 @@
 /turf/open/floor/grimy,
 /area/valhalla)
 "lY" = (
-/mob/living/simple_animal/corgi/Ranger,
+/mob/living/simple_animal/corgi/ranger,
 /turf/open/floor/prison/plate,
 /area/valhalla)
 "me" = (
