@@ -980,12 +980,13 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "sniper_crude"
 	handful_amount = 5
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	damage = 120
+	damage = 90
 	penetration = 20
 	sundering = 10
+	damage_falloff = -5
 
 /datum/ammo/bullet/sniper/martini/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 1, knockback = 2, slowdown = 0.5, max_range = 5)
+	staggerstun(M, P, weaken = 1, stagger = 1, knockback = 2, slowdown = 0.5, max_range = 6)
 
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic sniper bullet"
