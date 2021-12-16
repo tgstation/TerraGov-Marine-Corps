@@ -77,11 +77,8 @@
 	tick_damage += amount
 	if(tick_damage < tick_damage_limit)
 		return
-	var/modified_amount = amount
-	for(var/i in amount_mod)
-		modified_amount -= i
 
-	amount_mod += min(modified_amount * 0.7, 40)
+	amount_mod += min(amount * 0.7, 40)
 
 #define PSYCHIC_LINK_COLOR "#2a888360"
 #define TARGET_ID "[id][owner]"

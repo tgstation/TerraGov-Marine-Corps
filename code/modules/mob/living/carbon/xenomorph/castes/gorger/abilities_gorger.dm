@@ -234,15 +234,16 @@
 	plasma_cost = GORGER_REJUVENATE_COST
 	target_flags = XABB_MOB_TARGET
 	keybind_signal = COMSIG_XENOABILITY_REJUVENATE
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
 
-/datum/action/xeno_action/activable/rejuvenate/can_use_action(silent, override_flags, selecting)
+/datum/action/xeno_action/activable/rejuvenate/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
 	if(!.)
 		return
 	if(TIMER_COOLDOWN_CHECK(owner, REJUVENATE_MISCLICK_CD))
 		return FALSE
 
-/datum/action/xeno_action/activable/rejuvenate/action_activate()
+/datum/action/xeno_action/activable/rejuvenate/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_REJUVENATE))
@@ -323,6 +324,7 @@
 	cooldown_timer = 15 SECONDS
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_CARNAGE
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
 
 /datum/action/xeno_action/activable/carnage/use_ability(atom/A)
 	. = ..()
@@ -352,8 +354,7 @@
 	cooldown_timer = 180 SECONDS
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_FEAST
-	///Adds a cooldown to deactivation to avoid accidental cancel
-	COOLDOWN_DECLARE(misclick_prevention)
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
 
 /datum/action/xeno_action/activable/feast/can_use_ability(atom/target, silent, override_flags)
 	. = ..()
@@ -378,7 +379,7 @@
 	owner_xeno.emote("roar")
 	owner_xeno.visible_message(owner_xeno, span_notice("[owner_xeno] begins to overflow with vitality!"))
 	owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_FEAST, GORGER_FEAST_DURATION, owner_xeno.xeno_caste.feast_plasma_drain)
-	COOLDOWN_START(src, misclick_prevention, 2 SECONDS)
+	TIMER_COOLDOWN_START(src, FEAST_MISCLICK_CD, 2 SECONDS)
 	add_cooldown()
 
 /datum/action/xeno_action/activable/feast/ai_should_use(atom/target)
