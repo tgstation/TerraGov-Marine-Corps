@@ -146,6 +146,10 @@
 	icon_state = "painoverlay"
 	layer = FULLSCREEN_PAIN_LAYER
 
+/obj/screen/fullscreen/bloodlust
+	icon_state = "bloodlust"
+	layer = FULLSCREEN_NERVES_LAYER
+
 /obj/screen/fullscreen/infection
 	icon_state = "curseoverlay"
 	layer = FULLSCREEN_INFECTION_LAYER

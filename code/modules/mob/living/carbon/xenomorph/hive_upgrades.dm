@@ -283,6 +283,12 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	psypoint_cost = 225
 	icon = "primocrush"
 
+/datum/hive_upgrade/primordial/gorger
+	name = PRIMORDIAL_GORGER
+	desc = "Unlocks the primordial gorger's rejuvenate. An ability that allows them to significantly reduce incoming harm at the cost of being slown down."
+	psypoint_cost = 225
+	icon = "primogorger"
+
 /datum/hive_upgrade/primordial/hunter
 	name = PRIMORDIAL_HUNTER
 	desc = "Replaces the hunters stealth ability with the ability to disguise itself as any object."

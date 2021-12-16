@@ -39,10 +39,12 @@
 		ADD_TRAIT(src, TRAIT_FLOORED, RESTING_TRAIT)
 		if(!silent)
 			to_chat(src, span_notice("You are now resting."))
+		SEND_SIGNAL(src, COMSIG_XENOMORPH_REST)
 	else
 		REMOVE_TRAIT(src, TRAIT_FLOORED, RESTING_TRAIT)
 		if(!silent)
 			to_chat(src, span_notice("You get up."))
+		SEND_SIGNAL(src, COMSIG_XENOMORPH_UNREST)
 	update_resting()
 
 

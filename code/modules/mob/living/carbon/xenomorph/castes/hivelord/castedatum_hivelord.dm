@@ -30,7 +30,7 @@
 
 	deevolves_to = /mob/living/carbon/xenomorph/drone
 
-	evolves_to = list(/mob/living/carbon/xenomorph/Defiler)
+	evolves_to = list(/mob/living/carbon/xenomorph/Defiler, /mob/living/carbon/xenomorph/gorger)
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HOLD_JELLY|CASTE_IS_BUILDER|CAN_BECOME_KING
