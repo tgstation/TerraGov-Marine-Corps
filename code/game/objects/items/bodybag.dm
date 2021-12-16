@@ -423,6 +423,7 @@
 		anchored = TRUE
 		playsound(loc,'sound/effects/cloak_scout_on.ogg', 15, 1) //stealth mode engaged!
 		animate(src, alpha = 13, time = 3 SECONDS) //Fade out gradually.
+		bodybag_occupant.alpha = 0
 
 
 /obj/structure/closet/bodybag/tarp/open()
@@ -433,6 +434,7 @@
 		animate(src) //Cancel the fade out if still ongoing.
 	if(bodybag_occupant)
 		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED))
+		bodybag_occupant.alpha = initial(bodybag_occupant.alpha)
 	return ..()
 
 

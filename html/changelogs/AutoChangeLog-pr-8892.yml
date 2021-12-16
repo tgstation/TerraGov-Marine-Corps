@@ -1,0 +1,7 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "Tool vendor is now a shared vendor with unlimited supplies"
+  - balance: "Tool vendor no longer has contraband, the huge tank welder is moved to engie points"
+  - expansion: "Tool vendor is now linked with loadout system"
+  - qol: "Tool pouches contains a welding tool rather than a multi-tool"

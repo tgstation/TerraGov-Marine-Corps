@@ -27,7 +27,7 @@
 	icon_dead = "german_shep_dead"
 
 
-/mob/living/simple_animal/corgi/Ranger
+/mob/living/simple_animal/corgi/ranger
 	name = "Ranger"
 	real_name = "Ranger"
 	gender = MALE
@@ -53,7 +53,7 @@
 	add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
 
 
-/mob/living/simple_animal/corgi/Ian
+/mob/living/simple_animal/corgi/ian
 	name = "Ian"
 	real_name = "Ian"
 	gender = MALE
@@ -110,7 +110,7 @@
 	icon_dead = "void_puppy_dead"
 
 
-/mob/living/simple_animal/corgi/Lisa
+/mob/living/simple_animal/corgi/lisa
 	name = "Lisa"
 	real_name = "Lisa"
 	gender = FEMALE

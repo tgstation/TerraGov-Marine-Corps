@@ -1,0 +1,4 @@
+author: "KrabSpider"
+delete-after: True
+changes: 
+  - bugfix: "Repeater now has a proper left in-hand sprite...stray pixels are also fixed"

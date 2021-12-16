@@ -66,14 +66,11 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has ghosted.")
 	ghostize(FALSE)
 
-/mob/living/verb/point_to(atom/A in view(client.view, loc))
+/mob/living/verb/point_to(atom/A)
 	set name = "Point To"
 	set category = "Object"
 
 	if(!isturf(loc))
-		return FALSE
-
-	if(!(A in view(client.view, loc))) //Target is no longer visible to us.
 		return FALSE
 
 	if(!A.mouse_opacity) //Can't click it? can't point at it.

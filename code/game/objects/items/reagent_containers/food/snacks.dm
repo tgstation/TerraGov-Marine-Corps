@@ -22,7 +22,7 @@
 	reagents.my_atom = src
 	for(var/rid in init_reagents)
 		var/amount = list_reagents[rid]
-		if(type == /datum/reagent/consumable/nutriment)
+		if(rid == /datum/reagent/consumable/nutriment)
 			reagents.add_reagent(rid, amount, tastes.Copy())
 		else
 			reagents.add_reagent(rid, amount, data)
@@ -229,7 +229,6 @@
 				N.visible_message(span_warning("[N] nibbles away at [src]."), "")
 			//N.emote("nibbles away at the [src]")
 			N.health = min(N.health + 1, N.maxHealth)
-
 
 ////////////////////////////////////////////////////////////////////////////////
 /// FOOD END

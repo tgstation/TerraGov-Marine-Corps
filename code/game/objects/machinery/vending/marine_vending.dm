@@ -735,27 +735,14 @@
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
-		"Food and Drink" = list(
-			/obj/item/reagent_containers/food/snacks/protein_pack = -1,
-			/obj/item/reagent_containers/food/snacks/mre_pack/meal1 = -1,
-			/obj/item/reagent_containers/food/snacks/mre_pack/meal2 = -1,
-			/obj/item/reagent_containers/food/snacks/mre_pack/meal3 = -1,
-			/obj/item/reagent_containers/food/snacks/mre_pack/meal4 = -1,
-			/obj/item/reagent_containers/food/snacks/mre_pack/meal6 = -1,
-			/obj/item/storage/box/MRE = -1,
-			/obj/item/reagent_containers/food/drinks/flask = -1,
-		),
-		"Protein Bar Supply" = list(
-			/obj/item/reagent_containers/food/snacks/protein_pack_base/one = 20, //wont spawn in loadouts without being in a vendor
-			/obj/item/reagent_containers/food/snacks/protein_pack_base/two = 20,
-			/obj/item/reagent_containers/food/snacks/protein_pack_base/three = 20,
-			/obj/item/reagent_containers/food/snacks/protein_pack_base/four = 20,
-			/obj/item/reagent_containers/food/snacks/protein_pack_base/five = 20,
-			/obj/item/reagent_containers/food/snacks/protein_pack_base/six = 20,
-			/obj/item/reagent_containers/food/snacks/protein_pack_base/seven = 20,
-			/obj/item/reagent_containers/food/snacks/protein_pack_base/eight = 20,
-			/obj/item/reagent_containers/food/snacks/protein_pack_base/nine = 20
-		),
+		/obj/item/reagent_containers/food/snacks/protein_pack = -1,
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal1 = -1,
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal2 = -1,
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal3 = -1,
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal4 = -1,
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal6 = -1,
+		/obj/item/storage/box/MRE = -1,
+		/obj/item/reagent_containers/food/drinks/flask = -1,
 	)
 //Christmas inventory
 /*

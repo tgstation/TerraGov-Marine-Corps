@@ -58,7 +58,7 @@
 
 /obj/structure/largecrate/lisa
 	icon_state = "lisacrate"
-	spawn_type = /mob/living/simple_animal/corgi/Lisa
+	spawn_type = /mob/living/simple_animal/corgi/lisa
 	spawn_amount = 1
 
 
@@ -265,7 +265,7 @@
 	stuff = list(
 		/obj/item/weapon/gun/revolver/upp = /obj/item/ammo_magazine/revolver/upp,
 		/obj/item/weapon/gun/pistol/c99 = /obj/item/ammo_magazine/pistol/c99,
-		/obj/item/weapon/gun/rifle/ak47 = /obj/item/ammo_magazine/rifle/ak47,
+		/obj/item/weapon/gun/rifle/mpi_km = /obj/item/ammo_magazine/rifle/mpi_km,
 		/obj/item/weapon/gun/rifle/sniper/svd = /obj/item/ammo_magazine/sniper/svd,
 		/obj/item/weapon/gun/smg/ppsh = /obj/item/ammo_magazine/smg/ppsh,
 		/obj/item/weapon/gun/rifle/type71 = /obj/item/ammo_magazine/rifle/type71,
