@@ -109,7 +109,8 @@ GLOBAL_LIST_INIT(jobs_to_icon, list(
 
 /datum/game_map/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/simple/minimap)
+		get_asset_datum(/datum/asset/simple/minimap_blip),
+		get_asset_datum(/datum/asset/simple/minimap),
 	)
 
 /datum/game_map/ui_state(mob/user)
