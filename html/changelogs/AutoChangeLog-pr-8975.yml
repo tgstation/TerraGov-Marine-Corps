@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - refactor: "Rework combat floodlights into something simpler"
