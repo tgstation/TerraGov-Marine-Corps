@@ -196,6 +196,18 @@
 	loaded_reagent = null
 	return ..()
 
+<<<<<<< HEAD
+=======
+/obj/item/weapon/claymore/harvester/spear
+	name = "\improper HP-S Harvester spear"
+	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' spear. An advanced weapon that has the ability to apply a variety of debilitating effects when loaded with certain reagents. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
+	icon_state = "vali_spear"
+	item_state = "vali_spear"
+	flags_equip_slot = ITEM_SLOT_BACK
+	force = 50
+	reach = 2
+
+>>>>>>> ce0f570b07173d1eba92f4a76719ed94795eee53
 /obj/item/weapon/claymore/mercsword
 	name = "combat sword"
 	desc = "A dusty sword commonly seen in historical museums. Where you got this is a mystery, for sure. Only a mercenary would be nuts enough to carry one of these. Sharpened to deal massive damage."
