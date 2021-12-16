@@ -149,6 +149,7 @@
 		/obj/item/ammo_magazine/packet/p9mm = 100,
 		/obj/item/ammo_magazine/packet/acp = 100,
 		/obj/item/ammo_magazine/packet/magnum = 100,
+		/obj/item/ammo_magazine/packet/p10x265mm = 100,
 		/obj/item/ammo_magazine/packet/p10x20mm = 100,
 		/obj/item/ammo_magazine/packet/p10x24mm = 100,
 		/obj/item/ammo_magazine/packet/p10x25mm = 100,
