@@ -459,7 +459,7 @@
 
 //-------------------------------------------------------
 
-/obj/item/weapon/gun/rifle/ak47
+/obj/item/weapon/gun/rifle/mpi_km
 	name = "\improper MPi-KM assault rifle"
 	desc = "A cheap and robust rifle, sometimes better known as an 'AK'. Chambers 7.62x39mm. Despite lacking attachment points, remains a popular product on the black market with its cheap cost and higher than usual caliber rounds."
 	icon_state = "ak47"
@@ -471,22 +471,22 @@
 	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
-	default_ammo_type = /obj/item/ammo_magazine/rifle/ak47
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/ak47)
+	default_ammo_type = /obj/item/ammo_magazine/rifle/mpi_km
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/mpi_km, /obj/item/ammo_magazine/rifle/mpi_km/extended)
 	aim_slowdown = 0.7
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/stock/ak47,
+		/obj/item/attachable/stock/mpi_km,
 		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 17, "under_x" = 24, "under_y" = 13, "stock_x" = 0, "stock_y" = 12)
-	starting_attachment_types = list(/obj/item/attachable/stock/ak47)
+	starting_attachment_types = list(/obj/item/attachable/stock/mpi_km)
 
 	accuracy_mult = 1
 	burst_amount = 1

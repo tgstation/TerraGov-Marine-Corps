@@ -314,7 +314,7 @@
 		/obj/item/weapon/gun/rifle/standard_br,
 		/obj/item/weapon/gun/rifle/m412,
 		/obj/item/weapon/gun/rifle/m41a,
-		/obj/item/weapon/gun/rifle/ak47,
+		/obj/item/weapon/gun/rifle/mpi_km,
 		/obj/item/weapon/gun/rifle/m16,
 		/obj/item/weapon/gun/rifle/famas,
 		/obj/item/weapon/gun/rifle/alf_machinecarbine,
