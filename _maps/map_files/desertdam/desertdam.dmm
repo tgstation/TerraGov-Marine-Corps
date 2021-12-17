@@ -47489,7 +47489,7 @@
 	pixel_x = -11
 	},
 /obj/structure/mirror{
-	pixel_x = -28
+	dir = 4
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean2"
