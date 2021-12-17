@@ -92,6 +92,13 @@
 		fs_view = client_view
 		transform = matrix(actualview[1]/FULLSCREEN_OVERLAY_RESOLUTION_X, 0, 0, 0, actualview[2]/FULLSCREEN_OVERLAY_RESOLUTION_Y, 0)
 
+/obj/screen/fullscreen/black
+	icon_state = "black" //just a black square, you can change this if you get better ideas
+	layer = FULLSCREEN_INTRO_LAYER
+
+/obj/screen/fullscreen/spawning_in
+	icon_state = "blackimageoverlay" //mostly just a black square, you can change this if you get better ideas
+	layer = FULLSCREEN_INTRO_LAYER
 
 /obj/screen/fullscreen/brute
 	icon_state = "brutedamageoverlay"
@@ -139,6 +146,25 @@
 	icon_state = "painoverlay"
 	layer = FULLSCREEN_PAIN_LAYER
 
+/obj/screen/fullscreen/bloodlust
+	icon_state = "bloodlust"
+	layer = FULLSCREEN_NERVES_LAYER
+
+/obj/screen/fullscreen/infection
+	icon_state = "curseoverlay"
+	layer = FULLSCREEN_INFECTION_LAYER
+
+/obj/screen/fullscreen/machine
+	icon_state = "machine"
+	alpha = 120
+	layer = FULLSCREEN_DRUGGY_LAYER
+	blend_mode = BLEND_MULTIPLY
+
+/obj/screen/fullscreen/machine/update_for_view(client_view)
+	. = ..()
+	animate(src, alpha = initial(alpha)-30, time = 50, loop = -1)
+	animate(alpha = initial(alpha), time = 20, loop = -1)
+
 
 /obj/screen/fullscreen/lighting_backdrop
 	icon = 'icons/mob/screen/generic.dmi'
@@ -148,25 +174,26 @@
 	blend_mode = BLEND_OVERLAY
 	show_when_dead = TRUE
 
+/obj/screen/fullscreen/lighting_backdrop/update_for_view(client_view)
+	return
 
 //Provides darkness to the back of the lighting plane
-/obj/screen/fullscreen/lighting_backdrop/lit
+/obj/screen/fullscreen/lighting_backdrop/lit_secondary
 	invisibility = INVISIBILITY_LIGHTING
-	layer = BACKGROUND_LAYER + 21
+	layer = BACKGROUND_LAYER + LIGHTING_PRIMARY_DIMMER_LAYER
 	color = "#000"
-	show_when_dead = TRUE
+	alpha = 60
 
-
-//Provides whiteness in case you don't see lights so everything is still visible
-/obj/screen/fullscreen/lighting_backdrop/unlit
-	layer = BACKGROUND_LAYER + 20
-	show_when_dead = TRUE
-
+/obj/screen/fullscreen/lighting_backdrop/backplane
+	invisibility = INVISIBILITY_LIGHTING
+	layer = LIGHTING_BACKPLANE_LAYER
+	color = "#000"
+	blend_mode = BLEND_ADD
 
 /obj/screen/fullscreen/see_through_darkness
 	icon_state = "nightvision"
 	plane = LIGHTING_PLANE
-	layer = LIGHTING_LAYER
+	layer = LIGHTING_PRIMARY_LAYER
 	blend_mode = BLEND_ADD
 	show_when_dead = TRUE
 

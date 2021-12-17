@@ -11,7 +11,7 @@
 	var/cur_coils = 1 			// Current amount of installed coils
 	var/safeties_enabled = TRUE	// If 0 modifications can be done without discharging the SMES, at risk of critical failure.
 	var/failing = FALSE			// If 1 critical failure has occured and SMES explosion is imminent.
-	resistance_flags = UNACIDABLE
+	resistance_flags = UNACIDABLE|CRUSHER_IMMUNE
 
 /obj/machinery/power/smes/buildable/empty
 	charge = 0
@@ -178,7 +178,7 @@
 /obj/machinery/power/smes/buildable/attackby(obj/item/I, mob/user, params)
 	// No more disassembling of overloaded SMESs. You broke it, now enjoy the consequences.
 	if(failing)
-		to_chat(user, "<span class='warning'>The [src]'s screen is flashing with alerts. It seems to be overloaded! Touching it now is probably not a good idea.</span>")
+		to_chat(user, span_warning("The [src]'s screen is flashing with alerts. It seems to be overloaded! Touching it now is probably not a good idea."))
 		return
 	// If parent returned 1:
 	// - Hatch is open, so we can modify the SMES
@@ -190,11 +190,11 @@
 
 	// Charged above 1% and safeties are enabled.
 	if((charge > (capacity / 100)) && safeties_enabled && !ismultitool(I))
-		to_chat(user, "<span class='warning'>Safety circuit of [src] is preventing modifications while it's charged!</span>")
+		to_chat(user, span_warning("Safety circuit of [src] is preventing modifications while it's charged!"))
 		return
 
 	if(outputting || input_attempt)
-		to_chat(user, "<span class='warning'>Turn off the [src] first!</span>")
+		to_chat(user, span_warning("Turn off the [src] first!"))
 		return
 
 	// Probability of failure if safety circuit is disabled (in %)
@@ -207,11 +207,11 @@
 	// Crowbar - Disassemble the SMES.
 	if(iscrowbar(I))
 		if(terminal)
-			to_chat(user, "<span class='warning'>You have to disassemble the terminal first!</span>")
+			to_chat(user, span_warning("You have to disassemble the terminal first!"))
 			return
 
 		playsound(get_turf(src), 'sound/items/crowbar.ogg', 25, 1)
-		to_chat(user, "<span class='warning'>You begin to disassemble the [src]!</span>")
+		to_chat(user, span_warning("You begin to disassemble the [src]!"))
 
 		if(!do_after(user, 10 SECONDS * cur_coils, TRUE, src, BUSY_ICON_BUILD)) // More coils = takes longer to disassemble. It's complex so largest one with 5 coils will take 50s
 			return
@@ -220,7 +220,7 @@
 			total_system_failure(failure_probability, user)
 			return
 
-		to_chat(user, "<span class='warning'>You have disassembled the SMES cell!</span>")
+		to_chat(user, span_warning("You have disassembled the SMES cell!"))
 		var/obj/machinery/constructable_frame/machine_frame/M = new(loc)
 		M.state = 2
 		M.icon_state = "box_1"
@@ -233,7 +233,7 @@
 	// Superconducting Magnetic Coil - Upgrade the SMES
 	else if(istype(I, /obj/item/stock_parts/smes_coil))
 		if(cur_coils >= max_coils)
-			to_chat(user, "<span class='warning'>You can't insert more coils to this SMES unit!</span>")
+			to_chat(user, span_warning("You can't insert more coils to this SMES unit!"))
 			return
 
 		if(failure_probability && prob(failure_probability))
@@ -251,5 +251,5 @@
 	// Multitool - Toggle the safeties.
 	else if(ismultitool(I))
 		safeties_enabled = !safeties_enabled
-		to_chat(user, "<span class='warning'>You [safeties_enabled ? "connected" : "disconnected"] the safety circuit.</span>")
+		to_chat(user, span_warning("You [safeties_enabled ? "connected" : "disconnected"] the safety circuit."))
 		visible_message("[icon2html(src, viewers(src))] <b>[src]</b> beeps: \"Caution. Safety circuit has been: [safeties_enabled ? "re-enabled" : "disabled. Please excercise caution."]\"")

@@ -9,7 +9,7 @@
 	icon_state = "apron"
 	item_state = "apron"
 	blood_overlay_type = "armor"
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 	allowed = list (
 		/obj/item/reagent_containers/spray/plantbgone,
 		/obj/item/analyzer/plant_analyzer,
@@ -20,7 +20,7 @@
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/storage/large_holster/machete
+		/obj/item/storage/large_holster/blade
 	)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
@@ -90,7 +90,7 @@
 	icon_state = "apronchef"
 	item_state = "apronchef"
 	blood_overlay_type = "armor"
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 //Security
 /obj/item/clothing/suit/security/navyofficer
@@ -136,7 +136,7 @@
 		/obj/item/taperecorder,
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/storage/large_holster/machete,
+		/obj/item/storage/large_holster/blade,
 	)
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
@@ -289,4 +289,4 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "suspenders"
 	blood_overlay_type = "armor" //it's the less thing that I can put here
-	flags_armor_protection = 0
+	flags_armor_protection = NONE

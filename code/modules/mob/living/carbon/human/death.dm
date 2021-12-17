@@ -66,8 +66,11 @@
 
 	GLOB.dead_human_list += src
 	GLOB.alive_human_list -= src
+	LAZYREMOVE(GLOB.alive_human_list_faction[faction], src)
 	LAZYREMOVE(GLOB.humans_by_zlevel["[z]"], src)
 	UnregisterSignal(src, COMSIG_MOVABLE_Z_CHANGED)
+
+	hud_list[HEART_STATUS_HUD].icon_state = "beating_heart"
 
 	return ..()
 

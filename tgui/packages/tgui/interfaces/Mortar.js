@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, Section, NumberInput, Flex, Table, Input } from '../components';
+import { Button, NumberInput, Flex, Table, Input } from '../components';
 import { Window } from '../layouts';
 
 export const Mortar = (props, context) => {
@@ -13,7 +13,8 @@ export const Mortar = (props, context) => {
   } = data;
   return (
     <Window
-      resizable>
+      width={450}
+      height={180}>
       <Window.Content>
         <Flex direction="column" justify="space-between">
           <Flex.Item>

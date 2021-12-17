@@ -1,4 +1,3 @@
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
@@ -8,6 +7,8 @@ export const MarineCasship = (props, context) => {
 
   return (
     <Window
+      width={600}
+      height={500}
       theme="ntos">
       <Window.Content scrollable>
         {data.plane_state === 0 ? (
@@ -23,7 +24,7 @@ export const MarineCasship = (props, context) => {
 const EnginesOff = (props, context) => {
   const { act, data } = useBackend(context);
   return (
-    <Fragment>
+    <>
       <Section
         title="Ship Status">
         {data.ship_status}
@@ -44,14 +45,14 @@ const EnginesOff = (props, context) => {
           <NoticeBox>Fuel level {data.fuel_left/data.fuel_max *100}%</NoticeBox>
         </Box>
       </Section>
-    </Fragment>
+    </>
   );
 };
 
 const NormalOperation = (props, context) => {
   const { act, data } = useBackend(context);
   return (
-    <Fragment>
+    <>
       <Section title="Ship Status">
         <NoticeBox>{data.ship_status}</NoticeBox>
         <NoticeBox>{data.active_lasers} Active Lasers Detected</NoticeBox>
@@ -124,7 +125,7 @@ const NormalOperation = (props, context) => {
             content="Launch plane"
             onClick={() => act(
               'launch')}
-            disabled={data.plane_state === 3} />
+            disabled={data.plane_state === 3 || data.plane_mode !== "idle"} />
         </Box>
         <Box
           width="100%"
@@ -133,7 +134,7 @@ const NormalOperation = (props, context) => {
             content="Land plane"
             onClick={() => act(
               'land')}
-            disabled={data.plane_state !== 3} />
+            disabled={data.plane_state !== 3 || data.plane_mode !== "idle"} />
         </Box>
         <Box
           width="100%"
@@ -151,7 +152,14 @@ const NormalOperation = (props, context) => {
             onClick={() => act("deploy")}
             disabled={data.plane_state !== 3} />
         </Box>
+        <Box
+          width="100%"
+          textAlign="center">
+          <Button
+            content={"Strafe Direction: "+data.attackdir}
+            onClick={() => act('cycle_attackdir')} />
+        </Box>
       </Section>
-    </Fragment>
+    </>
   );
 };

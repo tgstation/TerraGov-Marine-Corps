@@ -9,10 +9,12 @@
 	move_resist = MOVE_FORCE_VERY_STRONG
 	layer = DOOR_OPEN_LAYER
 	explosion_block = 2
+	resistance_flags = DROPSHIP_IMMUNE
+	minimap_color = MINIMAP_DOOR
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
 	var/open_layer = DOOR_OPEN_LAYER
 	var/closed_layer = DOOR_CLOSED_LAYER
 	var/id
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
 	var/secondsElectrified = 0
 	var/visible = TRUE
 	var/operating = FALSE
@@ -39,12 +41,13 @@
 
 	if(width > 1)
 		handle_multidoor()
+	var/turf/current_turf = get_turf(src)
+	current_turf.flags_atom &= ~ AI_BLOCKED
 
 /obj/machinery/door/Destroy()
-	. = ..()
 	for(var/o in fillers)
 		qdel(o)
-	density = FALSE
+	return ..()
 
 /obj/machinery/door/proc/handle_multidoor()
 	fillers = list()
@@ -79,13 +82,6 @@
 		for(var/m in O.buckled_mobs)
 			Bumped(m)
 
-	if(istype(AM, /obj/machinery/bot))
-		var/obj/machinery/bot/bot = AM
-		if(src.check_access(bot.botcard))
-			if(density)
-				open()
-		return
-
 
 /obj/machinery/door/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -104,10 +100,6 @@
 			open()
 		else
 			flick("door_deny", src)
-
-
-/obj/machinery/door/attack_paw(mob/living/carbon/monkey/user)
-	return src.attack_hand(user)
 
 
 /obj/machinery/door/attack_hand(mob/living/user)
@@ -189,7 +181,7 @@
 	if(!density)
 		return TRUE
 	if(operating > 0 || !loc)
-		return
+		return FALSE
 	if(!SSticker)
 		return FALSE
 	if(!operating)
@@ -201,7 +193,10 @@
 	for(var/t in fillers)
 		var/obj/effect/opacifier/O = t
 		O.set_opacity(FALSE)
-	sleep(openspeed)
+	addtimer(CALLBACK(src, .proc/finish_open), openspeed)
+	return TRUE
+
+/obj/machinery/door/proc/finish_open()
 	layer = open_layer
 	density = FALSE
 	update_icon()
@@ -212,20 +207,19 @@
 	if(autoclose)
 		addtimer(CALLBACK(src, .proc/autoclose), normalspeed ? 150 + openspeed : 5)
 
-	return TRUE
-
-
 /obj/machinery/door/proc/close()
 	if(density)
 		return TRUE
-	if(operating > 0 || !loc)
-		return
+	if(operating)
+		return FALSE
 	operating = TRUE
 
 	density = TRUE
 	layer = closed_layer
 	do_animate("closing")
-	sleep(openspeed)
+	addtimer(CALLBACK(src, .proc/finish_close), openspeed)
+
+/obj/machinery/door/proc/finish_close()
 	update_icon()
 	if(visible && !glass)
 		set_opacity(TRUE)	//caaaaarn!

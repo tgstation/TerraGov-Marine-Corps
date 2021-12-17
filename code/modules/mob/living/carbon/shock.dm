@@ -4,7 +4,7 @@
 /mob/living/carbon/proc/adjustTraumatic_Shock(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	traumatic_shock = clamp(traumatic_shock+amount,0,maxHealth*2)
+	traumatic_shock = clamp(traumatic_shock+amount,-100,maxHealth*2)
 
 /mob/living/carbon/proc/setTraumatic_Shock(amount)
 	if(status_flags & GODMODE)
@@ -29,22 +29,22 @@
 	adjust_pain_speed_mod(.)
 
 
-/mob/living/carbon/proc/adjust_pain_speed_mod(old_pain)
+/mob/living/carbon/proc/adjust_pain_speed_mod(old_shock_stage)
 	switch(shock_stage)
-		if(0 to 10)
-			if(old_pain <= 10)
+		if(0 to 100)
+			if(old_shock_stage <= 100)
 				return
 			remove_movespeed_modifier(MOVESPEED_ID_PAIN)
-		if(10 to 30)
-			if(old_pain > 10 || old_pain <= 30)
+		if(100 to 125)
+			if(old_shock_stage > 100 || old_shock_stage <= 125)
 				return
 			add_movespeed_modifier(MOVESPEED_ID_PAIN, TRUE, 0, NONE, TRUE, 1)
-		if(30 to 50)
-			if(old_pain > 30 || old_pain <= 50)
+		if(125 to 150)
+			if(old_shock_stage > 125 || old_shock_stage <= 150)
 				return
 			add_movespeed_modifier(MOVESPEED_ID_PAIN, TRUE, 0, NONE, TRUE, 2)
-		if(50 to INFINITY)
-			if(old_pain > 50)
+		if(150 to INFINITY)
+			if(old_shock_stage > 150)
 				return
 			add_movespeed_modifier(MOVESPEED_ID_PAIN, TRUE, 0, NONE, TRUE, 3)
 
@@ -74,13 +74,13 @@
 	if(ishuman(src))
 		var/mob/living/carbon/human/M = src
 		for(var/datum/limb/O in M.limbs)
-			if((O.limb_status & LIMB_DESTROYED) && !(O.limb_status & LIMB_AMPUTATED))
+			if(((O.limb_status & LIMB_DESTROYED) && !(O.limb_status & LIMB_AMPUTATED)) || O.limb_status & LIMB_NECROTIZED)
 				traumatic_shock += 40
 			else if(O.limb_status & LIMB_BROKEN || O.surgery_open_stage)
-				if(O.limb_status & LIMB_SPLINTED || O.limb_status & LIMB_STABILIZED)
+				if(O.limb_status & LIMB_SPLINTED)
 					traumatic_shock += 15
 				else
-					traumatic_shock += 30
+					traumatic_shock += 25
 			if(O.germ_level >= INFECTION_LEVEL_ONE)
 				traumatic_shock += O.germ_level * 0.05
 
@@ -93,10 +93,6 @@
 			traumatic_shock -= 20 + M.protection_aura * 20 //-40 pain for SLs, -80 for Commanders
 
 	traumatic_shock += reagent_pain_modifier
-	traumatic_shock = max(0, traumatic_shock)	//stuff below this has the potential to mask damage
-
-	traumatic_shock += 1.5 //not affected by reagent shock reduction
-
 
 	return traumatic_shock
 

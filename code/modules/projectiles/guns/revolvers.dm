@@ -5,22 +5,23 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 	fire_sound = 'sound/weapons/guns/fire/44mag.ogg'
-	reload_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
-	cocked_sound = 'sound/weapons/guns/interact/revolver_spun.ogg'
+	reload_sound = 'sound/weapons/guns/interact/revolver_spun.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
 	unload_sound = 'sound/weapons/guns/interact/revolver_unload.ogg'
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	var/hand_reload_sound = 'sound/weapons/guns/interact/revolver_load.ogg'
-	var/spin_sound = 'sound/effects/spin.ogg'
-	var/thud_sound = 'sound/effects/thud.ogg'
-	var/trick_delay = 6
-	var/recent_trick //So they're not spamming tricks.
-	var/russian_roulette = 0 //God help you if you do this.
-	var/catchworking = TRUE
-	load_method = SINGLE_CASING|SPEEDLOADER //codex
+	hand_reload_sound = 'sound/weapons/guns/interact/revolver_load.ogg'
 	type_of_casings = "bullet"
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
+	load_method = SINGLE_CASING|SPEEDLOADER //codex
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_speed_modifier = 0.75
+	aim_fire_delay = 0.25 SECONDS
 	wield_delay = 0.2 SECONDS //If you modify your revolver to be two-handed, it will still be fast to aim
 	gun_skill_category = GUN_SKILL_PISTOLS
+
+	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS
+	max_chamber_items = 7
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver)
 
 	movement_acc_penalty_mult = 2
 	fire_delay = 2
@@ -29,214 +30,41 @@
 	recoil = 2
 	recoil_unwielded = 3
 
+	placed_overlay_iconstate = "revolver"
 
-/obj/item/weapon/gun/revolver/Initialize()
-	. = ..()
-	replace_cylinder(current_mag.current_rounds)
+	///Sound played when revolvers chamber is spun.
+	var/spin_sound = 'sound/effects/spin.ogg'
+	///Sound played when thud?
+	var/thud_sound = 'sound/effects/thud.ogg'
+	///Delay between gun tricks
+	var/trick_delay = 6
+	///Time of last trick
+	var/recent_trick //So they're not spamming tricks.
+	///If the gun is able to play Russian Roulette
+	var/russian_roulette = FALSE //God help you if you do this.
+	///Whether the chamber can be spun for Russian Roulette. If False the chamber can be spun.
+	var/catchworking = TRUE
 
-
-/obj/item/weapon/gun/revolver/examine_ammo_count(mob/user)
-	if(!current_mag)
-		return
-	to_chat(user, "[current_mag.chamber_closed ? "It's closed." : "It's open with [current_mag.current_rounds] round\s loaded."]")
-
-/obj/item/weapon/gun/revolver/update_icon() //Special snowflake update icon.
-	icon_state = current_mag.chamber_closed ? initial(icon_state) : initial(icon_state) + "_o"
-
-/obj/item/weapon/gun/revolver/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(isscrewdriver(I))
-		to_chat(user, "[catchworking ? "You adjust the cylinder lock to allow the cylinder to be spun." : "You adjust the cylinder lock to the correct depth."]")
-		catchworking = !catchworking
-
-/obj/item/weapon/gun/revolver/proc/rotate_cylinder(mob/user) //Cylinder moves backward.
-	current_mag.chamber_position = current_mag.chamber_position == 1 ? current_mag.max_rounds : current_mag.chamber_position - 1
-
-/obj/item/weapon/gun/revolver/proc/spin_cylinder(mob/user)
-	if(!current_mag.chamber_closed) //We're not spinning while it's open. Could screw up reloading.
-		return FALSE
-	current_mag.chamber_position = rand(1,current_mag.max_rounds)
-	to_chat(user, "<span class='notice'>You spin the cylinder.</span>")
-	playsound(user, cocked_sound, 25, 1)
-	russian_roulette = !russian_roulette //Sets to play RR. Resets when the gun is emptied.
-	return TRUE
-
-
-/obj/item/weapon/gun/revolver/proc/replace_cylinder(number_to_replace)
-	current_mag.chamber_contents = list()
-	current_mag.chamber_contents.len = current_mag.max_rounds
-	var/i
-	for(i = 1 to current_mag.max_rounds) //We want to make sure to populate the cylinder.
-		current_mag.chamber_contents[i] = i > number_to_replace ? "empty" : "bullet"
-	current_mag.chamber_position = max(1,number_to_replace)
-
-/obj/item/weapon/gun/revolver/proc/empty_cylinder()
-	var/i
-	for(i = 1 to current_mag.max_rounds)
-		current_mag.chamber_contents[i] = "empty"
-
-//The cylinder is always emptied out before a reload takes place.
-/obj/item/weapon/gun/revolver/proc/add_to_cylinder(mob/user) //Bullets are added forward.
-	//First we're going to try and replace the current bullet.
-	if(!current_mag.current_rounds)
-		current_mag.chamber_contents[current_mag.chamber_position] = "bullet"
-	else//Failing that, we'll try to replace the next bullet in line.
-		if( (current_mag.chamber_position + 1) > current_mag.max_rounds)
-			current_mag.chamber_contents[1] = "bullet"
-			current_mag.chamber_position = 1
-		else
-			current_mag.chamber_contents[current_mag.chamber_position + 1] = "bullet"
-			current_mag.chamber_position++
-
-	playsound(user, hand_reload_sound, 25, 1)
-	return TRUE
-
-/obj/item/weapon/gun/revolver/reload(mob/user, obj/item/ammo_magazine/magazine)
-	if(flags_gun_features & GUN_BURST_FIRING)
-		return
-
-	if(!magazine || !istype(magazine))
-		to_chat(user, "<span class='warning'>That's not gonna work!</span>")
-		return
-
-	if(magazine.current_rounds <= 0)
-		to_chat(user, "<span class='warning'>That [magazine.name] is empty!</span>")
-		return
-
-	if(current_mag.chamber_closed)
-		to_chat(user, "<span class='warning'>You can't load anything when the cylinder is closed!</span>")
-		return
-
-	if(current_mag.current_rounds == current_mag.max_rounds)
-		to_chat(user, "<span class='warning'>It's already full!</span>")
-		return
-
-	if(istype(magazine, /obj/item/ammo_magazine/handful)) //Looks like we're loading via handful.
-		if( !current_mag.current_rounds && current_mag.caliber == magazine.caliber) //Make sure nothing's loaded and the calibers match.
-			replace_ammo(user, magazine) //We are going to replace the ammo just in case.
-			current_mag.match_ammo(magazine)
-			current_mag.transfer_ammo(magazine,user,1) //Handful can get deleted, so we can't check through it.
-			add_to_cylinder(user)
-		//If bullets still remain in the gun, we want to check if the actual ammo matches.
-		else if(magazine.default_ammo == current_mag.default_ammo) //Ammo datums match, let's see if they are compatible.
-			if(current_mag.transfer_ammo(magazine,user,1))
-				add_to_cylinder(user)//If the magazine is deleted, we're still fine.
-		else
-			to_chat(user, "[current_mag] is [current_mag.current_rounds ? "already loaded with some other ammo. Better not mix them up." : "not compatible with that ammo."]")
-	else //So if it's not a handful, it's an actual speedloader.
-		if(!current_mag.current_rounds) //We can't have rounds in the gun if it's a speeloader.
-			if(current_mag.gun_type == magazine.gun_type) //Has to be the same gun type.
-				if(current_mag.transfer_ammo(magazine,user,magazine.current_rounds))//Make sure we're successful.
-					replace_ammo(user, magazine) //We want to replace the ammo ahead of time, but not necessary here.
-					current_mag.match_ammo(magazine)
-					replace_cylinder(current_mag.current_rounds)
-					playsound(user, reload_sound, 25, 1) // Reloading via speedloader.
-			else
-				to_chat(user, "<span class='warning'>That [magazine] doesn't fit!</span>")
-		else
-			to_chat(user, "<span class='warning'>You can't load a speedloader when there's something in the cylinder!</span>")
-
-/obj/item/weapon/gun/revolver/unload(mob/user)
-	if(flags_gun_features & GUN_BURST_FIRING)
-		return FALSE
-
-	if(current_mag.chamber_closed) //If it's actually closed.
-		to_chat(user, "<span class='notice'>You clear the cylinder of [src].</span>")
-		make_casing(type_of_casings)
-		empty_cylinder()
-		current_mag.create_handful(user)
-		current_mag.chamber_closed = !current_mag.chamber_closed
-		russian_roulette = !russian_roulette //Resets the RR variable.
-	else
-		current_mag.chamber_closed = !current_mag.chamber_closed
-	playsound(src, unload_sound, 25, 1)
-	update_icon()
-
-	return TRUE
-
-
-/obj/item/weapon/gun/revolver/make_casing()
-	if(current_mag.used_casings)
-		. = ..()
-		current_mag.used_casings = 0 //Always dump out everything.
-
-/obj/item/weapon/gun/revolver/able_to_fire(mob/user)
-	. = ..()
-	if(. && istype(user))
-		if(!current_mag.chamber_closed)
-			to_chat(user, "<span class='warning'>Close the cylinder!</span>")
-			return FALSE
-
-/obj/item/weapon/gun/revolver/ready_in_chamber()
-	if(current_mag.current_rounds > 0)
-		if( current_mag.chamber_contents[current_mag.chamber_position] == "bullet")
-			current_mag.current_rounds-- //Subtract the round from the mag.
-			in_chamber = create_bullet(ammo)
-			return in_chamber
-
-/obj/item/weapon/gun/revolver/load_into_chamber(mob/user)
-	if(ready_in_chamber())
-		return in_chamber
-	rotate_cylinder() //If we fail to return to chamber the round, we just move the firing pin some.
-
-/obj/item/weapon/gun/revolver/reload_into_chamber(mob/user)
-	current_mag.chamber_contents[current_mag.chamber_position] = "blank" //We shot the bullet.
-	current_mag.used_casings++ //We add this only if we actually fired the bullet.
-	rotate_cylinder()
-	return TRUE
-
-/obj/item/weapon/gun/revolver/delete_bullet(obj/projectile/projectile_to_fire, refund = 0)
-	qdel(projectile_to_fire)
-	if(refund) current_mag.current_rounds++
-	return TRUE
-
-/obj/item/weapon/gun/revolver/unique_action(mob/user)
-	if(catchworking)
-		return unload(user)
-	else
-		return spin_cylinder(user)
-
-/obj/item/weapon/gun/revolver/proc/revolver_basic_spin(mob/living/carbon/human/user, direction = 1, obj/item/weapon/gun/revolver/double)
-	set waitfor = 0
-	playsound(user, spin_sound, 25, 1)
-	if(double)
-		user.visible_message("[user] deftly flicks and spins [src] and [double]!","<span class='notice'> You flick and spin [src] and [double]!</span>")
-		animation_wrist_flick(double, 1)
-	else user.visible_message("[user] deftly flicks and spins [src]!","<span class='notice'> You flick and spin [src]!</span>")
-
-	animation_wrist_flick(src, direction)
-	sleep(3)
-	if(loc && user) playsound(user, thud_sound, 25, 1)
 
 /obj/item/weapon/gun/revolver/verb/revolvertrick()
 	set category = "Weapons"
 	set name = "Do a revolver trick"
 	set desc = "Show off to all your friends!"
-
-
-	var/obj/item/weapon/gun/revolver/G = get_active_firearm(usr)
-
-	if(!G)
+	var/obj/item/weapon/gun/revolver/gun = get_active_firearm(usr)
+	if(!gun)
 		return
-
-	if(!istype(G))
+	if(!istype(gun))
 		return
-
-	src = G
-
-	if(usr.action_busy)
+	if(usr.do_actions)
 		return
-
 	if(zoom)
-		to_chat(usr, "<span class='warning'>You cannot conceviably do that while looking down \the [src]'s scope!</span>")
+		to_chat(usr, span_warning("You cannot conceviably do that while looking down \the [src]'s scope!"))
 		return
-
 	revolver_trick(usr)
 
 /obj/item/weapon/gun/revolver/proc/revolver_throw_catch(mob/living/carbon/human/user)
 	set waitfor = 0
-	user.visible_message("[user] deftly flicks [src] and tosses it into the air!","<span class='notice'> You flick and toss [src] into the air!</span>")
+	user.visible_message("[user] deftly flicks [src] and tosses it into the air!",span_notice(" You flick and toss [src] into the air!"))
 	var/img_layer = MOB_LAYER+0.1
 	var/image/trick = image(icon,user,icon_state,img_layer)
 	switch(pick(1,2))
@@ -248,18 +76,19 @@
 		SEND_IMAGE(M, trick)
 	sleep(5)
 	trick.loc = null
-	if(loc && user)
-		invisibility = 0
-		playsound(user, thud_sound, 25, 1)
-		if(user.get_inactive_held_item())
-			user.visible_message("[user] catches [src] with the same hand!","<span class='notice'> You catch [src] as it spins in to your hand!</span>")
-		else
-			user.visible_message("[user] catches [src] with his other hand!","<span class='notice'> You snatch [src] with your other hand! Awesome!</span>")
-			user.temporarilyRemoveItemFromInventory(src)
-			user.put_in_inactive_hand(src)
-			user.swap_hand()
-			user.update_inv_l_hand(0)
-			user.update_inv_r_hand()
+	if(!loc || !user)
+		return
+	invisibility = 0
+	playsound(user, thud_sound, 25, 1)
+	if(user.get_inactive_held_item())
+		user.visible_message("[user] catches [src] with the same hand!",span_notice(" You catch [src] as it spins in to your hand!"))
+		return
+	user.visible_message("[user] catches [src] with his other hand!",span_notice(" You snatch [src] with your other hand! Awesome!"))
+	user.temporarilyRemoveItemFromInventory(src)
+	user.put_in_inactive_hand(src)
+	user.swap_hand()
+	user.update_inv_l_hand(0)
+	user.update_inv_r_hand()
 
 /obj/item/weapon/gun/revolver/proc/revolver_trick(mob/living/carbon/human/user)
 	if(world.time < (recent_trick + trick_delay) )
@@ -298,35 +127,38 @@
 					revolver_throw_catch(user)
 	else
 		if(prob(10))
-			to_chat(user, "<span class='warning'>You fumble with [src] like an idiot... Uncool.</span>")
+			to_chat(user, span_warning("You fumble with [src] like an idiot... Uncool."))
 		else
-			user.visible_message("<span class='info'><b>[user]</b> fumbles with [src] like a huge idiot!</span>")
+			user.visible_message(span_info("<b>[user]</b> fumbles with [src] like a huge idiot!"))
 
 	recent_trick = world.time //Turn on the delay for the next trick.
 
 	return TRUE
 
-
-/obj/item/weapon/gun/revolver/get_ammo_type()
-	if(!ammo)
-		return list("unknown", "unknown")
+/obj/item/weapon/gun/revolver/proc/revolver_basic_spin(mob/living/carbon/human/user, direction = 1, obj/item/weapon/gun/revolver/double)
+	set waitfor = 0
+	playsound(user, spin_sound, 25, 1)
+	if(double)
+		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice(" You flick and spin [src] and [double]!"))
+		animation_wrist_flick(double, 1)
 	else
-		return list(ammo.hud_state, ammo.hud_state_empty)
-
-/obj/item/weapon/gun/revolver/get_ammo_count()
-	return current_mag ? current_mag.current_rounds : 0
+		user.visible_message("[user] deftly flicks and spins [src]!",span_notice(" You flick and spin [src]!"))
+	animation_wrist_flick(src, direction)
+	sleep(3)
+	if(loc && user) playsound(user, thud_sound, 25, 1)
 
 //-------------------------------------------------------
 //TP-44 COMBAT REVOLVER
 
 /obj/item/weapon/gun/revolver/standard_revolver
 	name = "\improper TP-44 combat revolver"
-	desc = "The TP-44 standard combat revolver, produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to the nature of the weapon, its rate of fire doesn’t quite match the output of other guns, but does hit much harder."
+	desc = "The TP-44 standard combat revolver, produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to an error in the cylinder rotation system the fire rate of the gun is much faster than intended, it ended up being billed as a feature of the system."
 	icon_state = "tp44"
 	item_state = "tp44"
-	caliber = ".44 Magnum" //codex
-	max_shells = 7 //codex
-	current_mag = /obj/item/ammo_magazine/internal/revolver/standard_revolver
+	caliber =  CALIBER_44 //codex
+	max_chamber_items = 7 //codex
+	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_revolver)
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -337,42 +169,18 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lasersight,
+		/obj/item/attachable/lace,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 19)
-	fire_delay = 0.3
+	fire_delay = 0.2 SECONDS
 	accuracy_mult_unwielded = 0.85
 	accuracy_mult = 1
 	scatter_unwielded = 15
 	scatter = 0
 	recoil = 0
-	recoil_unwielded = 1
-
-//-------------------------------------------------------
-//M-44, based off the SAA.
-
-/obj/item/weapon/gun/revolver/m44
-	name = "\improper M-44 SAA revolver"
-	desc = "A uncommon revolver occasionally carried by civilian law enforcement that's very clearly based off a modernized Single Action Army. Uses .44 Magnum rounds."
-	icon_state = "m44"
-	item_state = "m44"
-	caliber = ".44 Magnum" //codex
-	max_shells = 6 //codex
-	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
-	force = 8
-	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/flashlight,
-		/obj/item/attachable/heavy_barrel,
-		/obj/item/attachable/quickfire,
-		/obj/item/attachable/extended_barrel,
-		/obj/item/attachable/compensator,
-		/obj/item/attachable/stock/revolver,
-		/obj/item/attachable/scope,
-		/obj/item/attachable/lasersight,
-		/obj/item/attachable/scope/mini,
-	)
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
+	recoil_unwielded = 0.75
 
 //-------------------------------------------------------
 //RUSSIAN REVOLVER //Based on the 7.62mm Russian revolvers.
@@ -382,16 +190,18 @@
 	desc = "The Nagant-Yamasaki 7.62 is an effective killing machine designed by a consortion of shady Not-Americans. It is frequently found in the hands of criminals or mercenaries."
 	icon_state = "ny762"
 	item_state = "ny762"
-	caliber = "7.62x38mm Rimmed" //codex
-	max_shells = 7 //codex
+	caliber = CALIBER_762X38 //codex
+	max_chamber_items = 7 //codex
 	fire_sound = 'sound/weapons/guns/fire/ny.ogg'
-	current_mag = /obj/item/ammo_magazine/internal/revolver/upp
+	default_ammo_type = /obj/item/ammo_magazine/revolver/upp
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/upp)
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/lace,
 	)
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19, "stock_x" = 24, "stock_y" = 19)
 
@@ -401,17 +211,18 @@
 
 
 //-------------------------------------------------------
-//357 REVOLVER //Based on the generic S&W 357.
+//A generic 357 revolver. With a twist.
 
 /obj/item/weapon/gun/revolver/small
-	name = "\improper S&W .357 revolver"
-	desc = "A lean .357 made by Smith & Wesson. A timeless classic, from antiquity to the future."
-	icon_state = "sw357"
+	name = "\improper FFA 'Rebota' revolver"
+	desc = "A lean .357 made by Falffearmeria. A timeless design, from antiquity to the future. This one is well known for it's strange ammo, which ricochets off walls constantly. Which went from being a defect to a feature."
+	icon_state = "rebota"
 	item_state = "sw357"
-	caliber = ".357 Magnum" //codex
-	max_shells = 6 //codex
+	caliber = CALIBER_357 //codex
+	max_chamber_items = 6 //codex
 	fire_sound = 'sound/weapons/guns/fire/revolver.ogg'
-	current_mag = /obj/item/ammo_magazine/internal/revolver/small
+	default_ammo_type = /obj/item/ammo_magazine/revolver/small
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/small)
 	force = 6
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -421,6 +232,7 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/lace,
 	)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
@@ -428,8 +240,6 @@
 	recoil = 0
 	recoil_unwielded = 0
 
-/obj/item/weapon/gun/revolver/small/unique_action(mob/user)
-	return revolver_trick(user)
 
 //-------------------------------------------------------
 //Mateba is pretty well known. The cylinder folds up instead of to the side. This has a non-marine version and a marine version.
@@ -441,10 +251,11 @@
 	item_state = "mateba"
 	fire_animation = "mateba_fire"
 	muzzleflash_iconstate = "muzzle_flash"
-	caliber = ".454 Casull" //codex
-	max_shells = 6 //codex
+	caliber = CALIBER_454 //codex
+	max_chamber_items = 6 //codex
 	fire_sound = 'sound/weapons/guns/fire/mateba.ogg'
-	current_mag = /obj/item/ammo_magazine/internal/revolver/mateba
+	default_ammo_type = /obj/item/ammo_magazine/revolver/mateba
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/mateba)
 	force = 15
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -453,10 +264,20 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
+		/obj/item/attachable/lace,
+		/obj/item/attachable/mateba_longbarrel,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
-	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
+	starting_attachment_types = list(
+		/obj/item/attachable/mateba_longbarrel,
+	)
+	attachable_offset = list("muzzle_x" = 20, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
+	damage_mult = 0.80
+	damage_falloff_mult = 1.5
 	fire_delay = 0.2 SECONDS
+	aim_fire_delay = 0.3 SECONDS
 	recoil = 0
 	accuracy_mult = 1.1
 	scatter = 10
@@ -482,10 +303,11 @@
 	desc = "An automatic revolver chambered in .357 magnum. Commonly issued to Nanotrasen security. It has a burst mode. Currently in trial with other revolvers across Terra and other colonies."
 	icon_state = "cmb"
 	item_state = "cmb"
-	caliber = ".357 Magnum" //codex
-	max_shells = 6 //codex
+	caliber = CALIBER_357 //codex
+	max_chamber_items = 6 //codex
 	fire_sound = 'sound/weapons/guns/fire/revolver_light.ogg'
-	current_mag = /obj/item/ammo_magazine/internal/revolver/cmb
+	default_ammo_type = /obj/item/ammo_magazine/revolver/cmb
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/cmb)
 	force = 12
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -494,11 +316,98 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/compensator,
+		/obj/item/attachable/lace,
 	)
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 11, "rail_y" = 25, "under_x" = 20, "under_y" = 18, "stock_x" = 20, "stock_y" = 18)
 
-	fire_delay = 1.2 SECONDS
+	fire_delay = 0.15 SECONDS
 	burst_amount = 3
-	burst_delay = 0.5 SECONDS
+	burst_delay = 0.1 SECONDS
 	scatter_unwielded = 20
 	damage_mult = 1.05
+
+//-------------------------------------------------------
+//The Judge, a shotgun and revolver in one
+
+/obj/item/weapon/gun/revolver/judge
+	name = "\improper 'Judge' revolver"
+	desc = "An incredibly uncommon revolver utilizing a oversized chamber to be able to both fire 45 Long at the cost of firing speed. Normal rounds have no falloff, and next to no scatter. Due to the short barrel, buckshot out of it has high spread."
+	icon_state = "judge"
+	item_state = "m44"
+	fire_animation = "judge_fire"
+	caliber = CALIBER_45L //codex
+	max_chamber_items = 5 //codex
+	default_ammo_type = /obj/item/ammo_magazine/revolver/judge
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/revolver/judge,
+		/obj/item/ammo_magazine/revolver/judge/buckshot,
+	)
+	force = 8
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/quickfire,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/stock/revolver,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/lace,
+	)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
+
+	fire_delay = 0.35 SECONDS
+	recoil = 0
+	scatter = 9 // Only affects buckshot considering marksman has -15 scatter.
+	damage_falloff_mult = 1.2
+
+
+//Single action revolvers below
+//---------------------------------------------------
+
+/obj/item/weapon/gun/revolver/single_action //This town aint big enuf fer the two of us
+	name = "single action revolver"
+	desc = "you should not be seeing this."
+	reload_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_revolver)
+	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS|AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION|AMMO_RECIEVER_UNIQUE_ACTION_LOCKS
+	cocked_message = "You prime the hammer."
+	cock_delay = 0
+
+
+
+//-------------------------------------------------------
+//M-44, based off the SAA.
+
+/obj/item/weapon/gun/revolver/single_action/m44
+	name = "\improper M-44 SAA revolver"
+	desc = "A uncommon revolver occasionally carried by civilian law enforcement that's very clearly based off a modernized Single Action Army. Has to be manully primed with each shot. Uses .44 Magnum rounds."
+	icon_state = "m44"
+	item_state = "m44"
+	caliber = CALIBER_44 //codex
+	max_chamber_items = 6
+	default_ammo_type = /obj/item/ammo_magazine/revolver
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver)
+	force = 8
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/quickfire,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/stock/revolver,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/lace,
+	)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
+
+	fire_delay = 0.15 SECONDS

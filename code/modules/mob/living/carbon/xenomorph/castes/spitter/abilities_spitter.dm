@@ -16,7 +16,9 @@
 	if(!istype(target)) //Something went horribly wrong. Clicked off edge of map probably
 		return
 
-	if(X.action_busy || !do_after(X, 5, TRUE, target, BUSY_ICON_DANGER))
+	X.face_atom(target) //Face target so we don't look stupid
+
+	if(X.do_actions || !do_after(X, 5, TRUE, target, BUSY_ICON_DANGER))
 		return
 
 	if(!can_use_ability(A, TRUE, override_flags = XACT_IGNORE_SELECTED_ABILITY))
@@ -25,11 +27,14 @@
 	succeed_activate()
 
 	playsound(X.loc, 'sound/effects/refill.ogg', 50, 1)
-	X.visible_message("<span class='xenowarning'>\The [X] spews forth a virulent spray of acid!</span>", \
-	"<span class='xenowarning'>We spew forth a spray of acid!</span>", null, 5)
+	X.visible_message(span_xenowarning("\The [X] spews forth a virulent spray of acid!"), \
+	span_xenowarning("We spew forth a spray of acid!"), null, 5)
 	var/turflist = getline(X, target)
 	spray_turfs(turflist)
 	add_cooldown()
+
+	GLOB.round_statistics.spitter_acid_sprays++ //Statistics
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "spitter_acid_sprays")
 
 
 /datum/action/xeno_action/activable/spray_acid/line/proc/spray_turfs(list/turflist)
@@ -89,3 +94,49 @@
 
 		prev_turf = T
 		sleep(2)
+
+/datum/action/xeno_action/activable/spray_acid/line/on_cooldown_finish() //Give acid spray a proper cooldown notification
+	to_chat(owner, span_xenodanger("Our dermal pouches bloat with fresh acid; we can use acid spray again."))
+	owner.playsound_local(owner, 'sound/voice/alien_drool2.ogg', 25, 0, 1)
+	return ..()
+
+// ***************************************
+// *********** Scatterspit
+// ***************************************
+/datum/action/xeno_action/activable/scatter_spit
+	name = "Scatter Spit"
+	action_icon_state = "scatter_spit"
+	mechanics_text = "Spits a spread of acid projectiles that splatter on the ground."
+	ability_name = "scatter spit"
+	plasma_cost = 280
+	cooldown_timer = 5 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_SCATTER_SPIT
+
+/datum/action/xeno_action/activable/scatter_spit/use_ability(atom/target)
+	var/mob/living/carbon/xenomorph/X = owner
+
+	if(!do_after(X, 0.5 SECONDS, TRUE, target, BUSY_ICON_DANGER))
+		return fail_activate()
+
+	//Shoot at the thing
+	playsound(X.loc, 'sound/effects/blobattack.ogg', 50, 1)
+
+	var/datum/ammo/xeno/acid/heavy/scatter/scatter_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/scatter]
+
+	var/obj/projectile/newspit = new /obj/projectile(get_turf(X))
+	newspit.generate_bullet(scatter_spit, scatter_spit.damage * SPIT_UPGRADE_BONUS(X))
+	newspit.permutated += X
+	newspit.def_zone = X.get_limbzone_target()
+
+	newspit.fire_at(target, X, null, newspit.ammo.max_range)
+
+	succeed_activate()
+	add_cooldown()
+
+	GLOB.round_statistics.spitter_scatter_spits++ //Statistics
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "spitter_scatter_spits")
+
+/datum/action/xeno_action/activable/scatter_spit/on_cooldown_finish()
+	to_chat(owner, span_xenodanger("Our auxiliary sacks fill to bursting; we can use scatter spit again."))
+	owner.playsound_local(owner, 'sound/voice/alien_drool1.ogg', 25, 0, 1)
+	return ..()

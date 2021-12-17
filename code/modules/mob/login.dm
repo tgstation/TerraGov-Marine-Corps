@@ -28,9 +28,10 @@
 	add_click_catcher()
 
 	if(client)
-		client.change_view(WORLD_VIEW)
-		client.pixel_x = 0
-		client.pixel_y = 0
+		if(client.view_size)
+			client.view_size.reset_to_default() // Resets the client.view in case it was changed.
+		else
+			client.change_view(get_screen_size(client.prefs.widescreenpref))
 
 		if(client.player_details)
 			for(var/foo in client.player_details.post_login_callbacks)
@@ -39,4 +40,6 @@
 			log_played_names(client.ckey, name, real_name)
 
 	update_movespeed()
+	log_mob_tag("\[[tag]\] NEW OWNER: [key_name(src)]")
+	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_LOGIN, src)

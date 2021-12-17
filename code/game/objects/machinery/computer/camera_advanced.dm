@@ -54,6 +54,8 @@
 /obj/machinery/computer/camera_advanced/remove_eye_control(mob/living/user)
 	if(!user)
 		return
+	if(!eyeobj)
+		return
 	for(var/V in actions)
 		var/datum/action/A = V
 		A.remove_action(user)
@@ -70,11 +72,12 @@
 
 	current_user = null
 	user.unset_interaction()
+	user.client.view_size.unsupress()
 	playsound(src, 'sound/machines/terminal_off.ogg', 25, 0)
 
 
 /obj/machinery/computer/camera_advanced/check_eye(mob/living/user)
-	if(machine_stat & (NOPOWER|BROKEN) || user.incapacitated(TRUE))
+	if(machine_stat & (NOPOWER|BROKEN|DISABLED) || user.incapacitated(TRUE))
 		user.unset_interaction()
 	if(isAI(user))
 		return
@@ -108,7 +111,7 @@
 		open_prompt(user)
 
 
-/obj/machinery/computer/camera_advanced/proc/open_prompt(mob/user)
+/obj/machinery/computer/camera_advanced/proc/open_prompt(mob/user, turf/premade_camera_location)
 	if(current_user)
 		to_chat(user, "The console is already in use!")
 		return
@@ -122,9 +125,14 @@
 		CreateEye()
 
 	if(!eyeobj.eye_initialized)
+		if(premade_camera_location)
+			eyeobj.eye_initialized = TRUE
+			give_eye_control(L)
+			eyeobj.setLoc(premade_camera_location)
+			return
 		var/camera_location
 		var/turf/myturf = get_turf(src)
-		if(eyeobj.use_static != USE_STATIC_NONE)
+		if(eyeobj.use_static)
 			if((!length(z_lock) || (myturf.z in z_lock)) && GLOB.cameranet.checkTurfVis(myturf))
 				camera_location = myturf
 			else
@@ -160,19 +168,19 @@
 	user.remote_control = eyeobj
 	user.reset_perspective(eyeobj)
 	eyeobj.setLoc(eyeobj.loc)
-
+	user.client.view_size.supress()
 
 /obj/machinery/computer/camera_advanced/proc/track(mob/living/target)
 	if(!istype(target))
 		return
 
 	if(!target.can_track(current_user))
-		to_chat(current_user, "<span class='warning'>Target is not near any active cameras.</span>")
+		to_chat(current_user, span_warning("Target is not near any active cameras."))
 		tracking_target = null
 		return
 
 	tracking_target = target
-	to_chat(current_user, "<span class='notice'>Now tracking [target.get_visible_name()] on camera.</span>")
+	to_chat(current_user, span_notice("Now tracking [target.get_visible_name()] on camera."))
 	start_processing()
 
 
@@ -182,11 +190,11 @@
 
 	if(!tracking_target.can_track(current_user))
 		if(!cameraticks)
-			to_chat(current_user, "<span class='warning'>Target is not near any active cameras. Attempting to reacquire...</span>")
+			to_chat(current_user, span_warning("Target is not near any active cameras. Attempting to reacquire..."))
 		cameraticks++
 		if(cameraticks > 9)
 			tracking_target = null
-			to_chat(current_user, "<span class='warning'>Unable to reacquire, cancelling track...</span>")
+			to_chat(current_user, span_warning("Unable to reacquire, cancelling track..."))
 			return PROCESS_KILL
 	else
 		cameraticks = 0
@@ -197,7 +205,7 @@
 /mob/camera/aiEye/remote
 	name = "Inactive Camera Eye"
 	ai_detector_visible = FALSE
-	var/sprint = 10
+	var/sprint = 10 //This number is not doing anything if it's not a multiple of 20
 	var/cooldown = 0
 	var/acceleration = FALSE
 	var/mob/living/eye_user = null
@@ -230,13 +238,12 @@
 	if(!eye_user)
 		return
 	var/turf/T = get_turf(target)
-	if(T)
-		if(T.z != z && use_static != USE_STATIC_NONE)
-			GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
-		forceMove(T)
-	else
-		moveToNullspace()
-	if(use_static != USE_STATIC_NONE)
+	if(!T)
+		return
+	if(T.z != z && use_static)
+		GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
+	abstract_move(T)
+	if(use_static)
 		GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
 	if(visible_icon && eye_user.client)
 		eye_user.client.images -= user_image
@@ -322,10 +329,10 @@
 		var/obj/machinery/camera/C = i
 		var/list/tempnetwork = C.network & origin.networks
 		if(length(tempnetwork))
-			T["[C.c_tag][C.can_use() ? null : " (Deactivated)"]"] = C
+			T["[C.c_tag][C.can_use() ? "" : " (Deactivated)"]"] = C
 
 	playsound(origin, 'sound/machines/terminal_prompt.ogg', 25, 0)
-	var/camera = input("Choose which camera you want to view?", "Cameras") as null|anything in T
+	var/camera = tgui_input_list(owner, "Choose which camera you want to view?", "Cameras", T)
 	var/obj/machinery/camera/C = T[camera]
 	playsound(src, "terminal_type", 25, 0)
 

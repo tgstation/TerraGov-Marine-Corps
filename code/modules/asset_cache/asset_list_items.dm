@@ -1,40 +1,37 @@
 //DEFINITIONS FOR ASSET DATUMS START HERE.
 
+
 /datum/asset/simple/tgui
-	legacy = TRUE
+	keep_local_name = TRUE
 	assets = list(
-		"tgui.bundle.js" = 'tgui/packages/tgui/public/tgui.bundle.js',
-		"tgui.bundle.css" = 'tgui/packages/tgui/public/tgui.bundle.css',
-	)
-/datum/asset/group/tgui
-	children = list(
-		/datum/asset/simple/tgui,
-		/datum/asset/simple/namespaced/fontawesome,
+		"tgui.bundle.js" = file("tgui/public/tgui.bundle.js"),
+		"tgui.bundle.css" = file("tgui/public/tgui.bundle.css"),
 	)
 
-/datum/asset/simple/namespaced/changelog
+/datum/asset/simple/tgui_panel
+	keep_local_name = TRUE
 	assets = list(
-		"88x31.png" = 'html/images/88x31.png',
-		"bug-minus.png" = 'html/images/bug-minus.png',
-		"cross-circle.png" = 'html/images/cross-circle.png',
-		"hard-hat-exclamation.png" = 'html/images/hard-hat-exclamation.png',
-		"image-minus.png" = 'html/images/image-minus.png',
-		"image-plus.png" = 'html/images/image-plus.png',
-		"music-minus.png" = 'html/images/music-minus.png',
-		"music-plus.png" = 'html/images/music-plus.png',
-		"tick-circle.png" = 'html/images/tick-circle.png',
-		"wrench-screwdriver.png" = 'html/images/wrench-screwdriver.png',
-		"spell-check.png" = 'html/images/spell-check.png',
-		"burn-exclamation.png" = 'html/images/burn-exclamation.png',
-		"chevron.png" = 'html/images/chevron.png',
-		"chevron-expand.png" = 'html/images/chevron-expand.png',
-		"scales.png" = 'html/images/scales.png',
-		"coding.png" = 'html/images/coding.png',
-		"ban.png" = 'html/images/ban.png',
-		"chrome-wrench.png" = 'html/images/chrome-wrench.png',
-		"changelog.css" = 'html/browser/changelog.css'
+		"tgui-panel.bundle.js" = file("tgui/public/tgui-panel.bundle.js"),
+		"tgui-panel.bundle.css" = file("tgui/public/tgui-panel.bundle.css"),
 	)
-	parents = list("changelog.html" = 'html/changelog.html')
+
+/datum/asset/simple/inventory
+	assets = list(
+		"inventory-glasses.png" = 'icons/UI_Icons/inventory/glasses.png',
+		"inventory-head.png" = 'icons/UI_Icons/inventory/head.png',
+		"inventory-mask.png" = 'icons/UI_Icons/inventory/mask.png',
+		"inventory-ears.png" = 'icons/UI_Icons/inventory/ears.png',
+		"inventory-uniform.png" = 'icons/UI_Icons/inventory/uniform.png',
+		"inventory-suit.png" = 'icons/UI_Icons/inventory/suit.png',
+		"inventory-gloves.png" = 'icons/UI_Icons/inventory/gloves.png',
+		"inventory-hand_l.png" = 'icons/UI_Icons/inventory/hand_l.png',
+		"inventory-hand_r.png" = 'icons/UI_Icons/inventory/hand_r.png',
+		"inventory-shoes.png" = 'icons/UI_Icons/inventory/shoes.png',
+		"inventory-suit_storage.png" = 'icons/UI_Icons/inventory/suit_storage.png',
+		"inventory-belt.png" = 'icons/UI_Icons/inventory/belt.png',
+		"inventory-back.png" = 'icons/UI_Icons/inventory/back.png',
+		"inventory-pocket.png" = 'icons/UI_Icons/inventory/pocket.png',
+	)
 
 /datum/asset/simple/irv
 	assets = list(
@@ -51,7 +48,7 @@
 /datum/asset/simple/jquery
 	legacy = TRUE
 	assets = list(
-		"jquery.min.js"            = 'code/modules/goonchat/jquery.min.js',
+		"jquery.min.js" = 'html/jquery.min.js',
 	)
 
 /datum/asset/simple/namespaced/fontawesome
@@ -65,22 +62,13 @@
 	)
 	parents = list("font-awesome.css" = 'html/font-awesome/css/all.min.css')
 
-
-/datum/asset/simple/namespaced/goonchat
-	legacy = TRUE
+/datum/asset/simple/namespaced/tgfont
 	assets = list(
-		"json2.min.js"             = 'code/modules/goonchat/json2.min.js',
-		"browserOutput.js"         = 'code/modules/goonchat/browserOutput.js',
-		"fontawesome-webfont.eot"  = 'code/modules/goonchat/fonts/fontawesome-webfont.eot',
-		"fontawesome-webfont.svg"  = 'code/modules/goonchat/fonts/fontawesome-webfont.svg',
-		"fontawesome-webfont.ttf"  = 'code/modules/goonchat/fonts/fontawesome-webfont.ttf',
-		"fontawesome-webfont.woff" = 'code/modules/goonchat/fonts/fontawesome-webfont.woff',
-		"goonchatfont-awesome.css" = 'code/modules/goonchat/font-awesome.css',
-		"browserOutput.css"	       = 'code/modules/goonchat/browserOutput.css',
-		"browserOutput_white.css"  = 'code/modules/goonchat/browserOutput_white.css',
+		"tgfont.eot" = file("tgui/packages/tgfont/dist/tgfont.eot"),
+		"tgfont.woff2" = file("tgui/packages/tgfont/dist/tgfont.woff2"),
 	)
 	parents = list(
-		//this list intentionally left empty (parent namespaced assets can't be referred to by name, only by generated url, and goonchat isn't smart enough for that. yet)
+		"tgfont.css" = file("tgui/packages/tgfont/dist/tgfont.css")
 	)
 
 /datum/asset/spritesheet/chat
@@ -98,14 +86,6 @@
 			var/icon_state = initial(L.icon_state)
 			Insert("language-[icon_state]", icon, icon_state=icon_state)
 	..()
-
-/datum/asset/group/goonchat
-	children = list(
-		/datum/asset/simple/jquery,
-		/datum/asset/simple/namespaced/goonchat,
-		/datum/asset/spritesheet/chat,
-		/datum/asset/simple/namespaced/fontawesome,
-	)
 
 /datum/asset/simple/namespaced/common
 	assets = list("padlock.png"	= 'html/images/padlock.png')
@@ -138,3 +118,15 @@
 		set waitfor = FALSE
 		var/datum/language/L = new path ()
 		L.get_icon()
+
+/datum/asset/simple/orbit
+	assets = list(
+		"ghost.png" = 'html/images/ghost.png'
+	)
+
+/datum/asset/spritesheet/blessingmenu
+	name = "blessingmenu"
+
+/datum/asset/spritesheet/blessingmenu/register()
+	InsertAll("", 'icons/UI_Icons/buyable_icons.dmi')
+	..()

@@ -9,7 +9,12 @@
 /obj/screen/buildmode/New(bld)
 	. = ..()
 	bd = bld
+	RegisterSignal(bd, COMSIG_PARENT_QDELETING, .proc/clean_bd)
 
+///Clean the bd var
+/obj/screen/buildmode/proc/clean_bd()
+	SIGNAL_HANDLER
+	bd = null
 
 /obj/screen/buildmode/Destroy()
 	bd = null
@@ -56,7 +61,7 @@
 
 /obj/screen/buildmode/bdir/update_icon()
 	dir = bd.build_dir
-	return
+
 
 
 /obj/screen/buildmode/bdir/Click()

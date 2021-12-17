@@ -75,7 +75,8 @@
 	new /obj/item/storage/pouch/medkit(src)
 	new /obj/item/clothing/suit/surgical(src)
 	new /obj/item/clothing/suit/surgical(src)
-	new /obj/item/clothing/tie/storage/white_vest(src)
+	new /obj/item/armor_module/storage/uniform/white_vest/surgery(src)
+	new /obj/item/storage/box/trampop(src)
 	if(is_mainship_level(z))
 		new /obj/item/radio/headset/mainship/doc(src)
 
@@ -112,9 +113,10 @@
 	new /obj/item/storage/pouch/syringe(src)
 	new /obj/item/storage/pouch/medkit(src)
 	new /obj/item/clothing/suit/surgical(src)
-	new /obj/item/clothing/tie/storage/white_vest(src)
+	new /obj/item/armor_module/storage/uniform/white_vest/surgery(src)
 	new /obj/item/clothing/tie/medal/letter/commendation
 	new /obj/item/paper/commendation
+	new /obj/item/storage/box/trampop(src)
 
 
 

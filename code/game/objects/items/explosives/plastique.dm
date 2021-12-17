@@ -6,23 +6,25 @@
 	icon_state = "plastic-explosive_off"
 	item_state = "plasticx"
 	flags_item = NOBLUDGEON
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_TINY
+	/// whether the plastic explosive is armed or not
 	var/armed = FALSE
+	/// the time it takes for the c4 to detonate
 	var/timer = 10
+	/// the plastic explosive has not detonated yet
 	var/detonation_pending
-	var/atom/plant_target = null //which atom the plastique explosive is planted on
+	/// which atom the plastique explosive is planted on
+	var/atom/plant_target = null
+	/// smoke type created when the c4 detonates
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
+	/// radius this smoke will encompass
+	var/smokeradius = 2
 
 /obj/item/explosive/plastique/Destroy()
 	plant_target = null
-	. = ..()
+	return ..()
 
 /obj/item/explosive/plastique/attack_self(mob/user)
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
-		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-		var/fumbling_time = 2 SECONDS
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-			return
 	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num
 	if(newtime < 10)
 		newtime = 10
@@ -41,23 +43,17 @@
 	if(istype(target, /obj/structure/window))
 		var/obj/structure/window/W = target
 		if(!W.damageable)
-			to_chat(user, "<span class='warning'>[W] is much too tough for you to do anything to it with [src]</span>.")
+			to_chat(user, "[span_warning("[W] is much too tough for you to do anything to it with [src]")].")
 			return FALSE
 	if((locate(/obj/item/detpack) in target) || (locate(/obj/item/explosive/plastique) in target)) //This needs a refactor.
-		to_chat(user, "<span class='warning'>There is already a device attached to [target]</span>.")
+		to_chat(user, "[span_warning("There is already a device attached to [target]")].")
 		return FALSE
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
-		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-		var/fumbling_time = 5 SECONDS
-		if(!do_after(user, fumbling_time, TRUE, target, BUSY_ICON_UNSKILLED))
-			return
-	user.visible_message("<span class='warning'>[user] is trying to plant [name] on [target]!</span>",
-	"<span class='warning'>You are trying to plant [name] on [target]!</span>")
+	user.visible_message(span_warning("[user] is trying to plant [name] on [target]!"),
+	span_warning("You are trying to plant [name] on [target]!"))
 
-	if(do_after(user, 5 SECONDS, TRUE, target, BUSY_ICON_HOSTILE))
+	if(do_after(user, 2 SECONDS, TRUE, target, BUSY_ICON_HOSTILE))
 		if((locate(/obj/item/detpack) in target) || (locate(/obj/item/explosive/plastique) in target)) //This needs a refactor.
-			to_chat(user, "<span class='warning'>There is already a device attached to [target]</span>.")
+			to_chat(user, "[span_warning("There is already a device attached to [target]")].")
 			return
 		user.drop_held_item()
 		var/location
@@ -69,8 +65,8 @@
 		message_admins("[ADMIN_TPMONTY(user)] planted [src] on [target] at [ADMIN_VERBOSEJMP(target.loc)] with [timer] second fuse.")
 		log_explosion("[key_name(user)] planted [src] at [AREACOORD(user.loc)] with [timer] second fuse.")
 
-		user.visible_message("<span class='warning'>[user] plants [name] on [target]!</span>",
-		"<span class='warning'>You plant [name] on [target]! Timer counting down from [timer].</span>")
+		user.visible_message(span_warning("[user] plants [name] on [target]!"),
+		span_warning("You plant [name] on [target]! Timer counting down from [timer]."))
 
 		plant_target = target
 		if(ismovableatom(plant_target))
@@ -89,14 +85,7 @@
 
 /obj/item/explosive/plastique/attackby(obj/item/I, mob/user, params)
 	if(ismultitool(I) && armed)
-		if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disarm [src].</span>",
-			"<span class='notice'>You fumble around figuring out how to disarm [src].</span>")
-			var/fumbling_time = 3 SECONDS
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-				return
-
-		if(!do_after(user, 5 SECONDS, TRUE, plant_target, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 2 SECONDS, TRUE, plant_target, BUSY_ICON_HOSTILE))
 			return
 
 		if(ismovableatom(plant_target))
@@ -108,8 +97,8 @@
 
 		deltimer(detonation_pending)
 
-		user.visible_message("<span class='warning'>[user] disarmed [src] on [plant_target]!</span>",
-		"<span class='warning'>You disarmed [src] on [plant_target]!</span>")
+		user.visible_message(span_warning("[user] disarmed [src] on [plant_target]!"),
+		span_warning("You disarmed [src] on [plant_target]!"))
 
 		if(ismob(plant_target))
 			log_combat(user, plant_target, "removed [src] from")
@@ -122,7 +111,13 @@
 
 /obj/item/explosive/plastique/proc/detonate()
 	if(QDELETED(plant_target))
+		playsound(loc, 'sound/weapons/ring.ogg', 200, FALSE)
+		explosion(plant_target, 0, 0, 0, 1)
 		qdel(src)
 		return
+	explosion(plant_target, 0, 0, 1, 0, 0, 1, 0, 1)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	smoke.set_up(smokeradius, loc, 11)
+	smoke.start()
 	plant_target.ex_act(EXPLODE_DEVASTATE)
 	qdel(src)

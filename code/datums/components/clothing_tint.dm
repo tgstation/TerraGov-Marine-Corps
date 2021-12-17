@@ -57,7 +57,7 @@
 	tinted_mob.update_sight()
 	mob_tinted = FALSE
 
-/datum/component/clothing_tint/proc/equipped_to_slot(datum/source, mob/user)
+/datum/component/clothing_tint/proc/equipped_to_slot(datum/source, mob/user, slot)
 	SIGNAL_HANDLER
 	tinted_mob = user
 	add_tint()

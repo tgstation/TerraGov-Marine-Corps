@@ -1,0 +1,645 @@
+2021-07-01:
+  BraveMole:
+  - rscdel: Macros have been disabled to avoid server lag and abuse
+  - rscadd: Give keybind
+  - rscadd: Loadout vendor V2.0, support all items from essential sets, gear selector
+      and job specific clothes vendor. Also support custom medic belt loadouts (if
+      pills bottle are already free in vendors)
+  - bugfix: Loadouts list no longer reset when reaching too many loadouts
+  - rscadd: You can import loadouts from other players
+  - balance: Remove every mats from engineer essential sets, and give them the corresponding
+      points.
+  - code_imp: Targeting code should allow players to use xeno abilities on the desired
+      target more easily
+  - qol: Give hud role icon to SO and ST
+  - bugfix: Antenna supply beacons works properly
+  Cowbin:
+  - balance: Changes jelly cooldown to 5 seconds and jelly pod cooldown to 1 min.
+  Pariah919:
+  - balance: medic can no longer buy the combat backpack in their point vendor.
+  - balance: Endure has 60 second cooldown, effective 50
+  - balance: railgun deals 250 damage from 150, does 90 sundering, 40 force when hitting
+      someone with it, 1 second less of wield delay, and has much higher stagger.
+      1 seconcd fire delay from 20.
+  Vondiech:
+  - bugfix: You can now put the M44 into the belt again.
+  - bugfix: Chemrette's no longer dissapear when you take something out of it.
+  - bugfix: The T-19 doesn't have floating barrel and under attachments anymore.
+  - bugfix: The Mateba revolver belt now can be used at the max capacity.
+  Wayland-Smithy:
+  - bugfix: Fixed revolver reload logic.
+2021-07-02:
+  BraveMole:
+  - balance: Prevent joining a faction with too many players in HvH gamemode
+  InterroLouis:
+  - bugfix: No more underbarrel guns for synthetics.
+  - bugfix: Planted medevac beacons are now vacuum-proof.
+  - bugfix: Fixed Mateba open sprite
+  Trilbyspaceclone:
+  - balance: Fences now need 4 rods rather then 2.
+  - balance: Repaired fences are now a bit harder to brake
+  - bugfix: Repaired fences are no longer bullet/acid sponges
+  Vondiech:
+  - rscadd: The TGMC has changed dress code so wearing warning cones on your head
+      is now acceptable, they also reported that the warning cones have the same amount
+      of armor as their TGMC-branded straw hats do.
+  Wayland-Smithy:
+  - expansion: Hivelord can apply resin jelly to xenos by throwing it at them.
+  - bugfix: Fixed OB beacons being activatable on dropships.
+  disappointedButNotSuprised:
+  - bugfix: fixed bicardine cigarette sprite dissapearing when lit
+  - balance: Refresh Deathsquad equippment - proper meds and buffs for armor and backpack
+  - rscadd: New Deathsquad role - Gunner
+2021-07-03:
+  BraveMole:
+  - rscadd: Automatic balance system when not enough players chose xenos
+  InterroLouis:
+  - spellcheck: Fixed some define typos.
+  - expansion: Self examine gives a bit more info.
+  Surrealaser:
+  - code_imp: Statistics tracking added for Acid Wells.
+  - qol: Acid Wells now have improved Examine information.
+  - balance: Acid Wells now extinguish fires in their square at the cost of 1 charge.
+  - balance: Acid Wells now take 2 seconds to add 1 charge, down from 10 (wtf).
+  - balance: Acid Wells now do 10 armor respecting acid damage to each foot per charge
+      with 33% armor penetration instead of 15 armor ignoring toxin damage.
+  - balance: A hostile that moves into an Acid Well with charges takes 2 slowdown
+      on its next move per charge.
+  - balance: Acid Wells now emit a small amount of acid smoke whenever they extinguish
+      fire.
+  - qol: Emit Gas now activates immediately when selected.
+  - qol: Radial mode support added for Defiler reagent swapping in addition to existing
+      cycling options.
+  - code_imp: Refactored reagent selection.
+  - balance: Debuff stacks from the Wraith's warp field are increased; 2 stagger stacks
+      up from 1, and 3 slowdown stacks up from 1.
+  - balance: Banish cooldown and plasma cost decreased for friendly living targets
+      and non-barricade targets to 60% and 40% respectively.
+  - balance: Hyperposition windup will increase by 0.25 seconds per tile after 20
+      tiles of distance down from 0.5 seconds per tile after 10 tiles of distance.
+  - balance: 'Using Resync while phased out (reverting to your prior location at the
+      start of the Phase Shift) mostly removes the next cooldown for Phase Shift,
+      reducing it to 3 seconds. bug: Phase Shift no longer consumes its baseline plasma
+      cost when toggled off.'
+  - code_imp: Xenos from the same hive as the one that drops or throws a Facehugger
+      no longer reset that Facehugger's jump timer when they leave its tile.
+  TiviPlus:
+  - qol: Players can now set their pixel scaling and scaling method
+  - refactor: refactored view code
+2021-07-04:
+  Alterist:
+  - rscadd: Theseus 2.2, now with Loadout Vendors!(tm)
+  BraveMole:
+  - rscadd: New way of registering keybinds, you have to push the buttons for 2 seconds
+      for it to register
+  - code_imp: better perfs on game prefs ui
+  InterroLouis:
+  - bugfix: Condor Radial Minigun no longer printable.
+  - rscadd: Attachments now transfer their sharp to the gun.
+  - bugfix: Pizza and other foods are now sliceable.
+  - bugfix: Fixed Hydro Cannon hud button.
+  - refactor: Hydro Cannon only works via unique action and hud button, not load from
+      attachment.
+  Wayland-Smithy:
+  - expansion: Miner minimap icons now show if they are active or not.
+  - qol: Some groundmap fences start broken, so xenos do not need to slash them all
+      to get around during prep.
+  lbnesquik:
+  - qol: The AI can now turn fusion reactors on and off.
+  - rscadd: Added notifications to the AI whenever the Alamo moves, the railgun is
+      fired, the OB is fired and when a camera gets slashed.
+  - qol: Added some handy status lines to the 'Game' tab for the AI, like OB status
+      or orbital level.
+2021-07-05:
+  BraveMole:
+  - expansion: Minimap icons change when marines die
+  InterroLouis:
+  - bugfix: Non-Chemrette cigarettes now transfer chems properly.
+  lbnesquik:
+  - qol: Added some noises for the AI whenever the OB is fired.
+  - qol: Added the OB warhead type to AI notifications
+  - bugfix: typos in beacon code.
+  - bugfix: improved some backend stuff so the AI is warned before everyone else
+2021-07-06:
+  Alterist:
+  - bugfix: PoS research doors should now be accessible.
+  Pariah919:
+  - balance: Reduced the price of the Railgun, IFF/AMR snipers and 1 use RPGs in req
+  Wayland-Smithy:
+  - qol: Observers can spawn from the larva queue without silos before shutters open
+      on Distress rounds.
+  lbnesquik:
+  - bugfix: reshape some areas to fit fire alarms better.
+  - qol: The AI can now see current supply points within their game tab.
+2021-07-07:
+  BraveMole:
+  - bugfix: Fix HvH req
+  - bugfix: Fix undefibbable icons on minimap
+  - code_imp: Clean up keybinds
+  - qol: King get keybinds
+  - bugfix: Spawn hugger keybind fixed
+  - bugfix: Fix be special settings (EORD, etc) not showing on tgui
+  - bugfix: Fix perspective bug with tadpole
+  - qol: Fullscreen setting
+  - balance: Prevent from buying scopes and ballistic module in HvH
+  - balance: Silos no longer have alert proximity in modes other than distress
+  - bugfix: Cannot silo bodies in crash
+  - bugfix: Keybinds are saving now
+  Cowbin:
+  - rscadd: Medical Huds added to req for 2 points.
+  InterroLouis:
+  - bugfix: Hiveminds don't get fast respawns from dying.
+  - bugfix: Guns keep labels on unwield now.
+  QualityVan:
+  - qol: You don't need to open the bone to remove shrapnel from head/chest
+  SplinterGP:
+  - expansion: Ravager plasma now regens when they cause damage on an enemy.
+  - balance: Ravager plasma regen reduced.
+  - balance: Ravager plasma now regens even off weeds.
+  - balance: Ravager plasma is now limited to regenning up to 50% until elder+ which
+      is 60%
+  - imageadd: Ravager now has a red plasma bar to imply fury.
+  Wayland-Smithy:
+  - bugfix: Fixed window weeds not updating after the frame is gone.
+  lbnesquik:
+  - rscadd: AI core strengthened on the Pillar of Spring
+2021-07-08:
+  BraveMole:
+  - bugfix: Fix Eviscerating Charge Keybind
+  - expansion: Loadout build mode system for admins
+  InterroLouis:
+  - bugfix: Welding helmet module protects eyes properly.
+  Pariah919:
+  - balance: you can fire the combat shotgun one handed
+  - expansion: Added new T-25 SmartRifle for smartgunners
+2021-07-09:
+  BraveMole:
+  - qol: Better keybind registering system
+  lbnesquik:
+  - admin: add the hivemind to player transform
+2021-07-10:
+  InterroLouis:
+  - bugfix: Ravagers have normal blood now.
+  - balance: Mesons dont hide darkness slightly anymore, removing a effect that on
+      diagonals each light  showed xenos 2/3 tiles away
+  Surrealaser:
+  - bugfix: Missing return added to Acid Well dismantle code.
+2021-07-11:
+  BraveMole:
+  - bugfix: Fix tadpole eye going to null space
+  - bugfix: Cannot shoot while tarping anymore
+  InterroLouis:
+  - bugfix: The veil has been pushed back closed. Ghosts can no longer interact with
+      the living.
+  Pariah919:
+  - balance: railgun lost 100 damage from 250 to 150, knocks back further and no longer
+      shakes the screen when you're hit, 750ms more wield delay, mag harness instead
+      of scope
+  - balance: warrior grapple toss distance reduced to 3 from 5.
+  'The Fuckup: Hyper2Snyper':
+  - bugfix: Fixes Double Barrels
+  Wayland-Smithy:
+  - bugfix: Fixed all clients being forced to Fit Viewport on connect regardless of
+      their Auto Fit Preference.
+  hyper2snyper:
+  - rscadd: The TL-102 HSG now has auto-fire.
+  - balance: The Stationary TL-102 can now be rotated.
+  - balance: Both TL-102 variants now have scopes. These will replace the default
+      zoom that they had prior.
+  - code_imp: New Bespoke Element capable of taking items and making them machines.
+  - refactor: Refactors TL-102 code, basically rewrites it completely.
+  - refactor: Slight Mortar refactor.
+  - rscdel: removes the few security barriers (/obj/machinery/deployable/barrier)
+      from the maps for I have stolen their typepaths for my own use.
+  lbnesquik:
+  - bugfix: Add a missing light to POS starboard hallway.
+2021-07-12:
+  InterroLouis:
+  - bugfix: EORD thermobarics can be reloaded reliably.
+  - bugfix: Tesla projectiles once more visible.
+2021-07-13:
+  BraveMole:
+  - bugfix: Can no longer give plasma to ravager (they use fury)
+  - qol: "You can use \xE9 and \xE8 as a keybind"
+  - bugfix: Wraith banishing no longer auto-target humans rather than cades or nades
+  InterroLouis:
+  - bugfix: Admins can aheal dead xenos again.
+  Pariah919:
+  - expansion: tx-11 has an ammo packet
+  - balance: general pouches can hold ammo packets.
+  - rscadd: 'Added new pepperball gun spriteadd: Pepperballgun and magazine'
+  Surrealaser:
+  - rscadd: Rage ability added to the Ravager.
+  - code_imp: Added support for Xeno melee damage multipliers.
+  jroinc:
+  - expansion: Human deaths and defib-based revives now are logged as a statistic.
+  lbnesquik:
+  - bugfix: 'fixed the : thinking : emoji for AI'
+  - rscadd: Added more displays for the AI
+  - qol: disable antenna module beeping due to spam.
+2021-07-14:
+  BraveMole:
+  - bugfix: Fix being able to queue multiple items draw from backpacks
+  InterroLouis:
+  - bugfix: Impact grenades work with the T-81 launcher.
+  Pariah919:
+  - expansion: t-25 ammo packet added to req
+  - bugfix: you can buy the t-25 smartrifle in req
+  - balance: buffed automag and deagle to do much more damage, stagger and slow xenos
+      on hit
+  QualityVan:
+  - rscadd: Hivelord tunnels show up on the minimap
+  - bugfix: Xeno's Tunnel List verb should work now
+  - rscadd: You can name pill bottles when you dispense them from a chem master
+  TiviPlus:
+  - bugfix: Admin respawn bypass is now logged in the correct cases
+  lbnesquik:
+  - rscadd: Added some extra holopads to the POS.
+  - rscadd: Added a map table to the Sulaco CIC.
+  - rscadd: Add some water tanks to the water scarce POS.
+  - qol: Made the OB room on POS less bad. Did you notice POS sounds like something
+      rude?
+  - bugfix: Fixed some oddly placed or oriented cameras on the POS.
+  - bugfix: Fixed a few floating lights and APC's
+  - bugfix: fixes a few missing fire alarms doors on POS.
+  - bugfix: fixed a messy area on the POS hangar, extended the fire shutters to match.
+  - bugfix: Change the holopad layer so it renders above catwalks
+2021-07-15:
+  BraveMole:
+  - bugfix: Loadouts vendor will no longer runtime when equipping a loadout as a non
+      squad role
+  - bugfix: Fix observers not being able to spawn when no silos are there in distress
+      before shutter drop
+  - bugfix: Fix larvas spawning outside silos when there are silos
+  - bugfix: Fix quick equip not respecting storage delay
+  InterroLouis:
+  - imageadd: Added a new icon for being full.
+  Pariah919:
+  - balance: spawn jelly has 20 seconds of cooldown from 5
+  - rscadd: Added back impact grenades to marine vendors
+  Surrealaser:
+  - bugfix: Fixes corrosive acid melt times, and its processing time adjustment, considerably
+      faster like it was before.
+  TiviPlus:
+  - rscadd: Space is now fancier, this can be adjusted in preferences
+  lbnesquik:
+  - bugfix: Fixed the AI holopad being seemingly broken. Don't forget to use the Change
+      Hologram verb!
+2021-07-16:
+  BraveMole:
+  - refactor: Refactor IFF
+  - bugfix: Larvas cannot become king anymore
+  - bugfix: Fix shuttle windows not rotating
+  - balance: Remove 2 xenos jobs at roundstart, no matter the pop
+  - balance: Less xeno in crash
+  - balance: Less xeno for marines overall
+  - bugfix: Impact grenades are actually in normal vendors, not HvH one
+  - expansion: Add a gun safety keybind
+  - bugfix: Rebel have their own comms
+  - bugfix: SL have its medhud back in essential kits
+  EvilMelonTheSecond:
+  - expansion: Added meson-like goggles to req
+  InterroLouis:
+  - bugfix: Impact Grenade Box Vends Properly.
+  Pariah919:
+  - bugfix: resin walls now die to devastating explosions such as OBs, and other things
+  - balance: resin walls now die to devastating explosions. Which include HE OBs.
+  - expansion: adds marine spear in vendors
+  - balance: can't refill qc+ and peri + at marine med
+  - expansion: Adds an IFF-less heavy machinegun to the game, not in yet for acquireable
+      players.
+  - expansion: added a thermobaric to req, way weaker and cheaper than before.
+  - bugfix: smartrifle magazines pop up in req
+  QualityVan:
+  - bugfix: Xeno healing now splits properly between brute and burn instead of doubling,
+      base healing increased 25% to compensate
+  RipGrayson:
+  - balance: LV624 caves are now slightly less cramped, engineering is slightly larger.
+  SplinterGP:
+  - expansion: Ravager now also gets fury on receiving damage.
+  - balance: Ravager Passive fury regen has been severely reduced.
+  Surrealaser:
+  - balance: Clawed Hugger melee damage increased from 23 to 25.
+  - balance: Clawed Hugger jump timer decreased from 1.5 to 1.2 seconds.
+  - balance: Hemodile no longer deals stamina damage.
+  - balance: Hemodile base slowdown increased from 1 to 1.5.
+  - balance: Hemodile slowdown is multiplied by 2 for each other Xeno chem in the
+      victim's system (Neurotoxin and Transvitox).
+  Wayland-Smithy:
+  - admin: Added a button to become an Imaginary Friend to the ticket panel.
+2021-07-17:
+  BraveMole:
+  - rscdel: Remove specialist from code
+  - qol: Unique action and unload gun works even if the gun is in your inactive hand
+  - bugfix: Fix premade sentries IFF (tadpole, canterbury, fob drone, etc...)
+  - bugfix: Fix projectile double tap
+  Pariah919:
+  - expansion: new seasonal bucket with uzi and cmb revolver
+  - balance: cmb now has tp-44 fire rate, now has a 2 round burst with 0.1 fire delay.
+      Uzi buffed to fire as fast as normal smgs and is built for one handed use.
+  - rscadd: 'Added new lolipop pouch with cool lolipops that heal you and stuff. As
+      an equivalent to the marine medical pouches. spriteadd: new boxes for lolipops'
+  - balance: silo collaspe takes 45 minutes from roundstart to begin happening, rather
+      than an hour
+  TiviPlus:
+  - bugfix: certain player messages will now appear large and red correctly
+2021-07-18:
+  BraveMole:
+  - rscadd: SG is added in civil war
+  - expansion: Forces HvH faction to wear certain colors
+  - bugfix: Rebels have iff too
+  Pariah919:
+  - qol: throwing knife belt auto pulls knives automatically if you click on it
+  - balance: throwing knive belt holds 15 knives, and throwing knives deal more force,
+      still less than a normal knife though.
+  - rscdel: Removed old m56
+  - balance: minigun now has magnetic harness, and works off powerpacks that reload
+      it instead of ammo magazines
+  - balance: endure has less crit hp, 150 from 200
+  - balance: runner has higher melee armor now.
+  - bugfix: t-25 iff
+  QualityVan:
+  - rscadd: Defilers can inject hemo and transvit into eggs now if they want.
+  - bugfix: Injected eggs don't have to grow up a second time
+  - code_imp: Added the ability for all storage spaces to have item-specific limits
+  - rscadd: Added bihexajuline for treating broken bones in cryo. Recipe is 2 bicaridine,
+      1 milk, 2 iron
+  - rscadd: Put bihexajuline in the starting cryo mix
+  - bugfix: If your arm gets torn off, it isn't broken any more.
+  - bugfix: Cryotubes no longer fix broken bones due to incorrect argument passing
+  - bugfix: The recent 25% boost to xeno healing now also includes the gain from recovery
+      pheromones
+  - rscadd: Slashing guns as a xeno will turn any lights on them off
+  Surrealaser:
+  - rscadd: The Silence ability replaces the Haunt ability on the Hunter. This mutes
+      and silences living hostiles the Hunter has direct line of sight to in a 5x5
+      area for about 10 seconds (15 seconds for the Hunter Mark target).
+  - bugfix: Minor text fix for the Wraith's Place Warp Shadow ability.
+  - bugfix: Fixes Right Click mode for Xenos so that it doesn't try to attack at the
+      same time it uses an ability (thus triggering click/bump slash cooldowns).
+  - bugfix: Turf targeting with melee attacks no longer triggers click/bump slash
+      cooldowns.
+  Walarks:
+  - qol: Added active seasons announcement, changed seasonal buckets names/descriptions
+      to be more flavourful
+  - qol: Added tgchat format styles
+  lbnesquik:
+  - rscadd: More holopads to the POS
+  - rscadd: Gave the RO a map table. Fairly eager to see how helpful that is for most
+      players.
+  - bugfix: fixed a number of oddities in the POS map, mostly areas and fire alarms.
+  - admin: expand the quick create paths
+  - bugfix: fixed some walls of the POS being outerhull instead of being hull.
+  - bugfix: fixed a missing floodlight in LV engineering
+  - bugfix: fixed cameras notifying the AI of their demise, despite a lack of power.
+  - balance: Allows the AI to interface with groundside equipment
+2021-07-19:
+  BraveMole:
+  - bugfix: Fix hud going DNR when ghost leave body
+  - bugfix: Fix coloring in hvh
+  - rscadd: Give sec vendors in hvh, so admins don't have to spawn handcuffs
+  - bugfix: Fix iff for standard rebel marine
+  - expansion: Loadout tools will now save job title, id's access and iff signal,
+      and headset
+  - bugfix: Rail flashlight can be shut down by nightfall
+  - bugfix: Fix carrier trap not being killed when weeds are destroyed
+  - balance: Acid wells are destroyed when the weeds below them is removed
+  Hekzder:
+  - spellcheck: CSE rank time now properly lists 100 hours instead of 50 hours.
+  - rscadd: Added various civilian pay grades for medical staff.
+  - rscadd: CMO and MR now have rank progression.
+  - rscadd: MD has changed rank progression, starting at Resident and going to Medical
+      Doctor at 50 hours.
+  - bugfix: Medical staff are now properly civilian.
+  InterroLouis:
+  - balance: Xeno turrets can't be built too close to each other.
+  Joniroq:
+  - balance: T-64 battle rifle can now have an angled grip.
+  QualityVan:
+  - rscadd: Medbay is now stocked with sutures for sewing people's wounds closed.
+      You need to have not opened an incision to use them.
+  - rscdel: Removed the drills from the surgery trays and vests. You can still print
+      one at a lathe if you're really torn up by their loss.
+  - bugfix: Larva now start growing again if their host stops being dead.
+2021-07-20:
+  BraveMole:
+  - bugfix: Minigun no longer has aimbot
+  - bugfix: Fix runtime in gun system
+  - bugfix: Fix shutters being crushable by tadpole
+  - balance: Remove the scope from TX_11 in hvh
+  QualityVan:
+  - bugfix: Vali should have fewer typos and more accurately express the current power
+      level.
+2021-07-21:
+  BraveMole:
+  - bugfix: Fix mines not blowing up xeno
+  Hekzder:
+  - bugfix: Fixes NTOS crash on job prefs, round start text for MD and CMO, and missing
+      hud icon for MD.
+  InterroLouis:
+  - bugfix: Fixed doubled job slots, now rebel jobs have their own job slots that
+      can be altered separately from regular job slots.
+  - spellcheck: Fixed medical researcher job display order.
+  Surrealaser:
+  - bugfix: Fixes issue where light neurotoxin wasn't being reported by Xeno Toxin
+      HUD.
+  - qol: HUD elements for high concentrations of xeno toxins (more than 10U) now blink.
+2021-07-22:
+  InterroLouis:
+  - bugfix: Triumph shuttle has appropriate intercoms.
+2021-07-23:
+  BraveMole:
+  - qol: Ai can manipuate shuttle doors even groundside, but won't be able to lock
+      them (unless it uses the console)
+  - qol: Keybind for minimap
+  - bugfix: Fix rebel squadies not having all their comm channels
+  - qol: Add some vendors in req
+  - bugfix: Smartrifle are available in loadout vendors
+  - bugfix: Fix prison being in space instead of the ocean
+  - bugfix: Fix minigun safety
+  Hekzder:
+  - rscadd: Added O-3 to SO as starting rank. SO now gets O-4 at 25 hours and O-5
+      at 50 hours.
+  - balance: Hlin no longer gives explosive immunity, instead results in about 90
+      bomb armor.
+  InterroLouis:
+  - rscadd: Mateba ammo packets now available in req.
+  - balance: Revolver ammo packets have one less bullet.
+  - balance: Antimaterial rifle has an NV scope now.
+  - spellcheck: Fixed a typo in the T-72 disposable rocket launcher description.
+  Pariah919:
+  - bugfix: mp belt no longer holds pistols
+  - balance: tl has aim mode
+  QualityVan:
+  - rscadd: Humans can use a hugger in-hand to crush it.
+  - bugfix: Huggers don't break storage containers and will leap out now.
+  - bugfix: Catching huggers works now instead of causing quantum huggers.
+  lbnesquik:
+  - balance: Very slight reduction in price of HE and WP sadar rockets, with the aim
+      of varying ammo usages.
+  - expansion: Allow the AI to access cryo cells.
+  - bugfix: fixed engineering staff on POS not having access to their gun cabinet.
+  - admin: Added dropship equipement to the quick create menu
+  - rscadd: Brought back the CLF ERT to life.
+  - bugfix: fixed a misplaced poster.
+  - expansion: Allow the AI to unbolt their core
+  - qol: You can now use Z to activate your mortar. Simple QOL.
+2021-07-24:
+  BraveMole:
+  - bugfix: Loadouts list won't wipe anymore (hopefully).
+  - code_imp: Replaced all span class by span macros
+  - bugfix: King can use minimap
+  - qol: King get a new minimap icon
+  - bugfix: Kings can no longer be chosen to become kings
+  - bugfix: Should prevent HSG to keep firing after you released mouse button
+  Hekzder:
+  - balance: T-26 AMR now costs 75 points, up from 60.
+  Losenis:
+  - balance: T-25 Smartrifle damage per hit from 15 to 25
+  Pariah919:
+  - expansion: Marines get one HMG, it is harder to lug around than a TL-102, has
+      no IFF, but it fires faster, and deploys slower. Better not lose it.
+  - balance: 'TL-102 HSG fires slower (0.25 fire delay from 0.2), added one cool HMG
+      gun to the marine vendor. Better not lose it. spriteadd: sprites for the MG08/495
+      and TL-102 while in your hand.'
+  - bugfix: tl-102 and mg08 can no longer take any attachments.
+  - qol: minor reorganization of specialized tab in marine vendors
+  Surrealaser:
+  - balance: If Rage is used while at less than 0 HP, the Ravager will regain HP whenever
+      it slashes a living target equal to 50% to 100% of the damage dealt depending
+      on Rage Power (how low the Ravager's HP was when Rage was used).
+  spookydonut:
+  - bugfix: Warrior punch no longer allows you to destroy many machines that can not
+      otherwise be damaged
+  - bugfix: Crushers can no longer destroy SMESes
+2021-07-25:
+  AseFantome:
+  - balance: It's now easier to hit what you targeting with illumination minirockets.
+  - balance: Never used smoke minirockets receives cloaking smoke.
+  BraveMole:
+  - bugfix: Chat html should be back to normal
+  Hekzder:
+  - spellcheck: Description of Jaeger storage modules updated to reflect the fact
+      that they no longer slow you down.
+  - rscdel: Removed the useless squad supply crates from the req vendor.
+  - spellcheck: Changed a variety of item names in the req menu to more accurately
+      reflect their contents and items
+  InterroLouis:
+  - balance: Prison Station cell windows are now destructible and acidable but still
+      not deconstructible.
+  KornFlaks:
+  - rscadd: Replaces the button for Hive Order with Hive Message, also known as Word
+      of Queen.
+  - rscdel: 'Removed the following two buttons from queen: Larval Accelerant Injection
+      and Psychic Whisper.'
+  Pariah919:
+  - balance: vgrpi helps you move moderately faster in aim mode, not as much as a
+      gyro, however.
+  QualityVan:
+  - balance: Turrets won't target you when you're stealthed via hunter ability.
+  SplinterGP:
+  - balance: hivelord gets their plasma pool doubled but they can only regen to half
+      of it, they can however be given plasma functionally working like a extra plasma
+      battery.
+  lbnesquik:
+  - expansion: The AI is now notified when a CAS or OB laser is created or goes out.
+2021-07-27:
+  Alterist:
+  - balance: Swaps around Aft Escape Pods and ERT Docks on the Theseus.
+  - rscadd: Redesigned Theseus Hanger to allow for better workflow for POs.
+  BraveMole:
+  - balance: Respawn time of 10 minutes for Civil War
+  Pariah919:
+  - balance: added a utility tap to marine weapon vendors, has flashlights, c4, and
+      some other utility stuff
+  QualityVan:
+  - spellcheck: Medical scanners no longer tell you a subject with cloneloss has been
+      incorrectly cloned, since that's not what it comes from.
+  Surrealaser:
+  - balance: Defender can now charge from its Fortify stance when both Charge and
+      Fortify are off cooldown.
+2021-07-28:
+  Alterist:
+  - bugfix: Theseus Aft Escape Pods have been properly installed, the engineers that
+      installed escape shuttles have been fired.
+  BraveMole:
+  - balance: Silo produces 18% more
+  - expansion: Loadouts vendor works in Hvh
+  Hekzder:
+  - rscadd: Adds a bundle to req for both Mimir Mark 2 modules that replaces the previously
+      separate Mimir Mark 2 modules.
+  - balance: Full Mimir Mark 2 set now costs 15 points, down from 17.
+  QualityVan:
+  - bugfix: Health analyzers should quit their nonsense now
+  RipGrayson:
+  - balance: 'LV624: LZ2 has been rebalanced and moved.'
+  - balance: 'LV624: Western cargo storage has been moved to LZ2''s old spot.'
+  - bugfix: 'LV624: Fixed a disconnected engineering sign near hydro bridge.'
+  Sebbe9123:
+  - qol: Xeno caste that can build can now build doors at 33% faster.
+  SplinterGP:
+  - balance: Xenos don't take less damage/heal better on crit with warding anymore.
+  Surrealaser:
+  - code_imp: Partial refactor of vent crawling. Snowflaking removed. Infrastructure
+      added for unique ventcrawl interactions, and custom ventcrawl parameters at
+      the caste level.
+  - balance: Hunters can now crawl into vents in 1 second down from 4.5 seconds.
+  - balance: Larva can now crawl into vents in 1 second down from 4.5 seconds.
+2021-07-29:
+  KornFlaks:
+  - bugfix: Fixed English in seasonal weapon rotation titles (Hiph to High and cops
+      to Cops).
+  lbnesquik:
+  - bugfix: fixed a missing camera on the alamo
+  - rscadd: Added finger snapping as an emote.
+2021-07-30:
+  BraveMole:
+  - rscadd: In a situation of stalemate, marine and xeno respawn will be buffed
+  - balance: All shuttles are immune to direct cas and ob hit
+  Pariah919:
+  - expansion: seasonal gun bucket expanded-rifle bucket 2 has a M412 and HK-11 rather
+      than just an Uzi. And added a new bucket with an MR-25 and the MP-27
+  - balance: minigun has been improved a bit, has 0.15 fire delay from 0.2, and has
+      aim mode with a aim mode fire delay of 0.25, but you move VERY, VERY slowly
+      while aiming.
+  Passe2142:
+  - balance: 'Drone weed speed: from -0.1 to  -0.4 and damages from : 16/16/20/20
+      to 16/16/18/18'
+  Surrealaser:
+  - bugfix: Merge garbage for ventcrawling fixed.
+  TiviPlus:
+  - bugfix: fixed a helmet binoc exploit, it doens't let you shoot while zoomed anymore.
+  lbnesquik:
+  - bugfix: fixed a number of missing firelocks, firelocks and other machinery stuck
+      on the wall, shift the req map table towards the wall on the POS.
+  - rscadd: Added a tacticool ERT for you to enjoy.
+  - qol: Made sword and machete holsters all follow the space logic regarding storage.
+      You can use machetes holsters as officers, and soldiers can use sword holsters
+  - qol: The AI can toggle the fire alarms with ctrl click only now.
+  - bugfix: fixed some typos regarding the T 29 crate
+2021-07-31:
+  BraveMole:
+  - code_imp: Replace damage strings by their defines where needed
+  QualityVan:
+  - bugfix: Trying to pull someone buckled to a rollerbed will now make you start
+      pulling the bed.
+  TiviPlus:
+  - refactor: Movable Lighting will perform better now
+  lbnesquik:
+  - expansion: Add some AI holopads in some hot spots on theseus
+  - expansion: Change some cameras spot so they are not floating or fixed on windows
+      on theseus
+  - expansion: Add some fire alarms to areas missing them on theseus
+  - expansion: Add two cluster warheads, bringing the total to three on theseus
+  - expansion: Move the cryo cells to the side, which looks better in my opinion on
+      theseus
+  - expansion: Few tables added to medical lobby on theseus
+  - expansion: Fire shutters added to a number of place lacking them on theseus
+  - expansion: Delete a big handful of duplicate cameras on theseus
+  - expansion: Change some power monitoring consoles to the actually 'useful' type
+      on theseus
+  - expansion: Add a console for the alamo in the hangar, so people do not NEED to
+      go the CIC on theseus
+  - expansion: Fix a missing cable for disposal APC on theseus
+  - expansion: Add a biomass beaker on theseus
+  - qol: Allow everyone to pray!

@@ -1,0 +1,287 @@
+2019-11-01:
+  Isy232:
+  - balance: Crusher Tackle Damage down to a reasonable level.
+  - balance: Most pistol bullet types down slightlyn
+  - balance: Rifles damage down a bit.
+  - balance: Shotgun damage down a bit.
+  - balance: Incendiary Sniper Bullet Damage down a bit.
+  - balance: Smartgun damage down, penetration up.
+  - balance: Minigun Bullet Damage slightly decreased.
+  - balance: Laser Gun Damage Down Very Slightly.
+  - balance: Nerfs acid spits damage by quite a bit.
+  - balance: Nerfs rav damage by a bit more.
+  - balance: Nerfs warrior damage a bit.
+  - balance: Nerfs defiler neuroclaw.
+  - balance: Nerfs quite a few castes having too high tackle damage in spots.
+  Kuro-ai:
+  - bugfix: fixed the armor sprites that were off by a pixel.
+  XSlayer300:
+  - tweak: Redesigned the player setup menu, based on Baystation 12.
+  - rscadd: Added a "Background" option for a headstart primer on TGMC.
+  spookydonut:
+  - tweak: vapor has less single tile passages
+2019-11-03:
+  Isy232:
+  - balance: B18 armor and helmet nerfed slightly.
+  - tweak: Shrike Gets Larva Growth Acceleration Sting
+2019-11-04:
+  XSlayer300:
+  - rscadd: Added more EORG roles, no deathsquad roles yet though.
+  factoryman942:
+  - rscdel: there are no more antidepressants
+  spookydonut:
+  - rscadd: Added tgui-next
+  - rscdel: Removes nanoui
+2019-11-05:
+  Rohesie:
+  - balance: Removed antihug properties of map-spawned masks.
+  - balance: Xenos no longer lose stored larvas on a Queen death.
+  XSlayer300:
+  - tweak: Made helmets smaller in size, allowing them to be put on satchels and bags
+      again. However, their internal storage space is reduced from 4 - 3.
+2019-11-07:
+  Fikou:
+  - spellcheck: xeno keybind names have been changed a little
+  factoryman942:
+  - bugfix: explosions no longer hit things on their centre tile multiple times, and
+      rockets no longer explode twice. Xenos should be pulped less by explosions now.
+2019-11-08:
+  BurgerBB:
+  - balance: The minigun can now be spooled up while moving. Decreased fire delay
+      of the minigun from 0.3 seconds to 0.2 seconds. Decreased wind up time of the
+      minigun from 0.5 seconds to 0.4 seconds. Everyone (marines and xenos) gets a
+      visual notification (Danger Icon) when the minigun winds up.
+  Rohesie:
+  - balance: Xenos are now able to put out hosts on fire through help-intent.
+2019-11-09:
+  BurgerBB:
+  - balance: If you destroy a resin tile, any resin structures, except doors, walls,
+      and strong sticky good, will be removed as well.
+  - balance: Individual resin health increased from 8 to 25 (Knives do 25 damage).
+  - balance: Move delay from snow reduces from 75% to 50%. Chance to get stuck in
+      snow reduced from 2% to 1%.
+  Hughgent:
+  - bugfix: Shrike Unrelenting Force now uses plasma properly.
+  Isy232:
+  - balance: Reworks Queen
+  Kuro-ai:
+  - balance: rebalanced marine gloves,boots and armor
+  - rscdel: deletes edge and ballistic from marine vendors
+  - tweak: removes masterkey from the m4ra
+  - balance: Buffs machete,nerfs weed nodes
+  Rohesie:
+  - rscadd: Stamina type of damage added. It comes and goes faster than other damage
+      types, knocksdown the victim if it has too much of it, and is otherwise harmless.
+  - tweak: Walk mode made severely faster, and the default for humans. They can run
+      by making use of a stamina buffer, which they recover when not running. Synths
+      don't have stamina, so they cannot sprint/run but are unaffected by stamina
+      damage.
+  - balance: Xenos now have melee armor. Humans also have melee accuracy, which is
+      perfect while walking and only 80% when running. Their tackles now  fullyrespect
+      melee armor.
+  - balance: Neurotoxin no longer injects chems. It now deals direct stamina-damage,
+      same as xeno tackles, resin spit and a few other things.
+  - rscadd: Examine is now a keybind, defaulted to Shift. It merges old shift+click
+      and alt+click on a turf near you. Alt defaults to run-while-holding, and you
+      can shoot or attack while doing so. You can rebind it as well.
+  - balance: The hunter is now much faster while stealthed, so as a consequence its
+      sneak attack has been nerfed some. Probably needs further tweaks.
+  - rscadd: Marines are allowed to respawn after a certain time dead. We'll see how
+      this goes.
+  - bugfix: Marines can no longer join with the same name of someone else who joined
+      the game and didn't cryo.
+  - bugfix: Shuttles can no longer be called, redirected or summoned while in transit.
+  - bugfix: Removed the broken dropship shutter button. Marines can still lockdown
+      the doors through the computer, but xeno rulers can unlock them.
+  - balance: Xenos that miss the hijack ride will be gibed, cleaning the planet, but
+      increasing the number of stored larvas.
+2019-11-10:
+  BurgerBB:
+  - rscadd: Completely redesigned the Canterbury shuttle.
+  David-Stormwell-TGCM:
+  - rscadd: T64 DMR
+  - rscadd: 10x27 Caliber ammo for the DMR
+  - soundadd: A new firing sound for the DMR
+  - imageadd: Gun Icons and magazine icons for it.
+  Fikou:
+  - spellcheck: military/civilian laser bolts are now just simply laser bolts
+  Isy232:
+  - balance: Custom Built Shotgun Burst Fire Delay 2 => 6
+  Kuro-ai:
+  - balance: Give Integrated storage armor old storage space back
+  terranaut1:
+  - rscadd: Specialclick framework added
+  - tweak: 'You can now specialclick (default: ctrl) to get over/through waist-high
+      obstacles and through acid holes, or to rip them open.'
+2019-11-11:
+  Kuro-ai:
+  - balance: Increased crest toss cooldown
+2019-11-12:
+  BurgerBB:
+  - balance: Move delay from wearing B18 armor increased from +100% to +115%
+  - balance: Rebalanced Icy Caves do to xeno behavior. You know what you did.
+  Isy232:
+  - balance: Runner speed reduced slightly, plasma regeneration increased.
+  - soundadd: Made Dropship Takeoff Sound 4DB Louder
+  Kuro-ai:
+  - balance: removes hit and run from runner
+  KwinOriginal:
+  - bugfix: double pipe on turf in hangar
+  Pariah919:
+  - balance: Buffed the accuracy of the DMR.
+  TiviPlus:
+  - balance: Carrier plasma regen, storage and costs increased
+2019-11-14:
+  BurgerBB:
+  - balance: Spitting as xeno slows you down for 2 seconds. The slow's magnitude is
+      reduced when the duration is depleted.
+  Hughgent:
+  - bugfix: Carrier hugger traps can no long be stacked on one tile.
+  - bugfix: m39 belt sprite issue fixed
+  Hughgent, Kuro:
+  - rscadd: Heavy helmet now available for the PFC. More Armor, less accuracy.
+  Kuro-ai:
+  - balance: Decreased DMR rate of fire and ammo capacity, and increased its damage.
+  - rscadd: Added the T-42 LMG for PFCs
+  - bugfix: Fixed M92 missing a empty sprite
+  Pariah919:
+  - balance: Meme guns such as the Mosin and the PPSh have been nerfed.
+  TiviPlus:
+  - balance: Rockets have been slightly buffed
+  jroinc:
+  - balance: Larval toxin now advances larva less, but larva naturally grow more.
+      Overall, there's slower growth. It no longer heals oxygen damage.
+  terranaut1:
+  - bugfix: boilers keep on shining bright after aheal
+2019-11-15:
+  Kuro-ai:
+  - balance: Removed all the ways to acquire IMDPs
+  Rohesie:
+  - rscadd: Legacy chat support re-enabled. It can be set with the Fix Chat verb in
+      the OOC tab. It offers higher performance for low spec computers, at the cost
+      of many features.
+2019-11-17:
+  BurgerBB:
+  - balance: Removes click delay for interacting with storage and generic items.
+  - balance: All maps now have different nuke and nuke generator map spawns.
+  - balance: Reworks the LMG again.
+  - balance: Removes slowdown from LMG.
+  InterroLouis:
+  - tweak: Smoke removed from WP and AP rockets
+  - balance: WP Rockets use Fire Armor
+  Kuro-ai:
+  - rscadd: Added prison variants to the code
+  - imageadd: added SL and SG armor sprites
+  - rscadd: T-18 and T-12 for PFCs
+  - balance: nerfed queen speed
+  Mark9013100:
+  - tweak: Marine gloves have been converted to use the greyscale system.
+  - rscadd: Marine gloves are now available in surplus uniform vendors.
+  Rohesie:
+  - balance: Flechette and buckshot (both regular and SX) stats reduced, but instead
+      of firing 3 they fire 5 projectiles. This means higher spread, shooting in a
+      cone. The result is that flechette is nerfed in general and buckshot is buffed
+      at close range.
+  - rscadd: Most attacks get an animation now. Attacking with items shows the weapon
+      used.
+  - tweak: The cryosleep machines only accept bodies that have been disconnected for
+      over 15 minutes, or who have ghosted while alive. They process them much quicker
+      now.
+2019-11-19:
+  BurgerBB:
+  - rscadd: Adds a new shotgun specialization kit for specialists.
+  - rscadd: 'Adds a new map: Desert Outpost'
+  Hughgent:
+  - bugfix: The megaphone no longer acts as a one way translation device.
+  - bugfix: Flares no longer re-activate after being used up.
+  - bugfix: Cocking a gun now produces the correctly loaded in chamber round.
+  - bugfix: You can now place lightsticks in the snow again.
+  Kuro-ai:
+  - rscadd: Adds b17 to grenadier kit
+  - balance: Buffed mortars ammo count,reduced shells prices
+  - bugfix: Spare vendors no longer dispense wrong camo helmets.
+  XSlayer300:
+  - rscadd: Added new muzzleflashes, for most pistols, revolvers, assault rifles,
+      carbines, lasers and energy pulse rifles. Thanks to Rohesie on helping me on
+      that one.
+  - tweak: Changed the default muzzleflash.
+2019-11-20:
+  Hughgent:
+  - bugfix: Pillar of Spring Poddoors can no longer be melted to Space.
+  InterroLouis:
+  - tweak: Pyro Fuel Pack is a satchel now
+  Kuro-ai:
+  - rscadd: powerpacks sprites
+  - bugfix: fix invisible pyro helmet on prison
+  - balance: various xeno value changes
+  terranaut1:
+  - balance: 3 Second Cooldown for Carriers taking a Hugger out of storage
+  - bugfix: changes shuttle crash/ert shuttle locations on the pillar to avoid shuttles
+      crashing into each other
+  - bugfix: minor bugfixes
+2019-11-21:
+  Hughgent:
+  - bugfix: You can no longer get infinite lasgun cells from the lasgun charger.
+  Kuro-ai:
+  - rscadd: add the T-19
+  - tweak: changed marine jumpsuit
+  terranaut1:
+  - bugfix: Fixes Autodoc sending you into the Shadowrealm when destroyed
+2019-11-23:
+  Isy232:
+  - balance: Survivor gets master in all non-combat skills.
+  - balance: Survivor gets decent armor.
+2019-11-24:
+  BurgerBB:
+  - balance: Removed hunter sneak attack damage.
+  - balance: Most of the area outside Desert Outpost can now be targeted via rangefinder.
+  - bugfix: Fixed some of the east walls near LZ1 being meltable when they shouldn't.
+  InterroLouis:
+  - tweak: No more beanbags in req's gun crates
+  - tweak: M240-T now uses spec skill
+  Rohesie:
+  - tweak: UGLs and similar are now shot once active via middle mouse button or shift
+      click, like xeno abilities, instead of ctrl+click. You can also load and unload
+      rifle magazines while it's active. You can find the option to toggle this in
+      the IC tab instead of the Alien one.
+  - balance: Slows down the Shrike a little.
+  Terranaut & Ceyella:
+  - bugfix: synths no longer acquire a sixth sense after being dead for too long
+  TiviPlus:
+  - bugfix: Removed a duplicate table
+2019-11-25:
+  Kuro-ai:
+  - bugfix: fixes t19 mag name being incorrect
+  TiviPlus:
+  - bugfix: Removed a dupe vendor in the Pillar
+  psykzz:
+  - rscadd: you can now instantly put out fires by resisting on snow
+  - rscadd: fire melts snow
+2019-11-28:
+  XElectricX:
+  - balance: Welderpack can be opened while worn.
+  - tweak: Ship Techs get can unlock colony APCs and set airlock accesses.
+  - tweak: Circuitboards are tiny sized instead of small.
+  grinkgo:
+  - tweak: Beaker transfer amounts changed to be more bay recipe-friendly.
+  terranaut1:
+  - balance: grenade launcher cant chainstun as easy now, wields faster
+2019-11-29:
+  Rohesie:
+  - tweak: The Pillar of Spring is changed to support two squads instead of four.
+  - balance: The DMR can no longer point-blank. Its fire delay has been slightly increased.
+  - balance: T1 xenos start as Mature instead of Elder in Crash game mode.
+2019-11-30:
+  Kuro, Hughgent:
+  - tweak: Heavy armor can look different sometimes
+  Kuro-ai:
+  - tweak: Changed marine's helmets stats and heavy helmet description.
+  Pariah919:
+  - balance: All non-helmet marine headgear is severely nerfed.
+  XSlayer300:
+  - rscadd: Added "explosive" and "flame" weapon type codexes and applied to their
+      respective weapons.
+  - tweak: Changed most of the gun descriptions, even a few names.
+  - tweak: Changed the recent projectile names.
+  spookydonut:
+  - bugfix: crushers now properly hit barricades from behind

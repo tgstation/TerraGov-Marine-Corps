@@ -5,13 +5,24 @@
 /obj/item/ammo_magazine/pistol/standard_pistol
 	name = "\improper TP-14 magazine (9mm)"
 	desc = "A pistol magazine."
-	caliber = "9x19mm Parabellum"
+	caliber = CALIBER_9X19
 	icon_state = "tp14"
-	max_rounds = 14
+	max_rounds = 21
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol
-	gun_type = /obj/item/weapon/gun/pistol/standard_pistol
 
+//-------------------------------------------------------
+//TX-7 Plasma Pistol
+/obj/item/ammo_magazine/pistol/plasma_pistol
+	name = "\improper TX-7 plasma cell"
+	desc = "An energy cell for the TX-7 plasma pistol."
+	caliber = CALIBER_PLASMA
+	icon_state = "tx7"
+	max_rounds = 10
+	w_class = WEIGHT_CLASS_SMALL
+	default_ammo = /datum/ammo/energy/plasma_pistol
+	flags_magazine = NONE
+	icon_state_mini = "mag_tx7"
 
 //-------------------------------------------------------
 //RT-3 PISTOL
@@ -19,32 +30,36 @@
 /obj/item/ammo_magazine/pistol
 	name = "\improper RT-3 magazine (9mm)"
 	desc = "A pistol magazine."
-	caliber = "9x19mm Parabellum"
+	caliber = CALIBER_9X19
 	icon_state = "m4a3"
 	max_rounds = 14
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol
-	gun_type = /obj/item/weapon/gun/pistol/rt3
+	icon_state_mini = "mag_pistol"
 
 /obj/item/ammo_magazine/pistol/hp
 	name = "\improper M4A3 hollowpoint magazine (9mm)"
 	icon_state = "m4a3_hp"
 	default_ammo = /datum/ammo/bullet/pistol/hollow
+	icon_state_mini = "mag_pistol_blue"
 
 /obj/item/ammo_magazine/pistol/ap
 	name = "\improper M4A3 AP magazine (9mm)"
 	icon_state = "m4a3_ap"
 	default_ammo = /datum/ammo/bullet/pistol/ap
+	icon_state_mini = "mag_pistol_green"
 
 /obj/item/ammo_magazine/pistol/incendiary
 	name = "\improper M4A3 incendiary magazine (9mm)"
 	icon_state = "m4a3_incendiary"
 	default_ammo = /datum/ammo/bullet/pistol/incendiary
+	icon_state_mini = "mag_pistol_red"
 
 /obj/item/ammo_magazine/pistol/extended
 	name = "\improper M4A3 extended magazine (9mm)"
 	max_rounds = 24
 	icon_state = "m4a3_ext"
+	icon_state_mini = "mag_pistol_yellow"
 
 //-------------------------------------------------------
 //M1911
@@ -52,18 +67,10 @@
 /obj/item/ammo_magazine/pistol/m1911
 	name = "\improper M1911 magazine (.45)"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
-	caliber = ".45 ACP"
+	caliber = CALIBER_45ACP
 	icon_state = "1911"
 	max_rounds = 10
-	gun_type = /obj/item/weapon/gun/pistol/m1911
 
-/obj/item/ammo_magazine/acp
-	name = "box of .45 ACP"
-	icon_state = "box45" //With thanks to Eris
-	default_ammo = /datum/ammo/bullet/pistol/heavy
-	caliber = ".45 ACP"
-	current_rounds = 50
-	max_rounds = 50
 
 
 //-------------------------------------------------------
@@ -72,38 +79,27 @@
 /obj/item/ammo_magazine/pistol/standard_heavypistol
 	name = "\improper TP-23 magazine (.45)"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
-	caliber = ".45 ACP"
+	caliber = CALIBER_45ACP
 	icon_state = ".45"
-	max_rounds = 11
-	gun_type = /obj/item/weapon/gun/pistol/standard_heavypistol
+	max_rounds = 14
 
 
 //-------------------------------------------------------
 //Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
 
-/obj/item/ammo_magazine/pistol/b92fs
-	name = "\improper Beretta 92FS magazine (9mm)"
-	caliber = "9x19mm Parabellum"
-	icon_state = "beretta"
+/obj/item/ammo_magazine/pistol/g22
+	name = "\improper G-22 magazine (9mm)"
+	caliber = CALIBER_9X19
+	icon_state = "g22"
 	max_rounds = 15
 	default_ammo = /datum/ammo/bullet/pistol
-	gun_type = /obj/item/weapon/gun/pistol/b92fs
 
-/obj/item/ammo_magazine/pistol/b93r
-	name = "\improper Beretta 93R magazine (9mm)"
-	caliber = "9x19mm Parabellum"
-	icon_state = "beretta"
-	max_rounds = 20
-	default_ammo = /datum/ammo/bullet/pistol
-	gun_type = /obj/item/weapon/gun/pistol/b92fs/raffica
-
-/obj/item/ammo_magazine/pistol/b92fstranq
-	name = "\improper M9 tranq magazine (9mm)"
-	caliber = "9x19mm tranquilizer"
-	icon_state = "beretta"
+/obj/item/ammo_magazine/pistol/g22tranq
+	name = "\improper G22 tranq magazine (9mm)"
+	caliber = CALIBER_9X19_TRANQUILIZER
+	icon_state = "g22"
 	max_rounds = 12
 	default_ammo = /datum/ammo/bullet/pistol/tranq
-	gun_type = /obj/item/weapon/gun/pistol/b92fs/M9
 
 
 //-------------------------------------------------------
@@ -111,11 +107,10 @@
 
 /obj/item/ammo_magazine/pistol/heavy
 	name = "\improper Desert Eagle magazine (.50)"
-	default_ammo = /datum/ammo/bullet/pistol/heavy
-	caliber = ".50 AE"
+	default_ammo = /datum/ammo/bullet/pistol/superheavy
+	caliber = CALIBER_50AE
 	icon_state = "50ae"
 	max_rounds = 7
-	gun_type = /obj/item/weapon/gun/pistol/heavy
 
 
 
@@ -125,18 +120,17 @@
 /obj/item/ammo_magazine/pistol/c99t
 	name = "\improper PK-9 tranq magazine (.22)"
 	default_ammo = /datum/ammo/bullet/pistol/tranq
-	caliber = ".22 LR"
+	caliber = CALIBER_22LR
 	icon_state = "pk-9_tranq"
 	max_rounds = 8
-	gun_type = /obj/item/weapon/gun/pistol/c99
+	icon_state_mini = "mag_pistol_green"
 
 /obj/item/ammo_magazine/pistol/c99
 	name = "\improper PK-9 hollowpoint magazine (.22)"
 	default_ammo = /datum/ammo/bullet/pistol/hollow
-	caliber = ".22 LR"
+	caliber = CALIBER_22LR
 	icon_state = "pk-9"
 	max_rounds = 12
-	gun_type = /obj/item/weapon/gun/pistol/c99
 
 //-------------------------------------------------------
 //PIZZACHIMP PROTECTION
@@ -145,11 +139,10 @@
 	name = "tiny pistol magazine (.22)"
 	desc = "A surprisingly small magazine, holding .22 bullets. No Kolibri, but it's getting there."
 	default_ammo = /datum/ammo/bullet/pistol/tiny
-	caliber = ".22 LR"
+	caliber = CALIBER_22LR
 	icon_state = ".22"
 	max_rounds = 5
 	w_class = WEIGHT_CLASS_TINY
-	gun_type = /obj/item/weapon/gun/pistol/holdout
 
 //-------------------------------------------------------
 //TP-17.
@@ -158,24 +151,20 @@
 	name = "\improper TP-17 pocket pistol AP magazine (.380)"
 	desc = "A surprisingly small magazine used by the TP-17 pistol holding .380 ACP bullets."
 	default_ammo = /datum/ammo/bullet/pistol/tiny/ap
-	caliber = ".380 ACP"
+	caliber = CALIBER_380ACP
 	icon_state = "tp17"
 	max_rounds = 8
 	w_class = WEIGHT_CLASS_TINY
-	gun_type = /obj/item/weapon/gun/pistol/standard_pocketpistol
-
 
 //-------------------------------------------------------
-//.45 MARSHALS PISTOL //Inspired by the Browning Hipower
+//Automag. .50.
 
 /obj/item/ammo_magazine/pistol/highpower
-	name = "\improper Highpower magazine (9mm)"
-	default_ammo = /datum/ammo/bullet/pistol/ap
-	caliber = "9x19mm Parabellum"
+	name = "\improper Highpower magazine (.50 AE)"
+	default_ammo = /datum/ammo/bullet/pistol/superheavy
+	caliber = CALIBER_50AE
 	icon_state = "m4a3" //PLACEHOLDER
 	max_rounds = 13
-	gun_type = /obj/item/weapon/gun/pistol/highpower
-
 
 //-------------------------------------------------------
 //VP70 //Not actually the VP70, but it's more or less the same thing. VP70 was the standard sidearm in Aliens though.
@@ -183,11 +172,9 @@
 /obj/item/ammo_magazine/pistol/vp70
 	name = "\improper 88M4 AP magazine (9mm)"
 	default_ammo = /datum/ammo/bullet/pistol/ap
-	caliber = "9x19mm Parabellum"
+	caliber = CALIBER_9X19
 	icon_state = "88m4"
 	max_rounds = 18
-	gun_type = /obj/item/weapon/gun/pistol/vp70
-
 
 //-------------------------------------------------------
 //VP78
@@ -195,26 +182,21 @@
 /obj/item/ammo_magazine/pistol/vp78
 	name = "\improper VP78 magazine (9mm)"
 	default_ammo = /datum/ammo/bullet/pistol/squash
-	caliber = "9x19mm Parabellum"
+	caliber = CALIBER_9X19
 	icon_state = "50ae"
 	max_rounds = 18
-	gun_type = /obj/item/weapon/gun/pistol/vp78
-
 
 //-------------------------------------------------------
-/*
-Auto 9 The gun RoboCop uses. A better version of the VP78, with more rounds per magazine. Probably the best pistol around, but takes no attachments.
-It is a modified Beretta 93R, and can fire three round burst or single fire. Whether or not anyone else aside RoboCop can use it is not established.
-*/
+
+//A better version of the VP78, with more rounds per magazine. Probably the best pistol around, but takes no attachments.
+
 
 /obj/item/ammo_magazine/pistol/auto9
 	name = "\improper Auto-9 magazine (9mm)"
 	default_ammo = /datum/ammo/bullet/pistol/squash
-	caliber = "9x19mm Parabellum"
-	icon_state = "beretta"
+	caliber = CALIBER_9X19
+	icon_state = "tp17"
 	max_rounds = 50
-	gun_type = /obj/item/weapon/gun/pistol/auto9
-
 
 
 //-------------------------------------------------------
@@ -222,8 +204,6 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 /obj/item/ammo_magazine/pistol/chimp
 	name = "\improper CHIMP70 magazine (.70M)"
 	default_ammo = /datum/ammo/bullet/pistol/mankey
-	caliber = ".70 Mankey"
+	caliber = CALIBER_70MANKEY
 	icon_state = "c70"
 	max_rounds = 300
-	gun_type = /obj/item/weapon/gun/pistol/chimp
-

@@ -1,7 +1,7 @@
 // small ert shuttles
 /obj/docking_port/stationary/ert
 	name = "ert shuttle"
-	id = "distress"
+	id = SHUTTLE_DISTRESS
 	dir = SOUTH
 	dwidth = 3
 	width = 7
@@ -22,6 +22,7 @@
 	var/departing = FALSE
 	ignitionTime = 10 SECONDS
 	prearrivalTime = 10 SECONDS
+	rechargeTime = 3 MINUTES
 	callTime = 1 MINUTES
 
 	shuttle_flags = GAMEMODE_IMMUNE
@@ -83,14 +84,9 @@
 				shutters += O
 	close_shutters()
 
-/obj/docking_port/mobile/ert/check()
-	if(departing)
-		intoTheSunset()
-		return
-	return ..()
 
 /obj/machinery/computer/shuttle/ert
-
+	interaction_flags = INTERACT_MACHINE_TGUI|INTERACT_MACHINE_NOSILICON //No AIs allowed
 
 /obj/machinery/computer/shuttle/ert/valid_destinations()
 	var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)
@@ -114,7 +110,7 @@
 			for(var/obj/docking_port/stationary/S in M.get_destinations())
 				dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
 		else
-			dat += "<A href='?src=[REF(src)];depart=1'>Depart</A><br>"
+			dat += "<A href='?src=[REF(src)];depart=1'>Depart.</A><br>"
 
 	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")
@@ -126,13 +122,26 @@
 		return
 
 	if(href_list["depart"])
-		log_game("[key_name(usr)] has departed an ERT shuttle")
 		var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)
+
+		if(M.departing)
+			playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
+			visible_message(span_warning("ERROR: Launch protocols already in process. Please standby."), 3)
+			return
+
+		log_game("[key_name(usr)] has departed an ERT shuttle")
 		M.on_ignition()
-		M.setTimer(M.ignitionTime)
 		addtimer(VARSET_CALLBACK(M, departing, TRUE), M.ignitionTime)
 
 	updateUsrDialog()
+
+
+/obj/docking_port/mobile/ert/check()
+	if(departing)
+		intoTheSunset()
+		return
+	return ..()
+
 
 /obj/machinery/computer/shuttle/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	if(port && (shuttleId == initial(shuttleId) || override))

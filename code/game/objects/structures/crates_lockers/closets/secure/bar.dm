@@ -22,17 +22,18 @@
 	new /obj/item/reagent_containers/food/drinks/cans/beer( src )
 	new /obj/item/reagent_containers/food/drinks/cans/beer( src )
 
-/obj/structure/closet/secure_closet/bar/update_icon()
+/obj/structure/closet/secure_closet/bar/update_icon_state()
 	if(broken)
 		icon_state = icon_broken
+		return
+	if(opened)
+		icon_state = icon_opened
+		return
+	if(locked)
+		icon_state = icon_locked
 	else
-		if(!opened)
-			if(locked)
-				icon_state = icon_locked
-			else
-				icon_state = icon_closed
-		else
-			icon_state = icon_opened
+		icon_state = icon_closed
+
 
 /obj/structure/closet/secure_closet/bar/captain
 	name = "Success Cabinet"

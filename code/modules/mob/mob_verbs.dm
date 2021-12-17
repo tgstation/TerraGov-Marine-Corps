@@ -52,22 +52,28 @@
 	set category = "OOC"
 
 	if(!GLOB.respawn_allowed && !check_rights(R_ADMIN, FALSE))
-		to_chat(usr, "<span class='notice'>Respawn is disabled. This is the default state, you can usually rejoin the round as a human only via ERT.</span>")
+		to_chat(usr, span_notice("Respawn is disabled. This is the default state, you can usually rejoin the round as a human only via ERT."))
 		return
 	if(stat != DEAD)
-		to_chat(usr, "<span class='boldnotice'>You must be dead to use this!</span>")
+		to_chat(usr, span_boldnotice("You must be dead to use this!"))
 		return
 
 	if(DEATHTIME_CHECK(usr))
 		if(check_other_rights(usr.client, R_ADMIN, FALSE))
-			if(alert(usr, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", "Yes", "No") != "Yes")
+			if(tgui_alert(usr, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No"), 0) != "Yes")
 				DEATHTIME_MESSAGE(usr)
 				return
+			var/admin_message = "[key_name(usr)] used his admin power to bypass respawn before his timer was over"
+			log_admin(admin_message)
+			message_admins(admin_message)
 		else
 			DEATHTIME_MESSAGE(usr)
 			return
 
-	to_chat(usr, "<span class='notice'>You can respawn now, enjoy your new life!<br><b>Make sure to play a different character, and please roleplay correctly.</b></span>")
+	to_chat(usr, span_notice("You can respawn now, enjoy your new life!<br><b>Make sure to play a different character, and please roleplay correctly.</b>"))
+	GLOB.round_statistics.total_human_respawns++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_human_respawns")
+
 
 	if(!client)
 		return
@@ -76,6 +82,8 @@
 		return
 
 	var/mob/new_player/M = new /mob/new_player()
+	if(SSticker.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS)
+		M.faction = faction
 	if(!client)
 		qdel(M)
 		return
@@ -106,7 +114,7 @@
 	H.apply_assigned_role_to_spawn(J)
 	H.regenerate_icons()
 
-	to_chat(L, "<br><br><h1><span class='danger'>Fight for your life (again), try not to die this time!</span></h1><br><br>")
+	to_chat(L, "<br><br><h1>[span_danger("Fight for your life (again), try not to die this time!")]</h1><br><br>")
 
 
 /mob/verb/cancel_camera()

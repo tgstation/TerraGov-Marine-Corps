@@ -1,15 +1,10 @@
 /mob/living/carbon/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_CARBON_DEVOURED_BY_XENO, .proc/on_devour_by_xeno)
 	adjust_nutrition_speed(0)
-
 
 /mob/living/carbon/Destroy()
 	if(afk_status == MOB_RECENTLY_DISCONNECTED)
 		set_afk_status(MOB_DISCONNECTED)
-	if(isxeno(loc))
-		var/mob/living/carbon/xenomorph/devourer = loc
-		devourer.do_regurgitate(src)
 	QDEL_NULL(back)
 	QDEL_NULL(internal)
 	QDEL_NULL(handcuffed)
@@ -18,7 +13,7 @@
 
 /mob/living/carbon/on_death()
 	if(species)
-		to_chat(src,"<b><span class='deadsay'><p style='font-size:1.5em'>[species.special_death_message]</p></span></b>")
+		to_chat(src,"<b>[span_deadsay("<p style='font-size:1.5em'>[species.special_death_message]</p>")]</b>")
 	return ..()
 
 /mob/living/carbon/Move(NewLoc, direct)
@@ -39,25 +34,20 @@
 		L.initiate_burst(src)
 
 
-/mob/living/carbon/attack_paw(mob/living/carbon/monkey/user)
-	user.changeNext_move(CLICK_CD_MELEE) //Adds some lag to the 'attack'
-
-
 /mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, def_zone = null)
 	if(status_flags & GODMODE)	return 0	//godmode
 	shock_damage *= siemens_coeff
 	if (shock_damage<1)
 		return 0
 
-	apply_damage(shock_damage, BURN, def_zone)
-	UPDATEHEALTH(src)
+	apply_damage(shock_damage, BURN, def_zone, updating_health = TRUE)
 
 	playsound(loc, "sparks", 25, TRUE)
 	if (shock_damage > 10)
 		src.visible_message(
-			"<span class='warning'> [src] was shocked by the [source]!</span>", \
-			"<span class='danger'>You feel a powerful shock course through your body!</span>", \
-			"<span class='warning'> You hear a heavy electrical crack.</span>" \
+			span_warning(" [src] was shocked by the [source]!"), \
+			span_danger("You feel a powerful shock course through your body!"), \
+			span_warning(" You hear a heavy electrical crack.") \
 		)
 		if(isxeno(src))
 			if(mob_size != MOB_SIZE_BIG)
@@ -66,9 +56,9 @@
 			Paralyze(8 SECONDS)
 	else
 		src.visible_message(
-			"<span class='warning'> [src] was mildly shocked by the [source].</span>", \
-			"<span class='warning'> You feel a mild shock course through your body.</span>", \
-			"<span class='warning'> You hear a light zapping.</span>" \
+			span_warning(" [src] was mildly shocked by the [source]."), \
+			span_warning(" You feel a mild shock course through your body."), \
+			span_warning(" You hear a light zapping.") \
 		)
 
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
@@ -76,41 +66,6 @@
 	s.start()
 
 	return shock_damage
-
-
-/mob/living/carbon/proc/swap_hand()
-	var/obj/item/wielded_item = get_active_held_item()
-	if(wielded_item && (wielded_item.flags_item & WIELDED)) //this segment checks if the item in your hand is twohanded.
-		var/obj/item/weapon/twohanded/offhand/offhand = get_inactive_held_item()
-		if(offhand && (offhand.flags_item & WIELDED))
-			to_chat(src, "<span class='warning'>Your other hand is too busy holding \the [offhand.name]</span>")
-			return
-		else
-			wielded_item.unwield(src) //Get rid of it.
-	hand = !hand
-	SEND_SIGNAL(src, COMSIG_CARBON_SWAPPED_HANDS)
-	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
-		hud_used.l_hand_hud_object.update_icon(hand)
-		hud_used.r_hand_hud_object.update_icon(!hand)
-		if(hand)	//This being 1 means the left hand is in use
-			hud_used.l_hand_hud_object.add_overlay("hand_active")
-		else
-			hud_used.r_hand_hud_object.add_overlay("hand_active")
-	return
-
-/mob/living/carbon/proc/activate_hand(selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
-
-	if(istext(selhand))
-		selhand = lowertext(selhand)
-
-		if(selhand == "right" || selhand == "r")
-			selhand = 0
-		if(selhand == "left" || selhand == "l")
-			selhand = 1
-
-	if(selhand != src.hand)
-		swap_hand()
-
 
 /mob/living/carbon/vomit()
 	if(stat == DEAD) //Corpses don't puke
@@ -125,7 +80,9 @@
 
 
 /mob/living/carbon/proc/do_vomit()
-	Stun(10 SECONDS)
+	adjust_stagger(3)
+	add_slowdown(3)
+
 	visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
 	playsound(loc, 'sound/effects/splat.ogg', 25, TRUE, 7)
 
@@ -145,7 +102,7 @@
 		return
 
 	if(IsAdminSleeping())
-		to_chat(shaker, "<span class='highdanger'>This player has been admin slept, do not interfere with them.</span>")
+		to_chat(shaker, span_highdanger("This player has been admin slept, do not interfere with them."))
 		return
 
 	if(lying_angle || IsSleeping())
@@ -172,8 +129,8 @@
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 5)
 		return
 
-	shaker.visible_message("<span class='notice'>[shaker] hugs [src] to make [p_them()] feel better!</span>",
-		"<span class='notice'>You hug [src] to make [p_them()] feel better!</span>", null, 4)
+	shaker.visible_message(span_notice("[shaker] hugs [src] to make [p_them()] feel better!"),
+		span_notice("You hug [src] to make [p_them()] feel better!"), null, 4)
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 5)
 
 
@@ -202,10 +159,10 @@
 
 /mob/living/carbon/throw_item(atom/target)
 	. = ..()
-	src.throw_mode_off()
+	throw_mode_off()
 	if(is_ventcrawling) //NOPE
 		return
-	if(usr.stat || !target)
+	if(stat || !target)
 		return
 	if(target.type == /obj/screen)
 		return
@@ -213,41 +170,19 @@
 	var/atom/movable/thrown_thing
 	var/obj/item/I = get_active_held_item()
 
-	if(!I || (I.flags_item & NODROP)) return
+	if(!I || (I.flags_item & NODROP))
+		return
 
 	var/spin_throw = TRUE
-
-	if (istype(I, /obj/item/grab))
-		var/obj/item/grab/G = I
-		if(ismob(G.grabbed_thing))
-			if(grab_state >= GRAB_NECK)
-				var/mob/living/M = G.grabbed_thing
-				spin_throw = FALSE //thrown mobs don't spin
-				thrown_thing = M
-				var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
-				var/turf/end_T = get_turf(target)
-				if(start_T && end_T)
-					var/start_T_descriptor = "tile at [start_T.x], [start_T.y], [start_T.z] in area [get_area(start_T)]"
-					var/end_T_descriptor = "tile at [end_T.x], [end_T.y], [end_T.z] in area [get_area(end_T)]"
-
-					log_combat(usr, M, "thrown", addition="from [start_T_descriptor] with the target [end_T_descriptor]")
-			else
-				to_chat(src, "<span class='warning'>You need a better grip!</span>")
-	else if(istype(I, /obj/item/riding_offhand))
-		var/obj/item/riding_offhand/riding_item = I
+	if(isgrabitem(I))
 		spin_throw = FALSE
-		thrown_thing = riding_item.rider
-		var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
-		var/turf/end_T = get_turf(target)
-		if(start_T && end_T)
-			log_combat(usr, thrown_thing, "thrown", addition = "from tile at [start_T.x], [start_T.y], [start_T.z] in area [get_area(start_T)] with the target tile at [end_T.x], [end_T.y], [end_T.z] in area [get_area(end_T)]")
-	else //real item in hand, not a grab
-		thrown_thing = I
-		dropItemToGround(I, TRUE)
+
+	//real item in hand, not a grab
+	thrown_thing = I.on_thrown(src, target)
 
 	//actually throw it!
 	if (thrown_thing)
-		visible_message("<span class='warning'>[src] has thrown [thrown_thing].</span>", null, null, 5)
+		visible_message(span_warning("[src] has thrown [thrown_thing]."), null, null, 5)
 
 		if(!lastarea)
 			lastarea = get_area(src.loc)
@@ -257,6 +192,13 @@
 
 		playsound(src, 'sound/effects/throw.ogg', 30, 1)
 		thrown_thing.throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src, spin_throw)
+
+///Called by the carbon throw_item() proc. Returns null if the item negates the throw, or a reference to the thing to suffer the throw else.
+/obj/item/proc/on_thrown(mob/living/carbon/user, atom/target)
+	if((flags_item & ITEM_ABSTRACT) || (flags_item & NODROP))
+		return
+	user.dropItemToGround(src, TRUE)
+	return src
 
 /mob/living/carbon/fire_act(exposed_temperature, exposed_volume)
 	. = ..()
@@ -305,9 +247,9 @@
 	set category = "IC"
 
 	if(IsSleeping())
-		to_chat(src, "<span class='warning'>You are already sleeping</span>")
+		to_chat(src, span_warning("You are already sleeping"))
 		return
-	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
+	if(tgui_alert(src, "You sure you want to sleep for a while?", "Sleep", list("Yes","No")) == "Yes")
 		SetSleeping(40 SECONDS) //Short nap
 
 
@@ -323,7 +265,7 @@
 	if(lying_angle)
 		return FALSE //can't slip if already lying down.
 	stop_pulling()
-	to_chat(src, "<span class='warning'>You slipped on \the [slip_source_name? slip_source_name : "floor"]!</span>")
+	to_chat(src, span_warning("You slipped on \the [slip_source_name? slip_source_name : "floor"]!"))
 	playsound(src.loc, 'sound/misc/slip.ogg', 25, 1)
 	Stun(stun_level)
 	Paralyze(weaken_level)
@@ -343,13 +285,13 @@
 	. -= "Update Icon"
 	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"
 
-/mob/living/carbon/update_leader_tracking(mob/living/carbon/C)
+/mob/living/carbon/update_tracking(mob/living/carbon/C)
 	var/obj/screen/LL_dir = hud_used.SL_locator
 
 	if(C.z != src.z || get_dist(src, C) < 1 || src == C)
 		LL_dir.icon_state = ""
 	else
-		LL_dir.icon_state = "SL_locator"
+		LL_dir.icon_state = "Blue_arrow"
 		LL_dir.transform = 0 //Reset and 0 out
 		LL_dir.transform = turn(LL_dir.transform, Get_Angle(src, C))
 
@@ -417,71 +359,11 @@
 	if(see_override)
 		see_invisible = see_override
 
+	if(HAS_TRAIT(src, TRAIT_SEE_IN_DARK))
+		see_in_dark = max(see_in_dark, 8)
+		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+
 	return ..()
-
-
-//AFK STATUS
-/mob/living/carbon/proc/set_afk_status(new_status, afk_timer)
-	switch(new_status)
-		if(MOB_CONNECTED, MOB_DISCONNECTED)
-			if(afk_timer_id)
-				deltimer(afk_timer_id)
-				afk_timer_id = null
-		if(MOB_RECENTLY_DISCONNECTED)
-			if(afk_status == MOB_RECENTLY_DISCONNECTED)
-				if(timeleft(afk_timer_id) > afk_timer)
-					deltimer(afk_timer_id) //We'll go with the shorter timer.
-				else
-					return
-			afk_timer_id = addtimer(CALLBACK(src, .proc/on_sdd_grace_period_end), afk_timer, TIMER_STOPPABLE)
-	afk_status = new_status
-	SEND_SIGNAL(src, COMSIG_CARBON_SETAFKSTATUS, new_status, afk_timer)
-
-
-/mob/living/carbon/proc/on_sdd_grace_period_end()
-	if(stat == DEAD)
-		return FALSE
-	if(isclientedaghost(src))
-		return FALSE
-	set_afk_status(MOB_DISCONNECTED)
-	return TRUE
-
-/mob/living/carbon/human/on_sdd_grace_period_end()
-	. = ..()
-	if(!.)
-		return
-	log_admin("[key_name(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for 15 minutes.")
-	message_admins("[ADMIN_TPMONTY(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for 15 minutes.")
-
-/mob/living/carbon/xenomorph/on_sdd_grace_period_end()
-	. = ..()
-	if(!.)
-		return
-	if(client)
-		return
-	if (SSticker.current_state != GAME_STATE_PLAYING)
-		return
-
-	var/mob/picked = get_alien_candidate()
-	if(!picked)
-		return
-
-	SSticker.mode.transfer_xeno(picked, src)
-
-	to_chat(src, "<span class='xenoannounce'>We are an old xenomorph re-awakened from slumber!</span>")
-	playsound_local(get_turf(src), 'sound/effects/xeno_newlarva.ogg')
-
-
-/mob/living/carbon/verb/middle_mousetoggle()
-	set name = "Toggle Middle/Shift Clicking"
-	set desc = "Toggles between using middle mouse click and shift click for selected ability use."
-	set category = "IC"
-
-	middle_mouse_toggle = !middle_mouse_toggle
-	if(!middle_mouse_toggle)
-		to_chat(src, "<span class='notice'>The selected special ability will now be activated with shift clicking.</span>")
-	else
-		to_chat(src, "<span class='notice'>The selected special ability will now be activated with middle mouse clicking.</span>")
 
 /mob/living/carbon/set_stat(new_stat)
 	. = ..()
@@ -493,3 +375,11 @@
 	else if(. == UNCONSCIOUS)
 		adjust_blindness(-1)
 		disabilities &= ~DEAF
+
+/mob/living/carbon/human/set_stat(new_stat) //registers/unregisters critdragging signals
+	. = ..()
+	if(new_stat == UNCONSCIOUS)
+		RegisterSignal(src, COMSIG_MOVABLE_PULL_MOVED, /mob/living/carbon/human.proc/oncritdrag)
+		return
+	if(. == UNCONSCIOUS)
+		UnregisterSignal(src, COMSIG_MOVABLE_PULL_MOVED)

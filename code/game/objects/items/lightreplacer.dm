@@ -18,12 +18,6 @@
 // It will need to be manually refilled with lights.
 // If it's part of a robot module, it will charge when the Robot is inside a Recharge Station.
 
-#define LIGHT_OK 0
-#define LIGHT_EMPTY 1
-#define LIGHT_BROKEN 2
-#define LIGHT_BURNED 3
-
-
 /obj/item/lightreplacer
 
 	name = "light replacer"
@@ -35,6 +29,8 @@
 
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
+
+	w_class = WEIGHT_CLASS_SMALL
 
 	var/max_uses = 50
 	var/uses = 0
@@ -60,11 +56,11 @@
 			return
 
 		if(!G.use(1))
-			to_chat(user, "<span class='warning'>You need one sheet of glass to replace lights.</span>")
+			to_chat(user, span_warning("You need one sheet of glass to replace lights."))
 			return
 
 		AddUses(5)
-		to_chat(user, "<span class='notice'>You insert a piece of glass into \the [src]. You have [uses] lights remaining.</span>")
+		to_chat(user, span_notice("You insert a piece of glass into \the [src]. You have [uses] lights remaining."))
 
 	else if(istype(I, /obj/item/light_bulb))
 		var/obj/item/light_bulb/L = I
@@ -107,7 +103,7 @@
 	if(target.status != LIGHT_OK)
 		if(CanUse(U))
 			if(!Use(U)) return
-			to_chat(U, "<span class='notice'>You replace the [target.fitting] with the [src].</span>")
+			to_chat(U, span_notice("You replace the [target.fitting] with the [src]."))
 
 			if(target.status != LIGHT_EMPTY)
 
@@ -127,11 +123,11 @@
 			target.status = L2.status
 			target.switchcount = L2.switchcount
 			target.brightness = L2.brightness
-			target.on = target.has_power()
+			target.light_on = target.has_power()
 			target.update()
 			qdel(L2)
 
-			if(target.on && target.rigged)
+			if(target.light_on && target.rigged)
 				target.explode()
 			return
 
@@ -151,7 +147,3 @@
 	else
 		return 0
 
-#undef LIGHT_OK
-#undef LIGHT_EMPTY
-#undef LIGHT_BROKEN
-#undef LIGHT_BURNED

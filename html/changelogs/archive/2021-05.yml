@@ -1,0 +1,432 @@
+2021-05-01:
+  BraveMole:
+  - bugfix: Negative larva fixed
+  - qol: CIC orders icons are now red when the order is on cooldown
+  - balance: Cooldown of orders is now 30 seconds
+2021-05-02:
+  BraveMole:
+  - code_imp: Linters for pixel z / pixel w and for centcomm with two m
+  - bugfix: Small silo cannot be placed in medium-high pop
+  - bugfix: Cannot vote for crash when pop is > 40
+  - bugfix: Corpses are no longer invisible in cloak nades
+  TG-Eris:
+  - bugfix: Edited the /obj/item/storage/internal/tie/holster path to allow for the
+      standard_machinepistol
+  TiviPlus:
+  - code_imp: HUD tracker code improvements
+  - bugfix: Open helmets use the correct colors and can be colored
+  - bugfix: Minor sulaco fix
+  - qol: APC screens now glow
+  - qol: The Lobby UI title text now looks nicer
+  - qol: Fixed the lobby icon by Gohunt being squashed
+  - bugfix: fixed lobby UI not updating on character changes
+  - code_imp: improved attachment code
+  Wayland-Smithy:
+  - bugfix: Fixed throw force damage delay for xenos.
+  psykzz:
+  - bugfix: bump attack toggle message was inverted
+  - bugfix: defenders laying down while fortified
+2021-05-03:
+  AyyRobotics:
+  - rscadd: Added the Barrenquilla Mining Facility
+  - rscadd: Added some fluff lore and things to be expanded upon later.
+  - rscdel: Removed old Lava Outpost
+  - imageadd: added some sprites for areas and other non-important things.
+2021-05-04:
+  Arturlang:
+  - rscadd: You can now toggle TGUI window compability mode from the preferences tab
+      too
+  BraveMole:
+  - qol: You can leave the larva queue. Also, a new action to join/leave the queue
+      gave to observers
+  - rscadd: Tadpole is reworked. New layout, can hover, no cooldown to land/take off.
+  TiviPlus:
+  - code_imp: A number of backend icon changes
+  Wayland-Smithy:
+  - code_imp: Two-handed weapons can no longer be picked up with a macro.
+2021-05-05:
+  BraveMole:
+  - bugfix: Silo will stop screaming on hijack
+  DerrickChamberlain:
+  - qol: Fixes engineering prep
+  - qol: adds Seed extractor to hydro
+  - qol: adds Research Fax machine
+  - qol: Fixes firedoors in medbay
+  - qol: adds firedoors to the new section of the Sulaco
+  - qol: Minor tweaks.
+  SkeletalElite:
+  - imageadd: Added new "Glass" UI style
+  SplinterGP:
+  - balance: TerraGov made suppressors remove tracers from bullets using space kraut
+      magic.
+  Swagile:
+  - rscadd: Adds structural support to LV caves; there are now indestructible rock
+      walls in certain parts of the caves to prevent digging around the entire mountain,
+      or making huge openings. Certain lanes, however, remain open for PC usage.
+  - rscadd: Adds several new flanks in all of the caves, while closing off others;
+      far west and east caves are now less of a deathtrap for xenos AND marines alike.
+  - rscadd: Adds in a new, smaller bridge near west caves, and repairs all catwalks
+      + bridges currently on LV.
+  - rscadd: Opens up a lot of grass areas, turning them to dirt so that Colony is
+      not as bad to fight in. This includes around bridges to make them easier to
+      fight around.
+  - rscadd: Adds in a few more flanks with dirt in Colony to give more choices for
+      xenos, alongside more danger for marines.
+  - balance: Makes west LZ-2 into South LZ-2; it is now placed near where Engineering
+      used to be.
+  - balance: Engineering is now moved near Caves, exactly where Tfort was. Tfort is
+      no more.
+  - balance: Extended the caves near engineering and made another flank into caves
+      which can be used by xenos to flank but can also be secured by marines to push
+      into caves.
+  - balance: Adds a small amount of turrets around some of the new flanks.
+  TiviPlus:
+  - rscdel: Removed unused map
+  Walarks:
+  - balance: added a check for whether there is a wall at/behind/left/right of a silo
+      spot before being able to place one
+  Wayland-Smithy:
+  - spellcheck: Clarified that the right click toggle button (en/dis)ables the context
+      menu and not the entire button.
+  psykzz:
+  - bugfix: fixed cold showers being hot
+2021-05-06:
+  BraveMole:
+  - rscadd: HvH vendors are now tabbed vendors
+  - rscdel: Remove fulton beacon from req
+  SkeletalElite:
+  - balance: You can tac reload while moving
+  SplinterGP:
+  - balance: PPSh now fits on back.
+  TheOneAndMightyRed:
+  - rscadd: Normandy dropship currently only on debugdalus
+  - rscadd: Shuttle Computer tgui
+  - qol: Shuttle computers (the on in hangar, CIC and LZs) now automatically relink
+      to the active dropship
+  - imageadd: minor spritework on the normandy tileset
+  - code_imp: Multiple shuttles cannot have the same port as their destination
+  - code_imp: Changed shuttle computer typepaths to allow inheritance
+  TiviPlus:
+  - bugfix: fixed lobby characters not setting properly
+  - qol: Jaeger visors now glow in the dark, this can also be toggled with right clicking
+      on the helmet
+  Wayland-Smithy:
+  - bugfix: Fixed resistance_flags for important xeno structures, unacidable + dropship
+      immune.
+  - qol: Added DROPSHIP_IMMUNE resistance flag to the VV bitfields list.
+2021-05-07:
+  jroinc:
+  - balance: Razorburn starts at full HP.
+2021-05-08:
+  jroinc:
+  - bugfix: fixed two exploits allowing production of arbitrarily large amounts of
+      metal
+2021-05-09:
+  BraveMole:
+  - balance: Make xeno stings (larval and neuro) no longer instant. It takes 0.5 seconds
+      to get first sting
+  - balance: Resin door opens instantly to xenos, more HP, closes automaticly really
+      fast, doesn't stop flamer fire. Twice the plasma price, twice the building time
+  - bugfix: Invisible shutters
+  SkeletalElite:
+  - qol: Context/right click/verb menu toggle now changes whether or not you must
+      hold shift to access the menu instead of disabling it completely
+  Surrealaser:
+  - balance: Wraiths can no longer Banish while incorporeal.
+  - balance: Phase Shift wind up increased from 1 second to 2 seconds. There is no
+      stun upon phasing in anymore.
+  - balance: Phase Shift initial cost reduced from 75 to 25 + 4 plasma per tile traveled
+      when phasing in (max 100 extra). Wraiths take Brute damage + sunder equal to
+      this extra plasma cost they cannot afford to pay from their plasma stores.
+  - balance: Phasing In in any tile that you couldn't normally occupy (i.e. has dense
+      non-climbables) reverts you to your initial location. However, you no longer
+      take damage/stun for doing so.
+  - qol: Phase Shift now has toggling behaviour; using it again while phased out Phases
+      In at the space you currently occupy. Resync now cancels Phase Shift and reverts
+      you to your initial location.
+  - code_imp: Banished targets are now emptied of all living mobs before being sent
+      to Brazilspace.
+  Wayland-Smithy:
+  - qol: Damage taken from harmful sand storms now comes with a combat log notification.
+  - bugfix: Fixed psy drain not working on some corpses which it should.
+  XSlayer300:
+  - rscadd: Added both Holo and Minimalist UI, from Bay-related servers.
+2021-05-11:
+  BraveMole:
+  - rscadd: Emotes keybinds, 10 custom me/say emotes keybinds
+  - bugfix: No longer duplicate minimap when changing squad
+  - balance: FC, SO, Captain and synth will always be visible on squad minimap
+  - bugfix: Fix hijack state not being registered
+  - bugfix: You can set your synth name again
+  - bugfix: You can mute/activate xeno health alert in gamepref again
+  - bugfix: No longer possible to cryo dead marines
+  - bugfix: Ahelp no longer timeout
+  Surrealaser:
+  - qol: Xeno Chem HUD will now properly display all Xeno chems human victims are
+      afflicted by.
+  - qol: Removes an excess cooldown notification from Phase Shift.
+  TheOneAndMightyRed:
+  - rscadd: New totally not butchered ammo box
+  - rscadd: New grenade boxes
+  - rscdel: Old ammo box
+  - rscdel: Old grenade boxes
+  - qol: New ammo box fits more stuff like gpmg/ lasgun cells and ammo packets
+  - imageadd: Ammo box sprites and mini ammo icons
+  - qol: cloakbomb smoke grenade box now in req vendor. shared vending 50 -> 25
+  - qol: M15 grenade boxes now hold 25 instead of 15. shared vending 50 -> 30
+  - rscadd: Mk1 Jaeger modules in armor vendor
+  Wayland-Smithy:
+  - bugfix: Fixed the xeno hud not updating their victims psy status symbol after
+      headbite.
+  - bugfix: Xeno turrets crushed by alamo landing no longer make acid smoke.
+  - admin: DSAY no longer pesters mentors who cancel or submit an empty message with
+      a notice about needing to be dead to do the thing they canceled doing.
+2021-05-13:
+  BraveMole:
+  - code_imp: No more VSC warning
+  David Stormwell, Tiviplus, MJP, Kuro, RenGusta:
+  - rscadd: Added a entire set of TE Laser guns!
+  - rscdel: Removed the Yee old Lasgun from current marine vendors.
+  - balance: Laser guns do seem to affect balance a tad!
+  - soundadd: Added a bunch of new sounds and sights for the guns!
+  - imageadd: Added a bunch of new sounds and sights for the guns!
+  SplinterGP:
+  - refactor: refactors how the guns track what attachments it has, doens't affect
+      gameplay.
+  TiviPlus:
+  - qol: Right click can now be used on storage items to immediately draw the topmost
+      item
+  Walarks:
+  - bugfix: fixed vali not deactivating if activated and immediately after that the
+      exoskeleton is unequipped
+  Wayland-Smithy:
+  - qol: Codex now contains info on Bull's various charge modes.
+  - qol: You will now be notified of any active testmerges automatically when you
+      login.
+  - balance: Automated miners require an open side to properly operate.
+  - qol: Groundmap Vote is now the last of the post round automatic polls instead
+      of the first.
+2021-05-15:
+  Alterist:
+  - rscadd: PoS prep rooms have been rearranged to allow for better fung shui, also
+      to let more than 3 medics gear up at the same time, but who cares about that?
+  - rscadd: PoS medical have been expanded and rearranged slightly, there's now a
+      tiny break room and a bit more space to work with
+  BraveMole:
+  - code_imp: Support for faction based requisition
+  - rscadd: You can sell enemy human fighters (SOM, sectoids, things like that). Leaders
+      are worth more. You can use sell_pad, fultons, or the req shuttle zone
+  - rscdel: Remove the export history part of the req ui
+  - bugfix: Wraith blink has its keybind back
+  - rscadd: Corpses spawning on map will now have a death that makes sense with the
+      gamemode (siloed in hunt, cocooned in distress)
+  - rscdel: No longer any eggs on the map
+  - qol: Maps are now clean of everything related to xeno in extended mode, to allow
+      easier HvH events
+  - code_imp: Linters to prevent adding directly resin objects
+  - bugfix: Me is fixed by me cause it was broken by me.
+  - bugfix: You can chose your hair now
+  - bugfix: runtime on prae spit
+  - admin: Runtimes have their own perm
+  - bugfix: Supply console fixed
+  Hyper2Snyper and Ciel:
+  - rscadd: Adds the Martini Henry Lever Action rifle and a "belt" for drawing single
+      shells to load.
+  - code_imp: Some work to un-shitcode the handful code.
+  Pariah919:
+  - balance: webbing is bulky now
+  Surrealaser:
+  - qol: Banish now toggles off; Recall removed. To end Banish early while self-banished
+      use Banish on self or use a Banish keybind.
+  Wayland-Smithy:
+  - bugfix: Fixed Xeno (scatter) spit targeting ignoring body zone selection.
+  - bugfix: Fixed the xeno tracker not pinpointing the active nuke during crash.
+  XSlayer300:
+  - bugfix: Minor fixes to Terra Experimental weapons and ammo.
+  fernandos13:
+  - qol: Rclick now lets you change the reagent transfer on ANY reagent container
+  lovegreenstuff:
+  - balance: lowered TP14 sunder to 1.4, kept most commonly used ammo types at 2.
+  - balance: changes TP14 to 1.65, buffs TP23 bullet sunder to 2.15.
+2021-05-16:
+  BraveMole:
+  - balance: Most surplus supplies have now unlimited stock, rather that gigantic
+      one (like t12 ammo) or arbitrairy one (like 10 webbings?)
+  - bugfix: Resin walls no longer invicible
+  - bugfix: Req fixed again
+  - bugfix: Export history
+  Surrealaser:
+  - bugfix: Hugger trap alert output fixed.
+  Wayland-Smithy:
+  - bugfix: Fixed Xeno psy status HUD not updating for some mobs after draining.
+2021-05-17:
+  TheOneAndMightyRed:
+  - rscadd: Compact ammo boxes. (Craftable using cardboard) (Prefilled in req)
+  - rscdel: Old prefilled ammo boxes
+  - rscdel: Useless req ammo orders
+  - qol: More prefilled ammo boxes in req vendor
+  - qol: Ammo boxes with only 1 type of ammo in them now directly puts the last mag
+      in your hand if used.
+  - imageadd: More ammo box sprites and overlays
+2021-05-18:
+  BraveMole:
+  - rscadd: Psy points on hunt too, but only from generators
+  - balance: You can jump over razorwire with jetpack
+  - balance: You can drag someone while jetpacking. Carefull, any obstacle will block
+      the person/object you are holding
+  - balance: You can use flamer tanks to refuel the jetpack
+  - balance: Slightly more fuel in the jetpack (75), so it matches a large fuel tank
+  - bugfix: Larva on minimap
+  - bugfix: No longer can break infinite supplies by restocking
+  Swagile:
+  - balance: Tadpole has been made into a true Clowncar, Boxpol, minitad.
+  Wayland-Smithy:
+  - qol: Xeno tracker target can be updated while resting.
+  - bugfix: Fixed silos generating larva during Hunt.
+2021-05-20:
+  Surrealaser:
+  - code_imp: Standardizes xeno structures/buildables categories for future changes.
+  - bugfix: Fixes xeno structure stacking.
+  - qol: Resin pods no longer block buildings; QOL.
+  Wayland-Smithy:
+  - bugfix: Fixed get active players alive_check.
+  - spellcheck: Fixed OOC wording on small silo text when there are too many players.
+2021-05-21:
+  BraveMole:
+  - code_imp: Setting to remove some supply packs in HVH
+  - code_imp: Removed useless var in supply packs
+  - bugfix: Warrior lunge more reliable
+  - bugfix: Restocking works
+  Enukar:
+  - balance: CAS flares now cost 5 supply poinsts instead of 10.
+  - balance: T-72 RPG can be ordered individually.
+  - balance: Quickdeploy cades can be ordered individually.
+  - balance: Deployable cameras can be ordered individually.
+  Pariah919:
+  - balance: added a marine barrel attachment that makes bullets faster
+  Pill-U:
+  - bugfix: Sandbag barricade icons now update when repaired
+  Surrealaser:
+  - qol: Readded Wraith's Recall due to popular demand so Wraiths can click spam Banish
+      again.
+  TheOneAndMightyRed:
+  - bugfix: random char runtimes
+  Wayland-Smithy:
+  - rscadd: Crusher's and Bull's charges now double as snow plows!
+  - bugfix: Fixed synths being able to pull xenos.
+  hyper2snyper:
+  - bugfix: Reunites the Martini-Henry with its sprites. Rejoice!
+2021-05-22:
+  Alterist:
+  - rscadd: new and improved(?) TGS Theseus, Olympia-Class Assault Transport Block-II
+  BraveMole:
+  - rscadd: Rebel faction
+  - code_imp: More support for faction in req
+  - bugfix: Fixed Psy points on hunt
+2021-05-23:
+  BraveMole:
+  - rscadd: Keybind for vent crawl
+  - bugfix: Fix ert shuttles and canterbury
+  David-Stormwell:
+  - balance: rebalanced lasers to have falloff damage and increase/decrease in fire
+      rate accordingly, as well as sniper now having aimmode.
+  - bugfix: fixes some white on the sniper's barrel as well as few other small fixes
+      to code that I missed in my first laser PR.
+  Surrealaser:
+  - qol: Resin pods now actually no longer block most buildings.
+2021-05-24:
+  SplinterGP:
+  - refactor: tgui tooltips have been moved to a new system that keeps them within
+      bounds of the screen.
+  - refactor: Converted the changelog popup to TGUI
+2021-05-25:
+  Alterist:
+  - bugfix: The spontaneously existing micro-cosmos that was hiding under the CMO's
+      office door on the Pillar of Spring have been contained and sent to Nanotrasen.
+  - rscadd: As a replacement/bribe, NT installed another chemistry room, rejoice!
+  BraveMole:
+  - bugfix: Fix AI not being able to give orders ground side
+  - balance: Damage from friendly fire is reduced a tiny bit
+  - code_imp: Jatum added
+  - bugfix: Fix the anti-camp xeno area on barrenquilla
+  Pariah919:
+  - balance: medical, general and engineering jaeger storage no longer slow you down
+      at all, from 0.1.
+  RenGusta:
+  - balance: buffs T19 ROF and scatter
+  Surrealaser:
+  - qol: Tail Sweep is now used instantly when clicked or its hot key is used.
+  - code_imp: Tail Sweep cosmetics/sound improved.
+  - bugfix: Evasion now fails as it should if the runner is targeted by flamethrower
+      projectiles, or hasn't moved in the past 0.5 seconds.
+2021-05-26:
+  Alterist:
+  - bugfix: Fixes Theseus Issues
+  - rscadd: To celebrate the 10th anniversary of the Battle of LV-426, TerraGov have
+      teamed up with everyone's favourite toy manufacturer, Cuddles Corporation, to
+      produce a limited edition (not really) Runner plushie. Get yours today!
+  - rscadd: also adds Fumos, sprited by Infared on the CEV Eris Discord
+  BraveMole:
+  - code_imp: Minimap support for factions
+  - code_imp: Squad hud support for factions
+  - code_imp: Overwatch support for factions
+  - bugfix: Fix minimap being duplicated when changing job/squad
+  - balance: Psy drain from 60 psy points to 40
+  - balance: Cocoon now only works for 5 minutes, so it produces 80 points rather
+      than 160 but is less risky to make
+  - balance: Psy points generated from generators are reduced by 25%
+  jroinc:
+  - rscadd: Nanoblood
+  - rscadd: Medic Blood vendor access
+  - rscdel: Removed QC+ and peri+ from the wrenchable vendor. Medics, quiver in fear!
+  - balance: rebalanced many chems, and changed a few autoinjectors, details in main
+      PR body
+2021-05-27:
+  TiviPlus:
+  - bugfix: fixed squad over role not working consistently
+  - bugfix: fixed marines being unable to join
+  - bugfix: fixed some squads being unevenly stacked when it came to marine distribution
+  Walarks:
+  - code_imp: added SSpersistence and support for real-time-based progression of stuff
+  jroinc:
+  - balance: Airlocks have melee armor
+2021-05-28:
+  BraveMole:
+  - config: Extended now is in modes.txt
+  - rscadd: Keybinds for unloading gun and underrail attachments
+  - bugfix: Fix supply drop console
+  SplinterGP:
+  - balance: revolver barrel is now an attachment that comes with the revolver that
+      makes it larget(not fit in bags) removing this attachment makes the revolver
+      weaker in favor of making it fit in bags.
+  - code_imp: optimized item zoom code a bit.
+  TiviPlus:
+  - qol: the powerfist now uses "balloon text" when changing power levels
+  - refactor: refactored udders
+  Wayland-Smithy:
+  - admin: Fixed admin COLOR perm.
+  - balance: Body blocking xeno chargers while they are in CHARGE_BUILDINGUP phase
+      no longer resets their momentum if they shuffle through you.
+  - bugfix: Fixed some xeno charger movement signal handlers not checking for null
+      directions.
+2021-05-29:
+  Alterist:
+  - bugfix: fixed Theseus webmap
+  - rscadd: Revamped some parts of Barrenquilla.
+  BraveMole:
+  - bugfix: Should fix synth blood loss
+  - bugfix: gun can reload now
+  TiviPlus:
+  - code_imp: client button hold optimizations
+  - bugfix: Sanatize command announces better
+2021-05-30:
+  BraveMole:
+  - balance: Blue fire price reduced to 60 from 100
+  - balance: Blue fire firedelay reduced to 2 seconds (rather than 3.5)
+  - bugfix: fix overwatch
+  Surrealaser:
+  - bugfix: Hugger traps can now explode normally.
+  - bugfix: Xeno pings are now visible by xenos only.
+2021-05-31:
+  Walarks:
+  - code_imp: changed xeno structures typepaths, adds xeno_structure_flags var

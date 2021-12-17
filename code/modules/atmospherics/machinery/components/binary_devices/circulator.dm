@@ -35,7 +35,7 @@
 		return
 	anchored = !anchored
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-	to_chat(user, "<span class='notice'>You [anchored?"secure":"unsecure"] [src].</span>")
+	to_chat(user, span_notice("You [anchored?"secure":"unsecure"] [src]."))
 
 
 	var/obj/machinery/atmospherics/node1 = nodes[1]
@@ -84,7 +84,7 @@
 
 /obj/machinery/atmospherics/components/binary/circulator/multitool_act(mob/living/user, obj/item/I)
 	mode = !mode
-	to_chat(user, "<span class='notice'>You set [src] to [mode?"cold":"hot"] mode.</span>")
+	to_chat(user, span_notice("You set [src] to [mode?"cold":"hot"] mode."))
 	return TRUE
 
 /obj/machinery/atmospherics/components/binary/circulator/screwdriver_act(mob/user, obj/item/I)
@@ -92,7 +92,7 @@
 		return TRUE
 	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 	playsound(src.loc, 'sound/items/screwdriver.ogg', 25, 1)
-	to_chat(user, "<span class='notice'>You [CHECK_BITFIELD(machine_stat, PANEL_OPEN)?"open":"close"] the panel on [src].</span>")
+	to_chat(user, span_notice("You [CHECK_BITFIELD(machine_stat, PANEL_OPEN)?"open":"close"] the panel on [src]."))
 	return TRUE
 
 /obj/machinery/atmospherics/components/binary/circulator/setPipingLayer(new_layer)
@@ -109,9 +109,9 @@
 		return
 
 	if(anchored)
-		to_chat(usr, "<span class='danger'>[src] is anchored!</span>")
+		to_chat(usr, span_danger("[src] is anchored!"))
 		return
 
 	flipped = !flipped
-	to_chat(usr, "<span class='notice'>You flip [src].</span>")
+	to_chat(usr, span_notice("You flip [src]."))
 	update_icon()

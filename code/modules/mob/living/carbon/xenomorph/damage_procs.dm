@@ -4,13 +4,12 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/ex_act(severity)
-	if(status_flags & GODMODE)
+	if(status_flags & (INCORPOREAL|GODMODE))
 		return
 
 	if(severity < EXPLODE_LIGHT) //Actually means higher.
-		for(var/i in stomach_contents)
-			var/mob/living/carbon/prey = i
-			prey.ex_act(severity + 1)
+		if(eaten_mob)
+			eaten_mob.ex_act(severity + 1)
 	var/bomb_armor = soft_armor.getRating("bomb")
 	var/b_loss = 0
 	var/f_loss = 0
@@ -45,8 +44,8 @@
 					add_slowdown(1)
 					return
 				if(XENO_BOMB_RESIST_3 to XENO_BOMB_RESIST_4)
-					b_loss = rand(50, 60)
-					f_loss = rand(50, 60)
+					b_loss = rand(50, 50)
+					f_loss = rand(50, 50)
 					add_slowdown(2)
 					adjust_sunder(35)
 				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
@@ -89,9 +88,8 @@
 					adjust_stagger(4)
 					add_slowdown(4)
 
-	apply_damage(b_loss, BRUTE)
-	apply_damage(f_loss, BURN)
-	UPDATEHEALTH(src)
+	apply_damage(b_loss, BRUTE, updating_health = TRUE)
+	apply_damage(f_loss, BURN, updating_health = TRUE)
 
 
 /mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
@@ -135,32 +133,71 @@
 
 	regen_power = -xeno_caste.regen_delay //Remember, this is in deciseconds.
 
+	if(!damage) //If we've actually taken damage, check whether we alert the hive
+		return
+
+	if(!COOLDOWN_CHECK(src, xeno_health_alert_cooldown))
+		return
+	//If we're alive and health is less than either the alert threshold, or the alert trigger percent, whichever is greater, and we're not on alert cooldown, trigger the hive alert
+	if(stat == DEAD || (health > max(XENO_HEALTH_ALERT_TRIGGER_THRESHOLD, maxHealth * XENO_HEALTH_ALERT_TRIGGER_PERCENT)) || xeno_caste.caste_flags & CASTE_DO_NOT_ALERT_LOW_LIFE)
+		return
+
+	var/list/filter_list = list()
+	for(var/i in hive.get_all_xenos())
+
+		var/mob/living/carbon/xenomorph/X = i
+		if(!X.client) //Don't bother if they don't have a client; also runtime filters
+			continue
+
+		if(X == src) //We don't need an alert about ourself.
+			filter_list += X //Add the xeno to the filter list
+
+		if(X.client.prefs.mute_xeno_health_alert_messages) //Build the filter list; people who opted not to receive health alert messages
+			filter_list += X //Add the xeno to the filter list
+
+	xeno_message("Our sister [name] is badly hurt with <font color='red'>([health]/[maxHealth])</font> health remaining at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, hivenumber, FALSE, src, 'sound/voice/alien_help1.ogg', TRUE, filter_list, /obj/screen/arrow/silo_damaged_arrow)
+	COOLDOWN_START(src, xeno_health_alert_cooldown, XENO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
+
 	return damage
 
+///Handles overheal for xeno receiving damage
+#define HANDLE_OVERHEAL(amount) \
+	if(overheal && amount > 0) { \
+		var/reduction = min(amount, overheal); \
+		amount -= reduction; \
+		adjustOverheal(src, -reduction); \
+	} \
 
 /mob/living/carbon/xenomorph/adjustBruteLoss(amount, updating_health = FALSE)
+
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BRUTE_DAMAGE, amount, amount_mod)
 	for(var/i in amount_mod)
 		amount -= i
 
-	bruteloss = clamp(bruteloss + amount, 0, maxHealth - xeno_caste.crit_health)
+	HANDLE_OVERHEAL(amount)
+
+	bruteloss = max(bruteloss + amount, 0)
 
 	if(updating_health)
 		updatehealth()
 
 
 /mob/living/carbon/xenomorph/adjustFireLoss(amount, updating_health = FALSE)
+
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BURN_DAMAGE, amount, amount_mod)
 	for(var/i in amount_mod)
 		amount -= i
 
-	fireloss = clamp(fireloss + amount, 0, maxHealth - xeno_caste.crit_health)
+	HANDLE_OVERHEAL(amount)
+
+	fireloss = max(fireloss + amount, 0)
 
 	if(updating_health)
 		updatehealth()
 
+#undef HANDLE_OVERHEAL
 
 /mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)
 	if(!damage)
@@ -196,8 +233,8 @@
 				splash_chance += 30 //Same tile? BURN
 			splash_chance += distance * -15
 			i++
-			victim.visible_message("<span class='danger'>\The [victim] is scalded with hissing green blood!</span>", \
-			"<span class='danger'>You are splattered with sizzling blood! IT BURNS!</span>")
+			victim.visible_message(span_danger("\The [victim] is scalded with hissing green blood!"), \
+			span_danger("You are splattered with sizzling blood! IT BURNS!"))
 			if(victim.stat != CONSCIOUS && !(victim.species.species_flags & NO_PAIN) && prob(60))
 				victim.emote("scream") //Topkek
 			victim.take_limb_damage(0, rand(10, 25)) //Sizzledam! This automagically burns a random existing body part.

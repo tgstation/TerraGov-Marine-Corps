@@ -11,7 +11,8 @@
 	return ..()
 
 /obj/machinery/computer/droppod_control/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("relink")
@@ -21,9 +22,11 @@
 				if(pod.z == z)
 					LAZYADD(linked_pods, pod)
 		if("launchall")
+			#ifndef TESTING
 			if(world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
-				to_chat(usr, "<span class='notice'>Unable to launch drop pods, the ship has not yet reached the combat area.</span>")
+				to_chat(usr, span_notice("Unable to launch drop pods, the ship has not yet reached the combat area."))
 				return
+			#endif
 			log_game("[usr] has dropped all currently linked droppods, total:[LAZYLEN(linked_pods)]")
 			for(var/p in linked_pods)
 				var/obj/structure/droppod/pod = p
@@ -39,9 +42,8 @@
 	data["pods"] = LAZYLEN(linked_pods)
 	return data
 
-/obj/machinery/computer/droppod_control/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-							datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/droppod_control/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, ui_key, "DroppodControl", "[name]", 450, 250, master_ui, state)
+		ui = new(user, src, "DroppodControl", "[name]")
 		ui.open()

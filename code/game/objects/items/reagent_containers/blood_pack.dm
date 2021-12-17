@@ -19,7 +19,7 @@
 /obj/item/reagent_containers/blood/on_reagent_change()
 	update_icon()
 
-/obj/item/reagent_containers/blood/update_icon()
+/obj/item/reagent_containers/blood/update_icon_state()
 
 	var/percent = PERCENT(reagents.total_volume / volume)
 	switch(percent)

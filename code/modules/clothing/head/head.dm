@@ -5,6 +5,8 @@
 	flags_equip_slot = ITEM_SLOT_HEAD
 	w_class = WEIGHT_CLASS_SMALL
 	blood_sprite_state = "helmetblood"
+	attachments_by_slot = list(ATTACHMENT_SLOT_BADGE)
+	attachments_allowed = list(/obj/item/armor_module/armor/badge)
 	var/anti_hug = 0
 
 /obj/item/clothing/head/update_clothing_icon()
@@ -42,7 +44,7 @@
 
 
 /obj/item/clothing/head/tgmcberet
-	name = "\improper TGMC beret"
+	name = "\improper Dark gray beret"
 	desc = "A hat typically worn by the field-officers of the TGMC. Occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	item_icons = list(
@@ -52,24 +54,45 @@
 	icon_state = "beret"
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
 	flags_item_map_variant = NONE
+	flags_armor_features = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/tgmcberet/tan
+	name = "\improper Tan beret"
 	icon_state = "berettan"
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 /obj/item/clothing/head/tgmcberet/red
+	name = "\improper Red badged beret"
 	icon_state = "beretred"
 	flags_item_map_variant = NONE
 
 /obj/item/clothing/head/tgmcberet/red2
+	name = "\improper Red beret"
 	icon_state = "beretred2"
 	flags_item_map_variant = NONE
 
+/obj/item/clothing/head/tgmcberet/bloodred
+	name = "\improper Blood red beret"
+	icon_state = "bloodred_beret"
+	flags_item_map_variant = NONE
+
+/obj/item/clothing/head/tgmcberet/blueberet
+	name = "\improper Blue beret"
+	icon_state = "blue_beret"
+	flags_item_map_variant = NONE
+
+/obj/item/clothing/head/tgmcberet/darkgreen
+	name = "\improper Dark green beret"
+	icon_state = "darkgreen_beret"
+	flags_item_map_variant = NONE
+
 /obj/item/clothing/head/tgmcberet/green
+	name = "\improper Green beret"
 	icon_state = "beretgreen"
 	flags_item_map_variant = NONE
 
 /obj/item/clothing/head/tgmcberet/snow
+	name = "\improper White beret"
 	icon_state = "beretsnow"
 	flags_item_map_variant = NONE
 
@@ -100,7 +123,7 @@
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
 	var/flipped_cap = FALSE
 	var/base_cap_icon
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	flags_item_map_variant = (ITEM_ICE_VARIANT)
 
 
 /obj/item/clothing/head/tgmccap/verb/fliphat()
@@ -150,7 +173,7 @@
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
 
 /obj/item/clothing/head/headband
-	name = "\improper TGMC headband"
+	name = "\improper Cyan headband"
 	desc = "A rag typically worn by the less-orthodox weapons operators in the TGMC. While it offers no protection, it is certainly comfortable to wear compared to the standard helmet. Comes in two stylish colors."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	item_icons = list(
@@ -160,15 +183,16 @@
 	icon_state = "headband"
 
 /obj/item/clothing/head/headband/red
+	name = "\improper Red headband"
 	icon_state = "headbandred"
 
 /obj/item/clothing/head/headband/rambo
-	name = "headband"
+	name = "\improper Vivid red headband"
 	desc = "It flutters in the face of the wind, defiant and unrestrained, like the man who wears it."
 	icon_state = "headband_rambo"
 
 /obj/item/clothing/head/headband/snake
-	name = "headband"
+	name = "\improper Black headband"
 	desc = "A replica of the headband of a legendary soldier. Sadly it doesn't offer infinite ammo. Yet."
 	icon_state = "headband_snake"
 

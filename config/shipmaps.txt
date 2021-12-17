@@ -28,3 +28,10 @@ endmap
 
 map sulaco
 endmap
+
+map minerva
+endmap
+
+map twin_pillars
+	voteweight 0
+endmap

@@ -7,6 +7,7 @@
 	plane = BLACKNESS_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	invisibility = INVISIBILITY_LIGHTING
+	minimap_color = MINIMAP_AREA
 
 	var/flags_alarm_state = NONE
 
@@ -35,6 +36,8 @@
 	var/pressure = ONE_ATMOSPHERE
 	var/temperature = T20C
 
+	var/parallax_movedir = 0
+
 	///the material the ceiling is made of. Used for debris from airstrikes and orbital beacons in ceiling_debris()
 	var/ceiling = CEILING_NONE
 	///Used in designating the "level" of maps pretending to be multi-z one Z
@@ -52,8 +55,10 @@
 		'sound/ambience/ambigen5.ogg', 'sound/ambience/ambigen6.ogg', 'sound/ambience/ambigen7.ogg', 'sound/ambience/ambigen8.ogg',\
 		'sound/ambience/ambigen9.ogg', 'sound/ambience/ambigen10.ogg', 'sound/ambience/ambigen11.ogg', 'sound/ambience/ambigen12.ogg',\
 		'sound/ambience/ambigen14.ogg', 'sound/ambience/ambiatmos.ogg', 'sound/ambience/ambiatmos2.ogg')
-
-
+	///Used to decide what the minimum time between ambience is
+	var/min_ambience_cooldown = 40 SECONDS
+	///Used to decide what the maximum time between ambience is
+	var/max_ambience_cooldown = 120 SECONDS
 
 /area/New()
 	// This interacts with the map loader, so it needs to be set immediately
@@ -75,27 +80,19 @@
 		power_equip = TRUE
 		power_environ = TRUE
 
-		if(dynamic_lighting == DYNAMIC_LIGHTING_FORCED)
-			dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
-			luminosity = 0
-		else
-			dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
-
 	. = ..()
 
 	blend_mode = BLEND_MULTIPLY // Putting this in the constructor so that it stops the icons being screwed up in the map editor.
 
-	if(!IS_DYNAMIC_LIGHTING(src))
-		add_overlay(/obj/effect/fullbright)
-
 	reg_in_areas_in_z()
+
+	update_base_lighting()
 
 	return INITIALIZE_HINT_LATELOAD
 
 
 /area/LateInitialize()
 	power_change()		// all machines set to current power level, also updates icon
-
 
 
 /area/Destroy()
@@ -105,39 +102,15 @@
 	return ..()
 
 
-/area/Entered(atom/movable/AM)
+/area/Entered(atom/movable/arrived, atom/old_loc)
 	set waitfor = FALSE
-	SEND_SIGNAL(src, COMSIG_AREA_ENTERED, AM)
-	SEND_SIGNAL(AM, COMSIG_ENTER_AREA, src) //The atom that enters the area
-	if(!isliving(AM))
-		return
-
-	var/mob/living/L = AM
-	if(!L.ckey)
-		return
-
-	if(!L.client || !(L.client.prefs.toggles_sound & SOUND_AMBIENCE))
-		return
-
-	if(!prob(35))
-		return
-
-	var/sound = pick(ambience)
-
-	if(!L.client.played)
-		SEND_SOUND(L, sound(sound, repeat = 0, wait = 0, volume = 25, channel = CHANNEL_AMBIENT))
-		L.client.played = TRUE
-		addtimer(CALLBACK(L.client, /client/proc/ResetAmbiencePlayed), 600)
+	SEND_SIGNAL(src, COMSIG_AREA_ENTERED, arrived, old_loc)
+	SEND_SIGNAL(arrived, COMSIG_ENTER_AREA, src, old_loc,) //The atom that enters the area
 
 
-/client/proc/ResetAmbiencePlayed()
-	played = FALSE
-
-
-
-/area/Exited(atom/movable/M)
-	SEND_SIGNAL(src, COMSIG_AREA_EXITED, M)
-	SEND_SIGNAL(M, COMSIG_EXIT_AREA, src) //The atom that exits the area
+/area/Exited(atom/movable/leaver, direction)
+	SEND_SIGNAL(src, COMSIG_AREA_EXITED, leaver, direction)
+	SEND_SIGNAL(leaver, COMSIG_EXIT_AREA, src, direction) //The atom that exits the area
 
 
 /area/proc/reg_in_areas_in_z()
@@ -212,7 +185,7 @@
 		if(E.operating)
 			E.nextstate = OPEN
 		else if(!E.density)
-			INVOKE_ASYNC(E, /obj/machinery/door.proc/close)
+			E.close()
 
 
 /area/proc/air_doors_open()
@@ -223,7 +196,7 @@
 		if(E.operating)
 			E.nextstate = OPEN
 		else if(E.density)
-			INVOKE_ASYNC(E, /obj/machinery/door.proc/open)
+			E.open()
 
 
 /area/proc/firealert()
@@ -238,7 +211,7 @@
 				if(D.operating)
 					D.nextstate = FIREDOOR_CLOSED
 				else if(!D.density)
-					INVOKE_ASYNC(D, /obj/machinery/door.proc/close)
+					D.close()
 		var/list/cameras = list()
 		for (var/obj/machinery/computer/station_alert/a in GLOB.machines)
 			a.triggerAlarm("Fire", src, cameras, src)
@@ -255,7 +228,7 @@
 				if(D.operating)
 					D.nextstate = OPEN
 				else if(D.density)
-					INVOKE_ASYNC(D, /obj/machinery/door.proc/open)
+					D.open()
 
 		for(var/obj/machinery/computer/station_alert/a in GLOB.machines)
 			a.cancelAlarm("Fire", src, src)
@@ -342,3 +315,9 @@
 
 /area/return_gas()
 	return gas_type
+
+///Set this area as a contested zone, that will monitors which faction controls it.
+/area/proc/set_to_contested()
+	if(SSminimaps.initialized)
+		stack_trace("An area was set as contested after SSminimap was initiliazed, it won't be colored")
+	minimap_color = MINIMAP_AREA_CONTESTED_ZONE

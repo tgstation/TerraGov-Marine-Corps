@@ -71,6 +71,10 @@ Administrative related.
 
 /datum/config_entry/flag/log_ooc
 
+/datum/config_entry/flag/log_xooc
+
+/datum/config_entry/flag/log_mooc
+
 /datum/config_entry/flag/log_looc
 
 /datum/config_entry/flag/log_access
@@ -86,6 +90,8 @@ Administrative related.
 /datum/config_entry/flag/log_prayer
 
 /datum/config_entry/flag/log_game
+
+/datum/config_entry/flag/log_asset
 
 /datum/config_entry/flag/log_vote
 
@@ -153,6 +159,9 @@ Administrative related.
 /datum/config_entry/number/notify_new_player_age
 	min_val = -1
 
+/datum/config_entry/number/notify_new_account_age
+	min_val = -1
+
 /datum/config_entry/flag/allow_shutdown
 	protection = CONFIG_ENTRY_LOCKED
 
@@ -190,6 +199,10 @@ Voting
 
 /datum/config_entry/flag/allow_vote_mode
 
+/datum/config_entry/flag/allow_vote_groundmap
+
+/datum/config_entry/flag/allow_vote_shipmap
+
 /datum/config_entry/flag/default_no_vote
 
 /datum/config_entry/flag/no_dead_vote
@@ -206,6 +219,9 @@ Voting
 	config_entry_value = 600
 	integer = FALSE
 	min_val = 0
+
+/// Gives the ability to send players a maptext popup.
+/datum/config_entry/flag/popup_admin_pm
 
 /*
 Master controller and performance related.
@@ -385,3 +401,15 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 /datum/config_entry/number/ff_damage_reset
 	min_val = 0
 	config_entry_value = 30 SECONDS
+
+/datum/config_entry/flag/is_automatic_balance_on
+	config_entry_value = TRUE
+
+/datum/config_entry/number/hard_deletes_overrun_threshold
+	integer = FALSE
+	min_val = 0
+	config_entry_value = 0.5
+
+/datum/config_entry/number/hard_deletes_overrun_limit
+	config_entry_value = 0
+	min_val = 0

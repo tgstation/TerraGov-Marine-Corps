@@ -5,6 +5,12 @@
 /mob/living/proc/getBruteLoss()
 	return bruteloss
 
+///We straight up set bruteloss/brute damage to a desired amount unless godmode is enabled
+/mob/living/proc/setBruteLoss(amount)
+	if(status_flags & GODMODE)
+		return FALSE
+	bruteloss = amount
+
 /mob/living/proc/adjustBruteLoss(amount, updating_health = FALSE)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
@@ -15,6 +21,12 @@
 
 /mob/living/proc/getFireLoss()
 	return fireloss
+
+///We straight up set fireloss/burn damage to a desired amount unless godmode is enabled
+/mob/living/proc/setFireLoss(amount)
+	if(status_flags & GODMODE)
+		return FALSE
+	fireloss = amount
 
 /mob/living/proc/adjustFireLoss(amount, updating_health = FALSE)
 	if(status_flags & GODMODE)
@@ -59,7 +71,14 @@
 /mob/living/proc/adjustStaminaLoss(amount, update = TRUE, feedback = TRUE)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	staminaloss = clamp(staminaloss + amount, -max_stamina_buffer, maxHealth * 2)
+
+	var/stamina_loss_adjustment = staminaloss + amount
+	var/health_limit = maxHealth * 2
+	if(stamina_loss_adjustment > health_limit) //If we exceed maxHealth * 2 stamina damage, half of any excess as oxyloss
+		adjustOxyLoss((stamina_loss_adjustment - health_limit) * 0.5)
+
+	staminaloss = clamp(stamina_loss_adjustment, -max_stamina_buffer, health_limit)
+
 	if(amount > 0)
 		last_staminaloss_dmg = world.time
 	if(update)
@@ -73,13 +92,18 @@
 		updateStamina(feedback)
 
 /mob/living/proc/updateStamina(feedback = TRUE)
-	if(staminaloss < max(health * 1.5,0))
+	if(staminaloss < max(health * 1.5,0) || !(COOLDOWN_CHECK(src, last_stamina_exhaustion))) //If we're on cooldown for stamina exhaustion, don't bother
 		return
-	if(!IsParalyzed())
-		if(feedback)
-			visible_message("<span class='warning'>\The [src] slumps to the ground, too weak to continue fighting.</span>",
-				"<span class='warning'>You slump to the ground, you're too exhausted to keep going...</span>")
-	Paralyze(80)
+
+	if(feedback)
+		visible_message(span_warning("\The [src] slumps to the ground, too weak to continue fighting."),
+			span_warning("You slump to the ground, you're too exhausted to keep going..."))
+
+	ParalyzeNoChain(1 SECONDS) //Short stun
+	adjust_stagger(STAMINA_EXHAUSTION_DEBUFF_STACKS)
+	add_slowdown(STAMINA_EXHAUSTION_DEBUFF_STACKS)
+	adjust_blurriness(STAMINA_EXHAUSTION_DEBUFF_STACKS)
+	COOLDOWN_START(src, last_stamina_exhaustion, LIVING_STAMINA_EXHAUSTION_COOLDOWN) //set the cooldown.
 
 
 /mob/living/carbon/human/updateStamina(feedback = TRUE)
@@ -219,6 +243,12 @@
 /mob/living/proc/restore_all_organs()
 	return
 
+///Heal limbs until the total mob health went up by health_to_heal
+/mob/living/carbon/human/proc/heal_limbs(health_to_heal)
+	var/proportion_to_heal = (health_to_heal < (species.total_health - health)) ? (health_to_heal / (species.total_health - health)) : 1
+	for(var/datum/limb/limb AS in limbs)
+		limb.heal_limb_damage(limb.brute_dam * proportion_to_heal, limb.burn_dam * proportion_to_heal, limb.brute_dam * proportion_to_heal, TRUE)
+	updatehealth()
 
 /mob/living/proc/on_revive()
 	SEND_SIGNAL(src, COMSIG_MOB_REVIVE)
@@ -230,9 +260,12 @@
 	. = ..()
 	revive_grace_time = initial(revive_grace_time)
 	GLOB.alive_human_list += src
+	LAZYADD(GLOB.alive_human_list_faction[faction], src)
 	GLOB.dead_human_list -= src
 	LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
 	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/human_z_changed)
+
+	hud_list[HEART_STATUS_HUD].icon_state = ""
 
 /mob/living/carbon/xenomorph/on_revive()
 	. = ..()
@@ -315,8 +348,7 @@
 
 	//try to find the brain player in the decapitated head and put them back in control of the human
 	if(!client && !mind) //if another player took control of the human, we don't want to kick them out.
-		for(var/i in GLOB.head_list)
-			var/obj/item/limb/head/H = i
+		for(var/obj/item/limb/head/H AS in GLOB.head_list)
 			if(!H.brainmob)
 				continue
 
@@ -333,7 +365,9 @@
 		I.damage = 0
 
 	reagents.clear_reagents() //and clear all reagents in them
-	undefibbable = FALSE
+	REMOVE_TRAIT(src, TRAIT_UNDEFIBBABLE, TRAIT_UNDEFIBBABLE)
+	REMOVE_TRAIT(src, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+	dead_ticks = 0
 	chestburst = 0
 	headbitten = FALSE
 	update_body()
@@ -349,3 +383,51 @@
 	if(stat == DEAD)
 		hive?.on_xeno_revive(src)
 	return ..()
+
+///Revive the huamn up to X health points
+/mob/living/carbon/human/proc/revive_to_crit(should_offer_to_ghost = FALSE, should_zombify = FALSE)
+	if(!has_working_organs())
+		on_fire = TRUE
+		fire_stacks = 15
+		update_fire()
+		QDEL_IN(src, 1 MINUTES)
+		return
+	if(health > 0)
+		return
+	var/mob/dead/observer/ghost = get_ghost()
+	if(istype(ghost))
+		notify_ghost(ghost, "<font size=3>Your body slowly regenerated. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/effects/adminhelp.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = src, action = NOTIFY_JUMP)
+	do_jitter_animation(1000)
+	ADD_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
+	if(should_zombify && (istype(wear_ear, /obj/item/radio/headset/mainship)))
+		var/obj/item/radio/headset/mainship/radio = wear_ear
+		radio.safety_protocol(src)
+	addtimer(CALLBACK(src, .proc/finish_revive_to_crit, should_offer_to_ghost, should_zombify), 10 SECONDS)
+
+///Check if we have a mind, and finish the revive if we do
+/mob/living/carbon/human/proc/finish_revive_to_crit(should_offer_to_ghost = FALSE, should_zombify = FALSE)
+	if(!has_working_organs())
+		on_fire = TRUE
+		fire_stacks = 15
+		update_icon()
+		QDEL_IN(src, 1 MINUTES)
+		return
+	do_jitter_animation(1000)
+	if(!client)
+		if(should_offer_to_ghost)
+			offer_mob()
+			addtimer(CALLBACK(src, .proc/finish_revive_to_crit, FALSE, should_zombify), 10 SECONDS)
+			return
+		REMOVE_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
+		if(should_zombify || istype(species, /datum/species/zombie))
+			AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie/patrolling, src) //Zombie patrol
+			a_intent = INTENT_HARM
+	if(should_zombify)
+		set_species("Strong zombie")
+		faction = FACTION_XENO
+	heal_limbs(- health)
+	set_stat(CONSCIOUS)
+	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /obj/screen/fullscreen/black)
+	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /obj/screen/fullscreen/spawning_in)
+	REMOVE_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
+	SSmobs.start_processing(src)

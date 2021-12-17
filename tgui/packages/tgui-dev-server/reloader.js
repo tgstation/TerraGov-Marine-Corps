@@ -1,9 +1,16 @@
-import { createLogger } from 'common/logging.js';
+/**
+ * @file
+ * @copyright 2020 Aleksej Komarov
+ * @license MIT
+ */
+
 import fs from 'fs';
 import os from 'os';
 import { basename } from 'path';
-import { promisify } from 'util';
+import { DreamSeeker } from './dreamseeker.js';
+import { createLogger } from './logging.js';
 import { resolveGlob, resolvePath } from './util.js';
+import { regQuery } from './winreg.js';
 
 const logger = createLogger('reloader');
 
@@ -36,11 +43,32 @@ export const findCacheRoot = async () => {
     const paths = await resolveGlob(pattern);
     if (paths.length > 0) {
       cacheRoot = paths[0];
-      logger.log(`found cache at '${cacheRoot}'`);
+      onCacheRootFound(cacheRoot);
+      return cacheRoot;
+    }
+  }
+  // Query the Windows Registry
+  if (process.platform === 'win32') {
+    logger.log('querying windows registry');
+    let userpath = await regQuery(
+      'HKCU\\Software\\Dantom\\BYOND',
+      'userpath');
+    if (userpath) {
+      cacheRoot = userpath
+        .replace(/\\$/, '')
+        .replace(/\\/g, '/')
+        + '/cache';
+      onCacheRootFound(cacheRoot);
       return cacheRoot;
     }
   }
   logger.log('found no cache directories');
+};
+
+const onCacheRootFound = cacheRoot => {
+  logger.log(`found cache at '${cacheRoot}'`);
+  // Plant a dummy
+  fs.closeSync(fs.openSync(cacheRoot + '/dummy', 'w'));
 };
 
 export const reloadByondCache = async bundleDir => {
@@ -54,18 +82,41 @@ export const reloadByondCache = async bundleDir => {
     logger.log('found no tmp folder in cache');
     return;
   }
-  const assets = await resolveGlob(bundleDir, './*.+(bundle|hot-update).*');
+  // Get dreamseeker instances
+  const pids = cacheDirs.map(cacheDir => (
+    parseInt(cacheDir.split('/cache/tmp').pop(), 10)
+  ));
+  const dssPromise = DreamSeeker.getInstancesByPids(pids);
+  // Copy assets
+  const assets = await resolveGlob(bundleDir, './*.+(bundle|chunk|hot-update).*');
   for (let cacheDir of cacheDirs) {
     // Clear garbage
-    const garbage = await resolveGlob(cacheDir, './*.+(bundle|hot-update).*');
-    for (let file of garbage) {
-      await promisify(fs.unlink)(file);
+    const garbage = await resolveGlob(cacheDir, './*.+(bundle|chunk|hot-update).*');
+    try {
+      for (let file of garbage) {
+        fs.unlinkSync(file);
+      }
+      // Copy assets
+      for (let asset of assets) {
+        const destination = resolvePath(cacheDir, basename(asset));
+        fs.writeFileSync(destination, fs.readFileSync(asset));
+      }
+      logger.log(`copied ${assets.length} files to '${cacheDir}'`);
     }
-    // Copy assets
-    for (let asset of assets) {
-      const destination = resolvePath(cacheDir, basename(asset));
-      await promisify(fs.copyFile)(asset, destination);
+    catch (err) {
+      logger.error(`failed copying to '${cacheDir}'`);
+      logger.error(err);
     }
-    logger.log(`copied ${assets.length} files to '${cacheDir}'`);
+  }
+  // Notify dreamseeker
+  const dss = await dssPromise;
+  if (dss.length > 0) {
+    logger.log(`notifying dreamseeker`);
+    for (let dreamseeker of dss) {
+      dreamseeker.topic({
+        tgui: 1,
+        type: 'cacheReloaded',
+      });
+    }
   }
 };

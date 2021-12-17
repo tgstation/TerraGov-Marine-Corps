@@ -8,8 +8,6 @@
 	var/active_state = SELF_DESTRUCT_MACHINE_INACTIVE
 	///Whether only marines can activate this. left here in case of admins feeling nice or events
 	var/marine_only_activate = TRUE
-	ui_x = 470
-	ui_y = 290
 
 /obj/machinery/self_destruct/Initialize()
 	. = ..()
@@ -42,7 +40,7 @@
 	if(!.)
 		return
 	if(marine_only_activate && !isterragovjob(user?.job))
-		to_chat(user, "<span class='warning'>The [src] beeps, \"Marine retinal scan failed!\".</span>")
+		to_chat(user, span_warning("The [src] beeps, \"Marine retinal scan failed!\"."))
 		return FALSE
 	return TRUE
 
@@ -51,25 +49,25 @@
 	return ..()
 
 
-/obj/machinery/self_destruct/console/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/self_destruct/console/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "SelfDestruct", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "SelfDestruct", name)
 		ui.open()
 
 /obj/machinery/self_destruct/console/ui_data(mob/user)
 	return list("dest_status" = active_state)
 
 
-/obj/machinery/self_destruct/console/ui_act(action, params)
-	if(..())
+/obj/machinery/self_destruct/console/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("dest_start")
-			to_chat(usr, "<span class='notice'>You press a few keys on the panel.</span>")
-			to_chat(usr, "<span class='notice'>The system must be booting up the self-destruct sequence now.</span>")
+			to_chat(usr, span_notice("You press a few keys on the panel."))
+			to_chat(usr, span_notice("The system must be booting up the self-destruct sequence now."))
 			priority_announce("Danger. The emergency destruct system is now activated. The ship will detonate in T-minus 20 minutes. Automatic detonation is unavailable. Manual detonation is required.", "Priority Alert", sound = 'sound/AI/selfdestruct.ogg')
 			active_state = SELF_DESTRUCT_MACHINE_ARMED
 			var/obj/machinery/self_destruct/rod/I = SSevacuation.dest_rods[SSevacuation.dest_index]
@@ -86,7 +84,7 @@
 				return
 			var/mob/living/user = usr
 			if(!ismarinecommandjob(user.job))
-				to_chat(usr, "<span class='notice'>You don't have the necessary clearance to cancel the emergency destruct system.</span>")
+				to_chat(usr, span_notice("You don't have the necessary clearance to cancel the emergency destruct system."))
 				return
 			if(SSevacuation.cancel_self_destruct())
 				SStgui.close_user_uis(usr, src, "main")
@@ -125,14 +123,14 @@
 
 	switch(active_state)
 		if(SELF_DESTRUCT_MACHINE_ACTIVE)
-			to_chat(user, "<span class='notice'>You twist and release the control rod, arming it.</span>")
+			to_chat(user, span_notice("You twist and release the control rod, arming it."))
 			playsound(src, 'sound/machines/switch.ogg', 25, 1)
 			icon_state = "rod_4"
 			active_state = SELF_DESTRUCT_MACHINE_ARMED
 		if(SELF_DESTRUCT_MACHINE_ARMED)
-			to_chat(user, "<span class='notice'>You twist and release the control rod, disarming it.</span>")
+			to_chat(user, span_notice("You twist and release the control rod, disarming it."))
 			playsound(src, 'sound/machines/switch.ogg', 25, 1)
 			icon_state = "rod_3"
 			active_state = SELF_DESTRUCT_MACHINE_ACTIVE
 		else
-			to_chat(user, "<span class='warning'>The control rod is not ready.</span>")
+			to_chat(user, span_warning("The control rod is not ready."))

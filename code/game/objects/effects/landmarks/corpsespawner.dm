@@ -30,35 +30,45 @@
 	var/corpseid = 0     //Just set to 1 if you want them to have an ID
 	var/corpseidjob = null // Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
 	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Use CAPTAIN if you want it to be all access.
-	var/corpseidicon = null //For setting it to be a gold, silver, centcomm etc ID
-	var/xenovictim = TRUE //whether this person was infected and killed by xenos
-
+	var/corpseidicon = null //For setting it to be a gold, silver, centcom etc ID
 
 /obj/effect/landmark/corpsespawner/Initialize()
 	. = ..()
-	var/mob/living/carbon/human/M = new /mob/living/carbon/human(loc)
+	GLOB.corpse_landmarks_list += src
+
+/obj/effect/landmark/corpsespawner/Destroy()
+	GLOB.corpse_landmarks_list -= src
+	return ..()
+
+/// Create the mob and delete the corpse spawner
+/obj/effect/landmark/corpsespawner/proc/create_mob(death_type)
+	var/mob/living/carbon/human/victim = new(loc)
+	SSmobs.stop_processing(victim)
 	GLOB.round_statistics.total_humans_created-- //corpses don't count
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_humans_created")
+	victim.real_name = name
+	victim.death(silent = TRUE) //Kills the new mob
+	GLOB.dead_human_list -= victim
+	GLOB.dead_mob_list -= victim
+	GLOB.mob_list -= victim
+	victim.timeofdeath = -CONFIG_GET(number/revive_grace_period)
+	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+	ADD_TRAIT(victim, TRAIT_UNDEFIBBABLE, TRAIT_UNDEFIBBABLE)
+	victim.med_hud_set_status()
+	equip_items_to_mob(victim)
+	switch(death_type)
+		if(COCOONED_DEATH) //Just cocooned
+			new /obj/structure/cocoon/opened_cocoon(loc)
+		if(HEADBITE_DEATH) //Headbite but left there
+			var/datum/internal_organ/brain
+			brain = victim.internal_organs_by_name["brain"] //This removes (and later garbage collects) the organ. No brain means instant death.
+			victim.internal_organs_by_name -= "brain"
+			victim.internal_organs -= brain
+			victim.headbitten = TRUE
+			victim.update_headbite()
+	qdel(src)
 
-	M.real_name = name
-	M.death(silent = TRUE) //Kills the new mob
-	M.timeofdeath = -CONFIG_GET(number/revive_grace_period)
-	INVOKE_ASYNC(src, .proc/equip_items_to_mob, M)
-	if(xenovictim)
-		// no damage because limb updates are expensive
-		var/datum/internal_organ/O
-		var/i
-		for(i in list("heart","lungs"))
-			O = M.internal_organs_by_name[i]
-			M.internal_organs_by_name -= i
-			M.internal_organs -= O
-		M.chestburst = 2
-		M.update_burst()
-		//buckle to nest
-		var/obj/structure/bed/nest/victim_nest = locate() in get_turf(src)
-		if(victim_nest)
-			victim_nest.buckle_mob(M, silent = TRUE)
-	return INITIALIZE_HINT_QDEL
+
 
 /obj/effect/landmark/corpsespawner/proc/equip_items_to_mob(mob/living/carbon/human/corpse)
 	if(corpseuniform)
@@ -230,17 +240,6 @@
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/rig/engineering
 
-/obj/effect/landmark/corpsespawner/clown
-	name = "Clown"
-	corpseuniform = /obj/item/clothing/under/rank/clown
-	corpseshoes = /obj/item/clothing/shoes/clown_shoes
-	corpsemask = /obj/item/clothing/mask/gas/clown_hat
-	corpsepocket1 = /obj/item/toy/bikehorn
-	corpseback = /obj/item/storage/backpack/clown
-	corpseid = 1
-	corpseidjob = "Clown"
-//	corpseidaccess = "Clown"
-
 /obj/effect/landmark/corpsespawner/scientist
 	name = "Scientist"
 	corpseuniform = /obj/item/clothing/under/marine/officer/researcher
@@ -287,7 +286,7 @@
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsesuit = /obj/item/clothing/suit/armor/vest/security
 	corpseback = /obj/item/storage/backpack/satchel
-	corpsebelt = /obj/item/storage/belt/gun/m4a3/vp70
+	corpsebelt = /obj/item/storage/belt/gun/pistol/m4a3/vp70
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC
 	corpsemask = /obj/item/clothing/mask/gas/PMC/damaged

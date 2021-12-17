@@ -4,15 +4,32 @@
 	/// Resets the armor on clothing since by default /objs get 100 bio armor
 	soft_armor = list()
 
+	///Assoc list of available slots. Since this keeps track of all currently equiped attachments per object, this cannot be a string_list()
+	var/list/attachments_by_slot = list()
+	///Typepath list of allowed attachment types.
+	var/list/attachments_allowed = list()
+
+	///Pixel offsets for specific attachment slots. Is not used currently.
+	var/list/attachment_offsets = list()
+	///List of attachment types that is attached to the object on initialize.
+	var/list/starting_attachments = list()
+
 	/// Bitflags used to determine the state of the armor (light on, overlay used, or reinfornced), currently support flags are in [equipment.dm:100]
 	var/flags_armor_features = NONE
-
 
 	/// used for headgear, masks, and glasses, to see how much they protect eyes from bright lights.
 	var/eye_protection = 0
 
 	/// Used by headgear mostly to affect accuracy
 	var/accuracy_mod = 0
+
+/obj/item/clothing/Initialize()
+	. = ..()
+	attachments_allowed = string_list(attachments_allowed)
+	starting_attachments = string_list(starting_attachments)
+	if(!length(attachments_allowed) || !length(attachments_by_slot))
+		return
+	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, attachment_offsets, starting_attachments, null, null, null)
 
 
 /obj/item/clothing/equipped(mob/user, slot)
@@ -39,19 +56,6 @@
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
-	return
-
-/obj/item/clothing/under/apply_accessories(image/standing)
-	if(hastie)
-		var/tie_state = hastie.item_state
-		if(!tie_state) 
-			tie_state = hastie.icon_state
-		standing.overlays += image(icon = 'icons/mob/ties.dmi', icon_state = "[tie_state]")
-
-/obj/item/clothing/under/get_worn_icon_state(slot_name, inhands)
-	. = ..()
-	if(rolled_sleeves && !inhands)
-		. += "_d"
 	return
 
 /obj/item/clothing/apply_blood(image/standing)
@@ -99,51 +103,39 @@
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
 	siemens_coefficient = 0.9
 	w_class = WEIGHT_CLASS_NORMAL
+	attachments_by_slot = list(ATTACHMENT_SLOT_BADGE)
+	attachments_allowed = list(/obj/item/armor_module/armor/badge)
 	var/supporting_limbs = NONE
 	var/blood_overlay_type = "suit"
 	var/fire_resist = T0C + 100
 	var/shield_state = "shield-blue"
 
-
 	// Strength of the armor light used by [proc/set_light()]
 	light_power = 3
 	light_range = 4
 	light_system = MOVABLE_LIGHT
-	light_on = FALSE
 
-/obj/item/clothing/suit/dropped(mob/user)
-	turn_off_light(user)
+/obj/item/clothing/suit/Initialize()
+	. = ..()
+	GLOB.nightfall_toggleable_lights += src
+
+/obj/item/clothing/suit/Destroy()
+	GLOB.nightfall_toggleable_lights -= src
 	return ..()
 
+/obj/item/clothing/suit/dropped(mob/user)
+	turn_light(user, FALSE)
+	return ..()
 
-/**
-	Turn off the armor light
-
-	This proc forces the light to off, useful when the armor is dropped or if a xeno slashes the armor to disable it.
-*/
-/obj/item/clothing/suit/proc/turn_off_light(mob/wearer)
-	if(flags_armor_features & ARMOR_LAMP_ON)
-		toggle_armor_light(wearer) //turn the light off
-		return TRUE
-	return FALSE
-
-
-/**
-	Toggles the armor light
-
-	This proc will toggle the light enabled or disabled on the armor, playing a sound and updating the action button for the user.
-*/
-/obj/item/clothing/suit/proc/toggle_armor_light(mob/user)
-	TIMER_COOLDOWN_START(src, COOLDOWN_ARMOR_LIGHT, 2.5 SECONDS)
-	if(flags_armor_features & ARMOR_LAMP_ON)
-		set_light_on(FALSE)
-	else
-		set_light_on(TRUE)
+/obj/item/clothing/suit/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
+	set_light_on(toggle_on)
 	flags_armor_features ^= ARMOR_LAMP_ON
 	playsound(src, 'sound/items/flashlight.ogg', 15, TRUE)
 	update_icon(user)
 	update_action_button_icons()
-
 
 /obj/item/clothing/suit/update_clothing_icon()
 	if(ismob(loc))
@@ -158,6 +150,7 @@
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/clothing/gloves.dmi'
+	item_state_worn = TRUE
 	siemens_coefficient = 0.50
 	var/wired = 0
 	var/obj/item/cell/cell = 0
@@ -193,12 +186,12 @@
 	. = ..()
 	if(iswirecutter(I) || istype(I, /obj/item/tool/surgery/scalpel))
 		if(clipped)
-			to_chat(user, "<span class='notice'>The [src] have already been clipped!</span>")
+			to_chat(user, span_notice("The [src] have already been clipped!"))
 			update_icon()
 			return
 
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		user.visible_message("<span class='warning'> [user] cuts the fingertips off of the [src].</span>","<span class='warning'> You cut the fingertips off of the [src].</span>")
+		user.visible_message(span_warning(" [user] cuts the fingertips off of the [src]."),span_warning(" You cut the fingertips off of the [src]."))
 
 		clipped = TRUE
 		name = "mangled [name]"

@@ -8,13 +8,12 @@ GLOBAL_VAR(restart_counter)
 //This happens after the Master subsystem new(s) (it's a global datum)
 //So subsystems globals exist, but are not initialised
 /world/New()
-	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
-	if (debug_server)
-		call(debug_server, "auxtools_init")()
-		enable_debugging()
-#ifdef REFERENCE_TRACKING
-	enable_reference_tracking()
+#ifdef USE_EXTOOLS
+	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || (world.system_type == MS_WINDOWS ? "./byond-extools.dll" : "./libbyond-extools.so")
+	if(fexists(extools))
+		call(extools, "maptick_initialize")()
 #endif
+	enable_debugger()
 
 	log_world("World loaded at [time_stamp()]!")
 
@@ -61,7 +60,7 @@ GLOBAL_VAR(restart_counter)
 
 	update_status()
 
-	world.tick_lag = CONFIG_GET(number/ticklag)
+	change_tick_lag(CONFIG_GET(number/ticklag))
 
 	#ifdef UNIT_TESTS
 	HandleTestRun()
@@ -101,6 +100,7 @@ GLOBAL_VAR(restart_counter)
 	GLOB.world_attack_log = "[GLOB.log_directory]/attack.log"
 	GLOB.world_manifest_log = "[GLOB.log_directory]/manifest.log"
 	GLOB.world_href_log = "[GLOB.log_directory]/hrefs.log"
+	GLOB.world_mob_tag_log = "[GLOB.log_directory]/mob_tags.log"
 	GLOB.sql_error_log = "[GLOB.log_directory]/sql.log"
 	GLOB.world_telecomms_log = "[GLOB.log_directory]/telecomms.log"
 	GLOB.world_qdel_log = "[GLOB.log_directory]/qdel.log"
@@ -116,6 +116,7 @@ GLOBAL_VAR(restart_counter)
 	start_log(GLOB.world_attack_log)
 	start_log(GLOB.world_manifest_log)
 	start_log(GLOB.world_href_log)
+	start_log(GLOB.world_mob_tag_log)
 	start_log(GLOB.sql_error_log)
 	start_log(GLOB.world_telecomms_log)
 	start_log(GLOB.world_qdel_log)
@@ -123,7 +124,8 @@ GLOBAL_VAR(restart_counter)
 	start_log(GLOB.world_debug_log)
 	start_log(GLOB.world_paper_log)
 
-	GLOB.changelog_hash = md5('html/changelog.html') //for telling if the changelog has changed recently
+	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
+	GLOB.changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
 	if(fexists(GLOB.config_error_log))
 		fcopy(GLOB.config_error_log, "[GLOB.log_directory]/config_error.log")
 		fdel(GLOB.config_error_log)
@@ -336,7 +338,6 @@ GLOBAL_VAR(restart_counter)
 	else
 		hub_password = "SORRYNOPASSWORD"
 
-
 /world/proc/change_fps(new_value = 20)
 	if(new_value <= 0)
 		CRASH("change_fps() called with [new_value] new_value.")
@@ -344,8 +345,23 @@ GLOBAL_VAR(restart_counter)
 		return //No change required.
 
 	fps = new_value
+	on_tickrate_change()
 
+
+/world/proc/change_tick_lag(new_value = 0.5)
+	if(new_value <= 0)
+		CRASH("change_tick_lag() called with [new_value] new_value.")
+	if(tick_lag == new_value)
+		return //No change required.
+
+	tick_lag = new_value
+	on_tickrate_change()
+
+
+/world/proc/on_tickrate_change()
 	SStimer?.reset_buckets()
+	SSrunechat?.reset_buckets()
+	SSautomatedfire?.reset_buckets()
 
 #undef MAX_TOPIC_LEN
 #undef TOPIC_BANNED

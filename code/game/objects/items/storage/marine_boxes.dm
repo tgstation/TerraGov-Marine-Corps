@@ -1,169 +1,41 @@
 
 
-/obj/item/storage/box/t26_system
-	name = "\improper T26 smart machinegun system"
-	desc = "A large case containing the full T-26 Machinegun System. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+/obj/item/storage/box/t29_system
+	name = "\improper T-29 smart machinegun system"
+	desc = "A large case containing the full T-29 Machinegun System. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "smartgun_case"
 	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 3
+	storage_slots = 5
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
 
-/obj/item/storage/box/t26_system/Initialize(mapload, ...)
+/obj/item/storage/box/t29_system/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/clothing/glasses/night/m56_goggles(src)
 	new /obj/item/weapon/gun/rifle/standard_smartmachinegun(src)
 	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
+	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
+	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
 
-/obj/item/smartgun_powerpack
-	name = "\improper M56 powerpack"
-	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the M56 Smartgun System.\nClick the icon in the top left to reload your M56."
-	icon = 'icons/obj/items/storage/storage.dmi'
-	icon_state = "powerpack"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BACK
+/obj/item/storage/box/t25_system
+	name = "\improper T25 smart rifle system"
+	desc = "A large case containing the full T-25 Rifle System. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "smartgun_case"
 	w_class = WEIGHT_CLASS_HUGE
-	var/obj/item/cell/pcell = null
-	var/rounds_remaining = 500
-	var/rounds_max = 500
-	actions_types = list(/datum/action/item_action/toggle)
-	var/reloading = FALSE
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
+	storage_slots = 5
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
 
-/obj/item/smartgun_powerpack/Initialize()
+/obj/item/storage/box/t25_system/Initialize(mapload, ...)
 	. = ..()
-	pcell = new /obj/item/cell(src)
-
-/obj/item/smartgun_powerpack/attack_self(mob/living/carbon/human/user, automatic = FALSE)
-	if(!istype(user) || user.incapacitated())
-		return FALSE
-
-	var/obj/item/weapon/gun/smartgun/mygun = user.get_active_held_item()
-
-	if(!istype(mygun))
-		to_chat(user, "You must be holding an M56 Smartgun to begin the reload process.")
-		return TRUE
-	if(rounds_remaining < 1)
-		to_chat(user, "Your powerpack is completely devoid of spare ammo belts! Looks like you're up shit creek, maggot!")
-		return TRUE
-	if(!pcell)
-		to_chat(user, "Your powerpack doesn't have a battery! Slap one in there!")
-		return TRUE
-
-	mygun.shells_fired_now = 0 //If you attempt a reload, the shells reset. Also prevents double reload if you fire off another 20 bullets while it's loading.
-
-	if(reloading)
-		return TRUE
-	if(pcell.charge <= 50)
-		to_chat(user, "Your powerpack's battery is too drained! Get a new battery and install it!")
-		return TRUE
-
-	reloading = TRUE
-	if(!automatic)
-		user.visible_message("[user.name] begins feeding an ammo belt into the M56 Smartgun.","You begin feeding a fresh ammo belt into the M56 Smartgun. Don't move or you'll be interrupted.")
-	else
-		user.visible_message("[user.name]'s powerpack servos begin automatically feeding an ammo belt into the M56 Smartgun.","The powerpack servos begin automatically feeding a fresh ammo belt into the M56 Smartgun.")
-	var/reload_duration = 5 SECONDS
-	var/obj/screen/ammo/A = user.hud_used.ammo
-	if(automatic)
-		if(!autoload_check(user, reload_duration, mygun, src) || !pcell)
-			to_chat(user, "The automated reload process was interrupted!")
-			playsound(src,'sound/machines/buzz-two.ogg', 25, TRUE)
-			reloading = FALSE
-			return TRUE
-		reload(user, mygun, TRUE)
-		A.update_hud(user)
-		return TRUE
-	if(user.skills.getRating("smartgun") > 0)
-		reload_duration = max(reload_duration - 1 SECONDS * user.skills.getRating("smartgun"), 3 SECONDS)
-	if(!do_after(user, reload_duration, TRUE, src, BUSY_ICON_GENERIC) || !pcell)
-		to_chat(user, "Your reloading was interrupted!")
-		playsound(src,'sound/machines/buzz-two.ogg', 25, TRUE)
-		reloading = FALSE
-		return TRUE
-	reload(user, mygun)
-	A.update_hud(user)
-	return TRUE
-
-/obj/item/smartgun_powerpack/attack_hand(mob/living/user)
-	if(user.get_inactive_held_item() != src)
-		return ..()
-	if(QDELETED(pcell))
-		to_chat(user, "There is no cell in the [src].")
-		return
-	user.put_in_hands(pcell)
-	playsound(src,'sound/machines/click.ogg', 25, 1)
-	to_chat(user, "You take out the [pcell] out of the [src].")
-	pcell = null
-
-/obj/item/smartgun_powerpack/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(istype(I, /obj/item/cell))
-		var/obj/item/cell/C = I
-
-		if(!QDELETED(pcell))
-			to_chat(user, "There already is a cell in the [src].")
-			return
-
-		if(!user.transferItemToLoc(C, src))
-			return
-
-		pcell = C
-		user.visible_message("[user] puts a new power cell in the [src].", "You put a new power cell in the [src] containing [pcell.charge] charge.")
-		playsound(src,'sound/machines/click.ogg', 25, 1)
-
-/obj/item/smartgun_powerpack/examine(mob/user)
-	. = ..()
-	if(get_dist(user, src) <= 1)
-		to_chat(user, "A small gauge in the corner reads: Ammo: [rounds_remaining] / [rounds_max]. [pcell ? "Charge: [pcell.charge] / [pcell.maxcharge].":""]")
-
-/obj/item/smartgun_powerpack/proc/reload(mob/user, obj/item/weapon/gun/smartgun/mygun, automatic = FALSE)
-	pcell.charge -= 50
-	if(!mygun.current_mag)
-		var/obj/item/ammo_magazine/internal/smartgun/A = new(mygun)
-		mygun.current_mag = A
-
-	var/rounds_to_reload = min(rounds_remaining, (mygun.current_mag.max_rounds - mygun.current_mag.current_rounds)) //Get the smaller value.
-
-	mygun.current_mag.current_rounds += rounds_to_reload
-	rounds_remaining -= rounds_to_reload
-
-	if(!automatic)
-		to_chat(user, "You finish loading [rounds_to_reload] shells into the M56 Smartgun. Ready to rumble!")
-	else
-		to_chat(user, "The powerpack servos finish loading [rounds_to_reload] shells into the M56 Smartgun. Ready to rumble!")
-	playsound(user, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1)
-
-	reloading = FALSE
-	return TRUE
-
-/obj/item/smartgun_powerpack/proc/autoload_check(mob/user, delay, obj/item/weapon/gun/smartgun/mygun, obj/item/smartgun_powerpack/powerpack, numticks = 5)
-	if(!istype(user) || delay <= 0) return FALSE
-
-	var/mob/living/carbon/human/L
-	if(ishuman(user)) L = user
-
-	var/delayfraction = round(delay/numticks)
-	. = TRUE
-	for(var/i = 0 to numticks)
-		sleep(delayfraction)
-		if(!user)
-			. = FALSE
-			break
-		if(!(L.s_store == mygun) && !(user.get_active_held_item() == mygun) && !(user.get_inactive_held_item() == mygun) || !(L.back == powerpack)) //power pack and gun aren't where they should be.
-			. = FALSE
-			break
-
-/obj/item/smartgun_powerpack/snow
-	icon_state = "s_powerpack"
-
-/obj/item/smartgun_powerpack/fancy
-	icon_state = "powerpackw"
-
-/obj/item/smartgun_powerpack/merc
-	icon_state = "powerpackp"
+	new /obj/item/clothing/glasses/night/m56_goggles(src)
+	new /obj/item/weapon/gun/rifle/standard_smartrifle(src)
+	new /obj/item/storage/belt/marine/t25(src)
+	new /obj/item/ammo_magazine/rifle/standard_smartrifle(src)
 
 /obj/item/storage/box/heavy_armor
 	name = "\improper B-Series defensive armor crate"
@@ -182,7 +54,7 @@
 	new /obj/item/clothing/head/helmet/marine/specialist(src)
 
 /obj/item/storage/box/m42c_system
-	name = "\improper M42A scoped rifle system (recon set)"
+	name = "\improper antimaterial scoped rifle system (recon set)"
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
@@ -205,16 +77,16 @@
 	new /obj/item/weapon/gun/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
-	new /obj/item/weapon/gun/rifle/sniper/M42A(src)
+	new /obj/item/weapon/gun/rifle/sniper/antimaterial(src)
 	new /obj/item/bodybag/tarp(src)
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
-		new /obj/item/clothing/head/helmet/marine/standard(src)
+		new /obj/item/clothing/head/modular/marine/m10x(src)
 	else
 		new /obj/item/clothing/head/helmet/durag(src)
 		new /obj/item/facepaint/sniper(src)
 
 /obj/item/storage/box/m42c_system_Jungle
-	name = "\improper M42A scoped rifle system (marksman set)"
+	name = "\improper antimaterial scoped rifle system (marksman set)"
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
@@ -233,7 +105,7 @@
 	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/ammo_magazine/sniper/incendiary(src)
-	new /obj/item/weapon/gun/rifle/sniper/M42A(src)
+	new /obj/item/weapon/gun/rifle/sniper/antimaterial(src)
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		new /obj/item/clothing/under/marine/sniper(src)
 		new /obj/item/storage/backpack/marine/satchel(src)
@@ -256,7 +128,7 @@
 
 /obj/item/storage/box/grenade_system/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/weapon/gun/launcher/m92(src)
+	new /obj/item/weapon/gun/grenade_launcher/multinade_launcher(src)
 	new /obj/item/storage/belt/grenade/b17(src)
 
 /obj/item/storage/box/rocket_system
@@ -325,7 +197,7 @@
 /obj/item/storage/box/spec/demolitionist/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine/M3T(src)
-	new /obj/item/clothing/head/helmet/marine/standard(src)
+	new /obj/item/clothing/head/modular/marine/m10x(src)
 	new /obj/item/weapon/gun/launcher/rocket/sadar(src)
 	new /obj/item/ammo_magazine/rocket/sadar(src)
 	new /obj/item/ammo_magazine/rocket/sadar(src)
@@ -371,20 +243,20 @@
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper(src)
-	new /obj/item/weapon/gun/rifle/sniper/M42A(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/weapon/gun/rifle/sniper/antimaterial(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
 	new /obj/item/bodybag/tarp(src)
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
-		new /obj/item/clothing/head/helmet/marine/standard(src)
+		new /obj/item/clothing/head/modular/marine/m10x(src)
 	else
 		new /obj/item/clothing/head/helmet/durag(src)
 		new /obj/item/facepaint/sniper(src)
 
 /obj/item/storage/box/spec/scout
 	name = "\improper Scout equipment"
-	desc = "A large case containing Scout equipment; this one features the M4RA battle rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	desc = "A large case containing Scout equipment; this one features the TX-8 battle rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
 	w_class = WEIGHT_CLASS_HUGE
@@ -398,27 +270,27 @@
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine/M3S(src)
 	new /obj/item/clothing/head/helmet/marine/scout(src)
-	new /obj/item/clothing/glasses/night/M4RA(src)
-	new /obj/item/ammo_magazine/rifle/m4ra(src)
-	new /obj/item/ammo_magazine/rifle/m4ra(src)
-	new /obj/item/ammo_magazine/rifle/m4ra(src)
-	new /obj/item/ammo_magazine/rifle/m4ra(src)
-	new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
-	new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
-	new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
-	new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
-	new /obj/item/ammo_magazine/rifle/m4ra/smart(src)
-	new /obj/item/ammo_magazine/rifle/m4ra/smart(src)
+	new /obj/item/clothing/glasses/night/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/tx8/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
+	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
 	new /obj/item/binoculars/tactical/scout(src)
 	new /obj/item/weapon/gun/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
-	new /obj/item/weapon/gun/rifle/m4ra(src)
+	new /obj/item/weapon/gun/rifle/tx8(src)
 	new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
-	new /obj/item/motiondetector/scout(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/attachable/motiondetector(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
 	new /obj/item/bodybag/tarp(src)
 
 
@@ -438,7 +310,7 @@
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine/M3S(src)
 	new /obj/item/clothing/head/helmet/marine/scout(src)
-	new /obj/item/clothing/glasses/night/M4RA(src)
+	new /obj/item/clothing/glasses/night/tx8(src)
 	new /obj/item/binoculars/tactical/scout(src)
 	new /obj/item/weapon/gun/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
@@ -446,10 +318,10 @@
 	new /obj/item/ammo_magazine/shotgun/incendiary(src)
 	new /obj/item/ammo_magazine/shotgun/incendiary(src)
 	new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
-	new /obj/item/motiondetector/scout(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/attachable/motiondetector(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
 
 
 /obj/item/storage/box/spec/tracker
@@ -481,10 +353,10 @@
 	new /obj/item/ammo_magazine/pistol/m1911(src)
 	new /obj/item/ammo_magazine/pistol/m1911(src)
 	new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
-	new /obj/item/motiondetector/scout(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/attachable/motiondetector(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
 	new /obj/item/bodybag/tarp(src)
 
 /obj/item/storage/box/spec/pyro
@@ -504,11 +376,10 @@
 	new /obj/item/clothing/suit/storage/marine/M35(src)
 	new /obj/item/clothing/head/helmet/marine/pyro(src)
 	new /obj/item/clothing/shoes/marine/pyro(src)
-	new /obj/item/storage/backpack/marine/engineerpack/flamethrower(src)
-	new /obj/item/weapon/gun/flamer/marinestandard(src)
+	new /obj/item/ammo_magazine/flamer_tank/backtank(src)
+	new /obj/item/weapon/gun/flamer/big_flamer/marinestandard(src)
 	new /obj/item/ammo_magazine/flamer_tank/large(src)
 	new /obj/item/ammo_magazine/flamer_tank/large(src)
-	new /obj/item/ammo_magazine/flamer_tank/large/B(src)
 	new /obj/item/ammo_magazine/flamer_tank/large/X(src)
 
 
@@ -527,13 +398,13 @@
 
 /obj/item/storage/box/spec/heavy_grenadier/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/weapon/gun/launcher/m92(src)
+	new /obj/item/weapon/gun/grenade_launcher/multinade_launcher(src)
 	new /obj/item/storage/belt/grenade/b17(src)
 	new /obj/item/clothing/suit/storage/marine/B17(src)
 	new /obj/item/clothing/head/helmet/marine/grenadier(src)
-	new /obj/item/storage/box/nade_box(src)
-	new /obj/item/storage/box/nade_box(src)
-	new /obj/item/storage/box/nade_box/HIDP(src)
+	new /obj/item/storage/box/visual/grenade/frag(src)
+	new /obj/item/storage/box/visual/grenade/frag(src)
+	new /obj/item/storage/box/visual/grenade/incendiary(src)
 
 /obj/item/storage/box/spec/heavy_gunner
 	name = "\improper Heavy Minigunner case"
@@ -554,9 +425,8 @@
 	new /obj/item/clothing/head/helmet/marine/specialist(src)
 	new /obj/item/weapon/gun/minigun(src)
 	new /obj/item/belt_harness/marine(src)
-	new /obj/item/ammo_magazine/minigun(src)
-	new /obj/item/ammo_magazine/minigun(src)
-	new /obj/item/ammo_magazine/minigun(src)
+	new /obj/item/ammo_magazine/minigun_powerpack(src)
+
 
 /obj/item/spec_kit //For events/WO, allowing the user to choose a specalist kit
 	name = "specialist kit"
@@ -565,7 +435,9 @@
 	icon_state = "deliverycrate"
 
 /obj/item/spec_kit/attack_self(mob/user as mob)
-	var/choice = input(user, "Please pick a specalist kit!","Selection") in list("Pyro","Heavy Armor (Grenadier)","Heavy Armor (Minigun)","Sniper","Scout (Battle Rifle)","Scout (Shotgun)","Demo")
+	var/choice = tgui_input_list(user, "Please pick a specalist kit!","Selection", list("Pyro","Heavy Armor (Grenadier)","Heavy Armor (Minigun)","Sniper","Scout (Battle Rifle)","Scout (Shotgun)","Demo"))
+	if(!choice)
+		return
 	var/obj/item/storage/box/spec/S = null
 	switch(choice)
 		if("Pyro")
@@ -587,7 +459,7 @@
 	qdel()
 
 /obj/item/spec_kit/attack_self(mob/user)
-	var/selection = input(user, "Pick your equipment", "Specialist Kit Selection") as null|anything in list("Pyro","Grenadier","Sniper","Scout","Scout (Shotgun)","Demo")
+	var/selection = tgui_input_list(user, "Pick your equipment", "Specialist Kit Selection", list("Pyro","Grenadier","Sniper","Scout","Scout (Shotgun)","Demo"))
 	if(!selection)
 		return
 	var/turf/T = get_turf(loc)
@@ -626,15 +498,15 @@
 /obj/item/storage/box/squadmarine/rifleman/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine(src)
-	new /obj/item/clothing/head/helmet/marine/standard(src)
+	new /obj/item/clothing/head/modular/marine/m10x(src)
 	new /obj/item/storage/belt/marine/t12(src)
 	new /obj/item/storage/pouch/explosive/full(src)
 	new /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/clothing/tie/storage/webbing(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/armor_module/storage/uniform/webbing(src)
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
@@ -650,17 +522,17 @@
 	. = ..()
 	new /obj/item/weapon/gun/shotgun/pump/t35/pointman(src)
 	new /obj/item/clothing/suit/storage/marine/M3LB(src)
-	new /obj/item/clothing/head/helmet/marine/standard(src)
+	new /obj/item/clothing/head/modular/marine/m10x(src)
 	new /obj/item/storage/belt/marine/t18(src)
 	new /obj/item/storage/pouch/shotgun(src)
 	new /obj/item/weapon/gun/rifle/standard_carbine/pointman(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
 	new /obj/item/ammo_magazine/shotgun/buckshot(src)
 	new /obj/item/ammo_magazine/shotgun/buckshot(src)
-	new /obj/item/clothing/tie/storage/webbing(src)
+	new /obj/item/armor_module/storage/uniform/webbing(src)
 	new /obj/item/clothing/mask/rebreather/scarf(src)
 
 /obj/item/storage/box/squadmarine/autorifleman
@@ -671,9 +543,9 @@
 /obj/item/storage/box/squadmarine/autorifleman/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine/M3HB(src)
-	new /obj/item/clothing/head/helmet/marine/heavy(src)
+	new /obj/item/clothing/head/modular/marine/m10x/heavy(src)
 	new /obj/item/weapon/gun/rifle/standard_lmg/autorifleman(src)
-	new /obj/item/storage/belt/gun/m4a3/full(src)
+	new /obj/item/storage/belt/gun/pistol/m4a3/full(src)
 	new /obj/item/storage/pouch/flare/full(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
@@ -692,7 +564,7 @@
 /obj/item/storage/box/squadmarine/marksman/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine/M3IS(src)
-	new /obj/item/clothing/head/helmet/marine/standard(src)
+	new /obj/item/clothing/head/modular/marine/m10x(src)
 	new /obj/item/weapon/gun/rifle/standard_br(src)
 	new /obj/item/belt_harness/marine(src)
 	new /obj/item/storage/pouch/flare/full(src)
@@ -704,7 +576,7 @@
 	new /obj/item/ammo_magazine/rifle/standard_dmr(src)
 	new /obj/item/ammo_magazine/rifle/standard_dmr(src)
 	new /obj/item/ammo_magazine/rifle/standard_dmr(src)
-	new /obj/item/clothing/tie/storage/webbing(src)
+	new /obj/item/armor_module/storage/uniform/webbing(src)
 	new /obj/item/ammo_magazine/rifle/standard_br(src)
 	new /obj/item/ammo_magazine/rifle/standard_br(src)
 	new /obj/item/ammo_magazine/rifle/standard_br(src)
@@ -726,7 +598,7 @@
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/explosive/plastique(src)
 	new /obj/item/explosive/plastique(src)
-	new /obj/item/storage/large_holster/machete/full(src)
+	new /obj/item/storage/large_holster/blade/machete/full(src)
 	new /obj/item/clothing/mask/rebreather/scarf(src)
 
 /obj/item/storage/box/squadmarine/engineert12
@@ -737,10 +609,10 @@
 /obj/item/storage/box/squadmarine/engineert12/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/weapon/gun/rifle/standard_assaultrifle/engineer(src)
-	new /obj/item/clothing/head/helmet/marine/tech(src)
+	new /obj/item/clothing/head/modular/marine/m10x(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
-	new /obj/item/clothing/tie/storage/webbing(src)
+	new /obj/item/armor_module/storage/uniform/webbing(src)
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
@@ -762,7 +634,7 @@
 	new /obj/item/clothing/head/helmet/marine/tech(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
-	new /obj/item/clothing/tie/storage/webbing(src)
+	new /obj/item/armor_module/storage/uniform/webbing(src)
 	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
 	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
 	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
@@ -784,7 +656,7 @@
 	new /obj/item/clothing/head/helmet/marine/heavy(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
-	new /obj/item/clothing/tie/storage/brown_vest(src)
+	new /obj/item/armor_module/storage/uniform/brown_vest(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
@@ -808,7 +680,7 @@
 	new /obj/item/clothing/head/helmet/marine/heavy(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
-	new /obj/item/clothing/tie/storage/brown_vest(src)
+	new /obj/item/armor_module/storage/uniform/brown_vest(src)
 	new /obj/item/ammo_magazine/shotgun/buckshot(src)
 	new /obj/item/clothing/mask/rebreather/scarf(src)
 	new /obj/item/tool/shovel/etool(src)
@@ -825,7 +697,7 @@
 /obj/item/storage/box/squadmarine/corpsmant90/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/weapon/gun/smg/standard_smg/nonstandard(src)
-	new /obj/item/clothing/tie/storage/brown_vest(src)
+	new /obj/item/armor_module/storage/uniform/brown_vest(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
@@ -841,7 +713,7 @@
 /obj/item/storage/box/squadmarine/corpsmant35/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/weapon/gun/shotgun/pump/t35/nonstandard(src)
-	new /obj/item/clothing/tie/storage/brown_vest(src)
+	new /obj/item/armor_module/storage/uniform/brown_vest(src)
 	new /obj/item/ammo_magazine/shotgun/buckshot(src)
 	new /obj/item/clothing/mask/rebreather/scarf(src)
 
@@ -854,7 +726,7 @@
 	. = ..()
 	new /obj/item/weapon/gun/smg/standard_machinepistol(src)
 	new /obj/item/storage/pouch/magazine/smgfull(src)
-	new /obj/item/clothing/tie/storage/brown_vest(src)
+	new /obj/item/armor_module/storage/uniform/brown_vest(src)
 	new /obj/item/ammo_magazine/smg/standard_machinepistol(src)
 	new /obj/item/ammo_magazine/smg/standard_machinepistol(src)
 	new /obj/item/ammo_magazine/smg/standard_machinepistol(src)
@@ -869,9 +741,9 @@
 
 /obj/item/storage/box/squadmarine/smartgunnerm4a3/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/storage/belt/gun/m4a3/full(src)
+	new /obj/item/storage/belt/gun/pistol/m4a3/full(src)
 	new /obj/item/storage/pouch/magazine/pistol/large/full(src)
-	new /obj/item/clothing/tie/storage/brown_vest(src)
+	new /obj/item/armor_module/storage/uniform/brown_vest(src)
 	new /obj/item/ammo_magazine/pistol(src)
 	new /obj/item/ammo_magazine/pistol(src)
 	new /obj/item/ammo_magazine/pistol(src)
@@ -905,7 +777,7 @@
 	new /obj/item/storage/pouch/explosive/detpack(src)
 	new /obj/item/explosive/mine(src)
 	new /obj/item/explosive/mine(src)
-	new /obj/item/clothing/tie/storage/brown_vest(src)
+	new /obj/item/armor_module/storage/uniform/brown_vest(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
@@ -926,8 +798,8 @@
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/clothing/glasses/night/m42_night_goggles(src)
-	new /obj/item/weapon/gun/rifle/sniper/M42A(src)
-	new /obj/item/storage/belt/marine/m42a(src)
+	new /obj/item/weapon/gun/rifle/sniper/antimaterial(src)
+	new /obj/item/storage/belt/marine/antimaterial(src)
 	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/storage/pouch/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
@@ -938,10 +810,10 @@
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
-	new /obj/item/clothing/tie/storage/webbing(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/armor_module/storage/uniform/webbing(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
 	new /obj/item/clothing/mask/rebreather/scarf(src)
 
 /obj/item/storage/box/squadmarine/scout
@@ -956,24 +828,24 @@
 	new /obj/item/clothing/head/helmet/marine/scout(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
-	new /obj/item/clothing/glasses/night/M4RA(src)
-	new /obj/item/weapon/gun/rifle/m4ra(src)
-	new /obj/item/storage/pouch/magazine/large/m4rafull(src)
-	new /obj/item/storage/belt/marine/m4ra(src)
-	new /obj/item/ammo_magazine/rifle/m4ra/smart(src)
-	new /obj/item/ammo_magazine/rifle/m4ra/smart(src)
+	new /obj/item/clothing/glasses/night/tx8(src)
+	new /obj/item/weapon/gun/rifle/tx8(src)
+	new /obj/item/storage/pouch/magazine/large/tx8full(src)
+	new /obj/item/storage/belt/marine/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
 	new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
 	new /obj/item/binoculars/tactical/scout(src)
 	new /obj/item/weapon/gun/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
-	new /obj/item/motiondetector/scout(src)
+	new /obj/item/attachable/motiondetector(src)
 	new /obj/item/bodybag/tarp(src)
-	new /obj/item/clothing/tie/storage/webbing(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/armor_module/storage/uniform/webbing(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
 	new /obj/item/clothing/mask/rebreather/scarf(src)
 
 /obj/item/storage/box/squadmarine/tracker
@@ -1003,12 +875,12 @@
 	new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
 	new /obj/item/binoculars/tactical/scout(src)
 	new /obj/item/weapon/gun/pistol/m1911(src)
-	new /obj/item/motiondetector/scout(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/attachable/motiondetector(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
+	new /obj/item/explosive/grenade/smokebomb/cloak(src)
 	new /obj/item/bodybag/tarp(src)
-	new /obj/item/clothing/tie/storage/brown_vest(src)
+	new /obj/item/armor_module/storage/uniform/brown_vest(src)
 	new /obj/item/clothing/mask/rebreather/scarf(src)
 
 /obj/item/storage/box/squadmarine/pyro
@@ -1023,8 +895,8 @@
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/clothing/shoes/marine/pyro(src)
-	new /obj/item/storage/backpack/marine/engineerpack/flamethrower(src)
-	new /obj/item/weapon/gun/flamer/marinestandard(src)
+	new /obj/item/ammo_magazine/flamer_tank/backtank(src)
+	new /obj/item/weapon/gun/flamer/big_flamer/marinestandard(src)
 	new /obj/item/attachable/magnetic_harness(src)
 	new /obj/item/storage/large_holster/t19(src)
 	new /obj/item/weapon/gun/smg/standard_smg/nonstandard(src)
@@ -1032,9 +904,8 @@
 	new /obj/item/ammo_magazine/flamer_tank/large(src)
 	new /obj/item/ammo_magazine/flamer_tank/large(src)
 	new /obj/item/ammo_magazine/flamer_tank/large(src)
-	new /obj/item/ammo_magazine/flamer_tank/large/B(src)
 	new /obj/item/ammo_magazine/flamer_tank/large/X(src)
-	new /obj/item/clothing/tie/storage/brown_vest(src)
+	new /obj/item/armor_module/storage/uniform/brown_vest(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
@@ -1051,21 +922,21 @@
 	. = ..()
 	new /obj/item/storage/belt/grenade/b17(src)
 	new /obj/item/clothing/suit/storage/marine/B17(src)
-	new /obj/item/weapon/gun/launcher/m92(src)
+	new /obj/item/weapon/gun/grenade_launcher/multinade_launcher(src)
 	new /obj/item/attachable/magnetic_harness(src)
 	new /obj/item/clothing/head/helmet/marine/grenadier(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
-	new /obj/item/storage/box/nade_box(src)
-	new /obj/item/storage/box/nade_box(src)
-	new /obj/item/storage/box/nade_box/HIDP(src)
+	new /obj/item/storage/box/visual/grenade/frag(src)
+	new /obj/item/storage/box/visual/grenade/frag(src)
+	new /obj/item/storage/box/visual/grenade/incendiary(src)
 	new /obj/item/storage/backpack/marine/standard(src)
 	new /obj/item/storage/backpack/marine/standard(src)
 	new /obj/item/storage/backpack/marine/standard(src)
 	new /obj/item/storage/backpack/marine/standard(src)
 	new /obj/item/storage/backpack/marine/standard(src)
 	new /obj/item/storage/pouch/explosive(src)
-	new /obj/item/clothing/tie/storage/brown_vest(src)
+	new /obj/item/armor_module/storage/uniform/brown_vest(src)
 	new /obj/item/clothing/mask/rebreather/scarf(src)
 
 /obj/item/storage/box/squadmarine/heavy_gunner
@@ -1082,12 +953,12 @@
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/weapon/gun/minigun(src)
 	new /obj/item/belt_harness/marine(src)
-	new /obj/item/ammo_magazine/minigun(src)
-	new /obj/item/ammo_magazine/minigun(src)
-	new /obj/item/ammo_magazine/minigun(src)
+	new /obj/item/ammo_magazine/minigun_powerpack(src)
+	new /obj/item/ammo_magazine/minigun_powerpack(src)
+	new /obj/item/ammo_magazine/minigun_powerpack(src)
 	new /obj/item/attachable/flashlight(src)
 	new /obj/item/storage/pouch/pistol/rt3(src)
-	new /obj/item/clothing/tie/storage/brown_vest(src)
+	new /obj/item/armor_module/storage/uniform/brown_vest(src)
 	new /obj/item/ammo_magazine/pistol(src)
 	new /obj/item/ammo_magazine/pistol(src)
 	new /obj/item/ammo_magazine/pistol(src)
@@ -1102,9 +973,9 @@
 
 /obj/item/storage/box/squadmarine/squadleader/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/clothing/tie/storage/webbing(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/armor_module/storage/uniform/webbing(src)
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)

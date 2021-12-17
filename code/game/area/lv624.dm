@@ -12,46 +12,61 @@
 	name ="Southeast Jungle"
 	icon_state = "southeast"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
+	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/lv624/ground/jungle2
 	name ="Southern Jungle"
 	icon_state = "south"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
+	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/lv624/ground/jungle3
 	name ="Southwest Jungle"
 	icon_state = "southwest"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
+	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/lv624/ground/jungle4
-	name ="Western Jungle"
+	name ="Central Western Jungle"
 	icon_state = "west"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
+	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/lv624/ground/jungle5
 	name ="Eastern Jungle"
 	icon_state = "east"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
+	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/lv624/ground/jungle6
 	name ="Northwest Jungle"
 	icon_state = "northwest"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
+	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/lv624/ground/jungle7
 	name ="Northern Jungle"
 	icon_state = "north"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
+	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/lv624/ground/jungle8
 	name ="Northeast Jungle"
 	icon_state = "northeast"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
+	minimap_color = MINIMAP_AREA_JUNGLE
 
 /area/lv624/ground/jungle9
 	name ="Central Jungle"
 	icon_state = "central"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
+	minimap_color = MINIMAP_AREA_JUNGLE
+
+/area/lv624/ground/jungle10
+	name ="Western Jungle"
+	icon_state = "west2"
+	ambience = list('sound/ambience/jungle_amb1.ogg')
+	minimap_color = MINIMAP_AREA_JUNGLE
 
 //Sand
 /area/lv624/ground/sand1
@@ -159,14 +174,28 @@
 	icon_state = "red"
 	outside = FALSE
 
+/area/lv624/ground/southcargo
+	name = "\improper South Cargo Storage"
+	icon_state = "storage"
+	outside = FALSE
+
+/area/lv624/ground/central2
+	name ="North Central Caves"
+	icon_state = "away3"
+
 /area/lv624/ground/caves //Does not actually exist
 	name ="Caves"
 	icon_state = "cave"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambisin4.ogg')
 	ceiling = CEILING_DEEP_UNDERGROUND
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_CAVES
 
 //Caves
+/area/lv624/ground/caves/rock //catchall for closed turfs we want immune to rain/easily visible to map editing tools
+	name ="Enclosed Area"
+	icon_state = "white"
+
 /area/lv624/ground/caves/west1
 	name ="Western Caves"
 	icon_state = "away1"
@@ -179,6 +208,10 @@
 	name ="Central Caves"
 	icon_state = "away4" //meh
 
+/area/lv624/ground/caves/central2
+	name ="Central Caves"
+	icon_state = "away3"
+
 /area/lv624/ground/caves/west2
 	name ="North Western Caves"
 	icon_state = "cave"
@@ -187,13 +220,17 @@
 	name ="North Eastern Caves"
 	icon_state = "cave"
 
-/area/lv624/ground/caves/central2
-	name ="North Central Caves"
-	icon_state = "away3" //meh
-
 /area/lv624/ground/caves/central3
 	name ="South Central Caves"
-	icon_state = "away2" //meh
+	icon_state = "away2"
+
+/area/lv624/ground/caves/central5
+	name ="South Western Central Caves"
+	icon_state = "purple"
+
+/area/lv624/ground/caves/central4
+	name ="South Western Caves"
+	icon_state = "yellow"
 
 //Lazarus landing
 /area/lv624/lazarus
@@ -201,11 +238,13 @@
 	icon_state = "green"
 	ceiling = CEILING_METAL
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/lv624/lazarus/atmos
 	name = "\improper Atmospherics"
 	icon_state = "atmos"
 	ceiling = CEILING_GLASS
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv624/lazarus/atmos/outside
 	name = "\improper Atmospherics Area"
@@ -223,6 +262,7 @@
 /area/lv624/lazarus/medbay
 	name = "\improper Medbay"
 	icon_state = "medbay"
+	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/lv624/lazarus/armory
 	name = "\improper Armory"
@@ -231,6 +271,7 @@
 /area/lv624/lazarus/security
 	name = "\improper Security"
 	icon_state = "security"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/lv624/lazarus/captain
 	name = "\improper Commandant's Quarters"
@@ -301,9 +342,14 @@
 /area/lv624/lazarus/secure_storage
 	name = "\improper Secure Storage"
 	icon_state = "storage"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv624/lazarus/internal_affairs
 	name = "\improper Internal Affairs"
+	icon_state = "law"
+
+/area/lv624/lazarus/corporate_affairs
+	name = "\improper Corporate Affairs"
 	icon_state = "law"
 
 /area/lv624/lazarus/robotics
@@ -323,10 +369,49 @@
 	icon_state = "hydro"
 	ceiling = CEILING_GLASS
 
+/area/lv624/lazarus/bar
+	name = "\improper Bar"
+	icon_state = "kitchen"
+	ceiling = CEILING_GLASS
+
+/area/lv624/lazarus/overgrown
+	name = "\improper Overgrown Dome"
+	icon_state = "construction"
+	ceiling = CEILING_NONE
+	outside = TRUE
+	always_unpowered = TRUE
+
+/area/lv624/lazarus/sandtemple
+	name = "\improper Mysterious Temple"
+	icon_state = "sandtemple"
+	always_unpowered = TRUE
+
+/area/lv624/lazarus/sandtemple/sideroom //needed to allow nuke generator within temple to function
+	name = "\improper Mysterious Temple"
+	icon_state = "purple"
+	requires_power = FALSE
+
+/area/lv624/lazarus/tablefort
+	name = "\improper Table Fort"
+	icon_state = "tablefort"
+	always_unpowered = TRUE
+
 /area/lv624/lazarus/relay
 	name = "\improper Secret Relay Room"
 	icon_state = "tcomsatcham"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv624/lazarus/console
 	name = "\improper Shuttle Console"
 	icon_state = "tcomsatcham"
+	flags_area = NO_DROPPOD
+
+/area/lv624/lazarus/spaceport
+	name = "\improper Eastern Space Port"
+	icon_state = "landingzone1"
+	flags_area = NO_DROPPOD
+
+/area/lv624/lazarus/spaceport2
+	name = "\improper Western Space Port"
+	icon_state = "landingzone2"
+	flags_area = NO_DROPPOD

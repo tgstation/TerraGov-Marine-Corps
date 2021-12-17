@@ -24,11 +24,11 @@
 	icon_state = "capcap"
 	flags_inventory = NONE
 	flags_inv_hide = NONE
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 //Chaplain
 /obj/item/clothing/head/chaplain_hood
@@ -55,7 +55,8 @@
 	desc = "A beret, an artists favorite headwear."
 	icon_state = "beret"
 	siemens_coefficient = 0.9
-	flags_armor_protection = 0
+	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
+	flags_armor_features = ARMOR_NO_DECAP
 
 //Security
 /obj/item/clothing/head/beret/sec
@@ -78,6 +79,7 @@
 	name = "engineering beret"
 	desc = "A beret with the engineering insignia emblazoned on it. For engineers that are more inclined towards style than safety."
 	icon_state = "e_beret_badge"
+
 /obj/item/clothing/head/beret/jan
 	name = "purple beret"
 	desc = "A stylish, if purple, beret."
@@ -114,7 +116,7 @@
 	allowed = list(/obj/item/reagent_containers/food/snacks/candy_corn, /obj/item/tool/pen)
 	soft_armor = list("melee" = 50, "bullet" = 5, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	siemens_coefficient = 0.9
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 
 /obj/item/clothing/head/det_hat/black
 	icon_state = "detective2"

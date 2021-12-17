@@ -24,7 +24,7 @@
 
 	if(iswrench(I))
 		if(charging)
-			to_chat(user, "<span class='warning'>Remove [charging] first!</span>")
+			to_chat(user, span_warning("Remove [charging] first!"))
 			return
 		anchored = !anchored
 		to_chat(user, "You [anchored ? "attached" : "detached"] the recharger.")
@@ -34,18 +34,18 @@
 		return
 
 	if(charging)
-		to_chat(user, "<span class='warning'>\A [charging] is already charging here.</span>")
+		to_chat(user, span_warning("\A [charging] is already charging here."))
 		return
 	// Checks to make sure he's not in space doing it, and that the area got proper power.
 	var/area/A = get_area(src)
 	if(!isarea(A) || (A.power_equip == 0 && A.requires_power))
-		to_chat(user, "<span class='warning'>The [name] blinks red as you try to insert the item!</span>")
+		to_chat(user, span_warning("The [name] blinks red as you try to insert the item!"))
 		return
 
 	if(istype(I, /obj/item/defibrillator))
 		var/obj/item/defibrillator/D = I
 		if(D.ready)
-			to_chat(user, "<span class='warning'>It won't fit, put the paddles back into [D] first!</span>")
+			to_chat(user, span_warning("It won't fit, put the paddles back into [D] first!"))
 			return
 
 	if(!user.transferItemToLoc(I, src))
@@ -71,9 +71,6 @@ obj/machinery/recharger/attack_hand(mob/living/user)
 		percent_charge_complete = 0
 		update_icon()
 
-obj/machinery/recharger/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
-
 obj/machinery/recharger/process()
 	if(machine_stat & (NOPOWER|BROKEN) || !anchored)
 		update_icon()
@@ -85,9 +82,9 @@ obj/machinery/recharger/process()
 	else
 		if(istype(charging, /obj/item/weapon/gun/energy/taser))
 			var/obj/item/weapon/gun/energy/taser/E = charging
-			if(!E.cell.fully_charged())
-				E.cell.give(active_power_usage*GLOB.CELLRATE)
-				percent_charge_complete = E.cell.percent()
+			if(!E.rounds)
+				E.rounds += active_power_usage * GLOB.CELLRATE
+				percent_charge_complete = E.rounds * 100 / E.max_rounds
 				update_icon()
 			else
 				percent_charge_complete = 100

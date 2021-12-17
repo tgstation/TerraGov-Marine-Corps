@@ -2,6 +2,7 @@
 	name = "mob"
 	density = TRUE
 	layer = MOB_LAYER
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	animate_movement = SLIDE_STEPS
 	datum_flags = DF_USE_TAG
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
@@ -67,7 +68,8 @@
 	var/image/typing_indicator
 
 	//Interaction
-	var/action_busy //whether the mob is currently doing an action that takes time (do_after or do_mob procs)
+	///Lazylist assoc list of do_after and do_mob actions the mob is currently performing: list([target] = amount)
+	var/list/do_actions
 	var/datum/click_intercept
 	var/atom/movable/interactee //the thing that the mob is currently interacting with (e.g. a computer, another mob (stripping a mob), manning a hmg)
 	var/obj/control_object //Used by admins to possess objects.
@@ -89,3 +91,5 @@
 
 	/// Can they interact with station electronics
 	var/has_unlimited_silicon_privilege = 0
+	///The faction this mob belongs to
+	var/faction = FACTION_NEUTRAL

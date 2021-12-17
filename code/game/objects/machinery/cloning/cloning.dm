@@ -21,7 +21,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	if(COOLDOWN_CHECK(src, relay_cooldown))
 		return
 	COOLDOWN_START(src, relay_cooldown, 2 SECONDS)
-	user.visible_message("You hear something bang on the window of \the [src]", "The door won't budge")
+	user.visible_message("You hear something bang on the window of \the [src]", "The door won't budge!")
 	return FALSE
 
 
@@ -46,7 +46,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 50
-	resistance_flags = UNACIDABLE | INDESTRUCTIBLE // For now, we should work out how we want xenos to counter this
+	resistance_flags = RESIST_ALL // For now, we should work out how we want xenos to counter this
 
 	var/obj/machinery/cloning/vats/linked_machine
 	var/obj/item/radio/headset/mainship/mcom/radio //God forgive me
@@ -76,19 +76,19 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 		// Try to find the machine nearby
 		linked_machine = locate() in range(1)
 		if(!linked_machine)
-			visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'connection not available'.</span>")
+			visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'Connection not available'.</span>")
 			return TRUE
 
 		linked_machine.linked_console = src
-		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps as its boots up and connects to \the [linked_machine]</span>")
+		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps as its boots up and connects to \the [linked_machine].</span>")
 		return TRUE
 
 	if(linked_machine.occupant || linked_machine.timerid)
-		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'already processing clone'.</span>")
+		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'Already processing clone'.</span>")
 		return TRUE
 
 	if(!linked_machine.beaker || linked_machine.beaker.reagents.total_volume < linked_machine.biomass_required)
-		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'not enough biomass'.</span>")
+		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'Not enough biomass'.</span>")
 		return TRUE
 
 
@@ -100,7 +100,8 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	icon = 'icons/obj/machines/cloning.dmi'
 	icon_state = "cell_0"
 	use_power = IDLE_POWER_USE
-	idle_power_usage = 30000
+	idle_power_usage = 3000
+	active_power_usage = 30000
 
 	var/timerid
 	var/mob/living/carbon/human/occupant
@@ -143,14 +144,14 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 		return
 
 	if(user.a_intent == INTENT_HARM)
-		user.visible_message("<span class='notice'>[src] bangs on the glass</span>", "<span class='notice'>You bang on the glass</span>")
+		user.visible_message(span_notice("[user] bangs on the glass."), span_notice("You bang on the glass."))
 		return TRUE
 
 	if(!beaker)
 		return
 
 	if(timerid || occupant) // You need to stop the process or remove the human first.
-		to_chat(user, "<span class='notice'>You can't get to the beaker while the machine growing a clone.</span>")
+		to_chat(user, span_notice("You can't get to the beaker while the machine growing a clone."))
 		return
 
 	beaker.forceMove(drop_location())
@@ -169,14 +170,14 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 
 	if(istype(hit_by, /obj/item/reagent_containers/glass/beaker))
 		if(beaker)
-			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
+			to_chat(user, span_warning("A beaker is already loaded into the machine."))
 			return
 
 		// Check if the beaker contains anything other than biomass juice
 		for(var/instance in hit_by.reagents.reagent_list)
 			var/datum/reagent/regent = instance
 			if(!istype(regent, /datum/reagent/medicine/biomass) && !istype(regent, /datum/reagent/medicine/biomass/xeno))
-				to_chat(user, "<span class='warning'>\The [src] rejects the beaker due to incompatible contents.</span>")
+				to_chat(user, span_warning("\The [src] rejects the beaker due to incompatible contents."))
 				return
 
 		beaker = hit_by
@@ -191,17 +192,17 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 /obj/machinery/cloning/vats/examine(mob/user)
 	. = ..()
 	if(!beaker)
-		to_chat(user, "<span class='notice'>It doesn't have a beaker attached.</span>")
+		to_chat(user, span_notice("It doesn't have a beaker attached."))
 		return
 	if(timerid)
-		to_chat(user, "<span class='notice'>There is something weird inside.</span>")
+		to_chat(user, span_notice("There is something weird inside."))
 		return
 	if(occupant)
-		to_chat(user, "<span class='notice'>It looks like there is a human in there!</span>")
+		to_chat(user, span_notice("It looks like there is a human in there!"))
 		return
 
 
-/obj/machinery/cloning/vats/update_icon()
+/obj/machinery/cloning/vats/update_icon_state()
 	if(!beaker)
 		icon_state = "cell_0"
 		return
@@ -213,6 +214,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 
 
 /obj/machinery/cloning/vats/proc/grow_human(instant = FALSE)
+	use_power = ACTIVE_POWER_USE
 	// Ensure we cleanup the beaker contents
 	if(beaker)
 		beaker.reagents.remove_all(biomass_required)
@@ -227,6 +229,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 
 
 /obj/machinery/cloning/vats/proc/finish_growing_human()
+	use_power = IDLE_POWER_USE
 	occupant = new(src)
 	var/datum/job/job_instance = SSjob.GetJobType(/datum/job/terragov/squad/vatgrown)
 	occupant.apply_assigned_role_to_spawn(job_instance)
@@ -237,7 +240,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	// Blindness doenst't trigger with just the disability, you need to set_blindness
 
 	GLOB.offered_mob_list += occupant
-	notify_ghosts("<span class='boldnotice'>A new clone is available! Name: [name]</span>", enter_link = "claim=[REF(occupant)]", source = src, action = NOTIFY_ORBIT)
+	notify_ghosts(span_boldnotice("A new clone is available! Name: [name]"), enter_link = "claim=[REF(occupant)]", source = src, action = NOTIFY_ORBIT)
 
 	// Cleanup the timers
 	timerid = null
@@ -248,7 +251,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 		return
 
 	if(!silent)
-		visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> ejects the freshly spawned clone.</span>")
+		visible_message("[icon2html(src, viewers(src))] [span_notice("<b>[src]</b> ejects the freshly spawned clone.")]")
 	occupant.forceMove(get_step(loc, dir))
 	occupant.Paralyze(10 SECONDS)
 	occupant.disabilities &= ~(BLIND | DEAF)

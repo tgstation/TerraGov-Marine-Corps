@@ -6,7 +6,9 @@ export const EscapePod = (props, context) => {
   const { act, data } = useBackend(context);
   return (
     <Window
-      resizable>
+      title="Escape Pod"
+      width={400}
+      height={140}>
       <Window.Content>
         <Section title="Escape Pod">
           Welcome to Nanotransens least luxurious survival pod!

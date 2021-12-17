@@ -70,14 +70,20 @@ There are several things that need to be remembered:
 
 
 /mob/living/carbon/human/apply_overlay(cache_index)
+	var/list/to_add = list()
+	SEND_SIGNAL(src, COMSIG_HUMAN_APPLY_OVERLAY, cache_index, to_add)
 	var/image/I = overlays_standing[cache_index]
 	if(I)
-		overlays += I
+		to_add += I
+	overlays += to_add
 
 /mob/living/carbon/human/remove_overlay(cache_index)
+	var/list/to_remove = list()
+	SEND_SIGNAL(src, COMSIG_HUMAN_REMOVE_OVERLAY, cache_index, to_remove)
 	if(overlays_standing[cache_index])
-		overlays -= overlays_standing[cache_index]
+		to_remove += overlays_standing[cache_index]
 		overlays_standing[cache_index] = null
+	overlays -= to_remove
 
 /mob/living/carbon/human/apply_underlay(cache_index)
 	var/image/I = underlays_standing[cache_index]
@@ -90,27 +96,28 @@ There are several things that need to be remembered:
 		underlays_standing[cache_index] = null
 
 GLOBAL_LIST_EMPTY(damage_icon_parts)
+///fetches the damage icon part, and caches it if it made a new one
 /mob/living/carbon/human/proc/get_damage_icon_part(damage_state, body_part)
-	if(GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"] == null)
-		var/brutestate = copytext(damage_state, 1, 2)
-		var/burnstate = copytext(damage_state, 2)
-		var/icon/DI
-		if(species.blood_color != "#A10808") //not human blood color
-			DI = new /icon('icons/mob/dam_human.dmi', "grayscale_[brutestate]")// the damage icon for whole human in grayscale
-			DI.Blend(species.blood_color, ICON_MULTIPLY) //coloring with species' blood color
-		else
-			DI = new /icon('icons/mob/dam_human.dmi', "human_[brutestate]")
-		DI.Blend(new /icon('icons/mob/dam_human.dmi', "burn_[burnstate]"), ICON_OVERLAY)//adding burns
-		DI.Blend(new /icon('icons/mob/dam_mask.dmi', body_part), ICON_MULTIPLY)		// mask with this organ's pixels
-		GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"] = DI
-		return DI
-	else
+	if(GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"])
 		return GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"]
+
+	var/brute_state = copytext(damage_state, 1, 2)
+	var/burn_state = copytext(damage_state, 2)
+	var/icon/brute_state_icon = icon('icons/mob/dam_human.dmi', "[species.brute_damage_icon_state]_[brute_state]")
+	var/icon/burn_state_icon = icon('icons/mob/dam_human.dmi', "[species.burn_damage_icon_state]_[burn_state]")
+	var/icon/damage_mask_icon = icon(species.damage_mask_icon, body_part)
+	var/icon/DI = icon('icons/mob/dam_human.dmi', "00") //starts blank
+	if(species.species_flags & GREYSCALE_BLOOD)
+		DI.Blend(species.blood_color, ICON_MULTIPLY) 	//coloring with species' blood color
+	DI.Blend(brute_state_icon, ICON_OVERLAY)			//add bruises
+	DI.Blend(burn_state_icon, ICON_OVERLAY)				//add burns
+	DI.Blend(damage_mask_icon, ICON_MULTIPLY)			//mask with this organ's pixels
+	GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"] = DI
+	return DI
 
 //DAMAGE OVERLAYS
 //constructs damage icon for each organ from mask * damage field and saves it in our overlays_ lists
 /mob/living/carbon/human/UpdateDamageIcon()
-
 	if(species.species_flags & NO_DAMAGE_OVERLAY)
 		return
 
@@ -308,7 +315,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		return
 
 	var/datum/limb/head/head_organ = get_limb("head")
-	if( !head_organ || (head_organ.limb_status & LIMB_DESTROYED) )
+	if(!head_organ || (head_organ.limb_status & LIMB_DESTROYED) )
 		return
 
 	//masks and helmets can obscure our hair.
@@ -332,7 +339,15 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		if(hair_style && (species.name in hair_style.species_allowed))
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			if(hair_style.do_colouration)
+				var/icon/grad_s
+				if(grad_style && grad_style != "None")
+					var/datum/sprite_accessory/gradient = GLOB.hair_gradients_list[grad_style]
+					grad_s = new/icon("icon" = gradient.icon, "icon_state" = gradient.icon_state)
+					grad_s.Blend(hair_s, ICON_ADD)
+					grad_s.Blend(rgb(r_grad, g_grad, b_grad), ICON_ADD)
 				hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
+				if(!isnull(grad_s))
+					hair_s.Blend(grad_s, ICON_OVERLAY)
 
 			face_standing.Blend(hair_s, ICON_OVERLAY)
 
@@ -403,15 +418,15 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 /mob/living/carbon/human/update_inv_wear_id()
 	remove_overlay(ID_LAYER)
 	if(!wear_id)
-		return	
-		
+		return
+
 	if(client && hud_used?.hud_shown)
 		wear_id.screen_loc = ui_id
 		client.screen += wear_id
-	
+
 	if(w_uniform?.displays_id || istype(wear_id, /obj/item/card/id/dogtag))
 		overlays_standing[ID_LAYER]	= wear_id.make_worn_icon(body_type = species.name, slot_name = slot_wear_id_str, default_icon = 'icons/mob/mob.dmi', default_layer = ID_LAYER)
-	
+
 	apply_overlay(ID_LAYER)
 
 
@@ -424,7 +439,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		overlays_standing[GLOVES_LAYER]	= gloves.make_worn_icon(body_type = species.name, slot_name = slot_gloves_str, default_icon = 'icons/mob/hands.dmi', default_layer = GLOVES_LAYER)
 		apply_overlay(GLOVES_LAYER)
 		return
-	
+
 	if(!blood_color || !bloody_hands)
 		return
 	var/datum/limb/left_hand = get_limb("l_hand")
@@ -452,10 +467,10 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(client &&  hud_used?.hud_shown && hud_used.inventory_shown)
 		glasses.screen_loc = ui_glasses
 		client.screen += glasses
-	if(istype(glasses,/obj/item/clothing/glasses/mgoggles))
+	if(glasses.goggles)
 		overlays_standing[GOGGLES_LAYER] = glasses.make_worn_icon(body_type = species.name, slot_name = slot_glasses_str, default_icon = 'icons/mob/eyes.dmi', default_layer = GOGGLES_LAYER)
 		apply_overlay(GOGGLES_LAYER)
-	
+
 	else
 		overlays_standing[GLASSES_LAYER] = glasses.make_worn_icon(body_type = species.name, slot_name = slot_glasses_str, default_icon = 'icons/mob/eyes.dmi', default_layer = GLASSES_LAYER)
 		apply_overlay(GLASSES_LAYER)
@@ -464,7 +479,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	remove_overlay(EARS_LAYER)
 	if(!wear_ear)
 		return
-	
+
 	if(client && hud_used?.hud_shown && hud_used.inventory_shown)
 		wear_ear.screen_loc = ui_wear_ear
 		client.screen += wear_ear
@@ -482,7 +497,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 			client.screen += shoes
 	if(wear_suit?.flags_inv_hide & HIDESHOES)
 		return
-	
+
 	if(shoes)
 		overlays_standing[SHOES_LAYER] = shoes.make_worn_icon(body_type = species.name, slot_name = slot_shoes_str, default_icon = 'icons/mob/feet.dmi', default_layer = SHOES_LAYER)
 	else if(feet_blood_color)
@@ -496,11 +511,11 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	remove_overlay(SUIT_STORE_LAYER)
 	if(!s_store)
 		return
-	
+
 	if(client && hud_used?.hud_shown)
 		s_store.screen_loc = ui_sstore1
 		client.screen += s_store
-	
+
 	overlays_standing[SUIT_STORE_LAYER] = s_store.make_worn_icon(body_type = species.name, slot_name = slot_s_store_str, default_icon = 'icons/mob/suit_slot.dmi', default_layer = SUIT_STORE_LAYER)
 	apply_overlay(SUIT_STORE_LAYER)
 
@@ -510,11 +525,11 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	remove_overlay(HEAD_LAYER)
 	if(!head)
 		return
-	
+
 	if(client && hud_used?.hud_shown && hud_used.inventory_shown)
 		head.screen_loc = ui_head
 		client.screen += head
-	
+
 	overlays_standing[HEAD_LAYER] = head.make_worn_icon(body_type = species.name, slot_name = slot_head_str, default_icon = 'icons/mob/head_0.dmi', default_layer = HEAD_LAYER)
 
 	apply_overlay(HEAD_LAYER)
@@ -524,7 +539,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	remove_overlay(BELT_LAYER)
 	if(!belt)
 		return
-	
+
 	if(client && hud_used?.hud_shown)
 		belt.screen_loc = ui_belt
 		client.screen += belt
@@ -540,7 +555,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	species?.update_inv_wear_suit(src)
 	if(!wear_suit)
 		return
-		
+
 	if(client && hud_used?.hud_shown && hud_used.inventory_shown)
 		wear_suit.screen_loc = ui_oclothing
 		client.screen += wear_suit
@@ -567,11 +582,11 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	if(head?.flags_inv_hide & HIDEMASK)
 		return
-	
+
 	if(client && hud_used?.hud_shown && hud_used.inventory_shown)
 		wear_mask.screen_loc = ui_mask
 		client.screen += wear_mask
-	
+
 	overlays_standing[FACEMASK_LAYER] = wear_mask.make_worn_icon(body_type = species.name, slot_name = slot_wear_mask_str, default_icon = 'icons/mob/mask.dmi', default_layer = FACEMASK_LAYER)
 
 	apply_overlay(FACEMASK_LAYER)
@@ -584,7 +599,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(client && hud_used?.hud_shown)
 		back.screen_loc = ui_back
 		client.screen += back
-	
+
 	overlays_standing[BACK_LAYER] = back.make_worn_icon(body_type = species.name, slot_name = slot_back_str, default_icon = 'icons/mob/back.dmi', default_layer = BACK_LAYER)
 
 	apply_overlay(BACK_LAYER)
@@ -615,7 +630,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	remove_overlay(L_HAND_LAYER)
 	if(!l_hand)
 		return
-	
+
 	if(client && hud_used?.hud_version != HUD_STYLE_NOHUD)
 		client.screen += l_hand
 		l_hand.screen_loc = ui_lhand
@@ -626,15 +641,14 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 /mob/living/carbon/human/proc/update_tail_showing()
 	remove_overlay(TAIL_LAYER)
-
 	if(!species.tail)
 		return
-	if((wear_suit?.flags_inv_hide & HIDETAIL) && !istype(wear_suit, /obj/item/clothing/suit/space))
-		var/icon/tail_s = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.tail]_s")
-		tail_s.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
-		overlays_standing[TAIL_LAYER]	= image(tail_s, layer = -TAIL_LAYER)
-
-		apply_overlay(TAIL_LAYER)
+	if(istype(wear_suit, /obj/item/clothing/suit/space) || (wear_suit.flags_inv_hide & HIDETAIL))
+		return
+	var/icon/tail_s = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.tail]_s")
+	tail_s.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+	overlays_standing[TAIL_LAYER]	= image(tail_s, layer = -TAIL_LAYER)
+	apply_overlay(TAIL_LAYER)
 
 
 // Used mostly for creating head items

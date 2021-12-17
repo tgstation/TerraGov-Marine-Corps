@@ -48,19 +48,9 @@
 	/// Flat-damage-reduction-based armor.
 	var/datum/armor/hard_armor
 
-	var/dynamic_lighting = TRUE
-
-
-	var/tmp/lighting_corners_initialised = FALSE
-
 	///Lumcount added by sources other than lighting datum objects, such as the overlay lighting component.
 	var/dynamic_lumcount = 0
 	///List of light sources affecting this turf.
-	var/tmp/list/datum/light_source/affecting_lights
-	///Our lighting object.
-	var/tmp/atom/movable/lighting_object/lighting_object
-	var/tmp/list/datum/lighting_corner/corners
-
 	///Which directions does this turf block the vision of, taking into account both the turf's opacity and the movable opacity_sources.
 	var/directional_opacity = NONE
 	///Lazylist of movable atoms providing opacity sources.
@@ -85,12 +75,14 @@
 	for(var/atom/movable/AM in src)
 		Entered(AM)
 
-	var/area/A = loc
-	if(!IS_DYNAMIC_LIGHTING(src) && IS_DYNAMIC_LIGHTING(A))
-		add_overlay(/obj/effect/fullbright)
 
 	if(light_power && light_range)
 		update_light()
+
+	//Get area light
+	var/area/A = loc
+	if(A?.lighting_effect)
+		add_overlay(A.lighting_effect)
 
 	if(opacity)
 		directional_opacity = ALL_CARDINALS
@@ -113,7 +105,6 @@
 
 
 /turf/Destroy(force)
-
 	if(!changing_turf)
 		stack_trace("Incorrect turf deletion")
 	changing_turf = FALSE
@@ -130,10 +121,18 @@
 	DISABLE_BITFIELD(flags_atom, INITIALIZED)
 	soft_armor = null
 	hard_armor = null
+	current_acid = null
 	..()
 	return QDEL_HINT_IWILLGC
 
-/turf/Enter(atom/movable/mover, atom/oldloc)
+/// WARNING WARNING
+/// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
+/// It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
+/// We do it because moving signals over was needlessly expensive, and bloated a very commonly used bit of code
+/turf/clear_signal_refs()
+	return
+
+/turf/Enter(atom/movable/mover, direction)
 	// Do not call ..()
 	// Byond's default turf/Enter() doesn't have the behaviour we want with Bump()
 	// By default byond will call Bump() on the first dense object in contents
@@ -154,6 +153,10 @@
 		if(i == mover || i == mover.loc) // Multi tile objects and moving out of other objects
 			continue
 		var/atom/movable/thing = i
+		if(CHECK_MULTIPLE_BITFIELDS(thing.flags_pass, HOVERING))
+			continue
+		if(thing.status_flags & INCORPOREAL)
+			continue
 		if(thing.Cross(mover))
 			continue
 		var/signalreturn = SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_MOVABLE, thing)
@@ -175,34 +178,10 @@
 	return TRUE
 
 
-/turf/Exit(atom/movable/mover, atom/newloc)
-	. = ..()
-	if(!. || QDELETED(mover))
-		return FALSE
-	for(var/i in contents)
-		if(i == mover)
-			continue
-		var/atom/movable/thing = i
-		if(!thing.Uncross(mover, newloc))
-			if(thing.flags_atom & ON_BORDER)
-				var/signalreturn = SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE, thing)
-				if(signalreturn & COMPONENT_MOVABLE_PREBUMP_STOPPED)
-					return FALSE
-				if(signalreturn & COMPONENT_MOVABLE_PREBUMP_PLOWED)
-					continue // no longer in the way
-				mover.Bump(thing)
-				return FALSE
-		if(QDELETED(mover))
-			return FALSE		//We were deleted.
 
-
-/turf/Entered(atom/movable/A)
-
-	if(!istype(A))
-		return
-
-	if(ismob(A))
-		var/mob/M = A
+/turf/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	if(ismob(arrived))
+		var/mob/M = arrived
 		if(!M.lastarea)
 			M.lastarea = get_area(M.loc)
 
@@ -264,26 +243,38 @@
 	if(flags & CHANGETURF_SKIP)
 		return new path(src)
 
-	var/old_dynamic_lighting = dynamic_lighting
-	var/old_affecting_lights = affecting_lights
-	var/old_lighting_object = lighting_object
-	var/old_corners = corners
+	//static lighting
+	var/old_lighting_object = static_lighting_object
+	var/old_lighting_corner_NE = lighting_corner_NE
+	var/old_lighting_corner_SE = lighting_corner_SE
+	var/old_lighting_corner_SW = lighting_corner_SW
+	var/old_lighting_corner_NW = lighting_corner_NW
+	//hybrid lighting
+	var/list/old_hybrid_lights_affecting = hybrid_lights_affecting?.Copy()
 	var/old_directional_opacity = directional_opacity
 
 	var/list/old_baseturfs = baseturfs
 
-	var/list/transferring_comps = list()
-	SEND_SIGNAL(src, COMSIG_TURF_CHANGE, path, new_baseturfs, flags, transferring_comps)
-	for(var/i in transferring_comps)
-		var/datum/component/comp = i
-		comp.RemoveComponent()
+	var/list/post_change_callbacks = list()
+	SEND_SIGNAL(src, COMSIG_TURF_CHANGE, path, new_baseturfs, flags, post_change_callbacks)
 
 	changing_turf = TRUE
 	qdel(src)	//Just get the side effects and call Destroy
+	//We do this here so anything that doesn't want to persist can clear itself
+	var/list/old_comp_lookup = comp_lookup?.Copy()
+	var/list/old_signal_procs = signal_procs?.Copy()
 	var/turf/W = new path(src)
 
-	for(var/i in transferring_comps)
-		W.TakeComponent(i)
+	// WARNING WARNING
+	// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
+	// It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
+	if(old_comp_lookup)
+		LAZYOR(W.comp_lookup, old_comp_lookup)
+	if(old_signal_procs)
+		LAZYOR(W.signal_procs, old_signal_procs)
+
+	for(var/datum/callback/callback as anything in post_change_callbacks)
+		callback.InvokeAsync(W)
 
 	if(new_baseturfs)
 		W.baseturfs = new_baseturfs
@@ -293,22 +284,34 @@
 	if(!(flags & CHANGETURF_DEFER_CHANGE))
 		W.AfterChange(flags)
 
+	W.hybrid_lights_affecting = old_hybrid_lights_affecting
+	W.dynamic_lumcount = dynamic_lumcount
+
+	lighting_corner_NE = old_lighting_corner_NE
+	lighting_corner_SE = old_lighting_corner_SE
+	lighting_corner_SW = old_lighting_corner_SW
+	lighting_corner_NW = old_lighting_corner_NW
+
+	//static Update
 	if(SSlighting.initialized)
-		lighting_object = old_lighting_object
-		affecting_lights = old_affecting_lights
-		corners = old_corners
-		directional_opacity = old_directional_opacity
 		recalculate_directional_opacity()
 
-		if(dynamic_lighting != old_dynamic_lighting)
-			if (IS_DYNAMIC_LIGHTING(src))
-				lighting_build_overlay()
-			else
-				lighting_clear_overlay()
+		W.static_lighting_object = old_lighting_object
+
+		if(static_lighting_object && !static_lighting_object.needs_update)
+			static_lighting_object.update()
+
+	//Since the old turf was removed from hybrid_lights_affecting, readd the new turf here
+	if(W.hybrid_lights_affecting)
+		for(var/atom/movable/lighting_mask/mask AS in W.hybrid_lights_affecting)
+			LAZYADD(mask.affecting_turfs, W)
+
+	if(W.directional_opacity != old_directional_opacity)
+		W.reconsider_lights()
 
 	return W
 
-// Take off the top layer turf and replace it with the next baseturf down
+/// Take off the top layer turf and replace it with the next baseturf down
 /turf/proc/ScrapeAway(amount=1, flags)
 	if(!amount)
 		return
@@ -332,7 +335,7 @@
 
 /turf/proc/empty(turf_type=/turf/open/space, baseturf_type, list/ignore_typecache, flags)
 	// Remove all atoms except observers, landmarks, docking ports
-	var/static/list/ignored_atoms = typecacheof(list(/mob/dead, /obj/effect/landmark, /obj/docking_port, /atom/movable/lighting_object))
+	var/static/list/ignored_atoms = typecacheof(list(/mob/dead, /obj/effect/landmark, /obj/docking_port))
 	var/list/allowed_contents = typecache_filter_list_reverse(GetAllContentsIgnoring(ignore_typecache), ignored_atoms)
 	allowed_contents -= src
 	for(var/i in 1 to allowed_contents.len)
@@ -359,7 +362,7 @@
 	return L
 
 /turf/proc/AdjacentTurfsSpace()
-	var/L[] = new()
+	var/list/L = list()
 	for(var/turf/t in oview(src,1))
 		if(!t.density)
 			if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
@@ -445,7 +448,7 @@
 			playsound(src, "sound/effects/glassbr1.ogg", 60, 1)
 			spawn(8)
 				if(amount >1)
-					visible_message("<span class='boldnotice'>Shards of glass rain down from above!</span>")
+					visible_message(span_boldnotice("Shards of glass rain down from above!"))
 				for(var/i=1, i<=amount, i++)
 					new /obj/item/shard(pick(turfs))
 					new /obj/item/shard(pick(turfs))
@@ -453,14 +456,14 @@
 			playsound(src, "sound/effects/metal_crash.ogg", 60, 1)
 			spawn(8)
 				if(amount >1)
-					visible_message("<span class='boldnotice'>Pieces of metal crash down from above!</span>")
+					visible_message(span_boldnotice("Pieces of metal crash down from above!"))
 				for(var/i=1, i<=amount, i++)
 					new /obj/item/stack/sheet/metal(pick(turfs))
 		if(CEILING_UNDERGROUND, CEILING_DEEP_UNDERGROUND)
 			playsound(src, "sound/effects/meteorimpact.ogg", 60, 1)
 			spawn(8)
 				if(amount >1)
-					visible_message("<span class='boldnotice'>Chunks of rock crash down from above!</span>")
+					visible_message(span_boldnotice("Chunks of rock crash down from above!"))
 				for(var/i=1, i<=amount, i++)
 					new /obj/item/ore(pick(turfs))
 					new /obj/item/ore(pick(turfs))
@@ -519,32 +522,40 @@
 /turf/open/floor/plating/ground/snow/is_weedable()
 	return !slayer && ..()
 
-
-
-/turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
+/**
+ * Checks for whether we can build advanced xeno structures here
+ * Returns TRUE if present, FALSE otherwise
+ */
+/turf/proc/check_disallow_alien_fortification(mob/living/builder, silent = FALSE)
 	var/area/ourarea = loc
 	if(ourarea.flags_area & DISALLOW_WEEDING)
 		if(!silent)
-			to_chat(builder, "<span class='warning'>We cannot build in this area!</span>")
+			to_chat(builder, span_warning("We cannot build in this area before the talls are out!"))
 		return FALSE
+	return TRUE
+
+/**
+ * Check if alien abilities can construct structure on the turf
+ * Return TRUE if allowed, FALSE otherwise
+ */
+/turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
 	var/has_obstacle
 	for(var/obj/O in contents)
 		if(istype(O, /obj/item/clothing/mask/facehugger))
-			if(!silent)
-				to_chat(builder, "<span class='warning'>There is a little one here already. Best move it.</span>")
-			return FALSE
+			var/obj/item/clothing/mask/facehugger/hugger_check = O
+			if(hugger_check.stat != DEAD) //We don't care about dead huggers.
+				if(!silent)
+					to_chat(builder, span_warning("There is a little one here already. Best move it."))
+				return FALSE
 		if(istype(O, /obj/effect/alien/egg))
 			if(!silent)
-				to_chat(builder, "<span class='warning'>There's already an egg.</span>")
+				to_chat(builder, span_warning("There's already an egg here."))
 			return FALSE
-		if(istype(O, /obj/effect/alien/resin/trap))
+		if(istype(O, /obj/structure/xeno))
 			if(!silent)
-				to_chat(builder, "<span class='warning'>There is already a trap here!</span>")
+				to_chat(builder, span_warning("There's already a resin structure here!"))
 			return FALSE
-		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin))
-			has_obstacle = TRUE
-			break
-		if(istype(O, /obj/structure/ladder))
+		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/structure/ladder) || istype(O, /obj/effect/alien/resin))
 			has_obstacle = TRUE
 			break
 		if(istype(O, /obj/structure/bed))
@@ -560,19 +571,23 @@
 			has_obstacle = TRUE
 			break
 
+		if(istype(O, /obj/structure/cocoon))
+			has_obstacle = TRUE
+			break
+
 		if(O.density && !(O.flags_atom & ON_BORDER))
 			has_obstacle = TRUE
 			break
 
 	if(density || has_obstacle)
 		if(!silent)
-			to_chat(builder, "<span class='warning'>There's something built here already.</span>")
+			to_chat(builder, span_warning("There's something built here already."))
 		return FALSE
 	return TRUE
 
 /turf/closed/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
 	if(!silent)
-		to_chat(builder, "<span class='warning'>There's something built here already.</span>")
+		to_chat(builder, span_warning("There's something built here already."))
 	return FALSE
 
 /turf/proc/can_dig_xeno_tunnel()
@@ -633,11 +648,8 @@
 /turf/open/floor/plating/ground/snow/get_dirt_type()
 	return DIRT_TYPE_SNOW
 
-
-
-
-
-
+/turf/open/lavaland/basalt/get_dirt_type()
+	return DIRT_TYPE_LAVALAND
 
 /turf/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -723,13 +735,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 /turf/proc/copyTurf(turf/T)
 	if(T.type != type)
-		var/obj/O
-		if(underlays.len)	//we have underlays, which implies some sort of transparency, so we want to a snapshot of the previous turf as an underlay
-			O = new()
-			O.underlays.Add(T)
 		T.ChangeTurf(type)
-		if(underlays.len)
-			T.underlays = O.underlays
 	if(T.icon_state != icon_state)
 		T.icon_state = icon_state
 	if(T.icon != icon)
@@ -860,9 +866,9 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	var/datum/camerachunk/C = GLOB.cameranet.chunkGenerated(x, y, z)
 	if(C)
 		if(C.obscuredTurfs[src])
-			vis_contents += GLOB.cameranet.vis_contents_objects
+			vis_contents += GLOB.cameranet.vis_contents_opaque
 		else
-			vis_contents -= GLOB.cameranet.vis_contents_objects
+			vis_contents -= GLOB.cameranet.vis_contents_opaque
 
 
 /turf/AllowDrop()
@@ -900,3 +906,16 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	if(var_name in banned_edits)
 		return FALSE
 	return ..()
+
+///Change the turf current acid var
+/turf/proc/set_current_acid(obj/effect/xenomorph/acid/new_acid)
+	if(current_acid)
+		UnregisterSignal(current_acid, COMSIG_PARENT_QDELETING)
+	current_acid = new_acid
+	RegisterSignal(current_acid, COMSIG_PARENT_QDELETING, .proc/clean_current_acid)
+
+///Signal handler to clean current_acid var
+/turf/proc/clean_current_acid()
+	SIGNAL_HANDLER
+	current_acid = null
+

@@ -1,4 +1,6 @@
 #define TRAIT_STATUS_EFFECT(effect_id) "[effect_id]-trait"
+#define BASE_HEAL_RATE -0.0125
+
 
 //Largely negative status effects go here, even if they have small benificial effects
 //STUN EFFECTS
@@ -126,21 +128,22 @@
 /datum/status_effect/incapacitating/sleeping/tick()
 	if(owner.maxHealth)
 		var/health_ratio = owner.health / owner.maxHealth
-		var/healing = -0.2
+		var/healing = BASE_HEAL_RATE //set for a base of 0.25 healed per 2-second interval asleep in a bed with covers.
 		if((locate(/obj/structure/bed) in owner.loc))
-			healing -= 0.3
+			healing += (2 * BASE_HEAL_RATE)
 		else if((locate(/obj/structure/table) in owner.loc))
-			healing -= 0.1
+			healing += BASE_HEAL_RATE
 		for(var/obj/item/bedsheet/bedsheet in range(owner.loc,0))
 			if(bedsheet.loc != owner.loc) //bedsheets in your backpack/neck don't give you comfort
 				continue
-			healing -= 0.1
+			healing += BASE_HEAL_RATE
 			break //Only count the first bedsheet
-		if(health_ratio > 0.8)
+		if(health_ratio > -0.5)
 			owner.adjustBruteLoss(healing)
 			owner.adjustFireLoss(healing)
 			owner.adjustToxLoss(healing * 0.5, TRUE, TRUE)
-		owner.adjustStaminaLoss(healing)
+			owner.adjustStaminaLoss(healing * 100)
+			owner.adjustCloneLoss(healing * health_ratio * 0.8)
 	if(human_owner && human_owner.drunkenness)
 		human_owner.drunkenness *= 0.997 //reduce drunkenness by 0.3% per tick, 6% per 2 seconds
 	if(prob(20))
@@ -227,4 +230,154 @@
 	return ..()
 
 /datum/status_effect/noplasmaregen/tick()
-	to_chat(owner, "<span class='warning'>You feel too weak to summon new plasma...</span>")
+	to_chat(owner, span_warning("You feel too weak to summon new plasma..."))
+
+/datum/status_effect/incapacitating/harvester_slowdown
+	id = "harvest_slow"
+	tick_interval = 1 SECONDS
+	status_type = STATUS_EFFECT_REPLACE
+	var/debuff_slowdown = 2
+
+/datum/status_effect/incapacitating/harvester_slowdown/on_apply()
+	. = ..()
+	if(!.)
+		return
+	owner.add_movespeed_modifier(MOVESPEED_ID_HARVEST_TRAM_SLOWDOWN, TRUE, 0, NONE, TRUE, debuff_slowdown)
+
+/datum/status_effect/incapacitating/harvester_slowdown/on_remove()
+	owner.remove_movespeed_modifier(MOVESPEED_ID_HARVEST_TRAM_SLOWDOWN)
+	return ..()
+
+
+//HEALING INFUSION buff for Hivelord
+/datum/status_effect/healing_infusion
+	id = "healing_infusion"
+	alert_type = /obj/screen/alert/status_effect/healing_infusion
+	//Buff ends whenever we run out of either health or sunder ticks, or time, whichever comes first
+	///Health recovery ticks
+	var/health_ticks_remaining
+	///Sunder recovery ticks
+	var/sunder_ticks_remaining
+
+/datum/status_effect/healing_infusion/on_creation(mob/living/new_owner, set_duration = HIVELORD_HEALING_INFUSION_DURATION, stacks_to_apply = HIVELORD_HEALING_INFUSION_TICKS)
+	if(!isxeno(new_owner))
+		CRASH("something applied [id] on a nonxeno, dont do that")
+
+	duration = set_duration
+	owner = new_owner
+	health_ticks_remaining = stacks_to_apply //Apply stacks
+	sunder_ticks_remaining = stacks_to_apply
+	return ..()
+
+
+/datum/status_effect/healing_infusion/on_apply()
+	. = ..()
+	if(!.)
+		return
+	ADD_TRAIT(owner, TRAIT_HEALING_INFUSION, TRAIT_STATUS_EFFECT(id))
+	owner.add_filter("hivelord_healing_infusion_outline", 3, outline_filter(1, COLOR_VERY_PALE_LIME_GREEN)) //Set our cool aura; also confirmation we have the buff
+	RegisterSignal(owner, COMSIG_XENOMORPH_HEALTH_REGEN, .proc/healing_infusion_regeneration) //Register so we apply the effect whenever the target heals
+	RegisterSignal(owner, COMSIG_XENOMORPH_SUNDER_REGEN, .proc/healing_infusion_sunder_regeneration) //Register so we apply the effect whenever the target heals
+
+/datum/status_effect/healing_infusion/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_HEALING_INFUSION, TRAIT_STATUS_EFFECT(id))
+	owner.remove_filter("hivelord_healing_infusion_outline")
+	UnregisterSignal(owner, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_SUNDER_REGEN))
+
+	new /obj/effect/temp_visual/telekinesis(get_turf(owner)) //Wearing off VFX
+	new /obj/effect/temp_visual/healing(get_turf(owner))
+
+	owner.balloon_alert(owner, "Regeneration is no longer accelerated")
+	owner.playsound_local(owner, 'sound/voice/hiss5.ogg', 25)
+
+	return ..()
+
+///Called when the target xeno regains HP via heal_wounds in life.dm
+/datum/status_effect/healing_infusion/proc/healing_infusion_regeneration(mob/living/carbon/xenomorph/patient)
+	SIGNAL_HANDLER
+
+	if(!health_ticks_remaining)
+		qdel(src)
+		return
+
+	health_ticks_remaining-- //Decrement health ticks
+
+	new /obj/effect/temp_visual/healing(get_turf(patient)) //Cool SFX
+
+	var/total_heal_amount = 6 + (patient.maxHealth * 0.03) //Base amount 6 HP plus 3% of max
+	if(patient.recovery_aura)
+		total_heal_amount *= (1 + patient.recovery_aura * 0.05) //Recovery aura multiplier; 5% bonus per full level
+
+	//Healing pool has been calculated; now to decrement it
+	var/brute_amount = min(patient.bruteloss, total_heal_amount)
+	if(brute_amount)
+		patient.adjustBruteLoss(-brute_amount, updating_health = TRUE)
+		total_heal_amount = max(0, total_heal_amount - brute_amount) //Decrement from our heal pool the amount of brute healed
+
+	if(!total_heal_amount) //no healing left, no need to continue
+		return
+
+	var/burn_amount = min(patient.fireloss, total_heal_amount)
+	if(burn_amount)
+		patient.adjustFireLoss(-burn_amount, updating_health = TRUE)
+
+
+///Called when the target xeno regains Sunder via heal_wounds in life.dm
+/datum/status_effect/healing_infusion/proc/healing_infusion_sunder_regeneration(mob/living/carbon/xenomorph/patient)
+	SIGNAL_HANDLER
+
+	if(!sunder_ticks_remaining)
+		qdel(src)
+		return
+
+	if(!locate(/obj/effect/alien/weeds) in patient.loc) //Doesn't work if we're not on weeds
+		return
+
+	sunder_ticks_remaining-- //Decrement sunder ticks
+
+	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Visual confirmation
+
+	patient.adjust_sunder(-1.8 * (1 + patient.recovery_aura * 0.05)) //5% bonus per rank of our recovery aura
+
+
+/obj/screen/alert/status_effect/healing_infusion
+	name = "Healing Infusion"
+	desc = "You have accelerated natural healing."
+	icon_state = "healing_infusion"
+
+//MUTE
+/datum/status_effect/mute
+	id = "mute"
+	alert_type = /obj/screen/alert/status_effect/mute
+
+/obj/screen/alert/status_effect/mute
+	name = "Muted"
+	desc = "You can't speak!"
+	icon_state = "mute"
+
+/datum/status_effect/mute/on_creation(mob/living/new_owner, set_duration)
+	owner = new_owner
+	if(set_duration) //If the duration is limited, set it
+		duration = set_duration
+	return ..()
+
+/datum/status_effect/mute/on_apply()
+	. = ..()
+	if(!.)
+		return
+	ADD_TRAIT(owner, TRAIT_MUTED, TRAIT_STATUS_EFFECT(id))
+
+/datum/status_effect/mute/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_MUTED, TRAIT_STATUS_EFFECT(id))
+	return ..()
+
+/datum/status_effect/spacefreeze
+	id = "spacefreeze"
+
+/datum/status_effect/spacefreeze/on_creation(mob/living/new_owner)
+	. = ..()
+	to_chat(new_owner, span_danger("The cold vacuum instantly freezes you, maybe this was a bad idea?"))
+
+/datum/status_effect/spacefreeze/tick()
+	owner.adjustFireLoss(40)
+

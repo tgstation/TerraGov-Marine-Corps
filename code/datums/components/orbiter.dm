@@ -37,6 +37,7 @@
 	for(var/i in orbiters)
 		end_orbit(i)
 	orbiters = null
+	QDEL_NULL(tracker)
 	return ..()
 
 /datum/component/orbiter/InheritComponent(datum/component/orbiter/newcomp, original, atom/movable/orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
@@ -82,10 +83,10 @@
 
 	orbiter.SpinAnimation(rotation_speed, -1, clockwise, rotation_segments, parallel = FALSE)
 
-	orbiter.forceMove(get_turf(parent))
+	orbiter.abstract_move(get_turf(parent))
 	var/atom/movable/movable_parent = parent
 	orbiter.glide_size = movable_parent.glide_size
-	to_chat(orbiter, "<span class='notice'>Now orbiting [parent].</span>")
+	to_chat(orbiter, span_notice("Now orbiting [parent]."))
 
 /datum/component/orbiter/proc/end_orbit(atom/movable/orbiter, refreshing=FALSE)
 	if(!orbiters[orbiter])
@@ -118,7 +119,7 @@
 		var/atom/movable/thing = i
 		if(QDELETED(thing) || thing.loc == newturf)
 			continue
-		thing.forceMove(newturf)
+		thing.abstract_move(newturf)
 		if(CHECK_TICK && master.loc != curloc)
 			// We moved again during the checktick, cancel current operation
 			break
@@ -142,10 +143,12 @@
 	if(!istype(A) || !get_turf(A) || A == src)
 		return
 
+	orbit_target = A
+
 	return A.AddComponent(/datum/component/orbiter, src, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
 
 /atom/movable/proc/stop_orbit(datum/component/orbiter/orbits)
-	return // We're just a simple hook
+	orbit_target = null
 
 /atom/proc/transfer_observers_to(atom/target)
 	if(!orbiters || !istype(target) || !get_turf(target) || target == src)

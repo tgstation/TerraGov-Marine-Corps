@@ -10,10 +10,11 @@
 
 	var/list/list/maplist
 	var/list/defaultmaps
-
-	var/list/modes // allowed modes
+	/// List of all modes that can be choose by admins
+	var/list/modes
 	var/list/gamemode_cache
-	var/list/votable_modes // votable modes
+	/// List of all modes that can be voted by the players
+	var/list/votable_modes
 	var/list/mode_names
 
 	var/motd
@@ -234,18 +235,70 @@
 	gamemode_cache = typecacheof(/datum/game_mode, TRUE)
 	modes = list()
 	mode_names = list()
-	votable_modes = list()
 	for(var/T in gamemode_cache)
-		// I wish I didn't have to instance the game modes in order to look up
-		// their information, but it is the only way (at least that I know of).
 		var/datum/game_mode/M = new T()
-		if(M.config_tag)
-			if(!(M.config_tag in modes)) //Ensure each mode is added only once
-				modes += M.config_tag
-				mode_names[M.config_tag] = M.name
-				if(M.votable)
-					votable_modes += M.config_tag
-		qdel(M)
+		if(!M.config_tag)
+			continue
+		if((M.config_tag in modes)) //Ensure each mode is added only once
+			continue
+		modes += M
+		mode_names[M.config_tag] = M.name
+	log_config("Loading config file [CONFIG_MODES_FILE]...")
+	var/filename = "[directory]/[CONFIG_MODES_FILE]"
+	var/list/Lines = file2list(filename)
+	var/datum/game_mode/currentmode
+	for(var/t in Lines)
+		if(!t)
+			continue
+
+		t = trim(t)
+		if(length(t) == 0)
+			continue
+		else if(copytext(t, 1, 2) == "#")
+			continue
+
+		var/pos = findtext(t, " ")
+		var/command = null
+		var/data = null
+
+		if(pos)
+			command = lowertext(copytext(t, 1, pos))
+			data = copytext(t, pos + 1)
+		else
+			command = lowertext(t)
+
+		if(!command)
+			continue
+
+		if(!currentmode && command != "mode")
+			continue
+
+		switch(command)
+			if("mode")
+				for(var/datum/game_mode/mode AS in modes)
+					if(mode.config_tag == data)
+						currentmode = mode
+						break
+			if("requiredplayers")
+				currentmode.required_players = text2num(data)
+			if("maximumplayers")
+				currentmode.maximum_players = text2num(data)
+			if("squadmaxnumber")
+				currentmode.squads_max_number = text2num(data)
+			if("deploytimelock")
+				currentmode.deploy_time_lock = text2num(data) MINUTES
+			if("votable")
+				currentmode.votable = text2num(data)
+			if("endmode")
+				currentmode = null
+			else
+				log_config("Unknown command in map vote config: '[command]'")
+
+	votable_modes = list()
+	for(var/datum/game_mode/mode AS in modes)
+		if(mode.votable)
+			votable_modes += mode
+
 
 
 /datum/controller/configuration/proc/LoadMOTD()
@@ -365,7 +418,6 @@ Example config:
 
 	ic_filter_regex = in_character_filter.len ? regex("\\b([jointext(in_character_filter, "|")])\\b", "i") : null
 
-	syncChatRegexes()
 
 //Message admins when you can.
 /datum/controller/configuration/proc/DelayedMessageAdmins(text)

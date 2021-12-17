@@ -223,6 +223,23 @@ GLOBAL_LIST_EMPTY(asset_datums)
 #undef SPRSZ_ICON
 #undef SPRSZ_STRIPPED
 
+/datum/asset/changelog_item
+	_abstract = /datum/asset/changelog_item
+	var/item_filename
+
+/datum/asset/changelog_item/New(date)
+	item_filename = SANITIZE_FILENAME("[date].yml")
+	SSassets.transport.register_asset(item_filename, file("html/changelogs/archive/" + item_filename))
+
+/datum/asset/changelog_item/send(client)
+	if (!item_filename)
+		return
+	. = SSassets.transport.send_assets(client, item_filename)
+
+/datum/asset/changelog_item/get_url_mappings()
+	if (!item_filename)
+		return
+	. = list("[item_filename]" = SSassets.transport.get_asset_url(item_filename))
 
 /datum/asset/spritesheet/simple
 	_abstract = /datum/asset/spritesheet/simple
@@ -252,7 +269,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 				continue
 			asset = fcopy_rsc(asset) //dedupe
 			var/prefix2 = (directions.len > 1) ? "[dir2text(direction)]." : ""
-			var/asset_name = sanitize_filename("[prefix].[prefix2][icon_state_name].png")
+			var/asset_name = SANITIZE_FILENAME("[prefix].[prefix2][icon_state_name].png")
 			if (generic_icon_names)
 				asset_name = "[generate_asset_name(asset)].png"
 

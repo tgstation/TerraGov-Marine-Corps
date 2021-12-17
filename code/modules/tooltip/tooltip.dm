@@ -104,7 +104,6 @@ Notes:
 
 /* TG SPECIFIC CODE */
 
-
 //Open a tooltip for user, at a location based on params
 //Theme is a CSS class in tooltip.html, by default this wrapper chooses a CSS class based on the user's UI_style (Midnight, Plasmafire, Retro, etc)
 //Includes sanity.checks

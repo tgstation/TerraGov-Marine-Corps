@@ -1,4 +1,8 @@
 /mob/living/silicon/ai/Life()
+
+	if(notransform) //If we're dead or set to notransform don't bother processing life
+		return
+
 	if(stat == DEAD)
 		SSmobs.stop_processing(src)
 		return

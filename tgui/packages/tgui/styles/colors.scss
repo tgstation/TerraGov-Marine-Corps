@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2020 Aleksej Komarov
+ * SPDX-License-Identifier: MIT
+ */
+
 @use 'sass:color';
 @use 'sass:map';
 @use 'sass:meta';
@@ -17,6 +22,7 @@ $purple: #a333c8 !default;
 $pink: #e03997 !default;
 $brown: #a5673f !default;
 $grey: #767676 !default;
+$light-grey: #aaa !default;
 
 $primary: #4972a1 !default;
 $good: #5baa27 !default;
@@ -26,7 +32,7 @@ $label: #7e90a7 !default;
 
 // Background and foreground color lightness ratios
 $bg-lightness: -15% !default;
-$fg-lightness: 5% !default;
+$fg-lightness: 10% !default;
 
 @function bg($color) {
   @return color.scale($color, $lightness: $bg-lightness);
@@ -53,6 +59,7 @@ $_gen_map: (
   'pink': $pink,
   'brown': $brown,
   'grey': $grey,
+  'light-grey': $grey,
   'good': $good,
   'average': $average,
   'bad': $bad,

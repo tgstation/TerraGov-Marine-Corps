@@ -1,8 +1,9 @@
 /datum/emergency_call/xenomorphs
 	name = "Xenomorphs"
-	probability = 10
+	base_probability = 11
 	auto_shuttle_launch = TRUE
 	spawn_type = null
+	alignement_factor = 4
 
 
 /datum/emergency_call/xenomorphs/print_backstory(mob/living/carbon/xenomorph/X)
@@ -15,7 +16,6 @@
 	var/turf/drop_spawn	= get_spawn_point(TRUE)
 	if(istype(drop_spawn))
 		new /obj/effect/alien/weeds/node(drop_spawn) //Drop some weeds for xeno plasma regen.
-
 
 /datum/emergency_call/xenomorphs/create_member(datum/mind/M)
 	. = ..()

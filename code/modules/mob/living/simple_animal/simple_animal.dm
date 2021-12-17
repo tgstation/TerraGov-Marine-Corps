@@ -51,6 +51,8 @@
 	var/melee_damage_type = BRUTE //Damage type of a simple mob's melee attack, should it do damage.
 	var/list/damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1) // 1 for full damage , 0 for none , -1 for 1:1 heal from that source
 
+	//Gibber thingy
+	var/nutrition = NUTRITION_WELLFED
 
 /mob/living/simple_animal/Initialize()
 	. = ..()
@@ -143,7 +145,7 @@
 	health = 0
 	icon_state = icon_dead
 	density = FALSE
-	to_chat(src,"<b><span class='deadsay'><p style='font-size:1.5em'><big>You have perished.</big></p></span></b>")
+	to_chat(src,"<b>[span_deadsay("<p style='font-size:1.5em'><big>You have perished.</big></p>")]</b>")
 
 	. = ..()
 
@@ -195,7 +197,7 @@
 		if(INTENT_HELP)
 			if(health <= 0)
 				return FALSE
-			visible_message("<span class='notice'>[user] [response_help] [src].</span>")
+			visible_message(span_notice("[user] [response_help] [src]."))
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 		if(INTENT_GRAB)
@@ -203,12 +205,9 @@
 
 		if(INTENT_HARM, INTENT_DISARM)
 			user.do_attack_animation(src)
-			if(!prob(user.melee_accuracy))
-				user.visible_message("<span class='danger'>[user] misses [src]!</span>", null, null, 5)
-				return FALSE
 			user.do_attack_animation(src, ATTACK_EFFECT_KICK)
-			visible_message("<span class='danger'>[user] [response_harm] [src]!</span>",
-			"<span class='userdanger'>[user] [response_harm] [src]!</span>")
+			visible_message(span_danger("[user] [response_harm] [src]!"),
+			span_userdanger("[user] [response_harm] [src]!"))
 			playsound(loc, attacked_sound, 25, 1, -1)
 			attack_threshold_check(harm_intent_damage)
 			UPDATEHEALTH(src)
@@ -216,19 +215,19 @@
 			return TRUE
 
 
-/mob/living/simple_animal/attack_alien(mob/living/carbon/xenomorph/X)
+/mob/living/simple_animal/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	. = ..()
 	if(!.)
 		return
 	if(X.a_intent == INTENT_DISARM)
 		playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
-		visible_message("<span class='danger'>[X] [response_disarm] [name]!</span>", \
-				"<span class='userdanger'>[X] [response_disarm] [name]!</span>")
+		visible_message(span_danger("[X] [response_disarm] [name]!"), \
+				span_userdanger("[X] [response_disarm] [name]!"))
 		log_combat(X, src, "disarmed")
 	else
 		var/damage = rand(15, 30)
-		visible_message("<span class='danger'>[X] has slashed at [src]!</span>", \
-				"<span class='userdanger'>[X] has slashed at [src]!</span>")
+		visible_message(span_danger("[X] has slashed at [src]!"), \
+				span_userdanger("[X] has slashed at [src]!"))
 		playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
 		attack_threshold_check(damage)
 		log_combat(X, src, "attacked")
@@ -274,7 +273,7 @@
 		temp_damage *= damage_coeff[damagetype]
 
 	if(temp_damage >= 0 && temp_damage <= force_threshold)
-		visible_message("<span class='warning'>[src] looks unharmed.</span>")
+		visible_message(span_warning("[src] looks unharmed."))
 		return FALSE
 	else
 		apply_damage(damage, damagetype, null, getarmor(null, armorcheck))

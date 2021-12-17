@@ -33,8 +33,8 @@
 	density = TRUE
 
 
-/obj/machinery/flasher/update_icon()
-	if ( !(machine_stat & NOPOWER) )
+/obj/machinery/flasher/update_icon_state()
+	if(!(machine_stat & NOPOWER))
 		icon_state = "[base_state]1"
 	else
 		icon_state = "[base_state]1-p"
@@ -43,9 +43,9 @@
 /obj/machinery/flasher/wirecutter_act(mob/living/user, obj/item/W)
 	disable = !disable
 	if (disable)
-		user.visible_message("<span class='warning'> [user] has disconnected the [src]'s flashbulb!</span>", "<span class='warning'> You disconnect the [src]'s flashbulb!</span>")
+		user.visible_message(span_warning(" [user] has disconnected the [src]'s flashbulb!"), span_warning(" You disconnect the [src]'s flashbulb!"))
 	if (!disable)
-		user.visible_message("<span class='warning'> [user] has connected the [src]'s flashbulb!</span>", "<span class='warning'> You connect the [src]'s flashbulb!</span>")
+		user.visible_message(span_warning(" [user] has connected the [src]'s flashbulb!"), span_warning(" You connect the [src]'s flashbulb!"))
 
 /obj/machinery/flasher/attack_ai()
 	if (anchored)
@@ -109,16 +109,13 @@
 		anchored = !anchored
 
 		if(!anchored)
-			user.show_message(text("<span class='warning'> [src] is now secured.</span>"))
+			user.show_message(span_warning("[src] is now secured."))
 			overlays += "[base_state]-s"
 		else
-			user.show_message(text("<span class='warning'> [src] can now be moved.</span>"))
+			user.show_message(span_warning(" [src] can now be moved."))
 			overlays.Cut()
 
 /obj/machinery/flasher_button/attack_ai(mob/user as mob)
-	return attack_hand(user)
-
-/obj/machinery/flasher_button/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/machinery/flasher_button/attackby(obj/item/I, mob/user, params)
@@ -135,7 +132,7 @@
 		return
 
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access Denied.</span>")
+		to_chat(user, span_warning("Access Denied."))
 		return
 
 	use_power(active_power_usage)
@@ -152,4 +149,3 @@
 	icon_state = "launcherbtt"
 	active = 0
 
-	return

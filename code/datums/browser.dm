@@ -17,6 +17,7 @@
 
 /datum/browser/New(nuser, nwindow_id, ntitle = 0, nwidth = 0, nheight = 0, atom/nref = null)
 	user = nuser
+	RegisterSignal(user, COMSIG_PARENT_QDELETING, .proc/clean_browser)
 	window_id = nwindow_id
 	if(ntitle)
 		title = format_text(ntitle)
@@ -27,6 +28,14 @@
 	if(nref)
 		ref = nref
 
+///Signal handler to clean the user
+/datum/browser/proc/clean_browser()
+	SIGNAL_HANDLER
+	qdel(src)
+
+/datum/browser/Destroy(force, ...)
+	user = null
+	return ..()
 
 /datum/browser/proc/add_head_content(nhead_content)
 	head_content = nhead_content
@@ -102,7 +111,7 @@
 /datum/browser/proc/open(use_onclose = TRUE)
 	if(isnull(window_id))	//null check because this can potentially nuke goonchat
 		stack_trace("Browser [title] tried to open with a null ID")
-		to_chat(user, "<span class='userdanger'>The [title] browser you tried to open failed a sanity check! Please report this on github!</span>")
+		to_chat(user, span_userdanger("The [title] browser you tried to open failed a sanity check! Please report this on github!"))
 		return
 	var/window_size = ""
 	if(width && height)
@@ -173,33 +182,40 @@
 	close()
 
 
-//designed as a drop in replacement for alert(); functions the same. (outside of needing User specified)
+/**
+ * **DEPRECATED: USE tgui_alert(...) INSTEAD**
+ *
+ * Designed as a drop in replacement for alert(); functions the same. (outside of needing User specified)
+ * Arguments:
+ * * User - The user to show the alert to.
+ * * Message - The textual body of the alert.
+ * * Title - The title of the alert's window.
+ * * Button1 - The first button option.
+ * * Button2 - The second button option.
+ * * Button3 - The third button option.
+ * * StealFocus - Boolean operator controlling if the alert will steal the user's window focus.
+ * * Timeout - The timeout of the window, after which no responses will be valid.
+ */
 /proc/tgalert(mob/User, Message, Title, Button1="Ok", Button2, Button3, StealFocus = 1, Timeout = 6000)
 	if(!User)
 		User = usr
-	switch(askuser(User, Message, Title, Button1, Button2, Button3, StealFocus, Timeout))
-		if(1)
-			return Button1
-		if(2)
-			return Button2
-		if(3)
-			return Button3
-
-
-//Same shit, but it returns the button number, could at some point support unlimited button amounts.
-/proc/askuser(mob/User,Message, Title, Button1="Ok", Button2, Button3, StealFocus = 1, Timeout = 6000)
 	if(!istype(User))
 		if(istype(User, /client/))
 			var/client/C = User
 			User = C.mob
 		else
 			return
+	// Get user's response using a modal
 	var/datum/browser/modal/alert/A = new(User, Message, Title, Button1, Button2, Button3, StealFocus, Timeout)
 	A.open()
 	A.wait()
-	if(A.selectedbutton)
-		return A.selectedbutton
-
+	switch(A.selectedbutton)
+		if(1)
+			return Button1
+		if(2)
+			return Button2
+		if(3)
+			return Button3
 
 /datum/browser/modal
 	var/opentime = 0

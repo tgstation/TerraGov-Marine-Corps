@@ -22,8 +22,11 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/deployable_camera/attack_self(mob/user)
-	user.visible_message("<span class='notice'>[user] throws [src] into the air!</span>",
-		"<span class='notice'>You throw [src] into the air!</span>")
+	user.visible_message(span_notice("[user] throws [src] into the air!"),
+		span_notice("You throw [src] into the air!"))
+
+	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
+		to_chat(AI, span_notice("NOTICE - \"Huginn\" ROC-58 Observer has been deployed at [AREACOORD_NO_Z(user)]."))
 	var/obj/machinery/camera/deployable/newcam = new(get_turf(user))
 	var/dat
 	if(ishuman(user))

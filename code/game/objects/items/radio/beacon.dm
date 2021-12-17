@@ -23,7 +23,7 @@
 		src.code = t
 	if (!( src.code ))
 		src.code = "beacon"
-	return
+
 
 
 /obj/item/radio/beacon/bacon //Probably a better way of doing this, I'm lazy.

@@ -26,7 +26,7 @@
 	update_icon()
 
 
-/obj/machinery/button/update_icon()
+/obj/machinery/button/update_icon_state()
 	if(machine_stat & (NOPOWER|BROKEN))
 		icon_state = "[initial(icon_state)]-p"
 	else
@@ -46,7 +46,7 @@
 		return
 
 	if(!allowed(user))
-		to_chat(user, "<span class='danger'>Access Denied</span>")
+		to_chat(user, span_danger("Access Denied"))
 		flick("[initial(icon_state)]-denied", src)
 		return
 
@@ -86,7 +86,10 @@
 			openclose = M.density
 		else if(CHECK_BITFIELD(specialfunctions, DOOR_FLAG_OPEN_ONLY))
 			openclose = TRUE
-		INVOKE_ASYNC(M, openclose ? /obj/machinery/door/poddoor.proc/open : /obj/machinery/door/poddoor.proc/close)
+		if(openclose)
+			M.open()
+			continue
+		M.close()
 
 
 /obj/machinery/button/door/open_only
@@ -94,15 +97,30 @@
 	desc = "Opens whatever it is linked to. Does not close. Careful on what you release."
 	specialfunctions = DOOR_FLAG_OPEN_ONLY
 
+/obj/machinery/button/door/open_only/Initialize(mapload)
+	. = ..()
+	switch(dir)
+		if(NORTH)
+			pixel_y = -12
+		if(SOUTH)
+			pixel_y = 29
+		if(EAST)
+			pixel_x = -21
+		if(WEST)
+			pixel_x = 21
+
 
 /obj/machinery/button/door/open_only/landing_zone
 	name = "lockdown override"
 	id = "landing_zone"
+	icon_state = "shutterctrl"
 	use_power = NO_POWER_USE
 	resistance_flags = RESIST_ALL
-	req_access = list(ACCESS_MARINE_DROPSHIP)
+	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_DROPSHIP_REBEL)
 
-
+/obj/machinery/button/door/open_only/landing_zone/pulsed()
+	. = ..()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_SHUTTERS_EARLY)
 
 /obj/machinery/button/door/open_only/landing_zone/lz2
 	id = "landing_zone_2"
@@ -156,9 +174,6 @@
 	var/otherarea = null
 	var/id = 1
 
-	attack_paw(mob/user as mob)
-		return
-
 /obj/machinery/medical_help_button
 	name = "Medical attention required"
 	icon = 'icons/obj/stationobjs.dmi'
@@ -186,7 +201,7 @@
 	if(!istype(user))
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(user, "<span class='warning'>[src] doesn't seem to be working.</span>")
+		to_chat(user, span_warning("[src] doesn't seem to be working."))
 		return
 	if(active)
 		return
@@ -203,7 +218,7 @@
 	active = FALSE
 	update_icon()
 
-/obj/machinery/medical_help_button/update_icon()
+/obj/machinery/medical_help_button/update_icon_state()
 	if(machine_stat & NOPOWER)
 		icon_state = "doorctrl-p"
 	else

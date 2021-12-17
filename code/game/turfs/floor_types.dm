@@ -111,6 +111,9 @@
 /turf/open/floor/mainship/ai
 	icon_state = "ai_floors"
 
+/turf/open/floor/mainship/sandtemple
+	icon_state = "sandtemplefloor"
+
 /turf/open/floor/mainship/sterile
 	icon_state = "sterile_green"
 
@@ -313,6 +316,9 @@
 /turf/open/floor/cult
 	icon_state = "cult"
 
+/turf/open/floor/cult/clock
+	icon_state = "clockwork"
+
 /turf/open/floor/engine
 	name = "reinforced floor"
 	icon_state = "engine"
@@ -324,11 +330,13 @@
 	return
 
 /turf/open/floor/engine/attackby(obj/item/I, mob/user, params)
+	if(iscrowbar(I)) // Prevent generation of infinite 'floor_tile' objs caused by the overridden make_plating() above never clearing the var
+		return
 	. = ..()
 
 	if(iswrench(I))
-		user.visible_message("<span class='notice'>[user] starts removing [src]'s protective cover.</span>",
-		"<span class='notice'>You start removing [src]'s protective cover.</span>")
+		user.visible_message(span_notice("[user] starts removing [src]'s protective cover."),
+		span_notice("You start removing [src]'s protective cover."))
 		playsound(src, 'sound/items/ratchet.ogg', 25, 1)
 
 		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))

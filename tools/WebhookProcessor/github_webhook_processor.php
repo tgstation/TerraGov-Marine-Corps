@@ -647,15 +647,16 @@ function get_pr_code_friendliness($payload, $oldbalance = null){
 		'Refactor' => 10,
 		'Code Improvement' => 2,
 		'Grammar and Formatting' => 1,
+		'Quality of Life' => 1,
 		'Priority: High' => 15,
 		'Priority: CRITICAL' => 20,
 		'Unit Tests' => 6,
 		'Logging' => 1,
 		'Feedback' => 2,
 		'Performance' => 12,
+		'Atomic' => 2,
 		'Feature' => -10,
 		'Balance/Rebalance' => -8,
-		'Tweak' => -2,
 		'GBP: Reset' => $startingPRBalance - $oldbalance,
 	);
 
@@ -674,8 +675,7 @@ function get_pr_code_friendliness($payload, $oldbalance = null){
 		}
 	}
 
-	$affecting = abs($maxNegative) >= $maxPositive ? $maxNegative : $maxPositive;
-	return $affecting;
+	return $maxNegative + $maxPositive;
 }
 
 function is_maintainer($payload, $author){
@@ -817,6 +817,8 @@ function checkchangelog($payload, $compile = true) {
 		}
 
 		if (!strlen($firstword)) {
+			if (count($currentchangelogblock) <= 0)
+				continue;
 			$currentchangelogblock[count($currentchangelogblock)-1]['body'] .= "\n";
 			continue;
 		}
@@ -838,12 +840,10 @@ function checkchangelog($payload, $compile = true) {
 					$currentchangelogblock[] = array('type' => 'bugfix', 'body' => $item);
 				}
 				break;
-			case 'rsctweak':
-			case 'tweaks':
-			case 'tweak':
-				if($item != 'tweaked a few things') {
-					$tags[] = 'Tweak';
-					$currentchangelogblock[] = array('type' => 'tweak', 'body' => $item);
+			case 'qol':
+				if($item != 'made something easier to use') {
+					$tags[] = 'Quality of Life';
+					$currentchangelogblock[] = array('type' => 'qol', 'body' => $item);
 				}
 				break;
 			case 'soundadd':
@@ -862,8 +862,8 @@ function checkchangelog($payload, $compile = true) {
 			case 'add':
 			case 'adds':
 			case 'rscadd':
-				if($item != 'Added new things' && $item != 'Added more things') {
-					$tags[] = 'Feature';
+				if($item != 'Added new mechanics or gameplay changes' && $item != 'Added more mechanics or gameplay changes') {
+					$tags[] = 'Mechanic';
 					$currentchangelogblock[] = array('type' => 'rscadd', 'body' => $item);
 				}
 				break;
@@ -902,14 +902,17 @@ function checkchangelog($payload, $compile = true) {
 					$currentchangelogblock[] = array('type' => 'balance', 'body' => $item);
 				}
 				break;
-			case 'tgs':
-				$currentchangelogblock[] = array('type' => 'tgs', 'body' => $item);
-				break;
 			case 'code_imp':
 			case 'code':
 				if($item != 'changed some code'){
 					$tags[] = 'Code Improvement';
 					$currentchangelogblock[] = array('type' => 'code_imp', 'body' => $item);
+				}
+				break;
+			case 'expansion':
+				if($item != 'Expands content of an existing feature'){
+					$tags[] = 'Content Expansion';
+					$currentchangelogblock[] = array('type' => 'expansion', 'body' => $item);
 				}
 				break;
 			case 'refactor':

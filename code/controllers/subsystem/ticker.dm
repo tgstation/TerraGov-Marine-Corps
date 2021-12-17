@@ -16,7 +16,13 @@ SUBSYSTEM_DEF(ticker)
 
 	var/datum/game_mode/mode = null
 
-	var/list/login_music = null						//Music played in pregame lobby
+	///music that is played in pre game lobby
+	var/login_music = null
+
+	///music/jingle played when the world reboots
+	var/round_end_sound
+	///If all clients have loaded the round end sound
+	var/round_end_sound_sent = TRUE
 
 	var/delay_end = FALSE					//If set true, the round will not restart on it's own
 	var/admin_delay_notice = ""				//A message to display to anyone who tries to restart the world after a delay
@@ -41,14 +47,23 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
-	
-	var/all_music = CONFIG_GET(keyed_list/lobby_music)
-	var/key = SAFEPICK(all_music)
-	if(key)
-		var/music_options = splittext(all_music[key], " ")
-		login_music = list(music_options[1], music_options[2], music_options[3])
+
+	login_music = choose_lobby_song()
+	for(var/client/player AS in GLOB.clients)
+		player.play_title_music()
 
 	return ..()
+
+///returns the string address of a random config lobby song
+/datum/controller/subsystem/ticker/proc/choose_lobby_song()
+	var/list/reboot_sounds = flist("[global.config.directory]/lobby_themes/")
+	var/list/possible_themes = list()
+
+	for(var/themes in reboot_sounds)
+		possible_themes += themes
+	if(possible_themes.len)
+		return "[global.config.directory]/lobby_themes/[pick(possible_themes)]"
+
 
 
 /datum/controller/subsystem/ticker/fire()
@@ -60,9 +75,10 @@ SUBSYSTEM_DEF(ticker)
 				start_at = time_left || world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 			for(var/client/C in GLOB.clients)
 				window_flash(C)
-			to_chat(world, "<span class='round_body'>Welcome to the pre-game lobby of [CONFIG_GET(string/server_name)]!</span>")
-			to_chat(world, "<span class='role_body'>Please, setup your character and select ready. Game will start in [round(time_left / 10) || CONFIG_GET(number/lobby_countdown)] seconds.</span>")
+			to_chat(world, span_round_body("Welcome to the pre-game lobby of [CONFIG_GET(string/server_name)]!"))
+			to_chat(world, span_role_body("Please, setup your character and select ready. Game will start in [round(time_left / 10) || CONFIG_GET(number/lobby_countdown)] seconds."))
 			current_state = GAME_STATE_PREGAME
+			to_chat(world, SSpersistence.seasons_info_message())
 			fire()
 
 		if(GAME_STATE_PREGAME)
@@ -104,14 +120,13 @@ SUBSYSTEM_DEF(ticker)
 				GLOB.ooc_allowed = TRUE
 				GLOB.dooc_allowed = TRUE
 				mode.declare_completion(force_ending)
-				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "shipmap", "SERVER"), 2 SECONDS)
-				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "groundmap", "SERVER"), 63 SECONDS)
-				addtimer(CALLBACK(src, .proc/Reboot), 63 SECONDS)
+				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote/proc/automatic_vote), 2 SECONDS)
+				addtimer(CALLBACK(src, .proc/Reboot), CONFIG_GET(number/vote_period) * 3 + 9 SECONDS)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
 
 /datum/controller/subsystem/ticker/proc/setup()
-	to_chat(world, "<span class='boldnotice'><b>Enjoy the game!</b></span>")
+	to_chat(world, span_boldnotice("<b>Enjoy the game!</b>"))
 	var/init_start = world.timeofday
 	//Create and announce mode
 	mode = config.pick_mode(GLOB.master_mode)
@@ -216,6 +231,7 @@ SUBSYSTEM_DEF(ticker)
 	mode = SSticker.mode
 
 	login_music = SSticker.login_music
+	round_end_sound = SSticker.round_end_sound
 
 	delay_end = SSticker.delay_end
 
@@ -247,6 +263,14 @@ SUBSYSTEM_DEF(ticker)
 	else
 		time_left = newtime
 
+///loads the sound file into rsc for the users
+/datum/controller/subsystem/ticker/proc/SetRoundEndSound(the_sound)
+	set waitfor = FALSE
+	round_end_sound_sent = FALSE
+	round_end_sound = fcopy_rsc(the_sound)
+	for(var/client/cli AS in GLOB.clients)
+		cli.Export("##action=load_rsc", round_end_sound)
+	round_end_sound_sent = TRUE
 
 /datum/controller/subsystem/ticker/proc/load_mode()
 	var/mode = trim(file2text("data/mode.txt"))
@@ -279,7 +303,7 @@ SUBSYSTEM_DEF(ticker)
 			graceful = TRUE
 
 	if(graceful)
-		to_chat_immediate(world, "<h3><span class='boldnotice'>Shutting down...</span></h3>")
+		to_chat_immediate(world, "<h3>[span_boldnotice("Shutting down...")]</h3>")
 		world.Reboot(FALSE)
 		return
 
@@ -288,20 +312,21 @@ SUBSYSTEM_DEF(ticker)
 
 	var/skip_delay = check_rights()
 	if(delay_end && !skip_delay)
-		to_chat(world, "<span class='boldnotice'>An admin has delayed the round end.</span>")
+		to_chat(world, span_boldnotice("An admin has delayed the round end."))
 		return
 
-	to_chat(world, "<span class='boldnotice'>Rebooting World in [DisplayTimeText(delay)]. [reason]</span>")
+	to_chat(world, span_boldnotice("Rebooting World in [DisplayTimeText(delay)]. [reason]"))
 
 	var/start_wait = world.time
+	UNTIL(round_end_sound_sent || (world.time - start_wait) > (delay * 2)) //don't wait forever
 	sleep(delay - (world.time - start_wait))
 
 	if(delay_end && !skip_delay)
-		to_chat(world, "<span class='boldnotice'>Reboot was cancelled by an admin.</span>")
+		to_chat(world, span_boldnotice("Reboot was cancelled by an admin."))
 		return
 
 	log_game("Rebooting World. [reason]")
-	to_chat_immediate(world, "<h3><span class='boldnotice'>Rebooting...</span></h3>")
+	to_chat_immediate(world, "<h3>[span_boldnotice("Rebooting...")]</h3>")
 
 	world.Reboot(TRUE)
 
@@ -317,7 +342,7 @@ SUBSYSTEM_DEF(ticker)
 		tip = pick(SSstrings.get_list_from_file("tips/meme"))
 
 	if(tip)
-		to_chat(world, "<br><span class='tip'>[html_encode(tip)]</span><br>")
+		to_chat(world, "<br>[span_tip("[html_encode(tip)]")]<br>")
 
 
 /datum/controller/subsystem/ticker/proc/check_queue()
@@ -327,9 +352,9 @@ SUBSYSTEM_DEF(ticker)
 	if(!hpc)
 		listclearnulls(queued_players)
 		for(var/mob/new_player/NP in queued_players)
-			to_chat(NP, "<span class='userdanger'>The alive players limit has been released!<br><a href='?src=[REF(NP)];lobby_choice=late_join;override=1'>[html_encode(">>Join Game<<")]</a></span>")
+			to_chat(NP, span_userdanger("The alive players limit has been released!<br><a href='?src=[REF(NP)];lobby_choice=late_join;override=1'>[html_encode(">>Join Game<<")]</a>"))
 			SEND_SOUND(NP, sound('sound/misc/notice1.ogg', channel = CHANNEL_NOTIFY))
-			NP.LateChoices()
+			NP.late_choices()
 		queued_players.Cut()
 		queue_delay = 0
 		return
@@ -342,13 +367,35 @@ SUBSYSTEM_DEF(ticker)
 			listclearnulls(queued_players)
 			if(living_player_count() < hpc)
 				if(next_in_line?.client)
-					to_chat(next_in_line, "<span class='userdanger'>A slot has opened! You have approximately 20 seconds to join. <a href='?src=[REF(next_in_line)];lobby_choice=latejoin;override=1'>\>\>Join Game\<\<</a></span>")
+					to_chat(next_in_line, span_userdanger("A slot has opened! You have approximately 20 seconds to join. <a href='?src=[REF(next_in_line)];lobby_choice=latejoin;override=1'>\>\>Join Game\<\<</a>"))
 					SEND_SOUND(next_in_line, sound('sound/misc/notice1.ogg', channel = CHANNEL_NOTIFY))
-					next_in_line.LateChoices()
+					next_in_line.late_choices()
 					return
 				queued_players -= next_in_line //Client disconnected, remove he
 			queue_delay = 0 //No vacancy: restart timer
 		if(25 to INFINITY)  //No response from the next in line when a vacancy exists, remove he
-			to_chat(next_in_line, "<span class='danger'>No response received. You have been removed from the line.</span>")
+			to_chat(next_in_line, span_danger("No response received. You have been removed from the line."))
 			queued_players -= next_in_line
 			queue_delay = 0
+
+/datum/controller/subsystem/ticker/Shutdown()
+	if(!round_end_sound)
+		round_end_sound = choose_round_end_song()
+	///The reference to the end of round sound that we have chosen.
+	var/sound/end_of_round_sound_ref = sound(round_end_sound)
+	for(var/mob/M AS in GLOB.player_list)
+		if(M.client.prefs?.toggles_sound & SOUND_NOENDOFROUND)
+			continue
+		SEND_SOUND(M.client, end_of_round_sound_ref)
+
+	text2file(login_music, "data/last_round_lobby_music.txt")
+
+///picks a round end sound and returns it
+/datum/controller/subsystem/ticker/proc/choose_round_end_song()
+	var/list/reboot_sounds = flist("[global.config.directory]/reboot_themes/")
+	var/list/possible_themes = list()
+
+	for(var/themes in reboot_sounds)
+		possible_themes += themes
+	if(possible_themes.len)
+		return "[global.config.directory]/reboot_themes/[pick(possible_themes)]"

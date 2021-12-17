@@ -32,8 +32,12 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/main_hall)
+"hE" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle9)
 "hJ" = (
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -66,10 +70,15 @@
 /area/lv624/ground/jungle7)
 "md" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 8
 	},
 /turf/closed/gm/dense,
+/area/lv624/ground/compound/ne)
+"mC" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "nL" = (
 /obj/structure/fence,
@@ -145,6 +154,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
+"tI" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle9)
 "tQ" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
@@ -155,6 +169,11 @@
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle9)
+"uV" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle7)
 "vw" = (
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/plating/ground/dirt,
@@ -177,7 +196,7 @@
 /area/lv624/ground/jungle9)
 "wt" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -275,6 +294,14 @@
 "HZ" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
+"Id" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/ne)
+"Im" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle7)
 "IA" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -323,7 +350,7 @@
 	},
 /area/lv624/ground/jungle9)
 "KW" = (
-/obj/machinery/colony_floodlight,
+/obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "Lp" = (
@@ -332,6 +359,10 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle9)
+"Lq" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/ground/grass,
+/area/lv624/ground/compound/ne)
 "MK" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -343,9 +374,20 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle9)
+"Oi" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/ne)
 "On" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/main_hall)
+"Po" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/ne)
 "Pr" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -438,7 +480,7 @@
 /area/lv624/ground/jungle7)
 "Zj" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/machinery/colony_floodlight{
+/obj/machinery/floodlight/colony{
 	dir = 4
 	},
 /turf/open/ground/grass,
@@ -457,7 +499,7 @@ bA
 SX
 HZ
 YD
-qj
+Oi
 HZ
 Jv
 yC
@@ -512,12 +554,12 @@ DF
 DF
 DF
 TU
-lf
+tI
 Xt
 wT
 "}
 (4,1,1) = {"
-bA
+Im
 bA
 QM
 SX
@@ -551,7 +593,7 @@ Ss
 yC
 se
 bv
-yC
+hE
 DF
 yC
 yC
@@ -678,7 +720,7 @@ SX
 HZ
 HZ
 qj
-HZ
+Po
 HZ
 HZ
 HZ
@@ -704,7 +746,7 @@ AV
 AV
 AV
 AV
-AV
+mC
 AV
 AV
 AV
@@ -743,12 +785,12 @@ bA
 SX
 HZ
 HZ
+Id
 HZ
 HZ
 HZ
 HZ
-HZ
-HZ
+Id
 HZ
 HZ
 HZ
@@ -814,7 +856,7 @@ II
 II
 ZU
 HZ
-HZ
+Id
 HZ
 YD
 HZ
@@ -874,7 +916,7 @@ ps
 ps
 ps
 Vd
-rd
+uV
 pc
 XC
 qD
@@ -886,7 +928,7 @@ IA
 GL
 QV
 xI
-wD
+Lq
 xI
 wD
 "}

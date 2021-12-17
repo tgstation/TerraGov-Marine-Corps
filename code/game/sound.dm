@@ -15,7 +15,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		return
 
 	//allocate a channel if necessary now so its the same for everyone
-	channel = channel || open_sound_channel()
+	channel = channel || SSsounds.random_available_channel()
 
 	if(!sound_range)
 		sound_range = round(0.5*vol) //if no specific range, the max range is equal to half the volume.
@@ -33,7 +33,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			continue
 		M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S)
 
-/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/S)
+/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/S, distance_multiplier = 1)
 	if(!client)
 		return FALSE
 
@@ -42,7 +42,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 	if(!S)
 		S = sound(soundin)
 	S.wait = 0 //No queue
-	S.channel = channel || open_sound_channel()
+	S.channel = channel || SSsounds.random_available_channel()
 	S.volume = vol
 	S.environment = list(
 		100.0, 0.5, \
@@ -67,13 +67,15 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		//sound volume falloff with distance
 		var/distance = get_dist(T, turf_source)
 
+		distance *= distance_multiplier
+
 		if(S.volume <= 2*distance)
 			return FALSE //no volume or too far away to hear such a volume level.
 
 		var/dx = turf_source.x - T.x // Hearing from the right/left
-		S.x = dx
+		S.x = dx * distance_multiplier
 		var/dz = turf_source.y - T.y // Hearing from infront/behind
-		S.z = dz
+		S.z = dz * distance_multiplier
 		//The y value is for above your head, but there is no ceiling in 2d spessmens.
 		S.y = 1
 		S.falloff = falloff ? falloff : FALLOFF_SOUNDS * max(round(S.volume * 0.05), 1)
@@ -97,54 +99,25 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		return FALSE
 	return ..()
 
-/proc/open_sound_channel()
-	var/static/next_channel = 1	//loop through the available 1024 - (the ones we reserve) channels and pray that its not still being used
-	. = ++next_channel
-	if(next_channel > CHANNEL_HIGHEST_AVAILABLE)
-		next_channel = 1
-
 /mob/proc/stop_sound_channel(chan)
 	SEND_SOUND(src, sound(null, repeat = 0, wait = 0, channel = chan))
 
-/client/proc/play_title_music()
+/mob/proc/set_sound_channel_volume(channel, volume)
+	var/sound/S = sound(null, FALSE, FALSE, channel, volume)
+	S.status = SOUND_UPDATE
+	SEND_SOUND(src, S)
+
+/client/proc/play_title_music(vol = 85)
 	if(!SSticker?.login_music)
 		return FALSE
 	if(prefs && (prefs.toggles_sound & SOUND_LOBBY))
-		var/ytdl = CONFIG_GET(string/invoke_youtubedl)
-		if(!ytdl || !SSticker.login_music)
-			play_title_music_legacy()
-			return
-
-		var/list/output = world.shelleo("[ytdl] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_url_scrub(SSticker.login_music[1])]\"")
-		var/stdout = output[SHELLEO_STDOUT]
-
-		var/list/data = list()
-		data = safe_json_decode(stdout)
-		if(!data)
-			stack_trace("Lobby music - [SSticker.login_music[1]] failed to parse correctly")
-			play_title_music_legacy()
-			return
-		var/web_sound_url = ""
-		web_sound_url = data["url"]
-
-		var/list/music_extra_data = list()
-		music_extra_data["start"] = text2num(SSticker.login_music[2])
-		music_extra_data["end"] = text2num(SSticker.login_music[3])
-
-		chatOutput.sendMusic(web_sound_url,music_extra_data)
-
-/client/proc/play_title_music_legacy(vol = 85)
-	if(!SSticker?.login_music)
-		return FALSE
-	if(prefs && (prefs.toggles_sound & SOUND_LOBBY))
-		//Since this is the legacy, replace this hardcoded ogg with your list of hosted files
-		SEND_SOUND(src, sound('sound/music/DawsonChristian.ogg', repeat = 0, wait = 0, volume = vol, channel = CHANNEL_LOBBYMUSIC)) // MAD JAMS
+		SEND_SOUND(src, sound(SSticker.login_music, repeat = 0, wait = 0, volume = vol, channel = CHANNEL_LOBBYMUSIC)) // MAD JAMS
 
 
 ///Play sound for all online mobs on a given Z-level. Good for ambient sounds.
 /proc/playsound_z(z, soundin, _volume)
-	soundin = sound(get_sfx(soundin), channel = open_sound_channel(), volume = _volume)
-	for(var/mob/M as() in GLOB.player_list)
+	soundin = sound(get_sfx(soundin), channel = SSsounds.random_available_channel(), volume = _volume)
+	for(var/mob/M AS in GLOB.player_list)
 		if(isnewplayer(M))
 			continue
 		if (M.z == z)
@@ -152,21 +125,21 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 
 ///Play a sound for all cliented humans and ghosts by zlevel
 /proc/playsound_z_humans(z, soundin, _volume)
-	soundin = sound(get_sfx(soundin), channel = open_sound_channel(), volume = _volume)
-	for(var/mob/living/carbon/human/H as() in GLOB.humans_by_zlevel["[z]"])
+	soundin = sound(get_sfx(soundin), channel = SSsounds.random_available_channel(), volume = _volume)
+	for(var/mob/living/carbon/human/H AS in GLOB.humans_by_zlevel["[z]"])
 		if(H.client)
 			SEND_SOUND(H, soundin)
-	for(var/mob/dead/observer/O as() in GLOB.observers_by_zlevel["[z]"])
+	for(var/mob/dead/observer/O AS in GLOB.observers_by_zlevel["[z]"])
 		if(O.client)
 			SEND_SOUND(O, soundin)
 
 ///Play a sound for all cliented xenos and ghosts by hive on a zlevel
 /proc/playsound_z_xenos(z, soundin, _volume, hive_type = XENO_HIVE_NORMAL)
-	soundin = sound(get_sfx(soundin), channel = open_sound_channel(), volume = _volume)
-	for(var/mob/living/carbon/xenomorph/X as() in GLOB.hive_datums[hive_type].xenos_by_zlevel["[z]"])
+	soundin = sound(get_sfx(soundin), channel = SSsounds.random_available_channel(), volume = _volume)
+	for(var/mob/living/carbon/xenomorph/X AS in GLOB.hive_datums[hive_type].xenos_by_zlevel["[z]"])
 		if(X.client)
 			SEND_SOUND(X, soundin)
-	for(var/mob/dead/observer/O as() in GLOB.observers_by_zlevel["[z]"])
+	for(var/mob/dead/observer/O AS in GLOB.observers_by_zlevel["[z]"])
 		if(O.client)
 			SEND_SOUND(O, soundin)
 
@@ -198,10 +171,14 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			S = pick('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg')
 		if("pageturn")
 			S = pick('sound/effects/pageturn1.ogg', 'sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg')
+		if("gasbreath")
+			S = pick('sound/effects/gasmaskbreath.ogg', 'sound/effects/gasmaskbreath2.ogg')
 		if("terminal_type")
 			S = pick('sound/machines/terminal_button01.ogg', 'sound/machines/terminal_button02.ogg', 'sound/machines/terminal_button03.ogg', \
 				'sound/machines/terminal_button04.ogg', 'sound/machines/terminal_button05.ogg', 'sound/machines/terminal_button06.ogg', \
 				'sound/machines/terminal_button07.ogg', 'sound/machines/terminal_button08.ogg')
+		if("vending")
+			S = pick('sound/machines/vending_cans.ogg', 'sound/machines/vending_drop.ogg')
 		// Weapons/bullets
 		if("ballistic_hit")
 			S = pick('sound/bullets/bullet_impact1.ogg','sound/bullets/bullet_impact2.ogg','sound/bullets/bullet_impact3.ogg')
@@ -235,6 +212,9 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			S = pick('sound/weapons/guns/fire/flamethrower1.ogg', 'sound/weapons/guns/fire/flamethrower2.ogg', 'sound/weapons/guns/fire/flamethrower3.ogg')
 		if("gun_t12")
 			S = pick('sound/weapons/guns/fire/autorifle-1.ogg','sound/weapons/guns/fire/autorifle-2.ogg','sound/weapons/guns/fire/autorifle-3.ogg')
+		if("gun_pulse")
+			S = pick('sound/weapons/guns/fire/m41a_1.ogg','sound/weapons/guns/fire/m41a_2.ogg','sound/weapons/guns/fire/m41a_3.ogg','sound/weapons/guns/fire/m41a_4.ogg','sound/weapons/guns/fire/m41a_5.ogg','sound/weapons/guns/fire/m41a_6.ogg')
+
 		// Xeno
 		if("acid_hit")
 			S = pick('sound/bullets/acid_impact1.ogg')
@@ -278,6 +258,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			S = pick('sound/voice/alien_queen_command.ogg','sound/voice/alien_queen_command2.ogg','sound/voice/alien_queen_command3.ogg')
 		if("alien_ventpass")
 			S = pick('sound/effects/alien_ventpass1.ogg', 'sound/effects/alien_ventpass2.ogg')
+
 		// Human
 		if("male_scream")
 			S = pick('sound/voice/human_male_scream_1.ogg','sound/voice/human_male_scream_2.ogg','sound/voice/human_male_scream_3.ogg','sound/voice/human_male_scream_4.ogg','sound/voice/human_male_scream_5.ogg','sound/voice/human_male_scream_6.ogg')
@@ -315,4 +296,12 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			S = pick("sound/voice/human_male_preburst1.ogg", 'sound/voice/human_male_preburst2.ogg', 'sound/voice/human_male_preburst3.ogg')
 		if("female_preburst")
 			S = pick("sound/voice/human_female_preburst1.ogg", 'sound/voice/human_female_preburst2.ogg', 'sound/voice/human_female_preburst3.ogg')
+
+		//robot race
+		if("robot_scream")
+			S =  pick('sound/voice/robot/robot_scream1.ogg', 'sound/voice/robot/robot_scream2.ogg', 'sound/voice/robot/robot_scream2.ogg')
+		if("robot_pain")
+			S = pick('sound/voice/robot/robot_pain1.ogg', 'sound/voice/robot/robot_pain2.ogg', 'sound/voice/robot/robot_pain3.ogg')
+		if("robot_warcry")
+			S = pick('sound/voice/robot/robot_warcry1.ogg', 'sound/voice/robot/robot_warcry2.ogg', 'sound/voice/robot/robot_warcry3.ogg')
 	return S

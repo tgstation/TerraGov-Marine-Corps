@@ -110,11 +110,12 @@
 		src.damtype = "fire"
 		src.icon_state = "cake1"
 		START_PROCESSING(SSobj, src)
-	else
-		src.force = null
-		src.damtype = "brute"
-		src.icon_state = "cake0"
-	return
+		return
+
+	force = null
+	damtype = BRUTE
+	icon_state = "cake0"
+
 
 
 /*

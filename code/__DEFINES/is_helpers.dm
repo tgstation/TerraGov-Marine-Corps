@@ -37,7 +37,7 @@
 
 #define isbrain(A) (istype(A, /mob/living/brain))
 
-#define isnestedhost(A)	((CHECK_BITFIELD(A.status_flags, XENO_HOST) && CHECK_BITFIELD(A.restrained_flags, RESTRAINED_XENO_NEST)))
+#define isnestedhost(A) ((CHECK_BITFIELD(A.status_flags, XENO_HOST) && CHECK_BITFIELD(A.restrained_flags, RESTRAINED_XENO_NEST)))
 
 //Carbon mobs
 #define iscarbon(A) (istype(A, /mob/living/carbon))
@@ -52,11 +52,21 @@
 #define isvox(H) (is_species(H, /datum/species/vox))
 #define isvoxarmalis(H) (is_species(H, /datum/species/vox/armalis))
 #define isIPC(H) (is_species(H, /datum/species/machine))
+#define isrobot(H) (is_species(H, /datum/species/robot))
 #define issynth(H) (is_species(H, /datum/species/synthetic) || is_species(H, /datum/species/early_synthetic))
 #define isspeciessynthetic(H) (H.species.species_flags & IS_SYNTHETIC)
 #define ismoth(H) (is_species(H, /datum/species/moth))
 #define issectoid(H) (is_species(H, /datum/species/sectoid))
 #define ishumanbasic(H) (is_species(H, /datum/species/human))
+#define iszombie(H) (is_species(H, /datum/species/zombie))
+
+//Monkey species and subtypes
+#define ismonkey(H) (is_species(H, /datum/species/monkey))
+#define isfarwa(H) (is_species(H, /datum/species/monkey/farwa))
+#define isstok(H) (is_species(H, /datum/species/monkey/stok))
+#define isnaera(H) (is_species(H, /datum/species/monkey/naera))
+#define isyiren(H) (is_species(H, /datum/species/monkey/yiren))
+
 
 //Job/role helpers
 #define ismarinefaction(H) (H.faction == "TerraGov")
@@ -71,15 +81,9 @@
 #define iscorporateliaisonjob(J) (istype(J, /datum/job/terragov/civilian/liaison))
 #define issurvivorjob(J) (istype(J, /datum/job/survivor))
 #define ischaplainjob(J) (istype(J, /datum/job/survivor/chaplain))
-
-//more carbon mobs
-#define ismonkey(A) (istype(A, /mob/living/carbon/monkey))
+#define isxenosjob(J) (istype(J, /datum/job/xenomorph))
 
 //Monkey sub-species
-#define ismonkeytajaran(M) (istype(M, /mob/living/carbon/monkey/tajara))
-#define ismonkeyskrell(M) (istype(M, /mob/living/carbon/monkey/skrell))
-#define ismonkeyunathi(M) (istype(M, /mob/living/carbon/monkey/unathi))
-#define ismonkeyyiren(M) (istype(M, /mob/living/carbon/monkey/yiren))
 
 #define isxeno(A) (istype(A, /mob/living/carbon/xenomorph))
 
@@ -87,6 +91,7 @@
 #define isxenoboiler(A) (istype(A, /mob/living/carbon/xenomorph/boiler))
 #define isxenocarrier(A) (istype(A, /mob/living/carbon/xenomorph/carrier))
 #define isxenocrusher(A) (istype(A, /mob/living/carbon/xenomorph/crusher))
+#define isxenogorger(A) (istype(A, /mob/living/carbon/xenomorph/gorger))
 #define isxenodrone(A) (istype(A, /mob/living/carbon/xenomorph/drone))
 #define isxenohivelord(A) (istype(A, /mob/living/carbon/xenomorph/hivelord))
 #define isxenohunter(A) (istype(A, /mob/living/carbon/xenomorph/hunter))
@@ -103,6 +108,7 @@
 #define isxenodefiler(A) (istype(A, /mob/living/carbon/xenomorph/Defiler))
 #define isxenobull(A) (istype(A, /mob/living/carbon/xenomorph/bull))
 #define isxenohivemind(A) (istype(A, /mob/living/carbon/xenomorph/hivemind))
+#define isxenowraith(A) (istype(A, /mob/living/carbon/xenomorph/wraith))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
@@ -156,7 +162,31 @@
 
 #define isgun(A) (istype(A, /obj/item/weapon/gun))
 
+#define isstorage(A) (istype(A, /obj/item/storage))
+
+#define isitemstack(A) (istype(A, /obj/item/stack))
+
+#define issuitwithstorage(A) (istype(A, /obj/item/clothing/suit/storage))
+
+#define isuniform(A) (istype(A, /obj/item/clothing/under))
+
+#define iswebbing(A) (istype(A, /obj/item/clothing/tie/storage))
+
+#define ismodulararmor(A) (istype(A, /obj/item/clothing/suit/modular))
+
+#define ismodulararmormodule(A) (istype(A, /obj/item/armor_module))
+
+#define ismodulararmorstoragemodule(A) (istype(A, /obj/item/armor_module/storage))
+
+#define ismodulararmorarmorpiece(A) (istype(A, /obj/item/armor_module/armor))
+
+#define ismodularhelmet(A) (istype(A, /obj/item/clothing/head/modular))
+
 #define isattachmentflashlight(A) (istype(A, /obj/item/attachable/flashlight))
+
+#define isgunattachment(A) (istype(A, /obj/item/attachable))
+
+#define ishandful(A) (istype(A, /obj/item/ammo_magazine/handful))
 
 #define iswrench(I) (istype(I, /obj/item/tool/wrench))
 
@@ -172,6 +202,10 @@
 
 #define iscrowbar(I) (istype(I, /obj/item/tool/crowbar))
 
+#define isfactorypart(I) (istype(I, /obj/item/factory_part))
+
+#define isfactoryrefill(I) (istype(I, /obj/item/factory_refill))
+
 #define isstructure(A) (istype(A, /obj/structure))
 
 #define iscable(A) (istype(A, /obj/structure/cable))
@@ -184,9 +218,19 @@
 
 #define is_cleanable(A) (istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/rune)) //if something is cleanable
 
+#define isvehicle(A) (istype(A, /obj/vehicle))
+
 #define isorgan(A) (istype(A, /datum/limb))
 
 #define isidcard(A) (istype(A, /obj/item/card/id))
+
+#define isuav(A) (istype(A, /obj/vehicle/unmanned))
+
+#define isdroid(A) (istype(A, /obj/vehicle/unmanned/droid))
+
+#define isreagentcontainer(A) (istype(A, /obj/item/reagent_containers)) //Checks for if something is a reagent container.
+
+#define is_research_product(A) (istype(A, /obj/item/research_product)) //Checks if item is research item
 
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
@@ -206,10 +250,14 @@
 #define isainode(O) (istype(O, /obj/effect/ai_node))
 
 //Gamemode
-#define isdistress(O) (istype(O, /datum/game_mode/infestation/distress))
+#define isdistressgamemode(O) (istype(O, /datum/game_mode/infestation/distress))
+#define ishuntgamemode(O) (istype(O, /datum/game_mode/infestation/hunt))
 #define iscrashgamemode(O) (istype(O, /datum/game_mode/infestation/crash))
+#define isinfestationgamemode(O) (istype(O, /datum/game_mode/infestation))
 
 #define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
+
+#define isspacearea(A) (istype(A, /area/space)) //Spacceeeee
 
 // Admin
 #define isaghost(mob) ( mob.key && mob.key[1] == "@" )
@@ -217,7 +265,11 @@
 
 // Shuttles
 #define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))
-#define isalamoarea(A) (istype(A, /area/shuttle/dropship/alamo))
+#define isdropshiparea(A) (istype(A, /area/shuttle/dropship))
 
 // Xeno hives
 #define isnormalhive(hive) (istype(hive, /datum/hive_status/normal))
+#define isxenohive(A) ((A == XENO_HIVE_NONE) || (A == XENO_HIVE_NORMAL) || (A == XENO_HIVE_CORRUPTED) || (A == XENO_HIVE_ALPHA) || (A == XENO_HIVE_BETA) || (A == XENO_HIVE_ZETA) || (A == XENO_HIVE_ADMEME))
+
+// Slot helpers
+#define ishandslot(A) ((A == SLOT_L_HAND) || (A == SLOT_R_HAND))

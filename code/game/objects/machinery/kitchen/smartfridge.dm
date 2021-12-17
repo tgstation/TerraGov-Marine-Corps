@@ -67,12 +67,12 @@
 		attack_hand(user)
 
 	else if(machine_stat & NOPOWER)
-		to_chat(user, "<span class='notice'>\The [src] is unpowered and useless.</span>")
+		to_chat(user, span_notice("\The [src] is unpowered and useless."))
 		return
 
 	if(accept_check(I))
 		if(length(contents) >= max_n_of_items)
-			to_chat(user, "<span class='notice'>\The [src] is full.</span>")
+			to_chat(user, span_notice("\The [src] is full."))
 			return TRUE
 		else if(!user.drop_held_item())
 			return TRUE
@@ -96,10 +96,10 @@
 				continue
 
 			if(contents.len >= max_n_of_items)
-				to_chat(user, "<span class='notice'>\The [src] is full.</span>")
+				to_chat(user, span_notice("\The [src] is full."))
 				return TRUE
 
-			P.remove_from_storage(G, src)
+			P.remove_from_storage(G, src, user)
 			if(item_quants[G.name])
 				item_quants[G.name]++
 			else
@@ -107,16 +107,16 @@
 			plants_loaded++
 
 		if(plants_loaded)
-			user.visible_message("<span class='notice'>[user] loads \the [src] with \the [P].</span>", \
-				"<span class='notice'>You load \the [src] with \the [P].</span>")
+			user.visible_message(span_notice("[user] loads \the [src] with \the [P]."), \
+				span_notice("You load \the [src] with \the [P]."))
 
 			if(length(P.contents) > 0)
-				to_chat(user, "<span class='notice'>Some items are refused.</span>")
+				to_chat(user, span_notice("Some items are refused."))
 
 		updateUsrDialog()
 
 	else
-		to_chat(user, "<span class='notice'>\The [src] smartly refuses [I].</span>")
+		to_chat(user, span_notice("\The [src] smartly refuses [I]."))
 		return TRUE
 
 
@@ -136,10 +136,10 @@
 		O.forceMove(drop_location())
 		adjust_item_drop_location(O)
 
-/obj/machinery/smartfridge/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/smartfridge/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "SmartVend", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "SmartVend", name)
 		ui.set_autoupdate(FALSE)
 		ui.open()
 
@@ -164,7 +164,7 @@
 /obj/machinery/smartfridge/handle_atom_del(atom/A) // Update the UIs in case something inside gets deleted
 	SStgui.update_uis(src)
 
-/obj/machinery/smartfridge/ui_act(action, params)
+/obj/machinery/smartfridge/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return
@@ -221,7 +221,7 @@
 		return 0
 	spawn(0)
 		throw_item.throw_at(target,16,3,src)
-	src.visible_message("<span class='danger'>[src] launches [throw_item.name] at [target.name]!</span>")
+	src.visible_message(span_danger("[src] launches [throw_item.name] at [target.name]!"))
 	return 1
 
 
@@ -284,7 +284,6 @@
 	name = "\improper Smart Chemical Storage"
 	desc = "A refrigerated storage unit for medicine and chemical storage."
 	is_secure_fridge = TRUE
-	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP) //Medics can now access the fridge
 
 /obj/machinery/smartfridge/chemistry/accept_check(obj/item/O as obj)
 	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers))

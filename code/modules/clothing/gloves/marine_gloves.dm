@@ -8,7 +8,6 @@
 	desc = "Standard issue marine tactical gloves. It reads: 'knit by Marine Widows Association'."
 	icon_state = "gloves_marine"
 	item_state = "gloves_marine"
-	item_state_worn = TRUE
 	siemens_coefficient = 0.6
 	permeability_coefficient = 0.05
 	flags_cold_protection = HANDS
@@ -16,7 +15,7 @@
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	flags_armor_protection = HANDS
-	soft_armor = list("melee" = 30, "bullet" = 20, "laser" = 15, "energy" = 20, "bomb" = 20, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
+	soft_armor = list("melee" = 25, "bullet" = 15, "laser" = 10, "energy" = 15, "bomb" = 15, "bio" = 5, "rad" = 5, "fire" = 15, "acid" = 15)
 
 /obj/item/clothing/gloves/marine/insulated
 	name = "insulated marine combat gloves"
@@ -59,7 +58,7 @@
 	icon_state = "armored"
 	item_state = "bgloves"
 	flags_item = SYNTH_RESTRICTED
-	soft_armor = list("melee" = 40, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
+	soft_armor = list("melee" = 35, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 25, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 20)
 	resistance_flags = UNACIDABLE
 
 /obj/item/clothing/gloves/marine/veteran/PMC

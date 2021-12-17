@@ -1,5 +1,5 @@
 /obj
-	animate_movement = 2
+	animate_movement = SLIDE_STEPS
 	speech_span = SPAN_ROBOT
 	interaction_flags = INTERACT_OBJ_DEFAULT
 
@@ -66,6 +66,7 @@
 		else
 			req_one_access = GLOB.all_req_one_access[txt_access]
 
+
 /obj/Destroy()
 	hard_armor = null
 	soft_armor = null
@@ -129,11 +130,6 @@
 /obj/proc/hide(h) // TODO: Fix all children
 	return
 
-
-/obj/attack_paw(mob/living/carbon/monkey/user)
-	if(buckle_flags & CAN_BUCKLE)
-		return attack_hand(user)
-	return ..()
 
 
 /obj/effect_smoke(obj/effect/particle_effect/smoke/S)

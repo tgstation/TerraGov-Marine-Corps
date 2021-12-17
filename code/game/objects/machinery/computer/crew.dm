@@ -1,4 +1,4 @@
-#define DISPLAY_ON_SHIP    0
+#define DISPLAY_ON_SHIP 0
 #define DISPLAY_PLANETSIDE 1
 #define DISPLAY_IN_TRANSIT 2
 
@@ -19,11 +19,9 @@
 	var/cmp_proc = /proc/cmp_list_asc
 	var/sortkey = "name"
 
-	ui_x = 900
-	ui_y = 800
 
-/obj/machinery/computer/crew/update_icon()
-	if(machine_stat & BROKEN)
+/obj/machinery/computer/crew/update_icon_state()
+	if(machine_stat & (BROKEN|DISABLED))
 		icon_state = "crewb"
 	else if(machine_stat & NOPOWER)
 		icon_state = "crew0"
@@ -32,12 +30,11 @@
 		icon_state = initial(icon_state)
 		machine_stat &= ~NOPOWER
 
-/obj/machinery/computer/crew/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/crew/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "Crew", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "Crew", name)
 		ui.open()
 
 /obj/machinery/computer/crew/ui_data(mob/user)
@@ -48,7 +45,7 @@
 	crewmembers_planetside.Cut()
 	crewmembers_in_transit.Cut()
 
-	for(var/obj/item/clothing/under/C in tracked)
+	for(var/obj/item/clothing/under/C AS in tracked)
 		var/turf/pos = get_turf(C)
 
 		if(C && pos)
@@ -66,10 +63,10 @@
 
 				crewmemberData["sensor_type"] = C.sensor_mode
 				crewmemberData["status"] = H.stat
-				crewmemberData["oxy"] = round(H.getOxyLoss(), 1)
-				crewmemberData["tox"] = round(H.getToxLoss(), 1)
-				crewmemberData["fire"] = round(H.getFireLoss(), 1)
-				crewmemberData["brute"] = round(H.getBruteLoss(), 1)
+				crewmemberData[OXY] = round(H.getOxyLoss(), 1)
+				crewmemberData[TOX] = round(H.getToxLoss(), 1)
+				crewmemberData[BURN] = round(H.getFireLoss(), 1)
+				crewmemberData[BRUTE] = round(H.getBruteLoss(), 1)
 
 				crewmemberData["name"] = "Unknown"
 				crewmemberData["rank"] = "Unknown"
@@ -105,8 +102,9 @@
 
 	return data
 
-/obj/machinery/computer/crew/ui_act(action, params)
-	if(..())
+/obj/machinery/computer/crew/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 
 	switch(action)
@@ -130,8 +128,21 @@
 		var/obj/item/clothing/under/C = H.w_uniform
 		if(!C || !istype(C)) continue
 		if(C.has_sensor && H.mind)
-			tracked |= C
+			add_to_tracked(C)
 	return TRUE
+
+///Add an atom to the tracked list
+/obj/machinery/computer/crew/proc/add_to_tracked(atom/under)
+	if(tracked.Find(under))
+		return
+	tracked += under
+	RegisterSignal(tracked, COMSIG_PARENT_QDELETING, .proc/remove_from_tracked)
+
+///Remove an atom from the tracked list
+/obj/machinery/computer/crew/proc/remove_from_tracked(atom/under)
+	SIGNAL_HANDLER
+	tracked -= under
+	UnregisterSignal(tracked, COMSIG_PARENT_QDELETING)
 
 #undef DISPLAY_ON_SHIP
 #undef DISPLAY_PLANETSIDE

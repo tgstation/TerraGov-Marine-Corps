@@ -5,7 +5,7 @@ SUBSYSTEM_DEF(shuttle)
 	name = "Shuttle"
 	wait = 10
 	init_order = INIT_ORDER_SHUTTLE
-	flags = SS_KEEP_TIMING|SS_NO_TICK_CHECK
+	flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_SETUP | RUNLEVEL_GAME
 
 	var/list/mobile = list()
@@ -21,8 +21,6 @@ SUBSYSTEM_DEF(shuttle)
 	var/list/ert_shuttles = list()
 	var/list/dropships = list()
 	var/obj/docking_port/mobile/crashmode/canterbury = null
-
-	var/obj/docking_port/mobile/supply/supply
 
 	var/list/orderhistory = list()
 
@@ -131,9 +129,44 @@ SUBSYSTEM_DEF(shuttle)
 
 	return moveShuttleToDock(shuttleId, D, timed)
 
+/**
+ * Generate a transit and set it as a destination. The shuttle will stay in that transit until it is called again
+ * Because it uses standard shuttle code, the shuttle will do this :
+ * Originport -> transit -> arrived to destination(will actually not move from transit, because destiantion = the transit)
+ * shuttleId : Id of the shuttle to move
+ * timed : If FALSE, the shuttle will instantly move to its destination
+ */
+/datum/controller/subsystem/shuttle/proc/moveShuttleToTransit(shuttleId, timed)
+	var/obj/docking_port/mobile/M = getShuttle(shuttleId)
+	var/obj/docking_port/stationary/D = generate_transit_dock(M)
+	if(!D)
+		return
+	moveShuttleToDock(shuttleId, D, timed)
+
+/**
+ * Skip the transit to directly go to the destination. This is not instantanious
+ * shuttleId : Id of the shuttle to move
+ * dockId : Id of the destination dockId
+ */
+/datum/controller/subsystem/shuttle/proc/moveShuttleQuickToDock(shuttleId, dockId)
+	var/obj/docking_port/stationary/D = getDock(dockId)
+	if(!D)
+		return
+	var/obj/docking_port/mobile/M = getShuttle(shuttleId)
+	if(!M)
+		return
+	M.set_mode(SHUTTLE_CALL)
+	moveShuttleToDock(shuttleId, D, TRUE)
+
+
+/**
+ * Move the shuttle to it's destination. If called normally, the shuttle will spool engines, then go to transit, then do its prearrival, then land on destination dock
+ * shuttleId : Id of the shuttle to move
+ * obj/docking_port/stationary/D : Reference of the destination dock
+ * timed: If FALSE, the shuttle will instantanly move to the destination dock
+ */
 /datum/controller/subsystem/shuttle/proc/moveShuttleToDock(shuttleId, obj/docking_port/stationary/D, timed)
 	var/obj/docking_port/mobile/M = getShuttle(shuttleId)
-
 	if(!M)
 		return 1
 	if(timed)
@@ -142,6 +175,7 @@ SUBSYSTEM_DEF(shuttle)
 	else
 		if(M.initiate_docking(D) != DOCKING_SUCCESS)
 			return 2
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SHUTTLE_TAKEOFF, shuttleId, D)
 	return 0	//dock successful
 
 /datum/controller/subsystem/shuttle/proc/request_transit_dock(obj/docking_port/mobile/M)
@@ -226,7 +260,7 @@ SUBSYSTEM_DEF(shuttle)
 		log_debug("generate_transit_dock() failed to get a midpoint")
 		return FALSE
 	var/area/shuttle/transit/A = new()
-	//A.parallax_movedir = travel_dir
+	A.parallax_movedir = travel_dir
 	A.contents = proposal.reserved_turfs
 	var/obj/docking_port/stationary/transit/new_transit_dock = new(midpoint)
 	new_transit_dock.reserved_area = proposal
@@ -252,8 +286,6 @@ SUBSYSTEM_DEF(shuttle)
 	if (istype(SSshuttle.transit_request_failures))
 		transit_request_failures = SSshuttle.transit_request_failures
 
-	if (istype(SSshuttle.supply))
-		supply = SSshuttle.supply
 	if (istype(SSshuttle.canterbury))
 		canterbury = SSshuttle.canterbury
 
@@ -487,11 +519,13 @@ SUBSYSTEM_DEF(shuttle)
 		preview_shuttle.jumpToNullSpace()
 	preview_shuttle = null
 
+/datum/controller/subsystem/shuttle/ui_state(mob/user)
+	return GLOB.admin_state
 
-/datum/controller/subsystem/shuttle/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.admin_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/controller/subsystem/shuttle/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "ShuttleManipulator", name, 800, 600, master_ui, state)
+		ui = new(user, src, "ShuttleManipulator", name)
 		ui.open()
 
 
@@ -562,8 +596,9 @@ SUBSYSTEM_DEF(shuttle)
 
 	return data
 
-/datum/controller/subsystem/shuttle/ui_act(action, params)
-	if(..())
+/datum/controller/subsystem/shuttle/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 
 	var/mob/user = usr

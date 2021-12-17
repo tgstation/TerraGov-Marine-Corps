@@ -3,11 +3,12 @@
 	real_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
-	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, WANTED_HUD, SQUAD_HUD, ORDER_HUD, PAIN_HUD)
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
+	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, WANTED_HUD, SQUAD_HUD_TERRAGOV, SQUAD_HUD_REBEL, ORDER_HUD, PAIN_HUD, XENO_DEBUFF_HUD, HEART_STATUS_HUD)
 	health_threshold_crit = -50
 	melee_damage = 5
 	m_intent = MOVE_INTENT_WALK
-	buckle_flags = CAN_BE_BUCKLED|BUCKLE_PREVENTS_PULL|CAN_BUCKLE
+	buckle_flags = CAN_BE_BUCKLED|CAN_BUCKLE
 
 	hud_type = /datum/hud/human
 
@@ -16,6 +17,12 @@
 	var/g_hair = 0
 	var/b_hair = 0
 	var/h_style = "Crewcut"
+
+	// Gradient color and style
+	var/r_grad = 0
+	var/g_grad = 0
+	var/b_grad = 0
+	var/grad_style = "None"
 
 	//Facial hair colour and style
 	var/r_facial = 0
@@ -87,7 +94,8 @@
 
 	//Life variables
 
-	var/undefibbable = FALSE //whether the human is dead and past the defibbrillation period.
+	///How long the human is dead, in life ticks, which is 2 seconds
+	var/dead_ticks = 0
 
 	var/holo_card_color = "" //which color type of holocard is printed on us
 
@@ -125,3 +133,6 @@
 	var/revive_grace_time = 0
 
 	COOLDOWN_DECLARE(xeno_push_delay)
+
+	/// This is the cooldown on suffering additional effects for when shock gets high
+	COOLDOWN_DECLARE(last_shock_effect)

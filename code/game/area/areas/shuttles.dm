@@ -5,7 +5,6 @@
 /area/shuttle
 	name = "Shuttle"
 	requires_power = FALSE
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 	always_unpowered = FALSE
 //	valid_territory = FALSE
 	icon_state = "shuttle"
@@ -32,6 +31,9 @@
 /area/shuttle/dropship/normandy
 	name = "Dropship Normandy"
 
+/area/shuttle/dropship/triumph
+	name = "Dropship Triumph"
+
 /area/shuttle/cas
 	name = "Condor Jet"
 
@@ -56,7 +58,8 @@
 /area/shuttle/transit
 	name = "Hyperspace"
 	desc = "Weeeeee"
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED //Different from /tg/
+	base_lighting_alpha = 255
+
 
 /area/shuttle/escape_pod
 	name = "Escape Pod"

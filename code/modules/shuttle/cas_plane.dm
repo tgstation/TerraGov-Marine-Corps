@@ -1,10 +1,10 @@
-#define PLANE_STATE_ACTIVATED	0
-#define PLANE_STATE_DEACTIVATED	1
-#define PLANE_STATE_PREPARED	2
-#define PLANE_STATE_FLYING		3
+#define PLANE_STATE_ACTIVATED 0
+#define PLANE_STATE_DEACTIVATED 1
+#define PLANE_STATE_PREPARED 2
+#define PLANE_STATE_FLYING 3
 
-#define LOW_FUEL_THRESHOLD		5
-#define FUEL_PER_CAN_POUR		3
+#define LOW_FUEL_THRESHOLD 5
+#define FUEL_PER_CAN_POUR 3
 
 #define LOW_FUEL_LANDING_THRESHOLD 4
 
@@ -21,22 +21,26 @@
 	var/mob/living/carbon/human/occupant
 	///Animated cockpit /image overlay, 96x96
 	var/image/cockpit
-	///Ui size in x
-	var/ui_x = 600
-	///UI size in y
-	var/ui_y = 500
 
 /obj/structure/caspart/caschair/Initialize()
 	. = ..()
 	set_cockpit_overlay("cockpit_closed")
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, .proc/receive_laser_cas)
 
 /obj/structure/caspart/caschair/Destroy()
 	owner?.chair = null
 	owner = null
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
 	if(occupant)
 		INVOKE_ASYNC(src, .proc/eject_user, TRUE)
 	QDEL_NULL(cockpit)
 	return ..()
+
+/obj/structure/caspart/caschair/proc/receive_laser_cas(datum/source, obj/effect/overlay/temp/laser_target/cas/incoming_laser)
+	SIGNAL_HANDLER
+	playsound(src, 'sound/effects/binoctarget.ogg', 15)
+	if(occupant)
+		to_chat(occupant, span_notice("CAS laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
 
 ///Handles updating the cockpit overlay
 /obj/structure/caspart/caschair/proc/set_cockpit_overlay(new_state)
@@ -55,7 +59,7 @@
 
 /obj/structure/caspart/caschair/attack_hand(mob/living/user)
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access denied!</span>")
+		to_chat(user, span_warning("Access denied!"))
 		return
 	switch(owner.state)
 		if(PLANE_STATE_DEACTIVATED)
@@ -65,43 +69,45 @@
 			owner.state = PLANE_STATE_ACTIVATED
 			return
 		if(PLANE_STATE_PREPARED | PLANE_STATE_FLYING)
-			to_chat("<span class='warning'>The plane is in-flight!</span>")
+			to_chat(user, span_warning("The plane is in-flight!"))
 			return
 		if(PLANE_STATE_ACTIVATED)
 			if(occupant)
-				to_chat(user, "<span class='warning'>Someone is already inside!</span>")
+				to_chat(user, span_warning("Someone is already inside!"))
 				return
-			to_chat(user, "<span class='notice'>You start climbing into the cockpit...</span>")
+			to_chat(user, span_notice("You start climbing into the cockpit..."))
 			if(!do_after(user, 2 SECONDS, TRUE, src))
 				return
-			user.visible_message("<span class='notice'>[user] climbs into the plane cockpit!</span>", "<span class='notice'>You get in the seat!</span>")
+			user.visible_message(span_notice("[user] climbs into the plane cockpit!"), span_notice("You get in the seat!"))
 			if(occupant)
-				to_chat(user, "<span class='warning'>[occupant] got in before you!</span>")
+				to_chat(user, span_warning("[occupant] got in before you!"))
 				return
 			user.forceMove(src)
 			occupant = user
 			interact(occupant)
 			RegisterSignal(occupant, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
 			set_cockpit_overlay("cockpit_closing")
-			sleep(7)
-			set_cockpit_overlay("cockpit_closed")
+			addtimer(CALLBACK(src, .proc/set_cockpit_overlay, "cockpit_closed"), 7)
 
 /obj/structure/caspart/caschair/attackby(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/reagent_containers/jerrycan))
 		return ..()
+	if(owner.state == PLANE_STATE_FLYING)
+		to_chat(user, span_warning("You can't refuel mid-air!"))
+		return
 	var/obj/item/reagent_containers/jerrycan/gascan = I
 	if(gascan.reagents.total_volume == 0)
-		to_chat(user, "<span class='warning'>Out of fuel!</span>")
+		to_chat(user, span_warning("Out of fuel!"))
 		return
 	if(owner.fuel_left >= owner.fuel_max)
-		to_chat(user, "<span class='notice'>The plane is already fully fuelled!</span>")
+		to_chat(user, span_notice("The plane is already fully fuelled!"))
 		return
 
 	var/fuel_transfer_amount = min(gascan.fuel_usage*2, gascan.reagents.total_volume)
 	gascan.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 	owner.fuel_left = min(owner.fuel_left + FUEL_PER_CAN_POUR, owner.fuel_max)
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-	to_chat(user, "<span class='notice'>You refill the plane with fuel. New fuel level [owner.fuel_left/owner.fuel_max*100]%</span>")
+	to_chat(user, span_notice("You refill the plane with fuel. New fuel level [owner.fuel_left/owner.fuel_max*100]%"))
 
 
 /obj/structure/caspart/caschair/resisted_against(datum/source)
@@ -113,12 +119,11 @@
 ///Eject the user, use forced = TRUE to do so instantly
 /obj/structure/caspart/caschair/proc/eject_user(forced = FALSE)
 	if(!forced)
-		to_chat(occupant, "<span class='notice'>You start getting out of the cockpit.</span>")
+		to_chat(occupant, span_notice("You start getting out of the cockpit."))
 		if(!do_after(occupant, 2 SECONDS, TRUE, src))
 			return
 		set_cockpit_overlay("cockpit_opening")
-		sleep(7)
-	set_cockpit_overlay("cockpit_open")
+		addtimer(CALLBACK(src, .proc/set_cockpit_overlay, "cockpit_open"), 7)
 	UnregisterSignal(occupant, COMSIG_LIVING_DO_RESIST)
 	occupant.unset_interaction()
 	occupant.forceMove(loc)
@@ -134,11 +139,12 @@
 
 /obj/docking_port/stationary/marine_dropship/cas
 	name = "CAS plane hangar pad"
-	id = "casplane"
+	id = SHUTTLE_CAS_DOCK
 	roundstart_template = /datum/map_template/shuttle/cas
 
 /obj/docking_port/mobile/marine_dropship/casplane
-	id = "casplane"
+	name = "Condor Jet"
+	id = SHUTTLE_CAS_DOCK
 	width = 11
 	height = 12
 
@@ -149,6 +155,8 @@
 
 	///What state our plane is in, i.e can we launch/do we have to deploy stairs etc
 	var/state = PLANE_STATE_DEACTIVATED
+	///Direction we will use for attacks while in combat mode
+	var/attackdir = NORTH
 	///List of engine tiles so we can track them for overlays
 	var/list/engines = list()
 	///Chair that handles all the ui and click stuff
@@ -177,9 +185,12 @@
 /obj/docking_port/mobile/marine_dropship/casplane/process()
 	fuel_left--
 	if((fuel_left <= LOW_FUEL_LANDING_THRESHOLD) && (state == PLANE_STATE_FLYING))
-		to_chat(chair.occupant, "<span class='warning'>Out of fuel, landing.</span>")
-		SSshuttle.moveShuttle(id, "casplane", TRUE)
+		to_chat(chair.occupant, span_warning("Out of fuel, landing."))
+		SSshuttle.moveShuttle(id, SHUTTLE_CAS_DOCK, TRUE)
 		end_cas_mission(chair.occupant)
+	if (fuel_left <= 0)
+		fuel_left = 0
+		turn_off_engines()
 
 
 /obj/docking_port/mobile/marine_dropship/casplane/on_ignition()
@@ -233,7 +244,7 @@
 /obj/docking_port/mobile/marine_dropship/casplane/proc/update_state(datum/source, mode)
 	if(state == PLANE_STATE_DEACTIVATED)
 		return
-	if(!is_mainship_level(z))
+	if(!is_mainship_level(z) || mode != SHUTTLE_IDLE)
 		state = PLANE_STATE_FLYING
 	else
 		for(var/i in engines)
@@ -246,24 +257,29 @@
 ///Runs checks and creates a new eye/hands over control to the eye
 /obj/docking_port/mobile/marine_dropship/casplane/proc/begin_cas_mission(mob/living/user)
 	if(!fuel_left)
-		to_chat(user, "<span class='warning'>No fuel remaining!</span>")
+		to_chat(user, span_warning("No fuel remaining!"))
 		return
 	if(state != PLANE_STATE_FLYING)
-		to_chat(user, "<span class='warning'>You are not in-flight!</span>")
+		to_chat(user, span_warning("You are not in-flight!"))
 		return
 	if(!eyeobj)
 		eyeobj = new()
 		eyeobj.origin = src
 	if(eyeobj.eye_user)
-		to_chat(user, "<span class='warning'>CAS mode is already in-use!</span>")
+		to_chat(user, span_warning("CAS mode is already in-use!"))
 		return
-	if(!length(GLOB.active_laser_targets))
-		to_chat(user, "<span class='warning'>No active laser targets detected!</span>")
+	SSmonitor.process_human_positions()
+	if(SSmonitor.human_on_ground <= 5)
+		to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
 		return
-	to_chat(user, "<span class='warning'>Laser targets detected, routing to target.</span>")
-	var/input = input(user, "Select a CAS target", "CAS targetting") as null|anything in GLOB.active_laser_targets
+	var/input
+	if(length(GLOB.active_cas_targets))
+		input = tgui_input_list(user, "Select a CAS target", "CAS targetting", GLOB.active_cas_targets)
+	else
+		input = GLOB.minidropship_start_loc
 	if(!input)
 		return
+	to_chat(user, span_warning("Targets detected, routing to area of operations."))
 	give_eye_control(user)
 	eyeobj.setLoc(get_turf(input))
 
@@ -307,26 +323,28 @@
 	if(!GLOB.cameranet.checkTurfVis(get_turf_pixel(target)))
 		return
 	if(!active_weapon)
-		to_chat(source, "<span class='warning'>No active weapon selected!</span>")
+		to_chat(source, span_warning("No active weapon selected!"))
 		return
 	var/area/A = get_area(target)
 	if(A.ceiling >= CEILING_DEEP_UNDERGROUND)
-		to_chat(source, "<span class='warning'>That target is too deep underground!</span>")
+		to_chat(source, span_warning("That target is too deep underground!"))
+		return
+	if(A.flags_area & OB_CAS_IMMUNE)
+		to_chat(source, span_warning("Our payload won't reach this target!"))
 		return
 	if(active_weapon.ammo_equipped?.ammo_count <= 0)
-		to_chat(source, "<span class='warning'>No ammo remaining!</span>")
+		to_chat(source, span_warning("No ammo remaining!"))
 		return
 	if(!COOLDOWN_CHECK(active_weapon, last_fired))
-		to_chat(source, "<span class='warning'>[active_weapon] just fired, wait for it to cool down.</span>")
+		to_chat(source, span_warning("[active_weapon] just fired, wait for it to cool down."))
 		return
-	active_weapon.open_fire(target)
+	active_weapon.open_fire(target, attackdir)
 
-/obj/structure/caspart/caschair/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/structure/caspart/caschair/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "MarineCasship", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "MarineCasship", name)
 		ui.open()
 
 /obj/structure/caspart/caschair/ui_data(mob/user)
@@ -342,6 +360,7 @@
 	.["fuel_left"] = fuel_left
 	.["fuel_max"] = fuel_max
 	.["ship_status"] = getStatusText()
+	.["attackdir"] = uppertext(dir2text(attackdir))
 	var/element_nbr = 1
 	.["all_weapons"] = list()
 	for(var/i in equipments)
@@ -350,7 +369,7 @@
 		if(weapon == active_weapon)
 			.["active_weapon_tag"] = element_nbr
 		element_nbr++
-	.["active_lasers"] = length(GLOB.active_laser_targets)
+	.["active_lasers"] = length(GLOB.active_cas_targets)
 	.["active_weapon_name"] = null
 	.["active_weapon_ammo"] = null
 	.["active_weapon_max_ammo"] = null
@@ -393,7 +412,7 @@
 				return
 			SSshuttle.moveShuttleToDock(owner.id, SSshuttle.generate_transit_dock(owner), TRUE)
 		if("land")
-			SSshuttle.moveShuttle(owner.id, "casplane", TRUE)
+			SSshuttle.moveShuttle(owner.id, SHUTTLE_CAS_DOCK, TRUE)
 			owner.end_cas_mission(usr)
 		if("deploy")
 			owner.begin_cas_mission(usr)
@@ -411,6 +430,9 @@
 					owner.turn_on_engines()
 				if(PLANE_STATE_PREPARED)
 					owner.turn_off_engines()
+		if("cycle_attackdir")
+			owner.attackdir = turn(owner.attackdir, 90)
+			. = TRUE
 
 
 

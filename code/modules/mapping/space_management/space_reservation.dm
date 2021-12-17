@@ -13,6 +13,9 @@
 /datum/turf_reservation/transit
 	turf_type = /turf/open/space/transit
 
+/datum/turf_reservation/banish
+	turf_type = /turf/closed/banish_space
+
 /datum/turf_reservation/proc/Release()
 	var/v = reserved_turfs.Copy()
 	for(var/i in reserved_turfs)
@@ -66,6 +69,14 @@
 	src.width = width
 	src.height = height
 	return TRUE
+
+///Change the turf type of all tiles that are belonging to the turf reservation
+/datum/turf_reservation/proc/set_turf_type(new_turf_type)
+	for(var/turf/T AS in reserved_turfs)
+		if(istype(T, turf_type))
+			T.ChangeTurf(new_turf_type, new_turf_type)
+	turf_type = new_turf_type
+
 
 /datum/turf_reservation/New()
 	LAZYADD(SSmapping.turf_reservations, src)

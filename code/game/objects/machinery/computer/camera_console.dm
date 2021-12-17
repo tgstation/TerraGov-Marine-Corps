@@ -20,7 +20,7 @@
 /obj/machinery/computer/security/check_eye(mob/living/user)
 	if(!istype(user))
 		return
-	if((machine_stat & (NOPOWER|BROKEN)) || user.incapacitated() || user.eye_blind )
+	if((machine_stat & (NOPOWER|BROKEN|DISABLED)) || user.incapacitated() || user.eye_blind )
 		user.unset_interaction()
 		return
 	if(!(user in watchers))
@@ -93,7 +93,7 @@
 	if(!istype(user))
 		return
 	var/list/camera_list = get_available_cameras()
-	var/t = input(user, "Which camera should you change to?") as null|anything in camera_list
+	var/t = tgui_input_list(user, "Which camera should you change to?", null, camera_list)
 	if(!t)
 		user.unset_interaction()
 		playsound(src, 'sound/machines/terminal_off.ogg', 25, 0)
@@ -167,11 +167,11 @@
 	circuit = null
 
 
-/obj/machinery/computer/security/telescreen/update_icon()
+/obj/machinery/computer/security/telescreen/update_icon_state()
 	icon_state = initial(icon_state)
-	if(machine_stat & BROKEN)
+	if(machine_stat & (BROKEN|DISABLED))
 		icon_state += "b"
-	return
+
 
 /obj/machinery/computer/security/telescreen/entertainment
 	name = "entertainment monitor"
@@ -230,7 +230,7 @@
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "consoleleft"
 	circuit = null
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 
 
 /obj/machinery/computer/security/dropship/one
@@ -241,3 +241,8 @@
 /obj/machinery/computer/security/dropship/two
 	name = "\improper 'Normandy' camera controls"
 	network = list("dropship2")
+
+/obj/machinery/computer/security/dropship/three
+	name = "\improper 'Triump' camera controls"
+	network = list("dropship3")
+

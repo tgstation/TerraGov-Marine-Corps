@@ -29,7 +29,7 @@
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		if(C.back == src)
-			to_chat(user, "<span class='warning'>You need help taking this off!</span>")
+			to_chat(user, span_warning("You need help taking this off!"))
 			return TRUE
 	return ..()
 
@@ -63,7 +63,7 @@
 
 	if(isliving(loc) && on)
 		var/mob/living/L = loc
-		to_chat(L, "<span class='danger'>You feel a sharp shock!</span>")
+		to_chat(L, span_danger("You feel a sharp shock!"))
 		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 		s.set_up(3, 1, L)
 		s.start()

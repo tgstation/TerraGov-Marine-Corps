@@ -15,7 +15,7 @@
 
 /obj/item/disk/botany/attack_self(mob/user as mob)
 	if(genes.len)
-		var/choice = alert(user, "Are you sure you want to wipe the disk?", "Xenobotany Data", "No", "Yes")
+		var/choice = tgui_alert(user, "Are you sure you want to wipe the disk?", "Xenobotany Data", list("No", "Yes"))
 		if(src && user && genes && choice == "Yes")
 			to_chat(user, "You wipe the disk data.")
 			name = initial(name)
@@ -92,7 +92,7 @@
 
 	else if(isscrewdriver(I))
 		open = !open
-		to_chat(user, "<span class='notice'>You [open ? "open" : "close"] the maintenance panel.</span>")
+		to_chat(user, span_notice("You [open ? "open" : "close"] the maintenance panel."))
 
 	else if(iscrowbar(I) && open)
 		deconstruct()
@@ -242,8 +242,8 @@
 		genetics = null
 		degradation = 0
 
-	src.updateUsrDialog()
-	return
+	updateUsrDialog()
+
 
 // Fires an extracted trait into another packet of seeds with a chance
 // of destroying it based on the size/complexity of the plasmid.

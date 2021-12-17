@@ -8,8 +8,6 @@
 	layer = BELOW_OBJ_LAYER //So bottles/pills reliably appear above it
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 20
-	ui_x = 465
-	ui_y = 550
 
 	var/obj/item/reagent_containers/beaker = null
 	var/obj/item/storage/pill_bottle/loaded_pill_bottle = null
@@ -52,25 +50,25 @@
 
 	if(istype(I,/obj/item/reagent_containers) && I.is_open_container())
 		if(beaker)
-			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
+			to_chat(user, span_warning("A beaker is already loaded into the machine."))
 			return
 		user.transferItemToLoc(I, src)
 		beaker = I
-		to_chat(user, "<span class='notice'>You add the beaker to the machine!</span>")
+		to_chat(user, span_notice("You add the beaker to the machine!"))
 		updateUsrDialog()
 		icon_state = "mixer1"
 
 	else if(istype(I,/obj/item/reagent_containers/glass))
-		to_chat(user, "<span class='warning'>Take off the lid first.</span>")
+		to_chat(user, span_warning("Take off the lid first."))
 
 	else if(istype(I, /obj/item/storage/pill_bottle))
 		if(loaded_pill_bottle)
-			to_chat(user, "<span class='warning'>A pill bottle is already loaded into the machine.</span>")
+			to_chat(user, span_warning("A pill bottle is already loaded into the machine."))
 			return
 
 		loaded_pill_bottle = I
 		user.transferItemToLoc(I, src)
-		to_chat(user, "<span class='notice'>You add the pill bottle into the dispenser slot!</span>")
+		to_chat(user, span_notice("You add the pill bottle into the dispenser slot!"))
 		updateUsrDialog()
 
 /obj/machinery/chem_master/proc/transfer_chemicals(obj/dest, obj/source, amount, reagent_id)
@@ -97,10 +95,15 @@
 	. = ..()
 	if(.)
 		return
-	if(!ishuman(usr))
+	if(!ishuman(usr) || isAI(usr))
 		return
 
-	var/mob/living/carbon/human/user = usr
+	var/mob/living/user = usr
+
+	if(!user.skills.getRating("medical"))
+		to_chat(user, span_notice("You start fiddling with \the [src]..."))
+		if(!do_after(user, SKILL_TASK_EASY, TRUE, src, BUSY_ICON_UNSKILLED))
+			return
 
 	if (href_list["ejectp"])
 		if(loaded_pill_bottle)
@@ -184,12 +187,16 @@
 		else if (href_list["createpillbottle"])
 			if(!condi)
 				if(loaded_pill_bottle)
-					to_chat(user, "<span class='warning'>A pill bottle is already loaded into the machine.</span>")
+					to_chat(user, span_warning("A pill bottle is already loaded into the machine."))
 					return
+				var/bottle_label = reject_bad_text(input(user, "Label:", "Enter desired bottle label", null) as text|null)
 				var/obj/item/storage/pill_bottle/I = new/obj/item/storage/pill_bottle
-				I.icon_state = "pill_canister"+pillbottlesprite
+				if(pillbottlesprite == "2")//if the "2" sprite is selected, use the round pill bottle sprite
+					I.set_greyscale_config(/datum/greyscale_config/pillbottleround)
+				if(bottle_label)
+					I.name = "[bottle_label] pill bottle"
 				loaded_pill_bottle = I
-				to_chat(user, "<span class='notice'>The Chemmaster 3000 sets a pill bottle into the dispenser slot.</span>")
+				to_chat(user, span_notice("The Chemmaster 3000 sets a pill bottle into the dispenser slot."))
 				updateUsrDialog()
 
 		else if (href_list["createpill"] || href_list["createpill_multiple"])
@@ -261,10 +268,10 @@
 				P.update_icon()
 
 		else if(href_list["change_pill_bottle"])
-			#define MAX_PILL_BOTTLE_SPRITE 12 //max icon state of the pill sprites
+			#define MAX_PILL_BOTTLE_SPRITE 2 //max icon state of the pill sprites
 			var/dat = "<table>"
-			for(var/i = 1 to MAX_PILL_BOTTLE_SPRITE)
-				dat += "<tr><td><a href=\"?src=\ref[src]&pill_bottle_sprite=[i]\">Select</a><img src=\"pill_canister[i].png\" /><br></td></tr>"
+			dat += "<tr><td><a href=\"?src=\ref[src]&pill_bottle_sprite=[1]\">Select</a><img src=\"pill_canister1.png\" /><br></td></tr>"
+			dat += "<tr><td><a href=\"?src=\ref[src]&pill_bottle_sprite=[2]\">Select</a><img src=\"round_pill_bottle.png\" /><br></td></tr>"
 			dat += "</table>"
 			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Change Pill Bottle</div>")
 			popup.set_content(dat)
@@ -294,7 +301,7 @@
 			return
 
 		else if(href_list["change_autoinjector"])
-			#define MAX_AUTOINJECTOR_SPRITE 11 //max icon state of the autoinjector sprites
+			#define MAX_AUTOINJECTOR_SPRITE 12 //max icon state of the autoinjector sprites
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_AUTOINJECTOR_SPRITE)
 				dat += "<tr><td><a href=\"?src=\ref[src]&autoinjector_sprite=[i]\">Select</a><img src=\"autoinjector-[i].png\" /><br></td></tr>"
@@ -323,8 +330,8 @@
 	if(!(user.client in has_sprites))
 		spawn()
 			has_sprites += user.client
-			for(var/i = 1 to MAX_PILL_BOTTLE_SPRITE)
-				user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "pill_canister" + num2text(i)), "pill_canister[i].png")
+			user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "pill_canister1"), "pill_canister1.png")
+			user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "round_pill_bottle"), "round_pill_bottle.png")
 			for(var/i = 1 to MAX_PILL_SPRITE)
 				user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "pill" + num2text(i)), "pill[i].png")
 			for(var/i = 1 to MAX_BOTTLE_SPRITE)

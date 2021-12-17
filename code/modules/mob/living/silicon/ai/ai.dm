@@ -1,3 +1,4 @@
+///This elevator serves me alone. I have complete control over this entire level. With cameras as my eyes and nodes as my hands, I rule here, insect.
 /mob/living/silicon/ai
 	name = "ARES v3.2"
 	real_name = "ARES v3.2"
@@ -11,6 +12,7 @@
 	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS
 	hud_type = /datum/hud/ai
 	buckle_flags = NONE
+	has_unlimited_silicon_privilege = TRUE
 
 	var/list/available_networks = list("marinemainship", "marine", "dropship1", "dropship2")
 	var/obj/machinery/camera/current
@@ -33,7 +35,7 @@
 	var/icon/holo_icon //Default is assigned when AI is created.
 	var/list/datum/AI_Module/current_modules = list()
 
-	var/level_locked = TRUE
+	var/level_locked = FALSE	//Can the AI use things on other Z levels?
 	var/control_disabled = FALSE
 	var/radiomod = ";"
 	var/list/laws
@@ -42,6 +44,10 @@
 	var/list/obj/machinery/camera/lit_cameras = list()
 
 	var/datum/trackable/track
+	///Selected order to give to marine
+	var/datum/action/innate/order/current_order
+	/// If it is currently controlling an object
+	var/controlling = FALSE
 
 
 /mob/living/silicon/ai/Initialize(mapload, ...)
@@ -51,7 +57,7 @@
 	builtInCamera = new(src)
 	builtInCamera.network = list("marinemainship")
 
-	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi', "holo1"))
+	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi', "default"))
 
 	laws = list()
 	laws += "Safeguard: Protect your assigned vessel from damage to the best of your abilities."
@@ -68,16 +74,72 @@
 		apply_assigned_role_to_spawn(ai_job)
 
 	GLOB.ai_list += src
+	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
+	H.add_hud_to(src)
 
+	RegisterSignal(src, COMSIG_MOB_CLICK_ALT, .proc/send_order)
+	RegisterSignal(src, COMSIG_ORDER_SELECTED, .proc/set_order)
+	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED, .proc/receive_laser_ob)
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, .proc/receive_laser_cas)
+
+	RegisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF, .proc/shuttle_takeoff_notification)
+
+	var/datum/action/innate/order/attack_order/send_attack_order = new
+	var/datum/action/innate/order/defend_order/send_defend_order = new
+	var/datum/action/innate/order/retreat_order/send_retreat_order = new
+	var/datum/action/control_vehicle/control = new
+	var/datum/action/minimap/ai/mini = new
+	send_attack_order.target = src
+	send_attack_order.give_action(src)
+	send_defend_order.target = src
+	send_defend_order.give_action(src)
+	send_retreat_order.target = src
+	send_retreat_order.give_action(src)
+	control.give_action(src)
+	mini.give_action(src)
 
 /mob/living/silicon/ai/Destroy()
 	GLOB.ai_list -= src
 	QDEL_NULL(builtInCamera)
 	QDEL_NULL(track)
+	UnregisterSignal(src, COMSIG_ORDER_SELECTED)
+	UnregisterSignal(src, COMSIG_MOB_CLICK_ALT)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
 	return ..()
 
+///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
+/mob/living/silicon/ai/proc/send_order(datum/source, atom/target)
+	SIGNAL_HANDLER
+	if(!current_order)
+		to_chat(src, span_warning("You have no order selected."))
+		return
+	current_order.send_order(target)
+
+///Set the current order
+/mob/living/silicon/ai/proc/set_order(datum/source, datum/action/innate/order/order)
+	SIGNAL_HANDLER
+	current_order = order
+
+
+///Receive fire support laser notifications
+/mob/living/silicon/ai/proc/receive_laser_ob(datum/source, obj/effect/overlay/temp/laser_target/OB/incoming_laser)
+	SIGNAL_HANDLER
+	to_chat(src, span_notice("Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
+	playsound_local(src, 'sound/effects/binoctarget.ogg', 15)
+
+/mob/living/silicon/ai/proc/receive_laser_cas(datum/source, obj/effect/overlay/temp/laser_target/cas/incoming_laser)
+	SIGNAL_HANDLER
+	to_chat(src, span_notice("CAS laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
+	playsound_local(src, 'sound/effects/binoctarget.ogg', 15)
+
+///This gives the stupid computer a notification whenever the dropship takes off. Crutch for a supercomputer.
+/mob/living/silicon/ai/proc/shuttle_takeoff_notification(datum/source, shuttleId, D)
+	SIGNAL_HANDLER
+	to_chat(src, span_notice("NOTICE - [shuttleId] taking off towards \the [D]"))
 
 /mob/living/silicon/ai/restrained(ignore_checks)
+	SHOULD_CALL_PARENT(FALSE)
 	return FALSE
 
 
@@ -122,7 +184,7 @@
 		if(name == string)
 			target += src
 		if(!length(target))
-			to_chat(src, "<span class='warning'>Target is not on or near any active cameras on the station.</span>")
+			to_chat(src, span_warning("Target is not on or near any active cameras on the station."))
 			return
 
 		ai_actual_track(pick(target))
@@ -148,10 +210,10 @@
 		for(var/obj/machinery/camera/C in lit_cameras)
 			C.set_light(0)
 			lit_cameras = list()
-		to_chat(src, "<span class='notice'>Camera lights deactivated.</span>")
+		to_chat(src, span_notice("Camera lights deactivated."))
 	else
 		light_cameras()
-		to_chat(src, "<span class='notice'>Camera lights activated.</span>")
+		to_chat(src, span_notice("Camera lights activated."))
 	camera_light_on = !camera_light_on
 
 
@@ -178,7 +240,7 @@
 
 
 /mob/living/silicon/ai/proc/camera_visibility(mob/camera/aiEye/moved_eye)
-	GLOB.cameranet.visibility(moved_eye, client, all_eyes, USE_STATIC_OPAQUE)
+	GLOB.cameranet.visibility(moved_eye, client, all_eyes, TRUE)
 
 
 /mob/living/silicon/ai/proc/can_see(atom/A)
@@ -201,12 +263,20 @@
 	else
 		jobpart = "Unknown"
 
-	var/rendered = "<i><span class='game say'>[start]<span class='name'>[hrefpart][namepart] ([jobpart])</a> </span><span class='message'>[raw_message]</span></span></i>"
+	var/rendered = "<i><span class='game say'>[start][span_name("[hrefpart][namepart] ([jobpart])</a> ")][span_message("[raw_message]")]</span></i>"
 
 	show_message(rendered, 2)
 
 
-/mob/living/silicon/ai/reset_perspective(atom/A)
+/mob/living/silicon/ai/reset_perspective(atom/A, has_static = TRUE)
+	if(has_static)
+		sight = initial(sight)
+		eyeobj?.use_static = initial(eyeobj?.use_static)
+		GLOB.cameranet.visibility(eyeobj, client, all_eyes, initial(eyeobj?.use_static))
+	else
+		sight = NONE
+		eyeobj?.use_static = FALSE
+		GLOB.cameranet.visibility(eyeobj, client, all_eyes, FALSE)
 	if(camera_light_on)
 		light_cameras()
 	if(istype(A, /obj/machinery/camera))
@@ -236,6 +306,19 @@
 		else
 			clear_fullscreen("remote_view", 0)
 
+/mob/living/silicon/ai/update_sight()
+	. = ..()
+	if(HAS_TRAIT(src, TRAIT_SEE_IN_DARK))
+		see_in_dark = max(see_in_dark, 8)
+		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+		eyeobj.see_in_dark = max(eyeobj.see_in_dark, 8)
+		eyeobj.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+		return
+	eyeobj.see_in_dark = initial(eyeobj.see_in_dark)
+	eyeobj.lighting_alpha = initial(eyeobj.lighting_alpha)
+	see_in_dark = initial(see_in_dark)
+	lighting_alpha = initial(lighting_alpha) // yes you really have to change both the eye and the ai vars
+
 
 /mob/living/silicon/ai/Stat()
 	. = ..()
@@ -247,6 +330,18 @@
 			return
 
 		stat("System integrity:", "[(health + 100) / 2]%")
+		stat("<BR>- Operation information - <BR>")
+		stat("Current orbit:", "[GLOB.current_orbit]")
+
+		if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
+			stat("<b>Orbital bombardment status:</b>", "<font color='red'>No ammo chambered in the cannon.</font><br>")
+		else
+			stat("Orbital bombardment warhead:", "[GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected<BR>")
+
+		stat("Current supply points:", "[round(SSpoints.supply_points[FACTION_TERRAGOV])]")
+
+		stat("Current alert level:", "[GLOB.marine_main_ship.get_security_level()]")
+
 
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
@@ -270,7 +365,57 @@
 		return FALSE
 
 	var/atom/A = D
-	if(level_locked && A.z != z)
+	if(!isturf(A) && level_locked && A.z != z)
 		return FALSE
 
 	return GLOB.cameranet.checkTurfVis(get_turf(A))
+
+/mob/living/silicon/ai/set_remote_control(atom/movable/controlled)
+	if(controlled)
+		reset_perspective(controlled, FALSE)
+	else
+		eyeobj.forceMove(remote_control)
+		reset_perspective()
+	remote_control = controlled
+
+
+/datum/action/control_vehicle
+	name = "Select vehicle to control"
+	action_icon_state = "enter_droid"
+	/// The current controlled vehicle
+	var/obj/vehicle/unmanned/vehicle
+
+/datum/action/control_vehicle/action_activate()
+	. = ..()
+	var/mob/living/silicon/ai/ai = owner
+	if(vehicle)
+		SEND_SIGNAL(ai, COMSIG_REMOTECONTROL_TOGGLE, ai)
+		clear_vehicle()
+		return
+	if(!length(GLOB.unmanned_vehicles))
+		to_chat(ai, "<span class='warning'>No unmanned vehicles detected</span>")
+		return
+	var/obj/vehicle/unmanned/new_vehicle = tgui_input_list(ai, "What vehicle do you want to control?","vehicle choice", GLOB.unmanned_vehicles)
+	if(!new_vehicle)
+		return
+	if(new_vehicle.controlled)
+		to_chat(ai, "<span class='warning'>Something is already controlling this vehicle</span>")
+		return
+	link_with_vehicle(new_vehicle)
+	ai.controlling = TRUE
+
+/// Signal handler to clear vehicle and stop remote control
+/datum/action/control_vehicle/proc/clear_vehicle()
+	SIGNAL_HANDLER
+	UnregisterSignal(vehicle, COMSIG_PARENT_QDELETING)
+	vehicle.on_unlink()
+	vehicle = null
+	var/mob/living/silicon/ai/ai = owner
+	ai.controlling = FALSE
+
+/datum/action/control_vehicle/proc/link_with_vehicle(obj/vehicle/unmanned/_vehicle)
+	vehicle = _vehicle
+	RegisterSignal(vehicle, COMSIG_PARENT_QDELETING, .proc/clear_vehicle)
+	vehicle.on_link()
+	owner.AddComponent(/datum/component/remote_control, vehicle, vehicle.turret_type)
+	SEND_SIGNAL(owner, COMSIG_REMOTECONTROL_TOGGLE, owner)

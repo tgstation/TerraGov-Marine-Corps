@@ -18,8 +18,8 @@
 
 
 /obj/effect/temp_visual/Destroy()
-	. = ..()
 	deltimer(timerid)
+	return ..()
 
 
 /obj/effect/temp_visual/ex_act()
@@ -35,15 +35,42 @@
 		setDir(set_dir)
 	return ..()
 
-/obj/effect/temp_visual/xenomorph/runner_afterimage
-	name = "runner afterimage"
-	desc = "It has become speed.."
-	icon = 'icons/Xeno/2x2_Xenos.dmi' //They are now like, 2x1 or something
-	icon_state = "Runner Walking"
-	layer = MOB_LAYER
-	alpha = 64 //Translucent
-	duration = 0.5 SECONDS
-	density = FALSE
-	opacity = FALSE
-	anchored = FALSE
-	animate_movement = SLIDE_STEPS
+
+///Image that appears at the Xeno Rally target; only Xenos can see it
+/obj/effect/temp_visual/xenomorph/xeno_tracker_target
+	name = "xeno tracker target"
+	icon_state = "nothing"
+	duration = XENO_HEALTH_ALERT_POINTER_DURATION
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	color = COLOR_RED
+	hud_possible = list(XENO_TACTICAL_HUD)
+	///The target we're pinging and adding this effect to
+	var/atom/tracker_target
+	///The visual effect we're attaching
+	var/image/holder
+
+/obj/effect/temp_visual/xenomorph/xeno_tracker_target/Initialize(mapload, atom/target)
+	. = ..()
+	prepare_huds()
+	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //Add to the xeno tachud
+		xeno_tac_hud.add_to_hud(src)
+	hud_set_xeno_tracker_target(target)
+
+/obj/effect/temp_visual/xenomorph/xeno_tracker_target/Destroy()
+	if(tracker_target && holder) //Check to avoid runtimes
+		tracker_target.overlays -= holder //remove the overlay
+	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds)
+		xeno_tac_hud.remove_from_hud(src)
+	tracker_target = null //null the target var
+	QDEL_NULL(holder) //remove the holder and null the var
+	return ..()
+
+/obj/effect/temp_visual/xenomorph/xeno_tracker_target/proc/hud_set_xeno_tracker_target(atom/target)
+	holder = hud_list[XENO_TACTICAL_HUD]
+	if(!holder)
+		return
+	holder.icon = 'icons/Marine/marine-items.dmi'
+	holder.icon_state = "detector_blip"
+	tracker_target = target
+	tracker_target.overlays += holder
+	hud_list[XENO_TACTICAL_HUD] = holder

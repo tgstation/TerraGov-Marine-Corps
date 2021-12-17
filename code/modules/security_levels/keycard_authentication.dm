@@ -12,6 +12,8 @@
 	var/obj/machinery/keycard_auth/event_source
 	var/mob/event_triggered_by
 	var/mob/event_confirmed_by
+	/// Has this event been authorized by a silicon. Most of the time, this means the AI.
+	var/synth_activation = 0
 	//1 = select event
 	//2 = authenticate
 	anchored = TRUE
@@ -59,6 +61,9 @@
 	if(.)
 		return
 
+	if(issilicon(user))
+		synth_activation = 1
+
 	var/dat
 	dat += "This device is used to trigger some high security events. It requires the simultaneous swipe of two high-level ID cards."
 	dat += "<br><hr><br>"
@@ -75,6 +80,11 @@
 		dat += "Please swipe your card to authorize the following event: <b>[event]</b>"
 		dat += "<p><A href='?src=\ref[src];reset=1'>Back</A>"
 
+	else if(screen == 3)
+		dat += "Do you want to trigger the following event using your Silicon Privileges: <b>[event]</b>"
+		dat += "<p><A href='?src=\ref[src];silicon_activate_event=1'>Activate</A>"
+		dat += "<p><A href='?src=\ref[src];reset=1'>Back</A>"
+
 	var/datum/browser/popup = new(user, "keycard_auth", "<div align='center'>Keycard Authentication Device</div>", 500, 250)
 	popup.set_content(dat)
 	popup.open(FALSE)
@@ -87,7 +97,16 @@
 
 	if(href_list["trigger_event"])
 		event = href_list["trigger_event"]
-		screen = 2
+		if(synth_activation)
+			screen = 3
+		else
+			screen = 2
+
+	if(href_list["silicon_activate_event"])
+		trigger_event(event)
+		log_game("[key_name(event_triggered_by)] triggered event [event].")
+		message_admins("[ADMIN_TPMONTY(event_triggered_by)] triggered event [event].")
+		reset()
 
 	if(href_list["reset"])
 		reset()
@@ -95,10 +114,11 @@
 	updateUsrDialog()
 
 /obj/machinery/keycard_auth/proc/reset()
-	active = 0
+	active = FALSE
 	event = ""
 	screen = 1
-	confirmed = 0
+	confirmed = FALSE
+	synth_activation = 0
 	event_source = null
 	icon_state = "auth_off"
 	event_triggered_by = null
@@ -107,13 +127,15 @@
 /obj/machinery/keycard_auth/proc/broadcast_request()
 	icon_state = "auth_on"
 	for(var/obj/machinery/keycard_auth/KA in GLOB.machines)
-		if(KA == src) continue
+		if(KA == src)
+			continue
 		KA.reset()
 		KA.receive_request(src)
+	addtimer(CALLBACK(src, .proc/finish_confirm), confirm_delay)
 
-	sleep(confirm_delay)
+/obj/machinery/keycard_auth/proc/finish_confirm()
 	if(confirmed)
-		confirmed = 0
+		confirmed = FALSE
 		trigger_event(event)
 		log_game("[key_name(event_triggered_by)] triggered and [key_name(event_confirmed_by)] confirmed event [event].")
 		message_admins("[ADMIN_TPMONTY(event_triggered_by)] triggered and [ADMIN_TPMONTY(event_confirmed_by)] confirmed event [event].")
@@ -123,17 +145,16 @@
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	event_source = source
-	busy = 1
-	active = 1
+	busy = FALSE
+	active = TRUE
 	icon_state = "auth_on"
-
 	addtimer(CALLBACK(src, .proc/confirm), confirm_delay)
 
 /obj/machinery/keycard_auth/proc/confirm()
 	event_source = null
 	icon_state = "auth_off"
-	active = 0
-	busy = 0
+	active = FALSE
+	busy = FALSE
 
 /obj/machinery/keycard_auth/proc/trigger_event()
 	switch(event)
@@ -146,5 +167,5 @@
 
 /obj/machinery/door/airlock/allowed(mob/M)
 	if(is_mainship_level(z) && GLOB.marine_main_ship.maint_all_access && src.check_access_list(list(ACCESS_MARINE_ENGINEERING)))
-		return 1
+		return TRUE
 	return ..(M)

@@ -1,16 +1,16 @@
 //A thing for 'navigating' the current ship map up or down the gravity well.
 
-#define ESCAPE_VELOCITY 	5
-#define SAFE_DISTANCE 		4
-#define STANDARD_ORBIT 		3
-#define CLOSE_ORBIT 		2
-#define SKIM_ATMOSPHERE 	1
+#define ESCAPE_VELOCITY 5
+#define SAFE_DISTANCE 4
+#define STANDARD_ORBIT 3
+#define CLOSE_ORBIT 2
+#define SKIM_ATMOSPHERE 1
 
 #define REQUIRED_POWER_AMOUNT 250000
 #define AUTO_LOGOUT_TIME 1 MINUTES
 
-#define AUTHORIZED 		1
-#define AUTHORIZED_PLUS	2
+#define AUTHORIZED 1
+#define AUTHORIZED_PLUS 2
 
 //so we can use the current orbit in other files
 GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
@@ -30,6 +30,8 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	var/shorted = FALSE
 	///boolean this machine can be interacted with by the AI player. FELSE = can interact
 	var/aidisabled = FALSE
+	///timer id to prevent hardel from the varset call back
+	var/timer_id
 
 //-------------------------------------------
 // Standard procs
@@ -45,12 +47,16 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 	update_icon()
 	to_chat(user, "The wires have been [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "exposed" : "unexposed"]")
-	return
+
 
 /obj/machinery/computer/navigation/Initialize() //need anything special?
 	. = ..()
 	desc = "The navigation console for the [SSmapping.configs[SHIP_MAP].map_name]."
-	addtimer(VARSET_CALLBACK(src, changing_orbit, FALSE), 30 MINUTES) //people running away far too quickly it seems
+	timer_id = addtimer(VARSET_CALLBACK(src, changing_orbit, FALSE), 30 MINUTES, TIMER_STOPPABLE) //people running away far too quickly it seems
+
+/obj/machinery/computer/navigation/Destroy()
+	deltimer(timer_id)
+	return ..()
 
 /obj/machinery/computer/navigation/proc/reset(wire)
 	switch(wire)
@@ -71,13 +77,10 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	if(!powered())
 		return 0
 
-	var/power_amount = 0
-
 	var/area/here_we_are = get_area(src)
 	var/obj/machinery/power/apc/myAPC = here_we_are.get_apc()
-	power_amount = myAPC?.terminal?.powernet?.avail
 
-	return power_amount
+	return myAPC?.terminal?.powernet?.avail
 
 /obj/machinery/computer/navigation/interact(mob/user)
 	. = ..()
@@ -99,9 +102,6 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		else
 			dat += "<center><h4>Insufficient Power Reserves to change orbit"
 			dat += "<br>"
-
-		if(GLOB.current_orbit == ESCAPE_VELOCITY)
-			dat += "<center><h4><a href='byond://?src=[REF(src)];escape=1'>RETREAT</a>" //big ol red escape button. ends round after X MINUTES
 
 		dat += "</b></center>"
 
@@ -153,17 +153,6 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		do_orbit_checks("DOWN")
 		TIMER_COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
 
-	else if (href_list["escape"])
-		//are you REALLY sure you want to escape?
-		var/choice = alert(usr, "This will end the round. Are you certain you wish to leave any groundside marines behind? A poor reason can result in a jobban from any command role.", "Escape Velocity", "Cancel", "Yes", "Cancel")
-		if(choice != "Yes")
-			return
-		message_admins("[ADMIN_TPMONTY(usr)] Is going to finish the round via the spaceship orbits mechanic. set GLOB.current_orbit to 4 to prevent this.")
-		priority_announce("The tall hosts are attempting to flee!", "Prey is escaping!", ANNOUNCEMENT_REGULAR, 'sound/voice/alien_drool1.ogg', receivers = GLOB.alive_xeno_list + GLOB.observer_list)
-		do_orbit_checks("escape")
-		TIMER_COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
-		//end the round, xeno minor.
-
 	updateUsrDialog()
 
 
@@ -173,32 +162,26 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	if(!can_change_orbit(current_orbit, direction))
 		return
 
-	if(direction == "escape")
-		var/message = "The [SSmapping.configs[SHIP_MAP].map_name] is preparing to leave orbit.\nSecure all belongings and prepare for engine ignition."
-		priority_announce(message, title = "Retreat")
-		addtimer(CALLBACK(src, .proc/do_change_orbit, current_orbit, direction), 10 SECONDS)
-		return
-
 	var/message = "Prepare for orbital change in 10 seconds.\nMoving [direction] the gravity well.\nSecure all belongings and prepare for engine ignition."
 	priority_announce(message, title = "Orbit Change")
 	addtimer(CALLBACK(src, .proc/do_change_orbit, current_orbit, direction), 10 SECONDS)
 
 /obj/machinery/computer/navigation/proc/can_change_orbit(current_orbit, direction, silent = FALSE)
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORBIT_CHANGE))
-		if(!silent)
-			to_chat(usr, "<span class='warning'>The ship is currently recalculating based on previous selection.</span>")
-		return FALSE
 	if(changing_orbit)
 		if(!silent)
-			to_chat(usr, "<span class='warning'>The ship is currently changing orbit.</span>")
+			to_chat(usr, span_warning("The ship is currently changing orbit."))
 		return FALSE
 	if(direction == "UP" && current_orbit == ESCAPE_VELOCITY)
 		if(!silent)
-			to_chat(usr, "<span class='warning'>The ship is already at escape velocity! It is already prepped for the escape jump!</span>")
+			to_chat(usr, span_warning("The ship is already at escape velocity!"))
 		return FALSE
 	if(direction == "DOWN" && current_orbit == SKIM_ATMOSPHERE)
 		if(!silent)
-			to_chat(usr, "<span class='warning'>WARNING, AUTOMATIC SAFETY ENGAGED. OVERRIDING USER INPUT.</span>")
+			to_chat(usr, span_warning("WARNING, AUTOMATIC SAFETY ENGAGED. OVERRIDING USER INPUT."))
+		return FALSE
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORBIT_CHANGE))
+		if(!silent)
+			to_chat(usr, span_warning("The ship is currently recalculating based on previous selection."))
 		return FALSE
 	return TRUE
 
@@ -213,12 +196,8 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	changing_orbit = TRUE
 	engine_shudder()
 
-	if(direction == "escape")
-		addtimer(CALLBACK(src, .proc/retreat), 10 MINUTES)
-		return
-
-	var/message = "Arriving at new orbital level.<br><br>Prepare for engine ignition and stabilization."
-	addtimer(CALLBACK(src, .proc/priority_announce, message, "Orbit Change"), 290 SECONDS)
+	var/message = "Arriving at new orbital level. Prepare for engine ignition and stabilization."
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/priority_announce, message, "Orbit Change"), 290 SECONDS)
 	addtimer(CALLBACK(src, .proc/orbit_gets_changed, current_orbit, direction), 5 MINUTES)
 
 /obj/machinery/computer/navigation/proc/orbit_gets_changed(current_orbit, direction)
@@ -239,31 +218,10 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		if(!is_mainship_level(M.z))
 			continue
 		if(M.buckled)
-			to_chat(M, "<span class='warning'>You are jolted against [M.buckled]!</span>")
+			to_chat(M, span_warning("You are jolted against [M.buckled]!"))
 			shake_camera(M, 3, 1)
 		else
-			to_chat(M, "<span class='warning'>The floor jolts under your feet!</span>")
+			to_chat(M, span_warning("The floor jolts under your feet!"))
 			shake_camera(M, 10, 1)
 			M.Knockdown(3)
 		CHECK_TICK
-
-/obj/machinery/computer/navigation/proc/retreat()
-
-	if(GLOB.current_orbit != ESCAPE_VELOCITY)
-		message_admins("This is the moment when the space ship orbit would have done the retreat, but an admin has adjusted the GLOB.current_orbit variable to prevent this.")
-		return
-
-	if(isdistress(SSticker.mode))
-		var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode
-		if(distress_mode.round_stage == DISTRESS_DROPSHIP_CRASHED)
-			//Xenos got onto the ship before it fully got away.
-			var/message = "The [SSmapping.configs[SHIP_MAP].map_name] is unable to initiate jump due to structual damage. Please schedule maintenance at your earliest convenience."
-			priority_announce(message, title = "Maintenance Report")
-			return
-
-		var/message = "The [SSmapping.configs[SHIP_MAP].map_name] has left the AO."
-		priority_announce(message, title = "Retreat")
-
-		distress_mode.round_stage = DISTRESS_MARINE_RETREAT
-	//This is the place where you can add checks for if the ship contains a thing.
-	//a macguffin if you will, that changes the victory condition

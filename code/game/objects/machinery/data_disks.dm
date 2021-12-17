@@ -17,9 +17,9 @@
 	to_chat(user, "You flip the write-protect tab to [src.read_only ? "protected" : "unprotected"].")
 
 /obj/item/disk/data/examine(mob/user)
-	..()
+	. = ..()
 	to_chat(user, "The write-protect tab is set to [read_only ? "protected" : "unprotected"].")
-	return
+
 
 //Health Tracker Implant
 
