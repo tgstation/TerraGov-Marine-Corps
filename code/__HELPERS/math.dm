@@ -67,8 +67,6 @@
 	var/current_y_step = starting_atom.y
 	var/starting_z = starting_atom.z
 
-	var/list/line = list(get_turf(starting_atom))//get_turf(atom) is faster than locate(x, y, z)
-
 	var/x_distance = ending_atom.x - current_x_step //x distance
 	var/y_distance = ending_atom.y - current_y_step
 
@@ -80,7 +78,8 @@
 
 	var/x = abs_x_distance >> 1 //Counters for steps taken, setting to distance/2
 	var/y = abs_y_distance >> 1 //Bit-shifting makes me l33t.  It also makes get_line() unnessecarrily fast.
-	f(abs_x_distance >= abs_y_distance) //x distance is greater than y
+	var/turf/last_turf = get_turf(starting_atom)
+	if(abs_x_distance >= abs_y_distance) //x distance is greater than y
 		for(var/distance_counter in 0 to (abs_x_distance - 1))//It'll take abs_x_distance steps to get there
 			y += abs_y_distance
 
