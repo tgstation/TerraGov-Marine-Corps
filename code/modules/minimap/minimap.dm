@@ -8,16 +8,23 @@
 
 #define MAP_SEGMENT_MAX_SIZE 32
 
+GLOBAL_LIST_EMPTY(minimap_blips)
+
 /datum/game_map
+	///The name of the map
 	var/name
-
+	///Which space level is this linked to
 	var/datum/space_level/zlevel
+	///The dmi file where the image of the map is stored
 	var/icon/generated_map
+	///Coordinate bound
 	var/list/bounds
+	///The size of the icon
 	var/icon_size = 8
+	///A limit on the size
 	var/max_size = 2000
-
-	var/list/player_data
+	///List of all blips
+	var/list/visible_objects_data
 
 /datum/game_map/New(var/datum/space_level/zlevel)
 	. = ..()
@@ -49,6 +56,7 @@
 		BOUND_MAX_Y = maxy
 	)
 
+///Generate the current map image as a dmi
 /datum/game_map/proc/generate_map()
 	generated_map = icon('icons/minimap_template.dmi', "template")
 	var/z_value = zlevel.z_value
@@ -85,22 +93,15 @@
 
 	fcopy(generated_map, "[MINIMAP_FILE_DIR][name].dmi")
 
-GLOBAL_LIST_INIT(jobs_to_icon, list(
-	JOB_SQUAD_ENGI = "hard-hat",
-	JOB_SQUAD_MEDIC = "hand-holding-medical",
-	JOB_SQUAD_LEADER = "crown"
-))
-
+///Update all the blips on the map
 /datum/game_map/proc/update_map()
-	player_data = list()
-	for(var/mob/living/carbon/human/H as anything in GLOB.human_mob_list)
-		if(H.z != zlevel.z_value)
-			continue
-
-		player_data += list(list(
-			"name" = H.name,
-			"coord" = get_coord(H),
-			"icon" = GLOB.jobs_to_icon[H.job] || "user"
+	visible_objects_data = list()
+	for(var/datum/minimap/map_blip AS in GLOB.minimap_blips)
+		visible_objects_data += list(list(
+			"name" = map_blip.holder.name,
+			"coordinate" = get_coord(map_blip.holder),
+			"image" = map_blip.minimap_blip,
+			"marker_flags" = map_blip.marker_flags,
 		))
 
 /datum/game_map/proc/set_generated_map(var/F)
@@ -126,8 +127,9 @@ GLOBAL_LIST_INIT(jobs_to_icon, list(
 	.["player_data"] = list(
 		"name" = user.name,
 		"coordinate" = get_coord(user),
+		"minimap_flags" = user.minimap_flags
 	)
-	.["visible_objects_data"] = list(.["player_data"])
+	.["visible_objects_data"] = visible_objects_data
 
 /datum/game_map/ui_static_data(mob/user)
 	. = list()
@@ -151,31 +153,67 @@ GLOBAL_LIST_INIT(jobs_to_icon, list(
 	SIGNAL_HANDLER
 	SStgui.try_update_ui(M, src)
 
-/mob/dead/observer/verb/view_map()
-	set name = "View Current Map"
-	set category = "Ghost"
-
-	var/datum/game_map/target_map
-	var/turf/T = get_turf(loc)
-	if(!T)
-		to_chat(usr, span_notice("[icon2html(src)] Unable to determine your current location!"))
-		return
-
-	for(var/datum/game_map/potential_map as anything in SSminimap.minimaps)
-		if(potential_map.zlevel.z_value == T.z)
-			target_map = potential_map
-			break
-
-	if(!target_map)
-		to_chat(usr, span_notice("[icon2html(src)] Unable to find a map for the current area you are in!"))
-		return
-
-	target_map.ui_interact(usr)
-
-
 #undef BOUND_MIN_X
 #undef BOUND_MIN_Y
 #undef BOUND_MAX_X
 #undef BOUND_MAX_Y
 #undef COORD_X
 #undef COORD_Y
+
+///The holder of the minimap, can be used in an action or else
+/datum/minimap
+	///Where will we draw the map
+	var/atom/movable/holder
+	///What image is printed on the minimap
+	var/minimap_blip = ""
+	///What can see the holder on minimap
+	var/marker_flags = MINIMAP_FLAG_ALL
+	///The game_map shown
+	var/datum/game_map/map
+
+/datum/minimap/New(atom/movable/holder, minimap_blip, marker_flags, z_level = null)
+	src.holder = holder 
+	src.minimap_blip = minimap_blip
+	src.marker_flags = marker_flags
+	set_game_map(null, null, isnull(z_level) ? holder.z : z_level)
+	RegisterSignal(holder, COMSIG_MOVABLE_Z_CHANGED, .proc/set_game_map)
+	GLOB.minimap_blips += src
+
+/datum/minimap/Destroy()
+	GLOB.minimap_blips -= src
+	return ..()
+
+///Set the map that will be shown
+/datum/minimap/proc/set_game_map(datum/source, old_z, new_z)
+	SIGNAL_HANDLER
+	if(old_z == new_z)
+		return
+	map?.ui_close()
+	for(var/datum/game_map/potential_map AS in SSminimap.minimaps)
+		if(potential_map.zlevel.z_value == new_z)
+			map = potential_map
+			return
+	map = null
+
+///Show the minimap to either the holder or the mob in argument
+/datum/minimap/proc/show_minimap(mob/user)
+	if(!map)
+		return
+	if(!user)
+		if(!ismob(holder))
+			return
+		user = holder 
+	map.ui_interact(user)
+
+/datum/action/minimap
+	name = "Toggle Minimap"
+	action_icon_state = "minimap"
+	///The minimap blip associated with this action
+	var/datum/minimap/minimap
+
+/datum/action/minimap/give_action(mob/M, datum/minimap/minimap)
+	. = ..()
+	src.minimap = minimap 
+
+/datum/action/minimap/action_activate()
+	minimap.show_minimap(owner)

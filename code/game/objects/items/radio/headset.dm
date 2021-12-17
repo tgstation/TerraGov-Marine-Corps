@@ -164,6 +164,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/sl_direction = FALSE
 	/// Which hud this headset gives access too
 	var/hud_type = DATA_HUD_SQUAD_TERRAGOV
+	///The minimap blip associated with the headset
+	var/datum/minimap/minimap
 
 /obj/item/radio/headset/mainship/Initialize()
 	. = ..()
@@ -182,6 +184,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		wearer = user
 		squadhud = GLOB.huds[hud_type]
 		enable_squadhud()
+		RegisterSignal(user, COMSIG_MOB_REVIVE, .proc/update_minimap_icon)
+		RegisterSignal(user, COMSIG_MOB_DEATH, .proc/set_dead_on_minimap)
+		RegisterSignal(user, COMSIG_HUMAN_SET_UNDEFIBBABLE, .proc/set_undefibbable_on_minimap)
 	if(camera)
 		camera.c_tag = user.name
 		if(user.assigned_squad)
@@ -224,29 +229,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	QDEL_NULL(camera)
 	return ..()
 
-/obj/item/radio/headset/mainship/verb/view_minimap()
-	set name = "Open Minimap"
-	set category = "Object.Minimap"
-	set src in usr
-
-	var/datum/game_map/target_map
-	var/turf/T = get_turf(loc)
-	if(!T)
-		to_chat(usr, span_notice("[icon2html(src)] Unable to determine your current location!"))
-		return
-
-	for(var/datum/game_map/potential_map AS in SSminimap.minimaps)
-		if(potential_map.zlevel.z_value == T.z)
-			target_map = potential_map
-			break
-
-	if(!target_map)
-		to_chat(usr, span_notice("[icon2html(src)] Unable to find a map for the current area you are in!"))
-		return
-
-	target_map.ui_interact(usr)
-
-
 /obj/item/radio/headset/mainship/proc/enable_squadhud()
 	squadhud.add_hud_to(wearer)
 	headset_hud_on = TRUE
@@ -254,6 +236,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		camera.toggle_cam(null, FALSE)
 	if(wearer.mind && wearer.assigned_squad && !sl_direction)
 		enable_sl_direction()
+	add_minimap()
 	to_chat(wearer, span_notice("You toggle the Squad HUD on."))
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
@@ -265,8 +248,57 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		camera.toggle_cam(null, FALSE)
 	if(sl_direction)
 		disable_sl_direction()
+	remove_minimap()
 	to_chat(wearer, span_notice("You toggle the Squad HUD off."))
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
+
+///Add the minimap to this headset
+/obj/item/radio/headset/mainship/proc/add_minimap()
+	if(minimap)
+		return
+	minimap = new(wearer, "", MINIMAP_FLAG_MARINE)
+	wearer.minimap_flags = MINIMAP_FLAG_MARINE
+	var/datum/action/minimap/mini = new()
+	mini.give_action(wearer, minimap)
+	update_minimap_icon()
+
+///Update the icon shown on the minimap
+/obj/item/radio/headset/mainship/proc/update_minimap_icon()
+	SIGNAL_HANDLER
+	if(!wearer?.job.minimap_icon)
+		return
+	if(HAS_TRAIT(wearer, TRAIT_UNDEFIBBABLE))
+		minimap.minimap_blip = "undefibbable"
+		return
+	if(wearer.stat == DEAD)
+		minimap.minimap_blip = "defibbable"
+		return
+	if(wearer.assigned_squad)
+		minimap.minimap_blip = lowertext(wearer.assigned_squad.name)+"_"+wearer.job.minimap_icon
+		return
+	minimap.minimap_blip = wearer.job.minimap_icon
+
+///Change the minimap icon to a dead icon
+/obj/item/radio/headset/mainship/proc/set_dead_on_minimap()
+	SIGNAL_HANDLER
+	if(!wearer?.job.minimap_icon)
+		return
+	minimap.minimap_blip = "defibbable"
+
+///Change the minimap icon to a undefibbable icon
+/obj/item/radio/headset/mainship/proc/set_undefibbable_on_minimap()
+	SIGNAL_HANDLER
+	if(!wearer?.job.minimap_icon)
+		return
+	minimap.minimap_blip = "undefibbable"
+
+///Remove all action of type minimap from the wearer, and make him disappear from the minimap
+/obj/item/radio/headset/mainship/proc/remove_minimap()
+	qdel(minimap)
+	wearer.minimap_flags = NONE
+	for(var/datum/action/action AS in wearer.actions)
+		if(istype(action, /datum/action/minimap))
+			action.remove_action(wearer)
 
 /obj/item/radio/headset/mainship/proc/enable_sl_direction()
 	if(!headset_hud_on)

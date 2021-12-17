@@ -78,6 +78,7 @@
 		"xenoking" = 'icons/UI_Icons/minimap_blips/xenoking.png',
 		"xenoshrike" = 'icons/UI_Icons/minimap_blips/xenoshrike.png',
 		"xenoleader" = 'icons/UI_Icons/minimap_blips/xenoleader.png',
+		"player" = 'icons/UI_Icons/minimap_blips/player.png',
 	)
 
 /datum/asset/simple/irv

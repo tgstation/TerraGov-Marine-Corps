@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(minimap)
 
 /datum/controller/subsystem/minimap/Initialize(start_timeofday)
 	for(var/datum/space_level/SL AS in SSmapping.z_list)
-		if(SL.traits[ZTRAIT_GROUND])
+		if(SL.traits[ZTRAIT_GROUND] || SL.traits[ZTRAIT_MARINE_MAIN_SHIP])
 			minimaps += new /datum/game_map(SL)
 
 	to_chat(world, span_notice("Generating minimaps.."))

@@ -7,6 +7,13 @@ export type ObjectData = {
   name : string,
   coordinate : Coordinate,
   image? : string,
+  marker_flags : number,
+}
+
+export type PlayerData = {
+  name : string, 
+  coordinate : Coordinate,
+  minimap_flags : number,
 }
 
 export type MinimapData = {
@@ -14,7 +21,7 @@ export type MinimapData = {
   map_size_x : number,
   map_size_y : number,
   view_size : number,
-  player_data : ObjectData,
+  player_data : PlayerData,
   visible_objects_data : ObjectData[];
 }
 

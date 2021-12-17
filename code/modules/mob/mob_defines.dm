@@ -93,3 +93,5 @@
 	var/has_unlimited_silicon_privilege = 0
 	///The faction this mob belongs to
 	var/faction = FACTION_NEUTRAL
+	///What can you see on minimap
+	var/minimap_flags = NONE

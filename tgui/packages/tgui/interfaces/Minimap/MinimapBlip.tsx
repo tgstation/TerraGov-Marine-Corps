@@ -1,4 +1,4 @@
-import { Box, Stack } from '../../components';
+import { Box } from '../../components';
 import { MinimapBlipProp, icon_size } from './Types';
 import { resolveAsset } from '../../assets';
 import { createLogger } from '../../logging';
@@ -9,6 +9,7 @@ export const MinimapBlip = (props: MinimapBlipProp, context) => {
 
   const {
     coordinate,
+    image,
     ...rest
   } = props;
 
@@ -19,7 +20,7 @@ export const MinimapBlip = (props: MinimapBlipProp, context) => {
       top={`${coordinate.y - icon_size * 2}px`}
     >
       <img
-        src={resolveAsset("generator")}
+        src={resolveAsset(image)}
       />
     </Box>
   );
