@@ -4,36 +4,46 @@
  * Uses the ultra-fast [Bresenham Line-Drawing Algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm).
  */
 /proc/get_line(atom/starting_atom, atom/ending_atom)
-	var/px = starting_atom.x //starting x
-	var/py = starting_atom.y
-	var/list/line = list(locate(px, py, starting_atom.z))
-	var/dx = ending_atom.x - px //x distance
-	var/dy = ending_atom.y - py
-	var/dxabs = abs(dx)//Absolute value of x distance
-	var/dyabs = abs(dy)
-	var/sdx = SIGN(dx) //Sign of x distance (+ or -)
-	var/sdy = SIGN(dy)
-	var/x = dxabs >> 1 //Counters for steps taken, setting to distance/2
-	var/y = dyabs >> 1 //Bit-shifting makes me l33t.  It also makes get_line() unnessecarrily fast.
-	var/j //Generic integer for counting
-	if(dxabs >= dyabs) //x distance is greater than y
-		for(j = 0; j < dxabs; j++)//It'll take dxabs steps to get there
-			y += dyabs
-			if(y >= dxabs) //Every dyabs steps, step once in y direction
-				y -= dxabs
-				py += sdy
-			px += sdx //Step on in x direction
-			line += locate(px, py, starting_atom.z)//Add the turf to the list
+	var/current_x_step = starting_atom.x//start at x and y, then add 1 or -1 to these to get every turf from starting_atom to ending_atom
+	var/current_y_step = starting_atom.y
+	var/starting_z = starting_atom.z
+
+	var/list/line = list(get_turf(starting_atom))//get_turf(atom) is faster than locate(x, y, z)
+
+	var/x_distance = ending_atom.x - current_x_step //x distance
+	var/y_distance = ending_atom.y - current_y_step
+
+	var/abs_x_distance = abs(x_distance)//Absolute value of x distance
+	var/abs_y_distance = abs(y_distance)
+
+	var/x_distance_sign = SIGN(x_distance) //Sign of x distance (+ or -)
+	var/y_distance_sign = SIGN(y_distance)
+
+	var/x = abs_x_distance >> 1 //Counters for steps taken, setting to distance/2
+	var/y = abs_y_distance >> 1 //Bit-shifting makes me l33t.  It also makes get_line() unnessecarrily fast.
+	if(abs_x_distance >= abs_y_distance) //x distance is greater than y
+		for(var/distance_counter in 0 to (abs_x_distance - 1))//It'll take abs_x_distance steps to get there
+			y += abs_y_distance
+
+			if(y >= abs_x_distance) //Every abs_y_distance steps, step once in y direction
+				y -= abs_x_distance
+				current_y_step += y_distance_sign
+
+			current_x_step += x_distance_sign //Step on in x direction
+			line += locate(current_x_step, current_y_step, starting_z)//Add the turf to the list
 	else
-		for(j=0 ;j < dyabs; j++)
-			x += dxabs
-			if(x >= dyabs)
-				x -= dyabs
-				px += sdx
-			py += sdy
-			line += locate(px, py, starting_atom.z)
+		for(var/distance_counter in 0 to (abs_y_distance - 1))
+			x += abs_x_distance
+
+			if(x >= abs_y_distance)
+				x -= abs_y_distance
+				current_x_step += x_distance_sign
+
+			current_y_step += y_distance_sign
+			line += locate(current_x_step, current_y_step, starting_z)
 	return line
 
+///Returns if a turf can be seen from another turf.
 /proc/can_see_through(turf/from_turf, turf/to_turf)
 	if(IS_OPAQUE_TURF(to_turf))
 		return FALSE
@@ -49,33 +59,41 @@
 	return TRUE
 
 
-//Checks if ending atom is viewable by starting atom, uses bresenham line algorithm but checks some extra tiles on a diagonal next tile
+///Checks if ending atom is viewable by starting atom, uses bresenham line algorithm but checks some extra tiles on a diagonal next tile
 /proc/line_of_sight(atom/starting_atom, atom/ending_atom, maximum_dist = 7)
 	if(get_dist(starting_atom, ending_atom) > maximum_dist)
 		return FALSE
-	var/px = starting_atom.x //starting x
-	var/py = starting_atom.y
-	var/dx = ending_atom.x - px //x distance
-	var/dy = ending_atom.y - py
-	var/dxabs = abs(dx)//Absolute value of x distance
-	var/dyabs = abs(dy)
-	var/sdx = SIGN(dx) //Sign of x distance (+ or -)
-	var/sdy = SIGN(dy)
-	var/x = dxabs >> 1 //Counters for steps taken, setting to distance/2
-	var/y = dyabs >> 1 //Bit-shifting makes me l33t.  It also makes get_line() unnessecarrily fast.
-	var/j //Generic integer for counting
-	var/turf/last_turf = get_turf(starting_atom)
-	if(dxabs >= dyabs) //x distance is greater than y
-		for(j = 0; j < dxabs; j++)//It'll take dxabs steps to get there
-			y += dyabs
-			if(y >= dxabs) //Every dyabs steps, step once in y direction
-				y -= dxabs
-				py += sdy
-			px += sdx //Step on in x direction
-			var/turf/turf_to_check = locate(px, py, starting_atom.z)//find the new turf
+	var/current_x_step = starting_atom.x//start at x and y, then add 1 or -1 to these to get every turf from starting_atom to ending_atom
+	var/current_y_step = starting_atom.y
+	var/starting_z = starting_atom.z
+
+	var/list/line = list(get_turf(starting_atom))//get_turf(atom) is faster than locate(x, y, z)
+
+	var/x_distance = ending_atom.x - current_x_step //x distance
+	var/y_distance = ending_atom.y - current_y_step
+
+	var/abs_x_distance = abs(x_distance)//Absolute value of x distance
+	var/abs_y_distance = abs(y_distance)
+
+	var/x_distance_sign = SIGN(x_distance) //Sign of x distance (+ or -)
+	var/y_distance_sign = SIGN(y_distance)
+
+	var/x = abs_x_distance >> 1 //Counters for steps taken, setting to distance/2
+	var/y = abs_y_distance >> 1 //Bit-shifting makes me l33t.  It also makes get_line() unnessecarrily fast.
+	f(abs_x_distance >= abs_y_distance) //x distance is greater than y
+		for(var/distance_counter in 0 to (abs_x_distance - 1))//It'll take abs_x_distance steps to get there
+			y += abs_y_distance
+
+			if(y >= abs_x_distance) //Every abs_y_distance steps, step once in y direction
+				y -= abs_x_distance
+				current_y_step += y_distance_sign
+
+			current_x_step += x_distance_sign //Step on in x direction
+
+			var/turf/turf_to_check = locate(current_x_step, current_y_step, starting_z)//find the new turf
 			var/old_turf_dir_to_us = get_dir(last_turf, turf_to_check)
 			if(ISDIAGONALDIR(old_turf_dir_to_us))
-				for(var/i=0, i<2, i++)
+				for(var/i in 0 to 2)
 					var/between_turf = get_step(last_turf, turn(old_turf_dir_to_us, i == 1 ? 45 : -45))
 					if(can_see_through(last_turf, between_turf))
 						break
@@ -84,16 +102,19 @@
 			if(!can_see_through(last_turf, turf_to_check))
 				return FALSE
 	else
-		for(j=0 ;j < dyabs; j++)
-			x += dxabs
-			if(x >= dyabs)
-				x -= dyabs
-				px += sdx
-			py += sdy
-			var/turf/turf_to_check = locate(px, py, starting_atom.z)//find the new turf
+		for(var/distance_counter in 0 to (abs_y_distance - 1))
+			x += abs_x_distance
+
+			if(x >= abs_y_distance)
+				x -= abs_y_distance
+				current_x_step += x_distance_sign
+
+			current_y_step += y_distance_sign
+
+			var/turf/turf_to_check = locate(current_x_step, current_y_step, starting_z)//find the new turf
 			var/old_turf_dir_to_us = get_dir(last_turf, turf_to_check)
 			if(ISDIAGONALDIR(old_turf_dir_to_us))
-				for(var/i=0, i<2, i++)
+				for(var/i in 0 to 2)
 					var/between_turf = get_step(last_turf, turn(old_turf_dir_to_us, i == 1 ? 45 : -45))
 					if(can_see_through(last_turf, between_turf))
 						break
