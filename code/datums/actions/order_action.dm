@@ -126,5 +126,5 @@
 /datum/action/innate/order/rally_order/action_activate()
 	var/mob/living/carbon/human/human = owner
 	if(send_order(human, human.assigned_squad, human.faction))
-		var/message = pick(";TO ME MY MEN!", ";REGROUP TO ME!", ";FOLLOW MY LEAD!", ";RALLY ON ME!", ";FORWARD!")
+		var/message = pick("ВСЕ КО МНЕ!", "ПЕРЕГРУППИРОВАТЬСЯ!", "ВСЕМ ЗА МНОЙ!", "СОБРАТЬСЯ ВОЗЛЕ МЕНЯ!")
 		owner.say(message)
