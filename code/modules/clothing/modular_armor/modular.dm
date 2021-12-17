@@ -346,6 +346,8 @@
 	///Current varient selected.
 	var/current_variant
 
+	var/xmashat_color
+
 /obj/item/clothing/head/modular/Initialize()
 	. = ..()
 	update_icon() //Update for greyscale.
@@ -406,13 +408,21 @@
 		paint.uses--
 		var/variant = tgui_input_list(user, "Choose a color.", "Color", icon_state_variants)
 
-		if(!variant)
-			return
+		var/xmashat = tgui_input_list(user, "Do you want a xmas hat ?", "Pick Xmas hat color", list("None", "Red", "Green"))
+
 
 		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 			return
 
-		current_variant = variant
+		switch(xmashat)
+			if("None")
+				xmashat_color = null
+			if("Red")
+				xmashat_color = "xmasred"
+			if("Green")
+				xmashat_color = "xmasgreen"
+		if(variant)
+			current_variant = variant
 		update_icon()
 		return
 
@@ -422,13 +432,22 @@
 	else
 		new_color = input(user, "Pick a color", "Pick color") as null|color
 
-	if(!new_color)
-		return
+	var/xmashat = tgui_input_list(user, "Do you want a xmas hat ?", "Pick Xmas hat color", list("None", "Red", "Green"))
 
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
 
-	set_greyscale_colors(new_color)
+	switch(xmashat)
+		if("None")
+			xmashat_color = null
+		if("Red")
+			xmashat_color = "xmasred"
+		if("Green")
+			xmashat_color = "xmasgreen"
+
+	if(new_color)
+		set_greyscale_colors(new_color)
+
 	paint.uses--
 	update_icon()
 
@@ -476,6 +495,9 @@
 
 /obj/item/clothing/head/modular/apply_custom(image/standing)
 	. = ..()
+
+	if(xmashat_color)
+		standing.overlays += image('icons/mob/modular/modular_armor.dmi', icon_state = "[xmashat_color]")
 	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE] && istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		var/obj/item/armor_module/storage/storage_module = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 		if(storage_module.show_storage)
