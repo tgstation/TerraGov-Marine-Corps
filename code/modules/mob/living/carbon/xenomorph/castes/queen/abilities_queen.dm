@@ -531,7 +531,7 @@
 
 	to_chat(T, span_xenowarning("The queen is deevolving us for the following reason: [reason]"))
 
-	X.do_evolve(new_caste.caste_type_path, new_caste.caste_name, TRUE)
+	T.do_evolve(new_caste.caste_type_path, new_caste.caste_name, TRUE)
 
 	log_game("[key_name(X)] has deevolved [key_name(T)]. Reason: [reason]")
 	message_admins("[ADMIN_TPMONTY(X)] has deevolved [ADMIN_TPMONTY(T)]. Reason: [reason]")

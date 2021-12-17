@@ -570,6 +570,27 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CRUSHER_CHARGE_RAZORWIRE_MULTI 100
 #define CRUSHER_CHARGE_TANK_MULTI 100
 
+//gorger defines
+#define GORGER_REGURGITATE_DELAY 1 SECONDS
+#define GORGER_DEVOUR_DELAY 2 SECONDS
+#define GORGER_DRAIN_INSTANCES 2 // amuont of times the target is drained
+#define GORGER_DRAIN_DELAY 1 SECONDS // time needed to drain a marine once
+#define GORGER_DRAIN_HEAL 40 // overheal gained each time the target is drained
+#define GORGER_DRAIN_BLOOD_DRAIN 20 // amount of plasma drained when feeding on something
+#define GORGER_TRANSFUSION_HEAL 0.3 // in %
+#define GORGER_REJUVENATE_DURATION -1
+#define GORGER_REJUVENATE_COST 20
+#define GORGER_REJUVENATE_SLOWDOWN 6
+#define GORGER_REJUVENATE_HEAL 0.05 //in %
+#define GORGER_REJUVENATE_THRESHOLD 0.10 //in %
+#define GORGER_PSYCHIC_LINK_CHANNEL 10 SECONDS
+#define GORGER_PSYCHIC_LINK_RANGE 10
+#define GORGER_PSYCHIC_LINK_REDIRECT 0.5 //in %
+#define GORGER_PSYCHIC_LINK_MIN_HEALTH 0.2 //in %
+#define GORGER_CARNAGE_HEAL 0.2
+#define GORGER_CARNAGE_MOVEMENT -0.5
+#define GORGER_FEAST_DURATION -1 // lasts indefinitely, self-cancelled when insufficient plasma left
+
 //carrier defines
 #define CARRIER_HUGGER_THROW_SPEED 2
 #define CARRIER_HUGGER_THROW_DISTANCE 5

@@ -367,7 +367,7 @@
 	set_gun_user(null)
 	return ..()
 
-/obj/item/weapon/gun/turn_light(mob/user, toggle_on, cooldown, sparks, forced)
+/obj/item/weapon/gun/turn_light(mob/user, toggle_on, cooldown, sparks, forced, light_again)
 	. = ..()
 	if(. != CHECKS_PASSED)
 		return
@@ -375,7 +375,7 @@
 	if(!attachable || !istype(attachable, /obj/item/attachable))
 		return
 	var/obj/item/attachable/attachable_attachment = attachable
-	attachable_attachment.turn_light(user, toggle_on, cooldown, sparks, forced)
+	attachable_attachment.turn_light(user, toggle_on, cooldown, sparks, forced, light_again)
 
 /obj/item/weapon/gun/emp_act(severity)
 	for(var/obj/O in contents)

@@ -459,7 +459,7 @@
 
 //-------------------------------------------------------
 
-/obj/item/weapon/gun/rifle/ak47
+/obj/item/weapon/gun/rifle/mpi_km
 	name = "\improper MPi-KM assault rifle"
 	desc = "A cheap and robust rifle, sometimes better known as an 'AK'. Chambers 7.62x39mm. Despite lacking attachment points, remains a popular product on the black market with its cheap cost and higher than usual caliber rounds."
 	icon_state = "ak47"
@@ -471,22 +471,22 @@
 	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
-	default_ammo_type = /obj/item/ammo_magazine/rifle/ak47
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/ak47)
+	default_ammo_type = /obj/item/ammo_magazine/rifle/mpi_km
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/mpi_km, /obj/item/ammo_magazine/rifle/mpi_km/extended)
 	aim_slowdown = 0.7
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/stock/ak47,
+		/obj/item/attachable/stock/mpi_km,
 		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 17, "under_x" = 24, "under_y" = 13, "stock_x" = 0, "stock_y" = 12)
-	starting_attachment_types = list(/obj/item/attachable/stock/ak47)
+	starting_attachment_types = list(/obj/item/attachable/stock/mpi_km)
 
 	accuracy_mult = 1
 	burst_amount = 1
@@ -674,7 +674,7 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.18 SECONDS
+	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 5
 
 	fire_delay = 0.2 SECONDS
@@ -862,7 +862,7 @@
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 24, "under_x" = 34, "under_y" = 16, "stock_x" = 19, "stock_y" = 13)
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.125 SECONDS
+	aim_fire_delay = 0.15 SECONDS
 	aim_speed_modifier = 2
 
 	fire_delay = 0.25 SECONDS
@@ -1230,9 +1230,9 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11, /obj/item/attachable/scope/mini/tx11)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 19, "stock_y" = 23)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.125 SECONDS
+	aim_fire_delay = 0.15 SECONDS
 
-	fire_delay = 0.225 SECONDS
+	fire_delay = 0.25 SECONDS
 	extra_delay = 0.25 SECONDS
 	burst_amount = 3
 	burst_delay = 0.05 SECONDS

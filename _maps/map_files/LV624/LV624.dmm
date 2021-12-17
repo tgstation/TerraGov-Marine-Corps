@@ -9173,7 +9173,7 @@
 /area/lv624/ground/river3)
 "gEU" = (
 /obj/structure/bed,
-/mob/living/simple_animal/corgi/Lisa,
+/mob/living/simple_animal/corgi/lisa,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "gFo" = (
@@ -9762,10 +9762,10 @@
 /area/lv624/lazarus/sleep_male)
 "hij" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/rifle/ak47,
-/obj/item/ammo_magazine/rifle/ak47,
-/obj/item/ammo_magazine/rifle/ak47,
-/obj/item/ammo_magazine/rifle/ak47,
+/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
@@ -21243,8 +21243,8 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/weapon/gun/rifle/ak47,
-/obj/item/weapon/gun/rifle/ak47,
+/obj/item/weapon/gun/rifle/mpi_km,
+/obj/item/weapon/gun/rifle/mpi_km,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "uIT" = (

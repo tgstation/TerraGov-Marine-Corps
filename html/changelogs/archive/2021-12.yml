@@ -149,3 +149,82 @@
       a larva (larva queue)
   Vondiech:
   - bugfix: You can now put in the extended gal-9 clip into the UZI again.
+2021-12-14:
+  AzonStarfall:
+  - bugfix: Fixes a few issues on the Minerva, such as explosive radios.
+  KrabSpider:
+  - balance: .45-70 Goverment Rifle Cartridges for the  leicester repeater. 70 damage/20
+      AP/1.25 sunder from 60 damage/ 20 AP/1.5 sunder. Bullets stagger and slow within
+      a 4 tile range (from a weak slow at all ranges).
+  - imageadd: .45-70 Government Packets
+  - imageadd: New Leicester Repeater sprite. Much thanks to SilentMP5A5, otherwise
+      known by many as Ocelot.
+  RipGrayson:
+  - balance: Icy Caves is back to it's original self, without the lab complex to the
+      NW of the map.
+  - balance: All Icy Caves plasma cutters have been replaced with pickaxes.
+  - balance: The Icy Caves pirate coat has been replaced with a regular colonist uniform.
+  - balance: Barrels no longer drop 10 metal by default when destroyed.
+  Slotbot:
+  - balance: tesla gun doesn't drain plasma from xenos who have special plasma management,
+      other tesla debuffs remain the same
+  SplinterGP:
+  - bugfix: the Hypertext in old chat to reload TGUI Chat when it doens't load now
+      works
+  Vondiech:
+  - balance: You can now store MRE's in your combat boots for a mid-fight snack!
+  novaepee:
+  - rscadd: Floppa and Martin, the req caracal
+  - imageadd: floppa sprites!
+2021-12-15:
+  BraveMole:
+  - bugfix: Fix light replacing exploit
+  - code_imp: Unit test for guns expanded. Also put the fire delays at their correct
+      values, have no effect on gameplay
+  - bugfix: Fix hivemind space freeze bug
+  novaepee:
+  - bugfix: code
+2021-12-16:
+  BraveMole:
+  - bugfix: Fix carrier timing exploit
+  - bugfix: Fix some untangle razor wire bug
+  - qol: Prevent bad name by randomising the name on species change
+  - bugfix: Fix tarp getting spotted by minions
+  - bugfix: Fix storage nested in storage. Aka, pills and synrigue case in pouches
+      or things like that
+  - bugfix: Fix marine knife boot not updating sprite
+  - bugfix: Deevo from queen works as intended
+  - bugfix: Wraith can no longer regress while shifted
+  novaepee:
+  - imageadd: New carrier sprites!
+2021-12-17:
+  BraveMole:
+  - rscdel: Remove middle click swap
+  - balance: Tool vendor is now a shared vendor with unlimited supplies
+  - balance: Tool vendor no longer has contraband, the huge tank welder is moved to
+      engie points
+  - expansion: Tool vendor is now linked with loadout system
+  - qol: Tool pouches contains a welding tool rather than a multi-tool
+  - rscadd: Bring back grenade chain explosion
+  - refactor: Rework combat floodlights into something simpler
+  - bugfix: Properly rebrand ak47
+  - qol: You can point even in darkness (if you can see it, like xenos do). Cooldown
+      is 1 second for everyone
+  KrabSpider:
+  - bugfix: Repeater now has a proper left in-hand sprite...stray pixels are also
+      fixed
+  Walarks:
+  - expansion: adds a new xeno caste
+  - expansion: gives all xenos 150 max overheal to be used for gorger ability
+  - bugfix: pre-spawned humans now have the non-defibbable trait
+  - bugfix: attack animation no longer cancels other animations on same object as
+      long as both have the ANIMATION_PARALLEL flag
+  chesse20:
+  - rscdel: You can no longer vend specific flavors of protein bars
+  - bugfix: Stopped filling your hands with fake protein bars
+  - bugfix: nutriment has taste as intended
+  - qol: Protein bars now vend into your hands as they should
+  ivanmixo:
+  - balance: The resin silo can no longer be quickly cut apart by a resin silo
+  - bugfix: The silo being destroyed should trigger the silo collapse timer every
+      time now

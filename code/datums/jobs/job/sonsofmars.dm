@@ -34,7 +34,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/marine/som
 	gloves = /obj/item/clothing/gloves/marine/som
 	head = /obj/item/clothing/head/helmet/marine/som
-	suit_store = /obj/item/weapon/gun/rifle/ak47
+	suit_store = /obj/item/weapon/gun/rifle/mpi_km
 	r_store = /obj/item/storage/pouch/general/som
 	l_store = /obj/item/storage/pouch/pistol
 	back = /obj/item/storage/backpack/lightpack/som
@@ -67,11 +67,11 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/tramadol, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine, SLOT_IN_HEAD)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/upp, SLOT_IN_L_POUCH)
 

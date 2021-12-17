@@ -449,6 +449,9 @@
 #define COMSIG_XENOMORPH_HEALTH_REGEN "xenomorph_health_regen"
 #define COMSIG_XENOMORPH_SUNDER_REGEN "xenomorph_sunder_regen"
 
+#define COMSIG_XENOMORPH_REST "xenomorph_rest"
+#define COMSIG_XENOMORPH_UNREST "xenomorph_unrest"
+
 #define COMSIG_XENOMORPH_ZONE_SELECT "xenomorph_zone_select"
 	#define COMSIG_ACCURATE_ZONE (1<<0)
 
@@ -608,6 +611,14 @@
 #define COMSIG_XENOABILITY_TOGGLE_CHARGE "xenoability_toggle_charge"
 #define COMSIG_XENOABILITY_CRESTTOSS "xenoability_cresttoss"
 #define COMSIG_XENOABILITY_ADVANCE "xenoability_advance"
+
+#define COMSIG_XENOABILITY_DEVOUR "xenoability_devour"
+#define COMSIG_XENOABILITY_DRAIN "xenoability_drain"
+#define COMSIG_XENOABILITY_TRANSFUSION "xenoability_transfusion"
+#define COMSIG_XENOABILITY_REJUVENATE "xenoability_rejuvenate"
+#define COMSIG_XENOABILITY_PSYCHIC_LINK "xenoability_psychic_link"
+#define COMSIG_XENOABILITY_CARNAGE "xenoability_carnage"
+#define COMSIG_XENOABILITY_FEAST "xenoability_feast"
 
 #define COMSIG_XENOABILITY_BULLCHARGE "xenoability_bullcharge"
 #define COMSIG_XENOABILITY_BULLHEADBUTT "xenoability_bullheadbutt"

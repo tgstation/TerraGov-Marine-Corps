@@ -284,8 +284,11 @@
 
 		if("species")
 			var/choice = tgui_input_list(ui.user, "What species do you want to play with?", "Species choice", get_playable_species())
-			if(choice)
-				species = choice
+			if(!choice || species == choice)
+				return
+			species = choice
+			var/datum/species/S = GLOB.all_species[species]
+			real_name = S.random_name(gender)
 
 		if("body_type")
 			var/choice = tgui_input_list(ui.user, "What body type do you want?", "Body type choice", GLOB.body_types_list)

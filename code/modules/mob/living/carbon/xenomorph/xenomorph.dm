@@ -83,7 +83,8 @@
 	xeno_caste.on_caste_applied(src)
 	maxHealth = xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff
 	if(restore_health_and_plasma)
-		plasma_stored = xeno_caste.plasma_max
+		// xenos that manage plasma through special means shouldn't gain it for free on aging
+		plasma_stored = max(plasma_stored, xeno_caste.plasma_max * xeno_caste.plasma_regen_limit)
 		health = maxHealth
 	setXenoCasteSpeed(xeno_caste.speed)
 	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
@@ -312,15 +313,10 @@
 	hud_to_add.add_hud_to(src)
 
 /mob/living/carbon/xenomorph/point_to_atom(atom/A, turf/T)
-	//xeno leader get a bit arrow and less cooldown
-	if(queen_chosen_lead || isxenoqueen(src))
-		TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
-		new /obj/effect/overlay/temp/point/big(T)
-	else
-		TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 5 SECONDS)
-		new /obj/effect/overlay/temp/point(T)
+	TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
+	new /obj/effect/overlay/temp/point/big(T)
 	visible_message("<b>[src]</b> points to [A]")
-	return 1
+	return TRUE
 
 /mob/living/carbon/xenomorph/get_permeability_protection()
 	return XENO_PERM_COEFF

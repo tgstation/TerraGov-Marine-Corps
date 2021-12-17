@@ -6068,7 +6068,7 @@
 	dir = 1
 	},
 /obj/machinery/door/window/secure/bridge,
-/mob/living/simple_animal/corgi/Ian,
+/mob/living/simple_animal/corgi/ian,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "tA" = (
@@ -15701,7 +15701,7 @@
 /area/mainship/living/grunt_rnr)
 "WD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/mob/living/simple_animal/corgi/Ranger,
+/mob/living/simple_animal/corgi/ranger,
 /turf/open/floor/mainship/black/corner{
 	dir = 4
 	},
