@@ -538,7 +538,8 @@ datum/ammo/bullet/revolver/tp44
 	staggerstun(M, P, max_range = 4, slowdown = 2, shake = 0.5)
 
 /datum/ammo/bullet/rifle/repeater/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, max_range = 3, stagger = 1)
+	staggerstun(M, P, max_range = 2, stagger = 1)
+
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
 	hud_state = "rifle_fire"
