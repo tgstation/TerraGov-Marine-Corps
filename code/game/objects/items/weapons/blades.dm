@@ -42,23 +42,16 @@
 	return(BRUTELOSS)
 
 /obj/item/weapon/claymore/harvester
-	parent_type = /obj/item/weapon/twohanded
 	name = "\improper HP-S Harvester blade"
 	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' blade. An advanced weapon that trades sheer force for the ability to apply a variety of debilitating effects when loaded with certain reagents. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
 	icon_state = "energy_sword"
 	item_state = "energy_katana"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
 	force = 60
-	force_wielded = 60
 	attack_speed = 12
-	throwforce = 10
-	sharp = IS_SHARP_ITEM_BIG
-	edge = 1
 	w_class = WEIGHT_CLASS_BULKY
 	flags_item = DRAINS_XENO
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
+	var/force_wielded = 40
 	var/obj/item/reagent_containers/glass/beaker/vial/beaker = null
 	var/datum/reagent/loaded_reagent = null
 	var/list/loadable_reagents = list(
@@ -213,7 +206,6 @@
 	throwforce = 60
 	reach = 2
 	sharp = IS_SHARP_ITEM_SIMPLE
-	flags_item = DRAINS_XENO | TWOHANDED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
 /obj/item/weapon/claymore/mercsword
