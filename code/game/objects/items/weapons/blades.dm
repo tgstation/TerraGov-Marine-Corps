@@ -210,7 +210,6 @@
 	item_state = "vali_spear"
 	force = 32
 	flags_equip_slot = ITEM_SLOT_BACK
-	force_wielded = 60
 	throwforce = 60
 	reach = 2
 	sharp = IS_SHARP_ITEM_SIMPLE
