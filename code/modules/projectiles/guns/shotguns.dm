@@ -114,7 +114,7 @@
 
 /obj/item/weapon/gun/shotgun/combat/masterkey
 	name = "masterkey shotgun"
-	desc = "A weapon-mounted, three-shot shotgun. Reloadable with buckshot. The short barrel reduces the ammo's effectiveness, but allows it to be fired one handed."
+	desc = "A weapon-mounted, three-shot shotgun. Reloadable with buckshot. The short barrel reduces the ammo's effectiveness drastically in exchange for fitting as a attachment.."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "masterkey"
 	max_chamber_items = 2
@@ -125,6 +125,7 @@
 	detach_delay = 3 SECONDS
 	flags_gun_features = GUN_IS_ATTACHMENT|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_CAN_POINTBLANK|GUN_WIELDED_FIRING_ONLY
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
+	damage_mult = 0.45
 	recoil = 0
 	pixel_shift_x = 14
 	pixel_shift_y = 18
