@@ -199,8 +199,6 @@
 
 	///The iconstate for the xeno on the minimap
 	var/minimap_icon = "xeno"
-	///The iconstate for leadered xenos on the minimap
-	var/minimap_leadered_icon = "xenoleader"
 	///The iconstate of the plasma bar, format used is "[plasma_icon_state][amount]"
 	var/plasma_icon_state = "plasma"
 
@@ -370,5 +368,8 @@
 
 	///Are we the roony version of this xeno
 	var/is_a_rouny = FALSE
+
+	///The minimap blip 
+	var/datum/minimap/minimap
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

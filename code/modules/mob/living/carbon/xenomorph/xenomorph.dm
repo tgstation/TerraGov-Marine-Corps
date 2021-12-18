@@ -12,6 +12,11 @@
 	time_of_birth = world.time
 	add_inherent_verbs()
 	add_abilities()
+	minimap = new(src, "", MINIMAP_FLAG_XENO)
+	set_minimap_blip()
+	var/datum/action/minimap/mini = new
+	mini.give_action(src, minimap)
+	minimap_flags = MINIMAP_FLAG_XENO
 
 	create_reagents(1000)
 	gender = NEUTER
@@ -233,6 +238,7 @@
 
 	vis_contents -= wound_overlay
 	QDEL_NULL(wound_overlay)
+	qdel(minimap)
 	return ..()
 
 
@@ -392,3 +398,9 @@
 	GLOB.offered_mob_list -= src
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
 	a_intent = INTENT_HARM
+
+/mob/living/carbon/xenomorph/proc/set_minimap_blip()
+	if(queen_chosen_lead && xeno_caste.minimap_icon == "xeno")
+		minimap.minimap_blip = "xenoleader"
+		return
+	minimap.minimap_blip = xeno_caste.minimap_icon

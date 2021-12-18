@@ -176,10 +176,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	. = ..()
 	camera = new /obj/machinery/camera/headset(src)
 
-/obj/item/radio/headset/mainship/Destroy()
-	remove_minimap()
-	return ..()
-
 /obj/item/radio/headset/mainship/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_EARS)
 		if(GLOB.faction_to_data_hud[user.faction] != hud_type)
@@ -226,11 +222,13 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			wearer.SL_directional = null
 			if(wearer.assigned_squad)
 				SSdirection.stop_tracking(wearer.assigned_squad.tracking_id, wearer)
+		remove_minimap()
 		wearer = null
 	squadhud = null
 	headset_hud_on = FALSE
 	sl_direction = null
 	QDEL_NULL(camera)
+	qdel(minimap)
 	return ..()
 
 /obj/item/radio/headset/mainship/proc/enable_squadhud()
@@ -299,8 +297,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 ///Remove all action of type minimap from the wearer, and make him disappear from the minimap
 /obj/item/radio/headset/mainship/proc/remove_minimap()
 	qdel(minimap)
-	if(!wearer)
-		return
 	wearer.minimap_flags = NONE
 	for(var/datum/action/action AS in wearer.actions)
 		if(istype(action, /datum/action/minimap))

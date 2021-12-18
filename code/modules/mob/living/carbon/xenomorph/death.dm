@@ -12,6 +12,7 @@
 /mob/living/carbon/xenomorph/on_death()
 	GLOB.alive_xeno_list -= src
 	GLOB.dead_xeno_list += src
+	qdel(minimap)
 
 	hive?.on_xeno_death(src)
 	hive.update_tier_limits() //Update our tier limits.

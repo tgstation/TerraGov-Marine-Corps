@@ -188,7 +188,8 @@ GLOBAL_LIST_EMPTY(minimap_blips)
 	SIGNAL_HANDLER
 	if(old_z == new_z)
 		return
-	map?.ui_close(source)
+	if(map)
+		SStgui.close_user_uis(source, map)
 	for(var/datum/game_map/potential_map AS in SSminimap.minimaps)
 		if(potential_map.zlevel.z_value == new_z)
 			map = potential_map

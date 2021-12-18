@@ -371,11 +371,13 @@
 /datum/hive_status/proc/add_leader(mob/living/carbon/xenomorph/X)
 	xeno_leader_list += X
 	X.queen_chosen_lead = TRUE
+	X.set_minimap_blip()
 	X.give_rally_abilities()
 
 /datum/hive_status/proc/remove_leader(mob/living/carbon/xenomorph/X)
 	xeno_leader_list -= X
 	X.queen_chosen_lead = FALSE
+	X.set_minimap_blip()
 
 	if(!isxenoshrike(X) && !isxenoqueen(X) && !isxenohivemind(X)) //These innately have the Rally Hive ability
 		X.remove_rally_hive_ability()
