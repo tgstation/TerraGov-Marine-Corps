@@ -159,7 +159,7 @@
 /datum/chemical_reaction/quickclotplus
 	name = "Quick-Clot Plus"
 	results = list(/datum/reagent/medicine/quickclotplus = 1)
-	required_reagents = list(/datum/reagent/medicine/phoron = 2, /datum/reagent/toxin/quickclot = 2, /datum/reagent/iron = 2)
+	required_reagents = list(/datum/reagent/medicine/quickclot = 2, /datum/reagent/toxin/phoron = 2, /datum/reagent/iron = 2)
 
 /datum/chemical_reaction/hypervene //New purge chem.
 	name = "Hypervene"
