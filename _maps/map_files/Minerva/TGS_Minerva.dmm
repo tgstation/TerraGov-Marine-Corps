@@ -699,8 +699,10 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/starboard_hallway)
 "cg" = (
-/obj/structure/mirror,
-/turf/closed/wall/mainship,
+/obj/structure/mirror{
+	dir = 4
+	},
+/turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "ci" = (
 /obj/machinery/camera/autoname/mainship,
@@ -9878,6 +9880,9 @@
 /area/mainship/living/briefing)
 "Gu" = (
 /obj/structure/disposalpipe/segment,
+/obj/structure/mirror{
+	dir = 8
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "Gv" = (
@@ -10251,7 +10256,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/mirror,
+/obj/structure/mirror{
+	dir = 8
+	},
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
@@ -10570,6 +10577,9 @@
 /area/mainship/squads/general)
 "IF" = (
 /obj/machinery/roomba,
+/obj/structure/mirror{
+	dir = 4
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "IH" = (
@@ -26008,8 +26018,8 @@ Ae
 tc
 Ae
 CT
-cg
-cg
+sr
+sr
 sr
 sr
 sr
@@ -26106,7 +26116,7 @@ Ew
 UW
 UW
 YG
-tc
+cg
 IF
 JK
 KP
@@ -26302,8 +26312,8 @@ zY
 Fo
 zY
 Hu
-cg
-cg
+sr
+sr
 sr
 sr
 sr

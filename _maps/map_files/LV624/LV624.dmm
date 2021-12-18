@@ -10007,7 +10007,8 @@
 "hDS" = (
 /obj/structure/table,
 /obj/structure/mirror{
-	pixel_y = -30
+	dir = 1;
+	pixel_y = -14
 	},
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
@@ -11544,11 +11545,11 @@
 /area/lv624/ground/river2)
 "jvj" = (
 /obj/structure/table,
-/obj/structure/mirror{
-	pixel_x = 30
-	},
 /obj/item/explosive/grenade/chem_grenade/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
+/obj/structure/mirror{
+	dir = 8
+	},
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "jvl" = (
@@ -19266,6 +19267,9 @@
 	amount = 40
 	},
 /obj/item/autopsy_scanner,
+/obj/structure/mirror{
+	dir = 8
+	},
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -19378,7 +19382,11 @@
 /obj/structure/table,
 /obj/item/tool/surgery/scalpel/manager,
 /obj/structure/sink{
-	dir = 8
+	dir = 8;
+	pixel_y = 3
+	},
+/obj/structure/mirror{
+	dir = 4
 	},
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
@@ -21270,12 +21278,6 @@
 /obj/structure/jungle/vines,
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/armory)
-"uKi" = (
-/obj/structure/mirror{
-	pixel_y = 30
-	},
-/turf/closed/wall,
-/area/lv624/lazarus/medbay)
 "uKL" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/red/redtaupe{
@@ -22244,7 +22246,7 @@
 "vRB" = (
 /obj/structure/table,
 /obj/structure/mirror/broken{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
@@ -47072,7 +47074,7 @@ azK
 bjL
 bjL
 boQ
-uKi
+boQ
 boQ
 boQ
 pwW

@@ -3525,7 +3525,7 @@
 	dir = 4
 	},
 /obj/structure/mirror{
-	pixel_x = 24
+	dir = 8
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
@@ -3586,7 +3586,7 @@
 	dir = 8
 	},
 /obj/structure/mirror{
-	pixel_x = -24
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
@@ -28312,11 +28312,11 @@
 	},
 /area/ice_colony/underground/responsehangar)
 "bQP" = (
-/obj/structure/mirror{
-	pixel_x = -32
-	},
 /obj/structure/sink{
 	dir = 8
+	},
+/obj/structure/mirror{
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/security/brig)
@@ -28798,9 +28798,6 @@
 /area/ice_colony/underground/command/checkpoint)
 "bSz" = (
 /obj/structure/sink,
-/obj/structure/mirror{
-	pixel_y = 28
-	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/hallway/north_west)
 "bSA" = (
@@ -28962,7 +28959,8 @@
 	dir = 1
 	},
 /obj/structure/mirror{
-	pixel_y = -28
+	dir = 1;
+	pixel_y = -14
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/hallway/north_west)
@@ -29634,7 +29632,6 @@
 /obj/structure/mirror{
 	pixel_y = 25
 	},
-/obj/structure/sink,
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/excavationbarracks)
 "bVO" = (
@@ -29799,11 +29796,11 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/excavationbarracks)
 "bWt" = (
-/obj/structure/mirror{
-	pixel_x = 24
-	},
 /obj/structure/sink{
 	dir = 4
+	},
+/obj/structure/mirror{
+	dir = 8
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/excavationbarracks)
@@ -31855,6 +31852,16 @@
 "fch" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/center)
+"fck" = (
+/obj/structure/toilet,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/mirror{
+	pixel_y = 28
+	},
+/turf/open/floor/tile/white,
+/area/ice_colony/underground/hallway/north_west)
 "fdH" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark2,
@@ -53190,7 +53197,7 @@ bhj
 bgH
 bgH
 bkt
-buq
+fck
 bSL
 bkt
 bSL
