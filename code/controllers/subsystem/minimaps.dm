@@ -13,14 +13,12 @@ SUBSYSTEM_DEF(minimap)
 		if(SL.traits[ZTRAIT_GROUND] || SL.traits[ZTRAIT_MARINE_MAIN_SHIP])
 			minimaps += new /datum/game_map(SL)
 
-	to_chat(world, span_notice("Generating minimaps.."))
 	for(var/datum/game_map/GM as anything in minimaps)
 		var/F = file("[MINIMAP_FILE_DIR][GM.name].dmi")
 		if(fexists(F))
 			GM.set_generated_map(F)
 		else
 			GM.generate_map()
-	to_chat(world, span_notice("Generated minimaps."))
 	return ..()
 
 

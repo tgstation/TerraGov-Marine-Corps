@@ -63,7 +63,7 @@ GLOBAL_LIST_EMPTY(minimap_blips)
 	get_map_bounds()
 	generated_map.Scale(bounds[BOUND_MAX_X]*icon_size, bounds[BOUND_MAX_Y]*icon_size)
 
-	for(var/turf/turf_to_render as anything in block(\
+	for(var/turf/turf_to_render AS in block(\
 		locate(bounds[BOUND_MIN_X], bounds[BOUND_MIN_Y], z_value),\
 		locate(bounds[BOUND_MAX_X], bounds[BOUND_MAX_Y], z_value)))
 		if(turf_to_render.flags_atom & TURF_HIDE_MINIMAP)
@@ -75,8 +75,7 @@ GLOBAL_LIST_EMPTY(minimap_blips)
 			(turf_to_render.x - bounds[BOUND_MIN_X])*icon_size,\
 			(turf_to_render.y - bounds[BOUND_MIN_Y])*icon_size)
 
-		for(var/A in turf_to_render)
-			var/atom/movable/AM = A
+		for(var/atom/movable/AM AS in turf_to_render)
 			if((AM.flags_atom & SHOW_ON_MINIMAP) && AM.loc == turf_to_render)
 				I = getFlatIcon(AM)
 				if(!I)
