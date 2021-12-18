@@ -228,3 +228,9 @@
   - balance: The resin silo can no longer be quickly cut apart by a resin silo
   - bugfix: The silo being destroyed should trigger the silo collapse timer every
       time now
+2021-12-18:
+  Arctrooper8:
+  - rscadd: Changes the flower pin to weight class tiny
+  - rscadd: Allows the flower pin to be placed inside the helmet and be added to helmet
+      sprite
+  - refactor: removes helmet_garb.dmi and replaces usage of it with modular_helmet_storage.dmi

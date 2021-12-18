@@ -1,6 +1,0 @@
-author: "Arctrooper8"
-delete-after: True
-changes: 
-  - rscadd: "Changes the flower pin to weight class tiny"
-  - rscadd: "Allows the flower pin to be placed inside the helmet and be added to helmet sprite"
-  - refactor: "removes helmet_garb.dmi and replaces usage of it with modular_helmet_storage.dmi"
