@@ -4,14 +4,14 @@ export type Coordinate = {
 }
 
 export type ObjectData = {
-  name : string,
+  ref : string,
   coordinate : Coordinate,
   image? : string,
   marker_flags : number,
 }
 
 export type PlayerData = {
-  name : string, 
+  ref : string, 
   coordinate : Coordinate,
   minimap_flags : number,
 }

@@ -22,6 +22,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	dextrous = TRUE
 
 	initial_language_holder = /datum/language_holder/universal
+	minimap_flags = MINIMAP_FLAG_ALL
 	var/atom/movable/following = null
 	var/datum/orbit_menu/orbit_menu
 	var/mob/observetarget = null	//The target mob that the ghost is observing. Used as a reference in logout()
@@ -52,6 +53,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 	///Position in the larva queue
 	var/larva_position = 0
+	///The minimap blip, used to hold the position of the ghost
+	var/datum/minimap/minimap
 
 
 /mob/dead/observer/Initialize()
@@ -103,6 +106,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/observer_z_changed)
 	LAZYADD(GLOB.observers_by_zlevel["[z]"], src)
 
+	minimap = new(src, "", MINIMAP_FLAG_ALL)
+	var/datum/action/minimap/mini = new
+	mini.give_action(src, minimap)
+
 	return ..()
 
 
@@ -120,6 +127,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	LAZYREMOVE(GLOB.observers_by_zlevel["[z]"], src)
 	UnregisterSignal(src, COMSIG_MOVABLE_Z_CHANGED)
+
+	qdel(minimap)
 
 	return ..()
 

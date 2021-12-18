@@ -98,7 +98,7 @@ GLOBAL_LIST_EMPTY(minimap_blips)
 	visible_objects_data = list()
 	for(var/datum/minimap/map_blip AS in GLOB.minimap_blips)
 		visible_objects_data += list(list(
-			"name" = map_blip.holder.name,
+			"ref" = REF(map_blip.holder),
 			"coordinate" = get_coord(map_blip.holder),
 			"image" = map_blip.minimap_blip,
 			"marker_flags" = map_blip.marker_flags,
@@ -125,7 +125,7 @@ GLOBAL_LIST_EMPTY(minimap_blips)
 /datum/game_map/ui_data(mob/user)
 	. = list()
 	.["player_data"] = list(
-		"name" = user.name,
+		"ref" = REF(user),
 		"coordinate" = get_coord(user),
 		"minimap_flags" = user.minimap_flags
 	)

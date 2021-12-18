@@ -78,7 +78,7 @@ export const Minimap = (props, context) => {
               />}
               {visible_objects_data.map(objet_data => {
                 if (!objet_data.image 
-                  || objet_data.name === player_data.name) return;
+                  || objet_data.ref === player_data.ref) return;
                 if (!(player_data.minimap_flags 
                   & objet_data.marker_flags)) return;
                 const local_coord : Coordinate|null
@@ -86,7 +86,7 @@ export const Minimap = (props, context) => {
                 if (!local_coord) return;
                 return (
                   <MinimapBlip
-                    key={objet_data.name}
+                    key={objet_data.ref}
                     coordinate={local_coord}
                     image={objet_data.image}
                   />

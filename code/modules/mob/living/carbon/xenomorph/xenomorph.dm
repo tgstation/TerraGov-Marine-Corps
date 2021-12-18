@@ -399,6 +399,7 @@
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
 	a_intent = INTENT_HARM
 
+///Set the image that will be shown on the minimap
 /mob/living/carbon/xenomorph/proc/set_minimap_blip()
 	if(queen_chosen_lead && xeno_caste.minimap_icon == "xeno")
 		minimap.minimap_blip = "xenoleader"
