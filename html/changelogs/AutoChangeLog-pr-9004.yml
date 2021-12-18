@@ -1,0 +1,5 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - bugfix: "Fixed sinks being inside walls when oriented north."
+  - imageadd: "Added some directionals for wall mounted mirrors."
