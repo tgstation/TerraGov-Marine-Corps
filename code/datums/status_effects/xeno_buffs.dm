@@ -80,6 +80,7 @@
 
 	amount_mod += min(amount * 0.75, 40)
 
+#define PSYCHIC_LINK_REST_MOD 0.4
 #define PSYCHIC_LINK_COLOR "#2a888360"
 #define TARGET_ID "[id][owner.ckey]"
 #define CALC_DAMAGE_REDUCTION(amount, amount_mod) \
@@ -102,33 +103,50 @@
 	///Minimum health threshold before the effect is deactivated
 	var/minimum_health
 
+/datum/status_effect/xeno_psychic_link/on_apply()
+	. = ..()
+	if(!.)
+		return
+	if(HAS_TRAIT(target_mob, TRAIT_PSY_LINKED))
+		to_chat(owner, span_notice("[target_mob] is linked to a different xenomorph."))
+		return FALSE
+	ADD_TRAIT(target_mob, TRAIT_PSY_LINKED, src)
+
 /datum/status_effect/xeno_psychic_link/on_creation(mob/living/new_owner, set_duration, mob/living/carbon/target_mob, link_range, redirect_mod, minimum_health)
 	owner = new_owner
 	duration = set_duration
 	src.target_mob = target_mob
 	src.link_range = link_range
-	src.redirect_mod = redirect_mod
+	src.redirect_mod = owner.resting ? redirect_mod : redirect_mod * PSYCHIC_LINK_REST_MOD
 	src.minimum_health = minimum_health
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
-	RegisterSignal(target_mob, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
+	RegisterSignal(owner, list(COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST), .proc/handle_resting)
 	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/handle_mob_dead)
 	RegisterSignal(target_mob, COMSIG_MOB_DEATH, .proc/handle_mob_dead)
 	RegisterSignal(target_mob, COMSIG_XENOMORPH_BURN_DAMAGE, .proc/handle_burn_damage)
 	RegisterSignal(target_mob, COMSIG_XENOMORPH_BRUTE_DAMAGE, .proc/handle_brute_damage)
-	owner.add_filter("[id]m", 2, outline_filter(2, PSYCHIC_LINK_COLOR))
-	target_mob.add_filter(TARGET_ID, 2, outline_filter(2, PSYCHIC_LINK_COLOR))
 	var/link_message = "[owner] has linked to you and is redirecting some of your injuries. If they get too hurt, the link may be broken. "
 	if(link_range > 0)
 		link_message += "Keep within [link_range] tiles to maintain it."
+		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
+		RegisterSignal(target_mob, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
 	to_chat(target_mob, span_xenonotice(link_message))
+	owner.add_filter("[id]m", 2, outline_filter(2, PSYCHIC_LINK_COLOR))
+	target_mob.add_filter(TARGET_ID, 2, outline_filter(2, PSYCHIC_LINK_COLOR))
 	return ..()
 
 /datum/status_effect/xeno_psychic_link/on_remove()
 	. = ..()
 	UnregisterSignal(target_mob, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+	REMOVE_TRAIT(target_mob, TRAIT_PSY_LINKED, src)
 	owner.remove_filter("[id]m")
 	target_mob.remove_filter(TARGET_ID)
 	to_chat(target_mob, span_xenonotice("[owner] has unlinked from you."))
+	SEND_SIGNAL(src, COMSIG_XENO_PSYCHIC_LINK_REMOVED)
+
+///Handles stat modifications based on resting status
+/datum/status_effect/xeno_psychic_link/proc/handle_resting(datum/source)
+	SIGNAL_HANDLER
+	redirect_mod = owner.resting ? redirect_mod / PSYCHIC_LINK_REST_MOD : redirect_mod * PSYCHIC_LINK_REST_MOD
 
 ///Handles the link breaking due to dying
 /datum/status_effect/xeno_psychic_link/proc/handle_mob_dead(datum/source)
@@ -147,7 +165,8 @@
 /datum/status_effect/xeno_psychic_link/proc/handle_burn_damage(datum/source, amount, list/amount_mod)
 	SIGNAL_HANDLER
 	CALC_DAMAGE_REDUCTION(amount, amount_mod)
-	owner.adjustFireLoss(amount)
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	owner_xeno.adjustFireLossDirect(amount)
 	if(owner.health <= minimum_health)
 		owner.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
 
@@ -155,7 +174,8 @@
 /datum/status_effect/xeno_psychic_link/proc/handle_brute_damage(datum/source, amount, list/amount_mod)
 	SIGNAL_HANDLER
 	CALC_DAMAGE_REDUCTION(amount, amount_mod)
-	owner.adjustBruteLoss(amount)
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	owner_xeno.adjustBruteLossDirect(amount)
 	if(owner.health <= minimum_health)
 		owner.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
 

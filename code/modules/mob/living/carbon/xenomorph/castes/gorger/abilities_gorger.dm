@@ -266,7 +266,7 @@
 /datum/action/xeno_action/activable/psychic_link
 	name = "Psychic Link"
 	action_icon_state = "psychic_link"
-	mechanics_text = "Link to a xenomorph and take some damage in their place. During this time, you can't move. Use rest action to cancel."
+	mechanics_text = "Link to a xenomorph and take some damage in their place. The link is weaker when you are not resting. Activate ability again to cancel."
 	cooldown_timer = 50 SECONDS
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
@@ -283,6 +283,10 @@
 			to_chat(owner, span_notice("We can only link to familiar biological lifeforms."))
 		return FALSE
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK))
+		if(!silent)
+			to_chat(owner, span_notice("You are already linked to a xenomorph."))
+		return FALSE
 	if(owner_xeno.health <= owner_xeno.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH)
 		if(!silent)
 			to_chat(owner, span_notice("You are too hurt to link."))
@@ -291,25 +295,36 @@
 		if(!silent)
 			to_chat(owner, span_notice("It is beyond our reach, we must be close and our way must be clear."))
 		return FALSE
-	if(!do_mob(owner, target, GORGER_PSYCHIC_LINK_CHANNEL, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	if(!do_mob(owner, target, GORGER_PSYCHIC_LINK_CHANNEL, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, ignore_flags = IGNORE_LOC_CHANGE, extra_checks = new/datum/callback/(src, .proc/channel_checks, target)))
+		if(!silent)
+			to_chat(owner, span_warning("The link was interrupted and we need to recover before another attempt."))
+		add_cooldown(10 SECONDS)
 		return FALSE
 	return TRUE
 
-/datum/action/xeno_action/activable/psychic_link/use_ability(atom/target)
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK, -1, target, GORGER_PSYCHIC_LINK_RANGE, GORGER_PSYCHIC_LINK_REDIRECT, owner_xeno.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH)
-	target.balloon_alert(owner_xeno, "Link successul.")
-	owner_xeno.balloon_alert(target, "[owner_xeno] has linked to you.")
-	if(!owner_xeno.resting)
-		owner_xeno.set_resting(TRUE, TRUE)
-	RegisterSignal(owner_xeno, COMSIG_XENOMORPH_UNREST, .proc/cancel_psychic_link)
-	add_cooldown()
-	succeed_activate()
+/datum/action/xeno_action/activable/psychic_link/proc/channel_checks(atom/target)
+	if(get_dist(owner, target) > GORGER_PSYCHIC_LINK_RANGE)
+		return FALSE
+	return TRUE
 
-///Cancels the status effect
-/datum/action/xeno_action/activable/psychic_link/proc/cancel_psychic_link(datum/source)
+/datum/action/xeno_action/activable/psychic_link/action_activate()
+	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
+
+/datum/action/xeno_action/activable/psychic_link/use_ability(atom/target)
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	var/psychic_link_status = owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK, -1, target, GORGER_PSYCHIC_LINK_RANGE, GORGER_PSYCHIC_LINK_REDIRECT, owner_xeno.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH)
+	if(!psychic_link_status)
+		return
+	RegisterSignal(psychic_link_status, COMSIG_XENO_PSYCHIC_LINK_REMOVED, .proc/status_removed)
+	target.balloon_alert(owner_xeno, "Link successul.")
+	owner_xeno.balloon_alert(target, "[owner_xeno] has linked to you.")
+	succeed_activate()
+
+/datum/action/xeno_action/activable/psychic_link/proc/status_removed(datum/source)
+	UnregisterSignal(source, COMSIG_XENO_PSYCHIC_LINK_REMOVED)
+	add_cooldown()
 
 /datum/action/xeno_action/activable/psychic_link/ai_should_use(atom/target)
 	return FALSE
