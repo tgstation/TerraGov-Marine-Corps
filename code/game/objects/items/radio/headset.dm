@@ -167,6 +167,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	///The minimap blip associated with the headset
 	var/datum/minimap/minimap
 
+
 /obj/item/radio/headset/mainship/Initialize()
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
@@ -175,6 +176,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	. = ..()
 	camera = new /obj/machinery/camera/headset(src)
 
+/obj/item/radio/headset/mainship/Destroy()
+	remove_minimap()
+	return ..()
 
 /obj/item/radio/headset/mainship/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_EARS)
@@ -295,6 +299,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 ///Remove all action of type minimap from the wearer, and make him disappear from the minimap
 /obj/item/radio/headset/mainship/proc/remove_minimap()
 	qdel(minimap)
+	if(!wearer)
+		return
 	wearer.minimap_flags = NONE
 	for(var/datum/action/action AS in wearer.actions)
 		if(istype(action, /datum/action/minimap))

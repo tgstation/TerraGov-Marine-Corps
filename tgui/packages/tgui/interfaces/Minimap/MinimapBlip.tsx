@@ -15,9 +15,10 @@ export const MinimapBlip = (props: MinimapBlipProp, context) => {
 
   return (
     <Box
+      className="Minimap__Blip"
       position="absolute"
       left={`${coordinate.x + icon_size}px`}
-      top={`${coordinate.y - icon_size * 2}px`}
+      top={`${coordinate.y - icon_size * 2.5}px`}
     >
       <img
         src={resolveAsset(image)}

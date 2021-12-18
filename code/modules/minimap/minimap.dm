@@ -136,7 +136,7 @@ GLOBAL_LIST_EMPTY(minimap_blips)
 	.["map_size_x"] = generated_map.Width()
 	.["map_size_y"] = generated_map.Height()
 	.["map_name"] = name
-	.["view_size"] = 32
+	.["view_size"] = 37
 
 /datum/game_map/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -188,7 +188,7 @@ GLOBAL_LIST_EMPTY(minimap_blips)
 	SIGNAL_HANDLER
 	if(old_z == new_z)
 		return
-	map?.ui_close()
+	map?.ui_close(source)
 	for(var/datum/game_map/potential_map AS in SSminimap.minimaps)
 		if(potential_map.zlevel.z_value == new_z)
 			map = potential_map

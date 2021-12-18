@@ -25,12 +25,12 @@ export const Minimap = (props, context) => {
 
   const background_loc : Coordinate = {
     x: Math.max(
-      Math.min(0, -(player_data.coordinate.x - view_offset + 1.5) * icon_size),
+      Math.min(0, -(player_data.coordinate.x - view_offset +1.5) * icon_size),
       -(map_size_tile_x - view_size) * icon_size
     ),
     y: Math.max(
       Math.min(0,
-        -(map_size_tile_y - player_data.coordinate.y -view_offset - 1.5)
+        -(map_size_tile_y - player_data.coordinate.y -view_offset -1.5)
          * icon_size),
       -(map_size_tile_y - view_size) * icon_size
     ),

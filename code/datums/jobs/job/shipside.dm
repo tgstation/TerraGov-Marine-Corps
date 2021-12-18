@@ -654,6 +654,7 @@ A happy ship is a well-functioning ship."})
 		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
 		<b>Duty</b>: Communicate and lead your fellow medical staff (if available), supervise the medical department. Coordinate and teach fellow medical staff and corpsmen what they’re doing for treating an injury. Be the sole doctor in the Canterbury.
 	"}
+	minimap_icon = "mo"
 
 /datum/job/terragov/medical/professor/rebel
 	title = REBEL_CHIEF_MEDICAL_OFFICER
@@ -740,6 +741,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 		<b>Gamemode Availability</b>: Distress<br /><br /><br />
 		<b>Duty</b>: Tend severely wounded patients to your aid in the form of surgery, repair broken bones and damaged organs, fix internal bleeding and prevent the birth of a xenomorph larva. Develop superior healing medicines.
 	"}
+	minimap_icon = "mo"
 
 /datum/job/terragov/medical/medicalofficer/rebel
 	title = REBEL_MEDICAL_DOCTOR
