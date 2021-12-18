@@ -302,6 +302,7 @@
 		return FALSE
 	return TRUE
 
+///Runs checks while the status is being applied
 /datum/action/xeno_action/activable/psychic_link/proc/channel_checks(atom/target)
 	if(get_dist(owner, target) > GORGER_PSYCHIC_LINK_RANGE)
 		return FALSE
@@ -322,6 +323,7 @@
 	owner_xeno.balloon_alert(target, "[owner_xeno] has linked to you.")
 	succeed_activate()
 
+///Cancels the status effect
 /datum/action/xeno_action/activable/psychic_link/proc/status_removed(datum/source)
 	UnregisterSignal(source, COMSIG_XENO_PSYCHIC_LINK_REMOVED)
 	add_cooldown()
