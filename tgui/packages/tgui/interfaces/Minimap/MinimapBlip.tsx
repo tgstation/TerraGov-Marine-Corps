@@ -10,6 +10,7 @@ export const MinimapBlip = (props: MinimapBlipProp, context) => {
   const {
     coordinate,
     image,
+    zoom,
     ...rest
   } = props;
 
@@ -19,6 +20,9 @@ export const MinimapBlip = (props: MinimapBlipProp, context) => {
       position="absolute"
       left={`${coordinate.x + icon_size}px`}
       top={`${coordinate.y - icon_size * 2.5}px`}
+      style={{
+        transform: `scale(${zoom})`,
+      }}
     >
       <img
         src={resolveAsset(image)}

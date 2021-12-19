@@ -21,6 +21,7 @@ export type MinimapData = {
   map_size_x : number,
   map_size_y : number,
   view_size : number,
+  zoomlevel : number,
   player_data : PlayerData,
   visible_objects_data : ObjectData[];
 }
@@ -28,6 +29,7 @@ export type MinimapData = {
 export type MinimapBlipProp = {
   coordinate : Coordinate;
   image? : string,
+  zoom: number,
 }
 
 export const icon_size : number = 8;

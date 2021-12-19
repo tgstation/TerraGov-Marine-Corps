@@ -19,26 +19,3 @@ $move-speed: 0.3s !default;
 .Minimap__Blip {
   transition: top $move-speed linear, left $move-speed linear;
 }
-
-.Minimap__Blip_icon {
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.Minimap__InfoBox {
-  transition: all 150ms ease-out;
-}
-
-.Minimap__InfoBox--detailed {
-  border-radius: 50%;
-  z-index: 2;
-  background-color: $background-color;
-  color: $color;
-  box-shadow: 0.1em 0.1em 1.25em -0.1em rgba(0, 0, 0, 0.5);
-  border-radius: $border-radius;
-  text-align: left;
-  display: block;
-  white-space: pre;
-  transition: all 150ms ease-out;
-  width: fit-content;
-}

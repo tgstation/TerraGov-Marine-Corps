@@ -15,6 +15,7 @@ export const Minimap = (props, context) => {
     map_size_y,
     view_size,
     player_data,
+    zoomlevel,
     visible_objects_data,
   } = data;
 
@@ -75,6 +76,7 @@ export const Minimap = (props, context) => {
               && <MinimapBlip
                 coordinate={globalToLocal(player_data.coordinate)!}
                 image="player"
+                zoom={zoomlevel}
               />}
               {visible_objects_data.map(objet_data => {
                 if (!objet_data.image 
@@ -89,6 +91,7 @@ export const Minimap = (props, context) => {
                     key={objet_data.ref}
                     coordinate={local_coord}
                     image={objet_data.image}
+                    zoom={zoomlevel}
                   />
                 );
               })}
