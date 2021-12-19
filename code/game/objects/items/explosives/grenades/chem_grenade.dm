@@ -102,6 +102,9 @@
 			return
 
 	else if(stage == CG_READY && I.tool_behaviour == TOOL_WIRECUTTER && !active)
+		if(name == "Razorburn Grenade")
+			to_chat(user, span_notice("The [initial(name)] does not open."))
+			return
 		stage_change(CG_WIRED)
 		to_chat(user, span_notice("You unlock the [initial(name)] assembly."))
 
