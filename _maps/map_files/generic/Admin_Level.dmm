@@ -544,7 +544,7 @@
 /obj/structure/prop/mainship/ship_memorial{
 	desc = "A ship memorial dedicated to the triumphs of the TGMC and the fallen marines of this ship. On the left there are grand tales of victory etched into the slab. On the right there is a list of famous marines who have fallen in combat serving the TGMC. There seems to be an etch of three spikes on the free space below."
 	},
-/turf/open/floor/plating/mainship,
+/turf/open/floor/grass,
 /area/valhalla)
 "gS" = (
 /obj/structure/bed/chair/sofa/left{
@@ -1370,9 +1370,6 @@
 	pixel_y = 15
 	},
 /turf/open/floor/wood,
-/area/valhalla)
-"UL" = (
-/turf/open/space/basic,
 /area/valhalla)
 "Vz" = (
 /turf/closed/wall/mainship/outer,
@@ -3801,7 +3798,7 @@ iL
 tG
 Nw
 Nw
-UL
+uT
 lp
 uC
 JO
@@ -3810,7 +3807,7 @@ qB
 qB
 Ti
 SE
-SE
+uT
 uT
 Nw
 aa

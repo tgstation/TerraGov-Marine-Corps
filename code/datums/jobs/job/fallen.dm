@@ -14,16 +14,20 @@
 
 /datum/job/fallen/engineer
 	title = SQUAD_ENGINEER
+	skills_type = /datum/skills/combat_engineer
 	outfit = /datum/outfit/job/marine/engineer
 
 /datum/job/fallen/corpsman
 	title = SQUAD_CORPSMAN
+	skills_type = /datum/skills/combat_medic
 	outfit = /datum/outfit/job/marine/corpsman
 
 /datum/job/fallen/smartgunner
 	title = SQUAD_SMARTGUNNER
+	skills_type = /datum/skills/smartgunner
 	outfit = /datum/outfit/job/marine/smartgunner
 
 /datum/job/fallen/leader
 	title = SQUAD_LEADER
+	skills_type = /datum/skills/sl
 	outfit = /datum/outfit/job/marine/leader
