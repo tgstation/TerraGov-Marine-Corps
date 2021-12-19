@@ -201,6 +201,7 @@
 
 /obj/machinery/vending/medical/valhalla
 	req_access = list()
+	resistance_flags = INDESTRUCTIBLE
 	products = list(
 		"Hypospray" = list (
 			/obj/item/defibrillator = -1,

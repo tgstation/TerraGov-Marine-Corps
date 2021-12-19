@@ -327,7 +327,7 @@
 /obj/machinery/vending/weapon/hvh/team_two
 
 /obj/machinery/vending/weapon/valhalla
-
+	resistance_flags = INDESTRUCTIBLE
 	products = list(
 		"Rifles" = list(
 			/obj/item/weapon/gun/rifle/standard_assaultrifle = -1,
@@ -818,6 +818,7 @@
 	req_one_access = ALL_MARINE_REBEL_ACCESS
 
 /obj/machinery/vending/MarineMed/valhalla
+	resistance_flags = INDESTRUCTIBLE
 	products = list(
 		"Pill Bottle" = list(
 			/obj/item/storage/pill_bottle/bicaridine = -1,
@@ -1193,6 +1194,7 @@
 	name = "\improper TerraGovTech requisition vendor"
 	desc = "A automated rack hooked up to a colossal storage of items."
 	icon_state = "synth"
+	resistance_flags = INDESTRUCTIBLE
 	products = list(
 		"Weapon" = list(
 			/obj/item/weapon/gun/energy/lasgun/tesla = -1,

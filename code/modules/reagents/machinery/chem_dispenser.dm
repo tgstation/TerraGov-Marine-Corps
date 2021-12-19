@@ -456,6 +456,7 @@
 
 /obj/machinery/chem_dispenser/valhalla
 	needs_medical_training = FALSE
+	resistance_flags = INDESTRUCTIBLE
 
 /obj/machinery/chem_dispenser/valhalla/Initialize()
 	. = ..()

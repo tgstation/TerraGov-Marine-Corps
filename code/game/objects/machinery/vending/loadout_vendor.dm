@@ -44,4 +44,5 @@
 	faction = FACTION_TERRAGOV_REBEL
 
 /obj/machinery/loadout_vendor/valhalla
+	resistance_flags = INDESTRUCTIBLE
 	faction = FACTION_VALHALLA
