@@ -82,10 +82,14 @@
 	adjustBruteLoss(20 * XENO_RESTING_HEAL, TRUE)
 
 /mob/living/carbon/xenomorph/hivemind/Destroy()
-	QDEL_NULL(core)
+	if(!QDELETED(core))
+		QDEL_NULL(core)
+	else
+		core = null	
 	QDEL_LIST(other_actions)
 	upgrade = XENO_UPGRADE_BASETYPE
 	return ..()
+
 
 /mob/living/carbon/xenomorph/hivemind/on_death()
 	upgrade = XENO_UPGRADE_BASETYPE
