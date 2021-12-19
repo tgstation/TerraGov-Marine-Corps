@@ -49,6 +49,7 @@
 				/obj/item/research_product/money/uncommon,
 				/obj/item/implanter/blade,
 				/obj/item/attachable/shoulder_mount,
+				/obj/item/reagent_containers/glass/bottle/nanites,
 			),
 			RES_TIER_RARE = list(
 				/obj/item/research_product/money/rare,

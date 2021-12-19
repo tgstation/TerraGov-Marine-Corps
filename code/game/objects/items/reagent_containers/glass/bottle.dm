@@ -272,4 +272,8 @@
 	icon_state = "bottle-5"
 	list_reagents = list(/datum/reagent/medicine/lemoline = 10)
 
-
+/obj/item/reagent_containers/glass/bottle/nanites
+	name = "\improper Nanites bottle"
+	desc = "A small bottle. Contains 10 units of nanites, living robots used in certain recipes."
+	icon_state = "bottle-4"
+	list_reagents = list(/datum/reagent/toxin/nanites = 10)
