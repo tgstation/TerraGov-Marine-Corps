@@ -210,12 +210,6 @@
 	},
 /turf/open/floor/podhatch/floor,
 /area/tdome)
-"aZ" = (
-/obj/structure/target_stake,
-/obj/item/target,
-/obj/item/clothing/suit/replica,
-/turf/open/floor/plating/mainship,
-/area/valhalla)
 "bb" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 5
@@ -375,6 +369,10 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
+"bS" = (
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_close,
+/turf/open/floor/plating/mainship,
+/area/valhalla)
 "bU" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -685,6 +683,10 @@
 	icon_state = "carpetside"
 	},
 /area/valhalla)
+"mD" = (
+/obj/machinery/button/valhalla_button/far,
+/turf/closed/wall/mainship/gray/outer,
+/area/valhalla)
 "nc" = (
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/prison/sterilewhite,
@@ -924,12 +926,6 @@
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/valhalla)
-"xm" = (
-/obj/structure/target_stake,
-/obj/item/target,
-/obj/item/clothing/suit/storage/militia,
-/turf/open/floor/plating/mainship,
-/area/valhalla)
 "xy" = (
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lamp,
@@ -942,6 +938,10 @@
 /obj/machinery/light,
 /turf/open/floor/grass,
 /area/valhalla)
+"xK" = (
+/obj/machinery/button/valhalla_button,
+/turf/closed/wall/mainship/gray/outer,
+/area/valhalla)
 "yv" = (
 /obj/machinery/vending/medical/valhalla,
 /turf/open/floor/prison/plate,
@@ -953,6 +953,10 @@
 "zJ" = (
 /obj/machinery/vending/valhalla_req,
 /turf/open/floor/prison/plate,
+/area/valhalla)
+"Aa" = (
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_far,
+/turf/open/floor/plating/mainship,
 /area/valhalla)
 "AS" = (
 /obj/item/clothing/gloves/boxing/blue,
@@ -2238,7 +2242,7 @@ Nw
 Nw
 Nw
 Nw
-Nw
+xK
 gO
 fx
 fx
@@ -2310,11 +2314,11 @@ aa
 aa
 Nw
 WD
-xm
 WD
 WD
 WD
-xm
+WD
+WD
 WD
 WD
 WD
@@ -2401,7 +2405,7 @@ WD
 WD
 WD
 WD
-xm
+WD
 WD
 kY
 ss
@@ -2473,15 +2477,15 @@ aa
 aa
 aa
 Ti
-xm
-WD
-WD
-WD
-xm
 WD
 WD
 WD
 WD
+WD
+WD
+WD
+WD
+bS
 WD
 WD
 WD
@@ -2561,7 +2565,7 @@ WD
 WD
 WD
 WD
-aZ
+WD
 WD
 WD
 WD
@@ -2638,7 +2642,7 @@ aa
 aa
 Ti
 WD
-xm
+WD
 WD
 WD
 WD
@@ -2721,6 +2725,7 @@ aa
 Ti
 WD
 WD
+Aa
 WD
 WD
 WD
@@ -2729,7 +2734,6 @@ WD
 WD
 WD
 WD
-xm
 WD
 kY
 ss
@@ -2809,7 +2813,7 @@ WD
 WD
 WD
 WD
-xm
+WD
 WD
 WD
 WD
@@ -2885,7 +2889,7 @@ aa
 Nw
 WD
 WD
-aZ
+WD
 WD
 WD
 WD
@@ -2976,7 +2980,7 @@ Nw
 Nw
 Nw
 Nw
-Nw
+mD
 gO
 fx
 fx
