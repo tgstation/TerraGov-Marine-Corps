@@ -278,6 +278,7 @@
 
 /obj/machinery/marine_selector/clothes/engi/valhalla
 	vendor_role = /datum/job/fallen/engineer
+	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/medic
@@ -317,6 +318,7 @@
 
 /obj/machinery/marine_selector/clothes/medic/valhalla
 	vendor_role = /datum/job/fallen/corpsman
+	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/smartgun
@@ -356,6 +358,7 @@
 
 /obj/machinery/marine_selector/clothes/smartgun/valhalla
 	vendor_role = /datum/job/fallen/smartgunner
+	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/leader
@@ -395,6 +398,7 @@
 
 /obj/machinery/marine_selector/clothes/leader/valhalla
 	vendor_role = /datum/job/fallen/leader
+	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/commander
@@ -516,6 +520,7 @@
 
 /obj/machinery/marine_selector/gear/medic/valhalla
 	vendor_role = /datum/job/fallen/corpsman
+	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/engi
@@ -534,6 +539,7 @@
 
 /obj/machinery/marine_selector/gear/engi/valhalla
 	vendor_role = /datum/job/fallen/engineer
+	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/smartgun
@@ -552,6 +558,7 @@
 
 /obj/machinery/marine_selector/gear/smartgun/valhalla
 	vendor_role = /datum/job/fallen/smartgunner
+	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/leader
@@ -570,6 +577,7 @@
 
 /obj/machinery/marine_selector/gear/leader/valhalla
 	vendor_role = /datum/job/fallen/leader
+	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
 
