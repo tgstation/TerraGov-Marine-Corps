@@ -156,6 +156,11 @@
 	required_reagents = list(/datum/reagent/medicine/kelotane = 2, /datum/reagent/medicine/clonexadone = 2)
 	required_catalysts = list(/datum/reagent/toxin/phoron = 5)
 
+/datum/chemical_reaction/quickclotplus
+	name = "Quick-Clot Plus"
+	results = list(/datum/reagent/medicine/quickclotplus = 1)
+	required_reagents = list(/datum/reagent/medicine/quickclot = 2, /datum/reagent/medicine/lemoline = 2, /datum/reagent/iron = 2)
+
 /datum/chemical_reaction/hypervene //New purge chem.
 	name = "Hypervene"
 	results = list(/datum/reagent/hypervene = 3)
