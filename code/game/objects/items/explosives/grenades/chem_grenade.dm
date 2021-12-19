@@ -102,10 +102,10 @@
 			return
 
 	else if(stage == CG_READY && I.tool_behaviour == TOOL_WIRECUTTER && !active)
-		if(name == "Razorburn Grenade")
+		if(ispath(/obj/item/explosive/grenade/chem_grenade/razorburn_smol))
 			to_chat(user, span_notice("The [initial(name)] does not open."))
 			return
-		if(name == "Razorburn Canister")
+		if(ispath(/obj/item/explosive/grenade/chem_grenade/razorburn_large))
 			to_chat(user, span_notice("The [initial(name)] does not open."))
 			return
 		stage_change(CG_WIRED)
