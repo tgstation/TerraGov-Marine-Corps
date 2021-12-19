@@ -40,6 +40,13 @@
 		else
 			return ..()
 
+/obj/item/explosive/grenade/chem_grenade/razorburn_smol/attackby(obj/item/I, mob/user, params)
+	to_chat(user, span_notice("The [initial(name)] is hermetically sealed, and does not open."))
+	return
+
+/obj/item/explosive/grenade/chem_grenade/razorburn_large/attackby(obj/item/I, mob/user, params)
+	to_chat(user, span_notice("The [initial(name)] is hermetically sealed, and does not open."))
+	return
 
 /obj/item/explosive/grenade/chem_grenade/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
@@ -102,12 +109,6 @@
 			return
 
 	else if(stage == CG_READY && I.tool_behaviour == TOOL_WIRECUTTER && !active)
-		if(ispath(/obj/item/explosive/grenade/chem_grenade/razorburn_smol))
-			to_chat(user, span_notice("The [initial(name)] does not open."))
-			return
-		if(ispath(/obj/item/explosive/grenade/chem_grenade/razorburn_large))
-			to_chat(user, span_notice("The [initial(name)] does not open."))
-			return
 		stage_change(CG_WIRED)
 		to_chat(user, span_notice("You unlock the [initial(name)] assembly."))
 
