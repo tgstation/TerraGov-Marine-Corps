@@ -910,7 +910,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 /mob/dead/observer/verb/join_valhalla()
 	set name = "Join Valhalla"
-	set category = "OOC"
+	set category = "Ghost"
 
 	if(!GLOB.valhalla_allowed)
 		to_chat(usr, span_notice("Valhalla is currently disabled!"))
