@@ -1,0 +1,4 @@
+author: "Kait"
+delete-after: True
+changes: 
+  - expansion: "Added a recipe for QC+, making it craftable. The recipe for 1 unit is: 2 parts Lemo, 2 parts Iron, 2 parts Quick-Clot."
