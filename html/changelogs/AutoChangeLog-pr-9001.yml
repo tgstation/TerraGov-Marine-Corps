@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - balance: "masterkey has a higher damage multplier malus, 0.45 from 0.7."
