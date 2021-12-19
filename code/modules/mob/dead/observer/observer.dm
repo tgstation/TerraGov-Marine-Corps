@@ -908,6 +908,35 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	else
 		to_chat(src, span_notice("You will no longer examine things you click on."))
 
+/mob/dead/observer/verb/join_valhalla()
+	set name = "Join Valhalla"
+	set category = "OOC"
+
+	if(!GLOB.valhalla_allowed)
+		to_chat(usr, span_notice("Valhalla is currently disabled!"))
+		return
+	
+	if(stat != DEAD)
+		to_chat(usr, span_boldnotice("You must be dead to use this!"))
+		return
+
+	var/datum/job/valhalla_job = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. What job would you like to have?", "Join Valhalla", GLOB.jobs_fallen_all)
+	if(!valhalla_job)
+		return
+	var/mob/living/carbon/human/new_fallen = new(pick(GLOB.spawns_by_job[/datum/job/fallen]))
+	valhalla_job = SSjob.GetJobType(valhalla_job)
+	new_fallen.apply_assigned_role_to_spawn(valhalla_job)
+	if(valhalla_job.outfit)
+		new_fallen.delete_equipment(TRUE)
+		new_fallen.equipOutfit(valhalla_job.outfit, FALSE)
+		new_fallen.regenerate_icons()
+	valhalla_job.after_spawn(new_fallen)
+
+	log_game("[key_name(usr)] has joined Valhalla.")
+
+	mind.transfer_to(new_fallen, TRUE)
+
+
 
 /mob/dead/observer/reset_perspective(atom/A)
 	clean_observetarget()
