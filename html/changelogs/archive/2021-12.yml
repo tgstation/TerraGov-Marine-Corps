@@ -234,3 +234,13 @@
   - rscadd: Allows the flower pin to be placed inside the helmet and be added to helmet
       sprite
   - refactor: removes helmet_garb.dmi and replaces usage of it with modular_helmet_storage.dmi
+2021-12-19:
+  BraveMole:
+  - bugfix: Camera laze is no longer visible
+  - bugfix: Fix searching in camera input list
+  - bugfix: Fix automatic miner upgrade removal
+  KrabSpider:
+  - bugfix: Repeater left in-hand is no longer reversed. Right hand looks less ugly.
+  RipGrayson:
+  - bugfix: Fixed sinks being inside walls when oriented north.
+  - imageadd: Added some directionals for wall mounted mirrors.

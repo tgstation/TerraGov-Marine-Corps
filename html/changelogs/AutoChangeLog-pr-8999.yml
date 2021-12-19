@@ -1,4 +1,0 @@
-author: "KrabSpider"
-delete-after: True
-changes: 
-  - bugfix: "Repeater left in-hand is no longer reversed. Right hand looks less ugly."
