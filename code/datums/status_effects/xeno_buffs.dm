@@ -82,7 +82,6 @@
 
 #define PSYCHIC_LINK_REST_MOD 0.2
 #define PSYCHIC_LINK_COLOR "#2a888360"
-#define PSYCHIC_LINK_COLOR_WEAK "#b8732536"
 #define CALC_DAMAGE_REDUCTION(amount, amount_mod) \
 	if(amount <= 0) { \
 		return; \
@@ -148,12 +147,8 @@
 	SIGNAL_HANDLER
 	if(owner.resting)
 		redirect_mod = redirect_mod / PSYCHIC_LINK_REST_MOD
-		owner.add_filter(instance_id, 2, outline_filter(2, PSYCHIC_LINK_COLOR))
-		target_mob.add_filter(instance_id, 2, outline_filter(2, PSYCHIC_LINK_COLOR))
 	else
 		redirect_mod = redirect_mod * PSYCHIC_LINK_REST_MOD
-		owner.add_filter(instance_id, 2, outline_filter(2, PSYCHIC_LINK_COLOR_WEAK))
-		target_mob.add_filter(instance_id, 2, outline_filter(2, PSYCHIC_LINK_COLOR_WEAK))
 
 ///Handles the link breaking due to dying
 /datum/status_effect/xeno_psychic_link/proc/handle_mob_dead(datum/source)
