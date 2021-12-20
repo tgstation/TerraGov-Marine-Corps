@@ -244,3 +244,14 @@
   RipGrayson:
   - bugfix: Fixed sinks being inside walls when oriented north.
   - imageadd: Added some directionals for wall mounted mirrors.
+2021-12-20:
+  Kait:
+  - expansion: 'Added a recipe for QC+, making it craftable. The recipe for 1 unit
+      is: 2 parts Lemo, 2 parts Iron, 2 parts Quick-Clot.'
+  Pariah919:
+  - balance: masterkey has a higher damage multplier malus, 0.45 from 0.7.
+  Three333Digit:
+  - qol: FOB drone now has meson vision
+  - qol: FOB drone now has a bigger light radius
+  Waselon:
+  - rscadd: Added Vali spear
