@@ -147,14 +147,14 @@
 
 ///Give hivemind the correct abilities for its form
 /mob/living/carbon/xenomorph/hivemind/proc/swap_abilities()
-	var/list/datum/action/chached_actions = other_actions?.Copy()
+	var/list/datum/action/cached_actions = other_actions?.Copy()
 	other_actions = xeno_abilities?.Copy()
 	for(var/datum/action/action AS in xeno_abilities)
 		action.remove_action(src, TRUE)
-	if(!length(chached_actions))
+	if(!length(cached_actions))
 		add_abilities()
 		return
-	for(var/datum/action/action AS in chached_actions)
+	for(var/datum/action/action AS in cached_actions)
 		action.give_action(src)
 
 
