@@ -492,12 +492,12 @@ const Category = (props, context) => {
     setFilter,
   ] = useLocalState(context, `pack-name-filter`, null);
 
-const filterSearch = entry =>
-  should_filter && filter
-    ? supplypackscontents[entry].name
+  const filterSearch = entry =>
+    should_filter && filter
+      ? supplypackscontents[entry].name
         ?.toLowerCase()
         .includes(filter.toLowerCase())
-    : true;
+      : true;
 
   return (
     <Section level={level || 1} title={
