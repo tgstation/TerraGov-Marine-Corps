@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes: 
+  - bugfix: "Burn overlays update when you patch yourself with cable"
+  - bugfix: "Fixes patching burnt wires with cable giving the wrong message"
