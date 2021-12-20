@@ -1362,7 +1362,7 @@
 			if(volume < 35) //allows 10 ticks of healing for 20 points of free heal to lower scratch damage bloodloss amounts.
 				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.1)
 				
-				if(volume < 30) // Pain reduction matters on the amount of nanites in the blood, less nanites = more being used to heal = a much severe condition = probably more pain
+				if(volume < 31) // Pain reduction matters on the amount of nanites in the blood, less nanites = more being used to heal = a much severe condition = probably more pain
 				L.reagent_pain_modifier += PAIN_REDUCTION_LIGHT
 			
 				if(volume < 25) //pain reduction medium, 20 ticks of continues healing
