@@ -34,7 +34,7 @@
 	name = "\improper Jaeger Pattern Heavy Assault chestplates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Assault armor piece."
 	icon_state = "assault_chest"
-	soft_armor = list("melee" = 30, "bullet" = 50, "laser" = 50, "energy" = 35, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 50)
+	soft_armor = list("melee" = 30, "bullet" = 50, "laser" = 50, "energy" = 35, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 40)
 	slowdown = 0.5
 	greyscale_config = /datum/greyscale_config/modularchest_assault
 
