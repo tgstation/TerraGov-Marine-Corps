@@ -35,8 +35,6 @@
 	var/obj/effect/alien/hivemindcore/core
 	///The minimum health we can have
 	var/minimum_health = -300
-	///Cached list of xeno abilities of the other form, so we can keep the cooldown timer
-	var/list/datum/action/other_actions
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
 	. = ..()
@@ -45,6 +43,7 @@
 	RegisterSignal(src, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED, .proc/check_weeds_and_move)
 	RegisterSignal(src, COMSIG_XENOMORPH_CORE_RETURN, .proc/return_to_core)
 	RegisterSignal(src, COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM, .proc/change_form)
+	update_action_buttons()
 
 /mob/living/carbon/xenomorph/hivemind/upgrade_possible()
 	return FALSE
@@ -85,8 +84,7 @@
 	if(!QDELETED(core))
 		QDEL_NULL(core)
 	else
-		core = null	
-	QDEL_LIST(other_actions)
+		core = null
 	upgrade = XENO_UPGRADE_BASETYPE
 	return ..()
 
@@ -128,9 +126,9 @@
 		throwpass = FALSE
 		upgrade = XENO_UPGRADE_MANIFESTATION
 		set_datum(FALSE)
-		swap_abilities()
 		update_wounds()
 		update_icon()
+		update_action_buttons()
 		return
 	invisibility = initial(invisibility)
 	status_flags = initial(status_flags)
@@ -141,21 +139,9 @@
 	throwpass = initial(throwpass)
 	upgrade = XENO_UPGRADE_BASETYPE
 	set_datum(FALSE)
-	swap_abilities()
 	update_wounds()
 	update_icon()
-
-///Give hivemind the correct abilities for its form
-/mob/living/carbon/xenomorph/hivemind/proc/swap_abilities()
-	var/list/datum/action/cached_actions = other_actions?.Copy()
-	other_actions = xeno_abilities?.Copy()
-	for(var/datum/action/action AS in xeno_abilities)
-		action.remove_action(src, TRUE)
-	if(!length(cached_actions))
-		add_abilities()
-		return
-	for(var/datum/action/action AS in cached_actions)
-		action.give_action(src)
+	update_action_buttons()
 
 
 
