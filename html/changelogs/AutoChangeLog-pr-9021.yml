@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - code_imp: "Removed xeno specific throw card."
