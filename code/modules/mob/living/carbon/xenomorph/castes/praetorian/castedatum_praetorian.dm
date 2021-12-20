@@ -161,3 +161,49 @@
 
 	// *** Pheromones *** //
 	aura_strength = 4.5
+
+/datum/xeno_caste/praetorian/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "WIP"
+	upgrade = XENO_UPGRADE_FOUR
+	primordial_message = "WIP"
+
+	// *** Melee Attacks *** //
+	melee_damage = 23
+
+	// *** Speed *** //
+	speed = -0.5
+
+	// *** Plasma *** //
+	plasma_max = 1000
+	plasma_gain = 80
+
+	// *** Health *** //
+	max_health = 360
+
+	// *** Evolution *** //
+	upgrade_threshold = 2750
+
+	// *** Defense *** //
+	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_1, "bio" = 38, "rad" = 38, "fire" = 50, "acid" = 38)
+
+	// *** Ranged Attack *** //
+	spit_delay = 1 SECONDS
+	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade3, /datum/ammo/xeno/acid/heavy)
+
+	acid_spray_damage_on_hit = 47
+	acid_spray_structure_damage = 69
+
+	// *** Pheromones *** //
+	aura_strength = 4.5
+
+	// *** Abilities *** //
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/place_acidwell,
+		/datum/action/xeno_action/activable/corrosive_acid,
+		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/activable/spray_acid/cone,
+		/datum/action/xeno_action/toggle_pheromones,
+	)

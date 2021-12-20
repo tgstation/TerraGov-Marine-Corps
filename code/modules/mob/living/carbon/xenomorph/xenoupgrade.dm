@@ -188,6 +188,9 @@
 /mob/living/carbon/xenomorph/praetorian/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/praetorian/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----PRAETORIAN END----//
 //================//
 //----RAVAGER START----//

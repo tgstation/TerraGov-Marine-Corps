@@ -331,6 +331,12 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	psypoint_cost = 125
 	icon = "primobull"
 
+/datum/hive_upgrade/primordial/praetorian
+	name = PRIMORDIAL_PRAETORIAN
+	desc = "WIP"
+	psypoint_cost = 225
+	icon = "primopraetorian"
+
 /datum/hive_upgrade/primordial/boiler
 	name = PRIMORDIAL_BOILER
 	desc = "Unlocks the primordial boiler's access to neurotoxin- and acid lances, direct-hit focussed bombardment types that leave a gas trail where they pass."
