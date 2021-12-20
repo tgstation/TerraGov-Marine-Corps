@@ -1330,6 +1330,7 @@
 /datum/reagent/medicine/research/somolent/overdose_process(mob/living/L, metabolism)
 	holder.remove_reagent(/datum/reagent/medicine/research/somolent, 1)
 
+
 /datum/reagent/medicine/research/medicalnanites
 	name = "Medical nanites"
 	description = "These are a batch of construction nanites altered for in-vivo replication. They can heal wounds using the iron present in the bloodstream. Medical care is recommended during injection."
@@ -1344,30 +1345,39 @@
 
 /datum/reagent/medicine/research/medicalnanites/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
-		if(1 to 150)
-			L.take_limb_damage(0.015*current_cycle*effect_str, 0.015*current_cycle*effect_str)
+		if(1 to 100)
+			L.take_limb_damage(0.012*current_cycle*effect_str, 0.012*current_cycle*effect_str)
 			L.adjustToxLoss(1*effect_str)
 			L.adjustStaminaLoss((1.5)*effect_str)
-			L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.20)
+			L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.30)
 			if(prob(5))
 				to_chat(L, span_notice("You feel intense itching!"))
-		if(151)
+		if(101)
 			to_chat(L, span_warning("The pain rapidly subsides. Looks like they've adapted to you."))
-		if(152 to INFINITY)
+		if(102 to INFINITY)
 			if(volume < 30) //smol injection will self-replicate up to 30u using 240u of blood.
 				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.15)
 				L.blood_volume -= 2
-
+			
 			if(volume < 35) //allows 10 ticks of healing for 20 points of free heal to lower scratch damage bloodloss amounts.
 				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.1)
-
+				
+				if(volume < 30) // Pain reduction matters on the amount of nanites in the blood, less nanites = more being used to heal = a much severe condition = probably more pain
+				L.reagent_pain_modifier += PAIN_REDUCTION_LIGHT
+			
+				if(volume < 25) //pain reduction medium, 20 ticks of continues healing
+				L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
+				
+				if(volume < 20) // pain reduction a lot, 30 ticks of continues healing
+				L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
+				
 			if (volume >5 && L.getBruteLoss()) //Unhealed IB wasting nanites is an INTENTIONAL feature.
 				L.heal_limb_damage(2*effect_str, 0)
 				L.adjustToxLoss(0.1*effect_str)
 				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
 				if(prob(40))
 					to_chat(L, span_notice("Your cuts and bruises begin to scab over rapidly!"))
-
+				
 			if (volume > 5 && L.getFireLoss())
 				L.heal_limb_damage(0, 2*effect_str)
 				L.adjustToxLoss(0.1*effect_str)
