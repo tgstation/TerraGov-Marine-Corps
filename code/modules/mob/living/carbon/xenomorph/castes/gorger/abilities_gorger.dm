@@ -287,6 +287,9 @@
 		if(!silent)
 			to_chat(owner, span_notice("You are already linked to a xenomorph."))
 		return FALSE
+	if(HAS_TRAIT(target, TRAIT_PSY_LINKED))
+		to_chat(owner, span_notice("[target] is already linked to a xenomorph."))
+		return FALSE
 	if(owner_xeno.health <= owner_xeno.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH)
 		if(!silent)
 			to_chat(owner, span_notice("You are too hurt to link."))
@@ -297,8 +300,10 @@
 		return FALSE
 	if(!do_mob(owner, target, GORGER_PSYCHIC_LINK_CHANNEL, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, ignore_flags = IGNORE_LOC_CHANGE, extra_checks = new/datum/callback/(src, .proc/channel_checks, target)))
 		if(!silent)
-			to_chat(owner, span_warning("The link was interrupted and we need to recover before another attempt."))
-		add_cooldown(10 SECONDS)
+			to_chat(owner, span_warning("The linking was interrupted."))
+		return FALSE
+	if(HAS_TRAIT(target, TRAIT_PSY_LINKED))
+		to_chat(owner, span_notice("[target] is already linked to a xenomorph."))
 		return FALSE
 	return TRUE
 
@@ -315,10 +320,8 @@
 
 /datum/action/xeno_action/activable/psychic_link/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	var/psychic_link_status = owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK, -1, target, GORGER_PSYCHIC_LINK_RANGE, GORGER_PSYCHIC_LINK_REDIRECT, owner_xeno.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH)
-	if(!psychic_link_status)
-		return
-	RegisterSignal(psychic_link_status, COMSIG_XENO_PSYCHIC_LINK_REMOVED, .proc/status_removed)
+	var/psychic_link = owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK, -1, target, GORGER_PSYCHIC_LINK_RANGE, GORGER_PSYCHIC_LINK_REDIRECT, owner_xeno.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH, TRUE)
+	RegisterSignal(psychic_link, COMSIG_XENO_PSYCHIC_LINK_REMOVED, .proc/status_removed)
 	target.balloon_alert(owner_xeno, "Link successul.")
 	owner_xeno.balloon_alert(target, "[owner_xeno] has linked to you.")
 	succeed_activate()

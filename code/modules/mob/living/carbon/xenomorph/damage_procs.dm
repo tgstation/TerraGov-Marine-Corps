@@ -174,10 +174,6 @@
 	for(var/i in amount_mod)
 		amount -= i
 
-	adjustBruteLossDirect(amount, updating_health)
-
-///Adjusts bruteloss without sending a signal. Useful when it can cause a signal loop
-/mob/living/carbon/xenomorph/proc/adjustBruteLossDirect(amount, updating_health = FALSE)
 	HANDLE_OVERHEAL(amount)
 
 	bruteloss = max(bruteloss + amount, 0)
@@ -190,10 +186,7 @@
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BURN_DAMAGE, amount, amount_mod)
 	for(var/i in amount_mod)
 		amount -= i
-	adjustFireLossDirect(amount, updating_health)
 
-///Adjusts fireloss without sending a signal. Useful when it can cause a signal loop
-/mob/living/carbon/xenomorph/proc/adjustFireLossDirect(amount, updating_health = FALSE)
 	HANDLE_OVERHEAL(amount)
 
 	fireloss = max(fireloss + amount, 0)
