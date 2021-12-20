@@ -138,7 +138,7 @@
 
 /obj/effect/overlay/temp/laser_target/cas/Initialize(mapload, named, assigned_squad = null)
 	. = ..()
-	linked_cam = new(loc, name)
+	linked_cam = new(src, name)
 	GLOB.active_cas_targets += src
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAS_LASER_CREATED, src)
 

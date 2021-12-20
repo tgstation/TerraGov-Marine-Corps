@@ -97,10 +97,23 @@
 	desc = "Opens whatever it is linked to. Does not close. Careful on what you release."
 	specialfunctions = DOOR_FLAG_OPEN_ONLY
 
+/obj/machinery/button/door/open_only/Initialize(mapload)
+	. = ..()
+	switch(dir)
+		if(NORTH)
+			pixel_y = -12
+		if(SOUTH)
+			pixel_y = 29
+		if(EAST)
+			pixel_x = -21
+		if(WEST)
+			pixel_x = 21
+
 
 /obj/machinery/button/door/open_only/landing_zone
 	name = "lockdown override"
 	id = "landing_zone"
+	icon_state = "shutterctrl"
 	use_power = NO_POWER_USE
 	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_DROPSHIP_REBEL)

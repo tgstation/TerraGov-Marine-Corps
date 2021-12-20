@@ -441,8 +441,9 @@
 
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/M = I
-
-		if(M.flags_magazine & AMMUNITION_REFILLABLE)
+		if(CHECK_BITFIELD(M.flags_magazine, MAGAZINE_HANDFUL))
+			return ..()
+		if(M.flags_magazine & MAGAZINE_REFILLABLE)
 			if(!M.current_rounds)
 				to_chat(user, span_warning("[M] is empty."))
 				return
@@ -532,29 +533,20 @@
 	icon_state="knifebelt"
 	item_state="knifebelt"
 	w_class = WEIGHT_CLASS_NORMAL
-	storage_slots = 15
+	storage_slots = 6
 	max_w_class = 1
-	max_storage_space = 15
+	max_storage_space = 6
 	draw_mode = TRUE
-	can_hold = list(/obj/item/weapon/throwing_knife)
+	can_hold = list(/obj/item/stack/throwing_knife)
 
 /obj/item/storage/belt/knifepouch/Initialize()
 	. = ..()
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
 
 /obj/item/storage/belt/grenade
 	name="\improper M276 pattern M40 HEDP rig"
@@ -612,9 +604,6 @@
 	storage_slots = 3
 	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = 3
-	storage_type_limits = list(
-		/obj/item/weapon/gun = 2,
-	)
 	icon_state= "sparepouch"
 	item_state= "sparepouch"
 
@@ -703,12 +692,12 @@
 		return ..()
 	var/obj/item/weapon/gun/pistol/gun = I
 	for(var/obj/item/ammo_magazine/mag in contents)
-		if(!istype(gun, mag.gun_type))
+		if(!(mag.type in gun.allowed_ammo_types))
 			continue
-		if(user.l_hand && user.r_hand || gun.current_mag)
+		if(user.l_hand && user.r_hand || length(gun.chamber_items))
 			gun.tactical_reload(mag, user)
 		else
-			gun.reload(user, mag)
+			gun.reload(mag, user)
 		orient2hud()
 		return
 
@@ -828,7 +817,7 @@
 
 /obj/item/storage/belt/gun/m44/full/Initialize()
 	. = ..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/m44(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/single_action/m44(src)
 	new /obj/item/ammo_magazine/revolver/heavy(src)
 	new /obj/item/ammo_magazine/revolver/marksman(src)
 	new /obj/item/ammo_magazine/revolver(src)
@@ -941,5 +930,5 @@
 /obj/item/storage/belt/gun/ts34/full/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/shotgun/double/marine(src)
-	new /obj/item/ammo_magazine/shotgun(src)
+	new /obj/item/ammo_magazine/shotgun/buckshot(src)
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_gun)

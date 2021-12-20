@@ -16,7 +16,6 @@
 	var/det_time =  40
 	var/dangerous = TRUE 	//Does it make a danger overlay for humans? Can synths use it?
 	var/arm_sound = 'sound/weapons/armbomb.ogg'
-	var/underslug_launchable = TRUE
 	var/hud_state = "grenade_he"
 	var/hud_state_empty = "grenade_empty"
 	///Light impact range when exploding
@@ -71,13 +70,13 @@
 	if(dangerous)
 		GLOB.round_statistics.grenades_thrown++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "grenades_thrown")
-		updateicon()
+		update_icon()
 	addtimer(CALLBACK(src, .proc/prime), det_time)
 
-/obj/item/explosive/grenade/proc/updateicon()
-	if(dangerous)
-		overlays+=new/obj/effect/overlay/danger
-		dangerous = 0
+/obj/item/explosive/grenade/update_overlays()
+	. = ..()
+	if(dangerous && active)
+		overlays += new /obj/effect/overlay/danger
 
 
 /obj/item/explosive/grenade/proc/prime()
@@ -87,23 +86,16 @@
 /obj/item/explosive/grenade/flamer_fire_act()
 	activate()
 
-/obj/item/explosive/grenade/attackby(obj/item/I, mob/user, params)
-	. = ..()
+/obj/item/explosive/grenade/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			prime()
+		if(EXPLODE_HEAVY)
+			activate()
+		if(EXPLODE_LIGHT)
+			if(prob(50))
+				activate()
 
-	if(isscrewdriver(I))
-		switch(det_time)
-			if(1)
-				det_time = 10
-				to_chat(user, span_notice("You set the [name] for 1 second detonation time."))
-			if(10)
-				det_time = 30
-				to_chat(user, span_notice("You set the [name] for 3 second detonation time."))
-			if(30)
-				det_time = 50
-				to_chat(user, span_notice("You set the [name] for 5 second detonation time."))
-			if(50)
-				det_time = 1
-				to_chat(user, span_notice("You set the [name] for instant detonation."))
 
 /obj/item/explosive/grenade/attack_hand(mob/living/user)
 	. = ..()

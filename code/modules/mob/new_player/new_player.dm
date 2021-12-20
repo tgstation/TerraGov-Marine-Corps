@@ -183,11 +183,14 @@
 	var/list/dat = list("<div class='notice'>Round Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>")
 	if(!GLOB.enter_allowed)
 		dat += "<div class='notice red'>You may no longer join the round.</div><br>"
-	var/faction
+	var/forced_faction
 	if(SSticker.mode.flags_round_type & MODE_TWO_HUMAN_FACTIONS)
-		faction = tgui_input_list(src, "What faction do you want to join", "Faction choice", SSticker.mode.get_joinable_factions())
-		if(!faction)
-			return
+		if(faction in SSticker.mode.get_joinable_factions(FALSE))
+			forced_faction = faction
+		else
+			forced_faction = tgui_input_list(src, "What faction do you want to join", "Faction choice", SSticker.mode.get_joinable_factions(TRUE))
+			if(!forced_faction)
+				return
 	dat += "<div class='latejoin-container' style='width: 100%'>"
 	for(var/cat in SSjob.active_joinable_occupations_by_category)
 		var/list/category = SSjob.active_joinable_occupations_by_category[cat]
@@ -197,7 +200,7 @@
 		var/list/dept_dat = list()
 		for(var/job in category)
 			job_datum = job
-			if(!IsJobAvailable(job_datum, TRUE, faction))
+			if(!IsJobAvailable(job_datum, TRUE, forced_faction))
 				continue
 			var/command_bold = ""
 			if(job_datum.job_flags & JOB_FLAG_BOLD_NAME_ON_SELECTION)
@@ -273,7 +276,7 @@
 /mob/new_player/get_species()
 	var/datum/species/chosen_species
 	if(client.prefs.species)
-		chosen_species = GLOB.all_species[client.prefs.species]
+		chosen_species = client.prefs.species
 	if(!chosen_species)
 		return "Human"
 	return chosen_species
@@ -372,14 +375,14 @@
 			CRASH("Invalid latejoin spawn location type")
 
 		to_chat(src, span_notice("Now teleporting."))
-		observer.forceMove(T)
+		observer.abstract_move(T)
 	else
 		failed = TRUE
 
 	if(failed)
 		to_chat(src, span_danger("Could not locate an observer spawn point. Use the Teleport verb to jump."))
 
-	observer.timeofdeath = world.time
+	GLOB.key_to_time_of_death[key] = world.time
 
 	var/datum/species/species = GLOB.all_species[client.prefs.species] || GLOB.all_species[DEFAULT_SPECIES]
 

@@ -123,6 +123,8 @@
 	target_drag_delay = null
 	armed = FALSE
 	boom = FALSE
+	SSradio.remove_object(src, frequency)
+	radio_connection = null
 	update_icon()
 
 /obj/item/detpack/receive_signal(datum/signal/signal)

@@ -213,6 +213,11 @@
 "aZ" = (
 /turf/open/lavaland/basalt,
 /area/barren/cave/north)
+"ba" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
 "bb" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -486,11 +491,6 @@
 /obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava,
 /area/barren/cave/east)
-"cB" = (
-/obj/machinery/vending/cigarette/colony,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/grimy,
-/area/barren/civilian/workdorm)
 "cC" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/smg/m25,
@@ -796,6 +796,10 @@
 	},
 /turf/open/lavaland/lava/side,
 /area/barren)
+"dU" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/lavaland/basalt,
+/area/barren/cave/west)
 "dV" = (
 /obj/item/ore/silver,
 /turf/open/lavaland/basalt,
@@ -2116,6 +2120,10 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor,
 /area/barren/civilian/workdorm)
+"ke" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/lavaland/basalt,
+/area/barren/cave/south)
 "kf" = (
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 2;
@@ -2704,7 +2712,6 @@
 "mE" = (
 /obj/structure/closet/secure_closet,
 /obj/item/radio,
-/obj/item/xeno_egg,
 /obj/item/spacecash/c500,
 /turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
@@ -3111,6 +3118,11 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/lavaland/basalt,
 /area/barren/cave/south)
+"oD" = (
+/obj/machinery/vending/cigarette/colony,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grimy,
+/area/barren/civilian/workdorm)
 "oG" = (
 /obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/corner{
@@ -3511,6 +3523,10 @@
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
 /area/barren/medical/research)
+"qR" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor,
+/area/barren/misc/genstorage)
 "qS" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
@@ -3603,6 +3619,10 @@
 /obj/item/storage/pill_bottle/zoom,
 /turf/open/floor/freezer,
 /area/barren/medical/chemistry)
+"rn" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/closed/wall,
+/area/barren/engie/engine)
 "rp" = (
 /obj/machinery/door/airlock/multi_tile,
 /turf/closed/wall/indestructible,
@@ -3679,6 +3699,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/barren/misc/genstorage)
+"rH" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor,
+/area/barren/civilian)
 "rI" = (
 /obj/structure/table/mainship,
 /obj/effect/decal/cleanable/dirt,
@@ -3890,6 +3914,11 @@
 /obj/item/trash/pistachios,
 /turf/open/floor/wood,
 /area/barren/civilian)
+"sR" = (
+/obj/machinery/vending/cigarette/colony,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
 "sS" = (
 /turf/closed/wall,
 /area/barren/engie/one)
@@ -4520,6 +4549,10 @@
 /obj/item/clothing/shoes/cult,
 /turf/open/shuttle/blackfloor,
 /area/barren/misc/clocknuke)
+"wb" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/lavaland/basalt,
+/area/barren/cave/southeast)
 "wc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -4844,6 +4877,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/lavaland/basalt,
 /area/barren/cave/northwest)
+"xK" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/closed/wall,
+/area/barren/security)
 "xM" = (
 /obj/structure/rack,
 /turf/open/floor,
@@ -6218,6 +6255,11 @@
 	dir = 5
 	},
 /area/barren/medical)
+"Fk" = (
+/obj/structure/window/framed/colony,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating,
+/area/barren/medical)
 "Fm" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/tile/bar{
@@ -6439,6 +6481,10 @@
 "Gn" = (
 /turf/open/lavaland/basalt/glowing,
 /area/barren/cave/west)
+"Go" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/lavaland/basalt,
+/area/barren/cave/northeast)
 "Gp" = (
 /obj/structure/barricade/guardrail{
 	dir = 1
@@ -7567,6 +7613,10 @@
 /obj/structure/table/woodentable,
 /turf/open/floor,
 /area/storage/testroom)
+"MF" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/lavaland/basalt,
+/area/barren/cave/north)
 "MG" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 4
@@ -7594,6 +7644,10 @@
 	dir = 6
 	},
 /area/barren/medical)
+"MR" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/lavaland/basalt,
+/area/barren/cave/east)
 "MS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -7927,6 +7981,10 @@
 	},
 /turf/open/floor,
 /area/barren/civilian)
+"OK" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/lavaland/basalt,
+/area/barren/cave/central)
 "OL" = (
 /obj/structure/razorwire,
 /turf/open/lavaland/basalt,
@@ -8572,6 +8630,10 @@
 	},
 /turf/open/floor/plating,
 /area/barren/cave/lz1)
+"Su" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/lavaland/basalt,
+/area/barren/cave/southwest)
 "Sw" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/lavaland/basalt,
@@ -8839,6 +8901,10 @@
 	dir = 4
 	},
 /area/barren/medical)
+"Ui" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/lavaland/basalt,
+/area/barren/cave/northwest)
 "Ul" = (
 /obj/machinery/light{
 	dir = 8
@@ -8950,6 +9016,11 @@
 	},
 /turf/open/floor,
 /area/barren/cave/lz1)
+"UM" = (
+/obj/effect/landmark/start/job/xenomorph,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/lavaland/basalt,
+/area/barren/cave/southeast)
 "UN" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/toolbox,
@@ -9162,11 +9233,6 @@
 	},
 /turf/open/floor,
 /area/barren/cave/lz1)
-"VW" = (
-/obj/machinery/vending/cigarette/colony,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor,
-/area/bigredv2/outside/general_offices)
 "VX" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -16687,7 +16753,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+dU
 ZN
 ZN
 Vz
@@ -17385,7 +17451,7 @@ rK
 rK
 rK
 QR
-QR
+Ui
 QR
 QR
 nu
@@ -18498,7 +18564,7 @@ HQ
 HQ
 HQ
 HQ
-Vz
+Su
 Vz
 Vz
 Vz
@@ -18991,7 +19057,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+dU
 ZN
 ZN
 ZN
@@ -19428,7 +19494,7 @@ rK
 rK
 rK
 QR
-QR
+Ui
 QR
 QR
 QR
@@ -19967,7 +20033,7 @@ QR
 AB
 QR
 QR
-QR
+Ui
 QR
 QR
 QR
@@ -20775,7 +20841,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+dU
 ZN
 ZN
 ZN
@@ -21010,7 +21076,7 @@ QR
 ZN
 ZN
 ZN
-ZN
+dU
 ZN
 ZN
 ZN
@@ -21333,7 +21399,7 @@ Vz
 Vz
 Vz
 Vz
-Vz
+Su
 Vz
 Vz
 Vz
@@ -22520,7 +22586,7 @@ OU
 Xy
 oW
 yZ
-GW
+xK
 Oo
 MS
 CW
@@ -23072,7 +23138,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+dU
 ZN
 ZN
 ZN
@@ -23121,7 +23187,7 @@ Vz
 Vz
 Vz
 Vz
-Vz
+Su
 Vz
 Vz
 Vz
@@ -24187,7 +24253,7 @@ HQ
 HQ
 HQ
 Vz
-Vz
+Su
 Vz
 Vz
 HQ
@@ -25698,7 +25764,7 @@ HQ
 Vz
 Vz
 Vz
-Vz
+Su
 Vz
 Vz
 Vz
@@ -26927,7 +26993,7 @@ HM
 HM
 HM
 iQ
-VW
+sR
 yz
 Dc
 hS
@@ -27657,7 +27723,7 @@ TO
 Bb
 aZ
 aZ
-aZ
+MF
 aZ
 aZ
 aZ
@@ -28297,7 +28363,7 @@ ZK
 Yy
 Yy
 Yy
-Yy
+ke
 Yy
 Yy
 Yy
@@ -28475,7 +28541,7 @@ HM
 DY
 IM
 IM
-DY
+ba
 sX
 HM
 IU
@@ -28710,7 +28776,7 @@ aZ
 aZ
 aZ
 aZ
-aZ
+MF
 aZ
 aZ
 aZ
@@ -31087,7 +31153,7 @@ Yy
 Yy
 Yy
 Yy
-Yy
+ke
 Yy
 Yy
 Yy
@@ -32664,7 +32730,7 @@ ZK
 ZK
 Yy
 Yy
-Yy
+ke
 Yy
 ZK
 ZK
@@ -33374,7 +33440,7 @@ aY
 fA
 aY
 ks
-fw
+rn
 fw
 fw
 aY
@@ -34882,7 +34948,7 @@ os
 Pj
 aZ
 aZ
-aZ
+MF
 aZ
 al
 ZW
@@ -35730,7 +35796,7 @@ Yy
 Yy
 Yy
 Yy
-Yy
+ke
 Yy
 Yy
 Yy
@@ -35901,7 +35967,7 @@ yw
 eX
 eX
 eX
-eX
+rH
 eX
 iO
 iO
@@ -37290,7 +37356,7 @@ TO
 TO
 Bb
 Yy
-Yy
+ke
 Yy
 ii
 qs
@@ -39010,7 +39076,7 @@ jH
 zB
 GM
 UF
-eC
+Fk
 yA
 DF
 FL
@@ -39865,7 +39931,7 @@ Xc
 Yy
 Yy
 Yy
-Yy
+ke
 Yy
 Yy
 ZK
@@ -40844,7 +40910,7 @@ Qb
 Qb
 Qb
 Qb
-Qb
+OK
 Qb
 Qb
 Qb
@@ -42088,7 +42154,7 @@ YL
 YL
 YL
 Qb
-Qb
+OK
 Qb
 YL
 YL
@@ -42427,7 +42493,7 @@ Yy
 Yy
 Yy
 Yy
-Yy
+ke
 Yy
 Yy
 Yy
@@ -42838,7 +42904,7 @@ OD
 OD
 OD
 OD
-OD
+Go
 OD
 OD
 OD
@@ -43678,7 +43744,7 @@ Qb
 Yy
 Yy
 Yy
-Yy
+ke
 Yy
 Yy
 Yy
@@ -45138,7 +45204,7 @@ sa
 OD
 OD
 OD
-OD
+Go
 OD
 OD
 OD
@@ -47247,7 +47313,7 @@ Vc
 Vc
 UY
 Vj
-Vj
+qR
 Sc
 Vc
 EB
@@ -48078,7 +48144,7 @@ iC
 iC
 iC
 iC
-iC
+UM
 wj
 ZS
 ZS
@@ -49067,7 +49133,7 @@ EF
 EF
 EB
 EB
-EF
+MR
 EF
 EF
 wj
@@ -50049,7 +50115,7 @@ OD
 OD
 OD
 EF
-EF
+MR
 EF
 EF
 EF
@@ -50808,7 +50874,7 @@ eb
 ag
 OD
 OD
-OD
+Go
 OD
 OD
 OD
@@ -52952,7 +53018,7 @@ wj
 wj
 wj
 wj
-wj
+wb
 lv
 WO
 WO
@@ -53430,7 +53496,7 @@ EB
 EB
 EB
 Cr
-cB
+oD
 kE
 SH
 fV
@@ -53444,7 +53510,7 @@ EF
 wj
 wj
 wj
-wj
+wb
 wj
 wj
 wj
@@ -56279,7 +56345,7 @@ ZS
 wj
 wj
 wj
-wj
+wb
 wj
 ZS
 ZS
@@ -56524,7 +56590,7 @@ EB
 EB
 EF
 EF
-EF
+MR
 wj
 wj
 wj
@@ -58603,7 +58669,7 @@ wj
 wj
 wj
 wj
-wj
+wb
 wj
 wj
 wj

@@ -134,59 +134,6 @@
 	)
 	idle_power_usage = 200
 
-/obj/machinery/vending/cigarette
-	name = "cigarette machine" //OCD had to be uppercase to look nice with the new formating
-	desc = "A specialized vending machine designed to contribute to your slow and uncomfortable death."
-	product_slogans = "There's no better time to start smokin'.;\
-		Smoke now, and win the adoration of your peers.;\
-		They beat cancer centuries ago, so smoke away.;\
-		If you're not smoking, you must be joking."
-	product_ads = "Probably not bad for you!;\
-		Don't believe the scientists!;\
-		It's good for you!;\
-		Don't quit, buy more!;\
-		Smoke!;\
-		Nicotine heaven.;\
-		Best cigarettes since 2150.;\
-		Don't be so hard on yourself, kid. Smoke a Lucky Star!;\
-		Professionals. Better cigarettes for better people. Yes, better people."
-	vend_delay = 14
-	icon_state = "cigs"
-	products = list(
-		/obj/item/storage/fancy/cigarettes/luckystars = 50,
-		/obj/item/storage/fancy/chemrettes = 30,
-		/obj/item/storage/box/matches = 15,
-		/obj/item/tool/lighter/random = 25,
-		/obj/item/tool/lighter/zippo = 10,
-	)
-
-	contraband = list(/obj/item/clothing/mask/cigarette/cigar/havana = 5)
-
-	premium = list(/obj/item/storage/fancy/cigar = 25)
-	prices = list(
-		/obj/item/storage/fancy/cigarettes/luckystars = 15,
-		/obj/item/storage/box/matches = 1,
-		/obj/item/tool/lighter/random = 2,
-		/obj/item/tool/lighter/zippo = 20,
-		/obj/item/clothing/mask/cigarette/cigar/havana = 50,
-	)
-
-/obj/machinery/vending/cigarette/colony
-	product_slogans = "Koorlander Gold, for the refined palate.;Lady Fingers, for the dainty smoker.;Lady Fingers, treat your palete with pink!;The big blue K means a cool fresh day!;For the taste that cools your mood, look for the big blue K!;Refined smokers go for Gold!;Lady Fingers are preferred by women who appreciate a cool smoke.;Lady Fingers are the number one cigarette this side of Gateway!;The tobacco connoisseur prefers Koorlander Gold.;For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;The Colonial Administration Bureau would like to remind you that smoking kills."
-	product_ads = "For the taste that cools your mood, look for the big blue K!;Refined smokers go for Gold!;Lady Fingers are preferred by women who appreciate a cool smoke.;Lady Fingers are the number one cigarette this side of Gateway!;The tobacco connoisseur prefers Koorlander Gold.;For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;The Colonial Administration Bureau would like to remind you that smoking kills."
-	products = list(
-		/obj/item/storage/fancy/cigarettes/kpack = 15,
-		/obj/item/storage/fancy/cigarettes/lady_finger = 15,
-		/obj/item/storage/box/matches = 10,
-		/obj/item/tool/lighter/random = 20,
-	)
-	prices = list(
-		/obj/item/storage/fancy/cigarettes/kpack = 15,
-		/obj/item/storage/fancy/cigarettes/lady_finger = 15,
-		/obj/item/storage/box/matches = 1,
-		/obj/item/tool/lighter/random = 2,
-	)
-
 /obj/machinery/vending/medical
 	name = "NanotrasenMed Plus"
 	desc = "Medical Pharmaceutical dispenser.  Provided by Nanotrasen Pharmaceuticals Division(TM)."
@@ -232,6 +179,8 @@
 			/obj/item/clothing/glasses/hud/health = 2,
 			/obj/item/storage/belt/medical = 2,
 			/obj/item/reagent_containers/syringe = 20,
+			/obj/item/tool/research/xeno_analyzer = 5,
+			/obj/item/tool/research/excavation_tool = 5,
 		),
 	)
 
@@ -242,6 +191,7 @@
 		/obj/item/reagent_containers/glass/bottle/neurotoxin/light = 1,
 		/obj/item/reagent_containers/glass/bottle/xeno_hemodile = 1,
 		/obj/item/reagent_containers/glass/bottle/xeno_transvitox = 1,
+		/obj/item/reagent_containers/glass/bottle/xeno_sanguinal = 1,
 	)
 
 	idle_power_usage = 211
@@ -285,13 +235,13 @@
 	. = ..()
 	switch(dir)
 		if(NORTH)
-			pixel_y = -28
+			pixel_y = -14
 		if(SOUTH)
 			pixel_y = 26
 		if(EAST)
-			pixel_x = -30
+			pixel_x = -19
 		if(WEST)
-			pixel_x = 25
+			pixel_x = 21
 
 
 /obj/machinery/vending/security
@@ -377,9 +327,17 @@
 	desc = "Tools for tools."
 	icon_state = "tool"
 	icon_deny = "tool-deny"
-	products = list(/obj/item/stack/cable_coil = 10,/obj/item/tool/crowbar = 5,/obj/item/tool/weldingtool = 3,/obj/item/tool/wirecutters = 5,
-					/obj/item/tool/wrench = 5,/obj/item/analyzer = 5,/obj/item/t_scanner = 5,/obj/item/tool/screwdriver = 5)
-	contraband = list(/obj/item/tool/weldingtool/hugetank = 2,/obj/item/clothing/gloves/fyellow = 2, /obj/item/clothing/gloves/yellow = 1)
+	isshared = TRUE
+	products = list(
+		/obj/item/stack/cable_coil = -1,
+		/obj/item/tool/crowbar = -1,
+		/obj/item/tool/weldingtool = -1,
+		/obj/item/tool/wirecutters = -1,
+		/obj/item/tool/wrench = -1,
+		/obj/item/analyzer = -1,
+		/obj/item/t_scanner = -1,
+		/obj/item/tool/screwdriver = -1
+	)
 
 /obj/machinery/vending/engivend
 	name = "Engi-Vend"

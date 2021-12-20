@@ -134,6 +134,7 @@
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	light_system = STATIC_LIGHT //do not change this, byond and potato pcs no like
+	obj_flags = CAN_BE_HIT
 	var/brightness = 8			// power usage and light range when on
 	var/bulb_power = 1			// basically the light_power of the emitted light source
 	var/bulb_colour = COLOR_WHITE
@@ -237,7 +238,8 @@
 
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update(trigger = TRUE, toggle_on = TRUE)
-	if(status == LIGHT_OK && toggle_on)
+	var/area/A = get_area(src)
+	if(A.lightswitch && A.power_light && status == LIGHT_OK && toggle_on)
 		var/BR = brightness
 		var/PO = bulb_power
 		var/CO = bulb_colour

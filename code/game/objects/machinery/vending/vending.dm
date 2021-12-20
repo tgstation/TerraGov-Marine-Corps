@@ -143,11 +143,6 @@
 	var/shut_up = FALSE
 	///If the vending machine is hacked, makes the items on contraband list available.
 	var/extended_inventory = FALSE
-	///Whatever coin we have inside, should totally be replaced by something else.
-	var/obj/item/coin/coin
-	///What type of token we support.
-	var/tokensupport = TOKEN_GENERAL
-
 	/// 1 = requires PIN and checks accounts.  0 = You slide an ID, it vends, SPACE COMMUNISM!
 	var/check_accounts = 0
 	///Current cash card.
@@ -338,25 +333,6 @@
 
 		attack_hand(user)
 
-	else if(istype(I, /obj/item/coin))
-		var/obj/item/coin/C = I
-
-		if(coin)
-			to_chat(user, span_warning("[src] already has [coin] inserted"))
-
-		else if(!length(premium) && !isshared)
-			to_chat(user, span_warning("[src] doesn't have a coin slot."))
-
-		else if(C.flags_token & tokensupport)
-			if(!user.transferItemToLoc(C, src))
-				return
-
-			coin = C
-			to_chat(user, span_notice("You insert \the [C] into \the [src]"))
-
-		else
-			to_chat(user, span_warning("\The [src] rejects \the [C]."))
-
 	else if(istype(I, /obj/item/card))
 		var/obj/item/card/C = I
 		scan_card(C)
@@ -379,8 +355,14 @@
 		anchored = !anchored
 		if(anchored)
 			user.visible_message("[user] tightens the bolts securing \the [src] to the floor.", "You tighten the bolts securing \the [src] to the floor.")
+			var/turf/current_turf = get_turf(src)
+			if(current_turf && density)
+				current_turf.flags_atom |= AI_BLOCKED
 		else
 			user.visible_message("[user] unfastens the bolts securing \the [src] to the floor.", "You unfasten the bolts securing \the [src] to the floor.")
+			var/turf/current_turf = get_turf(src)
+			if(current_turf && density)
+				current_turf.flags_atom &= ~AI_BLOCKED
 
 	else if(istype(I, /obj/item))
 		var/obj/item/to_stock = I
@@ -462,7 +444,6 @@
 		return
 	if(tipped_level != 2) // only fix when fully tipped
 		return
-
 	if(!iscarbon(user)) // AI can't heave remotely
 		return
 	user.visible_message(span_notice(" [user] begins to heave the vending machine back into place!"),span_notice(" You start heaving the vending machine back into place.."))
@@ -515,25 +496,15 @@
 	if(currently_vending)
 		.["currently_vending"] = MAKE_VENDING_RECORD_DATA(currently_vending)
 	.["extended"] = extended_inventory
-	.["coin"] = coin ? coin.name : null
 	.["isshared"] = isshared
 
 /obj/machinery/vending/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return
+	if(!powered())
+		return
 	switch(action)
-		if("remove_coin")
-			if(!coin)
-				to_chat(usr, "There is no coin in this machine.")
-				return
-
-			coin.forceMove(loc)
-			coin = null
-			usr.put_in_hands(coin)
-			to_chat(usr, span_notice("You remove the [coin] from the [src]"))
-			. = TRUE
-
 		if("vend")
 			if(!allowed(usr) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety))
 				to_chat(usr, span_warning("Access denied."))
@@ -578,21 +549,6 @@
 
 	if(R.category == CAT_HIDDEN && !extended_inventory)
 		return
-
-	if(R.category == CAT_COIN)
-		if(!coin)
-			to_chat(user, span_notice("You need to insert a coin to get this item."))
-			return
-		if(coin.string_attached)
-			if(prob(50))
-				to_chat(user, span_notice("You successfully pull the coin out before the [src] could swallow it."))
-			else
-				to_chat(user, span_notice("You weren't able to pull the coin out fast enough, the machine ate it, string and all."))
-				qdel(coin)
-				coin = null
-		else
-			qdel(coin)
-			coin = null
 
 	vend_ready = 0 //One thing at a time!!
 	R.amount--
@@ -663,7 +619,7 @@
 			continue
 		if(istype(item_to_stock, /obj/item/weapon/gun))
 			var/obj/item/weapon/gun/G = item_to_stock
-			if(G.in_chamber || (G.current_mag && !istype(G.current_mag, /obj/item/ammo_magazine/internal)) || (istype(G.current_mag, /obj/item/ammo_magazine/internal) && G.current_mag.current_rounds > 0) )
+			if(G.rounds)
 				to_chat(user, span_warning("[G] is still loaded. Unload it before you can restock it."))
 				return
 			for(var/obj/item/attachable/A in G.contents) //Search for attachments on the gun. This is the easier method
@@ -676,19 +632,17 @@
 			if(A.current_rounds < A.max_rounds)
 				to_chat(user, span_warning("[A] isn't full. Fill it before you can restock it."))
 				return
-		else if(istype(item_to_stock, /obj/item/minigun_powerpack))
-			var/obj/item/minigun_powerpack/P = item_to_stock
-			if(!P.pcell)
-				to_chat(user, span_warning("The [P] doesn't have a cell. You must put one in before you can restock it."))
-				return
-			if(P.pcell.charge < P.pcell.maxcharge)
-				to_chat(user, span_warning("The [P] cell isn't full. You must recharge it before you can restock it."))
-				return
 		else if(istype(item_to_stock, /obj/item/cell))
 			var/obj/item/cell/cell = item_to_stock
 			if(cell.charge < cell.maxcharge)
 				to_chat(user, span_warning("\The [cell] isn't full. You must recharge it before you can restock it."))
 				return
+		else if(isitemstack(item_to_stock))
+			var/obj/item/stack/stack = item_to_stock
+			if(stack.amount != initial(stack.amount))
+				to_chat(user, span_warning("[stack] has been partially used. You must replace the missing amount before you can restock it."))
+				return
+
 		if(item_to_stock.loc == user) //Inside the mob's inventory
 			if(item_to_stock.flags_item & WIELDED)
 				item_to_stock.unwield(user)

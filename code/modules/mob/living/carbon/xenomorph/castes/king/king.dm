@@ -23,6 +23,7 @@
 /mob/living/carbon/xenomorph/king/Initialize(mapload)
 	. = ..()
 	SSmonitor.stats.king++
+	hive.king_present += 1
 
 /mob/living/carbon/xenomorph/king/generate_name()
 	switch(upgrade)
@@ -34,6 +35,8 @@
 			name = "[hive.prefix]Elder Emperor ([nicknumber])"	 //Elder
 		if(XENO_UPGRADE_THREE)
 			name = "[hive.prefix]Ancient Emperor ([nicknumber])" //Ancient
+		if(XENO_UPGRADE_FOUR)
+			name = "[hive.prefix]Primordial Emperor ([nicknumber])"
 
 	real_name = name
 	if(mind)
@@ -42,6 +45,7 @@
 /mob/living/carbon/xenomorph/king/on_death()
 	. = ..()
 	SSmonitor.stats.king--
+	hive.king_present = max(hive.king_present - 1, 0)
 
 ///resin pod that creates the king xeno after a delay
 /obj/structure/resin/king_pod
@@ -60,11 +64,18 @@
 	. = ..()
 	ownerhive = hivenumber
 	addtimer(CALLBACK(src, .proc/choose_king), KING_SUMMON_TIMER_DURATION)
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+	hive.king_present += 1
 
 /obj/structure/resin/king_pod/Destroy()
-	future_king?.tracked = null
 	future_king = null
 	return ..()
+
+/obj/structure/resin/king_pod/obj_destruction(damage_flag)
+	. = ..()
+	var/datum/hive_status/hive = GLOB.hive_datums[ownerhive]
+	if(hive)
+		hive.king_present = max(hive.king_present - 1, 0)
 
 /obj/structure/resin/king_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	if(X != future_king)
@@ -90,7 +101,7 @@
 		future_king = xenomorph_alive
 		RegisterSignal(future_king, COMSIG_HIVE_XENO_DEATH, .proc/choose_another_king)
 		to_chat(future_king, span_notice("You have 5 minutes to go to the [src] to ascend to the king position! Your tracker will guide you to it."))
-		future_king.tracked = src
+		future_king.set_tracked(src)
 		addtimer(CALLBACK(src, .proc/choose_another_king), 5 MINUTES)
 		return
 	//If no xeno accepted, give it to ghost
@@ -124,6 +135,9 @@
 		future_king.mind.transfer_to(kong)
 		return
 	kong.offer_mob()
+	var/datum/hive_status/hive = GLOB.hive_datums[ownerhive]
+	hive.king_present = max(hive.king_present - 1, 0)
+	ownerhive = ""
 
 ///When the king mob is offered and then accepted this proc ejects the king and does announcements
 /obj/structure/resin/king_pod/proc/on_king_occupied(mob/living/carbon/xenomorph/king/occupied)

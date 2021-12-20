@@ -6,6 +6,7 @@
 	caste_type_path = /mob/living/carbon/xenomorph/warrior
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
+	primordial_upgrade_name = PRIMORDIAL_WARRIOR
 	wound_type = "warrior" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
@@ -25,7 +26,7 @@
 	evolution_threshold = 180
 	upgrade_threshold = 120
 
-	evolves_to = list(/mob/living/carbon/xenomorph/crusher)
+	evolves_to = list(/mob/living/carbon/xenomorph/crusher, /mob/living/carbon/xenomorph/gorger)
 	deevolves_to = /mob/living/carbon/xenomorph/defender
 
 	// *** Flags *** //
@@ -41,8 +42,6 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/toggle_agility,
 		/datum/action/xeno_action/activable/lunge,
 		/datum/action/xeno_action/activable/fling,
@@ -138,3 +137,43 @@
 	// *** Warrior Abilities *** //
 	agility_speed_increase = -0.6
 	agility_speed_armor = -30
+
+/datum/xeno_caste/warrior/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "A champion of the hive, methodically shatters its opponents with punches rather slashes."
+	primordial_message = "Our rhythm is unmatched and our strikes lethal, no single foe can stand against us."
+	upgrade = XENO_UPGRADE_FOUR
+
+	// *** Melee Attacks *** //
+	melee_damage = 23
+
+	// *** Speed *** //
+	speed = -0.5
+
+	// *** Plasma *** //
+	plasma_max = 120
+	plasma_gain = 12
+
+	// *** Health *** //
+	max_health = 350
+
+	// *** Evolution *** //
+	upgrade_threshold = 1320
+
+	// *** Defense *** //
+	soft_armor = list("melee" = 42, "bullet" = 55, "laser" = 55, "energy" = 42, "bomb" = XENO_BOMB_RESIST_2, "bio" = 50, "rad" = 50, "fire" = 55, "acid" = 50)
+
+	// *** Warrior Abilities *** //
+	agility_speed_increase = -0.6
+	agility_speed_armor = -30
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/toggle_agility,
+		/datum/action/xeno_action/activable/lunge,
+		/datum/action/xeno_action/activable/fling,
+		/datum/action/xeno_action/activable/toss,
+		/datum/action/xeno_action/activable/punch,
+		/datum/action/xeno_action/activable/punch/jab,
+	)

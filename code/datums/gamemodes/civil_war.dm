@@ -1,11 +1,12 @@
 /datum/game_mode/civil_war
 	name = "Civil War"
 	config_tag = "Civil War"
-	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_WIN_POINTS
+	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_WIN_POINTS|MODE_NO_PERMANENT_WOUNDS
 	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
 	shutters_drop_time = 18 MINUTES
+	flags_xeno_abilities = ABILITY_CRASH
 	respawn_time = 5 MINUTES
-
+	time_between_round = 36 HOURS
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
@@ -65,7 +66,9 @@
 		new /obj/item/weapon/gun/sentry/big_sentry/fob_sentry/rebel(T)
 	for(var/turf/T AS in GLOB.sensor_towers)
 		new /obj/structure/sensor_tower(T)
-	points_per_zone_per_second = 1 / GLOB.zones_to_control.len
+	if(GLOB.zones_to_control.len)
+		points_per_zone_per_second = 1 / GLOB.zones_to_control.len
+	GLOB.join_as_robot_allowed = FALSE
 
 /datum/game_mode/civil_war/announce()
 	to_chat(world, "<b>The current game mode is - Civil War!</b>")
@@ -80,11 +83,12 @@
 		SSjob.active_squads[squad.faction] += squad
 	return TRUE
 
-/datum/game_mode/civil_war/get_joinable_factions()
-	if(length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) > length(GLOB.alive_human_list_faction[FACTION_TERRAGOV_REBEL]) * MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
-		return list(FACTION_TERRAGOV_REBEL)
-	if(length(GLOB.alive_human_list_faction[FACTION_TERRAGOV_REBEL]) > length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
-		return list(FACTION_TERRAGOV)
+/datum/game_mode/civil_war/get_joinable_factions(should_look_balance)
+	if(should_look_balance)
+		if(length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) > length(GLOB.alive_human_list_faction[FACTION_TERRAGOV_REBEL]) * MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
+			return list(FACTION_TERRAGOV_REBEL)
+		if(length(GLOB.alive_human_list_faction[FACTION_TERRAGOV_REBEL]) > length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
+			return list(FACTION_TERRAGOV)
 	return list(FACTION_TERRAGOV, FACTION_TERRAGOV_REBEL)
 
 /datum/game_mode/civil_war/check_finished()

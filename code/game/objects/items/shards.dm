@@ -39,6 +39,10 @@
 			pixel_x = rand(-5, 5)
 			pixel_y = rand(-5, 5)
 	icon_state += shardsize
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 
 /obj/item/shard/attackby(obj/item/I, mob/user, params)
@@ -69,15 +73,16 @@
 		qdel(src)
 
 
-/obj/item/shard/Crossed(AM)
+/obj/item/shard/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
+	SIGNAL_HANDLER
 	if(!isliving(AM))
-		return ..()
+		return
 
 	var/mob/living/M = AM
 	if(M.status_flags & INCORPOREAL)  //Flying over shards doesn't break them
-		return ..()
+		return
 	if (CHECK_MULTIPLE_BITFIELDS(M.flags_pass, HOVERING))
-		return ..()
+		return
 
 	pick(playsound(loc, 'sound/effects/shard1.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard2.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard3.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard4.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard5.ogg', 35, TRUE))
 	if(prob(20))
@@ -85,23 +90,28 @@
 		qdel(src)
 		return
 
-	if(!M.buckled)
-		to_chat(M, span_danger("[isxeno(M) ? "We" : "You"] step on \the [src]!"))
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+	if(M.buckled)
+		return
+	to_chat(M, span_danger("[isxeno(M) ? "We" : "You"] step on \the [src]!"))
+	if(!ishuman(M))
+		return
+	var/mob/living/carbon/human/H = M
 
-			if(H.species.species_flags & IS_SYNTHETIC || H.species.insulated)
-				return
+	if(H.species.species_flags & ROBOTIC_LIMBS || H.species.insulated)
+		return
 
-			if(!H.shoes && !(H.wear_suit?.flags_armor_protection & FEET))
-				var/datum/limb/affecting = H.get_limb(pick("l_foot", "r_foot"))
-				if(affecting.limb_status & LIMB_ROBOT)
-					return
-				H.Paralyze(60)
-				if(affecting.take_damage_limb(5))
-					UPDATEHEALTH(H)
-					H.UpdateDamageIcon()
-	return ..()
+	if(!H.shoes && !(H.wear_suit?.flags_armor_protection & FEET))
+		INVOKE_ASYNC(src, .proc/pierce_foot, H)
+
+/obj/item/shard/proc/pierce_foot(mob/living/carbon/human/target)
+	var/datum/limb/affecting = target.get_limb(pick("l_foot", "r_foot"))
+	if(affecting.limb_status & LIMB_ROBOT)
+		return
+	target.Paralyze(60)
+
+	if(affecting.take_damage_limb(5))
+		UPDATEHEALTH(target)
+		target.UpdateDamageIcon()
 
 // Shrapnel
 

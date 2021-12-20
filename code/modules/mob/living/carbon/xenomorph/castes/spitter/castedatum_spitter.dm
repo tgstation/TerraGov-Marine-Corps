@@ -50,8 +50,6 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/scatter_spit,
@@ -148,4 +146,31 @@
 	// *** Ranged Attack *** //
 	spit_delay = 0.5 SECONDS
 
+/datum/xeno_caste/spitter/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "Master of ranged combat, this xeno knows no equal."
+	upgrade = XENO_UPGRADE_FOUR
+	primordial_message = "Our suppression is unmatched! Let nothing show its head!"
 
+	// *** Melee Attacks *** //
+	melee_damage = 20
+
+	// *** Speed *** //
+	speed = -0.6
+
+	// *** Plasma *** //
+	plasma_max = 925
+	plasma_gain = 30
+
+	// *** Health *** //
+	max_health = 310
+
+	// *** Evolution *** //
+	upgrade_threshold = 1320
+
+	// *** Defense *** //
+	soft_armor = list("melee" = 25, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 35, "acid" = 20)
+
+	// *** Ranged Attack *** //
+	spit_delay = 0.3 SECONDS
+	spit_types = list(/datum/ammo/xeno/acid/auto, /datum/ammo/xeno/acid/medium)

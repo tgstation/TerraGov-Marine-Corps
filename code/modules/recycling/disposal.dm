@@ -888,7 +888,7 @@
 	var/obj/structure/disposalpipe/P
 
 	if(nextdir == 12)
-		for(var/obj/structure/disposalpipe/down/mainship/F in GLOB.disposal_list)
+		for(var/obj/structure/disposalpipe/down/mainship/F AS in GLOB.disposal_list)
 			if(id == F.id)
 				P = F
 				break // stop at first found match
@@ -916,7 +916,7 @@
 	var/obj/structure/disposalpipe/P
 
 	if(nextdir == 11)
-		for(var/obj/structure/disposalpipe/up/mainship/F in GLOB.disposal_list)
+		for(var/obj/structure/disposalpipe/up/mainship/F AS in GLOB.disposal_list)
 			if(id == F.id)
 				P = F
 				break // stop at first found match

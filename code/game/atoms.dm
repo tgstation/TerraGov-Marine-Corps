@@ -167,12 +167,6 @@ directive is properly returned.
 	SHOULD_CALL_PARENT(TRUE)
 	return !density
 
-/// Returns true or false to allow the mover to move out of the atom
-/atom/proc/CheckExit(atom/movable/mover, direction)
-	SHOULD_CALL_PARENT(TRUE)
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
-		return TRUE
-	return FALSE
 
 // Convenience proc for reagents handling.
 /atom/proc/is_open_container()
@@ -444,6 +438,10 @@ directive is properly returned.
 			log_dsay(log_text)
 		if(LOG_OOC)
 			log_ooc(log_text)
+		if(LOG_XOOC)
+			log_xooc(log_text)
+		if(LOG_MOOC)
+			log_mooc(log_text)
 		if(LOG_ADMIN)
 			log_admin(log_text)
 		if(LOG_LOOC)
@@ -732,15 +730,29 @@ Proc for attack log creation, because really why not
 	.["Modify Filters"] = "?_src_=vars;[HrefToken()];filteredit=[REF(src)]"
 	.["Modify Greyscale Colors"] = "?_src_=vars;[HrefToken()];modify_greyscale=[REF(src)]"
 
-/atom/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs) //TODO add should_call_parent(TRUE)
+/atom/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, arrived, old_loc, old_locs)
 
 
-/atom/Exit(atom/movable/AM, direction) //TODO add should_call_parent(TRUE)
-	. = ..()
-	if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, AM, direction) & COMPONENT_ATOM_BLOCK_EXIT)
+/**
+ * An atom is attempting to exit this atom's contents
+ *
+ * Default behaviour is to send the [COMSIG_ATOM_EXIT]
+ */
+/atom/Exit(atom/movable/leaving, direction, list/knownblockers = list())
+	// Don't call `..()` here, otherwise `Uncross()` gets called.
+	// See the doc comment on `Uncross()` to learn why this is bad.
+	if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, leaving, direction, knownblockers) & COMPONENT_ATOM_BLOCK_EXIT)
+		for(var/atom/movable/thing AS in knownblockers)
+			var/signalreturn = SEND_SIGNAL(leaving, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE, thing)
+			if(signalreturn & COMPONENT_MOVABLE_PREBUMP_STOPPED)
+				return FALSE
+			if(signalreturn & COMPONENT_MOVABLE_PREBUMP_PLOWED)
+				continue // no longer in the way
+			leaving.Bump(thing)
+			return FALSE
 		return FALSE
-
+	return TRUE
 
 /atom/Exited(atom/movable/AM, direction)
 	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, direction)
@@ -888,7 +900,7 @@ Proc for attack log creation, because really why not
  * originated_turf: if not null, will check if the obj_turf is closer than distance_max to originated_turf, and the proc will return if not
  * distance_max: used to check if originated_turf is close to obj.loc
 */
-/atom/proc/turn_light(mob/user = null, toggle_on , cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
+/atom/proc/turn_light(mob/user = null, toggle_on , cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE, light_again = FALSE)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LIGHT) && !forced)
 		return STILL_ON_COOLDOWN
 	if(cooldown <= 0)
@@ -896,7 +908,7 @@ Proc for attack log creation, because really why not
 	TIMER_COOLDOWN_START(src, COOLDOWN_LIGHT, cooldown)
 	if(toggle_on == light_on)
 		return NO_LIGHT_STATE_CHANGE
-	if(forced && !toggle_on) //Is true when turn light is called by nightfall and the light is already on
+	if(light_again && !toggle_on) //Is true when turn light is called by nightfall and the light is already on
 		addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
 	if(sparks && light_on)
 		var/datum/effect_system/spark_spread/spark_system = new
