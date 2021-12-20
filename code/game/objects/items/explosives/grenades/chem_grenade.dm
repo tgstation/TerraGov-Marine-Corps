@@ -40,6 +40,13 @@
 		else
 			return ..()
 
+/obj/item/explosive/grenade/chem_grenade/razorburn_smol/attackby(obj/item/I, mob/user, params)
+	to_chat(user, span_notice("The [initial(name)] is hermetically sealed, and does not open."))
+	return
+
+/obj/item/explosive/grenade/chem_grenade/razorburn_large/attackby(obj/item/I, mob/user, params)
+	to_chat(user, span_notice("The [initial(name)] is hermetically sealed, and does not open."))
+	return
 
 /obj/item/explosive/grenade/chem_grenade/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
