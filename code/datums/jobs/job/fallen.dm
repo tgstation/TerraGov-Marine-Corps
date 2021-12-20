@@ -6,17 +6,13 @@
 	if(!ishuman(new_mob))
 		return
 	RegisterSignal(new_mob, list(COMSIG_MOB_DEATH, COMSIG_MOB_LOGOUT), .proc/delete_mob)
+	to_chat(new_mob, span_danger("This is a place for everyone to experiment and RP. Standard rules applies here. Do not blow the vendors, do not grief,\
+	do not try to lag the server with explosions."))
 
 ///Delete the mob when you log out or when it's dead
 /datum/job/fallen/proc/delete_mob(mob/living/source)
 	SIGNAL_HANDLER
 	qdel(source)
-
-/datum/job/fallen/radio_help_message(mob/M)
-	. = ..()
-	to_chat(M, {"This is a place for everyone to experiment and RP. Standard rules applies here. Do not blow the vendors, do not grief,
-	do not try to lag the server with explosions."})
-	
 
 /datum/job/fallen/engineer
 	title = SQUAD_ENGINEER
