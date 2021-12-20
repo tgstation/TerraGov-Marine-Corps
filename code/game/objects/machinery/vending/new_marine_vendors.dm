@@ -694,7 +694,7 @@
 	spawned_gear_list = list(
 		/obj/item/stack/sheet/plasteel/medium_stack,
 		/obj/item/stack/sheet/metal/large_stack,
-		/obj/item/tool/weldingtool/hugetank
+		/obj/item/tool/weldingtool/hugetank,
 		/obj/item/lightreplacer,
 		/obj/item/healthanalyzer,
 		/obj/item/tool/handheld_charger,
