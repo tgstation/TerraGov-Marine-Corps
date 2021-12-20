@@ -12,6 +12,12 @@
 	SIGNAL_HANDLER
 	qdel(source)
 
+/datum/job/fallen/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"This is a place for everyone to experiment and RP. Standard rules applies here. Do not blow the vendors, do not grief,
+	do not try to lag the server with explosions."})
+	
+
 /datum/job/fallen/engineer
 	title = SQUAD_ENGINEER
 	skills_type = /datum/skills/combat_engineer
