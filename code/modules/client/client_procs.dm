@@ -444,10 +444,6 @@
 			to_chat(src, span_danger("Your previous click was ignored because you've done too many in a second"))
 			return
 
-//Hijack for FC.
-	if(prefs.focus_chat)
-		winset(src, null, "input.focus=true")
-
 	return ..()
 
 //checks if a client is afk
