@@ -123,3 +123,97 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	if(CHECK_BITFIELD(direction_flag, CONE_PART_MIDDLE_DIAG))
 		do_acid_cone_spray(next_normal_turf, distance_left - 1, facing, CONE_PART_DIAG_LEFT|CONE_PART_DIAG_RIGHT, spray)
 		do_acid_cone_spray(next_normal_turf, distance_left - 2, facing, (distance_left < 5) ? CONE_PART_MIDDLE : CONE_PART_MIDDLE_DIAG, spray)
+
+// ***************************************
+// *********** Acid dash
+// ***************************************
+/datum/action/xeno_action/activable/acid_dash
+	name = "WIP"
+	action_icon_state = "charge"
+	mechanics_text = "WIP"
+	ability_name = "WIP"
+	plasma_cost = 0
+	cooldown_timer = 5 SECONDS
+	//How far can we dash
+	var/range = 5
+	//Can we use the ability again
+	var/recast_available = FALSE
+	//Is this the recast
+	var/recast = FALSE
+
+/datum/action/xeno_action/activable/acid_dash/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+
+/datum/action/xeno_action/activable/acid_dash/on_cooldown_finish()
+	to_chat(owner, span_xenodanger("Our exoskeleton quivers as we get ready to use Acid Dash again."))
+	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
+	return ..()
+
+/datum/action/xeno_action/activable/acid_dash/proc/dash_complete()
+	SIGNAL_HANDLER
+	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_NONE_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT))
+
+/datum/action/xeno_action/activable/acid_dash/proc/mob_hit(datum/source, mob/M, recast = FALSE)
+	SIGNAL_HANDLER
+	if(recast) //That's the recast, we don't stop for mobs
+		return COMPONENT_KEEP_THROWING
+	if(ishuman(M)) //It's the first cast, we swap with the first human in our path
+		var/mob/living/carbon/human/target = M
+		var/mob/living/carbon/xenomorph/X = owner
+		var/turf/victim_turf = get_turf(target) //turns out they're the same turf, figure out something
+		var/turf/aggressor_turf = get_turf(X)
+
+		target.throw_at(aggressor_turf, 1, 1, X)
+		X.throw_at(victim_turf, 1, 1, X) //They swap tile
+		target.adjust_slowdown(3) //WIP
+
+		to_chat(target, span_highdanger("The [X] throws us behind them!"))
+		X.visible_message(span_xenodanger("\The [X] tackles [target], swapping location with them!"), \
+			span_xenodanger("We push [target] in our acid trail!"), visible_message_flags = COMBAT_MESSAGE)
+
+		recast_available = TRUE
+		return
+	return COMPONENT_KEEP_THROWING
+
+/datum/action/xeno_action/activable/acid_dash/proc/obj_hit(datum/source, obj/target, speed)
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/X = owner
+	if(istype(target, /obj/structure/table) || istype(target, /obj/structure/barricade) || istype(target, /obj/structure/razorwire)) //Ignores "small" structures
+		var/obj/structure/S = target
+		X.visible_message(span_danger("[X] effortlessly jumps over the [S]!"), null, null, 5)
+	else
+		target.hitby(X, speed) //This resets throwing.
+
+	dash_complete()
+/datum/action/xeno_action/activable/acid_dash/proc/clear_recast()
+	recast_available = FALSE
+	recast = FALSE
+
+/datum/action/xeno_action/activable/acid_dash/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+
+	recast = recast_available ? TRUE : FALSE
+	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, .proc/obj_hit)
+	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
+	RegisterSignal(X, COMSIG_XENO_NONE_THROW_HIT, .proc/dash_complete)
+
+	X.visible_message(span_danger("[X] slides towards \the [A]!"), \
+	span_danger("We dash towards \the [A], spraying acid down our path!") )
+	X.emote("roar")
+	succeed_activate()
+
+	X.flags_pass = HOVERING
+	X.throw_at(A, range, 2, X)
+
+	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph/.proc/reset_flags_pass), 6)
+	if(recast_available)
+		addtimer(CALLBACK(src, /datum/action/xeno_action/proc/add_cooldown), 2 SECONDS)
+		recast_available = FALSE
+		recast = TRUE
+	else
+		recast = FALSE
+		add_cooldown()
+
+	return TRUE
