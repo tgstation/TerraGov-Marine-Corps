@@ -129,14 +129,6 @@
 				break
 			T = temp //Throw target
 
-	//The target location deviates up to 1 tile in any direction //No.
-	/*var/scatter_x = rand(-1,1)
-	var/scatter_y = rand(-1,1)
-	var/turf/new_target = locate(T.x + round(scatter_x),T.y + round(scatter_y),T.z) //Locate an adjacent turf.
-	if(new_target)
-		T = new_target//Looks like we found a turf.
-	*/
-
 	X.icon_state = "Crusher Charging"  //Momentarily lower the crest for visual effect
 
 	X.visible_message(span_xenowarning("\The [X] flings [A] away with its crest[big_mob_message]!"), \
