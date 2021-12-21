@@ -123,9 +123,9 @@
 	RegisterSignal(target_mob, COMSIG_MOB_DEATH, .proc/handle_mob_dead)
 	RegisterSignal(target_mob, COMSIG_XENOMORPH_BURN_DAMAGE, .proc/handle_burn_damage)
 	RegisterSignal(target_mob, COMSIG_XENOMORPH_BRUTE_DAMAGE, .proc/handle_brute_damage)
-	var/link_message = "[owner] has linked to you and is redirecting some of your injuries. If they get too hurt, the link may be broken. "
+	var/link_message = "[owner] has linked to you and is redirecting some of your injuries. If they get too hurt, the link may be broken."
 	if(link_range > 0)
-		link_message += "Keep within [link_range] tiles to maintain it."
+		link_message += " Keep within [link_range] tiles to maintain it."
 		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
 		RegisterSignal(target_mob, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
 	to_chat(target_mob, span_xenonotice(link_message))
