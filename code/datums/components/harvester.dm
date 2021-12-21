@@ -99,6 +99,10 @@
 	beaker.reagents.remove_any(5)
 	return TRUE
 
+/datum/component/harvester/proc/apply_flame_cone(mob/living/target, mob/living/user)
+	target.flamer_fire_act(10)
+	target.apply_damage(max(0, 20 - 20*target.hard_armor.getRating("fire")), BURN, user.zone_selected, target.get_soft_armor("fire", user.zone_selected))
+
 /datum/component/harvester/proc/attack(datum/source, mob/living/M, mob/living/user)
 	if(!loaded_reagent)
 		return
@@ -112,14 +116,12 @@
 			M.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
 
 		if(/datum/reagent/medicine/kelotane)
-			M.apply_damage(max(0, 20 - 20*M.hard_armor.getRating("fire")), BURN, user.zone_selected, M.get_soft_armor("fire", user.zone_selected))
-			M.flamer_fire_act(10)
-			//var/list/cone_turfs = generate_cone(user, 2, 1, 91, Get_Angle(user, M.loc))
-			//for(var/X in cone_turfs)
-				//var/turf/T = X
-				//for(var/mob/living/victim in T)
-					//victim.flamer_fire_act(10)
-					//victim.apply_damage(max(0, 20 - 20*victim.hard_armor.getRating("fire")), BURN, user.zone_selected, victim.get_soft_armor("fire", user.zone_selected))
+			src.apply_flame_cone(M, user)
+			var/list/cone_turfs = generate_cone(M, 1, 0, 181, Get_Angle(user, M.loc))
+			for(var/X in cone_turfs)
+				var/turf/T = X
+				for(var/mob/living/victim in T)
+					src.apply_flame_cone(victim, user)
 					//TODO BRAVEMOLE
 
 		if(/datum/reagent/medicine/bicaridine)
