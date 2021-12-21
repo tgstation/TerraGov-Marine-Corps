@@ -1,5 +1,5 @@
 /datum/component/harvester
-	var/obj/item/force
+	var/force
 	var/obj/item/reagent_containers/glass/beaker/vial/beaker = null
 	var/datum/reagent/loaded_reagent = null
 	var/list/loadable_reagents = list(
