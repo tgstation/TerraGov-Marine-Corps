@@ -1308,6 +1308,23 @@
 	scannable = TRUE
 	overdose_threshold = REAGENTS_OVERDOSE
 	taste_description = "naptime"
+	
+/datum/reagent/medicine/somolent/on_mob_add(mob/living/L, metabolism)
+	var/mob/living/carbon/human/H = L
+	if(TIMER_COOLDOWN_CHECK(L, name))
+		return
+	if(L.health < H.health_threshold_crit && volume > 9 && L.stat == UNCONSCIOUS) //If you are in crit, unconscious, and someone injects at least 10u into you at once, you will heal 15% of your physical damage instantly and organ below 25.
+		to_chat(L, span_userdanger("you feel much better but very exhausted"))
+		L.adjustStaminaLoss(50*effect_str)
+		L.adjustBruteLoss(-L.getBruteLoss() * 0.15)
+		L.adjustFireLoss(-L.getFireLoss() * 0.15)
+		L.jitter(5)
+		for(var/datum/internal_organ/I AS in H.internal_organs)
+			if(I.damage)
+				if(I.damage < 25)
+					return
+				I.heal_organ_damage((I.damage-25) *effect_str)
+		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
 /datum/reagent/medicine/research/somolent/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
