@@ -1,4 +1,5 @@
 /datum/component/harvester
+	var/obj/item/force
 	var/obj/item/reagent_containers/glass/beaker/vial/beaker = null
 	var/datum/reagent/loaded_reagent = null
 	var/list/loadable_reagents = list(
@@ -102,7 +103,8 @@
 	target.flamer_fire_act(10)
 	target.apply_damage(max(0, 20 - 20*target.hard_armor.getRating("fire")), BURN, user.zone_selected, target.get_soft_armor("fire", user.zone_selected))
 
-/datum/component/harvester/proc/attack(datum/source, mob/living/M, mob/living/user)
+/datum/component/harvester/proc/attack(datum/source, mob/living/M, mob/living/user, obj/item/W)
+	W = user.get_active_held_item()
 	if(!loaded_reagent)
 		return
 
@@ -111,7 +113,7 @@
 
 	switch(loaded_reagent.type)
 		if(/datum/reagent/medicine/tramadol)
-			M.apply_damage(user.get_active_held_item().force*0.6, BRUTE, user.zone_selected)
+			M.apply_damage(W.force*0.6, BRUTE, user.zone_selected)
 			M.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
 
 		if(/datum/reagent/medicine/kelotane)
