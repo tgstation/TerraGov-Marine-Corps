@@ -2071,6 +2071,7 @@
 	},
 /obj/effect/decal/warning_stripes/thin,
 /obj/structure/prop/mainship/hangar_stencil,
+/obj/item/beacon/supply_beacon/LZ_beacon,
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing)
 "bNR" = (
@@ -31272,6 +31273,7 @@
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin,
 /obj/structure/prop/mainship/hangar_stencil/two,
+/obj/item/beacon/supply_beacon/LZ_beacon,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},

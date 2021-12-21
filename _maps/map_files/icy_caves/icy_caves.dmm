@@ -2402,6 +2402,7 @@
 	},
 /obj/effect/decal/warning_stripes/thin,
 /obj/structure/prop/mainship/hangar_stencil/two,
+/obj/item/beacon/supply_beacon/LZ_beacon,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
 "lm" = (
@@ -4920,6 +4921,7 @@
 /area/icy_caves/outpost/mining/west)
 "xJ" = (
 /obj/structure/prop/mainship/hangar_stencil,
+/obj/item/beacon/supply_beacon/LZ_beacon,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "xM" = (

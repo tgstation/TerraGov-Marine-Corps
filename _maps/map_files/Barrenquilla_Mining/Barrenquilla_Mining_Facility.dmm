@@ -9229,6 +9229,7 @@
 /area/barren/medical)
 "VS" = (
 /obj/structure/prop/mainship/hangar_stencil,
+/obj/item/beacon/supply_beacon/LZ_beacon,
 /obj/effect/decal/warning_stripes/thick{
 	dir = 10
 	},
@@ -9300,6 +9301,7 @@
 	dir = 10
 	},
 /obj/structure/prop/mainship/hangar_stencil/two,
+/obj/item/beacon/supply_beacon/LZ_beacon,
 /turf/open/floor/tile/dark,
 /area/barren/cave/lz2)
 "Wm" = (

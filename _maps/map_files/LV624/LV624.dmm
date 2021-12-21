@@ -8830,6 +8830,7 @@
 /area/lv624/lazarus/main_hall)
 "geR" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
+/obj/item/beacon/supply_beacon/LZ_beacon,
 /obj/effect/decal/warning_stripes/thick,
 /obj/effect/decal/warning_stripes/thick{
 	dir = 8
@@ -19370,6 +19371,7 @@
 /area/lv624/lazarus/atmos)
 "sPr" = (
 /obj/structure/prop/mainship/hangar_stencil,
+/obj/item/beacon/supply_beacon/LZ_beacon,
 /obj/effect/decal/warning_stripes/thick{
 	dir = 8
 	},

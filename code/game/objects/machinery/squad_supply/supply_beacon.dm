@@ -179,3 +179,46 @@
 /datum/supply_beacon/Destroy()
 	GLOB.supply_beacon[name] = null
 	return ..()
+
+/obj/item/beacon/supply_beacon/LZ_beacon
+	name = "landing zone beacon"
+	desc = "A static version of the supply beacon. Deployed throughout TGMC hangars."
+	icon_state = "lz_beacon0"
+	icon_activated = "lz_beacon1"
+	activation_time = 60
+
+/obj/item/beacon/supply_beacon/LZ_beacon/activate(mob/living/carbon/human/H)
+	var/delay = max(1.5 SECONDS, activation_time - 2 SECONDS * H.skills.getRating("leadership"))
+	H.visible_message(span_notice("[H] starts activating [src]."),
+	span_notice("You start activating [src] and inputting all the data it needs."))
+	if(!do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
+		return FALSE
+	GLOB.active_orbital_beacons += src
+	var/obj/machinery/camera/beacon_cam/BC = new(src, "[H.get_paygrade()] [H.name] [src]")
+	beacon_cam = BC
+	message_admins("[ADMIN_TPMONTY(usr)] set up an orbital strike beacon.")
+	name = "transmitting orbital beacon"
+	activated = TRUE
+	anchored = TRUE
+	w_class = 10
+	layer = ABOVE_FLY_LAYER
+	set_light(2)
+	playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
+	H.visible_message("[H] activates [src].",
+	"You activate [src].")
+	update_icon()
+	var/area/A = get_area(H)
+	beacon_datum = new /datum/supply_beacon(A , loc, H.faction)
+	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, .proc/clean_beacon_datum)
+
+
+/obj/item/beacon/supply_beacon/LZ_beacon/attack_hand(mob/living/carbon/human/H)
+	if(!ishuman(H))
+		return ..()
+	if(!activated)
+		activate(H)
+		return
+	if(activated)
+		to_chat(H, span_warning("This beacon cannot be turned off."))
+		return
+	return ..()

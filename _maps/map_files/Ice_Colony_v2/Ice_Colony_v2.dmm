@@ -145,6 +145,7 @@
 /area/ice_colony/exterior/surface/cliff)
 "aaJ" = (
 /obj/structure/prop/mainship/hangar_stencil,
+/obj/item/beacon/supply_beacon/LZ_beacon,
 /obj/effect/ai_node,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
@@ -33939,6 +33940,7 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "pRM" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
+/obj/item/beacon/supply_beacon/LZ_beacon,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},

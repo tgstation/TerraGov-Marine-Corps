@@ -23852,6 +23852,7 @@
 /area/bigredv2/outside/s)
 "nIZ" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
+/obj/item/beacon/supply_beacon/LZ_beacon,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 10
 	},
@@ -24265,6 +24266,7 @@
 /area/bigredv2/caves/southeast)
 "oLG" = (
 /obj/structure/prop/mainship/hangar_stencil,
+/obj/item/beacon/supply_beacon/LZ_beacon,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 10
 	},
