@@ -266,7 +266,7 @@
 /datum/action/xeno_action/activable/psychic_link
 	name = "Psychic Link"
 	action_icon_state = "psychic_link"
-	mechanics_text = "Link to a xenomorph and take some damage in their place. The link is weaker when you are not resting. Activate ability again to cancel."
+	mechanics_text = "Link to a xenomorph and take some damage in their place. Unrest to cancel."
 	cooldown_timer = 50 SECONDS
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
