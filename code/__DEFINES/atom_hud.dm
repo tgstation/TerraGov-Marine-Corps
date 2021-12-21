@@ -21,6 +21,7 @@
 #define MACHINE_HEALTH_HUD "machine_health_hud" // displays machine health; part of /datum/atom_hud/squad
 #define MACHINE_AMMO_HUD "machine_ammo_hud" // displays machine ammo; part of /datum/atom_hud/squad
 #define XENO_DEBUFF_HUD "xeno_debuff_hud" // displays xeno debuffs; part of /datum/atom_hud/xeno_debuff
+#define HEART_STATUS_HUD "heart_status_hud" // display if revivable, along with blood level
 
 #define ADD_HUD_TO_COOLDOWN 20 //cooldown for being shown the images for any particular data hud
 
@@ -45,6 +46,7 @@
 #define DATA_HUD_XENO_TACTICAL 13
 #define DATA_HUD_SQUAD_REBEL 14
 #define DATA_HUD_XENO_DEBUFF 15
+#define DATA_HUD_XENO_HEART 16
 
 
 // Notification action types

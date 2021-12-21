@@ -58,6 +58,7 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 #define PRIMORDIAL_SPITTER "Primordial Spitter"
 #define PRIMORDIAL_RAVAGER "Primordial Ravager"
 #define PRIMORDIAL_CRUSHER "Primordial Crusher"
+#define PRIMORDIAL_GORGER "Primordial Gorger"
 #define PRIMORDIAL_HUNTER "Primordial Hunter"
 #define PRIMORDIAL_DEFENDER "Primordial Defender"
 #define PRIMORDIAL_RUNNER "Primordial Runner"
@@ -73,3 +74,27 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 	/mob/living/carbon/xenomorph/scorpion/ai,
 ))
 
+///Heals a xeno, respecting different types of damage
+#define HEAL_XENO_DAMAGE(xeno, amount) do { \
+	var/fire_loss = xeno.getFireLoss(); \
+	if(fire_loss) { \
+		var/fire_heal = min(fire_loss, amount); \
+		amount -= fire_heal;\
+		xeno.adjustFireLoss(-fire_heal, TRUE); \
+	} \
+	var/brute_loss = xeno.getBruteLoss(); \
+	if(brute_loss) { \
+		var/brute_heal = min(brute_loss, amount); \
+		amount -= brute_heal; \
+		xeno.adjustBruteLoss(-brute_heal, TRUE); \
+	} \
+} while(FALSE)
+
+///Adjusts overheal and returns the amount by which it was adjusted
+#define adjustOverheal(xeno, amount) \
+	xeno.overheal = max(min(xeno.overheal + amount, xeno.xeno_caste.overheal_max), 0); \
+	if(xeno.overheal > 0) { \
+		xeno.add_filter("overheal_vis", 1, outline_filter(4 * (xeno.overheal / xeno.xeno_caste.overheal_max), "#60ce6f60")); \
+	} else { \
+		xeno.remove_filter("overheal_vis"); \
+	}

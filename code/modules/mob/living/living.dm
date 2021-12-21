@@ -496,14 +496,11 @@
 
 	alpha = 5 // bah, let's make it better, it's a disposable device anyway
 
-	var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-	SA.remove_from_hud(src)
-	var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
-	XI.remove_from_hud(src)
-	var/datum/atom_hud/xeno_reagents/RE = GLOB.huds[DATA_HUD_XENO_REAGENTS]
-	RE.remove_from_hud(src)
-	var/datum/atom_hud/xeno_debuff/xeno_debuff_visuals = GLOB.huds[DATA_HUD_XENO_DEBUFF]
-	xeno_debuff_visuals.remove_from_hud(src)
+	GLOB.huds[DATA_HUD_SECURITY_ADVANCED].remove_from_hud(src)
+	GLOB.huds[DATA_HUD_XENO_INFECTION].remove_from_hud(src)
+	GLOB.huds[DATA_HUD_XENO_REAGENTS].remove_from_hud(src)
+	GLOB.huds[DATA_HUD_XENO_DEBUFF].remove_from_hud(src)
+	GLOB.huds[DATA_HUD_XENO_HEART].remove_from_hud(src)
 
 	smokecloaked = TRUE
 
@@ -514,14 +511,11 @@
 
 	alpha = initial(alpha)
 
-	var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-	SA.add_to_hud(src)
-	var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
-	XI.add_to_hud(src)
-	var/datum/atom_hud/xeno_reagents/RE = GLOB.huds[DATA_HUD_XENO_REAGENTS]
-	RE.add_to_hud(src)
-	var/datum/atom_hud/xeno_debuff/xeno_debuff_visuals = GLOB.huds[DATA_HUD_XENO_DEBUFF]
-	xeno_debuff_visuals.add_to_hud(src)
+	GLOB.huds[DATA_HUD_SECURITY_ADVANCED].add_to_hud(src)
+	GLOB.huds[DATA_HUD_XENO_INFECTION].add_to_hud(src)
+	GLOB.huds[DATA_HUD_XENO_REAGENTS].add_to_hud(src)
+	GLOB.huds[DATA_HUD_XENO_DEBUFF].add_to_hud(src)
+	GLOB.huds[DATA_HUD_XENO_HEART].add_to_hud(src)
 
 	smokecloaked = FALSE
 
@@ -667,15 +661,9 @@ below 100 is not dizzy
 	if (!tile)
 		return FALSE
 	var/turf/our_tile = get_turf(src)
-	//Squad Leaders and above have reduced cooldown and get a bigger arrow
-	if(skills.getRating("leadership") < SKILL_LEAD_TRAINED)
-		TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 2.5 SECONDS)
-		var/obj/visual = new /obj/effect/overlay/temp/point(our_tile, invisibility)
-		animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
-	else
-		TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
-		var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, invisibility)
-		animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
+	TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
+	var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, invisibility)
+	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
 	visible_message("<b>[src]</b> points to [A]")
 	return TRUE
 

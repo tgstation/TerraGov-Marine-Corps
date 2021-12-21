@@ -22742,6 +22742,9 @@
 /obj/structure/curtain/shower{
 	icon_state = "open"
 	},
+/obj/structure/mirror{
+	dir = 4
+	},
 /turf/open/floor/freezer,
 /area/magmoor/civilian/clean/shower)
 "pZL" = (
@@ -28005,6 +28008,13 @@
 	dir = 1
 	},
 /area/magmoor/compound/northwest)
+"tsf" = (
+/obj/structure/curtain/shower,
+/obj/structure/mirror{
+	dir = 4
+	},
+/turf/open/floor/freezer,
+/area/magmoor/civilian/clean/shower)
 "tsh" = (
 /obj/structure/sign/directions/engineering{
 	dir = 1
@@ -33185,8 +33195,13 @@
 	},
 /area/magmoor/command/conference)
 "wyF" = (
-/obj/structure/mirror,
-/turf/closed/wall,
+/obj/structure/curtain/shower{
+	icon_state = "open"
+	},
+/obj/structure/mirror{
+	dir = 4
+	},
+/turf/open/floor/freezer,
 /area/magmoor/civilian/clean/shower)
 "wyL" = (
 /turf/closed/wall/r_wall,
@@ -49152,7 +49167,7 @@ giO
 qGt
 qGt
 qGt
-giO
+wyF
 bKT
 uEo
 uwV
@@ -49385,7 +49400,7 @@ uEo
 dnc
 eyu
 cvM
-wyF
+uEo
 uEo
 uEo
 uwV
@@ -49851,7 +49866,7 @@ uEo
 qkK
 eyu
 tHD
-wyF
+uEo
 uEo
 uEo
 hkW
@@ -50084,7 +50099,7 @@ giO
 krh
 qKl
 hOD
-giO
+wyF
 bKT
 uEo
 hkW
@@ -50317,7 +50332,7 @@ uEo
 mbU
 eyu
 vBU
-wyF
+uEo
 uEo
 uEo
 hkW
@@ -50550,7 +50565,7 @@ giO
 krh
 eyu
 hOD
-vqF
+tsf
 vWp
 uEo
 hkW
@@ -50783,7 +50798,7 @@ uEo
 cfc
 niH
 hOD
-wyF
+uEo
 uEo
 uEo
 hkW

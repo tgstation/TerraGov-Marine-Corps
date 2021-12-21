@@ -1882,13 +1882,6 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/shipboard/firing_range/rebel)
 "bRJ" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
@@ -2972,6 +2965,7 @@
 /area/mainship/engineering/engine_core)
 "cPQ" = (
 /obj/structure/toilet,
+/obj/structure/mirror,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison/rebel)
 "cPV" = (
@@ -3591,9 +3585,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/cic)
 "drz" = (
-/obj/structure/mirror{
-	dir = 1
-	},
+/obj/structure/mirror,
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
@@ -5854,9 +5846,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "frg" = (
-/obj/structure/mirror{
-	dir = 1
-	},
+/obj/structure/mirror,
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
@@ -5962,6 +5952,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -6974,9 +6965,7 @@
 /area/mainship/hull/lower_hull/rebel)
 "gqc" = (
 /obj/structure/sink,
-/obj/structure/mirror{
-	dir = 1
-	},
+/obj/structure/mirror,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/commandbunks)
 "gqp" = (
@@ -9910,7 +9899,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "jan" = (
@@ -14452,10 +14440,12 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/starboard_umbilical/rebel)
 "ncp" = (
-/obj/structure/mirror,
 /obj/structure/sink{
 	dir = 4;
 	pixel_x = 8
+	},
+/obj/structure/mirror{
+	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb/rebel)
@@ -15043,9 +15033,6 @@
 /area/mainship/living/numbertwobunks/rebel)
 "nCh" = (
 /obj/structure/sink,
-/obj/structure/mirror{
-	dir = 1
-	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks/rebel)
 "nCv" = (
@@ -16198,9 +16185,6 @@
 /area/mainship/squads/general)
 "ozd" = (
 /obj/structure/sink,
-/obj/structure/mirror{
-	dir = 1
-	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/commandbunks/rebel)
 "ozy" = (
@@ -17021,9 +17005,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull/rebel)
 "pfs" = (
-/obj/structure/mirror,
 /obj/structure/sink{
 	dir = 8
+	},
+/obj/structure/mirror{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb/rebel)
@@ -18078,7 +18064,7 @@
 /area/mainship/hallways/stern_hallway/rebel)
 "qeq" = (
 /obj/structure/sink,
-/obj/structure/mirror{
+/obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -18861,6 +18847,7 @@
 	dir = 1
 	},
 /obj/structure/toilet,
+/obj/structure/mirror,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks/rebel)
 "qJW" = (
@@ -20170,9 +20157,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
 "rUU" = (
-/obj/structure/mirror,
 /obj/structure/sink{
 	dir = 8
+	},
+/obj/structure/mirror{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
@@ -21507,10 +21496,8 @@
 	},
 /area/mainship/medical/medical_science/rebel)
 "tds" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/structure/toilet,
+/obj/structure/mirror,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
 "tdt" = (
@@ -21866,10 +21853,12 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull/rebel)
 "trd" = (
-/obj/structure/mirror,
 /obj/structure/sink{
 	dir = 4;
 	pixel_x = 8
+	},
+/obj/structure/mirror{
+	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
@@ -24245,6 +24234,7 @@
 /area/mainship/engineering/engineering_workshop)
 "vtJ" = (
 /obj/structure/toilet,
+/obj/structure/mirror,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/commandbunks/rebel)
 "vtU" = (
@@ -24521,9 +24511,7 @@
 /area/mainship/hull/lower_hull/rebel)
 "vGf" = (
 /obj/structure/sink,
-/obj/structure/mirror{
-	dir = 1
-	},
+/obj/structure/mirror,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "vGP" = (
@@ -25507,9 +25495,6 @@
 /area/mainship/living/commandbunks/rebel)
 "wxp" = (
 /obj/structure/sink,
-/obj/structure/mirror{
-	dir = 1
-	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison/rebel)
 "wxD" = (
@@ -26175,9 +26160,7 @@
 	},
 /area/mainship/command/self_destruct)
 "xal" = (
-/obj/structure/mirror{
-	dir = 1
-	},
+/obj/structure/mirror,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "xaI" = (
@@ -26529,9 +26512,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/port_hallway/rebel)
 "xpy" = (
-/obj/structure/mirror{
-	dir = 1
-	},
+/obj/structure/mirror,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "xqu" = (
@@ -77260,7 +77241,7 @@ xWJ
 xWJ
 xWJ
 xWJ
-qnF
+bRJ
 qnF
 xNV
 mrh
@@ -79568,7 +79549,7 @@ jkX
 jkX
 jkX
 jkX
-bRJ
+hyF
 qRH
 qQR
 qQR
@@ -80346,7 +80327,7 @@ oYh
 xnb
 aum
 qQR
-wzm
+eGr
 woi
 wzm
 exb
@@ -80603,7 +80584,7 @@ qQR
 qQR
 qQR
 qQR
-eGr
+wzm
 woi
 wzm
 uXJ

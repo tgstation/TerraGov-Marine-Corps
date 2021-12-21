@@ -104,7 +104,7 @@
 		to_chat(src, span_warning("We cannot evolve while in this stance."))
 		return
 
-	if(LAZYLEN(stomach_contents))
+	if(eaten_mob)
 		to_chat(src, span_warning("We cannot evolve with a belly full."))
 		return
 

@@ -1,5 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes: 
-  - balance: "The resin silo can no longer be quickly cut apart by a resin silo"
-  - bugfix: "The silo being destroyed should trigger the silo collapse timer every time now"

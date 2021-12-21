@@ -243,6 +243,12 @@
 /obj/structure/closet/crate/radiation,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
+"aZ" = (
+/obj/structure/mirror{
+	dir = 8
+	},
+/turf/open/floor/freezer,
+/area/icy_caves/outpost/dorms)
 "ba" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -3450,11 +3456,11 @@
 /area/icy_caves/outpost/LZ2)
 "sV" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/rifle/ak47,
-/obj/item/ammo_magazine/rifle/ak47,
-/obj/item/ammo_magazine/rifle/ak47,
-/obj/item/ammo_magazine/rifle/ak47,
-/obj/item/weapon/gun/rifle/ak47,
+/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/weapon/gun/rifle/mpi_km,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "tb" = (
@@ -5285,9 +5291,6 @@
 "FN" = (
 /obj/structure/sink{
 	dir = 4
-	},
-/obj/structure/mirror{
-	pixel_x = 24
 	},
 /turf/open/floor/freezer,
 /area/icy_caves/outpost/dorms)
@@ -19524,7 +19527,7 @@ tg
 tg
 Hf
 Dl
-Fy
+aZ
 FN
 ND
 li
@@ -20148,7 +20151,7 @@ tg
 Ky
 Hf
 Dl
-Fy
+aZ
 FN
 ND
 li

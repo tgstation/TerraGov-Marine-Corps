@@ -53,6 +53,7 @@
 	GLOB.mob_list -= victim
 	victim.timeofdeath = -CONFIG_GET(number/revive_grace_period)
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+	ADD_TRAIT(victim, TRAIT_UNDEFIBBABLE, TRAIT_UNDEFIBBABLE)
 	victim.med_hud_set_status()
 	equip_items_to_mob(victim)
 	switch(death_type)

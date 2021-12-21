@@ -14,6 +14,7 @@
 	desc = "Smells nice."
 	item_state = "hairflower"
 	flags_armor_protection = NONE
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/clothing/head/powdered_wig
 	name = "powdered wig"
