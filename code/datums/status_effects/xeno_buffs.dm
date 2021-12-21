@@ -80,7 +80,6 @@
 
 	amount_mod += min(amount * 0.75, 40)
 
-#define PSYCHIC_LINK_REST_MOD 0.2
 #define PSYCHIC_LINK_COLOR "#2a888360"
 #define CALC_DAMAGE_REDUCTION(amount, amount_mod) \
 	if(amount <= 0) { \
@@ -110,11 +109,7 @@
 	duration = set_duration
 	src.target_mob = target_mob
 	src.link_range = link_range
-	if(scaling)
-		src.redirect_mod = owner.resting ? redirect_mod : redirect_mod * PSYCHIC_LINK_REST_MOD
-		RegisterSignal(owner, list(COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST), .proc/handle_resting)
-	else
-		src.redirect_mod = redirect_mod
+	src.redirect_mod = redirect_mod
 	src.minimum_health = minimum_health
 	instance_id = "[src][owner][target_mob]"
 	ADD_TRAIT(target_mob, TRAIT_PSY_LINKED, instance_id)
@@ -141,14 +136,6 @@
 	target_mob.remove_filter(instance_id)
 	to_chat(target_mob, span_xenonotice("[owner] has unlinked from you."))
 	SEND_SIGNAL(src, COMSIG_XENO_PSYCHIC_LINK_REMOVED)
-
-///Handles stat modifications based on resting status
-/datum/status_effect/xeno_psychic_link/proc/handle_resting(datum/source)
-	SIGNAL_HANDLER
-	if(owner.resting)
-		redirect_mod = redirect_mod / PSYCHIC_LINK_REST_MOD
-	else
-		redirect_mod = redirect_mod * PSYCHIC_LINK_REST_MOD
 
 ///Handles the link breaking due to dying
 /datum/status_effect/xeno_psychic_link/proc/handle_mob_dead(datum/source)

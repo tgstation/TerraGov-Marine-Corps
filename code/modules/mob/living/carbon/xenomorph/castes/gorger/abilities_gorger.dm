@@ -324,10 +324,20 @@
 	RegisterSignal(psychic_link, COMSIG_XENO_PSYCHIC_LINK_REMOVED, .proc/status_removed)
 	target.balloon_alert(owner_xeno, "Link successul.")
 	owner_xeno.balloon_alert(target, "[owner_xeno] has linked to you.")
+	if(!owner_xeno.resting)
+		owner_xeno.set_resting(TRUE, TRUE)
+	RegisterSignal(owner_xeno, COMSIG_XENOMORPH_UNREST, .proc/cancel_psychic_link)
 	succeed_activate()
+
+///Removes the status effect on unrest
+/datum/action/xeno_action/activable/psychic_link/proc/cancel_psychic_link(datum/source)
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
 
 ///Cancels the status effect
 /datum/action/xeno_action/activable/psychic_link/proc/status_removed(datum/source)
+	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_XENO_PSYCHIC_LINK_REMOVED)
 	add_cooldown()
 
