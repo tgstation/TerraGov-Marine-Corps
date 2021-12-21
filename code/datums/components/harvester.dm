@@ -1,5 +1,4 @@
 /datum/component/harvester
-	var/force = 0
 	var/obj/item/reagent_containers/glass/beaker/vial/beaker = null
 	var/datum/reagent/loaded_reagent = null
 	var/list/loadable_reagents = list(
@@ -112,7 +111,7 @@
 
 	switch(loaded_reagent.type)
 		if(/datum/reagent/medicine/tramadol)
-			M.apply_damage(force*0.6, BRUTE, user.zone_selected)
+			M.apply_damage(user.get_active_held_item().force*0.6, BRUTE, user.zone_selected)
 			M.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
 
 		if(/datum/reagent/medicine/kelotane)
