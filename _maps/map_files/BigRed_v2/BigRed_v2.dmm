@@ -2185,7 +2185,7 @@
 	dir = 4
 	},
 /obj/structure/mirror{
-	pixel_x = 30
+	dir = 8
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/caves/lambda_lab)
@@ -7462,7 +7462,7 @@
 	dir = 8
 	},
 /obj/structure/mirror{
-	pixel_x = -28
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)

@@ -197,3 +197,73 @@
   - bugfix: Wraith can no longer regress while shifted
   novaepee:
   - imageadd: New carrier sprites!
+2021-12-17:
+  BraveMole:
+  - rscdel: Remove middle click swap
+  - balance: Tool vendor is now a shared vendor with unlimited supplies
+  - balance: Tool vendor no longer has contraband, the huge tank welder is moved to
+      engie points
+  - expansion: Tool vendor is now linked with loadout system
+  - qol: Tool pouches contains a welding tool rather than a multi-tool
+  - rscadd: Bring back grenade chain explosion
+  - refactor: Rework combat floodlights into something simpler
+  - bugfix: Properly rebrand ak47
+  - qol: You can point even in darkness (if you can see it, like xenos do). Cooldown
+      is 1 second for everyone
+  KrabSpider:
+  - bugfix: Repeater now has a proper left in-hand sprite...stray pixels are also
+      fixed
+  Walarks:
+  - expansion: adds a new xeno caste
+  - expansion: gives all xenos 150 max overheal to be used for gorger ability
+  - bugfix: pre-spawned humans now have the non-defibbable trait
+  - bugfix: attack animation no longer cancels other animations on same object as
+      long as both have the ANIMATION_PARALLEL flag
+  chesse20:
+  - rscdel: You can no longer vend specific flavors of protein bars
+  - bugfix: Stopped filling your hands with fake protein bars
+  - bugfix: nutriment has taste as intended
+  - qol: Protein bars now vend into your hands as they should
+  ivanmixo:
+  - balance: The resin silo can no longer be quickly cut apart by a resin silo
+  - bugfix: The silo being destroyed should trigger the silo collapse timer every
+      time now
+2021-12-18:
+  Arctrooper8:
+  - rscadd: Changes the flower pin to weight class tiny
+  - rscadd: Allows the flower pin to be placed inside the helmet and be added to helmet
+      sprite
+  - refactor: removes helmet_garb.dmi and replaces usage of it with modular_helmet_storage.dmi
+2021-12-19:
+  BraveMole:
+  - bugfix: Camera laze is no longer visible
+  - bugfix: Fix searching in camera input list
+  - bugfix: Fix automatic miner upgrade removal
+  KrabSpider:
+  - bugfix: Repeater left in-hand is no longer reversed. Right hand looks less ugly.
+  RipGrayson:
+  - bugfix: Fixed sinks being inside walls when oriented north.
+  - imageadd: Added some directionals for wall mounted mirrors.
+2021-12-20:
+  Kait:
+  - expansion: 'Added a recipe for QC+, making it craftable. The recipe for 1 unit
+      is: 2 parts Lemo, 2 parts Iron, 2 parts Quick-Clot.'
+  Pariah919:
+  - balance: masterkey has a higher damage multplier malus, 0.45 from 0.7.
+  Three333Digit:
+  - qol: FOB drone now has meson vision
+  - qol: FOB drone now has a bigger light radius
+  Waselon:
+  - rscadd: Added Vali spear
+2021-12-21:
+  BraveMole:
+  - expansion: Can save boot content in loadout
+  - bugfix: Fix acid armor value for jaeger heavy
+  - rscdel: Remove focus chat option
+  Verlurk:
+  - balance: Razorwire grenades and canisters can no longer have their contents removed.
+  ivanmixo:
+  - bugfix: Burn overlays update when you patch yourself with cable
+  - bugfix: Fixes patching burnt wires with cable giving the wrong message
+  psykzz:
+  - code_imp: Removed xeno specific throw card.

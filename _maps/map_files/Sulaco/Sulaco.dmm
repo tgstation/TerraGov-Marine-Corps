@@ -2300,11 +2300,9 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/briefing)
 "akX" = (
-/obj/structure/sink{
-	dir = 1
-	},
 /obj/structure/mirror{
-	pixel_y = -29
+	dir = 1;
+	pixel_y = -14
 	},
 /turf/open/floor/freezer,
 /area/sulaco/showers)
@@ -6956,6 +6954,9 @@
 /obj/structure/toilet{
 	dir = 4
 	},
+/obj/structure/mirror{
+	dir = 4
+	},
 /turf/open/floor/freezer,
 /area/sulaco/cap_office)
 "aIx" = (
@@ -6964,9 +6965,6 @@
 "aIy" = (
 /obj/machinery/light{
 	dir = 4
-	},
-/obj/structure/mirror{
-	pixel_x = 30
 	},
 /turf/open/floor/freezer,
 /area/sulaco/cap_office)
@@ -21747,7 +21745,7 @@
 	},
 /area/space)
 "vFC" = (
-/obj/structure/sink,
+/obj/structure/mirror,
 /turf/open/floor/freezer,
 /area/sulaco/showers)
 "vFJ" = (
@@ -22727,9 +22725,6 @@
 /area/sulaco/maintenance/lower_maint2)
 "xmG" = (
 /obj/machinery/light,
-/obj/structure/mirror{
-	pixel_y = -29
-	},
 /turf/open/floor/freezer,
 /area/sulaco/showers)
 "xnw" = (
@@ -44555,7 +44550,7 @@ ami
 aCp
 akZ
 akZ
-akZ
+aqb
 aEM
 ami
 uFe

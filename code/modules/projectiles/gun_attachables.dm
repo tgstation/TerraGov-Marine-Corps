@@ -875,9 +875,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_y = 13
 	flags_attach_features = NONE
 
-/obj/item/attachable/stock/ak47
-	name = "AK-47 wooden stock"
-	desc = "A metallic stock with a wooden paint coating, made to fit the AK-47 replica."
+/obj/item/attachable/stock/mpi_km
+	name = "MPi-KM wooden stock"
+	desc = "A metallic stock with a wooden paint coating, made to fit the MPi-KM."
 	icon_state = "ak47stock"
 	wield_delay_mod = 0.4 SECONDS
 	pixel_shift_x = 32

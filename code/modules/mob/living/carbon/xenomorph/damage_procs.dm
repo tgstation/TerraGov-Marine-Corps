@@ -8,9 +8,8 @@
 		return
 
 	if(severity < EXPLODE_LIGHT) //Actually means higher.
-		for(var/i in stomach_contents)
-			var/mob/living/carbon/prey = i
-			prey.ex_act(severity + 1)
+		if(eaten_mob)
+			eaten_mob.ex_act(severity + 1)
 	var/bomb_armor = soft_armor.getRating("bomb")
 	var/b_loss = 0
 	var/f_loss = 0
@@ -161,6 +160,13 @@
 
 	return damage
 
+///Handles overheal for xeno receiving damage
+#define HANDLE_OVERHEAL(amount) \
+	if(overheal && amount > 0) { \
+		var/reduction = min(amount, overheal); \
+		amount -= reduction; \
+		adjustOverheal(src, -reduction); \
+	} \
 
 /mob/living/carbon/xenomorph/adjustBruteLoss(amount, updating_health = FALSE)
 
@@ -168,6 +174,8 @@
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BRUTE_DAMAGE, amount, amount_mod)
 	for(var/i in amount_mod)
 		amount -= i
+
+	HANDLE_OVERHEAL(amount)
 
 	bruteloss = max(bruteloss + amount, 0)
 
@@ -182,10 +190,14 @@
 	for(var/i in amount_mod)
 		amount -= i
 
+	HANDLE_OVERHEAL(amount)
+
 	fireloss = max(fireloss + amount, 0)
 
 	if(updating_health)
 		updatehealth()
+
+#undef HANDLE_OVERHEAL
 
 /mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)
 	if(!damage)
