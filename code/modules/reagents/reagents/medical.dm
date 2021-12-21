@@ -1309,7 +1309,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	taste_description = "naptime"
 	
-/datum/reagent/medicine/somolent/on_mob_add(mob/living/L, metabolism)
+/datum/reagent/medicine/research/somolent/on_mob_add(mob/living/L, metabolism)
 	var/mob/living/carbon/human/H = L
 	if(TIMER_COOLDOWN_CHECK(L, name))
 		return
