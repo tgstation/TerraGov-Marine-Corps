@@ -200,7 +200,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	SIGNAL_HANDLER
 	last_turf = OldLoc
 	var/mob/living/carbon/xenomorph/X = owner
-	new /obj/effect/xenomorph/spray(get_turf(X), 5 SECONDS, X.xeno_caste.acid_spray_damage) //Add a modifier here to buff the damage if needed
+	var/turf/current_turf = get_turf(X)
+	new /obj/effect/xenomorph/spray(current_turf, 5 SECONDS, X.xeno_caste.acid_spray_damage) //Add a modifier here to buff the damage if needed
+	for(var/obj/O in current_turf)
+		O.acid_spray_act(X)
 
 /datum/action/xeno_action/activable/acid_dash/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
