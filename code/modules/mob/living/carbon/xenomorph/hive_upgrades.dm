@@ -333,7 +333,7 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 
 /datum/hive_upgrade/primordial/praetorian
 	name = PRIMORDIAL_PRAETORIAN
-	desc = "WIP"
+	desc = "Unlocks the primordial praetorian acid dash, allowing them to quickly reposition while leaving an acid trail behind."
 	psypoint_cost = 225
 	icon = "primopraetorian"
 
