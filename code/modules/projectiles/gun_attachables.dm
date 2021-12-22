@@ -757,6 +757,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/scope/mini/tx11
 	name = "TX-11 mini rail scope"
+	zoom_tile_offset = 7
 	icon_state = "tx11scope"
 
 /obj/item/attachable/scope/antimaterial
