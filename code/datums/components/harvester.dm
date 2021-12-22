@@ -1,7 +1,11 @@
 /datum/component/harvester
+	///Force is used to define damage dealt by tramadol reagent
 	var/force
+	///Beaker sets volume of internal storage
 	var/obj/item/reagent_containers/glass/beaker/vial/beaker = null
+	///Loaded reagent
 	var/datum/reagent/loaded_reagent = null
+	///List of loadable reagents
 	var/list/loadable_reagents = list(
 		/datum/reagent/medicine/bicaridine,
 		/datum/reagent/medicine/tramadol,
@@ -15,35 +19,40 @@
 	beaker = new /obj/item/reagent_containers/glass/beaker/vial
 
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/examine)
-	RegisterSignal(parent, COMSIG_ITEM_UNIQUE_ACTION, .proc/unique_action)
+	RegisterSignal(parent, COMSIG_CLICK_RIGHT, .proc/activate_blade)
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/attack)
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/attackby)
+
+/datum/component/harvester/Destroy(force, silent)
+	QDEL_NULL(beaker)
+	return ..()
 
 /datum/component/chem_booster/UnregisterFromParent()
 	. = ..()
 	UnregisterSignal(parent, list(
 		COMSIG_PARENT_EXAMINE,
-		COMSIG_ITEM_UNIQUE_ACTION,
+		COMSIG_CLICK_RIGHT,
 		COMSIG_ITEM_ATTACK,
 		COMSIG_PARENT_ATTACKBY))
 
+///Adds additional text for the component when examining the item
 /datum/component/harvester/proc/examine(datum/source, mob/user)
 	SIGNAL_HANDLER
 	to_chat(user, span_rose("[length(beaker.reagents.reagent_list) ? "It currently holds [beaker.reagents.total_volume]u of [beaker.reagents.reagent_list[1].name]" : "The internal storage is empty"].\n<b>Compatible chemicals:</b>"))
-	for(var/R in loadable_reagents)
-		var/atom/L = R
-		to_chat(user, "[initial(L.name)]")
+	for(var/atom/reagent AS in loadable_reagents)
+		to_chat(user, "[initial(reagent.name)]")
 
-/datum/component/harvester/proc/attackby(datum/source, obj/item/I, mob/user)
+///Handles behavior for when item is clicked on
+/datum/component/harvester/proc/attackby_async(datum/source, obj/item/cont, mob/user)
 	if(user.do_actions)
 		return TRUE
 
-	if(!isreagentcontainer(I) || istype(I, /obj/item/reagent_containers/pill))
-		to_chat(user, span_rose("[I] isn't compatible with [source]."))
+	if(!isreagentcontainer(cont) || istype(cont, /obj/item/reagent_containers/pill))
+		to_chat(user, span_rose("[cont] isn't compatible with [source]."))
 		return TRUE
 
 	var/trans
-	var/obj/item/reagent_containers/container = I
+	var/obj/item/reagent_containers/container = cont
 
 	if(!container.reagents.total_volume)
 		trans = beaker.reagents.trans_to(container, 30)
@@ -78,7 +87,8 @@
 	to_chat(user, span_rose("You load [trans]u into the internal system. It now holds [beaker.reagents.total_volume]u."))
 	return TRUE
 
-/datum/component/harvester/proc/unique_action(datum/source, mob/user)
+///Handles behavior when activating the weapon
+/datum/component/harvester/proc/activate_blade_async(datum/source, mob/user)
 	if(loaded_reagent)
 		to_chat(user, span_rose("The blade is powered with [loaded_reagent.name]. You can release the effect by stabbing a creature."))
 		return FALSE
@@ -99,44 +109,57 @@
 	beaker.reagents.remove_any(5)
 	return TRUE
 
-/datum/component/harvester/proc/apply_flame_cone(mob/living/target, mob/living/user)
-	target.flamer_fire_act(10)
-	target.apply_damage(max(0, 20 - 20*target.hard_armor.getRating("fire")), BURN, user.zone_selected, target.get_soft_armor("fire", user.zone_selected))
-
-/datum/component/harvester/proc/attack(datum/source, mob/living/M, mob/living/user, obj/item/W)
-	W = user.get_active_held_item()
+///Handles behavior when attacking a mob
+/datum/component/harvester/proc/attack_async(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
+	weapon = user.get_active_held_item()
 	if(!loaded_reagent)
 		return
 
-	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
+	if(target.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
 		return FALSE
 
 	switch(loaded_reagent.type)
 		if(/datum/reagent/medicine/tramadol)
-			M.apply_damage(W.force*0.6, BRUTE, user.zone_selected)
-			M.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
+			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
+			target.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
 
 		if(/datum/reagent/medicine/kelotane)
-			src.apply_flame_cone(M, user)
-			var/list/cone_turfs = generate_cone(M, 1, 0, 181, Get_Angle(user, M.loc))
-			for(var/X in cone_turfs)
-				var/turf/T = X
-				for(var/mob/living/victim in T)
-					src.apply_flame_cone(victim, user)
+			target.flamer_fire_act(10)
+			target.apply_damage(max(0, 20 - 20*target.hard_armor.getRating("fire")), BURN, user.zone_selected, target.get_soft_armor("fire", user.zone_selected))
+			var/list/cone_turfs = generate_cone(target, 1, 0, 181, Get_Angle(user, target.loc))
+			for(var/turf/tiles AS in cone_turfs)
+				for(var/mob/living/victim in tiles)
+					victim.flamer_fire_act(10)
+					victim.apply_damage(max(0, 20 - 20*victim.hard_armor.getRating("fire")), BURN, user.zone_selected, victim.get_soft_armor("fire", user.zone_selected))
 					//TODO BRAVEMOLE
 
 		if(/datum/reagent/medicine/bicaridine)
-			if(isxeno(M))
+			if(isxeno(target))
 				return
-			to_chat(user, span_rose("You prepare to stab <b>[M != user ? "[M]" : "yourself"]</b>!"))
-			new /obj/effect/temp_visual/telekinesis(get_turf(M))
-			if((M != user) && do_after(user, 2 SECONDS, TRUE, M, BUSY_ICON_DANGER))
-				M.heal_overall_damage(12.5, 0, TRUE)
+			to_chat(user, span_rose("You prepare to stab <b>[target != user ? "[target]" : "yourself"]</b>!"))
+			new /obj/effect/temp_visual/telekinesis(get_turf(target))
+			if((target != user) && do_after(user, 2 SECONDS, TRUE, target, BUSY_ICON_DANGER))
+				target.heal_overall_damage(12.5, 0, TRUE)
 			else
-				M.adjustStaminaLoss(-30)
-				M.heal_overall_damage(6, 0, TRUE)
+				target.adjustStaminaLoss(-30)
+				target.heal_overall_damage(6, 0, TRUE)
 			loaded_reagent = null
 			return FALSE
 
 	loaded_reagent = null
 	return
+
+///Signal handler calling when user is filling the harvester
+/datum/component/harvester/proc/attackby(datum/source, obj/item/cont, mob/user)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/attackby_async, source, cont, user)
+
+///Signal handler calling activation of the harvester
+/datum/component/harvester/proc/activate_blade(datum/source, mob/user)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/activate_blade_async, source, user)
+
+///Signal handler calling when user attacks
+/datum/component/harvester/proc/attack(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/attack_async, source, target, user, weapon)
