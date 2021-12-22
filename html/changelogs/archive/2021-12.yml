@@ -255,3 +255,15 @@
   - qol: FOB drone now has a bigger light radius
   Waselon:
   - rscadd: Added Vali spear
+2021-12-21:
+  BraveMole:
+  - expansion: Can save boot content in loadout
+  - bugfix: Fix acid armor value for jaeger heavy
+  - rscdel: Remove focus chat option
+  Verlurk:
+  - balance: Razorwire grenades and canisters can no longer have their contents removed.
+  ivanmixo:
+  - bugfix: Burn overlays update when you patch yourself with cable
+  - bugfix: Fixes patching burnt wires with cable giving the wrong message
+  psykzz:
+  - code_imp: Removed xeno specific throw card.

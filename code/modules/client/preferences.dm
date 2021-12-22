@@ -37,7 +37,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/show_typing = TRUE
 	var/windowflashing = TRUE
-	var/focus_chat = FALSE
 	var/clientfps = 0
 
 	// Custom Keybindings
