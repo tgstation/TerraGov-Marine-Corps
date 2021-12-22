@@ -38299,7 +38299,7 @@
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/disposal)
 "cpr" = (
-/obj/machinery/conveyor{
+/obj/machinery/conveyor/inverted{
 	dir = 5
 	},
 /turf/open/floor/plating,

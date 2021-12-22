@@ -676,10 +676,10 @@
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "akW" = (
-/obj/machinery/conveyor{
+/obj/structure/plasticflaps,
+/obj/machinery/conveyor/inverted{
 	dir = 4
 	},
-/obj/structure/plasticflaps,
 /turf/open/floor/plating,
 /area/lv624/ground/caves/central1)
 "alh" = (
@@ -7200,6 +7200,12 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle6)
+"ekr" = (
+/obj/machinery/conveyor/inverted{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/lv624/ground/caves/central1)
 "ekY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
@@ -23107,6 +23113,12 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
+"wMT" = (
+/obj/machinery/conveyor/inverted{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/lv624/ground/caves/central1)
 "wNp" = (
 /turf/open/ground/coast{
 	icon_state = "beachcorner"
@@ -50556,7 +50568,7 @@ amy
 anm
 ajq
 amy
-amy
+wMT
 tTs
 xLJ
 asi
@@ -50905,7 +50917,7 @@ afy
 agE
 aha
 ahg
-ajY
+ekr
 amE
 anB
 aoN

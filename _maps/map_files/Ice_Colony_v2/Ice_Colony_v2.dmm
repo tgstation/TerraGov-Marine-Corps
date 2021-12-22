@@ -2278,11 +2278,11 @@
 	},
 /area/ice_colony/exterior/surface/valley/northwest)
 "aji" = (
+/obj/structure/plasticflaps,
 /obj/machinery/conveyor{
 	dir = 4;
-	icon_state = "conveyor-1"
+	id = "lower_garbage"
 	},
-/obj/structure/plasticflaps,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/surface/requesitions)
 "ajk" = (
@@ -2303,7 +2303,7 @@
 "ajo" = (
 /obj/machinery/conveyor{
 	dir = 4;
-	icon_state = "conveyor-1"
+	id = "lower_garbage"
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/surface/requesitions)

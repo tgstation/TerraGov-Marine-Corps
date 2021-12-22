@@ -2772,6 +2772,12 @@
 /obj/item/clothing/mask/rebreather,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
+"pz" = (
+/obj/machinery/conveyor{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/refinery)
 "pB" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -2831,7 +2837,7 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside)
 "qb" = (
-/obj/machinery/conveyor{
+/obj/machinery/conveyor/inverted{
 	dir = 5
 	},
 /turf/open/floor/plating,
@@ -3318,8 +3324,8 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "sk" = (
-/obj/machinery/conveyor{
-	dir = 6
+/obj/machinery/conveyor/inverted{
+	dir = 9
 	},
 /turf/open/floor/plating,
 /area/icy_caves/outpost/refinery)
@@ -4139,7 +4145,7 @@
 "xr" = (
 /obj/machinery/mineral/stacking_machine,
 /obj/machinery/conveyor{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/icy_caves/outpost/refinery)
@@ -13561,7 +13567,7 @@ Xu
 eb
 SD
 Gw
-qc
+pz
 DY
 qQ
 RZ
