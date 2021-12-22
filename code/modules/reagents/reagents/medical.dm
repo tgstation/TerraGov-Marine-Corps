@@ -1356,7 +1356,7 @@
 			to_chat(L, span_warning("The pain rapidly subsides. Looks like they've adapted to you."))
 		if(102 to INFINITY)
 			if(volume < 30) //smol injection will self-replicate up to 30u using 240u of blood.
-				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.2)
+				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.15)
 				L.blood_volume -= 1
 			
 			if(volume < 35) //allows 10 ticks of healing for 20 points of free heal to lower scratch damage bloodloss amounts.
