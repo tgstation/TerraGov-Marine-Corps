@@ -529,9 +529,6 @@
 	set waitfor = FALSE
 	if(!target || !src)
 		return FALSE
-	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
-	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_THROW, target, range, thrower, spin) & COMPONENT_CANCEL_THROW)
-		return
 
 	if(spin)
 		animation_spin(5, 1)
@@ -539,6 +536,12 @@
 	if(!flying)
 		set_throwing(TRUE)
 		src.thrower = thrower
+	
+	var/originally_dir_locked = flags_atom & DIRLOCK
+	if(!originally_dir_locked)
+		setDir(get_dir(src, target))
+		flags_atom |= DIRLOCK
+	
 
 	throw_source = get_turf(src)	//store the origin turf
 
@@ -616,6 +619,8 @@
 					sleep(1)
 
 	//done throwing, either because it hit something or it finished moving
+	if(!originally_dir_locked)
+		flags_atom &= ~DIRLOCK
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
 	if(loc)
