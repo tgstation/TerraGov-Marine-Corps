@@ -162,6 +162,7 @@
 			/obj/item/reagent_containers/glass/bottle/tramadol = 4,
 			/obj/item/reagent_containers/glass/bottle/oxycodone = 4,
 			/obj/item/reagent_containers/glass/bottle/polyhexanide = 2,
+			/obj/item/reagent_containers/glass/bottle/medicalnanites = 2,
 		),
 		"Pill Bottle" = list(
 			/obj/item/storage/pill_bottle/peridaxon = 2,
