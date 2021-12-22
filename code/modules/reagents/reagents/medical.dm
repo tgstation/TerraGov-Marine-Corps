@@ -1356,8 +1356,8 @@
 			to_chat(L, span_warning("The pain rapidly subsides. Looks like they've adapted to you."))
 		if(102 to INFINITY)
 			if(volume < 30) //smol injection will self-replicate up to 30u using 240u of blood.
-				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.15)
-				L.blood_volume -= 2
+				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.2)
+				L.blood_volume -= 1
 			
 			if(volume < 35) //allows 10 ticks of healing for 20 points of free heal to lower scratch damage bloodloss amounts.
 				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.1)
@@ -1374,14 +1374,14 @@
 			if (volume >5 && L.getBruteLoss()) //Unhealed IB wasting nanites is an INTENTIONAL feature.
 				L.heal_limb_damage(2*effect_str, 0)
 				L.adjustToxLoss(0.1*effect_str)
-				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
+				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.4)
 				if(prob(40))
 					to_chat(L, span_notice("Your cuts and bruises begin to scab over rapidly!"))
 				
 			if (volume > 5 && L.getFireLoss())
 				L.heal_limb_damage(0, 2*effect_str)
 				L.adjustToxLoss(0.1*effect_str)
-				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
+				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.4)
 				if(prob(40))
 					to_chat(L, span_notice("Your burns begin to slough off, revealing healthy tissue!"))
 	return ..()
