@@ -677,8 +677,8 @@
 /area/lv624/lazarus/secure_storage)
 "akW" = (
 /obj/structure/plasticflaps,
-/obj/machinery/conveyor/inverted{
-	dir = 4
+/obj/machinery/conveyor{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/lv624/ground/caves/central1)
@@ -7201,8 +7201,8 @@
 	},
 /area/lv624/ground/jungle6)
 "ekr" = (
-/obj/machinery/conveyor/inverted{
-	dir = 4
+/obj/machinery/conveyor{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/lv624/ground/caves/central1)
