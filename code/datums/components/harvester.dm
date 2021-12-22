@@ -19,7 +19,7 @@
 	beaker = new /obj/item/reagent_containers/glass/beaker/vial
 
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/examine)
-	RegisterSignal(parent, COMSIG_CLICK_RIGHT, .proc/activate_blade)
+	RegisterSignal(parent, COMSIG_ITEM_UNIQUE_ACTION, .proc/activate_blade)
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/attack)
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/attackby)
 
@@ -31,7 +31,7 @@
 	. = ..()
 	UnregisterSignal(parent, list(
 		COMSIG_PARENT_EXAMINE,
-		COMSIG_CLICK_RIGHT,
+		COMSIG_ITEM_UNIQUE_ACTION,
 		COMSIG_ITEM_ATTACK,
 		COMSIG_PARENT_ATTACKBY))
 
