@@ -6,7 +6,7 @@
 	///Loaded reagent
 	var/datum/reagent/loaded_reagent = null
 	///List of loadable reagents
-	var/list/loadable_reagents = list(
+	var/static/list/loadable_reagents = list(
 		/datum/reagent/medicine/bicaridine,
 		/datum/reagent/medicine/tramadol,
 		/datum/reagent/medicine/kelotane,
@@ -131,7 +131,6 @@
 				for(var/mob/living/victim in tiles)
 					victim.flamer_fire_act(10)
 					victim.apply_damage(max(0, 20 - 20*victim.hard_armor.getRating("fire")), BURN, user.zone_selected, victim.get_soft_armor("fire", user.zone_selected))
-					//TODO BRAVEMOLE
 
 		if(/datum/reagent/medicine/bicaridine)
 			if(isxeno(target))

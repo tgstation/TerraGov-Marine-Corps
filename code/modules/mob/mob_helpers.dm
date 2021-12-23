@@ -516,11 +516,7 @@ mob/proc/get_standard_bodytemperature()
 
 	var/obj/item/active_item = get_active_held_item()
 	if((istype(active_item) && active_item.unique_action(src) != COMSIG_KB_NOT_ACTIVATED) || client?.prefs.unique_action_use_active_hand)
-		if(active_item != null)
-			SEND_SIGNAL(active_item, COMSIG_ITEM_UNIQUE_ACTION, src)
 		return
 	var/obj/item/inactive_item = get_inactive_held_item()
 	if(istype(inactive_item))
-		if(inactive_item != null)
-			SEND_SIGNAL(inactive_item, COMSIG_ITEM_UNIQUE_ACTION, src)
 		inactive_item.unique_action(src)
