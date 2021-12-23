@@ -21,7 +21,7 @@
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 200
+	max_health = 150
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_DO_NOT_ALERT_LOW_LIFE
