@@ -267,3 +267,13 @@
   - bugfix: Fixes patching burnt wires with cable giving the wrong message
   psykzz:
   - code_imp: Removed xeno specific throw card.
+2021-12-23:
+  DeltaFire15:
+  - bugfix: Boiler glob-related action icons should display correctly again.
+  KrabSpider:
+  - balance: Repeater max (status effect) range decreased to 3 from 4.
+  Mrrpip:
+  - rscadd: Added Medical Nanites to the common marine vendors, son!
+  novaepee:
+  - qol: Synthetic spawns with high-capacity industrial blowtorch
+  - balance: Add in T-25 ammo box for smartgunners to buy in their vendor.
