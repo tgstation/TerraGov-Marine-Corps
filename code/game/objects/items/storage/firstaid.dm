@@ -294,6 +294,7 @@
 	if(pill_type_to_fill)
 		for(var/i in 1 to max_storage_space)
 			new pill_type_to_fill(src)
+	update_icon()
 
 /obj/item/storage/pill_bottle/attack_self(mob/living/user)
 	if(user.get_inactive_held_item())
@@ -316,6 +317,14 @@
 	else
 		to_chat(user, span_warning("\The [src] is empty."))
 		return
+
+/obj/item/storage/pill_bottle/update_overlays()
+	. = ..()
+	if(isturf(loc))
+		return
+	var/mutable_appearance/number = mutable_appearance()
+	number.maptext = MAPTEXT(length(contents))
+	. += number
 
 
 /obj/item/storage/pill_bottle/kelotane
