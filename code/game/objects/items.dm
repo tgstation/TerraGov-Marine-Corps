@@ -372,14 +372,14 @@
 /obj/item/proc/item_action_slot_check(mob/user, slot)
 	return TRUE
 
-///Unique action signal, don't use unless really necessary
-/obj/item/proc/unique_action_signal(mob/user)
-	SHOULD_CALL_PARENT(TRUE)
+///Signal sender for unique_action
+/obj/item/proc/do_unique_action(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNIQUE_ACTION, user)
+	unique_action(user)
+	return
 
 ///Anything unique the item can do, like pumping a shotgun, spin or whatever.
 /obj/item/proc/unique_action(mob/user)
-	unique_action_signal(user)
 	return
 
 ///Used to enable/disable an item's bump attack. Grouped in a proc to make sure the signal or flags aren't missed
