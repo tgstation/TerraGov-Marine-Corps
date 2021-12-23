@@ -298,6 +298,59 @@
 	extra_delay = 0.35 SECONDS
 	accuracy_mult = 1.25
 	scatter = -10
+
+//T-74 Marita BR
+
+/obj/item/weapon/gun/rifle/standard_br/star_troopers
+	name = "\improper T-74 battle rifle"
+	desc = "The T-74 Marita is the TerraGov Marine Corps advanced battle rifle. It is known for its consistent ability to perform well at most ranges, and close range stopping power. It is mostly used by people who prefer a bigger round than the average. Uses 10x26.5smm caseless caliber."
+	icon_state = "t64"
+	item_state = "t64"
+	icon = 'icons/Marine/gun64.dmi'
+	muzzleflash_iconstate = "muzzle_flash_medium"
+	fire_sound = 'sound/weapons/guns/fire/t64.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/t64_low.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
+	caliber = CALIBER_10x265_CASELESS //codex
+	aim_slowdown = 0.55
+	wield_delay = 0.6 SECONDS
+	force = 20
+	max_shells = 160 //codex
+	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_br/star_troopers
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/standard_br
+		/obj/item/ammo_magazine/rifle/standard_br/star_troopers
+		)
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/stock/br,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/weapon/gun/shotgun/combat/masterkey
+		)
+
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_CAN_POINTBLANK
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	starting_attachment_types = list(/obj/item/weapon/gun/shotgun/combat/masterkey)
+	attachable_offset = list("muzzle_x" = 49, "muzzle_y" = 17,"rail_x" = 27, "rail_y" = 21, "under_x" = 33, "under_y" = 7, "stock_x" = 14, "stock_y" = 10)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.2 SECONDS
+	aim_speed_modifier = 3
+
+	fire_delay = 0.3 SECONDS
+	burst_amount = 3
+	burst_delay = 0.10 SECONDS
+	extra_delay = 0.30 SECONDS
+	accuracy_mult = 1.2
+	scatter = -10
 //-------------------------------------------------------
 //M412 Pulse Rifle
 
