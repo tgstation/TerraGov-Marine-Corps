@@ -144,7 +144,6 @@
 			loaded_reagent = null
 
 	loaded_reagent = null
-	return
 
 ///Signal handler calling when user is filling the harvester
 /datum/component/harvester/proc/attackby(datum/source, obj/item/cont, mob/user)
