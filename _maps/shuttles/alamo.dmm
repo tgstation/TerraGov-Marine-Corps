@@ -576,6 +576,9 @@
 /obj/machinery/computer/shuttle/marine_dropship/one,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
+"TA" = (
+/turf/open/floor/plating/catwalk,
+/area/shuttle/dropship/alamo)
 "Zx" = (
 /obj/machinery/telecomms/relay/preset/telecomms/onboard,
 /turf/closed/shuttle/dropship1{
@@ -593,10 +596,10 @@ aG
 aQ
 aX
 ao
-ao
-ao
-ao
-ao
+TA
+TA
+TA
+TA
 bs
 bB
 bG
@@ -823,10 +826,10 @@ aP
 aW
 bb
 ao
-ao
-ao
-ao
-ao
+TA
+TA
+TA
+TA
 bt
 bF
 bL
