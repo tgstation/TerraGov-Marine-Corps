@@ -45,11 +45,11 @@
 ///Handles behavior for when item is clicked on
 /datum/component/harvester/proc/attackby_async(datum/source, obj/item/cont, mob/user)
 	if(user.do_actions)
-		return TRUE
+		return
 
 	if(!isreagentcontainer(cont) || istype(cont, /obj/item/reagent_containers/pill))
 		to_chat(user, span_rose("[cont] isn't compatible with [source]."))
-		return TRUE
+		return
 
 	var/trans
 	var/obj/item/reagent_containers/container = cont
@@ -57,57 +57,56 @@
 	if(!container.reagents.total_volume)
 		trans = beaker.reagents.trans_to(container, 30)
 		to_chat(user, span_rose("[trans ? "You take [trans]u out of the internal storage. It now contains [beaker.reagents.total_volume]u" : "[source]'s storage is empty."]."))
-		return TRUE
+		return
 
 	if(length(container.reagents.reagent_list) > 1)
 		to_chat(user, span_rose("The solution needs to be uniform and contain only a single type of reagent to be compatible."))
-		return TRUE
+		return
 
 	if(beaker.reagents.total_volume && (container.reagents.reagent_list[1].type != beaker.reagents.reagent_list[1].type))
 		to_chat(user, span_rose("[source]'s internal storage can contain only one kind of solution at the same time. It currently contains <b>[beaker.reagents.reagent_list[1].name]</b>"))
-		return TRUE
+		return
 
 	if(!locate(container.reagents.reagent_list[1].type) in loadable_reagents)
 		to_chat(user, span_rose("This reagent is not compatible with the weapon's mechanism. Check the engraved symbols for further information."))
-		return TRUE
+		return
 
 	if(container.reagents.total_volume < 5)
 		to_chat(user, span_rose("At least 5u of the substance is needed."))
-		return TRUE
+		return
 
 	if(beaker.reagents.total_volume >= 30)
 		to_chat(user, span_rose("The internal storage is full."))
-		return TRUE
+		return
 
 	to_chat(user, span_notice("You begin filling up the [source] with [container.reagents.reagent_list[1]]."))
 	if(!do_after(user, 1 SECONDS, TRUE, source, BUSY_ICON_BAR, null, PROGRESS_BRASS))
-		return TRUE
+		return
 
 	trans = container.reagents.trans_to(beaker, container.amount_per_transfer_from_this)
 	to_chat(user, span_rose("You load [trans]u into the internal system. It now holds [beaker.reagents.total_volume]u."))
-	return TRUE
+	return
 
 ///Handles behavior when activating the weapon
 /datum/component/harvester/proc/activate_blade_async(datum/source, mob/user)
 	if(loaded_reagent)
 		to_chat(user, span_rose("The blade is powered with [loaded_reagent.name]. You can release the effect by stabbing a creature."))
-		return FALSE
+		return
 
 	if(beaker.reagents.total_volume < 5)
 		to_chat(user, span_rose("You don't have enough substance."))
-		return FALSE
+		return
 
 	if(user.do_actions)
-		return FALSE
+		return
 
 	to_chat(user, span_rose("You start filling up the small chambers along the blade's edge."))
 	if(!do_after(user, 2 SECONDS, TRUE, source, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
 		to_chat(user, span_rose("Due to the sudden movement, the safety machanism drains out the reagent back into the main storage."))
-		return FALSE
+		return
 
 	loaded_reagent = beaker.reagents.reagent_list[1]
 	beaker.reagents.remove_any(5)
-	return TRUE
 
 ///Handles behavior when attacking a mob
 /datum/component/harvester/proc/attack_async(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
@@ -116,7 +115,7 @@
 		return
 
 	if(target.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
-		return FALSE
+		return
 
 	switch(loaded_reagent.type)
 		if(/datum/reagent/medicine/tramadol)
@@ -143,7 +142,6 @@
 				target.adjustStaminaLoss(-30)
 				target.heal_overall_damage(6, 0, TRUE)
 			loaded_reagent = null
-			return FALSE
 
 	loaded_reagent = null
 	return
