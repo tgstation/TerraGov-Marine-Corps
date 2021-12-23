@@ -1042,7 +1042,7 @@
 /turf/open/floor/wood,
 /area/valhalla)
 "EO" = (
-/obj/machinery/roomba,
+/obj/machinery/roomba/valhalla,
 /turf/open/floor/prison/plate,
 /area/valhalla)
 "Fi" = (
@@ -2084,7 +2084,7 @@ fx
 fx
 fx
 fx
-EO
+fx
 fx
 fx
 fx
@@ -2167,7 +2167,7 @@ fx
 fx
 In
 fx
-fx
+EO
 In
 fx
 fx
@@ -3069,7 +3069,7 @@ fx
 fx
 In
 fx
-fx
+EO
 In
 fx
 fx
@@ -3150,7 +3150,7 @@ fx
 fx
 fx
 fx
-EO
+fx
 fx
 fx
 fx
