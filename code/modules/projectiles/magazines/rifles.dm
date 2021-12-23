@@ -107,6 +107,16 @@
 	max_rounds = 35
 	icon_state_mini = "mag_rifle_big_red"
 
+/obj/item/ammo_magazine/rifle/standard_br/star_troopers
+	name = "\improper T-74 magazine (10x26mm)"
+	desc = "A 10mm battle rifle magazine, designed for T-74 Marita."
+	caliber = CALIBER_10x265_CASELESS
+	icon_state = "t64"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle/standard_br
+	max_rounds = 160
+	icon_state_mini = "mag_rifle_big"
+
 //-------------------------------------------------------
 //M41A TRUE AND ORIGINAL
 
@@ -116,7 +126,6 @@
 	icon_state = "m41a"
 	max_rounds = 95
 	icon_state_mini = "mag_rifle_big"
-
 
 //-------------------------------------------------------
 //MAR-40 AK CLONE //AK47 and FN FAL together as one.
