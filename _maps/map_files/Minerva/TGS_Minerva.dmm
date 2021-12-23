@@ -3459,6 +3459,12 @@
 "lS" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/starboard_missiles)
+"lV" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/mob/living/simple_animal/corgi/walten,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "lW" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 6
@@ -21799,7 +21805,7 @@ kt
 zK
 AN
 Cc
-Cc
+lV
 Cc
 Fe
 Gk

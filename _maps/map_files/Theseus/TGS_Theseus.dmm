@@ -9814,6 +9814,11 @@
 	dir = 8
 	},
 /area/mainship/command/cic)
+"eMf" = (
+/obj/structure/cable,
+/mob/living/simple_animal/corgi/walten,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "eMi" = (
 /obj/machinery/power/apc/mainship{
 	dir = 8
@@ -52211,7 +52216,7 @@ pdX
 vuV
 cbA
 xpi
-xpi
+eMf
 xpi
 xpi
 whN

@@ -11812,6 +11812,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"Kw" = (
+/mob/living/simple_animal/corgi/walten,
+/turf/open/floor/mainship/sterile,
+/area/mainship/medical/lower_medical)
 "Kx" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
@@ -43864,7 +43868,7 @@ Pp
 Rd
 BO
 hH
-hH
+Kw
 hH
 Ww
 dX
