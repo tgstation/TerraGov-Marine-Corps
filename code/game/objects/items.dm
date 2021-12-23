@@ -375,8 +375,7 @@
 ///Signal sender for unique_action
 /obj/item/proc/do_unique_action(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNIQUE_ACTION, user)
-	unique_action(user)
-	return
+	return unique_action(user)
 
 ///Anything unique the item can do, like pumping a shotgun, spin or whatever.
 /obj/item/proc/unique_action(mob/user)

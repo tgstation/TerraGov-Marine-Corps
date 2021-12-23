@@ -9,7 +9,7 @@
 	if(user.get_inactive_held_item() != src)
 		return ..()
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
-		unique_action(user, TRUE)
+		do_unique_action(user, TRUE)
 		return
 	unload(user)
 
@@ -549,7 +549,7 @@ should be alright.
 	set name = "Unique Action (Weapon)"
 	set desc = "Use anything unique your firearm is capable of. Includes pumping a shotgun or spinning a revolver."
 
-	unique_action(usr)
+	do_unique_action(usr)
 
 
 /mob/living/carbon/human/verb/toggle_gun_safety()
