@@ -352,7 +352,7 @@
 	force = 30
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
-	force_wielded = 50
+	force_wielded = 75
 	throwforce = 50
 	throw_speed = 2
 	edge = 1
@@ -363,7 +363,8 @@
 
 	var/max_fuel = 50 //amount of fuel stored inside
 	var/fuel_used = 5 //amount of fuel used per hit
-	var/dmg_mult = 2 //damage multiplier if weapon has fuel inside
+	var/additional_damage = 50 //additional damage when weapon is active
+	var/ap_damage = 25 //armor-piercing damage that ignores melee armor
 	var/stun = 1
 	var/weaken = 2
 	var/stagger = 2
@@ -457,7 +458,8 @@
 		to_chat(user, span_warning("\The [src] doesn't have enough fuel!"))
 		return ..()
 
-	M.apply_damage(max(0, (force_wielded * dmg_mult) - (force_wielded * dmg_mult)*M.hard_armor.getRating("melee")), BRUTE, user.zone_selected, M.get_soft_armor("melee", user.zone_selected))
+	M.apply_damage(max(0, additional_damage - additional_damage*M.hard_armor.getRating("melee")), BRUTE, user.zone_selected, M.get_soft_armor("melee", user.zone_selected))
+	M.apply_damage(ap_damage, BRUTE)
 	M.visible_message(span_danger("[user]'s rocket sledge hits [M.name], smashing them!"), span_userdanger("You [user]'s rocket sledge smashes you!"))
 
 	if(get_fuel() < fuel_used * 2)
