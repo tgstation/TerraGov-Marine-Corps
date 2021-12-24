@@ -367,6 +367,7 @@
 	var/stun = 1
 	var/weaken = 2
 	var/stagger = 2
+	var/knockback = 0
 
 /obj/item/weapon/twohanded/rocketsledge/Initialize()
 	. = ..()
@@ -428,6 +429,22 @@
 	else
 		to_chat(user, span_notice("You loosen the grip of [src] around your hand!"))
 
+/obj/item/weapon/twohanded/rocketsledge/unique_action(mob/user)
+	. = ..()
+	if (knockback)
+		stun = 1
+		weaken = 2
+		stagger = 2
+		knockback = 0
+		to_chat(user, span_warning("Selected mode: CRUSH"))
+	else
+		stun = 1
+		weaken = 1
+		stagger = 1
+		knockback = 1
+		to_chat(user, span_warning("Selected mode: YEET"))
+	playsound(loc, 'sound/machines/switch.ogg', 25)
+
 /obj/item/weapon/twohanded/rocketsledge/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(src && !CHECK_BITFIELD(src.flags_item, WIELDED))
 		to_chat(user, span_warning("You need a more secure grip use [src]!"))
@@ -452,6 +469,11 @@
 		playsound(loc, 'sound/weapons/genhit1.ogg', 50, TRUE)
 
 	reagents.remove_reagent(/datum/reagent/fuel, fuel_used)
+
+	if(knockback)
+		var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
+		var/throw_distance = knockback * LERP(5 , 2, M.mob_size / MOB_SIZE_BIG)
+		M.throw_at(throw_target, throw_distance, 0.5 + (knockback * 0.5), spin = TRUE)
 
 	if(isxeno(M))
 		var/mob/living/carbon/xenomorph/xeno_victim = M
