@@ -272,6 +272,11 @@ WEAPONS
 	cost = 15
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/weapons/rocketsledge
+	name = "Rocket Sledge"
+	contains = list(/obj/item/weapon/twohanded/rocketsledge)
+	cost = 50
+
 /datum/supply_packs/weapons/explosives_mines
 	name = "claymore mines"
 	notes = "Contains 5 mines"

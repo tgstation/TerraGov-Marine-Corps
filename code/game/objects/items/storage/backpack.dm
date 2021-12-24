@@ -706,6 +706,17 @@
 		to_chat(user, span_notice("You refill [FT] with [lowertext(FT.caliber)]."))
 		FT.update_icon()
 
+	else if(istype(I, /obj/item/weapon/twohanded/rocketsledge))
+		var/obj/item/weapon/twohanded/rocketsledge/FT = I
+		if(FT.get_fuel() == FT.max_fuel || !reagents.total_volume)
+			return ..()
+
+		var/fuel_transfer_amount = min(FT.reagents.total_volume, (FT.max_fuel - FT.get_fuel()))
+		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		FT.reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		to_chat(user, span_notice("You refill [FT] with fuel."))
+
 	else
 		return ..()
 

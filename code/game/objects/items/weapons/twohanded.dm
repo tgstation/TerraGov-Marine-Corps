@@ -338,9 +338,112 @@
 	resistance_flags = UNACIDABLE
 	attack_speed = 12 //Default is 7.
 
-
 /obj/item/weapon/twohanded/glaive/damaged
 	name = "war glaive"
 	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon. This one is ancient and has suffered serious acid damage, making it near-useless."
 	force = 18
 	force_wielded = 28
+
+/obj/item/weapon/twohanded/rocketsledge
+	name = "rocket sledge"
+	desc = "Fitted with a rocket booster at the head, the rocket sledge would deliver a tremendously powerful impact, easily crushing your enemies. Uses fuel to power itself. AltClick to tighten your grip."
+	icon_state = "rocketsledge"
+	item_state = "rocketsledge"
+	force = 30
+	w_class = WEIGHT_CLASS_BULKY
+	flags_equip_slot = ITEM_SLOT_BACK
+	force_wielded = 50
+	throwforce = 50
+	throw_speed = 2
+	edge = 1
+	sharp = IS_SHARP_ITEM_BIG
+	flags_atom = CONDUCT | TWOHANDED
+	attack_verb = list("smashed", "hammered")
+	attack_speed = 20
+
+	var/max_fuel = 50 //amount of fuel stored inside
+	var/fuel_used = 5 //amount of fuel used per hit
+	var/dmg_mult = 2 //damage multiplier if weapon has fuel inside
+	var/stun = 1
+	var/weaken = 2
+	var/stagger = 2
+
+/obj/item/weapon/twohanded/rocketsledge/Initialize()
+	. = ..()
+	create_reagents(max_fuel, null, list(/datum/reagent/fuel = max_fuel))
+
+/obj/item/weapon/twohanded/rocketsledge/equipped(mob/user, slot)
+	. = ..()
+	toggle_item_bump_attack(user, TRUE)
+
+/obj/item/weapon/twohanded/rocketsledge/dropped(mob/user)
+	. = ..()
+	toggle_item_bump_attack(user, FALSE)
+
+/obj/item/weapon/twohanded/rocketsledge/examine(mob/user)
+	..()
+	to_chat(user, "It contains [get_fuel()]/[max_fuel] units of fuel!")
+
+/obj/item/weapon/twohanded/rocketsledge/proc/get_fuel()
+	return reagents.get_reagent_amount(/datum/reagent/fuel)
+
+/obj/item/weapon/twohanded/rocketsledge/wield(mob/user)
+	. = ..()
+	icon_state = "rocketsledge1"
+
+/obj/item/weapon/twohanded/rocketsledge/unwield(mob/user)
+	. = ..()
+	icon_state = "rocketsledge"
+
+/obj/item/weapon/twohanded/rocketsledge/afterattack(obj/target, mob/user , flag)
+
+	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
+		var/obj/structure/reagent_dispensers/fueltank/FT = target
+		if(FT.reagents.total_volume == 0)
+			to_chat(user, span_warning("Out of fuel!"))
+			return..()
+
+		var/fuel_transfer_amount = min(FT.reagents.total_volume, (max_fuel - get_fuel()))
+		FT.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		to_chat(user, span_notice("You refill [src] with fuel."))
+
+	else
+		..()
+
+/obj/item/weapon/twohanded/rocketsledge/AltClick(mob/user)
+	if(!can_interact(user))
+		return ..()
+	if(!ishuman(user))
+		return ..()
+	if(!(user.l_hand == src || user.r_hand == src))
+		return ..()
+	TOGGLE_BITFIELD(flags_item, NODROP)
+	if(CHECK_BITFIELD(flags_item, NODROP))
+		to_chat(user, span_warning("You tighten the grip of [src] around your hand!"))
+	else
+		to_chat(user, span_notice("You loosen the grip of [src] around your hand!"))
+
+/obj/item/weapon/twohanded/rocketsledge/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+	if(src && !CHECK_BITFIELD(src.flags_item, WIELDED))
+		to_chat(user, span_warning("You need a more secure grip use [src]!"))
+		return
+
+	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL)
+		return
+
+	if(get_fuel() < fuel_used)
+		to_chat(user, span_warning("\The [src] doesn't have enough fuel!"))
+		M.apply_damage(max(0, force_wielded - force_wielded*M.hard_armor.getRating("melee")), BRUTE, user.zone_selected, M.get_soft_armor("melee", user.zone_selected))
+		playsound(loc, 'sound/weapons/punch1.ogg', 50, TRUE)
+		M.visible_message(span_userdanger("[user] smashes you!"))
+		return ..()
+	M.apply_damage(max(0, (force_wielded * dmg_mult) - (force_wielded * dmg_mult)*M.hard_armor.getRating("melee")), BRUTE, user.zone_selected, M.get_soft_armor("melee", user.zone_selected))
+	M.visible_message(span_danger("[user]'s rocket sledge hits [M.name], smashing them!"), span_userdanger("You [user]'s rocket sledge smashes you!"))
+	playsound(loc, 'sound/items/jetpack_sound.ogg', 50, TRUE)
+	playsound(loc, 'sound/weapons/genhit3.ogg', 50, TRUE)
+	M.apply_effects(stun,weaken)
+	M.adjust_stagger(stagger)
+	reagents.remove_reagent(/datum/reagent/fuel, fuel_used)
+	return ..()
