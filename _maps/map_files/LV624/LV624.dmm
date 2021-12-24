@@ -2748,6 +2748,7 @@
 "aNT" = (
 /obj/machinery/floodlight,
 /obj/item/ammo_casing,
+/obj/effect/landmark/dropship_start_location,
 /turf/open/floor/plating,
 /area/lv624/lazarus/tablefort)
 "aNZ" = (
