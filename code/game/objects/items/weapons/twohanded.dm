@@ -389,6 +389,9 @@
 
 /obj/item/weapon/twohanded/rocketsledge/wield(mob/user)
 	. = ..()
+	if(get_fuel() < fuel_used)
+		playsound(loc, 'sound/items/weldingtool_off.ogg', 25)
+		return
 	icon_state = "rocketsledge1"
 
 /obj/item/weapon/twohanded/rocketsledge/unwield(mob/user)
@@ -440,8 +443,13 @@
 	M.apply_damage(max(0, (force_wielded * dmg_mult) - (force_wielded * dmg_mult)*M.hard_armor.getRating("melee")), BRUTE, user.zone_selected, M.get_soft_armor("melee", user.zone_selected))
 	M.visible_message(span_danger("[user]'s rocket sledge hits [M.name], smashing them!"), span_userdanger("You [user]'s rocket sledge smashes you!"))
 
-	playsound(loc, 'sound/items/jetpack_sound.ogg', 50, TRUE)
-	playsound(loc, 'sound/weapons/genhit3.ogg', 50, TRUE)
+	if(get_fuel() < fuel_used * 2)
+		playsound(loc, 'sound/items/weldingtool_off.ogg', 50)
+		to_chat(user, span_warning("\The [src] shuts off, using last bits of fuel!"))
+		icon_state = "rocketsledge"
+	else
+		playsound(loc, 'sound/items/jetpack_sound.ogg', 50, TRUE)
+		playsound(loc, 'sound/weapons/genhit1.ogg', 50, TRUE)
 
 	reagents.remove_reagent(/datum/reagent/fuel, fuel_used)
 
