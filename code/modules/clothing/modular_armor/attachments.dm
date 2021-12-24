@@ -127,6 +127,14 @@
 
 /obj/item/armor_module/armor/Initialize()
 	. = ..()
+	if(greyscale_config && length(SSgreyscale.configurations["[greyscale_config]"].icon_cache) < length(colorable_colors)) //This checks if the current greyscale config has all the colors chached. If not it caches them.
+		for(var/key in colorable_colors)
+			var/color = colorable_colors[key]
+			set_greyscale_colors(color)
+		if(flags_item_map_variant)
+			update_item_sprites()
+		else
+			set_greyscale_colors(initial(greyscale_colors))
 	item_state = initial(icon_state) + "_a"
 	update_icon()
 
