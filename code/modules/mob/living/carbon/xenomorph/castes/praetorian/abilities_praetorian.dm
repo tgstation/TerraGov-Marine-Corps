@@ -151,13 +151,14 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 ///Called when the dash is finished, handles cooldowns and recast. Clears signals too
 /datum/action/xeno_action/activable/acid_dash/proc/dash_complete()
 	SIGNAL_HANDLER
-	if(recast_available && !recast)
-		addtimer(CALLBACK(src, /datum/action/xeno_action/proc/add_cooldown), 2 SECONDS) //Recast 'window', how long you have to press the ability button again
+	if(recast_available)
+		addtimer(CALLBACK(src, .proc/dash_complete), 2 SECONDS) //Delayed recursive call, this time you don't a recast so it will go on cooldown in 2 SECONDS.
 		recast = TRUE
 	else
-		recast_available = FALSE
 		recast = FALSE
 		add_cooldown()
+
+	recast_available = FALSE
 	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_NONE_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_MOVABLE_MOVED))
 
 ///Called whenever the owner hits a mob during the dash
@@ -167,21 +168,21 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return COMPONENT_KEEP_THROWING
 	if(ishuman(M)) //It's the first cast, we swap with the first human in our path
 		var/mob/living/carbon/human/target = M
-		var/mob/living/carbon/xenomorph/X = owner
-		var/turf/victim_turf = get_turf(target)
-		var/turf/aggressor_turf = last_turf
-
-		target.throw_at(aggressor_turf, 1, 1, X)
-		X.throw_at(get_turf(target), 1, 1, X) //They swap tile
+		swap(target) //Figure out what's wrong with sleep
 		target.ParalyzeNoChain(0.5 SECONDS) //Extremely brief, we don't want them to take 289732 ticks of acid
 
-		to_chat(target, span_highdanger("The [X] tackles us, sending us behind them!"))
-		X.visible_message(span_xenodanger("\The [X] tackles [target], swapping location with them!"), \
+		to_chat(target, span_highdanger("The [owner] tackles us, sending us behind them!"))
+		owner.visible_message(span_xenodanger("\The [owner] tackles [target], swapping location with them!"), \
 			span_xenodanger("We push [target] in our acid trail!"), visible_message_flags = COMBAT_MESSAGE)
 
 		recast_available = TRUE
 		return
 	return COMPONENT_KEEP_THROWING
+
+///Swaps the owner with the target
+/datum/action/xeno_action/activable/acid_dash/proc/swap(mob/M)
+	owner.Move(get_turf(M))
+	M.Move(last_turf)
 
 ///Called whenever the owner hits an object during the dash
 /datum/action/xeno_action/activable/acid_dash/proc/obj_hit(datum/source, obj/target, speed)
@@ -208,7 +209,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/acid_steps) //We drop acid on every tile we pass through
 	RegisterSignal(owner, COMSIG_XENO_NONE_THROW_HIT, .proc/dash_complete)
 
-	owner.visible_message(span_danger("[X] slides towards \the [A]!"), \
+	owner.visible_message(span_danger("[owner] slides towards \the [A]!"), \
 	span_danger("We dash towards \the [A], spraying acid down our path!") )
 	succeed_activate()
 
