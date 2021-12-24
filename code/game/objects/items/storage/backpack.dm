@@ -711,7 +711,7 @@
 		if(FT.get_fuel() == FT.max_fuel || !reagents.total_volume)
 			return ..()
 
-		var/fuel_transfer_amount = min(FT.reagents.total_volume, (FT.max_fuel - FT.get_fuel()))
+		var/fuel_transfer_amount = min(reagents.total_volume, (FT.max_fuel - FT.get_fuel()))
 		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		FT.reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
