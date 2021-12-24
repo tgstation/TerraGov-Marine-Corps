@@ -435,9 +435,6 @@
 
 	if(get_fuel() < fuel_used)
 		to_chat(user, span_warning("\The [src] doesn't have enough fuel!"))
-		M.apply_damage(max(0, force_wielded - force_wielded*M.hard_armor.getRating("melee")), BRUTE, user.zone_selected, M.get_soft_armor("melee", user.zone_selected))
-		playsound(loc, 'sound/weapons/punch1.ogg', 50, TRUE)
-		M.visible_message(span_userdanger("[user] smashes you!"))
 		return ..()
 	M.apply_damage(max(0, (force_wielded * dmg_mult) - (force_wielded * dmg_mult)*M.hard_armor.getRating("melee")), BRUTE, user.zone_selected, M.get_soft_armor("melee", user.zone_selected))
 	M.visible_message(span_danger("[user]'s rocket sledge hits [M.name], smashing them!"), span_userdanger("You [user]'s rocket sledge smashes you!"))
