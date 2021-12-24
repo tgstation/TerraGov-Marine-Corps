@@ -277,3 +277,8 @@
   novaepee:
   - qol: Synthetic spawns with high-capacity industrial blowtorch
   - balance: Add in T-25 ammo box for smartgunners to buy in their vendor.
+2021-12-24:
+  Waselon:
+  - bugfix: adjusted flame cone code to work with the spear
+  - code_imp: moved harvester code into component
+  - code_imp: made needed changes to blade and spear
