@@ -436,11 +436,31 @@
 	if(get_fuel() < fuel_used)
 		to_chat(user, span_warning("\The [src] doesn't have enough fuel!"))
 		return ..()
+
 	M.apply_damage(max(0, (force_wielded * dmg_mult) - (force_wielded * dmg_mult)*M.hard_armor.getRating("melee")), BRUTE, user.zone_selected, M.get_soft_armor("melee", user.zone_selected))
 	M.visible_message(span_danger("[user]'s rocket sledge hits [M.name], smashing them!"), span_userdanger("You [user]'s rocket sledge smashes you!"))
+
 	playsound(loc, 'sound/items/jetpack_sound.ogg', 50, TRUE)
 	playsound(loc, 'sound/weapons/genhit3.ogg', 50, TRUE)
-	M.apply_effects(stun,weaken)
-	M.adjust_stagger(stagger)
+
 	reagents.remove_reagent(/datum/reagent/fuel, fuel_used)
+
+	if(isxeno(M))
+		var/mob/living/carbon/xenomorph/xeno_victim = M
+		if(xeno_victim.fortify) //If we're fortified we don't give a shit about staggerstun.
+			return
+
+		if(xeno_victim.endure) //Endure allows us to ignore staggerstun.
+			return
+
+		if(xeno_victim.crest_defense) //Crest defense halves all effects, and protects us from the stun.
+			stagger *= 0.5
+			stun = 0
+
+	if(!M.IsStun() && !M.IsParalyzed()) //Prevent chain stunning.
+		M.apply_effects(stun,weaken)
+
+	if(!isxenoqueen(M))
+		M.adjust_stagger(stagger)
+
 	return ..()
