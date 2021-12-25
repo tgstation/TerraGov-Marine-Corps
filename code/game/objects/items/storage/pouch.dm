@@ -693,6 +693,14 @@
 	new /obj/item/tool/weldingtool (src)
 	new /obj/item/tool/wrench (src)
 	new /obj/item/tool/crowbar (src)
+	
+/obj/item/storage/pouch/tools/equippedengineer/Initialize()
+	. = ..()
+	new /obj/item/tool/screwdriver (src)
+	new /obj/item/tool/wirecutters (src)
+	new /obj/item/tool/weldingtool/largetank (src)
+	new /obj/item/tool/wrench (src)
+	new /obj/item/tool/crowbar (src)
 
 /obj/item/storage/pouch/shotgun //New shotgun shell pouch that is actually worth a shit and will be replacing light general in vendors
 	name = "shotgun shell pouch"
