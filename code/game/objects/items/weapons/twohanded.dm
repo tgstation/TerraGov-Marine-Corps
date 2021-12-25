@@ -366,9 +366,7 @@
 	///amount of fuel used per hit
 	var/fuel_used = 5
 	///additional damage when weapon is active
-	var/additional_damage = 50
-	///armor-piercing damage that ignores melee armor
-	var/ap_damage = 25
+	var/additional_damage = 75
 	///stun value
 	var/stun = 1
 	///weaken value
@@ -392,45 +390,49 @@
 
 /obj/item/weapon/twohanded/rocketsledge/examine(mob/user)
 	..()
-	to_chat(user, "It contains [current_fuel()]/[max_fuel] units of fuel!")
-
-/obj/item/weapon/twohanded/rocketsledge/proc/current_fuel()
-	return reagents.get_reagent_amount(/datum/reagent/fuel)
+	to_chat(user, "It contains [reagents.get_reagent_amount(/datum/reagent/fuel)]/[max_fuel] units of fuel!")
 
 /obj/item/weapon/twohanded/rocketsledge/wield(mob/user)
 	. = ..()
-	if(current_fuel() < fuel_used)
+	if((reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used))
 		playsound(loc, 'sound/items/weldingtool_off.ogg', 25)
 		return
-	icon_state = "rocketsledge1" //update sprite to "active" when we wield the weapon
+	update_icon_state()
 
 /obj/item/weapon/twohanded/rocketsledge/unwield(mob/user)
 	. = ..()
-	icon_state = "rocketsledge" //update sprite to "inactive" when we unwield the weapon
+	update_icon_state()
+
+/obj/item/weapon/twohanded/rocketsledge/update_icon_state()
+	if ((reagents.get_reagent_amount(/datum/reagent/fuel) > fuel_used) && (CHECK_BITFIELD(flags_item, WIELDED)))
+		icon_state = "rocketsledge_w"
+	else
+		icon_state = "rocketsledge"
 
 /obj/item/weapon/twohanded/rocketsledge/afterattack(obj/target, mob/user, flag)
-
 	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
 		var/obj/structure/reagent_dispensers/fueltank/RS = target
 		if(RS.reagents.total_volume == 0)
 			to_chat(user, span_warning("Out of fuel!"))
 			return ..()
 
-		var/fuel_transfer_amount = min(RS.reagents.total_volume, (max_fuel - current_fuel()))
+		var/fuel_transfer_amount = min(RS.reagents.total_volume, (max_fuel - reagents.get_reagent_amount(/datum/reagent/fuel)))
 		RS.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		to_chat(user, span_notice("You refill [src] with fuel."))
+		update_icon_state()
 
-	. = ..()
+	return ..()
 
 /obj/item/weapon/twohanded/rocketsledge/AltClick(mob/user)
 	if(!can_interact(user) || !ishuman(user) || !(user.l_hand == src || user.r_hand == src))
 		return ..()
 	TOGGLE_BITFIELD(flags_item, NODROP)
 	if(CHECK_BITFIELD(flags_item, NODROP))
-		to_chat(user, span_warning("You tighten the grip of [src] around your hand!"))
-	to_chat(user, span_notice("You loosen the grip of [src] around your hand!"))
+		to_chat(user, span_warning("You tighten the grip around [src]!"))
+		return
+	to_chat(user, span_notice("You loosen the grip around [src]!"))
 
 /obj/item/weapon/twohanded/rocketsledge/unique_action(mob/user)
 	. = ..()
@@ -440,34 +442,35 @@
 		stagger = 2
 		knockback = 0
 		balloon_alert(user, "Selected mode: CRUSH.")
-	else
-		stun = 1
-		weaken = 1
-		stagger = 1
-		knockback = 1
-		balloon_alert(user, "Selected mode: KNOCKBACK.")
+		playsound(loc, 'sound/machines/switch.ogg', 25)
+		return
+
+	stun = 1
+	weaken = 1
+	stagger = 1
+	knockback = 1
+	balloon_alert(user, "Selected mode: KNOCKBACK.")
 	playsound(loc, 'sound/machines/switch.ogg', 25)
 
-/obj/item/weapon/twohanded/rocketsledge/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(src && !CHECK_BITFIELD(flags_item, WIELDED))
-		to_chat(user, span_warning("You need a more secure grip use [src]!"))
+/obj/item/weapon/twohanded/rocketsledge/attack(mob/living/carbon/M, mob/living/carbon/user as mob)
+	if(!CHECK_BITFIELD(flags_item, WIELDED))
+		to_chat(user, span_warning("You need a more secure grip to use [src]!"))
 		return
 
 	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL)
 		return
 
-	if(current_fuel() < fuel_used)
+	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used)
 		to_chat(user, span_warning("\The [src] doesn't have enough fuel!"))
 		return ..()
 
 	M.apply_damage(max(0, additional_damage - additional_damage*M.hard_armor.getRating("melee")), BRUTE, user.zone_selected, M.get_soft_armor("melee", user.zone_selected))
-	M.apply_damage(ap_damage, BRUTE)
 	M.visible_message(span_danger("[user]'s rocket sledge hits [M.name], smashing them!"), span_userdanger("You [user]'s rocket sledge smashes you!"))
 
-	if(current_fuel() < fuel_used * 2)
+	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used * 2)
 		playsound(loc, 'sound/items/weldingtool_off.ogg', 50)
 		to_chat(user, span_warning("\The [src] shuts off, using last bits of fuel!"))
-		icon_state = "rocketsledge"
+		update_icon_state()
 	else
 		playsound(loc, 'sound/items/jetpack_sound.ogg', 50, TRUE)
 		playsound(loc, 'sound/weapons/genhit1.ogg', 50, TRUE)
