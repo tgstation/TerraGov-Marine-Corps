@@ -24268,10 +24268,6 @@
 	dir = 1
 	},
 /area/hallway/primary/starboard)
-"rPr" = (
-/obj/machinery/status_display/ai,
-/turf/closed/wall/r_wall,
-/area/ai_monitored/storage/secure/valhalla)
 "rPI" = (
 /turf/open/floor/gcircuit,
 /area/rnd/xenobiology/valhalla)
@@ -27908,7 +27904,7 @@
 /area/lv624/ground/caves/rock)
 "uIY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/closed/wall/r_wall,
+/turf/closed/wall/r_wall/unmeltable,
 /area/ai_monitored/storage/secure/valhalla)
 "uJk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -49738,7 +49734,7 @@ rKM
 rKM
 rKM
 uZO
-rPr
+fRN
 nkq
 oNL
 xhO
