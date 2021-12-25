@@ -11903,6 +11903,7 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
+/obj/machinery/computer/camera_advanced/overwatch/req,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "eEB" = (
