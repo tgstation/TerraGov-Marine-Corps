@@ -463,6 +463,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	max_shells = 20
 	default_ammo_type = /obj/item/ammo_magazine/rifle/pepperball/pepperball_mini
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini)
+	w_class = 2
 	force = 5
 	attachable_allowed = list()
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
