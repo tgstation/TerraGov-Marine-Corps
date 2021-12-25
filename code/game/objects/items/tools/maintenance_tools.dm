@@ -398,15 +398,15 @@
 		FT.update_icon()
 
 	else if(istype(I, /obj/item/weapon/twohanded/rocketsledge))
-		var/obj/item/weapon/twohanded/rocketsledge/FT = I
-		if(FT.get_fuel() == FT.max_fuel || !reagents.total_volume)
+		var/obj/item/weapon/twohanded/rocketsledge/RS = I
+		if(RS.current_fuel() == RS.max_fuel || !reagents.total_volume)
 			return ..()
 
-		var/fuel_transfer_amount = min(reagents.total_volume, (FT.max_fuel - FT.get_fuel()))
+		var/fuel_transfer_amount = min(reagents.total_volume, (RS.max_fuel - RS.current_fuel()))
 		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		FT.reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		RS.reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		to_chat(user, span_notice("You refill [FT] with fuel."))
+		to_chat(user, span_notice("You refill [RS] with fuel."))
 
 	else
 		to_chat(user, span_notice("The tank scoffs at your insolence.  It only provides services to welders and flamethrowers."))
