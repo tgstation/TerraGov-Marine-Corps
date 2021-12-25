@@ -485,9 +485,10 @@
 		if(xeno_victim.endure) //Endure allows us to ignore staggerstun.
 			return
 
-		if(xeno_victim.crest_defense) //Crest defense halves all effects, and protects us from the stun.
-			stagger *= 0.5
+		if(xeno_victim.crest_defense) //Crest defense protects us from the stun.
 			stun = 0
+		else
+			stun = 1
 
 	if(!M.IsStun() && !M.IsParalyzed()) //Prevent chain stunning.
 		M.apply_effects(stun,weaken)
