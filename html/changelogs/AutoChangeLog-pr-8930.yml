@@ -1,6 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - qol: "Req supply back reorganised"
-  - qol: "Added a search function to req"
-  - rscdel: "Remove attachment from req"
