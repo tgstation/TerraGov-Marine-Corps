@@ -1,0 +1,4 @@
+author: "Verlurk"
+delete-after: True
+changes: 
+  - rscdel: "Removed Tyr helmet attachment from Mark 2 crate, as it's free in surplus vendors."
