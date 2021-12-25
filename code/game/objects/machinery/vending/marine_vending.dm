@@ -1054,6 +1054,9 @@
 /obj/machinery/vending/armor_supply/rebel
 	faction = FACTION_TERRAGOV_REBEL
 
+/obj/machinery/vending/armor_supply/valhalla
+	resistance_flags = INDESTRUCTIBLE
+
 /obj/machinery/vending/uniform_supply
 	name = "\improper Surplus Clothing Vendor"
 	desc = "A automated equipment rack hooked up to a colossal storage of clothing and accessories."
@@ -1175,6 +1178,9 @@
 
 	prices = list()
 
+/obj/machinery/vending/uniform_supply/valhalla
+	resistance_flags = INDESTRUCTIBLE
+
 /obj/machinery/vending/dress_supply
 	name = "\improper TerraGovTech dress uniform vendor"
 	desc = "A automated rack hooked up to a colossal storage of dress uniforms."
@@ -1191,6 +1197,9 @@
 		/obj/item/clothing/shoes/white = -1,
 		/obj/item/clothing/gloves/white = -1,
 	)
+
+/obj/machinery/vending/dress_supply/valhalla
+	resistance_flags = INDESTRUCTIBLE
 
 /obj/machinery/vending/valhalla_req
 	name = "\improper TerraGovTech requisition vendor"
@@ -1259,3 +1268,4 @@
 			/obj/item/armor_module/module/hlin_explosive_armor = -1,
 		)
 	)
+

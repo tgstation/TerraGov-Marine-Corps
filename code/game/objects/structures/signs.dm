@@ -4,19 +4,20 @@
 	opacity = FALSE
 	density = FALSE
 	layer = WALL_OBJ_LAYER
+	var/directional = TRUE
 
 /obj/structure/sign/Initialize()
 	. = ..()
-
-	switch(dir)
-		if(NORTH)
-			pixel_y = 32
-		if(SOUTH)
-			pixel_y = -32
-		if(EAST)
-			pixel_x = 30
-		if(WEST)
-			pixel_x = -30
+	if(directional)
+		switch(dir)
+			if(NORTH)
+				pixel_y = 32
+			if(SOUTH)
+				pixel_y = -32
+			if(EAST)
+				pixel_x = 30
+			if(WEST)
+				pixel_x = -30
 
 /obj/structure/sign/ex_act(severity)
 	switch(severity)
@@ -332,6 +333,52 @@
 	desc = "A direction sign, pointing out which way the Mining department is."
 	icon_state = "direction_mining"
 
+	
+
+/obj/structure/sign/fixedinplace //direction signs that do not init to a position, handy for when we have to fit 4 signs on a wall at once
+	directional = FALSE
+
+/obj/structure/sign/fixedinplace/science
+	name = "\improper Science department"
+	desc = "A direction sign, pointing out which way the Science department is."
+	icon_state = "direction_sci"
+
+/obj/structure/sign/fixedinplace/engineering
+	name = "\improper Engineering department"
+	desc = "A direction sign, pointing out which way the Engineering department is."
+	icon_state = "direction_eng"
+
+/obj/structure/sign/fixedinplace/security
+	name = "\improper Security department"
+	desc = "A direction sign, pointing out which way the Security department is."
+	icon_state = "direction_sec"
+
+/obj/structure/sign/fixedinplace/medical
+	name = "\improper Medical Bay"
+	desc = "A direction sign, pointing out which way the Medical Bay is."
+	icon_state = "direction_med"
+
+/obj/structure/sign/fixedinplace/supply
+	name = "cargo sign"
+	desc = "A direction sign, pointing out which way the Cargo Bay is."
+	icon_state = "direction_supply"
+
+/obj/structure/sign/fixedinplace/evac
+	name = "\improper Escape Arm"
+	desc = "A direction sign, pointing out which way the escape shuttle dock is."
+	icon_state = "direction_evac"
+
+/obj/structure/sign/fixedinplace/command
+	name = "command department sign"
+	desc = "A direction sign, pointing out which way the Command department is."
+	icon_state = "direction_bridge"
+
+/obj/structure/sign/fixedinplace/mining
+	name = "mining department sign"
+	desc = "A direction sign, pointing out which way the Mining department is."
+	icon_state = "direction_mining"
+
+//end nondirectional signs
 
 /obj/structure/sign/safety/
 	name = "sign"
