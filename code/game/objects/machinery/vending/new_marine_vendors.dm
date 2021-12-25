@@ -661,6 +661,7 @@
 		/obj/item/tool/shovel/etool,
 		/obj/item/lightreplacer,
 		/obj/item/circuitboard/general,
+		/obj/item/storage/pouch/explosive/engineerdetpack
 	)
 
 /obj/effect/essentials_set/leader

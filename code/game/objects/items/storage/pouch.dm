@@ -320,6 +320,24 @@
 		/obj/item/ammo_magazine/standard_smartmachinegun,
 	)
 
+/obj/item/storage/pouch/explosive/engineerdetpack/Initialize()
+	name = "Squad engineer's detpack pouch"
+	desc = "A squad engineer's best friend. It holds six detpacks and one signaler."
+	icon_state = "large_explosive"
+	storage_slots = 7
+	max_w_class = 3
+	can_hold = list(
+		/obj/item/detpack,
+		/obj/item/assembly/signaler,
+	)
+	. = ..()
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/assembly/signaler(src)
 
 /obj/item/storage/pouch/explosive
 	name = "explosive pouch"
