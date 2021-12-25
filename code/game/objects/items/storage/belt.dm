@@ -70,7 +70,7 @@
 	. = ..()
 	new /obj/item/tool/screwdriver(src)
 	new /obj/item/tool/wrench(src)
-	new /obj/item/tool/weldingtool(src)
+	new /obj/item/tool/weldingtool/largetank(src)
 	new /obj/item/tool/crowbar(src)
 	new /obj/item/tool/wirecutters(src)
 	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
