@@ -453,3 +453,12 @@
 		/datum/reagent/consumable/drink/berryjuice,
 	)
 	needs_medical_training = FALSE
+
+/obj/machinery/chem_dispenser/valhalla
+	needs_medical_training = FALSE
+	resistance_flags = INDESTRUCTIBLE
+
+/obj/machinery/chem_dispenser/valhalla/Initialize()
+	. = ..()
+	qdel(cell)
+	cell = new /obj/item/cell/infinite

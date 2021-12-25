@@ -135,3 +135,9 @@
 	claymore = null
 	RemoveElement(/datum/element/connect_loc)
 	cut_overlays()
+
+/obj/machinery/roomba/valhalla/suck_items()
+	for(var/obj/item/sucker in loc)
+		if(sucker.flags_item & NO_VACUUM)
+			continue
+		qdel(sucker)
