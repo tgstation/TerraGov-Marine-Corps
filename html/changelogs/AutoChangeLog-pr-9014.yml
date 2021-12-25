@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - imageadd: "New sprites for T-25 ammo box"
+  - imagedel: "Goodbye, cube"

@@ -282,3 +282,8 @@
   - bugfix: adjusted flame cone code to work with the spear
   - code_imp: moved harvester code into component
   - code_imp: made needed changes to blade and spear
+2021-12-25:
+  BraveMole:
+  - qol: Req supply back reorganised
+  - qol: Added a search function to req
+  - rscdel: Remove attachment from req
