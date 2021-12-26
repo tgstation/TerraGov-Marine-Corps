@@ -287,3 +287,35 @@
   - qol: Req supply back reorganised
   - qol: Added a search function to req
   - rscdel: Remove attachment from req
+2021-12-26:
+  BraveMole:
+  - rscadd: Valhalla(Tm) resort location. Use the join valhalla verb in OOC when you
+      are dead to join
+  - rscadd: Throw looks better (no more stuttered direction change)
+  Canohaaaaaaa:
+  - bugfix: fixed warrior punch doing more damage than it's suposed to
+  KrabSpider:
+  - balance: Increases bolt action rifle slowdown to 1.5 from 1 and decreases max
+      range to 17 (from the meme that is 40 tiles)
+  Pariah919:
+  - balance: MKH98 changes- 0.2 fire delay from 0.25, 30 round magazines, 0.5 wield
+      delay from 0.6, 0.35 aim slowdown from 0.45.
+  RipGrayson:
+  - bugfix: Fixed a bug preventing CAS without flares on LV624.
+  TheLeopold:
+  - balance: Surgical apron can hold one medical item in suit slot.
+  Verlurk:
+  - rscdel: Removed Tyr helmet attachment from Mark 2 crate, as it's free in surplus
+      vendors.
+  novaepee:
+  - bugfix: Change from 5 SG points to 6 SG points to buy ammo boxes; I have integrity
+  - qol: You can actually see progression of a wounded Wraith
+  - imageadd: ibit
+  - imageadd: New sprites for T-25 ammo box
+  - imagedel: Goodbye, cube
+  - qol: Researcher has medical radio to talk in medical.
+  - bugfix: Researcher is under support now instead of flavour.
+  - rscadd: Walten Clements, medical's bull terrier, is here to help MDs, researchers,
+      and CMO on diagnosing marines in their trauma.
+  - imageadd: New cryobag sprites! Taken from CM.
+  - qol: A little animation glow when someone is inside cryobag.

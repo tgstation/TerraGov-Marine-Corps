@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - rscadd: "Throw looks better (no more stuttered direction change)"

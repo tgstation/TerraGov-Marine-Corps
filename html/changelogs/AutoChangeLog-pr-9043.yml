@@ -1,4 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - bugfix: "Fixed a bug preventing CAS without flares on LV624."
