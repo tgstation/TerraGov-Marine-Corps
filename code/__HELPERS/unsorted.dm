@@ -514,22 +514,6 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 			. += A
 
 
-///Step-towards method of determining whether one atom can see another. Similar to viewers()
-/proc/can_see(atom/source, atom/target, length = 5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
-	var/turf/current = get_turf(source)
-	var/turf/target_turf = get_turf(target)
-	if(current == target_turf)
-		return TRUE
-	if(get_dist(current, target_turf) > length)
-		return FALSE
-	current = get_step_towards(source, target_turf)
-	while((current != target_turf))
-		if(IS_OPAQUE_TURF(current))
-			return FALSE
-		current = get_step_towards(current, target_turf)
-	return TRUE
-
-
 /proc/is_blocked_turf(turf/T)
 	if(T.density)
 		return TRUE
