@@ -4932,6 +4932,10 @@
 /obj/structure/disposalpipe/segment/corner,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/evacuation)
+"qy" = (
+/obj/machinery/computer/camera_advanced/overwatch/req,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "qz" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship/floor,
@@ -24147,7 +24151,7 @@ oM
 pL
 gY
 sm
-gY
+qy
 uf
 vf
 vV
