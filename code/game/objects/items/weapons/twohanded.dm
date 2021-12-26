@@ -367,14 +367,12 @@
 	var/fuel_used = 5
 	///additional damage when weapon is active
 	var/additional_damage = 75
-	///stun value
-	var/stun = 1
-	///weaken value
-	var/weaken = 2
-	///stagger value
-	var/stagger = 2
-	///knockback value
-	var/knockback = 0
+	///crowdcontrol values
+	var/datum/staggerstun
+		var/stun = 1
+		var/weaken = 2
+		var/stagger = 2
+		var/knockback = 0
 
 /obj/item/weapon/twohanded/rocketsledge/Initialize()
 	. = ..()
@@ -397,17 +395,20 @@
 	if((reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used))
 		playsound(loc, 'sound/items/weldingtool_off.ogg', 25)
 		return
-	update_icon_state()
+	update_icon()
 
 /obj/item/weapon/twohanded/rocketsledge/unwield(mob/user)
 	. = ..()
-	update_icon_state()
+	update_icon()
 
 /obj/item/weapon/twohanded/rocketsledge/update_icon_state()
 	if ((reagents.get_reagent_amount(/datum/reagent/fuel) > fuel_used) && (CHECK_BITFIELD(flags_item, WIELDED)))
 		icon_state = "rocketsledge_w"
 	else
 		icon_state = "rocketsledge"
+
+/obj/item/weapon/twohanded/rocketsledge/update_icon()
+	update_icon_state()
 
 /obj/item/weapon/twohanded/rocketsledge/afterattack(obj/target, mob/user, flag)
 	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
@@ -421,7 +422,7 @@
 		reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		to_chat(user, span_notice("You refill [src] with fuel."))
-		update_icon_state()
+		update_icon()
 
 	return ..()
 
@@ -470,7 +471,7 @@
 	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used * 2)
 		playsound(loc, 'sound/items/weldingtool_off.ogg', 50)
 		to_chat(user, span_warning("\The [src] shuts off, using last bits of fuel!"))
-		update_icon_state()
+		update_icon()
 	else
 		playsound(loc, 'sound/items/jetpack_sound.ogg', 50, TRUE)
 		playsound(loc, 'sound/weapons/genhit1.ogg', 50, TRUE)

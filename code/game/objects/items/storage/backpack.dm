@@ -716,7 +716,7 @@
 		RS.reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		to_chat(user, span_notice("You refill [RS] with fuel."))
-		RS.update_icon_state()
+		RS.update_icon()
 
 	else
 		return ..()
