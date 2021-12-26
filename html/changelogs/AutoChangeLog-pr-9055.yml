@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscadd: "Give requisition overwatch!"
+  - qol: "RO doesn't have to run to CIC anymore"
