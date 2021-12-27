@@ -101,11 +101,6 @@
 	///Minimum health threshold before the effect is deactivated
 	var/minimum_health
 
-/datum/status_effect/xeno_psychic_link/on_apply()
-	. = ..()
-	if(HAS_TRAIT(target_mob, TRAIT_PSY_LINKED))
-		return FALSE
-
 /datum/status_effect/xeno_psychic_link/on_creation(mob/living/new_owner, set_duration, mob/living/carbon/target_mob, link_range, redirect_mod, minimum_health, scaling = FALSE)
 	owner = new_owner
 	duration = set_duration
@@ -113,8 +108,8 @@
 	src.link_range = link_range
 	src.redirect_mod = redirect_mod
 	src.minimum_health = minimum_health
-	ADD_TRAIT(target_mob, TRAIT_PSY_LINKED, REF(src))
-	ADD_TRAIT(owner, TRAIT_PSY_LINKED, REF(src))
+	ADD_TRAIT(target_mob, TRAIT_PSY_LINKED, id)
+	ADD_TRAIT(owner, TRAIT_PSY_LINKED, id)
 	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/handle_mob_dead)
 	RegisterSignal(target_mob, COMSIG_MOB_DEATH, .proc/handle_mob_dead)
 	RegisterSignal(target_mob, COMSIG_XENOMORPH_BURN_DAMAGE, .proc/handle_burn_damage)
@@ -125,17 +120,17 @@
 		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
 		RegisterSignal(target_mob, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
 	to_chat(target_mob, span_xenonotice(link_message))
-	owner.add_filter(REF(src), 2, outline_filter(2, PSYCHIC_LINK_COLOR))
-	target_mob.add_filter(REF(src), 2, outline_filter(2, PSYCHIC_LINK_COLOR))
+	owner.add_filter(id, 2, outline_filter(2, PSYCHIC_LINK_COLOR))
+	target_mob.add_filter(id, 2, outline_filter(2, PSYCHIC_LINK_COLOR))
 	return ..()
 
 /datum/status_effect/xeno_psychic_link/on_remove()
 	. = ..()
 	UnregisterSignal(target_mob, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
-	REMOVE_TRAIT(target_mob, TRAIT_PSY_LINKED, REF(src))
-	REMOVE_TRAIT(owner, TRAIT_PSY_LINKED, REF(src))
-	owner.remove_filter(REF(src))
-	target_mob.remove_filter(REF(src))
+	REMOVE_TRAIT(target_mob, TRAIT_PSY_LINKED, id)
+	REMOVE_TRAIT(owner, TRAIT_PSY_LINKED, id)
+	owner.remove_filter(id)
+	target_mob.remove_filter(id)
 	to_chat(target_mob, span_xenonotice("[owner] has unlinked from you."))
 	SEND_SIGNAL(src, COMSIG_XENO_PSYCHIC_LINK_REMOVED)
 

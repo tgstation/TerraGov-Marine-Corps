@@ -283,13 +283,6 @@
 			to_chat(owner, span_notice("We can only link to familiar biological lifeforms."))
 		return FALSE
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK))
-		if(!silent)
-			to_chat(owner, span_notice("You are already linked to a xenomorph."))
-		return FALSE
-	if(HAS_TRAIT(target, TRAIT_PSY_LINKED))
-		to_chat(owner, span_notice("[target] is already linked to a xenomorph."))
-		return FALSE
 	if(owner_xeno.health <= owner_xeno.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH)
 		if(!silent)
 			to_chat(owner, span_notice("You are too hurt to link."))
@@ -298,23 +291,31 @@
 		if(!silent)
 			to_chat(owner, span_notice("It is beyond our reach, we must be close and our way must be clear."))
 		return FALSE
+	if(HAS_TRAIT(owner, TRAIT_PSY_LINKED))
+		if(!silent)
+			to_chat(owner, span_notice("You are already linked to a xenomorph."))
+		return FALSE
+	if(HAS_TRAIT(target, TRAIT_PSY_LINKED))
+		if(!silent)
+			to_chat(owner, span_notice("[target] is already linked to a xenomorph."))
+		return FALSE
 	if(!do_mob(owner, target, GORGER_PSYCHIC_LINK_CHANNEL, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, ignore_flags = IGNORE_LOC_CHANGE, extra_checks = new/datum/callback/(src, .proc/channel_checks, target)))
 		if(!silent)
 			to_chat(owner, span_warning("The linking was interrupted."))
 		return FALSE
+	if(HAS_TRAIT(owner, TRAIT_PSY_LINKED))
+		if(!silent)
+			to_chat(owner, span_notice("You are already linked to a xenomorph."))
+		return FALSE
 	if(HAS_TRAIT(target, TRAIT_PSY_LINKED))
-		to_chat(owner, span_notice("[target] is already linked to a xenomorph."))
+		if(!silent)
+			to_chat(owner, span_notice("[target] is already linked to a xenomorph."))
 		return FALSE
 	return TRUE
 
 ///Runs checks while the status is being applied
 /datum/action/xeno_action/activable/psychic_link/proc/channel_checks(atom/target)
 	return (get_dist(owner, target) <= GORGER_PSYCHIC_LINK_RANGE)
-
-/datum/action/xeno_action/activable/psychic_link/action_activate()
-	. = ..()
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
 
 /datum/action/xeno_action/activable/psychic_link/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
