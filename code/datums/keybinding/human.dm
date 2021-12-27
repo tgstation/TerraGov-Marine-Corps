@@ -60,3 +60,9 @@
 	full_name = "Give"
 	description = "Give the held item to the nearby marine"
 	keybind_signal = COMSIG_KB_GIVE
+
+/datum/keybinding/human/valkscan
+	name = "valkyrie module scan"
+	full_name = "Use Suit Automedic User Scan"
+	description = "Keybind for Valkyrie's Suit Automedical User Scan"
+	keybind_signal = COMSIG_KB_VALKSCAN
