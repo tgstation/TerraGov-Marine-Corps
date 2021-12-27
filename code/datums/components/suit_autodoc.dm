@@ -445,7 +445,7 @@
 /datum/action/suit_autodoc/scan
 	name = "Suit Automedic User Scan"
 	action_icon_state = "suit_scan"
-	return COMSIG_KB_VALKSCAN
+	keybind_signal = COMSIG_KB_VALKSCAN
 
 /datum/action/suit_autodoc/configure
 	name = "Configure Suit Automedic"
