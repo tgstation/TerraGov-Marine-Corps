@@ -125,13 +125,13 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		do_acid_cone_spray(next_normal_turf, distance_left - 2, facing, (distance_left < 5) ? CONE_PART_MIDDLE : CONE_PART_MIDDLE_DIAG, spray)
 
 // ***************************************
-// *********** Tail sweep
+// *********** Tail attack
 // ***************************************
 /datum/action/xeno_action/activable/tail_sweep
-	name = "Tail Sweep"
-	action_icon_state = "tail_sweep"
+	name = "Tail Attack"
+	action_icon_state = "tail_attack"
 	mechanics_text = "Hit all adjacent units around you, knocking them away. Highly recommend for self-defense against point-blank!"
-	ability_name = "tail sweep"
+	ability_name = "tail attack"
 	plasma_cost = 35
 	cooldown_timer = 12 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
