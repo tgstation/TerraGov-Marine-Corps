@@ -160,7 +160,7 @@ WEAPONS
 	contains = list(/obj/item/storage/box/sentry)
 	cost = 40
 
-/datum/supply_packs/weapons/sentry
+/datum/supply_packs/weapons/sentry_ammo
 	name = "UA 571-C sentry ammunition"
 	contains = list(/obj/item/ammo_magazine/sentry)
 	cost = 10
@@ -170,7 +170,7 @@ WEAPONS
 	contains = list(/obj/item/storage/box/minisentry)
 	cost = 40
 
-/datum/supply_packs/weapons/minisentry
+/datum/supply_packs/weapons/minisentry_ammo
 	name = "UA-580 point defense sentry ammo"
 	contains = list(/obj/item/ammo_magazine/minisentry)
 	cost = 10
@@ -269,7 +269,7 @@ WEAPONS
 	cost = 50
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/weapons/thermobaric
+/datum/supply_packs/weapons/thermobaric_ammo
 	name = "T-57 Thermobaric WP rocket array"
 	contains = list(/obj/item/ammo_magazine/rocket/m57a4)
 	cost = 5
