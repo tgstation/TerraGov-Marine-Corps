@@ -309,9 +309,7 @@
 
 ///Runs checks while the status is being applied
 /datum/action/xeno_action/activable/psychic_link/proc/channel_checks(atom/target)
-	if(get_dist(owner, target) > GORGER_PSYCHIC_LINK_RANGE)
-		return FALSE
-	return TRUE
+	return (get_dist(owner, target) <= GORGER_PSYCHIC_LINK_RANGE)
 
 /datum/action/xeno_action/activable/psychic_link/action_activate()
 	. = ..()
