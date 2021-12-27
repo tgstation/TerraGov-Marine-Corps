@@ -807,7 +807,7 @@ MEDICAL
 	containertype = /obj/structure/closet/crate/secure/surgery
 	access = ACCESS_MARINE_MEDBAY
 
-/datum/supply_packs/medical/hypospray
+/datum/supply_packs/medical/big_hypospray
 	name = "advanced big hypospray"
 	contains = list(/obj/item/reagent_containers/hypospray/advanced/big)
 	cost = 12 //just a little over the regular hypo.
