@@ -319,3 +319,9 @@
       and CMO on diagnosing marines in their trauma.
   - imageadd: New cryobag sprites! Taken from CM.
   - qol: A little animation glow when someone is inside cryobag.
+2021-12-27:
+  Pill-U:
+  - qol: add tool vendors to canterbury and bigbury
+  novaepee:
+  - rscadd: Give requisition overwatch!
+  - qol: RO doesn't have to run to CIC anymore
