@@ -98,6 +98,8 @@
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/ammo_magazine/flamer_tank/large = 20,
 			/obj/item/ammo_magazine/flamer_tank = 20,
+			/obj/item/tool/extinguisher = -1,
+			/obj/item/tool/extinguisher/mini = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/stack/throwing_knife = -1,
