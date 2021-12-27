@@ -355,12 +355,12 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/standard_mmg)
 	cost = 10
 
-/datum/supply_packs/weapons/mmg
+/datum/supply_packs/weapons/hmg
 	name = "MG-08/495 heavy machinegun"
 	contains = list(/obj/item/weapon/gun/heavymachinegun)
 	cost = 30
 
-/datum/supply_packs/weapons/hmg
+/datum/supply_packs/weapons/hmg_ammo
 	name = "MG-08/495 heavy machinegun ammo"
 	contains = list(/obj/item/ammo_magazine/heavymachinegun)
 	cost = 7
@@ -380,7 +380,7 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/rifle/standard_smartrifle)
 	cost = 40
 
-/datum/supply_packs/weapons/smartrifle
+/datum/supply_packs/weapons/smartrifle_ammo
 	name = "T-25 smartrifle magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_smartrifle)
 	cost = 2
