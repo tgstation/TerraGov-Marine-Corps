@@ -64149,6 +64149,12 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/west_tunnel)
+"tcK" = (
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor{
+	icon_state = "neutral"
+	},
+/area/desert_dam/interior/dam_interior/engine_room)
 "tcS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -98218,7 +98224,7 @@ bAK
 bAK
 bAK
 bAK
-bwv
+tcK
 aFo
 bwv
 iVQ

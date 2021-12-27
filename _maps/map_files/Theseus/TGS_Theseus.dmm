@@ -8950,6 +8950,15 @@
 	dir = 8
 	},
 /area/mainship/command/cic)
+"daR" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/cic_maptable,
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
+/area/mainship/squads/req)
 "dbD" = (
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 4
@@ -9013,8 +9022,7 @@
 /turf/open/space/basic,
 /area/space)
 "dgQ" = (
-/obj/structure/table/mainship,
-/obj/machinery/cic_maptable,
+/obj/machinery/computer/camera_advanced/overwatch/req,
 /turf/open/floor/mainship/green{
 	dir = 8
 	},
@@ -9814,6 +9822,11 @@
 	dir = 8
 	},
 /area/mainship/command/cic)
+"eMf" = (
+/obj/structure/cable,
+/mob/living/simple_animal/corgi/walten,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "eMi" = (
 /obj/machinery/power/apc/mainship{
 	dir = 8
@@ -52211,7 +52224,7 @@ pdX
 vuV
 cbA
 xpi
-xpi
+eMf
 xpi
 xpi
 whN
@@ -62489,7 +62502,7 @@ sPW
 hit
 vaF
 kzX
-bPo
+daR
 dgQ
 iel
 hPS

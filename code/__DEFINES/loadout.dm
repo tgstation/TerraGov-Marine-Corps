@@ -156,7 +156,7 @@ GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 	/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_LEDSUP, "T-29 Smartmachinegun ammo", 5 , "black"),
 	/obj/item/weapon/gun/rifle/standard_smartrifle = list(CAT_LEDSUP, "T-25 smartrifle", 30 , "white"),
 	/obj/item/ammo_magazine/rifle/standard_smartrifle = list(CAT_LEDSUP, "T-25 smartrifle magazine", 2 , "black"),
-	/obj/item/ammo_magazine/packet/t25 = list(CAT_LEDSUP, "T-25 smartrifle ammo box", 5 , "black"),
+	/obj/item/ammo_magazine/packet/t25 = list(CAT_LEDSUP, "T-25 smartrifle ammo box", 6 , "black"),
 	))
 
 
@@ -222,6 +222,14 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
 	),
+	FACTION_VALHALLA = list(
+		/obj/machinery/vending/weapon/valhalla,
+		/obj/machinery/vending/uniform_supply,
+		/obj/machinery/vending/armor_supply,
+		/obj/machinery/vending/marineFood,
+		/obj/machinery/vending/MarineMed/valhalla,
+		/obj/machinery/vending/cigarette,
+	)
 ))
 
 GLOBAL_LIST_INIT(marine_clothes_listed_products, list(

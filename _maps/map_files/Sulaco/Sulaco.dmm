@@ -11903,6 +11903,7 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
+/obj/machinery/computer/camera_advanced/overwatch/req,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "eEB" = (
@@ -14006,6 +14007,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
+/mob/living/simple_animal/corgi/walten,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
