@@ -343,6 +343,7 @@
 /datum/component/suit_autodoc/proc/scan_user(datum/source)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(analyzer, /obj/item.proc/attack, wearer, wearer, TRUE)
+	return COMSIG_KB_VALKSCAN
 
 /**
 	Proc to show the suit configuration page
