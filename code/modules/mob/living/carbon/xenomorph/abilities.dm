@@ -282,6 +282,12 @@
 
 	plasma_cost = initial(plasma_cost) //Reset the plasma cost
 
+
+/////////////////////////////////
+// Pheromones
+/////////////////////////////////
+
+
 /datum/action/xeno_action/toggle_pheromones
 	name = "Open/Collapse Pheromone Options"
 	action_icon_state = "emit_pheromones"
