@@ -234,7 +234,7 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/rifle/railgun)
 	cost = 40
 
-/datum/supply_packs/weapons/railgun
+/datum/supply_packs/weapons/railgun_ammo
 	name = "Railgun round"
 	contains = list(/obj/item/ammo_magazine/railgun)
 	cost = 3
@@ -424,7 +424,7 @@ WEAPONS
 	cost = 15
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/weapons/mateba
+/datum/supply_packs/weapons/mateba_ammo
 	name = "Mateba magazine"
 	contains = list(/obj/item/ammo_magazine/revolver/mateba)
 	cost = 3
