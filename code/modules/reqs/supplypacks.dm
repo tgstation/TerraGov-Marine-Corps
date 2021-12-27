@@ -317,7 +317,7 @@ WEAPONS
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/autosniper
-	name = "IFF Auto Sniper kit"
+	name = "T-81 IFF Auto Sniper kit"
 	contains = list(/obj/item/weapon/gun/rifle/standard_autosniper)
 	cost = 30
 	available_against_xeno_only = TRUE
@@ -1026,7 +1026,7 @@ Imports
 	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/imports/m41a
-	name = "M41A Pulse Rifle"
+	name = "HK-11 pulse rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m41a)
 	cost = 5
 
