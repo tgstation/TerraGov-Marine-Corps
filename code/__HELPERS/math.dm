@@ -6,7 +6,6 @@
 /proc/get_line(atom/starting_atom, atom/ending_atom)
 	var/current_x_step = starting_atom.x//start at x and y, then add 1 or -1 to these to get every turf from starting_atom to ending_atom
 	var/current_y_step = starting_atom.y
-	var/starting_z = starting_atom.z
 
 	var/list/line = list(get_turf(starting_atom))//get_turf(atom) is faster than locate(x, y, z)
 
@@ -30,7 +29,7 @@
 				current_y_step += y_distance_sign
 
 			current_x_step += x_distance_sign //Step on in x direction
-			line += locate(current_x_step, current_y_step, starting_z)//Add the turf to the list
+			line += locate(current_x_step, current_y_step, starting_atom.z)//Add the turf to the list
 	else
 		for(var/distance_counter in 0 to (abs_y_distance - 1))
 			x += abs_x_distance
@@ -40,7 +39,7 @@
 				current_x_step += x_distance_sign
 
 			current_y_step += y_distance_sign
-			line += locate(current_x_step, current_y_step, starting_z)
+			line += locate(current_x_step, current_y_step, starting_atom.z)
 	return line
 
 ///Returns if a turf can be seen from another turf.
@@ -65,7 +64,6 @@
 		return FALSE
 	var/current_x_step = starting_atom.x//start at x and y, then add 1 or -1 to these to get every turf from starting_atom to ending_atom
 	var/current_y_step = starting_atom.y
-	var/starting_z = starting_atom.z
 
 	var/x_distance = ending_atom.x - current_x_step //x distance
 	var/y_distance = ending_atom.y - current_y_step
@@ -89,7 +87,7 @@
 
 			current_x_step += x_distance_sign //Step on in x direction
 
-			var/turf/turf_to_check = locate(current_x_step, current_y_step, starting_z)//find the new turf
+			var/turf/turf_to_check = locate(current_x_step, current_y_step, starting_atom.z)//find the new turf
 			var/old_turf_dir_to_us = get_dir(last_turf, turf_to_check)
 			if(ISDIAGONALDIR(old_turf_dir_to_us))
 				for(var/i in 0 to 2)
@@ -110,7 +108,7 @@
 
 			current_y_step += y_distance_sign
 
-			var/turf/turf_to_check = locate(current_x_step, current_y_step, starting_z)//find the new turf
+			var/turf/turf_to_check = locate(current_x_step, current_y_step, starting_atom.z)//find the new turf
 			var/old_turf_dir_to_us = get_dir(last_turf, turf_to_check)
 			if(ISDIAGONALDIR(old_turf_dir_to_us))
 				for(var/i in 0 to 2)
