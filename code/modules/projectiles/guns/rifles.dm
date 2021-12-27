@@ -460,7 +460,7 @@
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/rifle/mpi_km
-	name = "\improper MPi-KM assault rifle"
+	name = "\improper AK-47 assault rifle"
 	desc = "A cheap and robust rifle, sometimes better known as an 'AK'. Chambers 7.62x39mm. Despite lacking attachment points, remains a popular product on the black market with its cheap cost and higher than usual caliber rounds."
 	icon_state = "ak47"
 	item_state = "ak47"

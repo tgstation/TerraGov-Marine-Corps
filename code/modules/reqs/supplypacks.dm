@@ -194,7 +194,7 @@ WEAPONS
 	cost = 10
 
 /datum/supply_packs/weapons/tesla
-	name = "Energy Ball Rifle"
+	name = "Tesla shock Rifle"
 	contains = list(
 		/obj/item/weapon/gun/energy/lasgun/tesla,
 		/obj/item/cell/lasgun/tesla,
@@ -815,7 +815,7 @@ MEDICAL
 	access = ACCESS_MARINE_MEDBAY
 
 /datum/supply_packs/medical/medvac
-	name = "medvac system"
+	name = "medEvac system"
 	contains = list(
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,
@@ -1066,12 +1066,12 @@ Imports
 	cost = 1
 
 /datum/supply_packs/imports/mp7
-	name = "MP7 SMG"
+	name = "MP27 SMG"
 	contains = list(/obj/item/weapon/gun/smg/mp7)
 	cost = 5
 
 /datum/supply_packs/imports/mp7/ammo
-	name = "MP7 SMG Ammo"
+	name = "MP27 SMG Ammo"
 	contains = list(/obj/item/ammo_magazine/smg/mp7)
 	cost = 1
 
@@ -1086,32 +1086,32 @@ Imports
 	cost = 1
 
 /datum/supply_packs/imports/skorpion
-	name = "Skorpion SMG"
+	name = "CZ-81 Skorpion SMG"
 	contains = list(/obj/item/weapon/gun/smg/skorpion)
 	cost = 15
 
 /datum/supply_packs/imports/skorpion/ammo
-	name = "Skorpion SMG Ammo"
+	name = "CZ-81 Skorpion SMG Ammo"
 	contains = list(/obj/item/ammo_magazine/smg/skorpion)
 	cost = 5
 
 /datum/supply_packs/imports/uzi
-	name = "GAL-9 SMG"
+	name = "MP-2 Uzi SMG"
 	contains = list(/obj/item/weapon/gun/smg/uzi)
 	cost = 5
 
 /datum/supply_packs/imports/uzi/ammo
-	name = "GAL-9 SMG Ammo"
+	name = "MP-2 Uzi SMG Ammo"
 	contains = list(/obj/item/ammo_magazine/smg/uzi)
 	cost = 1
 
 /datum/supply_packs/imports/ppsh
-	name = "PPSH SMG"
+	name = "PPSh-17 SMG"
 	contains = list(/obj/item/weapon/gun/smg/ppsh)
 	cost = 5
 
 /datum/supply_packs/imports/ppsh/ammo
-	name = "PPSH SMG Ammo Drum"
+	name = "PPSh-17 SMG Ammo Drum"
 	contains = list(/obj/item/ammo_magazine/smg/ppsh/extended)
 	cost = 1
 
@@ -1173,12 +1173,12 @@ Imports
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/imports/mpi_km
-	name = "MPi-KM Assault Rifle"
+	name = "AK-47 Assault Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/mpi_km)
 	cost = 5
 
 /datum/supply_packs/imports/mpi_km/ammo
-	name = "MPi-KM Assault Rifle Ammo"
+	name = "AK-47 Assault Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/mpi_km)
 	cost = 1
 
@@ -1208,12 +1208,12 @@ Imports
 	cost = 1
 
 /datum/supply_packs/imports/m16	//Vietnam time
-	name = "FN M16A Assault Rifle"
+	name = "FN M16A4 Assault Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m16)
 	cost = 5
 
 /datum/supply_packs/imports/m16/ammo
-	name = "FN M16A Assault Rifle Ammo"
+	name = "FN M16A4 Assault Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/m16)
 	cost = 1
 

@@ -122,7 +122,7 @@
 //MAR-40 AK CLONE //AK47 and FN FAL together as one.
 
 /obj/item/ammo_magazine/rifle/mpi_km
-	name = "\improper MPi-KM magazine (7.62x39mm)"
+	name = "\improper AK-47 magazine (7.62x39mm)"
 	desc = "A 7.62x39mm magazine for the Kalashnikov series of firearms."
 	caliber = CALIBER_762X39
 	icon_state = "ak47"
