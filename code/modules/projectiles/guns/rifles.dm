@@ -954,7 +954,7 @@
 	caliber = CALIBER_10x26_CASELESS //codex
 	max_shells = 300 //codex
 	force = 30
-	aim_slowdown = 0.95
+	aim_slowdown = 1 //you're not supposed to frontline with smart machine gun; you're supposed to be shooting behind marines. Jetpack all you want, but you will still be slow as heck. You want to frontline as smartgunner? Go T-25.
 	wield_delay = 1.3 SECONDS
 	fire_sound = "gun_smartgun"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
@@ -979,12 +979,12 @@
 	)
 
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/attachable/stock/t29stock, /obj/item/attachable/t29barrel)
 	gun_skill_category = GUN_SKILL_SMARTGUN //Uses SG skill for the penalties.
 	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 12, "stock_y" = 13)
 	fire_delay = 0.25 SECONDS
-	burst_amount = 0
+	burst_amount = 3
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1.2
 	scatter = -20
