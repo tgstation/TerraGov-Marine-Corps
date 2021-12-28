@@ -702,7 +702,7 @@ CLOTHING
 	cost = 2
 
 /datum/supply_packs/clothing/brown_vest
-	name = "brown_vest"
+	name = "brown vest"
 	contains = list(/obj/item/armor_module/storage/uniform/brown_vest)
 	cost = 2
 
@@ -1031,7 +1031,7 @@ Imports
 	cost = 5
 
 /datum/supply_packs/imports/m41a/ammo
-	name = "M41A Pulse Rifle Ammo"
+	name = "HK-11 Pulse Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/m41a)
 	cost = 1
 
