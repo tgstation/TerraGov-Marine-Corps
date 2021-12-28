@@ -6,6 +6,10 @@
 	requires_power = FALSE
 	base_lighting_alpha = 85
 
+/area/centcom/valhalla/exterior
+	name = "Exterior Area"
+	icon_state = "lv-626"
+
 /area/centcom/valhalla/aft
 	name = "Aft Maintenance"
 	icon_state = "amaint"

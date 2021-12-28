@@ -565,7 +565,7 @@
 "aJO" = (
 /obj/item/ore/iron,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "aKm" = (
 /turf/open/floor/carpet{
 	dir = 9;
@@ -680,7 +680,7 @@
 /obj/effect/decal/sandedge,
 /obj/structure/sign/nosmoking_1,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "aTC" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla/fore)
@@ -838,7 +838,7 @@
 "baz" = (
 /obj/structure/sign/vacuum,
 /turf/closed/wall,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "baT" = (
 /obj/machinery/status_display{
 	pixel_y = 32
@@ -1214,7 +1214,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark/gray,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "bBz" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/lights/mixed{
@@ -1325,7 +1325,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "bKw" = (
 /obj/item/stack/sheet/metal/large_stack,
 /turf/open/floor/plating{
@@ -1657,7 +1657,7 @@
 /obj/structure/barricade/wooden,
 /obj/effect/decal/sandytile/sandyplating,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "clq" = (
 /obj/structure/table,
 /obj/item/book/manual/chef_recipes,
@@ -2568,7 +2568,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "dgR" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 2
@@ -2854,7 +2854,7 @@
 "dwH" = (
 /obj/structure/girder,
 /turf/open/floor/plating/airless,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "dwT" = (
 /obj/structure/sign/securearea,
 /turf/closed/wall/r_wall/unmeltable,
@@ -2948,7 +2948,7 @@
 "dCV" = (
 /obj/effect/decal/sandytile/sandyplating,
 /turf/open/floor/plating/airless,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "dDT" = (
 /obj/structure/table/reinforced,
 /obj/effect/decal/warning_stripes/thick{
@@ -4173,7 +4173,7 @@
 /area/centcom/valhalla/primary/fore)
 "fmR" = (
 /turf/closed/mineral,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "fnG" = (
 /obj/structure/bedsheetbin,
 /obj/machinery/newscaster{
@@ -4426,7 +4426,7 @@
 "fHu" = (
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "fHG" = (
 /obj/structure/table,
 /obj/structure/reagent_dispensers/beerkeg,
@@ -4716,7 +4716,7 @@
 /area/centcom/valhalla/security/brig)
 "fWu" = (
 /turf/closed/wall/indestructible/mineral,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "fXm" = (
 /obj/item/explosive/grenade/flare/on,
 /obj/effect/landmark/start/job/fallen,
@@ -5730,7 +5730,7 @@
 "hFJ" = (
 /obj/structure/sign/vacuum,
 /turf/closed/wall/indestructible/mineral,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "hGj" = (
 /obj/effect/decal/tile/brown{
 	dir = 1
@@ -7703,7 +7703,7 @@
 /obj/effect/decal/sandytile/sandyplating,
 /obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "kzO" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 4
@@ -8206,7 +8206,7 @@
 "lmc" = (
 /obj/effect/decal/sandedge,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "lmK" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 1
@@ -10781,7 +10781,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "ovl" = (
 /obj/effect/decal/tile/black{
 	dir = 1
@@ -11546,7 +11546,7 @@
 "psT" = (
 /obj/item/ore/iron,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "psW" = (
 /obj/machinery/door/firedoor,
 /obj/effect/decal/warning_stripes/thick{
@@ -11603,7 +11603,7 @@
 /obj/item/ore/iron,
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "pwC" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/closed/wall/r_wall,
@@ -12018,7 +12018,7 @@
 /area/centcom/valhalla/starboard)
 "qcq" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "qcP" = (
 /obj/machinery/computer/atmoscontrol{
 	dir = 4
@@ -13423,7 +13423,7 @@
 	name = "WARNING: BLAST DOORS"
 	},
 /turf/closed/mineral,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "rII" = (
 /obj/effect/decal/warning_stripes/thick/corner,
 /obj/effect/decal/tile/black,
@@ -13726,7 +13726,7 @@
 /area/centcom/valhalla/quartermaster/storage)
 "sjH" = (
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "sjT" = (
 /obj/machinery/door/morgue{
 	dir = 1;
@@ -13739,7 +13739,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "skh" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -13838,7 +13838,7 @@
 /area/centcom/valhalla/secondary/exit)
 "snB" = (
 /turf/closed/wall/r_wall,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "sor" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 8
@@ -13926,7 +13926,7 @@
 /obj/structure/girder,
 /obj/effect/decal/sandytile/sandyplating,
 /turf/open/floor/plating/asteroidplating,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "syY" = (
 /obj/structure/sign/securearea,
 /turf/closed/wall/r_wall/unmeltable,
@@ -14161,7 +14161,7 @@
 "sQv" = (
 /obj/structure/sign/securearea,
 /turf/closed/mineral,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "sQA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -14454,7 +14454,7 @@
 /obj/item/ore/iron,
 /obj/effect/decal/sandytile/sandyplating,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "tjg" = (
 /obj/effect/decal/tile/brown,
 /turf/open/floor/tile/dark/gray,
@@ -16329,7 +16329,7 @@
 	dir = 4
 	},
 /turf/closed/mineral,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "vFf" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/space)
@@ -16353,7 +16353,7 @@
 "vFF" = (
 /obj/effect/decal/sandytile/sandyplating,
 /turf/open/floor/plating/ironsand,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "vFG" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -16966,7 +16966,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "wrk" = (
 /obj/structure/sink/kitchen{
 	desc = "A sink used for washing one's hands and face. It looks rusty and home-made";
@@ -17372,7 +17372,7 @@
 /area/centcom/valhalla/primary/starboard)
 "wQk" = (
 /turf/closed/wall,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "wQm" = (
 /obj/machinery/telecomms/broadcaster,
 /turf/open/floor/bcircuit,
@@ -18013,7 +18013,7 @@
 /obj/structure/barricade/wooden,
 /obj/effect/decal/sandytile/sandyplating,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "xEy" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
@@ -18235,7 +18235,7 @@
 /area/centcom/valhalla/security/checkpoint)
 "xOi" = (
 /turf/closed/wall/r_wall/unmeltable,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "xOY" = (
 /obj/structure/table/reinforced,
 /obj/structure/paper_bin,
@@ -18320,7 +18320,7 @@
 "xQq" = (
 /obj/structure/girder,
 /turf/open/floor/plating,
-/area/lv624/ground/caves/rock)
+/area/centcom/valhalla/exterior)
 "xQP" = (
 /obj/item/radio/intercom{
 	dir = 8;
