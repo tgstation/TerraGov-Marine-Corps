@@ -244,7 +244,7 @@
 	icon_state = "t29"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/smartmachinegun
-	max_rounds = 350
+	max_rounds = 300
 	reload_delay = 2.5 SECONDS
 	icon_state_mini = "mag_t29"
 
