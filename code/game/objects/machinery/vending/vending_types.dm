@@ -200,6 +200,54 @@
 /obj/machinery/vending/medical/rebel
 	req_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
 
+/obj/machinery/vending/medical/valhalla
+	req_access = list()
+	resistance_flags = INDESTRUCTIBLE
+	products = list(
+		"Hypospray" = list (
+			/obj/item/defibrillator = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = -1,
+			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = -1,
+		),
+		"Reagent Bottle" = list(
+			/obj/item/reagent_containers/glass/bottle/dylovene = -1,
+			/obj/item/reagent_containers/glass/bottle/bicaridine = -1,
+			/obj/item/reagent_containers/glass/bottle/inaprovaline = -1,
+			/obj/item/reagent_containers/glass/bottle/sleeptoxin = -1,
+			/obj/item/reagent_containers/glass/bottle/spaceacillin = -1,
+			/obj/item/reagent_containers/glass/bottle/peridaxon = -1,
+			/obj/item/reagent_containers/glass/bottle/kelotane = -1,
+			/obj/item/reagent_containers/glass/bottle/dexalin = -1,
+			/obj/item/reagent_containers/glass/bottle/tramadol = -1,
+			/obj/item/reagent_containers/glass/bottle/oxycodone = -1,
+			/obj/item/reagent_containers/glass/bottle/polyhexanide = -1,
+		),
+		"Pill Bottle" = list(
+			/obj/item/storage/pill_bottle/peridaxon = -1,
+			/obj/item/storage/pill_bottle/russian_red = -1,
+		),
+		"Heal Pack" = list(
+			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = -1,
+			/obj/item/stack/medical/heal_pack/advanced/burn_pack = -1,
+			/obj/item/stack/medical/heal_pack/ointment = -1,
+			/obj/item/stack/medical/heal_pack/gauze =1-1,
+			/obj/item/stack/medical/splint = -1,
+		),
+		"Misc" = list(
+			/obj/item/healthanalyzer = -1,
+			/obj/item/clothing/glasses/hud/health = -1,
+			/obj/item/storage/belt/medical = -1,
+			/obj/item/reagent_containers/syringe = -1,
+			/obj/item/tool/research/xeno_analyzer = -1,
+			/obj/item/tool/research/excavation_tool = -1,
+			/obj/item/reagent_containers/glass/beaker/bluespace = -1,
+		),
+	)
+
+
 //This one's from bay12
 /obj/machinery/vending/phoronresearch
 	name = "Toximate 3000"

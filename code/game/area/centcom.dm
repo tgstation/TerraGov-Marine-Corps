@@ -65,3 +65,10 @@
 
 /area/centcom/practice/medical
 	name = "Medical Practice Center"
+
+/area/valhalla
+	name = "Valhalla"
+	icon_state = "centcom"
+	requires_power = FALSE
+	static_lighting = FALSE
+	base_lighting_alpha = 255
