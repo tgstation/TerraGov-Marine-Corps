@@ -371,7 +371,12 @@ WEAPONS
 	cost = 40
 
 /datum/supply_packs/weapons/smartmachinegun
-	name = "T-29 smartmachinegun ammo"
+	name = "T-29 standard drum magazine"
+	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
+	cost = 5
+
+/datum/supply_packs/weapons/smartmachinegun
+	name = "T-29 extended drum magazine"
 	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
 	cost = 5
 
