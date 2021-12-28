@@ -325,3 +325,12 @@
   novaepee:
   - rscadd: Give requisition overwatch!
   - qol: RO doesn't have to run to CIC anymore
+2021-12-28:
+  Pill-U:
+  - balance: Change mini pepperball magazine size from 3 to 2
+  Verlurk:
+  - bugfix: Alamo console spelling error rectified.
+  novaepee:
+  - qol: infinite fire extinguishers are now in vendors! Find it in the Specialized
+      tab under flamethrowers. I wonder why I put infinite fire extinguishers underneath
+      flamethrowers.
