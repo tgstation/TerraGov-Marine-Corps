@@ -194,7 +194,7 @@ WEAPONS
 	cost = 10
 
 /datum/supply_packs/weapons/tesla
-	name = "Tesla shock Rifle"
+	name = "Tesla Shock Rifle"
 	contains = list(
 		/obj/item/weapon/gun/energy/lasgun/tesla,
 		/obj/item/cell/lasgun/tesla,
@@ -1106,12 +1106,12 @@ Imports
 	cost = 1
 
 /datum/supply_packs/imports/ppsh
-	name = "PPSh-17 SMG"
+	name = "PPSh-17b SMG"
 	contains = list(/obj/item/weapon/gun/smg/ppsh)
 	cost = 5
 
 /datum/supply_packs/imports/ppsh/ammo
-	name = "PPSh-17 SMG Ammo Drum"
+	name = "PPSh-17b SMG Ammo Drum"
 	contains = list(/obj/item/ammo_magazine/smg/ppsh/extended)
 	cost = 1
 
