@@ -434,7 +434,8 @@
 	icon_state = "pump_map-2"
 
 /obj/structure/prop/mainship/pipeprop/pump/on
-	icon_state =  "pump_on_map-2"
+	icon_state =  "pump_on"
+	layer = GAS_PUMP_LAYER
 
 //items props
 
