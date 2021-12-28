@@ -252,6 +252,10 @@
 	name = "Brig"
 	icon_state = "brig"
 
+/area/centcom/valhalla/security/checkpoint
+	name = "Brig"
+	icon_state = "brig"
+
 /area/centcom/valhalla/security/brig/interiorcavern
 	name = "Brig"
 	icon_state = "brig"

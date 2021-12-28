@@ -393,3 +393,9 @@
 /obj/machinery/chem_master/condimaster
 	name = "CondiMaster 3000"
 	condi = TRUE
+
+/obj/machinery/chem_master/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/chem_master/condimaster/nopower
+	use_power = NO_POWER_USE

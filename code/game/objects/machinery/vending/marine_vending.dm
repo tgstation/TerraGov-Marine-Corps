@@ -329,6 +329,7 @@
 
 /obj/machinery/vending/weapon/valhalla
 	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
 	products = list(
 		"Rifles" = list(
 			/obj/item/weapon/gun/rifle/standard_assaultrifle = -1,
@@ -821,6 +822,7 @@
 
 /obj/machinery/vending/MarineMed/valhalla
 	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
 	products = list(
 		"Pill Bottle" = list(
 			/obj/item/storage/pill_bottle/bicaridine = -1,
@@ -1056,6 +1058,7 @@
 
 /obj/machinery/vending/armor_supply/valhalla
 	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
 
 /obj/machinery/vending/uniform_supply
 	name = "\improper Surplus Clothing Vendor"
@@ -1180,6 +1183,7 @@
 
 /obj/machinery/vending/uniform_supply/valhalla
 	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
 
 /obj/machinery/vending/dress_supply
 	name = "\improper TerraGovTech dress uniform vendor"
@@ -1200,12 +1204,14 @@
 
 /obj/machinery/vending/dress_supply/valhalla
 	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
 
 /obj/machinery/vending/valhalla_req
 	name = "\improper TerraGovTech requisition vendor"
 	desc = "A automated rack hooked up to a colossal storage of items."
 	icon_state = "synth"
 	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
 	products = list(
 		"Weapon" = list(
 			/obj/item/weapon/gun/energy/lasgun/tesla = -1,
@@ -1269,3 +1275,5 @@
 		)
 	)
 
+/obj/machinery/vending/cigarette/nopower
+	use_power = NO_POWER_USE
