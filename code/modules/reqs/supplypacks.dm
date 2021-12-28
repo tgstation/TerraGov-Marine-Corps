@@ -1173,12 +1173,12 @@ Imports
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/imports/mpi_km
-	name = "MPi_KM Assault Rifle"
+	name = "MPi-KM Assault Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/mpi_km)
 	cost = 5
 
 /datum/supply_packs/imports/mpi_km/ammo
-	name = "MPi_KM Assault Rifle Ammo"
+	name = "MPi-KM Assault Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/mpi_km)
 	cost = 1
 
