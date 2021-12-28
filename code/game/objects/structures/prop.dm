@@ -220,15 +220,15 @@
 	resistance_flags = RESIST_ALL //no delaminations here
 
 
-/obj/structure/prop/mainship/supermatter/proc/Consume(atom/movable/consumed_object)
+/obj/structure/prop/mainship/supermatter/proc/consume(atom/movable/consumed_object) //dust() and destroy living mobs, qdel thrown objects
 	if(isliving(consumed_object))
 		var/mob/living/consumed_mob = consumed_object
-		consumed_mob.dust()
+		consumed_mob.dust() //dust() plays a dusting animation and sets the mob to dead
 	else if(isobj(consumed_object))
-		qdel(consumed_object)
+		qdel(consumed_object) //we cannot dust() objects so we just delete them
 
 /obj/structure/prop/mainship/supermatter/Bumped(atom/movable/hit_object)
-	if(isliving(hit_object))
+	if(isliving(hit_object)) //living objects get a nifty message about heat
 		hit_object.visible_message(span_danger("\The [hit_object] slams into \the [src] inducing a resonance... [hit_object.p_their()] body starts to glow and burst into flames before flashing into dust!"),
 			span_userdanger("You slam into \the [src] as your ears are filled with unearthly ringing. Your last thought is \"Oh, fuck.\""),
 			span_hear("You hear an unearthly noise as a wave of heat washes over you."))
@@ -239,7 +239,7 @@
 		return
 
 	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, TRUE)
-	Consume(hit_object)
+	consume(hit_object) //all bumped objects get consume() called on them
 
 /obj/structure/prop/mainship/radiationcollector
 	name = "Radiation Collector Array"
@@ -309,6 +309,9 @@
 
 /obj/structure/prop/mainship/protolathe/security
 	name = "Security Protolathe"
+
+/obj/structure/prop/mainship/protolathe/service
+	name = "Service Protolathe"
 
 /obj/structure/prop/mainship/cannon_cables/ex_act()
 	return
@@ -381,19 +384,19 @@
 	resistance_flags = RESIST_ALL
 	mouse_opacity = 0
 
-/obj/structure/prop/mainship/meterprop/empty
+/obj/structure/prop/mainship/meterprop/
 	name = "meter"
 	desc = "That's a gas flow meter. It measures something."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "propmeterempty"
 	resistance_flags = RESIST_ALL
+	density = FALSE
+
+/obj/structure/prop/mainship/meterprop/empty
+	icon_state = "propmeterempty"
 
 /obj/structure/prop/mainship/meterprop/random
-	name = "meter"
-	icon = 'icons/Marine/mainship_props.dmi'
-	desc = "That's a gas flow meter. It measures something."
 	icon_state = "propmeter"
-	resistance_flags = RESIST_ALL
 	var/kpa //fake temperatures and pressures for our meter
 	var/kelvin
 
@@ -409,6 +412,29 @@
 	. = ..()
 	kpa = rand(9.3, 21.4)
 	kelvin = rand(10.3, 28.4) 
+
+/obj/structure/prop/mainship/pipeprop //does not init and so doesn't generate lag at all
+	name = "pipe"
+	desc = "A one meter section of regular pipe."
+	icon = 'icons/obj/atmospherics/pipes/simple.dmi'
+	icon_state = "pipe11-2"
+	density = FALSE
+	layer = GAS_PIPE_VISIBLE_LAYER
+
+/obj/structure/prop/mainship/pipeprop/manifold
+	name = "pipe manifold"
+	desc = "A manifold composed of regular pipes."
+	icon = 'icons/obj/atmospherics/pipes/manifold.dmi'
+	icon_state = "manifold-2"
+
+/obj/structure/prop/mainship/pipeprop/pump
+	name = "pipe manifold"
+	desc = "A pump that moves gas by pressure."
+	icon = 'icons/obj/atmospherics/components/binary_devices.dmi'
+	icon_state = "pump_map-2"
+
+/obj/structure/prop/mainship/pipeprop/pump/on
+	icon_state =  "pump_on_map-2"
 
 //items props
 

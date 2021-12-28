@@ -4,20 +4,21 @@
 	opacity = FALSE
 	density = FALSE
 	layer = WALL_OBJ_LAYER
-	var/directional = TRUE
+	var/directional = TRUE //if true init to a given x/y offset on a wall, if not leave floating in space. used for multiple signs on a wall to prevent them all from moving to the same offset and overlapping/becoming unreadable
 
 /obj/structure/sign/Initialize()
 	. = ..()
-	if(directional)
-		switch(dir)
-			if(NORTH)
-				pixel_y = 32
-			if(SOUTH)
-				pixel_y = -32
-			if(EAST)
-				pixel_x = 30
-			if(WEST)
-				pixel_x = -30
+	if(!directional) //if not directional do not initialize to a x or y offset
+		return
+	switch(dir)
+		if(NORTH)
+			pixel_y = 32
+		if(SOUTH)
+			pixel_y = -32
+		if(EAST)
+			pixel_x = 30
+		if(WEST)
+			pixel_x = -30
 
 /obj/structure/sign/ex_act(severity)
 	switch(severity)
