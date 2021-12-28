@@ -247,6 +247,9 @@
 	name = "\improper lightweight IMP backpack"
 	desc = "The standard-issue pack of the TGMC forces. Designed to slug gear into the battlefield."
 	icon_state = "marinepack"
+	bypass_w_limit = list(
+		/obj/item/ammo_magazine/extended_smartmachinegun
+	)
 
 /obj/item/storage/backpack/marine/standard
 	name = "\improper lightweight IMP backpack"
@@ -352,6 +355,9 @@
 	name = "\improper TGMC satchel"
 	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel."
 	icon_state = "marinesat"
+	bypass_w_limit = list(
+		/obj/item/ammo_magazine/extended_smartmachinegun
+	)
 	storage_slots = null
 	max_storage_space = 15
 	access_delay = 0
@@ -731,6 +737,9 @@
 	name = "\improper lightweight combat pack"
 	desc = "A small lightweight pack for expeditions and short-range operations."
 	icon_state = "ERT_satchel"
+	bypass_w_limit = list(
+		/obj/item/ammo_magazine/extended_smartmachinegun
+	)
 	access_delay = 0
 
 /obj/item/storage/backpack/commando

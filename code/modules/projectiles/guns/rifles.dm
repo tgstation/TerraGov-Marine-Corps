@@ -952,7 +952,7 @@
 	icon_state = "t29"
 	item_state = "t29"
 	caliber = CALIBER_10x26_CASELESS //codex
-	max_shells = 300 //codex
+	max_shells = 350 //codex
 	force = 30
 	aim_slowdown = 0.95
 	wield_delay = 1.3 SECONDS
@@ -961,7 +961,7 @@
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/standard_smartmachinegun
-	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_smartmachinegun)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_smartmachinegun, /obj/item/ammo_magazine/extended_smartmachinegun)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,

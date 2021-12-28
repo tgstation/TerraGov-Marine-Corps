@@ -235,16 +235,30 @@
 	icon_state_mini = "mag_tx15_slug"
 
 //-------------------------------------------------------
-//SMARTMACHINEGUN AMMUNITION
+//SMARTMACHINEGUN 200 AMMUNITION
 
 /obj/item/ammo_magazine/standard_smartmachinegun
-	name = "\improper T-29 drum magazine (10x26mm)"
+	name = "\improper T-29 standard drum magazine (10x26mm)"
 	desc = "A 10mm drum magazine."
 	caliber = CALIBER_10x26_CASELESS
 	icon_state = "t29"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/smartmachinegun
 	max_rounds = 200
+	reload_delay = 1.75 SECONDS
+	icon_state_mini = "mag_t29"
+
+//-------------------------------------------------------
+//SMARTMACHINEGUN 350 AMMUNITION
+
+/obj/item/ammo_magazine/extended_smartmachinegun
+	name = "\improper T-29 extended drum magazine (10x26mm)"
+	desc = "A 10mm drum magazine. Larger than its precursor, but harder to ruck with!"
+	caliber = CALIBER_10x26_CASELESS
+	icon_state = "300t29"
+	w_class = WEIGHT_CLASS_BULKY
+	default_ammo = /datum/ammo/bullet/smartmachinegun
+	max_rounds = 350
 	reload_delay = 2.5 SECONDS
 	icon_state_mini = "mag_t29"
 
