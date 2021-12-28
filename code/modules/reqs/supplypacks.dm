@@ -1213,7 +1213,7 @@ Imports
 	cost = 5
 
 /datum/supply_packs/imports/m16/ammo
-	name = "FN M16A4 Assault Rifle Ammo"
+	name = "FN M16 Assault Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/m16)
 	cost = 1
 
