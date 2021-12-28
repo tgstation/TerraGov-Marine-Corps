@@ -815,7 +815,7 @@ MEDICAL
 	access = ACCESS_MARINE_MEDBAY
 
 /datum/supply_packs/medical/medvac
-	name = "medEvac system"
+	name = "MEDEVAC system"
 	contains = list(
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,
