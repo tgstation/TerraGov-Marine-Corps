@@ -7246,7 +7246,7 @@
 /obj/item/reagent_containers/food/snacks/flour,
 /obj/item/reagent_containers/food/drinks/milk,
 /obj/item/reagent_containers/food/snacks/flour,
-/obj/structure/closet/secure_closet/freezer/kitchen/nopower,
+/obj/structure/closet/secure_closet/freezer/kitchen,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},

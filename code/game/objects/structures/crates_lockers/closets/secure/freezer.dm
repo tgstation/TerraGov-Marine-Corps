@@ -23,9 +23,6 @@
 	name = "Kitchen Cabinet"
 	req_access = list(ACCESS_CIVILIAN_PUBLIC)
 
-/obj/structure/closet/secure_closet/freezer/kitchen/nopower
-	use_power = NO_POWER_USE
-
 /obj/structure/closet/secure_closet/freezer/kitchen/Initialize()
 	. = ..()
 	for(var/i in 1 to 6)
