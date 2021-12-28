@@ -103,7 +103,6 @@
 			/obj/item/stack/throwing_knife = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
-			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
 		"Grenades" = list(
 			/obj/item/explosive/grenade = 600,
@@ -262,7 +261,6 @@
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/stack/throwing_knife = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
-			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
 		"Grenades" = list(
 			/obj/item/explosive/grenade = 600,
