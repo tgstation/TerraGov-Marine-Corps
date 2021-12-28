@@ -108,8 +108,8 @@
 	src.link_range = link_range
 	src.redirect_mod = redirect_mod
 	src.minimum_health = minimum_health
-	ADD_TRAIT(target_mob, TRAIT_PSY_LINKED, id)
-	ADD_TRAIT(owner, TRAIT_PSY_LINKED, id)
+	ADD_TRAIT(target_mob, TRAIT_PSY_LINKED, TRAIT_STATUS_EFFECT(id))
+	ADD_TRAIT(owner, TRAIT_PSY_LINKED, TRAIT_STATUS_EFFECT(id))
 	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/handle_mob_dead)
 	RegisterSignal(target_mob, COMSIG_MOB_DEATH, .proc/handle_mob_dead)
 	RegisterSignal(target_mob, COMSIG_XENOMORPH_BURN_DAMAGE, .proc/handle_burn_damage)
@@ -127,8 +127,8 @@
 /datum/status_effect/xeno_psychic_link/on_remove()
 	. = ..()
 	UnregisterSignal(target_mob, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
-	REMOVE_TRAIT(target_mob, TRAIT_PSY_LINKED, id)
-	REMOVE_TRAIT(owner, TRAIT_PSY_LINKED, id)
+	REMOVE_TRAIT(target_mob, TRAIT_PSY_LINKED, TRAIT_STATUS_EFFECT(id))
+	REMOVE_TRAIT(owner, TRAIT_PSY_LINKED, TRAIT_STATUS_EFFECT(id))
 	owner.remove_filter(id)
 	target_mob.remove_filter(id)
 	to_chat(target_mob, span_xenonotice("[owner] has unlinked from you."))
