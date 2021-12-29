@@ -15,6 +15,7 @@
 
 /obj/item/storage/internal/webbing
 	max_w_class = WEIGHT_CLASS_SMALL
+	storage_slots = 3
 	bypass_w_limit = list(
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/ammo_magazine/smg,
