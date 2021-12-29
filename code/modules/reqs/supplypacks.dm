@@ -670,6 +670,11 @@ CLOTHING
 	contains = list(/obj/item/storage/backpack/marine/engineerpack)
 	cost = 5
 
+/datum/supply_packs/clothing/radio_pack
+	name = "Radio Operator Pack"
+	contains = list(/obj/item/storage/backpack/marine/radiopack)
+	cost = 5
+
 /datum/supply_packs/clothing/technician_pack
 	name = "Engineering Technician Pack"
 	contains = list(/obj/item/storage/backpack/marine/tech)
