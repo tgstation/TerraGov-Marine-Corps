@@ -367,12 +367,14 @@
 	var/fuel_used = 5
 	///additional damage when weapon is active
 	var/additional_damage = 75
-	///crowdcontrol values
-	var/datum/staggerstun
-		var/stun = 1
-		var/weaken = 2
-		var/stagger = 2
-		var/knockback = 0
+	///stun value
+	var/stun = 1
+	///weaken value
+	var/weaken = 2
+	///stagger value
+	var/stagger = 2
+	///knockback value
+	var/knockback = 0
 
 /obj/item/weapon/twohanded/rocketsledge/Initialize()
 	. = ..()
