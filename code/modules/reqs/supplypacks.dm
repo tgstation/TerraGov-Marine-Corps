@@ -194,7 +194,7 @@ WEAPONS
 	cost = 10
 
 /datum/supply_packs/weapons/tesla
-	name = "Energy Ball Rifle"
+	name = "Tesla Shock Rifle"
 	contains = list(
 		/obj/item/weapon/gun/energy/lasgun/tesla,
 		/obj/item/cell/lasgun/tesla,
@@ -317,7 +317,7 @@ WEAPONS
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/autosniper
-	name = "IFF Auto Sniper kit"
+	name = "T-81 IFF Auto Sniper kit"
 	contains = list(/obj/item/weapon/gun/rifle/standard_autosniper)
 	cost = 30
 	available_against_xeno_only = TRUE
@@ -702,7 +702,7 @@ CLOTHING
 	cost = 2
 
 /datum/supply_packs/clothing/brown_vest
-	name = "brown_vest"
+	name = "brown vest"
 	contains = list(/obj/item/armor_module/storage/uniform/brown_vest)
 	cost = 2
 
@@ -815,7 +815,7 @@ MEDICAL
 	access = ACCESS_MARINE_MEDBAY
 
 /datum/supply_packs/medical/medvac
-	name = "medvac system"
+	name = "MEDEVAC system"
 	contains = list(
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,
@@ -1026,12 +1026,12 @@ Imports
 	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/imports/m41a
-	name = "M41A Pulse Rifle"
+	name = "HK-11 Pulse Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m41a)
 	cost = 5
 
 /datum/supply_packs/imports/m41a/ammo
-	name = "M41A Pulse Rifle Ammo"
+	name = "HK-11 Pulse Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/m41a)
 	cost = 1
 
@@ -1066,12 +1066,12 @@ Imports
 	cost = 1
 
 /datum/supply_packs/imports/mp7
-	name = "MP7 SMG"
+	name = "MP27 SMG"
 	contains = list(/obj/item/weapon/gun/smg/mp7)
 	cost = 5
 
 /datum/supply_packs/imports/mp7/ammo
-	name = "MP7 SMG Ammo"
+	name = "MP27 SMG Ammo"
 	contains = list(/obj/item/ammo_magazine/smg/mp7)
 	cost = 1
 
@@ -1086,32 +1086,32 @@ Imports
 	cost = 1
 
 /datum/supply_packs/imports/skorpion
-	name = "Skorpion SMG"
+	name = "CZ-81 Skorpion SMG"
 	contains = list(/obj/item/weapon/gun/smg/skorpion)
 	cost = 15
 
 /datum/supply_packs/imports/skorpion/ammo
-	name = "Skorpion SMG Ammo"
+	name = "CZ-81 Skorpion SMG Ammo"
 	contains = list(/obj/item/ammo_magazine/smg/skorpion)
 	cost = 5
 
 /datum/supply_packs/imports/uzi
-	name = "GAL-9 SMG"
+	name = "MP-2 Uzi SMG"
 	contains = list(/obj/item/weapon/gun/smg/uzi)
 	cost = 5
 
 /datum/supply_packs/imports/uzi/ammo
-	name = "GAL-9 SMG Ammo"
+	name = "MP-2 Uzi SMG Ammo"
 	contains = list(/obj/item/ammo_magazine/smg/uzi)
 	cost = 1
 
 /datum/supply_packs/imports/ppsh
-	name = "PPSH SMG"
+	name = "PPSh-17b SMG"
 	contains = list(/obj/item/weapon/gun/smg/ppsh)
 	cost = 5
 
 /datum/supply_packs/imports/ppsh/ammo
-	name = "PPSH SMG Ammo Drum"
+	name = "PPSh-17b SMG Ammo Drum"
 	contains = list(/obj/item/ammo_magazine/smg/ppsh/extended)
 	cost = 1
 
@@ -1208,12 +1208,12 @@ Imports
 	cost = 1
 
 /datum/supply_packs/imports/m16	//Vietnam time
-	name = "FN M16A Assault Rifle"
+	name = "FN M16A4 Assault Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m16)
 	cost = 5
 
 /datum/supply_packs/imports/m16/ammo
-	name = "FN M16A Assault Rifle Ammo"
+	name = "FN M16 Assault Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/m16)
 	cost = 1
 
