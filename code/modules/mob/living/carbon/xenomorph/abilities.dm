@@ -118,6 +118,9 @@
 		return FALSE
 	return ..()
 
+/datum/action/xeno_action/activable/plant_weeds/ranged/should_show()
+	return !(owner.status_flags & INCORPOREAL)
+
 // Secrete Resin
 /datum/action/xeno_action/activable/secrete_resin
 	name = "Secrete Resin"
