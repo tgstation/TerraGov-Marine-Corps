@@ -160,7 +160,7 @@ WEAPONS
 	contains = list(/obj/item/storage/box/sentry)
 	cost = 40
 
-/datum/supply_packs/weapons/sentry
+/datum/supply_packs/weapons/sentry_ammo
 	name = "UA 571-C sentry ammunition"
 	contains = list(/obj/item/ammo_magazine/sentry)
 	cost = 10
@@ -170,7 +170,7 @@ WEAPONS
 	contains = list(/obj/item/storage/box/minisentry)
 	cost = 40
 
-/datum/supply_packs/weapons/minisentry
+/datum/supply_packs/weapons/minisentry_ammo
 	name = "UA-580 point defense sentry ammo"
 	contains = list(/obj/item/ammo_magazine/minisentry)
 	cost = 10
@@ -234,7 +234,7 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/rifle/railgun)
 	cost = 40
 
-/datum/supply_packs/weapons/railgun
+/datum/supply_packs/weapons/railgun_ammo
 	name = "Railgun round"
 	contains = list(/obj/item/ammo_magazine/railgun)
 	cost = 3
@@ -269,7 +269,7 @@ WEAPONS
 	cost = 50
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/weapons/thermobaric
+/datum/supply_packs/weapons/thermobaric_wp
 	name = "T-57 Thermobaric WP rocket array"
 	contains = list(/obj/item/ammo_magazine/rocket/m57a4)
 	cost = 5
@@ -334,7 +334,7 @@ WEAPONS
 	cost = 75
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/weapons/antimaterial
+/datum/supply_packs/weapons/antimaterial_ammo
 	name = "T-26 AMR magazine"
 	contains = list(/obj/item/ammo_magazine/sniper)
 	cost = 5
@@ -355,12 +355,12 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/standard_mmg)
 	cost = 10
 
-/datum/supply_packs/weapons/mmg
+/datum/supply_packs/weapons/hmg
 	name = "MG-08/495 heavy machinegun"
 	contains = list(/obj/item/weapon/gun/heavymachinegun)
 	cost = 30
 
-/datum/supply_packs/weapons/hmg
+/datum/supply_packs/weapons/hmg_ammo
 	name = "MG-08/495 heavy machinegun ammo"
 	contains = list(/obj/item/ammo_magazine/heavymachinegun)
 	cost = 7
@@ -370,7 +370,7 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
 	cost = 40
 
-/datum/supply_packs/weapons/smartmachinegun
+/datum/supply_packs/weapons/smartgun_ammo
 	name = "T-29 smartmachinegun ammo"
 	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
 	cost = 5
@@ -380,7 +380,7 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/rifle/standard_smartrifle)
 	cost = 40
 
-/datum/supply_packs/weapons/smartrifle
+/datum/supply_packs/weapons/smartrifle_ammo
 	name = "T-25 smartrifle magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_smartrifle)
 	cost = 2
@@ -424,7 +424,7 @@ WEAPONS
 	cost = 15
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/weapons/mateba
+/datum/supply_packs/weapons/mateba_ammo
 	name = "Mateba magazine"
 	contains = list(/obj/item/ammo_magazine/revolver/mateba)
 	cost = 3
