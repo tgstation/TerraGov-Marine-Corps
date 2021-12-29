@@ -1,4 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - code_imp: "changes alot of how line_of_sight() works, making line of sights checks be an actual line, instead of some test that sometimes blocked some places you could see, still can happen but less"
