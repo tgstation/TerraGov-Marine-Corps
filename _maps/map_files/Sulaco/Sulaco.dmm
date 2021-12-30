@@ -14025,6 +14025,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
+/mob/living/simple_animal/corgi/walten,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
