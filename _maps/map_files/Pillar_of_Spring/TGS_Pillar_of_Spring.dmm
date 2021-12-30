@@ -2906,6 +2906,11 @@
 	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
+"jF" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/mainship/hallways/hangar)
 "jG" = (
 /obj/effect/decal/siding{
 	dir = 8
@@ -3672,6 +3677,12 @@
 /obj/machinery/computer/emails,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
+"lM" = (
+/turf/open/floor/plating{
+	dir = 4;
+	icon_state = "warnplatecorner"
+	},
+/area/mainship/hallways/hangar)
 "lN" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -4214,6 +4225,9 @@
 /obj/machinery/body_scanconsole,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
+"nv" = (
+/turf/open/floor/plating/icefloor/warnplate,
+/area/mainship/hallways/hangar)
 "nw" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
@@ -5314,6 +5328,11 @@
 "rg" = (
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/starboard_hallway)
+"ri" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/mainship/hallways/hangar)
 "rj" = (
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/mainship/mono,
@@ -5773,6 +5792,12 @@
 "sG" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/hallways/starboard_hallway)
+"sH" = (
+/turf/open/floor/plating{
+	dir = 8;
+	icon_state = "warnplatecorner"
+	},
+/area/mainship/hallways/hangar)
 "sI" = (
 /obj/machinery/door/airlock/mainship/command/officer{
 	dir = 2
@@ -5831,6 +5856,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"sP" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/mainship/hallways/hangar)
 "sQ" = (
 /obj/machinery/door/airlock/mainship/marine/general/smart,
 /obj/machinery/door/firedoor/mainship,
@@ -8703,6 +8733,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"Bq" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 5
+	},
+/area/mainship/hallways/hangar)
 "Br" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
@@ -12783,6 +12818,12 @@
 	dir = 8
 	},
 /area/mainship/living/cryo_cells)
+"Nv" = (
+/obj/effect/attach_point/weapon/dropship1,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/mainship/hallways/hangar)
 "Nw" = (
 /obj/structure/cable,
 /obj/machinery/light/small{
@@ -13036,6 +13077,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
+"Oi" = (
+/obj/effect/attach_point/electronics/dropship1,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/mainship/hallways/hangar)
 "Oj" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -15811,6 +15858,11 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space)
+"Xa" = (
+/turf/open/floor/plating{
+	icon_state = "warnplatecorner"
+	},
+/area/mainship/hallways/hangar)
 "Xc" = (
 /obj/machinery/light{
 	dir = 1
@@ -16219,6 +16271,11 @@
 	},
 /turf/open/shuttle/escapepod/four,
 /area/mainship/command/self_destruct)
+"Yk" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 9
+	},
+/area/mainship/hallways/hangar)
 "Yl" = (
 /obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/mainship/cargo/arrow{
@@ -16496,6 +16553,11 @@
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
+"Zd" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/mainship/hallways/hangar)
 "Ze" = (
 /obj/machinery/vending/medical,
 /obj/machinery/light{
@@ -16613,6 +16675,11 @@
 	dir = 8
 	},
 /area/mainship/medical/chemistry)
+"ZA" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/mainship/hallways/hangar)
 "ZC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship/mono,
@@ -43321,25 +43388,25 @@ fd
 aZ
 bh
 bh
-bh
-bh
-bh
+Xa
+Zd
+jF
 bh
 bh
 cR
+Bq
+Zd
+Zd
+Zd
+Zd
+jF
 bh
 bh
 bh
 bh
 bh
-bh
-bh
-bh
-bh
-bh
-bh
-bh
-bh
+ZA
+Zd
 Yf
 YS
 ap
@@ -43578,7 +43645,7 @@ eJ
 aS
 bh
 bh
-bh
+nv
 bA
 bh
 bh
@@ -43595,8 +43662,8 @@ bh
 bh
 bh
 bh
-bh
-bh
+ZA
+ZA
 PX
 mh
 GQ
@@ -43833,9 +43900,9 @@ fn
 ap
 eJ
 aT
-bh
-bh
-bh
+Zd
+Zd
+jF
 bB
 bh
 bh
@@ -43852,8 +43919,8 @@ bh
 bh
 bh
 bh
-bh
-bh
+ZA
+ZA
 QM
 YS
 ap
@@ -44090,6 +44157,7 @@ dA
 ap
 eJ
 aV
+ZA
 bh
 bh
 bh
@@ -44108,9 +44176,8 @@ bh
 bh
 bh
 bh
-bh
-bh
-bh
+sP
+lM
 VA
 YS
 ap
@@ -44347,6 +44414,7 @@ az
 VN
 eJ
 aZ
+ZA
 bh
 bh
 bh
@@ -44365,9 +44433,8 @@ bh
 bh
 bh
 bh
-bh
-bh
-bh
+Yk
+sP
 kH
 qE
 ap
@@ -44604,7 +44671,7 @@ az
 ap
 eJ
 aS
-bh
+ZA
 bh
 bh
 bh
@@ -44623,7 +44690,7 @@ bh
 bh
 bh
 bh
-bh
+ZA
 bh
 kI
 fB
@@ -44861,6 +44928,7 @@ az
 ac
 eJ
 aT
+ZA
 bh
 bh
 bh
@@ -44879,9 +44947,8 @@ bh
 bh
 bh
 bh
-bh
-bh
-bh
+Bq
+Zd
 kJ
 qE
 ap
@@ -45118,6 +45185,7 @@ az
 Zx
 eJ
 aV
+ZA
 bh
 bh
 bh
@@ -45136,9 +45204,8 @@ bh
 bh
 bh
 bh
-bh
-bh
-bh
+Zd
+sH
 VA
 YS
 ap
@@ -45375,13 +45442,10 @@ oa
 se
 eJ
 aZ
-bh
-bh
-bh
-bB
-bh
-bh
-bh
+sP
+sP
+sP
+Oi
 bh
 bh
 bh
@@ -45396,6 +45460,9 @@ bh
 bh
 bh
 bh
+bh
+ZA
+ZA
 Yf
 YS
 ap
@@ -45635,7 +45702,7 @@ bb
 bh
 bh
 bh
-bA
+Nv
 bh
 bh
 bh
@@ -45651,8 +45718,8 @@ bh
 bh
 bh
 bh
-bh
-bh
+ZA
+ZA
 PX
 YS
 Np
@@ -45892,24 +45959,24 @@ aT
 bh
 bh
 bh
+sP
+sP
+ZA
+bh
+bh
+Yk
+sP
+sP
+sP
+sP
+ri
 bh
 bh
 bh
 bh
 bh
-bh
-bh
-bh
-bh
-bh
-bh
-bh
-bh
-bh
-bh
-bh
-bh
-bh
+ZA
+sP
 QM
 YS
 ap
