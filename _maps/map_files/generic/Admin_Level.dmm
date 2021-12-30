@@ -7925,10 +7925,6 @@
 "kMT" = (
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
-"kNy" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/space/basic,
-/area/centcom/valhalla/primary/aft)
 "kPi" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -10086,9 +10082,7 @@
 /obj/machinery/door/airlock/mainship/medical/free_access{
 	dir = 2
 	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 9
-	},
+/turf/open/floor/mainship/sterile,
 /area/centcom/valhalla/medical/medbay)
 "nMc" = (
 /obj/effect/decal/warning_stripes/thick{
@@ -12555,14 +12549,6 @@
 	icon_state = "platingdmg2"
 	},
 /area/centcom/valhalla/port)
-"qVj" = (
-/obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/mainship/open{
-	id = "MedbayFoyer";
-	name = "Operating Room Privacy Shutters"
-	},
-/turf/open/space/basic,
-/area/centcom/valhalla/medical/medbay)
 "qVp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
@@ -14120,10 +14106,6 @@
 	dir = 1
 	},
 /area/centcom/valhalla/medical/medbay)
-"tfg" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/space/basic,
-/area/centcom/valhalla/secondary/entry)
 "tfU" = (
 /obj/structure/extinguisher_cabinet,
 /obj/structure/closet/secure_closet/medical_doctor,
@@ -17940,10 +17922,6 @@
 "xzU" = (
 /turf/open/floor/plating,
 /area/centcom/valhalla/starboard)
-"xAi" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/space/basic,
-/area/centcom/valhalla/engine/atmos_monitoring)
 "xAJ" = (
 /obj/structure/sign/securearea,
 /turf/closed/mineral,
@@ -25303,7 +25281,7 @@ tQh
 vka
 vZJ
 wMc
-xAi
+vjO
 xWH
 sJK
 jQD
@@ -25441,7 +25419,7 @@ vLH
 kQR
 vlt
 wMo
-xAi
+vjO
 xXb
 dTl
 qjg
@@ -28780,7 +28758,7 @@ amL
 rfF
 mwV
 jdQ
-qVj
+jCc
 jCc
 umP
 jYM
@@ -30701,7 +30679,7 @@ blf
 wKu
 pzZ
 sjT
-kNy
+vAV
 vAV
 vAV
 vAV
@@ -32515,7 +32493,7 @@ wpm
 wpm
 dEO
 ybm
-tfg
+ybs
 xrI
 xrI
 xrI
@@ -32653,7 +32631,7 @@ xbI
 xbI
 bGv
 ybm
-tfg
+ybs
 xrI
 xrI
 xrI
