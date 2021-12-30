@@ -969,9 +969,9 @@
 /obj/machinery/vending/armor_supply
 	name = "\improper Surplus Armor Equipment Vendor"
 	desc = "A automated equipment rack hooked up to a colossal storage of armor and accessories."
-	icon_state = "marineuniform"
-	icon_vend = "marineuniform_vend"
-	icon_deny = "marineuniform"
+	icon_state = "surplus_armor"
+	icon_vend = "surplus_vend"
+	icon_deny = "surplus-deny"
 	isshared = TRUE
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
@@ -1057,9 +1057,9 @@
 /obj/machinery/vending/uniform_supply
 	name = "\improper Surplus Clothing Vendor"
 	desc = "A automated equipment rack hooked up to a colossal storage of clothing and accessories."
-	icon_state = "marineuniform"
-	icon_vend = "marineuniform_vend"
-	icon_deny = "marineuniform"
+	icon_state = "surplus_clothes"
+	icon_vend = "surplus_vend"
+	icon_deny = "surplus-deny"
 	isshared = TRUE
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
