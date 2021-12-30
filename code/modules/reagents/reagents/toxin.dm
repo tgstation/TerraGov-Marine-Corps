@@ -530,7 +530,7 @@
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
 	purge_list = list(/datum/reagent/medicine)
-	purge_rate = 3
+	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	toxpwr = 0
