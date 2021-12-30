@@ -10216,7 +10216,9 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
-/turf/open/floor/prison/bright_clean,
+/turf/open/floor/prison/arrow/clean{
+	dir = 4
+	},
 /area/sulaco/hangar)
 "bvh" = (
 /obj/structure/cable,
@@ -12301,7 +12303,9 @@
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 8
 	},
-/turf/open/floor/prison/bright_clean,
+/turf/open/floor/prison/arrow/clean{
+	dir = 8
+	},
 /area/sulaco/hangar)
 "fqu" = (
 /obj/structure/cable,
@@ -14387,6 +14391,17 @@
 /obj/structure/cable,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
+"jiU" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 1
+	},
+/turf/open/floor/prison/arrow/clean{
+	dir = 1
+	},
+/area/sulaco/hangar)
 "jnn" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /obj/machinery/door/poddoor/telecomms,
@@ -15670,6 +15685,17 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
+"lzN" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/landinglight/ds1{
+	dir = 1
+	},
+/turf/open/floor/prison/arrow/clean{
+	dir = 1
+	},
+/area/sulaco/hangar)
 "lzT" = (
 /obj/machinery/door/airlock/mainship/engineering{
 	dir = 2
@@ -16803,6 +16829,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/cas)
+"nvQ" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/cleanmarked,
+/area/sulaco/hangar)
 "nwU" = (
 /turf/open/floor/prison/red{
 	dir = 9
@@ -19954,7 +19984,9 @@
 /obj/machinery/landinglight/ds1/delayone{
 	dir = 1
 	},
-/turf/open/floor/prison/bright_clean,
+/turf/open/floor/prison/arrow/clean{
+	dir = 1
+	},
 /area/sulaco/hangar)
 "sCw" = (
 /obj/effect/ai_node,
@@ -19968,7 +20000,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison/bright_clean,
+/turf/open/floor/prison/cleanmarked,
 /area/sulaco/hangar)
 "sCO" = (
 /obj/machinery/light/small{
@@ -20692,6 +20724,9 @@
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/wood,
 /area/mainship/living/basketball)
+"tEO" = (
+/turf/open/floor/prison/cleanmarked,
+/area/sulaco/hangar)
 "tGG" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -22569,6 +22604,19 @@
 	dir = 4
 	},
 /area/sulaco/engineering)
+"wXH" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/structure/cable,
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 8
+	},
+/turf/open/floor/prison/arrow/clean{
+	dir = 8
+	},
+/area/sulaco/hangar)
 "wXL" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/structure/cable,
@@ -22709,7 +22757,9 @@
 /obj/machinery/landinglight/ds1{
 	dir = 4
 	},
-/turf/open/floor/prison/bright_clean,
+/turf/open/floor/prison/arrow/clean{
+	dir = 4
+	},
 /area/sulaco/hangar)
 "xjC" = (
 /obj/structure/cable,
@@ -57195,7 +57245,7 @@ aRd
 bRu
 tgw
 bbu
-tgw
+tEO
 sCF
 tgw
 tgw
@@ -58750,8 +58800,8 @@ aPZ
 aPZ
 aPZ
 aPZ
-wbU
-tgw
+lzN
+tEO
 aYD
 aPY
 gHU
@@ -59008,7 +59058,7 @@ aPZ
 aPZ
 aPZ
 sBW
-tgw
+tEO
 tgw
 bap
 tgw
@@ -59264,8 +59314,8 @@ aPZ
 aPZ
 aPZ
 aPZ
-agy
-tgw
+jiU
+tEO
 xou
 aPY
 rkI
@@ -60537,7 +60587,7 @@ pht
 ppF
 nmW
 fqg
-vRn
+wXH
 koP
 nmW
 hPF
@@ -60793,8 +60843,8 @@ tgw
 tgw
 qds
 tgw
-mwr
-tgw
+nvQ
+tEO
 tgw
 tgw
 tgw
