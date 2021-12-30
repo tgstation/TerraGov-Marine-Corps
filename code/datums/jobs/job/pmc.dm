@@ -29,7 +29,7 @@
 	suit_store = /obj/item/weapon/gun/smg/m25/elite/pmc
 	r_store = /obj/item/storage/pouch/magazine/large/pmc_m25
 	l_store = /obj/item/storage/pouch/firstaid/full
-	back = /obj/item/storage/backpack/satchel
+	back = /obj/item/storage/backpack/lightpack
 
 
 /datum/outfit/job/pmc/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -121,10 +121,10 @@
 	head = /obj/item/clothing/head/helmet/marine/veteran/PMC/sniper
 	mask = /obj/item/clothing/mask/gas/PMC
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles
-	suit_store = /obj/item/weapon/gun/rifle/sniper/elite
+	suit_store = /obj/item/weapon/gun/rifle/sniper/antimaterial
 	r_store = /obj/item/storage/pouch/magazine/large/pmc_sniper
 	l_store = /obj/item/storage/pouch/firstaid/full
-	back = /obj/item/storage/backpack/satchel
+	back = /obj/item/storage/backpack/lightpack
 
 
 /datum/outfit/job/pmc/sniper/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -169,7 +169,7 @@
 	suit_store = /obj/item/weapon/gun/rifle/m412/elite
 	r_store = /obj/item/storage/pouch/magazine/large/pmc_rifle
 	l_store = /obj/item/storage/pouch/firstaid/full
-	back = /obj/item/storage/backpack/satchel
+	back = /obj/item/storage/backpack/lightpack
 
 
 /datum/outfit/job/pmc/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

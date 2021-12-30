@@ -304,7 +304,7 @@
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_sniper
-	fill_type = /obj/item/ammo_magazine/sniper/elite
+	fill_type = /obj/item/ammo_magazine/sniper
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_rifle
