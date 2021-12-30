@@ -6147,6 +6147,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
+"awd" = (
+/obj/effect/attach_point/electronics/dropship1,
+/turf/open/floor/plating,
+/area/shuttle/drop2/lz2)
 "awe" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -14575,8 +14579,15 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/shuttle/drop2/lz2)
 "bhA" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/shuttle/drop2/lz2)
+"bhB" = (
+/obj/docking_port/stationary/marine_dropship/lz2,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
 /area/shuttle/drop2/lz2)
 "bhD" = (
 /obj/effect/decal/cleanable/dirt,
@@ -19787,6 +19798,11 @@
 	dir = 10
 	},
 /area/bigredv2/outside/nw)
+"czO" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/shuttle/drop2/lz2)
 "cAN" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -20152,6 +20168,11 @@
 /obj/item/stack/sheet/wood,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/north)
+"dvk" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 9
+	},
+/area/shuttle/drop2/lz2)
 "dvU" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning{
@@ -20597,6 +20618,11 @@
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"eOW" = (
+/turf/open/floor/plating{
+	icon_state = "warnplatecorner"
+	},
+/area/shuttle/drop2/lz2)
 "ePj" = (
 /turf/open/floor/tile/dark2,
 /area/bigredv2/caves/southeast)
@@ -20996,6 +21022,13 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
+"fLB" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 8;
+	icon_state = "equip_base_l_wing"
+	},
+/turf/open/floor/plating,
+/area/shuttle/drop2/lz2)
 "fLO" = (
 /obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
@@ -22435,6 +22468,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/caves/northwest)
+"jHW" = (
+/obj/effect/attach_point/weapon/dropship1,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/shuttle/drop2/lz2)
 "jJZ" = (
 /obj/structure/table,
 /obj/structure/cable,
@@ -22799,6 +22838,12 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/s)
+"kDB" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/shuttle/drop2/lz2)
 "kEl" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/marking/bot,
@@ -22947,6 +22992,12 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"lcH" = (
+/turf/open/floor/plating{
+	dir = 8;
+	icon_state = "warnplatecorner"
+	},
+/area/shuttle/drop2/lz2)
 "len" = (
 /turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/space_port)
@@ -23687,6 +23738,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/southeast)
+"noZ" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/shuttle/drop2/lz2)
 "npC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -23963,6 +24019,12 @@
 "nYw" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/rock)
+"nZm" = (
+/obj/effect/attach_point/electronics/dropship1,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/shuttle/drop2/lz2)
 "oah" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -24132,6 +24194,11 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
+"otR" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 5
+	},
+/area/shuttle/drop2/lz2)
 "ouJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -24336,6 +24403,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/southeast)
+"oXh" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate,
+/area/shuttle/drop2/lz2)
 "oXG" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/shuttle/drop2/lz2)
@@ -25285,6 +25356,11 @@
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/nw)
+"rCq" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/shuttle/drop2/lz2)
 "rEy" = (
 /obj/effect/decal/sandedge/corner,
 /turf/open/floor/freezer,
@@ -25706,6 +25782,10 @@
 	},
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/se)
+"sGV" = (
+/obj/effect/attach_point/weapon/dropship1,
+/turf/open/floor/plating,
+/area/shuttle/drop2/lz2)
 "sHx" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/red2{
@@ -25834,6 +25914,12 @@
 	dir = 8
 	},
 /area/bigredv2/caves/south)
+"sYV" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/shuttle/drop2/lz2)
 "sZi" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor,
@@ -26414,6 +26500,11 @@
 	dir = 8
 	},
 /area/bigredv2/outside/sw)
+"uDp" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/shuttle/drop2/lz2)
 "uDL" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whitebluefull,
@@ -27145,6 +27236,12 @@
 	},
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/w)
+"wHp" = (
+/turf/open/floor/plating{
+	dir = 4;
+	icon_state = "warnplatecorner"
+	},
+/area/shuttle/drop2/lz2)
 "wIc" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -33330,7 +33427,7 @@ uqN
 uqN
 bht
 uqN
-uqN
+bhB
 uqN
 uqN
 uqN
@@ -33972,25 +34069,25 @@ faR
 bhu
 bie
 bie
+eOW
+noZ
+czO
+bie
+bie
+fLB
+otR
+noZ
+kDB
+noZ
+noZ
+czO
 bie
 bie
 bie
 bie
 bie
-bie
-bie
-bie
-bje
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
+rCq
+noZ
 bsb
 mAw
 mAw
@@ -34189,25 +34286,25 @@ faR
 bhv
 bie
 bie
+oXh
+sGV
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bje
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bje
-bie
-bie
+rCq
+rCq
 bsc
 mAw
 mAw
@@ -34404,6 +34501,10 @@ vXv
 xSR
 faR
 bhw
+noZ
+noZ
+czO
+awd
 bie
 bie
 bie
@@ -34419,12 +34520,8 @@ bie
 bie
 bie
 bie
-bie
-bie
-bie
-bie
-bie
-bie
+rCq
+rCq
 bsd
 mAw
 mAw
@@ -34621,6 +34718,7 @@ oXG
 qyl
 faR
 bhx
+rCq
 bie
 bie
 bie
@@ -34639,9 +34737,8 @@ bie
 bie
 bie
 bie
-bie
-bie
-bie
+bhA
+wHp
 bse
 mAw
 mAw
@@ -34838,6 +34935,7 @@ oXG
 fxL
 faR
 bhu
+rCq
 bie
 bie
 bie
@@ -34856,9 +34954,8 @@ bie
 bie
 bie
 bie
-bie
-bie
-bie
+dvk
+bhA
 bsb
 mAw
 mAw
@@ -35055,7 +35152,7 @@ oXG
 qyl
 faR
 bhy
-bie
+rCq
 bie
 bie
 bie
@@ -35074,7 +35171,7 @@ bie
 bie
 bie
 bie
-bie
+rCq
 bie
 bsc
 mAw
@@ -35272,6 +35369,7 @@ fpw
 qyl
 faR
 bhw
+rCq
 bie
 bie
 bie
@@ -35290,9 +35388,8 @@ bie
 bie
 bie
 bie
-bie
-bie
-bie
+otR
+noZ
 bsd
 mAw
 mAw
@@ -35489,6 +35586,7 @@ uqN
 uqN
 faR
 bhz
+rCq
 bie
 bie
 bie
@@ -35507,9 +35605,8 @@ bie
 bie
 bie
 bie
-bie
-bie
-bie
+noZ
+lcH
 bse
 mAw
 mAw
@@ -35707,6 +35804,9 @@ mAw
 faR
 bhu
 bhA
+bhA
+bhA
+nZm
 bie
 bie
 bie
@@ -35722,11 +35822,8 @@ bie
 bie
 bie
 bie
-bie
-bie
-bie
-bie
-bie
+rCq
+rCq
 bsb
 mAw
 mAw
@@ -35926,7 +36023,7 @@ bhv
 bie
 bie
 bje
-bie
+jHW
 bie
 bie
 bie
@@ -35942,8 +36039,8 @@ bie
 bie
 bie
 bje
-bie
-bie
+rCq
+rCq
 bsc
 mAw
 mAw
@@ -36143,24 +36240,24 @@ bhw
 bie
 bie
 bie
+bhA
+bhA
+rCq
+bie
+bie
+dvk
+bhA
+sYV
+bhA
+bhA
+uDp
 bie
 bie
 bie
 bie
 bie
-bie
-bie
-bje
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
+rCq
+bhA
 bsd
 mAw
 mAw
