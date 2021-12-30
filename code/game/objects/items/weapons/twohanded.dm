@@ -405,9 +405,6 @@
 	else
 		icon_state = "rocketsledge"
 
-/obj/item/weapon/twohanded/rocketsledge/update_icon()
-	update_icon_state()
-
 /obj/item/weapon/twohanded/rocketsledge/afterattack(obj/target, mob/user, flag)
 	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
 		var/obj/structure/reagent_dispensers/fueltank/RS = target
