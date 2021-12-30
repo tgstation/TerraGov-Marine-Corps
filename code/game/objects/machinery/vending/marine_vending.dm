@@ -968,7 +968,7 @@
 
 /obj/machinery/vending/armor_supply
 	name = "\improper Surplus Armor Equipment Vendor"
-	desc = "A automated equipment rack hooked up to a colossal storage of armor and accessories."
+	desc = "Am automated equipment rack hooked up to a colossal storage of armor and accessories. Nanotrasen designed a new vendor that utilize bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
 	icon_state = "surplus_armor"
 	icon_vend = "surplus-vend"
 	icon_deny = "surplus-deny"
@@ -1056,7 +1056,7 @@
 
 /obj/machinery/vending/uniform_supply
 	name = "\improper Surplus Clothing Vendor"
-	desc = "A automated equipment rack hooked up to a colossal storage of clothing and accessories."
+	desc = "Am automated equipment rack hooked up to a colossal storage of clothing and accessories. Nanotrasen designed a new vendor that utilize bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
 	icon_state = "surplus_clothes"
 	icon_vend = "surplus-vend"
 	icon_deny = "surplus-deny"
