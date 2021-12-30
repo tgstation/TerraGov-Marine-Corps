@@ -16585,6 +16585,14 @@
 	},
 /turf/open/floor/mainship/ai,
 /area/mainship/living/numbertwobunks)
+"qWF" = (
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 1
+	},
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 1
+	},
+/area/mainship/hallways/hangar)
 "qWS" = (
 /obj/machinery/light{
 	dir = 4
@@ -17789,7 +17797,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "toW" = (
 /turf/open/floor/wood,
@@ -18004,7 +18012,7 @@
 /obj/structure/disposalpipe/junction{
 	dir = 4
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "tHw" = (
 /obj/effect/landmark/start/job/medicalofficer,
@@ -19729,6 +19737,19 @@
 	dir = 4
 	},
 /area/mainship/shipboard/firing_range)
+"wXB" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "wYp" = (
 /obj/structure/table/mainship,
 /obj/item/circuitboard/airalarm,
@@ -47911,8 +47932,8 @@ blA
 blA
 blA
 qNu
-bPq
-wxQ
+qWF
+wXB
 bPR
 bRE
 cvV
