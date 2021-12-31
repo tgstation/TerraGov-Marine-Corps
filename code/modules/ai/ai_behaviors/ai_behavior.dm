@@ -56,7 +56,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	RegisterSignal(goal_node, COMSIG_PARENT_QDELETING, .proc/clean_goal_node)
 	START_PROCESSING(SSprocessing, src)
 	if(is_offered_on_creation)
-		LAZYDISTINCTADD(GLOB.ssd_living_mobs, src)
+		LAZYDISTINCTADD(GLOB.ssd_living_mobs, mob_parent)
 
 /datum/ai_behavior/Destroy(force, ...)
 	. = ..()
