@@ -861,7 +861,9 @@
 	dir = 8;
 	icon_state = "equip_base_l_wing"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
 /area/mainship/hallways/hangar)
 "cS" = (
 /obj/machinery/autodoc,
@@ -43391,8 +43393,8 @@ bh
 Xa
 Zd
 jF
-bh
-bh
+sP
+sP
 cR
 Bq
 Zd
@@ -43400,11 +43402,11 @@ Zd
 Zd
 Zd
 jF
-bh
-bh
-bh
-bh
-bh
+sP
+sP
+sP
+sP
+sP
 ZA
 Zd
 Yf
@@ -45960,21 +45962,21 @@ bh
 bh
 bh
 sP
-sP
-ZA
-bh
-bh
+ri
+Zd
+Zd
+Zd
 Yk
 sP
 sP
 sP
 sP
 ri
-bh
-bh
-bh
-bh
-bh
+Zd
+Zd
+Zd
+Zd
+Zd
 ZA
 sP
 QM

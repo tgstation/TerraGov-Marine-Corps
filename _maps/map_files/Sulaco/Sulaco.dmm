@@ -15599,7 +15599,9 @@
 	dir = 8;
 	icon_state = "equip_base_l_wing"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
 /area/sulaco/hangar)
 "lrA" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -57836,8 +57838,8 @@ aPZ
 oZc
 lCA
 gUO
-aPZ
-aPZ
+cOO
+cOO
 lrz
 fAI
 lCA
@@ -57845,11 +57847,11 @@ lCA
 lCA
 lCA
 gUO
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
+cOO
+cOO
+cOO
+cOO
+cOO
 txC
 lCA
 wbU
@@ -60405,21 +60407,21 @@ aPZ
 aPZ
 aPZ
 cOO
-cOO
-txC
-aPZ
-aPZ
+sEx
+lCA
+lCA
+lCA
 xpS
 cOO
 cOO
 cOO
 cOO
 sEx
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
+lCA
+lCA
+lCA
+lCA
+lCA
 txC
 cOO
 agy

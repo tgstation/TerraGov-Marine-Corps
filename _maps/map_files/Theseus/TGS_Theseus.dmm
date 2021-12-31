@@ -15420,7 +15420,9 @@
 	dir = 8;
 	icon_state = "equip_base_l_wing"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
 /area/mainship/hallways/hangar)
 "oPm" = (
 /obj/structure/cable,
@@ -46714,8 +46716,8 @@ blA
 kLN
 ehi
 cxA
-blA
-blA
+wVS
+wVS
 oMq
 srb
 ehi
@@ -46723,11 +46725,11 @@ ehi
 ehi
 ehi
 cxA
-blA
-blA
-blA
-blA
-blA
+wVS
+wVS
+wVS
+wVS
+wVS
 dmw
 ehi
 bPp
@@ -49283,21 +49285,21 @@ blA
 blA
 blA
 wVS
-wVS
-dmw
-blA
-blA
+iBD
+ehi
+ehi
+ehi
 nJf
 wVS
 wVS
 wVS
 wVS
 iBD
-blA
-blA
-blA
-blA
-blA
+ehi
+ehi
+ehi
+ehi
+ehi
 dmw
 wVS
 bPr

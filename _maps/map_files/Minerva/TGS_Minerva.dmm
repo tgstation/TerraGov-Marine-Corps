@@ -8581,7 +8581,9 @@
 	dir = 8;
 	icon_state = "equip_base_l_wing"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
 /area/mainship/hallways/hangar)
 "Cg" = (
 /turf/closed/wall/mainship,
@@ -22489,8 +22491,8 @@ ez
 BK
 ve
 zi
-ez
-ez
+Uf
+Uf
 Cf
 Mh
 ve
@@ -22498,11 +22500,11 @@ ve
 ve
 ve
 zi
-ez
-ez
-ez
-ez
-ez
+Uf
+Uf
+Uf
+Uf
+Uf
 xx
 ve
 hN
@@ -23468,21 +23470,21 @@ ez
 ez
 ez
 Uf
-Uf
-xx
-ez
-ez
+is
+ve
+ve
+ve
 Bs
 Uf
 Uf
 Uf
 Uf
 is
-ez
-ez
-ez
-ez
-ez
+ve
+ve
+ve
+ve
+ve
 xx
 Uf
 hN
