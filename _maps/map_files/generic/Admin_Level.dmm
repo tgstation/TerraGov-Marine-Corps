@@ -5418,6 +5418,10 @@
 "hwl" = (
 /turf/closed/mineral,
 /area/space)
+"hwm" = (
+/obj/machinery/vending/marineFood,
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "hwE" = (
 /obj/item/ore/iron,
 /turf/open/floor/plating,
@@ -11493,9 +11497,9 @@
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla/engine/engine_monitoring)
 "pLH" = (
-/obj/machinery/vending/marineFood,
-/turf/open/floor/tile/cafe,
-/area/centcom/valhalla/crew_quarters/cafeteria)
+/obj/machinery/vending/MarineMed/valhalla,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/security/brig)
 "pNw" = (
 /obj/machinery/door/firedoor,
 /obj/effect/decal/warning_stripes/thick{
@@ -25970,7 +25974,7 @@ hDu
 ioO
 ivu
 jwi
-ivs
+pLH
 lhK
 mdt
 mQt
@@ -30407,7 +30411,7 @@ skh
 xIU
 xIU
 htM
-pLH
+hwm
 fkc
 fKF
 gry
