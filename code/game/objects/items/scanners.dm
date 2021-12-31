@@ -309,7 +309,6 @@ REAGENT SCANNER
 			var/hyperzine_amount = reagents_in_body[/datum/reagent/medicine/hyperzine]
 			var/paracetamol_amount = reagents_in_body[/datum/reagent/medicine/paracetamol]
 			var/neurotoxin_amount = reagents_in_body[/datum/reagent/toxin/xeno_neurotoxin]
-			var/growthtoxin_amount = reagents_in_body[/datum/reagent/toxin/xeno_growthtoxin]
 			//Recurring chems:
 			var/peridaxon = ""
 			var/tricordrazine = ""
