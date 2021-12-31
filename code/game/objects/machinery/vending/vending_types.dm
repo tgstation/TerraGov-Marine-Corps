@@ -17,7 +17,7 @@
 
 */
 
-/*
+/*w
 /obj/machinery/vending/atmospherics //Commenting this out until someone ponies up some actual working, broken, and unpowered sprites - Quarxink
 	name = "Tank Vendor"
 	desc = "A vendor with a wide variety of masks and gas tanks."
@@ -188,7 +188,6 @@
 	contraband = list(
 		/obj/item/reagent_containers/glass/bottle/toxin = 1,
 		/obj/item/reagent_containers/glass/bottle/neurotoxin = 1,
-		/obj/item/reagent_containers/glass/bottle/xeno_growthtoxin = 1,
 		/obj/item/reagent_containers/glass/bottle/neurotoxin/light = 1,
 		/obj/item/reagent_containers/glass/bottle/xeno_hemodile = 1,
 		/obj/item/reagent_containers/glass/bottle/xeno_transvitox = 1,
