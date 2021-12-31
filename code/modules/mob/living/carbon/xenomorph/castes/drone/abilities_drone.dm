@@ -15,7 +15,7 @@
 	mechanics_text = "Slowly heal an ally with goop. Apply repeatedly for best results."
 	cooldown_timer = 5 SECONDS
 	plasma_cost = 150
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
+	keybind_signal = COMSIG_XENOABILITY_DRONE_HEAL
 	heal_range = DRONE_HEAL_RANGE
 	target_flags = XABB_MOB_TARGET
 
