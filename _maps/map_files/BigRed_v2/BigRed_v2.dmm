@@ -6147,6 +6147,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
+"awd" = (
+/obj/effect/attach_point/electronics/dropship1,
+/turf/open/floor/plating,
+/area/shuttle/drop2/lz2)
 "awe" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -14574,9 +14578,11 @@
 /obj/machinery/landinglight/ds2/delaythree,
 /turf/open/floor/marking/asteroidwarning,
 /area/shuttle/drop2/lz2)
-"bhA" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
+"bhB" = (
+/obj/docking_port/stationary/marine_dropship/lz2,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
 /area/shuttle/drop2/lz2)
 "bhD" = (
 /obj/effect/decal/cleanable/dirt,
@@ -19494,6 +19500,10 @@
 /obj/item/paper/clockresearch1,
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/southeast)
+"bHH" = (
+/obj/effect/attach_point/electronics/dropship1,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "bIb" = (
 /obj/structure/bookcase{
 	density = 0
@@ -19940,6 +19950,11 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
+"cRP" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/shuttle/drop1/lz1)
 "cSg" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -20221,6 +20236,15 @@
 	dir = 4
 	},
 /area/bigredv2/outside/w)
+"dJu" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 8;
+	icon_state = "equip_base_l_wing"
+	},
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/shuttle/drop1/lz1)
 "dKh" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
@@ -20535,6 +20559,11 @@
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/southeast)
+"eGt" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/shuttle/drop2/lz2)
 "eHI" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
@@ -20779,6 +20808,9 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
+"fkV" = (
+/turf/open/floor/plating/icefloor/warnplate,
+/area/shuttle/drop1/lz1)
 "flV" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/plating,
@@ -20996,6 +21028,15 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
+"fLB" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 8;
+	icon_state = "equip_base_l_wing"
+	},
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/shuttle/drop2/lz2)
 "fLO" = (
 /obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
@@ -21261,6 +21302,11 @@
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/southeast)
+"gpQ" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/shuttle/drop2/lz2)
 "gqo" = (
 /obj/structure/table/woodentable,
 /obj/effect/landmark/weed_node,
@@ -21294,6 +21340,11 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
+"gse" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 9
+	},
+/area/shuttle/drop2/lz2)
 "gst" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -22435,6 +22486,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/caves/northwest)
+"jHW" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 9
+	},
+/area/shuttle/drop1/lz1)
 "jJZ" = (
 /obj/structure/table,
 /obj/structure/cable,
@@ -22485,6 +22541,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
+"jNf" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 5
+	},
+/area/shuttle/drop2/lz2)
 "jNI" = (
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/s)
@@ -22710,6 +22771,12 @@
 /obj/effect/spawner/gibspawner/human,
 /turf/open/floor/prison/darkred/full,
 /area/bigredv2/caves/southeast)
+"kvI" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/shuttle/drop1/lz1)
 "kvV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -22799,6 +22866,12 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/s)
+"kDB" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/shuttle/drop2/lz2)
 "kEl" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/marking/bot,
@@ -23322,6 +23395,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
+"mhf" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/shuttle/drop1/lz1)
 "mkI" = (
 /obj/effect/landmark/weed_node,
 /turf/open/shuttle/elevator/grating,
@@ -23963,6 +24042,11 @@
 "nYw" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/rock)
+"nZm" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/shuttle/drop1/lz1)
 "oah" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -24132,6 +24216,11 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
+"otR" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/shuttle/drop2/lz2)
 "ouJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -24177,6 +24266,11 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
+"oAa" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/shuttle/drop1/lz1)
 "oAf" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -24336,6 +24430,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/southeast)
+"oXh" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 5
+	},
+/area/shuttle/drop1/lz1)
 "oXG" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/shuttle/drop2/lz2)
@@ -24797,6 +24896,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"qsL" = (
+/obj/effect/attach_point/weapon/dropship1,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "qtn" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/limb,
 /obj/item/ammo_casing/shell,
@@ -25236,6 +25339,11 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
+"rxa" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/shuttle/drop1/lz1)
 "rxn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -25285,6 +25393,11 @@
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/nw)
+"rCq" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/shuttle/drop2/lz2)
 "rEy" = (
 /obj/effect/decal/sandedge/corner,
 /turf/open/floor/freezer,
@@ -25490,6 +25603,11 @@
 /obj/item/explosive/grenade/flashbang,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/southeast)
+"sis" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/shuttle/drop1/lz1)
 "siv" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25706,6 +25824,10 @@
 	},
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/se)
+"sGV" = (
+/obj/effect/attach_point/weapon/dropship1,
+/turf/open/floor/plating,
+/area/shuttle/drop2/lz2)
 "sHx" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/red2{
@@ -25834,6 +25956,12 @@
 	dir = 8
 	},
 /area/bigredv2/caves/south)
+"sYV" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/shuttle/drop2/lz2)
 "sZi" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor,
@@ -26414,6 +26542,11 @@
 	dir = 8
 	},
 /area/bigredv2/outside/sw)
+"uDp" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/shuttle/drop2/lz2)
 "uDL" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whitebluefull,
@@ -27145,6 +27278,9 @@
 	},
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/w)
+"wHp" = (
+/turf/open/floor/plating/icefloor/warnplate,
+/area/shuttle/drop2/lz2)
 "wIc" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -32568,27 +32704,27 @@ ktH
 aae
 gFh
 plO
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aaF
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
+jHW
+oAa
+oAa
+oAa
+oAa
+oAa
+oAa
+dJu
+oAa
+oAa
+mhf
+oAa
+oAa
+oAa
+oAa
+oAa
+oAa
+oAa
+oAa
+oAa
+rxa
 aeh
 ags
 aam
@@ -32785,27 +32921,27 @@ ktH
 aae
 gFh
 aaj
+nZm
+aao
+aaF
+qsL
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aao
 aao
 aaF
 aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aaF
-aao
-aao
+fkV
 oGY
 bLG
 bLG
@@ -33002,6 +33138,10 @@ ktH
 aae
 gFh
 aak
+nZm
+aao
+aao
+bHH
 aao
 aao
 aao
@@ -33018,11 +33158,7 @@ aao
 aao
 aao
 aao
-aao
-aao
-aao
-aao
-aao
+fkV
 aej
 bLG
 bLG
@@ -33219,6 +33355,7 @@ ktH
 aae
 gFh
 aal
+nZm
 aao
 aao
 aao
@@ -33238,8 +33375,7 @@ aao
 aao
 aao
 aao
-aao
-aao
+fkV
 agQ
 bLG
 bLG
@@ -33330,7 +33466,7 @@ uqN
 uqN
 bht
 uqN
-uqN
+bhB
 uqN
 uqN
 uqN
@@ -33436,6 +33572,7 @@ ktH
 aae
 gFh
 plO
+nZm
 aao
 aao
 aao
@@ -33455,8 +33592,7 @@ aao
 aao
 aao
 aao
-aao
-aao
+fkV
 aeh
 bLG
 bLG
@@ -33653,7 +33789,7 @@ ktH
 aae
 iUZ
 aaj
-aao
+nZm
 aao
 aao
 aao
@@ -33673,7 +33809,7 @@ aao
 aao
 aao
 aao
-aao
+fkV
 oGY
 bLG
 bLG
@@ -33870,6 +34006,7 @@ ktH
 aae
 gFh
 aak
+nZm
 aao
 aao
 aao
@@ -33889,8 +34026,7 @@ aao
 aao
 aao
 aao
-aao
-aao
+fkV
 aej
 bLG
 lvj
@@ -33970,27 +34106,27 @@ oXG
 qyl
 faR
 bhu
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bje
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
+gse
+otR
+otR
+otR
+otR
+otR
+otR
+fLB
+otR
+otR
+kDB
+otR
+otR
+otR
+otR
+otR
+otR
+otR
+otR
+otR
+eGt
 bsb
 mAw
 mAw
@@ -34087,6 +34223,7 @@ ktH
 aae
 gFh
 aal
+nZm
 aao
 aao
 aao
@@ -34106,8 +34243,7 @@ aao
 aao
 aao
 aao
-aao
-aao
+fkV
 aek
 bLG
 bLG
@@ -34187,27 +34323,27 @@ uqN
 jwj
 faR
 bhv
+rCq
+bie
+bje
+sGV
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bie
 bie
 bje
 bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bje
-bie
-bie
+wHp
 bsc
 mAw
 mAw
@@ -34304,6 +34440,10 @@ ktH
 aae
 gFh
 plO
+nZm
+aao
+aao
+bHH
 aao
 aao
 aao
@@ -34320,11 +34460,7 @@ aao
 aao
 aao
 aao
-aao
-aao
-aao
-aao
-aao
+fkV
 aeh
 bLG
 bLG
@@ -34404,6 +34540,10 @@ vXv
 xSR
 faR
 bhw
+rCq
+bie
+bie
+awd
 bie
 bie
 bie
@@ -34420,11 +34560,7 @@ bie
 bie
 bie
 bie
-bie
-bie
-bie
-bie
-bie
+wHp
 bsd
 mAw
 mAw
@@ -34521,27 +34657,27 @@ ktH
 aae
 gFh
 aaj
+nZm
+aao
+aaF
+qsL
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aao
 aao
 aaF
 aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aaF
-aao
-aao
+fkV
 oGY
 bLG
 bLG
@@ -34621,6 +34757,7 @@ oXG
 qyl
 faR
 bhx
+rCq
 bie
 bie
 bie
@@ -34640,8 +34777,7 @@ bie
 bie
 bie
 bie
-bie
-bie
+wHp
 bse
 mAw
 mAw
@@ -34738,27 +34874,27 @@ ktH
 aae
 gFh
 aak
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aaF
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
+oXh
+sis
+sis
+sis
+sis
+sis
+sis
+sis
+sis
+sis
+kvI
+sis
+sis
+sis
+sis
+sis
+sis
+sis
+sis
+sis
+cRP
 aej
 big
 ahe
@@ -34838,6 +34974,7 @@ oXG
 fxL
 faR
 bhu
+rCq
 bie
 bie
 bie
@@ -34857,8 +34994,7 @@ bie
 bie
 bie
 bie
-bie
-bie
+wHp
 bsb
 mAw
 mAw
@@ -35055,7 +35191,7 @@ oXG
 qyl
 faR
 bhy
-bie
+rCq
 bie
 bie
 bie
@@ -35075,7 +35211,7 @@ bie
 bie
 bie
 bie
-bie
+wHp
 bsc
 mAw
 mAw
@@ -35272,6 +35408,7 @@ fpw
 qyl
 faR
 bhw
+rCq
 bie
 bie
 bie
@@ -35291,8 +35428,7 @@ bie
 bie
 bie
 bie
-bie
-bie
+wHp
 bsd
 mAw
 mAw
@@ -35489,6 +35625,7 @@ uqN
 uqN
 faR
 bhz
+rCq
 bie
 bie
 bie
@@ -35508,8 +35645,7 @@ bie
 bie
 bie
 bie
-bie
-bie
+wHp
 bse
 mAw
 mAw
@@ -35706,7 +35842,10 @@ mAw
 mAw
 faR
 bhu
-bhA
+rCq
+bie
+bie
+awd
 bie
 bie
 bie
@@ -35723,10 +35862,7 @@ bie
 bie
 bie
 bie
-bie
-bie
-bie
-bie
+wHp
 bsb
 mAw
 mAw
@@ -35923,27 +36059,27 @@ gMM
 gMM
 bdJ
 bhv
+rCq
+bie
+bje
+sGV
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bie
 bie
 bje
 bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bje
-bie
-bie
+wHp
 bsc
 mAw
 mAw
@@ -36140,27 +36276,27 @@ qyl
 qyl
 bdJ
 bhw
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bje
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
+jNf
+uDp
+uDp
+uDp
+uDp
+uDp
+uDp
+uDp
+uDp
+uDp
+sYV
+uDp
+uDp
+uDp
+uDp
+uDp
+uDp
+uDp
+uDp
+uDp
+gpQ
 bsd
 mAw
 mAw

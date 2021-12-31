@@ -41212,6 +41212,11 @@
 	icon_state = "asteroid"
 	},
 /area/prison/residential/central)
+"cFh" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/prison/hangar/civilian)
 "cFk" = (
 /obj/machinery/light/small,
 /turf/open/floor/wood/broken,
@@ -41438,6 +41443,12 @@
 /obj/structure/lattice,
 /turf/open/space/sea,
 /area/space)
+"dsK" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/prison/hangar/main)
 "dtT" = (
 /turf/open/floor/prison{
 	dir = 10;
@@ -41513,6 +41524,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/medbay)
+"dLE" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 5
+	},
+/area/prison/hangar/civilian)
 "dMY" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
@@ -41565,6 +41581,9 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/prison/residential/central)
+"dXl" = (
+/turf/open/floor/plating/icefloor/warnplate,
+/area/prison/hangar/main)
 "dXA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -41782,6 +41801,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
+"evv" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/prison/hangar/civilian)
 "evK" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/red{
@@ -41880,6 +41905,11 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/south)
+"eQi" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/prison/hangar/main)
 "eQl" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/prison/sterilewhite,
@@ -42115,6 +42145,11 @@
 	dir = 8
 	},
 /area/prison/hangar/main)
+"fFS" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 5
+	},
+/area/prison/hangar/main)
 "fGm" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -42172,6 +42207,11 @@
 	},
 /turf/open/floor/prison,
 /area/prison/execution)
+"fRl" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/prison/hangar/civilian)
 "fRP" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -42868,6 +42908,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/bright_clean,
 /area/prison/visitation)
+"iaK" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 8;
+	icon_state = "equip_base_l_wing"
+	},
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/prison/hangar/civilian)
 "ibS" = (
 /turf/open/floor/prison/red{
 	dir = 1
@@ -42928,6 +42977,11 @@
 	dir = 4
 	},
 /area/prison/security/checkpoint/vip)
+"ikz" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 9
+	},
+/area/prison/hangar/civilian)
 "ikQ" = (
 /turf/open/floor/prison/darkred{
 	dir = 4
@@ -43119,6 +43173,9 @@
 "iNU" = (
 /turf/open/floor/plating/ground/dirt,
 /area/prison/hallway/central)
+"iOg" = (
+/turf/open/floor/plating/icefloor/warnplate,
+/area/prison/hangar/civilian)
 "iOM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -43167,6 +43224,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
+"iVq" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/prison/hangar/main)
 "iVD" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 2;
@@ -43869,6 +43931,11 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating,
 /area/prison/cellblock/maxsec/north)
+"kMX" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/prison/hangar/main)
 "kNK" = (
 /turf/open/floor/plating,
 /area/prison/command/office)
@@ -44119,6 +44186,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/canteen)
+"lPJ" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating,
+/area/prison/hangar/main)
 "lPU" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/prison/blue{
@@ -44162,6 +44233,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/se)
+"lXn" = (
+/obj/effect/attach_point/electronics/dropship1,
+/turf/open/floor/plating,
+/area/prison/hangar/civilian)
 "lXO" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -44201,6 +44276,11 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/prison/darkred/full,
 /area/prison/cellblock/maxsec/north)
+"mlR" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/prison/hangar/civilian)
 "mmI" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
@@ -44596,6 +44676,12 @@
 	dir = 8
 	},
 /area/prison/research/secret/containment)
+"ndS" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/prison/hangar/main)
 "neb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -45017,6 +45103,10 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/space/sea,
 /area/space)
+"ogM" = (
+/obj/effect/attach_point/weapon/dropship1,
+/turf/open/floor/plating,
+/area/prison/hangar/civilian)
 "ohC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -46500,6 +46590,11 @@
 "spw" = (
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/south/south)
+"sqF" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/prison/hangar/civilian)
 "sqQ" = (
 /obj/structure/cable,
 /turf/open/floor/prison/yellow{
@@ -46678,6 +46773,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/prison/security/monitoring/highsec)
+"sLV" = (
+/obj/effect/attach_point/electronics/dropship1,
+/turf/open/floor/plating,
+/area/prison/hangar/main)
 "sMg" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
@@ -46874,6 +46973,12 @@
 "tnU" = (
 /obj/machinery/light,
 /turf/open/floor/prison,
+/area/prison/hangar/civilian)
+"tqT" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
 /area/prison/hangar/civilian)
 "tqX" = (
 /obj/effect/landmark/weed_node,
@@ -47316,6 +47421,11 @@
 	dir = 1
 	},
 /area/prison/cellblock/mediumsec/north)
+"uHL" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/prison/hangar/main)
 "uHQ" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating,
@@ -47462,6 +47572,11 @@
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
+"veZ" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/prison/hangar/civilian)
 "vfh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -47601,6 +47716,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
+"vAB" = (
+/obj/effect/attach_point/weapon/dropship1,
+/turf/open/floor/plating,
+/area/prison/hangar/main)
 "vBj" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/secure_data,
@@ -47916,6 +48035,10 @@
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/carpet,
 /area/prison/command/quarters)
+"woF" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating,
+/area/prison/hangar/civilian)
 "woW" = (
 /obj/machinery/door/airlock/mainship/maint/free_access,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -47935,6 +48058,11 @@
 "wpW" = (
 /turf/open/floor/prison/green/full,
 /area/prison/cellblock/lowsec/ne)
+"wtm" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 9
+	},
+/area/prison/hangar/main)
 "wus" = (
 /obj/machinery/shower{
 	dir = 4
@@ -47973,6 +48101,11 @@
 	dir = 8
 	},
 /area/prison/medbay)
+"wwv" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/prison/hangar/main)
 "wwH" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -48197,6 +48330,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
+"xgV" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 8;
+	icon_state = "equip_base_l_wing"
+	},
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/prison/hangar/main)
 "xhO" = (
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/plating,
@@ -50731,27 +50873,27 @@ iHW
 hdB
 mXp
 hZS
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
+ikz
+fRl
+fRl
+fRl
+fRl
+fRl
+fRl
+iaK
+fRl
+fRl
+evv
+fRl
+fRl
+fRl
+fRl
+fRl
+fRl
+fRl
+fRl
+fRl
+cFh
 ctn
 qhf
 qhf
@@ -50988,6 +51130,10 @@ iHW
 amu
 rnW
 oxD
+sqF
+qhf
+woF
+ogM
 qhf
 qhf
 qhf
@@ -51002,13 +51148,9 @@ qhf
 qhf
 qhf
 qhf
+woF
 qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
+iOg
 cto
 qhf
 wPa
@@ -51245,6 +51387,10 @@ iHW
 hdB
 mRK
 gCN
+sqF
+qhf
+qhf
+lXn
 qhf
 qhf
 qhf
@@ -51261,11 +51407,7 @@ qhf
 qhf
 qhf
 qhf
-qhf
-qhf
-qhf
-qhf
-qhf
+iOg
 ctq
 qhf
 qhf
@@ -51502,6 +51644,7 @@ iHW
 hdB
 mRK
 gne
+sqF
 qhf
 qhf
 qhf
@@ -51521,8 +51664,7 @@ qhf
 qhf
 qhf
 qhf
-qhf
-qhf
+iOg
 ctr
 qhf
 qhf
@@ -51759,6 +51901,7 @@ iHW
 hdB
 mRK
 hZS
+sqF
 qhf
 qhf
 qhf
@@ -51778,8 +51921,7 @@ qhf
 qhf
 qhf
 qhf
-qhf
-qhf
+iOg
 ctn
 qhf
 qhf
@@ -52016,7 +52158,7 @@ iHW
 amu
 tKy
 oxD
-qhf
+sqF
 qhf
 qhf
 qhf
@@ -52036,7 +52178,7 @@ qhf
 qhf
 qhf
 qhf
-qhf
+iOg
 cto
 qhf
 wPa
@@ -52273,6 +52415,7 @@ iHW
 hdB
 mRK
 gCN
+sqF
 qhf
 qhf
 qhf
@@ -52292,8 +52435,7 @@ qhf
 qhf
 qhf
 qhf
-qhf
-qhf
+iOg
 ctq
 qhf
 qhf
@@ -52530,6 +52672,7 @@ iHW
 hdB
 mRK
 gne
+sqF
 qhf
 qhf
 qhf
@@ -52549,8 +52692,7 @@ qhf
 qhf
 qhf
 qhf
-qhf
-qhf
+iOg
 ctr
 qhf
 qhf
@@ -52787,6 +52929,10 @@ iHW
 hdB
 mRK
 hZS
+sqF
+qhf
+qhf
+lXn
 qhf
 qhf
 qhf
@@ -52803,11 +52949,7 @@ qhf
 qhf
 qhf
 qhf
-qhf
-qhf
-qhf
-qhf
-qhf
+iOg
 ctn
 qhf
 qhf
@@ -53044,6 +53186,10 @@ iHW
 amu
 gyL
 oxD
+sqF
+qhf
+woF
+ogM
 qhf
 qhf
 qhf
@@ -53058,13 +53204,9 @@ qhf
 qhf
 qhf
 qhf
+woF
 qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
+iOg
 cto
 qhf
 wPa
@@ -53301,27 +53443,27 @@ pYD
 amu
 qBi
 gCN
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
-qhf
+dLE
+veZ
+veZ
+veZ
+veZ
+veZ
+veZ
+veZ
+veZ
+veZ
+tqT
+veZ
+veZ
+veZ
+veZ
+veZ
+veZ
+veZ
+veZ
+veZ
+mlR
 ctq
 qhf
 qhf
@@ -108298,27 +108440,27 @@ obp
 nTj
 nTj
 baF
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
+wtm
+uHL
+uHL
+uHL
+uHL
+uHL
+uHL
+xgV
+uHL
+uHL
+ndS
+uHL
+uHL
+uHL
+uHL
+uHL
+uHL
+uHL
+uHL
+uHL
+eQi
 bwp
 bnQ
 mSO
@@ -108555,6 +108697,10 @@ obp
 nTj
 nTj
 gNc
+wwv
+nTj
+lPJ
+vAB
 nTj
 nTj
 nTj
@@ -108569,13 +108715,9 @@ nTj
 nTj
 nTj
 nTj
+lPJ
 nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
+dXl
 bwq
 bnQ
 mSO
@@ -108812,6 +108954,10 @@ obp
 nTj
 nTj
 baH
+wwv
+nTj
+nTj
+sLV
 nTj
 nTj
 nTj
@@ -108828,11 +108974,7 @@ nTj
 nTj
 nTj
 nTj
-nTj
-nTj
-nTj
-nTj
-nTj
+dXl
 bwr
 bnQ
 mSO
@@ -109069,6 +109211,7 @@ obp
 nTj
 nTj
 baI
+wwv
 nTj
 nTj
 nTj
@@ -109088,8 +109231,7 @@ nTj
 nTj
 nTj
 nTj
-nTj
-nTj
+dXl
 bws
 bnQ
 mSO
@@ -109326,6 +109468,7 @@ aXt
 aYN
 nTj
 baF
+wwv
 nTj
 nTj
 nTj
@@ -109345,8 +109488,7 @@ nTj
 nTj
 nTj
 nTj
-nTj
-nTj
+dXl
 bwp
 bnQ
 nRo
@@ -109583,7 +109725,7 @@ obp
 nTj
 nTj
 gNc
-nTj
+wwv
 nTj
 nTj
 nTj
@@ -109603,7 +109745,7 @@ nTj
 nTj
 nTj
 nTj
-nTj
+dXl
 bwq
 bnQ
 byi
@@ -109840,6 +109982,7 @@ obp
 nTj
 nTj
 qPG
+wwv
 nTj
 nTj
 nTj
@@ -109859,8 +110002,7 @@ nTj
 nTj
 nTj
 nTj
-nTj
-nTj
+dXl
 bwr
 bnQ
 byi
@@ -110097,6 +110239,7 @@ obp
 nTj
 nTj
 baI
+wwv
 nTj
 nTj
 nTj
@@ -110116,8 +110259,7 @@ nTj
 nTj
 nTj
 nTj
-nTj
-nTj
+dXl
 bws
 bnQ
 byi
@@ -110354,6 +110496,10 @@ obp
 nTj
 nTj
 baF
+wwv
+nTj
+nTj
+sLV
 nTj
 nTj
 nTj
@@ -110370,11 +110516,7 @@ nTj
 nTj
 nTj
 nTj
-nTj
-nTj
-nTj
-nTj
-nTj
+dXl
 bwp
 bnQ
 byi
@@ -110611,6 +110753,10 @@ obp
 nTj
 nTj
 gNc
+wwv
+nTj
+lPJ
+vAB
 nTj
 nTj
 nTj
@@ -110625,13 +110771,9 @@ nTj
 nTj
 nTj
 nTj
+lPJ
 nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
+dXl
 bwq
 bnQ
 byi
@@ -110868,27 +111010,27 @@ obp
 nTj
 nTj
 baH
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
-nTj
+fFS
+iVq
+iVq
+iVq
+iVq
+iVq
+iVq
+iVq
+iVq
+iVq
+dsK
+iVq
+iVq
+iVq
+iVq
+iVq
+iVq
+iVq
+iVq
+iVq
+kMX
 bwr
 bnQ
 byi

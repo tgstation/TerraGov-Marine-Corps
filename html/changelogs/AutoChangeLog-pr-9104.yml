@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - bugfix: "Vahalla now has fire extinguisher"
+  - bugfix: "update mini fire extinguisher desc so that you can tell the difference between the two"
