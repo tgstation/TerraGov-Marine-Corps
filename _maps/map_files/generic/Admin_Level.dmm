@@ -234,7 +234,7 @@
 /area/centcom/valhalla/bridge)
 "ati" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/communications/bee,
+/obj/machinery/computer/guestpass,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
@@ -956,6 +956,7 @@
 /obj/item/clothing/mask/fakemoustache,
 /obj/item/clothing/suit/cowboy,
 /obj/item/clothing/shoes/cowboy,
+/obj/item/clothing/shoes/slippers,
 /turf/open/floor/tile/dark2,
 /area/centcom/valhalla/crew_quarters)
 "bfK" = (
@@ -2491,10 +2492,9 @@
 	},
 /area/centcom/valhalla/fore)
 "dsS" = (
-/turf/open/floor/tile/neutral/corner{
-	dir = 1
-	},
-/area/hallway/primary/port)
+/obj/structure/sign/securearea,
+/turf/closed/wall/r_wall,
+/area/centcom/valhalla/exterior)
 "dtT" = (
 /obj/structure/toilet{
 	dir = 4
@@ -3438,6 +3438,7 @@
 "eAE" = (
 /obj/structure/barricade/wooden,
 /obj/effect/decal/sandytile/sandyplating,
+/obj/structure/sign/nosmoking_1,
 /turf/open/floor/plating,
 /area/centcom/valhalla/exterior)
 "eBc" = (
@@ -3926,8 +3927,7 @@
 	},
 /obj/item/storage/secure/briefcase,
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -23
+	dir = 4
 	},
 /turf/open/floor/grimy,
 /area/centcom/valhalla/security/detectives_office)
@@ -4434,9 +4434,6 @@
 	pixel_x = 3;
 	pixel_y = -3
 	},
-/obj/structure/sign/nosmoking_1{
-	pixel_y = 32
-	},
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
@@ -4509,9 +4506,9 @@
 /area/centcom/valhalla/security/checkpoint)
 "gbw" = (
 /obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -24
+	dir = 1
 	},
+/obj/vehicle/unmanned/medium,
 /turf/open/floor/tile/brown,
 /area/centcom/valhalla/quartermaster/storage)
 "gbI" = (
@@ -4526,9 +4523,6 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla/quartermaster/miningdock)
 "geA" = (
-/obj/structure/sign/securearea{
-	pixel_y = 32
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
@@ -4658,7 +4652,7 @@
 	pixel_y = -24
 	},
 /obj/structure/table,
-/obj/machinery/computer/communications/bee,
+/obj/machinery/computer/guestpass,
 /turf/open/floor/carpet{
 	dir = 10;
 	icon_state = "carpetside"
@@ -5370,6 +5364,8 @@
 /obj/item/reagent_containers/dropper,
 /obj/item/stack/sheet/mineral/phoron/medium_stack,
 /obj/item/stack/sheet/mineral/phoron/medium_stack,
+/obj/item/reagent_containers/glass/bottle/nanoblood,
+/obj/item/reagent_containers/glass/bottle/nanoblood,
 /turf/open/floor/mainship/sterile/dark,
 /area/centcom/valhalla/medical/medbay)
 "hrC" = (
@@ -8292,7 +8288,7 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 8
 	},
-/obj/machinery/door/airlock/mainship/medical/free_access,
+/obj/machinery/door/airlock/mainship/medical,
 /turf/open/floor/mainship/sterile/dark,
 /area/centcom/valhalla/medical/medbay)
 "lqk" = (
@@ -8786,6 +8782,8 @@
 /obj/item/storage/box/monkeycubes/farwacubes,
 /obj/item/storage/box/monkeycubes/neaeracubes,
 /obj/item/storage/box/monkeycubes/stokcubes,
+/obj/item/tweezers,
+/obj/item/tweezers,
 /turf/open/floor/mainship/sterile/side,
 /area/centcom/valhalla/medical/medbay)
 "mbY" = (
@@ -9213,6 +9211,7 @@
 /area/centcom/valhalla/engine/engineering)
 "mHX" = (
 /obj/effect/decal/warning_stripes/box,
+/obj/structure/sign/securearea,
 /turf/open/floor/tile/dark2,
 /area/centcom/valhalla/engine/engineering)
 "mJp" = (
@@ -9561,8 +9560,11 @@
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/storage/eva)
 "ndm" = (
-/turf/open/floor/tile/dark,
-/area/hallway/primary/port)
+/obj/item/ore/iron,
+/obj/item/tool/pickaxe,
+/obj/machinery/marine_selector/gear/medic/valhalla,
+/turf/open/floor/plating,
+/area/centcom/valhalla/security/brig/interiorcavern)
 "ndy" = (
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
@@ -9743,12 +9745,9 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla/engine/engineering)
 "nsc" = (
-/obj/structure/sign/securearea,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/closed/wall/r_wall,
-/area/centcom/valhalla/engine/engineering)
+/obj/vehicle/unmanned/heavy,
+/turf/open/floor/tile/brown,
+/area/centcom/valhalla/quartermaster/storage)
 "nsr" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -10058,7 +10057,7 @@
 /area/centcom/valhalla/library)
 "nIR" = (
 /obj/structure/table,
-/obj/machinery/computer/atmoscontrol,
+/obj/machinery/computer/guestpass,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/library)
 "nKz" = (
@@ -10079,8 +10078,8 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 1
 	},
-/obj/machinery/door/airlock/mainship/medical/free_access{
-	dir = 2
+/obj/machinery/door/airlock/mainship/medical{
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile,
 /area/centcom/valhalla/medical/medbay)
@@ -10516,8 +10515,9 @@
 	},
 /area/centcom/valhalla/security/brig)
 "osZ" = (
-/turf/open/floor/tile/neutral/corner,
-/area/hallway/primary/port)
+/obj/machinery/marine_selector/gear/smartgun/valhalla,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/centcom/valhalla/security/brig/interiorcavern)
 "otn" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -11262,6 +11262,7 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla/port)
 "plj" = (
+/obj/machinery/vending/marineFood,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/crew_quarters/cafeteria)
 "plk" = (
@@ -11492,17 +11493,9 @@
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla/engine/engine_monitoring)
 "pLH" = (
-/obj/effect/decal/warning_stripes/thick{
-	dir = 2
-	},
-/obj/effect/decal/warning_stripes/thick{
-	dir = 1
-	},
-/obj/machinery/door/airlock/mainship/maint/free_access{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/port)
+/obj/machinery/vending/marineFood,
+/turf/open/floor/tile/cafe,
+/area/centcom/valhalla/crew_quarters/cafeteria)
 "pNw" = (
 /obj/machinery/door/firedoor,
 /obj/effect/decal/warning_stripes/thick{
@@ -11886,6 +11879,8 @@
 	name = "Station Intercom"
 	},
 /obj/item/mass_spectrometer,
+/obj/item/reagent_containers/glass/bottle/nanoblood,
+/obj/item/reagent_containers/glass/bottle/nanoblood,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
@@ -12822,7 +12817,7 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 4
 	},
-/obj/machinery/door/airlock/mainship/medical/free_access,
+/obj/machinery/door/airlock/mainship/medical,
 /turf/open/floor/plating,
 /area/centcom/valhalla/medical/medbay)
 "ros" = (
@@ -13208,8 +13203,8 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 1
 	},
-/obj/machinery/door/airlock/mainship/medical/free_access{
-	dir = 2
+/obj/machinery/door/airlock/mainship/medical{
+	dir = 1
 	},
 /turf/open/floor/tile/vault{
 	dir = 5
@@ -13568,6 +13563,13 @@
 	},
 /obj/item/clothing/suit/armor/centcom,
 /obj/item/clothing/shoes/centcom,
+/obj/item/clothing/gloves/techpriest,
+/obj/item/clothing/head/techpriest,
+/obj/item/clothing/shoes/techpriest,
+/obj/item/clothing/suit/techpriest,
+/obj/item/clothing/under/techpriest,
+/obj/item/cell/lasgun/lasrifle/highcap,
+/obj/item/weapon/gun/energy/lasgun/lasrifle,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
@@ -14013,6 +14015,8 @@
 	},
 /obj/item/tool/wrench,
 /obj/item/tool/wirecutters,
+/obj/item/clothing/under/sexymime,
+/obj/item/clothing/mask/gas/sexymime,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/starboard)
 "sTI" = (
@@ -14400,6 +14404,7 @@
 /obj/item/clothing/suit/bio_suit/plaguedoctorsuit,
 /obj/item/clothing/head/plaguedoctorhat,
 /obj/item/clothing/mask/gas/plaguedoctor,
+/obj/item/clothing/shoes/galoshes,
 /turf/open/floor/tile/dark2,
 /area/centcom/valhalla/crew_quarters)
 "txr" = (
@@ -14429,6 +14434,7 @@
 /obj/item/clothing/mask/gas/monkeymask,
 /obj/item/clothing/suit/monkeysuit,
 /obj/item/clothing/mask/gas/voice/space_ninja,
+/obj/item/clothing/shoes/slippers_worn,
 /turf/open/floor/tile/dark2,
 /area/centcom/valhalla/crew_quarters)
 "tye" = (
@@ -14454,6 +14460,7 @@
 /obj/item/clothing/under/swimsuit/green,
 /obj/item/clothing/under/swimsuit/purple,
 /obj/item/clothing/under/swimsuit/red,
+/obj/item/toy/plush/moth,
 /turf/open/floor/tile/dark2,
 /area/centcom/valhalla/crew_quarters)
 "tzB" = (
@@ -14464,8 +14471,8 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 1
 	},
-/obj/machinery/door/airlock/mainship/medical/free_access{
-	dir = 2
+/obj/machinery/door/airlock/mainship/medical{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/medical/morgue)
@@ -15126,7 +15133,7 @@
 	},
 /area/centcom/valhalla/primary/starboard)
 "umP" = (
-/obj/machinery/door/airlock/mainship/medical/free_access,
+/obj/machinery/door/airlock/mainship/medical,
 /turf/open/floor/plating,
 /area/centcom/valhalla/medical/medbay)
 "upB" = (
@@ -15475,6 +15482,7 @@
 /obj/machinery/light_switch{
 	pixel_y = 24
 	},
+/obj/machinery/vending/marineFood,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/crew_quarters/cafeteria)
 "uTg" = (
@@ -15935,7 +15943,7 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 4
 	},
-/obj/machinery/door/airlock/mainship/medical/free_access,
+/obj/machinery/door/airlock/mainship/medical,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/medical/medbay)
 "vyL" = (
@@ -16230,12 +16238,22 @@
 	dir = 6
 	},
 /obj/structure/closet/secure_closet/medical3,
+/obj/item/reagent_containers/hypospray/autoinjector/hyperzine,
+/obj/item/reagent_containers/hypospray/autoinjector/hyperzine,
+/obj/item/reagent_containers/hypospray/autoinjector/hyperzine,
+/obj/item/reagent_containers/hypospray/autoinjector/hyperzine,
+/obj/item/reagent_containers/hypospray/autoinjector/hyperzine,
+/obj/item/reagent_containers/hypospray/autoinjector/hyperzine,
+/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus,
+/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus,
+/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
+/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
 /turf/open/floor/plating,
 /area/centcom/valhalla/medical/chemistry)
 "vOm" = (
 /obj/machinery/vending/cigarette/nopower,
 /turf/open/floor/tile/dark,
-/area/hallway/primary/port)
+/area/centcom/valhalla/primary/port)
 "vOu" = (
 /obj/machinery/door/firedoor,
 /obj/effect/decal/warning_stripes/thick{
@@ -16698,8 +16716,7 @@
 	pixel_y = 3
 	},
 /obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -24
+	dir = 1
 	},
 /obj/effect/decal/tile/black{
 	dir = 4
@@ -16956,9 +16973,7 @@
 /turf/open/floor/tile/dark/red2,
 /area/centcom/valhalla/secondary/exit)
 "wuj" = (
-/obj/machinery/computer/secure_data{
-	dir = 8
-	},
+/obj/machinery/computer/forensic_scanning,
 /turf/open/floor/tile/dark/red2,
 /area/centcom/valhalla/secondary/exit)
 "wuY" = (
@@ -18694,7 +18709,7 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 4
 	},
-/obj/machinery/door/airlock/mainship/medical/free_access,
+/obj/machinery/door/airlock/mainship/medical,
 /turf/open/floor/tile/dark2,
 /area/centcom/valhalla/medical/medbay)
 "yfE" = (
@@ -23751,7 +23766,7 @@ khV
 kPi
 lTP
 mHX
-nsc
+nrq
 ofr
 paB
 pTP
@@ -24017,7 +24032,7 @@ vQc
 fmR
 fWu
 fmR
-fPm
+ndm
 gJC
 boq
 ieW
@@ -24437,7 +24452,7 @@ gJC
 ifr
 ics
 jte
-aMq
+osZ
 kRr
 lYp
 mOF
@@ -25809,7 +25824,7 @@ apL
 aMY
 apL
 dVZ
-eCH
+dsS
 mvn
 gae
 lGH
@@ -26515,7 +26530,7 @@ nDI
 kME
 lGH
 mvn
-ndm
+ygB
 vOm
 pJi
 vLH
@@ -26929,8 +26944,8 @@ mvn
 vXO
 dap
 mvn
-dsS
-osZ
+wOu
+wQm
 sFR
 uIP
 rnw
@@ -27097,7 +27112,7 @@ vnN
 qMD
 acu
 ivQ
-pLH
+kGn
 sdV
 ycV
 ycV
@@ -30392,7 +30407,7 @@ skh
 xIU
 xIU
 htM
-yfz
+pLH
 fkc
 fKF
 gry
@@ -32854,7 +32869,7 @@ hqq
 jlF
 tOL
 wZp
-keq
+nsc
 xPu
 oJp
 iaL
