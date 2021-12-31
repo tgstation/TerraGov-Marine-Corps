@@ -3,6 +3,7 @@
 /datum/ai_behavior/xeno
 	sidestep_prob = 25
 	identifier = IDENTIFIER_XENO
+	is_offered_on_creation = TRUE
 	///List of abilities to consider doing every Process()
 	var/list/ability_list = list()
 	///If the mob parent can heal itself and so should flee

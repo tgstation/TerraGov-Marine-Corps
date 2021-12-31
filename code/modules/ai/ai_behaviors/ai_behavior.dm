@@ -36,6 +36,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	var/anti_stuck_timer
 	///Minimum health percentage before the ai tries to run away
 	var/minimum_health = 0.4
+	///If the mob attached to the ai is offered on xeno creation
+	var/is_offered_on_creation = FALSE
 
 /datum/ai_behavior/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
@@ -53,6 +55,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	goal_node = GLOB.goal_nodes[identifier]
 	RegisterSignal(goal_node, COMSIG_PARENT_QDELETING, .proc/clean_goal_node)
 	START_PROCESSING(SSprocessing, src)
+	if(is_offered_on_creation)
+		LAZYDISTINCTADD(GLOB.ssd_living_mobs, src)
 
 /datum/ai_behavior/Destroy(force, ...)
 	. = ..()
