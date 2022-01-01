@@ -714,6 +714,7 @@
 #include "code\game\objects\items\tools\policetape.dm"
 #include "code\game\objects\items\tools\research_tools.dm"
 #include "code\game\objects\items\tools\shovel_tools.dm"
+#include "code\game\objects\items\tools\soldering_tool.dm"
 #include "code\game\objects\items\tools\surgery_tools.dm"
 #include "code\game\objects\items\tools\tool.dm"
 #include "code\game\objects\items\toys\cards.dm"
