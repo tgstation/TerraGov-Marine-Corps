@@ -30,9 +30,9 @@
 		balloon_alert(user, "Already busy!")
 		return TRUE
 
-	var/repair_time = 7 SECONDS
+	var/repair_time = 10 SECONDS
 	if(H == user)
-		repair_time *= 7
+		repair_time *= 10
 
 	user.visible_message(span_notice("[user] starts to fix some of the wires in [H == user ? "[H.p_their()]" : "[H]'s"] [affecting.display_name]."),\
 		span_notice("You start fixing some of the wires in [H == user ? "your" : "[H]'s"] [affecting.display_name]."))
@@ -40,6 +40,6 @@
 	while(affecting.burn_dam && do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD))
 		user.visible_message(span_warning("\The [user] fixes some wires in [H == user ? "[H.p_their()]" : "[H]'s"] [affecting.display_name] with \the [src]."), \
 			span_warning("You patch some wires in [H == user ? "your" : "[H]'s"] [affecting.display_name]."))
-		if(affecting.heal_limb_damage(15, 15, robo_repair = TRUE, updating_health = TRUE))
+		if(affecting.heal_limb_damage(10, 10, robo_repair = TRUE, updating_health = TRUE))
 			H.UpdateDamageIcon()
 	return TRUE
