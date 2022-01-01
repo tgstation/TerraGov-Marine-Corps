@@ -320,25 +320,6 @@
 		/obj/item/ammo_magazine/standard_smartmachinegun,
 	)
 
-/obj/item/storage/pouch/explosive/engineerdetpack/Initialize()
-	name = "Squad engineer's detpack pouch"
-	desc = "A squad engineer's best friend. It holds six detpacks and one signaler."
-	icon_state = "large_explosive"
-	storage_slots = 7
-	max_w_class = 3
-	can_hold = list(
-		/obj/item/detpack,
-		/obj/item/assembly/signaler,
-	)
-	. = ..()
-	new /obj/item/detpack(src)
-	new /obj/item/detpack(src)
-	new /obj/item/detpack(src)
-	new /obj/item/detpack(src)
-	new /obj/item/detpack(src)
-	new /obj/item/detpack(src)
-	new /obj/item/assembly/signaler(src)
-
 /obj/item/storage/pouch/explosive
 	name = "explosive pouch"
 	desc = "It can contain grenades, plastiques, mine boxes, and other explosives."
@@ -376,6 +357,20 @@
 /obj/item/storage/pouch/explosive/upp
 	fill_type = /obj/item/explosive/grenade/upp
 	fill_number = 4
+
+/obj/item/storage/pouch/detpack
+	name = "detpack pouch"
+	desc = "A squad engineer's best friend. It holds six detpacks and one signaler."
+	icon_state = "large_explosive"
+	storage_slots = 7
+	max_w_class = 3
+	can_hold = list(
+		/obj/item/detpack,
+		/obj/item/assembly/signaler,
+	)
+	fill_type = /obj/item/detpack
+	fill_number = 6
+	
 
 /obj/item/storage/pouch/grenade
 	name = "Grenade pouch"
