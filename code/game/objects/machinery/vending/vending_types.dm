@@ -206,7 +206,11 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/hyperzine = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/rezadone = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/virilyth = -1,
 			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/roulettium = -1,
 		),
 		"Reagent Bottle" = list(
 			/obj/item/reagent_containers/glass/bottle/dylovene = -1,
@@ -220,6 +224,10 @@
 			/obj/item/reagent_containers/glass/bottle/tramadol = -1,
 			/obj/item/reagent_containers/glass/bottle/oxycodone = -1,
 			/obj/item/reagent_containers/glass/bottle/polyhexanide = -1,
+			/obj/item/reagent_containers/glass/bottle/adminordrazine = -1,
+			/obj/item/reagent_containers/glass/bottle/lemoline = -1,
+			/obj/item/reagent_containers/glass/bottle/nanoblood = -1,
+			/obj/item/reagent_containers/glass/bottle/doctor_delight = -1,
 		),
 		"Pill Bottle" = list(
 			/obj/item/storage/pill_bottle/peridaxon = -1,

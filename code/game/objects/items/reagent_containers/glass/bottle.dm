@@ -139,6 +139,7 @@
 /obj/item/reagent_containers/glass/bottle/adminordrazine
 	name = "\improper Adminordrazine bottle"
 	desc = "A small bottle. Contains the liquid essence of the gods."
+	icon = 'icons/obj/items/drinks.dmi'
 	icon_state = "holyflask"
 	list_reagents = list(/datum/reagent/medicine/adminordrazine = 60)
 
@@ -278,4 +279,8 @@
 	icon_state = "bottle-5"
 	list_reagents = list(/datum/reagent/medicine/lemoline = 10)
 
-
+/obj/item/reagent_containers/glass/bottle/doctor_delight
+	name = "\improper Doctor's Delight bottle"
+	desc = "A small bottle. Contains Doctor's Delight."
+	icon_state = "bottle3"
+	list_reagents = list(/datum/reagent/consumable/drink/doctor_delight = 60)

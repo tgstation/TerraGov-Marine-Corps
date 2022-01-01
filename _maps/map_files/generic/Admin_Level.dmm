@@ -1363,6 +1363,7 @@
 /obj/effect/decal/warning_stripes/thick,
 /obj/item/clothing/head/xenos,
 /obj/item/clothing/suit/xenos,
+/obj/effect/landmark/itemspawner/highlander,
 /turf/open/floor/tile/lightred,
 /area/centcom/valhalla/maintenance/starboardsolar)
 "bLW" = (
@@ -3469,6 +3470,8 @@
 	pixel_y = 7
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/item/stack/sheet/mineral/phoron/medium_stack,
+/obj/item/reagent_containers/glass/beaker/large,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "epY" = (
@@ -5197,6 +5200,8 @@
 	pixel_y = 7
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/item/stack/sheet/mineral/phoron/medium_stack,
+/obj/item/reagent_containers/glass/beaker/large,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "gPu" = (
@@ -6561,6 +6566,7 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 10
 	},
+/obj/effect/landmark/itemspawner/commie,
 /turf/open/floor/plating,
 /area/centcom/valhalla/port)
 "iJw" = (
@@ -6677,6 +6683,7 @@
 /area/centcom/valhalla/engine/engineering)
 "iWM" = (
 /obj/structure/table,
+/obj/effect/landmark/itemspawner/prig,
 /turf/open/floor/plating,
 /area/centcom/valhalla/port)
 "iXv" = (
@@ -7070,6 +7077,7 @@
 /obj/item/tool/wirecutters,
 /obj/effect/spawner/random/drink_alcohol_bottle,
 /obj/effect/spawner/random/powercell,
+/obj/effect/landmark/itemspawner/madscientist,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/port)
 "jwO" = (
@@ -7316,6 +7324,7 @@
 	dir = 1
 	},
 /obj/effect/decal/warning_stripes/box,
+/obj/effect/landmark/itemspawner/highlander,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/port)
 "jMW" = (
@@ -8055,6 +8064,7 @@
 /obj/machinery/status_display/ai{
 	pixel_x = 32
 	},
+/obj/effect/landmark/itemspawner/fakewizard,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/chapel/main)
 "kJw" = (
@@ -8927,6 +8937,10 @@
 /turf/open/floor/gcircuit,
 /area/centcom/valhalla/engine/atmos_monitoring)
 "lXt" = (
+/obj/item/radio/intercom{
+	dir = 4;
+	name = "Station Intercom"
+	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
@@ -9241,6 +9255,7 @@
 /area/centcom/valhalla/security/brig/interiorcavern)
 "msP" = (
 /obj/structure/closet/wardrobe,
+/obj/effect/landmark/itemspawner/elpresidente,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
@@ -10438,6 +10453,7 @@
 /obj/structure/table,
 /obj/item/newspaper,
 /obj/item/clothing/head/bowler,
+/obj/effect/landmark/itemspawner/chicken,
 /turf/open/floor/plating,
 /area/centcom/valhalla/port)
 "nXO" = (
@@ -11816,15 +11832,6 @@
 	dir = 4
 	},
 /area/centcom/valhalla/primary/port)
-"pPe" = (
-/obj/item/radio/intercom{
-	dir = 8;
-	name = "Station Intercom"
-	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 4
-	},
-/area/centcom/valhalla/medical/medbay)
 "pPo" = (
 /obj/machinery/door/firedoor,
 /obj/effect/decal/warning_stripes/thick{
@@ -12050,10 +12057,6 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/atmos_monitoring)
 "qfs" = (
-/obj/item/radio/intercom{
-	dir = 8;
-	name = "Station Intercom"
-	},
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
@@ -13128,6 +13131,7 @@
 	},
 /obj/effect/decal/warning_stripes/thick,
 /obj/effect/decal/cleanable/cobweb,
+/obj/effect/landmark/itemspawner/cutewitch,
 /turf/open/floor/plating,
 /area/centcom/valhalla/starboard)
 "rnw" = (
@@ -14073,6 +14077,7 @@
 "sAp" = (
 /obj/structure/table,
 /obj/item/storage/briefcase,
+/obj/effect/landmark/itemspawner/gladiator,
 /turf/open/floor/plating,
 /area/centcom/valhalla/port)
 "sCM" = (
@@ -14412,6 +14417,7 @@
 /obj/item/coin/iron,
 /obj/item/coin/iron,
 /obj/item/toy/dice/d20,
+/obj/effect/landmark/itemspawner/butler,
 /turf/open/floor/plating,
 /area/centcom/valhalla/port)
 "sZe" = (
@@ -14847,6 +14853,7 @@
 /obj/item/clothing/under/swimsuit/purple,
 /obj/item/clothing/under/swimsuit/red,
 /obj/item/toy/plush/moth,
+/obj/effect/landmark/itemspawner/marisawizard/fake,
 /turf/open/floor/tile/dark2,
 /area/centcom/valhalla/crew_quarters)
 "tzB" = (
@@ -15857,11 +15864,6 @@
 /obj/structure/sign/botany,
 /turf/open/floor/plating,
 /area/centcom/valhalla/port)
-"uQY" = (
-/obj/effect/landmark/corpsespawner/pmc,
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark,
-/area/centcom/valhalla/port)
 "uRy" = (
 /obj/machinery/door/firedoor,
 /obj/effect/decal/warning_stripes/thick{
@@ -16665,6 +16667,10 @@
 /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus,
 /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
 /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
+/obj/item/clothing/suit/bio_suit/cmo,
+/obj/item/clothing/head/cmo,
+/obj/item/clothing/suit/storage/labcoat/cmo,
+/obj/item/tool/stamp/cmo,
 /turf/open/floor/plating,
 /area/centcom/valhalla/medical/chemistry)
 "vOm" = (
@@ -17017,6 +17023,7 @@
 /area/centcom/valhalla/port)
 "wae" = (
 /obj/structure/closet/wardrobe/mixed,
+/obj/effect/landmark/itemspawner/marisawizard,
 /turf/open/floor/wood,
 /area/centcom/valhalla/library)
 "waP" = (
@@ -17370,6 +17377,10 @@
 	pixel_y = 24
 	},
 /obj/machinery/vending/MarineMed/Blood,
+/obj/item/radio/intercom{
+	dir = 8;
+	name = "Station Intercom"
+	},
 /turf/open/floor/mainship/sterile,
 /area/centcom/valhalla/medical/medbay)
 "wsm" = (
@@ -17410,6 +17421,7 @@
 /obj/effect/decal/tile/black{
 	dir = 8
 	},
+/obj/effect/landmark/itemspawner/holiday_priest,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
@@ -25522,7 +25534,7 @@ ycV
 qFW
 hec
 edn
-uQY
+ckK
 lfg
 qlR
 euF
@@ -28975,7 +28987,7 @@ mEY
 rfF
 lJu
 fgO
-pPe
+fgO
 qfs
 vxC
 sdV
