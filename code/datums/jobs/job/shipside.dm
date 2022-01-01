@@ -798,6 +798,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 /datum/outfit/job/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/solderingtool, SLOT_IN_BACKPACK)
 
 
 //Researcher
