@@ -655,6 +655,7 @@
 	spawned_gear_list = list(
 		/obj/item/explosive/plastique,
 		/obj/item/storage/pouch/detpack,
+		/obj/item/assembly/signaler,
 		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
 		/obj/item/clothing/glasses/welding,
 		/obj/item/clothing/gloves/marine/insulated,

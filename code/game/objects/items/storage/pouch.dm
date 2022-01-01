@@ -370,7 +370,6 @@
 	)
 	fill_type = /obj/item/detpack
 	fill_number = 6
-	
 
 /obj/item/storage/pouch/grenade
 	name = "Grenade pouch"
