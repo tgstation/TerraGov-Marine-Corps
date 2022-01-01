@@ -67,7 +67,6 @@
 	///Typepath list of uniform variants.
 	var/list/adjustment_variants = list(
 		"Down" = "_d",
-		"Half" = "_h",
 	)
 	var/current_variant
 

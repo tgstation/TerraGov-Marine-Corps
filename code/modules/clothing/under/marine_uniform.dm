@@ -11,6 +11,10 @@
 
 /obj/item/clothing/under/marine/standard
 	flags_item_map_variant = null
+	adjustment_variants = list(
+		"Down" = "_d",
+		"Half" = "_h",
+	)
 
 // camo things stuff yeah!
 
@@ -21,22 +25,36 @@
 /obj/item/clothing/under/marine/camo/snow
 	name = "\improper TGMC camo fatigues (snow)"
 	icon_state = "s_marine_jumpsuit"
+	adjustment_variants = list(
+		"Down" = "_d",
+		"Half" = "_h",
+	)
 
 /obj/item/clothing/under/marine/camo/desert
 	name = "\improper TGMC camo fatigues (desert)"
 	icon_state = "d_marine_jumpsuit"
+	adjustment_variants = list(
+		"Down" = "_d",
+		"Half" = "_h",
+	)
 
 /obj/item/clothing/under/marine/corpsman
 	name = "\improper TGMC corpsman fatigues"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat corpsman fatigues. You suspect it's not as robust-proof as advertised."
 	icon_state = "marine_medic"
-
+	adjustment_variants = list(
+		"Down" = "_d",
+		"Half" = "_h",
+	)
 
 /obj/item/clothing/under/marine/engineer
 	name = "\improper TGMC engineer fatigues"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat engineer fatigues. You suspect it's not as robust-proof as advertised."
 	icon_state = "marine_engineer"
-
+	adjustment_variants = list(
+		"Down" = "_d",
+		"Half" = "_h",
+	)
 
 /obj/item/clothing/under/marine/jaeger
 	name = "\improper TGMC jaeger undersuit"
@@ -108,6 +126,9 @@
 	icon_state = "pilot_flightsuit"
 	flags_cold_protection = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_item_map_variant = null
+	adjustment_variants = list(
+		"Half" = "_h",
+	)
 
 /obj/item/clothing/under/marine/officer/tanker
 	name = "tank crewman officer uniform"
@@ -142,11 +163,17 @@
 	name = "chief ship engineer uniform"
 	desc = "An engine-friendly, kevlar-weaved, hazmat-tested, EMF-augmented ship engineer uniform. You suspect it's not as robust-proof as advertised."
 	icon_state = "EC_jumpsuit"
+	adjustment_variants = list(
+		"Half" = "_h",
+	)
 
 /obj/item/clothing/under/marine/officer/engi
 	name = "engineer uniform"
 	desc = "An engine-friendly, kevlar-weaved, hazmat-tested, EMF-augmented chief ship engineer uniform. You suspect it's not as robust-proof as advertised."
 	icon_state = "E_jumpsuit"
+	adjustment_variants = list(
+		"Half" = "_h",
+	)
 
 /obj/item/clothing/under/marine/officer/researcher
 	name = "researcher clothes"
@@ -337,9 +364,9 @@
 	name = "marine chief medical officer jumpsuit"
 	desc = "It's made of a special fiber that provides minor protection against biohazards."
 	icon_state = "marine_cmo"
-	adjustment_variants = list()
-
-
+	adjustment_variants = list(
+		"Half" = "_h",
+	)
 /obj/item/clothing/under/som
 	name = "\improper SoM uniform"
 	desc = "A heavily modified mining uniform based off the ones used by mining colonies."
