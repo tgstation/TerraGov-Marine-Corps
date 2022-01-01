@@ -2411,10 +2411,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/white,
 /area/centcom/valhalla/crew_quarters/heads/hop)
-"ddp" = (
-/obj/effect/decal/sandedge,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/centcom/valhalla/security/brig/interiorcavern)
 "dfx" = (
 /obj/item/clothing/suit/space/rig,
 /obj/item/clothing/head/helmet/space/syndicate,
@@ -26440,7 +26436,7 @@ awi
 aMq
 aMq
 aMq
-ddp
+aMq
 aMq
 aMq
 bbR
