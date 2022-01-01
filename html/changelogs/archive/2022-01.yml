@@ -1,0 +1,12 @@
+2022-01-01:
+  novaepee:
+  - bugfix: Vahalla now has fire extinguisher
+  - bugfix: update mini fire extinguisher desc so that you can tell the difference
+      between the two
+  - bugfix: Put Walten back in Sulaco
+  - rscadd: Every shipside maps follow PoS Alamo LZ tiles
+  - bugfix: Researcher now have medical comm and can see where extraction sites are.
+      My bad
+  private-tristan:
+  - balance: replaced shrike and drone's larval sting with neurotoxin sting.
+  - rscdel: removed larval accelerant from the game.
