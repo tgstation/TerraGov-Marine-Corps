@@ -187,7 +187,7 @@
 
 	if(owner.do_actions)
 		return FALSE
-	if(!owner.line_of_sight(target) || get_dist(owner, target) > 2)
+	if(!line_of_sight(owner, target, 2) || get_dist(owner, target) > 2)
 		if(!silent)
 			to_chat(owner, span_notice("It is beyond our reach, we must be close and our way must be clear."))
 		return FALSE
@@ -287,7 +287,7 @@
 		if(!silent)
 			to_chat(owner, span_notice("You are too hurt to link."))
 		return FALSE
-	if(!owner.line_of_sight(target) || get_dist(owner, target) > GORGER_PSYCHIC_LINK_RANGE)
+	if(!line_of_sight(owner, target, GORGER_PSYCHIC_LINK_RANGE))
 		if(!silent)
 			to_chat(owner, span_notice("It is beyond our reach, we must be close and our way must be clear."))
 		return FALSE

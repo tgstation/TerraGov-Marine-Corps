@@ -40,6 +40,10 @@
 		/datum/action/xeno_action/return_to_core,
 		/datum/action/xeno_action/rally_hive/hivemind,
 		/datum/action/xeno_action/activable/command_minions,
+		/datum/action/xeno_action/activable/plant_weeds/ranged,
+		/datum/action/xeno_action/activable/psychic_cure/hivemind,
+		/datum/action/xeno_action/toggle_pheromones/hivemind,
+		/datum/action/xeno_action/activable/secrete_resin/ranged/slow,
 	)
 
 /datum/xeno_caste/hivemind/on_caste_applied(mob/xenomorph)
@@ -60,14 +64,3 @@
 	aura_strength = 4 //Good pheros
 
 	speed = 1.5
-
-	// *** Abilities *** //
-	actions = list(
-		/datum/action/xeno_action/change_form,
-		/datum/action/xeno_action/activable/plant_weeds/ranged,
-		/datum/action/xeno_action/activable/psychic_cure,
-		/datum/action/xeno_action/toggle_pheromones,
-		/datum/action/xeno_action/activable/secrete_resin/ranged/slow,
-		/datum/action/xeno_action/rally_hive/hivemind,
-		/datum/action/xeno_action/activable/command_minions,
-	)

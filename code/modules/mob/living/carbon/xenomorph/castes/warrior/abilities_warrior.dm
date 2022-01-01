@@ -369,7 +369,7 @@
 				to_chat(owner, span_xenodanger("We don't care about the dead!"))
 			return FALSE
 
-	if(!owner.line_of_sight(A, range))
+	if(!line_of_sight(owner, A, range))
 		if(!silent)
 			to_chat(owner, span_xenodanger("Our target must be closer!"))
 		return FALSE
@@ -481,6 +481,8 @@
 			to_chat(src, span_danger("The splint on your [L.display_name] comes apart!"))
 
 		L.take_damage_limb(damage, 0, FALSE, FALSE, run_armor_check(target_zone))
+	else
+		apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
 
 	if(push)
 		var/facing = get_dir(X, src)
@@ -499,7 +501,6 @@
 
 		throw_at(T, 2, 1, X, 1) //Punch em away
 
-	apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
 	var/target_location_feedback = get_living_limb_descriptive_name(target_zone)
 	X.visible_message(span_xenodanger("\The [X] hits [src] in the [target_location_feedback] with a [punch_description] punch!"), \
 		span_xenodanger("We hit [src] in the [target_location_feedback] with a [punch_description] punch!"), visible_message_flags = COMBAT_MESSAGE)

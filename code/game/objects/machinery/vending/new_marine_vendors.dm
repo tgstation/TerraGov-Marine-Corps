@@ -276,6 +276,10 @@
 	squad_tag = "Delta"
 	req_access = list(ACCESS_MARINE_ENGPREP, ACCESS_MARINE_DELTA)
 
+/obj/machinery/marine_selector/clothes/engi/valhalla
+	vendor_role = /datum/job/fallen/engineer
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/medic
 	name = "GHMME Automated Corpsman Closet"
@@ -312,6 +316,10 @@
 	squad_tag = "Delta"
 	req_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_DELTA)
 
+/obj/machinery/marine_selector/clothes/medic/valhalla
+	vendor_role = /datum/job/fallen/corpsman
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/smartgun
 	name = "GHMME Automated Smartgunner Closet"
@@ -348,6 +356,11 @@
 	squad_tag = "Delta"
 	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_DELTA)
 
+/obj/machinery/marine_selector/clothes/smartgun/valhalla
+	vendor_role = /datum/job/fallen/smartgunner
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
+
 /obj/machinery/marine_selector/clothes/leader
 	name = "GHMME Automated Leader Closet"
 	req_access = list(ACCESS_MARINE_LEADER)
@@ -382,6 +395,11 @@
 /obj/machinery/marine_selector/clothes/leader/delta
 	squad_tag = "Delta"
 	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DELTA)
+
+/obj/machinery/marine_selector/clothes/leader/valhalla
+	vendor_role = /datum/job/fallen/leader
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/commander
 	name = "GHMME Automated Commander Closet"
@@ -500,6 +518,11 @@
 /obj/machinery/marine_selector/gear/medic/rebel
 	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
 
+/obj/machinery/marine_selector/gear/medic/valhalla
+	vendor_role = /datum/job/fallen/corpsman
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
+
 /obj/machinery/marine_selector/gear/engi
 	name = "NEXUS Automated Engineer Equipment Rack"
 	desc = "An automated engineer equipment rack hooked up to a colossal storage unit."
@@ -514,6 +537,10 @@
 /obj/machinery/marine_selector/gear/engi/rebel
 	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
 
+/obj/machinery/marine_selector/gear/engi/valhalla
+	vendor_role = /datum/job/fallen/engineer
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/smartgun
 	name = "NEXUS Automated Smartgunner Equipment Rack"
@@ -529,6 +556,11 @@
 /obj/machinery/marine_selector/gear/smartgun/rebel
 	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
 
+/obj/machinery/marine_selector/gear/smartgun/valhalla
+	vendor_role = /datum/job/fallen/smartgunner
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
+
 /obj/machinery/marine_selector/gear/leader
 	name = "NEXUS Automated Squad Leader Equipment Rack"
 	desc = "An automated squad leader equipment rack hooked up to a colossal storage unit."
@@ -542,6 +574,11 @@
 
 /obj/machinery/marine_selector/gear/leader/rebel
 	req_access = list(ACCESS_MARINE_LEADER_REBEL)
+
+/obj/machinery/marine_selector/gear/leader/valhalla
+	vendor_role = /datum/job/fallen/leader
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
 
 
 /obj/effect/essentials_set
@@ -694,6 +731,7 @@
 	spawned_gear_list = list(
 		/obj/item/stack/sheet/plasteel/medium_stack,
 		/obj/item/stack/sheet/metal/large_stack,
+		/obj/item/tool/weldingtool/hugetank,
 		/obj/item/lightreplacer,
 		/obj/item/healthanalyzer,
 		/obj/item/tool/handheld_charger,

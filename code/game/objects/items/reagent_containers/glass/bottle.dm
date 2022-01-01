@@ -230,12 +230,6 @@
 	icon_state = "bottle7"
 	list_reagents = list(/datum/reagent/toxin/xeno_neurotoxin/light = 30)
 
-/obj/item/reagent_containers/glass/bottle/xeno_growthtoxin
-	name = "\improper Growth toxin bottle"
-	desc = "A small bottle. Contains artificialy synthesized growth toxin - useful for researchers, or as a very risky medicine."
-	icon_state = "bottle7"
-	list_reagents = list(/datum/reagent/toxin/xeno_growthtoxin = 30)
-
 /obj/item/reagent_containers/glass/bottle/xeno_hemodile
 	name = "\improper Hemodile bottle"
 	desc = "A small bottle. Contains artificialy synthesized hemodile- useful for testing treatments, or training troops."
@@ -265,6 +259,12 @@
 	desc = "A small bottle. Contains one and a half doses of polyhexanide, a sterilizer for internal surgical use."
 	icon_state = "bottle2"
 	list_reagents = list(/datum/reagent/medicine/polyhexanide = 30)
+
+/obj/item/reagent_containers/glass/bottle/medicalnanites
+	name = "\improper Nanomachines bottle"
+	desc = "A small bottle. Contains nanomachines modified for medical use, A potent new method of healing that that reproduces using a subject's blood and has a brief but potentially dangerous activation period!"
+	icon_state = "bottle7"
+	list_reagents = list(/datum/reagent/medicine/research/medicalnanites = 5)
 
 /obj/item/reagent_containers/glass/bottle/lemoline
 	name = "\improper Lemoline bottle"

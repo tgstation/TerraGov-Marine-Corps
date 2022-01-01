@@ -43,6 +43,7 @@
 	RegisterSignal(src, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED, .proc/check_weeds_and_move)
 	RegisterSignal(src, COMSIG_XENOMORPH_CORE_RETURN, .proc/return_to_core)
 	RegisterSignal(src, COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM, .proc/change_form)
+	update_action_buttons()
 
 /mob/living/carbon/xenomorph/hivemind/upgrade_possible()
 	return FALSE
@@ -88,6 +89,7 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	return ..()
 
+
 /mob/living/carbon/xenomorph/hivemind/on_death()
 	upgrade = XENO_UPGRADE_BASETYPE
 	if(!QDELETED(core))
@@ -125,10 +127,9 @@
 		throwpass = FALSE
 		upgrade = XENO_UPGRADE_MANIFESTATION
 		set_datum(FALSE)
-		remove_abilities()
-		add_abilities()
 		update_wounds()
 		update_icon()
+		update_action_buttons()
 		return
 	invisibility = initial(invisibility)
 	status_flags = initial(status_flags)
@@ -139,10 +140,11 @@
 	throwpass = initial(throwpass)
 	upgrade = XENO_UPGRADE_BASETYPE
 	set_datum(FALSE)
-	remove_abilities()
-	add_abilities()
 	update_wounds()
 	update_icon()
+	update_action_buttons()
+
+
 
 /mob/living/carbon/xenomorph/hivemind/flamer_fire_act()
 	return_to_core()

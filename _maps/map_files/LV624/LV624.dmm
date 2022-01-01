@@ -648,6 +648,11 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
+"akm" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 9
+	},
+/area/shuttle/drop1/lz1)
 "akq" = (
 /turf/open/floor/plating,
 /area/lv624/ground/sand8)
@@ -2748,6 +2753,7 @@
 "aNT" = (
 /obj/machinery/floodlight,
 /obj/item/ammo_casing,
+/obj/effect/landmark/dropship_start_location,
 /turf/open/floor/plating,
 /area/lv624/lazarus/tablefort)
 "aNZ" = (
@@ -3493,6 +3499,11 @@
 	dir = 8
 	},
 /area/lv624/ground/sand8)
+"bar" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 5
+	},
+/area/shuttle/drop1/lz1)
 "bau" = (
 /turf/open/ground/coast/corner{
 	dir = 4
@@ -5360,6 +5371,11 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle5)
+"bZH" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/shuttle/drop1/lz1)
 "cae" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -6070,6 +6086,9 @@
 	dir = 9
 	},
 /area/lv624/lazarus/fitness)
+"cRC" = (
+/turf/open/floor/plating/icefloor/warnplate,
+/area/shuttle/drop2/lz2)
 "cRI" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -6513,6 +6532,11 @@
 	icon_state = "whiteyellowfull"
 	},
 /area/lv624/lazarus/sandtemple)
+"drX" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/shuttle/drop2/lz2)
 "dsh" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -8840,6 +8864,10 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/spaceport2)
+"gfm" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor,
+/area/shuttle/drop2/lz2)
 "gfH" = (
 /obj/structure/jungle/planttop1,
 /turf/open/ground/grass,
@@ -9937,6 +9965,11 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass/grass2,
 /area/lv624/lazarus/atmos/outside)
+"hwv" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/shuttle/drop1/lz1)
 "hxa" = (
 /turf/open/floor/bcircuit/off,
 /area/lv624/lazarus/sandtemple)
@@ -11268,6 +11301,12 @@
 	dir = 1
 	},
 /area/lv624/lazarus/corporate_affairs)
+"jbX" = (
+/obj/effect/decal/cleanable/blood/oil{
+	icon_state = "armorblood"
+	},
+/turf/open/floor/plating/icefloor,
+/area/shuttle/drop2/lz2)
 "jci" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -12355,6 +12394,11 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/jungle7)
+"kqj" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/shuttle/drop2/lz2)
 "kqC" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood/broken,
@@ -12794,8 +12838,9 @@
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/fitness)
 "kSE" = (
-/obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
 /area/shuttle/drop2/lz2)
 "kTb" = (
 /obj/item/shard,
@@ -12938,6 +12983,12 @@
 	dir = 6
 	},
 /area/lv624/lazarus/spaceport)
+"lbk" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/shuttle/drop1/lz1)
 "lbt" = (
 /obj/item/weapon/claymore/mercsword/machete,
 /turf/open/floor/tile/whiteyellow/full,
@@ -12963,7 +13014,7 @@
 /area/lv624/ground/sand3)
 "lcv" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
-/turf/open/floor/plating,
+/turf/open/floor/plating/icefloor,
 /area/shuttle/drop2/lz2)
 "ldf" = (
 /obj/structure/rack,
@@ -14256,6 +14307,15 @@
 	icon_state = "grimy"
 	},
 /area/lv624/lazarus/bar)
+"mzV" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 8;
+	icon_state = "equip_base_l_wing"
+	},
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/shuttle/drop1/lz1)
 "mzX" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -14384,6 +14444,11 @@
 "mGq" = (
 /turf/closed/wall,
 /area/lv624/ground/jungle7)
+"mGr" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/shuttle/drop2/lz2)
 "mGL" = (
 /obj/structure/jungle/vines,
 /obj/structure/jungle/vines/heavy,
@@ -16172,6 +16237,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/main_hall)
+"oVU" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/plating/icefloor,
+/area/shuttle/drop2/lz2)
 "oVV" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -16751,6 +16820,12 @@
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
+"pFJ" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/shuttle/drop1/lz1)
 "pGL" = (
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
@@ -16959,6 +17034,9 @@
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/ground/river,
 /area/lv624/lazarus/atmos)
+"pSp" = (
+/turf/open/floor/plating/icefloor/warnplate,
+/area/shuttle/drop1/lz1)
 "pSz" = (
 /obj/machinery/door/airlock/colony/medical/hydroponics{
 	dir = 1
@@ -17039,6 +17117,11 @@
 "pWt" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/lazarus/spaceport)
+"pWC" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 5
+	},
+/area/shuttle/drop2/lz2)
 "pXl" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -17246,6 +17329,11 @@
 	dir = 5
 	},
 /area/lv624/lazarus/research)
+"qqj" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/shuttle/drop2/lz2)
 "qqm" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirt,
@@ -17569,6 +17657,12 @@
 /obj/structure/jungle/plantbot1,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
+"qKu" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/shuttle/drop2/lz2)
 "qKz" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -17968,6 +18062,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
+"reG" = (
+/obj/effect/attach_point/electronics/dropship1,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "reH" = (
 /obj/item/tool/shovel,
 /turf/open/floor/tile/green/greentaupe{
@@ -18303,6 +18401,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
+"rBn" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/shuttle/drop1/lz1)
 "rBs" = (
 /obj/structure/platform_decoration{
 	dir = 1
@@ -19187,6 +19290,9 @@
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
+"szs" = (
+/turf/open/floor/plating/icefloor,
+/area/shuttle/drop2/lz2)
 "sAv" = (
 /obj/item/clothing/suit/redtag,
 /obj/structure/closet/athletic_mixed,
@@ -19700,6 +19806,10 @@
 /obj/structure/jungle/vines,
 /turf/open/ground/river,
 /area/lv624/ground/river1)
+"tcA" = (
+/obj/effect/attach_point/weapon/dropship1,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "tcH" = (
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
@@ -22193,6 +22303,12 @@
 /obj/item/weapon/claymore/mercsword/machete,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
+"vOZ" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/shuttle/drop2/lz2)
 "vPd" = (
 /obj/structure/table,
 /obj/item/tool/crowbar,
@@ -22858,6 +22974,11 @@
 	dir = 4
 	},
 /area/lv624/lazarus/spaceport)
+"wvz" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/shuttle/drop1/lz1)
 "wvT" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/spaceport)
@@ -23315,8 +23436,9 @@
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
 "wVT" = (
-/obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
 /area/shuttle/drop1/lz1)
 "wWA" = (
 /obj/effect/decal/riverdecal,
@@ -24176,7 +24298,9 @@
 	},
 /area/lv624/lazarus/main_hall)
 "xNh" = (
-/turf/open/floor/plating,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 9
+	},
 /area/shuttle/drop2/lz2)
 "xNG" = (
 /obj/structure/fence,
@@ -24511,6 +24635,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
+"ycR" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "ydh" = (
 /obj/structure/jungle/plantbot1/alien,
 /obj/effect/ai_node,
@@ -36496,26 +36624,26 @@ rOf
 vvX
 urD
 xNh
-xNh
 kSE
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
 kSE
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
 kSE
-xNh
+kSE
+kSE
+kSE
+kSE
+kSE
+kSE
+kSE
+vOZ
+kSE
+kSE
+kSE
+kSE
+kSE
+kSE
+kSE
+kSE
+mGr
 kYG
 uvP
 wfA
@@ -36672,27 +36800,27 @@ tSf
 rOf
 vvX
 ugM
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
+kqj
+szs
+gfm
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+jbX
+gfm
+szs
+cRC
 mFI
 uvP
 wfA
@@ -36849,27 +36977,27 @@ tSf
 rOf
 vvX
 bHL
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
+kqj
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+oVU
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+cRC
 uej
 uvP
 wfA
@@ -37026,27 +37154,27 @@ tSf
 rOf
 vvX
 uNU
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
+kqj
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+cRC
 lYY
 uvP
 tBK
@@ -37203,27 +37331,27 @@ tSf
 rOf
 vvX
 urD
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
+kqj
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+cRC
 kYG
 uvP
 rRx
@@ -37380,27 +37508,27 @@ tSf
 rOO
 vvX
 ugM
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
+kqj
+szs
+szs
+szs
+oVU
+szs
+szs
+szs
+szs
+szs
 lcv
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+cRC
 mFI
 uvP
 rRx
@@ -37557,27 +37685,27 @@ tSf
 rOf
 vvX
 bHL
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
+kqj
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+oVU
+szs
+cRC
 uej
 uvP
 tSf
@@ -37734,27 +37862,27 @@ tSf
 rOf
 vvX
 uNU
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
+kqj
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+jbX
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+cRC
 lYY
 uvP
 tSf
@@ -37911,27 +38039,27 @@ tSf
 rOf
 tee
 urD
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
+kqj
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+cRC
 kYG
 uvP
 tSf
@@ -38088,27 +38216,27 @@ tSf
 rOf
 vvX
 ugM
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
+kqj
+szs
+gfm
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+szs
+jbX
+szs
+szs
+szs
+gfm
+szs
+cRC
 mFI
 uvP
 tSf
@@ -38265,27 +38393,27 @@ tSf
 rOf
 vvX
 bHL
-xNh
-xNh
-kSE
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-kSE
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-xNh
-kSE
-xNh
+pWC
+qqj
+qqj
+qqj
+qqj
+qqj
+qqj
+qqj
+qqj
+qqj
+qqj
+qKu
+qqj
+qqj
+qqj
+qqj
+qqj
+qqj
+qqj
+qqj
+drX
 uej
 uvP
 jkz
@@ -59157,27 +59285,27 @@ uIV
 dPz
 hWp
 kLN
-ydT
-ydT
+akm
 wVT
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
 wVT
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
 wVT
-ydT
+wVT
+wVT
+wVT
+mzV
+wVT
+wVT
+pFJ
+wVT
+wVT
+wVT
+wVT
+wVT
+wVT
+wVT
+wVT
+wVT
+rBn
 arP
 uYo
 euA
@@ -59334,6 +59462,10 @@ uIV
 dPz
 hWp
 csS
+wvz
+ydT
+ycR
+tcA
 ydT
 ydT
 ydT
@@ -59348,13 +59480,9 @@ ydT
 ydT
 ydT
 ydT
+ycR
 ydT
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
+pSp
 uRx
 uYo
 euA
@@ -59511,6 +59639,10 @@ keT
 dPz
 hWp
 avj
+wvz
+ydT
+ydT
+reG
 ydT
 ydT
 ydT
@@ -59527,11 +59659,7 @@ ydT
 ydT
 ydT
 ydT
-ydT
-ydT
-ydT
-ydT
-ydT
+pSp
 uUf
 uYo
 euA
@@ -59688,6 +59816,7 @@ pVg
 dPz
 whI
 dwe
+wvz
 ydT
 ydT
 ydT
@@ -59707,8 +59836,7 @@ ydT
 ydT
 ydT
 ydT
-ydT
-ydT
+pSp
 rub
 uYo
 euA
@@ -59865,6 +59993,7 @@ vXt
 dPz
 cTW
 kLN
+wvz
 ydT
 ydT
 ydT
@@ -59884,8 +60013,7 @@ ydT
 ydT
 ydT
 ydT
-ydT
-ydT
+pSp
 arP
 uYo
 euA
@@ -60042,7 +60170,7 @@ nFD
 euA
 hWp
 csS
-ydT
+wvz
 ydT
 ydT
 ydT
@@ -60062,7 +60190,7 @@ ydT
 ydT
 ydT
 ydT
-ydT
+pSp
 uRx
 uYo
 euA
@@ -60219,6 +60347,7 @@ nFD
 euA
 hWp
 avj
+wvz
 ydT
 ydT
 ydT
@@ -60238,8 +60367,7 @@ ydT
 ydT
 ydT
 ydT
-ydT
-ydT
+pSp
 uUf
 uYo
 euA
@@ -60396,6 +60524,7 @@ lOL
 euA
 hWp
 dwe
+wvz
 ydT
 ydT
 ydT
@@ -60415,8 +60544,7 @@ ydT
 ydT
 ydT
 ydT
-ydT
-ydT
+pSp
 rub
 uYo
 euA
@@ -60573,6 +60701,10 @@ lOL
 euA
 hWp
 kLN
+wvz
+ydT
+ydT
+reG
 ydT
 ydT
 ydT
@@ -60589,11 +60721,7 @@ ydT
 ydT
 ydT
 ydT
-ydT
-ydT
-ydT
-ydT
-ydT
+pSp
 arP
 uYo
 euA
@@ -60750,6 +60878,10 @@ lOL
 euA
 hWp
 csS
+wvz
+ydT
+ycR
+tcA
 ydT
 ydT
 ydT
@@ -60764,13 +60896,9 @@ ydT
 ydT
 ydT
 ydT
+ycR
 ydT
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
+pSp
 uRx
 uYo
 euA
@@ -60927,27 +61055,27 @@ lOL
 euA
 hWp
 avj
-ydT
-ydT
-wVT
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
-wVT
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
-ydT
-wVT
-ydT
+bar
+bZH
+bZH
+bZH
+bZH
+bZH
+bZH
+bZH
+bZH
+bZH
+lbk
+bZH
+bZH
+bZH
+bZH
+bZH
+bZH
+bZH
+bZH
+bZH
+hwv
 uUf
 uYo
 euA
