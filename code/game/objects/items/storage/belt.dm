@@ -123,6 +123,7 @@
 		/obj/item/defibrillator,
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/roller,
+		/obj/item/tool/solderingtool,
 	)
 	storage_type_limits = list(
 		/obj/item/ammo_magazine = 3,
@@ -164,6 +165,7 @@
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/stack/medical,
+		/obj/item/tool/solderingtool,
 	)
 
 /obj/item/storage/belt/combatLifesaver/Initialize()  //The belt, with all it's magic inside!

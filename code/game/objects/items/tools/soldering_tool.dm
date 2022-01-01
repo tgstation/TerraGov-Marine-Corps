@@ -4,6 +4,8 @@
 	icon = 'icons/obj/items/surgery_tools.dmi'
 	icon_state = "alien_hemostat"
 	w_class = WEIGHT_CLASS_SMALL
+	var/skill_level_needed = SKILL_MEDICAL_PRACTICED
+	var/unskilled_delay = SKILL_TASK_EASY
 
 /obj/item/tool/solderingtool/attack(mob/living/carbon/human/H, mob/user)
 	if(!istype(H))
@@ -35,7 +37,7 @@
 	user.visible_message(span_notice("[user] starts to fix some of the wires in [H == user ? "[H.p_their()]" : "[H]'s"] [affecting.display_name]."),\
 		span_notice("You start fixing some of the wires in [H == user ? "your" : "[H]'s"] [affecting.display_name]."))
 
-	while(affecting.burn_dam && do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD) && use(1))
+	while(affecting.burn_dam && do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD))
 		user.visible_message(span_warning("\The [user] fixes some wires in [H == user ? "[H.p_their()]" : "[H]'s"] [affecting.display_name] with \the [src]."), \
 			span_warning("You patch some wires in [H == user ? "your" : "[H]'s"] [affecting.display_name]."))
 		if(affecting.heal_limb_damage(15, 15, robo_repair = TRUE, updating_health = TRUE))

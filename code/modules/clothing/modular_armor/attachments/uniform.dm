@@ -119,6 +119,7 @@
 		/obj/item/roller,
 		/obj/item/clothing/glasses/hud/health,
 		/obj/item/tweezers,
+		/obj/item/tool/solderingtool,
 	)
 
 /obj/item/armor_module/storage/uniform/knifeharness
