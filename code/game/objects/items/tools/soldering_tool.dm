@@ -30,9 +30,9 @@
 		balloon_alert(user, "Already busy!")
 		return TRUE
 
-	var/repair_time = 1 SECONDS
+	var/repair_time = 7 SECONDS
 	if(H == user)
-		repair_time *= 3
+		repair_time *= 7
 
 	user.visible_message(span_notice("[user] starts to fix some of the wires in [H == user ? "[H.p_their()]" : "[H]'s"] [affecting.display_name]."),\
 		span_notice("You start fixing some of the wires in [H == user ? "your" : "[H]'s"] [affecting.display_name]."))
