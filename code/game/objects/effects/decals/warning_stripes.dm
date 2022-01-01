@@ -3,6 +3,22 @@
 	layer = BELOW_ATMOS_PIPE_LAYER
 	mouse_opacity = 0
 
+/obj/effect/decal/warning_stripes/engineer
+	icon_state = "engineer"
+
+/obj/effect/decal/warning_stripes/leader
+	icon_state = "leader"
+
+/obj/effect/decal/warning_stripes/smartgunner
+	icon_state = "smartgunner"
+
+/obj/effect/decal/warning_stripes/medical
+	icon_state = "medical"
+
+/obj/effect/decal/warning_stripes/firingrange
+	icon_state = "firingrange"
+
+
 /obj/effect/decal/warning_stripes/nscenter
 	icon_state = "NS-center"
 

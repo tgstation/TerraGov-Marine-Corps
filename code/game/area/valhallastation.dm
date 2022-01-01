@@ -4,7 +4,7 @@
 	ceiling = CEILING_METAL
 	static_lighting = FALSE
 	requires_power = FALSE
-	base_lighting_alpha = 85
+	base_lighting_alpha = 135
 
 /area/centcom/valhalla/exterior
 	name = "Exterior Area"
