@@ -14578,12 +14578,6 @@
 /obj/machinery/landinglight/ds2/delaythree,
 /turf/open/floor/marking/asteroidwarning,
 /area/shuttle/drop2/lz2)
-"bhB" = (
-/obj/docking_port/stationary/marine_dropship/lz2,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 8
-	},
-/area/shuttle/drop2/lz2)
 "bhD" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/lightred/full,
@@ -33466,7 +33460,7 @@ uqN
 uqN
 bht
 uqN
-bhB
+uqN
 uqN
 uqN
 uqN
