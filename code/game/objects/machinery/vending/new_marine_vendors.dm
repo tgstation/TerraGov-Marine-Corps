@@ -654,6 +654,7 @@
 /obj/effect/essentials_set/engi
 	spawned_gear_list = list(
 		/obj/item/explosive/plastique,
+		/obj/item/storage/pouch/detpack,
 		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
 		/obj/item/clothing/glasses/welding,
 		/obj/item/clothing/gloves/marine/insulated,
@@ -661,7 +662,6 @@
 		/obj/item/tool/shovel/etool,
 		/obj/item/lightreplacer,
 		/obj/item/circuitboard/general,
-		/obj/item/storage/pouch/explosive/engineerdetpack,
 	)
 
 /obj/effect/essentials_set/leader
