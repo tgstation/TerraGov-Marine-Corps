@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - bugfix: "Big Red LZ2 NOW doesn't let Alamo clip through wall."
