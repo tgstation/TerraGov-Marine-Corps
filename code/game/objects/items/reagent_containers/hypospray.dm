@@ -337,6 +337,27 @@
 		/datum/reagent/medicine/nanoblood = 60,
 	)
 
+/obj/item/reagent_containers/hypospray/advanced/bicaridine
+	name = "Bicaridine hypospray"
+	desc = "A hypospray loaded with bicaridine."
+	list_reagents = list(
+		/datum/reagent/medicine/bicaridine = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/kelotane
+	name = "Kelotane hypospray"
+	desc = "A hypospray loaded with kelotane."
+	list_reagents = list(
+		/datum/reagent/medicine/kelotane = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/tramadol
+	name = "Tramadol hypospray"
+	desc = "A hypospray loaded with tramadol."
+	list_reagents = list(
+		/datum/reagent/medicine/tramadol = 60,
+	)
+
 /obj/item/reagent_containers/hypospray/advanced/tricordrazine
 	name = "Tricordrazine hypospray"
 	desc = "A hypospray loaded with tricordrazine."

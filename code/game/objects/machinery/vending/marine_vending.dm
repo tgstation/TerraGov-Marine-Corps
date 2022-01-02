@@ -912,13 +912,16 @@
 
 	products = list(
 		/obj/item/clothing/under/marine/corpsman = 4,
-		/obj/item/clothing/head/modular/marine/m10x = 4,
 		/obj/item/storage/backpack/marine/corpsman = 4,
 		/obj/item/storage/backpack/marine/satchel/corpsman = 4,
 		/obj/item/encryptionkey/med = 4,
 		/obj/item/storage/belt/medical = 6,
 		/obj/item/bodybag/cryobag = 4,
 		/obj/item/healthanalyzer = 4,
+		/obj/item/reagent_containers/hypospray/advanced/bicaridine = 4,
+		/obj/item/reagent_containers/hypospray/advanced/kelotane = 4,
+		/obj/item/reagent_containers/hypospray/advanced/tramadol = 4,
+		/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 4,
 		/obj/item/clothing/glasses/hud/health = 4,
 		/obj/item/storage/firstaid/regular = 4,
 		/obj/item/storage/firstaid/adv = 8,
