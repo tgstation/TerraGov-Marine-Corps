@@ -906,8 +906,8 @@
 			if(!temp_list.len) break
 
 /obj/machinery/vending/marine_medic
-	name = "\improper TerraGovTech Medic Vendor"
-	desc = "A marine medic equipment vendor"
+	name = "\improper TerraGovTech Corpsman Vendor"
+	desc = "A corpsman equipment vendor"
 	product_ads = "They were gonna die anyway.;Let's get space drugged!"
 	req_access = list(ACCESS_MARINE_MEDPREP)
 	icon_state = "marinemed"
