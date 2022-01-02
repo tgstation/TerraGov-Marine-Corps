@@ -742,6 +742,7 @@
 		/obj/item/bodybag/cryobag,
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/tweezers,
+		/obj/item/tool/solderingtool,
 	)
 
 /obj/effect/essentials_set/xenonauten_light
