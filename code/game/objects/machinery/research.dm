@@ -49,9 +49,11 @@
 				/obj/item/research_product/money/uncommon,
 				/obj/item/implanter/blade,
 				/obj/item/attachable/shoulder_mount,
+				/obj/item/armor_module/storage/ammo_mag,
 			),
 			RES_TIER_RARE = list(
 				/obj/item/research_product/money/rare,
+				/obj/item/armor_module/storage/integrated,
 			),
 		),
 		RES_XENO = list(
@@ -66,10 +68,12 @@
 				/obj/item/research_product/money/uncommon,
 				/obj/item/implanter/chem/blood,
 				/obj/item/attachable/shoulder_mount,
+				/obj/item/armor_module/storage/ammo_mag,
 			),
 			RES_TIER_RARE = list(
 				/obj/item/research_product/money/rare,
 				/obj/item/implanter/cloak,
+				/obj/item/armor_module/storage/integrated,
 			),
 		),
 	)
