@@ -1610,19 +1610,24 @@ datum/ammo/bullet/revolver/tp44
 	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)
 
 /datum/ammo/energy/lasgun/marine/xray
-	name = "xray bolt"
-	icon_state = "laser"
-	hud_state = "laser"
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_HITSCAN
+	name = "xray heat bolt"
+	icon_state = "u_laser"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
 	damage = 20
+	penetration = 0
+	sundering = 1
+	max_range = 15
+	hitscan_effect_icon = "u_laser_beam"
+
+/datum/ammo/energy/lasgun/marine/xray/piercing
+	name = "xray piercing bolt"
+	icon_state = "xray"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_HITSCAN
+	damage = 25
 	penetration = 100
 	max_range = 10
 	xray_proj = TRUE
-
-/datum/ammo/energy/lasgun/marine/xray/overcharge
-	name = "overcharged xray bolt"
-	damage = 40
-	max_range = 15
+	hitscan_effect_icon = "xray_beam"
 
 // Plasma //
 
