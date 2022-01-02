@@ -105,7 +105,6 @@
 			/obj/item/stack/throwing_knife = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
-			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
 		"Grenades" = list(
 			/obj/item/explosive/grenade = 600,
@@ -264,7 +263,6 @@
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/stack/throwing_knife = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
-			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
 		"Grenades" = list(
 			/obj/item/explosive/grenade = 600,
@@ -417,6 +415,8 @@
 			/obj/item/ammo_magazine/rifle/pepperball = -1,
 			/obj/item/storage/box/recoilless_system = -1,
 			/obj/item/weapon/gun/flamer/big_flamer/marinestandard = -1,
+			/obj/item/tool/extinguisher = -1,
+			/obj/item/tool/extinguisher/mini = -1,
 			/obj/item/ammo_magazine/flamer_tank/backtank = -1,
 			/obj/item/ammo_magazine/flamer_tank/large = -1,
 			/obj/item/ammo_magazine/flamer_tank = -1,

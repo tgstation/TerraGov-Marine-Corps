@@ -55,7 +55,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(!owner.line_of_sight(A, king_crush_dist))
+	if(!line_of_sight(owner, A, king_crush_dist))
 		if(!silent)
 			to_chat(owner, span_warning("We must get closer to crush, our mind cannot reach this far."))
 		return FALSE

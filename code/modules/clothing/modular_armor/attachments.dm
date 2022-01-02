@@ -100,16 +100,57 @@
 	slowdown = 0
 
 	greyscale_config = /datum/greyscale_config/modularchest_infantry
-	greyscale_colors = "#444732"
+	greyscale_colors = ARMOR_PALETTE_DESERT
 
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 
+	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT
+
 	///optional assoc list of colors we can color this armor
-	var/list/colorable_colors
+	var/list/colorable_colors = list(
+		"Drab" = ARMOR_PALETTE_DRAB,
+		"Brown" = ARMOR_PALETTE_BROWN,
+		"Snow" = ARMOR_PALETTE_SNOW,
+		"Desert" = ARMOR_PALETTE_DESERT,
+		"Red" = ARMOR_PALETTE_RED,
+		"Green" = ARMOR_PALETTE_GREEN,
+		"Purple" = ARMOR_PALETTE_PURPLE,
+		"Black" = ARMOR_PALETTE_BLACK,
+		"Blue" = ARMOR_PALETTE_BLUE,
+		"Yellow" = ARMOR_PALETTE_YELLOW,
+		"Aqua" = ARMOR_PALETTE_AQUA,
+		"Orange" = ARMOR_PALETTE_ORANGE,
+		"Grey" = ARMOR_PALETTE_GREY,
+	)
+	///Some defines to determin if the armor piece is allowed to be recolored.
+	var/colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
 
 /obj/item/armor_module/armor/Initialize()
 	. = ..()
+	if(greyscale_config && length(SSgreyscale.configurations["[greyscale_config]"].icon_cache) < length(colorable_colors)) //This checks if the current greyscale config has all the colors chached. If not it caches them.
+		for(var/key in colorable_colors)
+			var/color = colorable_colors[key]
+			set_greyscale_colors(color)
+		if(flags_item_map_variant)
+			update_item_sprites()
+		else
+			set_greyscale_colors(initial(greyscale_colors))
 	item_state = initial(icon_state) + "_a"
+	update_icon()
+
+/obj/item/armor_module/armor/update_item_sprites()
+	var/new_color
+	switch(SSmapping.configs[GROUND_MAP].armor_style)
+		if(MAP_ARMOR_STYLE_JUNGLE)
+			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
+				new_color = ARMOR_PALETTE_DRAB
+		if(MAP_ARMOR_STYLE_ICE)
+			if(flags_item_map_variant & ITEM_ICE_VARIANT)
+				new_color = ARMOR_PALETTE_SNOW
+		if(MAP_ARMOR_STYLE_PRISON)
+			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
+				new_color = ARMOR_PALETTE_BLACK
+	set_greyscale_colors(new_color)
 	update_icon()
 
 ///Will force faction colors on this armor module
@@ -135,6 +176,9 @@
 	if(.)
 		return
 
+	if(colorable_allowed == NOT_COLORABLE || (!length(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED))
+		return
+
 	if(!istype(I, /obj/item/facepaint))
 		return
 
@@ -143,11 +187,26 @@
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return
 
+	var/selection
+
+	switch(colorable_allowed)
+		if(COLOR_WHEEL_ONLY)
+			selection = "Color Wheel"
+		if(COLOR_WHEEL_ALLOWED)
+			selection = list("Color Wheel", "Preset Colors")
+			selection = tgui_input_list(user, "Choose a color setting", "Choose setting", selection)
+		if(COLOR_WHEEL_NOT_ALLOWED)
+			selection = "Preset Colors"
+
+	if(!selection)
+		return
+
 	var/new_color
-	if(colorable_colors)
-		new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
-	else
-		new_color = input(user, "Pick a color", "Pick color") as null|color
+	switch(selection)
+		if("Preset Colors")
+			new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
+		if("Color Wheel")
+			new_color = input(user, "Pick a color", "Pick color") as null|color
 
 	if(!new_color)
 		return

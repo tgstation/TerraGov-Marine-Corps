@@ -369,7 +369,7 @@
 				to_chat(owner, span_xenodanger("We don't care about the dead!"))
 			return FALSE
 
-	if(!owner.line_of_sight(A, range))
+	if(!line_of_sight(owner, A, range))
 		if(!silent)
 			to_chat(owner, span_xenodanger("Our target must be closer!"))
 		return FALSE
