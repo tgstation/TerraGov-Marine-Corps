@@ -913,24 +913,41 @@
 	icon_state = "marinemed"
 	icon_deny = "marinemed-deny"
 	wrenchable = FALSE
-
 	products = list(
-		/obj/item/clothing/under/marine/corpsman = 4,
-		/obj/item/storage/backpack/marine/corpsman = 4,
-		/obj/item/storage/backpack/marine/satchel/corpsman = 4,
-		/obj/item/encryptionkey/med = 4,
-		/obj/item/storage/belt/medical = 6,
-		/obj/item/bodybag/cryobag = 4,
-		/obj/item/healthanalyzer = 4,
-		/obj/item/reagent_containers/hypospray/advanced/bicaridine = 4,
-		/obj/item/reagent_containers/hypospray/advanced/kelotane = 4,
-		/obj/item/reagent_containers/hypospray/advanced/tramadol = 4,
-		/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 4,
-		/obj/item/clothing/glasses/hud/health = 4,
-		/obj/item/storage/firstaid/regular = 4,
-		/obj/item/storage/firstaid/adv = 8,
-		/obj/item/storage/pouch/medical = 4,
-		/obj/item/storage/pouch/medkit = 4,
+		"Hypospray" = list (
+			/obj/item/reagent_containers/hypospray/advanced/bicaridine = 4,
+			/obj/item/reagent_containers/hypospray/advanced/kelotane = 4,
+			/obj/item/reagent_containers/hypospray/advanced/tramadol = 4,
+			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 4,
+			/obj/item/clothing/glasses/hud/health = 4,
+			/obj/item/storage/firstaid/regular = 4,
+			/obj/item/storage/firstaid/adv = 8,
+			/obj/item/storage/pouch/medical = 4,
+			/obj/item/storage/pouch/medkit = 4,
+		),
+		"Reagent Bottle" = list(
+			/obj/item/reagent_containers/glass/bottle/bicaridine = 4,
+			/obj/item/reagent_containers/glass/bottle/kelotane = 4,
+			/obj/item/reagent_containers/glass/bottle/dylovene = 4,
+			/obj/item/reagent_containers/glass/bottle/tramadol = 4,
+			/obj/item/reagent_containers/glass/bottle/inaprovaline = 4,
+			/obj/item/reagent_containers/glass/bottle/sleeptoxin = 2,
+			/obj/item/reagent_containers/glass/bottle/spaceacillin = 4,
+			/obj/item/reagent_containers/glass/bottle/peridaxon = 2,
+			/obj/item/reagent_containers/glass/bottle/dexalin = 4,
+			/obj/item/reagent_containers/glass/bottle/oxycodone = 4,
+			/obj/item/reagent_containers/glass/bottle/polyhexanide = 2,
+			/obj/item/reagent_containers/glass/bottle/medicalnanites = 2,
+		),
+		"Misc" = list(
+			/obj/item/clothing/under/marine/corpsman = 4,
+			/obj/item/storage/backpack/marine/corpsman = 4,
+			/obj/item/storage/backpack/marine/satchel/corpsman = 4,
+			/obj/item/encryptionkey/med = 4,
+			/obj/item/storage/belt/medical = 6,
+			/obj/item/bodybag/cryobag = 4,
+			/obj/item/healthanalyzer = 4,
+		)
 	)
 	contraband = list(/obj/item/reagent_containers/blood/OMinus = 1)
 
