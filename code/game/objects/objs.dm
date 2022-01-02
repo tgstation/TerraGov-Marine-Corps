@@ -38,7 +38,7 @@
 		soft_armor = getArmor(arglist(soft_armor))
 	else if (!soft_armor)
 		// Default bio armor 100 to avoid sentinels getting free damage on sent
-		soft_armor = getArmor(bio = 100)
+		soft_armor = getArmor(bio = 0) // if bio = 100, marines can have at least 150 bio armor, and with M.II Mimir, 190 bio armor. This permits them to tank acid shots and neurotoxin, which was not part of the game when this was made.
 	else if (!istype(soft_armor, /datum/armor))
 		stack_trace("Invalid type [soft_armor.type] found in .soft_armor during /obj Initialize()")
 
