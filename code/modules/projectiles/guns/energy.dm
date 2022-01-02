@@ -754,3 +754,31 @@
 	fire_delay = 0.15 SECONDS
 	rounds_per_shot = 3
 	message_to_user = "You set the machine laser's charge mode to efficiency mode."
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/xray
+	name = "\improper Terra Experimental X-Ray laser rifle"
+	desc = "A Terra Experimental X-Ray laser rifle, abbreviated as the TE-R. It has an integrated charge selector for normal and high settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
+	mode_list = list(
+		"Standard" = /datum/lasrifle/base/energy_rifle_mode/xray/standard,
+		"Overcharge" = /datum/lasrifle/base/energy_rifle_mode/xray/overcharge,
+	)
+
+/datum/lasrifle/base/energy_rifle_mode/xray/standard
+	rounds_per_shot = 12
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
+	fire_delay = 0.2 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
+	message_to_user = "You set the laser rifle's charge mode to standard fire."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	icon_state = "ter"
+
+/datum/lasrifle/base/energy_rifle_mode/xray/overcharge
+	rounds_per_shot = 30
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray/overcharge
+	fire_delay = 0.45 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/Laser overcharge standard.ogg'
+	message_to_user = "You set the laser rifle's charge mode to overcharge."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	icon_state = "ter"
+	radial_icon_state = "laser_overcharge"

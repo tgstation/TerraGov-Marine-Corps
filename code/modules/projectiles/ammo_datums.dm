@@ -43,6 +43,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/bullet_color = COLOR_WHITE
 	///If this ammo is hitscan, the icon of beam coming out from the gun
 	var/hitscan_effect_icon = "beam"
+	///If we want to pass through dense objects
+	var/xray_proj = FALSE
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
 	return
@@ -1606,6 +1608,21 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/energy/lasgun/pistol/disabler/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)
+
+/datum/ammo/energy/lasgun/marine/xray
+	name = "xray bolt"
+	icon_state = "laser"
+	hud_state = "laser"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_HITSCAN
+	damage = 20
+	penetration = 100
+	max_range = 10
+	xray_proj = TRUE
+
+/datum/ammo/energy/lasgun/marine/xray/overcharge
+	name = "overcharged xray bolt"
+	damage = 40
+	max_range = 15
 
 // Plasma //
 
