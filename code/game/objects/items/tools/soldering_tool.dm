@@ -4,15 +4,14 @@
 	icon = 'icons/obj/items/surgery_tools.dmi'
 	icon_state = "alien_hemostat"
 	w_class = WEIGHT_CLASS_SMALL
-	var/skill_level_needed = SKILL_MEDICAL_PRACTICED
+	var/skill_level_needed = SKILL_MEDICAL_PRACTICED //only corpsmen, synth, MD, and CMO can use this; if you try to use this, you're going to fumble
 	var/unskilled_delay = SKILL_TASK_EASY
 
 /obj/item/tool/solderingtool/attack(mob/living/carbon/human/H, mob/user)
 	if(!istype(H))
 		return ..()
-
-	if(user.a_intent != INTENT_HELP)
-		return ..()
+		if(user.a_intent != INTENT_HELP)
+			return ..()
 
 	var/datum/limb/affecting = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(H, user) : H.get_limb(user.zone_selected)
 	if(!affecting)
