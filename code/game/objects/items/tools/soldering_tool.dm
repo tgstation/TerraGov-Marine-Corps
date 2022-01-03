@@ -4,8 +4,6 @@
 	icon = 'icons/obj/items/surgery_tools.dmi'
 	icon_state = "alien_hemostat"
 	w_class = WEIGHT_CLASS_SMALL
-	var/skill_level_needed = SKILL_ENGINEER_ENGI //engineers and synth have easier time using soldering tools
-	var/unskilled_delay = SKILL_TASK_FORMIDABLE
 
 /obj/item/tool/solderingtool/attack(mob/living/carbon/human/H, mob/user)
 	if(!istype(H)||user.a_intent != INTENT_HELP)
@@ -19,13 +17,20 @@
 		balloon_alert(user, "Limb not robotic")
 		return TRUE
 
-	if(!affecting.burn_dam||!affecting.brute_dam)
+	if(!affecting.burn_dam && !affecting.brute_dam)
 		balloon_alert(user, "Nothing to fix!")
 		return TRUE
 
 	if(user.do_actions)
 		balloon_alert(user, "Already busy!")
 		return TRUE
+
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+		user.visible_message(span_notice("[user] fumbles around figuring out how to solder the wounds on [src]."),
+		span_notice("You fumble around figuring out how to solder the wounds on [src]."))
+		var/unskilled_delay = 200 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
+		if(!do_after(user, unskilled_delay, TRUE, src, BUSY_ICON_UNSKILLED))
+			return FALSE
 
 	var/repair_time = 1.5 SECONDS
 	if(H == user)
