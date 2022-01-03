@@ -432,9 +432,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/ct/rebel
 	frequency = FREQ_COMMON_REBEL
+	keyslot = /obj/item/encryptionkey/general/rebel
 	hud_type = DATA_HUD_SQUAD_REBEL
 	minimap_type = /datum/action/minimap/marine/rebel
-	keyslot = /obj/item/encryptionkey/general/rebel
+
 
 /obj/item/radio/headset/mainship/mcom
 	name = "marine command radio headset"
