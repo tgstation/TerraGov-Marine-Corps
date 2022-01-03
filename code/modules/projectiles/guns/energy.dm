@@ -763,7 +763,6 @@
 	force = 20
 	icon_state = "tex"
 	item_state = "tex"
-	icon = 'icons/Marine/gun64.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 	max_shots = 40 //codex stuff
 	load_method = CELL //codex stuff
