@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - qol: "Synthetic can see themselves in minimap"
+  - imagedel: "Gone with the old, in with the new."

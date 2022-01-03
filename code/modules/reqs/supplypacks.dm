@@ -160,7 +160,7 @@ WEAPONS
 	contains = list(/obj/item/storage/box/sentry)
 	cost = 40
 
-/datum/supply_packs/weapons/sentry
+/datum/supply_packs/weapons/sentry_ammo
 	name = "UA 571-C sentry ammunition"
 	contains = list(/obj/item/ammo_magazine/sentry)
 	cost = 10
@@ -170,7 +170,7 @@ WEAPONS
 	contains = list(/obj/item/storage/box/minisentry)
 	cost = 40
 
-/datum/supply_packs/weapons/minisentry
+/datum/supply_packs/weapons/minisentry_ammo
 	name = "UA-580 point defense sentry ammo"
 	contains = list(/obj/item/ammo_magazine/minisentry)
 	cost = 10
@@ -194,7 +194,7 @@ WEAPONS
 	cost = 10
 
 /datum/supply_packs/weapons/tesla
-	name = "Energy Ball Rifle"
+	name = "Tesla Shock Rifle"
 	contains = list(
 		/obj/item/weapon/gun/energy/lasgun/tesla,
 		/obj/item/cell/lasgun/tesla,
@@ -234,7 +234,7 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/rifle/railgun)
 	cost = 40
 
-/datum/supply_packs/weapons/railgun
+/datum/supply_packs/weapons/railgun_ammo
 	name = "Railgun round"
 	contains = list(/obj/item/ammo_magazine/railgun)
 	cost = 3
@@ -269,7 +269,7 @@ WEAPONS
 	cost = 50
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/weapons/thermobaric
+/datum/supply_packs/weapons/thermobaric_wp
 	name = "T-57 Thermobaric WP rocket array"
 	contains = list(/obj/item/ammo_magazine/rocket/m57a4)
 	cost = 5
@@ -317,7 +317,7 @@ WEAPONS
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/autosniper
-	name = "IFF Auto Sniper kit"
+	name = "T-81 IFF Auto Sniper kit"
 	contains = list(/obj/item/weapon/gun/rifle/standard_autosniper)
 	cost = 30
 	available_against_xeno_only = TRUE
@@ -334,7 +334,7 @@ WEAPONS
 	cost = 75
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/weapons/antimaterial
+/datum/supply_packs/weapons/antimaterial_ammo
 	name = "T-26 AMR magazine"
 	contains = list(/obj/item/ammo_magazine/sniper)
 	cost = 5
@@ -355,12 +355,12 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/standard_mmg)
 	cost = 10
 
-/datum/supply_packs/weapons/mmg
+/datum/supply_packs/weapons/hmg
 	name = "MG-08/495 heavy machinegun"
 	contains = list(/obj/item/weapon/gun/heavymachinegun)
 	cost = 30
 
-/datum/supply_packs/weapons/hmg
+/datum/supply_packs/weapons/hmg_ammo
 	name = "MG-08/495 heavy machinegun ammo"
 	contains = list(/obj/item/ammo_magazine/heavymachinegun)
 	cost = 7
@@ -370,7 +370,7 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
 	cost = 40
 
-/datum/supply_packs/weapons/smartmachinegun
+/datum/supply_packs/weapons/smartgun_ammo
 	name = "T-29 smartmachinegun ammo"
 	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
 	cost = 5
@@ -380,7 +380,7 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/rifle/standard_smartrifle)
 	cost = 40
 
-/datum/supply_packs/weapons/smartrifle
+/datum/supply_packs/weapons/smartrifle_ammo
 	name = "T-25 smartrifle magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_smartrifle)
 	cost = 2
@@ -424,7 +424,7 @@ WEAPONS
 	cost = 15
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/weapons/mateba
+/datum/supply_packs/weapons/mateba_ammo
 	name = "Mateba magazine"
 	contains = list(/obj/item/ammo_magazine/revolver/mateba)
 	cost = 3
@@ -670,6 +670,11 @@ CLOTHING
 	contains = list(/obj/item/storage/backpack/marine/engineerpack)
 	cost = 5
 
+/datum/supply_packs/clothing/radio_pack
+	name = "Radio Operator Pack"
+	contains = list(/obj/item/storage/backpack/marine/radiopack)
+	cost = 5
+
 /datum/supply_packs/clothing/technician_pack
 	name = "Engineering Technician Pack"
 	contains = list(/obj/item/storage/backpack/marine/tech)
@@ -702,7 +707,7 @@ CLOTHING
 	cost = 2
 
 /datum/supply_packs/clothing/brown_vest
-	name = "brown_vest"
+	name = "brown vest"
 	contains = list(/obj/item/armor_module/storage/uniform/brown_vest)
 	cost = 2
 
@@ -815,7 +820,7 @@ MEDICAL
 	access = ACCESS_MARINE_MEDBAY
 
 /datum/supply_packs/medical/medvac
-	name = "medvac system"
+	name = "MEDEVAC system"
 	contains = list(
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,
@@ -1026,12 +1031,12 @@ Imports
 	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/imports/m41a
-	name = "M41A Pulse Rifle"
+	name = "HK-11 Pulse Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m41a)
 	cost = 5
 
 /datum/supply_packs/imports/m41a/ammo
-	name = "M41A Pulse Rifle Ammo"
+	name = "HK-11 Pulse Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/m41a)
 	cost = 1
 
@@ -1066,12 +1071,12 @@ Imports
 	cost = 1
 
 /datum/supply_packs/imports/mp7
-	name = "MP7 SMG"
+	name = "MP27 SMG"
 	contains = list(/obj/item/weapon/gun/smg/mp7)
 	cost = 5
 
 /datum/supply_packs/imports/mp7/ammo
-	name = "MP7 SMG Ammo"
+	name = "MP27 SMG Ammo"
 	contains = list(/obj/item/ammo_magazine/smg/mp7)
 	cost = 1
 
@@ -1086,32 +1091,32 @@ Imports
 	cost = 1
 
 /datum/supply_packs/imports/skorpion
-	name = "Skorpion SMG"
+	name = "CZ-81 Skorpion SMG"
 	contains = list(/obj/item/weapon/gun/smg/skorpion)
 	cost = 15
 
 /datum/supply_packs/imports/skorpion/ammo
-	name = "Skorpion SMG Ammo"
+	name = "CZ-81 Skorpion SMG Ammo"
 	contains = list(/obj/item/ammo_magazine/smg/skorpion)
 	cost = 5
 
 /datum/supply_packs/imports/uzi
-	name = "GAL-9 SMG"
+	name = "MP-2 Uzi SMG"
 	contains = list(/obj/item/weapon/gun/smg/uzi)
 	cost = 5
 
 /datum/supply_packs/imports/uzi/ammo
-	name = "GAL-9 SMG Ammo"
+	name = "MP-2 Uzi SMG Ammo"
 	contains = list(/obj/item/ammo_magazine/smg/uzi)
 	cost = 1
 
 /datum/supply_packs/imports/ppsh
-	name = "PPSH SMG"
+	name = "PPSh-17b SMG"
 	contains = list(/obj/item/weapon/gun/smg/ppsh)
 	cost = 5
 
 /datum/supply_packs/imports/ppsh/ammo
-	name = "PPSH SMG Ammo Drum"
+	name = "PPSh-17b SMG Ammo Drum"
 	contains = list(/obj/item/ammo_magazine/smg/ppsh/extended)
 	cost = 1
 
@@ -1208,12 +1213,12 @@ Imports
 	cost = 1
 
 /datum/supply_packs/imports/m16	//Vietnam time
-	name = "FN M16A Assault Rifle"
+	name = "FN M16A4 Assault Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m16)
 	cost = 5
 
 /datum/supply_packs/imports/m16/ammo
-	name = "FN M16A Assault Rifle Ammo"
+	name = "FN M16 Assault Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/m16)
 	cost = 1
 

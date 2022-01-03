@@ -325,6 +325,11 @@
 	},
 /turf/open/lavaland/lava/lpiece,
 /area/magmoor/compound/west)
+"arw" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 9
+	},
+/area/magmoor/landing)
 "arU" = (
 /obj/item/tool/pickaxe/drill,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -1156,6 +1161,15 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/lobby)
+"bem" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 8;
+	icon_state = "equip_base_l_wing"
+	},
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/magmoor/landing)
 "beU" = (
 /obj/effect/decal/cleanable/blood/writing,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -1590,6 +1604,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/security)
+"bzA" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/magmoor/landing/two)
 "bzU" = (
 /turf/closed/glass/thin/end{
 	dir = 8
@@ -3062,6 +3081,11 @@
 	dir = 6
 	},
 /area/magmoor/cave/north)
+"czm" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/magmoor/landing/two)
 "czr" = (
 /turf/open/lavaland/basalt/cave/corner{
 	dir = 1
@@ -7676,10 +7700,9 @@
 	},
 /area/magmoor/research)
 "ftZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /area/magmoor/landing)
 "fuf" = (
 /obj/effect/ai_node,
@@ -10007,6 +10030,11 @@
 	icon_state = "carpetside"
 	},
 /area/magmoor/research/researchdirector)
+"hgs" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/magmoor/landing)
 "hgy" = (
 /obj/machinery/conveyor{
 	dir = 8
@@ -10080,10 +10108,6 @@
 /obj/structure/flora/rock/alt2,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/west)
-"hjS" = (
-/obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating,
-/area/magmoor/landing)
 "hjY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
@@ -13220,6 +13244,11 @@
 	dir = 1
 	},
 /area/magmoor/compound/west)
+"jvz" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 5
+	},
+/area/magmoor/landing)
 "jvG" = (
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
@@ -15612,10 +15641,9 @@
 /turf/open/lavaland/basalt/cave,
 /area/magmoor/cave/west)
 "lhz" = (
-/obj/effect/decal/warning_stripes/thin{
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/turf/open/floor/plating,
 /area/magmoor/compound/east)
 "lhP" = (
 /turf/closed/wall/indestructible/mineral,
@@ -16274,6 +16302,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/concrete,
 /area/magmoor/cave/west)
+"lGT" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating,
+/area/magmoor/landing/two)
 "lHp" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -16381,6 +16413,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/atmos)
+"lJj" = (
+/obj/effect/attach_point/weapon/dropship1,
+/turf/open/floor/plating,
+/area/magmoor/landing)
 "lJm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -16806,6 +16842,10 @@
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/storage)
+"mbL" = (
+/obj/effect/attach_point/electronics/dropship1,
+/turf/open/floor/plating,
+/area/magmoor/landing)
 "mbP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 9
@@ -18162,6 +18202,11 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/magmoor/security/arrivals/south)
+"nbk" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/magmoor/landing/two)
 "nbE" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 4
@@ -18753,11 +18798,10 @@
 	},
 /area/magmoor/engi/power)
 "nyO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating,
 /area/magmoor/landing)
 "nzf" = (
 /obj/machinery/power/terminal{
@@ -19893,6 +19937,11 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/southeast)
+"okW" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/magmoor/landing)
 "old" = (
 /obj/machinery/landinglight/ds1{
 	dir = 4
@@ -19958,6 +20007,10 @@
 	dir = 4
 	},
 /area/magmoor/hydroponics/south)
+"omJ" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating,
+/area/magmoor/landing)
 "omN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -21287,6 +21340,10 @@
 	dir = 8
 	},
 /area/magmoor/cargo/storage)
+"pdA" = (
+/obj/effect/attach_point/weapon/dropship1,
+/turf/open/floor/plating,
+/area/magmoor/landing/two)
 "peg" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/mainship/sterile/side{
@@ -21665,6 +21722,10 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/compound/northeast)
+"poQ" = (
+/obj/effect/attach_point/electronics/dropship1,
+/turf/open/floor/plating,
+/area/magmoor/landing/two)
 "poS" = (
 /turf/closed/glass/thin/corner{
 	dir = 4
@@ -21824,11 +21885,10 @@
 /turf/open/floor/tile,
 /area/magmoor/mining/refinery)
 "pvz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating,
 /area/magmoor/landing)
 "pvM" = (
 /obj/structure/bed/chair{
@@ -24272,11 +24332,10 @@
 	},
 /area/magmoor/engi/storage)
 "rce" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating,
 /area/magmoor/landing/two)
 "rcg" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -24338,10 +24397,9 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/storage)
 "rek" = (
-/obj/effect/decal/warning_stripes/thin{
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/turf/open/floor/plating,
 /area/magmoor/landing)
 "rex" = (
 /obj/effect/landmark/weed_node,
@@ -24940,6 +24998,11 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/storage)
+"ryg" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 9
+	},
+/area/magmoor/landing/two)
 "ryj" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
@@ -25998,6 +26061,15 @@
 /obj/structure/plasticflaps,
 /turf/open/floor/plating,
 /area/magmoor/engi/storage)
+"ses" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 8;
+	icon_state = "equip_base_l_wing"
+	},
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/magmoor/landing/two)
 "sev" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
@@ -26771,8 +26843,7 @@
 /turf/closed/glass/thin/single,
 /area/magmoor/compound/east)
 "sDi" = (
-/obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/plating,
+/turf/open/floor/plating/icefloor/warnplate,
 /area/magmoor/landing)
 "sDj" = (
 /obj/effect/landmark/weed_node,
@@ -29694,6 +29765,11 @@
 	dir = 8
 	},
 /area/magmoor/landing/two)
+"uzt" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 5
+	},
+/area/magmoor/landing/two)
 "uzu" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
@@ -31032,6 +31108,11 @@
 	},
 /turf/open/floor/freezer,
 /area/magmoor/civilian/clean/toilet)
+"vmu" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/magmoor/landing)
 "vmF" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
 	name = "\improper Colony Offices"
@@ -31355,8 +31436,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing/two)
 "vuS" = (
-/obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/plating,
+/turf/open/floor/plating/icefloor/warnplate,
 /area/magmoor/landing/two)
 "vvL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -32141,10 +32221,6 @@
 	},
 /turf/open/floor/plating,
 /area/magmoor/compound/north)
-"vXL" = (
-/obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating,
-/area/magmoor/landing/two)
 "vYa" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 10
@@ -34616,10 +34692,9 @@
 	},
 /area/magmoor/landing/two)
 "xpT" = (
-/obj/effect/decal/warning_stripes/thin{
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/turf/open/floor/plating,
 /area/magmoor/landing/two)
 "xqz" = (
 /turf/open/lavaland/basalt/cave,
@@ -34630,10 +34705,9 @@
 	},
 /area/magmoor/compound/south)
 "xqP" = (
-/obj/effect/decal/warning_stripes/thin{
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /area/magmoor/landing/two)
 "xqS" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -35603,11 +35677,10 @@
 	},
 /area/magmoor/compound/northeast)
 "xRI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating,
 /area/magmoor/landing/two)
 "xRS" = (
 /obj/effect/landmark/weed_node,
@@ -57844,27 +57917,27 @@ peM
 kEk
 kEk
 hTR
-pVi
-pVi
-hjS
-pVi
-pVi
-pVi
-pVi
-pVi
+arw
+rek
+rek
+rek
+rek
+rek
+rek
+bem
 rek
 rek
 pvz
 rek
 rek
-pVi
-pVi
-pVi
-pVi
-pVi
-pVi
-hjS
-pVi
+rek
+rek
+rek
+rek
+rek
+rek
+rek
+okW
 rxn
 peM
 wtL
@@ -58077,6 +58150,10 @@ peM
 kEk
 kEk
 pzk
+hgs
+pVi
+omJ
+lJj
 pVi
 pVi
 pVi
@@ -58091,13 +58168,9 @@ pVi
 pVi
 pVi
 pVi
+omJ
 pVi
-pVi
-pVi
-pVi
-pVi
-pVi
-pVi
+sDi
 sKY
 nID
 ftf
@@ -58310,6 +58383,10 @@ mJq
 kEk
 kEk
 sLe
+hgs
+pVi
+pVi
+mbL
 pVi
 pVi
 pVi
@@ -58326,11 +58403,7 @@ pVi
 pVi
 pVi
 pVi
-pVi
-pVi
-pVi
-pVi
-pVi
+sDi
 aXu
 peM
 wtL
@@ -58543,6 +58616,7 @@ peM
 kEk
 kEk
 jKZ
+hgs
 pVi
 pVi
 pVi
@@ -58562,8 +58636,7 @@ pVi
 pVi
 pVi
 pVi
-pVi
-pVi
+sDi
 rXL
 peM
 wtL
@@ -58776,7 +58849,7 @@ peM
 kEk
 kEk
 odU
-pVi
+hgs
 pVi
 pVi
 pVi
@@ -59009,7 +59082,7 @@ peM
 kEk
 kEk
 pzk
-pVi
+hgs
 pVi
 pVi
 pVi
@@ -59242,7 +59315,7 @@ peM
 kEk
 kEk
 sLe
-pVi
+hgs
 pVi
 pVi
 pVi
@@ -59475,6 +59548,7 @@ mJq
 kEk
 kEk
 hdd
+hgs
 pVi
 pVi
 pVi
@@ -59494,8 +59568,7 @@ pVi
 pVi
 pVi
 pVi
-pVi
-pVi
+sDi
 rXL
 peM
 wtL
@@ -59708,6 +59781,10 @@ peM
 kEk
 kEk
 hTR
+hgs
+pVi
+pVi
+mbL
 pVi
 pVi
 pVi
@@ -59724,11 +59801,7 @@ pVi
 pVi
 pVi
 pVi
-pVi
-pVi
-pVi
-pVi
-pVi
+sDi
 rxn
 peM
 wtL
@@ -59941,6 +60014,10 @@ peM
 kEk
 kEk
 pzk
+hgs
+pVi
+omJ
+lJj
 pVi
 pVi
 pVi
@@ -59955,13 +60032,9 @@ pVi
 pVi
 pVi
 pVi
+omJ
 pVi
-pVi
-pVi
-pVi
-pVi
-pVi
-pVi
+sDi
 sKY
 tCG
 xIJ
@@ -60174,27 +60247,27 @@ peM
 kEk
 kEk
 aNt
-pVi
-pVi
-hjS
-pVi
-pVi
-pVi
-pVi
-pVi
+jvz
+ftZ
+ftZ
+ftZ
+ftZ
+ftZ
+ftZ
+ftZ
 ftZ
 ftZ
 nyO
 ftZ
 ftZ
-pVi
-pVi
-pVi
-pVi
-pVi
-pVi
-hjS
-pVi
+ftZ
+ftZ
+ftZ
+ftZ
+ftZ
+ftZ
+ftZ
+vmu
 aXu
 peM
 wtL
@@ -77331,27 +77404,27 @@ uNy
 xSV
 hpC
 qJq
-xSV
-xSV
-vXL
-xSV
-xSV
-xSV
-xSV
-xSV
+ryg
+xpT
+xpT
+xpT
+xpT
+xpT
+xpT
+ses
 xpT
 xpT
 rce
 xpT
 lhz
-xee
-xee
-xee
-xee
-xee
-xSV
-vXL
-xSV
+lhz
+lhz
+lhz
+lhz
+lhz
+xpT
+xpT
+czm
 ibk
 sUD
 uaX
@@ -77564,10 +77637,10 @@ uOd
 xNt
 qls
 vpF
+bzA
 xSV
-xSV
-xSV
-xSV
+lGT
+pdA
 xSV
 xSV
 xSV
@@ -77582,9 +77655,9 @@ xee
 xee
 xee
 xee
+lGT
 xSV
-xSV
-xSV
+vuS
 lsQ
 sUD
 uaX
@@ -77797,10 +77870,10 @@ uOj
 uOj
 vgA
 vpN
+bzA
 xSV
 xSV
-xSV
-xSV
+poQ
 xSV
 xSV
 xSV
@@ -77817,7 +77890,7 @@ xee
 xee
 xSV
 xSV
-xSV
+vuS
 raz
 sUD
 uaX
@@ -78030,6 +78103,7 @@ xSV
 xSV
 hpC
 urh
+bzA
 xSV
 xSV
 xSV
@@ -78049,8 +78123,7 @@ xSV
 xSV
 xSV
 xSV
-xSV
-xSV
+vuS
 wtA
 sUD
 uaX
@@ -78263,7 +78336,7 @@ xSV
 xSV
 hpC
 wtu
-xSV
+bzA
 xSV
 xSV
 xSV
@@ -78496,7 +78569,7 @@ xSV
 xSV
 hpC
 vpF
-xSV
+bzA
 xSV
 xSV
 xSV
@@ -78729,7 +78802,7 @@ xNt
 xNt
 vfA
 vpN
-xSV
+bzA
 xSV
 xSV
 xSV
@@ -78962,6 +79035,7 @@ uOj
 uOj
 qzp
 urh
+bzA
 xSV
 xSV
 xSV
@@ -78981,8 +79055,7 @@ xSV
 xSV
 xSV
 xSV
-xSV
-xSV
+vuS
 wtA
 sUD
 uaX
@@ -79195,6 +79268,10 @@ xSV
 xSV
 hpC
 wtu
+bzA
+xSV
+xSV
+poQ
 xSV
 xSV
 xSV
@@ -79211,11 +79288,7 @@ xSV
 xSV
 xSV
 xSV
-xSV
-xSV
-xSV
-xSV
-xSV
+vuS
 ibk
 sUD
 uaX
@@ -79428,6 +79501,10 @@ xSV
 xSV
 hpC
 vpF
+bzA
+xSV
+lGT
+pdA
 xSV
 xSV
 xSV
@@ -79442,13 +79519,9 @@ xSV
 xSV
 xSV
 xSV
+lGT
 xSV
-xSV
-xSV
-xSV
-xSV
-xSV
-xSV
+vuS
 lsQ
 sUD
 uaX
@@ -79661,27 +79734,27 @@ xSV
 xSV
 hpC
 vpN
-xSV
-xSV
-vXL
-xSV
-xSV
-xSV
-xSV
-xSV
+uzt
+xqP
+xqP
+xqP
+xqP
+xqP
+xqP
+xqP
 xqP
 xqP
 xRI
 xqP
 xqP
-xSV
-xSV
-xSV
-xSV
-xSV
-xSV
-vXL
-xSV
+xqP
+xqP
+xqP
+xqP
+xqP
+xqP
+xqP
+nbk
 raz
 sUD
 uaX

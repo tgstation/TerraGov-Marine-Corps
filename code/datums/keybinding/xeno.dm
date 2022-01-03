@@ -64,12 +64,6 @@
 	description = "Increases damage for yourself and nearby teammates."
 	keybind_signal = COMSIG_XENOABILITY_EMIT_FRENZY
 
-/datum/keybinding/xeno/larval_growth_sting
-	name = "larval_growth_sting"
-	full_name = "Larval Growth Sting"
-	description = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker."
-	keybind_signal = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
-
 /datum/keybinding/xeno/corrosive_acid
 	name = "corrosive_acid"
 	full_name = "Corrosive Acid"

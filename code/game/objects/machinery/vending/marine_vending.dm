@@ -98,12 +98,13 @@
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/ammo_magazine/flamer_tank/large = 20,
 			/obj/item/ammo_magazine/flamer_tank = 20,
+			/obj/item/tool/extinguisher = -1,
+			/obj/item/tool/extinguisher/mini = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/stack/throwing_knife = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
-			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
 		"Grenades" = list(
 			/obj/item/explosive/grenade = 600,
@@ -262,7 +263,6 @@
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/stack/throwing_knife = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
-			/obj/item/ammo_magazine/standard_smartmachinegun = 4,
 		),
 		"Grenades" = list(
 			/obj/item/explosive/grenade = 600,
@@ -415,6 +415,8 @@
 			/obj/item/ammo_magazine/rifle/pepperball = -1,
 			/obj/item/storage/box/recoilless_system = -1,
 			/obj/item/weapon/gun/flamer/big_flamer/marinestandard = -1,
+			/obj/item/tool/extinguisher = -1,
+			/obj/item/tool/extinguisher/mini = -1,
 			/obj/item/ammo_magazine/flamer_tank/backtank = -1,
 			/obj/item/ammo_magazine/flamer_tank/large = -1,
 			/obj/item/ammo_magazine/flamer_tank = -1,
@@ -968,10 +970,10 @@
 
 /obj/machinery/vending/armor_supply
 	name = "\improper Surplus Armor Equipment Vendor"
-	desc = "A automated equipment rack hooked up to a colossal storage of armor and accessories."
-	icon_state = "marineuniform"
-	icon_vend = "marineuniform_vend"
-	icon_deny = "marineuniform"
+	desc = "Am automated equipment rack hooked up to a colossal storage of armor and accessories. Nanotrasen designed a new vendor that utilize bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
+	icon_state = "surplus_armor"
+	icon_vend = "surplus-vend"
+	icon_deny = "surplus-deny"
 	isshared = TRUE
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
@@ -1056,10 +1058,10 @@
 
 /obj/machinery/vending/uniform_supply
 	name = "\improper Surplus Clothing Vendor"
-	desc = "A automated equipment rack hooked up to a colossal storage of clothing and accessories."
-	icon_state = "marineuniform"
-	icon_vend = "marineuniform_vend"
-	icon_deny = "marineuniform"
+	desc = "Am automated equipment rack hooked up to a colossal storage of clothing and accessories. Nanotrasen designed a new vendor that utilize bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
+	icon_state = "surplus_clothes"
+	icon_vend = "surplus-vend"
+	icon_deny = "surplus-deny"
 	isshared = TRUE
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
