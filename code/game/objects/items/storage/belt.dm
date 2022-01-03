@@ -205,7 +205,7 @@
 		/obj/item/reagent_containers/hypospray/autoinjector,
 	)
 
-/obj/item/storage/belt/combatLifesaver/Initialize()  //The belt, with all it's magic inside!
+/obj/item/storage/belt/hypospraybelt/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/reagent_containers/hypospray/advanced/bicaridine(src)
