@@ -365,6 +365,34 @@
 		/datum/reagent/medicine/tricordrazine = 60,
 	)
 
+/obj/item/reagent_containers/hypospray/advanced/inaprovaline
+	name = "Inaprovaline hypospray"
+	desc = "A hypospray loaded with inaprovaline."
+	list_reagents = list(
+		/datum/reagent/medicine/inaprovaline = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/peridaxon
+	name = "Peridaxon hypospray"
+	desc = "A hypospray loaded with peridaxon."
+	list_reagents = list(
+		/datum/reagent/medicine/peridaxon = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/quickclot
+	name = "Quickclot hypospray"
+	desc = "A hypospray loaded with quickclot."
+	list_reagents = list(
+		/datum/reagent/medicine/quickclot = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/dexalin
+	name = "Dexalin hypospray"
+	desc = "A hypospray loaded with dexalin."
+	list_reagents = list(
+		/datum/reagent/medicine/dexalin = 60,
+	)
+
 /obj/item/reagent_containers/hypospray/advanced/update_icon()
 	. = ..()
 
