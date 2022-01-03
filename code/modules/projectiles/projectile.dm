@@ -557,7 +557,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(turf_to_scan.density) //Handle wall hit.
 		ammo.on_hit_turf(turf_to_scan, src)
 		turf_to_scan.bullet_act(src)
-		return ammo.xray_proj ? FALSE : TRUE
+		return (ammo.flags_ammo_behavior & AMMO_PASS_THROUGH) ? FALSE : TRUE
 
 	if(shot_from)
 		switch(SEND_SIGNAL(shot_from, COMSIG_PROJ_SCANTURF, turf_to_scan))
@@ -578,7 +578,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			continue
 
 		thing_to_hit.do_projectile_hit(src)
-		return ammo.xray_proj ? FALSE : TRUE
+		return (ammo.flags_ammo_behavior & AMMO_PASS_THROUGH) ? FALSE : TRUE
 
 	return FALSE
 

@@ -43,8 +43,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/bullet_color = COLOR_WHITE
 	///If this ammo is hitscan, the icon of beam coming out from the gun
 	var/hitscan_effect_icon = "beam"
-	///If we want to pass through dense objects
-	var/xray_proj = FALSE
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
 	return
@@ -1622,11 +1620,10 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/energy/lasgun/marine/xray/piercing
 	name = "xray piercing bolt"
 	icon_state = "xray"
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_HITSCAN
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH
 	damage = 25
 	penetration = 100
 	max_range = 10
-	xray_proj = TRUE
 	hitscan_effect_icon = "xray_beam"
 
 // Plasma //

@@ -57,6 +57,7 @@
 #define AMMO_IFF (1<<16) //Used to identify ammo that have intrinsec IFF properties
 #define AMMO_HITSCAN (1<<17) //If the projectile from this ammo is hitscan
 #define AMMO_LEAVE_TURF (1<<18) //If the projectile does something with on_leave_turf()
+#define AMMO_PASS_THROUGH (1<<19) //If the projectile passes through objects causing damage to them
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features
