@@ -760,18 +760,11 @@
 	desc = "A Terra Experimental X-Ray laser rifle, abbreviated as the TE-X. It has an integrated charge selector for normal and high settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
-	force = 20
 	icon_state = "tex"
 	item_state = "tex"
-	w_class = WEIGHT_CLASS_BULKY
 	max_shots = 40 //codex stuff
-	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
-	ammo_diff = null
 	rounds_per_shot = 15
-	gun_firemode = GUN_FIREMODE_AUTOMATIC
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	turret_flags = TURRET_INACCURATE
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -798,7 +791,6 @@
 	fire_delay = 0.5 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.55
-	scatter_unwielded = 10
 	damage_falloff_mult = 0.3
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_rifle_mode/xray,
@@ -821,6 +813,4 @@
 	fire_delay = 0.6 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 	message_to_user = "You set the xray rifle's charge mode to piercing mode."
-	fire_mode = GUN_FIREMODE_AUTOMATIC
-	icon_state = "tex"
 	radial_icon_state = "laser"
