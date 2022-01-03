@@ -143,6 +143,13 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	return FALSE
 
 
+/obj/item/radio/headset/attack_self(mob/living/user)
+	if(!istype(user) || !Adjacent(user) || user.incapacitated())
+		return
+	channels[RADIO_CHANNEL_REQUISITIONS] = !channels[RADIO_CHANNEL_REQUISITIONS]
+	to_chat(user, span_notice("You toggle supply comms [channels[RADIO_CHANNEL_REQUISITIONS] ? "on" : "off"]."))
+
+
 /obj/item/radio/headset/survivor
 	freqlock = TRUE
 	frequency = FREQ_CIV_GENERAL
