@@ -5,6 +5,7 @@
 	icon_state = "alien_hemostat"
 	w_class = WEIGHT_CLASS_SMALL
 	var/skill_req = SKILL_ENGINEER_METAL //engineers and synth have easier time using soldering tools
+	var/unskilled_delay = SKILL_TASK_FORMIDABLE
 
 /obj/item/tool/solderingtool/attack(mob/living/carbon/human/H, mob/user)
 	if(!istype(H)||user.a_intent != INTENT_HELP)
