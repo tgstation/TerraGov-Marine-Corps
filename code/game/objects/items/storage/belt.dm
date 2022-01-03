@@ -156,14 +156,14 @@
 	max_w_class = 2
 	can_hold = list(
 		/obj/item/healthanalyzer,
-		// /obj/item/reagent_containers/glass/bottle, This is commented out so that hypospray belt can achieve this niche of holding reagent bottles.
 		/obj/item/reagent_containers/pill,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/storage/pill_bottle,
 		/obj/item/storage/syringe_case,
-		// /obj/item/reagent_containers/hypospray/autoinjector, This is commented out so that hypospray belt can achieve this niche of holding hypospray.
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/stack/medical,
+		// /obj/item/reagent_containers/glass/bottle, This is commented out so that hypospray belt can achieve this niche of holding reagent bottles.
+		// /obj/item/reagent_containers/hypospray/autoinjector, This is commented out so that hypospray belt can achieve this niche of holding hypospray.
 	)
 
 /obj/item/storage/belt/combatLifesaver/Initialize()  //The belt, with all it's magic inside!
@@ -207,27 +207,27 @@
 
 /obj/item/storage/belt/combatLifesaver/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
-	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
-	new /obj/item/stack/medical/splint(src)
-	new /obj/item/stack/medical/splint(src)
-	new /obj/item/storage/pill_bottle/bicaridine(src)
-	new /obj/item/storage/pill_bottle/kelotane(src)
-	new /obj/item/storage/pill_bottle/dylovene(src)
-	new /obj/item/storage/pill_bottle/tramadol(src)
-	new /obj/item/storage/pill_bottle/inaprovaline(src)
-	new /obj/item/storage/pill_bottle/peridaxon(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-	new /obj/item/storage/syringe_case/combat(src)
-	new /obj/item/storage/syringe_case/combat(src)
-	new /obj/item/storage/syringe_case/combat(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
+	new /obj/item/healthanalyzer(src)
+	new /obj/item/reagent_containers/hypospray/advanced/bicaridine(src)
+	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
+	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
+	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/kelotane(src)
+	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
+	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
+	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
+	new /obj/item/reagent_containers/hypospray/advanced/tramadol(src)
+	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
+	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
+	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
+	new /obj/item/reagent_containers/hypospray/advanced/tricordrazine(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/dexalin(src)
+	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
+	new /obj/item/reagent_containers/hypospray/advanced/inaprovaline(src)
+	new /obj/item/reagent_containers/hypospray/advanced/peridaxon(src)
+	new /obj/item/reagent_containers/hypospray/advanced/quickclot(src)
 
 /obj/item/storage/belt/combatLifesaver/upp
 	name ="\improper Type 41 pattern lifesaver bag"
