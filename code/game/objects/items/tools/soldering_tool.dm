@@ -25,16 +25,16 @@
 		balloon_alert(user, "Already busy!")
 		return TRUE
 
+	var/repair_time = 1.5 SECONDS
+	if(H == user)
+		repair_time *= 1.5
+
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to solder the wounds on [src]."),
 		span_notice("You fumble around figuring out how to solder the wounds on [src]."))
 		var/unskilled_delay = 200 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 		if(!do_after(user, unskilled_delay, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
-
-	var/repair_time = 1.5 SECONDS
-	if(H == user)
-		repair_time *= 1.5
 
 	user.visible_message(span_notice("[user] starts to solder the wounds on [H == user ? "[H.p_their()]" : "[H]'s"] [affecting.display_name]."),\
 		span_notice("You start soldering the wounds on [H == user ? "your" : "[H]'s"] [affecting.display_name]."))
