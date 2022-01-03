@@ -394,7 +394,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(GLOB.round_statistics.trap_holes)
 		dat += "[GLOB.round_statistics.trap_holes] holes for acid and huggers were made."
 	if(GLOB.round_statistics.sentinel_neurotoxin_stings)
-		dat += "[GLOB.round_statistics.sentinel_neurotoxin_stings] number of times neurotoxin sting was used.
+		dat += "[GLOB.round_statistics.sentinel_neurotoxin_stings] number of times neurotoxin sting was used."
 	if(GLOB.round_statistics.defiler_defiler_stings)
 		dat += "[GLOB.round_statistics.defiler_defiler_stings] number of times Defilers stung."
 	if(GLOB.round_statistics.defiler_neurogas_uses)
