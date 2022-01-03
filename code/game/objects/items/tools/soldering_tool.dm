@@ -4,8 +4,7 @@
 	icon = 'icons/obj/items/surgery_tools.dmi'
 	icon_state = "alien_hemostat"
 	w_class = WEIGHT_CLASS_SMALL
-	var/skill_level_needed = SKILL_MEDICAL_PRACTICED //only corpsmen, synth, MD, and CMO can use this; if you try to use this, you're going to fumble
-	var/unskilled_delay = SKILL_TASK_EASY
+	var/skill_req = SKILL_ENGINEER_METAL //engineers and synth have easier time using soldering tools
 
 /obj/item/tool/solderingtool/attack(mob/living/carbon/human/H, mob/user)
 	if(!istype(H)||user.a_intent != INTENT_HELP)
@@ -19,7 +18,7 @@
 		balloon_alert(user, "Limb not robotic")
 		return TRUE
 
-	if(!affecting.burn_dam)
+	if(!affecting.burn_dam||!affecting.brute_dam)
 		balloon_alert(user, "Nothing to fix!")
 		return TRUE
 
@@ -27,14 +26,14 @@
 		balloon_alert(user, "Already busy!")
 		return TRUE
 
-	var/repair_time = 5 SECONDS
+	var/repair_time = 1.5 SECONDS
 	if(H == user)
-		repair_time *= 5
+		repair_time *= 1.5
 
 	user.visible_message(span_notice("[user] starts to solder the wounds on [H == user ? "[H.p_their()]" : "[H]'s"] [affecting.display_name]."),\
 		span_notice("You start soldering the wounds on [H == user ? "your" : "[H]'s"] [affecting.display_name]."))
 
-	while(affecting.burn_dam && do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD))
+	while(affecting.burn_dam && affecting.brute_dam && do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD))
 		user.visible_message(span_warning("\The [user] solders the wounds on [H == user ? "[H.p_their()]" : "[H]'s"] [affecting.display_name] with \the [src]."), \
 			span_warning("You solder the wounds on [H == user ? "your" : "[H]'s"] [affecting.display_name]."))
 		if(affecting.heal_limb_damage(10, 10, robo_repair = TRUE, updating_health = TRUE))
