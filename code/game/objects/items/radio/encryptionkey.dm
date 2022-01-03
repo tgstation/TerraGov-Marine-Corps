@@ -71,7 +71,7 @@
 /obj/item/encryptionkey/general
 	name = "\improper General radio encryption key"
 	icon_state = "cypherkey"
-	channels = list(RADIO_CHANNEL_COMMON = TRUE)
+	channels = list(RADIO_CHANNEL_COMMON = TRUE, RADIO_CHANNEL_REQUISITIONS = TRUE)
 
 /obj/item/encryptionkey/engi/rebel
 	channels = list(RADIO_CHANNEL_ENGINEERING_REBEL = TRUE,RADIO_CHANNEL_CAS_REBEL = TRUE, RADIO_CHANNEL_REQUISITIONS_REBEL = TRUE)
@@ -111,7 +111,7 @@
 	channels = list(RADIO_CHANNEL_DELTA_REBEL = TRUE)
 
 /obj/item/encryptionkey/general/rebel
-	channels = list(RADIO_CHANNEL_COMMON_REBEL = TRUE)
+	channels = list(RADIO_CHANNEL_COMMON_REBEL = TRUE, RADIO_CHANNEL_REQUISITIONS_REBEL = TRUE)
 
 
 //ERT
