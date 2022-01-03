@@ -58,12 +58,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/space_port)
-"aaq" = (
-/obj/structure/sign/safety/hazard{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/space_port)
 "aas" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -422,12 +416,6 @@
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
-"abR" = (
-/obj/structure/sign/safety/vent{
-	dir = 1
-	},
-/turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "abT" = (
 /obj/effect/decal/cleanable/dirt,
@@ -3040,12 +3028,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
-"als" = (
-/obj/structure/sign/safety/hazard{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/space_port)
 "alt" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/red/redtaupecorner{
@@ -3210,11 +3192,6 @@
 	dir = 6
 	},
 /area/bigredv2/outside/nw)
-"amb" = (
-/obj/structure/sign/safety/hazard,
-/obj/structure/cable,
-/turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/outside/space_port)
 "amc" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -33374,7 +33351,7 @@ agQ
 bLG
 bLG
 bLG
-amb
+fYS
 aae
 ktH
 hqP
@@ -36822,7 +36799,7 @@ hqP
 hqP
 bXE
 aae
-aaq
+tOR
 cAN
 aaf
 cAN
@@ -37039,7 +37016,7 @@ hqP
 hqP
 bXE
 aae
-abR
+tOR
 cAN
 tOR
 adL
@@ -39010,7 +38987,7 @@ tOR
 tOR
 tOR
 tOR
-als
+tOR
 adL
 tOR
 tOR
