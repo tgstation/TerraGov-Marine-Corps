@@ -1797,8 +1797,7 @@
 /area/centcom/valhalla/security/brig/interiorcavern)
 "crv" = (
 /obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
+	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
@@ -2403,6 +2402,7 @@
 /area/centcom/valhalla/crew_quarters/captain)
 "dcs" = (
 /obj/structure/mirror{
+	dir = 8;
 	pixel_x = 26
 	},
 /obj/structure/sink{
@@ -4452,7 +4452,7 @@
 /obj/structure/door_assembly/door_assembly_mhatch,
 /obj/item/ore/iron,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/centcom/valhalla/exterior)
+/area/centcom/valhalla/security/brig/interiorcavern)
 "fOn" = (
 /obj/machinery/door/firedoor,
 /obj/effect/decal/warning_stripes/thick{
@@ -5836,7 +5836,7 @@
 /obj/effect/decal/tile/red{
 	dir = 4
 	},
-/obj/machinery/marine_selector/clothes,
+/obj/machinery/vending/weapon/valhalla,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig)
 "hJN" = (
@@ -6176,8 +6176,7 @@
 "idh" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -24
+	dir = 1
 	},
 /obj/effect/decal/warning_stripes/thick{
 	dir = 5
@@ -6958,10 +6957,6 @@
 /area/centcom/valhalla/hydroponics)
 "jrx" = (
 /obj/structure/table/reinforced,
-/obj/structure/noticeboard{
-	dir = 4;
-	pixel_x = -32
-	},
 /obj/item/clipboard,
 /obj/item/folder/yellow,
 /obj/item/tool/pen/red,
@@ -8680,8 +8675,7 @@
 	pixel_y = -3
 	},
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -22
+	dir = 4
 	},
 /obj/machinery/door/window{
 	name = "First-Aid Supplies"
@@ -9270,7 +9264,6 @@
 "muI" = (
 /obj/structure/extinguisher_cabinet,
 /obj/effect/decal/tile/green,
-/obj/machinery/alarm,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/primary/port)
 "muO" = (
@@ -9575,23 +9568,28 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/engineering)
 "mPI" = (
-/obj/machinery/vending/weapon,
-/turf/open/floor/tile/dark/gray,
-/area/centcom/valhalla/security/brig/interiorcavern)
+/obj/structure/noticeboard{
+	dir = 4
+	},
+/turf/closed/wall,
+/area/centcom/valhalla/quartermaster/storage)
 "mPJ" = (
-/obj/machinery/marine_selector/clothes/leader,
+/obj/machinery/marine_selector/clothes/leader/valhalla,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "mPT" = (
-/obj/machinery/marine_selector/gear/leader,
+/obj/machinery/marine_selector/gear/leader/valhalla,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "mQe" = (
 /turf/open/ai_visible,
 /area/ai_multicam_room)
 "mQf" = (
-/turf/closed/wall/r_wall,
-/area/engine/break_room)
+/obj/structure/sign/nosmoking_1,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/centcom/valhalla/central)
 "mQt" = (
 /obj/machinery/alarm{
 	dir = 4
@@ -9971,6 +9969,7 @@
 /area/centcom/valhalla/engine/engine_monitoring)
 "nqf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/sign/nosmoking_1,
 /turf/closed/wall/r_wall,
 /area/centcom/valhalla/engine/engineering)
 "nrq" = (
@@ -10517,7 +10516,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
-/obj/structure/sign/nosmoking_1,
 /turf/closed/wall/r_wall,
 /area/centcom/valhalla/engine/engine_monitoring)
 "ocH" = (
@@ -14015,6 +14013,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/grimy,
 /area/centcom/valhalla/comms)
+"suC" = (
+/obj/effect/decal/tile/green,
+/obj/machinery/alarm,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/primary/port)
 "suW" = (
 /turf/open/floor/grimy,
 /area/centcom/valhalla/comms)
@@ -14624,8 +14627,9 @@
 /turf/open/floor/engine,
 /area/centcom/valhalla/engine/engineering)
 "toj" = (
-/turf/closed/wall/r_wall,
-/area/maintenance/port)
+/obj/structure/sign/securearea,
+/turf/closed/wall,
+/area/centcom/valhalla/crew_quarters/kitchen)
 "top" = (
 /obj/structure/sign/nosmoking_1,
 /turf/closed/wall,
@@ -14716,8 +14720,7 @@
 /area/centcom/valhalla/security/brig)
 "tuC" = (
 /obj/machinery/alarm{
-	dir = 1;
-	pixel_y = -22
+	dir = 1
 	},
 /obj/structure/bedsheetbin,
 /turf/open/floor/tile/dark,
@@ -16374,8 +16377,7 @@
 "vzA" = (
 /obj/structure/closet/secure_closet/medical2,
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -22
+	dir = 4
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 1
@@ -18035,7 +18037,7 @@
 /area/centcom/valhalla/primary/central_one)
 "xfX" = (
 /obj/structure/table,
-/obj/machinery/computer/atmoscontrol,
+/obj/machinery/computer/emails,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
@@ -18553,8 +18555,7 @@
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
 /obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
+	dir = 4
 	},
 /obj/effect/decal/tile/black{
 	dir = 1
@@ -18653,12 +18654,6 @@
 /area/centcom/valhalla/secondary/exit)
 "xLH" = (
 /obj/structure/table/reinforced,
-/obj/structure/sign/nosmoking_1{
-	pixel_y = 32
-	},
-/obj/structure/sign/securearea{
-	pixel_x = 32
-	},
 /obj/effect/decal/tile/black{
 	dir = 1
 	},
@@ -25220,7 +25215,7 @@ tWP
 knm
 mPJ
 mHP
-mPI
+oJr
 nvn
 ojb
 pfu
@@ -25248,7 +25243,7 @@ vQc
 fLm
 xvP
 kTE
-ycV
+hec
 ycV
 ycV
 ycV
@@ -25386,7 +25381,7 @@ vQc
 fLm
 vKP
 vTy
-ycV
+hec
 fML
 iWM
 pmg
@@ -25634,7 +25629,7 @@ tWP
 fmR
 khV
 mbY
-mQf
+khV
 mDO
 mDO
 mDO
@@ -25642,8 +25637,8 @@ mDO
 mDO
 mDO
 mDO
-toj
-toj
+mDO
+mDO
 vjO
 vVy
 vjO
@@ -25764,7 +25759,7 @@ dVf
 gae
 mvn
 fat
-fat
+mvn
 mvn
 mvn
 iXv
@@ -28281,7 +28276,7 @@ tLk
 jby
 pXS
 syo
-jFg
+suC
 vgK
 ete
 wTe
@@ -31855,7 +31850,7 @@ sSz
 xJg
 umq
 xUt
-xWW
+mQf
 wuZ
 xLH
 ycN
@@ -31994,7 +31989,7 @@ xJg
 jtw
 sjM
 rXP
-wuZ
+toj
 wuZ
 wuZ
 ukD
@@ -32667,7 +32662,7 @@ vSy
 vSy
 hUt
 xPu
-vSy
+xPu
 xPu
 ylM
 fbQ
@@ -33221,7 +33216,7 @@ eAe
 iRm
 jrB
 gbw
-vSy
+mPI
 lsN
 moY
 nez
