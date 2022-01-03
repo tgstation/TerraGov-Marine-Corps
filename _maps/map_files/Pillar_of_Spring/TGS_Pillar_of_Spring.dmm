@@ -6962,6 +6962,12 @@
 /obj/machinery/marine_selector/clothes/smartgun,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"wg" = (
+/obj/machinery/computer/cryopod{
+	dir = 8
+	},
+/turf/open/floor/mainship,
+/area/mainship/living/cryo_cells)
 "wh" = (
 /obj/effect/decal/siding,
 /turf/open/floor/mainship/terragov/east,
@@ -13142,14 +13148,20 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/starboard_umbilical)
 "Ou" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
-	},
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
 /turf/open/floor/mainship/black{
-	dir = 4
+	dir = 5
 	},
 /area/mainship/squads/general)
 "Ov" = (
@@ -13450,6 +13462,17 @@
 "Pt" = (
 /obj/structure/cable,
 /obj/machinery/vending/nanomed,
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -15553,6 +15576,20 @@
 "VW" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -54743,11 +54780,11 @@ Pm
 Mb
 Zo
 qC
-PP
+Ou
 Xw
 Yz
 PP
-Ou
+Xw
 kA
 xq
 PP
@@ -54757,7 +54794,7 @@ Gr
 Mc
 nE
 Ok
-xq
+PW
 QR
 nE
 nE
@@ -55258,17 +55295,17 @@ Mb
 sO
 SK
 SK
-dk
+wg
 UY
 WE
 dk
 SK
-dk
+wg
 WE
 qd
 dk
 SK
-dk
+wg
 WE
 qd
 dk
