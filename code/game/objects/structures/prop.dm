@@ -210,9 +210,111 @@
 	mouse_opacity = 0
 	layer = LADDER_LAYER
 
+/obj/structure/prop/mainship/supermatter //functionally inert, but will consume mobs and objects
+	name = "supermatter crystal"
+	desc = "A strangely translucent and iridescent crystal."
+	icon = 'icons/Marine/mainship_props64.dmi'
+	icon_state = "darkmatter"
+	layer = LADDER_LAYER
+	light_range = 4
+	resistance_flags = RESIST_ALL //no delaminations here
+
+
+/obj/structure/prop/mainship/supermatter/proc/consume(atom/movable/consumed_object) //dust() and destroy living mobs, qdel thrown objects
+	if(isliving(consumed_object))
+		var/mob/living/consumed_mob = consumed_object
+		consumed_mob.dust() //dust() plays a dusting animation and sets the mob to dead
+	else if(isobj(consumed_object))
+		qdel(consumed_object) //we cannot dust() objects so we just delete them
+
+/obj/structure/prop/mainship/supermatter/Bumped(atom/movable/hit_object)
+	if(isliving(hit_object)) //living objects get a nifty message about heat
+		hit_object.visible_message(span_danger("\The [hit_object] slams into \the [src] inducing a resonance... [hit_object.p_their()] body starts to glow and burst into flames before flashing into dust!"),
+			span_userdanger("You slam into \the [src] as your ears are filled with unearthly ringing. Your last thought is \"Oh, fuck.\""),
+			span_hear("You hear an unearthly noise as a wave of heat washes over you."))
+	else if(isobj(hit_object) && !iseffect(hit_object))
+		hit_object.visible_message(span_danger("\The [hit_object] smacks into \the [src] and rapidly flashes to ash."), null,
+			span_hear("You hear a loud crack as you are washed with a wave of heat."))
+	else
+		return
+
+	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, TRUE)
+	consume(hit_object) //all bumped objects get consume() called on them
+
+/obj/structure/prop/mainship/radiationcollector
+	name = "Radiation Collector Array"
+	desc = "A device which uses radiation and plasma to produce power."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "radcollector"
+	layer = LADDER_LAYER
+	resistance_flags = RESIST_ALL
+
+/obj/structure/prop/mainship/invincibleshutter
+	name = "\improper heavy shutters"
+	desc = "A heavy set of blast resistant shutters."
+	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
+	icon_state = "shutter1"
+	density = TRUE
+	layer = LADDER_LAYER
+	light_range = 4
+	resistance_flags = RESIST_ALL //no delaminations here
+
+/obj/structure/prop/mainship/doorblocker //doors that exist only to block access, used mostly for valhalla omegastation
+	name = "\improper Barred Airlock"
+	icon = 'icons/Marine/mainship_props.dmi'
+	resistance_flags = RESIST_ALL
+	desc = "It opens and closes." 
+
+/obj/structure/prop/mainship/doorblocker/maint
+	name = "\improper Maintenance Hatch"
+	icon_state = "maint_locked"
+
+/obj/structure/prop/mainship/doorblocker/external
+	name = "\improper External Airlock"
+	icon_state = "exit_locked"
+
+/obj/structure/prop/mainship/doorblocker/engi
+	name = "\improper External Airlock"
+	icon_state = "engi_locked"
+
+/obj/structure/prop/mainship/doorblocker/evac
+	name = "\improper Evacuation Airlock"
+	icon_state = "secure_locked"
+
+/obj/structure/prop/mainship/doorblocker/command
+	name = "\improper Command Airlock"
+	icon_state = "command_locked"
+
+
+/obj/structure/prop/mainship/suit_storage_prop
+	name = "Suit Storage Unit"
+	desc = "An industrial U-Stor-It Storage unit designed to accomodate all kinds of space suits. Its on-board equipment also allows the user to decontaminate the contents through a UV-ray purging cycle. There's a warning label dangling from the control pad, reading \"STRICTLY NO BIOLOGICALS IN THE CONFINES OF THE UNIT\". This one appears to be magnetically locked."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "suitstorageclose"
+
+/obj/structure/prop/mainship/protolathe
+	name = "Suit Storage Unit"
+	desc = "A giant machine for processing data and producing department specific tools. A small warning light labeled 'server connection' is flashing red"
+	icon = 'icons/obj/machines/research.dmi'
+	icon_state = "protolathe"
+
+/obj/structure/prop/mainship/protolathe/engi
+	name = "Engineering Protolathe"
+
+/obj/structure/prop/mainship/protolathe/sci
+	name = "Research Protolathe"
+
+/obj/structure/prop/mainship/protolathe/medical
+	name = "Medical Protolathe"
+
+/obj/structure/prop/mainship/protolathe/security
+	name = "Security Protolathe"
+
+/obj/structure/prop/mainship/protolathe/service
+	name = "Service Protolathe"
+
 /obj/structure/prop/mainship/cannon_cables/ex_act()
 	return
-
 
 /obj/structure/prop/mainship/cannon_cable_connector
 	name = "\improper Cannon cable connector"
@@ -223,3 +325,159 @@
 
 /obj/structure/prop/mainship/cannon_cable_connector/ex_act()
 	return
+
+/obj/structure/prop/mainship/propcarp
+	name = "space carp"
+	desc = "A ferocious, fang-bearing creature that resembles a fish."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "carpprop"
+	density = TRUE
+
+/obj/structure/prop/mainship/propcarp/Initialize(mapload) //slightly randomize carp to simulate life
+	. = ..()
+	var/pickedrotate = pick(0,1,2,4,8,10) 
+	switch(pickedrotate) //prop carp can randomly move two tiles in any direction
+		if(0) //1/6th chance of not moving in a random direction
+			return
+		if(1)
+			dir = NORTH
+			pixel_y = 64
+		if(2)
+			dir = SOUTH
+			pixel_y = -64
+		if(4)
+			dir = EAST
+			pixel_x = 64
+		if(8)
+			dir = WEST
+			pixel_x = -64
+		if(10)
+			qdel(src)
+		//remember that each carp must have at least 2 free spaces around them per carp, or they'll glitch into walls and/or each other
+
+/obj/structure/prop/mainship/aislipprop
+	name = "foam dispenser"
+	desc = "A remotely-activatable dispenser for crowd-controlling foam."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "aislipper"
+	density = FALSE
+	resistance_flags = RESIST_ALL
+
+/obj/structure/prop/mainship/turretprop
+	name = "laser turret"
+	desc = "A point-defense laser turret supplied by NanoTrasen. This one looks inactive"
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "turretprop"
+	resistance_flags = RESIST_ALL
+
+/obj/structure/prop/mainship/tubeprop
+	name = "pneumatic tube"
+	desc = "A pneumatic tube commonly used for transportation on NanoTrasen research stations."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "tubeprop"
+	resistance_flags = RESIST_ALL
+	layer = ABOVE_TURF_LAYER //so our fake prop can visually pass under glass panels
+
+/obj/structure/prop/mainship/tubeprop/decorative
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "decorative"
+	resistance_flags = RESIST_ALL
+	mouse_opacity = 0
+
+/obj/structure/prop/mainship/meterprop/
+	name = "meter"
+	desc = "That's a gas flow meter. It measures something."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "propmeterempty"
+	resistance_flags = RESIST_ALL
+	density = FALSE
+
+/obj/structure/prop/mainship/meterprop/empty
+	icon_state = "propmeterempty"
+
+/obj/structure/prop/mainship/meterprop/random
+	icon_state = "propmeter"
+	var/kpa //fake temperatures and pressures for our meter
+	var/kelvin
+
+/obj/structure/prop/mainship/meterprop/random/examine(mob/user)
+	. = ..()
+	to_chat(user, span_notice("The pressure gauge reads [kpa] kPa; [kelvin] K ([kelvin - 273.15]°C)")) //output fake kelvin and celsius on examine
+
+/obj/structure/prop/mainship/meterprop/empty/examine(mob/user)
+	. = ..()
+	to_chat(user, span_notice("The pressure gauge reads 0 kPa; 0 K (-273.15°C)")) //output fake kelvin and celsius on examine
+
+/obj/structure/prop/mainship/meterprop/random/Initialize(mapload)
+	. = ..()
+	kpa = rand(9.3, 21.4)
+	kelvin = rand(10.3, 28.4) 
+
+/obj/structure/prop/mainship/pipeprop //does not init and so doesn't generate lag at all
+	name = "pipe"
+	desc = "A one meter section of regular pipe."
+	icon = 'icons/obj/atmospherics/pipes/simple.dmi'
+	icon_state = "pipe11-2"
+	density = FALSE
+	layer = GAS_PIPE_VISIBLE_LAYER
+
+/obj/structure/prop/mainship/pipeprop/manifold
+	name = "pipe manifold"
+	desc = "A manifold composed of regular pipes."
+	icon = 'icons/obj/atmospherics/pipes/manifold.dmi'
+	icon_state = "manifold-2"
+
+/obj/structure/prop/mainship/pipeprop/pump
+	name = "pipe manifold"
+	desc = "A pump that moves gas by pressure."
+	icon = 'icons/obj/atmospherics/components/binary_devices.dmi'
+	icon_state = "pump_map-2"
+
+/obj/structure/prop/mainship/pipeprop/pump/on
+	icon_state =  "pump_on"
+	layer = GAS_PUMP_LAYER
+
+//items props
+
+/obj/item/prop
+	name = "GENERIC SHIP PROP"
+	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P03' IF SEEN IN ROUND WITH LOCATION"
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "hangarbox"
+
+/obj/item/prop/aimodule
+	name = "AI module"
+	desc = "An AI Module for programming laws to an AI."
+	icon_state = "std_mod"
+
+/obj/item/prop/aimodule/Initialize(mapload)
+	. = ..()
+	name = pick("'Safeguard' AI Module'",
+				"'OneHuman' AI Module",
+				"'ProtectStation' AI Module",
+				"'Quarantine' AI Module",
+				"'OxygenIsToxicToHumans' AI Module",
+				"'Freeform' AI Module",
+				"\improper 'Remove Law' AI module",
+				"\improper 'Reset' AI module",
+				"'Purge' AI Module",
+				"'Asimov' Core AI Module",
+				"'Asimov++' Core AI Module",
+				"'Corporate' Core AI Module",
+				"'P.A.L.A.D.I.N. version 3.5e' Core AI Module",
+				"'T.Y.R.A.N.T.' Core AI Module",
+				"'Robo-Officer' Core AI Module",
+				"'Antimov' Core AI Module",
+				"'Freeform' Core AI Module",
+				"'Mother Drone' Core AI Module",
+				"'Robodoctor' Core AI Module",
+				"'Reportertron' Core AI Module",
+				"'Thermodynamic' Core AI Module",
+				"'Live And Let Live' Core AI Module",
+				"'Guardian of Balance' Core AI Module",
+				"'Station Efficiency' Core AI Module",
+				"'Peacekeeper' Core AI Module",
+				"'H.O.G.A.N.' Core AI Module",
+	)
+
+
