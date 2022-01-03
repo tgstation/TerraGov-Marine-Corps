@@ -63,6 +63,7 @@
 		/obj/item/t_scanner,
 		/obj/item/analyzer,
 		/obj/item/tool/taperoll/engineering,
+		/obj/item/tool/solderingtool,
 	)
 
 
@@ -123,7 +124,6 @@
 		/obj/item/defibrillator,
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/roller,
-		/obj/item/tool/solderingtool,
 	)
 	storage_type_limits = list(
 		/obj/item/ammo_magazine = 3,

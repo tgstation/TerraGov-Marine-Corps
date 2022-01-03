@@ -43,6 +43,7 @@
 		/obj/item/stack/sheet,
 		/obj/item/stack/sandbags,
 		/obj/item/stack/snow,
+		/obj/item/tool/solderingtool,
 	)
 
 /obj/item/armor_module/storage/uniform/brown_vest
@@ -119,7 +120,6 @@
 		/obj/item/roller,
 		/obj/item/clothing/glasses/hud/health,
 		/obj/item/tweezers,
-		/obj/item/tool/solderingtool,
 	)
 
 /obj/item/armor_module/storage/uniform/knifeharness

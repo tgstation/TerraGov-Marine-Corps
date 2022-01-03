@@ -169,6 +169,7 @@
 		/obj/item/detpack,
 		/obj/item/circuitboard,
 		/obj/item/lightreplacer,
+		/obj/item/tool/solderingtool,
 	)
 	cant_hold = list()
 
@@ -194,7 +195,6 @@
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/stack/medical,
 		/obj/item/tweezers,
-		/obj/item/tool/solderingtool,
 	)
 
 /obj/item/armor_module/storage/integrated

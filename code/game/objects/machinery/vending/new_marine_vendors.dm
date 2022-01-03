@@ -686,7 +686,6 @@
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/storage/firstaid/adv,
 		/obj/item/clothing/glasses/hud/health,
-		/obj/item/tool/solderingtool,
 	)
 
 /obj/effect/essentials_set/engi
@@ -699,6 +698,7 @@
 		/obj/item/tool/shovel/etool,
 		/obj/item/lightreplacer,
 		/obj/item/circuitboard/general,
+		/obj/item/tool/solderingtool,
 	)
 
 /obj/effect/essentials_set/leader
