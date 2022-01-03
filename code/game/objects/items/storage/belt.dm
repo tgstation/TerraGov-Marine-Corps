@@ -156,14 +156,53 @@
 	max_w_class = 2
 	can_hold = list(
 		/obj/item/healthanalyzer,
-		/obj/item/reagent_containers/glass/bottle,
+		// /obj/item/reagent_containers/glass/bottle, This is commented out so that hypospray belt can achieve this niche of holding reagent bottles.
 		/obj/item/reagent_containers/pill,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/storage/pill_bottle,
 		/obj/item/storage/syringe_case,
-		/obj/item/reagent_containers/hypospray/autoinjector,
+		// /obj/item/reagent_containers/hypospray/autoinjector, This is commented out so that hypospray belt can achieve this niche of holding hypospray.
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/stack/medical,
+	)
+
+/obj/item/storage/belt/combatLifesaver/Initialize()  //The belt, with all it's magic inside!
+	. = ..()
+    new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+    new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+    new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+    new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+    new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+    new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+    new /obj/item/stack/medical/splint(src)
+    new /obj/item/stack/medical/splint(src)
+    new /obj/item/stack/medical/splint(src)
+    new /obj/item/storage/pill_bottle/bicaridine(src)
+    new /obj/item/storage/pill_bottle/kelotane(src)
+    new /obj/item/storage/pill_bottle/dylovene(src)
+    new /obj/item/storage/pill_bottle/tramadol(src)
+    new /obj/item/storage/pill_bottle/inaprovaline(src)
+    new /obj/item/storage/pill_bottle/peridaxon(src)
+    new /obj/item/storage/pill_bottle/quickclot(src)
+    new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+    new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+    new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+    new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
+    new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
+
+
+/obj/item/storage/belt/hypospraybelt
+	name = "\improper M276 pattern hypospray belt"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport hyposprays and reagent_containers."
+	icon_state = "medicalbag"
+	item_state = "medicbag"
+	storage_slots = 21
+	max_storage_space = 42
+	max_w_class = 2
+	can_hold = list(
+		/obj/item/healthanalyzer,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/hypospray/autoinjector,
 	)
 
 /obj/item/storage/belt/combatLifesaver/Initialize()  //The belt, with all it's magic inside!
@@ -189,7 +228,6 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
-
 
 /obj/item/storage/belt/combatLifesaver/upp
 	name ="\improper Type 41 pattern lifesaver bag"
