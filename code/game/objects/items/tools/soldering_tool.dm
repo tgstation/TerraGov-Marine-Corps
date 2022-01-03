@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/surgery_tools.dmi'
 	icon_state = "alien_hemostat"
 	w_class = WEIGHT_CLASS_SMALL
-	var/skill_req = SKILL_ENGINEER_METAL //engineers and synth have easier time using soldering tools
+	var/skill_level_needed = SKILL_ENGINEER_METAL //engineers and synth have easier time using soldering tools
 	var/unskilled_delay = SKILL_TASK_FORMIDABLE
 
 /obj/item/tool/solderingtool/attack(mob/living/carbon/human/H, mob/user)
