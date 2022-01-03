@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - bugfix: "blue fire sprite should now use the correct sprite for the fire level, instead of using lvl 2 sprite before than 1"

@@ -992,6 +992,9 @@
 
 	placed_overlay_iconstate = "smartgun"
 
+/obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc
+	starting_attachment_types = list(/obj/item/attachable/stock/t29stock, /obj/item/attachable/t29barrel, /obj/item/attachable/magnetic_harness)
+
 // T-25 Smartrifle
 
 /obj/item/weapon/gun/rifle/standard_smartrifle
