@@ -390,6 +390,7 @@
 	return ..()
 
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
+	. = ..()
 	set_gun_user(null)
 	active_attachable?.removed_from_inventory(user)
 	if(!length(chamber_items) || !chamber_items[current_chamber_position] || chamber_items[current_chamber_position].loc == src)
