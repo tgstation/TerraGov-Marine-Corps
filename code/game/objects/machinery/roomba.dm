@@ -117,7 +117,7 @@
 		GLOB.cryoed_item_list[CRYO_REQ] += sucker
 		counter++
 	stuck_counter = 0
-	if(sucked_one && prob(5))
+	if(sucked_one && prob(10))
 		say(pick(sentences))
 
 /obj/machinery/roomba/attack_hand(mob/living/user)
