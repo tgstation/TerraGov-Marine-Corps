@@ -326,6 +326,13 @@
 	number.maptext = MAPTEXT(length(contents))
 	. += number
 
+/obj/item/storage/pill_bottle/equipped(mob/user, slot)
+	. = ..()
+	update_icon()
+
+/obj/item/storage/pill_bottle/removed_from_inventory()
+	. = ..()
+	update_icon()
 
 /obj/item/storage/pill_bottle/kelotane
 	name = "kelotane pill bottle"
