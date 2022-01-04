@@ -352,6 +352,7 @@
 	idle_power_usage = 3;
 	name = "modifed holopad"
 	},
+/mob/living/simple_animal/catslug/newt,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
