@@ -1,7 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - rscadd: "Added various props for use on space station maps."
-  - expansion: "Valhalla is now a proper space station, with all the proper amenities."
-  - soundadd: "Added sounds for the supermatter."
-  - imageadd: "Added a number of icons relating to space station props."
