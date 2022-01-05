@@ -35,12 +35,12 @@ All ShuttleMove procs go here
 				M.stop_pulling()
 				M.visible_message(span_warning("[shuttle] slams into [M]!"))
 				M.gib()
-				continue
+			continue
 		if(ismovable(thing))
 			var/atom/movable/movable_thing = thing
 			if(movable_thing.flags_atom & SHUTTLE_IMMUNE)
 				movable_thing.forceMove(src)
-				invisibility = INVISIBILITY_ABSTRACT
+				movable_thing.invisibility = INVISIBILITY_ABSTRACT
 				continue
 			qdel(thing)
 
@@ -242,6 +242,14 @@ All ShuttleMove procs go here
 	var/turf/T = src.loc
 	if(level==1)
 		hide(T.intact_tile)
+
+/obj/machinery/atmospherics/components/unary/vent_pump/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
+	. = ..()
+	invisibility = initial(invisibility)
+
+/obj/machinery/atmospherics/components/unary/vent_scrubber/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
+	. = ..()
+	invisibility = initial(invisibility)
 
 /************************************Mob move procs************************************/
 
