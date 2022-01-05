@@ -468,8 +468,7 @@
 		to_chat(user, span_warning("\The [src] shuts off, using last bits of fuel!"))
 		update_icon()
 	else
-		playsound(loc, 'sound/items/jetpack_sound.ogg', 50, TRUE)
-		playsound(loc, 'sound/weapons/genhit1.ogg', 50, TRUE)
+		playsound(loc, 'sound/weapons/rocket_sledge.ogg', 50, TRUE)
 
 	reagents.remove_reagent(/datum/reagent/fuel, fuel_used)
 
