@@ -273,14 +273,6 @@
 	. = ..()
 	AddComponent(/datum/component/harvester)
 
-/obj/item/weapon/twohanded/spear/tactical/harvester/equipped(mob/user, slot)
-	. = ..()
-	toggle_item_bump_attack(user, TRUE)
-
-/obj/item/weapon/twohanded/spear/tactical/harvester/dropped(mob/user)
-	. = ..()
-	toggle_item_bump_attack(user, FALSE)
-
 /obj/item/weapon/twohanded/spear/tactical/tacticool
 	name = "M-23 TACTICOOL spear"
 	icon = 'icons/Marine/gun64.dmi'
