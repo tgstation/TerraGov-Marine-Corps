@@ -18688,9 +18688,15 @@
 	},
 /area/mainship/living/basketball)
 "qoX" = (
-/obj/machinery/newscaster,
-/turf/closed/wall/mainship/gray,
-/area/sulaco/cafeteria/kitchen)
+/obj/machinery/door_control{
+	id = "mbayexit";
+	name = "medbay exit";
+	normaldoorcontrol = 1
+	},
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 8
+	},
+/area/sulaco/medbay)
 "qpo" = (
 /obj/machinery/light/small,
 /obj/machinery/camera/autoname{
@@ -20815,23 +20821,11 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "tGO" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+/obj/machinery/newscaster{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
-	},
-/obj/machinery/door_control{
-	id = "mbayexit";
-	name = "medbay exit";
-	normaldoorcontrol = 1;
-	pixel_y = 28
-	},
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 4
-	},
-/area/sulaco/medbay)
+/turf/closed/wall/mainship/gray,
+/area/sulaco/cafeteria/kitchen)
 "tIj" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -43218,8 +43212,8 @@ qMx
 ybp
 vMB
 boI
-qoX
 vMB
+tGO
 vMB
 vMB
 vMB
@@ -51171,8 +51165,8 @@ dJm
 hNA
 oXn
 aaJ
-adf
-tGO
+qoX
+esb
 adf
 vtC
 ovJ
