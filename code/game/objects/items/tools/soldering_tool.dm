@@ -39,7 +39,7 @@
 	user.visible_message(span_notice("[user] starts to solder the wounds on [H == user ? "[H.p_their()]" : "[H]'s"] [affecting.display_name]."),\
 		span_notice("You start soldering the wounds on [H == user ? "your" : "[H]'s"] [affecting.display_name]."))
 
-	while(affecting.burn_dam || affecting.brute_dam && do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD))
+	while((affecting.burn_dam || affecting.brute_dam) && do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD))
 		user.visible_message(span_warning("\The [user] solders the wounds on [H == user ? "[H.p_their()]" : "[H]'s"] [affecting.display_name] with \the [src]."), \
 			span_warning("You solder the wounds on [H == user ? "your" : "[H]'s"] [affecting.display_name]."))
 		if(affecting.heal_limb_damage(10, 10, robo_repair = TRUE, updating_health = TRUE))
