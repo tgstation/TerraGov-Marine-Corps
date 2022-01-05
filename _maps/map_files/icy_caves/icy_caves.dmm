@@ -757,11 +757,6 @@
 	dir = 1
 	},
 /area/icy_caves/caves/northern)
-"cV" = (
-/turf/open/floor/tile/white/warningstripe{
-	dir = 1
-	},
-/area/icy_caves/caves/northern)
 "cW" = (
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 2
@@ -1884,6 +1879,10 @@
 	dir = 5
 	},
 /area/icy_caves/outpost/office)
+"ie" = (
+/obj/effect/landmark/fob_sentry_rebel,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/icy_caves/outpost/LZ1)
 "ig" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -3923,12 +3922,6 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/medbay)
-"sD" = (
-/obj/effect/landmark/fob_sentry_rebel,
-/turf/closed/ice_rock/singleEnd{
-	dir = 8
-	},
-/area/icy_caves/outpost/LZ1)
 "sE" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -5168,11 +5161,6 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/LZ2)
-"zt" = (
-/turf/open/floor/tile/white/warningstripe{
-	dir = 6
-	},
-/area/icy_caves/caves/northern)
 "zu" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor,
 /turf/open/floor/mainship/red/full,
@@ -6315,11 +6303,6 @@
 	dir = 1
 	},
 /area/icy_caves/caves/northern)
-"Fw" = (
-/turf/open/floor/tile/white/warningstripe{
-	dir = 4
-	},
-/area/icy_caves/caves/northern)
 "Fy" = (
 /turf/open/floor/freezer,
 /area/icy_caves/outpost/dorms)
@@ -7001,11 +6984,6 @@
 "IT" = (
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
-"IU" = (
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 4
-	},
-/area/icy_caves/caves/northern)
 "IX" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/dark,
@@ -7363,14 +7341,6 @@
 "KZ" = (
 /turf/closed/wall,
 /area/icy_caves/outpost/garage)
-"La" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/white/warningstripe{
-	dir = 4
-	},
-/area/icy_caves/caves/northern)
 "Lb" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/tile/dark,
@@ -7419,9 +7389,6 @@
 	on = 1
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/caves/northern)
-"Lp" = (
-/turf/open/floor/tile/white/warningstripe,
 /area/icy_caves/caves/northern)
 "Lq" = (
 /obj/machinery/power/geothermal,
@@ -7800,14 +7767,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
-"MX" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 4
-	},
-/area/icy_caves/caves/northern)
 "MY" = (
 /obj/item/reagent_containers/spray/pepper,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -8195,9 +8154,7 @@
 /area/icy_caves/caves/south)
 "Pp" = (
 /obj/effect/decal/cleanable/blood/xtracks,
-/turf/open/floor/tile/white/warningstripe{
-	dir = 5
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/icy_caves/caves/northern)
 "Pq" = (
 /turf/open/floor/tile/dark/brown2{
@@ -11931,10 +11888,10 @@ Zl
 Zl
 Zl
 Zl
-cV
-IU
-MX
-Lp
+AJ
+AJ
+HU
+AJ
 Zl
 Zl
 Zl
@@ -12088,9 +12045,9 @@ Zl
 Zl
 Zl
 Pp
-Fw
-La
-zt
+AJ
+HU
+AJ
 Zl
 Zl
 Zl
@@ -12637,7 +12594,7 @@ MH
 Co
 Uu
 Uu
-sD
+Ml
 Ml
 Tf
 Ml
@@ -12792,7 +12749,7 @@ Yf
 Yf
 Ii
 Uu
-Uu
+ie
 Uu
 UE
 TQ
