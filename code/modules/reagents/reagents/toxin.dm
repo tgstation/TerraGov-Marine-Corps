@@ -542,6 +542,9 @@
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
 		slowdown_multiplier *= 2
 
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_ozelomelyn))
+		slowdown_multiplier *= 2
+
 	switch(slowdown_multiplier) //Description varies in severity and probability with the multiplier
 		if(0 to 1 && prob(10))
 			to_chat(L, span_warning("You feel your legs tense up.") )
@@ -651,7 +654,7 @@
 	description = "A potent Xenomorph chemical that quickly purges other chemicals in a bloodstream, causing small scale poisoning in a organism that won't progress. Appears to be strangely water based.."
 	reagent_state = LIQUID
 	color = "#bb0a1e"
-	custom_metabolism = 3 // metabolizes decently quickly. A sting .
+	custom_metabolism = 1.5 // metabolizes decently quickly. A sting does 15 at the same rate as neurotoxin.
 	overdose_threshold = 10000
 	scannable = TRUE
 	toxpwr = 0 // This is going to do slightly snowflake tox damage.
