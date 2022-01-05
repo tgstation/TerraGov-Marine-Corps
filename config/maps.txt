@@ -17,6 +17,10 @@ map lv624
 	minplayers 25
 endmap
 
+map desertdam
+	minplayers 90
+endmap
+
 map bigred_v2
 	minplayers 25
 endmap
@@ -51,7 +55,4 @@ endmap
 
 map magmoor_digsite_iv
 	minplayers 20
-endmap
-
-map marine_hq
 endmap

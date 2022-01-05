@@ -9,7 +9,7 @@
 */
 
 
-obj/structure/windoor_assembly
+/obj/structure/windoor_assembly
 	icon = 'icons/obj/doors/windoor.dmi'
 
 	name = "Windoor Assembly"
@@ -25,8 +25,8 @@ obj/structure/windoor_assembly
 	var/secure = ""		//Whether or not this creates a secure windoor
 	var/state = "01"	//How far the door assembly has progressed in terms of sprites
 
-obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
-	..()
+/obj/structure/windoor_assembly/Initialize(mapload, start_dir=NORTH, constructed=0)
+	. = ..()
 	if(constructed)
 		state = "01"
 		anchored = FALSE
@@ -35,6 +35,10 @@ obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
 			setDir(start_dir)
 		else //If the user is facing northeast. northwest, southeast, southwest or north, default to north
 			setDir(NORTH)
+	var/static/list/connections = list(
+		COMSIG_ATOM_EXIT = .proc/on_try_exit,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/windoor_assembly/setDir(newdir)
 	. = ..()
@@ -51,10 +55,14 @@ obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
 	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
 		return FALSE
 
-/obj/structure/windoor_assembly/CheckExit(atom/movable/mover, direction)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return TRUE
+/obj/structure/windoor_assembly/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
+	SIGNAL_HANDLER
+	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
+		return NONE
+	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
+		return NONE
+	knownblockers += src
+	return COMPONENT_ATOM_BLOCK_EXIT
 
 
 /obj/structure/windoor_assembly/attackby(obj/item/I, mob/user, params)

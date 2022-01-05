@@ -1,6 +1,5 @@
 import { useBackend, useLocalState } from '../backend';
 import { Button, Section, Box, LabeledList, ProgressBar, Modal, Divider, Tabs, Stack } from '../components';
-import { decodeHtmlEntities } from 'common/string';
 import { Window } from '../layouts';
 
 
@@ -71,7 +70,8 @@ export const Vending = (props, context) => {
       ) : (
         currently_vending && (
           <Modal width="400px">
-            <Buying />
+            <Buying
+              vending={currently_vending} />
           </Modal>
         )
       )}
@@ -125,16 +125,20 @@ export const Vending = (props, context) => {
   );
 };
 
-const Buying = (props, context) => {
+type BuyingModalProps = {
+  vending: VendingRecord,
+};
+
+const Buying = (props: BuyingModalProps, context) => {
   const { act, data } = useBackend<VendingData>(context);
 
   const {
-    currently_vending,
-  } = data;
+    vending,
+  } = props;
 
   return (
     <Section
-      title={"You have selected "+currently_vending.product_name}>
+      title={"You have selected "+vending.product_name}>
       <Box>
         Please swipe your ID to pay for the article.
         <Divider />
@@ -183,7 +187,7 @@ const ProductEntry = (props: VendingProductEntryProps, context) => {
   const [
     showDesc,
     setShowDesc,
-  ] = useLocalState(context, 'showDesc', null);
+  ] = useLocalState<String|null>(context, 'showDesc', null);
 
   return (
     <LabeledList.Item

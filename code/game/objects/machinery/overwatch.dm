@@ -85,6 +85,11 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 /obj/machinery/computer/camera_advanced/overwatch/delta
 	name = "Delta Overwatch Console"
 
+/obj/machinery/computer/camera_advanced/overwatch/req
+	icon_state = "overwatch_req"
+	name = "Requisition Overwatch Console"
+	desc = "Big Brother Requisition demands to see money flowing into the void that is greed."
+
 /obj/machinery/computer/camera_advanced/overwatch/rebel
 	faction = FACTION_TERRAGOV_REBEL
 	req_access = list(ACCESS_MARINE_BRIDGE_REBEL)
@@ -327,7 +332,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			var/input = stripped_input(usr, "What will be the squad's primary objective?", "Primary Objective")
 			if(input)
 				current_squad.primary_objective = input + " ([worldtime2text()])"
-				current_squad.message_squad("Your primary objective has changed. See Status pane for details.")
+				current_squad.message_squad("Your primary objective has changed. See Game panel for details.")
 				if(issilicon(usr))
 					to_chat(usr, span_boldnotice("Primary objective of squad '[current_squad]' set."))
 				visible_message(span_boldnotice("Primary objective of squad '[current_squad]' set."))
@@ -335,7 +340,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			var/input = stripped_input(usr, "What will be the squad's secondary objective?", "Secondary Objective")
 			if(input)
 				current_squad.secondary_objective = input + " ([worldtime2text()])"
-				current_squad.message_squad("Your secondary objective has changed. See Status pane for details.")
+				current_squad.message_squad("Your secondary objective has changed. See Game panel for details.")
 				if(issilicon(usr))
 					to_chat(usr, span_boldnotice("Secondary objective of squad '[current_squad]' set."))
 				visible_message(span_boldnotice("Secondary objective of squad '[current_squad]' set."))
@@ -467,6 +472,39 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	popup.open()
 
 
+/obj/machinery/computer/camera_advanced/overwatch/req/interact(mob/living/user)
+	. = ..()
+	if(.)
+		return
+
+	var/dat
+	if(!operator)
+		dat += "<B>Main Operator:</b> <A href='?src=\ref[src];operation=change_main_operator'>----------</A><BR>"
+	else
+		dat += "<B>Main Operator:</b> <A href='?src=\ref[src];operation=change_main_operator'>[operator.name]</A><BR>"
+		dat += "   <A href='?src=\ref[src];operation=logout_main'>{Stop Overwatch}</A><BR>"
+		dat += "----------------------<br>"
+		switch(state)
+			if(OW_MAIN)
+				for(var/datum/squad/S AS in watchable_squads)
+					dat += "<b>[S.name] Squad</b> <a href='?src=\ref[src];operation=message;current_squad=\ref[S]'>\[Message Squad\]</a><br>"
+					if(S.squad_leader)
+						dat += "<b>Leader:</b> <a href='?src=\ref[src];operation=use_cam;cam_target=\ref[S.squad_leader]'>[S.squad_leader.name]</a> "
+						dat += "<a href='?src=\ref[src];operation=sl_message;current_squad=\ref[S]'>\[MSG\]</a><br>"
+					else
+						dat += "<b>Leader:</b> <font color=red>NONE</font><br>"
+					if(S.overwatch_officer)
+						dat += "<b>Squad Overwatch:</b> [S.overwatch_officer.name]<br>"
+					else
+						dat += "<b>Squad Overwatch:</b> <font color=red>NONE</font><br>"
+					dat += "<A href='?src=\ref[src];operation=monitor[S.id]'>[S.name] Squad Monitor</a><br>"
+			if(OW_MONITOR)//Info screen.
+				dat += get_squad_info()
+
+	var/datum/browser/popup = new(user, "overwatch", "<div align='center'>Requisition Overwatch Console</div>", 550, 550)
+	popup.set_content(dat)
+	popup.open()
+
 /obj/machinery/computer/camera_advanced/overwatch/proc/send_to_squads(txt)
 	for(var/datum/squad/squad AS in watchable_squads)
 		squad.message_squad(txt)
@@ -494,7 +532,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	busy = TRUE //All set, let's do this.
 	var/warhead_type = GLOB.marine_main_ship.orbital_cannon.tray.warhead.name	//For the AI and Admin logs.
 
-	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_warning("NOTICE - Orbital bombardment triggered from overwatch consoles. Warhead type: [warhead_type]. Target: [AREACOORD_NO_Z(T)]"))
 		playsound(AI,'sound/machines/triple_beep.ogg', 25, 1, 20)
 
@@ -813,9 +851,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	skill_name = "leadership"
 	skill_min = SKILL_LEAD_TRAINED
 	var/orders_visible = TRUE
-
-/datum/action/skill/toggle_orders/New()
-	return ..(/obj/item/megaphone)
 
 /datum/action/skill/toggle_orders/action_activate()
 	var/mob/living/carbon/human/H = owner

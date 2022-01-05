@@ -204,41 +204,28 @@
 
 /obj/effect/landmark/weapon_spawn/proc/spawn_associated_ammo(obj/item/weapon/gun/gun_to_spawn)
 	//fuck you grenade launchers you snowflake pieces of shit
-	if(istype(gun_to_spawn, /obj/item/weapon/gun/launcher/m92) || istype(gun_to_spawn, /obj/item/weapon/gun/launcher/m81))
+	if(istype(gun_to_spawn, /obj/item/weapon/gun/grenade_launcher/multinade_launcher) || istype(gun_to_spawn, /obj/item/weapon/gun/grenade_launcher/single_shot))
 		new /obj/item/storage/box/visual/grenade/frag (get_turf(src))
 		return
 
-	if(istype(gun_to_spawn, /obj/item/weapon/gun/launcher/m81/flare))
+	if(istype(gun_to_spawn, /obj/item/weapon/gun/grenade_launcher/single_shot/flare))
 		new /obj/item/storage/box/m94 (get_turf(src))
 		return
 
-	if(istype(gun_to_spawn, /obj/item/weapon/gun/energy))
-		var/obj/item/weapon/gun/energy/energy_gun_to_spawn = gun_to_spawn
-		for(var/i in 1 to 3)
-			new energy_gun_to_spawn.cell_type (get_turf(src))
+	if(!gun_to_spawn.default_ammo_type)
 		return
 
-	if(!gun_to_spawn.current_mag)
-		stack_trace("Attempted to spawn ammo for a gun that has no current_mag. Someone make a bugreport for this weapon [initial(gun_to_spawn.name)] as related to the tiered weapon spawning.")
-		return
-	var/obj/item/ammo_magazine/gun_mag = gun_to_spawn.current_mag.type
-
-	if(istype(gun_to_spawn, /obj/item/weapon/gun/shotgun))
+	if(CHECK_BITFIELD(gun_to_spawn.reciever_flags, AMMO_RECIEVER_HANDFULS) && istype(gun_to_spawn.default_ammo_type, /datum/ammo))
 		var/obj/item/ammo_magazine/handful/handful_to_generate
+		var/datum/ammo/ammo_to_spawn = gun_to_spawn.default_ammo_type
 		for(var/i in 1 to 3)
 			handful_to_generate = new (get_turf(src))
-			handful_to_generate.generate_handful(initial(gun_mag.default_ammo), initial(gun_mag.caliber), 5, /obj/item/weapon/gun/shotgun)
+			handful_to_generate.generate_handful(GLOB.ammo_list[ammo_to_spawn], initial(gun_to_spawn.caliber), initial(ammo_to_spawn.handful_amount), gun_to_spawn.type)
 		return
 
-	if(istype(gun_to_spawn, /obj/item/weapon/gun/revolver))
-		var/obj/item/ammo_magazine/handful/handful_to_generate
-		for(var/i in 1 to 3)
-			handful_to_generate = new (get_turf(src))
-			handful_to_generate.generate_handful(initial(gun_mag.default_ammo), initial(gun_mag.caliber), 8, /obj/item/weapon/gun/revolver)
-		return
-
+	var/obj/item/ammo_to_spawn = gun_to_spawn.default_ammo_type
 	for(var/i in 1 to 3) //hardcoded 3 mags.
-		new gun_mag (get_turf(src))
+		new ammo_to_spawn (get_turf(src))
 
 /obj/effect/landmark/weapon_spawn/proc/choose_weapon()
 	weapon_to_spawn = pick(weapon_list)
@@ -254,7 +241,7 @@
 	weapon_list = list(
 		/obj/item/weapon/gun/energy/lasgun/M43/practice,
 		/obj/item/weapon/gun/energy/lasgun/tesla,
-		/obj/item/weapon/gun/launcher/m81/flare,
+		/obj/item/weapon/gun/grenade_launcher/single_shot/flare,
 		/obj/item/weapon/gun/pistol/standard_pistol,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
 		/obj/item/weapon/gun/pistol/rt3,
@@ -270,7 +257,7 @@
 		/obj/item/weapon/gun/pistol/vp70,
 		/obj/item/weapon/gun/pistol/vp78,
 		/obj/item/weapon/gun/revolver/standard_revolver,
-		/obj/item/weapon/gun/revolver/m44,
+		/obj/item/weapon/gun/revolver/single_action/m44,
 		/obj/item/weapon/gun/revolver/upp,
 		/obj/item/weapon/gun/revolver/small,
 		/obj/item/weapon/gun/revolver/cmb,
@@ -278,7 +265,7 @@
 		/obj/item/weapon/katana/replica,
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/combat_knife/upp,
-		/obj/item/weapon/throwing_knife,
+		/obj/item/stack/throwing_knife,
 		/obj/item/weapon/unathiknife,
 		/obj/item/weapon/chainofcommand,
 		/obj/item/weapon/broken_bottle,
@@ -327,7 +314,7 @@
 		/obj/item/weapon/gun/rifle/standard_br,
 		/obj/item/weapon/gun/rifle/m412,
 		/obj/item/weapon/gun/rifle/m41a,
-		/obj/item/weapon/gun/rifle/ak47,
+		/obj/item/weapon/gun/rifle/mpi_km,
 		/obj/item/weapon/gun/rifle/m16,
 		/obj/item/weapon/gun/rifle/famas,
 		/obj/item/weapon/gun/rifle/alf_machinecarbine,
@@ -360,7 +347,7 @@
 		/obj/item/weapon/gun/rifle/sniper/antimaterial,
 		/obj/item/weapon/gun/rifle/railgun,
 		/obj/item/weapon/gun/rifle/sniper/svd,
-		/obj/item/weapon/gun/launcher/m81,
+		/obj/item/weapon/gun/grenade_launcher/single_shot,
 		/obj/item/weapon/gun/rifle/standard_smartmachinegun,
 		/obj/item/weapon/gun/rifle/sectoid_rifle,
 		/obj/item/weapon/gun/rifle/tx8,
@@ -381,7 +368,7 @@
 		/obj/item/weapon/gun/launcher/rocket,
 		/obj/item/weapon/gun/launcher/rocket/m57a4,
 		/obj/item/weapon/gun/minigun,
-		/obj/item/weapon/gun/launcher/m92,
+		/obj/item/weapon/gun/grenade_launcher/multinade_launcher,
 		/obj/item/weapon/gun/energy/lasgun/pulse,
 	)
 
@@ -400,7 +387,7 @@
 	icon_state = "shuttle"
 
 /obj/effect/landmark/dropship_console_spawn_lz1/Initialize()
-	. =	..()
+	. = ..()
 	GLOB.lz1_shuttle_console_turfs_list += loc
 	return INITIALIZE_HINT_QDEL
 
@@ -410,7 +397,74 @@
 	icon_state = "shuttle"
 
 /obj/effect/landmark/dropship_console_spawn_lz2/Initialize()
-	. =	..()
+	. = ..()
 	GLOB.lz2_shuttle_console_turfs_list += loc
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/fob_sentry
+	name = "Fob sentry"
+	icon = 'icons/Marine/sentry.dmi'
+	icon_state = "sentry"
+
+/obj/effect/landmark/fob_sentry/Initialize()
+	. = ..()
+	GLOB.fob_sentries_loc += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/fob_sentry_rebel
+	name = "Rebel fob sentry"
+	icon = 'icons/Marine/sentry.dmi'
+	icon_state = "sentry"
+
+/obj/effect/landmark/fob_sentry_rebel/Initialize()
+	. = ..()
+	GLOB.fob_sentries_rebel_loc += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/sensor_tower
+	name = "Sensor tower"
+	icon = 'icons/obj/structures/sensor.dmi'
+	icon_state = "sensor"
+
+/obj/effect/landmark/sensor_tower/Initialize()
+	. = ..()
+	var/area/area_to_control = get_area(src)
+	area_to_control.set_to_contested()
+	GLOB.sensor_towers += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_close
+	name = "Valhalla xeno spawn"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "xeno_spawn_valhalla"
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_close/Initialize()
+	. = ..()
+	GLOB.valhalla_xeno_spawn_landmark[CLOSE] = src
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_close_two
+	name = "Valhalla xeno spawn"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "xeno_spawn_valhalla"
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_close_two/Initialize()
+	. = ..()
+	GLOB.valhalla_xeno_spawn_landmark[CLOSE2] = src
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_far
+	name = "Valhalla xeno spawn"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "xeno_spawn_valhalla"
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_far/Initialize()
+	. = ..()
+	GLOB.valhalla_xeno_spawn_landmark[FAR] = src
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_far_two
+	name = "Valhalla xeno spawn"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "xeno_spawn_valhalla"
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_far_two/Initialize()
+	. = ..()
+	GLOB.valhalla_xeno_spawn_landmark[FAR2] = src

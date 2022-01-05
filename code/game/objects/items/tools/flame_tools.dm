@@ -223,7 +223,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		var/obj/item/weapon/gun/G = W
 		if(istype(G, /obj/item/weapon/gun/energy/lasgun))
 			var/obj/item/weapon/gun/energy/lasgun/L = G
-			if(L.cell.charge)
+			if(L.rounds)
 				light(span_notice("[user] deftly lights [user.p_their()] [src] with the [L]'s low power setting."))
 			else
 				to_chat(user, span_warning("You try to light your [src] with the [L] but your power cell has no charge!"))
@@ -316,7 +316,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(iscarbon(loc) && (src == loc:wear_mask)) // if it's in the human/monkey mouth, transfer reagents to the mob //TODO WHAT BAYCODER USED A : UNIRONICALLY
 			if(ishuman(loc))
 				var/mob/living/carbon/human/H = loc
-				if(H.species.species_flags & IS_SYNTHETIC)
+				if(H.species.species_flags & ROBOTIC_LIMBS)
 					return
 			var/mob/living/carbon/C = loc
 

@@ -196,6 +196,7 @@
 #define FULLSCREEN_INFECTION_LAYER	22.041 //purple cloud
 #define FULLSCREEN_FLASH_LAYER 22.05 //flashed
 #define FULLSCREEN_DAMAGE_LAYER 22.1 //red circles when hurt
+#define FULLSCREEN_NERVES_LAYER 22.11 //red nerve-like lines
 #define FULLSCREEN_BLIND_LAYER 22.15 //unconscious
 #define FULLSCREEN_PAIN_LAYER	22.2 //pain flashes
 #define FULLSCREEN_CRIT_LAYER 22.25 //in critical
@@ -208,6 +209,8 @@
 #define HUD_LAYER 24
 #define ABOVE_HUD_PLANE 25
 #define ABOVE_HUD_LAYER 25
+
+#define ADMIN_POPUP_LAYER 1
 
 #define SPLASHSCREEN_LAYER 26
 #define SPLASHSCREEN_PLANE 26

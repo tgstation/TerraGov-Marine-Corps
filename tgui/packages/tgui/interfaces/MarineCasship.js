@@ -125,7 +125,7 @@ const NormalOperation = (props, context) => {
             content="Launch plane"
             onClick={() => act(
               'launch')}
-            disabled={data.plane_state === 3} />
+            disabled={data.plane_state === 3 || data.plane_mode !== "idle"} />
         </Box>
         <Box
           width="100%"
@@ -134,7 +134,7 @@ const NormalOperation = (props, context) => {
             content="Land plane"
             onClick={() => act(
               'land')}
-            disabled={data.plane_state !== 3} />
+            disabled={data.plane_state !== 3 || data.plane_mode !== "idle"} />
         </Box>
         <Box
           width="100%"

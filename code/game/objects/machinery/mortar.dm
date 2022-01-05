@@ -233,7 +233,7 @@
 //The portable mortar item
 /obj/item/mortar_kit
 	name = "\improper M402 mortar"
-	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. Use 'Unique Action' to deploy."
+	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. Use Ctrl-Click to deploy."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar"
 
@@ -248,7 +248,7 @@
 	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mortar, 5 SECONDS)
 
 /obj/item/mortar_kit/attack_self(mob/user)
-	unique_action(user)
+	do_unique_action(user)
 
 /obj/item/mortar_kit/unique_action(mob/user)
 	var/area/current_area = get_area(src)

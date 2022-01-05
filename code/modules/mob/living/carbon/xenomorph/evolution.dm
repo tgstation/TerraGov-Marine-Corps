@@ -100,11 +100,11 @@
 		to_chat(src, span_warning("We must be at full plasma to evolve."))
 		return
 
-	if (agility || fortify || crest_defense)
+	if (agility || fortify || crest_defense || !density)
 		to_chat(src, span_warning("We cannot evolve while in this stance."))
 		return
 
-	if(LAZYLEN(stomach_contents))
+	if(eaten_mob)
 		to_chat(src, span_warning("We cannot evolve with a belly full."))
 		return
 
@@ -224,8 +224,6 @@
 
 
 	else
-		if(new_caste_type == /mob/living/carbon/xenomorph/runner & CONFIG_GET(flag/roony))//If the fun config is set, every runner is a roony
-			new_caste_type = /mob/living/carbon/xenomorph/roony
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
 
 		tierzeros = hive.get_total_tier_zeros()
@@ -262,7 +260,7 @@
 	span_xenonotice("We begin to twist and contort."))
 	do_jitter_animation(1000)
 
-	if(!do_after(src, 25, FALSE, null, BUSY_ICON_CLOCK))
+	if(!forced && !do_after(src, 25, FALSE, null, BUSY_ICON_CLOCK))
 		to_chat(src, span_warning("We quiver, but nothing happens. We must hold still while evolving."))
 		return
 
@@ -328,8 +326,8 @@
 	transfer_observers_to(new_xeno)
 
 	if(new_xeno.health - getBruteLoss(src) - getFireLoss(src) > 0) //Cmon, don't kill the new one! Shouldnt be possible though
-		new_xeno.bruteloss = src.bruteloss //Transfers the damage over.
-		new_xeno.fireloss = src.fireloss //Transfers the damage over.
+		new_xeno.bruteloss = bruteloss //Transfers the damage over.
+		new_xeno.fireloss = fireloss //Transfers the damage over.
 		new_xeno.updatehealth()
 
 	if(xeno_mobhud)
@@ -362,21 +360,21 @@
 		// Retaining blue crowned leadership on minimap past evolution.
 		var/datum/xeno_caste/original = /datum/xeno_caste
 		// Xenos with specialized icons (Queen, King, Shrike) do not need to have their icon returned to normal
-		if(new_xeno.xeno_caste.minimap_icon == initial(original.minimap_icon))	
+		if(new_xeno.xeno_caste.minimap_icon == initial(original.minimap_icon))
 			SSminimaps.remove_marker(new_xeno)
 			SSminimaps.add_marker(new_xeno, new_xeno.z, MINIMAP_FLAG_XENO, new_xeno.xeno_caste.minimap_leadered_icon)
 
-	if(upgrade == XENO_UPGRADE_THREE)
+	if(upgrade == XENO_UPGRADE_THREE || upgrade == XENO_UPGRADE_FOUR)
 		switch(tier)
 			if(XENO_TIER_TWO)
 				SSmonitor.stats.ancient_T2--
 			if(XENO_TIER_THREE)
 				SSmonitor.stats.ancient_T3--
 
-	new_xeno.upgrade_stored = upgrade_stored
+	new_xeno.upgrade_stored = max(upgrade_stored, new_xeno.upgrade_stored)
 	while(new_xeno.upgrade_possible() && new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold)
 		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
-	var/obj/screen/zone_sel/selector = new_xeno.hud_used.zone_sel
+	var/obj/screen/zone_sel/selector = new_xeno.hud_used?.zone_sel
 	selector?.set_selected_zone(zone_selected, new_xeno)
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)

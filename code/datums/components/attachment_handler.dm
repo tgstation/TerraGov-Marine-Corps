@@ -9,12 +9,14 @@
 	var/datum/callback/on_attach
 	///Proc the parent calls on detach.
 	var/datum/callback/on_detach
+	///Proc the parent calls to see if its eligable for attachment.
+	var/datum/callback/can_attach
 	///List of offsets for the parent that adjusts the attachment overlay. slot1_x = 1, slot1_y = 1, slot2_x = 3, slot2_y = 7, etc. Can be null, in that case the offsets for all the attachments default to 0.
 	var/list/attachment_offsets
 	///List of the attachment overlay images. This is so that we can easily swap overlays in and out.
 	var/list/attachable_overlays
 
-/datum/component/attachment_handler/Initialize(list/slots, list/attachables_allowed, list/attachment_offsets, list/starting_attachmments, datum/callback/on_attach, datum/callback/on_detach, list/overlays = list())
+/datum/component/attachment_handler/Initialize(list/slots, list/attachables_allowed, list/attachment_offsets, list/starting_attachmments, datum/callback/can_attach, datum/callback/on_attach, datum/callback/on_detach, list/overlays = list())
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -24,11 +26,13 @@
 	src.attachables_allowed = attachables_allowed
 	src.on_attach = on_attach
 	src.on_detach = on_detach
+	src.can_attach = can_attach
 	src.attachment_offsets = attachment_offsets
 	attachable_overlays = overlays //This is incase the parent wishes to have a stored reference to this list.
-	attachable_overlays += slots 
+	attachable_overlays += slots
 
-	if(length(starting_attachmments)) //Attaches starting attachments
+	var/obj/parent_object = parent
+	if(length(starting_attachmments) && parent_object.loc) //Attaches starting attachments if the object is not instantiated in nullspace. If it is created in null space, such as in a loadout vendor. It wont create default attachments.
 		for(var/starting_attachment_type in starting_attachmments)
 			attach_without_user(attachment = new starting_attachment_type())
 
@@ -36,10 +40,11 @@
 
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/start_handle_attachment) //For attaching.
 	RegisterSignal(parent, list(COMSIG_ATOM_UPDATE_OVERLAYS, COMSIG_ATOM_UPDATE_ICON), .proc/update_parent_overlay) //Updating the attachment overlays.
-	RegisterSignal(parent, COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT, .proc/attach_without_user)
+	RegisterSignal(parent, list(COMSIG_LOADOUT_VENDOR_VENDED_GUN_ATTACHMENT, COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT), .proc/attach_without_user)
 
 	RegisterSignal(parent, COMSIG_CLICK_ALT, .proc/start_detach) //For Detaching
 	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/clean_references) //Dels attachments.
+	RegisterSignal(parent, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, .proc/apply_custom)
 
 ///Starts processing the attack, and whether or not the attachable can attack.
 /datum/component/attachment_handler/proc/start_handle_attachment(datum/source, obj/attacking, mob/attacker)
@@ -55,12 +60,19 @@
 		return
 
 	if(!bypass_checks)
+		if(can_attach && !can_attach.Invoke(attachment))
+			return
 		if(attachment_data[CAN_ATTACH])
 			var/datum/callback/attachment_can_attach = CALLBACK(attachment, attachment_data[CAN_ATTACH])
 			if(!attachment_can_attach.Invoke(parent, attacher))
 				return
 		if(!do_attach(attachment, attacher, attachment_data))
 			return
+
+	var/slot = attachment_data[SLOT]
+	if(!attacher && (!(slot in slots) || !(attachment.type in attachables_allowed))) //No more black market attachment combos.
+		QDEL_NULL(attachment)
+		return
 
 	finish_handle_attachment(attachment, attachment_data, attacher)
 
@@ -86,9 +98,18 @@
 	if(attachment_data[ON_ATTACH])
 		var/datum/callback/attachment_on_attach = CALLBACK(attachment, attachment_data[ON_ATTACH])
 		attachment_on_attach.Invoke(parent, attacker)
+	SEND_SIGNAL(attachment, COMSIG_ATTACHMENT_ATTACHED, parent, attacker)
+	SEND_SIGNAL(parent, COMSIG_ATTACHMENT_ATTACHED_TO_ITEM, attachment, attacker)
 
 	RegisterSignal(attachment, COMSIG_ATOM_UPDATE_ICON, .proc/update_parent_overlay)
 	update_parent_overlay()
+	if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
+		return
+	var/obj/parent_obj = parent
+	if(!ismob(parent_obj.loc))
+		return
+	var/mob/wearing_mob = parent_obj.loc
+	wearing_mob.regenerate_icons() ///Theres probably a better way to do this.
 
 ///This is the do_after and user checks for attaching.
 /datum/component/attachment_handler/proc/do_attach(obj/item/attachment, mob/attacher, list/attachment_data)
@@ -100,10 +121,11 @@
 	if(!can_attach(attachment, user, attachment_data))
 		return FALSE
 
-	var/obj/item/in_hand = user.get_inactive_held_item()
-	if(in_hand != parent)
-		to_chat(user, span_warning("You have to hold [parent] to do that!"))
-		return FALSE
+	if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_NO_HANDS))
+		var/obj/item/in_hand = user.get_inactive_held_item()
+		if(in_hand != parent)
+			to_chat(user, span_warning("You have to hold [parent] to do that!"))
+			return FALSE
 
 	var/do_after_icon_type = BUSY_ICON_GENERIC
 	var/attach_delay = attachment_data[ATTACH_DELAY]
@@ -130,14 +152,14 @@
 	playsound(user, attachment_data[ATTACH_SOUND], 15, 1, 4)
 	return TRUE
 
-///Checks the current slots of the parent and if there are attachments that can be removed in those slots. Basically it makes sure theres room for the attachment. 
+///Checks the current slots of the parent and if there are attachments that can be removed in those slots. Basically it makes sure theres room for the attachment.
 /datum/component/attachment_handler/proc/can_attach(obj/item/attachment, mob/living/user, list/attachment_data)
 	if(!length(slots)) //If there is no slots, it cannot be attached to. Currently this has no use. But I had a thought about making attachments that can add/remove slots.
 		return FALSE
 
 	var/slot = attachment_data[SLOT]
 
-	if(!(slot in slots) || !(attachment.type in attachables_allowed)) //If theres no slot on parent, or if the attachment type isnt allowed, returns FALSE.
+	if(!(slot in slots) || (!(attachment.type in attachables_allowed) && !CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_BYPASS_ALLOWED_LIST))) //If theres no slot on parent, or if the attachment type isnt allowed, returns FALSE.
 		to_chat(user, span_warning("You cannot attach [attachment] to [parent]!"))
 		return FALSE
 
@@ -175,7 +197,7 @@
 		if(!CHECK_BITFIELD(current_attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_REMOVABLE))
 			continue
 		attachments_to_remove += current_attachment
-	
+
 	if(!length(attachments_to_remove))
 		to_chat(living_user, span_warning("There are no attachments that can be removed from [parent]!"))
 		return
@@ -241,6 +263,9 @@
 		var/datum/callback/attachment_on_detach = CALLBACK(attachment, attachment_data[ON_DETACH])
 		attachment_on_detach.Invoke(parent, user)
 
+	SEND_SIGNAL(attachment, COMSIG_ATTACHMENT_DETACHED, parent, user)
+	SEND_SIGNAL(parent, COMSIG_ATTACHMENT_DETACHED_FROM_ITEM, attachment, user)
+
 ///This is for other objects to be able to attach things without the need for a user.
 /datum/component/attachment_handler/proc/attach_without_user(datum/source, obj/item/attachment)
 	SIGNAL_HANDLER
@@ -252,8 +277,6 @@
 	var/obj/item/parent_item = parent
 	for(var/slot in slots) //Cycles through all the slots.
 		var/obj/item/attachment = slots[slot]
-
-
 		var/image/overlay = attachable_overlays[slot]
 		parent_item.overlays -= overlay //First removes the existing overlay that occupies the slots overlay.
 
@@ -263,8 +286,14 @@
 
 		var/list/attachment_data = attachment_data_by_slot[slot]
 
-		overlay = image(attachment_data[OVERLAY_ICON], parent_item, attachment.icon_state + "_a")
-
+		var/icon = attachment_data[OVERLAY_ICON]
+		var/icon_state = attachment.icon_state
+		if(attachment_data[OVERLAY_ICON] == attachment.icon)
+			icon_state = attachment.icon_state + "_a"
+		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
+			icon_state = attachment.icon_state
+			icon = attachment.icon
+		overlay = image(icon, parent_item, icon_state, attachment_data[ATTACHMENT_LAYER])
 		var/slot_x = 0 //This and slot_y are for the event that the parent did not have an overlay_offsets. In that case the offsets default to 0
 		var/slot_y = 0
 		for(var/attachment_slot in attachment_offsets)
@@ -279,10 +308,40 @@
 		var/pixel_shift_y = attachment_data[PIXEL_SHIFT_Y] ? attachment_data[PIXEL_SHIFT_Y] : 0
 
 		overlay.pixel_x = slot_x - pixel_shift_x
-		overlay.pixel_y = slot_y - pixel_shift_y    
+		overlay.pixel_y = slot_y - pixel_shift_y
 
 		attachable_overlays[slot] = overlay
 		parent_item.overlays += overlay
+
+///Updates the mob sprite of the attachment.
+/datum/component/attachment_handler/proc/apply_custom(datum/source, image/standing)
+	SIGNAL_HANDLER
+	for(var/slot in slots)
+		var/obj/item/attachment = slots[slot]
+		if(!attachment)
+			continue
+		var/list/attachment_data = attachment_data_by_slot[slot]
+		if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
+			continue
+		var/icon = attachment.icon
+		var/icon_state = attachment.icon_state
+		var/suffix = ""
+		if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
+			if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SEPERATE_MOB_OVERLAY))
+				if(attachment_data[MOB_OVERLAY_ICON] != attachment_data[OVERLAY_ICON])
+					icon = attachment_data[MOB_OVERLAY_ICON]
+				else
+					suffix = "_m"
+			else
+				icon = attachment_data[OVERLAY_ICON]
+				suffix = attachment.icon == icon ? "_a" : ""
+		var/image/new_overlay
+		new_overlay = image(icon, source, icon_state + suffix, attachment_data[ATTACHMENT_LAYER])
+		if(attachment_data[MOB_PIXEL_SHIFT_X])
+			new_overlay.pixel_x += attachment_data[MOB_PIXEL_SHIFT_X]
+		if(attachment_data[MOB_PIXEL_SHIFT_Y])
+			new_overlay.pixel_y += attachment_data[MOB_PIXEL_SHIFT_Y]
+		standing.overlays += new_overlay
 
 ///Deletes the attachments when the parent deletes.
 /datum/component/attachment_handler/proc/clean_references()

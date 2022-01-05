@@ -23,9 +23,6 @@
 
 #define UNTIL(X) while(!(X)) stoplag()
 
-/// Gets the sign of x, returns -1 if negative, 0 if 0, 1 if positive
-#define SIGN(x) ( ((x) > 0) - ((x) < 0) )
-
 //datum may be null, but it does need to be a typed var
 #define NAMEOF(datum, X) (#X || ##datum.##X)
 
@@ -517,22 +514,6 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 			. += A
 
 
-///Step-towards method of determining whether one atom can see another. Similar to viewers()
-/proc/can_see(atom/source, atom/target, length = 5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
-	var/turf/current = get_turf(source)
-	var/turf/target_turf = get_turf(target)
-	if(current == target_turf)
-		return TRUE
-	if(get_dist(current, target_turf) > length)
-		return FALSE
-	current = get_step_towards(source, target_turf)
-	while((current != target_turf))
-		if(IS_OPAQUE_TURF(current))
-			return FALSE
-		current = get_step_towards(current, target_turf)
-	return TRUE
-
-
 /proc/is_blocked_turf(turf/T)
 	if(T.density)
 		return TRUE
@@ -759,7 +740,7 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 	/obj/machinery/status_display, /obj/machinery/light_switch, /obj/structure/sign,
 	/obj/machinery/newscaster, /obj/machinery/firealarm, /obj/structure/noticeboard, /obj/machinery/door_control,
 	/obj/machinery/computer/security/telescreen,
-	/obj/item/storage/secure/safe, /obj/machinery/door_timer, /obj/machinery/flasher, /obj/machinery/keycard_auth,
+	/obj/item/storage/secure/safe, /obj/machinery/flasher, /obj/machinery/keycard_auth,
 	/obj/structure/mirror, /obj/structure/closet/fireaxecabinet, /obj/machinery/computer/security/telescreen/entertainment
 	)))
 
@@ -1096,7 +1077,7 @@ will handle it, but:
 	var/list/mobs = sortmobs()
 	var/list/namecounts = list()
 	var/list/pois = list()
-	for(var/mob/M in mobs)
+	for(var/mob/M AS in mobs)
 		if(skip_mindless && (!M.mind && !M.ckey))
 			continue
 		if(M.client?.holder)
@@ -1201,3 +1182,16 @@ will handle it, but:
 				turfs_to_check += T
 			turfs_to_check -= trf
 	return	cone_turfs
+
+///Returns a list of all locations (except the area) the movable is within.
+/proc/get_nested_locs(atom/movable/atom_on_location, include_turf = FALSE)
+	. = list()
+	var/atom/location = atom_on_location.loc
+	var/turf/turf = get_turf(atom_on_location)
+	while(location && location != turf)
+		. += location
+		location = location.loc
+	if(location && include_turf) //At this point, only the turf is left, provided it exists.
+		. += location
+
+GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))

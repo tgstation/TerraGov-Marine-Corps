@@ -97,13 +97,26 @@
 	desc = "Opens whatever it is linked to. Does not close. Careful on what you release."
 	specialfunctions = DOOR_FLAG_OPEN_ONLY
 
+/obj/machinery/button/door/open_only/Initialize(mapload)
+	. = ..()
+	switch(dir)
+		if(NORTH)
+			pixel_y = -12
+		if(SOUTH)
+			pixel_y = 29
+		if(EAST)
+			pixel_x = -21
+		if(WEST)
+			pixel_x = 21
+
 
 /obj/machinery/button/door/open_only/landing_zone
 	name = "lockdown override"
 	id = "landing_zone"
+	icon_state = "shutterctrl"
 	use_power = NO_POWER_USE
 	resistance_flags = RESIST_ALL
-	req_access = list(ACCESS_MARINE_DROPSHIP)
+	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_DROPSHIP_REBEL)
 
 /obj/machinery/button/door/open_only/landing_zone/pulsed()
 	. = ..()
@@ -211,5 +224,34 @@
 	else
 		icon_state = "doorctrl0"
 
+/obj/machinery/button/valhalla_button
+	name = "Xeno spawner"
+	resistance_flags = INDESTRUCTIBLE
+	///The xeno created by the spawner
+	var/mob/living/xeno
+	///What spawner is linked with this spawner
+	var/link = CLOSE
+	
+
+/obj/machinery/button/valhalla_button/attack_hand(mob/living/user)
+	var/xeno_wanted = tgui_input_list(user, "What xeno do you want to spawn?", "Xeno spawn", GLOB.all_xeno_types)
+	if(!xeno_wanted)
+		return
+	QDEL_NULL(xeno)
+	xeno = new xeno_wanted(get_turf(GLOB.valhalla_xeno_spawn_landmark[link]))
+	RegisterSignal(xeno, COMSIG_PARENT_QDELETING, .proc/clean_xeno)
+
+/obj/machinery/button/valhalla_button/proc/clean_xeno()
+	SIGNAL_HANDLER
+	xeno = null
+
+/obj/machinery/button/valhalla_button/far 
+	link = FAR
+
+/obj/machinery/button/valhalla_button/far2
+	link = FAR2
+
+/obj/machinery/button/valhalla_button/close2
+	link = CLOSE2
 
 #undef DOOR_FLAG_OPEN_ONLY

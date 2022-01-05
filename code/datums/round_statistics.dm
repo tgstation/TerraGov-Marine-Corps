@@ -26,7 +26,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/total_bullet_hits_on_marines = 0
 	var/total_bullet_hits_on_xenos = 0
 	var/total_larva_burst = 0
-	var/carrier_traps = 0
+	var/trap_holes = 0
 	var/boiler_acid_smokes = 0
 	var/boiler_neuro_smokes = 0
 	var/crusher_stomps = 0
@@ -59,7 +59,6 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/defiler_neurogas_uses = 0
 	var/defiler_inject_egg_neurogas = 0
 	var/defiler_reagent_slashes = 0
-	var/larval_growth_stings = 0
 	var/xeno_unarmed_attacks = 0
 	var/xeno_bump_attacks = 0
 	var/xeno_headbites = 0
@@ -81,4 +80,5 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/larva_from_silo = 0
 	var/larva_from_cocoon = 0
 	var/larva_from_psydrain = 0
-	var/larva_from_siloing_body
+	var/larva_from_siloing_body = 0
+	var/req_items_produced = list()

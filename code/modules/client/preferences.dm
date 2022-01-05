@@ -34,11 +34,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 	var/ghost_form = GHOST_DEFAULT_FORM
 	var/ghost_others = GHOST_OTHERS_DEFAULT_OPTION
-	var/observer_actions = TRUE
 
 	var/show_typing = TRUE
 	var/windowflashing = TRUE
-	var/focus_chat = FALSE
 	var/clientfps = 0
 
 	// Custom Keybindings

@@ -81,17 +81,19 @@
 /datum/action/xeno_action/activable/lunge/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/lunge/ai_should_use(target)
+/datum/action/xeno_action/activable/lunge/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 2)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
 
 /datum/action/xeno_action/activable/lunge/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/warrior/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
 	GLOB.round_statistics.warrior_lunges++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_lunges")
@@ -99,14 +101,18 @@
 	span_xenowarning("We lunge at [A]!"))
 
 	X.add_filter("warrior_lunge", 2, gauss_blur_filter(3))
-
 	lunge_target = A
+
 	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, .proc/clean_lunge_target)
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/check_if_lunge_possible)
 	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/clean_lunge_target)
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/finish_lunge)
+	X.throw_at(get_step_towards(A, X), 6, 2, X)
+
+	if(X.pulling && !isxeno(X.pulling)) //If we grabbed something give us combo.
+		X.empower(empowerable = FALSE) //Doesn't have a special interaction
 	succeed_activate()
 	add_cooldown()
-	X.throw_at(get_step_towards(A, X), 6, 2, X)
 	return TRUE
 
 ///Check if we are close enough to lunge, and if yes, grab neck
@@ -115,6 +121,13 @@
 	if(!lunge_target.Adjacent(source))
 		return
 	lunge_grab(source, lunge_target)
+
+///Do a last check to see if we can grab the target, and then clean up after the throw. Handles an in-place lunge.
+/datum/action/xeno_action/activable/lunge/proc/finish_lunge(datum/source)
+	SIGNAL_HANDLER
+	check_if_lunge_possible(source)
+	if(lunge_target) //Still couldn't get them.
+		clean_lunge_target()
 
 /// Null lunge target and reset throw vars
 /datum/action/xeno_action/activable/lunge/proc/clean_lunge_target()
@@ -187,17 +200,22 @@
 
 	var/turf/T = X.loc
 	var/turf/temp = X.loc
+	var/empowered = X.empower() //Should it knockdown everyone down its path ?
 
 	for (var/x in 1 to fling_distance)
 		temp = get_step(T, facing)
 		if (!temp)
 			break
+		if(empowered)
+			for(var/mob/living/carbon/human/human in temp)
+				human.KnockdownNoChain(2 SECONDS) //Bowling pins
+				to_chat(human, span_highdanger("[victim] crashes into us!"))
 		T = temp
+
 	X.do_attack_animation(victim, ATTACK_EFFECT_DISARM2)
 	victim.throw_at(T, fling_distance, 1, X, 1)
 
 	shake_camera(victim, 2, 1)
-
 	succeed_activate()
 	add_cooldown()
 
@@ -216,13 +234,15 @@
 /datum/action/xeno_action/activable/fling/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/fling/ai_should_use(target)
+/datum/action/xeno_action/activable/fling/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 1)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
 
 // ***************************************
@@ -262,7 +282,6 @@
 	var/big_mob_message
 
 	X.face_atom(A)
-
 	GLOB.round_statistics.warrior_flings++ //I'm going to consider this a fling for the purpose of statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_flings")
 
@@ -287,10 +306,11 @@
 		victim.ParalyzeNoChain(stun_duration)
 		shake_camera(victim, 2, 1)
 
+	if(X.empower())
+		fling_distance *= 2
 	target.forceMove(get_turf(X)) //First force them into our space so we can toss them behind us without problems
 	X.do_attack_animation(target, ATTACK_EFFECT_DISARM2)
 	target.throw_at(get_turf(A), fling_distance, 1, X, 1)
-
 	X.visible_message(span_xenowarning("\The [X] throws [target] away[big_mob_message]!"), \
 	span_xenowarning("We throw [target] away[big_mob_message]!"))
 
@@ -307,12 +327,14 @@
 /datum/action/xeno_action/activable/punch
 	name = "Punch"
 	action_icon_state = "punch"
-	mechanics_text = "Strike a target up to 1 tile away, inflicting stamina damage, stagger and slowdown. Deals double damage, stagger and slowdown to grappled targets. Deals quadruple damage to structures and machinery."
+	mechanics_text = "Strike a target, inflicting stamina damage, stagger and slowdown. Deals double damage, stagger and slowdown to grappled targets. Deals quadruple damage to structures and machinery."
 	ability_name = "punch"
 	plasma_cost = 12
 	cooldown_timer = 10 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
 	target_flags = XABB_MOB_TARGET
+	///The punch range, 1 would be adjacent.
+	var/range = 1
 
 /datum/action/xeno_action/activable/punch/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -330,6 +352,11 @@
 			to_chat(owner, span_xenodanger("We cannot damage this target!"))
 		return FALSE
 
+	if(isxeno(A))
+		if(!silent)
+			to_chat(owner, span_xenodanger("We can't harm our sister!"))
+		return FALSE
+
 	if(!isliving(A) && !isstructure(A) && !ismachinery(A) && !isuav(A))
 		if(!silent)
 			to_chat(owner, span_xenodanger("We can't punch this target!"))
@@ -342,26 +369,20 @@
 				to_chat(owner, span_xenodanger("We don't care about the dead!"))
 			return FALSE
 
-	if(!owner.Adjacent(A))
+	if(!line_of_sight(owner, A, range))
 		if(!silent)
-			to_chat(owner, span_xenodanger("Our target must be adjacent!"))
+			to_chat(owner, span_xenodanger("Our target must be closer!"))
 		return FALSE
 
 
 /datum/action/xeno_action/activable/punch/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
-
-	if(isxeno(A))
-		var/mob/living/carbon/xenomorph/xeno_target = A
-		if(X.issamexenohive(xeno_target))
-			X.changeNext_move(CLICK_CD_MELEE) // Add a delaay in to avoid spam
-			return X.attack_alien(xeno_target) //harmless nibbling.
-
+	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
 	var/target_zone = check_zone(X.zone_selected)
-	if(!target_zone)
-		target_zone = "chest"
 
-	if(!A.punch_act(X, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier, target_zone))
+	if(X.empower())
+		damage *= 1.5
+	if(!A.punch_act(X, damage, target_zone))
 		return fail_activate()
 
 	GLOB.round_statistics.warrior_punches++
@@ -438,19 +459,16 @@
 	Shake(4, 4, 2 SECONDS)
 	return TRUE
 
-/mob/living/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
-	var/punch_description = "powerful"
-	var/stagger_stacks = 3
-	var/slowdown_stacks = 3
-
+/mob/living/punch_act(mob/living/carbon/xenomorph/warrior/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
 	if(pulledby == X) //If we're being grappled by the Warrior punching us, it's gonna do extra damage and debuffs; combolicious
 		damage *= 2
 		slowdown_stacks *= 2
 		stagger_stacks *= 2
 		ParalyzeNoChain(0.5 SECONDS)
+		X.stop_pulling()
 		punch_description = "devastating"
 
-	if(iscarbon(src) && !isxeno(src)) //Xenos don't have limbs really
+	if(iscarbon(src))
 		var/mob/living/carbon/carbon_victim = src
 		var/datum/limb/L = carbon_victim.get_limb(target_zone)
 
@@ -463,19 +481,33 @@
 			to_chat(src, span_danger("The splint on your [L.display_name] comes apart!"))
 
 		L.take_damage_limb(damage, 0, FALSE, FALSE, run_armor_check(target_zone))
-
 	else
 		apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
 
+	if(push)
+		var/facing = get_dir(X, src)
+
+		if(loc == X.loc) //If they're sharing our location we still want to punch them away
+			facing = X.dir
+
+		var/turf/T = X.loc
+		var/turf/temp = X.loc
+
+		for (var/x in 1 to 2)
+			temp = get_step(T, facing)
+			if (!temp)
+				break
+			T = temp
+
+		throw_at(T, 2, 1, X, 1) //Punch em away
+
+	var/target_location_feedback = get_living_limb_descriptive_name(target_zone)
+	X.visible_message(span_xenodanger("\The [X] hits [src] in the [target_location_feedback] with a [punch_description] punch!"), \
+		span_xenodanger("We hit [src] in the [target_location_feedback] with a [punch_description] punch!"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg'), 50, 1)
 	X.face_atom(src) //Face the target so you don't look like an idiot
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
-
-	var/target_location_feedback = get_living_limb_descriptive_name(target_zone)
-
-	X.visible_message(span_xenodanger("\The [X] hits [src] in the [target_location_feedback] with a [punch_description] punch!"), \
-		span_xenodanger("We hit [src] in the [target_location_feedback] with a [punch_description] punch!"), visible_message_flags = COMBAT_MESSAGE)
 
 	adjust_stagger(stagger_stacks)
 	add_slowdown(slowdown_stacks)
@@ -485,32 +517,52 @@
 	shake_camera(src, 2, 1)
 	Shake(4, 4, 2 SECONDS)
 
-
-	var/facing = get_dir(X, src)
-	if(loc == X.loc) //If they're sharing our location we still want to punch them away
-		facing = X.dir
-
-	var/turf/T = X.loc
-	var/turf/temp = X.loc
-
-	for (var/x in 1 to 2)
-		temp = get_step(T, facing)
-		if (!temp)
-			break
-		T = temp
-
-	throw_at(T, 2, 1, X, 1) //Punch em away
-
 	return TRUE
 
 /datum/action/xeno_action/activable/punch/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/punch/ai_should_use(target)
+/datum/action/xeno_action/activable/punch/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 1)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
+
+// ***************************************
+// *********** Jab
+// ***************************************
+/datum/action/xeno_action/activable/punch/jab
+	name = "Jab"
+	action_icon_state = "jab"
+	mechanics_text = "Precisely strike your target from further away, heavily slowing them."
+	plasma_cost = 10
+	range = 2
+	keybind_signal = COMSIG_XENOABILITY_JAB
+
+/datum/action/xeno_action/activable/punch/jab/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/human/target = A
+	var/target_zone = check_zone(X.zone_selected)
+	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
+
+	if(!target.punch_act(X, damage, target_zone, push = FALSE, punch_description = "precise", stagger_stacks = 3, slowdown_stacks = 6))
+		return fail_activate()
+	if(X.empower())
+		target.overlay_fullscreen_timer(3 SECONDS, 10, "jab", /obj/screen/fullscreen/flash) //Would prefer if it was extremely distorted, but bluriness doesn't make the cut.
+		to_chat(target, span_highdanger("The concussion from the [X]'s blow blinds us!"))
+		target.Confused(3 SECONDS) //Does literally nothing for now, will have to re-add confusion code.
+	GLOB.round_statistics.warrior_punches++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
+	succeed_activate()
+	add_cooldown()
+
+/datum/action/xeno_action/activable/punch/jab/on_cooldown_finish()
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, span_xenodanger("We gather enough strength to jab again."))
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	return ..()

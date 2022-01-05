@@ -33,6 +33,7 @@ export const JobPreferences = (props, context) => {
     'Requisitions Officer',
     'Chief Medical Officer',
     'Medical Doctor',
+    'Medical Researcher',
   ];
   const marineJobs = [
     'Squad Marine',
@@ -41,7 +42,7 @@ export const JobPreferences = (props, context) => {
     'Squad Smartgunner',
     'Squad Leader',
   ];
-  const flavourJobs = ['Corporate Liaison', 'Medical Researcher'];
+  const flavourJobs = ['Corporate Liaison'];
 
   const JobList = ({ name, jobs }) => (
     <Section title={name}>
@@ -69,7 +70,7 @@ export const JobPreferences = (props, context) => {
         <Modal width="500px" min-height="300px">
           <Box dangerouslySetInnerHTML={{ __html: shownDescription }} />
           <Box align="right">
-            <Button align="right" onClick={() => setShownDescription(false)}>
+            <Button align="right" onClick={() => setShownDescription(null)}>
               X
             </Button>
           </Box>

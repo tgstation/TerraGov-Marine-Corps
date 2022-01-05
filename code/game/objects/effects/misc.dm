@@ -110,12 +110,6 @@
 	if(isobj(mover)) //No grenades/bullets should cross this
 		return FALSE
 	if(isxeno(mover))
-		var/mob/living/carbon/xenomorph/moving_xeno = mover
-		for(var/tummy_resident in moving_xeno.stomach_contents)//Dead code, to be removed
-			if(ishuman(tummy_resident))
-				var/mob/living/carbon/human/H = tummy_resident
-				if(!HAS_TRAIT(H, TRAIT_UNDEFIBBABLE))
-					return FALSE
 		return TRUE
 	if(ishuman(mover) && !issynth(mover))
 		var/mob/living/carbon/human/H = mover
@@ -130,12 +124,19 @@
 	icon_state = "smoke"
 	density = FALSE
 
+/obj/effect/forcefield/fog/passable_fog/Initialize()
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 /obj/effect/forcefield/fog/passable_fog/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	return TRUE
 
-/obj/effect/forcefield/fog/passable_fog/Crossed(atom/movable/mover, oldloc)
-	. = ..()
+/obj/effect/forcefield/fog/passable_fog/proc/on_cross(datum/source, atom/movable/mover, oldloc, oldlocs)
+	SIGNAL_HANDLER
 	if(!opacity)
 		return
 	set_opacity(FALSE)

@@ -26,7 +26,7 @@
 	for(var/atom/light AS in GLOB.nightfall_toggleable_lights)
 		if(isnull(light.loc) || (owner.loc.z != light.loc.z) || (get_dist(owner, light) >= range))
 			continue
-		light.turn_light(null, FALSE, duration, TRUE, TRUE)
+		light.turn_light(null, FALSE, duration, TRUE, TRUE, TRUE)
 
 
 // ***************************************
@@ -55,7 +55,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(!owner.line_of_sight(A, king_crush_dist))
+	if(!line_of_sight(owner, A, king_crush_dist))
 		if(!silent)
 			to_chat(owner, span_warning("We must get closer to crush, our mind cannot reach this far."))
 		return FALSE
@@ -113,11 +113,13 @@
 /datum/action/xeno_action/activable/gravity_crush/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/gravity_crush/ai_should_use(target)
+/datum/action/xeno_action/activable/gravity_crush/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
 
 // ***************************************

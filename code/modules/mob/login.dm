@@ -40,5 +40,6 @@
 			log_played_names(client.ckey, name, real_name)
 
 	update_movespeed()
+	log_mob_tag("\[[tag]\] NEW OWNER: [key_name(src)]")
 	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_LOGIN, src)

@@ -157,7 +157,7 @@
 		return
 	folded = !folded
 	if(folded)
-		w_class = WEIGHT_CLASS_NORMAL
+		w_class = WEIGHT_CLASS_SMALL
 		force = 2
 	else
 		w_class = WEIGHT_CLASS_BULKY
@@ -179,6 +179,7 @@
 		return
 	sharp = IS_SHARP_ITEM_SIMPLE
 	name = "sharpened " + name
+	shovelspeed = 10
 	force = 60
 	update_icon()
 

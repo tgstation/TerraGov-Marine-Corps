@@ -6,19 +6,21 @@
 // ***************************************
 // *********** Resin building
 // ***************************************
-/datum/action/xeno_action/activable/secrete_resin/hivelord
+/datum/action/xeno_action/activable/secrete_resin/ranged
 	plasma_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
 		/obj/effect/alien/resin/sticky,
 		/obj/structure/mineral_door/resin/thick,
 	)
+	///the maximum range of the ability
+	var/max_range = 1
 
-/datum/action/xeno_action/activable/secrete_resin/hivelord/use_ability(atom/A)
-	if(get_dist(owner, A) != 1)
+/datum/action/xeno_action/activable/secrete_resin/ranged/use_ability(atom/A)
+	if(get_dist(owner, A) > max_range)
 		return ..()
 
-	return build_resin(get_turf(A)) // TODO: (psykzz)
+	return build_resin(get_turf(A))
 
 // ***************************************
 // *********** Resin walker
@@ -285,7 +287,7 @@
 		if(!silent)
 			to_chat(owner, span_warning("Too far for our reach... We need to be [dist - heal_range] steps closer!"))
 		return FALSE
-	else if(!owner.line_of_sight(target))
+	else if(!line_of_sight(owner, target))
 		if(!silent)
 			to_chat(owner, span_warning("We can't focus properly without a clear line of sight!"))
 		return FALSE

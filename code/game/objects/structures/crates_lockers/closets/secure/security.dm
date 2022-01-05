@@ -109,7 +109,7 @@
 	new /obj/item/storage/belt/security(src)
 	new /obj/item/flash(src)
 	new /obj/item/weapon/baton(src)
-	new /obj/item/clothing/tie/storage/holster/waist(src)
+	new /obj/item/armor_module/storage/uniform/holster/waist(src)
 	new /obj/item/weapon/telebaton(src)
 	new /obj/item/clothing/head/beret/sec/hos(src)
 
@@ -195,7 +195,7 @@
 	new /obj/item/clothing/glasses/sunglasses/sechud(src)
 	new /obj/item/tool/taperoll/police(src)
 	new /obj/item/hailer(src)
-	new /obj/item/clothing/tie/storage/black_vest(src)
+	new /obj/item/armor_module/storage/uniform/black_vest(src)
 	new /obj/item/clothing/head/soft/sec/corp(src)
 	new /obj/item/clothing/under/rank/security/corp(src)
 
@@ -269,7 +269,7 @@
 	new /obj/item/detective_scanner(src)
 	new /obj/item/clothing/suit/armor/det_suit(src)
 	new /obj/item/tool/taperoll/police(src)
-	new /obj/item/clothing/tie/storage/holster/armpit(src)
+	new /obj/item/armor_module/storage/uniform/holster/armpit(src)
 
 
 /obj/structure/closet/secure_closet/detective/update_icon()
@@ -306,8 +306,8 @@
 	name = "Cell Locker"
 
 /obj/structure/closet/secure_closet/brig/cell/cell1
-	name = "Cell 1"	
-	id = "Cell 1"	
+	name = "Cell 1"
+	id = "Cell 1"
 
 /obj/structure/closet/secure_closet/brig/cell/cell2
 	name = "Cell 2"

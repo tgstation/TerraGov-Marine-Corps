@@ -47,7 +47,7 @@
 	toggle_wielded(user, TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_WIELD, user)
 	name = "[name] (Wielded)"
-	update_item_state(user)
+	update_item_state()
 	place_offhand(user, name)
 	return TRUE
 
@@ -63,7 +63,7 @@
 		name = copytext(name, 1, sf)
 	else
 		name = "[initial(name)]"
-	update_item_state(user)
+	update_item_state()
 	remove_offhand(user)
 	return TRUE
 
@@ -259,6 +259,28 @@
 	icon_state = "spear"
 	item_state = "spear"
 
+/obj/item/weapon/twohanded/spear/tactical/harvester
+	name = "\improper HP-S Harvester spear"
+	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' spear. An advanced weapon that trades sheer force for the ability to apply a variety of debilitating effects when loaded with certain reagents. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
+	icon_state = "vali_spear"
+	item_state = "vali_spear"
+	force = 32
+	force_wielded = 60
+	throwforce = 60
+	flags_item = DRAINS_XENO | TWOHANDED
+
+/obj/item/weapon/twohanded/spear/tactical/harvester/Initialize()
+	. = ..()
+	AddComponent(/datum/component/harvester)
+
+/obj/item/weapon/twohanded/spear/tactical/harvester/equipped(mob/user, slot)
+	. = ..()
+	toggle_item_bump_attack(user, TRUE)
+
+/obj/item/weapon/twohanded/spear/tactical/harvester/dropped(mob/user)
+	. = ..()
+	toggle_item_bump_attack(user, FALSE)
+
 /obj/item/weapon/twohanded/spear/tactical/tacticool
 	name = "M-23 TACTICOOL spear"
 	icon = 'icons/Marine/gun64.dmi'
@@ -291,8 +313,9 @@
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/launcher/m92/mini_grenade,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	), \
 	attachment_offsets = list("muzzle_x" = 59, "muzzle_y" = 16, "rail_x" = 26, "rail_y" = 18, "under_x" = 40, "under_y" = 12))
 

@@ -239,6 +239,12 @@
 		infection_hud.icon_state = "hudsynth" //Xenos can feel synths are not human.
 		return TRUE
 
+	if(species.species_flags & HEALTH_HUD_ALWAYS_DEAD)
+		status_hud.icon_state = "huddead"
+		infection_hud.icon_state = ""
+		simple_status_hud.icon_state = ""
+		return TRUE
+
 	if(status_flags & XENO_HOST)
 		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
 		if(E)
@@ -257,6 +263,7 @@
 			if(!HAS_TRAIT(src, TRAIT_PSY_DRAINED))
 				infection_hud.icon_state = "psy_drain"
 			if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE ))
+				hud_list[HEART_STATUS_HUD].icon_state = "still_heart"
 				status_hud.icon_state = "huddead"
 				return TRUE
 			if(!client)
@@ -318,7 +325,7 @@
 
 
 /mob/living/carbon/human/med_pain_set_perceived_health()
-	if(species && species.species_flags & NO_PAIN)
+	if(species?.species_flags & IS_SYNTHETIC)
 		return FALSE
 
 	var/image/holder = hud_list[PAIN_HUD]
@@ -364,6 +371,9 @@
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno
 	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
+
+/datum/atom_hud/xeno_heart
+	hud_icons = list(HEART_STATUS_HUD)
 
 /mob/living/proc/hud_set_sunder()
 	return
@@ -558,15 +568,15 @@
 
 ///Makes mounted guns ammo visible
 /obj/machinery/deployable/mounted/proc/hud_set_gun_ammo()
-	var/image/holder = hud_list[SENTRY_AMMO_HUD]
+	var/image/holder = hud_list[MACHINE_AMMO_HUD]
 
 	if(!holder)
 		return
 	var/obj/item/weapon/gun/gun = internal_item
-	if(!gun.current_mag)
+	if(!gun.rounds)
 		holder.icon_state = "plasma0"
 		return
-	var/amount = round(gun.current_mag.current_rounds * 100 / gun.current_mag.max_rounds, 10)
+	var/amount = gun.max_rounds ? round(gun.rounds * 100 / gun.max_rounds, 10) : 0
 	holder.icon_state = "plasma[amount]"
 
 ///Makes unmanned vehicle ammo visible

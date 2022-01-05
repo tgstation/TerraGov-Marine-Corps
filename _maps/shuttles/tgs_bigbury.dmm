@@ -144,7 +144,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aN" = (
@@ -201,7 +201,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -235,7 +235,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "aZ" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -422,7 +422,7 @@
 /turf/open/floor/mainship/blue/full,
 /area/shuttle/canterbury/cic)
 "bG" = (
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bH" = (
@@ -545,15 +545,9 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /obj/structure/window/reinforced{
 	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
-"cM" = (
-/obj/machinery/light{
-	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
@@ -672,7 +666,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "qh" = (
@@ -894,10 +888,6 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
-"IZ" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade,
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
 "JM" = (
 /obj/machinery/marine_selector/gear/smartgun,
 /turf/open/floor/mainship/mono,
@@ -1020,6 +1010,13 @@
 "TE" = (
 /turf/open/floor/mainship/tcomms,
 /area/shuttle/canterbury)
+"TS" = (
+/obj/machinery/vending/tool,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/orange/full,
+/area/shuttle/canterbury)
 "Ub" = (
 /obj/machinery/light{
 	dir = 8
@@ -1063,10 +1060,6 @@
 /obj/effect/landmark/start/job/crash/cmo,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
-"Vy" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade,
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
 "Wb" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -1074,7 +1067,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Wk" = (
@@ -1099,8 +1092,8 @@
 	dir = 2
 	},
 /obj/machinery/door_control{
-	id = "aft_engine_podlock";
-	pixel_x = 32
+	dir = 8;
+	id = "aft_engine_podlock"
 	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury)
@@ -1283,7 +1276,7 @@ Rd
 jq
 ab
 iy
-Vy
+WY
 ac
 tP
 ab
@@ -1353,7 +1346,7 @@ an
 ac
 uT
 sR
-ab
+TS
 bw
 Ot
 ap
@@ -1386,7 +1379,7 @@ an
 ac
 ac
 ac
-cM
+ac
 ac
 as
 ac
@@ -1463,7 +1456,7 @@ an
 an
 an
 an
-IZ
+WY
 an
 gv
 bW

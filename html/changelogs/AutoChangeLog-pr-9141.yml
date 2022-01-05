@@ -1,0 +1,4 @@
+author: "HiddenGuardian"
+delete-after: True
+changes: 
+  - bugfix: "Made it so you couldn't deploy the BaS while it being a no drop"
