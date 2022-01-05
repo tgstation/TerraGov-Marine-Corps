@@ -743,7 +743,7 @@
 /datum/lasrifle/base/energy_mg_mode/standard
 	rounds_per_shot = 4
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.17 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
 	message_to_user = "You set the machine laser's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC

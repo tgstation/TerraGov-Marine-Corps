@@ -1549,7 +1549,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/energy/lasgun/marine/autolaser
 	name = "machine laser bolt"
-	damage = 15
+	damage = 20
 	penetration = 15
 
 /datum/ammo/energy/lasgun/marine/autolaser/efficiency
