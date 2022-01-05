@@ -1,5 +1,3 @@
-#define CRYOCONSOLE_MOB_LIST 1
-#define CRYOCONSOLE_ITEM_LIST 2
 
 /obj/machinery/computer/cryopod
 	name = "hypersleep bay console"
@@ -8,7 +6,6 @@
 	icon_state = "cellconsole"
 	circuit = /obj/item/circuitboard/computer/cryopodcontrol
 	resistance_flags = RESIST_ALL
-	var/mode = CRYOCONSOLE_ITEM_LIST
 
 /obj/machinery/computer/cryopod/interact(mob/user)
 	. = ..()
@@ -19,45 +16,17 @@
 		return
 
 	var/dat = "<i>Welcome, [user.name == "Unknown" ? "John Doe" : user.name].</i><br/><br/><hr/>"
-	var/mob_list = mode != CRYOCONSOLE_MOB_LIST ? "<a href='byond://?src=\ref[src];mode=[CRYOCONSOLE_MOB_LIST]'>Cryosleep Logs</a>" : "<b>Cryosleep Logs</b>"
-	var/item_list = mode != CRYOCONSOLE_ITEM_LIST ? "<a href='byond://?src=\ref[src];mode=[CRYOCONSOLE_ITEM_LIST]'>Inventory Storage</a>" : "<b>Inventory Storage</b>"
-	dat += "<center><table><tr><td><center>[mob_list]</center><td><td><center>[item_list]</center><td><tr><table></center>"
 
-	switch(mode)
-		if(CRYOCONSOLE_MOB_LIST)
-			dat += "<hr/><b>Recently stored Crewmembers :</b><br/>"
-			dat += {"
-			<style>
-				.cryo {border-collapse: collapse; color:#ffffff}
-				.cryo tr:nth-child(even) {color:#f0f0f0}
-				.cryo td, th {border:1px solid #666666; padding: 4px}
-				.cryo td {text-align: left}
-				.cryo th {text-align:center; font-weight: bold}
-			</style>
-			<table class='cryo' width='100%'>
-			<tr><th><b>Name</b></th><th><b>Rank</b></th><th><b>Time</b></th></tr>
-			"}
-			for(var/data in GLOB.cryoed_mob_list)
-				var/list/infos = GLOB.cryoed_mob_list[data]
-				if(!istype(infos))
-					continue
-				var/who = infos[1]
-				var/work = infos[2]
-				var/when = infos[3]
-				dat += "<tr><td>[who]</td><td>[work]</td><td>[when]</td></tr>"
-			dat += "</table>"
-
-		if(CRYOCONSOLE_ITEM_LIST)
-			dat += "<b>Recently stored objects</b><br/><hr/><br/>"
-			dat +="<table style='text-align:justify'><tr>"
-			dat += "<tr></table>"
-			dat += "<center><a href='byond://?src=\ref[src];allitems=TRUE'>Dispense All</a></center><br/>"
-			for(var/obj/item/I AS in GLOB.cryoed_item_list)
-				if(QDELETED(I))
-					GLOB.cryoed_item_list -= I
-					continue
-				dat += "<p style='text-align:left'><a href='byond://?src=\ref[src];item=\ref[I]'>[I.name]</a></p>"
-			dat += "<hr/>"
+	dat += "<b>Recently stored objects</b><br/><hr/><br/>"
+	dat +="<table style='text-align:justify'><tr>"
+	dat += "<tr></table>"
+	dat += "<center><a href='byond://?src=\ref[src];allitems=TRUE'>Dispense All</a></center><br/>"
+	for(var/obj/item/I AS in GLOB.cryoed_item_list)
+		if(QDELETED(I))
+			GLOB.cryoed_item_list -= I
+			continue
+		dat += "<p style='text-align:left'><a href='byond://?src=\ref[src];item=\ref[I]'>[I.name]</a></p>"
+	dat += "<hr/>"
 
 	var/datum/browser/popup = new(user, "cryopod_console", "<div align='center'>Cryogenics</div>")
 	popup.set_content(dat)
@@ -69,10 +38,7 @@
 	if(.)
 		return
 
-	if(href_list["mode"])
-		mode = text2num(href_list["mode"])
-
-	else if(href_list["item"])
+	if(href_list["item"])
 		var/obj/item/I = locate(href_list["item"]) in GLOB.cryoed_item_list
 		dispense_item(I, usr)
 
@@ -103,9 +69,6 @@
 		visible_message(span_notice("[src] beeps happily as it disgorges [I]."))
 	I.forceMove(get_turf(src))
 	GLOB.cryoed_item_list -= I
-
-#undef CRYOCONSOLE_MOB_LIST
-#undef CRYOCONSOLE_ITEM_LIST
 
 //Decorative structures to go alongside cryopods.
 /obj/structure/cryofeed
