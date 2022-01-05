@@ -3,6 +3,7 @@
 	plane = FLOOR_PLANE
 	use_power = NO_POWER_USE
 	can_unwrench = FALSE
+	flags_atom = SHUTTLE_IMMUNE
 	var/datum/pipeline/parent = null
 
 	buckle_lying = -1
