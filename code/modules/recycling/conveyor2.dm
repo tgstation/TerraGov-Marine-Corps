@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 	var/list/affecting	// the list of all items that will be moved this ptick
 	var/id = ""			// the control ID	- must match controller ID
-	var/verted = FALSE		// Inverts the direction the conveyor belt moves.
+	var/verted = FALSE		// Inverts the direction the conveyor belt moves when false.
 	/// Is the conveyor's belt flipped? Useful mostly for conveyor belt corners. It makes the belt point in the other direction, rather than just going in reverse.
 	var/flipped = FALSE
 	/// Are we currently conveying items?
@@ -120,7 +120,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	if(machine_stat & BROKEN)
 		icon_state = "conveyor-broken"
 	else
-		icon_state = "["conveyor"][verted ? -operating : operating ][flipped ? "-flipped" : ""]"
+		icon_state = "conveyor[verted ? -operating : operating ][flipped ? "-flipped" : ""]"
 
 /obj/machinery/conveyor/proc/update()
 	if(machine_stat & BROKEN || !operable || machine_stat & NOPOWER)
