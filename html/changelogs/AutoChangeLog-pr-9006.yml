@@ -1,5 +1,0 @@
-author: "Walarks"
-delete-after: True
-changes: 
-  - balance: "psychic link is now channel-able while moving"
-  - bugfix: "fixes signal loop in psychic link damage redirect"

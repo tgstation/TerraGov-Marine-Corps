@@ -45,3 +45,17 @@
       armor, arise new sprites for surplus armor and surplus clothing.
   - rscadd: A new title art from Zaha, your own trial admin!
   - imageadd: ibit
+2022-01-05:
+  EvilMelonTheSecond:
+  - rscadd: Added supply channel to all headsets. Toggle by activating in hand
+  Walarks:
+  - balance: psychic link is now channel-able while moving
+  - bugfix: fixes signal loop in psychic link damage redirect
+  novaepee:
+  - balance: T-25 now cannot take keymaster, mini flamethrower, and UGL
+  - balance: Decrease reagent_transfer_amount in light of marines losing 200+ bio;
+      Sent will not be oppressive but still good.
+  - rscadd: SADAR spawns with mini scope
+  - balance: SADAR spawns with mini scope
+  - rscadd: Add catslug for research. Cute pet.
+  - rscdel: Delete some hazard signs in Big Red

@@ -1,4 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - balance: "Decrease reagent_transfer_amount in light of marines losing 200+ bio; Sent will not be oppressive but still good."
