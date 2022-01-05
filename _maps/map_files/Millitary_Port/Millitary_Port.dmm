@@ -1660,6 +1660,11 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
+"hR" = (
+/obj/item/clothing/head/warning_cone,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/cargo)
 "hT" = (
 /obj/structure/ship_ammo/minirocket/illumination,
 /turf/open/floor/mainship/mono,
@@ -8087,6 +8092,10 @@
 	icon_state = "carpetside"
 	},
 /area/arrival/start)
+"Mx" = (
+/obj/structure/grille,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/c)
 "My" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8684,6 +8693,16 @@
 "Pr" = (
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/storage)
+"Ps" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/bigredv2/outside/cargo)
 "Pt" = (
 /obj/item/tool/soap,
 /turf/open/floor/plating/plating_catwalk,
@@ -25421,7 +25440,7 @@ uU
 vm
 Zu
 vm
-vm
+Ps
 Hi
 fR
 fI
@@ -26449,14 +26468,12 @@ yf
 GN
 pL
 yf
-yf
-Hi
-np
-ve
-ve
-ve
-ve
-ve
+hR
+Mx
+XZ
+XZ
+XZ
+xE
 XZ
 XZ
 XZ
@@ -26464,6 +26481,8 @@ XZ
 XZ
 XZ
 XZ
+XZ
+xE
 XZ
 XZ
 XZ
@@ -26708,12 +26727,12 @@ jy
 Wx
 yf
 Hi
-np
+XZ
+XZ
+XZ
+XZ
 ve
-ve
-ve
-ve
-ve
+XZ
 XZ
 XZ
 XZ
@@ -26965,10 +26984,10 @@ AE
 gY
 yf
 Hi
-np
+XZ
 ve
-ve
-ve
+XZ
+XZ
 ve
 ve
 XZ
