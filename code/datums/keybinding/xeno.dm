@@ -94,6 +94,12 @@
 	description = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
 	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
 
+/datum/keybinding/xeno/ozelomelyn_sting
+	name = "ozelomelyn_sting"
+	full_name = "Ozelomelyn Sting"
+	description = "A channeled melee attack that injects the target with Ozelomelyn over a few seconds, purging chemicals and dealing minor toxin damage to a moderate cap while inside them."
+	keybind_signal = COMSIG_XENOABILITY_OZELOMELYN_STING
+
 /datum/keybinding/xeno/transfer_plasma
 	name = "transfer_plasma"
 	full_name = "Transfer Plasma"
