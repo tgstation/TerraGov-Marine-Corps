@@ -245,7 +245,7 @@
 	if(owner.life_tick % PROCESS_ACCURACY == 0)
 
 		//High toxins levels are dangerous
-		if(owner.getToxLoss() >= 60 && !owner.reagents.has_reagent(/datum/reagent/medicine/dylovene))
+		if(owner.getToxLoss() >= 40 && !owner.reagents.has_reagent(/datum/reagent/medicine/dylovene))
 			//Healthy liver suffers on its own
 			if (damage < min_broken_damage)
 				take_damage(0.2 * PROCESS_ACCURACY, TRUE)
