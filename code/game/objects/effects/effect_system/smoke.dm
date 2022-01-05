@@ -321,7 +321,7 @@
 
 ///Xeno ozelomelyn in smoke form for Defiler.
 /obj/effect/particle_effect/smoke/xeno/ozelomelyn
-	color = "#010203" //Dark black for now.
+	color = "#f1ddcf" //A pinkish for now.
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_OZELOMELYN|SMOKE_GASP|SMOKE_COUGH
 
 /////////////////////////////////////////////
