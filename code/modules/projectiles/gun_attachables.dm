@@ -1386,16 +1386,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	detach_delay = 0
 	gun_attachment_offset_mod = list("muzzle_x" = 8)
 
-
-/obj/item/attachable/slavicbarrel
-	name = "sniper barrel"
-	icon_state = "svdbarrel"
-	desc = "A heavy barrel. CANNOT BE REMOVED."
-	slot = ATTACHMENT_BARREL_MOD
-	pixel_shift_x = -40
-	pixel_shift_y = 0
-	flags_attach_features = NONE
-
 /obj/item/attachable/buildasentry
 	name = "\improper Build-A-Sentry Attachment System"
 	icon = 'icons/Marine/sentry.dmi'
