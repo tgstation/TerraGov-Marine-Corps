@@ -653,7 +653,7 @@
 	name = "Ozelomelyn"
 	description = "A potent Xenomorph chemical that quickly purges other chemicals in a bloodstream, causing small scale poisoning in a organism that won't progress. Appears to be strangely water based.."
 	reagent_state = LIQUID
-	color = "#bb0a1e"
+	color = "#f1ddcf"
 	custom_metabolism = 1.5 // metabolizes decently quickly. A sting does 15 at the same rate as neurotoxin.
 	overdose_threshold = 10000
 	scannable = TRUE
