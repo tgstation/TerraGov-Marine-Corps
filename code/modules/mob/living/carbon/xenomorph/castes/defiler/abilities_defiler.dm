@@ -160,13 +160,13 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 		if(/datum/reagent/toxin/xeno_neurotoxin)
 			gas = new /datum/effect_system/smoke_spread/xeno/neuro/medium(X)
 		if(/datum/reagent/toxin/xeno_hemodile)
-			gas = new /datum/effect_system/smoke_spread/xeno/hemodile(X) // Higher smoke range because non-transparent.
+			gas = new /datum/effect_system/smoke_spread/xeno/hemodile(X) // Higher smoke range because yransparent.
 			smoke_range = 3
 		if(/datum/reagent/toxin/xeno_transvitox)
 			gas = new /datum/effect_system/smoke_spread/xeno/transvitox(X) // Ditto above.
 			smoke_range = 4
 		if(/datum/reagent/toxin/xeno_ozelomelyn)
-			gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(X) // Default smoke range because it is transparent.
+			gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(X) // Default smoke range because it is non-transparent.
 
 	while(count)
 		if(X.stagger) //If we got staggered, return
