@@ -138,6 +138,7 @@
 		which can also be recharged at chargers. Most energy weapons' projectiles can go straight through windows and hit whatever \
 		is on the other side, and have very fast projectiles, making them accurate and useful against distant targets. \
 		Some (like the TE series of weapons) have hitscan properties, allowing the weapon to hit the target instantly. \
+		The functionality of these weapons allows the energy that would be used to fire the next shot to be stored inside the gun's internal capacitor when the weapon auto-ejects its cell, therefor saving the remaining round. \
 		<br>"
 	lore_text = "\"OPERATOR\", the tagline and marketing tactic of energy weapons (usually lasguns) in the 25th century, \
 		especially made popular with the rise of the xenomorph threat in 2414. Energy weapons are usually famed by private security firms \
