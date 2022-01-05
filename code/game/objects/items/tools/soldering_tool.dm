@@ -25,11 +25,11 @@
 		balloon_alert(user, "Already busy!")
 		return TRUE
 
-// commented out since Bravemole says to make it that anyone can use it. If players abuse, I will uncomment these out.
+	var/repair_time = 1.5 SECONDS
+	if(H == user)
+		repair_time *= 1.5
 
-	//var/repair_time = 1.5 SECONDS
-	//if(H == user)
-		//repair_time *= 1.5
+// commented out since Bravemole says to make it that anyone can use it. If players abuse, I will uncomment these out.
 
 	//if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 		//user.visible_message(span_notice("[user] fumbles around figuring out how to solder the wounds on [src]."),
