@@ -6,7 +6,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/tool/solderingtool/attack(mob/living/carbon/human/H, mob/user)
-	if(!istype(H)||user.a_intent != INTENT_HELP)
+	if(!istype(H) || user.a_intent != INTENT_HELP)
 		return ..()
 
 	var/datum/limb/affecting = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(H, user) : H.get_limb(user.zone_selected)
