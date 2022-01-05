@@ -16,7 +16,7 @@
 		ghost.reenter_corpse()
 		return
 
-	var/mob/dead/observer/ghost = M.ghostize(TRUE, FALSE)
+	var/mob/dead/observer/ghost = M.ghostize(TRUE, TRUE)
 
 	log_admin("[key_name(ghost)] admin ghosted at [AREACOORD(ghost)].")
 	if(M.stat != DEAD)
