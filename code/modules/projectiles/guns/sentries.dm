@@ -29,7 +29,7 @@
 	deploy_time = 5 SECONDS
 
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry)
-	sentry_battery_type = /obj/item/cell/lasgun/lasrifle/marine
+	sentry_battery_type = /obj/item/cell
 
 /obj/item/storage/box/sentry
 	name = "\improper UA 571-C sentry crate"
@@ -50,8 +50,8 @@
 	. = ..()
 	new /obj/item/weapon/gun/sentry/big_sentry(src)
 	new /obj/item/ammo_magazine/sentry(src)
-	new /obj/item/cell/lasgun/lasrifle/marine(src)
-	new /obj/item/cell/lasgun/lasrifle/marine(src)
+	new /obj/item/cell(src)
+	new /obj/item/cell(src)
 
 /obj/item/weapon/gun/sentry/big_sentry
 	name = "\improper UA 571-C sentry gun"
@@ -114,7 +114,7 @@
 	can_hold = list(
 		/obj/item/weapon/gun/sentry/mini,
 		/obj/item/ammo_magazine/minisentry,
-		/obj/item/cell/lasgun/lasrifle/marine,
+		/obj/item/cell,
 	)
 
 /obj/item/storage/box/minisentry/Initialize(mapload, ...)
@@ -122,8 +122,8 @@
 	new /obj/item/weapon/gun/sentry/mini(src)
 	new /obj/item/ammo_magazine/minisentry(src)
 	new /obj/item/ammo_magazine/minisentry(src)
-	new /obj/item/cell/lasgun/lasrifle/marine(src)
-	new /obj/item/cell/lasgun/lasrifle/marine(src)
+	new /obj/item/cell(src)
+	new /obj/item/cell(src)
 
 /obj/item/weapon/gun/sentry/mini
 	name = "\improper UA-580 point defense sentry"

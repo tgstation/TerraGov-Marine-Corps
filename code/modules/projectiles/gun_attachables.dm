@@ -1405,7 +1405,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 10
 	pixel_shift_y = 18
 	///Battery of the deployed sentry. This is stored here only when the this is not attached to a gun.
-	var/obj/item/cell/lasgun/lasrifle/marine/battery
+	var/obj/item/cell/battery
 	///Deploy time for the build-a-sentry
 	var/deploy_time = 2 SECONDS
 	///Undeploy tim for the build-a-sentry
@@ -1426,7 +1426,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/buildasentry/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(!istype(I, /obj/item/cell/lasgun/lasrifle/marine))
+	if(!istype(I, /obj/item/cell/))
 		return
 	if(battery)
 		to_chat(user, span_warning("[src] already has a [battery] installed!"))
@@ -1462,7 +1462,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	. = ..()
 	ENABLE_BITFIELD(master_gun.flags_gun_features, GUN_IS_SENTRY)
 	ENABLE_BITFIELD(master_gun.flags_item, IS_DEPLOYABLE)
-	master_gun.sentry_battery_type = /obj/item/cell/lasgun/lasrifle/marine
+	master_gun.sentry_battery_type = /obj/item/cell/
 	master_gun.sentry_battery = battery
 	battery?.forceMove(master_gun)
 	master_gun.ignored_terrains = list(
