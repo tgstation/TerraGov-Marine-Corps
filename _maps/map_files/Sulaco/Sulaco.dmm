@@ -14861,7 +14861,7 @@
 	},
 /area/space)
 "jYs" = (
-/obj/machinery/computer/cryopod/medical{
+/obj/machinery/computer/cryopod{
 	dir = 8
 	},
 /turf/open/floor/prison/whitegreen/corner{
