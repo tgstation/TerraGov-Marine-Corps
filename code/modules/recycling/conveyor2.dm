@@ -6,9 +6,8 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/machinery/conveyor
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "conveyor_map"
-	var/base_icon_state = "conveyor"
 	name = "conveyor belt"
-	desc = "A conveyor belt. It can be rotated with a <b>wrench</b>. It can be reversed with a <b>screwdriver</b>. The belt can be flipped with a <b>multitool</b>."
+	desc = "A conveyor belt. It can be rotated with a <b>wrench</b>. It can be reversed with a <b>screwdriver</b>. The belt can be flipped with a <b>wirecutter</b>."
 	layer = FIREDOOR_OPEN_LAYER
 	resistance_flags = XENO_DAMAGEABLE
 	var/operating = 0	// 1 if running forward, -1 if backwards, 0 if off
@@ -19,7 +18,6 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 	var/list/affecting	// the list of all items that will be moved this ptick
 	var/id = ""			// the control ID	- must match controller ID
-	/// Inverts the direction the conveyor belt moves when false.
 	var/verted = FALSE		// Inverts the direction the conveyor belt moves.
 	/// Is the conveyor's belt flipped? Useful mostly for conveyor belt corners. It makes the belt point in the other direction, rather than just going in reverse.
 	var/flipped = FALSE
@@ -122,7 +120,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	if(machine_stat & BROKEN)
 		icon_state = "conveyor-broken"
 	else
-		icon_state = "[base_icon_state][verted ? -operating : operating ][flipped ? "-flipped" : ""]"
+		icon_state = "["conveyor"][verted ? -operating : operating ][flipped ? "-flipped" : ""]"
 
 /obj/machinery/conveyor/proc/update()
 	if(machine_stat & BROKEN || !operable || machine_stat & NOPOWER)
@@ -196,7 +194,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	update_move_direction()
 	to_chat(user, span_notice("You set [src]'s direction [verted ? "backwards" : "back to default"]."))
 
-/obj/machinery/conveyor/multitool_act(mob/living/user, obj/item/I)
+/obj/machinery/conveyor/wirecutter_act(mob/living/user, obj/item/I)
 	if(machine_stat & BROKEN)
 		return TRUE
 	flipped = !flipped
