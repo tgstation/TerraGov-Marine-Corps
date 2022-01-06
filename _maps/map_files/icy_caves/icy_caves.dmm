@@ -97,6 +97,7 @@
 	name = "Shaft Miner"
 	},
 /obj/structure/cable,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
 "av" = (
@@ -1829,10 +1830,8 @@
 /area/icy_caves/caves/south)
 "hL" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/ice/thin/end{
-	dir = 1
-	},
-/area/icy_caves/caves)
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/west)
 "hM" = (
 /turf/closed/ice_rock/corners{
 	dir = 10
@@ -2008,9 +2007,10 @@
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/icy_caves/caves/northern)
 "jh" = (
-/obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/icy_caves/outpost/outside/center)
+/obj/effect/ai_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/west)
 "jk" = (
 /obj/structure/table/mainship,
 /obj/item/tool/surgery/cautery,
@@ -2456,9 +2456,11 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/mining/west)
 "lK" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/icy_caves/outpost/outside)
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/ice/end{
+	dir = 8
+	},
+/area/icy_caves/caves/west)
 "lL" = (
 /turf/closed/ice/thin/corner{
 	dir = 8
@@ -2873,6 +2875,11 @@
 	},
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
+"nQ" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/outside/center)
 "nS" = (
 /turf/open/floor/plating/dmg1,
 /area/icy_caves/caves/crashed_ship)
@@ -3006,6 +3013,7 @@
 "oJ" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
 "oK" = (
@@ -3265,6 +3273,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
+"pV" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/icy_caves/outpost/outside/center)
 "pW" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/tile/dark/yellow2{
@@ -3918,6 +3930,11 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/medbay)
+"sC" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating,
+/area/icy_caves/outpost/mining/west)
 "sD" = (
 /obj/effect/landmark/fob_sentry_rebel,
 /turf/closed/ice_rock/singleEnd{
@@ -3970,6 +3987,11 @@
 /area/icy_caves/outpost/LZ2)
 "sV" = (
 /obj/structure/rack,
+/obj/item/ammo_magazine/rifle/ak47,
+/obj/item/ammo_magazine/rifle/ak47,
+/obj/item/ammo_magazine/rifle/ak47,
+/obj/item/ammo_magazine/rifle/ak47,
+/obj/item/weapon/gun/rifle/ak47,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "ta" = (
@@ -4034,8 +4056,8 @@
 /area/icy_caves/outpost/engineering)
 "to" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall,
-/area/icy_caves/outpost/garage)
+/turf/closed/ice_rock/singleT,
+/area/icy_caves/caves/west)
 "tp" = (
 /obj/item/lightstick/anchored,
 /obj/effect/ai_node,
@@ -4926,6 +4948,10 @@
 	dir = 4
 	},
 /area/icy_caves/outpost/medbay)
+"xU" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/icy_caves/outpost/outside)
 "xV" = (
 /obj/machinery/atmospherics/components/unary/portables_connector{
 	dir = 8
@@ -5007,6 +5033,11 @@
 "yq" = (
 /turf/closed/ice/thin/straight,
 /area/icy_caves/outpost/LZ2)
+"yr" = (
+/turf/closed/ice_rock/singlePart{
+	dir = 10
+	},
+/area/icy_caves/outpost/outside/center)
 "yv" = (
 /obj/machinery/light{
 	dir = 4
@@ -5329,9 +5360,11 @@
 /turf/open/shuttle/dropship/floor,
 /area/space)
 "Ag" = (
-/obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/icy_caves/outpost/outside)
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/ice_rock/singlePart{
+	dir = 5
+	},
+/area/icy_caves/caves/west)
 "Ah" = (
 /obj/effect/landmark/corpsespawner/security{
 	corpsebelt = /obj/item/weapon/gun/revolver/cmb;
@@ -5404,8 +5437,10 @@
 /area/icy_caves/outpost/garage)
 "Aw" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/r_wall,
-/area/icy_caves/outpost/dorms)
+/turf/closed/ice/thin/end{
+	dir = 1
+	},
+/area/icy_caves/caves)
 "Ax" = (
 /obj/structure/table,
 /obj/machinery/light/built{
@@ -6203,6 +6238,10 @@
 	dir = 4
 	},
 /area/icy_caves/outpost/LZ1)
+"ER" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall,
+/area/icy_caves/outpost/mining/west)
 "ES" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -6491,6 +6530,10 @@
 "Gs" = (
 /turf/closed/ice_rock/corners,
 /area/icy_caves/caves/northern)
+"Gt" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/ice/single,
+/area/icy_caves/caves/west)
 "Gu" = (
 /turf/closed/ice,
 /area/icy_caves/outpost/outside)
@@ -6503,9 +6546,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/icy_caves/caves/northern)
 "Gy" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/icy_caves/outpost/outside)
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/west)
 "Gz" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice_rock/singleT,
@@ -9077,9 +9120,10 @@
 	},
 /area/icy_caves/outpost/security)
 "TS" = (
+/obj/effect/landmark/xeno_resin_door,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall,
-/area/icy_caves/outpost/mining/west)
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/west)
 "TT" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -11061,15 +11105,15 @@ Yf
 Yf
 Yf
 Yf
-cp
-cp
-cp
-cp
-cp
-cp
-cp
-cp
-cp
+Yf
+Yf
+Yf
+Yf
+Yf
+Yf
+Yf
+Yf
+Yf
 Yf
 Yf
 Yf
@@ -11199,25 +11243,25 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-Yf
-MH
-MH
-Yf
-Yf
-MH
-MH
-re
-Yf
-MH
-MH
-Yf
-Yf
-Yf
 cp
+cp
+cp
+cp
+cp
+Aw
+Aw
+cp
+cp
+Aw
+Aw
+dK
+Yf
+MH
+MH
+Yf
+Yf
+Yf
+Yf
 Yf
 Yf
 qy
@@ -11225,7 +11269,7 @@ qy
 Yf
 Yf
 Yf
-cp
+Yf
 Yf
 Yf
 Yf
@@ -11355,7 +11399,7 @@ Yf
 Yf
 Yf
 Yf
-Yf
+cp
 Yf
 Yf
 MH
@@ -11366,14 +11410,14 @@ ZU
 ZU
 ZU
 GF
-re
+dK
 re
 re
 MH
 Yf
 Yf
 Yf
-cp
+Yf
 MH
 MH
 qy
@@ -11381,7 +11425,7 @@ qy
 qy
 MH
 Yf
-cp
+Yf
 Yf
 Yf
 Yf
@@ -11511,7 +11555,7 @@ Yf
 Yf
 Yf
 Yf
-Yf
+cp
 Yf
 Yf
 Yf
@@ -11522,14 +11566,14 @@ ZU
 Wx
 Wx
 Bb
-WI
+xU
 WI
 WI
 WI
 MH
 Yf
 Yf
-cp
+Yf
 MH
 MH
 Za
@@ -11537,7 +11581,7 @@ Za
 Yf
 Yf
 MH
-hL
+MH
 MH
 MH
 DX
@@ -11667,7 +11711,7 @@ Yf
 Yf
 Yf
 Yf
-Yf
+cp
 MH
 MH
 Yf
@@ -11678,22 +11722,22 @@ ZU
 ZU
 ZU
 Bb
-WI
+xU
 pa
 Si
 WI
 WI
 MH
 MH
-hL
+MH
 MH
 pa
 Mb
-lK
+Za
 Za
 MH
 MH
-hL
+MH
 Uu
 Uu
 DX
@@ -11823,33 +11867,33 @@ Yf
 Yf
 Yf
 Yf
-Yf
+cp
 Yf
 YI
 ZU
 ZU
 ZU
-ZU
+Gy
 ZU
 ZU
 ZU
 Bb
-WI
+xU
 Tj
 SI
 SI
 SI
 SI
 SI
-Pe
 SI
 SI
+SI
 Za
 Za
-Ag
 Za
 Za
-za
+Za
+Za
 Uu
 Uu
 DX
@@ -11979,7 +12023,7 @@ Yf
 Yf
 Yf
 Yf
-Yf
+cp
 Yf
 ZU
 gx
@@ -11990,22 +12034,22 @@ ZU
 ZU
 ZU
 Bb
-WI
+xU
 WI
 Ln
 SI
 SI
 SI
 SI
-Pe
 SI
 SI
+SI
 Za
 Za
 Za
 Za
-lK
-za
+Za
+Za
 Uu
 Uu
 Uu
@@ -12135,8 +12179,8 @@ Yf
 Yf
 Yf
 Yf
+cp
 Yf
-Yf
 ZU
 ZU
 ZU
@@ -12146,22 +12190,22 @@ ZU
 re
 re
 re
-WI
+xU
 WI
 SI
 Ln
 WI
 WI
 WI
-Gy
+WI
 SI
 Ln
-lK
 Za
 Za
 Za
 Za
-za
+Za
+Za
 UE
 fq
 Uu
@@ -12291,7 +12335,7 @@ Yf
 Yf
 Yf
 Yf
-re
+dK
 re
 ZU
 ZU
@@ -12302,14 +12346,14 @@ Di
 lG
 lX
 lG
-WI
+xU
 WI
 SI
 SI
 WI
 pD
 WI
-Gy
+WI
 SI
 SI
 Za
@@ -12317,7 +12361,7 @@ Za
 Za
 Za
 Za
-za
+Za
 Uu
 Uu
 Uu
@@ -12447,7 +12491,7 @@ re
 re
 re
 ZU
-ZU
+hL
 SF
 ZU
 ZU
@@ -12458,14 +12502,14 @@ Mg
 ec
 Vb
 eY
-WI
+xU
 WI
 SI
 SI
 WI
 WI
 WI
-Gy
+WI
 SI
 SI
 Za
@@ -12473,7 +12517,7 @@ Za
 MH
 qs
 WI
-Gy
+WI
 Uu
 Uu
 Uu
@@ -12603,7 +12647,7 @@ Di
 XF
 DZ
 ZU
-ZU
+hL
 SF
 ZU
 gx
@@ -12614,14 +12658,14 @@ ec
 fT
 xI
 xI
-xI
+ER
 nx
 od
 lH
 nx
 xI
 xI
-TS
+xI
 SI
 SI
 WI
@@ -12629,7 +12673,7 @@ MH
 Yf
 Yf
 MH
-Gy
+WI
 Uu
 Uu
 sD
@@ -12759,7 +12803,7 @@ gz
 ZU
 ZU
 ZU
-ez
+jh
 SF
 ZU
 ZU
@@ -12770,14 +12814,14 @@ SF
 ZU
 nO
 oI
-wW
+sC
 oI
 pw
 oI
 pf
 oZ
 oK
-TS
+xI
 SI
 SI
 WI
@@ -12785,7 +12829,7 @@ MH
 Yf
 Yf
 Yf
-hL
+MH
 Uu
 Uu
 Uu
@@ -12915,16 +12959,16 @@ ZU
 ZU
 ZU
 ez
-ZU
-dx
-ZU
-gA
-Mg
-ZU
-ZU
-SF
-fT
-xI
+hL
+lK
+hL
+to
+Ag
+hL
+hL
+TS
+Gt
+ER
 oJ
 au
 xn
@@ -12933,15 +12977,15 @@ oI
 oI
 oI
 oU
-TS
-Pe
-Pe
-hL
-cp
-cp
-cp
-iS
-iS
+xI
+SI
+SI
+MH
+Yf
+Yf
+Yf
+qs
+qs
 Uu
 Uu
 Uu
@@ -13717,12 +13761,12 @@ xI
 Za
 SI
 XO
-XO
+lW
+lW
 WI
 WI
-WI
-XO
-UE
+lW
+AB
 UE
 UE
 UE
@@ -13873,11 +13917,11 @@ WI
 XO
 SI
 XO
+lW
 XO
 XO
 XO
-XO
-XO
+lW
 UE
 Uu
 UE
@@ -14028,9 +14072,9 @@ XO
 XO
 XO
 SI
-Za
-XO
-XO
+lW
+lW
+lW
 XO
 XO
 XO
@@ -14652,8 +14696,8 @@ XO
 XO
 XO
 Za
-Za
-Za
+lW
+lW
 Za
 SI
 SI
@@ -14809,7 +14853,7 @@ XO
 XO
 XO
 XO
-Za
+lW
 Za
 SI
 SI
@@ -15419,7 +15463,7 @@ Jg
 XF
 DZ
 Ga
-XJ
+ZU
 ZU
 gz
 Om
@@ -15732,7 +15776,7 @@ XF
 gA
 XJ
 ZU
-Xu
+ZU
 XF
 xa
 SD
@@ -15886,9 +15930,9 @@ Jg
 XF
 dp
 gA
-XJ
 ZU
-Xu
+ZU
+ZU
 DK
 RG
 Rj
@@ -16352,8 +16396,8 @@ gx
 ZU
 ZU
 ZU
-lj
-Sn
+ZU
+ZU
 ZU
 dx
 dx
@@ -16508,7 +16552,7 @@ dw
 ZU
 ZU
 ZU
-gn
+ZU
 ZU
 ZU
 do
@@ -17025,8 +17069,8 @@ Qa
 Qa
 LO
 vq
-to
-TF
+KZ
+XO
 Pe
 Pe
 za
@@ -17181,12 +17225,12 @@ Is
 Zc
 RJ
 KZ
-to
+KZ
 XO
+Pe
 SI
-SI
-Za
-XO
+Ll
+Ll
 bD
 cp
 YQ
@@ -17337,12 +17381,12 @@ KZ
 KZ
 KZ
 KZ
-Gy
+WI
 XO
+Pe
 SI
-SI
-Za
-XO
+Ll
+Ll
 lX
 kQ
 YQ
@@ -17493,9 +17537,9 @@ li
 li
 li
 li
-cR
 li
-my
+li
+zz
 my
 DD
 DD
@@ -17649,9 +17693,9 @@ my
 my
 my
 my
+my
+my
 zz
-my
-my
 Iw
 DD
 iX
@@ -17805,13 +17849,13 @@ my
 my
 my
 my
-zz
 my
-JW
+my
+nQ
 my
 DD
-jh
 DD
+pV
 wI
 YQ
 "}
@@ -17961,9 +18005,9 @@ li
 li
 li
 li
-cR
+li
 DD
-my
+zz
 my
 DD
 iX
@@ -18117,9 +18161,9 @@ ND
 ND
 ND
 ND
-Aw
-iX
-my
+ND
+DD
+zz
 my
 DD
 DD
@@ -18273,9 +18317,9 @@ Hf
 JC
 wZ
 Ez
-Aw
+ND
 DD
-my
+zz
 my
 iX
 DD
@@ -18429,9 +18473,9 @@ Zq
 wZ
 wZ
 LC
-Aw
+ND
 DD
-my
+zz
 my
 DD
 DD
@@ -18585,9 +18629,9 @@ Hf
 Ze
 wZ
 Ez
-Aw
+ND
 DD
-my
+zz
 my
 iX
 DD
@@ -18741,9 +18785,9 @@ Hf
 Hf
 Hf
 Hf
-Aw
+ND
 DD
-my
+zz
 my
 DD
 DD
@@ -18897,8 +18941,8 @@ Hf
 KO
 Cs
 Ez
-Aw
-cR
+ND
+li
 zz
 zz
 Kr
@@ -19213,8 +19257,8 @@ ND
 li
 my
 my
-DD
-li
+yr
+yr
 li
 bH
 YQ
@@ -19369,8 +19413,8 @@ ND
 li
 my
 my
-DD
-li
+yr
+yr
 ow
 XH
 YQ
@@ -19527,7 +19571,7 @@ xE
 my
 DD
 li
-ow
+yr
 qz
 YQ
 "}
@@ -20535,8 +20579,8 @@ Us
 Us
 fC
 Je
-fh
-UL
+ym
+Be
 ym
 ym
 Xj
@@ -20691,8 +20735,8 @@ YS
 YS
 YS
 fh
-fY
-hv
+ym
+ym
 Xj
 Xj
 ST
@@ -20847,8 +20891,8 @@ YS
 YS
 Vz
 fY
-xX
-hv
+ym
+ym
 ST
 xb
 MM
@@ -21002,9 +21046,9 @@ dC
 YS
 YS
 fh
-xX
-xX
-hv
+ym
+ym
+ym
 ST
 Ig
 YW
@@ -21158,8 +21202,8 @@ YS
 YS
 YS
 fh
-xX
-xX
+ym
+ym
 ME
 ST
 YW
@@ -21313,9 +21357,9 @@ YS
 YS
 YS
 Vz
-hm
-xX
-xX
+ym
+Be
+ym
 Uk
 ST
 YW
@@ -21469,9 +21513,9 @@ YS
 YS
 hf
 fh
-fY
-xX
-xX
+ym
+ym
+ym
 Uk
 ST
 YW
@@ -21625,8 +21669,8 @@ YS
 YS
 hf
 fh
-xX
-xX
+ym
+ym
 xX
 UL
 ST
@@ -21780,9 +21824,9 @@ Iy
 gq
 YS
 ym
-fh
-fW
-xX
+ym
+ym
+ym
 xX
 hv
 ST
@@ -21936,9 +21980,9 @@ Iy
 fC
 ym
 ym
-fH
-hm
-fW
+ym
+ym
+ym
 fW
 hv
 ST
@@ -22093,7 +22137,7 @@ ym
 ym
 ym
 ym
-Wj
+ym
 SA
 fh
 ME
