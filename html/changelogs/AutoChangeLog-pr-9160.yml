@@ -1,4 +1,0 @@
-author: "Vondiech"
-delete-after: True
-changes: 
-  - bugfix: "Hive Message now checks and filters ascii."

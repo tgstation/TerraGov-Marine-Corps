@@ -59,3 +59,15 @@
   - balance: SADAR spawns with mini scope
   - rscadd: Add catslug for research. Cute pet.
   - rscdel: Delete some hazard signs in Big Red
+2022-01-06:
+  BraveMole:
+  - balance: King can use mass teleport when young
+  HiddenGuardian:
+  - bugfix: Made it so you couldn't deploy the BaS while it being a no drop
+  RipGrayson:
+  - imageadd: Added some new sprites for newscasters.
+  Vondiech:
+  - expansion: 19 more lines for the roomba to pick from when sucking up items.
+  - balance: The roomba saying a sentence after sucking something up has went from
+      2 percent to 10 percent.
+  - bugfix: Hive Message now checks and filters ascii.
