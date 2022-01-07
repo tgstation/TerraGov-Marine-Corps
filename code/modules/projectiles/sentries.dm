@@ -45,7 +45,7 @@
 		iff_signal = id?.iff_signal
 
 	knockdown_threshold = gun.knockdown_threshold
-	range = gun.turret_range
+	range = !CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL) ? gun.turret_range : gun.turret_range - 2
 	ignored_terrains = gun.ignored_terrains
 
 	radio = new(src)
@@ -53,11 +53,6 @@
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
-
-	if(!CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL))
-		range = gun.turret_range
-	else
-		range = gun.turret_range - 2
 
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_INACCURATE))
 		gun.accuracy_mult -= 0.15
