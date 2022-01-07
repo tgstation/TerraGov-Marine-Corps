@@ -188,7 +188,7 @@
 	var/static/image/hemodile_image = image('icons/mob/hud.dmi', icon_state = "hemodile")
 	var/static/image/transvitox_image = image('icons/mob/hud.dmi', icon_state = "transvitox")
 	var/static/image/sanguinal_image = image('icons/mob/hud.dmi', icon_state = "sanguinal")
-	var/static/image/ozelomelynl_image = image('icons/mob/hud.dmi', icon_state = "ozelomelyn")
+	var/static/image/ozelomelyn_image = image('icons/mob/hud.dmi', icon_state = "ozelomelyn")
 	var/static/image/neurotox_high_image = image('icons/mob/hud.dmi', icon_state = "neurotoxin_high")
 	var/static/image/hemodile_high_image = image('icons/mob/hud.dmi', icon_state = "hemodile_high")
 	var/static/image/transvitox_high_image = image('icons/mob/hud.dmi', icon_state = "transvitox_high")
