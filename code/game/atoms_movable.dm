@@ -529,9 +529,6 @@
 	set waitfor = FALSE
 	if(!target || !src)
 		return FALSE
-	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
-	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_THROW, target, range, thrower, spin) & COMPONENT_CANCEL_THROW)
-		return
 
 	if(spin)
 		animation_spin(5, 1)
@@ -539,6 +536,12 @@
 	if(!flying)
 		set_throwing(TRUE)
 		src.thrower = thrower
+	
+	var/originally_dir_locked = flags_atom & DIRLOCK
+	if(!originally_dir_locked)
+		setDir(get_dir(src, target))
+		flags_atom |= DIRLOCK
+	
 
 	throw_source = get_turf(src)	//store the origin turf
 
@@ -616,6 +619,8 @@
 					sleep(1)
 
 	//done throwing, either because it hit something or it finished moving
+	if(!originally_dir_locked)
+		flags_atom &= ~DIRLOCK
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
 	if(loc)
@@ -1107,51 +1112,6 @@
 		blocker_opinion = TRUE
 
 	return blocker_opinion
-
-///returns FALSE if there isnt line of sight to target within view dist and TRUE if there is
-/atom/movable/proc/line_of_sight(atom/target, view_dist = WORLD_VIEW_NUM)
-	if(QDELETED(target))
-		return FALSE
-
-	if(z != target.z) //No multi-z.
-		return FALSE
-
-	var/total_distance = get_dist(src, target)
-
-	if(total_distance > view_dist)
-		return FALSE
-
-	switch(total_distance)
-		if(-1)
-			if(target == src) //We can see ourselves alright.
-				return TRUE
-			else //Standard get_dist() error condition.
-				return FALSE
-		if(null) //Error, does not compute.
-			CRASH("get_dist returned null on line_of_sight() with [src] as src and [target] as target")
-		if(0, 1) //We can see our own tile and the next one regardless.
-			return TRUE
-
-	var/turf/turf_to_check = get_turf(src)
-	var/turf/target_turf = get_turf(target)
-
-	for(var/i in 1 to total_distance - 1)
-		turf_to_check = get_step(turf_to_check, get_dir(turf_to_check, target_turf))
-		if(IS_OPAQUE_TURF(turf_to_check))
-			return FALSE //First and last turfs' opacity don't matter, but the ones in-between do.
-		for(var/obj/stuff_in_turf in turf_to_check)
-			if(!stuff_in_turf.opacity)
-				continue //Transparent, we can see through it.
-			if(!CHECK_BITFIELD(stuff_in_turf.flags_atom, ON_BORDER))
-				return FALSE //Opaque and not on border. We can't see through this tile, it's over.
-			if(ISDIAGONALDIR(stuff_in_turf.dir))
-				return FALSE //Opaque fulltile window.
-			if(CHECK_BITFIELD(dir, stuff_in_turf.dir))
-				return FALSE //Same direction and opaque, blocks our view.
-			if(CHECK_BITFIELD(dir, REVERSE_DIR(stuff_in_turf.dir)))
-				return FALSE //Doesn't block this tile, but it does block the next, and this is not the last pass.
-
-	return TRUE
 
 ///allows this movable to hear and adds itself to the important_recursive_contents list of itself and every movable loc its in
 /atom/movable/proc/become_hearing_sensitive(trait_source = TRAIT_GENERIC)

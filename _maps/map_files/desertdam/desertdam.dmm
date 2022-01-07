@@ -39149,32 +39149,32 @@
 "ddU" = (
 /obj/machinery/conveyor{
 	dir = 4;
-	icon_state = "conveyor-1"
+	id = "lower_garbage"
 	},
 /turf/open/floor/prison,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
 "ddV" = (
+/obj/structure/plasticflaps,
 /obj/machinery/conveyor{
 	dir = 4;
-	icon_state = "conveyor-1"
+	id = "lower_garbage"
 	},
-/obj/structure/plasticflaps,
 /turf/open/floor/plating,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
 "ddW" = (
 /obj/machinery/conveyor{
 	dir = 4;
-	icon_state = "conveyor-1"
+	id = "lower_garbage"
 	},
 /turf/open/floor/plating,
 /area/desert_dam/building/hydroponics/hydroponics_loading)
 "ddX" = (
-/obj/machinery/conveyor{
-	dir = 4;
-	icon_state = "conveyor-1"
-	},
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "lower_garbage"
 	},
 /turf/open/floor{
 	icon_state = "dark2"
@@ -64149,6 +64149,12 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/interior/dam_interior/west_tunnel)
+"tcK" = (
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor{
+	icon_state = "neutral"
+	},
+/area/desert_dam/interior/dam_interior/engine_room)
 "tcS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -98218,7 +98224,7 @@ bAK
 bAK
 bAK
 bAK
-bwv
+tcK
 aFo
 bwv
 iVQ

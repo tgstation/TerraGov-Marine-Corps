@@ -171,6 +171,26 @@
 		/datum/reagent/toxin = 5,
 	)
 
+/obj/item/reagent_containers/hypospray/autoinjector/virilyth //not accessible during normal play, only for valhalla
+	name = "virilyth autoinjector"
+	desc = "A large auto-injector freshly loaded with virilynth."
+	icon_state = "autoinjector-8"
+	amount_per_transfer_from_this = 10
+	volume = 50
+	list_reagents = list(
+		/datum/reagent/virilyth = 50,
+	)
+
+/obj/item/reagent_containers/hypospray/autoinjector/rezadone //not accessible during normal play, only for valhalla
+	name = "rezadone autoinjector"
+	desc = "A large auto-injector freshly loaded with rezadone."
+	icon_state = "autoinjector-8"
+	amount_per_transfer_from_this = 10
+	volume = 50
+	list_reagents = list(
+		/datum/reagent/medicine/rezadone = 50,
+	)
+
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine
 	name = "synaptizine autoinjector"
 	desc = "An auto-injector freshly loaded with a safe-to-use synaptizine mix."
@@ -260,6 +280,14 @@
 		/datum/reagent/medicine/russian_red = 15,
 		/datum/reagent/medicine/rezadone = 15,
 	)
+
+/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites
+	name = "nanomachines autoinjector"
+	desc = "An auto-injector loaded with medical nanites. A potent new method of healing that that reproduces using a subject's blood and has a brief but potentially dangerous activation period! Beware of Neurotoxin!"
+	icon_state = "autoinjector-6"
+	amount_per_transfer_from_this = 1
+	volume = 1
+	list_reagents = list(/datum/reagent/medicine/research/medicalnanites = 1)
 
 /obj/item/reagent_containers/hypospray/autoinjector/pain //made for debugging
 	name = "liquid pain autoinjector"

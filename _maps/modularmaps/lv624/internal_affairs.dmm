@@ -131,13 +131,8 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/internal_affairs)
 "jv" = (
-/obj/machinery/newscaster{
-	pixel_y = -28
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/blue/whiteblue{
-	dir = 1
-	},
+/obj/machinery/newscaster,
+/turf/closed/wall,
 /area/lv624/lazarus/internal_affairs)
 "ky" = (
 /obj/item/folder/blue,
@@ -807,8 +802,8 @@ Fn
 Xd
 Qi
 xH
+Wx
 jv
-Xd
 Dj
 CI
 cf

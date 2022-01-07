@@ -139,6 +139,7 @@
 /obj/item/reagent_containers/glass/bottle/adminordrazine
 	name = "\improper Adminordrazine bottle"
 	desc = "A small bottle. Contains the liquid essence of the gods."
+	icon = 'icons/obj/items/drinks.dmi'
 	icon_state = "holyflask"
 	list_reagents = list(/datum/reagent/medicine/adminordrazine = 60)
 
@@ -230,12 +231,6 @@
 	icon_state = "bottle7"
 	list_reagents = list(/datum/reagent/toxin/xeno_neurotoxin/light = 30)
 
-/obj/item/reagent_containers/glass/bottle/xeno_growthtoxin
-	name = "\improper Growth toxin bottle"
-	desc = "A small bottle. Contains artificialy synthesized growth toxin - useful for researchers, or as a very risky medicine."
-	icon_state = "bottle7"
-	list_reagents = list(/datum/reagent/toxin/xeno_growthtoxin = 30)
-
 /obj/item/reagent_containers/glass/bottle/xeno_hemodile
 	name = "\improper Hemodile bottle"
 	desc = "A small bottle. Contains artificialy synthesized hemodile- useful for testing treatments, or training troops."
@@ -266,10 +261,20 @@
 	icon_state = "bottle2"
 	list_reagents = list(/datum/reagent/medicine/polyhexanide = 30)
 
+/obj/item/reagent_containers/glass/bottle/medicalnanites
+	name = "\improper Nanomachines bottle"
+	desc = "A small bottle. Contains nanomachines modified for medical use, A potent new method of healing that that reproduces using a subject's blood and has a brief but potentially dangerous activation period!"
+	icon_state = "bottle7"
+	list_reagents = list(/datum/reagent/medicine/research/medicalnanites = 5)
+
 /obj/item/reagent_containers/glass/bottle/lemoline
 	name = "\improper Lemoline bottle"
 	desc = "A small bottle. Contains 10 units of lemoline, a reagent used in the creation of advanced medicine."
 	icon_state = "bottle-5"
 	list_reagents = list(/datum/reagent/medicine/lemoline = 10)
 
-
+/obj/item/reagent_containers/glass/bottle/doctor_delight
+	name = "\improper Doctor's Delight bottle"
+	desc = "A small bottle. Contains Doctor's Delight."
+	icon_state = "bottle3"
+	list_reagents = list(/datum/reagent/consumable/drink/doctor_delight = 60)

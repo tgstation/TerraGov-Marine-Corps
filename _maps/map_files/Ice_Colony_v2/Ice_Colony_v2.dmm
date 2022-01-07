@@ -678,7 +678,9 @@
 /area/ice_colony/surface/engineering/generator)
 "acU" = (
 /obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
 /area/ice_colony/exterior/surface/landing_pad2)
 "acV" = (
 /obj/structure/table,
@@ -2278,11 +2280,11 @@
 	},
 /area/ice_colony/exterior/surface/valley/northwest)
 "aji" = (
+/obj/structure/plasticflaps,
 /obj/machinery/conveyor{
 	dir = 4;
-	icon_state = "conveyor-1"
+	id = "lower_garbage"
 	},
-/obj/structure/plasticflaps,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/surface/requesitions)
 "ajk" = (
@@ -2303,7 +2305,7 @@
 "ajo" = (
 /obj/machinery/conveyor{
 	dir = 4;
-	icon_state = "conveyor-1"
+	id = "lower_garbage"
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/surface/requesitions)
@@ -31622,6 +31624,15 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
+"dqR" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 8;
+	icon_state = "equip_base_l_wing"
+	},
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/ice_colony/exterior/surface/landing_pad2)
 "dtg" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/eastWall,
@@ -31711,6 +31722,11 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
+"eaK" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/ice_colony/exterior/surface/landing_pad2)
 "ebw" = (
 /obj/effect/landmark/dropship_start_location,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -31816,6 +31832,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
+"eDG" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/ice_colony/exterior/surface/landing_pad2)
 "eDT" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/weed_node,
@@ -32214,6 +32236,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
+"gQQ" = (
+/obj/effect/attach_point/electronics/dropship1,
+/turf/open/floor/plating,
+/area/ice_colony/exterior/surface/landing_pad2)
 "gSb" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark2,
@@ -34587,6 +34613,10 @@
 	},
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southwest)
+"tkL" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating,
+/area/ice_colony/exterior/surface/landing_pad2)
 "tlK" = (
 /turf/open/shuttle/dropship/three,
 /area/ice_colony/underground/responsehangar)
@@ -35223,6 +35253,10 @@
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/power)
+"wHy" = (
+/obj/effect/attach_point/weapon/dropship1,
+/turf/open/floor/plating,
+/area/ice_colony/exterior/surface/landing_pad2)
 "wIE" = (
 /turf/open/floor/plating,
 /area/ice_colony/exterior/underground/caves/open)
@@ -38918,27 +38952,27 @@ bSw
 aae
 xGZ
 aay
-afd
-afd
+xBE
+cTP
+cTP
+cTP
+cTP
+cTP
+cTP
+dqR
+cTP
+cTP
 acU
-afd
-afd
-afd
-afd
-afd
-afd
-afd
-acU
-afd
-afd
-afd
-afd
-afd
-afd
-afd
-afd
-acU
-afd
+cTP
+cTP
+cTP
+cTP
+cTP
+cTP
+cTP
+cTP
+cTP
+eaK
 akM
 hOW
 aym
@@ -39175,6 +39209,10 @@ bSw
 jQk
 abq
 vhv
+dWh
+afd
+tkL
+wHy
 afd
 afd
 afd
@@ -39189,13 +39227,9 @@ afd
 afd
 afd
 afd
+tkL
 afd
-afd
-afd
-afd
-afd
-afd
-afd
+sQr
 oiZ
 hOW
 aym
@@ -39432,6 +39466,10 @@ bSw
 aae
 xGZ
 cvo
+dWh
+afd
+afd
+gQQ
 afd
 afd
 afd
@@ -39448,11 +39486,7 @@ afd
 afd
 afd
 afd
-afd
-afd
-afd
-afd
-afd
+sQr
 wpJ
 hOW
 aym
@@ -39689,6 +39723,7 @@ bSw
 aae
 xGZ
 uNj
+dWh
 afd
 afd
 afd
@@ -39708,8 +39743,7 @@ afd
 afd
 afd
 afd
-afd
-afd
+sQr
 ihF
 hOW
 ayn
@@ -39946,6 +39980,7 @@ bSw
 aae
 xGZ
 aay
+dWh
 afd
 afd
 afd
@@ -39965,8 +40000,7 @@ afd
 afd
 afd
 afd
-afd
-afd
+sQr
 yjW
 uxH
 adY
@@ -40203,7 +40237,7 @@ bSw
 aae
 xGZ
 vhv
-afd
+dWh
 afd
 afd
 afd
@@ -40223,7 +40257,7 @@ afd
 afd
 afd
 afd
-afd
+sQr
 alI
 uxH
 wDM
@@ -40460,6 +40494,7 @@ bSw
 aae
 xGZ
 cvo
+dWh
 afd
 afd
 afd
@@ -40479,8 +40514,7 @@ afd
 afd
 afd
 afd
-afd
-afd
+sQr
 wpJ
 uxH
 ayn
@@ -40717,6 +40751,7 @@ bSw
 aae
 xGZ
 uNj
+dWh
 afd
 afd
 afd
@@ -40736,8 +40771,7 @@ afd
 afd
 afd
 afd
-afd
-afd
+sQr
 ihF
 uxH
 aym
@@ -40974,6 +41008,10 @@ bSw
 jQk
 abq
 aay
+dWh
+afd
+afd
+gQQ
 afd
 afd
 afd
@@ -40990,11 +41028,7 @@ afd
 afd
 afd
 afd
-afd
-afd
-afd
-afd
-afd
+sQr
 yjW
 uxH
 aBi
@@ -41231,6 +41265,10 @@ bSw
 aae
 xGZ
 vhv
+dWh
+afd
+tkL
+wHy
 afd
 afd
 afd
@@ -41245,13 +41283,9 @@ afd
 afd
 afd
 afd
+tkL
 afd
-afd
-afd
-afd
-afd
-afd
-afd
+sQr
 oiZ
 uxH
 atf
@@ -41488,27 +41522,27 @@ bSw
 aae
 xGZ
 cvo
-afd
-afd
-acU
-afd
-afd
-afd
-afd
-afd
-afd
-afd
-acU
-afd
-afd
-afd
-afd
-afd
-afd
-afd
-afd
-acU
-afd
+rgk
+doh
+doh
+doh
+doh
+doh
+doh
+doh
+doh
+doh
+eDG
+doh
+doh
+doh
+doh
+doh
+doh
+doh
+doh
+doh
+tGL
 wpJ
 uxH
 hOW

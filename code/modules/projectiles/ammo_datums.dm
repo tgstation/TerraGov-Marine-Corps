@@ -1016,7 +1016,7 @@ datum/ammo/bullet/revolver/tp44
 	damage_falloff = 0.25
 
 /datum/ammo/bullet/sniper/pfc/flak/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, knockback = 4, slowdown = 1, stagger = 1, max_range = 40)
+	staggerstun(M, P, knockback = 4, slowdown = 1.5, stagger = 1, max_range = 17)
 
 
 /datum/ammo/bullet/sniper/auto
@@ -1704,7 +1704,7 @@ datum/ammo/bullet/revolver/tp44
 	slowdown_stacks = 1.1
 	smoke_strength = 0.5
 	smoke_range = 0
-	reagent_transfer_amount = 7
+	reagent_transfer_amount = 4
 
 ///Set up the list of reagents the spit transfers upon impact
 /datum/ammo/xeno/toxin/proc/set_reagents()
@@ -1768,15 +1768,15 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/toxin/upgrade1
 	smoke_strength = 0.6
-	reagent_transfer_amount = 8
+	reagent_transfer_amount = 5
 
 /datum/ammo/xeno/toxin/upgrade2
 	smoke_strength = 0.7
-	reagent_transfer_amount = 9
+	reagent_transfer_amount = 6
 
 /datum/ammo/xeno/toxin/upgrade3
 	smoke_strength = 0.75
-	reagent_transfer_amount = 9.5
+	reagent_transfer_amount = 6.5
 
 
 /datum/ammo/xeno/toxin/heavy //Praetorian

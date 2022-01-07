@@ -255,7 +255,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/hydro_cannon/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
 	if(G == user.get_active_held_item() || G == user.get_inactive_held_item() || CHECK_BITFIELD(G.flags_item, IS_DEPLOYED))
-		G.unique_action(user)
+		G.do_unique_action(user)
 		return
 	if(activate(user)) //success
 		playsound(user, activation_sound, 15, 1)
@@ -1640,7 +1640,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/shoulder_mount/proc/after_fire(datum/source, atom/target, obj/item/weapon/gun/fired_gun)
 	SIGNAL_HANDLER
 	if(CHECK_BITFIELD(master_gun.flags_gun_features, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
-		INVOKE_ASYNC(master_gun, /obj/item/weapon/gun.proc/unique_action, master_gun.gun_user)
+		INVOKE_ASYNC(master_gun, /obj/item/weapon/gun.proc/do_unique_action, master_gun.gun_user)
 	var/mob/living/user = master_gun.gun_user
 	if(user.stat == CONSCIOUS && !user.lying_angle && !LAZYACCESS(user.do_actions, src) && user.dextrous && (CHECK_BITFIELD(master_gun.flags_gun_features, GUN_ALLOW_SYNTHETIC) || CONFIG_GET(flag/allow_synthetic_gun_use) || !issynth(user)))
 		return

@@ -372,6 +372,11 @@
 /obj/item/proc/item_action_slot_check(mob/user, slot)
 	return TRUE
 
+///Signal sender for unique_action
+/obj/item/proc/do_unique_action(mob/user)
+	SEND_SIGNAL(src, COMSIG_ITEM_UNIQUE_ACTION, user)
+	return unique_action(user)
+
 ///Anything unique the item can do, like pumping a shotgun, spin or whatever.
 /obj/item/proc/unique_action(mob/user)
 	return

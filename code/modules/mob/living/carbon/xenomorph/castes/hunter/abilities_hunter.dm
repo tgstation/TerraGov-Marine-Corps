@@ -287,7 +287,7 @@
 			to_chat(X, span_xenowarning("Why would we target ourselves?"))
 		return FALSE
 
-	if(!X.line_of_sight(A)) //Need line of sight.
+	if(!line_of_sight(X, A)) //Need line of sight.
 		if(!silent)
 			to_chat(X, span_xenowarning("We require line of sight to mark them!"))
 		return FALSE
@@ -307,7 +307,7 @@
 
 	X.face_atom(A) //Face towards the target so we don't look silly
 
-	if(!X.line_of_sight(A)) //Need line of sight.
+	if(!line_of_sight(X, A)) //Need line of sight.
 		to_chat(X, span_xenowarning("We lost line of sight to the target!"))
 		return fail_activate()
 
@@ -429,7 +429,7 @@
 			to_chat(impairer, "<span class='xenodanger'>The target location is too far! We must be [distance - HUNTER_SILENCE_RANGE] tiles closer!</spam>")
 		return FALSE
 
-	if(!impairer.line_of_sight(A)) //Need line of sight.
+	if(!line_of_sight(impairer, A)) //Need line of sight.
 		if(!silent)
 			to_chat(impairer, span_xenowarning("We require line of sight to the target location!") )
 		return FALSE
@@ -448,7 +448,7 @@
 			continue
 		if(target.stat == DEAD) //Ignore the dead
 			continue
-		if(!X.line_of_sight(target)) //Need line of sight
+		if(!line_of_sight(X, target)) //Need line of sight
 			continue
 		if(isxeno(target)) //Ignore friendlies
 			var/mob/living/carbon/xenomorph/xeno_victim = target
