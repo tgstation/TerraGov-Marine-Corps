@@ -757,7 +757,7 @@
 	(modifiers["left"] && !modifiers["shift"]))
 		return
 	var/mob/living/carbon/xenomorph/xeno = owner
-	if(!xeno.check_state() || xeno.ammo?.spit_cost > xeno.plasma_stored)
+	if(!can_use_ability(object))
 		return fail_activate()
 	set_target(get_turf_on_clickcatcher(object, xeno, params))
 	if(!current_target)
@@ -782,7 +782,7 @@
 	newspit.def_zone = X.get_limbzone_target()
 	newspit.fire_at(current_target, X, null, X.ammo.max_range, X.ammo.shell_speed)
 
-	if(X.check_state() && X.ammo?.spit_cost <= X.plasma_stored)
+	if(can_use_ability(current_target) && X.client) //X.client to make sure autospit doesn't continue for non player mobs.
 		succeed_activate()
 		return TRUE
 	fail_activate()
