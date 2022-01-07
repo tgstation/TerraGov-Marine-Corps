@@ -1136,7 +1136,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "railgun round"
 	hud_state = "alloy_spike"
 	icon_state 	= "blue_bullet"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH
 	shell_speed = 4
 	max_range = 9
 	damage = 150
@@ -1144,8 +1144,28 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 90
 	bullet_color = COLOR_PULSE_BLUE
 
-/datum/ammo/bullet/railgun/on_hit_mob(mob/M,obj/projectile/P)
+	var/on_pierce_reduction = 0.66 //projectile loses 33% of its pmg/pen/sunder when it penetrates something
+
+/datum/ammo/bullet/railgun/on_hit_mob(mob/M, obj/projectile/P)
+	damage *= on_pierce_reduction
+	sundering *= on_pierce_reduction
+	penetration *= on_pierce_reduction
 	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 3, shake = 0)
+
+/datum/ammo/bullet/railgun/on_hit_obj(obj/O, obj/projectile/P)
+	damage *= on_pierce_reduction
+	sundering *= on_pierce_reduction
+	penetration *= on_pierce_reduction
+
+/datum/ammo/bullet/railgun/on_hit_turf(turf/T, obj/projectile/P)
+	damage *= on_pierce_reduction
+	sundering *= on_pierce_reduction
+	penetration *= on_pierce_reduction
+
+/datum/ammo/bullet/railgun/do_at_max_range(obj/projectile/proj)
+	damage = initial(damage)
+	sundering = initial(sundering)
+	penetration = initial(penetration)
 
 /*
 //================================================
