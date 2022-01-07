@@ -162,8 +162,8 @@
 		/obj/item/storage/syringe_case,
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/stack/medical,
-		// /obj/item/reagent_containers/glass/bottle, This is commented out so that hypospray belt can achieve this niche of holding reagent bottles.
-		// /obj/item/reagent_containers/hypospray/autoinjector, This is commented out so that hypospray belt can achieve this niche of holding hypospray.
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/hypospray/autoinjector,
 	)
 
 /obj/item/storage/belt/combatLifesaver/Initialize()  //The belt, with all it's magic inside!
