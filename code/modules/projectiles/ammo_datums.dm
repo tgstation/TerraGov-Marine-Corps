@@ -1144,7 +1144,9 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 90
 	bullet_color = COLOR_PULSE_BLUE
 
+/datum/ammo/bullet/railgun/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 3, shake = 0)
+
 
 /*
 //================================================
