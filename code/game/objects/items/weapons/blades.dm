@@ -67,6 +67,14 @@
 	. = ..()
 	AddComponent(/datum/component/harvester)
 
+/obj/item/weapon/claymore/harvester/equipped(mob/user, slot)
+	. = ..()
+	toggle_item_bump_attack(user, TRUE)
+
+/obj/item/weapon/claymore/harvester/dropped(mob/user)
+	. = ..()
+	toggle_item_bump_attack(user, FALSE)
+
 /obj/item/weapon/claymore/harvester/get_mechanics_info()
 	. = ..()
 	. += jointext(codex_info, "<br>")
