@@ -32,7 +32,7 @@
 
 /obj/item/weapon/gun/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
-	if(!active_attachable)
+	if(!active_attachable || user.get_inactive_held_item() != src)
 		return
 
 	active_attachable.reload(I, user)
