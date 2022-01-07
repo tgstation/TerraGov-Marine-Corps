@@ -9,7 +9,7 @@
 
 /datum/ai_behavior/xeno/illusion/attack_target(datum/soure, atom/attacked)
 	if(!attacked)
-		attacked = atom_to_walk_to
+		attacked = pathfinding_datum.atom_to_walk_to
 	var/mob/illusion/illusion_parent = mob_parent
 	var/mob/living/carbon/xenomorph/original_xeno = illusion_parent.original_mob
 	mob_parent.changeNext_move(original_xeno.xeno_caste.attack_delay)

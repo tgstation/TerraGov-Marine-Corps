@@ -1,7 +1,7 @@
 /datum/ai_behavior/xeno/zombie
 	identifier = IDENTIFIER_ZOMBIE
 	base_action = ESCORTING_ATOM
-	sidestep_prob = 10
+	//sidestep_prob = 10
 	minimum_health = 0
 
 /datum/ai_behavior/xeno/zombie/process()
@@ -14,7 +14,7 @@
 	if(world.time < mob_parent.next_move)
 		return
 	if(!attacked)
-		attacked = atom_to_walk_to
+		attacked = pathfinding_datum.atom_to_walk_to
 	if(get_dist(attacked, mob_parent) > 1)
 		return
 	mob_parent.face_atom(attacked)

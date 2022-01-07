@@ -1,7 +1,7 @@
 //Generic template for application to a xeno/ mob, contains specific obstacle dealing alongside targeting only humans, xenos of a different hive and sentry turrets
 
 /datum/ai_behavior/xeno
-	sidestep_prob = 25
+	//sidestep_prob = 25
 	identifier = IDENTIFIER_XENO
 	///List of abilities to consider doing every Process()
 	var/list/ability_list = list()
@@ -30,12 +30,12 @@
 		return ..()
 
 	for(var/datum/action/action in ability_list)
-		if(!action.ai_should_use(atom_to_walk_to))
+		if(!action.ai_should_use(pathfinding_datum.atom_to_walk_to))
 			continue
 		//xeno_action/activable is activated with a different proc for keybinded actions, so we gotta use the correct proc
 		if(istype(action, /datum/action/xeno_action/activable))
 			var/datum/action/xeno_action/activable/xeno_action = action
-			xeno_action.use_ability(atom_to_walk_to)
+			xeno_action.use_ability(pathfinding_datum.atom_to_walk_to)
 		else
 			action.action_activate()
 	return ..()
@@ -69,7 +69,7 @@
 				cleanup_current_action()
 				late_initialize()
 				return
-			if(next_target == atom_to_walk_to)//We didn't find a better target
+			if(next_target == pathfinding_datum.atom_to_walk_to)//We didn't find a better target
 				return
 			change_action(null, next_target)//We found a better target, change course!
 		if(MOVING_TO_SAFETY)
@@ -80,7 +80,7 @@
 				late_initialize()
 				RegisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/check_for_critical_health)
 				return
-			if(next_target == atom_to_walk_to)
+			if(next_target == pathfinding_datum.atom_to_walk_to)
 				return
 			change_action(null, next_target, INFINITY)
 		if(IDLE)
@@ -146,7 +146,7 @@
 	if(world.time < mob_parent.next_move)
 		return
 	if(!attacked)
-		attacked = atom_to_walk_to
+		attacked = pathfinding_datum.atom_to_walk_to
 	if(get_dist(attacked, mob_parent) > 1)
 		return
 	mob_parent.face_atom(attacked)
@@ -156,11 +156,11 @@
 	switch(action_type)
 		if(MOVING_TO_ATOM)
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/attack_target)
-			if(ishuman(atom_to_walk_to))
-				RegisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH, /datum/ai_behavior.proc/look_for_new_state)
+			if(ishuman(pathfinding_datum.atom_to_walk_to))
+				RegisterSignal(pathfinding_datum.atom_to_walk_to, COMSIG_MOB_DEATH, /datum/ai_behavior.proc/look_for_new_state)
 				return
-			if(ismachinery(atom_to_walk_to))
-				RegisterSignal(atom_to_walk_to, COMSIG_PARENT_PREQDELETED, /datum/ai_behavior.proc/look_for_new_state)
+			if(ismachinery(pathfinding_datum.atom_to_walk_to))
+				RegisterSignal(pathfinding_datum.atom_to_walk_to, COMSIG_PARENT_PREQDELETED, /datum/ai_behavior.proc/look_for_new_state)
 				return
 
 	return ..()
@@ -169,11 +169,11 @@
 	switch(action_type)
 		if(MOVING_TO_ATOM)
 			UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
-			if(ishuman(atom_to_walk_to))
-				UnregisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH)
+			if(ishuman(pathfinding_datum.atom_to_walk_to))
+				UnregisterSignal(pathfinding_datum.atom_to_walk_to, COMSIG_MOB_DEATH)
 				return
-			if(ismachinery(atom_to_walk_to))
-				UnregisterSignal(atom_to_walk_to, COMSIG_PARENT_PREQDELETED)
+			if(ismachinery(pathfinding_datum.atom_to_walk_to))
+				UnregisterSignal(pathfinding_datum.atom_to_walk_to, COMSIG_PARENT_PREQDELETED)
 				return
 
 	return ..()
@@ -224,4 +224,4 @@
 	UnregisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE)
 
 /datum/ai_behavior/xeno/ranged
-	distance_to_maintain = 5
+	//distance_to_maintain = 5

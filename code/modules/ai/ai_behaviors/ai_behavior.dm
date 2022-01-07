@@ -6,12 +6,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 */
 
 /datum/ai_behavior
-	///What atom is the ai moving to
-	var/atom/atom_to_walk_to
-	///How far should we stay away from atom_to_walk_to
-	var/distance_to_maintain = 1
-	///Prob chance of sidestepping (left or right) when distance maintained with target
-	var/sidestep_prob = 0
+	///The pathfinding datum
+	var/datum/pathfinding_datum/pathfinding_datum
 	///Current node to use for calculating action states: this is the mob's node
 	var/obj/effect/ai_node/current_node
 	///The node goal of this ai
@@ -44,6 +40,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		qdel(src)
 		return
 	mob_parent = parent_to_assign
+	pathfinding_datum = new(mob_parent, null, 1, 20)
 	//We always use the escorted atom as our reference point for looking for target. So if we don't have any escorted atom, we take ourselve as the reference
 	if(escorted_atom)
 		set_escorted_atom(null, escorted_atom)
@@ -59,7 +56,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	current_node = null
 	escorted_atom = null
 	mob_parent = null
-	atom_to_walk_to = null
 
 ///Initiate our base behavior
 /datum/ai_behavior/proc/late_initialize()
@@ -84,7 +80,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(current_action == ESCORTING_ATOM && next_action != ESCORTING_ATOM)
 		clean_escorted_atom()
 	unregister_action_signals(current_action)
-	SSpathfinder.remove_from_pathfinding(mob_parent)
+	pathfinding_datum.remove_from_pathfinding()
 
 ///Cleanup old state vars, start the movement towards our new target
 /datum/ai_behavior/proc/change_action(next_action, atom/next_target, special_distance_to_maintain)
@@ -108,14 +104,14 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(next_action)
 		current_action = next_action
 	if(current_action == FOLLOWING_PATH)
-		distance_to_maintain = 0
+		pathfinding_datum.distance_to_maintain = 0
 	else if(current_action == ESCORTING_ATOM)
-		distance_to_maintain = 1 //Don't stay too close
+		pathfinding_datum.distance_to_maintain = 1 //Don't stay too close
 	else
-		distance_to_maintain = isnull(special_distance_to_maintain) ? initial(distance_to_maintain) : special_distance_to_maintain
+		pathfinding_datum.distance_to_maintain = isnull(special_distance_to_maintain) ? initial(pathfinding_datum.distance_to_maintain) : special_distance_to_maintain
 	if(next_target)
-		atom_to_walk_to = next_target
-		SSpathfinder.add_to_pathfinding(mob_parent, atom_to_walk_to, distance_to_maintain, sidestep_prob)
+		pathfinding_datum.atom_to_walk_to = next_target
+		pathfinding_datum.schedule_move()
 	register_action_signals(current_action)
 	if(current_action == MOVING_TO_SAFETY)
 		mob_parent.a_intent = INTENT_HELP
