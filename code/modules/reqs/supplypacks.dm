@@ -454,6 +454,11 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/xray)
 	cost = 75
 
+/datum/supply_packs/weapons/rocketsledge
+	name = "Rocket Sledge"
+	contains = list(/obj/item/weapon/twohanded/rocketsledge)
+	cost = 50
+
 /*******************************************************************************
 EXPLOSIVES
 *******************************************************************************/
