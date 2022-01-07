@@ -988,6 +988,7 @@
 		return
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 		cycle(user, FALSE)
+		playsound(src, cocked_sound, 25, 1)
 		return
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)) //We want to open it.
 		DISABLE_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)
@@ -1308,6 +1309,8 @@
 		else
 			chamber_items -= object_to_chamber
 		new_in_chamber = object_to_chamber
+		if(in_chamber && !after_fire && user)
+			user.put_in_hands(in_chamber)
 	in_chamber = new_in_chamber
 	update_ammo_count()
 	update_icon()
