@@ -88,15 +88,12 @@ SUBSYSTEM_DEF(pathfinder)
 	///The target of the mob_parent
 	var/atom/atom_to_walk_to
 	///How far should we approach the target atom
-	var/distance_to_maintain
+	var/distance_to_maintain = 1
 	///The probabity of stutter stepping (not going straight)
-	var/stutter_step_prob
+	var/stutter_step_prob = 25
 
-/datum/pathfinding_datum/New(mob/mob_parent, atom/atom_to_walk_to, distance_to_maintain, stutter_step_prob)
+/datum/pathfinding_datum/New(mob/mob_parent)
 	src.mob_parent = mob_parent
-	src.atom_to_walk_to = atom_to_walk_to
-	src.distance_to_maintain = distance_to_maintain
-	src.stutter_step_prob = stutter_step_prob
 
 ///Move the mob_parent and schedule the next move
 /datum/pathfinding_datum/proc/process_move()
@@ -196,3 +193,9 @@ SUBSYSTEM_DEF(pathfinder)
 	
 #undef BUCKET_LEN
 #undef BUCKET_POS
+
+/datum/pathfinding_datum/ranged 
+	distance_to_maintain = 5
+
+/datum/pathfinding_datum/zombie
+	stutter_step_prob = 10

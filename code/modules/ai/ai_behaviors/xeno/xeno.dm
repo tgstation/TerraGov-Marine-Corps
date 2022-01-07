@@ -1,7 +1,6 @@
 //Generic template for application to a xeno/ mob, contains specific obstacle dealing alongside targeting only humans, xenos of a different hive and sentry turrets
 
 /datum/ai_behavior/xeno
-	//sidestep_prob = 25
 	identifier = IDENTIFIER_XENO
 	///List of abilities to consider doing every Process()
 	var/list/ability_list = list()
@@ -224,4 +223,4 @@
 	UnregisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE)
 
 /datum/ai_behavior/xeno/ranged
-	//distance_to_maintain = 5
+	pathfinding_datum_type = /datum/pathfinding_datum/ranged

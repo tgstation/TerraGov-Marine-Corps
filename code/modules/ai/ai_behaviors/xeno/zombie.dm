@@ -1,7 +1,7 @@
 /datum/ai_behavior/xeno/zombie
 	identifier = IDENTIFIER_ZOMBIE
 	base_action = ESCORTING_ATOM
-	//sidestep_prob = 10
+	pathfinding_datum_type = /datum/pathfinding_datum/zombie
 	minimum_health = 0
 
 /datum/ai_behavior/xeno/zombie/process()

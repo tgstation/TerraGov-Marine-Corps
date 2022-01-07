@@ -8,6 +8,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior
 	///The pathfinding datum
 	var/datum/pathfinding_datum/pathfinding_datum
+	///The type of initial pathfinding datum
+	var/pathfinding_datum_type = /datum/pathfinding_datum
 	///Current node to use for calculating action states: this is the mob's node
 	var/obj/effect/ai_node/current_node
 	///The node goal of this ai
@@ -40,7 +42,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		qdel(src)
 		return
 	mob_parent = parent_to_assign
-	pathfinding_datum = new(mob_parent, null, 1, 20)
+	pathfinding_datum = new pathfinding_datum_type(mob_parent)
 	//We always use the escorted atom as our reference point for looking for target. So if we don't have any escorted atom, we take ourselve as the reference
 	if(escorted_atom)
 		set_escorted_atom(null, escorted_atom)
