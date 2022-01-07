@@ -139,53 +139,6 @@ should be alright.
 		return
 	wield(user)//Trying to wield it
 
-
-
-
-///Reloads the sentry battery. This is used both in the gun, and called from /deployed/mounted/sentry
-/obj/item/weapon/gun/proc/reload_sentry_cell(obj/item/cell/cell, mob/user)
-	if(!istype(cell, sentry_battery_type))
-		to_chat(user, span_warning("[cell] wont fit there!"))
-		return
-	if(sentry_battery)
-		to_chat(user, span_warning("[src] already has a battery installed! Use Alt-Right-Click to remove it!"))
-		return
-	if(!cell.charge)
-		to_chat(user, span_warning("[cell] is out of charge!"))
-		return
-	playsound(src, 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg', 20)
-	sentry_battery = cell
-	user.temporarilyRemoveItemFromInventory(cell)
-	cell.forceMove(src)
-	to_chat(user, span_notice("You install the [cell] into the [src]."))
-	if(istype(attachments_by_slot[ATTACHMENT_SLOT_RAIL], /obj/item/attachable/buildasentry)) //This and the piece of code below that is the same are here because the build-a-sentry attachment does not keep track of the sentry battery when it is attached to the gun. Therefore this is so the overlay updates.
-		var/obj/item/attachable/buildasentry/sentry = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
-		sentry.update_icon_state()
-	update_icon()
-
-/obj/item/weapon/gun/AltRightClick(mob/user)
-	. = ..()
-	remove_sentry_cell(user)
-
-///Removes the sentry battery. This is used both in the gun, and called from /deployed/mounted/sentry.
-/obj/item/weapon/gun/proc/remove_sentry_cell(mob/user)
-	if(!user.Adjacent(src) || !ishuman(user) || !CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
-		return
-	var/mob/living/carbon/human/human = user
-	if(!sentry_battery)
-		to_chat(human, "<span class='warning'> There is no battery to remove from [src].</span>")
-		return
-	if(human.get_active_held_item() != src && human.get_inactive_held_item() != src && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		to_chat(human, "<span class='notice'>You have to hold [src] to take out its battery.</span>")
-		return
-	playsound(src, 'sound/weapons/flipblade.ogg', 20)
-	human.put_in_hands(sentry_battery)
-	sentry_battery = null
-	if(istype(attachments_by_slot[ATTACHMENT_SLOT_RAIL], /obj/item/attachable/buildasentry)) //This and the piece of code below that is the same are here because the build-a-sentry attachment does not keep track of the sentry battery when it is attached to the gun. Therefore this is so the overlay updates.
-		var/obj/item/attachable/buildasentry/sentry = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
-		sentry.update_icon_state()
-	update_icon()
-
 //tactical reloads
 /obj/item/weapon/gun/MouseDrop_T(atom/dropping, mob/living/carbon/human/user)
 	if(istype(dropping, /obj/item/ammo_magazine))

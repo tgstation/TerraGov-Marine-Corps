@@ -1404,50 +1404,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	slot = ATTACHMENT_SLOT_RAIL
 	pixel_shift_x = 10
 	pixel_shift_y = 18
-	///Battery of the deployed sentry. This is stored here only when the this is not attached to a gun.
-	var/obj/item/cell/battery
 	///Deploy time for the build-a-sentry
 	var/deploy_time = 2 SECONDS
 	///Undeploy tim for the build-a-sentry
 	var/undeploy_time = 2 SECONDS
-
-/obj/item/attachable/buildasentry/Initialize()
-	. = ..()
-	battery = new(src)
-
-/obj/item/attachable/buildasentry/update_icon_state()
-	. = ..()
-	var/has_battery
-	if(master_gun)
-		has_battery = master_gun.sentry_battery
-	else
-		has_battery = battery
-	icon_state = has_battery ? "build_a_sentry_attachment" : "build_a_sentry_attachment_e"
-
-/obj/item/attachable/buildasentry/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(!istype(I, /obj/item/cell/))
-		return
-	if(battery)
-		to_chat(user, span_warning("[src] already has a [battery] installed!"))
-		return
-	to_chat(user, span_notice("You install [I] into [src]."))
-	battery = I
-	battery.forceMove(src)
-	user.temporarilyRemoveItemFromInventory(I)
-	playsound(src, 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg', 20)
-	update_icon()
-
-/obj/item/attachable/buildasentry/attack_hand(mob/living/user)
-	if(user.get_inactive_held_item() != src)
-		return ..()
-	if(!battery)
-		to_chat(user, span_warning("There is no battery to remove from [src]."))
-		return
-	user.put_in_hands(battery)
-	battery = null
-	playsound(src, 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg', 20)
-	update_icon()
 
 /obj/item/attachable/buildasentry/can_attach(obj/item/attaching_to, mob/attacher)
 	if(!isgun(attaching_to))
@@ -1462,9 +1422,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	. = ..()
 	ENABLE_BITFIELD(master_gun.flags_gun_features, GUN_IS_SENTRY)
 	ENABLE_BITFIELD(master_gun.flags_item, IS_DEPLOYABLE)
-	master_gun.sentry_battery_type = /obj/item/cell/
-	master_gun.sentry_battery = battery
-	battery?.forceMove(master_gun)
 	master_gun.ignored_terrains = list(
 		/obj/machinery/deployable/mounted,
 		/obj/machinery/miner,
@@ -1490,9 +1447,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	DISABLE_BITFIELD(detaching_gun.flags_item, IS_DEPLOYABLE)
 	detaching_gun.ignored_terrains = null
 	detaching_gun.turret_flags &= ~(TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS)
-	battery = detaching_gun.sentry_battery
-	battery?.forceMove(src)
-	detaching_gun.sentry_battery = null
 	detaching_gun.RemoveElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, deploy_time, undeploy_time)
 
 

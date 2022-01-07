@@ -307,12 +307,6 @@
 	var/knockdown_threshold = 100
 	///Range of deployed turret
 	var/turret_range = 7
-	///Battery used for radial mode on deployed turrets.
-	var/obj/item/cell/sentry_battery
-	///Battery type for sentries
-	var/sentry_battery_type = /obj/item/cell
-	///Battery drain per shot for radial sentry mode
-	var/sentry_battery_drain = 20
 	///IFF signal for sentries. If it is set here it will be this signal forever. If null the IFF signal will be dependant on the deployer.
 	var/sentry_iff_signal = NONE
 
@@ -343,7 +337,6 @@
 	if(flags_item & IS_DEPLOYABLE)
 		if(flags_gun_features & GUN_IS_SENTRY)
 			AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry, deploy_time, undeploy_time)
-			sentry_battery = new sentry_battery_type(src)
 		else
 			AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted, deploy_time, undeploy_time)
 
@@ -360,7 +353,6 @@
 /obj/item/weapon/gun/Destroy()
 	active_attachable = null
 	QDEL_NULL(muzzle_flash)
-	QDEL_NULL(sentry_battery)
 	QDEL_NULL(chamber_items)
 	QDEL_NULL(in_chamber)
 	GLOB.nightfall_toggleable_lights -= src
@@ -503,14 +495,10 @@
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		if(CHECK_BITFIELD(flags_item, IS_DEPLOYABLE))
 			to_chat(user, span_notice("Use Ctrl-Click to deploy."))
-		if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
-			to_chat(user, span_notice("Use Alt-Right-Click to remove the sentries battery."))
 		return
 	to_chat(user, span_notice("Click-Drag to yourself to undeploy."))
 	to_chat(user, span_notice("Alt-Click to unload."))
 	to_chat(user, span_notice("Right-Click to perform the guns unique action."))
-	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
-		to_chat(user, span_notice("Ctrl-Click to remove the sentries battery."))
 
 ///Gives the user a description of the ammunition remaining, as well as other information pertaining to reloading/ammo.
 /obj/item/weapon/gun/proc/examine_ammo_count(mob/user)
@@ -741,13 +729,6 @@
 		if(inactive_gun.rounds && !(inactive_gun.flags_gun_features & GUN_WIELDED_FIRING_ONLY))
 			inactive_gun.last_fired = max(world.time - fire_delay * (1 - akimbo_additional_delay), inactive_gun.last_fired)
 			gun_user.swap_hand()
-	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && CHECK_BITFIELD(flags_item, IS_DEPLOYED) && CHECK_BITFIELD(turret_flags, TURRET_RADIAL) && !gun_user)
-		sentry_battery.charge -= sentry_battery_drain
-		if(sentry_battery.charge < 0)
-			DISABLE_BITFIELD(turret_flags, TURRET_RADIAL)
-			sentry_battery.forceMove(get_turf(src))
-			sentry_battery.charge = 0
-			sentry_battery = null
 	return TRUE
 
 ///Actually fires the gun, sets up the projectile and fires it.
@@ -1058,10 +1039,6 @@
 /obj/item/weapon/gun/proc/reload(obj/item/new_mag, mob/living/user, force = FALSE)
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
-	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
-		if((!CHECK_BITFIELD(flags_gun_features, AMMO_RECIEVER_MAGAZINES) && istype(new_mag, sentry_battery_type)) || (CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && ((sentry_battery_type in allowed_ammo_types) && !sentry_battery && length(chamber_items) <= current_chamber_position && chamber_items[current_chamber_position]) || (!(sentry_battery_type in allowed_ammo_types) && istype(new_mag, sentry_battery_type))))
-			reload_sentry_cell(new_mag, user)
-			return
 	if(!(new_mag.type in allowed_ammo_types))
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
 			var/obj/item/ammo_magazine/mag = new_mag
@@ -1091,11 +1068,6 @@
 			return FALSE
 
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
-		if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && ( \
-				((sentry_battery_type in allowed_ammo_types) && !sentry_battery && length(chamber_items) <= current_chamber_position && chamber_items[current_chamber_position]) || \
-				(!(sentry_battery_type in allowed_ammo_types) && istype(new_mag, sentry_battery_type))))
-			reload_sentry_cell(new_mag, user)
-			return FALSE
 		if(!get_current_rounds(new_mag) && !force)
 			to_chat(user, span_notice("[new_mag] is empty!"))
 			return FALSE
