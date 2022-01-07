@@ -45,7 +45,7 @@
 		iff_signal = id?.iff_signal
 
 	knockdown_threshold = gun.knockdown_threshold
-	range = !CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL) ? gun.turret_range : gun.turret_range - 2
+	range = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL) ?  gun.turret_range - 2 : gun.turret_range
 	ignored_terrains = gun.ignored_terrains
 
 	radio = new(src)
