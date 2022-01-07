@@ -152,7 +152,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /datum/action/xeno_action/activable/acid_dash/proc/dash_complete()
 	SIGNAL_HANDLER
 	if(recast_available)
-		addtimer(CALLBACK(src, .proc/dash_complete), 2 SECONDS) //Delayed recursive call, this time you don't a recast so it will go on cooldown in 2 SECONDS.
+		addtimer(CALLBACK(src, .proc/dash_complete), 2 SECONDS) //Delayed recursive call, this time you won't gain a recast so it will go on cooldown in 2 SECONDS.
 		recast = TRUE
 	else
 		recast = FALSE
@@ -164,34 +164,32 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 ///Called whenever the owner hits a mob during the dash
 /datum/action/xeno_action/activable/acid_dash/proc/mob_hit(datum/source, mob/M)
 	SIGNAL_HANDLER
-	if(recast) //That's the recast, we don't stop for mobs
+	if(recast || !ishuman(M)) //That's the recast, we don't stop for mobs
 		return COMPONENT_KEEP_THROWING
-	if(ishuman(M)) //It's the first cast, we swap with the first human in our path
-		var/mob/living/carbon/human/target = M
-		swap(target) //Figure out what's wrong with sleep
-		target.ParalyzeNoChain(0.5 SECONDS) //Extremely brief, we don't want them to take 289732 ticks of acid
 
-		to_chat(target, span_highdanger("The [owner] tackles us, sending us behind them!"))
-		owner.visible_message(span_xenodanger("\The [owner] tackles [target], swapping location with them!"), \
-			span_xenodanger("We push [target] in our acid trail!"), visible_message_flags = COMBAT_MESSAGE)
+	var/mob/living/carbon/human/target = M
+	swap(target)
+	target.ParalyzeNoChain(0.5 SECONDS) //Extremely brief, we don't want them to take 289732 ticks of acid
 
-		recast_available = TRUE
-		return
-	return COMPONENT_KEEP_THROWING
+	to_chat(target, span_highdanger("The [owner] tackles us, sending us behind them!"))
+	owner.visible_message(span_xenodanger("\The [owner] tackles [target], swapping location with them!"), \
+		span_xenodanger("We push [target] in our acid trail!"), visible_message_flags = COMBAT_MESSAGE)
+
+	recast_available = TRUE
 
 ///Swaps the owner with the target
 /datum/action/xeno_action/activable/acid_dash/proc/swap(mob/M)
-	owner.Move(get_turf(M))
-	M.Move(last_turf)
+	owner.forceMove(get_turf(M))
+	M.forceMove(last_turf)
 
 ///Called whenever the owner hits an object during the dash
 /datum/action/xeno_action/activable/acid_dash/proc/obj_hit(datum/source, obj/target, speed)
 	SIGNAL_HANDLER
-	if(istype(target, /obj/structure/table) || istype(target, /obj/structure/barricade) || istype(target, /obj/structure/razorwire)) //Some flavour so it doesn't look completely ridiculous
-		var/obj/structure/S = target
-		owner.visible_message(span_danger("[owner] effortlessly jumps over the [S]!"), null, null, 5)
-	else
-		target.hitby(owner, speed) //This resets throwing.
+	if(!(istype(target, /obj/structure/table) || istype(target, /obj/structure/barricade) || istype(target, /obj/structure/razorwire)))
+		target.hitby(owner, speed)
+		return
+
+	owner.visible_message(span_danger("[owner] effortlessly jumps over the [target]!"), null, null, 5) //Flavour only
 
 ///Drops an acid puddle on the current owner's tile, will do 0 damage if the owner has no acid_spray_damage
 /datum/action/xeno_action/activable/acid_dash/proc/acid_steps(atom/A, atom/OldLoc, Dir, Forced)

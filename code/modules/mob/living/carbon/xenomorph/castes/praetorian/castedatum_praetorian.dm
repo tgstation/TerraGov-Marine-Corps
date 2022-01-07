@@ -164,9 +164,9 @@
 
 /datum/xeno_caste/praetorian/primordial
 	upgrade_name = "Primordial"
-	caste_desc = "WIP"
+	caste_desc = "An aberrant creature extremely proficient with acid, keep your distance if you don't wish to be burned."
 	upgrade = XENO_UPGRADE_FOUR
-	primordial_message = "WIP"
+	primordial_message = "The strongest of acids flows through our veins, let's reduce them to dust."
 
 	// *** Melee Attacks *** //
 	melee_damage = 23
