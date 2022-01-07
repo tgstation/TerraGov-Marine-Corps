@@ -13,10 +13,6 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship,
 /area/bigredv2/outside/cargo)
-"af" = (
-/obj/structure/catwalk,
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge,
-/area/bigredv2/caves/south)
 "ag" = (
 /obj/structure/prop/mainship/hangar_stencil,
 /turf/open/floor/mainship/floor,
@@ -193,14 +189,15 @@
 	},
 /turf/open/floor/mainship,
 /area/bigredv2/outside/cargo)
-"bc" = (
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
-	dir = 1
-	},
-/area/bigredv2/caves/south)
 "bd" = (
 /turf/closed/wall/mainship,
 /area/bigredv2/outside/cargo)
+"bf" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
+/area/bigredv2/caves/south)
 "bg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -208,6 +205,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
+"bh" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+	dir = 4
+	},
+/area/bigredv2/caves/south)
 "bi" = (
 /obj/structure/caspart{
 	icon_state = "57"
@@ -231,16 +237,20 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/outside/c)
-"bm" = (
-/obj/structure/barricade/guardrail,
-/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
-/area/bigredv2/caves/south)
 "bn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/c)
+"bo" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
+	dir = 8
+	},
+/area/bigredv2/caves/south)
 "bp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -354,6 +364,15 @@
 	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/dorms)
+"bQ" = (
+/obj/effect/particle_effect/smoke/phosphorus{
+	dir = 1;
+	lifetime = 99999
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
+	dir = 5
+	},
+/area/bigredv2/caves/south)
 "bR" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -453,13 +472,6 @@
 	icon_state = "rasputin14"
 	},
 /area/bigredv2/outside/c)
-"cr" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999
-	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
-/area/bigredv2/caves/south)
 "cs" = (
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
@@ -538,6 +550,13 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
+"cN" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
+/area/bigredv2/caves/south)
 "cO" = (
 /obj/machinery/power/fusion_engine/random,
 /obj/effect/decal/warning_stripes/thin,
@@ -764,6 +783,13 @@
 	dir = 8
 	},
 /area/space)
+"dL" = (
+/obj/effect/particle_effect/smoke/phosphorus{
+	dir = 1;
+	lifetime = 99999
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge,
+/area/bigredv2/caves/south)
 "dM" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 10
@@ -787,12 +813,6 @@
 /obj/structure/curtain,
 /turf/open/floor/mainship/sterile,
 /area/bigredv2/outside/medical)
-"dQ" = (
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic,
-/area/bigredv2/caves/south)
 "dR" = (
 /obj/structure/table/woodentable,
 /obj/machinery/faxmachine,
@@ -889,6 +909,9 @@
 /obj/effect/landmark/corpsespawner,
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
+"eo" = (
+/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
+/area/bigredv2/caves/south)
 "eq" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 8
@@ -1014,6 +1037,15 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"eP" = (
+/obj/effect/particle_effect/smoke/phosphorus{
+	dir = 1;
+	lifetime = 99999
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
+	dir = 4
+	},
+/area/bigredv2/caves/south)
 "eQ" = (
 /obj/structure/closet/crate/trashcart,
 /turf/open/floor/mainship,
@@ -1182,6 +1214,11 @@
 	},
 /turf/closed/gm/dense,
 /area/bigredv2/outside/c)
+"fw" = (
+/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
+	dir = 10
+	},
+/area/bigredv2/caves/south)
 "fx" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/lighter,
@@ -1208,6 +1245,17 @@
 	dir = 9
 	},
 /area/space)
+"fB" = (
+/obj/structure/catwalk,
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+	dir = 4
+	},
+/area/bigredv2/caves/south)
+"fC" = (
+/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
+	dir = 6
+	},
+/area/bigredv2/caves/south)
 "fD" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -1264,6 +1312,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/drop1/lz1)
+"fN" = (
+/obj/structure/catwalk,
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+	dir = 1
+	},
+/area/bigredv2/caves/south)
 "fO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/decal/cleanable/blood/gibs,
@@ -1619,13 +1673,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
-"hr" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
-/obj/structure/catwalk,
-/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
-/area/bigredv2/caves/south)
 "hs" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/landmark/corpsespawner/doctor,
@@ -1734,11 +1781,6 @@
 /obj/structure/ship_ammo/minirocket/illumination,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/storage)
-"hU" = (
-/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
-	dir = 10
-	},
-/area/bigredv2/caves/south)
 "hX" = (
 /obj/structure/largecrate/random/case/double,
 /obj/structure/cable,
@@ -1889,6 +1931,10 @@
 	},
 /turf/open/floor/carpet,
 /area/arrival/start)
+"iG" = (
+/obj/structure/catwalk,
+/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
+/area/bigredv2/caves/south)
 "iI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/carpet{
@@ -2079,11 +2125,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/cargo)
-"jz" = (
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 4
-	},
-/area/bigredv2/caves/south)
 "jA" = (
 /turf/closed/shuttle/dropship2/transparent{
 	icon_state = "28"
@@ -2192,6 +2233,11 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
+"kd" = (
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+	dir = 8
+	},
+/area/bigredv2/caves/south)
 "kf" = (
 /obj/machinery/flasher/cell1,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -2276,6 +2322,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/medical)
+"ku" = (
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge,
+/area/bigredv2/caves/south)
 "kv" = (
 /turf/closed/shuttle/cas/leftwingmid,
 /area/arrival/start)
@@ -2305,6 +2354,17 @@
 "kA" = (
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/c)
+"kB" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+	dir = 4
+	},
+/area/bigredv2/caves/south)
 "kC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/purple/side,
@@ -2458,6 +2518,14 @@
 /obj/machinery/computer/communications,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/lambda_lab)
+"ll" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
+	dir = 4
+	},
+/area/bigredv2/caves/south)
 "lm" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
@@ -2477,13 +2545,6 @@
 	icon_state = "carpetside"
 	},
 /area/arrival/start)
-"lq" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/structure/catwalk,
-/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
-/area/bigredv2/caves/south)
 "lr" = (
 /obj/machinery/power/apc{
 	dir = 4
@@ -2705,13 +2766,11 @@
 /turf/open/floor/mainship/cargo/arrow,
 /area/shuttle/drop2/lz2)
 "mv" = (
-/obj/structure/barricade/guardrail,
-/obj/structure/barricade/guardrail{
-	dir = 4
+/obj/effect/particle_effect/smoke/phosphorus{
+	dir = 1;
+	lifetime = 99999
 	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 4
-	},
+/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
 /area/bigredv2/caves/south)
 "mw" = (
 /turf/open/floor/mainship_hull/dir{
@@ -2799,9 +2858,16 @@
 	icon_state = "52"
 	},
 /area/bigredv2/outside/c)
-"mV" = (
-/obj/structure/barricade/guardrail,
-/turf/closed/wall/mainship/outer,
+"mU" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/south)
+"mX" = (
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+	dir = 5
+	},
 /area/bigredv2/caves/south)
 "mY" = (
 /obj/structure/dropship_piece/two/corner/rearright,
@@ -2891,12 +2957,6 @@
 /obj/structure/window/framed/mainship/canterbury,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/library)
-"nn" = (
-/obj/structure/catwalk,
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 5
-	},
-/area/bigredv2/caves/south)
 "no" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -2968,12 +3028,6 @@
 "nF" = (
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge,
 /area/bigredv2/caves/west)
-"nG" = (
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south)
 "nI" = (
 /obj/structure/cable,
 /turf/closed/mineral,
@@ -3076,9 +3130,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/lambda_lab)
-"ob" = (
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
-/area/bigredv2/caves/south)
 "oc" = (
 /obj/machinery/light{
 	dir = 4
@@ -3186,14 +3237,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
-"oE" = (
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 6
-	},
-/area/bigredv2/caves/south)
 "oG" = (
 /turf/closed/shuttle/dropship2{
 	icon_state = "30"
@@ -3728,6 +3771,14 @@
 /obj/effect/landmark/corpsespawner/miner/rig,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
+"rk" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+	dir = 4
+	},
+/area/bigredv2/caves/south)
 "rl" = (
 /obj/machinery/light{
 	dir = 8
@@ -3880,6 +3931,11 @@
 	icon_state = "carpetside"
 	},
 /area/arrival/start)
+"rV" = (
+/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
+	dir = 1
+	},
+/area/bigredv2/caves/south)
 "rW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -4244,15 +4300,8 @@
 /turf/open/floor/mainship/tcomms,
 /area/bigredv2/outside/c)
 "tt" = (
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 5
-	},
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/bigredv2/caves/south)
 "tv" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -4325,6 +4374,15 @@
 "tJ" = (
 /turf/open/floor/plating,
 /area/bigredv2/caves/southwest)
+"tK" = (
+/obj/effect/particle_effect/smoke/phosphorus{
+	dir = 1;
+	lifetime = 99999
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
+	dir = 8
+	},
+/area/bigredv2/caves/south)
 "tL" = (
 /obj/structure/caspart{
 	icon_state = "67"
@@ -4753,6 +4811,13 @@
 	dir = 8
 	},
 /area/bigredv2/outside/storage)
+"vG" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
+/area/bigredv2/caves/south)
 "vH" = (
 /obj/machinery/door/airlock/mainship/secure/free_access{
 	dir = 1;
@@ -4802,10 +4867,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/arrival/start)
-"vP" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
 "vQ" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -4891,6 +4952,17 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/caves/lambda_lab)
+"wo" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+	dir = 5
+	},
+/area/bigredv2/caves/south)
 "wp" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -4944,9 +5016,6 @@
 /obj/machinery/door/poddoor/two_tile_hor,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
-"wE" = (
-/turf/closed/wall/mainship/outer,
-/area/bigredv2/caves/south)
 "wF" = (
 /obj/structure/closet/cabinet,
 /turf/open/floor/wood,
@@ -4963,11 +5032,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/arrival/start)
-"wJ" = (
-/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
-	dir = 1
-	},
-/area/bigredv2/caves/south)
 "wK" = (
 /obj/structure/catwalk,
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic,
@@ -4985,15 +5049,6 @@
 /obj/machinery/door/airlock/dropship_hatch/right/two,
 /turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/c)
-"wN" = (
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/obj/structure/barricade/guardrail,
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 8
-	},
-/area/bigredv2/caves/south)
 "wO" = (
 /obj/structure/caspart/minigun,
 /turf/open/floor/mainship/mono,
@@ -5103,23 +5158,12 @@
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
-"xs" = (
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
-/area/bigredv2/caves/south)
 "xt" = (
 /obj/structure/caspart{
 	icon_state = "37"
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
-"xv" = (
-/obj/structure/disposalpipe/trunk,
-/obj/structure/catwalk,
-/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
-/area/bigredv2/caves/south)
 "xw" = (
 /obj/structure/cargo_container/green,
 /obj/structure/cable,
@@ -5247,11 +5291,6 @@
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
-"xU" = (
-/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
-	dir = 6
-	},
-/area/bigredv2/caves/south)
 "xV" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/shuttle/drop1/lz1)
@@ -5372,15 +5411,6 @@
 /obj/machinery/door/airlock/multi_tile/secure,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/c)
-"yr" = (
-/obj/structure/barricade/guardrail,
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 8
-	},
-/area/bigredv2/caves/south)
 "ys" = (
 /obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -5411,6 +5441,11 @@
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/mainship/mono,
 /area/arrival/start)
+"yy" = (
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
+	dir = 8
+	},
+/area/bigredv2/caves/south)
 "yz" = (
 /obj/structure/closet/crate/internals,
 /turf/open/floor/mainship,
@@ -5571,12 +5606,6 @@
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
-"zk" = (
-/obj/structure/catwalk,
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 4
-	},
-/area/bigredv2/caves/south)
 "zl" = (
 /turf/closed/shuttle/dropship2/transparent{
 	icon_state = "23"
@@ -5653,14 +5682,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/drop1/lz1)
-"zK" = (
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 10
-	},
-/area/bigredv2/caves/south)
 "zM" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2
@@ -5915,6 +5936,14 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
+"AP" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+	dir = 5
+	},
+/area/bigredv2/caves/south)
 "AQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -5975,12 +6004,6 @@
 "Bf" = (
 /turf/open/floor/mainship/floor,
 /area/bigredv2/outside/cargo)
-"Bg" = (
-/obj/structure/catwalk,
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 10
-	},
-/area/bigredv2/caves/south)
 "Bi" = (
 /obj/structure/cargo_container/ch_red{
 	dir = 4
@@ -6072,13 +6095,6 @@
 /obj/structure/closet/crate/trashcart,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/caves/lambda_lab)
-"BE" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge,
-/area/bigredv2/caves/south)
 "BF" = (
 /turf/open/floor/mainship/terragov{
 	dir = 8
@@ -6280,6 +6296,15 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
 /area/bigredv2/caves/north)
+"CD" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+	dir = 8
+	},
+/area/bigredv2/caves/south)
 "CE" = (
 /turf/open/shuttle/dropship/five,
 /area/bigredv2/outside/c)
@@ -6401,6 +6426,10 @@
 "Dh" = (
 /turf/closed/shuttle/cas/rightwingclose,
 /area/bigredv2/outside/c)
+"Di" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southwest)
 "Dj" = (
 /turf/open/floor/plating,
 /area/bigredv2/caves/west)
@@ -6524,15 +6553,14 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/cargo)
-"DL" = (
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
+"DM" = (
+/obj/structure/barricade/guardrail,
+/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
+/area/bigredv2/caves/south)
+"DN" = (
+/obj/structure/catwalk,
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 4
+	dir = 10
 	},
 /area/bigredv2/caves/south)
 "DO" = (
@@ -6561,6 +6589,10 @@
 	},
 /turf/open/space/basic,
 /area/bigredv2/outside/c)
+"DU" = (
+/obj/structure/catwalk,
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge,
+/area/bigredv2/caves/south)
 "DV" = (
 /obj/structure/caspart/internalengine/left,
 /turf/open/floor/mainship/mono,
@@ -6716,24 +6748,6 @@
 	icon_state = "carpetside"
 	},
 /area/arrival/start)
-"EF" = (
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
-/area/bigredv2/caves/south)
-"EG" = (
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 4
-	},
-/area/bigredv2/caves/south)
 "EH" = (
 /turf/closed/wall/mainship/outer,
 /area/bigredv2/outside/engineering)
@@ -6794,6 +6808,11 @@
 	icon_state = "64"
 	},
 /area/arrival/start)
+"EV" = (
+/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
+	dir = 8
+	},
+/area/bigredv2/caves/south)
 "EW" = (
 /obj/structure/caspart/internalengine/right,
 /turf/open/floor/mainship/mono,
@@ -6804,14 +6823,6 @@
 "EY" = (
 /turf/open/ground/coast,
 /area/bigredv2/outside/c)
-"EZ" = (
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 5
-	},
-/area/bigredv2/caves/south)
 "Fb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/carpet{
@@ -6917,6 +6928,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/bigredv2/outside/cargo)
+"FA" = (
+/obj/structure/barricade/guardrail,
+/turf/closed/wall/mainship/outer,
+/area/bigredv2/caves/south)
 "FB" = (
 /turf/closed/shuttle/cas{
 	icon_state = "41"
@@ -6965,15 +6980,6 @@
 	},
 /turf/open/floor/mainship/cargo/arrow,
 /area/shuttle/drop2/lz2)
-"FL" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
-	dir = 9
-	},
-/area/bigredv2/caves/south)
 "FM" = (
 /obj/structure/curtain,
 /turf/open/floor/mainship/sterile/side{
@@ -7177,6 +7183,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
+"GI" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
+	dir = 4
+	},
+/area/bigredv2/caves/south)
 "GJ" = (
 /obj/structure/lattice,
 /turf/closed/wall/indestructible/mineral,
@@ -7187,6 +7202,12 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/c)
+"GL" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic,
+/area/bigredv2/caves/south)
 "GM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -7198,6 +7219,9 @@
 /obj/vehicle/train/cargo/engine,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/cargo)
+"GO" = (
+/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic,
+/area/bigredv2/caves/south)
 "GR" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -7450,12 +7474,23 @@
 /obj/structure/dropship_piece/two/corner/rearleft,
 /turf/open/shuttle/dropship/three,
 /area/space)
+"HX" = (
+/obj/structure/disposalpipe/trunk,
+/obj/structure/catwalk,
+/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
+/area/bigredv2/caves/south)
 "HZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/c)
+"Ib" = (
+/obj/structure/catwalk,
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+	dir = 5
+	},
+/area/bigredv2/caves/south)
 "Ic" = (
 /turf/closed/shuttle/dropship2/transparent{
 	icon_state = "112"
@@ -7542,29 +7577,10 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
-"Iz" = (
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 8
-	},
-/area/bigredv2/caves/south)
 "IA" = (
 /obj/structure/dropship_piece/two/corner/rearright,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/c)
-"IB" = (
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
-	dir = 4
-	},
-/area/bigredv2/caves/south)
 "IC" = (
 /obj/machinery/landinglight/ds1/delayone{
 	dir = 1
@@ -7575,11 +7591,12 @@
 /obj/item/electropack,
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
-"IG" = (
-/obj/structure/catwalk,
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
-	dir = 1
+"IF" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 8
 	},
+/obj/structure/catwalk,
+/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
 /area/bigredv2/caves/south)
 "II" = (
 /obj/machinery/door/window/secure/req{
@@ -7655,6 +7672,14 @@
 /obj/machinery/door/poddoor/mainship,
 /turf/open/space/basic,
 /area/shuttle/drop2/lz2)
+"IW" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+	dir = 10
+	},
+/area/bigredv2/caves/south)
 "IX" = (
 /obj/machinery/door/airlock/multi_tile/research,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -7695,6 +7720,10 @@
 "Jf" = (
 /obj/structure/dropship_piece/two/engine/leftbottom,
 /turf/open/floor/plating/mainship,
+/area/bigredv2/outside/c)
+"Jg" = (
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
 "Ji" = (
 /turf/open/shuttle/dropship/three,
@@ -7967,6 +7996,11 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/medical)
+"Ks" = (
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+	dir = 4
+	},
+/area/bigredv2/caves/south)
 "Ku" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8075,6 +8109,14 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/cargo)
+"KZ" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+	dir = 8
+	},
+/area/bigredv2/caves/south)
 "Lb" = (
 /obj/structure/ship_ammo/rocket/widowmaker,
 /turf/open/floor/mainship/mono,
@@ -8217,6 +8259,12 @@
 	},
 /turf/open/floor/mainship,
 /area/bigredv2/outside/cargo)
+"LF" = (
+/obj/structure/catwalk,
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
+	dir = 1
+	},
+/area/bigredv2/caves/south)
 "LG" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
@@ -8243,9 +8291,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/drop1/lz1)
-"LM" = (
-/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic,
-/area/bigredv2/caves/south)
 "LN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/bed/chair/comfy,
@@ -8346,15 +8391,6 @@
 	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/dorms)
-"Ml" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
-	dir = 5
-	},
-/area/bigredv2/caves/south)
 "Mm" = (
 /obj/machinery/door/poddoor/shutters/mainship/cell{
 	dir = 1
@@ -8377,6 +8413,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
+"Ms" = (
+/obj/structure/barricade/guardrail,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/south)
 "Mt" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
@@ -8400,13 +8440,6 @@
 	icon_state = "carpetside"
 	},
 /area/arrival/start)
-"Mx" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
-/area/bigredv2/caves/south)
 "My" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8447,6 +8480,11 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"MG" = (
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+	dir = 9
+	},
+/area/bigredv2/caves/south)
 "MH" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -8555,12 +8593,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
-"Nc" = (
-/obj/structure/catwalk,
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 1
-	},
-/area/bigredv2/caves/south)
 "Nd" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -8603,11 +8635,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/library)
-"Nk" = (
-/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
-	dir = 4
-	},
-/area/bigredv2/caves/south)
 "Nm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/bed/chair/comfy,
@@ -8652,9 +8679,6 @@
 /obj/structure/dropship_piece/three/corner/middleleft,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/drop1/lz1)
-"Nw" = (
-/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
-/area/bigredv2/caves/south)
 "Nx" = (
 /obj/machinery/light{
 	dir = 4
@@ -8691,6 +8715,9 @@
 /mob/living/simple_animal/hostile/mimic/crate,
 /turf/open/floor/prison/darkpurple/full,
 /area/bigredv2/caves/lambda_lab)
+"NJ" = (
+/turf/closed/wall/mainship/outer,
+/area/bigredv2/caves/south)
 "NL" = (
 /obj/machinery/light{
 	dir = 4
@@ -8720,13 +8747,6 @@
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/medical)
-"NP" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/structure/catwalk,
-/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
-/area/bigredv2/caves/south)
 "NR" = (
 /obj/machinery/floodlight/colony,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -8788,6 +8808,17 @@
 /obj/structure/cable,
 /turf/closed/wall/mainship,
 /area/bigredv2/outside/c)
+"Oi" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+	dir = 8
+	},
+/area/bigredv2/caves/south)
 "Oj" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -8825,20 +8856,17 @@
 	},
 /turf/open/floor/mainship/sterile,
 /area/bigredv2/outside/medical)
+"OA" = (
+/obj/structure/catwalk,
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+	dir = 8
+	},
+/area/bigredv2/caves/south)
 "OC" = (
 /obj/structure/lattice,
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space)
-"OE" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
-	dir = 8
-	},
-/area/bigredv2/caves/south)
 "OF" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -8847,9 +8875,12 @@
 	dir = 1
 	},
 /area/shuttle/drop1/lz1)
-"OH" = (
+"OG" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 8
+	dir = 9
 	},
 /area/bigredv2/caves/south)
 "OJ" = (
@@ -8889,9 +8920,6 @@
 "OQ" = (
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/library)
-"OR" = (
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge,
-/area/bigredv2/caves/south)
 "OS" = (
 /obj/structure/bed/chair/wood,
 /obj/machinery/light{
@@ -9200,6 +9228,11 @@
 /obj/structure/dropship_piece/one/corner/rearright,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/c)
+"Qm" = (
+/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
+	dir = 4
+	},
+/area/bigredv2/caves/south)
 "Qn" = (
 /turf/closed/wall/wood,
 /area/bigredv2/outside/library)
@@ -9216,6 +9249,13 @@
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/drop2/lz2)
+"Qr" = (
+/obj/effect/particle_effect/smoke/phosphorus{
+	dir = 1;
+	lifetime = 99999
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
+/area/bigredv2/caves/south)
 "Qt" = (
 /obj/structure/rack,
 /obj/structure/largecrate/random/case/small,
@@ -9259,14 +9299,6 @@
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/mainship/mono,
 /area/arrival/start)
-"QB" = (
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 9
-	},
-/area/bigredv2/caves/south)
 "QC" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/mainship/mono,
@@ -9302,10 +9334,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/outside/medical)
-"QQ" = (
-/obj/structure/barricade/guardrail,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south)
 "QR" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -9483,6 +9511,16 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/storage)
+"RC" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/obj/effect/particle_effect/smoke/phosphorus{
+	dir = 1;
+	lifetime = 99999
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
+/area/bigredv2/caves/south)
 "RD" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating,
@@ -9495,11 +9533,6 @@
 "RG" = (
 /turf/closed/wall/mainship,
 /area/shuttle/drop1/lz1)
-"RH" = (
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 5
-	},
-/area/bigredv2/caves/south)
 "RI" = (
 /turf/closed/shuttle/dropship3{
 	icon_state = "14"
@@ -9746,11 +9779,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
-"SX" = (
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 9
-	},
-/area/bigredv2/caves/south)
 "Ta" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/attach_point/weapon/dropship3{
@@ -9826,15 +9854,6 @@
 "To" = (
 /turf/closed/mineral,
 /area/arrival/start)
-"Tp" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
-	dir = 4
-	},
-/area/bigredv2/caves/south)
 "Ts" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2;
@@ -9843,6 +9862,15 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
+"Tt" = (
+/obj/effect/particle_effect/smoke/phosphorus{
+	dir = 1;
+	lifetime = 99999
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
+	dir = 9
+	},
+/area/bigredv2/caves/south)
 "Tu" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -9922,10 +9950,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/arrival/start)
-"TO" = (
-/obj/structure/catwalk,
-/turf/open/floor/plating,
-/area/bigredv2/caves/south)
 "TP" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -9956,11 +9980,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/bigredv2/outside/cargo)
-"TX" = (
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
-	dir = 8
-	},
-/area/bigredv2/caves/south)
 "TY" = (
 /obj/structure/dropship_piece/two/front/right,
 /obj/structure/dropship_equipment/weapon/laser_beam_gun,
@@ -10017,14 +10036,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/arrival/start)
-"Uj" = (
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 8
-	},
-/area/bigredv2/caves/south)
 "Uk" = (
 /obj/structure/largecrate/cow,
 /turf/open/floor/mainship/cargo,
@@ -10036,9 +10047,8 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "Un" = (
-/obj/structure/catwalk,
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 8
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
+	dir = 1
 	},
 /area/bigredv2/caves/south)
 "Uo" = (
@@ -10142,12 +10152,6 @@
 	},
 /turf/open/floor/mainship,
 /area/bigredv2/outside/cargo)
-"UM" = (
-/obj/structure/grille/fence,
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
-	dir = 4
-	},
-/area/bigredv2/caves/south)
 "UN" = (
 /obj/structure/caspart{
 	icon_state = "67"
@@ -10206,15 +10210,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/medical)
-"UW" = (
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/obj/structure/barricade/guardrail,
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
-	dir = 4
-	},
-/area/bigredv2/caves/south)
 "UX" = (
 /turf/closed/shuttle/cas{
 	icon_state = "55"
@@ -10439,6 +10434,14 @@
 /obj/structure/largecrate/random/case,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
+"VT" = (
+/obj/structure/barricade/guardrail,
+/obj/effect/particle_effect/smoke/phosphorus{
+	dir = 1;
+	lifetime = 99999
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
+/area/bigredv2/caves/south)
 "VU" = (
 /obj/effect/landmark/corpsespawner,
 /turf/open/floor/mainship/blue{
@@ -10468,6 +10471,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
+"Wb" = (
+/obj/structure/grille/fence,
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
+	dir = 4
+	},
+/area/bigredv2/caves/south)
 "Wc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
@@ -10870,6 +10879,9 @@
 	dir = 10
 	},
 /area/space)
+"XY" = (
+/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
+/area/bigredv2/caves/south)
 "XZ" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
@@ -10938,14 +10950,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
-"Yo" = (
-/obj/structure/barricade/guardrail,
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
-/area/bigredv2/caves/south)
 "Yp" = (
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 4
@@ -11065,6 +11069,12 @@
 "YQ" = (
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/c)
+"YT" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/south)
 "YU" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
@@ -11083,19 +11093,6 @@
 	icon_state = "carpetside"
 	},
 /area/arrival/start)
-"YY" = (
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
-	dir = 8
-	},
-/area/bigredv2/caves/south)
-"YZ" = (
-/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
-	dir = 8
-	},
-/area/bigredv2/caves/south)
 "Za" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "\improper Engineering Complex"
@@ -11137,6 +11134,15 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/bigredv2/outside/c)
+"Zm" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+	dir = 8
+	},
+/area/bigredv2/caves/south)
 "Zn" = (
 /obj/structure/cable,
 /turf/closed/wall/wood,
@@ -11192,10 +11198,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
-"Zy" = (
-/obj/structure/catwalk,
-/turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
-/area/bigredv2/caves/south)
 "Zz" = (
 /obj/effect/landmark/corpsespawner/bridgeofficer,
 /turf/open/floor/mainship/cargo,
@@ -11215,12 +11217,6 @@
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
-"ZG" = (
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south)
 "ZI" = (
 /obj/structure/cable,
 /turf/closed/wall/mainship,
@@ -11274,6 +11270,14 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
+"ZT" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+	dir = 6
+	},
+/area/bigredv2/caves/south)
 "ZU" = (
 /obj/machinery/fuelcell_recycler,
 /obj/effect/decal/warning_stripes/thin,
@@ -19662,7 +19666,7 @@ UB
 UB
 cx
 UB
-vP
+Di
 UB
 UB
 UB
@@ -20184,7 +20188,7 @@ UT
 UB
 UB
 UB
-vP
+Di
 UB
 fR
 UB
@@ -20693,7 +20697,7 @@ fI
 fI
 oV
 UB
-vP
+Di
 UB
 UB
 UB
@@ -20959,7 +20963,7 @@ tJ
 kQ
 tJ
 UB
-vP
+Di
 UB
 UB
 UB
@@ -21468,7 +21472,7 @@ UB
 UB
 UB
 UB
-vP
+Di
 UB
 UB
 UB
@@ -21728,7 +21732,7 @@ fI
 fI
 fI
 UB
-vP
+Di
 UB
 UB
 UB
@@ -21976,7 +21980,7 @@ UB
 Dd
 UB
 UB
-vP
+Di
 UB
 fI
 fI
@@ -21991,7 +21995,7 @@ UB
 UB
 UB
 UB
-vP
+Di
 UB
 UB
 qi
@@ -30193,9 +30197,9 @@ xh
 yf
 Hi
 wP
-OH
-SX
-ZG
+kd
+MG
+mU
 XZ
 XZ
 XZ
@@ -30222,10 +30226,10 @@ XZ
 XZ
 XZ
 XZ
-Bg
-Un
-wE
-wE
+DN
+OA
+NJ
+NJ
 np
 np
 hF
@@ -30449,12 +30453,12 @@ kP
 LT
 Hi
 Hi
-NP
-Nw
-TX
-Uj
-Uj
-QB
+vG
+eo
+yy
+KZ
+KZ
+OG
 XZ
 XZ
 XZ
@@ -30479,10 +30483,10 @@ XZ
 XZ
 XZ
 XZ
-Nc
-Zy
-Zy
-wE
+fN
+iG
+iG
+NJ
 np
 np
 np
@@ -30706,12 +30710,12 @@ MH
 YJ
 gN
 Hi
-NP
-Nw
-Nw
-Mx
-Nw
-dQ
+vG
+eo
+eo
+Qr
+eo
+GL
 em
 em
 XZ
@@ -30733,13 +30737,13 @@ XZ
 XZ
 XZ
 XZ
-QQ
-zK
-wN
-af
-Zy
-lq
-wE
+Ms
+IW
+Zm
+DU
+iG
+cN
+NJ
 np
 np
 np
@@ -30963,16 +30967,16 @@ MH
 YJ
 gN
 Hi
-NP
-Nw
-Mx
-Nw
-Mx
-YY
-Un
-Un
-Uj
-QB
+vG
+eo
+Qr
+eo
+Qr
+bo
+OA
+OA
+KZ
+OG
 XZ
 XZ
 XZ
@@ -30981,22 +30985,22 @@ DF
 XZ
 Fx
 XZ
-wE
+NJ
 em
 em
 em
 em
-mV
-zK
-Uj
-Uj
-Uj
-BE
-bm
-Zy
-xv
-wE
-wE
+FA
+IW
+KZ
+KZ
+KZ
+dL
+DM
+iG
+HX
+NJ
+NJ
 np
 np
 np
@@ -31220,16 +31224,16 @@ oD
 ds
 gN
 Hi
-UM
-bc
-Nw
-Nw
-Nw
-Nw
-Zy
-Zy
-Nw
-dQ
+Wb
+Un
+eo
+eo
+eo
+eo
+iG
+iG
+eo
+GL
 XZ
 XZ
 XZ
@@ -31239,21 +31243,21 @@ XZ
 XZ
 XZ
 XZ
-TO
-TO
-TO
-Bg
-Iz
-OR
-Mx
-Nw
-Mx
-Nw
-Yo
-Zy
-xv
-wE
-wE
+tt
+tt
+tt
+DN
+Oi
+ku
+Qr
+eo
+Qr
+eo
+VT
+iG
+HX
+NJ
+NJ
 np
 np
 np
@@ -31478,39 +31482,39 @@ GW
 gN
 Hi
 np
-RH
-bc
-Nw
-Mx
-Nw
-Zy
-Zy
-Mx
-dQ
+mX
+Un
+eo
+Qr
+eo
+iG
+iG
+Qr
+GL
 XZ
 XZ
-QQ
-zK
-Uj
-Uj
-Uj
-Uj
-yr
-Un
-Un
-Un
-af
-EF
-Nw
-Nw
-Nw
-Nw
-Mx
-bm
-Zy
-Zy
-hr
-wE
+Ms
+IW
+KZ
+KZ
+KZ
+KZ
+CD
+OA
+OA
+OA
+DU
+RC
+eo
+eo
+eo
+eo
+Qr
+DM
+iG
+iG
+IF
+NJ
 np
 np
 np
@@ -31736,38 +31740,38 @@ gN
 Hi
 np
 ve
-RH
-jz
-bc
-Nw
-Zy
-Zy
-Nw
-YY
-Uj
-Uj
-Uj
-OR
-FL
-LM
-LM
-Ml
-bm
-Zy
-Zy
-Zy
-Zy
-xs
-Mx
-Nw
-Mx
-Nw
-Nw
-Yo
-Zy
-Zy
-Zy
-wE
+mX
+Ks
+Un
+eo
+iG
+iG
+eo
+bo
+KZ
+KZ
+KZ
+ku
+Tt
+GO
+GO
+bQ
+DM
+iG
+iG
+iG
+iG
+bf
+Qr
+eo
+Qr
+eo
+eo
+VT
+iG
+iG
+iG
+NJ
 np
 np
 np
@@ -31994,37 +31998,37 @@ Hi
 np
 ve
 ve
-nG
-tt
-EG
-IG
-Zy
-Mx
-Nw
-Mx
-Nw
-Nw
-Nw
-wJ
-cr
-ob
-YZ
-bm
-Zy
-Zy
-Zy
-Zy
-xs
-Nw
-Nw
-Nw
-Mx
-Nw
-bm
-Zy
-Zy
-wE
-wE
+YT
+wo
+rk
+LF
+iG
+Qr
+eo
+Qr
+eo
+eo
+eo
+rV
+mv
+XY
+EV
+DM
+iG
+iG
+iG
+iG
+bf
+eo
+eo
+eo
+Qr
+eo
+DM
+iG
+iG
+NJ
+NJ
 np
 hF
 hF
@@ -32254,33 +32258,33 @@ XZ
 XZ
 XZ
 XZ
-nn
-zk
-bc
-Mx
-Nw
-Nw
-Mx
-Nw
-wJ
-ob
-ob
-OE
-bm
-Zy
-Zy
-Zy
-Zy
-EF
-Nw
-Mx
-Nw
-IB
-EG
-mv
-zk
-zk
-wE
+Ib
+fB
+Un
+Qr
+eo
+eo
+Qr
+eo
+rV
+XY
+XY
+tK
+DM
+iG
+iG
+iG
+iG
+RC
+eo
+Qr
+eo
+ll
+rk
+bh
+fB
+fB
+NJ
 np
 hF
 hF
@@ -32513,26 +32517,26 @@ XZ
 XZ
 em
 em
-tt
-EG
-EG
-EG
-EG
-bc
-xU
-Tp
-Nk
-hU
-UW
-zk
-zk
-zk
-zk
-DL
-EG
-EG
-EG
-oE
+wo
+rk
+rk
+rk
+rk
+Un
+fC
+eP
+Qm
+fw
+GI
+fB
+fB
+fB
+fB
+kB
+rk
+rk
+rk
+ZT
 XZ
 XZ
 em
@@ -32774,18 +32778,18 @@ XZ
 XZ
 XZ
 xE
-QQ
-EZ
-EG
-EG
-EG
-EG
-wE
+Ms
+AP
+rk
+rk
+rk
+rk
+NJ
 em
 em
 em
 em
-wE
+NJ
 XZ
 XZ
 XZ
@@ -40172,7 +40176,7 @@ YJ
 gN
 gN
 gN
-gN
+Jg
 gN
 gN
 gN
