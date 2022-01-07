@@ -54,6 +54,11 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
+	if(!CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL))
+		range = gun.turret_range
+	else
+		range = gun.turret_range - 2
+
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_INACCURATE))
 		gun.accuracy_mult -= 0.15
 		gun.scatter += 10
