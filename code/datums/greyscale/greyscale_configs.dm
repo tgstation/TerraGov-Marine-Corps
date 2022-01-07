@@ -91,15 +91,15 @@
 
 /datum/greyscale_config/modulararms_assault
 	icon_file = 'icons/mob/modular/assault.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularshoulders_partialcolor.json'
+	json_config = 'code/datums/greyscale/json_configs/modularshoulders.json'
 
 /datum/greyscale_config/modulararms_eod
 	icon_file = 'icons/mob/modular/eod.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularshoulders_partialcolor.json'
+	json_config = 'code/datums/greyscale/json_configs/modularshoulders.json'
 
 /datum/greyscale_config/modulararms_eva
 	icon_file = 'icons/mob/modular/eva.dmi'
-	json_config = 'code/datums/greyscale/json_configs/modularshoulders_partialcolor.json'
+	json_config = 'code/datums/greyscale/json_configs/modularshoulders.json'
 
 /datum/greyscale_config/modulararms_scout
 	icon_file = 'icons/mob/modular/scout.dmi'

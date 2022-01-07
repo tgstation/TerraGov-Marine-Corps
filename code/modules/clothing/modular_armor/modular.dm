@@ -315,7 +315,7 @@
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
 	greyscale_config = /datum/greyscale_config/modularhelmet_infantry
-	greyscale_colors = "#5B6036"
+	greyscale_colors = ARMOR_PALETTE_DESERT
 
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_VISOR,
@@ -335,8 +335,23 @@
 	)
 
 	///optional assoc list of colors we can color this armor
-	var/list/colorable_colors
-
+	var/list/colorable_colors = list(
+		"Drab" = ARMOR_PALETTE_DRAB,
+		"Brown" = ARMOR_PALETTE_BROWN,
+		"Snow" = ARMOR_PALETTE_SNOW,
+		"Desert" = ARMOR_PALETTE_DESERT,
+		"Red" = ARMOR_PALETTE_RED,
+		"Green" = ARMOR_PALETTE_GREEN,
+		"Purple" = ARMOR_PALETTE_PURPLE,
+		"Black" = ARMOR_PALETTE_BLACK,
+		"Blue" = ARMOR_PALETTE_BLUE,
+		"Yellow" = ARMOR_PALETTE_YELLOW,
+		"Aqua" = ARMOR_PALETTE_AQUA,
+		"Orange" = ARMOR_PALETTE_ORANGE,
+		"Grey" = ARMOR_PALETTE_GREY,
+	)
+	///Some defines to determin if the armor piece is allowed to be recolored.
+	var/colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
 	///Pixel offset on the X axis for how the helmet sits on the mob without a visor.
 	var/visorless_offset_x = 0
 	///Pixel offset on the Y axis for how the helmet sits on the mob without a visor.
@@ -394,6 +409,9 @@
 	if(.)
 		return
 
+	if(colorable_allowed == NOT_COLORABLE || (!length(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED) && greyscale_config)
+		return
+
 	if(!istype(I, /obj/item/facepaint))
 		return
 
@@ -416,14 +434,26 @@
 		update_icon()
 		return
 
-	var/new_color
-	if(colorable_colors)
-		new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
-	else
-		new_color = input(user, "Pick a color", "Pick color") as null|color
+	var/selection
 
-	if(!new_color)
+	switch(colorable_allowed)
+		if(COLOR_WHEEL_ONLY)
+			selection = "Color Wheel"
+		if(COLOR_WHEEL_ALLOWED)
+			selection = list("Color Wheel", "Preset Colors")
+			selection = tgui_input_list(user, "Choose a color setting", "Choose setting", selection)
+		if(COLOR_WHEEL_NOT_ALLOWED)
+			selection = "Preset Colors"
+
+	if(!selection)
 		return
+
+	var/new_color
+	switch(selection)
+		if("Preset Colors")
+			new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
+		if("Color Wheel")
+			new_color = input(user, "Pick a color", "Pick color") as null|color
 
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
@@ -513,6 +543,22 @@
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)
+	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT
+
+/obj/item/clothing/head/modular/marine/update_item_sprites()
+	var/new_color
+	switch(SSmapping.configs[GROUND_MAP].armor_style)
+		if(MAP_ARMOR_STYLE_JUNGLE)
+			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
+				new_color = ARMOR_PALETTE_DRAB
+		if(MAP_ARMOR_STYLE_ICE)
+			if(flags_item_map_variant & ITEM_ICE_VARIANT)
+				new_color = ARMOR_PALETTE_SNOW
+		if(MAP_ARMOR_STYLE_PRISON)
+			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
+				new_color = ARMOR_PALETTE_BLACK
+	set_greyscale_colors(new_color)
+	update_icon()
 
 /obj/item/clothing/head/modular/marine/skirmisher
 	name = "Jaeger Pattern Skirmisher Helmet"
@@ -621,7 +667,6 @@
 	name = "Jaeger Pattern Infantry-Open Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings and no visor."
 	icon_state = "infantryopen_helmet"
-	greyscale_colors = "#5B6036"
 	greyscale_config = /datum/greyscale_config/modularhelmet_infantry_open
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,

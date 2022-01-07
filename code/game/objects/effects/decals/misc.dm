@@ -12,6 +12,50 @@
 	icon_state = "chempuff"
 	flags_pass = PASSTABLE|PASSGRILLE
 
+/obj/effect/decal/tile
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "whitedecal"
+	layer = ABOVE_TURF_LAYER
+	mouse_opacity = 0
+
+/obj/effect/decal/tile/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			qdel(src)
+		if(EXPLODE_HEAVY)
+			if(prob(50))
+				qdel(src)
+		if(EXPLODE_LIGHT)
+			if(prob(25))
+				qdel(src)
+
+/obj/effect/decal/tile/gray
+	icon_state = "graydecal"
+
+/obj/effect/decal/tile/green
+	icon_state = "greendecal"
+
+/obj/effect/decal/tile/yellow
+	icon_state = "yellowdecal"
+
+/obj/effect/decal/tile/red
+	icon_state = "redecal"
+
+/obj/effect/decal/tile/black
+	icon_state = "blackdecal"
+
+/obj/effect/decal/tile/brown
+	icon_state = "browndecal"
+
+/obj/effect/decal/tile/pink
+	icon_state = "pinkdecal"
+
+/obj/effect/decal/tile/blue
+	icon_state = "bluedecal"
+
+/obj/effect/decal/tile/grid
+	icon_state = "grid"
+
 /obj/effect/decal/woodsiding
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "wood_siding"

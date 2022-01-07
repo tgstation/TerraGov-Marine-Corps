@@ -341,5 +341,5 @@
 	caliber = CALIBER_762X39
 	icon_state = "mkh98"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
-	max_rounds = 26
+	max_rounds = 30
 	icon_state_mini = "mag_rifle"

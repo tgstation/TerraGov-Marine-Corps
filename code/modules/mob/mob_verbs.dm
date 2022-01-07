@@ -52,7 +52,7 @@
 	set category = "OOC"
 
 	if(!GLOB.respawn_allowed && !check_rights(R_ADMIN, FALSE))
-		to_chat(usr, span_notice("Respawn is disabled. This is the default state, you can usually rejoin the round as a human only via ERT."))
+		to_chat(usr, span_notice("Respawn is disabled."))
 		return
 	if(stat != DEAD)
 		to_chat(usr, span_boldnotice("You must be dead to use this!"))

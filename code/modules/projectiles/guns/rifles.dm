@@ -308,7 +308,7 @@
 	icon_state = "m412"
 	item_state = "m412"
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	fire_sound = "sound/weapons/guns/fire/m412.ogg"
+	fire_sound = "sound/weapons/guns/fire/M412.ogg"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
@@ -992,6 +992,9 @@
 
 	placed_overlay_iconstate = "smartgun"
 
+/obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc
+	starting_attachment_types = list(/obj/item/attachable/stock/t29stock, /obj/item/attachable/t29barrel, /obj/item/attachable/magnetic_harness)
+
 // T-25 Smartrifle
 
 /obj/item/weapon/gun/rifle/standard_smartrifle
@@ -1030,14 +1033,11 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/marine,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
-		/obj/item/weapon/gun/shotgun/combat/masterkey,
-		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	gun_skill_category = GUN_SKILL_SMARTGUN //Uses SG skill for the penalties.
 	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 12, "stock_y" = 13)
@@ -1206,7 +1206,7 @@
 	caliber = CALIBER_492X34_CASELESS //codex
 	max_shells = 70 //codex
 	wield_delay = 0.65 SECONDS
-	fire_sound = "sound/weapons/guns/fire/m412.ogg"
+	fire_sound = "sound/weapons/guns/fire/M412.ogg"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
@@ -1353,20 +1353,20 @@
 
 /obj/item/weapon/gun/rifle/mkh
 	name = "\improper MKH-98 storm rifle"
-	desc = "A certified classic, this design was hailed as the first successful assault rifle concept, generally termed a 'storm rifle'. This version of it chambers 7.62x39mm."
+	desc = "A certified classic, this design was hailed as the first successful assault rifle concept, generally termed a 'storm rifle'. Has a higher than usual firerate for it's class, but suffers in capacity. This version of it chambers 7.62x39mm."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "mkh98"
 	item_state = "mkh98"
 	caliber = CALIBER_762X39 //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	max_shells = 26 //codex
+	max_shells = 30 //codex
 	fire_sound = 'sound/weapons/guns/fire/ak47.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/rifle/mkh
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/mkh)
-	aim_slowdown = 0.45
+	aim_slowdown = 0.35
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
@@ -1385,6 +1385,6 @@
 
 	accuracy_mult = 1.1
 	burst_amount = 1
-	fire_delay = 0.25 SECONDS
+	fire_delay = 0.2 SECONDS
 	scatter = 2
-	wield_delay = 0.6 SECONDS
+	wield_delay = 0.5 SECONDS
