@@ -14,7 +14,7 @@
 	melee_damage = 17
 
 	// *** Speed *** //
-	speed = -0.3
+	speed = 0
 
 	// *** Plasma *** //
 	plasma_max = 320 ///4 forward charges

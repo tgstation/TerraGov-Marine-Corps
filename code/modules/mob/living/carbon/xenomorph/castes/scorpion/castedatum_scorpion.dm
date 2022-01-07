@@ -14,7 +14,7 @@
 	melee_damage = 12
 
 	// *** Speed *** //
-	speed = -1
+	speed = -0.5
 
 	// *** Plasma *** //
 	plasma_max = 1500// 20 spits
