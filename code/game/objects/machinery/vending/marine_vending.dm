@@ -840,7 +840,7 @@
 			/obj/item/storage/pill_bottle/hypervene = -1,
 		),
 		"Auto Injector" = list(
-			/obj/item/reagent_containers/hypospray/advanced/bicaridine,
+			/obj/item/reagent_containers/hypospray/advanced/bicaridine = -1,
 			/obj/item/reagent_containers/hypospray/advanced/kelotane,
 			/obj/item/reagent_containers/hypospray/advanced/tramadol,
 			/obj/item/reagent_containers/hypospray/advanced/tricordrazine,
