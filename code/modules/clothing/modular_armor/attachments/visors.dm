@@ -7,6 +7,7 @@
 /obj/item/armor_module/armor/visor
 	name = "standard visor"
 	slot = ATTACHMENT_SLOT_VISOR
+	greyscale_config = /datum/greyscale_config/modular_helmet_visor
 	///Initial hex color we use when applying the visor color
 	greyscale_colors = VISOR_PALETTE_GOLD
 	flags_attach_features = ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB

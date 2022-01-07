@@ -3,6 +3,7 @@
 	name = "armor module"
 	desc = "A dis-figured armor module, in its prime this would've been a key item in your modular armor... now its just trash."
 	icon = 'icons/mob/modular/modular_armor.dmi'
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0) // This is here to overwrite code over at objs.dm line 41. Marines don't get funny 200+ bio buff anymore.
 
 	slowdown = 0
 
@@ -127,14 +128,6 @@
 
 /obj/item/armor_module/armor/Initialize()
 	. = ..()
-	if(greyscale_config && length(SSgreyscale.configurations["[greyscale_config]"].icon_cache) < length(colorable_colors)) //This checks if the current greyscale config has all the colors chached. If not it caches them.
-		for(var/key in colorable_colors)
-			var/color = colorable_colors[key]
-			set_greyscale_colors(color)
-		if(flags_item_map_variant)
-			update_item_sprites()
-		else
-			set_greyscale_colors(initial(greyscale_colors))
 	item_state = initial(icon_state) + "_a"
 	update_icon()
 

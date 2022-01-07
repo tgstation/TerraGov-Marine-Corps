@@ -132,3 +132,6 @@
 /obj/machinery/griddle/stand/update_overlays()
 	. = ..()
 	. += "front_bar"
+
+/obj/machinery/griddle/nopower
+	use_power = NO_POWER_USE

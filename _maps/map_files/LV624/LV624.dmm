@@ -352,12 +352,9 @@
 	},
 /area/lv624/ground/caves/central1)
 "afG" = (
-/obj/machinery/newscaster{
-	pixel_y = 30
-	},
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/main_hall)
+/obj/machinery/newscaster,
+/turf/closed/wall,
+/area/lv624/lazarus/quart)
 "afH" = (
 /turf/closed/wall,
 /area/lv624/ground/caves/central1)
@@ -6778,15 +6775,8 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "dLF" = (
-/obj/machinery/newscaster{
-	pixel_y = -28
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/tile/blue/whiteblue{
-	dir = 1
-	},
+/obj/machinery/newscaster,
+/turf/closed/wall,
 /area/lv624/lazarus/corporate_affairs)
 "dLJ" = (
 /obj/structure/barricade/wooden,
@@ -10073,6 +10063,12 @@
 "hGA" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
+"hGO" = (
+/obj/machinery/newscaster{
+	dir = 8
+	},
+/turf/closed/wall/r_wall,
+/area/lv624/lazarus/hop)
 "hGR" = (
 /obj/machinery/light{
 	dir = 1
@@ -24103,9 +24099,6 @@
 /area/lv624/ground/compound/c)
 "xEh" = (
 /obj/structure/table/woodentable,
-/obj/machinery/newscaster{
-	pixel_x = -30
-	},
 /obj/machinery/photocopier{
 	pixel_y = 12
 	},
@@ -42650,8 +42643,8 @@ lpe
 vqz
 aya
 oUs
+nJf
 dLF
-vqz
 sOK
 pJt
 sCc
@@ -52393,7 +52386,7 @@ xuv
 sZl
 hle
 kWA
-nVr
+hGO
 nVr
 nVr
 clT
@@ -55917,8 +55910,8 @@ uBN
 mZN
 uBN
 uBN
-xsa
 afG
+sqd
 dPs
 aId
 min
