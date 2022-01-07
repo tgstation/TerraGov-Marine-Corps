@@ -65,8 +65,7 @@
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
 
-	var/obj/item/weapon/gun/energy/lasgun/lasrifle/G = new /obj/item/weapon/gun/energy/lasgun/lasrifle(H)
-	G.reload(new /obj/item/cell/lasgun/lasrifle(G), H) // starts out full
+	var/obj/item/weapon/gun/energy/lasgun/lasrifle/G = new /obj/item/weapon/gun/energy/lasgun/lasrifle(H, FALSE)
 	H.equip_to_slot_or_del(G, SLOT_S_STORE)
 
 /datum/job/imperial/guardsman/sergeant
