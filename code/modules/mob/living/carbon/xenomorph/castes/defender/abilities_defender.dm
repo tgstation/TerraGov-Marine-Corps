@@ -169,7 +169,7 @@
 /datum/action/xeno_action/activable/forward_charge/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
-	if(get_dist(target, owner) > range)
+	if(!line_of_sight(owner, target, range))
 		return FALSE
 	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
