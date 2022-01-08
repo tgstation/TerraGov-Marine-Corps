@@ -8,9 +8,6 @@
 	set name = "OOC"
 	set category = "OOC"
 
-	if(!msg)
-		return
-
 	if(!mob)
 		return
 	if(IsGuestKey(key))
@@ -221,10 +218,6 @@
 	set name = "MOOC"
 	set category = "OOC"
 
-	if(!msg)
-		msg = tgui_input_text(usr, "", "MOOC \"text\"")
-		if(!msg)
-			return
 	var/admin = check_rights(R_ADMIN, FALSE)
 
 	if(!mob)
