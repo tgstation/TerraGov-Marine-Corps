@@ -1,19 +1,23 @@
-/mob/verb/say_verb(message as text)
+/mob/verb/say_verb(message as null|text)
 	set name = "Say"
 	set category = "IC"
 
 	if(!message)
-		return
+		message = tgui_input_text(usr, "", "Say")
+		if(!message)
+			return
 
 	say(message)
 
 
-/mob/verb/me_verb(message as text)
+/mob/verb/me_verb(message as null|text)
 	set name = "Me"
 	set category = "IC"
 
 	if(!message)
-		return
+		message = tgui_input_text(usr, "", "Me \"text\"")
+		if(!message)
+			return
 
 	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 

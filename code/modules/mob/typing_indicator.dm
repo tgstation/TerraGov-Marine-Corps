@@ -26,7 +26,7 @@
 	set hidden = TRUE
 
 	add_typing_indicator()
-	var/message = input("", "Say") as text
+	var/message = tgui_input_text(usr, "", "Say")
 	remove_typing_indicator()
 
 	if(!message)
@@ -40,7 +40,7 @@
 	set hidden = TRUE
 
 	add_typing_indicator(TRUE)
-	var/message = input("", "Me \"text\"") as null|text
+	var/message = tgui_input_text(usr, "", "Me \"text\"")
 	remove_typing_indicator()
 
 	if(!message)

@@ -78,6 +78,27 @@ export const GameSettings = (props, context) => {
                 rightLabel={'Primary monitor'}
               />
               <ToggleFieldPreference
+                label="TGUI Input boxes"
+                value="tgui_input"
+                action="tgui_input"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
+              <ToggleFieldPreference
+                label="TGUI Input Buttons"
+                value="tgui_input_big_buttons"
+                action="tgui_input_big_buttons"
+                leftLabel={'Normal'}
+                rightLabel={'Large'}
+              />
+              <ToggleFieldPreference
+                label="TGUI Input Buttons placement"
+                value="tgui_input_buttons_swap"
+                action="tgui_input_buttons_swap"
+                leftlabel={'Submit/Cancel'}
+                rightLabel={'Cancel/Submit'}
+              />
+              <ToggleFieldPreference
                 label="Tooltips"
                 value="tooltips"
                 action="tooltips"

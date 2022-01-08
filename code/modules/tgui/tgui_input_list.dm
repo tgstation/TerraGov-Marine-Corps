@@ -22,7 +22,7 @@
 		else
 			return
 	/// Client does NOT have tgui_input on: Returns regular input
-	if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input))
+	if(!user.client.prefs.tgui_input)
 		return input(user, message, title) as null|anything in items
 	var/datum/tgui_list_input/input = new(user, message, title, items, default, timeout)
 	input.ui_interact(user)
@@ -56,7 +56,7 @@
 		else
 			return
 	/// Client does NOT have tgui_input on: Returns regular input
-	if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input))
+	if(!user.client.prefs.tgui_input)
 		return input(user, message, title) as null|anything in items
 	var/datum/tgui_list_input/async/input = new(user, message, title, items, default, callback, timeout)
 	input.ui_interact(user)
@@ -150,8 +150,8 @@
 		"preferences" = list(),
 		"title" = title
 	)
-	.["preferences"]["large_buttons"] = user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_large)
-	.["preferences"]["swapped_buttons"] = user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_swapped)
+	.["preferences"]["large_buttons"] = user.client.prefs.tgui_input_big_buttons
+	.["preferences"]["swapped_buttons"] = user.client.prefs.tgui_input_buttons_swap
 
 /datum/tgui_list_input/ui_data(mob/user)
 	. = list()

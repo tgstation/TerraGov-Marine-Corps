@@ -1,12 +1,15 @@
 /client/verb/ooc_wrapper()
 	set hidden = TRUE
-	var/message = input("", "OOC \"text\"") as null|text
+	var/message = tgui_input_text(usr, "", "OOC \"text\"")
 	ooc(message)
 
 
-/client/verb/ooc(msg as text)
+/client/verb/ooc(msg as null|text)
 	set name = "OOC"
 	set category = "OOC"
+
+	if(!msg)
+		msg = tgui_input_text(usr, "", "OOC \"text\"")
 
 	if(!mob)
 		return
@@ -113,14 +116,16 @@
 
 /client/verb/xooc_wrapper()
 	set hidden = TRUE
-	var/message = input("", "XOOC \"text\"") as null|text
+	var/message = tgui_input_text(usr, "", "XOOC \"text\"")
 	xooc(message)
 
 
-/client/verb/xooc(msg as text) // Same as MOOC, but for xenos.
+/client/verb/xooc(msg as null|text) // Same as MOOC, but for xenos.
 	set name = "XOOC"
 	set category = "OOC"
 
+	if(!msg)
+		msg = tgui_input_text(usr, "", "XOOC \"text\"")
 	var/admin = check_rights(R_ADMIN, FALSE)
 
 	if(!mob)
@@ -207,14 +212,16 @@
 
 /client/verb/mooc_wrapper()
 	set hidden = TRUE
-	var/message = input("", "MOOC \"text\"") as null|text
+	var/message = tgui_input_text(usr, "", "MOOC \"text\"")
 	mooc(message)
 
 
-/client/verb/mooc(msg as text) // Same as XOOC, but for humans.
+/client/verb/mooc(msg as null|text) // Same as XOOC, but for humans.
 	set name = "MOOC"
 	set category = "OOC"
 
+	if(!msg)
+		msg = tgui_input_text(usr, "", "MOOC \"text\"")
 	var/admin = check_rights(R_ADMIN, FALSE)
 
 	if(!mob)
@@ -302,14 +309,16 @@
 
 /client/verb/looc_wrapper()
 	set hidden = TRUE
-	var/message = input("", "LOOC \"text\"") as null|text
+	var/message = tgui_input_text(usr, "", "LOOC \"text\"")
 	looc(message)
 
 
-/client/verb/looc(msg as text)
+/client/verb/looc(msg as null|text)
 	set name = "LOOC"
 	set category = "OOC"
 
+	if(!msg)
+		msg = tgui_input_text(usr, "", "LOOC \"text\"")
 	var/admin = check_rights(R_ADMIN, FALSE)
 
 	if(!mob)

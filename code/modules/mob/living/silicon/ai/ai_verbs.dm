@@ -282,7 +282,7 @@
 		to_chat(src, "Radio not detected.")
 		return
 
-	var/chan = input("Select a channel:") as null|anything in list("Default", "None") + radio.channels
+	var/chan = tgui_input_list(usr, "Select a channel:", "", list("Default", "None") + radio.channels )
 	if(!chan)
 		return
 

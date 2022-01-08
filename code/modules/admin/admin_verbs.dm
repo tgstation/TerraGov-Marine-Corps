@@ -83,7 +83,8 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/multiplicator_buff_wanted = input("Input the factor that will multiply xeno stat", "1 is normal stat, 2 is doubling health, regen and melee attack") as num
+	var/multiplicator_buff_wanted = tgui_input_number(usr, "Input the factor that will multiply xeno stat", "1 is normal stat, 2 is doubling health, regen and melee attack")
+
 	if(!multiplicator_buff_wanted)
 		return
 	GLOB.xeno_stat_multiplicator_buff = multiplicator_buff_wanted
@@ -469,15 +470,17 @@
 
 
 /client/proc/get_asay()
-	var/msg = input(src, null, "asay \"text\"") as text|null
+	var/msg = tgui_input_text(src, null, "asay \"text\"")
 	asay(msg)
 
 
-/client/proc/asay(msg as text)
+/client/proc/asay(msg)
 	set category = "Admin"
 	set name = "asay"
 	set hidden = TRUE
 
+	if(!msg)
+		msg = tgui_input_text(src, null, "asay \"text\"")
 	if(!msg)
 		return
 
@@ -513,14 +516,17 @@
 
 
 /client/proc/get_msay()
-	var/msg = input(src, null, "msay \"text\"") as text|null
+	var/msg = tgui_input_text(src, null, "msay \"text\"")
 	msay(msg)
 
 
-/client/proc/msay(msg as text)
+/client/proc/msay(msg)
 	set category = "Admin"
 	set name = "msay"
 	set hidden = TRUE
+
+	if(!msg)
+		msg = tgui_input_text(src, null, "msay \"text\"")
 
 	if(!check_rights(R_ADMIN|R_MENTOR))
 		return
@@ -565,14 +571,17 @@
 		SEND_SOUND(iter_admin_client.mob, sound('sound/misc/bloop.ogg'))
 
 /client/proc/get_dsay()
-	var/msg = input(src, null, "dsay \"text\"") as text|null
+	var/msg = tgui_input_text(src, null, "dsay \"text\"")
 	dsay(msg)
 
 
-/client/proc/dsay(msg as text)
+/client/proc/dsay(msg)
 	set category = "Admin"
 	set name = "dsay"
 	set hidden = TRUE
+
+	if(!msg)
+		msg = tgui_input_text(src, null, "dsay \"text\"")
 
 	if(!check_rights(R_ADMIN|R_MENTOR))
 		return

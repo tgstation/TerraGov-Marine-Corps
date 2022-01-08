@@ -305,7 +305,7 @@
 	switch(type)
 		if("ready")
 			// Send a full update when the user manually refreshes the UI
-			if (initialized && COOLDOWN_FINISHED(src, refresh_cooldown))
+			if (initialized && COOLDOWN_CHECK(src, refresh_cooldown))
 				send_full_update()
 				COOLDOWN_START(src, refresh_cooldown, TGUI_REFRESH_FULL_UPDATE_COOLDOWN)
 			initialized = TRUE

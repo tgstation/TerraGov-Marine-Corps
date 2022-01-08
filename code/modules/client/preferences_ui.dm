@@ -103,6 +103,9 @@
 			.["mute_xeno_health_alert_messages"] = mute_xeno_health_alert_messages
 			.["tgui_fancy"] = tgui_fancy
 			.["tgui_lock"] = tgui_lock
+			.["tgui_input"] = tgui_input
+			.["tgui_input_big_buttons"] = tgui_input_big_buttons
+			.["tgui_input_buttons_swap"] = tgui_input_buttons_swap
 			.["clientfps"] = clientfps
 			.["chat_on_map"] = chat_on_map
 			.["max_chat_length"] = max_chat_length
@@ -530,6 +533,15 @@
 
 		if("tgui_lock")
 			tgui_lock = !tgui_lock
+
+		if("tgui_input")
+			tgui_input = !tgui_input
+
+		if("tgui_input_big_buttons")
+			tgui_input_big_buttons = !tgui_input_big_buttons
+
+		if("tgui_input_buttons_swap")
+			tgui_input_buttons_swap = !tgui_input_buttons_swap
 
 		if("clientfps")
 			var/desiredfps = text2num(params["newValue"])
