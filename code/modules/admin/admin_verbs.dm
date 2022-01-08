@@ -474,7 +474,7 @@
 	asay(msg)
 
 
-/client/proc/asay(msg)
+/client/proc/asay(msg as text)
 	set category = "Admin"
 	set name = "asay"
 	set hidden = TRUE
@@ -518,7 +518,7 @@
 	msay(msg)
 
 
-/client/proc/msay(msg)
+/client/proc/msay(msg as text)
 	set category = "Admin"
 	set name = "msay"
 	set hidden = TRUE
@@ -570,13 +570,11 @@
 	dsay(msg)
 
 
-/client/proc/dsay(msg)
+/client/proc/dsay(msg as text)
 	set category = "Admin"
 	set name = "dsay"
 	set hidden = TRUE
 
-	if(!msg)
-		msg = tgui_input_text(src, null, "dsay \"text\"")
 
 	if(!check_rights(R_ADMIN|R_MENTOR))
 		return
