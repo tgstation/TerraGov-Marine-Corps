@@ -54,7 +54,6 @@ export const Flex = props => {
       className={classes([
         className,
         computeFlexClassName(rest),
-        computeBoxClassName(rest),
       ])}
       {...computeFlexProps(rest)}
     />
@@ -117,7 +116,6 @@ const FlexItem = props => {
       className={classes([
         className,
         computeFlexItemClassName(props),
-        computeBoxClassName(props),
       ])}
       {...computeFlexItemProps(rest)}
     />
