@@ -1,0 +1,5 @@
+author: "Three333Digit"
+delete-after: True
+changes: 
+  - balance: "sentries no longer use power cells"
+  - balance: "radial mode reduces the range of the sentry by 2 tiles"
