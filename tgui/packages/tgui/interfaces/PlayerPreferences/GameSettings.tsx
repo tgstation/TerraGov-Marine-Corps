@@ -89,13 +89,15 @@ export const GameSettings = (props, context) => {
                 value="tgui_input_big_buttons"
                 action="tgui_input_big_buttons"
                 leftLabel={'Normal'}
+                leftValue={0}
                 rightLabel={'Large'}
+                rightValue={1}
               />
               <ToggleFieldPreference
                 label="TGUI Input Buttons placement"
                 value="tgui_input_buttons_swap"
                 action="tgui_input_buttons_swap"
-                leftlabel={'Submit/Cancel'}
+                leftLabel={'Submit/Cancel'}
                 rightLabel={'Cancel/Submit'}
               />
               <ToggleFieldPreference
