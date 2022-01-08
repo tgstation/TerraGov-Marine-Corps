@@ -4,12 +4,12 @@
 	ooc(message)
 
 
-/client/verb/ooc(msg as null|text)
+/client/verb/ooc(msg as text)
 	set name = "OOC"
 	set category = "OOC"
 
 	if(!msg)
-		msg = tgui_input_text(usr, "", "OOC \"text\"")
+		return
 
 	if(!mob)
 		return
@@ -120,12 +120,13 @@
 	xooc(message)
 
 
-/client/verb/xooc(msg as null|text) // Same as MOOC, but for xenos.
+/client/verb/xooc(msg as text) // Same as MOOC, but for xenos.
 	set name = "XOOC"
 	set category = "OOC"
 
 	if(!msg)
-		msg = tgui_input_text(usr, "", "XOOC \"text\"")
+		return
+
 	var/admin = check_rights(R_ADMIN, FALSE)
 
 	if(!mob)
@@ -222,6 +223,8 @@
 
 	if(!msg)
 		msg = tgui_input_text(usr, "", "MOOC \"text\"")
+		if(!msg)
+			return
 	var/admin = check_rights(R_ADMIN, FALSE)
 
 	if(!mob)
@@ -313,12 +316,12 @@
 	looc(message)
 
 
-/client/verb/looc(msg as null|text)
+/client/verb/looc(msg as text)
 	set name = "LOOC"
 	set category = "OOC"
 
 	if(!msg)
-		msg = tgui_input_text(usr, "", "LOOC \"text\"")
+		return
 	var/admin = check_rights(R_ADMIN, FALSE)
 
 	if(!mob)
