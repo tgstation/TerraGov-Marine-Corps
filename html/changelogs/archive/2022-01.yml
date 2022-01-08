@@ -74,3 +74,18 @@
 2022-01-07:
   novaepee:
   - imageadd: Overmind Sprites
+2022-01-08:
+  RipGrayson:
+  - imageadd: Ported fancy conveyor sprites from Eris.
+  Waselon:
+  - rscadd: Added rocket sledge
+  - imageadd: added rocket sledge sprites
+  - code_imp: changed welder pack and engieneer satchel to refuel rocket sledge
+  hyper2snyper:
+  - bugfix: AI with Auto-spit will no longer infinitely target things.
+  - bugfix: Calls the correct checks on auto-spit, no more spitting from vents and
+      the like.
+  - bugfix: Mk221 unique action will eject shells again.
+  - bugfix: UGL cant be fired one handed now.
+  - code_imp: Makes the greyscale palettes for jaeger armor and helmets cache at round
+      initialization. This is much more performant.

@@ -1,5 +1,0 @@
-author: "hyper2snyper"
-delete-after: True
-changes: 
-  - bugfix: "AI with Auto-spit will no longer infinitely target things."
-  - bugfix: "Calls the correct checks on auto-spit, no more spitting from vents and the like."
