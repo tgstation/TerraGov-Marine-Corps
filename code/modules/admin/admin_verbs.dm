@@ -480,8 +480,6 @@
 	set hidden = TRUE
 
 	if(!msg)
-		msg = tgui_input_text(src, null, "asay \"text\"")
-	if(!msg)
 		return
 
 	if(!check_rights(R_ASAY))
@@ -524,9 +522,6 @@
 	set category = "Admin"
 	set name = "msay"
 	set hidden = TRUE
-
-	if(!msg)
-		msg = tgui_input_text(src, null, "msay \"text\"")
 
 	if(!check_rights(R_ADMIN|R_MENTOR))
 		return
