@@ -1,0 +1,6 @@
+{
+    "map_name": "Talos",
+    "map_path": "map_files/Talos",
+    "map_file": "TGS_Talos.dmm",
+    "traits": [{"Marine Main Ship": true}]
+}

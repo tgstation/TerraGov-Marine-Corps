@@ -32,6 +32,9 @@ endmap
 map minerva
 endmap
 
+map talos
+endmap
+
 map twin_pillars
 	voteweight 0
 endmap
