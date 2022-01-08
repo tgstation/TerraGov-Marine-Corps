@@ -112,14 +112,14 @@
 		beaker = null
 		updateUsrDialog()
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/update_icon()
-	if(on)
-		if(occupant)
-			icon_state = "cell-occupied"
-			return
-		icon_state = "cell-on"
+/obj/machinery/atmospherics/components/unary/cryo_cell/update_icon_state()
+	if(!on)
+		icon_state = "cell-off"
 		return
-	icon_state = "cell-off"
+	if(occupant)
+		icon_state = "cell-occupied"
+		return
+	icon_state = "cell-on"	
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/run_anim(anim_up, image/occupant_overlay)
 	if(!on || !occupant || !is_operational())
@@ -437,5 +437,16 @@
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/can_see_pipes()
 	return 0 // you can't see the pipe network when inside a cryo cell.
+
+/obj/machinery/atmospherics/components/unary/cryo_cell/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	if(!occupant)
+		return
+	if(X.status_flags & INCORPOREAL || X.do_actions)
+		return
+	if(!do_after(X, 2 SECONDS))
+		return
+	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	go_out()	
+
 
 #undef CRYOMOBS

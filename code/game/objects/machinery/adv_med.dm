@@ -119,6 +119,15 @@
 	for(var/obj/O in src)
 		O.forceMove(loc)
 
+/obj/machinery/bodyscanner/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	if(!occupant)
+		return
+	if(X.status_flags & INCORPOREAL || X.do_actions)
+		return
+	if(!do_after(X, 2 SECONDS))
+		return
+	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	go_out()	
 
 /obj/machinery/bodyscanner/ex_act(severity)
 	switch(severity)
@@ -151,7 +160,6 @@
 		if(EXPLODE_HEAVY)
 			if (prob(50))
 				qdel(src)
-
 
 /obj/machinery/body_scanconsole
 	name = "Body Scanner Console"
