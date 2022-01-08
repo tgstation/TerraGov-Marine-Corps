@@ -39,6 +39,7 @@
 /obj/machinery/teleporter/proc/linked_teleporter_malfunction()
 	SIGNAL_HANDLER
 	explosion(src, 0, 1, 2)
+	qdel(src)
 
 /obj/machinery/teleporter/attack_hand(mob/living/user)
 	. = ..()
