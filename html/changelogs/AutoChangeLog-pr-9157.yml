@@ -1,6 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - bugfix: "Change \"sentinels stung\" to \"neurotoxin sting was used\" in roundend statistics"
-  - rscadd: "Show roundend statistics on how many times warrior lunges."
-  - rscdel: "roundend statistics on headbite and siloing bodies. Hunt is dead."
