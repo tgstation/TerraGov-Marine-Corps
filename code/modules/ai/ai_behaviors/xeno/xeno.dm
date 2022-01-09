@@ -235,3 +235,4 @@
 
 /datum/ai_behavior/xeno/ranged
 	distance_to_maintain = 5
+	minimum_health = 0.3

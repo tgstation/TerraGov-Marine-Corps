@@ -231,7 +231,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 				ghost.abstract_move(resin_silo.loc)
 				break
 
-/mob/proc/ghostize(can_reenter_corpse = TRUE)
+/mob/proc/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
 	if(!key || isaghost(src))
 		return FALSE
 	var/mob/dead/observer/ghost = new(src)
@@ -274,13 +274,14 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	return ghost
 
 /mob/living/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
+	if(aghosting)
+		set_afk_status(MOB_AGHOSTED)
 	. = ..()
 	if(!. || can_reenter_corpse)
 		return
 	var/mob/ghost = .
 	if(!aghosting && job?.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
 		GLOB.key_to_time_of_death[ghost.key] = world.time
-		set_afk_status(MOB_RECENTLY_DISCONNECTED, 5 SECONDS)
 
 
 /mob/dead/observer/Move(atom/newloc, direct)
@@ -868,7 +869,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!GLOB.valhalla_allowed)
 		to_chat(usr, span_notice("Valhalla is currently disabled!"))
 		return
-	
+
 	if(stat != DEAD)
 		to_chat(usr, span_boldnotice("You must be dead to use this!"))
 		return

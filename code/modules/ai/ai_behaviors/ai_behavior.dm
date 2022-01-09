@@ -35,7 +35,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	///When this timer is up, we force a change of node to ensure that the ai will never stay stuck trying to go to a specific node
 	var/anti_stuck_timer
 	///Minimum health percentage before the ai tries to run away
-	var/minimum_health = 0.4
+	var/minimum_health = 0
 	///If the mob attached to the ai is offered on xeno creation
 	var/is_offered_on_creation = FALSE
 

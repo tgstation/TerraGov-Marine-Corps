@@ -774,6 +774,8 @@
 /obj/screen/arrow/proc/add_hud(mob/living/carbon/tracker_input, atom/target_input)
 	if(!tracker_input?.client)
 		return
+	if(target_input == tracker_input)
+		return
 	tracker = tracker_input
 	target = target_input
 	tracker.client.screen += src

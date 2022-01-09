@@ -358,6 +358,14 @@
 	name = "vacuum floor"
 	icon_state = "engine"
 
+/turf/open/floor/engine/atmos
+	name = "vacuum floor"
+	icon_state = "darkgraytile"
+
+/turf/open/floor/engine/atmosdark
+	name = "vacuum floor"
+	icon_state = "dark"
+
 /turf/open/floor/engine/mars/exterior
 	name = "floor"
 	icon_state = "ironsand1"
@@ -673,6 +681,12 @@
 
 /turf/open/floor/tile/dark/purple2
 	icon_state = "darkpurple2"
+
+/turf/open/floor/tile/dark/gray
+	icon_state = "darkgraytile"
+
+/turf/open/floor/tile/cafe
+	icon_state = "cafetile"
 
 /turf/open/floor/tile/dark/purple2/corner
 	icon_state = "darkpurplecorners2"

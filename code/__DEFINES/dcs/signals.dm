@@ -507,6 +507,8 @@
 #define COMSIG_XENOMORPH_WRAITH_RECALL "xenomorph_wraith_recall"
 	#define COMPONENT_BANISH_TARGETS_EXIST (1<<0)
 
+#define COMSIG_XENO_PSYCHIC_LINK_REMOVED "xeno_psychic_link_removed"
+
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"
 
