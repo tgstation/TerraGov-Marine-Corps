@@ -1894,7 +1894,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/acid/passthrough
 	name = "acid spittle"
-	damage = 30
+	damage = 20
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
 
 /datum/ammo/xeno/acid/heavy
