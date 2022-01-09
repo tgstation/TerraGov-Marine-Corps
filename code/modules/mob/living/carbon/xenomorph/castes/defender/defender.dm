@@ -66,3 +66,35 @@
 		to_chat(src, span_warning("You can't do that right now."))
 		return
 	return ..()
+
+/mob/living/carbon/xenomorph/defender/bullet_act(obj/projectile/proj)
+	var/soft_armor_value = soft_armor.getRating("bullet")
+	var/ammo_type = proj.ammo
+	var/shot_from = proj.shot_from
+	. = ..()
+	if(proj.ammo.damage_type != BRUTE || !fortify || soft_armor_value < 100)
+		return
+
+	var/ricochet_angle = 360 - Get_Angle(proj.firer, loc)
+	// Check for the neightbour tile
+	var/rico_dir_check
+	switch(ricochet_angle)
+		if(-INFINITY to 45)
+			rico_dir_check = EAST
+		if(46 to 135)
+			rico_dir_check = ricochet_angle > 90 ? SOUTH : NORTH
+		if(136 to 225)
+			rico_dir_check = ricochet_angle > 180 ? WEST : EAST
+		if(126 to 315)
+			rico_dir_check = ricochet_angle > 270 ? NORTH : SOUTH
+		if(316 to INFINITY)
+			rico_dir_check = WEST
+
+	var/turf/next_turf = get_step(loc, rico_dir_check)
+	if(next_turf.density)
+		ricochet_angle += 180
+
+	var/obj/projectile/new_proj = new(next_turf)
+	new_proj.generate_bullet(ammo_type)
+	new_proj.iff_signal = NONE
+	new_proj.fire_at(null, src, shot_from, new_proj.proj_max_range, new_proj.projectile_speed, ricochet_angle, suppress_light = TRUE)
