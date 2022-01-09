@@ -105,3 +105,17 @@
   - bugfix: Change "sentinels stung" to "neurotoxin sting was used" in roundend statistics
   - rscadd: Show roundend statistics on how many times warrior lunges.
   - rscdel: roundend statistics on headbite and siloing bodies. Hunt is dead.
+2022-01-09:
+  BraveMole:
+  - bugfix: Protect ai nodes and pipe from tadpole crushing
+  RipGrayson:
+  - bugfix: The Pillar of Spring now has cryo consoles.
+  SpaceLoveSs13:
+  - imageadd: 'Copege emoji now with :copege: option available'
+  Three333Digit:
+  - balance: sentries no longer use power cells
+  - balance: radial mode reduces the range of the sentry by 2 tiles
+  novaepee:
+  - balance: change plasma_cost on King's psychic summon, meaning he can psychic summon
+      at young
+  - bugfix: King can use psychic summon from young and mature now
