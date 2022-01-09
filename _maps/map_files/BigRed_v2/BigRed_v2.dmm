@@ -7373,8 +7373,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aAW" = (
 /obj/machinery/conveyor{
-	dir = 9;
-	id = "anomalybelt"
+	dir = 6
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,

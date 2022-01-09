@@ -346,6 +346,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define MOB_CONNECTED 0
 #define MOB_RECENTLY_DISCONNECTED 1 //Still within the grace period.
 #define MOB_DISCONNECTED 2
+#define MOB_AGHOSTED 3 //This body was just aghosted, do not offer it
 
 //Mob sizes
 #define MOB_SIZE_SMALL 0

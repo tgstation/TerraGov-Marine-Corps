@@ -362,9 +362,6 @@
 
 
 	gun_firemode = initial(choice.fire_mode)
-
-
-	rounds_per_shot = initial(choice.rounds_per_shot)
 	ammo_datum_type = initial(choice.ammo_datum_type)
 	fire_delay = initial(choice.fire_delay)
 	burst_amount = initial(choice.burst_amount)
@@ -375,9 +372,12 @@
 
 	base_gun_icon = initial(choice.icon_state)
 	update_icon()
-
 	to_chat(user, initial(choice.message_to_user))
-	user.hud_used.update_ammo_hud(user, src)
+	var/old_drain_amount = rounds_per_shot
+	rounds_per_shot = initial(choice.rounds_per_shot)
+	if(length(chamber_items))
+		adjust_current_rounds(chamber_items[current_chamber_position], old_drain_amount - rounds_per_shot)
+	user?.hud_used.update_ammo_hud(user, src)
 	if(!in_chamber || !length(chamber_items))
 		return
 	QDEL_NULL(in_chamber)

@@ -71,3 +71,51 @@
   - balance: The roomba saying a sentence after sucking something up has went from
       2 percent to 10 percent.
   - bugfix: Hive Message now checks and filters ascii.
+2022-01-07:
+  novaepee:
+  - imageadd: Overmind Sprites
+2022-01-08:
+  BraveMole:
+  - bugfix: No more sound when a ghost open a storage
+  - bugfix: Prevent stocking in vendors that are broken/unpowered
+  - bugfix: Fix hivemind abilities being useable while unmanifested
+  - bugfix: Fix cocoon psy point output
+  - bugfix: Fix ugl being reloadable in storage
+  - qol: Pill bottles show how many pills they have in overlays
+  - bugfix: Fix runtime with hive call
+  Pariah919:
+  - balance: vali tools like spear and sword no longer have bump attack.
+  RipGrayson:
+  - imageadd: Ported fancy conveyor sprites from Eris.
+  Waselon:
+  - rscadd: Added rocket sledge
+  - imageadd: added rocket sledge sprites
+  - code_imp: changed welder pack and engieneer satchel to refuel rocket sledge
+  hyper2snyper:
+  - bugfix: Fixes an issue where you could overcharge lasgun cells.
+  - bugfix: Fixes the carbine scatter exploit.
+  - bugfix: AI with Auto-spit will no longer infinitely target things.
+  - bugfix: Calls the correct checks on auto-spit, no more spitting from vents and
+      the like.
+  - bugfix: Mk221 unique action will eject shells again.
+  - bugfix: UGL cant be fired one handed now.
+  - code_imp: Makes the greyscale palettes for jaeger armor and helmets cache at round
+      initialization. This is much more performant.
+  novaepee:
+  - bugfix: Change "sentinels stung" to "neurotoxin sting was used" in roundend statistics
+  - rscadd: Show roundend statistics on how many times warrior lunges.
+  - rscdel: roundend statistics on headbite and siloing bodies. Hunt is dead.
+2022-01-09:
+  BraveMole:
+  - bugfix: Protect ai nodes and pipe from tadpole crushing
+  RipGrayson:
+  - bugfix: The Pillar of Spring now has cryo consoles.
+  SpaceLoveSs13:
+  - imageadd: 'Copege emoji now with :copege: option available'
+  Three333Digit:
+  - balance: sentries no longer use power cells
+  - balance: radial mode reduces the range of the sentry by 2 tiles
+  novaepee:
+  - balance: change plasma_cost on King's psychic summon, meaning he can psychic summon
+      at young
+  - bugfix: King can use psychic summon from young and mature now
