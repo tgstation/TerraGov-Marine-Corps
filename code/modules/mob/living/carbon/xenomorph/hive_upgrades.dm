@@ -229,6 +229,14 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	priority_announce("WARNING: Psychic anomaly detected at [get_area(buyer)]. Assault of the area reccomended.", "TGMC Intel Division")
 	return ..()
 
+/datum/hive_upgrade/xenos/smart_minions
+	name = GHOSTS_CAN_TAKE_MINIONS
+	desc = "Allow ghosts to take control of minions"
+	icon = "smartminions"
+	flags_gamemode = ABILITY_DISTRESS
+	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
+	psypoint_cost = 500
+
 /datum/hive_upgrade/primordial
 	category = "Primordial"
 	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE

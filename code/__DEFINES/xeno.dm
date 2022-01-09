@@ -68,6 +68,8 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 #define PRIMORDIAL_BULL "Primordial Bull"
 #define PRIMORDIAL_BOILER "Primordial Boiler"
 
+#define GHOSTS_CAN_TAKE_MINIONS "Smart Minions"
+
 GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 	/mob/living/carbon/xenomorph/beetle/ai,
 	/mob/living/carbon/xenomorph/mantis/ai,
