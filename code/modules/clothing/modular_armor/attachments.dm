@@ -222,16 +222,18 @@
 	var/new_color
 	switch(selection)
 		if("Preset Colors")
-			var/current_list = colorable_colors
 			var/color_selection
-			while(TRUE)
-				color_selection = tgui_input_list(user, "Pick a color", "Pick color", current_list)
+			color_selection = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
+			if(!color_selection)
+				return
+			if(islist(colorable_colors[color_selection]))
+				var/old_list = colorable_colors[color_selection]
+				color_selection = tgui_input_list(user, "Pick a color", "Pick color", old_list)
 				if(!color_selection)
 					return
-				if(!islist(current_list[color_selection]))
-					break
-				current_list = current_list[color_selection]
-			new_color = current_list[color_selection]
+				new_color = old_list[color_selection]
+			else
+				new_color = colorable_colors[color_selection]
 		if("Color Wheel")
 			new_color = input(user, "Pick a color", "Pick color") as null|color
 
