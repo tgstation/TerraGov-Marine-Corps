@@ -75,6 +75,10 @@
 		/obj/item/armor_module/armor/legs/marine/eod,
 		/obj/item/armor_module/armor/arms/marine/eod,
 
+		/obj/item/armor_module/armor/chest/marine/helljumper,
+		/obj/item/armor_module/armor/legs/marine/helljumper,
+		/obj/item/armor_module/armor/arms/marine/helljumper,
+
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
@@ -314,7 +318,7 @@
 
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
-	greyscale_config = /datum/greyscale_config/modularhelmet_infantry
+	greyscale_config = /datum/greyscale_config/modularhelmet
 	greyscale_colors = ARMOR_PALETTE_DESERT
 
 	attachments_by_slot = list(
@@ -529,7 +533,7 @@
 	icon_state = "infantry_helmet"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	accuracy_mod = 0
-	greyscale_config = /datum/greyscale_config/modularhelmet_infantry
+	greyscale_config = /datum/greyscale_config/modularhelmet
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
@@ -564,7 +568,7 @@
 	name = "Jaeger Pattern Skirmisher Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Skirmisher markings."
 	icon_state = "skirmisher_helmet"
-	greyscale_config = /datum/greyscale_config/modularhelmet_skirmisher
+	greyscale_config = /datum/greyscale_config/modularhelmet/skirmisher
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
@@ -583,7 +587,7 @@
 	name = "Jaeger Pattern Assault Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Assault markings."
 	icon_state = "assault_helmet"
-	greyscale_config = /datum/greyscale_config/modularhelmet_assault
+	greyscale_config = /datum/greyscale_config/modularhelmet/assault
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
@@ -602,7 +606,7 @@
 	name = "Jaeger Pattern EVA Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings."
 	icon_state = "eva_helmet"
-	greyscale_config = /datum/greyscale_config/modularhelmet_eva
+	greyscale_config = /datum/greyscale_config/modularhelmet/eva
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
@@ -626,7 +630,7 @@
 	name = "Jaeger Pattern EOD Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EOD markings"
 	icon_state = "eod_helmet"
-	greyscale_config = /datum/greyscale_config/modularhelmet_eod
+	greyscale_config = /datum/greyscale_config/modularhelmet/eod
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
@@ -648,7 +652,7 @@
 	name = "Jaeger Pattern Scout Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Scout markings"
 	icon_state = "scout_helmet"
-	greyscale_config = /datum/greyscale_config/modularhelmet_scout
+	greyscale_config = /datum/greyscale_config/modularhelmet/scout
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
@@ -663,11 +667,29 @@
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/scout, /obj/item/armor_module/storage/helmet)
 
+/obj/item/clothing/head/modular/marine/helljumper
+	name = "Jaeger Pattern Helljumper Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Helljumper markings"
+	icon_state = "helljumper_helmet"
+	greyscale_config = /datum/greyscale_config/modularhelmet/helljumper
+	attachments_allowed = list(
+		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
+		/obj/item/armor_module/storage/helmet,
+		/obj/item/armor_module/armor/visor/marine/helljumper,
+		/obj/item/armor_module/armor/badge,
+	)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/helljumper, /obj/item/armor_module/storage/helmet)
+
 /obj/item/clothing/head/modular/marine/infantry
 	name = "Jaeger Pattern Infantry-Open Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings and no visor."
 	icon_state = "infantryopen_helmet"
-	greyscale_config = /datum/greyscale_config/modularhelmet_infantry_open
+	greyscale_config = /datum/greyscale_config/modularhelmet/infantry_open
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,

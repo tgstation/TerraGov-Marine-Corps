@@ -108,10 +108,16 @@
 /obj/item/armor_module/armor/visor/marine/eva/skull
 	name = "\improper Jaeger Pattern EVA Skull visor"
 	icon_state = "eva_skull_visor"
-	greyscale_config = /datum/greyscale_config/modular_helmet_visor_skull
+	greyscale_config = /datum/greyscale_config/modular_helmet_visor/eva/skull
 
 /obj/item/armor_module/armor/visor/marine/eod
 	name = "\improper Jaeger Pattern EOD visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for EOD class of helmet."
 	icon_state = "eod_infantry_visor"
 	greyscale_config = /datum/greyscale_config/modular_helmet_visor/eod
+
+/obj/item/armor_module/armor/visor/marine/helljumper
+	name = "\improper Jaeger Pattern Helljumper visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for Helljumper class of helmet."
+	icon_state = "helljumper_visor"
+	greyscale_config = /datum/greyscale_config/modular_helmet_visor/helljumper
