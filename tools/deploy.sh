@@ -13,7 +13,7 @@ mkdir -p \
     $1/_maps \
     $1/strings \
 	$1/tgui/public \
-	$1/tgui/packages/tgfont/dist
+	$1/tgui/packages/tgfont/static
 
 if [ -d ".git" ]; then
   mkdir -p $1/.git/logs
