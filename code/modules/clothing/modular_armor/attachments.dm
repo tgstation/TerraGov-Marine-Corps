@@ -100,7 +100,7 @@
 	/// Addititve Slowdown of this armor piece
 	slowdown = 0
 
-	greyscale_config = /datum/greyscale_config/modularchest_infantry
+	greyscale_config = /datum/greyscale_config/modularchest
 	greyscale_colors = ARMOR_PALETTE_DESERT
 
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
