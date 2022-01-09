@@ -89,6 +89,7 @@
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
+		/obj/item/attachable/scope/marine,
 	)
 
 	muzzleflash_iconstate = "muzzle_flash_laser"
@@ -99,8 +100,6 @@
 	muzzle_flash_color = COLOR_GREEN
 
 	fire_delay = 1.5 SECONDS
-	accuracy_mult = 0.8
-	accuracy_mult_unwielded = 0.35
 	scatter = -1
 	scatter_unwielded = 2
 	recoil = -2
