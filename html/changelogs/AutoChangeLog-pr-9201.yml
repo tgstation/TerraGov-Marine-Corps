@@ -1,0 +1,5 @@
+author: "hyper2snyper"
+delete-after: True
+changes: 
+  - balance: "Miniflamer now will not do any bonus damage to mobs hit in the initial fire stream."
+  - bugfix: "Miniflamer can now be connected to the backpack fuel tank once more."
