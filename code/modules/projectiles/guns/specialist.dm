@@ -722,7 +722,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	reciever_flags = AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 
 	fire_delay = 1 SECONDS
 	burst_amount = 1
