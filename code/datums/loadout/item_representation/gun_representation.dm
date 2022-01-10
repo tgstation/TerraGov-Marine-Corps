@@ -33,6 +33,7 @@
 		var/datum/item_representation/gun_attachement/attachment = gun_attachement
 		attachment.install_on_gun(seller, ., user)
 
+///Instantiates and instals the type onto gun_to_attach
 /datum/item_representation/gun/proc/install_on_gun(seller, obj/item/weapon/gun/gun_to_attach, mob/living/user)
 	var/gun_to_vend
 	var/obj/item/weapon/gun/attachment_type = item_type
