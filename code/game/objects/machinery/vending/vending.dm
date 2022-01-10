@@ -204,9 +204,6 @@
 		if(EXPLODE_HEAVY)
 			if(prob(50))
 				qdel(src)
-		if(EXPLODE_LIGHT)
-			if(prob(25))
-				INVOKE_ASYNC(src, .proc/malfunction)
 
 /**
  * Builds shared vendors inventory
