@@ -190,12 +190,6 @@
 		if(EXPLODE_HEAVY)
 			if(prob(50))
 				qdel(src)
-				return
-			else
-				malfunction()
-		if(EXPLODE_LIGHT)
-			if(prob(80))
-				malfunction()
 
 
 /obj/item/portable_vendor/corporate
