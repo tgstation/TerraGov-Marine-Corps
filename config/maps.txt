@@ -21,7 +21,7 @@ map desertdam
 	minplayers 90
 endmap
 
-map icarus_millitary_port
+map icarus_military_port
 	minplayers 30
 endmap
 
