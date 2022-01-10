@@ -1143,8 +1143,8 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 70
 	sundering = 90
 	bullet_color = COLOR_PULSE_BLUE
-
-	var/on_pierce_reduction = 0.66 //projectile loses 33% of its damage when it penetrates a something
+	///projectile loses (1-x)% of its damage when it penetrates something
+	var/on_pierce_reduction = 0.66
 
 /datum/ammo/bullet/railgun/on_hit_mob(mob/M, obj/projectile/P)
 	P.damage *= on_pierce_reduction
