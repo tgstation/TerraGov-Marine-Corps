@@ -82,7 +82,7 @@
 /// Signal handler to burn and maybe stun the human entering the acid spray
 /mob/living/carbon/human/proc/acid_spray_entered(datum/source, obj/effect/xenomorph/spray/acid_spray, acid_damage, slow_amt)
 	SIGNAL_HANDLER
-	if(CHECK_MULTIPLE_BITFIELDS(flags_pass, HOVERING))
+	if(CHECK_MULTIPLE_BITFIELDS(flags_pass, HOVERING) || stat == DEAD)
 		return
 
 	if(acid_spray.xeno_owner && TIMER_COOLDOWN_CHECK(acid_spray, COOLDOWN_PARALYSE_ACID)) //To prevent being able to walk "over" acid sprays
