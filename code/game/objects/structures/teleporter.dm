@@ -1,3 +1,5 @@
+#define TELEPORTING_COST 500
+
 /obj/effect/teleporter_linker/Initialize()
 	. = ..()
 	var/obj/machinery/teleporter/teleporter_a = new(loc)
@@ -14,7 +16,6 @@
 	anchored = FALSE
 	wrenchable = TRUE
 	idle_power_usage = 50
-	active_power_usage = 3000
 	COOLDOWN_DECLARE(teleport_cooldown)
 	///List of all teleportable types
 	var/static/list/teleportable_types = typecacheof(list(
@@ -24,6 +25,8 @@
 	))
 	///The linked teleporter
 	var/obj/machinery/teleporter/linked_teleporter
+	///The optional cell to power the teleporter if off the grid
+	var/obj/item/cell/cell
 
 /obj/machinery/teleporter/proc/set_linked_teleporter(obj/machinery/teleporter/linked_teleporter)
 	if(src.linked_teleporter)
@@ -33,6 +36,7 @@
 
 /obj/machinery/teleporter/Destroy()
 	linked_teleporter = null
+	QDEL_NULL(cell)
 	return ..()
 
 ///Explode when the other teleporter is destroyed
@@ -47,7 +51,7 @@
 		to_chat(user, span_warning("Nothing happens. The [src] must be bolted to the ground first."))
 		return
 
-	if (!powered())
+	if (!powered() && (!cell || cell.charge < TELEPORTING_COST))
 		to_chat(user, span_warning("A red light flashes on the [src]. It seems it doesn't have enough power."))
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		return
@@ -64,7 +68,7 @@
 		to_chat(user, span_warning("The [src] and the [linked_teleporter] are too far appart"))
 		return
 	
-	if(!linked_teleporter.anchored || !linked_teleporter.powered())
+	if(!linked_teleporter.anchored || (!linked_teleporter.powered() && (!linked_teleporter.cell || linked_teleporter.cell.charge < TELEPORTING_COST)))
 		to_chat(user, span_warning("The other teleporter is not functional!"))
 		return
 	
@@ -84,9 +88,16 @@
 	do_sparks(5, TRUE, src)
 	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
 	COOLDOWN_START(src, teleport_cooldown, 30 SECONDS)
-	use_power = ACTIVE_POWER_USE//takes a lot more power while cooling down
-	addtimer(VARSET_CALLBACK(src, use_power, IDLE_POWER_USE), 30 SECONDS)
-
+	if(powered())
+		use_power(TELEPORTING_COST * 200)
+	else
+		cell.charge -= TELEPORTING_COST
+	update_icon()
+	if(linked_teleporter.powered())
+		linked_teleporter.use_power(TELEPORTING_COST * 200)
+	else	
+		cell.charge -= TELEPORTING_COST
+	linked_teleporter.update_icon()
 	teleporting.forceMove(get_turf(linked_teleporter))
 
 /obj/machinery/teleporter/wrench_act(mob/living/user, obj/item/I)
@@ -100,8 +111,39 @@
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 	update_icon()
 
+/obj/machinery/teleporter/crowbar_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(!user)
+		return
+	if(!cell)
+		to_chat(user, span_warning("There is no cell to remove!"))
+		return
+	if(!do_after(user, 2 SECONDS, TRUE, src))
+		return FALSE
+	playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+	to_chat(user , span_notice("You remove [cell] from \the [src]."))
+	user.put_in_hands(cell)
+	cell = null
+	update_icon()
+
+/obj/machinery/teleporter/attackby(obj/item/I, mob/user, params)
+	if(!ishuman(user))
+		return FALSE
+	if(!istype(I, /obj/item/cell))
+		return FALSE
+	if(cell)
+		to_chat(user , span_warning("There is already a cell inside, use a crowbar to remove it."))
+		return
+	if(!do_after(user, 2 SECONDS, TRUE, src))
+		return FALSE
+	I.forceMove(src)
+	user.temporarilyRemoveItemFromInventory(I)
+	cell = I
+	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
+	update_icon()
+
 /obj/machinery/teleporter/update_icon_state()
-	if(anchored)
+	if(anchored && (powered() || cell?.charge > TELEPORTING_COST))
 		icon_state = "broadcast receiver"
 		return
 	icon_state = "broadcast receiver_off"
