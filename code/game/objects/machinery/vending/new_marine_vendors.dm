@@ -416,6 +416,7 @@
 		/obj/effect/modular_set/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
 		/obj/effect/modular_set/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "black"),
 		/obj/effect/modular_set/eva = list(CAT_AMR, "Medium EVA Jaeger kit", 0, "black"),
+		/obj/effect/modular_set/helljumper = list(CAT_AMR, "Medium Helljumper Jaeger kit", 0, "black"),
 		/obj/effect/modular_set/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "black"),
 		/obj/effect/modular_set/eod = list(CAT_AMR, "Heavy EOD Jaeger kit", 0, "black"),
 		/obj/effect/essentials_set/xenonauten_light/leader = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
@@ -855,6 +856,15 @@
 		/obj/item/armor_module/armor/chest/marine/assault/eod,
 		/obj/item/armor_module/armor/arms/marine/eod,
 		/obj/item/armor_module/armor/legs/marine/eod,
+	)
+
+/obj/effect/modular_set/helljumper
+	desc = "A set of Helljumper pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
+	spawned_gear_list = list(
+		/obj/item/clothing/head/modular/marine/helljumper,
+		/obj/item/armor_module/armor/chest/marine/helljumper,
+		/obj/item/armor_module/armor/arms/marine/helljumper,
+		/obj/item/armor_module/armor/legs/marine/helljumper,
 	)
 
 /obj/effect/essentials_set/mimir

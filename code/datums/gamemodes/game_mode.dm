@@ -381,8 +381,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.now_pregnant] people infected among which [GLOB.round_statistics.total_larva_burst] burst. For a [(GLOB.round_statistics.total_larva_burst / max(GLOB.round_statistics.now_pregnant, 1)) * 100]% successful delivery rate!"
 	if(GLOB.round_statistics.queen_screech)
 		dat += "[GLOB.round_statistics.queen_screech] Queen screeches."
-	if(GLOB.round_statistics.warrior_limb_rips)
-		dat += "[GLOB.round_statistics.warrior_limb_rips] limbs ripped off by Warriors."
+	if(GLOB.round_statistics.warrior_lunges)
+		dat += "[GLOB.round_statistics.warrior_lunges] Warriors lunges."
 	if(GLOB.round_statistics.crusher_stomp_victims)
 		dat += "[GLOB.round_statistics.crusher_stomp_victims] people stomped by crushers."
 	if(GLOB.round_statistics.praetorian_spray_direct_hits)
@@ -394,7 +394,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(GLOB.round_statistics.trap_holes)
 		dat += "[GLOB.round_statistics.trap_holes] holes for acid and huggers were made."
 	if(GLOB.round_statistics.sentinel_neurotoxin_stings)
-		dat += "[GLOB.round_statistics.sentinel_neurotoxin_stings] number of times Sentinels stung."
+		dat += "[GLOB.round_statistics.sentinel_neurotoxin_stings] number of times neurotoxin sting was used."
 	if(GLOB.round_statistics.defiler_defiler_stings)
 		dat += "[GLOB.round_statistics.defiler_defiler_stings] number of times Defilers stung."
 	if(GLOB.round_statistics.defiler_neurogas_uses)
@@ -403,10 +403,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.defiler_reagent_slashes] number of times Defilers struck an enemy with their reagent slash."
 	if(GLOB.round_statistics.xeno_unarmed_attacks && GLOB.round_statistics.xeno_bump_attacks)
 		dat += "[GLOB.round_statistics.xeno_bump_attacks] bump attacks, which made up [(GLOB.round_statistics.xeno_bump_attacks / GLOB.round_statistics.xeno_unarmed_attacks) * 100]% of all attacks ([GLOB.round_statistics.xeno_unarmed_attacks])."
-	if(GLOB.round_statistics.xeno_headbites)
-		dat += "[GLOB.round_statistics.xeno_headbites] number of times victims headbitten."
-	if(GLOB.round_statistics.xeno_silo_corpses)
-		dat += "[GLOB.round_statistics.xeno_silo_corpses] number of corpses fed to resin silos."
 	if(GLOB.round_statistics.xeno_rally_hive)
 		dat += "[GLOB.round_statistics.xeno_rally_hive] number of times xeno leaders rallied the hive."
 	if(GLOB.round_statistics.hivelord_healing_infusions)

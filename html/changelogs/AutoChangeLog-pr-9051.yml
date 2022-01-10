@@ -1,5 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - qol: "Researcher has medical radio to talk in medical."
-  - bugfix: "Researcher is under support now instead of flavour."

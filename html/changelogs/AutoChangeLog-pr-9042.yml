@@ -1,5 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - imageadd: "New cryobag sprites! Taken from CM."
-  - qol: "A little animation glow when someone is inside cryobag."

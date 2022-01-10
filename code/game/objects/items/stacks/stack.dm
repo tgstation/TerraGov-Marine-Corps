@@ -89,7 +89,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/stack/dropped(mob/user, slot)
+/obj/item/stack/removed_from_inventory(mob/user)
 	. = ..()
 	update_icon()
 

@@ -48,6 +48,14 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"an" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 1
+	},
+/area/mainship/hallways/hangar)
 "ao" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/mainship/mono,
@@ -1718,6 +1726,12 @@
 	dir = 8
 	},
 /area/mainship/hallways/hangar)
+"fM" = (
+/obj/effect/attach_point/weapon/dropship1,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/mainship/hallways/hangar)
 "fN" = (
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/red{
@@ -1743,6 +1757,18 @@
 /obj/machinery/computer/supplycomp,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"fR" = (
+/mob/living/simple_animal/catslug/newt,
+/turf/open/floor/mainship/sterile/purple/side{
+	dir = 9
+	},
+/area/mainship/medical/chemistry)
+"fS" = (
+/turf/open/floor/plating{
+	dir = 8;
+	icon_state = "warnplatecorner"
+	},
+/area/mainship/hallways/hangar)
 "fT" = (
 /obj/effect/decal/cleanable/blood/oil{
 	name = "grease";
@@ -2361,6 +2387,19 @@
 /obj/machinery/cryopod/right,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cryo_cells)
+"ic" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "id" = (
 /turf/open/floor/mainship/blue{
 	dir = 8
@@ -2449,6 +2488,11 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
+"is" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/mainship/hallways/hangar)
 "it" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -4509,6 +4553,12 @@
 /obj/item/tool/crowbar/red,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles)
+"pe" = (
+/turf/open/floor/plating{
+	dir = 4;
+	icon_state = "warnplatecorner"
+	},
+/area/mainship/hallways/hangar)
 "pf" = (
 /turf/open/floor/mainship/red/corner{
 	dir = 4
@@ -4932,6 +4982,10 @@
 /obj/structure/disposalpipe/segment/corner,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/evacuation)
+"qy" = (
+/obj/machinery/computer/camera_advanced/overwatch/req,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "qz" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship/floor,
@@ -6279,10 +6333,9 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "ve" = (
-/obj/machinery/light{
-	dir = 1
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
 	},
-/turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "vf" = (
 /obj/machinery/cic_maptable,
@@ -6943,6 +6996,11 @@
 	dir = 1
 	},
 /area/mainship/medical/lounge)
+"xx" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/mainship/hallways/hangar)
 "xA" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -7541,6 +7599,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/evacuation)
+"zi" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/mainship/hallways/hangar)
 "zk" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -8282,6 +8345,11 @@
 /obj/structure/cable,
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
+"Bs" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 9
+	},
+/area/mainship/hallways/hangar)
 "Bu" = (
 /obj/machinery/power/apc/mainship{
 	dir = 8
@@ -8294,6 +8362,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/port_hull)
+"Bw" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "By" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/effect/decal/cleanable/blood/oil,
@@ -8371,6 +8445,11 @@
 /obj/item/paper/hydroponics,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_garden)
+"BK" = (
+/turf/open/floor/plating{
+	icon_state = "warnplatecorner"
+	},
+/area/mainship/hallways/hangar)
 "BN" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin,
@@ -8508,7 +8587,9 @@
 	dir = 8;
 	icon_state = "equip_base_l_wing"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
 /area/mainship/hallways/hangar)
 "Cg" = (
 /turf/closed/wall/mainship,
@@ -8623,6 +8704,9 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/evacuation)
+"CH" = (
+/turf/open/floor/plating/icefloor/warnplate,
+/area/mainship/hallways/hangar)
 "CI" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
@@ -11676,6 +11760,11 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/sterile/purple/side,
 /area/mainship/medical/chemistry)
+"Mh" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 5
+	},
+/area/mainship/hallways/hangar)
 "Mi" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -12048,6 +12137,12 @@
 	dir = 4
 	},
 /area/mainship/hallways/port_hallway)
+"Nw" = (
+/obj/effect/attach_point/electronics/dropship1,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/mainship/hallways/hangar)
 "Nx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -12334,6 +12429,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
+"Om" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "On" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -12345,7 +12447,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "Oo" = (
 /obj/structure/cable,
@@ -12358,7 +12460,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "Op" = (
 /obj/structure/cable,
@@ -14088,6 +14190,11 @@
 /obj/vehicle/ridden/powerloader,
 /turf/open/floor/mainship/cargo,
 /area/mainship/shipboard/weapon_room)
+"Uf" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/mainship/hallways/hangar)
 "Ug" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -21225,7 +21332,7 @@ Ep
 HQ
 gU
 Jp
-Kr
+fR
 Lj
 Jp
 It
@@ -22197,8 +22304,8 @@ js
 js
 AY
 js
-js
-js
+Om
+Om
 Fk
 js
 js
@@ -22387,25 +22494,25 @@ aW
 tW
 ez
 ez
-ez
-ez
-ez
-ez
-ez
+BK
+ve
+zi
+Uf
+Uf
 Cf
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
+Mh
+ve
+ve
+ve
+ve
+zi
+Uf
+Uf
+Uf
+Uf
+Uf
+xx
+ve
 hN
 iy
 VC
@@ -22483,9 +22590,9 @@ qR
 OS
 sJ
 tZ
-ve
 ez
 ez
+CH
 xP
 ez
 ez
@@ -22502,8 +22609,8 @@ ez
 ez
 ez
 ez
-ez
-ez
+xx
+xx
 hN
 iy
 VC
@@ -22581,9 +22688,9 @@ ez
 sh
 aW
 ud
-ez
-ez
-ez
+ve
+ve
+zi
 xQ
 ez
 ez
@@ -22600,8 +22707,8 @@ ez
 ez
 ez
 ez
-ez
-ez
+xx
+xx
 hN
 iy
 jq
@@ -22679,6 +22786,7 @@ ez
 hN
 aW
 dO
+xx
 ez
 ez
 ez
@@ -22697,9 +22805,8 @@ ez
 ez
 ez
 ez
-ez
-ez
-ez
+Uf
+pe
 hN
 iy
 Al
@@ -22777,6 +22884,7 @@ ez
 hN
 aW
 dO
+xx
 ez
 ez
 ez
@@ -22795,10 +22903,9 @@ ez
 ez
 ez
 ez
-ez
-ez
-ez
-hN
+Bs
+Uf
+an
 On
 Py
 QA
@@ -22875,7 +22982,7 @@ ez
 hN
 aW
 dO
-ez
+xx
 ez
 ez
 ez
@@ -22894,10 +23001,10 @@ ez
 ez
 ez
 ez
+xx
 ez
-ez
-hN
-iy
+an
+ic
 VC
 QB
 cF
@@ -22973,6 +23080,7 @@ ez
 hN
 aW
 dO
+xx
 ez
 ez
 ez
@@ -22991,10 +23099,9 @@ ez
 ez
 ez
 ez
-ez
-ez
-ez
-hN
+Mh
+ve
+an
 Oo
 PB
 QC
@@ -23071,6 +23178,7 @@ ez
 hN
 aW
 dO
+xx
 ez
 ez
 ez
@@ -23089,9 +23197,8 @@ ez
 ez
 ez
 ez
-ez
-ez
-ez
+ve
+fS
 hN
 iy
 VC
@@ -23169,13 +23276,10 @@ ez
 sg
 aW
 tW
-ez
-ez
-ez
-xQ
-ez
-ez
-ez
+Uf
+Uf
+Uf
+Nw
 ez
 ez
 ez
@@ -23190,6 +23294,9 @@ ez
 ez
 ez
 ez
+ez
+xx
+xx
 hN
 iy
 jq
@@ -23267,12 +23374,10 @@ qR
 OS
 sJ
 tZ
-ve
 ez
 ez
-xP
 ez
-ez
+fM
 ez
 ez
 ez
@@ -23288,6 +23393,8 @@ ez
 ez
 ez
 ez
+xx
+xx
 hN
 iy
 VC
@@ -23368,24 +23475,24 @@ ud
 ez
 ez
 ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
+Uf
+is
+ve
+ve
+ve
+Bs
+Uf
+Uf
+Uf
+Uf
+is
+ve
+ve
+ve
+ve
+ve
+xx
+Uf
 hN
 iy
 VC
@@ -23569,8 +23676,8 @@ bw
 zP
 bw
 bw
-bw
-bw
+Bw
+Bw
 bw
 bw
 bw
@@ -24147,7 +24254,7 @@ oM
 pL
 gY
 sm
-gY
+qy
 uf
 vf
 vV

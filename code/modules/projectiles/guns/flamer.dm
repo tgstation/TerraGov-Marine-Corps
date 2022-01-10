@@ -310,7 +310,10 @@
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/mini
-	allowed_ammo_types = list(/obj/item/ammo_magazine/flamer_tank/mini)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/flamer_tank/mini,
+		/obj/item/ammo_magazine/flamer_tank/backtank,
+	)
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/unremovable/invisible)
 	attachable_allowed = list(
 		/obj/item/attachable/flamer_nozzle/unremovable/invisible,
@@ -321,6 +324,7 @@
 	pixel_shift_x = 15
 	pixel_shift_y = 18
 
+	mob_flame_damage_mod = 1
 	flame_max_range = 4
 
 /obj/item/weapon/gun/flamer/mini_flamer/unremovable
