@@ -44,7 +44,6 @@
 		/obj/item/stack/sheet,
 		/obj/item/stack/sandbags,
 		/obj/item/stack/snow,
-		/obj/item/tool/solderingtool,
 	)
 
 /obj/item/armor_module/storage/uniform/brown_vest
