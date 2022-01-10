@@ -2055,8 +2055,9 @@
 /area/bigredv2/caves/north)
 "dEk" = (
 /obj/structure/window/framed/mainship/hull/canterbury,
-/turf/open/space/basic,
-/area/space)
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/c)
 "dEs" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable,
@@ -7602,10 +7603,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/caves/lambda_lab)
-"mET" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/space/basic,
-/area/bigredv2/caves/southeast)
 "mGZ" = (
 /obj/structure/catwalk,
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
@@ -12337,7 +12334,7 @@
 /area/bigredv2/outside/c)
 "ufm" = (
 /obj/structure/shuttle/engine/propulsion,
-/turf/open/space/basic,
+/turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
 "ufp" = (
 /obj/structure/cargo_container/red{
@@ -22921,7 +22918,7 @@ fAO
 cTK
 dqC
 dqC
-dEk
+dqC
 cTK
 fAO
 fAO
@@ -23435,7 +23432,7 @@ fAO
 cTK
 dqC
 dqC
-dEk
+dqC
 cTK
 fAO
 fAO
@@ -40685,7 +40682,7 @@ jzC
 jzC
 jzC
 sLK
-psf
+upm
 vOK
 olf
 oFg
@@ -40942,7 +40939,7 @@ jzC
 jzC
 jzC
 sLK
-psf
+upm
 vOK
 ixj
 gIv
@@ -41199,7 +41196,7 @@ jzC
 jzC
 jzC
 sLK
-psf
+upm
 vOK
 vOK
 vOK
@@ -41737,8 +41734,8 @@ pCF
 pCF
 pCF
 pCF
-psf
-psf
+upm
+upm
 pCF
 pCF
 pCF
@@ -42744,7 +42741,7 @@ xvu
 xlo
 xlo
 xlo
-psf
+upm
 kZU
 wts
 kZU
@@ -43021,7 +43018,7 @@ hrF
 xLW
 jzC
 tLE
-smQ
+dEk
 tLE
 jzC
 jzC
@@ -43277,9 +43274,9 @@ sLK
 nIu
 uDs
 uDs
-smQ
+dEk
 vOK
-smQ
+dEk
 jzC
 jzC
 qzd
@@ -43542,9 +43539,9 @@ jzC
 qzd
 jzC
 tLE
-smQ
-smQ
-smQ
+dEk
+dEk
+dEk
 tLE
 tLE
 tLE
@@ -44818,7 +44815,7 @@ xQR
 xce
 xce
 jzC
-smQ
+dEk
 pbl
 ptj
 pZV
@@ -45075,7 +45072,7 @@ xQR
 xce
 xce
 jzC
-smQ
+dEk
 pcs
 puB
 pZV
@@ -45332,7 +45329,7 @@ xQR
 xce
 xce
 jzC
-smQ
+dEk
 pcD
 ptj
 pZV
@@ -45589,7 +45586,7 @@ tdT
 nIw
 xce
 jzC
-smQ
+dEk
 pcQ
 puB
 pZV
@@ -46883,9 +46880,9 @@ jzC
 qzd
 jzC
 tLE
-smQ
-smQ
-smQ
+dEk
+dEk
+dEk
 tLE
 tLE
 tLE
@@ -47132,9 +47129,9 @@ sLK
 lEV
 uDs
 uDs
-smQ
+dEk
 vOK
-smQ
+dEk
 jzC
 qzd
 qzd
@@ -47390,7 +47387,7 @@ qzd
 xLW
 jzC
 tLE
-smQ
+dEk
 tLE
 jzC
 xYe
@@ -48408,7 +48405,7 @@ kQR
 vOK
 vOK
 aZi
-psf
+upm
 hXK
 nTU
 ixv
@@ -48665,7 +48662,7 @@ uJv
 vOK
 vOK
 aZi
-psf
+upm
 ycE
 ijl
 ixE
@@ -64482,7 +64479,7 @@ vCZ
 vCZ
 vCZ
 vCZ
-mET
+ybi
 lHc
 lHc
 lHc
