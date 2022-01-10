@@ -1,6 +1,6 @@
 {
     "map_name": "Icarus Military Port",
-    "map_path": "map_files/icarus_military_port",
-    "map_file": "icarus_military_port.dmm",
+    "map_path": "map_files/_maps/map_files/Icarus_Military_Port",
+    "map_file": "Icarus_Military_Port.dmm",
     "announce_text": "Something for the lore nuts to write"
 }
