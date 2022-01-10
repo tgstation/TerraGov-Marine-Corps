@@ -6,6 +6,10 @@
 	icon_state = "in_hand"
 	slot = ATTACHMENT_SLOT_BADGE
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB|ATTACH_NO_HANDS|ATTACH_SAME_ICON
+	colorable_allowed = COLOR_WHEEL_ONLY
+	flags_item_map_variant = NONE
+	colorable_colors = list()
+
 	///List of selectable styles for where the badge is worn.
 	var/list/style_list = list(
 		"Beret Front",

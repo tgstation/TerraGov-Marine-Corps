@@ -28,6 +28,9 @@
 	if(issynth(activator) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(user, span_warning("Your programming restricts operating explosive devices."))
 		return TRUE
+	if(user.alpha != 255)
+		to_chat(user, span_warning("Your cloak prevents you from detonating [src]!"))
+		return TRUE
 	if(activator.wear_suit != src)
 		to_chat(activator, "Due to the rigging of this device, it can only be detonated while worn.") //If you are going to use this, you have to accept death. No armor allowed.
 		return FALSE

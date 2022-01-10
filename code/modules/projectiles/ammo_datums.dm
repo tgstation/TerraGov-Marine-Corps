@@ -1628,7 +1628,7 @@ datum/ammo/bullet/revolver/tp44
 	icon_state = "overchargedlaser"
 	hud_state = "laser_sniper"
 	damage = 40
-	max_range = 7
+	max_range = 14
 	penetration = 5
 	shell_speed = 1.5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_EXPLOSIVE
@@ -1642,7 +1642,15 @@ datum/ammo/bullet/revolver/tp44
 	var/fire_color = "green"
 
 /datum/ammo/energy/plasma_pistol/on_hit_turf(turf/T, obj/projectile/proj)
-	T.ignite(heat, burn_damage, fire_color)
+	var/burn_mod = 1
+	if(istype(T, /turf/closed/wall))
+		burn_mod = 3
+	T.ignite(heat, burn_damage * burn_mod, fire_color)
+	for(var/mob/living/mob_caught in T)
+		if(mob_caught.stat == DEAD)
+			continue
+		mob_caught.adjust_fire_stacks(burn_damage)
+		mob_caught.IgniteMob()
 
 /datum/ammo/energy/plasma_pistol/on_hit_mob(mob/M, obj/projectile/proj)
 	var/turf/T = get_turf(M)
@@ -1704,7 +1712,7 @@ datum/ammo/bullet/revolver/tp44
 	slowdown_stacks = 1.1
 	smoke_strength = 0.5
 	smoke_range = 0
-	reagent_transfer_amount = 7
+	reagent_transfer_amount = 4
 
 ///Set up the list of reagents the spit transfers upon impact
 /datum/ammo/xeno/toxin/proc/set_reagents()
@@ -1768,15 +1776,15 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/toxin/upgrade1
 	smoke_strength = 0.6
-	reagent_transfer_amount = 8
+	reagent_transfer_amount = 5
 
 /datum/ammo/xeno/toxin/upgrade2
 	smoke_strength = 0.7
-	reagent_transfer_amount = 9
+	reagent_transfer_amount = 6
 
 /datum/ammo/xeno/toxin/upgrade3
 	smoke_strength = 0.75
-	reagent_transfer_amount = 9.5
+	reagent_transfer_amount = 6.5
 
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
@@ -1894,7 +1902,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/acid/passthrough
 	name = "acid spittle"
-	damage = 30
+	damage = 20
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
 
 /datum/ammo/xeno/acid/heavy

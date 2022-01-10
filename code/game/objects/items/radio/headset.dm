@@ -143,6 +143,13 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	return FALSE
 
 
+/obj/item/radio/headset/attack_self(mob/living/user)
+	if(!istype(user) || !Adjacent(user) || user.incapacitated())
+		return
+	channels[RADIO_CHANNEL_REQUISITIONS] = !channels[RADIO_CHANNEL_REQUISITIONS]
+	to_chat(user, span_notice("You toggle supply comms [channels[RADIO_CHANNEL_REQUISITIONS] ? "on" : "off"]."))
+
+
 /obj/item/radio/headset/survivor
 	freqlock = TRUE
 	frequency = FREQ_CIV_GENERAL
@@ -400,12 +407,12 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/st
 	name = "technician radio headset"
 	icon_state = "eng_headset"
-	keyslot = /obj/item/encryptionkey/req
+	keyslot = /obj/item/encryptionkey/general
 	keyslot2 = /obj/item/encryptionkey/engi
 
 /obj/item/radio/headset/mainship/st/rebel
 	frequency = FREQ_COMMON_REBEL
-	keyslot = /obj/item/encryptionkey/req/rebel
+	keyslot = /obj/item/encryptionkey/general/rebel
 	keyslot2 = /obj/item/encryptionkey/engi/rebel
 	hud_type = DATA_HUD_SQUAD_REBEL
 	minimap_type = /datum/action/minimap/marine/rebel
@@ -413,6 +420,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/res
 	name = "research radio headset"
 	icon_state = "med_headset"
+	keyslot = /obj/item/encryptionkey/med
 	minimap_type = /datum/action/minimap/researcher
 
 /obj/item/radio/headset/mainship/doc
@@ -429,11 +437,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/ct
 	name = "supply radio headset"
 	icon_state = "cargo_headset"
-	keyslot = /obj/item/encryptionkey/req
+	keyslot = /obj/item/encryptionkey/general
 
 /obj/item/radio/headset/mainship/ct/rebel
 	frequency = FREQ_COMMON_REBEL
-	keyslot = /obj/item/encryptionkey/req/rebel
+	keyslot = /obj/item/encryptionkey/general/rebel
 	hud_type = DATA_HUD_SQUAD_REBEL
 	minimap_type = /datum/action/minimap/marine/rebel
 

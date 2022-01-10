@@ -45,7 +45,7 @@
 		iff_signal = id?.iff_signal
 
 	knockdown_threshold = gun.knockdown_threshold
-	range = gun.turret_range
+	range = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL) ?  gun.turret_range - 2 : gun.turret_range
 	ignored_terrains = gun.ignored_terrains
 
 	radio = new(src)
@@ -93,19 +93,6 @@
 
 //-----------------------------------------------------------------
 // Interaction
-
-/obj/machinery/deployable/mounted/sentry/attackby(obj/item/I, mob/user, params)
-	var/obj/item/weapon/gun/gun = internal_item
-	if(istype(I, gun.sentry_battery_type) && !istype(gun, /obj/item/weapon/gun/energy))
-		gun.reload_sentry_cell(I, user)
-		update_static_data(user)
-		return
-	return ..()
-
-/obj/machinery/deployable/mounted/sentry/CtrlClick(mob/user)
-	. = ..()
-	var/obj/item/weapon/gun/internal_gun = internal_item
-	internal_gun.remove_sentry_cell(user)
 
 /obj/machinery/deployable/mounted/sentry/on_set_interaction(mob/user)
 	. = ..()
@@ -169,7 +156,6 @@
 	current_rounds = gun.rounds
 	. = list(
 		"rounds" =  current_rounds,
-		"cell_charge" = gun.sentry_battery ? gun.sentry_battery.charge : 0,
 		"health" = obj_integrity
 	)
 
@@ -181,8 +167,6 @@
 		"name" = copytext(name, 2),
 		"rounds_max" = rounds_max,
 		"fire_mode" = gun.gun_firemode,
-		"has_cell" = (gun.sentry_battery ? 1 : 0),
-		"cell_maxcharge" = gun.sentry_battery ? gun.sentry_battery.maxcharge : 0,
 		"health_max" = max_integrity,
 		"safety_toggle" = CHECK_BITFIELD(gun.turret_flags, TURRET_SAFETY),
 		"manual_override" = operator,
@@ -235,10 +219,11 @@
 			. = TRUE
 
 		if("toggle_radial")
-			if(!gun.sentry_battery?.charge)
-				update_static_data(user)
-				return
 			TOGGLE_BITFIELD(gun.turret_flags, TURRET_RADIAL)
+			if(!CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL))
+				range = gun.turret_range
+			else
+				range = gun.turret_range - 2
 			var/rad_msg = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL) ? "activate" : "deactivate"
 			user.visible_message(span_notice("[user] [rad_msg]s [src]'s radial mode."), span_notice("You [rad_msg] [src]'s radial mode."))
 			say("Radial mode [rad_msg]d.")
@@ -341,8 +326,6 @@
 			last_damage_alert = world.time
 		if(SENTRY_ALERT_DESTROYED)
 			notice = "<b>ALERT! [src] at: [AREACOORD_NO_Z(src)] has been destroyed!</b>"
-		if(SENTRY_ALERT_BATTERY)
-			notice = "<b>ALERT! [src]'s battery depleted at: [AREACOORD_NO_Z(src)].</b>"
 
 	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 	radio.talk_into(src, "[notice]", FREQ_COMMON)
@@ -397,8 +380,6 @@
 		return
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL))
 		setDir(get_cardinal_dir(src, target))
-		if(gun.sentry_battery.charge <= 0)
-			sentry_alert(SENTRY_ALERT_BATTERY)
 	if(HAS_TRAIT(gun, TRAIT_GUN_BURST_FIRING))
 		gun.set_target(target)
 		return

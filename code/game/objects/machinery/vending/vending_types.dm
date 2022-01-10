@@ -76,9 +76,6 @@
 	contraband = list(/obj/item/reagent_containers/food/drinks/ice = 10)
 	prices = list()
 
-
-
-
 /obj/machinery/vending/snack
 	name = "Hot Foods Machine"
 	desc = "A vending machine full of ready to cook meals, mhmmmm taste the nutritional goodness!"
@@ -98,8 +95,6 @@
 	)
 
 	prices = list()
-
-
 
 /obj/machinery/vending/cola
 	name = "Souto Softdrinks"
@@ -188,7 +183,6 @@
 	contraband = list(
 		/obj/item/reagent_containers/glass/bottle/toxin = 1,
 		/obj/item/reagent_containers/glass/bottle/neurotoxin = 1,
-		/obj/item/reagent_containers/glass/bottle/xeno_growthtoxin = 1,
 		/obj/item/reagent_containers/glass/bottle/neurotoxin/light = 1,
 		/obj/item/reagent_containers/glass/bottle/xeno_hemodile = 1,
 		/obj/item/reagent_containers/glass/bottle/xeno_transvitox = 1,
@@ -201,6 +195,7 @@
 	req_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
 
 /obj/machinery/vending/medical/valhalla
+	use_power = NO_POWER_USE
 	req_access = list()
 	resistance_flags = INDESTRUCTIBLE
 	products = list(
@@ -210,7 +205,11 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/hyperzine = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/rezadone = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/virilyth = -1,
 			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/roulettium = -1,
 		),
 		"Reagent Bottle" = list(
 			/obj/item/reagent_containers/glass/bottle/dylovene = -1,
@@ -224,6 +223,10 @@
 			/obj/item/reagent_containers/glass/bottle/tramadol = -1,
 			/obj/item/reagent_containers/glass/bottle/oxycodone = -1,
 			/obj/item/reagent_containers/glass/bottle/polyhexanide = -1,
+			/obj/item/reagent_containers/glass/bottle/adminordrazine = -1,
+			/obj/item/reagent_containers/glass/bottle/lemoline = -1,
+			/obj/item/reagent_containers/glass/bottle/nanoblood = -1,
+			/obj/item/reagent_containers/glass/bottle/doctor_delight = -1,
 		),
 		"Pill Bottle" = list(
 			/obj/item/storage/pill_bottle/peridaxon = -1,
@@ -278,7 +281,6 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired = 0,
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired = 0,
 	)
-
 
 /obj/machinery/vending/nanomed/Initialize(mapload, ...)
 	. = ..()
@@ -342,7 +344,6 @@
 					/obj/item/seeds/cabbageseed = 3,/obj/item/seeds/grapeseed = 3,/obj/item/seeds/pumpkinseed = 3,/obj/item/seeds/cherryseed = 3,/obj/item/seeds/plastiseed = 3,/obj/item/seeds/riceseed = 3)
 	contraband = list(/obj/item/seeds/amanitamycelium = 2,/obj/item/seeds/glowshroom = 2,/obj/item/seeds/libertymycelium = 2,/obj/item/seeds/mtearseed = 2,
 					/obj/item/seeds/nettleseed = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/shandseed = 2, /obj/item/toy/waterflower = 1)
-
 
 /obj/machinery/vending/magivend
 	name = "MagiVend"
@@ -427,3 +428,48 @@
 // Meaning, if an item is taken from one vendor, it will not be available in any others as well.
 /obj/machinery/vending/shared_vending
 	isshared = TRUE
+
+/obj/machinery/vending/boozeomat/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/assist/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/coffee/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/snack/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/cola/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/medical/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/nanomed/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/security/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/hydronutrients/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/hydroseeds/nopower
+	use_power = NO_POWER_USE	
+
+/obj/machinery/vending/dinnerware/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/sovietsoda/nopower
+	use_power = NO_POWER_USE	
+
+/obj/machinery/vending/tool/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/engivend/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/engineering/nopower
+	use_power = NO_POWER_USE

@@ -64,7 +64,7 @@
 		ATTACHMENT_SLOT_UNIFORM_TIE,
 		ATTACHMENT_SLOT_BADGE,
 	)
-	///Typepath list of allowed attachment types.
+	///Typepath list of uniform variants.
 	var/list/adjustment_variants = list(
 		"Down" = "_d",
 	)
