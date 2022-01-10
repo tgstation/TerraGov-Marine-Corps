@@ -196,6 +196,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(!isgun(detaching_item))
 		return
 
+	activate(user, TRUE)
+
 	master_gun.accuracy_mult				-= accuracy_mod
 	master_gun.accuracy_mult_unwielded		-= accuracy_unwielded_mod
 	master_gun.damage_mult					-= damage_mod
@@ -261,7 +263,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		playsound(user, activation_sound, 15, 1)
 
 ///Called when the attachment is activated.
-/obj/item/attachable/proc/activate(mob/user) //This is for activating stuff like flamethrowers, or switching weapon modes, or flashlights.
+/obj/item/attachable/proc/activate(mob/user, turn_off) //This is for activating stuff like flamethrowers, or switching weapon modes, or flashlights.
 	return TRUE
 
 ///Called when the attachment is trying to be attached. If the attachment is allowed to go through, return TRUE.
@@ -1311,6 +1313,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		to_chat(user, span_notice("You feel the [src] loosen around your wrist!"))
 		playsound(user, 'sound/weapons/fistunclamp.ogg', 25, 1, 7)
 		icon_state = "lace"
+	else if(turn_off)
+		return
 	else
 		if(user.do_actions)
 			return
@@ -1485,13 +1489,15 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		return
 	activate(user)
 
-/obj/item/attachable/shoulder_mount/activate(mob/user)
+/obj/item/attachable/shoulder_mount/activate(mob/user, turn_off)
 	. = ..()
 	if(CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED))
 		DISABLE_BITFIELD(master_gun.flags_item, IS_DEPLOYED)
 		overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
 		UnregisterSignal(user, COMSIG_MOB_MOUSEDOWN)
 		master_gun.set_gun_user(null)
+	else if(turn_off)
+		return
 	else
 		ENABLE_BITFIELD(master_gun.flags_item, IS_DEPLOYED)
 		overlays += image('icons/Marine/marine-weapons.dmi', src, "active")
