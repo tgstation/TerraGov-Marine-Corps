@@ -1039,7 +1039,7 @@
  *  If the gun does not use handfuls, or magazines. It will merely fill the gun with whatever item is inserted.
  */
 /obj/item/weapon/gun/proc/reload(obj/item/new_mag, mob/living/user, force = FALSE)
-	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING) || user?.do_actions)
 		return
 	if(!(new_mag.type in allowed_ammo_types))
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
@@ -1068,6 +1068,10 @@
 		if(rounds >= max_chamber_items)
 			to_chat(user, span_warning("There is no room for [new_mag]!"))
 			return FALSE
+
+	if(!max_chamber_items && in_chamber)
+		to_chat(user, span_warning("[src]'s chamber is closed"))
+		return FALSE
 
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
 		if(!get_current_rounds(new_mag) && !force)
@@ -1212,6 +1216,7 @@
 		obj_in_chamber.update_icon()
 		get_ammo()
 		update_ammo_count()
+		update_icon()
 		return TRUE
 
 	var/obj/item/mag = chamber_items[current_chamber_position]
@@ -1239,6 +1244,7 @@
 	mag.update_icon()
 	get_ammo()
 	update_ammo_count()
+	update_icon()
 	return TRUE
 
 ///Cycles the gun, handles ammunition draw
