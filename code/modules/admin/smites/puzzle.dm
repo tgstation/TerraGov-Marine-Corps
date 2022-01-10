@@ -133,7 +133,7 @@
 	E1.forceMove(T2)
 	E2.forceMove(T1)
 
-/proc/cmp_xy_desc(atom/movable/A,atom/movable/B) 
+/proc/cmp_xy_desc(atom/movable/A,atom/movable/B)
 	if(A.y > B.y)
 		return -1
 	if(A.y < B.y)
@@ -216,17 +216,17 @@
 	var/icon/puzzle_icon
 
 /obj/structure/puzzle_element/Move(nloc, dir)
-	if(!isturf(nloc) ||  moving_diagonally || get_dist(get_step(src,dir),get_turf(source)) > 1)
+	if(!isturf(nloc) || (dir - 1) & dir || get_dist(get_step(src,dir),get_turf(source)) > 1)
 		return 0
 	else
 		return ..()
 
 /obj/structure/puzzle_element/proc/set_puzzle_icon()
 	cut_overlays()
-	
+
 	if(!puzzle_icon)
 		return
-	
+
 	//Need to scale it down a bit to fit the static border
 	var/icon/C = new(puzzle_icon)
 	C.Scale(19,19)

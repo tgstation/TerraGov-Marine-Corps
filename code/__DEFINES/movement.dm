@@ -14,3 +14,6 @@
 
 #define GLIDE_MOD_PULLED (1<<0)
 #define GLIDE_MOD_BUCKLED (1<<0)
+
+#define TURF_CAN_ENTER (1<<0)
+#define TURF_ENTER_ALREADY_MOVED (1<<1)
