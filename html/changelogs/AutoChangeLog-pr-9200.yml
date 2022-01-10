@@ -1,8 +1,0 @@
-author: "hyper2snyper"
-delete-after: True
-changes: 
-  - balance: "Plasma pistol accuracy increased to 1 from .8 (wielded) and .35 (unwielded)"
-  - balance: "Plasma pistol gains its t47 scope again"
-  - balance: "Plasma pistol range increased to 14 from 7"
-  - balance: "Plasma pistol fire damage tripled if the projectile hits a wall."
-  - qol: "Plasma pistol fire will now ignite any mobs on top of it."

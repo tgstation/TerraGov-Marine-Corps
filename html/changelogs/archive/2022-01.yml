@@ -119,3 +119,32 @@
   - balance: change plasma_cost on King's psychic summon, meaning he can psychic summon
       at young
   - bugfix: King can use psychic summon from young and mature now
+2022-01-10:
+  BraveMole:
+  - bugfix: Ghosts can no longer steal aghosted bodies
+  - balance: Prevent using the suicide vest when cloaked
+  - bugfix: Scorpions can spit again
+  - balance: Mantis and beetle no longer flee from fights when low health
+  - balance: Beetle hp from 400 to 260
+  - balance: Mantis hp from 200 to 150
+  - balance: Beetle forward charge only stuns for 2 seconds, 30 seconds of cooldown
+      (it was 4 seconds, 10 seconds before)
+  - balance: Mantis ravage cooldown upped from 6 seconds to 30 seconds
+  - balance: Scorpion spit deal less damage, and the firerate is reduced
+  - balance: Minions spawn rate divided by two. Minions maxium mob by spawner divided
+      by two
+  EvilMelonTheSecond:
+  - rscadd: Added half rolled sleeves to marine uniforms
+  hyper2snyper:
+  - rscadd: Adds 11 new Jaeger Colors.
+  - balance: Plasma pistol accuracy increased to 1 from .8 (wielded) and .35 (unwielded)
+  - balance: Plasma pistol gains its t47 scope again
+  - balance: Plasma pistol range increased to 14 from 7
+  - balance: Plasma pistol fire damage tripled if the projectile hits a wall.
+  - qol: Plasma pistol fire will now ignite any mobs on top of it.
+  - balance: Miniflamer now will not do any bonus damage to mobs hit in the initial
+      fire stream.
+  - bugfix: Miniflamer can now be connected to the backpack fuel tank once more.
+  vilereaver41:
+  - balance: slight changes to map around silos
+  - balance: deleted some silos and moved some
