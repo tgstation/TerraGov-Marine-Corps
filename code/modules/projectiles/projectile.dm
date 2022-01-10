@@ -437,7 +437,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				thing_to_uncross.do_projectile_hit(src)
 				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_TURF))
 					end_of_movement = i
-				break
+					break
+				continue
 			uncross_scheduled.len = 0
 			if(end_of_movement)
 				if(border_escaped_through & (NORTH|SOUTH))
@@ -483,7 +484,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				thing_to_uncross.do_projectile_hit(src)
 				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_TURF))
 					end_of_movement = i
-				break
+					break
+				continue
 			uncross_scheduled.len = 0
 			if(end_of_movement)	//This is a bit overkill to deliver the right animation, but oh well.
 				if(border_escaped_through & (NORTH|SOUTH)) //Inverse logic than before. We now want to run the longer distance now.
@@ -505,7 +507,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				thing_to_uncross.do_projectile_hit(src)
 				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_TURF))
 					end_of_movement = i
-				break
+					break
+				continue
 			uncross_scheduled.len = 0
 			if(end_of_movement)
 				break
@@ -1047,7 +1050,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				thing_to_uncross.do_projectile_hit(src)
 				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_TURF))
 					end_of_movement = TRUE
-				break
+					break
+				continue
 			uncross_scheduled.Cut()
 			if(end_of_movement)
 				break
@@ -1070,7 +1074,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				thing_to_uncross.do_projectile_hit(src)
 				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_TURF))
 					end_of_movement = TRUE
-				break
+					break
+				continue
 			uncross_scheduled.Cut()
 			if(end_of_movement)
 				break
@@ -1085,7 +1090,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				thing_to_uncross.do_projectile_hit(src)
 				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_TURF))
 					end_of_movement = TRUE
-				break
+					break
+				continue
 			uncross_scheduled.len = 0
 			if(end_of_movement)
 				break
