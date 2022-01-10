@@ -121,7 +121,7 @@
 		return
 	if(AM.projectile_hit(src))
 		AM.do_projectile_hit(src)
-		if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOB))
+		if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE))
 			qdel(src)
 			return
 	permutated[AM] = TRUE //Don't want to hit them again.
@@ -435,7 +435,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(border_escaped_through), TRUE))
 					continue
 				thing_to_uncross.do_projectile_hit(src)
-				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_TURF))
+				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE))
 					end_of_movement = i
 					break
 				continue
@@ -482,7 +482,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
 					continue
 				thing_to_uncross.do_projectile_hit(src)
-				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_TURF))
+				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE))
 					end_of_movement = i
 					break
 				continue
@@ -505,7 +505,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
 					continue //We act as if we were entering the tile through the opposite direction, to check for barricade blockage.
 				thing_to_uncross.do_projectile_hit(src)
-				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_TURF))
+				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE))
 					end_of_movement = i
 					break
 				continue
@@ -585,7 +585,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			continue
 
 		thing_to_hit.do_projectile_hit(src)
-		return !(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOB)
+		return !(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
 
 	return FALSE
 
@@ -620,10 +620,13 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return FALSE
 
 /obj/do_projectile_hit(obj/projectile/proj)
+	if(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
+		bullet_act(proj)
 	proj.ammo.on_hit_obj(src, proj)
-	if(QDELETED(src)) //on_hit_obj could delete the object
-		return
-	bullet_act(proj)
+	else
+		if(QDELETED(src)) //on_hit_obj could delete the object
+			return
+		bullet_act(proj)
 
 
 /obj/structure/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
@@ -1048,7 +1051,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(border_escaped_through), TRUE))
 					continue
 				thing_to_uncross.do_projectile_hit(src)
-				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_TURF))
+				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE))
 					end_of_movement = TRUE
 					break
 				continue
@@ -1072,7 +1075,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
 					continue
 				thing_to_uncross.do_projectile_hit(src)
-				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_TURF))
+				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE))
 					end_of_movement = TRUE
 					break
 				continue
@@ -1088,7 +1091,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
 					continue //We act as if we were entering the tile through the opposite direction, to check for barricade blockage.
 				thing_to_uncross.do_projectile_hit(src)
-				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_TURF))
+				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE))
 					end_of_movement = TRUE
 					break
 				continue
