@@ -162,12 +162,14 @@ should be alright.
 	if(!user.skills.getRating("firearms"))
 		to_chat(user, span_warning("You don't know how to do tactical reloads."))
 		return
+	to_chat(user, span_notice("You start a tactical reload."))
+	var/tac_reload_time = max(0.25 SECONDS, 0.75 SECONDS - user.skills.getRating("firearms") * 5)
 	if(length(chamber_items))
-		unload(user)
-		to_chat(user, span_notice("You start a tactical reload."))
-		var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
 		if(!do_after(user, tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
 			return
+		unload(user)
+	if(!do_after(user, tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
+		return
 	if(istype(new_magazine.loc, /obj/item/storage))
 		var/obj/item/storage/S = new_magazine.loc
 		S.remove_from_storage(new_magazine, get_turf(user), user)
