@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "Acid splatter no longer damage dead marines"
