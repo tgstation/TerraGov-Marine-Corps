@@ -620,10 +620,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return FALSE
 
 /obj/do_projectile_hit(obj/projectile/proj)
-	if(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
+	if(proj.ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
 		bullet_act(proj)
-	proj.ammo.on_hit_obj(src, proj)
+		proj.ammo.on_hit_obj(src, proj)
 	else
+		proj.ammo.on_hit_obj(src, proj)
 		if(QDELETED(src)) //on_hit_obj could delete the object
 			return
 		bullet_act(proj)
