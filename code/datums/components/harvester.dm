@@ -158,4 +158,8 @@
 ///Signal handler calling when user attacks
 /datum/component/harvester/proc/attack(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
 	SIGNAL_HANDLER
+	var/datum/reagent/R = loaded_reagent
 	INVOKE_ASYNC(src, .proc/attack_async, source, target, user, weapon)
+	if(!isnull(R))
+		if(!isxeno(target) && R.type == /datum/reagent/medicine/bicaridine)
+			return COMPONENT_ITEM_NO_ATTACK
