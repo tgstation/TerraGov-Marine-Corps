@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "Charge and similar xeno abilities will no longer be used by ai xenos when they can't see the target"
