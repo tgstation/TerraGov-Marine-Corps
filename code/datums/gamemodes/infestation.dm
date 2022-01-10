@@ -151,6 +151,10 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		round_finished = MODE_INFESTATION_M_MAJOR
 		return TRUE
 	if(round_stage == INFESTATION_MARINE_CRASHING && !num_humans_ship)
+		if(SSevacuation.human_escaped > SSevacuation.initial_human_on_ship * 0.5)
+			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //xenos have control of the ship, but most marines managed to flee
+			round_finished = MODE_INFESTATION_X_MINOR
+			return
 		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped our marines, xeno major victory
 		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE

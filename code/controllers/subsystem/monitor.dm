@@ -18,6 +18,8 @@ SUBSYSTEM_DEF(monitor)
 	var/human_on_ground = 0
 	///The number of humans being in either lz1 or lz2
 	var/human_in_FOB = 0
+	///The number of humans on the ship
+	var/human_on_ship = 0
 	///The number of time most of humans are in FOB consecutively
 	var/humans_all_in_FOB_counter = 0
 	///TRUE if we detect a state of FOB hugging
@@ -130,6 +132,7 @@ SUBSYSTEM_DEF(monitor)
 /datum/controller/subsystem/monitor/proc/process_human_positions()
 	human_on_ground = 0
 	human_in_FOB = 0
+	human_on_ship = 0
 	for(var/human in GLOB.alive_human_list)
 		var/turf/TU = get_turf(human)
 		var/area/myarea = TU.loc
@@ -137,6 +140,8 @@ SUBSYSTEM_DEF(monitor)
 			human_on_ground++
 			if(myarea.flags_area & NEAR_FOB)
 				human_in_FOB++
+		else if(is_mainship_level(TU.z))
+			human_on_ship = 0
 
 ///Check if we are in a FOB camping situation
 /datum/controller/subsystem/monitor/proc/FOB_hugging_check()

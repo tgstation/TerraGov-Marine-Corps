@@ -102,7 +102,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
-/obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "ay" = (
@@ -188,7 +187,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "aK" = (
@@ -381,15 +379,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
 "bg" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hull/starboard_hull)
+/turf/open/floor/plating/mainship,
+/area/mainship/hallways/hangar)
 "bh" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -402,16 +393,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
 "bi" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+/obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hull/starboard_hull)
+/turf/open/floor/plating/mainship,
+/area/mainship/hallways/hangar)
 "bj" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable,
@@ -655,47 +641,17 @@
 	},
 /area/mainship/hallways/hangar)
 "bX" = (
-/obj/effect/decal/warning_stripes/thick{
-	icon_state = "N-corner"
+/obj/docking_port/stationary/escape_pod/escape_shuttle{
+	dir = 1
 	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/plating/mainship,
 /area/mainship/hallways/hangar)
 "bY" = (
-/obj/effect/decal/warning_stripes/thick{
-	icon_state = "N-corner"
+/obj/machinery/door/airlock/mainship/secure/evac{
+	dir = 2
 	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/floor,
-/area/mainship/hallways/hangar)
-"bZ" = (
-/obj/effect/decal/warning_stripes/thick{
-	icon_state = "N-corner"
-	},
-/turf/open/floor/mainship/terragov/north{
-	dir = 9
-	},
-/area/mainship/hallways/hangar)
-"cb" = (
-/obj/effect/decal/warning_stripes/thick{
-	icon_state = "N-corner"
-	},
-/turf/open/floor/mainship/terragov/north{
-	dir = 1
-	},
-/area/mainship/hallways/hangar)
-"cc" = (
-/obj/effect/decal/warning_stripes/thick{
-	icon_state = "N-corner"
-	},
-/turf/open/floor/mainship/terragov/north{
-	dir = 5
-	},
-/area/mainship/hallways/hangar)
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_hallway)
 "cd" = (
 /obj/structure/closet/firecloset,
 /obj/item/clothing/mask/gas,
@@ -836,21 +792,6 @@
 	dir = 4
 	},
 /area/mainship/living/briefing)
-"cH" = (
-/turf/open/floor/mainship/terragov/north{
-	dir = 8
-	},
-/area/mainship/hallways/hangar)
-"cI" = (
-/turf/open/floor/mainship/terragov{
-	dir = 1
-	},
-/area/mainship/hallways/hangar)
-"cJ" = (
-/turf/open/floor/mainship/terragov/north{
-	dir = 4
-	},
-/area/mainship/hallways/hangar)
 "cK" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -867,6 +808,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
 "cM" = (
@@ -1043,14 +985,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
-"dv" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
-/obj/effect/ai_node,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/hangar)
 "dw" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1071,7 +1005,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "dy" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
@@ -8254,17 +8187,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
-"Bb" = (
-/obj/machinery/door/poddoor/mainship/ammo{
-	dir = 2;
-	id = null;
-	name = "\improper Hangar Launch Hatch"
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plating,
-/area/mainship/hull/starboard_hull)
 "Bc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/black,
@@ -10911,12 +10833,6 @@
 	dir = 4
 	},
 /area/mainship/medical/chemistry)
-"Jw" = (
-/obj/effect/decal/warning_stripes/thick{
-	icon_state = "N-corner"
-	},
-/turf/open/floor/mainship/floor,
-/area/mainship/hallways/hangar)
 "Jx" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
@@ -14288,18 +14204,6 @@
 "Uy" = (
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
-"Uz" = (
-/obj/machinery/door/poddoor/mainship/ammo{
-	dir = 2;
-	id = null;
-	name = "\improper Hangar Launch Hatch"
-	},
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plating,
-/area/mainship/hull/starboard_hull)
 "UA" = (
 /obj/machinery/telecomms/processor/preset_four,
 /turf/open/floor/mainship/tcomms,
@@ -14608,13 +14512,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "VD" = (
-/obj/machinery/door/poddoor/mainship/ammo{
-	dir = 2;
-	id = null;
-	name = "\improper Hangar Launch Hatch"
+/obj/machinery/door/airlock/mainship/secure/evac{
+	dir = 2
 	},
-/turf/closed/wall/mainship/outer,
-/area/mainship/hull/starboard_hull)
+/turf/open/floor/mainship/mono,
+/area/mainship/powered)
 "VF" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -15657,14 +15559,6 @@
 	dir = 4
 	},
 /area/space)
-"Zm" = (
-/obj/machinery/door/poddoor/mainship/ammo{
-	dir = 2;
-	id = null;
-	name = "\improper Hangar Launch Hatch"
-	},
-/turf/open/floor/plating,
-/area/mainship/hull/starboard_hull)
 "Zn" = (
 /obj/structure/prop/mainship/sensor_computer3,
 /turf/open/floor/mainship/sterile/dark,
@@ -15982,9 +15876,13 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 "}
 (2,1,1) = {"
 ZK
+FW
+FW
 FW
 FW
 FW
@@ -16176,12 +16074,16 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 FW
 ZK
 "}
 (4,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -16372,12 +16274,16 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 FW
 ZK
 "}
 (6,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -16568,12 +16474,16 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 FW
 ZK
 "}
 (8,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -16764,12 +16674,16 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 FW
 ZK
 "}
 (10,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -16891,6 +16805,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 Ri
 Wm
 Wm
@@ -16966,6 +16882,8 @@ ZK
 (12,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -17087,6 +17005,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 XE
@@ -17162,6 +17082,8 @@ ZK
 (14,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -17283,6 +17205,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 XE
@@ -17358,6 +17282,8 @@ ZK
 (16,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -17478,6 +17404,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 XE
@@ -17554,6 +17482,8 @@ ZK
 (18,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -17674,6 +17604,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 XE
@@ -17750,6 +17682,8 @@ ZK
 (20,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -17869,6 +17803,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 Ri
 fD
 fD
@@ -17946,6 +17882,8 @@ ZK
 (22,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -18065,6 +18003,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 fD
 aT
@@ -18142,6 +18082,8 @@ ZK
 (24,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -18260,6 +18202,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 fD
@@ -18338,6 +18282,8 @@ ZK
 (26,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -18455,6 +18401,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 Ri
 XE
 XE
@@ -18534,6 +18482,8 @@ ZK
 (28,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -18651,6 +18601,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 XE
@@ -18730,6 +18682,8 @@ ZK
 (30,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -18846,6 +18800,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 XE
@@ -18926,6 +18882,8 @@ ZK
 (32,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -19041,6 +18999,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 Ri
 XE
 XE
@@ -19122,6 +19082,8 @@ ZK
 (34,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -19237,6 +19199,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 XE
@@ -19318,6 +19282,8 @@ ZK
 (36,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -19432,6 +19398,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 XE
@@ -19514,6 +19482,8 @@ ZK
 (38,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -19623,6 +19593,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 Ri
 Wm
 Wm
@@ -19710,6 +19682,8 @@ ZK
 (40,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -19818,6 +19792,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 Ri
 XE
 fD
@@ -19906,6 +19882,8 @@ ZK
 (42,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -20014,6 +19992,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 ap
 fD
@@ -20102,6 +20082,8 @@ ZK
 (44,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -20209,6 +20191,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 Ri
 XE
 XE
@@ -20298,6 +20282,8 @@ ZK
 (46,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -20405,6 +20391,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 ap
@@ -20494,6 +20482,8 @@ ZK
 (48,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -20596,6 +20586,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 Ri
 Wm
 Wm
@@ -20690,6 +20682,8 @@ ZK
 (50,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -20792,6 +20786,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 VS
@@ -20886,6 +20882,8 @@ ZK
 (52,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -20988,6 +20986,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 VS
@@ -21082,6 +21082,8 @@ ZK
 (54,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -21184,6 +21186,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 VS
@@ -21278,6 +21282,8 @@ ZK
 (56,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -21380,6 +21386,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 VS
@@ -21474,6 +21482,8 @@ ZK
 (58,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -21576,6 +21586,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 VS
@@ -21670,6 +21682,8 @@ ZK
 (60,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -21772,6 +21786,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 VS
@@ -21866,6 +21882,8 @@ ZK
 (62,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -21965,10 +21983,12 @@ ZK
 ZK
 FW
 ZK
-ZK
-ZK
-ZK
-YB
+Ri
+Wm
+Wm
+Wm
+Wm
+XE
 XE
 VS
 VS
@@ -22063,10 +22083,12 @@ ZK
 ZK
 FW
 ZK
-ZK
-ZK
-ZK
 YB
+XE
+XE
+XE
+XE
+XE
 XE
 XE
 XE
@@ -22161,18 +22183,20 @@ ZK
 ZK
 FW
 ZK
-ZK
-ZK
-ZK
-Gi
-Zl
-Zl
-Zl
-Zl
+YB
 XE
-XE
-XE
-Hr
+OS
+OS
+OS
+OS
+OS
+OS
+OS
+OS
+OS
+OS
+OS
+OS
 bf
 QM
 bW
@@ -22259,24 +22283,26 @@ ZK
 ZK
 FW
 ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
 YB
 XE
-XE
-VD
+OS
 bg
-Uz
-bX
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+OS
+iE
 bw
 bw
-dv
+bw
+bw
+sK
 dQ
 bw
 bw
@@ -22357,21 +22383,23 @@ ZK
 ZK
 FW
 ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
 YB
 XE
-VD
-ID
-Zm
-Jw
+OS
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+OS
+cF
+cF
+cF
 cF
 cF
 dw
@@ -22455,21 +22483,23 @@ ZK
 ZK
 FW
 ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
 YB
 XE
-VD
-bh
-Zm
-Jw
+OS
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+OS
+cF
+cF
+cF
 cF
 cF
 aW
@@ -22553,21 +22583,23 @@ ZK
 ZK
 FW
 ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
 YB
 XE
+OS
+bi
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bX
 VD
-ID
-Zm
-Jw
+cF
+cF
+cF
 cF
 cF
 aW
@@ -22651,21 +22683,23 @@ ZK
 ZK
 FW
 ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
 YB
-VD
-ID
-Zm
-bY
+XE
+OS
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+OS
+cF
+cF
+cF
 cF
 cF
 aW
@@ -22749,21 +22783,23 @@ ZK
 ZK
 FW
 ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
 YB
-VD
-ID
-Zm
-Jw
+XE
+OS
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+OS
+cF
+cF
+cF
 cF
 dc
 aA
@@ -22847,22 +22883,24 @@ ZK
 ZK
 FW
 ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
 YB
-VD
-ID
-Zm
-bZ
-cH
+XE
+OS
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+OS
+cF
+cF
+cF
+cF
 de
 aW
 dO
@@ -22945,22 +22983,24 @@ ZK
 ZK
 FW
 ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
 YB
-VD
-ID
-Zm
-cb
-cI
+XE
+OS
+OS
+OS
+OS
+OS
+OS
+OS
+OS
+OS
+OS
+OS
+OS
+cF
+cF
+cF
+cF
 df
 aW
 dO
@@ -23043,22 +23083,24 @@ ZK
 ZK
 FW
 ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
 YB
-VD
-ID
-Zm
-cc
-cJ
+XE
+OS
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+OS
+cF
+cF
+cF
+cF
 dg
 aW
 dO
@@ -23141,21 +23183,23 @@ ZK
 ZK
 FW
 ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
 YB
-VD
-ID
-Zm
-Jw
+XE
+OS
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+OS
+cF
+cF
+cF
 cF
 dj
 dx
@@ -23239,21 +23283,23 @@ ZK
 ZK
 FW
 ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
 YB
-VD
-ID
-Zm
-bY
+XE
+OS
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+OS
+cF
+cF
+cF
 cF
 cF
 aW
@@ -23337,21 +23383,23 @@ ZK
 ZK
 FW
 ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
 YB
 XE
-VD
-ID
-Zm
-Jw
+OS
+bi
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bX
+bY
+cF
+cF
+cF
 cF
 cF
 aW
@@ -23435,21 +23483,23 @@ ZK
 ZK
 FW
 ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
 YB
 XE
-VD
-bh
-Zm
-Jw
+OS
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+OS
+cF
+cF
+cF
 cF
 cF
 aW
@@ -23533,21 +23583,23 @@ ZK
 ZK
 FW
 ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
 YB
 XE
-VD
-ID
-Zm
-Jw
+OS
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+OS
+cF
+cF
+cF
 cF
 cF
 dw
@@ -23631,22 +23683,24 @@ ZK
 ZK
 FW
 ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
 YB
 XE
-XE
-VD
-bi
-Bb
-bX
-cK
+OS
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+OS
+iE
+bw
+bw
+iE
 bw
 dy
 dX
@@ -23729,18 +23783,20 @@ ZK
 ZK
 FW
 ZK
-ZK
-ZK
-ZK
-Ri
-Wm
-Wm
-Wm
-Wm
+YB
 XE
-XE
-XE
-Hr
+OS
+OS
+OS
+OS
+OS
+OS
+OS
+OS
+OS
+OS
+OS
+OS
 bj
 QM
 bO
@@ -23827,10 +23883,12 @@ ZK
 ZK
 FW
 ZK
-ZK
-ZK
-ZK
 YB
+XE
+XE
+XE
+XE
+XE
 XE
 XE
 XE
@@ -23925,10 +23983,12 @@ ZK
 ZK
 FW
 ZK
-ZK
-ZK
-ZK
-YB
+Gi
+Zl
+Zl
+Zl
+Zl
+XE
 XE
 UY
 UY
@@ -24022,6 +24082,8 @@ ZK
 (84,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -24124,6 +24186,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 UY
@@ -24218,6 +24282,8 @@ ZK
 (86,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -24320,6 +24386,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 UY
@@ -24414,6 +24482,8 @@ ZK
 (88,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -24516,6 +24586,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 UY
@@ -24610,6 +24682,8 @@ ZK
 (90,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -24712,6 +24786,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 UY
@@ -24806,6 +24882,8 @@ ZK
 (92,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -24908,6 +24986,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 UY
@@ -25002,6 +25082,8 @@ ZK
 (94,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -25104,6 +25186,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 UY
@@ -25202,6 +25286,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 UY
@@ -25296,6 +25382,8 @@ ZK
 (97,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -25403,6 +25491,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 XE
@@ -25492,6 +25582,8 @@ ZK
 (99,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -25599,6 +25691,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 ap
@@ -25688,6 +25782,8 @@ ZK
 (101,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -25796,6 +25892,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 aO
@@ -25884,6 +25982,8 @@ ZK
 (103,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -25992,6 +26092,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 ap
 Hr
@@ -26080,6 +26182,8 @@ ZK
 (105,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -26189,6 +26293,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 Hr
 Hr
@@ -26276,6 +26382,8 @@ ZK
 (107,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -26390,6 +26498,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 XE
@@ -26488,6 +26598,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 XE
@@ -26570,6 +26682,8 @@ ZK
 (110,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -26685,6 +26799,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 XE
@@ -26783,6 +26899,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 XE
@@ -26864,6 +26982,8 @@ ZK
 (113,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -26980,6 +27100,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 XE
@@ -27078,6 +27200,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 XE
@@ -27158,6 +27282,8 @@ ZK
 (116,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -27275,6 +27401,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 XE
@@ -27373,6 +27501,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 XE
@@ -27452,6 +27582,8 @@ ZK
 (119,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -27570,6 +27702,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 ap
 Hr
@@ -27668,6 +27802,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 Hr
@@ -27746,6 +27882,8 @@ ZK
 (122,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -27865,6 +28003,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 Hr
 tX
@@ -27963,6 +28103,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 Hr
 gM
@@ -28040,6 +28182,8 @@ ZK
 (125,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -28160,6 +28304,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 XE
@@ -28236,6 +28382,8 @@ ZK
 (127,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -28356,6 +28504,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 XE
@@ -28454,6 +28604,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 XE
@@ -28530,6 +28682,8 @@ ZK
 (130,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -28651,6 +28805,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 hr
 ih
@@ -28726,6 +28882,8 @@ ZK
 (132,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -28847,6 +29005,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 hr
 ik
@@ -28945,6 +29105,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 YB
 XE
 Wm
@@ -29020,6 +29182,8 @@ ZK
 (135,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -29210,12 +29374,16 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 FW
 ZK
 "}
 (137,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -29406,12 +29574,16 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 FW
 ZK
 "}
 (139,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -29602,12 +29774,16 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 FW
 ZK
 "}
 (141,1,1) = {"
 ZK
 FW
+ZK
+ZK
 ZK
 ZK
 ZK
@@ -29798,6 +29974,8 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 FW
 ZK
 "}
@@ -29896,12 +30074,16 @@ ZK
 ZK
 ZK
 ZK
+ZK
+ZK
 FW
 ZK
 "}
 (144,1,1) = {"
 ZK
-zv
+FW
+FW
+FW
 FW
 FW
 FW
@@ -29998,6 +30180,8 @@ zv
 ZK
 "}
 (145,1,1) = {"
+ZK
+ZK
 ZK
 ZK
 ZK

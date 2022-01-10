@@ -8,7 +8,6 @@
 	width = 11
 	height = 21
 
-
 /obj/docking_port/stationary/marine_dropship/on_crash()
 	for(var/obj/machinery/power/apc/A AS in GLOB.apcs_list) //break APCs
 		if(!is_mainship_level(A.z))
@@ -65,11 +64,8 @@
 	for(var/turf/T in range(3, rear)+range(3, left)+range(3, right)+range(2, front))
 		T.empty(/turf/open/floor/plating)
 
-	/*
-	explosion(front, 2, 4, 7, 0)
-	explosion(rear, 3, 5, 8, 0)
-	explosion(left, 3, 5, 8, 0)
-	explosion(right, 3, 5, 8, 0)*/
+	SSmonitor.process_human_positions()
+	SSevacuation.initial_human_on_ship = SSmonitor.human_on_ship
 
 /obj/docking_port/stationary/marine_dropship/crash_target
 	name = "dropshipcrash"

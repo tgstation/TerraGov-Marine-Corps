@@ -16,6 +16,10 @@ SUBSYSTEM_DEF(evacuation)
 	var/dest_status = NUKE_EXPLOSION_INACTIVE
 
 	var/flags_scuttle = FLAGS_SDEVAC_TIMELOCK
+	///How many marines were on ship when the dropship crashed
+	var/initial_human_on_ship = 0
+	///How many marines escaped
+	var/human_escaped = 0
 
 
 /datum/controller/subsystem/evacuation/proc/prepare()
