@@ -12577,6 +12577,7 @@
 	dir = 1;
 	on = 1
 	},
+/mob/living/simple_animal/catslug/newt,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "jRe" = (

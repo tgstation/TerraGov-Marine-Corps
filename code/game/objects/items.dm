@@ -270,6 +270,7 @@
 
 ///Called whenever an item is unequipped to a new loc (IE, not when the item ends up in the hands)
 /obj/item/proc/removed_from_inventory(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_REMOVED_INVENTORY, user)
 
 // called just as an item is picked up (loc is not yet changed)

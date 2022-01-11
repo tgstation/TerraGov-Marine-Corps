@@ -224,3 +224,5 @@
 
 /datum/ai_behavior/xeno/ranged
 	pathfinding_datum_type = /datum/pathfinding_datum/ranged
+	minimum_health = 0.3
+

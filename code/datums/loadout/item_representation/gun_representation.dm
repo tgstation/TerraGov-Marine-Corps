@@ -4,7 +4,7 @@
  */
 /datum/item_representation/gun
 	///Flat list of the representations of the attachements on the gun
-	var/list/datum/item_representation/gun_attachement/attachments = list()
+	var/list/datum/item_representation/attachments = list()
 
 
 /datum/item_representation/gun/New(obj/item/item_to_copy)
@@ -15,15 +15,34 @@
 	..()
 	var/obj/item/weapon/gun/gun_to_copy = item_to_copy
 	for(var/key in gun_to_copy.attachments_by_slot)
-		attachments += new /datum/item_representation/gun_attachement(gun_to_copy.attachments_by_slot[key])
+		if(!isgun(gun_to_copy.attachments_by_slot[key]))
+			attachments += new /datum/item_representation/gun_attachement(gun_to_copy.attachments_by_slot[key])
+			continue
+		attachments += new /datum/item_representation/gun(gun_to_copy.attachments_by_slot[key])
 
 
 /datum/item_representation/gun/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	. = ..()
 	if(!.)
 		return
-	for(var/datum/item_representation/gun_attachement/gun_attachement AS in attachments)
-		gun_attachement.install_on_gun(seller, ., user)
+	for(var/datum/item_representation/gun_attachement AS in attachments)
+		if(istype(gun_attachement, /datum/item_representation/gun))
+			var/datum/item_representation/gun/gun = gun_attachement
+			gun.install_on_gun(seller, ., user)
+			continue
+		var/datum/item_representation/gun_attachement/attachment = gun_attachement
+		attachment.install_on_gun(seller, ., user)
+
+///Instantiates and instals the type onto gun_to_attach
+/datum/item_representation/gun/proc/install_on_gun(seller, obj/item/weapon/gun/gun_to_attach, mob/living/user)
+	var/gun_to_vend
+	var/obj/item/weapon/gun/attachment_type = item_type
+	if(!(initial(attachment_type.flags_attach_features) & ATTACH_REMOVABLE))
+		bypass_vendor_check = TRUE
+	gun_to_vend = instantiate_object(seller, null, user)
+	if(!gun_to_vend)
+		return
+	SEND_SIGNAL(gun_to_attach, COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT_GUN, gun_to_vend)
 
 /**
  * Allow to representate a gun attachement
@@ -40,17 +59,10 @@
 ///Attach the instantiated attachment to the gun
 /datum/item_representation/gun_attachement/proc/install_on_gun(seller, obj/item/weapon/gun/gun_to_attach, mob/living/user)
 	var/attachment_to_vend
-	if(ispath(item_type, /obj/item/attachable))
-		var/obj/item/attachable/attachment_type = item_type
-		if(!(initial(attachment_type.flags_attach_features) & ATTACH_REMOVABLE))//Unremovable attachment are not in vendors
-			bypass_vendor_check = TRUE
-		attachment_to_vend = instantiate_object(seller, null, user)
-	else if(ispath(item_type, /obj/item/weapon/gun))
-		var/obj/item/weapon/gun/attachment_type = item_type
-		if(!(initial(attachment_type.flags_attach_features) & ATTACH_REMOVABLE))
-			bypass_vendor_check = TRUE
-		attachment_to_vend = instantiate_object(seller, null, user)
-
+	var/obj/item/attachable/attachment_type = item_type
+	if(!(initial(attachment_type.flags_attach_features) & ATTACH_REMOVABLE))//Unremovable attachment are not in vendors
+		bypass_vendor_check = TRUE
+	attachment_to_vend = instantiate_object(seller, null, user)
 	if(!attachment_to_vend)
 		return
 	SEND_SIGNAL(gun_to_attach, COMSIG_LOADOUT_VENDOR_VENDED_GUN_ATTACHMENT, attachment_to_vend)

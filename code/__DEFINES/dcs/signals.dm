@@ -177,7 +177,6 @@
 
 
 // /atom/movable signals
-#define COMSIG_MOVABLE_PRE_MOVE "movable_pre_move"				//from base of atom/movable/Moved(): (/atom)
 #define COMSIG_MOVABLE_MOVED "movable_moved"					//from base of atom/movable/Moved(): (/atom, movement_dir, forced, old_locs)
 #define COMSIG_MOVABLE_PULL_MOVED "movable_pull_moved"		//base base of atom/movable/Moved() (/atom, movement_dir, forced, old_locs)
 ///from base of atom/movable/Cross(): (/atom/movable)
@@ -290,6 +289,7 @@
 #define COMSIG_ATTACHMENT_DETACHED_FROM_ITEM "attachment_detached_from_item"
 
 #define COMSIG_LOADOUT_VENDOR_VENDED_GUN_ATTACHMENT "loadout_vended_gun_attachment" //from base of /datum/item_representation/gun_attachement/proc/install_on_gun() : (/obj/item/attachment)
+#define COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT_GUN "loadout_vended_attachment_gun" //from base of /datum/item_representation/gunproc/install_on_gun() : (/obj/item/attachment)
 #define COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT "loadout_vended_armor_attachment" //from base of /datum/item_representation/armor_module/proc/install_on_armor() : (/obj/item/attachment)
 
 // /obj/item/armor_module signals
@@ -498,7 +498,6 @@
 #define COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM "xenomorph_hivemind_change_form"
 
 #define COMSIG_XENO_OBJ_THROW_HIT "xeno_obj_throw_hit"				///from [/mob/living/carbon/xenomorph/throw_impact]: (obj/target, speed)
-#define COMSIG_XENO_NONE_THROW_HIT "xeno_none_throw_hit"			///from [/mob/living/carbon/xenomorph/throw_impact]: ()
 #define COMSIG_XENO_LIVING_THROW_HIT "xeno_living_throw_hit"		///from [/mob/living/carbon/xenomorph/throw_impact]: (mob/living/target)
 	#define COMPONENT_KEEP_THROWING (1<<0)
 #define COMSIG_XENO_PROJECTILE_HIT "xeno_projectile_hit"			///from [/mob/living/carbon/xenomorph/projectile_hit] called when a projectile hits a xeno but before confirmation of a hit (can miss due to inaccuracy/evasion)
@@ -506,6 +505,8 @@
 
 #define COMSIG_XENOMORPH_WRAITH_RECALL "xenomorph_wraith_recall"
 	#define COMPONENT_BANISH_TARGETS_EXIST (1<<0)
+
+#define COMSIG_XENO_PSYCHIC_LINK_REMOVED "xeno_psychic_link_removed"
 
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"

@@ -201,7 +201,7 @@
 	. = ..()
 
 	if(pulledby)
-		if(moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1 && (pulledby != moving_from_pull))//separated from our puller and not in the middle of a diagonal move.
+		if(get_dist(src, pulledby) > 1 && (pulledby != moving_from_pull))//separated from our puller
 			pulledby.stop_pulling()
 		else if(isliving(pulledby))
 			var/mob/living/living_puller = pulledby
@@ -336,9 +336,6 @@
 						to_chat(src, span_warning("[L] is restraining [P], you cannot push past."))
 					return
 
-		if(moving_diagonally)//no mob swap during diagonal moves.
-			return
-
 		if(!L.buckled && !L.anchored)
 			var/mob_swap = FALSE
 			//the puller can always swap with its victim if on grab intent
@@ -376,7 +373,7 @@
 				now_pushing = FALSE
 
 				if(!move_failed)
-					return
+					return TURF_ENTER_ALREADY_MOVED
 
 		if(mob_size < L.mob_size) //Can't go around pushing things larger than us.
 			return
@@ -390,30 +387,41 @@
 			if(!COOLDOWN_CHECK(H,  xeno_push_delay))
 				return
 			COOLDOWN_START(H, xeno_push_delay, XENO_HUMAN_PUSHED_DELAY)
-		PushAM(A)
+		if(PushAM(A))
+			return TURF_ENTER_ALREADY_MOVED
 
 
 //Called when we want to push an atom/movable
 /mob/living/proc/PushAM(atom/movable/AM)
 	if(AM.anchored)
-		return TRUE
+		return
 	if(now_pushing)
-		return TRUE
-	if(moving_diagonally)// no pushing during diagonal moves.
-		return TRUE
+		return
+	if(moving_diagonally) // No pushing in diagonal move
+		return
 	if(!client && (mob_size < MOB_SIZE_SMALL))
 		return
 	now_pushing = TRUE
-	var/t = get_dir(src, AM)
+	var/dir_to_target = get_dir(src, AM)
+
+	// If there's no dir_to_target then the player is on the same turf as the atom they're trying to push.
+	// This can happen when a player is stood on the same turf as a directional window. All attempts to push
+	// the window will fail as get_dir will return 0 and the player will be unable to move the window when
+	// it should be pushable.
+	// In this scenario, we will use the facing direction of the /mob/living attempting to push the atom as
+	// a fallback.
+	if(!dir_to_target)
+		dir_to_target = dir
+
 	if(istype(AM, /obj/structure/window))
 		var/obj/structure/window/W = AM
 		if(W.is_full_window())
-			for(var/obj/structure/window/win in get_step(W,t))
+			for(var/obj/structure/window/win in get_step(W, dir_to_target))
 				now_pushing = FALSE
 				return
 	if(pulling == AM)
 		stop_pulling()
-	AM.Move(get_step(AM.loc, t), t, glide_size)
+	AM.Move(get_step(AM.loc, dir_to_target), dir_to_target, glide_size)
 	now_pushing = FALSE
 
 

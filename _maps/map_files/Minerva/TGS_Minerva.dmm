@@ -1757,6 +1757,12 @@
 /obj/machinery/computer/supplycomp,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"fR" = (
+/mob/living/simple_animal/catslug/newt,
+/turf/open/floor/mainship/sterile/purple/side{
+	dir = 9
+	},
+/area/mainship/medical/chemistry)
 "fS" = (
 /turf/open/floor/plating{
 	dir = 8;
@@ -21326,7 +21332,7 @@ Ep
 HQ
 gU
 Jp
-Kr
+fR
 Lj
 Jp
 It

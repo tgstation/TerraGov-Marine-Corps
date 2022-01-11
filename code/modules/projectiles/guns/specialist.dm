@@ -289,12 +289,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/slavic,
-		/obj/item/attachable/slavicbarrel,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 22, "under_x" = 24, "under_y" = 13, "stock_x" = 20, "stock_y" = 14)
-	starting_attachment_types = list(/obj/item/attachable/scope/slavic, /obj/item/attachable/slavicbarrel)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 22, "under_x" = 32, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
+	starting_attachment_types = list(/obj/item/attachable/scope/slavic)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.8 SECONDS
 	aim_speed_modifier = 0.75
@@ -573,6 +572,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_FIREARMS
+	starting_attachment_types = list(/obj/item/attachable/scope/mini)
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'

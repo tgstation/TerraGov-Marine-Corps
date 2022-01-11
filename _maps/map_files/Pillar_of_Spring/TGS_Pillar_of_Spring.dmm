@@ -757,6 +757,9 @@
 /area/mainship/medical/operating_room_one)
 "cD" = (
 /obj/machinery/loadout_vendor,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
@@ -1046,6 +1049,9 @@
 /obj/item/tool/hand_labeler,
 /obj/item/tool/hand_labeler,
 /obj/item/tool/hand_labeler,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/mainship/black{
 	dir = 5
 	},
@@ -1972,6 +1978,12 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
+"gq" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/cargo,
+/area/mainship/squads/general)
 "gr" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/mainship/mono,
@@ -1994,6 +2006,9 @@
 "gu" = (
 /obj/machinery/vending/snack,
 /obj/item/clothing/mask/cigarette/cigar/havana,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
 "gv" = (
@@ -2026,6 +2041,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "gA" = (
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/mainship/black/corner{
 	dir = 1
 	},
@@ -2357,6 +2375,9 @@
 "hF" = (
 /obj/machinery/vending/cigarette,
 /obj/item/coin/iron,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
@@ -6962,6 +6983,12 @@
 /obj/machinery/marine_selector/clothes/smartgun,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"wg" = (
+/obj/machinery/computer/cryopod{
+	dir = 8
+	},
+/turf/open/floor/mainship,
+/area/mainship/living/cryo_cells)
 "wh" = (
 /obj/effect/decal/siding,
 /turf/open/floor/mainship/terragov/east,
@@ -9305,6 +9332,7 @@
 	dir = 8;
 	on = 1
 	},
+/mob/living/simple_animal/catslug/newt,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "Df" = (
@@ -11837,6 +11865,9 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
@@ -12369,6 +12400,15 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar/droppod)
+"Mg" = (
+/obj/structure/target_stake,
+/obj/item/target,
+/obj/item/clothing/suit/storage/militia,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/mainship,
+/area/mainship/shipboard/firing_range)
 "Mh" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -13012,6 +13052,9 @@
 /area/mainship/shipboard/firing_range)
 "NW" = (
 /obj/machinery/vending/snack,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/mainship/black{
 	dir = 5
 	},
@@ -13142,14 +13185,20 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/starboard_umbilical)
 "Ou" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
-	},
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
 /turf/open/floor/mainship/black{
-	dir = 4
+	dir = 5
 	},
 /area/mainship/squads/general)
 "Ov" = (
@@ -13327,6 +13376,18 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
+"OZ" = (
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/black{
+	dir = 10
+	},
+/area/mainship/squads/general)
 "Pa" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/hallways/hangar)
@@ -13450,6 +13511,17 @@
 "Pt" = (
 /obj/structure/cable,
 /obj/machinery/vending/nanomed,
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -14619,6 +14691,9 @@
 /area/space)
 "SX" = (
 /obj/item/trash/cigbutt,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/mainship/black/corner{
 	dir = 1
 	},
@@ -15553,6 +15628,20 @@
 "VW" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -15656,6 +15745,9 @@
 /area/mainship/squads/req)
 "Wr" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/mainship/black/corner{
 	dir = 4
 	},
@@ -15750,6 +15842,9 @@
 "WD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /mob/living/simple_animal/corgi/ranger,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/mainship/black/corner{
 	dir = 4
 	},
@@ -15852,6 +15947,9 @@
 /area/mainship/engineering/lower_engine_monitoring)
 "WY" = (
 /obj/machinery/loadout_vendor,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
@@ -16039,6 +16137,9 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/mainship/black{
 	dir = 5
 	},
@@ -16105,6 +16206,14 @@
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/engineering_workshop)
+"XL" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/mainship/striped{
+	dir = 8
+	},
+/area/mainship/shipboard/firing_range)
 "XM" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -51387,7 +51496,7 @@ eF
 TQ
 VR
 fj
-qA
+XL
 qA
 gK
 qA
@@ -52158,7 +52267,7 @@ Ra
 Br
 Qw
 fj
-Pv
+Mg
 CK
 CK
 CK
@@ -52701,10 +52810,10 @@ Pl
 KP
 jl
 xn
-jU
+gq
 KO
 tk
-Co
+OZ
 qC
 Xc
 jl
@@ -54743,11 +54852,11 @@ Pm
 Mb
 Zo
 qC
-PP
+Ou
 Xw
 Yz
 PP
-Ou
+Xw
 kA
 xq
 PP
@@ -54757,7 +54866,7 @@ Gr
 Mc
 nE
 Ok
-xq
+PW
 QR
 nE
 nE
@@ -55258,17 +55367,17 @@ Mb
 sO
 SK
 SK
-dk
+wg
 UY
 WE
 dk
 SK
-dk
+wg
 WE
 qd
 dk
 SK
-dk
+wg
 WE
 qd
 dk

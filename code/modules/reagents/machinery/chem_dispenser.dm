@@ -457,8 +457,15 @@
 /obj/machinery/chem_dispenser/valhalla
 	needs_medical_training = FALSE
 	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
 
 /obj/machinery/chem_dispenser/valhalla/Initialize()
 	. = ..()
 	qdel(cell)
 	cell = new /obj/item/cell/infinite
+
+/obj/machinery/chem_dispenser/soda/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/chem_dispenser/beer/nopower
+	use_power = NO_POWER_USE
