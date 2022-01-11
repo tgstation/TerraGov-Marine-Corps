@@ -777,7 +777,6 @@
 			/obj/item/storage/pill_bottle/packet/kelotane = -1,
 			/obj/item/storage/pill_bottle/packet/tramadol = -1,
 			/obj/item/storage/pill_bottle/packet/tricordrazine = -1,
-			/obj/item/storage/pill_bottle/packet/dexalin = -1,
 			/obj/item/storage/pill_bottle/packet/dylovene = -1,
 			/obj/item/storage/pill_bottle/packet/peridaxon = -1,
 			/obj/item/storage/pill_bottle/packet/quickclot = -1,

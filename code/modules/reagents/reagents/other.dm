@@ -60,12 +60,15 @@
 	switch(current_cycle)
 		if(4 to 5) //1 sip, starting at the end
 			L.adjustStaminaLoss(-2*effect_str)
+			L.adjustToxLoss(-0.75)
 			L.heal_limb_damage(effect_str, effect_str)
 		if(6 to 10) //sip 2
 			L.adjustStaminaLoss(-0.5*effect_str)
+			L.adjustToxLoss(-0.75)
 			L.heal_limb_damage(0.1*effect_str, 0.1*effect_str)
 		if(11 to INFINITY) //anything after
 			L.adjustStaminaLoss(-0.15*effect_str)
+			L.adjustToxLoss(-0.75)
 			L.heal_limb_damage(0.1*effect_str, 0.1*effect_str)
 	return ..()
 

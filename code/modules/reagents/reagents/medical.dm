@@ -222,7 +222,7 @@
 	color = "#D8C58C"
 	scannable = TRUE
 	purge_list = list(/datum/reagent/medicine/ryetalyn)
-	purge_rate = 1
+	purge_rate = 3
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
@@ -233,9 +233,12 @@
 		L.adjust_bodytemperature(-2.5*TEMPERATURE_DAMAGE_COEFFICIENT*effect_str, target_temp)
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
+		L.heal_limb_damage(0, 0.75*effect_str)
+		L.adjustToxLoss(0.75)
 	if(volume > 20)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-		L.heal_limb_damage(0, 0.5*effect_str)
+		L.heal_limb_damage(0, 1.25*effect_str)
+		L.adjustToxLoss(2)
 	return ..()
 
 /datum/reagent/medicine/kelotane/overdose_process(mob/living/L, metabolism)
@@ -698,7 +701,7 @@
 	description = "Bicaridine is an analgesic medication and can be used to treat blunt trauma."
 	color = "#E8756C"
 	purge_list = list(/datum/reagent/medicine/ryetalyn)
-	purge_rate = 1
+	purge_rate = 3
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
@@ -706,10 +709,13 @@
 /datum/reagent/medicine/bicaridine/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(effect_str, 0)
 	if(volume > 10)
+		L.heal_limb_damage(0.75*effect_str, 0)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
+		L.adjustToxLoss(0.75)
 	if(volume > 20)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-		L.heal_limb_damage(0.5*effect_str, 0)
+		L.adjustToxLoss(2)
+		L.heal_limb_damage(1.25*effect_str, 0)
 	return ..()
 
 

@@ -108,6 +108,7 @@
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
 	heal_brute = 20
+	toolspeed = 6 SECONDS
 	heal_flags = BANDAGE
 
 /obj/item/stack/medical/heal_pack/gauze/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
@@ -131,6 +132,7 @@
 	singular_name = "ointment"
 	icon_state = "ointment"
 	heal_burn = 20
+	toolspeed = 6 SECONDS
 	heal_flags = SALVE
 
 /obj/item/stack/medical/heal_pack/ointment/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
@@ -174,6 +176,7 @@
 	flags_atom = DIRLOCK
 	skill_level_needed = SKILL_MEDICAL_PRACTICED
 	unskilled_delay = SKILL_TASK_EASY
+	toolspeed = 8 SECONDS
 
 /obj/item/stack/medical/heal_pack/advanced/update_icon_state()
 	if(max_amount < 1 || amount > max_amount)
@@ -287,6 +290,7 @@
 	icon_state = "splint"
 	amount = 1
 	max_amount = 1
+	toolspeed = 2 SECONDS
 	skill_level_needed = SKILL_MEDICAL_UNTRAINED
 	applied_splint_health = 5
 
