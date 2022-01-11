@@ -908,33 +908,52 @@
 			if(!temp_list.len) break
 
 /obj/machinery/vending/marine_medic
-	name = "\improper TerraGovTech Medic Vendor"
-	desc = "A marine medic equipment vendor"
+	name = "\improper TerraGovTech Corpsman Vendor"
+	desc = "A marine corpsman equipment vendor"
 	product_ads = "They were gonna die anyway.;Let's get space drugged!"
 	req_access = list(ACCESS_MARINE_MEDPREP)
 	icon_state = "marinemed"
 	icon_deny = "marinemed-deny"
 	wrenchable = FALSE
 
-	products = list(
+	"Hypospray" = list (
+		/obj/item/reagent_containers/hypospray/advanced/bicaridine = 4,
+		/obj/item/reagent_containers/hypospray/advanced/kelotane = 4,
+		/obj/item/reagent_containers/hypospray/advanced/tramadol = 4,
+		/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 4,
+		/obj/item/reagent_containers/hypospray/advanced/dexalin = 4,
+		/obj/item/reagent_containers/hypospray/advanced/inaprovaline = 4,
+		/obj/item/reagent_containers/hypospray/advanced/peridaxon = 4,
+		/obj/item/reagent_containers/hypospray/advanced/quickclot = 4,
+		/obj/item/clothing/glasses/hud/health = 4,
+		/obj/item/storage/firstaid/regular = 4,
+		/obj/item/storage/firstaid/adv = 8,
+		/obj/item/storage/pouch/medical = 4,
+		/obj/item/storage/pouch/medkit = 4,
+		),
+	"Reagent Bottle" = list(
+		/obj/item/reagent_containers/glass/bottle/bicaridine = 4,
+		/obj/item/reagent_containers/glass/bottle/kelotane = 4,
+		/obj/item/reagent_containers/glass/bottle/dylovene = 4,
+		/obj/item/reagent_containers/glass/bottle/tramadol = 4,
+		/obj/item/reagent_containers/glass/bottle/inaprovaline = 4,
+		/obj/item/reagent_containers/glass/bottle/sleeptoxin = 2,
+		/obj/item/reagent_containers/glass/bottle/spaceacillin = 4,
+		/obj/item/reagent_containers/glass/bottle/peridaxon = 2,
+		/obj/item/reagent_containers/glass/bottle/dexalin = 4,
+		/obj/item/reagent_containers/glass/bottle/oxycodone = 4,
+		/obj/item/reagent_containers/glass/bottle/polyhexanide = 2,
+		/obj/item/reagent_containers/glass/bottle/medicalnanites = 2,
+		),
+	"Misc" = list(
 		/obj/item/clothing/under/marine/corpsman = 4,
-		/obj/item/clothing/head/modular/marine/m10x = 4,
 		/obj/item/storage/backpack/marine/corpsman = 4,
 		/obj/item/storage/backpack/marine/satchel/corpsman = 4,
 		/obj/item/encryptionkey/med = 4,
 		/obj/item/storage/belt/medical = 6,
 		/obj/item/bodybag/cryobag = 4,
 		/obj/item/healthanalyzer = 4,
-		/obj/item/clothing/glasses/hud/health = 4,
-		/obj/item/storage/firstaid/regular = 4,
-		/obj/item/storage/firstaid/adv = 8,
-		/obj/item/storage/pouch/medical = 4,
-		/obj/item/storage/pouch/medkit = 4,
-		/obj/item/storage/pouch/magazine/large = 4,
-		/obj/item/storage/pouch/magazine/pistol/large = 4,
-		/obj/item/clothing/mask/gas = 4,
-		/obj/item/storage/pouch/pistol = 4,
-	)
+		)
 	contraband = list(/obj/item/reagent_containers/blood/OMinus = 1)
 
 /obj/machinery/vending/marine_medic/rebel
