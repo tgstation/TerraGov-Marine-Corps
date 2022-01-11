@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - admin: "now roles with rights to color changing will have access to change their color and show it as opposed to all showing but only changing with rights to  R_FUN"
