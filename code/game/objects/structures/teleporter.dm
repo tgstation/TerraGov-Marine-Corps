@@ -19,7 +19,7 @@
 	COOLDOWN_DECLARE(teleport_cooldown)
 	///List of all teleportable types
 	var/static/list/teleportable_types = typecacheof(list(
-		/obj/structure/closet/crate,
+		/obj/structure/closet,
 		/mob/living/carbon/human,
 		/obj/machinery,
 	))
@@ -72,16 +72,12 @@
 		to_chat(user, span_warning("The other teleporter is not functional!"))
 		return
 	
-	var/atom/movable/teleporting
-	for(var/thing in loc)
-		if(is_type_in_list(thing, teleportable_types))
-			teleporting = thing
-			if(teleporting.anchored)
-				teleporting = null
-				continue
-			break
+	var/list/atom/movable/teleporting = list()
+	for(var/atom/movable/thing in loc)
+		if(is_type_in_list(thing, teleportable_types) && !thing.anchored)
+			teleporting += thing
 	
-	if(!teleporting)
+	if(!teleporting.len)
 		to_chat(user, span_warning("No teleportable content was detected on [src]!"))
 		return
 
@@ -98,7 +94,8 @@
 	else	
 		cell.charge -= TELEPORTING_COST
 	linked_teleporter.update_icon()
-	teleporting.forceMove(get_turf(linked_teleporter))
+	for(var/atom/movable/thing_to_teleport AS in teleporting)
+		thing_to_teleport.forceMove(get_turf(linked_teleporter))
 
 /obj/machinery/teleporter/wrench_act(mob/living/user, obj/item/I)
 	anchored = !anchored
