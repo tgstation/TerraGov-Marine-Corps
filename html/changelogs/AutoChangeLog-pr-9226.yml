@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - qol: "Laser guns can now use tactical reload"
+  - bugfix: "No longer possible to stack ammo with tactical reload exploit"
