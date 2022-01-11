@@ -955,6 +955,7 @@
 			/obj/item/bodybag/cryobag = 4,
 			/obj/item/healthanalyzer = 4,
 			)
+
 	contraband = list(/obj/item/reagent_containers/blood/OMinus = 1)
 
 /obj/machinery/vending/marine_medic/rebel
