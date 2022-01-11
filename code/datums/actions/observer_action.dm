@@ -53,9 +53,7 @@
 
 	var/list/mob/living/free_ssd_mobs = list()
 	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
-		if(is_centcom_level(ssd_mob.z))
-			continue
-		if(ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
+		if(is_centcom_level(ssd_mob.z) || ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
 			continue
 		if(isxeno(ssd_mob))
 			var/mob/living/carbon/xenomorph/potential_minion = ssd_mob
@@ -89,7 +87,7 @@
 	message_admins(span_adminnotice("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd."))
 	log_admin("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd.")
 	new_mob.transfer_mob(owner)
-	if(ishuman(new_mob))
-		var/mob/living/carbon/human/H = new_mob
-		H.fully_replace_character_name(H.real_name, H.species.random_name(H.gender))
-
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/H = new_mob
+	H.fully_replace_character_name(H.real_name, H.species.random_name(H.gender))
