@@ -241,19 +241,6 @@
 /obj/effect/alien/weeds/node/set_parent_node(atom/node)
 	CRASH("set_parent_node was called on a /obj/effect/alien/weeds/node, node are not supposed to have node themselves")
 
-/obj/effect/alien/weeds/node/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
-	. = ..()
-	if(X.status_flags & INCORPOREAL)
-		return FALSE
-	if(!do_after(X, 1 SECONDS, FALSE, src, BUSY_ICON_BUILD))
-		return
-	X.visible_message("<span class='danger'>\The [X] removed \the [src]!</span>", \
-		"<span class='danger'>We remove \the [src]!</span>", null, 5)
-	log_game("[X] has removed [src] at [AREACOORD(src)]")
-	take_damage(max_integrity)
-	return TRUE
-
-
 /obj/effect/alien/weeds/node/update_overlays()
 	. = ..()
 	overlays.Cut()
