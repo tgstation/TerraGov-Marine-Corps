@@ -148,3 +148,20 @@
   vilereaver41:
   - balance: slight changes to map around silos
   - balance: deleted some silos and moved some
+2022-01-11:
+  BraveMole:
+  - rscdel: Remove vendor malfunction from explosions
+  - balance: You can push/shuffle diagonally
+  - bugfix: Xeno can evolve while resting again
+  - balance: Savage makes more damage but cost more plasma (proportional to the amount
+      of plasma stored)
+  - bugfix: Charge and similar xeno abilities will no longer be used by ai xenos when
+      they can't see the target
+  - balance: Give queen the command minion ability
+  - bugfix: Acid splatter no longer damage dead marines
+  hyper2snyper:
+  - bugfix: Fixes the V10 pump shotgun sprites.
+  - bugfix: Removes an unused barrel for the dragonov.
+  - bugfix: Fixes an issue of being able to load infinite flares into the flaregun.
+  - bugfix: GLs update their icon when loaded properly.
+  - bugfix: M42C mags get their sprites back.

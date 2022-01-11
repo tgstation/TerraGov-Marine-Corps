@@ -1,8 +1,0 @@
-author: "hyper2snyper"
-delete-after: True
-changes: 
-  - bugfix: "Fixes the V10 pump shotgun sprites."
-  - bugfix: "Removes an unused barrel for the dragonov."
-  - bugfix: "Fixes an issue of being able to load infinite flares into the flaregun."
-  - bugfix: "GLs update their icon when loaded properly."
-  - bugfix: "M42C mags get their sprites back."
