@@ -245,7 +245,7 @@
 	can_hold = list(
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/glass/bottle,
-		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/reagent_containers/hypospray/advanced,
 	)
 
 /obj/item/storage/belt/hypospraybelt/Initialize()  //The belt, with all it's magic inside!
