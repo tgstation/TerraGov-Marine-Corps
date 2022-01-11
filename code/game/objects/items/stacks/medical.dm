@@ -107,7 +107,7 @@
 	singular_name = "medical gauze"
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
-	heal_brute = 3
+	heal_brute = 20
 	heal_flags = BANDAGE
 
 /obj/item/stack/medical/heal_pack/gauze/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
@@ -130,7 +130,7 @@
 	gender = PLURAL
 	singular_name = "ointment"
 	icon_state = "ointment"
-	heal_burn = 3
+	heal_burn = 20
 	heal_flags = SALVE
 
 /obj/item/stack/medical/heal_pack/ointment/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
@@ -196,7 +196,7 @@
 	singular_name = "advanced trauma kit"
 	desc = "An advanced trauma kit for severe injuries."
 	icon_state = "traumakit"
-	heal_brute = 12
+	heal_brute = 30
 	heal_flags = BANDAGE | DISINFECT
 
 /obj/item/stack/medical/heal_pack/advanced/bruise_pack/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
@@ -221,7 +221,7 @@
 	singular_name = "advanced burn kit"
 	desc = "An advanced treatment kit for severe burns."
 	icon_state = "burnkit"
-	heal_burn = 12
+	heal_burn = 30
 	heal_flags = SALVE | DISINFECT
 
 /obj/item/stack/medical/heal_pack/advanced/burn_pack/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
@@ -279,6 +279,16 @@
 
 		if(affecting.apply_splints(src, user == M ? (applied_splint_health*max(user.skills.getRating("medical") - 1, 0)) : applied_splint_health*user.skills.getRating("medical"), user, M)) // Referenced in external organ helpers.
 			use(1)
+
+/obj/item/stack/medical/splint/emergency
+	name = "emergency medical splints"
+	singular_name = "emergency medical splint"
+	desc = "A emergency medical splint created for emergency situations, easy and quick to apply, but not very durable."
+	icon_state = "splint"
+	amount = 1
+	max_amount = 1
+	skill_level_needed = SKILL_MEDICAL_UNTRAINED
+	applied_splint_health = 5
 
 #undef BANDAGE
 #undef SALVE
