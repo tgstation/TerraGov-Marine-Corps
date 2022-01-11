@@ -262,6 +262,68 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 
 
+	/*
+* Bottle Cases
+*/
+
+
+/obj/item/storage/bottlecase
+	name = "regeant bottle case"
+	desc = "It's a medical case for only storing regeant bottles."
+	icon_state = "syringe_case"
+	throw_speed = 2
+	throw_range = 8
+	storage_slots = 3
+	w_class = WEIGHT_CLASS_SMALL
+	can_hold = list(
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/glass/bottle,
+	)
+
+/obj/item/storage/bottlecase/bica
+	name = "bicaridine bottle case"
+	desc = "It's a medical case for storing three bicaridine bottles."
+	icon_state = "bica_bottles_case"
+
+/obj/item/storage/bottlecase/bica/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
+	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
+	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
+
+/obj/item/storage/bottlecase/kelo
+	name = "kelotane bottle case"
+	desc = "It's a medical case for storing three kelotane bottles."
+	icon_state = "kelo_bottles_case"
+
+/obj/item/storage/bottlecase/kelo/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
+	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
+	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
+
+/obj/item/storage/bottlecase/tram
+	name = "tramadol bottle case"
+	desc = "It's a medical case for storing three tramadol bottles."
+	icon_state = "tram_bottles_case"
+
+/obj/item/storage/bottlecase/tram/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
+	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
+	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
+
+/obj/item/storage/bottlecase/tricord
+	name = "tricordrazine bottle case"
+	desc = "It's a medical case for storing three tricordrazine bottles."
+	icon_state = "tricord_bottles_case"
+
+/obj/item/storage/bottlecase/tricord/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+
 /*
 * Pill Bottles
 */
