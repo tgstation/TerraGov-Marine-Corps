@@ -234,6 +234,44 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
 
+/obj/item/storage/belt/hypospraybelt
+	name = "\improper M276 pattern hypospray belt"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport hyposprays and reagent_containers."
+	icon_state = "hypospraybelt"
+	item_state = "medicbag"
+	storage_slots = 21
+	max_storage_space = 42
+	max_w_class = 2
+	can_hold = list(
+		/obj/item/healthanalyzer,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/hypospray/autoinjector,
+	)
+
+/obj/item/storage/belt/hypospraybelt/Initialize()  //The belt, with all it's magic inside!
+	. = ..()
+	new /obj/item/healthanalyzer(src)
+	new /obj/item/reagent_containers/hypospray/advanced/bicaridine(src)
+	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
+	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
+	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/kelotane(src)
+	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
+	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
+	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
+	new /obj/item/reagent_containers/hypospray/advanced/tramadol(src)
+	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
+	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
+	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
+	new /obj/item/reagent_containers/hypospray/advanced/tricordrazine(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/dexalin(src)
+	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
+	new /obj/item/reagent_containers/hypospray/advanced/inaprovaline(src)
+	new /obj/item/reagent_containers/hypospray/advanced/peridaxon(src)
+	new /obj/item/reagent_containers/hypospray/advanced/quickclot(src)
+
 /obj/item/storage/belt/combatLifesaver/upp
 	name ="\improper Type 41 pattern lifesaver bag"
 	desc = "The Type 41 load rig is the standard-issue LBE of the UPP military. This configuration mounts a satchel filled with a range of injectors and light medical supplies, common among medics and partisans."
