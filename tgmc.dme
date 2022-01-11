@@ -776,7 +776,7 @@
 #include "code\game\objects\machinery\self_destruct.dm"
 #include "code\game\objects\machinery\sellingpad.dm"
 #include "code\game\objects\machinery\shield_gen.dm"
-#include "code\game\objects\machinery\sleeper.dm"
+#include "code\game\objects\machinery\sleepr.dm"
 #include "code\game\objects\machinery\spaceheater.dm"
 #include "code\game\objects\machinery\status_display.dm"
 #include "code\game\objects\machinery\suit_storage_unit.dm"
