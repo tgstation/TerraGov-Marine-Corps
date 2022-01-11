@@ -947,6 +947,7 @@
 			/obj/item/reagent_containers/glass/bottle/medicalnanites = 2,
 		),
 		"Misc" = list(
+			/obj/item/storage/syringe_case = 10,
 			/obj/item/clothing/under/marine/corpsman = 4,
 			/obj/item/storage/backpack/marine/corpsman = 4,
 			/obj/item/storage/backpack/marine/satchel/corpsman = 4,
