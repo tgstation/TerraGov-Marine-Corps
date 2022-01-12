@@ -165,3 +165,15 @@
   - bugfix: Fixes an issue of being able to load infinite flares into the flaregun.
   - bugfix: GLs update their icon when loaded properly.
   - bugfix: M42C mags get their sprites back.
+2022-01-12:
+  BraveMole:
+  - qol: Laser guns can now use tactical reload
+  - bugfix: No longer possible to stack ammo with tactical reload exploit
+  - bugfix: Fix railgun being able to take two rounds in chambers
+  - bugfix: Fix lasguns ejecting mag at 1 round remaining
+  SplinterGP:
+  - admin: now roles with rights to color changing will have access to change their
+      color and show it as opposed to all showing but only changing with rights to  R_FUN
+  hyper2snyper:
+  - bugfix: Miniflamers vended from the loadout vendor will have the proper attachments
+      equipped.
