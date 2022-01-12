@@ -411,15 +411,6 @@
 
 	return ..()
 
-/obj/item/weapon/twohanded/rocketsledge/AltClick(mob/user)
-	if(!can_interact(user) || !ishuman(user) || !(user.l_hand == src || user.r_hand == src))
-		return ..()
-	TOGGLE_BITFIELD(flags_item, NODROP)
-	if(CHECK_BITFIELD(flags_item, NODROP))
-		to_chat(user, span_warning("You tighten the grip around [src]!"))
-		return
-	to_chat(user, span_notice("You loosen the grip around [src]!"))
-
 /obj/item/weapon/twohanded/rocketsledge/unique_action(mob/user)
 	. = ..()
 	if (knockback)
