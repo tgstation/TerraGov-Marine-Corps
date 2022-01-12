@@ -325,7 +325,7 @@
 		var/list/attachment_data = attachment_data_by_slot[slot]
 		if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
 			continue
-		var/image/icon = attachment.icon
+		var/icon = attachment.icon
 		var/icon_state = attachment.icon_state
 		var/suffix = ""
 		if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
