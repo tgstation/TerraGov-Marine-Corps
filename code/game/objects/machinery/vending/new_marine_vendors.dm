@@ -581,7 +581,6 @@
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
-
 /obj/effect/essentials_set
 	var/list/spawned_gear_list
 
@@ -701,6 +700,10 @@
 		/obj/item/circuitboard/general,
 	)
 
+/obj/effect/essential/engie/Initialize()
+        . = ..()
+		spawn_gear_list = GLOB.gear_list
+
 /obj/effect/essentials_set/leader
 	spawned_gear_list = list(
 		/obj/item/explosive/plastique,
@@ -746,6 +749,7 @@
 
 /obj/effect/essentials_set/xenonauten_light
 	spawned_gear_list = list(
+		/obj/item/clothing/under/marine,
 		/obj/item/clothing/head/modular/marine/m10x,
 		/obj/item/clothing/head/modular/marine/m10x/heavy,
 		/obj/item/clothing/suit/modular/xenonauten/light,
@@ -753,6 +757,7 @@
 
 /obj/effect/essentials_set/xenonauten_medium
 	spawned_gear_list = list(
+		/obj/item/clothing/under/marine,
 		/obj/item/clothing/head/modular/marine/m10x,
 		/obj/item/clothing/head/modular/marine/m10x/heavy,
 		/obj/item/clothing/suit/modular/xenonauten,
@@ -760,6 +765,7 @@
 
 /obj/effect/essentials_set/xenonauten_heavy
 	spawned_gear_list = list(
+		/obj/item/clothing/under/marine,
 		/obj/item/clothing/head/modular/marine/m10x,
 		/obj/item/clothing/head/modular/marine/m10x/heavy,
 		/obj/item/clothing/suit/modular/xenonauten/heavy,
@@ -767,18 +773,21 @@
 
 /obj/effect/essentials_set/xenonauten_light/leader
 	spawned_gear_list = list(
+		/obj/item/clothing/under/marine,
 		/obj/item/clothing/head/modular/marine/m10x/leader,
 		/obj/item/clothing/suit/modular/xenonauten/light,
 	)
 
 /obj/effect/essentials_set/xenonauten_medium/leader
 	spawned_gear_list = list(
+		/obj/item/clothing/under/marine,
 		/obj/item/clothing/head/modular/marine/m10x/leader,
 		/obj/item/clothing/suit/modular/xenonauten,
 	)
 
 /obj/effect/essentials_set/xenonauten_heavy/leader
 	spawned_gear_list = list(
+		/obj/item/clothing/under/marine,
 		/obj/item/clothing/head/modular/marine/m10x/leader,
 		/obj/item/clothing/suit/modular/xenonauten/heavy,
 	)
@@ -806,6 +815,7 @@
 /obj/effect/modular_set/infantry
 	desc = "A set of medium Infantry pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
+		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/head/modular/marine,
 		/obj/item/clothing/head/modular/marine/infantry,
 		/obj/item/armor_module/armor/chest/marine,
@@ -816,6 +826,7 @@
 /obj/effect/modular_set/eva
 	desc = "A set of medium EVA pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
+		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/head/modular/marine/eva,
 		/obj/item/armor_module/armor/chest/marine/eva,
 		/obj/item/armor_module/armor/arms/marine/eva,
@@ -825,6 +836,7 @@
 /obj/effect/modular_set/skirmisher
 	desc = "A set of light Skirmisher pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
+		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/head/modular/marine/skirmisher,
 		/obj/item/armor_module/armor/chest/marine/skirmisher,
 		/obj/item/armor_module/armor/arms/marine/skirmisher,
@@ -834,6 +846,7 @@
 /obj/effect/modular_set/scout
 	desc = "A set of light Scout pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
+		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/head/modular/marine/scout,
 		/obj/item/armor_module/armor/chest/marine/skirmisher/scout,
 		/obj/item/armor_module/armor/arms/marine/scout,
@@ -843,6 +856,7 @@
 /obj/effect/modular_set/assault
 	desc = "A set of heavy Assault pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
+		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/head/modular/marine/assault,
 		/obj/item/armor_module/armor/chest/marine/assault,
 		/obj/item/armor_module/armor/arms/marine/assault,
@@ -852,6 +866,7 @@
 /obj/effect/modular_set/eod
 	desc = "A set of heavy EOD pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
+		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/head/modular/marine/eod,
 		/obj/item/armor_module/armor/chest/marine/assault/eod,
 		/obj/item/armor_module/armor/arms/marine/eod,
@@ -861,6 +876,7 @@
 /obj/effect/modular_set/helljumper
 	desc = "A set of Helljumper pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
+		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/head/modular/marine/helljumper,
 		/obj/item/armor_module/armor/chest/marine/helljumper,
 		/obj/item/armor_module/armor/arms/marine/helljumper,
