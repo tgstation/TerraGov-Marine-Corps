@@ -359,8 +359,6 @@
 	var/stun = 1
 	///weaken value
 	var/weaken = 2
-	///stagger value
-	var/stagger = 2
 	///knockback value
 	var/knockback = 0
 
@@ -413,21 +411,11 @@
 
 	return ..()
 
-/obj/item/weapon/twohanded/rocketsledge/AltClick(mob/user)
-	if(!can_interact(user) || !ishuman(user) || !(user.l_hand == src || user.r_hand == src))
-		return ..()
-	TOGGLE_BITFIELD(flags_item, NODROP)
-	if(CHECK_BITFIELD(flags_item, NODROP))
-		to_chat(user, span_warning("You tighten the grip around [src]!"))
-		return
-	to_chat(user, span_notice("You loosen the grip around [src]!"))
-
 /obj/item/weapon/twohanded/rocketsledge/unique_action(mob/user)
 	. = ..()
 	if (knockback)
 		stun = 1
 		weaken = 2
-		stagger = 2
 		knockback = 0
 		balloon_alert(user, "Selected mode: CRUSH.")
 		playsound(loc, 'sound/machines/switch.ogg', 25)
@@ -435,7 +423,6 @@
 
 	stun = 1
 	weaken = 1
-	stagger = 1
 	knockback = 1
 	balloon_alert(user, "Selected mode: KNOCKBACK.")
 	playsound(loc, 'sound/machines/switch.ogg', 25)
@@ -479,10 +466,7 @@
 		else
 			stun = 1
 
-	if(!M.IsStun() && !M.IsParalyzed()) //Prevent chain stunning.
+	if(!M.IsStun() && !M.IsParalyzed() && !isxenoqueen(M)) //Prevent chain stunning. Queen is protected.
 		M.apply_effects(stun,weaken)
-
-	if(!isxenoqueen(M))
-		M.adjust_stagger(stagger)
 
 	return ..()
