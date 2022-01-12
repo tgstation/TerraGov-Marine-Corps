@@ -1111,6 +1111,10 @@
 			/obj/item/clothing/gloves/white = -1,
 			/obj/item/clothing/under/marine/robotic = -1,
 			/obj/item/armor_module/armor/badge = -1,
+			/obj/item/armor_module/armor/cape = -1,
+			/obj/item/armor_module/armor/cape/half = -1,
+			/obj/item/armor_module/armor/cape/scarf = -1,
+			/obj/item/armor_module/armor/cape/short = -1,
 		),
 		"Webbings" = list(
 			/obj/item/armor_module/storage/uniform/black_vest = -1,

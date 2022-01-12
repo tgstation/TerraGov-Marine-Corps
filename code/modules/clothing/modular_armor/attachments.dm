@@ -45,6 +45,8 @@
 
 	///Layer for the attachment to be applied to.
 	var/attachment_layer
+	///Slot that is required for the action to appear to the equipper. If null the action will appear whenever the item is equiped to a slot.
+	var/prefered_slot = SLOT_WEAR_SUIT
 
 /obj/item/armor_module/Initialize()
 	. = ..()
@@ -62,6 +64,8 @@
 	parent.hard_armor = parent.hard_armor.attachArmor(hard_armor)
 	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
 	parent.slowdown += slowdown
+	if(CHECK_BITFIELD(flags_attach_features, ATTACH_ACTIVATION))
+		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/handle_actions)
 	if(!length(variants_by_parent_type) || !(parent.type in variants_by_parent_type))
 		return
 	icon_state = variants_by_parent_type[parent.type]
@@ -74,9 +78,22 @@
 	parent.hard_armor = parent.hard_armor.detachArmor(hard_armor)
 	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
 	parent.slowdown -= slowdown
+	UnregisterSignal(parent, COMSIG_ITEM_EQUIPPED)
 	parent = null
 	icon_state = initial(icon_state)
 	update_icon()
+
+/obj/item/armor_module/proc/handle_actions(datum/source, mob/user, slot)
+	SIGNAL_HANDLER
+	if(prefered_slot && slot != prefered_slot)
+		LAZYREMOVE(actions_types, /datum/action/item_action/toggle)
+		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in actions
+		old_action?.remove_action(user)
+		actions = null
+		return
+	LAZYADD(actions_types, /datum/action/item_action/toggle)
+	var/datum/action/item_action/toggle/new_action = new(src)
+	new_action.give_action(user)
 
 /obj/item/armor_module/ui_action_click(mob/user, datum/action/item_action/action)
 	activate(user)
@@ -106,6 +123,8 @@
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 
 	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT
+	///If TRUE, this armor piece can be recolored when its parent is right clicked by facepaint.
+	var/secondary_color = FALSE
 
 	///optional assoc list of colors we can color this armor
 	var/list/colorable_colors = list(
@@ -155,6 +174,17 @@
 	. = ..()
 	item_state = initial(icon_state) + "_a"
 	update_icon()
+
+/obj/item/armor_module/armor/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	if(!secondary_color)
+		return
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY_ALTERNATE, .proc/handle_color)
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/extra_examine)
+
+/obj/item/armor_module/armor/on_detach(obj/item/detaching_from, mob/user)
+	UnregisterSignal(parent, list(COMSIG_CLICK_RIGHT, COMSIG_PARENT_EXAMINE))
+	return ..()
 
 /obj/item/armor_module/armor/update_item_sprites()
 	var/new_color
@@ -244,3 +274,13 @@
 	paint.uses--
 	update_icon()
 	parent?.update_icon()
+
+///Colors the armor when the parent is right clicked with facepaint.
+/obj/item/armor_module/armor/proc/handle_color(datum/source, obj/I, mob/user)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, /atom/proc/attackby, I, user)
+	return COMPONENT_NO_AFTERATTACK
+
+///Relays the extra controls to the user when the parent is examined.
+/obj/item/armor_module/armor/proc/extra_examine(datum/source, mob/user)
+	to_chat(user, "Right click the [parent] with paint to color the [src]")

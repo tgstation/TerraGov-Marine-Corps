@@ -110,34 +110,6 @@
 	. = ..()
 	update_icon() //Update for greyscale.
 
-/obj/item/clothing/suit/modular/equipped(mob/user, slot)
-	. = ..()
-	if(slot != SLOT_WEAR_SUIT)
-		return
-	for(var/key in attachments_by_slot)
-		if(!attachments_by_slot[key])
-			continue
-		var/obj/item/armor_module/module = attachments_by_slot[key]
-		if(!CHECK_BITFIELD(module.flags_attach_features, ATTACH_ACTIVATION))
-			continue
-		LAZYADD(module.actions_types, /datum/action/item_action/toggle)
-		var/datum/action/item_action/toggle/new_action = new(module)
-		new_action.give_action(user)
-
-/obj/item/clothing/suit/modular/unequipped(mob/unequipper, slot)
-	. = ..()
-	if(slot != SLOT_WEAR_SUIT)
-		return
-	for(var/key in attachments_by_slot)
-		if(!attachments_by_slot[key])
-			continue
-		var/obj/item/armor_module/module = attachments_by_slot[key]
-		if(!CHECK_BITFIELD(module.flags_attach_features, ATTACH_ACTIVATION))
-			continue
-		LAZYREMOVE(module.actions_types, /datum/action/item_action/toggle)
-		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in module.actions
-		old_action.remove_action(unequipper)
-
 /obj/item/clothing/suit/modular/update_icon()
 	. = ..()
 	if(current_variant)
@@ -510,39 +482,6 @@
 	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 	if(armor_storage.storage.handle_mousedrop(usr, over_object))
 		return ..()
-
-/obj/item/clothing/head/modular/equipped(mob/user, slot)
-	. = ..()
-	if(slot != SLOT_HEAD)
-		return
-	for(var/key in attachments_by_slot)
-		if(!attachments_by_slot[key])
-			continue
-		var/obj/item/armor_module/module = attachments_by_slot[key]
-		if(!CHECK_BITFIELD(module.flags_attach_features, ATTACH_ACTIVATION))
-			continue
-		LAZYADD(module.actions_types, /datum/action/item_action/toggle)
-		var/datum/action/item_action/toggle/new_action = new(module)
-		new_action.give_action(user)
-	update_clothing_icon()
-
-
-/obj/item/clothing/head/modular/unequipped(mob/unequipper, slot)
-	. = ..()
-	for(var/key in attachments_by_slot)
-		if(!attachments_by_slot[key])
-			continue
-		var/obj/item/armor_module/module = attachments_by_slot[key]
-		if(!CHECK_BITFIELD(module.flags_attach_features, ATTACH_ACTIVATION))
-			continue
-		LAZYREMOVE(module.actions_types, /datum/action/item_action/toggle)
-		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in module.actions
-		if(!old_action)
-			continue
-		old_action.remove_action(unequipper)
-		module.actions = null
-
-	update_clothing_icon()
 
 /obj/item/clothing/head/modular/apply_custom(image/standing)
 	. = ..()
