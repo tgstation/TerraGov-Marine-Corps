@@ -150,9 +150,12 @@ should be alright.
 	if(!istype(user) || user.incapacitated(TRUE) || user.do_actions)
 		return
 	if(!(new_magazine.type in allowed_ammo_types))
+		if(active_attachable)
+			active_attachable.tactical_reload(new_magazine, user)
+			return
 		to_chat(user, span_warning("[new_magazine] cannot fit into [src]!"))
 		return
-	if(src != user.r_hand && src != user.l_hand)
+	if(src != user.r_hand && src != user.l_hand && master_gun != user.r_hand && master_gun != user.l_hand)
 		to_chat(user, span_warning("[src] must be in your hand to do that."))
 		return
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) || max_chamber_items > 1)
