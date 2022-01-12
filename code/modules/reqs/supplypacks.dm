@@ -517,7 +517,7 @@ EXPLOSIVES
 	)
 	cost = 10
 
-/datum/supply_packs/explosives/detpack
+/datum/supply_packs/explosives/manydetpack
 	name = "A LOT of detpack explosives"
 	contains = list(
 		/obj/item/detpack,
