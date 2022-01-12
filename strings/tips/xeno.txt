@@ -1,7 +1,7 @@
 Always thank your drones and hivelords for supporting the hive!
 Do not fight as a young xenomorphs.
 Most alien deaths are caused by over-aggression. Rein yourself in, or you may find yourself dying round after round.
-If you have difficulty clicking marines, try using bump slash. You can use movement keys to slash marines.
+If you have difficulty clicking marines, try using bump slash. You can use movement keys to slash marines. That said, clicking marines to slash them is faster than bump slashing!
 A good hive consists of having a hivelord and a gorger to heal xenomorphs' wounds and give xenomorphs some pregame before engaging marines.
 As a xeno, check hive status often.
 As a xeno, it is EXTREMELY IMPORTANT that you have your abilities set up on keybinds. Ask for help if you don't know how.
