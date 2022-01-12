@@ -25,6 +25,10 @@
 /datum/config_entry/string/feedback_tableprefix
 	protection = CONFIG_ENTRY_LOCKED|CONFIG_ENTRY_HIDDEN
 
+/datum/config_entry/string/utility_database
+	config_entry_value = "test"
+	protection = CONFIG_ENTRY_LOCKED|CONFIG_ENTRY_HIDDEN
+
 /datum/config_entry/number/query_debug_log_timeout
 	config_entry_value = 70
 	min_val = 1

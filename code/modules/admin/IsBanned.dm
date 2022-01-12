@@ -89,7 +89,7 @@
 					expires = " The ban is for [DisplayTimeText(text2num(i["duration"]) MINUTES)] and expires on [i["expiration_time"]] (server time)."
 				var/desc = {"You, or another user of this computer or connection ([i["key"]]) is banned from playing here.
 				The ban reason is: [i["reason"]]
-				This ban (BanID #[i["id"]]) was applied by [i["admin_key"]] on [i["bantime"]] during round ID [i["round_id"]].
+				This ban (BanID #[i["id"]]) was applied by [i["admin_key"]] on [i["bantime"]].
 				[expires]"}
 				log_access("Failed Login: [key] [computer_id] [address] - Banned (#[i["id"]])")
 				return list("reason"="Banned","desc"="[desc]")
