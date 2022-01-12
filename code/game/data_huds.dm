@@ -317,7 +317,7 @@
 
 #define HEALTH_RATIO_PAIN_HUD 1
 #define PAIN_RATIO_PAIN_HUD 0.25
-#define STAMINA_RATIO_PAIN_HUD 0.5
+#define STAMINA_RATIO_PAIN_HUD 0.25
 
 
 /mob/proc/med_pain_set_perceived_health()
