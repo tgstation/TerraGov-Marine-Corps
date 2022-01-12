@@ -108,7 +108,7 @@
 		to_chat(usr, span_warning("No distress beacons that need candidates are active. You will be notified if that changes."))
 		return
 
-	var/deathtime = world.time - GLOB.key_to_time_of_death[key]
+	var/deathtime = world.time - GLOB.key_to_time_of_role_death[key]
 
 	if(deathtime < 600 && !check_other_rights(usr.client, R_ADMIN, FALSE)) //They have ghosted after the announcement.
 		to_chat(usr, span_warning("You ghosted too recently. Try again later."))

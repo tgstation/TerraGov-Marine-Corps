@@ -631,6 +631,7 @@
 			L.notransform = TRUE
 			var/mob/dead/observer/O = L.ghostize(FALSE)
 			if(O)
+				GLOB.key_to_time_of_role_death[O.key] = world.time
 				GLOB.key_to_time_of_death[O.key] = world.time
 			L.moveToNullspace()
 
