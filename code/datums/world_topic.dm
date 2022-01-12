@@ -76,3 +76,21 @@
 	.["hard_popcap"] = CONFIG_GET(number/hard_popcap) || 0
 	.["extreme_popcap"] = CONFIG_GET(number/extreme_popcap) || 0
 	.["popcap"] = max(CONFIG_GET(number/soft_popcap), CONFIG_GET(number/hard_popcap), CONFIG_GET(number/extreme_popcap)) //generalized field for this concept for use across ss13 codebases
+
+
+/datum/world_topic/status2
+	keyword = "status2"
+
+
+/datum/world_topic/status2/Run(list/input)
+	. = list()
+	.["mode"] = GLOB.master_mode
+	.["respawn"] = GLOB.respawn_allowed
+	.["enter"] = GLOB.enter_allowed
+	.["roundtime"] = gameTimestamp()
+	.["listed"] = GLOB.hub_visibility
+	.["players"] = length(GLOB.clients)
+	.["ticker_state"] = SSticker.current_state
+	.["mapname"] = length(SSmapping.configs) ? "[SSmapping.configs[GROUND_MAP].map_name] ([SSmapping.configs[SHIP_MAP].map_name])" : "Loading..."
+	.["security_level"] = GLOB.marine_main_ship?.get_security_level()
+	.["round_duration"] = SSticker ? round((world.time - SSticker.round_start_time) / 10) : 0
