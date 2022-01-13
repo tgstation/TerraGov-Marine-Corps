@@ -18,7 +18,7 @@
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	. = shock_stage
-	shock_stage = clamp(shock_stage + (amount - shock_stage) * 0.15, 0, maxHealth * 2)
+	shock_stage = clamp(shock_stage + (amount - shock_stage) * PAIN_REACTIVITY, 0, maxHealth * 2)
 	message_admins("shock stage is [shock_stage] and traumatic shock is [amount]")
 	adjust_pain_speed_mod(.)
 
