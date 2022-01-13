@@ -26,7 +26,7 @@ As a larva, you can slide under unbolted and unwelded doors by clicking on the d
 As a larva, stay on weeds while growing, you will grow faster as a result.
 As a runner or larva, you can pass over window frames without climbing on to them beforehand.
 As a drone or sentinel, your corrosive acid is very weak, but it's better than nothing.
-As a drone, spread weeds as much as you can, especially to the front line fighters.
+As a drone, spread weeds as much as you can, especially near the front line fighters.
 Before you evolve as the Hivemind as a drone, hide into a secure area! Once you evolve you be able to move anymore.
 As a carrier, you can hit a host directly with a thrown facehugger to have a high chance of infecting them near instantly. This will take time, however.
 As a carrier, you can hide traps beneath certain objects and items.
