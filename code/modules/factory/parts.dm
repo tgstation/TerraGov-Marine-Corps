@@ -173,6 +173,15 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 	. = ..()
 	recipe = GLOB.IFF_ammo
 
+/obj/item/factory_part/auto_sniper_magazine
+	name = "IFF high caliber bullet box"
+	desc = "A box with unfinished high caliber smart-rounds inside"
+	result = /obj/item/ammo_magazine/rifle/autosniper
+
+/obj/item/factory_part/auto_sniper_magazine/Initialize()
+	. = ..()
+	recipe = GLOB.IFF_ammo
+
 /obj/item/factory_part/scout_rifle_magazine
 	name = "IFF high velocity bullet box"
 	desc = "A box with unfinished high velocity smart-rounds inside"

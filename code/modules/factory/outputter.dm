@@ -165,6 +165,19 @@
 	refill_type = /obj/item/factory_part/smartgunner_machinegun_magazine
 	refill_amount = 12
 
+/obj/item/factory_refill/auto_sniper_magazine
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Outputters."
+	refill_type = /obj/item/factory_part/smartgunner_machinegun_magazine
+	refill_amount = 18
+
+/obj/item/factory_refill/scout_rifle_magazine_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Outputters."
+	refill_type = /obj/item/factory_part/scout_rifle_magazine
+	refill_amount = 20
+
+
 /obj/item/factory_refill/mateba_speedloader_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
@@ -175,10 +188,4 @@
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	refill_type = /obj/item/factory_part/railgun_magazine
-	refill_amount = 20
-
-/obj/item/factory_refill/scout_rifle_magazine_refill
-	name = "box of rounded metal plates"
-	desc = "A box with round metal plates inside. Used to refill Outputters."
-	refill_type = /obj/item/factory_part/scout_rifle_magazine
 	refill_amount = 20
