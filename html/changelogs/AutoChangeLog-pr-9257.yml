@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - bugfix: "RO, CIC, and AI can now talk in req radio again"
