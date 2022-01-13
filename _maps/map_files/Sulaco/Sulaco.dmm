@@ -430,9 +430,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 6
 	},
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 1
-	},
+/turf/open/floor/wood,
 /area/sulaco/medbay/west)
 "aby" = (
 /obj/machinery/status_display,
@@ -576,10 +574,9 @@
 	},
 /area/sulaco/medbay/west)
 "abZ" = (
-/obj/machinery/vending/snack,
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 8
-	},
+/obj/structure/table/mainship,
+/obj/machinery/microwave,
+/turf/open/floor/wood,
 /area/sulaco/medbay/west)
 "aca" = (
 /obj/machinery/vending/medical,
@@ -1308,6 +1305,10 @@
 	dir = 1
 	},
 /area/sulaco/medbay)
+"aes" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/wood,
+/area/sulaco/medbay/west)
 "aeu" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/job/medicalofficer,
@@ -11046,6 +11047,11 @@
 /obj/effect/decal/warning_stripes,
 /turf/open/floor/wood,
 /area/mainship/living/basketball)
+"cRT" = (
+/obj/structure/table/mainship,
+/obj/machinery/chem_dispenser/beer,
+/turf/open/floor/wood,
+/area/sulaco/medbay/west)
 "cSb" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -11409,15 +11415,10 @@
 /turf/open/floor/freezer,
 /area/sulaco/showers)
 "dyQ" = (
-/obj/machinery/firealarm{
-	dir = 4
-	},
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor/prison/whitegreen/corner{
+/obj/structure/bed/chair{
 	dir = 8
 	},
+/turf/open/floor/wood,
 /area/sulaco/medbay/west)
 "dyW" = (
 /obj/structure/largecrate/guns/merc,
@@ -13094,6 +13095,12 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
+"gSn" = (
+/obj/structure/table/mainship,
+/obj/item/storage/box/drinkingglasses,
+/obj/item/storage/box/donkpockets,
+/turf/open/floor/wood,
+/area/sulaco/medbay/west)
 "gSo" = (
 /obj/machinery/door/airlock/mainship/engineering,
 /obj/machinery/door/firedoor,
@@ -16835,10 +16842,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall)
 "ntk" = (
-/obj/machinery/vending/cola,
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 4
-	},
+/turf/open/floor/wood,
 /area/sulaco/medbay/west)
 "ntA" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -20637,7 +20641,7 @@
 "ttl" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor/prison/whitegreen/corner,
+/turf/open/floor/wood,
 /area/sulaco/medbay/west)
 "ttp" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
@@ -22401,6 +22405,18 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
+"wze" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/sulaco/medbay/west)
 "wAh" = (
 /obj/effect/decal/siding{
 	dir = 1
@@ -23209,6 +23225,11 @@
 	},
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_1)
+"xUq" = (
+/obj/structure/table/mainship,
+/obj/machinery/chem_dispenser/soda,
+/turf/open/floor/wood,
+/area/sulaco/medbay/west)
 "xUM" = (
 /obj/structure/ladder{
 	height = 2;
@@ -46281,11 +46302,11 @@ mDu
 mDu
 mDu
 mDu
-mDu
-mDu
-mDu
-mDu
-mDu
+vHb
+vHb
+vHb
+vHb
+vHb
 vgl
 vgl
 vgl
@@ -46538,11 +46559,11 @@ mDu
 mDu
 mDu
 mDu
-mDu
-mDu
-mDu
-mDu
-mDu
+vHb
+xUq
+ntk
+wze
+vHb
 mDu
 mDu
 mDu
@@ -46796,9 +46817,9 @@ vHb
 vHb
 vHb
 vHb
-vHb
-vHb
-vHb
+cRT
+ntk
+gSn
 vHb
 vHb
 vHb
@@ -47310,7 +47331,7 @@ abp
 aeC
 aca
 aam
-abG
+aes
 abx
 ttl
 wAY
