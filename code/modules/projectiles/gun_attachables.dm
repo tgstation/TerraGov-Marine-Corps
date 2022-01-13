@@ -1664,6 +1664,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/mob/living/living_user = user
 	if(master_gun == living_user.get_inactive_held_item() || master_gun == living_user.get_active_held_item())
 		new_action.give_action(living_user)
+	activate(user)
 	update_icon(user)
 
 ///This is called when an attachment gun (src) detaches from a gun.
