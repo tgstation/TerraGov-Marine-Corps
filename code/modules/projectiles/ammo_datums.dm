@@ -38,7 +38,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/barricade_clear_distance	= 1			// How far the bullet can travel before incurring a chance of hitting barricades; normally 1.
 	var/armor_type					= "bullet"	// Does this have an override for the armor type the ammo should test? Bullet by default
 	var/sundering					= 0 		// How many stacks of sundering to apply to a mob on hit
-	var/on_pierce_multiplier 		= 1			// A multiplier applied to piercing projectile, athat reduces its damage/penetration/sundering on hit
+	var/on_pierce_multiplier 		= 1			// A multiplier applied to piercing projectile, that reduces its damage/penetration/sundering on hit
 	var/flags_ammo_behavior = NONE
 	///Determines what color our bullet will be when it flies
 	var/bullet_color = COLOR_WHITE
