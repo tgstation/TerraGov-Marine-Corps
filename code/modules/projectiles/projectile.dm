@@ -435,10 +435,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(border_escaped_through), TRUE))
 					continue
 				thing_to_uncross.do_projectile_hit(src)
-				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE))
-					end_of_movement = i
-					break
-				continue
+				if(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
+					continue
+				end_of_movement = i
+				break
 			uncross_scheduled.len = 0
 			if(end_of_movement)
 				if(border_escaped_through & (NORTH|SOUTH))
@@ -482,10 +482,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
 					continue
 				thing_to_uncross.do_projectile_hit(src)
-				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE))
-					end_of_movement = i
-					break
-				continue
+				if(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
+					continue
+				end_of_movement = i
+				break
 			uncross_scheduled.len = 0
 			if(end_of_movement)	//This is a bit overkill to deliver the right animation, but oh well.
 				if(border_escaped_through & (NORTH|SOUTH)) //Inverse logic than before. We now want to run the longer distance now.
@@ -505,10 +505,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
 					continue //We act as if we were entering the tile through the opposite direction, to check for barricade blockage.
 				thing_to_uncross.do_projectile_hit(src)
-				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE))
-					end_of_movement = i
-					break
-				continue
+				if(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
+					continue
+				end_of_movement = i
+				break
 			uncross_scheduled.len = 0
 			if(end_of_movement)
 				break
@@ -620,14 +620,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return FALSE
 
 /obj/do_projectile_hit(obj/projectile/proj)
-	if(proj.ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
-		bullet_act(proj)
-		proj.ammo.on_hit_obj(src, proj)
-	else
-		proj.ammo.on_hit_obj(src, proj)
-		if(QDELETED(src)) //on_hit_obj could delete the object
-			return
-		bullet_act(proj)
+	proj.ammo.on_hit_obj(src, proj)
+	if(QDELETED(src)) //on_hit_obj could delete the object
+		return
+	bullet_act(proj)
 
 
 /obj/structure/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
@@ -783,8 +779,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/do_projectile_hit(obj/projectile/proj)
-	bullet_act(proj)
 	proj.ammo.on_hit_mob(src, proj)
+	bullet_act(proj)
 
 /mob/living/carbon/do_projectile_hit(obj/projectile/proj)
 	. = ..()
@@ -1052,10 +1048,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(border_escaped_through), TRUE))
 					continue
 				thing_to_uncross.do_projectile_hit(src)
-				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE))
-					end_of_movement = TRUE
-					break
-				continue
+				if(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
+					continue
+				end_of_movement = TRUE
+				break
 			uncross_scheduled.Cut()
 			if(end_of_movement)
 				break
@@ -1076,10 +1072,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
 					continue
 				thing_to_uncross.do_projectile_hit(src)
-				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE))
-					end_of_movement = TRUE
-					break
-				continue
+				if(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
+					continue
+				end_of_movement = TRUE
+				break
 			uncross_scheduled.Cut()
 			if(end_of_movement)
 				break
@@ -1092,10 +1088,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
 					continue //We act as if we were entering the tile through the opposite direction, to check for barricade blockage.
 				thing_to_uncross.do_projectile_hit(src)
-				if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE))
-					end_of_movement = TRUE
-					break
-				continue
+				if(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
+					continue
+				end_of_movement = TRUE
+				break
 			uncross_scheduled.len = 0
 			if(end_of_movement)
 				break

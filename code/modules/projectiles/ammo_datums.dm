@@ -1145,10 +1145,18 @@ datum/ammo/bullet/revolver/tp44
 	bullet_color = COLOR_PULSE_BLUE
 	///projectile loses (1-x)% of its damage when it penetrates something
 	var/on_pierce_reduction = 0.66
+	///we dont lose damage before hitting the first target
+	var/first_hit = TRUE
 
 /datum/ammo/bullet/railgun/on_hit_mob(mob/M, obj/projectile/P)
-	P.damage *= on_pierce_reduction
+	if(!first_hit)
+		P.damage *= on_pierce_reduction
+	else
+		first_hit = FALSE
 	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 3, shake = 0)
+
+/datum/ammo/bullet/railgun/do_at_max_range(obj/projectile/proj)
+    first_hit = TRUE
 
 /*
 //================================================
