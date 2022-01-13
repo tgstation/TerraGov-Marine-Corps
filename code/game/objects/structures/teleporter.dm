@@ -30,7 +30,7 @@
 
 /obj/machinery/teleporter/proc/set_linked_teleporter(obj/machinery/teleporter/linked_teleporter)
 	if(src.linked_teleporter)
-		CRASH("A teleporter was linked with another teleporter eve though it already has a twin!")
+		CRASH("A teleporter was linked with another teleporter even though it already has a twin!")
 	src.linked_teleporter = linked_teleporter
 	RegisterSignal(linked_teleporter, COMSIG_PARENT_QDELETING, .proc/linked_teleporter_malfunction)
 
