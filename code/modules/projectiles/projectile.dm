@@ -61,7 +61,9 @@
 	var/list/atom/movable/uncross_scheduled = list() // List of border movable atoms to check for when exiting a turf.
 
 	var/damage = 0
+	///ammo penetration value
 	var/penetration = 0
+	///ammo sundering value
 	var/sundering = 0
 	var/accuracy = 85 //Base projectile accuracy. Can maybe be later taken from the mob if desired.
 
@@ -833,11 +835,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 //----------------------------------------------------------
 
 /atom/proc/bullet_act(obj/projectile/proj)
-	if(((proj.ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE) || (proj.ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_TURF)) && HAS_TRAIT(proj, TRAIT_PROJ_HIT_SOMETHING))
+	if(HAS_TRAIT(proj, TRAIT_PROJ_HIT_SOMETHING))
 		proj.damage *= proj.ammo.on_pierce_multiplier
 		proj.penetration *= proj.ammo.on_pierce_multiplier
 		proj.sundering *= proj.ammo.on_pierce_multiplier
-	ADD_TRAIT(proj, TRAIT_PROJ_HIT_SOMETHING, TRAIT_PROJ_HIT_SOMETHING)
+	ADD_TRAIT(proj, TRAIT_PROJ_HIT_SOMETHING, BULLET_ACT_TRAIT)
 	SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, proj)
 
 
