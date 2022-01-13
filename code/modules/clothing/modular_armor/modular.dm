@@ -279,6 +279,7 @@
 		/obj/item/storage/belt/gun,
 	)
 
+// Thank Jeff for providing sprites to color flak jacket
 	icon_state_variants = list(
 		"drab",
 		"black",
