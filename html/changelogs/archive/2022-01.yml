@@ -177,3 +177,6 @@
   hyper2snyper:
   - bugfix: Miniflamers vended from the loadout vendor will have the proper attachments
       equipped.
+2022-01-13:
+  Waselon:
+  - bugfix: fixes harvester bicardine attack
