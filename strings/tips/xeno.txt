@@ -17,7 +17,7 @@ As a xeno, you can climb over window frames by SpecialClicking (Default: CTRL) o
 As a xeno, do not camp the landing zones prior to the marines building their defenses.
 As a xeno, take advantage of acid wells, they put out fire and explode into an acid cloud when destroyed.
 As a xeno, do not block other xenos' paths when they are retreating. Circumvent this by being on Help Intent or by simply moving away.
-As a xeno, it is faster to re-fill an empty acid well then rolling on the ground to put out a fire.
+As a xeno, it is faster to re-fill an empty acid well than rolling on the ground to put out a fire.
 As a xeno, if you have access to Queen's Blessing, check how much psychic points you have so that you can purchase stuff to beat the marines.
 As a xeno, if you have acid spit, you can spit at or shoot a welding fuel tank to blow it up next to hostiles.
 As a xeno, white weed helps you heal faster, green weeds slows down marines, and weed with no colors are normal weeds. Rest on the white weeds to heal faster!
