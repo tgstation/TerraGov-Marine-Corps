@@ -57,6 +57,7 @@ GLOBAL_LIST_EMPTY(unmanned_vehicles)
 
 GLOBAL_LIST_INIT(supply_drops, typecacheof(list(
 	/obj/structure/closet/crate,
+	/obj/structure/largecrate,
 	/obj/machinery/vending)))
 
 //hypersleep related
