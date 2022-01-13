@@ -130,7 +130,7 @@
 		return FALSE
 	if(cell)
 		to_chat(user , span_warning("There is already a cell inside, use a crowbar to remove it."))
-		return
+		return FALSE
 	if(!do_after(user, 2 SECONDS, TRUE, src))
 		return FALSE
 	I.forceMove(src)
