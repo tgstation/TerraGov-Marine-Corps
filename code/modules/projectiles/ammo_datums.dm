@@ -576,7 +576,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "high velocity impact bullet"
 	hud_state = "hivelo_impact"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	damage = 30
+	damage = 25
 	penetration = 45
 	sundering = 5
 
