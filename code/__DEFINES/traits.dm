@@ -95,6 +95,7 @@
 #define REVIVE_TO_CRIT_TRAIT "revive_to_crit"
 #define GUN_TRAIT "gun" //Traits related to guns
 #define ZOMBIE_TRAIT "zombie"
+#define BULLET_ACT_TRAIT "bullet act" //Traits related to projectiles
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
 
@@ -146,5 +147,4 @@
 // turf traits
 #define TRAIT_TURF_FREEZE_BULLET "freeze_bullet" //Stop projectiles on this tiles
 // projectile traits
-#define BULLET_ACT_TRAIT "bullet act"
 #define TRAIT_PROJ_HIT_SOMETHING "hit_something" //If projectile hit something on its path
