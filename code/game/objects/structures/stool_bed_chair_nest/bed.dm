@@ -102,10 +102,9 @@ obj/structure/bed/Destroy()
 		return FALSE
 	return ..()
 
-/obj/structure/bed/proc/handle_buckled_bodybag_movement(NewLoc, direct)
-	if((direct & (direct - 1))) //The obj's diagonal move is split into two cardinal moves and those moves will handle the buckled mob's movement.
-		return TRUE
-	if(buckled_bodybag.Move(NewLoc, direct))
+/obj/structure/bed/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
+	. = ..()
+	if(buckled_bodybag.Move(loc, movement_dir))
 		return TRUE
 	forceMove(buckled_bodybag.loc)
 	return FALSE
