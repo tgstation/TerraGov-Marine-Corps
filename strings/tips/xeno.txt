@@ -24,7 +24,7 @@ As a xeno, white weed helps you heal faster, green weeds slows down marines, and
 As a larva, ask your hive leader what you should evolve into.
 As a larva, you can slide under unbolted and unwelded doors by clicking on the door.
 As a larva, stay on weeds while growing, you will grow faster as a result.
-As a runner or larva, you can pass through window frames without climbing on to them beforehand.
+As a runner or larva, you can pass over window frames without climbing on to them beforehand.
 As a drone or sentinel, your corrosive acid is very weak, but it's better than nothing.
 As a drone, spread weeds as much as you can, especially to the front line fighters.
 Before you evolve as the Hivemind as a drone, hide into a secure area! Once you evolve as a hivemind, you cannot move anymore on the spot.
