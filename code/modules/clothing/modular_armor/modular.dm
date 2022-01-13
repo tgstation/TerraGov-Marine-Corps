@@ -252,7 +252,7 @@
 	icon_state = "pilot"
 	item_state = "pilot"
 	item_icons = list(
-		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
+		slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
 	blood_overlay_type = "armor"
