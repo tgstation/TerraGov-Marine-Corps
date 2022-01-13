@@ -45,7 +45,7 @@
 		/obj/item/storage/large_holster/blade
 	)
 
-
+/* not currently in use since new flak jacket is over at modular.dm
 /obj/item/clothing/suit/armor/vest/pilot
 	name = "\improper M70 flak jacket"
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
@@ -78,6 +78,7 @@
 		/obj/item/storage/large_holster/blade,
 		/obj/item/storage/belt/gun,
 	)
+*/
 
 /obj/item/clothing/suit/armor/vest/dutch
 	name = "armored jacket"
