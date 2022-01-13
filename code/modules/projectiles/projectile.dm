@@ -61,6 +61,8 @@
 	var/list/atom/movable/uncross_scheduled = list() // List of border movable atoms to check for when exiting a turf.
 
 	var/damage = 0
+	var/penetration = 0
+	var/sundering = 0
 	var/accuracy = 85 //Base projectile accuracy. Can maybe be later taken from the mob if desired.
 
 	///how many damage points the projectile loses per tiles travelled
@@ -139,6 +141,8 @@
 	name 		= ammo.name
 	icon_state 	= ammo.icon_state
 	damage 		= ammo.damage + bonus_damage //Mainly for emitters.
+	penetration = ammo.penetration
+	sundering 	= ammo.sundering
 	scatter		= ammo.scatter
 	accuracy   += ammo.accuracy
 	accuracy   *= rand(95 - ammo.accuracy_var_low, 105 + ammo.accuracy_var_high) * 0.01 //Rand only works with integers.
@@ -829,6 +833,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 //----------------------------------------------------------
 
 /atom/proc/bullet_act(obj/projectile/proj)
+	if(HAS_TRAIT(proj, TRAIT_PROJ_HIT_SOMETHING))
+		proj.damage *= proj.ammo.on_pierce_reduction
+		proj.penetration *= proj.ammo.on_pierce_reduction
+		proj.sundering *= proj.ammo.on_pierce_reduction
+	ADD_TRAIT(proj, TRAIT_PROJ_HIT_SOMETHING, TRAIT_PROJ_HIT_SOMETHING)
 	SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, proj)
 
 
@@ -858,16 +867,15 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	var/living_hard_armor = (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : get_hard_armor(proj.armor_type, proj.def_zone, proj.dir)
 	var/living_soft_armor = (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : get_soft_armor(proj.armor_type, proj.def_zone, proj.dir)
 	if(living_hard_armor || living_soft_armor)
-		var/penetration = proj.ammo.penetration
-		if(penetration > 0)
+		if(proj.penetration > 0)
 			if(proj.shot_from && src == proj.shot_from.sniper_target(src))
 				damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
-				penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
+				proj.penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
 				add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
 			if(living_hard_armor)
-				living_hard_armor = max(0, living_hard_armor - (living_hard_armor * penetration * 0.01)) //AP reduces a % of hard armor.
+				living_hard_armor = max(0, living_hard_armor - (living_hard_armor * proj.penetration * 0.01)) //AP reduces a % of hard armor.
 			if(living_soft_armor)
-				living_soft_armor = max(0, living_soft_armor - penetration) //Flat removal.
+				living_soft_armor = max(0, living_soft_armor - proj.penetration) //Flat removal.
 
 		if(iscarbon(proj.firer))
 			var/mob/living/carbon/shooter_carbon = proj.firer
@@ -899,7 +907,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			feedback_flags |= (BULLET_FEEDBACK_FIRE|BULLET_FEEDBACK_SCREAM)
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING)
-		adjust_sunder(proj.ammo.sundering)
+		adjust_sunder(proj.sundering)
 
 	if(damage)
 		var/shrapnel_roll = do_shrapnel_roll(proj, damage)
@@ -1213,6 +1221,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 //Turf handling.
 /turf/bullet_act(obj/projectile/proj)
+	. = ..()
 	bullet_ping(proj)
 
 	var/list/mob_list = list() //Let's built a list of mobs on the bullet turf and grab one.

@@ -38,6 +38,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/barricade_clear_distance	= 1			// How far the bullet can travel before incurring a chance of hitting barricades; normally 1.
 	var/armor_type					= "bullet"	// Does this have an override for the armor type the ammo should test? Bullet by default
 	var/sundering					= 0 		// How many stacks of sundering to apply to a mob on hit
+	var/on_pierce_reduction 		= 0			// Projectile stats multiplier on penetrating something
 	var/flags_ammo_behavior = NONE
 	///Determines what color our bullet will be when it flies
 	var/bullet_color = COLOR_WHITE
@@ -1143,20 +1144,10 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 70
 	sundering = 90
 	bullet_color = COLOR_PULSE_BLUE
-	///projectile loses (1-x)% of its damage when it penetrates something
-	var/on_pierce_reduction = 0.66
-	///we dont lose damage before hitting the first target
-	var/first_hit = TRUE
+	on_pierce_reduction = 0.85
 
 /datum/ammo/bullet/railgun/on_hit_mob(mob/M, obj/projectile/P)
-	if(!first_hit)
-		P.damage *= on_pierce_reduction
-	else
-		first_hit = FALSE
 	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 3, shake = 0)
-
-/datum/ammo/bullet/railgun/do_at_max_range(obj/projectile/proj)
-    first_hit = TRUE
 
 /*
 //================================================
