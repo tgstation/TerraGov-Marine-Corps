@@ -833,7 +833,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 //----------------------------------------------------------
 
 /atom/proc/bullet_act(obj/projectile/proj)
-	if(HAS_TRAIT(proj, TRAIT_PROJ_HIT_SOMETHING))
+	if(((proj.ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE) || (proj.ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_TURF)) && HAS_TRAIT(proj, TRAIT_PROJ_HIT_SOMETHING))
 		proj.damage *= proj.ammo.on_pierce_reduction
 		proj.penetration *= proj.ammo.on_pierce_reduction
 		proj.sundering *= proj.ammo.on_pierce_reduction
