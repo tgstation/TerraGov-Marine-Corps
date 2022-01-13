@@ -1472,6 +1472,16 @@ FACTORY
 	contains = list(/obj/item/factory_refill/smartgunner_rifle_box)
 	cost = 20
 
+/datum/supply_packs/factory/smartmachinegun_ammo_refill
+	name = "Smart machinegun drum parts refill"
+	contains = list(/obj/item/factory_refill/smartgunner_machinegun_magazine)
+	cost = 30
+
+/datum/supply_packs/factory/scout_rifle_magazine_refill
+	name = "TX-8 scout rifle magazine assembly refill"
+	contains = list(/obj/item/factory_refill/scout_rifle_magazine_refill)
+	cost = 50
+
 /datum/supply_packs/factory/claymorerefill
 	name = "Claymore parts refill"
 	contains = list(/obj/item/factory_refill/claymore)
@@ -1486,8 +1496,3 @@ FACTORY
 	name = "Railgun magazine assembly refill"
 	contains = list(/obj/item/factory_refill/railgun_magazine_refill)
 	cost = 20
-
-/datum/supply_packs/factory/scout_rifle_magazine_refill
-	name = "TX-8 scout rifle magazine assembly refill"
-	contains = list(/obj/item/factory_refill/scout_rifle_magazine_refill)
-	cost = 50
