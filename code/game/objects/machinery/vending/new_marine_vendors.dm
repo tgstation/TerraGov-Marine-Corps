@@ -699,6 +699,7 @@
 		/obj/item/tool/shovel/etool,
 		/obj/item/lightreplacer,
 		/obj/item/circuitboard/general,
+		/obj/item/tool/solderingtool,
 	)
 
 /obj/effect/essentials_set/leader
@@ -742,6 +743,7 @@
 		/obj/item/bodybag/cryobag,
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/tweezers,
+		/obj/item/tool/solderingtool,
 	)
 
 /obj/effect/essentials_set/xenonauten_light

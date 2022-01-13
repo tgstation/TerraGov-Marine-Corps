@@ -21,6 +21,7 @@
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/cell/lasgun,
+		/obj/item/tool/solderingtool,
 	)
 	cant_hold = list(
 		/obj/item/stack/razorwire,
