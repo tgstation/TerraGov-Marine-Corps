@@ -777,12 +777,6 @@
 	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
-"cx" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/hangar)
 "cy" = (
 /turf/open/floor/carpet,
 /area/mainship/command/corporateliaison)
@@ -1765,6 +1759,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "fK" = (
@@ -2055,18 +2050,15 @@
 /area/mainship/hull/starboard_hull)
 "gE" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 1
-	},
-/obj/structure/disposalpipe/junction{
+/obj/effect/ai_node,
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/ai_node,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
@@ -5351,13 +5343,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/living/cryo_cells)
-"rv" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/closet/toolcloset,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
 "rw" = (
 /obj/effect/landmark/start/job/squadleader,
 /obj/effect/landmark/start/job/squadleader,
@@ -5727,16 +5712,6 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
-"sK" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/hangar)
 "sL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6071,6 +6046,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/port_hull)
+"tR" = (
+/obj/machinery/self_destruct/rod,
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/self_destruct)
 "tS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -6132,14 +6111,6 @@
 /obj/structure/cable,
 /obj/structure/cable,
 /obj/structure/closet/firecloset/full,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
-"uc" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/obj/machinery/light{
-	dir = 8
-	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "ue" = (
@@ -7257,6 +7228,10 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
+"xI" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/hangar)
 "xJ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -8512,6 +8487,11 @@
 /obj/item/storage/bag/trash,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/port_hull)
+"Bi" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/hangar)
 "Bj" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -9052,7 +9032,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
-/obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "CZ" = (
@@ -12723,9 +12702,6 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "Oe" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -13514,6 +13490,13 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
+/area/mainship/hallways/hangar)
+"QB" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/obj/structure/closet/toolcloset,
+/turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "QC" = (
 /turf/open/floor/plating/icefloor/warnplate{
@@ -14637,16 +14620,6 @@
 	dir = 8
 	},
 /area/mainship/shipboard/weapon_room)
-"Uj" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/hangar)
 "Ul" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -16295,17 +16268,6 @@
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
-"ZN" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 9
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/hangar)
 "ZO" = (
 /obj/structure/closet/toolcloset,
 /turf/open/floor/mainship/mono,
@@ -21394,7 +21356,7 @@ fH
 OS
 bN
 NA
-NA
+xI
 NA
 NA
 NA
@@ -22696,30 +22658,30 @@ mp
 dt
 VC
 VC
-VC
-uc
-VC
-Fi
 dt
+Wv
+dt
+Fi
+VC
 mp
 dt
 VC
 VC
-cx
+NA
+dt
 VC
 VC
-VC
-VC
+QB
 VC
 Oe
 VC
-rv
-VC
+dt
+mp
 Tp
 VC
 dt
 VC
-Uj
+VC
 qB
 Zx
 JT
@@ -22775,10 +22737,10 @@ bw
 bw
 bw
 Al
+je
 js
 js
-js
-js
+je
 js
 Fl
 js
@@ -22793,7 +22755,7 @@ Tf
 js
 js
 js
-js
+je
 js
 js
 js
@@ -22817,7 +22779,7 @@ nw
 VC
 VC
 VC
-Uj
+VC
 Zx
 ye
 ye
@@ -22912,10 +22874,10 @@ ey
 ey
 ey
 gE
-js
-js
-js
-ZN
+PC
+PC
+Bi
+PC
 ye
 Sr
 Zx
@@ -23414,7 +23376,7 @@ ZB
 ZB
 ZB
 AW
-gs
+tR
 AW
 gl
 pP
@@ -23511,9 +23473,9 @@ Wb
 ZB
 ZB
 ZB
-UF
+AW
 ur
-DN
+AW
 gl
 pP
 gs
@@ -23610,7 +23572,7 @@ ZB
 ZB
 ZB
 AW
-gs
+tR
 AW
 gl
 pP
@@ -24090,7 +24052,7 @@ eA
 Xw
 PC
 PC
-PC
+Bi
 PC
 ye
 Sr
@@ -24150,25 +24112,25 @@ BK
 bw
 bw
 CY
-bw
+Bw
 bw
 bw
 bw
 bw
 bw
 Ow
-sK
+Bw
 bw
 bw
 bw
 Vg
 bw
 bw
-bw
-bw
-bw
-bw
 Bw
+bw
+bw
+bw
+bw
 bw
 bw
 bw
@@ -24262,11 +24224,11 @@ dz
 VC
 iF
 VC
-VC
+aW
 Wv
 dz
 VC
-aW
+VC
 VC
 dz
 VC
@@ -24279,7 +24241,7 @@ VC
 pM
 VC
 dz
-VC
+iF
 PC
 VC
 dz
@@ -25434,7 +25396,7 @@ sp
 sp
 uk
 sp
-sp
+uk
 sp
 xV
 yB
@@ -25924,7 +25886,7 @@ En
 En
 un
 En
-En
+un
 wT
 En
 yE
