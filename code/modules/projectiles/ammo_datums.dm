@@ -576,12 +576,12 @@ datum/ammo/bullet/revolver/tp44
 	name = "high velocity impact bullet"
 	hud_state = "hivelo_impact"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	damage = 25
+	damage = 30
 	penetration = 45
 	sundering = 5
 
 /datum/ammo/bullet/rifle/tx8/impact/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, max_range = 20, stagger = 2, slowdown = 1, knockback = 1)
+	staggerstun(M, P, max_range = 20, slowdown = 1, knockback = 1, shake = 0)
 
 /datum/ammo/bullet/rifle/mpi_km
 	name = "crude heavy rifle bullet"
