@@ -91,10 +91,12 @@
 
 /datum/ai_behavior/xeno/deal_with_obstacle(datum/source, direction)
 	var/turf/obstacle_turf = get_step(mob_parent, direction)
+	if(obstacle_turf.flags_atom & AI_BLOCKED)
+		return
 	for(var/thing in obstacle_turf.contents)
 		if(istype(thing, /obj/structure/window_frame))
-			mob_parent.loc = obstacle_turf
-			mob_parent.next_move_slowdown += 1 SECONDS
+			LAZYINCREMENT(mob_parent.do_actions, obstacle_turf)
+			addtimer(CALLBACK(src, .proc/climb_window_frame, obstacle_turf), 2 SECONDS)
 			return COMSIG_OBSTACLE_DEALT_WITH
 		if(istype(thing, /obj/structure/closet))
 			var/obj/structure/closet/closet = thing
@@ -222,6 +224,12 @@
 	target_distance = 15
 	change_action(MOVING_TO_SAFETY, next_target, INFINITY)
 	UnregisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE)
+
+///Move the ai mob on top of the window_frame
+/datum/ai_behavior/xeno/proc/climb_window_frame(turf/window_turf)
+	mob_parent.loc = window_turf
+	mob_parent.last_move_time = world.time
+	LAZYDECREMENT(mob_parent.do_actions, window_turf)
 
 /datum/ai_behavior/xeno/ranged
 	distance_to_maintain = 5
