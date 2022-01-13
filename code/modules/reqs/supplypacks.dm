@@ -452,7 +452,7 @@ WEAPONS
 /datum/supply_packs/weapons/rocketsledge
 	name = "Rocket Sledge"
 	contains = list(/obj/item/weapon/twohanded/rocketsledge)
-	cost = 50
+	cost = 60
 
 /*******************************************************************************
 EXPLOSIVES
