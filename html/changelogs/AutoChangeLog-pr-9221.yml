@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscadd: "Researcher FINALLY get researcher minimap icon!"
+  - imageadd: "funny researcher minimap_icon"
