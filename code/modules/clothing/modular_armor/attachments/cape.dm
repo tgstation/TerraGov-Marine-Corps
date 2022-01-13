@@ -14,6 +14,8 @@
 	var/list/attachments_by_slot = list(ATTACHMENT_SLOT_CAPE_HIGHLIGHT)
 	///Starting attachments that are spawned with this.
 	var/list/starting_attachments = list(/obj/item/armor_module/armor/cape_highlight)
+	///True if the hood is up, false if not.
+	var/hood = FALSE
 
 /obj/item/armor_module/armor/cape/Initialize()
 	. = ..()
@@ -37,15 +39,20 @@
 
 /obj/item/armor_module/armor/cape/activate(mob/living/user)
 	. = ..()
+	hood = !hood
+	update_icon()
+	user.update_inv_w_uniform()
+
+/obj/item/armor_module/armor/cape/update_icon_state()
+	. = ..()
 	var/obj/item/armor_module/highlight = attachments_by_slot[ATTACHMENT_SLOT_CAPE_HIGHLIGHT]
-	if(icon_state == "cape")
+	if(hood)
 		icon_state = "cape_h"
 		highlight?.icon_state = "highlight_h"
 	else
 		icon_state = "cape"
 		highlight?.icon_state = "highlight"
-	user.update_inv_w_uniform()
-	update_icon()
+
 
 /obj/item/armor_module/armor/cape/half
 	name = "6E Chameleon Cape (Half)"
