@@ -701,7 +701,7 @@
 	)
 
 /obj/effect/essential/engie/Initialize()
-        . = ..()
+		. = ..()
 		spawn_gear_list = GLOB.gear_list
 
 /obj/effect/essentials_set/leader
