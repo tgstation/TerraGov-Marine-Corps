@@ -6,24 +6,7 @@
 		setShock_Stage(0)
 		return //Godmode or some other pain reducers. //Analgesic avoids all traumatic shock temporarily
 
-	switch(traumatic_shock)
-		if(200 to INFINITY) //All of these adjust shock_stage based on traumatic_shock
-			adjustShock_Stage(5+((traumatic_shock-200)*0.2)) //Uncapped max gain of shock_stage, depending on traumatic_shock.
-
-		if(150 to 200)
-			adjustShock_Stage(1+((traumatic_shock-150)*0.08)) //smooth ramp from 1 to 5
-
-		if(100 to 150)
-			adjustShock_Stage(1)
-
-		if(5 to 35)
-			adjustShock_Stage(-1)
-
-		if(-30 to 5)
-			adjustShock_Stage(-2)
-
-		if(-INFINITY to -30)
-			adjustShock_Stage(-4+((traumatic_shock+30)*0.2)) //uncapped heal, 1 extra point per 5 traumatic_shock above threshold.
+	adjustShock_Stage(traumatic_shock)
 
 	//This just adds up effects together at each step, with a few small exceptions. Preferable to copy and paste rather than have a billion if statements.
 	switch(shock_stage)
