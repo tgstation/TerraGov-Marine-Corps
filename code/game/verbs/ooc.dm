@@ -1,6 +1,6 @@
 /client/verb/ooc_wrapper()
 	set hidden = TRUE
-	var/message = tgui_input_text(usr, "", "OOC \"text\"")
+	var/message = input("", "OOC \"text\"") as null|text
 	ooc(message)
 
 
@@ -113,7 +113,7 @@
 
 /client/verb/xooc_wrapper()
 	set hidden = TRUE
-	var/message = tgui_input_text(usr, "", "XOOC \"text\"")
+	var/message = input("", "XOOC \"text\"") as null|text
 	xooc(message)
 
 
@@ -210,11 +210,11 @@
 
 /client/verb/mooc_wrapper()
 	set hidden = TRUE
-	var/message = tgui_input_text(usr, "", "MOOC \"text\"")
+	var/message = input("", "MOOC \"text\"") as null|text
 	mooc(message)
 
 
-/client/verb/mooc(msg as null|text) // Same as XOOC, but for humans.
+/client/verb/mooc(msg as text) // Same as XOOC, but for humans.
 	set name = "MOOC"
 	set category = "OOC"
 
@@ -305,7 +305,7 @@
 
 /client/verb/looc_wrapper()
 	set hidden = TRUE
-	var/message = tgui_input_text(usr, "", "LOOC \"text\"")
+	var/message = input("", "LOOC \"text\"") as null|text
 	looc(message)
 
 

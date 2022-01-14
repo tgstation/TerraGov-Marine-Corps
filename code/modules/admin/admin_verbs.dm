@@ -470,7 +470,7 @@
 
 
 /client/proc/get_asay()
-	var/msg = tgui_input_text(src, null, "asay \"text\"")
+	var/msg = input(src, null, "asay \"text\"") as text|null
 	asay(msg)
 
 
@@ -514,7 +514,7 @@
 
 
 /client/proc/get_msay()
-	var/msg = tgui_input_text(src, null, "msay \"text\"")
+	var/msg = input(src, null, "msay \"text\"") as text|null
 	msay(msg)
 
 
@@ -566,7 +566,7 @@
 		SEND_SOUND(iter_admin_client.mob, sound('sound/misc/bloop.ogg'))
 
 /client/proc/get_dsay()
-	var/msg = tgui_input_text(src, null, "dsay \"text\"")
+	var/msg = input(src, null, "dsay \"text\"") as text|null
 	dsay(msg)
 
 

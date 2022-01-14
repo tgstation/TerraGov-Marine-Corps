@@ -225,10 +225,10 @@
 				temp_pod.adminNamed = FALSE
 				temp_pod.setStyle(temp_pod.style) //This resets the name of the pod based on it's current style (see supplypod/setStyle() proc)
 				return
-			var/nameInput= tgui_input_text(usr, "Custom name", "Enter a custom name", GLOB.pod_styles[temp_pod.style][POD_NAME]) //Gather input for name and desc
+			var/nameInput= tgui_input_text(usr, "Custom name", "Enter a custom name", GLOB.pod_styles[temp_pod.style][POD_NAME], encode = FALSE) //Gather input for name and desc
 			if (isnull(nameInput))
 				return
-			var/descInput = tgui_input_text(usr, "Custom description", "Enter a custom desc", GLOB.pod_styles[temp_pod.style][POD_DESC]) //The POD_STYLES is used to get the name, desc, or icon state based on the pod's style
+			var/descInput = tgui_input_text(usr, "Custom description", "Enter a custom desc", GLOB.pod_styles[temp_pod.style][POD_DESC], encode = FALSE) //The POD_STYLES is used to get the name, desc, or icon state based on the pod's style
 			if (isnull(descInput))
 				return
 			temp_pod.name = nameInput

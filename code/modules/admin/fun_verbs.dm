@@ -54,8 +54,8 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/customname = tgui_input_text(usr, "What do you want it to be called?.", "Queen Mother Report", "Queen Mother")
-	var/input = tgui_input_text(usr, "This should be a message from the ruler of the Xenomorph race.", "Queen Mother Report", "", multiline = TRUE)
+	var/customname = tgui_input_text(usr, "What do you want it to be called?.", "Queen Mother Report", "Queen Mother", encode = FALSE)
+	var/input = tgui_input_text(usr, "This should be a message from the ruler of the Xenomorph race.", "Queen Mother Report", "", multiline = TRUE, encode = FALSE)
 	if(!input || !customname)
 		return
 
@@ -92,8 +92,8 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/customname = tgui_input_text(usr, "What do you want the AI to be called?.", "AI Report", "AI")
-	var/input = tgui_input_text(usr, "This should be a message from the ship's AI.", "AI Report", multiline = TRUE)
+	var/customname = tgui_input_text(usr, "What do you want the AI to be called?.", "AI Report", "AI", encode = FALSE)
+	var/input = tgui_input_text(usr, "This should be a message from the ship's AI.", "AI Report", multiline = TRUE, encode = FALSE)
 	if(!input || !customname)
 		return
 
@@ -123,8 +123,8 @@
 		return
 
 
-	var/customname = tgui_input_text(usr, "Pick a title for the report.", "Title", "TGMC Update")
-	var/input = tgui_input_text(usr, "Please enter anything you want. Anything. Serious.", "What?", "", multiline = TRUE)
+	var/customname = tgui_input_text(usr, "Pick a title for the report.", "Title", "TGMC Update", encode = FALSE)
+	var/input = tgui_input_text(usr, "Please enter anything you want. Anything. Serious.", "What?", "", multiline = TRUE, encode = FALSE)
 
 	if(!input || !customname)
 		return
@@ -151,7 +151,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/msg = tgui_input_text(usr, "Enter the text you wish to appear to everyone.", "Global Narrate", multiline = TRUE)
+	var/msg = tgui_input_text(usr, "Enter the text you wish to appear to everyone.", "Global Narrate", multiline = TRUE, , encode = FALSE)
 
 	if(!msg)
 		return
@@ -169,7 +169,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/msg = tgui_input_text(usr, "Enter the text you wish to appear to your target.", "Direct Narrate", multiline = TRUE)
+	var/msg = tgui_input_text(usr, "Enter the text you wish to appear to your target.", "Direct Narrate", multiline = TRUE, encode = FALSE)
 	if(!msg)
 		return
 
@@ -186,7 +186,7 @@
 	if(!check_rights(R_FUN|R_MENTOR))
 		return
 
-	var/msg = tgui_input_text(usr, "Subtle PM to [key_name(M)]:", "Subtle Message", "", multiline = TRUE)
+	var/msg = tgui_input_text(usr, "Subtle PM to [key_name(M)]:", "Subtle Message", "", multiline = TRUE, encode = FALSE)
 
 	if(!M?.client || !msg)
 		return
@@ -225,7 +225,7 @@
 		else
 			return
 
-	var/msg = tgui_input_text(usr, "Subtle PM to [key_name(M)]:", "Subtle Message", "", multiline = TRUE)
+	var/msg = tgui_input_text(usr, "Subtle PM to [key_name(M)]:", "Subtle Message", "", multiline = TRUE, encode = FALSE)
 
 	if(!M?.client || !msg)
 		return
@@ -259,7 +259,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/new_info = tgui_input_text(usr, "Set the custom information players get on joining or via the OOC tab.", "Custom info", GLOB.custom_info, multiline = TRUE)
+	var/new_info = tgui_input_text(usr, "Set the custom information players get on joining or via the OOC tab.", "Custom info", GLOB.custom_info, multiline = TRUE, encode = FALSE)
 	new_info = noscript(new_info)
 	if(isnull(new_info) || GLOB.custom_info == new_info)
 		return
@@ -452,7 +452,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/message = tgui_input_text(usr, "Global message to send:", "Admin Announce", multiline = TRUE)
+	var/message = tgui_input_text(usr, "Global message to send:", "Admin Announce", multiline = TRUE, encode = FALSE)
 
 	message = noscript(message)
 
@@ -1009,7 +1009,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/tip = tgui_input_text(usr, "Please specify your tip that you want to send to the players.", "Tip", multiline = TRUE)
+	var/tip = tgui_input_text(usr, "Please specify your tip that you want to send to the players.", "Tip", multiline = TRUE, encode = FALSE)
 	if(!tip)
 		return
 

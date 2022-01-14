@@ -189,7 +189,7 @@
 				if(loaded_pill_bottle)
 					to_chat(user, span_warning("A pill bottle is already loaded into the machine."))
 					return
-				var/bottle_label = reject_bad_text(tgui_input_text(user, "Label:", "Enter desired bottle label"))
+				var/bottle_label = reject_bad_text(tgui_input_text(user, "Label:", "Enter desired bottle label", encode = FALSE))
 				var/obj/item/storage/pill_bottle/I = new/obj/item/storage/pill_bottle
 				if(pillbottlesprite == "2")//if the "2" sprite is selected, use the round pill bottle sprite
 					I.set_greyscale_config(/datum/greyscale_config/pillbottleround)
@@ -216,7 +216,7 @@
 			var/amount_per_pill = reagents.total_volume/count
 			if (amount_per_pill > 15) amount_per_pill = 15
 
-			var/name = reject_bad_text(tgui_input_text(user,"Name:","Name your pill!","[reagents.get_master_reagent_name()] ([amount_per_pill] units)"))
+			var/name = reject_bad_text(tgui_input_text(user,"Name:","Name your pill!","[reagents.get_master_reagent_name()] ([amount_per_pill] units)", encode = FALSE))
 			if(!name)
 				return
 
@@ -238,7 +238,7 @@
 
 		else if (href_list["createbottle"])
 			if(!condi)
-				var/name = reject_bad_text(tgui_input_text(user,"Name:","Name your bottle!",reagents.get_master_reagent_name()))
+				var/name = reject_bad_text(tgui_input_text(user,"Name:","Name your bottle!",reagents.get_master_reagent_name(), encode = FALSE))
 				if(!name)
 					return
 				var/obj/item/reagent_containers/glass/bottle/P = new/obj/item/reagent_containers/glass/bottle(loc)
@@ -255,7 +255,7 @@
 
 		else if (href_list["createautoinjector"])
 			if(!condi)
-				var/name = reject_bad_text(tgui_input_text(user,"Name:","Name your autoinjector!",reagents.get_master_reagent_name()))
+				var/name = reject_bad_text(tgui_input_text(user,"Name:","Name your autoinjector!",reagents.get_master_reagent_name(), encode = FALSE))
 				if(!name)
 					return
 				var/obj/item/reagent_containers/hypospray/autoinjector/fillable/P = new/obj/item/reagent_containers/hypospray/autoinjector/fillable(loc)

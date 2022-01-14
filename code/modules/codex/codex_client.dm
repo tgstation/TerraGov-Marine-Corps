@@ -12,7 +12,7 @@
 		return
 
 	if(!searching)
-		searching = tgui_input_text(usr, "Enter a search string.", "Codex Search")
+		searching = tgui_input_text(usr, "Enter a search string.", "Codex Search", encode = FALSE)
 		if(!searching)
 			return
 
