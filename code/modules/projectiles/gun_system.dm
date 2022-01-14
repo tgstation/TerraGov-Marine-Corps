@@ -191,7 +191,7 @@
 	///this is how much deviation the gun recoil can have, recoil pushes the screen towards the reverse angle you shot + some deviation which this is the max.
 	var/recoil_deviation = 22.5
 	///How much the bullet scatters when fired while wielded.
-	var/scatter	= 20
+	var/scatter	= 5
 	///How much the bullet scatters when fired while unwielded.
 	var/scatter_unwielded = 20
 	///Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
@@ -1538,7 +1538,7 @@
 	else if(user && world.time - user.last_move_time < 5) //moved during the last half second
 		//accuracy and scatter penalty if the user fires unwielded right after moving
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * 0.15))
-		gun_scatter += max(0, movement_acc_penalty_mult * 5)
+		gun_scatter += max(0, movement_acc_penalty_mult)
 
 	if(gun_firemode == GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST && burst_amount > 1)
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
@@ -1564,7 +1564,7 @@
 				var/mob/living/carbon/carbon_user = user
 				projectile_to_fire.def_zone = user.zone_selected
 				if(carbon_user.stagger)
-					gun_scatter += 30
+					gun_scatter += 5
 
 			// Status effect changes
 			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_BUFF))
@@ -1603,11 +1603,11 @@
 				. += burst_amount * burst_scatter_mult * 5
 
 	if(!user?.skills.getRating("firearms")) //no training in any firearms
-		. += 15
+		. += 10
 	else
 		var/scatter_tweak = user.skills.getRating(gun_skill_category)
-		if(scatter_tweak)
-			. -= scatter_tweak * 15
+		if(scatter_tweak > 1)
+			. -= scatter_tweak * 2
 
 
 /obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, firing_angle)

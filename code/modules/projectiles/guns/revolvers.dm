@@ -272,11 +272,17 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lace,
+		/obj/item/attachable/mateba_longbarrel,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 	)
+	starting_attachment_types = list(
+		/obj/item/attachable/mateba_longbarrel,
+	)
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
+	damage_mult = 0.80
+	damage_falloff_mult = 1.5
 	fire_delay = 0.2 SECONDS
 	aim_fire_delay = 0.3 SECONDS
 	recoil = 0
