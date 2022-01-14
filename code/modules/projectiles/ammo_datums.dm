@@ -66,10 +66,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/proc/knockback(mob/victim, obj/projectile/proj, max_range = 2)
 	if(!victim || victim == proj.firer)
 		CRASH("knockback called [victim ? "without a mob target" : "while the mob target was the firer"]")
-	if(proj.distance_travelled > max_range || victim.lying_angle) shake_camera(victim, 2, 1) //Three tiles away or more, basically.
 
 	else //Two tiles away or less.
-		shake_camera(victim, 3, 4)
 		if(isliving(victim)) //This is pretty ugly, but what can you do.
 			if(isxeno(victim))
 				var/mob/living/carbon/xenomorph/target = victim
@@ -89,7 +87,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(!isliving(victim))
 		return
 	if(shake && (proj.distance_travelled > max_range || victim.lying_angle))
-		shake_camera(victim, shake + 1, shake)
 		return
 	var/impact_message = ""
 	if(isxeno(victim))
@@ -108,7 +105,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			stagger *= 0.5
 			stun = 0
 	if(shake)
-		shake_camera(victim, shake+2, shake+3)
 		if(isxeno(victim))
 			impact_message += span_xenodanger("We are shaken by the sudden impact!")
 		else
@@ -675,7 +671,6 @@ datum/ammo/bullet/revolver/tp44
 		var/mob/living/carbon/human/H = M
 		if(H.species?.count_human) //no effect on synths
 			H.apply_effects(6,8)
-		shake_camera(H, 2, 1)
 
 /datum/ammo/bullet/shotgun/incendiary
 	name = "incendiary slug"
