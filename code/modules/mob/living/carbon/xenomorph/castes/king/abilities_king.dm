@@ -26,7 +26,7 @@
 	for(var/atom/light AS in GLOB.nightfall_toggleable_lights)
 		if(isnull(light.loc) || (owner.loc.z != light.loc.z) || (get_dist(owner, light) >= range))
 			continue
-		light.turn_light(null, FALSE, duration, TRUE, TRUE)
+		light.turn_light(null, FALSE, duration, TRUE, TRUE, TRUE)
 
 
 // ***************************************
@@ -55,7 +55,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(!owner.line_of_sight(A, king_crush_dist))
+	if(!line_of_sight(owner, A, king_crush_dist))
 		if(!silent)
 			to_chat(owner, span_warning("We must get closer to crush, our mind cannot reach this far."))
 		return FALSE
@@ -131,7 +131,7 @@
 	action_icon_state = "stomp"
 	mechanics_text = "Summons all xenos in a hive to the caller's location, uses all plasma to activate."
 	ability_name = "Psychic summon"
-	plasma_cost = 1100 //uses all an elder kings plasma
+	plasma_cost = 900 //uses all an young kings plasma
 	cooldown_timer = 10 MINUTES
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_HIVE_SUMMON

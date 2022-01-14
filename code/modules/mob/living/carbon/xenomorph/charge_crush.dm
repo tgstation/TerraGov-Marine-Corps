@@ -31,6 +31,8 @@
 	var/crush_living_damage = 20
 	var/next_special_attack = 0 //Little var to keep track on special attack timers.
 	var/plasma_use_multiplier = 1
+	///If this charge should keep momentum on dir change and if it can charge diagonally
+	var/agile_charge = FALSE
 
 
 /datum/action/xeno_action/ready_charge/give_action(mob/living/L)
@@ -82,7 +84,7 @@
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(charger.is_charging == CHARGE_OFF)
 		return
-	if(!old_dir || !new_dir || old_dir == new_dir) //Check for null direction from help shuffle signals
+	if(!old_dir || !new_dir || old_dir == new_dir || agile_charge) //Check for null direction from help shuffle signals
 		return
 	do_stop_momentum()
 
@@ -147,7 +149,7 @@
 
 /datum/action/xeno_action/ready_charge/proc/check_momentum(newdir)
 	var/mob/living/carbon/xenomorph/charger = owner
-	if(newdir && (ISDIAGONALDIR(newdir) || charge_dir != newdir)) //Check for null direction from help shuffle signals
+	if((newdir && ISDIAGONALDIR(newdir) || charge_dir != newdir) && !agile_charge) //Check for null direction from help shuffle signals
 		return FALSE
 
 	if(next_move_limit && world.time > next_move_limit)
@@ -159,7 +161,7 @@
 	if(charger.incapacitated())
 		return FALSE
 
-	if(charge_dir != charger.dir || charger.moving_diagonally)
+	if(charge_dir != charger.dir && !agile_charge)
 		return FALSE
 
 	if(charger.pulledby)
@@ -358,6 +360,9 @@
 			charge_type = CHARGE_BULL_GORE
 			crush_sound = "alien_tail_attack"
 			to_chat(owner, span_notice("Now goring on impact."))
+
+/datum/action/xeno_action/ready_charge/bull_charge/agile_charge
+	agile_charge = TRUE
 
 
 // ***************************************

@@ -43,13 +43,6 @@ export const GameSettings = (props, context) => {
                 rightLabel={'Disabled'}
               />
               <ToggleFieldPreference
-                label="Focus Chat"
-                value="focus_chat"
-                action="focus_chat"
-                leftLabel={'Enabled'}
-                rightLabel={'Disabled'}
-              />
-              <ToggleFieldPreference
                 label="Unique action behaviour"
                 value="unique_action_use_active_hand"
                 action="unique_action_use_active_hand"

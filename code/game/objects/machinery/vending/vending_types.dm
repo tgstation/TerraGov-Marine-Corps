@@ -76,9 +76,6 @@
 	contraband = list(/obj/item/reagent_containers/food/drinks/ice = 10)
 	prices = list()
 
-
-
-
 /obj/machinery/vending/snack
 	name = "Hot Foods Machine"
 	desc = "A vending machine full of ready to cook meals, mhmmmm taste the nutritional goodness!"
@@ -98,8 +95,6 @@
 	)
 
 	prices = list()
-
-
 
 /obj/machinery/vending/cola
 	name = "Souto Softdrinks"
@@ -162,6 +157,7 @@
 			/obj/item/reagent_containers/glass/bottle/tramadol = 4,
 			/obj/item/reagent_containers/glass/bottle/oxycodone = 4,
 			/obj/item/reagent_containers/glass/bottle/polyhexanide = 2,
+			/obj/item/reagent_containers/glass/bottle/medicalnanites = 2,
 		),
 		"Pill Bottle" = list(
 			/obj/item/storage/pill_bottle/peridaxon = 2,
@@ -187,7 +183,6 @@
 	contraband = list(
 		/obj/item/reagent_containers/glass/bottle/toxin = 1,
 		/obj/item/reagent_containers/glass/bottle/neurotoxin = 1,
-		/obj/item/reagent_containers/glass/bottle/xeno_growthtoxin = 1,
 		/obj/item/reagent_containers/glass/bottle/neurotoxin/light = 1,
 		/obj/item/reagent_containers/glass/bottle/xeno_hemodile = 1,
 		/obj/item/reagent_containers/glass/bottle/xeno_transvitox = 1,
@@ -198,6 +193,63 @@
 
 /obj/machinery/vending/medical/rebel
 	req_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
+
+/obj/machinery/vending/medical/valhalla
+	use_power = NO_POWER_USE
+	req_access = list()
+	resistance_flags = INDESTRUCTIBLE
+	products = list(
+		"Hypospray" = list (
+			/obj/item/defibrillator = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/hyperzine = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/rezadone = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/virilyth = -1,
+			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/roulettium = -1,
+		),
+		"Reagent Bottle" = list(
+			/obj/item/reagent_containers/glass/bottle/dylovene = -1,
+			/obj/item/reagent_containers/glass/bottle/bicaridine = -1,
+			/obj/item/reagent_containers/glass/bottle/inaprovaline = -1,
+			/obj/item/reagent_containers/glass/bottle/sleeptoxin = -1,
+			/obj/item/reagent_containers/glass/bottle/spaceacillin = -1,
+			/obj/item/reagent_containers/glass/bottle/peridaxon = -1,
+			/obj/item/reagent_containers/glass/bottle/kelotane = -1,
+			/obj/item/reagent_containers/glass/bottle/dexalin = -1,
+			/obj/item/reagent_containers/glass/bottle/tramadol = -1,
+			/obj/item/reagent_containers/glass/bottle/oxycodone = -1,
+			/obj/item/reagent_containers/glass/bottle/polyhexanide = -1,
+			/obj/item/reagent_containers/glass/bottle/adminordrazine = -1,
+			/obj/item/reagent_containers/glass/bottle/lemoline = -1,
+			/obj/item/reagent_containers/glass/bottle/nanoblood = -1,
+			/obj/item/reagent_containers/glass/bottle/doctor_delight = -1,
+		),
+		"Pill Bottle" = list(
+			/obj/item/storage/pill_bottle/peridaxon = -1,
+			/obj/item/storage/pill_bottle/russian_red = -1,
+		),
+		"Heal Pack" = list(
+			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = -1,
+			/obj/item/stack/medical/heal_pack/advanced/burn_pack = -1,
+			/obj/item/stack/medical/heal_pack/ointment = -1,
+			/obj/item/stack/medical/heal_pack/gauze =1-1,
+			/obj/item/stack/medical/splint = -1,
+		),
+		"Misc" = list(
+			/obj/item/healthanalyzer = -1,
+			/obj/item/clothing/glasses/hud/health = -1,
+			/obj/item/storage/belt/medical = -1,
+			/obj/item/reagent_containers/syringe = -1,
+			/obj/item/tool/research/xeno_analyzer = -1,
+			/obj/item/tool/research/excavation_tool = -1,
+			/obj/item/reagent_containers/glass/beaker/bluespace = -1,
+		),
+	)
+
 
 //This one's from bay12
 /obj/machinery/vending/phoronresearch
@@ -230,18 +282,17 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired = 0,
 	)
 
-
 /obj/machinery/vending/nanomed/Initialize(mapload, ...)
 	. = ..()
 	switch(dir)
 		if(NORTH)
-			pixel_y = -28
+			pixel_y = -14
 		if(SOUTH)
 			pixel_y = 26
 		if(EAST)
-			pixel_x = -30
+			pixel_x = -19
 		if(WEST)
-			pixel_x = 25
+			pixel_x = 21
 
 
 /obj/machinery/vending/security
@@ -294,7 +345,6 @@
 	contraband = list(/obj/item/seeds/amanitamycelium = 2,/obj/item/seeds/glowshroom = 2,/obj/item/seeds/libertymycelium = 2,/obj/item/seeds/mtearseed = 2,
 					/obj/item/seeds/nettleseed = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/shandseed = 2, /obj/item/toy/waterflower = 1)
 
-
 /obj/machinery/vending/magivend
 	name = "MagiVend"
 	desc = "A magic vending machine."
@@ -327,9 +377,17 @@
 	desc = "Tools for tools."
 	icon_state = "tool"
 	icon_deny = "tool-deny"
-	products = list(/obj/item/stack/cable_coil = 10,/obj/item/tool/crowbar = 5,/obj/item/tool/weldingtool = 3,/obj/item/tool/wirecutters = 5,
-					/obj/item/tool/wrench = 5,/obj/item/analyzer = 5,/obj/item/t_scanner = 5,/obj/item/tool/screwdriver = 5)
-	contraband = list(/obj/item/tool/weldingtool/hugetank = 2,/obj/item/clothing/gloves/fyellow = 2, /obj/item/clothing/gloves/yellow = 1)
+	isshared = TRUE
+	products = list(
+		/obj/item/stack/cable_coil = -1,
+		/obj/item/tool/crowbar = -1,
+		/obj/item/tool/weldingtool = -1,
+		/obj/item/tool/wirecutters = -1,
+		/obj/item/tool/wrench = -1,
+		/obj/item/analyzer = -1,
+		/obj/item/t_scanner = -1,
+		/obj/item/tool/screwdriver = -1
+	)
 
 /obj/machinery/vending/engivend
 	name = "Engi-Vend"
@@ -370,3 +428,48 @@
 // Meaning, if an item is taken from one vendor, it will not be available in any others as well.
 /obj/machinery/vending/shared_vending
 	isshared = TRUE
+
+/obj/machinery/vending/boozeomat/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/assist/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/coffee/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/snack/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/cola/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/medical/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/nanomed/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/security/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/hydronutrients/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/hydroseeds/nopower
+	use_power = NO_POWER_USE	
+
+/obj/machinery/vending/dinnerware/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/sovietsoda/nopower
+	use_power = NO_POWER_USE	
+
+/obj/machinery/vending/tool/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/engivend/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/engineering/nopower
+	use_power = NO_POWER_USE

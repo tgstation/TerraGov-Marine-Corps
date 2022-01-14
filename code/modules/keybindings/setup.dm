@@ -28,7 +28,4 @@
 		var/command = macro_set[key]
 		winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[command]")
 
-	if(prefs.focus_chat)
-		winset(src, null, "input.focus=true")
-	else
-		winset(src, null, "map.focus=true")
+	winset(src, null, "map.focus=true")

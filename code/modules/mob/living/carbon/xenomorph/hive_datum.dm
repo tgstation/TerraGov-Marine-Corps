@@ -594,6 +594,12 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal // subtype for easier typechecking and overrides
 	hive_flags = HIVE_CAN_HIJACK
 
+///Signal handler to tell the hive to check for siloless in MINIMUM_TIME_SILO_LESS_COLLAPSE
+/datum/hive_status/normal/proc/set_siloless_collapse_timer()
+	SIGNAL_HANDLER
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY))
+	addtimer(CALLBACK(src, .proc/handle_silo_death_timer, TRUE), MINIMUM_TIME_SILO_LESS_COLLAPSE)
+
 /datum/hive_status/normal/on_queen_death(mob/living/carbon/xenomorph/queen/Q)
 	if(living_xeno_queen != Q)
 		return FALSE
@@ -664,19 +670,27 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/proc/attempt_to_spawn_larva_in_silo(mob/xeno_candidate, possible_silos, larva_already_reserved = FALSE)
+	xeno_candidate.playsound_local(xeno_candidate, 'sound/ambience/votestart.ogg')
+	window_flash(xeno_candidate.client)
 	var/obj/structure/xeno/silo/chosen_silo
 	if(length(possible_silos) > 1)
-		chosen_silo = tgui_input_list(xeno_candidate, "Available Egg Silos", "Spawn location", possible_silos)
+		chosen_silo = tgui_input_list(xeno_candidate, "Available Egg Silos", "Spawn location", possible_silos, timeout = 20 SECONDS)
 		if(!chosen_silo)
 			return FALSE
-		xeno_candidate.forceMove(chosen_silo)
-		var/double_check = tgui_alert(xeno_candidate, "Spawn here?", "Spawn location", list("Yes","Pick another silo","Abort"))
+		xeno_candidate.forceMove(get_turf(chosen_silo))
+		var/double_check = tgui_alert(xeno_candidate, "Spawn here?", "Spawn location", list("Yes","Pick another silo","Abort"), timeout = 20 SECONDS)
 		if(double_check == "Pick another silo")
 			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos)
 		else if(double_check != "Yes")
+			remove_from_larva_candidate_queue(xeno_candidate)
 			return FALSE
 	else
 		chosen_silo = possible_silos[1]
+		xeno_candidate.forceMove(get_turf(chosen_silo))
+		var/check = tgui_alert(xeno_candidate, "Spawn as a xeno?", "Spawn location", list("Yes", "Abort"), timeout = 20 SECONDS)
+		if(check != "Yes")
+			remove_from_larva_candidate_queue(xeno_candidate)
+			return FALSE
 
 	if(QDELETED(chosen_silo) || !xeno_candidate?.client)
 		return FALSE
@@ -778,10 +792,10 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/proc/handle_silo_death_timer()
 	return
 
-/datum/hive_status/normal/handle_silo_death_timer()
-	if(!(SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN))
-		return
-	if(world.time < MINIMUM_TIME_SILO_LESS_COLLAPSE)
+/datum/hive_status/normal/handle_silo_death_timer(bypass_flag = FALSE)
+	if(bypass_flag)
+		hive_flags |= HIVE_CAN_COLLAPSE_FROM_SILO
+	else if(!(hive_flags & HIVE_CAN_COLLAPSE_FROM_SILO))
 		return
 	var/datum/game_mode/infestation/distress/D = SSticker.mode
 	if(D.round_stage != INFESTATION_MARINE_DEPLOYMENT)
@@ -827,6 +841,9 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/proc/remove_from_larva_candidate_queue(mob/dead/observer/observer)
 	LAZYREMOVE(candidate, observer)
 	UnregisterSignal(observer, COMSIG_PARENT_QDELETING)
+	observer.larva_position = 0
+	var/datum/action/observer_action/join_larva_queue/join = observer.actions_by_path[/datum/action/observer_action/join_larva_queue]
+	join.remove_selected_frame()
 	to_chat(observer, span_warning("You left the Larva queue."))
 	var/mob/dead/observer/observer_in_queue
 	for(var/i in 1 to LAZYLEN(candidate))
@@ -916,6 +933,9 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/crusher/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
+/mob/living/carbon/xenomorph/gorger/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
 /mob/living/carbon/xenomorph/defender/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
@@ -988,6 +1008,9 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/crusher/Alpha
 	hivenumber = XENO_HIVE_ALPHA
 
+/mob/living/carbon/xenomorph/gorger/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
 /mob/living/carbon/xenomorph/defender/Alpha
 	hivenumber = XENO_HIVE_ALPHA
 
@@ -1057,6 +1080,9 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/crusher/Beta
 	hivenumber = XENO_HIVE_BETA
 
+/mob/living/carbon/xenomorph/gorger/Beta
+	hivenumber = XENO_HIVE_BETA
+
 /mob/living/carbon/xenomorph/defender/Beta
 	hivenumber = XENO_HIVE_BETA
 
@@ -1124,6 +1150,9 @@ to_chat will check for valid clients itself already so no need to double check f
 	hivenumber = XENO_HIVE_ZETA
 
 /mob/living/carbon/xenomorph/crusher/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
+/mob/living/carbon/xenomorph/gorger/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
 /mob/living/carbon/xenomorph/defender/Zeta
@@ -1208,9 +1237,6 @@ to_chat will check for valid clients itself already so no need to double check f
 		return hugger.hivenumber
 	return hivenumber
 
-/obj/item/xeno_egg/get_xeno_hivenumber()
-	return hivenumber
-
 /obj/item/alien_embryo/get_xeno_hivenumber()
 	return hivenumber
 
@@ -1228,8 +1254,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	return hivenumber
 
 /mob/living/carbon/human/get_xeno_hivenumber()
-	if(faction == FACTION_XENO)
-		return XENO_HIVE_NORMAL
+	if(faction == FACTION_ZOMBIE)
+		return FACTION_ZOMBIE
 	return FALSE
 
 

@@ -6,9 +6,12 @@
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform. You suspect it's not as robust-proof as advertised."
 	siemens_coefficient = 0.9
 	icon_state = "marine_jumpsuit"
-	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
-	rollable_sleeves = TRUE
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0) //No armor on non ERT uniforms.
 	has_sensor = 2
+	adjustment_variants = list(
+		"Down" = "_d",
+		"Half" = "_h",
+	)
 
 /obj/item/clothing/under/marine/standard
 	flags_item_map_variant = null
@@ -18,6 +21,9 @@
 /obj/item/clothing/under/marine/camo
 	name = "\improper TGMC camo fatigues (jungle)"
 	icon_state = "m_marine_jumpsuit"
+	adjustment_variants = list(
+		"Down" = "_d",
+	)
 
 /obj/item/clothing/under/marine/camo/snow
 	name = "\improper TGMC camo fatigues (snow)"
@@ -44,7 +50,7 @@
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform. You suspect it's not as robust-proof as advertised."
 	siemens_coefficient = 0.9
 	icon_state = "marine_undersuit"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 	has_sensor = 2
 	flags_item_map_variant = null
 
@@ -54,25 +60,26 @@
 	icon_state = "s_marine_sniper"
 	item_state = "s_marine_sniper"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/marine/tanker
 	name = "\improper TGMC tanker uniform"
 	icon_state = "marine_tanker"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 	flags_item_map_variant = (ITEM_ICE_VARIANT|ITEM_ICE_PROTECTION)
 
 /obj/item/clothing/under/marine/mp
 	name = "military police uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented military police uniform. You suspect it's not as robust-proof as advertised."
 	icon_state = "MP_jumpsuit"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/marine/officer
 	name = "marine officer uniform"
 	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented, yet extra-soft and extra-light officer uniform. You suspect it's not as extra-fancy as advertised."
 	icon_state = "officertanclothes"
 	item_state = "officertanclothes"
+	adjustment_variants = list()
 
 /obj/item/clothing/under/marine/officer/warden
 	name = "marine officer uniform"
@@ -109,6 +116,9 @@
 	icon_state = "pilot_flightsuit"
 	flags_cold_protection = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_item_map_variant = null
+	adjustment_variants = list(
+		"Half" = "_h",
+	)
 
 /obj/item/clothing/under/marine/officer/tanker
 	name = "tank crewman officer uniform"
@@ -142,19 +152,22 @@
 /obj/item/clothing/under/marine/officer/ce
 	name = "chief ship engineer uniform"
 	desc = "An engine-friendly, kevlar-weaved, hazmat-tested, EMF-augmented ship engineer uniform. You suspect it's not as robust-proof as advertised."
-	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 25, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 25, "fire" = 5, "acid" = 5)
 	icon_state = "EC_jumpsuit"
+	adjustment_variants = list(
+		"Half" = "_h",
+	)
 
 /obj/item/clothing/under/marine/officer/engi
 	name = "engineer uniform"
 	desc = "An engine-friendly, kevlar-weaved, hazmat-tested, EMF-augmented chief ship engineer uniform. You suspect it's not as robust-proof as advertised."
-	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 15, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 10, "fire" = 5, "acid" = 5)
 	icon_state = "E_jumpsuit"
+	adjustment_variants = list(
+		"Half" = "_h",
+	)
 
 /obj/item/clothing/under/marine/officer/researcher
 	name = "researcher clothes"
 	desc = "A simple set of kevlar-weaved, hazmat-tested, EMF-augmented clothing worn by marine researchers. You suspect it's not as robust-proof as advertised."
-	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 5, "fire" = 10, "acid" = 10)
 	icon_state = "research_jumpsuit"
 
 /obj/item/clothing/under/whites
@@ -162,7 +175,7 @@
 	desc = "A standard-issue Marine dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. doesn't seem to fit perfectly around the waist though."
 	siemens_coefficient = 0.9
 	icon_state = "marine_whites" //with thanks to Manezinho
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /*=========================RESPONDERS================================*/
 
@@ -172,18 +185,18 @@
 /obj/item/clothing/under/marine/imperial
 	name = "\improper Imperial uniform"
 	desc = "This uniform is given out to pretty much every soldier in the Imperium."
-	rollable_sleeves = FALSE // don't disrespect the EMPEROR!
+	adjustment_variants = list() // don't disrespect the EMPEROR!
 	icon_state = "guardjumpsuit"
 	item_state = "guardjumpsuit"
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 
 /obj/item/clothing/under/marine/veteran
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/marine/commissar
 	name = "\improper commissar uniform"
 	desc = "A commissars noble uniform."
-	rollable_sleeves = FALSE // don't disrespect the EMPEROR!
+	adjustment_variants = list() // don't disrespect the EMPEROR!
 	icon_state = "commissar_uniform"
 	item_state = "commissar_uniform"
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
@@ -193,7 +206,7 @@
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Nanotrasen corporation is emblazed on the suit."
 	icon_state = "pmc_jumpsuit"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
+	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 0, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 /obj/item/clothing/under/marine/veteran/PMC/leader
 	name = "\improper PMC command fatigues"
@@ -253,7 +266,7 @@
 	desc = "A beige suit with a red armband. Sturdy and thick, simply imposing. A mysterious crest emblazons it."
 	icon_state = "mercenary_heavy_uniform"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 1, "rad" = 1, "fire" = 5, "acid" = 5)
+	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 0, "energy" = 0, "bomb" = 10, "bio" = 1, "rad" = 1, "fire" = 0, "acid" = 0)
 
 /obj/item/clothing/under/marine/veteran/mercenary/miner
 	name = "mercenary miner fatigues"
@@ -286,7 +299,7 @@
 	name = "colonial marshal uniform"
 	desc = "A blue shirt and tan trousers - the official uniform for a Colonial Marshal."
 	icon_state = "marshal"
-	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	has_sensor = 2
 
 
@@ -323,27 +336,27 @@
 /obj/item/clothing/under/rank/chef/exec
 	name = "\improper Nanotrasen suit"
 	desc = "A formal white undersuit."
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/ro_suit
 	name = "requisition officer suit"
 	desc = "A nicely-fitting, kevlar-weaved, hazmat-tested, EMF-augmented requisition officer suit. You suspect it's not as robust-proof as advertised."
 	icon_state = "RO_jumpsuit"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/synthetic
 	name = "\improper TGMC Support Uniform"
 	desc = "A simple uniform made for Synthetic crewmembers."
 	icon_state = "rdalt"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/marine_cmo
 	name = "marine chief medical officer jumpsuit"
 	desc = "It's made of a special fiber that provides minor protection against biohazards."
 	icon_state = "marine_cmo"
-	rollable_sleeves = FALSE
-
-
+	adjustment_variants = list(
+		"Half" = "_h",
+	)
 /obj/item/clothing/under/som
 	name = "\improper SoM uniform"
 	desc = "A heavily modified mining uniform based off the ones used by mining colonies."
@@ -384,7 +397,7 @@
 	desc = "Additional structural armor plate used for mounting equipment on a combat robot."
 	item_state = "chest_rig"
 	icon_state = "chest_rig"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 	species_exception = list(/datum/species/robot)
 
 /obj/item/clothing/under/marine/robotic/mob_can_equip(mob/M, slot, warning, override_nodrop)

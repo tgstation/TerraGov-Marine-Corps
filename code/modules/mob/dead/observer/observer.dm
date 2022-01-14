@@ -231,7 +231,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 				ghost.abstract_move(resin_silo.loc)
 				break
 
-/mob/proc/ghostize(can_reenter_corpse = TRUE)
+/mob/proc/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
 	if(!key || isaghost(src))
 		return FALSE
 	var/mob/dead/observer/ghost = new(src)
@@ -274,13 +274,14 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	return ghost
 
 /mob/living/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
+	if(aghosting)
+		set_afk_status(MOB_AGHOSTED)
 	. = ..()
 	if(!. || can_reenter_corpse)
 		return
 	var/mob/ghost = .
 	if(!aghosting && job?.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
 		GLOB.key_to_time_of_death[ghost.key] = world.time
-		set_afk_status(MOB_RECENTLY_DISCONNECTED, 5 SECONDS)
 
 
 /mob/dead/observer/Move(atom/newloc, direct)
@@ -381,15 +382,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set category = "Ghost"
 	set name = "Try to take SSD mob"
 
-	if(GLOB.key_to_time_of_death[key] + TIME_BEFORE_TAKING_BODY < world.time && !started_as_observer)
+	if(GLOB.key_to_time_of_death[key] + TIME_BEFORE_TAKING_BODY > world.time && !started_as_observer)
 		to_chat(src, span_warning("You died too recently to be able to take a new mob."))
 		return
 
 	var/list/mob/living/free_ssd_mobs = list()
 	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
-		if(isnull(ssd_mob))
-			LAZYREMOVE(GLOB.ssd_living_mobs, src)
-			continue
 		if(is_centcom_level(ssd_mob.z))
 			continue
 		if(ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
@@ -910,6 +908,34 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(src, span_notice("You will now examine everything you click on."))
 	else
 		to_chat(src, span_notice("You will no longer examine things you click on."))
+
+/mob/dead/observer/verb/join_valhalla()
+	set name = "Join Valhalla"
+	set category = "Ghost"
+
+	if(!GLOB.valhalla_allowed)
+		to_chat(usr, span_notice("Valhalla is currently disabled!"))
+		return
+
+	if(stat != DEAD)
+		to_chat(usr, span_boldnotice("You must be dead to use this!"))
+		return
+
+	var/datum/job/valhalla_job = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. What job would you like to have?", "Join Valhalla", GLOB.jobs_fallen_all)
+	if(!valhalla_job)
+		return
+	var/mob/living/carbon/human/new_fallen = new(pick(GLOB.spawns_by_job[/datum/job/fallen]))
+	valhalla_job = SSjob.GetJobType(valhalla_job)
+	new_fallen.apply_assigned_role_to_spawn(valhalla_job)
+	if(valhalla_job.outfit)
+		new_fallen.delete_equipment(TRUE)
+		new_fallen.equipOutfit(valhalla_job.outfit, FALSE)
+		new_fallen.regenerate_icons()
+
+	log_game("[key_name(usr)] has joined Valhalla.")
+	mind.transfer_to(new_fallen, TRUE)
+	valhalla_job.after_spawn(new_fallen)
+
 
 
 /mob/dead/observer/reset_perspective(atom/A)

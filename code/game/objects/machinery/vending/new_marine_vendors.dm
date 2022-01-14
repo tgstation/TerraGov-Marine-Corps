@@ -276,6 +276,10 @@
 	squad_tag = "Delta"
 	req_access = list(ACCESS_MARINE_ENGPREP, ACCESS_MARINE_DELTA)
 
+/obj/machinery/marine_selector/clothes/engi/valhalla
+	vendor_role = /datum/job/fallen/engineer
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/medic
 	name = "GHMME Automated Corpsman Closet"
@@ -312,6 +316,10 @@
 	squad_tag = "Delta"
 	req_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_DELTA)
 
+/obj/machinery/marine_selector/clothes/medic/valhalla
+	vendor_role = /datum/job/fallen/corpsman
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/smartgun
 	name = "GHMME Automated Smartgunner Closet"
@@ -348,6 +356,11 @@
 	squad_tag = "Delta"
 	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_DELTA)
 
+/obj/machinery/marine_selector/clothes/smartgun/valhalla
+	vendor_role = /datum/job/fallen/smartgunner
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
+
 /obj/machinery/marine_selector/clothes/leader
 	name = "GHMME Automated Leader Closet"
 	req_access = list(ACCESS_MARINE_LEADER)
@@ -383,6 +396,11 @@
 	squad_tag = "Delta"
 	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DELTA)
 
+/obj/machinery/marine_selector/clothes/leader/valhalla
+	vendor_role = /datum/job/fallen/leader
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
+
 /obj/machinery/marine_selector/clothes/commander
 	name = "GHMME Automated Commander Closet"
 	req_access = list(ACCESS_MARINE_COMMANDER)
@@ -398,6 +416,7 @@
 		/obj/effect/modular_set/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
 		/obj/effect/modular_set/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "black"),
 		/obj/effect/modular_set/eva = list(CAT_AMR, "Medium EVA Jaeger kit", 0, "black"),
+		/obj/effect/modular_set/helljumper = list(CAT_AMR, "Medium Helljumper Jaeger kit", 0, "black"),
 		/obj/effect/modular_set/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "black"),
 		/obj/effect/modular_set/eod = list(CAT_AMR, "Heavy EOD Jaeger kit", 0, "black"),
 		/obj/effect/essentials_set/xenonauten_light/leader = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
@@ -406,9 +425,9 @@
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
 		/obj/item/storage/large_holster/blade/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
-		/obj/item/clothing/tie/storage/black_vest = list(CAT_WEB, "Tactical black vest", 0, "black"),
-		/obj/item/clothing/tie/storage/webbing = list(CAT_WEB, "Tactical webbing", 0, "black"),
-		/obj/item/clothing/tie/storage/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
+		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "black"),
+		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical webbing", 0, "black"),
+		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
 		/obj/item/storage/belt/marine = list(CAT_BEL, "Standard ammo belt", 0, "black"),
 		/obj/item/storage/belt/shotgun = list(CAT_BEL, "Shotgun ammo belt", 0, "black"),
 		/obj/item/storage/belt/knifepouch = list(CAT_BEL, "Knives belt", 0, "black"),
@@ -500,6 +519,11 @@
 /obj/machinery/marine_selector/gear/medic/rebel
 	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
 
+/obj/machinery/marine_selector/gear/medic/valhalla
+	vendor_role = /datum/job/fallen/corpsman
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
+
 /obj/machinery/marine_selector/gear/engi
 	name = "NEXUS Automated Engineer Equipment Rack"
 	desc = "An automated engineer equipment rack hooked up to a colossal storage unit."
@@ -514,6 +538,10 @@
 /obj/machinery/marine_selector/gear/engi/rebel
 	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
 
+/obj/machinery/marine_selector/gear/engi/valhalla
+	vendor_role = /datum/job/fallen/engineer
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/smartgun
 	name = "NEXUS Automated Smartgunner Equipment Rack"
@@ -529,6 +557,11 @@
 /obj/machinery/marine_selector/gear/smartgun/rebel
 	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
 
+/obj/machinery/marine_selector/gear/smartgun/valhalla
+	vendor_role = /datum/job/fallen/smartgunner
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
+
 /obj/machinery/marine_selector/gear/leader
 	name = "NEXUS Automated Squad Leader Equipment Rack"
 	desc = "An automated squad leader equipment rack hooked up to a colossal storage unit."
@@ -542,6 +575,11 @@
 
 /obj/machinery/marine_selector/gear/leader/rebel
 	req_access = list(ACCESS_MARINE_LEADER_REBEL)
+
+/obj/machinery/marine_selector/gear/leader/valhalla
+	vendor_role = /datum/job/fallen/leader
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
 
 
 /obj/effect/essentials_set
@@ -661,6 +699,7 @@
 		/obj/item/tool/shovel/etool,
 		/obj/item/lightreplacer,
 		/obj/item/circuitboard/general,
+		/obj/item/tool/solderingtool,
 	)
 
 /obj/effect/essentials_set/leader
@@ -694,6 +733,7 @@
 	spawned_gear_list = list(
 		/obj/item/stack/sheet/plasteel/medium_stack,
 		/obj/item/stack/sheet/metal/large_stack,
+		/obj/item/tool/weldingtool/hugetank,
 		/obj/item/lightreplacer,
 		/obj/item/healthanalyzer,
 		/obj/item/tool/handheld_charger,
@@ -703,6 +743,7 @@
 		/obj/item/bodybag/cryobag,
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/tweezers,
+		/obj/item/tool/solderingtool,
 	)
 
 /obj/effect/essentials_set/xenonauten_light
@@ -817,6 +858,15 @@
 		/obj/item/armor_module/armor/chest/marine/assault/eod,
 		/obj/item/armor_module/armor/arms/marine/eod,
 		/obj/item/armor_module/armor/legs/marine/eod,
+	)
+
+/obj/effect/modular_set/helljumper
+	desc = "A set of Helljumper pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
+	spawned_gear_list = list(
+		/obj/item/clothing/head/modular/marine/helljumper,
+		/obj/item/armor_module/armor/chest/marine/helljumper,
+		/obj/item/armor_module/armor/arms/marine/helljumper,
+		/obj/item/armor_module/armor/legs/marine/helljumper,
 	)
 
 /obj/effect/essentials_set/mimir

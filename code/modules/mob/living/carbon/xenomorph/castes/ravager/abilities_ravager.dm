@@ -12,7 +12,7 @@
 
 /datum/action/xeno_action/activable/charge/proc/charge_complete()
 	SIGNAL_HANDLER
-	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_NONE_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT))
+	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENO_LIVING_THROW_HIT))
 
 /datum/action/xeno_action/activable/charge/proc/obj_hit(datum/source, obj/target, speed)
 	SIGNAL_HANDLER
@@ -50,7 +50,7 @@
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 
 	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, .proc/obj_hit)
-	RegisterSignal(X, COMSIG_XENO_NONE_THROW_HIT, .proc/charge_complete)
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/charge_complete)
 	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
 
 	X.visible_message(span_danger("[X] charges towards \the [A]!"), \
@@ -69,7 +69,7 @@
 /datum/action/xeno_action/activable/charge/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
-	if(get_dist(target, owner) > 4)
+	if(!line_of_sight(owner, target, 4))
 		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
@@ -289,7 +289,7 @@
 	rage_power = (1-(X.health/X.maxHealth)) * RAVAGER_RAGE_POWER_MULTIPLIER //Calculate the power of our rage; scales with difference between current and max HP
 
 	if(X.health < 0) //If we're at less than 0 HP, it's time to max rage.
-		rage_power = 1
+		rage_power = 0.5
 
 	var/rage_power_radius = CEILING(rage_power * 7, 1) //Define radius of the SFX
 
@@ -302,13 +302,13 @@
 	playsound(X.loc, 'sound/voice/alien_roar2.ogg', clamp(100 * rage_power, 25, 80), 0)
 
 	var/bonus_duration
-	if(rage_power > RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) //If we're super pissed it's time to get crazy
+	if(rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) //If we're super pissed it's time to get crazy
 		var/datum/action/xeno_action/charge = X.actions_by_path[/datum/action/xeno_action/activable/charge]
 		var/datum/action/xeno_action/ravage = X.actions_by_path[/datum/action/xeno_action/activable/ravage]
 		var/datum/action/xeno_action/endure/endure_ability = X.actions_by_path[/datum/action/xeno_action/endure]
 
 		if(endure_ability.endure_duration) //Check if Endure is active
-			endure_ability.endure_threshold = RAVAGER_ENDURE_HP_LIMIT * (1 + rage_power) //Endure crit threshold scales with Rage Power; min -100, max -200
+			endure_ability.endure_threshold = RAVAGER_ENDURE_HP_LIMIT * (1 + rage_power) //Endure crit threshold scales with Rage Power; min -100, max -150
 
 		if(charge)
 			charge.clear_cooldown() //Reset charge cooldown
@@ -326,7 +326,7 @@
 		shake_camera(L, 1 SECONDS, 1)
 		L.Shake(4, 4, 1 SECONDS) //SFX
 
-		if(rage_power > RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) //If we're super pissed it's time to get crazy
+		if(rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) //If we're super pissed it's time to get crazy
 
 			var/obj/screen/plane_master/floor/OT = L.hud_used.plane_masters["[FLOOR_PLANE]"]
 			var/obj/screen/plane_master/game_world/GW = L.hud_used.plane_masters["[GAME_PLANE]"]
@@ -344,7 +344,7 @@
 	X.plasma_stored += rage_plasma //Regain a % of our maximum plasma scaling with rage
 
 	rage_sunder = min(X.sunder, rage_power * 100) //Set our temporary Sunder recovery
-	X.adjust_sunder(-1 * rage_sunder) //Restores up to 100 Sunder temporarily.
+	X.adjust_sunder(-1 * rage_sunder) //Restores up to 50 Sunder temporarily.
 
 	X.xeno_melee_damage_modifier += rage_power  //Set rage melee damage bonus
 
@@ -479,11 +479,10 @@
 	SIGNAL_HANDLER
 	if(!leech_count)
 		return
-	var/count = leech_count
 	//heals 10% extra per leeched
-	count /= 10
-	count += 1
-	heal_data += count
+	var/heal_mod = 1 + (leech_count/10)
+	
+	heal_data[1] = (heal_data[1] * heal_mod)
 
 ///Adds the slashed mob to tracked damage mobs
 /datum/action/xeno_action/vampirism/proc/on_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)

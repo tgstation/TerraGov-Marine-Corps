@@ -72,6 +72,8 @@
 
 	if(tgui_Topic(href_list))
 		return
+	if(href_list["reload_tguipanel"])
+		nuke_chat()
 
 	//Logs all hrefs.
 	log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
@@ -441,10 +443,6 @@
 		if(clicklimiter[SECOND_COUNT] > scl)
 			to_chat(src, span_danger("Your previous click was ignored because you've done too many in a second"))
 			return
-
-//Hijack for FC.
-	if(prefs.focus_chat)
-		winset(src, null, "input.focus=true")
 
 	return ..()
 

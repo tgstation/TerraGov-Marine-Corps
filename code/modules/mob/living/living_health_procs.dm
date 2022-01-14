@@ -265,6 +265,8 @@
 	LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
 	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/human_z_changed)
 
+	hud_list[HEART_STATUS_HUD].icon_state = ""
+
 /mob/living/carbon/xenomorph/on_revive()
 	. = ..()
 	GLOB.alive_xeno_list += src
@@ -417,11 +419,11 @@
 			addtimer(CALLBACK(src, .proc/finish_revive_to_crit, FALSE, should_zombify), 10 SECONDS)
 			return
 		REMOVE_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
-		if(should_zombify || istype(species, /datum/species/husk))
-			AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/husk/patrolling, src) //Zombie patrol
+		if(should_zombify || istype(species, /datum/species/zombie))
+			AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie/patrolling, src) //Zombie patrol
 			a_intent = INTENT_HARM
 	if(should_zombify)
-		set_species("Strong husk")
+		set_species("Strong zombie")
 		faction = FACTION_XENO
 	heal_limbs(- health)
 	set_stat(CONSCIOUS)

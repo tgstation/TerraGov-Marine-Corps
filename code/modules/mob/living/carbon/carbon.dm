@@ -16,15 +16,14 @@
 		to_chat(src,"<b>[span_deadsay("<p style='font-size:1.5em'>[species.special_death_message]</p>")]</b>")
 	return ..()
 
-/mob/living/carbon/Move(NewLoc, direct)
+/mob/living/carbon/Moved(oldLoc, dir)
 	. = ..()
-	if(.)
-		if(nutrition && stat != DEAD)
-			adjust_nutrition(-HUNGER_FACTOR * 0.1 * ((m_intent == MOVE_INTENT_RUN) ? 2 : 1))
+	if(nutrition && stat != DEAD)
+		adjust_nutrition(-HUNGER_FACTOR * 0.1 * ((m_intent == MOVE_INTENT_RUN) ? 2 : 1))
 
-		// Moving around increases germ_level faster
-		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
-			germ_level++
+	// Moving around increases germ_level faster
+	if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
+		germ_level++
 
 /mob/living/carbon/relaymove(mob/user, direction)
 	if(user.incapacitated(TRUE))

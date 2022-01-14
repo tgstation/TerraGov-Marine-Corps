@@ -26,9 +26,9 @@
 
 /datum/preferences/proc/update_preferences(current_version, savefile/S)
 	if(current_version < 39)
-		key_bindings = (!focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+		key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
 		parent.update_movement_keys(src)
-		to_chat(parent, span_userdanger("Empty keybindings, setting default to [!focus_chat ? "Hotkey" : "Classic"] mode"))
+		to_chat(parent, span_userdanger("Empty keybindings, setting to default"))
 
 	// Add missing keybindings for T L O M for when they were removed as defaults
 	if(current_version < 42)
@@ -146,7 +146,6 @@
 	READ_FILE(S["ghost_orbit"], ghost_orbit)
 	READ_FILE(S["ghost_form"], ghost_form)
 	READ_FILE(S["ghost_others"], ghost_others)
-	READ_FILE(S["focus_chat"], focus_chat)
 	READ_FILE(S["clientfps"], clientfps)
 	READ_FILE(S["parallax"], parallax)
 	READ_FILE(S["tooltips"], tooltips)
@@ -192,7 +191,6 @@
 	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
 	ghost_form		= sanitize_inlist_assoc(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
-	focus_chat		= sanitize_integer(focus_chat, FALSE, TRUE, initial(focus_chat))
 	clientfps		= sanitize_integer(clientfps, 0, 240, initial(clientfps))
 	parallax = sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
 	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
@@ -253,7 +251,6 @@
 	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
 	ghost_form		= sanitize_inlist_assoc(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
-	focus_chat		= sanitize_integer(focus_chat, FALSE, TRUE, initial(focus_chat))
 	clientfps		= sanitize_integer(clientfps, 0, 240, initial(clientfps))
 	parallax = sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
 	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
@@ -293,7 +290,6 @@
 	WRITE_FILE(S["ghost_orbit"], ghost_orbit)
 	WRITE_FILE(S["ghost_form"], ghost_form)
 	WRITE_FILE(S["ghost_others"], ghost_others)
-	WRITE_FILE(S["focus_chat"], focus_chat)
 	WRITE_FILE(S["clientfps"], clientfps)
 	WRITE_FILE(S["parallax"], parallax)
 	WRITE_FILE(S["tooltips"], tooltips)

@@ -84,10 +84,10 @@
 /mob/living/carbon/human/species/skeleton
 	race = "Skeleton"
 
-/mob/living/carbon/human/species/husk
-	race = "Husk"
+/mob/living/carbon/human/species/zombie
+	race = "Strong zombie"
 
-/mob/living/carbon/human/species/husk/Initialize()
+/mob/living/carbon/human/species/zombie/Initialize()
 	. = ..()
 	var/datum/outfit/outfit = pick(GLOB.survivor_outfits)
 	outfit = new outfit()

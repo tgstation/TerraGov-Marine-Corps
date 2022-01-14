@@ -204,9 +204,6 @@
 		if(EXPLODE_HEAVY)
 			if(prob(50))
 				qdel(src)
-		if(EXPLODE_LIGHT)
-			if(prob(25))
-				INVOKE_ASYNC(src, .proc/malfunction)
 
 /**
  * Builds shared vendors inventory
@@ -355,8 +352,14 @@
 		anchored = !anchored
 		if(anchored)
 			user.visible_message("[user] tightens the bolts securing \the [src] to the floor.", "You tighten the bolts securing \the [src] to the floor.")
+			var/turf/current_turf = get_turf(src)
+			if(current_turf && density)
+				current_turf.flags_atom |= AI_BLOCKED
 		else
 			user.visible_message("[user] unfastens the bolts securing \the [src] to the floor.", "You unfasten the bolts securing \the [src] to the floor.")
+			var/turf/current_turf = get_turf(src)
+			if(current_turf && density)
+				current_turf.flags_atom &= ~AI_BLOCKED
 
 	else if(istype(I, /obj/item))
 		var/obj/item/to_stock = I
@@ -607,13 +610,17 @@
 		stock(I, user)
 
 /obj/machinery/vending/proc/stock(obj/item/item_to_stock, mob/user, recharge = FALSE)
+	if(!powered(power_channel) && machine_current_charge < active_power_usage)
+		return
+	if(icon_vend)
+		flick(icon_vend, src) //Show the vending animation if needed
 	//More accurate comparison between absolute paths.
 	for(var/datum/vending_product/R AS in product_records + hidden_records + coin_records)
 		if(item_to_stock.type != R.product_path || istype(item_to_stock, /obj/item/storage)) //Nice try, specialists/engis
 			continue
 		if(istype(item_to_stock, /obj/item/weapon/gun))
 			var/obj/item/weapon/gun/G = item_to_stock
-			if(G.in_chamber || (G.current_mag && !istype(G.current_mag, /obj/item/ammo_magazine/internal)) || (istype(G.current_mag, /obj/item/ammo_magazine/internal) && G.current_mag.current_rounds > 0) )
+			if(G.rounds)
 				to_chat(user, span_warning("[G] is still loaded. Unload it before you can restock it."))
 				return
 			for(var/obj/item/attachable/A in G.contents) //Search for attachments on the gun. This is the easier method
@@ -625,14 +632,6 @@
 			var/obj/item/ammo_magazine/A = item_to_stock
 			if(A.current_rounds < A.max_rounds)
 				to_chat(user, span_warning("[A] isn't full. Fill it before you can restock it."))
-				return
-		else if(istype(item_to_stock, /obj/item/minigun_powerpack))
-			var/obj/item/minigun_powerpack/P = item_to_stock
-			if(!P.pcell)
-				to_chat(user, span_warning("The [P] doesn't have a cell. You must put one in before you can restock it."))
-				return
-			if(P.pcell.charge < P.pcell.maxcharge)
-				to_chat(user, span_warning("The [P] cell isn't full. You must recharge it before you can restock it."))
 				return
 		else if(istype(item_to_stock, /obj/item/cell))
 			var/obj/item/cell/cell = item_to_stock

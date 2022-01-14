@@ -94,7 +94,7 @@
 #define STEALTH_TRAIT "stealth" //From hunter stealth
 #define REVIVE_TO_CRIT_TRAIT "revive_to_crit"
 #define GUN_TRAIT "gun" //Traits related to guns
-#define HUSK_TRAIT "husk"
+#define ZOMBIE_TRAIT "zombie"
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
 
@@ -107,6 +107,7 @@
 #define TRAIT_FLOORED "floored" //User is forced to the ground on a prone position.
 #define TRAIT_IMMOBILE "immobile" //User is unable to move by its own volition.
 #define TRAIT_IS_RESURRECTING "resurrecting"
+#define TRAIT_PSY_LINKED "psy_linked"
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
 #define TRAIT_STUNIMMUNE "stun_immunity"
@@ -127,6 +128,7 @@
 #define TRAIT_MUTED "muted" //target is mute and can't speak
 #define TRAIT_TURRET_HIDDEN "turret_hidden" //target gets passed over by turrets choosing a victim
 #define TRAIT_MOB_ICON_UPDATE_BLOCKED "icon_blocked" //target should not update its icon_state
+#define TRAIT_HEARING_SENSITIVE "hearing_sensitive" //target is hearing sensitive
 ///Prevent mob from being ignited due to IgniteMob()
 #define TRAIT_NON_FLAMMABLE "non-flammable"
 /// Prevents mob from riding mobs when buckled onto something

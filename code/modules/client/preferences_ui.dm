@@ -100,7 +100,6 @@
 			.["ui_style_alpha"] = ui_style_alpha
 			.["windowflashing"] = windowflashing
 			.["auto_fit_viewport"] = auto_fit_viewport
-			.["focus_chat"] = focus_chat
 			.["mute_xeno_health_alert_messages"] = mute_xeno_health_alert_messages
 			.["tgui_fancy"] = tgui_fancy
 			.["tgui_lock"] = tgui_lock
@@ -284,8 +283,11 @@
 
 		if("species")
 			var/choice = tgui_input_list(ui.user, "What species do you want to play with?", "Species choice", get_playable_species())
-			if(choice)
-				species = choice
+			if(!choice || species == choice)
+				return
+			species = choice
+			var/datum/species/S = GLOB.all_species[species]
+			real_name = S.random_name(gender)
 
 		if("body_type")
 			var/choice = tgui_input_list(ui.user, "What body type do you want?", "Body type choice", GLOB.body_types_list)
@@ -519,13 +521,6 @@
 			auto_fit_viewport = !auto_fit_viewport
 			if(auto_fit_viewport && parent)
 				parent.fit_viewport()
-
-		if("focus_chat")
-			focus_chat = !focus_chat
-			if(focus_chat)
-				winset(user, null, "input.focus=true")
-			else
-				winset(user, null, "map.focus=true")
 
 		if("mute_xeno_health_alert_messages")
 			mute_xeno_health_alert_messages = !mute_xeno_health_alert_messages

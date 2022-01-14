@@ -317,6 +317,17 @@
 			L.Unconscious(10 SECONDS)
 	return ..()
 
+/datum/reagent/toxin/pain
+	name = "Liquid Pain"
+	description = "This is a chemical used to simulate specific pain levels for testing. Pain is equal to the total volume."
+	custom_metabolism = 0
+	toxpwr = 0
+	taste_description = "ow ow ow"
+
+/datum/reagent/toxin/pain/on_mob_life(mob/living/L, metabolism)
+	L.reagent_pain_modifier = volume
+	return ..()
+
 /datum/reagent/toxin/beer2	//disguised as normal beer
 	name = "Beer"
 	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. The fermentation appears to be incomplete." //If the players manage to analyze this, they deserve to know something is wrong.
@@ -464,7 +475,6 @@
 /datum/reagent/toxin/xeno_neurotoxin/light
 	name = "Light Neurotoxin"
 	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time. This one seems to be weaker enough to not remove other chemicals."
-	purge_list = null
 	purge_rate = 0
 
 
@@ -506,29 +516,14 @@
 
 	return ..()
 
+/datum/reagent/toxin/xeno_neurotoxin/light/on_mob_life(mob/living/L, metabolism)
+	. = .. ()
+	switch(current_cycle)
+		if(21 to 45)
+			purge_rate = 0.2
+		if(46 to INFINITY)
+			purge_rate = 1
 
-/datum/reagent/toxin/xeno_growthtoxin
-	name = "Larval Accelerant"
-	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."
-	reagent_state = LIQUID
-	color = "#CF3600" // rgb: 207, 54, 0
-	purge_list = list(/datum/reagent/medicine)
-	purge_rate = 3
-	overdose_threshold = REAGENTS_OVERDOSE
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
-	toxpwr = 0
-	scannable = TRUE
-
-/datum/reagent/toxin/xeno_growthtoxin/on_mob_life(mob/living/L)
-	L.jitter(1) //So unga know to get treated
-	return ..()
-
-/datum/reagent/toxin/xeno_growthtoxin/overdose_process(mob/living/L, metabolism)
-	L.adjustOxyLoss(2)
-	L.jitter(4)
-
-/datum/reagent/toxin/xeno_growthtoxin/overdose_crit_process(mob/living/L, metabolism)
-	L.Losebreath(2)
 
 /datum/reagent/toxin/xeno_hemodile //Slows its victim. The slow becomes twice as strong with each other xeno toxin in the victim's system.
 	name = "Hemodile"
@@ -682,11 +677,11 @@
 	L.adjustOxyLoss(5)
 	L.adjustToxLoss(5)
 
-///Signal handler preparing the source to become a husk
+///Signal handler preparing the source to become a zombie
 /datum/reagent/zombium/proc/zombify(mob/living/carbon/human/H)
 	SIGNAL_HANDLER
 	UnregisterSignal(H, COMSIG_HUMAN_SET_UNDEFIBBABLE)
 	if(!H.has_working_organs())
 		return
 	H.do_jitter_animation(1000)
-	addtimer(CALLBACK(H, /mob/living/carbon/human.proc/revive_to_crit, TRUE, TRUE), SSticker.mode?.husk_transformation_time)
+	addtimer(CALLBACK(H, /mob/living/carbon/human.proc/revive_to_crit, TRUE, TRUE), SSticker.mode?.zombie_transformation_time)

@@ -30,11 +30,13 @@
 #define ADMIN_SPAWNED (1<<14)
 /// Can this atom be bumped attack
 #define BUMP_ATTACKABLE (1<<15)
+///This atom will not be qdeled when a shuttle lands on it; it will just move onto the shuttle tile. It will stay on the ground when the shuttle takes off
+#define SHUTTLE_IMMUNE (1<<16)
 /// Should we use the initial icon for display? Mostly used by overlay only objects
 #define HTML_USE_INITAL_ICON_1 (1<<21)
 
 //turf-only flags
-#define NOJAUNT_1 (1<<0)
+#define AI_BLOCKED (1<<0) //Prevent ai from going onto this turf
 #define UNUSED_RESERVATION_TURF_1 (1<<1)
 /// If a turf can be made dirty at roundstart. This is also used in areas.
 #define CAN_BE_DIRTY_1 (1<<2)

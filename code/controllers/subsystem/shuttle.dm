@@ -144,7 +144,7 @@ SUBSYSTEM_DEF(shuttle)
 	moveShuttleToDock(shuttleId, D, timed)
 
 /**
- * Skip the transit to directly go to the destination. This is not instantanious
+ * Skip the transit to directly go to the destination. This is not instantaneous
  * shuttleId : Id of the shuttle to move
  * dockId : Id of the destination dockId
  */

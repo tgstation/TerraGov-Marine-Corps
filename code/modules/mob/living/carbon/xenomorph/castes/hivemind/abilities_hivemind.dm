@@ -10,6 +10,9 @@
 	base_wait = 1 SECONDS
 	max_range = 4
 
+/datum/action/xeno_action/activable/secrete_resin/ranged/slow/should_show()
+	return !(owner.status_flags & INCORPOREAL)
+
 /datum/action/xeno_action/change_form
 	name = "Change form"
 	action_icon_state = "manifest"
@@ -18,9 +21,6 @@
 /datum/action/xeno_action/change_form/action_activate()
 	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
 	xenomorph_owner.change_form()
-
-/datum/action/xeno_action/command_minions
-	name = "Command minions"
 
 /datum/action/xeno_action/activable/command_minions
 	name = "Command minions"
@@ -40,3 +40,10 @@
 	new /obj/effect/ai_node/goal(turf_targeted, owner)
 	succeed_activate()
 	add_cooldown()
+
+/datum/action/xeno_action/activable/psychic_cure/hivemind/should_show()
+	return !(owner.status_flags & INCORPOREAL)
+
+/datum/action/xeno_action/toggle_pheromones/hivemind/should_show()
+	return !(owner.status_flags & INCORPOREAL)
+	

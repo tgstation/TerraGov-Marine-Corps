@@ -173,8 +173,7 @@
 	if(QDELETED(mover)) //Mover deleted from Cross/CanPass/Bump, do not proceed.
 		return FALSE
 	if(firstbump)
-		mover.Bump(firstbump)
-		return FALSE
+		return mover.Bump(firstbump)
 	return TRUE
 
 
@@ -866,9 +865,9 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	var/datum/camerachunk/C = GLOB.cameranet.chunkGenerated(x, y, z)
 	if(C)
 		if(C.obscuredTurfs[src])
-			vis_contents += GLOB.cameranet.vis_contents_objects
+			vis_contents += GLOB.cameranet.vis_contents_opaque
 		else
-			vis_contents -= GLOB.cameranet.vis_contents_objects
+			vis_contents -= GLOB.cameranet.vis_contents_opaque
 
 
 /turf/AllowDrop()

@@ -6,6 +6,7 @@
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "x6" //Pure white 'X' with black borders
 	anchored = TRUE //No pulling those nodes yo
+	flags_atom = SHUTTLE_IMMUNE
 	#ifdef TESTING
 	invisibility = 0
 	#else
@@ -17,7 +18,7 @@
 	///List of weights for scoring stuff happening here; ultilizes "identifiers" to differentiate different kinds of AI types looking at the same node.
 	var/list/weights = list(
 		IDENTIFIER_XENO = list(NODE_LAST_VISITED = 0),
-		IDENTIFIER_HUSK = list(NODE_LAST_VISITED = 0),
+		IDENTIFIER_ZOMBIE = list(NODE_LAST_VISITED = 0),
 		)
 
 /obj/effect/ai_node/Initialize()

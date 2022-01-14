@@ -64,12 +64,6 @@
 	description = "Increases damage for yourself and nearby teammates."
 	keybind_signal = COMSIG_XENOABILITY_EMIT_FRENZY
 
-/datum/keybinding/xeno/larval_growth_sting
-	name = "larval_growth_sting"
-	full_name = "Larval Growth Sting"
-	description = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker."
-	keybind_signal = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
-
 /datum/keybinding/xeno/corrosive_acid
 	name = "corrosive_acid"
 	full_name = "Corrosive Acid"
@@ -149,6 +143,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB
 
+/datum/keybinding/xeno/toggle_bomb_radial
+	name = "toggle_bomb_radial"
+	full_name = "Boiler: Select Bombard Type (Radial)"
+	description = "Will use the default toggle if you have two or less available glob types."
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB_RADIAL
+
 /datum/keybinding/xeno/create_bomb
 	name = "create_bomb"
 	full_name = "Boiler: Create Bombard Ammo"
@@ -166,12 +166,6 @@
 	full_name = "Carrier: Throw Hugger"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_THROW_HUGGER
-
-/datum/keybinding/xeno/retrieve_egg
-	name = "retrieve_egg"
-	full_name = "Carrier: Retrieve Egg"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_RETRIEVE_EGG
 
 /datum/keybinding/xeno/place_trap
 	name = "place_trap"
@@ -220,6 +214,48 @@
 	full_name = "Crusher: Rapid Advance"
 	description = "Charges up the crushers charge, then unleashes the full bulk of the crusher into a direction."
 	keybind_signal = COMSIG_XENOABILITY_ADVANCE
+
+/datum/keybinding/xeno/devour
+	name = "devour"
+	full_name = "Gorger: Devour"
+	description = "Devour your victim to be able to carry it faster."
+	keybind_signal = COMSIG_XENOABILITY_DEVOUR
+
+/datum/keybinding/xeno/drain
+	name = "drain"
+	full_name = "Gorger: Drain"
+	description = "Stagger a marine and drain some of their blood. When used on a dead human, you heal gradually and don't gain blood."
+	keybind_signal = COMSIG_XENOABILITY_DRAIN
+
+/datum/keybinding/xeno/transfusion
+	name = "transfusion"
+	full_name = "Gorger: Transfusion"
+	description = "Restores some of the health of another xenomorph, or overheals, at the cost of blood."
+	keybind_signal = COMSIG_XENOABILITY_TRANSFUSION
+
+/datum/keybinding/xeno/rejuvenate
+	name = "rejuvenate"
+	full_name = "Gorger: Rejuvenate"
+	description = "Drains blood continuosly, slows you down and reduces damage taken, while restoring some health over time. Cancel by activating again."
+	keybind_signal = COMSIG_XENOABILITY_REJUVENATE
+
+/datum/keybinding/xeno/psychic_link
+	name = "psychic link"
+	full_name = "Gorger: Psychic Link"
+	description = "Link to a xenomorph and take some damage in their place. During this time, you can't move. Use rest action to cancel."
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_LINK
+
+/datum/keybinding/xeno/carnage
+	name = "carnage"
+	full_name = "Gorger: Carnage"
+	description = "For a while your attacks drain blood and heal you. During Feast you also heal nearby allies."
+	keybind_signal = COMSIG_XENOABILITY_CARNAGE
+
+/datum/keybinding/xeno/feast
+	name = "feast"
+	full_name = "Gorger: Feast"
+	description = "Enter a state of rejuvenation. During this time you use a small amount of blood and heal. You can cancel this early."
+	keybind_signal = COMSIG_XENOABILITY_FEAST
 
 /datum/keybinding/xeno/forward_charge
 	name = "forward charge"
@@ -515,6 +551,12 @@
 	full_name = "Warrior: Punch"
 	description = "Punch a hostile creature, a structure or piece of machinery. Damage and status durations are doubled vs creatures you are grabbing. Damage is quadrupled vs structures and machinery."
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
+
+/datum/keybinding/xeno/jab
+	name = "jab"
+	full_name = "Warrior: Jab"
+	description = "Precisely strike your target from further away, slowing and confusing them. Resets punch cooldown."
+	keybind_signal = COMSIG_XENOABILITY_JAB
 
 /datum/keybinding/xeno/inject_egg_neurogas
 	name = "inject_egg_neurogas"

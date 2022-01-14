@@ -102,12 +102,6 @@ obj/structure/bed/Destroy()
 		return FALSE
 	return ..()
 
-
-/obj/structure/bed/Move(NewLoc, direct)
-	. = ..()
-	if(. && buckled_bodybag && buckled_bodybag.loc != NewLoc && !handle_buckled_bodybag_movement(loc, direct)) //Movement fails if buckled mob's move fails.
-		return FALSE
-
 /obj/structure/bed/proc/handle_buckled_bodybag_movement(NewLoc, direct)
 	if((direct & (direct - 1))) //The obj's diagonal move is split into two cardinal moves and those moves will handle the buckled mob's movement.
 		return TRUE
@@ -315,7 +309,6 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	var/last_teleport = null
 	var/obj/item/medevac_beacon/linked_beacon = null
 	var/stretcher_activated
-	var/obj/structure/dropship_equipment/medevac_system/linked_medevac
 	var/obj/item/radio/headset/mainship/doc/radio
 	///A busy var to check if the strecher is already used to send someone to the beacon
 	var/busy = FALSE
@@ -334,13 +327,6 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/structure/bed/medevac_stretcher/Destroy()
 	QDEL_NULL(radio)
-	if(stretcher_activated)
-		stretcher_activated = FALSE
-		GLOB.activated_medevac_stretchers -= src
-		if(linked_medevac)
-			linked_medevac.linked_stretcher = null
-			linked_medevac = null
-		update_icon()
 	if(linked_beacon)
 		linked_beacon.linked_bed_deployed = null
 		linked_beacon = null
@@ -354,50 +340,6 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 	if(LAZYLEN(buckled_mobs) || buckled_bodybag)
 		overlays += image("icon_state"="stretcher_box","layer"=LYING_MOB_LAYER + 0.1)
-
-
-/obj/structure/bed/medevac_stretcher/verb/activate_medevac_beacon()
-	set name = "Activate medevac"
-	set desc = "Toggle the medevac beacon inside the stretcher."
-	set category = "Object"
-	set src in oview(1)
-
-	toggle_medevac_beacon(usr)
-
-/obj/structure/bed/medevac_stretcher/proc/toggle_medevac_beacon(mob/user)
-	if(!ishuman(user))
-		return
-
-	if(user in buckled_mobs)
-		to_chat(user, span_warning("You can't reach the beacon activation button while buckled to [src]."))
-		return
-
-	if(stretcher_activated)
-		stretcher_activated = FALSE
-		GLOB.activated_medevac_stretchers -= src
-		if(linked_medevac)
-			linked_medevac.linked_stretcher = null
-			linked_medevac = null
-		to_chat(user, span_notice("You deactivate [src]'s beacon."))
-		update_icon()
-
-	else
-		if(!is_ground_level(z))
-			to_chat(user, span_warning("You can't activate [src]'s beacon here."))
-			return
-
-		var/area/AR = get_area(src)
-		if(AR.ceiling >= CEILING_METAL)
-			to_chat(user, span_warning("[src] must be in the open or under a glass roof."))
-			return
-
-		if(LAZYLEN(buckled_mobs) || buckled_bodybag)
-			stretcher_activated = TRUE
-			GLOB.activated_medevac_stretchers += src
-			to_chat(user, span_notice("You activate [src]'s beacon."))
-			update_icon()
-		else
-			to_chat(user, span_warning("You need to attach something to [src] before you can activate its beacon yet."))
 
 
 /obj/structure/bed/medevac_stretcher/verb/activate_medevac_displacer()

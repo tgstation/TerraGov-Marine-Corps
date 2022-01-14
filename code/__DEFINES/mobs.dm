@@ -6,12 +6,11 @@
 
 
 //Pain or shock reduction for different reagents
-#define PAIN_REDUCTION_VERY_LIGHT -10 //alkysine
-#define PAIN_REDUCTION_LIGHT -25 //inaprovaline
-#define PAIN_REDUCTION_MEDIUM -40 //synaptizine
-#define PAIN_REDUCTION_HEAVY -50 //paracetamol
-#define PAIN_REDUCTION_VERY_HEAVY -80 //tramadol
-#define PAIN_REDUCTION_FULL -200 //oxycodone, neuraline
+#define PAIN_REDUCTION_VERY_LIGHT -5 //alkysine
+#define PAIN_REDUCTION_LIGHT -15 //inaprovaline
+#define PAIN_REDUCTION_MEDIUM -25 //synaptizine
+#define PAIN_REDUCTION_HEAVY -35 //paracetamol
+#define PAIN_REDUCTION_VERY_HEAVY -50 //tramadol
 
 
 //Nutrition
@@ -347,6 +346,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define MOB_CONNECTED 0
 #define MOB_RECENTLY_DISCONNECTED 1 //Still within the grace period.
 #define MOB_DISCONNECTED 2
+#define MOB_AGHOSTED 3 //This body was just aghosted, do not offer it
 
 //Mob sizes
 #define MOB_SIZE_SMALL 0
@@ -445,6 +445,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_ACID_WELL_MAX_CHARGES 5 //Maximum number of charges for the acid well
 
 #define HIVE_CAN_HIJACK (1<<0)
+#define HIVE_CAN_COLLAPSE_FROM_SILO (1<<1)
 
 #define XENO_PULL_CHARGE_TIME 2 SECONDS
 #define XENO_SLOWDOWN_REGEN 0.4
@@ -458,11 +459,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define PLASMA_TRANSFER_AMOUNT 100
 
-#define XENO_LARVAL_AMOUNT_RECURRING 10
-#define XENO_LARVAL_CHANNEL_TIME 0.5 SECONDS
+#define XENO_LARVAL_AMOUNT_RECURRING 5
+#define XENO_LARVAL_CHANNEL_TIME 0.25 SECONDS
 
-#define XENO_NEURO_AMOUNT_RECURRING 10
-#define XENO_NEURO_CHANNEL_TIME 0.5 SECONDS
+#define XENO_NEURO_AMOUNT_RECURRING 5
+#define XENO_NEURO_CHANNEL_TIME 0.25 SECONDS
 
 #define XENO_HEALTH_ALERT_TRIGGER_PERCENT 0.25 //If a xeno is damaged while its current hit points are less than this percent of its maximum, we send out an alert to the hive
 #define XENO_HEALTH_ALERT_TRIGGER_THRESHOLD 50 //If a xeno is damaged while its current hit points are less than this amount, we send out an alert to the hive
@@ -570,6 +571,27 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CRUSHER_CHARGE_RAZORWIRE_MULTI 100
 #define CRUSHER_CHARGE_TANK_MULTI 100
 
+//gorger defines
+#define GORGER_REGURGITATE_DELAY 1 SECONDS
+#define GORGER_DEVOUR_DELAY 2 SECONDS
+#define GORGER_DRAIN_INSTANCES 2 // amuont of times the target is drained
+#define GORGER_DRAIN_DELAY 1 SECONDS // time needed to drain a marine once
+#define GORGER_DRAIN_HEAL 40 // overheal gained each time the target is drained
+#define GORGER_DRAIN_BLOOD_DRAIN 20 // amount of plasma drained when feeding on something
+#define GORGER_TRANSFUSION_HEAL 0.3 // in %
+#define GORGER_REJUVENATE_DURATION -1
+#define GORGER_REJUVENATE_COST 20
+#define GORGER_REJUVENATE_SLOWDOWN 6
+#define GORGER_REJUVENATE_HEAL 0.05 //in %
+#define GORGER_REJUVENATE_THRESHOLD 0.10 //in %
+#define GORGER_PSYCHIC_LINK_CHANNEL 10 SECONDS
+#define GORGER_PSYCHIC_LINK_RANGE 10
+#define GORGER_PSYCHIC_LINK_REDIRECT 0.5 //in %
+#define GORGER_PSYCHIC_LINK_MIN_HEALTH 0.2 //in %
+#define GORGER_CARNAGE_HEAL 0.2
+#define GORGER_CARNAGE_MOVEMENT -0.5
+#define GORGER_FEAST_DURATION -1 // lasts indefinitely, self-cancelled when insufficient plasma left
+
 //carrier defines
 #define CARRIER_HUGGER_THROW_SPEED 2
 #define CARRIER_HUGGER_THROW_DISTANCE 5
@@ -650,6 +672,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS 2 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
 #define WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS 3 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
+
+//Warrior defines
+
+#define WARRIOR_COMBO_THRESHOLD 2 //After how many abilities should warrior get an empowered cast (2 meaning the 3rd one is empowered)
+#define WARRIOR_COMBO_FADEOUT_TIME 10 SECONDS //How much time does it take for a combo to completely disappear
 
 //Larva defines
 #define LARVA_VENT_CRAWL_TIME 1 SECONDS //Larva can crawl into vents fast

@@ -53,7 +53,7 @@
 			if(!next_target)
 				return
 			change_action(MOVING_TO_ATOM, next_target)
-		if(MOVING_TO_NODE)
+		if(MOVING_TO_NODE, FOLLOWING_PATH)
 			var/atom/next_target = get_nearest_target(mob_parent, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 			if(!next_target)
 				if(can_heal && living_parent.health <= minimum_health * 2 * living_parent.maxHealth)
@@ -64,7 +64,7 @@
 			if(escorted_atom && get_dist(escorted_atom, mob_parent) > target_distance)
 				change_action(ESCORTING_ATOM, escorted_atom)
 				return
-			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
+			var/atom/next_target = get_nearest_target(mob_parent, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 			if(!next_target)//We didn't find a target
 				cleanup_current_action()
 				late_initialize()
@@ -83,22 +83,27 @@
 			if(next_target == atom_to_walk_to)
 				return
 			change_action(null, next_target, INFINITY)
+		if(IDLE)
+			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, ALL, mob_parent.faction, mob_parent.get_xeno_hivenumber())
+			if(!next_target)
+				return
+			change_action(MOVING_TO_ATOM, next_target)
 
 /datum/ai_behavior/xeno/deal_with_obstacle(datum/source, direction)
 	var/turf/obstacle_turf = get_step(mob_parent, direction)
+	if(obstacle_turf.flags_atom & AI_BLOCKED)
+		return
 	for(var/thing in obstacle_turf.contents)
-		if(isstructure(thing))
-			if(istype(thing, /obj/structure/window_frame))
-				if(locate(/obj/machinery/door/poddoor/shutters) in obstacle_turf)
-					return
-				mob_parent.loc = obstacle_turf
-				mob_parent.next_move_slowdown += 1 SECONDS
+		if(istype(thing, /obj/structure/window_frame))
+			LAZYINCREMENT(mob_parent.do_actions, obstacle_turf)
+			addtimer(CALLBACK(src, .proc/climb_window_frame, obstacle_turf), 2 SECONDS)
+			return COMSIG_OBSTACLE_DEALT_WITH
+		if(istype(thing, /obj/structure/closet))
+			var/obj/structure/closet/closet = thing
+			if(closet.open(mob_parent))
 				return COMSIG_OBSTACLE_DEALT_WITH
-			if(istype(thing, /obj/structure/closet))
-				var/obj/structure/closet/closet = thing
-				if(closet.open(mob_parent))
-					return COMSIG_OBSTACLE_DEALT_WITH
-				return
+			return
+		if(isstructure(thing))
 			var/obj/structure/obstacle = thing
 			if(obstacle.resistance_flags & XENO_DAMAGEABLE)
 				INVOKE_ASYNC(src, .proc/attack_target, null, obstacle)
@@ -109,13 +114,22 @@
 				continue
 			if(lock.operating) //Airlock already doing something
 				continue
-			if(lock.welded) //It's welded, can't force that open
+			if(lock.welded || lock.locked) //It's welded or locked, can't force that open
 				INVOKE_ASYNC(src, .proc/attack_target, null, thing) //ai is cheating
 				continue
 			lock.open(TRUE)
 			return COMSIG_OBSTACLE_DEALT_WITH
-	if(ISDIAGONALDIR(direction))
-		return deal_with_obstacle(null, turn(direction, -45)) || deal_with_obstacle(null, turn(direction, 45))
+		if(istype(thing, /obj/vehicle))
+			INVOKE_ASYNC(src, .proc/attack_target, null, thing)
+			return COMSIG_OBSTACLE_DEALT_WITH
+	if(ISDIAGONALDIR(direction) && ((deal_with_obstacle(null, turn(direction, -45)) & COMSIG_OBSTACLE_DEALT_WITH) || (deal_with_obstacle(null, turn(direction, 45)) & COMSIG_OBSTACLE_DEALT_WITH)))
+		return COMSIG_OBSTACLE_DEALT_WITH
+	//Ok we found nothing, yet we are still blocked. Check for blockers on our current turf
+	obstacle_turf = get_turf(mob_parent)
+	for(var/obj/structure/obstacle in obstacle_turf.contents)
+		if(obstacle.dir & direction && obstacle.resistance_flags & XENO_DAMAGEABLE)
+			INVOKE_ASYNC(src, .proc/attack_target, null, obstacle)
+			return COMSIG_OBSTACLE_DEALT_WITH
 
 /datum/ai_behavior/xeno/cleanup_current_action(next_action)
 	. = ..()
@@ -211,5 +225,12 @@
 	change_action(MOVING_TO_SAFETY, next_target, INFINITY)
 	UnregisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE)
 
+///Move the ai mob on top of the window_frame
+/datum/ai_behavior/xeno/proc/climb_window_frame(turf/window_turf)
+	mob_parent.loc = window_turf
+	mob_parent.last_move_time = world.time
+	LAZYDECREMENT(mob_parent.do_actions, window_turf)
+
 /datum/ai_behavior/xeno/ranged
 	distance_to_maintain = 5
+	minimum_health = 0.3

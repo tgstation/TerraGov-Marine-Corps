@@ -208,18 +208,10 @@
 		to_chat(X, span_xenonotice("We remove the facehugger from [src]."))
 		return
 	var/datum/action/xeno_action/activable/corrosive_acid/acid_action = locate(/datum/action/xeno_action/activable/corrosive_acid) in X.actions
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
-		if(!do_after(X, 3 SECONDS, TRUE, src))
+	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas))
+		var/datum/ammo/xeno/boiler_gas/boiler_glob = X.ammo
+		if(!boiler_glob.enhance_trap(src, X))
 			return
-		set_trap_type(TRAP_SMOKE_ACID)
-		smoke = new /datum/effect_system/smoke_spread/xeno/acid
-		smoke.set_up(1, get_turf(src))
-	else if(X.ammo.type == /datum/ammo/xeno/boiler_gas)
-		if(!do_after(X, 2 SECONDS, TRUE, src))
-			return
-		set_trap_type(TRAP_SMOKE_NEURO)
-		smoke = new /datum/effect_system/smoke_spread/xeno/neuro/medium
-		smoke.set_up(2, get_turf(src))
 	else if(acid_action)
 		if(!do_after(X, 2 SECONDS, TRUE, src))
 			return
@@ -707,7 +699,7 @@ TUNNEL
 	bound_width = 96
 	bound_height = 96
 	max_integrity = 1000
-	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
+	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE | PLASMACUTTER_IMMUNE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL
 	///How many larva points one silo produce in one minute
 	var/larva_spawn_rate = 0.5
@@ -769,7 +761,6 @@ TUNNEL
 		playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
 	return ..()
 
-
 /obj/structure/xeno/silo/Destroy()
 	GLOB.xeno_resin_silos -= src
 
@@ -779,9 +770,9 @@ TUNNEL
 
 	silo_area = null
 	center_turf = null
+
 	STOP_PROCESSING(SSslowprocess, src)
 	return ..()
-
 
 /obj/structure/xeno/silo/examine(mob/user)
 	. = ..()
@@ -846,80 +837,6 @@ TUNNEL
 	SIGNAL_HANDLER
 	if(associated_hive)
 		silos += src
-
-
-//*******************
-//Corpse recyclinging
-//*******************
-/obj/structure/xeno/silo/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(!(SSticker.mode?.flags_round_type & MODE_SILOABLE_BODIES))
-		return
-	if(!isxeno(user)) //only xenos can deposit corpses
-		return
-
-	if(!istype(I, /obj/item/grab))
-		return
-
-	var/obj/item/grab/G = I
-	if(!iscarbon(G.grabbed_thing))
-		return
-	var/mob/living/carbon/victim = G.grabbed_thing
-	if(!(ishuman(victim) || ismonkey(victim))) //humans and monkeys only for now
-		to_chat(user, span_notice("[src] can only process humanoid anatomies!"))
-		return
-
-	if(victim.stat != DEAD)
-		to_chat(user, span_notice("[victim] is not dead!"))
-		return
-
-	if(victim.chestburst)
-		to_chat(user, span_notice("[victim] has already been exhausted to incubate a sister!"))
-		return
-
-	if(issynth(victim))
-		to_chat(user, span_notice("[victim] has no useful biomass for us."))
-		return
-
-	visible_message("[user] starts putting [victim] into [src].", 3)
-
-	if(!do_after(user, 20, FALSE, victim, BUSY_ICON_DANGER) || QDELETED(src))
-		return
-
-	victim.chestburst = 2 //So you can't reuse corpses if the silo is destroyed
-	victim.update_burst()
-	victim.forceMove(src)
-
-	shake(4 SECONDS)
-
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.add_job_points(1.75) //4.5 corpses per burrowed; 8 points per larva
-	GLOB.round_statistics.larva_from_siloing_body += 1.75 / xeno_job.job_points_needed
-
-	log_combat(victim, user, "was consumed by a resin silo")
-	log_game("[key_name(victim)] was consumed by a resin silo at [AREACOORD(victim.loc)].")
-
-	GLOB.round_statistics.xeno_silo_corpses++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_silo_corpses")
-
-/// Make the silo shake
-/obj/structure/xeno/silo/proc/shake(duration)
-	/// How important should be the shaking movement
-	var/offset = prob(50) ? -2 : 2
-	/// Track the last position of the silo for the animation
-	var/old_pixel_x = pixel_x
-	/// Sound played when shaking
-	var/shake_sound = rand(1, 100) == 1 ? 'sound/machines/blender.ogg' : 'sound/machines/juicer.ogg'
-	if(prob(1))
-		playsound(src, shake_sound, 25, TRUE)
-	animate(src, pixel_x = pixel_x + offset, time = 2, loop = -1) //start shaking
-	addtimer(CALLBACK(src, .proc/stop_shake, old_pixel_x), duration)
-
-/// Stop the shaking animation
-/obj/structure/xeno/silo/proc/stop_shake(old_px)
-	animate(src)
-	pixel_x = old_px
-
 /obj/structure/xeno/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
 	icon_state = XENO_TURRET_ACID_ICONSTATE

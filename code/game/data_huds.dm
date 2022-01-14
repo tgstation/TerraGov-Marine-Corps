@@ -263,6 +263,7 @@
 			if(!HAS_TRAIT(src, TRAIT_PSY_DRAINED))
 				infection_hud.icon_state = "psy_drain"
 			if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE ))
+				hud_list[HEART_STATUS_HUD].icon_state = "still_heart"
 				status_hud.icon_state = "huddead"
 				return TRUE
 			if(!client)
@@ -316,7 +317,7 @@
 
 #define HEALTH_RATIO_PAIN_HUD 1
 #define PAIN_RATIO_PAIN_HUD 0.25
-#define STAMINA_RATIO_PAIN_HUD 0.5
+#define STAMINA_RATIO_PAIN_HUD 0.25
 
 
 /mob/proc/med_pain_set_perceived_health()
@@ -370,6 +371,9 @@
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno
 	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
+
+/datum/atom_hud/xeno_heart
+	hud_icons = list(HEART_STATUS_HUD)
 
 /mob/living/proc/hud_set_sunder()
 	return
@@ -569,10 +573,10 @@
 	if(!holder)
 		return
 	var/obj/item/weapon/gun/gun = internal_item
-	if(!gun.current_mag)
+	if(!gun.rounds)
 		holder.icon_state = "plasma0"
 		return
-	var/amount = round(gun.current_mag.current_rounds * 100 / gun.current_mag.max_rounds, 10)
+	var/amount = gun.max_rounds ? round(gun.rounds * 100 / gun.max_rounds, 10) : 0
 	holder.icon_state = "plasma[amount]"
 
 ///Makes unmanned vehicle ammo visible

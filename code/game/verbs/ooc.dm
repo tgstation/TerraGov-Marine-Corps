@@ -53,7 +53,7 @@
 
 	var/display_colour
 	var/display_class = "colorooc"
-	if(holder?.rank && !holder.fakekey && check_rights(R_COLOR, FALSE))
+	if(holder?.rank && !holder.fakekey)
 		switch(holder.rank.name)
 			if("Host")
 				display_class = "hostooc"
@@ -73,6 +73,8 @@
 				display_class = "trialminooc"
 			if("Admin Candidate", "Admin Observer")
 				display_class = "candiminooc"
+			if("Event Admin", "Event Staff")
+				display_class = "eventminooc"
 			if("Mentor")
 				display_class = "mentorooc"
 			if("Maintainer")
@@ -85,7 +87,7 @@
 				display_class = "otherooc"
 
 
-		if(CONFIG_GET(flag/allow_admin_ooccolor))
+		if(CONFIG_GET(flag/allow_admin_ooccolor) && check_rights(R_COLOR, FALSE))
 			display_colour = prefs.ooccolor
 
 	for(var/client/C AS in GLOB.clients)

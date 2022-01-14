@@ -59,6 +59,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/proc/on_hit_obj(obj/O, obj/projectile/proj) //Special effects when hitting objects.
 	return
 
+///Special effects for leaving a turf. Only called if the projectile has AMMO_LEAVE_TURF enabled
+/datum/ammo/proc/on_leave_turf(turf/T, atom/firer)
+	return
+
 /datum/ammo/proc/knockback(mob/victim, obj/projectile/proj, max_range = 2)
 	if(!victim || victim == proj.firer)
 		CRASH("knockback called [victim ? "without a mob target" : "while the mob target was the firer"]")
@@ -160,7 +164,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/armor_block = victim.run_armor_check(null, proj.ammo.armor_type)
 		victim.apply_damage(proj.damage * 0.1, proj.ammo.damage_type, null, armor_block, updating_health = TRUE)
 
-/datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle)
+/datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle, target)
 	var/effect_icon = ""
 	var/proj_type = /obj/projectile
 	if(istype(main_proj, /obj/projectile/hitscan))
@@ -170,7 +174,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	for(var/i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
 		var/obj/projectile/new_proj = new proj_type(main_proj.loc, effect_icon)
 		if(bonus_projectiles_type)
-			new_proj.generate_bullet(GLOB.ammo_list[bonus_projectiles_type])
+			new_proj.generate_bullet(bonus_projectiles_type)
 			var/obj/item/weapon/gun/g = source
 			if(source) //Check for the source so we don't runtime if we have bonus projectiles from a non-gun source like a Spitter
 				new_proj.damage *= g.damage_mult //Bonus or reduced damage based on damage modifiers on the gun.
@@ -184,7 +188,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_angle += 360
 		else if(new_angle > 360)
 			new_angle -= 360
-		new_proj.fire_at(null, shooter, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
+		new_proj.fire_at(shooter.Adjacent(target) ? target : null, shooter, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
 
 /datum/ammo/proc/drop_flame(turf/T)
@@ -369,7 +373,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 datum/ammo/bullet/revolver/tp44
 	name = "standard revolver bullet"
-	damage = 40
+	damage = 30
+	penetration = 20
+	sundering = 1.5
 
 /datum/ammo/bullet/revolver/tp44/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 0, slowdown = 0.5, knockback = 0, shake = 0)
@@ -521,6 +527,16 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 10
 	sundering = 1.25
 
+/datum/ammo/bullet/rifle/repeater
+	name = "heavy impact rifle bullet"
+	hud_state = "revolver_heavy"
+	damage = 70
+	penetration = 20
+	sundering = 1.25
+
+/datum/ammo/bullet/rifle/repeater/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, max_range = 3, slowdown = 2, stagger = 1, shake = 0.5)
+
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
 	hud_state = "rifle_fire"
@@ -565,9 +581,9 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 5
 
 /datum/ammo/bullet/rifle/tx8/impact/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, max_range = 20, stagger = 2, slowdown = 1, knockback = 1)
+	staggerstun(M, P, max_range = 20, stagger = 2, slowdown = 1, knockback = 1, shake = 0)
 
-/datum/ammo/bullet/rifle/ak47
+/datum/ammo/bullet/rifle/mpi_km
 	name = "crude heavy rifle bullet"
 	hud_state = "rifle_heavy"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
@@ -588,6 +604,23 @@ datum/ammo/bullet/revolver/tp44
 	scatter = -15
 	penetration = 15
 	sundering = 2
+
+/datum/ammo/bullet/rifle/standard_br
+	name = "light marksman bullet"
+	hud_state = "hivelo"
+	hud_state_empty = "hivelo_empty"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	penetration = 10
+	damage = 30
+	sundering = 1
+
+/datum/ammo/bullet/rifle/standard_br/incendiary
+	name = "incendiary light marksman bullet"
+	hud_state = "hivelo"
+	hud_state_empty = "hivelo_empty"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
+	damage = 25
+	sundering = 0
 
 /datum/ammo/bullet/rifle/standard_dmr/incendiary
 	name = "incendiary marksman bullet"
@@ -650,23 +683,14 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "shotgun_fire"
 	damage_type = BRUTE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING
-	accuracy = -10
 	max_range = 15
-	damage = 40
-	penetration = 20
+	damage = 70
+	penetration = 15
 	sundering = 2
 	bullet_color = COLOR_TAN_ORANGE
 
-/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/victim, obj/projectile/proj)
-	airburst(victim, proj)
-	knockback(victim, proj)
-
-/datum/ammo/bullet/shotgun/incendiary/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	airburst(target_obj, proj)
-
-/datum/ammo/bullet/shotgun/incendiary/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	airburst(target_turf, proj)
-
+/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, shake = 0, knockback = 2, slowdown = 1)
 
 /datum/ammo/bullet/shotgun/flechette
 	name = "shotgun flechette shell"
@@ -980,6 +1004,20 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 7.5
 	accurate_range_min = 2
 	damage_falloff = 0.25
+
+/datum/ammo/bullet/sniper/pfc/flak
+	name = "high caliber flak rifle bullet"
+	hud_state = "sniper_supersonic"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
+	damage = 40
+	penetration = 10
+	sundering = 10
+	accurate_range_min = 2
+	damage_falloff = 0.25
+
+/datum/ammo/bullet/sniper/pfc/flak/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, knockback = 4, slowdown = 1.5, stagger = 1, max_range = 17)
+
 
 /datum/ammo/bullet/sniper/auto
 	name = "high caliber rifle bullet"
@@ -1590,7 +1628,7 @@ datum/ammo/bullet/revolver/tp44
 	icon_state = "overchargedlaser"
 	hud_state = "laser_sniper"
 	damage = 40
-	max_range = 7
+	max_range = 14
 	penetration = 5
 	shell_speed = 1.5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_EXPLOSIVE
@@ -1604,7 +1642,15 @@ datum/ammo/bullet/revolver/tp44
 	var/fire_color = "green"
 
 /datum/ammo/energy/plasma_pistol/on_hit_turf(turf/T, obj/projectile/proj)
-	T.ignite(heat, burn_damage, fire_color)
+	var/burn_mod = 1
+	if(istype(T, /turf/closed/wall))
+		burn_mod = 3
+	T.ignite(heat, burn_damage * burn_mod, fire_color)
+	for(var/mob/living/mob_caught in T)
+		if(mob_caught.stat == DEAD)
+			continue
+		mob_caught.adjust_fire_stacks(burn_damage)
+		mob_caught.IgniteMob()
 
 /datum/ammo/energy/plasma_pistol/on_hit_mob(mob/M, obj/projectile/proj)
 	var/turf/T = get_turf(M)
@@ -1666,7 +1712,7 @@ datum/ammo/bullet/revolver/tp44
 	slowdown_stacks = 1.1
 	smoke_strength = 0.5
 	smoke_range = 0
-	reagent_transfer_amount = 7
+	reagent_transfer_amount = 4
 
 ///Set up the list of reagents the spit transfers upon impact
 /datum/ammo/xeno/toxin/proc/set_reagents()
@@ -1730,15 +1776,15 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/toxin/upgrade1
 	smoke_strength = 0.6
-	reagent_transfer_amount = 8
+	reagent_transfer_amount = 5
 
 /datum/ammo/xeno/toxin/upgrade2
 	smoke_strength = 0.7
-	reagent_transfer_amount = 9
+	reagent_transfer_amount = 6
 
 /datum/ammo/xeno/toxin/upgrade3
 	smoke_strength = 0.75
-	reagent_transfer_amount = 9.5
+	reagent_transfer_amount = 6.5
 
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
@@ -1847,6 +1893,18 @@ datum/ammo/bullet/revolver/tp44
 	damage = 30
 	flags_ammo_behavior = AMMO_XENO
 
+/datum/ammo/xeno/acid/auto
+	name = "light acid spatter"
+	damage = 10
+	flags_ammo_behavior = AMMO_XENO
+	spit_cost = 25
+	added_spit_delay = 0
+
+/datum/ammo/xeno/acid/passthrough
+	name = "acid spittle"
+	damage = 20
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
+
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
 	added_spit_delay = 2
@@ -1897,11 +1955,11 @@ datum/ammo/bullet/revolver/tp44
 
 ///For the Spitter's Scatterspit ability
 /datum/ammo/xeno/acid/heavy/scatter
-	damage = 10
+	damage = 20
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
 	bonus_projectiles_type = /datum/ammo/xeno/acid/heavy/scatter
 	bonus_projectiles_amount = 6
-	bonus_projectiles_scatter = 3
+	bonus_projectiles_scatter = 2
 	max_range = 8
 	puddle_duration = 1 SECONDS //Lasts 2-4 seconds
 
@@ -1909,6 +1967,10 @@ datum/ammo/bullet/revolver/tp44
 	name = "glob of gas"
 	icon_state = "boiler_gas2"
 	ping = "ping_x"
+	///Key used for icon stuff during bombard ammo selection.
+	var/icon_key = BOILER_GLOB_NEURO
+	///This text will show up when a boiler selects this ammo. Span proc should be applied when this var is used.
+	var/select_text = "We will now fire neurotoxic gas. This is nonlethal."
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
 	var/danger_message = span_danger("A glob of acid lands with a splat and explodes into noxious fumes!")
 	armor_type = "bio"
@@ -1919,6 +1981,51 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 40
 	bullet_color = BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR
 	reagent_transfer_amount = 30
+	///On a direct hit, how long is the target paralyzed?
+	var/hit_paralyze_time = 1 SECONDS
+	///On a direct hit, how much do the victim's eyes get blurred?
+	var/hit_eye_blur = 11
+	///On a direct hit, how much drowsyness gets added to the target?
+	var/hit_drowsyness = 12
+	///Does the gas spread have a fixed range? -1 for no, 0+ for a fixed range. This prevents scaling from caste age.
+	var/fixed_spread_range = -1
+	///Which type is the smoke we leave on passed tiles, provided the projectile has AMMO_LEAVE_TURF enabled?
+	var/passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light
+	///We're going to reuse one smoke spread system repeatedly to cut down on processing.
+	var/datum/effect_system/smoke_spread/xeno/trail_spread_system
+
+/datum/ammo/xeno/boiler_gas/on_leave_turf(turf/T, atom/firer)
+	if(isxeno(firer))
+		var/mob/living/carbon/xenomorph/X = firer
+		trail_spread_system.strength = X.xeno_caste.bomb_strength
+	trail_spread_system.set_up(0, T)
+	trail_spread_system.start()
+
+/**
+ * Loads a trap with a gas cloud depending on current glob type
+ * Called when something with a boiler glob as current ammo interacts with an empty resin trap.
+ * * Args:
+ * * trap: The trap being loaded
+ * * user_xeno: The xeno interacting with the trap
+ * * Returns: TRUE on success, FALSE on failure.
+**/
+/datum/ammo/xeno/boiler_gas/proc/enhance_trap(obj/structure/xeno/trap/trap, mob/living/carbon/xenomorph/user_xeno)
+	if(!do_after(user_xeno, 2 SECONDS, TRUE, trap))
+		return FALSE
+	trap.set_trap_type(TRAP_SMOKE_NEURO)
+	trap.smoke = new /datum/effect_system/smoke_spread/xeno/neuro/medium
+	trap.smoke.set_up(2, get_turf(trap))
+	return TRUE
+
+/datum/ammo/xeno/boiler_gas/New()
+	. = ..()
+	if((flags_ammo_behavior & AMMO_LEAVE_TURF) && passed_turf_smoke_type)
+		trail_spread_system = new passed_turf_smoke_type(only_once = FALSE)
+
+/datum/ammo/xeno/boiler_gas/Destroy()
+	if(trail_spread_system)
+		QDEL_NULL(trail_spread_system)
+	return ..()
 
 ///Set up the list of reagents the spit transfers upon impact
 /datum/ammo/xeno/boiler_gas/proc/set_reagents()
@@ -1931,11 +2038,11 @@ datum/ammo/bullet/revolver/tp44
 	if(!istype(victim) || victim.stat == DEAD || victim.issamexenohive(proj.firer))
 		return
 
-	victim.Paralyze(1 SECONDS)
-	victim.blur_eyes(11)
-	victim.adjustDrowsyness(12)
+	victim.Paralyze(hit_paralyze_time)
+	victim.blur_eyes(hit_eye_blur)
+	victim.adjustDrowsyness(hit_drowsyness)
 
-	if(!iscarbon(victim))
+	if(!reagent_transfer_amount || !iscarbon(victim))
 		return
 
 	var/mob/living/carbon/carbon_victim = victim
@@ -1964,7 +2071,10 @@ datum/ammo/bullet/revolver/tp44
 	if(isxeno(firer))
 		var/mob/living/carbon/xenomorph/X = firer
 		smoke_system.strength = X.xeno_caste.bomb_strength
-		range = max(2, range + X.upgrade_as_number())
+		if(fixed_spread_range == -1)
+			range = max(2, range + X.upgrade_as_number())
+		else
+			range = fixed_spread_range
 	smoke_system.set_up(range, T)
 	smoke_system.start()
 	smoke_system = null
@@ -1975,6 +2085,8 @@ datum/ammo/bullet/revolver/tp44
 	icon_state = "boiler_gas"
 	sound_hit 	 = "acid_hit"
 	sound_bounce	= "acid_bounce"
+	icon_key = BOILER_GLOB_ACID
+	select_text = "We will now fire corrosive acid. This is lethal!"
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
 	armor_type = "acid"
 	danger_message = span_danger("A glob of acid lands with a splat and explodes into corrosive bile!")
@@ -1982,18 +2094,57 @@ datum/ammo/bullet/revolver/tp44
 	damage_type = BURN
 	penetration = 40
 	bullet_color = BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR
+	hit_paralyze_time = 1 SECONDS
+	hit_eye_blur = 1
+	hit_drowsyness = 1
+	reagent_transfer_amount = 0
 
-/datum/ammo/xeno/boiler_gas/corrosive/on_hit_mob(mob/living/victim, obj/projectile/proj)
-	drop_nade(get_turf(proj), proj.firer)
-	victim.Paralyze(1 SECONDS)
-	victim.blur_eyes(1)
-	victim.adjustDrowsyness(1)
+/datum/ammo/xeno/boiler_gas/corrosive/enhance_trap(obj/structure/xeno/trap/trap, mob/living/carbon/xenomorph/user_xeno)
+	if(!do_after(user_xeno, 3 SECONDS, TRUE, trap))
+		return FALSE
+	trap.set_trap_type(TRAP_SMOKE_ACID)
+	trap.smoke = new /datum/effect_system/smoke_spread/xeno/neuro/medium
+	trap.smoke.set_up(1, get_turf(trap))
+	return TRUE
 
 /datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
 
 /datum/ammo/xeno/boiler_gas/corrosive/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid()
+
+/datum/ammo/xeno/boiler_gas/lance
+	name = "pressurized glob of gas"
+	icon_key = BOILER_GLOB_NEURO_LANCE
+	select_text = "We will now fire a pressurized neurotoxic lance. This is barely nonlethal."
+	///As opposed to normal globs, this will pass by the target tile if they hit nothing.
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_LEAVE_TURF
+	danger_message = span_danger("A pressurized glob of acid lands with a nasty splat and explodes into noxious fumes!")
+	max_range = 40
+	damage = 75
+	penetration = 60
+	reagent_transfer_amount = 55
+	passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light
+	hit_paralyze_time = 2 SECONDS
+	hit_eye_blur = 16
+	hit_drowsyness = 18
+	fixed_spread_range = 2
+
+/datum/ammo/xeno/boiler_gas/corrosive/lance
+	name = "pressurized glob of acid"
+	icon_key = BOILER_GLOB_ACID_LANCE
+	select_text = "We will now fire a pressurized corrosive lance. This lethal!"
+	///As opposed to normal globs, this will pass by the target tile if they hit nothing.
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_LEAVE_TURF
+	danger_message = span_danger("A pressurized glob of acid lands with a concerning hissing sound and explodes into corrosive bile!")
+	max_range = 40
+	damage = 75
+	penetration = 60
+	passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/acid/light
+	hit_paralyze_time = 1.5 SECONDS
+	hit_eye_blur = 4
+	hit_drowsyness = 2
+	fixed_spread_range = 2
 
 /*
 //================================================
@@ -2012,11 +2163,17 @@ datum/ammo/bullet/revolver/tp44
 	damage = 70
 	penetration = 0
 	shrapnel_chance = 0
+	///percentage of xenos total plasma to drain when hit by a pepperball
+	var/drain_multiplier = 0.05
 
 /datum/ammo/bullet/pepperball/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/X = victim
-		X.use_plasma(0.05 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
+		X.use_plasma(drain_multiplier * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
+
+/datum/ammo/bullet/pepperball/pepperball_mini
+	damage = 40
+	drain_multiplier = 0.03
 
 /datum/ammo/alloy_spike
 	name = "alloy spike"
@@ -2079,6 +2236,8 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/water
 	name = "water"
 	hud_state = "water"
+	hud_state_empty = "water_empty"
+
 /datum/ammo/rocket/toy
 	name = "\improper toy rocket"
 	damage = 1

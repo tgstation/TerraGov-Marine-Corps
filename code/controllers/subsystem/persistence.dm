@@ -190,8 +190,8 @@ SUBSYSTEM_DEF(persistence)
 	name = "AK47 and M16"
 	description = "Rifle guns, previously at import"
 	item_list = list(
-		/obj/item/weapon/gun/rifle/ak47 = -1,
-		/obj/item/ammo_magazine/rifle/ak47 = -1,
+		/obj/item/weapon/gun/rifle/mpi_km = -1,
+		/obj/item/ammo_magazine/rifle/mpi_km = -1,
 		/obj/item/weapon/gun/rifle/m16 = -1,
 		/obj/item/ammo_magazine/rifle/m16 = -1,
 		)

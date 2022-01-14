@@ -28,7 +28,7 @@
 
 	///Iff signal of the sentry. If the /gun has a set IFF then this will be the same as that. If not the sentry will get its IFF signal from the deployer
 	var/iff_signal = NONE
-
+	///List of terrains/structures/machines that the sentry ignores for targetting. (If a window is inside the list, the sentry will shot at targets even if the window breaks los) For accuracy, this is on a specific typepath base and not istype().
 	var/list/ignored_terrains
 
 //------------------------------------------------------------------
@@ -45,7 +45,7 @@
 		iff_signal = id?.iff_signal
 
 	knockdown_threshold = gun.knockdown_threshold
-	range = gun.turret_range
+	range = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL) ?  gun.turret_range - 2 : gun.turret_range
 	ignored_terrains = gun.ignored_terrains
 
 	radio = new(src)
@@ -53,6 +53,10 @@
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
+
+	if(CHECK_BITFIELD(gun.turret_flags, TURRET_INACCURATE))
+		gun.accuracy_mult -= 0.15
+		gun.scatter += 10
 
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_HAS_CAMERA))
 		camera = new (src)
@@ -89,19 +93,6 @@
 
 //-----------------------------------------------------------------
 // Interaction
-
-/obj/machinery/deployable/mounted/sentry/attackby(obj/item/I, mob/user, params)
-	var/obj/item/weapon/gun/gun = internal_item
-	if(istype(I, gun.sentry_battery_type) && !istype(gun, /obj/item/weapon/gun/energy))
-		gun.reload_sentry_cell(I, user)
-		update_static_data(user)
-		return
-	return ..()
-
-/obj/machinery/deployable/mounted/sentry/CtrlClick(mob/user)
-	. = ..()
-	var/obj/item/weapon/gun/internal_gun = internal_item
-	internal_gun.remove_sentry_cell(user)
 
 /obj/machinery/deployable/mounted/sentry/on_set_interaction(mob/user)
 	. = ..()
@@ -162,32 +153,20 @@
 /obj/machinery/deployable/mounted/sentry/ui_data(mob/user)
 	var/obj/item/weapon/gun/gun = internal_item
 	var/current_rounds
-	if(istype(internal_item, /obj/item/weapon/gun/energy))
-		var/obj/item/weapon/gun/energy/internal_gun = internal_item
-		current_rounds = internal_gun.cell ? internal_gun.cell.charge : 0
-	else
-		current_rounds = gun.current_mag ? gun.current_mag.current_rounds : 0
+	current_rounds = gun.rounds
 	. = list(
 		"rounds" =  current_rounds,
-		"cell_charge" = gun.sentry_battery ? gun.sentry_battery.charge : 0,
 		"health" = obj_integrity
 	)
 
 /obj/machinery/deployable/mounted/sentry/ui_static_data(mob/user)
 	var/obj/item/weapon/gun/gun = internal_item
 	var/rounds_max
-	if(istype(internal_item, /obj/item/weapon/gun/energy))
-		var/obj/item/weapon/gun/energy/internal_gun = internal_item
-		var/obj/item/cell/gun_cell_type = internal_gun.cell_type
-		rounds_max = internal_gun.cell ? internal_gun.cell.maxcharge : initial(gun_cell_type.maxcharge)
-	else
-		rounds_max = gun.current_mag ? gun.current_mag.max_rounds : gun.max_shells
+	rounds_max = gun.max_rounds
 	. = list(
 		"name" = copytext(name, 2),
 		"rounds_max" = rounds_max,
 		"fire_mode" = gun.gun_firemode,
-		"has_cell" = (gun.sentry_battery ? 1 : 0),
-		"cell_maxcharge" = gun.sentry_battery ? gun.sentry_battery.maxcharge : 0,
 		"health_max" = max_integrity,
 		"safety_toggle" = CHECK_BITFIELD(gun.turret_flags, TURRET_SAFETY),
 		"manual_override" = operator,
@@ -240,10 +219,11 @@
 			. = TRUE
 
 		if("toggle_radial")
-			if(!gun.sentry_battery?.charge)
-				update_static_data(user)
-				return
 			TOGGLE_BITFIELD(gun.turret_flags, TURRET_RADIAL)
+			if(!CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL))
+				range = gun.turret_range
+			else
+				range = gun.turret_range - 2
 			var/rad_msg = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL) ? "activate" : "deactivate"
 			user.visible_message(span_notice("[user] [rad_msg]s [src]'s radial mode."), span_notice("You [rad_msg] [src]'s radial mode."))
 			say("Radial mode [rad_msg]d.")
@@ -346,8 +326,6 @@
 			last_damage_alert = world.time
 		if(SENTRY_ALERT_DESTROYED)
 			notice = "<b>ALERT! [src] at: [AREACOORD_NO_Z(src)] has been destroyed!</b>"
-		if(SENTRY_ALERT_BATTERY)
-			notice = "<b>ALERT! [src]'s battery depleted at: [AREACOORD_NO_Z(src)].</b>"
 
 	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 	radio.talk_into(src, "[notice]", FREQ_COMMON)
@@ -381,14 +359,14 @@
 /obj/machinery/deployable/mounted/sentry/proc/check_next_shot(datum/source, atom/gun_target, obj/item/weapon/gun/gun)
 	SIGNAL_HANDLER
 	var/obj/item/weapon/gun/internal_gun = internal_item
-	if(CHECK_BITFIELD(internal_gun.flags_gun_features, GUN_PUMP_REQUIRED))
-		internal_gun.cock()
+	if(CHECK_BITFIELD(internal_gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && length(internal_gun.chamber_items))
+		INVOKE_ASYNC(internal_gun, /obj/item/weapon/gun.proc/do_unique_action)
 	if(get_dist(src, gun_target) >= range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
 		internal_gun.stop_fire()
 		return
 	if(internal_gun.gun_firemode != GUN_FIREMODE_SEMIAUTO)
 		return
-	addtimer(CALLBACK(src, .proc/sentry_start_fire), internal_gun.fire_delay) //This schedules the next shot if the gun is on semi-automatic. This is so that semi-automatic guns fire once every two seconds.
+	addtimer(CALLBACK(src, .proc/sentry_start_fire), internal_gun.fire_delay) //This schedules the next shot if the gun is on semi-automatic. This is so that semi-automatic guns don't fire once every two seconds.
 
 ///Sees if theres a target to shoot, then handles firing.
 /obj/machinery/deployable/mounted/sentry/proc/sentry_start_fire()
@@ -397,19 +375,11 @@
 	update_icon()
 	if(target != gun.target || get_dist(src, target) > range)
 		gun.stop_fire()
-	var/has_mag
-	if(istype(gun, /obj/item/weapon/gun/energy))
-		var/obj/item/weapon/gun/energy/energy_gun = gun
-		has_mag = energy_gun.cell
-	else
-		has_mag = gun.current_mag
-	if(!has_mag)
+	if(!gun.rounds)
 		sentry_alert(SENTRY_ALERT_AMMO)
 		return
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL))
 		setDir(get_cardinal_dir(src, target))
-		if(gun.sentry_battery.charge <= 0)
-			sentry_alert(SENTRY_ALERT_BATTERY)
 	if(HAS_TRAIT(gun, TRAIT_GUN_BURST_FIRING))
 		gun.set_target(target)
 		return
@@ -460,6 +430,14 @@
 
 		distance = buffer_distance
 		return nearby_target
+
+
+/obj/machinery/deployable/mounted/sentry/disassemble(mob/user)
+	. = ..()
+	var/obj/item/weapon/gun/gun = internal_item
+	if(CHECK_BITFIELD(gun.turret_flags, TURRET_INACCURATE))
+		gun.accuracy_mult += 0.15
+		gun.scatter -= 10
 
 
 /obj/machinery/deployable/mounted/sentry/buildasentry

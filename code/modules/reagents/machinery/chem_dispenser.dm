@@ -424,6 +424,7 @@
 		/datum/reagent/consumable/sugar,
 		/datum/reagent/consumable/drink/orangejuice,
 		/datum/reagent/consumable/drink/limejuice,
+		/datum/reagent/consumable/drink/tomatojuice,
 		/datum/reagent/consumable/drink/cold/sodawater,
 		/datum/reagent/consumable/drink/cold/tonic,
 		/datum/reagent/consumable/ethanol/beer,
@@ -452,3 +453,19 @@
 		/datum/reagent/consumable/drink/berryjuice,
 	)
 	needs_medical_training = FALSE
+
+/obj/machinery/chem_dispenser/valhalla
+	needs_medical_training = FALSE
+	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
+
+/obj/machinery/chem_dispenser/valhalla/Initialize()
+	. = ..()
+	qdel(cell)
+	cell = new /obj/item/cell/infinite
+
+/obj/machinery/chem_dispenser/soda/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/chem_dispenser/beer/nopower
+	use_power = NO_POWER_USE

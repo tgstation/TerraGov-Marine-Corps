@@ -58,12 +58,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/space_port)
-"aaq" = (
-/obj/structure/sign/safety/hazard{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/space_port)
 "aas" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -422,12 +416,6 @@
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
-"abR" = (
-/obj/structure/sign/safety/vent{
-	dir = 1
-	},
-/turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "abT" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1140,7 +1128,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "aeu" = (
-/obj/item/clothing/tie/storage/holster/armpit,
+/obj/item/armor_module/storage/uniform/holster/armpit,
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "aev" = (
@@ -1513,11 +1501,6 @@
 /obj/structure/table,
 /obj/effect/spawner/random/tech_supply,
 /obj/effect/spawner/random/tool,
-/obj/machinery/door_control{
-	id = "tcomms";
-	name = "Storm Shutters";
-	pixel_x = -32
-	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "afJ" = (
@@ -1584,9 +1567,9 @@
 /area/bigredv2/outside/marshal_office)
 "afW" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "Marshal Offices";
-	name = "Storm Shutters";
-	pixel_x = -32
+	name = "Storm Shutters"
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
@@ -1741,9 +1724,9 @@
 "agD" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/shotgun/incendiary,
-/obj/item/clothing/tie/storage/black_vest,
-/obj/item/clothing/tie/storage/black_vest,
-/obj/item/clothing/tie/storage/black_vest,
+/obj/item/armor_module/storage/uniform/black_vest,
+/obj/item/armor_module/storage/uniform/black_vest,
+/obj/item/armor_module/storage/uniform/black_vest,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "agE" = (
@@ -2101,9 +2084,9 @@
 /area/bigredv2/outside/nw)
 "aia" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "Marshal Offices";
-	name = "Storm Shutters";
-	pixel_x = -32
+	name = "Storm Shutters"
 	},
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
@@ -2190,7 +2173,7 @@
 	dir = 4
 	},
 /obj/structure/mirror{
-	pixel_x = 30
+	dir = 8
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/caves/lambda_lab)
@@ -2884,9 +2867,9 @@
 /area/bigredv2/outside/marshal_office)
 "akP" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "Marshal Offices";
-	name = "Storm Shutters";
-	pixel_x = -32
+	name = "Storm Shutters"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/red/redtaupecorner{
@@ -3045,12 +3028,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
-"als" = (
-/obj/structure/sign/safety/hazard{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/space_port)
 "alt" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/red/redtaupecorner{
@@ -3215,11 +3192,6 @@
 	dir = 6
 	},
 /area/bigredv2/outside/nw)
-"amb" = (
-/obj/structure/sign/safety/hazard,
-/obj/structure/cable,
-/turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/outside/space_port)
 "amc" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -3574,9 +3546,9 @@
 	dir = 4
 	},
 /obj/machinery/door_control{
+	dir = 4;
 	id = "Office Complex 2";
-	name = "Storm Shutters";
-	pixel_x = -32
+	name = "Storm Shutters"
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
@@ -3846,9 +3818,9 @@
 /area/bigredv2/outside/nw)
 "aoh" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "Marshal Offices";
-	name = "Storm Shutters";
-	pixel_x = -32
+	name = "Storm Shutters"
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/red/full,
@@ -4019,9 +3991,9 @@
 /obj/structure/cable,
 /obj/machinery/light,
 /obj/machinery/door_control{
+	dir = 4;
 	id = "viro_q";
-	name = "Qurantine Lockdown";
-	pixel_x = -25
+	name = "Quarantine Lockdown"
 	},
 /obj/structure/sign/biohazard,
 /turf/open/floor/tile/green/whitegreen{
@@ -4506,8 +4478,7 @@
 	},
 /obj/machinery/door_control{
 	id = "Medical";
-	name = "Storm Shutters";
-	pixel_y = 32
+	name = "Storm Shutters"
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
@@ -5294,9 +5265,9 @@
 /area/bigredv2/caves/lambda_lab)
 "ate" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "safe_blast";
-	name = "Blast-Door";
-	pixel_y = -25
+	name = "Blast-Door"
 	},
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
@@ -5446,12 +5417,12 @@
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "atJ" = (
+/obj/structure/cable,
 /obj/machinery/door_control{
 	id = "safe_room";
-	name = "Door Bolt Control";
-	pixel_y = -5
+	name = "Door Bolt Control"
 	},
-/turf/closed/wall/r_wall,
+/turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
 "atK" = (
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
@@ -6153,6 +6124,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
+"awd" = (
+/obj/effect/attach_point/electronics/dropship1,
+/turf/open/floor/plating,
+/area/shuttle/drop2/lz2)
 "awe" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6341,9 +6316,9 @@
 /area/bigredv2/outside/medical)
 "awS" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "Medical";
-	name = "Storm Shutters";
-	pixel_y = -32
+	name = "Storm Shutters"
 	},
 /turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)
@@ -7125,9 +7100,9 @@
 	dir = 4
 	},
 /obj/machinery/door_control{
+	dir = 1;
 	id = "Dormitories";
-	name = "Storm Shutters";
-	pixel_y = -32
+	name = "Storm Shutters"
 	},
 /obj/structure/cable,
 /turf/open/floor,
@@ -7398,8 +7373,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aAW" = (
 /obj/machinery/conveyor{
-	dir = 9;
-	id = "anomalybelt"
+	dir = 6
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
@@ -7445,9 +7419,9 @@
 "aBg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door_control{
+	dir = 1;
 	id = "Medical";
-	name = "Storm Shutters";
-	pixel_y = -32
+	name = "Storm Shutters"
 	},
 /obj/machinery/iv_drip,
 /turf/open/floor/tile/green/whitegreen,
@@ -7468,7 +7442,7 @@
 	dir = 8
 	},
 /obj/structure/mirror{
-	pixel_x = -28
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
@@ -7971,9 +7945,9 @@
 /area/bigredv2/outside/hydroponics)
 "aDb" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "Greenhouse";
-	name = "Storm Shutters";
-	pixel_x = 32
+	name = "Storm Shutters"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
@@ -8200,9 +8174,9 @@
 "aDQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door_control{
+	dir = 4;
 	id = "Dormitories";
-	name = "Storm Shutters";
-	pixel_x = -32
+	name = "Storm Shutters"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
@@ -8752,9 +8726,9 @@
 /area/bigredv2/outside/dorms)
 "aFU" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "Dormitories";
-	name = "Storm Shutters";
-	pixel_y = -32
+	name = "Storm Shutters"
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
@@ -8824,9 +8798,9 @@
 /area/bigredv2/outside/library)
 "aGf" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "Library";
-	name = "Storm Shutters";
-	pixel_x = 32
+	name = "Storm Shutters"
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
@@ -10125,9 +10099,9 @@
 /area/bigredv2/outside/hydroponics)
 "aKE" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "Kitchen Greenhouse";
-	name = "Storm Shutters";
-	pixel_x = 32
+	name = "Storm Shutters"
 	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/hydroponics)
@@ -10680,9 +10654,9 @@
 	pixel_y = 32
 	},
 /obj/machinery/door_control{
+	dir = 8;
 	id = "Bar Complex";
-	name = "Storm Shutters";
-	pixel_x = 32
+	name = "Storm Shutters"
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
@@ -12276,9 +12250,9 @@
 /area/bigredv2/outside/general_store)
 "aVi" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "General Store";
-	name = "Storm Shutters";
-	pixel_x = 32
+	name = "Storm Shutters"
 	},
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
@@ -13348,6 +13322,10 @@
 /area/bigredv2/outside/w)
 "bbd" = (
 /obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/shutters/mainship{
+	id = "Cargonia";
+	name = "\improper Cargo Shutters"
+	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
 "bbe" = (
@@ -13569,9 +13547,9 @@
 "bcx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door_control{
+	dir = 8;
 	id = "Cargonia";
-	name = "Storm Shutters";
-	pixel_x = 32
+	name = "Storm Shutters"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -13588,10 +13566,14 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bcC" = (
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /obj/machinery/door_control{
+	dir = 1;
 	id = "Cargonia";
-	name = "Storm Shutters";
-	pixel_x = 32
+	name = "Storm Shutters"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -13711,9 +13693,9 @@
 /area/bigredv2/outside/office_complex)
 "bdE" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "Chapel";
-	name = "Storm Shutters";
-	pixel_x = -32
+	name = "Storm Shutters"
 	},
 /turf/open/floor/engine/cult,
 /area/bigredv2/outside/chapel)
@@ -13755,9 +13737,9 @@
 /area/bigredv2/outside/office_complex)
 "bdU" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "Office Complex 1";
-	name = "Storm Shutters";
-	pixel_x = -32
+	name = "Storm Shutters"
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -14428,9 +14410,9 @@
 /area/bigredv2/outside/office_complex)
 "bgR" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "Office Complex 1";
-	name = "Storm Shutters";
-	pixel_x = -32
+	name = "Storm Shutters"
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/red/redtaupecorner{
@@ -14571,10 +14553,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/landinglight/ds2/delaythree,
 /turf/open/floor/marking/asteroidwarning,
-/area/shuttle/drop2/lz2)
-"bhA" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "bhD" = (
 /obj/effect/decal/cleanable/dirt,
@@ -15761,9 +15739,9 @@
 /area/bigredv2/outside/virology)
 "bnb" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "Filtration Plant";
-	name = "Storm Shutters";
-	pixel_x = -32
+	name = "Storm Shutters"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -16599,9 +16577,9 @@
 "bqW" = (
 /obj/structure/cable,
 /obj/machinery/door_control{
+	dir = 4;
 	id = "Filtration Plant";
-	name = "Storm Shutters";
-	pixel_x = -32
+	name = "Storm Shutters"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -16852,9 +16830,9 @@
 "bst" = (
 /obj/machinery/door_control{
 	desc = "A remote control-switch for opening the engines blast doors.";
+	dir = 8;
 	id = "rad_door";
-	name = "Reactor Radiation Shielding control";
-	pixel_x = 30
+	name = "Reactor Radiation Shielding control"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -16914,9 +16892,9 @@
 /area/bigredv2/outside/engineering)
 "bsM" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "Engineering";
-	name = "Storm Shutters";
-	pixel_y = -32
+	name = "Storm Shutters"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -19492,6 +19470,10 @@
 /obj/item/paper/clockresearch1,
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/southeast)
+"bHH" = (
+/obj/effect/attach_point/electronics/dropship1,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "bIb" = (
 /obj/structure/bookcase{
 	density = 0
@@ -19938,6 +19920,11 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
+"cRP" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/shuttle/drop1/lz1)
 "cSg" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -20219,6 +20206,15 @@
 	dir = 4
 	},
 /area/bigredv2/outside/w)
+"dJu" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 8;
+	icon_state = "equip_base_l_wing"
+	},
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/shuttle/drop1/lz1)
 "dKh" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
@@ -20533,6 +20529,11 @@
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/southeast)
+"eGt" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/shuttle/drop2/lz2)
 "eHI" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
@@ -20777,6 +20778,9 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
+"fkV" = (
+/turf/open/floor/plating/icefloor/warnplate,
+/area/shuttle/drop1/lz1)
 "flV" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/plating,
@@ -20994,6 +20998,15 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
+"fLB" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 8;
+	icon_state = "equip_base_l_wing"
+	},
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/shuttle/drop2/lz2)
 "fLO" = (
 /obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
@@ -21259,6 +21272,11 @@
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/southeast)
+"gpQ" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/shuttle/drop2/lz2)
 "gqo" = (
 /obj/structure/table/woodentable,
 /obj/effect/landmark/weed_node,
@@ -21292,6 +21310,11 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
+"gse" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 9
+	},
+/area/shuttle/drop2/lz2)
 "gst" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -21885,8 +21908,7 @@
 "idt" = (
 /obj/machinery/door_control{
 	id = "Spaceport";
-	name = "Storm Shutters";
-	pixel_x = 32
+	name = "Storm Shutters"
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
@@ -22434,6 +22456,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/caves/northwest)
+"jHW" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 9
+	},
+/area/shuttle/drop1/lz1)
 "jJZ" = (
 /obj/structure/table,
 /obj/structure/cable,
@@ -22484,6 +22511,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
+"jNf" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 5
+	},
+/area/shuttle/drop2/lz2)
 "jNI" = (
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/s)
@@ -22557,9 +22589,9 @@
 /area/bigredv2/caves/southeast)
 "jVy" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "Cargonia";
-	name = "Storm Shutters";
-	pixel_x = 32
+	name = "Storm Shutters"
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
@@ -22709,6 +22741,12 @@
 /obj/effect/spawner/gibspawner/human,
 /turf/open/floor/prison/darkred/full,
 /area/bigredv2/caves/southeast)
+"kvI" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/shuttle/drop1/lz1)
 "kvV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -22798,6 +22836,12 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/s)
+"kDB" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/shuttle/drop2/lz2)
 "kEl" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/marking/bot,
@@ -23321,6 +23365,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
+"mhf" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/shuttle/drop1/lz1)
 "mkI" = (
 /obj/effect/landmark/weed_node,
 /turf/open/shuttle/elevator/grating,
@@ -23570,6 +23620,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/south)
+"mVj" = (
+/obj/machinery/door_control{
+	dir = 4;
+	id = "tcomms";
+	name = "Storm Shutters"
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
 "mWe" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -23954,6 +24012,11 @@
 "nYw" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/rock)
+"nZm" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/shuttle/drop1/lz1)
 "oah" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -24123,6 +24186,11 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
+"otR" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/shuttle/drop2/lz2)
 "ouJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -24168,6 +24236,11 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
+"oAa" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/shuttle/drop1/lz1)
 "oAf" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -24327,6 +24400,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/southeast)
+"oXh" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 5
+	},
+/area/shuttle/drop1/lz1)
 "oXG" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/shuttle/drop2/lz2)
@@ -24788,6 +24866,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"qsL" = (
+/obj/effect/attach_point/weapon/dropship1,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "qtn" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/limb,
 /obj/item/ammo_casing/shell,
@@ -25227,6 +25309,11 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
+"rxa" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/shuttle/drop1/lz1)
 "rxn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -25276,6 +25363,11 @@
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/nw)
+"rCq" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/shuttle/drop2/lz2)
 "rEy" = (
 /obj/effect/decal/sandedge/corner,
 /turf/open/floor/freezer,
@@ -25481,6 +25573,11 @@
 /obj/item/explosive/grenade/flashbang,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/southeast)
+"sis" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/shuttle/drop1/lz1)
 "siv" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25697,6 +25794,10 @@
 	},
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/se)
+"sGV" = (
+/obj/effect/attach_point/weapon/dropship1,
+/turf/open/floor/plating,
+/area/shuttle/drop2/lz2)
 "sHx" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/red2{
@@ -25825,6 +25926,12 @@
 	dir = 8
 	},
 /area/bigredv2/caves/south)
+"sYV" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/shuttle/drop2/lz2)
 "sZi" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor,
@@ -26405,6 +26512,11 @@
 	dir = 8
 	},
 /area/bigredv2/outside/sw)
+"uDp" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/shuttle/drop2/lz2)
 "uDL" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whitebluefull,
@@ -26788,6 +26900,13 @@
 /obj/machinery/button/door/open_only/landing_zone/lz2{
 	dir = 8
 	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/shuttle/drop2/lz2)
 "vAj" = (
@@ -27129,6 +27248,9 @@
 	},
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/w)
+"wHp" = (
+/turf/open/floor/plating/icefloor/warnplate,
+/area/shuttle/drop2/lz2)
 "wIc" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -27284,6 +27406,15 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
+"xcA" = (
+/obj/structure/cable,
+/obj/machinery/button/door/open_only/landing_zone/lz2{
+	dir = 8
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/shuttle/drop2/lz2)
 "xdD" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -27387,9 +27518,9 @@
 /area/bigredv2/caves/southeast)
 "xqo" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "Kitchen";
-	name = "Storm Shutters";
-	pixel_x = 32
+	name = "Storm Shutters"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
@@ -29520,7 +29651,7 @@ adq
 adH
 aea
 aeB
-ade
+mVj
 afI
 acQ
 lvj
@@ -32543,27 +32674,27 @@ ktH
 aae
 gFh
 plO
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aaF
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
+jHW
+oAa
+oAa
+oAa
+oAa
+oAa
+oAa
+dJu
+oAa
+oAa
+mhf
+oAa
+oAa
+oAa
+oAa
+oAa
+oAa
+oAa
+oAa
+oAa
+rxa
 aeh
 ags
 aam
@@ -32760,27 +32891,27 @@ ktH
 aae
 gFh
 aaj
+nZm
+aao
+aaF
+qsL
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aao
 aao
 aaF
 aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aaF
-aao
-aao
+fkV
 oGY
 bLG
 bLG
@@ -32977,6 +33108,10 @@ ktH
 aae
 gFh
 aak
+nZm
+aao
+aao
+bHH
 aao
 aao
 aao
@@ -32993,11 +33128,7 @@ aao
 aao
 aao
 aao
-aao
-aao
-aao
-aao
-aao
+fkV
 aej
 bLG
 bLG
@@ -33194,6 +33325,7 @@ ktH
 aae
 gFh
 aal
+nZm
 aao
 aao
 aao
@@ -33213,13 +33345,12 @@ aao
 aao
 aao
 aao
-aao
-aao
+fkV
 agQ
 bLG
 bLG
 bLG
-amb
+fYS
 aae
 ktH
 hqP
@@ -33411,6 +33542,7 @@ ktH
 aae
 gFh
 plO
+nZm
 aao
 aao
 aao
@@ -33430,8 +33562,7 @@ aao
 aao
 aao
 aao
-aao
-aao
+fkV
 aeh
 bLG
 bLG
@@ -33628,7 +33759,7 @@ ktH
 aae
 iUZ
 aaj
-aao
+nZm
 aao
 aao
 aao
@@ -33648,7 +33779,7 @@ aao
 aao
 aao
 aao
-aao
+fkV
 oGY
 bLG
 bLG
@@ -33845,6 +33976,7 @@ ktH
 aae
 gFh
 aak
+nZm
 aao
 aao
 aao
@@ -33864,8 +33996,7 @@ aao
 aao
 aao
 aao
-aao
-aao
+fkV
 aej
 bLG
 lvj
@@ -33945,27 +34076,27 @@ oXG
 qyl
 faR
 bhu
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bje
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
+gse
+otR
+otR
+otR
+otR
+otR
+otR
+fLB
+otR
+otR
+kDB
+otR
+otR
+otR
+otR
+otR
+otR
+otR
+otR
+otR
+eGt
 bsb
 mAw
 mAw
@@ -34062,6 +34193,7 @@ ktH
 aae
 gFh
 aal
+nZm
 aao
 aao
 aao
@@ -34081,8 +34213,7 @@ aao
 aao
 aao
 aao
-aao
-aao
+fkV
 aek
 bLG
 bLG
@@ -34162,27 +34293,27 @@ uqN
 jwj
 faR
 bhv
+rCq
+bie
+bje
+sGV
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bie
 bie
 bje
 bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bje
-bie
-bie
+wHp
 bsc
 mAw
 mAw
@@ -34279,6 +34410,10 @@ ktH
 aae
 gFh
 plO
+nZm
+aao
+aao
+bHH
 aao
 aao
 aao
@@ -34295,11 +34430,7 @@ aao
 aao
 aao
 aao
-aao
-aao
-aao
-aao
-aao
+fkV
 aeh
 bLG
 bLG
@@ -34379,6 +34510,10 @@ vXv
 xSR
 faR
 bhw
+rCq
+bie
+bie
+awd
 bie
 bie
 bie
@@ -34395,11 +34530,7 @@ bie
 bie
 bie
 bie
-bie
-bie
-bie
-bie
-bie
+wHp
 bsd
 mAw
 mAw
@@ -34496,27 +34627,27 @@ ktH
 aae
 gFh
 aaj
+nZm
+aao
+aaF
+qsL
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aao
 aao
 aaF
 aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aaF
-aao
-aao
+fkV
 oGY
 bLG
 bLG
@@ -34596,6 +34727,7 @@ oXG
 qyl
 faR
 bhx
+rCq
 bie
 bie
 bie
@@ -34615,8 +34747,7 @@ bie
 bie
 bie
 bie
-bie
-bie
+wHp
 bse
 mAw
 mAw
@@ -34713,27 +34844,27 @@ ktH
 aae
 gFh
 aak
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aaF
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
-aao
+oXh
+sis
+sis
+sis
+sis
+sis
+sis
+sis
+sis
+sis
+kvI
+sis
+sis
+sis
+sis
+sis
+sis
+sis
+sis
+sis
+cRP
 aej
 big
 ahe
@@ -34813,6 +34944,7 @@ oXG
 fxL
 faR
 bhu
+rCq
 bie
 bie
 bie
@@ -34832,8 +34964,7 @@ bie
 bie
 bie
 bie
-bie
-bie
+wHp
 bsb
 mAw
 mAw
@@ -35030,7 +35161,7 @@ oXG
 qyl
 faR
 bhy
-bie
+rCq
 bie
 bie
 bie
@@ -35050,7 +35181,7 @@ bie
 bie
 bie
 bie
-bie
+wHp
 bsc
 mAw
 mAw
@@ -35247,6 +35378,7 @@ fpw
 qyl
 faR
 bhw
+rCq
 bie
 bie
 bie
@@ -35266,8 +35398,7 @@ bie
 bie
 bie
 bie
-bie
-bie
+wHp
 bsd
 mAw
 mAw
@@ -35464,6 +35595,7 @@ uqN
 uqN
 faR
 bhz
+rCq
 bie
 bie
 bie
@@ -35483,8 +35615,7 @@ bie
 bie
 bie
 bie
-bie
-bie
+wHp
 bse
 mAw
 mAw
@@ -35681,7 +35812,10 @@ mAw
 mAw
 faR
 bhu
-bhA
+rCq
+bie
+bie
+awd
 bie
 bie
 bie
@@ -35698,10 +35832,7 @@ bie
 bie
 bie
 bie
-bie
-bie
-bie
-bie
+wHp
 bsb
 mAw
 mAw
@@ -35898,27 +36029,27 @@ gMM
 gMM
 bdJ
 bhv
+rCq
+bie
+bje
+sGV
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bie
 bie
 bje
 bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bje
-bie
-bie
+wHp
 bsc
 mAw
 mAw
@@ -36115,27 +36246,27 @@ qyl
 qyl
 bdJ
 bhw
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bje
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
-bie
+jNf
+uDp
+uDp
+uDp
+uDp
+uDp
+uDp
+uDp
+uDp
+uDp
+sYV
+uDp
+uDp
+uDp
+uDp
+uDp
+uDp
+uDp
+uDp
+uDp
+gpQ
 bsd
 mAw
 mAw
@@ -36667,7 +36798,7 @@ hqP
 hqP
 bXE
 aae
-aaq
+tOR
 cAN
 aaf
 cAN
@@ -36763,7 +36894,7 @@ yeq
 qyl
 qyl
 qyl
-qyl
+vzu
 bdJ
 pjz
 ume
@@ -36781,7 +36912,7 @@ soj
 gMM
 gMM
 gMM
-gMM
+xcA
 gMM
 gMM
 gMM
@@ -36884,7 +37015,7 @@ hqP
 hqP
 bXE
 aae
-abR
+tOR
 cAN
 tOR
 adL
@@ -36999,7 +37130,7 @@ gva
 hwc
 boD
 gva
-vzu
+qyl
 qyl
 bdJ
 yeq
@@ -38855,7 +38986,7 @@ tOR
 tOR
 tOR
 tOR
-als
+tOR
 adL
 tOR
 tOR
@@ -41962,7 +42093,7 @@ nlp
 baD
 boA
 nlp
-bcC
+nlp
 bqM
 nlp
 nlp
@@ -42179,7 +42310,7 @@ aZR
 baE
 aZR
 bbU
-aZR
+bcC
 aXK
 aZN
 aZN
@@ -64486,8 +64617,8 @@ aqY
 arF
 arF
 ate
+adZ
 atJ
-ejb
 auY
 auY
 awB

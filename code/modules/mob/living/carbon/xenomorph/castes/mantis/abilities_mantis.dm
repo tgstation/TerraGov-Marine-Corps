@@ -1,6 +1,7 @@
 /datum/action/xeno_action/activable/ravage/slow
 	///How long is the windup before ravaging
 	var/windup_time = 0.5 SECONDS
+	cooldown_timer = 30 SECONDS
 
 /datum/action/xeno_action/activable/ravage/slow/use_ability(atom/A)
 	if(!do_after(owner, windup_time, FALSE, owner, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
@@ -12,5 +13,9 @@
 	if(!.)
 		return
 	action_activate()
-	owner.canmove = FALSE
-	addtimer(VARSET_CALLBACK(owner, canmove, TRUE), windup_time)
+	LAZYINCREMENT(owner.do_actions, target)
+	addtimer(CALLBACK(src, .proc/decrease_do_action, target), windup_time)
+
+///Decrease the do_actions of the owner
+/datum/action/xeno_action/activable/ravage/slow/proc/decrease_do_action(atom/target)
+	LAZYDECREMENT(owner.do_actions, target)

@@ -90,14 +90,14 @@
 		return /datum/item_representation/modular_helmet
 	if(ispath(item_type, /obj/item/clothing/under))
 		return /datum/item_representation/uniform_representation
-	if(ispath(item_type, /obj/item/clothing/tie/storage))
-		return /datum/item_representation/tie
 	if(ispath(item_type, /obj/item/ammo_magazine/handful))
 		return /datum/item_representation/handful_representation
 	if(ispath(item_type, /obj/item/stack))
 		return /datum/item_representation/stack
 	if(ispath(item_type, /obj/item/card/id))
 		return /datum/item_representation/id
+	if(ispath(item_type, /obj/item/clothing/shoes/marine))
+		return /datum/item_representation/boot
 	return /datum/item_representation
 
 /// Return TRUE if this handful should be buyable, aka if it's corresponding aka box is in a linked vendor

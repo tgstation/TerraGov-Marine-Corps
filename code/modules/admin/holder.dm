@@ -266,7 +266,6 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/pref_ff_attack_logs,
 	/datum/admins/proc/pref_end_attack_logs,
 	/datum/admins/proc/pref_debug_logs,
-	/datum/admins/proc/set_ooc_color_self,
 	/datum/admins/proc/admin_ghost,
 	/datum/admins/proc/invisimin,
 	/datum/admins/proc/stealth_mode,
@@ -455,7 +454,7 @@ GLOBAL_PROTECT(admin_verbs_permissions)
 
 /world/proc/AVcolor()
 	return list(
-
+		/datum/admins/proc/set_ooc_color_self,
 	)
 GLOBAL_LIST_INIT(admin_verbs_color, world.AVcolor())
 GLOBAL_PROTECT(admin_verbs_color)
