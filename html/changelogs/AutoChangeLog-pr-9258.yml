@@ -1,0 +1,4 @@
+author: "RenovatedAtol"
+delete-after: True
+changes: 
+  - rscadd: "possibility to send large crates via supply drop"
