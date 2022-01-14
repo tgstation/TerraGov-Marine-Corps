@@ -168,7 +168,7 @@
 /obj/item/factory_refill/auto_sniper_magazine
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
-	refill_type = /obj/item/factory_part/smartgunner_machinegun_magazine
+	refill_type = /obj/item/factory_part/auto_sniper_magazine
 	refill_amount = 18
 
 /obj/item/factory_refill/scout_rifle_magazine_refill
