@@ -284,6 +284,7 @@
 
 	allowed_uniform_type = /obj/item/clothing/under
 
+// Thank Jeff for providing sprites to color flak jacket
 /obj/item/clothing/suit/modular/xenonauten/pilot
 	name = "\improper M70 flak jacket"
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
@@ -316,16 +317,6 @@
 		/obj/item/storage/large_holster/blade,
 		/obj/item/storage/belt/gun,
 	)
-
-// Thank Jeff for providing sprites to color flak jacket
-	icon_state_variants = list(
-		"drab",
-		"black",
-		"desert",
-		"snow",
-	)
-
-	current_variant = "black"
 
 /obj/item/clothing/suit/modular/xenonauten/light
 	name = "\improper Xenonauten-L pattern armored vest"
