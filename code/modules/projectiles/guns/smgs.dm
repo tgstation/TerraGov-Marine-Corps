@@ -159,6 +159,7 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/burstfire_assembly,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/gyro,
 	)
@@ -167,7 +168,7 @@
 
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.9
-	scatter = 20
+	scatter = 0
 	fire_delay = 0.2 SECONDS
 	scatter_unwielded = 30
 	aim_slowdown = 0.15
@@ -201,7 +202,7 @@
 	accuracy_mult_unwielded = 0.95
 	damage_mult = 1.2
 	aim_slowdown = 0.4
-	scatter = 10
+	scatter = 4
 
 /obj/item/weapon/gun/smg/m25/elite/pmc
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
