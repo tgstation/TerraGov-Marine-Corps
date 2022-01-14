@@ -180,3 +180,19 @@
 2022-01-13:
   Waselon:
   - bugfix: fixes harvester bicardine attack
+2022-01-14:
+  BraveMole:
+  - qol: Xeno no longer kill weeds when clicking it
+  - bugfix: Fix bipod exploit
+  - bugfix: Prevent ais from nocliping through shutters
+  - qol: Gun attachment are activated by default when you attach them
+  Waselon:
+  - balance: rocket hammer balance pass
+  novaepee:
+  - bugfix: RO, CIC, and AI can now talk in req radio again
+  - balance: Deletes screenshake from A19 impact.
+  - rscadd: Researcher FINALLY get researcher minimap icon!
+  - imageadd: funny researcher minimap_icon
+  - rscadd: Soldering tool to help squad engineers heal combat robots; you can locate
+      it in essential kits.
+  - balance: xenomorphs' pain hub on marines are less reliant on stamina damage.
