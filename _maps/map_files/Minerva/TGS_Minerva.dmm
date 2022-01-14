@@ -170,7 +170,8 @@
 "aI" = (
 /obj/machinery/door_control/mainship/ammo{
 	dir = 1;
-	name = "Dropship Armament"
+	id = "ammo1";
+	name = "Dropship Armament Storage"
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -617,6 +618,7 @@
 /area/mainship/hallways/hangar)
 "bP" = (
 /obj/machinery/door_control/mainship/ammo{
+	id = "ammo1";
 	name = "Dropship Armament Storage"
 	},
 /turf/open/floor/mainship/orange{
