@@ -837,7 +837,7 @@
 	slowdown = 0.7
 
 /obj/item/clothing/suit/storage/marine/harness/cowboy
-	name = "reinforced reather jacket with webbing"
+	name = "reinforced leather jacket with webbing"
 	desc = "The 'reinforced leather' is more of a selling point to captains and the like who would like to consider the cool jacket to actually be of use. However, in all circumstances that matter, this will provide no armor. It does come with a nice harness for storage on the front."
 	icon_state = "leather_jacket_webbing"
 	item_state = "leather_jacket_webbing"
