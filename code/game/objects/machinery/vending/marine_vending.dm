@@ -990,7 +990,7 @@
 			/obj/item/clothing/suit/modular = -1,
 			/obj/item/clothing/suit/storage/marine/harness = -1,
 			/obj/item/clothing/suit/storage/marine/harness/cowboy = -1,
-			/obj/item/clothing/suit/cowboy = -1,
+			/obj/item/clothing/suit/storage/marine/cowboy = -1,
 			/obj/item/clothing/suit/armor/vest/pilot = -1,
 			/obj/item/facepaint/green = -1,
 			/obj/item/clothing/suit/storage/marine/robot/light = -1,

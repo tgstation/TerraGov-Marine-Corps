@@ -843,7 +843,7 @@
 	item_state = "leather_jacket_webbing"
 	flags_item_map_variant = NONE
 
-/obj/item/clothing/suit/cowboy
+/obj/item/clothing/suit/storage/marine/cowboy
 	name = "reinforced leather jacket"
 	icon_state = "leather_jacket"
 	item_state = "leather_jacket"
