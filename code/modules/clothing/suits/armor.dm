@@ -45,40 +45,6 @@
 		/obj/item/storage/large_holster/blade
 	)
 
-/* not currently in use since new flak jacket is over at modular.dm
-/obj/item/clothing/suit/armor/vest/pilot
-	name = "\improper M70 flak jacket"
-	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
-	icon = 'icons/obj/clothing/cm_suits.dmi'
-	icon_state = "pilot"
-	item_icons = list(
-		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
-	blood_overlay_type = "armor"
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
-	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
-	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
-	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 25, "bomb" = 30, "bio" = 5, "rad" = 5, "fire" = 25, "acid" = 30)
-	slowdown = 0.25
-	allowed = list(
-		/obj/item/weapon/gun,
-		/obj/item/tank/emergency_oxygen,
-		/obj/item/flashlight,
-		/obj/item/ammo_magazine,
-		/obj/item/storage/fancy/cigarettes,
-		/obj/item/tool/lighter,
-		/obj/item/weapon/baton,
-		/obj/item/restraints/handcuffs,
-		/obj/item/explosive/grenade,
-		/obj/item/binoculars,
-		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/storage/belt/sparepouch,
-		/obj/item/storage/large_holster/blade,
-		/obj/item/storage/belt/gun,
-	)
-*/
 
 /obj/item/clothing/suit/armor/vest/dutch
 	name = "armored jacket"
