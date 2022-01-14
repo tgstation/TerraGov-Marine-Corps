@@ -245,8 +245,46 @@
 	current_variant = variant
 	update_icon()
 
+/obj/item/clothing/suit/modular/xenonauten
+	name = "\improper Xenonauten-M pattern armored vest"
+	desc = "A XN-M vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a medium variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 65, "energy" = 55, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 55)
+	icon_state = "medium"
+	item_state = "medium"
+	slowdown = 0.5
 
-/obj/item/clothing/suit/modular/pilot
+	attachments_allowed = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/module/chemsystem,
+
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
+	icon_state_variants = list(
+		"drab",
+		"black",
+		"desert",
+		"snow",
+	)
+
+	current_variant = "black"
+
+	allowed_uniform_type = /obj/item/clothing/under
+
+/obj/item/clothing/suit/modular/xenonauten/pilot
 	name = "\improper M70 flak jacket"
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
 	icon_state = "pilot"
@@ -288,46 +326,6 @@
 	)
 
 	current_variant = "black"
-
-
-/obj/item/clothing/suit/modular/xenonauten
-	name = "\improper Xenonauten-M pattern armored vest"
-	desc = "A XN-M vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a medium variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
-	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 65, "energy" = 55, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 55)
-	icon_state = "medium"
-	item_state = "medium"
-	slowdown = 0.5
-
-	attachments_allowed = list(
-		/obj/item/armor_module/module/better_shoulder_lamp,
-		/obj/item/armor_module/module/valkyrie_autodoc,
-		/obj/item/armor_module/module/fire_proof,
-		/obj/item/armor_module/module/tyr_extra_armor,
-		/obj/item/armor_module/module/tyr_extra_armor/mark1,
-		/obj/item/armor_module/module/mimir_environment_protection,
-		/obj/item/armor_module/module/mimir_environment_protection/mark1,
-		/obj/item/armor_module/module/hlin_explosive_armor,
-		/obj/item/armor_module/module/ballistic_armor,
-		/obj/item/armor_module/module/chemsystem,
-
-		/obj/item/armor_module/storage/general,
-		/obj/item/armor_module/storage/ammo_mag,
-		/obj/item/armor_module/storage/engineering,
-		/obj/item/armor_module/storage/medical,
-		/obj/item/armor_module/storage/integrated,
-		/obj/item/armor_module/armor/badge,
-	)
-
-	icon_state_variants = list(
-		"drab",
-		"black",
-		"desert",
-		"snow",
-	)
-
-	current_variant = "black"
-
-	allowed_uniform_type = /obj/item/clothing/under
 
 /obj/item/clothing/suit/modular/xenonauten/light
 	name = "\improper Xenonauten-L pattern armored vest"
