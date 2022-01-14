@@ -376,12 +376,6 @@
 	S.set_up(7, impact)// Large radius, but dissipates quickly
 	S.start()
 
-/obj/structure/ship_ammo/minirocket/tangle
-	name = "Tanglefoot mini rocket stack"
-	desc = "A pack of laser guided mini rockets loaded with plasma-draining Tanglefoot gas."
-	icon_state = "minirocket_tfoot"
-	point_cost = 50
-
 /obj/structure/ship_ammo/minirocket/tangle/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
 	explosion(impact, 0, 0, 2, 2, throw_range = 0)// Smaller explosion
