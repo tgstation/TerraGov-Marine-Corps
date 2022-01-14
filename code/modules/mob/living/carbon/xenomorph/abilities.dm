@@ -870,7 +870,7 @@
 	target_flags = XABB_MOB_TARGET
 	use_state_flags = XACT_USE_BUCKLED
 	/// Whatever our victim is injected with.
-	var/sting_chemical = /datum/reagent/toxin/xeno_neurotoxin 
+	var/sting_chemical = /datum/reagent/toxin/xeno_neurotoxin
 
 /datum/action/xeno_action/activable/neurotox_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -917,6 +917,7 @@
 	mechanics_text = "A channeled melee attack that injects the target with Ozelomelyn over a few seconds, purging chemicals and dealing minor toxin damage to a moderate cap while inside them."
 	ability_name = "ozelomelyn sting"
 	cooldown_timer = 25 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_OZELOMELYN_STING
 	plasma_cost = 100
 	sting_chemical = /datum/reagent/toxin/xeno_ozelomelyn
 

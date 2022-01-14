@@ -662,14 +662,13 @@
 	purge_rate = 5
 
 /datum/reagent/toxin/xeno_ozelomelyn/on_mob_life(mob/living/L, metabolism)
-	L.getToxLoss() // get the mobs toxin damage
 	if(L.getToxLoss() < 40) // if our toxloss is below 40, do 0.75 tox damage.
 		L.adjustToxLoss(0.75)
 		if(prob(15))
 			to_chat(L, span_warning("Your veins feel like water and you can feel a growing itchy feeling in them!") )
-	else
-		if(prob(15))
-			to_chat(L, span_warning("Your veins feel like water..") )
+			return ..()
+	if(prob(15))
+		to_chat(L, span_warning("Your veins feel like water..") )
 		return ..()
 
 /datum/reagent/zombium
