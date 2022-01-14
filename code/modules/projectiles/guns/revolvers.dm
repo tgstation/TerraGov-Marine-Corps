@@ -287,7 +287,7 @@
 	aim_fire_delay = 0.3 SECONDS
 	recoil = 0
 	accuracy_mult = 1.1
-	scatter = 6.5
+	scatter = 10
 	accuracy_mult_unwielded = 0.6
 	scatter_unwielded = 20
 
