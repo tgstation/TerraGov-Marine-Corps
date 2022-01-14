@@ -1651,13 +1651,6 @@
 /obj/item/reagent_containers/glass/fertilizer/ez,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
-"ft" = (
-/obj/machinery/vending/nanomed,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/command/self_destruct)
 "fv" = (
 /obj/structure/sink{
 	dir = 1;
@@ -3566,6 +3559,13 @@
 "lP" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
+"lQ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/command/self_destruct)
 "lR" = (
 /obj/machinery/light{
 	dir = 8
@@ -4041,11 +4041,10 @@
 /turf/open/floor/mainship/research,
 /area/mainship/medical/medical_science)
 "nu" = (
-/obj/machinery/light{
-	dir = 4
-	},
 /obj/structure/cable,
-/obj/effect/ai_node,
+/obj/machinery/power/apc/mainship{
+	dir = 8
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/self_destruct)
 "nw" = (
@@ -6048,10 +6047,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/port_hull)
-"tR" = (
-/obj/machinery/self_destruct/rod,
-/turf/open/floor/mainship/tcomms,
-/area/mainship/command/self_destruct)
 "tS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -8092,12 +8087,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/grunt_rnr)
-"Ac" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship_hull,
-/area/space)
 "Ae" = (
 /obj/machinery/marine_selector/clothes,
 /obj/structure/window/reinforced{
@@ -8476,6 +8465,13 @@
 	dir = 4
 	},
 /area/mainship/living/briefing)
+"Be" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/command/self_destruct)
 "Bf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/black,
@@ -8841,6 +8837,12 @@
 	dir = 1
 	},
 /area/mainship/squads/general)
+"Cp" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/command/self_destruct)
 "Cr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
@@ -9333,6 +9335,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_garden)
+"DY" = (
+/obj/machinery/vending/nanomed{
+	dir = 1
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/command/self_destruct)
 "DZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -10332,14 +10340,6 @@
 /obj/structure/filingcabinet,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
-"GL" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/command/self_destruct)
 "GM" = (
 /obj/machinery/marine_selector/clothes/commander,
 /turf/open/floor/wood,
@@ -11575,10 +11575,6 @@
 	dir = 6
 	},
 /area/mainship/living/briefing)
-"KH" = (
-/obj/machinery/light,
-/turf/open/floor/mainship/black,
-/area/mainship/command/self_destruct)
 "KI" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/mainship/blue{
@@ -14326,6 +14322,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
+"Tq" = (
+/obj/machinery/self_destruct/rod,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/command/self_destruct)
 "Tr" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -15541,10 +15541,6 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/command/cic)
-"Xn" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/tcomms,
-/area/mainship/command/self_destruct)
 "Xo" = (
 /obj/machinery/computer/shuttle/shuttle_control/dropship,
 /obj/structure/table/mainship,
@@ -22598,8 +22594,8 @@ Zv
 Zv
 Zv
 aU
-ZK
-ZK
+aU
+aU
 ZK
 ZK
 ZK
@@ -22691,14 +22687,14 @@ Zx
 tn
 UB
 qn
+ZB
+ZB
 qn
 qn
 qn
 Si
 aU
 Du
-ZK
-ZK
 ZK
 ZK
 ZK
@@ -22792,10 +22788,10 @@ ZB
 ZB
 ZB
 ZB
+ZB
+ZB
 gl
 uK
-ZK
-ZK
 ZK
 ZK
 ZK
@@ -22888,12 +22884,12 @@ tn
 Ap
 sv
 Yr
-ft
-AW
-gl
+Cp
+ZB
+DY
+Yr
+Cp
 uK
-ZK
-ZK
 ZK
 ZK
 ZK
@@ -22985,16 +22981,16 @@ ye
 JC
 YH
 YH
-GL
-Xn
-AW
-gl
+ye
+gs
+gs
+gs
+lQ
+ZB
 uK
 Wm
 Wm
 kI
-ZK
-ZK
 ZK
 ZK
 ZK
@@ -23085,16 +23081,16 @@ Ap
 ZB
 UF
 gs
+gs
+gs
 DN
-KH
+ZB
 aU
 lY
 XE
 XE
 Wm
 Wm
-kI
-ZK
 ZK
 ZK
 ZK
@@ -23183,16 +23179,16 @@ TK
 ZB
 AW
 gs
+gs
+gs
 AW
-gl
+ZB
 aU
 aU
 aU
 aU
 aU
-Ac
-hr
-ZK
+lY
 ZK
 ZK
 ZK
@@ -23282,6 +23278,8 @@ ZB
 AW
 AW
 AW
+AW
+AW
 ZB
 yV
 gs
@@ -23289,8 +23287,6 @@ BU
 gs
 uK
 XE
-hr
-ZK
 ZK
 ZK
 ZK
@@ -23378,17 +23374,17 @@ ZB
 ZB
 ZB
 AW
-tR
+gs
+gs
+gs
 AW
-gl
+ZB
 pP
 gs
 gs
 gs
 uK
 XE
-hr
-ZK
 ZK
 ZK
 ZK
@@ -23475,18 +23471,18 @@ Wb
 ZB
 ZB
 ZB
-AW
+Tq
+gs
 ur
-AW
-gl
+gs
+Tq
+ZB
 pP
 gs
 ZW
 aH
 aU
-Ac
-hr
-ZK
+lY
 ZK
 ZK
 ZK
@@ -23574,17 +23570,17 @@ ZB
 ZB
 ZB
 AW
-tR
+gs
+gs
+gs
 AW
-gl
+ZB
 pP
 gs
 gs
 gs
 uK
 XE
-hr
-ZK
 ZK
 ZK
 ZK
@@ -23674,6 +23670,8 @@ ZB
 AW
 AW
 AW
+AW
+AW
 ZB
 yV
 gs
@@ -23681,8 +23679,6 @@ jB
 gs
 uK
 XE
-hr
-ZK
 ZK
 ZK
 ZK
@@ -23771,16 +23767,16 @@ TK
 ZB
 AW
 gs
+gs
+gs
 AW
-gl
+ZB
 aU
 aU
 aU
 aU
 aU
-Ac
-hr
-ZK
+lY
 ZK
 ZK
 ZK
@@ -23869,16 +23865,16 @@ Ap
 ZB
 UF
 gs
+gs
+gs
 DN
-KH
+ZB
 aU
 lY
 XE
 XE
 Zl
 Zl
-lW
-ZK
 ZK
 ZK
 ZK
@@ -23966,15 +23962,15 @@ JC
 YH
 YH
 nu
-Xn
-AW
-gl
+gs
+gs
+gs
+Be
+ZB
 uK
 Zl
 Zl
 lW
-ZK
-ZK
 ZK
 ZK
 ZK
@@ -24064,12 +24060,12 @@ tn
 Ap
 vB
 Yr
-ft
-AW
-gl
+Cp
+ZB
+DY
+Yr
+Cp
 uK
-ZK
-ZK
 ZK
 ZK
 ZK
@@ -24164,10 +24160,10 @@ ZB
 ZB
 ZB
 ZB
+ZB
+ZB
 gl
 uK
-ZK
-ZK
 ZK
 ZK
 ZK
@@ -24259,14 +24255,14 @@ Zx
 tn
 Nl
 Dh
+ZB
+ZB
 Dh
 Dh
 Dh
 AX
 aU
 Du
-ZK
-ZK
 ZK
 ZK
 ZK
@@ -24362,8 +24358,8 @@ Zv
 Zv
 Zv
 aU
-ZK
-ZK
+aU
+aU
 ZK
 ZK
 ZK
@@ -24457,7 +24453,7 @@ YS
 Xv
 Xv
 Xv
-YS
+Xv
 YS
 aU
 ZK
