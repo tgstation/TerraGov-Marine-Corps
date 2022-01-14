@@ -869,7 +869,8 @@
 	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
 	target_flags = XABB_MOB_TARGET
 	use_state_flags = XACT_USE_BUCKLED
-	var/sting_chemical = /datum/reagent/toxin/xeno_neurotoxin /// Whatever our victim is injected with.
+	/// Whatever our victim is injected with.
+	var/sting_chemical = /datum/reagent/toxin/xeno_neurotoxin 
 
 /datum/action/xeno_action/activable/neurotox_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
