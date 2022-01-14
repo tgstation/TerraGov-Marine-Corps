@@ -71,9 +71,9 @@
 	if(recoil)
 		traits += "Recoil: [recoil]"
 	if(scatter)
-		traits += "Scatter chance modifier: [scatter]%"
+		traits += "Scatter angle: [scatter]"
 	if(burst_scatter_mult)
-		traits += "Burst scatter chance multiplier: x[burst_scatter_mult]"
+		traits += "Burst scatter angle multiplier: x[burst_scatter_mult]"
 	if(accuracy_mod)
 		traits += "Accuracy modifier: [accuracy_mod * 100]%"
 	if(accuracy_mult_unwielded)
@@ -81,7 +81,7 @@
 	if(recoil_unwielded)
 		traits += "Recoil Unwielded: [recoil_unwielded]"
 	if(scatter_unwielded)
-		traits += "Unwielded Scatter chance modifier: [scatter_unwielded > 0 ? "+[scatter_unwielded]" : "[scatter_unwielded]"]%"
+		traits += "Unwielded Scatter angle: [scatter_unwielded > 0 ? "+[scatter_unwielded]" : "[scatter_unwielded]"]"
 	if(movement_acc_penalty_mult)
 		traits += "Movement unwielded penalty modifier: -[(movement_acc_penalty_mult * 0.15) * 100]%"
 	if(fire_delay)
