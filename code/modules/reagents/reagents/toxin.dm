@@ -666,7 +666,7 @@
 		L.adjustToxLoss(0.75)
 		if(prob(15))
 			to_chat(L, span_warning("Your veins feel like water and you can feel a growing itchy feeling in them!") )
-			return ..()
+		return ..()
 	if(prob(15))
 		to_chat(L, span_warning("Your veins feel like water..") )
 		return ..()
