@@ -286,7 +286,7 @@
 
 // Thank Jeff for providing sprites to color flak jacket
 /obj/item/clothing/suit/modular/xenonauten/pilot
-	name = "\improper M70 flak jacket"
+	name = "\improper TerraGov standard flak jacket"
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
 	icon_state = "pilot"
 	item_state = "pilot"
