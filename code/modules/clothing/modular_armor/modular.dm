@@ -290,15 +290,8 @@
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
 	icon_state = "pilot"
 	item_state = "pilot"
-	item_icons = list(
-		slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
-	blood_overlay_type = "armor"
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
 	flags_item = NONE
-	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
-	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 25, "bomb" = 30, "bio" = 5, "rad" = 5, "fire" = 25, "acid" = 30)
 	slowdown = 0.25
 	allowed = list(
