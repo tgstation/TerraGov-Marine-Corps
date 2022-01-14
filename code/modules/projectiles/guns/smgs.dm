@@ -161,6 +161,9 @@
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/gyro,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+		/obj/item/attachable/motiondetector,
 	)
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 14, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 16)
