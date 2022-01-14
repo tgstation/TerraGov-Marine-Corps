@@ -7,7 +7,7 @@
 	layer = WINDOW_FRAME_LAYER
 	density = TRUE
 	throwpass = TRUE
-	resistance_flags = DROPSHIP_IMMUNE
+	resistance_flags = DROPSHIP_IMMUNE | XENO_DAMAGEABLE
 	climbable = 1 //Small enough to vault over, but you do need to vault over it
 	climb_delay = 15 //One second and a half, gotta vault fast
 	var/obj/item/stack/sheet/sheet_type = /obj/item/stack/sheet/glass/reinforced
