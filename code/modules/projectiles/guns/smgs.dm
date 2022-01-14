@@ -83,7 +83,7 @@
 	caliber = CALIBER_10X20_CASELESS //codex
 	max_shells = 50 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
-	wield_delay = 0.5 SECONDS
+	wield_delay = 0.3 SECONDS
 	force = 20
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/standard_smg
@@ -114,9 +114,11 @@
 	accuracy_mult_unwielded = 0.9
 	scatter = -2
 	fire_delay = 0.15 SECONDS
-	scatter_unwielded = 20
-	aim_slowdown = 0.25
+	scatter_unwielded = 30
+	aim_slowdown = 0.20
 	burst_amount = 0
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 3
 
 	placed_overlay_iconstate = "t90"
 
@@ -160,6 +162,9 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 		/obj/item/attachable/gyro,
 	)
 
