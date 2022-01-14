@@ -1477,7 +1477,6 @@ FACTORY
 	contains = list(/obj/item/factory_refill/smartgunner_machinegun_magazine)
 	cost = 30
 
-
 /datum/supply_packs/factory/autosniper_magazine_refill
 	name = "T-81 IFF Auto Sniper magazine assembly refill"
 	contains = list(/obj/item/factory_refill/auto_sniper_magazine)
