@@ -283,9 +283,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	attach_shell_speed_mod = -1
 	accuracy_mod = 0.1
 	recoil_mod = -2
-	scatter_mod = -1
+	scatter_mod = -2
 	recoil_unwielded_mod = -3
-	scatter_unwielded_mod = -1
+	scatter_unwielded_mod = -2
 	damage_falloff_mod = 0.1
 
 /obj/item/attachable/suppressor/unremovable
