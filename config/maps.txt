@@ -56,3 +56,8 @@ endmap
 map magmoor_digsite_iv
 	minplayers 20
 endmap
+
+map corsat
+	minplayers 70
+endmap
+

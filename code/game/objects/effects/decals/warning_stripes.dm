@@ -22,6 +22,12 @@
 /obj/effect/decal/warning_stripes/nscenter
 	icon_state = "NS-center"
 
+/obj/effect/decal/warning_stripes/smallstripe
+	icon_state = "smallstripe"
+
+/obj/effect/decal/warning_stripes/smallstripevertical
+	icon_state = "smallstripevert"
+
 /obj/effect/decal/warning_stripes/box
 	icon_state = "warningbox"
 

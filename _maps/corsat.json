@@ -1,0 +1,7 @@
+{
+    "map_name": "CORSAT Research Station",
+    "map_path": "map_files/corsat",
+    "map_file": "corsat.dmm",
+    "armor": "prison",
+	"announce_text": "A classified distress signal has been picked up by our scanners, which have tracked the source to Nanotrasen's Corporate Orbital Research Station for Advanced Technology research station, known as CORSAT. Through use of bluespace drive tech, the ###SHIPNAME### has jumped within range of the colony. TGMC, gear up and get ready to respond!"
+}

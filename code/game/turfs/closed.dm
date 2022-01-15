@@ -35,6 +35,9 @@
 	name = "rock"
 	icon_state = "redrock"
 
+/turf/closed/mineral/corsatdome //on CM even rock walls are varedits, this turf replaces them on corsat
+	name = "rock"
+	color = "#c48664"
 
 //Ground map dense jungle
 /turf/closed/gm
