@@ -723,7 +723,7 @@
 #define COMSIG_KB_FIREMODE "keybind_firemode"
 #define COMSIG_KB_GIVE "keybind_give"
 
-// human gear signals for keybindings
+// human modules signals for keybindings
 #define COMSIG_KB_HELMETMODULE "keybinding_helmetmodule"
 #define COMSIG_KB_VALIHEAL "keybinding_valiheal"
 #define COMSIG_KB_VALICONNECT "keybiding_valiconnect"
