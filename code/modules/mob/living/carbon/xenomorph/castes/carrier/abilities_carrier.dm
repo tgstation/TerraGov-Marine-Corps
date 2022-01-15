@@ -232,6 +232,8 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "build hugger turret"
 	action_icon_state = "hugger_turret"
 	mechanics_text = "Build a hugger turret"
+	plasma_cost = 800
+	cooldown_timer = 5 MINUTES
 
 /datum/action/xeno_action/build_hugger_turret/can_use_action(silent, override_flags)
 	. = ..()
@@ -271,3 +273,5 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	var/mob/living/carbon/xenomorph/carrier/X = owner
 	var/obj/structure/xeno/xeno_turret/hugger_turret/turret = new (get_turf(owner), X.hivenumber)
 	turret.ammo = GLOB.ammo_list[GLOB.hugger_to_ammo[X.selected_hugger_type]]
+	succeed_activate()
+	add_cooldown()
