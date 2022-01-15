@@ -69,8 +69,8 @@
 
 /datum/keybinding/human/vali_heal
 	name = "vali_heal"
-	full_name = "Activate Vali heal"
-	description = "Activates Vali system heal"
+	full_name = "Activate Vali healing"
+	description = ""
 	keybind_signal = COMSIG_KB_VALIHEAL
 
 /datum/keybinding/human/vali_connect
@@ -79,8 +79,8 @@
 	description = "Connect Vali system to your weapon"
 	keybind_signal = COMSIG_KB_VALICONNECT
 
-/datum/keybinding/human/health_analyzer
-	name = "health_analyzer"
-	full_name = "Activate health analyzer"
-	description = "Activates the health analyzer in the armor"
-	keybind_signal = COMSIG_KB_HEALTHANALYZER
+/datum/keybinding/human/suit_analyzer
+	name = "suit_analyzer"
+	full_name = "Activate suit health analyzer"
+	description = ""
+	keybind_signal = COMSIG_KB_SUITANALYZER
