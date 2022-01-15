@@ -244,6 +244,7 @@
 
 ///Handles turning on/off the processing part of the component, along with the negative effects related to this
 /datum/component/chem_booster/proc/on_off(datum/source)
+	SIGNAL_HANDLER
 	if(boost_on)
 		STOP_PROCESSING(SSobj, src)
 
@@ -329,6 +330,7 @@
 
 ///Links the held item, if compatible, to the chem booster and registers attacking with it
 /datum/component/chem_booster/proc/connect_weapon()
+	SIGNAL_HANDLER
 	if(manage_weapon_connection())
 		return
 
