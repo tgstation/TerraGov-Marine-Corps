@@ -269,7 +269,7 @@
 	max_rounds = 300
 	reload_delay = 4 SECONDS
 	wield_delay_mod = 1.5
-	aim_speed_mod = 1
+	aim_speed_mod = 0.25
 //-------------------------------------------------------
 //T-25 SMARTRIFLE
 
