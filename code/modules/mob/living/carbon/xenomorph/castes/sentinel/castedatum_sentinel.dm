@@ -35,7 +35,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/hugger)
+	spit_types = list(/datum/ammo/xeno/toxin, /datum/ammo/xeno/acid)
 
 	// *** Abilities *** //
 	actions = list(
