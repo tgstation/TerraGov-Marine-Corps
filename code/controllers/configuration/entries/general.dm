@@ -105,6 +105,8 @@ Administrative related.
 
 /datum/config_entry/flag/log_manifest
 
+/datum/config_entry/flag/log_timers_on_bucket_reset // logs all timers in buckets on automatic bucket reset (Useful for timer debugging)
+
 /datum/config_entry/flag/allow_admin_ooccolor // Allows admins to customize their OOC color.
 
 /datum/config_entry/flag/usewhitelist
