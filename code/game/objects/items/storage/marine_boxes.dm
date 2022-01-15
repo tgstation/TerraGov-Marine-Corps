@@ -15,9 +15,9 @@
 	. = ..()
 	new /obj/item/clothing/glasses/night/m56_goggles(src)
 	new /obj/item/weapon/gun/rifle/standard_smartmachinegun(src)
-	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
-	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
-	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
+	new /obj/item/ammo_magazine/smartmachinegun(src)
+	new /obj/item/ammo_magazine/smartmachinegun(src)
+	new /obj/item/ammo_magazine/smartmachinegun(src)
 
 /obj/item/storage/box/t25_system
 	name = "\improper T25 smart rifle system"

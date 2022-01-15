@@ -647,7 +647,9 @@
 		/obj/item/ammo_magazine/standard_gpmg,
 		/obj/item/ammo_magazine/tl102,
 		/obj/item/ammo_magazine/standard_lmg,
-		/obj/item/ammo_magazine/standard_smartmachinegun,
+		/obj/item/ammo_magazine/smartmachinegun/small,
+		/obj/item/ammo_magazine/smartmachinegun,
+		/obj/item/ammo_magazine/smartmachinegun/large,
 		/obj/item/cell/lasgun,
 	)
 	cant_hold = list(
@@ -1060,12 +1062,14 @@
 	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_t29"
 	can_hold = list(
-		/obj/item/ammo_magazine/standard_smartmachinegun,
+		/obj/item/ammo_magazine/smartmachinegun/small,
+		/obj/item/ammo_magazine/smartmachinegun,
+		/obj/item/ammo_magazine/smartmachinegun/large,
 	)
 
 /obj/item/storage/box/visual/magazine/compact/standard_smartmachinegun/full
 	spawn_number = 30
-	spawn_type = /obj/item/ammo_magazine/standard_smartmachinegun
+	spawn_type = /obj/item/ammo_magazine/smartmachinegun
 
 // --GRENADE BOXES--
 /obj/item/storage/box/visual/grenade

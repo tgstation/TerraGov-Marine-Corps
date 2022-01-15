@@ -237,9 +237,9 @@
 //-------------------------------------------------------
 //SMARTMACHINEGUN AMMUNITION
 
-/obj/item/ammo_magazine/standard_smartmachinegun
-	name = "\improper T-29 drum magazine (10x26mm)"
-	desc = "A 10mm drum magazine."
+/obj/item/ammo_magazine/smartmachinegun
+	name = "\improper T-29 200 ammunition drum magazine (10x26mm)"
+	desc = "A 10mm drum magazine. It carries 200 ammunition dedicated only to the smart machine gun."
 	caliber = CALIBER_10x26_CASELESS
 	icon_state = "t29"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -248,6 +248,28 @@
 	reload_delay = 2.5 SECONDS
 	icon_state_mini = "mag_t29"
 
+/obj/item/ammo_magazine/smartmachinegun/small
+	name = "\improper T-29 100 ammunition drum magazine (10x26mm)"
+	desc = "A 10mm drum magazine. It carries 100 ammunition dedicated only to the smart machine gun. This feels pretty light compared to the 200 ammo drum."
+	caliber = CALIBER_10x26_CASELESS
+	icon_state = "smallt29"
+	w_class = WEIGHT_CLASS_SMALL
+	default_ammo = /datum/ammo/bullet/smartmachinegun
+	max_rounds = 100
+	reload_delay = 1 SECONDS
+	wield_delay_mod =  = 0.85 SECONDS
+
+/obj/item/ammo_magazine/smartmachinegun/large
+	name = "\improper T-29 300 ammunition drum magazine (10x26mm)"
+	desc = "A 10mm drum magazine. It carries 300 ammunition dedicated only to the smart machine gun. This feels pretty wieldy to reload, much less carry around."
+	caliber = CALIBER_10x26_CASELESS
+	icon_state = "larget29"
+	w_class = WEIGHT_CLASS_BULKY
+	default_ammo = /datum/ammo/bullet/smartmachinegun
+	max_rounds = 300
+	reload_delay = 4 SECONDS
+	wield_delay_mod = 1.5 SECONDS
+	aim_speed_mod = 1.2 SECONDS
 //-------------------------------------------------------
 //T-25 SMARTRIFLE
 

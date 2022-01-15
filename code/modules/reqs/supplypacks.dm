@@ -371,9 +371,19 @@ WEAPONS
 	cost = 40
 
 /datum/supply_packs/weapons/smartgun_ammo
-	name = "T-29 smartmachinegun ammo"
-	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
-	cost = 5
+	name = "T-29 smartmachinegun 100 ammo"
+	contains = list(/obj/item/ammo_magazine/smartmachinegun/small)
+	cost = 2
+
+/datum/supply_packs/weapons/smartgun_ammo
+	name = "T-29 smartmachinegun 200 ammo"
+	contains = list(/obj/item/ammo_magazine/smartmachinegun)
+	cost = 3
+
+/datum/supply_packs/weapons/smartgun_ammo
+	name = "T-29 smartmachinegun 300 ammo"
+	contains = list(/obj/item/ammo_magazine/smartmachinegun/large)
+	cost = 6
 
 /datum/supply_packs/weapons/smartrifle
 	name = "T-25 Smart Rifle"

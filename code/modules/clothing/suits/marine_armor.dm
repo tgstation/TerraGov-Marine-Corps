@@ -254,7 +254,9 @@
 /obj/item/storage/internal/suit/marine/smartgunner
 	bypass_w_limit = list(
 		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/standard_smartmachinegun,
+		/obj/item/ammo_magazine/smartmachinegun/small,
+		/obj/item/ammo_magazine/smartmachinegun,
+		/obj/item/ammo_magazine/smartmachinegun/large,
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/cell/lasgun,

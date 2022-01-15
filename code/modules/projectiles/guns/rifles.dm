@@ -960,8 +960,8 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
-	default_ammo_type = /obj/item/ammo_magazine/standard_smartmachinegun
-	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_smartmachinegun)
+	default_ammo_type = /obj/item/ammo_magazine/smartmachinegun
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smartmachinegun/small, /obj/item/ammo_magazine/smartmachinegun, /obj/item/ammo_magazine/smartmachinegun/large,)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
