@@ -423,15 +423,15 @@
 /obj/item/weapon/twohanded/rocketsledge/unique_action(mob/user)
 	. = ..()
 	if (knockback)
-		stun = 1
-		weaken = 2
+		stun = 0.5
+		weaken = 0.5
 		knockback = 0
 		balloon_alert(user, "Selected mode: CRUSH.")
 		playsound(loc, 'sound/machines/switch.ogg', 25)
 		return
 
-	stun = 1
-	weaken = 1
+	stun = 0
+	weaken = 0
 	knockback = 1
 	balloon_alert(user, "Selected mode: KNOCKBACK.")
 	playsound(loc, 'sound/machines/switch.ogg', 25)
