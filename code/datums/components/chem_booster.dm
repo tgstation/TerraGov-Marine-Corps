@@ -161,6 +161,9 @@
 
 	if(!wearer)
 		return
+	UnregisterSignal(wearer, COMSIG_KB_VALIHEAL)
+	UnregisterSignal(wearer, COMSIG_KB_HEALTHANALYZER)
+	UnregisterSignal(wearer, COMSIG_KB_VALICONNECT)
 	configure_action.remove_action(wearer)
 	power_action.remove_action(wearer)
 	scan_action.remove_action(wearer)
@@ -175,11 +178,16 @@
 		return
 	wearer = equipper
 
+
 	configure_action.give_action(wearer)
 	power_action.give_action(wearer)
 	scan_action.give_action(wearer)
 	wearer.overlays += resource_overlay
 	update_resource(0)
+
+	RegisterSignal(wearer, COMSIG_KB_VALIHEAL, .proc/on_off)
+	RegisterSignal(wearer, COMSIG_KB_HEALTHANALYZER, .proc/scan_user)
+	RegisterSignal(wearer, COMSIG_KB_VALICONNECT, .proc/connect_weapon)
 
 /datum/component/chem_booster/process()
 	if(resource_storage_current < resource_drain_amount)
