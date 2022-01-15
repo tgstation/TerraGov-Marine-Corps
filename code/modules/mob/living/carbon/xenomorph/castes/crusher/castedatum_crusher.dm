@@ -4,7 +4,6 @@
 	upgrade_name = ""
 	caste_desc = "A huge tanky xenomorph."
 	caste_type_path = /mob/living/carbon/xenomorph/crusher
-	primordial_upgrade_name = PRIMORDIAL_CRUSHER
 
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE

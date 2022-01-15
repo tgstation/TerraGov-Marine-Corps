@@ -6,7 +6,6 @@
 	caste_type_path = /mob/living/carbon/xenomorph/wraith
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
-	primordial_upgrade_name = PRIMORDIAL_WRAITH
 	wound_type = "wraith" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //

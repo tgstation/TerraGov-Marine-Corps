@@ -6,7 +6,6 @@
 	caste_type_path = /mob/living/carbon/xenomorph/runner
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
-	primordial_upgrade_name = PRIMORDIAL_RUNNER
 	wound_type = "runner" //used to match appropriate wound overlays
 
 	gib_anim = "gibbed-a-corpse-runner"

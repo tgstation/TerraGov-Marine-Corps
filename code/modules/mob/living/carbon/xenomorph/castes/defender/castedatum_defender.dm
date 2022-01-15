@@ -3,7 +3,6 @@
 	display_name = "Defender"
 	upgrade_name = ""
 	caste_desc = "An alien with an armored crest. It looks like it's still developing."
-	primordial_upgrade_name = PRIMORDIAL_DEFENDER
 
 	caste_type_path = /mob/living/carbon/xenomorph/defender
 

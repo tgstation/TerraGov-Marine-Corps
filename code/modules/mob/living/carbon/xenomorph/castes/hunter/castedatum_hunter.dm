@@ -2,7 +2,6 @@
 	caste_name = "Hunter"
 	display_name = "Hunter"
 	upgrade_name = ""
-	primordial_upgrade_name = PRIMORDIAL_HUNTER
 	caste_desc = "A fast, powerful front line combatant."
 
 	caste_type_path = /mob/living/carbon/xenomorph/hunter

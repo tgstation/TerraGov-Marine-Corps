@@ -241,98 +241,44 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 		return FALSE
 
 
-/datum/hive_upgrade/primordial/queen
-	name = PRIMORDIAL_QUEEN
-	desc = "Unlocks the primordial empresses queen charge. Walk in a straight line to begin charging. Can be toggled."
-	psypoint_cost = 300
+/datum/hive_upgrade/primordial/tier_four
+	name = XENO_TIER_FOUR
+	desc = "Unlocks the primordial for the last tier"
+	psypoint_cost = 800
 	icon = "primoqueen"
 
-/datum/hive_upgrade/primordial/shrike
-	name = PRIMORDIAL_SHRIKE
-	desc = "Unlocks the primordial shrikes gravity bomb. Activate to throw a gravity grenade thats sucks in everything in a radius."
-	psypoint_cost = 300
-	icon = "primoshrike"
+/datum/hive_upgrade/primordial/tier_four/can_buy(mob/living/carbon/xenomorph/buyer, silent)
+	. = ..()
+	if(!buyer.hive.upgrades_by_name[XENO_TIER_THREE].times_bought)
+		to_chat(buyer, span_xenonotice("You must buy the tier three ameliorations first!"))
+		return FALSE
 
-/datum/hive_upgrade/primordial/defiler
-	name = PRIMORDIAL_DEFILER
-	desc = "Unlocks the primordial defilers tentacle. Can grab most items and tallhosts from range and bring them to the defiler."
-	psypoint_cost = 225
-	icon = "primodefiler"
-
-/datum/hive_upgrade/primordial/sentinel
-	name = PRIMORDIAL_SENTINEL
-	desc = "Unlocks the primordial sentinels neurogas grenade. Allows them to throw a grenade that emits gas in an area."
-	psypoint_cost = 75
-	icon = "primosent"
-
-/datum/hive_upgrade/primordial/spitter
-	name = PRIMORDIAL_SPITTER
-	desc = "Decreases the spitters fire delay to epic proportions."
-	psypoint_cost = 125
-	icon = "primospitter"
-
-/datum/hive_upgrade/primordial/ravager
-	name = PRIMORDIAL_RAVAGER
-	desc = "Unlocks the primordial ravgers vampirism. A passive ability that increases the ravagers healing as it hits more enemies."
-	psypoint_cost = 225
+/datum/hive_upgrade/primordial/tier_three
+	name = XENO_TIER_THREE
+	desc = "Unlocks the primordial for the tier three"
+	psypoint_cost = 800
 	icon = "primorav"
 
-/datum/hive_upgrade/primordial/crusher
-	name = PRIMORDIAL_CRUSHER
-	desc = "Unlocks the primordial crushers advance. An ability that allows them to charge up their charge and release it in a sudden burst."
-	psypoint_cost = 225
-	icon = "primocrush"
+/datum/hive_upgrade/primordial/tier_three/can_buy(mob/living/carbon/xenomorph/buyer, silent)
+	. = ..()
+	if(!buyer.hive.upgrades_by_name[XENO_TIER_TWO].times_bought)
+		to_chat(buyer, span_xenonotice("You must buy the tier two ameliorations first!"))
+		return FALSE
 
-/datum/hive_upgrade/primordial/gorger
-	name = PRIMORDIAL_GORGER
-	desc = "Unlocks the primordial gorger's rejuvenate. An ability that allows them to significantly reduce incoming harm at the cost of being slown down."
-	psypoint_cost = 225
-	icon = "primogorger"
+/datum/hive_upgrade/primordial/tier_two
+	name = XENO_TIER_TWO
+	desc = "Unlocks the primordial for the tier two"
+	psypoint_cost = 800
+	icon = "primodefiler"
 
-/datum/hive_upgrade/primordial/hunter
-	name = PRIMORDIAL_HUNTER
-	desc = "Replaces the hunters stealth ability with the ability to disguise itself as any object."
-	psypoint_cost = 125
-	icon = "primohunter"
+/datum/hive_upgrade/primordial/tier_two/can_buy(mob/living/carbon/xenomorph/buyer, silent)
+	. = ..()
+	if(!buyer.hive.upgrades_by_name[XENO_TIER_TWO].times_bought)
+		to_chat(buyer, span_xenonotice("You must buy the tier one ameliorations first!"))
+		return FALSE
 
-/datum/hive_upgrade/primordial/defender
-	name = PRIMORDIAL_DEFENDER
-	desc = "Unlocks the primordial defenders centrifugal force. An ability that allows them to rapidly spin and attack enemies nearby."
-	psypoint_cost = 75
-	icon = "primodefender"
-
-/datum/hive_upgrade/primordial/warrior
-	name = PRIMORDIAL_WARRIOR
-	desc = "Unlocks the primordial warriors jab and empowered abilities. A ranged punch, on primordial every 3rd ability cast from a warrior will be an improved version of itself."
-	psypoint_cost = 125
-	icon = "primowarrior"
-
-/datum/hive_upgrade/primordial/runner
-	name = PRIMORDIAL_RUNNER
-	desc = "Unlocks the primordial runner snatch ability. An ability that allows them to steal equipped items momentarily."
-	psypoint_cost = 75
-	icon = "primorunner"
-
-/datum/hive_upgrade/primordial/wraith
-	name = PRIMORDIAL_WRAITH
-	desc = "Unlocks the primordial wraith timestop ability. An ability that allows them to freeze nearby projectiles."
-	psypoint_cost = 125
-	icon = "primowraith"
-
-/datum/hive_upgrade/primordial/hivelord
-	name = PRIMORDIAL_HIVELORD
-	desc = "Unlocks the primordial hivelords traps, and upgrade it's corrosive acid to strong."
-	psypoint_cost = 125
-	icon = "primohivelord"
-
-/datum/hive_upgrade/primordial/bull
-	name = PRIMORDIAL_BULL
-	desc = "Unlocks the primordial bull agile charge, which allows him to change direction while charging, even diagonally"
-	psypoint_cost = 125
-	icon = "primobull"
-
-/datum/hive_upgrade/primordial/boiler
-	name = PRIMORDIAL_BOILER
-	desc = "Unlocks the primordial boiler's access to neurotoxin- and acid lances, direct-hit focussed bombardment types that leave a gas trail where they pass."
-	psypoint_cost = 225
-	icon = "primoboiler"
+/datum/hive_upgrade/primordial/tier_one
+	name = XENO_TIER_ONE
+	desc = "Unlocks the primordial for the first tier"
+	psypoint_cost = 400
+	icon = "primosent"

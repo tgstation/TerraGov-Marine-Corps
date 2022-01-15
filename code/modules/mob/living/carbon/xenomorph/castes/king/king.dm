@@ -47,6 +47,9 @@
 	SSmonitor.stats.king--
 	hive.king_present = max(hive.king_present - 1, 0)
 
+/mob/living/carbon/xenomorph/king/upgrade_possible()
+	return (upgrade != XENO_UPGRADE_THREE)
+
 ///resin pod that creates the king xeno after a delay
 /obj/structure/resin/king_pod
 	name = "psychic echo chamber"

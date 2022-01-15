@@ -3,7 +3,6 @@
 	display_name = "Boiler"
 	upgrade_name = ""
 	caste_desc = "Gross!"
-	primordial_upgrade_name = PRIMORDIAL_BOILER
 
 	caste_type_path = /mob/living/carbon/xenomorph/boiler
 

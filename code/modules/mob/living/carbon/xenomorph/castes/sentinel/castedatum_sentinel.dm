@@ -2,7 +2,6 @@
 	caste_name = "Sentinel"
 	display_name = "Sentinel"
 	upgrade_name = ""
-	primordial_upgrade_name = PRIMORDIAL_SENTINEL
 	caste_desc = "A weak ranged combat alien."
 	caste_type_path = /mob/living/carbon/xenomorph/sentinel
 	tier = XENO_TIER_ONE

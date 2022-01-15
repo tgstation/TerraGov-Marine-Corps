@@ -2,7 +2,6 @@
 	caste_name = "Queen"
 	display_name = "Queen"
 	caste_type_path = /mob/living/carbon/xenomorph/queen
-	primordial_upgrade_name = PRIMORDIAL_QUEEN
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 	job_type = /datum/job/xenomorph/queen
 

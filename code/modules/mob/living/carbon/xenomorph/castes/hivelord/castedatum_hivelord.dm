@@ -5,7 +5,6 @@
 	caste_desc = "A builder of REALLY BIG hives."
 	caste_type_path = /mob/living/carbon/xenomorph/hivelord
 	tier = XENO_TIER_TWO
-	primordial_upgrade_name = PRIMORDIAL_HIVELORD
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "hivelord" //used to match appropriate wound overlays
 

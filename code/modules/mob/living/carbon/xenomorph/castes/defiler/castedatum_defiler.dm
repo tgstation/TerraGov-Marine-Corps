@@ -2,7 +2,6 @@
 	caste_name = "Defiler"
 	display_name = "Defiler"
 	upgrade_name = ""
-	primordial_upgrade_name = PRIMORDIAL_DEFILER
 	caste_desc = "A frightening looking, bulky xeno that drips with suspect green fluids."
 
 	caste_type_path = /mob/living/carbon/xenomorph/Defiler
