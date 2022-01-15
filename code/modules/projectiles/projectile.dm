@@ -310,7 +310,7 @@
 		if(PROJECTILE_FROZEN)
 			return
 
-	if(!suppress_light)
+	if(!suppress_light && ammo.bullet_color)
 		set_light_color(ammo.bullet_color)
 		set_light_on(TRUE)
 

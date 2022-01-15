@@ -1,5 +1,6 @@
 //Xeno structure flags
 #define IGNORE_WEED_REMOVAL (1<<0)
+#define HAS_OVERLAY (1<<1)
 
 //Weeds define
 #define WEED "weed sac"

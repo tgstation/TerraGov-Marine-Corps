@@ -13,6 +13,14 @@ GLOBAL_LIST_INIT(hugger_type_list, list(
 		/obj/item/clothing/mask/facehugger/combat/resin,
 		))
 
+GLOBAL_LIST_INIT(hugger_to_ammo, list(
+	/obj/item/clothing/mask/facehugger/larval = /datum/ammo/xeno/hugger,
+	/obj/item/clothing/mask/facehugger/combat/slash = /datum/ammo/xeno/hugger/slash,
+	/obj/item/clothing/mask/facehugger/combat/neuro = /datum/ammo/xeno/hugger/neuro,
+	/obj/item/clothing/mask/facehugger/combat/acid = /datum/ammo/xeno/hugger/acid,
+	/obj/item/clothing/mask/facehugger/combat/resin = /datum/ammo/xeno/hugger/resin,
+))
+
 //List of huggie images
 GLOBAL_LIST_INIT(hugger_images_list,  list(
 		LARVAL_HUGGER = image('icons/mob/actions.dmi', icon_state = LARVAL_HUGGER),
@@ -219,3 +227,47 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	to_chat(X, span_notice("We will now spawn <b>[hugger_choice]\s</b> when using the spawn hugger ability."))
 	update_button_icon()
 	return succeed_activate()
+
+/datum/action/xeno_action/build_hugger_turret
+	name = "build hugger turret"
+	action_icon_state = "hugger_turret"
+	mechanics_text = "Build a hugger turret"
+
+/datum/action/xeno_action/build_hugger_turret/can_use_action(silent, override_flags)
+	. = ..()
+	var/turf/T = get_turf(owner)
+	var/mob/living/carbon/xenomorph/blocker = locate() in T
+	if(blocker && blocker != owner && blocker.stat != DEAD)
+		if(!silent)
+			to_chat(owner, span_xenowarning("You cannot build with [blocker] in the way!"))
+		return FALSE
+
+	if(!T.is_weedable())
+		return FALSE
+
+	var/obj/effect/alien/weeds/alien_weeds = locate() in T
+
+	if(!alien_weeds)
+		if(!silent)
+			to_chat(owner, span_xenowarning("No weeds here!"))
+		return FALSE
+
+	if(!T.check_alien_construction(owner, silent = silent, planned_building = /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(owner))
+		return FALSE
+
+	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
+		if(get_dist(turret, owner) < 6)
+			if(!silent)
+				to_chat(owner, span_xenowarning("Another turret is too close!"))
+			return FALSE
+
+/datum/action/xeno_action/build_hugger_turret/action_activate()
+	if(!do_after(owner, 10 SECONDS, TRUE, owner, BUSY_ICON_BUILD))
+		return FALSE
+
+	if(!can_use_action())
+		return FALSE
+	
+	var/mob/living/carbon/xenomorph/carrier/X = owner
+	var/obj/structure/xeno/xeno_turret/hugger_turret/turret = new (get_turf(owner), X.hivenumber)
+	turret.ammo = GLOB.ammo_list[GLOB.hugger_to_ammo[X.selected_hugger_type]]

@@ -161,3 +161,50 @@
 	hugger_delay = 1.5 SECONDS
 	eggs_max = 6
 
+/datum/xeno_caste/carrier/primodial
+	upgrade_name = "Primordial"
+	caste_desc = "It's literally crawling with 11 huggers."
+	upgrade = XENO_UPGRADE_FOUR
+	primordial_message = ""
+
+	// *** Melee Attacks *** //
+	melee_damage = 20
+
+	// *** Speed *** //
+	speed = -0.3
+
+	// *** Plasma *** //
+	plasma_max = 800
+	plasma_gain = 38
+
+	// *** Health *** //
+	max_health = 325
+
+	// *** Evolution *** //
+	upgrade_threshold = 1320
+
+	// *** Defense *** //
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 10)
+
+	// *** Pheromones *** //
+	aura_strength = 2.5
+
+	// *** Carrier Abilities *** //
+	huggers_max = 7
+	hugger_delay = 1.5 SECONDS
+	eggs_max = 6
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/cocoon,
+		/datum/action/xeno_action/activable/plant_weeds,
+		/datum/action/xeno_action/activable/throw_hugger,
+		/datum/action/xeno_action/lay_egg,
+		/datum/action/xeno_action/place_trap,
+		/datum/action/xeno_action/spawn_hugger,
+		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/choose_hugger_type,
+		/datum/action/xeno_action/build_hugger_turret,
+	)
+

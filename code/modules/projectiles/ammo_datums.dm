@@ -1862,6 +1862,9 @@ datum/ammo/bullet/revolver/tp44
 
 	new /obj/effect/alien/resin/sticky(T)
 
+/datum/ammo/xeno/sticky/turret
+	max_range = 9
+
 /datum/ammo/xeno/acid
 	name = "acid spit"
 	icon_state = "xeno_acid"
@@ -1910,6 +1913,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 20
 	name = "acid turret splash"
 	shell_speed = 2
+	max_range = 9
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/projectile/P)
 	var/turf/T = get_turf(M)
@@ -2140,6 +2144,47 @@ datum/ammo/bullet/revolver/tp44
 	hit_eye_blur = 4
 	hit_drowsyness = 2
 	fixed_spread_range = 2
+
+/datum/ammo/xeno/hugger
+	name = "hugger ammo"
+	ping = ""
+	flags_ammo_behavior = AMMO_XENO
+	damage = 0
+	max_range = 6
+	shell_speed = 1
+	bullet_color = ""
+	icon_state = "facehugger"
+	///The type of hugger thrown
+	var/obj/item/clothing/mask/facehugger/hugger_type = /obj/item/clothing/mask/facehugger
+
+/datum/ammo/xeno/hugger/on_hit_mob(mob/M, obj/projectile/proj)
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(M))
+	hugger.go_idle()
+
+/datum/ammo/xeno/hugger/on_hit_obj(obj/O, obj/projectile/proj)
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(O))
+	hugger.go_idle()
+
+/datum/ammo/xeno/hugger/on_hit_turf(turf/T, obj/projectile/P)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(target)
+	hugger.go_idle()
+
+/datum/ammo/xeno/hugger/do_at_max_range(obj/projectile/P)
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(P))
+	hugger.go_idle()
+
+/datum/ammo/xeno/hugger/slash
+	hugger_type = /obj/item/clothing/mask/facehugger/combat/slash
+
+/datum/ammo/xeno/hugger/neuro
+	hugger_type = /obj/item/clothing/mask/facehugger/combat/neuro
+
+/datum/ammo/xeno/hugger/resin
+	hugger_type = /obj/item/clothing/mask/facehugger/combat/resin
+
+/datum/ammo/xeno/hugger/acid
+	hugger_type = /obj/item/clothing/mask/facehugger/combat/acid
 
 /*
 //================================================
