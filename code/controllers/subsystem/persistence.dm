@@ -208,12 +208,13 @@ SUBSYSTEM_DEF(persistence)
 
 /datum/season_datum/weapons/guns/rifle_seasonal_three
 	name = "Burst and CQC"
-	description = "A Machinecarbine and a burst fire heavy rifle."
+	description = "A Machinecarbine, burst fire heavy rifle, and a classic shotty."
 	item_list = list(
 		/obj/item/weapon/gun/rifle/type71/seasonal = -1,
 		/obj/item/ammo_magazine/rifle/type71 = -1,
 		/obj/item/weapon/gun/rifle/alf_machinecarbine = -1,
 		/obj/item/ammo_magazine/rifle/alf_machinecarbine = -1,
+		/obj/item/weapon/gun/shotgun/pump/cmb = -1,
 		)
 
 /datum/season_datum/weapons/guns/pistol_seasonal_one
