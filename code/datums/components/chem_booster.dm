@@ -162,7 +162,7 @@
 	if(!wearer)
 		return
 	UnregisterSignal(wearer, COMSIG_KB_VALIHEAL)
-	UnregisterSignal(wearer, COMSIG_KB_HEALTHANALYZER)
+	UnregisterSignal(wearer, COMSIG_KB_SUITANALYZER)
 	UnregisterSignal(wearer, COMSIG_KB_VALICONNECT)
 	configure_action.remove_action(wearer)
 	power_action.remove_action(wearer)
@@ -186,7 +186,7 @@
 	update_resource(0)
 
 	RegisterSignal(wearer, COMSIG_KB_VALIHEAL, .proc/on_off)
-	RegisterSignal(wearer, COMSIG_KB_HEALTHANALYZER, .proc/scan_user)
+	RegisterSignal(wearer, COMSIG_KB_SUITANALYZER, .proc/scan_user)
 	RegisterSignal(wearer, COMSIG_KB_VALICONNECT, .proc/connect_weapon)
 
 /datum/component/chem_booster/process()

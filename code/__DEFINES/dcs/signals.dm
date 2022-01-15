@@ -727,7 +727,7 @@
 #define COMSIG_KB_HELMETMODULE "keybinding_helmetmodule"
 #define COMSIG_KB_VALIHEAL "keybinding_valiheal"
 #define COMSIG_KB_VALICONNECT "keybiding_valiconnect"
-#define COMSIG_KB_HEALTHANALYZER "keybinding_healthanalyzer"
+#define COMSIG_KB_SUITANALYZER "keybinding_suitanalyzer"
 
 // Ability adding/removing signals
 #define ACTION_GIVEN "gave_an_action"		//from base of /datum/action/proc/give_action(): (datum/action)

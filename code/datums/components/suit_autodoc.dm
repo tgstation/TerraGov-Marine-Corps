@@ -169,7 +169,7 @@
 	SIGNAL_HANDLER
 	if(!iscarbon(user))
 		return
-	UnregisterSignal(wearer, COMSIG_KB_HEALTHANALYZER)
+	UnregisterSignal(wearer, COMSIG_KB_SUITANALYZER)
 	remove_actions()
 	disable()
 	wearer = null
@@ -185,7 +185,7 @@
 	wearer = equipper
 	enable()
 	give_actions()
-	RegisterSignal(wearer, COMSIG_KB_HEALTHANALYZER, .proc/scan_user)
+	RegisterSignal(wearer, COMSIG_KB_SUITANALYZER, .proc/scan_user)
 
 /**
 	Disables to stop processing and calls to the signals from the user.
