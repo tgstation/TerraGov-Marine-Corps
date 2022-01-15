@@ -35,6 +35,7 @@ SUBSYSTEM_DEF(persistence)
 		/datum/season_datum/weapons/guns/copsandrobbers_seasonal,
 		/datum/season_datum/weapons/guns/smg_seasonal,
 		/datum/season_datum/weapons/guns/storm_seasonal,
+		/datum/season_datum/weapons/guns/shotgun_seasonal
 		)
 	)
 	///The saved list of custom outfits names
@@ -208,13 +209,12 @@ SUBSYSTEM_DEF(persistence)
 
 /datum/season_datum/weapons/guns/rifle_seasonal_three
 	name = "Burst and CQC"
-	description = "A Machinecarbine, burst fire heavy rifle, and a classic shotty."
+	description = "A Machinecarbine and a burst fire heavy rifle."
 	item_list = list(
 		/obj/item/weapon/gun/rifle/type71/seasonal = -1,
 		/obj/item/ammo_magazine/rifle/type71 = -1,
 		/obj/item/weapon/gun/rifle/alf_machinecarbine = -1,
 		/obj/item/ammo_magazine/rifle/alf_machinecarbine = -1,
-		/obj/item/weapon/gun/shotgun/pump/cmb = -1,
 		)
 
 /datum/season_datum/weapons/guns/pistol_seasonal_one
@@ -287,5 +287,13 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/weapon/gun/smg/ppsh = -1,
 		/obj/item/ammo_magazine/smg/ppsh = -1,
 		/obj/item/ammo_magazine/smg/ppsh/extended = -1,
+		)
+
+/datum/season_datum/weapons/guns/shotgun_seasonal
+    name = "Pumps"
+	description - "Two classic pump shotguns from older times"
+	item_list = list(
+		/obj/item/weapon/gun/shotgun/combat = -1,
+		/obj/item/weapon/gun/shotgun/pump/cmb = -1,
 		)
 
