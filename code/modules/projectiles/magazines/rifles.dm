@@ -257,7 +257,7 @@
 	default_ammo = /datum/ammo/bullet/smartmachinegun
 	max_rounds = 100
 	reload_delay = 1 SECONDS
-	wield_delay_mod =  = 0.85 SECONDS
+	wield_delay_mod = 0.85 SECONDS
 
 /obj/item/ammo_magazine/smartmachinegun/large
 	name = "\improper T-29 300 ammunition drum magazine (10x26mm)"
