@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - bugfix: "fixed autofire getting burst fire debuff on guns that has burst fire"
