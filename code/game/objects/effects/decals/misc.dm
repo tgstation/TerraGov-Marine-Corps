@@ -257,4 +257,4 @@
 	color = "#5d6384"
 
 /obj/effect/decal/corsat/symbol/sigma
-	icon_state = "sigma" 
+	icon_state = "sigma"
