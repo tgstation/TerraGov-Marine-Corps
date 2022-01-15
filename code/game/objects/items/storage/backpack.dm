@@ -247,6 +247,9 @@
 	name = "\improper lightweight IMP backpack"
 	desc = "The standard-issue pack of the TGMC forces. Designed to slug gear into the battlefield."
 	icon_state = "marinepack"
+	bypass_w_limit = list(
+		/obj/item/ammo_magazine/smartmachinegun/large, //the sins of coders have accumulated to this exception since there are no such thing as large since bulky takes that; will change in refactor
+	)
 
 /obj/item/storage/backpack/marine/standard
 	name = "\improper lightweight IMP backpack"
