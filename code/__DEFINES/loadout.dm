@@ -156,7 +156,7 @@ GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 	/obj/item/weapon/gun/rifle/standard_smartmachinegun = list(CAT_LEDSUP, "T-29 Smartmachinegun", 29 , "black"), //If a smartgunner buys T-29, then they will have 16 points, total up to 1,000 ammo
 	/obj/item/ammo_magazine/smartmachinegun/small = list(CAT_LEDSUP, "T-29 Smartmachinegun 100 ammo", 2 , "white"), //With 16 points, a T-29 smartgunner can buy at least eight 100 ammo drums
 	/obj/item/ammo_magazine/smartmachinegun = list(CAT_LEDSUP, "T-29 Smartmachinegun 200 ammo", 4 , "white"), //With 16 points, a T-29 smartgunner can purchase four 200 ammo drums
-	/obj/item/ammo_magazine/smartmachinegun/large = list(CAT_LEDSUP, "T-29 Smartmachinegun 300 ammo", 6 , "white"), //With 16 points, a T-29 smartgunner can only buy two 300 ammo drums, leaving them with a remainer of 4 points to use to either buy two 200 ammo drums, one 200 ammo drum and two 100 ammo drums, OR four 100 ammo drums
+	/obj/item/ammo_magazine/smartmachinegun/large = list(CAT_LEDSUP, "T-29 Smartmachinegun 300 ammo", 6 , "white"), //With 16 points, a T-29 smartgunner can only buy two 300 ammo drums, leaving them with a remainer of 4 points to use to either buy one 200 ammo drum or two 100 ammo drums
 	/obj/item/weapon/gun/rifle/standard_smartrifle = list(CAT_LEDSUP, "T-25 smartrifle", 30 , "black"),
 	/obj/item/ammo_magazine/rifle/standard_smartrifle = list(CAT_LEDSUP, "T-25 smartrifle magazine", 2 , "white"),
 	/obj/item/ammo_magazine/packet/t25 = list(CAT_LEDSUP, "T-25 smartrifle ammo box", 6 , "white"),
