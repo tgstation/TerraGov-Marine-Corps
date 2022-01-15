@@ -1,0 +1,6 @@
+author: "nova_epee and Fitz 'Pancake' Sholl"
+delete-after: True
+changes: 
+  - bugfix: "Dress uniform to the intended sprites. I choose not to delete the old dress uniform."
+  - imageadd: "Add service uniform; say thanks to Fitz 'Pancake' Sholl!"
+  - rscadd: "Make it easy to get service and dress uniform without having to click so much buttons."
