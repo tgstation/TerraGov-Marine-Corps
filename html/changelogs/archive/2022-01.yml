@@ -196,3 +196,6 @@
   - rscadd: Soldering tool to help squad engineers heal combat robots; you can locate
       it in essential kits.
   - balance: xenomorphs' pain hub on marines are less reliant on stamina damage.
+2022-01-15:
+  RenovatedAtol:
+  - rscadd: possibility to send large crates via supply drop
