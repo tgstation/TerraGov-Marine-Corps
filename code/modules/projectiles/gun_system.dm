@@ -1601,7 +1601,7 @@
 			. += burst_amount * burst_scatter_mult * 5
 
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if our gun is deployed, change the scatter by this number, usually a negative
-				. += deployed_scatter_change
+		. += deployed_scatter_change
 
 	if(!user?.skills.getRating("firearms")) //no training in any firearms
 		. += 15
