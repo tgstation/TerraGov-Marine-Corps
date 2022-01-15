@@ -1075,6 +1075,7 @@
 	max_w_class = 3
 	storage_slots = 25
 	max_storage_space = 50
+	flags_atom = PREVENT_CONTENTS_EXPLOSION //These ones should be safe, since they're supposed to be put in FOB
 	can_hold = list(
 		/obj/item/explosive/grenade,
 	)
