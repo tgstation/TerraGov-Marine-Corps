@@ -290,8 +290,8 @@ SUBSYSTEM_DEF(persistence)
 		)
 
 /datum/season_datum/weapons/guns/shotgun_seasonal
-    name = "Pumps"
-	description - "Two classic pump shotguns from older times"
+	name = "Pumps"
+	description = "Two classic pump shotguns from older times."
 	item_list = list(
 		/obj/item/weapon/gun/shotgun/combat = -1,
 		/obj/item/weapon/gun/shotgun/pump/cmb = -1,
