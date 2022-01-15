@@ -232,7 +232,6 @@
 	return ..()
 
 /obj/item/armor_module/module/welding/activate(mob/living/user)
-	SIGNAL_HANDLER
 	if(active)
 		DISABLE_BITFIELD(parent.flags_inventory, COVEREYES)
 		DISABLE_BITFIELD(parent.flags_inv_hide, HIDEEYES)
@@ -275,7 +274,6 @@
 	return ..()
 
 /obj/item/armor_module/module/binoculars/activate(mob/living/user)
-	SIGNAL_HANDLER
 	zoom(user)
 	active = !active
 	to_chat(user, span_notice("You toggle \the [src]. [active ? "enabling" : "disabling"] it."))
@@ -315,7 +313,6 @@
 	return ..()
 
 /obj/item/armor_module/module/antenna/activate(mob/living/user)
-	SIGNAL_HANDLER
 	var/turf/location = get_turf(src)
 	if(beacon_datum)
 		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)

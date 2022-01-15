@@ -187,7 +187,7 @@
 
 	RegisterSignal(wearer, COMSIG_KB_VALIHEAL, .proc/on_off)
 	RegisterSignal(wearer, COMSIG_KB_SUITANALYZER, .proc/scan_user)
-	RegisterSignal(wearer, COMSIG_KB_VALICONNECT, .proc/connect_weapon)
+	RegisterSignal(wearer, COMSIG_KB_VALICONNECT, .proc/vali_connect)
 
 /datum/component/chem_booster/process()
 	if(resource_storage_current < resource_drain_amount)
@@ -328,9 +328,12 @@
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(analyzer, /obj/item/healthanalyzer/.proc/attack, wearer, wearer, TRUE)
 
+/datum/component/chem_booster/proc/vali_connect(datum/source)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/connect_weapon, wearer)
+
 ///Links the held item, if compatible, to the chem booster and registers attacking with it
 /datum/component/chem_booster/proc/connect_weapon()
-	SIGNAL_HANDLER
 	if(manage_weapon_connection())
 		return
 
@@ -374,7 +377,7 @@
 	connected_weapon = weapon_to_connect
 	ENABLE_BITFIELD(connected_weapon.flags_item, NODROP)
 	RegisterSignal(connected_weapon, COMSIG_ITEM_ATTACK, .proc/drain_resource)
-	RegisterSignal(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), .proc/connect_weapon)
+	RegisterSignal(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), .proc/vali_connect)
 	return TRUE
 
 ///Handles resource collection and is ativated when attacking with a weapon.
