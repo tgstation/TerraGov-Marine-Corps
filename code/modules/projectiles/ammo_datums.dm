@@ -1618,14 +1618,13 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/energy/lasgun/marine/xray/piercing
 	name = "xray piercing bolt"
 	icon_state = "xray"
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOB
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	damage = 25
 	penetration = 100
 	max_range = 10
 	hitscan_effect_icon = "xray_beam"
 
 // Plasma //
-
 
 /datum/ammo/energy/plasma
 	name = "plasma bolt"
