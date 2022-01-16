@@ -7,12 +7,10 @@
 /area/corsat/landing/console
 	name = "\improper LZ1 'Gamma'"
 	icon_state = "corsat_telecomms"
-	requires_power = 0
 
 /area/corsat/landing/console2
 	name = "\improper LZ2 'Sigma'"
 	icon_state = "corsat_telecomms"
-	requires_power = 0
 
 /area/corsat/emergency_access
 	name = "\improper Unknown Area"
@@ -218,7 +216,6 @@
 /area/corsat/gamma/hangar/monorail/railcart
 	name = "\improper CORSAT Railcart"
 	icon_state = "railcart"
-	requires_power = 0
 	ceiling = CEILING_METAL
 
 /area/corsat/gamma/hangar/cargo
@@ -425,7 +422,6 @@
 	name = "\improper Biodome Gamma"
 	icon_state = "gamma_biodome"
 	temperature = ICE_COLONY_TEMPERATURE
-	always_unpowered = 1
 	ceiling = CEILING_GLASS
 
 /area/corsat/gamma/biodome/complex
@@ -453,22 +449,18 @@
 /area/corsat/theta/biodome
 	name = "\improper Biodome Theta"
 	icon_state = "theta_biodome"
-	always_unpowered = 1
 
 /area/corsat/theta/biodome/complex
 	name = "\improper Theta Research Complex"
 	icon_state = "theta_complex"
-	always_unpowered = 0
 
 /area/corsat/theta/biodome/hydroeast
 	name = "\improper Theta East Hydroponics Wing"
 	icon_state = "theta_hydro_east"
-	always_unpowered = 0
 
 /area/corsat/theta/biodome/hydrowest
 	name = "\improper Theta West Hydroponics Wing"
 	icon_state = "theta_hydro_west"
-	always_unpowered = 0
 
 /area/corsat/theta/airlock/west
 	name = "\improper Theta Dome West Airlock"
