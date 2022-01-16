@@ -3306,15 +3306,6 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/hallways)
-"bDJ" = (
-/obj/machinery/door/poddoor{
-	id = "OmegaHangarE";
-	name = "Landing Bay Omega"
-	},
-/obj/effect/decal/warning_stripes/box,
-/obj/effect/decal/tile/full/black,
-/turf/open/floor/grayscale/black,
-/area/corsat/omega/hangar/security)
 "bDO" = (
 /obj/machinery/light{
 	dir = 1
@@ -8143,14 +8134,6 @@
 	},
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/theta/airlock/east)
-"dZZ" = (
-/obj/machinery/door/poddoor{
-	id = "delta_omega";
-	name = "Omega Checkpoint";
-	use_power = 0
-	},
-/turf/open/floor/grayscale/black,
-/area/corsat/omega/checkpoint)
 "eaA" = (
 /obj/structure/table,
 /obj/machinery/computer3/laptop/secure_data,
@@ -15807,14 +15790,6 @@
 /obj/structure/table/woodentable,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/security)
-"hZp" = (
-/obj/machinery/door/poddoor{
-	id = "OmegaHangarNE";
-	name = "Landing Bay Omega"
-	},
-/obj/effect/decal/warning_stripes/box,
-/turf/open/floor/grayscale/black,
-/area/corsat/omega/hangar/security)
 "hZt" = (
 /obj/machinery/light{
 	dir = 1
@@ -17190,10 +17165,6 @@
 /turf/open/floor/wood,
 /area/corsat/gamma/residential/lounge)
 "iKI" = (
-/obj/machinery/door/poddoor{
-	id = "OmegaN";
-	name = "Omega Airlock"
-	},
 /obj/effect/decal/warning_stripes/box,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/airlocknorth)
@@ -21301,6 +21272,11 @@
 "kOK" = (
 /turf/open/floor/grayscale/white,
 /area/corsat/gamma/foyer)
+"kOL" = (
+/obj/effect/decal/tile/corsatstraight/cyan,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/darkgray,
+/area/corsat/omega/offices)
 "kPB" = (
 /obj/effect/decal/tile/corsatstraight/red{
 	dir = 1
@@ -28398,15 +28374,6 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/cargo)
-"onu" = (
-/obj/machinery/door/poddoor{
-	id = "OmegaHangarW";
-	name = "Landing Bay Omega"
-	},
-/obj/effect/decal/warning_stripes/box,
-/obj/effect/decal/tile/full/black,
-/turf/open/floor/grayscale/black,
-/area/corsat/omega/hangar/security)
 "onz" = (
 /obj/effect/decal/tile/corsatcorner/cyan{
 	dir = 8
@@ -28956,14 +28923,6 @@
 	},
 /turf/open/floor/grayscale/white,
 /area/corsat/gamma/medbay)
-"oFB" = (
-/obj/machinery/door/poddoor{
-	id = "OmegaHangarN";
-	name = "Landing Bay Omega"
-	},
-/obj/effect/decal/warning_stripes/box,
-/turf/open/floor/grayscale/black,
-/area/corsat/omega/hangar/security)
 "oFH" = (
 /obj/machinery/light{
 	dir = 1
@@ -33936,18 +33895,6 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/security)
-"rbA" = (
-/obj/machinery/door/poddoor{
-	id = "GammaNorthS";
-	name = "Gamma North Airlock"
-	},
-/obj/machinery/door/poddoor{
-	id = "map_lockdown";
-	name = "Gamma Lockdown";
-	use_power = 0
-	},
-/turf/open/floor/grayscale/black,
-/area/corsat/gamma/airlock/north)
 "rbB" = (
 /obj/structure/flora/pottedplant/twentytwo,
 /obj/machinery/light,
@@ -34261,15 +34208,6 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/cargo)
-"rhU" = (
-/obj/machinery/door/poddoor{
-	id = "OmegaS";
-	name = "Omega Airlock"
-	},
-/obj/effect/decal/tile/full/black,
-/obj/effect/decal/warning_stripes/box,
-/turf/open/floor/grayscale/black,
-/area/corsat/omega/airlocknorth)
 "rip" = (
 /obj/structure/table/woodentable,
 /obj/effect/decal/tile/corsatstraight/white{
@@ -41528,16 +41466,6 @@
 /obj/effect/landmark/dropship_console_spawn_lz1,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/landing/console)
-"uNe" = (
-/obj/machinery/door/poddoor{
-	id = "OmegaO";
-	name = "Omega Lockdown"
-	},
-/obj/effect/decal/tile/full/black,
-/obj/effect/decal/warning_stripes/box,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/grayscale/black,
-/area/corsat/omega/biodome)
 "uNh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -43282,16 +43210,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/round/lightgray,
 /area/corsat/sigma/dorms)
-"vHK" = (
-/obj/machinery/door/poddoor{
-	id = "GammaCheckpointS";
-	name = "Gamma Checkpoint"
-	},
-/obj/effect/decal/tile/corsatstraight/red{
-	dir = 4
-	},
-/turf/open/floor/grayscale/black,
-/area/corsat/gamma/hangar/checkpoint)
 "vHP" = (
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lamp,
@@ -44008,6 +43926,14 @@
 /obj/effect/decal/tile/corsatstraight/red,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/hangar_storage/research)
+"wgF" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/effect/decal/tile/full/black,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/omega/hallways)
 "wgI" = (
 /obj/structure/rack,
 /obj/item/cell/high,
@@ -50181,7 +50107,7 @@ oPf
 psP
 ucv
 bLr
-rIc
+kOL
 xQk
 sEc
 xQk
@@ -52157,7 +52083,7 @@ oPf
 aGj
 hTH
 toF
-rIc
+kOL
 xQk
 qmS
 xQk
@@ -52422,7 +52348,7 @@ uan
 vlN
 sMr
 wwJ
-wwJ
+wgF
 bos
 rwd
 mMw
@@ -53676,11 +53602,11 @@ cUU
 ahs
 gGq
 goV
-rhU
+jCo
 cyB
 cyB
 cyB
-uNe
+cBT
 lvq
 lvq
 vyx
@@ -62346,7 +62272,7 @@ fuu
 bHZ
 jfT
 txm
-onu
+bHZ
 fuu
 fuu
 bDS
@@ -62579,7 +62505,7 @@ fPC
 gyz
 tux
 hLK
-oFB
+jfT
 lRL
 tIt
 lRL
@@ -63334,7 +63260,7 @@ fuu
 bHZ
 jfT
 txm
-bDJ
+bHZ
 tPd
 peB
 nki
@@ -63571,7 +63497,7 @@ fuu
 jfT
 jfT
 ncZ
-hZp
+jfT
 fuu
 fuu
 tPd
@@ -64227,7 +64153,7 @@ qEx
 qEx
 qEx
 qEx
-rbA
+qEx
 weA
 uJR
 jMd
@@ -66975,7 +66901,7 @@ hdM
 vlT
 iGJ
 ogs
-dZZ
+sLe
 hdM
 aYk
 sLe
@@ -80249,7 +80175,7 @@ aob
 iNh
 iNh
 iNh
-vHK
+iNh
 drm
 cya
 daD
