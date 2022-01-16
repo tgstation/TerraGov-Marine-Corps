@@ -83,12 +83,12 @@ SUBSYSTEM_DEF(evacuation)
 	GLOB.enter_allowed = FALSE
 	evac_time = world.time
 	evac_status = EVACUATION_STATUS_INITIATING
-	priority_announce("Emergency evacuation has been triggered. Please proceed to the escape pods.", "Priority Alert", sound = 'sound/AI/evacuate.ogg')
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_EVACUATION_STARTED)
+	priority_announce("Emergency evacuation has been triggered. Please proceed to the escape pods. Evacuation in [EVACUATION_AUTOMATIC_DEPARTURE/600] minutes.", "Priority Alert", sound = 'sound/AI/evacuate.ogg')
 	xeno_message("A wave of adrenaline ripples through the hive. The fleshy creatures are trying to escape!")
 	pod_list = SSshuttle.escape_pods.Copy()
-	for(var/i in pod_list)
-		var/obj/docking_port/mobile/escape_pod/P = i
-		P.prep_for_launch()
+	for(var/obj/docking_port/mobile/escape_pod/pod AS in pod_list)
+		pod.prep_for_launch()
 	return TRUE
 
 
@@ -107,9 +107,8 @@ SUBSYSTEM_DEF(evacuation)
 	evac_time = null
 	evac_status = EVACUATION_STATUS_STANDING_BY
 	priority_announce("Evacuation has been cancelled.", "Priority Alert", sound = 'sound/AI/evacuate_cancelled.ogg')
-	for(var/i in pod_list)
-		var/obj/docking_port/mobile/escape_pod/P = i
-		P.unprep_for_launch()
+	for(var/obj/docking_port/mobile/escape_pod/pod AS in pod_list)
+		pod.unprep_for_launch()
 	return TRUE
 
 

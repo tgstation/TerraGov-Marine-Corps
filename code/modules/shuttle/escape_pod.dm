@@ -5,7 +5,7 @@
 	width = 5
 	height = 4
 	launch_status = UNLAUNCHED
-	ignitionTime = 8 SECONDS
+	ignitionTime = 30 SECONDS
 	var/can_launch = FALSE
 
 	var/list/doors = list()

@@ -370,6 +370,19 @@
 /obj/machinery/door/airlock/mainship/secure/evac
 	name = "\improper Evacuation Airlock"
 
+/obj/machinery/door/airlock/mainship/secure/evac/Initialize()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_EVACUATION_STARTED, .proc/force_open)
+
+///Force open that door
+/obj/machinery/door/airlock/mainship/secure/proc/force_open()
+	SIGNAL_HANDLER
+	if(!density)
+		return
+	unlock()
+	INVOKE_ASYNC(src, /obj/machinery/door/proc/open)
+	lock()
+
 /obj/machinery/door/airlock/mainship/secure/rebel/evac
 	name = "\improper Evacuation Airlock"
 
