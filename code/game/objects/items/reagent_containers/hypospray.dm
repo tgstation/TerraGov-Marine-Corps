@@ -390,7 +390,7 @@
 	name = "Hypervene hypospray"
 	desc = "A hypospray loaded with hypervene."
 	list_reagents = list(
-		/datum/reagent/medicine/hypervene = 60,
+		/datum/reagent/hypervene = 60,
 	)
 
 /obj/item/reagent_containers/hypospray/advanced/peridaxon
