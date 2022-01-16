@@ -123,6 +123,7 @@
 
 
 /datum/preferences/proc/update_preview_icon()
+	set waitfor = FALSE
 	// Determine what job is marked as 'High' priority, and dress them up as such.
 	var/datum/job/previewJob
 	var/highest_pref = JOBS_PRIORITY_NEVER
