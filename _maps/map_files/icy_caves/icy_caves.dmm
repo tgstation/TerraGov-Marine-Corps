@@ -6891,10 +6891,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
-"Iq" = (
-/obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/icy_caves/outpost/outside/center)
 "Ir" = (
 /turf/closed/ice/thin/junction{
 	dir = 4
@@ -9320,10 +9316,6 @@
 /obj/structure/table,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
-"Vp" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/icy_caves/outpost/outside/center)
 "Vq" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -17648,7 +17640,7 @@ my
 my
 Iw
 DD
-Vp
+DD
 DD
 nM
 YQ
@@ -17801,10 +17793,10 @@ my
 my
 my
 my
-JW
+my
 my
 DD
-Iq
+DD
 DD
 nM
 YQ
@@ -17960,7 +17952,7 @@ DD
 my
 my
 DD
-Vp
+DD
 DD
 XH
 YQ
@@ -18112,7 +18104,7 @@ ND
 ND
 ND
 ND
-Vp
+DD
 my
 my
 DD
@@ -18271,7 +18263,7 @@ ND
 DD
 my
 my
-Vp
+DD
 DD
 DD
 qz
@@ -18583,7 +18575,7 @@ ND
 DD
 my
 my
-Vp
+DD
 DD
 DD
 qH
