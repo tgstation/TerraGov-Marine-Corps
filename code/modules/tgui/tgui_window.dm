@@ -70,7 +70,7 @@
 		options += "titlebar=1;can_resize=1;"
 	// Generate page html
 	var/html = SStgui.basehtml
-	html = replacetextEx(html, "\[tgui:windowId]", id)
+	html = replacetextEx_char(html, "\[tgui:windowId]", id)
 	// Inject inline assets
 	var/inline_assets_str = ""
 	for(var/datum/asset/asset in inline_assets)
@@ -85,9 +85,9 @@
 		asset.send(client)
 	if(length_char(inline_assets_str))
 		inline_assets_str = "<script>\n" + inline_assets_str + "</script>\n"
-	html = replacetextEx(html, "<!-- tgui:assets -->\n", inline_assets_str)
+	html = replacetextEx_char(html, "<!-- tgui:assets -->\n", inline_assets_str)
 	// Inject custom HTML
-	html = replacetextEx(html, "<!-- tgui:html -->\n", inline_html)
+	html = replacetextEx_char(html, "<!-- tgui:html -->\n", inline_html)
 	// Open the window
 	client << browse(html, "window=[id];[options]")
 	// Detect whether the control is a browser
