@@ -1,0 +1,4 @@
+author: "yyzsong"
+delete-after: True
+changes: 
+  - balance: "Window frames may now be slashed"
