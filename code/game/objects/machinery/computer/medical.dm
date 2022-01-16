@@ -221,7 +221,7 @@
 							src.active1.fields["sex"] = "Male"
 				if("age")
 					if (istype(src.active1, /datum/data/record))
-						var/t1 = input("Please input age:", "Med. records", src.active1.fields["age"], null)  as num
+						var/t1 = tgui_input_number(usr, "Please input age:", "Med. records", src.active1.fields["age"])
 						if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active1 != a1))
 							return
 						src.active1.fields["age"] = t1
