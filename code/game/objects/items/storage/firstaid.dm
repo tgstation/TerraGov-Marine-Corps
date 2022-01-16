@@ -302,6 +302,17 @@
 	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
 	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
 
+/obj/item/storage/bottlecase/dylo
+	name = "dylovene bottle case"
+	desc = "It's a medical case for storing three dylovene bottles."
+	icon_state = "dylo_bottles_case"
+
+/obj/item/storage/bottlecase/dylo/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
+	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
+	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
+
 /obj/item/storage/bottlecase/tram
 	name = "tramadol bottle case"
 	desc = "It's a medical case for storing three tramadol bottles."
@@ -323,6 +334,17 @@
 	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
 	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
 	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+
+/obj/item/storage/bottlecase/dex
+	name = "dexalin bottle case"
+	desc = "It's a medical case for storing three dexalin bottles."
+	icon_state = "dex_bottles_case"
+
+/obj/item/storage/bottlecase/dex/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
+	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
+	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
 
 /*
 * Pill Bottles

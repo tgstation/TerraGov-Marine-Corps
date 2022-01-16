@@ -351,6 +351,13 @@
 		/datum/reagent/medicine/kelotane = 60,
 	)
 
+/obj/item/reagent_containers/hypospray/advanced/dylovene
+	name = "Dylovene hypospray"
+	desc = "A hypospray loaded with dylovene."
+	list_reagents = list(
+		/datum/reagent/medicine/dylovene = 60,
+	)
+
 /obj/item/reagent_containers/hypospray/advanced/tramadol
 	name = "Tramadol hypospray"
 	desc = "A hypospray loaded with tramadol."
@@ -370,6 +377,20 @@
 	desc = "A hypospray loaded with inaprovaline."
 	list_reagents = list(
 		/datum/reagent/medicine/inaprovaline = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/spaceacillin
+	name = "Spaceacillin hypospray"
+	desc = "A hypospray loaded with spaceacillin."
+	list_reagents = list(
+		/datum/reagent/medicine/spaceacillin = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/hypervene
+	name = "Hypervene hypospray"
+	desc = "A hypospray loaded with hypervene."
+	list_reagents = list(
+		/datum/reagent/medicine/hypervene = 60,
 	)
 
 /obj/item/reagent_containers/hypospray/advanced/peridaxon
