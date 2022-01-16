@@ -3076,7 +3076,9 @@
 /area/icy_caves/caves/northern)
 "pf" = (
 /obj/effect/ai_node,
-/turf/open/floor/tile/dark/brown2,
+/turf/open/floor/tile/dark/brown2/corner{
+	dir = 8
+	},
 /area/icy_caves/outpost/refinery)
 "pg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4726,6 +4728,10 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/garage)
+"wQ" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/brown2,
+/area/icy_caves/outpost/refinery)
 "wT" = (
 /obj/structure/lattice,
 /obj/structure/monorail{
@@ -15574,7 +15580,7 @@ DY
 DY
 DY
 Rf
-pf
+wQ
 wx
 QJ
 md
@@ -16500,7 +16506,7 @@ XJ
 Gw
 Ub
 DY
-Dv
+pf
 Pq
 XU
 DY
