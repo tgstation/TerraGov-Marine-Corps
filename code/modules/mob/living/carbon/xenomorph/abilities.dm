@@ -869,6 +869,8 @@
 	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
 	target_flags = XABB_MOB_TARGET
 	use_state_flags = XACT_USE_BUCKLED
+	/// Whatever our victim is injected with.
+	var/sting_chemical = /datum/reagent/toxin/xeno_neurotoxin
 
 /datum/action/xeno_action/activable/neurotox_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -906,7 +908,18 @@
 	GLOB.round_statistics.sentinel_neurotoxin_stings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "sentinel_neurotoxin_stings")
 
-	X.recurring_injection(A, /datum/reagent/toxin/xeno_neurotoxin, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
+	X.recurring_injection(A, sting_chemical, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
+
+//Ozelomelyn Sting
+/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn
+	name = "Ozelomelyn Sting"
+	action_icon_state = "drone_sting"
+	mechanics_text = "A channeled melee attack that injects the target with Ozelomelyn over a few seconds, purging chemicals and dealing minor toxin damage to a moderate cap while inside them."
+	ability_name = "ozelomelyn sting"
+	cooldown_timer = 25 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_OZELOMELYN_STING
+	plasma_cost = 100
+	sting_chemical = /datum/reagent/toxin/xeno_ozelomelyn
 
 
 // ***************************************

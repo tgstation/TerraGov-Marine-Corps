@@ -1,0 +1,5 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - expansion: "General speak and other text/number inputs have been converted to TGUI, option to disable, swap submit/cancel and bigger buttons have been added to game settings on character setup."
+  - bugfix: "UI's shoulnd't crash anymore when reloading a TGUI UI(F5) and should send full data needed."

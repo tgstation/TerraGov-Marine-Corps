@@ -1,0 +1,7 @@
+author: "Bizzonium"
+delete-after: True
+changes: 
+  - bugfix: "Ported fixes of SStimer subsystem from RU SS220 Paradise"
+  - config: "Added a new config var: flag/log_timers_on_bucket_reset"
+  - bugfix: "fixed potential bucket corruption in timer reset_buckets"
+  - bugfix: "timers not removing from second queue on init"

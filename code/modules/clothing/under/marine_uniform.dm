@@ -171,11 +171,19 @@
 	icon_state = "research_jumpsuit"
 
 /obj/item/clothing/under/whites
-	name = "\improper TGMC dress uniform"
-	desc = "A standard-issue Marine dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. doesn't seem to fit perfectly around the waist though."
+	name = "\improper TGMC white dress uniform"
+	desc = "A standard-issue TerraGov Marine Corps white dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. Doesn't seem to fit perfectly around the waist though."
 	siemens_coefficient = 0.9
 	icon_state = "marine_whites" //with thanks to Manezinho
+	item_state = "marine_whites" //with thanks to Manezinho
 	adjustment_variants = list()
+
+/obj/item/clothing/under/service
+	name = "\improper TGMC service uniform"
+	desc = "A standard-issue TerraGov Marine Corps dress uniform. Sometimes, you hate wearing this since you remember wearing this to Infantry School and have to wear this when meeting a commissioned officer. This is what you wear when you are not deployed and are working in an office. Doesn't seem to fit perfectly around the waist."
+	siemens_coefficient = 0.9
+	icon_state = "marine_service" //with thanks to Fitz 'Pancake' Sholl
+	item_state = "marine_service" //with thanks to Fitz 'Pancake' Sholl
 
 /*=========================RESPONDERS================================*/
 

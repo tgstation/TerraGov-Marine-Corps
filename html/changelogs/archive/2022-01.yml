@@ -177,3 +177,39 @@
   hyper2snyper:
   - bugfix: Miniflamers vended from the loadout vendor will have the proper attachments
       equipped.
+2022-01-13:
+  Waselon:
+  - bugfix: fixes harvester bicardine attack
+2022-01-14:
+  BraveMole:
+  - qol: Xeno no longer kill weeds when clicking it
+  - bugfix: Fix bipod exploit
+  - bugfix: Prevent ais from nocliping through shutters
+  - qol: Gun attachment are activated by default when you attach them
+  Waselon:
+  - balance: rocket hammer balance pass
+  novaepee:
+  - bugfix: RO, CIC, and AI can now talk in req radio again
+  - balance: Deletes screenshake from A19 impact.
+  - rscadd: Researcher FINALLY get researcher minimap icon!
+  - imageadd: funny researcher minimap_icon
+  - rscadd: Soldering tool to help squad engineers heal combat robots; you can locate
+      it in essential kits.
+  - balance: xenomorphs' pain hub on marines are less reliant on stamina damage.
+2022-01-15:
+  RenovatedAtol:
+  - rscadd: possibility to send large crates via supply drop
+2022-01-16:
+  Lewdcifer:
+  - balance: Drain gas nade box removed from requisitions's vendor.
+  - balance: Explosion screenshake reduced.
+  - balance: CAS tanglefoot rocket cost 50 > 150.
+  - rscdel: Projectile screenshake removed.
+  SplinterGP:
+  - bugfix: fixed autofire getting burst fire debuff on guns that has burst fire
+  nova_epee and Fitz 'Pancake' Sholl:
+  - bugfix: Dress uniform to the intended sprites. I choose not to delete the old
+      dress uniform.
+  - imageadd: Add service uniform; say thanks to Fitz 'Pancake' Sholl!
+  - rscadd: Make it easy to get service and dress uniform without having to click
+      so much buttons.
