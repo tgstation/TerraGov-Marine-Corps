@@ -558,10 +558,6 @@
 	},
 /turf/open/floor/grayscale/round,
 /area/corsat/gamma/medbay)
-"anr" = (
-/obj/effect/decal/tile/full/black,
-/turf/open/floor/grayscale/round/black,
-/area/corsat/sigma/cargo)
 "anR" = (
 /obj/structure/table/mainship,
 /obj/item/paper,
@@ -1041,6 +1037,13 @@
 	dir = 8
 	},
 /area/corsat/sigma/south/complex/teleporter)
+"axx" = (
+/obj/structure/filingcabinet/filingcabinet,
+/obj/effect/decal/tile/corsatstraight/cyan{
+	dir = 1
+	},
+/turf/open/floor/grayscale/darkgray,
+/area/corsat/sigma/airlock/east)
 "axQ" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -1262,11 +1265,6 @@
 	},
 /turf/closed/wall/r_wall/unmeltable,
 /area/corsat/sigma/hangar/id)
-"aBT" = (
-/obj/structure/table/woodentable,
-/obj/effect/decal/tile/full/black,
-/turf/open/floor/grayscale/round/black,
-/area/corsat/gamma/security)
 "aBW" = (
 /obj/effect/decal/tile/corsatcorner/white{
 	dir = 1
@@ -1554,19 +1552,6 @@
 	icon_state = "warnplate"
 	},
 /area/corsat/dropzone/landingzonetwo)
-"aKT" = (
-/obj/item/mecha_parts/part/durand_right_leg,
-/obj/effect/decal/warning_stripes/smallstripevertical,
-/obj/effect/decal/warning_stripes/smallstripevertical{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/box/arrow{
-	dir = 4
-	},
-/turf/open/floor/grayscale/edge/black{
-	dir = 4
-	},
-/area/corsat/sigma/south/robotics)
 "aKU" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/security{
@@ -1966,6 +1951,7 @@
 	dir = 8
 	},
 /obj/machinery/computer/station_alert,
+/obj/effect/decal/tile/corsatstraight/cyan,
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/airlock/east)
 "aTW" = (
@@ -2339,6 +2325,13 @@
 	},
 /turf/open/floor/tile/bar,
 /area/corsat/gamma/residential/west)
+"bdV" = (
+/obj/effect/decal/tile/corsatstraight/brown{
+	dir = 1
+	},
+/obj/machinery/disposal,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/sigma/cargo)
 "beo" = (
 /obj/machinery/atmospherics/pipe/manifold/green,
 /obj/structure/cable,
@@ -4417,12 +4410,6 @@
 /obj/structure/sign/safety/airlock,
 /turf/closed/wall/r_wall,
 /area/corsat/gamma/hangar/checkpoint)
-"chv" = (
-/obj/effect/landmark/corpsespawner/security,
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/effect/decal/tile/full/black,
-/turf/open/floor/grayscale/round/black,
-/area/corsat/gamma/security)
 "chA" = (
 /obj/machinery/camera/autoname{
 	dir = 4;
@@ -4607,12 +4594,6 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/airlock/south/id)
-"clU" = (
-/obj/structure/table/mainship,
-/obj/item/folder/black_random,
-/obj/effect/decal/tile/full/darkgray,
-/turf/open/floor/grayscale/darkgray,
-/area/corsat/sigma/southeast/dataoffice)
 "clZ" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -4735,6 +4716,7 @@
 /obj/machinery/computer/security{
 	network = list("sigma")
 	},
+/obj/effect/decal/tile/corsatstraight/cyan,
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/airlock/east)
 "cpY" = (
@@ -5901,6 +5883,10 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/hangar/security)
+"cRg" = (
+/obj/effect/decal/tile/full/darkgray,
+/turf/open/floor/grayscale/darkgray,
+/area/corsat/sigma/southeast/dataoffice)
 "cRy" = (
 /obj/effect/decal/tile/corsatstraight/purple{
 	dir = 1
@@ -6020,11 +6006,6 @@
 	},
 /turf/open/floor/plating,
 /area/corsat/sigma/checkpoint)
-"cTY" = (
-/obj/effect/decal/tile/full/black,
-/obj/machinery/disposal,
-/turf/open/floor/grayscale/black,
-/area/corsat/gamma/hydroponics)
 "cUp" = (
 /obj/machinery/camera/autoname{
 	dir = 1;
@@ -6175,6 +6156,12 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/hangar/id)
+"cYh" = (
+/obj/effect/decal/tile/corsatstraight/cyan{
+	dir = 1
+	},
+/turf/open/floor/grayscale/darkgray,
+/area/corsat/sigma/airlock/east)
 "cYi" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2;
@@ -6409,18 +6396,6 @@
 "dgX" = (
 /turf/open/floor/grayscale/darkred,
 /area/corsat/omega/offices)
-"dhe" = (
-/obj/effect/decal/warning_stripes/smallstripevertical{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/smallstripevertical,
-/obj/effect/decal/warning_stripes/box/arrow{
-	dir = 4
-	},
-/turf/open/floor/grayscale/edge/black{
-	dir = 4
-	},
-/area/corsat/gamma/engineering/core)
 "dhg" = (
 /obj/effect/decal/tile/corsatcorner/darkgreen{
 	dir = 4
@@ -6762,9 +6737,6 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/white,
 /area/corsat/sigma/dorms)
-"dqE" = (
-/turf/open/floor/grayscale/round/black,
-/area/corsat/gamma/hallwaysouth)
 "dqN" = (
 /obj/structure/flora/pottedplant,
 /obj/effect/decal/tile/corsatstraight/cyan{
@@ -6878,6 +6850,7 @@
 "dtS" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/atmos_alert,
+/obj/effect/decal/tile/corsatstraight/cyan,
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/airlock/east)
 "dud" = (
@@ -7831,6 +7804,7 @@
 /obj/item/clipboard,
 /obj/item/paper,
 /obj/item/tool/pen/blue,
+/obj/effect/decal/tile/corsatstraight/cyan,
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/airlock/east)
 "dRn" = (
@@ -8886,6 +8860,7 @@
 /area/corsat/gamma/sigmaremote)
 "etk" = (
 /obj/vehicle/train/cargo/trolley,
+/obj/effect/decal/warning_stripes/box/empty,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/sigma/cargo)
 "ets" = (
@@ -9382,6 +9357,9 @@
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
+/obj/effect/decal/tile/corsatcorner/cyan{
+	dir = 1
+	},
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/airlock/east)
 "eHu" = (
@@ -9576,6 +9554,10 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/biodome)
+"eMD" = (
+/obj/effect/decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/security)
 "eML" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -9963,12 +9945,6 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/shuttle/dropship,
 /area/corsat/gamma/hangar/monorail/railcart)
-"eXo" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/grayscale/round/black,
-/area/corsat/gamma/hallwaysouth)
 "eXX" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -10211,14 +10187,6 @@
 /obj/item/ashtray/bronze,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/hangar/cargo)
-"fdO" = (
-/obj/structure/table/mainship,
-/obj/item/clipboard,
-/obj/item/paper,
-/obj/item/tool/pen/blue,
-/obj/effect/decal/tile/full/darkgray,
-/turf/open/floor/grayscale/darkgray,
-/area/corsat/sigma/southeast/dataoffice)
 "fdW" = (
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/cargo)
@@ -10260,11 +10228,6 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/south/engineering)
-"feF" = (
-/obj/effect/decal/tile/full/black,
-/obj/effect/decal/warning_stripes/box/empty,
-/turf/open/floor/grayscale/black,
-/area/corsat/gamma/cargo)
 "feG" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -10723,11 +10686,6 @@
 /obj/effect/decal/tile/corsatstraight/green,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/hangar/monorail)
-"fql" = (
-/obj/effect/ai_node,
-/obj/effect/decal/tile/full/black,
-/turf/open/floor/grayscale/black,
-/area/corsat/sigma/southeast/generator)
 "fqE" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -11064,6 +11022,11 @@
 	},
 /turf/open/floor/grayscale/round/darkgray,
 /area/corsat/sigma/airlock/south)
+"fzl" = (
+/obj/effect/decal/tile/full/black,
+/obj/effect/decal/corsat/symbol/gamma,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/hallwaysouth)
 "fzm" = (
 /obj/structure/stairs{
 	dir = 4
@@ -11887,11 +11850,6 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/southeast/generator)
-"fUq" = (
-/obj/effect/decal/tile/full/black,
-/obj/effect/decal/corsat/symbol/omega,
-/turf/open/floor/grayscale/black,
-/area/corsat/omega/airlocknorth)
 "fUs" = (
 /obj/machinery/atmospherics/pipe/manifold/green,
 /obj/structure/cable,
@@ -11940,10 +11898,8 @@
 /turf/open/floor/grayscale/white,
 /area/corsat/omega/complex)
 "fVd" = (
-/obj/structure/showcase{
-	name = "Processor Unit"
-	},
 /obj/effect/decal/tile/full/black,
+/obj/machinery/telecomms/processor,
 /turf/open/floor/grayscale/white,
 /area/corsat/inaccessible)
 "fVh" = (
@@ -11988,6 +11944,10 @@
 /obj/effect/decal/corsat/symbol/sigma,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/airlock/south)
+"fWC" = (
+/obj/effect/decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/sigma/cargo)
 "fWI" = (
 /obj/machinery/door/airlock/mainship/engineering{
 	dir = 2;
@@ -12347,6 +12307,20 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/residential)
+"ghm" = (
+/obj/effect/decal/warning_stripes/smallstripevertical{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/smallstripevertical{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/edge/black{
+	dir = 8
+	},
+/area/corsat/gamma/engineering/core)
 "ghq" = (
 /obj/structure/bed/chair/office/light{
 	dir = 4
@@ -12702,6 +12676,14 @@
 	},
 /turf/open/floor/grayscale/round/black,
 /area/corsat/sigma/cargo)
+"gpu" = (
+/obj/effect/decal/warning_stripes/smallstripe{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/smallstripe,
+/obj/effect/decal/warning_stripes/box/arrow,
+/turf/open/floor/grayscale/edge/black,
+/area/corsat/sigma/cargo)
 "gpx" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
 	name = "\improper Morgue"
@@ -12944,10 +12926,8 @@
 	},
 /area/corsat/gamma/residential/showers)
 "gvK" = (
-/obj/structure/showcase{
-	name = "Subspace Receiver"
-	},
 /obj/effect/decal/tile/full/black,
+/obj/machinery/telecomms/receiver,
 /turf/open/floor/grayscale/white,
 /area/corsat/inaccessible)
 "gwa" = (
@@ -13763,11 +13743,6 @@
 	icon_state = "warnplate"
 	},
 /area/corsat/dropzone/landingzoneone)
-"gRc" = (
-/obj/effect/decal/tile/full/black,
-/obj/effect/decal/corsat/symbol/sigma,
-/turf/open/floor/grayscale/black,
-/area/corsat/sigma/north)
 "gRh" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4
@@ -14153,6 +14128,9 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/airlock/east/id)
+"gZF" = (
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/hallwaysouth)
 "gZJ" = (
 /turf/closed/wall,
 /area/corsat/sigma/airlock/south)
@@ -14963,6 +14941,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/maint)
+"hyZ" = (
+/obj/structure/table/mainship,
+/obj/item/folder/black_random,
+/obj/effect/decal/tile/full/darkgray,
+/turf/open/floor/grayscale/darkgray,
+/area/corsat/sigma/southeast/dataoffice)
 "hzj" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
@@ -15030,6 +15014,12 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/dorms)
+"hAx" = (
+/obj/effect/landmark/corpsespawner/security,
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/security)
 "hAH" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -15141,6 +15131,11 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/hangar/office)
+"hEj" = (
+/obj/effect/decal/tile/full/black,
+/obj/machinery/disposal,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/hydroponics)
 "hEG" = (
 /obj/machinery/light{
 	dir = 8
@@ -16489,11 +16484,6 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/hangar/security)
-"ipo" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/tile/corsatcorner/white,
-/turf/open/floor/grayscale/round/black,
-/area/corsat/gamma/residential/east)
 "iql" = (
 /turf/open/floor/grayscale/round/black,
 /area/corsat/sigma/southeast/datalab)
@@ -16666,6 +16656,9 @@
 /obj/machinery/camera/autoname{
 	dir = 1;
 	network = list("sigma")
+	},
+/obj/effect/decal/tile/corsatstraight/cyan{
+	dir = 1
 	},
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/airlock/east)
@@ -18253,6 +18246,9 @@
 	},
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/security)
+"jjY" = (
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/airlock/north)
 "jkd" = (
 /turf/closed/wall/r_wall,
 /area/corsat/omega/containment)
@@ -19042,6 +19038,10 @@
 /obj/effect/decal/tile/full/darkgray,
 /turf/open/floor/grayscale/round/darkgray,
 /area/corsat/omega/offices)
+"jEE" = (
+/obj/effect/decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/sigma/south/security)
 "jEJ" = (
 /obj/structure/filingcabinet/filingcabinet,
 /obj/effect/decal/tile/corsatstraight/yellow{
@@ -19137,6 +19137,9 @@
 "jGs" = (
 /obj/machinery/light,
 /obj/machinery/photocopier,
+/obj/effect/decal/tile/corsatstraight/cyan{
+	dir = 1
+	},
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/airlock/east)
 "jGJ" = (
@@ -19519,6 +19522,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/round,
 /area/corsat/sigma/airlock/east)
+"jQF" = (
+/obj/structure/table/woodentable,
+/obj/effect/decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/security)
 "jQO" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
@@ -20261,7 +20269,18 @@
 /obj/vehicle/train/cargo/engine{
 	dir = 2
 	},
-/turf/open/floor/grayscale/round/black,
+/obj/effect/decal/warning_stripes/smallstripevertical{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/smallstripevertical{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/edge/black{
+	dir = 8
+	},
 /area/corsat/sigma/cargo)
 "kkh" = (
 /obj/machinery/door/airlock/mainship/maint{
@@ -20309,6 +20328,7 @@
 "kkU" = (
 /obj/structure/closet/crate/science,
 /obj/item/storage/fancy/vials,
+/obj/effect/decal/warning_stripes/box/empty,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/sigma/cargo)
 "kkY" = (
@@ -21154,6 +21174,7 @@
 /area/corsat/gamma/sigmaremote)
 "kFQ" = (
 /obj/structure/flora/pottedplant,
+/obj/effect/decal/tile/corsatstraight/cyan,
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/airlock/east)
 "kGd" = (
@@ -22307,6 +22328,11 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/engineering/atmos)
+"ljK" = (
+/obj/effect/ai_node,
+/obj/effect/decal/tile/full/black,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/southeast/generator)
 "ljO" = (
 /obj/machinery/atmospherics/pipe/manifold/green{
 	dir = 4
@@ -22430,15 +22456,6 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/security)
-"lmd" = (
-/obj/structure/table/mainship,
-/obj/effect/decal/tile/corsatstraight/yellow{
-	dir = 4
-	},
-/obj/effect/spawner/random/tool,
-/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster,
-/turf/open/floor/grayscale/round/black,
-/area/corsat/sigma/south/robotics)
 "lme" = (
 /obj/machinery/autolathe,
 /obj/effect/decal/tile/corsatstraight/lightpurple{
@@ -22881,20 +22898,6 @@
 	},
 /turf/open/floor/wood,
 /area/corsat/sigma/cafe)
-"lwR" = (
-/obj/effect/decal/warning_stripes/smallstripe{
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/smallstripe{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/box/arrow{
-	dir = 1
-	},
-/turf/open/floor/grayscale/edge/black{
-	dir = 1
-	},
-/area/corsat/sigma/southeast/generator)
 "lwW" = (
 /obj/effect/decal/tile/corsatsemi/yellow{
 	dir = 1
@@ -22975,6 +22978,14 @@
 /obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/residential)
+"lzr" = (
+/obj/structure/rack,
+/obj/effect/decal/tile/corsatsemi/yellow{
+	dir = 1
+	},
+/obj/effect/spawner/random/tool,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/sigma/south/robotics)
 "lzx" = (
 /turf/open/floor/grayscale/round,
 /area/corsat/gamma/medbay/lobby)
@@ -22991,20 +23002,6 @@
 	},
 /turf/open/floor/tile/blue/whitebluefull,
 /area/corsat/sigma/laundry)
-"lzH" = (
-/obj/effect/decal/warning_stripes/smallstripevertical{
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/smallstripevertical{
-	dir = 8
-	},
-/obj/effect/decal/warning_stripes/box/arrow{
-	dir = 8
-	},
-/turf/open/floor/grayscale/edge/black{
-	dir = 8
-	},
-/area/corsat/sigma/south/robotics)
 "lzN" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -23410,6 +23407,13 @@
 /obj/structure/morgue,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/medbay/morgue)
+"lLl" = (
+/obj/effect/decal/tile/corsatcorner/brown{
+	dir = 8
+	},
+/obj/effect/decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/sigma/cargo)
 "lLn" = (
 /obj/effect/decal/tile/corsatstraight/yellow{
 	dir = 8
@@ -23476,6 +23480,7 @@
 	use_power = 0
 	},
 /obj/structure/table/reinforced,
+/obj/effect/decal/tile/corsatsemi/cyan,
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/airlock/east)
 "lMM" = (
@@ -23982,13 +23987,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/round/darkgray,
 /area/corsat/omega/offices)
-"may" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/tile/corsatcorner/white{
-	dir = 8
-	},
-/turf/open/floor/grayscale/round/black,
-/area/corsat/gamma/residential/east)
 "maB" = (
 /obj/structure/bed/chair/comfy/black,
 /obj/effect/decal/tile/corsatstraight/brown{
@@ -24206,6 +24204,13 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/hangar/arrivals)
+"mfI" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/tile/corsatcorner/white{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/residential/east)
 "mfN" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -24785,6 +24790,21 @@
 /obj/effect/decal/tile/full/black,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/biodome)
+"mva" = (
+/obj/item/mecha_parts/part/durand_left_arm,
+/obj/effect/decal/warning_stripes/smallstripevertical{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/smallstripevertical{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/edge/black{
+	dir = 8
+	},
+/area/corsat/sigma/south/robotics)
 "mve" = (
 /obj/structure/table/reinforced,
 /obj/item/flashlight/lamp,
@@ -24827,9 +24847,27 @@
 	},
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/south/offices)
+"mwY" = (
+/obj/structure/cable,
+/obj/effect/decal/warning_stripes/smallstripe{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/smallstripe{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 1
+	},
+/turf/open/floor/grayscale/edge/black{
+	dir = 1
+	},
+/area/corsat/sigma/southeast/generator)
 "mxc" = (
 /obj/structure/table/mainship,
 /obj/effect/decal/tile/full/darkgray,
+/obj/structure/flora/pottedplant{
+	pixel_y = 14
+	},
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/airlock/south)
 "mxq" = (
@@ -25392,6 +25430,9 @@
 "mLO" = (
 /obj/machinery/light,
 /obj/structure/filingcabinet/filingcabinet,
+/obj/effect/decal/tile/corsatstraight/cyan{
+	dir = 1
+	},
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/airlock/east)
 "mLV" = (
@@ -25405,10 +25446,6 @@
 /obj/effect/decal/tile/corsatstraight/red,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/checkpoint)
-"mLW" = (
-/obj/effect/decal/tile/full/black,
-/turf/open/floor/grayscale/round/black,
-/area/corsat/sigma/south/security)
 "mMh" = (
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
@@ -27200,6 +27237,14 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/cargo)
+"nCa" = (
+/obj/structure/rack,
+/obj/effect/decal/tile/corsatstraight/yellow{
+	dir = 1
+	},
+/obj/item/book/manual/ripley_build_and_repair,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/sigma/south/robotics)
 "nCu" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/cans/beer,
@@ -27472,20 +27517,6 @@
 /obj/effect/decal/warning_stripes/box/empty,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/cargo)
-"nNr" = (
-/obj/effect/decal/warning_stripes/smallstripevertical{
-	dir = 8
-	},
-/obj/effect/decal/warning_stripes/smallstripevertical{
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/box/arrow{
-	dir = 8
-	},
-/turf/open/floor/grayscale/edge/black{
-	dir = 8
-	},
-/area/corsat/gamma/engineering/core)
 "nNs" = (
 /obj/machinery/camera/autoname{
 	network = list("gamma")
@@ -27586,13 +27617,6 @@
 /obj/effect/decal/warning_stripes/box/empty,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/freezer)
-"nQa" = (
-/obj/effect/decal/tile/corsatcorner/brown{
-	dir = 8
-	},
-/obj/effect/decal/tile/full/black,
-/turf/open/floor/grayscale/round/black,
-/area/corsat/sigma/cargo)
 "nQu" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
@@ -29644,6 +29668,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/white,
 /area/corsat/gamma/rnr)
+"oSD" = (
+/obj/effect/decal/tile/full/black,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/cargo)
 "oSJ" = (
 /obj/structure/table,
 /obj/effect/decal/tile/corsatstraight/white{
@@ -30233,6 +30262,20 @@
 /obj/effect/decal/corsat/symbol/gamma,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/residential/east)
+"phA" = (
+/obj/effect/decal/warning_stripes/smallstripevertical{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/smallstripevertical{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/edge/black{
+	dir = 8
+	},
+/area/corsat/sigma/south/robotics)
 "phC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -32701,10 +32744,6 @@
 	},
 /turf/open/floor/grayscale/round/black,
 /area/corsat/sigma/cargo)
-"qvb" = (
-/obj/structure/table/reinforced,
-/turf/open/floor/grayscale/white,
-/area/corsat/gamma/sigmaremote)
 "qvv" = (
 /obj/structure/flora/pottedplant/ten,
 /turf/open/floor/wood,
@@ -34036,6 +34075,20 @@
 /obj/effect/decal/tile/full/black,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/hangar/arrivals)
+"qXu" = (
+/obj/effect/decal/warning_stripes/smallstripe{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/smallstripe{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 1
+	},
+/turf/open/floor/grayscale/edge/black{
+	dir = 1
+	},
+/area/corsat/sigma/southeast/generator)
 "qXX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
@@ -34067,14 +34120,6 @@
 /obj/effect/decal/tile/full/black,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/hangar)
-"qYh" = (
-/obj/structure/rack,
-/obj/effect/decal/tile/corsatsemi/yellow{
-	dir = 1
-	},
-/obj/effect/spawner/random/tool,
-/turf/open/floor/grayscale/round/black,
-/area/corsat/sigma/south/robotics)
 "qYq" = (
 /obj/machinery/door/airlock/mainship/engineering{
 	name = "Chief Engineer's Office"
@@ -35060,6 +35105,11 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/control)
+"ryF" = (
+/obj/structure/bed/chair,
+/obj/effect/decal/tile/full/black,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/hallwaysouth)
 "ryK" = (
 /turf/open/floor/mainship{
 	dir = 5
@@ -35510,6 +35560,19 @@
 	},
 /turf/open/floor/grayscale/round/lightgray,
 /area/corsat/omega/complex)
+"rLe" = (
+/obj/item/mecha_parts/part/durand_right_leg,
+/obj/effect/decal/warning_stripes/smallstripevertical,
+/obj/effect/decal/warning_stripes/smallstripevertical{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 4
+	},
+/turf/open/floor/grayscale/edge/black{
+	dir = 4
+	},
+/area/corsat/sigma/south/robotics)
 "rLj" = (
 /obj/effect/decal/tile/corsatstraight/yellow{
 	dir = 8
@@ -35547,9 +35610,6 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/hydroponics)
-"rLR" = (
-/turf/open/floor/grayscale/round/black,
-/area/corsat/gamma/airlock/north)
 "rLW" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/grayscale/white,
@@ -36331,11 +36391,6 @@
 	},
 /turf/open/floor/grayscale/round,
 /area/corsat/gamma/sigmaremote)
-"seQ" = (
-/obj/structure/bed/chair,
-/obj/effect/decal/tile/full/black,
-/turf/open/floor/grayscale/black,
-/area/corsat/gamma/hallwaysouth)
 "seU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -36577,8 +36632,9 @@
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/hydroponics)
 "slr" = (
-/turf/open/space/basic,
-/area/corsat/emergency_access)
+/obj/effect/decal/tile/corsatstraight/green,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/hangar/monorail)
 "sls" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/electrical,
@@ -36736,6 +36792,11 @@
 	},
 /turf/open/floor/grayscale/white,
 /area/corsat/gamma/rnr)
+"sqX" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/tile/corsatcorner/white,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/residential/east)
 "srd" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -36828,19 +36889,6 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/white,
 /area/corsat/gamma/rnr)
-"ssu" = (
-/obj/effect/decal/warning_stripes/box/empty,
-/obj/effect/decal/warning_stripes/smallstripevertical,
-/obj/effect/decal/warning_stripes/smallstripevertical{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/box/arrow{
-	dir = 4
-	},
-/turf/open/floor/grayscale/edge/black{
-	dir = 4
-	},
-/area/corsat/gamma/cargo)
 "ssC" = (
 /obj/structure/table/woodentable,
 /obj/item/folder/blue,
@@ -37134,6 +37182,19 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/cargo)
+"syZ" = (
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/smallstripevertical,
+/obj/effect/decal/warning_stripes/smallstripevertical{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 4
+	},
+/turf/open/floor/grayscale/edge/black{
+	dir = 4
+	},
+/area/corsat/gamma/cargo)
 "szp" = (
 /obj/structure/bed/chair,
 /obj/effect/decal/tile/corsatsemi/white,
@@ -37263,21 +37324,6 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/south/engineering)
-"sBy" = (
-/obj/structure/cable,
-/obj/effect/decal/warning_stripes/smallstripe{
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/smallstripe{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/box/arrow{
-	dir = 1
-	},
-/turf/open/floor/grayscale/edge/black{
-	dir = 1
-	},
-/area/corsat/sigma/southeast/generator)
 "sBR" = (
 /obj/machinery/camera/autoname{
 	network = list("sigma")
@@ -37422,6 +37468,20 @@
 /obj/effect/decal/tile/full/black,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/hangar)
+"sGe" = (
+/obj/effect/decal/warning_stripes/smallstripe{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/smallstripe{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 1
+	},
+/turf/open/floor/grayscale/edge/black{
+	dir = 1
+	},
+/area/corsat/sigma/southeast/generator)
 "sGl" = (
 /obj/effect/decal/tile/corsatcorner/green{
 	dir = 1
@@ -37525,6 +37585,7 @@
 "sJs" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/black_random,
+/obj/effect/decal/tile/corsatstraight/cyan,
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/airlock/east)
 "sJA" = (
@@ -37844,9 +37905,9 @@
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/hangar/security)
 "sQO" = (
-/obj/effect/decal/tile/corsatstraight/green,
-/turf/open/floor/grayscale/round/black,
-/area/corsat/gamma/hangar/monorail)
+/obj/effect/decal/tile/corsatstraight/cyan,
+/turf/open/floor/grayscale/darkgray,
+/area/corsat/gamma/hangar/office)
 "sQX" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -39740,6 +39801,18 @@
 	icon_state = "warnplate"
 	},
 /area/corsat/dropzone/landingzonetwo)
+"tKs" = (
+/obj/effect/decal/warning_stripes/smallstripevertical{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/smallstripevertical,
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 4
+	},
+/turf/open/floor/grayscale/edge/black{
+	dir = 4
+	},
+/area/corsat/gamma/engineering/core)
 "tKt" = (
 /obj/effect/decal/tile/corsatcorner/green,
 /turf/open/floor/grayscale/round/lightgray,
@@ -40107,6 +40180,14 @@
 /obj/effect/spawner/random/trash,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/south/robotics)
+"tUm" = (
+/obj/structure/table/reinforced,
+/obj/item/folder/black_random,
+/obj/effect/decal/tile/corsatsemi/cyan{
+	dir = 1
+	},
+/turf/open/floor/grayscale/darkgray,
+/area/corsat/sigma/airlock/east)
 "tUD" = (
 /obj/structure/table/reinforced,
 /obj/item/assembly/voice,
@@ -40479,6 +40560,7 @@
 /area/corsat/gamma/hangar)
 "udt" = (
 /obj/structure/largecrate/random,
+/obj/effect/decal/warning_stripes/box/empty,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/sigma/cargo)
 "udN" = (
@@ -40961,20 +41043,6 @@
 	},
 /turf/open/floor/grayscale/round/lightgray,
 /area/corsat/sigma/dorms)
-"urP" = (
-/obj/effect/decal/warning_stripes/smallstripe{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/smallstripe{
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/box/arrow{
-	dir = 1
-	},
-/turf/open/floor/grayscale/edge/black{
-	dir = 1
-	},
-/area/corsat/sigma/southeast/generator)
 "urV" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/decal/tile/full/black,
@@ -41183,6 +41251,12 @@
 	},
 /turf/open/floor/tile/bar,
 /area/corsat/gamma/residential/researcher)
+"uxJ" = (
+/obj/effect/decal/tile/corsatstraight/cyan{
+	dir = 4
+	},
+/turf/open/floor/grayscale/darkgray,
+/area/corsat/sigma/airlock/east)
 "uxS" = (
 /obj/structure/table/mainship,
 /obj/item/paper,
@@ -41390,10 +41464,6 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/airlocknorth/id)
-"uCx" = (
-/obj/effect/decal/tile/full/darkgray,
-/turf/open/floor/grayscale/darkgray,
-/area/corsat/sigma/southeast/dataoffice)
 "uCB" = (
 /obj/machinery/light,
 /obj/structure/bed/chair/wood/normal{
@@ -41979,11 +42049,11 @@
 /obj/effect/decal/tile/full/black,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/hangar)
-"uRJ" = (
+"uRC" = (
 /obj/effect/decal/tile/full/black,
-/obj/effect/decal/corsat/symbol/gamma,
+/obj/item/paper/crumpled/bloody,
 /turf/open/floor/grayscale/black,
-/area/corsat/gamma/hallwaysouth)
+/area/corsat/sigma/cargo)
 "uRP" = (
 /obj/structure/flora/pottedplant,
 /obj/effect/decal/tile/corsatcorner/cyan{
@@ -42430,6 +42500,11 @@
 /obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/grayscale/round/lightgray,
 /area/corsat/omega/complex)
+"veu" = (
+/obj/effect/decal/tile/full/black,
+/obj/effect/decal/corsat/symbol/omega,
+/turf/open/floor/grayscale/black,
+/area/corsat/omega/airlocknorth)
 "veG" = (
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/bomb_supply,
@@ -42454,7 +42529,10 @@
 /turf/open/floor/grayscale/white,
 /area/corsat/omega/security)
 "vfj" = (
-/obj/effect/decal/tile/corsatstraight/cyan,
+/obj/structure/filingcabinet/filingcabinet,
+/obj/effect/decal/tile/corsatstraight/cyan{
+	dir = 4
+	},
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/gamma/hangar/office)
 "vfo" = (
@@ -42504,21 +42582,6 @@
 	},
 /turf/open/floor/grayscale/round/black,
 /area/corsat/sigma/southeast/datalab)
-"vgs" = (
-/obj/item/mecha_parts/part/durand_left_arm,
-/obj/effect/decal/warning_stripes/smallstripevertical{
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/smallstripevertical{
-	dir = 8
-	},
-/obj/effect/decal/warning_stripes/box/arrow{
-	dir = 8
-	},
-/turf/open/floor/grayscale/edge/black{
-	dir = 8
-	},
-/area/corsat/sigma/south/robotics)
 "vgu" = (
 /obj/structure/bed/chair,
 /obj/effect/decal/tile/corsatstraight/green{
@@ -42801,13 +42864,6 @@
 	},
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/gamma/hangar/flightcontrol)
-"vnw" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/tile/corsatcorner/white{
-	dir = 4
-	},
-/turf/open/floor/grayscale/round/black,
-/area/corsat/gamma/residential/east)
 "vnD" = (
 /obj/structure/cable,
 /turf/open/floor/grayscale/white,
@@ -42828,6 +42884,13 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/tile/lightred,
 /area/corsat/omega/biodome)
+"voF" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/tile/corsatcorner/white{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/residential/east)
 "voG" = (
 /obj/structure/table/mainship,
 /obj/machinery/faxmachine,
@@ -43285,6 +43348,9 @@
 /area/corsat/gamma/engineering)
 "vzQ" = (
 /obj/structure/filingcabinet/filingcabinet,
+/obj/effect/decal/tile/corsatsemi/cyan{
+	dir = 1
+	},
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/airlock/east)
 "vzV" = (
@@ -43693,6 +43759,11 @@
 /obj/item/folder/black_random,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/control)
+"vKG" = (
+/obj/effect/decal/tile/full/black,
+/obj/effect/decal/corsat/symbol/sigma,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/north)
 "vKI" = (
 /obj/structure/table/mainship,
 /obj/item/clothing/glasses/meson,
@@ -43840,6 +43911,7 @@
 "vOE" = (
 /obj/machinery/power/apc/hyper,
 /obj/structure/flora/pottedplant,
+/obj/effect/decal/tile/corsatstraight/cyan,
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/airlock/east)
 "vQh" = (
@@ -44574,14 +44646,6 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/hangar/checkpoint)
-"wmb" = (
-/obj/structure/rack,
-/obj/effect/decal/tile/corsatstraight/yellow{
-	dir = 1
-	},
-/obj/item/book/manual/ripley_build_and_repair,
-/turf/open/floor/grayscale/round/black,
-/area/corsat/sigma/south/robotics)
 "wme" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -44692,10 +44756,6 @@
 	},
 /turf/open/floor/grayscale/round,
 /area/corsat/gamma/medbay/lobby)
-"wre" = (
-/obj/effect/decal/tile/full/black,
-/turf/open/floor/grayscale/round/black,
-/area/corsat/gamma/security)
 "wrr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -44808,6 +44868,12 @@
 /obj/structure/bed/chair/office/light,
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/southeast/datalab)
+"wuz" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/hallwaysouth)
 "wuI" = (
 /obj/machinery/photocopier,
 /turf/open/floor/grayscale/black,
@@ -44826,9 +44892,8 @@
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/biodome)
 "wvz" = (
-/obj/structure/filingcabinet/filingcabinet,
-/obj/effect/decal/tile/corsatstraight/cyan{
-	dir = 4
+/obj/effect/decal/tile/corsatcorner/cyan{
+	dir = 1
 	},
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/gamma/hangar/office)
@@ -45906,6 +45971,14 @@
 	dir = 4
 	},
 /area/corsat/sigma/south/complex)
+"wVw" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/tile/corsatstraight/yellow,
+/obj/machinery/disposal,
+/turf/open/floor/grayscale/black,
+/area/corsat/gamma/hallwaysouth)
 "wVK" = (
 /obj/machinery/power/apc/high,
 /obj/effect/decal/tile/corsatstraight/red{
@@ -45991,14 +46064,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/grayscale/round/lightgray,
 /area/corsat/omega/complex)
-"wXU" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/decal/tile/corsatstraight/yellow,
-/obj/machinery/disposal,
-/turf/open/floor/grayscale/black,
-/area/corsat/gamma/hallwaysouth)
 "wXW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/grayscale/black,
@@ -46318,6 +46383,15 @@
 	},
 /turf/open/floor/wood,
 /area/corsat/gamma/rnr/bar)
+"xfL" = (
+/obj/structure/table/mainship,
+/obj/effect/decal/tile/corsatstraight/yellow{
+	dir = 4
+	},
+/obj/effect/spawner/random/tool,
+/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/sigma/south/robotics)
 "xfU" = (
 /obj/machinery/light{
 	dir = 4
@@ -46837,6 +46911,14 @@
 /obj/effect/decal/tile/corsatstraight/brown,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/hallwaysouth)
+"xum" = (
+/obj/structure/table/mainship,
+/obj/item/clipboard,
+/obj/item/paper,
+/obj/item/tool/pen/blue,
+/obj/effect/decal/tile/full/darkgray,
+/turf/open/floor/grayscale/darkgray,
+/area/corsat/sigma/southeast/dataoffice)
 "xup" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -47096,11 +47178,9 @@
 /turf/open/floor/grayscale/round,
 /area/corsat/gamma/sigmaremote)
 "xyO" = (
-/obj/effect/decal/tile/corsatcorner/cyan{
-	dir = 1
-	},
-/turf/open/floor/grayscale/darkgray,
-/area/corsat/gamma/hangar/office)
+/obj/structure/table/reinforced,
+/turf/open/floor/grayscale/white,
+/area/corsat/gamma/sigmaremote)
 "xyT" = (
 /obj/machinery/door/airlock/mainship{
 	dir = 1;
@@ -48298,6 +48378,9 @@
 "yaK" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin,
+/obj/effect/decal/tile/corsatstraight/cyan{
+	dir = 1
+	},
 /turf/open/floor/grayscale/darkgray,
 /area/corsat/sigma/airlock/east)
 "yaP" = (
@@ -48495,6 +48578,11 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/hangar/security)
+"ygx" = (
+/obj/effect/decal/tile/full/darkgray,
+/obj/structure/flora/pottedplant,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/south)
 "yhp" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/donut_box,
@@ -51513,7 +51601,7 @@ oPf
 oPf
 vZK
 vZK
-seQ
+ryF
 hYk
 jAY
 btV
@@ -51774,7 +51862,7 @@ oPf
 oPf
 oPf
 oPf
-oPf
+nwY
 oPf
 oPf
 oPf
@@ -52021,7 +52109,7 @@ oPf
 oPf
 oPf
 oPf
-oPf
+nwY
 oPf
 oPf
 oPf
@@ -52267,8 +52355,8 @@ oPf
 oPf
 oPf
 oPf
-oPf
-oPf
+nwY
+nwY
 oPf
 oPf
 oPf
@@ -52501,7 +52589,7 @@ oPf
 oPf
 vZK
 dfl
-uRJ
+fzl
 sAH
 jAY
 uvN
@@ -52513,10 +52601,10 @@ vFj
 oPf
 oPf
 oPf
-oPf
-oPf
-oPf
-oPf
+nwY
+nwY
+nwY
+nwY
 oPf
 oPf
 oPf
@@ -52773,7 +52861,7 @@ oPf
 oPf
 oPf
 oPf
-oPf
+nwY
 oPf
 aGj
 ewD
@@ -53019,9 +53107,9 @@ oPf
 oPf
 oPf
 oPf
-oPf
-oPf
-oPf
+nwY
+nwY
+nwY
 oPf
 ewD
 bGG
@@ -54052,7 +54140,7 @@ gGq
 goV
 jCo
 cyB
-fUq
+veu
 cyB
 cBT
 lvq
@@ -54790,10 +54878,10 @@ hDY
 fES
 fES
 kdQ
-fUq
+veu
 jCo
 cyB
-fUq
+veu
 cyB
 cBT
 lvq
@@ -54937,7 +55025,7 @@ oPf
 oPf
 oPf
 oPf
-oPf
+nwY
 oPf
 oPf
 oPf
@@ -55214,7 +55302,7 @@ nBE
 nBE
 nBE
 nBE
-nBE
+aYJ
 tre
 iIY
 cvh
@@ -55416,6 +55504,7 @@ nBE
 nBE
 nBE
 nBE
+oPf
 nBE
 nBE
 nBE
@@ -55428,8 +55517,7 @@ nBE
 nBE
 nBE
 nBE
-nBE
-nBE
+aYJ
 tUQ
 ujf
 pBU
@@ -55439,6 +55527,12 @@ pBU
 pBU
 ujf
 tUQ
+aYJ
+aYJ
+nBE
+nBE
+aYJ
+aYJ
 nBE
 nBE
 nBE
@@ -55446,6 +55540,8 @@ nBE
 nBE
 nBE
 nBE
+aYJ
+aYJ
 nBE
 nBE
 nBE
@@ -55453,15 +55549,7 @@ nBE
 nBE
 nBE
 nBE
-nBE
-nBE
-nBE
-nBE
-nBE
-nBE
-nBE
-nBE
-nBE
+aYJ
 tre
 iIY
 cvh
@@ -55691,7 +55779,7 @@ tUQ
 eaX
 eaX
 huC
-nBE
+aYJ
 nBE
 nBE
 nBE
@@ -55699,16 +55787,16 @@ huC
 eaX
 eaX
 huC
+aYJ
+aYJ
+aYJ
 nBE
 nBE
 nBE
-nBE
-nBE
-nBE
-nBE
-nBE
-nBE
-nBE
+aYJ
+aYJ
+aYJ
+aYJ
 tre
 iIY
 cvh
@@ -55910,18 +55998,18 @@ nBE
 nBE
 nBE
 nBE
+oPf
+oPf
 nBE
 nBE
 nBE
 nBE
 nBE
 nBE
-nBE
-nBE
-nBE
-nBE
-nBE
-nBE
+aYJ
+aYJ
+aYJ
+aYJ
 tUQ
 qiq
 mjU
@@ -55950,7 +56038,7 @@ huC
 huC
 huC
 huC
-nBE
+aYJ
 nBE
 huC
 huC
@@ -56157,7 +56245,7 @@ nBE
 nBE
 nBE
 nBE
-nBE
+aYJ
 huC
 eaX
 eaX
@@ -56197,8 +56285,8 @@ qEm
 nUC
 koC
 huC
-nBE
-nBE
+aYJ
+aYJ
 huC
 qEm
 nUC
@@ -56395,13 +56483,13 @@ nBE
 nBE
 nBE
 nBE
+aYJ
 nBE
 nBE
 nBE
 nBE
 nBE
-nBE
-nBE
+aYJ
 nBE
 nBE
 huC
@@ -56642,13 +56730,13 @@ nBE
 nBE
 nBE
 nBE
+aYJ
 nBE
 nBE
 nBE
 nBE
 nBE
-nBE
-nBE
+aYJ
 nBE
 nBE
 eaX
@@ -56889,14 +56977,14 @@ nBE
 nBE
 nBE
 nBE
+aYJ
 nBE
 nBE
 nBE
 nBE
-nBE
-nBE
-nBE
-nBE
+aYJ
+aYJ
+aYJ
 nBE
 eaX
 xVR
@@ -57136,7 +57224,7 @@ osd
 osd
 nLa
 nLa
-nBE
+aYJ
 nLa
 osd
 osd
@@ -57372,7 +57460,7 @@ nBE
 nBE
 nBE
 nBE
-nBE
+aYJ
 nLa
 nLa
 gcN
@@ -57619,7 +57707,7 @@ nBE
 nBE
 nBE
 nBE
-nBE
+aYJ
 nLa
 sAq
 wKA
@@ -58852,9 +58940,9 @@ nBE
 nBE
 nBE
 nBE
+oPf
 nBE
-nBE
-nBE
+aYJ
 nLa
 uMG
 wuj
@@ -59842,7 +59930,7 @@ nBE
 nBE
 nBE
 nBE
-nBE
+aYJ
 eSM
 nmB
 lWa
@@ -60757,7 +60845,7 @@ rfe
 ygs
 oml
 orU
-nBE
+aYJ
 nBE
 nBE
 nBE
@@ -61004,7 +61092,7 @@ lRL
 bGV
 xFd
 lmQ
-nBE
+aYJ
 nBE
 nBE
 nBE
@@ -61251,8 +61339,8 @@ cVJ
 lRL
 pwb
 lmQ
-nBE
-nBE
+aYJ
+aYJ
 nBE
 nBE
 nBE
@@ -61498,10 +61586,10 @@ leg
 lRL
 pZk
 orU
-nBE
-nBE
-nBE
-nBE
+aYJ
+aYJ
+aYJ
+aYJ
 nBE
 nBE
 nBE
@@ -62263,7 +62351,7 @@ oPf
 oPf
 nBE
 aYJ
-nBE
+aYJ
 nBE
 nBE
 aNx
@@ -62821,9 +62909,9 @@ cBu
 vUr
 giM
 xSi
-qvb
+xyO
 dzi
-qvb
+xyO
 ruP
 giM
 sSa
@@ -62869,8 +62957,8 @@ mtZ
 mtZ
 jMr
 sjf
-rLR
-rLR
+jjY
+jjY
 fZy
 fOd
 kSr
@@ -63117,7 +63205,7 @@ nNv
 jMr
 pcV
 epY
-rLR
+jjY
 eWH
 cGQ
 kSr
@@ -63316,7 +63404,7 @@ bbA
 giM
 xSi
 hIv
-qvb
+xyO
 foX
 fPs
 giM
@@ -63610,8 +63698,8 @@ eFK
 ncd
 jMr
 pCW
-rLR
-rLR
+jjY
+jjY
 cUp
 xMt
 cvh
@@ -63857,7 +63945,7 @@ eFK
 bVH
 jMr
 rQn
-rLR
+jjY
 tqk
 fiM
 xMt
@@ -63974,7 +64062,7 @@ ttl
 ttl
 wdE
 rda
-nBE
+aYJ
 nBE
 oPf
 oPf
@@ -64355,7 +64443,7 @@ jqQ
 jqQ
 jqQ
 xMt
-eXo
+wuz
 cvh
 cvh
 cvh
@@ -64367,12 +64455,12 @@ bAZ
 kqR
 vFj
 oPf
+nwY
+nwY
 oPf
 oPf
 oPf
-oPf
-oPf
-oPf
+nwY
 oPf
 oPf
 oPf
@@ -64602,7 +64690,7 @@ qEx
 qEx
 qEx
 qEx
-dqE
+gZF
 uJR
 jMd
 xXO
@@ -64614,12 +64702,12 @@ hVc
 akj
 vFj
 oPf
+nwY
+nwY
 oPf
 oPf
 oPf
-oPf
-oPf
-oPf
+nwY
 oPf
 oPf
 oPf
@@ -64732,8 +64820,8 @@ nBE
 nBE
 nBE
 nBE
-nBE
-nBE
+aYJ
+aYJ
 nBE
 nBE
 eLz
@@ -64859,14 +64947,14 @@ weA
 iIY
 sAH
 hYk
-aGj
+tre
+oPf
+nwY
 oPf
 oPf
 oPf
 oPf
-oPf
-oPf
-oPf
+nwY
 oPf
 oPf
 oPf
@@ -64978,7 +65066,7 @@ nBE
 nBE
 nBE
 nBE
-nBE
+aYJ
 eLz
 eLz
 eLz
@@ -65106,14 +65194,14 @@ tgG
 mNR
 sAH
 dfl
-aGj
+tre
+oPf
+nwY
 oPf
 oPf
 oPf
 oPf
-oPf
-oPf
-oPf
+nwY
 oPf
 oPf
 oPf
@@ -65274,7 +65362,7 @@ nBE
 nBE
 nBE
 nBE
-aGj
+dpZ
 ivZ
 tDl
 euw
@@ -65349,11 +65437,11 @@ wJE
 osC
 rdr
 tre
-aGj
-aGj
-aGj
-aGj
-aGj
+tre
+tre
+tre
+tre
+tre
 oPf
 oPf
 oPf
@@ -65595,7 +65683,7 @@ tre
 tre
 tre
 tre
-aGj
+tre
 oPf
 oPf
 oPf
@@ -65837,8 +65925,8 @@ pkL
 dnQ
 oRA
 kyB
-oPf
-oPf
+nwY
+nwY
 oPf
 oPf
 oPf
@@ -66084,8 +66172,8 @@ sKU
 sKU
 oYa
 kyB
-oPf
-oPf
+nwY
+nwY
 oPf
 oPf
 oPf
@@ -66331,7 +66419,7 @@ lgj
 sKU
 rMQ
 kyB
-oPf
+nwY
 oPf
 oPf
 oPf
@@ -67070,8 +67158,8 @@ oYM
 oYM
 oYM
 oPv
-nBE
-nBE
+aYJ
+aYJ
 oPf
 oPf
 oPf
@@ -67277,7 +67365,7 @@ bYp
 phx
 bha
 bwI
-ipo
+sqX
 phx
 aBW
 uDP
@@ -67317,7 +67405,7 @@ lXJ
 xlc
 gTP
 oPv
-nBE
+aYJ
 nBE
 oPf
 oPf
@@ -67859,7 +67947,7 @@ ejw
 ejw
 ejw
 ejw
-nBE
+aYJ
 aGj
 uUK
 hHT
@@ -68102,11 +68190,11 @@ hdM
 vlT
 gWM
 ejw
-nBE
-nBE
-oPf
-nBE
-nBE
+aYJ
+aYJ
+nwY
+aYJ
+aYJ
 aGj
 aGj
 fId
@@ -68349,17 +68437,17 @@ aGj
 aGj
 aGj
 aGj
+nwY
+nwY
 oPf
 oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
+nwY
+nwY
+nwY
+nwY
+nwY
+nwY
+nwY
 mkE
 oDL
 oDL
@@ -68591,22 +68679,22 @@ aGj
 aGj
 aGj
 oPf
+nwY
+nwY
+nwY
+nwY
+nwY
+nwY
 oPf
 oPf
 oPf
 oPf
 oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
+nwY
+nwY
+nwY
+nwY
+nwY
 mkE
 pXc
 kIT
@@ -69046,7 +69134,7 @@ tLs
 oXR
 oXR
 oPv
-nBE
+aYJ
 nBE
 nBE
 oPf
@@ -69293,7 +69381,7 @@ lXJ
 xlc
 gTP
 oPv
-nBE
+aYJ
 nBE
 nBE
 oPf
@@ -69639,14 +69727,14 @@ vSY
 vSY
 vSY
 usx
+aYJ
+aYJ
+aYJ
+aYJ
 nBE
 nBE
-nBE
-nBE
-nBE
-nBE
-nBE
-nBE
+aYJ
+aYJ
 usx
 vSY
 vSY
@@ -69787,8 +69875,8 @@ cln
 kJg
 rnN
 jim
-nBE
-nBE
+aYJ
+aYJ
 nBE
 oPf
 oPf
@@ -69876,6 +69964,15 @@ oPf
 oPf
 oPf
 oPf
+nwY
+nwY
+oPf
+nwY
+nwY
+nwY
+oPf
+nwY
+nwY
 oPf
 oPf
 oPf
@@ -69884,21 +69981,12 @@ oPf
 oPf
 oPf
 oPf
+nwY
+nwY
+nwY
 oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
+nwY
+nwY
 oPf
 oPf
 oPf
@@ -70034,33 +70122,33 @@ bBb
 xkQ
 rDE
 jim
+aYJ
+aYJ
+aYJ
+oPf
+oPf
+oPf
+nwY
+nwY
+oPf
+oPf
+oPf
+oPf
+oPf
+oPf
+oPf
+oPf
+oPf
+oPf
+oPf
+oPf
+oPf
+oPf
+oPf
+oPf
 nBE
-nBE
-nBE
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-oPf
-nBE
-nBE
-nBE
+aYJ
+aYJ
 nBE
 fjN
 vlT
@@ -70289,7 +70377,7 @@ aYJ
 nBE
 hka
 hka
-slr
+oPf
 oPf
 oPf
 oPf
@@ -70980,9 +71068,9 @@ vEK
 vEK
 cxH
 gfA
-may
+voF
 oUU
-vnw
+mfI
 gfA
 crE
 vEK
@@ -74000,7 +74088,7 @@ cEN
 vHP
 jLE
 lbm
-oPf
+nwY
 oPf
 oPf
 oPf
@@ -74247,7 +74335,7 @@ cEN
 uKN
 gBS
 lbm
-oPf
+nwY
 oPf
 oPf
 oPf
@@ -74431,10 +74519,10 @@ fZB
 diJ
 iJB
 gpc
-wre
-wre
-wre
-wre
+eMD
+eMD
+eMD
+eMD
 lhs
 eGm
 fxn
@@ -74494,7 +74582,7 @@ vOd
 vOd
 jDM
 lbm
-oPf
+nwY
 oPf
 oPf
 oPf
@@ -74925,10 +75013,10 @@ fZB
 cpY
 iJB
 sfG
-wre
-chv
+eMD
+hAx
 lQd
-wre
+eMD
 nSS
 wnE
 tkf
@@ -75427,7 +75515,7 @@ lhs
 qWb
 fxn
 dNU
-wre
+eMD
 sfm
 bLW
 xVy
@@ -76909,9 +76997,9 @@ lhs
 uAy
 kuZ
 ykC
-wre
-aBT
-wre
+eMD
+jQF
+eMD
 qsU
 qSZ
 cvR
@@ -77295,7 +77383,7 @@ oPf
 oPf
 oPf
 fKM
-rYb
+ygx
 rYb
 rAC
 cQP
@@ -77542,7 +77630,7 @@ oPf
 oPf
 oPf
 fKM
-kad
+rYb
 rYb
 rAC
 cQP
@@ -77807,10 +77895,10 @@ oPf
 oPf
 oPf
 oPf
-aGj
-aGj
-aGj
-aGj
+gri
+gri
+gri
+gri
 oPf
 oPf
 alY
@@ -78418,7 +78506,7 @@ gCt
 wnj
 wnj
 kzS
-cTY
+hEj
 uDE
 uDE
 pmJ
@@ -80593,10 +80681,10 @@ qFL
 srV
 gvn
 aqs
-wvz
+vfj
 tdK
 hnm
-xyO
+wvz
 lQD
 oPF
 vBu
@@ -80838,7 +80926,7 @@ xGK
 gHA
 cBM
 srV
-vfj
+sQO
 tdK
 tdK
 tdK
@@ -81085,7 +81173,7 @@ xGK
 qFL
 qFL
 srV
-vfj
+sQO
 qHb
 tdK
 qZf
@@ -81129,7 +81217,7 @@ ehJ
 fdW
 fQf
 tea
-feF
+oSD
 paR
 lAg
 mxD
@@ -81376,7 +81464,7 @@ uVP
 fdW
 fQf
 tea
-feF
+oSD
 paR
 lAg
 pGy
@@ -81623,7 +81711,7 @@ nyg
 fdW
 fQf
 tea
-feF
+oSD
 aTW
 lAg
 mRW
@@ -81870,7 +81958,7 @@ lSO
 fdW
 fQf
 xiJ
-ssu
+syZ
 paR
 lAg
 lAg
@@ -82066,7 +82154,7 @@ lOj
 lOj
 kug
 kug
-sQO
+slr
 wBk
 wkc
 xGK
@@ -82313,7 +82401,7 @@ fhS
 fhS
 fhS
 mkR
-sQO
+slr
 wBk
 wkc
 cQQ
@@ -82530,7 +82618,7 @@ nGg
 cIE
 iHW
 hMr
-lmd
+xfL
 rhk
 qcQ
 pQt
@@ -82560,7 +82648,7 @@ poc
 poc
 cVj
 lFc
-sQO
+slr
 wBk
 wkc
 tFP
@@ -82807,7 +82895,7 @@ qtO
 bGT
 qUU
 lFc
-sQO
+slr
 wBk
 wkc
 wBk
@@ -83024,8 +83112,8 @@ nGg
 cIE
 hnR
 lCa
-vgs
-lzH
+mva
+phA
 tot
 qMP
 cIE
@@ -83519,7 +83607,7 @@ cIE
 wjf
 trB
 cph
-aKT
+rLe
 aty
 exP
 cIE
@@ -83610,8 +83698,8 @@ joZ
 tyv
 sae
 ijf
-nNr
-nNr
+ghm
+ghm
 vXt
 qLL
 vMh
@@ -83748,7 +83836,7 @@ uzE
 swS
 fxh
 bdv
-mLW
+jEE
 fMQ
 uzE
 fjv
@@ -84104,9 +84192,9 @@ joZ
 tLy
 reE
 ijf
-nNr
-nNr
-nNr
+ghm
+ghm
+ghm
 qLL
 yia
 joZ
@@ -84845,9 +84933,9 @@ joZ
 tLy
 reE
 ijf
-dhe
-dhe
-dhe
+tKs
+tKs
+tKs
 qLL
 sVS
 joZ
@@ -84866,7 +84954,7 @@ iRB
 ocK
 nYr
 vpo
-wXU
+wVw
 cvh
 tre
 oPf
@@ -85258,7 +85346,7 @@ amm
 xNA
 npd
 qcQ
-qYh
+lzr
 wbh
 nBE
 nBE
@@ -85339,9 +85427,9 @@ joZ
 tyv
 sae
 ijf
-dhe
-dhe
-dhe
+tKs
+tKs
+tKs
 rLP
 ijf
 elJ
@@ -85752,7 +85840,7 @@ cIE
 ltm
 uld
 uld
-wmb
+nCa
 wbh
 nBE
 nBE
@@ -85771,7 +85859,7 @@ qtO
 bGT
 qUU
 lFc
-sQO
+slr
 wBk
 wBk
 wBk
@@ -91338,7 +91426,7 @@ bwG
 ntK
 lWD
 lMA
-sJs
+tUm
 tuW
 tuW
 cYl
@@ -91586,7 +91674,7 @@ mzB
 lWD
 cpL
 eHp
-xTm
+uxJ
 vzQ
 jRw
 xVk
@@ -92081,7 +92169,7 @@ qDs
 kFQ
 tFt
 xTm
-vzQ
+axx
 jRw
 dIB
 hiZ
@@ -93069,7 +93157,7 @@ qTE
 vOE
 tFt
 xTm
-xTm
+cYh
 ijE
 ijE
 ijE
@@ -94345,9 +94433,9 @@ pbi
 jAy
 wmU
 lEx
-uCx
+cRg
 wWG
-uCx
+cRg
 lEx
 gPS
 mzT
@@ -94592,9 +94680,9 @@ gfX
 rRZ
 lEx
 lEx
-fdO
+xum
 dsb
-uCx
+cRg
 bLH
 gNT
 mzT
@@ -94839,9 +94927,9 @@ bDb
 qcM
 lEx
 lEx
-clU
+hyZ
 otX
-uCx
+cRg
 lEx
 itB
 mzT
@@ -97024,7 +97112,7 @@ mZS
 rXk
 htx
 tGb
-gRc
+vKG
 mZS
 htx
 htx
@@ -97311,11 +97399,11 @@ iBO
 hkB
 ful
 rvi
-lwR
+qXu
 xFq
-urP
+sGe
 xFq
-sBy
+mwY
 rgA
 iJX
 mlk
@@ -97527,10 +97615,10 @@ kkz
 kIE
 aZw
 lif
-anr
+fWC
 dTU
 dTU
-anr
+fWC
 rfN
 mjj
 tJn
@@ -97777,7 +97865,7 @@ dzC
 xBs
 owt
 bKw
-anr
+fWC
 hiB
 mjj
 lcD
@@ -97805,11 +97893,11 @@ fRl
 hkB
 ful
 rvi
-lwR
-fql
-urP
+qXu
+ljK
+sGe
 xFq
-sBy
+mwY
 keD
 rzC
 hkB
@@ -98024,7 +98112,7 @@ xBG
 mmX
 owt
 ukp
-anr
+fWC
 kIE
 mjj
 qTg
@@ -98271,7 +98359,7 @@ pYj
 jZU
 bWs
 ukp
-nQa
+lLl
 lTG
 mjj
 ldl
@@ -98512,7 +98600,7 @@ tgM
 mjj
 lif
 kkz
-kIE
+bdV
 mjj
 mjj
 mjj
@@ -99252,11 +99340,11 @@ dTU
 dTU
 dTU
 dTU
-dTU
+wpT
 srn
 udt
 lsR
-dTU
+wpT
 srn
 udt
 dTU
@@ -99505,7 +99593,7 @@ udt
 lsR
 udt
 srn
-dTU
+wpT
 dTU
 kIE
 mjj
@@ -99748,9 +99836,9 @@ ube
 dTU
 udt
 srn
-dTU
+wpT
 lsR
-dTU
+wpT
 srn
 udt
 dTU
@@ -99993,13 +100081,13 @@ etk
 dTU
 dTU
 dTU
-dTU
+gpu
 efn
 efn
 ofs
 efn
 efn
-dTU
+fWC
 dTU
 gqN
 mjj
@@ -101229,7 +101317,7 @@ fxs
 wpT
 dBR
 bKt
-ubB
+uRC
 bit
 ubB
 gVC
