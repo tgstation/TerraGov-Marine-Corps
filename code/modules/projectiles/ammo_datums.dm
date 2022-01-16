@@ -43,6 +43,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/bullet_color = COLOR_WHITE
 	///If this ammo is hitscan, the icon of beam coming out from the gun
 	var/hitscan_effect_icon = "beam"
+	///A multiplier applied to piercing projectile, that reduces its damage/penetration/sundering on hit
+	var/on_pierce_multiplier = 1
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
 	return
@@ -1131,15 +1133,16 @@ datum/ammo/bullet/revolver/tp44
 	name = "railgun round"
 	hud_state = "alloy_spike"
 	icon_state 	= "blue_bullet"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
 	max_range = 9
 	damage = 150
 	penetration = 70
 	sundering = 90
 	bullet_color = COLOR_PULSE_BLUE
+	on_pierce_multiplier = 0.85
 
-/datum/ammo/bullet/railgun/on_hit_mob(mob/M,obj/projectile/P)
+/datum/ammo/bullet/railgun/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 3, shake = 0)
 
 /*
