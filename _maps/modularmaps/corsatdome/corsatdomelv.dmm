@@ -2710,6 +2710,13 @@
 	},
 /turf/open/ground/grass,
 /area/corsat/theta/biodome)
+"Cp" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1;
+	icon_state = "grassdirt_corner"
+	},
+/area/corsat/theta/biodome)
 "Cq" = (
 /obj/machinery/light{
 	dir = 8
@@ -5139,7 +5146,7 @@ kU
 kU
 ox
 Ra
-Iu
+Iw
 fU
 cp
 Vm
@@ -5467,13 +5474,13 @@ DX
 PI
 DX
 DX
-gV
+Cp
 Kr
 Vt
 Iu
 Iu
 Iu
-Iu
+Iw
 rL
 Iu
 GJ

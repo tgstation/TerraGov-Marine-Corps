@@ -347,6 +347,13 @@
 	},
 /turf/open/floor/grayscale/round/lightgray,
 /area/corsat/gamma/biodome/virology)
+"dT" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/corsat/gamma/biodome)
 "eh" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 5
@@ -7949,9 +7956,9 @@ Yi
 Yi
 ZO
 Yi
-og
+dT
 YK
-YK
+xh
 Co
 Sp
 YK
@@ -8997,13 +9004,13 @@ Op
 ZO
 ZO
 Yi
-Yi
+Kd
 ZG
 ZG
 ZG
 ZG
 ZG
-ZG
+pv
 cE
 ZG
 ZG
@@ -9489,7 +9496,7 @@ Su
 Su
 Su
 Op
-YK
+xh
 YK
 YK
 Yi
