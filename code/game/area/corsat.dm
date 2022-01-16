@@ -558,6 +558,18 @@
 	name = "\improper Omega Dome Control Module"
 	icon_state = "omega_control"
 
+/area/corsat/hangar_storage/research
+	name = "\improper Hangar Storage"
+	icon_state = "omega_hangar"
+
+/area/corsat/dropzone/landingzoneone
+	name = "\improper Hangar Storage"
+	icon_state = "flight_center"
+
+/area/corsat/dropzone/landingzonetwo
+	name = "\improper Hangar Storage"
+	icon_state = "flight_center"
+
 //INACCESSIBLE
 
 /area/corsat/inaccessible

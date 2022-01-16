@@ -921,7 +921,7 @@
 	dir = 10
 	},
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "auG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -1540,9 +1540,7 @@
 	dir = 4;
 	icon_state = "warnplate"
 	},
-/area/shuttle/drop2/ice_colony{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/corsat/dropzone/landingzonetwo)
 "aKU" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/security{
@@ -1661,7 +1659,7 @@
 /area/corsat/sigma/south/complex)
 "aMO" = (
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "aMP" = (
 /obj/machinery/vending/dinnerware,
 /obj/machinery/light{
@@ -2090,7 +2088,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "upp25"
 	},
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "aXP" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -4385,7 +4383,7 @@
 /obj/structure/closet/bodybag,
 /obj/effect/decal/tile/full/black,
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "chu" = (
 /obj/structure/sign/safety/airlock,
 /turf/closed/wall/r_wall,
@@ -4507,7 +4505,7 @@
 	dir = 4;
 	icon_state = "warnplate"
 	},
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "ckJ" = (
 /obj/structure/table/mainship,
 /obj/effect/decal/tile/corsatstraight/yellow{
@@ -4949,7 +4947,7 @@
 "cwh" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "cwt" = (
 /obj/machinery/light{
 	dir = 1
@@ -5388,9 +5386,7 @@
 "cGb" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
 /turf/open/floor/plating,
-/area/shuttle/drop2/ice_colony{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/corsat/dropzone/landingzonetwo)
 "cGc" = (
 /obj/machinery/light{
 	dir = 4
@@ -5688,7 +5684,7 @@
 /turf/open/floor/grayscale/edge/black{
 	dir = 8
 	},
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "cMw" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4
@@ -6089,7 +6085,7 @@
 	dir = 8
 	},
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "cXb" = (
 /obj/structure/rack,
 /obj/item/tool/soap,
@@ -6849,7 +6845,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "duJ" = (
 /obj/structure/table/woodentable,
 /obj/effect/decal/tile/corsatstraight/green,
@@ -7523,7 +7519,7 @@
 	dir = 8;
 	icon_state = "warnplate"
 	},
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "dKI" = (
 /obj/effect/decal/tile/yellow{
 	dir = 1
@@ -7855,7 +7851,7 @@
 	dir = 1;
 	icon_state = "warnplate"
 	},
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "dTO" = (
 /obj/structure/prop/mainship/particle_cannon{
 	desc = "";
@@ -8418,7 +8414,7 @@
 	dir = 8
 	},
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "ehw" = (
 /obj/machinery/door/airlock/mainship/engineering{
 	dir = 2;
@@ -8772,13 +8768,11 @@
 	dir = 8;
 	icon_state = "warnplate"
 	},
-/area/shuttle/drop2/ice_colony{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/corsat/dropzone/landingzonetwo)
 "ero" = (
 /obj/structure/cable,
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "erD" = (
 /turf/closed/wall/r_wall,
 /area/corsat/theta/airlock/west/id)
@@ -9952,7 +9946,7 @@
 "eYz" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
 /turf/open/floor/plating,
-/area/shuttle/drop1/ice_colony)
+/area/corsat/dropzone/landingzoneone)
 "eYW" = (
 /obj/machinery/light{
 	dir = 4
@@ -10030,7 +10024,7 @@
 /area/corsat/omega/security)
 "fbh" = (
 /turf/open/floor/plating,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "fbs" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/emails{
@@ -10917,7 +10911,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "fxE" = (
 /obj/structure/bed/chair/comfy/beige,
 /turf/open/floor/grayscale/round/black,
@@ -11213,7 +11207,7 @@
 "fEr" = (
 /obj/structure/sign/safety/airlock,
 /turf/closed/wall/r_wall,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "fEw" = (
 /obj/effect/decal/tile/corsatstraight/red{
 	dir = 1
@@ -11882,7 +11876,7 @@
 /turf/open/floor/plating{
 	icon_state = "warnplate"
 	},
-/area/shuttle/drop1/ice_colony)
+/area/corsat/dropzone/landingzoneone)
 "fVE" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/toolbox,
@@ -12221,11 +12215,11 @@
 	dir = 4
 	},
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "ggF" = (
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "ggQ" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
@@ -12319,9 +12313,7 @@
 	dir = 8;
 	icon_state = "warnplate"
 	},
-/area/shuttle/drop2/ice_colony{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/corsat/dropzone/landingzonetwo)
 "giD" = (
 /obj/effect/decal/tile/corsatcorner/blue{
 	dir = 1
@@ -12425,9 +12417,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/white,
 /area/corsat/omega/complex)
-"glA" = (
-/turf/open/floor/plating/icefloor,
-/area/shuttle/drop1/ice_colony)
 "glC" = (
 /obj/effect/decal/tile/corsatcorner/lighpurple{
 	dir = 1
@@ -12496,7 +12485,7 @@
 /obj/structure/largecrate/random,
 /obj/effect/decal/tile/full/black,
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "gnn" = (
 /obj/machinery/light{
 	dir = 8
@@ -12505,7 +12494,7 @@
 	dir = 4
 	},
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "gnq" = (
 /obj/structure/closet/coffin,
 /obj/effect/decal/tile/corsatsemi/darkgreen{
@@ -12584,7 +12573,7 @@
 /area/corsat/sigma/cargo)
 "goG" = (
 /turf/closed/wall/r_wall,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "goI" = (
 /obj/machinery/door/airlock/mainship/security/glass{
 	name = "Hangar Security"
@@ -12914,7 +12903,7 @@
 	dir = 8
 	},
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "gxL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -13681,7 +13670,7 @@
 	dir = 4;
 	icon_state = "warnplate"
 	},
-/area/shuttle/drop1/ice_colony)
+/area/corsat/dropzone/landingzoneone)
 "gRh" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4
@@ -14014,7 +14003,7 @@
 	dir = 10;
 	icon_state = "warnplate"
 	},
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "gZh" = (
 /obj/structure/table/mainship,
 /obj/item/clipboard,
@@ -14377,7 +14366,7 @@
 	dir = 8;
 	icon_state = "warnplate"
 	},
-/area/shuttle/drop1/ice_colony)
+/area/corsat/dropzone/landingzoneone)
 "hlA" = (
 /obj/effect/decal/tile/full/black,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -14607,9 +14596,7 @@
 	dir = 4;
 	icon_state = "warnplate"
 	},
-/area/shuttle/drop2/ice_colony{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/corsat/dropzone/landingzonetwo)
 "hsh" = (
 /obj/structure/closet/secure_closet{
 	name = "secure evidence locker"
@@ -17370,7 +17357,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "iPc" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/decal/tile/full/black,
@@ -17565,10 +17552,10 @@
 	dir = 1
 	},
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "iUD" = (
 /turf/open/floor/plating,
-/area/shuttle/drop1/ice_colony)
+/area/corsat/dropzone/landingzoneone)
 "iUG" = (
 /obj/structure/closet/firecloset,
 /obj/effect/decal/tile/corsatstraight/yellow{
@@ -18081,9 +18068,7 @@
 /turf/open/floor/plating{
 	icon_state = "warnplate"
 	},
-/area/shuttle/drop2/ice_colony{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/corsat/dropzone/landingzonetwo)
 "jim" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -19097,7 +19082,7 @@
 	dir = 4
 	},
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "jHt" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/structure/window/framed/colony/reinforced,
@@ -19111,7 +19096,7 @@
 	dir = 9;
 	icon_state = "warnplate"
 	},
-/area/shuttle/drop1/ice_colony)
+/area/corsat/dropzone/landingzoneone)
 "jHN" = (
 /obj/effect/decal/tile/corsatsemi/red{
 	dir = 4
@@ -20423,7 +20408,7 @@
 "kqi" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/shuttle/drop1/ice_colony)
+/area/corsat/dropzone/landingzoneone)
 "kqj" = (
 /obj/machinery/light{
 	dir = 4
@@ -21120,11 +21105,6 @@
 	},
 /turf/open/floor/grayscale/white,
 /area/corsat/omega/checkpoint)
-"kHs" = (
-/turf/open/floor/plating/icefloor,
-/area/shuttle/drop2/ice_colony{
-	name = "\improper Almayer Dropship 2"
-	})
 "kHt" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/round/lightgray,
@@ -21934,7 +21914,7 @@
 	dir = 10;
 	icon_state = "warnplate"
 	},
-/area/shuttle/drop1/ice_colony)
+/area/corsat/dropzone/landingzoneone)
 "ldE" = (
 /obj/effect/decal/tile/yellow{
 	dir = 1
@@ -21989,7 +21969,7 @@
 "ler" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "les" = (
 /obj/structure/table/mainship,
 /obj/item/folder/black_random,
@@ -22318,7 +22298,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "upp21"
 	},
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "llu" = (
 /obj/item/bananapeel,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22993,7 +22973,7 @@
 	dir = 8
 	},
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "lCZ" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
@@ -23248,7 +23228,7 @@
 "lKn" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "lKp" = (
 /obj/item/clothing/mask/breath,
 /obj/effect/decal/tile/corsatstraight/yellow,
@@ -23434,9 +23414,7 @@
 	dir = 6;
 	icon_state = "warnplate"
 	},
-/area/shuttle/drop2/ice_colony{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/corsat/dropzone/landingzonetwo)
 "lOH" = (
 /obj/effect/decal/tile/corsatcorner/red{
 	dir = 4
@@ -24747,7 +24725,7 @@
 	dir = 8
 	},
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "mxU" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/smg/mp7,
@@ -24866,7 +24844,7 @@
 	dir = 4
 	},
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "mAy" = (
 /obj/machinery/light,
 /obj/effect/decal/tile/corsatstraight/red{
@@ -25471,7 +25449,7 @@
 	dir = 8
 	},
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "mQh" = (
 /obj/machinery/light{
 	dir = 4
@@ -26211,7 +26189,7 @@
 	dir = 4
 	},
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "nhZ" = (
 /obj/machinery/light{
 	dir = 4
@@ -26913,7 +26891,7 @@
 	dir = 9;
 	icon_state = "warnplate"
 	},
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "nyV" = (
 /obj/structure/girder/displaced,
 /turf/open/floor/dark2,
@@ -27773,7 +27751,7 @@
 	},
 /obj/effect/decal/tile/corsatstraight/red,
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "nXV" = (
 /obj/effect/decal/tile/corsatcorner/green{
 	dir = 4
@@ -28242,9 +28220,7 @@
 "oiN" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/shuttle/drop2/ice_colony{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/corsat/dropzone/landingzonetwo)
 "ojc" = (
 /obj/effect/decal/tile/full/white,
 /obj/structure/cable,
@@ -28867,9 +28843,7 @@
 	dir = 5;
 	icon_state = "warnplate"
 	},
-/area/shuttle/drop2/ice_colony{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/corsat/dropzone/landingzonetwo)
 "oAo" = (
 /obj/effect/decal/tile/full/black,
 /obj/machinery/atmospherics/pipe/manifold/green,
@@ -31239,7 +31213,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "pLr" = (
 /obj/structure/table/reinforced,
 /obj/effect/decal/tile/corsatstraight/red{
@@ -31451,9 +31425,7 @@
 	dir = 1;
 	icon_state = "warnplate"
 	},
-/area/shuttle/drop2/ice_colony{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/corsat/dropzone/landingzonetwo)
 "pPN" = (
 /obj/machinery/atmospherics/pipe/manifold/green{
 	dir = 4
@@ -31762,7 +31734,7 @@
 "pZf" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "pZk" = (
 /obj/machinery/light,
 /obj/effect/decal/tile/corsatstraight/red{
@@ -32057,7 +32029,7 @@
 	dir = 6;
 	icon_state = "warnplate"
 	},
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "qhb" = (
 /obj/structure/table/woodentable,
 /obj/structure/platform{
@@ -33578,7 +33550,7 @@
 	dir = 1;
 	icon_state = "warnplate"
 	},
-/area/shuttle/drop1/ice_colony)
+/area/corsat/dropzone/landingzoneone)
 "qRE" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -35744,7 +35716,7 @@
 "rST" = (
 /obj/effect/decal/tile/corsatcorner/red,
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "rTa" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/grayscale/darkgray,
@@ -35865,7 +35837,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "rVS" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -36752,7 +36724,7 @@
 	dir = 1
 	},
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "suq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -37160,9 +37132,7 @@
 	dir = 9;
 	icon_state = "warnplate"
 	},
-/area/shuttle/drop2/ice_colony{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/corsat/dropzone/landingzonetwo)
 "sDR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/grayscale/black,
@@ -37320,7 +37290,7 @@
 "sIw" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "sID" = (
 /obj/effect/decal/tile/corsatcorner/cyan{
 	dir = 8
@@ -38196,7 +38166,7 @@
 	dir = 4;
 	icon_state = "warnplate"
 	},
-/area/shuttle/drop1/ice_colony)
+/area/corsat/dropzone/landingzoneone)
 "tdb" = (
 /obj/effect/decal/tile/corsatstraight/red{
 	dir = 8
@@ -38220,7 +38190,7 @@
 	dir = 5;
 	icon_state = "warnplate"
 	},
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "tdp" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/grayscale/white,
@@ -38542,7 +38512,7 @@
 	dir = 6;
 	icon_state = "warnplate"
 	},
-/area/shuttle/drop1/ice_colony)
+/area/corsat/dropzone/landingzoneone)
 "tmr" = (
 /obj/structure/table/reinforced,
 /obj/effect/decal/tile/corsatstraight/lightpurple{
@@ -38599,7 +38569,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "upp27"
 	},
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "tnK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/grayscale/round/lightgray,
@@ -39193,7 +39163,7 @@
 	dir = 1
 	},
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "tBP" = (
 /obj/effect/decal/tile/corsatstraight/red{
 	dir = 4
@@ -39569,9 +39539,7 @@
 	dir = 10;
 	icon_state = "warnplate"
 	},
-/area/shuttle/drop2/ice_colony{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/corsat/dropzone/landingzonetwo)
 "tKt" = (
 /obj/effect/decal/tile/corsatcorner/green,
 /turf/open/floor/grayscale/round/lightgray,
@@ -40541,7 +40509,7 @@
 	dir = 4
 	},
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "uld" = (
 /turf/open/floor/grayscale/round/black,
 /area/corsat/sigma/south/robotics)
@@ -40761,7 +40729,7 @@
 	dir = 4
 	},
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "urD" = (
 /obj/machinery/camera/autoname{
 	dir = 4;
@@ -40807,7 +40775,7 @@
 /area/corsat/sigma/hangar/security)
 "usx" = (
 /turf/closed/wall/r_wall/unmeltable,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "usF" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/corsat/sigma/hangar)
@@ -41359,7 +41327,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "upp20"
 	},
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "uHp" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -41609,7 +41577,7 @@
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
 	},
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "uMN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -42349,7 +42317,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "vhv" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/tool,
@@ -43006,7 +42974,7 @@
 /obj/machinery/light,
 /obj/effect/decal/tile/full/black,
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "vxB" = (
 /obj/machinery/camera/autoname{
 	network = list("gamma")
@@ -43718,7 +43686,7 @@
 "vSY" = (
 /obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/floor/plating,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "vTu" = (
 /obj/effect/decal/tile/full/black,
 /turf/open/floor/grayscale/black,
@@ -44121,7 +44089,7 @@
 "wgE" = (
 /obj/effect/decal/tile/corsatstraight/red,
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "wgI" = (
 /obj/structure/rack,
 /obj/item/cell/high,
@@ -45463,7 +45431,7 @@
 	dir = 8;
 	icon_state = "warnplate"
 	},
-/area/shuttle/drop1/ice_colony)
+/area/corsat/dropzone/landingzoneone)
 "wPe" = (
 /obj/effect/decal/tile/corsatcorner/red{
 	dir = 1
@@ -45569,7 +45537,7 @@
 	dir = 5;
 	icon_state = "warnplate"
 	},
-/area/shuttle/drop1/ice_colony)
+/area/corsat/dropzone/landingzoneone)
 "wSt" = (
 /obj/structure/stairs,
 /turf/open/floor/tile/white,
@@ -45945,7 +45913,7 @@
 /turf/open/floor/plating{
 	icon_state = "warnplate"
 	},
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "xby" = (
 /obj/effect/decal/tile/corsatcorner/white{
 	dir = 8
@@ -46704,9 +46672,7 @@
 /area/corsat/gamma/residential/west)
 "xwA" = (
 /turf/open/floor/plating,
-/area/shuttle/drop2/ice_colony{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/corsat/dropzone/landingzonetwo)
 "xwB" = (
 /obj/structure/bed/chair,
 /obj/effect/decal/tile/full/black,
@@ -47798,7 +47764,7 @@
 /obj/item/bodybag,
 /obj/effect/decal/tile/full/black,
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "xUV" = (
 /obj/effect/decal/tile/corsatstraight/red{
 	dir = 4
@@ -48142,7 +48108,7 @@
 "ydF" = (
 /obj/effect/decal/tile/full/black,
 /turf/open/floor/grayscale/round/black,
-/area/corsat/omega/hangar)
+/area/corsat/hangar_storage/research)
 "ydJ" = (
 /obj/structure/table/mainship,
 /obj/structure/window/reinforced{
@@ -84321,7 +84287,7 @@ iUD
 iUD
 iUD
 iUD
-glA
+fVw
 eZU
 nCU
 gik
@@ -97253,7 +97219,7 @@ xwA
 xwA
 xwA
 xwA
-kHs
+jil
 bXQ
 ruE
 uNh
