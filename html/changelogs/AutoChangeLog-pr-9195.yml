@@ -1,0 +1,5 @@
+author: "Waselon"
+delete-after: True
+changes: 
+  - balance: "railgun projectiles now penetrate stuff"
+  - code_imp: "added support for piercing projectiles"
