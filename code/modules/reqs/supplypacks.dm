@@ -517,25 +517,6 @@ EXPLOSIVES
 	)
 	cost = 10
 
-/datum/supply_packs/explosives/manydetpack
-	name = "A LOT of detpack explosives"
-	contains = list(
-		/obj/item/detpack,
-		/obj/item/detpack,
-		/obj/item/detpack,
-		/obj/item/detpack,
-		/obj/item/detpack,
-		/obj/item/detpack,
-		/obj/item/detpack,
-		/obj/item/detpack,
-		/obj/item/detpack,
-		/obj/item/detpack,
-		/obj/item/detpack,
-		/obj/item/detpack,
-		/obj/item/assembly/signaler,
-	)
-	cost = 15
-
 /datum/supply_packs/explosives/mortar
 	name = "M402 mortar crate"
 	contains = list(/obj/item/mortar_kit)
