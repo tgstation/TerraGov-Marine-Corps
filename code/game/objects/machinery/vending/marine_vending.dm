@@ -926,6 +926,8 @@
 			/obj/item/storage/syringe_case = 10,
 			/obj/item/bodybag/cryobag = 4,
 			/obj/item/healthanalyzer = 4,
+			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 10,
+			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 10,
 			),
 		"Reagent Bottle" = list(
 			/obj/item/reagent_containers/glass/bottle/bicaridine = 4,
