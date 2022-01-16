@@ -530,7 +530,7 @@
 	aim_fire_delay = 0.3 SECONDS
 	aim_speed_modifier = 2
 
-	fire_delay = 10
+	fire_delay = 15
 	accuracy_mult = 1.20
 	accuracy_mult_unwielded = 0.8
 	damage_falloff_mult = 0.5
@@ -538,7 +538,7 @@
 	scatter_unwielded = 15
 	recoil = 0
 	recoil_unwielded = 2
-	cock_delay = 2.25
+	cock_delay = 2
 	aim_slowdown = 0.6
 
 //------------------------------------------------------
