@@ -1,0 +1,9 @@
+author: "vilereaver41"
+delete-after: True
+changes: 
+  - balance: "LZ2 semi redone to make it more appealing for marines"
+  - balance: "some LZ1 changes"
+  - balance: "moved crash disk locations"
+  - balance: "removed some silos like that one in the nuke disk area and replaced them elsewhere"
+  - balance: "caves have been fully pre wedded as they should"
+  - rscadd: "new area northeast of caves transit station (not pre wedded)"
