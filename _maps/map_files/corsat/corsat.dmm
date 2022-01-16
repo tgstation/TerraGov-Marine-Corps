@@ -5159,9 +5159,7 @@
 	icon_state = "rightengine_3";
 	opacity = 0
 	},
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "cAn" = (
 /obj/effect/decal/tile/corsatcorner/green{
 	dir = 1
@@ -5449,9 +5447,7 @@
 "cHA" = (
 /obj/effect/landmark/corpsespawner/PMC,
 /turf/open/shuttle/dropship/three,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "cHJ" = (
 /obj/machinery/light{
 	dir = 8
@@ -5779,9 +5775,7 @@
 	dir = 1
 	},
 /turf/open/shuttle/dropship/three,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "cPm" = (
 /turf/open/floor/grayscale/white,
 /area/corsat/sigma/dorms)
@@ -6440,9 +6434,7 @@
 /obj/structure/rack,
 /obj/item/restraints/handcuffs,
 /turf/open/shuttle/dropship/floor,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "diJ" = (
 /obj/effect/decal/tile/corsatcorner/red{
 	dir = 1
@@ -7219,9 +7211,7 @@
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/hangar/cargo)
 "dDI" = (
-/obj/structure/showcase{
-	"Processor = it"
-	},
+/obj/structure/showcase,
 /obj/structure/platform{
 	density = 0;
 	dir = 4;
@@ -7334,9 +7324,7 @@
 /area/corsat/omega/security)
 "dGc" = (
 /turf/open/shuttle/dropship/seven,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "dGg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -8805,9 +8793,7 @@
 	icon_state = "leftengine_1";
 	opacity = 0
 	},
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "esF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -9356,9 +9342,7 @@
 /area/corsat/gamma/hangar/security)
 "eHS" = (
 /turf/open/floor/plating,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "eIe" = (
 /obj/structure/table/mainship,
 /obj/item/flashlight/lamp,
@@ -11159,9 +11143,7 @@
 /area/corsat/sigma/dorms)
 "fDF" = (
 /turf/open/shuttle/dropship/six,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "fDI" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 4
@@ -11628,9 +11610,7 @@
 	icon_state = "rightengine_2";
 	opacity = 0
 	},
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "fPd" = (
 /obj/structure/barricade/wooden,
 /turf/open/floor/grayscale/black,
@@ -12237,9 +12217,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "upp1"
 	},
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "gha" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -12326,9 +12304,7 @@
 "giZ" = (
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/shuttle/dropship/three,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "gjm" = (
 /turf/closed/wall,
 /area/corsat/sigma/south/engineering)
@@ -12972,9 +12948,7 @@
 /obj/structure/rack,
 /obj/effect/spawner/random/toolbox,
 /turf/open/shuttle/dropship/floor,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "gyw" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/grayscale/darkgray,
@@ -14871,9 +14845,7 @@
 	dir = 8
 	},
 /turf/open/shuttle/dropship/floor,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "hzn" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -19794,9 +19766,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "upp20"
 	},
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "kbP" = (
 /obj/effect/decal/tile/full/black,
 /obj/effect/landmark/corpsespawner/doctor,
@@ -20241,9 +20211,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "upp9"
 	},
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "klB" = (
 /obj/machinery/door/airlock/mainship{
 	dir = 1;
@@ -20613,9 +20581,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "upp3"
 	},
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "kwd" = (
 /obj/machinery/door/window{
 	dir = 2
@@ -20655,9 +20621,7 @@
 /area/corsat/sigma/hangar)
 "kwT" = (
 /turf/open/shuttle/dropship/four,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "kwV" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2;
@@ -20873,9 +20837,7 @@
 	dir = 4
 	},
 /turf/open/shuttle/dropship/floor,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "kCu" = (
 /obj/machinery/power/apc/high,
 /obj/effect/decal/tile/corsatstraight/yellow,
@@ -20962,9 +20924,7 @@
 	icon_state = "leftengine_2";
 	opacity = 0
 	},
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "kEk" = (
 /obj/structure/sign/safety/airlock{
 	pixel_x = 32
@@ -21549,9 +21509,7 @@
 "kTQ" = (
 /obj/machinery/computer3,
 /turf/open/shuttle/dropship/three,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "kTR" = (
 /obj/structure/table/mainship,
 /obj/item/flashlight,
@@ -22503,9 +22461,7 @@
 	icon_state = "leftengine_3";
 	opacity = 0
 	},
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "lre" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22570,9 +22526,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "upp4"
 	},
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "lsm" = (
 /obj/effect/decal/tile/corsatstraight/green{
 	dir = 4
@@ -22999,9 +22953,7 @@
 /obj/structure/rack,
 /obj/item/storage/firstaid,
 /turf/open/shuttle/dropship/floor,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "lEv" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /obj/effect/decal/tile/corsatstraight/cyan{
@@ -23821,9 +23773,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "upp25"
 	},
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "mag" = (
 /obj/effect/decal/tile/corsatcorner/green{
 	dir = 8
@@ -24475,9 +24425,7 @@
 /area/corsat/omega/checkpoint)
 "mpF" = (
 /turf/open/shuttle/dropship/three,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "mpR" = (
 /obj/structure/bed/chair/office/light{
 	dir = 4
@@ -24911,9 +24859,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "upp5"
 	},
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "mCk" = (
 /obj/machinery/atmospherics/pipe/manifold/green{
 	dir = 4
@@ -28953,9 +28899,7 @@
 /area/corsat/omega/hangar/security)
 "oDz" = (
 /turf/open/shuttle/dropship/floor,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "oDD" = (
 /obj/structure/table,
 /obj/item/tool/kitchen/utensil/fork,
@@ -29531,9 +29475,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "upp2"
 	},
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "oUU" = (
 /obj/machinery/camera/autoname{
 	dir = 8;
@@ -31086,9 +31028,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "pHm" = (
 /obj/structure/bed/chair/sofa/corsat/left,
 /turf/open/floor/grayscale/black,
@@ -31390,9 +31330,7 @@
 /area/corsat/omega/control)
 "pPe" = (
 /turf/open/shuttle/dropship/ten,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "pPg" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -31530,9 +31468,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "upp8"
 	},
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "pRH" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/station_alert{
@@ -33848,9 +33784,7 @@
 /obj/structure/rack,
 /obj/effect/spawner/random/tech_supply,
 /turf/open/shuttle/dropship/floor,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "qWW" = (
 /obj/structure/largecrate/random/barrel,
 /obj/effect/decal/tile/corsatsemi/brown{
@@ -34419,9 +34353,7 @@
 /obj/structure/rack,
 /obj/effect/spawner/random/tool,
 /turf/open/shuttle/dropship/floor,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "rkZ" = (
 /obj/structure/rack,
 /obj/effect/decal/tile/corsatstraight/lightpurple,
@@ -35131,7 +35063,7 @@
 	},
 /obj/effect/landmark/corpsespawner/russian,
 /turf/open/shuttle/dropship/floor,
-/area/prison/hangar_storage/research)
+/area/corsat/hangar_storage/research/ship)
 "rGp" = (
 /obj/machinery/light,
 /obj/effect/decal/tile/corsatstraight/yellow{
@@ -38647,9 +38579,7 @@
 	icon_state = "rightengine_1";
 	opacity = 0
 	},
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "tpO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/warning_stripes/smallstripe,
@@ -38953,9 +38883,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "upp23"
 	},
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "twg" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -40173,9 +40101,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "upp22"
 	},
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "uca" = (
 /obj/machinery/light{
 	dir = 4
@@ -40935,9 +40861,7 @@
 "uwT" = (
 /obj/effect/landmark/corpsespawner/PMC,
 /turf/open/shuttle/dropship/five,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "uxe" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
@@ -41642,9 +41566,7 @@
 /area/corsat/omega/security)
 "uNT" = (
 /turf/open/shuttle/dropship/five,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "uNU" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
@@ -42222,9 +42144,7 @@
 "veO" = (
 /obj/structure/rack,
 /turf/open/shuttle/dropship/floor,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "veV" = (
 /obj/structure/bed/chair/comfy,
 /obj/machinery/camera/autoname{
@@ -43206,9 +43126,7 @@
 /area/corsat/sigma/hangar/security)
 "vCJ" = (
 /turf/open/shuttle/dropship/eight,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "vDe" = (
 /obj/effect/decal/tile/corsatstraight/yellow{
 	dir = 4
@@ -44200,9 +44118,7 @@
 /turf/open/floor/plating{
 	icon_state = "warnplate"
 	},
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "wiX" = (
 /obj/structure/bed/chair,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -44783,9 +44699,7 @@
 "wBK" = (
 /obj/effect/landmark/corpsespawner/russian,
 /turf/open/shuttle/dropship/three,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "wCo" = (
 /obj/structure/table/mainship,
 /obj/item/storage/fancy/cigarettes,
@@ -45219,9 +45133,7 @@
 /obj/structure/rack,
 /obj/item/binoculars,
 /turf/open/shuttle/dropship/floor,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "wKO" = (
 /obj/machinery/camera/autoname{
 	network = list("gamma")
@@ -46577,9 +46489,7 @@
 /area/corsat/sigma/south/complex)
 "xuy" = (
 /turf/open/shuttle/dropship,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "xuE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -46704,9 +46614,7 @@
 "xwQ" = (
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/plating,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "xwR" = (
 /obj/machinery/iv_drip,
 /obj/effect/decal/tile/corsatstraight/green{
@@ -47406,9 +47314,7 @@
 /obj/structure/rack,
 /obj/item/flashlight,
 /turf/open/shuttle/dropship/floor,
-/area/prison/hangar_storage/research{
-	name = "Corporate Shuttle"
-	})
+/area/corsat/hangar_storage/research/ship)
 "xMt" = (
 /turf/closed/wall/r_wall,
 /area/corsat/gamma/airlock/north)

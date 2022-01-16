@@ -562,6 +562,10 @@
 	name = "\improper Hangar Storage"
 	icon_state = "omega_hangar"
 
+/area/corsat/hangar_storage/research/ship
+	name = "\improper Corporate Ship"
+	icon_state = "railcart"
+
 /area/corsat/dropzone/landingzoneone
 	name = "\improper Hangar Storage"
 	icon_state = "flight_center"
