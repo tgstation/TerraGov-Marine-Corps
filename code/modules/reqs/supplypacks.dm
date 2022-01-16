@@ -887,7 +887,7 @@ ENGINEERING
 
 /datum/supply_packs/engineering/sandbags
 	name = "50 empty sandbags"
-	contains = list(/obj/item/stack/sandbags_empty/half)
+	contains = list(/obj/item/stack/sandbags_empty/full)
 	cost = 10
 
 /datum/supply_packs/engineering/metal50
