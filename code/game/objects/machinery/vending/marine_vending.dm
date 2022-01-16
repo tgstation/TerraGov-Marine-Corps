@@ -917,20 +917,15 @@
 	wrenchable = FALSE
 
 	products = list(
-		"Hypospray" = list (
-			/obj/item/reagent_containers/hypospray/advanced/bicaridine = 4,
-			/obj/item/reagent_containers/hypospray/advanced/kelotane = 4,
-			/obj/item/reagent_containers/hypospray/advanced/tramadol = 4,
-			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 4,
-			/obj/item/reagent_containers/hypospray/advanced/dexalin = 4,
-			/obj/item/reagent_containers/hypospray/advanced/inaprovaline = 4,
-			/obj/item/reagent_containers/hypospray/advanced/peridaxon = 4,
-			/obj/item/reagent_containers/hypospray/advanced/quickclot = 4,
+		"General" = list (
 			/obj/item/clothing/glasses/hud/health = 4,
 			/obj/item/storage/firstaid/regular = 4,
 			/obj/item/storage/firstaid/adv = 8,
 			/obj/item/storage/pouch/medical = 4,
 			/obj/item/storage/pouch/medkit = 4,
+			/obj/item/storage/syringe_case = 10,
+			/obj/item/bodybag/cryobag = 4,
+			/obj/item/healthanalyzer = 4,
 			),
 		"Reagent Bottle" = list(
 			/obj/item/reagent_containers/glass/bottle/bicaridine = 4,
@@ -946,15 +941,12 @@
 			/obj/item/reagent_containers/glass/bottle/polyhexanide = 2,
 			/obj/item/reagent_containers/glass/bottle/medicalnanites = 2,
 		),
-		"Misc" = list(
-			/obj/item/storage/syringe_case = 10,
+		"Clothing" = list(
 			/obj/item/clothing/under/marine/corpsman = 4,
 			/obj/item/storage/backpack/marine/corpsman = 4,
 			/obj/item/storage/backpack/marine/satchel/corpsman = 4,
 			/obj/item/encryptionkey/med = 4,
 			/obj/item/storage/belt/medical = 6,
-			/obj/item/bodybag/cryobag = 4,
-			/obj/item/healthanalyzer = 4,
 			)
 	)
 
