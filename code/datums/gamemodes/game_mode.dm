@@ -137,7 +137,7 @@
 /datum/game_mode/proc/create_characters()
 	for(var/i in GLOB.new_player_list)
 		var/mob/new_player/player = i
-		if(player.ready)
+		if(player.client && player.ready)
 			player.create_character()
 		CHECK_TICK
 
