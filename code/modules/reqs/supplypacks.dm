@@ -1430,27 +1430,27 @@ FACTORY
 /datum/supply_packs/factory/phosphosrefill
 	name = "Phosphorus-resistant plates refill"
 	contains = list(/obj/item/factory_refill/phosnade)
-	cost = 30
+	cost = 60
 
 /datum/supply_packs/factory/bignaderefill
 	name = "Rounded M15 plates refill"
 	contains = list(/obj/item/factory_refill/bignade)
-	cost = 10
+	cost = 50
 
 /datum/supply_packs/factory/sadar_refill_he
 	name = "SADAR HE missile assembly refill"
 	contains = list(/obj/item/factory_refill/sadar_he)
-	cost = 40
+	cost = 100
 
 /datum/supply_packs/factory/sadar_refill_ap
 	name = "SADAR AP missile assembly refill"
 	contains = list(/obj/item/factory_refill/sadar_ap)
-	cost = 40
+	cost = 110
 
 /datum/supply_packs/factory/sadar_refill_wp
 	name = "SADAR WP missile assembly refill"
 	contains = list(/obj/item/factory_refill/sadar_wp)
-	cost = 40
+	cost = 110
 
 /datum/supply_packs/factory/standard_recoilless_refill
 	name = "Recoilless standard missile assembly refill"
@@ -1475,7 +1475,7 @@ FACTORY
 /datum/supply_packs/factory/claymorerefill
 	name = "Claymore parts refill"
 	contains = list(/obj/item/factory_refill/claymore)
-	cost = 10
+	cost = 20
 
 /datum/supply_packs/factory/mateba_speedloader_refill
 	name = "Mateba autorevolver speedloader assembly refill"
@@ -1490,4 +1490,4 @@ FACTORY
 /datum/supply_packs/factory/scout_rifle_magazine_refill
 	name = "TX-8 scout rifle magazine assembly refill"
 	contains = list(/obj/item/factory_refill/scout_rifle_magazine_refill)
-	cost = 50
+	cost = 90
