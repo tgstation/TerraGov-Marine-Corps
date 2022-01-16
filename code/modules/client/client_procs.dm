@@ -228,7 +228,7 @@
 
 	if(byond_build < MIN_RECOMMENDED_CLIENT)
 		to_chat(src, span_userdanger("Your version of byond has known client crash issues, it's recommended you update your version."))
-		to_chat(src, span_danger("Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
+		to_chat(src, span_danger("Please download a new version of byond. You can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download 514.[MIN_RECOMMENDED_CLIENT]."))
 
 	if(byond_build < 1555)
 		to_chat(src, span_userdanger("Your version of byond might have rendering lag issues, it is recommended you update your version to above Byond version 1555 if you encounter them."))
@@ -236,7 +236,7 @@
 
 	if(byond_build > MAX_RECOMMENDED_CLIENT)
 		to_chat(src, span_userdanger("Your version of byond is likely to be very buggy."))
-		to_chat(src, span_danger("Please download a old version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
+		to_chat(src, span_danger("It is recommended you install an older version of byond. You can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download 514.[MAX_RECOMMENDED_CLIENT]."))
 
 	if(num2text(byond_build) in GLOB.blacklisted_builds)
 		log_access("Failed login: [key] - blacklisted byond version")
