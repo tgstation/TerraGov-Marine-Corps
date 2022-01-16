@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscadd: "You can now color flak jackets! Thank you, Jeff, for the sprites. Also, loadout for flak jacket is boink, so make new loadout."
+  - imageadd: "Colored flak jackets!"

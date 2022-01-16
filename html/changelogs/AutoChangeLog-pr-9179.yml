@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - rscadd: "Added new xenomorph chemical, Ozemolyn, purges chemical and does minor toxin damage to capped amount. Sting for Queen/Shrike/Drone. Gaseous form for Defiler, gas is transparent."
+  - balance: "neurotoxin no longer purges. Removed neuro sting from shrike, queen and drone."

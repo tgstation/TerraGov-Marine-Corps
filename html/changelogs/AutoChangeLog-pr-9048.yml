@@ -1,6 +1,0 @@
-author: "Waselon"
-delete-after: True
-changes: 
-  - rscadd: "Added rocket sledge"
-  - imageadd: "added rocket sledge sprites"
-  - code_imp: "changed welder pack and engieneer satchel to refuel rocket sledge"

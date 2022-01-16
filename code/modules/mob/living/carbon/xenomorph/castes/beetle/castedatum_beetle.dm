@@ -14,14 +14,14 @@
 	melee_damage = 17
 
 	// *** Speed *** //
-	speed = -0.3
+	speed = 0
 
 	// *** Plasma *** //
 	plasma_max = 320 ///4 forward charges
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 260
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_DO_NOT_ALERT_LOW_LIFE

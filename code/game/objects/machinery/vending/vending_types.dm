@@ -275,11 +275,8 @@
 		/obj/item/stack/medical/heal_pack/ointment = 2,
 		/obj/item/healthanalyzer = 1,
 		/obj/item/stack/medical/splint = 1,
-	)
-	contraband = list(
 		/obj/item/reagent_containers/hypospray/autoinjector/combat = 0,
-		/obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired = 0,
-		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired = 0,
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 	)
 
 /obj/machinery/vending/nanomed/Initialize(mapload, ...)
@@ -457,13 +454,13 @@
 	use_power = NO_POWER_USE
 
 /obj/machinery/vending/hydroseeds/nopower
-	use_power = NO_POWER_USE	
+	use_power = NO_POWER_USE
 
 /obj/machinery/vending/dinnerware/nopower
 	use_power = NO_POWER_USE
 
 /obj/machinery/vending/sovietsoda/nopower
-	use_power = NO_POWER_USE	
+	use_power = NO_POWER_USE
 
 /obj/machinery/vending/tool/nopower
 	use_power = NO_POWER_USE

@@ -9,7 +9,7 @@
 	general_codex_key = "energy weapons"
 
 	placed_overlay_iconstate = "laser"
-	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 	default_ammo_type = /obj/item/cell/lasgun
 	allowed_ammo_types = list(/obj/item/cell/lasgun)
 	muzzle_flash = null
@@ -85,7 +85,7 @@
 	force = 15
 	overcharge = FALSE
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
-	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 	aim_slowdown = 0.75
 	wield_delay = 1 SECONDS
 	gun_skill_category = GUN_SKILL_RIFLES
@@ -362,9 +362,6 @@
 
 
 	gun_firemode = initial(choice.fire_mode)
-
-
-	rounds_per_shot = initial(choice.rounds_per_shot)
 	ammo_datum_type = initial(choice.ammo_datum_type)
 	fire_delay = initial(choice.fire_delay)
 	burst_amount = initial(choice.burst_amount)
@@ -375,9 +372,12 @@
 
 	base_gun_icon = initial(choice.icon_state)
 	update_icon()
-
 	to_chat(user, initial(choice.message_to_user))
-	user.hud_used.update_ammo_hud(user, src)
+	var/old_drain_amount = rounds_per_shot
+	rounds_per_shot = initial(choice.rounds_per_shot)
+	if(length(chamber_items))
+		adjust_current_rounds(chamber_items[current_chamber_position], old_drain_amount - rounds_per_shot)
+	user?.hud_used.update_ammo_hud(user, src)
 	if(!in_chamber || !length(chamber_items))
 		return
 	QDEL_NULL(in_chamber)

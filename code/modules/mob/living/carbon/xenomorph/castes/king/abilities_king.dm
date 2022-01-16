@@ -131,7 +131,7 @@
 	action_icon_state = "stomp"
 	mechanics_text = "Summons all xenos in a hive to the caller's location, uses all plasma to activate."
 	ability_name = "Psychic summon"
-	plasma_cost = 1100 //uses all an elder kings plasma
+	plasma_cost = 900 //uses all an young kings plasma
 	cooldown_timer = 10 MINUTES
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_HIVE_SUMMON
