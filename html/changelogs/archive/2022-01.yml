@@ -199,3 +199,17 @@
 2022-01-15:
   RenovatedAtol:
   - rscadd: possibility to send large crates via supply drop
+2022-01-16:
+  Lewdcifer:
+  - balance: Drain gas nade box removed from requisitions's vendor.
+  - balance: Explosion screenshake reduced.
+  - balance: CAS tanglefoot rocket cost 50 > 150.
+  - rscdel: Projectile screenshake removed.
+  SplinterGP:
+  - bugfix: fixed autofire getting burst fire debuff on guns that has burst fire
+  nova_epee and Fitz 'Pancake' Sholl:
+  - bugfix: Dress uniform to the intended sprites. I choose not to delete the old
+      dress uniform.
+  - imageadd: Add service uniform; say thanks to Fitz 'Pancake' Sholl!
+  - rscadd: Make it easy to get service and dress uniform without having to click
+      so much buttons.
