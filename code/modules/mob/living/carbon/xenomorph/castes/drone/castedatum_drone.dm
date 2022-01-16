@@ -56,7 +56,7 @@
 		/datum/action/xeno_action/activable/psychic_cure/acidic_salve,
 		/datum/action/xeno_action/activable/transfer_plasma/drone,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
-		/datum/action/xeno_action/activable/neurotox_sting,
+		/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn,
 		/datum/action/xeno_action/create_jelly/slow,
 		/datum/action/xeno_action/toggle_pheromones,
 	)

@@ -141,13 +141,16 @@ should be alright.
 
 //tactical reloads
 /obj/item/weapon/gun/MouseDrop_T(atom/dropping, mob/living/carbon/human/user)
-	if(istype(dropping, /obj/item/ammo_magazine))
+	if(istype(dropping, /obj/item/ammo_magazine) || istype(dropping, /obj/item/cell))
 		tactical_reload(dropping, user)
 	return ..()
 
 ///This performs a tactical reload with src using new_magazine to load the gun.
-/obj/item/weapon/gun/proc/tactical_reload(obj/item/ammo_magazine/new_magazine, mob/living/carbon/human/user)
-	if(!istype(user) || user.incapacitated(TRUE))
+/obj/item/weapon/gun/proc/tactical_reload(obj/item/new_magazine, mob/living/carbon/human/user)
+	if(!istype(user) || user.incapacitated(TRUE) || user.do_actions)
+		return
+	if(!(new_magazine.type in allowed_ammo_types))
+		to_chat(user, span_warning("[new_magazine] cannot fit into [src]!"))
 		return
 	if(src != user.r_hand && src != user.l_hand)
 		to_chat(user, span_warning("[src] must be in your hand to do that."))
@@ -159,10 +162,12 @@ should be alright.
 	if(!user.skills.getRating("firearms"))
 		to_chat(user, span_warning("You don't know how to do tactical reloads."))
 		return
+	to_chat(user, span_notice("You start a tactical reload."))
+	var/tac_reload_time = max(0.25 SECONDS, 0.75 SECONDS - user.skills.getRating("firearms") * 5)
 	if(length(chamber_items))
+		if(!do_after(user, tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
+			return
 		unload(user)
-		to_chat(user, span_notice("You start a tactical reload."))
-	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
 	if(!do_after(user, tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
 		return
 	if(istype(new_magazine.loc, /obj/item/storage))

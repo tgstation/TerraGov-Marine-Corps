@@ -771,11 +771,11 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		return
 
 	if(!which)
-		var/choice = input(src, "Choose an order") in command_aura_allowed + "help" + "cancel"
+		var/choice = tgui_input_list(src, "Choose an order", items = command_aura_allowed + "help")
 		if(choice == "help")
 			to_chat(src, span_notice("<br>Orders give a buff to nearby soldiers for a short period of time, followed by a cooldown, as follows:<br><B>Move</B> - Increased mobility and chance to dodge projectiles.<br><B>Hold</B> - Increased resistance to pain and combat wounds.<br><B>Focus</B> - Increased gun accuracy and effective range.<br>"))
 			return
-		if(choice == "cancel")
+		if(!choice)
 			return
 		command_aura = choice
 	else

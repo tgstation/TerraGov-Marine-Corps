@@ -1,0 +1,4 @@
+author: "EvilMelonTheSecond"
+delete-after: True
+changes: 
+  - rscdel: "Moved wallnanomed contraband inventory to normal inventory, removed hyperzine"

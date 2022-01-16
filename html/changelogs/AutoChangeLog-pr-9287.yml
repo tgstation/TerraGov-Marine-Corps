@@ -1,0 +1,4 @@
+author: "Verlurk"
+delete-after: True
+changes: 
+  - bugfix: "Nanotrasen now send you the updated leaflet with your factory pack - now with 73% less spelling errors!"

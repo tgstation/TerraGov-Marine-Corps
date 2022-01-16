@@ -1,0 +1,6 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscadd: "add milk in soda dispenser"
+  - balance: "marines have access to milk; JUICE UP, BOYS AND GIRLS!"
+  - qol: "you can finally make Bihexajuline in all shipside maps; if there isn't a soda dispenser nearby medical, I will change that in another PR."
