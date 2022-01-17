@@ -1395,37 +1395,37 @@ FACTORY
 		/obj/machinery/outputter,
 		/obj/item/paper/factoryhowto,
 	)
-	cost = 40
+	cost = 80
 
 /datum/supply_packs/factory/cutter
 	name = "Industrial cutter"
 	contains = list(/obj/machinery/factory/cutter)
-	cost = 10
+	cost = 20
 
 /datum/supply_packs/factory/heater
 	name = "Industrial heater"
 	contains = list(/obj/machinery/factory/heater)
-	cost = 10
+	cost = 20
 
 /datum/supply_packs/factory/flatter
 	name = "Industrial flatter"
 	contains = list(/obj/machinery/factory/flatter)
-	cost = 10
+	cost = 20
 
 /datum/supply_packs/factory/former
 	name = "Industrial former"
 	contains = list(/obj/machinery/factory/former)
-	cost = 10
+	cost = 20
 
 /datum/supply_packs/factory/reconstructor
 	name = "Industrial reconstructor"
 	contains = list(/obj/machinery/factory/reconstructor)
-	cost = 10
+	cost = 20
 
 /datum/supply_packs/factory/outputter
 	name = "Industrial Unboxer"
 	contains = list(/obj/machinery/outputter)
-	cost = 10
+	cost = 20
 
 /datum/supply_packs/factory/phosphosrefill
 	name = "Phosphorus-resistant plates refill"
