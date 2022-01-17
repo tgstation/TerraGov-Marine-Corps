@@ -886,7 +886,6 @@
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "marine_rocket"
 	item_state = "marine_rocket"
-	var/base_icon = "marine_rocket"
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
 	storage_slots = 5 //It can hold 5 rockets.
@@ -903,7 +902,7 @@
 
 /obj/item/storage/belt/gun/rpg/update_icon()
 	var/mob/user = loc
-	item_state = "[base_icon][contents.len?"_g":""]"
+	item_state = "[initial(icon_state)][length(contents)?"_g":""]"
 	if(istype(user))
 		user.update_inv_back()
 		user.update_inv_s_store()
