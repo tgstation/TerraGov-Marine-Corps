@@ -111,7 +111,7 @@
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	refill_type = /obj/item/factory_part/bignade
-	refill_amout = 18
+	refill_amount = 18
 
 /obj/item/factory_refill/pizza_refill
 	name = "box of rounded metal plates"
