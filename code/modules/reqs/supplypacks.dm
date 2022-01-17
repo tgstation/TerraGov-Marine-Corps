@@ -596,6 +596,37 @@ ARMOR
 	)
 	cost = B17_PRICE
 
+/datum/supply_packs/armor/demolitionist
+	name = "Demolitionist Armor Set"
+	contains = list(
+		/obj/item/clothing/suit/storage/marine/M3T,
+		/obj/item/clothing/head/helmet/durag,
+	)
+	cost = 50
+
+/datum/supply_packs/armor/sniper
+	name = "Sniper Armor Set"
+	contains = list(
+		/obj/item/clothing/suit/storage/marine/sniper,
+		/obj/item/clothing/head/helmet/marine/sniper,
+	)
+	cost = 50
+
+/datum/supply_packs/armor/scout
+	name = "Scout Armor Set"
+	contains = list(
+		/obj/item/clothing/suit/storage/marine/M3S,
+		/obj/item/clothing/head/helmet/marine/scout,
+	)
+	cost = 50
+
+/datum/supply_packs/armor/pyro
+	name = "Pyrotechnician Armor Set"
+	contains = list(
+		/obj/item/clothing/suit/storage/marine/M35,
+		/obj/item/clothing/head/helmet/marine/pyro,
+	)
+	cost = 50
 /datum/supply_packs/armor/scout_cloak
 	name = "Scout Cloak"
 	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak/scout)
