@@ -150,7 +150,7 @@ GLOBAL_LIST_INIT(claymore_recipe, list(
 	. = ..()
 	recipe = GLOB.claymore_recipe
 
-GLOBAL_LIST_INIT(sg_rifle_ammobox, list(
+GLOBAL_LIST_INIT(IFF_ammo, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CONSTRUCTOR, STEP_ICON_STATE = "bulletbox"),
 	))
@@ -162,7 +162,34 @@ GLOBAL_LIST_INIT(sg_rifle_ammobox, list(
 
 /obj/item/factory_part/smartgunner_rifle_box/Initialize()
 	. = ..()
-	recipe = GLOB.sg_rifle_ammobox
+	recipe = GLOB.IFF_ammo
+
+/obj/item/factory_part/smartgunner_machinegun_magazine
+	name = "IFF drums box"
+	desc = "A box with unfinished smart-rounds inside and empty drums inside"
+	result = /obj/item/ammo_magazine/standard_smartmachinegun
+
+/obj/item/factory_part/smartgunner_machinegun_magazine/Initialize()
+	. = ..()
+	recipe = GLOB.IFF_ammo
+
+/obj/item/factory_part/auto_sniper_magazine
+	name = "IFF high caliber bullet box"
+	desc = "A box with unfinished high caliber smart-rounds inside"
+	result = /obj/item/ammo_magazine/rifle/autosniper
+
+/obj/item/factory_part/auto_sniper_magazine/Initialize()
+	. = ..()
+	recipe = GLOB.IFF_ammo
+
+/obj/item/factory_part/scout_rifle_magazine
+	name = "IFF high velocity bullet box"
+	desc = "A box with unfinished high velocity smart-rounds inside"
+	result = /obj/item/ammo_magazine/rifle/tx8
+
+/obj/item/factory_part/scout_rifle_magazine/Initialize()
+	. = ..()
+	recipe = GLOB.IFF_ammo
 
 GLOBAL_LIST_INIT(mateba_speedloader, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
@@ -192,18 +219,3 @@ GLOBAL_LIST_INIT(railgun_magazine, list(
 /obj/item/factory_part/railgun_magazine/Initialize()
 	. = ..()
 	recipe = GLOB.railgun_magazine
-
-GLOBAL_LIST_INIT(scout_rifle_magazine, list(
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FORMER, STEP_ICON_STATE = "hotplate"),
-	))
-
-/obj/item/factory_part/scout_rifle_magazine
-	name = "IFF high velocity bullet box"
-	desc = "A box with unfinished high velocity smart-rounds inside"
-	result = /obj/item/ammo_magazine/rifle/tx8
-
-/obj/item/factory_part/scout_rifle_magazine/Initialize()
-	. = ..()
-	recipe = GLOB.scout_rifle_magazine

@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "Fix railgun being able to take two rounds in chambers"
-  - bugfix: "Fix lasguns ejecting mag at 1 round remaining"

@@ -1,4 +1,0 @@
-author: "hyper2snyper"
-delete-after: True
-changes: 
-  - bugfix: "Miniflamers vended from the loadout vendor will have the proper attachments equipped."

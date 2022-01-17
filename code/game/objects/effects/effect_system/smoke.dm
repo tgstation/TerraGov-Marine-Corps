@@ -319,6 +319,11 @@
 	smoke_can_spread_through = TRUE
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_SANGUINAL|SMOKE_GASP|SMOKE_COUGH
 
+///Xeno ozelomelyn in smoke form for Defiler.
+/obj/effect/particle_effect/smoke/xeno/ozelomelyn
+	color = "#f1ddcf" //A pinkish for now.
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_OZELOMELYN|SMOKE_GASP|SMOKE_COUGH
+
 /////////////////////////////////////////////
 // Smoke spreads
 /////////////////////////////////////////////
@@ -371,6 +376,9 @@ datum/effect_system/smoke_spread/tactical
 
 /datum/effect_system/smoke_spread/xeno/sanguinal
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/sanguinal
+
+/datum/effect_system/smoke_spread/xeno/ozelomelyn
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/ozelomelyn
 
 /////////////////////////////////////////////
 // Chem smoke
