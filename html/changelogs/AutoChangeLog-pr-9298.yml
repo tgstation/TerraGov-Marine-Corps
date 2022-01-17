@@ -1,4 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - balance: "revert minion spawn rate nerf, so for 50 players, each spawner can generate 7 mobs"
