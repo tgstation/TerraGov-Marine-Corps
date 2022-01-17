@@ -602,7 +602,7 @@ ARMOR
 		/obj/item/clothing/suit/storage/marine/M3T,
 		/obj/item/clothing/head/helmet/durag,
 	)
-	cost = 50
+	cost = 30
 
 /datum/supply_packs/armor/sniper
 	name = "Sniper Armor Set"
@@ -610,7 +610,7 @@ ARMOR
 		/obj/item/clothing/suit/storage/marine/sniper,
 		/obj/item/clothing/head/helmet/marine/sniper,
 	)
-	cost = 50
+	cost = 30
 
 /datum/supply_packs/armor/scout
 	name = "Scout Armor Set"

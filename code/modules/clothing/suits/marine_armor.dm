@@ -324,7 +324,7 @@
 	name = "\improper M3-T light armor"
 	desc = "A custom set of M3 armor designed for users of long ranged explosive weaponry."
 	icon_state = "demolitionist"
-	soft_armor = list("melee" = 60, "bullet" = 55, "laser" = 45, "energy" = 30, "bomb" = 55, "bio" = 35, "rad" = 15, "fire" = 30, "acid" = 30)
+	soft_armor = list("melee" = 60, "bullet" = 55, "laser" = 45, "energy" = 30, "bomb" = 80, "bio" = 35, "rad" = 15, "fire" = 30, "acid" = 30)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/weapon/gun/launcher/rocket)
 
