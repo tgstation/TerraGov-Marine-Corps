@@ -283,6 +283,13 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/grayscale/white,
 /area/corsat/theta/biodome/complex)
+"cy" = (
+/obj/effect/decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/obj/effect/landmark/corpsespawner/prisoner,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
 "cC" = (
 /obj/machinery/atmospherics/pipe/manifold/green{
 	dir = 8
@@ -1403,13 +1410,7 @@
 	},
 /area/corsat/theta/biodome)
 "oG" = (
-/mob/living/simple_animal/hostile/carp{
-	color = "orange";
-	faction = "neutral";
-	harm_intent_damage = 0;
-	melee_damage_lower = 0;
-	melee_damage_upper = 0
-	},
+/obj/effect/landmark/corpsespawner/prisoner,
 /turf/open/floor/grayscale/white,
 /area/corsat/theta/biodome/complex)
 "oJ" = (
@@ -2231,6 +2232,13 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/ground/grass,
 /area/corsat/theta/biodome)
+"xY" = (
+/obj/effect/decal/tile/corsatsemi/lightpurple{
+	dir = 8
+	},
+/obj/effect/landmark/corpsespawner/prisoner,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
 "yb" = (
 /obj/effect/decal/tile/corsatcorner/blue{
 	dir = 8
@@ -3383,6 +3391,13 @@
 	},
 /turf/open/ground/grass,
 /area/corsat/theta/biodome)
+"LA" = (
+/obj/effect/decal/tile/corsatsemi/lightpurple{
+	dir = 4
+	},
+/obj/effect/landmark/corpsespawner/prisoner,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
 "LU" = (
 /obj/structure/jungle/plantbot1{
 	icon_state = "alienplant1";
@@ -6859,7 +6874,7 @@ ry
 DX
 yG
 Nv
-jq
+cy
 jq
 jq
 RI
@@ -6941,9 +6956,9 @@ yG
 yG
 yG
 Oe
+jH
 oG
-oG
-oG
+jH
 ax
 yG
 eO
@@ -7022,11 +7037,11 @@ ic
 PT
 Cq
 yG
-Ns
+xY
 OY
 jH
 Hb
-wB
+LA
 yG
 yG
 yG
@@ -9045,7 +9060,7 @@ To
 xd
 Iu
 rL
-Iu
+YU
 Iu
 Iu
 Uy

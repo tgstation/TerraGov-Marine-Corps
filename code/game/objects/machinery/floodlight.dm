@@ -52,7 +52,7 @@
 /obj/machinery/floodlight/landing/corsat
 	name = "Biodome Light"
 	desc = "A rugged light stationed inside artificial environments to provide visibility for researchers."
-	brightness_on = 3 //lower brightness than our parent, we want some darkness so xenos can slink in and out of our biodomes
+	brightness_on = 7
 	resistance_flags = UNACIDABLE //needed to prevent xenos from melting all floodlights before marines exit their chosen LZ
 
 /obj/machinery/floodlight/landing/corsat/lvdome //lv dome floodlights use a different icon

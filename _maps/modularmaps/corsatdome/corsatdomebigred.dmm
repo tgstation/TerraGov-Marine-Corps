@@ -676,9 +676,7 @@
 /area/corsat/sigma/biodome/scrapyard)
 "ot" = (
 /obj/machinery/power/apc/drained{
-	dir = 4;
-	pixel_x = -24;
-	start_charge = 0
+	dir = 4
 	},
 /obj/structure/closet/wardrobe/atmospherics_yellow,
 /obj/effect/decal/tile/corsatstraight/yellow{
@@ -796,6 +794,10 @@
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 4
 	},
+/area/corsat/sigma/biodome)
+"rj" = (
+/obj/machinery/floodlight/landing/corsat,
+/turf/open/floor/asteroidfloor,
 /area/corsat/sigma/biodome)
 "rm" = (
 /obj/structure/closet/emcloset,
@@ -7128,7 +7130,7 @@ LD
 LD
 LD
 mR
-Op
+rj
 Op
 Jq
 Kv
