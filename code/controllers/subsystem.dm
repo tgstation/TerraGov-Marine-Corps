@@ -62,6 +62,7 @@
 //fire() seems more suitable. This is the procedure that gets called every 'wait' deciseconds.
 //Sleeping in here prevents future fires until returned.
 /datum/controller/subsystem/proc/fire(resumed = 0)
+	SIGNAL_HANDLER
 	flags |= SS_NO_FIRE
 	throw EXCEPTION("Subsystem [src]([type]) does not fire() but did not set the SS_NO_FIRE flag. Please add the SS_NO_FIRE flag to any subsystem that doesn't fire so it doesn't get added to the processing list and waste cpu.")
 
