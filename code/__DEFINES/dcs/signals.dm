@@ -724,7 +724,6 @@
 #define COMSIG_KB_GIVE "keybind_give"
 
 // human modules signals for keybindings
-#define COMSIG_KB_HELMETMODULE "keybinding_helmetmodule"
 #define COMSIG_KB_VALIHEAL "keybinding_valiheal"
 #define COMSIG_KB_VALICONNECT "keybiding_valiconnect"
 #define COMSIG_KB_SUITANALYZER "keybinding_suitanalyzer"

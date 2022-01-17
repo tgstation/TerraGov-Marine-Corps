@@ -61,12 +61,6 @@
 	description = "Give the held item to the nearby marine"
 	keybind_signal = COMSIG_KB_GIVE
 
-/datum/keybinding/human/helmet_module
-	name = "helmet_module"
-	full_name = "Activate helmet module"
-	description = ""
-	keybind_signal = COMSIG_KB_HELMETMODULE
-
 /datum/keybinding/human/vali_heal
 	name = "vali_heal"
 	full_name = "Activate Vali healing"
