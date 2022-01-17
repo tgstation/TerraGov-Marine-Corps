@@ -2335,6 +2335,17 @@
 /obj/item/clothing/mask/gas,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/port_hallway)
+"hE" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/starboard_hallway)
 "hF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -3352,6 +3363,10 @@
 "lw" = (
 /turf/closed/wall/mainship,
 /area/mainship/shipboard/firing_range)
+"lx" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/command/self_destruct)
 "ly" = (
 /obj/structure/closet/firecloset/full,
 /obj/machinery/light{
@@ -3939,6 +3954,7 @@
 /obj/machinery/power/apc/mainship{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/self_destruct)
 "nw" = (
@@ -7562,6 +7578,17 @@
 	dir = 4
 	},
 /area/mainship/living/cafeteria_starboard)
+"yS" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/evacuation)
 "yT" = (
 /obj/structure/rack,
 /obj/item/tool/crowbar/red,
@@ -10586,7 +10613,8 @@
 /area/mainship/medical/chemistry)
 "HS" = (
 /obj/machinery/door/airlock/mainship/medical/free_access{
-	dir = 2
+	dir = 2;
+	name = "Chemistry"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -12207,7 +12235,8 @@
 /area/mainship/living/bridgebunks)
 "MU" = (
 /obj/machinery/door/airlock/mainship/medical/free_access{
-	dir = 2
+	dir = 2;
+	name = "Chemistry"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -19236,7 +19265,7 @@ uB
 vr
 hw
 xi
-yj
+yS
 zc
 zf
 zf
@@ -22896,7 +22925,7 @@ ye
 JC
 YH
 YH
-ye
+Sr
 gs
 gs
 gs
@@ -23194,7 +23223,7 @@ AW
 AW
 AW
 AW
-AW
+lx
 ZB
 yV
 gs
@@ -23586,7 +23615,7 @@ AW
 AW
 AW
 AW
-AW
+lx
 ZB
 yV
 gs
@@ -24043,13 +24072,13 @@ Bw
 bw
 bw
 bw
-bw
+BK
 bw
 bw
 bw
 Wp
 Wp
-bw
+BK
 bw
 bw
 bw
@@ -24529,7 +24558,7 @@ vU
 wL
 xS
 Ot
-Io
+hE
 Jo
 Ci
 Fu
