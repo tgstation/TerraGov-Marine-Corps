@@ -379,9 +379,9 @@
 	SIGNAL_HANDLER
 	if(!density)
 		return
-	unlock()
+	unlock(TRUE)
 	INVOKE_ASYNC(src, /obj/machinery/door/proc/open)
-	lock()
+	lock(TRUE)
 
 /obj/machinery/door/airlock/mainship/secure/rebel/evac
 	name = "\improper Evacuation Airlock"

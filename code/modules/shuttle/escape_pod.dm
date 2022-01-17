@@ -5,7 +5,7 @@
 	width = 5
 	height = 4
 	launch_status = UNLAUNCHED
-	ignitionTime = 30 SECONDS
+	ignitionTime = 10 SECONDS
 	var/can_launch = FALSE
 
 	var/list/doors = list()
@@ -275,16 +275,16 @@
 /obj/machinery/door/airlock/evacuation/proc/force_open()
 	if(!density)
 		return
-	unlock()
+	unlock(TRUE)
 	open()
-	lock()
+	lock(TRUE)
 
 /obj/machinery/door/airlock/evacuation/proc/force_close()
 	if(density)
 		return
-	unlock()
+	unlock(TRUE)
 	close()
-	lock()
+	lock(TRUE)
 
 /obj/machinery/door/airlock/evacuation/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	if(linked_to_shuttle)
