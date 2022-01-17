@@ -65,14 +65,6 @@
 /obj/effect/decal/warning_stripes/box,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/airlock/control)
-"aR" = (
-/obj/structure/closet/wardrobe/virology_white,
-/obj/machinery/camera/autoname{
-	network = list("gamma")
-	},
-/obj/effect/decal/tile/corsatstraight/lightpurple,
-/turf/open/floor/grayscale/round/lightgray,
-/area/corsat/gamma/biodome/virology)
 "aT" = (
 /obj/effect/decal/tile/full/black,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -262,9 +254,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/corsat/gamma/biodome)
 "cJ" = (
-/obj/machinery/floodlight{
-	name = "Floodlight"
-	},
+/obj/machinery/floodlight/landing/corsat,
 /turf/open/floor/plating/ground/snow/layer3,
 /area/corsat/gamma/biodome)
 "cK" = (
@@ -380,9 +370,6 @@
 "ey" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/spray/cleaner,
-/obj/machinery/camera/autoname{
-	network = list("gamma")
-	},
 /obj/effect/decal/tile/full/graylarge,
 /turf/open/floor/grayscale/round/lightgray,
 /area/corsat/gamma/biodome/toxins)
@@ -417,11 +404,6 @@
 /turf/open/floor/grayscale/round/lightgray,
 /area/corsat/gamma/biodome/virology)
 "eV" = (
-/obj/machinery/power/apc/high{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
-	},
 /obj/structure/closet/wardrobe/virology_white,
 /obj/effect/decal/tile/corsatstraight/lightpurple,
 /turf/open/floor/grayscale/round/lightgray,
@@ -443,16 +425,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/airlock/control)
-"fr" = (
-/obj/machinery/camera/autoname{
-	dir = 8;
-	network = list("gamma")
-	},
-/obj/effect/decal/tile/corsatcorner/lighpurple{
-	dir = 4
-	},
-/turf/open/floor/grayscale/round/lightgray,
-/area/corsat/gamma/biodome/toxins)
 "fz" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
@@ -1099,13 +1071,6 @@
 	},
 /turf/open/floor/plating/ground/ice,
 /area/corsat/gamma/biodome)
-"nk" = (
-/obj/machinery/camera/autoname{
-	dir = 1;
-	network = list("gamma")
-	},
-/turf/open/floor/plating/ground/snow/layer3,
-/area/corsat/gamma/biodome)
 "nq" = (
 /obj/machinery/atmospherics/pipe/manifold/green{
 	dir = 4
@@ -1257,7 +1222,7 @@
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/airlock/control)
 "pi" = (
-/obj/machinery/power/apc/high{
+/obj/machinery/power/apc/drained{
 	dir = 8;
 	start_charge = 0
 	},
@@ -1333,6 +1298,10 @@
 	},
 /turf/open/floor/grayscale/white,
 /area/corsat/gamma/biodome/toxins)
+"pV" = (
+/obj/machinery/floodlight/landing/corsat,
+/turf/open/floor/plating/ground/ice,
+/area/corsat/gamma/biodome)
 "pW" = (
 /obj/item/camera,
 /obj/structure/table/woodentable,
@@ -1394,7 +1363,7 @@
 /turf/closed/wall/r_wall,
 /area/corsat/gamma/airlock/control)
 "qJ" = (
-/obj/machinery/power/apc/high{
+/obj/machinery/power/apc/drained{
 	dir = 8;
 	start_charge = 0
 	},
@@ -1782,10 +1751,6 @@
 "uL" = (
 /obj/structure/table/mainship,
 /obj/item/tool/hand_labeler,
-/obj/machinery/camera/autoname{
-	dir = 1;
-	network = list("gamma")
-	},
 /obj/effect/decal/tile/corsatstraight/lightpurple{
 	dir = 1
 	},
@@ -1942,9 +1907,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/corsat/gamma/biodome)
 "wH" = (
-/obj/machinery/floodlight{
-	name = "Floodlight"
-	},
+/obj/machinery/floodlight/landing/corsat,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/corsat/gamma/biodome)
 "wO" = (
@@ -2224,20 +2187,9 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/round/lightgray,
 /area/corsat/gamma/biodome/toxins)
-"zX" = (
-/obj/machinery/camera/autoname{
-	dir = 4;
-	network = list("gamma")
-	},
-/obj/effect/decal/tile/corsatstraight/blue{
-	dir = 4
-	},
-/turf/open/floor/grayscale/black,
-/area/corsat/gamma/airlock/control)
 "Ad" = (
-/obj/machinery/power/apc/high{
-	dir = 8;
-	pixel_x = -24;
+/obj/machinery/power/apc/drained{
+	dir = 4;
 	start_charge = 0
 	},
 /obj/structure/closet/wardrobe/toxins_white,
@@ -2615,10 +2567,6 @@
 /area/corsat/gamma/biodome/complex)
 "DQ" = (
 /obj/machinery/smartfridge/chemistry,
-/obj/machinery/camera/autoname{
-	dir = 4;
-	network = list("gamma")
-	},
 /obj/effect/decal/tile/corsatstraight/lightpurple{
 	dir = 4
 	},
@@ -2668,13 +2616,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/airlock/control)
-"En" = (
-/obj/machinery/camera/autoname{
-	network = list("gamma")
-	},
-/obj/effect/decal/tile/corsatstraight/lightpurple,
-/turf/open/floor/grayscale/round/lightgray,
-/area/corsat/gamma/biodome/virology)
 "Eo" = (
 /obj/machinery/space_heater,
 /obj/effect/decal/tile/corsatsemi/lightpurple{
@@ -2908,12 +2849,6 @@
 /area/corsat/gamma/biodome/toxins)
 "HA" = (
 /turf/closed/ice_rock/westWall,
-/area/corsat/gamma/biodome)
-"HB" = (
-/obj/machinery/camera/autoname{
-	network = list("gamma")
-	},
-/turf/open/floor/plating/ground/snow/layer3,
 /area/corsat/gamma/biodome)
 "HG" = (
 /obj/machinery/portable_atmospherics/canister/empty,
@@ -3177,10 +3112,8 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/corsat/gamma/biodome)
 "KI" = (
-/obj/machinery/floodlight{
-	name = "Floodlight"
-	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/floodlight/landing/corsat,
 /turf/open/floor/plating/ground/snow/layer3,
 /area/corsat/gamma/biodome)
 "KN" = (
@@ -3719,17 +3652,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/corsat/gamma/biodome)
-"Qg" = (
-/obj/structure/closet/wardrobe/science_white,
-/obj/machinery/camera/autoname{
-	dir = 8;
-	network = list("gamma")
-	},
-/obj/effect/decal/tile/corsatstraight/lightpurple{
-	dir = 8
-	},
-/turf/open/floor/grayscale/white,
-/area/corsat/gamma/biodome/complex)
 "Qh" = (
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/black,
@@ -3960,10 +3882,6 @@
 /turf/open/floor,
 /area/corsat/gamma/biodome)
 "Sn" = (
-/obj/machinery/camera/autoname{
-	dir = 1;
-	network = list("gamma")
-	},
 /obj/effect/decal/tile/full/black,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
@@ -4239,13 +4157,6 @@
 	dir = 4
 	},
 /area/corsat/gamma/biodome)
-"Vj" = (
-/obj/machinery/camera/autoname{
-	dir = 1;
-	network = list("gamma")
-	},
-/turf/open/floor/plating/ground/snow/layer0,
-/area/corsat/gamma/airlock/control)
 "Vk" = (
 /turf/closed/ice/thin/end{
 	dir = 4
@@ -4272,10 +4183,6 @@
 	},
 /area/corsat/gamma/biodome)
 "VF" = (
-/obj/machinery/camera/autoname{
-	dir = 1;
-	network = list("gamma")
-	},
 /obj/effect/decal/tile/corsatstraight/lightpurple{
 	dir = 1
 	},
@@ -5272,7 +5179,7 @@ YK
 lb
 YK
 YK
-YK
+pV
 YK
 YK
 YK
@@ -5673,7 +5580,7 @@ kQ
 jH
 kQ
 Hu
-Qg
+rH
 rH
 KS
 df
@@ -6063,7 +5970,7 @@ YK
 xh
 GB
 eS
-aR
+eV
 xH
 PS
 KT
@@ -6342,7 +6249,7 @@ YK
 py
 py
 KY
-fr
+SD
 xF
 gC
 xK
@@ -6386,7 +6293,7 @@ YK
 DK
 DK
 DK
-En
+vj
 Fs
 Yb
 Dv
@@ -8261,7 +8168,7 @@ Op
 "}
 (44,1,1) = {"
 Op
-HB
+ZO
 ZO
 Xz
 Xz
@@ -8338,7 +8245,7 @@ cE
 ZG
 XB
 ZO
-nk
+ZO
 Op
 "}
 (45,1,1) = {"
@@ -9771,7 +9678,7 @@ qG
 ld
 yt
 ld
-Vj
+ld
 nS
 nS
 DV
@@ -10347,7 +10254,7 @@ UK
 Ax
 zt
 If
-zX
+rK
 jP
 UK
 Ax

@@ -136,10 +136,6 @@
 /turf/open/floor/plating,
 /area/corsat/sigma/biodome/testgrounds)
 "du" = (
-/obj/machinery/camera/autoname{
-	dir = 8;
-	network = list("sigma")
-	},
 /turf/open/floor/plating/asteroidwarning/down{
 	dir = 4
 	},
@@ -252,9 +248,6 @@
 /obj/structure/table/reinforced,
 /obj/structure/paper_bin,
 /obj/item/tool/pen/red,
-/obj/machinery/camera/autoname{
-	network = list("sigma")
-	},
 /obj/effect/decal/tile/corsatstraight/blue,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/airlock/control)
@@ -369,13 +362,6 @@
 	},
 /turf/open/floor/plating,
 /area/corsat/sigma/airlock/control)
-"gZ" = (
-/obj/machinery/camera/autoname{
-	dir = 4;
-	network = list("sigma")
-	},
-/turf/open/floor/asteroidfloor,
-/area/corsat/sigma/biodome/testgrounds)
 "hb" = (
 /obj/effect/decal/tile/corsatstraight/blue{
 	dir = 1
@@ -447,6 +433,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/corsat/sigma/biodome/gunrange)
+"iX" = (
+/obj/machinery/floodlight/landing/corsat,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
 "ji" = (
 /obj/machinery/light,
 /obj/effect/decal/tile/full/black,
@@ -479,9 +469,7 @@
 /turf/open/floor/plating/ground/mars,
 /area/corsat/sigma/biodome)
 "km" = (
-/obj/machinery/floodlight{
-	name = "Floodlight"
-	},
+/obj/machinery/floodlight/landing/corsat,
 /turf/open/floor/asteroidfloor,
 /area/corsat/sigma/biodome/testgrounds)
 "kw" = (
@@ -680,15 +668,6 @@
 	dir = 1
 	},
 /area/corsat/sigma/biodome)
-"oi" = (
-/obj/machinery/camera/autoname{
-	dir = 1;
-	network = list("sigma")
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 4
-	},
-/area/corsat/sigma/biodome)
 "op" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
@@ -696,8 +675,8 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/corsat/sigma/biodome/scrapyard)
 "ot" = (
-/obj/machinery/power/apc/high{
-	dir = 8;
+/obj/machinery/power/apc/drained{
+	dir = 4;
 	pixel_x = -24;
 	start_charge = 0
 	},
@@ -713,16 +692,6 @@
 	dir = 5
 	},
 /area/corsat/sigma/biodome)
-"oA" = (
-/obj/machinery/camera/autoname{
-	dir = 8;
-	network = list("sigma")
-	},
-/obj/effect/decal/tile/corsatstraight/blue{
-	dir = 8
-	},
-/turf/open/floor/grayscale/black,
-/area/corsat/sigma/airlock/control)
 "oU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -985,8 +954,8 @@
 /area/corsat/sigma/airlock/control)
 "tX" = (
 /obj/structure/table/mainship,
-/obj/item/explosive/grenade/PMC,
-/obj/item/explosive/grenade/PMC,
+/obj/item/explosive/grenade/impact,
+/obj/item/explosive/grenade/impact,
 /turf/open/floor/plating/asteroidplating,
 /area/corsat/sigma/biodome/gunrange)
 "tY" = (
@@ -1140,7 +1109,7 @@
 /turf/open/floor/plating/asteroidplating,
 /area/corsat/sigma/biodome/gunrange)
 "xX" = (
-/obj/machinery/power/apc/high{
+/obj/machinery/power/apc/drained{
 	dir = 8;
 	start_charge = 0
 	},
@@ -1177,16 +1146,6 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/airlock/control)
-"yp" = (
-/obj/machinery/camera/autoname{
-	dir = 1;
-	network = list("sigma")
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/asteroidfloor,
-/area/corsat/sigma/biodome/gunrange)
 "yx" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/asteroidplating,
@@ -1219,13 +1178,13 @@
 /turf/open/floor/plating/asteroidwarning/down,
 /area/corsat/sigma/biodome)
 "zw" = (
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
-/obj/item/explosive/plastique,
 /obj/structure/closet/secure_closet/guncabinet{
 	name = "explosives cabinet"
 	},
+/obj/item/explosive/grenade/smokebomb,
+/obj/item/explosive/grenade/smokebomb,
+/obj/item/explosive/grenade/smokebomb,
+/obj/item/explosive/grenade/smokebomb,
 /turf/open/floor/asteroidfloor,
 /area/corsat/sigma/biodome/testgrounds)
 "zy" = (
@@ -1613,10 +1572,10 @@
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/airlock/control)
 "Hl" = (
-/obj/item/explosive/grenade/PMC,
-/obj/item/explosive/grenade/PMC,
-/obj/item/explosive/grenade/PMC,
-/obj/item/explosive/grenade/PMC,
+/obj/item/explosive/grenade/impact,
+/obj/item/explosive/grenade/impact,
+/obj/item/explosive/grenade/impact,
+/obj/item/explosive/grenade/impact,
 /obj/structure/closet/secure_closet/guncabinet{
 	name = "explosives cabinet"
 	},
@@ -1719,6 +1678,10 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/airlock/control)
+"Jd" = (
+/obj/machinery/floodlight/landing/corsat,
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
 "Jg" = (
 /obj/structure/cargo_container/green{
 	dir = 1
@@ -1925,13 +1888,14 @@
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/airlock/control)
 "ML" = (
-/obj/item/explosive/mine/pmc,
-/obj/item/explosive/mine/pmc,
-/obj/item/explosive/mine/pmc,
-/obj/item/explosive/mine/pmc,
 /obj/structure/closet/secure_closet/guncabinet{
 	name = "explosives cabinet"
 	},
+/obj/item/explosive/grenade/mirage,
+/obj/item/explosive/grenade/mirage,
+/obj/item/explosive/grenade/mirage,
+/obj/item/explosive/grenade/mirage,
+/obj/item/explosive/grenade/mirage,
 /turf/open/floor/asteroidfloor,
 /area/corsat/sigma/biodome/testgrounds)
 "MM" = (
@@ -1952,12 +1916,6 @@
 /obj/item/folder/black_random,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/airlock/control)
-"Nn" = (
-/obj/machinery/camera/autoname{
-	network = list("sigma")
-	},
-/turf/open/floor/asteroidfloor,
-/area/corsat/sigma/biodome)
 "Nz" = (
 /obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
@@ -1975,15 +1933,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/airlock/control)
-"NH" = (
-/obj/machinery/camera/autoname{
-	dir = 8;
-	network = list("sigma")
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 1
-	},
-/area/corsat/sigma/biodome)
 "NL" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/toolbox,
@@ -2244,13 +2193,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/grayscale/black,
 /area/corsat/sigma/airlock/control)
-"Sb" = (
-/obj/machinery/camera/autoname{
-	dir = 8;
-	network = list("sigma")
-	},
-/turf/open/floor/asteroidfloor,
-/area/corsat/sigma/biodome/testgrounds)
 "Sg" = (
 /obj/machinery/atmospherics/pipe/manifold/green{
 	dir = 4
@@ -2266,7 +2208,7 @@
 /area/corsat/sigma/airlock/control)
 "So" = (
 /obj/structure/table/mainship,
-/obj/item/explosive/grenade/PMC,
+/obj/item/explosive/grenade/impact,
 /turf/open/floor/plating/asteroidplating,
 /area/corsat/sigma/biodome/gunrange)
 "Su" = (
@@ -3583,7 +3525,7 @@ MB
 SK
 EB
 MB
-oA
+MB
 SK
 Ej
 OF
@@ -4159,7 +4101,7 @@ Md
 wq
 OB
 OB
-Nn
+Op
 Op
 Jq
 Op
@@ -4493,7 +4435,7 @@ Jq
 Op
 AA
 rn
-fJ
+Jd
 vz
 lW
 CI
@@ -4559,7 +4501,7 @@ GH
 FW
 XB
 ns
-fJ
+Jd
 Ec
 Pb
 jn
@@ -4648,7 +4590,7 @@ kk
 kk
 kk
 kk
-fJ
+Jd
 vz
 ZE
 Op
@@ -5067,7 +5009,7 @@ Jq
 Op
 AA
 rn
-fJ
+Jd
 vz
 lW
 CI
@@ -5550,7 +5492,7 @@ kk
 kk
 kk
 kk
-fJ
+Jd
 vz
 ZE
 Op
@@ -5577,7 +5519,7 @@ kk
 kk
 kk
 kk
-fJ
+Jd
 kk
 kk
 kk
@@ -5758,7 +5700,7 @@ TV
 bu
 bu
 bu
-bu
+iX
 bu
 bu
 bu
@@ -6161,7 +6103,7 @@ US
 eZ
 eZ
 eZ
-oi
+eZ
 TV
 "}
 (44,1,1) = {"
@@ -6195,7 +6137,7 @@ vz
 mR
 Vo
 Vo
-yp
+jz
 LD
 LD
 LD
@@ -6297,7 +6239,7 @@ kk
 kk
 kk
 kk
-fJ
+Jd
 vz
 ZE
 Op
@@ -6305,7 +6247,7 @@ Op
 Op
 AA
 rn
-fJ
+Jd
 kk
 kk
 kk
@@ -6718,7 +6660,7 @@ iv
 iv
 iv
 iv
-Sb
+iv
 Nz
 iv
 rM
@@ -7022,7 +6964,7 @@ sB
 sB
 sB
 mR
-Nn
+Op
 Op
 Jq
 Op
@@ -7835,7 +7777,7 @@ vz
 mR
 Vo
 Vo
-yp
+jz
 LD
 LD
 LD
@@ -7911,7 +7853,7 @@ XB
 kk
 kk
 kk
-fJ
+Jd
 Ec
 vz
 MU
@@ -8016,7 +7958,7 @@ FW
 rM
 iv
 Nz
-gZ
+iv
 iv
 iv
 iv
@@ -8341,7 +8283,7 @@ Op
 Op
 AA
 rn
-fJ
+Jd
 kk
 kk
 kk
@@ -8660,7 +8602,7 @@ Pz
 FW
 XB
 kk
-fJ
+Jd
 vz
 ix
 Op
@@ -9072,14 +9014,14 @@ TV
 TV
 kk
 vz
-NH
+ix
 Op
 Jq
 Kv
 Op
 cf
 rn
-fJ
+Jd
 TV
 TV
 TV

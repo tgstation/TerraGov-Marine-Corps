@@ -49,6 +49,15 @@
 	. = ..()
 	set_light(brightness_on)
 
+/obj/machinery/floodlight/landing/corsat
+	name = "Biodome Light"
+	desc = "A rugged light stationed inside artificial environments to provide visibility for researchers."
+	brightness_on = 3 //lower brightness than our parent, we want some darkness so xenos can slink in and out of our biodomes
+	resistance_flags = UNACIDABLE //needed to prevent xenos from melting all floodlights before marines exit their chosen LZ
+
+/obj/machinery/floodlight/landing/corsat/lvdome //lv dome floodlights use a different icon
+	icon_state = "floodoff"
+
 /obj/machinery/floodlight/outpost
 	name = "Outpost Light"
 	icon_state = "flood01"
@@ -199,7 +208,7 @@
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	X.visible_message(span_danger("[X] slashes \the [src]!"), \
 	span_danger("We slash \the [src]!"), null, 5)
-	playsound(loc, "alien_claw_metal", 25, 1)	
+	playsound(loc, "alien_claw_metal", 25, 1)
 	turn_light(X, FALSE, forced = TRUE)
 
 /obj/machinery/floodlightcombat/update_icon_state()
