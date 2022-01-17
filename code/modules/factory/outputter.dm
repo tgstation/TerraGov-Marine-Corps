@@ -111,7 +111,7 @@
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	refill_type = /obj/item/factory_part/bignade
-
+	refill_amout = 20
 
 /obj/item/factory_refill/pizza_refill
 	name = "box of rounded metal plates"
@@ -122,36 +122,37 @@
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	refill_type = /obj/item/factory_part/sadar_wp
+	refill_amount = 10
 
 /obj/item/factory_refill/sadar_ap_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	refill_type = /obj/item/factory_part/sadar_ap
+	refill_amount = 10
 
 /obj/item/factory_refill/sadar_he_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	refill_type = /obj/item/factory_part/sadar_he
+	refill_amount = 10
 
 /obj/item/factory_refill/light_rr_missile_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	refill_type = /obj/item/factory_part/light_rr_missile
+	refill_amount = 15
 
 /obj/item/factory_refill/normal_rr_missile_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	refill_type = /obj/item/factory_part/normal_rr_missile
-
-/obj/item/factory_refill/sadar_he_refill
-	name = "box of rounded metal plates"
-	desc = "A box with round metal plates inside. Used to refill Outputters."
-	refill_type = /obj/item/factory_part/sadar_he
+	refill_amount = 15
 
 /obj/item/factory_refill/claymore_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	refill_type = /obj/item/factory_part/claymore
+	refill_amount = 10
 
 /obj/item/factory_refill/smartgunner_rifle_box_refill
 	name = "box of rounded metal plates"
@@ -169,14 +170,13 @@
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	refill_type = /obj/item/factory_part/auto_sniper_magazine
-	refill_amount = 18
+	refill_amount = 12
 
 /obj/item/factory_refill/scout_rifle_magazine_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	refill_type = /obj/item/factory_part/scout_rifle_magazine
-	refill_amount = 20
-
+	refill_amount = 10
 
 /obj/item/factory_refill/mateba_speedloader_refill
 	name = "box of rounded metal plates"
@@ -188,4 +188,4 @@
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	refill_type = /obj/item/factory_part/railgun_magazine
-	refill_amount = 20
+	refill_amount = 18
