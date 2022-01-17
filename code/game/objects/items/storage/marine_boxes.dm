@@ -169,7 +169,7 @@
 	new /obj/item/ammo_magazine/rocket/recoilless(src)
 	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
 	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
-	new /obj/item/storage/backpack/rpg(src)
+	new /obj/item/storage/belt/gun/rpg(src)
 
 
 

@@ -880,6 +880,33 @@
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_gun)
 
+/obj/item/storage/belt/gun/rpg
+	name = "\improper TGMC rocket bag"
+	desc = "This backpack can hold 5 67mm shells or 80mm rockets."
+	icon = 'icons/obj/items/storage/storage.dmi'
+	icon_state = "marine_rocket"
+	item_state = "marine_rocket"
+	var/base_icon = "marine_rocket"
+	w_class = WEIGHT_CLASS_HUGE
+	flags_equip_slot = ITEM_SLOT_BACK
+	storage_slots = 5 //It can hold 5 rockets.
+	max_storage_space = 21
+	max_w_class = 4
+	access_delay = 1.5 SECONDS
+	bypass_w_limit = list(
+		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
+	)
+	can_hold = list(
+		/obj/item/ammo_magazine/rocket,
+		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
+	)
+
+/obj/item/storage/belt/gun/rpg/update_icon()
+	var/mob/user = loc
+	item_state = "[base_icon][contents.len?"_g":""]"
+	if(istype(user)) user.update_inv_back()
+	if(istype(user)) user.update_inv_s_store()
+
 /obj/item/storage/belt/gun/korovin
 	name = "\improper Type 41 pistol holster rig"
 	desc = "A modification of the standard UPP pouch rig to carry a single Korovin PK-9 pistol. It also contains side pouches that can store .22 magazines, either hollowpoints or tranquilizers."
