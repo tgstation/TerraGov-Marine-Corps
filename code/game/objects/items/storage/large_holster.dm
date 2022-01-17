@@ -135,7 +135,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	can_hold = list(/obj/item/weapon/gun/smg/m25)
 
-/obj/item/storage/large_holster/m25/update_icon_state()
+/obj/item/storage/large_holster/m25/update_icon()
 	if(contents.len)
 		var/obj/I = contents[1]
 		icon_state = "[base_icon]_full_[I.icon_state]"
@@ -159,7 +159,7 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	base_icon = "t19_holster"
 	flags_equip_slot = ITEM_SLOT_BELT
-	can_hold = list(/obj/item/weapon/gun/smg/standard_smg)
+	can_hold = list(/obj/item/weapon/gun/smg/standard_machinepistol)
 
 /obj/item/storage/large_holster/t19/update_icon()
 	var/mob/user = loc
@@ -174,5 +174,5 @@
 
 /obj/item/storage/large_holster/t19/full/Initialize()
 	. = ..()
-	new /obj/item/weapon/gun/smg/standard_smg(src)
+	new /obj/item/weapon/gun/smg/standard_machinepistol(src)
 	update_icon()
