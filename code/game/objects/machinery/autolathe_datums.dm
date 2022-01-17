@@ -262,19 +262,16 @@ GLOBAL_LIST_EMPTY(autolathe_categories)
 /datum/autolathe/recipe/electropack
 	name = "electropack"
 	path = /obj/item/electropack
-	hidden = 1
 	category = "Devices and Components"
 
 /datum/autolathe/recipe/welder_industrial
 	name = "industrial blowtorch"
 	path = /obj/item/tool/weldingtool/largetank
-	hidden = 1
 	category = "Tools"
 
 /datum/autolathe/recipe/handcuffs
 	name = "handcuffs"
 	path = /obj/item/restraints/handcuffs
-	hidden = 1
 	category = "General"
 
 
