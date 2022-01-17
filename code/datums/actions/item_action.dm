@@ -49,11 +49,6 @@
 	name = "Toggle [target]"
 	button.name = name
 
-/datum/action/item_action/toggle/suit_toggle/New(Target)
-	. = ..()
-	name = "Toggle [target]"
-	button.name = name
-
 /datum/action/item_action/toggle/suit_toggle/update_button_icon()
 	. = ..()
 	if(!holder_item.light_on)
