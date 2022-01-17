@@ -904,8 +904,9 @@
 /obj/item/storage/belt/gun/rpg/update_icon()
 	var/mob/user = loc
 	item_state = "[base_icon][contents.len?"_g":""]"
-	if(istype(user)) user.update_inv_back()
-	if(istype(user)) user.update_inv_s_store()
+	if(istype(user))
+		user.update_inv_back()
+		user.update_inv_s_store()
 
 /obj/item/storage/belt/gun/korovin
 	name = "\improper Type 41 pistol holster rig"
