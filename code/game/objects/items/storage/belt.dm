@@ -882,7 +882,7 @@
 
 /obj/item/storage/belt/gun/rpg
 	name = "\improper TGMC rocket bag"
-	desc = "This backpack can hold 5 67mm shells or 80mm rockets."
+	desc = "This backpack can hold 5 67mm shells or 80mm rockets. Somehow, with your magical hands, you can put the recoilless rifle in the backpack."
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "marine_rocket"
 	item_state = "marine_rocket"

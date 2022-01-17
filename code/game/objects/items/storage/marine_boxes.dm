@@ -152,8 +152,8 @@
 	new /obj/item/ammo_magazine/rocket/sadar/wp(src)
 
 /obj/item/storage/box/recoilless_system
-	name = "\improper T-160 crate"
-	desc = "A large case containing a recoilless launcher and it's payload. Aswell as a specailized bag for carrying the ammo. Has a huge warning sign on the back Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	name = "\improper T-160 recoilless launcher crate"
+	desc = "A large case containing a recoilless launcher and its payload as well as a specailized bag for carrying the ammo and the recoilless launcher itself! Has a huge warning sign on the back. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "rocket_case"
 	w_class = WEIGHT_CLASS_HUGE
