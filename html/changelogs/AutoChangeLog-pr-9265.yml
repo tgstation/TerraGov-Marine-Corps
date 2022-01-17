@@ -1,7 +1,0 @@
-author: "RenovatedAtol"
-delete-after: True
-changes: 
-  - rscadd: "T-29 drums factory"
-  - rscadd: "T-81 magazine factory
-tweak: moved around tx8 ammo factory recipe"
-  - rscdel: "old tx8 ammo recipe"
