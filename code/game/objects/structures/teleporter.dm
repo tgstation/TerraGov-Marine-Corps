@@ -61,7 +61,7 @@
 		return
 	
 	if(!linked_teleporter)
-		to_chat(user, span_warning("The [src] is not linked to any other teleporter"))
+		to_chat(user, span_warning("The [src] is not linked to any other teleporter."))
 		return
 
 	if(linked_teleporter.z != z)
