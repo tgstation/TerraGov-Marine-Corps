@@ -241,3 +241,20 @@
 	//pill_desc = "An ultrazine pill. A highly-potent, long-lasting combination CNS and muscle stimulant. Extremely addictive."
 	list_reagents = list(/datum/reagent/medicine/ultrazine = 5)
 	pill_id = 21
+
+// packet pills, normal sized but carry different amounts.
+
+/obj/item/reagent_containers/pill/tricordrazine/packet
+	pill_desc = "A larger than usual tricordrazine pill. Broad spectrum medication that slowly heals all damage types."
+	list_reagents = list(/datum/reagent/medicine/tricordrazine = 20)
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/reagent_containers/pill/kelotane/packet
+	pill_desc = "A larger than usual kelotane pill. Used to treat burns."
+	list_reagents = list(/datum/reagent/medicine/kelotane = 20)
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/reagent_containers/pill/bicaridine/apcket
+	pill_desc = "A larger than usual bicaridine pill. Heals brute damage."
+	list_reagents = list(/datum/reagent/medicine/bicaridine = 20)
+	w_class = WEIGHT_CLASS_SMALL

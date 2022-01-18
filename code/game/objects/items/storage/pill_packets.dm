@@ -11,77 +11,69 @@
 	max_storage_space = 4
 
 /obj/item/storage/pill_bottle/packet/tricordrazine
-	name = "Tricordazine pill packet"
+	name = "tricordazine pill packet"
 	icon_state = "tric_packet"
 	desc = "This packet containts tricordazine pills. Heals all types of damage slightly. Once you take them out they don't go back in. No more than 2 pills in a short period."
-	pill_type_to_fill = /obj/item/reagent_containers/pill/tricordrazine
+	pill_type_to_fill = /obj/item/reagent_containers/pill/tricordrazine/packet
 	storage_slots = 6
 	max_storage_space = 6
 
 /obj/item/storage/pill_bottle/packet/paracetamol
-	name = "Paracematol pill packet"
+	name = "paracematol pill packet"
 	desc = "This packet containts paracetamol pills, also known as tylenol. A long lasting but minor painkiller. Once you take them out they don't go back in. No more than 4 pills in a long period."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/paracetamol
 
 /obj/item/storage/pill_bottle/packet/leporazine
-	name = "Leporazine pill packet"
+	name = "leporazine pill packet"
 	desc = "This packet containts leporazine pills. Rapidly stablizes the patients internal temperature. Once you take them out they don't go back in.."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/leporazine
 
 /obj/item/storage/pill_bottle/packet/russian_red
-	name = "Russian Red pill packet"
+	name = "russian red pill packet"
 	desc = "This packet containts Russian Red pills. Used for field treatment of critical cases without a medic. Once you take them out they don't go back in.."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/russian_red
 
 /obj/item/storage/pill_bottle/packet/ryetalyn
-	name = "Ryetalyn pill packet"
+	name = "ryetalyn pill packet"
 	desc = "This packet containts Ryetalyn pills. Used to provide a shield against bloodstream toxins. Once you take them out they don't go back in. No more than 2 pills at once."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/ryetalyn
 
 /obj/item/storage/pill_bottle/packet/dylovene
-	name = "Ryetalyn pill packet"
+	name = "dylovene pill packet"
 	desc = "This packet containts Ryetalyn pills. Used to provide a shield against bloodstream toxins. Once you take them out they don't go back in. No more than 2 pills at once."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dylovene
 
 /obj/item/storage/pill_bottle/packet/peridaxon
-	name = "Peridaxon pill packet"
+	name = "peridaxon pill packet"
 	desc = "This packet containts Peridaxon pills. Used to alleviate organ damage. Once you take them out they don't go back in. No more than 2 pills at once."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/peridaxon
 
 /obj/item/storage/pill_bottle/packet/quickclot
-	name = "Quickclot pill packet"
+	name = "quickclot pill packet"
 	desc = "This packet containts Quickclot pills. Used to alleviate internal bleeding and bleeding in general. Once you take them out they don't go back in. No more than 2 pills at once."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/peridaxon
 
 /obj/item/storage/pill_bottle/packet/bicaridine
-	name = "Bicaridine pill packet"
+	name = "bicaridine pill packet"
 	icon_state = "bic_packet"
 	desc = "This packet containts bicaridine pills. Used to treat minor lacerations. Once you take them out they don't go back in. No more than 2 pills at once."
-	pill_type_to_fill = /obj/item/reagent_containers/pill/bicaridine
-	storage_slots = 6
-	max_storage_space = 6
+	pill_type_to_fill = /obj/item/reagent_containers/pill/bicaridine/packet
 
 /obj/item/storage/pill_bottle/packet/kelotane
-	name = "Kelotane pill packet"
+	name = "kelotane pill packet"
 	icon_state = "kelo_packet"
 	desc = "This packet containts kelotane pills. Used to treat surface burns. Once you take them out they don't go back in. No more than 2 pills at once."
-	pill_type_to_fill = /obj/item/reagent_containers/pill/kelotane
-	storage_slots = 6
-	max_storage_space = 6
+	pill_type_to_fill = /obj/item/reagent_containers/pill/kelotane/packet
 
 /obj/item/storage/pill_bottle/packet/tramadol
 	name = "Tramadol pill packet"
 	icon_state = "tram_packet"
 	desc = "This packet containts tramadol pills. Used as a medium-strength painkiller. Once you take them out they don't go back in. No more than 2 pills at once."
-	pill_type_to_fill = /obj/item/reagent_containers/pill/tramadol
-	storage_slots = 6
-	max_storage_space = 6
+	pill_type_to_fill = /obj/item/reagent_containers/pill/tramadol/packet
 
 /obj/item/storage/pill_bottle/packet/hypervene
-	name = "Hypervene pill packet"
+	name = "hypervene pill packet"
 	icon_state = "tram_packet"
 	desc = "This packet containts hypervene pills. Used as a emergency flusher, use it to remove all chemicals in your system. Once you take them out they don't go back in. No more than 2 pills at once."
-	pill_type_to_fill = /obj/item/reagent_containers/pill/tramadol
-	storage_slots = 6
-	max_storage_space = 6
+	pill_type_to_fill = /obj/item/reagent_containers/pill/hypervene
 

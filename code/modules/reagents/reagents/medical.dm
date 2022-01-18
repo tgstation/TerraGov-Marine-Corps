@@ -484,29 +484,25 @@
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
 /datum/reagent/medicine/neuraline/on_mob_life(mob/living/L)
-	if(volume > 1) // look at this dude, he's microdosing, or running out. He's gonna have a bad day.
-		L.AdjustParalyzed(60)
-		L.adjustToxLoss(5)
-	if(volume < 1)
-		L.reagent_shock_modifier += (2 * PAIN_REDUCTION_VERY_HEAVY)
-		L.adjustDrowsyness(-5)
-		L.dizzy(-5)
-		L.stuttering = max(L.stuttering-5, 0)
-		if(iscarbon(L))
-			var/mob/living/carbon/C = L
-			C.drunkenness = max(C.drunkenness-5, 0)
-		L.AdjustConfused(-10 SECONDS)
-		L.adjust_blurriness(-5)
-		L.AdjustUnconscious(-40)
-		L.AdjustStun(-40)
-		L.AdjustParalyzed(-20)
-		L.AdjustSleeping(-40)
-		L.adjustStaminaLoss(-30*effect_str)
-		L.heal_limb_damage(7.5*effect_str, 7.5*effect_str)
-		L.adjustToxLoss(3.75*effect_str)
-		if(iscarbon(L))
-			var/mob/living/carbon/C = L
-			C.setShock_Stage(min(C.shock_stage - volume*effect_str, 150)) //will pull a target out of deep paincrit instantly, if he's in it
+	L.reagent_shock_modifier += (2 * PAIN_REDUCTION_VERY_HEAVY)
+	L.adjustDrowsyness(-5)
+	L.dizzy(-5)
+	L.stuttering = max(L.stuttering-5, 0)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.drunkenness = max(C.drunkenness-5, 0)
+	L.AdjustConfused(-10 SECONDS)
+	L.adjust_blurriness(-5)
+	L.AdjustUnconscious(-40)
+	L.AdjustStun(-40)
+	L.AdjustParalyzed(-20)
+	L.AdjustSleeping(-40)
+	L.adjustStaminaLoss(-30*effect_str)
+	L.heal_limb_damage(7.5*effect_str, 7.5*effect_str)
+	L.adjustToxLoss(3.75*effect_str)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.setShock_Stage(min(C.shock_stage - volume*effect_str, 150)) //will pull a target out of deep paincrit instantly, if he's in it
 	return ..()
 
 /datum/reagent/medicine/neuraline/overdose_process(mob/living/L, metabolism)
