@@ -1384,73 +1384,60 @@ FACTORY
 	group = "Factory"
 	containertype = /obj/structure/closet/crate
 
-/datum/supply_packs/factory/starter
-	name = "Starter Pack"
-	contains = list(
-		/obj/machinery/factory/cutter,
-		/obj/machinery/factory/heater,
-		/obj/machinery/factory/flatter,
-		/obj/machinery/factory/former,
-		/obj/machinery/factory/reconstructor,
-		/obj/machinery/outputter,
-		/obj/item/paper/factoryhowto,
-	)
-	cost = 40
-
 /datum/supply_packs/factory/cutter
 	name = "Industrial cutter"
 	contains = list(/obj/machinery/factory/cutter)
-	cost = 10
+	cost = 5
 
 /datum/supply_packs/factory/heater
 	name = "Industrial heater"
 	contains = list(/obj/machinery/factory/heater)
-	cost = 10
+	cost = 5
 
 /datum/supply_packs/factory/flatter
 	name = "Industrial flatter"
 	contains = list(/obj/machinery/factory/flatter)
-	cost = 10
+	cost = 5
 
 /datum/supply_packs/factory/former
 	name = "Industrial former"
 	contains = list(/obj/machinery/factory/former)
-	cost = 10
+	cost = 5
 
 /datum/supply_packs/factory/reconstructor
 	name = "Industrial reconstructor"
 	contains = list(/obj/machinery/factory/reconstructor)
-	cost = 10
+	cost = 5
 
 /datum/supply_packs/factory/outputter
 	name = "Industrial Unboxer"
 	contains = list(/obj/machinery/outputter)
-	cost = 10
+	cost = 5
 
 /datum/supply_packs/factory/phosphosrefill
 	name = "Phosphorus-resistant plates refill"
 	contains = list(/obj/item/factory_refill/phosnade_refill)
-	cost = 30
+	cost = 60
 
 /datum/supply_packs/factory/bignaderefill
 	name = "Rounded M15 plates refill"
 	contains = list(/obj/item/factory_refill/bignade_refill)
-	cost = 10
+	cost = 50
 
 /datum/supply_packs/factory/sadar_refill_he
 	name = "SADAR HE missile assembly refill"
 	contains = list(/obj/item/factory_refill/sadar_he_refill)
-	cost = 40
+	cost = 100
 
 /datum/supply_packs/factory/sadar_refill_ap
 	name = "SADAR AP missile assembly refill"
 	contains = list(/obj/item/factory_refill/sadar_ap_refill)
-	cost = 40
+	cost = 110
 
 /datum/supply_packs/factory/sadar_refill_wp
 	name = "SADAR WP missile assembly refill"
 	contains = list(/obj/item/factory_refill/sadar_wp_refill)
-	cost = 40
+	cost = 110
 
 /datum/supply_packs/factory/standard_recoilless_refill
 	name = "Recoilless standard missile assembly refill"
@@ -1470,17 +1457,17 @@ FACTORY
 /datum/supply_packs/factory/smartrifle_ammo_refill
 	name = "Smart rifle bullet parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_rifle_box_refill)
-	cost = 20
+	cost = 30
 
 /datum/supply_packs/factory/smartgun_magazine_refill
 	name = "Smart machinegun drum parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_machinegun_magazine_refill)
-	cost = 30
+	cost = 50
 
 /datum/supply_packs/factory/autosniper_magazine_refill
 	name = "T-81 IFF Auto Sniper magazine assembly refill"
 	contains = list(/obj/item/factory_refill/auto_sniper_magazine_refill)
-	cost = 20
+	cost = 40
 
 /datum/supply_packs/factory/scout_rifle_magazine_refill
 	name = "TX-8 scout rifle magazine assembly refill"
@@ -1490,7 +1477,8 @@ FACTORY
 /datum/supply_packs/factory/claymorerefill
 	name = "Claymore parts refill"
 	contains = list(/obj/item/factory_refill/claymore_refill)
-	cost = 10
+	cost = 20
+
 
 /datum/supply_packs/factory/mateba_speedloader_refill
 	name = "Mateba autorevolver speedloader assembly refill"
@@ -1505,4 +1493,4 @@ FACTORY
 /datum/supply_packs/factory/scout_rifle_magazine_refill
 	name = "TX-8 scout rifle magazine assembly refill"
 	contains = list(/obj/item/factory_refill/scout_rifle_magazine_refill)
-	cost = 50
+	cost = 90
