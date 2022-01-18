@@ -78,6 +78,9 @@ Godspeed, captain! And remember, you are not above the law."})
 	jobtype = /datum/job/terragov/command/captain/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
+/datum/outfit/job/command/captain/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health, SLOT_IN_BACKPACK)
 
 /datum/job/terragov/command/captain/after_spawn(mob/living/new_mob, mob/user, latejoin)
 	. = ..()
@@ -266,6 +269,10 @@ You are in charge of logistics and the overwatch system. You are also in line to
 /datum/outfit/job/command/staffofficer/rebel
 	jobtype = /datum/job/terragov/command/staffofficer/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
+
+/datum/outfit/job/command/staffofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health, SLOT_IN_BACKPACK)
 
 //Pilot Officer
 /datum/job/terragov/command/pilot
