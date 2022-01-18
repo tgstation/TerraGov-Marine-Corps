@@ -254,7 +254,11 @@
 	list_reagents = list(/datum/reagent/medicine/kelotane = 20)
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/reagent_containers/pill/bicaridine/apcket
+/obj/item/reagent_containers/pill/bicaridine/packet
 	pill_desc = "A larger than usual bicaridine pill. Heals brute damage."
 	list_reagents = list(/datum/reagent/medicine/bicaridine = 20)
 	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/reagent_containers/pill/tramadol/packet
+	pill_desc = "A larger than usual tramadol pill. A simple painkiller."
+	list_reagents = list(/datum/reagent/medicine/tramadol = 20)
