@@ -283,7 +283,6 @@ SUBSYSTEM_DEF(mapping)
 			modular_templates[M.modular_id] += M
 		else if (TGS_CLIENT_COUNT >= M.min_player_num && TGS_CLIENT_COUNT <= M.max_player_num) //if we exceed the minimum or maximum players numbers for a modular map don't add it to our list of valid modules that can be loaded
 			modular_templates[M.modular_id] += M
-			log_world("[TGS_CLIENT_COUNT]clients are logged in, minimum number is [M.min_player_num] & maximum number is [M.max_player_num] for map [M.name]")
 		map_templates[M.type] = M
 
 /datum/controller/subsystem/mapping/proc/RequestBlockReservation(width, height, z, type = /datum/turf_reservation, turf_type_override)
