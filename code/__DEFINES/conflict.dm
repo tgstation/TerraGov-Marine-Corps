@@ -57,6 +57,8 @@
 #define AMMO_IFF (1<<16) //Used to identify ammo that have intrinsec IFF properties
 #define AMMO_HITSCAN (1<<17) //If the projectile from this ammo is hitscan
 #define AMMO_LEAVE_TURF (1<<18) //If the projectile does something with on_leave_turf()
+#define AMMO_PASS_THROUGH_TURF (1<<19) //If the projectile passes through walls causing damage to them
+#define AMMO_PASS_THROUGH_MOVABLE (1<<20) //If the projectile passes through mobs and objects causing damage to them
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features
@@ -158,6 +160,7 @@
 #define SMOKE_NEURO_LIGHT (1<<16) //Effectively a sub-flag of Neuro; precludes higher impact effects
 #define SMOKE_HUGGER_PACIFY (1<<17) //Smoke that pacifies huggers in its area; mainly used for vision blocking smoke
 #define SMOKE_XENO_SANGUINAL (1<<18) //Toxic crimson smoke created by the Defiler's Defile ability.
+#define SMOKE_XENO_OZELOMELYN (1<<19) //Smoke that purges chemicals and does minor capped toxin damage for Defiler.
 
 //Incapacitated
 #define INCAPACITATED_IGNORE_RESTRAINED (1<<0)

@@ -1,0 +1,4 @@
+author: "breadhunt"
+delete-after: True
+changes: 
+  - balance: "Explosions no longer blow grenades inside grenade boxes. The FOB is safe once more"

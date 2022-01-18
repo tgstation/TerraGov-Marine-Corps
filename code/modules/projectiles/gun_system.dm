@@ -1593,14 +1593,15 @@
 	if(. <= 0) //Not if the gun doesn't scatter at all, or negative scatter.
 		return 0
 
-	switch(gun_firemode)
-		if(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC) //Much higher chance on a burst or similar.
-			if(flags_item & WIELDED && wielded_stable() || CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if deployed, its pretty stable.
-				. += burst_amount * burst_scatter_mult
-			if(CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if our gun is deployed, change the scatter by this number, usually a negative
-				. += deployed_scatter_change
-			else
-				. += burst_amount * burst_scatter_mult * 5
+
+	if(gun_firemode ==  GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST) //Much higher chance on a burst or similar.
+		if(flags_item & WIELDED && wielded_stable() || CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if deployed, its pretty stable.
+			. += burst_amount * burst_scatter_mult
+		else
+			. += burst_amount * burst_scatter_mult * 5
+
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if our gun is deployed, change the scatter by this number, usually a negative
+		. += deployed_scatter_change
 
 	if(!user?.skills.getRating("firearms")) //no training in any firearms
 		. += 15

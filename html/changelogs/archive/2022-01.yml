@@ -199,3 +199,72 @@
 2022-01-15:
   RenovatedAtol:
   - rscadd: possibility to send large crates via supply drop
+2022-01-16:
+  Lewdcifer:
+  - balance: Drain gas nade box removed from requisitions's vendor.
+  - balance: Explosion screenshake reduced.
+  - balance: CAS tanglefoot rocket cost 50 > 150.
+  - rscdel: Projectile screenshake removed.
+  SplinterGP:
+  - bugfix: fixed autofire getting burst fire debuff on guns that has burst fire
+  nova_epee and Fitz 'Pancake' Sholl:
+  - bugfix: Dress uniform to the intended sprites. I choose not to delete the old
+      dress uniform.
+  - imageadd: Add service uniform; say thanks to Fitz 'Pancake' Sholl!
+  - rscadd: Make it easy to get service and dress uniform without having to click
+      so much buttons.
+2022-01-17:
+  Bizzonium:
+  - bugfix: Ported fixes of SStimer subsystem from RU SS220 Paradise
+  - config: 'Added a new config var: flag/log_timers_on_bucket_reset'
+  - bugfix: fixed potential bucket corruption in timer reset_buckets
+  - bugfix: timers not removing from second queue on init
+  EvilMelonTheSecond:
+  - rscdel: Moved wallnanomed contraband inventory to normal inventory, removed hyperzine
+  Pariah919:
+  - rscadd: Added new xenomorph chemical, Ozemolyn, purges chemical and does minor
+      toxin damage to capped amount. Sting for Queen/Shrike/Drone. Gaseous form for
+      Defiler, gas is transparent.
+  - balance: neurotoxin no longer purges. Removed neuro sting from shrike, queen and
+      drone.
+  RenovatedAtol:
+  - rscadd: T-29 drums factory
+  - rscadd: 'T-81 magazine factory tweak: moved around tx8 ammo factory recipe'
+  - rscdel: old tx8 ammo recipe
+  SplinterGP:
+  - expansion: General speak and other text/number inputs have been converted to TGUI,
+      option to disable, swap submit/cancel and bigger buttons have been added to
+      game settings on character setup.
+  - bugfix: UI's shoulnd't crash anymore when reloading a TGUI UI(F5) and should send
+      full data needed.
+  Verlurk:
+  - bugfix: Nanotrasen now send you the updated leaflet with your factory pack - now
+      with 73% less spelling errors!
+  Waselon:
+  - balance: railgun projectiles now penetrate stuff
+  - code_imp: added support for piercing projectiles
+  novaepee:
+  - bugfix: Cowboy's reinforced leather jacket has suit slot now
+  - bugfix: spelling error on reinforced REATHER jacket with webbing
+  - rscadd: You can now color flak jackets! Thank you, Jeff, for the sprites. Also,
+      loadout for flak jacket is boink, so make new loadout.
+  - imageadd: Colored flak jackets!
+  - rscadd: add milk in soda dispenser
+  - balance: marines have access to milk; JUICE UP, BOYS AND GIRLS!
+  - qol: you can finally make Bihexajuline in all shipside maps; if there isn't a
+      soda dispenser nearby medical, I will change that in another PR.
+  - balance: revert minion spawn rate nerf, so for 50 players, each spawner can generate
+      7 mobs
+  vilereaver41:
+  - balance: LZ2 semi redone to make it more appealing for marines
+  - balance: some LZ1 changes
+  - balance: moved crash disk locations
+  - balance: removed some silos like that one in the nuke disk area and replaced them
+      elsewhere
+  - balance: caves have been fully pre wedded as they should
+  - rscadd: new area northeast of caves transit station (not pre wedded)
+  yyzsong:
+  - balance: Window frames may now be slashed
+2022-01-18:
+  novaepee:
+  - rscdel: UA 571-C Base defense sentry voucher; old object of an old engineer meta
