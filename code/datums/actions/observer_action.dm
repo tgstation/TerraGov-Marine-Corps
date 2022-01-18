@@ -62,7 +62,7 @@
 		free_ssd_mobs += ssd_mob
 
 	if(!free_ssd_mobs.len)
-		to_chat(owner, span_warning("There aren't any ssd mobs."))
+		to_chat(owner, span_warning("There aren't any SSD mobs."))
 		return FALSE
 
 	var/mob/living/new_mob = tgui_input_list(owner, null, "Available Mobs", free_ssd_mobs)
