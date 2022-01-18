@@ -2,24 +2,23 @@ Always thank your drones and hivelords for supporting the hive!
 Do not fight as a young xenomorphs.
 Most alien deaths are caused by over-aggression. Rein yourself in, or you may find yourself dying round after round.
 If you have difficulty clicking marines, try using bump slash. You can use movement keys to slash marines. That said, clicking marines to slash them is faster than bump slashing!
-A good hive consists of having a hivelord and a gorger to heal xenomorphs' wounds and give xenomorphs some pregame before engaging marines.
+It is EXTREMELY IMPORTANT that you as a xenomorph have your abilities set up on keybinds. Ask for help if you don't know how in XOOC or mhelp.
+In the xeno tab, you can use the crawl through vent verb to quickly find and use vents in the floor without having to alt-click them. You can also keybind it!
+It is faster to re-fill an empty acid well then rolling on the ground to put out a fire.
+Acid well extinguishes fire and explode into an acid cloud when destroyed. Queen, shrike, praetorian, boiler, and hivelord can make acid wells.
+Queen, Shrike, and hivelord have access to Queen's Blessing, a menu for the hive to use psychic points to give xenomorphs a cutting edge in the battlefield.
+If you have acid spit, you can spit at a welding fuel tank to blow it up. If the welding fuel is near hostiles, you might give them a pleasant surprise!
 As a xeno, check hive status often.
-As a xeno, it is EXTREMELY IMPORTANT that you have your abilities set up on keybinds. Ask for help if you don't know how.
 As a xeno, you've got pheromones that can help the hive.
 As a xeno, you can pounce past window frames and barricades without barbed wires.
 As a xeno, pouncing into a barricade with barbed wire stuns you.
 As a xeno, aging from young to mature gives you the most benefit, further aging has diminishing returns.
 As a xeno, don't take too long attacking during the crash phase. The ship can be rigged to explode in twenty minutes, ending the round in a tie.
 As a xeno, remember that neurotox injected by defilers, sentinels, and the Queen can overdose, killing a marine quickly. Try to avoid this when capturing, if they scream in pain they've probably had enough.
-As a xeno, you can use the crawl through vent verb found in the xeno tab to quickly find and use vents in the floor without having to alt-click them.
 As a xeno, you can crawl through holes in walls made by acid by SpecialClicking (Default: CTRL) on them or click-dragging yourself on them. If you're too big to pass through, you'll damage the wall instead.
 As a xeno, you can climb over window frames by SpecialClicking (Default: CTRL) on them or click-dragging yourself on them.
 As a xeno, do not camp the landing zones prior to the marines building their defenses.
-As a xeno, take advantage of acid wells, they put out fire and explode into an acid cloud when destroyed.
 As a xeno, do not block other xenos' paths when they are retreating. Circumvent this by being on Help Intent or by simply moving away.
-As a xeno, it is faster to re-fill an empty acid well then rolling on the ground to put out a fire.
-As a xeno, if you have access to Queen's Blessing, check how much psychic points you have so that you can purchase stuff to beat the marines.
-As a xeno, if you have acid spit, you can spit at or shoot a welding fuel tank to blow it up next to hostiles.
 As a xeno, white weed helps you heal faster, green weeds slows down marines, and weed with no colors are normal weeds. Rest on the white weeds to heal faster!
 As a larva, ask your hive leader what you should evolve into.
 As a larva, you can slide under unbolted and unwelded doors by clicking on the door.
@@ -32,11 +31,8 @@ As a carrier, you can hit a host directly with a thrown facehugger to have a hig
 As a carrier, you can hide traps beneath certain objects and items.
 As a hunter, you have almost perfect stealth if you stand still.
 As a hunter, you can sneak / change move intention during stealth to make it hard on marines to see you while moving in stealth.
-As a ravager, targeting arms or legs is better to inflict a lot of damage while charging.
 As a ravager or the Queen, you are fire-resistant, NOT fireproof. You can still get lit on fire, but you take very little damage from it.
 As a spitter, boiler, praetorian, or the Queen take advantage of unguarded barricades and defenses, melt or constantly spit acid on them if you can.
 As a boiler or the Queen, you have the most powerful corrosive acid for melting things.
-As a boiler, shots have a small chance to bypass barricades, aim where you want them to land in case this happens.
-As the Shrike, take advantage of your psychic abilities. Use Psychic Fling and Unrelenting Force to knock out any weapons that a person is wielding or even push certain and hazardous objects to your enemies and vice versa.
-As the Queen, you contain the hivemind of all the xenos.
+As the Shrike, take advantage of your psychic abilities. Use Psychic Fling and Unrelenting Force to displace a marine or even push certain and hazardous objects to your enemies and vice versa.
 As the Queen, your screech does not only affect the mobs on view, but affects through walls or gases. However, the effect of the screech will be reduced.
