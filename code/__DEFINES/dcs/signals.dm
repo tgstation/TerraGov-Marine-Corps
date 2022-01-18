@@ -724,6 +724,11 @@
 #define COMSIG_KB_FIREMODE "keybind_firemode"
 #define COMSIG_KB_GIVE "keybind_give"
 
+// human modules signals for keybindings
+#define COMSIG_KB_VALIHEAL "keybinding_valiheal"
+#define COMSIG_KB_VALICONNECT "keybiding_valiconnect"
+#define COMSIG_KB_SUITANALYZER "keybinding_suitanalyzer"
+
 // Ability adding/removing signals
 #define ACTION_GIVEN "gave_an_action"		//from base of /datum/action/proc/give_action(): (datum/action)
 #define ACTION_REMOVED "removed_an_action"	//from base of /datum/action/proc/remove_action(): (datum/action)
