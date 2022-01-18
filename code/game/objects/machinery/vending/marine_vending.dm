@@ -548,9 +548,9 @@
 			/obj/item/radio/headset/mainship/marine/delta = -1,
 		),
 		"Mining Equipment" = list(
-			/obj/item/minerupgrade/automatic = 3,
-			/obj/item/minerupgrade/reinforcement = 3,
-			/obj/item/minerupgrade/overclock = 3,
+			/obj/item/minerupgrade/automatic = 1,
+			/obj/item/minerupgrade/reinforcement = 1,
+			/obj/item/minerupgrade/overclock = 1,
 		),
 		"Grenade Boxes" = list(
 			/obj/item/storage/box/visual/grenade/frag = 2,
