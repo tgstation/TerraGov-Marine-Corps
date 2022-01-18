@@ -1082,17 +1082,13 @@ TUNNEL
 
 /obj/structure/xeno/xeno_turret/hugger_turret
 	name = "hugger turret"
-	icon = 'icons/Xeno/resinpod.dmi'
 	icon_state = "hugger_turret"
 	desc = "A menacing looking construct of resin, it seems to be alive. It fires huggers against intruders."
-	pixel_x = -16
-	pixel_y = -16
-	obj_integrity = 200
-	max_integrity = 200
-	light_initial_color = ""
+	obj_integrity = 400
+	max_integrity = 400
+	light_initial_color = LIGHT_COLOR_BROWN
 	ammo = /datum/ammo/xeno/hugger
-	firerate = 10 SECONDS
-	xeno_structure_flags = IGNORE_WEED_REMOVAL
+	firerate = 5 SECONDS
 
 /obj/structure/xeno/evotower
 	name = "evolution tower"
