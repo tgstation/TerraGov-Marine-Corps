@@ -551,7 +551,7 @@
 			/obj/item/minerupgrade/automatic = 3,
 			/obj/item/minerupgrade/reinforcement = 3,
 			/obj/item/minerupgrade/overclock = 3,
-		)
+		),
 		"Grenade Boxes" = list(
 			/obj/item/storage/box/visual/grenade/frag = 2,
 			/obj/item/storage/box/visual/grenade/impact = 2,
