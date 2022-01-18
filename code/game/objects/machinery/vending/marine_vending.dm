@@ -540,7 +540,6 @@
 			/obj/item/ammo_magazine/shotgun/mbx900 = 2,
 			/obj/item/bodybag/tarp = 2,
 			/obj/item/explosive/plastique = 5,
-			/obj/item/minerupgrade/automatic = 3,
 			/obj/item/fulton_extraction_pack = 2,
 			/obj/item/clothing/suit/storage/marine/harness/boomvest = 20,
 			/obj/item/radio/headset/mainship/marine/alpha = -1,
@@ -548,6 +547,11 @@
 			/obj/item/radio/headset/mainship/marine/charlie = -1,
 			/obj/item/radio/headset/mainship/marine/delta = -1,
 		),
+		"Mining Equipment" = list(
+			/obj/item/minerupgrade/automatic = 3,
+			/obj/item/minerupgrade/reinforcement = 3,
+			/obj/item/minerupgrade/overclock = 3,
+		)
 		"Grenade Boxes" = list(
 			/obj/item/storage/box/visual/grenade/frag = 2,
 			/obj/item/storage/box/visual/grenade/impact = 2,
