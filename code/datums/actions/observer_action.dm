@@ -42,7 +42,7 @@
 	remove_selected_frame()
 
 /datum/action/observer_action/take_ssd_mob
-	name = "Take ssd mob"
+	name = "Take SSD mob"
 	action_icon_state = "take_ssd"
 
 /datum/action/observer_action/take_ssd_mob/action_activate()
