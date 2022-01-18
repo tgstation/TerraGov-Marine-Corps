@@ -980,18 +980,3 @@
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 	new /obj/item/clothing/mask/rebreather/scarf(src)
-
-/obj/item/storage/box/reqtorio
-	name = "\improper Reqtorio starter crate"
-	desc = "A large case containing your very own starter kit for a factory to produce stuff! NOTE:SUPPLIES NOT INCLUDED. Drag it into you to open it up!\nNOTE: You cannot put items back inside this case."
-	storage_slots = 7
-
-/obj/item/storage/box/reqtorio/Initialize(mapload, ...)
-	. = ..()
-	new /obj/machinery/factory/cutter(src)
-	new /obj/machinery/factory/heater(src)
-	new /obj/machinery/factory/flatter(src)
-	new /obj/machinery/factory/former(src)
-	new /obj/machinery/factory/reconstructor(src)
-	new /obj/machinery/outputter(src)
-	new /obj/item/paper/factoryhowto(src)

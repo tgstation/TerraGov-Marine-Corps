@@ -1457,17 +1457,17 @@ FACTORY
 /datum/supply_packs/factory/smartrifle_ammo_refill
 	name = "Smart rifle bullet parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_rifle_box_refill)
-	cost = 20
+	cost = 30
 
 /datum/supply_packs/factory/smartgun_magazine_refill
 	name = "Smart machinegun drum parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_machinegun_magazine_refill)
-	cost = 30
+	cost = 50
 
 /datum/supply_packs/factory/autosniper_magazine_refill
 	name = "T-81 IFF Auto Sniper magazine assembly refill"
 	contains = list(/obj/item/factory_refill/auto_sniper_magazine_refill)
-	cost = 20
+	cost = 40
 
 /datum/supply_packs/factory/scout_rifle_magazine_refill
 	name = "TX-8 scout rifle magazine assembly refill"
