@@ -1877,10 +1877,6 @@
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
-"cEH" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/mainship,
-/area/bigredv2/caves/south)
 "cEY" = (
 /obj/machinery/computer/shuttle,
 /turf/open/shuttle/dropship/floor,
@@ -3235,9 +3231,12 @@
 /turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
 /area/bigredv2/caves/west)
 "eDp" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/mainship,
-/area/bigredv2/outside/c)
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/mainship,
+/area/arrival/start)
 "eDI" = (
 /obj/structure/bed/chair/sofa/left,
 /turf/open/floor/carpet{
@@ -3695,8 +3694,9 @@
 /turf/open/floor/plating/mainship,
 /area/arrival/start)
 "fhs" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/cave,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
 /area/arrival/start)
 "fii" = (
 /obj/structure/bed/chair/comfy{
@@ -3919,7 +3919,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/wall/mainship,
+/turf/open/floor/mainship/mono,
 /area/arrival/start)
 "fwU" = (
 /obj/structure/cable,
@@ -3935,7 +3935,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/wall/mainship,
+/turf/open/floor/mainship/mono,
 /area/shuttle/drop2/lz2)
 "fxx" = (
 /obj/structure/monorail{
@@ -5135,11 +5135,6 @@
 	dir = 8
 	},
 /area/bigredv2/caves/northeast)
-"hgj" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/wall/mainship,
-/area/shuttle/drop2/lz2)
 "hgV" = (
 /obj/structure/largecrate/random,
 /turf/open/shuttle/dropship/three,
@@ -5951,12 +5946,6 @@
 /obj/structure/window/framed/mainship/canterbury,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/c)
-"ibq" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
-/turf/closed/wall/mainship,
-/area/shuttle/drop2/lz2)
 "ibx" = (
 /obj/structure/catwalk,
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic,
@@ -6239,7 +6228,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/c)
 "iua" = (
-/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
@@ -6573,10 +6561,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
-"iSS" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south)
 "iST" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
@@ -8734,11 +8718,6 @@
 	},
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/c)
-"lCK" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/barricade/guardrail,
-/turf/open/floor/mainship/stripesquare,
 /area/bigredv2/outside/c)
 "lCM" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -15746,10 +15725,6 @@
 /obj/effect/landmark/corpsespawner,
 /turf/open/floor/mainship,
 /area/bigredv2/outside/c)
-"unv" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating,
-/area/bigredv2/caves/southwest)
 "unz" = (
 /obj/structure/catwalk,
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic,
@@ -17201,10 +17176,6 @@
 /obj/item/bedsheet/captain,
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
-"vXW" = (
-/obj/structure/barricade/guardrail,
-/turf/open/floor/mainship/stripesquare,
-/area/bigredv2/outside/c)
 "vYe" = (
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/medical)
@@ -18131,10 +18102,6 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
-"xgY" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "xhg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship,
@@ -18283,9 +18250,9 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
 "xpN" = (
-/obj/structure/fence,
-/turf/open/floor/mainship/mono,
-/area/arrival/start)
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating,
+/area/bigredv2/caves/southwest)
 "xqd" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/carpet{
@@ -22272,7 +22239,7 @@ bNm
 bNm
 bNm
 xHA
-tFC
+xHA
 cOO
 cmI
 fIk
@@ -23300,7 +23267,7 @@ cqZ
 cqZ
 fjN
 foX
-fMW
+tFC
 fwv
 cmI
 vDR
@@ -23557,7 +23524,7 @@ cqZ
 cqZ
 fjS
 foX
-fMW
+tFC
 fwv
 cmI
 vDR
@@ -23814,7 +23781,7 @@ cqZ
 cqZ
 fbM
 foX
-fMW
+tFC
 fwv
 cmI
 vDR
@@ -25625,7 +25592,7 @@ wHW
 hwV
 vQi
 vQi
-vXW
+rkE
 gFa
 rMu
 dob
@@ -25873,7 +25840,7 @@ frc
 czu
 mDn
 fCh
-gKt
+fhs
 cmI
 cmI
 bbE
@@ -25882,7 +25849,7 @@ wHW
 vQi
 vQi
 aUy
-vXW
+rkE
 uJv
 vOK
 dob
@@ -26139,7 +26106,7 @@ wHW
 vQi
 vQi
 vQi
-vXW
+rkE
 uJv
 sOs
 xQy
@@ -26396,7 +26363,7 @@ mIt
 aUy
 bQv
 vQi
-vXW
+rkE
 uJv
 vOK
 xQy
@@ -26653,7 +26620,7 @@ wHW
 vQi
 vQi
 vQi
-vXW
+rkE
 rPr
 gVO
 xQy
@@ -26910,7 +26877,7 @@ wHW
 vQi
 aUy
 vQi
-vXW
+rkE
 uJv
 gVO
 xQy
@@ -27156,7 +27123,7 @@ czX
 fAO
 foX
 tFC
-ibq
+cOO
 lmz
 vDR
 qjv
@@ -27167,7 +27134,7 @@ oZT
 nXQ
 pLE
 vQi
-vXW
+rkE
 uJv
 gVO
 xQy
@@ -27413,7 +27380,7 @@ fAO
 fAO
 foX
 tFC
-ibq
+cOO
 lqL
 pLl
 lqL
@@ -27424,7 +27391,7 @@ wHW
 vQi
 vQi
 vQi
-vXW
+rkE
 uJv
 hrt
 xQy
@@ -27670,7 +27637,7 @@ fAO
 fAO
 foX
 tFC
-ibq
+cOO
 lqL
 pLl
 lqL
@@ -27681,7 +27648,7 @@ wHW
 vQi
 vQi
 vQi
-vXW
+rkE
 uJv
 sOs
 xQy
@@ -27708,7 +27675,7 @@ kwz
 ppQ
 ppQ
 vOK
-aeG
+vOK
 vOK
 ylF
 dob
@@ -27927,7 +27894,7 @@ fAO
 fAO
 foX
 tFC
-ibq
+cOO
 lqL
 maU
 lqL
@@ -27938,7 +27905,7 @@ wHW
 vQi
 vQi
 vQi
-vXW
+rkE
 fIT
 vOK
 xQy
@@ -28160,7 +28127,7 @@ tFC
 nbL
 fAO
 fAO
-fAO
+tFC
 fAO
 fAO
 fAO
@@ -28184,7 +28151,7 @@ fAO
 fAO
 foX
 tFC
-ibq
+cOO
 lqL
 qiJ
 fXV
@@ -28195,7 +28162,7 @@ svY
 bTj
 bTj
 bTj
-lCK
+gsy
 vpy
 vOK
 xQy
@@ -28417,7 +28384,7 @@ tFC
 bSQ
 bWC
 cfC
-bWC
+tFC
 cAc
 bWC
 bWC
@@ -28441,7 +28408,7 @@ bWC
 cfC
 fmK
 tFC
-ibq
+cOO
 lqL
 pLl
 ryU
@@ -28666,10 +28633,10 @@ ahG
 ahG
 bhD
 xHA
-xHA
-xHA
-xHA
-xHA
+tFC
+tFC
+tFC
+tFC
 xHA
 tFC
 tFC
@@ -28954,7 +28921,7 @@ fdV
 fdV
 fdV
 fui
-hgj
+fdV
 fxo
 lqL
 pLl
@@ -29223,7 +29190,7 @@ qUA
 vQi
 vQi
 vQi
-vXW
+rkE
 uJv
 sOs
 xQy
@@ -29453,7 +29420,7 @@ skt
 skt
 skt
 skt
-skt
+cFP
 skt
 skt
 cFP
@@ -29462,7 +29429,7 @@ cfM
 skt
 skt
 skt
-xIj
+eDp
 skt
 skt
 skt
@@ -29480,7 +29447,7 @@ wHW
 nXQ
 vQi
 vQi
-vXW
+rkE
 hHo
 vOK
 xQy
@@ -29737,7 +29704,7 @@ blH
 vQi
 aUy
 vQi
-vXW
+rkE
 uJv
 vOK
 xQy
@@ -29994,7 +29961,7 @@ wHW
 vQi
 vQi
 vQi
-vXW
+rkE
 uJv
 hSg
 xQy
@@ -30251,7 +30218,7 @@ wHW
 vQi
 vQi
 vQi
-vXW
+rkE
 sKI
 snR
 xQy
@@ -30508,7 +30475,7 @@ wHW
 vQi
 aUy
 vQi
-vXW
+rkE
 uJv
 vOK
 xQy
@@ -30765,7 +30732,7 @@ gvh
 nXQ
 vQi
 vQi
-vXW
+rkE
 uJv
 sOs
 xQy
@@ -31022,7 +30989,7 @@ wHW
 vQi
 vQi
 vQi
-vXW
+rkE
 uJv
 vOK
 xQy
@@ -31279,7 +31246,7 @@ wHW
 vQi
 vQi
 vQi
-vXW
+rkE
 uJv
 vOK
 xQy
@@ -31357,7 +31324,7 @@ fIP
 fIP
 fIP
 lXw
-unv
+xpN
 lXw
 fIP
 vQa
@@ -31536,7 +31503,7 @@ vQi
 vQi
 nXQ
 vQi
-vXW
+rkE
 fIT
 vOK
 xQy
@@ -31793,7 +31760,7 @@ vQi
 vQi
 vQi
 vQi
-vXW
+rkE
 uJv
 vOK
 xQy
@@ -32050,7 +32017,7 @@ vQi
 vQi
 vQi
 vQi
-vXW
+rkE
 uJv
 vOK
 xQy
@@ -32307,7 +32274,7 @@ vQi
 nXQ
 vQi
 vQi
-vXW
+rkE
 uJv
 sOs
 xQy
@@ -32564,7 +32531,7 @@ hwV
 aUy
 vQi
 vQi
-vXW
+rkE
 uJv
 vOK
 xQy
@@ -36263,7 +36230,7 @@ wxy
 fIP
 gBp
 lXw
-unv
+xpN
 lXw
 fIP
 xDV
@@ -36938,7 +36905,7 @@ hUB
 dob
 vOK
 vOK
-aeG
+vOK
 vOK
 vOK
 ixj
@@ -39272,7 +39239,7 @@ aZi
 vOK
 dob
 tKZ
-eDp
+tKZ
 ulJ
 tKZ
 tKZ
@@ -40805,7 +40772,7 @@ ppn
 jOy
 rkE
 vnE
-vOK
+aeG
 uJv
 vOK
 uSi
@@ -40908,7 +40875,7 @@ huQ
 huQ
 eor
 huQ
-iSS
+huQ
 huQ
 huQ
 wUA
@@ -43713,7 +43680,7 @@ ogA
 ogA
 ogA
 ogA
-cEH
+ogA
 ogA
 ogA
 ogA
@@ -50967,7 +50934,7 @@ cmI
 vMK
 xbh
 xbh
-fhs
+xbh
 xbh
 xbh
 xbh
@@ -53753,7 +53720,7 @@ yaF
 yaF
 yaF
 yaF
-xpN
+rjQ
 dob
 dob
 dob
@@ -54010,7 +53977,7 @@ vOK
 vOK
 vOK
 vOK
-cmI
+vOK
 vOK
 vOK
 vOK
@@ -54267,7 +54234,7 @@ vOK
 vOK
 vOK
 vOK
-cmI
+vOK
 vOK
 vOK
 vOK
@@ -54524,7 +54491,7 @@ kxM
 tUj
 tUj
 tUj
-cqo
+tUj
 tUj
 kxM
 tUj
@@ -54781,7 +54748,7 @@ kZU
 kZU
 kZU
 kZU
-lqL
+kZU
 kZU
 kZU
 kZU
@@ -55038,7 +55005,7 @@ kZU
 kZU
 kZU
 kZU
-lqL
+kZU
 kZU
 kZU
 kZU
@@ -55295,7 +55262,7 @@ kZU
 kZU
 kZU
 kZU
-lqL
+kZU
 kZU
 kZU
 kZU
@@ -55552,7 +55519,7 @@ fFU
 fFU
 fFU
 fFU
-skt
+fFU
 fFU
 fFU
 fFU
@@ -55809,7 +55776,7 @@ pcg
 kZU
 kZU
 kZU
-lqL
+kZU
 kZU
 kZU
 kZU
@@ -56066,7 +56033,7 @@ sZJ
 sZJ
 sZJ
 sZJ
-tfG
+sZJ
 sZJ
 sZJ
 sZJ
@@ -56323,7 +56290,7 @@ vOK
 vOK
 vOK
 vOK
-cmI
+vOK
 vOK
 vOK
 vOK
@@ -56580,7 +56547,7 @@ vOK
 vOK
 vOK
 vOK
-cmI
+vOK
 vOK
 vOK
 vOK
@@ -64248,7 +64215,7 @@ edF
 edF
 lxg
 lxg
-hlc
+lxg
 lxg
 lxg
 lxg
@@ -68135,7 +68102,7 @@ lxg
 lxg
 lxg
 lxg
-lxg
+hlc
 lxg
 lxg
 lxg
@@ -68396,7 +68363,7 @@ lxg
 lxg
 lxg
 lxg
-xgY
+lxg
 lxg
 lxg
 lxg
