@@ -229,6 +229,7 @@
 /datum/reagent/medicine/kelotane/on_mob_life(mob/living/L, metabolism)
 	var/target_temp = L.get_standard_bodytemperature()
 	L.heal_limb_damage(0, effect_str)
+	L.adjustToxLoss(0.25)
 	if(L.bodytemperature > target_temp)
 		L.adjust_bodytemperature(-2.5*TEMPERATURE_DAMAGE_COEFFICIENT*effect_str, target_temp)
 	if(volume > 10)
@@ -238,7 +239,7 @@
 	if(volume > 20)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		L.heal_limb_damage(0, 1.25*effect_str)
-		L.adjustToxLoss(2)
+		L.adjustToxLoss(1)
 	return ..()
 
 /datum/reagent/medicine/kelotane/overdose_process(mob/living/L, metabolism)
@@ -332,9 +333,9 @@
 
 /datum/reagent/medicine/tricordrazine/on_mob_life(mob/living/L, metabolism)
 
-	L.adjustOxyLoss(-0.5*effect_str)
-	L.adjustToxLoss(-0.4*effect_str)
-	L.heal_limb_damage(0.8*effect_str, 0.8*effect_str)
+	L.adjustOxyLoss(-0.5*effect_str) // Tricordazine heals 0.1 of all chemicals for no downside.
+	L.adjustToxLoss(-0.25)
+	L.heal_limb_damage(0.25, 0.25)
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
 	if(volume > 20)
@@ -502,6 +503,9 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.setShock_Stage(min(C.shock_stage - volume*effect_str, 150)) //will pull a target out of deep paincrit instantly, if he's in it
+	if(volume < 1) // this boy has a huge crash!
+		L.AdjustParalyzed(60)
+		to_chat(L, span_userdanger("YOUR VEINS ARE BURNING!!!!!!")).
 	return ..()
 
 /datum/reagent/medicine/neuraline/overdose_process(mob/living/L, metabolism)
@@ -520,7 +524,7 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/hyronalin/on_mob_life(mob/living/L)
-	L.adjustToxLoss(-effect_str)
+	L.adjustToxLoss(-0.25)
 	return ..()
 
 /datum/reagent/medicine/hyronalin/overdose_process(mob/living/L, metabolism)
@@ -708,14 +712,15 @@
 
 /datum/reagent/medicine/bicaridine/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(effect_str, 0)
+	L.adjustToxLoss(0.25)
 	if(volume > 10)
 		L.heal_limb_damage(0.75*effect_str, 0)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
 		L.adjustToxLoss(0.75)
 	if(volume > 20)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-		L.adjustToxLoss(2)
 		L.heal_limb_damage(1.25*effect_str, 0)
+		L.adjustToxLoss(1)
 	return ..()
 
 

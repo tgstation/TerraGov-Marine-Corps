@@ -108,7 +108,7 @@
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
 	heal_brute = 20
-	toolspeed = 6 SECONDS
+	toolspeed = 2.5 SECONDS
 	heal_flags = BANDAGE
 
 /obj/item/stack/medical/heal_pack/gauze/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
@@ -132,7 +132,7 @@
 	singular_name = "ointment"
 	icon_state = "ointment"
 	heal_burn = 20
-	toolspeed = 6 SECONDS
+	toolspeed = 2.5 SECONDS
 	heal_flags = SALVE
 
 /obj/item/stack/medical/heal_pack/ointment/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
