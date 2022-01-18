@@ -65,7 +65,7 @@
 		return
 
 	if(linked_teleporter.z != z)
-		to_chat(user, span_warning("The [src] and the [linked_teleporter] are too far appart"))
+		to_chat(user, span_warning("The [src] and the [linked_teleporter] are too far apart!"))
 		return
 	
 	if(!linked_teleporter.anchored || (!linked_teleporter.powered() && (!linked_teleporter.cell || linked_teleporter.cell.charge < TELEPORTING_COST)))
