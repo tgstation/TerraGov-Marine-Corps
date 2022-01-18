@@ -1384,19 +1384,6 @@ FACTORY
 	group = "Factory"
 	containertype = /obj/structure/closet/crate
 
-/datum/supply_packs/factory/starter
-	name = "Starter Pack"
-	contains = list(
-		/obj/machinery/factory/cutter,
-		/obj/machinery/factory/heater,
-		/obj/machinery/factory/flatter,
-		/obj/machinery/factory/former,
-		/obj/machinery/factory/reconstructor,
-		/obj/machinery/outputter,
-		/obj/item/paper/factoryhowto,
-	)
-	cost = 25
-
 /datum/supply_packs/factory/cutter
 	name = "Industrial cutter"
 	contains = list(/obj/machinery/factory/cutter)
