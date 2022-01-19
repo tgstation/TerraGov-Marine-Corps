@@ -268,3 +268,31 @@
 2022-01-18:
   novaepee:
   - rscdel: UA 571-C Base defense sentry voucher; old object of an old engineer meta
+2022-01-19:
+  AzonStarfall:
+  - bugfix: Minerva hangar has been retrofitted for increased usability.
+  Bizzonium:
+  - bugfix: sanitized and fixed bugged SQL requests
+  BraveMole:
+  - qol: You can tactical reload gun attachments
+  EvilMelonTheSecond:
+  - rscdel: Autolathe contraband items removed
+  - balance: Highcap Industrial Welder now costs 5 in engivendor
+  Otterwatch:
+  - rscadd: Added Paladin and Mk221 to seasonal weapons as an entire new season.
+  - rscdel: Removed Paladin and Mk221 from Shotgun weapon tab in marine vendor.
+  Pariah919:
+  - rscadd: you can get a reqtorio starter kit for FREE at the operations vendor.
+  - rscdel: reqtorio starter kit removed from req
+  - balance: Reqtorio machines are cheaper, spec gun refill packs are much more expensive,
+      claymores and WP boxes are much more expensive.
+  - balance: TX-11 and T-18 extra delay removed.
+  RenovatedAtol:
+  - rscadd: More hotkeys and signals for hotkeys
+  breadhunt:
+  - balance: Explosions no longer blow grenades inside grenade boxes. The FOB is safe
+      once more
+  novaepee:
+  - bugfix: you can see title_painting16 now in title screen.
+  - rscadd: overlay on suit toggle button when turning on and off suit light
+  - qol: now you know if your armor light is on or not

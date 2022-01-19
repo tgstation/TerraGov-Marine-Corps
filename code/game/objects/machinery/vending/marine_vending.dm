@@ -551,6 +551,14 @@
 			/obj/item/minerupgrade/automatic = 1,
 			/obj/item/minerupgrade/reinforcement = 1,
 			/obj/item/minerupgrade/overclock = 1,
+		"Reqtorio Basics" = list(
+			/obj/item/paper/factoryhowto = -1,
+			/obj/machinery/factory/cutter = 1,
+			/obj/machinery/factory/heater = 1,
+			/obj/machinery/factory/flatter = 1,
+			/obj/machinery/factory/former = 1,
+			/obj/machinery/factory/reconstructor = 1,
+			/obj/machinery/outputter = 1,
 		),
 		"Grenade Boxes" = list(
 			/obj/item/storage/box/visual/grenade/frag = 2,
