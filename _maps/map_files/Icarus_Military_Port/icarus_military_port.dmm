@@ -2633,7 +2633,7 @@
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/item/weapon/stunprod,
+/obj/item/toy/plush,
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/outside/c)
 "dHA" = (
@@ -3719,6 +3719,14 @@
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/bigredv2/outside/c)
+"fja" = (
+/obj/structure/lattice,
+/obj/structure/monorail{
+	dir = 5
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship_hull,
+/area/bigredv2/caves/north)
 "fjh" = (
 /turf/open/floor/mainship,
 /area/bigredv2/outside/cargo)
@@ -6216,6 +6224,12 @@
 	dir = 9
 	},
 /area/bigredv2/outside/c)
+"isv" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship_hull/dir{
+	dir = 4
+	},
+/area/bigredv2/caves/north)
 "isw" = (
 /turf/open/floor/prison/darkred{
 	dir = 5
@@ -7307,7 +7321,6 @@
 "jSX" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
-/obj/item/weapon/stunprod,
 /turf/open/floor/prison/darkred{
 	dir = 1
 	},
@@ -9627,6 +9640,17 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/bigredv2/caves/lambda_lab)
+"mLQ" = (
+/obj/structure/lattice,
+/obj/structure/monorail{
+	dir = 9
+	},
+/obj/structure/monorail{
+	dir = 6
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship_hull,
+/area/bigredv2/caves/north)
 "mMR" = (
 /obj/structure/dropship_piece/two/engine/rightbottom,
 /turf/open/floor/plating/mainship,
@@ -11376,6 +11400,10 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/c)
+"peO" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/caves/north)
 "pfb" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -12275,6 +12303,12 @@
 /obj/item/camera,
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
+"qqr" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
+	},
+/area/bigredv2/caves/north)
 "qqK" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -15616,6 +15650,13 @@
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
+"ueN" = (
+/obj/structure/catwalk,
+/obj/effect/ai_node,
+/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
+	dir = 1
+	},
+/area/bigredv2/caves/northeast)
 "ufb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -16555,9 +16596,9 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
 "vjZ" = (
-/obj/structure/largecrate/supply/ammo/shotgun,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/outside/c)
+/area/bigredv2/caves/northeast)
 "vkq" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
@@ -16841,23 +16882,23 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/c)
 "vAO" = (
-/obj/structure/largecrate/supply/weapons,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
+/obj/structure/largecrate/lisa,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
 "vAY" = (
-/obj/structure/largecrate/supply/supplies/flares,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
+/obj/structure/largecrate/random/secure,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
 "vBb" = (
@@ -17099,13 +17140,13 @@
 /area/bigredv2/outside/c)
 "vSZ" = (
 /obj/machinery/light,
-/obj/structure/largecrate/supply/ammo/standard_ammo,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
+/obj/structure/largecrate/lisa,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
 "vTo" = (
@@ -17141,13 +17182,13 @@
 /area/shuttle/drop1/lz1)
 "vVR" = (
 /obj/machinery/light,
-/obj/structure/largecrate/supply/supplies/flares,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
+/obj/structure/largecrate/random/secure,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
 "vVZ" = (
@@ -48764,7 +48805,7 @@ tWI
 utU
 uJM
 xQy
-vjZ
+hBx
 veu
 vUR
 wtB
@@ -56426,7 +56467,7 @@ gNP
 gNP
 gNP
 gNP
-gNP
+iQQ
 gNP
 gNP
 gNP
@@ -57187,7 +57228,7 @@ dbQ
 fST
 dbQ
 dbQ
-dbQ
+peO
 dbQ
 dbQ
 dbQ
@@ -57198,7 +57239,7 @@ fST
 dbQ
 dbQ
 dbQ
-dbQ
+peO
 dbQ
 dbQ
 xpJ
@@ -57434,7 +57475,7 @@ dbQ
 dbQ
 dbQ
 dbQ
-dbQ
+peO
 dbQ
 dbQ
 dbQ
@@ -57687,7 +57728,7 @@ ybb
 cMr
 dgf
 dgf
-dgf
+qqr
 dgf
 dgf
 dgf
@@ -57952,7 +57993,7 @@ dlQ
 dum
 rDR
 dlQ
-dum
+mLQ
 rDR
 dlQ
 dum
@@ -57962,7 +58003,7 @@ dum
 rDR
 dlQ
 dum
-rDR
+fja
 dlQ
 dum
 rDR
@@ -58739,7 +58780,7 @@ dmY
 dmY
 dmY
 dmY
-dmY
+isv
 dmY
 dmY
 dmY
@@ -58976,6 +59017,7 @@ dbQ
 dbQ
 dbQ
 dbQ
+peO
 dbQ
 dbQ
 dbQ
@@ -58986,13 +59028,12 @@ dbQ
 dbQ
 dbQ
 dbQ
+peO
 dbQ
 dbQ
 dbQ
 dbQ
-dbQ
-dbQ
-dbQ
+peO
 dbQ
 dbQ
 dbQ
@@ -59227,6 +59268,7 @@ vxw
 xhw
 xhw
 sys
+vjZ
 dnA
 dnA
 dnA
@@ -59237,8 +59279,7 @@ dnA
 dnA
 dnA
 dnA
-dnA
-dnA
+vjZ
 dnA
 dnA
 dnA
@@ -61804,7 +61845,7 @@ kYY
 kYY
 kYY
 kYY
-kYY
+vxK
 kYY
 kYY
 kYY
@@ -63093,7 +63134,7 @@ kYY
 kYY
 lwX
 lwX
-kYY
+xDz
 kYY
 xDz
 kYY
@@ -63349,7 +63390,7 @@ xBX
 kYY
 vCi
 vCi
-vCi
+nxq
 kYY
 kYY
 kYY
@@ -64891,7 +64932,7 @@ edE
 nQx
 ohx
 ohx
-ohx
+bOB
 uXs
 uXs
 kUR
@@ -65157,8 +65198,8 @@ lwX
 lwX
 lwX
 vCi
-vCi
-kYY
+nxq
+xDz
 fzt
 pXm
 ntr
@@ -67461,16 +67502,16 @@ lwX
 kYY
 kYY
 kYY
+xDz
 kYY
 kYY
 kYY
 kYY
+xDz
 kYY
 kYY
 kYY
-kYY
-kYY
-kYY
+xDz
 kYY
 ldJ
 bXK
@@ -67976,7 +68017,7 @@ kYY
 kYY
 kYY
 kYY
-kYY
+vxK
 kYY
 kYY
 kYY
@@ -67984,7 +68025,7 @@ kYY
 kYY
 kYY
 sWB
-sWB
+kYY
 kYY
 kYY
 lwX
@@ -68241,7 +68282,7 @@ kYY
 qPS
 kYY
 sWB
-sWB
+kYY
 kYY
 vxK
 kYY
@@ -69527,7 +69568,7 @@ kYY
 kYY
 kYY
 kYY
-kYY
+xDz
 kYY
 kYY
 kYY
@@ -69535,13 +69576,13 @@ vCi
 xBX
 xBX
 edE
-ecj
+ueN
 ohx
 ohx
 ewf
 vCi
 kYY
-kYY
+xDz
 kYY
 fEk
 uXs
@@ -69779,11 +69820,11 @@ vzh
 lwX
 lwX
 lwX
+xDz
 kYY
 kYY
 kYY
-kYY
-kYY
+xDz
 kYY
 kYY
 kYY
@@ -69799,7 +69840,7 @@ fac
 kYY
 kYY
 kYY
-vCi
+nxq
 edE
 ecj
 ohx
@@ -69809,9 +69850,9 @@ ewf
 xBX
 vCi
 mur
+xDz
 kYY
-kYY
-kYY
+xDz
 vxK
 kYY
 kYY
@@ -70814,7 +70855,7 @@ kYY
 kYY
 kYY
 kYY
-kYY
+vxK
 kYY
 kYY
 kYY
@@ -71839,11 +71880,11 @@ jzC
 jzC
 vzh
 lwX
+xDz
 kYY
 kYY
 kYY
-kYY
-kYY
+xDz
 qPS
 kYY
 kYY
@@ -72101,7 +72142,7 @@ vzh
 kYY
 kYY
 kYY
-kYY
+xDz
 kYY
 kYY
 vCi
@@ -72359,15 +72400,15 @@ vzh
 kYY
 vxK
 kYY
-kYY
+xDz
 kYY
 vCi
 klx
 ohx
-ohx
+bOB
 ohx
 ewf
-vCi
+nxq
 kYY
 kYY
 lwX
@@ -72641,7 +72682,7 @@ vzh
 lwX
 lwX
 lwX
-lwX
+kYY
 kYY
 kYY
 vxK
@@ -73652,24 +73693,24 @@ vzh
 uXs
 uXs
 fac
+xDz
 kYY
 kYY
 kYY
-kYY
-kYY
+vxK
 kYY
 kYY
 vCi
 klx
 ohx
 lcj
-ohx
+bOB
 ewf
 xBX
 mhH
 hEd
 kYY
-vxK
+qmZ
 kYY
 kYY
 ouD
