@@ -151,7 +151,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/msg = tgui_input_text(usr, "Enter the text you wish to appear to everyone.", "Global Narrate", multiline = TRUE, , encode = FALSE)
+	var/msg = tgui_input_text(usr, "Enter the text you wish to appear to everyone.", "Global Narrate", multiline = TRUE , encode = FALSE)
 
 	if(!msg)
 		return
