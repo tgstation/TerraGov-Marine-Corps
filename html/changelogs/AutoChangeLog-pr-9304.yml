@@ -1,5 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - rscadd: "overlay on suit toggle button when turning on and off suit light"
-  - qol: "now you know if your armor light is on or not"

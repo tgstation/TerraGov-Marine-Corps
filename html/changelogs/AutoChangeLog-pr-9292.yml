@@ -1,5 +1,0 @@
-author: "Otterwatch"
-delete-after: True
-changes: 
-  - rscadd: "Added Paladin and Mk221 to seasonal weapons as an entire new season."
-  - rscdel: "Removed Paladin and Mk221 from Shotgun weapon tab in marine vendor."

@@ -1,4 +1,0 @@
-author: "Bizzonium"
-delete-after: True
-changes: 
-  - bugfix: "sanitized and fixed bugged SQL requests"
