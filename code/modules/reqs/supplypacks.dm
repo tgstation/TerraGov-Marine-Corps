@@ -1360,7 +1360,7 @@ VEHICLES
 
 /datum/supply_packs/vehicles/uv_light_ammo
 	name = "Light UV ammo"
-	contains = list(/obj/item/uav_turret)
+	contains = list(/obj/item/ammo_magazine/box11x35mm)
 	cost = 10
 	containertype = /obj/structure/closet/crate/ammo
 
