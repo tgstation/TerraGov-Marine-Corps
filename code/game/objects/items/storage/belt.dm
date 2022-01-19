@@ -900,11 +900,13 @@
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
 	)
 
-/obj/item/storage/belt/gun/rpg/apply_custom(image/standing)
-    . = ..()
-    if(locate(/obj/item/weapon/gun/launcher/rocket/recoillessrifle) in contents)
-        standing.overlays += image('icons/mob/back.dmi', src,"marine_rocket_g")
-        return
+/obj/item/storage/belt/gun/rpg/update_icon()
+	var/mob/user = loc
+	item_state = "[initial(icon_state)][length(contents)?"_g":""]"
+	if(istype(user))
+		user.update_inv_back()
+		user.update_inv_s_store()
+		return
 
 /obj/item/storage/belt/gun/korovin
 	name = "\improper Type 41 pistol holster rig"
