@@ -1055,10 +1055,6 @@
 	spawn_number = 30
 	spawn_type = /obj/item/ammo_magazine/standard_gpmg
 
-/obj/item/storage/box/visual/magazine/compact/standard_gpmg/full
-	spawn_number = 30
-	spawn_type = /obj/item/ammo_magazine/standard_mmg
-
 /obj/item/storage/box/visual/magazine/compact/standard_mmg
 	name = "T-27 magazine box"
 	desc = "A box specifically designed to hold a large amount of T-27 box magazines."
@@ -1067,6 +1063,10 @@
 	can_hold = list(
 		/obj/item/ammo_magazine/standard_mmg,
 	)
+
+/obj/item/storage/box/visual/magazine/compact/standard_mmg/full
+	spawn_number = 30
+	spawn_type = /obj/item/ammo_magazine/standard_mmg
 
 /obj/item/storage/box/visual/magazine/compact/standard_smartmachinegun
 	name = "T-29 drum box"
