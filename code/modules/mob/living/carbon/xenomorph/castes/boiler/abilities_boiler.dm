@@ -270,7 +270,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 	to_chat(X, span_xenonotice("We begin building up pressure."))
 
-	if(!do_after(X, 2 SECONDS, FALSE, target, BUSY_ICON_DANGER))
+	if(!do_after(X, 0 SECONDS, FALSE, target, BUSY_ICON_DANGER))
 		to_chat(X, span_warning("We decide not to launch."))
 		return fail_activate()
 
