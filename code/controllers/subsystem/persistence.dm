@@ -53,6 +53,7 @@ SUBSYSTEM_DEF(persistence)
 /datum/controller/subsystem/persistence/proc/CollectData()
 	save_custom_loadouts_list()
 	save_last_civil_war_round_time()
+	save_player_number()
 	return
 
 ///Loads the last civil war round date
@@ -94,6 +95,11 @@ SUBSYSTEM_DEF(persistence)
 	var/json_file = file("data/custom_loadouts.json")
 	fdel(json_file)
 	WRITE_FILE(json_file, json_encode(custom_loadouts))
+
+/datum/controller/subsystem/persistence/proc/save_player_number()
+	var/json_file = file("data/last_round_player_count.json")
+	fdel(json_file)
+	WRITE_FILE(json_file, json_encode(TGS_CLIENT_COUNT))
 
 ///Save a loadout into the persistence savefile
 /datum/controller/subsystem/persistence/proc/save_loadout(datum/loadout/loadout)
