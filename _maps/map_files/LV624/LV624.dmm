@@ -10793,6 +10793,10 @@
 	icon_state = "whiteyellowfull"
 	},
 /area/lv624/lazarus/sandtemple)
+"ixE" = (
+/obj/structure/sign/safety/hazard,
+/turf/closed/wall/r_wall,
+/area/lv624/lazarus/canteen)
 "ixO" = (
 /obj/effect/decal/sandytile,
 /obj/structure/stairs/cornerdark{
@@ -57008,11 +57012,11 @@ pqp
 qyP
 ryY
 iAC
-iAC
+ixE
+wvT
+wvT
+wvT
 bTL
-wvT
-wvT
-wvT
 wvT
 rOQ
 bdh
@@ -58757,7 +58761,7 @@ rYv
 pMn
 hkF
 uIV
-dPz
+wui
 xoN
 mqK
 mqK
@@ -59111,7 +59115,7 @@ hlQ
 pMn
 hkF
 uIV
-wui
+dPz
 hWp
 toR
 gdJ
@@ -59465,7 +59469,7 @@ rYv
 pMn
 hkF
 uIV
-dPz
+wui
 hWp
 csS
 wvz
@@ -59642,7 +59646,7 @@ hlQ
 pMn
 hkF
 keT
-wui
+dPz
 hWp
 avj
 wvz
@@ -59996,7 +60000,7 @@ kwq
 wIK
 mdD
 vXt
-dPz
+wui
 cTW
 kLN
 wvz
