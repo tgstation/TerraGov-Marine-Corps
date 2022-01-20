@@ -452,7 +452,7 @@ WEAPONS
 /datum/supply_packs/weapons/xray_gun
 	name = "TE-X Laser Rifle"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/xray)
-	cost = 75
+	cost = 40
 
 /datum/supply_packs/weapons/rocketsledge
 	name = "Rocket Sledge"
