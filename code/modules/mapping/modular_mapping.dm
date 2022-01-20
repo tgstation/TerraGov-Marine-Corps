@@ -9,8 +9,11 @@
 	var/template_width = 0
 	///Bool for whether we want to to be spawning from the middle or to the topright of the spawner (true is centered)
 	var/keepcentered = FALSE
-	var/min_player_num //minimum player number for a modular to be added to the pool of potential modular map spawns.
-	var/max_player_num //maximum player number for a modular to be added to the pool of potential modular map spawns.
+	//minimum player number for a modular map template to be added to the list of potential modular map spawns.
+	var/min_player_num 
+	//maximum player number for a modular map template to be added to the list of potential modular map spawns.
+	var/max_player_num 
+
 	//FOR MIN AND MAX PLAYER COUNTS TO WORK YOUR MODULAR MAP MUST HAVE BOTH FIELDS, MAPS WITH UNINITIALIZED MIN/MAX VALUES OR WITH JUST ONE OF EITHER VAR WILL ENTER THE MODULAR LIST REGARDLESS OF POP
 
 /datum/map_template/modular/prison
