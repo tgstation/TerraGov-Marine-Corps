@@ -334,7 +334,7 @@
 /datum/reagent/medicine/tricordrazine/on_mob_life(mob/living/L, metabolism)
 
 	L.adjustOxyLoss(-0.5*effect_str) // Tricordazine heals 0.1 of all chemicals for no downside.
-	L.adjustToxLoss(-0.25)
+	L.adjustToxLoss(-0.15)
 	L.heal_limb_damage(0.25, 0.25)
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
@@ -465,6 +465,8 @@
 	custom_metabolism = REAGENTS_METABOLISM * 2
 	overdose_threshold = 5
 	overdose_crit_threshold = 6
+	purge_list = list(/datum/reagent/medicine/kelotane, /datum/reagent/medicine/tramadol, /datum/reagent/medicine/tricordrazine, /datum/reagent/medicine/bicaridine)
+	purge_rate = 100
 	scannable = FALSE
 
 /datum/reagent/medicine/neuraline/on_mob_add(mob/living/L, metabolism)
