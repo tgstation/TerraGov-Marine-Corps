@@ -556,6 +556,7 @@
 			/obj/machinery/factory/former = 1,
 			/obj/machinery/factory/reconstructor = 1,
 			/obj/machinery/outputter = 1,
+			/obj/machinery/conveyor = 13,
 		),
 		"Grenade Boxes" = list(
 			/obj/item/storage/box/visual/grenade/frag = 2,
