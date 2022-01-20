@@ -107,7 +107,7 @@
 	singular_name = "medical gauze"
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
-	heal_brute = 20
+	heal_brute = 15
 	toolspeed = 2.5 SECONDS
 	heal_flags = BANDAGE
 
@@ -131,7 +131,7 @@
 	gender = PLURAL
 	singular_name = "ointment"
 	icon_state = "ointment"
-	heal_burn = 20
+	heal_burn = 15
 	toolspeed = 2.5 SECONDS
 	heal_flags = SALVE
 

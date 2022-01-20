@@ -118,7 +118,7 @@
 	name = "first-aid pouch"
 	desc = "Standard marine first-aid pouch. It can contain autoinjectors, sets of pills, and bandages."
 	icon_state = "firstaid"
-	storage_slots = 6
+	storage_slots = 7
 	can_hold = list(
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical,
@@ -126,15 +126,16 @@
 	)
 
 /obj/item/storage/pouch/firstaid/full
-	desc = "Standard marine first-aid pouch. Contains basic pills, splints, and an emergency injector."
+	desc = "Standard marine first-aid pouch. Contains basic pills, splints, bandages, and an emergency injector."
 
 /obj/item/storage/pouch/firstaid/full/Initialize()
 	. = ..()
+	new /obj/item/stack/medical/heal_pack/gauze
 	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
 	new /obj/item/storage/pill_bottle/packet/kelotane(src)
 	new /obj/item/storage/pill_bottle/packet/tramadol(src)
 	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
-	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint/emergency(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
 
