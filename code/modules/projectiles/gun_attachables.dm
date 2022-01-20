@@ -815,8 +815,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "stock"
 	accuracy_mod = 0.1
 	recoil_mod = -2
-	scatter_mod = -5
-
+	scatter_mod = -2
 /obj/item/attachable/stock/tactical
 	name = "\improper MK221 tactical stock"
 	desc = "A sturdy polymer stock for the MK221 shotgun. Supplied in limited numbers and moderately encumbering, it provides an ergonomic surface to ease perceived recoil and usability."
@@ -824,7 +823,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	wield_delay_mod = 0.2 SECONDS
 	accuracy_mod = 0.1
 	recoil_mod = -2
-	scatter_mod = -5
+	scatter_mod = -2
 
 /obj/item/attachable/stock/scout
 	name = "\improper ZX-76 tactical stock"
@@ -834,7 +833,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	flags_attach_features = NONE
 	accuracy_mod = 0.05
 	recoil_mod = -2
-	scatter_mod = -3
+	scatter_mod = -2
 
 /obj/item/attachable/stock/mosin
 	name = "mosin wooden stock"
@@ -845,7 +844,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_y = 13
 	flags_attach_features = NONE
 	recoil_mod = -3
-	scatter_mod = -20
+	scatter_mod = -5
 	movement_acc_penalty_mod = 0.1
 
 /obj/item/attachable/stock/irremoveable/ppsh
@@ -916,7 +915,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	size_mod = 1
 	accuracy_mod = 0.15
 	recoil_mod = -3
-	scatter_mod = -8
+	scatter_mod = -3
 	movement_acc_penalty_mod = 0.1
 
 /obj/item/attachable/stock/tx15
@@ -1079,7 +1078,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "t35stock"
 	accuracy_mod = 0.15
 	recoil_mod = -3
-	scatter_mod = -5
+	scatter_mod = -2
 
 /obj/item/attachable/stock/t39stock
 	name = "\improper T-39 stock"
@@ -1159,7 +1158,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_x = 20
 	accuracy_mod = 0.1
 	recoil_mod = -2
-	scatter_mod = -4
+	scatter_mod = -3
 	burst_scatter_mod = -1
 	accuracy_unwielded_mod = -0.05
 	scatter_unwielded_mod = 3
@@ -1236,6 +1235,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.accuracy_mult -= deployment_accuracy_mod
 		master_gun.recoil -= deployment_recoil_mod
 		master_gun.scatter -= deployment_scatter_mod
+		master_gun.scatter_unwielded -= deployment_scatter_mod
 		master_gun.burst_scatter_mult -= deployment_burst_scatter_mod
 		master_gun.remove_aim_mode_fire_delay(name)
 		icon_state = "bipod"
@@ -1261,6 +1261,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.accuracy_mult += deployment_accuracy_mod
 		master_gun.recoil += deployment_recoil_mod
 		master_gun.scatter += deployment_scatter_mod
+		master_gun.scatter_unwielded += deployment_scatter_mod
 		master_gun.burst_scatter_mult += deployment_burst_scatter_mod
 		master_gun.add_aim_mode_fire_delay(name, initial(master_gun.aim_fire_delay) * deployment_aim_mode_delay_mod)
 		icon_state = "bipod-on"
@@ -1382,7 +1383,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "mateba_barrel"
 	slot = ATTACHMENT_BARREL_MOD
 	damage_mod = 0.20
-	scatter_mod = -3.5
+	scatter_mod = -2
 	damage_falloff_mod = -0.5
 	pixel_shift_x = 0
 	pixel_shift_y = 0

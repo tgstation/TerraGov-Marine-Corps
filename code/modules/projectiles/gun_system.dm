@@ -191,11 +191,11 @@
 	///this is how much deviation the gun recoil can have, recoil pushes the screen towards the reverse angle you shot + some deviation which this is the max.
 	var/recoil_deviation = 22.5
 	///How much the bullet scatters when fired while wielded.
-	var/scatter	= 5
+	var/scatter	= 4
 	///How much the bullet scatters when fired while unwielded.
-	var/scatter_unwielded = 20
+	var/scatter_unwielded = 12
 	///Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
-	var/burst_scatter_mult = 3
+	var/burst_scatter_mult = 1
 	///Multiplier. Defaults to 1 (no penalty). Multiplies accuracy modifier by this amount while burst firing; usually a fraction (penalty) when set.
 	var/burst_accuracy_mult	= 1
 	///accuracy modifier, used by most attachments.
@@ -203,7 +203,7 @@
 	///same vars as above but for unwielded firing.
 	var/accuracy_mult_unwielded = 1
 	///Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
-	var/movement_acc_penalty_mult = 5
+	var/movement_acc_penalty_mult = 2
 	///For regular shots, how long to wait before firing again.
 	var/fire_delay = 6
 	///Modifies the speed of projectiles fired.
@@ -1544,7 +1544,7 @@
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
 
 	if(dual_wield) //akimbo firing gives terrible accuracy
-		gun_scatter += 8 * rand(upper_akimbo_accuracy, lower_akimbo_accuracy)
+		gun_scatter += 2 * rand(upper_akimbo_accuracy, lower_akimbo_accuracy)
 
 	if(user)
 		// Apply any skill-based bonuses to accuracy
@@ -1600,7 +1600,7 @@
 			if(CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if our gun is deployed, change the scatter by this number, usually a negative
 				. += deployed_scatter_change
 			else
-				. += burst_amount * burst_scatter_mult * 5
+				. += burst_amount * burst_scatter_mult * 2
 
 	if(!user?.skills.getRating("firearms")) //no training in any firearms
 		. += 10

@@ -600,7 +600,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 25
-	movement_acc_penalty_mult = 10
+	movement_acc_penalty_mult = 3
 	wield_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/pistol_service.ogg'
 	type_of_casings = "bullet"
