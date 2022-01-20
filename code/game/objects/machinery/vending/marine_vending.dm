@@ -783,7 +783,7 @@
 			/obj/item/storage/pill_bottle/packet/paracetamol = -1,
 			/obj/item/storage/pill_bottle/packet/hypervene = -1,
 		),
-		"Pill Bocket" = list(
+		"Pill Bottle" = list(
 			/obj/item/storage/pill_bottle/inaprovaline = -1,
 			/obj/item/storage/pill_bottle/dexalin = -1,
 			/obj/item/storage/pill_bottle/spaceacillin = -1,
@@ -809,9 +809,10 @@
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,
 			/obj/item/stack/medical/heal_pack/ointment = -1,
-			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 32,
-			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 32,
-			/obj/item/stack/medical/splint = 16,
+			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = -1,
+			/obj/item/stack/medical/heal_pack/advanced/burn_pack = -1,
+			/obj/item/stack/medical/splint = -1,
+			/obj/item/stack/medical/splint/emergency = -1,
 		),
 		"Misc" = list(
 			/obj/item/healthanalyzer = 12,
