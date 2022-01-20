@@ -31511,6 +31511,10 @@
 "cQF" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research)
+"cRJ" = (
+/obj/structure/sign/safety/hazard,
+/turf/closed/wall/r_wall,
+/area/ice_colony/surface/tcomms)
 "cSg" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -33363,6 +33367,10 @@
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark/red2,
 /area/ice_colony/underground/security/armory)
+"mKj" = (
+/obj/structure/sign/safety/hazard,
+/turf/closed/wall/r_wall,
+/area/ice_colony/surface/requesitions)
 "mKW" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -40009,7 +40017,7 @@ adY
 wDM
 wDM
 bVc
-aBi
+cRJ
 fDb
 pBf
 pBf
@@ -40780,7 +40788,7 @@ aon
 qrf
 qrf
 ayq
-aBi
+cRJ
 fDb
 jvm
 xTa
@@ -44361,11 +44369,11 @@ acY
 acY
 acY
 acY
+mKj
 acY
 acY
 acY
-acY
-acY
+mKj
 acY
 acY
 iYJ

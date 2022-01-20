@@ -11164,6 +11164,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
+"iVB" = (
+/obj/structure/sign/safety/hazard,
+/turf/closed/wall/r_wall,
+/area/lv624/lazarus/spaceport)
 "iVC" = (
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
@@ -15577,6 +15581,11 @@
 "odE" = (
 /turf/open/floor/plating,
 /area/lv624/ground/river1)
+"oeJ" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/sign/safety/hazard,
+/turf/closed/wall/r_wall,
+/area/lv624/lazarus/spaceport2)
 "ofx" = (
 /obj/structure/cargo_container/green{
 	dir = 8
@@ -15994,6 +16003,10 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/armory)
+"oFN" = (
+/obj/structure/sign/safety/hazard,
+/turf/closed/wall/r_wall,
+/area/lv624/lazarus/quartstorage/outdoors)
 "oGP" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 1
@@ -38588,7 +38601,7 @@ tNU
 vbu
 hiy
 ybc
-yaB
+oeJ
 jro
 iwB
 mOs
@@ -38942,7 +38955,7 @@ vvX
 uoM
 pQz
 ybc
-yaB
+oeJ
 jro
 iwB
 mOs
@@ -57531,7 +57544,7 @@ tbe
 tbe
 tbe
 uYo
-wvT
+iVB
 wjg
 mOs
 mOs
@@ -58062,7 +58075,7 @@ tbe
 kqW
 vvl
 uYo
-wvT
+iVB
 qay
 ylZ
 bdh
@@ -58593,7 +58606,7 @@ sKu
 tbe
 ciE
 uYo
-wvT
+iVB
 rOQ
 ksq
 gCL
@@ -59098,7 +59111,7 @@ hlQ
 pMn
 hkF
 uIV
-dPz
+oFN
 hWp
 toR
 gdJ
@@ -59629,7 +59642,7 @@ hlQ
 pMn
 hkF
 keT
-dPz
+oFN
 hWp
 avj
 wvz
