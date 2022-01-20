@@ -235,7 +235,7 @@
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
 		L.heal_limb_damage(0, 0.75*effect_str)
-		L.adjustToxLoss(0.75)
+		L.adjustToxLoss(0.5)
 	if(volume > 20)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		L.heal_limb_damage(0, 1.25*effect_str)
@@ -715,7 +715,7 @@
 	if(volume > 10)
 		L.heal_limb_damage(0.75*effect_str, 0)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
-		L.adjustToxLoss(0.75)
+		L.adjustToxLoss(0.5)
 	if(volume > 20)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		L.heal_limb_damage(1.25*effect_str, 0)
