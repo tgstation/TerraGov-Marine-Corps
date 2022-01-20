@@ -286,7 +286,7 @@
 /obj/item/stack/medical/splint/emergency
 	name = "emergency medical splints"
 	singular_name = "emergency medical splint"
-	desc = "A emergency medical splint created for emergency situations, easy and quick to apply, but not very durable."
+	desc = "An emergency medical splint created for emergency situations, easy and quick to apply, but not very durable."
 	icon_state = "emergency_splint"
 	amount = 1
 	max_amount = 1
