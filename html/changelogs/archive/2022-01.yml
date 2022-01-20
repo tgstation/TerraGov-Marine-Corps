@@ -296,3 +296,10 @@
   - bugfix: you can see title_painting16 now in title screen.
   - rscadd: overlay on suit toggle button when turning on and off suit light
   - qol: now you know if your armor light is on or not
+2022-01-20:
+  Notamaniac:
+  - bugfix: The Global narrate verb is fixed.
+  - bugfix: The revolver toss trick should no longer bug inventories out if you quick
+      equip it while it's in the air.
+  RenovatedAtol:
+  - bugfix: turret ammo
