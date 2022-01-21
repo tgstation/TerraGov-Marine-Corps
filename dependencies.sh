@@ -22,4 +22,4 @@ export SPACEMAN_DMM_COMMIT_HASH=3588de97ff09fdd02d96f178392f3c59b19ebfc4
 export EXTOOLS_VERSION=v0.0.7
 
 # Python version for mapmerge and other tools
-export PYTHON_VERSION=3.6.8
+export PYTHON_VERSION=3.7.9
