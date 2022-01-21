@@ -613,9 +613,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Drone defines
 #define DRONE_HEAL_RANGE 1
-#define DRONE_SALVAGE_BIOMASS_WINDUP		5 SECONDS //Delay before the target is salvaged
+#define DRONE_SALVAGE_BIOMASS_WINDUP		10 SECONDS //Delay before the target is salvaged
 #define DRONE_SALVAGE_BIOMASS_RANGE			1
-#define DRONE_SALVAGE_COOLDOWN				60 SECONDS //Can only salvage one corpse per 60 seconds; try not to die *too* quickly.
+#define DRONE_SALVAGE_COOLDOWN				120 SECONDS //Can only salvage one corpse per 60 seconds; try not to die *too* quickly.
 
 //Boiler defines
 #define BOILER_LUMINOSITY_BASE 0
