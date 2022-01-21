@@ -20,7 +20,7 @@ As a xeno, you can climb over window frames by SpecialClicking (Default: CTRL) o
 As a xeno, do not camp the landing zones prior to the marines building their defenses.
 As a xeno, do not block other xenos' paths when they are retreating. Circumvent this by being on Help Intent or by simply moving away.
 As a xeno, white weed helps you heal faster, green weeds slows down marines, and weed with no colors are normal weeds. Rest on the white weeds to heal faster!
-As a larva, ask your hive leader what you should evolve into.
+As a larva, ask your hive leader what you should evolve into, if nobody responds you can check hive status and think what xenomorphs need the most.
 As a larva, you can slide under unbolted and unwelded doors by clicking on the door.
 As a larva, stay on weeds while growing, you will grow faster as a result.
 As a runner or larva, you can pass over window frames without climbing on to them beforehand.
