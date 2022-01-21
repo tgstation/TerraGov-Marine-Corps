@@ -105,7 +105,7 @@
 			picked = O
 			continue
 
-		if(GLOB.key_to_time_of_death[O.key] < GLOB.key_to_time_of_death[picked.key])
+		if(GLOB.key_to_time_of_role_death[O.key] < GLOB.key_to_time_of_role_death[picked.key])
 			picked = O
 
 	return picked
