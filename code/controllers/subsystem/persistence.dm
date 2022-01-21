@@ -257,6 +257,8 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/pistol/vp78 = -1,
 		/obj/item/weapon/gun/pistol/highpower = -1,
 		/obj/item/ammo_magazine/pistol/highpower = -1,
+		/obj/item/weapon/gun/shotgun/double/derringer = -1,
+		/obj/item/ammo_magazine/pistol/derringer = -1,
 		)
 
 /datum/season_datum/weapons/guns/copsandrobbers_seasonal
