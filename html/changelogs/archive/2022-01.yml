@@ -303,3 +303,6 @@
       equip it while it's in the air.
   RenovatedAtol:
   - bugfix: turret ammo
+2022-01-21:
+  novaepee:
+  - imageadd: new ammo hub for energy weapons; sprites are from Locke!
