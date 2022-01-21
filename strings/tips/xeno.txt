@@ -6,7 +6,7 @@ It is EXTREMELY IMPORTANT that you as a xenomorph have your abilities set up on 
 In the xeno tab, you can use the crawl through vent verb to quickly find and use vents in the floor without having to alt-click them. You can also keybind it!
 It is faster to re-fill an empty acid well than rolling on the ground to put out a fire.
 Acid well extinguishes fire and explode into an acid cloud when destroyed. The queen, the shrike, praetorians, boilers, and hivelords can make acid wells.
-Queen, Shrike, and hivelord have access to Queen's Blessing, a menu for the hive to use psychic points to give xenomorphs a cutting edge in the battlefield.
+The queen, shrike, and hivelord have access to Queen's Blessing, a menu for the hive to use psychic points to give xenomorphs a cutting edge in the battlefield.
 If you have acid spit, you can spit at a welding fuel tank to blow it up. If the welding fuel is near hostiles, you might give them a pleasant surprise!
 As a xeno, check hive status often.
 As a xeno, you've got pheromones that can help the hive.
