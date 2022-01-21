@@ -39,6 +39,10 @@
 	max_w_class = 5
 	storage_slots = 6
 	max_storage_space = 16
+	can_hold = list(
+		/obj/item/weapon/gun/sentry,
+		/obj/item/ammo_magazine/sentry,
+	)
 	bypass_w_limit = list(
 		/obj/item/weapon/gun/sentry,
 		/obj/item/ammo_magazine/sentry,
