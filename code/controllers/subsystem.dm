@@ -64,9 +64,9 @@ GLOBAL_VAR_INIT(no_sleep, FALSE)
 		queued_time = QT
 
 /proc/debug_sleep(n)
-    if(GLOB.no_sleep)
-        CRASH()
-    sleep(n)
+	if(GLOB.no_sleep)
+		CRASH()
+	sleep(n)
 
 //previously, this would have been named 'process()' but that name is used everywhere for different things!
 //fire() seems more suitable. This is the procedure that gets called every 'wait' deciseconds.
