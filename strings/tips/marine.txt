@@ -3,7 +3,7 @@ You do not need to be in harm intent to point blank xenomorphs!
 The mini map (green icon on the top of the screen) helps you know where the frontline is at and where revivable marines are. You can keybind it in game preference.
 No round has ever been won behind a barricade.
 If the main push is stagnating and the area is congested, try to coordinate with a few others and go to a different area.
-When pushing into an area, check the flanks. Especially so in caves.
+When pushing into an area, check the flanks. Especially so in caves and enclosed spaces.
 Resin structures are weaker to melee than they are to bullets. Take out your knives!
 Always clear weeds and alien structures as you advance. Resin maze forces marines to engage in CQC against xenomorphs, which decreases your survival rate. That said, this increases your PB chances!
 Always check for traps beneath loose objects on weed - it could save your FACE!
