@@ -39,39 +39,41 @@ SUBSYSTEM_DEF(evacuation)
 	dest_cooldown = SELF_DESTRUCT_ROD_STARTUP_TIME / length(dest_rods)
 	dest_master.desc = "The main operating panel for a self-destruct system. It requires very little user input, but the final safety mechanism is manually unlocked.\nAfter the initial start-up sequence, [dest_rods.len] control rods must be armed, followed by manually flipping the detonation switch."
 
-
 /datum/controller/subsystem/evacuation/fire()
+	process_evacuation()
+	if(!NUKE_EXPLOSION_ACTIVE)
+		return
+	if(!dest_master.loc || dest_master.active_state != SELF_DESTRUCT_MACHINE_ARMED || dest_index > length(dest_rods))
+		return
+
+	var/obj/machinery/self_destruct/rod/I = dest_rods[dest_index]
+	if(world.time < dest_cooldown + I.activate_time)
+		return
+
+	I.toggle()
+
+	if(++dest_index > length(dest_rods))
+		return
+
+	I = dest_rods[dest_index]
+	I.activate_time = world.time
+
+///Deal with the escape pods, launching them when needed
+/datum/controller/subsystem/evacuation/proc/process_evacuation()
 	switch(evac_status)
 		if(EVACUATION_STATUS_INITIATING)
 			if(world.time < evac_time + EVACUATION_AUTOMATIC_DEPARTURE)
-				break
+				return
 			evac_status = EVACUATION_STATUS_IN_PROGRESS
 		if(EVACUATION_STATUS_IN_PROGRESS)
 			if(world.time < pod_cooldown + EVACUATION_POD_LAUNCH_COOLDOWN)
-				break
+				return
 			if(!length(pod_list)) // none left to pick from to evac
 				if(!length(SSshuttle.escape_pods)) // no valid pods left, all have launched/exploded
 					announce_evac_completion()
-				break
+				return
 			var/obj/docking_port/mobile/escape_pod/P = pick_n_take(pod_list)
 			P.launch()
-
-	switch(dest_status)
-		if(NUKE_EXPLOSION_ACTIVE)
-			if(!dest_master.loc || dest_master.active_state != SELF_DESTRUCT_MACHINE_ARMED || dest_index > length(dest_rods))
-				return
-
-			var/obj/machinery/self_destruct/rod/I = dest_rods[dest_index]
-			if(world.time < dest_cooldown + I.activate_time)
-				return
-
-			I.toggle()
-
-			if(++dest_index > length(dest_rods))
-				return
-
-			I = dest_rods[dest_index]
-			I.activate_time = world.time
 
 
 
