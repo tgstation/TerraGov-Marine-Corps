@@ -19,7 +19,6 @@
 			/obj/item/ammo_magazine/rifle/standard_skirmishrifle = -1,
 			/obj/item/weapon/gun/rifle/tx11 = -1,
 			/obj/item/ammo_magazine/rifle/tx11 = -1,
-			/obj/item/weapon/gun/shotgun/pump/lever/repeater = -1,
 		),
 		"Energy Weapons" = list(
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = -1,
@@ -44,8 +43,6 @@
 			/obj/item/ammo_magazine/rifle/chamberedrifle = -1,
 			/obj/item/weapon/gun/shotgun/pump/bolt = -1,
 			/obj/item/ammo_magazine/rifle/bolt = -1,
-			/obj/item/weapon/gun/shotgun/double/martini = -1,
-			/obj/item/ammo_magazine/rifle/martini = -1,
 		),
 		"Shotgun" = list(
 			/obj/item/weapon/gun/shotgun/pump/t35 = -1,
@@ -305,7 +302,6 @@
 			/obj/item/ammo_magazine/packet/p10x26mm = 100,
 			/obj/item/ammo_magazine/packet/p10x27mm = 100,
 			/obj/item/ammo_magazine/packet/p492x34mm = 100,
-			/obj/item/ammo_magazine/packet/p4570 = 100,
 			/obj/item/storage/box/visual/magazine = 30,
 			/obj/item/storage/box/visual/grenade = 10,
 		),
@@ -580,7 +576,6 @@
 			/obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/full = 1,
 			/obj/item/storage/box/visual/magazine/compact/standard_carbine/full = 1,
 			/obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle/full = 1,
-			/obj/item/storage/box/visual/magazine/compact/martini/full = 1,
 			/obj/item/storage/box/visual/magazine/compact/tx11/full = 1,
 			/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full = 1,
 			/obj/item/storage/box/visual/magazine/compact/tx15/flechette/full = 1,
@@ -1135,7 +1130,6 @@
 		"Belts" = list(
 			/obj/item/storage/belt/marine = -1,
 			/obj/item/storage/belt/shotgun = -1,
-			/obj/item/storage/belt/shotgun/martini = -1,
 			/obj/item/storage/belt/grenade = -1,
 			/obj/item/storage/belt/knifepouch = -1,
 			/obj/item/belt_harness/marine = -1,

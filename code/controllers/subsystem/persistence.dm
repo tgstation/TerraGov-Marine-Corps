@@ -35,7 +35,8 @@ SUBSYSTEM_DEF(persistence)
 		/datum/season_datum/weapons/guns/copsandrobbers_seasonal,
 		/datum/season_datum/weapons/guns/smg_seasonal,
 		/datum/season_datum/weapons/guns/storm_seasonal,
-		/datum/season_datum/weapons/guns/shotgun_seasonal
+		/datum/season_datum/weapons/guns/shotgun_seasonal,
+		/datum/season_datum/weapons/guns/oldandnew_seasonal,
 		)
 	)
 	///The saved list of custom outfits names
@@ -295,5 +296,16 @@ SUBSYSTEM_DEF(persistence)
 	item_list = list(
 		/obj/item/weapon/gun/shotgun/combat = -1,
 		/obj/item/weapon/gun/shotgun/pump/cmb = -1,
+		)
+
+/datum/season_datum/weapons/guns/oldandnew_seasonal
+	name = "Old and New"
+	description = "A aged classic and a new take on a old and tried lever design."
+	item_list = list(
+		/obj/item/weapon/gun/shotgun/double/martini = -1,
+		/obj/item/ammo_magazine/rifle/martini = -1,
+		/obj/item/storage/belt/shotgun/martini = -1,
+		/obj/item/weapon/gun/shotgun/pump/lever/repeater = -1,
+		/obj/item/ammo_magazine/packet/p4570 = -1,
 		)
 
