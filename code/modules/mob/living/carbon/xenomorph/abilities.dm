@@ -1284,6 +1284,7 @@
 	action_icon_state = "salvage_plasma"
 	ability_name = "salvage biomass"
 	cooldown_timer = DRONE_SALVAGE_COOLDOWN
+	use_state_flags = XACT_USE_STAGGERED
 
 /datum/action/xeno_action/activable/salvage_biomass/on_cooldown_finish()
 	owner.playsound_local(owner, 'sound/voice/alien_drool1.ogg', 25, 0, 1)
@@ -1322,7 +1323,7 @@
 	to_chat(X, "<span class='xenowarning'>We begin to salvage the biomass of [target]...</span>")
 	playsound(X, pick('sound/voice/alien_drool1.ogg','sound/voice/alien_drool2.ogg'), 25)
 
-	if(!do_after(X, DRONE_SALVAGE_BIOMASS_WINDUP, TRUE, target, BUSY_ICON_FRIENDLY)) //Wind up
+	if(!do_after(X, DRONE_SALVAGE_BIOMASS_WINDUP, TRUE, target, BUSY_ICON_FRIENDLY, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health)))) //Wind up
 		return fail_activate()
 
 
