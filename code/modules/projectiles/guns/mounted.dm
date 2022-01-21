@@ -32,6 +32,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/tl102
 
 	scatter = 10
+	deployed_scatter_change = -10
 	fire_delay = 0.25 SECONDS
 
 	burst_amount = 3
@@ -90,6 +91,7 @@
 
 	aim_slowdown = 3
 	scatter = 30
+	deployed_scatter_change = -27
 
 	fire_delay = 0.5
 	burst_amount = 3
@@ -119,6 +121,7 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/heavymachinegun)
 
 	scatter = 10
+	deployed_scatter_change = -8
 	fire_delay = 0.2 SECONDS
 
 	burst_amount = 1
