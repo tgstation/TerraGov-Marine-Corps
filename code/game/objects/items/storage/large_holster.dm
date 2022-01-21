@@ -14,13 +14,17 @@
 	var/drawSound = 'sound/weapons/guns/misc/rifle_draw.ogg'
 
 
-/obj/item/storage/large_holster/update_icon()
-	var/mob/user = loc
+/obj/item/storage/large_holster/update_icon_state()
 	icon_state = "[base_icon][contents.len?"_full":""]"
 	item_state = icon_state
-	if(istype(user)) user.update_inv_back()
-	if(istype(user)) user.update_inv_s_store()
 
+/obj/item/storage/large_holster/update_icon()
+	var/mob/user = loc
+
+	if(istype(user)) user.update_inv_back()
+	if(istype(user)) user.update_inv_belt()
+	if(istype(user)) user.update_inv_s_store()
+	..()	
 
 /obj/item/storage/large_holster/equipped(mob/user, slot)
 	if(slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE)
@@ -53,10 +57,9 @@
 	)
 
 /obj/item/storage/large_holster/m37/full/Initialize()
-	. = ..()
-	icon_state = "m37_holster_full"
 	new /obj/item/weapon/gun/shotgun/pump(src)
-	base_icon = icon_state
+	update_icon()
+	. = ..()	
 
 /// This is here to allow easier pathing and more consistent storage.
 /obj/item/storage/large_holster/blade
@@ -122,9 +125,8 @@
 
 /obj/item/storage/large_holster/t35/full/Initialize()
 	. = ..()
-	icon_state = "t35_holster_full"
 	new /obj/item/weapon/gun/shotgun/pump/t35(src)
-	base_icon = icon_state
+	update_icon()
 
 /obj/item/storage/large_holster/m25
 	name = "\improper M276 pattern M25 holster rig"
@@ -135,7 +137,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	can_hold = list(/obj/item/weapon/gun/smg/m25)
 
-/obj/item/storage/large_holster/m25/update_icon()
+/obj/item/storage/large_holster/m25/update_icon_state()
 	if(contents.len)
 		var/obj/I = contents[1]
 		icon_state = "[base_icon]_full_[I.icon_state]"
@@ -143,9 +145,6 @@
 	else
 		icon_state = base_icon
 		item_state = base_icon
-	if(ismob(loc))
-		var/mob/user = loc
-		user.update_inv_belt()
 
 /obj/item/storage/large_holster/m25/full/Initialize()
 	. = ..()
@@ -161,7 +160,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	can_hold = list(/obj/item/weapon/gun/smg/standard_machinepistol)
 
-/obj/item/storage/large_holster/t19/update_icon()
+/obj/item/storage/large_holster/t19/update_icon_state()
 	var/mob/user = loc
 	if(contents.len)
 		var/obj/I = contents[1]
