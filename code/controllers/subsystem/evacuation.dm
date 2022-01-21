@@ -41,7 +41,7 @@ SUBSYSTEM_DEF(evacuation)
 
 /datum/controller/subsystem/evacuation/fire()
 	process_evacuation()
-	if(!NUKE_EXPLOSION_ACTIVE)
+	if(dest_status != NUKE_EXPLOSION_ACTIVE)
 		return
 	if(!dest_master.loc || dest_master.active_state != SELF_DESTRUCT_MACHINE_ARMED || dest_index > length(dest_rods))
 		return
