@@ -1334,33 +1334,8 @@
 
 	succeed_activate()
 
-	var/upgrade_amount = target.upgrade_stored * DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO //We only recover a small portion of the target's upgrade and evo points.
-	if(target.upgrade == XENO_UPGRADE_THREE)
-		upgrade_amount = target.xeno_caste.upgrade_threshold * DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO //Ancient xenos count as having maximum upgrade points
-	var/evo_amount = target.evolution_stored * DRONE_SALVAGE_BIOMASS_SALVAGE_RATIO
-
 	//Take all the plas-mar
 	X.gain_plasma(target.plasma_stored)
-
-	//Distribute the upgrade and evo points the target had to the hive:
-	var/list/list_of_upgrade_xenos = list()
-	var/list/list_of_evolve_xenos = list()
-
-	for(var/mob/living/carbon/xenomorph/filter in X.hive.get_all_xenos())
-		if(!(filter.upgrade in DRONE_SALVAGE_UPGRADE_FILTER_LIST)) //Only Xenos who can use the salvage get it; filter them
-			list_of_upgrade_xenos += filter
-		if(!(filter.tier in DRONE_SALVAGE_EVOLUTION_FILTER_LIST) && (filter.evolution_stored < filter.xeno_caste.evolution_threshold))
-			list_of_evolve_xenos += filter
-
-	if(length(list_of_upgrade_xenos))
-		upgrade_amount /= length(list_of_upgrade_xenos) //get the amount distributed to each xeno; protect against dividing by 0
-		for(var/mob/living/carbon/xenomorph/beneficiary in list_of_upgrade_xenos) //Distribute the upgrade salvage to those who can use it
-			beneficiary.upgrade_stored += upgrade_amount
-
-	if(length(list_of_evolve_xenos))
-		evo_amount /= length(list_of_evolve_xenos)
-		for(var/mob/living/carbon/xenomorph/beneficiary in list_of_evolve_xenos) //Distribute the evolve salvage to those who can use it
-			beneficiary.evolution_stored = min(beneficiary.xeno_caste.evolution_threshold, beneficiary.evolution_stored + evo_amount) //Prevents janky overflow
 
 	playsound(target, 'sound/effects/alien_egg_burst.ogg', 25)
 	X.hive.xeno_message("[target]'s remains were salvaged by [X], recovering [upgrade_amount] upgrade points for [length(list_of_upgrade_xenos)] sisters and [evo_amount] evolution points for [length(list_of_evolve_xenos) ] sisters.") //Notify hive and give credit to the good boy drone
