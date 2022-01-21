@@ -81,7 +81,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] initiated the shutdown process. You may abort this by pressing the shutdown server button again.")
 	shuttingdown = usr.ckey
 
-	sleep(30 SECONDS)
+	debug_sleep(30 SECONDS)
 
 	if(!shuttingdown || shuttingdown != usr.ckey)
 		return
@@ -98,7 +98,7 @@
 	to_chat(world, span_danger("Server shutting down [waitforroundend ? "after this round" : "in 30 seconds!"]</span> <span class='notice'>Initiated by: [usr.key]"))
 	message_admins("[ADMIN_TPMONTY(usr)] is shutting down the server[waitforroundend ? " after this round" : ""]. You may abort this by pressing the shutdown server button again within 30 seconds.")
 
-	sleep(31 SECONDS) //to give the admins that final second to hit the confirm button on the cancel prompt.
+	debug_sleep(31 SECONDS) //to give the admins that final second to hit the confirm button on the cancel prompt.
 
 	if(!shuttingdown)
 		to_chat(world, span_notice("Server shutdown was aborted"))
@@ -135,7 +135,7 @@
 #endif
 	if (waitforroundend)
 		return
-	sleep(world.tick_lag) //so messages can get sent to players.
+	debug_sleep(world.tick_lag) //so messages can get sent to players.
 	qdel(world) //there are a few ways to shutdown the server, but this is by far my favorite
 
 

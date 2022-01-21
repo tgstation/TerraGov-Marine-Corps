@@ -74,7 +74,7 @@
 		if(letter in lines_to_skip)
 			continue
 		maptext = "[style_open][copytext_char(text_to_play, 1, letter)][style_close]"
-		sleep(play_delay)
+		debug_sleep(play_delay)
 	addtimer(CALLBACK(src, .proc/after_play, player), fade_out_delay)
 
 ///handles post-play effects like fade out after the fade out delay

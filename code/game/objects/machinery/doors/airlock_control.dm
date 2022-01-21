@@ -55,7 +55,7 @@ obj/machinery/door/airlock/proc/do_command(var/command)
 		if("secure_open")
 			unlock()
 
-			sleep(2)
+			debug_sleep(2)
 			open()
 
 			lock()
@@ -65,7 +65,7 @@ obj/machinery/door/airlock/proc/do_command(var/command)
 			close()
 
 			lock()
-			sleep(2)
+			debug_sleep(2)
 
 	send_status()
 

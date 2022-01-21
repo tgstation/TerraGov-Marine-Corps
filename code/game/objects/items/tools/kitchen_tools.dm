@@ -228,7 +228,7 @@
 				for(var/i = 1, i <= rand(1,2), i++)
 					if(I)
 						step(I, pick(NORTH,SOUTH,EAST,WEST))
-						sleep(rand(2,4))
+						debug_sleep(rand(2,4))
 
 	var/mob/living/carbon/human/H = M      ///////////////////////////////////// /Let's have this ready for later.
 
@@ -388,4 +388,4 @@
 				for(var/i = 1, i <= rand(1,2), i++)
 					if(I)
 						step(I, pick(NORTH,SOUTH,EAST,WEST))
-						sleep(rand(2,4))
+						debug_sleep(rand(2,4))

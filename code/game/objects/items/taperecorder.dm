@@ -46,7 +46,7 @@
 			if(recording == 0)
 				break
 			timerecorded++
-			sleep(10)
+			debug_sleep(10)
 		recording = 0
 		icon_state = "taperecorderidle"
 		return
@@ -107,7 +107,7 @@
 	playing = 1
 	icon_state = "taperecorderplaying"
 	to_chat(usr, span_notice("Playing started."))
-	for(var/i=1,timerecorded<3600,sleep(10 * (playsleepseconds) ))
+	for(var/i=1,timerecorded<3600,debug_sleep(10 * (playsleepseconds) ))
 		if(playing == 0)
 			break
 		if(storedinfo.len < i)
@@ -116,13 +116,13 @@
 		T.visible_message("<font color=Maroon><B>[src]</B>: [storedinfo[i]]</font>")
 		if(storedinfo.len < i+1)
 			playsleepseconds = 1
-			sleep(10)
+			debug_sleep(10)
 			T = get_turf(src)
 			T.visible_message("<font color=Maroon><B>[src]</B>: End of recording.</font>")
 		else
 			playsleepseconds = timestamp[i+1] - timestamp[i]
 		if(playsleepseconds > 14)
-			sleep(10)
+			debug_sleep(10)
 			T = get_turf(src)
 			T.visible_message("<font color=Maroon><B>[src]</B>: Skipping [playsleepseconds] seconds of silence</font>")
 			playsleepseconds = 1
@@ -151,7 +151,7 @@
 	P.info = t1
 	P.name = "Transcript"
 	canprint = 0
-	sleep(300)
+	debug_sleep(300)
 	canprint = 1
 
 
@@ -169,7 +169,7 @@
 				if(recording == 0)
 					break
 				timerecorded++
-				sleep(10)
+				debug_sleep(10)
 			recording = 0
 			icon_state = "taperecorderidle"
 			return

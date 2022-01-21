@@ -16,7 +16,7 @@
 	spawn (0)
 		var/direction = pick(directions)
 		for (var/i = 0, i < pick(1, 200; 2, 150; 3, 50; 4), i++)
-			sleep(3)
+			debug_sleep(3)
 			if (i > 0)
 				if (prob(40))
 					var/obj/effect/decal/cleanable/blood/oil/streak = new(src.loc)

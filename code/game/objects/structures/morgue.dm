@@ -215,7 +215,7 @@
 			qdel(O)
 
 		new /obj/effect/decal/cleanable/ash(src)
-		sleep(30)
+		debug_sleep(30)
 		cremating = 0
 		update_icon()
 		playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)

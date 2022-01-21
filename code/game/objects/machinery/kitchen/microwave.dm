@@ -276,7 +276,7 @@
 		if (machine_stat & (NOPOWER|BROKEN))
 			return 0
 		use_power(active_power_usage)
-		sleep(10)
+		debug_sleep(10)
 	return 1
 
 /obj/machinery/microwave/proc/has_extra_item()

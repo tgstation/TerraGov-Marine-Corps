@@ -379,7 +379,7 @@
 				if(status != LIGHT_OK)
 					break
 				update(FALSE)
-				sleep(rand(5, 15))
+				debug_sleep(rand(5, 15))
 			update(FALSE)
 		flickering = FALSE
 

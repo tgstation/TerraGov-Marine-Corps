@@ -574,13 +574,13 @@
 			use_power(active_power_usage)	//actuators and stuff
 			if (icon_vend)
 				flick(icon_vend, src) //Show the vending animation if needed
-			sleep(delay_vending)
+			debug_sleep(delay_vending)
 		else if(machine_current_charge > active_power_usage) //if no power, use the machine's battery.
 			machine_current_charge -= min(machine_current_charge, active_power_usage) //Sterilize with min; no negatives allowed.
 			//to_chat(world, span_warning("DEBUG: Machine Auto_Use_Power: Vend Power Usage: [active_power_usage] Machine Current Charge: [machine_current_charge]."))
 			if (icon_vend)
 				flick(icon_vend,src) //Show the vending animation if needed
-			sleep(delay_vending)
+			debug_sleep(delay_vending)
 		else
 			return
 	SSblackbox.record_feedback("tally", "vendored", 1, R.product_name)

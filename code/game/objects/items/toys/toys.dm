@@ -252,7 +252,7 @@
 					D.reagents.reaction(T)
 					if(ismob(T) && T:client)
 						to_chat(T:client, span_warning("[user] has sprayed you with water!"))
-				sleep(4)
+				debug_sleep(4)
 			qdel(D)
 
 		return

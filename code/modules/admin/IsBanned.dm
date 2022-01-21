@@ -146,7 +146,7 @@
 				newmatches_connected[ckey] = ckey
 				newmatches_connected = cachedban["existing_user_matches_this_round"]
 				pendingmatches[ckey] = ckey
-				sleep(STICKYBAN_ROGUE_CHECK_TIME)
+				debug_sleep(STICKYBAN_ROGUE_CHECK_TIME)
 				pendingmatches -= ckey
 			if (admin)
 				newmatches_admin[ckey] = ckey
@@ -179,7 +179,7 @@
 				//do not convert to timer.
 				spawn (5)
 					world.SetConfig("ban", bannedckey, null)
-					sleep(1)
+					debug_sleep(1)
 					world.SetConfig("ban", bannedckey, null)
 					if (!ban["fromdb"])
 						cachedban = cachedban.Copy() //so old references to the list still see the ban as reverting

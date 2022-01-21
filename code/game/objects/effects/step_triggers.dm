@@ -67,7 +67,7 @@
 
 			curtiles++
 
-			sleep(speed)
+			debug_sleep(speed)
 
 			// Calculate if we should stop the process
 			if(!nostop)
@@ -119,11 +119,11 @@
 
 			switch(teleportation_type)
 				if(1)
-					sleep(animation_teleport_quick_out(A)) //Sleep for the duration of the animation.
+					debug_sleep(animation_teleport_quick_out(A)) //Sleep for the duration of the animation.
 				if(2)
-					sleep(animation_teleport_magic_out(A))
+					debug_sleep(animation_teleport_magic_out(A))
 				if(3)
-					sleep(animation_teleport_spooky_out(A))
+					debug_sleep(animation_teleport_spooky_out(A))
 
 			if(A && A.loc)
 				A.x = teleport_x

@@ -7,7 +7,7 @@
 //returns the number of ticks slept
 /proc/stoplag(initial_delay)
 	if(!Master || !(Master.current_runlevel & RUNLEVELS_DEFAULT))
-		sleep(world.tick_lag)
+		debug_sleep(world.tick_lag)
 		return 1
 	if(!initial_delay)
 		initial_delay = world.tick_lag
@@ -15,7 +15,7 @@
 	var/i = DS2TICKS(initial_delay)
 	do
 		. += CEILING(i * DELTA_CALC, 1)
-		sleep(i * world.tick_lag * DELTA_CALC)
+		debug_sleep(i * world.tick_lag * DELTA_CALC)
 		i *= 2
 	while(TICK_USAGE > min(TICK_LIMIT_TO_RUN, Master.current_ticklimit))
 
@@ -490,7 +490,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	else
 		animation.icon_state = "blank"
 		flick(flick_anim, animation)
-	sleep(max(sleeptime, 15))
+	debug_sleep(max(sleeptime, 15))
 	qdel(animation)
 
 

@@ -57,9 +57,9 @@
 /obj/machinery/door/window/proc/open_and_close()
 	open()
 	if(check_access(null))
-		sleep(5 SECONDS)
+		debug_sleep(5 SECONDS)
 	else //secure doors close faster
-		sleep(2 SECONDS)
+		debug_sleep(2 SECONDS)
 	close()
 
 

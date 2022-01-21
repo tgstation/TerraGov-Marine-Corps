@@ -728,7 +728,7 @@
 	if(spintime < 1 || speed < 1 || !spintime || !speed)
 		return
 	while(spintime >= speed)
-		sleep(speed)
+		debug_sleep(speed)
 		switch(D)
 			if(NORTH)
 				D = EAST

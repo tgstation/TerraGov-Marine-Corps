@@ -107,7 +107,7 @@
 			"You hear a food processor.")
 		playsound(src.loc, 'sound/machines/blender.ogg', 25, 1)
 		use_power(active_power_usage)
-		sleep(P.time)
+		debug_sleep(P.time)
 		P.process(src.loc, O)
 		src.processing = 0
 	src.visible_message(span_notice(" \the [src] finished processing."), \

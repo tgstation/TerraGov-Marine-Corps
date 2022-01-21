@@ -118,7 +118,7 @@
 		playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
 		force -= rand(1,(force/3)+1) // When you whack someone with it, leaves fall off
 
-	sleep(1)
+	debug_sleep(1)
 
 	if(force <= 0)
 		if(user)

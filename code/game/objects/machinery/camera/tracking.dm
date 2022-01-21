@@ -112,7 +112,7 @@
 					tracking = FALSE
 					return
 				else
-					sleep(10)
+					debug_sleep(10)
 					continue
 
 			else
@@ -127,7 +127,7 @@
 				cameraFollow = null
 				return
 
-			sleep(10)
+			debug_sleep(10)
 
 
 /proc/near_camera(mob/living/M)

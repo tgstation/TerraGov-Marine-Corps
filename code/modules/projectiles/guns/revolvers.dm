@@ -74,7 +74,7 @@
 	invisibility = 100
 	for(var/mob/M in viewers(user))
 		SEND_IMAGE(M, trick)
-	sleep(5)
+	debug_sleep(5)
 	trick.loc = null
 	if(!loc || !user)
 		return
@@ -148,7 +148,7 @@
 	else
 		user.visible_message("[user] deftly flicks and spins [src]!",span_notice(" You flick and spin [src]!"))
 	animation_wrist_flick(src, direction)
-	sleep(3)
+	debug_sleep(3)
 	if(loc && user) playsound(user, thud_sound, 25, 1)
 
 //-------------------------------------------------------

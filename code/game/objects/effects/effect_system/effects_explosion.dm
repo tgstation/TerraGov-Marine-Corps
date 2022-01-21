@@ -16,7 +16,7 @@
 	var/steps_amt = pick(1;25,2;50,3,4;200)
 	for(var/j in 1 to steps_amt)
 		step(src, direct)
-		sleep(1)
+		debug_sleep(1)
 	qdel(src)
 
 /datum/effect_system/expl_particles

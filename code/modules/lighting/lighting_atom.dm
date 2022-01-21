@@ -146,7 +146,7 @@
 			break
 		light.our_mask.alpha = 255
 		animate(light.our_mask, time = _duration, easing = SINE_EASING, alpha = 0, flags = ANIMATION_END_NOW)
-		sleep(_duration) //this is extremely short so it's ok to sleep
+		debug_sleep(_duration) //this is extremely short so it's ok to sleep
 	qdel(src)
 
 /atom/proc/set_light_range(new_range)

@@ -338,7 +338,7 @@
 			message_admins(span_adminnotice("[ADMIN_TPMONTY(usr)] has reverted [ckey]'s sticky ban to its state at round start."))
 			//revert is mostly used when shit goes rouge, so we have to set it to null
 			//and wait a byond tick before assigning it to ensure byond clears its shit.
-			sleep(world.tick_lag)
+			debug_sleep(world.tick_lag)
 			world.SetConfig("ban",ckey,list2stickyban(cached_ban))
 
 

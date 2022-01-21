@@ -90,7 +90,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 	content()
 
 	//Cleanup
-	sleep(cleanup_time)
+	debug_sleep(cleanup_time)
 
 	//Restore OOC
 	if(ooc_toggled)
@@ -116,7 +116,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 
 //Actual cinematic goes in here
 /datum/cinematic/proc/content()
-	sleep(runtime)
+	debug_sleep(runtime)
 
 
 /datum/cinematic/nuke_win
@@ -126,7 +126,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 
 /datum/cinematic/nuke_win/content()
 	flick("intro_nuke", screen)
-	sleep(runtime)
+	debug_sleep(runtime)
 	flick("station_explode_fade_red", screen)
 	cinematic_sound(sound('sound/effects/explosionfar.ogg', channel = CHANNEL_CINEMATIC))
 	special()
@@ -140,7 +140,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 
 /datum/cinematic/nuke_miss/content()
 	flick("intro_nuke", screen)
-	sleep(runtime)
+	debug_sleep(runtime)
 	cinematic_sound(sound('sound/effects/explosionfar.ogg', channel = CHANNEL_CINEMATIC))
 	special()
 	flick("station_intact_fade_red", screen)
@@ -154,7 +154,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 
 /datum/cinematic/nuke_selfdestruct/content()
 	flick("intro_nuke", screen)
-	sleep(runtime)
+	debug_sleep(runtime)
 	flick("station_explode_fade_red", screen)
 	cinematic_sound(sound('sound/effects/explosionfar.ogg', channel = CHANNEL_CINEMATIC))
 	special()
@@ -168,7 +168,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 
 /datum/cinematic/nuke_selfdestruct_miss/content()
 	flick("intro_nuke", screen)
-	sleep(runtime)
+	debug_sleep(runtime)
 	cinematic_sound(sound('sound/effects/explosionfar.ogg', channel = CHANNEL_CINEMATIC))
 	special()
 	screen.icon_state = "station_intact"
@@ -181,7 +181,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 
 /datum/cinematic/malf/content()
 	flick("intro_malf", screen)
-	sleep(runtime)
+	debug_sleep(runtime)
 	flick("station_explode_fade_red", screen)
 	cinematic_sound(sound('sound/effects/explosionfar.ogg', channel = CHANNEL_CINEMATIC))
 	special()
@@ -195,7 +195,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 
 /datum/cinematic/nuke_annihilation/content()
 	flick("intro_nuke", screen)
-	sleep(runtime)
+	debug_sleep(runtime)
 	flick("station_explode_fade_red", screen)
 	cinematic_sound(sound('sound/effects/explosionfar.ogg', channel = CHANNEL_CINEMATIC))
 	special()
@@ -210,7 +210,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 
 /datum/cinematic/fake/content()
 	flick("intro_nuke", screen)
-	sleep(runtime)
+	debug_sleep(runtime)
 	cinematic_sound(sound('sound/items/bikehorn.ogg', channel = CHANNEL_CINEMATIC))
 	flick("summary_selfdes", screen)
 	special()
@@ -224,7 +224,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 
 /datum/cinematic/no_core/content()
 	flick("intro_nuke", screen)
-	sleep(runtime)
+	debug_sleep(runtime)
 	flick("station_intact", screen)
 	cinematic_sound(sound('sound/ambience/signal.ogg', channel = CHANNEL_CINEMATIC))
 
@@ -249,7 +249,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 /datum/cinematic/crash_nuke/content()
 	screen.icon_state = "planet_start"
 	flick("intro_nuke", screen) // 3.5 seconds
-	sleep(5.5 SECONDS)
+	debug_sleep(5.5 SECONDS)
 	flick("planet_nuke", screen) // About 1.5 seconds length
 	cinematic_sound(sound('sound/effects/explosionfar.ogg', channel = CHANNEL_CINEMATIC))
 	special()

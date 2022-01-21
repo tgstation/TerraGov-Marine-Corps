@@ -135,7 +135,7 @@
 			M.on = !( M.on )
 			M.icon_state = text("igniter[]", M.on)
 
-	sleep(50)
+	debug_sleep(50)
 
 	icon_state = "launcherbtt"
 	active = 0

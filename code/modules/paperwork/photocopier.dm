@@ -78,7 +78,7 @@
 				c.copy_overlays(copy, TRUE)
 				toner--
 				busy = TRUE
-				sleep(15)
+				debug_sleep(15)
 				busy = FALSE
 
 		if(photocopy)
@@ -88,7 +88,7 @@
 
 				new /obj/item/photo (loc, photocopy.picture.Copy(greytoggle == "Greyscale"? TRUE : FALSE))
 				busy = TRUE
-				sleep(15)
+				debug_sleep(15)
 				busy = FALSE
 
 	else if(href_list["remove"])

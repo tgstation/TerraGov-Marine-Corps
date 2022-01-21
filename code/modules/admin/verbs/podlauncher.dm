@@ -565,7 +565,7 @@
 						launch(LZ)
 					else
 						launch(target)
-					sleep(rand() * 2)
+					debug_sleep(rand() * 2)
 
 
 /datum/podlauncher/proc/refreshBay()

@@ -64,7 +64,7 @@
 	switch(owner.state)
 		if(PLANE_STATE_DEACTIVATED)
 			set_cockpit_overlay("cockpit_opening")//flick doesnt work here, thanks byond
-			sleep(7)
+			debug_sleep(7)
 			set_cockpit_overlay("cockpit_open")
 			owner.state = PLANE_STATE_ACTIVATED
 			return

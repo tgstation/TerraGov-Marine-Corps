@@ -65,7 +65,7 @@
 	isSwitchingStates = 1
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 	flick("[mineralType]opening",src)
-	sleep(10)
+	debug_sleep(10)
 	density = FALSE
 	opacity = FALSE
 	state = D_OPEN
@@ -77,7 +77,7 @@
 	isSwitchingStates = TRUE
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 	flick("[mineralType]closing",src)
-	sleep(10)
+	debug_sleep(10)
 	density = TRUE
 	opacity = TRUE
 	state = D_CLOSED
@@ -210,7 +210,7 @@
 	isSwitchingStates = TRUE
 	playsound(loc, 'sound/effects/doorcreaky.ogg', 25, 1)
 	flick("[mineralType]opening",src)
-	sleep(10)
+	debug_sleep(10)
 	density = FALSE
 	opacity = FALSE
 	state = D_OPEN
@@ -221,7 +221,7 @@
 	isSwitchingStates = TRUE
 	playsound(loc, 'sound/effects/doorcreaky.ogg', 25, 1)
 	flick("[mineralType]closing",src)
-	sleep(10)
+	debug_sleep(10)
 	density = TRUE
 	opacity = TRUE
 	state = D_CLOSED

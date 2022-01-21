@@ -180,7 +180,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	set waitfor = 0
 
 	if(delay)
-		sleep(delay)
+		debug_sleep(delay)
 
 	if(tgs_prime)
 		world.TgsInitializationComplete()
@@ -219,7 +219,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 	if(sleep_offline_after_initializations)
 		world.sleep_offline = TRUE
-	sleep(1)
+	debug_sleep(1)
 
 	if(sleep_offline_after_initializations && CONFIG_GET(flag/resume_after_initializations))
 		world.sleep_offline = FALSE
@@ -241,7 +241,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 /datum/controller/master/proc/StartProcessing(delay)
 	set waitfor = 0
 	if(delay)
-		sleep(delay)
+		debug_sleep(delay)
 	testing("Master starting processing")
 	var/rtn = Loop()
 	if(rtn > 0 || processing < 0)
@@ -323,7 +323,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		var/starting_tick_usage = TICK_USAGE
 		if (processing <= 0)
 			current_ticklimit = TICK_LIMIT_RUNNING
-			sleep(10)
+			debug_sleep(10)
 			continue
 
 		//Anti-tick-contention heuristics:
@@ -332,7 +332,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		if (starting_tick_usage > TICK_LIMIT_MC) //if there isn't enough time to bother doing anything this tick, sleep a bit.
 			sleep_delta *= 2
 			current_ticklimit = TICK_LIMIT_RUNNING * 0.5
-			sleep(world.tick_lag * (processing * sleep_delta))
+			debug_sleep(world.tick_lag * (processing * sleep_delta))
 			continue
 
 		//Byond resumed us late. assume it might have to do the same next tick
@@ -378,7 +378,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 				iteration++
 			error_level++
 			current_ticklimit = TICK_LIMIT_RUNNING
-			sleep(10)
+			debug_sleep(10)
 			continue
 
 		if (queue_head)
@@ -390,7 +390,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 					iteration++
 				error_level++
 				current_ticklimit = TICK_LIMIT_RUNNING
-				sleep(10)
+				debug_sleep(10)
 				continue
 		error_level--
 		if (!queue_head) //reset the counts if the queue is empty, in the off chance they get out of sync
@@ -405,7 +405,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		current_ticklimit = TICK_LIMIT_RUNNING
 		if (processing * sleep_delta <= world.tick_lag)
 			current_ticklimit -= (TICK_LIMIT_RUNNING * 0.25) //reserve the tail 1/4 of the next tick for the mc if we plan on running next tick
-		sleep(world.tick_lag * (processing * sleep_delta))
+		debug_sleep(world.tick_lag * (processing * sleep_delta))
 
 
 

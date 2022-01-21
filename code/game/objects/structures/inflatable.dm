@@ -79,7 +79,7 @@
 	if(violent)
 		visible_message("[src] rapidly deflates!")
 		flick("wall_popping", src)
-		sleep(10)
+		debug_sleep(10)
 		new /obj/structure/inflatable/popped(loc)
 		//var/obj/item/inflatable/torn/R = new /obj/item/inflatable/torn(loc)
 		qdel(src)
@@ -183,7 +183,7 @@
 	isSwitchingStates = 1
 	//playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 	flick("door_opening",src)
-	sleep(10)
+	debug_sleep(10)
 	density = FALSE
 	opacity = FALSE
 	state = 1
@@ -194,7 +194,7 @@
 	isSwitchingStates = 1
 	//playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 	flick("door_closing",src)
-	sleep(10)
+	debug_sleep(10)
 	density = TRUE
 	opacity = FALSE
 	state = 0
@@ -213,7 +213,7 @@
 	if(violent)
 		visible_message("[src] rapidly deflates!")
 		flick("door_popping",src)
-		sleep(10)
+		debug_sleep(10)
 		new /obj/structure/inflatable/popped/door(loc)
 		//var/obj/item/inflatable/door/torn/R = new /obj/item/inflatable/door/torn(loc)
 		qdel(src)

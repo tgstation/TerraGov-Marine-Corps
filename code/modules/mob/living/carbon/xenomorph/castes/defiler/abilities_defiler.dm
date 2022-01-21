@@ -185,7 +185,7 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 		gas.start()
 		T.visible_message(span_danger("Noxious smoke billows from the hulking xenomorph!"))
 		count = max(0,count - 1)
-		sleep(DEFILER_GAS_DELAY)
+		debug_sleep(DEFILER_GAS_DELAY)
 
 
 // ***************************************

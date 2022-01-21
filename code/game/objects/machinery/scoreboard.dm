@@ -75,7 +75,7 @@
 		if(X.id == id)
 			X.reset_scores()
 
-	sleep(50)
+	debug_sleep(50)
 
 	icon_state = "launcherbtt"
 	active = 0

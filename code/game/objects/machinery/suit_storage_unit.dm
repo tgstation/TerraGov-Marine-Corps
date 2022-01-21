@@ -207,7 +207,7 @@
 	update_icon()
 	updateUsrDialog()
 
-	sleep(150)
+	debug_sleep(150)
 
 	if(gc_destroyed)
 		return

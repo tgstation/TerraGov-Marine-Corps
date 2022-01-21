@@ -161,13 +161,13 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	if(pump)
 		xeno = new(pump.loc, target)
 		playsound(src, get_sfx("alien_ventpass"), 35, 1)
-		sleep(1 SECONDS)
+		debug_sleep(1 SECONDS)
 		xeno.throw_at(target, 7, 1, xeno, FALSE, TRUE)
-		sleep(1 SECONDS)
+		debug_sleep(1 SECONDS)
 		xeno.throw_at(pump.loc, 7, 1, xeno, FALSE, TRUE)
-		sleep(1 SECONDS)
+		debug_sleep(1 SECONDS)
 		to_chat(target, span_notice("[xeno.name] begins climbing into the ventilation system..."))
-		sleep(1.5 SECONDS)
+		debug_sleep(1.5 SECONDS)
 		to_chat(target, span_notice("[xeno.name] scrambles into the ventilation ducts!"))
 		playsound(src, get_sfx("alien_ventpass"), 35, 1)
 		qdel(xeno)
@@ -186,7 +186,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			var/hits = 0
 			for(var/i in 1 to rand(5, 10))
 				target.playsound_local(source, get_sfx("alien_claw_flesh"), 25, TRUE)
-				sleep(rand(CLICK_CD_RANGE, CLICK_CD_RANGE + 6))
+				debug_sleep(rand(CLICK_CD_RANGE, CLICK_CD_RANGE + 6))
 				if(hits >= 4 && prob(70))
 					target.playsound_local(source, get_sfx(pick("male_scream", "female_scream")), 35, TRUE)
 					break
@@ -244,7 +244,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		to_chat(target, message)
 		if(target.client)
 			target.client.images |= speech_overlay
-			sleep(3 SECONDS)
+			debug_sleep(3 SECONDS)
 			target.client.images.Remove(speech_overlay)
 	else // Radio talk
 		var/chosen = specific_message
@@ -279,16 +279,16 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if("glass step")
 			for(var/i in 1 to rand(1, 2))
 				target.playsound_local(source,'sound/effects/glass_step.ogg', 35, TRUE)
-				sleep(rand(CLICK_CD_RANGE, CLICK_CD_RANGE + 2))
+				debug_sleep(rand(CLICK_CD_RANGE, CLICK_CD_RANGE + 2))
 		if("grill hit")
 			for(var/i in 1 to rand(5, 10))
 				target.playsound_local(source,'sound/effects/grillehit.ogg', 35, TRUE)
-				sleep(rand(CLICK_CD_RANGE, CLICK_CD_RANGE + 6))
+				debug_sleep(rand(CLICK_CD_RANGE, CLICK_CD_RANGE + 6))
 		if("apc sparks")
 			target.playsound_local(source, get_sfx("sparks"), 35, TRUE)
 		if("hugged")
 			target.playsound_local(source, 'sound/effects/alien_egg_move.ogg', 35, TRUE)
-			sleep(1 SECONDS)
+			debug_sleep(1 SECONDS)
 			target.playsound_local(source, get_sfx("[pick("male", "female")]_hugged"), 35, TRUE)
 		if("weed placed")
 			target.playsound_local(source, get_sfx("alien_resin_build"), 35, TRUE)
@@ -296,7 +296,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			target.playsound_local(source, get_sfx("alien_resin_build"), 35, TRUE)
 			for(var/i in 1 to rand(5, 10))
 				target.playsound_local(source, get_sfx("ballistic_hit"), 35, TRUE)
-				sleep(rand(CLICK_CD_RANGE, CLICK_CD_RANGE + 6))
+				debug_sleep(rand(CLICK_CD_RANGE, CLICK_CD_RANGE + 6))
 
 	qdel(src)
 
@@ -317,9 +317,9 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		else
 			fakemob = target //ever been so lonely you had to haunt yourself?
 		if(fakemob)
-			sleep(rand(20, 50))
+			debug_sleep(rand(20, 50))
 			to_chat(target, span_deadsay("<b>DEAD: [fakemob.name]</b> says, \"[pick("rip","why did i just drop dead?","hey [target.real_name]","git gud","you too?","did we get the [pick("nuke", "blue disk", "red disk", "green disk", "yellow disk")]?","i[prob(50)?" fucking":""] hate [pick("runners", "queens", "shrikes", "xenos", "this", "myself", "admins", "you")]")]\""))
-	sleep(rand(7 SECONDS, 9 SECONDS))
+	debug_sleep(rand(7 SECONDS, 9 SECONDS))
 	target.set_screwyhud(SCREWYHUD_NONE)
 	target.SetSleeping(0)
 	qdel(src)

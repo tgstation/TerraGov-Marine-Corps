@@ -83,7 +83,7 @@
 					return
 				else
 					to_chat(user, span_warning("Resetting circuitry..."))
-					sleep(50)
+					debug_sleep(50)
 					src.locked = 1
 					to_chat(user, span_notice("You re-enable the locking modules."))
 					playsound(user, 'sound/machines/lockenable.ogg', 25, 1)

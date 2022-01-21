@@ -860,29 +860,29 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(C)
 				C.propelled = 4
 			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(1)
+			debug_sleep(1)
 			B.Move(get_step(user,movementdirection), movementdirection)
 			if(C)
 				C.propelled = 3
-			sleep(1)
+			debug_sleep(1)
 			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(1)
+			debug_sleep(1)
 			B.Move(get_step(user,movementdirection), movementdirection)
 			if(C)
 				C.propelled = 2
-			sleep(2)
+			debug_sleep(2)
 			B.Move(get_step(user,movementdirection), movementdirection)
 			if(C)
 				C.propelled = 1
-			sleep(2)
+			debug_sleep(2)
 			B.Move(get_step(user,movementdirection), movementdirection)
 			if(C)
 				C.propelled = 0
-			sleep(3)
+			debug_sleep(3)
 			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(3)
+			debug_sleep(3)
 			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(3)
+			debug_sleep(3)
 			B.Move(get_step(user,movementdirection), movementdirection)
 
 	var/turf/T = get_turf(target)
@@ -930,7 +930,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 								C.die()
 				if(W.loc == my_target)
 					break
-				sleep(2)
+				debug_sleep(2)
 			qdel(W)
 
 	if(isspaceturf(user.loc))

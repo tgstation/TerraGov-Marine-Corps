@@ -241,7 +241,7 @@
 			return method ? ">250" : "extremely weak and fast, patient's artery feels like a thread"
 //			output for machines^	^^^^^^^output for people^^^^^^^^^
 
-/mob/living/carbon/verb/mob_sleep()
+/mob/living/carbon/verb/mob_debug_sleep()
 	set name = "Sleep"
 	set category = "IC"
 
@@ -273,7 +273,7 @@
 		var/slide_dir = dir
 		for(var/i=1, i<=slide_steps, i++)
 			step(src, slide_dir)
-			sleep(2)
+			debug_sleep(2)
 			if(!lying_angle)
 				break
 

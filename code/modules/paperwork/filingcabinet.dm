@@ -43,7 +43,7 @@
 
 		to_chat(user, span_notice("You put [I] in [src]."))
 		icon_state = "[initial(icon_state)]-open"
-		sleep(5)
+		debug_sleep(5)
 		icon_state = initial(icon_state)
 		updateUsrDialog()
 

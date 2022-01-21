@@ -44,11 +44,16 @@
 /datum/controller/subsystem/proc/PreInit()
 	return
 
+GLOBAL_VAR_INIT(no_sleep, FALSE)
+
 //This is used so the mc knows when the subsystem sleeps. do not override.
 /datum/controller/subsystem/proc/ignite(resumed = 0)
 	set waitfor = 0
 	. = SS_SLEEPING
+	if(istype(src, /datum/controller/subsystem/pathfinder))
+		GLOB.no_sleep = TRUE
 	fire(resumed)
+	GLOB.no_sleep = FALSE
 	. = state
 	if (state == SS_SLEEPING)
 		state = SS_IDLE
@@ -57,6 +62,11 @@
 		enqueue()
 		state = SS_PAUSED
 		queued_time = QT
+
+/proc/debug_sleep(n)
+    if(GLOB.no_sleep)
+        CRASH()
+    sleep(n)
 
 //previously, this would have been named 'process()' but that name is used everywhere for different things!
 //fire() seems more suitable. This is the procedure that gets called every 'wait' deciseconds.

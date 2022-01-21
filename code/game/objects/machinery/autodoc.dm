@@ -322,7 +322,7 @@
 	while(surgery_todo_list.len > 0)
 		if(!surgery)
 			break
-		sleep(-1)
+		debug_sleep(-1)
 		var/datum/autodoc_surgery/S = surgery_todo_list[currentsurgery]
 		if(automaticmode)
 			surgery_mod = 1.5 // automatic mode takes longer
@@ -347,12 +347,12 @@
 							else
 								occupant.reagents.add_reagent(/datum/reagent/medicine/spaceacillin,inject_per_second)
 								amount -= inject_per_second
-								sleep(10*surgery_mod)
+								debug_sleep(10*surgery_mod)
 
 					if(ADSURGERY_DAMAGE)
 						say("Beginning organ restoration.")
 						if(S.unneeded)
-							sleep(UNNEEDED_DELAY)
+							debug_sleep(UNNEEDED_DELAY)
 							say("Procedure has been deemed unnecessary.")
 							surgery_todo_list -= S
 							continue
@@ -362,11 +362,11 @@
 							open_encased(occupant, S.limb_ref)
 
 						if(!istype(S.organ_ref,/datum/internal_organ/brain))
-							sleep(FIX_ORGAN_MAX_DURATION*surgery_mod)
+							debug_sleep(FIX_ORGAN_MAX_DURATION*surgery_mod)
 						else
 							if(S.organ_ref.damage > BONECHIPS_MAX_DAMAGE)
-								sleep(HEMOTOMA_MAX_DURATION*surgery_mod)
-							sleep(BONECHIPS_REMOVAL_MAX_DURATION*surgery_mod)
+								debug_sleep(HEMOTOMA_MAX_DURATION*surgery_mod)
+							debug_sleep(BONECHIPS_REMOVAL_MAX_DURATION*surgery_mod)
 						if(!surgery)
 							break
 						if(istype(S.organ_ref,/datum/internal_organ))
@@ -382,7 +382,7 @@
 					if(ADSURGERY_EYES)
 						say("Beginning corrective eye surgery.")
 						if(S.unneeded)
-							sleep(UNNEEDED_DELAY)
+							debug_sleep(UNNEEDED_DELAY)
 							say("Procedure has been deemed unnecessary.")
 							surgery_todo_list -= S
 							continue
@@ -390,26 +390,26 @@
 							var/datum/internal_organ/eyes/E = S.organ_ref
 
 							if(E.eye_surgery_stage == 0)
-								sleep(EYE_CUT_MAX_DURATION)
+								debug_sleep(EYE_CUT_MAX_DURATION)
 								if(!surgery)
 									break
 								E.eye_surgery_stage = 1
 								occupant.disabilities |= NEARSIGHTED // code\#define\mobs.dm
 
 							if(E.eye_surgery_stage == 1)
-								sleep(EYE_LIFT_MAX_DURATION)
+								debug_sleep(EYE_LIFT_MAX_DURATION)
 								if(!surgery)
 									break
 								E.eye_surgery_stage = 2
 
 							if(E.eye_surgery_stage == 2)
-								sleep(EYE_MEND_MAX_DURATION)
+								debug_sleep(EYE_MEND_MAX_DURATION)
 								if(!surgery)
 									break
 								E.eye_surgery_stage = 3
 
 							if(E.eye_surgery_stage == 3)
-								sleep(EYE_CAUTERISE_MAX_DURATION)
+								debug_sleep(EYE_CAUTERISE_MAX_DURATION)
 								if(!surgery)
 									break
 								occupant.disabilities &= ~NEARSIGHTED
@@ -423,7 +423,7 @@
 					if(ADSURGERY_INTERNAL)
 						say("Beginning internal bleeding procedure.")
 						if(S.unneeded)
-							sleep(UNNEEDED_DELAY)
+							debug_sleep(UNNEEDED_DELAY)
 							say("Procedure has been deemed unnecessary.")
 							surgery_todo_list -= S
 							continue
@@ -432,7 +432,7 @@
 							if(!surgery)
 								break
 							if(W.internal)
-								sleep(FIXVEIN_MAX_DURATION*surgery_mod)
+								debug_sleep(FIXVEIN_MAX_DURATION*surgery_mod)
 								S.limb_ref.wounds -= W
 						if(!surgery)
 							break
@@ -441,15 +441,15 @@
 					if(ADSURGERY_BROKEN)
 						say("Beginning broken bone procedure.")
 						if(S.unneeded)
-							sleep(UNNEEDED_DELAY)
+							debug_sleep(UNNEEDED_DELAY)
 							say("Procedure has been deemed unnecessary.")
 							surgery_todo_list -= S
 							continue
 						open_incision(occupant, S.limb_ref)
-						sleep(BONEGEL_REPAIR_MAX_DURATION*surgery_mod)
-						sleep(BONESETTER_MAX_DURATION*surgery_mod)
+						debug_sleep(BONEGEL_REPAIR_MAX_DURATION*surgery_mod)
+						debug_sleep(BONESETTER_MAX_DURATION*surgery_mod)
 						if(S.limb_ref.brute_dam > 20)
-							sleep(((S.limb_ref.brute_dam - 20)/2)*surgery_mod)
+							debug_sleep(((S.limb_ref.brute_dam - 20)/2)*surgery_mod)
 							if(!surgery)
 								break
 							S.limb_ref.heal_limb_damage(S.limb_ref.brute_dam - 20)
@@ -462,14 +462,14 @@
 					if(ADSURGERY_MISSING)
 						say("Beginning limb replacement.")
 						if(S.unneeded)
-							sleep(UNNEEDED_DELAY)
+							debug_sleep(UNNEEDED_DELAY)
 							say("Procedure has been deemed unnecessary.")
 							surgery_todo_list -= S
 							continue
 
-						sleep(ROBOLIMB_CUT_MAX_DURATION*surgery_mod)
-						sleep(ROBOLIMB_MEND_MAX_DURATION*surgery_mod)
-						sleep(ROBOLIMB_PREPARE_MAX_DURATION*surgery_mod)
+						debug_sleep(ROBOLIMB_CUT_MAX_DURATION*surgery_mod)
+						debug_sleep(ROBOLIMB_MEND_MAX_DURATION*surgery_mod)
+						debug_sleep(ROBOLIMB_PREPARE_MAX_DURATION*surgery_mod)
 
 						if(stored_metal < LIMB_METAL_AMOUNT)
 							say("Metal reserves depleted.")
@@ -493,9 +493,9 @@
 
 						var/spillover = LIMB_PRINTING_TIME - (ROBOLIMB_PREPARE_MAX_DURATION+ROBOLIMB_MEND_MAX_DURATION+ROBOLIMB_CUT_MAX_DURATION)
 						if(spillover > 0)
-							sleep(spillover*surgery_mod)
+							debug_sleep(spillover*surgery_mod)
 
-						sleep(ROBOLIMB_ATTACH_MAX_DURATION*surgery_mod)
+						debug_sleep(ROBOLIMB_ATTACH_MAX_DURATION*surgery_mod)
 						if(!surgery)
 							break
 						S.limb_ref.robotize()
@@ -506,14 +506,14 @@
 					if(ADSURGERY_NECRO)
 						say("Beginning necrotic tissue removal.")
 						if(S.unneeded)
-							sleep(UNNEEDED_DELAY)
+							debug_sleep(UNNEEDED_DELAY)
 							say("Procedure has been deemed unnecessary.")
 							surgery_todo_list -= S
 							continue
 
 						open_incision(occupant, S.limb_ref)
-						sleep(NECRO_REMOVE_MAX_DURATION*surgery_mod)
-						sleep(NECRO_TREAT_MAX_DURATION*surgery_mod)
+						debug_sleep(NECRO_REMOVE_MAX_DURATION*surgery_mod)
+						debug_sleep(NECRO_TREAT_MAX_DURATION*surgery_mod)
 						S.limb_ref.remove_limb_flags(LIMB_NECROTIZED)
 						occupant.update_body()
 
@@ -522,7 +522,7 @@
 					if(ADSURGERY_SHRAPNEL)
 						say("Beginning foreign body removal.")
 						if(S.unneeded)
-							sleep(UNNEEDED_DELAY)
+							debug_sleep(UNNEEDED_DELAY)
 							say("Procedure has been deemed unnecessary.")
 							surgery_todo_list -= S
 							continue
@@ -534,7 +534,7 @@
 							var/obj/item/alien_embryo/A = locate() in occupant
 							if(A)
 								for(A in occupant)
-									sleep(HEMOSTAT_REMOVE_MAX_DURATION*surgery_mod)
+									debug_sleep(HEMOSTAT_REMOVE_MAX_DURATION*surgery_mod)
 									occupant.visible_message(span_warning(" [src] defty extracts a wriggling parasite from [occupant]'s ribcage!"))
 									var/mob/living/carbon/xenomorph/larva/L = locate() in occupant //the larva was fully grown, ready to burst.
 									if(L)
@@ -548,7 +548,7 @@
 								if(!surgery)
 									break
 								if(!is_type_in_list(I, GLOB.known_implants))
-									sleep(HEMOSTAT_REMOVE_MAX_DURATION*surgery_mod)
+									debug_sleep(HEMOSTAT_REMOVE_MAX_DURATION*surgery_mod)
 									I.unembed_ourself(TRUE)
 						if(S.limb_ref.body_part == CHEST || S.limb_ref.body_part == HEAD)
 							close_encased(occupant, S.limb_ref)
@@ -572,34 +572,34 @@
 							else
 								occupant.reagents.add_reagent(/datum/reagent/medicine/spaceacillin, inject_per_second)
 								amount -= inject_per_second
-								sleep(10)
+								debug_sleep(10)
 
 					if(ADSURGERY_FACIAL) // dumb but covers for incomplete facial surgery
 						say("Beginning Facial Reconstruction Surgery.")
 						if(S.unneeded)
-							sleep(UNNEEDED_DELAY)
+							debug_sleep(UNNEEDED_DELAY)
 							say("Procedure has been deemed unnecessary.")
 							surgery_todo_list -= S
 							continue
 						if(istype(S.limb_ref,/datum/limb/head))
 							var/datum/limb/head/F = S.limb_ref
 							if(F.face_surgery_stage == 0)
-								sleep(FACIAL_CUT_MAX_DURATION)
+								debug_sleep(FACIAL_CUT_MAX_DURATION)
 								if(!surgery)
 									break
 								F.face_surgery_stage = 1
 							if(F.face_surgery_stage == 1)
-								sleep(FACIAL_MEND_MAX_DURATION)
+								debug_sleep(FACIAL_MEND_MAX_DURATION)
 								if(!surgery)
 									break
 								F.face_surgery_stage = 2
 							if(F.face_surgery_stage == 2)
-								sleep(FACIAL_FIX_MAX_DURATION)
+								debug_sleep(FACIAL_FIX_MAX_DURATION)
 								if(!surgery)
 									break
 								F.face_surgery_stage = 3
 							if(F.face_surgery_stage == 3)
-								sleep(FACIAL_CAUTERISE_MAX_DURATION)
+								debug_sleep(FACIAL_CAUTERISE_MAX_DURATION)
 								if(!surgery)
 									break
 								F.remove_limb_flags(LIMB_BLEEDING)
@@ -619,7 +619,7 @@
 	while(heal_brute||heal_burn||heal_toxin||filtering||blood_transfer)
 		if(!surgery)
 			break
-		sleep(20)
+		debug_sleep(20)
 		if(prob(5))
 			visible_message("[src] beeps as it continues working.")
 
@@ -630,7 +630,7 @@
 
 /obj/machinery/autodoc/proc/open_incision(mob/living/carbon/human/target, datum/limb/L)
 	if(target && L && L.surgery_open_stage < 2)
-		sleep(INCISION_MANAGER_MAX_DURATION*surgery_mod)
+		debug_sleep(INCISION_MANAGER_MAX_DURATION*surgery_mod)
 		if(!surgery)
 			return
 		L.createwound(CUT, 1)
@@ -640,7 +640,7 @@
 
 /obj/machinery/autodoc/proc/close_incision(mob/living/carbon/human/target, datum/limb/L)
 	if(target && L && 0 < L.surgery_open_stage <= 2)
-		sleep(CAUTERY_MAX_DURATION*surgery_mod)
+		debug_sleep(CAUTERY_MAX_DURATION*surgery_mod)
 		if(!surgery)
 			return
 		L.surgery_open_stage = 0
@@ -651,12 +651,12 @@
 /obj/machinery/autodoc/proc/open_encased(mob/living/carbon/human/target, datum/limb/L)
 	if(target && L && L.surgery_open_stage >= 2)
 		if(L.surgery_open_stage == 2) // this will cover for half completed surgeries
-			sleep(SAW_OPEN_ENCASED_MAX_DURATION*surgery_mod)
+			debug_sleep(SAW_OPEN_ENCASED_MAX_DURATION*surgery_mod)
 			if(!surgery)
 				return
 			L.surgery_open_stage = 2.5
 		if(L.surgery_open_stage == 2.5)
-			sleep(RETRACT_OPEN_ENCASED_MAX_DURATION*surgery_mod)
+			debug_sleep(RETRACT_OPEN_ENCASED_MAX_DURATION*surgery_mod)
 			if(!surgery)
 				return
 			L.surgery_open_stage = 3
@@ -664,12 +664,12 @@
 /obj/machinery/autodoc/proc/close_encased(mob/living/carbon/human/target, datum/limb/L)
 	if(target && L && L.surgery_open_stage > 2)
 		if(L.surgery_open_stage == 3) // this will cover for half completed surgeries
-			sleep(RETRACT_CLOSE_ENCASED_MAX_DURATION*surgery_mod)
+			debug_sleep(RETRACT_CLOSE_ENCASED_MAX_DURATION*surgery_mod)
 			if(!surgery)
 				return
 			L.surgery_open_stage = 2.5
 		if(L.surgery_open_stage == 2.5)
-			sleep(BONEGEL_CLOSE_ENCASED_MAX_DURATION*surgery_mod)
+			debug_sleep(BONEGEL_CLOSE_ENCASED_MAX_DURATION*surgery_mod)
 			if(!surgery)
 				return
 			L.surgery_open_stage = 2

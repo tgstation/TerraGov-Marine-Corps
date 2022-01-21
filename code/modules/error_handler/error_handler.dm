@@ -78,7 +78,7 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 		silencing = TRUE
 		spawn(0) //Has to be used here
 			usr = null
-			sleep(configured_error_silence_time) //Has to be used here
+			debug_sleep(configured_error_silence_time) //Has to be used here
 			var/skipcount = abs(error_cooldown[erroruid]) - 1
 			error_cooldown[erroruid] = 0
 			if(skipcount > 0)

@@ -45,7 +45,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 	LAZYADD(GLOB.recentmessages, signal_message)
 
 	if(signal.data["slow"] > 0)
-		sleep(signal.data["slow"]) // simulate the network lag if necessary
+		debug_sleep(signal.data["slow"]) // simulate the network lag if necessary
 
 	signal.broadcast()
 

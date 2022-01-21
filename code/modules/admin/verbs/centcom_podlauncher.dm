@@ -464,7 +464,7 @@
 						launch(LZ) //launch the pod at the adjacent turf
 					else
 						launch(target) //If we couldn't locate an adjacent turf, just launch at the normal target
-					sleep(rand()*2) //looks cooler than them all appearing at once. Gives the impression of burst fire.
+					debug_sleep(rand()*2) //looks cooler than them all appearing at once. Gives the impression of burst fire.
 
 /datum/centcom_podlauncher/proc/refreshBay() //Called whenever the bay is switched, as well as wheneber a pod is launched
 	orderedArea = createOrderedArea(bay) //Create an ordered list full of turfs form the bay
