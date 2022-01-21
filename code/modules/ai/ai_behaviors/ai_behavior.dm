@@ -141,7 +141,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		return
 	if(goal_node && goal_node != current_node)
 		if(!length(goal_nodes))
-			SSadvanced_pathfinding.node_pathfinding_to_do += src
+			SSadvanced_pathfinding.node_pathfinding_to_do |= src
 			return
 		current_node = goal_nodes[length(goal_nodes)]
 		goal_nodes.len--
