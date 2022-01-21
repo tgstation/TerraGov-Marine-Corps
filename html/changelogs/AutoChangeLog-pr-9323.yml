@@ -1,0 +1,6 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscadd: "T-27 ammo box; now you can truly hold down the line."
+  - balance: "That T-27 is going to get a lot of ammo."
+  - imageadd: "Thank you, TheOneAndMightyRed, for giving T-27 ammo box sprites!"
