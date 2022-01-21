@@ -231,6 +231,7 @@
 	var/mob/living/xeno
 	///What spawner is linked with this spawner
 	var/link = CLOSE
+	
 
 /obj/machinery/button/valhalla_button/attack_hand(mob/living/user)
 	var/xeno_wanted = tgui_input_list(user, "What xeno do you want to spawn?", "Xeno spawn", GLOB.all_xeno_types)
@@ -246,5 +247,11 @@
 
 /obj/machinery/button/valhalla_button/far 
 	link = FAR
+
+/obj/machinery/button/valhalla_button/far2
+	link = FAR2
+
+/obj/machinery/button/valhalla_button/close2
+	link = CLOSE2
 
 #undef DOOR_FLAG_OPEN_ONLY

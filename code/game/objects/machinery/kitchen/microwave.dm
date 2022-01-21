@@ -135,6 +135,8 @@
 
 	return TRUE
 
+/obj/machinery/microwave/nopower
+	use_power = NO_POWER_USE
 
 /*******************
 *   Microwave Menu

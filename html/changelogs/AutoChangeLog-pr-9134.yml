@@ -1,5 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - bugfix: "storage modules don't give more armor as intended. Now you can't have 200+ or possibly 300+ bio armor to spawn"
-  - balance: "marines don't stack bio armor like no tomorrow, so expect the sentinel castes to give you a harder time"

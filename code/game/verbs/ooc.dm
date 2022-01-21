@@ -53,7 +53,7 @@
 
 	var/display_colour
 	var/display_class = "colorooc"
-	if(holder?.rank && !holder.fakekey && check_rights(R_COLOR, FALSE))
+	if(holder?.rank && !holder.fakekey)
 		switch(holder.rank.name)
 			if("Host")
 				display_class = "hostooc"
@@ -87,7 +87,7 @@
 				display_class = "otherooc"
 
 
-		if(CONFIG_GET(flag/allow_admin_ooccolor))
+		if(CONFIG_GET(flag/allow_admin_ooccolor) && check_rights(R_COLOR, FALSE))
 			display_colour = prefs.ooccolor
 
 	for(var/client/C AS in GLOB.clients)
@@ -120,6 +120,9 @@
 /client/verb/xooc(msg as text) // Same as MOOC, but for xenos.
 	set name = "XOOC"
 	set category = "OOC"
+
+	if(!msg)
+		return
 
 	var/admin = check_rights(R_ADMIN, FALSE)
 
@@ -310,6 +313,8 @@
 	set name = "LOOC"
 	set category = "OOC"
 
+	if(!msg)
+		return
 	var/admin = check_rights(R_ADMIN, FALSE)
 
 	if(!mob)

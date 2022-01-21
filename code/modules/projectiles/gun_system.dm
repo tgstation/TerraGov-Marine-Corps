@@ -307,12 +307,6 @@
 	var/knockdown_threshold = 100
 	///Range of deployed turret
 	var/turret_range = 7
-	///Battery used for radial mode on deployed turrets.
-	var/obj/item/cell/sentry_battery
-	///Battery type for sentries
-	var/sentry_battery_type = /obj/item/cell
-	///Battery drain per shot for radial sentry mode
-	var/sentry_battery_drain = 20
 	///IFF signal for sentries. If it is set here it will be this signal forever. If null the IFF signal will be dependant on the deployer.
 	var/sentry_iff_signal = NONE
 
@@ -343,7 +337,6 @@
 	if(flags_item & IS_DEPLOYABLE)
 		if(flags_gun_features & GUN_IS_SENTRY)
 			AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry, deploy_time, undeploy_time)
-			sentry_battery = new sentry_battery_type(src)
 		else
 			AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted, deploy_time, undeploy_time)
 
@@ -360,7 +353,6 @@
 /obj/item/weapon/gun/Destroy()
 	active_attachable = null
 	QDEL_NULL(muzzle_flash)
-	QDEL_NULL(sentry_battery)
 	QDEL_NULL(chamber_items)
 	QDEL_NULL(in_chamber)
 	GLOB.nightfall_toggleable_lights -= src
@@ -390,6 +382,7 @@
 	return ..()
 
 /obj/item/weapon/gun/removed_from_inventory(mob/user)
+	. = ..()
 	set_gun_user(null)
 	active_attachable?.removed_from_inventory(user)
 	if(!length(chamber_items) || !chamber_items[current_chamber_position] || chamber_items[current_chamber_position].loc == src)
@@ -503,14 +496,10 @@
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		if(CHECK_BITFIELD(flags_item, IS_DEPLOYABLE))
 			to_chat(user, span_notice("Use Ctrl-Click to deploy."))
-		if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
-			to_chat(user, span_notice("Use Alt-Right-Click to remove the sentries battery."))
 		return
 	to_chat(user, span_notice("Click-Drag to yourself to undeploy."))
 	to_chat(user, span_notice("Alt-Click to unload."))
 	to_chat(user, span_notice("Right-Click to perform the guns unique action."))
-	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
-		to_chat(user, span_notice("Ctrl-Click to remove the sentries battery."))
 
 ///Gives the user a description of the ammunition remaining, as well as other information pertaining to reloading/ammo.
 /obj/item/weapon/gun/proc/examine_ammo_count(mob/user)
@@ -703,11 +692,13 @@
 	if(!target)
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE))
+		cycle(gun_user, FALSE)
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
 	var/obj/projectile/projectile_to_fire = in_chamber //Load a bullet in or check for existing one.
 	if(!projectile_to_fire) //If there is nothing to fire, click.
 		playsound(src, dry_fire_sound, 25, 1, 5)
-		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE))
 			cycle(gun_user, FALSE)
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
@@ -728,7 +719,7 @@
 			QDEL_NULL(in_chamber)
 		else
 			in_chamber = null
-		if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
+		if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE))
 			cycle(null)
 		if(length(chamber_items) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && get_current_rounds(chamber_items[current_chamber_position]) < (!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) ? rounds_per_shot : 0))
 			playsound(src, empty_sound, 25, 1)
@@ -741,13 +732,6 @@
 		if(inactive_gun.rounds && !(inactive_gun.flags_gun_features & GUN_WIELDED_FIRING_ONLY))
 			inactive_gun.last_fired = max(world.time - fire_delay * (1 - akimbo_additional_delay), inactive_gun.last_fired)
 			gun_user.swap_hand()
-	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && CHECK_BITFIELD(flags_item, IS_DEPLOYED) && CHECK_BITFIELD(turret_flags, TURRET_RADIAL) && !gun_user)
-		sentry_battery.charge -= sentry_battery_drain
-		if(sentry_battery.charge < 0)
-			DISABLE_BITFIELD(turret_flags, TURRET_RADIAL)
-			sentry_battery.forceMove(get_turf(src))
-			sentry_battery.charge = 0
-			sentry_battery = null
 	return TRUE
 
 ///Actually fires the gun, sets up the projectile and fires it.
@@ -988,6 +972,7 @@
 		return
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN))
 		cycle(user, FALSE)
+		playsound(src, cocked_sound, 25, 1)
 		return
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)) //We want to open it.
 		DISABLE_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED)
@@ -1056,12 +1041,8 @@
  *  If the gun does not use handfuls, or magazines. It will merely fill the gun with whatever item is inserted.
  */
 /obj/item/weapon/gun/proc/reload(obj/item/new_mag, mob/living/user, force = FALSE)
-	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING) || user?.do_actions)
 		return
-	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
-		if((!CHECK_BITFIELD(flags_gun_features, AMMO_RECIEVER_MAGAZINES) && istype(new_mag, sentry_battery_type)) || (CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && ((sentry_battery_type in allowed_ammo_types) && !sentry_battery && length(chamber_items) <= current_chamber_position && chamber_items[current_chamber_position]) || (!(sentry_battery_type in allowed_ammo_types) && istype(new_mag, sentry_battery_type))))
-			reload_sentry_cell(new_mag, user)
-			return
 	if(!(new_mag.type in allowed_ammo_types))
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
 			var/obj/item/ammo_magazine/mag = new_mag
@@ -1090,12 +1071,11 @@
 			to_chat(user, span_warning("There is no room for [new_mag]!"))
 			return FALSE
 
+	if(!max_chamber_items && in_chamber)
+		to_chat(user, span_warning("[src]'s chamber is closed"))
+		return FALSE
+
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
-		if(CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY) && ( \
-				((sentry_battery_type in allowed_ammo_types) && !sentry_battery && length(chamber_items) <= current_chamber_position && chamber_items[current_chamber_position]) || \
-				(!(sentry_battery_type in allowed_ammo_types) && istype(new_mag, sentry_battery_type))))
-			reload_sentry_cell(new_mag, user)
-			return FALSE
 		if(!get_current_rounds(new_mag) && !force)
 			to_chat(user, span_notice("[new_mag] is empty!"))
 			return FALSE
@@ -1124,7 +1104,7 @@
 		if(istype(new_mag, /obj/item/ammo_magazine))
 			var/obj/item/ammo_magazine/magazine = new_mag
 			magazine.on_inserted(src)
-		if(!in_chamber && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
+		if(!in_chamber && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE))
 			cycle(user, FALSE)
 		update_ammo_count()
 		update_icon()
@@ -1170,7 +1150,7 @@
 		user?.temporarilyRemoveItemFromInventory(obj_to_insert)
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
 		playsound(src, reload_sound, 25, 1)
-	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !in_chamber && max_chamber_items)
+	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !in_chamber && max_chamber_items && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE))
 		cycle(user, FALSE)
 	get_ammo()
 	update_ammo_count()
@@ -1238,6 +1218,7 @@
 		obj_in_chamber.update_icon()
 		get_ammo()
 		update_ammo_count()
+		update_icon()
 		return TRUE
 
 	var/obj/item/mag = chamber_items[current_chamber_position]
@@ -1258,13 +1239,14 @@
 	if(istype(mag, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/magazine = mag
 		magazine.on_removed(src)
-	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && CHECK_BITFIELD(get_flags_magazine_features(mag), MAGAZINE_REFUND_IN_CHAMBER) && !after_fire)
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && CHECK_BITFIELD(get_flags_magazine_features(mag), MAGAZINE_REFUND_IN_CHAMBER) && !after_fire && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE))
 		QDEL_NULL(in_chamber)
 		adjust_current_rounds(mag, rounds_per_shot)
 	UnregisterSignal(mag, COMSIG_ITEM_REMOVED_INVENTORY)
 	mag.update_icon()
 	get_ammo()
 	update_ammo_count()
+	update_icon()
 	return TRUE
 
 ///Cycles the gun, handles ammunition draw
@@ -1302,6 +1284,8 @@
 		else
 			chamber_items -= object_to_chamber
 		new_in_chamber = object_to_chamber
+		if(in_chamber && !after_fire && user)
+			user.put_in_hands(in_chamber)
 	in_chamber = new_in_chamber
 	update_ammo_count()
 	update_icon()
@@ -1609,14 +1593,15 @@
 	if(. <= 0) //Not if the gun doesn't scatter at all, or negative scatter.
 		return 0
 
-	switch(gun_firemode)
-		if(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC) //Much higher chance on a burst or similar.
-			if(flags_item & WIELDED && wielded_stable() || CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if deployed, its pretty stable.
-				. += burst_amount * burst_scatter_mult
-			if(CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if our gun is deployed, change the scatter by this number, usually a negative
-				. += deployed_scatter_change
-			else
-				. += burst_amount * burst_scatter_mult * 5
+
+	if(gun_firemode ==  GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST) //Much higher chance on a burst or similar.
+		if(flags_item & WIELDED && wielded_stable() || CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if deployed, its pretty stable.
+			. += burst_amount * burst_scatter_mult
+		else
+			. += burst_amount * burst_scatter_mult * 5
+
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if our gun is deployed, change the scatter by this number, usually a negative
+		. += deployed_scatter_change
 
 	if(!user?.skills.getRating("firearms")) //no training in any firearms
 		. += 15

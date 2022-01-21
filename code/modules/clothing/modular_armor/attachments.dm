@@ -100,7 +100,7 @@
 	/// Addititve Slowdown of this armor piece
 	slowdown = 0
 
-	greyscale_config = /datum/greyscale_config/modularchest_infantry
+	greyscale_config = /datum/greyscale_config/modularchest
 	greyscale_colors = ARMOR_PALETTE_DESERT
 
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
@@ -109,33 +109,50 @@
 
 	///optional assoc list of colors we can color this armor
 	var/list/colorable_colors = list(
-		"Drab" = ARMOR_PALETTE_DRAB,
-		"Brown" = ARMOR_PALETTE_BROWN,
-		"Snow" = ARMOR_PALETTE_SNOW,
-		"Desert" = ARMOR_PALETTE_DESERT,
-		"Red" = ARMOR_PALETTE_RED,
-		"Green" = ARMOR_PALETTE_GREEN,
-		"Purple" = ARMOR_PALETTE_PURPLE,
-		"Black" = ARMOR_PALETTE_BLACK,
-		"Blue" = ARMOR_PALETTE_BLUE,
-		"Yellow" = ARMOR_PALETTE_YELLOW,
-		"Aqua" = ARMOR_PALETTE_AQUA,
+		"Default" = list(
+			"Drab" = ARMOR_PALETTE_DRAB,
+			"Brown" = ARMOR_PALETTE_BROWN,
+			"Snow" = ARMOR_PALETTE_SNOW,
+			"Desert" = ARMOR_PALETTE_DESERT,
+			"Black" = ARMOR_PALETTE_BLACK,
+			"Grey" = ARMOR_PALETTE_GREY,
+		),
+		"Red" = list(
+			"Dark Red" = ARMOR_PALETTE_RED,
+			"Bronze Red" = ARMOR_PALETTE_BRONZE_RED,
+			"Red" = ARMOR_PALETTE_LIGHT_RED,
+		),
+		"Green" = list(
+			"Green" = ARMOR_PALETTE_GREEN,
+			"Emerald" = ARMOR_PALETTE_EMERALD,
+			"Lime" = ARMOR_PALETTE_LIME,
+			"Mint" = ARMOR_PALETTE_MINT,
+		),
+		"Purple" = list(
+			"Purple" = ARMOR_PALETTE_PURPLE,
+			"Lavander" = ARMOR_PALETTE_LAVANDER,
+		),
+		"Blue" = list(
+			"Dark Blue" = ARMOR_PALETTE_BLUE,
+			"Blue" = ARMOR_PALETTE_LIGHT_BLUE,
+			"Cottonwood" = ARMOR_PALETTE_COTTONWOOD,
+			"Aqua" = ARMOR_PALETTE_AQUA,
+		),
+		"Yellow" = list(
+			"Gold" = ARMOR_PALETTE_YELLOW,
+			"Yellow" = ARMOR_PALETTE_LIGHT_YELLOW,
+		),
+		"Pink" = list(
+			"Salmon" = ARMOR_PALETTE_SALMON_PINK,
+			"Magenta" = ARMOR_PALETTE_MAGENTA_PINK,
+		),
 		"Orange" = ARMOR_PALETTE_ORANGE,
-		"Grey" = ARMOR_PALETTE_GREY,
 	)
 	///Some defines to determin if the armor piece is allowed to be recolored.
 	var/colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
 
 /obj/item/armor_module/armor/Initialize()
 	. = ..()
-	if(greyscale_config && length(SSgreyscale.configurations["[greyscale_config]"].icon_cache) < length(colorable_colors)) //This checks if the current greyscale config has all the colors chached. If not it caches them.
-		for(var/key in colorable_colors)
-			var/color = colorable_colors[key]
-			set_greyscale_colors(color)
-		if(flags_item_map_variant)
-			update_item_sprites()
-		else
-			set_greyscale_colors(initial(greyscale_colors))
 	item_state = initial(icon_state) + "_a"
 	update_icon()
 
@@ -205,14 +222,22 @@
 	var/new_color
 	switch(selection)
 		if("Preset Colors")
-			new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
+			var/color_selection
+			color_selection = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
+			if(!color_selection)
+				return
+			if(islist(colorable_colors[color_selection]))
+				var/old_list = colorable_colors[color_selection]
+				color_selection = tgui_input_list(user, "Pick a color", "Pick color", old_list)
+				if(!color_selection)
+					return
+				new_color = old_list[color_selection]
+			else
+				new_color = colorable_colors[color_selection]
 		if("Color Wheel")
 			new_color = input(user, "Pick a color", "Pick color") as null|color
 
-	if(!new_color)
-		return
-
-	if(!do_after(user, 1 SECONDS, TRUE, parent ? parent : src, BUSY_ICON_GENERIC))
+	if(!new_color || !do_after(user, 1 SECONDS, TRUE, parent ? parent : src, BUSY_ICON_GENERIC))
 		return
 
 	set_greyscale_colors(new_color)

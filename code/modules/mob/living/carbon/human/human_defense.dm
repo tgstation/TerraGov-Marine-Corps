@@ -62,13 +62,15 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	var/siemens_coefficient = 1.0
 
+	if(species.species_flags & IS_INSULATED)
+		siemens_coefficient = 0
+
 	var/list/clothing_items = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes) // What all are we checking?
 	for(var/obj/item/clothing/C in clothing_items)
 		if(istype(C) && (C.flags_armor_protection & def_zone.body_part)) // Is that body part being targeted covered?
 			siemens_coefficient *= C.siemens_coefficient
 
 	return siemens_coefficient
-
 
 /mob/living/carbon/human/proc/add_limb_armor(obj/item/armor_item)
 	for(var/i in limbs)

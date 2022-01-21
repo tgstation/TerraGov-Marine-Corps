@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - imageadd: "Added modern replacements for all old computer sprites."
-  - imagedel: "Removed all old computer sprites."

@@ -385,6 +385,7 @@
 	req_one_access = list()
 	dispensable_reagents = list(
 		/datum/reagent/water,
+		/datum/reagent/consumable/drink/milk,
 		/datum/reagent/consumable/drink/cold/ice,
 		/datum/reagent/consumable/drink/coffee,
 		/datum/reagent/consumable/drink/milk/cream,
@@ -457,8 +458,15 @@
 /obj/machinery/chem_dispenser/valhalla
 	needs_medical_training = FALSE
 	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
 
 /obj/machinery/chem_dispenser/valhalla/Initialize()
 	. = ..()
 	qdel(cell)
 	cell = new /obj/item/cell/infinite
+
+/obj/machinery/chem_dispenser/soda/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/chem_dispenser/beer/nopower
+	use_power = NO_POWER_USE

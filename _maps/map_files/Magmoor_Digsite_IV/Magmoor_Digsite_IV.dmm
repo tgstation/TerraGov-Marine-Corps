@@ -10465,12 +10465,6 @@
 "hwa" = (
 /turf/closed/wall/indestructible/bulkhead,
 /area/magmoor/landing/two)
-"hwz" = (
-/obj/machinery/conveyor{
-	dir = 9
-	},
-/turf/open/floor/plating,
-/area/magmoor/mining/refinery)
 "hxe" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -10636,10 +10630,10 @@
 	},
 /area/magmoor/medical/patient)
 "hDl" = (
-/obj/machinery/conveyor{
-	dir = 9
-	},
 /obj/item/ore/phoron,
+/obj/machinery/conveyor{
+	dir = 6
+	},
 /turf/open/floor/plating,
 /area/magmoor/mining/refinery)
 "hDy" = (
@@ -28410,6 +28404,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing)
+"tCJ" = (
+/obj/machinery/conveyor/inverted{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/magmoor/mining/refinery)
 "tDe" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -42396,7 +42396,7 @@ mhT
 inJ
 mhT
 inJ
-iDr
+tCJ
 kHo
 igW
 fIc
@@ -42628,7 +42628,7 @@ hNq
 hMY
 mhT
 iCR
-iDr
+tCJ
 hgy
 kHo
 igW
@@ -42860,7 +42860,7 @@ hzY
 kjG
 hTH
 hMY
-iDr
+tCJ
 iSC
 hgy
 kYW
@@ -46816,7 +46816,7 @@ fIc
 igW
 iLl
 hiH
-hwz
+iDr
 kjG
 mhe
 irk
@@ -47048,7 +47048,7 @@ fIc
 erq
 igW
 iLl
-hwz
+iDr
 kjG
 mhT
 irk

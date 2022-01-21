@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "Cryoing no longer delete the marine, it just stores it until a ghost takes it"

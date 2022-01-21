@@ -50,8 +50,6 @@
 		"Shotgun" = list(
 			/obj/item/weapon/gun/shotgun/pump/t35 = -1,
 			/obj/item/weapon/gun/shotgun/combat/standardmarine = -1,
-			/obj/item/weapon/gun/shotgun/combat = -1,
-			/obj/item/weapon/gun/shotgun/pump/cmb = -1,
 			/obj/item/weapon/gun/shotgun/double/marine = -1,
 			/obj/item/storage/belt/gun/ts34/full = -1,
 			/obj/item/ammo_magazine/shotgun = -1,
@@ -329,6 +327,7 @@
 
 /obj/machinery/vending/weapon/valhalla
 	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
 	products = list(
 		"Rifles" = list(
 			/obj/item/weapon/gun/rifle/standard_assaultrifle = -1,
@@ -549,12 +548,20 @@
 			/obj/item/radio/headset/mainship/marine/charlie = -1,
 			/obj/item/radio/headset/mainship/marine/delta = -1,
 		),
+		"Reqtorio Basics" = list(
+			/obj/item/paper/factoryhowto = -1,
+			/obj/machinery/factory/cutter = 1,
+			/obj/machinery/factory/heater = 1,
+			/obj/machinery/factory/flatter = 1,
+			/obj/machinery/factory/former = 1,
+			/obj/machinery/factory/reconstructor = 1,
+			/obj/machinery/outputter = 1,
+		),
 		"Grenade Boxes" = list(
 			/obj/item/storage/box/visual/grenade/frag = 2,
 			/obj/item/storage/box/visual/grenade/impact = 2,
 			/obj/item/storage/box/visual/grenade/incendiary = 2,
 			/obj/item/storage/box/visual/grenade/M15 = 2,
-			/obj/item/storage/box/visual/grenade/drain = 1,
 			/obj/item/storage/box/visual/grenade/cloak = 1,
 		),
 		"Ammo Boxes" = list(
@@ -823,6 +830,7 @@
 
 /obj/machinery/vending/MarineMed/valhalla
 	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
 	products = list(
 		"Pill Bottle" = list(
 			/obj/item/storage/pill_bottle/bicaridine = -1,
@@ -850,8 +858,12 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/dylovene = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/isotonic = -1,
-			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/isotonic = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/hyperzine = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/virilyth = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/roulettium = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/rezadone = -1,
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,
@@ -984,8 +996,8 @@
 			/obj/item/clothing/suit/modular = -1,
 			/obj/item/clothing/suit/storage/marine/harness = -1,
 			/obj/item/clothing/suit/storage/marine/harness/cowboy = -1,
-			/obj/item/clothing/suit/cowboy = -1,
-			/obj/item/clothing/suit/armor/vest/pilot = -1,
+			/obj/item/clothing/suit/storage/marine/cowboy = -1,
+			/obj/item/clothing/suit/modular/xenonauten/pilot = -1,
 			/obj/item/facepaint/green = -1,
 			/obj/item/clothing/suit/storage/marine/robot/light = -1,
 			/obj/item/clothing/suit/storage/marine/robot = -1,
@@ -1002,6 +1014,7 @@
 			/obj/item/clothing/head/modular/marine/eod = -1,
 			/obj/item/clothing/head/modular/marine/scout = -1,
 			/obj/item/clothing/head/modular/marine/infantry = -1,
+			/obj/item/clothing/head/modular/marine/helljumper = -1,
 			/obj/item/clothing/head/helmet/marine/robot/light = -1,
 			/obj/item/clothing/head/helmet/marine/robot = -1,
 			/obj/item/clothing/head/helmet/marine/robot/heavy = -1,
@@ -1013,6 +1026,7 @@
 			/obj/item/armor_module/armor/chest/marine/eva = -1,
 			/obj/item/armor_module/armor/chest/marine/assault = -1,
 			/obj/item/armor_module/armor/chest/marine/assault/eod = -1,
+			/obj/item/armor_module/armor/chest/marine/helljumper = -1,
 		),
 		"Jaeger armpiece" = list(
 			/obj/item/armor_module/armor/arms/marine/skirmisher = -1,
@@ -1021,6 +1035,7 @@
 			/obj/item/armor_module/armor/arms/marine/eva = -1,
 			/obj/item/armor_module/armor/arms/marine/assault = -1,
 			/obj/item/armor_module/armor/arms/marine/eod = -1,
+			/obj/item/armor_module/armor/arms/marine/helljumper = -1,
 		),
 		"Jaeger legpiece" = list(
 			/obj/item/armor_module/armor/legs/marine/skirmisher = -1,
@@ -1030,6 +1045,7 @@
 			/obj/item/armor_module/armor/legs/marine/assault = -1,
 			/obj/item/armor_module/armor/legs/marine/eod = -1,
 			/obj/item/armor_module/armor/legs/marine/scout = -1,
+			/obj/item/armor_module/armor/legs/marine/helljumper = -1,
 		),
 		"Jaeger modules" = list(
 			/obj/item/armor_module/storage/general = -1,
@@ -1055,6 +1071,10 @@
 
 /obj/machinery/vending/armor_supply/rebel
 	faction = FACTION_TERRAGOV_REBEL
+
+/obj/machinery/vending/armor_supply/valhalla
+	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
 
 /obj/machinery/vending/uniform_supply
 	name = "\improper Surplus Clothing Vendor"
@@ -1091,10 +1111,17 @@
 			/obj/item/clothing/head/tgmcberet = -1,
 			/obj/item/clothing/glasses/mgoggles = -1,
 			/obj/item/clothing/glasses/mgoggles/prescription = -1,
+			/obj/effect/essentials_set/white_dress = -1,
 			/obj/item/clothing/under/whites = -1,
+			/obj/item/clothing/suit/white_dress_jacket = -1,
 			/obj/item/clothing/head/white_dress = -1,
 			/obj/item/clothing/shoes/white = -1,
 			/obj/item/clothing/gloves/white = -1,
+			/obj/effect/essentials_set/service_uniform = -1,
+			/obj/item/clothing/under/service = -1,
+			/obj/item/clothing/head/garrisoncap = -1,
+			/obj/item/clothing/head/servicecap = -1,
+			/obj/item/clothing/shoes/marine/full = -1,
 			/obj/item/clothing/under/marine/robotic = -1,
 			/obj/item/armor_module/armor/badge = -1,
 		),
@@ -1177,6 +1204,10 @@
 
 	prices = list()
 
+/obj/machinery/vending/uniform_supply/valhalla
+	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
+
 /obj/machinery/vending/dress_supply
 	name = "\improper TerraGovTech dress uniform vendor"
 	desc = "A automated rack hooked up to a colossal storage of dress uniforms."
@@ -1194,11 +1225,16 @@
 		/obj/item/clothing/gloves/white = -1,
 	)
 
+/obj/machinery/vending/dress_supply/valhalla
+	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
+
 /obj/machinery/vending/valhalla_req
 	name = "\improper TerraGovTech requisition vendor"
 	desc = "A automated rack hooked up to a colossal storage of items."
 	icon_state = "synth"
 	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
 	products = list(
 		"Weapon" = list(
 			/obj/item/weapon/gun/energy/lasgun/tesla = -1,
@@ -1261,3 +1297,6 @@
 			/obj/item/armor_module/module/hlin_explosive_armor = -1,
 		)
 	)
+
+/obj/machinery/vending/cigarette/nopower
+	use_power = NO_POWER_USE

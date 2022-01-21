@@ -139,6 +139,7 @@
 /obj/item/reagent_containers/glass/bottle/adminordrazine
 	name = "\improper Adminordrazine bottle"
 	desc = "A small bottle. Contains the liquid essence of the gods."
+	icon = 'icons/obj/items/drinks.dmi'
 	icon_state = "holyflask"
 	list_reagents = list(/datum/reagent/medicine/adminordrazine = 60)
 
@@ -248,6 +249,12 @@
 	icon_state = "bottle7"
 	list_reagents = list(/datum/reagent/toxin/xeno_sanguinal = 30)
 
+/obj/item/reagent_containers/glass/bottle/xeno_ozelomelyn
+	name = "\improper xeno_ozelomelyn bottle"
+	desc = "A small bottle. Contains artificialy synthesized ozelomelyn- useful for testing treatments or training troops."
+	icon_state = "bottle7"
+	list_reagents = list(/datum/reagent/toxin/xeno_ozelomelyn = 30)
+
 /obj/item/reagent_containers/glass/bottle/xeno_zombium
 	name = "\improper Zombium bottle"
 	desc = "A small bottle. Contains artificialy synthesized zombium- useful for testing treatments, training troops, or attempting to start the end of the world."
@@ -272,4 +279,8 @@
 	icon_state = "bottle-5"
 	list_reagents = list(/datum/reagent/medicine/lemoline = 10)
 
-
+/obj/item/reagent_containers/glass/bottle/doctor_delight
+	name = "\improper Doctor's Delight bottle"
+	desc = "A small bottle. Contains Doctor's Delight."
+	icon_state = "bottle3"
+	list_reagents = list(/datum/reagent/consumable/drink/doctor_delight = 60)

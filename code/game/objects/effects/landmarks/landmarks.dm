@@ -435,18 +435,36 @@
 
 /obj/effect/landmark/valhalla_xeno_spawn_landmark_close
 	name = "Valhalla xeno spawn"
-	icon = 'icons/Xeno/1x1_Xenos.dmi'
-	icon_state = "Drone Walking"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "xeno_spawn_valhalla"
 
 /obj/effect/landmark/valhalla_xeno_spawn_landmark_close/Initialize()
 	. = ..()
 	GLOB.valhalla_xeno_spawn_landmark[CLOSE] = src
 
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_close_two
+	name = "Valhalla xeno spawn"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "xeno_spawn_valhalla"
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_close_two/Initialize()
+	. = ..()
+	GLOB.valhalla_xeno_spawn_landmark[CLOSE2] = src
+
 /obj/effect/landmark/valhalla_xeno_spawn_landmark_far
 	name = "Valhalla xeno spawn"
-	icon = 'icons/Xeno/1x1_Xenos.dmi'
-	icon_state = "Drone Walking"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "xeno_spawn_valhalla"
 
 /obj/effect/landmark/valhalla_xeno_spawn_landmark_far/Initialize()
 	. = ..()
 	GLOB.valhalla_xeno_spawn_landmark[FAR] = src
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_far_two
+	name = "Valhalla xeno spawn"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "xeno_spawn_valhalla"
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_far_two/Initialize()
+	. = ..()
+	GLOB.valhalla_xeno_spawn_landmark[FAR2] = src

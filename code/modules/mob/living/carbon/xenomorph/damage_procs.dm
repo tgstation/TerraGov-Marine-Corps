@@ -169,7 +169,6 @@
 	} \
 
 /mob/living/carbon/xenomorph/adjustBruteLoss(amount, updating_health = FALSE)
-
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BRUTE_DAMAGE, amount, amount_mod)
 	for(var/i in amount_mod)
@@ -182,9 +181,7 @@
 	if(updating_health)
 		updatehealth()
 
-
 /mob/living/carbon/xenomorph/adjustFireLoss(amount, updating_health = FALSE)
-
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BURN_DAMAGE, amount, amount_mod)
 	for(var/i in amount_mod)

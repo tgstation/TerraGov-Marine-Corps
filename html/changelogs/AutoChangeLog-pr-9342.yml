@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - balance: "Heavy level explosions break resin walls instantly, light explosions deal far more damage to resin walls."
