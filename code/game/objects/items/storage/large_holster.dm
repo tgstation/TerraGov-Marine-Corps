@@ -20,7 +20,6 @@
 
 /obj/item/storage/large_holster/update_icon()
 	var/mob/user = loc
-
 	if(istype(user)) user.update_inv_back()
 	if(istype(user)) user.update_inv_belt()
 	if(istype(user)) user.update_inv_s_store()
@@ -161,7 +160,6 @@
 	can_hold = list(/obj/item/weapon/gun/smg/standard_machinepistol)
 
 /obj/item/storage/large_holster/t19/update_icon_state()
-	var/mob/user = loc
 	if(contents.len)
 		var/obj/I = contents[1]
 		icon_state = "[base_icon]_full_[I.icon_state]"
@@ -169,7 +167,6 @@
 	else
 		icon_state = base_icon
 		item_state = base_icon
-	if(istype(user)) user.update_inv_belt()
 
 /obj/item/storage/large_holster/t19/full/Initialize()
 	. = ..()
