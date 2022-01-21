@@ -65,7 +65,7 @@ GLOBAL_VAR_INIT(no_sleep, FALSE)
 
 /proc/debug_sleep(n)
 	if(GLOB.no_sleep)
-		CRASH()
+		CRASH("sleep detected in pathfinding system")
 	sleep(n)
 
 //previously, this would have been named 'process()' but that name is used everywhere for different things!
