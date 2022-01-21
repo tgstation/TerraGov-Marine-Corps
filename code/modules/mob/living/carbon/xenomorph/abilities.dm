@@ -1283,7 +1283,6 @@
 	name = "Salvage Biomass"
 	action_icon_state = "salvage_plasma"
 	ability_name = "salvage biomass"
-	keybind_signal = COMSIG_XENOABILITY_SALVAGE_PLASMA
 	cooldown_timer = DRONE_SALVAGE_COOLDOWN
 
 /datum/action/xeno_action/activable/salvage_biomass/on_cooldown_finish()
@@ -1338,9 +1337,9 @@
 	X.gain_plasma(target.plasma_stored)
 
 	playsound(target, 'sound/effects/alien_egg_burst.ogg', 25)
-	X.hive.xeno_message("[target]'s remains were salvaged by [X], recovering [upgrade_amount] upgrade points for [length(list_of_upgrade_xenos)] sisters and [evo_amount] evolution points for [length(list_of_evolve_xenos) ] sisters.") //Notify hive and give credit to the good boy drone
+	X.hive.xeno_message("[target]'s remains were salvaged by [X]. [target] returns back to the great Hivemind")
 	X.visible_message("<span class='xenowarning'>\ [X] gruesomely absorbs and devours the remains of [target]!</span>", \
-	"<span class='xenowarning'>We messily devour the remains of [target], absorbing [target.plasma_stored] plasma and distributing our deceased sister's essence throughout the hive. We now have [X.plasma_stored]/[X.xeno_caste.plasma_max] plasma stored.</span>") //Narrative description.
+	"<span class='xenowarning'>We messily devour the remains of [target]. We now have [X.plasma_stored]/[X.xeno_caste.plasma_max] plasma stored.</span>") //Narrative description.
 
 	target.gib() //Destroy the corpse
 
