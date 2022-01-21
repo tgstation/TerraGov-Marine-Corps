@@ -118,7 +118,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/heavymachinegun
 	allowed_ammo_types = list(/obj/item/ammo_magazine/heavymachinegun)
 
-	scatter = 15
+	scatter = 10
 	fire_delay = 0.2 SECONDS
 
 	burst_amount = 1
