@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(mapping)
 	var/groundmap_voted = FALSE
 	///If true, non-admin players will not be able to initiate a vote to change shipmap
 	var/shipmap_voted = FALSE
-	//The number of connected clients for the previous round
+	///The number of connected clients for the previous round
 	var/last_round_player_count
 
 //dlete dis once #39770 is resolved
