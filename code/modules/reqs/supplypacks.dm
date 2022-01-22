@@ -319,7 +319,7 @@ WEAPONS
 /datum/supply_packs/weapons/autosniper
 	name = "T-81 IFF Auto Sniper kit"
 	contains = list(/obj/item/weapon/gun/rifle/standard_autosniper)
-	cost = 30
+	cost = 50
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/autosniper_regular
