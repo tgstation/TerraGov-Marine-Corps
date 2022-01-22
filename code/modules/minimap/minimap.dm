@@ -66,10 +66,13 @@ GLOBAL_LIST_EMPTY(minimap_blips)
 	for(var/turf/turf_to_render AS in block(\
 		locate(bounds[BOUND_MIN_X], bounds[BOUND_MIN_Y], z_value),\
 		locate(bounds[BOUND_MAX_X], bounds[BOUND_MAX_Y], z_value)))
+		CHECK_TICK
 		if(turf_to_render.flags_atom & TURF_HIDE_MINIMAP)
 			continue
 
 		var/icon/I = getFlatIcon(turf_to_render)
+		if(!I)
+			continue
 		I.Scale(icon_size, icon_size)
 		generated_map.Blend(I, ICON_UNDERLAY,\
 			(turf_to_render.x - bounds[BOUND_MIN_X])*icon_size,\
