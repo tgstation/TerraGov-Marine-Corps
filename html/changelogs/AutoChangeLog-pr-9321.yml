@@ -1,4 +1,0 @@
-author: "Notamaniac"
-delete-after: True
-changes: 
-  - bugfix: "Sentry kit boxes can only hold sentries and their respective ammo now, crushing the horrible meta of being able to carry 5 backpacks by hand, or 5 other objects of large and dubious size."

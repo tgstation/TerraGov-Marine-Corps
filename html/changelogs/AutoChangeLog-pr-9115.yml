@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - rscadd: "Ghosts can assume control of minions if the hive upgrade \"Smart Minions\" is bought. It is 500 psy points"
