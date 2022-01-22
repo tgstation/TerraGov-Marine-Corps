@@ -300,17 +300,17 @@
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_NEURO_LIGHT //Light neuro smoke doesn't extinguish
 
 /obj/effect/particle_effect/smoke/xeno/hemodile
-	alpha = 40
+	alpha = 255
 	opacity = FALSE
 	smoke_can_spread_through = TRUE
 	color = "#0287A1"
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_HEMODILE|SMOKE_GASP
 
 /obj/effect/particle_effect/smoke/xeno/transvitox
-	alpha = 60
+	alpha = 255
 	opacity = FALSE
 	smoke_can_spread_through = TRUE
-	color = "#C0FF94"
+	color = "#abf775"
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_TRANSVITOX|SMOKE_COUGH
 
 //Toxic smoke when the Defiler successfully uses Defile

@@ -303,3 +303,33 @@
       equip it while it's in the air.
   RenovatedAtol:
   - bugfix: turret ammo
+2022-01-21:
+  novaepee:
+  - imageadd: new ammo hub for energy weapons; sprites are from Locke!
+2022-01-22:
+  BraveMole:
+  - balance: Cryoing no longer delete the marine, it just stores it until a ghost
+      takes it
+  - rscadd: Ghosts can assume control of minions if the hive upgrade "Smart Minions"
+      is bought. It is 500 psy points
+  Notamaniac:
+  - bugfix: The unmanned tank drones can now be repaired with a welder
+  - bugfix: Sentry kit boxes can only hold sentries and their respective ammo now,
+      crushing the horrible meta of being able to carry 5 backpacks by hand, or 5
+      other objects of large and dubious size.
+  Pariah919:
+  - balance: Heavy level explosions break resin walls instantly, light explosions
+      deal far more damage to resin walls.
+  Semoro:
+  - bugfix: Avoid timer scheduling too far events into short queue
+  Three333Digit:
+  - balance: combat robots are insulated
+  Waselon:
+  - rscadd: added x-ray laser rifle
+  - imageadd: added sprites for x-ray rifle
+  novaepee:
+  - rscadd: T-27 ammo box; now you can truly hold down the line.
+  - balance: That T-27 is going to get a lot of ammo.
+  - imageadd: Thank you, TheOneAndMightyRed, for giving T-27 ammo box sprites!
+  vilereaver41:
+  - balance: opacity for transvitox and hemodile no longer 60 but 255

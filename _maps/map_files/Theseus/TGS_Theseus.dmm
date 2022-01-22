@@ -1547,7 +1547,7 @@
 /turf/open/floor/mainship_hull,
 /area/space)
 "arJ" = (
-/obj/machinery/computer/cryopod/alpha,
+/obj/machinery/computer/cryopod,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "arK" = (
@@ -5305,7 +5305,7 @@
 	},
 /area/mainship/living/cryo_cells)
 "bym" = (
-/obj/machinery/computer/cryopod/eng{
+/obj/machinery/computer/cryopod{
 	dir = 8
 	},
 /turf/open/floor/mainship/orange{
@@ -17955,7 +17955,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "ttY" = (
-/obj/machinery/computer/cryopod/medical{
+/obj/machinery/computer/cryopod{
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile,

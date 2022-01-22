@@ -1605,8 +1605,26 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/energy/lasgun/pistol/disabler/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)
 
-// Plasma //
+/datum/ammo/energy/lasgun/marine/xray
+	name = "xray heat bolt"
+	icon_state = "u_laser"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
+	damage = 25
+	penetration = 5
+	sundering = 1
+	max_range = 15
+	hitscan_effect_icon = "u_laser_beam"
 
+/datum/ammo/energy/lasgun/marine/xray/piercing
+	name = "xray piercing bolt"
+	icon_state = "xray"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	damage = 25
+	penetration = 100
+	max_range = 10
+	hitscan_effect_icon = "xray_beam"
+
+// Plasma //
 
 /datum/ammo/energy/plasma
 	name = "plasma bolt"
