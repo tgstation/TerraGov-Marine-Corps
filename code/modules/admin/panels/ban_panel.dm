@@ -898,13 +898,13 @@
 		bantype = "ADMIN_" + bantype
 
 	var/list/arguments = list(
-		"duration" = duration || null,
+		"duration" = duration || -1,
 		"bantype" = bantype,
 		"reason" = reason,
 		"applies_to_admins" = applies_to_admins,
 		"ckey" = player_ckey || null,
-		"ip" = player_ip || null,
-		"cid" = player_cid || null,
+		"ip" = player_ip || "",
+		"cid" = player_cid || "",
 		"change_message" = change_message,
 	)
 	var/where
@@ -915,7 +915,7 @@
 			arguments["old_ckey"] = ckey(old_key)
 		if(old_ip)
 			wherelist += "ip = :old_ip"
-			arguments["old_ip"] = old_ip || null
+			arguments["old_ip"] = old_ip || ""
 		if(old_cid)
 			wherelist += "computerid = :old_cid"
 			arguments["old_cid"] = old_cid
