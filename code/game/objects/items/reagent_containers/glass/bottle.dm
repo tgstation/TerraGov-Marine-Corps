@@ -229,7 +229,7 @@
 	name = "\improper Light Neurotoxin bottle"
 	desc = "A small bottle. Contains weakened synthesized neurotoxin- useful for testing treatments, or training troops."
 	icon_state = "bottle7"
-	list_reagents = list(/datum/reagent/toxin/xeno_neurotoxin/light = 30)
+	list_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 30)
 
 /obj/item/reagent_containers/glass/bottle/xeno_hemodile
 	name = "\improper Hemodile bottle"
