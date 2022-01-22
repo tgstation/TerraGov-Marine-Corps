@@ -184,7 +184,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		cleanup_current_action()
 		late_initialize()
 		return
-	SEND_SIGNAL(mob_parent, COMSIG_PATHFINDER_SET_ATOM_TO_WALK_TO, turfs_in_path[length(turfs_in_path)])
+	pathfinding_datum.atom_to_walk_to = turfs_in_path[length(turfs_in_path)]
+	pathfinding_datum.schedule_move()
 	turfs_in_path.len--
 	return COMSIG_MAINTAIN_POSITION
 

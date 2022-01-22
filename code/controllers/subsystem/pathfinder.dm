@@ -14,8 +14,6 @@ SUBSYSTEM_DEF(pathfinder)
 	var/practical_offset = 1
 	///How many buckets for every frame of world.fps
 	var/bucket_resolution = 0
-	///How many pathfinding datum are in the buckets
-	var/pathfinding_datums_count = 0
 	/// List of buckets, each bucket holds every pathfinding datum that has to move this byond tick
 	var/list/bucket_list = list()
 	/// Reference to the pathfinding datum before we clean shooter.next
@@ -25,9 +23,6 @@ SUBSYSTEM_DEF(pathfinder)
 	bucket_list.len = BUCKET_LEN
 	head_offset = world.time
 	bucket_resolution = world.tick_lag
-
-/datum/controller/subsystem/pathfinder/stat_entry()
-	..("Mob with pathfinder : [pathfinding_datums_count]")
 
 /datum/controller/subsystem/pathfinder/fire(resumed = FALSE)
 	// Check for when we need to loop the buckets, this occurs when
@@ -59,7 +54,6 @@ SUBSYSTEM_DEF(pathfinder)
 			next_pathfinding_datum = pathfinding_datum.next
 			INVOKE_ASYNC(pathfinding_datum, /datum/pathfinding_datum/proc/process_move)
 
-			pathfinding_datums_count--
 			pathfinding_datum = next_pathfinding_datum
 			if (MC_TICK_CHECK)
 				return
@@ -98,10 +92,10 @@ SUBSYSTEM_DEF(pathfinder)
 ///Move the mob_parent and schedule the next move
 /datum/pathfinding_datum/proc/process_move()
 	if(!mob_parent?.canmove || mob_parent.do_actions)
-		schedule_move(world.tick_lag)
+		schedule_move(world.time + world.tick_lag)
 		return
 	//Duplication check
-	if(world.time <= (mob_parent.last_move_time + mob_parent.cached_multiplicative_slowdown + mob_parent.next_move_slowdown))
+	if(world.time < (mob_parent.last_move_time + mob_parent.cached_multiplicative_slowdown + mob_parent.next_move_slowdown))
 		schedule_move()
 		return
 	mob_parent.next_move_slowdown = 0
@@ -145,25 +139,21 @@ SUBSYSTEM_DEF(pathfinder)
 	schedule_move()
 
 ///Put the pathfinding datum into the bucket list
-/datum/pathfinding_datum/proc/schedule_move(next_move_time = mob_parent.next_move_slowdown + mob_parent.cached_multiplicative_slowdown)
-	if(src.next_move_time > world.time)
-		return
+/datum/pathfinding_datum/proc/schedule_move(next_move_time = mob_parent.last_move_time + mob_parent.next_move_slowdown + mob_parent.cached_multiplicative_slowdown)
+	remove_from_pathfinding()
+	if(next_move_time < world.time + world.tick_lag)
+		next_move_time = world.time + world.tick_lag
 	//We move to another bucket, so we clean the reference from the former linked list
 	next = null
 	prev = null
 	var/list/bucket_list = SSpathfinder.bucket_list
 
-	// Ensure the next_fire time is properly bound to avoid missing a scheduled event
-	next_move_time += world.time
-	next_move_time = max(CEILING(next_move_time, world.tick_lag), world.time + world.tick_lag)
 	src.next_move_time = next_move_time
 	// Get bucket position and a local reference to the datum var, it's faster to access this way
 	var/bucket_pos = BUCKET_POS(next_move_time)
 
 	// Get the bucket head for that bucket, increment the bucket count
 	var/datum/component/automatedfire/bucket_head = bucket_list[bucket_pos]
-	SSpathfinder.pathfinding_datums_count++
-
 	// If there is no existing head of this bucket, we can set this shooter to be that head
 	if (!bucket_head)
 		bucket_list[bucket_pos] = src
@@ -178,9 +168,9 @@ SUBSYSTEM_DEF(pathfinder)
 	prev = bucket_head
 
 /datum/pathfinding_datum/proc/remove_from_pathfinding()
-	if(next_move_time < world.time + world.tick_lag)
-		return
 	var/bucket_pos = BUCKET_POS(next_move_time)
+	if(bucket_pos < 0)
+		return
 	var/datum/component/automatedfire/bucket_head = SSpathfinder.bucket_list[bucket_pos]
 	while(bucket_head != src && bucket_head != null)
 		bucket_head = bucket_head.next
@@ -188,7 +178,6 @@ SUBSYSTEM_DEF(pathfinder)
 		return
 	SSpathfinder.bucket_list[bucket_pos] = next
 	next?.prev = prev
-	SSpathfinder.pathfinding_datums_count--
 	next_move_time = 0
 	
 #undef BUCKET_LEN
