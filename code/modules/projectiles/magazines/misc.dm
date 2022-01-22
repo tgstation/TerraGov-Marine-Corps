@@ -131,6 +131,6 @@
 	icon_state = "box_electrothermal"
 	default_ammo = /datum/ammo/energy/plasma_pistol
 	caliber = CALIBER_PLASMA
-	flags_magazine = MAGAZINE_REFILLABLE
+	flags_magazine = MAGAZINE_REFILLABLE|MAGAZINE_NO_HANDFULS
 	current_rounds = 40
 	max_rounds = 40
