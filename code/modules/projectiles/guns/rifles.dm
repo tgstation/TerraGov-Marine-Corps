@@ -1166,6 +1166,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/rifle/autosniper
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/autosniper)
 	attachable_allowed = list(
+		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/autosniperbarrel,
 		/obj/item/attachable/scope/nightvision,
 		/obj/item/attachable/extended_barrel,
@@ -1177,6 +1178,7 @@
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	gun_skill_category = GUN_SKILL_SMARTGUN //Uses SG skill for the penalties.
 	attachable_offset = list("muzzle_x" = 48, "muzzle_y" = 18,"rail_x" = 23, "rail_y" = 23, "under_x" = 38, "under_y" = 16, "stock_x" = 9, "stock_y" = 12)
 	starting_attachment_types = list(
 		/obj/item/attachable/autosniperbarrel,
@@ -1193,6 +1195,15 @@
 	recoil_unwielded = 4
 	aim_slowdown = 1
 	wield_delay = 1.3 SECONDS
+
+/obj/item/weapon/gun/rifle/standard_autosniper/sg // no nvg for u
+	name = "\improper T-81 smart automatic sniper rifle"
+	desc = "The T-81 is the TerraGov Marine Corps's automatic sniper rifle. It is rather well-known for it's night vision scope and IFF ammo, however this one was packed without the former, for cost reasons.. It is mostly used by people who prefer to do more careful shooting than most. Uses 8.6x70mm caseless IFF caliber."
+
+	starting_attachment_types = list(
+		/obj/item/attachable/autosniperbarrel,
+		/obj/item/attachable/scope/marine,
+	)
 
 //-------------------------------------------------------
 //TX-11 Rifle, based on the gamer-11

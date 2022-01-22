@@ -157,6 +157,8 @@ GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 	/obj/item/weapon/gun/rifle/standard_smartrifle = list(CAT_LEDSUP, "T-25 smartrifle", 30 , "white"),
 	/obj/item/ammo_magazine/rifle/standard_smartrifle = list(CAT_LEDSUP, "T-25 smartrifle magazine", 2 , "black"),
 	/obj/item/ammo_magazine/packet/t25 = list(CAT_LEDSUP, "T-25 smartrifle ammo box", 6 , "black"),
+	/obj/item/weapon/gun/rifle/standard_autosniper/sg = list(CAT_LEDSUP, "T-81 Smart Automatic sniper rifle", 30 , "black"),
+	/obj/item/ammo_magazine/rifle/autosniper = list(CAT_LEDSUP, "T-81 Smart Automatic sniper rifle ammo", 3 , "black"), //buy only 5 mags, total up to 120 rounds; choose your shot wisely
 	))
 
 
