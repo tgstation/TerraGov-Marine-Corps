@@ -110,7 +110,7 @@ GLOBAL_LIST_INIT(jobs_fallen_all, typecacheof(list(/datum/job/fallen)))
 #define ROLE_XENOMORPH "Xenomorph"
 #define ROLE_XENO_QUEEN "Xeno Queen"
 #define ROLE_ERT "Emergency Response Team"
-
+#define ROLE_VALHALLA "Valhalla"
 
 //Playtime tracking system, see jobs_exp.dm
 #define EXP_TYPE_LIVING "Living"
