@@ -64,7 +64,7 @@
 
 
 /obj/item/ammo_magazine/attack_hand(mob/living/user)
-	if(user.get_inactive_held_item() != src || !CHECK_BITFIELD(flags_magazine, MAGAZINE_REFILLABLE))
+	if(user.get_inactive_held_item() != src || CHECK_BITFIELD(flags_magazine, MAGAZINE_NO_HANDFULS))
 		return ..()
 	if(current_rounds <= 0)
 		to_chat(user, span_notice("[src] is empty. There is nothing to grab."))

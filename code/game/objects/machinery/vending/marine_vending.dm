@@ -156,6 +156,7 @@
 			/obj/item/ammo_magazine/packet/p10x27mm = 100,
 			/obj/item/ammo_magazine/packet/p492x34mm = 100,
 			/obj/item/ammo_magazine/packet/p4570 = 100,
+			/obj/item/ammo_magazine/packet/electrothermal = 100,
 			/obj/item/storage/box/visual/magazine = 30,
 			/obj/item/storage/box/visual/grenade = 10,
 		),

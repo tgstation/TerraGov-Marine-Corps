@@ -124,3 +124,13 @@
 	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 50
 	max_rounds = 50
+
+/obj/item/ammo_magazine/packet/electrothermal
+	name = "energy case of ionized plasma"
+	desc = "An energy case for the TX-7 plasma pistol. It is being maintained by some electromagetic field that keep it cool. You really hope it doesn't erupt on your hands."
+	icon_state = "box_electrothermal"
+	default_ammo = /datum/ammo/energy/plasma_pistol
+	caliber = CALIBER_PLASMA
+	flags_magazine = MAGAZINE_REFILLABLE
+	current_rounds = 40
+	max_rounds = 40

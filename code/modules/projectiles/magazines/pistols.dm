@@ -21,7 +21,7 @@
 	max_rounds = 10
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/energy/plasma_pistol
-	flags_magazine = NONE
+	flags_magazine = MAGAZINE_REFILLABLE
 	icon_state_mini = "mag_tx7"
 
 //-------------------------------------------------------
