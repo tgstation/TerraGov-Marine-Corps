@@ -328,6 +328,12 @@ WEAPONS
 	cost = 3
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/attachments/t81scope
+	name = "T-46 NVG Scope"
+	notes = "Used on T-81s."
+	contains = list(/obj/item/attachable/scope/nightvision)
+	cost = 15
+
 /datum/supply_packs/weapons/antimaterial
 	name = "T-26 Antimaterial rifle kit"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)

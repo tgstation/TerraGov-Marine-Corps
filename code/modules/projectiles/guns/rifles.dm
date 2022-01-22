@@ -1182,7 +1182,7 @@
 	attachable_offset = list("muzzle_x" = 48, "muzzle_y" = 18,"rail_x" = 23, "rail_y" = 23, "under_x" = 38, "under_y" = 16, "stock_x" = 9, "stock_y" = 12)
 	starting_attachment_types = list(
 		/obj/item/attachable/autosniperbarrel,
-		/obj/item/attachable/scope/nightvision,
+		/obj/item/attachable/scope/marine, //if my PR gets merged, then buying T-81 through req provides free T-46 NVG Scope; this line prevents that
 	)
 
 	burst_amount = 0
