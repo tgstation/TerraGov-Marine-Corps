@@ -46,6 +46,13 @@
 	icon_state = "gascoif"
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 
+/obj/item/clothing/mask/gas/rebreather_marine
+	name = "military rebreather"
+	desc = "A close-fitting device that instantly heats or cools down air when you inhale so it doesn't damage your lungs, as well as filter harmful gasses."
+	icon_state = "rebreather"
+	item_state = "rebreather"
+	flags_inv_hide = HIDELOWHAIR
+
 /obj/item/clothing/mask/gas/PMC
 	name = "\improper M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter."
