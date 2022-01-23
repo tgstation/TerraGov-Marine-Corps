@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscadd: "Sulaco medbay now has a break room with access to a soda dispenser. Yeah, you go get that tomato juice and soon to be milk."
+  - balance: "Access to soda dispenser, which contains tomato juice and soon to be milk"

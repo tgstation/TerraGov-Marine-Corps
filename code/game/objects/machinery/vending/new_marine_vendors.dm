@@ -479,9 +479,9 @@
 /obj/machinery/marine_selector/clothes/synth
 	name = "M57 Synthetic Equipment Vendor"
 	desc = "An automated synthetic equipment vendor hooked up to a modest storage unit."
-	icon_state = "synth"
-	icon_vend = "synth-vend"
-	icon_deny = "synth-deny"
+	icon_state = "snowflake"
+	icon_vend = "snowflake-vend"
+	icon_deny = "snowflake-deny"
 	vendor_role = /datum/job/terragov/silicon/synthetic
 	lock_flags = JOB_LOCK
 

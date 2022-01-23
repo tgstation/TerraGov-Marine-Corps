@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - balance: "Revolver fires at 0.15 when non akimboed, and has knockback again."
