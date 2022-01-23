@@ -272,7 +272,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 ///Update the icon shown on the minimap
 /obj/item/radio/headset/mainship/proc/update_minimap_icon()
 	SIGNAL_HANDLER
-	if(!wearer?.job.minimap_icon)
+	if(!wearer?.job?.minimap_icon)
 		return
 	if(HAS_TRAIT(wearer, TRAIT_UNDEFIBBABLE))
 		minimap.minimap_blip = "undefibbable"
