@@ -188,11 +188,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	recast_available = TRUE
 
-///Swaps the owner with the target
-/datum/action/xeno_action/activable/acid_dash/proc/swap(mob/M)
-	owner.forceMove(get_turf(M))
-	M.forceMove(last_turf)
-
 ///Called whenever the owner hits an object during the dash
 /datum/action/xeno_action/activable/acid_dash/proc/obj_hit(datum/source, obj/target, speed)
 	SIGNAL_HANDLER
