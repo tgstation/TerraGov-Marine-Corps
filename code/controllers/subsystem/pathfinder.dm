@@ -3,6 +3,8 @@
 /// Helper for getting the correct bucket
 #define BUCKET_POS(next_fire) (((round((next_fire - SSpathfinder.head_offset) / world.tick_lag) + 1) % BUCKET_LEN) || BUCKET_LEN)
 
+#define DO_NOT_SCHEDULE "do_not_schedule"
+
 SUBSYSTEM_DEF(pathfinder)
 	name = "Pathfinder"
 	flags = SS_TICKER | SS_NO_INIT
@@ -52,11 +54,12 @@ SUBSYSTEM_DEF(pathfinder)
 
 		while (pathfinding_datum)
 			next_pathfinding_datum = pathfinding_datum.next
-			INVOKE_ASYNC(pathfinding_datum, /datum/pathfinding_datum/proc/process_move)
-
+			if(pathfinding_datum.process_move() != DO_NOT_SCHEDULE)
+				pathfinding_datum.next = null
+				pathfinding_datum.schedule_move()
 			pathfinding_datum = next_pathfinding_datum
-			if (MC_TICK_CHECK)
-				return
+			/*if (MC_TICK_CHECK)
+				return*/
 
 		// Move to the next bucket
 		practical_offset++
@@ -92,17 +95,15 @@ SUBSYSTEM_DEF(pathfinder)
 ///Move the mob_parent and schedule the next move
 /datum/pathfinding_datum/proc/process_move()
 	if(!mob_parent?.canmove || mob_parent.do_actions)
-		schedule_move(world.time + world.tick_lag)
 		return
 	//Duplication check
 	if(world.time < (mob_parent.last_move_time + mob_parent.cached_multiplicative_slowdown + mob_parent.next_move_slowdown))
-		schedule_move()
 		return
 	mob_parent.next_move_slowdown = 0
 	var/step_dir
 	if(get_dist(mob_parent, atom_to_walk_to) == distance_to_maintain)
 		if(SEND_SIGNAL(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE) & COMSIG_MAINTAIN_POSITION)
-			return
+			return DO_NOT_SCHEDULE
 		if(!get_dir(mob_parent, atom_to_walk_to)) //We're right on top, move out of it
 			step_dir = pick(CARDINAL_ALL_DIRS)
 			var/turf/next_turf = get_step(mob_parent, step_dir)
@@ -110,7 +111,6 @@ SUBSYSTEM_DEF(pathfinder)
 				SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, step_dir)
 			else if(ISDIAGONALDIR(step_dir))
 				mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown //Not perfect but good enough
-			schedule_move()
 			return
 		if(prob(stutter_step_prob))
 			step_dir = pick(LeftAndRightOfDir(get_dir(mob_parent, atom_to_walk_to)))
@@ -119,7 +119,6 @@ SUBSYSTEM_DEF(pathfinder)
 				SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, step_dir)
 			else if(ISDIAGONALDIR(step_dir))
 				mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
-			schedule_move()
 			return
 	if(get_dist(mob_parent, atom_to_walk_to) < distance_to_maintain) //We're too close, back it up
 		step_dir = get_dir(atom_to_walk_to, mob_parent)
@@ -130,22 +129,19 @@ SUBSYSTEM_DEF(pathfinder)
 		step_dir = pick(LeftAndRightOfDir(step_dir))
 		next_turf = get_step(mob_parent, step_dir)
 		if(next_turf.flags_atom & AI_BLOCKED)
-			schedule_move()
 			return
 		if(mob_parent.Move(get_step(mob_parent, step_dir), step_dir) && ISDIAGONALDIR(step_dir))
 			mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
 	else if(ISDIAGONALDIR(step_dir))
 		mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
-	schedule_move()
 
 ///Put the pathfinding datum into the bucket list
 /datum/pathfinding_datum/proc/schedule_move(next_move_time = mob_parent.last_move_time + mob_parent.next_move_slowdown + mob_parent.cached_multiplicative_slowdown)
-	remove_from_pathfinding()
+	if(src.next_move_time > SSpathfinder.head_offset + ((SSpathfinder.practical_offset - 1) * world.tick_lag))
+		return
+	next_move_time = CEILING(next_move_time, world.tick_lag)
 	if(next_move_time < world.time + world.tick_lag)
 		next_move_time = world.time + world.tick_lag
-	//We move to another bucket, so we clean the reference from the former linked list
-	next = null
-	prev = null
 	var/list/bucket_list = SSpathfinder.bucket_list
 
 	src.next_move_time = next_move_time
