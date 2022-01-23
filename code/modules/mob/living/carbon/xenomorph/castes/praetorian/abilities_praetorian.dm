@@ -50,7 +50,7 @@
 		return FALSE
 	if(!iscarbon(target))
 		return FALSE
-	if(get_dist(target, owner) > 3)
+	if(!line_of_sight(owner, target, 3))
 		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE

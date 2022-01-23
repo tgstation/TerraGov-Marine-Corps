@@ -173,8 +173,7 @@
 	if(QDELETED(mover)) //Mover deleted from Cross/CanPass/Bump, do not proceed.
 		return FALSE
 	if(firstbump)
-		mover.Bump(firstbump)
-		return FALSE
+		return mover.Bump(firstbump)
 	return TRUE
 
 

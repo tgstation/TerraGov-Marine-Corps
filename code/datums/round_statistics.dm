@@ -54,6 +54,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/queen_screech = 0
 	var/now_pregnant = 0
 	var/sentinel_neurotoxin_stings = 0
+	var/ozelomelyn_stings = 0
 	var/defiler_defiler_stings = 0
 	var/defiler_neurogas_uses = 0
 	var/defiler_inject_egg_neurogas = 0

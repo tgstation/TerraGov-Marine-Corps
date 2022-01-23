@@ -359,8 +359,6 @@
 	var/stun = 1
 	///weaken value
 	var/weaken = 2
-	///stagger value
-	var/stagger = 2
 	///knockback value
 	var/knockback = 0
 
@@ -427,7 +425,6 @@
 	if (knockback)
 		stun = 1
 		weaken = 2
-		stagger = 2
 		knockback = 0
 		balloon_alert(user, "Selected mode: CRUSH.")
 		playsound(loc, 'sound/machines/switch.ogg', 25)
@@ -435,7 +432,6 @@
 
 	stun = 1
 	weaken = 1
-	stagger = 1
 	knockback = 1
 	balloon_alert(user, "Selected mode: KNOCKBACK.")
 	playsound(loc, 'sound/machines/switch.ogg', 25)
@@ -479,10 +475,7 @@
 		else
 			stun = 1
 
-	if(!M.IsStun() && !M.IsParalyzed()) //Prevent chain stunning.
+	if(!M.IsStun() && !M.IsParalyzed() && !isxenoqueen(M)) //Prevent chain stunning. Queen is protected.
 		M.apply_effects(stun,weaken)
-
-	if(!isxenoqueen(M))
-		M.adjust_stagger(stagger)
 
 	return ..()

@@ -80,6 +80,10 @@
 		return
 	invisibility = 0
 	playsound(user, thud_sound, 25, 1)
+
+	if(user.get_active_held_item() != src)
+		return
+
 	if(user.get_inactive_held_item())
 		user.visible_message("[user] catches [src] with the same hand!",span_notice(" You catch [src] as it spins in to your hand!"))
 		return

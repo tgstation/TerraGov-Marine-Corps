@@ -746,10 +746,10 @@
 /datum/action/xeno_action/activable/xeno_spit/use_ability(atom/A)
 	if(!owner.GetComponent(/datum/component/ai_controller)) //If its not an ai it will register to listen for clicks instead of use this proc. We want to call start_fire from here only if the owner is an ai.
 		return
-	start_fire(object = A)
+	start_fire(object = A, can_use_ability_flags = XACT_IGNORE_SELECTED_ABILITY) 
 
 ///Starts the xeno firing.
-/datum/action/xeno_action/activable/xeno_spit/proc/start_fire(datum/source, atom/object, turf/location, control, params)
+/datum/action/xeno_action/activable/xeno_spit/proc/start_fire(datum/source, atom/object, turf/location, control, params, can_use_ability_flags)
 	SIGNAL_HANDLER
 	var/list/modifiers = params2list(params)
 	if(((modifiers["right"] || modifiers["middle"]) && (modifiers["shift"] || modifiers["ctrl"] || modifiers["left"])) || \
@@ -757,7 +757,7 @@
 	(modifiers["left"] && !modifiers["shift"]))
 		return
 	var/mob/living/carbon/xenomorph/xeno = owner
-	if(!can_use_ability(object))
+	if(!can_use_ability(object, TRUE, can_use_ability_flags))
 		return fail_activate()
 	set_target(get_turf_on_clickcatcher(object, xeno, params))
 	if(!current_target)
@@ -869,6 +869,8 @@
 	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
 	target_flags = XABB_MOB_TARGET
 	use_state_flags = XACT_USE_BUCKLED
+	/// Whatever our victim is injected with.
+	var/sting_chemical = /datum/reagent/toxin/xeno_neurotoxin
 
 /datum/action/xeno_action/activable/neurotox_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -906,7 +908,18 @@
 	GLOB.round_statistics.sentinel_neurotoxin_stings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "sentinel_neurotoxin_stings")
 
-	X.recurring_injection(A, /datum/reagent/toxin/xeno_neurotoxin, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
+	X.recurring_injection(A, sting_chemical, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
+
+//Ozelomelyn Sting
+/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn
+	name = "Ozelomelyn Sting"
+	action_icon_state = "drone_sting"
+	mechanics_text = "A channeled melee attack that injects the target with Ozelomelyn over a few seconds, purging chemicals and dealing minor toxin damage to a moderate cap while inside them."
+	ability_name = "ozelomelyn sting"
+	cooldown_timer = 25 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_OZELOMELYN_STING
+	plasma_cost = 100
+	sting_chemical = /datum/reagent/toxin/xeno_ozelomelyn
 
 
 // ***************************************

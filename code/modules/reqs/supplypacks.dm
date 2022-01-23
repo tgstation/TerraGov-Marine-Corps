@@ -319,7 +319,7 @@ WEAPONS
 /datum/supply_packs/weapons/autosniper
 	name = "T-81 IFF Auto Sniper kit"
 	contains = list(/obj/item/weapon/gun/rifle/standard_autosniper)
-	cost = 30
+	cost = 50
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/autosniper_regular
@@ -449,10 +449,15 @@ WEAPONS
 	cost = 5
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/weapons/xray_gun
+	name = "TE-X Laser Rifle"
+	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/xray)
+	cost = 40
+
 /datum/supply_packs/weapons/rocketsledge
 	name = "Rocket Sledge"
 	contains = list(/obj/item/weapon/twohanded/rocketsledge)
-	cost = 50
+	cost = 60
 
 /*******************************************************************************
 EXPLOSIVES
@@ -1365,7 +1370,7 @@ VEHICLES
 
 /datum/supply_packs/vehicles/uv_light_ammo
 	name = "Light UV ammo"
-	contains = list(/obj/item/uav_turret)
+	contains = list(/obj/item/ammo_magazine/box11x35mm)
 	cost = 10
 	containertype = /obj/structure/closet/crate/ammo
 
@@ -1389,98 +1394,101 @@ FACTORY
 	group = "Factory"
 	containertype = /obj/structure/closet/crate
 
-/datum/supply_packs/factory/starter
-	name = "Starter Pack"
-	contains = list(
-		/obj/machinery/factory/cutter,
-		/obj/machinery/factory/heater,
-		/obj/machinery/factory/flatter,
-		/obj/machinery/factory/former,
-		/obj/machinery/factory/reconstructor,
-		/obj/machinery/outputter,
-		/obj/item/paper/factoryhowto,
-	)
-	cost = 40
-
 /datum/supply_packs/factory/cutter
 	name = "Industrial cutter"
 	contains = list(/obj/machinery/factory/cutter)
-	cost = 10
+	cost = 5
 
 /datum/supply_packs/factory/heater
 	name = "Industrial heater"
 	contains = list(/obj/machinery/factory/heater)
-	cost = 10
+	cost = 5
 
 /datum/supply_packs/factory/flatter
 	name = "Industrial flatter"
 	contains = list(/obj/machinery/factory/flatter)
-	cost = 10
+	cost = 5
 
 /datum/supply_packs/factory/former
 	name = "Industrial former"
 	contains = list(/obj/machinery/factory/former)
-	cost = 10
+	cost = 5
 
 /datum/supply_packs/factory/reconstructor
 	name = "Industrial reconstructor"
 	contains = list(/obj/machinery/factory/reconstructor)
-	cost = 10
+	cost = 5
 
 /datum/supply_packs/factory/outputter
 	name = "Industrial Unboxer"
 	contains = list(/obj/machinery/outputter)
-	cost = 10
+	cost = 5
 
 /datum/supply_packs/factory/phosphosrefill
 	name = "Phosphorus-resistant plates refill"
-	contains = list(/obj/item/factory_refill/phosnade)
-	cost = 30
+	contains = list(/obj/item/factory_refill/phosnade_refill)
+	cost = 60
 
 /datum/supply_packs/factory/bignaderefill
 	name = "Rounded M15 plates refill"
-	contains = list(/obj/item/factory_refill/bignade)
-	cost = 10
+	contains = list(/obj/item/factory_refill/bignade_refill)
+	cost = 50
 
 /datum/supply_packs/factory/sadar_refill_he
 	name = "SADAR HE missile assembly refill"
-	contains = list(/obj/item/factory_refill/sadar_he)
-	cost = 40
+	contains = list(/obj/item/factory_refill/sadar_he_refill)
+	cost = 100
 
 /datum/supply_packs/factory/sadar_refill_ap
 	name = "SADAR AP missile assembly refill"
-	contains = list(/obj/item/factory_refill/sadar_ap)
-	cost = 40
+	contains = list(/obj/item/factory_refill/sadar_ap_refill)
+	cost = 110
 
 /datum/supply_packs/factory/sadar_refill_wp
 	name = "SADAR WP missile assembly refill"
-	contains = list(/obj/item/factory_refill/sadar_wp)
-	cost = 40
+	contains = list(/obj/item/factory_refill/sadar_wp_refill)
+	cost = 110
 
 /datum/supply_packs/factory/standard_recoilless_refill
 	name = "Recoilless standard missile assembly refill"
-	contains = list(/obj/item/factory_refill/normal_rr_missile)
+	contains = list(/obj/item/factory_refill/normal_rr_missile_refill)
 	cost = 20
 
 /datum/supply_packs/factory/light_recoilless_refill
 	name = "Recoilless light missile assembly refill"
-	contains = list(/obj/item/factory_refill/light_rr_missile)
+	contains = list(/obj/item/factory_refill/light_rr_missile_refill)
 	cost = 20
 
 /datum/supply_packs/factory/pizzarefill
 	name = "Nanotrasen \"Eat healthy!\" margerita pizza kit refill"
-	contains = list(/obj/item/factory_refill/pizza)
+	contains = list(/obj/item/factory_refill/pizza_refill)
 	cost = 29 //allows a one point profit if all pizzas are processed and sold back to ASRS
 
 /datum/supply_packs/factory/smartrifle_ammo_refill
 	name = "Smart rifle bullet parts refill"
-	contains = list(/obj/item/factory_refill/smartgunner_rifle_box)
-	cost = 20
+	contains = list(/obj/item/factory_refill/smartgunner_rifle_box_refill)
+	cost = 30
+
+/datum/supply_packs/factory/smartgun_magazine_refill
+	name = "Smart machinegun drum parts refill"
+	contains = list(/obj/item/factory_refill/smartgunner_machinegun_magazine_refill)
+	cost = 50
+
+/datum/supply_packs/factory/autosniper_magazine_refill
+	name = "T-81 IFF Auto Sniper magazine assembly refill"
+	contains = list(/obj/item/factory_refill/auto_sniper_magazine_refill)
+	cost = 40
+
+/datum/supply_packs/factory/scout_rifle_magazine_refill
+	name = "TX-8 scout rifle magazine assembly refill"
+	contains = list(/obj/item/factory_refill/scout_rifle_magazine_refill)
+	cost = 50
 
 /datum/supply_packs/factory/claymorerefill
 	name = "Claymore parts refill"
-	contains = list(/obj/item/factory_refill/claymore)
-	cost = 10
+	contains = list(/obj/item/factory_refill/claymore_refill)
+	cost = 20
+
 
 /datum/supply_packs/factory/mateba_speedloader_refill
 	name = "Mateba autorevolver speedloader assembly refill"
@@ -1495,4 +1503,4 @@ FACTORY
 /datum/supply_packs/factory/scout_rifle_magazine_refill
 	name = "TX-8 scout rifle magazine assembly refill"
 	contains = list(/obj/item/factory_refill/scout_rifle_magazine_refill)
-	cost = 50
+	cost = 90

@@ -46999,6 +46999,10 @@
 	},
 /turf/open/floor/plating,
 /area/prison/hangar_storage/research)
+"tsM" = (
+/obj/structure/sign/safety/hazard,
+/turf/closed/wall/r_wall/prison,
+/area/prison/hangar/main)
 "ttr" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/prison/bright_clean,
@@ -107153,7 +107157,7 @@ aNH
 vsh
 aXt
 aYL
-aYL
+tsM
 aYL
 aXt
 aXt

@@ -16,7 +16,7 @@
 		ghost.reenter_corpse()
 		return
 
-	var/mob/dead/observer/ghost = M.ghostize(TRUE, FALSE)
+	var/mob/dead/observer/ghost = M.ghostize(TRUE, TRUE)
 
 	log_admin("[key_name(ghost)] admin ghosted at [AREACOORD(ghost)].")
 	if(M.stat != DEAD)
@@ -83,7 +83,8 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/multiplicator_buff_wanted = input("Input the factor that will multiply xeno stat", "1 is normal stat, 2 is doubling health, regen and melee attack") as num
+	var/multiplicator_buff_wanted = tgui_input_number(usr, "Input the factor that will multiply xeno stat", "1 is normal stat, 2 is doubling health, regen and melee attack")
+
 	if(!multiplicator_buff_wanted)
 		return
 	GLOB.xeno_stat_multiplicator_buff = multiplicator_buff_wanted
@@ -573,6 +574,7 @@
 	set category = "Admin"
 	set name = "dsay"
 	set hidden = TRUE
+
 
 	if(!check_rights(R_ADMIN|R_MENTOR))
 		return

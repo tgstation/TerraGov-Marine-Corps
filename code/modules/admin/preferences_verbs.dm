@@ -53,7 +53,7 @@
 	set category = "Preferences"
 	set name = "OOC Text Color"
 
-	if(!check_rights(R_FUN))
+	if(!check_rights(R_COLOR))
 		return
 
 	var/new_ooccolor = input(src, "Please select your OOC colour", "OOC colour") as color|null

@@ -14861,7 +14861,7 @@
 	},
 /area/space)
 "jYs" = (
-/obj/machinery/computer/cryopod/medical{
+/obj/machinery/computer/cryopod{
 	dir = 8
 	},
 /turf/open/floor/prison/whitegreen/corner{
@@ -16250,6 +16250,13 @@
 /obj/structure/dropship_equipment/sentry_holder,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
+"mqT" = (
+/obj/effect/decal/warning_stripes/thick,
+/obj/structure/rack,
+/obj/item/conveyor_switch_construct,
+/obj/item/stack/conveyor/thirty,
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo)
 "mrg" = (
 /obj/structure/rack,
 /obj/item/circuitboard/computer/arcade,
@@ -17234,6 +17241,13 @@
 	dir = 4
 	},
 /area/space)
+"obO" = (
+/obj/structure/rack,
+/obj/item/tool/screwdriver,
+/obj/item/tool/wrench,
+/obj/item/tool/crowbar,
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo)
 "oct" = (
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 10
@@ -47024,7 +47038,7 @@ aaa
 nzi
 mDu
 bOh
-bPM
+obO
 fCm
 qod
 abV
@@ -47281,7 +47295,7 @@ aaa
 nzi
 mDu
 bOh
-bPM
+mqT
 fCm
 qod
 abV
