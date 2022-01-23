@@ -25,12 +25,15 @@
 	var/is_corruptible = TRUE
 	///whether they should generate corruption if corrupted
 	var/corruption_on = FALSE
+	///The minimap blip
+	var/datum/minimap/minimap
 
 /obj/machinery/power/geothermal/Initialize()
 	. = ..()
 	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), .proc/activate_corruption)
 	update_icon()
 	GLOB.geothermal_generator_ammount++
+	minimap = new(src, "generator", MINIMAP_FLAG_ALL)
 
 /obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
 	. = ..()

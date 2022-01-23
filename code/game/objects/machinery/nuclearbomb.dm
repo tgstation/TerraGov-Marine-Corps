@@ -30,18 +30,21 @@
 	var/obj/item/disk/nuclear/red/r_auth
 	var/obj/item/disk/nuclear/green/g_auth
 	var/obj/item/disk/nuclear/blue/b_auth
-
+	///The minimap blip
+	var/datum/minimap/minimap
 
 /obj/machinery/nuclearbomb/Initialize()
 	. = ..()
 	GLOB.nuke_list += src
 	countdown = new(src)
 	name = "[initial(name)] ([UNIQUEID])"
+	minimap = new(src, "nuke", MINIMAP_FLAG_ALL)
 
 
 /obj/machinery/nuclearbomb/Destroy()
 	GLOB.nuke_list -= src
 	QDEL_NULL(countdown)
+	qdel(minimap)
 	return ..()
 
 
