@@ -136,6 +136,8 @@ Administrative related.
 
 /datum/config_entry/flag/looc_enabled
 
+/datum/config_entry/flag/disable_minimap
+
 /datum/config_entry/number/lobby_countdown
 	config_entry_value = 180
 

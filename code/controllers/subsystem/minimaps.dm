@@ -9,16 +9,14 @@ SUBSYSTEM_DEF(minimap)
 	var/list/datum/game_map/minimaps = list()
 
 /datum/controller/subsystem/minimap/Initialize(start_timeofday)
+	var/datum/game_map/GM
 	for(var/datum/space_level/SL AS in SSmapping.z_list)
 		if(SL.traits[ZTRAIT_GROUND] || SL.traits[ZTRAIT_MARINE_MAIN_SHIP])
-			minimaps += new /datum/game_map(SL)
+			GM = new /datum/game_map(SL)
+			if(!CONFIG_GET(flag/disable_minimap))
+				GM.generate_map()
+			minimaps += GM
 
-	for(var/datum/game_map/GM as anything in minimaps)
-		var/F = file("[MINIMAP_FILE_DIR][GM.name].dmi")
-		if(fexists(F))
-			GM.set_generated_map(F)
-		else
-			GM.generate_map()
 	return ..()
 
 

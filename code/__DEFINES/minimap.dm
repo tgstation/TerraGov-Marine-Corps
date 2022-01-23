@@ -6,5 +6,4 @@
 
 #define MINIMAP_FLAG_EXCAVATION_ZONE (1<<3)
 
-
 #define MINIMAP_FILE_DIR "_maps/minimaps/"
