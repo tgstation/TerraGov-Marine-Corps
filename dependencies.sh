@@ -11,8 +11,8 @@ export BYOND_MINOR=1557
 export RUST_G_VERSION=0.4.9
 
 #node version
-export NODE_VERSION=12
-export NODE_VERSION_PRECISE=12.22.4
+export NODE_VERSION=16
+export NODE_VERSION_PRECISE=16.13.1
 
 # SpacemanDMM git tag
 export SPACEMAN_DMM_VERSION=suite-1.7.1
@@ -22,4 +22,4 @@ export SPACEMAN_DMM_COMMIT_HASH=3588de97ff09fdd02d96f178392f3c59b19ebfc4
 export EXTOOLS_VERSION=v0.0.7
 
 # Python version for mapmerge and other tools
-export PYTHON_VERSION=3.6.8
+export PYTHON_VERSION=3.7.9

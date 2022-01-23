@@ -27,7 +27,7 @@
 	icon_dead = "german_shep_dead"
 
 
-/mob/living/simple_animal/corgi/Ranger
+/mob/living/simple_animal/corgi/ranger
 	name = "Ranger"
 	real_name = "Ranger"
 	gender = MALE
@@ -37,6 +37,27 @@
 	icon_dead = "ranger_dead"
 	health = 300
 	maxHealth = 300 //Foreshadowing the health of other K9
+
+
+/mob/living/simple_animal/corgi/bullterrier
+	name = "\improper bull terrier"
+	real_name = "bull terrier"
+	desc = "It's a bull terrier. Is that the Target dog?"
+	icon = 'icons/mob/pets.dmi'
+	icon_state = "bullterrier"
+	icon_living = "bullterrier"
+	icon_dead = "bullterrier_dead"
+
+
+/mob/living/simple_animal/corgi/walten
+	name = "Walten Clements"
+	gender = MALE
+	desc = "Sir, this is chief Walten Clements. He resides in medbay as this is also his realms. His minions wear scrubs for bacterial control, and they pay him in pets and treats. Do not be concern if he gets COPD as he is kept in a healthy diet full of black coffee and an exercise regimen with plenty of cardio and stretching. His daily concern is accounting; his supply of treats must be met with acute attention. Good day to you, marine."
+	icon = 'icons/mob/pets.dmi'
+	icon_state = "walten"
+	icon_living = "walten"
+	icon_dead = "walten_dead"
+	health = 300
 
 
 /mob/living/simple_animal/corgi/exoticcorgi
@@ -53,7 +74,7 @@
 	add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
 
 
-/mob/living/simple_animal/corgi/Ian
+/mob/living/simple_animal/corgi/ian
 	name = "Ian"
 	real_name = "Ian"
 	gender = MALE
@@ -110,7 +131,7 @@
 	icon_dead = "void_puppy_dead"
 
 
-/mob/living/simple_animal/corgi/Lisa
+/mob/living/simple_animal/corgi/lisa
 	name = "Lisa"
 	real_name = "Lisa"
 	gender = FEMALE

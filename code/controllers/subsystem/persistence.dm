@@ -35,6 +35,7 @@ SUBSYSTEM_DEF(persistence)
 		/datum/season_datum/weapons/guns/copsandrobbers_seasonal,
 		/datum/season_datum/weapons/guns/smg_seasonal,
 		/datum/season_datum/weapons/guns/storm_seasonal,
+		/datum/season_datum/weapons/guns/shotgun_seasonal
 		)
 	)
 	///The saved list of custom outfits names
@@ -190,8 +191,8 @@ SUBSYSTEM_DEF(persistence)
 	name = "AK47 and M16"
 	description = "Rifle guns, previously at import"
 	item_list = list(
-		/obj/item/weapon/gun/rifle/ak47 = -1,
-		/obj/item/ammo_magazine/rifle/ak47 = -1,
+		/obj/item/weapon/gun/rifle/mpi_km = -1,
+		/obj/item/ammo_magazine/rifle/mpi_km = -1,
 		/obj/item/weapon/gun/rifle/m16 = -1,
 		/obj/item/ammo_magazine/rifle/m16 = -1,
 		)
@@ -286,5 +287,13 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/weapon/gun/smg/ppsh = -1,
 		/obj/item/ammo_magazine/smg/ppsh = -1,
 		/obj/item/ammo_magazine/smg/ppsh/extended = -1,
+		)
+
+/datum/season_datum/weapons/guns/shotgun_seasonal
+	name = "Pumps"
+	description = "Two classic pump shotguns from older times."
+	item_list = list(
+		/obj/item/weapon/gun/shotgun/combat = -1,
+		/obj/item/weapon/gun/shotgun/pump/cmb = -1,
 		)
 

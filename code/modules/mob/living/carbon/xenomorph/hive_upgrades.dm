@@ -229,6 +229,14 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	priority_announce("WARNING: Psychic anomaly detected at [get_area(buyer)]. Assault of the area reccomended.", "TGMC Intel Division")
 	return ..()
 
+/datum/hive_upgrade/xenos/smart_minions
+	name = GHOSTS_CAN_TAKE_MINIONS
+	desc = "Allow ghosts to take control of minions"
+	icon = "smartminions"
+	flags_gamemode = ABILITY_DISTRESS
+	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
+	psypoint_cost = 500
+
 /datum/hive_upgrade/primordial
 	category = "Primordial"
 	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
@@ -282,6 +290,12 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Unlocks the primordial crushers advance. An ability that allows them to charge up their charge and release it in a sudden burst."
 	psypoint_cost = 225
 	icon = "primocrush"
+
+/datum/hive_upgrade/primordial/gorger
+	name = PRIMORDIAL_GORGER
+	desc = "Unlocks the primordial gorger's rejuvenate. An ability that allows them to significantly reduce incoming harm at the cost of being slown down."
+	psypoint_cost = 225
+	icon = "primogorger"
 
 /datum/hive_upgrade/primordial/hunter
 	name = PRIMORDIAL_HUNTER

@@ -17,6 +17,7 @@
 #define FACTION_HIVEBOT "Hivebot"
 #define FACTION_HOSTILE "Hostile"
 #define FACTION_PIRATE "Pirate"
+#define FACTION_VALHALLA "Valhalla"
 
 //Alignement are currently only used by req.
 ///Mob with a neutral alignement cannot be sold by anyone

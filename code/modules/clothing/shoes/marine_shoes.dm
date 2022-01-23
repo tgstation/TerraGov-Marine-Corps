@@ -24,11 +24,14 @@
 		/obj/item/weapon/gun/shotgun/double/derringer,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/stack/throwing_knife,
+		/obj/item/storage/box/MRE,
 	)
 
 /obj/item/clothing/shoes/marine/Initialize()
 	. = ..()
 	pockets = new pockets(src)
+	RegisterSignal(pockets, COMSIG_ATOM_UPDATE_ICON, /atom/proc/update_icon)
+	update_icon()
 
 /obj/item/clothing/shoes/marine/Destroy()
 	QDEL_NULL(pockets)
@@ -61,11 +64,11 @@
 	pockets?.emp_act(severity)
 	return ..()
 
-/obj/item/clothing/shoes/marine/update_icon()
-	if(length(pockets.contents))
-		icon_state = "[initial(icon_state)]-knife"
-	else
-		icon_state = initial(icon_state)
+/obj/item/clothing/shoes/marine/update_icon_state()
+	icon_state = initial(icon_state)
+	for(var/atom/item_in_pocket AS in pockets.contents)
+		if(istype(item_in_pocket, /obj/item/weapon/combat_knife) || istype(item_in_pocket, /obj/item/attachable/bayonetknife) || istype(item_in_pocket, /obj/item/stack/throwing_knife))
+			icon_state += "-knife"
 
 /obj/item/clothing/shoes/marine/full
 	pockets = /obj/item/storage/internal/shoes/boot_knife/full

@@ -260,6 +260,7 @@
 	icon_state = "pepperball_mini"
 	default_ammo = /datum/ammo/bullet/pepperball/pepperball_mini
 	max_rounds = 20
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/ammo_magazine/minigun_powerpack
 	name = "\improper T-100 powerpack"

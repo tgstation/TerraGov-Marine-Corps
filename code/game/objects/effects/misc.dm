@@ -110,12 +110,6 @@
 	if(isobj(mover)) //No grenades/bullets should cross this
 		return FALSE
 	if(isxeno(mover))
-		var/mob/living/carbon/xenomorph/moving_xeno = mover
-		for(var/tummy_resident in moving_xeno.stomach_contents)//Dead code, to be removed
-			if(ishuman(tummy_resident))
-				var/mob/living/carbon/human/H = tummy_resident
-				if(!HAS_TRAIT(H, TRAIT_UNDEFIBBABLE))
-					return FALSE
 		return TRUE
 	if(ishuman(mover) && !issynth(mover))
 		var/mob/living/carbon/human/H = mover

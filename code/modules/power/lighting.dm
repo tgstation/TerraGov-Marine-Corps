@@ -238,7 +238,8 @@
 
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update(trigger = TRUE, toggle_on = TRUE)
-	if(status == LIGHT_OK && toggle_on)
+	var/area/A = get_area(src)
+	if(A.lightswitch && A.power_light && status == LIGHT_OK && toggle_on)
 		var/BR = brightness
 		var/PO = bulb_power
 		var/CO = bulb_colour

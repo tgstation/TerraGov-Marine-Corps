@@ -171,6 +171,16 @@
 	///How many tiles the Crest toss ability throws the victim.
 	var/crest_toss_distance = 0
 
+	// *** Gorger Abilities *** //
+	///Maximum amount of overheal that can be gained
+	var/overheal_max = 150
+	///Amount of plasma gained from draining someone
+	var/drain_plasma_gain = 0
+	///Amount of plasma gained from clashing after activating carnage
+	var/carnage_plasma_gain = 0
+	///Amount of plasma drained each tick while feast buff is actuve
+	var/feast_plasma_drain = 0
+
 	// *** Queen Abilities *** //
 	///Amount of leaders allowed
 	var/queen_leader_limit = 0
@@ -212,13 +222,13 @@
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
 	xenomorph.AddComponent(/datum/component/bump_attack)
-	if(caste_flags & CAN_RIDE_CRUSHER)
+	if(caste_flags & CASTE_CAN_RIDE_CRUSHER)
 		xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, /mob/living/carbon/xenomorph.proc/grabbed_self_attack)
 
 /datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
 	var/datum/component/bump_attack = xenomorph.GetComponent(/datum/component/bump_attack)
 	bump_attack?.RemoveComponent()
-	if(caste_flags & CAN_RIDE_CRUSHER)
+	if(caste_flags & CASTE_CAN_RIDE_CRUSHER)
 		xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)
 
 /mob/living/carbon/xenomorph
@@ -268,7 +278,8 @@
 	var/max_grown = 200
 	var/time_of_birth
 
-	var/list/stomach_contents
+	///A mob the xeno ate
+	var/mob/living/carbon/eaten_mob
 
 	var/evolution_stored = 0 //How much evolution they have stored
 
@@ -332,6 +343,9 @@
 
 	//Pounce vars
 	var/usedPounce = 0
+
+	// Gorger vars
+	var/overheal = 0
 
 	// Warrior vars
 	var/agility = 0		// 0 - upright, 1 - all fours

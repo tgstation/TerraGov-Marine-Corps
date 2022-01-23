@@ -410,7 +410,6 @@
 			return FALSE
 		set_throwing(FALSE) //Resert throwing since something was hit.
 		return TRUE
-	SEND_SIGNAL(src, COMSIG_XENO_NONE_THROW_HIT)
 	set_throwing(FALSE) //Resert throwing since something was hit.
 	return ..() //Do the parent otherwise, for turfs.
 
@@ -664,10 +663,10 @@
 
 ///Eject the mob inside our belly, and putting it in a cocoon if needed
 /mob/living/carbon/xenomorph/proc/eject_victim(make_cocoon = FALSE, turf/eject_location = loc)
-	if(!LAZYLEN(stomach_contents))
+	if(!eaten_mob)
 		return
-	var/mob/living/carbon/victim = stomach_contents[1]
-	LAZYREMOVE(stomach_contents, victim)
+	var/mob/living/carbon/victim = eaten_mob
+	eaten_mob = null
 	if(make_cocoon)
 		ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 		if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))

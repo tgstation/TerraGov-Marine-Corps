@@ -60,6 +60,7 @@
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen,
+		/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/toggle_queen_zoom,
 		/datum/action/xeno_action/watch_xeno,
@@ -69,6 +70,7 @@
 		/datum/action/xeno_action/deevolve,
 		/datum/action/xeno_action/rally_hive,
 		/datum/action/xeno_action/rally_minion,
+		/datum/action/xeno_action/activable/command_minions,
 		/datum/action/xeno_action/set_agressivity,
 	)
 
@@ -218,6 +220,7 @@
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen,
+		/datum/action/xeno_action/activable/neurotox_sting,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/toggle_queen_zoom,
 		/datum/action/xeno_action/watch_xeno,

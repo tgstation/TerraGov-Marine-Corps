@@ -32,6 +32,8 @@
 #define BUMP_ATTACKABLE (1<<15)
 #define SHOW_ON_MINIMAP	(1<<16)
 #define TURF_HIDE_MINIMAP (1<<17)
+///This atom will not be qdeled when a shuttle lands on it; it will just move onto the shuttle tile. It will stay on the ground when the shuttle takes off
+#define SHUTTLE_IMMUNE (1<<18)
 /// Should we use the initial icon for display? Mostly used by overlay only objects
 #define HTML_USE_INITAL_ICON_1 (1<<21)
 

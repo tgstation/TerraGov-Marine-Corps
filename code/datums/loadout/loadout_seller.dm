@@ -17,7 +17,7 @@
 	var/unique_items_list = list()
 	/// Assoc list of items in visible slots.
 	var/list/item_list = list()
-	///The faction of the seller. Only used in Civil War
+	///The faction of the seller.
 	var/faction = FACTION_NEUTRAL
 
 /datum/loadout_seller/New(faction)

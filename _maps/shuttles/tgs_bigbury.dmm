@@ -551,12 +551,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
-"cM" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
 "cR" = (
 /obj/machinery/door/window/right{
 	dir = 8
@@ -1016,6 +1010,13 @@
 "TE" = (
 /turf/open/floor/mainship/tcomms,
 /area/shuttle/canterbury)
+"TS" = (
+/obj/machinery/vending/tool,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/orange/full,
+/area/shuttle/canterbury)
 "Ub" = (
 /obj/machinery/light{
 	dir = 8
@@ -1345,7 +1346,7 @@ an
 ac
 uT
 sR
-ab
+TS
 bw
 Ot
 ap
@@ -1378,7 +1379,7 @@ an
 ac
 ac
 ac
-cM
+ac
 ac
 as
 ac

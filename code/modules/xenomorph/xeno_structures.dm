@@ -697,7 +697,7 @@ TUNNEL
 	bound_width = 96
 	bound_height = 96
 	max_integrity = 1000
-	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
+	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE | PLASMACUTTER_IMMUNE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL
 	///How many larva points one silo produce in one minute
 	var/larva_spawn_rate = 0.5
@@ -757,7 +757,6 @@ TUNNEL
 		playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
 	return ..()
 
-
 /obj/structure/xeno/silo/Destroy()
 	GLOB.xeno_resin_silos -= src
 
@@ -767,9 +766,9 @@ TUNNEL
 
 	silo_area = null
 	center_turf = null
+
 	STOP_PROCESSING(SSslowprocess, src)
 	return ..()
-
 
 /obj/structure/xeno/silo/examine(mob/user)
 	. = ..()

@@ -195,3 +195,5 @@
 		src.operating = 0
 		update_icon()
 
+/obj/machinery/gibber/nopower
+	use_power = NO_POWER_USE

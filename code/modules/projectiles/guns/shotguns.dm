@@ -114,7 +114,7 @@
 
 /obj/item/weapon/gun/shotgun/combat/masterkey
 	name = "masterkey shotgun"
-	desc = "A weapon-mounted, three-shot shotgun. Reloadable with buckshot. The short barrel reduces the ammo's effectiveness, but allows it to be fired one handed."
+	desc = "A weapon-mounted, three-shot shotgun. Reloadable with any normal 12 gauge shell. The short barrel reduces the ammo's effectiveness drastically in exchange for fitting as a attachment.."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "masterkey"
 	max_chamber_items = 2
@@ -125,7 +125,10 @@
 	detach_delay = 3 SECONDS
 	flags_gun_features = GUN_IS_ATTACHMENT|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_CAN_POINTBLANK|GUN_WIELDED_FIRING_ONLY
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
-	recoil = 0
+	damage_mult = 0.6 // 40% less damage, but MUCH higher falloff.
+	damage_falloff_mult = 2
+	scatter = 15
+	fire_delay = 20 // Base shotgun fire delay.
 	pixel_shift_x = 14
 	pixel_shift_y = 18
 
@@ -498,17 +501,17 @@
 
 /obj/item/weapon/gun/shotgun/pump/lever/repeater
 	name = "Leicester Repeater"
-	desc = "The gun that won the west or so they say. But space is a very different kind of frontier all together, chambered for .44 magnum."
+	desc = "The gun that won the west or so they say. But space is a very different kind of frontier all together, chambered for .45-70 Governemnt."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "leicrepeater"
 	item_state = "leicrepeater"
 	fire_sound = 'sound/weapons/guns/fire/leveraction.ogg'//I like how this one sounds.
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
-	caliber = CALIBER_44 //codex
+	caliber = CALIBER_4570 //codex
 	load_method = SINGLE_CASING //codex
 	max_chamber_items = 13 //codex
-	default_ammo_type = /datum/ammo/bullet/revolver/tp44
+	default_ammo_type = /datum/ammo/bullet/rifle/repeater
 	gun_skill_category = GUN_SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
 	flags_item_map_variant = NONE
@@ -530,7 +533,6 @@
 	fire_delay = 10
 	accuracy_mult = 1.20
 	accuracy_mult_unwielded = 0.8
-	damage_mult = 2
 	damage_falloff_mult = 0.5
 	scatter = -5
 	scatter_unwielded = 15

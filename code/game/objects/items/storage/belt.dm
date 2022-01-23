@@ -63,6 +63,7 @@
 		/obj/item/t_scanner,
 		/obj/item/analyzer,
 		/obj/item/tool/taperoll/engineering,
+		/obj/item/tool/solderingtool,
 	)
 
 

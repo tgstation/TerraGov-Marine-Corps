@@ -511,3 +511,7 @@ then, for every time you included a field, increment fields. */
 	name = "Notice from Terragov"
 	info = {"After a routine inspection from the Terragov Chemical Regulatory comittee, we have found that this vessel has, one, an unlicensed access issue that must be amended, and two, nearly double the authorized deployment of chemical vendors. <BR>
 	We are updating the access requirements on your chemistry bay, as well as confiscating the additional vendors until further notice. Have a nice day."}
+
+/obj/item/paper/memorial
+	name = "Memorial Note"
+	info = {"May the souls of our fallen brothers be at rest; not that we may find solace in their passing, but that we should take our due initiative to press on in their memory."}

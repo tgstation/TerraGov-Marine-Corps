@@ -38,7 +38,6 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/warrior_flings = 0
 	var/warrior_punches = 0
 	var/warrior_lunges = 0
-	var/warrior_limb_rips = 0
 	var/warrior_agility_toggles = 0
 	var/warrior_grabs = 0
 	var/defender_headbutts = 0
@@ -55,15 +54,13 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/queen_screech = 0
 	var/now_pregnant = 0
 	var/sentinel_neurotoxin_stings = 0
+	var/ozelomelyn_stings = 0
 	var/defiler_defiler_stings = 0
 	var/defiler_neurogas_uses = 0
 	var/defiler_inject_egg_neurogas = 0
 	var/defiler_reagent_slashes = 0
-	var/larval_growth_stings = 0
 	var/xeno_unarmed_attacks = 0
 	var/xeno_bump_attacks = 0
-	var/xeno_headbites = 0
-	var/xeno_silo_corpses = 0
 	var/xeno_rally_hive = 0
 	var/hivelord_healing_infusions = 0
 	var/spitter_acid_sprays = 0

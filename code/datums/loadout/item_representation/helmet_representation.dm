@@ -36,13 +36,8 @@
 	modular_helmet.current_variant = (current_variant in modular_helmet.icon_state_variants) ? current_variant : initial(modular_helmet.current_variant)
 	for(var/datum/item_representation/armor_module/armor_attachement AS in attachments)
 		armor_attachement.install_on_armor(seller, modular_helmet, user)
-	if(!greyscale_colors)
-		modular_helmet.update_icon()
-		return
-	if(seller.faction == FACTION_NEUTRAL)
+	if(greyscale_colors)
 		modular_helmet.set_greyscale_colors(greyscale_colors)
-		return
-	modular_helmet.limit_colorable_colors(seller.faction)
 	modular_helmet.update_icon()
 
 /datum/item_representation/modular_helmet/get_tgui_data()

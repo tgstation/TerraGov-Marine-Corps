@@ -408,7 +408,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			to_chat(owner, span_xenowarning("We can't blink into this area!"))
 		return FALSE
 
-	if(!owner.line_of_sight(T)) //Needs to be in line of sight.
+	if(!line_of_sight(owner, T)) //Needs to be in line of sight.
 		if(!silent)
 			to_chat(owner, span_xenowarning("We can't blink without line of sight to our destination!"))
 		return FALSE
@@ -585,7 +585,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			to_chat(owner, span_xenowarning("Our target is too far away! It must be [distance - WRAITH_BANISH_RANGE] tiles closer!"))
 		return FALSE
 
-	if(!owner.line_of_sight(A)) //Needs to be in line of sight.
+	if(!line_of_sight(owner, A)) //Needs to be in line of sight.
 		if(!silent)
 			to_chat(owner, span_xenowarning("We can't banish without line of sight to our target!"))
 		return FALSE

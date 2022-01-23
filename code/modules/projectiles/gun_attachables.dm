@@ -196,6 +196,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(!isgun(detaching_item))
 		return
 
+	activate(user, TRUE)
+
 	master_gun.accuracy_mult				-= accuracy_mod
 	master_gun.accuracy_mult_unwielded		-= accuracy_unwielded_mod
 	master_gun.damage_mult					-= damage_mod
@@ -255,13 +257,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/hydro_cannon/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
 	if(G == user.get_active_held_item() || G == user.get_inactive_held_item() || CHECK_BITFIELD(G.flags_item, IS_DEPLOYED))
-		G.unique_action(user)
+		G.do_unique_action(user)
 		return
 	if(activate(user)) //success
 		playsound(user, activation_sound, 15, 1)
 
 ///Called when the attachment is activated.
-/obj/item/attachable/proc/activate(mob/user) //This is for activating stuff like flamethrowers, or switching weapon modes, or flashlights.
+/obj/item/attachable/proc/activate(mob/user, turn_off) //This is for activating stuff like flamethrowers, or switching weapon modes, or flashlights.
 	return TRUE
 
 ///Called when the attachment is trying to be attached. If the attachment is allowed to go through, return TRUE.
@@ -875,9 +877,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_y = 13
 	flags_attach_features = NONE
 
-/obj/item/attachable/stock/ak47
-	name = "AK-47 wooden stock"
-	desc = "A metallic stock with a wooden paint coating, made to fit the AK-47 replica."
+/obj/item/attachable/stock/mpi_km
+	name = "MPi-KM wooden stock"
+	desc = "A metallic stock with a wooden paint coating, made to fit the MPi-KM."
 	icon_state = "ak47stock"
 	wield_delay_mod = 0.4 SECONDS
 	pixel_shift_x = 32
@@ -1311,6 +1313,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		to_chat(user, span_notice("You feel the [src] loosen around your wrist!"))
 		playsound(user, 'sound/weapons/fistunclamp.ogg', 25, 1, 7)
 		icon_state = "lace"
+	else if(turn_off)
+		return
 	else
 		if(user.do_actions)
 			return
@@ -1386,16 +1390,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	detach_delay = 0
 	gun_attachment_offset_mod = list("muzzle_x" = 8)
 
-
-/obj/item/attachable/slavicbarrel
-	name = "sniper barrel"
-	icon_state = "svdbarrel"
-	desc = "A heavy barrel. CANNOT BE REMOVED."
-	slot = ATTACHMENT_BARREL_MOD
-	pixel_shift_x = -40
-	pixel_shift_y = 0
-	flags_attach_features = NONE
-
 /obj/item/attachable/buildasentry
 	name = "\improper Build-A-Sentry Attachment System"
 	icon = 'icons/Marine/sentry.dmi'
@@ -1404,50 +1398,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	slot = ATTACHMENT_SLOT_RAIL
 	pixel_shift_x = 10
 	pixel_shift_y = 18
-	///Battery of the deployed sentry. This is stored here only when the this is not attached to a gun.
-	var/obj/item/cell/lasgun/lasrifle/marine/battery
 	///Deploy time for the build-a-sentry
 	var/deploy_time = 2 SECONDS
 	///Undeploy tim for the build-a-sentry
 	var/undeploy_time = 2 SECONDS
-
-/obj/item/attachable/buildasentry/Initialize()
-	. = ..()
-	battery = new(src)
-
-/obj/item/attachable/buildasentry/update_icon_state()
-	. = ..()
-	var/has_battery
-	if(master_gun)
-		has_battery = master_gun.sentry_battery
-	else
-		has_battery = battery
-	icon_state = has_battery ? "build_a_sentry_attachment" : "build_a_sentry_attachment_e"
-
-/obj/item/attachable/buildasentry/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(!istype(I, /obj/item/cell/lasgun/lasrifle/marine))
-		return
-	if(battery)
-		to_chat(user, span_warning("[src] already has a [battery] installed!"))
-		return
-	to_chat(user, span_notice("You install [I] into [src]."))
-	battery = I
-	battery.forceMove(src)
-	user.temporarilyRemoveItemFromInventory(I)
-	playsound(src, 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg', 20)
-	update_icon()
-
-/obj/item/attachable/buildasentry/attack_hand(mob/living/user)
-	if(user.get_inactive_held_item() != src)
-		return ..()
-	if(!battery)
-		to_chat(user, span_warning("There is no battery to remove from [src]."))
-		return
-	user.put_in_hands(battery)
-	battery = null
-	playsound(src, 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg', 20)
-	update_icon()
 
 /obj/item/attachable/buildasentry/can_attach(obj/item/attaching_to, mob/attacher)
 	if(!isgun(attaching_to))
@@ -1462,9 +1416,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	. = ..()
 	ENABLE_BITFIELD(master_gun.flags_gun_features, GUN_IS_SENTRY)
 	ENABLE_BITFIELD(master_gun.flags_item, IS_DEPLOYABLE)
-	master_gun.sentry_battery_type = /obj/item/cell/lasgun/lasrifle/marine
-	master_gun.sentry_battery = battery
-	battery?.forceMove(master_gun)
 	master_gun.ignored_terrains = list(
 		/obj/machinery/deployable/mounted,
 		/obj/machinery/miner,
@@ -1490,9 +1441,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	DISABLE_BITFIELD(detaching_gun.flags_item, IS_DEPLOYABLE)
 	detaching_gun.ignored_terrains = null
 	detaching_gun.turret_flags &= ~(TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS)
-	battery = detaching_gun.sentry_battery
-	battery?.forceMove(src)
-	detaching_gun.sentry_battery = null
 	detaching_gun.RemoveElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, deploy_time, undeploy_time)
 
 
@@ -1531,13 +1479,15 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		return
 	activate(user)
 
-/obj/item/attachable/shoulder_mount/activate(mob/user)
+/obj/item/attachable/shoulder_mount/activate(mob/user, turn_off)
 	. = ..()
 	if(CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED))
 		DISABLE_BITFIELD(master_gun.flags_item, IS_DEPLOYED)
 		overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
 		UnregisterSignal(user, COMSIG_MOB_MOUSEDOWN)
 		master_gun.set_gun_user(null)
+	else if(turn_off)
+		return
 	else
 		ENABLE_BITFIELD(master_gun.flags_item, IS_DEPLOYED)
 		overlays += image('icons/Marine/marine-weapons.dmi', src, "active")
@@ -1640,7 +1590,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/shoulder_mount/proc/after_fire(datum/source, atom/target, obj/item/weapon/gun/fired_gun)
 	SIGNAL_HANDLER
 	if(CHECK_BITFIELD(master_gun.flags_gun_features, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
-		INVOKE_ASYNC(master_gun, /obj/item/weapon/gun.proc/unique_action, master_gun.gun_user)
+		INVOKE_ASYNC(master_gun, /obj/item/weapon/gun.proc/do_unique_action, master_gun.gun_user)
 	var/mob/living/user = master_gun.gun_user
 	if(user.stat == CONSCIOUS && !user.lying_angle && !LAZYACCESS(user.do_actions, src) && user.dextrous && (CHECK_BITFIELD(master_gun.flags_gun_features, GUN_ALLOW_SYNTHETIC) || CONFIG_GET(flag/allow_synthetic_gun_use) || !issynth(user)))
 		return
@@ -1720,6 +1670,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/mob/living/living_user = user
 	if(master_gun == living_user.get_inactive_held_item() || master_gun == living_user.get_active_held_item())
 		new_action.give_action(living_user)
+	activate(user)
 	update_icon(user)
 
 ///This is called when an attachment gun (src) detaches from a gun.

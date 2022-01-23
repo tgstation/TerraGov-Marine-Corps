@@ -40,7 +40,7 @@
 	permeability_coefficient = 1
 	gas_transfer_coefficient = 1
 
-	actions_types = list(/datum/action/item_action/toggle)
+	actions_types = list(/datum/action/item_action/toggle/suit_toggle)
 
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_CHESTPLATE,
@@ -74,6 +74,10 @@
 		/obj/item/armor_module/armor/chest/marine/assault/eod,
 		/obj/item/armor_module/armor/legs/marine/eod,
 		/obj/item/armor_module/armor/arms/marine/eod,
+
+		/obj/item/armor_module/armor/chest/marine/helljumper,
+		/obj/item/armor_module/armor/legs/marine/helljumper,
+		/obj/item/armor_module/armor/arms/marine/helljumper,
 
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
@@ -280,6 +284,34 @@
 
 	allowed_uniform_type = /obj/item/clothing/under
 
+// Thank Jeff for providing sprites to color flak jacket
+/obj/item/clothing/suit/modular/xenonauten/pilot
+	name = "\improper TerraGov standard flak jacket"
+	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
+	icon_state = "pilot"
+	item_state = "pilot"
+	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
+	flags_item = NONE
+	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 25, "bomb" = 30, "bio" = 5, "rad" = 5, "fire" = 25, "acid" = 30)
+	slowdown = 0.25
+	allowed = list(
+		/obj/item/weapon/gun,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/flashlight,
+		/obj/item/ammo_magazine,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tool/lighter,
+		/obj/item/weapon/baton,
+		/obj/item/restraints/handcuffs,
+		/obj/item/explosive/grenade,
+		/obj/item/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/storage/belt/sparepouch,
+		/obj/item/storage/large_holster/blade,
+		/obj/item/storage/belt/gun,
+	)
+
 /obj/item/clothing/suit/modular/xenonauten/light
 	name = "\improper Xenonauten-L pattern armored vest"
 	desc = "A XN-L vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a light variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
@@ -314,8 +346,8 @@
 
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
-	greyscale_config = /datum/greyscale_config/modularhelmet_infantry
-	greyscale_colors = "#5B6036"
+	greyscale_config = /datum/greyscale_config/modularhelmet
+	greyscale_colors = ARMOR_PALETTE_DESERT
 
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_VISOR,
@@ -335,8 +367,48 @@
 	)
 
 	///optional assoc list of colors we can color this armor
-	var/list/colorable_colors
-
+	var/list/colorable_colors = list(
+		"Default" = list(
+			"Drab" = ARMOR_PALETTE_DRAB,
+			"Brown" = ARMOR_PALETTE_BROWN,
+			"Snow" = ARMOR_PALETTE_SNOW,
+			"Desert" = ARMOR_PALETTE_DESERT,
+			"Black" = ARMOR_PALETTE_BLACK,
+			"Grey" = ARMOR_PALETTE_GREY,
+		),
+		"Red" = list(
+			"Dark Red" = ARMOR_PALETTE_RED,
+			"Bronze Red" = ARMOR_PALETTE_BRONZE_RED,
+			"Red" = ARMOR_PALETTE_LIGHT_RED,
+		),
+		"Green" = list(
+			"Green" = ARMOR_PALETTE_GREEN,
+			"Emerald" = ARMOR_PALETTE_EMERALD,
+			"Lime" = ARMOR_PALETTE_LIME,
+			"Mint" = ARMOR_PALETTE_MINT,
+		),
+		"Purple" = list(
+			"Purple" = ARMOR_PALETTE_PURPLE,
+			"Lavander" = ARMOR_PALETTE_LAVANDER,
+		),
+		"Blue" = list(
+			"Dark Blue" = ARMOR_PALETTE_BLUE,
+			"Blue" = ARMOR_PALETTE_LIGHT_BLUE,
+			"Cottonwood" = ARMOR_PALETTE_COTTONWOOD,
+			"Aqua" = ARMOR_PALETTE_AQUA,
+		),
+		"Yellow" = list(
+			"Gold" = ARMOR_PALETTE_YELLOW,
+			"Yellow" = ARMOR_PALETTE_LIGHT_YELLOW,
+		),
+		"Pink" = list(
+			"Salmon" = ARMOR_PALETTE_SALMON_PINK,
+			"Magenta" = ARMOR_PALETTE_MAGENTA_PINK,
+		),
+		"Orange" = ARMOR_PALETTE_ORANGE,
+	)
+	///Some defines to determin if the armor piece is allowed to be recolored.
+	var/colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
 	///Pixel offset on the X axis for how the helmet sits on the mob without a visor.
 	var/visorless_offset_x = 0
 	///Pixel offset on the Y axis for how the helmet sits on the mob without a visor.
@@ -394,6 +466,9 @@
 	if(.)
 		return
 
+	if(colorable_allowed == NOT_COLORABLE || (!length(colorable_colors) && colorable_colors == COLOR_WHEEL_NOT_ALLOWED) && greyscale_config)
+		return
+
 	if(!istype(I, /obj/item/facepaint))
 		return
 
@@ -416,16 +491,39 @@
 		update_icon()
 		return
 
-	var/new_color
-	if(colorable_colors)
-		new_color = colorable_colors[tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)]
-	else
-		new_color = input(user, "Pick a color", "Pick color") as null|color
+	var/selection
 
-	if(!new_color)
+	switch(colorable_allowed)
+		if(COLOR_WHEEL_ONLY)
+			selection = "Color Wheel"
+		if(COLOR_WHEEL_ALLOWED)
+			selection = list("Color Wheel", "Preset Colors")
+			selection = tgui_input_list(user, "Choose a color setting", "Choose setting", selection)
+		if(COLOR_WHEEL_NOT_ALLOWED)
+			selection = "Preset Colors"
+
+	if(!selection)
 		return
 
-	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+	var/new_color
+	switch(selection)
+		if("Preset Colors")
+			var/color_selection
+			color_selection = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
+			if(!color_selection)
+				return
+			if(islist(colorable_colors[color_selection]))
+				var/old_list = colorable_colors[color_selection]
+				color_selection = tgui_input_list(user, "Pick a color", "Pick color", old_list)
+				if(!color_selection)
+					return
+				new_color = old_list[color_selection]
+			else
+				new_color = colorable_colors[color_selection]
+		if("Color Wheel")
+			new_color = input(user, "Pick a color", "Pick color") as null|color
+
+	if(!new_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
 
 	set_greyscale_colors(new_color)
@@ -499,7 +597,7 @@
 	icon_state = "infantry_helmet"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	accuracy_mod = 0
-	greyscale_config = /datum/greyscale_config/modularhelmet_infantry
+	greyscale_config = /datum/greyscale_config/modularhelmet
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
@@ -513,12 +611,28 @@
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)
+	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT
+
+/obj/item/clothing/head/modular/marine/update_item_sprites()
+	var/new_color
+	switch(SSmapping.configs[GROUND_MAP].armor_style)
+		if(MAP_ARMOR_STYLE_JUNGLE)
+			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
+				new_color = ARMOR_PALETTE_DRAB
+		if(MAP_ARMOR_STYLE_ICE)
+			if(flags_item_map_variant & ITEM_ICE_VARIANT)
+				new_color = ARMOR_PALETTE_SNOW
+		if(MAP_ARMOR_STYLE_PRISON)
+			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
+				new_color = ARMOR_PALETTE_BLACK
+	set_greyscale_colors(new_color)
+	update_icon()
 
 /obj/item/clothing/head/modular/marine/skirmisher
 	name = "Jaeger Pattern Skirmisher Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Skirmisher markings."
 	icon_state = "skirmisher_helmet"
-	greyscale_config = /datum/greyscale_config/modularhelmet_skirmisher
+	greyscale_config = /datum/greyscale_config/modularhelmet/skirmisher
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
@@ -537,7 +651,7 @@
 	name = "Jaeger Pattern Assault Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Assault markings."
 	icon_state = "assault_helmet"
-	greyscale_config = /datum/greyscale_config/modularhelmet_assault
+	greyscale_config = /datum/greyscale_config/modularhelmet/assault
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
@@ -556,7 +670,7 @@
 	name = "Jaeger Pattern EVA Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings."
 	icon_state = "eva_helmet"
-	greyscale_config = /datum/greyscale_config/modularhelmet_eva
+	greyscale_config = /datum/greyscale_config/modularhelmet/eva
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
@@ -580,7 +694,7 @@
 	name = "Jaeger Pattern EOD Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EOD markings"
 	icon_state = "eod_helmet"
-	greyscale_config = /datum/greyscale_config/modularhelmet_eod
+	greyscale_config = /datum/greyscale_config/modularhelmet/eod
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
@@ -602,7 +716,7 @@
 	name = "Jaeger Pattern Scout Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Scout markings"
 	icon_state = "scout_helmet"
-	greyscale_config = /datum/greyscale_config/modularhelmet_scout
+	greyscale_config = /datum/greyscale_config/modularhelmet/scout
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
@@ -617,12 +731,29 @@
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/scout, /obj/item/armor_module/storage/helmet)
 
+/obj/item/clothing/head/modular/marine/helljumper
+	name = "Jaeger Pattern Helljumper Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Helljumper markings"
+	icon_state = "helljumper_helmet"
+	greyscale_config = /datum/greyscale_config/modularhelmet/helljumper
+	attachments_allowed = list(
+		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
+		/obj/item/armor_module/storage/helmet,
+		/obj/item/armor_module/armor/visor/marine/helljumper,
+		/obj/item/armor_module/armor/badge,
+	)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/helljumper, /obj/item/armor_module/storage/helmet)
+
 /obj/item/clothing/head/modular/marine/infantry
 	name = "Jaeger Pattern Infantry-Open Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings and no visor."
 	icon_state = "infantryopen_helmet"
-	greyscale_colors = "#5B6036"
-	greyscale_config = /datum/greyscale_config/modularhelmet_infantry_open
+	greyscale_config = /datum/greyscale_config/modularhelmet/infantry_open
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,

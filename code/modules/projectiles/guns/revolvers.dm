@@ -80,6 +80,10 @@
 		return
 	invisibility = 0
 	playsound(user, thud_sound, 25, 1)
+
+	if(user.get_active_held_item() != src)
+		return
+
 	if(user.get_inactive_held_item())
 		user.visible_message("[user] catches [src] with the same hand!",span_notice(" You catch [src] as it spins in to your hand!"))
 		return
@@ -181,6 +185,13 @@
 	scatter = 0
 	recoil = 0
 	recoil_unwielded = 0.75
+
+/obj/item/weapon/gun/revolver/standard_revolver/Initialize(mapload, spawn_empty)
+	. = ..()
+	if(round(rand(1, 10), 1) != 1)
+		return
+	base_gun_icon = "tp44cool"
+	update_icon()
 
 //-------------------------------------------------------
 //RUSSIAN REVOLVER //Based on the 7.62mm Russian revolvers.

@@ -1,6 +1,5 @@
 /obj/effect/overlay
 	name = "overlay"
-	var/i_attached//Added for possible image attachments to objects. For hallucinations and the like.
 
 /obj/effect/overlay/beam//Not actually a projectile, just an effect.
 	name="beam"
@@ -138,7 +137,7 @@
 
 /obj/effect/overlay/temp/laser_target/cas/Initialize(mapload, named, assigned_squad = null)
 	. = ..()
-	linked_cam = new(loc, name)
+	linked_cam = new(src, name)
 	GLOB.active_cas_targets += src
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAS_LASER_CREATED, src)
 

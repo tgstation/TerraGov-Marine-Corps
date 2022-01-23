@@ -224,5 +224,34 @@
 	else
 		icon_state = "doorctrl0"
 
+/obj/machinery/button/valhalla_button
+	name = "Xeno spawner"
+	resistance_flags = INDESTRUCTIBLE
+	///The xeno created by the spawner
+	var/mob/living/xeno
+	///What spawner is linked with this spawner
+	var/link = CLOSE
+	
+
+/obj/machinery/button/valhalla_button/attack_hand(mob/living/user)
+	var/xeno_wanted = tgui_input_list(user, "What xeno do you want to spawn?", "Xeno spawn", GLOB.all_xeno_types)
+	if(!xeno_wanted)
+		return
+	QDEL_NULL(xeno)
+	xeno = new xeno_wanted(get_turf(GLOB.valhalla_xeno_spawn_landmark[link]))
+	RegisterSignal(xeno, COMSIG_PARENT_QDELETING, .proc/clean_xeno)
+
+/obj/machinery/button/valhalla_button/proc/clean_xeno()
+	SIGNAL_HANDLER
+	xeno = null
+
+/obj/machinery/button/valhalla_button/far 
+	link = FAR
+
+/obj/machinery/button/valhalla_button/far2
+	link = FAR2
+
+/obj/machinery/button/valhalla_button/close2
+	link = CLOSE2
 
 #undef DOOR_FLAG_OPEN_ONLY

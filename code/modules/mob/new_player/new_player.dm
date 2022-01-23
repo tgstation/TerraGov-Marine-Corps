@@ -382,7 +382,7 @@
 	if(failed)
 		to_chat(src, span_danger("Could not locate an observer spawn point. Use the Teleport verb to jump."))
 
-	GLOB.key_to_time_of_death[key] = world.time
+	GLOB.key_to_time_of_role_death[key] = world.time
 
 	var/datum/species/species = GLOB.all_species[client.prefs.species] || GLOB.all_species[DEFAULT_SPECIES]
 
