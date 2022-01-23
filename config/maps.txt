@@ -22,7 +22,7 @@ map desertdam
 endmap
 
 map icarus_military_port
-	minplayers 25
+	minplayers 40
 endmap
 
 map bigred_v2

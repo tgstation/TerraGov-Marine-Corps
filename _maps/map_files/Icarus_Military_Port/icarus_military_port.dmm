@@ -201,9 +201,8 @@
 /turf/open/floor/mainship,
 /area/bigredv2/outside/cargo)
 "akj" = (
-/obj/item/attachable/quickfire,
-/turf/open/floor/mainship_hull,
-/area/space)
+/turf/open/space/basic,
+/area/shuttle/drop1/lz1)
 "aku" = (
 /turf/closed/shuttle/dropship2{
 	icon_state = "104"
@@ -1335,10 +1334,6 @@
 /obj/item/armor_module/module/welding,
 /turf/open/floor/plating,
 /area/bigredv2/outside/c)
-"bRe" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
-/turf/open/floor/mainship/floor,
-/area/space)
 "bSl" = (
 /obj/machinery/power/apc,
 /obj/structure/cable,
@@ -6579,8 +6574,8 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/arrival/start)
 "jpC" = (
-/obj/structure/window/framed/mainship/hull/canterbury,
 /obj/structure/cable,
+/obj/structure/window/framed/mainship/canterbury,
 /turf/open/floor/mainship/mono,
 /area/janitor)
 "jpY" = (
@@ -10021,7 +10016,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/floor,
-/area/space)
+/area/shuttle/drop1/lz1)
 "nPV" = (
 /obj/structure/closet/l3closet/janitor,
 /turf/open/floor/plating,
@@ -12862,14 +12857,6 @@
 /obj/effect/decal/cleanable/liquid_fuel,
 /turf/open/floor/plating,
 /area/bigredv2/outside/c)
-"ryg" = (
-/obj/machinery/conveyor{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/mainship,
-/obj/structure/cable,
-/turf/open/floor/plating/mainship,
-/area/janitor)
 "ryo" = (
 /obj/machinery/conveyor{
 	dir = 8
@@ -13536,7 +13523,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
-/area/janitor)
+/area/space)
 "skt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/mainship,
@@ -13837,7 +13824,7 @@
 /turf/open/floor/mainship_hull/dir{
 	dir = 1
 	},
-/area/janitor)
+/area/space)
 "sEr" = (
 /obj/effect/particle_effect/smoke/phosphorus{
 	dir = 1;
@@ -21514,7 +21501,7 @@ cTK
 cTK
 cTK
 cTK
-ryg
+pSA
 jpC
 jpC
 cTK
@@ -63544,9 +63531,9 @@ lQK
 woV
 woV
 aFU
-bRe
+nPI
 akj
-tdT
+akj
 vVZ
 jzC
 jzC
@@ -63802,8 +63789,8 @@ jCH
 jCH
 psU
 nPI
-xYe
-xKs
+akj
+akj
 vVZ
 jzC
 jzC
@@ -65858,8 +65845,8 @@ jCH
 jCH
 psU
 nPI
-xvu
-xLW
+akj
+akj
 vVZ
 jzC
 jzC
@@ -66114,9 +66101,9 @@ jFe
 woV
 woV
 aFU
-bRe
-tdT
-tdT
+nPI
+akj
+akj
 vVZ
 jzC
 jzC
@@ -66371,9 +66358,9 @@ lab
 seX
 qCK
 hwN
-bRe
-tdT
-tdT
+nPI
+akj
+akj
 vVZ
 jzC
 jzC
@@ -66629,8 +66616,8 @@ svi
 svi
 bLq
 iZU
-tdT
-tdT
+akj
+akj
 vVZ
 jzC
 jzC
