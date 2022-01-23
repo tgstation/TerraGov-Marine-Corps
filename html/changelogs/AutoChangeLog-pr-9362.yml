@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes: 
+  - rscadd: "Added a yes/no prompt for hijacking the alamo"
+  - rscadd: "Hijacking the alamo by clicking the console as a hive ruler now gives out a line in chat so you can be sure you actually did it"
