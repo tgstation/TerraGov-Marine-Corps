@@ -35,12 +35,14 @@ export const Minimap = (props, context) => {
          * icon_size),
       -(map_size_tile_y - view_size) * icon_size
     ),
+    z: 0,
   };
 
   const globalToLocal = (coord : Coordinate) => {
     const newCoord : Coordinate = {
       x: coord.x * icon_size + background_loc.x,
       y: (map_size_tile_y - coord.y) * icon_size + background_loc.y,
+      z: coord.z,
     };
     if (newCoord.x < -icon_size || newCoord.x > icon_size * view_size
       || newCoord.y < 0 || newCoord.y > icon_size * view_size) {
