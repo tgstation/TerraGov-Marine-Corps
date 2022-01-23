@@ -1176,7 +1176,7 @@
 			/obj/item/clothing/mask/bandanna/bravo = -1,
 			/obj/item/clothing/mask/bandanna/charlie = -1,
 			/obj/item/clothing/mask/bandanna/delta = -1,
-			/obj/item/clothing/mask/gas/rebreather_marine = -1,
+			/obj/item/clothing/mask/rebreather = -1,
 			/obj/item/clothing/mask/breath = -1,
 			/obj/item/clothing/mask/gas = -1,
 			/obj/item/clothing/mask/gas/tactical = -1,
