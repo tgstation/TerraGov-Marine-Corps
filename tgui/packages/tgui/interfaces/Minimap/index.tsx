@@ -83,6 +83,8 @@ export const Minimap = (props, context) => {
                   || objet_data.ref === player_data.ref) return;
                 if (!(player_data.minimap_flags 
                   & objet_data.marker_flags)) return;
+                if (player_data.coordinate.z 
+                  !== objet_data.coordinate.z) return;
                 const local_coord : Coordinate|null
                   = globalToLocal(objet_data.coordinate);
                 if (!local_coord) return;

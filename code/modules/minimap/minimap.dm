@@ -121,8 +121,9 @@ GLOBAL_LIST_EMPTY(minimap_blips)
 
 /datum/game_map/proc/get_coord(atom/A)
 	. = list()
-	.["x"] = A.x - bounds[BOUND_MIN_X]-1
-	.["y"] = A.y - bounds[BOUND_MIN_Y]-1
+	.["x"] = A.x - bounds[BOUND_MIN_X] - 1
+	.["y"] = A.y - bounds[BOUND_MIN_Y] - 1
+	.["z"] = A.z
 
 /datum/game_map/ui_data(mob/user)
 	. = list()
