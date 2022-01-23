@@ -513,14 +513,6 @@
 
 	return ..()
 
-/datum/reagent/toxin/xeno_neurotoxin/light/on_mob_life(mob/living/L, metabolism)
-	. = .. ()
-	switch(current_cycle)
-		if(21 to 45)
-			purge_rate = 0.2
-		if(46 to INFINITY)
-			purge_rate = 1
-
 
 /datum/reagent/toxin/xeno_hemodile //Slows its victim. The slow becomes twice as strong with each other xeno toxin in the victim's system.
 	name = "Hemodile"
