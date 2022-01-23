@@ -40,6 +40,8 @@
 	var/miner_upgrade_type
 	///What faction secured that miner
 	var/faction = FACTION_TERRAGOV
+	///The minimap blip
+	var/datum/minimap/minimap
 
 /obj/machinery/miner/damaged	//mapping and all that shebang
 	miner_status = MINER_DESTROYED
@@ -53,6 +55,7 @@
 /obj/machinery/miner/Initialize()
 	. = ..()
 	start_processing()
+	minimap = new (src, "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_off", MINIMAP_FLAG_ALL)
 
 /obj/machinery/miner/update_icon()
 	switch(miner_status)
@@ -251,6 +254,7 @@
 	do_sparks(5, TRUE, src)
 	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
 	say("Ore shipment has been sold for [mineral_value * stored_mineral] points.")
+	minimap.minimap_blip = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_off"
 	stored_mineral = 0
 	start_processing()
 
@@ -310,5 +314,6 @@
 			miner_status = MINER_SMALL_DAMAGE
 		if(100 to INFINITY)
 			start_processing()
+			minimap.minimap_blip = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on"
 			miner_status = MINER_RUNNING
 	update_icon()

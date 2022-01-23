@@ -8,20 +8,28 @@
 	)
 	///Excavation rewards datum that is used when excavation is performed
 	var/datum/excavation_rewards/rewards_typepath
+	///The minimap blip
+	var/datum/minimap/minimap
 
 /obj/effect/landmark/excavation_site_spawner/Initialize()
 	. = ..()
 	SSexcavation.excavation_site_spawners += src
 
+/obj/effect/landmark/excavation_site_spawner/Destroy()
+	qdel(minimap)
+	return ..()
+
 ///Setup an excavation
 /obj/effect/landmark/excavation_site_spawner/proc/spawn_excavation_site()
 	rewards_typepath = pick(rewards_datums)
+	minimap = new(src, initial(rewards_typepath.map_icon), MINIMAP_FLAG_EXCAVATION_ZONE)
 
 ///Perform an excavation and revert the spawner to inactive state
 /obj/effect/landmark/excavation_site_spawner/proc/excavate_site()
 	var/datum/excavation_rewards/rewards_instance = new rewards_typepath
 	rewards_instance.drop_rewards(src)
 	qdel(rewards_instance)
+	qdel(minimap)
 	rewards_typepath = null
 
 ///Excavation rewards buckets

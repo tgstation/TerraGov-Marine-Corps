@@ -33,6 +33,10 @@
 		"Invalid credentials, upgrading permissions through TGMC military override- Permissions upgraded, nuke_fission_timing.exe available",
 		"Downloading nuke_fission_timing.exe to removable storage- nuke_fission_timing.exe downloaded to floppy disk, have a nice day"
 	)
+	///The minimap blip
+	var/datum/minimap/minimap
+	///The minimap icon
+	var/minimap_icon = ""
 
 /obj/machinery/computer/nuke_disk_generator/Initialize()
 	. = ..()
@@ -42,10 +46,12 @@
 		return INITIALIZE_HINT_QDEL
 
 	GLOB.nuke_disk_generators += src
+	minimap = new(src, minimap_icon, MINIMAP_FLAG_ALL)
 
 
 /obj/machinery/computer/nuke_disk_generator/Destroy()
 	GLOB.nuke_disk_generators -= src
+	qdel(minimap)
 	return ..()
 
 
@@ -155,13 +161,16 @@
 /obj/machinery/computer/nuke_disk_generator/red
 	name = "red nuke disk generator"
 	disk_type = /obj/item/disk/nuclear/red
+	minimap_icon = "red_disk"
 
 /obj/machinery/computer/nuke_disk_generator/green
 	name = "green nuke disk generator"
 	icon_state = "nuke_green"
 	disk_type = /obj/item/disk/nuclear/green
+	minimap_icon = "green_disk"
 
 /obj/machinery/computer/nuke_disk_generator/blue
 	name = "blue nuke disk generator"
 	icon_state = "nuke_blue"
 	disk_type = /obj/item/disk/nuclear/blue
+	minimap_icon = "blue_disk"
