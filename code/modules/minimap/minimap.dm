@@ -53,7 +53,7 @@ GLOBAL_LIST_EMPTY(minimap_blips)
 		BOUND_MIN_X = minx,
 		BOUND_MIN_Y = miny,
 		BOUND_MAX_X = maxx,
-		BOUND_MAX_Y = maxy
+		BOUND_MAX_Y = maxy,
 	)
 
 ///Generate the current map image as a dmi
