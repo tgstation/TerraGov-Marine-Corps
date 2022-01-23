@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(minimap_blips)
 	///List of all blips
 	var/list/visible_objects_data
 
-/datum/game_map/New(var/datum/space_level/zlevel)
+/datum/game_map/New(datum/space_level/zlevel)
 	. = ..()
 	src.zlevel = zlevel
 	name = replacetext(lowertext(zlevel.name), " ", "_")
@@ -106,7 +106,7 @@ GLOBAL_LIST_EMPTY(minimap_blips)
 			"marker_flags" = map_blip.marker_flags,
 		))
 
-/datum/game_map/proc/set_generated_map(var/F)
+/datum/game_map/proc/set_generated_map(F)
 	get_map_bounds()
 	generated_map = icon(F)
 
@@ -119,7 +119,7 @@ GLOBAL_LIST_EMPTY(minimap_blips)
 /datum/game_map/ui_state(mob/user)
 	return GLOB.always_state
 
-/datum/game_map/proc/get_coord(var/atom/A)
+/datum/game_map/proc/get_coord(atom/A)
 	. = list()
 	.["x"] = A.x - bounds[BOUND_MIN_X]-1
 	.["y"] = A.y - bounds[BOUND_MIN_Y]-1
@@ -151,7 +151,7 @@ GLOBAL_LIST_EMPTY(minimap_blips)
 	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 	return ..()
 
-/datum/game_map/proc/update_ui_wrapper(var/mob/M)
+/datum/game_map/proc/update_ui_wrapper(mob/M)
 	SIGNAL_HANDLER
 	SStgui.try_update_ui(M, src)
 
