@@ -150,6 +150,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 ///Called when the dash is finished, handles cooldowns and recast. Clears signals too
 /datum/action/xeno_action/activable/acid_dash/proc/dash_complete()
+	var/mob/living/carbon/xenomorph/X = owner
 	SIGNAL_HANDLER
 	if(recast_available)
 		addtimer(CALLBACK(src, .proc/dash_complete), 2 SECONDS) //Delayed recursive call, this time you won't gain a recast so it will go on cooldown in 2 SECONDS.
@@ -158,8 +159,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		recast = FALSE
 		add_cooldown()
 
+	X.reset_flags_pass()
 	recast_available = FALSE
-	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_NONE_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_MOVABLE_MOVED))
+	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_MOVABLE_MOVED))
 
 ///Called whenever the owner hits a mob during the dash
 /datum/action/xeno_action/activable/acid_dash/proc/mob_hit(datum/source, mob/M)
@@ -167,8 +169,17 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	if(recast || !ishuman(M)) //That's the recast, we don't stop for mobs
 		return COMPONENT_KEEP_THROWING
 
+	//Swapping part
 	var/mob/living/carbon/human/target = M
-	swap(target)
+	owner.flags_pass |= PASSMOB
+	target.flags_pass |= PASSMOB
+	INVOKE_ASYNC(src, /atom/movable/proc/forceMove, get_turf(target))
+	INVOKE_ASYNC(target, /atom/movable/proc/forceMove, last_turf)
+	if(!(owner.flags_pass & PASSMOB))
+		owner.flags_pass &= ~PASSMOB
+	if(!(target.flags_pass))
+		target.flags_pass &= ~PASSMOB
+
 	target.ParalyzeNoChain(0.5 SECONDS) //Extremely brief, we don't want them to take 289732 ticks of acid
 
 	to_chat(target, span_highdanger("The [owner] tackles us, sending us behind them!"))
@@ -196,16 +207,15 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	SIGNAL_HANDLER
 	last_turf = OldLoc
 	var/mob/living/carbon/xenomorph/X = owner
-	var/turf/current_turf = get_turf(X)
-	new /obj/effect/xenomorph/spray(current_turf, 5 SECONDS, X.xeno_caste.acid_spray_damage) //Add a modifier here to buff the damage if needed
-	for(var/obj/O in current_turf)
+	new /obj/effect/xenomorph/spray(get_turf(X), 5 SECONDS, X.xeno_caste.acid_spray_damage) //Add a modifier here to buff the damage if needed
+	for(var/obj/O in get_turf(X))
 		O.acid_spray_act(X)
 
 /datum/action/xeno_action/activable/acid_dash/use_ability(atom/A)
 	RegisterSignal(owner, COMSIG_XENO_OBJ_THROW_HIT, .proc/obj_hit)
 	RegisterSignal(owner, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/acid_steps) //We drop acid on every tile we pass through
-	RegisterSignal(owner, COMSIG_XENO_NONE_THROW_HIT, .proc/dash_complete)
+	RegisterSignal(owner, COMSIG_MOVABLE_POST_THROW, .proc/dash_complete)
 
 	owner.visible_message(span_danger("[owner] slides towards \the [A]!"), \
 	span_danger("We dash towards \the [A], spraying acid down our path!") )
@@ -213,8 +223,5 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	owner.flags_pass = HOVERING
 	owner.throw_at(A, range, 2, owner)
-
-	addtimer(CALLBACK(src, .proc/dash_complete), 1)
-	addtimer(CALLBACK(owner, /mob/living/carbon/xenomorph/.proc/reset_flags_pass), 1)
 
 	return TRUE
