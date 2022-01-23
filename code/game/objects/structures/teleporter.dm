@@ -30,7 +30,7 @@
 
 /obj/machinery/teleporter/proc/set_linked_teleporter(obj/machinery/teleporter/linked_teleporter)
 	if(src.linked_teleporter)
-		CRASH("A teleporter was linked with another teleporter eve though it already has a twin!")
+		CRASH("A teleporter was linked with another teleporter even though it already has a twin!")
 	src.linked_teleporter = linked_teleporter
 	RegisterSignal(linked_teleporter, COMSIG_PARENT_QDELETING, .proc/linked_teleporter_malfunction)
 
@@ -61,11 +61,11 @@
 		return
 	
 	if(!linked_teleporter)
-		to_chat(user, span_warning("The [src] is not linked to any other teleporter"))
+		to_chat(user, span_warning("The [src] is not linked to any other teleporter."))
 		return
 
 	if(linked_teleporter.z != z)
-		to_chat(user, span_warning("The [src] and the [linked_teleporter] are too far appart"))
+		to_chat(user, span_warning("The [src] and the [linked_teleporter] are too far apart!"))
 		return
 	
 	if(!linked_teleporter.anchored || (!linked_teleporter.powered() && (!linked_teleporter.cell || linked_teleporter.cell.charge < TELEPORTING_COST)))
@@ -130,7 +130,7 @@
 		return FALSE
 	if(cell)
 		to_chat(user , span_warning("There is already a cell inside, use a crowbar to remove it."))
-		return
+		return FALSE
 	if(!do_after(user, 2 SECONDS, TRUE, src))
 		return FALSE
 	I.forceMove(src)
