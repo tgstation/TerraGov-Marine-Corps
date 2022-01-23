@@ -114,7 +114,7 @@
 
 /obj/item/teleporter_kit
 	name = "\improper ASRS Bluespace teleporter"
-	desc = "A bluespace telepad for moving personnel and equipment across small distances to another prelinked teleporter. They are using quantum entanglement technology and are as such very volatile."
+	desc = "A bluespace telepad for moving personnel and equipment across small distances to another prelinked teleporter."
 	icon = 'icons/Marine/teleporter.dmi'
 	icon_state = "teleporter"
 
@@ -148,6 +148,10 @@
 
 /obj/item/teleporter_kit/attack_self(mob/user)
 	do_unique_action(user)
+
+/obj/effect/teleporter_linker
+	name = "\improper ASRS bluespace teleporters"
+	desc = "Two bluespace telepads for moving personnel and equipment across small distances to another prelinked teleporter."
 
 /obj/effect/teleporter_linker/Initialize()
 	. = ..()
