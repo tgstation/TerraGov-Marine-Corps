@@ -17,13 +17,75 @@
 /obj/item/storage/backpack/dispenser
 	name = "Engineer Dispenser"
 	desc = "pootis dispenser here."
+	icon = 'icons/obj/items/storage/storage_48.dmi'
 	icon_state = "dispenser"
 	flags_equip_slot = ITEM_SLOT_BACK
 	max_w_class = 4
 	max_storage_space = 36
+	COOLDOWN_DECLARE(deploy_cooldown)
 
-/obj/item/storage/backp/dispenser/can_be_inserted(obj/item/W, warning)
+/obj/item/storage/backpack/dispenser/CtrlClick(mob/user)
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		if(!can_interact(user))
+			return
+		balloon_alert_to_viewers("Undeploying...")
+		icon_state = "dispenser"
+		flick("dispenser_undeploying", src)
+		addtimer(CALLBACK(src, .proc/undeploy), 2.1 SECONDS)
+		return
+	return ..()
+
+/obj/item/storage/backpack/dispenser/proc/deploy()
+	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYING))
+		return
+	DISABLE_BITFIELD(flags_item, IS_DEPLOYING)
+	ENABLE_BITFIELD(flags_item, IS_DEPLOYED)
+
+/obj/item/storage/backpack/dispenser/proc/undeploy()
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		density = FALSE
+		DISABLE_BITFIELD(flags_item, IS_DEPLOYED)
+		DISABLE_BITFIELD(flags_item, IS_DEPLOYING)
+
+/obj/item/storage/backpack/dispenser/attack_self(mob/user)
+	if(!ishuman(user) || CHECK_BITFIELD(flags_item, NODROP))
+		return
+	var/deploy_location
+	deploy_location = get_step(user, user.dir)
+	if(check_blocked_turf(deploy_location))
+		user.balloon_alert(user, "There is insufficient room to deploy [src]!")
+		return
+	if(user.do_actions)
+		user.balloon_alert(user, "You are already doing something!")
+		return
+	user.balloon_alert(user, "You start deploying...")
+	if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+		return
+
+	user.temporarilyRemoveItemFromInventory(src)
+
+	forceMove(deploy_location)
+	density = TRUE
+	dir = REVERSE_DIR(user.dir)
+	icon_state = "dispenser_deployed"
+	flick("dispenser_deploying", src)
+	ENABLE_BITFIELD(flags_item, IS_DEPLOYING)
+	addtimer(CALLBACK(src, .proc/deploy), 2.1 SECONDS)
+
+/obj/item/storage/backpack/dispenser/attack_hand(mob/living/user)
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		open(user)
+		return
+	return ..()
+
+/obj/item/storage/backpack/dispenser/MouseDrop(obj/over_object)
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		if(over_object == usr && ishuman(over_object))
+			open(over_object)
+		return
 	. = ..()
+
+
 
 /obj/item/storage/backpack/should_access_delay(obj/item/item, mob/user, taking_out)
 	if(!taking_out) // Always allow items to be tossed in instantly
