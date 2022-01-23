@@ -14,6 +14,17 @@
 	max_storage_space = 24
 	access_delay = 1.5 SECONDS
 
+/obj/item/storage/backpack/dispenser
+	name = "Engineer Dispenser"
+	desc = "pootis dispenser here."
+	icon_state = "dispenser"
+	flags_equip_slot = ITEM_SLOT_BACK
+	max_w_class = 4
+	max_storage_space = 36
+
+/obj/item/storage/backp/dispenser/can_be_inserted(obj/item/W, warning)
+	. = ..()
+
 /obj/item/storage/backpack/should_access_delay(obj/item/item, mob/user, taking_out)
 	if(!taking_out) // Always allow items to be tossed in instantly
 		return FALSE
