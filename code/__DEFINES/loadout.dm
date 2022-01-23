@@ -152,11 +152,13 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 
 GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 	/obj/item/clothing/glasses/night/m56_goggles = list(CAT_ESS, "M26 head mounted sight", 0, "white"),
-	/obj/item/weapon/gun/rifle/standard_smartmachinegun = list(CAT_LEDSUP, "T-29 Smartmachinegun", 29 , "white"), //If a smartgunner buys T-29, then they will have 16 points to purchase 4 T-29 drums
-	/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_LEDSUP, "T-29 Smartmachinegun ammo", 4 , "black"),
-	/obj/item/weapon/gun/rifle/standard_smartrifle = list(CAT_LEDSUP, "T-25 smartrifle", 30 , "white"),
-	/obj/item/ammo_magazine/rifle/standard_smartrifle = list(CAT_LEDSUP, "T-25 smartrifle magazine", 2 , "black"),
-	/obj/item/ammo_magazine/packet/t25 = list(CAT_LEDSUP, "T-25 smartrifle ammo box", 6 , "black"),
+	/obj/item/weapon/gun/rifle/standard_smartmachinegun = list(CAT_LEDSUP, "T-29 Smart machinegun", 29 , "white"), //If a smartgunner buys T-29, then they will have 16 points to purchase 4 T-29 drums
+	/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_LEDSUP, "T-29 Smart machinegun ammo", 4 , "black"),
+	/obj/item/weapon/gun/rifle/standard_smartrifle = list(CAT_LEDSUP, "T-25 Smart assault rifle", 30 , "white"),
+	/obj/item/ammo_magazine/rifle/standard_smartrifle = list(CAT_LEDSUP, "T-25 Smart assault rifle magazine", 2 , "black"),
+	/obj/item/ammo_magazine/packet/t25 = list(CAT_LEDSUP, "T-25 Smart assault rifle ammo box", 6 , "black"),
+	/obj/item/weapon/gun/rifle/sniper/antimaterial  = list(CAT_LEDSUP, "T-26 Antimaterial sniper rifle", 30 , "black"),
+	/obj/item/ammo_magazine/sniper = list(CAT_LEDSUP, "T-26 Antimaterial sniper rifle ammo", 5 , "black"), //T-26 smartgunner will get 6 mags, a total of 90 rounds
 	))
 
 

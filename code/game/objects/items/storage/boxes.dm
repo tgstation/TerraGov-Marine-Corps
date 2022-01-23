@@ -862,7 +862,7 @@
 
 /obj/item/storage/box/visual/magazine/compact/standard_smartrifle
 	name = "T-25 magazine box"
-	desc = "A box specifically designed to hold a large amount of T-25 smartgun magazines."
+	desc = "A box specifically designed to hold a large amount of T-25 smart assault rifle magazines."
 	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_t25"
 	can_hold = list(

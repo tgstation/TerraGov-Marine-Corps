@@ -328,18 +328,6 @@ WEAPONS
 	cost = 3
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/weapons/antimaterial
-	name = "T-26 Antimaterial rifle kit"
-	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
-	cost = 75
-	available_against_xeno_only = TRUE
-
-/datum/supply_packs/weapons/antimaterial_ammo
-	name = "T-26 AMR magazine"
-	contains = list(/obj/item/ammo_magazine/sniper)
-	cost = 5
-	available_against_xeno_only = TRUE
-
 /datum/supply_packs/weapons/specminigun
 	name = "MIC-A7 Vindicator Minigun"
 	contains = list(/obj/item/weapon/gun/minigun)
@@ -366,27 +354,39 @@ WEAPONS
 	cost = 7
 
 /datum/supply_packs/weapons/smartgun
-	name = "T-29 Smart Machinegun"
+	name = "T-29 Smart machinegun"
 	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
 	cost = 40
 
 /datum/supply_packs/weapons/smartgun_ammo
-	name = "T-29 smartmachinegun ammo"
+	name = "T-29 Smart machinegun ammo"
 	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
 	cost = 5
 
+/datum/supply_packs/weapons/antimaterial
+	name = "T-26 Antimaterial sniper rifle kit"
+	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
+	cost = 40
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/antimaterial_ammo
+	name = "T-26 Antimaterial sniper rifle magazine"
+	contains = list(/obj/item/ammo_magazine/sniper)
+	cost = 5
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/weapons/smartrifle
-	name = "T-25 Smart Rifle"
+	name = "T-25 Smart assault rifle"
 	contains = list(/obj/item/weapon/gun/rifle/standard_smartrifle)
 	cost = 40
 
 /datum/supply_packs/weapons/smartrifle_ammo
-	name = "T-25 smartrifle magazine"
+	name = "T-25 Smart assault rifle magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_smartrifle)
 	cost = 2
 
 /datum/supply_packs/weapons/smartrifle_pack
-	name = "T-25 smartrifle ammo box"
+	name = "T-25 Smart assault rifle ammo box"
 	notes = "Contains a box with 200 rounds for a T-25 (MAGAZINES SOLD SEPERATELY)"
 	contains = list(/obj/item/ammo_magazine/packet/t25)
 	cost = 4
