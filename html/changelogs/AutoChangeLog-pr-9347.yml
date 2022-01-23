@@ -1,0 +1,4 @@
+author: "Three333Digit"
+delete-after: True
+changes: 
+  - rscdel: "combat robots no longer have organs"

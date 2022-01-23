@@ -188,9 +188,9 @@
 		explode()
 	return ..()
 
-/obj/structure/reagent_dispensers/fueltank/Move()
+/obj/structure/reagent_dispensers/fueltank/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
-	if (. && modded)
+	if (modded)
 		leak_fuel(amount_per_transfer_from_this/10.0)
 
 ///Leaks fuel when the valve is opened, leaving behind burnable splotches

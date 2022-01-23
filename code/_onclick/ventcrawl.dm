@@ -27,7 +27,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	if(pipes.len == 1)
 		pipe = pipes[1]
 	else
-		pipe = input("Crawl Through Vent", "Pick a pipe") as null|anything in pipes
+		pipe = tgui_input_list(usr, "Crawl Through Vent", "Pick a pipe",  pipes)
 	if(!incapacitated() && pipe)
 		return pipe
 

@@ -186,12 +186,3 @@
 		return
 	console.eject_mat(EJECT_PLASTEEL)
 	to_chat(owner, span_notice("Plasteel sheets ejected."))
-
-
-/obj/item/stack/voucher/sentry
-	name = "Sentry gun voucher"
-	desc = "A voucher for a UA 571-C sentry gun, redeemable at the Remote FOB Construction Console. Keep buying them for a chance at Bal Di's golden sentry ticket!"
-	icon = 'icons/Marine/remotefob.dmi'
-	icon_state = "sentry_voucher"
-	max_amount = 1
-	w_class = WEIGHT_CLASS_TINY

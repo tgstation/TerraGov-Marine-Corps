@@ -1,9 +1,10 @@
 #define DEFILER_NEUROTOXIN "Neurotoxin"
 #define DEFILER_HEMODILE "Hemodile"
 #define DEFILER_TRANSVITOX "Transvitox"
+#define DEFILER_OZELOMELYN "Ozelomelyn"
 
 GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
-	/datum/reagent/toxin/xeno_hemodile, /datum/reagent/toxin/xeno_transvitox, /datum/reagent/toxin/xeno_neurotoxin)))
+	/datum/reagent/toxin/xeno_ozelomelyn, /datum/reagent/toxin/xeno_hemodile, /datum/reagent/toxin/xeno_transvitox, /datum/reagent/toxin/xeno_neurotoxin)))
 
 // ***************************************
 // *********** Defile
@@ -160,11 +161,13 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 		if(/datum/reagent/toxin/xeno_neurotoxin)
 			gas = new /datum/effect_system/smoke_spread/xeno/neuro/medium(X)
 		if(/datum/reagent/toxin/xeno_hemodile)
-			gas = new /datum/effect_system/smoke_spread/xeno/hemodile(X)
+			gas = new /datum/effect_system/smoke_spread/xeno/hemodile(X) // Higher smoke range because yransparent.
 			smoke_range = 3
 		if(/datum/reagent/toxin/xeno_transvitox)
-			gas = new /datum/effect_system/smoke_spread/xeno/transvitox(X)
+			gas = new /datum/effect_system/smoke_spread/xeno/transvitox(X) // Ditto above.
 			smoke_range = 4
+		if(/datum/reagent/toxin/xeno_ozelomelyn)
+			gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(X) // Default smoke range because it is non-transparent.
 
 	while(count)
 		if(X.stagger) //If we got staggered, return
@@ -232,6 +235,8 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 	switch(X.selected_reagent)
 		if(/datum/reagent/toxin/xeno_neurotoxin)
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/neuro/medium
+		if(/datum/reagent/toxin/xeno_ozelomelyn)
+			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/ozelomelyn
 		if(/datum/reagent/toxin/xeno_hemodile)
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/hemodile
 			newegg.gas_size_bonus = 1
@@ -290,6 +295,7 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 			DEFILER_NEUROTOXIN = image('icons/mob/actions.dmi', icon_state = DEFILER_NEUROTOXIN),
 			DEFILER_HEMODILE = image('icons/mob/actions.dmi', icon_state = DEFILER_HEMODILE),
 			DEFILER_TRANSVITOX = image('icons/mob/actions.dmi', icon_state = DEFILER_TRANSVITOX),
+			DEFILER_OZELOMELYN = image('icons/mob/actions.dmi', icon_state = DEFILER_OZELOMELYN),
 			)
 	var/toxin_choice = show_radial_menu(owner, owner, defiler_toxin_images_list, radius = 48)
 	if(!toxin_choice)
@@ -466,3 +472,4 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 #undef DEFILER_NEUROTOXIN
 #undef DEFILER_HEMODILE
 #undef DEFILER_TRANSVITOX
+#undef DEFILER_OZELOMELYN
