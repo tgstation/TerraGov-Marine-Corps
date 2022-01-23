@@ -106,10 +106,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/observer_z_changed)
 	LAZYADD(GLOB.observers_by_zlevel["[z]"], src)
 
-	minimap = new(src, "", MINIMAP_FLAG_ALL)
-	var/datum/action/minimap/mini = new
-	mini.give_action(src, minimap)
-
 	return ..()
 
 
