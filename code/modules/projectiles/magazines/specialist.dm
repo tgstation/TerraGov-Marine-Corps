@@ -9,7 +9,7 @@
 	icon_state = "t26"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 15
-	default_ammo = /datum/ammo/bullet/sniper
+	default_ammo = /datum/ammo/bullet/sniper/antimaterial
 	reload_delay = 3
 	icon_state_mini = "mag_sniper"
 

@@ -937,6 +937,11 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 40
 	scatter = -20
 	damage = 80
+	penetration = 60
+	sundering = 15
+
+/datum/ammo/bullet/sniper/antimaterial
+	name = "antimaterial bullet"
 	penetration = 40
 	sundering = 5
 
