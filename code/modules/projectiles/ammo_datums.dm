@@ -942,6 +942,8 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/sniper/antimaterial
 	name = "antimaterial bullet"
+	hud_state = "sniper"
+	hud_state_empty = "sniper_empty"
 	penetration = 40
 	sundering = 5
 
