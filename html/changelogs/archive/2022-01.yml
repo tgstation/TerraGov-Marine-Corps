@@ -336,3 +336,23 @@
 2022-01-23:
   yyzsong:
   - balance: increases the price of the IFF sniper
+2022-01-24:
+  Pariah919:
+  - balance: Revolver fires at 0.15 when non akimboed, and has knockback again.
+  RipGrayson:
+  - bugfix: Added excavation sites to Chigusa.
+  Three333Digit:
+  - rscdel: combat robots no longer have organs
+  ivanmixo:
+  - rscadd: Added a yes/no prompt for hijacking the alamo
+  - rscadd: Hijacking the alamo by clicking the console as a hive ruler now gives
+      out a line in chat so you can be sure you actually did it
+  novaepee:
+  - rscadd: Sulaco medbay now has a break room with access to a soda dispenser. Yeah,
+      you go get that tomato juice and soon to be milk.
+  - balance: Access to soda dispenser, which contains tomato juice and soon to be
+      milk
+  - imageadd: New Synthetic vendor sprites
+  - rscadd: give 4 roller beds in Theseus
+  - rscadd: Give free conveyor belts in req for free reqtorio
+  - rscadd: hazard signs to help FOB engineers
