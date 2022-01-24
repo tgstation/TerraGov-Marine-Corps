@@ -3719,6 +3719,14 @@
 /obj/structure/flora/ausbushes/palebush,
 /turf/open/ground/river,
 /area/lv624/ground/river3)
+"bdv" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1
+	},
+/turf/open/floor/tile/purple/whitepurplecorner{
+	dir = 4
+	},
+/area/lv624/lazarus/fitness)
 "bdC" = (
 /obj/item/tool/shovel,
 /turf/open/floor/tile/red/yellowfull,
@@ -21705,14 +21713,6 @@
 /obj/structure/jungle/vines,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle3)
-"voV" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 1
-	},
-/turf/open/floor/tile/purple/whitepurplecorner{
-	dir = 4
-	},
-/area/lv624/lazarus/fitness)
 "voZ" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
@@ -48916,7 +48916,7 @@ xJa
 iEv
 kRJ
 jsN
-voV
+bdv
 wgH
 wgH
 wgH
