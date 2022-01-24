@@ -38,6 +38,10 @@
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = XENO_BOMB_RESIST_1, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
+	
+	// *** Pheromones *** //
+	aura_strength = 1.7 //Starts at 1.7, ends at 2.1, which is just a little bit below Carrier's.
+	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Gorger Abilities *** //
 	overheal_max = 200
@@ -54,6 +58,7 @@
 		/datum/action/xeno_action/activable/carnage,
 		/datum/action/xeno_action/activable/feast,
 		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/toggle_pheromones,
 	)
 
 /datum/xeno_caste/gorger/young
@@ -81,6 +86,9 @@
 	// *** Defense *** //
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_1, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 
+	// *** Pheromones *** //
+	aura_strength = 2 //Starts at 1.7, ends at 2.1, which is just a little bit below Carrier's.
+	
 	// *** Gorger Abilities *** //
 	overheal_max = 225
 	drain_plasma_gain = 20
@@ -132,6 +140,9 @@
 	// *** Defense *** //
 	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_1, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
 
+	// *** Pheromones *** //
+	aura_strength = 2.1 //Starts at 1.7, ends at 2.1, which is just a little bit below Carrier's.
+	
 	// *** Gorger Abilities *** //
 	overheal_max = 275
 	drain_plasma_gain = 40
