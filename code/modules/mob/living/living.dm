@@ -94,8 +94,9 @@
 	SSmobs.stop_processing(src)
 	job = null
 	LAZYREMOVE(GLOB.ssd_living_mobs, src)
+	GLOB.key_to_time_of_death[key] = world.time
 	if(stat != DEAD && job?.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
-		GLOB.key_to_time_of_death[key] = world.time
+		GLOB.key_to_time_of_role_death[key] = world.time
 	. = ..()
 	hard_armor = null
 	soft_armor = null
@@ -317,7 +318,7 @@
 /mob/living/Bump(atom/A)
 	. = ..()
 	if(.) //We are thrown onto something.
-		return
+		return FALSE
 	if(buckled || now_pushing)
 		return
 	if(isliving(A))

@@ -106,7 +106,6 @@
 	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, .proc/clean_lunge_target)
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/check_if_lunge_possible)
 	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/clean_lunge_target)
-	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/finish_lunge)
 	X.throw_at(get_step_towards(A, X), 6, 2, X)
 
 	if(X.pulling && !isxeno(X.pulling)) //If we grabbed something give us combo.

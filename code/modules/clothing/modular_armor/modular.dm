@@ -40,7 +40,7 @@
 	permeability_coefficient = 1
 	gas_transfer_coefficient = 1
 
-	actions_types = list(/datum/action/item_action/toggle)
+	actions_types = list(/datum/action/item_action/toggle/suit_toggle)
 
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_CHESTPLATE,
@@ -283,6 +283,34 @@
 	current_variant = "black"
 
 	allowed_uniform_type = /obj/item/clothing/under
+
+// Thank Jeff for providing sprites to color flak jacket
+/obj/item/clothing/suit/modular/xenonauten/pilot
+	name = "\improper TerraGov standard flak jacket"
+	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
+	icon_state = "pilot"
+	item_state = "pilot"
+	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
+	flags_item = NONE
+	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 25, "bomb" = 30, "bio" = 5, "rad" = 5, "fire" = 25, "acid" = 30)
+	slowdown = 0.25
+	allowed = list(
+		/obj/item/weapon/gun,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/flashlight,
+		/obj/item/ammo_magazine,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tool/lighter,
+		/obj/item/weapon/baton,
+		/obj/item/restraints/handcuffs,
+		/obj/item/explosive/grenade,
+		/obj/item/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/storage/belt/sparepouch,
+		/obj/item/storage/large_holster/blade,
+		/obj/item/storage/belt/gun,
+	)
 
 /obj/item/clothing/suit/modular/xenonauten/light
 	name = "\improper Xenonauten-L pattern armored vest"

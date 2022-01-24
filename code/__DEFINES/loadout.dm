@@ -78,7 +78,7 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/detpack = list(CAT_ENGSUP, "Detonation pack", 5, "black"),
 		/obj/item/tool/shovel/etool = list(CAT_ENGSUP, "Entrenching tool", 1, "black"),
 		/obj/item/tool/handheld_charger = list(CAT_ENGSUP, "Hand-held cell charger", 3, "black"),
-		/obj/item/tool/weldingtool/hugetank = list(CAT_ENGSUP, "High-capacity industrial blowtorch", 15, "black"),
+		/obj/item/tool/weldingtool/hugetank = list(CAT_ENGSUP, "High-capacity industrial blowtorch", 5, "black"),
 		/obj/item/binoculars/tactical/range = list(CAT_ENGSUP, "Range Finder", 10, "black"),
 		/obj/item/cell/high = list(CAT_ENGSUP, "High capacity powercell", 1, "black"),
 		/obj/item/cell/rtg/small = list(CAT_ENGSUP, "Recharger powercell", 5, "black"),
@@ -91,7 +91,6 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/multitool = list(CAT_ENGSUP, "Multitool", 1, "black"),
 		/obj/item/circuitboard/general = list(CAT_ENGSUP, "General circuit board", 1, "black"),
 		/obj/item/assembly/signaler = list(CAT_ENGSUP, "Signaler (for detpacks)", 1, "black"),
-		/obj/item/stack/voucher/sentry = list(CAT_ENGSUP, "UA 571-C Base defense sentry voucher", 26, "black"),
 	))
 
 GLOBAL_LIST_INIT(medic_gear_listed_products, list(
@@ -579,7 +578,7 @@ GLOBAL_LIST_INIT(synthetic_clothes_listed_products, list(
 		/obj/item/clothing/suit/storage/lawyer/purpjacket = list(CAT_AMR, "Purple Jacket", 0, "black"),
 		/obj/item/clothing/suit/storage/snow_suit = list(CAT_AMR, "Snowsuit", 0, "black"),
 		/obj/item/clothing/suit/armor/bulletproof = list(CAT_AMR, "Bulletproof Vest", 0, "black"),
-		/obj/item/clothing/suit/armor/vest/pilot = list(CAT_AMR, "M70 flak jacket", 0, "black"),
+		/obj/item/clothing/suit/modular/xenonauten/pilot = list(CAT_AMR, "M70 flak jacket", 0, "black"),
 		/obj/item/clothing/suit/chef = list(CAT_AMR, "Chef's apron", 0, "black"),
 		/obj/item/clothing/suit/wcoat = list(CAT_AMR, "Waistcoat", 0, "black"),
 		/obj/item/clothing/suit/wizrobe/gentlecoat = list(CAT_AMR, "Gentleman's Coat", 0, "black"),

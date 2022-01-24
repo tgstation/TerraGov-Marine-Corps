@@ -307,26 +307,26 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define NO_BREATHE (1<<1)
 #define NO_SCAN (1<<2)
 #define NO_PAIN (1<<3)
-#define NO_SLIP (1<<4)
-#define NO_OVERDOSE (1<<5)
-#define NO_POISON (1<<6)
-#define NO_CHEM_METABOLIZATION (1<<7)
-#define HAS_SKIN_TONE (1<<8)
-#define HAS_SKIN_COLOR (1<<9)
-#define HAS_LIPS (1<<10)
-#define HAS_UNDERWEAR (1<<11)
-#define HAS_NO_HAIR (1<<12)
-#define IS_PLANT (1<<13)
-#define IS_SYNTHETIC (1<<14)
-#define NO_STAMINA (1<<15)
-#define DETACHABLE_HEAD (1<<16)
-#define USES_ALIEN_WEAPONS (1<<17)
-#define NO_DAMAGE_OVERLAY (1<<18)
-#define CAN_VENTCRAWL (1<<19)
-#define HEALTH_HUD_ALWAYS_DEAD (1<<20)
-#define PARALYSE_RESISTANT (1<<21)
-#define ROBOTIC_LIMBS (1<<22)
-#define GREYSCALE_BLOOD (1<<23)
+#define NO_OVERDOSE (1<<4)
+#define NO_POISON (1<<5)
+#define NO_CHEM_METABOLIZATION (1<<6)
+#define HAS_SKIN_TONE (1<<7)
+#define HAS_SKIN_COLOR (1<<8)
+#define HAS_LIPS (1<<9)
+#define HAS_UNDERWEAR (1<<10)
+#define HAS_NO_HAIR (1<<11)
+#define IS_PLANT (1<<12)
+#define IS_SYNTHETIC (1<<13)
+#define NO_STAMINA (1<<14)
+#define DETACHABLE_HEAD (1<<15)
+#define USES_ALIEN_WEAPONS (1<<16)
+#define NO_DAMAGE_OVERLAY (1<<17)
+#define CAN_VENTCRAWL (1<<18)
+#define HEALTH_HUD_ALWAYS_DEAD (1<<19)
+#define PARALYSE_RESISTANT (1<<20)
+#define ROBOTIC_LIMBS (1<<21)
+#define GREYSCALE_BLOOD (1<<22)
+#define IS_INSULATED (1<<23)
 
 //=================================================
 
@@ -501,8 +501,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_IS_STRONG (1<<16)//can tear open acided walls without being big
 #define CASTE_CAN_CORRUPT_GENERATOR (1<<17) //Can corrupt a generator
 #define CASTE_IS_BUILDER (1<<18) //whether we are classified as a builder caste
-#define CAN_BECOME_KING (1<<19) //Can be choose to become a king
-#define CAN_RIDE_CRUSHER (1<<20) //Can ride a crusher
+#define CASTE_CAN_BECOME_KING (1<<19) //Can be choose to become a king
+#define CASTE_CAN_RIDE_CRUSHER (1<<20) //Can ride a crusher
+#define CASTE_IS_A_MINION (1<<21) //That's a dumb ai
 
 //Charge-Crush
 #define CHARGE_OFF 0

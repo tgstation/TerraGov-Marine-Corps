@@ -131,7 +131,6 @@
 /datum/component/suit_autodoc/proc/RegisterSignals(mob/user)
 	RegisterSignal(user, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/damage_taken)
 
-
 /**
 	Removes specific user signals
 */
@@ -170,6 +169,7 @@
 	SIGNAL_HANDLER
 	if(!iscarbon(user))
 		return
+	UnregisterSignal(wearer, COMSIG_KB_SUITANALYZER)
 	remove_actions()
 	disable()
 	wearer = null
@@ -185,6 +185,7 @@
 	wearer = equipper
 	enable()
 	give_actions()
+	RegisterSignal(wearer, COMSIG_KB_SUITANALYZER, .proc/scan_user)
 
 /**
 	Disables to stop processing and calls to the signals from the user.
