@@ -1642,7 +1642,8 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/energy/plasma_pistol
 	name = "ionized plasma bolt"
 	icon_state = "overchargedlaser"
-	hud_state = "laser_sniper"
+	hud_state = "electrothermal"
+	hud_state_empty = "electrothermal_empty"
 	damage = 40
 	max_range = 14
 	penetration = 5
