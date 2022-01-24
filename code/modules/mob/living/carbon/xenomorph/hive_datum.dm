@@ -732,13 +732,14 @@ to_chat will check for valid clients itself already so no need to double check f
 	span_xenodanger("We burrow out of the ground and awaken from our slumber. For the Hive!"))
 
 	log_game("[key_name(xeno_candidate)] has joined as [new_xeno] at [AREACOORD(new_xeno.loc)].")
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	log_debug("A larva was spawned, it was [larva_already_reserved ? "already" : "not"] reserved. There is now [xeno_job.total_positions] total xeno positions and [xeno_job.current_positions] were taken.")
 	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(new_xeno)].")
 
 	xeno_candidate.mind.transfer_to(new_xeno, TRUE)
 	new_xeno.playsound_local(new_xeno, 'sound/effects/xeno_newlarva.ogg')
 	to_chat(new_xeno, span_xenoannounce("We are a xenomorph larva awakened from slumber!"))
 	if(!larva_already_reserved)
-		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 		xeno_job.occupy_job_positions(1)
 	return new_xeno
 
