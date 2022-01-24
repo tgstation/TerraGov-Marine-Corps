@@ -408,9 +408,9 @@
 	if(isliving(hit_atom)) //Hit a mob! This overwrites normal throw code.
 		if(SEND_SIGNAL(src, COMSIG_XENO_LIVING_THROW_HIT, hit_atom) & COMPONENT_KEEP_THROWING)
 			return FALSE
-		set_throwing(FALSE) //Resert throwing since something was hit.
+		stop_throw() //Resert throwing since something was hit.
 		return TRUE
-	set_throwing(FALSE) //Resert throwing since something was hit.
+	stop_throw() //Resert throwing since something was hit.
 	return ..() //Do the parent otherwise, for turfs.
 
 /mob/living/carbon/xenomorph/proc/toggle_nightvision(new_lighting_alpha)

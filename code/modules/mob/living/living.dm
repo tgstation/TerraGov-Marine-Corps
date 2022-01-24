@@ -318,7 +318,7 @@
 /mob/living/Bump(atom/A)
 	. = ..()
 	if(.) //We are thrown onto something.
-		return
+		return FALSE
 	if(buckled || now_pushing)
 		return
 	if(isliving(A))
