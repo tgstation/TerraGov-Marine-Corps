@@ -1167,6 +1167,8 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/autosniper)
 	attachable_allowed = list(
 		/obj/item/attachable/autosniperbarrel,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
@@ -1179,6 +1181,7 @@
 	attachable_offset = list("muzzle_x" = 48, "muzzle_y" = 18,"rail_x" = 23, "rail_y" = 23, "under_x" = 38, "under_y" = 16, "stock_x" = 9, "stock_y" = 12)
 	starting_attachment_types = list(
 		/obj/item/attachable/autosniperbarrel,
+		/obj/item/attachable/scope/marine,
 	)
 
 	burst_amount = 0
