@@ -43,7 +43,7 @@
 	acid_spray_structure_damage = 45
 
 	// *** Pheromones *** //
-	aura_strength = 3 //Praetorian's aura starts strong. They are the Queen's right hand. Climbs by 1 to 4.5
+	aura_strength = 1.7 //Praetorians aura starts at 1.7 and ends at 2.6. Leaving them slightly better than average.
 	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Abilities *** //
@@ -91,7 +91,7 @@
 	acid_spray_structure_damage = 53
 
 	// *** Pheromones *** //
-	aura_strength = 3.5
+	aura_strength = 2
 
 /datum/xeno_caste/praetorian/elder
 	upgrade_name = "Elder"
@@ -125,7 +125,7 @@
 	acid_spray_structure_damage = 61
 
 	// *** Pheromones *** //
-	aura_strength = 4
+	aura_strength = 2.4
 
 /datum/xeno_caste/praetorian/ancient
 	upgrade_name = "Ancient"
@@ -160,4 +160,4 @@
 	acid_spray_structure_damage = 69
 
 	// *** Pheromones *** //
-	aura_strength = 4.5
+	aura_strength = 2.6
