@@ -484,6 +484,7 @@
 		M.unlock_all()
 		dat += "<A href='?src=[REF(src)];abduct=1'>Capture the [M]</A><br>"
 		if(M.hijack_state != HIJACK_STATE_CALLED_DOWN)
+			to_chat(X, span_xenowarning("We corrupt the bird's controls, unlocking the doors and preventing it from flight."))
 			M.set_hijack_state(HIJACK_STATE_CALLED_DOWN)
 			M.do_start_hijack_timer()
 
@@ -663,6 +664,9 @@
 			else
 				to_chat(X, span_xenowarning("We can't do that right now."))
 				return
+		var/confirm = tgui_alert(usr, "Would you like to hijack the metal bird?", "Hijack the bird?", list("Yes", "No"))
+		if(confirm != "Yes")
+			return
 		var/obj/docking_port/stationary/marine_dropship/crash_target/CT = pick(SSshuttle.crash_targets)
 		if(!CT)
 			return

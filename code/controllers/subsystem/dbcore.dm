@@ -43,7 +43,7 @@ SUBSYSTEM_DEF(dbcore)
 	//This is as close as we can get to the true round end before Disconnect() without changing where it's called, defeating the reason this is a subsystem
 	if(SSdbcore.Connect())
 		var/datum/db_query/query_round_shutdown = SSdbcore.NewQuery(
-			"UPDATE [format_table_name("round")] SET shutdown_datetime = Now(), WHERE id = :round_id",
+			"UPDATE [format_table_name("round")] SET shutdown_datetime = Now() WHERE id = :round_id",
 			list("round_id" = GLOB.round_id)
 		)
 		query_round_shutdown.Execute()

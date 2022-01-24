@@ -7,6 +7,8 @@
 			Sleeping(40)	//This causes instant sleep, but does not prolong it. See life.dm for furthering SSD.
 	var/datum/action/toggle_rightclick/rclick = actions_by_path[/datum/action/toggle_rightclick]
 	rclick?.remove_action(src)
+	if(afk_status == MOB_AGHOSTED)
+		return
 	if(!key)
 		set_afk_status(MOB_DISCONNECTED)
 	else if(!isclientedaghost(src))

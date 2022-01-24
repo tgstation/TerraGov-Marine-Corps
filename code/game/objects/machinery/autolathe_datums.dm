@@ -259,25 +259,6 @@ GLOBAL_LIST_EMPTY(autolathe_categories)
 	path = /obj/item/ashtray/glass
 	category = "General"
 
-/datum/autolathe/recipe/electropack
-	name = "electropack"
-	path = /obj/item/electropack
-	hidden = 1
-	category = "Devices and Components"
-
-/datum/autolathe/recipe/welder_industrial
-	name = "industrial blowtorch"
-	path = /obj/item/tool/weldingtool/largetank
-	hidden = 1
-	category = "Tools"
-
-/datum/autolathe/recipe/handcuffs
-	name = "handcuffs"
-	path = /obj/item/restraints/handcuffs
-	hidden = 1
-	category = "General"
-
-
 /datum/autolathe/recipe/camera_assembly
 	name = "camera assembly"
 	path = /obj/item/frame/camera

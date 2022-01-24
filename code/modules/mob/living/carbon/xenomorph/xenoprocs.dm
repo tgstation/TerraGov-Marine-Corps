@@ -410,7 +410,6 @@
 			return FALSE
 		set_throwing(FALSE) //Resert throwing since something was hit.
 		return TRUE
-	SEND_SIGNAL(src, COMSIG_XENO_NONE_THROW_HIT)
 	set_throwing(FALSE) //Resert throwing since something was hit.
 	return ..() //Do the parent otherwise, for turfs.
 

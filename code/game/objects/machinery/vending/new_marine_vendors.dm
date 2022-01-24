@@ -416,6 +416,7 @@
 		/obj/effect/modular_set/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
 		/obj/effect/modular_set/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "black"),
 		/obj/effect/modular_set/eva = list(CAT_AMR, "Medium EVA Jaeger kit", 0, "black"),
+		/obj/effect/modular_set/helljumper = list(CAT_AMR, "Medium Helljumper Jaeger kit", 0, "black"),
 		/obj/effect/modular_set/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "black"),
 		/obj/effect/modular_set/eod = list(CAT_AMR, "Heavy EOD Jaeger kit", 0, "black"),
 		/obj/effect/essentials_set/xenonauten_light/leader = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
@@ -478,9 +479,9 @@
 /obj/machinery/marine_selector/clothes/synth
 	name = "M57 Synthetic Equipment Vendor"
 	desc = "An automated synthetic equipment vendor hooked up to a modest storage unit."
-	icon_state = "synth"
-	icon_vend = "synth-vend"
-	icon_deny = "synth-deny"
+	icon_state = "snowflake"
+	icon_vend = "snowflake-vend"
+	icon_deny = "snowflake-deny"
 	vendor_role = /datum/job/terragov/silicon/synthetic
 	lock_flags = JOB_LOCK
 
@@ -698,6 +699,7 @@
 		/obj/item/tool/shovel/etool,
 		/obj/item/lightreplacer,
 		/obj/item/circuitboard/general,
+		/obj/item/tool/solderingtool,
 	)
 
 /obj/effect/essentials_set/leader
@@ -741,7 +743,30 @@
 		/obj/item/bodybag/cryobag,
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/tweezers,
+		/obj/item/tool/solderingtool,
 	)
+
+/obj/effect/essentials_set/white_dress
+	name = "Full set of TGMC white dress uniform"
+	desc = "A standard-issue TerraGov Marine Corps white dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. Doesn't seem to fit perfectly around the waist though."
+	spawned_gear_list = list(
+		/obj/item/clothing/under/whites,
+		/obj/item/clothing/suit/white_dress_jacket,
+		/obj/item/clothing/head/white_dress,
+		/obj/item/clothing/shoes/white,
+		/obj/item/clothing/gloves/white,
+	)
+
+/obj/effect/essentials_set/service_uniform
+	name = "Full set of TGMC service uniform"
+	desc = "A standard-issue TerraGov Marine Corps dress uniform. Sometimes, you hate wearing this since you remember wearing this to Infantry School and have to wear this when meeting a commissioned officer. This is what you wear when you are not deployed and are working in an office. Doesn't seem to fit perfectly around the waist."
+	spawned_gear_list = list(
+		/obj/item/clothing/under/service,
+		/obj/item/clothing/head/garrisoncap,
+		/obj/item/clothing/head/servicecap,
+		/obj/item/clothing/shoes/marine/full,
+	)
+
 
 /obj/effect/essentials_set/xenonauten_light
 	spawned_gear_list = list(
@@ -855,6 +880,15 @@
 		/obj/item/armor_module/armor/chest/marine/assault/eod,
 		/obj/item/armor_module/armor/arms/marine/eod,
 		/obj/item/armor_module/armor/legs/marine/eod,
+	)
+
+/obj/effect/modular_set/helljumper
+	desc = "A set of Helljumper pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
+	spawned_gear_list = list(
+		/obj/item/clothing/head/modular/marine/helljumper,
+		/obj/item/armor_module/armor/chest/marine/helljumper,
+		/obj/item/armor_module/armor/arms/marine/helljumper,
+		/obj/item/armor_module/armor/legs/marine/helljumper,
 	)
 
 /obj/effect/essentials_set/mimir
