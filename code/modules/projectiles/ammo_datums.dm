@@ -937,8 +937,8 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 40
 	scatter = -20
 	damage = 80
-	penetration = 60
-	sundering = 15
+	penetration = 40
+	sundering = 5
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"

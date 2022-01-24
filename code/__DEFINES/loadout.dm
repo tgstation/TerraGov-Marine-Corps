@@ -157,8 +157,8 @@ GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 	/obj/item/weapon/gun/rifle/standard_smartrifle = list(CAT_LEDSUP, "T-25 Smart assault rifle", 30 , "white"),
 	/obj/item/ammo_magazine/rifle/standard_smartrifle = list(CAT_LEDSUP, "T-25 Smart assault rifle magazine", 2 , "black"),
 	/obj/item/ammo_magazine/packet/t25 = list(CAT_LEDSUP, "T-25 Smart assault rifle ammo box", 6 , "black"),
-	/obj/item/weapon/gun/rifle/sniper/antimaterial  = list(CAT_LEDSUP, "T-26 Antimaterial sniper rifle", 30 , "black"),
-	/obj/item/ammo_magazine/sniper = list(CAT_LEDSUP, "T-26 Antimaterial sniper rifle ammo", 5 , "black"), //T-26 smartgunner will get 6 mags, a total of 90 rounds
+	/obj/item/weapon/gun/rifle/sniper/antimaterial  = list(CAT_LEDSUP, "T-26 Antimaterial sniper rifle", 29 , "black"),
+	/obj/item/ammo_magazine/sniper = list(CAT_LEDSUP, "T-26 Antimaterial sniper rifle ammo", 4 , "black"), //T-26 smartgunner will get 5 mags, a total of 75 rounds
 	))
 
 
