@@ -14,11 +14,12 @@
 	var/drawSound = 'sound/weapons/guns/misc/rifle_draw.ogg'
 
 /obj/item/storage/large_holster/update_icon()
+	..()
 	var/mob/user = loc
 	if(istype(user)) user.update_inv_back()
 	if(istype(user)) user.update_inv_belt()
 	if(istype(user)) user.update_inv_s_store()
-	..()	
+	
 
 /obj/item/storage/large_holster/update_icon_state()
 	icon_state = "[base_icon][contents.len?"_full":""]"
