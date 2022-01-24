@@ -868,6 +868,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set name = "Join Valhalla"
 	set category = "Ghost"
 
+	if(is_banned_from(ckey, ROLE_VALHALLA))
+		to_chat(usr, span_notice("You are banned from Valhalla!"))
+		return
+
 	if(!GLOB.valhalla_allowed)
 		to_chat(usr, span_notice("Valhalla is currently disabled!"))
 		return
