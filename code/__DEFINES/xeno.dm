@@ -50,6 +50,8 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 #define UPGRADE_FLAG_MESSAGE_HIVE (1<<0)
 #define UPGRADE_FLAG_ONETIME (1<<0)
 
+#define GHOSTS_CAN_TAKE_MINIONS "Smart Minions"
+
 GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 	/mob/living/carbon/xenomorph/beetle/ai,
 	/mob/living/carbon/xenomorph/mantis/ai,
