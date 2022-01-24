@@ -302,6 +302,7 @@
 
 /obj/machinery/miner/proc/set_miner_status()
 	var/health_percent = round((miner_integrity / max_miner_integrity) * 100)
+	minimap.minimap_blip = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_off"
 	switch(health_percent)
 		if(-INFINITY to 0)
 			miner_status = MINER_DESTROYED
