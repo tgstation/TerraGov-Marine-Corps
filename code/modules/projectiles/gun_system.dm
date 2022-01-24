@@ -1590,9 +1590,6 @@
 /obj/item/weapon/gun/proc/get_scatter(starting_scatter, mob/user)
 	. = starting_scatter //projectile_to_fire.scatter
 
-	if(. <= 0) //Not if the gun doesn't scatter at all, or negative scatter.
-		return 0
-
 	if(gun_firemode ==  GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST) //Much higher chance on a burst or similar.
 		if(flags_item & WIELDED && wielded_stable() || CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if deployed, its pretty stable.
 			. += burst_amount * burst_scatter_mult
@@ -1608,6 +1605,9 @@
 		var/scatter_tweak = user.skills.getRating(gun_skill_category)
 		if(scatter_tweak > 1)
 			. -= scatter_tweak * 2
+
+	if(. <= 0)
+		return 0
 
 
 /obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, firing_angle)
