@@ -176,7 +176,7 @@
 	flags_atom = DIRLOCK
 	skill_level_needed = SKILL_MEDICAL_PRACTICED
 	unskilled_delay = SKILL_TASK_EASY
-	toolspeed = 8 SECONDS
+	toolspeed = 3.5 SECONDS
 
 /obj/item/stack/medical/heal_pack/advanced/update_icon_state()
 	if(max_amount < 1 || amount > max_amount)

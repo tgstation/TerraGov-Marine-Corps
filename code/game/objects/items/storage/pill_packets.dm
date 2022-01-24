@@ -51,7 +51,7 @@
 /obj/item/storage/pill_bottle/packet/quickclot
 	name = "quickclot pill packet"
 	desc = "This packet containts Quickclot pills. Used to alleviate internal bleeding and bleeding in general. Once you take them out they don't go back in. No more than 2 pills at once."
-	pill_type_to_fill = /obj/item/reagent_containers/pill/peridaxon
+	pill_type_to_fill = /obj/item/reagent_containers/pill/quickclot
 
 /obj/item/storage/pill_bottle/packet/bicaridine
 	name = "bicaridine pill packet"

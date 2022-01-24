@@ -163,7 +163,7 @@
 		if(!do_after(user, fumbling_time, TRUE, H, BUSY_ICON_UNSKILLED))
 			return
 	else
-		defib_heal_amt *= skill * 0.5 //more healing power when used by a doctor (this means non-trained don't heal)
+		defib_heal_amt *= skill * 0.75 //more healing power when used by a doctor (this means non-trained don't heal)
 
 	if(!ishuman(H))
 		to_chat(user, span_warning("You can't defibrilate [H]. You don't even know where to put the paddles!"))
