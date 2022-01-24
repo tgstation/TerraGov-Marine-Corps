@@ -11499,12 +11499,9 @@
 /turf/closed/wall,
 /area/lv624/lazarus/main_hall)
 "jsN" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8
-	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
 	},
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
@@ -11921,6 +11918,9 @@
 "jQr" = (
 /obj/structure/window/framed/colony,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/fitness)
 "jQy" = (
@@ -19340,6 +19340,14 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor,
 /area/lv624/ground/river2)
+"sMc" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1
+	},
+/turf/open/floor/tile/purple/whitepurplecorner{
+	dir = 4
+	},
+/area/lv624/lazarus/fitness)
 "sNh" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
@@ -48908,7 +48916,7 @@ xJa
 iEv
 kRJ
 jsN
-wgH
+sMc
 wgH
 wgH
 wgH
