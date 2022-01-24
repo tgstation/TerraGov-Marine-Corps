@@ -5298,6 +5298,10 @@
 /obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple/sideroom)
+"bTL" = (
+/obj/structure/sign/safety/hazard,
+/turf/closed/wall/r_wall,
+/area/lv624/lazarus/spaceport)
 "bUp" = (
 /obj/effect/landmark/nuke_spawn,
 /obj/structure/cable,
@@ -10789,6 +10793,10 @@
 	icon_state = "whiteyellowfull"
 	},
 /area/lv624/lazarus/sandtemple)
+"ixE" = (
+/obj/structure/sign/safety/hazard,
+/turf/closed/wall/r_wall,
+/area/lv624/lazarus/canteen)
 "ixO" = (
 /obj/effect/decal/sandytile,
 /obj/structure/stairs/cornerdark{
@@ -15574,6 +15582,11 @@
 /obj/item/weapon/gun/revolver/small,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
+"odC" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/sign/safety/hazard,
+/turf/closed/wall/r_wall,
+/area/lv624/lazarus/spaceport2)
 "odE" = (
 /turf/open/floor/plating,
 /area/lv624/ground/river1)
@@ -22955,6 +22968,10 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle1)
+"wui" = (
+/obj/structure/sign/safety/hazard,
+/turf/closed/wall/r_wall,
+/area/lv624/lazarus/quartstorage/outdoors)
 "wvm" = (
 /obj/machinery/light{
 	dir = 4
@@ -38588,7 +38605,7 @@ tNU
 vbu
 hiy
 ybc
-yaB
+odC
 jro
 iwB
 mOs
@@ -38942,7 +38959,7 @@ vvX
 uoM
 pQz
 ybc
-yaB
+odC
 jro
 iwB
 mOs
@@ -56995,11 +57012,11 @@ pqp
 qyP
 ryY
 iAC
-iAC
+ixE
 wvT
 wvT
 wvT
-wvT
+bTL
 wvT
 rOQ
 bdh
@@ -57531,7 +57548,7 @@ tbe
 tbe
 tbe
 uYo
-wvT
+bTL
 wjg
 mOs
 mOs
@@ -58062,7 +58079,7 @@ tbe
 kqW
 vvl
 uYo
-wvT
+bTL
 qay
 ylZ
 bdh
@@ -58593,7 +58610,7 @@ sKu
 tbe
 ciE
 uYo
-wvT
+bTL
 rOQ
 ksq
 gCL
@@ -58744,7 +58761,7 @@ rYv
 pMn
 hkF
 uIV
-dPz
+wui
 xoN
 mqK
 mqK
@@ -59452,7 +59469,7 @@ rYv
 pMn
 hkF
 uIV
-dPz
+wui
 hWp
 csS
 wvz
@@ -59983,7 +60000,7 @@ kwq
 wIK
 mdD
 vXt
-dPz
+wui
 cTW
 kLN
 wvz

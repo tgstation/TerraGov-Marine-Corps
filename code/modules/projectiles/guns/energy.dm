@@ -754,3 +754,63 @@
 	fire_delay = 0.15 SECONDS
 	rounds_per_shot = 3
 	message_to_user = "You set the machine laser's charge mode to efficiency mode."
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/xray
+	name = "\improper Terra Experimental X-Ray laser rifle"
+	desc = "A Terra Experimental X-Ray laser rifle, abbreviated as the TE-X. It has an integrated charge selector for normal and high settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
+	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	icon_state = "tex"
+	item_state = "tex"
+	max_shots = 40 //codex stuff
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
+	rounds_per_shot = 15
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
+		/obj/item/attachable/shoulder_mount,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
+	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 19,"rail_x" = 20, "rail_y" = 21, "under_x" = 30, "under_y" = 13, "stock_x" = 22, "stock_y" = 14)
+
+	aim_slowdown = 0.4
+	wield_delay = 0.5 SECONDS
+	scatter = 0
+	scatter_unwielded = 10
+	fire_delay = 0.5 SECONDS
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.55
+	damage_falloff_mult = 0.3
+	mode_list = list(
+		"Standard" = /datum/lasrifle/base/energy_rifle_mode/xray,
+		"Piercing" = /datum/lasrifle/base/energy_rifle_mode/xray/piercing,
+	)
+
+/datum/lasrifle/base/energy_rifle_mode/xray
+	rounds_per_shot = 15
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
+	fire_delay = 0.5 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	message_to_user = "You set the xray rifle's charge mode to standard fire."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+	icon_state = "tex"
+	radial_icon_state = "laser_heat"
+
+/datum/lasrifle/base/energy_rifle_mode/xray/piercing
+	rounds_per_shot = 30
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray/piercing
+	fire_delay = 0.6 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
+	message_to_user = "You set the xray rifle's charge mode to piercing mode."
+	radial_icon_state = "laser"

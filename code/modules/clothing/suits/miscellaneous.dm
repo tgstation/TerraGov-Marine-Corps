@@ -163,15 +163,14 @@
 	item_state = "cardborg"
 	flags_armor_protection = CHEST|GROIN
 	flags_inv_hide = HIDEJUMPSUIT
-/* not currently needed thanks to Manzehino who provided a different jumpsuit sprite.
+
+
 /obj/item/clothing/suit/white_dress_jacket
 	name = "White Dress Jacket"
 	desc = "The perfect white jacket to go with your white dress uniform."
 	icon_state = "white_dress_jacket" //with thanks to Baystation12
 	item_state = "white_dress_jacket" //with thanks to Baystation12
 
-* Misc
-*/
 
 /obj/item/clothing/suit/straight_jacket
 	name = "straight jacket"

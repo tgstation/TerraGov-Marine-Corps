@@ -647,6 +647,7 @@
 		/obj/item/ammo_magazine/standard_gpmg,
 		/obj/item/ammo_magazine/tl102,
 		/obj/item/ammo_magazine/standard_lmg,
+		/obj/item/ammo_magazine/standard_mmg,
 		/obj/item/ammo_magazine/standard_smartmachinegun,
 		/obj/item/cell/lasgun,
 	)
@@ -1054,6 +1055,19 @@
 	spawn_number = 30
 	spawn_type = /obj/item/ammo_magazine/standard_gpmg
 
+/obj/item/storage/box/visual/magazine/compact/standard_mmg
+	name = "T-27 magazine box"
+	desc = "A box specifically designed to hold a large amount of T-27 box magazines."
+	storage_slots = 30
+	closed_overlay = "mag_box_small_overlay_t27"
+	can_hold = list(
+		/obj/item/ammo_magazine/standard_mmg,
+	)
+
+/obj/item/storage/box/visual/magazine/compact/standard_mmg/full
+	spawn_number = 30
+	spawn_type = /obj/item/ammo_magazine/standard_mmg
+
 /obj/item/storage/box/visual/magazine/compact/standard_smartmachinegun
 	name = "T-29 drum box"
 	desc = "A box specifically designed to hold a large amount of T-29 drum magazines."
@@ -1075,6 +1089,7 @@
 	max_w_class = 3
 	storage_slots = 25
 	max_storage_space = 50
+	flags_atom = PREVENT_CONTENTS_EXPLOSION //These ones should be safe, since they're supposed to be put in FOB
 	can_hold = list(
 		/obj/item/explosive/grenade,
 	)

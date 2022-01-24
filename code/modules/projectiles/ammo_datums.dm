@@ -43,6 +43,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/bullet_color = COLOR_WHITE
 	///If this ammo is hitscan, the icon of beam coming out from the gun
 	var/hitscan_effect_icon = "beam"
+	///A multiplier applied to piercing projectile, that reduces its damage/penetration/sundering on hit
+	var/on_pierce_multiplier = 1
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
 	return
@@ -374,7 +376,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 1.5
 
 /datum/ammo/bullet/revolver/tp44/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 0, slowdown = 0.5, knockback = 0, shake = 0)
+	staggerstun(M, P, stagger = 0, slowdown = 0.5, knockback = 1, shake = 0)
 
 /datum/ammo/bullet/revolver/small
 	name = "small revolver bullet"
@@ -1131,15 +1133,16 @@ datum/ammo/bullet/revolver/tp44
 	name = "railgun round"
 	hud_state = "alloy_spike"
 	icon_state 	= "blue_bullet"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
 	max_range = 9
 	damage = 150
 	penetration = 70
 	sundering = 90
 	bullet_color = COLOR_PULSE_BLUE
+	on_pierce_multiplier = 0.85
 
-/datum/ammo/bullet/railgun/on_hit_mob(mob/M,obj/projectile/P)
+/datum/ammo/bullet/railgun/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 3, shake = 0)
 
 /*
@@ -1602,8 +1605,26 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/energy/lasgun/pistol/disabler/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)
 
-// Plasma //
+/datum/ammo/energy/lasgun/marine/xray
+	name = "xray heat bolt"
+	icon_state = "u_laser"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
+	damage = 25
+	penetration = 5
+	sundering = 1
+	max_range = 15
+	hitscan_effect_icon = "u_laser_beam"
 
+/datum/ammo/energy/lasgun/marine/xray/piercing
+	name = "xray piercing bolt"
+	icon_state = "xray"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	damage = 25
+	penetration = 100
+	max_range = 10
+	hitscan_effect_icon = "xray_beam"
+
+// Plasma //
 
 /datum/ammo/energy/plasma
 	name = "plasma bolt"
@@ -1621,7 +1642,8 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/energy/plasma_pistol
 	name = "ionized plasma bolt"
 	icon_state = "overchargedlaser"
-	hud_state = "laser_sniper"
+	hud_state = "electrothermal"
+	hud_state_empty = "electrothermal_empty"
 	damage = 40
 	max_range = 14
 	penetration = 5

@@ -54,8 +54,8 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/customname = input("What do you want it to be called?.", "Queen Mother Report", "Queen Mother")
-	var/input = input("This should be a message from the ruler of the Xenomorph race.", "Queen Mother Report", "") as message|null
+	var/customname = tgui_input_text(usr, "What do you want it to be called?.", "Queen Mother Report", "Queen Mother", encode = FALSE)
+	var/input = tgui_input_text(usr, "This should be a message from the ruler of the Xenomorph race.", "Queen Mother Report", "", multiline = TRUE, encode = FALSE)
 	if(!input || !customname)
 		return
 
@@ -92,8 +92,8 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/customname = input("What do you want the AI to be called?.", "AI Report", "AI") as text|null
-	var/input = input("This should be a message from the ship's AI.", "AI Report") as message|null
+	var/customname = tgui_input_text(usr, "What do you want the AI to be called?.", "AI Report", "AI", encode = FALSE)
+	var/input = tgui_input_text(usr, "This should be a message from the ship's AI.", "AI Report", multiline = TRUE, encode = FALSE)
 	if(!input || !customname)
 		return
 
@@ -123,8 +123,8 @@
 		return
 
 
-	var/customname = input("Pick a title for the report.", "Title", "TGMC Update") as text|null
-	var/input = input("Please enter anything you want. Anything. Serious.", "What?", "") as message|null
+	var/customname = tgui_input_text(usr, "Pick a title for the report.", "Title", "TGMC Update", encode = FALSE)
+	var/input = tgui_input_text(usr, "Please enter anything you want. Anything. Serious.", "What?", "", multiline = TRUE, encode = FALSE)
 
 	if(!input || !customname)
 		return
@@ -151,7 +151,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/msg = input("Enter the text you wish to appear to everyone.", "Global Narrate") as text
+	var/msg = tgui_input_text(usr, "Enter the text you wish to appear to everyone.", "Global Narrate", multiline = TRUE , encode = FALSE)
 
 	if(!msg)
 		return
@@ -169,7 +169,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/msg = input("Enter the text you wish to appear to your target.", "Direct Narrate") as text
+	var/msg = tgui_input_text(usr, "Enter the text you wish to appear to your target.", "Direct Narrate", multiline = TRUE, encode = FALSE)
 	if(!msg)
 		return
 
@@ -186,7 +186,7 @@
 	if(!check_rights(R_FUN|R_MENTOR))
 		return
 
-	var/msg = input("Subtle PM to [key_name(M)]:", "Subtle Message", "") as text
+	var/msg = tgui_input_text(usr, "Subtle PM to [key_name(M)]:", "Subtle Message", "", multiline = TRUE, encode = FALSE)
 
 	if(!M?.client || !msg)
 		return
@@ -225,7 +225,7 @@
 		else
 			return
 
-	var/msg = input("Subtle PM to [key_name(M)]:", "Subtle Message", "") as text
+	var/msg = tgui_input_text(usr, "Subtle PM to [key_name(M)]:", "Subtle Message", "", multiline = TRUE, encode = FALSE)
 
 	if(!M?.client || !msg)
 		return
@@ -259,7 +259,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/new_info = input(usr, "Set the custom information players get on joining or via the OOC tab.", "Custom Info", GLOB.custom_info) as message|null
+	var/new_info = tgui_input_text(usr, "Set the custom information players get on joining or via the OOC tab.", "Custom info", GLOB.custom_info, multiline = TRUE, encode = FALSE)
 	new_info = noscript(new_info)
 	if(isnull(new_info) || GLOB.custom_info == new_info)
 		return
@@ -452,7 +452,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/message = input("Global message to send:", "Admin Announce") as message|null
+	var/message = tgui_input_text(usr, "Global message to send:", "Admin Announce", multiline = TRUE, encode = FALSE)
 
 	message = noscript(message)
 
@@ -505,13 +505,13 @@
 	if(!istype(SSticker.mode.picked_call))
 		return
 
-	var/max = input("What should the maximum amount of mobs be?", "Max Mobs", SSticker.mode.picked_call.mob_max) as null|num
+	var/max = tgui_input_number(usr, "What should the maximum amount of mobs be?", "Max mobs", SSticker.mode.picked_call.mob_max)
 	if(!max || max < 1)
 		return
 
 	SSticker.mode.picked_call.mob_max = max
 
-	var/min = input("What should the minimum amount of mobs be?", "Min Mobs", SSticker.mode.picked_call.mob_min) as null|num
+	var/min = tgui_input_number(usr, "What should the minimum amount of mobs be?", "Min Mobs", SSticker.mode.picked_call.mob_min)
 	if(!min || min < 1)
 		min = 0
 
@@ -1009,7 +1009,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/tip = input(usr, "Please specify your tip that you want to send to the players.", "Tip") as message|null
+	var/tip = tgui_input_text(usr, "Please specify your tip that you want to send to the players.", "Tip", multiline = TRUE, encode = FALSE)
 	if(!tip)
 		return
 
@@ -1048,7 +1048,7 @@
 		return
 
 	var/turf/T = get_turf(mob)
-	var/z_level = input("Z-Level to target?", "Z-Level", T?.z) as num|null
+	var/z_level = tgui_input_number(usr, "Z-Level to target?", "Z-Level", T?.z)
 	if(!isnum(z_level))
 		return
 

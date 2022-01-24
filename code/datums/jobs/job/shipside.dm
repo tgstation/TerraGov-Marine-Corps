@@ -339,7 +339,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	belt = /obj/item/storage/belt/gun/pistol/m4a3/vp70
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/pilot
-	wear_suit = /obj/item/clothing/suit/armor/vest/pilot
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/pilot
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/yellow
 	glasses = /obj/item/clothing/glasses/sunglasses/aviator

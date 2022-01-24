@@ -1,0 +1,6 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscadd: "plasma pistol ammoHUD"
+  - bugfix: "plasma pistol ammoHUD"
+  - imageadd: "plasma pistol ammoHUD LOL"

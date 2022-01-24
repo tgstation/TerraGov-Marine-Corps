@@ -121,6 +121,9 @@
 	set name = "XOOC"
 	set category = "OOC"
 
+	if(!msg)
+		return
+
 	var/admin = check_rights(R_ADMIN, FALSE)
 
 	if(!mob)
@@ -310,6 +313,8 @@
 	set name = "LOOC"
 	set category = "OOC"
 
+	if(!msg)
+		return
 	var/admin = check_rights(R_ADMIN, FALSE)
 
 	if(!mob)

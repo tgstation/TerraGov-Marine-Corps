@@ -466,8 +466,6 @@
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
 	custom_metabolism = REAGENTS_METABOLISM * 2
-	purge_list = list(/datum/reagent/medicine)
-	purge_rate = 1
 	overdose_threshold = 10000 //Overdosing for neuro is what happens when you run out of stamina to avoid its oxy and toxin damage
 	scannable = TRUE
 	toxpwr = 0
@@ -475,7 +473,6 @@
 /datum/reagent/toxin/xeno_neurotoxin/light
 	name = "Light Neurotoxin"
 	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time. This one seems to be weaker enough to not remove other chemicals."
-	purge_rate = 0
 
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
@@ -543,6 +540,9 @@
 		slowdown_multiplier *= 2
 
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+		slowdown_multiplier *= 2
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_ozelomelyn))
 		slowdown_multiplier *= 2
 
 	switch(slowdown_multiplier) //Description varies in severity and probability with the multiplier
@@ -648,6 +648,28 @@
 		C.drip(DEFILER_SANGUINAL_DAMAGE) //Causes bleeding
 
 	return ..()
+
+/datum/reagent/toxin/xeno_ozelomelyn // deals capped toxloss and purges at a rapid rate
+	name = "Ozelomelyn"
+	description = "A potent Xenomorph chemical that quickly purges other chemicals in a bloodstream, causing small scale poisoning in a organism that won't progress. Appears to be strangely water based.."
+	reagent_state = LIQUID
+	color = "#f1ddcf"
+	custom_metabolism = 1.5 // metabolizes decently quickly. A sting does 15 at the same rate as neurotoxin.
+	overdose_threshold = 10000
+	scannable = TRUE
+	toxpwr = 0 // This is going to do slightly snowflake tox damage.
+	purge_list = list(/datum/reagent/medicine)
+	purge_rate = 5
+
+/datum/reagent/toxin/xeno_ozelomelyn/on_mob_life(mob/living/L, metabolism)
+	if(L.getToxLoss() < 40) // if our toxloss is below 40, do 0.75 tox damage.
+		L.adjustToxLoss(0.75)
+		if(prob(15))
+			to_chat(L, span_warning("Your veins feel like water and you can feel a growing itchy feeling in them!") )
+		return ..()
+	if(prob(15))
+		to_chat(L, span_warning("Your veins feel like water..") )
+		return ..()
 
 /datum/reagent/zombium
 	name = "Zombium"
