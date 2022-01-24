@@ -364,13 +364,13 @@ WEAPONS
 	cost = 5
 
 /datum/supply_packs/weapons/antimaterial
-	name = "T-26 Antimaterial sniper rifle kit"
+	name = "T-26 Antimaterial rifle kit"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
 	cost = 40
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/antimaterial_ammo
-	name = "T-26 Antimaterial sniper rifle magazine"
+	name = "T-26 Antimaterial rifle magazine"
 	contains = list(/obj/item/ammo_magazine/sniper)
 	cost = 5
 	available_against_xeno_only = TRUE

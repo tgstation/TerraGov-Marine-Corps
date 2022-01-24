@@ -24,7 +24,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 //Pow! Headshot
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial
-	name = "\improper T-26 Antimaterial sniper rifle"
+	name = "\improper T-26 Antimaterial rifle"
 	desc = "The T-26 is an IFF capable sniper rifle which is mostly used by long range marksmen and smartgunner who excellence ammo management. It excels in long-range combat situations and support sniping. It has a laser designator installed, and the scope itself has IFF integrated into it. Uses specialized 10x28 caseless rounds made to work with the guns odd IFF-scope system.  \nIt has an integrated Target Marker and a Laser Targeting system.\n\"Peace Through Superior Firepower\"."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t26"
