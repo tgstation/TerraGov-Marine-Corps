@@ -24,7 +24,6 @@
 			"melee_damage" = 0,
 			"plasma_max" = 0,
 			"plasma_gain" = 0,
-			"upgrade_threshold" = 0
 		)
 		// Each of these values should get smaller or stay the same each evolution
 		var/list/lesser_test_vars = list(
