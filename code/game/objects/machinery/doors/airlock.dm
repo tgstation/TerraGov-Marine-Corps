@@ -391,11 +391,6 @@
 			else if(length(req_one_access))
 				AE.conf_access = req_one_access
 				AE.one_access = TRUE
-		else
-			AE = electronics
-			if(electronics.is_general_board)
-				AE.set_general()
-			AE.forceMove(loc)
 			electronics = null
 
 		if(operating == -1)
