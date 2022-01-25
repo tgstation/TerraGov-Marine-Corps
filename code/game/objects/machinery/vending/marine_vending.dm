@@ -7,7 +7,6 @@
 	wrenchable = FALSE
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	isshared = TRUE
-	contraband = list(/obj/item/explosive/grenade/smokebomb = 50)
 
 	products = list(
 		"Rifles" = list(
@@ -177,8 +176,6 @@
 
 /obj/machinery/vending/weapon/hvh
 
-	contraband = list(/obj/item/explosive/grenade/smokebomb = 50)
-
 	products = list(
 		"Rifles" = list(
 			/obj/item/weapon/gun/rifle/standard_assaultrifle = -1,
@@ -266,6 +263,7 @@
 			/obj/item/explosive/grenade = 600,
 			/obj/item/explosive/grenade/m15 = 50,
 			/obj/item/explosive/grenade/incendiary = 50,
+			/obj/item/explosive/grenade/smokebomb = 50,
 			/obj/item/explosive/grenade/smokebomb/cloak = 50,
 			/obj/item/explosive/grenade/smokebomb/drain = 10,
 			/obj/item/explosive/grenade/mirage = 100,
@@ -506,9 +504,9 @@
 		/obj/item/storage/box/matches = -1,
 		/obj/item/tool/lighter/random = -1,
 		/obj/item/tool/lighter/zippo = -1,
+		/obj/item/clothing/mask/cigarette/cigar/havana = 5
 	)
 
-	contraband = list(/obj/item/clothing/mask/cigarette/cigar/havana = 5)
 	premium = list(/obj/item/storage/fancy/cigar = 25)
 	seasonal_items = list()
 
@@ -703,7 +701,7 @@
 
 /obj/machinery/vending/lasgun/stock(obj/item/item_to_stock, mob/user, recharge = FALSE)
 	//More accurate comparison between absolute paths.
-	for(var/datum/vending_product/R AS in (product_records + hidden_records + coin_records ))
+	for(var/datum/vending_product/R AS in (product_records + coin_records ))
 		if(item_to_stock.type == R.product_path && !istype(item_to_stock,/obj/item/storage)) //Nice try, specialists/engis
 			if(istype(item_to_stock, /obj/item/cell/lasgun) && recharge)
 				if(!recharge_lasguncell(item_to_stock, user))
@@ -757,16 +755,14 @@
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal6 = -1,
 		/obj/item/storage/box/MRE = -1,
 		/obj/item/reagent_containers/food/drinks/flask = -1,
+		/obj/item/reagent_containers/food/drinks/flask/marine = 10,
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal5 = 15
 	)
 //Christmas inventory
 /*
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas1 = 25,
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas3 = 25)*/
-	contraband = list(
-		/obj/item/reagent_containers/food/drinks/flask/marine = 10,
-		/obj/item/reagent_containers/food/snacks/mre_pack/meal5 = 15,
-)
 	vend_delay = 15
 	//product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
 	product_ads = "Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork.; 9 Flavors of Protein!; You'll never guess the mystery flavor!"
@@ -823,10 +819,6 @@
 			/obj/item/healthanalyzer = 12,
 			/obj/item/bodybag/cryobag = 8,
 		),
-	)
-	contraband = list(
-		/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 3,
-		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired = 3,
 	)
 
 /obj/machinery/vending/MarineMed/rebel
@@ -898,7 +890,6 @@
 		/obj/item/reagent_containers/blood/OMinus = 5,
 		/obj/item/reagent_containers/blood/empty = 10,
 	)
-	contraband = list()
 
 /obj/machinery/vending/MarineMed/Blood/rebel
 	req_one_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
@@ -909,7 +900,7 @@
 	var/obj/item/reagent_containers/blood/temp_path
 	var/datum/vending_product/R
 	var/blood_type
-	for(R in (product_records + hidden_records + coin_records))
+	for(R in (product_records + coin_records))
 		if(R.product_path in temp_list)
 			temp_path = R.product_path
 			blood_type = initial(temp_path.blood_type)
@@ -945,7 +936,6 @@
 		/obj/item/clothing/mask/gas = 4,
 		/obj/item/storage/pouch/pistol = 4,
 	)
-	contraband = list(/obj/item/reagent_containers/blood/OMinus = 1)
 
 /obj/machinery/vending/marine_medic/rebel
 	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
@@ -963,9 +953,8 @@
 		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 		/obj/item/storage/box/sentry = 3,
 		/obj/item/storage/box/tl102 = 1,
+		/obj/item/cell/super = 1
 	)
-
-	contraband = list(/obj/item/cell/super = 1)
 
 	prices = list()
 

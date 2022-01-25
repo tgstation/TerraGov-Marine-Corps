@@ -207,8 +207,6 @@
 				else
 					name = "Wired Windoor Assembly"
 				var/obj/item/circuitboard/airlock/ae = electronics
-				if(electronics.is_general_board)
-					ae.set_general()
 				electronics = null
 				ae.forceMove(loc)
 
