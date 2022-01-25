@@ -356,3 +356,8 @@
   - rscadd: give 4 roller beds in Theseus
   - rscadd: Give free conveyor belts in req for free reqtorio
   - rscadd: hazard signs to help FOB engineers
+2022-01-25:
+  novaepee:
+  - rscadd: plasma pistol ammoHUD
+  - bugfix: plasma pistol ammoHUD
+  - imageadd: plasma pistol ammoHUD LOL
