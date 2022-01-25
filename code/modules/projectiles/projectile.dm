@@ -1143,6 +1143,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /obj/projectile/hitscan/resume_move(datum/source)
 	UnregisterSignal(source, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
 	projectile_batch_move(FALSE)
+	qdel(src)
 
 /mob/living/carbon/human/bullet_act(obj/projectile/proj)
 	. = ..()
