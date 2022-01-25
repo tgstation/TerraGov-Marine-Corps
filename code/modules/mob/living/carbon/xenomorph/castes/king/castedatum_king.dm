@@ -22,7 +22,7 @@
 	max_health = 450
 
 	// *** Evolution *** //
-	upgrade_threshold = 350
+	upgrade_threshold = 250
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
