@@ -776,7 +776,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	cooldown_timer = 1 MINUTES
 	keybind_signal = COMSIG_XENOABILITY_TIMESTOP
 	///The range of the ability
-	var/range = 3
+	var/range = 2
 	///How long is the bullet freeze staying
 	var/duration = 7 SECONDS
 
