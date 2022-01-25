@@ -115,7 +115,7 @@
 	if(victim_paralyze_time)
 		M.Paralyze(victim_paralyze_time)
 
-	step_to(X, M)
+	X.forceMove(get_turf(M))
 	if(freeze_on_hit_time)
 		X.Immobilize(freeze_on_hit_time)
 	if(X.savage) //If Runner Savage is toggled on, attempt to use it.

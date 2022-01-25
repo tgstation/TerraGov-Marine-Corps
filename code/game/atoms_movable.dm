@@ -288,12 +288,12 @@
 	if(!A)
 		CRASH("Bump was called with no argument.")
 	if(SEND_SIGNAL(src, COMSIG_MOVABLE_BUMP, A) & COMPONENT_BUMP_RESOLVED)
-		return
+		return COMPONENT_BUMP_RESOLVED
 	. = ..()
 	if(throwing)
-		throw_impact(A)
-		if(QDELETED(A))
-			return
+		. = throw_impact(A)
+	if(QDELETED(A))
+		return
 	A.Bumped(src)
 
 
