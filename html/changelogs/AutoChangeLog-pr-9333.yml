@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "Runner pounce no longer pushes the target"
-  - bugfix: "Xeno no longer pushes in bumpslash"
