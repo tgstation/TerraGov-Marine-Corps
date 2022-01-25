@@ -238,7 +238,7 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	psypoint_cost = 500
 
 /datum/hive_upgrade/primordial
-	category = "Primordial"
+	category = "Xenos"
 	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
 
 /datum/hive_upgrade/primordial/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
@@ -258,7 +258,8 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 /datum/hive_upgrade/primordial/tier_four/can_buy(mob/living/carbon/xenomorph/buyer, silent)
 	. = ..()
 	if(!buyer.hive.upgrades_by_name[XENO_TIER_THREE].times_bought)
-		to_chat(buyer, span_xenonotice("You must buy the tier three ameliorations first!"))
+		if(!silent)
+			to_chat(buyer, span_xenonotice("You must buy the tier three ameliorations first!"))
 		return FALSE
 
 /datum/hive_upgrade/primordial/tier_three
@@ -270,7 +271,8 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 /datum/hive_upgrade/primordial/tier_three/can_buy(mob/living/carbon/xenomorph/buyer, silent)
 	. = ..()
 	if(!buyer.hive.upgrades_by_name[XENO_TIER_TWO].times_bought)
-		to_chat(buyer, span_xenonotice("You must buy the tier two ameliorations first!"))
+		if(!silent)
+			to_chat(buyer, span_xenonotice("You must buy the tier two ameliorations first!"))
 		return FALSE
 
 /datum/hive_upgrade/primordial/tier_two
@@ -282,7 +284,8 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 /datum/hive_upgrade/primordial/tier_two/can_buy(mob/living/carbon/xenomorph/buyer, silent)
 	. = ..()
 	if(!buyer.hive.upgrades_by_name[XENO_TIER_TWO].times_bought)
-		to_chat(buyer, span_xenonotice("You must buy the tier one ameliorations first!"))
+		if(!silent)
+			to_chat(buyer, span_xenonotice("You must buy the tier one ameliorations first!"))
 		return FALSE
 
 /datum/hive_upgrade/primordial/tier_one
