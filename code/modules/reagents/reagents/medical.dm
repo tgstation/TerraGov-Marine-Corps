@@ -1355,8 +1355,8 @@
 /datum/reagent/medicine/research/medicalnanites/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 150)
-			L.take_limb_damage(0.015*current_cycle*effect_str, 0.015*current_cycle*effect_str)
-			L.adjustToxLoss(1*effect_str)
+			L.take_limb_damage(0.005*current_cycle*effect_str, 0.0015*current_cycle*effect_str)
+			L.adjustToxLoss(0.5*effect_str)
 			L.adjustStaminaLoss((1.5)*effect_str)
 			L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.20)
 			if(prob(5))
@@ -1364,9 +1364,9 @@
 		if(151)
 			to_chat(L, span_warning("The pain rapidly subsides. Looks like they've adapted to you."))
 		if(152 to INFINITY)
-			if(volume < 30) //smol injection will self-replicate up to 30u using 240u of blood.
+			if(volume < 30) //Small injection will self-replicate up to 30u using 60 of blood.
 				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.15)
-				L.blood_volume -= 2
+				L.blood_volume -= 0.5
 
 			if(volume < 35) //allows 10 ticks of healing for 20 points of free heal to lower scratch damage bloodloss amounts.
 				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.1)
