@@ -540,13 +540,17 @@
 			/obj/item/ammo_magazine/shotgun/mbx900 = 2,
 			/obj/item/bodybag/tarp = 2,
 			/obj/item/explosive/plastique = 5,
-			/obj/item/minerupgrade/automatic = 3,
 			/obj/item/fulton_extraction_pack = 2,
 			/obj/item/clothing/suit/storage/marine/harness/boomvest = 20,
 			/obj/item/radio/headset/mainship/marine/alpha = -1,
 			/obj/item/radio/headset/mainship/marine/bravo = -1,
 			/obj/item/radio/headset/mainship/marine/charlie = -1,
 			/obj/item/radio/headset/mainship/marine/delta = -1,
+		),
+		"Mining Equipment" = list(
+			/obj/item/minerupgrade/automatic = 1,
+			/obj/item/minerupgrade/reinforcement = 1,
+			/obj/item/minerupgrade/overclock = 1,
 		),
 		"Reqtorio Basics" = list(
 			/obj/item/paper/factoryhowto = -1,

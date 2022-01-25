@@ -356,3 +356,20 @@
   - rscadd: give 4 roller beds in Theseus
   - rscadd: Give free conveyor belts in req for free reqtorio
   - rscadd: hazard signs to help FOB engineers
+2022-01-25:
+  BraveMole:
+  - rscdel: Remove right click setting action
+  - bugfix: Runner pounce no longer pushes the target
+  - bugfix: Xeno no longer pushes in bumpslash
+  - rscadd: Add valhalla specific ban
+  - code_imp: Fix one crash runtime + add logging to jobs and larva
+  RipGrayson:
+  - code_imp: Added population dependent mapping insert support.
+  novaepee:
+  - rscadd: plasma pistol ammoHUD
+  - bugfix: plasma pistol ammoHUD
+  - imageadd: plasma pistol ammoHUD LOL
+  - rscadd: All miner upgrades are now in Operational Supply
+  - rscadd: You can get more miner upgrades in supply order
+  - rscdel: No more being able to produce infinite miner upgrades in autolathe
+  - qol: miner upgrades in Operational Supply

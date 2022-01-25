@@ -264,7 +264,7 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 
 /datum/hive_upgrade/primordial/tier_three
 	name = XENO_TIER_THREE
-	desc = "Unlocks the primordial for the tier three"
+	desc = "Unlocks the primordial for the third tier"
 	psypoint_cost = 800
 	icon = "primorav"
 
@@ -277,13 +277,13 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 
 /datum/hive_upgrade/primordial/tier_two
 	name = XENO_TIER_TWO
-	desc = "Unlocks the primordial for the tier two"
+	desc = "Unlocks the primordial for the second tier"
 	psypoint_cost = 800
-	icon = "primodefiler"
+	icon = "primowarrior"
 
 /datum/hive_upgrade/primordial/tier_two/can_buy(mob/living/carbon/xenomorph/buyer, silent)
 	. = ..()
-	if(!buyer.hive.upgrades_by_name[XENO_TIER_TWO].times_bought)
+	if(!buyer.hive.upgrades_by_name[XENO_TIER_ONE].times_bought)
 		if(!silent)
 			to_chat(buyer, span_xenonotice("You must buy the tier one ameliorations first!"))
 		return FALSE
