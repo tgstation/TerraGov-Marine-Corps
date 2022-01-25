@@ -436,7 +436,6 @@ TUNNEL
 	opacity = FALSE
 	anchored = TRUE
 	max_integrity = 5
-	layer = RESIN_STRUCTURE_LAYER
 
 	hit_sound = "alien_resin_move"
 	destroy_sound = "alien_resin_move"
@@ -691,6 +690,7 @@ TUNNEL
 	chargesleft--
 	if(!(datum_flags & DF_ISPROCESSING) && (chargesleft < maxcharges))
 		START_PROCESSING(SSslowprocess, src)
+
 /obj/structure/xeno/silo
 	name = "resin silo"
 	icon = 'icons/Xeno/resin_silo.dmi'
@@ -1160,3 +1160,73 @@ TUNNEL
 /obj/structure/xeno/spawner/Destroy()
 	GLOB.xeno_spawner -= src
 	return ..()
+
+/obj/structure/xeno/plant
+	name = "xeno plant"
+	max_integrity = 5
+	icon = 'icons/Xeno/acid_pool.dmi'
+	icon_state = "well0"
+	var/mature_icon_state = "well2"
+	var/mature = FALSE
+	var/maturation_time = 1 MINUTES
+	///How long it takes to PLANT it, not how long it takes to grow, 0 is instant.
+	var/sowing_time = 0
+	///Radius defining when the plant can feel something close, calls on_sense() whenever a movable enters the radius.
+	var/sense_rage = 0
+
+/obj/structure/xeno/plant/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/on_mature), maturation_time)
+
+/obj/structure/xeno/plant/can_interact(mob/user)
+	. = ..()
+	if(!mature && isxeno(user))
+		to_chat(user, span_xenowarning("The [src] hasn't grown yet, give it some time!"))
+	return mature
+
+/obj/structure/xeno/plant/proc/on_use(mob/user)
+	return FALSE
+
+/obj/structure/xeno/plant/proc/on_mature(mob/user)
+	playsound(loc, "sound/effects/xeno_newlarva.ogg", 50, 0, 1) //TODO find a fitting sound
+	mature = TRUE
+	icon_state = mature_icon_state
+
+/obj/structure/xeno/plant/attack_hand(mob/living/user)
+	if(user.a_intent == INTENT_HARM || !can_interact(user))
+		return ..()
+	return on_use(user)
+
+/obj/structure/xeno/plant/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if((X.status_flags & INCORPOREAL))
+		return FALSE
+
+	if(X.a_intent == INTENT_HARM && isxenodrone(X))
+		to_chat(X, span_xenowarning("We uproot the [src]!"))
+		deconstruct(FALSE)
+		return FALSE
+
+	if(can_interact(X))
+		on_use(X)
+
+	return TRUE
+
+/obj/structure/xeno/plant/healfruit
+	maturation_time = 2 SECONDS
+
+/obj/structure/xeno/plant/on_use(mob/user)
+	to_chat(user, span_warning("We begin eating the [src]..."))
+	if(do_after(user, 3 SECONDS, FALSE, src))
+		if(!isxeno(user))
+			var/datum/effect_system/smoke_spread/xeno/plant_explosion = new /datum/effect_system/smoke_spread/xeno/acid()
+			var/datum/effect_system/smoke_spread/xeno/acid/gas = new(get_turf(src))
+			gas.set_up(5,src,3)
+			gas.start()
+			Destroy()
+			return TRUE
+
+		var/mob/living/carbon/xenomorph/X = user
+		to_chat(X, span_xenowarning("Test message"))
+		Destroy()
+		return TRUE
+	return FALSE
