@@ -845,8 +845,8 @@ TUNNEL
 	desc = "A menacing looking construct of resin, it seems to be alive. It fires acid against intruders."
 	bound_width = 32
 	bound_height = 32
-	obj_integrity = 600
-	max_integrity = 1500
+	obj_integrity = 400
+	max_integrity = 1200
 	layer =  ABOVE_MOB_LAYER
 	density = TRUE
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
@@ -909,16 +909,16 @@ TUNNEL
 		if(EXPLODE_DEVASTATE)
 			take_damage(1500)
 		if(EXPLODE_HEAVY)
-			take_damage(750)
+			take_damage(1200)
 		if(EXPLODE_LIGHT)
 			take_damage(300)
 
 /obj/structure/xeno/xeno_turret/flamer_fire_act()
-	take_damage(60, BURN, "fire")
+	take_damage(40, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
 /obj/structure/xeno/xeno_turret/fire_act()
-	take_damage(60, BURN, "fire")
+	take_damage(40, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
 /obj/structure/xeno/xeno_turret/update_overlays()
