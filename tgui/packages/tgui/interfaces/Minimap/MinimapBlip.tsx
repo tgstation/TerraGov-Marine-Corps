@@ -19,7 +19,7 @@ export const MinimapBlip = (props: MinimapBlipProp, context) => {
       className="Minimap__Blip"
       position="absolute"
       left={`${coordinate.x + icon_size}px`}
-      top={`${coordinate.y - icon_size * 2.5}px`}
+      top={`${coordinate.y - icon_size * (0.25 * zoom + 2.25)}px`}
       style={{
         transform: `scale(${zoom})`,
       }}

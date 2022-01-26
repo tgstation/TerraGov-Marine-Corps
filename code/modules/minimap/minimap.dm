@@ -140,6 +140,7 @@ GLOBAL_LIST_EMPTY(minimap_blips)
 	.["map_size_y"] = generated_map.Height()
 	.["map_name"] = name
 	.["view_size"] = 73
+	.["zoomlevel"] = 2
 
 /datum/game_map/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
