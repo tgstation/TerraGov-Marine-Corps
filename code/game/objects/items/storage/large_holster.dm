@@ -14,7 +14,7 @@
 	var/drawSound = 'sound/weapons/guns/misc/rifle_draw.ogg'
 
 /obj/item/storage/large_holster/update_icon()
-	..()
+	. = ..()
 	var/mob/user = loc
 	if(istype(user)) user.update_inv_back()
 	if(istype(user)) user.update_inv_belt()
