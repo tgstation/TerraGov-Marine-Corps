@@ -37,153 +37,6 @@
 	new /obj/item/storage/belt/marine/t25(src)
 	new /obj/item/ammo_magazine/rifle/standard_smartrifle(src)
 
-/obj/item/minigun_powerpack
-	name = "\improper T-100 powerpack"
-	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the T-100 Minigun System.\nClick the icon in the top left to reload your M56."
-	icon = 'icons/obj/items/storage/storage.dmi'
-	icon_state = "powerpack"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BACK
-	w_class = WEIGHT_CLASS_HUGE
-	var/obj/item/cell/pcell = null
-	var/rounds_remaining = 500
-	var/rounds_max = 500
-	actions_types = list(/datum/action/item_action/toggle)
-	var/reloading = FALSE
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
-
-/obj/item/minigun_powerpack/Initialize()
-	. = ..()
-	pcell = new /obj/item/cell(src)
-
-/obj/item/minigun_powerpack/attack_self(mob/living/carbon/human/user, automatic = FALSE)
-	if(!istype(user) || user.incapacitated())
-		return FALSE
-
-	var/obj/item/weapon/gun/minigun/mygun = user.get_active_held_item()
-
-	if(!istype(mygun))
-		to_chat(user, "You must be holding an T-100 Minigun to begin the reload process.")
-		return TRUE
-	if(rounds_remaining < 1)
-		to_chat(user, "Your powerpack is completely devoid of spare ammo belts! Looks like you're up shit creek, maggot!")
-		return TRUE
-	if(!pcell)
-		to_chat(user, "Your powerpack doesn't have a battery! Slap one in there!")
-		return TRUE
-
-	mygun.shells_fired_now = 0 //If you attempt a reload, the shells reset. Also prevents double reload if you fire off another 20 bullets while it's loading.
-
-	if(reloading)
-		return TRUE
-	if(pcell.charge <= 50)
-		to_chat(user, "Your powerpack's battery is too drained! Get a new battery and install it!")
-		return TRUE
-
-	reloading = TRUE
-	if(!automatic)
-		user.visible_message("[user.name] begins feeding an ammo belt into the T-100 Minigun.","You begin feeding a fresh ammo belt into the T-100 Minigun. Don't move or you'll be interrupted.")
-	else
-		user.visible_message("[user.name]'s powerpack servos begin automatically feeding an ammo belt into the T-100 Minigun.","The powerpack servos begin automatically feeding a fresh ammo belt into the T-100 Minigun.")
-	var/reload_duration = 5 SECONDS
-	if(automatic)
-		if(!autoload_check(user, reload_duration, mygun, src) || !pcell)
-			to_chat(user, "The automated reload process was interrupted!")
-			playsound(src,'sound/machines/buzz-two.ogg', 25, TRUE)
-			reloading = FALSE
-			return TRUE
-		reload(user, mygun, TRUE)
-		user.hud_used.update_ammo_hud(user, src)
-		return TRUE
-	if(user.skills.getRating("firearms") > 0)
-		reload_duration = max(reload_duration - 1 SECONDS * user.skills.getRating("firearms"), 3 SECONDS)
-	if(!do_after(user, reload_duration, TRUE, src, BUSY_ICON_GENERIC) || !pcell)
-		to_chat(user, "Your reloading was interrupted!")
-		playsound(src,'sound/machines/buzz-two.ogg', 25, TRUE)
-		reloading = FALSE
-		return TRUE
-	reload(user, mygun)
-	user.hud_used.update_ammo_hud(user, src)
-	return TRUE
-
-/obj/item/minigun_powerpack/attack_hand(mob/living/user)
-	if(user.get_inactive_held_item() != src)
-		return ..()
-	if(QDELETED(pcell))
-		to_chat(user, "There is no cell in the [src].")
-		return
-	user.put_in_hands(pcell)
-	playsound(src,'sound/machines/click.ogg', 25, 1)
-	to_chat(user, "You take out the [pcell] out of the [src].")
-	pcell = null
-
-/obj/item/minigun_powerpack/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(istype(I, /obj/item/cell))
-		var/obj/item/cell/C = I
-
-		if(!QDELETED(pcell))
-			to_chat(user, "There already is a cell in the [src].")
-			return
-
-		if(!user.transferItemToLoc(C, src))
-			return
-
-		pcell = C
-		user.visible_message("[user] puts a new power cell in the [src].", "You put a new power cell in the [src] containing [pcell.charge] charge.")
-		playsound(src,'sound/machines/click.ogg', 25, 1)
-
-/obj/item/minigun_powerpack/examine(mob/user)
-	. = ..()
-	if(get_dist(user, src) <= 1)
-		to_chat(user, "A small gauge in the corner reads: Ammo: [rounds_remaining] / [rounds_max]. [pcell ? "Charge: [pcell.charge] / [pcell.maxcharge].":""]")
-
-/obj/item/minigun_powerpack/proc/reload(mob/user, obj/item/weapon/gun/minigun/mygun, automatic = FALSE)
-	pcell.charge -= 50
-	if(!mygun.current_mag)
-		var/obj/item/ammo_magazine/internal/minigun/A = new(mygun)
-		mygun.current_mag = A
-
-	var/rounds_to_reload = min(rounds_remaining, (mygun.current_mag.max_rounds - mygun.current_mag.current_rounds)) //Get the smaller value.
-
-	mygun.current_mag.current_rounds += rounds_to_reload
-	rounds_remaining -= rounds_to_reload
-
-	if(!automatic)
-		to_chat(user, "You finish loading [rounds_to_reload] shells into the T-100 Minigun. Ready to rumble!")
-	else
-		to_chat(user, "The powerpack servos finish loading [rounds_to_reload] shells into the T-100 Minigun. Ready to rumble!")
-	playsound(user, 'sound/weapons/guns/interact/minigun_unload.ogg', 25, 1)
-
-	reloading = FALSE
-	return TRUE
-
-/obj/item/minigun_powerpack/proc/autoload_check(mob/user, delay, obj/item/weapon/gun/minigun/mygun, obj/item/minigun_powerpack/powerpack, numticks = 5)
-	if(!istype(user) || delay <= 0) return FALSE
-
-	var/mob/living/carbon/human/L
-	if(ishuman(user)) L = user
-
-	var/delayfraction = round(delay/numticks)
-	. = TRUE
-	for(var/i = 0 to numticks)
-		sleep(delayfraction)
-		if(!user)
-			. = FALSE
-			break
-		if(!(L.s_store == mygun) && !(user.get_active_held_item() == mygun) && !(user.get_inactive_held_item() == mygun) || !(L.back == powerpack)) //power pack and gun aren't where they should be.
-			. = FALSE
-			break
-
-/obj/item/minigun_powerpack/snow
-	icon_state = "s_powerpack"
-
-/obj/item/minigun_powerpack/fancy
-	icon_state = "powerpackw"
-
-/obj/item/minigun_powerpack/merc
-	icon_state = "powerpackp"
-
 /obj/item/storage/box/heavy_armor
 	name = "\improper B-Series defensive armor crate"
 	desc = "A large case containing an experiemental suit of B18 armor for the discerning specialist."
@@ -572,7 +425,7 @@
 	new /obj/item/clothing/head/helmet/marine/specialist(src)
 	new /obj/item/weapon/gun/minigun(src)
 	new /obj/item/belt_harness/marine(src)
-	new /obj/item/minigun_powerpack(src)
+	new /obj/item/ammo_magazine/minigun_powerpack(src)
 
 
 /obj/item/spec_kit //For events/WO, allowing the user to choose a specalist kit
@@ -1100,9 +953,9 @@
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/weapon/gun/minigun(src)
 	new /obj/item/belt_harness/marine(src)
-	new /obj/item/minigun_powerpack(src)
-	new /obj/item/minigun_powerpack(src)
-	new /obj/item/minigun_powerpack(src)
+	new /obj/item/ammo_magazine/minigun_powerpack(src)
+	new /obj/item/ammo_magazine/minigun_powerpack(src)
+	new /obj/item/ammo_magazine/minigun_powerpack(src)
 	new /obj/item/attachable/flashlight(src)
 	new /obj/item/storage/pouch/pistol/rt3(src)
 	new /obj/item/armor_module/storage/uniform/brown_vest(src)

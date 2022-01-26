@@ -46,13 +46,13 @@
 
 	playsound(src, "alien_roar[rand(1,6)]", 50)
 	use_plasma(10) //Base cost of the Savage
-	src.visible_message(span_danger("\ [src] savages [M]!"), \
+	visible_message(span_danger("\ [src] savages [M]!"), \
 	span_xenodanger("We savage [M]!"), null, 5)
-	var/extra_dam = min(15, plasma_stored * 0.2)
+	var/extra_dam = max(15, plasma_stored * 0.2)
 	GLOB.round_statistics.runner_savage_attacks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_savage_attacks")
 	M.attack_alien_harm(src, extra_dam, FALSE, TRUE, TRUE, TRUE) //Inflict a free attack on pounce that deals +1 extra damage per 4 plasma stored, up to 35 or twice the max damage of an Ancient Runner attack.
-	use_plasma(extra_dam * 5) //Expend plasma equal to 4 times the extra damage.
+	use_plasma(extra_dam * 2)
 	savage_used = TRUE
 	addtimer(CALLBACK(src, .proc/savage_cooldown), xeno_caste.savage_cooldown)
 
@@ -115,7 +115,7 @@
 	if(victim_paralyze_time)
 		M.Paralyze(victim_paralyze_time)
 
-	step_to(X, M)
+	X.forceMove(get_turf(M))
 	if(freeze_on_hit_time)
 		X.Immobilize(freeze_on_hit_time)
 	if(X.savage) //If Runner Savage is toggled on, attempt to use it.
@@ -193,7 +193,7 @@
 /datum/action/xeno_action/activable/pounce/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
-	if(get_dist(target, owner) > 6)
+	if(!line_of_sight(owner, target, 6))
 		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE

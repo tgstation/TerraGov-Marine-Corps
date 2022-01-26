@@ -6,6 +6,7 @@
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "x6" //Pure white 'X' with black borders
 	anchored = TRUE //No pulling those nodes yo
+	flags_atom = SHUTTLE_IMMUNE
 	#ifdef TESTING
 	invisibility = 0
 	#else

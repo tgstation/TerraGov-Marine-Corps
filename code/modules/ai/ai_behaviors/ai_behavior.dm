@@ -35,7 +35,9 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	///When this timer is up, we force a change of node to ensure that the ai will never stay stuck trying to go to a specific node
 	var/anti_stuck_timer
 	///Minimum health percentage before the ai tries to run away
-	var/minimum_health = 0.4
+	var/minimum_health = 0
+	///If the mob attached to the ai is offered on xeno creation
+	var/is_offered_on_creation = FALSE
 
 /datum/ai_behavior/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
@@ -45,14 +47,9 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		return
 	mob_parent = parent_to_assign
 	//We always use the escorted atom as our reference point for looking for target. So if we don't have any escorted atom, we take ourselve as the reference
-	if(escorted_atom)
-		set_escorted_atom(null, escorted_atom)
-	else
-		RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, .proc/set_escorted_atom)
-	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, .proc/set_goal_node)
-	goal_node = GLOB.goal_nodes[identifier]
-	RegisterSignal(goal_node, COMSIG_PARENT_QDELETING, .proc/clean_goal_node)
 	START_PROCESSING(SSprocessing, src)
+	if(is_offered_on_creation)
+		LAZYDISTINCTADD(GLOB.ssd_living_mobs, mob_parent)
 
 /datum/ai_behavior/Destroy(force, ...)
 	. = ..()
@@ -63,6 +60,13 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 ///Initiate our base behavior
 /datum/ai_behavior/proc/late_initialize()
+	if(escorted_atom)
+		set_escorted_atom(null, escorted_atom)
+	else
+		RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, .proc/set_escorted_atom)
+	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, .proc/set_goal_node)
+	goal_node = GLOB.goal_nodes[identifier]
+	RegisterSignal(goal_node, COMSIG_PARENT_QDELETING, .proc/clean_goal_node)
 	switch(base_action)
 		if(MOVING_TO_NODE)
 			look_for_next_node()
@@ -71,20 +75,28 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		if(IDLE)
 			change_action(IDLE)
 
-//We finished moving to a node, let's pick a random nearby one to travel to
+///We finished moving to a node, let's pick a random nearby one to travel to
 /datum/ai_behavior/proc/finished_node_move()
 	SIGNAL_HANDLER
 	look_for_next_node(FALSE)
 	return COMSIG_MAINTAIN_POSITION
 
-//Cleans up signals related to the action and element(s)
+///Cleans up signals related to the action and element(s)
 /datum/ai_behavior/proc/cleanup_current_action(next_action)
 	if(current_action == MOVING_TO_NODE && next_action != MOVING_TO_NODE)
 		current_node = null
 	if(current_action == ESCORTING_ATOM && next_action != ESCORTING_ATOM)
 		clean_escorted_atom()
 	unregister_action_signals(current_action)
-	mob_parent.RemoveElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
+	SSpathfinder.remove_from_pathfinding(mob_parent)
+
+///Clean every signal on the ai_behavior
+/datum/ai_behavior/proc/cleanup_signals()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET)
+	if(goal_node)
+		UnregisterSignal(goal_node, COMSIG_PARENT_QDELETING)
+	cleanup_current_action()
 
 ///Cleanup old state vars, start the movement towards our new target
 /datum/ai_behavior/proc/change_action(next_action, atom/next_target, special_distance_to_maintain)
@@ -115,7 +127,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		distance_to_maintain = isnull(special_distance_to_maintain) ? initial(distance_to_maintain) : special_distance_to_maintain
 	if(next_target)
 		atom_to_walk_to = next_target
-		mob_parent.AddElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
+		SSpathfinder.add_to_pathfinding(mob_parent, atom_to_walk_to, distance_to_maintain, sidestep_prob)
 	register_action_signals(current_action)
 	if(current_action == MOVING_TO_SAFETY)
 		mob_parent.a_intent = INTENT_HELP
@@ -205,6 +217,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	SIGNAL_HANDLER
 	if(src.identifier != identifier)
 		return
+	if(CONFIG_GET(flag/no_advanced_pathfinding))
+		return
 	if(goal_node)
 		UnregisterSignal(goal_node, COMSIG_PARENT_QDELETING)
 	goal_node = new_goal_node
@@ -258,6 +272,9 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	switch(action_type)
 		if(MOVING_TO_NODE)
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/finished_node_move)
+			if(CONFIG_GET(flag/no_advanced_pathfinding))
+				anti_stuck_timer = addtimer(CALLBACK(src, .proc/look_for_next_node, TRUE, TRUE), 10 SECONDS, TIMER_STOPPABLE)
+				return
 			anti_stuck_timer = addtimer(CALLBACK(src, .proc/ask_for_pathfinding, TRUE, TRUE), 10 SECONDS, TIMER_STOPPABLE)
 		if(FOLLOWING_PATH)
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/finished_path_move)

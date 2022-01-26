@@ -877,3 +877,14 @@
 		client.movingmob.client_mobs_in_contents -= src
 		UNSETEMPTY(client.movingmob.client_mobs_in_contents)
 		client.movingmob = null
+
+/mob/onTransitZ(old_z, new_z)
+	. = ..()
+	if(!client || !hud_used)
+		return
+	if(old_z == new_z)
+		return
+	if(is_ground_level(new_z))
+		hud_used.remove_parallax(src)
+		return
+	hud_used.create_parallax(src)

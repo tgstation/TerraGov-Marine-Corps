@@ -113,10 +113,13 @@
 	if(is_type_in_typecache(a_area, GLOB.wraith_no_incorporeal_pass_areas) && SSmonitor.gamestate == SHUTTERS_CLOSED)
 		to_chat(owner, span_warning("You cannot plant weeds here yet!"))
 		return FALSE
-	if(!owner.line_of_sight(get_turf(A)))
+	if(!line_of_sight(owner, get_turf(A)))
 		to_chat(owner, span_warning("You cannot plant weeds without line of sight!"))
 		return FALSE
 	return ..()
+
+/datum/action/xeno_action/activable/plant_weeds/ranged/should_show()
+	return !(owner.status_flags & INCORPOREAL)
 
 // Secrete Resin
 /datum/action/xeno_action/activable/secrete_resin
@@ -189,7 +192,7 @@
 		to_chat(X, span_warning("We can't do that here."))
 		return fail_activate()
 
-	if(!owner.line_of_sight(T))
+	if(!line_of_sight(owner, T))
 		to_chat(owner, span_warning("You cannot secrete resin without line of sight!"))
 		return fail_activate()
 
@@ -446,58 +449,6 @@
 	to_chat(X, span_xenodanger("We have transferred [amount] units of plasma to [target]. We now have [X.plasma_stored]/[X.xeno_caste.plasma_max]."))
 	playsound(X, "alien_drool", 25)
 
-//Xeno Larval Growth Sting
-/datum/action/xeno_action/activable/larval_growth_sting
-	name = "Larval Growth Sting"
-	action_icon_state = "drone_sting"
-	mechanics_text = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker."
-	ability_name = "larval growth sting"
-	plasma_cost = 150
-	cooldown_timer = 12 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
-	target_flags = XABB_MOB_TARGET
-
-/datum/action/xeno_action/activable/larval_growth_sting/on_cooldown_finish()
-	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	to_chat(owner, span_xenodanger("We feel our growth toxin glands refill. We can use Growth Sting again."))
-	return ..()
-
-/datum/action/xeno_action/activable/larval_growth_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-
-	if(QDELETED(A))
-		return FALSE
-
-	if(!A?.can_sting())
-		if(!silent)
-			to_chat(owner, span_warning("Our sting won't affect this target!"))
-		return FALSE
-
-	if(!owner.Adjacent(A))
-		var/mob/living/carbon/xenomorph/X = owner
-		if(!silent && world.time > (X.recent_notice + X.notice_delay))
-			to_chat(X, span_warning("We can't reach this target!"))
-			X.recent_notice = world.time //anti-notice spam
-		return FALSE
-
-	var/mob/living/carbon/C = A
-	if (isnestedhost(C))
-		if(!silent)
-			to_chat(owner, span_warning("Ashamed, we reconsider bullying the poor, nested host with our stinger."))
-		return FALSE
-
-/datum/action/xeno_action/activable/larval_growth_sting/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
-
-	succeed_activate()
-
-	GLOB.round_statistics.larval_growth_stings++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "larval_growth_stings")
-
-	add_cooldown()
-	X.recurring_injection(A, /datum/reagent/toxin/xeno_growthtoxin, XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING)
 
 // ***************************************
 // *********** Corrosive Acid
@@ -795,10 +746,10 @@
 /datum/action/xeno_action/activable/xeno_spit/use_ability(atom/A)
 	if(!owner.GetComponent(/datum/component/ai_controller)) //If its not an ai it will register to listen for clicks instead of use this proc. We want to call start_fire from here only if the owner is an ai.
 		return
-	start_fire(object = A)
+	start_fire(object = A, can_use_ability_flags = XACT_IGNORE_SELECTED_ABILITY) 
 
 ///Starts the xeno firing.
-/datum/action/xeno_action/activable/xeno_spit/proc/start_fire(datum/source, atom/object, turf/location, control, params)
+/datum/action/xeno_action/activable/xeno_spit/proc/start_fire(datum/source, atom/object, turf/location, control, params, can_use_ability_flags)
 	SIGNAL_HANDLER
 	var/list/modifiers = params2list(params)
 	if(((modifiers["right"] || modifiers["middle"]) && (modifiers["shift"] || modifiers["ctrl"] || modifiers["left"])) || \
@@ -806,7 +757,7 @@
 	(modifiers["left"] && !modifiers["shift"]))
 		return
 	var/mob/living/carbon/xenomorph/xeno = owner
-	if(!xeno.check_state() || xeno.ammo?.spit_cost > xeno.plasma_stored)
+	if(!can_use_ability(object, TRUE, can_use_ability_flags))
 		return fail_activate()
 	set_target(get_turf_on_clickcatcher(object, xeno, params))
 	if(!current_target)
@@ -831,7 +782,7 @@
 	newspit.def_zone = X.get_limbzone_target()
 	newspit.fire_at(current_target, X, null, X.ammo.max_range, X.ammo.shell_speed)
 
-	if(X.check_state() && X.ammo?.spit_cost <= X.plasma_stored)
+	if(can_use_ability(current_target) && X.client) //X.client to make sure autospit doesn't continue for non player mobs.
 		succeed_activate()
 		return TRUE
 	fail_activate()
@@ -884,7 +835,7 @@
 		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
-	if(!owner.line_of_sight(target))
+	if(!line_of_sight(owner, target))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -918,6 +869,8 @@
 	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
 	target_flags = XABB_MOB_TARGET
 	use_state_flags = XACT_USE_BUCKLED
+	/// Whatever our victim is injected with.
+	var/sting_chemical = /datum/reagent/toxin/xeno_neurotoxin
 
 /datum/action/xeno_action/activable/neurotox_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -955,7 +908,18 @@
 	GLOB.round_statistics.sentinel_neurotoxin_stings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "sentinel_neurotoxin_stings")
 
-	X.recurring_injection(A, /datum/reagent/toxin/xeno_neurotoxin, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
+	X.recurring_injection(A, sting_chemical, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
+
+//Ozelomelyn Sting
+/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn
+	name = "Ozelomelyn Sting"
+	action_icon_state = "drone_sting"
+	mechanics_text = "A channeled melee attack that injects the target with Ozelomelyn over a few seconds, purging chemicals and dealing minor toxin damage to a moderate cap while inside them."
+	ability_name = "ozelomelyn sting"
+	cooldown_timer = 25 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_OZELOMELYN_STING
+	plasma_cost = 100
+	sting_chemical = /datum/reagent/toxin/xeno_ozelomelyn
 
 
 // ***************************************
@@ -1007,27 +971,28 @@
 	cooldown_timer = 12 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LAY_EGG
 
-
-/datum/action/xeno_action/lay_egg/action_activate()
+/datum/action/xeno_action/lay_egg/action_activate(mob/living/carbon/xenomorph/user)
 	var/mob/living/carbon/xenomorph/xeno = owner
 	var/turf/current_turf = get_turf(owner)
 
-	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
-	if(!alien_weeds)
-		to_chat(owner, span_warning("Our eggs wouldn't grow well enough here. Lay them on resin."))
-		return FALSE
+	if(!current_turf.check_alien_construction(owner))
+		return fail_activate()
 
-	if(!do_after(owner, 3 SECONDS, FALSE, alien_weeds))
-		return FALSE
+	if(!(locate(/obj/effect/alien/weeds) in current_turf))
+		to_chat(user, span_xenowarning("Our eggs wouldn't grow well enough here. Lay them on resin."))
+		return fail_activate()
 
-	if(!current_turf.check_alien_construction(owner) || !current_turf.check_disallow_alien_fortification(owner))
-		return FALSE
+	owner.visible_message(span_xenonotice("[owner] starts planting an egg."), \
+		span_xenonotice("We start planting an egg."), null, 5)
 
-	owner.visible_message(span_xenowarning("\The [owner] has laid an egg!"), \
-		span_xenowarning("We have laid an egg!"))
+	if(!do_after(owner, 2.5 SECONDS, TRUE, current_turf, BUSY_ICON_BUILD, extra_checks = CALLBACK(current_turf, /turf/proc/check_alien_construction, owner)))
+		return fail_activate()
 
-	new /obj/item/xeno_egg(current_turf, xeno.hivenumber)
-	playsound(owner.loc, 'sound/effects/splat.ogg', 25)
+	if(!locate(/obj/effect/alien/weeds) in current_turf)
+		return fail_activate()
+
+	new /obj/effect/alien/egg/hugger(current_turf, xeno.hivenumber)
+	playsound(current_turf, 'sound/effects/splat.ogg', 15, 1)
 
 	succeed_activate()
 	add_cooldown()
@@ -1197,7 +1162,7 @@
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
 		victim.med_hud_set_status()
-	var/psy_points_reward = PSY_DRAIN_REWARD_MIN + (HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count / HIGH_PLAYER_POP * (PSY_DRAIN_REWARD_MAX - PSY_DRAIN_REWARD_MIN))
+	var/psy_points_reward = PSY_DRAIN_REWARD_MIN + ((HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count) / HIGH_PLAYER_POP * (PSY_DRAIN_REWARD_MAX - PSY_DRAIN_REWARD_MIN))
 	psy_points_reward = clamp(psy_points_reward, PSY_DRAIN_REWARD_MIN, PSY_DRAIN_REWARD_MAX)
 	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
@@ -1250,7 +1215,7 @@
 		if(!silent)
 			to_chat(X, span_warning("We're too busy being on fire to do this!"))
 		return FALSE
-	if(LAZYLEN(X.stomach_contents)) //Only one thing in the stomach at a time, please
+	if(X.eaten_mob) //Only one thing in the stomach at a time, please
 		if(!silent)
 			to_chat(X, span_warning("We already have something in our stomach, there's no way that will fit."))
 		return FALSE
@@ -1279,7 +1244,7 @@
 	owner.visible_message(span_warning("[X] devours [victim]!"), \
 	span_warning("We devour [victim]!"), null, 5)
 	to_chat(owner, span_warning("We will eject the cocoon in [cocoon_production_time / 10] seconds! Do not move until it is done."))
-	LAZYADD(X.stomach_contents, victim)
+	X.eaten_mob = victim
 	var/turf/starting_turf = get_turf(victim)
 	victim.forceMove(X)
 	X.do_jitter_animation()

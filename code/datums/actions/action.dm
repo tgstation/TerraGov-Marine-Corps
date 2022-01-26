@@ -9,6 +9,7 @@
 	var/background_icon = 'icons/mob/actions.dmi'
 	var/background_icon_state = "template"
 	var/static/atom/movable/vis_obj/action/selected_frame/selected_frame = new
+	var/static/atom/movable/vis_obj/action/empowered_frame/empowered_frame = new //Got lazy and didn't make a child, ask tivi for a better solution.
 
 /datum/action/New(Target)
 	target = Target
@@ -82,6 +83,13 @@
 
 /datum/action/proc/remove_selected_frame()
 	button.vis_contents -= selected_frame
+
+///Adds an outline around the ability button
+/datum/action/proc/add_empowered_frame()
+	button.vis_contents += empowered_frame
+
+/datum/action/proc/remove_empowered_frame()
+	button.vis_contents -= empowered_frame
 
 /datum/action/proc/can_use_action()
 	if(!QDELETED(owner))

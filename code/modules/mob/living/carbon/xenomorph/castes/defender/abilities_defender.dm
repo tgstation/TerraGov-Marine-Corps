@@ -99,7 +99,7 @@
 
 /datum/action/xeno_action/activable/forward_charge/proc/charge_complete()
 	SIGNAL_HANDLER
-	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_XENO_NONE_THROW_HIT))
+	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_MOVABLE_POST_THROW))
 
 /datum/action/xeno_action/activable/forward_charge/proc/mob_hit(datum/source, mob/M)
 	SIGNAL_HANDLER
@@ -157,7 +157,7 @@
 
 	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, .proc/obj_hit,)
 	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
-	RegisterSignal(X, COMSIG_XENO_NONE_THROW_HIT, .proc/charge_complete)
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/charge_complete)
 
 	X.throw_at(A, range, 70, X)
 
@@ -169,16 +169,20 @@
 /datum/action/xeno_action/activable/forward_charge/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
-	if(get_dist(target, owner) > range)
+	if(!line_of_sight(owner, target, range))
 		return FALSE
 	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
 	action_activate()
-	owner.canmove = FALSE
-	addtimer(VARSET_CALLBACK(owner, canmove, TRUE), windup_time)
+	LAZYINCREMENT(owner.do_actions, target)
+	addtimer(CALLBACK(src, .proc/decrease_do_action, target), windup_time)
 	return TRUE
+
+///Decrease the do_actions of the owner
+/datum/action/xeno_action/activable/forward_charge/proc/decrease_do_action(atom/target)
+	LAZYDECREMENT(owner.do_actions, target)
 
 // ***************************************
 // *********** Crest defense

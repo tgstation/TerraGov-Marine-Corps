@@ -158,3 +158,57 @@
   hyper2snyper:
   - rscadd: Xeno spit now uses autofire.
   - rscadd: 'Primordial Spitter: now with an incredible automatic firerate.'
+2021-11-26:
+  BraveMole:
+  - rscadd: Zombie player can rally nearby zombie to make funny waves
+2021-11-27:
+  BraveMole:
+  - bugfix: Minions no longer move when unconcious or dead
+  - bugfix: Minions no longer stuck by opened req railing
+  - refactor: Refactor pathfinding
+  EvilMelonTheSecond:
+  - balance: Light neurotox now has purge if metabolized too long
+  Lewdcifer:
+  - balance: 'C4 rebalance: no skill requirement, deploys faster, mostly silent, creates
+      smoke when detonating, now has a backblast around it, reduced inventory size.
+      C4 made cheaper in reqs, vendors now have more C4 by default.'
+  hyper2snyper:
+  - rscadd: Adds the Shoulder Gun Module, a new gun attachment/armor module that is
+      a t3-4 drop from the researcher console.
+2021-11-28:
+  DeltaFire15:
+  - bugfix: Exiting a cryo tube will no longer cause weird hearing behavior.
+  Franky2025:
+  - expansion: Added damn tomato juice to booze dispensers
+  Three333Digit:
+  - balance: Increases the storage slot of the engineering storage module to 5 The
+      storage module can now hold ~~filled sandbags,~~ razorwire, handheld charger,
+      c4, razorburn grenades, detpack, signaler, circuitboards, and the light replacer
+2021-11-29:
+  Lewdcifer:
+  - balance: 'Plasma Cutter nerf: damage multiplier against resin x4 > x2.'
+  - balance: Metal Foam health 200 > 120.
+  Three333Digit:
+  - balance: Buffs shovel speed of sharpened etool from 20 to 10
+  vilereaver41:
+  - balance: scatter is now 2
+  - balance: projectile damage is now 20 from 10.
+2021-11-30:
+  Pariah919:
+  - balance: tp44 does less damage (-10), plus ten pen. 0 scatter when wielded base
+      from 2.5.
+  hyper2snyper:
+  - rscadd: Adds the GL to BAS
+  - balance: Minigun powerpack is now just a worn magazine like the back fuel tank
+      for the flamer.
+  - bugfix: Fixes attachment weapons using their unwielded stats for firing when attached.
+  - code_imp: Redoes nearly half of the gun code.
+  - refactor: 'Refactors: GLs, Lasguns, Shotguns, Revolvers, TL-127, And reloading/operation
+      in general.'
+  jroinc:
+  - rscdel: Removed stun on oxy and synap expiration, replaced with a 10-second timer.
+  - balance: If you are in crit and are given a dose of inaprov, you will heal 30%
+      of your physical damage instantly and set any organs with more than 15 damage
+      to 15 damage. Russian Red and Neuraline do the same thing, but 20% and 29 damage
+      respectively. All three medicines have a 300-second cooldown before they'll
+      perform the critheal function again.

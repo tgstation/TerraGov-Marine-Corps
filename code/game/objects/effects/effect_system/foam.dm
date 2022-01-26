@@ -149,6 +149,8 @@
 	src.foam_flags = foam_flags
 
 /datum/effect_system/foam_spread/start()
+	if(spread_amount <= 0)
+		return
 	var/obj/effect/particle_effect/foam/F = new(location)
 	var/foamcolor = mix_color_from_reagents(carrying_reagents.reagent_list)
 	carrying_reagents.copy_to(F, carrying_reagents.total_volume/spread_amount)
@@ -168,7 +170,7 @@
 	name = "foamed metal"
 	desc = "A lightweight foamed metal wall."
 	resistance_flags = XENO_DAMAGEABLE
-	max_integrity = 200
+	max_integrity = 120
 
 /obj/structure/foamedmetal/fire_act() //flamerwallhacks go BRRR
 	take_damage(10, BURN, "fire")

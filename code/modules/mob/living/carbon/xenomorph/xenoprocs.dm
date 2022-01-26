@@ -408,10 +408,9 @@
 	if(isliving(hit_atom)) //Hit a mob! This overwrites normal throw code.
 		if(SEND_SIGNAL(src, COMSIG_XENO_LIVING_THROW_HIT, hit_atom) & COMPONENT_KEEP_THROWING)
 			return FALSE
-		set_throwing(FALSE) //Resert throwing since something was hit.
+		stop_throw() //Resert throwing since something was hit.
 		return TRUE
-	SEND_SIGNAL(src, COMSIG_XENO_NONE_THROW_HIT)
-	set_throwing(FALSE) //Resert throwing since something was hit.
+	stop_throw() //Resert throwing since something was hit.
 	return ..() //Do the parent otherwise, for turfs.
 
 /mob/living/carbon/xenomorph/proc/toggle_nightvision(new_lighting_alpha)
@@ -664,10 +663,10 @@
 
 ///Eject the mob inside our belly, and putting it in a cocoon if needed
 /mob/living/carbon/xenomorph/proc/eject_victim(make_cocoon = FALSE, turf/eject_location = loc)
-	if(!LAZYLEN(stomach_contents))
+	if(!eaten_mob)
 		return
-	var/mob/living/carbon/victim = stomach_contents[1]
-	LAZYREMOVE(stomach_contents, victim)
+	var/mob/living/carbon/victim = eaten_mob
+	eaten_mob = null
 	if(make_cocoon)
 		ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 		if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
@@ -688,3 +687,7 @@
 /mob/living/carbon/xenomorph/proc/clean_tracked(atom/to_track)
 	SIGNAL_HANDLER
 	tracked = null
+
+///Handles empowered abilities, should return TRUE if the ability should be empowered. Empowerable should be FALSE if the ability cannot itself be empowered but has interactions with empowerable abilities
+/mob/living/carbon/xenomorph/proc/empower(empowerable = TRUE)
+	return FALSE

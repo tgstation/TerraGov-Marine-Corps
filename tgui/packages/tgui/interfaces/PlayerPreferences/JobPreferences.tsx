@@ -33,6 +33,7 @@ export const JobPreferences = (props, context) => {
     'Requisitions Officer',
     'Chief Medical Officer',
     'Medical Doctor',
+    'Medical Researcher',
   ];
   const marineJobs = [
     'Squad Marine',
@@ -41,7 +42,7 @@ export const JobPreferences = (props, context) => {
     'Squad Smartgunner',
     'Squad Leader',
   ];
-  const flavourJobs = ['Corporate Liaison', 'Medical Researcher'];
+  const flavourJobs = ['Corporate Liaison'];
 
   const JobList = ({ name, jobs }) => (
     <Section title={name}>

@@ -83,7 +83,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_armor"
 	item_state = "mod_armor_a"
-	worn_layer = COLLAR_LAYER
+	attachment_layer = COLLAR_LAYER
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 	slowdown = 0.3
 	slot = ATTACHMENT_SLOT_MODULE

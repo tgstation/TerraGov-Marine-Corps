@@ -208,18 +208,10 @@
 		to_chat(X, span_xenonotice("We remove the facehugger from [src]."))
 		return
 	var/datum/action/xeno_action/activable/corrosive_acid/acid_action = locate(/datum/action/xeno_action/activable/corrosive_acid) in X.actions
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
-		if(!do_after(X, 3 SECONDS, TRUE, src))
+	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas))
+		var/datum/ammo/xeno/boiler_gas/boiler_glob = X.ammo
+		if(!boiler_glob.enhance_trap(src, X))
 			return
-		set_trap_type(TRAP_SMOKE_ACID)
-		smoke = new /datum/effect_system/smoke_spread/xeno/acid
-		smoke.set_up(1, get_turf(src))
-	else if(X.ammo.type == /datum/ammo/xeno/boiler_gas)
-		if(!do_after(X, 2 SECONDS, TRUE, src))
-			return
-		set_trap_type(TRAP_SMOKE_NEURO)
-		smoke = new /datum/effect_system/smoke_spread/xeno/neuro/medium
-		smoke.set_up(2, get_turf(src))
 	else if(acid_action)
 		if(!do_after(X, 2 SECONDS, TRUE, src))
 			return
@@ -707,7 +699,7 @@ TUNNEL
 	bound_width = 96
 	bound_height = 96
 	max_integrity = 1000
-	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
+	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE | PLASMACUTTER_IMMUNE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL
 	///How many larva points one silo produce in one minute
 	var/larva_spawn_rate = 0.5
@@ -769,7 +761,6 @@ TUNNEL
 		playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
 	return ..()
 
-
 /obj/structure/xeno/silo/Destroy()
 	GLOB.xeno_resin_silos -= src
 
@@ -779,9 +770,9 @@ TUNNEL
 
 	silo_area = null
 	center_turf = null
+
 	STOP_PROCESSING(SSslowprocess, src)
 	return ..()
-
 
 /obj/structure/xeno/silo/examine(mob/user)
 	. = ..()
@@ -846,10 +837,11 @@ TUNNEL
 	SIGNAL_HANDLER
 	if(associated_hive)
 		silos += src
+
 /obj/structure/xeno/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
 	icon_state = XENO_TURRET_ACID_ICONSTATE
-	name = "resin acid turret"
+	name = "acid turret"
 	desc = "A menacing looking construct of resin, it seems to be alive. It fires acid against intruders."
 	bound_width = 32
 	bound_height = 32
@@ -858,7 +850,7 @@ TUNNEL
 	layer =  ABOVE_MOB_LAYER
 	density = TRUE
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
-	xeno_structure_flags = IGNORE_WEED_REMOVAL
+	xeno_structure_flags = IGNORE_WEED_REMOVAL|HAS_OVERLAY
 	///The hive it belongs to
 	var/datum/hive_status/associated_hive
 	///What kind of spit it uses
@@ -881,7 +873,6 @@ TUNNEL
 /obj/structure/xeno/xeno_turret/Initialize(mapload, hivenumber = XENO_HIVE_NORMAL)
 	. = ..()
 	ammo = GLOB.ammo_list[ammo]
-	ammo.max_range = range + 2 //To prevent funny gamers to abuse the turrets that easily
 	potential_hostiles = list()
 	associated_hive = GLOB.hive_datums[hivenumber]
 	GLOB.xeno_resin_turrets += src
@@ -889,7 +880,8 @@ TUNNEL
 	AddComponent(/datum/component/automatedfire/xeno_turret_autofire, firerate)
 	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOOT, .proc/shoot)
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/destroy_on_hijack)
-	set_light(2, 2, light_initial_color)
+	if(light_initial_color)
+		set_light(2, 2, light_initial_color)
 	update_icon()
 
 ///Signal handler to delete the turret when the alamo is hijacked
@@ -931,6 +923,8 @@ TUNNEL
 
 /obj/structure/xeno/xeno_turret/update_overlays()
 	. = ..()
+	if(!(xeno_structure_flags & HAS_OVERLAY))
+		return
 	if(obj_integrity <= max_integrity / 2)
 		. += image('icons/Xeno/acidturret.dmi', src, "+turret_damage")
 	if(CHECK_BITFIELD(resistance_flags, ON_FIRE))
@@ -1051,7 +1045,7 @@ TUNNEL
 			continue
 		potential_hostiles += nearby_human
 	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))
-		if(associated_hive == nearby_xeno.hive) //Xenomorphs not in our hive will be attacked as well!
+		if(associated_hive == nearby_xeno.hive)
 			continue
 		if(nearby_xeno.stat == DEAD)
 			continue
@@ -1073,16 +1067,28 @@ TUNNEL
 	newshot.permutated += src
 	newshot.def_zone = pick(GLOB.base_miss_chance)
 	newshot.fire_at(hostile, src, null, ammo.max_range, ammo.shell_speed)
+	if(istype(ammo, /datum/ammo/xeno/hugger))
+		var/datum/ammo/xeno/hugger/hugger_ammo = ammo
+		newshot.color = initial(hugger_ammo.hugger_type.color)
 
 /obj/structure/xeno/xeno_turret/sticky
-	name = "resin sticky resin turret"
+	name = "sticky resin turret"
 	icon = 'icons/Xeno/acidturret.dmi'
 	icon_state = XENO_TURRET_STICKY_ICONSTATE
 	desc = "A menacing looking construct of resin, it seems to be alive. It fires resin against intruders."
 	light_initial_color = LIGHT_COLOR_PURPLE
-	ammo = /datum/ammo/xeno/sticky
+	ammo = /datum/ammo/xeno/sticky/turret
 	firerate = 5
 
+/obj/structure/xeno/xeno_turret/hugger_turret
+	name = "hugger turret"
+	icon_state = "hugger_turret"
+	desc = "A menacing looking construct of resin, it seems to be alive. It fires huggers against intruders."
+	obj_integrity = 400
+	max_integrity = 400
+	light_initial_color = LIGHT_COLOR_BROWN
+	ammo = /datum/ammo/xeno/hugger
+	firerate = 5 SECONDS
 
 /obj/structure/xeno/evotower
 	name = "evolution tower"

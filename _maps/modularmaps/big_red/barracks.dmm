@@ -42,13 +42,13 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "cd" = (
-/obj/structure/table,
 /obj/machinery/door_control{
 	id = "Operations";
-	name = "Storm Shutters";
-	pixel_y = -32
+	name = "Storm Shutters"
 	},
-/turf/open/floor/tile/white,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
 /area/bigredv2/outside/admin_building)
 "cD" = (
 /turf/open/floor/tile/dark,
@@ -201,7 +201,6 @@
 "jv" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 2;
 	id = "Operations";
 	name = "\improper Operations Shutters"
 	},
@@ -318,9 +317,9 @@
 /area/bigredv2/outside/c)
 "qy" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "Operations";
-	name = "Storm Shutters";
-	pixel_y = -32
+	name = "Storm Shutters"
 	},
 /turf/open/floor/tile/dark/blue2,
 /area/bigredv2/outside/admin_building)
@@ -386,11 +385,6 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "tH" = (
-/obj/machinery/door_control{
-	id = "Operations";
-	name = "Storm Shutters";
-	pixel_y = -32
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -483,11 +477,6 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/admin_building)
 "yq" = (
-/obj/machinery/door_control{
-	id = "Operations";
-	name = "Storm Shutters";
-	pixel_y = -32
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/machinery/light,
@@ -894,16 +883,15 @@
 	},
 /area/bigredv2/outside/admin_building)
 "Or" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	on = 1
+	},
 /obj/machinery/door_control{
 	id = "Operations";
-	name = "Storm Shutters";
-	pixel_y = -32
+	name = "Storm Shutters"
 	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/blue2,
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "OE" = (
 /obj/effect/ai_node,
@@ -1385,9 +1373,9 @@ CU
 CU
 CU
 Bu
-cd
+US
 ep
-TE
+cd
 qy
 ep
 ep
@@ -1539,7 +1527,7 @@ Yi
 eD
 Mj
 ep
-TE
+cd
 tH
 ep
 TE
@@ -1724,7 +1712,7 @@ QX
 ND
 yq
 ep
-dZ
+Or
 Ue
 ep
 dZ
@@ -1733,9 +1721,9 @@ ep
 TE
 st
 TE
-Or
+te
 ep
-dZ
+Or
 Ue
 ep
 dZ
@@ -1881,20 +1869,20 @@ nH
 nH
 nH
 nH
-Yi
-Yi
+FS
+FS
 nH
 nH
 nH
 jv
 jv
-Yi
-Yi
+FS
+FS
 nH
 nH
 nH
-Yi
-Yi
+FS
+FS
 nH
 nH
 "}

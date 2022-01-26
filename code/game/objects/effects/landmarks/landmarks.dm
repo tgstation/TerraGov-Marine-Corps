@@ -212,33 +212,20 @@
 		new /obj/item/storage/box/m94 (get_turf(src))
 		return
 
-	if(istype(gun_to_spawn, /obj/item/weapon/gun/energy))
-		var/obj/item/weapon/gun/energy/energy_gun_to_spawn = gun_to_spawn
-		for(var/i in 1 to 3)
-			new energy_gun_to_spawn.cell_type (get_turf(src))
+	if(!gun_to_spawn.default_ammo_type)
 		return
 
-	if(!gun_to_spawn.current_mag)
-		stack_trace("Attempted to spawn ammo for a gun that has no current_mag. Someone make a bugreport for this weapon [initial(gun_to_spawn.name)] as related to the tiered weapon spawning.")
-		return
-	var/obj/item/ammo_magazine/gun_mag = gun_to_spawn.current_mag.type
-
-	if(istype(gun_to_spawn, /obj/item/weapon/gun/shotgun))
+	if(CHECK_BITFIELD(gun_to_spawn.reciever_flags, AMMO_RECIEVER_HANDFULS) && istype(gun_to_spawn.default_ammo_type, /datum/ammo))
 		var/obj/item/ammo_magazine/handful/handful_to_generate
+		var/datum/ammo/ammo_to_spawn = gun_to_spawn.default_ammo_type
 		for(var/i in 1 to 3)
 			handful_to_generate = new (get_turf(src))
-			handful_to_generate.generate_handful(initial(gun_mag.default_ammo), initial(gun_mag.caliber), 5, /obj/item/weapon/gun/shotgun)
+			handful_to_generate.generate_handful(GLOB.ammo_list[ammo_to_spawn], initial(gun_to_spawn.caliber), initial(ammo_to_spawn.handful_amount), gun_to_spawn.type)
 		return
 
-	if(istype(gun_to_spawn, /obj/item/weapon/gun/revolver))
-		var/obj/item/ammo_magazine/handful/handful_to_generate
-		for(var/i in 1 to 3)
-			handful_to_generate = new (get_turf(src))
-			handful_to_generate.generate_handful(initial(gun_mag.default_ammo), initial(gun_mag.caliber), 8, /obj/item/weapon/gun/revolver)
-		return
-
+	var/obj/item/ammo_to_spawn = gun_to_spawn.default_ammo_type
 	for(var/i in 1 to 3) //hardcoded 3 mags.
-		new gun_mag (get_turf(src))
+		new ammo_to_spawn (get_turf(src))
 
 /obj/effect/landmark/weapon_spawn/proc/choose_weapon()
 	weapon_to_spawn = pick(weapon_list)
@@ -327,7 +314,7 @@
 		/obj/item/weapon/gun/rifle/standard_br,
 		/obj/item/weapon/gun/rifle/m412,
 		/obj/item/weapon/gun/rifle/m41a,
-		/obj/item/weapon/gun/rifle/ak47,
+		/obj/item/weapon/gun/rifle/mpi_km,
 		/obj/item/weapon/gun/rifle/m16,
 		/obj/item/weapon/gun/rifle/famas,
 		/obj/item/weapon/gun/rifle/alf_machinecarbine,
@@ -445,3 +432,39 @@
 	area_to_control.set_to_contested()
 	GLOB.sensor_towers += loc
 	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_close
+	name = "Valhalla xeno spawn"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "xeno_spawn_valhalla"
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_close/Initialize()
+	. = ..()
+	GLOB.valhalla_xeno_spawn_landmark[CLOSE] = src
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_close_two
+	name = "Valhalla xeno spawn"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "xeno_spawn_valhalla"
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_close_two/Initialize()
+	. = ..()
+	GLOB.valhalla_xeno_spawn_landmark[CLOSE2] = src
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_far
+	name = "Valhalla xeno spawn"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "xeno_spawn_valhalla"
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_far/Initialize()
+	. = ..()
+	GLOB.valhalla_xeno_spawn_landmark[FAR] = src
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_far_two
+	name = "Valhalla xeno spawn"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "xeno_spawn_valhalla"
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_far_two/Initialize()
+	. = ..()
+	GLOB.valhalla_xeno_spawn_landmark[FAR2] = src

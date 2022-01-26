@@ -7,7 +7,6 @@
 	icon_state = "motorbike"
 	max_integrity = 300
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 0, "bomb" = 30, "fire" = 60, "acid" = 60)
-	resistance_flags = XENO_DAMAGEABLE
 	key_type = null
 	integrity_failure = 0.5
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
@@ -80,10 +79,8 @@
 	if(motor_pack.handle_mousedrop(usr, over_object))
 		return ..()
 
-/obj/vehicle/ridden/motorbike/Move(direction)
+/obj/vehicle/ridden/motorbike/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
-	if(!.)
-		return
 	if(!LAZYLEN(buckled_mobs)) // dont use fuel or make noise unless we're being used
 		return
 	fuel_count--

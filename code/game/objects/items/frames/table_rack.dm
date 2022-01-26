@@ -146,10 +146,6 @@
 
 /obj/item/frame/rack/attack_self(mob/user as mob)
 
-	if(istype(get_area(loc), /area/shuttle))  //HANGAR/SHUTTLE BUILDING
-		to_chat(user, span_warning("No. This area is needed for the dropship."))
-		return
-
 	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/barricade) in user.loc)
 		to_chat(user, span_warning("There is already a structure here."))
 		return

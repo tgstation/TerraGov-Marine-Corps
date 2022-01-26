@@ -157,6 +157,9 @@
 /mob/living/carbon/xenomorph/carrier/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/carrier/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //-----CARRIER END-----//
 //================//
 //----HIVELORD START----//
@@ -187,6 +190,9 @@
 
 /mob/living/carbon/xenomorph/praetorian/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/praetorian/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----PRAETORIAN END----//
 //================//
@@ -318,6 +324,22 @@
 
 //---CRUSHER END---//
 //============//
+//---GORGER START---//
+
+/mob/living/carbon/xenomorph/gorger/mature
+	upgrade = XENO_UPGRADE_ONE
+
+/mob/living/carbon/xenomorph/gorger/elder
+	upgrade = XENO_UPGRADE_TWO
+
+/mob/living/carbon/xenomorph/gorger/ancient
+	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/gorger/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
+//---GORGER END---//
+//============//
 //---BOILER START---//
 
 /mob/living/carbon/xenomorph/boiler/mature
@@ -328,6 +350,9 @@
 
 /mob/living/carbon/xenomorph/boiler/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/boiler/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //---BOILER END---//
 //============//
@@ -357,6 +382,9 @@
 
 /mob/living/carbon/xenomorph/warrior/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/warrior/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----WARRIOR END----//
 //============//

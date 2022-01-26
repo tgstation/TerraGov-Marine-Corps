@@ -270,6 +270,7 @@
 
 ///Called whenever an item is unequipped to a new loc (IE, not when the item ends up in the hands)
 /obj/item/proc/removed_from_inventory(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_REMOVED_INVENTORY, user)
 
 // called just as an item is picked up (loc is not yet changed)
@@ -372,12 +373,14 @@
 /obj/item/proc/item_action_slot_check(mob/user, slot)
 	return TRUE
 
+///Signal sender for unique_action
+/obj/item/proc/do_unique_action(mob/user)
+	SEND_SIGNAL(src, COMSIG_ITEM_UNIQUE_ACTION, user)
+	return unique_action(user)
+
 ///Anything unique the item can do, like pumping a shotgun, spin or whatever.
 /obj/item/proc/unique_action(mob/user)
-	SHOULD_CALL_PARENT(TRUE)
-	if(SEND_SIGNAL(src, COMSIG_ITEM_UNIQUE_ACTION, user) & COMSIG_KB_ACTIVATED)
-		return COMSIG_KB_ACTIVATED
-	return COMSIG_KB_NOT_ACTIVATED
+	return
 
 ///Used to enable/disable an item's bump attack. Grouped in a proc to make sure the signal or flags aren't missed
 /obj/item/proc/toggle_item_bump_attack(mob/user, enable_bump_attack)

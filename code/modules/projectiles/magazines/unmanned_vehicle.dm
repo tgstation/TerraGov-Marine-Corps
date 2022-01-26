@@ -8,7 +8,6 @@
 	current_rounds = 200
 	max_rounds = 200
 	icon_state_mini = "ammo_packet"
-	gun_type = /obj/item/uav_turret/heavy
 
 /obj/item/ammo_magazine/box11x35mm
 	name = "box of 11x35mm"
@@ -20,4 +19,3 @@
 	current_rounds = 200
 	max_rounds = 200
 	icon_state_mini = "ammo_packet"
-	gun_type = /obj/item/uav_turret

@@ -11,7 +11,7 @@
 	. = ..()
 	if(isliving(arrived))
 		var/mob/living/spaceman = arrived
-		if(!spaceman.has_status_effect(/datum/status_effect/spacefreeze))
+		if(!spaceman.has_status_effect(/datum/status_effect/spacefreeze) && !(spaceman.status_flags & INCORPOREAL))
 			spaceman.apply_status_effect(/datum/status_effect/spacefreeze)
 
 /area/space/Exited(atom/movable/leaver, direction)

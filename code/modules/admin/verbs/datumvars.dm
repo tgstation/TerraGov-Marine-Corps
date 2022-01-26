@@ -640,7 +640,7 @@
 
 
 	else if(href_list["delete"])
-		if(!check_rights(R_DEBUG))
+		if(!check_rights(R_VAREDIT))
 			return
 
 		var/datum/D = locate(href_list["delete"])
@@ -688,7 +688,7 @@
 
 
 	if(href_list["rename"])
-		if(!check_rights(R_DEBUG))
+		if(!check_rights(R_VAREDIT))
 			return
 
 		var/mob/M = locate(href_list["rename"]) in GLOB.mob_list
@@ -710,7 +710,7 @@
 
 
 	else if(href_list["varnameedit"] && href_list["datumedit"])
-		if(!check_rights(R_DEBUG))
+		if(!check_rights(R_VAREDIT))
 			return
 
 		var/datum/D = locate(href_list["datumedit"])
@@ -736,7 +736,7 @@
 
 
 	else if(href_list["varnamechange"] && href_list["datumchange"])
-		if(!check_rights(R_DEBUG))
+		if(!check_rights(R_VAREDIT))
 			return
 
 		var/D = locate(href_list["datumchange"])
@@ -747,7 +747,7 @@
 
 
 	else if(href_list["varnamemass"] && href_list["datummass"])
-		if(!check_rights(R_DEBUG))
+		if(!check_rights(R_VAREDIT))
 			return
 
 		var/datum/D = locate(href_list["datummass"])

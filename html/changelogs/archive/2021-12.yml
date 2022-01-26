@@ -1,0 +1,341 @@
+2021-12-01:
+  BraveMole:
+  - code_imp: Remove parallax when on ground
+  KrabSpider:
+  - rscadd: Tl-127 flak rifle rounds. Available through requisitions for a mere 5
+      points a pop. Causes deals a mighty blow to targets as they're knocked back
+      4 tiles. 1 stagger, 1 slow, 4 knockback.
+  - imageadd: Tl-127 flak mags
+  Lewdcifer:
+  - balance: TP-44 fire delay 0.15 > 0.2.
+  hyper2snyper:
+  - rscadd: Cowboy boots + Leather Jacket and Leather Jacket with webbing.
+  - rscadd: Droon
+  - rscadd: Rave-ager
+2021-12-02:
+  TooFewSecrets:
+  - balance: Most Ravager super rage stat bonuses halved (rage above 0 HP unaffected).
+      Less damage, speed, lifesteal, sunder recovery, and endure bonus health. Immunities
+      are still given by super rage.
+  hyper2snyper:
+  - rscadd: All tgmc suits can now take jaeger modules. All berets can now take helmet
+      modules.
+  - rscadd: Robot armor is now modular. It no longer has internal storage but can
+      take the storage modules.
+  - bugfix: fixed the hlin sprite not appearing.
+  - bugfix: fixed the armored labcoat being one pixel too far to the right.
+2021-12-03:
+  AzonStarfall:
+  - rscadd: Adds the TGS Minerva, a new shipmap.
+  - config: Adds Minerva to the shipmaps config.
+  DeltaFire15:
+  - rscadd: Boiler bombard type selection now has access to radials if you have more
+      than two available glob types.
+  RipGrayson:
+  - imageadd: Added some directionals for mounted NanoMeds.
+  - imageadd: Added new sprites for mounted NanoMeds.
+  - rscadd: Added Tablefort back to LV624 beach.
+  - rscadd: LV624 has several new domes to fight in.
+  - expansion: Expanded LV624 colony.
+  - balance: Completely overhauled the Sand Temple.
+  - balance: Overhauled half of LV624 caves.
+  - balance: Pre-weed density in certain parts of the colony has been increased.
+  - balance: LV624 LZ2 has been shifted again, this time without a direct connection
+      to caves.
+  - bugfix: Fixed pipes not properly connecting to modular domes on LV624
+  - imageadd: Ported robotic showcase from TG
+  - imageadd: Added a few area icons
+  - imageadd: Added icons for corner variants of stairs
+  - imageadd: Added river decals for flooded areas
+  - bugfix: Removed extra Magmoor nuke.
+  - bugfix: Patched some holes in xeno spawn protection on Magmoor.
+  hyper2snyper:
+  - bugfix: Fixes shoulder gun reloading.
+  - bugfix: Fixes revolver ammo counts.
+  - bugfix: Fixes unique action when there is a magazine in a rifle.
+  - bugfix: fixes flamers using +1 fuel per tile
+  - bugfix: fixes flamers not being able to torch xeno turrets.
+  - bugfix: fixes tactical reloading with a worn ammo magazine.
+2021-12-04:
+  BraveMole:
+  - bugfix: No more primo exploit with queen devo
+  KrabSpider:
+  - balance: Leicester Repeater damage multiplier increased to 2x from 1.5x.
+  SpaceLoveSs13:
+  - admin: varedit does varediting.
+  Walarks:
+  - expansion: adds 50% aim mode delay removal to deployed bipod, which combined with
+      red dot reaches 100% (yes, GPMG enjoyers)
+2021-12-05:
+  BraveMole:
+  - bugfix: No more multi king
+  - bugfix: Xeno turrets no longer can be placed next to each other by spamming
+  - bugfix: Fix free electronic pouches being full
+  vilereaver41:
+  - rscadd: new area northeast of caves.
+  - balance: West-LZ1 to make it a bit more open north of it. also made lz1 bigger
+      so marines got more room
+  - balance: the pre shutter open no-build zone has been reduced.
+  - balance: added more weed nodes and doors in caves for quality of life.
+2021-12-07:
+  AzonStarfall:
+  - bugfix: Adds exterior access button to Minerva's Drop Pod doors.
+  BraveMole:
+  - balance: razorwire microdosing is dead
+  KrabSpider:
+  - rscadd: Mateba speedloaders, scout rifle magazines, and railgun magazine factorio
+      refills are now available through cargo. Please don't blow anything up.
+  RipGrayson:
+  - imageadd: Added a unique sprite for LZ lockdown overrides.
+  - imageadd: Added directional sprites for LZ lockdown overrides.
+  novaepee:
+  - qol: requisition has a free supply beacon; now it's a skill and communication
+      issue if requisition doesn't have a supply beacon deployed in planetside
+  - balance: round start supply beacon without a round start SL, FC, or synthetic
+2021-12-08:
+  Lewdcifer:
+  - balance: T-152 RPG no longer accepts the shoulder gun module.
+  - balance: TX-15 autoshotgun no longer accepts masterkey shotguns.
+  RipGrayson:
+  - balance: Moved LV624 Sand Temple resin silo farther north.
+  - balance: Moved LV624 nuke disc generators farther apart.
+  - bugfix: Fixed Engineering dome's southern pipe connection being broken.
+  - bugfix: Fixed LV624 SW sand temple being subject to acid rain.
+  - bugfix: Fixed LV624 beachside filtration plant being outdoors.
+  - bugfix: Fixed an exceedingly obscure bug involving not being able to build tables
+      at LV624 LZs.
+  chesse20:
+  - rscadd: 8 new flavors of protein bars
+  - refactor: made protein bars grayscale
+2021-12-09:
+  KrabSpider:
+  - imageadd: Pill packets in first aid pouches are now color coded for your convenience.
+      Please remember these pills are not candy. Medics please stop feeding the Marines
+      candy...
+  - balance: Incendiary slugs, yet again, no longer have airburst and do normal damage.
+      Again.
+  Pill-U:
+  - rscadd: Add pepperball attachment
+  - rscadd: Add ammo for the pepperball attachment
+  - rscadd: Sprites for both
+2021-12-10:
+  KrabSpider:
+  - balance: TX-11 extra delay decreased to 0.25 from 0.5.
+  - balance: TX-11 scope zoom increased to 7 from 5. Stop littering.
+  Pill-U:
+  - rscdel: Remove carriers retrieve egg ability
+  - rscdel: Remove egg item.
+  - qol: Lay egg now plants the egg on the ground
+  RipGrayson:
+  - bugfix: Fixed a couple improperly rotated shutters in Big Red.
+  - imageadd: Added some new directional sprites for door buttons.
+  kait:
+  - balance: rebalanced somolent
+2021-12-11:
+  ATHATH:
+  - bugfix: Not having a heart now halves your effective blood level, as it was intended
+      to.
+  - bugfix: Disconnecting someone's heart from the rest of their body via surgery
+      will now impose the same effects on their blood level (and effective blood level)
+      that breaking their heart would.
+  Derrick2Electricboogaloo:
+  - bugfix: Deployable Camera in req comes in pack of 3 as intended.
+  Vondiech:
+  - bugfix: Pill packets are now visible again with the new sprites that were added
+      to them.
+2021-12-12:
+  BraveMole:
+  - qol: Window flashs and there is a loud sound played when it's your turn to be
+      a larva (larva queue)
+  Vondiech:
+  - bugfix: You can now put in the extended gal-9 clip into the UZI again.
+2021-12-14:
+  AzonStarfall:
+  - bugfix: Fixes a few issues on the Minerva, such as explosive radios.
+  KrabSpider:
+  - balance: .45-70 Goverment Rifle Cartridges for the  leicester repeater. 70 damage/20
+      AP/1.25 sunder from 60 damage/ 20 AP/1.5 sunder. Bullets stagger and slow within
+      a 4 tile range (from a weak slow at all ranges).
+  - imageadd: .45-70 Government Packets
+  - imageadd: New Leicester Repeater sprite. Much thanks to SilentMP5A5, otherwise
+      known by many as Ocelot.
+  RipGrayson:
+  - balance: Icy Caves is back to it's original self, without the lab complex to the
+      NW of the map.
+  - balance: All Icy Caves plasma cutters have been replaced with pickaxes.
+  - balance: The Icy Caves pirate coat has been replaced with a regular colonist uniform.
+  - balance: Barrels no longer drop 10 metal by default when destroyed.
+  Slotbot:
+  - balance: tesla gun doesn't drain plasma from xenos who have special plasma management,
+      other tesla debuffs remain the same
+  SplinterGP:
+  - bugfix: the Hypertext in old chat to reload TGUI Chat when it doens't load now
+      works
+  Vondiech:
+  - balance: You can now store MRE's in your combat boots for a mid-fight snack!
+  novaepee:
+  - rscadd: Floppa and Martin, the req caracal
+  - imageadd: floppa sprites!
+2021-12-15:
+  BraveMole:
+  - bugfix: Fix light replacing exploit
+  - code_imp: Unit test for guns expanded. Also put the fire delays at their correct
+      values, have no effect on gameplay
+  - bugfix: Fix hivemind space freeze bug
+  novaepee:
+  - bugfix: code
+2021-12-16:
+  BraveMole:
+  - bugfix: Fix carrier timing exploit
+  - bugfix: Fix some untangle razor wire bug
+  - qol: Prevent bad name by randomising the name on species change
+  - bugfix: Fix tarp getting spotted by minions
+  - bugfix: Fix storage nested in storage. Aka, pills and synrigue case in pouches
+      or things like that
+  - bugfix: Fix marine knife boot not updating sprite
+  - bugfix: Deevo from queen works as intended
+  - bugfix: Wraith can no longer regress while shifted
+  novaepee:
+  - imageadd: New carrier sprites!
+2021-12-17:
+  BraveMole:
+  - rscdel: Remove middle click swap
+  - balance: Tool vendor is now a shared vendor with unlimited supplies
+  - balance: Tool vendor no longer has contraband, the huge tank welder is moved to
+      engie points
+  - expansion: Tool vendor is now linked with loadout system
+  - qol: Tool pouches contains a welding tool rather than a multi-tool
+  - rscadd: Bring back grenade chain explosion
+  - refactor: Rework combat floodlights into something simpler
+  - bugfix: Properly rebrand ak47
+  - qol: You can point even in darkness (if you can see it, like xenos do). Cooldown
+      is 1 second for everyone
+  KrabSpider:
+  - bugfix: Repeater now has a proper left in-hand sprite...stray pixels are also
+      fixed
+  Walarks:
+  - expansion: adds a new xeno caste
+  - expansion: gives all xenos 150 max overheal to be used for gorger ability
+  - bugfix: pre-spawned humans now have the non-defibbable trait
+  - bugfix: attack animation no longer cancels other animations on same object as
+      long as both have the ANIMATION_PARALLEL flag
+  chesse20:
+  - rscdel: You can no longer vend specific flavors of protein bars
+  - bugfix: Stopped filling your hands with fake protein bars
+  - bugfix: nutriment has taste as intended
+  - qol: Protein bars now vend into your hands as they should
+  ivanmixo:
+  - balance: The resin silo can no longer be quickly cut apart by a resin silo
+  - bugfix: The silo being destroyed should trigger the silo collapse timer every
+      time now
+2021-12-18:
+  Arctrooper8:
+  - rscadd: Changes the flower pin to weight class tiny
+  - rscadd: Allows the flower pin to be placed inside the helmet and be added to helmet
+      sprite
+  - refactor: removes helmet_garb.dmi and replaces usage of it with modular_helmet_storage.dmi
+2021-12-19:
+  BraveMole:
+  - bugfix: Camera laze is no longer visible
+  - bugfix: Fix searching in camera input list
+  - bugfix: Fix automatic miner upgrade removal
+  KrabSpider:
+  - bugfix: Repeater left in-hand is no longer reversed. Right hand looks less ugly.
+  RipGrayson:
+  - bugfix: Fixed sinks being inside walls when oriented north.
+  - imageadd: Added some directionals for wall mounted mirrors.
+2021-12-20:
+  Kait:
+  - expansion: 'Added a recipe for QC+, making it craftable. The recipe for 1 unit
+      is: 2 parts Lemo, 2 parts Iron, 2 parts Quick-Clot.'
+  Pariah919:
+  - balance: masterkey has a higher damage multplier malus, 0.45 from 0.7.
+  Three333Digit:
+  - qol: FOB drone now has meson vision
+  - qol: FOB drone now has a bigger light radius
+  Waselon:
+  - rscadd: Added Vali spear
+2021-12-21:
+  BraveMole:
+  - expansion: Can save boot content in loadout
+  - bugfix: Fix acid armor value for jaeger heavy
+  - rscdel: Remove focus chat option
+  Verlurk:
+  - balance: Razorwire grenades and canisters can no longer have their contents removed.
+  ivanmixo:
+  - bugfix: Burn overlays update when you patch yourself with cable
+  - bugfix: Fixes patching burnt wires with cable giving the wrong message
+  psykzz:
+  - code_imp: Removed xeno specific throw card.
+2021-12-23:
+  DeltaFire15:
+  - bugfix: Boiler glob-related action icons should display correctly again.
+  KrabSpider:
+  - balance: Repeater max (status effect) range decreased to 3 from 4.
+  Mrrpip:
+  - rscadd: Added Medical Nanites to the common marine vendors, son!
+  novaepee:
+  - qol: Synthetic spawns with high-capacity industrial blowtorch
+  - balance: Add in T-25 ammo box for smartgunners to buy in their vendor.
+2021-12-24:
+  Waselon:
+  - bugfix: adjusted flame cone code to work with the spear
+  - code_imp: moved harvester code into component
+  - code_imp: made needed changes to blade and spear
+2021-12-25:
+  BraveMole:
+  - qol: Req supply back reorganised
+  - qol: Added a search function to req
+  - rscdel: Remove attachment from req
+2021-12-26:
+  BraveMole:
+  - rscadd: Valhalla(Tm) resort location. Use the join valhalla verb in OOC when you
+      are dead to join
+  - rscadd: Throw looks better (no more stuttered direction change)
+  Canohaaaaaaa:
+  - bugfix: fixed warrior punch doing more damage than it's suposed to
+  KrabSpider:
+  - balance: Increases bolt action rifle slowdown to 1.5 from 1 and decreases max
+      range to 17 (from the meme that is 40 tiles)
+  Pariah919:
+  - balance: MKH98 changes- 0.2 fire delay from 0.25, 30 round magazines, 0.5 wield
+      delay from 0.6, 0.35 aim slowdown from 0.45.
+  RipGrayson:
+  - bugfix: Fixed a bug preventing CAS without flares on LV624.
+  TheLeopold:
+  - balance: Surgical apron can hold one medical item in suit slot.
+  Verlurk:
+  - rscdel: Removed Tyr helmet attachment from Mark 2 crate, as it's free in surplus
+      vendors.
+  novaepee:
+  - bugfix: Change from 5 SG points to 6 SG points to buy ammo boxes; I have integrity
+  - qol: You can actually see progression of a wounded Wraith
+  - imageadd: ibit
+  - imageadd: New sprites for T-25 ammo box
+  - imagedel: Goodbye, cube
+  - qol: Researcher has medical radio to talk in medical.
+  - bugfix: Researcher is under support now instead of flavour.
+  - rscadd: Walten Clements, medical's bull terrier, is here to help MDs, researchers,
+      and CMO on diagnosing marines in their trauma.
+  - imageadd: New cryobag sprites! Taken from CM.
+  - qol: A little animation glow when someone is inside cryobag.
+2021-12-27:
+  Pill-U:
+  - qol: add tool vendors to canterbury and bigbury
+  novaepee:
+  - rscadd: Give requisition overwatch!
+  - qol: RO doesn't have to run to CIC anymore
+2021-12-28:
+  Pill-U:
+  - balance: Change mini pepperball magazine size from 3 to 2
+  Verlurk:
+  - bugfix: Alamo console spelling error rectified.
+  novaepee:
+  - qol: infinite fire extinguishers are now in vendors! Find it in the Specialized
+      tab under flamethrowers. I wonder why I put infinite fire extinguishers underneath
+      flamethrowers.
+2021-12-29:
+  SplinterGP:
+  - code_imp: changes alot of how line_of_sight() works, making line of sights checks
+      be an actual line, instead of some test that sometimes blocked some places you
+      could see, still can happen but less

@@ -114,16 +114,6 @@ GLOBAL_LIST_EMPTY(autolathe_categories)
 	path = /obj/item/circuitboard/airlock
 	category = "Engineering"
 
-/datum/autolathe/recipe/miningwellresistance
-	name = "mining well reinforcement upgrade"
-	path = /obj/item/minerupgrade/reinforcement
-	category = "Engineering"
-
-/datum/autolathe/recipe/miningwelloverclock
-	name = "mining well overclock upgrade"
-	path = /obj/item/minerupgrade/overclock
-	category = "Engineering"
-
 /datum/autolathe/recipe/airalarm
 	name = "air alarm electronics"
 	path = /obj/item/circuitboard/airalarm
@@ -258,25 +248,6 @@ GLOBAL_LIST_EMPTY(autolathe_categories)
 	name = "glass ashtray"
 	path = /obj/item/ashtray/glass
 	category = "General"
-
-/datum/autolathe/recipe/electropack
-	name = "electropack"
-	path = /obj/item/electropack
-	hidden = 1
-	category = "Devices and Components"
-
-/datum/autolathe/recipe/welder_industrial
-	name = "industrial blowtorch"
-	path = /obj/item/tool/weldingtool/largetank
-	hidden = 1
-	category = "Tools"
-
-/datum/autolathe/recipe/handcuffs
-	name = "handcuffs"
-	path = /obj/item/restraints/handcuffs
-	hidden = 1
-	category = "General"
-
 
 /datum/autolathe/recipe/camera_assembly
 	name = "camera assembly"

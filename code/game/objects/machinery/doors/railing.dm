@@ -74,6 +74,9 @@
 /obj/machinery/door/poddoor/railing/proc/do_open()
 	density = FALSE
 	operating = FALSE
+	var/turf/current_turf = get_turf(src)
+	if(current_turf)
+		current_turf.flags_atom &= ~AI_BLOCKED
 
 /obj/machinery/door/poddoor/railing/close()
 	if (!SSticker || operating || density)
@@ -84,6 +87,9 @@
 	layer = closed_layer
 	flick("railingc1", src)
 	icon_state = "railing1"
+	var/turf/current_turf = get_turf(src)
+	if(current_turf)
+		current_turf.flags_atom |= AI_BLOCKED
 
 	addtimer(CALLBACK(src, .proc/do_close), 12)
 	return TRUE

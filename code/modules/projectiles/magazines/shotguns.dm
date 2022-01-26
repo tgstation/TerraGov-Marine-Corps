@@ -13,7 +13,6 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = "slugs"
 	default_ammo = /datum/ammo/bullet/shotgun/slug
 	caliber = CALIBER_12G //All shotgun rounds are 12g right now.
-	gun_type = /obj/item/weapon/gun/shotgun
 	max_rounds = 25 // Real shotgun boxes are usually 5 or 25 rounds. This works with the new system, five handfuls.
 	w_class = WEIGHT_CLASS_BULKY // Can't throw it in your pocket, friend.
 	icon_state_mini = "slugs"
@@ -59,7 +58,6 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = "7.62" //Thank you Alterist
 	default_ammo = /datum/ammo/bullet/sniper/svd
 	caliber = CALIBER_762X54 //Cyka Blyat
-	gun_type = /obj/item/weapon/gun/shotgun/pump/bolt
 	max_rounds = 20 // Real rifle boxes are usually 20 rounds. This works with the new system, four handfuls.
 	w_class = WEIGHT_CLASS_SMALL // CAN throw it in your pocket, friend.
 	icon_state_mini = "mosin"
@@ -70,7 +68,6 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = ".557"
 	default_ammo = /datum/ammo/bullet/sniper/martini
 	caliber = CALIBER_557
-	gun_type = /obj/item/weapon/gun/shotgun/double/martini
 	max_rounds = 20
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state_mini = "martini"
@@ -81,7 +78,6 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = "derringer_box"
 	default_ammo = /datum/ammo/bullet/pistol/superheavy/derringer
 	caliber = CALIBER_41RIM
-	gun_type = /obj/item/weapon/gun/shotgun/double/derringer
 	max_rounds = 10
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state_mini = "ammo_packet"
@@ -92,7 +88,6 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = "mbx900_sabot"
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_sabot
 	caliber = CALIBER_410
-	gun_type = /obj/item/weapon/gun/shotgun/pump/lever/mbx900
 	max_rounds = 25
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mbx900_sabot"
@@ -110,80 +105,3 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = "mbx900_tracker"
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_tracker
 	icon_state_mini = "mbx900_tracker"
-
-//-------------------------------------------------------
-
-/*
-Generic internal magazine. All shotguns will use this or a variation with different ammo number.
-Since all shotguns share ammo types, the gun path is going to be the same for all of them. And it
-also doesn't really matter. You can only reload them with handfuls.
-*/
-/obj/item/ammo_magazine/internal/shotgun
-	name = "shotgun tube"
-	desc = "An internal magazine. It is not supposed to be seen or removed."
-	default_ammo = /datum/ammo/bullet/shotgun/flechette
-	caliber = CALIBER_12G
-	max_rounds = 8
-	chamber_closed = 0
-
-/obj/item/ammo_magazine/internal/shotgun/pump
-
-/obj/item/ammo_magazine/internal/shotgun/pump/buckshot
-	default_ammo = /datum/ammo/bullet/shotgun/buckshot
-
-/obj/item/ammo_magazine/internal/shotgun/pump/CMB
-	max_rounds = 8
-
-/obj/item/ammo_magazine/internal/shotgun/masterkey
-	max_rounds = 2
-
-/obj/item/ammo_magazine/internal/shotgun/pump/bolt
-	name = "internal magazine"
-	default_ammo = /datum/ammo/bullet/sniper/svd
-	caliber = CALIBER_762X54
-	max_rounds = 5
-
-/obj/item/ammo_magazine/internal/shotgun/martini
-	name = "internal chamber"
-	default_ammo = /datum/ammo/bullet/sniper/martini
-	caliber = CALIBER_557
-	max_rounds = 1
-	chamber_closed = 1
-
-/obj/item/ammo_magazine/internal/shotgun/derringer
-	default_ammo = /datum/ammo/bullet/pistol/superheavy/derringer
-	caliber = CALIBER_41RIM
-	max_rounds = 2
-	chamber_closed = 1
-
-/obj/item/ammo_magazine/internal/shotgun/pump/lever
-	name = "tubular magazine"
-	default_ammo = /datum/ammo/bullet/revolver
-	caliber = CALIBER_44
-	max_rounds = 10
-
-/obj/item/ammo_magazine/internal/shotgun/pump/lever/repeater
-	name = "tubular magazine"
-	default_ammo = /datum/ammo/bullet/revolver
-	caliber = CALIBER_44
-	max_rounds = 14
-
-/obj/item/ammo_magazine/internal/shotgun/pump/lever/mbx900
-	default_ammo = /datum/ammo/bullet/shotgun/mbx900_buckshot
-	caliber = CALIBER_410
-	current_rounds = 0
-
-/obj/item/ammo_magazine/internal/shotgun/double
-	default_ammo = /datum/ammo/bullet/shotgun/buckshot
-	max_rounds = 2
-	chamber_closed = 1 //Starts out with a closed tube.
-
-/obj/item/ammo_magazine/internal/shotgun/combat
-	max_rounds = 9
-
-/obj/item/ammo_magazine/internal/shotgun/merc
-	max_rounds = 5
-
-/obj/item/ammo_magazine/internal/shotgun/scout
-	max_rounds = 9
-	current_rounds = 0

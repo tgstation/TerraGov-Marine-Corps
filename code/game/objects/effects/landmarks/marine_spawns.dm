@@ -144,6 +144,9 @@
 	icon_state = "Shaft Miner"
 	job = /datum/job/survivor/rambo
 
+/obj/effect/landmark/start/job/fallen
+	job = /datum/job/fallen
+
 /obj/effect/landmark/start/job/xenomorph
 	icon_state = "xeno_spawn"
 	job = /datum/job/xenomorph
