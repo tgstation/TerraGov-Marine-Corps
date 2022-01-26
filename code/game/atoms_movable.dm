@@ -176,68 +176,43 @@
 	if(!direction)
 		direction = get_dir(src, newloc)
 
-	var/is_multi_tile_object = bound_width > 32 || bound_height > 32
-	var/list/old_locs
-	if(is_multi_tile_object && isturf(loc))
-		old_locs = locs // locs is a special list, this is effectively the same as .Copy() but with less steps
-		for(var/atom/exiting_loc AS in old_locs)
-			if(!exiting_loc.Exit(src, direction))
-				return
-
-	else if(!loc.Exit(src, direction))
-		return
-
 	var/can_pass_diagonally = NONE
 	if (direction & (direction - 1)) //Check if the first part of the diagonal move is possible
 		moving_diagonally = TRUE
 		if(!(flags_atom & DIRLOCK))
 			setDir(direction) //We first set the direction to prevent going through dir sensible object
-		if((direction & NORTH) && get_step(loc, NORTH)?.Exit(src, direction & ~NORTH) && get_step(loc, NORTH).Enter(src))
+		if((direction & NORTH) && loc.Exit(src, NORTH) && get_step(loc, NORTH).Enter(src))
 			can_pass_diagonally = NORTH
-		else if((direction & SOUTH) && get_step(loc, SOUTH)?.Exit(src, direction & ~SOUTH) && get_step(loc, SOUTH).Enter(src))
+		else if((direction & SOUTH) && loc.Exit(src, SOUTH) && get_step(loc, SOUTH).Enter(src))
 			can_pass_diagonally = SOUTH
-		else if((direction & EAST) && get_step(loc, EAST)?.Exit(src, direction & ~EAST) && get_step(loc, EAST).Enter(src))
+		else if((direction & EAST) && loc.Exit(src, EAST) && get_step(loc, EAST).Enter(src))
 			can_pass_diagonally =  EAST
-		else if((direction & WEST) && get_step(loc, WEST)?.Exit(src, direction & ~WEST) && get_step(loc, WEST).Enter(src))
+		else if((direction & WEST) && loc.Exit(src, WEST) && get_step(loc, WEST).Enter(src))
 			can_pass_diagonally = WEST
 		else
 			moving_diagonally = FALSE
 			return
 		moving_diagonally = FALSE
+		if(!get_step(loc, can_pass_diagonally)?.Exit(src, direction & ~can_pass_diagonally))
+			return Move(get_step(loc, can_pass_diagonally), can_pass_diagonally)
 		if(!(flags_atom & DIRLOCK)) //We want to set the direction to be the one of the "second" diagonal move, aka not can_pass_diagonally
 			setDir(direction &~ can_pass_diagonally)
 
-	else if(!(flags_atom & DIRLOCK))
-		setDir(direction)
-
-	var/list/new_locs
-	if(is_multi_tile_object && isturf(newloc))
-		new_locs = block(
-			newloc,
-			locate(
-				min(world.maxx, newloc.x + CEILING(bound_width / 32, 1)),
-				min(world.maxy, newloc.y + CEILING(bound_height / 32, 1)),
-				newloc.z
-				)
-		) // If this is a multi-tile object then we need to predict the new locs and check if they allow our entrance.
-		for(var/atom/entering_loc AS in new_locs)
-			if(!entering_loc.Enter(src))
-				return
 	else
-		var/enter_return_value = newloc.Enter(src)
-		if(!(enter_return_value & TURF_CAN_ENTER))
-			if(can_pass_diagonally && !(enter_return_value & TURF_ENTER_ALREADY_MOVED))
-				return Move(get_step(loc, can_pass_diagonally), can_pass_diagonally)
+		if(!loc.Exit(src, direction))
 			return
+		if(!(flags_atom & DIRLOCK))
+			setDir(direction)
+	
+	var/enter_return_value = newloc.Enter(src)
+	if(!(enter_return_value & TURF_CAN_ENTER))
+		if(can_pass_diagonally && !(enter_return_value & TURF_ENTER_ALREADY_MOVED))
+			return Move(get_step(loc, can_pass_diagonally), can_pass_diagonally)
+		return
 
 	var/atom/oldloc = loc
 	loc = newloc
-
-	if(old_locs) // This condition will only be true if it is a multi-tile object.
-		for(var/atom/exited_loc AS in (old_locs - new_locs))
-			exited_loc.Exited(src, direction)
-	else // Else there's just one loc to be exited.
-		oldloc.Exited(src, direction)
+	oldloc.Exited(src, direction)
 
 	if(!loc || loc == oldloc)
 		last_move = 0
@@ -249,11 +224,7 @@
 	if(oldarea != newarea)
 		oldarea.Exited(src, direction)
 
-	if(new_locs) // Same here, only if multi-tile.
-		for(var/atom/entered_loc as anything in (new_locs - old_locs))
-			entered_loc.Entered(src, oldloc, old_locs)
-	else
-		newloc.Entered(src, oldloc, old_locs)
+	newloc.Entered(src, oldloc)
 
 	if(oldarea != newarea)
 		newarea.Entered(src, oldarea)
@@ -420,15 +391,15 @@
 	if(LAZYLEN(gone.important_recursive_contents))
 		var/list/nested_locs = get_nested_locs(src) + src
 		for(var/channel in gone.important_recursive_contents)
-			for(var/atom/movable/location as anything in nested_locs)
+			for(var/atom/movable/location AS in nested_locs)
 				LAZYREMOVEASSOC(location.important_recursive_contents, channel, gone.important_recursive_contents[channel])
 
-/atom/movable/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+/atom/movable/Entered(atom/movable/arrived, atom/old_loc)
 	. = ..()
 	if(LAZYLEN(arrived.important_recursive_contents))
 		var/list/nested_locs = get_nested_locs(src) + src
 		for(var/channel in arrived.important_recursive_contents)
-			for(var/atom/movable/location as anything in nested_locs)
+			for(var/atom/movable/location AS in nested_locs)
 				LAZYORASSOCLIST(location.important_recursive_contents, channel, arrived.important_recursive_contents[channel])
 
 //called when src is thrown into hit_atom

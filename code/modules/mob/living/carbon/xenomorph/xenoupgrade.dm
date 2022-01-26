@@ -157,6 +157,9 @@
 /mob/living/carbon/xenomorph/carrier/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/carrier/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //-----CARRIER END-----//
 //================//
 //----HIVELORD START----//
@@ -187,6 +190,9 @@
 
 /mob/living/carbon/xenomorph/praetorian/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/praetorian/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----PRAETORIAN END----//
 //================//
