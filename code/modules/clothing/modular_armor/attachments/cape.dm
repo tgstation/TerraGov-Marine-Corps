@@ -3,7 +3,7 @@
 	desc = "To improve on the design of the 7E badge, this cape is capable of two colors, for all your fashion needs. It also is equiped with thermal insulators so it will double as a blanket. \n Attack with green facepaint to color. Attaches onto a uniform. Activate it to toggle the hood."
 	icon_state = "cape"
 	slot = ATTACHMENT_SLOT_CAPE
-	attachment_layer = COLLAR_LAYER
+	attachment_layer = CAPE_LAYER
 	prefered_slot = SLOT_W_UNIFORM
 	greyscale_config = /datum/greyscale_config/cape
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB|ATTACH_ACTIVATION
