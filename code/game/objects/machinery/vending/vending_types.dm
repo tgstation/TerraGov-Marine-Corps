@@ -472,7 +472,6 @@
 	desc = "Spare electronics vending. What? Did you expect some witty description?"
 	icon_state = "engivend"
 	icon_deny = "engivend-deny"
-	req_access = list(ACCESS_MARINE_ENGINEERING)
 	products = list(
 		/obj/item/multitool = -1,
 		/obj/item/analyzer = -1,
