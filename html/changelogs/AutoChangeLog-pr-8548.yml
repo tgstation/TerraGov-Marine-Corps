@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - rscadd: "New wraith effects that should stop crashing"
+  - refactor: "refactored rendering"
