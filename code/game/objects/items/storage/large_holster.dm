@@ -16,9 +16,10 @@
 /obj/item/storage/large_holster/update_icon()
 	. = ..()
 	var/mob/user = loc
-	if(istype(user)) user.update_inv_back()
-	if(istype(user)) user.update_inv_belt()
-	if(istype(user)) user.update_inv_s_store()
+	if(istype(user)) 
+		user.update_inv_back()
+		user.update_inv_belt()
+		user.update_inv_s_store()
 	
 
 /obj/item/storage/large_holster/update_icon_state()
