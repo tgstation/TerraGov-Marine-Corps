@@ -62,13 +62,14 @@
 		/obj/item/reagent_containers/food/drinks/cans/aspen = 20,
 		/obj/item/reagent_containers/food/drinks/bottle/davenport = 3,
 		/obj/item/reagent_containers/food/drinks/tea = 10,
-		)
+	)
 	vend_delay = 15
 	idle_power_usage = 211
 	//product_slogans = "I hope nobody asks me for a bloody cup o' tea...;Alcohol is humanity's friend. Would you abandon a friend?;Quite delighted to serve you!;Is nobody thirsty on this station?"
 	//product_ads = "Drink up!;Booze is good for you!;Alcohol is humanity's best friend.;Quite delighted to serve you!;Care for a nice, cold beer?;Nothing cures you like booze!;Have a sip!;Have a drink!;Have a beer!;Beer is good for you!;Only the finest alcohol!;Best quality booze since 2053!;Award-winning wine!;Maximum alcohol!;Man loves beer.;A toast for progress!"
 
 /obj/machinery/vending/assist
+	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"
 	products = list(
 		/obj/item/assembly/prox_sensor = 5,
 		/obj/item/assembly/igniter = 3,
@@ -76,8 +77,7 @@
 		/obj/item/tool/wirecutters = 1,
 		/obj/item/flashlight = 5,
 		/obj/item/assembly/timer = 2,
-		)
-	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"
+	)
 
 /obj/machinery/vending/coffee
 	name = "Hot Drinks machine"
@@ -93,8 +93,7 @@
 		/obj/item/reagent_containers/food/drinks/tea = 25,
 		/obj/item/reagent_containers/food/drinks/h_chocolate = 25,
 		/obj/item/reagent_containers/food/drinks/ice = 10,
-		)
-	prices = list()
+	)
 
 /obj/machinery/vending/snack
 	name = "Hot Foods Machine"
@@ -112,9 +111,7 @@
 		/obj/item/reagent_containers/food/snacks/wrapped/chunk = 6,
 		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = 6,
 		/obj/item/reagent_containers/food/snacks/lollipop = 12,
-		)
-
-	prices = list()
+	)
 
 /obj/machinery/vending/cola
 	name = "Souto Softdrinks"
@@ -133,7 +130,7 @@
 		/obj/item/reagent_containers/food/drinks/cans/souto/grape/diet = 10,
 		/obj/item/reagent_containers/food/drinks/cans/waterbottle = 10,
 		/obj/item/reagent_containers/food/drinks/cans/cola = 10,
-		)
+	)
 
 	prices = list(
 		/obj/item/reagent_containers/food/drinks/cans/souto = 5,
@@ -146,7 +143,7 @@
 		/obj/item/reagent_containers/food/drinks/cans/souto/grape/diet = 5,
 		/obj/item/reagent_containers/food/drinks/cans/waterbottle = 2,
 		/obj/item/reagent_containers/food/drinks/cans/cola = 10,
-		)
+	)
 	idle_power_usage = 200
 
 /obj/machinery/vending/medical
@@ -282,7 +279,7 @@
 		/obj/item/assembly/signaler = 6,
 		/obj/item/assembly/prox_sensor = 6,
 		/obj/item/assembly/igniter = 6,
-		)
+	)
 
 /obj/machinery/vending/nanomed
 	name = "NanoMed"
@@ -302,7 +299,7 @@
 		/obj/item/stack/medical/splint = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/combat = 0,
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
-		)
+	)
 
 /obj/machinery/vending/nanomed/Initialize(mapload, ...)
 	. = ..()
@@ -335,7 +332,7 @@
 		/obj/item/radio/headset = 6,
 		/obj/item/clothing/glasses/sunglasses = 2,
 		/obj/item/storage/donut_box = 2,
-		)
+	)
 
 /obj/machinery/vending/hydronutrients
 	name = "NutriMax"
@@ -353,7 +350,7 @@
 		/obj/item/storage/bag/plants = 5,
 		/obj/item/reagent_containers/glass/bottle/ammonia = 10,
 		/obj/item/reagent_containers/glass/bottle/diethylamine = 5,
-		)
+	)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
 /obj/machinery/vending/hydroseeds
@@ -405,7 +402,7 @@
 		/obj/item/seeds/reishimycelium = 2,
 		/obj/item/seeds/shandseed = 2,
 		/obj/item/toy/waterflower = 1,
-		)
+	)
 
 /obj/machinery/vending/magivend
 	name = "MagiVend"
@@ -422,7 +419,7 @@
 		/obj/item/clothing/suit/wizrobe/red = 1,
 		/obj/item/clothing/shoes/sandal = 1,
 		/obj/item/staff = 2,
-		)
+	)
 
 /obj/machinery/vending/dinnerware
 	name = "Dinnerware"
@@ -439,7 +436,7 @@
 		/obj/item/tool/kitchen/utensil/knife = 2,
 		/obj/item/tool/kitchen/rollingpin = 2,
 		/obj/item/tool/kitchen/knife/butcher = 2,
-		)
+	)
 
 /obj/machinery/vending/sovietsoda
 	name = "BODA"
@@ -449,7 +446,7 @@
 	products = list(
 		/obj/item/reagent_containers/food/drinks/drinkingglass/soda = 30,
 		/obj/item/reagent_containers/food/drinks/drinkingglass/cola = 20,
-		)
+	)
 	idle_power_usage = 211
 
 /obj/machinery/vending/tool
@@ -465,7 +462,7 @@
 		/obj/item/tool/wirecutters = -1,
 		/obj/item/tool/wrench = -1,
 		/obj/item/tool/screwdriver = -1,
-		)
+	)
 
 /obj/machinery/vending/engivend
 	name = "Engi-Vend"
@@ -478,7 +475,7 @@
 		/obj/item/t_scanner = -1,
 		/obj/item/circuitboard/apc = -1,
 		/obj/item/cell/high = 10,
-		)
+	)
 
 //This one's from bay12
 /obj/machinery/vending/robotics
@@ -502,7 +499,7 @@
 		/obj/item/clothing/mask/breath/medical = 5,
 		/obj/item/tool/screwdriver = 5,
 		/obj/item/tool/crowbar = 5,
-		)
+	)
 
 
 // All instances of this vendor will share a single inventory for items in the shared list.
