@@ -6,7 +6,7 @@
 	attachment_layer = COLLAR_LAYER
 	prefered_slot = SLOT_W_UNIFORM
 	greyscale_config = /datum/greyscale_config/cape
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB|ATTACH_ACTIVATION|ATTACH_NO_HANDS
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB|ATTACH_ACTIVATION
 	attach_delay = 0 SECONDS
 	detach_delay = 0 SECONDS
 	secondary_color = TRUE
@@ -28,23 +28,13 @@
 	), \
 	starting_attachments = starting_attachments)
 
-/obj/item/armor_module/armor/cape/on_attach(obj/item/attaching_to, mob/user)
-	. = ..()
-	if(!user)
-		return
-	var/mob/living/carbon/human/human_user = user
-	if(human_user.w_uniform != parent)
-		return
-	handle_actions(, user, prefered_slot)
-
 /obj/item/armor_module/armor/cape/activate(mob/living/user)
 	. = ..()
 	hood = !hood
 	update_icon()
 	user.update_inv_w_uniform()
 
-/obj/item/armor_module/armor/cape/update_icon_state()
-	. = ..()
+/obj/item/armor_module/armor/cape/update_icon()
 	var/obj/item/armor_module/highlight = attachments_by_slot[ATTACHMENT_SLOT_CAPE_HIGHLIGHT]
 	if(hood)
 		icon_state = "cape_h"
@@ -52,6 +42,7 @@
 	else
 		icon_state = "cape"
 		highlight?.icon_state = "highlight"
+	return ..()
 
 
 /obj/item/armor_module/armor/cape/half

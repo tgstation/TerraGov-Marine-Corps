@@ -98,6 +98,7 @@
 
 /obj/item/armor_module/ui_action_click(mob/user, datum/action/item_action/action)
 	activate(user)
+	action.update_button_icon()
 
 ///Called on ui_action_click. Used for activating the module.
 /obj/item/armor_module/proc/activate(mob/living/user)
@@ -184,7 +185,7 @@
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/extra_examine)
 
 /obj/item/armor_module/armor/on_detach(obj/item/detaching_from, mob/user)
-	UnregisterSignal(parent, list(COMSIG_CLICK_RIGHT, COMSIG_PARENT_EXAMINE))
+	UnregisterSignal(parent, list(COMSIG_PARENT_ATTACKBY_ALTERNATE, COMSIG_PARENT_EXAMINE))
 	return ..()
 
 /obj/item/armor_module/armor/update_item_sprites()

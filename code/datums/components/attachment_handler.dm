@@ -318,6 +318,10 @@
 ///Updates the mob sprite of the attachment.
 /datum/component/attachment_handler/proc/apply_custom(datum/source, image/standing)
 	SIGNAL_HANDLER
+	var/obj/item/parent_item = parent
+	if(!ismob(parent_item.loc))
+		return
+	var/mob/wearer = parent_item.loc
 	for(var/slot in slots)
 		var/obj/item/attachment = slots[slot]
 		if(!attachment)
@@ -337,8 +341,7 @@
 			else
 				icon = attachment_data[OVERLAY_ICON]
 				suffix = attachment.icon == icon ? "_a" : ""
-		var/image/new_overlay
-		new_overlay = image(icon, source, icon_state + suffix, attachment_data[ATTACHMENT_LAYER])
+		var/image/new_overlay = image(icon, wearer, icon_state + suffix, attachment_data[ATTACHMENT_LAYER] ? -attachment_data[ATTACHMENT_LAYER] : null)
 		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
 			new_overlay.overlays += attachment.overlays
 		if(attachment_data[MOB_PIXEL_SHIFT_X])
