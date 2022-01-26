@@ -61,7 +61,7 @@
 		/obj/item/reagent_containers/food/drinks/bottle/grenadine = 5,
 		/obj/item/reagent_containers/food/drinks/cans/aspen = 20,
 		/obj/item/reagent_containers/food/drinks/bottle/davenport = 3,
-		/obj/item/reagent_containers/food/drinks/tea = 10
+		/obj/item/reagent_containers/food/drinks/tea = 10,
 		)
 	vend_delay = 15
 	idle_power_usage = 211
@@ -75,7 +75,7 @@
 		/obj/item/assembly/signaler = 4,
 		/obj/item/tool/wirecutters = 1,
 		/obj/item/flashlight = 5,
-		/obj/item/assembly/timer = 2
+		/obj/item/assembly/timer = 2,
 		)
 	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"
 
@@ -92,7 +92,7 @@
 		/obj/item/reagent_containers/food/drinks/coffee/cafe_latte = 20,
 		/obj/item/reagent_containers/food/drinks/tea = 25,
 		/obj/item/reagent_containers/food/drinks/h_chocolate = 25,
-		/obj/item/reagent_containers/food/drinks/ice = 10
+		/obj/item/reagent_containers/food/drinks/ice = 10,
 		)
 	prices = list()
 
@@ -111,7 +111,7 @@
 		/obj/item/reagent_containers/food/snacks/wrapped/booniebars = 6,
 		/obj/item/reagent_containers/food/snacks/wrapped/chunk = 6,
 		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = 6,
-		/obj/item/reagent_containers/food/snacks/lollipop = 12
+		/obj/item/reagent_containers/food/snacks/lollipop = 12,
 		)
 
 	prices = list()
@@ -132,7 +132,7 @@
 		/obj/item/reagent_containers/food/drinks/cans/souto/grape = 10,
 		/obj/item/reagent_containers/food/drinks/cans/souto/grape/diet = 10,
 		/obj/item/reagent_containers/food/drinks/cans/waterbottle = 10,
-		/obj/item/reagent_containers/food/drinks/cans/cola = 10
+		/obj/item/reagent_containers/food/drinks/cans/cola = 10,
 		)
 
 	prices = list(
@@ -145,7 +145,7 @@
 		/obj/item/reagent_containers/food/drinks/cans/souto/grape = 5,
 		/obj/item/reagent_containers/food/drinks/cans/souto/grape/diet = 5,
 		/obj/item/reagent_containers/food/drinks/cans/waterbottle = 2,
-		/obj/item/reagent_containers/food/drinks/cans/cola = 10
+		/obj/item/reagent_containers/food/drinks/cans/cola = 10,
 		)
 	idle_power_usage = 200
 
@@ -204,7 +204,7 @@
 			/obj/item/reagent_containers/glass/bottle/neurotoxin/light = 1,
 			/obj/item/reagent_containers/glass/bottle/xeno_hemodile = 1,
 			/obj/item/reagent_containers/glass/bottle/xeno_transvitox = 1,
-			/obj/item/reagent_containers/glass/bottle/xeno_sanguinal = 1
+			/obj/item/reagent_containers/glass/bottle/xeno_sanguinal = 1,
 		)
 	)
 	idle_power_usage = 211
@@ -264,7 +264,7 @@
 			/obj/item/reagent_containers/syringe = -1,
 			/obj/item/tool/research/xeno_analyzer = -1,
 			/obj/item/tool/research/excavation_tool = -1,
-			/obj/item/reagent_containers/glass/beaker/bluespace = -1
+			/obj/item/reagent_containers/glass/beaker/bluespace = -1,
 		),
 	)
 
@@ -281,7 +281,7 @@
 		/obj/item/assembly/timer = 6,
 		/obj/item/assembly/signaler = 6,
 		/obj/item/assembly/prox_sensor = 6,
-		/obj/item/assembly/igniter = 6
+		/obj/item/assembly/igniter = 6,
 		)
 
 /obj/machinery/vending/nanomed
@@ -301,7 +301,7 @@
 		/obj/item/healthanalyzer = 1,
 		/obj/item/stack/medical/splint = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/combat = 0,
-		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 		)
 
 /obj/machinery/vending/nanomed/Initialize(mapload, ...)
@@ -334,7 +334,7 @@
 		/obj/item/clothing/glasses/sunglasses/sechud = 3,
 		/obj/item/radio/headset = 6,
 		/obj/item/clothing/glasses/sunglasses = 2,
-		/obj/item/storage/donut_box = 2
+		/obj/item/storage/donut_box = 2,
 		)
 
 /obj/machinery/vending/hydronutrients
@@ -352,7 +352,7 @@
 		/obj/item/reagent_containers/syringe = 5,
 		/obj/item/storage/bag/plants = 5,
 		/obj/item/reagent_containers/glass/bottle/ammonia = 10,
-		/obj/item/reagent_containers/glass/bottle/diethylamine = 5
+		/obj/item/reagent_containers/glass/bottle/diethylamine = 5,
 		)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
@@ -404,7 +404,7 @@
 		/obj/item/seeds/reishimycelium = 2,
 		/obj/item/seeds/reishimycelium = 2,
 		/obj/item/seeds/shandseed = 2,
-		/obj/item/toy/waterflower = 1
+		/obj/item/toy/waterflower = 1,
 		)
 
 /obj/machinery/vending/magivend
@@ -421,7 +421,7 @@
 		/obj/item/clothing/head/wizard/red = 1,
 		/obj/item/clothing/suit/wizrobe/red = 1,
 		/obj/item/clothing/shoes/sandal = 1,
-		/obj/item/staff = 2
+		/obj/item/staff = 2,
 		)
 
 /obj/machinery/vending/dinnerware
@@ -438,7 +438,7 @@
 		/obj/item/tool/kitchen/utensil/spoon = 2,
 		/obj/item/tool/kitchen/utensil/knife = 2,
 		/obj/item/tool/kitchen/rollingpin = 2,
-		/obj/item/tool/kitchen/knife/butcher = 2
+		/obj/item/tool/kitchen/knife/butcher = 2,
 		)
 
 /obj/machinery/vending/sovietsoda
@@ -448,7 +448,7 @@
 	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
 	products = list(
 		/obj/item/reagent_containers/food/drinks/drinkingglass/soda = 30,
-		/obj/item/reagent_containers/food/drinks/drinkingglass/cola = 20
+		/obj/item/reagent_containers/food/drinks/drinkingglass/cola = 20,
 		)
 	idle_power_usage = 211
 
@@ -464,7 +464,7 @@
 		/obj/item/tool/weldingtool = -1,
 		/obj/item/tool/wirecutters = -1,
 		/obj/item/tool/wrench = -1,
-		/obj/item/tool/screwdriver = -1
+		/obj/item/tool/screwdriver = -1,
 		)
 
 /obj/machinery/vending/engivend
@@ -477,7 +477,7 @@
 		/obj/item/analyzer = -1,
 		/obj/item/t_scanner = -1,
 		/obj/item/circuitboard/apc = -1,
-		/obj/item/cell/high = 10
+		/obj/item/cell/high = 10,
 		)
 
 //This one's from bay12
@@ -501,7 +501,7 @@
 		/obj/item/tank/anesthetic = 2,
 		/obj/item/clothing/mask/breath/medical = 5,
 		/obj/item/tool/screwdriver = 5,
-		/obj/item/tool/crowbar = 5
+		/obj/item/tool/crowbar = 5,
 		)
 
 
