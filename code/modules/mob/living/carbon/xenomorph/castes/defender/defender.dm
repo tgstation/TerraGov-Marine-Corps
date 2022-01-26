@@ -74,7 +74,8 @@
 	. = ..()
 	if(proj.ammo.damage_type != BRUTE || !fortify || soft_armor_value < 100)
 		return
-
+	if(soft_armor.getRating("bullet") < 100) //This uses the non-cached soft_armor value so it will remove the outline if the hit caused the defender to drop below 100 bullet armor.
+		remove_filter("bullet_bounce_outline")
 	var/ricochet_angle = 360 - Get_Angle(proj.firer, loc)
 	// Check for the neightbour tile
 	var/rico_dir_check
