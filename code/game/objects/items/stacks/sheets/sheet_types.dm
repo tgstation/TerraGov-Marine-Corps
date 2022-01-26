@@ -21,6 +21,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("office chair",/obj/structure/bed/chair/office/dark, 2, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	null, \
 	new/datum/stack_recipe("apc frame", /obj/item/frame/apc, 2), \
+	new/datum/stack_recipe("metal rod", /obj/item/stack/rods, 1, 4, 60), \
 	new/datum/stack_recipe("floor tile", /obj/item/stack/tile/plasteel, 1, 4, 20), \
 	new/datum/stack_recipe("grenade casing", /obj/item/explosive/grenade/chem_grenade) \
 	))
