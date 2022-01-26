@@ -58,7 +58,7 @@
 /obj/item/storage/large_holster/m37/full/Initialize()
 	new /obj/item/weapon/gun/shotgun/pump(src)
 	update_icon()
-	. = ..()	
+	return ..()	
 
 /// This is here to allow easier pathing and more consistent storage.
 /obj/item/storage/large_holster/blade
