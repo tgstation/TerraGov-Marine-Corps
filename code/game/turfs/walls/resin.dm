@@ -21,7 +21,7 @@
 
 
 /turf/closed/wall/resin/flamer_fire_act()
-	take_damage(15, BURN, "fire")
+	take_damage(25, BURN, "fire")
 
 
 /turf/closed/wall/resin/proc/thicken()
