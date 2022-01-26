@@ -1,0 +1,5 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - balance: "scatter now always happen, its value being the max angle that your gun scatter will go(to any side)."
+  - balance: "due to scatter change most gun scatter value has been changed."
