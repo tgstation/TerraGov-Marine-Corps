@@ -141,7 +141,7 @@ SUBSYSTEM_DEF(monitor)
 			if(myarea.flags_area & NEAR_FOB)
 				human_in_FOB++
 		else if(is_mainship_level(TU.z))
-			human_on_ship = 0
+			human_on_ship++
 
 ///Check if we are in a FOB camping situation
 /datum/controller/subsystem/monitor/proc/FOB_hugging_check()
