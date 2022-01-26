@@ -1,0 +1,4 @@
+author: "Three333Digit"
+delete-after: True
+changes: 
+  - bugfix: "combat robot armor now has the same armor values as marine armor"
