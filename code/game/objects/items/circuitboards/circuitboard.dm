@@ -56,7 +56,6 @@
 /obj/item/circuitboard/airlock
 	name = "airlock electronics"
 	icon_state = "door_electronics"
-	desc = "Used in airlock construction, fitted with remote control hardware chip for AI access"
 	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
 	var/list/conf_access = null
 	var/one_access = 0 //if set to 1, door would receive req_one_access instead of req_access

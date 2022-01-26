@@ -464,8 +464,6 @@
 		/obj/item/tool/weldingtool = -1,
 		/obj/item/tool/wirecutters = -1,
 		/obj/item/tool/wrench = -1,
-		/obj/item/analyzer = -1,
-		/obj/item/t_scanner = -1,
 		/obj/item/tool/screwdriver = -1
 		)
 
@@ -477,7 +475,8 @@
 	req_access = list(ACCESS_MARINE_ENGINEERING)
 	products = list(
 		/obj/item/multitool = -1,
-		/obj/item/circuitboard/airlock = -1,
+		/obj/item/analyzer = -1,
+		/obj/item/t_scanner = -1,
 		/obj/item/circuitboard/apc = -1,
 		/obj/item/cell/high = 10
 		)
