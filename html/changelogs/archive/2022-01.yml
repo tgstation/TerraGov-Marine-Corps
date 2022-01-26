@@ -373,3 +373,11 @@
   - rscadd: You can get more miner upgrades in supply order
   - rscdel: No more being able to produce infinite miner upgrades in autolathe
   - qol: miner upgrades in Operational Supply
+2022-01-26:
+  BraveMole:
+  - bugfix: Fix buckled bag not moving with roller bed
+  - balance: Xenos can force marine to go out from cryo, sleeper, autodoc
+  KrabSpider:
+  - bugfix: After 3 tries. The repeater is no longer inverted on the left hand.
+  Notamaniac:
+  - bugfix: Scopes should no longer attempt to zoom you in when being detached.
