@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: True
+changes: 
+  - bugfix: "The sprites for the MR25 holster should work now. What, you didn't know we still had those?"

@@ -1,0 +1,4 @@
+author: "Mechanelize"
+delete-after: True
+changes: 
+  - qol: "Fixed vent overlap in LV624 Fitness Dome"

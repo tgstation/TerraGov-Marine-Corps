@@ -11813,6 +11813,7 @@
 	dir = 8;
 	on = 1
 	},
+/obj/machinery/photocopier,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "irZ" = (
@@ -15835,6 +15836,11 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
+/obj/machinery/door_control/old{
+	id = "cl_shutters";
+	pixel_x = -7;
+	pixel_y = 2
+	},
 /turf/open/floor/mainship/silver{
 	dir = 4
 	},
@@ -18480,6 +18486,8 @@
 /obj/item/attachable/suppressor,
 /obj/item/armor_module/storage/uniform/holster,
 /obj/item/portable_vendor/corporate,
+/obj/item/spacecash/c500,
+/obj/item/spacecash/c500,
 /turf/open/floor/carpet{
 	dir = 5;
 	icon_state = "carpetside"
@@ -19285,6 +19293,7 @@
 /obj/structure/table/mainship,
 /obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
+/obj/item/radio,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "vTS" = (
@@ -19396,6 +19405,10 @@
 	dir = 1
 	},
 /obj/structure/table/mainship,
+/obj/machinery/door_control/old{
+	id = "cl_shutters";
+	pixel_y = -1
+	},
 /turf/open/floor/mainship/silver{
 	dir = 10
 	},

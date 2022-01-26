@@ -1,0 +1,5 @@
+author: "Waselon"
+delete-after: True
+changes: 
+  - code_imp: "thrown items respect mob armor"
+  - balance: "throwing knifes throwforce changed from 35 to 45"

@@ -523,9 +523,9 @@
 /obj/machinery/vending/cargo_supply
 	name = "\improper Operational Supplies Vendor"
 	desc = "A large vendor for dispensing specialty and bulk supplies. Restricted to cargo personnel only."
-	icon_state = "synth"
-	icon_vend = "synth-vend"
-	icon_deny = "synth-deny"
+	icon_state = "requisitionop"
+	icon_vend = "requisitionop-vend"
+	icon_deny = "requisitionop-deny"
 	wrenchable = FALSE
 	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
 	products = list(

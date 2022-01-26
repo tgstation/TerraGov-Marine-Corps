@@ -3715,6 +3715,14 @@
 /obj/structure/flora/ausbushes/palebush,
 /turf/open/ground/river,
 /area/lv624/ground/river3)
+"bdv" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1
+	},
+/turf/open/floor/tile/purple/whitepurplecorner{
+	dir = 4
+	},
+/area/lv624/lazarus/fitness)
 "bdC" = (
 /obj/item/tool/shovel,
 /turf/open/floor/tile/red/yellowfull,
@@ -11550,12 +11558,9 @@
 /turf/closed/wall,
 /area/lv624/lazarus/main_hall)
 "jsN" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8
-	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
 	},
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
@@ -11972,6 +11977,9 @@
 "jQr" = (
 /obj/structure/window/framed/colony,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/fitness)
 "jQy" = (
@@ -49060,7 +49068,7 @@ xJa
 iEv
 kRJ
 jsN
-wgH
+bdv
 wgH
 wgH
 wgH
