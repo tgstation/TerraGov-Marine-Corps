@@ -478,7 +478,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	max_shots = 30 //codex stuff
 	load_method = CELL //codex stuff
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol
 	ammo_diff = null
 	rounds_per_shot = 20
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
@@ -518,7 +518,7 @@
 	fire_delay = 0.15 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/Laser Pistol Standard.ogg'
 	message_to_user = "You set the laser pistol's charge mode to standard fire."
-	fire_mode = GUN_FIREMODE_AUTOMATIC
+	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tep"
 
 /datum/lasrifle/base/energy_pistol_mode/disabler
