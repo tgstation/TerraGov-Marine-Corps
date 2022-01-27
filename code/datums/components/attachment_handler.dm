@@ -353,8 +353,7 @@
 		if(!attachment_data[ATTACHMENT_LAYER])
 			standing.overlays += new_overlay
 			continue
-		wearer.overlays_standing[attachment_data[ATTACHMENT_LAYER]] = new_overlay
-		wearer.apply_overlay(attachment_data[ATTACHMENT_LAYER])
+		wearer.apply_overlay(attachment_data[ATTACHMENT_LAYER], new_overlay)
 
 
 ///Deletes the attachments when the parent deletes.

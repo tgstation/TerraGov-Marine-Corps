@@ -46,7 +46,7 @@
 	///Layer for the attachment to be applied to.
 	var/attachment_layer
 	///Slot that is required for the action to appear to the equipper. If null the action will appear whenever the item is equiped to a slot.
-	var/prefered_slot = SLOT_WEAR_SUIT
+	var/slot_to_show = SLOT_WEAR_SUIT
 
 /obj/item/armor_module/Initialize()
 	. = ..()
@@ -86,7 +86,7 @@
 ///Adds or removes actions based on whether the parent is in the correct slot.
 /obj/item/armor_module/proc/handle_actions(datum/source, mob/user, slot)
 	SIGNAL_HANDLER
-	if(prefered_slot && slot != prefered_slot)
+	if(slot_to_show && (slot != slot_to_show))
 		LAZYREMOVE(actions_types, /datum/action/item_action/toggle)
 		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in actions
 		old_action?.remove_action(user)
@@ -98,7 +98,6 @@
 
 /obj/item/armor_module/ui_action_click(mob/user, datum/action/item_action/action)
 	activate(user)
-	action.update_button_icon()
 
 ///Called on ui_action_click. Used for activating the module.
 /obj/item/armor_module/proc/activate(mob/living/user)
@@ -185,7 +184,7 @@
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/extra_examine)
 
 /obj/item/armor_module/armor/on_detach(obj/item/detaching_from, mob/user)
-	UnregisterSignal(parent, list(COMSIG_PARENT_ATTACKBY_ALTERNATE, COMSIG_PARENT_EXAMINE))
+	UnregisterSignal(parent, list(COMSIG_CLICK_RIGHT, COMSIG_PARENT_EXAMINE))
 	return ..()
 
 /obj/item/armor_module/armor/update_item_sprites()
