@@ -1,0 +1,4 @@
+author: "hyper2snyper"
+delete-after: True
+changes: 
+  - rscadd: "If a Defender is fortified and has 100+ bullet armor, bullets will reflect off of it."
