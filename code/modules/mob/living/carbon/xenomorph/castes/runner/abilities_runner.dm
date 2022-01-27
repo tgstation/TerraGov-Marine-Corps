@@ -405,6 +405,8 @@
 	cooldown_timer = 60 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_SNATCH
 	target_flags = XABB_MOB_TARGET
+	///If the runner have an item
+	var/obj/item/stolen_item = FALSE
 	///Mutable appearance of the stolen item
 	var/mutable_appearance/stolen_appearance
 	///A list of slot to check for items, in order of priority
@@ -413,6 +415,11 @@
 		SLOT_BACK,
 		SLOT_SHOES,
 	)
+
+/datum/action/xeno_action/activable/snatch/action_activate()
+	if(!stolen_item)
+		return ..()
+	drop_item()
 
 /datum/action/xeno_action/activable/snatch/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -429,10 +436,11 @@
 
 /datum/action/xeno_action/activable/snatch/use_ability(atom/A)
 	succeed_activate()
-	if(!do_after(X, 1 SECONDS, FALSE, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
+	var/mob/living/carbon/xenomorph/X = A
+	if(!do_after(owner, 1 SECONDS, FALSE, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		return FALSE
 	var/mob/living/carbon/human/victim = A
-	var/obj/item/stolen_item = victim.get_active_held_item()
+	stolen_item = victim.get_active_held_item()
 	if(!stolen_item)
 		stolen_item = victim.get_inactive_held_item()
 		for(var/slot in slots_to_steal_from)
@@ -447,8 +455,9 @@
 	stolen_item.forceMove(owner)
 	stolen_appearance = mutable_appearance(stolen_item.icon, stolen_item.icon_state)
 	stolen_appearance.layer = ABOVE_OBJ_LAYER
-	addtimer(CALLBACK(src, .proc/drop_item, stolen_item), 1 SECONDS)
+	addtimer(CALLBACK(src, .proc/drop_item, stolen_item), 4 SECONDS)
 	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, .proc/owner_turned)
+	owner.add_movespeed_modifier(MOVESPEED_ID_SNATCH, TRUE, 0, NONE, TRUE, 3)
 	owner_turned(null, null, owner.dir)
 	add_cooldown()
 
@@ -481,8 +490,12 @@
 	owner.overlays += stolen_appearance
 
 ///Force the xeno owner to drop the stolen item
-/datum/action/xeno_action/activable/snatch/proc/drop_item(obj/item/stolen_item)
+/datum/action/xeno_action/activable/snatch/proc/drop_item()
+	if(!stolen_item)
+		return
+	owner.remove_movespeed_modifier(MOVESPEED_ID_SNATCH)
 	stolen_item.forceMove(get_turf(owner))
+	stolen_item = null
 	owner.overlays -= stolen_appearance
 	playsound(owner, 'sound/voice/alien_pounce2.ogg', 30, frequency = -1)
 	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
