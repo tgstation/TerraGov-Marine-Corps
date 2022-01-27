@@ -455,7 +455,7 @@
 	stolen_item.forceMove(owner)
 	stolen_appearance = mutable_appearance(stolen_item.icon, stolen_item.icon_state)
 	stolen_appearance.layer = ABOVE_OBJ_LAYER
-	addtimer(CALLBACK(src, .proc/drop_item, stolen_item), 4 SECONDS)
+	addtimer(CALLBACK(src, .proc/drop_item, stolen_item), 3 SECONDS)
 	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, .proc/owner_turned)
 	owner.add_movespeed_modifier(MOVESPEED_ID_SNATCH, TRUE, 0, NONE, TRUE, 2)
 	owner_turned(null, null, owner.dir)
