@@ -307,6 +307,22 @@
 	upgrade = XENO_UPGRADE_FOUR
 
 //----QUEEN END----//
+//================//
+//----CHIMERA START----//
+
+/mob/living/carbon/xenomorph/chimera/mature
+	upgrade = XENO_UPGRADE_ONE
+
+/mob/living/carbon/xenomorph/chimera/elder
+	upgrade = XENO_UPGRADE_TWO
+
+/mob/living/carbon/xenomorph/chimera/ancient
+	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/chimera/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
+//----CHIMERA END----//
 //============//
 //---CRUSHER START---//
 
