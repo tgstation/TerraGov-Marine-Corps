@@ -60,6 +60,7 @@ export const BlessingMenu = (props, context) => {
                       <Stack.Item
                         m={0.5}
                         grow={categoryname.length}
+                        basis="content"
                         key={categoryname}>
                         <Tabs.Tab
                           icon={categoryIcons[categoryname]}
