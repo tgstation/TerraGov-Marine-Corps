@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - bugfix: "Added two CL shutter override buttons in Theseus CIC."
-  - bugfix: "Added a photocopier to Theseus CL office."

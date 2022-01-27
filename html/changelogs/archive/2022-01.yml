@@ -381,3 +381,33 @@
   - bugfix: After 3 tries. The repeater is no longer inverted on the left hand.
   Notamaniac:
   - bugfix: Scopes should no longer attempt to zoom you in when being detached.
+2022-01-27:
+  BraveMole:
+  - bugfix: Fix zombie players resurecting in xeno faction
+  - bugfix: Fix laser pistol having automatic fire mode
+  - code_imp: Disable advanced pathfinding if a flag is present
+  - bugfix: Fix wraith primo against hitscan projectiles
+  Mechanelize:
+  - qol: Fixed vent overlap in LV624 Fitness Dome
+  Notamaniac:
+  - bugfix: The sprites for the MR25 holster should work now. What, you didn't know
+      we still had those?
+  RipGrayson:
+  - bugfix: Added two CL shutter override buttons in Theseus CIC.
+  - bugfix: Added a photocopier to Theseus CL office.
+  SplinterGP:
+  - balance: scatter now always happen, its value being the max angle that your gun
+      scatter will go(to any side).
+  - balance: due to scatter change most gun scatter value has been changed.
+  Three333Digit:
+  - bugfix: combat robot armor now has the same armor values as marine armor
+  TiviPlus:
+  - rscadd: New wraith effects that should stop crashing
+  - refactor: refactored rendering
+  Waselon:
+  - code_imp: thrown items respect mob armor
+  - balance: throwing knifes throwforce changed from 35 to 45
+  novaepee:
+  - rscadd: New tips.
+  - rscdel: Old tips.
+  - code_imp: Change Operational Vendor and Synthetic Vendor's icon pathway
