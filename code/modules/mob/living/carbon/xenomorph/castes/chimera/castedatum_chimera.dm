@@ -1,6 +1,7 @@
 /datum/xeno_caste/chimera
 	caste_name = "Chimera"
 	display_name = "Chimera"
+	upgrade_name = ""
 	caste_type_path = /mob/living/carbon/xenomorph/chimera
 	caste_desc = "A slim, deadly alien creature. It has two additional arms with mantis blades."
 
@@ -39,9 +40,12 @@
 
 
 /datum/xeno_caste/chimera/young
+	upgrade_name = "Young"
+
 	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/chimera/mature
+	upgrade_name = "Mature"
 	caste_desc = "A slim, deadly alien creature. It looks a little more dangerous."
 
 	upgrade = XENO_UPGRADE_ONE
@@ -66,6 +70,7 @@
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_2, "bio" = 50, "rad" = 50, "fire" = 85, "acid" = 50)
 
 /datum/xeno_caste/chimera/elder
+	upgrade_name = "Elder"
 	caste_desc = "A slim, deadly alien creature. It looks pretty strong."
 
 	upgrade = XENO_UPGRADE_TWO
@@ -90,6 +95,7 @@
 	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = XENO_BOMB_RESIST_2, "bio" = 55, "rad" = 55, "fire" = 90, "acid" = 55)
 
 /datum/xeno_caste/chimera/ancient
+	upgrade_name = "Ancient"
 	caste_desc = "Apex predator."
 	ancient_message = "We are the ultimate killer."
 	upgrade = XENO_UPGRADE_THREE
