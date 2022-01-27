@@ -301,14 +301,12 @@
 
 /obj/effect/particle_effect/smoke/xeno/hemodile
 	alpha = 255
-	opacity = FALSE
 	smoke_can_spread_through = TRUE
 	color = "#0287A1"
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_HEMODILE|SMOKE_GASP
 
 /obj/effect/particle_effect/smoke/xeno/transvitox
 	alpha = 255
-	opacity = FALSE
 	smoke_can_spread_through = TRUE
 	color = "#abf775"
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_TRANSVITOX|SMOKE_COUGH
