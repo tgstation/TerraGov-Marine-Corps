@@ -20,9 +20,10 @@
 	icon = 'icons/obj/items/storage/storage_48.dmi'
 	icon_state = "dispenser"
 	flags_equip_slot = ITEM_SLOT_BACK
-	max_w_class = 4
-	max_storage_space = 36
+	max_w_class = 6
+	max_storage_space = 63
 	COOLDOWN_DECLARE(deploy_cooldown)
+	var/affecting_list = list()
 
 /obj/item/storage/backpack/dispenser/CtrlClick(mob/user)
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
@@ -30,8 +31,8 @@
 			return
 		balloon_alert_to_viewers("Undeploying...")
 		icon_state = "dispenser"
-		flick("dispenser_undeploying", src)
-		addtimer(CALLBACK(src, .proc/undeploy), 2.1 SECONDS)
+		flick("dispenser_undeploy", src)
+		addtimer(CALLBACK(src, .proc/undeploy), 1.6 SECONDS)
 		return
 	return ..()
 
@@ -40,12 +41,25 @@
 		return
 	DISABLE_BITFIELD(flags_item, IS_DEPLOYING)
 	ENABLE_BITFIELD(flags_item, IS_DEPLOYED)
+	for(var/mob/living/carbon/human/human in view(3))
+		affecting_list += human
+		beam(human, "blood_light", maxdistance = 3)
+	for(var/turf/turfs in view(3))
+		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/entered_tiles)
+	START_PROCESSING(SSprocessing, src)
+
 
 /obj/item/storage/backpack/dispenser/proc/undeploy()
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		density = FALSE
+		anchored = FALSE
 		DISABLE_BITFIELD(flags_item, IS_DEPLOYED)
 		DISABLE_BITFIELD(flags_item, IS_DEPLOYING)
+		for(var/turf/turfs in view(3))
+			UnregisterSignal(turfs, COMSIG_ATOM_ENTERED)
+		STOP_PROCESSING(SSprocessing, src)
+		affecting_list = list()
+
 
 /obj/item/storage/backpack/dispenser/attack_self(mob/user)
 	if(!ishuman(user) || CHECK_BITFIELD(flags_item, NODROP))
@@ -66,11 +80,39 @@
 
 	forceMove(deploy_location)
 	density = TRUE
+	anchored = TRUE
 	dir = REVERSE_DIR(user.dir)
 	icon_state = "dispenser_deployed"
-	flick("dispenser_deploying", src)
+	flick("dispenser_deploy", src)
 	ENABLE_BITFIELD(flags_item, IS_DEPLOYING)
-	addtimer(CALLBACK(src, .proc/deploy), 2.1 SECONDS)
+
+	addtimer(CALLBACK(src, .proc/deploy), 1.6 SECONDS)
+
+/obj/item/storage/backpack/dispenser/process()
+	for(var/mob/living/carbon/human/affecting in affecting_list)
+		if(!line_of_sight(src, affecting, 3))
+			affecting_list -= affecting
+			return
+		affecting.adjustBruteLoss(-1, FALSE)
+		affecting.adjustFireLoss(-1, TRUE)
+
+
+/obj/item/storage/backpack/dispenser/proc/entered_tiles(datum/source, atom/movable/entering)
+	if(!ishuman(entering))
+		return
+	if(entering in affecting_list)
+		return
+	affecting_list += entering
+	beam(entering, "blood_light", maxdistance = 3)
+
+
+
+
+/obj/item/storage/backpack/dispenser/open(mob/user)
+	if(loc == user)
+		return FALSE
+	. = ..()
+
 
 /obj/item/storage/backpack/dispenser/attack_hand(mob/living/user)
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
