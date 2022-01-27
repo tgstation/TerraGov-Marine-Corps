@@ -293,9 +293,10 @@
 		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
 			icon_state = attachment.icon_state
 			icon = attachment.icon
-		overlay = image(icon, parent_item, icon_state)
-		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
+			overlay = image(icon, parent_item, icon_state)
 			overlay.overlays += attachment.overlays
+		else
+			overlay = image(icon, parent_item, icon_state)
 		var/slot_x = 0 //This and slot_y are for the event that the parent did not have an overlay_offsets. In that case the offsets default to 0
 		var/slot_y = 0
 		for(var/attachment_slot in attachment_offsets)
