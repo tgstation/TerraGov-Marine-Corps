@@ -429,8 +429,7 @@
 
 /datum/action/xeno_action/activable/snatch/use_ability(atom/A)
 	succeed_activate()
-	if(!do_after(owner, 0.5 SECONDS, FALSE, A, BUSY_ICON_HOSTILE))
-		to_chat(owner, span_xenowarning("Your victim moved, you failed to snatch an item"))
+	if(!do_after(X, 1 SECONDS, FALSE, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		return FALSE
 	var/mob/living/carbon/human/victim = A
 	var/obj/item/stolen_item = victim.get_active_held_item()
@@ -448,7 +447,7 @@
 	stolen_item.forceMove(owner)
 	stolen_appearance = mutable_appearance(stolen_item.icon, stolen_item.icon_state)
 	stolen_appearance.layer = ABOVE_OBJ_LAYER
-	addtimer(CALLBACK(src, .proc/drop_item, stolen_item), 3 SECONDS)
+	addtimer(CALLBACK(src, .proc/drop_item, stolen_item), 1 SECONDS)
 	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, .proc/owner_turned)
 	owner_turned(null, null, owner.dir)
 	add_cooldown()
