@@ -6383,11 +6383,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
-"uk" = (
-/turf/closed/wall/mainship{
-	tiles_with = list(/turf/closed/wall,/obj/structure/window/framed,/obj/structure/window_frame,/obj/structure/girder)
-	},
-/area/mainship/hull/lower_hull)
 "ul" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
@@ -45888,7 +45883,7 @@ Dg
 sc
 sF
 aa
-lh
+xD
 xD
 lA
 xD
@@ -48201,7 +48196,7 @@ DA
 sd
 sG
 aa
-lh
+xD
 xD
 lA
 xD
@@ -56431,7 +56426,7 @@ Tg
 Tg
 Yh
 CV
-uk
+Mb
 uI
 Lf
 Lf

@@ -2,167 +2,78 @@
 //Also assemblies.dm for falsewall checking for this when used.
 //I should really make the shuttle wall check run every time it's moved, but centcom uses unsimulated floors so !effort
 
-/atom
-	//A list of paths only that each turf should tile with
-	var/list/tiles_with
+///Base proc to trigger the smoothing system. It will behave according to the smoothing atom's system.
+/atom/proc/smooth_self()
+	switch(smoothing_behavior)
+		if(CARDINAL_SMOOTHING)
+			relativewall()
+		if(DIAGONAL_SMOOTHING)
+			diagonal_smooth_self()
+
+
+///Base proc to update adjacent atoms the source can smooth with.
+/atom/proc/smooth_neighbors(epicenter)
+	switch(smoothing_behavior)
+		if(CARDINAL_SMOOTHING)
+			relativewall_neighbours(epicenter)
+		if(DIAGONAL_SMOOTHING)
+			diagonal_smooth_neighbors(epicenter)
 
 /atom/proc/relativewall() //atom because it should be useable both for walls, false walls, doors, windows, etc
-	var/junction = 0 //flag used for icon_state
-	var/i //iterator
-	var/turf/T //The turf we are checking
-	var/j //second iterator
-	var/k //third iterator (I know, that's a lot, but I'm trying to make this modular, so bear with me)
-
-	for(i in GLOB.cardinals) //For all GLOB.cardinals dir turfs
-		T = get_step(src, i)
-		if(!istype(T)) continue
-		for(j in tiles_with) //And for all types that we tile with
-			if(istype(T, j))
-				junction |= i
-				break
-
-			for(k in T)
-				if(istype(k, j))
-					//to_chat(world, "DEBUG: type is: [j], object is [k]. Checking successful.")
-					junction |= i
-					//to_chat(world, "DEBUG: Junction is: [junction].")
-					break
+	if(smoothing_behavior != CARDINAL_SMOOTHING || !smoothing_groups)
+		CRASH("relativewall() called without smoothing behavior defined")
+	var/junction = NONE
+	for(var/direction in GLOB.cardinals)
+		var/turf/neighbor = get_step(src, direction)
+		if(!neighbor)
+			continue
+		if(smoothing_groups & neighbor.smoothing_groups)
+			junction |=  direction //smooth cardinals are the same as BYOND cardinals
+			continue
+		for(var/obj/object in neighbor)
+			if(!(smoothing_groups & object.smoothing_groups))
+				continue
+			junction |=  direction //smooth cardinals are the same as BYOND cardinals
+			break
 
 	handle_icon_junction(junction)
 
-/atom/proc/relativewall_neighbours()
-	var/i //iterator
-	var/turf/T //The turf we are checking
-	var/j //second iterator
-	var/atom/k //third iterator (I know, that's a lot, but I'm trying to make this modular, so bear with me)
-
-	for(i in GLOB.cardinals) //For all GLOB.cardinals dir turfs
-		T = get_step(src, i)
-		if(!istype(T)) continue
-		for(j in tiles_with) //And for all types that we tile with
-			if(istype(T, j))
-				T.relativewall() //If we tile this type, junction it
-				break
-
-			for(k in T)
-				if(istype(k, j))
-					k.relativewall() //get_dir to i, since k is something inside the turf T
-					break
-
+///Old cardinal smoothing system. Scans cardinal neighbors for targets to smooth with.
+/atom/proc/relativewall_neighbours(epicenter)
+	if(isnull(epicenter))
+		epicenter = src
+	for(var/direction in GLOB.cardinals)
+		var/turf/neighbor = get_step(epicenter, direction)
+		if(!neighbor)
+			continue
+		if(neighbor.smoothing_behavior && (smoothing_groups & neighbor.smoothing_groups))
+			neighbor.smooth_self()
+		for(var/obj/object in neighbor)
+			if(!object.smoothing_behavior || !(smoothing_groups & object.smoothing_groups))
+				continue
+			object.smooth_self()
 /atom/proc/handle_icon_junction(junction)
 	return
 
-//Windows are weird. The walls technically tile with them, but they don't tile back. At least, not really.
-//They require more states or something to that effect, but this is a workaround to use what we have.
-//I could introduce flags here, but I feel like the faster the better. In this case an override with copy and pasted code is fine for now.
-/obj/structure/window/framed/relativewall()
-	var/jun_1 = 0 //Junction 1.
-	var/jun_2 = 0 //Junction 2.
-	var/turf/T
-	var/i
-	var/j
-	var/k
-
-	for(i in GLOB.cardinals)
-		T = get_step(src, i)
-		if(!istype(T)) continue
-		for(j in tiles_with)
-			if(istype(T, j))
-				jun_1 |= i
-				break
-
-			for(k in T)
-				if(istype(k, j))
-					jun_1 |= i
-					break
-
-		for(j in tiles_special)
-			for(k in T)
-				if(istype(k, j))
-					jun_2 |= i
-					break
-
-	handle_icon_junction(jun_1, jun_2)
-
-//Windows are weird. The walls technically tile with them, but they don't tile back. At least, not really.
-//They require more states or something to that effect, but this is a workaround to use what we have.
-//I could introduce flags here, but I feel like the faster the better. In this case an override with copy and pasted code is fine for now.
-/obj/structure/window_frame/relativewall()
-	var/jun_1 = 0 //Junction 1.
-	var/jun_2 = 0 //Junction 2.
-	var/turf/T
-	var/i
-	var/j
-	var/k
-
-	for(i in GLOB.cardinals)
-		T = get_step(src, i)
-		if(!istype(T)) continue
-		for(j in tiles_with)
-			if(istype(T, j))
-				jun_1 |= i
-				break
-
-			for(k in T)
-				if(istype(k, j))
-					jun_1 |= i
-					break
-
-		for(j in tiles_special)
-			for(k in T)
-				if(istype(k, j))
-					jun_2 |= i
-					break
-
-	handle_icon_junction(jun_1, jun_2)
-
-// Special case for smoothing walls around multi-tile doors.
-/obj/machinery/door/airlock/multi_tile/relativewall_neighbours()
-	var/turf/T //The turf we are checking
-	var/atom/k
-	var/j
-
-	if (dir == SOUTH)
-		T = locate(x, y+2, z)
-		for(j in tiles_with)
-			if(istype(T, j))
-				T.relativewall()
-				break
-			for(k in T)
-				if(istype(k, j))
-					k.relativewall()
-					break
-
-		T = locate(x, y-1, z)
-		for(j in tiles_with)
-			if(istype(T, j))
-				T.relativewall()
-				break
-			for(k in T)
-				if(istype(k, j))
-					k.relativewall()
-					break
-
-	else if (dir == EAST)
-		T = locate(x+2, y, z)
-		for(j in tiles_with)
-			if(istype(T, j))
-				T.relativewall()
-				break
-			for(k in T)
-				if(istype(k, j))
-					k.relativewall()
-					break
-
-		T = locate(x-1, y, z)
-		for(j in tiles_with)
-			if(istype(T, j))
-				T.relativewall()
-				break
-			for(k in T)
-				if(istype(k, j))
-					k.relativewall()
-					break
+/obj/machinery/door/airlock/multi_tile/relativewall_neighbours(epicenter)
+	if(isnull(epicenter))
+		epicenter = locs //list of locations
+	else
+		epicenter = list(epicenter, get_step(epicenter, (dir & (EAST|WEST)) ? EAST : NORTH ))
+	var/list/atom/permutated = list(src = TRUE)
+	for(var/location in epicenter)
+		for(var/direction in GLOB.cardinals)
+			var/turf/neighbor = get_step(location, direction)
+			if(!neighbor || permutated[neighbor])
+				continue
+			permutated[neighbor] = TRUE
+			if(neighbor.smoothing_behavior && (smoothing_groups & neighbor.smoothing_groups))
+				neighbor.smooth_self()
+			for(var/obj/object in neighbor)
+				if(!object.smoothing_behavior || !(smoothing_groups & object.smoothing_groups) || permutated[object])
+					continue
+				permutated[object] = TRUE
+				object.smooth_self()
 
 // Not proud of this.
 /obj/structure/mineral_door/resin/handle_icon_junction(junction)
@@ -171,21 +82,13 @@
 	else if(junction & (EAST|WEST))
 		dir = NORTH
 
-/obj/structure/window/framed/handle_icon_junction(jun_1, jun_2)
-	icon_state = "[basestate][jun_2 ? jun_2 : jun_1]" //Use junction 2 if possible, junction 1 otherwise.
-	if(jun_2)
-		junction = jun_2
-	else
-		junction = jun_1
+/obj/structure/window/framed/handle_icon_junction(jun)
+	icon_state = "[basestate][jun]"
+	junction = jun
 
-/obj/structure/window_frame/handle_icon_junction(jun_1, jun_2)
-	icon_state = "[basestate][jun_2 ? jun_2 : jun_1]_frame" //Use junction 2 if possible, junction 1 otherwise.
-	if(jun_2)
-		junction = jun_2
-	else
-		junction = jun_1
-
-
+/obj/structure/window_frame/handle_icon_junction(jun)
+	icon_state = "[basestate][jun]_frame"
+	junction = jun
 
 /turf/closed/wall/handle_icon_junction(junction)
 	icon_state = "[walltype][junction]"
@@ -211,6 +114,136 @@
 /turf/closed/wall/indestructible/relativewall()
 	return
 
+/*
+ * * Diagonal smoothing system.
+ * For now only implemented for walls.
+*/
+
+///Scans surroundings for things to smooth with.
+/atom/proc/diagonal_smooth_self()
+	return
+
+/turf/closed/diagonal_smooth_self()
+	if(smoothing_behavior != DIAGONAL_SMOOTHING || !smoothing_groups)
+		CRASH("diagonal_smooth_self() called without smoothing behavior defined")
+	junctiontype = NONE
+	for(var/direction in GLOB.cardinals)
+		var/turf/neighbor = get_step(src, direction)
+		if(!neighbor)
+			continue
+		if(smoothing_groups & neighbor.smoothing_groups)
+			junctiontype |=  direction //smooth cardinals are the same as BYOND cardinals
+			continue
+		for(var/obj/object in neighbor)
+			if(!(smoothing_groups & object.smoothing_groups))
+				continue
+			junctiontype |=  direction //smooth cardinals are the same as BYOND cardinals
+			break
+	if(!(junctiontype & (NORTH|SOUTH)) || !(junctiontype & (EAST|WEST)))
+		update_corners()
+		return //Without a corner there's no need to worry about diagonals.
+	for(var/direction in GLOB.diagonals)
+		var/turf/neighbor = get_step(src, direction)
+		if(!neighbor)
+			continue
+		if(smoothing_groups & neighbor.smoothing_groups)
+			junctiontype |= GLOB.diagonal_smoothing_conversion["[direction]"]
+			continue
+		for(var/obj/object in neighbor)
+			if(!(smoothing_groups & object.smoothing_groups))
+				continue
+			junctiontype |= GLOB.diagonal_smoothing_conversion["[direction]"]
+			break
+	update_corners()
+
+
+///Diagonal smoothing system, based on corner states.
+/turf/closed/proc/update_corners()
+	var/ne = CONVEX //Initial values are those of the wall without neighbors.
+	var/se = CONVEX
+	var/sw = CONVEX
+	var/nw = CONVEX
+
+	if(!(junctiontype & N_NORTH))
+		if(!(junctiontype & N_EAST))
+			ne = CONVEX
+		else
+			ne = HORIZONTAL
+	else if(!(junctiontype & N_EAST))
+		ne = VERTICAL
+	else if(!(junctiontype & N_NORTHEAST))
+		ne = CONCAVE
+	else
+		ne = FLAT
+
+	if(!(junctiontype & N_SOUTH))
+		if(!(junctiontype & N_EAST))
+			se = CONVEX
+		else
+			se = HORIZONTAL
+	else if(!(junctiontype & N_EAST))
+		se = VERTICAL
+	else if(!(junctiontype & N_SOUTHEAST))
+		se = CONCAVE
+	else
+		se = FLAT
+
+	if(!(junctiontype & N_SOUTH))
+		if(!(junctiontype & N_WEST))
+			sw = CONVEX
+		else
+			sw = HORIZONTAL
+	else if(!(junctiontype & N_WEST))
+		sw = VERTICAL
+	else if(!(junctiontype & N_SOUTHWEST))
+		sw = CONCAVE
+	else
+		sw = FLAT
+
+	if(!(junctiontype & N_NORTH))
+		if(!(junctiontype & N_WEST))
+			nw = CONVEX
+		else
+			nw = HORIZONTAL
+	else if(!(junctiontype & N_WEST))
+		nw = VERTICAL
+	else if(!(junctiontype & N_NORTHWEST))
+		nw = CONCAVE
+	else
+		nw = FLAT
+
+	icon_state = "[walltype]-[ne]-[se]-[sw]-[nw]"
+
+
+///Scans surroundings for things that would smooth with the source.
+/atom/proc/diagonal_smooth_neighbors(epicenter)
+	if(isnull(epicenter))
+		epicenter = src
+	var/found_neighbors = 0
+	for(var/direction in GLOB.cardinals)
+		var/turf/neighbor = get_step(epicenter, direction)
+		if(!neighbor)
+			continue
+		if(neighbor.smoothing_behavior && (smoothing_groups & neighbor.smoothing_groups))
+			neighbor.smooth_self()
+			found_neighbors++
+		for(var/obj/object in neighbor)
+			if(!object.smoothing_behavior || !(smoothing_groups & object.smoothing_groups))
+				continue
+			object.smooth_self()
+			found_neighbors++
+	if(!found_neighbors)
+		return //No use checking diagonals if there's no cardinal adjacent ones.
+	for(var/direction in GLOB.diagonals)
+		var/turf/neighbor = get_step(epicenter, direction)
+		if(!neighbor)
+			continue
+		if((neighbor.smoothing_behavior == DIAGONAL_SMOOTHING) && (smoothing_groups & neighbor.smoothing_groups))
+			neighbor.smooth_self()
+		for(var/obj/object in neighbor)
+			if((object.smoothing_behavior != DIAGONAL_SMOOTHING) || !(smoothing_groups & object.smoothing_groups))
+				continue
+			object.smooth_self()
 
 
 

@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aab" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/space)
 "aad" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -3517,7 +3517,7 @@
 /area/lv624/ground/compound)
 "baA" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/lv624/ground/caves/rock)
 "baH" = (
 /obj/effect/ai_node,
@@ -13370,7 +13370,7 @@
 	},
 /area/lv624/ground/jungle10)
 "lyj" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/lv624/ground/caves/rock)
 "lyB" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -14506,7 +14506,7 @@
 /area/lv624/lazarus/secure_storage)
 "mIM" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/lv624/ground/caves/rock)
 "mJw" = (
 /obj/structure/barricade/wooden,
@@ -22106,7 +22106,6 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced/tinted,
-/obj/machinery/door/window,
 /obj/machinery/shower{
 	dir = 4;
 	pixel_y = -10
@@ -22121,9 +22120,6 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced/tinted,
-/obj/machinery/door/window{
-	dir = 8
-	},
 /obj/machinery/shower{
 	dir = 8;
 	pixel_y = -10
@@ -24100,7 +24096,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
 "xBU" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/storage/testroom)
 "xBZ" = (
 /obj/effect/ai_node,

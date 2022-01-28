@@ -6,11 +6,11 @@
 /area/magmoor/cave/northwest)
 "aai" = (
 /obj/effect/decal/cleanable/rune,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/cave/north)
 "aal" = (
 /obj/effect/decal/cleanable/rune,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/cave/northeast)
 "aaw" = (
 /obj/structure/cable,
@@ -3508,7 +3508,7 @@
 /turf/open/floor/plating/ground/concrete/edge,
 /area/magmoor/cave/northwest)
 "cLd" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/southwest)
 "cLL" = (
 /obj/structure/closet/secure_closet/miner,
@@ -3517,7 +3517,7 @@
 	},
 /area/magmoor/mining)
 "cLY" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/cave/mining/fossil)
 "cMy" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -4864,7 +4864,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/east)
 "dAi" = (
 /obj/structure/closet/secure_closet/scientist,
@@ -5311,7 +5311,7 @@
 	},
 /area/magmoor/research/rnd)
 "dNf" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/cave/west)
 "dNq" = (
 /obj/machinery/power/apc/drained,
@@ -6481,7 +6481,7 @@
 	},
 /area/magmoor/cave/west)
 "eFp" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/southeast)
 "eFu" = (
 /obj/structure/window/framed/colony,
@@ -7886,7 +7886,7 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/cmo)
 "fCk" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/cave/north)
 "fCn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -10434,7 +10434,7 @@
 /turf/open/floor/plating,
 /area/magmoor/mining/refinery)
 "huJ" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/northeast)
 "huQ" = (
 /obj/effect/decal/cleanable/rune/blank,
@@ -12121,7 +12121,7 @@
 	},
 /area/magmoor/mining/refinery)
 "iIm" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/landing/two)
 "iIW" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -13911,7 +13911,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/east)
 "jTE" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/landing)
 "jTU" = (
 /obj/structure/barricade/guardrail{
@@ -15640,7 +15640,7 @@
 	},
 /area/magmoor/compound/east)
 "lhP" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound)
 "lik" = (
 /turf/open/lavaland/lava/lpiece{
@@ -16283,7 +16283,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/storage)
 "lGk" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/south)
 "lGP" = (
 /obj/structure/cargo_container{
@@ -16974,7 +16974,7 @@
 /turf/open/floor/plating,
 /area/magmoor/civilian/bar)
 "mgP" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/cave/southwest)
 "mgU" = (
 /obj/structure/rack,
@@ -19194,7 +19194,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/northeast)
 "nMx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -24646,7 +24646,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/storage)
 "rpo" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/northwest)
 "rpt" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -25175,7 +25175,7 @@
 /area/magmoor/landing/two)
 "rCH" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/east)
 "rCI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -26867,7 +26867,7 @@
 /area/magmoor/security)
 "sEj" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/south)
 "sEl" = (
 /turf/open/lavaland/basalt/cave{
@@ -29682,7 +29682,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/northeast)
 "uwb" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/cave/northeast)
 "uwf" = (
 /obj/structure/cable,
@@ -30680,7 +30680,7 @@
 	},
 /area/magmoor/command/lobby)
 "vah" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/east)
 "val" = (
 /obj/machinery/photocopier,
@@ -31512,7 +31512,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/hydroponics)
 "vyT" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/west)
 "vzt" = (
 /obj/effect/landmark/corpsespawner/colonist,
@@ -34186,7 +34186,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/south)
 "wZE" = (
 /obj/machinery/light,
@@ -34711,7 +34711,7 @@
 /area/magmoor/landing/two)
 "xqS" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/northeast)
 "xrg" = (
 /obj/machinery/landinglight/ds2/delaythree{
@@ -36334,7 +36334,7 @@
 	},
 /area/magmoor/hydroponics)
 "yht" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/cave/northwest)
 "yhB" = (
 /obj/structure/barricade/guardrail{

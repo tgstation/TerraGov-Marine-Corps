@@ -89,6 +89,7 @@
 #include "code\__DEFINES\say.dm"
 #include "code\__DEFINES\shuttles.dm"
 #include "code\__DEFINES\skills.dm"
+#include "code\__DEFINES\smoothing.dm"
 #include "code\__DEFINES\sound.dm"
 #include "code\__DEFINES\spaceman_dmm.dm"
 #include "code\__DEFINES\span.dm"

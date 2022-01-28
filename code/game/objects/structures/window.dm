@@ -358,25 +358,16 @@
 	static_frame = TRUE
 	flags_atom = NONE //This is not a border object; it takes up the entire tile.
 	explosion_block = 2
-	var/window_frame //For perspective windows,so the window frame doesn't magically dissapear
-	var/list/tiles_special = list(/obj/machinery/door/airlock,
-		/obj/structure/window/framed,
-		/obj/structure/girder,
-		/obj/structure/window_frame)
-	tiles_with = list(
-		/turf/closed/wall,
-	)
-
-/obj/structure/window/framed/Initialize()
-	relativewall()
-	relativewall_neighbours()
-	. = ..()
+	smoothing_behavior = CARDINAL_SMOOTHING
+	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
+	///For perspective windows,so the window frame doesn't magically disappear.
+	var/window_frame
 
 /obj/structure/window/framed/update_nearby_icons()
-	relativewall_neighbours()
+	smooth_neighbors()
 
 /obj/structure/window/framed/update_icon()
-	relativewall()
+	smooth_self()
 
 
 /obj/structure/window/framed/deconstruct(disassembled = TRUE)
@@ -398,6 +389,7 @@
 	window_frame = /obj/structure/window_frame/mainship
 
 /obj/structure/window/framed/mainship/canterbury //So we can wallsmooth properly.
+	smoothing_groups = SMOOTH_CANTERBURY
 
 /obj/structure/window/framed/mainship/toughened
 	name = "safety glass"
@@ -425,8 +417,7 @@
 	max_integrity = 1000000 //Failsafe, shouldn't matter
 
 /obj/structure/window/framed/mainship/hull/canterbury //So we can wallsmooth properly.
-	tiles_with = list(/turf/closed/wall/mainship/outer/canterbury)
-	tiles_special = list(/obj/structure/window/framed/mainship/hull/canterbury)
+	smoothing_groups = SMOOTH_CANTERBURY
 
 /obj/structure/window/framed/mainship/requisitions
 	name = "kevlar-weave infused bulletproof window"
@@ -440,6 +431,7 @@
 	window_frame = /obj/structure/window_frame/mainship/white
 
 /obj/structure/window/framed/mainship/white/canterbury //So we can wallsmooth properly.
+	smoothing_groups = SMOOTH_CANTERBURY
 
 /obj/structure/window/framed/mainship/gray
 	icon_state = "gray_window0"
