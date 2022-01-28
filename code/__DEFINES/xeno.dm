@@ -46,6 +46,12 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 		/datum/reagent/toxin/xeno_ozelomelyn,
 		))
 
+//List of Chimera post-blink effects
+GLOBAL_LIST_INIT(chimera_post_blink_effects, list(
+		/datum/action/xeno_action/proc/teleport_flash,
+		/datum/action/xeno_action/proc/teleport_fling,
+		))
+
 //xeno upgrade flags
 ///Message the hive when we buy this upgrade
 #define UPGRADE_FLAG_MESSAGE_HIVE (1<<0)

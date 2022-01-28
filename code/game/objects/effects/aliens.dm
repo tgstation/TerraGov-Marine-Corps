@@ -217,3 +217,47 @@
 /obj/effect/xenomorph/warp_shadow/Initialize(mapload, target)
 	. = ..()
 	add_filter("wraith_warp_shadow", 4, list("type" = "blur", 5)) //Cool filter appear
+
+/obj/effect/xenomorph/chimera_wormhole
+	name = "wormhole portal"
+	desc = "A wormhole. Better not to step on it."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "anom"
+	layer = ABOVE_OBJ_LAYER
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+
+/obj/effect/xenomorph/chimera_wormhole/Initialize() //Self-deletes after creation & animation
+	. = ..()
+	QDEL_IN(src, 5 SECONDS)
+	RegisterSignal(loc, COMSIG_ATOM_ENTERED, .proc/atom_enter_turf)
+
+/// Signal handler to check if someone is entering the wormhole
+/obj/effect/xenomorph/chimera_wormhole/proc/atom_enter_turf(datum/source, atom/movable/AM)
+	SIGNAL_HANDLER
+	if(!isliving(AM))
+		return
+	if(AM.flags_pass & HOVERING || AM.status_flags & INCORPOREAL)
+		return
+
+	var/distance = 6
+	var/turf/T = get_turf(AM)
+
+	new /obj/effect/particle_effect/sparks(T)
+
+	var/cycles = (distance * 2 + 1) * (distance * 2 + 1)
+	for(var/cycle in 1 to cycles)
+		var/x = rand(AM.x - distance, AM.x + distance)
+		var/y = rand(AM.y - distance, AM.y + distance)
+		var/z = AM.z
+
+		var/turf/random_location = locate(x, y, z)
+		var/area/target_area = get_area(random_location)
+
+		if(!isclosedturf(random_location) && !isspaceturf(random_location) && !is_type_in_typecache(target_area, GLOB.wraith_strictly_forbidden_areas))
+			T = random_location
+			break
+
+	AM.forceMove(T)
+	new /obj/effect/particle_effect/sparks(T)

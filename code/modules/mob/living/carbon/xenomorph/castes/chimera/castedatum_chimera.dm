@@ -26,7 +26,7 @@
 	upgrade_threshold = 250
 
 	// *** Flags *** //
-	caste_flags = CASTE_INNATE_HEALING|CASTE_QUICK_HEAL_STANDING|CASTE_CAN_HEAL_WITHOUT_QUEEN|CASTE_ACID_BLOOD|CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_INNATE_HEALING|CASTE_QUICK_HEAL_STANDING|CASTE_CAN_HEAL_WITHOUT_QUEEN|CASTE_ACID_BLOOD|CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_2, "bio" = 45, "rad" = 45, "fire" = 80, "acid" = 45)
@@ -36,6 +36,9 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/chimera_blink,
+		/datum/action/xeno_action/select_blink_effect,
+		/datum/action/xeno_action/activable/create_wormhole,
 	)
 
 
@@ -118,3 +121,7 @@
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = XENO_BOMB_RESIST_3, "bio" = 60, "rad" = 60, "fire" = 95, "acid" = 60)
+
+/datum/xeno_caste/chimera/primodral
+	upgrade_name = "Primodral"
+	upgrade = XENO_UPGRADE_FOUR
