@@ -26,12 +26,14 @@
 	var/affecting_list = list()
 
 /obj/item/storage/backpack/dispenser/CtrlClick(mob/user)
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYING))
 		if(!can_interact(user))
 			return
 		balloon_alert_to_viewers("Undeploying...")
+
 		icon_state = "dispenser"
 		flick("dispenser_undeploy", src)
+		STOP_PROCESSING(SSprocessing, src)
 		addtimer(CALLBACK(src, .proc/undeploy), 1.6 SECONDS)
 		return
 	return ..()
@@ -41,13 +43,16 @@
 		return
 	DISABLE_BITFIELD(flags_item, IS_DEPLOYING)
 	ENABLE_BITFIELD(flags_item, IS_DEPLOYED)
+	affecting_list = list()
 	for(var/mob/living/carbon/human/human in view(3))
-		affecting_list += human
-		beam(human, "blood_light", maxdistance = 3)
-	for(var/turf/turfs in view(3))
+		RegisterSignal(human, COMSIG_PARENT_QDELETING, .proc/on_affecting_qdel)
+		affecting_list[human] = beam(human, "blood_light")
+	for(var/turf/turfs in view(2))
 		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/entered_tiles)
 	START_PROCESSING(SSprocessing, src)
 
+/obj/item/storage/backpack/dispenser/proc/on_affecting_qdel(datum/source)
+	affecting_list -= source
 
 /obj/item/storage/backpack/dispenser/proc/undeploy()
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
@@ -55,10 +60,13 @@
 		anchored = FALSE
 		DISABLE_BITFIELD(flags_item, IS_DEPLOYED)
 		DISABLE_BITFIELD(flags_item, IS_DEPLOYING)
-		for(var/turf/turfs in view(3))
+		for(var/turf/turfs in range(2))
 			UnregisterSignal(turfs, COMSIG_ATOM_ENTERED)
-		STOP_PROCESSING(SSprocessing, src)
-		affecting_list = list()
+
+		for(var/mob/living/carbon/human/affecting AS in affecting_list)
+			qdel(affecting_list[affecting])
+			UnregisterSignal(affecting, COMSIG_PARENT_QDELETING)
+		affecting_list = null
 
 
 /obj/item/storage/backpack/dispenser/attack_self(mob/user)
@@ -89,12 +97,13 @@
 	addtimer(CALLBACK(src, .proc/deploy), 1.6 SECONDS)
 
 /obj/item/storage/backpack/dispenser/process()
-	for(var/mob/living/carbon/human/affecting in affecting_list)
+	for(var/mob/living/carbon/human/affecting AS in affecting_list)
 		if(!line_of_sight(src, affecting, 3))
+			qdel(affecting_list[affecting])
 			affecting_list -= affecting
+			UnregisterSignal(affecting, COMSIG_PARENT_QDELETING)
 			return
-		affecting.adjustBruteLoss(-1, FALSE)
-		affecting.adjustFireLoss(-1, TRUE)
+		affecting.heal_limb_damage(0.4, 0.4, TRUE)
 
 
 /obj/item/storage/backpack/dispenser/proc/entered_tiles(datum/source, atom/movable/entering)
@@ -103,7 +112,8 @@
 	if(entering in affecting_list)
 		return
 	affecting_list += entering
-	beam(entering, "blood_light", maxdistance = 3)
+	RegisterSignal(entering, COMSIG_PARENT_QDELETING, .proc/on_affecting_qdel)
+	affecting_list[entering] = beam(entering, "blood_light")
 
 
 
