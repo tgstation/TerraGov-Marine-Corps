@@ -1,6 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - rscdel: "Remove free plasma cutters from req in preparation of MJP's rework; it must be done so that engineer players can adapt NOW than later."
-  - rscadd: "Synthetic has plasma cutter. Find it in vendor."
-  - balance: "Remove free plasma cutters from req"

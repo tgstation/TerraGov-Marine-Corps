@@ -411,3 +411,17 @@
   - rscadd: New tips.
   - rscdel: Old tips.
   - code_imp: Change Operational Vendor and Synthetic Vendor's icon pathway
+2022-01-28:
+  Verlurk:
+  - balance: Xenomorph analyzer is now useable by all, with a delay to reflect lack
+      of skill.
+  Waselon:
+  - balance: transvitox and hemodile bonus spread radius was removed
+  hyper2snyper:
+  - rscadd: If a Defender is fortified and has 100+ bullet armor, bullets will reflect
+      off of it.
+  novaepee:
+  - rscdel: Remove free plasma cutters from req in preparation of MJP's rework; it
+      must be done so that engineer players can adapt NOW than later.
+  - rscadd: Synthetic has plasma cutter. Find it in vendor.
+  - balance: Remove free plasma cutters from req
