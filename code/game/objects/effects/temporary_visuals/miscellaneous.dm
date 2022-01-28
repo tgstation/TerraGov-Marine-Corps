@@ -177,3 +177,10 @@
 /obj/effect/temp_visual/wraith_warp/Initialize()
 	. = ..()
 	animate(src, time=duration, transform=matrix().Scale(0.1,0.1))
+
+/obj/effect/temp_visual/chimera_blink
+	name = "chimera blink portal"
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "bhole3"
+	layer = ABOVE_LYING_MOB_LAYER
+	duration = 3 SECONDS

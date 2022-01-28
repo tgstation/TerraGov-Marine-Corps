@@ -13,25 +13,27 @@
 /datum/action/xeno_action/activable/chimera_blink/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/chimera/X = owner
+	var/turf/original_turf = get_turf(X)
 	var/turf/T = get_turf(A)
 
 	if(!check_blink_tile(T, TRUE, FALSE))
 		return fail_activate()
 
 	X.face_atom(T)
-	play_blink_effect(get_turf(X))
-
-	X.forceMove(T)
-	play_blink_effect(T)
+	new /obj/effect/temp_visual/chimera_blink(T)
+	new /obj/effect/temp_visual/chimera_blink(original_turf)
 	playsound(T, 'sound/effects/ghost2.ogg', 50, TRUE)
 
-	switch(X.selected_blink_effect)
-		if(/datum/action/xeno_action/proc/teleport_flash)
-			if(do_after(owner, 1 SECONDS, TRUE, owner, BUSY_ICON_HOSTILE))
-				teleport_flash(X)
-		if(/datum/action/xeno_action/proc/teleport_fling)
-			if(do_after(owner, 1 SECONDS, TRUE, owner, BUSY_ICON_HOSTILE))
-				teleport_fling(X)
+	if(do_after(owner, 1.5 SECONDS, TRUE, owner, BUSY_ICON_HOSTILE))
+		X.forceMove(T)
+		playsound(T, 'sound/effects/EMPulse.ogg', 25, TRUE)
+		new /obj/effect/temp_visual/wraith_warp(T)
+		new /obj/effect/temp_visual/wraith_warp(original_turf)
+		switch(X.selected_blink_effect)
+			if(/datum/action/xeno_action/proc/teleport_flash)
+					teleport_flash(X)
+			if(/datum/action/xeno_action/proc/teleport_fling)
+					teleport_fling(X)
 
 	succeed_activate()
 	add_cooldown(cooldown_timer)
@@ -53,12 +55,6 @@
 			to_chat(owner, span_xenowarning("We can't blink into this space without vision!"))
 		return FALSE
 
-	for(var/atom/blocker AS in T)
-		if(!blocker.CanPass(owner, T))
-			if(!silent)
-				to_chat(owner, span_xenowarning("We can't blink into a solid object!"))
-			return FALSE
-
 	if(ignore_blocker) //If we don't care about objects occupying the target square, return TRUE; used for checking pathing through transparents
 		return TRUE
 
@@ -67,15 +63,15 @@
 			to_chat(owner, span_xenowarning("We can't blink here!"))
 		return FALSE
 
+	for(var/atom/blocker AS in T)
+		if(!blocker.CanPass(owner, T))
+			if(!silent)
+				to_chat(owner, span_xenowarning("We can't blink into a solid object!"))
+			return FALSE
+
 	return TRUE
 
-/datum/action/xeno_action/proc/play_blink_effect(turf/T)
-	playsound(T, 'sound/effects/EMPulse.ogg', 25, TRUE)
-	new /obj/effect/temp_visual/blink_portal(T)
-	new /obj/effect/temp_visual/wraith_warp(T)
-
 /datum/action/xeno_action/proc/teleport_flash(atom/movable/teleporter)
-	name = "Flash"
 	var/location = get_turf(teleporter)
 	playsound(location, 'sound/effects/bang.ogg', 50, TRUE)
 	for(var/mob/living/living_target in viewers(WORLD_VIEW, location))
@@ -88,12 +84,11 @@
 				if(living_target.flash_act())
 					living_target.Paralyze(1 SECONDS)
 
-			if(2 to 4)
+			if(2 to 3)
 				if(living_target.flash_act())
 					living_target.Stun(1 SECONDS)
 
 /datum/action/xeno_action/proc/teleport_fling(atom/movable/teleporter)
-	name = "Fling"
 	var/location = get_turf(teleporter)
 	playsound(location,'sound/effects/bamf.ogg', 75, TRUE)
 	for(var/mob/living/living_target in range(2, location))
@@ -104,9 +99,9 @@
 		playsound(living_target,'sound/weapons/alien_claw_block.ogg', 75, 1)
 		living_target.apply_effects(1, 1)
 		var/throwlocation = living_target.loc
-		for(var/x in 1 to 4)
+		for(var/x in 1 to 3)
 			throwlocation = get_step(throwlocation, get_dir(owner, living_target))
-		living_target.throw_at(throwlocation, 4, 1, owner, TRUE)
+		living_target.throw_at(throwlocation, 3, 1, owner, TRUE)
 
 /datum/action/xeno_action/activable/chimera_blink/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We are able to blink again."))
@@ -119,7 +114,7 @@
 /datum/action/xeno_action/select_blink_effect
 	name = "Select Blink Effect"
 	action_icon_state = "32"
-	mechanics_text = "Switch between different effects post-blink"
+	mechanics_text = "Switch between different post-blink effects."
 	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
 
 /datum/action/xeno_action/select_blink_effect/give_action(mob/living/L)
