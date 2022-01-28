@@ -745,6 +745,7 @@
 		/obj/item/tweezers,
 		/obj/item/tool/solderingtool,
 		/obj/item/tool/pickaxe/plasmacutter,
+		/obj/item/pinpointer/pool,
 	)
 
 /obj/effect/essentials_set/white_dress
