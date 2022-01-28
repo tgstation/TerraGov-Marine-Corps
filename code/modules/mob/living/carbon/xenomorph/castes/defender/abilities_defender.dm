@@ -317,8 +317,6 @@
 		X.soft_armor = X.soft_armor.modifyAllRatings(fortifyAB)
 		X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_4)
 		last_fortify_bonus = fortifyAB
-		if(X.soft_armor.getRating("bullet") >= 100)
-			X.add_filter("bullet_bounce_outline", 2, outline_filter(1, COLOR_VERY_DARK_LIME_GREEN))
 	else
 		if(!silent)
 			to_chat(X, span_xenowarning("We resume our normal stance."))
@@ -326,7 +324,6 @@
 		X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_2)
 		last_fortify_bonus = 0
 		REMOVE_TRAIT(X, TRAIT_IMMOBILE, FORTIFY_TRAIT)
-		X.remove_filter("bullet_bounce_outline")
 	X.fortify = on
 	X.anchored = on
 	playsound(X.loc, 'sound/effects/stonedoor_openclose.ogg', 30, TRUE)
