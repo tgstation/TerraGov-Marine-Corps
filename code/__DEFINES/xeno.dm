@@ -1,13 +1,22 @@
 //Xeno structure flags
 #define IGNORE_WEED_REMOVAL (1<<0)
 
-//Weeds define
+//Weeds defines
 #define WEED "weed sac"
 #define STICKY_WEED "sticky weed sac"
 #define RESTING_WEED "resting weed sac"
 
-#define XENO_TURRET_ACID_ICONSTATE "acid_turret"
-#define XENO_TURRET_STICKY_ICONSTATE "resin_turret"
+//Plant defines
+#define HEAL_PLANT "heal_fruit"
+#define ARMOR_PLANT "armor_fruit"
+#define PLASMA_PLANT "plasma_fruit"
+#define STEALTH_PLANT "stealth_plant"
+
+//Xeno reagents defines
+#define DEFILER_NEUROTOXIN "Neurotoxin"
+#define DEFILER_HEMODILE "Hemodile"
+#define DEFILER_TRANSVITOX "Transvitox"
+#define DEFILER_OZELOMELYN "Ozelomelyn"
 
 #define TRAP_HUGGER "hugger"
 #define TRAP_SMOKE_NEURO "neurotoxin gas"
@@ -45,6 +54,29 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 		/datum/reagent/toxin/xeno_ozelomelyn,
 		))
 
+//List of toxins improving defile's damage
+GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
+		/datum/reagent/toxin/xeno_ozelomelyn,
+		/datum/reagent/toxin/xeno_hemodile,
+		/datum/reagent/toxin/xeno_transvitox,
+		/datum/reagent/toxin/xeno_neurotoxin
+		)))
+
+//List of plant types
+GLOBAL_LIST_INIT(plant_type_list, list(
+		/obj/structure/xeno/plant/heal_fruit,
+		/obj/structure/xeno/plant/armor_fruit,
+		/obj/structure/xeno/plant/plasma_fruit,
+		/obj/structure/xeno/plant/stealth_plant
+		))
+
+//List of plant images
+GLOBAL_LIST_INIT(plant_images_list, list(
+		HEAL_PLANT = image('icons/Xeno/plants.dmi', icon_state = HEAL_PLANT),
+		ARMOR_PLANT = image('icons/Xeno/plants.dmi', icon_state = ARMOR_PLANT),
+		PLASMA_PLANT = image('icons/Xeno/plants.dmi', icon_state = PLASMA_PLANT),
+		STEALTH_PLANT = image('icons/Xeno/plants.dmi', icon_state = STEALTH_PLANT)
+		))
 //xeno upgrade flags
 ///Message the hive when we buy this upgrade
 #define UPGRADE_FLAG_MESSAGE_HIVE (1<<0)
@@ -68,6 +100,7 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 #define PRIMORDIAL_WARRIOR "Primordial Warrior"
 #define PRIMORDIAL_BULL "Primordial Bull"
 #define PRIMORDIAL_BOILER "Primordial Boiler"
+#define PRIMORDIAL_DRONE "Primordial Drone"
 
 #define GHOSTS_CAN_TAKE_MINIONS "Smart Minions"
 

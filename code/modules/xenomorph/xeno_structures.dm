@@ -1163,16 +1163,14 @@ TUNNEL
 
 /obj/structure/xeno/plant
 	name = "xeno plant"
+	desc = "An alien plant, leeching a vile substance from the resin surrounding it."
 	max_integrity = 5
-	icon = 'icons/Xeno/acid_pool.dmi'
-	icon_state = "well0"
-	var/mature_icon_state = "well2"
+	icon = 'icons/Xeno/plants.dmi'
+	var/mature_icon_state
 	var/mature = FALSE
 	var/maturation_time = 1 MINUTES
-	///How long it takes to PLANT it, not how long it takes to grow, 0 is instant.
-	var/sowing_time = 0
-	///Radius defining when the plant can feel something close, calls on_sense() whenever a movable enters the radius.
-	var/sense_rage = 0
+	///If set, then this value is used instead of the standard ability cost when planting
+	var/plasma_cost_override
 
 /obj/structure/xeno/plant/Initialize()
 	. = ..()
@@ -1188,12 +1186,12 @@ TUNNEL
 	return FALSE
 
 /obj/structure/xeno/plant/proc/on_mature(mob/user)
-	playsound(loc, "sound/effects/xeno_newlarva.ogg", 50, 0, 1) //TODO find a fitting sound
+	playsound(src, "alien_resin_build", 25)
 	mature = TRUE
 	icon_state = mature_icon_state
 
 /obj/structure/xeno/plant/attack_hand(mob/living/user)
-	if(user.a_intent == INTENT_HARM || !can_interact(user))
+	if(!can_interact(user))
 		return ..()
 	return on_use(user)
 
@@ -1211,22 +1209,176 @@ TUNNEL
 
 	return TRUE
 
-/obj/structure/xeno/plant/healfruit
-	maturation_time = 2 SECONDS
+/obj/structure/xeno/plant/heal_fruit
+	name = "Life Fruit"
+	desc = "It would almost be appetizing wasn't it for the green colour and the shifting fluids inside..."
+	///Minimum amount of health recovered
+	var/healing_amount_min = 125
+	///Maximum amount of health recovered, depends on the xeno's max health
+	var/healing_amount_max_health_scaling = 0.5
+	maturation_time = 5 SECONDS
 
-/obj/structure/xeno/plant/on_use(mob/user)
-	to_chat(user, span_warning("We begin eating the [src]..."))
+/obj/structure/xeno/plant/heal_fruit/on_use(mob/user)
+	. = ..()
+	to_chat(user, span_warning("We begin consuming the [src]..."))
 	if(do_after(user, 3 SECONDS, FALSE, src))
 		if(!isxeno(user))
-			var/datum/effect_system/smoke_spread/xeno/plant_explosion = new /datum/effect_system/smoke_spread/xeno/acid()
-			var/datum/effect_system/smoke_spread/xeno/acid/gas = new(get_turf(src))
-			gas.set_up(5,src,3)
-			gas.start()
+			var/datum/effect_system/smoke_spread/xeno/acid/plant_explosion = new(get_turf(src))
+			plant_explosion.set_up(3,src)
+			plant_explosion.start()
+			visible_message(span_danger("The [src] bursts, releasing toxic gas!"))
 			Destroy()
 			return TRUE
 
 		var/mob/living/carbon/xenomorph/X = user
-		to_chat(X, span_xenowarning("Test message"))
+		var/heal_amount = max(healing_amount_min, healing_amount_max_health_scaling * X.xeno_caste.max_health)
+		HEAL_XENO_DAMAGE(X,heal_amount)
+		to_chat(X, span_xenowarning("We feel a sudden soothing chill as the [src] tends to our wounds."))
 		Destroy()
 		return TRUE
 	return FALSE
+
+/obj/structure/xeno/plant/armor_fruit
+	name = "Hard Fruit"
+	desc = "The contents of this fruit are protected by a tough outer shell."
+	icon_state = "armor_fruit_immature"
+	mature_icon_state = "armor_fruit"
+	///How much total sunder should we remove
+	var/sunder_removal = 30
+	maturation_time = 5 SECONDS
+
+/obj/structure/xeno/plant/armor_fruit/on_use(mob/user)
+	. = ..()
+	to_chat(user, span_warning("We begin consuming the [src]..."))
+	if(do_after(user, 3 SECONDS, FALSE, src))
+		if(!isxeno(user))
+			var/turf/far_away_lands = get_turf(user)
+			for(var/x in 1 to 20)
+				far_away_lands = get_step(far_away_lands, REVERSE_DIR(user.dir))
+			user.throw_at(far_away_lands, 20, spin = TRUE)
+			to_chat(user, span_warning("The [src] bursts, releasing a strong gust of pressurised gas!"))
+			if(ishuman(user))
+				var/mob/living/carbon/human/H = user
+				H.adjust_stagger(3)
+				H.apply_damage(30, BRUTE, "chest", H.get_soft_armor("melee", "chest"))
+			Destroy()
+			return TRUE
+
+		to_chat(user, span_warning("We shed our shattered scales as new ones grow to replace them!"))
+		var/mob/living/carbon/xenomorph/X = user
+		X.adjust_sunder(-sunder_removal)
+		Destroy()
+		return TRUE
+	return FALSE
+
+/obj/structure/xeno/plant/plasma_fruit
+	name = "Power Fruit"
+	desc = "A cyan fruit, beating like a creature's heart"
+	icon_state = "plasma_fruit_immature"
+	mature_icon_state = "plasma_fruit"
+	///How much bonus plasma should we restore during the duration, 1 being 100% from base regen
+	var/bonus_regen = 1
+	///How long should the buff last
+	var/duration = 1 MINUTES
+	maturation_time = 5 SECONDS
+
+/obj/structure/xeno/plant/plasma_fruit/on_use(mob/user)
+	. = ..()
+	to_chat(user, span_warning("We begin consuming the [src]..."))
+	if(do_after(user, 3 SECONDS, FALSE, src))
+		if(!isxeno(user))
+			visible_message(span_warning("The [src] releases a sticky substance before spontaneously bursting into flames!"))
+			flame_radius(3, get_turf(src), colour = "green")
+			Destroy()
+			return TRUE
+
+		var/mob/living/carbon/xenomorph/X = user
+		if(isxenoravager(X)) //Ask if this should be made into a trait for xenos with special ressources
+			to_chat(X, span_xenowarning("But our body rejects the fruit, our fury does not build up with a healthy diet!"))
+			return FALSE
+		X.apply_status_effect(/datum/status_effect/plasma_surge, X.xeno_caste.plasma_max, bonus_regen, duration)
+		to_chat(X, span_xenowarning("[src] Restores our plasma reserves, our organism is on overdrive!"))
+		Destroy()
+		return TRUE
+	return FALSE
+
+
+/obj/structure/xeno/plant/stealth_plant
+	name = "Night Shade"
+	desc = "A beautiful flower, what purpose it could serve to the alien hive is beyond you however..."
+	icon_state = "stealth_plant_immature"
+	mature_icon_state = "stealth_plant"
+	///The radius of the passive structure camouflage, requires line of sight
+	var/camouflage_range = 5
+	///The range of the active stealth ability
+	var/active_camouflage_pulse_range = 10
+	var/active_camouflage_duration = 20 SECONDS
+	///How long until the plant can be activated again
+	var/cooldown = 2 MINUTES
+	var/on_cooldown = FALSE
+	///The list of passively camouflaged structures
+	var/list/camouflaged_structures = list()
+	maturation_time = 5 SECONDS
+
+/obj/structure/xeno/plant/stealth_plant/Initialize()
+	. = ..()
+	START_PROCESSING(SSslowprocess, src)
+
+/obj/structure/xeno/plant/stealth_plant/Destroy()
+	for(var/obj/S in camouflaged_structures)
+		S.alpha = 255
+	STOP_PROCESSING(SSslowprocess, src)
+	return ..()
+
+/obj/structure/xeno/plant/stealth_plant/process()
+	var/turf/plant_turf = get_turf(src)
+	var/list/area_of_effect = block(locate(plant_turf.x - camouflage_range, plant_turf.y - camouflage_range, plant_turf.z), locate(plant_turf.x + camouflage_range, plant_turf.y + camouflage_range, plant_turf.z))
+	for(var/turf/tile in area_of_effect)
+		for(var/obj/structure/xeno/S in tile)
+			if(istype(S, /obj/structure/xeno/plant) || line_of_sight(src,S)) //We don't hide plants
+				continue
+			camouflaged_structures.Add(S)
+			S.alpha = 64
+
+/obj/structure/xeno/plant/stealth_plant/can_interact(mob/user)
+	. = ..()
+	if(ishuman(user))
+		to_chat(user, span_notice("You caress the [src] petals, nothing happens."))
+		return FALSE
+	return TRUE
+
+/obj/structure/xeno/plant/stealth_plant/on_use(mob/user)
+	. = ..()
+	if(on_cooldown)
+		to_chat(user, span_xenowarning("The [src] soft light shimmers, we should give it more time to recover!"))
+		return FALSE
+	to_chat(user, span_warning("We start shaking the [src]..."))
+	if(do_after(user, 3 SECONDS, FALSE, src))
+		visible_message(span_danger("The [src] releases a burst of glowing pollen!"))
+		veil()
+		return TRUE
+	return FALSE
+
+/obj/structure/xeno/plant/stealth_plant/proc/veil()
+	var/turf/plant_turf = get_turf(src)
+	var/list/area_of_effect = block(locate(plant_turf.x - active_camouflage_pulse_range, plant_turf.y - active_camouflage_pulse_range, plant_turf.z), locate(plant_turf.x + active_camouflage_pulse_range, plant_turf.y + active_camouflage_pulse_range, plant_turf.z))
+	//Who did we manage to hide ? Used to unclock them afterward
+	for(var/turf/tile in area_of_effect)
+		for(var/mob/living/carbon/xenomorph/X in tile)
+			if(X.stat == DEAD || isxenohunter(X)) //We don't care for deads and don't mess with xenos capable going stealth by themselves
+				continue
+			X.alpha = HUNTER_STEALTH_RUN_ALPHA
+			to_chat(X, span_xenowarning("The pollen from the [src] reacts with our scales, we are blending with our surroundings!"))
+			addtimer(CALLBACK(src, .proc/unveil, X), active_camouflage_duration)
+	on_cooldown = TRUE
+	addtimer(CALLBACK(src, .proc/ready), cooldown)
+
+/obj/structure/xeno/plant/stealth_plant/proc/ready()
+	visible_message(span_danger("The [src] petals shift in hue, it is ready to release more pollen."))
+	on_cooldown = FALSE
+
+/obj/structure/xeno/plant/stealth_plant/proc/unveil(atom/target)
+	if(isxeno(target))
+		var/mob/living/carbon/xenomorph/X = target
+		to_chat(X, span_xenowarning("The effect of the [src] wears off!"))
+	target.alpha = 255
