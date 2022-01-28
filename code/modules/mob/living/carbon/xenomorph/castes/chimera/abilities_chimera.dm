@@ -31,9 +31,9 @@
 		new /obj/effect/temp_visual/wraith_warp(original_turf)
 		switch(X.selected_blink_effect)
 			if(/datum/action/xeno_action/proc/teleport_flash)
-					teleport_flash(X)
+				teleport_flash(X)
 			if(/datum/action/xeno_action/proc/teleport_fling)
-					teleport_fling(X)
+				teleport_fling(X)
 
 	succeed_activate()
 	add_cooldown(cooldown_timer)
@@ -44,8 +44,8 @@
 			to_chat(owner, span_xenowarning("We can't blink here!"))
 		return FALSE
 
-	var/area/target_area = get_area(T) //We are forced to set this; will not work otherwise
-	if(is_type_in_typecache(target_area, GLOB.wraith_strictly_forbidden_areas)) //We can't enter these period.
+	var/area/target_area = get_area(T)
+	if(is_type_in_typecache(target_area, GLOB.wraith_strictly_forbidden_areas))
 		if(!silent)
 			to_chat(owner, span_xenowarning("We can't blink into this area!"))
 		return FALSE
@@ -55,10 +55,10 @@
 			to_chat(owner, span_xenowarning("We can't blink into this space without vision!"))
 		return FALSE
 
-	if(ignore_blocker) //If we don't care about objects occupying the target square, return TRUE; used for checking pathing through transparents
+	if(ignore_blocker)
 		return TRUE
 
-	if(turf_block_check(owner, T, FALSE, TRUE, TRUE, TRUE, TRUE)) //Check if there's anything that blocks us; we only care about Canpass here
+	if(turf_block_check(owner, T, FALSE, TRUE, TRUE, TRUE, TRUE))
 		if(!silent)
 			to_chat(owner, span_xenowarning("We can't blink here!"))
 		return FALSE
@@ -156,5 +156,34 @@
 
 /datum/action/xeno_action/activable/create_wormhole/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We are ready to create another wormhole."))
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	return ..()
+
+// ***************************************
+// *********** Forcewall
+// ***************************************
+/datum/action/xeno_action/create_forcewall
+	name = "Create Forcewall"
+	action_icon_state = "16"
+	mechanics_text = "Create a forcewall that only aliens can walk through."
+	use_state_flags = XABB_TURF_TARGET
+	plasma_cost = 50
+	cooldown_timer = 1 SECONDS
+
+/datum/action/xeno_action/create_forcewall/action_activate()
+	var/turf/T = get_turf(owner)
+	new /obj/effect/xenomorph/force_wall(T)
+	var/turf/otherT = get_step(T, turn(owner.dir, 90))
+	if(otherT)
+		new /obj/effect/xenomorph/force_wall(otherT)
+	otherT = get_step(T, turn(owner.dir, -90))
+	if(otherT)
+		new /obj/effect/xenomorph/force_wall(otherT)
+
+	succeed_activate()
+	add_cooldown(cooldown_timer)
+
+/datum/action/xeno_action/create_forcewall/on_cooldown_finish()
+	to_chat(owner, span_xenodanger("We are ready to create another forcewall."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()

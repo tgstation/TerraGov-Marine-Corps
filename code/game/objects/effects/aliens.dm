@@ -233,7 +233,6 @@
 	QDEL_IN(src, 5 SECONDS)
 	RegisterSignal(loc, COMSIG_ATOM_ENTERED, .proc/atom_enter_turf)
 
-/// Signal handler to check if someone is entering the wormhole
 /obj/effect/xenomorph/chimera_wormhole/proc/atom_enter_turf(datum/source, atom/movable/AM)
 	SIGNAL_HANDLER
 	if(!isliving(AM))
@@ -261,3 +260,22 @@
 
 	AM.forceMove(T)
 	new /obj/effect/particle_effect/sparks(T)
+
+/obj/effect/xenomorph/force_wall
+	name = "a forcewall"
+	desc = "A wall made of force. Only aliens can walk through."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "m_shield"
+	layer = RESIN_STRUCTURE_LAYER
+	density = TRUE
+	opacity = FALSE
+	anchored = TRUE
+
+/obj/effect/xenomorph/force_wall/Initialize() //Self-deletes after creation & animation
+	. = ..()
+	QDEL_IN(src, 30 SECONDS)
+
+/obj/effect/xenomorph/force_wall/CanPass(atom/movable/mover, turf/target)
+	if(isxeno(mover))
+		return TRUE
+	return ..()
