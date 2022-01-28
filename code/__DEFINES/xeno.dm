@@ -6,6 +6,9 @@
 #define STICKY_WEED "sticky weed sac"
 #define RESTING_WEED "resting weed sac"
 
+#define XENO_TURRET_ACID_ICONSTATE "acid_turret"
+#define XENO_TURRET_STICKY_ICONSTATE "resin_turret"
+
 //Plant defines
 #define HEAL_PLANT "heal_fruit"
 #define ARMOR_PLANT "armor_fruit"
