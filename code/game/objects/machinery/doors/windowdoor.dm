@@ -56,12 +56,8 @@
 
 /obj/machinery/door/window/proc/open_and_close()
 	open()
-	if(check_access(null))
-		sleep(5 SECONDS)
-	else //secure doors close faster
-		sleep(2 SECONDS)
-	close()
-
+	var/time_to_close = check_access(null) ? 5 SECONDS : 2 SECONDS
+	addtimer(CALLBACK(src, .proc/close), time_to_close)
 
 /obj/machinery/door/window/Bumped(atom/movable/bumper)
 	if(operating || !density)

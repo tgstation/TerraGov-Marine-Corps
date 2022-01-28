@@ -1,0 +1,4 @@
+author: "Arctrooper8"
+delete-after: True
+changes: 
+  - bugfix: "Hemodile and Transvitox now block sentry line of sight like other defiler gases"

@@ -58,8 +58,8 @@
 
 	fire_delay = 10
 	accuracy_mult = 1.15
-	scatter = 10
-	scatter_unwielded = 15
+	scatter = 2
+	scatter_unwielded = 1
 
 /obj/item/weapon/gun/energy/taser/able_to_fire(mob/living/user)
 	. = ..()
@@ -499,8 +499,8 @@
 
 	akimbo_additional_delay = 0.9
 	wield_delay = 0.6 SECONDS
-	scatter = 0
-	scatter_unwielded = 0
+	scatter = 3
+	scatter_unwielded = 4
 	fire_delay = 0.15 SECONDS
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.9
@@ -581,8 +581,8 @@
 
 	aim_slowdown = 0.2
 	wield_delay = 0.3 SECONDS
-	scatter = 0
-	scatter_unwielded = 15
+	scatter = 2
+	scatter_unwielded = 10
 	fire_delay = 0.2 SECONDS
 	burst_amount = 1
 	burst_delay = 0.15 SECONDS
@@ -729,11 +729,11 @@
 
 	aim_slowdown = 1
 	wield_delay = 1.5 SECONDS
-	scatter = 0
+	scatter = 4
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 0.95
 	accuracy_mult_unwielded = 0.3
-	scatter_unwielded = 80
+	scatter_unwielded = 30
 	damage_falloff_mult = 0.3
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_mg_mode/standard,

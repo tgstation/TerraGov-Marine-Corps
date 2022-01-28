@@ -61,6 +61,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	burst_amount = 1
 	accuracy_mult = 1.50
 	recoil = 2
+	scatter = 0
 
 	placed_overlay_iconstate = "antimat"
 
@@ -250,7 +251,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	fire_delay = 1.5 SECONDS
 	accuracy_mult = 1.50
-	scatter = 15
+	scatter = 3
 	recoil = 5
 	burst_amount = 1
 
@@ -301,7 +302,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	fire_delay = 1.2 SECONDS
 	burst_amount = 1
 	accuracy_mult = 0.95
-	scatter = -20
+	scatter = -5
 	recoil = -1
 	wield_delay = 1.8 SECONDS
 
@@ -363,7 +364,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	fire_delay = 0.4 SECONDS
 	burst_amount = 1
 	accuracy_mult = 1.4
-	scatter = -15
+	scatter = -3
 	recoil = 2
 
 
@@ -448,8 +449,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	accuracy_mult = 1.75
 	recoil = 0
 	accuracy_mult_unwielded = 0.75
-	scatter = -5
-	scatter_unwielded = 5
+	scatter = -1
+	scatter_unwielded = 2
 
 	placed_overlay_iconstate = "pepper"
 
