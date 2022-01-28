@@ -106,6 +106,9 @@
 	if(status_flags & INCORPOREAL && health != maxHealth)
 		to_chat(src, span_xenowarning("You do not have the strength to manifest yet!"))
 		return
+	if(istype(loc,/turf/closed/wall) && (status_flags & INCORPOREAL))
+		to_chat(src, span_xenowarning("We cannot manifest inside of a wall!"))
+		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
 	wound_overlay.icon_state = "none"
