@@ -192,11 +192,7 @@
 		else
 			moving_diagonally = FALSE
 			return
-		moving_diagonally = FALSE
-		if(!get_step(loc, can_pass_diagonally)?.Exit(src, direction & ~can_pass_diagonally))
-			return Move(get_step(loc, can_pass_diagonally), can_pass_diagonally)
-		if(!(flags_atom & DIRLOCK)) //We want to set the direction to be the one of the "second" diagonal move, aka not can_pass_diagonally
-			setDir(direction &~ can_pass_diagonally)
+		return Move(get_step(loc, can_pass_diagonally), can_pass_diagonally)
 
 	else
 		if(!loc.Exit(src, direction))
