@@ -1176,6 +1176,7 @@ TUNNEL
 	GLOB.xeno_spawner -= src
 	return ..()
 
+///Those structures need time to grow and are supposed to be extremely weak healh-wise
 /obj/structure/xeno/plant
 	name = "Xeno Plant"
 	max_integrity = 5
@@ -1194,9 +1195,11 @@ TUNNEL
 		to_chat(user, span_xenowarning("The [src] hasn't grown yet, give it some time!"))
 	return mature
 
+///Called whenever someone uses the plant, xeno or marine
 /obj/structure/xeno/plant/proc/on_use(mob/user)
 	return FALSE
 
+///Called when the plant reaches maturity
 /obj/structure/xeno/plant/proc/on_mature(mob/user)
 	playsound(src, "alien_resin_build", 25)
 	mature = TRUE
@@ -1374,6 +1377,7 @@ TUNNEL
 		return TRUE
 	return FALSE
 
+///Hides all nearby xenos
 /obj/structure/xeno/plant/stealth_plant/proc/veil()
 	var/turf/plant_turf = get_turf(src)
 	var/list/area_of_effect = block(locate(plant_turf.x - active_camouflage_pulse_range, plant_turf.y - active_camouflage_pulse_range, plant_turf.z), locate(plant_turf.x + active_camouflage_pulse_range, plant_turf.y + active_camouflage_pulse_range, plant_turf.z))
@@ -1388,10 +1392,12 @@ TUNNEL
 	addtimer(CALLBACK(src, .proc/unveil), active_camouflage_duration)
 	addtimer(CALLBACK(src, .proc/ready), cooldown)
 
+///Called when veil() can be used once again
 /obj/structure/xeno/plant/stealth_plant/proc/ready()
 	visible_message(span_danger("The [src] petals shift in hue, it is ready to release more pollen."))
 	on_cooldown = FALSE
 
+///Reveals all xenos hidden by veil()
 /obj/structure/xeno/plant/stealth_plant/proc/unveil()
 	for(var/mob/X in camouflaged_xenos)
 		X.alpha = 255
