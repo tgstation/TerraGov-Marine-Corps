@@ -32210,7 +32210,7 @@
 /turf/open/floor/plating,
 /area/prison/engineering/atmos)
 "bWl" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/space)
 "bWm" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -47689,7 +47689,7 @@
 /area/prison/cellblock/mediumsec/west)
 "vtZ" = (
 /obj/structure/lattice,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/space)
 "vue" = (
 /turf/open/floor/wood/broken,

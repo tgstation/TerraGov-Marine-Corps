@@ -1009,7 +1009,7 @@
 /area/centcom/valhalla/library)
 "bhl" = (
 /obj/structure/sign/vacuum,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/centcom/valhalla/exterior)
 "bhD" = (
 /obj/effect/decal/warning_stripes/thick{
@@ -4568,7 +4568,7 @@
 	},
 /area/centcom/valhalla/security/brig)
 "fWu" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/centcom/valhalla/exterior)
 "fXm" = (
 /obj/effect/decal/tile/black{
@@ -30771,7 +30771,7 @@ vAV
 vAV
 sjT
 wlI
-vAV
+sjT
 fiO
 vAV
 aHF
@@ -30780,9 +30780,9 @@ rVI
 rVI
 vAV
 fiO
-vAV
+sjT
 irn
-vAV
+sjT
 sjT
 vAV
 vAV
@@ -32427,7 +32427,7 @@ ybs
 xmq
 xmq
 ekB
-ybs
+xmq
 fqV
 ybs
 szJ
@@ -32436,7 +32436,7 @@ xYu
 szJ
 ybs
 fqV
-ybs
+xmq
 oWn
 xmq
 ybs
@@ -32841,7 +32841,7 @@ ybs
 xmq
 xmq
 oWn
-ybs
+xmq
 fqV
 ybs
 fHH
@@ -32850,7 +32850,7 @@ szJ
 szJ
 ybs
 fqV
-ybs
+xmq
 ekB
 xmq
 ybs
@@ -34887,7 +34887,7 @@ xTc
 xQP
 xTc
 pfd
-xQP
+xTc
 jTw
 xTc
 xTR
@@ -34895,7 +34895,7 @@ xQP
 xQP
 xTc
 pfd
-xQP
+xTc
 pur
 xTc
 xQP

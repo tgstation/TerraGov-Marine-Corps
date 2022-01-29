@@ -78,8 +78,12 @@
 //desertdam rock
 /turf/closed/desertdamrockwall
 	name = "rockwall"
-	icon = 'icons/turf/desertdam_map.dmi'
-	icon_state = "cavewall1"
+	icon = 'icons/turf/walls/cave.dmi'
+	icon_state = "cave_wall-0-0-0-0"
+	color = "#c9a37b"
+	walltype = "cave_wall"
+	smoothing_behavior = DIAGONAL_SMOOTHING
+	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
 
 /turf/closed/desertdamrockwall/invincible
 	resistance_flags = RESIST_ALL
