@@ -8,7 +8,7 @@
 	mechanics_text = "We teleport ourselves a short distance."
 	use_state_flags = XABB_TURF_TARGET
 	plasma_cost = 100
-	cooldown_timer = 15 SECONDS
+	cooldown_timer = 30 SECONDS
 
 /datum/action/xeno_action/activable/chimera_blink/use_ability(atom/A)
 	. = ..()
@@ -143,7 +143,7 @@
 	mechanics_text = "Create an instable wormhole, which teleports can randomly teleport a mob."
 	use_state_flags = XABB_TURF_TARGET
 	plasma_cost = 100
-	cooldown_timer = 15 SECONDS
+	cooldown_timer = 20 SECONDS
 
 /datum/action/xeno_action/activable/create_wormhole/use_ability(atom/A)
 	. = ..()
@@ -197,7 +197,7 @@
 	mechanics_text = "Swap places with another alien."
 	use_state_flags = XABB_MOB_TARGET
 	plasma_cost = 100
-	cooldown_timer = 15 SECONDS
+	cooldown_timer = 20 SECONDS
 
 /datum/action/xeno_action/activable/body_swap/use_ability(atom/A)
 	. = ..()
