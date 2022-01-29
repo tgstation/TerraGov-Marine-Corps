@@ -36,6 +36,7 @@
 #define ELDER_T4_WEIGHT -80
 #define ANCIENT_T4_WEIGHT -120
 #define KING_WEIGHT -200 //king is also counted as a T4
+#define CHIMERA_WEIGHT -150
 #define SPAWNING_POOL_WEIGHT -100
 
 //The weight of each statistics in the state calculator before shutters drop

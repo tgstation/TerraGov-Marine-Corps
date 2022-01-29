@@ -229,6 +229,34 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	priority_announce("WARNING: Psychic anomaly detected at [get_area(buyer)]. Assault of the area reccomended.", "TGMC Intel Division")
 	return ..()
 
+/datum/hive_upgrade/xenos/chimera
+	name = "Chimera"
+	desc = "Places a Psychic Echo chamber that tallhosts can detect, then after a summon time selects a random sister to take over the mind of the gravity manipulating Chimera."
+	icon = "chimera"
+	flags_gamemode = ABILITY_DISTRESS
+	psypoint_cost = 1400
+
+/datum/hive_upgrade/xenos/chimera/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!.)
+		return
+	if(buyer.hive.chimera_present)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("Another chimera is alive already!"))
+		return FALSE
+
+/datum/hive_upgrade/xenos/chimera/on_buy(mob/living/carbon/xenomorph/buyer)
+	to_chat(buyer, span_xenonotice("We begin constructing a psychic echo chamber for the Queen Mother..."))
+	if(!do_after(buyer, 15 SECONDS, FALSE, buyer, BUSY_ICON_HOSTILE))
+		return FALSE
+	if(!can_buy(buyer, FALSE))
+		return FALSE
+	var/obj/structure/resin/chimera_pod = new /obj/structure/resin/chimera_pod(get_turf(buyer), buyer.hivenumber)
+	log_game("[key_name(buyer)] has created a pod in [AREACOORD(buyer)]")
+	xeno_message("<B>[buyer] has created a chimera pod at [get_area(buyer)]. Defend it until the Queen Mother summons a chimera!</B>", hivenumber = buyer.hivenumber, target = chimera_pod, arrow_type = /obj/screen/arrow/leader_tracker_arrow)
+	priority_announce("WARNING: Psychic anomaly detected at [get_area(buyer)]. Assault of the area reccomended.", "TGMC Intel Division")
+	return ..()
+
 /datum/hive_upgrade/xenos/smart_minions
 	name = GHOSTS_CAN_TAKE_MINIONS
 	desc = "Allow ghosts to take control of minions"

@@ -33,6 +33,7 @@ SUBSYSTEM_DEF(monitor)
 
 /datum/monitor_statistics
 	var/king = 0
+	var/chimera = 0
 	var/ancient_T4 = 0
 	var/elder_T4 = 0
 	var/ancient_T3 = 0
@@ -110,6 +111,7 @@ SUBSYSTEM_DEF(monitor)
 			. += stats.ancient_T4 * ANCIENT_T4_WEIGHT
 			. += stats.elder_T4 * ELDER_T4_WEIGHT
 			. += stats.king * KING_WEIGHT
+			. += stats.chimera * CHIMERA_WEIGHT
 			. += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
 			. += (GLOB.alive_human_list.len - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
 			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT

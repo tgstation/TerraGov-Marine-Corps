@@ -275,7 +275,7 @@
 
 /obj/effect/xenomorph/force_wall/Initialize() //Self-deletes after creation & animation
 	. = ..()
-	QDEL_IN(src, 30 SECONDS)
+	QDEL_IN(src, 5 SECONDS)
 
 /obj/effect/xenomorph/force_wall/CanPass(atom/movable/mover, turf/target)
 	if(isxeno(mover))

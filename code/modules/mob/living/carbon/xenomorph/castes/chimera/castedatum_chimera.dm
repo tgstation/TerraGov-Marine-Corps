@@ -20,7 +20,7 @@
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 425
 
 	// *** Evolution *** //
 	upgrade_threshold = 250
@@ -29,7 +29,7 @@
 	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_INNATE_HEALING|CASTE_QUICK_HEAL_STANDING|CASTE_CAN_HEAL_WITHOUT_QUEEN|CASTE_ACID_BLOOD|CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_2, "bio" = 45, "rad" = 45, "fire" = 80, "acid" = 45)
+	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_3, "bio" = 45, "rad" = 45, "fire" = 80, "acid" = 45)
 
 	minimap_icon = "xenoking"
 
@@ -63,7 +63,7 @@
 
 	// *** Plasma *** //
 	plasma_max = 400
-	plasma_gain = 50
+	plasma_gain = 20
 
 	// *** Health *** //
 	max_health = 450
@@ -72,7 +72,7 @@
 	upgrade_threshold = 500
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_2, "bio" = 50, "rad" = 50, "fire" = 85, "acid" = 50)
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_3, "bio" = 50, "rad" = 50, "fire" = 85, "acid" = 50)
 
 /datum/xeno_caste/chimera/elder
 	upgrade_name = "Elder"
@@ -88,16 +88,16 @@
 
 	// *** Plasma *** //
 	plasma_max = 500
-	plasma_gain = 60
+	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 500
+	max_health = 475
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = XENO_BOMB_RESIST_2, "bio" = 55, "rad" = 55, "fire" = 90, "acid" = 55)
+	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = XENO_BOMB_RESIST_3, "bio" = 55, "rad" = 55, "fire" = 90, "acid" = 55)
 
 /datum/xeno_caste/chimera/ancient
 	upgrade_name = "Ancient"
@@ -113,17 +113,36 @@
 
 	// *** Plasma *** //
 	plasma_max = 600
-	plasma_gain = 70
+	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 600
+	max_health = 500
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = XENO_BOMB_RESIST_3, "bio" = 60, "rad" = 60, "fire" = 95, "acid" = 60)
+	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = XENO_BOMB_RESIST_4, "bio" = 60, "rad" = 60, "fire" = 95, "acid" = 60)
 
 /datum/xeno_caste/chimera/primodral
 	upgrade_name = "Primodral"
 	upgrade = XENO_UPGRADE_FOUR
+
+	// *** Melee Attacks *** //
+	melee_damage = 30
+
+	// *** Speed *** //
+	speed = -1
+
+	// *** Plasma *** //
+	plasma_max = 600
+	plasma_gain = 40
+
+	// *** Health *** //
+	max_health = 500
+
+	// *** Evolution *** //
+	upgrade_threshold = 1000
+
+	// *** Defense *** //
+	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = XENO_BOMB_RESIST_4, "bio" = 60, "rad" = 60, "fire" = 95, "acid" = 60)
