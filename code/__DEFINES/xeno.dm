@@ -10,10 +10,10 @@
 #define XENO_TURRET_STICKY_ICONSTATE "resin_turret"
 
 //Plant defines
-#define HEAL_PLANT "heal_fruit"
-#define ARMOR_PLANT "armor_fruit"
-#define PLASMA_PLANT "plasma_fruit"
-#define STEALTH_PLANT "stealth_plant"
+#define HEAL_PLANT "Life Fruit"
+#define ARMOR_PLANT "Hard Fruit"
+#define PLASMA_PLANT "Power Fruit"
+#define STEALTH_PLANT "Night Shade"
 
 //Xeno reagents defines
 #define DEFILER_NEUROTOXIN "Neurotoxin"
@@ -75,10 +75,10 @@ GLOBAL_LIST_INIT(plant_type_list, list(
 
 //List of plant images
 GLOBAL_LIST_INIT(plant_images_list, list(
-		HEAL_PLANT = image('icons/Xeno/plants.dmi', icon_state = HEAL_PLANT),
-		ARMOR_PLANT = image('icons/Xeno/plants.dmi', icon_state = ARMOR_PLANT),
-		PLASMA_PLANT = image('icons/Xeno/plants.dmi', icon_state = PLASMA_PLANT),
-		STEALTH_PLANT = image('icons/Xeno/plants.dmi', icon_state = STEALTH_PLANT)
+		HEAL_PLANT = image('icons/Xeno/plants.dmi', icon_state = "heal_fruit"),
+		ARMOR_PLANT = image('icons/Xeno/plants.dmi', icon_state = "armor_fruit"),
+		PLASMA_PLANT = image('icons/Xeno/plants.dmi', icon_state = "plasma_fruit"),
+		STEALTH_PLANT = image('icons/Xeno/plants.dmi', icon_state = "stealth_plant")
 		))
 //xeno upgrade flags
 ///Message the hive when we buy this upgrade

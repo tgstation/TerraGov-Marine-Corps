@@ -318,7 +318,7 @@
 	var/datum/action/xeno_action/activable/selected_ability
 	var/selected_resin = /turf/closed/wall/resin/regenerating //which resin structure to build when we secrete resin
 	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile //which reagent to slash with using reagent slash
-	var/selected_plant = /obj/structure/xeno/plant/heal_fruit //which plant to place when we use sow
+	var/obj/structure/xeno/plant/selected_plant = /obj/structure/xeno/plant/heal_fruit //which plant to place when we use sow
 	//Naming variables
 	var/nicknumber = 0 //The number/name after the xeno type. Saved right here so it transfers between castes.
 

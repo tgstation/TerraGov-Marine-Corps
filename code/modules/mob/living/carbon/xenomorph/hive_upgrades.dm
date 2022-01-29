@@ -347,6 +347,6 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 
 /datum/hive_upgrade/primordial/drone
 	name = PRIMORDIAL_DRONE
-	desc = "WIP"
+	desc = "Unlocks the primordial drone's ability to sow alien plants."
 	psypoint_cost = 75
 	icon = "primodrone"

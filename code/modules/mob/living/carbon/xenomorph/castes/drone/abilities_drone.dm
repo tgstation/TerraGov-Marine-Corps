@@ -66,13 +66,13 @@
 	name = "Sow"
 	action_icon_state = "place_trap"
 	mechanics_text = "Sow the seeds of an alien plant."
-	plasma_cost = 50
-	cooldown_timer = 2 SECONDS
+	plasma_cost = 500
+	cooldown_timer = 1 MINUTES
 	use_state_flags = XACT_USE_LYING
-	keybind_signal = null //TODO
-	alternate_keybind_signal = null //TODO
+	keybind_signal = COMSIG_XENOABILITY_DROP_PLANT
+	alternate_keybind_signal = COMSIG_XENOABILITY_CHOOSE_PLANT
 
-/datum/action/xeno_action/activable/sow/can_use_action(silent = FALSE, override_flags)
+/datum/action/xeno_action/sow/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	var/turf/T = get_turf(owner)
 
@@ -81,7 +81,7 @@
 			to_chat(owner, span_warning("Only weeds are fertile enough for our plants!"))
 		return FALSE
 
-	if(!(locate(/obj/structure/xeno/plant) in T))
+	if((locate(/obj/structure/xeno/plant) in T))
 		if(!silent)
 			to_chat(owner, span_warning("There is already a plant growing here!"))
 		return FALSE
@@ -89,47 +89,36 @@
 	if(!T.check_alien_construction(owner, silent))
 		return FALSE
 
-/datum/action/xeno_action/activable/sow/action_activate()
+/datum/action/xeno_action/sow/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!X.selected_plant)
 		return FALSE
-	var/obj/structure/xeno/plant/P = X.selected_plant
-	if(P.plasma_cost_override)
-		if((X.plasma_stored < P.plasma_cost_override))
-			to_chat(owner, span_warning("This plant requires [P.plasma_cost_override] to grow properly!"))
-			return fail_activate()
-		else
-			new X.selected_plant
-			return succeed_activate(P.plasma_cost_override)
 
 	playsound(src, "alien_resin_build", 25)
-	new X.selected_plant
+	new  X.selected_plant(get_turf(owner))
 	return succeed_activate()
 
-/datum/action/xeno_action/activable/sow/use_ability(atom/A)
-	. = ..()
-	return action_activate()
-
-/datum/action/xeno_action/activable/sow/update_button_icon()
+/datum/action/xeno_action/sow/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
-	var/atom/A = X.selected_resin
+	var/atom/A = X.selected_plant
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/actions.dmi', button, initial(A.name))
 	return ..()
 
-/datum/action/xeno_action/activable/sow/proc/choose_plant()
-	var/obj/structure/xeno/plant_choice = show_radial_menu(owner, owner, GLOB.plant_images_list, radius = 48)
+/datum/action/xeno_action/sow/proc/choose_plant()
+	var/plant_choice = show_radial_menu(owner, owner, GLOB.plant_images_list, radius = 48)
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!plant_choice)
 		return
-	for(var/obj/structure/xeno/plant AS in GLOB.plant_type_list)
-		if(plant.name == plant_choice)
-			X.selected_plant = plant_choice
+	for(var/obj/structure/xeno/plant/current_plant AS in GLOB.plant_type_list)
+		var/i = initial(current_plant.name) == plant_choice
+		if(i)
+			X.selected_plant = current_plant
 			break
-	to_chat(X, span_notice("We will now sow <b>[plant_choice.name]</b>."))
+	to_chat(X, span_notice("We will now sow <b>[plant_choice]</b>."))
 	update_button_icon()
 
-/datum/action/xeno_action/activable/sow/alternate_action_activate()
+/datum/action/xeno_action/sow/alternate_action_activate()
 	INVOKE_ASYNC(src, .proc/choose_plant)
 	return COMSIG_KB_ACTIVATED
