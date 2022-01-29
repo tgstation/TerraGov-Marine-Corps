@@ -3,10 +3,10 @@
 	desc = "To improve on the design of the 7E badge, this cape is capable of two colors, for all your fashion needs. It also is equiped with thermal insulators so it will double as a blanket. \n Attack with green facepaint to color. Attaches onto a uniform. Activate it to toggle the hood."
 	icon_state = "cape"
 	slot = ATTACHMENT_SLOT_CAPE
-	attachment_layer = COLLAR_LAYER
-	slot_to_show = SLOT_W_UNIFORM
+	attachment_layer = CAPE_LAYER
+	prefered_slot = SLOT_W_UNIFORM
 	greyscale_config = /datum/greyscale_config/cape
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB|ATTACH_ACTIVATION|ATTACH_NO_HANDS
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB|ATTACH_ACTIVATION
 	attach_delay = 0 SECONDS
 	detach_delay = 0 SECONDS
 	secondary_color = TRUE
@@ -28,23 +28,13 @@
 	), \
 	starting_attachments = starting_attachments)
 
-/obj/item/armor_module/armor/cape/on_attach(obj/item/attaching_to, mob/user)
-	. = ..()
-	if(!user)
-		return
-	var/mob/living/carbon/human/human_user = user
-	if(human_user.w_uniform != parent)
-		return
-	handle_actions(, user, slot_to_show)
-
 /obj/item/armor_module/armor/cape/activate(mob/living/user)
 	. = ..()
 	hood = !hood
 	update_icon()
 	user.update_inv_w_uniform()
 
-/obj/item/armor_module/armor/cape/update_icon_state()
-	. = ..()
+/obj/item/armor_module/armor/cape/update_icon()
 	var/obj/item/armor_module/highlight = attachments_by_slot[ATTACHMENT_SLOT_CAPE_HIGHLIGHT]
 	if(hood)
 		icon_state = "cape_h"
@@ -52,6 +42,7 @@
 	else
 		icon_state = "cape"
 		highlight?.icon_state = "highlight"
+	return ..()
 
 
 /obj/item/armor_module/armor/cape/half
@@ -74,6 +65,7 @@
 
 /obj/item/armor_module/armor/cape_highlight
 	name = "Cape Highlight"
+	desc = ""
 	icon_state = "highlight"
 	slot = ATTACHMENT_SLOT_CAPE_HIGHLIGHT
 	flags_attach_features = ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB

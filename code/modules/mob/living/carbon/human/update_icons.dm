@@ -69,9 +69,8 @@ There are several things that need to be remembered:
 
 
 
-/mob/living/carbon/human/apply_overlay(cache_index, extra_to_add)
+/mob/living/carbon/human/apply_overlay(cache_index)
 	var/list/to_add = list()
-	to_add += extra_to_add
 	SEND_SIGNAL(src, COMSIG_HUMAN_APPLY_OVERLAY, cache_index, to_add)
 	var/image/I = overlays_standing[cache_index]
 	if(I)
