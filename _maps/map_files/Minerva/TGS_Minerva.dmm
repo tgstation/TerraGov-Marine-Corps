@@ -5614,8 +5614,6 @@
 /area/mainship/squads/req)
 "sT" = (
 /obj/structure/rack,
-/obj/item/tool/pickaxe/plasmacutter,
-/obj/item/tool/pickaxe/plasmacutter,
 /obj/item/storage/belt/utility/full,
 /obj/item/storage/belt/utility/full,
 /obj/item/tool/weldpack,

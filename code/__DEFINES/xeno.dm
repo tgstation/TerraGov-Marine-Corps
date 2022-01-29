@@ -1,5 +1,6 @@
 //Xeno structure flags
 #define IGNORE_WEED_REMOVAL (1<<0)
+#define HAS_OVERLAY (1<<1)
 
 //Weeds defines
 #define WEED "weed sac"
@@ -103,6 +104,7 @@ GLOBAL_LIST_INIT(plant_images_list, list(
 #define PRIMORDIAL_WARRIOR "Primordial Warrior"
 #define PRIMORDIAL_BULL "Primordial Bull"
 #define PRIMORDIAL_BOILER "Primordial Boiler"
+#define PRIMORDIAL_PRAETORIAN "Primordial Praetorian"
 #define PRIMORDIAL_DRONE "Primordial Drone"
 
 #define GHOSTS_CAN_TAKE_MINIONS "Smart Minions"
