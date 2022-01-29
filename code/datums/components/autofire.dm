@@ -132,12 +132,13 @@
 					callback_reset_fire.Invoke()
 					stop_firing()
 					have_to_reset_at_burst_end = FALSE
+				return
 			else
 				callback_bursting.Invoke(TRUE)
 				bursting = TRUE
 				next_fire = world.time + burstfire_shot_delay
 		if(GUN_FIREMODE_AUTOMATIC)
-			next_fire = world.time + auto_fire_shot_delay
+			return
 		if(GUN_FIREMODE_SEMIAUTO)
 			return
 	schedule_shot()
