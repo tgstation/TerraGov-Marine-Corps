@@ -57,10 +57,10 @@
 	icon_state = "laser_target3"
 	layer = ABOVE_FLY_LAYER
 
-/obj/effect/overlay/temp/Initialize()
+/obj/effect/overlay/temp/Initialize(mapload, effect_duration)
 	. = ..()
 	flick(icon_state, src)
-	QDEL_IN(src, effect_duration)
+	QDEL_IN(src, effect_duration ? effect_duration : src.effect_duration)
 
 /obj/effect/overlay/temp/point
 	name = "arrow"
@@ -260,3 +260,10 @@
 	alpha = 0
 	vis_flags = NONE
 	blocks_emissive = NONE
+
+/obj/effect/overlay/temp/timestop_effect
+	icon = 'icons/effects/160x160.dmi'
+	icon_state = "time"
+	pixel_x = -60
+	pixel_y = -50
+	alpha = 70
