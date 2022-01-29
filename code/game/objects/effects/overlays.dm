@@ -57,7 +57,7 @@
 	icon_state = "laser_target3"
 	layer = ABOVE_FLY_LAYER
 
-/obj/effect/overlay/temp/Initialize(loc, effect_duration)
+/obj/effect/overlay/temp/Initialize(mapload, effect_duration)
 	. = ..()
 	flick(icon_state, src)
 	QDEL_IN(src, effect_duration ? effect_duration : src.effect_duration)

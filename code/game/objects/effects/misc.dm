@@ -213,7 +213,3 @@
 	layer = FLY_LAYER
 	plane = GAME_PLANE
 	alpha = 70
-
-/obj/effect/timestop_effect/Initialize()
-	. = ..()
-	
