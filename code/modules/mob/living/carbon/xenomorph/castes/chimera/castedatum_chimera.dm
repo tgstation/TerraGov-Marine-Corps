@@ -40,6 +40,7 @@
 		/datum/action/xeno_action/select_blink_effect,
 		/datum/action/xeno_action/activable/create_wormhole,
 		/datum/action/xeno_action/create_forcewall,
+		/datum/action/xeno_action/activable/body_swap,
 	)
 
 

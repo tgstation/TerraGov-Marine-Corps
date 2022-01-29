@@ -242,6 +242,7 @@
 
 	var/distance = 6
 	var/turf/T = get_turf(AM)
+	var/turf/origin_turf = T
 
 	new /obj/effect/particle_effect/sparks(T)
 
@@ -260,6 +261,7 @@
 
 	AM.forceMove(T)
 	new /obj/effect/particle_effect/sparks(T)
+	new /obj/effect/particle_effect/sparks(origin_turf)
 
 /obj/effect/xenomorph/force_wall
 	name = "a forcewall"

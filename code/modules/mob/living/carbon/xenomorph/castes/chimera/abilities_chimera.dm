@@ -187,3 +187,42 @@
 	to_chat(owner, span_xenodanger("We are ready to create another forcewall."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
+
+// ***************************************
+// *********** Bodyswap
+// ***************************************
+/datum/action/xeno_action/activable/body_swap
+	name = "body swap"
+	action_icon_state = "hyperposition"
+	mechanics_text = "Swap places with another alien."
+	use_state_flags = XABB_MOB_TARGET
+	plasma_cost = 50
+	cooldown_timer = 1 SECONDS
+
+/datum/action/xeno_action/activable/body_swap/use_ability(atom/A)
+	. = ..()
+	if(!isxeno(A))
+		return fail_activate()
+
+	var/mob/living/carbon/xenomorph/target = A
+	var/mob/living/carbon/xenomorph/chimera/X = owner
+	var/turf/target_turf = get_turf(A)
+	var/turf/origin_turf = get_turf(X)
+
+	new /obj/effect/temp_visual/blink_portal(origin_turf)
+	new /obj/effect/temp_visual/blink_portal(target_turf)
+	new /obj/effect/particle_effect/sparks(origin_turf)
+	new /obj/effect/particle_effect/sparks(target_turf)
+	playsound(target_turf, 'sound/effects/EMPulse.ogg', 25, TRUE)
+
+	X.face_atom(target_turf)
+	target.forceMove(origin_turf)
+	X.forceMove(target_turf)
+
+	succeed_activate()
+	add_cooldown(cooldown_timer)
+
+/datum/action/xeno_action/activable/body_swap/on_cooldown_finish()
+	to_chat(owner, span_xenodanger("We gather enough strength to perform body swap again."))
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	return ..()
