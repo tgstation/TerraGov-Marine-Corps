@@ -1,6 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - balance: "Windup for snatch from 0,5 sec to 1 sec, it is now interruptible by damage as well"
-  - balance: "Using snatch slow down the runner a lot."
-  - qol: "As a snatching runner you can activate snatch again to release the object"

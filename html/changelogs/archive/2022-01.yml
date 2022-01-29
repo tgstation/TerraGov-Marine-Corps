@@ -425,3 +425,18 @@
       must be done so that engineer players can adapt NOW than later.
   - rscadd: Synthetic has plasma cutter. Find it in vendor.
   - balance: Remove free plasma cutters from req
+2022-01-29:
+  Arctrooper8:
+  - bugfix: Hemodile and Transvitox now block sentry line of sight like other defiler
+      gases
+  BraveMole:
+  - rscdel: Remove light neuro
+  - code_imp: Fix a sleep in pathfinding
+  - balance: Windup for snatch from 0,5 sec to 1 sec, it is now interruptible by damage
+      as well
+  - balance: Using snatch slow down the runner a lot.
+  - qol: As a snatching runner you can activate snatch again to release the object
+  SplinterGP:
+  - bugfix: hive blessing menu tabs is fixed and won't go over each other.
+  novaepee:
+  - rscadd: cryotubes in LV-624! Go fix that APC.

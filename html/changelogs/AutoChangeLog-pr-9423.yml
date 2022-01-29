@@ -1,4 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - bugfix: "hive blessing menu tabs is fixed and won't go over each other."
