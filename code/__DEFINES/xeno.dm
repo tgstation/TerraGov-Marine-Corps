@@ -1,5 +1,6 @@
 //Xeno structure flags
 #define IGNORE_WEED_REMOVAL (1<<0)
+#define HAS_OVERLAY (1<<1)
 
 //Weeds define
 #define WEED "weed sac"
@@ -68,6 +69,7 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 #define PRIMORDIAL_WARRIOR "Primordial Warrior"
 #define PRIMORDIAL_BULL "Primordial Bull"
 #define PRIMORDIAL_BOILER "Primordial Boiler"
+#define PRIMORDIAL_PRAETORIAN "Primordial Praetorian"
 
 #define GHOSTS_CAN_TAKE_MINIONS "Smart Minions"
 

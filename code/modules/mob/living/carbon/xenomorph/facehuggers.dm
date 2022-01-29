@@ -231,7 +231,6 @@
 	update_icon()
 	return TRUE
 
-
 ///Called before we leap
 /obj/item/clothing/mask/facehugger/proc/pre_leap(activation_time = jump_cooldown)
 	if(QDELETED(src))
