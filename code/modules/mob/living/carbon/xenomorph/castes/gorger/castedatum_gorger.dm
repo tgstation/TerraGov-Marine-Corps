@@ -29,7 +29,7 @@
 	max_health = 400
 
 	// *** Evolution *** //
-	upgrade_threshold = 250
+	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
 
 	deevolves_to = list(/mob/living/carbon/xenomorph/warrior, /mob/living/carbon/xenomorph/hivelord)
 
@@ -76,7 +76,7 @@
 	max_health = 450
 
 	// *** Evolution *** //
-	upgrade_threshold = 500
+	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_1, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
@@ -102,7 +102,7 @@
 	max_health = 500
 
 	// *** Evolution *** //
-	upgrade_threshold = 1000
+	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_1, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
@@ -127,7 +127,7 @@
 	max_health = 600
 
 	// *** Evolution *** //
-	upgrade_threshold = 1000
+	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_1, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
@@ -152,7 +152,7 @@
 	max_health = 600
 
 	// *** Evolution *** //
-	upgrade_threshold = 500
+	upgrade_threshold = TIER_THREE_PRIMO_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_1, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)

@@ -24,7 +24,7 @@
 
 	// *** Evolution *** //
 	evolution_threshold = 180
-	upgrade_threshold = 120
+	upgrade_threshold = TIER_TWO_YOUNG_THRESHOLD
 
 	evolves_to = list(/mob/living/carbon/xenomorph/crusher)
 	deevolves_to = /mob/living/carbon/xenomorph/runner
@@ -66,7 +66,7 @@
 	max_health = 275
 
 	// *** Evolution *** //
-	upgrade_threshold = 240
+	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 30, "bullet" = 40, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 28, "rad" = 28, "fire" = 40, "acid" = 28)
@@ -91,7 +91,7 @@
 	max_health = 300
 
 	// *** Evolution *** //
-	upgrade_threshold = 480
+	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 35, "bullet" = 45, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 45, "acid" = 30)
@@ -116,7 +116,7 @@
 	max_health = 325
 
 	// *** Evolution *** //
-	upgrade_threshold = 480
+	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 50, "acid" = 33)
@@ -141,7 +141,7 @@
 	max_health = 325
 
 	// *** Evolution *** //
-	upgrade_threshold = 240
+	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 50, "acid" = 33)
