@@ -264,11 +264,11 @@
 	new /obj/item/storage/bottlecase/tricord(src)
 	new /obj/item/reagent_containers/hypospray/advanced/dexalin(src)
 	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
-	new /obj/item/reagent_containers/hypospray/advanced/inaprovaline(src)
-	new /obj/item/reagent_containers/hypospray/advanced/spaceacillin(src)
-	new /obj/item/reagent_containers/hypospray/advanced/hypervene(src)
-	new /obj/item/reagent_containers/hypospray/advanced/peridaxon(src)
-	new /obj/item/reagent_containers/hypospray/advanced/quickclot(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
 
 /obj/item/storage/belt/combatLifesaver/upp
 	name ="\improper Type 41 pattern lifesaver bag"
