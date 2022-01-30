@@ -21,7 +21,7 @@
 
 
 /turf/closed/wall/resin/flamer_fire_act()
-	take_damage(15, BURN, "fire")
+	take_damage(25, BURN, "fire")
 
 
 /turf/closed/wall/resin/proc/thicken()
@@ -71,7 +71,7 @@
 		if(EXPLODE_HEAVY)
 			take_damage(rand(400))
 		if(EXPLODE_LIGHT)
-			take_damage(rand(100, 125))
+			take_damage(rand(75, 100))
 
 
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
