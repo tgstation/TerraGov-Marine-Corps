@@ -88,12 +88,18 @@ Godspeed, captain! And remember, you are not above the law."})
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 1500) // starting
+		if(0 to 600) // starting
 			new_human.wear_id.paygrade = "O6"
-		if(1501 to 7500) // 25hrs
+		if(601 to 300) // 10hrs
 			new_human.wear_id.paygrade = "O7"
-		if(7501 to INFINITY) //125 hrs
+		if(3001 to 6000) //50 hrs
 			new_human.wear_id.paygrade = "O8"
+		if(6001 to 15000) //100 hrs
+			new_human.wear_id.paygrade = "O9"
+		if(15001 to 30000) //250 hrs
+			new_human.wear_id.paygrade = "10"
+		if(30001 to INFINITY) //500 hrs
+			new_human.wear_id.paygrade = "11"
 
 //Field Commander
 /datum/job/terragov/command/fieldcommander
