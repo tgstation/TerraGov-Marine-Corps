@@ -466,7 +466,7 @@
 
 /obj/machinery/vending/engivend
 	name = "Engi-Vend"
-	desc = "Spare electronics vending. What? Did you expect some witty description?"
+	desc = "Spare engineer vending. What? Did you expect some witty description?"
 	icon_state = "engivend"
 	icon_deny = "engivend-deny"
 	products = list(
@@ -474,7 +474,10 @@
 		/obj/item/analyzer = -1,
 		/obj/item/t_scanner = -1,
 		/obj/item/circuitboard/apc = -1,
+		/obj/item/circuitboard/airlock = -1,
 		/obj/item/cell/high = 10,
+		/obj/item/clothing/head/hardhat = 4,
+		/obj/item/clothing/glasses/meson = 4,
 	)
 
 //This one's from bay12

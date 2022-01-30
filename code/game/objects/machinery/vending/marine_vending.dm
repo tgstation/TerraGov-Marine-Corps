@@ -755,8 +755,8 @@
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal6 = -1,
 		/obj/item/storage/box/MRE = -1,
 		/obj/item/reagent_containers/food/drinks/flask = -1,
-		/obj/item/reagent_containers/food/drinks/flask/marine = 10,
-		/obj/item/reagent_containers/food/snacks/mre_pack/meal5 = 15
+		/obj/item/reagent_containers/food/drinks/flask/marine = -1,
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal5 = -1
 	)
 //Christmas inventory
 /*
@@ -953,7 +953,6 @@
 		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 		/obj/item/storage/box/sentry = 3,
 		/obj/item/storage/box/tl102 = 1,
-		/obj/item/cell/super = 1,
 	)
 
 	prices = list()
@@ -1137,6 +1136,7 @@
 			/obj/item/storage/belt/gun/revolver/standard_revolver = -1,
 			/obj/item/storage/large_holster/blade/machete/full = -1,
 			/obj/item/storage/large_holster/blade/machete/full_harvester = -1,
+			/obj/item/storage/belt/utility/full =-1,
 		),
 		"Pouches" = list(
 			/obj/item/storage/pouch/pistol = -1,

@@ -391,7 +391,6 @@
 			else if(length(req_one_access))
 				AE.conf_access = req_one_access
 				AE.one_access = TRUE
-			electronics = null
 
 		if(operating == -1)
 			AE.icon_state = "door_electronics_smoked"
