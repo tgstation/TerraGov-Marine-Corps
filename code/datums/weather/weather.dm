@@ -103,7 +103,7 @@
 		if(A.z in impacted_z_levels)
 			impacted_areas |= A
 	weather_duration = rand(weather_duration_lower, weather_duration_upper)
-	START_PROCESSING(SSweather, src)
+	SSweather.processing |= src
 	update_areas()
 	for(var/mob/M AS in GLOB.player_list)
 		var/turf/mob_turf = get_turf(M)
@@ -171,7 +171,7 @@
 	if(stage == END_STAGE)
 		return TRUE
 	stage = END_STAGE
-	STOP_PROCESSING(SSweather, src)
+	SSweather.processing -= src
 	update_areas()
 
 /**
