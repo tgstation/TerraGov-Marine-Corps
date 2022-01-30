@@ -90,7 +90,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	switch(playtime_mins)
 		if(0 to 600) // starting
 			new_human.wear_id.paygrade = "O6"
-		if(601 to 300) // 10hrs
+		if(601 to 3000) // 10hrs
 			new_human.wear_id.paygrade = "O7"
 		if(3001 to 6000) //50 hrs
 			new_human.wear_id.paygrade = "O8"
