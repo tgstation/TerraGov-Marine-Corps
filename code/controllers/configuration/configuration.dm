@@ -17,6 +17,8 @@
 	var/list/votable_modes
 	var/list/mode_names
 
+	var/list/words_to_filter = list()
+
 	var/motd
 	var/policy
 
@@ -53,6 +55,7 @@
 	LoadMOTD()
 	LoadPolicy()
 	LoadChatFilter()
+	LoadCensor()
 
 	if(Master)
 		Master.OnConfigLoad()
@@ -417,6 +420,34 @@ Example config:
 		in_character_filter += REGEX_QUOTE(line)
 
 	ic_filter_regex = in_character_filter.len ? regex("\\b([jointext(in_character_filter, "|")])\\b", "i") : null
+
+/datum/controller/configuration/proc/LoadCensor()
+	if(!fexists("[directory]/censor.txt"))
+		return
+
+	log_config("Loading config file censor.txt...")
+
+	for(var/line in file2list("[directory]/censor.txt"))
+		if(!line)
+			continue
+		if(findtextEx_char(line,"#",1,2))
+			continue
+
+		var/pos = findtext_char(line, " ")
+		var/key = null
+		var/value = null
+
+		if(!pos)
+			continue
+
+		key = copytext_char(line, 1, pos)
+		value = copytext_char(line, pos + 1)
+
+		if(!key || !value)
+			continue
+
+		words_to_filter[key] = value
+
 
 
 //Message admins when you can.

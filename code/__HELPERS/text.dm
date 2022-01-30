@@ -18,6 +18,10 @@
 
 /// Runs byond's html encoding sanitization proc, after replacing new-lines and tabs for the # character.
 /proc/sanitize(text)
+	if(CONFIG_GET(flag/censor_enabled))
+		for(var/word in config?.words_to_filter)
+			text = replacetext(text, word, config.words_to_filter[word])
+
 	var/static/regex/regex = regex(@"[\n\t]", "g")
 	return html_encode(regex.Replace_char(text, "#"))
 

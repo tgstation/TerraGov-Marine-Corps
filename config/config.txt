@@ -227,3 +227,6 @@ DEFAULT_VIEW_SQUARE 15x15
 
 ## Uncomment if you think xenos are struggling against marines
 #XENOS_ON_STRIKE
+
+## Uncomment to enable the censorship. Words to censor are store in config/censor.txt
+#CENSOR_ENABLED

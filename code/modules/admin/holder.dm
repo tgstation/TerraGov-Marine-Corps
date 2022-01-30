@@ -439,6 +439,7 @@ GLOBAL_PROTECT(admin_verbs_fun)
 	/datum/admins/proc/change_ship_map,
 	/datum/admins/proc/panic_bunker,
 	/datum/admins/proc/mode_check,
+	/datum/admins/proc/toggle_censor,
 	/client/proc/toggle_cdn
 	)
 GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())

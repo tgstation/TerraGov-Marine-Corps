@@ -590,3 +590,15 @@
 		SSassets.transport.dont_mutate_filenames = TRUE
 		message_admins("[key_name_admin(usr)] disabled the CDN asset transport")
 		log_admin("[key_name(usr)] disabled the CDN asset transport")
+
+/datum/admins/proc/toggle_censor()
+	set category = "Server"
+	set name = "Toggle Censor"
+
+	if(!check_rights(R_SERVER))
+		return
+
+	CONFIG_SET(flag/censor_enabled, !CONFIG_GET(flag/censor_enabled))
+
+	log_admin("[key_name(usr)] has [CONFIG_GET(flag/censor_enabled) ? "enabled" : "disabled"] the censorship.")
+	message_admins("[ADMIN_TPMONTY(usr)] has [CONFIG_GET(flag/censor_enabled) ? "enabled" : "disabled"] the censorship.")
