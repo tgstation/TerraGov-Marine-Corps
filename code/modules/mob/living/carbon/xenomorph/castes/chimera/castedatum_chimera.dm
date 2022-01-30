@@ -124,8 +124,8 @@
 	// *** Defense *** //
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_4, "bio" = 50, "rad" = 50, "fire" = 95, "acid" = 50)
 
-/datum/xeno_caste/chimera/primodral
-	upgrade_name = "Primodral"
+/datum/xeno_caste/chimera/primodial
+	upgrade_name = "Primodial"
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //
