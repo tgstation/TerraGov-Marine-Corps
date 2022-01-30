@@ -34661,10 +34661,6 @@
 	dir = 8
 	},
 /area/prison/cellblock/highsec/south/south)
-"cdQ" = (
-/obj/machinery/vending/engineering,
-/turf/open/floor/plating,
-/area/prison/engineering)
 "cdR" = (
 /obj/structure/table/gamblingtable,
 /turf/open/floor/prison/plate,
@@ -94356,7 +94352,7 @@ bTh
 bUF
 bWb
 bRC
-cdQ
+ejV
 ejV
 cbM
 cdg

@@ -10497,14 +10497,8 @@
 /area/sulaco/hangar)
 "bXW" = (
 /obj/machinery/light/small,
-/obj/structure/table/mainship,
-/obj/item/stack/cable_coil{
-	pixel_x = 10;
-	pixel_y = 8
-	},
-/obj/item/stack/cable_coil{
-	pixel_x = 3;
-	pixel_y = 3
+/obj/machinery/vending/engivend{
+	req_access = null
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
@@ -14732,10 +14726,6 @@
 	},
 /turf/open/floor/prison/green/full,
 /area/sulaco/marine)
-"jPn" = (
-/obj/machinery/vending/shared_vending/marine_engi,
-/turf/open/floor/prison,
-/area/sulaco/cargo/prep)
 "jPq" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -15308,10 +15298,10 @@
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/living/starboard_garden)
 "kNc" = (
-/obj/machinery/vending/tool,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "kNy" = (
@@ -19666,6 +19656,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall)
+"rZH" = (
+/obj/machinery/vending/shared_vending/marine_engi,
+/turf/open/floor/prison,
+/area/sulaco/hallway/lower_main_hall)
 "sah" = (
 /turf/open/floor/prison/whitegreen{
 	dir = 1
@@ -22591,6 +22585,11 @@
 	dir = 9
 	},
 /area/sulaco/marine)
+"wMT" = (
+/obj/machinery/light,
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "wMZ" = (
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
@@ -22991,12 +22990,6 @@
 /obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
-"xua" = (
-/obj/machinery/vending/engivend{
-	req_access = null
-	},
-/turf/open/floor/prison,
-/area/sulaco/hallway/lower_main_hall)
 "xur" = (
 /obj/structure/prop/mainship/sensor_computer2/sd,
 /turf/open/floor/mainship/tcomms,
@@ -43735,7 +43728,7 @@ aLf
 kNc
 gRR
 qzc
-rvr
+wMT
 aLf
 oax
 xJd
@@ -49128,7 +49121,7 @@ bPM
 bPM
 mZj
 alx
-jPn
+lvm
 aoM
 alx
 lvm
@@ -53249,7 +53242,7 @@ hOC
 bjX
 xKR
 bjX
-xua
+pIP
 fVo
 tPL
 ajO
@@ -53763,7 +53756,7 @@ aGy
 bjX
 xKR
 bjX
-pIP
+rZH
 fVo
 xzB
 ajQ

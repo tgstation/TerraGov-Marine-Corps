@@ -2409,10 +2409,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aWQ" = (
-/obj/machinery/vending/engivend{
-	req_access = null
-	},
 /obj/machinery/camera/autoname/mainship,
+/obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aWR" = (
@@ -8182,12 +8180,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
 "cco" = (
-/obj/machinery/vending/engivend{
-	req_access = null
-	},
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
+/obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "ccy" = (
@@ -11479,6 +11475,14 @@
 	dir = 10
 	},
 /area/mainship/command/bridge)
+"hHj" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/orange{
+	dir = 1
+	},
+/area/mainship/hallways/hangar)
 "hIv" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -16435,12 +16439,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
-"qBp" = (
-/obj/machinery/autolathe,
-/turf/open/floor/mainship/orange{
-	dir = 1
-	},
-/area/mainship/hallways/hangar)
 "qCJ" = (
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/disposalpipe/segment{
@@ -18953,12 +18951,6 @@
 /obj/machinery/door/window,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/numbertwobunks)
-"vmb" = (
-/obj/machinery/vending/engineering,
-/turf/open/floor/mainship/orange{
-	dir = 1
-	},
-/area/mainship/engineering/lower_engineering)
 "vmW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -20477,7 +20469,7 @@
 /area/mainship/medical/lower_medical)
 "yes" = (
 /obj/machinery/camera/autoname/mainship,
-/obj/machinery/vending/engineering,
+/obj/machinery/autolathe,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -42128,7 +42120,7 @@ bkX
 lOP
 lvI
 bgb
-qBp
+xSH
 yji
 lvI
 xgM
@@ -43156,7 +43148,7 @@ ckq
 lOP
 bPR
 bgb
-xSH
+hHj
 uns
 uns
 uns
@@ -70636,7 +70628,7 @@ hSf
 cUz
 oXT
 bhO
-vmb
+bjs
 btp
 bys
 bys

@@ -4418,6 +4418,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/port_atmos)
+"oL" = (
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/briefing)
 "oM" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -6847,13 +6851,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"wS" = (
-/obj/item/ammo_casing/bullet{
-	pixel_x = 5;
-	pixel_y = -3
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/living/briefing)
 "wT" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -7506,8 +7503,8 @@
 /area/mainship/squads/general)
 "yK" = (
 /obj/machinery/door/airlock/mainship/secure/tcomms{
-	layer = 2.50;
-	open_layer = 2.50
+	layer = 2.5;
+	open_layer = 2.5
 	},
 /obj/machinery/door/poddoor/mainship{
 	id = "tcomms"
@@ -8965,14 +8962,12 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "CZ" = (
-/obj/machinery/vending/tool,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/red{
 	dir = 9
 	},
 /area/mainship/living/briefing)
 "Da" = (
-/obj/machinery/vending/MarineMed,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -8999,6 +8994,7 @@
 	},
 /area/mainship/living/briefing)
 "Dg" = (
+/obj/machinery/vending/shared_vending/marine_engi,
 /obj/machinery/alarm,
 /turf/open/floor/mainship/orange{
 	dir = 5
@@ -9010,6 +9006,7 @@
 	},
 /area/mainship/command/self_destruct)
 "Di" = (
+/obj/machinery/vending/tool,
 /turf/open/floor/mainship/purple{
 	dir = 9
 	},
@@ -9026,13 +9023,11 @@
 	},
 /area/mainship/living/briefing)
 "Dm" = (
-/obj/machinery/vending/tool,
 /turf/open/floor/mainship/blue{
 	dir = 1
 	},
 /area/mainship/living/briefing)
 "Dn" = (
-/obj/machinery/vending/MarineMed,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/blue{
 	dir = 5
@@ -10836,7 +10831,6 @@
 /turf/open/floor/mainship/sterile/purple/corner,
 /area/mainship/medical/chemistry)
 "IB" = (
-/obj/machinery/vending/shared_vending/marine_engi,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/general)
 "IC" = (
@@ -10853,10 +10847,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
-"IE" = (
-/obj/machinery/vending/tool,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/general)
 "IF" = (
 /obj/machinery/roomba,
 /obj/structure/mirror{
@@ -11029,6 +11019,10 @@
 	},
 /turf/open/floor/carpet,
 /area/mainship/living/bridgebunks)
+"Jk" = (
+/obj/machinery/vending/engivend,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/briefing)
 "Jl" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /obj/structure/disposalpipe/segment,
@@ -12833,7 +12827,7 @@
 	},
 /area/mainship/engineering/engineering_workshop)
 "OK" = (
-/obj/machinery/vending/engineering,
+/obj/machinery/vending/tool,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -12853,7 +12847,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
 "ON" = (
-/obj/machinery/vending/tool,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -14970,7 +14963,7 @@
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/engineering_workshop)
 "Vv" = (
-/obj/machinery/vending/engineering,
+/obj/machinery/vending/tool,
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/engineering_workshop)
 "Vw" = (
@@ -24756,7 +24749,7 @@ Io
 Jo
 Ci
 LH
-wS
+Ci
 Nr
 Gr
 Gt
@@ -24951,12 +24944,12 @@ Ot
 Io
 Jo
 Cl
-Ci
+Jk
 Ci
 Fm
-Gs
+oL
 Cg
-HV
+oL
 Ci
 Jy
 Ci
@@ -26427,7 +26420,7 @@ tc
 zZ
 fj
 sr
-IE
+IB
 JJ
 KM
 sr
