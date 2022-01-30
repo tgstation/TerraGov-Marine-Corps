@@ -113,7 +113,7 @@ FIRE ALARM
 				to_chat(user, "You pry out the circuit!")
 				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 				spawn(20)
-					new/obj/item/circuitboard/firealarm(loc)
+					new /obj/item/circuitboard/firealarm(loc)
 					electronics = null
 					buildstage = 0
 					update_icon()
