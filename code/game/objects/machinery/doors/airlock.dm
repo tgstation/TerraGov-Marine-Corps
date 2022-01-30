@@ -35,10 +35,6 @@
 	var/no_panel = 0 //the airlock has no panel that can be screwdrivered open
 	var/emergency = FALSE
 
-	tiles_with = list(
-		/turf/closed/wall,
-	)
-
 /obj/machinery/door/airlock/bumpopen(mob/living/user) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
 	if(issilicon(user))
 		return ..(user)
@@ -528,9 +524,6 @@
 				src.closeOther = A
 				break
 
-	// fix smoothing
-	relativewall_neighbours()
-
 
 /obj/machinery/door/airlock/Destroy()
 	QDEL_NULL(wires)
@@ -545,7 +538,7 @@
 
 
 /obj/machinery/door/airlock/proc/update_nearby_icons()
-	relativewall_neighbours()
+	smooth_neighbors()
 
 
 /obj/machinery/door/airlock/proc/set_electrified(seconds, mob/user)

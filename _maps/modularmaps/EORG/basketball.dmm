@@ -751,11 +751,6 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
-"Gz" = (
-/obj/structure/window/framed/mainship/hull,
-/obj/machinery/floodlight/landing/testroom,
-/turf/open/floor/mainship/mono,
-/area/deathmatch)
 "GD" = (
 /obj/item/toy/beach_ball,
 /turf/open/ground/river,
@@ -2130,8 +2125,8 @@ HL
 WF
 nu
 Xu
-Gz
-HL
+WF
+kQ
 qx
 aa
 IC
