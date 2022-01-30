@@ -260,8 +260,6 @@
 	new /obj/item/storage/bottlecase/dylo(src)
 	new /obj/item/reagent_containers/hypospray/advanced/tramadol(src)
 	new /obj/item/storage/bottlecase/tram(src)
-	new /obj/item/reagent_containers/hypospray/advanced/tricordrazine(src)
-	new /obj/item/storage/bottlecase/tricord(src)
 	new /obj/item/reagent_containers/hypospray/advanced/dexalin(src)
 	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
