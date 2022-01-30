@@ -1185,7 +1185,7 @@
 	)
 
 	burst_amount = 0
-	fire_delay = 0.5 SECONDS
+	fire_delay = 0.55 SECONDS
 	accuracy_mult = 1.35
 	accuracy_mult_unwielded = 0.7
 	scatter = -5
