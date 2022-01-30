@@ -100,8 +100,8 @@
 	var/redirect_mod
 	///Minimum health threshold before the effect is deactivated
 	var/minimum_health
-	///If the target xeno is within range
-	var/within_range = TRUE
+	///If the target xeno was within range
+	var/was_within_range = TRUE
 
 /datum/status_effect/xeno_psychic_link/on_creation(mob/living/new_owner, set_duration, mob/living/carbon/target_mob, link_range, redirect_mod, minimum_health, scaling = FALSE)
 	owner = new_owner
@@ -141,12 +141,12 @@
 ///Handles the link breaking due to distance
 /datum/status_effect/xeno_psychic_link/proc/handle_dist(datum/source)
 	SIGNAL_HANDLER
-	var/within_range_current = get_dist(owner, target_mob) <= link_range
-	if(within_range_current == within_range)
+	var/within_range = get_dist(owner, target_mob) <= link_range
+	if(within_range == was_within_range)
 		return
-	within_range = within_range_current
-	link_toggle(within_range)
-	to_chat(owner, within_range ? span_xenowarning("[target_mob] is within range again.") : span_xenowarning("[target_mob] is too far away."))
+	was_within_range = within_range
+	link_toggle(was_within_range)
+	to_chat(owner, was_within_range ? span_xenowarning("[target_mob] is within range again.") : span_xenowarning("[target_mob] is too far away."))
 
 ///Handles the link toggling on and off
 /datum/status_effect/xeno_psychic_link/proc/link_toggle(new_state)
