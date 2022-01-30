@@ -700,6 +700,7 @@
 		/obj/item/lightreplacer,
 		/obj/item/circuitboard/general,
 		/obj/item/tool/solderingtool,
+		/obj/item/binoculars/tactical/range,
 	)
 
 /obj/effect/essentials_set/leader

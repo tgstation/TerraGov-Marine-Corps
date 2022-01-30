@@ -29,6 +29,7 @@
 	var/cooldown_duration = 200 //20 seconds
 	var/obj/effect/overlay/temp/laser_target/laser
 	var/target_acquisition_delay = 100 //10 seconds
+	var/rangefinder = FALSE
 	var/mode = 0  //Able to be switched between modes, 0 for cas laser, 1 for finding coordinates, 2 for directing railgun, 3 for orbital bombardment, 4 for range finding and mortar targeting.
 	var/changable = TRUE //If set to FALSE, you can't toggle the mode between CAS and coordinate finding
 	var/ob_fired = FALSE // If the user has fired the OB
@@ -134,7 +135,10 @@
 	if(!changable)
 		to_chat(user, "These binoculars only have one mode.")
 		return
-	mode += 1
+	if (rangefinder)
+		mode += 3
+	else
+		mode += 1
 	if(mode > MODE_RANGE_FINDER)
 		mode = MODE_CAS
 	switch(mode)
@@ -314,8 +318,8 @@
 //For events
 /obj/item/binoculars/tactical/range
 	name = "range-finder"
-	desc = "A pair of binoculars designed to find coordinates. Shift+Click or Ctrl+Click to get coordinates when using."
-	changable = 0
+	desc = "A pair of binoculars designed to find coordinates, with a laser targeting function for close air support. Alt+Click or unique action to toggle between CAS and range-finding targeting mode. Ctrl+Click when using to target something. Shift+Click to get coordinates."
+	rangefinder = 1
 	mode = MODE_RANGE_FINDER
 
 #undef MODE_CAS
