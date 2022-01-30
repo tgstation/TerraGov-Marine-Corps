@@ -149,8 +149,8 @@
 	to_chat(owner, was_within_range ? span_xenowarning("[target_mob] is within range again.") : span_xenowarning("[target_mob] is too far away."))
 
 ///Handles the link toggling on and off
-/datum/status_effect/xeno_psychic_link/proc/link_toggle(toggle)
-	if(toggle)
+/datum/status_effect/xeno_psychic_link/proc/link_toggle(toggle_on)
+	if(toggle_on)
 		RegisterSignal(target_mob, COMSIG_XENOMORPH_BURN_DAMAGE, .proc/handle_burn_damage)
 		RegisterSignal(target_mob, COMSIG_XENOMORPH_BRUTE_DAMAGE, .proc/handle_brute_damage)
 		owner.add_filter(id, 2, outline_filter(2, PSYCHIC_LINK_COLOR))
