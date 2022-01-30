@@ -1,4 +1,0 @@
-author: "MrStonedOne"
-delete-after: True
-changes: 
-  - bugfix: "Fix the mc getting completely chaotic due to background ticker subsystems"

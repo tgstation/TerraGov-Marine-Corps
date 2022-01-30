@@ -1,4 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - rscadd: "Add teleporters pad to req. You buy them in pairs, and they can teleport marines/equipment on the same z level. Requires to be anchored, and have power (either area power OR internal cell power)."

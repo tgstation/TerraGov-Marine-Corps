@@ -440,3 +440,21 @@
   - bugfix: hive blessing menu tabs is fixed and won't go over each other.
   novaepee:
   - rscadd: cryotubes in LV-624! Go fix that APC.
+2022-01-30:
+  BraveMole:
+  - bugfix: Fix wraith primo overlay issue
+  - rscadd: Add teleporters pad to req. You buy them in pairs, and they can teleport
+      marines/equipment on the same z level. Requires to be anchored, and have power
+      (either area power OR internal cell power).
+  Lewdcifer:
+  - balance: TX-8 impact ammo; 45 > 30 pen, stagger and knockback removed, shots pierce
+      through targets.
+  MrStonedOne:
+  - bugfix: Fix the mc getting completely chaotic due to background ticker subsystems
+  Pariah919:
+  - balance: T-81 Autosniper fires 500ms slower.
+  - balance: Fire deals more damage to walls, light explosions deal a decent bit less
+      now.
+  TiviPlus:
+  - rscdel: Removed defender ricochet
+  - bugfix: fixed invis weather
