@@ -52,7 +52,7 @@
 		to_chat(xeno, span_warning("That announcement contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span>"))
 		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
 		return FALSE
-	if(NON_ASCII_CHECK(input))
+	if(NON_ASCII_CYRILLIC_CHECK(input))
 		to_chat(usr, span_warning("That announcement contained characters prohibited in IC chat! Consider reviewing the server rules."))
 		return FALSE
 
