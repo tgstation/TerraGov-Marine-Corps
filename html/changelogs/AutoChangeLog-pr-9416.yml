@@ -1,7 +1,0 @@
-author: "Arctrooper8"
-delete-after: True
-changes: 
-  - balance: "Contrand has now been removed from all vendors, their contents are now (mostly) available without being hacked."
-  - rscdel: "Deleted Tool storage vendor at JPR's request, and the general circuit (not at JPR's request for that one though)"
-  - qol: "Engineers now start with an APC circuit and have had the iron build menu improved, office chairs now have a description too!"
-  - refactor: "Makes vending lists nicer to look at while removing contraband lists"
