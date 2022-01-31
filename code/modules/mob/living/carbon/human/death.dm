@@ -70,6 +70,8 @@
 	LAZYREMOVE(GLOB.humans_by_zlevel["[z]"], src)
 	UnregisterSignal(src, COMSIG_MOVABLE_Z_CHANGED)
 
+	hud_list[HEART_STATUS_HUD].icon_state = "beating_heart"
+
 	return ..()
 
 

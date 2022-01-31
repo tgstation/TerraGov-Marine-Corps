@@ -16,18 +16,24 @@
 
 //#define TURF_LAYER 2
 
+//NEVER HAVE ANYTHING BELOW THIS PLANE ADJUST IF YOU NEED MORE SPACE
+#define LOWEST_EVER_PLANE -200
+
 #define CLICKCATCHER_PLANE -99
 
 #define PLANE_SPACE -95
 #define PLANE_SPACE_PARALLAX -90
 
+#define GRAVITY_PULSE_PLANE -11
+#define GRAVITY_PULSE_RENDER_TARGET "*GRAVPULSE_RENDER_TARGET"
 
 #define OPENSPACE_LAYER 18 //Openspace layer over all
-#define OPENSPACE_PLANE -4 //Openspace plane below all turfs
-#define OPENSPACE_BACKDROP_PLANE -3 //Black square just over openspace plane to guaranteed cover all in openspace turf
+#define OPENSPACE_PLANE -9 //Openspace plane below all turfs
+#define OPENSPACE_BACKDROP_PLANE -8 //Black square just over openspace plane to guaranteed cover all in openspace turf
 
-#define FLOOR_PLANE -2
-#define GAME_PLANE -1
+#define FLOOR_PLANE -5
+#define GAME_PLANE -4
+
 #define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
 
 #define SPACE_LAYER 1.8
@@ -150,7 +156,7 @@
 //Important part is the seperation of the planes for control via plane_master
 
 /// This plane masks out lighting to create an "emissive" effect, ie for glowing lights in otherwise dark areas.
-#define EMISSIVE_PLANE 13
+#define EMISSIVE_PLANE 90
 /// The render target used by the emissive layer.
 #define EMISSIVE_RENDER_TARGET "*EMISSIVE_PLANE"
 /// The layer you should use if you _really_ don't want an emissive overlay to be blocked.
@@ -159,15 +165,15 @@
 
 #define LIGHTING_BACKPLANE_LAYER 14.5
 
-#define LIGHTING_PLANE 15
+#define LIGHTING_PLANE 100
 #define LIGHTING_RENDER_TARGET "LIGHT_PLANE"
 
 #define SHADOW_RENDER_TARGET "SHADOW_RENDER_TARGET"
 
 /// Plane for balloon text (text that fades up)
-#define BALLOON_CHAT_PLANE 17
+#define BALLOON_CHAT_PLANE 110
 
-#define O_LIGHTING_VISUAL_PLANE 18
+#define O_LIGHTING_VISUAL_PLANE 120
 #define O_LIGHTING_VISUAL_LAYER 16
 #define O_LIGHTING_VISUAL_RENDER_TARGET "O_LIGHT_VISUAL_PLANE"
 
@@ -177,13 +183,11 @@
 
 #define LIGHTING_SHADOW_LAYER 17	//Where the shadows happen
 
-#define ABOVE_LIGHTING_PLANE 18
+#define ABOVE_LIGHTING_PLANE 150
 #define ABOVE_LIGHTING_LAYER 18
 
-#define BYOND_LIGHTING_PLANE 19
-#define BYOND_LIGHTING_LAYER 19
 
-#define CAMERA_STATIC_PLANE 20
+#define CAMERA_STATIC_PLANE 200
 #define CAMERA_STATIC_LAYER 20
 
 
@@ -196,20 +200,28 @@
 #define FULLSCREEN_INFECTION_LAYER	22.041 //purple cloud
 #define FULLSCREEN_FLASH_LAYER 22.05 //flashed
 #define FULLSCREEN_DAMAGE_LAYER 22.1 //red circles when hurt
+#define FULLSCREEN_NERVES_LAYER 22.11 //red nerve-like lines
 #define FULLSCREEN_BLIND_LAYER 22.15 //unconscious
 #define FULLSCREEN_PAIN_LAYER	22.2 //pain flashes
 #define FULLSCREEN_CRIT_LAYER 22.25 //in critical
 #define FULLSCREEN_MACHINE_LAYER 22.3
 #define FULLSCREEN_INTRO_LAYER 22.4 //black screen when you spawn
 
-#define FULLSCREEN_PLANE 23
+#define FULLSCREEN_PLANE 500
 
-#define HUD_PLANE 24
+
+//-------------------- Rendering ---------------------
+#define RENDER_PLANE_GAME 990
+#define RENDER_PLANE_NON_GAME 995
+#define RENDER_PLANE_MASTER 999
+
+
+#define HUD_PLANE 1000
 #define HUD_LAYER 24
-#define ABOVE_HUD_PLANE 25
+#define ABOVE_HUD_PLANE 2000
 #define ABOVE_HUD_LAYER 25
 
 #define ADMIN_POPUP_LAYER 1
 
-#define SPLASHSCREEN_LAYER 26
-#define SPLASHSCREEN_PLANE 26
+#define SPLASHSCREEN_LAYER 9999
+#define SPLASHSCREEN_PLANE 9999

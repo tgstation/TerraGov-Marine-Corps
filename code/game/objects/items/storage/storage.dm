@@ -151,7 +151,7 @@
 	if(!opened)
 		orient2hud()
 		opened = 1
-	if (use_sound)
+	if (use_sound && user.stat != DEAD)
 		playsound(src.loc, src.use_sound, 25, 1, 3)
 
 	if (user.s_active)

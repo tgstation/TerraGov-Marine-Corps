@@ -276,6 +276,10 @@
 	squad_tag = "Delta"
 	req_access = list(ACCESS_MARINE_ENGPREP, ACCESS_MARINE_DELTA)
 
+/obj/machinery/marine_selector/clothes/engi/valhalla
+	vendor_role = /datum/job/fallen/engineer
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/medic
 	name = "GHMME Automated Corpsman Closet"
@@ -312,6 +316,10 @@
 	squad_tag = "Delta"
 	req_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_DELTA)
 
+/obj/machinery/marine_selector/clothes/medic/valhalla
+	vendor_role = /datum/job/fallen/corpsman
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/smartgun
 	name = "GHMME Automated Smartgunner Closet"
@@ -348,6 +356,11 @@
 	squad_tag = "Delta"
 	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_DELTA)
 
+/obj/machinery/marine_selector/clothes/smartgun/valhalla
+	vendor_role = /datum/job/fallen/smartgunner
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
+
 /obj/machinery/marine_selector/clothes/leader
 	name = "GHMME Automated Leader Closet"
 	req_access = list(ACCESS_MARINE_LEADER)
@@ -383,6 +396,11 @@
 	squad_tag = "Delta"
 	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DELTA)
 
+/obj/machinery/marine_selector/clothes/leader/valhalla
+	vendor_role = /datum/job/fallen/leader
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
+
 /obj/machinery/marine_selector/clothes/commander
 	name = "GHMME Automated Commander Closet"
 	req_access = list(ACCESS_MARINE_COMMANDER)
@@ -398,6 +416,7 @@
 		/obj/effect/modular_set/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
 		/obj/effect/modular_set/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "black"),
 		/obj/effect/modular_set/eva = list(CAT_AMR, "Medium EVA Jaeger kit", 0, "black"),
+		/obj/effect/modular_set/helljumper = list(CAT_AMR, "Medium Helljumper Jaeger kit", 0, "black"),
 		/obj/effect/modular_set/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "black"),
 		/obj/effect/modular_set/eod = list(CAT_AMR, "Heavy EOD Jaeger kit", 0, "black"),
 		/obj/effect/essentials_set/xenonauten_light/leader = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
@@ -500,6 +519,11 @@
 /obj/machinery/marine_selector/gear/medic/rebel
 	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
 
+/obj/machinery/marine_selector/gear/medic/valhalla
+	vendor_role = /datum/job/fallen/corpsman
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
+
 /obj/machinery/marine_selector/gear/engi
 	name = "NEXUS Automated Engineer Equipment Rack"
 	desc = "An automated engineer equipment rack hooked up to a colossal storage unit."
@@ -514,6 +538,10 @@
 /obj/machinery/marine_selector/gear/engi/rebel
 	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
 
+/obj/machinery/marine_selector/gear/engi/valhalla
+	vendor_role = /datum/job/fallen/engineer
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/smartgun
 	name = "NEXUS Automated Smartgunner Equipment Rack"
@@ -529,6 +557,11 @@
 /obj/machinery/marine_selector/gear/smartgun/rebel
 	req_access = list(ACCESS_MARINE_SMARTPREP_REBEL)
 
+/obj/machinery/marine_selector/gear/smartgun/valhalla
+	vendor_role = /datum/job/fallen/smartgunner
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
+
 /obj/machinery/marine_selector/gear/leader
 	name = "NEXUS Automated Squad Leader Equipment Rack"
 	desc = "An automated squad leader equipment rack hooked up to a colossal storage unit."
@@ -542,6 +575,11 @@
 
 /obj/machinery/marine_selector/gear/leader/rebel
 	req_access = list(ACCESS_MARINE_LEADER_REBEL)
+
+/obj/machinery/marine_selector/gear/leader/valhalla
+	vendor_role = /datum/job/fallen/leader
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
 
 
 /obj/effect/essentials_set
@@ -660,7 +698,8 @@
 		/obj/item/cell/high,
 		/obj/item/tool/shovel/etool,
 		/obj/item/lightreplacer,
-		/obj/item/circuitboard/general,
+		/obj/item/circuitboard/apc,
+		/obj/item/tool/solderingtool,
 	)
 
 /obj/effect/essentials_set/leader
@@ -694,6 +733,7 @@
 	spawned_gear_list = list(
 		/obj/item/stack/sheet/plasteel/medium_stack,
 		/obj/item/stack/sheet/metal/large_stack,
+		/obj/item/tool/weldingtool/hugetank,
 		/obj/item/lightreplacer,
 		/obj/item/healthanalyzer,
 		/obj/item/tool/handheld_charger,
@@ -703,7 +743,31 @@
 		/obj/item/bodybag/cryobag,
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/tweezers,
+		/obj/item/tool/solderingtool,
+		/obj/item/tool/pickaxe/plasmacutter,
 	)
+
+/obj/effect/essentials_set/white_dress
+	name = "Full set of TGMC white dress uniform"
+	desc = "A standard-issue TerraGov Marine Corps white dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. Doesn't seem to fit perfectly around the waist though."
+	spawned_gear_list = list(
+		/obj/item/clothing/under/whites,
+		/obj/item/clothing/suit/white_dress_jacket,
+		/obj/item/clothing/head/white_dress,
+		/obj/item/clothing/shoes/white,
+		/obj/item/clothing/gloves/white,
+	)
+
+/obj/effect/essentials_set/service_uniform
+	name = "Full set of TGMC service uniform"
+	desc = "A standard-issue TerraGov Marine Corps dress uniform. Sometimes, you hate wearing this since you remember wearing this to Infantry School and have to wear this when meeting a commissioned officer. This is what you wear when you are not deployed and are working in an office. Doesn't seem to fit perfectly around the waist."
+	spawned_gear_list = list(
+		/obj/item/clothing/under/service,
+		/obj/item/clothing/head/garrisoncap,
+		/obj/item/clothing/head/servicecap,
+		/obj/item/clothing/shoes/marine/full,
+	)
+
 
 /obj/effect/essentials_set/xenonauten_light
 	spawned_gear_list = list(
@@ -817,6 +881,15 @@
 		/obj/item/armor_module/armor/chest/marine/assault/eod,
 		/obj/item/armor_module/armor/arms/marine/eod,
 		/obj/item/armor_module/armor/legs/marine/eod,
+	)
+
+/obj/effect/modular_set/helljumper
+	desc = "A set of Helljumper pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
+	spawned_gear_list = list(
+		/obj/item/clothing/head/modular/marine/helljumper,
+		/obj/item/armor_module/armor/chest/marine/helljumper,
+		/obj/item/armor_module/armor/arms/marine/helljumper,
+		/obj/item/armor_module/armor/legs/marine/helljumper,
 	)
 
 /obj/effect/essentials_set/mimir

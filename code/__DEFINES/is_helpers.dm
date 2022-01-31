@@ -91,6 +91,7 @@
 #define isxenoboiler(A) (istype(A, /mob/living/carbon/xenomorph/boiler))
 #define isxenocarrier(A) (istype(A, /mob/living/carbon/xenomorph/carrier))
 #define isxenocrusher(A) (istype(A, /mob/living/carbon/xenomorph/crusher))
+#define isxenogorger(A) (istype(A, /mob/living/carbon/xenomorph/gorger))
 #define isxenodrone(A) (istype(A, /mob/living/carbon/xenomorph/drone))
 #define isxenohivelord(A) (istype(A, /mob/living/carbon/xenomorph/hivelord))
 #define isxenohunter(A) (istype(A, /mob/living/carbon/xenomorph/hunter))

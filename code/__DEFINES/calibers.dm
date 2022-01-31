@@ -35,6 +35,7 @@
 #define CALIBER_762X39 "7.62x39mm"
 #define CALIBER_556X45 "5.56x45mm"
 #define CALIBER_16G "16 gauge" //Autoshotty, but coded like a rifle so eeh
+#define CALIBER_4570 ".45-70 Government"
 #define CALIBER_492X34_CASELESS "4.92x34mm caseless"
 #define CALIBER_10X28_CASELESS "10x28mm caseless" //Spec scout and OG Smartgun
 #define CALIBER_762X51 "7.62x51mm" //Minigun

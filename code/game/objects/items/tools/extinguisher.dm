@@ -22,7 +22,7 @@
 	create_reagents(max_water, AMOUNT_VISIBLE, list(/datum/reagent/water = max_water))
 
 /obj/item/tool/extinguisher/mini
-	name = "fire extinguisher"
+	name = "mini fire extinguisher"
 	desc = "A light and compact fibreglass-framed model fire extinguisher."
 	icon_state = "miniFE0"
 	item_state = "miniFE"

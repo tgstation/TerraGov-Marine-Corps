@@ -2,8 +2,6 @@
 	layer = OBJ_LAYER
 	glide_size = 8
 	appearance_flags = TILE_BOUND|PIXEL_SCALE
-	///how many times a this movable had movement procs called on it since Moved() was last called
-	var/move_stacks = 0
 	var/last_move = null
 	var/last_move_time = 0
 	var/anchored = FALSE
@@ -17,12 +15,13 @@
 	var/throw_range = 7
 	var/mob/pulledby = null
 	var/atom/movable/pulling
-	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
 	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
 	var/glide_modifier_flags = NONE
 
-	var/status_flags = CANSTUN|CANKNOCKDOWN|CANKNOCKOUT|CANPUSH|CANUNCONSCIOUS	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
+	var/status_flags = CANSTUN|CANKNOCKDOWN|CANKNOCKOUT|CANPUSH|CANUNCONSCIOUS|CANCONFUSE	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
 	var/generic_canpass = TRUE
+	///TRUE if we should not push or shuffle on bump/enter
+	var/moving_diagonally = FALSE
 
 	var/initial_language_holder = /datum/language_holder
 	var/datum/language_holder/language_holder
@@ -86,6 +85,8 @@
 	QDEL_NULL(language_holder)
 	QDEL_NULL(em_block)
 
+	var/old_loc = loc
+
 	if(opacity)
 		RemoveElement(/datum/element/light_blocking)
 
@@ -108,6 +109,10 @@
 	LAZYCLEARLIST(client_mobs_in_contents)
 
 	moveToNullspace()
+
+	if(smoothing_behavior && isturf(old_loc))
+		smooth_neighbors(old_loc)
+	
 	invisibility = INVISIBILITY_ABSTRACT
 
 	pulledby?.stop_pulling()
@@ -146,185 +151,113 @@
  */
 /atom/movable/proc/abstract_move(atom/new_loc)
 	var/atom/old_loc = loc
-	move_stacks++
 	loc = new_loc
 	Moved(old_loc)
 
-////////////////////////////////////////
-// Here's where we rewrite how byond handles movement except slightly different
-// To be removed on step_ conversion
-// All this work to prevent a second bump
-/atom/movable/Move(atom/newloc, direction, glide_size_override = 0)
-	. = FALSE
-	if(!newloc || newloc == loc)
-		return
+/**
+ * The move proc is responsible for (in order):
+ * - Checking if you can move out of the current loc (The exit proc, which calls on_exit through the connect_loc)
+ * - Checking if you can move into the new loc (The enter proc, which calls on_enter through the connect_loc and is also overwritten by some atoms)
+ *   This is where most bumps take place
+ * - If you can do both, then it changes the loc var calls Exited on the old loc, and Entered on the new loc
+ * - After that, it does some area checks, calls Moved and handle pulling/buckled mobs.area
+ *
+ * A diagonal move is slightly different as Moved, entered and exited is called only once
+ * In order of calling:
+ * - Check if you can exit the current loc
+ * - Check if it's a diagonal move
+ * - If yes, check if you could exit the turf in that direction, and then if you can enter it (This calls on_exit and on_enter)
+ * - Check if you can enter the final new loc
+ * - Do the rest of the Move proc normally (Moved, entered, exited, check area change etc)
+ *
+ * Warning : Doesn't support well multi-tile diagonal moves
+ */
+/atom/movable/Move(atom/newloc, direction, glide_size_override)
+	var/atom/movable/pullee = pulling
+	if(!moving_from_pull)
+		check_pulling()
+	if(!loc || !newloc || loc == newloc)
+		return FALSE
 
 	if(!direction)
 		direction = get_dir(src, newloc)
 
-	if(!(flags_atom & DIRLOCK))
-		setDir(direction)
+	var/can_pass_diagonally = NONE
+	if (direction & (direction - 1)) //Check if the first part of the diagonal move is possible
+		moving_diagonally = TRUE
+		if(!(flags_atom & DIRLOCK))
+			setDir(direction) //We first set the direction to prevent going through dir sensible object
+		if((direction & NORTH) && loc.Exit(src, NORTH) && get_step(loc, NORTH).Enter(src))
+			can_pass_diagonally = NORTH
+		else if((direction & SOUTH) && loc.Exit(src, SOUTH) && get_step(loc, SOUTH).Enter(src))
+			can_pass_diagonally = SOUTH
+		else if((direction & EAST) && loc.Exit(src, EAST) && get_step(loc, EAST).Enter(src))
+			can_pass_diagonally =  EAST
+		else if((direction & WEST) && loc.Exit(src, WEST) && get_step(loc, WEST).Enter(src))
+			can_pass_diagonally = WEST
+		else
+			moving_diagonally = FALSE
+			return
+		moving_diagonally = FALSE
+		if(!get_step(loc, can_pass_diagonally)?.Exit(src, direction & ~can_pass_diagonally))
+			return Move(get_step(loc, can_pass_diagonally), can_pass_diagonally)
+		if(!(flags_atom & DIRLOCK)) //We want to set the direction to be the one of the "second" diagonal move, aka not can_pass_diagonally
+			setDir(direction &~ can_pass_diagonally)
 
-	var/is_multi_tile_object = bound_width > 32 || bound_height > 32
-
-	var/list/old_locs
-	if(is_multi_tile_object && isturf(loc))
-		old_locs = locs.Copy()
-		for(var/atom/exiting_loc as anything in old_locs)
-			if(!exiting_loc.Exit(src, direction))
-				return
 	else
 		if(!loc.Exit(src, direction))
 			return
-
-	var/list/new_locs
-	if(is_multi_tile_object && isturf(newloc))
-		new_locs = block(
-			newloc,
-			locate(
-				min(world.maxx, newloc.x + CEILING(bound_width / 32, 1)),
-				min(world.maxy, newloc.y + CEILING(bound_height / 32, 1)),
-				newloc.z
-				)
-		) // If this is a multi-tile object then we need to predict the new locs and check if they allow our entrance.
-		for(var/atom/entering_loc as anything in new_locs)
-			if(!entering_loc.Enter(src))
-				return
-			if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_MOVE, entering_loc))
-				return
-	else // Else just try to enter the single destination.
-		if(!newloc.Enter(src))
-			return
-		if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_MOVE, newloc))
-			return
+		if(!(flags_atom & DIRLOCK))
+			setDir(direction)
+	
+	var/enter_return_value = newloc.Enter(src)
+	if(!(enter_return_value & TURF_CAN_ENTER))
+		if(can_pass_diagonally && !(enter_return_value & TURF_ENTER_ALREADY_MOVED))
+			return Move(get_step(loc, can_pass_diagonally), can_pass_diagonally)
+		return
 
 	var/atom/oldloc = loc
+	loc = newloc
+	oldloc.Exited(src, direction)
+
+	if(!loc || loc == oldloc)
+		last_move = 0
+		return
+
 	var/area/oldarea = get_area(oldloc)
 	var/area/newarea = get_area(newloc)
-	move_stacks++
-	loc = newloc
-	. = TRUE
-
-	if(old_locs) // This condition will only be true if it is a multi-tile object.
-		for(var/atom/exited_loc as anything in (old_locs - new_locs))
-			exited_loc.Exited(src, direction)
-	else // Else there's just one loc to be exited.
-		oldloc.Exited(src, direction)
 
 	if(oldarea != newarea)
 		oldarea.Exited(src, direction)
 
-	if(new_locs) // Same here, only if multi-tile.
-		for(var/atom/entered_loc as anything in (new_locs - old_locs))
-			entered_loc.Entered(src, oldloc, old_locs)
-	else
-		newloc.Entered(src, oldloc, old_locs)
+	newloc.Entered(src, oldloc)
 
 	if(oldarea != newarea)
 		newarea.Entered(src, oldarea)
 
-
-////////////////////////////////////////
-
-/atom/movable/Move(atom/newloc, direct, glide_size_override)
-	var/atom/movable/pullee = pulling
-	var/turf/T = loc
-	if(!moving_from_pull)
-		check_pulling()
-	if(!loc || !newloc)
-		return FALSE
-	var/atom/oldloc = loc
-
-	//Early override for some cases like diagonal movement
-	var/old_glide_size
-	if(!isnull(glide_size_override) && glide_size_override != glide_size && !glide_modifier_flags)
-		old_glide_size = glide_size
+	if(glide_size_override)
 		set_glide_size(glide_size_override)
 
-	if(loc != newloc)
-		if(!(direct & (direct - 1))) //Cardinal move
-			. = ..()
-		else //Diagonal move, split it into cardinal moves
-			moving_diagonally = FIRST_DIAG_STEP
-			var/first_step_dir
-			// The `&& moving_diagonally` checks are so that a forceMove taking
-			// place due to a Crossed, Bumped, etc. call will interrupt
-			// the second half of the diagonal movement, or the second attempt
-			// at a first half if step() fails because we hit something.
-			if(direct & NORTH)
-				if(direct & EAST)
-					if(step(src, NORTH) && moving_diagonally)
-						first_step_dir = NORTH
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, EAST)
-					else if(moving_diagonally && step(src, EAST))
-						first_step_dir = EAST
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, NORTH)
-				else if(direct & WEST)
-					if(step(src, NORTH) && moving_diagonally)
-						first_step_dir = NORTH
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, WEST)
-					else if(moving_diagonally && step(src, WEST))
-						first_step_dir = WEST
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, NORTH)
-			else if(direct & SOUTH)
-				if(direct & EAST)
-					if(step(src, SOUTH) && moving_diagonally)
-						first_step_dir = SOUTH
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, EAST)
-					else if(moving_diagonally && step(src, EAST))
-						first_step_dir = EAST
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, SOUTH)
-				else if(direct & WEST)
-					if(step(src, SOUTH) && moving_diagonally)
-						first_step_dir = SOUTH
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, WEST)
-					else if(moving_diagonally && step(src, WEST))
-						first_step_dir = WEST
-						moving_diagonally = SECOND_DIAG_STEP
-						. = step(src, SOUTH)
-			if(moving_diagonally == SECOND_DIAG_STEP)
-				if(!. && !(flags_atom & DIRLOCK))
-					setDir(first_step_dir)
-				moving_diagonally = 0
-				return TRUE
-			moving_diagonally = 0
-			return
+	Moved(oldloc, direction)
 
-	if(!loc || (loc == oldloc && oldloc != newloc))
-		last_move = 0
-		return
-
-	if(.)
-		Moved(oldloc, direct)
-
-	if(. && pulling && pulling == pullee && pulling != moving_from_pull) //we were pulling a thing and didn't lose it during our move.
+	if(pulling && pulling == pullee && pulling != moving_from_pull) //we were pulling a thing and didn't lose it during our move.
 		if(pulling.anchored)
 			stop_pulling()
 		else
 			var/pull_dir = get_dir(src, pulling)
 			//puller and pullee more than one tile away or in diagonal position
-			if(get_dist(src, pulling) > 1 || (moving_diagonally != SECOND_DIAG_STEP && ((pull_dir - 1) & pull_dir)))
+			if(get_dist(src, pulling) > 1 || (pull_dir - 1) & pull_dir)
 				pulling.moving_from_pull = src
-				pulling.Move(T, get_dir(pulling, T)) //the pullee tries to reach our previous position
+				pulling.Move(oldloc, get_dir(pulling, oldloc), glide_size_override) //the pullee tries to reach our previous position
 				pulling.moving_from_pull = null
 			check_pulling()
 
-	if(!isnull(old_glide_size))
-		set_glide_size(old_glide_size)
-
-	last_move = direct
+	last_move = direction
 	last_move_time = world.time
-	if(!(flags_atom & DIRLOCK))
-		setDir(direct)
-	if(. && LAZYLEN(buckled_mobs) && !handle_buckled_mob_movement(loc, direct)) //movement failed due to buckled mob(s)
+
+	if(LAZYLEN(buckled_mobs) && !handle_buckled_mob_movement(loc, direction)) //movement failed due to buckled mob(s)
 		return FALSE
+	return TRUE
 
 
 /atom/movable/Bump(atom/A)
@@ -332,13 +265,12 @@
 	if(!A)
 		CRASH("Bump was called with no argument.")
 	if(SEND_SIGNAL(src, COMSIG_MOVABLE_BUMP, A) & COMPONENT_BUMP_RESOLVED)
-		return TRUE
+		return COMPONENT_BUMP_RESOLVED
 	. = ..()
 	if(throwing)
-		throw_impact(A)
-		. = TRUE
-		if(QDELETED(A))
-			return
+		. = throw_impact(A)
+	if(QDELETED(A))
+		return
 	A.Bumped(src)
 
 
@@ -394,13 +326,6 @@
 	if(length(client_mobs_in_contents))
 		update_parallax_contents()
 
-	move_stacks--
-	if(move_stacks > 0) //we want only the first Moved() call in the stack to send this signal, all the other ones have an incorrect old_loc
-		return
-	if(move_stacks < 0)
-		stack_trace("move_stacks is negative in Moved()!")
-		move_stacks = 0 //setting it to 0 so that we dont get every movable with negative move_stacks runtiming on every movement
-
 	if(pulledby)
 		SEND_SIGNAL(src, COMSIG_MOVABLE_PULL_MOVED, old_loc, movement_dir, forced, old_locs)
 	//Cycle through the light sources on this atom and tell them to update.
@@ -427,7 +352,6 @@
 
 /atom/movable/proc/doMove(atom/destination)
 	. = FALSE
-	move_stacks++
 	var/atom/oldloc = loc
 	if(destination)
 		if(pulledby)
@@ -473,15 +397,15 @@
 	if(LAZYLEN(gone.important_recursive_contents))
 		var/list/nested_locs = get_nested_locs(src) + src
 		for(var/channel in gone.important_recursive_contents)
-			for(var/atom/movable/location as anything in nested_locs)
+			for(var/atom/movable/location AS in nested_locs)
 				LAZYREMOVEASSOC(location.important_recursive_contents, channel, gone.important_recursive_contents[channel])
 
-/atom/movable/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+/atom/movable/Entered(atom/movable/arrived, atom/old_loc)
 	. = ..()
 	if(LAZYLEN(arrived.important_recursive_contents))
 		var/list/nested_locs = get_nested_locs(src) + src
 		for(var/channel in arrived.important_recursive_contents)
-			for(var/atom/movable/location as anything in nested_locs)
+			for(var/atom/movable/location AS in nested_locs)
 				LAZYORASSOCLIST(location.important_recursive_contents, channel, arrived.important_recursive_contents[channel])
 
 //called when src is thrown into hit_atom
@@ -529,9 +453,6 @@
 	set waitfor = FALSE
 	if(!target || !src)
 		return FALSE
-	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
-	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_THROW, target, range, thrower, spin) & COMPONENT_CANCEL_THROW)
-		return
 
 	if(spin)
 		animation_spin(5, 1)
@@ -539,6 +460,12 @@
 	if(!flying)
 		set_throwing(TRUE)
 		src.thrower = thrower
+	
+	var/originally_dir_locked = flags_atom & DIRLOCK
+	if(!originally_dir_locked)
+		setDir(get_dir(src, target))
+		flags_atom |= DIRLOCK
+	
 
 	throw_source = get_turf(src)	//store the origin turf
 
@@ -616,6 +543,8 @@
 					sleep(1)
 
 	//done throwing, either because it hit something or it finished moving
+	if(!originally_dir_locked)
+		flags_atom &= ~DIRLOCK
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
 	if(loc)
@@ -692,7 +621,7 @@
 			pixel_x_diff = -8
 			pixel_y_diff = -8
 
-	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 0.2 SECONDS)
+	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 0.2 SECONDS, flags = ANIMATION_PARALLEL)
 	animate(pixel_x = pixel_x - pixel_x_diff, pixel_y = pixel_y - pixel_y_diff, time = 0.2 SECONDS)
 
 
@@ -940,7 +869,7 @@
 		if(pulling.anchored)
 			stop_pulling()
 			return
-	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1)		//separated from our puller and not in the middle of a diagonal move.
+	if(pulledby && get_dist(src, pulledby) > 1)		//separated from our puller and not in the middle of a diagonal move.
 		pulledby.stop_pulling()
 
 
@@ -1107,51 +1036,6 @@
 		blocker_opinion = TRUE
 
 	return blocker_opinion
-
-///returns FALSE if there isnt line of sight to target within view dist and TRUE if there is
-/atom/movable/proc/line_of_sight(atom/target, view_dist = WORLD_VIEW_NUM)
-	if(QDELETED(target))
-		return FALSE
-
-	if(z != target.z) //No multi-z.
-		return FALSE
-
-	var/total_distance = get_dist(src, target)
-
-	if(total_distance > view_dist)
-		return FALSE
-
-	switch(total_distance)
-		if(-1)
-			if(target == src) //We can see ourselves alright.
-				return TRUE
-			else //Standard get_dist() error condition.
-				return FALSE
-		if(null) //Error, does not compute.
-			CRASH("get_dist returned null on line_of_sight() with [src] as src and [target] as target")
-		if(0, 1) //We can see our own tile and the next one regardless.
-			return TRUE
-
-	var/turf/turf_to_check = get_turf(src)
-	var/turf/target_turf = get_turf(target)
-
-	for(var/i in 1 to total_distance - 1)
-		turf_to_check = get_step(turf_to_check, get_dir(turf_to_check, target_turf))
-		if(IS_OPAQUE_TURF(turf_to_check))
-			return FALSE //First and last turfs' opacity don't matter, but the ones in-between do.
-		for(var/obj/stuff_in_turf in turf_to_check)
-			if(!stuff_in_turf.opacity)
-				continue //Transparent, we can see through it.
-			if(!CHECK_BITFIELD(stuff_in_turf.flags_atom, ON_BORDER))
-				return FALSE //Opaque and not on border. We can't see through this tile, it's over.
-			if(ISDIAGONALDIR(stuff_in_turf.dir))
-				return FALSE //Opaque fulltile window.
-			if(CHECK_BITFIELD(dir, stuff_in_turf.dir))
-				return FALSE //Same direction and opaque, blocks our view.
-			if(CHECK_BITFIELD(dir, REVERSE_DIR(stuff_in_turf.dir)))
-				return FALSE //Doesn't block this tile, but it does block the next, and this is not the last pass.
-
-	return TRUE
 
 ///allows this movable to hear and adds itself to the important_recursive_contents list of itself and every movable loc its in
 /atom/movable/proc/become_hearing_sensitive(trait_source = TRAIT_GENERIC)

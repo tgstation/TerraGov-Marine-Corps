@@ -229,6 +229,14 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	priority_announce("WARNING: Psychic anomaly detected at [get_area(buyer)]. Assault of the area reccomended.", "TGMC Intel Division")
 	return ..()
 
+/datum/hive_upgrade/xenos/smart_minions
+	name = GHOSTS_CAN_TAKE_MINIONS
+	desc = "Allow ghosts to take control of minions"
+	icon = "smartminions"
+	flags_gamemode = ABILITY_DISTRESS
+	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
+	psypoint_cost = 500
+
 /datum/hive_upgrade/primordial
 	category = "Primordial"
 	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
@@ -283,6 +291,12 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	psypoint_cost = 225
 	icon = "primocrush"
 
+/datum/hive_upgrade/primordial/gorger
+	name = PRIMORDIAL_GORGER
+	desc = "Unlocks the primordial gorger's rejuvenate. An ability that allows them to significantly reduce incoming harm at the cost of being slown down."
+	psypoint_cost = 225
+	icon = "primogorger"
+
 /datum/hive_upgrade/primordial/hunter
 	name = PRIMORDIAL_HUNTER
 	desc = "Replaces the hunters stealth ability with the ability to disguise itself as any object."
@@ -294,6 +308,12 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Unlocks the primordial defenders centrifugal force. An ability that allows them to rapidly spin and attack enemies nearby."
 	psypoint_cost = 75
 	icon = "primodefender"
+
+/datum/hive_upgrade/primordial/warrior
+	name = PRIMORDIAL_WARRIOR
+	desc = "Unlocks the primordial warriors jab and empowered abilities. A ranged punch, on primordial every 3rd ability cast from a warrior will be an improved version of itself."
+	psypoint_cost = 125
+	icon = "primowarrior"
 
 /datum/hive_upgrade/primordial/runner
 	name = PRIMORDIAL_RUNNER
@@ -318,6 +338,12 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Unlocks the primordial bull agile charge, which allows him to change direction while charging, even diagonally"
 	psypoint_cost = 125
 	icon = "primobull"
+
+/datum/hive_upgrade/primordial/praetorian
+	name = PRIMORDIAL_PRAETORIAN
+	desc = "Unlocks the primordial praetorian acid dash, allowing them to quickly reposition while leaving an acid trail behind."
+	psypoint_cost = 225
+	icon = "primopraetorian"
 
 /datum/hive_upgrade/primordial/boiler
 	name = PRIMORDIAL_BOILER

@@ -22,8 +22,7 @@
 "j" = (
 /obj/machinery/door_control{
 	id = "minidropship_podlock";
-	name = "outer door-control";
-	pixel_y = 32
+	name = "outer door-control"
 	},
 /turf/open/floor/mainship/orange{
 	dir = 5

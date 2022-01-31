@@ -12,6 +12,8 @@
 #define PAIN_REDUCTION_HEAVY -35 //paracetamol
 #define PAIN_REDUCTION_VERY_HEAVY -50 //tramadol
 
+#define PAIN_REACTIVITY 0.15
+
 
 //Nutrition
 
@@ -307,26 +309,26 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define NO_BREATHE (1<<1)
 #define NO_SCAN (1<<2)
 #define NO_PAIN (1<<3)
-#define NO_SLIP (1<<4)
-#define NO_OVERDOSE (1<<5)
-#define NO_POISON (1<<6)
-#define NO_CHEM_METABOLIZATION (1<<7)
-#define HAS_SKIN_TONE (1<<8)
-#define HAS_SKIN_COLOR (1<<9)
-#define HAS_LIPS (1<<10)
-#define HAS_UNDERWEAR (1<<11)
-#define HAS_NO_HAIR (1<<12)
-#define IS_PLANT (1<<13)
-#define IS_SYNTHETIC (1<<14)
-#define NO_STAMINA (1<<15)
-#define DETACHABLE_HEAD (1<<16)
-#define USES_ALIEN_WEAPONS (1<<17)
-#define NO_DAMAGE_OVERLAY (1<<18)
-#define CAN_VENTCRAWL (1<<19)
-#define HEALTH_HUD_ALWAYS_DEAD (1<<20)
-#define PARALYSE_RESISTANT (1<<21)
-#define ROBOTIC_LIMBS (1<<22)
-#define GREYSCALE_BLOOD (1<<23)
+#define NO_OVERDOSE (1<<4)
+#define NO_POISON (1<<5)
+#define NO_CHEM_METABOLIZATION (1<<6)
+#define HAS_SKIN_TONE (1<<7)
+#define HAS_SKIN_COLOR (1<<8)
+#define HAS_LIPS (1<<9)
+#define HAS_UNDERWEAR (1<<10)
+#define HAS_NO_HAIR (1<<11)
+#define IS_PLANT (1<<12)
+#define IS_SYNTHETIC (1<<13)
+#define NO_STAMINA (1<<14)
+#define DETACHABLE_HEAD (1<<15)
+#define USES_ALIEN_WEAPONS (1<<16)
+#define NO_DAMAGE_OVERLAY (1<<17)
+#define CAN_VENTCRAWL (1<<18)
+#define HEALTH_HUD_ALWAYS_DEAD (1<<19)
+#define PARALYSE_RESISTANT (1<<20)
+#define ROBOTIC_LIMBS (1<<21)
+#define GREYSCALE_BLOOD (1<<22)
+#define IS_INSULATED (1<<23)
 
 //=================================================
 
@@ -346,6 +348,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define MOB_CONNECTED 0
 #define MOB_RECENTLY_DISCONNECTED 1 //Still within the grace period.
 #define MOB_DISCONNECTED 2
+#define MOB_AGHOSTED 3 //This body was just aghosted, do not offer it
 
 //Mob sizes
 #define MOB_SIZE_SMALL 0
@@ -500,8 +503,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_IS_STRONG (1<<16)//can tear open acided walls without being big
 #define CASTE_CAN_CORRUPT_GENERATOR (1<<17) //Can corrupt a generator
 #define CASTE_IS_BUILDER (1<<18) //whether we are classified as a builder caste
-#define CAN_BECOME_KING (1<<19) //Can be choose to become a king
-#define CAN_RIDE_CRUSHER (1<<20) //Can ride a crusher
+#define CASTE_CAN_BECOME_KING (1<<19) //Can be choose to become a king
+#define CASTE_CAN_RIDE_CRUSHER (1<<20) //Can ride a crusher
+#define CASTE_IS_A_MINION (1<<21) //That's a dumb ai
 
 //Charge-Crush
 #define CHARGE_OFF 0
@@ -569,6 +573,27 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CRUSHER_CHARGE_BARRICADE_MULTI 60
 #define CRUSHER_CHARGE_RAZORWIRE_MULTI 100
 #define CRUSHER_CHARGE_TANK_MULTI 100
+
+//gorger defines
+#define GORGER_REGURGITATE_DELAY 1 SECONDS
+#define GORGER_DEVOUR_DELAY 2 SECONDS
+#define GORGER_DRAIN_INSTANCES 2 // amuont of times the target is drained
+#define GORGER_DRAIN_DELAY 1 SECONDS // time needed to drain a marine once
+#define GORGER_DRAIN_HEAL 40 // overheal gained each time the target is drained
+#define GORGER_DRAIN_BLOOD_DRAIN 20 // amount of plasma drained when feeding on something
+#define GORGER_TRANSFUSION_HEAL 0.3 // in %
+#define GORGER_REJUVENATE_DURATION -1
+#define GORGER_REJUVENATE_COST 20
+#define GORGER_REJUVENATE_SLOWDOWN 6
+#define GORGER_REJUVENATE_HEAL 0.05 //in %
+#define GORGER_REJUVENATE_THRESHOLD 0.10 //in %
+#define GORGER_PSYCHIC_LINK_CHANNEL 10 SECONDS
+#define GORGER_PSYCHIC_LINK_RANGE 10
+#define GORGER_PSYCHIC_LINK_REDIRECT 0.5 //in %
+#define GORGER_PSYCHIC_LINK_MIN_HEALTH 0.2 //in %
+#define GORGER_CARNAGE_HEAL 0.2
+#define GORGER_CARNAGE_MOVEMENT -0.5
+#define GORGER_FEAST_DURATION -1 // lasts indefinitely, self-cancelled when insufficient plasma left
 
 //carrier defines
 #define CARRIER_HUGGER_THROW_SPEED 2
@@ -650,6 +675,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS 2 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
 #define WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS 3 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
+
+//Warrior defines
+
+#define WARRIOR_COMBO_THRESHOLD 2 //After how many abilities should warrior get an empowered cast (2 meaning the 3rd one is empowered)
+#define WARRIOR_COMBO_FADEOUT_TIME 10 SECONDS //How much time does it take for a combo to completely disappear
 
 //Larva defines
 #define LARVA_VENT_CRAWL_TIME 1 SECONDS //Larva can crawl into vents fast

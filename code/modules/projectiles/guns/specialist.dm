@@ -61,6 +61,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	burst_amount = 1
 	accuracy_mult = 1.50
 	recoil = 2
+	scatter = 0
 
 	placed_overlay_iconstate = "antimat"
 
@@ -144,7 +145,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		laser_off(user)
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 		return
-	if(!can_see(user, laser_target, length=24))
+	if(!line_of_sight(user, laser_target, 24))
 		laser_off()
 		to_chat(user, span_danger("You lose sight of your target!"))
 		playsound(user,'sound/machines/click.ogg', 25, 1)
@@ -250,7 +251,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	fire_delay = 1.5 SECONDS
 	accuracy_mult = 1.50
-	scatter = 15
+	scatter = 3
 	recoil = 5
 	burst_amount = 1
 
@@ -289,12 +290,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/slavic,
-		/obj/item/attachable/slavicbarrel,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 22, "under_x" = 24, "under_y" = 13, "stock_x" = 20, "stock_y" = 14)
-	starting_attachment_types = list(/obj/item/attachable/scope/slavic, /obj/item/attachable/slavicbarrel)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 22, "under_x" = 32, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
+	starting_attachment_types = list(/obj/item/attachable/scope/slavic)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.8 SECONDS
 	aim_speed_modifier = 0.75
@@ -302,7 +302,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	fire_delay = 1.2 SECONDS
 	burst_amount = 1
 	accuracy_mult = 0.95
-	scatter = -20
+	scatter = -5
 	recoil = -1
 	wield_delay = 1.8 SECONDS
 
@@ -364,7 +364,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	fire_delay = 0.4 SECONDS
 	burst_amount = 1
 	accuracy_mult = 1.4
-	scatter = -15
+	scatter = -3
 	recoil = 2
 
 
@@ -449,10 +449,29 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	accuracy_mult = 1.75
 	recoil = 0
 	accuracy_mult_unwielded = 0.75
-	scatter = -5
-	scatter_unwielded = 5
+	scatter = -1
+	scatter_unwielded = 2
 
 	placed_overlay_iconstate = "pepper"
+
+
+/obj/item/weapon/gun/rifle/pepperball/pepperball_mini
+	name = "mini pepperball gun"
+	desc = "An attachable version of the TLLL-12 pepperball gun. It has a smaller magazine size and has a slower rate of fire."
+	icon_state = "pepperball_mini"
+	slot = ATTACHMENT_SLOT_UNDER
+	max_shells = 20
+	default_ammo_type = /obj/item/ammo_magazine/rifle/pepperball/pepperball_mini
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini)
+	force = 5
+	attachable_allowed = list()
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	flags_gun_features = GUN_IS_ATTACHMENT | GUN_WIELDED_FIRING_ONLY | GUN_ATTACHMENT_FIRE_ONLY | GUN_AMMO_COUNTER
+	fire_delay = 0.2 SECONDS
+	attach_delay = 3 SECONDS
+	detach_delay = 3 SECONDS
+	pixel_shift_x = 18
+	pixel_shift_y = 16
 
 //-------------------------------------------------------
 //M5 RPG
@@ -550,11 +569,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_FIREARMS
+	starting_attachment_types = list(/obj/item/attachable/scope/mini)
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
@@ -703,6 +722,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 
 	fire_delay = 1 SECONDS
 	burst_amount = 1

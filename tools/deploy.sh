@@ -13,7 +13,7 @@ mkdir -p \
     $1/_maps \
     $1/strings \
 	$1/tgui/public \
-	$1/tgui/packages/tgfont/dist
+	$1/tgui/packages/tgfont/static
 
 if [ -d ".git" ]; then
   mkdir -p $1/.git/logs
@@ -24,7 +24,7 @@ cp tgmc.dmb tgmc.rsc $1/
 cp -r _maps/* $1/_maps/
 cp -r strings/* $1/strings/
 cp -r tgui/public/* $1/tgui/public/
-cp -r tgui/packages/tgfont/dist/* $1/tgui/packages/tgfont/dist
+cp -r tgui/packages/tgfont/static/* $1/tgui/packages/tgfont/static
 
 #remove .dm files from _maps
 

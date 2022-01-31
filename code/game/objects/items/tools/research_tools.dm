@@ -46,11 +46,15 @@
 		to_chat(user, span_notice("[target_xeno] has already been probed."))
 		return ..()
 
-	if(user.skills.getRating(skill_type) < skill_threshold)
-		to_chat(user, "You need higher [skill_type] skill.")
-		return ..()
-
-	if(user.do_actions || !do_after(user, RESEARCH_DELAY, TRUE, target_xeno, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
+	if(user.skills.getRating("medical") < SKILL_MEDICAL_EXPERT)
+		user.visible_message(span_notice("[user] begins trying to find a cutting point on the [target_xeno].."),
+		span_notice("You begin trying to find a cutting point on the [target_xeno]..."))
+		var/fumbling_time = 15 SECONDS - 2 SECONDS * user.skills.getRating("medical")
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			return ..()
+	user.visible_message(span_notice("[user] begins cutting into the [target_xeno]."))
+	to_chat(user, span_info("You begin cutting into the [target_xeno]."))
+	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
 		return ..()
 
 	if(HAS_TRAIT(target_xeno, TRAIT_RESEARCHED))

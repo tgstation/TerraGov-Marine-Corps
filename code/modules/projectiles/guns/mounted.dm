@@ -31,7 +31,8 @@
 
 	default_ammo_type = /obj/item/ammo_magazine/tl102
 
-	scatter = 20
+	scatter = 10
+	deployed_scatter_change = -10
 	fire_delay = 0.25 SECONDS
 
 	burst_amount = 3
@@ -90,10 +91,11 @@
 
 	aim_slowdown = 3
 	scatter = 30
+	deployed_scatter_change = -27
 
 	fire_delay = 0.5
 	burst_amount = 3
-	burst_delay = 0.1
+	burst_delay = 0.1 SECONDS
 
 	aim_slowdown = 3
 	wield_delay = 5 SECONDS
@@ -118,7 +120,8 @@
 	default_ammo_type = /obj/item/ammo_magazine/heavymachinegun
 	allowed_ammo_types = list(/obj/item/ammo_magazine/heavymachinegun)
 
-	scatter = 25
+	scatter = 10
+	deployed_scatter_change = -8
 	fire_delay = 0.2 SECONDS
 
 	burst_amount = 1
@@ -189,10 +192,10 @@
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
 
-	scatter = 80 // you're not firing this standing.
+	scatter = 30 // you're not firing this standing.
 	deployed_scatter_change = -70 // innumerable amount of reduced scatter when deployed,
 	recoil = 3
-	scatter_unwielded = 85
+	scatter_unwielded = 45
 	fire_delay = 0.15 SECONDS
 	burst_amount = 1
 	deploy_time = 1 SECONDS

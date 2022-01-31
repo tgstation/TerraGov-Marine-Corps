@@ -1,14 +1,13 @@
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
-import { Button, Flex, Divider, Collapsible, AnimatedNumber, Box, Section, LabeledList, Icon, Input, Table } from '../components';
+import { Button, Flex, Divider, Collapsible, AnimatedNumber, Box, Section, LabeledList, Icon, Input, Table, Stack } from '../components';
 import { Window } from '../layouts';
 import { map } from 'common/collections';
 
 const category_icon = {
   'Operations': "parachute-box",
   'Weapons': "fighter-jet",
-  'Attachments': "microchip",
-  'Ammo': "space-shuttle",
+  'Explosives': "bomb",
   'Armor': "hard-hat",
   'Clothing': "tshirt",
   'Medical': "medkit",
@@ -31,7 +30,6 @@ export const Cargo = (props, context) => {
   const {
     supplypacks,
     approvedrequests,
-    export_history,
     deniedrequests,
     shopping_history,
     awaiting_delivery,
@@ -73,7 +71,7 @@ export const Cargo = (props, context) => {
               <OrderList type={deniedrequests} />
             )}
             {!!selectedPackCat
-              && (<Category selectedPackCat={selectedPackCat} />)}
+              && (<Category selectedPackCat={selectedPackCat} should_filter />)}
           </Window.Content>
         </Flex.Item>
       </Flex>
@@ -485,8 +483,21 @@ const Category = (props, context) => {
 
   const {
     selectedPackCat,
+    should_filter,
     level,
   } = props;
+
+  const [
+    filter,
+    setFilter,
+  ] = useLocalState(context, `pack-name-filter`, null);
+
+  const filterSearch = entry =>
+    should_filter && filter
+      ? supplypackscontents[entry].name
+        ?.toLowerCase()
+        .includes(filter.toLowerCase())
+      : true;
 
   return (
     <Section level={level || 1} title={
@@ -495,48 +506,64 @@ const Category = (props, context) => {
         {selectedMenu}
       </>
     }>
-      <Table>
-        { selectedPackCat.map(entry => {
-          const shop_list = shopping_list[entry] || 0;
-          const count = shop_list ? shop_list.count : 0;
-          const {
-            cost,
-          } = supplypackscontents[entry];
-          return (
-            <Table.Row key={entry.id}>
-              <Table.Cell width="130px">
-                <CategoryButton
-                  icon="fast-backward"
-                  disabled={!count}
-                  id={entry}
-                  mode="removeall" />
-                <CategoryButton
-                  icon="backward"
-                  disabled={!count}
-                  id={entry}
-                  mode="removeone" />
-                <Box width="25px" inline textAlign="center">
-                  { !!count && (
-                    <AnimatedNumber value={count} />
-                  )}
-                </Box>
-                <CategoryButton
-                  icon="forward"
-                  id={entry}
-                  mode="addone" />
-                <CategoryButton
-                  icon="fast-forward"
-                  disabled={cost > spare_points}
-                  id={entry}
-                  mode="addall" />
-              </Table.Cell>
-              <Table.Cell>
-                <Pack pack={entry} />
-              </Table.Cell>
-            </Table.Row>
-          );
-        }) }
-      </Table>
+      <Stack vertical>
+        {should_filter && (
+          <Stack.Item>
+            <Flex>
+              <Flex.Item width="60px">
+                Search :      
+              </Flex.Item>
+              <Flex.Item grow={1}>
+                <Input fluid onInput={(_e, value) => setFilter(value)} />
+              </Flex.Item>
+            </Flex>
+          </Stack.Item>
+        )}
+        <Stack.Item>
+          <Table>
+            { selectedPackCat.filter(filterSearch).map(entry => {
+              const shop_list = shopping_list[entry] || 0;
+              const count = shop_list ? shop_list.count : 0;
+              const {
+                cost,
+              } = supplypackscontents[entry];
+              return (
+                <Table.Row key={entry.id}>
+                  <Table.Cell width="130px">
+                    <CategoryButton
+                      icon="fast-backward"
+                      disabled={!count}
+                      id={entry}
+                      mode="removeall" />
+                    <CategoryButton
+                      icon="backward"
+                      disabled={!count}
+                      id={entry}
+                      mode="removeone" />
+                    <Box width="25px" inline textAlign="center">
+                      { !!count && (
+                        <AnimatedNumber value={count} />
+                      )}
+                    </Box>
+                    <CategoryButton
+                      icon="forward"
+                      id={entry}
+                      mode="addone" />
+                    <CategoryButton
+                      icon="fast-forward"
+                      disabled={cost > spare_points}
+                      id={entry}
+                      mode="addall" />
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Pack pack={entry} />
+                  </Table.Cell>
+                </Table.Row>
+              );
+            }) }
+          </Table>
+        </Stack.Item> 
+      </Stack>
     </Section>
   );
 };
@@ -616,7 +643,9 @@ export const CargoRequest = (props, context) => {
               <OrderList type={deniedrequests} readOnly={1} />
             )}
             {!!selectedPackCat
-              && (<Category selectedPackCat={selectedPackCat} />)}
+              && (<Category 
+                selectedPackCat={selectedPackCat} 
+                should_filter />)}
           </Window.Content>
         </Flex.Item>
       </Flex>

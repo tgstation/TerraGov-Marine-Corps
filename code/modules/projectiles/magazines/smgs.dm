@@ -101,8 +101,8 @@
 //GENERIC UZI //Based on the uzi submachinegun, of course.
 
 /obj/item/ammo_magazine/smg/uzi
-	name = "\improper GAL9 magazine (9mm)"
-	desc = "A magazine for the GAL9."
+	name = "\improper MP-2 magazine (9mm)"
+	desc = "A magazine for the MP-2."
 	caliber = CALIBER_9X21
 	icon_state = "uzi"
 	max_rounds = 32

@@ -135,11 +135,6 @@
 	update_nearby_icons()
 	return ..()
 
-/obj/structure/fence/Move()
-	var/ini_dir = dir
-	. = ..()
-	setDir(ini_dir)
-
 //This proc is used to update the icons of nearby windows.
 /obj/structure/fence/proc/update_nearby_icons()
 	update_icon()

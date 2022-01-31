@@ -6,11 +6,11 @@
 /area/magmoor/cave/northwest)
 "aai" = (
 /obj/effect/decal/cleanable/rune,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/cave/north)
 "aal" = (
 /obj/effect/decal/cleanable/rune,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/cave/northeast)
 "aaw" = (
 /obj/structure/cable,
@@ -325,6 +325,11 @@
 	},
 /turf/open/lavaland/lava/lpiece,
 /area/magmoor/compound/west)
+"arw" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 9
+	},
+/area/magmoor/landing)
 "arU" = (
 /obj/item/tool/pickaxe/drill,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -804,7 +809,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/button/door/open_only/landing_zone{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/magmoor/landing)
@@ -1156,6 +1161,15 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/lobby)
+"bem" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 8;
+	icon_state = "equip_base_l_wing"
+	},
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/magmoor/landing)
 "beU" = (
 /obj/effect/decal/cleanable/blood/writing,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -1590,6 +1604,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/security)
+"bzA" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/magmoor/landing/two)
 "bzU" = (
 /turf/closed/glass/thin/end{
 	dir = 8
@@ -3062,6 +3081,11 @@
 	dir = 6
 	},
 /area/magmoor/cave/north)
+"czm" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/magmoor/landing/two)
 "czr" = (
 /turf/open/lavaland/basalt/cave/corner{
 	dir = 1
@@ -3278,8 +3302,7 @@
 	},
 /obj/machinery/door_control{
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_y = 24
+	name = "Requesition Secure Storage"
 	},
 /turf/open/floor/mainship/orange{
 	dir = 1
@@ -3485,7 +3508,7 @@
 /turf/open/floor/plating/ground/concrete/edge,
 /area/magmoor/cave/northwest)
 "cLd" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/southwest)
 "cLL" = (
 /obj/structure/closet/secure_closet/miner,
@@ -3494,7 +3517,7 @@
 	},
 /area/magmoor/mining)
 "cLY" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/cave/mining/fossil)
 "cMy" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -3634,9 +3657,9 @@
 /area/magmoor/cave/northwest)
 "cQx" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "mining_garage";
-	name = "Mining Garage";
-	pixel_x = -24
+	name = "Mining Garage"
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -4537,9 +4560,9 @@
 /area/magmoor/medical/breakroom)
 "dqq" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "mining_garage";
-	name = "Mining Garage";
-	pixel_x = 24
+	name = "Mining Garage"
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/northwest)
@@ -4841,7 +4864,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/east)
 "dAi" = (
 /obj/structure/closet/secure_closet/scientist,
@@ -5288,7 +5311,7 @@
 	},
 /area/magmoor/research/rnd)
 "dNf" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/cave/west)
 "dNq" = (
 /obj/machinery/power/apc/drained,
@@ -5699,9 +5722,6 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/mainship/floor,
 /area/magmoor/research/rnd)
-"ean" = (
-/turf/closed/mineral/bigred,
-/area/magmoor/compound/northeast)
 "eao" = (
 /obj/machinery/navbeacon,
 /turf/open/floor/marking/delivery,
@@ -6226,9 +6246,9 @@
 /area/magmoor/cave/central)
 "euT" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "refinery2";
-	name = "Refinery 1 Shutter Control";
-	pixel_y = -24
+	name = "Refinery 1 Shutter Control"
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/west)
@@ -6458,7 +6478,7 @@
 	},
 /area/magmoor/cave/west)
 "eFp" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/southeast)
 "eFu" = (
 /obj/structure/window/framed/colony,
@@ -7088,9 +7108,9 @@
 /area/magmoor/cave/central)
 "fbH" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_y = -24
+	name = "Requesition Secure Storage"
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -7677,10 +7697,9 @@
 	},
 /area/magmoor/research)
 "ftZ" = (
-/obj/effect/decal/warning_stripes/thin{
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /area/magmoor/landing)
 "fuf" = (
 /obj/effect/ai_node,
@@ -7726,9 +7745,9 @@
 /area/magmoor/civilian/cook)
 "fvI" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "refinery1";
-	name = "Refinery 1 Shutter Control";
-	pixel_y = -24
+	name = "Refinery 1 Shutter Control"
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/west)
@@ -7864,7 +7883,7 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/cmo)
 "fCk" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/cave/north)
 "fCn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -8736,8 +8755,7 @@
 "ggu" = (
 /obj/machinery/door_control{
 	id = "refinery1";
-	name = "Refinery 1 Shutter Control";
-	pixel_y = 24
+	name = "Refinery 1 Shutter Control"
 	},
 /turf/open/floor/plating,
 /area/magmoor/mining/refinery)
@@ -9138,8 +9156,7 @@
 "guA" = (
 /obj/machinery/door_control{
 	id = "refinery2";
-	name = "Refinery 1 Shutter Control";
-	pixel_y = 24
+	name = "Refinery 1 Shutter Control"
 	},
 /turf/open/floor/plating,
 /area/magmoor/mining/refinery)
@@ -10010,6 +10027,11 @@
 	icon_state = "carpetside"
 	},
 /area/magmoor/research/researchdirector)
+"hgs" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/magmoor/landing)
 "hgy" = (
 /obj/machinery/conveyor{
 	dir = 8
@@ -10083,10 +10105,6 @@
 /obj/structure/flora/rock/alt2,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/west)
-"hjS" = (
-/obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating,
-/area/magmoor/landing)
 "hjY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
@@ -10413,7 +10431,7 @@
 /turf/open/floor/plating,
 /area/magmoor/mining/refinery)
 "huJ" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/northeast)
 "huQ" = (
 /obj/effect/decal/cleanable/rune/blank,
@@ -10444,12 +10462,6 @@
 "hwa" = (
 /turf/closed/wall/indestructible/bulkhead,
 /area/magmoor/landing/two)
-"hwz" = (
-/obj/machinery/conveyor{
-	dir = 9
-	},
-/turf/open/floor/plating,
-/area/magmoor/mining/refinery)
 "hxe" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -10615,10 +10627,10 @@
 	},
 /area/magmoor/medical/patient)
 "hDl" = (
-/obj/machinery/conveyor{
-	dir = 9
-	},
 /obj/item/ore/phoron,
+/obj/machinery/conveyor{
+	dir = 6
+	},
 /turf/open/floor/plating,
 /area/magmoor/mining/refinery)
 "hDy" = (
@@ -12106,7 +12118,7 @@
 	},
 /area/magmoor/mining/refinery)
 "iIm" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/landing/two)
 "iIW" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -13090,9 +13102,9 @@
 	dir = 8
 	},
 /obj/machinery/door_control{
+	dir = 4;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_x = -24
+	name = "Requesition Secure Storage"
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
@@ -13223,6 +13235,11 @@
 	dir = 1
 	},
 /area/magmoor/compound/west)
+"jvz" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 5
+	},
+/area/magmoor/landing)
 "jvG" = (
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
@@ -13891,7 +13908,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/east)
 "jTE" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/landing)
 "jTU" = (
 /obj/structure/barricade/guardrail{
@@ -15513,9 +15530,9 @@
 	dir = 6
 	},
 /obj/machinery/door_control{
+	dir = 1;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_y = -24
+	name = "Requesition Secure Storage"
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/northeast)
@@ -15615,13 +15632,12 @@
 /turf/open/lavaland/basalt/cave,
 /area/magmoor/cave/west)
 "lhz" = (
-/obj/effect/decal/warning_stripes/thin{
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/turf/open/floor/plating,
 /area/magmoor/compound/east)
 "lhP" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound)
 "lik" = (
 /turf/open/lavaland/lava/lpiece{
@@ -16108,9 +16124,9 @@
 	dir = 6
 	},
 /obj/machinery/door_control{
+	dir = 8;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_x = 24
+	name = "Requesition Secure Storage"
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/northeast)
@@ -16264,7 +16280,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/storage)
 "lGk" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/south)
 "lGP" = (
 /obj/structure/cargo_container{
@@ -16277,6 +16293,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/concrete,
 /area/magmoor/cave/west)
+"lGT" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating,
+/area/magmoor/landing/two)
 "lHp" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -16384,6 +16404,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/atmos)
+"lJj" = (
+/obj/effect/attach_point/weapon/dropship1,
+/turf/open/floor/plating,
+/area/magmoor/landing)
 "lJm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -16480,9 +16504,9 @@
 	dir = 10
 	},
 /obj/machinery/door_control{
+	dir = 4;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_x = -24
+	name = "Requesition Secure Storage"
 	},
 /turf/open/floor/mainship/orange{
 	dir = 8
@@ -16809,6 +16833,10 @@
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/storage)
+"mbL" = (
+/obj/effect/attach_point/electronics/dropship1,
+/turf/open/floor/plating,
+/area/magmoor/landing)
 "mbP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 9
@@ -16943,7 +16971,7 @@
 /turf/open/floor/plating,
 /area/magmoor/civilian/bar)
 "mgP" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/cave/southwest)
 "mgU" = (
 /obj/structure/rack,
@@ -18165,6 +18193,11 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/magmoor/security/arrivals/south)
+"nbk" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/magmoor/landing/two)
 "nbE" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 4
@@ -18551,9 +18584,9 @@
 	dir = 5
 	},
 /obj/machinery/door_control{
+	dir = 8;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_x = 24
+	name = "Requesition Secure Storage"
 	},
 /turf/open/floor/mainship/orange{
 	dir = 4
@@ -18599,9 +18632,9 @@
 	dir = 9
 	},
 /obj/machinery/door_control{
+	dir = 4;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_x = -24
+	name = "Requesition Secure Storage"
 	},
 /turf/open/floor/mainship/orange{
 	dir = 8
@@ -18756,11 +18789,10 @@
 	},
 /area/magmoor/engi/power)
 "nyO" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating,
 /area/magmoor/landing)
 "nzf" = (
 /obj/machinery/power/terminal{
@@ -19095,9 +19127,9 @@
 /area/magmoor/civilian/chapel)
 "nKK" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_y = -24
+	name = "Requesition Secure Storage"
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -19159,7 +19191,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/northeast)
 "nMx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -19896,6 +19928,11 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/southeast)
+"okW" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
+/area/magmoor/landing)
 "old" = (
 /obj/machinery/landinglight/ds1{
 	dir = 4
@@ -19961,6 +19998,10 @@
 	dir = 4
 	},
 /area/magmoor/hydroponics/south)
+"omJ" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating,
+/area/magmoor/landing)
 "omN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -21290,6 +21331,10 @@
 	dir = 8
 	},
 /area/magmoor/cargo/storage)
+"pdA" = (
+/obj/effect/attach_point/weapon/dropship1,
+/turf/open/floor/plating,
+/area/magmoor/landing/two)
 "peg" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/mainship/sterile/side{
@@ -21361,9 +21406,9 @@
 	dir = 4
 	},
 /obj/machinery/door_control{
+	dir = 8;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_x = 24
+	name = "Requesition Secure Storage"
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
@@ -21668,6 +21713,10 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/compound/northeast)
+"poQ" = (
+/obj/effect/attach_point/electronics/dropship1,
+/turf/open/floor/plating,
+/area/magmoor/landing/two)
 "poS" = (
 /turf/closed/glass/thin/corner{
 	dir = 4
@@ -21702,9 +21751,6 @@
 	dir = 1
 	},
 /area/magmoor/cargo/storage)
-"ppR" = (
-/turf/closed/mineral/bigred,
-/area/magmoor/compound/east)
 "pqi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -21827,11 +21873,10 @@
 /turf/open/floor/tile,
 /area/magmoor/mining/refinery)
 "pvz" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating,
 /area/magmoor/landing)
 "pvM" = (
 /obj/structure/bed/chair{
@@ -22745,6 +22790,9 @@
 /obj/structure/curtain/shower{
 	icon_state = "open"
 	},
+/obj/structure/mirror{
+	dir = 4
+	},
 /turf/open/floor/freezer,
 /area/magmoor/civilian/clean/shower)
 "pZL" = (
@@ -23454,6 +23502,7 @@
 /area/magmoor/civilian/cook)
 "qvH" = (
 /obj/machinery/door_control{
+	dir = 8;
 	id = "req_sec_storage";
 	name = "Requesition Secure Storage";
 	pixel_x = 24
@@ -24271,11 +24320,10 @@
 	},
 /area/magmoor/engi/storage)
 "rce" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating,
 /area/magmoor/landing/two)
 "rcg" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -24337,10 +24385,9 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/storage)
 "rek" = (
-/obj/effect/decal/warning_stripes/thin{
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/turf/open/floor/plating,
 /area/magmoor/landing)
 "rex" = (
 /obj/effect/landmark/weed_node,
@@ -24593,7 +24640,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/storage)
 "rpo" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/northwest)
 "rpt" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -24939,6 +24986,11 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/storage)
+"ryg" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 9
+	},
+/area/magmoor/landing/two)
 "ryj" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
@@ -25117,7 +25169,7 @@
 /area/magmoor/landing/two)
 "rCH" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/east)
 "rCI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -25997,6 +26049,15 @@
 /obj/structure/plasticflaps,
 /turf/open/floor/plating,
 /area/magmoor/engi/storage)
+"ses" = (
+/obj/effect/attach_point/weapon/dropship1{
+	dir = 8;
+	icon_state = "equip_base_l_wing"
+	},
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/magmoor/landing/two)
 "sev" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
@@ -26770,8 +26831,7 @@
 /turf/closed/glass/thin/single,
 /area/magmoor/compound/east)
 "sDi" = (
-/obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/plating,
+/turf/open/floor/plating/icefloor/warnplate,
 /area/magmoor/landing)
 "sDj" = (
 /obj/effect/landmark/weed_node,
@@ -26801,7 +26861,7 @@
 /area/magmoor/security)
 "sEj" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/south)
 "sEl" = (
 /turf/open/lavaland/basalt/cave{
@@ -28007,6 +28067,13 @@
 	dir = 1
 	},
 /area/magmoor/compound/northwest)
+"tsf" = (
+/obj/structure/curtain/shower,
+/obj/structure/mirror{
+	dir = 4
+	},
+/turf/open/floor/freezer,
+/area/magmoor/civilian/clean/shower)
 "tsh" = (
 /obj/structure/sign/directions/engineering{
 	dir = 1
@@ -28331,6 +28398,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing)
+"tCJ" = (
+/obj/machinery/conveyor/inverted{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/magmoor/mining/refinery)
 "tDe" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -28381,9 +28454,6 @@
 	},
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/compound/northwest)
-"tEn" = (
-/turf/closed/mineral/bigred,
-/area/magmoor/compound)
 "tEG" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Kitchen Storage"
@@ -28780,9 +28850,9 @@
 /area/magmoor/cave/west)
 "tTz" = (
 /obj/machinery/door_control{
+	dir = 4;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_x = -24
+	name = "Requesition Secure Storage"
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -28905,7 +28975,7 @@
 	},
 /area/magmoor/civilian/dorms)
 "tZk" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral,
 /area/magmoor/compound/north)
 "tZv" = (
 /turf/closed/glass/thin/end,
@@ -29272,9 +29342,10 @@
 	dir = 6
 	},
 /obj/machinery/door_control{
+	dir = 1;
 	id = "req_sec_storage";
 	name = "Requesition Secure Storage";
-	pixel_y = -24
+	pixel_y = -1
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/west)
@@ -29602,7 +29673,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/northeast)
 "uwb" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/cave/northeast)
 "uwf" = (
 /obj/structure/cable,
@@ -29683,6 +29754,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/black{
 	dir = 8
+	},
+/area/magmoor/landing/two)
+"uzt" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 5
 	},
 /area/magmoor/landing/two)
 "uzu" = (
@@ -30263,9 +30339,9 @@
 	dir = 6
 	},
 /obj/machinery/door_control{
+	dir = 1;
 	id = "req_sec_storage";
-	name = "Requesition Secure Storage";
-	pixel_y = -24
+	name = "Requesition Secure Storage"
 	},
 /turf/open/floor/mainship/orange,
 /area/magmoor/cargo/processing)
@@ -30595,7 +30671,7 @@
 	},
 /area/magmoor/command/lobby)
 "vah" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/east)
 "val" = (
 /obj/machinery/photocopier,
@@ -30941,9 +31017,6 @@
 /obj/item/tool/shovel,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
-"vkm" = (
-/turf/closed/mineral/bigred,
-/area/magmoor/compound/northwest)
 "vku" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -31023,6 +31096,11 @@
 	},
 /turf/open/floor/freezer,
 /area/magmoor/civilian/clean/toilet)
+"vmu" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 6
+	},
+/area/magmoor/landing)
 "vmF" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
 	name = "\improper Colony Offices"
@@ -31346,8 +31424,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing/two)
 "vuS" = (
-/obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/plating,
+/turf/open/floor/plating/icefloor/warnplate,
 /area/magmoor/landing/two)
 "vvL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -31423,7 +31500,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/hydroponics)
 "vyT" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/west)
 "vzt" = (
 /obj/effect/landmark/corpsespawner/colonist,
@@ -31997,9 +32074,6 @@
 	dir = 9
 	},
 /area/magmoor/command/lobby/east)
-"vUf" = (
-/turf/closed/mineral/bigred,
-/area/magmoor/compound/west)
 "vUm" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
@@ -32132,10 +32206,6 @@
 	},
 /turf/open/floor/plating,
 /area/magmoor/compound/north)
-"vXL" = (
-/obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating,
-/area/magmoor/landing/two)
 "vYa" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 10
@@ -33186,8 +33256,13 @@
 	},
 /area/magmoor/command/conference)
 "wyF" = (
-/obj/structure/mirror,
-/turf/closed/wall,
+/obj/structure/curtain/shower{
+	icon_state = "open"
+	},
+/obj/structure/mirror{
+	dir = 4
+	},
+/turf/open/floor/freezer,
 /area/magmoor/civilian/clean/shower)
 "wyL" = (
 /turf/closed/wall/r_wall,
@@ -33262,7 +33337,7 @@
 /area/magmoor/compound/east)
 "wAs" = (
 /obj/machinery/button/door/open_only/landing_zone/lz2{
-	dir = 8
+	dir = 4
 	},
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -34096,7 +34171,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/south)
 "wZE" = (
 /obj/machinery/light,
@@ -34602,10 +34677,9 @@
 	},
 /area/magmoor/landing/two)
 "xpT" = (
-/obj/effect/decal/warning_stripes/thin{
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/turf/open/floor/plating,
 /area/magmoor/landing/two)
 "xqz" = (
 /turf/open/lavaland/basalt/cave,
@@ -34616,14 +34690,13 @@
 	},
 /area/magmoor/compound/south)
 "xqP" = (
-/obj/effect/decal/warning_stripes/thin{
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /area/magmoor/landing/two)
 "xqS" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/compound/northeast)
 "xrg" = (
 /obj/machinery/landinglight/ds2/delaythree{
@@ -35589,11 +35662,10 @@
 	},
 /area/magmoor/compound/northeast)
 "xRI" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating,
 /area/magmoor/landing/two)
 "xRS" = (
 /obj/effect/landmark/weed_node,
@@ -36247,7 +36319,7 @@
 	},
 /area/magmoor/hydroponics)
 "yht" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/magmoor/cave/northwest)
 "yhB" = (
 /obj/structure/barricade/guardrail{
@@ -40993,7 +41065,7 @@ bQx
 bQx
 uwV
 uwV
-vUf
+rIi
 nYA
 uwV
 uwV
@@ -41693,7 +41765,7 @@ xpB
 oaU
 uwV
 kTD
-vUf
+rIi
 xjo
 uwV
 scL
@@ -41887,8 +41959,8 @@ nYL
 sMT
 nYL
 nYL
-vkm
-vkm
+cqU
+cqU
 nYL
 nYL
 nYL
@@ -42114,8 +42186,8 @@ nYL
 nYL
 nYL
 nYL
-vkm
-vkm
+cqU
+cqU
 nYL
 nYL
 nRO
@@ -42309,7 +42381,7 @@ mhT
 inJ
 mhT
 inJ
-iDr
+tCJ
 kHo
 igW
 fIc
@@ -42346,7 +42418,7 @@ nYL
 nYL
 nYL
 nYL
-vkm
+cqU
 nYL
 nYL
 nYL
@@ -42541,7 +42613,7 @@ hNq
 hMY
 mhT
 iCR
-iDr
+tCJ
 hgy
 kHo
 igW
@@ -42587,7 +42659,7 @@ sNs
 nYL
 nYL
 nYL
-vkm
+cqU
 nYL
 xaY
 yla
@@ -42773,7 +42845,7 @@ hzY
 kjG
 hTH
 hMY
-iDr
+tCJ
 iSC
 hgy
 kYW
@@ -42812,7 +42884,7 @@ nYL
 nYL
 nYL
 nYL
-vkm
+cqU
 nYL
 nYL
 nYL
@@ -43045,7 +43117,7 @@ nYL
 nYL
 nYL
 nYL
-vkm
+cqU
 nYL
 nYL
 nYL
@@ -43284,7 +43356,7 @@ nYL
 nYL
 nYL
 nYL
-vkm
+cqU
 nYL
 nYL
 nYL
@@ -43298,10 +43370,10 @@ xTg
 xLH
 yla
 tyz
-vkm
+cqU
 ylB
 ylB
-vUf
+rIi
 ylB
 xHJ
 xHJ
@@ -43534,7 +43606,7 @@ awJ
 nYL
 jns
 jns
-vUf
+rIi
 xjo
 uwV
 uwV
@@ -44228,12 +44300,12 @@ weR
 yla
 kPP
 tyz
-vkm
+cqU
 nYL
 nYL
 jns
 nzm
-vUf
+rIi
 uwV
 xwO
 gCc
@@ -44462,8 +44534,8 @@ yla
 tyz
 nYL
 nYL
-vkm
-vkm
+cqU
+cqU
 xHJ
 xjo
 uwV
@@ -45890,7 +45962,7 @@ jns
 jns
 jns
 jns
-vUf
+rIi
 jns
 jns
 vFQ
@@ -46120,8 +46192,8 @@ ybT
 cSs
 kTD
 jns
-vUf
-vUf
+rIi
+rIi
 jns
 jns
 jns
@@ -46353,7 +46425,7 @@ ybT
 uwV
 kTD
 jns
-vUf
+rIi
 jns
 jns
 dKn
@@ -46592,7 +46664,7 @@ jns
 qmz
 jns
 jns
-vUf
+rIi
 jns
 jns
 nzm
@@ -46729,7 +46801,7 @@ fIc
 igW
 iLl
 hiH
-hwz
+iDr
 kjG
 mhe
 irk
@@ -46961,7 +47033,7 @@ fIc
 erq
 igW
 iLl
-hwz
+iDr
 kjG
 mhT
 irk
@@ -47286,12 +47358,12 @@ uwV
 kTD
 jns
 jns
-vUf
-vUf
+rIi
+rIi
 jns
 jns
 jns
-vUf
+rIi
 jns
 jns
 nzm
@@ -47520,11 +47592,11 @@ xWK
 xHJ
 xHJ
 xHJ
-vUf
+rIi
 xHJ
 xHJ
 xHJ
-vUf
+rIi
 xHJ
 xHJ
 xjo
@@ -49153,7 +49225,7 @@ giO
 qGt
 qGt
 qGt
-giO
+wyF
 bKT
 uEo
 uwV
@@ -49386,7 +49458,7 @@ uEo
 dnc
 eyu
 cvM
-wyF
+uEo
 uEo
 uEo
 uwV
@@ -49852,7 +49924,7 @@ uEo
 qkK
 eyu
 tHD
-wyF
+uEo
 uEo
 uEo
 hkW
@@ -50085,7 +50157,7 @@ giO
 krh
 qKl
 hOD
-giO
+wyF
 bKT
 uEo
 hkW
@@ -50318,7 +50390,7 @@ uEo
 mbU
 eyu
 vBU
-wyF
+uEo
 uEo
 uEo
 hkW
@@ -50551,7 +50623,7 @@ giO
 krh
 eyu
 hOD
-vqF
+tsf
 vWp
 uEo
 hkW
@@ -50784,7 +50856,7 @@ uEo
 cfc
 niH
 hOD
-wyF
+uEo
 uEo
 uEo
 hkW
@@ -52194,7 +52266,7 @@ emZ
 emZ
 fdQ
 emZ
-tEn
+srA
 emZ
 kgD
 hkW
@@ -52424,7 +52496,7 @@ qey
 hkW
 hOi
 emZ
-tEn
+srA
 emZ
 emZ
 emZ
@@ -53125,7 +53197,7 @@ hOi
 emZ
 ygP
 emZ
-tEn
+srA
 emZ
 emZ
 mDe
@@ -53587,7 +53659,7 @@ hkW
 uDu
 qey
 hkW
-tEn
+srA
 emZ
 emZ
 wxu
@@ -55694,11 +55766,11 @@ wXc
 bnl
 yjc
 yjc
-tEn
+srA
 yjc
 yjc
 yjc
-tEn
+srA
 hkW
 uDu
 kDG
@@ -56129,7 +56201,7 @@ yjc
 yjc
 yjc
 yjc
-tEn
+srA
 yjc
 emZ
 cBi
@@ -56356,7 +56428,7 @@ wTG
 wTG
 fxn
 emZ
-tEn
+srA
 emZ
 emZ
 emZ
@@ -56391,13 +56463,13 @@ xSv
 scg
 qey
 hkW
-tEn
-tEn
+srA
+srA
 gDH
 wXc
 wXc
 kgD
-tEn
+srA
 hkW
 uDu
 qey
@@ -56589,9 +56661,9 @@ xjY
 wTI
 xjX
 wTG
-tEn
-tEn
-tEn
+srA
+srA
+srA
 emZ
 emZ
 emZ
@@ -56824,12 +56896,12 @@ wAt
 wAt
 wAt
 xIO
-tEn
+srA
 wTG
 fxn
 emZ
 emZ
-tEn
+srA
 cBi
 vSp
 tCe
@@ -57830,27 +57902,27 @@ peM
 kEk
 kEk
 hTR
-pVi
-pVi
-hjS
-pVi
-pVi
-pVi
-pVi
-pVi
+arw
+rek
+rek
+rek
+rek
+rek
+rek
+bem
 rek
 rek
 pvz
 rek
 rek
-pVi
-pVi
-pVi
-pVi
-pVi
-pVi
-hjS
-pVi
+rek
+rek
+rek
+rek
+rek
+rek
+rek
+okW
 rxn
 peM
 wtL
@@ -58063,6 +58135,10 @@ peM
 kEk
 kEk
 pzk
+hgs
+pVi
+omJ
+lJj
 pVi
 pVi
 pVi
@@ -58077,13 +58153,9 @@ pVi
 pVi
 pVi
 pVi
+omJ
 pVi
-pVi
-pVi
-pVi
-pVi
-pVi
-pVi
+sDi
 sKY
 nID
 ftf
@@ -58296,6 +58368,10 @@ mJq
 kEk
 kEk
 sLe
+hgs
+pVi
+pVi
+mbL
 pVi
 pVi
 pVi
@@ -58312,11 +58388,7 @@ pVi
 pVi
 pVi
 pVi
-pVi
-pVi
-pVi
-pVi
-pVi
+sDi
 aXu
 peM
 wtL
@@ -58529,6 +58601,7 @@ peM
 kEk
 kEk
 jKZ
+hgs
 pVi
 pVi
 pVi
@@ -58548,8 +58621,7 @@ pVi
 pVi
 pVi
 pVi
-pVi
-pVi
+sDi
 rXL
 peM
 wtL
@@ -58762,7 +58834,7 @@ peM
 kEk
 kEk
 odU
-pVi
+hgs
 pVi
 pVi
 pVi
@@ -58995,7 +59067,7 @@ peM
 kEk
 kEk
 pzk
-pVi
+hgs
 pVi
 pVi
 pVi
@@ -59228,7 +59300,7 @@ peM
 kEk
 kEk
 sLe
-pVi
+hgs
 pVi
 pVi
 pVi
@@ -59461,6 +59533,7 @@ mJq
 kEk
 kEk
 hdd
+hgs
 pVi
 pVi
 pVi
@@ -59480,8 +59553,7 @@ pVi
 pVi
 pVi
 pVi
-pVi
-pVi
+sDi
 rXL
 peM
 wtL
@@ -59694,6 +59766,10 @@ peM
 kEk
 kEk
 hTR
+hgs
+pVi
+pVi
+mbL
 pVi
 pVi
 pVi
@@ -59710,11 +59786,7 @@ pVi
 pVi
 pVi
 pVi
-pVi
-pVi
-pVi
-pVi
-pVi
+sDi
 rxn
 peM
 wtL
@@ -59927,6 +59999,10 @@ peM
 kEk
 kEk
 pzk
+hgs
+pVi
+omJ
+lJj
 pVi
 pVi
 pVi
@@ -59941,13 +60017,9 @@ pVi
 pVi
 pVi
 pVi
+omJ
 pVi
-pVi
-pVi
-pVi
-pVi
-pVi
-pVi
+sDi
 sKY
 tCG
 xIJ
@@ -60160,27 +60232,27 @@ peM
 kEk
 kEk
 aNt
-pVi
-pVi
-hjS
-pVi
-pVi
-pVi
-pVi
-pVi
+jvz
+ftZ
+ftZ
+ftZ
+ftZ
+ftZ
+ftZ
+ftZ
 ftZ
 ftZ
 nyO
 ftZ
 ftZ
-pVi
-pVi
-pVi
-pVi
-pVi
-pVi
-hjS
-pVi
+ftZ
+ftZ
+ftZ
+ftZ
+ftZ
+ftZ
+ftZ
+vmu
 aXu
 peM
 wtL
@@ -62218,7 +62290,7 @@ hkW
 hOi
 emZ
 emZ
-tEn
+srA
 emZ
 cBi
 ybm
@@ -62681,7 +62753,7 @@ xSv
 ueW
 hkW
 hkW
-tEn
+srA
 emZ
 emZ
 emZ
@@ -63153,7 +63225,7 @@ emZ
 ygP
 emZ
 emZ
-tEn
+srA
 wXc
 vRB
 wUK
@@ -63613,7 +63685,7 @@ hkW
 hOi
 emZ
 emZ
-tEn
+srA
 emZ
 emZ
 emZ
@@ -69184,7 +69256,7 @@ cPd
 ubE
 ubE
 ubE
-ppR
+nJM
 ubE
 ubE
 ubE
@@ -69652,7 +69724,7 @@ ePP
 oJl
 cPd
 sWm
-ppR
+nJM
 sWm
 sWm
 sWm
@@ -70346,13 +70418,13 @@ sNC
 ubE
 ubE
 ubE
-ppR
+nJM
 vQr
 oJl
 pPN
 ubE
 ubE
-ppR
+nJM
 vaV
 vaV
 vaV
@@ -70585,7 +70657,7 @@ oJl
 pPN
 ubE
 ubE
-ppR
+nJM
 ubE
 ubE
 ubE
@@ -71054,7 +71126,7 @@ ubE
 ubE
 ubE
 ubE
-ppR
+nJM
 ubE
 vIg
 kls
@@ -71442,7 +71514,7 @@ vZL
 pHF
 lcx
 lcx
-ean
+qIx
 lcx
 lcx
 lcx
@@ -71911,7 +71983,7 @@ lcx
 lcx
 lcx
 lcx
-ean
+qIx
 mDf
 pVr
 mRb
@@ -72370,10 +72442,10 @@ jTU
 jJG
 jVE
 ydi
-ean
-ean
-ean
-ean
+qIx
+qIx
+qIx
+qIx
 lcx
 khk
 lcx
@@ -72605,7 +72677,7 @@ xRF
 pHF
 lcx
 lcx
-ean
+qIx
 lcx
 lcx
 khO
@@ -72838,7 +72910,7 @@ lcx
 lcx
 lcx
 lcx
-ean
+qIx
 lcx
 lcx
 lcx
@@ -73071,12 +73143,12 @@ lcx
 lcx
 lcx
 lcx
-ean
+qIx
 lcx
 lcx
 lcx
 lcx
-ean
+qIx
 mDf
 pVr
 sjb
@@ -73304,11 +73376,11 @@ lcx
 imm
 lcx
 lcx
-ean
-ean
+qIx
+qIx
 lcx
 lcx
-ean
+qIx
 lcx
 mDf
 pVr
@@ -73331,7 +73403,7 @@ xxE
 sHf
 sHf
 sHf
-ean
+qIx
 uUg
 qNI
 sHf
@@ -73541,7 +73613,7 @@ lcx
 lcx
 lcx
 lcx
-ean
+qIx
 lcx
 mDf
 hpJ
@@ -74733,7 +74805,7 @@ lcx
 lcx
 lcx
 lcx
-ean
+qIx
 lcx
 lcx
 lcx
@@ -75424,7 +75496,7 @@ sHf
 sHf
 sHf
 vAq
-ean
+qIx
 uKN
 lcx
 lcx
@@ -77317,27 +77389,27 @@ uNy
 xSV
 hpC
 qJq
-xSV
-xSV
-vXL
-xSV
-xSV
-xSV
-xSV
-xSV
+ryg
+xpT
+xpT
+xpT
+xpT
+xpT
+xpT
+ses
 xpT
 xpT
 rce
 xpT
 lhz
-xee
-xee
-xee
-xee
-xee
-xSV
-vXL
-xSV
+lhz
+lhz
+lhz
+lhz
+lhz
+xpT
+xpT
+czm
 ibk
 sUD
 uaX
@@ -77550,10 +77622,10 @@ uOd
 xNt
 qls
 vpF
+bzA
 xSV
-xSV
-xSV
-xSV
+lGT
+pdA
 xSV
 xSV
 xSV
@@ -77568,9 +77640,9 @@ xee
 xee
 xee
 xee
+lGT
 xSV
-xSV
-xSV
+vuS
 lsQ
 sUD
 uaX
@@ -77783,10 +77855,10 @@ uOj
 uOj
 vgA
 vpN
+bzA
 xSV
 xSV
-xSV
-xSV
+poQ
 xSV
 xSV
 xSV
@@ -77803,7 +77875,7 @@ xee
 xee
 xSV
 xSV
-xSV
+vuS
 raz
 sUD
 uaX
@@ -78016,6 +78088,7 @@ xSV
 xSV
 hpC
 urh
+bzA
 xSV
 xSV
 xSV
@@ -78035,8 +78108,7 @@ xSV
 xSV
 xSV
 xSV
-xSV
-xSV
+vuS
 wtA
 sUD
 uaX
@@ -78249,7 +78321,7 @@ xSV
 xSV
 hpC
 wtu
-xSV
+bzA
 xSV
 xSV
 xSV
@@ -78482,7 +78554,7 @@ xSV
 xSV
 hpC
 vpF
-xSV
+bzA
 xSV
 xSV
 xSV
@@ -78715,7 +78787,7 @@ xNt
 xNt
 vfA
 vpN
-xSV
+bzA
 xSV
 xSV
 xSV
@@ -78948,6 +79020,7 @@ uOj
 uOj
 qzp
 urh
+bzA
 xSV
 xSV
 xSV
@@ -78967,8 +79040,7 @@ xSV
 xSV
 xSV
 xSV
-xSV
-xSV
+vuS
 wtA
 sUD
 uaX
@@ -79181,6 +79253,10 @@ xSV
 xSV
 hpC
 wtu
+bzA
+xSV
+xSV
+poQ
 xSV
 xSV
 xSV
@@ -79197,11 +79273,7 @@ xSV
 xSV
 xSV
 xSV
-xSV
-xSV
-xSV
-xSV
-xSV
+vuS
 ibk
 sUD
 uaX
@@ -79414,6 +79486,10 @@ xSV
 xSV
 hpC
 vpF
+bzA
+xSV
+lGT
+pdA
 xSV
 xSV
 xSV
@@ -79428,13 +79504,9 @@ xSV
 xSV
 xSV
 xSV
+lGT
 xSV
-xSV
-xSV
-xSV
-xSV
-xSV
-xSV
+vuS
 lsQ
 sUD
 uaX
@@ -79647,27 +79719,27 @@ xSV
 xSV
 hpC
 vpN
-xSV
-xSV
-vXL
-xSV
-xSV
-xSV
-xSV
-xSV
+uzt
+xqP
+xqP
+xqP
+xqP
+xqP
+xqP
+xqP
 xqP
 xqP
 xRI
 xqP
 xqP
-xSV
-xSV
-xSV
-xSV
-xSV
-xSV
-vXL
-xSV
+xqP
+xqP
+xqP
+xqP
+xqP
+xqP
+xqP
+nbk
 raz
 sUD
 uaX

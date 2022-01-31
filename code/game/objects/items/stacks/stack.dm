@@ -89,7 +89,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/stack/dropped(mob/user, slot)
+/obj/item/stack/removed_from_inventory(mob/user)
 	. = ..()
 	update_icon()
 
@@ -336,7 +336,7 @@
 		return ..()
 	if(!can_interact(user))
 		return ..() //Alt click on turf if not human or too far away.
-	var/stackmaterial = round(input(user,"How many sheets do you wish to take out of this stack? (Maximum  [get_amount()])") as null|num)
+	var/stackmaterial = tgui_input_number(user, "How many sheets do you wish to take out of this stack ?)", max_value = get_amount())
 	stackmaterial = min(get_amount(), stackmaterial) //The amount could have changed since the input started.
 	if(stackmaterial < 1 || !can_interact(user)) //In case we were transformed or moved away since the input started.
 		return

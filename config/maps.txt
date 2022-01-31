@@ -60,6 +60,3 @@ endmap
 map magmoor_digsite_iv
 	minplayers 20
 endmap
-
-map marine_hq
-endmap

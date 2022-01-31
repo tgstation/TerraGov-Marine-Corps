@@ -161,7 +161,7 @@
 	if(charger.incapacitated())
 		return FALSE
 
-	if((charge_dir != charger.dir || charger.moving_diagonally) && !agile_charge)
+	if(charge_dir != charger.dir && !agile_charge)
 		return FALSE
 
 	if(charger.pulledby)

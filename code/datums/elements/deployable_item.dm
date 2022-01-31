@@ -42,7 +42,7 @@
 	var/deploy_location
 	var/new_direction
 	if(user)
-		if(!ishuman(user))
+		if(!ishuman(user) || CHECK_BITFIELD(attached_item.flags_item, NODROP))
 			return
 
 		deploy_location = get_step(user, user.dir)

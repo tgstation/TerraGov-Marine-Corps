@@ -314,7 +314,7 @@
 		/obj/item/weapon/gun/rifle/standard_br,
 		/obj/item/weapon/gun/rifle/m412,
 		/obj/item/weapon/gun/rifle/m41a,
-		/obj/item/weapon/gun/rifle/ak47,
+		/obj/item/weapon/gun/rifle/mpi_km,
 		/obj/item/weapon/gun/rifle/m16,
 		/obj/item/weapon/gun/rifle/famas,
 		/obj/item/weapon/gun/rifle/alf_machinecarbine,
@@ -432,3 +432,39 @@
 	area_to_control.set_to_contested()
 	GLOB.sensor_towers += loc
 	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_close
+	name = "Valhalla xeno spawn"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "xeno_spawn_valhalla"
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_close/Initialize()
+	. = ..()
+	GLOB.valhalla_xeno_spawn_landmark[CLOSE] = src
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_close_two
+	name = "Valhalla xeno spawn"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "xeno_spawn_valhalla"
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_close_two/Initialize()
+	. = ..()
+	GLOB.valhalla_xeno_spawn_landmark[CLOSE2] = src
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_far
+	name = "Valhalla xeno spawn"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "xeno_spawn_valhalla"
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_far/Initialize()
+	. = ..()
+	GLOB.valhalla_xeno_spawn_landmark[FAR] = src
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_far_two
+	name = "Valhalla xeno spawn"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "xeno_spawn_valhalla"
+
+/obj/effect/landmark/valhalla_xeno_spawn_landmark_far_two/Initialize()
+	. = ..()
+	GLOB.valhalla_xeno_spawn_landmark[FAR2] = src

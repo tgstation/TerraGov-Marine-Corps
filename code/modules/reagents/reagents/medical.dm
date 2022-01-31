@@ -74,7 +74,6 @@
 	return ..()
 
 /datum/reagent/medicine/ryetalyn/overdose_process(mob/living/L, metabolism)
-	L.Confused(40 SECONDS)
 	L.apply_damage(effect_str, TOX)
 
 /datum/reagent/medicine/ryetalyn/overdose_crit_process(mob/living/L, metabolism)
@@ -960,7 +959,6 @@
 		L.Stun(20)
 	if(prob(20))
 		L.hallucination += 15
-		L.AdjustConfused(60)
 
 
 /datum/reagent/medicine/ultrazine/addiction_act_stage3(mob/living/L, metabolism)
@@ -971,7 +969,6 @@
 		L.Stun(30)
 	if(prob(20))
 		L.hallucination += 20
-		L.AdjustConfused(10 SECONDS)
 		L.dizzy(60)
 	L.adjustToxLoss(0.1*effect_str)
 	L.adjustBrainLoss(0.1*effect_str, TRUE)
@@ -985,7 +982,6 @@
 		L.do_jitter_animation(200)
 	if(prob(20))
 		L.hallucination += 30
-		L.AdjustConfused(14 SECONDS)
 		L.dizzy(80)
 	L.adjustToxLoss(0.3*effect_str)
 	L.adjustBrainLoss(0.1*effect_str, TRUE)
@@ -1298,7 +1294,7 @@
 			if(prob(5))
 				L.adjustStaminaLoss(1*effect_str)
 	return ..()
-	
+
 /datum/reagent/medicine/research/quietus/on_mob_delete(mob/living/L, metabolism)
 	to_chat(L, span_danger("You convulse as your body violently rejects the suicide drug!"))
 	L.adjustToxLoss(30*effect_str)
@@ -1315,16 +1311,20 @@
 
 /datum/reagent/medicine/research/somolent/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
-		if(1 to 50)
+		if(1 to 24)
 			if(L.stat == UNCONSCIOUS)
-				L.heal_limb_damage(0.2*current_cycle*effect_str, 0.2*current_cycle*effect_str)
+				L.heal_limb_damage(0.4*current_cycle*effect_str, 0.4*current_cycle*effect_str)
 			if(prob(20) && L.stat != UNCONSCIOUS)
 				to_chat(L, span_notice("You feel as though you should be sleeping for the medicine to work."))
-		if(51 to INFINITY)
+		if(25)
+			to_chat(L, span_notice("You feel very sleepy all of a sudden."))
+		if(26 to INFINITY)
 			if(L.stat == UNCONSCIOUS)
 				L.heal_limb_damage(10*effect_str, 10*effect_str)
-				L.adjustCloneLoss(-0.1*effect_str-(0.02*(L.maxHealth - L.health)))
+				L.adjustCloneLoss(-0.2*effect_str-(0.02*(L.maxHealth - L.health)))
 				holder.remove_reagent(/datum/reagent/medicine/research/somolent, 0.6)
+			if(prob(50) && L.stat != UNCONSCIOUS)
+				L.adjustStaminaLoss((current_cycle*0.75 - 14)*effect_str)
 	return ..()
 
 /datum/reagent/medicine/research/somolent/overdose_process(mob/living/L, metabolism)
@@ -1357,17 +1357,17 @@
 			if(volume < 30) //smol injection will self-replicate up to 30u using 240u of blood.
 				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.15)
 				L.blood_volume -= 2
-			
+
 			if(volume < 35) //allows 10 ticks of healing for 20 points of free heal to lower scratch damage bloodloss amounts.
 				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.1)
-			
+
 			if (volume >5 && L.getBruteLoss()) //Unhealed IB wasting nanites is an INTENTIONAL feature.
 				L.heal_limb_damage(2*effect_str, 0)
 				L.adjustToxLoss(0.1*effect_str)
 				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
 				if(prob(40))
 					to_chat(L, span_notice("Your cuts and bruises begin to scab over rapidly!"))
-				
+
 			if (volume > 5 && L.getFireLoss())
 				L.heal_limb_damage(0, 2*effect_str)
 				L.adjustToxLoss(0.1*effect_str)
