@@ -1251,14 +1251,14 @@ TUNNEL
 		plant_explosion.set_up(3,src)
 		plant_explosion.start()
 		visible_message(span_danger("The [src] bursts, releasing toxic gas!"))
-		qdel()
+		qdel(src)
 		return TRUE
 
 	var/mob/living/carbon/xenomorph/X = user
 	var/heal_amount = max(healing_amount_min, healing_amount_max_health_scaling * X.xeno_caste.max_health)
 	HEAL_XENO_DAMAGE(X,heal_amount)
 	to_chat(X, span_xenowarning("We feel a sudden soothing chill as the [src] tends to our wounds."))
-	qdel()
+	qdel(src)
 	return TRUE
 
 /obj/structure/xeno/plant/armor_fruit
@@ -1284,13 +1284,13 @@ TUNNEL
 			var/mob/living/carbon/human/H = user
 			H.adjust_stagger(3)
 			H.apply_damage(30, BRUTE, "chest", H.get_soft_armor("melee", "chest"))
-		qdel()
+		qdel(src)
 		return TRUE
 
 	to_chat(user, span_xenowarning("We shed our shattered scales as new ones grow to replace them!"))
 	var/mob/living/carbon/xenomorph/X = user
 	X.adjust_sunder(-sunder_removal)
-	qdel()()
+	qdel(src)
 	return TRUE
 
 /obj/structure/xeno/plant/plasma_fruit
@@ -1310,7 +1310,7 @@ TUNNEL
 	if(!isxeno(user))
 		visible_message(span_warning("The [src] releases a sticky substance before spontaneously bursting into flames!"))
 		flame_radius(3, get_turf(src), colour = "green")
-		qdel()
+		qdel(src)
 		return TRUE
 
 	var/mob/living/carbon/xenomorph/X = user
@@ -1319,7 +1319,7 @@ TUNNEL
 		return FALSE
 	X.apply_status_effect(/datum/status_effect/plasma_surge, X.xeno_caste.plasma_max, bonus_regen, duration)
 	to_chat(X, span_xenowarning("[src] Restores our plasma reserves, our organism is on overdrive!"))
-	qdel()()
+	qdel(src)
 	return TRUE
 
 
