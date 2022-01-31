@@ -103,7 +103,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/A = X.selected_plant
 	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, initial(A.name))
+	button.overlays += image('icons/mob/actions.dmi', button, initial(X.selected_plant.name))
 	return ..()
 
 /datum/action/xeno_action/sow/proc/choose_plant()
