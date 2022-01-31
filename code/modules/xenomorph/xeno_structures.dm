@@ -1377,11 +1377,11 @@ TUNNEL
 
 /obj/structure/xeno/plant/stealth_plant/on_use(mob/user)
 	to_chat(user, span_warning("We start shaking the [src]..."))
-	if(do_after(user, 2 SECONDS, FALSE, src))
-		visible_message(span_danger("The [src] releases a burst of glowing pollen!"))
-		veil()
-		return TRUE
-	return FALSE
+	if(!do_after(user, 2 SECONDS, FALSE, src))
+		return FALSE
+	visible_message(span_danger("The [src] releases a burst of glowing pollen!"))
+	veil()
+	return TRUE
 
 ///Hides all nearby xenos
 /obj/structure/xeno/plant/stealth_plant/proc/veil()
