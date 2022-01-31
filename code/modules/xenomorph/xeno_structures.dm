@@ -1368,6 +1368,8 @@ TUNNEL
 
 /obj/structure/xeno/plant/stealth_plant/can_interact(mob/user)
 	. = ..()
+	if(!.)
+		return FALSE
 	if(ishuman(user))
 		to_chat(user, span_notice("You caress the [src] petals, nothing happens."))
 		return FALSE
