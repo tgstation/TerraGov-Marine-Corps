@@ -1191,13 +1191,16 @@ TUNNEL
 
 /obj/structure/xeno/plant/can_interact(mob/user)
 	. = ..()
+	if(!.)
+		return FALSE
 	if(!mature && isxeno(user))
 		to_chat(user, span_xenowarning("The [src] hasn't grown yet, give it some time!"))
-	return mature
+		return FALSE
+	return TRUE
 
 ///Called whenever someone uses the plant, xeno or marine
 /obj/structure/xeno/plant/proc/on_use(mob/user)
-	return FALSE
+	return TRUE
 
 ///Called when the plant reaches maturity
 /obj/structure/xeno/plant/proc/on_mature(mob/user)
@@ -1218,10 +1221,8 @@ TUNNEL
 		to_chat(X, span_xenowarning("We uproot the [src]!"))
 		deconstruct(FALSE)
 		return FALSE
-
 	if(can_interact(X))
-		on_use(X)
-
+		return on_use(X)
 	return TRUE
 
 /obj/structure/xeno/plant/heal_fruit
@@ -1235,7 +1236,6 @@ TUNNEL
 	var/healing_amount_max_health_scaling = 0.5
 
 /obj/structure/xeno/plant/heal_fruit/on_use(mob/user)
-	. = ..()
 	to_chat(user, span_warning("We begin consuming the [src]..."))
 	if(!do_after(user, 2 SECONDS, FALSE, src))
 		return FALSE
@@ -1263,7 +1263,6 @@ TUNNEL
 	var/sunder_removal = 30
 
 /obj/structure/xeno/plant/armor_fruit/on_use(mob/user)
-	. = ..()
 	to_chat(user, span_warning("We begin consuming the [src]..."))
 	if(!do_after(user, 2 SECONDS, FALSE, src))
 		return FALSE
@@ -1298,7 +1297,6 @@ TUNNEL
 	var/duration = 1 MINUTES
 
 /obj/structure/xeno/plant/plasma_fruit/on_use(mob/user)
-	. = ..()
 	to_chat(user, span_warning("We begin consuming the [src]..."))
 	if(!do_after(user, 2 SECONDS, FALSE, src))
 		return FALSE
@@ -1328,13 +1326,16 @@ TUNNEL
 	var/camouflage_range = 5
 	///The range of the active stealth ability, does not require line of sight
 	var/active_camouflage_pulse_range = 10
+	///How long should veil last
 	var/active_camouflage_duration = 20 SECONDS
 	///How long until the plant can be activated again
 	var/cooldown = 2 MINUTES
+	///Is the active ability veil on cooldown ?
 	var/on_cooldown = FALSE
-	///The lists of passively camouflaged structures/xenos
-	var/list/camouflaged_structures = list()
-	var/list/camouflaged_xenos = list()
+	///The list of passively camouflaged structures
+	var/list/obj/structure/xeno/camouflaged_structures = list()
+	////The list of actively camouflaged xenos by veil
+	var/list/mob/living/carbon/xenomorph/camouflaged_xenos = list()
 
 /obj/structure/xeno/plant/stealth_plant/Initialize()
 	. = ..()
@@ -1350,8 +1351,7 @@ TUNNEL
 /obj/structure/xeno/plant/stealth_plant/process()
 	if(!mature)
 		return
-	var/turf/plant_turf = get_turf(src)
-	var/list/area_of_effect = block(locate(plant_turf.x - camouflage_range, plant_turf.y - camouflage_range, plant_turf.z), locate(plant_turf.x + camouflage_range, plant_turf.y + camouflage_range, plant_turf.z))
+	var/list/area_of_effect = RANGE_TURFS(camouflage_range, src.loc)
 	for(var/turf/tile in area_of_effect)
 		for(var/obj/structure/xeno/X in tile)
 			if(istype(X, /obj/structure/xeno/plant) || !line_of_sight(src, X)) //We don't hide plants
@@ -1364,13 +1364,11 @@ TUNNEL
 	if(ishuman(user))
 		to_chat(user, span_notice("You caress the [src] petals, nothing happens."))
 		return FALSE
-	return TRUE
-
-/obj/structure/xeno/plant/stealth_plant/on_use(mob/user)
-	. = ..()
 	if(on_cooldown)
 		to_chat(user, span_xenowarning("The [src] soft light shimmers, we should give it more time to recover!"))
 		return FALSE
+
+/obj/structure/xeno/plant/stealth_plant/on_use(mob/user)
 	to_chat(user, span_warning("We start shaking the [src]..."))
 	if(do_after(user, 2 SECONDS, FALSE, src))
 		visible_message(span_danger("The [src] releases a burst of glowing pollen!"))
@@ -1380,8 +1378,7 @@ TUNNEL
 
 ///Hides all nearby xenos
 /obj/structure/xeno/plant/stealth_plant/proc/veil()
-	var/turf/plant_turf = get_turf(src)
-	var/list/area_of_effect = block(locate(plant_turf.x - active_camouflage_pulse_range, plant_turf.y - active_camouflage_pulse_range, plant_turf.z), locate(plant_turf.x + active_camouflage_pulse_range, plant_turf.y + active_camouflage_pulse_range, plant_turf.z))
+	var/list/area_of_effect = RANGE_TURFS(camouflage_range, src.loc)
 	for(var/turf/tile in area_of_effect)
 		for(var/mob/living/carbon/xenomorph/X in tile)
 			if(X.stat == DEAD || isxenohunter(X) || X.alpha != 255) //We don't mess with xenos capable of going stealth by themselves

@@ -97,6 +97,7 @@
 
 	playsound(src, "alien_resin_build", 25)
 	new  X.selected_plant(get_turf(owner))
+	add_cooldown()
 	return succeed_activate()
 
 /datum/action/xeno_action/sow/update_button_icon()
