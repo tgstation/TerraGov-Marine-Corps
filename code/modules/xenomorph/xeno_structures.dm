@@ -1237,22 +1237,22 @@ TUNNEL
 /obj/structure/xeno/plant/heal_fruit/on_use(mob/user)
 	. = ..()
 	to_chat(user, span_warning("We begin consuming the [src]..."))
-	if(do_after(user, 2 SECONDS, FALSE, src))
-		if(!isxeno(user))
-			var/datum/effect_system/smoke_spread/xeno/acid/plant_explosion = new(get_turf(src))
-			plant_explosion.set_up(3,src)
-			plant_explosion.start()
-			visible_message(span_danger("The [src] bursts, releasing toxic gas!"))
-			Destroy()
-			return TRUE
-
-		var/mob/living/carbon/xenomorph/X = user
-		var/heal_amount = max(healing_amount_min, healing_amount_max_health_scaling * X.xeno_caste.max_health)
-		HEAL_XENO_DAMAGE(X,heal_amount)
-		to_chat(X, span_xenowarning("We feel a sudden soothing chill as the [src] tends to our wounds."))
+	if(!do_after(user, 2 SECONDS, FALSE, src))
+		return FALSE
+	if(!isxeno(user))
+		var/datum/effect_system/smoke_spread/xeno/acid/plant_explosion = new(get_turf(src))
+		plant_explosion.set_up(3,src)
+		plant_explosion.start()
+		visible_message(span_danger("The [src] bursts, releasing toxic gas!"))
 		Destroy()
 		return TRUE
-	return FALSE
+
+	var/mob/living/carbon/xenomorph/X = user
+	var/heal_amount = max(healing_amount_min, healing_amount_max_health_scaling * X.xeno_caste.max_health)
+	HEAL_XENO_DAMAGE(X,heal_amount)
+	to_chat(X, span_xenowarning("We feel a sudden soothing chill as the [src] tends to our wounds."))
+	Destroy()
+	return TRUE
 
 /obj/structure/xeno/plant/armor_fruit
 	name = "Hard Fruit"
@@ -1265,26 +1265,27 @@ TUNNEL
 /obj/structure/xeno/plant/armor_fruit/on_use(mob/user)
 	. = ..()
 	to_chat(user, span_warning("We begin consuming the [src]..."))
-	if(do_after(user, 2 SECONDS, FALSE, src))
-		if(!isxeno(user))
-			var/turf/far_away_lands = get_turf(user)
-			for(var/x in 1 to 20)
-				far_away_lands = get_step(far_away_lands, REVERSE_DIR(user.dir))
-			user.throw_at(far_away_lands, 20, spin = TRUE)
-			to_chat(user, span_warning("The [src] bursts, releasing a strong gust of pressurised gas!"))
-			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
-				H.adjust_stagger(3)
-				H.apply_damage(30, BRUTE, "chest", H.get_soft_armor("melee", "chest"))
-			Destroy()
-			return TRUE
+	if(!do_after(user, 2 SECONDS, FALSE, src))
+		return FALSE
+	if(!isxeno(user))
+		var/turf/far_away_lands = get_turf(user)
+		for(var/x in 1 to 20)
+			far_away_lands = get_step(far_away_lands, REVERSE_DIR(user.dir))
 
-		to_chat(user, span_xenowarning("We shed our shattered scales as new ones grow to replace them!"))
-		var/mob/living/carbon/xenomorph/X = user
-		X.adjust_sunder(-sunder_removal)
+		user.throw_at(far_away_lands, 20, spin = TRUE)
+		to_chat(user, span_warning("The [src] bursts, releasing a strong gust of pressurised gas!"))
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			H.adjust_stagger(3)
+			H.apply_damage(30, BRUTE, "chest", H.get_soft_armor("melee", "chest"))
 		Destroy()
 		return TRUE
-	return FALSE
+
+	to_chat(user, span_xenowarning("We shed our shattered scales as new ones grow to replace them!"))
+	var/mob/living/carbon/xenomorph/X = user
+	X.adjust_sunder(-sunder_removal)
+	Destroy()
+	return TRUE
 
 /obj/structure/xeno/plant/plasma_fruit
 	name = "Power Fruit"
@@ -1299,22 +1300,22 @@ TUNNEL
 /obj/structure/xeno/plant/plasma_fruit/on_use(mob/user)
 	. = ..()
 	to_chat(user, span_warning("We begin consuming the [src]..."))
-	if(do_after(user, 2 SECONDS, FALSE, src))
-		if(!isxeno(user))
-			visible_message(span_warning("The [src] releases a sticky substance before spontaneously bursting into flames!"))
-			flame_radius(3, get_turf(src), colour = "green")
-			Destroy()
-			return TRUE
-
-		var/mob/living/carbon/xenomorph/X = user
-		if(isxenoravager(X)) //Ask if this should be made into a trait for xenos with special ressources
-			to_chat(X, span_xenowarning("But our body rejects the fruit, our fury does not build up with a healthy diet!"))
-			return FALSE
-		X.apply_status_effect(/datum/status_effect/plasma_surge, X.xeno_caste.plasma_max, bonus_regen, duration)
-		to_chat(X, span_xenowarning("[src] Restores our plasma reserves, our organism is on overdrive!"))
+	if(!do_after(user, 2 SECONDS, FALSE, src))
+		return FALSE
+	if(!isxeno(user))
+		visible_message(span_warning("The [src] releases a sticky substance before spontaneously bursting into flames!"))
+		flame_radius(3, get_turf(src), colour = "green")
 		Destroy()
 		return TRUE
-	return FALSE
+
+	var/mob/living/carbon/xenomorph/X = user
+	if(isxenoravager(X)) //Ask if this should be made into a trait for xenos with special ressources
+		to_chat(X, span_xenowarning("But our body rejects the fruit, our fury does not build up with a healthy diet!"))
+		return FALSE
+	X.apply_status_effect(/datum/status_effect/plasma_surge, X.xeno_caste.plasma_max, bonus_regen, duration)
+	to_chat(X, span_xenowarning("[src] Restores our plasma reserves, our organism is on overdrive!"))
+	Destroy()
+	return TRUE
 
 
 /obj/structure/xeno/plant/stealth_plant
@@ -1322,6 +1323,7 @@ TUNNEL
 	desc = "A beautiful flower, what purpose it could serve to the alien hive is beyond you however..."
 	icon_state = "stealth_plant_immature"
 	mature_icon_state = "stealth_plant"
+	maturation_time = 5 MINUTES
 	///The radius of the passive structure camouflage, requires line of sight
 	var/camouflage_range = 5
 	///The range of the active stealth ability, does not require line of sight
@@ -1333,7 +1335,6 @@ TUNNEL
 	///The lists of passively camouflaged structures/xenos
 	var/list/camouflaged_structures = list()
 	var/list/camouflaged_xenos = list()
-	maturation_time = 5 MINUTES
 
 /obj/structure/xeno/plant/stealth_plant/Initialize()
 	. = ..()
@@ -1352,11 +1353,11 @@ TUNNEL
 	var/turf/plant_turf = get_turf(src)
 	var/list/area_of_effect = block(locate(plant_turf.x - camouflage_range, plant_turf.y - camouflage_range, plant_turf.z), locate(plant_turf.x + camouflage_range, plant_turf.y + camouflage_range, plant_turf.z))
 	for(var/turf/tile in area_of_effect)
-		for(var/obj/structure/xeno/S in tile)
-			if(istype(S, /obj/structure/xeno/plant) || !line_of_sight(src,S)) //We don't hide plants
+		for(var/obj/structure/xeno/X in tile)
+			if(istype(X, /obj/structure/xeno/plant) || !line_of_sight(src, X)) //We don't hide plants
 				continue
-			camouflaged_structures.Add(S)
-			S.alpha = 64
+			camouflaged_structures.Add(X)
+			X.alpha = 64
 
 /obj/structure/xeno/plant/stealth_plant/can_interact(mob/user)
 	. = ..()
