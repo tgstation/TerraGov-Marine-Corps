@@ -95,7 +95,7 @@
 		return FALSE
 
 	playsound(src, "alien_resin_build", 25)
-	new  X.selected_plant(get_turf(owner))
+	new X.selected_plant(get_turf(owner))
 	add_cooldown()
 	return succeed_activate()
 
