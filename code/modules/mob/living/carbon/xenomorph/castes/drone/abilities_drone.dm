@@ -106,8 +106,7 @@
 	if(!plant_choice)
 		return
 	for(var/obj/structure/xeno/plant/current_plant AS in GLOB.plant_type_list)
-		var/i = initial(current_plant.name) == plant_choice
-		if(i)
+		if(initial(current_plant.name) == plant_choice)
 			X.selected_plant = current_plant
 			break
 	to_chat(X, span_notice("We will now sow <b>[plant_choice]</b>."))
