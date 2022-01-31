@@ -264,8 +264,8 @@
 	new /obj/effect/particle_effect/sparks(origin_turf)
 
 /obj/effect/xenomorph/force_wall
-	name = "a forcewall"
-	desc = "A wall made of force. Only aliens can walk through."
+	name = "forcewall"
+	desc = "A wall of unknown force that blocks your way. Only aliens can walk through."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "m_shield"
 	layer = RESIN_STRUCTURE_LAYER
