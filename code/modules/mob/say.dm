@@ -28,6 +28,7 @@
 /mob/verb/whisper_verb(message as text)
 	set name = "Whisper"
 	set category = "IC"
+	set instant = TRUE
 
 	if(!message)
 		return
