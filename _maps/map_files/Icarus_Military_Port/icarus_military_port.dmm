@@ -222,7 +222,7 @@
 /area/bigredv2/caves/west)
 "alG" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/space)
 "alS" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -235,7 +235,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 1
@@ -356,7 +356,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
 	dir = 8
@@ -396,7 +396,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
 	dir = 5
@@ -605,7 +605,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/closed/mineral,
 /area/bigredv2/caves/northeast)
@@ -973,7 +973,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 6
@@ -1096,7 +1096,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge,
 /area/bigredv2/caves/south)
@@ -1141,7 +1141,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic,
 /area/bigredv2/caves/northeast)
@@ -1559,7 +1559,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /obj/structure/cryofeed,
 /turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
@@ -1582,7 +1582,7 @@
 /area/bigredv2/outside/c)
 "ciP" = (
 /obj/effect/landmark/xeno_resin_wall,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/bigredv2/caves/south)
 "cje" = (
 /turf/closed/wall/mainship/outer,
@@ -1612,14 +1612,14 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
 	dir = 4
 	},
 /area/bigredv2/caves/south)
 "cmG" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/arrival/start)
 "cmI" = (
 /turf/open/floor/mainship/mono,
@@ -1704,6 +1704,9 @@
 	dir = 1
 	},
 /area/shuttle/drop2/lz2)
+"csz" = (
+/turf/closed/mineral/indestructible,
+/area/bigredv2/caves/southwest)
 "csP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall/mainship,
@@ -1724,7 +1727,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
 "cuP" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/space)
 "cwC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -1989,7 +1992,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
 	dir = 1
@@ -1997,7 +2000,7 @@
 /area/bigredv2/caves/south)
 "cYn" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/bigredv2/caves/north)
 "cYp" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -2027,7 +2030,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
 	dir = 1
@@ -2295,7 +2298,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
 	dir = 4
@@ -2414,7 +2417,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 1
@@ -2541,7 +2544,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
 	dir = 10
@@ -2894,7 +2897,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
 	dir = 8
@@ -2954,7 +2957,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
 	dir = 8
@@ -3087,6 +3090,9 @@
 	dir = 8
 	},
 /area/shuttle/drop2/lz2)
+"eFT" = (
+/turf/closed/mineral/indestructible,
+/area/bigredv2/caves/west)
 "eGh" = (
 /obj/structure/monorail,
 /turf/open/shuttle/dropship/floor,
@@ -3152,7 +3158,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
 	dir = 5
@@ -3236,7 +3242,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
 	dir = 10
@@ -3393,7 +3399,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
 	dir = 4
@@ -3471,7 +3477,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 6
@@ -3750,7 +3756,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
 	dir = 1
@@ -3790,7 +3796,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge,
 /area/bigredv2/caves/northeast)
@@ -3814,7 +3820,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
 	dir = 1
@@ -3834,7 +3840,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
 	dir = 9
@@ -4026,7 +4032,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/deep_water_toxic,
 /area/bigredv2/caves/south)
@@ -4038,7 +4044,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
 	dir = 4
@@ -4154,7 +4160,7 @@
 /area/bigredv2/outside/dorms)
 "gbE" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/arrival/start)
 "gbI" = (
 /obj/structure/cable,
@@ -4192,7 +4198,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 4
@@ -4210,7 +4216,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
 	dir = 6
@@ -4271,7 +4277,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/deep_water_toxic,
 /area/bigredv2/caves/northeast)
@@ -4289,7 +4295,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
 /area/bigredv2/caves/south)
@@ -4441,7 +4447,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/deep_water_toxic,
 /area/bigredv2/caves/northeast)
@@ -4518,7 +4524,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/deep_water_toxic,
 /area/bigredv2/caves/northeast)
@@ -4601,7 +4607,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
 	dir = 1
@@ -4612,7 +4618,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /obj/structure/cryofeed/right,
 /turf/open/ground/river/desertdam/toxic/shallow_edge_toxic,
@@ -4659,7 +4665,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_edge_toxic,
 /area/bigredv2/caves/northeast)
@@ -4675,7 +4681,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/deep_water_toxic,
 /area/bigredv2/caves/northeast)
@@ -4714,7 +4720,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 9
@@ -4755,7 +4761,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 4
@@ -4877,7 +4883,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
 	dir = 5
@@ -4894,7 +4900,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
 	dir = 8
@@ -4977,7 +4983,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "hlG" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/bigredv2/caves/north)
 "hlW" = (
 /obj/structure/monorail,
@@ -5055,7 +5061,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/deep_water_toxic,
 /area/bigredv2/caves/northeast)
@@ -5112,7 +5118,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
 /area/bigredv2/caves/west)
@@ -5131,7 +5137,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
 	dir = 4
@@ -5272,7 +5278,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_edge_toxic,
 /area/bigredv2/caves/south)
@@ -5346,7 +5352,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
 	dir = 8
@@ -5741,7 +5747,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
 	dir = 10
@@ -5911,7 +5917,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /obj/structure/catwalk,
 /turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
@@ -6091,7 +6097,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 1
@@ -6135,7 +6141,7 @@
 /area/bigredv2/outside/cargo)
 "iGD" = (
 /obj/docking_port/stationary/crashmode,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/bigredv2/caves/north)
 "iGK" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -6226,7 +6232,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
 	dir = 1
@@ -6379,7 +6385,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
 	dir = 9
@@ -6477,8 +6483,9 @@
 	},
 /area/bigredv2/outside/c)
 "jhZ" = (
-/turf/closed/wall/indestructible/mineral,
-/area/bigredv2/outside/c)
+/obj/effect/landmark/xeno_resin_door,
+/turf/closed/mineral/indestructible,
+/area/bigredv2/caves/northeast)
 "jib" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -6750,7 +6757,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 9
@@ -6826,7 +6833,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/arrival/start)
 "jFd" = (
 /obj/structure/cargo_container/nt{
@@ -7278,7 +7285,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
 	dir = 1
@@ -7337,7 +7344,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 1
@@ -7509,7 +7516,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
 	dir = 8
@@ -7544,7 +7551,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 6
@@ -7804,7 +7811,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
 	dir = 8
@@ -8025,7 +8032,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
 	dir = 1
@@ -8037,7 +8044,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge,
 /area/bigredv2/caves/northeast)
@@ -8268,7 +8275,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 9
@@ -8553,14 +8560,14 @@
 /area/bigredv2/caves/northeast)
 "lKl" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/bigredv2/caves/northeast)
 "lKL" = (
 /obj/effect/particle_effect/smoke/phosphorus{
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
 	dir = 9
@@ -8708,7 +8715,7 @@
 /area/bigredv2/outside/c)
 "lTU" = (
 /obj/structure/sign/fire,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/bigredv2/caves/west)
 "lUg" = (
 /obj/machinery/power/terminal{
@@ -8961,7 +8968,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /obj/structure/cryofeed,
 /turf/open/ground/river/desertdam/toxic/deep_water_toxic,
@@ -9436,7 +9443,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic,
 /area/bigredv2/caves/northeast)
@@ -9642,7 +9649,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic,
 /area/arrival/start)
@@ -10002,7 +10009,7 @@
 /area/bigredv2/outside/cargo)
 "nPr" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/bigredv2/caves/southwest)
 "nPv" = (
 /obj/structure/mopbucket,
@@ -10023,7 +10030,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
 	dir = 1
@@ -10121,7 +10128,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 9
@@ -10211,7 +10218,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 4
@@ -10230,7 +10237,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /obj/structure/catwalk,
 /turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
@@ -10357,7 +10364,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
 	dir = 1
@@ -11347,7 +11354,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge,
 /area/bigredv2/caves/southeast)
@@ -11466,7 +11473,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge,
 /area/bigredv2/caves/west)
@@ -11553,7 +11560,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic,
 /area/bigredv2/caves/southeast)
@@ -11909,7 +11916,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
 	dir = 8
@@ -11939,7 +11946,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 1
@@ -11975,7 +11982,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 1
@@ -12347,7 +12354,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 4
@@ -12368,7 +12375,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
 	dir = 9
@@ -12666,7 +12673,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic,
 /area/arrival/start)
@@ -12700,7 +12707,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
 	dir = 8
@@ -12755,7 +12762,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 6
@@ -12766,7 +12773,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 6
@@ -12959,7 +12966,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 4
@@ -12973,7 +12980,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
 /area/bigredv2/caves/south)
@@ -13072,7 +13079,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
 	dir = 5
@@ -13324,7 +13331,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
 /area/bigredv2/caves/west)
@@ -13699,7 +13706,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 4
@@ -13826,7 +13833,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 1
@@ -13849,7 +13856,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
@@ -13862,7 +13869,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 6
@@ -13997,7 +14004,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
 	dir = 10
@@ -14025,7 +14032,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 6
@@ -14237,7 +14244,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
 	dir = 6
@@ -14419,7 +14426,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /obj/structure/cryofeed/right,
 /turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
@@ -14505,7 +14512,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 9
@@ -14546,7 +14553,7 @@
 /area/arrival/start)
 "tsS" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/bigredv2/caves/southeast)
 "ttq" = (
 /obj/machinery/light{
@@ -14622,7 +14629,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic,
 /area/bigredv2/caves/southeast)
@@ -14733,7 +14740,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
 	dir = 4
@@ -14875,7 +14882,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
 	dir = 4
@@ -15166,7 +15173,7 @@
 /area/bigredv2/outside/medical)
 "udR" = (
 /obj/item/tool/pickaxe,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral,
 /area/bigredv2/caves/south)
 "uei" = (
 /obj/structure/bed/stool{
@@ -15335,7 +15342,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 4
@@ -15431,7 +15438,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
 /area/bigredv2/caves/west)
@@ -15587,7 +15594,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
 /area/bigredv2/caves/south)
@@ -15778,7 +15785,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
 	dir = 8
@@ -15837,7 +15844,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 9
@@ -15910,7 +15917,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic,
 /area/bigredv2/caves/northeast)
@@ -16125,7 +16132,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
 	dir = 5
@@ -16175,7 +16182,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
 	dir = 1
@@ -16341,7 +16348,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/c)
 "vzh" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/bigredv2/caves/northeast)
 "vzx" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -16628,7 +16635,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_coast_toxic{
 	dir = 9
@@ -16667,7 +16674,7 @@
 /area/space)
 "vWD" = (
 /obj/structure/cable,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral,
 /area/bigredv2/outside/c)
 "vWL" = (
 /obj/effect/decal/warning_stripes/thin,
@@ -16769,7 +16776,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
 	dir = 10
@@ -16788,7 +16795,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
 	dir = 1
@@ -16835,7 +16842,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic,
 /area/bigredv2/caves/northeast)
@@ -16890,7 +16897,7 @@
 	},
 /area/bigredv2/outside/medical)
 "wmu" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/bigredv2/caves/south)
 "wmH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -16906,7 +16913,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_toxic,
 /area/bigredv2/caves/south)
@@ -17519,7 +17526,7 @@
 /area/bigredv2/outside/library)
 "xcv" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/bigredv2/caves/south)
 "xdi" = (
 /obj/effect/landmark/corpsespawner,
@@ -18139,7 +18146,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
 	dir = 8
@@ -18223,7 +18230,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/bigredv2/caves/south)
 "xQy" = (
 /obj/structure/cable,
@@ -18284,7 +18291,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/engineering)
 "xTs" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/bigredv2/caves/southeast)
 "xUx" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -18333,7 +18340,7 @@
 	dir = 1;
 	lifetime = 99999;
 	minimum_effect_delay = 3;
-	strength = 4
+	strength = 3
 	},
 /turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge,
 /area/bigredv2/caves/west)
@@ -28751,7 +28758,7 @@ jzC
 jzC
 jzC
 jzC
-hQW
+eFT
 jzC
 jzC
 jzC
@@ -29002,14 +29009,14 @@ jzC
 jzC
 jzC
 jzC
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
 jzC
 jzC
 jzC
@@ -29255,26 +29262,26 @@ jzC
 jzC
 jzC
 jzC
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
 jzC
 jzC
 jzC
-hQW
-vQa
-vQa
-vQa
+eFT
+csz
+csz
+csz
 jzC
 jzC
 jzC
@@ -29504,38 +29511,38 @@ jzC
 jzC
 jzC
 jzC
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
 whP
 whP
 whP
 whP
 whP
 whP
-hQW
+eFT
 cje
-hQW
+eFT
 whP
 whP
 whP
-hQW
-hQW
-hQW
-hQW
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
+eFT
+eFT
+eFT
+eFT
+csz
+csz
+csz
+csz
+csz
+csz
+csz
 jzC
 jzC
 jzC
@@ -29761,7 +29768,7 @@ jzC
 jzC
 jzC
 jzC
-hQW
+eFT
 whP
 whP
 whP
@@ -29792,14 +29799,14 @@ cMI
 cMI
 cMI
 cMI
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
 jzC
 jzC
 jzC
@@ -30018,7 +30025,7 @@ jzC
 jzC
 jzC
 jzC
-hQW
+eFT
 whP
 whP
 whP
@@ -30052,10 +30059,10 @@ cMI
 fIP
 xDV
 fIP
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
 jzC
 jzC
 jzC
@@ -30271,11 +30278,11 @@ jzC
 jzC
 jzC
 jzC
-hQW
-hQW
-hQW
-hQW
-hQW
+eFT
+eFT
+eFT
+eFT
+eFT
 whP
 whP
 whP
@@ -30310,10 +30317,10 @@ fIP
 fIP
 fIP
 fIP
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
 jzC
 jzC
 jzC
@@ -30528,7 +30535,7 @@ jzC
 jzC
 jzC
 jzC
-hQW
+eFT
 whP
 whP
 whP
@@ -30568,9 +30575,9 @@ fIP
 fIP
 fIP
 fIP
-vQa
-vQa
-vQa
+csz
+csz
+csz
 jzC
 jzC
 jzC
@@ -30782,10 +30789,10 @@ jzC
 jzC
 jzC
 jzC
-hQW
-hQW
-hQW
-hQW
+eFT
+eFT
+eFT
+eFT
 whP
 whP
 whP
@@ -30821,15 +30828,15 @@ lXw
 xpN
 lXw
 fIP
-vQa
-vQa
+csz
+csz
 fIP
 fIP
 fIP
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
 jzC
 jzC
 jzC
@@ -31078,18 +31085,18 @@ lXw
 lXw
 lXw
 fIP
-vQa
-vQa
-vQa
+csz
+csz
+csz
 fIP
 fIP
 fIP
-vQa
-vQa
-vQa
+csz
+csz
+csz
 jzC
-vQa
-vQa
+csz
+csz
 jzC
 jzC
 jzC
@@ -31341,13 +31348,13 @@ cMI
 vWS
 vWS
 vWS
-vQa
-vQa
-vQa
+csz
+csz
+csz
 nPr
-vQa
-vQa
-vQa
+csz
+csz
+csz
 jzC
 jzC
 jzC
@@ -31598,12 +31605,12 @@ cMI
 fIP
 xDV
 fIP
-vQa
-vQa
-vQa
+csz
+csz
+csz
 nPr
-vQa
-vQa
+csz
+csz
 jzC
 jzC
 jzC
@@ -31855,11 +31862,11 @@ fIP
 fIP
 fIP
 fIP
-vQa
-vQa
-vQa
+csz
+csz
+csz
 nPr
-vQa
+csz
 jzC
 jzC
 jzC
@@ -32112,19 +32119,19 @@ fIP
 fIP
 fIP
 fIP
-vQa
-vQa
-vQa
+csz
+csz
+csz
 nPr
-vQa
+csz
 jzC
 jzC
-vQa
-vQa
+csz
+csz
 jzC
 jzC
 jzC
-vQa
+csz
 jzC
 jzC
 jzC
@@ -32369,19 +32376,19 @@ fIP
 fIP
 upW
 kzB
-vQa
-vQa
-vQa
+csz
+csz
+csz
 nPr
-vQa
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
+csz
 jzC
-vQa
+csz
 jzC
-vQa
+csz
 jzC
 jzC
 jzC
@@ -32584,9 +32591,9 @@ uOR
 ppQ
 vOK
 dob
-hQW
-hQW
-hQW
+whP
+whP
+whP
 nji
 nji
 nji
@@ -32626,19 +32633,19 @@ fIP
 fIP
 qwH
 nYK
-vQa
-vQa
-vQa
+csz
+csz
+csz
 nPr
-vQa
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
+csz
 jzC
-vQa
-vQa
-vQa
+csz
+csz
+csz
 jzC
 jzC
 jzC
@@ -32841,9 +32848,9 @@ uOT
 ppQ
 vOK
 dob
-hQW
-hQW
-hQW
+whP
+whP
+whP
 nji
 nji
 nji
@@ -32882,20 +32889,20 @@ fIP
 fIP
 fIP
 fIP
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
 nPr
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
 jzC
 jzC
 jzC
@@ -33098,8 +33105,8 @@ uOT
 ppQ
 vOK
 dob
-hQW
-hQW
+whP
+whP
 nji
 nji
 xyj
@@ -33141,18 +33148,18 @@ vWS
 fIP
 fIP
 fIP
-vQa
-vQa
+csz
+csz
 nPr
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
 jzC
 jzC
 jzC
@@ -33399,17 +33406,17 @@ vWS
 fIP
 fIP
 fIP
-vQa
+csz
 nPr
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
 jzC
 jzC
 jzC
@@ -33656,17 +33663,17 @@ fIP
 fIP
 fIP
 fIP
-vQa
+csz
 nPr
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
 jzC
 jzC
 jzC
@@ -33870,7 +33877,7 @@ ppQ
 vOK
 dob
 nji
-hQW
+eFT
 nji
 xfy
 nji
@@ -33913,29 +33920,29 @@ fIP
 fIP
 fIP
 mdY
-vQa
+csz
 bsz
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
 jzC
 jzC
 jzC
@@ -34126,8 +34133,8 @@ uUr
 ppQ
 vOK
 dob
-hQW
-hQW
+eFT
+eFT
 wVP
 nji
 nji
@@ -34172,27 +34179,27 @@ fIP
 fIP
 fIP
 bsz
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
 jzC
 jzC
 jzC
@@ -34383,8 +34390,8 @@ uVx
 ppQ
 sOs
 dob
-hQW
-hQW
+eFT
+eFT
 wVP
 nji
 nji
@@ -34434,21 +34441,21 @@ xDV
 fIP
 fIP
 cgs
-vQa
-vQa
+csz
+csz
 cgs
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
 jzC
 jzC
 jzC
@@ -34692,20 +34699,20 @@ mdY
 fIP
 fIP
 cgs
-vQa
+csz
 fIP
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
+csz
 jzC
 jzC
 jzC
@@ -34954,15 +34961,15 @@ fIP
 cgs
 tHa
 cgs
-vQa
+csz
 cgs
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
+csz
+csz
+csz
 jzC
 jzC
 jzC
@@ -35213,13 +35220,13 @@ fIP
 fIP
 fIP
 fIP
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
+csz
+csz
+csz
 nPr
 jzC
 jzC
@@ -35473,12 +35480,12 @@ fIP
 cgs
 cgs
 cgs
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
 nPr
-vQa
+csz
 jzC
 jzC
 jzC
@@ -35668,8 +35675,8 @@ vOK
 vOK
 vwg
 dob
-hQW
-hQW
+eFT
+eFT
 nji
 nji
 nji
@@ -35732,10 +35739,10 @@ fIP
 fIP
 cgs
 cgs
-vQa
-vQa
+csz
+csz
 nPr
-vQa
+csz
 jzC
 jzC
 jzC
@@ -35925,19 +35932,19 @@ vQi
 vQi
 vwj
 pCF
-hQW
-hQW
+eFT
+eFT
 nji
 nji
 nji
 nji
 whP
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
 whP
 nji
 aui
@@ -35989,10 +35996,10 @@ fQQ
 fIP
 fIP
 mdY
-vQa
-vQa
+csz
+csz
 nPr
-vQa
+csz
 jzC
 jzC
 jzC
@@ -36191,10 +36198,10 @@ pCF
 pCF
 pCF
 pCF
-hQW
-hQW
-hQW
-hQW
+eFT
+eFT
+eFT
+eFT
 whP
 whP
 whP
@@ -36247,10 +36254,10 @@ fIP
 fIP
 fIP
 fIP
-vQa
+csz
 nPr
-vQa
-vQa
+csz
+csz
 jzC
 jzC
 jzC
@@ -36448,13 +36455,13 @@ kZU
 pmn
 pmn
 pCF
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
 cje
 eIB
 oPe
@@ -36506,7 +36513,7 @@ fIP
 fIP
 fIP
 nPr
-vQa
+csz
 jzC
 jzC
 jzC
@@ -36705,13 +36712,13 @@ fXr
 fFU
 jBK
 pCF
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
 xFh
 xFh
 xFh
@@ -36736,7 +36743,7 @@ xZA
 rGR
 pCM
 dob
-vQa
+cMI
 cMI
 xDV
 fIP
@@ -36763,7 +36770,7 @@ xDV
 fIP
 fIP
 nPr
-vQa
+csz
 jzC
 jzC
 jzC
@@ -36962,13 +36969,13 @@ hUB
 kZU
 wts
 pCF
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
 xFh
 tEv
 ugo
@@ -36993,7 +37000,7 @@ vvs
 xZA
 vay
 dob
-vQa
+cMI
 cMI
 fIP
 upW
@@ -37020,11 +37027,11 @@ fIP
 fIP
 fIP
 nPr
-vQa
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
+csz
 jzC
 jzC
 jzC
@@ -37219,13 +37226,13 @@ oFw
 kZU
 wts
 pCF
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
 xFh
 bjq
 eKj
@@ -37250,7 +37257,7 @@ pEf
 pEf
 pEf
 dob
-vQa
+cMI
 cMI
 fIP
 qwH
@@ -37277,11 +37284,11 @@ fIP
 fIP
 fIP
 nPr
-vQa
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
+csz
 wmu
 wmu
 jzC
@@ -37476,8 +37483,8 @@ dob
 dob
 wts
 pCF
-hQW
-hQW
+eFT
+eFT
 xFh
 xFh
 xFh
@@ -37507,7 +37514,7 @@ cSp
 jXc
 mmX
 dob
-vQa
+cMI
 cMI
 fIP
 fIP
@@ -37534,11 +37541,11 @@ cqR
 sDT
 sDT
 nPr
-vQa
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
+csz
 wmu
 wmu
 jzC
@@ -37733,8 +37740,8 @@ eVh
 vEw
 wts
 pCF
-hQW
-hQW
+eFT
+eFT
 xFh
 mQR
 mQR
@@ -37764,7 +37771,7 @@ qfz
 fjh
 nxP
 dob
-vQa
+cMI
 fIP
 fIP
 fIP
@@ -37791,11 +37798,11 @@ wxy
 fIP
 fIP
 fIP
-vQa
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
+csz
 wmu
 wmu
 jzC
@@ -37990,8 +37997,8 @@ eVh
 dob
 wts
 pCF
-hQW
-hQW
+eFT
+eFT
 xFh
 hFt
 hFt
@@ -38021,7 +38028,7 @@ mmX
 fjh
 sVA
 dob
-vQa
+cMI
 fIP
 fIP
 fIP
@@ -38048,11 +38055,11 @@ fIP
 fIP
 fIP
 fIP
-vQa
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
+csz
 wmu
 wmu
 jzC
@@ -38247,8 +38254,8 @@ vjm
 vjm
 wwS
 pCF
-hQW
-hQW
+eFT
+eFT
 xFh
 mQR
 mQR
@@ -38278,7 +38285,7 @@ qfz
 fjh
 kYi
 dob
-vQa
+cMI
 fIP
 xDV
 fIP
@@ -38305,11 +38312,11 @@ fIP
 fIP
 fIP
 fIP
-vQa
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
+csz
 wmu
 wmu
 jzC
@@ -38504,8 +38511,8 @@ xiM
 xUE
 hFB
 pCF
-hQW
-hQW
+eFT
+eFT
 xFh
 hFt
 hFt
@@ -38535,7 +38542,7 @@ pEf
 pEf
 pEf
 dob
-vQa
+cMI
 fIP
 fIP
 cMI
@@ -38562,11 +38569,11 @@ mdY
 fIP
 fIP
 fIP
-vQa
-vQa
-vQa
-vQa
-vQa
+csz
+csz
+csz
+csz
+csz
 wmu
 wmu
 jzC
@@ -38761,8 +38768,8 @@ xJY
 xVJ
 hFB
 pCF
-hQW
-hQW
+eFT
+eFT
 xFh
 xFh
 xFh
@@ -38792,7 +38799,7 @@ fjh
 kBh
 mmX
 dob
-vQa
+cMI
 vWS
 vWS
 cMI
@@ -38823,7 +38830,7 @@ cMI
 cMI
 cMI
 cMI
-vQa
+csz
 wmu
 wmu
 jzC
@@ -39018,13 +39025,13 @@ xKg
 xVJ
 hFB
 pCF
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
 xFh
 bjq
 jxf
@@ -39049,7 +39056,7 @@ cSw
 jXc
 wsk
 dob
-vQa
+cMI
 fIP
 fIP
 cMI
@@ -39275,12 +39282,12 @@ xKg
 xVJ
 hFB
 pCF
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
 lTU
 xFh
 bjq
@@ -39306,7 +39313,7 @@ pEf
 pEf
 cdX
 dob
-vQa
+cMI
 fIP
 fIP
 cMI
@@ -39532,13 +39539,13 @@ xKz
 xVJ
 hFB
 pCF
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
 xFh
 rzv
 tRl
@@ -39563,7 +39570,7 @@ cSw
 tHd
 mmX
 dob
-vQa
+cMI
 fIP
 fIP
 vWS
@@ -39789,13 +39796,13 @@ xzQ
 xWv
 hFB
 pCF
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
-hQW
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
+eFT
 xFh
 bjq
 bjq
@@ -39820,7 +39827,7 @@ guY
 fjh
 nxP
 dob
-vQa
+cMI
 fIP
 fIP
 vWS
@@ -40077,7 +40084,7 @@ gSA
 fjh
 sVA
 dob
-vQa
+cMI
 fIP
 fIP
 vWS
@@ -40107,8 +40114,8 @@ fIP
 fIP
 fIP
 fIP
-vQa
-cMI
+csz
+csz
 wmu
 wmu
 jzC
@@ -40334,7 +40341,7 @@ sZi
 fjh
 kYi
 dob
-vQa
+cMI
 fIP
 fIP
 vWS
@@ -40363,7 +40370,7 @@ cMI
 fIP
 fIP
 fIP
-vQa
+csz
 wmu
 wmu
 wmu
@@ -40591,7 +40598,7 @@ dXA
 kwX
 kwX
 dob
-vQa
+cMI
 fIP
 xDV
 vWS
@@ -40848,7 +40855,7 @@ tTb
 xZA
 xZA
 dob
-vQa
+cMI
 fIP
 fIP
 vWS
@@ -40877,7 +40884,7 @@ cMI
 fIP
 fIP
 fIP
-vQa
+csz
 wmu
 wmu
 wmu
@@ -41105,7 +41112,7 @@ tTb
 xZA
 xZA
 dob
-vQa
+cMI
 fIP
 fIP
 vWS
@@ -41134,7 +41141,7 @@ fIP
 fIP
 mdY
 fIP
-vQa
+csz
 wmu
 wmu
 wmu
@@ -41362,7 +41369,7 @@ tTb
 xZA
 xZA
 dob
-vQa
+cMI
 fIP
 fIP
 cMI
@@ -41391,7 +41398,7 @@ fIP
 fIP
 fIP
 fIP
-vQa
+csz
 wmu
 wmu
 wmu
@@ -41619,7 +41626,7 @@ tTb
 xZA
 xZA
 dob
-wmu
+lyI
 huQ
 huQ
 huQ
@@ -41876,7 +41883,7 @@ xZX
 bjI
 xZA
 dob
-wmu
+lyI
 huQ
 huQ
 huQ
@@ -43161,7 +43168,7 @@ tTb
 wqB
 xZA
 dob
-wmu
+lyI
 lyI
 lyI
 lyI
@@ -43418,7 +43425,7 @@ tTb
 wqB
 xZA
 dob
-wmu
+lyI
 lyI
 lyI
 lyI
@@ -43675,7 +43682,7 @@ tTb
 wqB
 xZA
 dob
-wmu
+lyI
 lyI
 lyI
 lyI
@@ -43932,7 +43939,7 @@ tTb
 wqB
 xZA
 dob
-wmu
+lyI
 lyI
 lyI
 lyI
@@ -44189,7 +44196,7 @@ tTb
 wqB
 xZA
 dob
-wmu
+lyI
 lyI
 lyI
 lyI
@@ -44446,7 +44453,7 @@ tTb
 wqB
 xZA
 dob
-wmu
+lyI
 lyI
 lyI
 lyI
@@ -44703,8 +44710,8 @@ tTb
 wqB
 xZA
 dob
-wmu
-wmu
+lyI
+lyI
 lyI
 lyI
 huQ
@@ -45486,8 +45493,8 @@ huQ
 huQ
 huQ
 huQ
-wmu
-wmu
+lyI
+lyI
 huQ
 huQ
 huQ
@@ -45742,9 +45749,9 @@ biD
 ewa
 eTu
 huQ
-wmu
-wmu
-wmu
+lyI
+lyI
+lyI
 kCy
 huQ
 ehK
@@ -45998,10 +46005,10 @@ pHi
 pHi
 wmL
 hZa
-wmu
-wmu
+lyI
+lyI
 huQ
-wmu
+lyI
 huQ
 huQ
 huQ
@@ -46245,7 +46252,7 @@ aZi
 iOU
 vOK
 dob
-wmu
+lyI
 rIY
 vpo
 wmL
@@ -46502,7 +46509,7 @@ aZi
 vOK
 gju
 dob
-wmu
+lyI
 lyI
 aBt
 iFL
@@ -46759,7 +46766,7 @@ xQy
 vOK
 tqO
 dob
-wmu
+lyI
 lyI
 lyI
 odg
@@ -48558,7 +48565,7 @@ gyP
 kZU
 xyp
 dob
-wmu
+lyI
 lyI
 huQ
 huQ
@@ -48579,8 +48586,8 @@ lyI
 lyI
 lyI
 huQ
-wmu
-wmu
+lyI
+lyI
 gzi
 huQ
 huQ
@@ -48815,7 +48822,7 @@ vNg
 kZU
 rhJ
 dob
-wmu
+lyI
 lyI
 huQ
 huQ
@@ -48829,15 +48836,15 @@ huQ
 huQ
 huQ
 huQ
-wmu
-lyI
 lyI
 lyI
 lyI
 lyI
-wmu
-wmu
-wmu
+lyI
+lyI
+lyI
+lyI
+lyI
 huQ
 huQ
 huQ
@@ -49072,7 +49079,7 @@ xQy
 dob
 dob
 dob
-wmu
+lyI
 lyI
 lyI
 lyI
@@ -49086,14 +49093,14 @@ huQ
 huQ
 huQ
 huQ
-wmu
-wmu
 lyI
 lyI
 lyI
 lyI
-wmu
-wmu
+lyI
+lyI
+lyI
+lyI
 huQ
 huQ
 huQ
@@ -49326,30 +49333,30 @@ fdq
 fdq
 xQy
 vWD
-jhZ
-jhZ
-jhZ
-wmu
+dSJ
+dSJ
+dSJ
 lyI
 lyI
 lyI
 lyI
 lyI
+lyI
+huQ
 huQ
 huQ
 huQ
 huQ
 huQ
 huQ
-huQ
-wmu
-wmu
-wmu
+lyI
+lyI
+lyI
 lyI
 lyI
 lyI
 huQ
-wmu
+lyI
 huQ
 huQ
 huQ
@@ -49583,15 +49590,15 @@ vOK
 sOs
 dob
 vWD
-jhZ
-jhZ
-jhZ
-wmu
+dSJ
+dSJ
+dSJ
 lyI
 lyI
 lyI
 lyI
 lyI
+lyI
 huQ
 huQ
 huQ
@@ -49600,8 +49607,8 @@ huQ
 huQ
 huQ
 huQ
-wmu
-wmu
+lyI
+lyI
 huQ
 lyI
 lyI
@@ -49840,10 +49847,10 @@ vOK
 vOK
 dob
 vWD
-jhZ
-jhZ
-jhZ
-wmu
+dSJ
+dSJ
+dSJ
+lyI
 lyI
 lyI
 lyI
@@ -50097,10 +50104,10 @@ vOK
 mcg
 dob
 vWD
-jhZ
-jhZ
-jhZ
-wmu
+dSJ
+dSJ
+dSJ
+lyI
 lyI
 lyI
 lyI
@@ -50354,10 +50361,10 @@ vOK
 vOK
 dob
 vWD
-jhZ
-jhZ
-jhZ
-wmu
+dSJ
+dSJ
+dSJ
+lyI
 lyI
 lyI
 huQ
@@ -50614,18 +50621,18 @@ xQy
 dob
 dob
 dob
-wmu
 lyI
 lyI
+lyI
 huQ
 huQ
 huQ
 huQ
 huQ
-wmu
+lyI
 udR
-wmu
-wmu
+lyI
+lyI
 kwg
 huQ
 xVf
@@ -50636,7 +50643,7 @@ huQ
 huQ
 huQ
 huQ
-wmu
+lyI
 huQ
 huQ
 huQ
@@ -50871,7 +50878,7 @@ ntN
 fFU
 hTm
 dob
-wmu
+lyI
 lyI
 huQ
 huQ
@@ -50879,10 +50886,10 @@ huQ
 huQ
 huQ
 huQ
-wmu
-wmu
-wmu
-wmu
+lyI
+lyI
+lyI
+lyI
 huQ
 huQ
 huQ
@@ -51137,9 +51144,9 @@ huQ
 huQ
 huQ
 huQ
-wmu
-wmu
-wmu
+lyI
+lyI
+lyI
 huQ
 huQ
 giK
@@ -51395,8 +51402,8 @@ huQ
 huQ
 huQ
 huQ
-wmu
-wmu
+lyI
+lyI
 huQ
 lyI
 lyI
@@ -51642,7 +51649,7 @@ xQy
 lLi
 kZU
 dob
-wmu
+lyI
 huQ
 nfA
 huQ
@@ -51899,7 +51906,7 @@ xQy
 sWA
 kZU
 dob
-wmu
+lyI
 huQ
 huQ
 lyI
@@ -52156,7 +52163,7 @@ xQy
 uGB
 vto
 dob
-wmu
+lyI
 huQ
 huQ
 huQ
@@ -52413,8 +52420,8 @@ xQy
 oUy
 kZU
 dob
-wmu
-wmu
+lyI
+lyI
 huQ
 huQ
 lyI
@@ -61848,7 +61855,7 @@ lwX
 kYY
 kYY
 kYY
-vzh
+kYY
 vzh
 vzh
 vzh
@@ -70141,9 +70148,9 @@ hGM
 lxg
 pim
 lxg
-xTs
-xTs
-xTs
+edF
+edF
+edF
 lxg
 lxg
 hGM
@@ -70399,7 +70406,7 @@ lxg
 lxg
 lxg
 lxg
-xTs
+edF
 lxg
 lxg
 lxg
@@ -72104,7 +72111,7 @@ jzC
 jzC
 jzC
 jzC
-jzC
+vzh
 vzh
 vzh
 vzh
@@ -72926,9 +72933,9 @@ kYY
 kYY
 kYY
 kYY
-kYY
-kYY
-hEd
+vzh
+vzh
+jhZ
 lwX
 lwX
 lwX
