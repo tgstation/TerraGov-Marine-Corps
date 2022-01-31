@@ -1181,8 +1181,11 @@ TUNNEL
 	name = "Xeno Plant"
 	max_integrity = 5
 	icon = 'icons/Xeno/plants.dmi'
+	///The plant's icon once it's fully grown
 	var/mature_icon_state
+	///Is the plant ready to be used ?
 	var/mature = FALSE
+	///How long does it take for the plant to be useable
 	var/maturation_time = 2 MINUTES
 
 /obj/structure/xeno/plant/Initialize()
@@ -1198,6 +1201,10 @@ TUNNEL
 		return FALSE
 	return TRUE
 
+/obj/structure/xeno/plant/update_icon_state()
+	. = ..()
+	icon_state = mature_icon_state
+
 ///Called whenever someone uses the plant, xeno or marine
 /obj/structure/xeno/plant/proc/on_use(mob/user)
 	return TRUE
@@ -1206,7 +1213,7 @@ TUNNEL
 /obj/structure/xeno/plant/proc/on_mature(mob/user)
 	playsound(src, "alien_resin_build", 25)
 	mature = TRUE
-	icon_state = mature_icon_state
+	update_icon_state()
 
 /obj/structure/xeno/plant/attack_hand(mob/living/user)
 	if(!can_interact(user))
@@ -1283,7 +1290,7 @@ TUNNEL
 	to_chat(user, span_xenowarning("We shed our shattered scales as new ones grow to replace them!"))
 	var/mob/living/carbon/xenomorph/X = user
 	X.adjust_sunder(-sunder_removal)
-	qdel()
+	qdel()()
 	return TRUE
 
 /obj/structure/xeno/plant/plasma_fruit
@@ -1312,7 +1319,7 @@ TUNNEL
 		return FALSE
 	X.apply_status_effect(/datum/status_effect/plasma_surge, X.xeno_caste.plasma_max, bonus_regen, duration)
 	to_chat(X, span_xenowarning("[src] Restores our plasma reserves, our organism is on overdrive!"))
-	qdel()
+	qdel()()
 	return TRUE
 
 

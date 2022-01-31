@@ -99,6 +99,7 @@
 	button.overlays += image('icons/mob/actions.dmi', button, initial(X.selected_plant.name))
 	return ..()
 
+///Shows a radial menu to pick the plant they wish to put down when they use the ability
 /datum/action/xeno_action/sow/proc/choose_plant()
 	var/plant_choice = show_radial_menu(owner, owner, GLOB.plant_images_list, radius = 48)
 	var/mob/living/carbon/xenomorph/X = owner
