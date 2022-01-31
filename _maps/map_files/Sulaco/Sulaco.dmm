@@ -1378,13 +1378,6 @@
 /obj/item/storage/pill_bottle/packet/paracetamol{
 	pixel_y = 7
 	},
-/obj/item/storage/pill_bottle/tricordrazine{
-	pixel_x = 7
-	},
-/obj/item/storage/pill_bottle/tricordrazine,
-/obj/item/storage/pill_bottle/tricordrazine{
-	pixel_x = -7
-	},
 /obj/item/storage/pill_bottle/packet/paracetamol{
 	pixel_y = 7
 	},
@@ -1393,23 +1386,6 @@
 	},
 /obj/item/storage/pill_bottle/packet/paracetamol{
 	pixel_y = 7
-	},
-/obj/item/storage/pill_bottle/packet/paracetamol{
-	pixel_y = 7
-	},
-/obj/item/storage/pill_bottle/tricordrazine{
-	pixel_x = -7
-	},
-/obj/item/storage/pill_bottle/tricordrazine{
-	pixel_x = -7
-	},
-/obj/item/storage/pill_bottle/tricordrazine,
-/obj/item/storage/pill_bottle/tricordrazine,
-/obj/item/storage/pill_bottle/tricordrazine{
-	pixel_x = 7
-	},
-/obj/item/storage/pill_bottle/tricordrazine{
-	pixel_x = 7
 	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
