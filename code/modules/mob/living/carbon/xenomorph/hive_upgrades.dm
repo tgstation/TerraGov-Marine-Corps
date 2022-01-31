@@ -350,9 +350,3 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	desc = "Unlocks the primordial boiler's access to neurotoxin- and acid lances, direct-hit focussed bombardment types that leave a gas trail where they pass."
 	psypoint_cost = 225
 	icon = "primoboiler"
-
-/datum/hive_upgrade/primordial/drone
-	name = PRIMORDIAL_DRONE
-	desc = "Unlocks the primordial drone's ability to sow alien plants."
-	psypoint_cost = 75
-	icon = "primodrone"
