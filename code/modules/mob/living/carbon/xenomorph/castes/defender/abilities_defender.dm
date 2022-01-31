@@ -396,10 +396,13 @@
 
 /datum/action/xeno_action/activable/centrifugal_force/action_activate()
 	if(spin_loop_timer)
-		deltimer(spin_loop_timer)
-		spin_loop_timer = null
+		stop_spin()
 		return
+	if(!can_use_action(TRUE))
+		return fail_activate()
 	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER))
+		return fail_activate()
+	if(!can_use_action(TRUE))
 		return fail_activate()
 	owner.visible_message(span_xenowarning("\The [owner] starts swinging its tail in a circle!"), \
 		span_xenowarning("We start swinging our tail in a wide circle!"))
@@ -407,6 +410,7 @@
 
 	spin_loop_timer = addtimer(CALLBACK(src, .proc/do_spin), 5, TIMER_STOPPABLE)
 	add_cooldown()
+	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), .proc/stop_spin)
 
 /// runs a spin, then starts the timer for a new spin if needed
 /datum/action/xeno_action/activable/centrifugal_force/proc/do_spin()
@@ -439,3 +443,13 @@
 
 	if(can_use_action(X, XACT_IGNORE_COOLDOWN))
 		spin_loop_timer = addtimer(CALLBACK(src, .proc/do_spin), 5, TIMER_STOPPABLE)
+		return
+	stop_spin()
+
+/// stops spin and unregisters all listeners
+/datum/action/xeno_action/activable/centrifugal_force/proc/stop_spin()
+	SIGNAL_HANDLER
+	if(spin_loop_timer)
+		deltimer(spin_loop_timer)
+		spin_loop_timer = null
+	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)))
