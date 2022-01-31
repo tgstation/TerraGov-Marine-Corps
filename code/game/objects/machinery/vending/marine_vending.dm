@@ -1237,7 +1237,7 @@
 /obj/machinery/vending/valhalla_req
 	name = "\improper TerraGovTech requisition vendor"
 	desc = "A automated rack hooked up to a colossal storage of items."
-	icon_state = "synth"
+	icon_state = "requisitionop"
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 	products = list(
