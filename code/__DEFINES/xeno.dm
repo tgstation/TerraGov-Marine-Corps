@@ -11,10 +11,10 @@
 #define XENO_TURRET_STICKY_ICONSTATE "resin_turret"
 
 //Plant defines
-#define HEAL_PLANT "Life Fruit"
-#define ARMOR_PLANT "Hard Fruit"
-#define PLASMA_PLANT "Power Fruit"
-#define STEALTH_PLANT "Night Shade"
+#define HEAL_PLANT "life fruit"
+#define ARMOR_PLANT "hard fruit"
+#define PLASMA_PLANT "power fruit"
+#define STEALTH_PLANT "night shade"
 
 //Xeno reagents defines
 #define DEFILER_NEUROTOXIN "Neurotoxin"
