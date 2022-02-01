@@ -75,6 +75,11 @@
 /datum/action/xeno_action/sow/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	var/turf/T = get_turf(owner)
+	if(!(locate(/obj/effect/alien/weeds) in T))
+		if(!silent)
+			to_chat(owner, span_warning("Only weeds are fertile enough for our plants!"))
+		return FALSE
+
 	if((locate(/obj/structure/xeno/plant) in T))
 		if(!silent)
 			to_chat(owner, span_warning("There is already a plant growing here!"))
@@ -84,6 +89,7 @@
 		return FALSE
 
 /datum/action/xeno_action/sow/action_activate()
+	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!X.selected_plant)
 		return FALSE
