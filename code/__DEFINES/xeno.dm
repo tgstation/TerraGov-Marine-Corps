@@ -15,6 +15,7 @@
 #define ARMOR_PLANT "hard fruit"
 #define PLASMA_PLANT "power fruit"
 #define STEALTH_PLANT "night shade"
+#define STEALTH_PLANT_PASSIVE_CAMOUFLAGE_ALPHA 64
 
 //Xeno reagents defines
 #define DEFILER_NEUROTOXIN "Neurotoxin"

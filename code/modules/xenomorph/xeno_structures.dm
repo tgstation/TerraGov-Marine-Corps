@@ -1347,6 +1347,9 @@ TUNNEL
 
 /obj/structure/xeno/plant/stealth_plant/Initialize()
 	. = ..()
+
+obj/structure/xeno/plant/stealth_plant/on_mature(mob/user)
+	. = ..()
 	START_PROCESSING(SSslowprocess, src)
 
 /obj/structure/xeno/plant/stealth_plant/Destroy()
@@ -1357,15 +1360,13 @@ TUNNEL
 	return ..()
 
 /obj/structure/xeno/plant/stealth_plant/process()
-	if(!mature)
-		return
-	var/list/area_of_effect = RANGE_TURFS(camouflage_range, src.loc)
+	var/list/area_of_effect = RANGE_TURFS(camouflage_range, loc)
 	for(var/turf/tile in area_of_effect)
-		for(var/obj/structure/xeno/X in tile)
-			if(istype(X, /obj/structure/xeno/plant) || !line_of_sight(src, X)) //We don't hide plants
+		for(var/obj/structure/xeno/xeno_struct in tile)
+			if(istype(xeno_struct, /obj/structure/xeno/plant) || !line_of_sight(src, xeno_struct)) //We don't hide plants
 				continue
-			camouflaged_structures.Add(X)
-			X.alpha = 64
+			camouflaged_structures.Add(xeno_struct)
+			xeno_struct.alpha = STEALTH_PLANT_PASSIVE_CAMOUFLAGE_ALPHA
 
 /obj/structure/xeno/plant/stealth_plant/can_interact(mob/user)
 	. = ..()
@@ -1388,7 +1389,7 @@ TUNNEL
 
 ///Hides all nearby xenos
 /obj/structure/xeno/plant/stealth_plant/proc/veil()
-	var/list/area_of_effect = RANGE_TURFS(camouflage_range, src.loc)
+	var/list/area_of_effect = RANGE_TURFS(camouflage_range, loc)
 	for(var/turf/tile in area_of_effect)
 		for(var/mob/living/carbon/xenomorph/X in tile)
 			if(X.stat == DEAD || isxenohunter(X) || X.alpha != 255) //We don't mess with xenos capable of going stealth by themselves
