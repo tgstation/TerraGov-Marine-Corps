@@ -1359,7 +1359,7 @@ TUNNEL
 	if(!mature)
 		return
 	var/list/area_of_effect = RANGE_TURFS(camouflage_range, src.loc)
-	for(var/turf/tile in area_of_effect)
+	for(var/turf/tile AS in area_of_effect)
 		for(var/obj/structure/xeno/X in tile)
 			if(istype(X, /obj/structure/xeno/plant) || !line_of_sight(src, X)) //We don't hide plants
 				continue
