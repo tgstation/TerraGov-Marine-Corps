@@ -1200,7 +1200,6 @@ TUNNEL
 	if(!mature && isxeno(user))
 		to_chat(user, span_xenowarning("[src] hasn't grown yet, give it some time!"))
 		return FALSE
-	return TRUE
 
 /obj/structure/xeno/plant/update_icon_state()
 	. = ..()
@@ -1214,7 +1213,7 @@ TUNNEL
 /obj/structure/xeno/plant/proc/on_mature(mob/user)
 	playsound(src, "alien_resin_build", 25)
 	mature = TRUE
-	update_icon_state()
+	update_icon()
 
 /obj/structure/xeno/plant/attack_hand(mob/living/user)
 	if(!can_interact(user))
@@ -1353,8 +1352,8 @@ obj/structure/xeno/plant/stealth_plant/on_mature(mob/user)
 	START_PROCESSING(SSslowprocess, src)
 
 /obj/structure/xeno/plant/stealth_plant/Destroy()
-	for(var/obj/S in camouflaged_structures)
-		S.alpha = 255
+	for(var/obj/S AS in camouflaged_structures)
+		S.alpha = initial(S.alpha)
 	unveil()
 	STOP_PROCESSING(SSslowprocess, src)
 	return ..()
@@ -1389,7 +1388,7 @@ obj/structure/xeno/plant/stealth_plant/on_mature(mob/user)
 
 ///Hides all nearby xenos
 /obj/structure/xeno/plant/stealth_plant/proc/veil()
-	var/list/area_of_effect = RANGE_TURFS(camouflage_range, loc)
+	var/list/area_of_effect = RANGE_TURFS(camouflage_range, src.loc)
 	for(var/turf/tile in area_of_effect)
 		for(var/mob/living/carbon/xenomorph/X in tile)
 			if(X.stat == DEAD || isxenohunter(X) || X.alpha != 255) //We don't mess with xenos capable of going stealth by themselves
@@ -1409,5 +1408,5 @@ obj/structure/xeno/plant/stealth_plant/on_mature(mob/user)
 ///Reveals all xenos hidden by veil()
 /obj/structure/xeno/plant/stealth_plant/proc/unveil()
 	for(var/mob/X AS in camouflaged_xenos)
-		X.alpha = 255
+		X.alpha = initial(X.alpha)
 		to_chat(X, span_xenowarning("The effect of [src] wears off!"))
