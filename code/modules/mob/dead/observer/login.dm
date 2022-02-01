@@ -33,10 +33,11 @@
 	update_icon(client.prefs.ghost_form)
 	updateghostimages()
 
-	if(!length(actions))
-		for(var/path in subtypesof(/datum/action/observer_action))
+	for(var/path in subtypesof(/datum/action/observer_action))
+		if(!locate(path) in actions)
 			var/datum/action/observer_action/A = new path()
 			A.give_action(src)
+	if(!locate(/datum/action/minimap/observer) in actions)
 		var/datum/action/minimap/observer/mini = new
 		mini.give_action(src)
 
