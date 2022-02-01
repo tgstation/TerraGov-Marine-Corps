@@ -388,6 +388,7 @@
 	name = "Plasma Surge"
 	desc = "You have accelerated plasma regeneration."
 	icon_state = "drunk" //Close enough
+
 //MUTE
 /datum/status_effect/mute
 	id = "mute"
