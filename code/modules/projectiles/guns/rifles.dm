@@ -81,7 +81,8 @@
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.1 SECONDS
 	accuracy_mult = 1.10
-	scatter = 0
+	scatter = 2
+	burst_scatter_mult = 0.25
 	burst_amount = 4
 	aim_slowdown = 0.30
 	damage_falloff_mult = 0.9
@@ -1237,8 +1238,9 @@
 	burst_delay = 0.05 SECONDS
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1.2
-	scatter = -1
+	scatter = 0
 	scatter_unwielded = 15
+	burst_scatter_mult = 0.33
 	aim_slowdown = 0.45
 
 /obj/item/weapon/gun/rifle/tx11/scopeless
