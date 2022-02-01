@@ -2259,6 +2259,11 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
+/obj/effect/decal/warning_stripes/smartgunner,
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/small,
 /turf/open/floor/mainship/black/full,
 /area/mainship/living/cafeteria_starboard)
 "hf" = (
@@ -4190,6 +4195,16 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
+"nh" = (
+/obj/effect/decal/warning_stripes/engineer,
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/small,
+/turf/open/floor/mainship/black{
+	dir = 10
+	},
+/area/mainship/squads/general)
 "nj" = (
 /obj/machinery/door/firedoor/multi_tile{
 	dir = 8
@@ -6034,6 +6049,11 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment/corner,
+/obj/effect/decal/warning_stripes/leader,
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/small,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -10330,6 +10350,11 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
+/obj/effect/decal/warning_stripes/medical,
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/small,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -12214,6 +12239,11 @@
 /area/space)
 "Ly" = (
 /obj/structure/disposalpipe/segment/corner,
+/obj/effect/decal/warning_stripes/engineer,
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/small,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -15714,6 +15744,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "Wl" = (
+/obj/effect/decal/warning_stripes/smartgunner,
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/small,
 /turf/open/floor/mainship/black/full,
 /area/mainship/living/cafeteria_starboard)
 "Wn" = (
@@ -15901,6 +15936,16 @@
 "WP" = (
 /turf/open/floor/plating/mainship,
 /area/mainship/hallways/starboard_hallway)
+"WQ" = (
+/obj/effect/decal/warning_stripes/medical,
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/small,
+/turf/open/floor/mainship/black{
+	dir = 10
+	},
+/area/mainship/squads/general)
 "WR" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -52034,11 +52079,11 @@ Ku
 BY
 Gh
 qa
-IX
+WQ
 st
 qa
 ko
-IX
+nh
 LE
 Ly
 Co

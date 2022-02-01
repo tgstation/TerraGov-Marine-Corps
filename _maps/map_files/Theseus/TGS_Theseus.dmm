@@ -8389,6 +8389,14 @@
 	dir = 1
 	},
 /area/space)
+"cjA" = (
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/small,
+/obj/effect/decal/warning_stripes/engineer,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/delta)
 "cjE" = (
 /obj/structure/table/mainship,
 /obj/item/storage/firstaid/o2{
@@ -9221,6 +9229,14 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
+"dzM" = (
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/small,
+/obj/effect/decal/warning_stripes/leader,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/alpha)
 "dBR" = (
 /obj/machinery/power/apc/mainship{
 	dir = 4
@@ -10035,6 +10051,14 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/grunt_rnr)
+"fgi" = (
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/small,
+/obj/effect/decal/warning_stripes/medical,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/alpha)
 "fgj" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 4
@@ -10968,6 +10992,14 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
+"gQc" = (
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/small,
+/obj/effect/decal/warning_stripes/smartgunner,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/delta)
 "gQo" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -13180,6 +13212,14 @@
 /obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
+"kUl" = (
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/small,
+/obj/effect/decal/warning_stripes/smartgunner,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/alpha)
 "kUP" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -13301,6 +13341,14 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/engine_core)
+"leA" = (
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/small,
+/obj/effect/decal/warning_stripes/leader,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/delta)
 "lff" = (
 /turf/open/floor/mainship/purple{
 	dir = 8
@@ -13702,6 +13750,14 @@
 	dir = 8
 	},
 /area/mainship/hallways/port_hallway)
+"lIO" = (
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/small,
+/obj/effect/decal/warning_stripes/medical,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/delta)
 "lIX" = (
 /obj/machinery/door/window{
 	dir = 8
@@ -16574,6 +16630,14 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"qOp" = (
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/small,
+/obj/effect/decal/warning_stripes/engineer,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/alpha)
 "qOJ" = (
 /obj/structure/table/mainship,
 /obj/item/storage/toolbox/electrical,
@@ -61874,7 +61938,7 @@ oBV
 iJv
 cKy
 bdC
-iJv
+kUl
 abg
 kMY
 brj
@@ -61914,7 +61978,7 @@ awz
 ktN
 sVt
 vJr
-pGn
+gQc
 fEO
 pGn
 pGn
@@ -62902,7 +62966,7 @@ aCI
 iJv
 iJv
 bfJ
-iJv
+fgi
 fEX
 gbG
 brj
@@ -62942,7 +63006,7 @@ iLV
 ktN
 acY
 aiM
-pGn
+lIO
 oIu
 pGn
 pGn
@@ -63930,7 +63994,7 @@ aWQ
 iJv
 iJv
 biv
-iJv
+qOp
 jZv
 iJv
 iJv
@@ -63970,7 +64034,7 @@ pGn
 pGn
 add
 vJr
-pGn
+cjA
 rkn
 pGn
 pGn
@@ -64701,7 +64765,7 @@ hOm
 ack
 iJv
 bkg
-iJv
+dzM
 jZv
 iJv
 iJv
@@ -64741,7 +64805,7 @@ pGn
 pGn
 trp
 vJr
-pGn
+leA
 bZY
 pGn
 iwd

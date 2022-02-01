@@ -1360,6 +1360,11 @@
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "et" = (
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/small,
+/obj/effect/decal/warning_stripes/engineer,
 /turf/open/floor/mainship/purple{
 	dir = 1
 	},
@@ -2601,6 +2606,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
 "ix" = (
+/obj/effect/decal/warning_stripes/box/small,
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/medical,
 /turf/open/floor/mainship/blue/corner{
 	dir = 1
 	},
@@ -2800,6 +2810,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "ju" = (
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/small,
+/obj/effect/decal/warning_stripes/engineer,
 /turf/open/floor/mainship/purple/corner{
 	dir = 4
 	},
@@ -8756,6 +8771,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "Co" = (
+/obj/effect/decal/warning_stripes/box/small,
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/medical,
 /turf/open/floor/mainship/blue{
 	dir = 1
 	},
@@ -13262,6 +13282,14 @@
 	},
 /turf/open/floor/mainship/ai,
 /area/mainship/command/airoom)
+"Qe" = (
+/obj/effect/decal/warning_stripes/leader,
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/small,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/general)
 "Qf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -14786,6 +14814,14 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
+"US" = (
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/small,
+/obj/effect/decal/warning_stripes/smartgunner,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/general)
 "UT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -26503,7 +26539,7 @@ qd
 rm
 sr
 ta
-tc
+US
 vk
 tc
 tc
@@ -26797,7 +26833,7 @@ qg
 rp
 sr
 ta
-tc
+Qe
 vl
 tc
 tc
