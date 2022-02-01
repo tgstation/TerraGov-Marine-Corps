@@ -102,7 +102,7 @@
 	var/obj/machinery/camera/laser_cam/linked_cam
 	var/datum/squad/squad
 
-/obj/effect/overlay/temp/laser_target/Initialize(mapload, named, assigned_squad = null)
+/obj/effect/overlay/temp/laser_target/Initialize(mapload, effect_duration, named, assigned_squad = null)
 	. = ..()
 	if(named)
 		name = "[named] laser"
@@ -135,7 +135,7 @@
 /obj/effect/overlay/temp/laser_target/cas
 	icon_state = "laser_target_coordinate"
 
-/obj/effect/overlay/temp/laser_target/cas/Initialize(mapload, named, assigned_squad = null)
+/obj/effect/overlay/temp/laser_target/cas/Initialize(mapload, effect_duration, named, assigned_squad = null)
 	. = ..()
 	linked_cam = new(src, name)
 	GLOB.active_cas_targets += src
@@ -153,7 +153,7 @@
 /obj/effect/overlay/temp/laser_target/OB
 	icon_state = "laser_target2"
 
-/obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, named, assigned_squad)
+/obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, effect_duration, named, assigned_squad)
 	. = ..()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OB_LASER_CREATED, src)
 	GLOB.active_laser_targets += src
@@ -211,7 +211,7 @@
 	icon = 'icons/mob/mob.dmi'
 	effect_duration = 14
 
-/obj/effect/overlay/temp/gib_animation/Initialize(mapload, mob/source_mob, gib_icon)
+/obj/effect/overlay/temp/gib_animation/Initialize(mapload, effect_duration, mob/source_mob, gib_icon)
 	. = ..()
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
@@ -230,7 +230,7 @@
 	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	effect_duration = 10
 
-/obj/effect/overlay/temp/gib_animation/xeno/Initialize(mapload, mob/source_mob, gib_icon, new_icon)
+/obj/effect/overlay/temp/gib_animation/xeno/Initialize(mapload, effect_duration, mob/source_mob, gib_icon, new_icon)
 	. = ..()
 	icon = new_icon
 
@@ -242,7 +242,7 @@
 	icon = 'icons/mob/mob.dmi'
 	effect_duration = 12
 
-/obj/effect/overlay/temp/dust_animation/Initialize(mapload, mob/source_mob, gib_icon)
+/obj/effect/overlay/temp/dust_animation/Initialize(mapload, effect_duration, mob/source_mob, gib_icon)
 	. = ..()
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
