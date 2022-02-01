@@ -81,7 +81,7 @@
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.1 SECONDS
 	accuracy_mult = 1.10
-	scatter = 2
+	scatter = 0
 	burst_amount = 4
 	aim_slowdown = 0.30
 	damage_falloff_mult = 0.9
@@ -739,7 +739,7 @@
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.4
 	accuracy_mult = 1
-	scatter = 15
+	scatter = 10
 	scatter_unwielded = 45
 
 	placed_overlay_iconstate = "lmg"
@@ -1237,7 +1237,7 @@
 	burst_delay = 0.05 SECONDS
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1.2
-	scatter = 0
+	scatter = -1
 	scatter_unwielded = 15
 	aim_slowdown = 0.45
 
