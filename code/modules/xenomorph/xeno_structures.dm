@@ -1200,7 +1200,6 @@ TUNNEL
 	if(!mature && isxeno(user))
 		to_chat(user, span_xenowarning("[src] hasn't grown yet, give it some time!"))
 		return FALSE
-	return TRUE
 
 /obj/structure/xeno/plant/update_icon_state()
 	. = ..()
