@@ -1203,7 +1203,7 @@ TUNNEL
 
 /obj/structure/xeno/plant/update_icon_state()
 	. = ..()
-	icon_state = mature_icon_state
+	icon_state = (mature) ? mature_icon_state : initial(icon_state)
 
 ///Called whenever someone uses the plant, xeno or marine
 /obj/structure/xeno/plant/proc/on_use(mob/user)
@@ -1347,7 +1347,7 @@ TUNNEL
 /obj/structure/xeno/plant/stealth_plant/Initialize()
 	. = ..()
 
-obj/structure/xeno/plant/stealth_plant/on_mature(mob/user)
+/obj/structure/xeno/plant/stealth_plant/on_mature(mob/user)
 	. = ..()
 	START_PROCESSING(SSslowprocess, src)
 
