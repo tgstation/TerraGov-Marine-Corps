@@ -698,7 +698,7 @@
 		/obj/item/cell/high,
 		/obj/item/tool/shovel/etool,
 		/obj/item/lightreplacer,
-		/obj/item/circuitboard/general,
+		/obj/item/circuitboard/apc,
 		/obj/item/tool/solderingtool,
 	)
 

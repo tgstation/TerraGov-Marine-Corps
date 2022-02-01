@@ -1,0 +1,7 @@
+2022-02-01:
+  Canohaaaaaaa:
+  - qol: 'Warrior : punching someone missing a limb will default to hitting them in
+      the chest instead of entirely failing.'
+  - bugfix: 'Warrior : Warrior''s primordial can no longer be stacked by repeatedly
+      punching someone''s missing limb.'
+  - bugfix: 'Praetorian''s primordial : Acid dash can now be bound to a key.'

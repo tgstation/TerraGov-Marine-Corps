@@ -1,0 +1,4 @@
+author: "Mechanelize"
+delete-after: True
+changes: 
+  - bugfix: "fixed larva spawn menu sound"

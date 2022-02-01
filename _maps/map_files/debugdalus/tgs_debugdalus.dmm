@@ -617,11 +617,6 @@
 /obj/structure/window/framed/mainship,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
-"acO" = (
-/obj/machinery/vending/engineering,
-/obj/structure/cable,
-/turf/open/floor/mainship,
-/area/mainship/engineering/engineering_workshop)
 "acP" = (
 /obj/machinery/fuelcell_recycler,
 /obj/structure/cable,
@@ -5961,7 +5956,7 @@ aea
 acq
 acv
 acA
-acO
+tpB
 rrI
 tpB
 tpB

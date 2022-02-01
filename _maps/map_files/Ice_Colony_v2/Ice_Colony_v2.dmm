@@ -3478,11 +3478,11 @@
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/substation)
 "anQ" = (
-/obj/machinery/vending/assist,
+/obj/machinery/vending/engivend,
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/substation)
 "anR" = (
-/obj/machinery/vending/assist,
+/obj/machinery/vending/tool,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 6
 	},

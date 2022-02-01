@@ -146,11 +146,3 @@
 	// *** Defense *** //
 	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 50, "acid" = 33)
 
-	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/ready_charge/bull_charge/agile_charge,
-		/datum/action/xeno_action/activable/bull_charge,
-		/datum/action/xeno_action/activable/bull_charge/headbutt,
-		/datum/action/xeno_action/activable/bull_charge/gore,
-	)

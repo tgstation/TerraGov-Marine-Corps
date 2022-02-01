@@ -472,8 +472,8 @@
 		var/datum/limb/L = carbon_victim.get_limb(target_zone)
 
 		if (!L || (L.limb_status & LIMB_DESTROYED))
-			to_chat(X, span_xenodanger("Our target is missing that limb!"))
-			return FALSE
+			target_zone = BODY_ZONE_CHEST
+			L =  carbon_victim.get_limb(target_zone)
 
 		if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
 			L.remove_limb_flags(LIMB_SPLINTED)
