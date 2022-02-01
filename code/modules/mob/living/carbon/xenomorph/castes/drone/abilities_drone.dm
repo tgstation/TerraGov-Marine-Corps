@@ -89,7 +89,6 @@
 		return FALSE
 
 /datum/action/xeno_action/sow/action_activate()
-	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!X.selected_plant)
 		return FALSE

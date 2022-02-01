@@ -363,7 +363,7 @@
 
 /datum/status_effect/plasma_surge/on_apply()
 	. = ..()
-	//TODO VFX
+	owner.add_filter("plasma_surge_infusion_outline", 3, outline_filter(1, COLOR_CYAN))
 	var/mob/living/carbon/xenomorph/X = owner
 	X.gain_plasma(flat_amount_restored)
 	if(!bonus_regen)
@@ -382,6 +382,7 @@
 
 /datum/status_effect/plasma_surge/on_remove()
 	. = ..()
+	owner.remove_filter("plasma_surge_infusion_outline")
 	UnregisterSignal(owner, COMSIG_XENOMORPH_PLASMA_REGEN)
 
 /obj/screen/alert/status_effect/plasma_surge
