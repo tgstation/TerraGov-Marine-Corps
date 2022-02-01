@@ -369,7 +369,7 @@
 	if(!bonus_regen)
 		qdel()
 	else
-		RegisterSignal(owner, COMSIG_XENOMORPH_PLASMA_REGEN, .proc/plasma_surge_regeneration) //Register so we apply the effect whenever the target gains plasma
+		RegisterSignal(owner, COMSIG_XENOMORPH_PLASMA_REGEN, .proc/plasma_surge_regeneration)
 
 /datum/status_effect/plasma_surge/proc/plasma_surge_regeneration()
 	SIGNAL_HANDLER
