@@ -203,6 +203,7 @@
 	vendor_role = /datum/job/terragov/squad/standard
 	categories = list(
 		CAT_STD = list(MARINE_CAN_BUY_UNIFORM),
+		CAT_GLA = list(MARINE_CAN_BUY_GLASSES),
 		CAT_HEL = list(MARINE_CAN_BUY_HELMET),
 		CAT_AMR = list(MARINE_CAN_BUY_ARMOR),
 		CAT_BAK = list(MARINE_CAN_BUY_BACKPACK),
