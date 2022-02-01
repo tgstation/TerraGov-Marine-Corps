@@ -1350,7 +1350,7 @@ TUNNEL
 
 /obj/structure/xeno/plant/stealth_plant/Destroy()
 	for(var/obj/S AS in camouflaged_structures)
-		S.alpha = 255
+		S.alpha = initial(S.alpha)
 	unveil()
 	STOP_PROCESSING(SSslowprocess, src)
 	return ..()
