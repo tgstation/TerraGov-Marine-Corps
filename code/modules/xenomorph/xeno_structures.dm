@@ -1406,5 +1406,5 @@ TUNNEL
 ///Reveals all xenos hidden by veil()
 /obj/structure/xeno/plant/stealth_plant/proc/unveil()
 	for(var/mob/X AS in camouflaged_xenos)
-		X.alpha = 255
+		X.alpha = initial(X.alpha)
 		to_chat(X, span_xenowarning("The effect of [src] wears off!"))
