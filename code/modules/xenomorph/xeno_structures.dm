@@ -1213,7 +1213,7 @@ TUNNEL
 /obj/structure/xeno/plant/proc/on_mature(mob/user)
 	playsound(src, "alien_resin_build", 25)
 	mature = TRUE
-	update_icon_state()
+	update_icon()
 
 /obj/structure/xeno/plant/attack_hand(mob/living/user)
 	if(!can_interact(user))
