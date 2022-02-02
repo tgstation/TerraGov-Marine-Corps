@@ -168,10 +168,10 @@
 
 	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(istype(src, /turf/closed/wall)) //walls handle plasma cutter effects on their own
-			return
 		if(CHECK_BITFIELD(resistance_flags, RESIST_ALL) || CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE))
 			to_chat(user, span_warning("[P] can't cut through this!"))
+			return
+		if(istype(src, /turf/closed/wall)) //walls handle plasma cutter effects on their own
 			return
 		else if(!P.start_cut(user, name, src))
 			return
