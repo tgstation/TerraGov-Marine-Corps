@@ -166,12 +166,14 @@
 /turf/closed/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
+	var/turf/targettedwall = get_turf(src)
+
 	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(CHECK_BITFIELD(resistance_flags, RESIST_ALL) || CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE))
 			to_chat(user, span_warning("[P] can't cut through this!"))
 			return
-		if(istype(src, /turf/closed/wall)) //walls handle plasma cutter effects on their own
+		if(iswallturf(targettedwall)) //walls handle plasma cutter effects on their own
 			return
 		else if(!P.start_cut(user, name, src))
 			return
@@ -181,20 +183,27 @@
 			P.cut_apart(user, name, src) //purely a cosmetic effect
 
 		//change targetted turf to a new one to simulate deconstruction
-		if(ismineralturf(src) || istype(src, /turf/closed/desertdamrockwall))
+		if(ismineralturf(targettedwall))
 			ChangeTurf(/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor)
-		else if(istype(src, /turf/closed/gm))
+
+		else if(isdesertrockwallturf(targettedwall))
+			ChangeTurf(/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor)
+
+		else if(isjungleturf(targettedwall))
 			ChangeTurf(/turf/open/ground/jungle/clear)
-		else if(istype(src, /turf/closed/ice) || istype(src, /turf/closed/ice_rock))
+
+		else if(isiceturf(targettedwall) || isicerockturf(targettedwall))
 			ChangeTurf(/turf/open/floor/plating/ground/ice)
-		else if(istype(src, /turf/closed/brock))
+
+		else if(isvolcanicturf(targettedwall))
 			var/choice = rand(1,50)
 			if(choice == 50)
 				ChangeTurf(/turf/open/lavaland/basalt/glowing)
 			else
 				ChangeTurf(/turf/open/lavaland/basalt)
-		else if(!istype(src, /turf/closed/wall)) //walls handle deconstruction on their own so don't apply plating
-			ChangeTurf(/turf/open/floor/plating) //if none of the above apply regular plating as a fallback
+		
+		else //default case for any turf that isn't one of the above
+			ChangeTurf(/turf/open/floor/plating) //apply basic plating as fallback
 
 //Ice Thin Wall
 /turf/closed/ice/thin
