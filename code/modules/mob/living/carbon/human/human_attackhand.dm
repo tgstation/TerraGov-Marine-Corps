@@ -47,7 +47,7 @@
 					notify_ghost(G, "<font size=3>Someone is trying to revive your body. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/effects/adminhelp.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = src, action = NOTIFY_JUMP)
 				else if(!src.client)
 					//We couldn't find a suitable ghost, this means the person is not returning
-					to_chat(H, span_warning("Maintenance panel of [src] is locked tight, this unit refuses to be restarted."))
+					to_chat(H, span_warning("The maintenance panel of [src] is locked tight, this unit refuses to be restarted."))
 					return FALSE
 
 				var/restart_damage_threshold = 50 * (H.skills.getRating("engineer"))
