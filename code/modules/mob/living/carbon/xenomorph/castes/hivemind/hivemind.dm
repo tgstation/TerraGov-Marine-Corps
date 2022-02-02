@@ -125,7 +125,7 @@
 		status_flags = NONE
 		upgrade = XENO_UPGRADE_ZERO
 		resistance_flags = BANISH_IMMUNE
-		flags_pass = NONE
+		flags_pass = PASSMOB
 		density = TRUE
 		throwpass = FALSE
 		upgrade = XENO_UPGRADE_MANIFESTATION
