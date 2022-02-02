@@ -237,6 +237,7 @@
 /turf/closed/ice_rock
 	name = "Icy rock"
 	icon = 'icons/turf/rockwall.dmi'
+	resistance_flags = PLASMACUTTER_IMMUNE
 
 /turf/closed/ice_rock/single
 	icon_state = "single"
