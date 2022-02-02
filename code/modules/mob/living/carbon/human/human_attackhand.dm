@@ -99,7 +99,6 @@
 
 				src.visible_message(span_notice("[icon2html(src, viewers(H))] [src] beeps: Restart sequence successful."))
 				src.set_stat(UNCONSCIOUS)
-				src.emote("gasp")
 				src.regenerate_icons()
 				src.reload_fullscreens()
 				src.flash_act()
