@@ -454,8 +454,6 @@
 				//	playsound(src.loc, 'sound/machines/buzz-two.ogg', 25, 0)	//THE BUZZING IT NEVER STOPS	-Pete
 				spawn (60 + openspeed)
 					close()
-	return ..()
-
 
 	for(var/turf/turf in locs)
 		for(var/mob/living/M in turf)
