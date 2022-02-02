@@ -110,6 +110,28 @@
 
 ///Handles behavior when attacking a mob
 /datum/component/harvester/proc/attack_async(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
+	to_chat(user, span_rose("You prepare to stab <b>[target != user ? "[target]" : "yourself"]</b>!"))
+	new /obj/effect/temp_visual/telekinesis(get_turf(target))
+	if((target != user) && do_after(user, 2 SECONDS, TRUE, target, BUSY_ICON_DANGER))
+		target.heal_overall_damage(12.5, 0, TRUE)
+	else
+		target.adjustStaminaLoss(-30)
+		target.heal_overall_damage(6, 0, TRUE)
+	loaded_reagent = null
+
+///Signal handler calling when user is filling the harvester
+/datum/component/harvester/proc/attackby(datum/source, obj/item/cont, mob/user)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/attackby_async, source, cont, user)
+
+///Signal handler calling activation of the harvester
+/datum/component/harvester/proc/activate_blade(datum/source, mob/user)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/activate_blade_async, source, user)
+
+///Signal handler calling when user attacks
+/datum/component/harvester/proc/attack(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
+	SIGNAL_HANDLER
 	weapon = user.get_active_held_item()
 	if(!loaded_reagent)
 		return
@@ -134,28 +156,7 @@
 		if(/datum/reagent/medicine/bicaridine)
 			if(isxeno(target))
 				return
-			to_chat(user, span_rose("You prepare to stab <b>[target != user ? "[target]" : "yourself"]</b>!"))
-			new /obj/effect/temp_visual/telekinesis(get_turf(target))
-			if((target != user) && do_after(user, 2 SECONDS, TRUE, target, BUSY_ICON_DANGER))
-				target.heal_overall_damage(12.5, 0, TRUE)
-			else
-				target.adjustStaminaLoss(-30)
-				target.heal_overall_damage(6, 0, TRUE)
-			loaded_reagent = null
+			INVOKE_ASYNC(src, .proc/attack_async, source, target, user, weapon)
+			return COMPONENT_ITEM_NO_ATTACK
 
 	loaded_reagent = null
-
-///Signal handler calling when user is filling the harvester
-/datum/component/harvester/proc/attackby(datum/source, obj/item/cont, mob/user)
-	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/attackby_async, source, cont, user)
-
-///Signal handler calling activation of the harvester
-/datum/component/harvester/proc/activate_blade(datum/source, mob/user)
-	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/activate_blade_async, source, user)
-
-///Signal handler calling when user attacks
-/datum/component/harvester/proc/attack(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
-	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/attack_async, source, target, user, weapon)

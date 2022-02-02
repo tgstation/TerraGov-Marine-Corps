@@ -191,11 +191,11 @@
 	///this is how much deviation the gun recoil can have, recoil pushes the screen towards the reverse angle you shot + some deviation which this is the max.
 	var/recoil_deviation = 22.5
 	///How much the bullet scatters when fired while wielded.
-	var/scatter	= 20
+	var/scatter	= 4
 	///How much the bullet scatters when fired while unwielded.
-	var/scatter_unwielded = 20
+	var/scatter_unwielded = 12
 	///Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
-	var/burst_scatter_mult = 3
+	var/burst_scatter_mult = 1
 	///Multiplier. Defaults to 1 (no penalty). Multiplies accuracy modifier by this amount while burst firing; usually a fraction (penalty) when set.
 	var/burst_accuracy_mult	= 1
 	///accuracy modifier, used by most attachments.
@@ -203,7 +203,7 @@
 	///same vars as above but for unwielded firing.
 	var/accuracy_mult_unwielded = 1
 	///Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
-	var/movement_acc_penalty_mult = 5
+	var/movement_acc_penalty_mult = 2
 	///For regular shots, how long to wait before firing again.
 	var/fire_delay = 6
 	///Modifies the speed of projectiles fired.
@@ -692,11 +692,13 @@
 	if(!target)
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE))
+		cycle(gun_user, FALSE)
 	//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
 	var/obj/projectile/projectile_to_fire = in_chamber //Load a bullet in or check for existing one.
 	if(!projectile_to_fire) //If there is nothing to fire, click.
 		playsound(src, dry_fire_sound, 25, 1, 5)
-		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
+		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE))
 			cycle(gun_user, FALSE)
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
@@ -717,7 +719,7 @@
 			QDEL_NULL(in_chamber)
 		else
 			in_chamber = null
-		if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
+		if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE))
 			cycle(null)
 		if(length(chamber_items) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && get_current_rounds(chamber_items[current_chamber_position]) < (!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) ? rounds_per_shot : 0))
 			playsound(src, empty_sound, 25, 1)
@@ -1039,7 +1041,7 @@
  *  If the gun does not use handfuls, or magazines. It will merely fill the gun with whatever item is inserted.
  */
 /obj/item/weapon/gun/proc/reload(obj/item/new_mag, mob/living/user, force = FALSE)
-	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
+	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING) || user?.do_actions)
 		return
 	if(!(new_mag.type in allowed_ammo_types))
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
@@ -1068,6 +1070,10 @@
 		if(rounds >= max_chamber_items)
 			to_chat(user, span_warning("There is no room for [new_mag]!"))
 			return FALSE
+
+	if(!max_chamber_items && in_chamber)
+		to_chat(user, span_warning("[src]'s chamber is closed"))
+		return FALSE
 
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES))
 		if(!get_current_rounds(new_mag) && !force)
@@ -1098,7 +1104,7 @@
 		if(istype(new_mag, /obj/item/ammo_magazine))
 			var/obj/item/ammo_magazine/magazine = new_mag
 			magazine.on_inserted(src)
-		if(!in_chamber && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
+		if(!in_chamber && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE))
 			cycle(user, FALSE)
 		update_ammo_count()
 		update_icon()
@@ -1144,7 +1150,7 @@
 		user?.temporarilyRemoveItemFromInventory(obj_to_insert)
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_HANDFULS))
 		playsound(src, reload_sound, 25, 1)
-	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !in_chamber && max_chamber_items)
+	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !in_chamber && max_chamber_items && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE))
 		cycle(user, FALSE)
 	get_ammo()
 	update_ammo_count()
@@ -1212,6 +1218,7 @@
 		obj_in_chamber.update_icon()
 		get_ammo()
 		update_ammo_count()
+		update_icon()
 		return TRUE
 
 	var/obj/item/mag = chamber_items[current_chamber_position]
@@ -1232,13 +1239,14 @@
 	if(istype(mag, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/magazine = mag
 		magazine.on_removed(src)
-	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && CHECK_BITFIELD(get_flags_magazine_features(mag), MAGAZINE_REFUND_IN_CHAMBER) && !after_fire)
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && CHECK_BITFIELD(get_flags_magazine_features(mag), MAGAZINE_REFUND_IN_CHAMBER) && !after_fire && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE))
 		QDEL_NULL(in_chamber)
 		adjust_current_rounds(mag, rounds_per_shot)
 	UnregisterSignal(mag, COMSIG_ITEM_REMOVED_INVENTORY)
 	mag.update_icon()
 	get_ammo()
 	update_ammo_count()
+	update_icon()
 	return TRUE
 
 ///Cycles the gun, handles ammunition draw
@@ -1530,13 +1538,13 @@
 	else if(user && world.time - user.last_move_time < 5) //moved during the last half second
 		//accuracy and scatter penalty if the user fires unwielded right after moving
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * 0.15))
-		gun_scatter += max(0, movement_acc_penalty_mult * 5)
+		gun_scatter += max(0, movement_acc_penalty_mult)
 
 	if(gun_firemode == GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST && burst_amount > 1)
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
 
 	if(dual_wield) //akimbo firing gives terrible accuracy
-		gun_scatter += 8 * rand(upper_akimbo_accuracy, lower_akimbo_accuracy)
+		gun_scatter += 2 * rand(upper_akimbo_accuracy, lower_akimbo_accuracy)
 
 	if(user)
 		// Apply any skill-based bonuses to accuracy
@@ -1556,7 +1564,7 @@
 				var/mob/living/carbon/carbon_user = user
 				projectile_to_fire.def_zone = user.zone_selected
 				if(carbon_user.stagger)
-					gun_scatter += 30
+					gun_scatter += 5
 
 			// Status effect changes
 			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_BUFF))
@@ -1582,26 +1590,23 @@
 /obj/item/weapon/gun/proc/get_scatter(starting_scatter, mob/user)
 	. = starting_scatter //projectile_to_fire.scatter
 
-	if(. <= 0) //Not if the gun doesn't scatter at all, or negative scatter.
-		return 0
+	if(gun_firemode ==  GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST) //Much higher chance on a burst or similar.
+		if(flags_item & WIELDED && wielded_stable() || CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if deployed, its pretty stable.
+			. += burst_amount * burst_scatter_mult
+		else
+			. += burst_amount * burst_scatter_mult * 2
 
-	switch(gun_firemode)
-		if(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC) //Much higher chance on a burst or similar.
-			if(flags_item & WIELDED && wielded_stable() || CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if deployed, its pretty stable.
-				. += burst_amount * burst_scatter_mult
-			if(CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if our gun is deployed, change the scatter by this number, usually a negative
-				. += deployed_scatter_change
-			else
-				. += burst_amount * burst_scatter_mult * 5
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if our gun is deployed, change the scatter by this number, usually a negative
+		. += deployed_scatter_change
 
 	if(!user?.skills.getRating("firearms")) //no training in any firearms
-		. += 15
+		. += 10
 	else
 		var/scatter_tweak = user.skills.getRating(gun_skill_category)
-		if(scatter_tweak)
-			. -= scatter_tweak * 15
+		if(scatter_tweak > 1)
+			. -= scatter_tweak * 2
 
-	if(!prob(.)) //RNG at work.
+	if(. <= 0)
 		return 0
 
 

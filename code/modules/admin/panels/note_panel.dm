@@ -87,8 +87,20 @@
 		if(!note_severity)
 			return
 	var/datum/db_query/query_create_message = SSdbcore.NewQuery({"
-		INSERT INTO [format_table_name("messages")] (type, targetckey, adminckey, text, timestamp, server, server_ip, server_port, round_id, secret, expire_timestamp, severity, playtime)
-		VALUES (:type, :target_ckey, :admin_ckey, :text, :timestamp, :server, INET_ATON(:internet_address), :port, :round_id, :secret, :expiry, :note_severity, :playtime)
+		INSERT INTO [format_table_name("messages")] SET
+			type = :type,
+			targetckey = :target_ckey,
+			adminckey = :admin_ckey,
+			text = :text,
+			timestamp = :timestamp,
+			server = :server,
+			server_ip = INET_ATON(:internet_address),
+			server_port = :port,
+			round_id = :round_id,
+			secret = :secret,
+			expire_timestamp = :expiry,
+			severity = :note_severity,
+			playtime = (SELECT minutes FROM [format_table_name("role_time")] WHERE ckey = :target_ckey AND job = 'Living')
 	"}, list(
 		"type" = type,
 		"target_ckey" = target_ckey,
@@ -101,8 +113,7 @@
 		"round_id" = GLOB.round_id,
 		"secret" = secret,
 		"expiry" = expiry || null,
-		"note_severity" = note_severity,
-		"playtime" = "(SELECT minutes FROM [format_table_name("role_time")] WHERE ckey = '[target_ckey]' AND job = 'Living')",
+		"note_severity" = note_severity
 	))
 	var/pm = "[key_name(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""]: [text]"
 	var/header = "[key_name_admin(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""]"
@@ -390,7 +401,11 @@
 	if(!SSdbcore.Connect())
 		to_chat(usr, span_danger("Failed to establish database connection."))
 		return
+
+	//Needs to be requested before url retrieval since you can view your notes before SSassets finishes initialization
+	var/datum/asset/notes_assets = get_asset_datum(/datum/asset/simple/notes)
 	var/list/output = list()
+
 	var/ruler = "<hr style='background:#000000; border:0; height:3px'>"
 	var/list/navbar = list("<a href='?_src_=holder;[HrefToken()];nonalpha=1'>All</a><a href='?_src_=holder;[HrefToken()];nonalpha=2'>#</a>")
 	for(var/letter in GLOB.alphabet)
@@ -638,7 +653,6 @@
 		output += "<center><a href='?_src_=holder;[HrefToken()];addmessageempty=1'>Add message</a><a href='?_src_=holder;[HrefToken()];addwatchempty=1'>Add watchlist entry</a><a href='?_src_=holder;[HrefToken()];addnoteempty=1'>Add note</a></center>"
 		output += ruler
 	var/datum/browser/browser = new(usr, "Note panel", "Manage player notes", 1000, 500)
-	var/datum/asset/notes_assets = get_asset_datum(/datum/asset/simple/notes)
 	notes_assets.send(usr.client)
 	browser.set_content(jointext(output, ""))
 	browser.open()

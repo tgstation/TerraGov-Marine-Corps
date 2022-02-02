@@ -300,17 +300,13 @@
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_NEURO_LIGHT //Light neuro smoke doesn't extinguish
 
 /obj/effect/particle_effect/smoke/xeno/hemodile
-	alpha = 40
-	opacity = FALSE
 	smoke_can_spread_through = TRUE
 	color = "#0287A1"
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_HEMODILE|SMOKE_GASP
 
 /obj/effect/particle_effect/smoke/xeno/transvitox
-	alpha = 60
-	opacity = FALSE
 	smoke_can_spread_through = TRUE
-	color = "#C0FF94"
+	color = "#abf775"
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_TRANSVITOX|SMOKE_COUGH
 
 //Toxic smoke when the Defiler successfully uses Defile
@@ -318,6 +314,11 @@
 	color = "#bb0a1e" //Blood red
 	smoke_can_spread_through = TRUE
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_SANGUINAL|SMOKE_GASP|SMOKE_COUGH
+
+///Xeno ozelomelyn in smoke form for Defiler.
+/obj/effect/particle_effect/smoke/xeno/ozelomelyn
+	color = "#f1ddcf" //A pinkish for now.
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_OZELOMELYN|SMOKE_GASP|SMOKE_COUGH
 
 /////////////////////////////////////////////
 // Smoke spreads
@@ -371,6 +372,9 @@ datum/effect_system/smoke_spread/tactical
 
 /datum/effect_system/smoke_spread/xeno/sanguinal
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/sanguinal
+
+/datum/effect_system/smoke_spread/xeno/ozelomelyn
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/ozelomelyn
 
 /////////////////////////////////////////////
 // Chem smoke

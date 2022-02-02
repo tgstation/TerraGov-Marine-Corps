@@ -424,7 +424,7 @@
 			a_intent = INTENT_HARM
 	if(should_zombify)
 		set_species("Strong zombie")
-		faction = FACTION_XENO
+		faction = FACTION_ZOMBIE
 	heal_limbs(- health)
 	set_stat(CONSCIOUS)
 	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /obj/screen/fullscreen/black)

@@ -7,33 +7,6 @@
 	flags_atom = CONDUCT
 	materials = list(/datum/material/metal = 50, /datum/material/glass = 50)
 	var/build_path = null
-	var/is_general_board = FALSE
-
-/obj/item/circuitboard/attackby(obj/item/I , mob/user, params)
-	. = ..()
-	if(ismultitool(I) && is_general_board == TRUE)
-		var/obj/item/circuitboard/new_board
-		var/modepick = tgui_input_list(user, "Select a mode for this circuit.", null,list("APC", "Airlock", "Fire Alarm", "Air Alarm"))
-		switch(modepick)
-			if("APC")
-				new_board = new /obj/item/circuitboard/apc(user.loc)
-			if("Airlock")
-				new_board = new /obj/item/circuitboard/airlock(user.loc)
-			if("Fire Alarm")
-				new_board = new /obj/item/circuitboard/firealarm(user.loc)
-			if("Air Alarm")
-				new_board = new /obj/item/circuitboard/airalarm(user.loc)
-		if(new_board)
-			qdel(src)
-			to_chat(user, span_notice("You set the general circuit to act as [new_board]."))
-			new_board.set_general()
-			user.put_in_hands(new_board)
-
-
-/obj/item/circuitboard/proc/set_general()
-	is_general_board = TRUE
-	name = "[initial(name)] (General)"
-	desc = "[initial(desc)] This appears to be a modular general circuit that can switch between pre-programmed modes with a multitool."
 
 //Called when the circuitboard is used to contruct a new machine.
 /obj/item/circuitboard/proc/construct(obj/machinery/M)
@@ -71,7 +44,7 @@
 /obj/item/circuitboard/apc
 	name = "power control module"
 	icon_state = "power_mod"
-	desc = "Heavy-duty switching circuits for power control."
+	desc = "Heavy-duty power control circuit for APC contstruction."
 
 
 // Tracker Electronic
@@ -177,9 +150,3 @@
 /obj/item/circuitboard/airlock/secure
 	name = "secure airlock electronics"
 	desc = "designed to be somewhat more resistant to hacking than standard electronics."
-
-
-/obj/item/circuitboard/general
-	name = "general circuit board"
-	desc = "A reconfigurable general circuitboard that can switch between multiple pre-programmed modes by way of a multitool."
-	is_general_board = TRUE

@@ -84,7 +84,7 @@
 /datum/action/xeno_action/activable/lunge/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
-	if(get_dist(target, owner) > 2)
+	if(!line_of_sight(owner, target, 2))
 		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
@@ -106,7 +106,6 @@
 	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, .proc/clean_lunge_target)
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/check_if_lunge_possible)
 	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/clean_lunge_target)
-	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/finish_lunge)
 	X.throw_at(get_step_towards(A, X), 6, 2, X)
 
 	if(X.pulling && !isxeno(X.pulling)) //If we grabbed something give us combo.
@@ -473,8 +472,8 @@
 		var/datum/limb/L = carbon_victim.get_limb(target_zone)
 
 		if (!L || (L.limb_status & LIMB_DESTROYED))
-			to_chat(X, span_xenodanger("Our target is missing that limb!"))
-			return FALSE
+			target_zone = BODY_ZONE_CHEST
+			L =  carbon_victim.get_limb(target_zone)
 
 		if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
 			L.remove_limb_flags(LIMB_SPLINTED)

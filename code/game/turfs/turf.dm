@@ -101,6 +101,10 @@
 	else if (!istype(hard_armor, /datum/armor))
 		stack_trace("Invalid type [hard_armor.type] found in .hard_armor during /turf Initialize()")
 
+	if(smoothing_behavior)
+		smooth_self()
+		smooth_neighbors()
+
 	return INITIALIZE_HINT_NORMAL
 
 
@@ -173,8 +177,7 @@
 	if(QDELETED(mover)) //Mover deleted from Cross/CanPass/Bump, do not proceed.
 		return FALSE
 	if(firstbump)
-		mover.Bump(firstbump)
-		return FALSE
+		return mover.Bump(firstbump)
 	return TRUE
 
 

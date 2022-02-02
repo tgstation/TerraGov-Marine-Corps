@@ -7,7 +7,6 @@
 	wrenchable = FALSE
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	isshared = TRUE
-	contraband = list(/obj/item/explosive/grenade/smokebomb = 50)
 
 	products = list(
 		"Rifles" = list(
@@ -50,8 +49,6 @@
 		"Shotgun" = list(
 			/obj/item/weapon/gun/shotgun/pump/t35 = -1,
 			/obj/item/weapon/gun/shotgun/combat/standardmarine = -1,
-			/obj/item/weapon/gun/shotgun/combat = -1,
-			/obj/item/weapon/gun/shotgun/pump/cmb = -1,
 			/obj/item/weapon/gun/shotgun/double/marine = -1,
 			/obj/item/storage/belt/gun/ts34/full = -1,
 			/obj/item/ammo_magazine/shotgun = -1,
@@ -148,18 +145,18 @@
 			/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini = -1,
 		),
 		"Boxes" = list(
-			/obj/item/ammo_magazine/packet/p9mm = 100,
-			/obj/item/ammo_magazine/packet/acp = 100,
-			/obj/item/ammo_magazine/packet/magnum = 100,
-			/obj/item/ammo_magazine/packet/p10x20mm = 100,
-			/obj/item/ammo_magazine/packet/p10x24mm = 100,
-			/obj/item/ammo_magazine/packet/p10x25mm = 100,
-			/obj/item/ammo_magazine/packet/p10x26mm = 100,
-			/obj/item/ammo_magazine/packet/p10x27mm = 100,
-			/obj/item/ammo_magazine/packet/p492x34mm = 100,
-			/obj/item/ammo_magazine/packet/p4570 = 100,
-			/obj/item/storage/box/visual/magazine = 30,
-			/obj/item/storage/box/visual/grenade = 10,
+			/obj/item/ammo_magazine/packet/p9mm = -1,
+			/obj/item/ammo_magazine/packet/acp = -1,
+			/obj/item/ammo_magazine/packet/magnum = -1,
+			/obj/item/ammo_magazine/packet/p10x20mm = -1,
+			/obj/item/ammo_magazine/packet/p10x24mm = -1,
+			/obj/item/ammo_magazine/packet/p10x25mm = -1,
+			/obj/item/ammo_magazine/packet/p10x26mm = -1,
+			/obj/item/ammo_magazine/packet/p10x27mm = -1,
+			/obj/item/ammo_magazine/packet/p492x34mm = -1,
+			/obj/item/ammo_magazine/packet/p4570 = -1,
+			/obj/item/storage/box/visual/magazine = -1,
+			/obj/item/storage/box/visual/grenade = -1,
 		),
 		"Utility" = list(
 			/obj/item/flashlight/combat = -1,
@@ -178,8 +175,6 @@
 	)
 
 /obj/machinery/vending/weapon/hvh
-
-	contraband = list(/obj/item/explosive/grenade/smokebomb = 50)
 
 	products = list(
 		"Rifles" = list(
@@ -268,6 +263,7 @@
 			/obj/item/explosive/grenade = 600,
 			/obj/item/explosive/grenade/m15 = 50,
 			/obj/item/explosive/grenade/incendiary = 50,
+			/obj/item/explosive/grenade/smokebomb = 50,
 			/obj/item/explosive/grenade/smokebomb/cloak = 50,
 			/obj/item/explosive/grenade/smokebomb/drain = 10,
 			/obj/item/explosive/grenade/mirage = 100,
@@ -508,9 +504,9 @@
 		/obj/item/storage/box/matches = -1,
 		/obj/item/tool/lighter/random = -1,
 		/obj/item/tool/lighter/zippo = -1,
+		/obj/item/clothing/mask/cigarette/cigar/havana = 5
 	)
 
-	contraband = list(/obj/item/clothing/mask/cigarette/cigar/havana = 5)
 	premium = list(/obj/item/storage/fancy/cigar = 25)
 	seasonal_items = list()
 
@@ -527,14 +523,15 @@
 /obj/machinery/vending/cargo_supply
 	name = "\improper Operational Supplies Vendor"
 	desc = "A large vendor for dispensing specialty and bulk supplies. Restricted to cargo personnel only."
-	icon_state = "synth"
-	icon_vend = "synth-vend"
-	icon_deny = "synth-deny"
+	icon_state = "requisitionop"
+	icon_vend = "requisitionop-vend"
+	icon_deny = "requisitionop-deny"
 	wrenchable = FALSE
 	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
 	products = list(
 		"Surplus Special Equipment" = list(
 			/obj/item/beacon/supply_beacon = 1,
+			/obj/effect/teleporter_linker = 1,
 			/obj/item/ammo_magazine/rifle/autosniper = 3,
 			/obj/item/ammo_magazine/rifle/tx8 = 3,
 			/obj/item/ammo_magazine/rocket/sadar = 3,
@@ -542,7 +539,6 @@
 			/obj/item/ammo_magazine/shotgun/mbx900 = 2,
 			/obj/item/bodybag/tarp = 2,
 			/obj/item/explosive/plastique = 5,
-			/obj/item/minerupgrade/automatic = 3,
 			/obj/item/fulton_extraction_pack = 2,
 			/obj/item/clothing/suit/storage/marine/harness/boomvest = 20,
 			/obj/item/radio/headset/mainship/marine/alpha = -1,
@@ -550,12 +546,25 @@
 			/obj/item/radio/headset/mainship/marine/charlie = -1,
 			/obj/item/radio/headset/mainship/marine/delta = -1,
 		),
+		"Mining Equipment" = list(
+			/obj/item/minerupgrade/automatic = 1,
+			/obj/item/minerupgrade/reinforcement = 1,
+			/obj/item/minerupgrade/overclock = 1,
+		),
+		"Reqtorio Basics" = list(
+			/obj/item/paper/factoryhowto = -1,
+			/obj/machinery/factory/cutter = 1,
+			/obj/machinery/factory/heater = 1,
+			/obj/machinery/factory/flatter = 1,
+			/obj/machinery/factory/former = 1,
+			/obj/machinery/factory/reconstructor = 1,
+			/obj/machinery/outputter = 1,
+		),
 		"Grenade Boxes" = list(
 			/obj/item/storage/box/visual/grenade/frag = 2,
 			/obj/item/storage/box/visual/grenade/impact = 2,
 			/obj/item/storage/box/visual/grenade/incendiary = 2,
 			/obj/item/storage/box/visual/grenade/M15 = 2,
-			/obj/item/storage/box/visual/grenade/drain = 1,
 			/obj/item/storage/box/visual/grenade/cloak = 1,
 		),
 		"Ammo Boxes" = list(
@@ -693,7 +702,7 @@
 
 /obj/machinery/vending/lasgun/stock(obj/item/item_to_stock, mob/user, recharge = FALSE)
 	//More accurate comparison between absolute paths.
-	for(var/datum/vending_product/R AS in (product_records + hidden_records + coin_records ))
+	for(var/datum/vending_product/R AS in (product_records + coin_records ))
 		if(item_to_stock.type == R.product_path && !istype(item_to_stock,/obj/item/storage)) //Nice try, specialists/engis
 			if(istype(item_to_stock, /obj/item/cell/lasgun) && recharge)
 				if(!recharge_lasguncell(item_to_stock, user))
@@ -747,16 +756,14 @@
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal6 = -1,
 		/obj/item/storage/box/MRE = -1,
 		/obj/item/reagent_containers/food/drinks/flask = -1,
+		/obj/item/reagent_containers/food/drinks/flask/marine = -1,
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal5 = -1
 	)
 //Christmas inventory
 /*
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas1 = 25,
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas3 = 25)*/
-	contraband = list(
-		/obj/item/reagent_containers/food/drinks/flask/marine = 10,
-		/obj/item/reagent_containers/food/snacks/mre_pack/meal5 = 15,
-)
 	vend_delay = 15
 	//product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
 	product_ads = "Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork.; 9 Flavors of Protein!; You'll never guess the mystery flavor!"
@@ -813,10 +820,6 @@
 			/obj/item/healthanalyzer = 12,
 			/obj/item/bodybag/cryobag = 8,
 		),
-	)
-	contraband = list(
-		/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 3,
-		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired = 3,
 	)
 
 /obj/machinery/vending/MarineMed/rebel
@@ -888,7 +891,6 @@
 		/obj/item/reagent_containers/blood/OMinus = 5,
 		/obj/item/reagent_containers/blood/empty = 10,
 	)
-	contraband = list()
 
 /obj/machinery/vending/MarineMed/Blood/rebel
 	req_one_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
@@ -897,9 +899,8 @@
 	. = ..()
 	var/temp_list[] = productlist
 	var/obj/item/reagent_containers/blood/temp_path
-	var/datum/vending_product/R
 	var/blood_type
-	for(R in (product_records + hidden_records + coin_records))
+	for(var/datum/vending_product/R AS in (product_records + coin_records))
 		if(R.product_path in temp_list)
 			temp_path = R.product_path
 			blood_type = initial(temp_path.blood_type)
@@ -935,7 +936,6 @@
 		/obj/item/clothing/mask/gas = 4,
 		/obj/item/storage/pouch/pistol = 4,
 	)
-	contraband = list(/obj/item/reagent_containers/blood/OMinus = 1)
 
 /obj/machinery/vending/marine_medic/rebel
 	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
@@ -954,8 +954,6 @@
 		/obj/item/storage/box/sentry = 3,
 		/obj/item/storage/box/tl102 = 1,
 	)
-
-	contraband = list(/obj/item/cell/super = 1)
 
 	prices = list()
 
@@ -990,8 +988,8 @@
 			/obj/item/clothing/suit/modular = -1,
 			/obj/item/clothing/suit/storage/marine/harness = -1,
 			/obj/item/clothing/suit/storage/marine/harness/cowboy = -1,
-			/obj/item/clothing/suit/cowboy = -1,
-			/obj/item/clothing/suit/armor/vest/pilot = -1,
+			/obj/item/clothing/suit/storage/marine/cowboy = -1,
+			/obj/item/clothing/suit/modular/xenonauten/pilot = -1,
 			/obj/item/facepaint/green = -1,
 			/obj/item/clothing/suit/storage/marine/robot/light = -1,
 			/obj/item/clothing/suit/storage/marine/robot = -1,
@@ -1008,6 +1006,7 @@
 			/obj/item/clothing/head/modular/marine/eod = -1,
 			/obj/item/clothing/head/modular/marine/scout = -1,
 			/obj/item/clothing/head/modular/marine/infantry = -1,
+			/obj/item/clothing/head/modular/marine/helljumper = -1,
 			/obj/item/clothing/head/helmet/marine/robot/light = -1,
 			/obj/item/clothing/head/helmet/marine/robot = -1,
 			/obj/item/clothing/head/helmet/marine/robot/heavy = -1,
@@ -1019,6 +1018,7 @@
 			/obj/item/armor_module/armor/chest/marine/eva = -1,
 			/obj/item/armor_module/armor/chest/marine/assault = -1,
 			/obj/item/armor_module/armor/chest/marine/assault/eod = -1,
+			/obj/item/armor_module/armor/chest/marine/helljumper = -1,
 		),
 		"Jaeger armpiece" = list(
 			/obj/item/armor_module/armor/arms/marine/skirmisher = -1,
@@ -1027,6 +1027,7 @@
 			/obj/item/armor_module/armor/arms/marine/eva = -1,
 			/obj/item/armor_module/armor/arms/marine/assault = -1,
 			/obj/item/armor_module/armor/arms/marine/eod = -1,
+			/obj/item/armor_module/armor/arms/marine/helljumper = -1,
 		),
 		"Jaeger legpiece" = list(
 			/obj/item/armor_module/armor/legs/marine/skirmisher = -1,
@@ -1036,6 +1037,7 @@
 			/obj/item/armor_module/armor/legs/marine/assault = -1,
 			/obj/item/armor_module/armor/legs/marine/eod = -1,
 			/obj/item/armor_module/armor/legs/marine/scout = -1,
+			/obj/item/armor_module/armor/legs/marine/helljumper = -1,
 		),
 		"Jaeger modules" = list(
 			/obj/item/armor_module/storage/general = -1,
@@ -1101,10 +1103,17 @@
 			/obj/item/clothing/head/tgmcberet = -1,
 			/obj/item/clothing/glasses/mgoggles = -1,
 			/obj/item/clothing/glasses/mgoggles/prescription = -1,
+			/obj/effect/essentials_set/white_dress = -1,
 			/obj/item/clothing/under/whites = -1,
+			/obj/item/clothing/suit/white_dress_jacket = -1,
 			/obj/item/clothing/head/white_dress = -1,
 			/obj/item/clothing/shoes/white = -1,
 			/obj/item/clothing/gloves/white = -1,
+			/obj/effect/essentials_set/service_uniform = -1,
+			/obj/item/clothing/under/service = -1,
+			/obj/item/clothing/head/garrisoncap = -1,
+			/obj/item/clothing/head/servicecap = -1,
+			/obj/item/clothing/shoes/marine/full = -1,
 			/obj/item/clothing/under/marine/robotic = -1,
 			/obj/item/armor_module/armor/badge = -1,
 		),
@@ -1127,6 +1136,7 @@
 			/obj/item/storage/belt/gun/revolver/standard_revolver = -1,
 			/obj/item/storage/large_holster/blade/machete/full = -1,
 			/obj/item/storage/large_holster/blade/machete/full_harvester = -1,
+			/obj/item/storage/belt/utility/full =-1,
 		),
 		"Pouches" = list(
 			/obj/item/storage/pouch/pistol = -1,
@@ -1215,7 +1225,7 @@
 /obj/machinery/vending/valhalla_req
 	name = "\improper TerraGovTech requisition vendor"
 	desc = "A automated rack hooked up to a colossal storage of items."
-	icon_state = "synth"
+	icon_state = "requisitionop"
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 	products = list(
