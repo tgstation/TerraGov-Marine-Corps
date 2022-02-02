@@ -331,9 +331,6 @@
 		if(!P.start_cut(user, name, src))
 			return
 
-		if(!do_after(user, P.calc_delay(user), TRUE, src, BUSY_ICON_HOSTILE))
-			return
-
 		P.cut_apart(user, name, src)
 		dismantle_wall()
 
