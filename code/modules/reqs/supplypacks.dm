@@ -1015,6 +1015,11 @@ ENGINEERING
 	contains = list(/obj/machinery/power/port_gen/pacman/mobile_power)
 	cost = 20
 
+/datum/supply_packs/engineering/teleporter 
+	name = "Teleporter pads"
+	contains = list(/obj/effect/teleporter_linker)
+	cost = 50
+
 /*******************************************************************************
 SUPPLIES
 *******************************************************************************/

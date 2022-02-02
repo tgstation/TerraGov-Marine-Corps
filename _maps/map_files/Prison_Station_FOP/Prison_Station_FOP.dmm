@@ -32210,7 +32210,7 @@
 /turf/open/floor/plating,
 /area/prison/engineering/atmos)
 "bWl" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/space)
 "bWm" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -34661,10 +34661,6 @@
 	dir = 8
 	},
 /area/prison/cellblock/highsec/south/south)
-"cdQ" = (
-/obj/machinery/vending/engineering,
-/turf/open/floor/plating,
-/area/prison/engineering)
 "cdR" = (
 /obj/structure/table/gamblingtable,
 /turf/open/floor/prison/plate,
@@ -47526,9 +47522,9 @@
 /turf/open/floor/prison/bright_clean,
 /area/prison/execution)
 "uZo" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/floor/plating,
-/area/prison/hallway/entrance)
+/obj/structure/rack,
+/turf/open/floor/wood,
+/area/prison/command/office)
 "uZP" = (
 /obj/structure/lattice,
 /turf/open/ground/river,
@@ -47689,7 +47685,7 @@
 /area/prison/cellblock/mediumsec/west)
 "vtZ" = (
 /obj/structure/lattice,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/space)
 "vue" = (
 /turf/open/floor/wood/broken,
@@ -83616,7 +83612,7 @@ czN
 czN
 cAa
 czU
-bWl
+aab
 aab
 aab
 aab
@@ -94356,7 +94352,7 @@ bTh
 bUF
 bWb
 bRC
-cdQ
+ejV
 ejV
 cbM
 cdg
@@ -94377,7 +94373,7 @@ cqj
 cqU
 cgI
 cgI
-csP
+cgI
 adO
 aab
 aab
@@ -105368,7 +105364,7 @@ wmY
 hKf
 hKf
 hKf
-uZo
+rBG
 sOi
 ssR
 sOi
@@ -106895,7 +106891,7 @@ aNH
 aMm
 aRL
 aSI
-aNH
+uZo
 aNH
 pWB
 qqc

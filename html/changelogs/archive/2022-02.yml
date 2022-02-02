@@ -1,0 +1,23 @@
+2022-02-01:
+  Canohaaaaaaa:
+  - qol: 'Warrior : punching someone missing a limb will default to hitting them in
+      the chest instead of entirely failing.'
+  - bugfix: 'Warrior : Warrior''s primordial can no longer be stacked by repeatedly
+      punching someone''s missing limb.'
+  - bugfix: 'Praetorian''s primordial : Acid dash can now be bound to a key.'
+2022-02-02:
+  BraveMole:
+  - bugfix: Fix bull primo
+  - bugfix: Fix gib animation
+  - bugfix: Marine can no longer shuffle xenos
+  Mechanelize:
+  - bugfix: fixed larva spawn menu sound
+  novaepee:
+  - qol: Prep signs for marine role in shipside. Now you can stumble to your leader,
+      smartgunner, corpsman, or engineer job easier; thanks to RipGrayson for making
+      these due to Vahalla!
+  - bugfix: Fix Vahalla's TerraGovTech Requisition Vendor sprites
+  - rscdel: No more free additional tricord pill bottles in Sulaco
+  - rscadd: the hypospray belt! The belt is loaded with bicaridine, kelotane, tramadol,
+      dexalin, tricordrazine, inaprovaline, spaceacillin, hypervene, peridaxon, and
+      quickclot hypospray along with reagent bottles.

@@ -157,6 +157,8 @@
 	icon_state = "pews"
 
 /obj/structure/bed/chair/office
+	name = "Office Chair"
+	desc = "A novel idea of a spinning chair with wheels on the bottom, for office work only."
 	anchored = FALSE
 	buckle_flags = CAN_BUCKLE
 	drag_delay = 1 //Pulling something on wheels is easy

@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aab" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/space)
 "aad" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -3517,7 +3517,7 @@
 /area/lv624/ground/compound)
 "baA" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/lv624/ground/caves/rock)
 "baH" = (
 /obj/effect/ai_node,
@@ -3715,6 +3715,14 @@
 /obj/structure/flora/ausbushes/palebush,
 /turf/open/ground/river,
 /area/lv624/ground/river3)
+"bdv" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1
+	},
+/turf/open/floor/tile/purple/whitepurplecorner{
+	dir = 4
+	},
+/area/lv624/lazarus/fitness)
 "bdC" = (
 /obj/item/tool/shovel,
 /turf/open/floor/tile/red/yellowfull,
@@ -11550,12 +11558,9 @@
 /turf/closed/wall,
 /area/lv624/lazarus/main_hall)
 "jsN" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8
-	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
 	},
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
@@ -11696,6 +11701,9 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/canteen)
+"jzX" = (
+/turf/open/floor/tile/blue/whitebluecorner,
+/area/lv624/lazarus/medbay)
 "jAg" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
@@ -11972,6 +11980,9 @@
 "jQr" = (
 /obj/structure/window/framed/colony,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/fitness)
 "jQy" = (
@@ -13362,7 +13373,7 @@
 	},
 /area/lv624/ground/jungle10)
 "lyj" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/lv624/ground/caves/rock)
 "lyB" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -14498,7 +14509,7 @@
 /area/lv624/lazarus/secure_storage)
 "mIM" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/lv624/ground/caves/rock)
 "mJw" = (
 /obj/structure/barricade/wooden,
@@ -17600,6 +17611,12 @@
 /obj/structure/catwalk,
 /turf/open/ground/coast,
 /area/lv624/ground/river1)
+"qGs" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
 "qGH" = (
 /obj/structure/jungle/planttop1,
 /obj/structure/jungle/vines/heavy,
@@ -18650,6 +18667,14 @@
 /obj/structure/largecrate/random,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
+"rMI" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
 "rMO" = (
 /obj/structure/fence,
 /obj/effect/decal/riverdecal/edge{
@@ -19499,20 +19524,6 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle9)
-"sOk" = (
-/obj/structure/table,
-/obj/item/tool/surgery/scalpel/manager,
-/obj/structure/sink{
-	dir = 8;
-	pixel_y = 3
-	},
-/obj/structure/mirror{
-	dir = 4
-	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
-/area/lv624/lazarus/medbay)
 "sOK" = (
 /obj/machinery/door_control{
 	dir = 4;
@@ -19694,8 +19705,7 @@
 	},
 /area/lv624/ground/jungle6)
 "sWy" = (
-/obj/structure/table,
-/obj/item/tank/anesthetic,
+/obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -21459,9 +21469,11 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/storage/surgical_tray,
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 5
+	},
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -21502,7 +21514,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "uSo" = (
-/obj/item/tool/surgery/retractor,
+/obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -22098,7 +22110,6 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced/tinted,
-/obj/machinery/door/window,
 /obj/machinery/shower{
 	dir = 4;
 	pixel_y = -10
@@ -22113,9 +22124,6 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced/tinted,
-/obj/machinery/door/window{
-	dir = 8
-	},
 /obj/machinery/shower{
 	dir = 8;
 	pixel_y = -10
@@ -22215,7 +22223,6 @@
 	},
 /area/lv624/ground/compound/sw)
 "vKh" = (
-/obj/item/reagent_containers/spray/surgery,
 /obj/machinery/door_control{
 	dir = 4;
 	id = "OR2";
@@ -22424,8 +22431,7 @@
 	},
 /area/lv624/lazarus/sandtemple)
 "vSF" = (
-/obj/machinery/optable,
-/obj/effect/decal/cleanable/blood/gibs,
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -24092,7 +24098,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
 "xBU" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/storage/testroom)
 "xBZ" = (
 /obj/effect/ai_node,
@@ -47051,7 +47057,7 @@ uDM
 vCw
 xwl
 xzO
-bNK
+jzX
 nvY
 bNK
 bNK
@@ -47400,7 +47406,7 @@ arW
 arW
 fwR
 bjL
-sOk
+sWy
 uQq
 vKh
 xAZ
@@ -47579,7 +47585,7 @@ bsc
 bjL
 sWy
 uSo
-vSF
+bNK
 xGR
 piF
 bNK
@@ -47754,9 +47760,9 @@ arW
 blJ
 rbe
 bjL
-rSP
-ugV
-vqR
+vSF
+rMI
+qGs
 boQ
 pix
 dRS
@@ -49060,7 +49066,7 @@ xJa
 iEv
 kRJ
 jsN
-wgH
+bdv
 wgH
 wgH
 wgH

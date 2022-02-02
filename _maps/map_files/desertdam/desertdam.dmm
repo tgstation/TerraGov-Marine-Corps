@@ -53990,7 +53990,7 @@
 /area/desert_dam/interior/dam_interior/break_room)
 "jyo" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/desert_dam/exterior/rock)
 "jze" = (
 /obj/structure/reagent_dispensers/fueltank,
@@ -64103,7 +64103,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_cargo)
 "sVq" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/desert_dam/exterior/rock)
 "sWv" = (
 /obj/structure/cable,

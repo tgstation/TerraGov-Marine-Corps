@@ -343,7 +343,7 @@
 			if(L.pulledby == src && a_intent == INTENT_GRAB)
 				mob_swap = TRUE
 			//restrained people act if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
-			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP))
+			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP) && L.mob_size < MOB_SIZE_XENO)
 				mob_swap = TRUE
 			else if((mob_size >= MOB_SIZE_XENO || mob_size > L.mob_size) && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones. Xenos can always shove xenos
 				mob_swap = TRUE
@@ -671,7 +671,7 @@ below 100 is not dizzy
 		return FALSE
 	var/turf/our_tile = get_turf(src)
 	TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
-	var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, invisibility)
+	var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, 0, invisibility)
 	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
 	visible_message("<b>[src]</b> points to [A]")
 	return TRUE

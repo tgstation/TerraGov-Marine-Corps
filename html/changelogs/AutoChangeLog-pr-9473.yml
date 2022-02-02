@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - qol: "Infinite packets and ammo boxes"
+  - balance: "It will affect marine's storage since they can bring a buttload of ammo boxes, but the effect size will be small"

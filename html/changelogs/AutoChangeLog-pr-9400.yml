@@ -1,4 +1,0 @@
-author: "KrabSpider"
-delete-after: True
-changes: 
-  - bugfix: "After 3 tries. The repeater is no longer inverted on the left hand."

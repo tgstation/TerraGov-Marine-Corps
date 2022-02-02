@@ -85,7 +85,7 @@
 	.["upgrades"] = list()
 	for(var/datum/hive_upgrade/upgrade AS in buyable_upgrades)
 		.["upgrades"] += list(list("name" = upgrade.name, "desc" = upgrade.desc, "category" = upgrade.category,\
-		"cost" = upgrade.psypoint_cost, "times_bought" = upgrade.times_bought, "can_buy" = upgrade.can_buy(user, TRUE), "iconstate" = upgrade.icon))
+		"cost" = upgrade.psypoint_cost, "times_bought" = upgrade.times_bought, "iconstate" = upgrade.icon))
 	.["psypoints"] = SSpoints.xeno_points_by_hive[hivenumber]
 
 /datum/hive_status/ui_static_data(mob/user)
@@ -99,7 +99,7 @@
 			var/buying = params["buyname"]
 			var/datum/hive_upgrade/upgrade = upgrades_by_name[buying]
 			var/mob/living/carbon/xenomorph/user = usr
-			if(!upgrade.can_buy(user))
+			if(!upgrade.can_buy(user, FALSE))
 				return
 			if(!upgrade.on_buy(user))
 				return
@@ -670,7 +670,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/proc/attempt_to_spawn_larva_in_silo(mob/xeno_candidate, possible_silos, larva_already_reserved = FALSE)
-	xeno_candidate.playsound_local(xeno_candidate, 'sound/ambience/votestart.ogg')
+	xeno_candidate.playsound_local(xeno_candidate, 'sound/ambience/votestart.ogg', 50)
 	window_flash(xeno_candidate.client)
 	var/obj/structure/xeno/silo/chosen_silo
 	if(length(possible_silos) > 1)

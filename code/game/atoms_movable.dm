@@ -85,6 +85,8 @@
 	QDEL_NULL(language_holder)
 	QDEL_NULL(em_block)
 
+	var/old_loc = loc
+
 	if(opacity)
 		RemoveElement(/datum/element/light_blocking)
 
@@ -107,6 +109,10 @@
 	LAZYCLEARLIST(client_mobs_in_contents)
 
 	moveToNullspace()
+
+	if(smoothing_behavior && isturf(old_loc))
+		smooth_neighbors(old_loc)
+	
 	invisibility = INVISIBILITY_ABSTRACT
 
 	pulledby?.stop_pulling()

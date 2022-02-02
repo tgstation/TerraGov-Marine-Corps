@@ -500,18 +500,18 @@
 		to_chat(src, span_xenowarning("Our pheromones have changed. The Queen has new plans for the Hive."))
 
 
-/mob/living/carbon/xenomorph/proc/update_spits()
+/mob/living/carbon/xenomorph/proc/update_spits(skip_ammo_choice = FALSE)
 	if(!ammo && length(xeno_caste.spit_types))
 		ammo = GLOB.ammo_list[xeno_caste.spit_types[1]]
 	if(!ammo || !xeno_caste.spit_types || !xeno_caste.spit_types.len) //Only update xenos with ammo and spit types.
 		return
-	for(var/i in 1 to xeno_caste.spit_types.len)
-		var/datum/ammo/A = GLOB.ammo_list[xeno_caste.spit_types[i]]
-		if(ammo.icon_state == A.icon_state)
-			ammo = A
-			return
-	ammo = GLOB.ammo_list[xeno_caste.spit_types[1]] //No matching projectile time; default to first spit type
-	return
+	if(!skip_ammo_choice)
+		for(var/i in 1 to xeno_caste.spit_types.len)
+			var/datum/ammo/A = GLOB.ammo_list[xeno_caste.spit_types[i]]
+			if(ammo.icon_state == A.icon_state)
+				ammo = A
+				break
+	SEND_SIGNAL(src, COMSIG_XENO_AUTOFIREDELAY_MODIFIED, xeno_caste.spit_delay + ammo?.added_spit_delay)
 
 /mob/living/carbon/xenomorph/proc/handle_decay()
 	if(prob(7+(3*tier)+(3*upgrade_as_number()))) // higher level xenos decay faster, higher plasma storage.

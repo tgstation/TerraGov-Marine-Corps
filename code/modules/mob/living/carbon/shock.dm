@@ -18,7 +18,7 @@
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	. = shock_stage
-	shock_stage = clamp(shock_stage + amount, 0, maxHealth * 2)
+	shock_stage = clamp(shock_stage + (amount - shock_stage) * PAIN_REACTIVITY, 0, maxHealth * 2)
 	adjust_pain_speed_mod(.)
 
 /mob/living/carbon/proc/setShock_Stage(amount)
