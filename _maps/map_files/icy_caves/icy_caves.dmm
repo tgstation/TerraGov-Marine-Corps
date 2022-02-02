@@ -1248,6 +1248,7 @@
 	},
 /area/icy_caves/caves/northern)
 "eM" = (
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -2229,6 +2230,7 @@
 /area/icy_caves/outpost/LZ2)
 "jy" = (
 /obj/structure/cable,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 4
 	},
@@ -2253,6 +2255,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
+/obj/effect/decal/remains/human,
 /turf/open/floor/prison/red{
 	dir = 4
 	},
@@ -3158,6 +3161,12 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
+"nC" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/prison/red{
+	dir = 8
+	},
+/area/icy_caves/caves/cavesbrig)
 "nD" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark,
@@ -3509,6 +3518,10 @@
 	dir = 4
 	},
 /area/icy_caves/outpost/research)
+"pp" = (
+/obj/structure/largecrate/supply/supplies/coifss,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/LZ1)
 "pq" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 1
@@ -4423,6 +4436,10 @@
 /obj/structure/rack,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
+"sX" = (
+/obj/structure/largecrate/supply/supplies/coifss,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/LZ2)
 "ta" = (
 /obj/effect/decal/cleanable/vomit,
 /obj/machinery/camera{
@@ -5255,6 +5272,11 @@
 	},
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/refinery)
+"wA" = (
+/obj/structure/cable,
+/obj/effect/decal/remains/human,
+/turf/open/floor/prison,
+/area/icy_caves/caves/cavesbrig)
 "wC" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark/green2{
@@ -5435,6 +5457,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
+"xq" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/prison,
+/area/icy_caves/caves/cavesbrig)
 "xr" = (
 /obj/machinery/mineral/stacking_machine,
 /obj/machinery/conveyor{
@@ -7254,6 +7280,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
@@ -8029,9 +8056,6 @@
 "IT" = (
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
-"IU" = (
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves/underground_cafeteria)
 "IX" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/dark,
@@ -8141,6 +8165,7 @@
 /area/icy_caves/outpost/kitchen)
 "Jw" = (
 /obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/weapon_vault)
 "Jx" = (
@@ -8371,6 +8396,10 @@
 /obj/item/belt_harness,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
+"Kx" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/weapon_vault)
 "Ky" = (
 /obj/machinery/space_heater,
 /turf/open/floor/tile/dark,
@@ -9040,6 +9069,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -9234,6 +9264,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside)
+"Og" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/prison,
+/area/icy_caves/caves/cavesbrig)
 "Oh" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -9399,6 +9433,10 @@
 	dir = 8
 	},
 /area/icy_caves/caves/east)
+"OU" = (
+/obj/structure/sign/double/barsign/carp,
+/turf/closed/ice_rock/fourway,
+/area/icy_caves/caves/south)
 "OW" = (
 /turf/closed/ice,
 /area/icy_caves/caves/east)
@@ -9501,10 +9539,6 @@
 	dir = 9
 	},
 /area/icy_caves/caves)
-"PB" = (
-/obj/structure/sign/double/barsign/carp,
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves/underground_cafeteria)
 "PC" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -9523,6 +9557,7 @@
 /area/icy_caves/caves/underground_cafeteria)
 "PF" = (
 /obj/effect/landmark/corpsespawner/colonist,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/weapon_vault)
 "PI" = (
@@ -10289,6 +10324,11 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/icy_caves/caves/cavesbrig)
+"Ta" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/remains/human,
+/turf/open/floor/prison,
+/area/icy_caves/caves/cavesbrig)
 "Tb" = (
 /turf/closed/ice_rock/singleT{
 	dir = 1
@@ -10793,6 +10833,7 @@
 /area/icy_caves/caves/alienstuff)
 "Vh" = (
 /obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 4
 	},
@@ -10810,6 +10851,14 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow,
 /area/icy_caves/outpost/LZ1)
+"Vl" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/prison,
+/area/icy_caves/caves/cavesbrig)
 "Vm" = (
 /turf/open/floor/tile/dark/green2{
 	dir = 8
@@ -11201,6 +11250,7 @@
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
 "WV" = (
+/obj/effect/decal/remains/human,
 /turf/open/floor/prison/red{
 	dir = 8
 	},
@@ -11302,6 +11352,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -15180,7 +15231,7 @@ bm
 bm
 bm
 vs
-uw
+pp
 uw
 uw
 uw
@@ -20417,7 +20468,7 @@ ym
 ym
 ym
 EM
-ZB
+OU
 PE
 Df
 kH
@@ -20578,7 +20629,7 @@ PE
 uV
 Hk
 PE
-PB
+ym
 JI
 ym
 ym
@@ -20734,7 +20785,7 @@ PE
 uV
 De
 PE
-IU
+ym
 ym
 ym
 ym
@@ -26353,7 +26404,7 @@ mn
 Uf
 WV
 BE
-WV
+nC
 WV
 Wv
 Wv
@@ -26506,8 +26557,8 @@ AU
 yP
 EL
 Yd
-FQ
-FQ
+xq
+Og
 SZ
 SZ
 SZ
@@ -26667,8 +26718,8 @@ AH
 jr
 EE
 iO
-FQ
-SZ
+Ta
+wA
 BG
 dt
 ic
@@ -27135,7 +27186,7 @@ Ty
 yf
 uI
 eM
-FQ
+xq
 FK
 eV
 FS
@@ -27292,7 +27343,7 @@ LE
 ic
 rY
 FQ
-FK
+Vl
 Dr
 vH
 ic
@@ -32100,7 +32151,7 @@ Yu
 Nh
 Xp
 Km
-Yu
+Kx
 KY
 KY
 bD
@@ -32721,7 +32772,7 @@ Yf
 KY
 Kq
 Yu
-Yu
+Kx
 nn
 Qz
 Yu
@@ -32928,7 +32979,7 @@ IT
 IT
 oP
 lS
-IT
+sX
 IT
 IT
 oP
@@ -33036,7 +33087,7 @@ Yu
 yQ
 om
 Vh
-Yu
+Kx
 xy
 KY
 Yf
