@@ -34,10 +34,10 @@
 	updateghostimages()
 
 	for(var/path in subtypesof(/datum/action/observer_action))
-		if(!locate(path) in actions)
+		if(!actions_by_path[path])
 			var/datum/action/observer_action/A = new path()
 			A.give_action(src)
-	if(!locate(/datum/action/minimap/observer) in actions)
+	if(!actions_by_path[/datum/action/minimap/observer])
 		var/datum/action/minimap/observer/mini = new
 		mini.give_action(src)
 

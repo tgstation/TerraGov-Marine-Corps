@@ -38,7 +38,7 @@
 				var/datum/callback/CB = foo
 				CB.Invoke()
 			log_played_names(client.ckey, name, real_name)
-		if(SSvote.vote_happening && !(locate(/datum/action/innate/vote) in actions))
+		if(SSvote.vote_happening && !actions_by_path[/datum/action/innate/vote])
 			var/datum/action/innate/vote/vote = new
 			if(SSvote.question)
 				vote.name = "Vote: [SSvote.question]"
