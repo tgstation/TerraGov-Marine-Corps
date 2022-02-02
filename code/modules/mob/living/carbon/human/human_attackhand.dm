@@ -34,6 +34,88 @@
 				to_chat(H, span_boldnotice("Can't help this one. Body has gone cold."))
 				return FALSE
 
+			if(isrobot(src) && (src.stat == DEAD))
+				if(H.do_actions)
+					return TRUE
+
+				if(src.wear_suit)
+					to_chat(H, span_warning("You can't reach [src]'s maintenance panel through their armor."))
+					return FALSE
+
+				var/mob/dead/observer/G = src.get_ghost()
+				if(istype(G))
+					notify_ghost(G, "<font size=3>Someone is trying to revive your body. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/effects/adminhelp.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = src, action = NOTIFY_JUMP)
+				else if(!src.client)
+					//We couldn't find a suitable ghost, this means the person is not returning
+					to_chat(H, span_warning("Maintenance panel of [src] is locked tight, this unit refuses to be restarted."))
+					return FALSE
+
+				var/restart_damage_threshold = 50 * (H.skills.getRating("engineer"))
+
+				H.visible_message(span_notice("[H] starts fiddling with a panel on [src]'s chest."),
+				span_notice("You try to force restart [src]."))
+				playsound(get_turf(src),'sound/machines/computer_typing1.ogg', 25, 0)
+
+				if(!do_mob(H, src, 7 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+					H.visible_message(span_warning("[H] stops attempting to restart [src]."),
+					span_warning("You stop the restart sequence of [src]."))
+					return FALSE
+
+				playsound(get_turf(src), 'sound/items/defib_release.ogg', 25, 1)
+				H.visible_message(span_notice("[H] successfully restarts [src]!"),
+				span_notice("You complete the restart sequence of [src] and it sparks back to life!"))
+				src.visible_message(span_danger("[src]'s joints suddenly start moving."))
+
+				if(src.wear_suit)
+					to_chat(H, span_warning("You can't reach [src]'s maintenance panel through their armor."))
+					return FALSE
+
+				if((HAS_TRAIT(src, TRAIT_UNDEFIBBABLE ) || src.suiciding))
+					H.visible_message(span_warning("[src]'s backup battery blinks weakly, too late to save this one."),
+					span_warning("[src]'s backup battery ran dry, it cannot be restarted"))
+					return FALSE
+
+				if(!src.client) //Freak case, no client at all. This is a braindead mob (like a colonist)
+					H.visible_message(span_warning("[src] buzzes: No personality program detected, Attempting to revive..."),
+					span_warning("[src]'s battery is on but no program can be found, you try restarting anyway..."))
+
+
+				if(src.mind && !src.client) //Let's call up the correct ghost! Also, bodies with clients only, thank you.
+					G = src.get_ghost()
+					if(istype(G))
+						src.visible_message(span_warning("[icon2html(src, viewers(H))] [src] buzzes: Restart sequence failed. Robot's personality program has almost shutdown, please try again."))
+						return FALSE
+					//We couldn't find a suitable ghost, this means the person is not returning
+					H.visible_message(span_warning("[icon2html(src, viewers(H))] [src] buzzes: Robot has a DNR."))
+					return FALSE
+
+				if(!src.client) //Freak case, no client at all. This is a braindead mob (like a colonist)
+					H.visible_message(span_warning("[icon2html(src, viewers(H))] [src] buzzes: Restart sequence failed. No personality program detected."))
+					return FALSE
+
+				if(src.health <= restart_damage_threshold)
+					H.visible_message(span_warning("[icon2html(src, viewers(H))] [src] buzzes: Restart sequence failed. Sustained damage critical, repair damage and try again."))
+					return FALSE
+
+				src.visible_message(span_notice("[icon2html(src, viewers(H))] [src] beeps: Restart sequence successful."))
+				src.set_stat(UNCONSCIOUS)
+				src.emote("gasp")
+				src.regenerate_icons()
+				src.reload_fullscreens()
+				src.flash_act()
+				src.apply_effect(10, EYE_BLUR)
+				src.apply_effect(10, PARALYZE)
+				src.handle_regular_hud_updates()
+				src.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
+				src.dead_ticks = 0 //We reset the DNR time
+				REMOVE_TRAIT(src, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+				GLOB.round_statistics.total_human_revives++
+				SSblackbox.record_feedback("tally", "round_statistics", 1, "total_human_revives")
+				to_chat(src, span_notice("You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane."))
+
+				notify_ghosts("<b>[H]</b> has brought <b>[src.name]</b> back to life!", source = src, action = NOTIFY_ORBIT)
+				return TRUE
+
 			if(species?.species_flags & ROBOTIC_LIMBS)
 				to_chat(H, span_boldnotice("You cant help this one, [p_they()] have no lungs!"))
 				return FALSE
