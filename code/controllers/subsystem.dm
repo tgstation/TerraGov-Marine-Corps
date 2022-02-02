@@ -44,7 +44,7 @@
 /datum/controller/subsystem/proc/PreInit()
 	return
 
-//This is used so the mc knows when the subsystem sleeps. do not override.
+///This is used so the mc knows when the subsystem sleeps. do not override.
 /datum/controller/subsystem/proc/ignite(resumed = 0)
 	set waitfor = 0
 	. = SS_SLEEPING
@@ -58,9 +58,9 @@
 		state = SS_PAUSED
 		queued_time = QT
 
-//previously, this would have been named 'process()' but that name is used everywhere for different things!
-//fire() seems more suitable. This is the procedure that gets called every 'wait' deciseconds.
-//Sleeping in here prevents future fires until returned.
+///previously, this would have been named 'process()' but that name is used everywhere for different things!
+///fire() seems more suitable. This is the procedure that gets called every 'wait' deciseconds.
+///Sleeping in here prevents future fires until returned..
 /datum/controller/subsystem/proc/fire(resumed = 0)
 	flags |= SS_NO_FIRE
 	throw EXCEPTION("Subsystem [src]([type]) does not fire() but did not set the SS_NO_FIRE flag. Please add the SS_NO_FIRE flag to any subsystem that doesn't fire so it doesn't get added to the processing list and waste cpu.")
@@ -72,9 +72,9 @@
 	Master.subsystems -= src
 	return ..()
 
-//Queue it to run.
-//	(we loop thru a linked list until we get to the end or find the right point)
-//	(this lets us sort our run order correctly without having to re-sort the entire already sorted list)
+///Queue it to run.
+/// (we loop thru a linked list until we get to the end or find the right point)
+/// (this lets us sort our run order correctly without having to re-sort the entire already sorted list)
 /datum/controller/subsystem/proc/enqueue()
 	var/SS_priority = priority
 	var/SS_flags = flags
