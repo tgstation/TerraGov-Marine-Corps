@@ -685,21 +685,16 @@
 
 /datum/action/xeno_action/activable/xeno_spit/give_action(mob/living/L)
 	. = ..()
-	AddComponent(/datum/component/automatedfire/autofire, get_cooldown(), _fire_mode = GUN_FIREMODE_AUTOMATIC,  _callback_reset_fire = CALLBACK(src, .proc/reset_fire), _callback_fire = CALLBACK(src, .proc/fire))
+	owner.AddComponent(/datum/component/automatedfire/autofire, get_cooldown(), _fire_mode = GUN_FIREMODE_AUTOMATIC,  _callback_reset_fire = CALLBACK(src, .proc/reset_fire), _callback_fire = CALLBACK(src, .proc/fire))
 
 /datum/action/xeno_action/activable/xeno_spit/remove_action(mob/living/L)
-	. = ..()
-	qdel(GetComponent(/datum/component/automatedfire/autofire))
-
+	qdel(owner.GetComponent(/datum/component/automatedfire/autofire))
+	return ..()
 
 /datum/action/xeno_action/activable/xeno_spit/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/actions.dmi', button, "shift_spit_[X.ammo.icon_state]")
-
-/datum/action/xeno_action/activable/xeno_spit/on_xeno_upgrade()
-	. = ..()
-	update_fire_delay()
 
 /datum/action/xeno_action/activable/xeno_spit/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -716,6 +711,7 @@
 			X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[i+1]]
 			break
 	to_chat(X, span_notice("We will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma)."))
+	X.update_spits(TRUE)
 	update_button_icon()
 
 /datum/action/xeno_action/activable/xeno_spit/deselect()
@@ -765,7 +761,7 @@
 	xeno.visible_message(span_xenowarning("\The [xeno] spits at \the [current_target]!"), \
 	span_xenowarning("We spit at \the [current_target]!") )
 
-	SEND_SIGNAL(src, COMSIG_XENO_FIRE)
+	SEND_SIGNAL(owner, COMSIG_XENO_FIRE)
 	xeno?.client?.mouse_pointer_icon = 'icons/effects/xeno_target.dmi'
 
 ///Fires the spit projectile.
@@ -819,11 +815,7 @@
 /datum/action/xeno_action/activable/xeno_spit/proc/stop_fire()
 	SIGNAL_HANDLER
 	owner?.client?.mouse_pointer_icon = initial(owner.client.mouse_pointer_icon)
-	SEND_SIGNAL(src, COMSIG_XENO_STOP_FIRE)
-
-///Updates the auto-fire components fire delay.
-/datum/action/xeno_action/activable/proc/update_fire_delay()
-	SEND_SIGNAL(src, COMSIG_XENO_AUTOFIREDELAY_MODIFIED, get_cooldown())
+	SEND_SIGNAL(owner, COMSIG_XENO_STOP_FIRE)
 
 /datum/action/xeno_action/activable/xeno_spit/ai_should_start_consider()
 	return TRUE

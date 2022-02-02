@@ -3478,11 +3478,11 @@
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/substation)
 "anQ" = (
-/obj/machinery/vending/assist,
+/obj/machinery/vending/engivend,
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/substation)
 "anR" = (
-/obj/machinery/vending/assist,
+/obj/machinery/vending/tool,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 6
 	},
@@ -31989,6 +31989,10 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
+"fKZ" = (
+/obj/structure/sign/safety/hazard,
+/turf/closed/wall/r_wall,
+/area/ice_colony/surface/requesitions)
 "fNR" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -33988,6 +33992,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/hallway/south_east)
+"pZF" = (
+/obj/structure/sign/safety/hazard,
+/turf/closed/wall/r_wall,
+/area/ice_colony/surface/tcomms)
 "pZO" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -39752,7 +39760,7 @@ adY
 aFn
 wDM
 arS
-aBi
+pZF
 fDb
 pBf
 aaR
@@ -40780,7 +40788,7 @@ aon
 qrf
 qrf
 ayq
-aBi
+pZF
 fDb
 jvm
 xTa
@@ -44360,13 +44368,13 @@ acY
 acY
 acY
 acY
+fKZ
 acY
+fKZ
 acY
+fKZ
 acY
-acY
-acY
-acY
-acY
+fKZ
 acY
 iYJ
 omz
@@ -44863,8 +44871,8 @@ bSw
 aae
 pMK
 acY
-acY
-acY
+fKZ
+fKZ
 acY
 acY
 acY

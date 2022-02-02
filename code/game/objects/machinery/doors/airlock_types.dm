@@ -215,11 +215,6 @@
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/mainship/comdoor.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	openspeed = 4 //shorter open animation.
-	tiles_with = list(
-		/turf/closed/wall,
-		/obj/structure/window/framed/mainship,
-		/obj/machinery/door/airlock,
-	)
 
 /obj/machinery/door/airlock/mainship/security
 	name = "\improper Security Airlock"
@@ -291,6 +286,7 @@
 
 /obj/machinery/door/airlock/mainship/command/canterbury //For wall-smoothing
 	req_access = list(ACCESS_MARINE_DROPSHIP)
+	smoothing_groups = SMOOTH_CANTERBURY
 
 /obj/machinery/door/airlock/mainship/command/cic
 	name = "\improper Combat Information Center"

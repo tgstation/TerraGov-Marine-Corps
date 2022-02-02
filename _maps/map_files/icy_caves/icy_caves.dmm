@@ -170,10 +170,6 @@
 	dir = 1
 	},
 /area/icy_caves/caves)
-"aL" = (
-/obj/structure/window/framed/mainship/requisitions,
-/turf/open/floor/plating/mainship,
-/area/icy_caves/caves/crashed_ship)
 "aM" = (
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = /obj/item/storage/backpack/satchel/norm;
@@ -28420,7 +28416,7 @@ MQ
 MQ
 MQ
 MQ
-aL
+MQ
 MQ
 MQ
 aV

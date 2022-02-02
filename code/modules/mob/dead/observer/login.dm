@@ -37,8 +37,6 @@
 		for(var/path in subtypesof(/datum/action/observer_action))
 			var/datum/action/observer_action/A = new path()
 			A.give_action(src)
-		var/datum/action/toggle_rightclick/rclick = new
-		rclick.give_action(src)
 		var/datum/action/minimap/observer/mini = new
 		mini.give_action(src)
 

@@ -47,6 +47,21 @@ OPERATIONS
 	contains = list(/obj/item/fulton_extraction_pack)
 	cost = 10
 
+/datum/supply_packs/operations/autominer
+	name = "Autominer upgrade"
+	contains = list(/obj/item/minerupgrade/automatic)
+	cost = 5
+
+/datum/supply_packs/operations/miningwelloverclock
+	name = "Mining well reinforcement upgrade"
+	contains = list(/obj/item/minerupgrade/reinforcement)
+	cost = 5
+
+/datum/supply_packs/operations/miningwellresistance
+	name = "Mining well overclock upgrade"
+	contains = list(/obj/item/minerupgrade/overclock)
+	cost = 5
+
 /datum/supply_packs/operations/cas_flares
 	name = "CAS flare pack"
 	contains = list(/obj/item/storage/box/m94/cas)
@@ -999,6 +1014,11 @@ ENGINEERING
 	name = "Wireless power generator"
 	contains = list(/obj/machinery/power/port_gen/pacman/mobile_power)
 	cost = 20
+
+/datum/supply_packs/engineering/teleporter 
+	name = "Teleporter pads"
+	contains = list(/obj/effect/teleporter_linker)
+	cost = 50
 
 /*******************************************************************************
 SUPPLIES

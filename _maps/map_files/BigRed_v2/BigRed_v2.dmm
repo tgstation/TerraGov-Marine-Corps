@@ -5172,10 +5172,6 @@
 /obj/machinery/vending/engivend,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
-"asO" = (
-/obj/machinery/vending/engineering,
-/turf/open/floor,
-/area/bigredv2/outside/general_offices)
 "asP" = (
 /obj/machinery/vending/tool,
 /turf/open/floor,
@@ -54851,7 +54847,7 @@ apN
 ape
 aot
 anI
-asN
+rQa
 atE
 rQa
 anI
@@ -55068,7 +55064,7 @@ apO
 ape
 aru
 anI
-asO
+asN
 atE
 rQa
 anI

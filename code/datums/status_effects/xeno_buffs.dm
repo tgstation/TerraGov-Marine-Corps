@@ -100,6 +100,8 @@
 	var/redirect_mod
 	///Minimum health threshold before the effect is deactivated
 	var/minimum_health
+	///If the target xeno was within range
+	var/was_within_range = TRUE
 
 /datum/status_effect/xeno_psychic_link/on_creation(mob/living/new_owner, set_duration, mob/living/carbon/target_mob, link_range, redirect_mod, minimum_health, scaling = FALSE)
 	owner = new_owner
@@ -112,16 +114,13 @@
 	ADD_TRAIT(owner, TRAIT_PSY_LINKED, TRAIT_STATUS_EFFECT(id))
 	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/handle_mob_dead)
 	RegisterSignal(target_mob, COMSIG_MOB_DEATH, .proc/handle_mob_dead)
-	RegisterSignal(target_mob, COMSIG_XENOMORPH_BURN_DAMAGE, .proc/handle_burn_damage)
-	RegisterSignal(target_mob, COMSIG_XENOMORPH_BRUTE_DAMAGE, .proc/handle_brute_damage)
+	link_toggle(TRUE)
 	var/link_message = "[owner] has linked to you and is redirecting some of your injuries. If they get too hurt, the link may be broken."
 	if(link_range > 0)
 		link_message += " Keep within [link_range] tiles to maintain it."
 		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
 		RegisterSignal(target_mob, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
 	to_chat(target_mob, span_xenonotice(link_message))
-	owner.add_filter(id, 2, outline_filter(2, PSYCHIC_LINK_COLOR))
-	target_mob.add_filter(id, 2, outline_filter(2, PSYCHIC_LINK_COLOR))
 	return ..()
 
 /datum/status_effect/xeno_psychic_link/on_remove()
@@ -142,10 +141,25 @@
 ///Handles the link breaking due to distance
 /datum/status_effect/xeno_psychic_link/proc/handle_dist(datum/source)
 	SIGNAL_HANDLER
-	if(get_dist(owner, target_mob) > link_range)
-		to_chat(target_mob, span_xenowarning("You are too far away from [owner]."))
-		to_chat(owner, span_xenowarning("[target_mob] is too far away."))
-		owner.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
+	var/within_range = get_dist(owner, target_mob) <= link_range
+	if(within_range == was_within_range)
+		return
+	was_within_range = within_range
+	link_toggle(was_within_range)
+	to_chat(owner, was_within_range ? span_xenowarning("[target_mob] is within range again.") : span_xenowarning("[target_mob] is too far away."))
+
+///Handles the link toggling on and off
+/datum/status_effect/xeno_psychic_link/proc/link_toggle(toggle_on)
+	if(toggle_on)
+		RegisterSignal(target_mob, COMSIG_XENOMORPH_BURN_DAMAGE, .proc/handle_burn_damage)
+		RegisterSignal(target_mob, COMSIG_XENOMORPH_BRUTE_DAMAGE, .proc/handle_brute_damage)
+		owner.add_filter(id, 2, outline_filter(2, PSYCHIC_LINK_COLOR))
+		target_mob.add_filter(id, 2, outline_filter(2, PSYCHIC_LINK_COLOR))
+		return
+	UnregisterSignal(target_mob, COMSIG_XENOMORPH_BURN_DAMAGE)
+	UnregisterSignal(target_mob, COMSIG_XENOMORPH_BRUTE_DAMAGE)
+	owner.remove_filter(id)
+	target_mob.remove_filter(id)
 
 ///Transfers mitigated burn damage
 /datum/status_effect/xeno_psychic_link/proc/handle_burn_damage(datum/source, amount, list/amount_mod)

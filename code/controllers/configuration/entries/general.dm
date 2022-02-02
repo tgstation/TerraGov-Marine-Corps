@@ -407,6 +407,8 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 /datum/config_entry/flag/is_automatic_balance_on
 	config_entry_value = TRUE
 
+/datum/config_entry/flag/no_advanced_pathfinding
+
 /datum/config_entry/number/hard_deletes_overrun_threshold
 	integer = FALSE
 	min_val = 0

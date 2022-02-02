@@ -740,13 +740,7 @@ table tr:first-child th:first-child { border: none;}
 
 				user.visible_message(span_notice("[user] pries out [src]'s circuits."),
 				span_notice("You pry out [src]'s circuits."))
-				var/obj/item/circuitboard/airalarm/circuit
-				if(!electronics)
-					circuit = new /obj/item/circuitboard/airalarm(loc)
-				else
-					circuit = new electronics(loc)
-					if(electronics.is_general_board)
-						circuit.set_general()
+				new /obj/item/circuitboard/airalarm(loc)
 				electronics = null
 				buildstage = 0
 				update_icon()

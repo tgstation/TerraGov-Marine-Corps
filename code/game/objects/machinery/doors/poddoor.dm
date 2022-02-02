@@ -169,11 +169,6 @@
 /obj/machinery/door/poddoor/mainship
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	openspeed = 4 //shorter open animation.
-	tiles_with = list(
-		/turf/closed/wall,
-		/obj/structure/window/framed/mainship,
-		/obj/machinery/door/airlock,
-	)
 
 /obj/machinery/door/poddoor/mainship/open
 	density = FALSE
@@ -216,11 +211,6 @@
 	name = "\improper Hangar Lockdown"
 	id = "hangar_lockdown"
 
-/obj/machinery/door/poddoor/mainship/Initialize()
-	relativewall_neighbours()
-	return ..()
-
-
 /obj/machinery/door/poddoor/mainship/umbilical
 	name = "Umbilical Airlock"
 	resistance_flags = RESIST_ALL
@@ -255,6 +245,8 @@
 	resistance_flags = RESIST_ALL
 	open_layer = UNDER_TURF_LAYER //No longer needs to be interacted with.
 	closed_layer = ABOVE_WINDOW_LAYER //Higher than usual, this is only around on the start of the round.
+	smoothing_behavior = NO_SMOOTHING
+	smoothing_groups = NONE
 
 
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/Initialize(mapload)

@@ -698,7 +698,7 @@
 		/obj/item/cell/high,
 		/obj/item/tool/shovel/etool,
 		/obj/item/lightreplacer,
-		/obj/item/circuitboard/general,
+		/obj/item/circuitboard/apc,
 		/obj/item/tool/solderingtool,
 	)
 
@@ -744,6 +744,7 @@
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/tweezers,
 		/obj/item/tool/solderingtool,
+		/obj/item/tool/pickaxe/plasmacutter,
 	)
 
 /obj/effect/essentials_set/white_dress
