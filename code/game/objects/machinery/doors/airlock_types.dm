@@ -377,10 +377,8 @@
 ///Force open that door
 /obj/machinery/door/airlock/mainship/secure/proc/force_open()
 	SIGNAL_HANDLER
-	if(!density)
-		return
 	unlock(TRUE)
-	INVOKE_ASYNC(src, /obj/machinery/door/proc/open)
+	INVOKE_ASYNC(src, .proc/open, TRUE)
 	lock(TRUE)
 
 /obj/machinery/door/airlock/mainship/secure/rebel/evac

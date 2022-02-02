@@ -438,26 +438,19 @@
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 	update_icon()
 
-
-///obj/machinery/door/airlock/phoron/attackby(C as obj, mob/user as mob)
-//	if(C)
-//		ignite(is_hot(C))
-//	..()
-
 /obj/machinery/door/airlock/open(forced = FALSE)
-	if(operating || welded || locked || !loc)
+	if(!forced && (!hasPower() || wires.is_cut(WIRE_OPEN)))
 		return FALSE
-	if(!forced)
-		if(!hasPower() || wires.is_cut(WIRE_OPEN))
-			return FALSE
-	use_power(active_power_usage)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
+	. = ..()
+	if(!.)
+		return
+	use_power(active_power_usage)
 	if(istype(src, /obj/machinery/door/airlock/glass))
 		playsound(loc, 'sound/machines/windowdoor.ogg', 25, 1)
 	else
 		playsound(loc, 'sound/machines/airlock.ogg', 25, 0)
 	if(istype(closeOther, /obj/machinery/door/airlock) && !closeOther.density)
 		closeOther.close()
-	return ..()
 
 /obj/machinery/door/airlock/close(forced = FALSE)
 	if(operating || welded || locked)
@@ -468,10 +461,11 @@
 	if(safe)
 		for(var/turf/turf in locs)
 			if(locate(/mob/living) in turf)
-			//	playsound(src.loc, 'sound/machines/buzz-two.ogg', 25, 0)	//THE BUZZING IT NEVER STOPS	-Pete
-			spawn (60 + openspeed)
-				close()
-			return
+				//	playsound(src.loc, 'sound/machines/buzz-two.ogg', 25, 0)	//THE BUZZING IT NEVER STOPS	-Pete
+				spawn (60 + openspeed)
+					close()
+	return ..()
+
 
 	for(var/turf/turf in locs)
 		for(var/mob/living/M in turf)
@@ -499,7 +493,7 @@
 	return ..()
 
 /obj/machinery/door/airlock/proc/lock(forced = FALSE)
-	if (operating || locked)
+	if ((operating && !forced) || locked)
 		return
 
 	locked = TRUE
@@ -507,7 +501,7 @@
 	update_icon()
 
 /obj/machinery/door/airlock/proc/unlock(forced = FALSE)
-	if (operating || !locked)
+	if ((operating && !forced) || !locked)
 		return
 
 	if(forced || hasPower()) //only can raise bolts if power's on
