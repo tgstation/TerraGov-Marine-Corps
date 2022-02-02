@@ -72,7 +72,7 @@
 
 				if((HAS_TRAIT(src, TRAIT_UNDEFIBBABLE ) || src.suiciding))
 					H.visible_message(span_warning("[src]'s backup battery blinks weakly, too late to save this one."),
-					span_warning("[src]'s backup battery ran dry, it cannot be restarted"))
+					span_warning("[src]'s backup battery ran dry, it cannot be restarted."))
 					return FALSE
 
 				if(!src.client) //Freak case, no client at all. This is a braindead mob (like a colonist)
