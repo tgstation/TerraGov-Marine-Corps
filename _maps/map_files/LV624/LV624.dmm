@@ -4899,8 +4899,8 @@
 /area/lv624/ground/jungle9)
 "byC" = (
 /obj/structure/flora/tree/jungle,
-/turf/open/ground/grass/grass2,
-/area/lv624/ground/jungle10)
+/turf/open/ground/grass,
+/area/lv624/ground/jungle7)
 "byL" = (
 /obj/item/target/syndicate,
 /obj/structure/target_stake,
@@ -5568,10 +5568,9 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "ckO" = (
-/obj/structure/jungle/vines,
 /obj/structure/flora/tree/jungle/small,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle9)
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/lv624/ground/jungle7)
 "clT" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/effect/landmark/weed_node,
@@ -8034,6 +8033,7 @@
 "fif" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/jungle/vines,
+/obj/structure/flora/tree/jungle/small,
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle9)
 "fij" = (
@@ -9281,9 +9281,10 @@
 	},
 /area/lv624/lazarus/sandtemple)
 "gIu" = (
-/obj/structure/flora/tree/jungle,
-/turf/open/ground/grass/grass2,
-/area/lv624/ground/jungle3)
+/obj/structure/jungle/vines,
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/ground/dirtgrassborder/corner,
+/area/lv624/ground/jungle7)
 "gIB" = (
 /turf/open/ground/coast,
 /area/lv624/ground/jungle1)
@@ -12300,7 +12301,7 @@
 /obj/structure/jungle/vines,
 /obj/structure/flora/tree/jungle/small,
 /turf/open/ground/grass,
-/area/lv624/ground/jungle6)
+/area/lv624/ground/jungle7)
 "kiA" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -14390,9 +14391,10 @@
 	},
 /area/lv624/lazarus/security)
 "mEg" = (
+/obj/structure/jungle/vines/heavy,
 /obj/structure/flora/tree/jungle/small,
-/turf/open/floor/plating/ground/dirtgrassborder/corner,
-/area/lv624/ground/jungle7)
+/turf/open/ground/grass,
+/area/lv624/ground/jungle6)
 "mEp" = (
 /obj/structure/jungle/vines,
 /obj/structure/jungle/vines/heavy,
@@ -14673,11 +14675,10 @@
 	},
 /area/lv624/ground/jungle7)
 "mSN" = (
+/obj/structure/jungle/vines/heavy,
 /obj/structure/flora/tree/jungle,
-/turf/open/floor/plating/ground/dirtgrassborder{
-	dir = 1
-	},
-/area/lv624/ground/jungle7)
+/turf/open/ground/grass,
+/area/lv624/ground/jungle6)
 "mTb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -15491,9 +15492,9 @@
 	},
 /area/lv624/ground/jungle6)
 "nYm" = (
-/obj/structure/flora/tree/jungle/small,
+/obj/structure/flora/tree/jungle,
 /turf/open/ground/grass,
-/area/lv624/ground/jungle1)
+/area/lv624/ground/jungle9)
 "nYr" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -15978,9 +15979,10 @@
 /turf/open/floor/tile/chapel,
 /area/lv624/lazarus/chapel)
 "oBp" = (
-/obj/structure/flora/tree/jungle,
+/obj/structure/jungle/vines,
+/obj/structure/flora/tree/jungle/small,
 /turf/open/ground/grass,
-/area/lv624/ground/jungle7)
+/area/lv624/ground/jungle9)
 "oCH" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -19906,9 +19908,9 @@
 	},
 /area/lv624/lazarus/overgrown)
 "tfB" = (
-/obj/structure/flora/tree/jungle,
-/turf/open/ground/grass,
-/area/lv624/lazarus/overgrown)
+/obj/structure/flora/tree/jungle/small,
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/jungle3)
 "tga" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/coast/corner,
@@ -19968,9 +19970,10 @@
 /turf/open/floor/cult/clock,
 /area/lv624/lazarus/bar)
 "thL" = (
-/obj/structure/flora/tree/jungle,
+/obj/structure/jungle/vines,
+/obj/structure/flora/tree/jungle/small,
 /turf/open/ground/grass,
-/area/lv624/ground/jungle9)
+/area/lv624/ground/jungle1)
 "thT" = (
 /obj/effect/ai_node,
 /turf/open/ground/grass,
@@ -20022,9 +20025,10 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "tku" = (
-/obj/structure/flora/tree/jungle,
-/turf/open/ground/grass/grass2,
-/area/lv624/ground/jungle6)
+/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/tree/jungle/small,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle1)
 "tkO" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -21852,7 +21856,7 @@
 "vnt" = (
 /obj/structure/flora/tree/jungle,
 /turf/open/ground/grass,
-/area/lv624/ground/jungle8)
+/area/lv624/ground/jungle3)
 "voM" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/tile/whiteyellow/full,
@@ -21865,10 +21869,6 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle8)
-"vpo" = (
-/obj/structure/flora/tree/jungle/small,
-/turf/open/ground/grass/grass2,
-/area/lv624/lazarus/overgrown)
 "vpz" = (
 /obj/structure/table/reinforced,
 /obj/item/restraints/handcuffs,
@@ -23071,7 +23071,6 @@
 /turf/open/floor,
 /area/lv624/lazarus/chapel)
 "wCh" = (
-/obj/structure/flora/tree/jungle/small,
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle3)
 "wDc" = (
@@ -24147,10 +24146,6 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle5)
-"xFB" = (
-/obj/structure/flora/tree/jungle,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle6)
 "xFI" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -25676,7 +25671,7 @@ mVi
 eFB
 dBB
 mVi
-tfB
+mVi
 mVi
 uQN
 mOs
@@ -26377,7 +26372,7 @@ cEx
 hVJ
 uuY
 eFB
-vpo
+evH
 tss
 eBs
 kke
@@ -28508,7 +28503,7 @@ jiY
 lPf
 jUY
 wnj
-fQu
+wnj
 hFi
 wnj
 wUU
@@ -28688,7 +28683,7 @@ wnj
 hFi
 wnj
 bYr
-uUv
+wnj
 bYr
 wnj
 liw
@@ -28857,7 +28852,7 @@ xLz
 xLz
 qpS
 ubU
-byC
+bYr
 iYn
 bIS
 olR
@@ -30430,7 +30425,7 @@ gBt
 vTe
 xoT
 jUY
-uUv
+wnj
 wnj
 iYn
 bIS
@@ -30447,13 +30442,13 @@ wnj
 wnj
 bYr
 bYr
-uUv
+wnj
 wnj
 lTN
 lTN
 lTN
 wnj
-fQu
+wnj
 wnj
 mOs
 mOs
@@ -32253,7 +32248,7 @@ qVt
 bch
 bcz
 bch
-xgM
+bch
 mOs
 mOs
 mOs
@@ -32561,9 +32556,9 @@ mOs
 mOs
 mOs
 mOs
+mSN
 jxI
-jxI
-xFB
+avd
 avd
 avd
 avd
@@ -32599,7 +32594,7 @@ mOs
 mOs
 mOs
 mOs
-bch
+xgM
 bch
 gjH
 fjU
@@ -33270,7 +33265,7 @@ avd
 xmz
 avd
 avd
-tku
+iPh
 uLT
 tSg
 rKR
@@ -35618,7 +35613,7 @@ mOs
 mOs
 mOs
 mOs
-bch
+vnt
 mOs
 mOs
 mOs
@@ -35786,7 +35781,7 @@ mOs
 bch
 bpq
 bch
-xgM
+bch
 bck
 bck
 iwB
@@ -36095,7 +36090,7 @@ gBt
 fZO
 auH
 avd
-aEz
+avd
 avd
 avd
 avd
@@ -36276,8 +36271,8 @@ avd
 auJ
 mOs
 mOs
-avd
 aEz
+avd
 vgb
 mOs
 kdu
@@ -36315,7 +36310,7 @@ bch
 mOs
 mOs
 mOs
-bcz
+tfB
 bch
 wQT
 gjH
@@ -36855,7 +36850,7 @@ xBB
 xFL
 mPA
 jwy
-gIu
+bcz
 bch
 mOs
 bch
@@ -37866,7 +37861,7 @@ auH
 avd
 avd
 avd
-kir
+auJ
 auJ
 avd
 jxI
@@ -38396,7 +38391,7 @@ gBt
 auH
 aJX
 aJX
-kir
+auJ
 cJL
 jIK
 avd
@@ -40691,7 +40686,7 @@ vTe
 auH
 avd
 mOs
-jxI
+mEg
 auJ
 auJ
 auJ
@@ -41219,7 +41214,7 @@ gMu
 brc
 nny
 auH
-aEz
+avd
 mOs
 mOs
 avd
@@ -42468,7 +42463,7 @@ mOs
 mOs
 mOs
 mOs
-avd
+aEz
 avd
 avd
 avd
@@ -43167,7 +43162,7 @@ aJX
 mOs
 avd
 mOs
-avd
+aEz
 avd
 avd
 avd
@@ -43556,7 +43551,7 @@ aES
 mOs
 mOs
 mOs
-aET
+oBp
 aET
 aES
 aES
@@ -43921,7 +43916,7 @@ cIl
 dwh
 aES
 aET
-ckO
+aET
 aES
 aES
 aES
@@ -44274,7 +44269,7 @@ cFK
 cIl
 xYe
 aES
-ckO
+aET
 aES
 mOs
 mOs
@@ -44414,7 +44409,7 @@ auJ
 mOs
 mOs
 mOs
-avd
+aEz
 avd
 avd
 mOs
@@ -44441,7 +44436,7 @@ mOs
 mOs
 mOs
 mOs
-aET
+oBp
 hde
 pOJ
 xnf
@@ -44805,7 +44800,7 @@ cFK
 cIl
 ycp
 aES
-ckO
+aET
 aES
 yfp
 yfp
@@ -44943,7 +44938,7 @@ uLT
 aDc
 nny
 yeL
-aEz
+avd
 avd
 avd
 avd
@@ -46693,7 +46688,7 @@ aWM
 arW
 oEu
 atX
-arW
+fwR
 arW
 arW
 bjL
@@ -46916,7 +46911,7 @@ mOs
 mOs
 aES
 aES
-thL
+aES
 aES
 mOs
 mOs
@@ -47091,7 +47086,7 @@ aET
 mOs
 mOs
 mOs
-aES
+nYm
 aES
 aES
 aES
@@ -47404,7 +47399,7 @@ mOs
 atX
 arW
 arW
-fwR
+arW
 bjL
 sWy
 uQq
@@ -47577,7 +47572,7 @@ aYG
 aWM
 mOs
 mOs
-arW
+fwR
 atX
 arW
 nbA
@@ -49700,7 +49695,7 @@ ajz
 jHS
 jDK
 aWM
-mEg
+nbA
 nFc
 bev
 pmg
@@ -50762,7 +50757,7 @@ ajz
 ajz
 ajz
 aZu
-mSN
+aWM
 arW
 bnF
 ozm
@@ -53596,7 +53591,7 @@ mOs
 mOs
 mOs
 mOs
-arW
+fwR
 bii
 grX
 bev
@@ -54128,7 +54123,7 @@ mOs
 mOs
 mOs
 mOs
-blJ
+ckO
 bgE
 aWM
 bjX
@@ -54300,7 +54295,7 @@ aZu
 aOj
 aWM
 arW
-fwR
+arW
 arW
 mOs
 kUz
@@ -54490,7 +54485,7 @@ oEu
 mOs
 mOs
 mOs
-atX
+kir
 arW
 arW
 atX
@@ -54655,7 +54650,7 @@ jDK
 aWM
 kdf
 arW
-fwR
+arW
 arW
 arW
 mOs
@@ -55015,7 +55010,7 @@ arW
 atX
 bqU
 atX
-fwR
+arW
 arW
 arW
 arW
@@ -55361,7 +55356,7 @@ ajz
 aZu
 aWM
 arW
-aXf
+kdf
 kdf
 aZx
 arW
@@ -55893,7 +55888,7 @@ aZu
 aWM
 bnF
 arW
-aXf
+kdf
 bnF
 atX
 mOs
@@ -55901,12 +55896,12 @@ mOs
 mOs
 mOs
 mOs
-arW
+fwR
 arW
 vlv
 azP
 xYV
-fwR
+arW
 arW
 rYv
 pMn
@@ -56435,10 +56430,10 @@ mOs
 mOs
 mOs
 mOs
-arW
-arW
-arW
 fwR
+arW
+arW
+arW
 rYv
 bUZ
 pMn
@@ -56613,7 +56608,7 @@ mOs
 mOs
 mOs
 arW
-fwR
+arW
 nbA
 bsc
 nEy
@@ -57135,7 +57130,7 @@ arW
 blJ
 bev
 aWM
-fwR
+arW
 atX
 mOs
 mOs
@@ -57667,11 +57662,11 @@ nFG
 hUF
 aDP
 arW
-oBp
+arW
 arW
 arW
 mOs
-arW
+fwR
 arW
 nbA
 nFc
@@ -57734,11 +57729,11 @@ vJt
 wvT
 dNa
 eqC
-nYm
+bdh
 mOs
 mOs
 mOs
-wpO
+tku
 gCL
 mBB
 wJG
@@ -58372,7 +58367,7 @@ bsh
 aDP
 arW
 arW
-fwR
+arW
 bii
 nFG
 oGS
@@ -58566,10 +58561,10 @@ mOs
 mOs
 mOs
 mOs
-arW
-arW
-arW
 fwR
+arW
+arW
+arW
 arW
 tgm
 rdo
@@ -59084,11 +59079,11 @@ bnF
 mOs
 mOs
 mOs
-pvy
+gIu
 nrU
 nrU
 erd
-oBp
+arW
 atX
 mOs
 mOs
@@ -59327,10 +59322,10 @@ uYo
 euA
 mQf
 ylZ
-nYm
+bdh
 mOs
 mOs
-gCL
+thL
 bdh
 gCL
 wpO
@@ -59451,7 +59446,7 @@ mOs
 mOs
 mOs
 mOs
-arW
+fwR
 nbA
 bsc
 bsc
@@ -59614,7 +59609,7 @@ mOs
 mOs
 mOs
 mOs
-arW
+byC
 bii
 nFG
 oGS
@@ -60328,7 +60323,7 @@ mOs
 dRM
 dRM
 dRM
-vnt
+dRM
 wDc
 cdR
 wTn
