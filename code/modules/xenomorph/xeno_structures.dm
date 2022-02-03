@@ -1366,8 +1366,7 @@ TUNNEL
 	return ..()
 
 /obj/structure/xeno/plant/stealth_plant/process()
-	var/list/area_of_effect = RANGE_TURFS(camouflage_range, loc)
-	for(var/turf/tile AS in area_of_effect)
+	for(var/turf/tile AS in RANGE_TURFS(camouflage_range, loc))
 		for(var/obj/structure/xeno/xeno_struct in tile)
 			if(istype(xeno_struct, /obj/structure/xeno/plant) || !line_of_sight(src, xeno_struct)) //We don't hide plants
 				continue
