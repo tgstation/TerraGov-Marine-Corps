@@ -1835,7 +1835,7 @@ datum/ammo/bullet/revolver/tp44
 	spit_cost = 50
 	sound_hit = "alien_resin_build2"
 	sound_bounce = "alien_resin_build3"
-	damage = 10 //minor; this is mostly just to provide confirmation of a hit
+	damage = 20 //minor; this is mostly just to provide confirmation of a hit
 	max_range = 40
 	bullet_color = COLOR_PURPLE
 	stagger_stacks = 2
