@@ -80,11 +80,6 @@
 			to_chat(owner, span_warning("Only weeds are fertile enough for our plants!"))
 		return FALSE
 
-	if((locate(/obj/structure/xeno/plant) in T))
-		if(!silent)
-			to_chat(owner, span_warning("There is already a plant growing here!"))
-		return FALSE
-
 	if(!T.check_alien_construction(owner, silent))
 		return FALSE
 
