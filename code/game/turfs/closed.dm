@@ -166,14 +166,12 @@
 /turf/closed/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	var/turf/targettedwall = get_turf(src)
-
 	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(CHECK_BITFIELD(resistance_flags, RESIST_ALL) || CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE))
 			to_chat(user, span_warning("[P] can't cut through this!"))
 			return
-		if(iswallturf(targettedwall)) //walls handle plasma cutter effects on their own
+		if(iswallturf(src)) //walls handle plasma cutter effects on their own
 			return
 		else if(!P.start_cut(user, name, src))
 			return
@@ -183,19 +181,19 @@
 			P.cut_apart(user, name, src) //purely a cosmetic effect
 
 		//change targetted turf to a new one to simulate deconstruction
-		if(ismineralturf(targettedwall))
+		if(ismineralturf(src))
 			ChangeTurf(/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor)
 
-		else if(isdesertrockwallturf(targettedwall))
+		else if(isdesertrockwallturf(src))
 			ChangeTurf(/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor)
 
-		else if(isjungleturf(targettedwall))
+		else if(isjungleturf(src))
 			ChangeTurf(/turf/open/ground/jungle/clear)
 
-		else if(isiceturf(targettedwall) || isicerockturf(targettedwall))
+		else if(isiceturf(src) || isicerockturf(src))
 			ChangeTurf(/turf/open/floor/plating/ground/ice)
 
-		else if(isvolcanicturf(targettedwall))
+		else if(isvolcanicturf(src))
 			var/choice = rand(1,50)
 			if(choice == 50)
 				ChangeTurf(/turf/open/lavaland/basalt/glowing)
