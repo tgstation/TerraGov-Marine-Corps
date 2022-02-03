@@ -133,6 +133,8 @@
 	var/base_wait = 1 SECONDS
 	///Multiplicator factor to add to the building time, depends on the health of the structure built
 	var/scaling_wait = 1 SECONDS
+	///the maximum range of the ability
+	var/max_range = 1
 	///List of buildable structures
 	var/list/buildable_structures = list(
 		/turf/closed/wall/resin/regenerating,
@@ -148,7 +150,6 @@
 	return ..()
 
 /datum/action/xeno_action/activable/secrete_resin/action_activate()
-
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability != src)
 		return ..()
@@ -164,7 +165,9 @@
 
 
 /datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
-	build_resin(get_turf(owner))
+	if(get_dist(owner, A) > max_range)
+		return
+	build_resin(get_turf(A))
 
 /datum/action/xeno_action/activable/secrete_resin/proc/get_wait()
 	. = base_wait
@@ -184,8 +187,8 @@
 /datum/action/xeno_action/activable/secrete_resin/proc/build_resin(turf/T)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/xenomorph/blocker = locate() in T
-	if(blocker && blocker != X && blocker.stat != DEAD)
-		to_chat(X, span_warning("Can't do that with [blocker] in the way!"))
+	if(blocker && blocker.stat != DEAD)
+		to_chat(X, span_warning("Can't do that with [blocker == owner ? "ourself" : blocker] in the way!"))
 		return fail_activate()
 
 	if(!T.is_weedable())

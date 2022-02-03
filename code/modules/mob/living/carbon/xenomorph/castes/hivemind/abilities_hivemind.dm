@@ -6,11 +6,11 @@
 /datum/action/xeno_action/return_to_core/action_activate()
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_CORE_RETURN)
 
-/datum/action/xeno_action/activable/secrete_resin/ranged/slow
+/datum/action/xeno_action/activable/secrete_resin/slow
 	base_wait = 1 SECONDS
 	max_range = 4
 
-/datum/action/xeno_action/activable/secrete_resin/ranged/slow/should_show()
+/datum/action/xeno_action/activable/secrete_resin/slow/should_show()
 	return !(owner.status_flags & INCORPOREAL)
 
 /datum/action/xeno_action/change_form
