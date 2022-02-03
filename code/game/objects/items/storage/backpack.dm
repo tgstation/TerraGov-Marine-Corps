@@ -33,8 +33,8 @@
 
 		icon_state = "dispenser"
 		flick("dispenser_undeploy", src)
-		STOP_PROCESSING(SSprocessing, src)
-		addtimer(CALLBACK(src, .proc/undeploy), 1.6 SECONDS)
+		STOP_PROCESSING(SSobj, src)
+		addtimer(CALLBACK(src, .proc/undeploy), 4.2 SECONDS)
 		return
 	return ..()
 
@@ -91,10 +91,11 @@
 	anchored = TRUE
 	dir = REVERSE_DIR(user.dir)
 	icon_state = "dispenser_deployed"
+	balloon_alert_to_viewers("Deploying...")
 	flick("dispenser_deploy", src)
 	ENABLE_BITFIELD(flags_item, IS_DEPLOYING)
 
-	addtimer(CALLBACK(src, .proc/deploy), 1.6 SECONDS)
+	addtimer(CALLBACK(src, .proc/deploy), 4.2 SECONDS)
 
 /obj/item/storage/backpack/dispenser/process()
 	for(var/mob/living/carbon/human/affecting AS in affecting_list)
