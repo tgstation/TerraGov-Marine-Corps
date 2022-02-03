@@ -609,7 +609,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state_empty = "hivelo_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	penetration = 12
-	damage = 40
+	damage = 38
 	sundering = 1.2
 
 /datum/ammo/bullet/rifle/standard_br/incendiary
