@@ -367,7 +367,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	X.gain_plasma(flat_amount_restored)
 	if(!bonus_regen)
-		qdel()
+		qdel(src)
 	else
 		RegisterSignal(owner, COMSIG_XENOMORPH_PLASMA_REGEN, .proc/plasma_surge_regeneration)
 
