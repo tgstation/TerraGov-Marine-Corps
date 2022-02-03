@@ -3519,7 +3519,7 @@
 	},
 /area/icy_caves/outpost/research)
 "pp" = (
-/obj/structure/largecrate/supply/supplies/coifss,
+/obj/structure/largecrate/supply/supplies/coifs,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "pq" = (
@@ -4437,7 +4437,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "sX" = (
-/obj/structure/largecrate/supply/supplies/coifss,
+/obj/structure/largecrate/supply/supplies/coifs,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
 "ta" = (

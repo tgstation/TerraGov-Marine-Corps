@@ -255,7 +255,7 @@
 	desc = "A supply crate containing twenty five-flare boxes."
 	supplies = list(/obj/item/storage/box/m94 = 10)
 
-/obj/structure/largecrate/supply/supplies/coifss
+/obj/structure/largecrate/supply/supplies/coifs
 	name = "Heat absorbent coifs supply crate (x25)"
 	desc = "A supply crate containing twenty five heat absorbent coifs."
 	supplies = list(/obj/item/clothing/mask/rebreather/scarf = 25)
