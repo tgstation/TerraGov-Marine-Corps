@@ -1279,7 +1279,10 @@ TUNNEL
 	if(!isxeno(user))
 		var/turf/far_away_lands = get_turf(user)
 		for(var/x in 1 to 20)
-			far_away_lands = get_step(far_away_lands, REVERSE_DIR(user.dir))
+			var/turf/next_turf = get_step(far_away_lands, REVERSE_DIR(user.dir))
+			if(!next_turf)
+				break
+			far_away_lands = next_turf
 
 		user.throw_at(far_away_lands, 20, spin = TRUE)
 		to_chat(user, span_warning("[src] bursts, releasing a strong gust of pressurised gas!"))
