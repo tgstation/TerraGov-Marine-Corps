@@ -79,14 +79,14 @@
 
 	var/sunder_recov = xeno_caste.sunder_recover * -0.5 //Baseline
 
-	if(resting) //Resting doubles sunder recovery
-		sunder_recov *= 2
+	if(resting) //Resting gives a 25% bonus to sunder recovery.
+		sunder_recov *= 1.25
 
-	if(locate(/obj/effect/alien/weeds/resting) in loc) //Resting weeds double sunder recovery
-		sunder_recov *= 2
+	if(locate(/obj/effect/alien/weeds/resting) in loc) //Resting weeds give a 25% bonus to sunder recovery.
+		sunder_recov *= 1.25
 
 	if(recovery_aura)
-		sunder_recov *= 1 + recovery_aura * 0.1 //10% bonus per rank of recovery aura
+		sunder_recov *= 1 + recovery_aura * 0.05 //5% bonus per rank of recovery aura
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_SUNDER_REGEN, src)
 
