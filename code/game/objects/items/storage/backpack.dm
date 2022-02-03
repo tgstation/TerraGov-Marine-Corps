@@ -844,10 +844,12 @@
 	ENABLE_BITFIELD(flags_item, IS_DEPLOYED)
 	affecting_list = list()
 	for(var/mob/living/carbon/human/human in view(3))
+		if(!line_of_sight(src, human, 2))
+			continue
 		RegisterSignal(human, COMSIG_PARENT_QDELETING, .proc/on_affecting_qdel)
 		affecting_list[human] = beam(human, "blood_light")
 		human.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 50)
-	for(var/turf/turfs in view(2))
+	for(var/turf/turfs in range(2, src))
 		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/entered_tiles)
 	START_PROCESSING(SSprocessing, src)
 
@@ -863,7 +865,7 @@
 		icon_state = "dispenser"
 		flick("dispenser_undeploy", src)
 		ENABLE_BITFIELD(flags_item, IS_DEPLOYING)
-		for(var/turf/turfs in range(2))
+		for(var/turf/turfs in range(2, src))
 			UnregisterSignal(turfs, COMSIG_ATOM_ENTERED)
 		for(var/mob/living/carbon/human/affecting AS in affecting_list)
 			qdel(affecting_list[affecting])
@@ -890,13 +892,15 @@
 			affecting_list -= affecting
 			UnregisterSignal(affecting, COMSIG_PARENT_QDELETING)
 			return
-		affecting.heal_limb_damage(0.4, 0.4, TRUE)
+		affecting.heal_limb_damage(0.8, 0.8, TRUE)
 
 
 /obj/item/storage/backpack/dispenser/proc/entered_tiles(datum/source, mob/living/carbon/human/entering)
 	if(!ishuman(entering))
 		return
 	if(entering in affecting_list)
+		return
+	if(!line_of_sight(src, entering))
 		return
 	affecting_list += entering
 	RegisterSignal(entering, COMSIG_PARENT_QDELETING, .proc/on_affecting_qdel)
