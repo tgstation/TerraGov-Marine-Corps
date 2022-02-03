@@ -167,7 +167,7 @@
 	if(limb_status & LIMB_DESTROYED)
 		return 0
 
-	if(limb_status & LIMB_ROBOT && !(owner.species.species_flags & ROBOTIC_LIMBS))
+	if(limb_status & LIMB_ROBOT && !(owner.species.species_flags & IS_SYNTHETIC))
 		brute *= 0.50 // half damage for ROBOLIMBS if you weren't born with them
 		burn *= 0.50
 
@@ -801,7 +801,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(HEAD)
 			if(owner.species.species_flags & IS_SYNTHETIC) //special head for synth to allow brainmob to talk without an MMI
 				organ = new /obj/item/limb/head/synth(owner.loc, owner)
-			else if(owner.species.species_flags & ROBOTIC_LIMBS)
+			else if(owner.species.species_flags & IS_SYNTHETIC)
 				organ = new /obj/item/limb/head/robotic(owner.loc, owner)
 			else
 				organ = new /obj/item/limb/head(owner.loc, owner)

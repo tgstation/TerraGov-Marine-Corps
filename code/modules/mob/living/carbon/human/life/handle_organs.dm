@@ -10,7 +10,7 @@
 		if(!(status_flags & GODMODE)) //godmode doesn't work as intended anyway
 			reagents.metabolize(src, overdosable, L ? FALSE : TRUE)
 
-	if(species && !(species.species_flags & ROBOTIC_LIMBS)) //robotic units never go hungry: todo make this a trait
+	if(species && !(species.species_flags & IS_SYNTHETIC)) //robotic units never go hungry: todo make this a trait
 		//Nutrition decrease
 		if(nutrition > 0 && stat != DEAD)
 			adjust_nutrition(-HUNGER_FACTOR)

@@ -71,7 +71,7 @@
 		var/fullness = C.nutrition + (C.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 25)
 		if(M == user)								//If you're eating it yourself
 			var/mob/living/carbon/H = M
-			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
+			if(ishuman(H) && (H.species.species_flags & IS_SYNTHETIC))
 				to_chat(H, span_warning("You have a monitor for a head, where do you think you're going to put that?"))
 				return
 			if (fullness <= 50)
@@ -87,7 +87,7 @@
 				return FALSE
 		else
 			var/mob/living/carbon/H = M
-			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
+			if(ishuman(H) && (H.species.species_flags & IS_SYNTHETIC))
 				to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
 				return
 			if (fullness <= (550 * (1 + C.overeatduration / 1000)))

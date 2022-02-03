@@ -11,7 +11,7 @@
 	if(!ishuman(C))
 		return
 	var/mob/living/carbon/human/human_spawn = C
-	if(!(human_spawn.species.species_flags & ROBOTIC_LIMBS))
+	if(!(human_spawn.species.species_flags & IS_SYNTHETIC))
 		human_spawn.set_nutrition(rand(60, 250))
 	if(!human_spawn.assigned_squad)
 		CRASH("after_spawn called for a marine without an assigned_squad")

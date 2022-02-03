@@ -16,7 +16,7 @@
 		return 0
 	if(!isnull(open_step) && affected.surgery_open_stage != open_step)
 		return 0
-	if(target_zone == "head" && target.species && (target.species.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS)))
+	if(target_zone == "head" && target.species && (target.species.species_flags & (IS_SYNTHETIC)))
 		return 1
 	if(affected.limb_status & LIMB_ROBOT)
 		return 0

@@ -621,7 +621,7 @@
 	return FALSE
 
 /mob/living/carbon/human/can_sting()
-	if(species?.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
+	if(species?.species_flags & (IS_SYNTHETIC))
 		return FALSE
 	if(stat != DEAD)
 		return TRUE
