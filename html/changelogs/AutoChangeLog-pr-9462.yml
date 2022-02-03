@@ -1,7 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - rscadd: "tricord pill bottles in all medical belts, whether med rig or lifesaver"
-  - rscdel: "option to buy tricord pill bottle in corpsman vendor"
-  - qol: "corpsmen can get tricord pill bottle in belt"
-  - balance: "tricord pill bottle round start"
