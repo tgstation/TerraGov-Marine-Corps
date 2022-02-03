@@ -122,7 +122,7 @@
 
 
 /mob/living/carbon/human/med_hud_set_health()
-	var/image/holder = hud_list[HEALTH_HUD]
+	var/image/holder = species.species_flags & IS_SYNTHETIC ? hud_list[MACHINE_HEALTH_HUD] : hud_list[HEALTH_HUD]
 	if(stat == DEAD)
 		holder.icon_state = "hudhealth-100"
 		return
@@ -488,10 +488,10 @@
 
 
 /datum/atom_hud/squad
-	hud_icons = list(SQUAD_HUD_TERRAGOV, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
+	hud_icons = list(SQUAD_HUD_TERRAGOV, MACHINE_AMMO_HUD)
 
 /datum/atom_hud/squad_rebel
-	hud_icons = list(SQUAD_HUD_REBEL, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
+	hud_icons = list(SQUAD_HUD_REBEL, MACHINE_AMMO_HUD)
 
 
 /mob/proc/hud_set_job(faction = FACTION_TERRAGOV)
