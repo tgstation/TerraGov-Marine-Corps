@@ -339,11 +339,56 @@
 
 	patient.adjust_sunder(-1.8 * (1 + patient.recovery_aura * 0.05)) //5% bonus per rank of our recovery aura
 
-
 /obj/screen/alert/status_effect/healing_infusion
 	name = "Healing Infusion"
 	desc = "You have accelerated natural healing."
 	icon_state = "healing_infusion"
+
+///Plasma fruit buff
+/datum/status_effect/plasma_surge
+	id = "plasma_surge"
+	alert_type = /obj/screen/alert/status_effect/plasma_surge
+	///How much plasma do we instantly restore
+	var/flat_amount_restored
+	///How much extra plasma should we regenerate over time as a % of our base regen, 1 being twice the regen
+	var/bonus_regen
+
+/datum/status_effect/plasma_surge/on_creation(mob/living/new_owner, flat_amount_restored, bonus_regen, set_duration)
+	if(!isxeno(new_owner))
+		CRASH("Plasma surge was applied on a nonxeno, dont do that")
+	duration = set_duration
+	src.flat_amount_restored = flat_amount_restored
+	src.bonus_regen = bonus_regen
+	return ..()
+
+/datum/status_effect/plasma_surge/on_apply()
+	. = ..()
+	owner.add_filter("plasma_surge_infusion_outline", 3, outline_filter(1, COLOR_CYAN))
+	var/mob/living/carbon/xenomorph/X = owner
+	X.gain_plasma(flat_amount_restored)
+	if(!bonus_regen)
+		qdel(src)
+	else
+		RegisterSignal(owner, COMSIG_XENOMORPH_PLASMA_REGEN, .proc/plasma_surge_regeneration)
+
+/datum/status_effect/plasma_surge/proc/plasma_surge_regeneration()
+	SIGNAL_HANDLER
+
+	var/mob/living/carbon/xenomorph/X = owner
+	if(HAS_TRAIT(X,TRAIT_NOPLASMAREGEN)) //No bonus plasma if you're on a diet
+		return
+	var/bonus_plasma = X.xeno_caste.plasma_gain * bonus_regen * (1 + X.recovery_aura * 0.05) //Recovery aura multiplier; 5% bonus per full level
+	X.gain_plasma(bonus_plasma)
+
+/datum/status_effect/plasma_surge/on_remove()
+	. = ..()
+	owner.remove_filter("plasma_surge_infusion_outline")
+	UnregisterSignal(owner, COMSIG_XENOMORPH_PLASMA_REGEN)
+
+/obj/screen/alert/status_effect/plasma_surge
+	name = "Plasma Surge"
+	desc = "You have accelerated plasma regeneration."
+	icon_state = "drunk" //Close enough
 
 //MUTE
 /datum/status_effect/mute

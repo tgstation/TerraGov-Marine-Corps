@@ -21,3 +21,15 @@
   - rscadd: the hypospray belt! The belt is loaded with bicaridine, kelotane, tramadol,
       dexalin, tricordrazine, inaprovaline, spaceacillin, hypervene, peridaxon, and
       quickclot hypospray along with reagent bottles.
+2022-02-03:
+  Losenis:
+  - qol: Tx11 now has burst auto, less spamclicking needed for the same thing burst
+      offers
+  novaepee:
+  - rscadd: tricord pill bottles in all medical belts, whether med rig or lifesaver
+  - rscdel: option to buy tricord pill bottle in corpsman vendor
+  - qol: corpsmen can get tricord pill bottle in belt
+  - balance: tricord pill bottle round start
+  - qol: Infinite packets and ammo boxes
+  - balance: It will affect marine's storage since they can bring a buttload of ammo
+      boxes, but the effect size will be small

@@ -134,6 +134,12 @@
 	icon_state = "busy_medical"
 	duration = 0.8 SECONDS
 
+
+/obj/effect/temp_visual/alien_fruit_eaten
+	name = "glitters"
+	icon_state = "shieldsparkles"
+	duration = 0.5 SECONDS
+
 /obj/effect/temp_visual/smoke
 	name = "smoke"
 	icon = 'icons/obj/items/jetpack.dmi'

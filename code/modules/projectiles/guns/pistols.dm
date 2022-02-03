@@ -218,7 +218,7 @@
 
 /obj/item/weapon/gun/pistol/m1911/custom
 	name = "\improper M1911A1 custom pistol"
-	desc = "A 20th century military firearm that received several modifications. It seems to have been lovingly taken care of and passed down the family. Lacks an auto magazine eject feature."
+	desc = "A handgun that has received several modifications. It seems to have been lovingly taken care of and passed down for generations. Lacks an auto magazine eject feature."
 	icon_state = "m1911c"
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -231,8 +231,6 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
-
 	fire_delay = 0.15 SECONDS
 
 //-------------------------------------------------------

@@ -126,6 +126,9 @@
 /mob/living/carbon/xenomorph/drone/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/drone/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //-----DRONE END-----//
 //================//
 

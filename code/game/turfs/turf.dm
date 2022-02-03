@@ -558,6 +558,10 @@
 			if(!silent)
 				to_chat(builder, span_warning("There's already a resin structure here!"))
 			return FALSE
+		if(istype(O, /obj/structure/xeno/plant))
+			if(!silent)
+				to_chat(builder, span_warning("There is a plant growing here, destroying it would be a waste to the hive."))
+			return FALSE
 		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/structure/ladder) || istype(O, /obj/effect/alien/resin))
 			has_obstacle = TRUE
 			break
