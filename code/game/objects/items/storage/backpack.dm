@@ -793,7 +793,7 @@
 /obj/item/storage/backpack/dispenser/open(mob/user)
 	if(loc == user)
 		return FALSE
-	. = ..()
+	return ..()
 
 
 /obj/item/storage/backpack/dispenser/attack_hand(mob/living/user)
@@ -807,7 +807,7 @@
 		if(over_object == usr && ishuman(over_object))
 			open(over_object)
 		return
-	. = ..()
+	return ..()
 
 /obj/item/storage/backpack/dispenser/attack_self(mob/user)
 	if(!ishuman(user) || CHECK_BITFIELD(flags_item, NODROP))
@@ -892,7 +892,19 @@
 			affecting_list -= affecting
 			UnregisterSignal(affecting, COMSIG_PARENT_QDELETING)
 			return
-		affecting.heal_limb_damage(0.8, 0.8, TRUE)
+		var/limb_max_heal = 1.6
+		for(var/datum/limb/limb in affecting.limbs)
+			if(limb.flag & LIMB_ROBOT)
+				limb_max_heal -= limb.get_damage()
+				limb.heal_limb_damage(min(0.8, limb.brute_dam), min(0.8, limb.burn_dam), FALSE, TRUE)
+				if(limb_max_heal <= 0)
+					break
+				continue
+			if(limb.is_bandaged() && limb.is_salved())
+				continue
+			limb.bandage()
+			limb.salve()
+			break
 
 
 /obj/item/storage/backpack/dispenser/proc/entered_tiles(datum/source, mob/living/carbon/human/entering)
