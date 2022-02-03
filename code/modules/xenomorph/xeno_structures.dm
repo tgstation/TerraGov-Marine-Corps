@@ -1359,8 +1359,8 @@ TUNNEL
 	START_PROCESSING(SSslowprocess, src)
 
 /obj/structure/xeno/plant/stealth_plant/Destroy()
-	for(var/obj/S AS in camouflaged_structures)
-		S.alpha = initial(S.alpha)
+	for(var/obj/structure/xeno/xeno_struct AS in camouflaged_structures)
+		xeno_struct.alpha = initial(xeno_struct.alpha)
 	unveil()
 	STOP_PROCESSING(SSslowprocess, src)
 	return ..()
@@ -1415,6 +1415,6 @@ TUNNEL
 
 ///Reveals all xenos hidden by veil()
 /obj/structure/xeno/plant/stealth_plant/proc/unveil()
-	for(var/mob/X AS in camouflaged_xenos)
+	for(var/mob/living/carbon/xenomorph/X AS in camouflaged_xenos)
 		X.alpha = initial(X.alpha)
 		to_chat(X, span_xenowarning("The effect of [src] wears off!"))
