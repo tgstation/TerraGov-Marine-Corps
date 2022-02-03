@@ -780,8 +780,8 @@
 	can_hold = list(/obj/item/ammo_magazine/rocket)
 
 /obj/item/storage/backpack/dispenser
-	name = "Engineer Dispenser"
-	desc = "pootis dispenser here."
+	name = "Dispense-O-Matic 9000 Provisions Dispenser"
+	desc = "The Dispense-O-Matic also known as \"Dispenser\" is a machine capable of holding a big amount of items on it, while also healing nearby humans. Your allies will often ask you to lay down one of those."
 	icon = 'icons/obj/items/storage/storage_48.dmi'
 	icon_state = "dispenser"
 	flags_equip_slot = ITEM_SLOT_BACK
