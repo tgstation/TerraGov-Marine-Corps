@@ -1724,7 +1724,7 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 10
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	damage = 40
+	damage = 20
 	stagger_stacks = 1.1
 	slowdown_stacks = 1.1
 	smoke_strength = 0.5
@@ -1808,7 +1808,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "neurotoxic splash"
 	added_spit_delay = 0
 	spit_cost = 100
-	damage = 40
+	damage = 25
 	smoke_strength = 0.9
 	reagent_transfer_amount = 9.5
 
@@ -1835,7 +1835,7 @@ datum/ammo/bullet/revolver/tp44
 	spit_cost = 50
 	sound_hit = "alien_resin_build2"
 	sound_bounce = "alien_resin_build3"
-	damage = 20 //minor; this is mostly just to provide confirmation of a hit
+	damage = 10 //minor; this is mostly just to provide confirmation of a hit
 	max_range = 40
 	bullet_color = COLOR_PURPLE
 	stagger_stacks = 2
