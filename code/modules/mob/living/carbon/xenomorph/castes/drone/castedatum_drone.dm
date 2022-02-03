@@ -146,3 +146,47 @@
 
 	// *** Pheromones *** //
 	aura_strength = 2
+
+/datum/xeno_caste/drone/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "WIP"
+	primordial_message = "WIP"
+	upgrade = XENO_UPGRADE_FOUR
+
+	// *** Melee Attacks *** //
+	melee_damage = 18
+
+	// *** Speed *** //
+	speed = -1.2
+
+	// *** Plasma *** //
+	plasma_max = 1000
+	plasma_gain = 40
+
+	// *** Health *** //
+	max_health = 300
+
+	// *** Evolution *** //
+	upgrade_threshold = 660
+
+	// *** Defense *** //
+	soft_armor = list("melee" = 31, "bullet" = 31, "laser" = 31, "energy" = 31, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 31, "acid" = 15)
+
+	// *** Pheromones *** //
+	aura_strength = 2
+
+	// *** Abilities *** //
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/cocoon,
+		/datum/action/xeno_action/activable/plant_weeds,
+		/datum/action/xeno_action/activable/secrete_resin,
+		/datum/action/xeno_action/sow,
+		/datum/action/xeno_action/activable/psychic_cure/acidic_salve,
+		/datum/action/xeno_action/activable/transfer_plasma/drone,
+		/datum/action/xeno_action/activable/corrosive_acid/drone,
+		/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn,
+		/datum/action/xeno_action/create_jelly/slow,
+		/datum/action/xeno_action/toggle_pheromones,
+	)
