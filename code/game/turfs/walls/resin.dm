@@ -198,3 +198,7 @@
 /* Hivelord walls, they start off stronger */
 /turf/closed/wall/resin/regenerating/thick
 	max_integrity = 250
+
+/* Hivemind walls, they start off way, way weaker*/
+/turf/closed/wall/resin/regenerating/hivemind
+	max_integrity = 50

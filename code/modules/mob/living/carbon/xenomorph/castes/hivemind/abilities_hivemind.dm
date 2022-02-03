@@ -7,7 +7,12 @@
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_CORE_RETURN)
 
 /datum/action/xeno_action/activable/secrete_resin/hivemind
-	base_wait = 1 SECONDS
+	base_wait = 0.5 SECONDS
+	buildable_structures = list(
+		/turf/closed/wall/resin/regenerating/hivemind,
+		/obj/effect/alien/resin/sticky,
+		/obj/structure/mineral_door/resin,
+	)
 
 /datum/action/xeno_action/activable/secrete_resin/hivemind/should_show()
 	return !(owner.status_flags & INCORPOREAL)
