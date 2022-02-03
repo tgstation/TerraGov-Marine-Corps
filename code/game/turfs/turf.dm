@@ -312,6 +312,10 @@
 	if(W.directional_opacity != old_directional_opacity)
 		W.reconsider_lights()
 
+	var/area/thisarea = get_area(W)
+	if(thisarea.lighting_effect)
+		W.add_overlay(thisarea.lighting_effect)
+
 	return W
 
 /// Take off the top layer turf and replace it with the next baseturf down
