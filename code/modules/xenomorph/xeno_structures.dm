@@ -1366,8 +1366,7 @@ TUNNEL
 	return ..()
 
 /obj/structure/xeno/plant/stealth_plant/process()
-	var/list/area_of_effect = RANGE_TURFS(camouflage_range, loc)
-	for(var/turf/tile AS in area_of_effect)
+	for(var/turf/tile AS in RANGE_TURFS(camouflage_range, loc))
 		for(var/obj/structure/xeno/xeno_struct in tile)
 			if(istype(xeno_struct, /obj/structure/xeno/plant) || !line_of_sight(src, xeno_struct)) //We don't hide plants
 				continue
@@ -1395,8 +1394,7 @@ TUNNEL
 
 ///Hides all nearby xenos
 /obj/structure/xeno/plant/stealth_plant/proc/veil()
-	var/list/area_of_effect = RANGE_TURFS(camouflage_range, loc)
-	for(var/turf/tile in area_of_effect)
+	for(var/turf/tile in RANGE_TURFS(camouflage_range, loc))
 		for(var/mob/living/carbon/xenomorph/X in tile)
 			if(X.stat == DEAD || isxenohunter(X) || X.alpha != 255) //We don't mess with xenos capable of going stealth by themselves
 				continue
