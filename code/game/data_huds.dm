@@ -488,10 +488,13 @@
 
 
 /datum/atom_hud/squad
-	hud_icons = list(SQUAD_HUD_TERRAGOV, MACHINE_AMMO_HUD)
+	hud_icons = list(SQUAD_HUD_TERRAGOV)
 
 /datum/atom_hud/squad_rebel
-	hud_icons = list(SQUAD_HUD_REBEL, MACHINE_AMMO_HUD)
+	hud_icons = list(SQUAD_HUD_REBEL)
+
+/datum/atom_hud/engi
+	hud_icons = list(MACHINE_AMMO_HUD, MACHINE_HEALTH_HUD)
 
 
 /mob/proc/hud_set_job(faction = FACTION_TERRAGOV)

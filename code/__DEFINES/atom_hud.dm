@@ -47,6 +47,7 @@
 #define DATA_HUD_SQUAD_REBEL 14
 #define DATA_HUD_XENO_DEBUFF 15
 #define DATA_HUD_XENO_HEART 16
+#define DATA_HUD_ENGINEER 17    
 
 
 // Notification action types
