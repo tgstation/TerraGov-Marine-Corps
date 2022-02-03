@@ -63,4 +63,4 @@
 
 	aura_strength = 4 //Good pheros
 
-	speed = 1.5
+	speed = 2.2

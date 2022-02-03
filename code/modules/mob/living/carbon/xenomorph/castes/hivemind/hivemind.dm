@@ -77,7 +77,7 @@
 		if((health >= maxHealth)) //can't regenerate.
 			updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
 			return
-		heal_wounds(2.5 * XENO_RESTING_HEAL)
+		heal_wounds(1.5 * XENO_RESTING_HEAL)
 		updatehealth()
 		return
 	adjustBruteLoss(20 * XENO_RESTING_HEAL, TRUE)
