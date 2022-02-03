@@ -894,7 +894,7 @@
 			return
 		var/limb_max_heal = 1.6
 		for(var/datum/limb/limb in affecting.limbs)
-			if(limb.flag & LIMB_ROBOT)
+			if(limb.limb_status & LIMB_ROBOT)
 				limb_max_heal -= limb.get_damage()
 				limb.heal_limb_damage(min(0.8, limb.brute_dam), min(0.8, limb.burn_dam), FALSE, TRUE)
 				if(limb_max_heal <= 0)
