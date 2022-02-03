@@ -14,131 +14,6 @@
 	max_storage_space = 24
 	access_delay = 1.5 SECONDS
 
-/obj/item/storage/backpack/dispenser
-	name = "Engineer Dispenser"
-	desc = "pootis dispenser here."
-	icon = 'icons/obj/items/storage/storage_48.dmi'
-	icon_state = "dispenser"
-	flags_equip_slot = ITEM_SLOT_BACK
-	max_w_class = 6
-	max_storage_space = 63
-	COOLDOWN_DECLARE(deploy_cooldown)
-	var/affecting_list = list()
-
-/obj/item/storage/backpack/dispenser/CtrlClick(mob/user)
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYING))
-		if(!can_interact(user))
-			return
-		balloon_alert_to_viewers("Undeploying...")
-
-		icon_state = "dispenser"
-		flick("dispenser_undeploy", src)
-		STOP_PROCESSING(SSobj, src)
-		addtimer(CALLBACK(src, .proc/undeploy), 4.2 SECONDS)
-		return
-	return ..()
-
-/obj/item/storage/backpack/dispenser/proc/deploy()
-	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYING))
-		return
-	DISABLE_BITFIELD(flags_item, IS_DEPLOYING)
-	ENABLE_BITFIELD(flags_item, IS_DEPLOYED)
-	affecting_list = list()
-	for(var/mob/living/carbon/human/human in view(3))
-		RegisterSignal(human, COMSIG_PARENT_QDELETING, .proc/on_affecting_qdel)
-		affecting_list[human] = beam(human, "blood_light")
-	for(var/turf/turfs in view(2))
-		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/entered_tiles)
-	START_PROCESSING(SSprocessing, src)
-
-/obj/item/storage/backpack/dispenser/proc/on_affecting_qdel(datum/source)
-	affecting_list -= source
-
-/obj/item/storage/backpack/dispenser/proc/undeploy()
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		density = FALSE
-		anchored = FALSE
-		DISABLE_BITFIELD(flags_item, IS_DEPLOYED)
-		DISABLE_BITFIELD(flags_item, IS_DEPLOYING)
-		for(var/turf/turfs in range(2))
-			UnregisterSignal(turfs, COMSIG_ATOM_ENTERED)
-
-		for(var/mob/living/carbon/human/affecting AS in affecting_list)
-			qdel(affecting_list[affecting])
-			UnregisterSignal(affecting, COMSIG_PARENT_QDELETING)
-		affecting_list = null
-
-
-/obj/item/storage/backpack/dispenser/attack_self(mob/user)
-	if(!ishuman(user) || CHECK_BITFIELD(flags_item, NODROP))
-		return
-	var/deploy_location
-	deploy_location = get_step(user, user.dir)
-	if(check_blocked_turf(deploy_location))
-		user.balloon_alert(user, "There is insufficient room to deploy [src]!")
-		return
-	if(user.do_actions)
-		user.balloon_alert(user, "You are already doing something!")
-		return
-	user.balloon_alert(user, "You start deploying...")
-	if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
-		return
-
-	user.temporarilyRemoveItemFromInventory(src)
-
-	forceMove(deploy_location)
-	density = TRUE
-	anchored = TRUE
-	dir = REVERSE_DIR(user.dir)
-	icon_state = "dispenser_deployed"
-	balloon_alert_to_viewers("Deploying...")
-	flick("dispenser_deploy", src)
-	ENABLE_BITFIELD(flags_item, IS_DEPLOYING)
-
-	addtimer(CALLBACK(src, .proc/deploy), 4.2 SECONDS)
-
-/obj/item/storage/backpack/dispenser/process()
-	for(var/mob/living/carbon/human/affecting AS in affecting_list)
-		if(!line_of_sight(src, affecting, 3))
-			qdel(affecting_list[affecting])
-			affecting_list -= affecting
-			UnregisterSignal(affecting, COMSIG_PARENT_QDELETING)
-			return
-		affecting.heal_limb_damage(0.4, 0.4, TRUE)
-
-
-/obj/item/storage/backpack/dispenser/proc/entered_tiles(datum/source, atom/movable/entering)
-	if(!ishuman(entering))
-		return
-	if(entering in affecting_list)
-		return
-	affecting_list += entering
-	RegisterSignal(entering, COMSIG_PARENT_QDELETING, .proc/on_affecting_qdel)
-	affecting_list[entering] = beam(entering, "blood_light")
-
-
-
-
-/obj/item/storage/backpack/dispenser/open(mob/user)
-	if(loc == user)
-		return FALSE
-	. = ..()
-
-
-/obj/item/storage/backpack/dispenser/attack_hand(mob/living/user)
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		open(user)
-		return
-	return ..()
-
-/obj/item/storage/backpack/dispenser/MouseDrop(obj/over_object)
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		if(over_object == usr && ishuman(over_object))
-			open(over_object)
-		return
-	. = ..()
-
-
 
 /obj/item/storage/backpack/should_access_delay(obj/item/item, mob/user, taking_out)
 	if(!taking_out) // Always allow items to be tossed in instantly
@@ -903,3 +778,127 @@
 	max_storage_space = 21
 	max_w_class = 4
 	can_hold = list(/obj/item/ammo_magazine/rocket)
+
+/obj/item/storage/backpack/dispenser
+	name = "Engineer Dispenser"
+	desc = "pootis dispenser here."
+	icon = 'icons/obj/items/storage/storage_48.dmi'
+	icon_state = "dispenser"
+	flags_equip_slot = ITEM_SLOT_BACK
+	max_w_class = 6
+	max_storage_space = 63
+	COOLDOWN_DECLARE(deploy_cooldown)
+	var/list/affecting_list
+
+/obj/item/storage/backpack/dispenser/open(mob/user)
+	if(loc == user)
+		return FALSE
+	. = ..()
+
+
+/obj/item/storage/backpack/dispenser/attack_hand(mob/living/user)
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		open(user)
+		return
+	return ..()
+
+/obj/item/storage/backpack/dispenser/MouseDrop(obj/over_object)
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		if(over_object == usr && ishuman(over_object))
+			open(over_object)
+		return
+	. = ..()
+
+/obj/item/storage/backpack/dispenser/attack_self(mob/user)
+	if(!ishuman(user) || CHECK_BITFIELD(flags_item, NODROP))
+		return
+	var/deploy_location
+	deploy_location = get_step(user, user.dir)
+	if(check_blocked_turf(deploy_location))
+		user.balloon_alert(user, "There is insufficient room to deploy [src]!")
+		return
+	if(user.do_actions)
+		user.balloon_alert(user, "You are already doing something!")
+		return
+	user.balloon_alert(user, "You start deploying...")
+	if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+		return
+
+	user.temporarilyRemoveItemFromInventory(src)
+
+	forceMove(deploy_location)
+	density = TRUE
+	anchored = TRUE
+	dir = REVERSE_DIR(user.dir)
+	icon_state = "dispenser_deployed"
+	balloon_alert_to_viewers("Deploying...")
+	flick("dispenser_deploy", src)
+	ENABLE_BITFIELD(flags_item, IS_DEPLOYING)
+
+	addtimer(CALLBACK(src, .proc/deploy), 4.2 SECONDS)
+
+/obj/item/storage/backpack/dispenser/proc/deploy()
+	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYING))
+		return
+	DISABLE_BITFIELD(flags_item, IS_DEPLOYING)
+	ENABLE_BITFIELD(flags_item, IS_DEPLOYED)
+	affecting_list = list()
+	for(var/mob/living/carbon/human/human in view(3))
+		RegisterSignal(human, COMSIG_PARENT_QDELETING, .proc/on_affecting_qdel)
+		affecting_list[human] = beam(human, "blood_light")
+		human.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 50)
+	for(var/turf/turfs in view(2))
+		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/entered_tiles)
+	START_PROCESSING(SSprocessing, src)
+
+/obj/item/storage/backpack/dispenser/proc/on_affecting_qdel(datum/source)
+	affecting_list -= source
+
+/obj/item/storage/backpack/dispenser/CtrlClick(mob/user)
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYING))
+		if(!can_interact(user))
+			return
+		balloon_alert_to_viewers("Undeploying...")
+
+		icon_state = "dispenser"
+		flick("dispenser_undeploy", src)
+		ENABLE_BITFIELD(flags_item, IS_DEPLOYING)
+		for(var/turf/turfs in range(2))
+			UnregisterSignal(turfs, COMSIG_ATOM_ENTERED)
+		for(var/mob/living/carbon/human/affecting AS in affecting_list)
+			qdel(affecting_list[affecting])
+			UnregisterSignal(affecting, COMSIG_PARENT_QDELETING)
+		affecting_list = null
+		STOP_PROCESSING(SSobj, src)
+		addtimer(CALLBACK(src, .proc/undeploy), 4.2 SECONDS)
+		return
+	return ..()
+
+/obj/item/storage/backpack/dispenser/proc/undeploy()
+	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		density = FALSE
+		anchored = FALSE
+		DISABLE_BITFIELD(flags_item, IS_DEPLOYED)
+		DISABLE_BITFIELD(flags_item, IS_DEPLOYING)
+
+
+
+/obj/item/storage/backpack/dispenser/process()
+	for(var/mob/living/carbon/human/affecting AS in affecting_list)
+		if(!line_of_sight(src, affecting, 3))
+			qdel(affecting_list[affecting])
+			affecting_list -= affecting
+			UnregisterSignal(affecting, COMSIG_PARENT_QDELETING)
+			return
+		affecting.heal_limb_damage(0.4, 0.4, TRUE)
+
+
+/obj/item/storage/backpack/dispenser/proc/entered_tiles(datum/source, mob/living/carbon/human/entering)
+	if(!ishuman(entering))
+		return
+	if(entering in affecting_list)
+		return
+	affecting_list += entering
+	RegisterSignal(entering, COMSIG_PARENT_QDELETING, .proc/on_affecting_qdel)
+	entering.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 50)
+	affecting_list[entering] = beam(entering, "blood_light")
