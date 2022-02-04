@@ -37,7 +37,7 @@
 	auto_fire_shot_delay = _auto_fire_shot_delay
 	burstfire_shot_delay = _burstfire_shot_delay
 	burst_shots_to_fire = _burst_shots_to_fire
-	auto_burst_fire_shot_delay = _auto_burst_fire_shot_delay ? auto_burst_fire_shot_delay : 3 * auto_fire_shot_delay
+	auto_burst_fire_shot_delay = _auto_burst_fire_shot_delay ? _auto_burst_fire_shot_delay : 3 * auto_fire_shot_delay
 	fire_mode = _fire_mode
 	callback_bursting = _callback_bursting
 	callback_reset_fire = _callback_reset_fire
