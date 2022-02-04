@@ -477,7 +477,6 @@
 		/obj/item/circuitboard/airlock = -1,
 		/obj/item/cell/high = 10,
 		/obj/item/clothing/head/hardhat = 4,
-		/obj/item/clothing/glasses/meson = 4,
 	)
 
 //This one's from bay12

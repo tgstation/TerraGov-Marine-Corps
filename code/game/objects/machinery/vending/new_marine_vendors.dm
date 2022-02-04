@@ -203,6 +203,7 @@
 	vendor_role = /datum/job/terragov/squad/standard
 	categories = list(
 		CAT_STD = list(MARINE_CAN_BUY_UNIFORM),
+		CAT_GLA = list(MARINE_CAN_BUY_GLASSES),
 		CAT_HEL = list(MARINE_CAN_BUY_HELMET),
 		CAT_AMR = list(MARINE_CAN_BUY_ARMOR),
 		CAT_BAK = list(MARINE_CAN_BUY_BACKPACK),
@@ -693,7 +694,6 @@
 	spawned_gear_list = list(
 		/obj/item/explosive/plastique,
 		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
-		/obj/item/clothing/glasses/welding,
 		/obj/item/clothing/gloves/marine/insulated,
 		/obj/item/cell/high,
 		/obj/item/tool/shovel/etool,
