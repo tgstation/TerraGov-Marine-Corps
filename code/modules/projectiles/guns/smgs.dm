@@ -111,12 +111,13 @@
 	aim_speed_modifier = 0.55
 
 	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.9
+	accuracy_mult_unwielded = 0.6
 	scatter = 2
 	fire_delay = 0.15 SECONDS
-	scatter_unwielded = 8
+	scatter_unwielded = 25
 	aim_slowdown = 0.25
 	burst_amount = 0
+	recoil_unwielded = 3.5
 
 	placed_overlay_iconstate = "t90"
 
