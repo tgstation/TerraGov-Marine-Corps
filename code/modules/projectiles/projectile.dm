@@ -73,6 +73,7 @@
 	var/damage_marine_falloff = 0
 
 	var/scatter = 0 //Chance of scattering, also maximum amount scattered. High variance.
+	var/airburst_multiplier = 0 //damage airburst inflicts, as a multiplier of proj.damage
 
 	/// The iff signal that will be compared to the target's one, to apply iff if needed
 	var/iff_signal = NONE
@@ -146,6 +147,7 @@
 	penetration = ammo.penetration
 	sundering 	= ammo.sundering
 	scatter		= ammo.scatter
+	airburst_multiplier = ammo.airburst_multiplier
 	accuracy   += ammo.accuracy
 	accuracy   *= rand(95 - ammo.accuracy_var_low, 105 + ammo.accuracy_var_high) * 0.01 //Rand only works with integers.
 	damage_falloff = ammo.damage_falloff
