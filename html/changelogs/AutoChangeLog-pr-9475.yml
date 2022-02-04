@@ -1,0 +1,7 @@
+author: "Three333Digit"
+delete-after: True
+changes: 
+  - rscdel: "removes optical meson scanner from engivend"
+  - rscdel: "removes welding goggles from essential engineer kit"
+  - balance: "moves them to engineer clothing vendor instead"
+  - balance: "meson or healthhud choice in synth vendor"
