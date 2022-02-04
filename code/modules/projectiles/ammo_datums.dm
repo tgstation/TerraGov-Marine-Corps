@@ -552,7 +552,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/bullet/rifle/tx12
 	name = "heavy subsonic rifle bullet"
 	hud_state = "rifle_heavy"
-	damage = 40
+	damage = 30
 	penetration = 0
 	sundering = 5
 	damage_falloff = 2
