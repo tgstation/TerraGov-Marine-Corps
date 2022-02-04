@@ -295,10 +295,12 @@
 
 	///If the gun is deployable, the time it takes for the weapon to deploy.
 	var/deploy_time = 0
-	///If the gun is a sentry/has to turn on after deployed, it takes this long to do it
-	var/post_deploy_time = 0
 	///If the gun is deployable, the time it takes for the weapon to undeploy.
 	var/undeploy_time = 0
+	///If the gun is a sentry/has to turn on after deployed, it takes this long to do it
+	var/post_deploy_time = 0
+	///Animation to play while the post_deploy_time is on work.
+	var/post_deploy_animation
 	///If the gun is deployed, change the scatter amount by this number. Negative reduces scatter, positive adds.
 	var/deployed_scatter_change = 0
 	///List of turf/objects/structures that will be ignored in the sentries targeting.

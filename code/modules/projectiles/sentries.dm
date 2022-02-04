@@ -65,7 +65,7 @@
 
 	GLOB.marine_turrets += src
 	if(gun.post_deploy_animation)
-		flick(gun.plost_deploy_animation, src)
+		flick(gun.post_deploy_animation, src)
 	if(gun.post_deploy_time)
 		addtimer(CALLBACK(src, .proc/set_on_after_deployment_time), gun.post_deploy_time)
 
