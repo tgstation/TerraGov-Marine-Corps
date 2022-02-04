@@ -499,7 +499,7 @@
 	akimbo_additional_delay = 0.9
 	wield_delay = 0.6 SECONDS
 	scatter = 3
-	scatter_unwielded = 0
+	scatter_unwielded = 4
 	fire_delay = 0.15 SECONDS
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.9
