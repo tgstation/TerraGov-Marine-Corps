@@ -33,3 +33,8 @@
   - qol: Infinite packets and ammo boxes
   - balance: It will affect marine's storage since they can bring a buttload of ammo
       boxes, but the effect size will be small
+2022-02-04:
+  BraveMole:
+  - bugfix: Fix projectiles hitting allies in aim mode
+  QualityVan:
+  - rscadd: Necrosis removal surgery clears germs on its own
