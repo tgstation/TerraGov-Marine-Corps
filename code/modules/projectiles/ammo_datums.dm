@@ -554,11 +554,11 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "rifle_heavy"
 	damage = 30
 	penetration = 0
-	sundering = 5
+	sundering = 4
 	damage_falloff = 2
 
 /datum/ammo/bullet/rifle/tx12/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, max_range = 7, slowdown = 1)
+	staggerstun(M, P, max_range = 7, slowdown = 0.5)
 
 /datum/ammo/bullet/rifle/tx8
 	name = "A19 high velocity bullet"
