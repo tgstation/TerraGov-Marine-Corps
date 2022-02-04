@@ -9,6 +9,8 @@
 	var/walltype
 	///The neighbours
 	var/junctiontype = NONE
+	///used for plasmacutter deconstruction
+	var/open_turf_type = /turf/open/floor/plating
 
 /turf/closed/mineral
 	name = "rock"
@@ -17,6 +19,7 @@
 	walltype = "lvwall"
 	smoothing_behavior = DIAGONAL_SMOOTHING
 	smoothing_groups = SMOOTH_MINERAL_STRUCTURES
+	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 
 /turf/closed/mineral/Initialize(mapload)
 	. = ..()
@@ -58,6 +61,7 @@
 	smoothing_behavior = DIAGONAL_SMOOTHING
 	smoothing_groups = SMOOTH_FLORA
 	walltype = "jungle"
+	open_turf_type = /turf/open/ground/jungle/clear
 
 /turf/closed/gm/tree
 	name = "dense jungle trees"
@@ -74,6 +78,7 @@
 
 /turf/closed/gm/dense
 	name = "dense jungle wall"
+	resistance_flags = PLASMACUTTER_IMMUNE
 	
 //desertdam rock
 /turf/closed/desertdamrockwall
@@ -84,6 +89,7 @@
 	walltype = "cave_wall"
 	smoothing_behavior = DIAGONAL_SMOOTHING
 	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
+	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 
 /turf/closed/desertdamrockwall/invincible
 	resistance_flags = RESIST_ALL
@@ -93,6 +99,8 @@
 	name = "basalt rock"
 	icon = 'icons/turf/lava.dmi'
 	icon_state = "brock"
+	open_turf_type = /turf/open/lavaland/basalt
+
 
 /turf/closed/brock/Initialize(mapload)
 	. = ..()
@@ -118,6 +126,7 @@
 	icon = 'icons/turf/icewall.dmi'
 	icon_state = "Single"
 	desc = "It is very thick."
+	open_turf_type = /turf/open/floor/plating/ground/ice
 
 /turf/closed/ice/single
 	icon_state = "Single"
@@ -181,27 +190,7 @@
 			P.cut_apart(user, name, src) //purely a cosmetic effect
 
 		//change targetted turf to a new one to simulate deconstruction
-		if(ismineralturf(src))
-			ChangeTurf(/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor)
-
-		else if(isdesertrockwallturf(src))
-			ChangeTurf(/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor)
-
-		else if(isjungleturf(src))
-			ChangeTurf(/turf/open/ground/jungle/clear)
-
-		else if(isiceturf(src) || isicerockturf(src))
-			ChangeTurf(/turf/open/floor/plating/ground/ice)
-
-		else if(isvolcanicturf(src))
-			var/choice = rand(1,50)
-			if(choice == 50)
-				ChangeTurf(/turf/open/lavaland/basalt/glowing)
-			else
-				ChangeTurf(/turf/open/lavaland/basalt)
-		
-		else //default case for any turf that isn't one of the above
-			ChangeTurf(/turf/open/floor/plating) //apply basic plating as fallback
+		ChangeTurf(open_turf_type)
 
 //Ice Thin Wall
 /turf/closed/ice/thin
@@ -236,6 +225,7 @@
 	name = "Icy rock"
 	icon = 'icons/turf/rockwall.dmi'
 	resistance_flags = PLASMACUTTER_IMMUNE
+	open_turf_type = /turf/open/floor/plating/ground/ice
 
 /turf/closed/ice_rock/single
 	icon_state = "single"

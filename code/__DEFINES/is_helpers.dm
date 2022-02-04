@@ -31,17 +31,6 @@
 
 #define ismineralturf(A) (istype(A, /turf/closed/mineral))
 
-#define isjungleturf(A) (istype(A, /turf/closed/gm))
-
-#define isiceturf(A) (istype(A, /turf/closed/ice))
-
-#define isicerockturf(A) (istype(A, /turf/closed/ice_rock))
-
-#define isvolcanicturf(A) (istype(A, /turf/closed/brock))
-
-#define isdesertrockwallturf(A) (istype(A, /turf/closed/desertdamrockwall))
-
-
 //Mobs
 #define isliving(A) (istype(A, /mob/living))
 
