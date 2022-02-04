@@ -64,6 +64,12 @@
 		camera.c_tag = "[name] ([rand(0, 1000)])"
 
 	GLOB.marine_turrets += src
+	if(gun.post_deploy_animation)
+		flick(gun.plost_deploy_animation, src)
+	if(gun.post_deploy_time)
+		addtimer(CALLBACK(src, .proc/set_on_after_deployment_time), gun.post_deploy_time)
+
+
 	set_on(TRUE)
 
 /obj/machinery/deployable/mounted/sentry/update_icon_state()
@@ -231,6 +237,11 @@
 			. = TRUE
 
 	attack_hand(user)
+
+/obj/machinery/deployable/mounted/sentry/proc/set_on_after_deployment_time()
+	if(CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
+		return
+	set_on(TRUE)
 
 ///Handles turning the sentry ON and OFF. new_state is a bool
 /obj/machinery/deployable/mounted/sentry/proc/set_on(new_state)

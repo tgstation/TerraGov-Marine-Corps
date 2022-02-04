@@ -125,19 +125,20 @@
 	icon_state = "minisentry"
 
 	max_shells = 100
-	knockdown_threshold = 80
+	knockdown_threshold = 200
+	max_integrity = 300
 
 	ammo_datum_type = /datum/ammo/bullet/turret/mini
 	default_ammo_type = /obj/item/ammo_magazine/minisentry
 	allowed_ammo_types = list(/obj/item/ammo_magazine/minisentry)
 
-	fire_delay = 0.3 SECONDS
+	fire_delay = 0.25
 	burst_delay = 0.2 SECONDS
 	burst_amount = 3
 	extra_delay = 0.3 SECONDS
 	scatter = 3
 
-	deploy_time = 3 SECONDS
+	deploy_time = 0
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 
 /obj/item/weapon/gun/sentry/premade

@@ -295,6 +295,8 @@
 
 	///If the gun is deployable, the time it takes for the weapon to deploy.
 	var/deploy_time = 0
+	///If the gun is a sentry/has to turn on after deployed, it takes this long to do it
+	var/post_deploy_time = 0
 	///If the gun is deployable, the time it takes for the weapon to undeploy.
 	var/undeploy_time = 0
 	///If the gun is deployed, change the scatter amount by this number. Negative reduces scatter, positive adds.
