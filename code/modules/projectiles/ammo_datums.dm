@@ -557,7 +557,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 5
 	damage_falloff = 2
 
-/datum/ammo/bullet/rifle/tx12/impact/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/bullet/rifle/tx12/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, max_range = 7, slowdown = 1)
 
 /datum/ammo/bullet/rifle/tx8
