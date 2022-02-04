@@ -343,3 +343,15 @@
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	max_rounds = 30
 	icon_state_mini = "mag_rifle"
+
+//-------------------------------------------------------
+//TX-12
+
+/obj/item/ammo_magazine/rifle/tx12
+	name = "\improper TX-12 battle rifle magazine"
+	desc = "A magazine filled with 12.7X55 subsonic rounds for the TX-12."
+	caliber = CALIBER_127X55
+	icon_state = "tx12"
+	default_ammo = /datum/ammo/bullet/rifle/tx12
+	max_rounds = 20
+	icon_state_mini = "mag_rifle_big"

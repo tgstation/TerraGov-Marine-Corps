@@ -18,6 +18,8 @@
 			/obj/item/ammo_magazine/rifle/standard_skirmishrifle = -1,
 			/obj/item/weapon/gun/rifle/tx11 = -1,
 			/obj/item/ammo_magazine/rifle/tx11 = -1,
+			/obj/item/weapon/gun/rifle/tx12 = -1,
+			/obj/item/ammo_magazine/rifle/tx12 = -1,
 			/obj/item/weapon/gun/shotgun/pump/lever/repeater = -1,
 		),
 		"Energy Weapons" = list(

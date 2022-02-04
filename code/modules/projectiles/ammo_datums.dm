@@ -549,6 +549,17 @@ datum/ammo/bullet/revolver/tp44
 	damage = 20
 	penetration = 10
 
+/datum/ammo/bullet/rifle/tx12
+	name = "heavy subsonic rifle bullet"
+	hud_state = "rifle_heavy"
+	damage = 40
+	penetration = 0
+	sundering = 5
+	damage_falloff = 2
+
+/datum/ammo/bullet/rifle/tx12/impact/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, max_range = 7, slowdown = 1)
+
 /datum/ammo/bullet/rifle/tx8
 	name = "A19 high velocity bullet"
 	hud_state = "hivelo"

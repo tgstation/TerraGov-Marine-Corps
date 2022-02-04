@@ -1387,3 +1387,66 @@
 	fire_delay = 0.2 SECONDS
 	scatter = 2
 	wield_delay = 0.5 SECONDS
+
+//-------------------------------------------------------
+//TX-12 Battle Rifle, based on the SHak-12
+
+/obj/item/weapon/gun/rifle/tx12
+	name = "\improper TX-12 battle rifle"
+	desc = "The TX-12 battle rifle, a weapon that was designed with extreme stopping power in mind. Uses 12.7x55mm subsonic ammunition."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "tx12"
+	item_state = "tx12"
+	fire_sound =  'sound/weapons/guns/fire/hmg.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
+	caliber = CALIBER_127X55 //codex
+	max_shells = 20 //codex
+	force = 25
+	default_ammo_type = /obj/item/ammo_magazine/rifle/tx12
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/tx12)
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/stock/t12stock,
+		/obj/item/attachable/t12barrel,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/angledgrip,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
+		/obj/item/attachable/shoulder_mount,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	starting_attachment_types = list(/obj/item/attachable/suppressor)
+	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 23, "under_x" = 31, "under_y" = 15, "stock_x" = 0, "stock_y" = 14)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.15 SECONDS
+	aim_speed_modifier = 3
+
+	fire_delay = 0.3 SECONDS
+	accuracy_mult = 1
+	scatter = 6
+	scatter_unwielded = 30
+	wield_delay = 1 SECONDS
+	aim_slowdown = 1
+	recoil = 3
