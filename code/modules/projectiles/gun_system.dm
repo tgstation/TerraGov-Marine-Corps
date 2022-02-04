@@ -206,9 +206,9 @@
 	var/movement_acc_penalty_mult = 2
 	///For regular shots, how long to wait before firing again.
 	var/fire_delay = 6
-	///Modifies the speed of projectiles fired.
+	///For auto burst-fire, how long to wait before firing again.
 	var/auto_burst_fire_delay = 0
-	///Only applied so it's the same as fire delay on auto-burst firing mode.
+	///Modifies the speed of projectiles fired.
 	var/shell_speed_mod	= 0
 	///Modifies projectile damage by a % when a marine gets passed, but not hit
 	var/iff_marine_damage_falloff = 0
