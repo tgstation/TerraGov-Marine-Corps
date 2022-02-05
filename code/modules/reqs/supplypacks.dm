@@ -492,6 +492,7 @@ EXPLOSIVES
 	notes = "Contains one M21 APRDS \"Minelayer\" grenade"
 	contains = list(/obj/item/explosive/grenade/minelayer)
 	cost = 16
+
 /datum/supply_packs/explosives/explosives_razor
 	name = "Razorburn grenade box crate"
 	notes = "Containers 20 razor burns"

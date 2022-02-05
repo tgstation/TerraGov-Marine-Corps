@@ -384,7 +384,7 @@
 
 /obj/item/explosive/grenade/minelayer/attack_self(mob/M)
 	user = M
-	. = ..()
+	return ..()
 
 /obj/item/explosive/grenade/minelayer/prime()
 	if(!user) //if chain exploded; we dont want to place mines without iff
@@ -394,25 +394,25 @@
 
 	var/obj/item/card/id/id = user.get_idcard()
 	var/list/turf_list = list()
+	var/cnt = 1
 
-	for(var/turf/T in view(range, loc))
+	for(var/turf/T AS in view(range, loc))
 		turf_list += T
 
-	for(var/i = 1 to turf_list.len)
-		var/turf/U = pick(turf_list)
-		turf_list.Remove(U)
-		if(!U.density && !turf_block_check(src, U) && !(locate(/obj/item/explosive/mine) in range(1, U)))
-			var/obj/item/explosive/mine/placed_mine = new /obj/item/explosive/mine(U)
+	while(placed <= amount && cnt <= turf_list.len)
+		var/turf/target_turf = pick(turf_list)
+		turf_list.Remove(target_turf)
+		if(!target_turf.density && !turf_block_check(src, target_turf) && !(locate(/obj/item/explosive/mine) in range(1, target_turf)))
+			var/obj/item/explosive/mine/placed_mine = new /obj/item/explosive/mine(target_turf)
 			placed_mine.iff_signal = id?.iff_signal
 			placed_mine.anchored = TRUE
 			placed_mine.armed = TRUE
 			placed_mine.update_icon()
 			placed_mine.setDir(pick(CARDINAL_ALL_DIRS))
-			placed_mine.tripwire = new /obj/effect/mine_tripwire(get_step(U, placed_mine.dir))
+			placed_mine.tripwire = new /obj/effect/mine_tripwire(get_step(target_turf, placed_mine.dir))
 			placed_mine.tripwire.linked_mine = placed_mine
 			placed++
-			if(placed >= amount)
-				break
+			cnt++
 
 	playsound(loc, 'sound/effects/phasein.ogg', 25, 1)
 	playsound(loc, 'sound/weapons/mine_armed.ogg', 50, 1)
