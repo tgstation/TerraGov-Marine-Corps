@@ -684,7 +684,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		if(SEND_SIGNAL(user, COMSIG_ITEM_ZOOM) &  COMSIG_ITEM_ALREADY_ZOOMED)
 			zoom(user)
 		return TRUE
-	
+
 	if(!(master_gun.flags_item & WIELDED) && !CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED))
 		if(user)
 			to_chat(user, span_warning("You must hold [master_gun] with two hands to use [src]."))
@@ -1060,12 +1060,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "\improper T-19 machinepistol stock"
 	desc = "A submachinegun stock distributed in small numbers to TGMC forces. Compatible with the T-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = ATTACHMENT_SLOT_STOCK
-	wield_delay_mod = 0.1 SECONDS
+	wield_delay_mod = 0.2 SECONDS
 	melee_mod = 5
 	size_mod = 1
 	icon_state = "t19stock"
 	pixel_shift_x = 39
 	pixel_shift_y = 11
+	burst_delay_mod = -0.1
 	accuracy_mod = 0.1
 	recoil_mod = -2
 	scatter_mod = -2

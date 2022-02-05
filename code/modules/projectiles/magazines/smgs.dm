@@ -36,7 +36,7 @@
 	desc = "A 10x20mm caseless machine pistol magazine."
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "t19"
-	max_rounds = 30
+	max_rounds = 35
 	w_class = WEIGHT_CLASS_SMALL
 
 //-------------------------------------------------------

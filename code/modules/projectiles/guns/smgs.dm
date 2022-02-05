@@ -34,7 +34,7 @@
 	icon_state = "t19"
 	item_state = "t19"
 	caliber = CALIBER_10X20_CASELESS //codex
-	max_shells = 30 //codex
+	max_shells = 35 //codex
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/standard_machinepistol
@@ -64,6 +64,7 @@
 	recoil_unwielded = 0
 	scatter = 0
 	fire_delay = 0.15 SECONDS
+	wield_delay = 0.15 SECONDS
 	scatter_unwielded = 4 //Made to be better used one handed.
 	aim_slowdown = 0.15
 	burst_amount = 5
@@ -83,7 +84,7 @@
 	caliber = CALIBER_10X20_CASELESS //codex
 	max_shells = 50 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
-	wield_delay = 0.5 SECONDS
+	wield_delay = 0.25 SECONDS
 	force = 20
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/standard_smg
@@ -112,11 +113,14 @@
 
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.9
-	scatter = 2
+	scatter = 0
 	fire_delay = 0.15 SECONDS
 	scatter_unwielded = 8
-	aim_slowdown = 0.25
+	aim_slowdown = 0.2
 	burst_amount = 0
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 3
+	akimbo_additional_delay = 1
 
 	placed_overlay_iconstate = "t90"
 
