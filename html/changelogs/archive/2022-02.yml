@@ -38,3 +38,11 @@
   - bugfix: Fix projectiles hitting allies in aim mode
   QualityVan:
   - rscadd: Necrosis removal surgery clears germs on its own
+2022-02-05:
+  AzonStarfall:
+  - bugfix: Mapping fixes for the Minerva
+  Three333Digit:
+  - rscdel: removes optical meson scanner from engivend
+  - rscdel: removes welding goggles from essential engineer kit
+  - balance: moves them to engineer clothing vendor instead
+  - balance: meson or healthhud choice in synth vendor
