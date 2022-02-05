@@ -14,7 +14,7 @@
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 		user.visible_message(span_notice("[user] begins to try to solder [H == user ? "[H.p_their()]" : "[H]'s"]"),
 		span_notice("You begin trying to solder [H == user ? "your" : "[H]'s"] [affecting.display_name]."))
-		var/fumbling_time = 15 SECONDS - 2 SECONDS * user.skills.getRating("ENGINEER")
+		var/fumbling_time = 15 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return ..()
 
