@@ -12,8 +12,8 @@
 		return ..()
 
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-		user.visible_message(span_notice("[user] begins to try to solder [target].."),
-		span_notice("You begin trying to find a cutting point on the [target]..."))
+		user.visible_message(span_notice("[user] begins to try to solder [TARGET_HUMAN].."),
+		span_notice("You begin trying to find a cutting point on the [TARGET_HUMAN]..."))
 		var/fumbling_time = 15 SECONDS - 2 SECONDS * user.skills.getRating("ENGINEER")
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return ..()
