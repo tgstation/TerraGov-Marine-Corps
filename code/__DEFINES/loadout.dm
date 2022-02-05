@@ -199,6 +199,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/armor_supply,
 		/obj/machinery/vending/marineFood,
 		/obj/machinery/vending/MarineMed,
+		/obj/machinery/vending/medical,
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
 	),
