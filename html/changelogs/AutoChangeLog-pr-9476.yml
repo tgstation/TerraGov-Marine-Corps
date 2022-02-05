@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - qol: "The vote button is kept while changing mob"
+  - qol: "If a vote has only one choice (wink wink distress), it is skipped"
