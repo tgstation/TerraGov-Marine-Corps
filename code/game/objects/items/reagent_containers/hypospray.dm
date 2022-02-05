@@ -259,7 +259,7 @@
 		label(usr)
 
 	else if(href_list["set_transfer"])
-		var/N = tgui_input_list(usr, "Amount per transfer from this:", "[src]", list(1, 3, 5, 10, 15))
+		var/N = tgui_input_list(usr, "Amount per transfer from this:", "[src]", list(15, 30, 1, 3, 5, 10, 20, 25))
 		if(!N)
 			return
 
