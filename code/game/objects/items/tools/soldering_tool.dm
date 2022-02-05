@@ -11,6 +11,13 @@
 	if(!istype(H) || user.a_intent != INTENT_HELP)
 		return ..()
 
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+		user.visible_message(span_notice("[user] begins to try to solder [target].."),
+		span_notice("You begin trying to find a cutting point on the [target]..."))
+		var/fumbling_time = 15 SECONDS - 2 SECONDS * user.skills.getRating("ENGINEER")
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			return ..()
+
 	var/datum/limb/affecting = CHECK_BITFIELD(user.client.prefs.toggles_gameplay, RADIAL_MEDICAL) ? radial_medical(H, user) : H.get_limb(user.zone_selected)
 	if(!affecting)
 		return TRUE
