@@ -400,9 +400,7 @@
 		return
 	if(!can_use_action(TRUE))
 		return fail_activate()
-	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER))
-		return fail_activate()
-	if(!can_use_action(TRUE))
+	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 	owner.visible_message(span_xenowarning("\The [owner] starts swinging its tail in a circle!"), \
 		span_xenowarning("We start swinging our tail in a wide circle!"))
