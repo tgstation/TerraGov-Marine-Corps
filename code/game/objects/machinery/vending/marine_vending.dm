@@ -909,8 +909,8 @@
 			if(!temp_list.len) break
 
 /obj/machinery/vending/marine_medic
-	name = "\improper TerraGovTech Medic Vendor"
-	desc = "A marine medic equipment vendor"
+	name = "\improper TerraGovTech Corpsman Vendor"
+	desc = "A marine corpsman equipment vendor"
 	product_ads = "They were gonna die anyway.;Let's get space drugged!"
 	req_access = list(ACCESS_MARINE_MEDPREP)
 	icon_state = "marinemed"
@@ -918,24 +918,36 @@
 	wrenchable = FALSE
 
 	products = list(
-		/obj/item/clothing/under/marine/corpsman = 4,
-		/obj/item/clothing/head/modular/marine/m10x = 4,
-		/obj/item/storage/backpack/marine/corpsman = 4,
-		/obj/item/storage/backpack/marine/satchel/corpsman = 4,
-		/obj/item/encryptionkey/med = 4,
-		/obj/item/storage/belt/medical = 6,
-		/obj/item/bodybag/cryobag = 4,
-		/obj/item/healthanalyzer = 4,
-		/obj/item/clothing/glasses/hud/health = 4,
-		/obj/item/storage/firstaid/regular = 4,
-		/obj/item/storage/firstaid/adv = 8,
-		/obj/item/storage/pouch/medical = 4,
-		/obj/item/storage/pouch/medkit = 4,
-		/obj/item/storage/pouch/magazine/large = 4,
-		/obj/item/storage/pouch/magazine/pistol/large = 4,
-		/obj/item/clothing/mask/gas = 4,
-		/obj/item/storage/pouch/pistol = 4,
-	)
+		"General" = list (
+			/obj/item/clothing/glasses/hud/health = 4,
+			/obj/item/storage/firstaid/regular = 4,
+			/obj/item/storage/firstaid/adv = 8,
+			/obj/item/storage/pouch/medical = 4,
+			/obj/item/storage/pouch/medkit = 4,
+			/obj/item/storage/syringe_case = 10,
+			/obj/item/bodybag/cryobag = 4,
+			/obj/item/healthanalyzer = 4,
+			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 10,
+			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 10,
+			),
+		"Reagent Bottle" = list(
+			/obj/item/reagent_containers/glass/bottle/bicaridine = 6,
+			/obj/item/reagent_containers/glass/bottle/kelotane = 6,
+			/obj/item/reagent_containers/glass/bottle/dylovene = 6,
+			/obj/item/reagent_containers/glass/bottle/tramadol = 6,
+			/obj/item/reagent_containers/glass/bottle/inaprovaline = 6,
+			/obj/item/reagent_containers/glass/bottle/spaceacillin = 4,
+			/obj/item/reagent_containers/glass/bottle/peridaxon = 2,
+			/obj/item/reagent_containers/glass/bottle/dexalin = 4,
+		),
+		"Clothing" = list(
+			/obj/item/clothing/under/marine/corpsman = 4,
+			/obj/item/storage/backpack/marine/corpsman = 4,
+			/obj/item/storage/backpack/marine/satchel/corpsman = 4,
+			/obj/item/encryptionkey/med = 4,
+			/obj/item/storage/belt/medical = 6,
+			)
+		)
 
 /obj/machinery/vending/marine_medic/rebel
 	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
