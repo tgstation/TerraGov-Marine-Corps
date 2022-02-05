@@ -33,6 +33,6 @@
 	user.client.screen -= map
 
 /obj/machinery/cic_maptable/droppod_maptable
-	name = "Athena Tactical Map"
+	name = "Athena tactical map console"
 	desc = "A map that display a map of planetside, specialized in revealing potential areas to drop pod. This is especially useful to see where the frontlines and marines are at so that anyone droppodding can decide where to land. Pray that your land nav skills are robust to not get lost!"
 	icon_state = "droppodtable"
