@@ -7,6 +7,8 @@
 	var/skill_type = "engineer"
 	var/skill_threshold = SKILL_ENGINEER_ENGI
 
+#define ENGINEER_DELAY = 2 seconds
+
 /obj/item/tool/solderingtool/attack(mob/living/carbon/human/H, mob/user)
 	if(!istype(H) || user.a_intent != INTENT_HELP)
 		return ..()
