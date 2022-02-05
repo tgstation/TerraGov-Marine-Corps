@@ -367,7 +367,7 @@
 
 /obj/item/explosive/grenade/minelayer
 	name = "\improper M21 APRDS \"Minelayer\""
-	desc = "Anti-Personnel Rapid Deploy System, APRDS for short, is a device designed to quickly deploy M20 mines in large quantities."
+	desc = "Anti-Personnel Rapid Deploy System, APRDS for short, is a device designed to quickly deploy M20 mines in large quantities. WARNING: Operating in tight places or existing mine fields will result in reducing the amount of placed mines."
 	icon_state = "grenade_hefa"
 	item_state = "grenade_hefa"
 	icon_state_mini = "grenade_green"
