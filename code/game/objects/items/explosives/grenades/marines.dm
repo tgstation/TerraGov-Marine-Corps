@@ -367,45 +367,53 @@
 
 /obj/item/explosive/grenade/minelayer
 	name = "\improper M21 APRDS \"Minelayer\""
-	desc = "Anti-Personnel Rapid Deploy System, APRDS for short, is a device designed to quickly deploy M20 mines in large quantities. WARNING: Operating in tight places or existing mine fields will result in reducing the amount of placed mines."
+	desc = "Anti-Personnel Rapid Deploy System, APRDS for short, is a device designed to quickly deploy M20 mines in large quantities. This variant deploys 5 mines. WARNING: Operating in tight places or existing mine fields will result in reducing the amount of placed mines."
 	icon_state = "grenade_hefa"
 	item_state = "grenade_hefa"
 	icon_state_mini = "grenade_green"
-	var/range = 4
-	var/amount = 10
-	var/mob/user = null
+	throw_range = 2
+	det_time = 10 SECONDS
+	///radius on mine placement
+	var/range = 3
+	///amount of mines that we attempt to place
+	var/amount = 5
+	///amount of mines placed
+	var/placed = 0
+	///who activated the grenade
+	var/mob/user = null //we need user to get iff signal
 
 /obj/item/explosive/grenade/minelayer/attack_self(mob/M)
 	user = M
 	. = ..()
 
 /obj/item/explosive/grenade/minelayer/prime()
-	if(!user)
+	if(!user) //if chain exploded; we dont want to place mines without iff
 		explosion(loc, light_impact_range = 1, flash_range = 2)
 		qdel(src)
 		return
-	var/placed = 0
+
 	var/obj/item/card/id/id = user.get_idcard()
 	var/list/turf_list = list()
+
 	for(var/turf/T in view(range, loc))
 		turf_list += T
+
 	for(var/i = 1 to turf_list.len)
-		var/turf/U = pick_n_take(turf_list)
+		var/turf/U = pick(turf_list)
 		turf_list.Remove(U)
-		if(U.density || locate(/obj/item/explosive/mine) in range(1, U))
-			to_chat(user, span_notice("failed to place a mine."))
-			continue
-		var/obj/item/explosive/mine/placed_mine = new /obj/item/explosive/mine(U)
-		placed_mine.iff_signal = id?.iff_signal
-		placed_mine.anchored = TRUE
-		placed_mine.armed = TRUE
-		placed_mine.update_icon()
-		placed_mine.setDir(pick(CARDINAL_ALL_DIRS))
-		placed_mine.tripwire = new /obj/effect/mine_tripwire(get_step(U, placed_mine.dir))
-		placed_mine.tripwire.linked_mine = placed_mine
-		placed++
-		to_chat(user, span_notice("placed [placed] mine(s)."))
-		if(placed >= amount)
-			break
+		if(!U.density && !turf_block_check(src, U) && !(locate(/obj/item/explosive/mine) in range(1, U)))
+			var/obj/item/explosive/mine/placed_mine = new /obj/item/explosive/mine(U)
+			placed_mine.iff_signal = id?.iff_signal
+			placed_mine.anchored = TRUE
+			placed_mine.armed = TRUE
+			placed_mine.update_icon()
+			placed_mine.setDir(pick(CARDINAL_ALL_DIRS))
+			placed_mine.tripwire = new /obj/effect/mine_tripwire(get_step(U, placed_mine.dir))
+			placed_mine.tripwire.linked_mine = placed_mine
+			placed++
+			if(placed >= amount)
+				break
+
+	playsound(loc, 'sound/effects/phasein.ogg', 25, 1)
 	playsound(loc, 'sound/weapons/mine_armed.ogg', 50, 1)
 	qdel(src)
