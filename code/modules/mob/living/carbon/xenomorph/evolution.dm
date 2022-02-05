@@ -305,7 +305,7 @@
 		return
 
 	new_xeno.upgrade_xeno(upgrade, TRUE)
-	else if(upgrade != XENO_UPGRADE_INVALID)
+	if(upgrade != XENO_UPGRADE_INVALID)
 		new_xeno.upgrade_xeno(new_xeno.upgrade_prev(), TRUE)
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_EVOLVED, new_xeno)
