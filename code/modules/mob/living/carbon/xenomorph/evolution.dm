@@ -305,8 +305,6 @@
 		return
 
 	new_xeno.upgrade_xeno(upgrade, TRUE)
-	if(regression && new_xeno.upgrade_possible())
-		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
 	else if(upgrade != XENO_UPGRADE_INVALID)
 		new_xeno.upgrade_xeno(new_xeno.upgrade_prev(), TRUE)
 
