@@ -180,8 +180,6 @@
 		if(CHECK_BITFIELD(resistance_flags, RESIST_ALL) || CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE))
 			to_chat(user, span_warning("[P] can't cut through this!"))
 			return
-		if(iswallturf(src)) //walls handle plasma cutter effects on their own
-			return
 		else if(!P.start_cut(user, name, src))
 			return
 		else if(!do_after(user, PLASMACUTTER_CUT_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
@@ -285,6 +283,7 @@
 	icon = 'icons/turf/shuttle.dmi'
 	plane = FLOOR_PLANE
 	smoothing_behavior = NO_SMOOTHING
+	resistance_flags = PLASMACUTTER_IMMUNE
 
 /turf/closed/shuttle/re_corner/notdense
 	icon_state = "re_cornergrass"
