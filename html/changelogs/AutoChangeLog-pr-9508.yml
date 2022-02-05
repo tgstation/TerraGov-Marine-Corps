@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - code_imp: "removed unneeded code"
+  - bugfix: "Energy pistol is no longer more accurate one handed than wielded"
