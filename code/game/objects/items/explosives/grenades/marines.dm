@@ -364,3 +364,48 @@
 /obj/item/explosive/grenade/flare/cas/turn_off()
 	QDEL_NULL(target)
 	return ..()
+
+/obj/item/explosive/grenade/minelayer
+	name = "\improper M21 APRDS \"Minelayer\""
+	desc = "Anti-Personnel Rapid Deploy System, APRDS for short, is a device designed to quickly deploy M20 mines in large quantities."
+	icon_state = "grenade_hefa"
+	item_state = "grenade_hefa"
+	icon_state_mini = "grenade_green"
+	var/range = 4
+	var/amount = 10
+	var/mob/user = null
+
+/obj/item/explosive/grenade/minelayer/attack_self(mob/M)
+	user = M
+	. = ..()
+
+/obj/item/explosive/grenade/minelayer/prime()
+	if(!user)
+		explosion(loc, light_impact_range = 1, flash_range = 2)
+		qdel(src)
+		return
+	var/placed = 0
+	var/obj/item/card/id/id = user.get_idcard()
+	var/list/turf_list = list()
+	for(var/turf/T in view(range, loc))
+		turf_list += T
+	for(var/i = 1 to turf_list.len)
+		var/turf/U = pick_n_take(turf_list)
+		turf_list.Remove(U)
+		if(U.density || locate(/obj/item/explosive/mine) in range(1, U))
+			to_chat(user, span_notice("failed to place a mine."))
+			continue
+		var/obj/item/explosive/mine/placed_mine = new /obj/item/explosive/mine(U)
+		placed_mine.iff_signal = id?.iff_signal
+		placed_mine.anchored = TRUE
+		placed_mine.armed = TRUE
+		placed_mine.update_icon()
+		placed_mine.setDir(pick(CARDINAL_ALL_DIRS))
+		placed_mine.tripwire = new /obj/effect/mine_tripwire(get_step(U, placed_mine.dir))
+		placed_mine.tripwire.linked_mine = placed_mine
+		placed++
+		to_chat(user, span_notice("placed [placed] mine(s)."))
+		if(placed >= amount)
+			break
+	playsound(loc, 'sound/weapons/mine_armed.ogg', 50, 1)
+	qdel(src)
