@@ -40,6 +40,13 @@
 		else
 			return ..()
 
+/obj/item/explosive/grenade/chem_grenade/razorburn_smol/attackby(obj/item/I, mob/user, params)
+	to_chat(user, span_notice("The [initial(name)] is hermetically sealed, and does not open."))
+	return
+
+/obj/item/explosive/grenade/chem_grenade/razorburn_large/attackby(obj/item/I, mob/user, params)
+	to_chat(user, span_notice("The [initial(name)] is hermetically sealed, and does not open."))
+	return
 
 /obj/item/explosive/grenade/chem_grenade/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
@@ -236,6 +243,7 @@
 	desc = "Contains construction nanites ready to turn a small area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
 	icon_state = "grenade_razorburn"
 	stage = CG_READY
+	icon_state_mini = "grenade_chem_yellow"
 
 
 /obj/item/explosive/grenade/chem_grenade/razorburn_smol/Initialize(mapload, ...)
@@ -255,6 +263,7 @@
 	desc = "Contains construction nanites ready to turn a large area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
 	icon_state = "grenade_large_razorburn"
 	stage = CG_READY
+	icon_state_mini = "grenade_chem_yellow"
 
 
 /obj/item/explosive/grenade/chem_grenade/razorburn_large/Initialize(mapload, ...)

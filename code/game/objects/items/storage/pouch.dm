@@ -74,7 +74,7 @@
 	desc = "A pouch for your knives."
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
-		/obj/item/weapon/throwing_knife,
+		/obj/item/stack/throwing_knife,
 		/obj/item/attachable/bayonet,
 	)
 	icon_state = "bayonet"
@@ -690,7 +690,7 @@
 	. = ..()
 	new /obj/item/tool/screwdriver (src)
 	new /obj/item/tool/wirecutters (src)
-	new /obj/item/multitool (src)
+	new /obj/item/tool/weldingtool (src)
 	new /obj/item/tool/wrench (src)
 	new /obj/item/tool/crowbar (src)
 
@@ -706,8 +706,9 @@
 /obj/item/storage/pouch/shotgun/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/M = I
-
-		if(M.flags_magazine & AMMUNITION_REFILLABLE)
+		if(CHECK_BITFIELD(M.flags_magazine, MAGAZINE_HANDFUL))
+			return ..()
+		if(M.flags_magazine & MAGAZINE_REFILLABLE)
 			if(!M.current_rounds)
 				to_chat(user, span_warning("[M] is empty."))
 				return

@@ -23,6 +23,7 @@
 /mob/living/carbon/xenomorph/king/Initialize(mapload)
 	. = ..()
 	SSmonitor.stats.king++
+	hive.king_present += 1
 
 /mob/living/carbon/xenomorph/king/generate_name()
 	switch(upgrade)
@@ -44,6 +45,7 @@
 /mob/living/carbon/xenomorph/king/on_death()
 	. = ..()
 	SSmonitor.stats.king--
+	hive.king_present = max(hive.king_present - 1, 0)
 
 ///resin pod that creates the king xeno after a delay
 /obj/structure/resin/king_pod
@@ -62,10 +64,18 @@
 	. = ..()
 	ownerhive = hivenumber
 	addtimer(CALLBACK(src, .proc/choose_king), KING_SUMMON_TIMER_DURATION)
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+	hive.king_present += 1
 
 /obj/structure/resin/king_pod/Destroy()
 	future_king = null
 	return ..()
+
+/obj/structure/resin/king_pod/obj_destruction(damage_flag)
+	. = ..()
+	var/datum/hive_status/hive = GLOB.hive_datums[ownerhive]
+	if(hive)
+		hive.king_present = max(hive.king_present - 1, 0)
 
 /obj/structure/resin/king_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	if(X != future_king)
@@ -83,7 +93,7 @@
 	for(var/mob/living/carbon/xenomorph/xenomorph_alive AS in shuffle(GLOB.alive_xeno_list))
 		if(xenomorph_alive.hivenumber != ownerhive)
 			continue
-		if(!(xenomorph_alive.xeno_caste.caste_flags & CAN_BECOME_KING))
+		if(!(xenomorph_alive.xeno_caste.caste_flags & CASTE_CAN_BECOME_KING))
 			continue
 		var/accept_to_be_king = tgui_alert(xenomorph_alive, "The fate has landed and you, and you can become the King. Do you accept?", "Rise of the King", list("Accept", "Leave it for another xeno"), 20 SECONDS)
 		if(accept_to_be_king != "Accept")
@@ -125,6 +135,9 @@
 		future_king.mind.transfer_to(kong)
 		return
 	kong.offer_mob()
+	var/datum/hive_status/hive = GLOB.hive_datums[ownerhive]
+	hive.king_present = max(hive.king_present - 1, 0)
+	ownerhive = ""
 
 ///When the king mob is offered and then accepted this proc ejects the king and does announcements
 /obj/structure/resin/king_pod/proc/on_king_occupied(mob/living/carbon/xenomorph/king/occupied)

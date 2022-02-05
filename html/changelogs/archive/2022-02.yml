@@ -1,0 +1,48 @@
+2022-02-01:
+  Canohaaaaaaa:
+  - qol: 'Warrior : punching someone missing a limb will default to hitting them in
+      the chest instead of entirely failing.'
+  - bugfix: 'Warrior : Warrior''s primordial can no longer be stacked by repeatedly
+      punching someone''s missing limb.'
+  - bugfix: 'Praetorian''s primordial : Acid dash can now be bound to a key.'
+2022-02-02:
+  BraveMole:
+  - bugfix: Fix bull primo
+  - bugfix: Fix gib animation
+  - bugfix: Marine can no longer shuffle xenos
+  Mechanelize:
+  - bugfix: fixed larva spawn menu sound
+  novaepee:
+  - qol: Prep signs for marine role in shipside. Now you can stumble to your leader,
+      smartgunner, corpsman, or engineer job easier; thanks to RipGrayson for making
+      these due to Vahalla!
+  - bugfix: Fix Vahalla's TerraGovTech Requisition Vendor sprites
+  - rscdel: No more free additional tricord pill bottles in Sulaco
+  - rscadd: the hypospray belt! The belt is loaded with bicaridine, kelotane, tramadol,
+      dexalin, tricordrazine, inaprovaline, spaceacillin, hypervene, peridaxon, and
+      quickclot hypospray along with reagent bottles.
+2022-02-03:
+  Losenis:
+  - qol: Tx11 now has burst auto, less spamclicking needed for the same thing burst
+      offers
+  novaepee:
+  - rscadd: tricord pill bottles in all medical belts, whether med rig or lifesaver
+  - rscdel: option to buy tricord pill bottle in corpsman vendor
+  - qol: corpsmen can get tricord pill bottle in belt
+  - balance: tricord pill bottle round start
+  - qol: Infinite packets and ammo boxes
+  - balance: It will affect marine's storage since they can bring a buttload of ammo
+      boxes, but the effect size will be small
+2022-02-04:
+  BraveMole:
+  - bugfix: Fix projectiles hitting allies in aim mode
+  QualityVan:
+  - rscadd: Necrosis removal surgery clears germs on its own
+2022-02-05:
+  AzonStarfall:
+  - bugfix: Mapping fixes for the Minerva
+  Three333Digit:
+  - rscdel: removes optical meson scanner from engivend
+  - rscdel: removes welding goggles from essential engineer kit
+  - balance: moves them to engineer clothing vendor instead
+  - balance: meson or healthhud choice in synth vendor

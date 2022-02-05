@@ -26,7 +26,7 @@
 
 /obj/structure/ladder/LateInitialize()
 	. = ..()
-	for(var/obj/structure/ladder/L in GLOB.ladder_list)
+	for(var/obj/structure/ladder/L AS in GLOB.ladder_list)
 		if(L.id == id)
 			if(L.height == (height - 1))
 				down = L

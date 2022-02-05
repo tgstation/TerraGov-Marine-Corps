@@ -91,16 +91,8 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define PLASMACUTTER_HIGH_MOD 2
 #define PLASMACUTTER_VHIGH_MOD 3
 #define PLASMACUTTER_CUT_DELAY 30
-#define PLASMACUTTER_RESIN_MULTIPLIER 4
+#define PLASMACUTTER_RESIN_MULTIPLIER 2
 #define PLASMACUTTER_BASE_COST 1000
-
-//flags_token & tokensupport
-//used for coins and vendors, restricting specific tokens to associated vendors.
-
-#define TOKEN_GENERAL (1<<1)
-#define TOKEN_MARINE (1<<2)
-#define TOKEN_ENGI (1<<3)
-#define TOKEN_ALL (1 << 4) -1
 
 //MEDEVAC DEFINES
 #define MEDEVAC_COOLDOWN 1500 //150 seconds or 2,5 minutes aka 2 minutes and 30 secs
@@ -110,7 +102,6 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define SENTRY_ALERT_HOSTILE 2
 #define SENTRY_ALERT_FALLEN 3
 #define SENTRY_ALERT_DAMAGE 4
-#define SENTRY_ALERT_BATTERY 5
 #define SENTRY_ALERT_DESTROYED 6
 #define SENTRY_ALERT_DELAY 20 SECONDS
 #define SENTRY_DAMAGE_ALERT_DELAY 4 SECONDS
@@ -250,7 +241,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 
 //Xeno turrets define
 #define TURRET_SCAN_RANGE 25
-#define TURRET_SCAN_FREQUENCY 16 SECONDS
+#define TURRET_SCAN_FREQUENCY 10 SECONDS
 #define TURRET_HEALTH_REGEN 8
 
 //Unmanned vehicle define

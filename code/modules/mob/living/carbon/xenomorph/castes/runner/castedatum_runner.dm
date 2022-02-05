@@ -6,6 +6,7 @@
 	caste_type_path = /mob/living/carbon/xenomorph/runner
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
+	primordial_upgrade_name = PRIMORDIAL_RUNNER
 	wound_type = "runner" //used to match appropriate wound overlays
 
 	gib_anim = "gibbed-a-corpse-runner"
@@ -38,7 +39,7 @@
 	)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CAN_BECOME_KING|CAN_RIDE_CRUSHER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING|CASTE_CAN_RIDE_CRUSHER
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 14, "bullet" = 5, "laser" = 5, "energy" = 0, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 5, "acid" = 0)
@@ -51,8 +52,6 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/xenohide,
 		/datum/action/xeno_action/activable/pounce,
 		/datum/action/xeno_action/toggle_savage,
@@ -126,7 +125,6 @@
 	caste_desc = "Not what you want to run into in a dark alley. It looks extremely deadly."
 	ancient_message = "We are the fastest assassin of all time. Our speed is unmatched."
 	upgrade = XENO_UPGRADE_THREE
-	wound_type = "runner" //used to match appropriate wound overlays
 
 	savage_cooldown = 30 SECONDS
 
@@ -151,3 +149,44 @@
 
 	// *** Ranged Attack *** //
 	pounce_delay = 13 SECONDS
+
+/datum/xeno_caste/runner/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "A sprinting terror of the hive. It looks ancient and menacing."
+	primordial_message = "Nothing can outrun us. We are the swift death."
+	upgrade = XENO_UPGRADE_FOUR
+
+	savage_cooldown = 30 SECONDS
+
+	// *** Melee Attacks *** //
+	melee_damage = 21
+
+	// *** Speed *** //
+	speed = -1.5
+
+	// *** Plasma *** //
+	plasma_max = 200
+	plasma_gain = 11
+
+	// *** Health *** //
+	max_health = 240
+
+	// *** Evolution *** //
+	upgrade_threshold = 660
+
+	// *** Defense *** //
+	soft_armor = list("melee" = 20, "bullet" = 19, "laser" = 19, "energy" = 19, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 19, "acid" = 7)
+
+	// *** Ranged Attack *** //
+	pounce_delay = 13 SECONDS
+
+	// *** Abilities *** ///
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/xenohide,
+		/datum/action/xeno_action/activable/pounce,
+		/datum/action/xeno_action/toggle_savage,
+		/datum/action/xeno_action/evasion,
+		/datum/action/xeno_action/activable/snatch,
+	)

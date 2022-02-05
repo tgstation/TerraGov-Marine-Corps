@@ -12,6 +12,7 @@ Thumbs.db
 *.backup
 *.dmm.before
 *.cache
+*.pyc
 data/
 cfg/
 tmp/

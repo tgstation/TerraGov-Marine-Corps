@@ -56,23 +56,13 @@
 
 /obj/machinery/door/window/proc/open_and_close()
 	open()
-	if(check_access(null))
-		sleep(5 SECONDS)
-	else //secure doors close faster
-		sleep(2 SECONDS)
-	close()
-
+	var/time_to_close = check_access(null) ? 5 SECONDS : 2 SECONDS
+	addtimer(CALLBACK(src, .proc/close), time_to_close)
 
 /obj/machinery/door/window/Bumped(atom/movable/bumper)
 	if(operating || !density)
 		return
-	if(!(isliving(bumper)))
-		var/obj/machinery/bot/bot = bumper
-		if(istype(bot))
-			if(density && check_access(bot.botcard))
-				open_and_close()
-			else
-				do_animate("deny")
+	if(!isliving(bumper))
 		return
 	var/mob/living/living_bumper = bumper
 	if (living_bumper.mob_size <= MOB_SIZE_SMALL || living_bumper.restrained())
@@ -95,7 +85,7 @@
 /obj/machinery/door/window/CanAllowThrough(atom/movable/mover, turf/target)
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
-	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
+	if(get_dir(loc, target) & dir) //Make sure looking at appropriate border
 		return ..()
 	return TRUE
 

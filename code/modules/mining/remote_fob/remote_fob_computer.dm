@@ -125,14 +125,6 @@
 /obj/machinery/computer/camera_advanced/remote_fob/attackby(obj/item/attackingitem, mob/user, params)
 	if(istype(attackingitem, /obj/item/stack))
 		var/obj/item/stack/attacking_stack = attackingitem
-		if(istype(attacking_stack, /obj/item/stack/voucher/sentry))
-			var/useamount = attacking_stack.amount
-			sentry_remaining += useamount
-			attacking_stack.use(useamount)
-			to_chat(user, span_notice("Sentry voucher redeemed."))
-			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 25, FALSE)
-			flick("fobpc-insert", src)
-			return
 		if(istype(attacking_stack, /obj/item/stack/sheet/metal))
 			var/useamount = attacking_stack.amount
 			metal_remaining += useamount

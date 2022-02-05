@@ -115,6 +115,9 @@
 			to_chat(owner, span_warning("We don't have enough plasma, we need [plasma_cost - X.plasma_stored] more."))
 		return FALSE
 
+	if(!should_show())
+		return FALSE
+
 	return TRUE
 
 /datum/action/xeno_action/fail_activate()
@@ -222,6 +225,8 @@
 	on_activation()
 
 /datum/action/xeno_action/activable/action_activate()
+	if(!should_show())
+		return
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
 		deselect()

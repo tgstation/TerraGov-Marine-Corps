@@ -221,7 +221,8 @@
 						/obj/item/clothing/glasses/mgoggles = "goggles",
 						/obj/item/clothing/glasses/mgoggles/prescription = "goggles",
 						/obj/item/clothing/glasses/hud/medgoggles = "goggles",
-						/obj/item/clothing/glasses/hud/medgoggles/prescription = "goggles")
+						/obj/item/clothing/glasses/hud/medgoggles/prescription = "goggles",
+						/obj/item/clothing/head/hairflower = "flower_pin")
 
 /obj/item/storage/internal/marinehelmet
 	storage_slots = 2
@@ -229,6 +230,7 @@
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
 		/obj/item/reagent_containers/food/drinks/flask,
+		/obj/item/reagent_containers/food/snacks,
 	)
 	cant_hold = list(
 		/obj/item/stack,
@@ -286,11 +288,12 @@
 		M.update_inv_head()
 
 /obj/item/clothing/head/helmet/marine/apply_custom(image/standing)
+	. = ..()
 	var/image/I
 	for(var/i in helmet_overlays)
 		I = helmet_overlays[i]
 		if(I)
-			I = image('icons/mob/helmet_garb.dmi',src,I.icon_state)
+			I = image('icons/mob/modular/modular_helmet_storage.dmi',src,I.icon_state)
 			standing.overlays += I
 
 

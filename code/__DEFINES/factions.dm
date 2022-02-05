@@ -2,6 +2,7 @@
 #define FACTION_TERRAGOV "TerraGov"
 #define FACTION_TERRAGOV_REBEL "TerraGov Rebel"
 #define FACTION_XENO "Xeno"
+#define FACTION_ZOMBIE "Zombie"
 #define FACTION_CLF "Colonial Liberation Force"
 #define FACTION_DEATHSQUAD "Deathsquad"
 #define FACTION_FREELANCERS "Freelancers"
@@ -16,6 +17,7 @@
 #define FACTION_HIVEBOT "Hivebot"
 #define FACTION_HOSTILE "Hostile"
 #define FACTION_PIRATE "Pirate"
+#define FACTION_VALHALLA "Valhalla"
 
 //Alignement are currently only used by req.
 ///Mob with a neutral alignement cannot be sold by anyone

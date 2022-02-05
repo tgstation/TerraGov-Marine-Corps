@@ -317,6 +317,17 @@
 			L.Unconscious(10 SECONDS)
 	return ..()
 
+/datum/reagent/toxin/pain
+	name = "Liquid Pain"
+	description = "This is a chemical used to simulate specific pain levels for testing. Pain is equal to the total volume."
+	custom_metabolism = 0
+	toxpwr = 0
+	taste_description = "ow ow ow"
+
+/datum/reagent/toxin/pain/on_mob_life(mob/living/L, metabolism)
+	L.reagent_pain_modifier = volume
+	return ..()
+
 /datum/reagent/toxin/beer2	//disguised as normal beer
 	name = "Beer"
 	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. The fermentation appears to be incomplete." //If the players manage to analyze this, they deserve to know something is wrong.
@@ -429,10 +440,24 @@
 	taste_description = "poor life choices, followed by burning agony"
 	reagent_state = LIQUID
 	color = "#535E66" // rgb: 83, 94, 102
+	custom_metabolism = REAGENTS_METABOLISM * 5
+
+/datum/reagent/toxin/nanites/on_mob_add(mob/living/L, metabolism)
+	to_chat(L, span_userdanger("Your body begins to twist and deform! Get out of the razorburn!"))
+	. = ..()
 
 /datum/reagent/toxin/nanites/on_mob_life(mob/living/L, metabolism)
-	L.apply_damages(5*effect_str, 3*effect_str, 3*effect_str) //DO NOT DRINK THIS. Seriously!
-	L.blood_volume -= 10
+	L.apply_damages(2.5*effect_str, 1.5*effect_str, 1.5*effect_str) //DO NOT DRINK THIS. Seriously!
+	L.blood_volume -= 5
+	if(current_cycle > 5)
+		L.apply_damages(2.5*effect_str, 1.5*effect_str, 1.5*effect_str)
+		L.blood_volume -= 5
+		holder.remove_reagent(/datum/reagent/toxin/nanites, (current_cycle * 0.2) - 1)
+	if(volume > 100)
+		var/turf/location = get_turf(holder.my_atom)
+		location.visible_message(span_danger("Holy shit! They just exploded into a ball of razorwire! Dear god!"))
+		L.gib()
+		new /obj/structure/razorwire(location)
 	return ..()
 
 /datum/reagent/toxin/xeno_neurotoxin
@@ -441,18 +466,9 @@
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
 	custom_metabolism = REAGENTS_METABOLISM * 2
-	purge_list = list(/datum/reagent/medicine)
-	purge_rate = 1
 	overdose_threshold = 10000 //Overdosing for neuro is what happens when you run out of stamina to avoid its oxy and toxin damage
 	scannable = TRUE
 	toxpwr = 0
-
-/datum/reagent/toxin/xeno_neurotoxin/light
-	name = "Light Neurotoxin"
-	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time. This one seems to be weaker enough to not remove other chemicals."
-	purge_list = null
-	purge_rate = 0
-
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/power
@@ -489,32 +505,7 @@
 	if(L.eye_blurry < 30) //So we don't have the visual acuity of Mister Magoo forever
 		L.adjust_blurriness(1.3)
 
-
 	return ..()
-
-
-/datum/reagent/toxin/xeno_growthtoxin
-	name = "Larval Accelerant"
-	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."
-	reagent_state = LIQUID
-	color = "#CF3600" // rgb: 207, 54, 0
-	purge_list = list(/datum/reagent/medicine)
-	purge_rate = 3
-	overdose_threshold = REAGENTS_OVERDOSE
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
-	toxpwr = 0
-	scannable = TRUE
-
-/datum/reagent/toxin/xeno_growthtoxin/on_mob_life(mob/living/L)
-	L.jitter(1) //So unga know to get treated
-	return ..()
-
-/datum/reagent/toxin/xeno_growthtoxin/overdose_process(mob/living/L, metabolism)
-	L.adjustOxyLoss(2)
-	L.jitter(4)
-
-/datum/reagent/toxin/xeno_growthtoxin/overdose_crit_process(mob/living/L, metabolism)
-	L.Losebreath(2)
 
 /datum/reagent/toxin/xeno_hemodile //Slows its victim. The slow becomes twice as strong with each other xeno toxin in the victim's system.
 	name = "Hemodile"
@@ -534,6 +525,9 @@
 		slowdown_multiplier *= 2
 
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+		slowdown_multiplier *= 2
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_ozelomelyn))
 		slowdown_multiplier *= 2
 
 	switch(slowdown_multiplier) //Description varies in severity and probability with the multiplier
@@ -640,6 +634,28 @@
 
 	return ..()
 
+/datum/reagent/toxin/xeno_ozelomelyn // deals capped toxloss and purges at a rapid rate
+	name = "Ozelomelyn"
+	description = "A potent Xenomorph chemical that quickly purges other chemicals in a bloodstream, causing small scale poisoning in a organism that won't progress. Appears to be strangely water based.."
+	reagent_state = LIQUID
+	color = "#f1ddcf"
+	custom_metabolism = 1.5 // metabolizes decently quickly. A sting does 15 at the same rate as neurotoxin.
+	overdose_threshold = 10000
+	scannable = TRUE
+	toxpwr = 0 // This is going to do slightly snowflake tox damage.
+	purge_list = list(/datum/reagent/medicine)
+	purge_rate = 5
+
+/datum/reagent/toxin/xeno_ozelomelyn/on_mob_life(mob/living/L, metabolism)
+	if(L.getToxLoss() < 40) // if our toxloss is below 40, do 0.75 tox damage.
+		L.adjustToxLoss(0.75)
+		if(prob(15))
+			to_chat(L, span_warning("Your veins feel like water and you can feel a growing itchy feeling in them!") )
+		return ..()
+	if(prob(15))
+		to_chat(L, span_warning("Your veins feel like water..") )
+		return ..()
+
 /datum/reagent/zombium
 	name = "Zombium"
 	description = "Powerful chemical able to raise the dead, origin is likely from an unidentified bioweapon."
@@ -668,11 +684,11 @@
 	L.adjustOxyLoss(5)
 	L.adjustToxLoss(5)
 
-///Signal handler preparing the source to become a husk
+///Signal handler preparing the source to become a zombie
 /datum/reagent/zombium/proc/zombify(mob/living/carbon/human/H)
 	SIGNAL_HANDLER
 	UnregisterSignal(H, COMSIG_HUMAN_SET_UNDEFIBBABLE)
 	if(!H.has_working_organs())
 		return
 	H.do_jitter_animation(1000)
-	addtimer(CALLBACK(H, /mob/living/carbon/human.proc/revive_to_crit, TRUE, TRUE), SSticker.mode?.husk_transformation_time)
+	addtimer(CALLBACK(H, /mob/living/carbon/human.proc/revive_to_crit, TRUE, TRUE), SSticker.mode?.zombie_transformation_time)

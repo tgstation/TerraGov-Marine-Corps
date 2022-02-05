@@ -91,6 +91,11 @@
 	///Reference to atom being orbited
 	var/atom/orbit_target
 
+	///Whether this atom smooths with things around it, and what type of smoothing if any.
+	var/smoothing_behavior = NO_SMOOTHING
+	///Bitflags to mark the members of specific smoothing groups, in where they all smooth with each other.
+	var/smoothing_groups = NONE
+
 	///The color this atom will be if we choose to draw it on the minimap
 	var/minimap_color = MINIMAP_SOLID
 
@@ -694,9 +699,14 @@ Proc for attack log creation, because really why not
 		update_light()
 	if(loc)
 		SEND_SIGNAL(loc, COMSIG_ATOM_INITIALIZED_ON, src) //required since spawning something doesn't call Move hence it doesn't call Entered.
-		if(isturf(loc) && opacity)
-			var/turf/T = loc
-			T.directional_opacity = ALL_CARDINALS // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
+		if(isturf(loc))
+			if(opacity)
+				var/turf/T = loc
+				T.directional_opacity = ALL_CARDINALS // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
+
+			if(smoothing_behavior)
+				smooth_self()
+				smooth_neighbors()
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -900,7 +910,7 @@ Proc for attack log creation, because really why not
  * originated_turf: if not null, will check if the obj_turf is closer than distance_max to originated_turf, and the proc will return if not
  * distance_max: used to check if originated_turf is close to obj.loc
 */
-/atom/proc/turn_light(mob/user = null, toggle_on , cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
+/atom/proc/turn_light(mob/user = null, toggle_on , cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE, light_again = FALSE)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LIGHT) && !forced)
 		return STILL_ON_COOLDOWN
 	if(cooldown <= 0)
@@ -908,7 +918,7 @@ Proc for attack log creation, because really why not
 	TIMER_COOLDOWN_START(src, COOLDOWN_LIGHT, cooldown)
 	if(toggle_on == light_on)
 		return NO_LIGHT_STATE_CHANGE
-	if(forced && !toggle_on) //Is true when turn light is called by nightfall and the light is already on
+	if(light_again && !toggle_on) //Is true when turn light is called by nightfall and the light is already on
 		addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
 	if(sparks && light_on)
 		var/datum/effect_system/spark_spread/spark_system = new

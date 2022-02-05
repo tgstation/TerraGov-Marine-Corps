@@ -1,6 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - bugfix: "Wraiths can no longer teleport into the back of Big Red LZ2 through solid rock."
-  - bugfix: "Fixed an odd area of cave in Big Red that counted as being outside."
-  - bugfix: "Added some missing shutters to Big Red engineering."

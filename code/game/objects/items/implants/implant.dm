@@ -26,7 +26,6 @@
 
 /obj/item/implant/Initialize(mapload)
 	. = ..()
-	GLOB.implant_list += src
 	if(flags_implant & GRANT_ACTIVATION_ACTION)
 		activation_action = new(src, src)
 	if(allow_reagents)
@@ -40,7 +39,6 @@
 	unimplant()
 	QDEL_NULL(activation_action)
 	part?.implants -= src
-	GLOB.implant_list -= src
 	return ..()
 
 /obj/item/implant/ui_action_click(mob/user, datum/action/item_action/action)

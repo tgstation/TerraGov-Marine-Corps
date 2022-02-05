@@ -39,7 +39,7 @@
 	. = ..()
 	frequency = sanitize_frequency(frequency, freerange)
 	set_frequency(frequency)
-
+	become_hearing_sensitive()
 	wires = new /datum/wires/radio(src)
 
 	for(var/ch_name in channels)

@@ -200,6 +200,8 @@
 		/obj/item/storage/box/visual/magazine/compact/standard_machinepistol/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_carbine/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/martini/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/tx11/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/tx15/flechette/full = 1,
@@ -252,6 +254,11 @@
 	name = "Flare supply crate (x100)"
 	desc = "A supply crate containing twenty five-flare boxes."
 	supplies = list(/obj/item/storage/box/m94 = 10)
+
+/obj/structure/largecrate/supply/supplies/coifs
+	name = "Heat absorbent coifs supply crate (x25)"
+	desc = "A supply crate containing twenty five heat absorbent coifs."
+	supplies = list(/obj/item/clothing/mask/rebreather/scarf = 25)
 
 /obj/structure/largecrate/supply/supplies/metal
 	name = "metal sheets supply crate (x200)"

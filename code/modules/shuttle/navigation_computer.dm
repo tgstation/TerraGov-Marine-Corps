@@ -122,7 +122,6 @@
 			var/y_off = T.y - origin.y
 			I.loc = locate(origin.x + x_off, origin.y + y_off, origin.z) //we have to set this after creating the image because it might be null, and images created in nullspace are immutable.
 			I.layer = ABOVE_NORMAL_TURF_LAYER
-			I.plane = 0
 			I.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 			the_eye.placement_images[I] = list(x_off, y_off)
 
@@ -344,7 +343,7 @@
 
 /mob/camera/aiEye/remote/shuttle_docker
 	visible_icon = FALSE
-	use_static = USE_STATIC_NONE
+	use_static = FALSE
 	var/list/placement_images = list()
 	var/list/placed_images = list()
 	/// If it is possible to have night vision, if false the user will get turf vision

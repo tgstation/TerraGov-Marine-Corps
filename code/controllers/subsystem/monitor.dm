@@ -61,20 +61,20 @@ SUBSYSTEM_DEF(monitor)
 
 	//Automatic buff system for the xeno, if they have too much burrowed yet are still losing
 	var/proposed_balance_buff = GLOB.xeno_stat_multiplicator_buff
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	if(is_automatic_balance_on && current_state < STATE_BALANCED && ((xeno_job.total_positions - xeno_job.current_positions) > (length(GLOB.alive_xeno_list) * TOO_MUCH_BURROWED_PROPORTION)) && gamestate == GROUNDSIDE)
+	if(is_automatic_balance_on)
 		proposed_balance_buff = balance_xeno_team()
 	if(abs(proposed_balance_buff - GLOB.xeno_stat_multiplicator_buff) >= 0.05 || (proposed_balance_buff == 1 && GLOB.xeno_stat_multiplicator_buff != 1))
 		GLOB.xeno_stat_multiplicator_buff = proposed_balance_buff
 		apply_balance_changes()
 
-	//Balance spawners output
-	for(var/silo in GLOB.xeno_resin_silos)
-		SSspawning.spawnerdata[silo].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
-		SSspawning.spawnerdata[silo].max_allowed_mobs = max(1, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count * 0.5)
-	for(var/spawner in GLOB.xeno_spawner)
-		SSspawning.spawnerdata[spawner].required_increment = max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
-		SSspawning.spawnerdata[spawner].max_allowed_mobs = max(2, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count)
+	if(SSticker.mode?.flags_round_type & MODE_SPAWNING_MINIONS)
+		//Balance spawners output
+		for(var/silo in GLOB.xeno_resin_silos)
+			SSspawning.spawnerdata[silo].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
+			SSspawning.spawnerdata[silo].max_allowed_mobs = max(1, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count * 0.5)
+		for(var/spawner in GLOB.xeno_spawner)
+			SSspawning.spawnerdata[spawner].required_increment = max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
+			SSspawning.spawnerdata[spawner].max_allowed_mobs = max(2, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count)
 
 
 	//Automatic respawn buff, if a stalemate is detected and a lot of ghosts are waiting to play
@@ -82,7 +82,7 @@ SUBSYSTEM_DEF(monitor)
 		SSsilo.larva_spawn_rate_temporary_buff = 0
 		return
 	for(var/mob/dead/observer/observer AS in GLOB.observer_list)
-		GLOB.key_to_time_of_death[observer.key] -= 5 MINUTES //If we are in a constant stalemate, every 5 minutes we remove 5 minutes of respawn time to become a marine
+		GLOB.key_to_time_of_role_death[observer.key] -= 5 MINUTES //If we are in a constant stalemate, every 5 minutes we remove 5 minutes of respawn time to become a marine
 	message_admins("Stalemate detected, respawn buff system in action : 5 minutes were removed from the respawn time of everyone, xeno won : [length(GLOB.observer_list) * 0.75 * 5] larvas")
 	log_game("5 minutes were removed from the respawn time of everyone, xeno won : [length(GLOB.observer_list) * 0.75 * 5] larvas")
 	//This will be in effect for 5 SSsilo runs. For 30 ghosts that makes 1 new larva every 2.5 minutes
@@ -180,7 +180,10 @@ SUBSYSTEM_DEF(monitor)
  */
 /datum/controller/subsystem/monitor/proc/balance_xeno_team()
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/xeno_alive_plus_burrowed = length(GLOB.alive_xeno_list) + (xeno_job.total_positions - xeno_job.current_positions)
+	if(current_state >= STATE_BALANCED || ((xeno_job.total_positions - xeno_job.current_positions) <= (length(GLOB.alive_xeno_list) * TOO_MUCH_BURROWED_PROPORTION)) || length(GLOB.xeno_resin_silos) == 0)
+		return 1
+	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	var/xeno_alive_plus_burrowed = length(HN.get_total_xeno_number()) + (xeno_job.total_positions - xeno_job.current_positions)
 	var/buff_needed_estimation = min( MAXIMUM_XENO_BUFF_POSSIBLE , 1 + (xeno_job.total_positions-xeno_job.current_positions) / (xeno_alive_plus_burrowed ? xeno_alive_plus_burrowed : 1))
 	// No need to ask admins every time
 	if(GLOB.xeno_stat_multiplicator_buff != 1)

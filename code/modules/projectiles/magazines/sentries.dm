@@ -7,7 +7,6 @@
 	caliber = CALIBER_10X28
 	max_rounds = 75
 	default_ammo = /datum/ammo/bullet/turret
-	gun_type = /obj/item/weapon/gun/sentry/big_sentry
 
 /obj/item/ammo_magazine/minisentry
 	name = "\improper M30 box magazine (10x20mm Caseless)"
@@ -18,7 +17,6 @@
 	caliber = CALIBER_10X20
 	max_rounds = 100
 	default_ammo = /datum/ammo/bullet/turret/mini
-	gun_type = /obj/item/weapon/gun/sentry/mini
 
 /obj/item/ammo_magazine/sentry_premade/dumb
 	name = "M30 box magazine (10x28mm Caseless)"
@@ -28,8 +26,6 @@
 	caliber = CALIBER_10X28
 	max_rounds = 50
 	default_ammo = /datum/ammo/bullet/turret/dumb
-	gun_type = /obj/item/weapon/gun/sentry/premade/dumb
 
 /obj/item/ammo_magazine/sentry/fob_sentry
 	max_rounds = INFINITY
-	gun_type = /obj/item/weapon/gun/sentry/big_sentry/fob_sentry

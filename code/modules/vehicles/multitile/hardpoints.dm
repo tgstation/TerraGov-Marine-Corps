@@ -938,7 +938,6 @@ Currently only has the tank hardpoints
 	default_ammo = /datum/ammo/rocket/ltb
 	max_rounds = 4
 	point_cost = 50
-	gun_type = /obj/item/hardpoint/primary/cannon
 
 /obj/item/ammo_magazine/tank/ltb_cannon/update_icon()
 	icon_state = "ltbcannon_[current_rounds]"
@@ -953,7 +952,7 @@ Currently only has the tank hardpoints
 	default_ammo = /datum/ammo/bullet/minigun
 	max_rounds = 500
 	point_cost = 25
-	gun_type = /obj/item/hardpoint/primary/minigun
+
 
 
 /obj/item/ammo_magazine/tank/flamer
@@ -965,7 +964,7 @@ Currently only has the tank hardpoints
 	default_ammo = /datum/ammo/flamethrower/tank_flamer
 	max_rounds = 120
 	point_cost = 50
-	gun_type = /obj/item/hardpoint/secondary/flamer
+
 
 
 /obj/item/ammo_magazine/tank/towlauncher
@@ -977,7 +976,6 @@ Currently only has the tank hardpoints
 	default_ammo = /datum/ammo/rocket/ap //Fun fact, AP rockets seem to be a straight downgrade from normal rockets. Maybe I'm missing something...
 	max_rounds = 5
 	point_cost = 100
-	gun_type = /obj/item/hardpoint/secondary/towlauncher
 
 
 /obj/item/ammo_magazine/tank/m56_cupola
@@ -989,8 +987,6 @@ Currently only has the tank hardpoints
 	default_ammo = /datum/ammo/bullet/smartgun
 	max_rounds = 1000
 	point_cost = 10
-	gun_type = /obj/item/hardpoint/secondary/m56cupola
-
 
 /obj/item/ammo_magazine/tank/tank_glauncher
 	name = "Grenade Launcher Magazine"
@@ -1001,7 +997,7 @@ Currently only has the tank hardpoints
 	default_ammo = /datum/ammo/grenade_container
 	max_rounds = 10
 	point_cost = 25
-	gun_type = /obj/item/hardpoint/secondary/grenade_launcher
+
 
 /obj/item/ammo_magazine/tank/tank_glauncher/update_icon()
 	if(current_rounds >= max_rounds)
@@ -1021,7 +1017,6 @@ Currently only has the tank hardpoints
 	default_ammo = /datum/ammo/grenade_container/smoke
 	max_rounds = 6
 	point_cost = 5
-	gun_type = /obj/item/hardpoint/support/smoke_launcher
 
 /obj/item/ammo_magazine/tank/tank_slauncher/update_icon()
 	icon_state = "slauncher_[current_rounds <= 0 ? "0" : "1"]"

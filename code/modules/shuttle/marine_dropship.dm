@@ -10,8 +10,7 @@
 
 
 /obj/docking_port/stationary/marine_dropship/on_crash()
-	for(var/i in GLOB.apcs_list) //break APCs
-		var/obj/machinery/power/apc/A = i
+	for(var/obj/machinery/power/apc/A AS in GLOB.apcs_list) //break APCs
 		if(!is_mainship_level(A.z))
 			continue
 		if(prob(A.crash_break_probability))
@@ -485,6 +484,7 @@
 		M.unlock_all()
 		dat += "<A href='?src=[REF(src)];abduct=1'>Capture the [M]</A><br>"
 		if(M.hijack_state != HIJACK_STATE_CALLED_DOWN)
+			to_chat(X, span_xenowarning("We corrupt the bird's controls, unlocking the doors and preventing it from flight."))
 			M.set_hijack_state(HIJACK_STATE_CALLED_DOWN)
 			M.do_start_hijack_timer()
 
@@ -664,6 +664,9 @@
 			else
 				to_chat(X, span_xenowarning("We can't do that right now."))
 				return
+		var/confirm = tgui_alert(usr, "Would you like to hijack the metal bird?", "Hijack the bird?", list("Yes", "No"))
+		if(confirm != "Yes")
+			return
 		var/obj/docking_port/stationary/marine_dropship/crash_target/CT = pick(SSshuttle.crash_targets)
 		if(!CT)
 			return
@@ -1221,7 +1224,7 @@
 				visible_message(span_notice("Destination updated, recalculating route."))
 			else
 				visible_message(span_notice("Shuttle departing. Please stand away from the doors."))
-				for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+				for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 					if(!AI.client)
 						continue
 					to_chat(AI, span_info("[src] was commanded remotely to take off."))

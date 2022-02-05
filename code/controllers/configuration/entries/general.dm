@@ -105,6 +105,8 @@ Administrative related.
 
 /datum/config_entry/flag/log_manifest
 
+/datum/config_entry/flag/log_timers_on_bucket_reset // logs all timers in buckets on automatic bucket reset (Useful for timer debugging)
+
 /datum/config_entry/flag/allow_admin_ooccolor // Allows admins to customize their OOC color.
 
 /datum/config_entry/flag/usewhitelist
@@ -218,11 +220,6 @@ Voting
 /datum/config_entry/number/vote_period  // length of voting period (deciseconds, default 1 minute)
 	config_entry_value = 600
 	integer = FALSE
-	min_val = 0
-
-/datum/config_entry/number/maximum_clients_for_gamemode_vote
-	config_entry_value = 40
-	integer = TRUE
 	min_val = 0
 
 /// Gives the ability to send players a maptext popup.
@@ -409,6 +406,8 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 
 /datum/config_entry/flag/is_automatic_balance_on
 	config_entry_value = TRUE
+
+/datum/config_entry/flag/no_advanced_pathfinding
 
 /datum/config_entry/number/hard_deletes_overrun_threshold
 	integer = FALSE

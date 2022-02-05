@@ -236,7 +236,7 @@
 /obj/structure/ship_ammo/rocket/widowmaker
 	name = "\improper AIM-224 'Widowmaker'"
 	desc = "The AIM-224 is the latest in air to air missile technology. Earning the nickname of 'Widowmaker' from various dropship pilots after improvements to its guidence warhead prevents it from being jammed leading to its high kill rate. Not well suited for ground bombardment, but its high velocity makes it reach its target quickly."
-	icon_state = "widowmaker"
+	icon_state = "single"
 	travelling_time = 3 SECONDS //not powerful, but reaches target fast
 	ammo_id = ""
 	point_cost = 75
@@ -366,6 +366,12 @@
 	icon_state = "minirocket_smoke"
 	point_cost = 25
 
+/obj/structure/ship_ammo/minirocket/tangle
+	name = "Tanglefoot mini rocket stack"
+	desc = "A pack of laser guided mini rockets loaded with plasma-draining Tanglefoot gas."
+	icon_state = "minirocket_tfoot"
+	point_cost = 150
+	
 /obj/structure/ship_ammo/minirocket/smoke/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
 	explosion(impact, 0, 0, 2, 2, throw_range = 0)// Smaller explosion
@@ -375,12 +381,6 @@
 	var/datum/effect_system/smoke_spread/tactical/S = new
 	S.set_up(7, impact)// Large radius, but dissipates quickly
 	S.start()
-
-/obj/structure/ship_ammo/minirocket/tangle
-	name = "Tanglefoot mini rocket stack"
-	desc = "A pack of laser guided mini rockets loaded with plasma-draining Tanglefoot gas."
-	icon_state = "minirocket_tfoot"
-	point_cost = 50
 
 /obj/structure/ship_ammo/minirocket/tangle/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)

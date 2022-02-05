@@ -26,6 +26,7 @@
 		if(WEST)
 			pixel_x += 32
 	START_PROCESSING(SSobj, src)
+	become_hearing_sensitive()
 
 
 /obj/item/radio/intercom/Destroy()

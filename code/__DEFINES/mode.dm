@@ -49,16 +49,13 @@
 #define MODE_SILO_RESPAWN (1<<13)
 #define MODE_HUMAN_ONLY (1<<14)
 #define MODE_TWO_HUMAN_FACTIONS	(1<<15)
-#define MODE_SILOABLE_BODIES (1<<16)
-#define MODE_WIN_POINTS (1<<17)
-#define MODE_NO_PERMANENT_WOUNDS (1<<18)
-#define MODE_SPAWNING_MINIONS (1<<19)
+#define MODE_WIN_POINTS (1<<16)
+#define MODE_NO_PERMANENT_WOUNDS (1<<17)
+#define MODE_SPAWNING_MINIONS (1<<18)
 
 #define MODE_LANDMARK_RANDOM_ITEMS (1<<0)
-#define MODE_LANDMARK_SPAWN_XENO_TUNNELS (1<<1)
-#define MODE_LANDMARK_SPAWN_MAP_ITEM (1<<2)
-#define MODE_LANDMARK_SPAWN_XENO_TURRETS (1<<3)
-#define MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE (1<<4)
+#define MODE_LANDMARK_SPAWN_XENO_TURRETS (1<<1)
+#define MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE (1<<2)
 
 #define MODE_INFESTATION_X_MAJOR "Xenomorph Major Victory"
 #define MODE_INFESTATION_M_MAJOR "Marine Major Victory"
@@ -114,8 +111,8 @@
 #define AFK_TIMER 5 MINUTES
 #define TIME_BEFORE_TAKING_BODY 5 MINUTES
 
-#define DEATHTIME_CHECK(M) ((world.time - GLOB.key_to_time_of_death[M.key]) < SSticker.mode?.respawn_time)
-#define DEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - GLOB.key_to_time_of_death[M.key]) * 0.1] second\s.</span><br><span class='warning'>You must wait [SSticker.mode?.respawn_time * 0.1] seconds before rejoining the game!"))
+#define DEATHTIME_CHECK(M) ((world.time - GLOB.key_to_time_of_role_death[M.key]) < SSticker.mode?.respawn_time)
+#define DEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - GLOB.key_to_time_of_role_death[M.key]) * 0.1] second\s.</span><br><span class='warning'>You must wait [SSticker.mode?.respawn_time * 0.1] seconds before rejoining the game!"))
 
 #define COUNT_IGNORE_HUMAN_SSD (1<<0)
 #define COUNT_IGNORE_XENO_SSD (1<<1)
@@ -140,26 +137,21 @@
 //The player pop consider to be very high pop
 #define HIGH_PLAYER_POP 80
 
-
-#define INVOKE_KING_TIME_LOCK 90 MINUTES
-
 /// How each alive marine contributes to burrower larva output per minute. So with one pool, 15 marines are giving 0.375 points per minute, so it's a new xeno every 22 minutes
 #define SILO_BASE_OUTPUT_PER_MARINE 0.035
 /// This is used to ponderate the number of silo, so to reduces the diminishing returns of having more and more silos
 #define SILO_OUTPUT_PONDERATION 1.75
-//Time (after round start) before siloless timer can start
-#define MINIMUM_TIME_SILO_LESS_COLLAPSE 45 MINUTES
+//Time (after shutters open) before siloless timer can start
+#define MINIMUM_TIME_SILO_LESS_COLLAPSE 15 MINUTES
 
 #define INFESTATION_MARINE_DEPLOYMENT 0
 #define INFESTATION_MARINE_CRASHING 1
 #define INFESTATION_DROPSHIP_CAPTURED_XENOS 2
 
 #define COCOONED_DEATH "cocoon_death"
-#define SILO_DEATH "silo_death"
 #define HEADBITE_DEATH "headbite_death"
 
 #define DISTRESS_LARVA_POINTS_NEEDED 8
-#define HUNT_LARVA_POINTS_NEEDED 8
 #define CRASH_LARVA_POINTS_NEEDED 10
 
 #define FREE_XENO_AT_START 2

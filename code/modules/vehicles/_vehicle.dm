@@ -9,6 +9,7 @@
 	anchored = FALSE
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	obj_flags = CAN_BE_HIT
+	resistance_flags = XENO_DAMAGEABLE
 	COOLDOWN_DECLARE(cooldown_vehicle_move)
 	///mob = bitflags of their control level.
 	var/list/mob/occupants
@@ -152,8 +153,7 @@
 			remove_controller_actions_by_flag(controller, i)
 	return TRUE
 
-/obj/vehicle/Move(newloc, dir)
+/obj/vehicle/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
-	if(trailer && .)
-		var/dir_to_move = get_dir(trailer.loc, newloc)
-		step(trailer, dir_to_move)
+	if(trailer)
+		trailer.Move(old_loc, movement_dir)

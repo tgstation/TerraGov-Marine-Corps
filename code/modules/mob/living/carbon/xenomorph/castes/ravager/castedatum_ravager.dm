@@ -6,6 +6,7 @@
 	caste_type_path = /mob/living/carbon/xenomorph/ravager
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
+	primordial_upgrade_name = PRIMORDIAL_RAVAGER
 	wound_type = "ravager" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
@@ -30,7 +31,7 @@
 	deevolves_to = /mob/living/carbon/xenomorph/hunter
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER|CASTE_INNATE_PLASMA_REGEN|CAN_BECOME_KING
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER|CASTE_INNATE_PLASMA_REGEN|CASTE_CAN_BECOME_KING
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 35, "bullet" = 40, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_1, "bio" = 30, "rad" = 30, "fire" = 50, "acid" = 30)
@@ -42,8 +43,6 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/charge,
 		/datum/action/xeno_action/activable/ravage,
 		/datum/action/xeno_action/endure,
@@ -167,8 +166,6 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/charge,
 		/datum/action/xeno_action/activable/ravage,
 		/datum/action/xeno_action/endure,

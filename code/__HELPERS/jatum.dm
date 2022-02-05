@@ -145,7 +145,7 @@
 	if(!istext(json))
 		CRASH("Non-text passed!")
 	var/list/structure
-	try 
+	try
 		structure = json_decode(json)
 	catch
 		log_debug("Jatum failed to deserialize, the json in question was : [json]")
@@ -222,6 +222,8 @@
 					|| var_name == "jatum\\new_arglist")
 					continue
 				var/value = structure[var_name]
+				if(!value)
+					continue
 				try
 					D.vars[var_name] = _jatum_deserialize_value(value, active_references)
 				catch

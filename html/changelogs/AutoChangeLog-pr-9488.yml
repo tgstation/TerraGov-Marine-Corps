@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "Xeno doors are no longer opaque when opened"
+  - bugfix: "You can now click a door as a xeno to open it (it was opening then immediatly closing)"

@@ -19,6 +19,10 @@
 	throw_speed = 4
 	throw_range = 20
 
+/obj/item/taperecorder/Initialize()
+	. = ..()
+	become_hearing_sensitive()
+
 /obj/item/taperecorder/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, spans, message_mode)
 	. = ..()
 

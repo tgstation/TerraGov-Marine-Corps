@@ -111,6 +111,9 @@
 /turf/open/floor/mainship/ai
 	icon_state = "ai_floors"
 
+/turf/open/floor/mainship/sandtemple
+	icon_state = "sandtemplefloor"
+
 /turf/open/floor/mainship/sterile
 	icon_state = "sterile_green"
 
@@ -354,6 +357,14 @@
 /turf/open/floor/engine/vacuum
 	name = "vacuum floor"
 	icon_state = "engine"
+
+/turf/open/floor/engine/atmos
+	name = "vacuum floor"
+	icon_state = "darkgraytile"
+
+/turf/open/floor/engine/atmosdark
+	name = "vacuum floor"
+	icon_state = "dark"
 
 /turf/open/floor/engine/mars/exterior
 	name = "floor"
@@ -670,6 +681,12 @@
 
 /turf/open/floor/tile/dark/purple2
 	icon_state = "darkpurple2"
+
+/turf/open/floor/tile/dark/gray
+	icon_state = "darkgraytile"
+
+/turf/open/floor/tile/cafe
+	icon_state = "cafetile"
 
 /turf/open/floor/tile/dark/purple2/corner
 	icon_state = "darkpurplecorners2"

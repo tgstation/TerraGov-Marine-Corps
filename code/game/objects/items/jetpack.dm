@@ -142,6 +142,7 @@
 			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackempty")
 
 /obj/item/jetpack_marine/apply_custom(image/standing)
+	. = ..()
 	if(lit)
 		standing.overlays += image('icons/mob/back.dmi',src,"+jetpack_lit")
 

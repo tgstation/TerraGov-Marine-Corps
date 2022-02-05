@@ -219,26 +219,19 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 
 
-/proc/get_hearers_in_view(R, atom/source)
-	// Returns a list of hearers in view(R) from source (ignoring luminosity). Used in saycode.
-	var/turf/T = get_turf(source)
-
-	if (R == 0) // if the range is zero, we know exactly where to look for, we can skip view
-		. = T.contents.Copy() // We can shave off one iteration by assuming turfs cannot hear
-	else  // A variation of get_hear inlined here to take advantage of the compiler's fastpath for obj/mob in view
-		. = list()
-		var/lum = T.luminosity
-		T.luminosity = 6 // This is the maximum luminosity
-		for(var/mob/M in view(R, T))
-			. += M
-		for(var/obj/O in view(R, T))
-			. += O
-		T.luminosity = lum
-
-	var/i = 0
-	while(i < length(.)) // recursive_hear_check inlined here
-		var/atom/A = .[++i]
-		. += A.contents
+/// Returns a list of hearers in view(view_radius) from source (ignoring luminosity). uses important_recursive_contents[RECURSIVE_CONTENTS_HEARING_SENSITIVE]
+/proc/get_hearers_in_view(view_radius, atom/source)
+	var/turf/center_turf = get_turf(source)
+	. = list()
+	if(!center_turf)
+		return
+	var/lum = center_turf.luminosity
+	center_turf.luminosity = 6 // This is the maximum luminosity
+	for(var/atom/movable/movable in view(view_radius, center_turf))
+		var/list/recursive_contents = LAZYACCESS(movable.important_recursive_contents, RECURSIVE_CONTENTS_HEARING_SENSITIVE)
+		if(recursive_contents)
+			. += recursive_contents
+	center_turf.luminosity = lum
 
 /atom/movable/proc/GetVoice()
 	return "[src]"	//Returns the atom's name, prepended with 'The' if it's not a proper noun

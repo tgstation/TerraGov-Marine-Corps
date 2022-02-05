@@ -15,11 +15,8 @@
 	if(notransform) //If we're in true stasis don't bother processing life
 		return
 
-	if(stat == DEAD) //Dead, nothing else to do but this.
-		if(plasma_stored && !(xeno_caste.caste_flags & CASTE_DECAY_PROOF))
-			handle_decay()
-		else
-			SSmobs.stop_processing(src)
+	if(stat == DEAD)
+		SSmobs.stop_processing(src)
 		return
 	if(stat == UNCONSCIOUS)
 		if(is_zoomed)
@@ -64,7 +61,7 @@
 		return
 
 	var/ruler_healing_penalty = 0.5
-	if(hive?.living_xeno_ruler?.loc?.z == T.z || xeno_caste.caste_flags & CASTE_CAN_HEAL_WITHOUT_QUEEN) //if the living queen's z-level is the same as ours.
+	if(hive?.living_xeno_ruler?.loc?.z == T.z || xeno_caste.caste_flags & CASTE_CAN_HEAL_WITHOUT_QUEEN || (SSticker?.mode.flags_round_type & MODE_XENO_RULER)) //if the living queen's z-level is the same as ours.
 		ruler_healing_penalty = 1
 	var/obj/effect/alien/weeds/weed = locate() in T
 	if(weed || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
@@ -119,10 +116,8 @@
 
 	var/list/heal_data = list(amount)
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, heal_data)
-
-	var/remainder = max(0, heal_data[1]-getBruteLoss())
-	adjustBruteLoss(-amount)
-	adjustFireLoss(-remainder)
+	HEAL_XENO_DAMAGE(src, heal_data[1])
+	return heal_data[1]
 
 /mob/living/carbon/xenomorph/proc/handle_living_plasma_updates()
 	var/turf/T = loc

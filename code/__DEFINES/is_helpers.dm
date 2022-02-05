@@ -58,7 +58,7 @@
 #define ismoth(H) (is_species(H, /datum/species/moth))
 #define issectoid(H) (is_species(H, /datum/species/sectoid))
 #define ishumanbasic(H) (is_species(H, /datum/species/human))
-#define ishusk(H) (is_species(H, /datum/species/husk))
+#define iszombie(H) (is_species(H, /datum/species/zombie))
 
 //Monkey species and subtypes
 #define ismonkey(H) (is_species(H, /datum/species/monkey))
@@ -91,6 +91,7 @@
 #define isxenoboiler(A) (istype(A, /mob/living/carbon/xenomorph/boiler))
 #define isxenocarrier(A) (istype(A, /mob/living/carbon/xenomorph/carrier))
 #define isxenocrusher(A) (istype(A, /mob/living/carbon/xenomorph/crusher))
+#define isxenogorger(A) (istype(A, /mob/living/carbon/xenomorph/gorger))
 #define isxenodrone(A) (istype(A, /mob/living/carbon/xenomorph/drone))
 #define isxenohivelord(A) (istype(A, /mob/living/carbon/xenomorph/hivelord))
 #define isxenohunter(A) (istype(A, /mob/living/carbon/xenomorph/hunter))
@@ -228,6 +229,8 @@
 #define isdroid(A) (istype(A, /obj/vehicle/unmanned/droid))
 
 #define isreagentcontainer(A) (istype(A, /obj/item/reagent_containers)) //Checks for if something is a reagent container.
+
+#define is_research_product(A) (istype(A, /obj/item/research_product)) //Checks if item is research item
 
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))

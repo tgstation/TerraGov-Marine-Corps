@@ -339,7 +339,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	belt = /obj/item/storage/belt/gun/pistol/m4a3/vp70
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/pilot
-	wear_suit = /obj/item/clothing/suit/armor/vest/pilot
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/pilot
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/yellow
 	glasses = /obj/item/clothing/glasses/sunglasses/aviator
@@ -812,7 +812,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	skills_type = /datum/skills/doctor
 	display_order = JOB_DISPLAY_ORDER_MEDICAL_RESEARCHER
 	outfit = /datum/outfit/job/medical/researcher
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
@@ -825,6 +825,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 		<b>Gamemode Availability</b>: Distress<br /><br /><br />
 		<b>Duty</b>: Research extraterrestrial life aboard the ship if provided by Nanotrasen/TerraGov, synthesize chemicals for the benefit of the marines. Find out the cause of why and when. Learn new things for humankind. Act as a secondary medical officer in practice.
 	"}
+	minimap_icon = "researcher"
 
 /datum/job/terragov/medical/researcher/rebel
 	title = REBEL_MEDICAL_RESEARCHER
@@ -866,7 +867,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	jobtype = /datum/job/terragov/medical/researcher
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/medical
-	ears = /obj/item/radio/headset/mainship/doc
+	ears = /obj/item/radio/headset/mainship/res
 	w_uniform = /obj/item/clothing/under/marine/officer/researcher
 	wear_suit = /obj/item/clothing/suit/storage/labcoat/armored_coat
 	shoes = /obj/item/clothing/shoes/laceup
@@ -877,6 +878,13 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	r_store = /obj/item/reagent_containers/glass/bottle/lemoline
 	l_store = /obj/item/storage/pouch/autoinjector/advanced/full
 	back = /obj/item/storage/backpack/marine/satchel
+
+/datum/outfit/job/medical/researcher/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	var/obj/item/storage/backpack/respack = H.back
+	var/obj/item/tool/research/xeno_analyzer/res_an = new
+	respack.handle_item_insertion(res_an, TRUE, null)
+	var/obj/item/tool/research/excavation_tool/res_ex = new
+	respack.handle_item_insertion(res_ex, TRUE, null)
 
 /datum/outfit/job/medical/researcher/rebel
 	jobtype = /datum/job/terragov/medical/researcher/rebel

@@ -25,6 +25,9 @@
 	. = ..()
 	GLOB.machines += src
 	component_parts = list()
+	var/turf/current_turf = get_turf(src)
+	if(anchored && current_turf && density)
+		current_turf.flags_atom |= AI_BLOCKED
 
 
 /obj/machinery/Destroy()
@@ -33,6 +36,9 @@
 	if(istype(circuit)) //There are some uninitialized legacy path circuits.
 		QDEL_NULL(circuit)
 	operator = null
+	var/turf/current_turf = get_turf(src)
+	if(anchored && current_turf && density)
+		current_turf.flags_atom &= ~ AI_BLOCKED
 	return ..()
 
 

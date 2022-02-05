@@ -327,7 +327,7 @@
 
 
 /obj/item/tool/pickaxe/plasmacutter/attack_obj(obj/O, mob/living/user)
-	if(!powered || user.do_actions || CHECK_BITFIELD(O.resistance_flags, INDESTRUCTIBLE))
+	if(!powered || user.do_actions || CHECK_BITFIELD(O.resistance_flags, INDESTRUCTIBLE) || CHECK_BITFIELD(O.resistance_flags, PLASMACUTTER_IMMUNE))
 		..()
 		return TRUE
 

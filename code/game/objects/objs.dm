@@ -1,5 +1,5 @@
 /obj
-	animate_movement = 2
+	animate_movement = SLIDE_STEPS
 	speech_span = SPAN_ROBOT
 	interaction_flags = INTERACT_OBJ_DEFAULT
 
@@ -38,7 +38,7 @@
 		soft_armor = getArmor(arglist(soft_armor))
 	else if (!soft_armor)
 		// Default bio armor 100 to avoid sentinels getting free damage on sent
-		soft_armor = getArmor(bio = 100)
+		soft_armor = getArmor(bio = 100) // This is here so that walls don't die from NEUROTOXIN
 	else if (!istype(soft_armor, /datum/armor))
 		stack_trace("Invalid type [soft_armor.type] found in .soft_armor during /obj Initialize()")
 

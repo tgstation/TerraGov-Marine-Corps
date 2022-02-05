@@ -408,7 +408,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			to_chat(owner, span_xenowarning("We can't blink into this area!"))
 		return FALSE
 
-	if(!owner.line_of_sight(T)) //Needs to be in line of sight.
+	if(!line_of_sight(owner, T)) //Needs to be in line of sight.
 		if(!silent)
 			to_chat(owner, span_xenowarning("We can't blink without line of sight to our destination!"))
 		return FALSE
@@ -505,34 +505,23 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	new /obj/effect/temp_visual/blink_portal(get_turf(teleporter))
 
-	for(var/turf/affected_tile as() in RANGE_TURFS(1,teleporter.loc))
-		affected_tile.add_filter("wraith_blink_distortion", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
-		animate(affected_tile.get_filter("wraith_blink_distortion"), x = 60*rand() - 30, y = 60*rand() - 30, time = 0.5 SECONDS, loop = 2)
-		addtimer(CALLBACK(affected_tile, /atom.proc/remove_filter, "wraith_blink_distortion"), 1 SECONDS)
+	new /obj/effect/temp_visual/wraith_warp(get_turf(teleporter))
 
-		for(var/obj/obj_target in affected_tile) //This is just about SFX, so we don't have objects not distorting while everything else does
-			obj_target.add_filter("wraith_aoe_debuff_filter", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
-			animate(obj_target.get_filter("wraith_aoe_debuff_filter"), x = 60*rand() - 30, y = 60*rand() - 30, time = 0.25 SECONDS, loop = -1)
-			addtimer(CALLBACK(obj_target, /atom.proc/remove_filter, "wraith_aoe_debuff_filter"), 0.5 SECONDS)
+	for(var/mob/living/living_target in range(1, teleporter.loc))
 
-		for(var/mob/living/living_target in affected_tile)
-			living_target.add_filter("wraith_aoe_debuff_filter", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
-			animate(living_target.get_filter("wraith_aoe_debuff_filter"), x = 60*rand() - 30, y = 60*rand() - 30, time = 0.25 SECONDS, loop = -1)
-			addtimer(CALLBACK(living_target, /atom.proc/remove_filter, "wraith_aoe_debuff_filter"), 0.5 SECONDS)
+		if(living_target.stat == DEAD)
+			continue
 
-			if(living_target.stat == DEAD)
+		if(isxeno(living_target))
+			var/mob/living/carbon/xenomorph/X = living_target
+			if(X.issamexenohive(ghost)) //No friendly fire
 				continue
 
-			if(isxeno(living_target))
-				var/mob/living/carbon/xenomorph/X = living_target
-				if(X.issamexenohive(ghost)) //No friendly fire
-					continue
-
-			shake_camera(living_target, 2, 1)
-			living_target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS)
-			living_target.add_slowdown(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS)
-			living_target.adjust_blurriness(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS) //minor visual distortion
-			to_chat(living_target, span_warning("You feel nauseous as reality warps around you!"))
+		shake_camera(living_target, 2, 1)
+		living_target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS)
+		living_target.add_slowdown(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS)
+		living_target.adjust_blurriness(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS) //minor visual distortion
+		to_chat(living_target, span_warning("You feel nauseous as reality warps around you!"))
 
 /datum/action/xeno_action/activable/blink/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We are able to blink again."))
@@ -585,7 +574,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			to_chat(owner, span_xenowarning("Our target is too far away! It must be [distance - WRAITH_BANISH_RANGE] tiles closer!"))
 		return FALSE
 
-	if(!owner.line_of_sight(A)) //Needs to be in line of sight.
+	if(!line_of_sight(owner, A)) //Needs to be in line of sight.
 		if(!silent)
 			to_chat(owner, span_xenowarning("We can't banish without line of sight to our target!"))
 		return FALSE
@@ -766,3 +755,45 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			return TRUE
 
 	return FALSE
+
+/datum/action/xeno_action/timestop
+	name = "Time stop"
+	ability_name = "Time stop"
+	action_icon_state = "time_stop"
+	mechanics_text = "Freezes bullets in their course, and they will start to move again only after a certain time"
+	plasma_cost = 150
+	cooldown_timer = 1 MINUTES
+	keybind_signal = COMSIG_XENOABILITY_TIMESTOP
+	///The range of the ability
+	var/range = 1
+	///How long is the bullet freeze staying
+	var/duration = 7 SECONDS
+
+/datum/action/xeno_action/timestop/action_activate()
+	. = ..()
+	var/list/turf/turfs_affected = list()
+	var/turf/central_turf = get_turf(owner)
+	for(var/turf/affected_turf in view(range, central_turf))
+		ADD_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET, REF(owner))
+		turfs_affected += affected_turf
+		affected_turf.add_filter("wraith_magic", 2, drop_shadow_filter(color = "#04080FAA", size = -10))
+	playsound(owner, 'sound/magic/timeparadox2.ogg', 50, TRUE)
+	succeed_activate()
+	add_cooldown()
+	new /obj/effect/overlay/temp/timestop_effect(central_turf, duration)
+	addtimer(CALLBACK(src, .proc/remove_bullet_freeze, turfs_affected, central_turf), duration)
+	addtimer(CALLBACK(src, .proc/play_sound_stop), duration - 3 SECONDS)
+
+///Remove the bullet freeze effect on affected turfs
+/datum/action/xeno_action/timestop/proc/remove_bullet_freeze(list/turf/turfs_affected, turf/central_turfA)
+	for(var/turf/affected_turf AS in turfs_affected)
+		REMOVE_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET, REF(owner))
+		if(HAS_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET))
+			continue
+		SEND_SIGNAL(affected_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
+		affected_turf.remove_filter("wraith_magic")
+
+///Play the end ability sound
+/datum/action/xeno_action/timestop/proc/play_sound_stop()
+	playsound(owner, 'sound/magic/timeparadox2.ogg', 50, TRUE, frequency = -1)
+

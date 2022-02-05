@@ -16,7 +16,7 @@
 		ghost.reenter_corpse()
 		return
 
-	var/mob/dead/observer/ghost = M.ghostize(TRUE, FALSE)
+	var/mob/dead/observer/ghost = M.ghostize(TRUE, TRUE)
 
 	log_admin("[key_name(ghost)] admin ghosted at [AREACOORD(ghost)].")
 	if(M.stat != DEAD)
@@ -80,10 +80,11 @@
 	set name = "Set Xeno Buffs"
 	set desc = "Allows you to change stats on all xeno. It is a multiplicator buff, so input 1 to put back everything to normal"
 
-	if(!check_rights(R_DEBUG))
+	if(!check_rights(R_FUN))
 		return
 
-	var/multiplicator_buff_wanted = input("Input the factor that will multiply xeno stat", "1 is normal stat, 2 is doubling health, regen and melee attack") as num
+	var/multiplicator_buff_wanted = tgui_input_number(usr, "Input the factor that will multiply xeno stat", "1 is normal stat, 2 is doubling health, regen and melee attack")
+
 	if(!multiplicator_buff_wanted)
 		return
 	GLOB.xeno_stat_multiplicator_buff = multiplicator_buff_wanted
@@ -255,7 +256,7 @@
 	set category = "Admin"
 	set name = "Get Server Logs"
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_LOG))
 		return
 
 	usr.client.holder.browse_server_logs()
@@ -266,7 +267,7 @@
 	set name = "Get Current Logs"
 	set desc = "View/retrieve logfiles for the current round."
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_LOG))
 		return
 
 	usr.client.holder.browse_server_logs("[GLOB.log_directory]/")
@@ -277,7 +278,7 @@
 	set name = "Get Server Logs Folder"
 	set desc = "Please use responsibly."
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_LOG))
 		return
 
 	if(alert("Due to the way BYOND handles files, you WILL need a click macro. This function is also recurive and prone to fucking up, especially if you select the wrong folder. Are you absolutely sure you want to proceed?", "WARNING", "Yes", "No") != "Yes")
@@ -291,7 +292,7 @@
 
 
 /datum/admins/proc/browse_server_logs(path = "data/logs/")
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_LOG))
 		return
 
 	path = browse_files(path)
@@ -313,7 +314,7 @@
 
 
 /datum/admins/proc/recursive_download(folder)
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_LOG))
 		return
 
 	var/files = flist(folder)
@@ -361,7 +362,7 @@
 
 
 /datum/admins/proc/browse_files(root = "data/logs/", max_iterations = 20, list/valid_extensions = list("txt", "log", "htm", "html"))
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_LOG))
 		return
 
 	var/path = root
@@ -392,7 +393,7 @@
 
 
 /datum/admins/proc/show_individual_logging_panel(mob/M, source = LOGSRC_CLIENT, type = INDIVIDUAL_ATTACK_LOG)
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_LOG))
 		return
 
 	if(!istype(M))
@@ -478,13 +479,13 @@
 	set name = "asay"
 	set hidden = TRUE
 
+	if(!msg)
+		return
+
 	if(!check_rights(R_ASAY))
 		return
 
 	msg = emoji_parse(copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN))
-
-	if(!msg)
-		return
 
 	var/list/pinged_admin_clients = check_admin_pings(msg, TRUE)
 	if(length(pinged_admin_clients) && pinged_admin_clients[ADMINSAY_PING_UNDERLINE_NAME_INDEX])
@@ -573,6 +574,7 @@
 	set category = "Admin"
 	set name = "dsay"
 	set hidden = TRUE
+
 
 	if(!check_rights(R_ADMIN|R_MENTOR))
 		return
@@ -1205,7 +1207,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	for(var/obj/vehicle/multitile/root/cm_armored/CA in GLOB.tank_list)
+	for(var/obj/vehicle/multitile/root/cm_armored/CA AS in GLOB.tank_list)
 		CA.remove_all_players()
 
 		log_admin("[key_name(usr)] forcibly removed all players from [CA].")

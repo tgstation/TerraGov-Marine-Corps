@@ -166,7 +166,10 @@
 		to_chat(user, span_warning("[src]'s laser battery is recharging."))
 		return
 
-	if(user.client.eye != src)
+	var/turf/TU = get_turf(A)
+	var/distance = get_dist(TU, get_turf(user))
+	var/zoom_screen_size = zoom_tile_offset + zoom_viewsize + 1
+	if(TU.z != user.z || distance == -1 || (distance > zoom_screen_size))
 		to_chat(user, span_warning("You can't focus properly through \the [src] while looking through something else."))
 		return
 
@@ -182,7 +185,6 @@
 		laz_name += " ([S.name])"
 
 
-	var/turf/TU = get_turf(A)
 	var/area/targ_area = get_area(A)
 	if(!istype(TU))
 		return
@@ -211,7 +213,7 @@
 	switch(mode)
 		if(MODE_CAS)
 			to_chat(user, span_notice("TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE."))
-			var/obj/effect/overlay/temp/laser_target/cas/CS = new (TU, laz_name, S)
+			var/obj/effect/overlay/temp/laser_target/cas/CS = new (TU, 0, laz_name, S)
 			laser = CS
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
 			while(laser)
@@ -234,7 +236,7 @@
 			else if(!targ_area)
 				to_chat(user, "[icon2html(src, user)] [span_warning("No target detected!")]")
 			else
-				var/obj/effect/overlay/temp/laser_target/RGL = new (TU, laz_name, S)
+				var/obj/effect/overlay/temp/laser_target/RGL = new (TU, 0, laz_name, S)
 				laser = RGL
 				playsound(src, 'sound/effects/binoctarget.ogg', 35)
 				if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_GENERIC))
@@ -251,7 +253,7 @@
 			if(!targ_area)
 				to_chat(user, "[icon2html(src, user)] [span_warning("No target detected!")]")
 			else
-				var/obj/effect/overlay/temp/laser_target/OB/OBL = new (TU, laz_name, S)
+				var/obj/effect/overlay/temp/laser_target/OB/OBL = new (TU, 0, laz_name, S)
 				laser = OBL
 				playsound(src, 'sound/effects/binoctarget.ogg', 35)
 				if(!do_after(user, 15 SECONDS, TRUE, user, BUSY_ICON_GENERIC))
@@ -278,7 +280,7 @@
 	var/turf/target = locate(current_turf.x + x_offset,current_turf.y + y_offset,current_turf.z)
 	GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(target, user)
 	var/warhead_type = GLOB.marine_main_ship.orbital_cannon.tray.warhead.name
-	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_warning("NOTICE - Orbital bombardment triggered by ground operator. Warhead type: [warhead_type]. Target: [AREACOORD_NO_Z(current_turf)]"))
 		playsound(AI,'sound/machines/triple_beep.ogg', 25, 1, 20)
 	to_chat(user, span_notice("FIRING REQUEST RECIEVED. CLEAR TARGET AREA"))

@@ -20,6 +20,10 @@
 								"recognizer",
 								"voice sensor")
 
+/obj/item/assembly/voice/Initialize()
+	. = ..()
+	become_hearing_sensitive()
+
 
 /obj/item/assembly/voice/examine(mob/user)
 	. = ..()

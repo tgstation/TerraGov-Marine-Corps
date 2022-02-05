@@ -132,7 +132,7 @@
 			return
 		var/camera_location
 		var/turf/myturf = get_turf(src)
-		if(eyeobj.use_static != USE_STATIC_NONE)
+		if(eyeobj.use_static)
 			if((!length(z_lock) || (myturf.z in z_lock)) && GLOB.cameranet.checkTurfVis(myturf))
 				camera_location = myturf
 			else
@@ -240,10 +240,10 @@
 	var/turf/T = get_turf(target)
 	if(!T)
 		return
-	if(T.z != z && use_static != USE_STATIC_NONE)
+	if(T.z != z && use_static)
 		GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
 	abstract_move(T)
-	if(use_static != USE_STATIC_NONE)
+	if(use_static)
 		GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
 	if(visible_icon && eye_user.client)
 		eye_user.client.images -= user_image

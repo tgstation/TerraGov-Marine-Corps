@@ -190,7 +190,7 @@ REAGENT SCANNER
 	// Show red messages - broken bokes, infection, etc
 	if (M.getCloneLoss())
 		dat += "\t[span_scanner(" *Cellular damage detected. Recommend cryogenic treatment")].\n"
-	if (M.getBrainLoss() >= 100 || !M.has_brain())
+	if (!isrobot(M) && (M.getBrainLoss() >= 100 || !M.has_brain()))
 		dat += "\t[span_scanner(" *Subject is <b>brain dead</b>")].\n"
 	else if (M.getBrainLoss() >= 60)
 		dat += "\t[span_scanner(" *<b>Severe brain damage</b> detected. Subject likely to have intellectual disabilities.")]\n"
@@ -309,7 +309,6 @@ REAGENT SCANNER
 			var/hyperzine_amount = reagents_in_body[/datum/reagent/medicine/hyperzine]
 			var/paracetamol_amount = reagents_in_body[/datum/reagent/medicine/paracetamol]
 			var/neurotoxin_amount = reagents_in_body[/datum/reagent/toxin/xeno_neurotoxin]
-			var/growthtoxin_amount = reagents_in_body[/datum/reagent/toxin/xeno_growthtoxin]
 			//Recurring chems:
 			var/peridaxon = ""
 			var/tricordrazine = ""
@@ -431,8 +430,6 @@ REAGENT SCANNER
 				advice += "[span_scanner("<b>Paracetamol Detected:</b> DO NOT administer tramadol until paracetamol is purged or metabolized.")]\n"
 			if(neurotoxin_amount)
 				advice += "[span_scanner("<b>Xenomorph Neurotoxin Detected:</b> Administer hypervene to purge.")]\n"
-			if(growthtoxin_amount)
-				advice += "[span_scanner("<b>Xenomorph Growth Toxin Detected:</b> Administer hypervene to purge.")]\n"
 			if(advice != "")
 				dat += "\t[span_scanner(" <b>Contraindications:</b>")]\n"
 				dat += advice

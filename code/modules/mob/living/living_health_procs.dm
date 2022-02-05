@@ -265,6 +265,8 @@
 	LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
 	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/human_z_changed)
 
+	hud_list[HEART_STATUS_HUD].icon_state = ""
+
 /mob/living/carbon/xenomorph/on_revive()
 	. = ..()
 	GLOB.alive_xeno_list += src
@@ -346,8 +348,7 @@
 
 	//try to find the brain player in the decapitated head and put them back in control of the human
 	if(!client && !mind) //if another player took control of the human, we don't want to kick them out.
-		for(var/i in GLOB.head_list)
-			var/obj/item/limb/head/H = i
+		for(var/obj/item/limb/head/H AS in GLOB.head_list)
 			if(!H.brainmob)
 				continue
 
@@ -418,12 +419,12 @@
 			addtimer(CALLBACK(src, .proc/finish_revive_to_crit, FALSE, should_zombify), 10 SECONDS)
 			return
 		REMOVE_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
-		if(should_zombify || istype(species, /datum/species/husk))
-			AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/husk/patrolling, src) //Zombie patrol
+		if(should_zombify || istype(species, /datum/species/zombie))
+			AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie/patrolling, src) //Zombie patrol
 			a_intent = INTENT_HARM
 	if(should_zombify)
-		set_species("Strong husk")
-		faction = FACTION_XENO
+		set_species("Strong zombie")
+		faction = FACTION_ZOMBIE
 	heal_limbs(- health)
 	set_stat(CONSCIOUS)
 	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /obj/screen/fullscreen/black)

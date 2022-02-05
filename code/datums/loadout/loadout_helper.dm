@@ -90,19 +90,19 @@
 		return /datum/item_representation/modular_helmet
 	if(ispath(item_type, /obj/item/clothing/under))
 		return /datum/item_representation/uniform_representation
-	if(ispath(item_type, /obj/item/clothing/tie/storage))
-		return /datum/item_representation/tie
 	if(ispath(item_type, /obj/item/ammo_magazine/handful))
 		return /datum/item_representation/handful_representation
 	if(ispath(item_type, /obj/item/stack))
 		return /datum/item_representation/stack
 	if(ispath(item_type, /obj/item/card/id))
 		return /datum/item_representation/id
+	if(ispath(item_type, /obj/item/clothing/shoes/marine))
+		return /datum/item_representation/boot
 	return /datum/item_representation
 
 /// Return TRUE if this handful should be buyable, aka if it's corresponding aka box is in a linked vendor
 /proc/is_handful_buyable(ammo_type)
-	for(var/datum/vending_product/item_datum AS in GLOB.vending_records[/obj/machinery/vending/marine/shared])
+	for(var/datum/vending_product/item_datum AS in GLOB.vending_records[/obj/machinery/vending/weapon])
 		var/product_path = item_datum.product_path
 		if(!ispath(product_path, /obj/item/ammo_magazine))
 			continue

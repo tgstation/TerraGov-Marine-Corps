@@ -12,28 +12,8 @@
 /obj/item/explosive/grenade/stick,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
-"bE" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 10
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage)
 "eh" = (
 /obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage)
-"em" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
-/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "gi" = (
@@ -101,15 +81,12 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
+"mS" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/quartstorage)
 "mX" = (
 /obj/structure/largecrate/supply/supplies/tables_racks,
-/turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage)
-"nv" = (
-/obj/structure/rack,
-/obj/item/stack/sheet/wood{
-	amount = 50
-	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "ov" = (
@@ -123,6 +100,16 @@
 /obj/item/clothing/shoes/jackboots,
 /obj/item/clothing/shoes/jackboots,
 /turf/open/floor/plating,
+/area/lv624/lazarus/quartstorage)
+"pl" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "pF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -245,6 +232,13 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
+"Cx" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/quartstorage)
 "CF" = (
 /obj/structure/rack,
 /obj/item/storage/box/m94,
@@ -276,6 +270,14 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
+"GS" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/quartstorage)
 "HO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -304,6 +306,12 @@
 "Iu" = (
 /turf/template_noop,
 /area/template_noop)
+"IF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/quartstorage)
 "Jl" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -362,6 +370,14 @@
 /obj/structure/largecrate/supply/generator,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
+"PP" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/wood{
+	amount = 50
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/lv624/lazarus/quartstorage)
 "PY" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/fire,
@@ -397,6 +413,20 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
+"Vs" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/quartstorage)
 "VF" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
@@ -410,15 +440,6 @@
 "VI" = (
 /obj/item/stack/sheet/wood{
 	amount = 2
-	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage)
-"Ww" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
@@ -488,12 +509,12 @@ Bv
 CG
 CG
 CG
-Ww
+pl
 CG
 wF
 CG
 jV
-Nw
+mS
 gJ
 Iu
 "}
@@ -538,7 +559,7 @@ Nw
 kz
 Cp
 Cp
-Cp
+Cx
 yx
 Cp
 Cp
@@ -568,17 +589,17 @@ rz
 (8,1,1) = {"
 ze
 pF
-em
+GS
 HT
 vP
 mX
 YT
-nv
+PP
 oA
 Ne
 Lv
 rF
-pF
+IF
 pF
 ze
 "}
@@ -653,12 +674,12 @@ Iu
 (13,1,1) = {"
 Iu
 gJ
-Nw
+mS
 kz
 Cp
 Cp
 Cp
-bE
+Vs
 Cp
 Gt
 Cp

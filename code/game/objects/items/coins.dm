@@ -9,7 +9,6 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/string_attached
 	var/sides = 2
-	var/flags_token = TOKEN_GENERAL
 
 /obj/item/coin/Initialize()
 	. = ..()
@@ -48,7 +47,6 @@
 	name = "prototype universal token"
 	desc = "A special nano-fiber chip, emblazed with several minuscule tags. Rarely ever seen outside emergency maintenance situations."
 	icon_state = "coin_clown"
-	flags_token = TOKEN_ALL
 
 /obj/item/coin/attackby(obj/item/I, mob/user, params)
 	. = ..()

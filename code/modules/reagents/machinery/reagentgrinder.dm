@@ -382,3 +382,6 @@
 		O.reagents.trans_to(beaker, amount)
 		if(!O.reagents.total_volume)
 			remove_object(O)
+
+/obj/machinery/reagentgrinder/nopower
+	use_power = NO_POWER_USE

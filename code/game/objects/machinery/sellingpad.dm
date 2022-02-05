@@ -45,6 +45,8 @@
 				to_chat(user, span_warning("[src] buzzes: This bounty is not dead and cannot be sold."))
 				continue
 			can_sell = TRUE
+		if(is_research_product(onpad))
+			can_sell = TRUE
 		if(!can_sell)
 			continue
 		var/datum/export_report/export_report = onpad.supply_export(user.faction)

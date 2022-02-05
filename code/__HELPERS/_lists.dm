@@ -17,6 +17,11 @@
 #define LAZYACCESSASSOC(L, I, K) L ? L[I] ? L[I][K] ? L[I][K] : null : null : null
 #define LAZYINCREMENT(L, K) if(!L) { L = list(); } L[K]++;
 #define LAZYDECREMENT(L, K) if(L) { if(L[K]) { L[K]--; if(!L[K]) L -= K; } if(!length(L)) L = null; }
+/// Performs an insertion on the given lazy list with the given key and value. If the value already exists, a new one will not be made.
+#define LAZYORASSOCLIST(lazy_list, key, value) \
+	LAZYINITLIST(lazy_list); \
+	LAZYINITLIST(lazy_list[key]); \
+	lazy_list[key] |= value;
 
 //Checks for specific types in specifically structured (Assoc "type" = TRUE) lists ('typecaches')
 #define is_type_in_typecache(A, L) (A && length(L) && L[(ispath(A) ? A : A:type)])
