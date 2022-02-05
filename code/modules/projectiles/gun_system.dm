@@ -223,8 +223,8 @@
 	var/burst_delay = 0.1 SECONDS
 	///When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
 	var/extra_delay	= 0
-	///when autobursting, this is the amount of extra (extra) time before the weapon fires again. Multiplier of fire_delay
-	var/autoburst_delay = null
+	///when autobursting, this is the amount of extra (extra) time before the weapon fires again. If no amount is specified, defaults to x2 fire_delay
+	var/autoburst_delay = 0
 
 	///Slowdown for wielding
 	var/aim_slowdown = 0
