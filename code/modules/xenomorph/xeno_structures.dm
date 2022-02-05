@@ -1318,7 +1318,7 @@ TUNNEL
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/X = user
 		if(X.has_status_effect(STATUS_EFFECT_PLASMA_SURGE))
-			to_chat(user, span_xenowarning("We already have increased plasma regeneration!"))
+			to_chat(X, span_xenowarning("We already have increased plasma regeneration!"))
 			return FALSE
 
 /obj/structure/xeno/plant/plasma_fruit/on_use(mob/user)
