@@ -140,6 +140,10 @@
 	. = ..()
 	riding_mob.density = FALSE
 
+/datum/component/riding/vehicle/motorbike/sidecar/vehicle_mob_unbuckle(datum/source, mob/living/former_rider, force = FALSE)
+	former_rider.density = TRUE
+	return ..()
+
 //sidecar
 /datum/component/riding/vehicle/motorbike/sidecar/handle_specials()
 	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(-10, 3), TEXT_SOUTH = list(10, 3), TEXT_EAST = list(-2, 3), TEXT_WEST = list(2, 3)))
@@ -155,4 +159,4 @@
 		if(1) //first one buckled, so driver
 			return list(TEXT_NORTH = list(9, 3), TEXT_SOUTH = list(-9, 3), TEXT_EAST = list(-2, 3), TEXT_WEST = list(2, 3))
 		if(2) //second one buckled, so sidecar rider
-			return list(TEXT_NORTH = list(-6, 2), TEXT_SOUTH = list(6, 2), TEXT_EAST = list(-3, 0, ABOVE_MOB_LAYER), TEXT_WEST = list(3, 0, LYING_MOB_LAYER))
+			return list(TEXT_NORTH = list(-6, 2), TEXT_SOUTH = list(6, 2), TEXT_EAST = list(-3, 0, ABOVE_OBJ_LAYER), TEXT_WEST = list(3, 0, LYING_MOB_LAYER))
