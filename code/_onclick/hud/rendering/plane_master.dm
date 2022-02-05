@@ -161,13 +161,11 @@
 
 /obj/screen/plane_master/o_light_visual
 	name = "overlight light visual plane master"
-	layer = O_LIGHTING_VISUAL_LAYER
 	plane = O_LIGHTING_VISUAL_PLANE
 	render_target = O_LIGHTING_VISUAL_RENDER_TARGET
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	blend_mode = BLEND_MULTIPLY
-	render_relay_plane = null
-
+	blend_mode_override = BLEND_MULTIPLY
 
 /obj/screen/plane_master/fullscreen
 	name = "fullscreen alert plane"
