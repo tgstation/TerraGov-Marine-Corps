@@ -908,7 +908,7 @@
 		/obj/item/reagent_containers/glass/bottle/tramadol,
 		/obj/item/armor_module/module/chemsystem,
 		/obj/item/storage/large_holster/blade/machete/full_harvester,
-		/obj/item/weapon/claymore/harvester/spear,
+		/obj/item/weapon/twohanded/spear/tactical/harvester,
 		/obj/item/paper/chemsystem,
 	)
 
