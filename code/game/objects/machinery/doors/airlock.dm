@@ -449,11 +449,10 @@
 		if(!hasPower() || wires.is_cut(WIRE_BOLTS))
 			return
 	if(safe)
-		for(var/turf/turf in locs)
+		for(var/turf/turf AS in locs)
 			if(locate(/mob/living) in turf)
-				//	playsound(src.loc, 'sound/machines/buzz-two.ogg', 25, 0)	//THE BUZZING IT NEVER STOPS	-Pete
-				spawn (60 + openspeed)
-					close()
+				addtimer(CALLBACK(src, .proc/close), 6 SECONDS)
+				return
 
 	for(var/turf/turf in locs)
 		for(var/mob/living/M in turf)
