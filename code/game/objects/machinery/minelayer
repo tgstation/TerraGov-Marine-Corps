@@ -27,14 +27,12 @@
 
 	var/obj/item/card/id/id = user.get_idcard()
 	var/list/turf_list = list()
-	var/cnt = 1
 
 	for(var/turf/T AS in view(range, loc))
 		turf_list += T
 
-	while(placed <= amount && cnt <= turf_list.len)
-		var/turf/target_turf = pick(turf_list)
-		turf_list.Remove(target_turf)
+	while(placed <= amount)
+		var/turf/target_turf = pick_n_take(turf_list)
 		if(!target_turf.density && !turf_block_check(src, target_turf) && !(locate(/obj/item/explosive/mine) in range(1, target_turf)))
 			var/obj/item/explosive/mine/placed_mine = new /obj/item/explosive/mine(target_turf)
 			placed_mine.iff_signal = id?.iff_signal
@@ -45,7 +43,6 @@
 			placed_mine.tripwire = new /obj/effect/mine_tripwire(get_step(target_turf, placed_mine.dir))
 			placed_mine.tripwire.linked_mine = placed_mine
 			placed++
-			cnt++
 
 	playsound(loc, 'sound/effects/phasein.ogg', 25, 1)
 	playsound(loc, 'sound/weapons/mine_armed.ogg', 50, 1)
