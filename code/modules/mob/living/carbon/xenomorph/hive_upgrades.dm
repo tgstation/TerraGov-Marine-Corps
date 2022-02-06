@@ -266,38 +266,17 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	psypoint_cost = 600
 	icon = "primoqueen"
 
-/datum/hive_upgrade/primordial/tier_four/can_buy(mob/living/carbon/xenomorph/buyer, silent)
-	. = ..()
-	if(!buyer.hive.upgrades_by_name[PRIMORDIAL_TIER_THREE].times_bought)
-		if(!silent)
-			to_chat(buyer, span_xenonotice("You must buy the tier three ameliorations first!"))
-		return FALSE
-
 /datum/hive_upgrade/primordial/tier_three
 	name = PRIMORDIAL_TIER_THREE
 	desc = "Unlocks the primordial for the third tier"
 	psypoint_cost = 600
 	icon = "primorav"
 
-/datum/hive_upgrade/primordial/tier_three/can_buy(mob/living/carbon/xenomorph/buyer, silent)
-	. = ..()
-	if(!buyer.hive.upgrades_by_name[PRIMORDIAL_TIER_TWO].times_bought)
-		if(!silent)
-			to_chat(buyer, span_xenonotice("You must buy the tier two ameliorations first!"))
-		return FALSE
-
 /datum/hive_upgrade/primordial/tier_two
 	name = PRIMORDIAL_TIER_TWO
 	desc = "Unlocks the primordial for the second tier"
 	psypoint_cost = 600
 	icon = "primowarrior"
-
-/datum/hive_upgrade/primordial/tier_two/can_buy(mob/living/carbon/xenomorph/buyer, silent)
-	. = ..()
-	if(!buyer.hive.upgrades_by_name[PRIMORDIAL_TIER_ONE].times_bought)
-		if(!silent)
-			to_chat(buyer, span_xenonotice("You must buy the tier one ameliorations first!"))
-		return FALSE
 
 /datum/hive_upgrade/primordial/tier_one
 	name = PRIMORDIAL_TIER_ONE
