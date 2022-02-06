@@ -489,9 +489,8 @@ EXPLOSIVES
 
 /datum/supply_packs/explosives/explosives_minelayer
 	name = "M21 APRDS \"Minelayer\""
-	notes = "Contains one M21 APRDS \"Minelayer\" grenade"
-	contains = list(/obj/item/explosive/grenade/minelayer)
-	cost = 16
+	contains = list(/obj/item/minelayer)
+	cost = 5
 
 /datum/supply_packs/explosives/explosives_razor
 	name = "Razorburn grenade box crate"

@@ -29,6 +29,8 @@
 	if(.)
 		return
 
+	sleep(3 SECONDS)
+
 	var/obj/item/card/id/id = user.get_idcard()
 	var/list/turf_list = list()
 
@@ -40,7 +42,7 @@
 		if(!target_turf.density && !turf_block_check(src, target_turf) && !(locate(/obj/item/explosive/mine) in range(1, target_turf)))
 			var/obj/item/explosive/mine/placed_mine = new /obj/item/explosive/mine(loc)
 			placed_mine.throw_at(target_turf, range, 1)
-			if(!(locate(/obj/item/explosive/mine) in target_turf))
+			if(!(locate(/obj/item/explosive/mine) in get_turf(placed_mine)))
 				placed_mine.iff_signal = id?.iff_signal
 				placed_mine.anchored = TRUE
 				placed_mine.armed = TRUE
@@ -61,6 +63,7 @@
 /obj/machinery/deployable/minelayer/wrench_act(mob/living/user, obj/item/I)
 	while(stored_amount > 0)
 		new /obj/item/explosive/mine(loc)
+		stored_amount--
 
 	return ..()
 
