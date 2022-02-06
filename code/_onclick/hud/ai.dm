@@ -29,8 +29,7 @@
 	icon_state = "announcement"
 
 /obj/screen/ai/announcement/Click()
-	if(..())
-		return
+	. = ..()
 	var/mob/living/silicon/ai/AI = usr
 	AI.announcement()
 
@@ -39,8 +38,7 @@
 	icon_state = "alerts"
 
 /obj/screen/ai/announcement_help/Click()
-	if(..())
-		return
+	. = ..()
 	var/mob/living/silicon/ai/AI = usr
 	AI.announcement_help()
 

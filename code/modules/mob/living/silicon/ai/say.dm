@@ -42,13 +42,9 @@
 	return ..()
 
 // Make sure that the code compiles with AI_VOX undefined
-#ifdef AI_VOX
-#define VOX_DELAY 600
-/mob/living/silicon/ai/proc/announcement_help()
-
-	set name = "Announcement Help"
-	set desc = "Display a list of vocal words to announce to the crew."
-	set category = "AI Commands"
+#ifdef AI_VOX //if not defined skip this entire section
+#define VOX_DELAY 600 //cooldown between vox announcements, divide by 10 to get the time in seconds
+/mob/living/silicon/ai/proc/announcement_help() //displays a list of available vox words for the user to make sentences with, players can click the words to hear a preview of how they sound
 
 	if(incapacitated())
 		return
@@ -65,7 +61,7 @@
 	"}
 
 	var/index = 0
-	for(var/word in GLOB.vox_sounds)
+	for(var/word in GLOB.vox_sounds) //populate our list of available words for the user to see
 		index++
 		dat += "<A href='?src=[REF(src)];say_word=[word]'>[capitalize(word)]</A>"
 		if(index != GLOB.vox_sounds.len)
@@ -76,28 +72,26 @@
 	popup.open()
 
 
-/mob/living/silicon/ai/proc/announcement()
+/mob/living/silicon/ai/proc/announcement() //announce vox "sentence" over the comm sytem
 	var/static/announcing_vox = 0 // Stores the time of the last announcement
 	if(announcing_vox > world.time)
 		to_chat(src, span_notice("Please wait [DisplayTimeText(announcing_vox - world.time)]."))
 		return
 
-	var/message = tgui_input_text(src, "WARNING: Misuse of this verb can result in you being job banned. More help is available in 'Announcement Help'", "Announcement", src.last_vox_announcement)
+	var/message = tgui_input_text(src, "WARNING: Misuse of this verb can result in you being job banned. More help is available in 'Announcement Help'", "Announcement")
 
 	if(!message || announcing_vox > world.time)
 		return
 
-	last_vox_announcement = message
-
 	if(incapacitated())
 		return
 
-	if(control_disabled)
+	if(control_disabled) //do not allow vox announcements when disabled
 		to_chat(src, span_warning("Wireless interface disabled, unable to interact with announcement PA."))
 		return
 
 	var/list/words = splittext(trim(message), " ")
-	var/list/incorrect_words = list()
+	var/list/incorrect_words = list() //needed so we can show the user what words we don't have
 
 	if(words.len > 30)
 		words.len = 30
@@ -110,7 +104,7 @@
 		if(!GLOB.vox_sounds[word])
 			incorrect_words += word
 
-	if(incorrect_words.len)
+	if(incorrect_words.len) //if we have incorrect words show them to the user before returning
 		to_chat(src, span_notice("These words are not available on the announcement system: [english_list(incorrect_words)]."))
 		return
 
@@ -119,15 +113,15 @@
 	log_game("[key_name(src)] made a vocal announcement with the following message: [message].")
 	log_talk(message, LOG_SAY, tag="VOX Announcement")
 
-	for(var/word in words)
+	for(var/word in words) //play vox sounds to the rest of our zlevel
 		play_vox_word(word, src.z, null)
 
 
-/proc/play_vox_word(word, z_level, mob/only_listener)
+/proc/play_vox_word(word, z_level, mob/only_listener) //play vox words for mobs on our zlevel
 
 	word = lowertext(word)
 
-	if(GLOB.vox_sounds[word])
+	if(GLOB.vox_sounds[word]) //handle vox words and sent to sound stream
 
 		var/sound_file = GLOB.vox_sounds[word]
 		var/sound/voice = sound(sound_file, wait = 1, channel = CHANNEL_VOX)
@@ -137,9 +131,9 @@
 		if(!only_listener)
 			// Play voice for all mobs in the z level
 			for(var/mob/M in GLOB.player_list)
-				if(!isdeaf(M))
+				if(!isdeaf(M)) //don't play vox sounds for deaf marines
 					var/turf/T = get_turf(M)
-					if(T.z == z_level)
+					if(T.z == z_level) //we only play sounds for our zlevel
 						SEND_SOUND(M, voice)
 		else
 			SEND_SOUND(only_listener, voice)
