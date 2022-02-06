@@ -41,9 +41,10 @@
 		return MODE_RELAYED
 	return ..()
 
-// Make sure that the code compiles with AI_VOX undefined
-#ifdef AI_VOX //if not defined skip this entire section
-#define VOX_DELAY 600 //cooldown between vox announcements, divide by 10 to get the time in seconds
+///Make sure that the code compiles with AI_VOX undefined
+#ifdef AI_VOX
+///cooldown between vox announcements, divide by 10 to get the time in seconds
+#define VOX_DELAY 600
 /mob/living/silicon/ai/proc/announcement_help() //displays a list of available vox words for the user to make sentences with, players can click the words to hear a preview of how they sound
 
 	if(incapacitated())
@@ -72,7 +73,8 @@
 	popup.open()
 
 
-/mob/living/silicon/ai/proc/announcement() //announce vox "sentence" over the comm sytem
+///gets vox "sentence" from player input
+/mob/living/silicon/ai/proc/announcement()
 	var/static/announcing_vox = 0 // Stores the time of the last announcement
 	if(announcing_vox > world.time)
 		to_chat(src, span_notice("Please wait [DisplayTimeText(announcing_vox - world.time)]."))
@@ -86,7 +88,7 @@
 	if(incapacitated())
 		return
 
-	if(control_disabled) //do not allow vox announcements when disabled
+	if(control_disabled)
 		to_chat(src, span_warning("Wireless interface disabled, unable to interact with announcement PA."))
 		return
 
@@ -104,7 +106,7 @@
 		if(!GLOB.vox_sounds[word])
 			incorrect_words += word
 
-	if(incorrect_words.len) //if we have incorrect words show them to the user before returning
+	if(incorrect_words.len)
 		to_chat(src, span_notice("These words are not available on the announcement system: [english_list(incorrect_words)]."))
 		return
 
@@ -116,24 +118,24 @@
 	for(var/word in words) //play vox sounds to the rest of our zlevel
 		play_vox_word(word, src.z, null)
 
-
-/proc/play_vox_word(word, z_level, mob/only_listener) //play vox words for mobs on our zlevel
+///play vox words for mobs on our zlevel
+/proc/play_vox_word(word, z_level, mob/only_listener) 
 
 	word = lowertext(word)
 
-	if(GLOB.vox_sounds[word]) //handle vox words and sent to sound stream
+	if(GLOB.vox_sounds[word])
 
 		var/sound_file = GLOB.vox_sounds[word]
 		var/sound/voice = sound(sound_file, wait = 1, channel = CHANNEL_VOX)
 		voice.status = SOUND_STREAM
 
-	// If there is no single listener, broadcast to everyone in the same z level
+	///If there is no single listener, broadcast to everyone in the same z level
 		if(!only_listener)
-			// Play voice for all mobs in the z level
+			///Play voice for all mobs in the z level
 			for(var/mob/M in GLOB.player_list)
-				if(!isdeaf(M)) //don't play vox sounds for deaf marines
+				if(!isdeaf(M))
 					var/turf/T = get_turf(M)
-					if(T.z == z_level) //we only play sounds for our zlevel
+					if(T.z == z_level)
 						SEND_SOUND(M, voice)
 		else
 			SEND_SOUND(only_listener, voice)
