@@ -29,42 +29,57 @@
 	if(.)
 		return
 
-	sleep(3 SECONDS)
+	playsound(loc, 'sound/machines/click.ogg', 25, 1)
 
-	var/obj/item/card/id/id = user.get_idcard()
+	sleep(2 SECONDS)
+
 	var/list/turf_list = list()
 
-	for(var/turf/T AS in oview(range, loc))
+	for(var/turf/T AS in orange(range, loc))
 		turf_list += T
 
-	while(stored_amount > 0 && turf_list)
+	while(stored_amount > 0 && turf_list.len > 0)
 		var/turf/target_turf = pick_n_take(turf_list)
 		if(!target_turf.density && !turf_block_check(src, target_turf) && !(locate(/obj/item/explosive/mine) in range(1, target_turf)))
 			var/obj/item/explosive/mine/placed_mine = new /obj/item/explosive/mine(loc)
-			placed_mine.throw_at(target_turf, range, 1)
-			if(!(locate(/obj/item/explosive/mine) in get_turf(placed_mine)))
-				placed_mine.iff_signal = id?.iff_signal
-				placed_mine.anchored = TRUE
-				placed_mine.armed = TRUE
-				placed_mine.update_icon()
-				placed_mine.setDir(pick(CARDINAL_ALL_DIRS))
-				placed_mine.tripwire = new /obj/effect/mine_tripwire(get_step(target_turf, placed_mine.dir))
-				placed_mine.tripwire.linked_mine = placed_mine
-				playsound(target_turf, 'sound/weapons/mine_armed.ogg', 25, 1)
-				stored_amount--
-				sleep(0.5 SECONDS)
+			placed_mine.throw_at(target_turf, range * 2, 1, src, TRUE)
+			playsound(loc, 'sound/machines/switch.ogg', 25, 1)
+			stored_amount--
+			sleep(0.6 SECONDS)
+			deploy_mine(user, placed_mine, target_turf)
+
+	playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
+
+/obj/machinery/deployable/minelayer/proc/deploy_mine(mob/living/user, obj/item/explosive/mine/placed_mine, turf/target_turf)
+	var/obj/item/explosive/mine/located_mine = locate(/obj/item/explosive/mine) in get_turf(placed_mine)
+	if(located_mine)
+		if(located_mine.armed == TRUE)
+			return
+	var/obj/item/card/id/id = user.get_idcard()
+	placed_mine.iff_signal = id?.iff_signal
+	placed_mine.anchored = TRUE
+	placed_mine.armed = TRUE
+	placed_mine.update_icon()
+	placed_mine.setDir(pick(CARDINAL_ALL_DIRS))
+	placed_mine.tripwire = new /obj/effect/mine_tripwire(get_step(target_turf, placed_mine.dir))
+	placed_mine.tripwire.linked_mine = placed_mine
+	playsound(target_turf, 'sound/weapons/mine_armed.ogg', 25, 1)
 
 /obj/machinery/deployable/minelayer/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(istype(I, /obj/item/explosive/mine) && stored_amount <= max_amount)
 		stored_amount++
 		qdel(I)
+	if(istype(I, /obj/item/storage/box/explosive_mines))
+		for(var/obj/item/explosive/mine/content AS in I)
+			if(stored_amount < max_amount)
+				stored_amount++
+				qdel(content)
 
-/obj/machinery/deployable/minelayer/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/deployable/minelayer/disassemble(mob/user)
 	while(stored_amount > 0)
 		new /obj/item/explosive/mine(loc)
 		stored_amount--
-
 	return ..()
 
 /obj/machinery/deployable/minelayer/examine(mob/user)
