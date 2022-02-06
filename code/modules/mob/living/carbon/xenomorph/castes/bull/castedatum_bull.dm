@@ -140,9 +140,6 @@
 	// *** Health *** //
 	max_health = 325
 
-	// *** Evolution *** //
-	upgrade_threshold = TIER_TWO_PRIMO_THRESHOLD
-
 	// *** Defense *** //
 	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 50, "acid" = 33)
 
