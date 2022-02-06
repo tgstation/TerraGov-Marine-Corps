@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscadd: "Hypospray has 30u and 20u for set transfer reagent"
+  - qol: "amount per transfer in hypospray menu"
