@@ -30,7 +30,8 @@
 
 	var/tracking = FALSE
 	var/last_paper_seen = 0
-	var/last_announcement = 0 //holds world time of our last regular announcement
+	///Holds world time of our last regular announcement
+	var/last_announcement = 0
 
 	var/icon/holo_icon //Default is assigned when AI is created.
 	var/list/datum/AI_Module/current_modules = list()
@@ -189,7 +190,7 @@
 
 		ai_actual_track(pick(target))
 
-#ifdef AI_VOX //if not defined we don't need this section
+#ifdef AI_VOX
 	if(href_list["say_word"])
 		play_vox_word(href_list["say_word"], null, src)
 		return
