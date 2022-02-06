@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - code_imp: "Moving YouTool code to marine_vending.dm"
+  - bugfix: "Now you can save cable coil, crowbar, welding tool, wirecutters, wrench, and screwdriver anywhere you want in your loadout beside inside an engineering belt or tool pouch"
