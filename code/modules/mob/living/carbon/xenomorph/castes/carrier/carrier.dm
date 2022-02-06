@@ -45,4 +45,3 @@
 
 	if(statpanel("Game"))
 		stat("Stored Huggers:", "[huggers] / [xeno_caste.huggers_max]")
-		stat("Stored Eggs:", "[LAZYLEN(eggs_cur)] / [xeno_caste.eggs_max]")
