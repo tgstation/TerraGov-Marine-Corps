@@ -46,3 +46,29 @@
   - rscdel: removes welding goggles from essential engineer kit
   - balance: moves them to engineer clothing vendor instead
   - balance: meson or healthhud choice in synth vendor
+2022-02-06:
+  BraveMole:
+  - qol: The vote button is kept while changing mob
+  - qol: If a vote has only one choice (wink wink distress), it is skipped
+  - bugfix: Xeno doors are no longer opaque when opened
+  - bugfix: You can now click a door as a xeno to open it (it was opening then immediatly
+      closing)
+  - qol: Prevent warrior from lunging if the target is too far
+  - balance: Reduce big sentry scatter to 2
+  Lumipharon:
+  - code_imp: removed unneeded code
+  - bugfix: Energy pistol is no longer more accurate one handed than wielded
+  - bugfix: T-26 can actually use all 3 ammo types now
+  Mechanelize:
+  - spellcheck: fixed two overwatch typos
+  TiviPlus:
+  - bugfix: maybe fixed shuttle lights being dark
+  - bugfix: fixed movable lights colors not showing
+  Vondiech:
+  - rscadd: Heat absorbent coifs on both landing pads on icy caves for those who may
+      have forgotten to bring one!
+  - expansion: Added 6 new locations the caves of icy caves and increased the middle
+      of icy caves to be slightly more open for combat.
+  novaepee:
+  - bugfix: T-29 Smart Machinegun unwelded mob sprites; it was reversed and had no
+      back / north face sprite
