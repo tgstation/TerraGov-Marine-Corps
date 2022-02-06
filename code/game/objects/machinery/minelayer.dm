@@ -34,10 +34,10 @@
 	var/obj/item/card/id/id = user.get_idcard()
 	var/list/turf_list = list()
 
-	for(var/turf/T AS in view(range, loc))
+	for(var/turf/T AS in oview(range, loc))
 		turf_list += T
 
-	while(stored_amount > 0)
+	while(stored_amount > 0 && turf_list)
 		var/turf/target_turf = pick_n_take(turf_list)
 		if(!target_turf.density && !turf_block_check(src, target_turf) && !(locate(/obj/item/explosive/mine) in range(1, target_turf)))
 			var/obj/item/explosive/mine/placed_mine = new /obj/item/explosive/mine(loc)
