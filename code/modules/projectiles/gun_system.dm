@@ -600,6 +600,7 @@
 			return
 		if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
 			dual_wield = TRUE
+			modify_fire_delay(akimbo_additional_delay) // Adds the additional delay to auto_fire
 			if(gun_user.get_inactive_held_item() == src && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
 				return
 		if(gun_user.in_throw_mode)
@@ -650,7 +651,9 @@
 	shots_fired = 0//Let's clean everything
 	set_target(null)
 	windup_checked = WEAPON_WINDUP_NOT_CHECKED
-	dual_wield = FALSE
+	if dual_wield == TRUE
+		modify_fire_delay(-akimbo_additional_delay) // Removes the additional delay from auto_fire
+		dual_wield = FALSE
 	gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 
 ///Inform the gun if he is currently bursting, to prevent reloading
