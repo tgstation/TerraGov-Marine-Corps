@@ -34,8 +34,7 @@
 	. = ..()
 	if(.)
 		return
-	var/turf/turf_list = list()
-	turf_list = RANGE_TURFS(range, loc)
+	var/turf/turf_list = RANGE_TURFS(range, loc)
 	var/obj/item/card/id/id = user.get_idcard()
 	iff_signal = id?.iff_signal
 	playsound(loc, 'sound/machines/click.ogg', 25, 1)
@@ -77,6 +76,7 @@
 			if(stored_amount < max_amount)
 				stored_amount++
 				qdel(content)
+		return
 
 /obj/machinery/deployable/minelayer/disassemble(mob/user)
 	for(var/i = 1 to stored_amount)
