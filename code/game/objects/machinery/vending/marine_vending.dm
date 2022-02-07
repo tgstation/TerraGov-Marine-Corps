@@ -534,7 +534,6 @@
 	products = list(
 		"Surplus Special Equipment" = list(
 			/obj/item/beacon/supply_beacon = 1,
-			/obj/effect/teleporter_linker = 1,
 			/obj/item/ammo_magazine/rifle/autosniper = 3,
 			/obj/item/ammo_magazine/rifle/tx8 = 3,
 			/obj/item/ammo_magazine/rocket/sadar = 3,
