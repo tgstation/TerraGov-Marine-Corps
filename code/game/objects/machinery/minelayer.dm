@@ -3,10 +3,11 @@
 	desc = "Anti-Personnel Rapid Deploy System, APRDS for short, is a device designed to quickly deploy M20 mines in large quantities. WARNING: Operating in tight places or existing mine fields will result in reduced efficiency."
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "minelayer"
-
 	max_integrity = 200
 	flags_item = IS_DEPLOYABLE|DEPLOYED_NO_ROTATE
 	w_class = WEIGHT_CLASS_NORMAL
+	///amount of currently stored mines
+	var/stored_mines = 0
 
 /obj/item/minelayer/Initialize()
 	. = ..()
@@ -23,53 +24,53 @@
 	var/max_amount = 10
 	///radius on mine placement
 	var/range = 4
+	///time between throws
+	var/cooldown = 0.6 SECONDS
+	///stored iff signal
+	var/iff_signal
+	///list of avaliable turfs
+	var/turf/turf_list = list()
 
 /obj/machinery/deployable/minelayer/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
-
-	playsound(loc, 'sound/machines/click.ogg', 25, 1)
-
-	sleep(2 SECONDS)
-
-	var/list/turf_list = list()
-
-	for(var/turf/T AS in orange(range, loc))
-		turf_list += T
-
-	while(stored_amount > 0 && turf_list.len > 0)
-		var/turf/target_turf = pick_n_take(turf_list)
-		if(!target_turf.density && !turf_block_check(src, target_turf) && !(locate(/obj/item/explosive/mine) in range(1, target_turf)))
-			var/obj/item/explosive/mine/placed_mine = new /obj/item/explosive/mine(loc)
-			placed_mine.throw_at(target_turf, range * 2, 1, src, TRUE)
-			playsound(loc, 'sound/machines/switch.ogg', 25, 1)
-			stored_amount--
-			sleep(0.6 SECONDS)
-			deploy_mine(user, placed_mine, target_turf)
-
-	playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
-
-/obj/machinery/deployable/minelayer/proc/deploy_mine(mob/living/user, obj/item/explosive/mine/placed_mine, turf/target_turf)
-	var/obj/item/explosive/mine/located_mine = locate(/obj/item/explosive/mine) in get_turf(placed_mine)
-	if(located_mine)
-		if(located_mine.armed == TRUE)
-			return
+	turf_list = RANGE_TURFS(range, loc)
 	var/obj/item/card/id/id = user.get_idcard()
-	placed_mine.iff_signal = id?.iff_signal
-	placed_mine.anchored = TRUE
-	placed_mine.armed = TRUE
-	placed_mine.update_icon()
-	placed_mine.setDir(pick(CARDINAL_ALL_DIRS))
-	placed_mine.tripwire = new /obj/effect/mine_tripwire(get_step(target_turf, placed_mine.dir))
-	placed_mine.tripwire.linked_mine = placed_mine
-	playsound(target_turf, 'sound/weapons/mine_armed.ogg', 25, 1)
+	iff_signal = id?.iff_signal
+	playsound(loc, 'sound/machines/click.ogg', 25, 1)
+	addtimer(CALLBACK(src, .proc/throw_mine, turf_list), 2 SECONDS)
+
+///this proc is used to check for valid turfs and throw mines
+/obj/machinery/deployable/minelayer/proc/throw_mine(list/turf/list_of_turfs)
+	if(stored_amount > 0 && length(list_of_turfs))
+		var/turf/target_turf = pick_n_take(list_of_turfs)
+		if(!target_turf.density && !turf_block_check(src, target_turf) && !(locate(/obj/item/explosive/mine) in range(1, target_turf)) && line_of_sight(loc, target_turf))
+			var/obj/item/explosive/mine/mine_to_throw = new /obj/item/explosive/mine(loc)
+			mine_to_throw.throw_at(target_turf, range * 2, 1, src, TRUE)
+			stored_amount--
+			playsound(loc, 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg', 25, 1)
+			addtimer(CALLBACK(src, .proc/place_mine, target_turf, mine_to_throw), cooldown)
+			addtimer(CALLBACK(src, .proc/throw_mine, list_of_turfs), cooldown)
+		else
+			throw_mine(list_of_turfs)
+	else
+		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
+
+///this proc is used to check a turf and place mines
+/obj/machinery/deployable/minelayer/proc/place_mine(turf/T, obj/item/explosive/mine/throwed_mine)
+	var/obj/item/explosive/mine/located_mine = locate(/obj/item/explosive/mine) in get_turf(throwed_mine)
+	if(located_mine)
+		if(located_mine.armed)
+			return
+	throwed_mine.deploy_mine(null, iff_signal, FALSE)
 
 /obj/machinery/deployable/minelayer/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(istype(I, /obj/item/explosive/mine) && stored_amount <= max_amount)
 		stored_amount++
 		qdel(I)
+		return
 	if(istype(I, /obj/item/storage/box/explosive_mines))
 		for(var/obj/item/explosive/mine/content AS in I)
 			if(stored_amount < max_amount)
@@ -77,9 +78,9 @@
 				qdel(content)
 
 /obj/machinery/deployable/minelayer/disassemble(mob/user)
-	while(stored_amount > 0)
+	for(var/i = 1 to stored_amount)
 		new /obj/item/explosive/mine(loc)
-		stored_amount--
+	stored_amount = 0
 	return ..()
 
 /obj/machinery/deployable/minelayer/examine(mob/user)
