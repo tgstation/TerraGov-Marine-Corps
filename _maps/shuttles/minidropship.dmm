@@ -35,8 +35,11 @@
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "r" = (
-/obj/machinery/light{
+/obj/machinery/light/small{
 	dir = 8
+	},
+/obj/machinery/vending/nanomed/tadpolemed{
+	dir = 4
 	},
 /turf/open/floor/mainship/orange{
 	dir = 8
@@ -78,7 +81,10 @@
 	},
 /area/shuttle/minidropship)
 "I" = (
-/obj/machinery/light{
+/obj/structure/closet/walllocker/hydrant/extinguisher{
+	dir = 8
+	},
+/obj/machinery/light/small{
 	dir = 4
 	},
 /turf/open/floor/mainship/orange{

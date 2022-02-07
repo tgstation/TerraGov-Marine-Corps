@@ -421,6 +421,23 @@
 		if(WEST)
 			pixel_x = 21
 
+/obj/machinery/vending/nanomed/tadpolemed
+	name = "Flight surgeron medical equipment dispenser"
+	desc = "Dedicated for the surgeron with wings, this humble box contains a lot for its size."
+	products = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/combat = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/kelotane = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/tramadol = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 1,
+		/obj/item/stack/medical/heal_pack/gauze = 2,
+		/obj/item/stack/medical/heal_pack/ointment = 2,
+		/obj/item/healthanalyzer = 1,
+		/obj/item/stack/medical/splint = 1,
+	)
 
 /obj/machinery/vending/security
 	name = "SecTech"
