@@ -1311,6 +1311,17 @@ TUNNEL
 	///How long should the buff last
 	var/duration = 1 MINUTES
 
+/obj/structure/xeno/plant/plasma_fruit/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!isxeno(user))
+		return
+	var/mob/living/carbon/xenomorph/X = user
+	if(X.has_status_effect(STATUS_EFFECT_PLASMA_SURGE))
+		to_chat(X, span_xenowarning("We already have increased plasma regeneration!"))
+		return FALSE
+
 /obj/structure/xeno/plant/plasma_fruit/on_use(mob/user)
 	to_chat(user, span_warning("We begin consuming [src]..."))
 	if(!do_after(user, 2 SECONDS, FALSE, src))

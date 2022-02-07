@@ -38,3 +38,65 @@
   - bugfix: Fix projectiles hitting allies in aim mode
   QualityVan:
   - rscadd: Necrosis removal surgery clears germs on its own
+2022-02-05:
+  AzonStarfall:
+  - bugfix: Mapping fixes for the Minerva
+  Three333Digit:
+  - rscdel: removes optical meson scanner from engivend
+  - rscdel: removes welding goggles from essential engineer kit
+  - balance: moves them to engineer clothing vendor instead
+  - balance: meson or healthhud choice in synth vendor
+2022-02-06:
+  BraveMole:
+  - qol: The vote button is kept while changing mob
+  - qol: If a vote has only one choice (wink wink distress), it is skipped
+  - bugfix: Xeno doors are no longer opaque when opened
+  - bugfix: You can now click a door as a xeno to open it (it was opening then immediatly
+      closing)
+  - qol: Prevent warrior from lunging if the target is too far
+  - balance: Reduce big sentry scatter to 2
+  Lumipharon:
+  - code_imp: removed unneeded code
+  - bugfix: Energy pistol is no longer more accurate one handed than wielded
+  - bugfix: T-26 can actually use all 3 ammo types now
+  Mechanelize:
+  - spellcheck: fixed two overwatch typos
+  TiviPlus:
+  - bugfix: maybe fixed shuttle lights being dark
+  - bugfix: fixed movable lights colors not showing
+  Vondiech:
+  - rscadd: Heat absorbent coifs on both landing pads on icy caves for those who may
+      have forgotten to bring one!
+  - expansion: Added 6 new locations the caves of icy caves and increased the middle
+      of icy caves to be slightly more open for combat.
+  novaepee:
+  - bugfix: T-29 Smart Machinegun unwelded mob sprites; it was reversed and had no
+      back / north face sprite
+2022-02-07:
+  BraveMole:
+  - balance: Remove chain explosions
+  - qol: Robots no longer have chem in their bodies
+  Canohaaaaaaa:
+  - bugfix: 'Primordial drone : you can no longer eat a plasma fruit while under the
+      effects of plasma surge fix : Primordial drone has a proper description now'
+  Lumipharon:
+  - bugfix: DNR's no longer show as revivable on the minimap
+  RipGrayson:
+  - qol: Snow storms are significantly less blinding
+  TiviPlus:
+  - bugfix: fixed hud layering
+  Vondiech:
+  - rscadd: added heat absorbent coif crates to each LZ of ice colony.
+  Waselon:
+  - balance: T-60, T-18, TX-11, Minigun, Laser Machinegun recieved new scatter values
+  breadhunt:
+  - bugfix: Mortar flares now actually produce light
+  - balance: ..and so mortar flares are no longer useless
+  novaepee:
+  - bugfix: Fix hypospray belt not accepting specific autoinjectors
+  - code_imp: Moving YouTool code to marine_vending.dm
+  - bugfix: Now you can save cable coil, crowbar, welding tool, wirecutters, wrench,
+      and screwdriver anywhere you want in your loadout beside inside an engineering
+      belt or tool pouch
+  - rscadd: Hypospray has 30u and 20u for set transfer reagent
+  - qol: amount per transfer in hypospray menu

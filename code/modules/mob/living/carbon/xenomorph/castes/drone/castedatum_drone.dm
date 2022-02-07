@@ -149,8 +149,8 @@
 
 /datum/xeno_caste/drone/primordial
 	upgrade_name = "Primordial"
-	caste_desc = "WIP"
-	primordial_message = "WIP"
+	caste_desc = "The perfect worker."
+	primordial_message = "We shall build wonders with our claws. Glory to the hive."
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //

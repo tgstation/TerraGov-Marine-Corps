@@ -306,7 +306,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				return
 			selected.overwatch_officer = usr //Link everything together, squad, console, and officer
 			current_squad = selected
-			current_squad.message_squad("Attention - Your squad has been selected for Overwatch. Check your Status pane for objectives.")
+			current_squad.message_squad("Attention - Your squad has been selected for Overwatch. Check your Game panel for objectives.")
 			current_squad.message_squad("Your Overwatch officer is: [operator.name].")
 			if(issilicon(usr))
 				to_chat(usr, span_boldnotice("Tactical data for squad '[current_squad]' loaded. All tactical functions initialized."))

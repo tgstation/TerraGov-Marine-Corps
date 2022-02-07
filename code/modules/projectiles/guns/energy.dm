@@ -436,7 +436,6 @@
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.55
-	scatter_unwielded = 10
 	damage_falloff_mult = 0.2
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_rifle_mode/standard,
@@ -504,7 +503,6 @@
 	fire_delay = 0.15 SECONDS
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.9
-	scatter_unwielded = 0
 	damage_falloff_mult = 0.2
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_pistol_mode/standard,
@@ -588,7 +586,6 @@
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.65
-	scatter_unwielded = 15
 	damage_falloff_mult = 0.5
 	mode_list = list(
 		"Auto burst standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard,
@@ -666,7 +663,6 @@
 	fire_delay = 1 SECONDS
 	accuracy_mult = 1.35
 	accuracy_mult_unwielded = 0.5
-	scatter_unwielded = 10
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_sniper_mode/standard,
 		"Heat" = /datum/lasrifle/base/energy_sniper_mode/heat,
@@ -729,7 +725,7 @@
 
 	aim_slowdown = 1
 	wield_delay = 1.5 SECONDS
-	scatter = 4
+	scatter = 1
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 0.95
 	accuracy_mult_unwielded = 0.3

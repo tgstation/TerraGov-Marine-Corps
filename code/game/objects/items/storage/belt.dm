@@ -248,6 +248,11 @@
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/hypospray/advanced,
 		/obj/item/storage/bottlecase,
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline,
+		/obj/item/reagent_containers/hypospray/autoinjector/spaceacillin,
+		/obj/item/reagent_containers/hypospray/autoinjector/hypervene,
+		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon,
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclot,
 	)
 
 /obj/item/storage/belt/hypospraybelt/Initialize()  //The belt, with all it's magic inside!
