@@ -42,21 +42,19 @@
 
 ///this proc is used to check for valid turfs and throw mines
 /obj/machinery/deployable/minelayer/proc/throw_mine(list/turf/list_of_turfs)
-	if(stored_amount > 0 && length(list_of_turfs))
-		var/turf/target_turf = pick_n_take(list_of_turfs)
-		if(!target_turf.density && !turf_block_check(src, target_turf) && !(locate(/obj/item/explosive/mine) in range(1, target_turf)) && line_of_sight(loc, target_turf))
-			var/obj/item/explosive/mine/mine_to_throw = new /obj/item/explosive/mine(loc)
-			mine_to_throw.throw_at(target_turf, range * 2, 1, src, TRUE)
-			stored_amount--
-			playsound(loc, 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg', 25, 1)
-			addtimer(CALLBACK(src, .proc/place_mine, target_turf, mine_to_throw), cooldown)
-			addtimer(CALLBACK(src, .proc/throw_mine, list_of_turfs), cooldown)
-			return
-		else
-			throw_mine(list_of_turfs)
-			return
-	else
+	if(!stored_amount > 0 || !length(list_of_turfs))
 		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
+		return
+	var/turf/target_turf = pick_n_take(list_of_turfs)
+	if(target_turf.density || turf_block_check(src, target_turf) || locate(/obj/item/explosive/mine) in range(1, target_turf) || !line_of_sight(loc, target_turf))
+		throw_mine(list_of_turfs)
+		return
+	var/obj/item/explosive/mine/mine_to_throw = new /obj/item/explosive/mine(loc)
+	mine_to_throw.throw_at(target_turf, range * 2, 1, src, TRUE)
+	stored_amount--
+	playsound(loc, 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg', 25, 1)
+	addtimer(CALLBACK(src, .proc/place_mine, target_turf, mine_to_throw), cooldown)
+	addtimer(CALLBACK(src, .proc/throw_mine, list_of_turfs), cooldown)
 
 ///this proc is used to check a turf and place mines
 /obj/machinery/deployable/minelayer/proc/place_mine(turf/T, obj/item/explosive/mine/throwed_mine)
@@ -71,12 +69,12 @@
 		stored_amount++
 		qdel(I)
 		return
-	if(istype(I, /obj/item/storage/box/explosive_mines))
-		for(var/obj/item/explosive/mine/content AS in I)
-			if(stored_amount < max_amount)
-				stored_amount++
-				qdel(content)
+	if(!istype(I, /obj/item/storage/box/explosive_mines))
 		return
+	for(var/obj/item/explosive/mine/content AS in I)
+		if(stored_amount < max_amount)
+			stored_amount++
+			qdel(content)
 
 /obj/machinery/deployable/minelayer/disassemble(mob/user)
 	for(var/i = 1 to stored_amount)
