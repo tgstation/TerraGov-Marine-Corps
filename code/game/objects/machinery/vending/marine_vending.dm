@@ -170,6 +170,10 @@
 		),
 	)
 
+	limited_products = list(
+		/obj/item/explosive/grenade = 50
+	)
+
 	seasonal_items = list(
 		SEASONAL_GUNS = "Seasonal",
 	)
