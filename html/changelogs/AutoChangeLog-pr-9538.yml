@@ -1,0 +1,6 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "Engineers get a free teleporter in their kit."
+  - rscadd: "You can put one teleporter on your back
+sprite: Change teleporter sprite to something prettier. Sprites by Kuro"
