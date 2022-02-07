@@ -651,7 +651,7 @@
 	shots_fired = 0//Let's clean everything
 	set_target(null)
 	windup_checked = WEAPON_WINDUP_NOT_CHECKED
-	if dual_wield == TRUE
+	if (dual_wield == TRUE)
 		modify_fire_delay(-akimbo_additional_delay) // Removes the additional delay from auto_fire
 		dual_wield = FALSE
 	gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
