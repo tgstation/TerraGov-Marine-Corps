@@ -1,0 +1,10 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "Xeno upgrade threshold is now standardised (gorger, wraith and king were completly broken)"
+  - balance: "Queen get mature quicker, no other changes"
+  - qol: "Xeno can upgrade even when hurt"
+  - balance: "It's easier to get primo as a t2 and especially as a t3"
+  - balance: "When evolving up, you will lose one upgrade (for exemple, from elder T1 to mature T2). When regressing, the opposite happens. This should fix some exploits"
+  - balance: "You no longer get back full plasma when upgrading"
+  - balance: "ssd xenos can mature as well"
