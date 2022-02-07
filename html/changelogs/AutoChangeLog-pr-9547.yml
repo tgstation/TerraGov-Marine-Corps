@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - bugfix: "fixed synth vendor having a medhud when synths get a built in one"
