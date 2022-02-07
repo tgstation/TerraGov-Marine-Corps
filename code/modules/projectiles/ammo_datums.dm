@@ -731,7 +731,7 @@ datum/ammo/bullet/revolver/tp44
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 40
+	damage = 35
 	damage_falloff = 4
 	penetration = 0
 
@@ -747,7 +747,7 @@ datum/ammo/bullet/revolver/tp44
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 40
+	damage = 35
 	damage_falloff = 4
 	penetration = 0
 
