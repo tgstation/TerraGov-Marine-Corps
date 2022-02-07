@@ -1,5 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes: 
-  - bugfix: "Mortar flares now actually produce light"
-  - balance: "..and so mortar flares are no longer useless"
