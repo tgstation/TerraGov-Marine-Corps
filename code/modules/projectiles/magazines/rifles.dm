@@ -372,3 +372,16 @@
 	max_rounds = 26
 	gun_type = /obj/item/weapon/gun/rifle/mkh
 	icon_state_mini = "mag_rifle"
+
+//-------------------------------------------------------
+//SKS //
+
+/obj/item/ammo_magazine/rifle/sks
+	name = "\improper SKS-15 Round Magazine"
+	desc = "A magazine filled with 7.62X39 rifle rounds for the SKS."
+	caliber = CALIBER_762X39
+	icon_state = "sks"
+	default_ammo = /datum/ammo/bullet/rifle/heavy
+	gun_type = /obj/item/weapon/gun/rifle/sksfull
+	caliber = CALIBER_762X39
+	max_rounds = 20

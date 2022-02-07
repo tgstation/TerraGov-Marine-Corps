@@ -1365,3 +1365,61 @@
 	fire_delay = 0.25 SECONDS
 	scatter = 2
 	wield_delay = 0.6 SECONDS
+
+//-------------------------------------------------------
+// SKS
+
+/obj/item/weapon/gun/rifle/sksfull
+	name = "\improper SKS"
+	desc = "An SKS, the hunting rifle of an old world. You know that people used to hunt with spears, but books never mentioned said spears actually feed 7.62x39 rounds. "
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "sks"
+	item_state = "sks"
+	fire_sound = 'sound/weapons/guns/fire/mosin.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
+	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
+	caliber = CALIBER_762X54 //codex
+	muzzleflash_iconstate = "muzzle_flash_medium"
+	max_shells = 21 //codex
+	current_mag = /obj/item/ammo_magazine/rifle/sks
+	gun_skill_category = GUN_SKILL_RIFLES
+	type_of_casings = "cartridge"
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mosin,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/mosin,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY|GUN_AUTO_EJECTOR
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	attachable_offset = list("muzzle_x" = 37, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 19, "under_x" = 23, "under_y" = 16, "stock_x" = 15, "stock_y" = 12)
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/mosin,
+		/obj/item/attachable/stock/mosin,
+	)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.15 SECONDS
+	aim_speed_modifier = 2.5
+
+	burst_amount = 0
+	fire_delay = 0.6 SECONDS
+	extra_delay = 0.4 SECONDS
+	accuracy_mult = 1
+	scatter = 12
+	recoil = 2
+	recoil_unwielded = 4
+	aim_slowdown = 0.5
+	wield_delay = 0.4 SECONDS
+	damage_falloff_mult = 3
+
+	placed_overlay_iconstate = "wood"
