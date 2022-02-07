@@ -82,14 +82,14 @@ Stepping directly on the mine will also blow it up
 	deploy_mine(user, iff_sig)
 
 ///this proc is used to deploy a mine
-/obj/item/explosive/mine/proc/deploy_mine(mob/living/user, iff_sig, manual = TRUE)
+/obj/item/explosive/mine/proc/deploy_mine(mob/living/user, iff_sig)
 	var/mine_dir
 	iff_signal = iff_sig
 	anchored = TRUE
 	armed = TRUE
 	playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
 	update_icon()
-	if(manual)
+	if(user)
 		user.drop_held_item()
 		mine_dir = user.dir
 	else

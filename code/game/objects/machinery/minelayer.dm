@@ -28,13 +28,13 @@
 	var/cooldown = 0.6 SECONDS
 	///stored iff signal
 	var/iff_signal
-	///list of avaliable turfs
-	var/turf/turf_list = list()
+
 
 /obj/machinery/deployable/minelayer/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
+	var/turf/turf_list = list()
 	turf_list = RANGE_TURFS(range, loc)
 	var/obj/item/card/id/id = user.get_idcard()
 	iff_signal = id?.iff_signal
@@ -52,18 +52,19 @@
 			playsound(loc, 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg', 25, 1)
 			addtimer(CALLBACK(src, .proc/place_mine, target_turf, mine_to_throw), cooldown)
 			addtimer(CALLBACK(src, .proc/throw_mine, list_of_turfs), cooldown)
+			return
 		else
 			throw_mine(list_of_turfs)
+			return
 	else
 		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
 
 ///this proc is used to check a turf and place mines
 /obj/machinery/deployable/minelayer/proc/place_mine(turf/T, obj/item/explosive/mine/throwed_mine)
 	var/obj/item/explosive/mine/located_mine = locate(/obj/item/explosive/mine) in get_turf(throwed_mine)
-	if(located_mine)
-		if(located_mine.armed)
-			return
-	throwed_mine.deploy_mine(null, iff_signal, FALSE)
+	if(located_mine?.armed)
+		return
+	throwed_mine.deploy_mine(null, iff_signal)
 
 /obj/machinery/deployable/minelayer/attackby(obj/item/I, mob/user, params)
 	. = ..()
