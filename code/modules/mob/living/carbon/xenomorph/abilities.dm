@@ -26,7 +26,7 @@
 	mechanics_text = "Plant a weed node on your tile."
 	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
 	alternate_keybind_signal = COMSIG_XENOABILITY_CHOOSE_WEEDS
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = XACT_USE_LYING | XACT_USE_CLOSEDTURF
 	///the maximum range of the ability
 	var/max_range = 0
 	///The seleted type of weeds
