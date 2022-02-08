@@ -211,20 +211,8 @@ WEAPONS
 /datum/supply_packs/weapons/tesla
 	name = "Tesla Shock Rifle"
 	contains = list(
-		/obj/item/weapon/gun/energy/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla,
-	)
+		/obj/item/weapon/gun/energy/lasgun/tesla)
 	cost = 60
-
-/datum/supply_packs/ammo
-	name = "Energy Rifle cells 3x"
-	contains = list(
-		/obj/item/cell/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla,
-	)
-	cost = 10
 
 /datum/supply_packs/weapons/recoillesskit
 	name = "T-160 Recoilless rifle kit"
@@ -1015,7 +1003,7 @@ ENGINEERING
 	contains = list(/obj/machinery/power/port_gen/pacman/mobile_power)
 	cost = 20
 
-/datum/supply_packs/engineering/teleporter 
+/datum/supply_packs/engineering/teleporter
 	name = "Teleporter pads"
 	contains = list(/obj/effect/teleporter_linker)
 	cost = 50
