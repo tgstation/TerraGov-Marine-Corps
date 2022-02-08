@@ -95,8 +95,6 @@
 	*/
 	/// Normal products that are always available on the vendor.
 	var/list/products = list()
-	/// Products that track individual marine purchases, preventing a single marine from hogging all of them.
-	var/list/limited_products = list()
 	/** List of seasons whose products are added to the vendor's.
 	 *	Format for each entry is SEASON_NAME = "tab name"
 	 */
@@ -567,6 +565,7 @@
 			helmet.limit_colorable_colors(faction)
 	if(istype(new_item))
 		user.put_in_any_hand_if_possible(new_item, warning = FALSE)
+
 	vend_ready = 1
 	updateUsrDialog()
 

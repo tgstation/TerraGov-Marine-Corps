@@ -170,13 +170,33 @@
 		),
 	)
 
-	limited_products = list(
-		/obj/item/explosive/grenade = 50
-	)
-
 	seasonal_items = list(
 		SEASONAL_GUNS = "Seasonal",
 	)
+
+	/// Grenades capable of creating chain explosions, limits individual vending. Intended to prevent server crashes.
+	var/list/obj/item/explosive/limited_grenades = list(
+		/obj/item/explosive/grenade,
+		/obj/item/explosive/grenade/m15,
+		/obj/item/explosive/grenade/impact
+	)
+	/// How many limited_grenades in total are you allowed to vend
+	var/max_grenades = 5
+
+/obj/machinery/vending/weapon/vend(datum/vending_product/R, mob/user)
+	if(limited_grenades.Find(R.product_path))
+		var/test = GLOB.vending_limited_grenades_records[user]
+		if(GLOB.vending_limited_grenades_records[user] >= max_grenades)
+			to_chat(user, span_warning("ERROR : [user.name] you have reached your explosive grenade quota of [max_grenades]."))
+			flick(icon_deny, src)
+			return
+		GLOB.vending_limited_grenades_records[user] = min(max_grenades, GLOB.vending_limited_grenades_records[user] + 1)
+	return ..()
+
+/obj/machinery/vending/weapon/stock(obj/item/item_to_stock, mob/user, recharge = FALSE)
+	. = ..()
+	if(limited_grenades.Find(item_to_stock.type))
+		GLOB.vending_limited_grenades_records[user] = max(0, GLOB.vending_limited_grenades_records[user] - 1)
 
 /obj/machinery/vending/weapon/hvh
 

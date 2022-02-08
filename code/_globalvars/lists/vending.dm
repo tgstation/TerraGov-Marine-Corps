@@ -10,3 +10,5 @@
 GLOBAL_LIST_EMPTY(vending_records)
 GLOBAL_LIST_EMPTY(vending_hidden_records)
 GLOBAL_LIST_EMPTY(vending_coin_records)
+/// Counts who bought how many limited_grenades total
+GLOBAL_LIST_EMPTY(vending_limited_grenades_records)
