@@ -59,7 +59,7 @@
 	starting_attachments = list(/obj/item/armor_module/armor/cape_highlight/scarf)
 
 /obj/item/armor_module/armor/cape/short
-	name = "6E Chameleon Cape (Short)"
+	name = "6E chameleon cape (short)"
 	greyscale_config = /datum/greyscale_config/cape/short
 	starting_attachments = list()
 
