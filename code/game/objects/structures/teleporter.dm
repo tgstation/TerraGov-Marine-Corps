@@ -99,8 +99,8 @@
 		return FALSE
 	if(!do_after(user, 2 SECONDS, TRUE, src))
 		return FALSE
-	I.forceMove(src)
 	user.temporarilyRemoveItemFromInventory(I)
+	I.forceMove(internal_item)
 	kit.cell = I
 	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 	update_icon()
