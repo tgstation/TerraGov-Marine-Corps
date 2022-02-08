@@ -518,6 +518,16 @@
 	to_chat(user, span_notice("You remove the cell from [src]."))
 	icon_state = "handheldcharger_black_empty"
 
+/obj/item/tool/handheld_charger/attack_hand_alternate(mob/living/user)
+	if(!cell)
+		return ..()
+	cell.update_icon()
+	user.put_in_active_hand(cell)
+	cell = null
+	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
+	to_chat(user, span_notice("You remove the cell from [src]."))
+	icon_state = "handheldcharger_black_empty"
+
 
 /obj/item/tool/handheld_charger/Destroy()
 	QDEL_NULL(cell)
