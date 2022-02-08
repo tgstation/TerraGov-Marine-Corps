@@ -46,7 +46,7 @@
 
 
 /obj/item/armor_module/armor/cape/half
-	name = "6E Chameleon Cape (Half)"
+	name = "6E chameleon cape (half)"
 	desc = "This version of the 6E cape only has one color. However, it is five percent cheaper. It also is equiped with thermal insulators so it will double as a blanket. \n Attack with green facepaint to color. Attaches onto a uniform."
 	greyscale_config = /datum/greyscale_config/cape/half
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
