@@ -45,7 +45,6 @@
 	// *** Carrier Abilities *** //
 	huggers_max = 4
 	hugger_delay = 2.5 SECONDS
-	eggs_max = 3
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -93,7 +92,6 @@
 	// *** Carrier Abilities *** //
 	huggers_max = 5
 	hugger_delay = 2.5 SECONDS
-	eggs_max = 4
 
 /datum/xeno_caste/carrier/elder
 	upgrade_name = "Elder"
@@ -126,7 +124,6 @@
 	// *** Carrier Abilities *** //
 	huggers_max = 6
 	hugger_delay = 2 SECONDS
-	eggs_max = 5
 
 /datum/xeno_caste/carrier/ancient
 	upgrade_name = "Ancient"
@@ -159,7 +156,6 @@
 	// *** Carrier Abilities *** //
 	huggers_max = 7
 	hugger_delay = 1.5 SECONDS
-	eggs_max = 6
 
 /datum/xeno_caste/carrier/primodial
 	upgrade_name = "Primordial"
@@ -189,7 +185,6 @@
 	// *** Carrier Abilities *** //
 	huggers_max = 7
 	hugger_delay = 1.5 SECONDS
-	eggs_max = 6
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

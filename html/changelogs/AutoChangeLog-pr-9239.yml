@@ -1,0 +1,6 @@
+author: "hyper2snyper"
+delete-after: True
+changes: 
+  - rscadd: "Adds the 6E Chameleon Cape"
+  - bugfix: "Fixes the Tyr neck guard issue where it layered over everything including smoke and such."
+  - code_imp: "Modified attachment code to rely on the /modular armor type less."

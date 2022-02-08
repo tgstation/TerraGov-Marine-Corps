@@ -408,7 +408,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define GOGGLES_LAYER 11	//For putting Ballistic goggles and potentially other things above masks
 #define HEAD_LAYER 10
 #define COLLAR_LAYER 9
-#define HANDCUFF_LAYER 8
+#define CAPE_LAYER 8
+#define HANDCUFF_LAYER 7
 #define L_HAND_LAYER 6
 #define R_HAND_LAYER 5
 #define BURST_LAYER 4 //Chestburst overlay

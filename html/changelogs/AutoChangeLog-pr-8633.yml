@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - rscadd: "Added a motorbike sidecar which can be bought in req, attached to motorbikes and detached with a wrench
+spriteadd: Sprite by xana"
