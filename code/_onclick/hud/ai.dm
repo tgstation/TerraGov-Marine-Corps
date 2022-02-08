@@ -24,6 +24,27 @@
 	name = "Show Camera List"
 	icon_state = "camera"
 
+/obj/screen/ai/announcement
+	name = "Make Vox Announcement"
+	icon_state = "announcement"
+
+/obj/screen/ai/announcement/Click()
+	. = ..()
+	if(.)
+		return
+	var/mob/living/silicon/ai/AI = usr
+	AI.announcement()
+
+/obj/screen/ai/announcement_help
+	name = "Vox Announcement Help"
+	icon_state = "alerts"
+
+/obj/screen/ai/announcement_help/Click()
+	. = ..()
+	if(.)
+		return
+	var/mob/living/silicon/ai/AI = usr
+	AI.announcement_help()
 
 /obj/screen/ai/camera_list/Click()
 	. = ..()
@@ -103,6 +124,16 @@
 //Track
 	using = new /obj/screen/ai/camera_track()
 	using.screen_loc = ui_ai_track_with_camera
+	static_inventory += using
+
+//VOX
+	using = new /obj/screen/ai/announcement()
+	using.screen_loc = ui_ai_announcement
+	static_inventory += using
+
+//VOX Help
+	using = new /obj/screen/ai/announcement_help()
+	using.screen_loc = ui_ai_announcement_help
 	static_inventory += using
 
 //Camera light

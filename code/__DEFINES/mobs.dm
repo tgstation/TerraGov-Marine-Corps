@@ -1,5 +1,7 @@
 //Some mob defines below
 #define AI_CAMERA_LUMINOSITY 6
+///Comment out if you don't want VOX to be enabled and have players download the voice sounds.
+#define AI_VOX
 
 //Mob movement define
 #define DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER 1.6
