@@ -317,6 +317,8 @@
 	fire_delay = 2
 	default_ammo_type = /obj/item/cell/lasgun/lasrifle
 	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle)
+	var/list/datum/lasrifle/base/mode_list = list(
+	)
 
 /datum/lasrifle/base
 	///how much power the gun uses on this mode when shot.
