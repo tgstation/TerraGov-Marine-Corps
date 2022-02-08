@@ -24,7 +24,7 @@
 	///Callback to ask the parent to fire
 	var/datum/callback/callback_fire
 
-/datum/component/automatedfire/autofire/Initialize(_auto_fire_shot_delay = 0.3 SECONDS, _burstfire_shot_delay, _burst_shots_to_fire = 3, _fire_mode = GUN_FIREMODE_SEMIAUTO, datum/callback/_callback_bursting, datum/callback/_callback_reset_fire, datum/callback/_callback_fire)
+/datum/component/automatedfire/autofire/Initialize(_auto_fire_shot_delay = 0.3 SECONDS, _auto_burst_fire_shot_delay, _burstfire_shot_delay, _burst_shots_to_fire = 3, _fire_mode = GUN_FIREMODE_SEMIAUTO, datum/callback/_callback_bursting, datum/callback/_callback_reset_fire, datum/callback/_callback_fire)
 	. = ..()
 
 	RegisterSignal(parent, COMSIG_GUN_FIRE_MODE_TOGGLE, .proc/modify_fire_mode)
@@ -37,7 +37,7 @@
 	auto_fire_shot_delay = _auto_fire_shot_delay
 	burstfire_shot_delay = _burstfire_shot_delay
 	burst_shots_to_fire = _burst_shots_to_fire
-	auto_burst_fire_shot_delay = 3 * auto_fire_shot_delay
+	auto_burst_fire_shot_delay = _auto_burst_fire_shot_delay ? _auto_burst_fire_shot_delay : 2 * auto_fire_shot_delay
 	fire_mode = _fire_mode
 	callback_bursting = _callback_bursting
 	callback_reset_fire = _callback_reset_fire

@@ -163,7 +163,7 @@
 	if(!locate(/obj/effect/alien/weeds) in loc)
 		new /obj/effect/alien/weeds(loc)
 
-/obj/structure/mineral_door/resin/CanAllowThrough(atom/movable/mover, turf/target)
+/obj/structure/mineral_door/resin/Cross(atom/movable/mover, turf/target)
 	. = ..()
 	if(!. && isxeno(mover))
 		Open()
@@ -210,7 +210,7 @@
 	playsound(loc, "alien_resin_move", 25)
 	flick("[mineralType]opening",src)
 	density = FALSE
-	opacity = FALSE
+	set_opacity(FALSE)
 	state = 1
 	update_icon()
 	addtimer(CALLBACK(src, .proc/Close), close_delay)
@@ -231,7 +231,7 @@
 /// Change the icon and density of the door
 /obj/structure/mineral_door/resin/proc/do_close()
 	density = TRUE
-	opacity = TRUE
+	set_opacity(TRUE)
 	state = 0
 	update_icon()
 	isSwitchingStates = 0

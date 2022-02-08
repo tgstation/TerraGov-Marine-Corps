@@ -206,8 +206,116 @@
 	)
 	idle_power_usage = 211
 
+/obj/machinery/vending/medical/shipside
+	isshared = TRUE
+	wrenchable = FALSE
+	products = list(
+		"Hypospray" = list (
+			/obj/item/defibrillator = 2,
+			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 15,
+			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 9,
+			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 15,
+			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 15,
+			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 6,
+		),
+		"Reagent Bottle" = list(
+			/obj/item/reagent_containers/glass/bottle/dylovene = 12,
+			/obj/item/reagent_containers/glass/bottle/bicaridine = 12,
+			/obj/item/reagent_containers/glass/bottle/inaprovaline = 12,
+			/obj/item/reagent_containers/glass/bottle/sleeptoxin = 2,
+			/obj/item/reagent_containers/glass/bottle/spaceacillin = 12,
+			/obj/item/reagent_containers/glass/bottle/peridaxon = 6,
+			/obj/item/reagent_containers/glass/bottle/kelotane = 12,
+			/obj/item/reagent_containers/glass/bottle/dexalin = 12,
+			/obj/item/reagent_containers/glass/bottle/tramadol = 12,
+			/obj/item/reagent_containers/glass/bottle/oxycodone = 12,
+			/obj/item/reagent_containers/glass/bottle/polyhexanide = 12,
+			/obj/item/reagent_containers/glass/bottle/medicalnanites = 12,
+		),
+		"Pill Bottle" = list(
+			/obj/item/storage/pill_bottle/peridaxon = 6,
+			/obj/item/storage/pill_bottle/russian_red = 4,
+		),
+		"Heal Pack" = list(
+			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 15,
+			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 15,
+			/obj/item/stack/medical/heal_pack/ointment = -1,
+			/obj/item/stack/medical/heal_pack/gauze = -1,
+			/obj/item/stack/medical/splint = 15,
+		),
+		"Misc" = list(
+			/obj/item/healthanalyzer = 15,
+			/obj/item/clothing/glasses/hud/health = 6,
+			/obj/item/storage/belt/medical = 6,
+			/obj/item/reagent_containers/syringe = 20,
+			/obj/item/tool/research/xeno_analyzer = 5,
+			/obj/item/tool/research/excavation_tool = 5,
+		),
+		"Training Toxins" = list(
+			/obj/item/reagent_containers/glass/bottle/toxin = 1,
+			/obj/item/reagent_containers/glass/bottle/neurotoxin = 1,
+			/obj/item/reagent_containers/glass/bottle/neurotoxin/light = 1,
+			/obj/item/reagent_containers/glass/bottle/xeno_hemodile = 1,
+			/obj/item/reagent_containers/glass/bottle/xeno_transvitox = 1,
+			/obj/item/reagent_containers/glass/bottle/xeno_sanguinal = 1,
+		)
+	)
+
 /obj/machinery/vending/medical/rebel
 	req_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
+	isshared = TRUE
+	wrenchable = FALSE
+	products = list(
+		"Hypospray" = list (
+			/obj/item/defibrillator = 2,
+			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 15,
+			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 9,
+			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 15,
+			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 15,
+			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 6,
+		),
+		"Reagent Bottle" = list(
+			/obj/item/reagent_containers/glass/bottle/dylovene = 12,
+			/obj/item/reagent_containers/glass/bottle/bicaridine = 12,
+			/obj/item/reagent_containers/glass/bottle/inaprovaline = 12,
+			/obj/item/reagent_containers/glass/bottle/sleeptoxin = 2,
+			/obj/item/reagent_containers/glass/bottle/spaceacillin = 12,
+			/obj/item/reagent_containers/glass/bottle/peridaxon = 6,
+			/obj/item/reagent_containers/glass/bottle/kelotane = 12,
+			/obj/item/reagent_containers/glass/bottle/dexalin = 12,
+			/obj/item/reagent_containers/glass/bottle/tramadol = 12,
+			/obj/item/reagent_containers/glass/bottle/oxycodone = 12,
+			/obj/item/reagent_containers/glass/bottle/polyhexanide = 12,
+			/obj/item/reagent_containers/glass/bottle/medicalnanites = 12,
+		),
+		"Pill Bottle" = list(
+			/obj/item/storage/pill_bottle/peridaxon = 6,
+			/obj/item/storage/pill_bottle/russian_red = 4,
+		),
+		"Heal Pack" = list(
+			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 15,
+			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 15,
+			/obj/item/stack/medical/heal_pack/ointment = -1,
+			/obj/item/stack/medical/heal_pack/gauze = -1,
+			/obj/item/stack/medical/splint = 15,
+		),
+		"Misc" = list(
+			/obj/item/healthanalyzer = 15,
+			/obj/item/clothing/glasses/hud/health = 6,
+			/obj/item/storage/belt/medical = 6,
+			/obj/item/reagent_containers/syringe = 20,
+			/obj/item/tool/research/xeno_analyzer = 5,
+			/obj/item/tool/research/excavation_tool = 5,
+		),
+		"Training Toxins" = list(
+			/obj/item/reagent_containers/glass/bottle/toxin = 1,
+			/obj/item/reagent_containers/glass/bottle/neurotoxin = 1,
+			/obj/item/reagent_containers/glass/bottle/neurotoxin/light = 1,
+			/obj/item/reagent_containers/glass/bottle/xeno_hemodile = 1,
+			/obj/item/reagent_containers/glass/bottle/xeno_transvitox = 1,
+			/obj/item/reagent_containers/glass/bottle/xeno_sanguinal = 1,
+		)
+	)
 
 /obj/machinery/vending/medical/valhalla
 	use_power = NO_POWER_USE
@@ -449,21 +557,6 @@
 	)
 	idle_power_usage = 211
 
-/obj/machinery/vending/tool
-	name = "YouTool"
-	desc = "Tools for tools."
-	icon_state = "tool"
-	icon_deny = "tool-deny"
-	isshared = TRUE
-	products = list(
-		/obj/item/stack/cable_coil = -1,
-		/obj/item/tool/crowbar = -1,
-		/obj/item/tool/weldingtool = -1,
-		/obj/item/tool/wirecutters = -1,
-		/obj/item/tool/wrench = -1,
-		/obj/item/tool/screwdriver = -1,
-	)
-
 /obj/machinery/vending/engivend
 	name = "Engi-Vend"
 	desc = "Spare engineer vending. What? Did you expect some witty description?"
@@ -478,6 +571,9 @@
 		/obj/item/cell/high = 10,
 		/obj/item/clothing/head/hardhat = 4,
 	)
+
+/obj/machinery/vending/engivend/nopower
+	use_power = NO_POWER_USE
 
 //This one's from bay12
 /obj/machinery/vending/robotics
@@ -543,12 +639,6 @@
 	use_power = NO_POWER_USE
 
 /obj/machinery/vending/sovietsoda/nopower
-	use_power = NO_POWER_USE
-
-/obj/machinery/vending/tool/nopower
-	use_power = NO_POWER_USE
-
-/obj/machinery/vending/engivend/nopower
 	use_power = NO_POWER_USE
 
 /obj/machinery/vending/engineering/nopower

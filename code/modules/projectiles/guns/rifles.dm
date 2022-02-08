@@ -82,6 +82,7 @@
 	burst_delay = 0.1 SECONDS
 	accuracy_mult = 1.10
 	scatter = 2
+	burst_scatter_mult = 0.25
 	burst_amount = 4
 	aim_slowdown = 0.30
 	damage_falloff_mult = 0.9
@@ -739,7 +740,7 @@
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.4
 	accuracy_mult = 1
-	scatter = 15
+	scatter = 10
 	scatter_unwielded = 45
 
 	placed_overlay_iconstate = "lmg"
@@ -1122,6 +1123,7 @@
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/compensator,
+		/obj/item/attachable/bipod,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -1239,6 +1241,7 @@
 	accuracy_mult = 1.2
 	scatter = 0
 	scatter_unwielded = 15
+	burst_scatter_mult = 0.33
 	aim_slowdown = 0.45
 
 /obj/item/weapon/gun/rifle/tx11/scopeless

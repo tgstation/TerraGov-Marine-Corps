@@ -1354,7 +1354,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "eu" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical/shipside,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -6812,7 +6812,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_umbilical)
 "vB" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical/shipside,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
@@ -16714,7 +16714,7 @@
 	},
 /area/mainship/hallways/hangar)
 "Ze" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical/shipside,
 /obj/machinery/light{
 	dir = 8
 	},

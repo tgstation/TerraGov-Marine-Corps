@@ -520,6 +520,9 @@
 		/obj/item/tool/lighter/random = 20,
 	)
 
+/obj/machinery/vending/cigarette/nopower
+	use_power = NO_POWER_USE
+
 /obj/machinery/vending/cargo_supply
 	name = "\improper Operational Supplies Vendor"
 	desc = "A large vendor for dispensing specialty and bulk supplies. Restricted to cargo personnel only."
@@ -531,7 +534,6 @@
 	products = list(
 		"Surplus Special Equipment" = list(
 			/obj/item/beacon/supply_beacon = 1,
-			/obj/effect/teleporter_linker = 1,
 			/obj/item/ammo_magazine/rifle/autosniper = 3,
 			/obj/item/ammo_magazine/rifle/tx8 = 3,
 			/obj/item/ammo_magazine/rocket/sadar = 3,
@@ -1116,6 +1118,10 @@
 			/obj/item/clothing/shoes/marine/full = -1,
 			/obj/item/clothing/under/marine/robotic = -1,
 			/obj/item/armor_module/armor/badge = -1,
+			/obj/item/armor_module/armor/cape = -1,
+			/obj/item/armor_module/armor/cape/half = -1,
+			/obj/item/armor_module/armor/cape/scarf = -1,
+			/obj/item/armor_module/armor/cape/short = -1,
 		),
 		"Webbings" = list(
 			/obj/item/armor_module/storage/uniform/black_vest = -1,
@@ -1291,5 +1297,20 @@
 		)
 	)
 
-/obj/machinery/vending/cigarette/nopower
+/obj/machinery/vending/tool
+	name = "YouTool"
+	desc = "Tools for tools."
+	icon_state = "tool"
+	icon_deny = "tool-deny"
+	isshared = TRUE
+	products = list(
+		/obj/item/stack/cable_coil = -1,
+		/obj/item/tool/crowbar = -1,
+		/obj/item/tool/weldingtool = -1,
+		/obj/item/tool/wirecutters = -1,
+		/obj/item/tool/wrench = -1,
+		/obj/item/tool/screwdriver = -1,
+	)
+
+/obj/machinery/vending/tool/nopower
 	use_power = NO_POWER_USE
