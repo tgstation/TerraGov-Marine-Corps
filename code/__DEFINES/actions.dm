@@ -9,10 +9,11 @@
 #define XACT_USE_AGILITY (1 << 8) // ignore agility mode
 #define XACT_TARGET_SELF (1 << 9) // allow self-targetting
 #define XACT_IGNORE_PLASMA (1 << 10) // ignore plasma cost
-#define XACT_IGNORE_COOLDOWN (1 << 11) // ignore cooldown
-#define XACT_IGNORE_DEAD_TARGET (1 << 12) // bypass checks of a dead target
-#define XACT_IGNORE_SELECTED_ABILITY (1 << 13) // bypass the check of the selected ability
-#define XACT_DO_AFTER_ATTACK (1 << 14) //Let the xeno attack the object and perform the ability.
+#define XACT_USE_CLOSEDTURF (1 << 11) // can be used while being on a closed turf.
+#define XACT_IGNORE_COOLDOWN (1 << 12) // ignore cooldown
+#define XACT_IGNORE_DEAD_TARGET (1 << 13) // bypass checks of a dead target
+#define XACT_IGNORE_SELECTED_ABILITY (1 << 14) // bypass the check of the selected ability
+#define XACT_DO_AFTER_ATTACK (1 << 15) //Let the xeno attack the object and perform the ability.
 
 #define XABB_TURF_TARGET (1 << 0) // ability targets turfs
 #define XABB_MOB_TARGET (1 << 1) // ability targets mobs
