@@ -175,7 +175,7 @@
 	)
 
 	/// Grenades capable of creating chain explosions, limits individual vending. Intended to prevent server crashes.
-	var/list/obj/item/explosive/limited_grenades = list(
+	var/list/obj/item/explosive/grenade/limited_grenades = list(
 		/obj/item/explosive/grenade,
 		/obj/item/explosive/grenade/m15,
 		/obj/item/explosive/grenade/impact
