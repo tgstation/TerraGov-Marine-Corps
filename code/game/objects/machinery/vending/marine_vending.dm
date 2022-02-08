@@ -915,8 +915,8 @@
 	desc = "A marine medic equipment vendor"
 	product_ads = "They were gonna die anyway.;Let's get space drugged!"
 	req_access = list(ACCESS_MARINE_MEDPREP)
-	icon_state = "marinemed"
-	icon_deny = "marinemed-deny"
+	icon_state = "corpsmanvendor"
+	icon_deny = "corpsmanvendor-deny"
 	wrenchable = FALSE
 
 	products = list(

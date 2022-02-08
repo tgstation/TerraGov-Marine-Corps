@@ -3889,6 +3889,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/evacuation)
+"nd" = (
+/obj/machinery/vending/marine_medic,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/general)
 "nf" = (
 /obj/structure/lattice,
 /turf/closed/shuttle/ert{
@@ -27037,7 +27041,7 @@ tc
 dm
 Hv
 sr
-IH
+nd
 JM
 KR
 sr
