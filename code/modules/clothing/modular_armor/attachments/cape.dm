@@ -1,5 +1,5 @@
 /obj/item/armor_module/armor/cape
-	name = "6E Chameleon Cape (Long)"
+	name = "6E chameleon cape (long)"
 	desc = "To improve on the design of the 7E badge, this cape is capable of two colors, for all your fashion needs. It also is equiped with thermal insulators so it will double as a blanket. \n Attack with green facepaint to color. Attaches onto a uniform. Activate it to toggle the hood."
 	icon_state = "cape"
 	slot = ATTACHMENT_SLOT_CAPE
