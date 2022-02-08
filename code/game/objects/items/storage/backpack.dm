@@ -844,8 +844,6 @@
 	ENABLE_BITFIELD(flags_item, IS_DEPLOYED)
 	affecting_list = list()
 	for(var/mob/living/carbon/human/human in view(3))
-		if(!line_of_sight(src, human, 2))
-			continue
 		RegisterSignal(human, COMSIG_PARENT_QDELETING, .proc/on_affecting_qdel)
 		affecting_list[human] = beam(human, "blood_light")
 		human.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 50)
@@ -854,34 +852,35 @@
 	START_PROCESSING(SSprocessing, src)
 
 /obj/item/storage/backpack/dispenser/proc/on_affecting_qdel(datum/source)
+	SIGNAL_HANDLER
 	affecting_list -= source
 
 /obj/item/storage/backpack/dispenser/CtrlClick(mob/user)
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYING))
-		if(!can_interact(user))
-			return
-		balloon_alert_to_viewers("Undeploying...")
-
-		icon_state = "dispenser"
-		flick("dispenser_undeploy", src)
-		ENABLE_BITFIELD(flags_item, IS_DEPLOYING)
-		for(var/turf/turfs in range(2, src))
-			UnregisterSignal(turfs, COMSIG_ATOM_ENTERED)
-		for(var/mob/living/carbon/human/affecting AS in affecting_list)
-			qdel(affecting_list[affecting])
-			UnregisterSignal(affecting, COMSIG_PARENT_QDELETING)
-		affecting_list = null
-		STOP_PROCESSING(SSobj, src)
-		addtimer(CALLBACK(src, .proc/undeploy), 4.2 SECONDS)
+		return ..()
+	if(!can_interact(user))
 		return
-	return ..()
+	balloon_alert_to_viewers("Undeploying...")
+
+	icon_state = "dispenser"
+	flick("dispenser_undeploy", src)
+	ENABLE_BITFIELD(flags_item, IS_DEPLOYING)
+	for(var/turf/turfs in range(2, src))
+		UnregisterSignal(turfs, COMSIG_ATOM_ENTERED)
+	for(var/mob/living/carbon/human/affecting AS in affecting_list)
+		qdel(affecting_list[affecting])
+		UnregisterSignal(affecting, COMSIG_PARENT_QDELETING)
+	affecting_list = null
+	STOP_PROCESSING(SSobj, src)
+	addtimer(CALLBACK(src, .proc/undeploy), 4.2 SECONDS)
 
 /obj/item/storage/backpack/dispenser/proc/undeploy()
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		density = FALSE
-		anchored = FALSE
-		DISABLE_BITFIELD(flags_item, IS_DEPLOYED)
-		DISABLE_BITFIELD(flags_item, IS_DEPLOYING)
+		return
+	density = FALSE
+	anchored = FALSE
+	DISABLE_BITFIELD(flags_item, IS_DEPLOYED)
+	DISABLE_BITFIELD(flags_item, IS_DEPLOYING)
 
 
 
