@@ -100,3 +100,41 @@
       belt or tool pouch
   - rscadd: Hypospray has 30u and 20u for set transfer reagent
   - qol: amount per transfer in hypospray menu
+2022-02-08:
+  BraveMole:
+  - bugfix: No more weird shuffle when moving diagonaly
+  - balance: Xeno upgrade threshold is now standardised (gorger, wraith and king were
+      completly broken)
+  - balance: Queen get mature quicker, no other changes
+  - qol: Xeno can upgrade even when hurt
+  - balance: It's easier to get primo as a t2 and especially as a t3
+  - balance: When evolving up, you will lose one upgrade (for exemple, from elder
+      T1 to mature T2). When regressing, the opposite happens. This should fix some
+      exploits
+  - balance: You no longer get back full plasma when upgrading
+  - balance: ssd xenos can mature as well
+  - balance: Engineers get a free teleporter in their kit.
+  - rscadd: 'You can put one teleporter on your back sprite: Change teleporter sprite
+      to something prettier. Sprites by Kuro'
+  - balance: Primo runner snatch windup reduced from 1 seconds to 0,5
+  Lumipharon:
+  - rscadd: new var to control autoburst extra (extra) delay
+  RipGrayson:
+  - balance: Plasmacutters will now cut down walls without leaving a girder
+  - bugfix: Plasmacutters now respect resistance flags and cannot destroy turfs that
+      have RESIST_ALL or PLASMACUTTER_IMMUNE.
+  - bugfix: Plasmacutters no longer spam "can't cut through this" messages when destroying
+      some closed turfs.
+  - bugfix: Fixes a rare situation where plasmacutters would take multiple charges
+      to cut down some ship walls.
+  - refactor: Refactored plasmacutter behavior for closed turfs.
+  TiviPlus:
+  - bugfix: fixed synth vendor having a medhud when synths get a built in one
+  - bugfix: fixed some defender primordial bugs
+  novaepee:
+  - code_imp: Difference between shipside and planetside NanotrasenMed Plus
+  - rscadd: shipside NanotrasenMed Plus is now shared
+  - balance: All shipside shall have the same amount of medical supplies that come
+      out of the shipside NanotrasenMed Plus
+  - balance: shipside NanotrasenMed Plus cannot be moved
+  - bugfix: no nade chain in any item

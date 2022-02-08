@@ -1,7 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - code_imp: "Difference between shipside and planetside NanotrasenMed Plus"
-  - rscadd: "shipside NanotrasenMed Plus is now shared"
-  - balance: "All shipside shall have the same amount of medical supplies that come out of the shipside NanotrasenMed Plus"
-  - balance: "shipside NanotrasenMed Plus cannot be moved"
