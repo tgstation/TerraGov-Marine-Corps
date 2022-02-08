@@ -21,37 +21,25 @@
 		"Purple" = VISOR_PALETTE_PURPLE,
 		"Blue" = VISOR_PALETTE_BLUE,
 	)
+	secondary_color = TRUE
 	flags_item_map_variant = NONE
 	///whether this helmet should be using its emissive overlay or not
 	var/visor_emissive_on = TRUE
 	///Whether or not the helmet is allowed to turn its emissive on or off.
 	var/allow_emissive = TRUE
 
-
-/obj/item/armor_module/armor/visor/examine(mob/user, distance, infix, suffix)
-	. = ..()
-	to_chat(user, "Click the visor with paint to color the visor.")
-
 /obj/item/armor_module/armor/visor/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY_ALTERNATE, .proc/handle_color)
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/extra_examine)
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, .proc/toggle_emissive)
 	if(visor_emissive_on)
 		parent.AddElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, greyscale_config, greyscale_colors)
 	update_icon()
 
 /obj/item/armor_module/armor/visor/on_detach(obj/item/detaching_from, mob/user)
-	UnregisterSignal(parent, list(COMSIG_CLICK_RIGHT, COMSIG_PARENT_EXAMINE, COMSIG_PARENT_ATTACKBY_ALTERNATE))
+	UnregisterSignal(parent, COMSIG_ATOM_ATTACK_HAND_ALTERNATE)
 	parent.RemoveElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, greyscale_config, greyscale_colors)
 	update_icon()
 	return ..()
-
-///Colors the visor when the parent is right clicked with facepaint.
-/obj/item/armor_module/armor/visor/proc/handle_color(datum/source, obj/I, mob/user)
-	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, /atom/proc/attackby, I, user)
-	return COMPONENT_NO_AFTERATTACK
 
 ///Toggles the visors emmisiveness if allowed.
 /obj/item/armor_module/armor/visor/proc/toggle_emissive(datum/source, mob/living/user)
@@ -68,9 +56,8 @@
 	parent.update_icon()
 	return COMPONENT_NO_ATTACK_HAND
 
-///Relays the extra controls to the user when the parent is examined.
-/obj/item/armor_module/armor/visor/proc/extra_examine(datum/source, mob/user)
-	to_chat(user, "Right click the helmet with paint to color the visor internal lighting.")
+/obj/item/armor_module/armor/visor/extra_examine(datum/source, mob/user)
+	. = ..()
 	if(!istype(greyscale_config, /datum/greyscale_config/modular_helmet_visor))
 		return
 	to_chat(user, "Right click the helmet to toggle the visor internal lighting.")
