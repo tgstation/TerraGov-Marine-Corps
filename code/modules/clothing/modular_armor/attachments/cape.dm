@@ -54,7 +54,7 @@
 
 /obj/item/armor_module/armor/cape/scarf
 	name = "6E chameleon cape (scarf)"
-	desc =  "To improve on the design of the 7E badge, this cape is capable of two colors, for all your fashion needs. It functions well as a scarf \n Attack with green facepaint to color. Attaches onto a uniform. Activate it to toggle the hood."
+	desc =  "A cape to improve on the design of the 7E badge, this cape is capable of two colors, for all your fashion needs. This variation of the cape functions more as a scarf. \n Interact with facepaint to color. Attaches onto a uniform. Activate it to toggle the hood."
 	greyscale_config = /datum/greyscale_config/cape/scarf
 	starting_attachments = list(/obj/item/armor_module/armor/cape_highlight/scarf)
 
