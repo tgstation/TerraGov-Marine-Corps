@@ -86,7 +86,7 @@
 ///Adds or removes actions based on whether the parent is in the correct slot.
 /obj/item/armor_module/proc/handle_actions(datum/source, mob/user, slot)
 	SIGNAL_HANDLER
-	if(prefered_slot && slot != prefered_slot)
+	if(prefered_slot && (slot != prefered_slot))
 		LAZYREMOVE(actions_types, /datum/action/item_action/toggle)
 		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in actions
 		old_action?.remove_action(user)
