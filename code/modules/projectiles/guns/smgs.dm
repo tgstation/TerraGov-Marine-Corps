@@ -24,6 +24,7 @@
 	fire_delay = 0.3 SECONDS
 	burst_amount = 3
 	recoil_unwielded = 0.5
+	akimbo_additional_delay = 0.2
 
 //-------------------------------------------------------
 // T-19 Machinepistol. It fits here more.
