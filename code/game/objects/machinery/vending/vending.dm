@@ -565,7 +565,6 @@
 			helmet.limit_colorable_colors(faction)
 	if(istype(new_item))
 		user.put_in_any_hand_if_possible(new_item, warning = FALSE)
-
 	vend_ready = 1
 	updateUsrDialog()
 
