@@ -88,39 +88,6 @@
 		beacon_cam = null
 	return ..()
 
-/obj/item/beacon/orbital_bombardment_beacon
-	name = "orbital beacon"
-	desc = "A bulky device that fires a beam up to an orbiting vessel to send local coordinates."
-	icon_state = "motion4"
-	icon_activated = "motion1"
-	///The squad this OB beacon belongs to
-	var/datum/squad/squad = null
-
-/obj/item/beacon/orbital_bombardment_beacon/activate(mob/living/carbon/human/H)
-	. = ..()
-	if(!.)
-		return
-	if(H.assigned_squad)
-		squad = H.assigned_squad
-		name += " ([squad.name])"
-		squad.squad_orbital_beacons += src
-		name += " ([H])"
-		return
-	else	//So we can just get a goshdarn name.
-		name += " ([H])"
-
-/obj/item/beacon/orbital_bombardment_beacon/deactivate(mob/living/carbon/human/H)
-	. = ..()
-	if(!.)
-		return
-	squad?.squad_orbital_beacons -= src
-	squad = null
-
-/obj/item/beacon/orbital_bombardment_beacon/Destroy()
-	squad?.squad_orbital_beacons -= src
-	squad = null
-	return ..()
-
 /obj/item/beacon/supply_beacon
 	name = "supply beacon"
 	desc = "A rugged, glorified laser pointer capable of sending a beam into space. Activate and throw this to call for a supply drop."
