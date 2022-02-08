@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - imageadd: "resprite MarineMed"
+  - bugfix: "standardize corpsman prep to have TerraGovTech Medic Vendor and MarineMed with the sheer exception of Theseus. The MarineMed is in prep but not in corpsman prep."
