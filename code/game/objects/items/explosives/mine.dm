@@ -78,8 +78,7 @@ Stepping directly on the mine will also blow it up
 	user.visible_message(span_notice("[user] finishes deploying [src]."), \
 	span_notice("You finish deploying [src]."))
 	var/obj/item/card/id/id = user.get_idcard()
-	var/iff_sig = id?.iff_signal
-	deploy_mine(user, iff_sig)
+	deploy_mine(user, id?.iff_signal)
 
 ///this proc is used to deploy a mine
 /obj/item/explosive/mine/proc/deploy_mine(mob/living/user, iff_sig)
@@ -88,13 +87,11 @@ Stepping directly on the mine will also blow it up
 	armed = TRUE
 	playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
 	update_icon()
-	var/mine_dir
 	if(user)
 		user.drop_held_item()
-		mine_dir = user.dir
+		setDir(user.dir)
 	else
-		mine_dir = pick(CARDINAL_ALL_DIRS)
-	setDir(mine_dir)
+		setDir(pick(CARDINAL_ALL_DIRS))
 	tripwire = new /obj/effect/mine_tripwire(get_step(loc, dir))
 	tripwire.linked_mine = src
 
