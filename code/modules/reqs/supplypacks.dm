@@ -487,6 +487,11 @@ EXPLOSIVES
 	contains = list(/obj/item/storage/box/explosive_mines)
 	cost = 15
 
+/datum/supply_packs/explosives/explosives_minelayer
+	name = "M21 APRDS \"Minelayer\""
+	contains = list(/obj/item/minelayer)
+	cost = 5
+
 /datum/supply_packs/explosives/explosives_razor
 	name = "Razorburn grenade box crate"
 	notes = "Containers 20 razor burns"
@@ -1015,7 +1020,7 @@ ENGINEERING
 	contains = list(/obj/machinery/power/port_gen/pacman/mobile_power)
 	cost = 20
 
-/datum/supply_packs/engineering/teleporter 
+/datum/supply_packs/engineering/teleporter
 	name = "Teleporter pads"
 	contains = list(/obj/effect/teleporter_linker)
 	cost = 50
