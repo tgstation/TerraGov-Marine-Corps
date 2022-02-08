@@ -770,6 +770,7 @@
 
 
 /obj/effect/essentials_set/xenonauten_light
+	desc = "A set of light Xenonauten pattern armor, including an armor suit and helmet."
 	spawned_gear_list = list(
 		/obj/item/clothing/head/modular/marine/m10x,
 		/obj/item/clothing/head/modular/marine/m10x/heavy,
@@ -777,6 +778,7 @@
 	)
 
 /obj/effect/essentials_set/xenonauten_medium
+	desc = "A set of medium Xenonauten pattern armor, including an armor suit and helmet."
 	spawned_gear_list = list(
 		/obj/item/clothing/head/modular/marine/m10x,
 		/obj/item/clothing/head/modular/marine/m10x/heavy,
@@ -784,6 +786,7 @@
 	)
 
 /obj/effect/essentials_set/xenonauten_heavy
+	desc = "A set of heavy Xenonauten pattern armor, including an armor suit and helmet."
 	spawned_gear_list = list(
 		/obj/item/clothing/head/modular/marine/m10x,
 		/obj/item/clothing/head/modular/marine/m10x/heavy,
