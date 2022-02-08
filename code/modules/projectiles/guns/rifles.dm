@@ -82,6 +82,7 @@
 	burst_delay = 0.1 SECONDS
 	accuracy_mult = 1.10
 	scatter = 2
+	burst_scatter_mult = 0.25
 	burst_amount = 4
 	aim_slowdown = 0.30
 	damage_falloff_mult = 0.9
@@ -739,7 +740,7 @@
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.4
 	accuracy_mult = 1
-	scatter = 15
+	scatter = 10
 	scatter_unwielded = 45
 
 	placed_overlay_iconstate = "lmg"
@@ -1122,6 +1123,7 @@
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/compensator,
+		/obj/item/attachable/bipod,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -1226,7 +1228,7 @@
 	)
 
 	flags_gun_features = GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11, /obj/item/attachable/scope/mini/tx11)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 19, "stock_y" = 23)
 	actions_types = list(/datum/action/item_action/aim_mode)
@@ -1239,6 +1241,7 @@
 	accuracy_mult = 1.2
 	scatter = 0
 	scatter_unwielded = 15
+	burst_scatter_mult = 0.33
 	aim_slowdown = 0.45
 
 /obj/item/weapon/gun/rifle/tx11/scopeless

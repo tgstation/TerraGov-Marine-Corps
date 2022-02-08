@@ -31,7 +31,6 @@
 
 #define ismineralturf(A) (istype(A, /turf/closed/mineral))
 
-
 //Mobs
 #define isliving(A) (istype(A, /mob/living))
 

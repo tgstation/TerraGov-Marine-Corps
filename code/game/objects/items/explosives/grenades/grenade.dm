@@ -75,7 +75,7 @@
 
 /obj/item/explosive/grenade/update_overlays()
 	. = ..()
-	if(dangerous && active)
+	if(dangerous)
 		overlays += new /obj/effect/overlay/danger
 
 
@@ -85,17 +85,6 @@
 
 /obj/item/explosive/grenade/flamer_fire_act()
 	activate()
-
-/obj/item/explosive/grenade/ex_act(severity)
-	switch(severity)
-		if(EXPLODE_DEVASTATE)
-			prime()
-		if(EXPLODE_HEAVY)
-			activate()
-		if(EXPLODE_LIGHT)
-			if(prob(50))
-				activate()
-
 
 /obj/item/explosive/grenade/attack_hand(mob/living/user)
 	. = ..()

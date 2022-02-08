@@ -32049,6 +32049,10 @@
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/north)
+"fYO" = (
+/obj/structure/largecrate/supply/supplies/coifs,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/surface/landing_pad_external)
 "fYR" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -33918,6 +33922,15 @@
 "pwi" = (
 /turf/closed/ice_rock/corners{
 	dir = 10
+	},
+/area/ice_colony/exterior/surface/landing_pad2)
+"pxL" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/largecrate/supply/supplies/coifs,
+/turf/open/floor/tile/dark/brown2{
+	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
 "pxM" = (
@@ -42831,7 +42844,7 @@ ahB
 ajp
 ajW
 xGZ
-adB
+pxL
 xGZ
 xaL
 xGZ
@@ -79936,7 +79949,7 @@ mxE
 mxE
 mxE
 mxE
-mxE
+fYO
 aYB
 aYC
 aYC

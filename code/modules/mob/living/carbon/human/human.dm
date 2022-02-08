@@ -6,7 +6,11 @@
 	if(!species)
 		set_species()
 
-	var/datum/reagents/R = new /datum/reagents(1000)
+	var/datum/reagents/R
+	if(species.species_flags & NO_CHEM_METABOLIZATION)
+		R = new /datum/reagents(0)
+	else
+		R = new /datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
 

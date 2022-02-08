@@ -4,13 +4,12 @@
 		return // smelly badmins
 	hive.upgrade_xeno(src, upgrade, newlevel)
 	upgrade = newlevel
+	upgrade_stored = 0
 	if(!silent)
 		visible_message(span_xenonotice("\The [src] begins to twist and contort."), \
 		span_xenonotice("We begin to twist and contort."))
 		do_jitter_animation(1000)
-	if(upgrade_stored < xeno_caste.upgrade_threshold)
-		upgrade_stored = xeno_caste.upgrade_threshold
-	set_datum()
+	set_datum(FALSE)
 	var/selected_ability_type = selected_ability?.type
 
 	for(var/check_existing_actions in xeno_abilities) //Remove xenos actions we shouldn't have
@@ -125,6 +124,9 @@
 
 /mob/living/carbon/xenomorph/drone/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/drone/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //-----DRONE END-----//
 //================//

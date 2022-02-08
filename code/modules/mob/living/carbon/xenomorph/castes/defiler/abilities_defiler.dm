@@ -1,11 +1,3 @@
-#define DEFILER_NEUROTOXIN "Neurotoxin"
-#define DEFILER_HEMODILE "Hemodile"
-#define DEFILER_TRANSVITOX "Transvitox"
-#define DEFILER_OZELOMELYN "Ozelomelyn"
-
-GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
-	/datum/reagent/toxin/xeno_ozelomelyn, /datum/reagent/toxin/xeno_hemodile, /datum/reagent/toxin/xeno_transvitox, /datum/reagent/toxin/xeno_neurotoxin)))
-
 // ***************************************
 // *********** Defile
 // ***************************************

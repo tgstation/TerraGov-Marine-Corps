@@ -288,10 +288,8 @@
 	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
 		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle, target)
 
-	if(shooter.Adjacent(target) && ismob(target))
-		var/mob/mob_to_hit = target
-		ammo.on_hit_mob(mob_to_hit, src)
-		mob_to_hit.bullet_act(src)
+	if(shooter.Adjacent(target) && target.projectile_hit(src))
+		target.do_projectile_hit(src)
 		qdel(src)
 		return
 

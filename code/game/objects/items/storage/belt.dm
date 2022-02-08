@@ -137,12 +137,12 @@
 	new /obj/item/storage/pill_bottle/bicaridine(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
 	new /obj/item/storage/pill_bottle/dexalin(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
-	new /obj/item/storage/pill_bottle/spaceacillin(src)
 	new /obj/item/storage/pill_bottle/hypervene(src)
 	new /obj/item/healthanalyzer(src)
 
@@ -179,12 +179,12 @@
 	new /obj/item/storage/pill_bottle/kelotane(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-	new /obj/item/storage/syringe_case/combat(src)
 	new /obj/item/storage/syringe_case/combat(src)
 	new /obj/item/storage/syringe_case/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
@@ -226,10 +226,10 @@
 	new /obj/item/storage/pill_bottle/kelotane(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
 	new /obj/item/storage/pill_bottle/quickclot(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
@@ -248,6 +248,11 @@
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/hypospray/advanced,
 		/obj/item/storage/bottlecase,
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline,
+		/obj/item/reagent_containers/hypospray/autoinjector/spaceacillin,
+		/obj/item/reagent_containers/hypospray/autoinjector/hypervene,
+		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon,
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclot,
 	)
 
 /obj/item/storage/belt/hypospraybelt/Initialize()  //The belt, with all it's magic inside!
@@ -261,6 +266,8 @@
 	new /obj/item/storage/bottlecase/dylo(src)
 	new /obj/item/reagent_containers/hypospray/advanced/tramadol(src)
 	new /obj/item/storage/bottlecase/tram(src)
+	new /obj/item/reagent_containers/hypospray/advanced/tricordrazine(src)
+	new /obj/item/storage/bottlecase/tricord(src)
 	new /obj/item/reagent_containers/hypospray/advanced/dexalin(src)
 	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)

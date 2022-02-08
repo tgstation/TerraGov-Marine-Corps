@@ -203,6 +203,7 @@
 	vendor_role = /datum/job/terragov/squad/standard
 	categories = list(
 		CAT_STD = list(MARINE_CAN_BUY_UNIFORM),
+		CAT_GLA = list(MARINE_CAN_BUY_GLASSES),
 		CAT_HEL = list(MARINE_CAN_BUY_HELMET),
 		CAT_AMR = list(MARINE_CAN_BUY_ARMOR),
 		CAT_BAK = list(MARINE_CAN_BUY_BACKPACK),
@@ -693,7 +694,6 @@
 	spawned_gear_list = list(
 		/obj/item/explosive/plastique,
 		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
-		/obj/item/clothing/glasses/welding,
 		/obj/item/clothing/gloves/marine/insulated,
 		/obj/item/cell/high,
 		/obj/item/tool/shovel/etool,
@@ -770,6 +770,7 @@
 
 
 /obj/effect/essentials_set/xenonauten_light
+	desc = "A set of light Xenonauten pattern armor, including an armor suit and helmet."
 	spawned_gear_list = list(
 		/obj/item/clothing/head/modular/marine/m10x,
 		/obj/item/clothing/head/modular/marine/m10x/heavy,
@@ -777,6 +778,7 @@
 	)
 
 /obj/effect/essentials_set/xenonauten_medium
+	desc = "A set of medium Xenonauten pattern armor, including an armor suit and helmet."
 	spawned_gear_list = list(
 		/obj/item/clothing/head/modular/marine/m10x,
 		/obj/item/clothing/head/modular/marine/m10x/heavy,
@@ -784,6 +786,7 @@
 	)
 
 /obj/effect/essentials_set/xenonauten_heavy
+	desc = "A set of heavy Xenonauten pattern armor, including an armor suit and helmet."
 	spawned_gear_list = list(
 		/obj/item/clothing/head/modular/marine/m10x,
 		/obj/item/clothing/head/modular/marine/m10x/heavy,

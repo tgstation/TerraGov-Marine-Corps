@@ -327,15 +327,7 @@
 		to_chat(user, "[span_warning("[src] is much too tough for you to do anything to it with [I]")].")
 
 	else if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
-		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(!P.start_cut(user, name, src))
-			return
-
-		if(!do_after(user, P.calc_delay(user), TRUE, src, BUSY_ICON_HOSTILE))
-			return
-
-		P.cut_apart(user, name, src)
-		dismantle_wall()
+		return
 
 	else if(wall_integrity < max_integrity && iswelder(I))
 		var/obj/item/tool/weldingtool/WT = I
