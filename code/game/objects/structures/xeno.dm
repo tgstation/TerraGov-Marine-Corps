@@ -162,6 +162,8 @@
 
 	if(!locate(/obj/effect/alien/weeds) in loc)
 		new /obj/effect/alien/weeds(loc)
+	if(locate(/mob/living) in loc)	//If we build a door below ourselves, it starts open.
+		Open()
 
 /obj/structure/mineral_door/resin/Cross(atom/movable/mover, turf/target)
 	. = ..()

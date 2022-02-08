@@ -1,8 +1,7 @@
 /mob/living/carbon/xenomorph/UnarmedAttack(atom/A, has_proximity, modifiers)
 	if(lying_angle)
 		return FALSE
-	var/turf/current_turf = get_turf(src)
-	if(isclosedturf(current_turf) && !iswallturf(A))	//If we are on a closed turf (e.g. in a wall) we can't attack anything, except walls (or well, resin walls really) so we can't make ourselves be stuck.
+	if(isclosedturf(get_turf(src)) && !iswallturf(A))	//If we are on a closed turf (e.g. in a wall) we can't attack anything, except walls (or well, resin walls really) so we can't make ourselves be stuck.
 		to_chat(src, span_warning("We cannot reach this from here!"))
 		return FALSE
 	if(!(isopenturf(A) || istype(A, /obj/effect/alien/weeds))) //We don't care about open turfs; they don't trigger our melee click cooldown
