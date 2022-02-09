@@ -121,16 +121,19 @@
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	refill_type = /obj/item/factory_part/sadar_wp
+	refill_amount = 15
 
 /obj/item/factory_refill/sadar_ap_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	refill_type = /obj/item/factory_part/sadar_ap
+	refill_amount = 15
 
 /obj/item/factory_refill/sadar_he_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	refill_type = /obj/item/factory_part/sadar_he
+	refill_amount = 15
 
 /obj/item/factory_refill/light_rr_missile_refill
 	name = "box of rounded metal plates"
