@@ -35,7 +35,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE * 2
 	custom_metabolism = REAGENTS_METABOLISM * 5 //1.0/tick
 	purge_list = list(/datum/reagent/medicine, /datum/reagent/consumable)
-	purge_rate = 1
+	purge_rate = 2
 	taste_description = "water"
 
 /datum/reagent/water/reaction_turf(turf/T, volume)
