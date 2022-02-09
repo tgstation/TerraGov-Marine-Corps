@@ -368,6 +368,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/pilot
 	name = PILOT_OFFICER
 	pilot = SKILL_PILOT_TRAINED
+	engineer = SKILL_ENGINEER_ENGI
+	construction = SKILL_CONSTRUCTION_PLASTEEL
 	powerloader = SKILL_POWERLOADER_PRO
 	leadership = SKILL_LEAD_TRAINED
 
