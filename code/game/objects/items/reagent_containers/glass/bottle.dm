@@ -168,6 +168,13 @@
 	volume = 20
 	list_reagents = list(/datum/reagent/medicine/peridaxon = 20)
 
+/obj/item/reagent_containers/glass/bottle/quickclot
+	name = "\improper Quickclot bottle"
+	desc = "A small bottle. Contains Quickclot - Used to treat internal bleeding."
+	icon_state = "bottle4"
+	volume = 20
+	list_reagents = list(/datum/reagent/medicine/quickclot = 20)
+
 /obj/item/reagent_containers/glass/bottle/tramadol
 	name = "\improper Tramadol bottle"
 	desc = "A small bottle. Contains Tramadol - Used as a basic painkiller."

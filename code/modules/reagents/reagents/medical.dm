@@ -329,7 +329,7 @@
 	description = "Dylovene is a broad-spectrum antitoxin."
 	color = "#A8F59C"
 	scannable = TRUE
-	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine/research/stimulon, /datum/reagent/consumable/drink/atomiccoffee, /datum/reagent/medicine/tramadol, /datum/reagent/medicine/larvaway)
+	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine/stimulon, /datum/reagent/consumable/drink/atomiccoffee, /datum/reagent/medicine/tramadol, /datum/reagent/medicine/larvaway)
 	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -1106,7 +1106,7 @@
 /datum/reagent/medicine/stimulon //tivi todo t3 stim?
 	name = "Stimulon"
 	description = "A chemical designed to boost running by driving your body beyond it's normal limits. Can have unpredictable side effects, caution recommended."
-	taste_description =
+	taste_description = "synthetic ammonia"
 	color = "#19C832"
 	custom_metabolism = 0
 	scannable = TRUE

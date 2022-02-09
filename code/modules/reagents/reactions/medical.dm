@@ -200,5 +200,5 @@
 
 /datum/chemical_reaction/stimulum
 	name = "Stimulum"
-	results = list(/datum/reagent/medicine/research/stimulon = 1)
+	results = list(/datum/reagent/medicine/stimulon = 1)
 	required_reagents = list(/datum/reagent/medicine/synaptizine = 10, /datum/reagent/medicine/alkysine = 20, /datum/reagent/consumable/nutriment = 20, /datum/reagent/medicine/lemoline = 20)
