@@ -73,7 +73,8 @@
 	var/damage_marine_falloff = 0
 
 	var/scatter = 0 //Chance of scattering, also maximum amount scattered. High variance.
-	var/airburst_multiplier = 0 //damage airburst inflicts, as a multiplier of proj.damage
+	///damage airburst inflicts, as a multiplier of proj.damage
+	var/airburst_multiplier = 0
 
 	/// The iff signal that will be compared to the target's one, to apply iff if needed
 	var/iff_signal = NONE
