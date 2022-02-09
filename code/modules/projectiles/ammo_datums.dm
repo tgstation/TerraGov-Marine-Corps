@@ -723,7 +723,7 @@ datum/ammo/bullet/revolver/tp44
 	handful_icon_state = "shotgun buckshot shell"
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
-	flags_ammo_behavior = AMMO_BALLISTIC
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread
 	bonus_projectiles_amount = 5
 	bonus_projectiles_scatter = 4
@@ -733,8 +733,8 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 10
 	damage = 35
 	damage_falloff = 4
-	penetration = 0
-
+	penetration = 5
+	sundering = 10
 
 /datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 1, knockback = 2, slowdown = 0.5, max_range = 3)
@@ -747,9 +747,10 @@ datum/ammo/bullet/revolver/tp44
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 35
+	damage = 30
 	damage_falloff = 4
-	penetration = 0
+	penetration = 4
+	sundering = 10
 
 //buckshot variant only used by the masterkey shotgun attachment.
 /datum/ammo/bullet/shotgun/buckshot/masterkey
