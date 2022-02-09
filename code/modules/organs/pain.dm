@@ -66,8 +66,8 @@ mob/living/carbon/human/proc/custom_pain(message, flash_strength)
 		return
 	if(species && species.species_flags & NO_PAIN)
 		return
-	if(reagent_pain_modifier <= PAIN_REDUCTION_HEAVY) //tivi todo
-		return //anything as or more powerful than paracetamol
+	if(reagent_pain_modifier <= PAIN_REDUCTION_HEAVY)
+		return
 	if(analgesic)
 		return
 
@@ -85,8 +85,8 @@ mob/living/carbon/human/proc/handle_pain()
 		return 	// not when sleeping
 	if(species && species.species_flags & NO_PAIN)
 		return
-	if(reagent_pain_modifier <= PAIN_REDUCTION_HEAVY) //tivi todo
-		return //anything as or more powerful than paracetamol
+	if(reagent_pain_modifier <= PAIN_REDUCTION_HEAVY)
+		return
 	if(analgesic)
 		return
 

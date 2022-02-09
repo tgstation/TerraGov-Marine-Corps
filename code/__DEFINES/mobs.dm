@@ -9,7 +9,7 @@
 #define PAIN_REDUCTION_VERY_LIGHT -5 //alkysine
 #define PAIN_REDUCTION_LIGHT -15 //inaprovaline
 #define PAIN_REDUCTION_MEDIUM -25 //synaptizine
-#define PAIN_REDUCTION_HEAVY -35 //paracetamol     //tivi todo
+#define PAIN_REDUCTION_HEAVY -35 //hypervene pain damage
 #define PAIN_REDUCTION_VERY_HEAVY -50 //tramadol
 
 #define PAIN_REACTIVITY 0.15

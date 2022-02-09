@@ -128,9 +128,6 @@
 	if (polyhexanide >= MIN_ANTIBIOTICS)
 		germ_level -= polyhexanide_curve[infection_level]
 
-//tivi todo
-
-
 
 /****************************************************
 			DAMAGE PROCS

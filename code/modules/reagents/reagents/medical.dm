@@ -398,7 +398,7 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/russian_red/on_mob_add(mob/living/L, metabolism)
-	L.add_movespeed_modifier(MOVESPEED_ID_REDRUSSIAN_SLOWDOWN, TRUE, 0, NONE, TRUE, REDRUSSIAN_SLOWDOWN) //tivi todo
+	L.add_movespeed_modifier(MOVESPEED_ID_REDRUSSIAN_SLOWDOWN, TRUE, 0, NONE, TRUE, REDRUSSIAN_SLOWDOWN)
 	var/mob/living/carbon/human/H = L
 	if(TIMER_COOLDOWN_CHECK(L, name))
 		return
@@ -946,7 +946,6 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
 
-//tivi todo
 /datum/reagent/medicine/polyhexanide/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 9)
@@ -1102,39 +1101,35 @@
 		limb_to_unfix.fracture()
 		break
 
-//tivi todo del this
-/datum/reagent/medicine/research
-	name = "Research precursor" //nothing with this subtype should be added to vendors
-	taste_description = "bitterness"
-	reagent_state = LIQUID
-	taste_description = "bitterness"
 
-/datum/reagent/medicine/research/stimulon
+//do not add to vendors
+/datum/reagent/medicine/stimulon //tivi todo t3 stim?
 	name = "Stimulon"
 	description = "A chemical designed to boost running by driving your body beyond it's normal limits. Can have unpredictable side effects, caution recommended."
+	taste_description =
 	color = "#19C832"
 	custom_metabolism = 0
 	scannable = TRUE
 
-/datum/reagent/medicine/research/stimulon/on_mob_add(mob/living/L, metabolism)
+/datum/reagent/medicine/stimulon/on_mob_add(mob/living/L, metabolism)
 	to_chat(L, span_userdanger("You feel jittery and fast! Time to MOVE!"))
 	. = ..()
 	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1)
 	L.adjustCloneLoss(10*effect_str)
 
-/datum/reagent/medicine/research/stimulon/on_mob_delete(mob/living/L, metabolism)
+/datum/reagent/medicine/stimulon/on_mob_delete(mob/living/L, metabolism)
 	L.remove_movespeed_modifier(type)
 	L.Paralyze(20)
 	to_chat(L, span_warning("You reel as the stimulant departs your bloodstream!"))
 
-/datum/reagent/medicine/research/stimulon/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/medicine/stimulon/on_mob_life(mob/living/L, metabolism)
 	L.adjustStaminaLoss(1*effect_str)
 	L.take_limb_damage(rand(0.5*effect_str, 4*effect_str), 0)
 	L.adjustCloneLoss(rand (0, 5) * effect_str * current_cycle * 0.02)
 	if(prob(20))
 		L.emote(pick("twitch","blink_r","shiver"))
 	if(volume < 100) //THERE IS NO "MINIMUM SAFE DOSE" MUAHAHAHA!
-		L.reagents.add_reagent(/datum/reagent/medicine/research/stimulon, 0.5)
+		L.reagents.add_reagent(/datum/reagent/medicine/stimulon, 0.5)
 	switch(current_cycle)
 		if(20)//avg cloneloss of 1/tick and 10 additional units made
 			to_chat(L, span_userdanger("You start to ache and cramp as your muscles wear out. You should probably remove this drug soon."))
