@@ -837,26 +837,28 @@
 
 	addtimer(CALLBACK(src, .proc/deploy), 4.2 SECONDS)
 
+///finishes deploying the dispenser.
 /obj/item/storage/backpack/dispenser/proc/deploy()
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYING))
 		return
 	DISABLE_BITFIELD(flags_item, IS_DEPLOYING)
 	ENABLE_BITFIELD(flags_item, IS_DEPLOYED)
 	affecting_list = list()
-	for(var/mob/living/carbon/human/human in view(3))
+	for(var/mob/living/carbon/human/human in view(2, src))
 		RegisterSignal(human, COMSIG_PARENT_QDELETING, .proc/on_affecting_qdel)
 		affecting_list[human] = beam(human, "blood_light")
 		human.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 50)
-	for(var/turf/turfs in range(2, src))
+	for(var/turf/turfs AS in RANGE_TURFS(2, src))
 		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/entered_tiles)
-	START_PROCESSING(SSprocessing, src)
+	START_PROCESSING(SSobj, src)
 
+///cleans human from affecting_list when it gets qdeletted
 /obj/item/storage/backpack/dispenser/proc/on_affecting_qdel(datum/source)
 	SIGNAL_HANDLER
 	affecting_list -= source
 
 /obj/item/storage/backpack/dispenser/CtrlClick(mob/user)
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYING))
+	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED) || CHECK_BITFIELD(flags_item, IS_DEPLOYING))
 		return ..()
 	if(!can_interact(user))
 		return
@@ -865,7 +867,7 @@
 	icon_state = "dispenser"
 	flick("dispenser_undeploy", src)
 	ENABLE_BITFIELD(flags_item, IS_DEPLOYING)
-	for(var/turf/turfs in range(2, src))
+	for(var/turf/turfs AS in RANGE_TURFS(2, src))
 		UnregisterSignal(turfs, COMSIG_ATOM_ENTERED)
 	for(var/mob/living/carbon/human/affecting AS in affecting_list)
 		qdel(affecting_list[affecting])
@@ -874,38 +876,35 @@
 	STOP_PROCESSING(SSobj, src)
 	addtimer(CALLBACK(src, .proc/undeploy), 4.2 SECONDS)
 
+//finishes undeploying the dispenser
 /obj/item/storage/backpack/dispenser/proc/undeploy()
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYING))
 		return
 	density = FALSE
 	anchored = FALSE
 	DISABLE_BITFIELD(flags_item, IS_DEPLOYED)
 	DISABLE_BITFIELD(flags_item, IS_DEPLOYING)
 
-
-
 /obj/item/storage/backpack/dispenser/process()
 	for(var/mob/living/carbon/human/affecting AS in affecting_list)
-		if(!line_of_sight(src, affecting, 3))
+		if(!line_of_sight(src, affecting, 2))
 			qdel(affecting_list[affecting])
 			affecting_list -= affecting
 			UnregisterSignal(affecting, COMSIG_PARENT_QDELETING)
 			return
-		var/limb_max_heal = 1.6
-		for(var/datum/limb/limb in affecting.limbs)
-			if(limb.limb_status & LIMB_ROBOT)
-				limb_max_heal -= limb.get_damage()
-				limb.heal_limb_damage(min(0.8, limb.brute_dam), min(0.8, limb.burn_dam), FALSE, TRUE)
-				if(limb_max_heal <= 0)
-					break
+		if(CHECK_BITFIELD(affecting.species.species_flags, ROBOTIC_LIMBS))
+			affecting.heal_overall_damage(1, 1, TRUE)
+			continue
+		for(var/datum/limb/limb AS in affecting.limbs)
+			if(!(CHECK_BITFIELD(limb.limb_status, LIMB_ROBOT)))
 				continue
-			if(limb.is_bandaged() && limb.is_salved())
+			var/limb_damage_before = limb.get_damage()
+			if(!limb_damage_before)
 				continue
-			limb.bandage()
-			limb.salve()
+			limb.heal_limb_damage(1, 1, FALSE, TRUE)
 			break
 
-
+///runs when something moves into a tile nearby us, if possible add it to affecting_list
 /obj/item/storage/backpack/dispenser/proc/entered_tiles(datum/source, mob/living/carbon/human/entering)
 	if(!ishuman(entering))
 		return
@@ -913,7 +912,6 @@
 		return
 	if(!line_of_sight(src, entering))
 		return
-	affecting_list += entering
 	RegisterSignal(entering, COMSIG_PARENT_QDELETING, .proc/on_affecting_qdel)
 	entering.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 50)
 	affecting_list[entering] = beam(entering, "blood_light")
