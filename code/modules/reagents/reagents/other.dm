@@ -55,11 +55,17 @@
 		if(L.fire_stacks <= 0)
 			L.ExtinguishMob()
 
-
 /datum/reagent/water/on_mob_life(mob/living/L,metabolism)
-	L.adjustStaminaLoss(-15*effect_str)
-	L.heal_limb_damage(effect_str, effect_str)
+	if(TIMER_COOLDOWN_CHECK(L, name))
+		return ..()
+	else
+		L.adjustStaminaLoss(-12.5*effect_str)
+		L.heal_limb_damage(effect_str, effect_str)
 	return ..()
+
+/datum/reagent/water/on_mob_delete(mob/living/L, metabolism)
+	to_chat(L, span_userdanger("You start to feel thirsty."))
+	TIMER_COOLDOWN_START(L, name, 10 SECONDS)
 
 /datum/reagent/water/overdose_process(mob/living/L, metabolism)
 	if(prob(10))
