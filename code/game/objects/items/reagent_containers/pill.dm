@@ -147,11 +147,6 @@
 	list_reagents = list(/datum/reagent/medicine/dermaline = 7.5)
 	pill_id = 5
 
-/obj/item/reagent_containers/pill/paracetamol
-	pill_desc = "A paracetamol pill. Painkiller for the ages."
-	list_reagents = list(/datum/reagent/medicine/paracetamol = 15)
-	pill_id = 6
-
 /obj/item/reagent_containers/pill/tramadol
 	pill_desc = "A tramadol pill. A simple painkiller."
 	list_reagents = list(/datum/reagent/medicine/tramadol = 15)
@@ -236,8 +231,3 @@
 	pill_desc = "A hypervene pill. A purge medication used to treat overdoses and rapidly remove toxins. Causes pain and vomiting."
 	list_reagents = list(/datum/reagent/hypervene = 3)
 	pill_id = 14
-
-/obj/item/reagent_containers/pill/ultrazine
-	//pill_desc = "An ultrazine pill. A highly-potent, long-lasting combination CNS and muscle stimulant. Extremely addictive."
-	list_reagents = list(/datum/reagent/medicine/ultrazine = 5)
-	pill_id = 21

@@ -450,13 +450,6 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tramadol
 	greyscale_colors = "#a09ca0#ffffff"
 
-/obj/item/storage/pill_bottle/paracetamol
-	name = "paracetamol pill bottle"
-	desc = "Contains pills that mildly numb pain. Take two for a slightly stronger effect."
-	greyscale_config = /datum/greyscale_config/pillbottleround
-	pill_type_to_fill = /obj/item/reagent_containers/pill/paracetamol
-	greyscale_colors = "#f8f4f8#ffffff"
-
 /obj/item/storage/pill_bottle/spaceacillin
 	name = "spaceacillin pill bottle"
 	desc = "Contains pills that handle low-level viral and bacterial infections. Effect increases with dosage."
@@ -593,15 +586,6 @@
 /obj/item/storage/pill_bottle/restricted/open(mob/user)
 	if(scan(user))
 		return ..()
-
-/obj/item/storage/pill_bottle/restricted/ultrazine
-	icon_state = "pill_canister1"
-	max_storage_space = 5
-	pill_type_to_fill = /obj/item/reagent_containers/pill/ultrazine
-	greyscale_colors = "#6CFEA9#ffffff"
-	req_access = list(ACCESS_NT_CORPORATE)
-	req_id_role = CORPORATE_LIAISON
-	scan_name = TRUE
 
 /obj/item/storage/pill_bottle/attackby(obj/item/I, mob/user, params)
 	. = ..()

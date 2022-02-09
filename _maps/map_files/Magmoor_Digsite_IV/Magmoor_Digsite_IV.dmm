@@ -11528,7 +11528,7 @@
 /area/magmoor/cave/west)
 "ikS" = (
 /obj/structure/table/mainship,
-/obj/item/storage/pill_bottle/packet/paracetamol,
+/obj/item/storage/pill_bottle/packet/tramadol,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},

@@ -174,7 +174,6 @@
 			/obj/item/reagent_containers/glass/bottle/tramadol = 4,
 			/obj/item/reagent_containers/glass/bottle/oxycodone = 4,
 			/obj/item/reagent_containers/glass/bottle/polyhexanide = 2,
-			/obj/item/reagent_containers/glass/bottle/medicalnanites = 2,
 		),
 		"Pill Bottle" = list(
 			/obj/item/storage/pill_bottle/peridaxon = 2,
@@ -206,17 +205,21 @@
 	)
 	idle_power_usage = 211
 
+///shipside MO and medic vendor
 /obj/machinery/vending/medical/shipside
 	isshared = TRUE
 	wrenchable = FALSE
 	products = list(
-		"Hypospray" = list (
-			/obj/item/defibrillator = 2,
+		"Hypospray/Autoinjector" = list (
 			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 15,
+			/obj/item/reagent_containers/hypospray/autoinjector/neuraline = 10,
 			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 9,
 			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 15,
 			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 15,
 			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 6,
+			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 5,
+			/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 10,
+			/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 10,
 		),
 		"Reagent Bottle" = list(
 			/obj/item/reagent_containers/glass/bottle/dylovene = 12,
@@ -225,16 +228,16 @@
 			/obj/item/reagent_containers/glass/bottle/sleeptoxin = 2,
 			/obj/item/reagent_containers/glass/bottle/spaceacillin = 12,
 			/obj/item/reagent_containers/glass/bottle/peridaxon = 6,
+			/obj/item/reagent_containers/glass/bottle/quickclot = 6,
 			/obj/item/reagent_containers/glass/bottle/kelotane = 12,
 			/obj/item/reagent_containers/glass/bottle/dexalin = 12,
 			/obj/item/reagent_containers/glass/bottle/tramadol = 12,
 			/obj/item/reagent_containers/glass/bottle/oxycodone = 12,
 			/obj/item/reagent_containers/glass/bottle/polyhexanide = 12,
-			/obj/item/reagent_containers/glass/bottle/medicalnanites = 12,
 		),
 		"Pill Bottle" = list(
 			/obj/item/storage/pill_bottle/peridaxon = 6,
-			/obj/item/storage/pill_bottle/russian_red = 4,
+			/obj/item/storage/pill_bottle/quickclot = 6,
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 15,
@@ -244,6 +247,7 @@
 			/obj/item/stack/medical/splint = 15,
 		),
 		"Misc" = list(
+			/obj/item/defibrillator = 2,
 			/obj/item/healthanalyzer = 15,
 			/obj/item/clothing/glasses/hud/health = 6,
 			/obj/item/storage/belt/medical = 6,
@@ -286,7 +290,6 @@
 			/obj/item/reagent_containers/glass/bottle/tramadol = 12,
 			/obj/item/reagent_containers/glass/bottle/oxycodone = 12,
 			/obj/item/reagent_containers/glass/bottle/polyhexanide = 12,
-			/obj/item/reagent_containers/glass/bottle/medicalnanites = 12,
 		),
 		"Pill Bottle" = list(
 			/obj/item/storage/pill_bottle/peridaxon = 6,

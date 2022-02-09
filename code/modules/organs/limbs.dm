@@ -105,7 +105,7 @@
 	var/polyhexanide = owner.reagents.get_reagent_amount(/datum/reagent/medicine/polyhexanide)
 
 	var/spaceacillin_curve = list(0,4,3,2)
-	var/polyhexanide_curve = list(0,1,1,10)
+	var/polyhexanide_curve = list(0,1,2,10)
 
 	if (!germ_level || (spaceacillin + polyhexanide) < MIN_ANTIBIOTICS)
 		return
@@ -128,7 +128,7 @@
 	if (polyhexanide >= MIN_ANTIBIOTICS)
 		germ_level -= polyhexanide_curve[infection_level]
 
-
+//tivi todo
 
 
 

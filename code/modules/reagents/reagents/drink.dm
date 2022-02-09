@@ -469,7 +469,7 @@
 	color = "#FF8CFF" // rgb: 255, 140, 255
 	taste_description = "homely fruit"
 	nutriment_factor = - 1
-	custom_metabolism = REAGENTS_METABOLISM * 0.25 //Twice the rate of paracetamol
+	custom_metabolism = REAGENTS_METABOLISM * 0.25
 	adj_dizzy = - 10
 
 /datum/reagent/consumable/drink/doctor_delight/on_mob_life(mob/living/L, metabolism)

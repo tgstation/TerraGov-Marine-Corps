@@ -1366,25 +1366,25 @@
 /area/sulaco/medbay/storage2)
 "aey" = (
 /obj/structure/table/mainship,
-/obj/item/storage/pill_bottle/packet/paracetamol{
+/obj/item/storage/pill_bottle/packet/tramadol{
 	pixel_y = 7
 	},
-/obj/item/storage/pill_bottle/packet/paracetamol{
+/obj/item/storage/pill_bottle/packet/tramadol{
 	pixel_y = 7
 	},
-/obj/item/storage/pill_bottle/packet/paracetamol{
+/obj/item/storage/pill_bottle/packet/tramadol{
 	pixel_y = 7
 	},
-/obj/item/storage/pill_bottle/packet/paracetamol{
+/obj/item/storage/pill_bottle/packet/tramadol{
 	pixel_y = 7
 	},
-/obj/item/storage/pill_bottle/packet/paracetamol{
+/obj/item/storage/pill_bottle/packet/tramadol{
 	pixel_y = 7
 	},
-/obj/item/storage/pill_bottle/packet/paracetamol{
+/obj/item/storage/pill_bottle/packet/tramadol{
 	pixel_y = 7
 	},
-/obj/item/storage/pill_bottle/packet/paracetamol{
+/obj/item/storage/pill_bottle/packet/tramadol{
 	pixel_y = 7
 	},
 /turf/open/floor/prison/whitegreen/corner{

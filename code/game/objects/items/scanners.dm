@@ -71,6 +71,7 @@ REAGENT SCANNER
 	var/hud_mode = 1
 	var/skill_threshold = SKILL_MEDICAL_PRACTICED
 
+//tivi todo this proc
 /obj/item/healthanalyzer/attack(mob/living/carbon/M, mob/living/user) //Integrated analyzers don't need special training to be used quickly.
 	var/dat = ""
 	if((user.getBrainLoss() >= 60) && prob(50))
@@ -307,7 +308,6 @@ REAGENT SCANNER
 			//Chems that conflict with others:
 			var/synaptizine_amount = reagents_in_body[/datum/reagent/medicine/synaptizine]
 			var/hyperzine_amount = reagents_in_body[/datum/reagent/medicine/hyperzine]
-			var/paracetamol_amount = reagents_in_body[/datum/reagent/medicine/paracetamol]
 			var/neurotoxin_amount = reagents_in_body[/datum/reagent/toxin/xeno_neurotoxin]
 			//Recurring chems:
 			var/peridaxon = ""
@@ -409,10 +409,7 @@ REAGENT SCANNER
 				var/oxy_recommend = "N/A"
 				var/trama_recommend = "N/A"
 				if (reagents_in_body[/datum/reagent/medicine/tramadol] < 3)
-					if(paracetamol_amount)
-						trama_recommend = "Tramadol recommended, but conflicting paracetamol present."
-					else
-						tramadol = "tramadol"
+					tramadol = "tramadol"
 				if (reagents_in_body[/datum/reagent/medicine/oxycodone] < 3)
 					oxycodone = "oxycodone"
 				if(shock_number > 120)
@@ -426,8 +423,6 @@ REAGENT SCANNER
 			advice = ""
 			if(synaptizine_amount)
 				advice += "[span_scanner("<b>Synaptizine Detected:</b> DO NOT administer dylovene until synaptizine is purged or metabolized.")]\n"
-			if(paracetamol_amount)
-				advice += "[span_scanner("<b>Paracetamol Detected:</b> DO NOT administer tramadol until paracetamol is purged or metabolized.")]\n"
 			if(neurotoxin_amount)
 				advice += "[span_scanner("<b>Xenomorph Neurotoxin Detected:</b> Administer hypervene to purge.")]\n"
 			if(advice != "")

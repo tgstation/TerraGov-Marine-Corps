@@ -163,8 +163,8 @@
 	density = TRUE
 	anchored = TRUE
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
-	var/mob/living/carbon/human/occupant = null
-	var/available_chemicals = list(/datum/reagent/medicine/inaprovaline = "Inaprovaline", /datum/reagent/toxin/sleeptoxin = "Soporific", /datum/reagent/medicine/paracetamol = "Paracetamol", /datum/reagent/medicine/bicaridine = "Bicaridine", /datum/reagent/medicine/kelotane = "Kelotane", /datum/reagent/medicine/dylovene = "Dylovene", /datum/reagent/medicine/dexalin = "Dexalin", /datum/reagent/medicine/tricordrazine = "Tricordrazine", /datum/reagent/medicine/spaceacillin = "Spaceacillin")
+	var/mob/living/carbon/human/occupant = null //tivi todo changge chems below
+	var/available_chemicals = list(/datum/reagent/medicine/inaprovaline = "Inaprovaline", /datum/reagent/toxin/sleeptoxin = "Soporific", /datum/reagent/medicine/tramadol = "Tramadol", /datum/reagent/medicine/bicaridine = "Bicaridine", /datum/reagent/medicine/kelotane = "Kelotane", /datum/reagent/medicine/dylovene = "Dylovene", /datum/reagent/medicine/dexalin = "Dexalin", /datum/reagent/medicine/tricordrazine = "Tricordrazine", /datum/reagent/medicine/spaceacillin = "Spaceacillin")
 	var/amounts = list(5, 10)
 	var/obj/item/reagent_containers/glass/beaker = null
 	var/filtering = FALSE
@@ -450,7 +450,7 @@
 	if(!do_after(X, 2 SECONDS))
 		return
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
-	go_out()	
+	go_out()
 
 /obj/machinery/sleeper/verb/eject()
 	set name = "Eject Sleeper"

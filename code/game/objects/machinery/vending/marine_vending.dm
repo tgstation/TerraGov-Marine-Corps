@@ -770,7 +770,7 @@
 	//product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
 	product_ads = "Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork.; 9 Flavors of Protein!; You'll never guess the mystery flavor!"
 
-
+///available to all medical vendor
 /obj/machinery/vending/MarineMed
 	name = "\improper MarineMed"
 	desc = "Marine Medical drug dispenser - Provided by Nanotrasen Pharmaceuticals Division(TM)."
@@ -808,8 +808,9 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 16,
 			/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 16,
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 16,
-			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20,
 			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
+			/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 10,
+			/obj/item/reagent_containers/hypospray/autoinjector/hyperzine = 5,
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,
