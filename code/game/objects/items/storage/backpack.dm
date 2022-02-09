@@ -780,14 +780,13 @@
 	can_hold = list(/obj/item/ammo_magazine/rocket)
 
 /obj/item/storage/backpack/dispenser
-	name = "Dispense-O-Matic 9000 Provisions Dispenser"
-	desc = "The Dispense-O-Matic also known as \"Dispenser\" is a machine capable of holding a big amount of items on it, while also healing nearby humans. Your allies will often ask you to lay down one of those."
+	name = "TX-9000 Provisions Dispenser"
+	desc = "The TX-9000 also known as \"Dispenser\" is a machine capable of holding a big amount of items on it, while also healing nearby humans. Your allies will often ask you to lay down one of those."
 	icon = 'icons/obj/items/storage/storage_48.dmi'
 	icon_state = "dispenser"
 	flags_equip_slot = ITEM_SLOT_BACK
 	max_w_class = 6
 	max_storage_space = 63
-	COOLDOWN_DECLARE(deploy_cooldown)
 	var/list/affecting_list
 
 /obj/item/storage/backpack/dispenser/open(mob/user)
