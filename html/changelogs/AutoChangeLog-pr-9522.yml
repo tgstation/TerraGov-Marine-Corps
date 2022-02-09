@@ -1,6 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - rscadd: "The ship AI can now make vox announcements."
-  - rscadd: "Ported the TG vox system."
-  - soundadd: "Ported 600 vox words for use in the AI's vox system"
