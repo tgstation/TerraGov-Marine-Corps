@@ -787,6 +787,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	max_w_class = 6
 	max_storage_space = 63
+	///list of stuff we're currently affecting in our area.
 	var/list/affecting_list
 
 /obj/item/storage/backpack/dispenser/open(mob/user)
@@ -811,8 +812,7 @@
 /obj/item/storage/backpack/dispenser/attack_self(mob/user)
 	if(!ishuman(user) || CHECK_BITFIELD(flags_item, NODROP))
 		return
-	var/deploy_location
-	deploy_location = get_step(user, user.dir)
+	var/deploy_location = get_step(user, user.dir)
 	if(check_blocked_turf(deploy_location))
 		user.balloon_alert(user, "There is insufficient room to deploy [src]!")
 		return
@@ -820,8 +820,6 @@
 		user.balloon_alert(user, "You are already doing something!")
 		return
 	user.balloon_alert(user, "You start deploying...")
-	if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
-		return
 
 	user.temporarilyRemoveItemFromInventory(src)
 
