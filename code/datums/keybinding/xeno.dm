@@ -510,6 +510,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_RAVAGE_SELECT
 
+/datum/keybinding/xeno/acid_dash
+	name = "acid_dash"
+	full_name = "Praetorian : Acid Dash"
+	description = "Quickly dash, leaving acid in your path and knocking down the first marine hit. Has reset potential."
+	keybind_signal = COMSIG_XENOABILITY_ACID_DASH
+
 /datum/keybinding/xeno/toggle_savage
 	name = "toggle_savage"
 	full_name = "Runner: Toggle Savage"
@@ -670,6 +676,18 @@
 	full_name = "Vent crawl"
 	description = "Enter an air vent and crawl through the pipe system."
 	keybind_signal = COMSIG_XENOABILITY_VENTCRAWL
+
+/datum/keybinding/xeno/sow
+	name = "sow"
+	full_name = "Drone : Sow"
+	description = "Plant the seeds of an alien plant."
+	keybind_signal = COMSIG_XENOABILITY_DROP_PLANT
+
+/datum/keybinding/xeno/sow_select_plant
+	name = "choose_plant"
+	full_name = "Drone : Choose plant"
+	description = "Pick what type of plant to sow."
+	keybind_signal = COMSIG_XENOABILITY_CHOOSE_PLANT
 
 /datum/keybinding/xeno/vent/down(client/user)
 	. = ..()

@@ -240,6 +240,13 @@
 			H.dropItemToGround(thing)
 	for(var/newtrait in inherent_traits)
 		ADD_TRAIT(H, newtrait, SPECIES_TRAIT)
+	var/datum/reagents/R
+	if(species_flags & NO_CHEM_METABOLIZATION)
+		R = new /datum/reagents(0)
+	else
+		R = new /datum/reagents(1000)
+	H.reagents = R
+	R.my_atom = H
 
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
@@ -957,10 +964,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	)
 	blood_color = "#2d2055" //"oil" color
 	hair_color = "#00000000"
-	has_organ = list(
-		"heart" = /datum/internal_organ/heart/prosthetic,
-		"brain" = /datum/internal_organ/brain/prosthetic,
-		)
+	has_organ = list()
 
 
 	screams = list(MALE = "robot_scream", FEMALE = "robot_scream")

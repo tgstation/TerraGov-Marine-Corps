@@ -15,7 +15,8 @@
 	burst_amount = 3
 	burst_delay = 0.2 SECONDS
 	accuracy_mult_unwielded = 0.6
-	scatter_unwielded = 40
+	scatter = 0
+	scatter_unwielded = 13
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
 	upper_akimbo_accuracy = 5
@@ -80,7 +81,8 @@
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.1 SECONDS
 	accuracy_mult = 1.10
-	scatter = -5
+	scatter = 2
+	burst_scatter_mult = 0.25
 	burst_amount = 4
 	aim_slowdown = 0.30
 	damage_falloff_mult = 0.9
@@ -150,7 +152,7 @@
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
-	scatter = -10
+	scatter = 0
 	wield_delay = 0.7 SECONDS
 	burst_amount = 3
 	aim_slowdown = 0.4
@@ -224,7 +226,7 @@
 
 	fire_delay = 0.65 SECONDS
 	accuracy_mult = 1.25
-	scatter = -15
+	scatter = -3
 	burst_amount = 1
 
 /obj/item/weapon/gun/rifle/standard_dmr/marksman
@@ -296,7 +298,7 @@
 	burst_delay = 0.10 SECONDS
 	extra_delay = 0.35 SECONDS
 	accuracy_mult = 1.25
-	scatter = -10
+	scatter = 0
 //-------------------------------------------------------
 //M412 Pulse Rifle
 
@@ -355,7 +357,7 @@
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
-	scatter = -10
+	scatter = 0
 	wield_delay = 0.7 SECONDS
 	burst_amount = 3
 	aim_slowdown = 0.4
@@ -451,7 +453,7 @@
 	burst_amount = 4
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.10
-	scatter = -10
+	scatter = 0
 	fire_delay = 0.2 SECONDS
 
 
@@ -548,7 +550,7 @@
 	aim_speed_modifier = 2.5
 
 	fire_delay = 0.2 SECONDS
-	scatter = -2
+	scatter = 3
 	extra_delay = -0.05 SECONDS
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.3
@@ -616,7 +618,7 @@
 	accuracy_mult = 1.25
 	wield_delay = 0.5 SECONDS
 	damage_mult = 1.2
-	scatter = 5
+	scatter = 3
 
 /obj/item/weapon/gun/rifle/famas/freelancermedic
 	starting_attachment_types = list(/obj/item/attachable/lasersight, /obj/item/attachable/suppressor)
@@ -680,7 +682,7 @@
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1
-	scatter = 10
+	scatter = 4
 	scatter_unwielded = 80
 
 //-------------------------------------------------------
@@ -738,8 +740,8 @@
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.4
 	accuracy_mult = 1
-	scatter = 25
-	scatter_unwielded = 80
+	scatter = 10
+	scatter_unwielded = 45
 
 	placed_overlay_iconstate = "lmg"
 
@@ -801,8 +803,8 @@
 	burst_delay = 0.1 SECONDS
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1.05
-	scatter = 15
-	scatter_unwielded = 80
+	scatter = 7
+	scatter_unwielded = 25
 	recoil_unwielded = 5
 
 	placed_overlay_iconstate = "lmg"
@@ -986,8 +988,8 @@
 	burst_amount = 0
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1.2
-	scatter = -20
-	scatter_unwielded = 80
+	scatter = -5
+	scatter_unwielded = 40
 
 	placed_overlay_iconstate = "smartgun"
 
@@ -1044,8 +1046,8 @@
 	burst_amount = 0
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1.2
-	scatter = -5
-	scatter_unwielded = 60
+	scatter = 0
+	scatter_unwielded = 15
 
 //-------------------------------------------------------
 //Sectoid Rifle
@@ -1121,6 +1123,7 @@
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/compensator,
+		/obj/item/attachable/bipod,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -1140,8 +1143,8 @@
 	fire_delay = 1.35 SECONDS
 	accuracy_mult = 1.35
 	accuracy_mult_unwielded = 0.7
-	scatter = -30
-	scatter_unwielded = 40
+	scatter = -5
+	scatter_unwielded = 20
 	recoil = 0
 	recoil_unwielded = 4
 	aim_slowdown = 1
@@ -1184,11 +1187,11 @@
 	)
 
 	burst_amount = 0
-	fire_delay = 0.5 SECONDS
+	fire_delay = 0.55 SECONDS
 	accuracy_mult = 1.35
 	accuracy_mult_unwielded = 0.7
-	scatter = -30
-	scatter_unwielded = 40
+	scatter = -5
+	scatter_unwielded = 20
 	recoil = 0
 	recoil_unwielded = 4
 	aim_slowdown = 1
@@ -1225,7 +1228,7 @@
 	)
 
 	flags_gun_features = GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11, /obj/item/attachable/scope/mini/tx11)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 19, "stock_y" = 23)
 	actions_types = list(/datum/action/item_action/aim_mode)
@@ -1236,8 +1239,9 @@
 	burst_delay = 0.05 SECONDS
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1.2
-	scatter = -10
-	scatter_unwielded = 30
+	scatter = 0
+	scatter_unwielded = 15
+	burst_scatter_mult = 0.33
 	aim_slowdown = 0.45
 
 /obj/item/weapon/gun/rifle/tx11/scopeless
@@ -1298,7 +1302,7 @@
 	burst_amount = 1
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
-	scatter = -10
+	scatter = 0
 	wield_delay = 0.6 SECONDS
 	aim_slowdown = 0.5
 	damage_falloff_mult = 0.5
@@ -1340,7 +1344,7 @@
 	burst_delay = 0.1 SECONDS
 	extra_delay = 0.5 SECONDS
 	accuracy_mult = 1
-	scatter = 12
+	scatter = 7
 	burst_amount = 4
 	aim_slowdown = 0.3
 	wield_delay = 0.4 SECONDS

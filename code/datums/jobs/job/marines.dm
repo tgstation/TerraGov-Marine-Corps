@@ -186,7 +186,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/standard_pistol, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pistol, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/lightreplacer, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/circuitboard/general, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 
 /datum/job/terragov/squad/engineer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)

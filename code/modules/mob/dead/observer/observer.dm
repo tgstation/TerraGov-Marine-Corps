@@ -341,7 +341,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			else
 				stat("Respawn timer:", "[(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]")
 			if(SSticker.mode?.flags_round_type & MODE_INFESTATION)
-				stat("Xeno respawn timer:", "<b>READY</b>") // There is no longer a timer for xeno respawn. It is always READY.
 				if(larva_position)
 					stat("Position in larva candidate queue: ", "[larva_position]")
 				var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
@@ -867,6 +866,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/dead/observer/verb/join_valhalla()
 	set name = "Join Valhalla"
 	set category = "Ghost"
+
+	if(is_banned_from(ckey, ROLE_VALHALLA))
+		to_chat(usr, span_notice("You are banned from Valhalla!"))
+		return
 
 	if(!GLOB.valhalla_allowed)
 		to_chat(usr, span_notice("Valhalla is currently disabled!"))

@@ -47,6 +47,21 @@ OPERATIONS
 	contains = list(/obj/item/fulton_extraction_pack)
 	cost = 10
 
+/datum/supply_packs/operations/autominer
+	name = "Autominer upgrade"
+	contains = list(/obj/item/minerupgrade/automatic)
+	cost = 5
+
+/datum/supply_packs/operations/miningwelloverclock
+	name = "Mining well reinforcement upgrade"
+	contains = list(/obj/item/minerupgrade/reinforcement)
+	cost = 5
+
+/datum/supply_packs/operations/miningwellresistance
+	name = "Mining well overclock upgrade"
+	contains = list(/obj/item/minerupgrade/overclock)
+	cost = 5
+
 /datum/supply_packs/operations/cas_flares
 	name = "CAS flare pack"
 	contains = list(/obj/item/storage/box/m94/cas)
@@ -319,7 +334,7 @@ WEAPONS
 /datum/supply_packs/weapons/autosniper
 	name = "T-81 IFF Auto Sniper kit"
 	contains = list(/obj/item/weapon/gun/rifle/standard_autosniper)
-	cost = 30
+	cost = 50
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/autosniper_regular
@@ -471,6 +486,11 @@ EXPLOSIVES
 	notes = "Contains 5 mines"
 	contains = list(/obj/item/storage/box/explosive_mines)
 	cost = 15
+
+/datum/supply_packs/explosives/explosives_minelayer
+	name = "M21 APRDS \"Minelayer\""
+	contains = list(/obj/item/minelayer)
+	cost = 5
 
 /datum/supply_packs/explosives/explosives_razor
 	name = "Razorburn grenade box crate"
@@ -1000,6 +1020,11 @@ ENGINEERING
 	contains = list(/obj/machinery/power/port_gen/pacman/mobile_power)
 	cost = 20
 
+/datum/supply_packs/engineering/teleporter
+	name = "Teleporter pads"
+	contains = list(/obj/effect/teleporter_linker)
+	cost = 50
+
 /*******************************************************************************
 SUPPLIES
 *******************************************************************************/
@@ -1319,6 +1344,11 @@ VEHICLES
 	name = "All-Terrain Motorbike"
 	cost = 40
 	contains = list(/obj/vehicle/ridden/motorbike)
+
+/datum/supply_packs/vehicles/sidecar
+	name = "Sidecar motorbike upgrade"
+	cost = 20
+	contains = list(/obj/item/sidecar)
 
 /datum/supply_packs/vehicles/droid_combat
 	name = "Combat droid with weapon equipped"

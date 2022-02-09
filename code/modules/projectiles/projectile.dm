@@ -288,10 +288,8 @@
 	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
 		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle, target)
 
-	if(shooter.Adjacent(target) && ismob(target))
-		var/mob/mob_to_hit = target
-		ammo.on_hit_mob(mob_to_hit, src)
-		mob_to_hit.bullet_act(src)
+	if(shooter.Adjacent(target) && target.projectile_hit(src))
+		target.do_projectile_hit(src)
 		qdel(src)
 		return
 
@@ -317,7 +315,7 @@
 		if(PROJECTILE_FROZEN)
 			return
 
-	if(!suppress_light)
+	if(!suppress_light && ammo.bullet_color)
 		set_light_color(ammo.bullet_color)
 		set_light_on(TRUE)
 
@@ -1143,6 +1141,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /obj/projectile/hitscan/resume_move(datum/source)
 	UnregisterSignal(source, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
 	projectile_batch_move(FALSE)
+	qdel(src)
 
 /mob/living/carbon/human/bullet_act(obj/projectile/proj)
 	. = ..()

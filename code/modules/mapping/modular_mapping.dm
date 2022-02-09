@@ -9,6 +9,12 @@
 	var/template_width = 0
 	///Bool for whether we want to to be spawning from the middle or to the topright of the spawner (true is centered)
 	var/keepcentered = FALSE
+	//minimum player number for a modular map template to be added to the list of potential modular map spawns.
+	var/min_player_num
+	//maximum player number for a modular map template to be added to the list of potential modular map spawns.
+	var/max_player_num
+
+	//FOR MIN AND MAX PLAYER COUNTS TO WORK YOUR MODULAR MAP MUST HAVE BOTH FIELDS, MAPS WITH UNINITIALIZED MIN/MAX VALUES OR WITH JUST ONE OF EITHER VAR WILL ENTER THE MODULAR LIST REGARDLESS OF POP
 
 /datum/map_template/modular/prison
 	mappath = "_maps/modularmaps/prison"
@@ -122,6 +128,41 @@
 /datum/map_template/modular/end_of_round/basketball
 	name = "Basketball Arena"
 	mappath = "_maps/modularmaps/EORG/basketball.dmm"
+	modular_id = "EORG"
+	template_width = 46
+	template_height = 46
+
+/datum/map_template/modular/end_of_round/cs_mansion
+	name = "cs mansion"
+	mappath = "_maps/modularmaps/EORG/cs_mansion.dmm"
+	modular_id = "EORG"
+	template_width = 46
+	template_height = 46
+
+/datum/map_template/modular/end_of_round/cs_militia
+	name = "cs militia"
+	mappath = "_maps/modularmaps/EORG/cs_militia.dmm"
+	modular_id = "EORG"
+	template_width = 46
+	template_height = 46
+
+/datum/map_template/modular/end_of_round/cs_office
+	name = "cs office"
+	mappath = "_maps/modularmaps/EORG/cs_office.dmm"
+	modular_id = "EORG"
+	template_width = 46
+	template_height = 46
+
+/datum/map_template/modular/end_of_round/de_inferno
+	name = "de inferno"
+	mappath = "_maps/modularmaps/EORG/de_inferno.dmm"
+	modular_id = "EORG"
+	template_width = 46
+	template_height = 46
+
+/datum/map_template/modular/end_of_round/de_nuke
+	name = "de nuke"
+	mappath = "_maps/modularmaps/EORG/de_nuke.dmm"
 	modular_id = "EORG"
 	template_width = 46
 	template_height = 46

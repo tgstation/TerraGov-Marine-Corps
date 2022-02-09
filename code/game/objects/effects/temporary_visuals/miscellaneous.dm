@@ -134,6 +134,12 @@
 	icon_state = "busy_medical"
 	duration = 0.8 SECONDS
 
+
+/obj/effect/temp_visual/alien_fruit_eaten
+	name = "glitters"
+	icon_state = "shieldsparkles"
+	duration = 0.5 SECONDS
+
 /obj/effect/temp_visual/smoke
 	name = "smoke"
 	icon = 'icons/obj/items/jetpack.dmi'
@@ -165,3 +171,15 @@
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "boiler_gas"
 	duration = 0.8 SECONDS
+
+/obj/effect/temp_visual/wraith_warp
+	icon = 'icons/effects/light_overlays/light_128.dmi'
+	icon_state = "light"
+	plane = GRAVITY_PULSE_PLANE
+	pixel_x = -48
+	pixel_y = -48
+	duration = 8
+
+/obj/effect/temp_visual/wraith_warp/Initialize()
+	. = ..()
+	animate(src, time=duration, transform=matrix().Scale(0.1,0.1))

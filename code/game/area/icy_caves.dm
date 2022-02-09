@@ -17,6 +17,31 @@
 	icon_state = "red"
 	ceiling = CEILING_DEEP_UNDERGROUND
 
+/area/icy_caves/caves/chapel
+	name = "Chapel of Nar'Sie"
+	icon_state = "icy_chapel"
+	ceiling = CEILING_DEEP_UNDERGROUND
+
+/area/icy_caves/caves/underground_cafeteria
+	name = "Underground Cafeteria"
+	icon_state = "icy_undercaf"
+	ceiling = CEILING_DEEP_UNDERGROUND
+
+/area/icy_caves/caves/cavesbrig
+	name = "Caves Brig"
+	icon_state = "icy_cavesbrig"
+	ceiling = CEILING_METAL
+
+/area/icy_caves/caves/weapon_vault
+	name = "Cave Weapons Vault"
+	icon_state = "icy_vault"
+	ceiling = CEILING_DEEP_UNDERGROUND
+
+/area/icy_caves/caves/alienstuff
+	name = "Extraterrestrial Organisms and Plant Life Exhibit"
+	icon_state = "icy_alienstuff"
+	ceiling = CEILING_DEEP_UNDERGROUND
+
 /area/icy_caves/caves/south
 	name ="Southern Caves"
 	icon_state = "cave"

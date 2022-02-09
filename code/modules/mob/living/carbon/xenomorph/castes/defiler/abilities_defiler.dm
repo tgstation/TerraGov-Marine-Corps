@@ -1,11 +1,3 @@
-#define DEFILER_NEUROTOXIN "Neurotoxin"
-#define DEFILER_HEMODILE "Hemodile"
-#define DEFILER_TRANSVITOX "Transvitox"
-#define DEFILER_OZELOMELYN "Ozelomelyn"
-
-GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
-	/datum/reagent/toxin/xeno_ozelomelyn, /datum/reagent/toxin/xeno_hemodile, /datum/reagent/toxin/xeno_transvitox, /datum/reagent/toxin/xeno_neurotoxin)))
-
 // ***************************************
 // *********** Defile
 // ***************************************
@@ -161,13 +153,11 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 		if(/datum/reagent/toxin/xeno_neurotoxin)
 			gas = new /datum/effect_system/smoke_spread/xeno/neuro/medium(X)
 		if(/datum/reagent/toxin/xeno_hemodile)
-			gas = new /datum/effect_system/smoke_spread/xeno/hemodile(X) // Higher smoke range because yransparent.
-			smoke_range = 3
+			gas = new /datum/effect_system/smoke_spread/xeno/hemodile(X)
 		if(/datum/reagent/toxin/xeno_transvitox)
-			gas = new /datum/effect_system/smoke_spread/xeno/transvitox(X) // Ditto above.
-			smoke_range = 4
+			gas = new /datum/effect_system/smoke_spread/xeno/transvitox(X)
 		if(/datum/reagent/toxin/xeno_ozelomelyn)
-			gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(X) // Default smoke range because it is non-transparent.
+			gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(X)
 
 	while(count)
 		if(X.stagger) //If we got staggered, return
@@ -239,10 +229,8 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/ozelomelyn
 		if(/datum/reagent/toxin/xeno_hemodile)
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/hemodile
-			newegg.gas_size_bonus = 1
 		if(/datum/reagent/toxin/xeno_transvitox)
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/transvitox
-			newegg.gas_size_bonus = 2
 	qdel(alien_egg)
 
 	GLOB.round_statistics.defiler_inject_egg_neurogas++

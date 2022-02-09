@@ -339,7 +339,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	visible_message(span_warning("[src] has been hit in the [affecting.display_name] by \the [thrown_item]."), null, null, 5)
 
-	apply_damage(throw_damage, dtype, zone, armor, is_sharp(thrown_item), has_edge(thrown_item), updating_health = TRUE)
+	apply_damage(max(0, throw_damage - (throw_damage * soft_armor.getRating("melee") * 0.01)), dtype, zone, armor, is_sharp(thrown_item), has_edge(thrown_item), updating_health = TRUE)
 
 	var/list/hit_report = list("(RAW DMG: [throw_damage])")
 

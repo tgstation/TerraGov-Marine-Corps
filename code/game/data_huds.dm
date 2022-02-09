@@ -198,7 +198,7 @@
 	xeno_reagent.overlays.Cut()
 	xeno_reagent.icon_state = ""
 	if(stat != DEAD)
-		var/neurotox_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin) + reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin/light)
+		var/neurotox_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin)
 		var/hemodile_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)
 		var/transvitox_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)
 		var/sanguinal_amount = reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal)
@@ -275,6 +275,9 @@
 				var/mob/dead/observer/ghost = get_ghost()
 				if(!ghost?.can_reenter_corpse)
 					status_hud.icon_state = "huddead"
+					if(istype(wear_ear, /obj/item/radio/headset/mainship))
+						var/obj/item/radio/headset/mainship/headset = wear_ear
+						headset.set_undefibbable_on_minimap()
 					return TRUE
 			var/stage
 			switch(dead_ticks)

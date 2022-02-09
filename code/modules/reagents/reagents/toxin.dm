@@ -470,11 +470,6 @@
 	scannable = TRUE
 	toxpwr = 0
 
-/datum/reagent/toxin/xeno_neurotoxin/light
-	name = "Light Neurotoxin"
-	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time. This one seems to be weaker enough to not remove other chemicals."
-
-
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/power
 	switch(current_cycle)
@@ -510,17 +505,7 @@
 	if(L.eye_blurry < 30) //So we don't have the visual acuity of Mister Magoo forever
 		L.adjust_blurriness(1.3)
 
-
 	return ..()
-
-/datum/reagent/toxin/xeno_neurotoxin/light/on_mob_life(mob/living/L, metabolism)
-	. = .. ()
-	switch(current_cycle)
-		if(21 to 45)
-			purge_rate = 0.2
-		if(46 to INFINITY)
-			purge_rate = 1
-
 
 /datum/reagent/toxin/xeno_hemodile //Slows its victim. The slow becomes twice as strong with each other xeno toxin in the victim's system.
 	name = "Hemodile"

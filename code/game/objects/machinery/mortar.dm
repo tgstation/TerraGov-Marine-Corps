@@ -339,8 +339,9 @@
 	invisibility = INVISIBILITY_MAXIMUM
 	resistance_flags = RESIST_ALL
 	mouse_opacity = 0
+	light_color = COLOR_VERY_SOFT_YELLOW
 	light_system = HYBRID_LIGHT
-	light_mask_type = /atom/movable/lighting_mask/flicker
+	light_power = 8
 	light_range = 9 //Way brighter than most lights
 
 /obj/effect/mortar_flare/Initialize()

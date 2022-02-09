@@ -17,7 +17,6 @@ type UpgradeData = {
   category: string,
   cost: number,
   times_bought: number,
-  can_buy: number,
 }
 
 const categoryIcons = {
@@ -60,6 +59,7 @@ export const BlessingMenu = (props, context) => {
                       <Stack.Item
                         m={0.5}
                         grow={categoryname.length}
+                        basis="content"
                         key={categoryname}>
                         <Tabs.Tab
                           icon={categoryIcons[categoryname]}
@@ -110,7 +110,6 @@ const Upgrades = (props, context) => {
                 upgrade_desc={upgrade.desc}
                 upgrade_cost={upgrade.cost}
                 upgrade_times_bought={upgrade.times_bought}
-                upgrade_can_buy={upgrade.can_buy}
                 upgradeicon={upgrade.iconstate} />)
             )
         )}
@@ -125,7 +124,6 @@ type UpgradeEntryProps = {
   upgrade_desc: string,
   upgrade_cost: number,
   upgrade_times_bought: number,
-  upgrade_can_buy: number,
   upgradeicon: string,
 }
 
@@ -137,7 +135,6 @@ const UpgradeEntry = (props: UpgradeEntryProps, context) => {
     upgrade_desc,
     upgrade_cost,
     upgrade_times_bought,
-    upgrade_can_buy,
     upgradeicon,
   } = props;
 
@@ -146,7 +143,6 @@ const UpgradeEntry = (props: UpgradeEntryProps, context) => {
       title={`${upgrade_name} (click for details)`}
       buttons={(
         <Button
-          disabled={!upgrade_can_buy}
           tooltip={upgrade_cost + " points"}
           onClick={() => act('buy', { buyname: upgrade_name })}>
           Claim Blessing

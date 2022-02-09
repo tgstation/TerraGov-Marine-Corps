@@ -191,11 +191,11 @@
 	///this is how much deviation the gun recoil can have, recoil pushes the screen towards the reverse angle you shot + some deviation which this is the max.
 	var/recoil_deviation = 22.5
 	///How much the bullet scatters when fired while wielded.
-	var/scatter	= 20
+	var/scatter	= 4
 	///How much the bullet scatters when fired while unwielded.
-	var/scatter_unwielded = 20
+	var/scatter_unwielded = 12
 	///Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
-	var/burst_scatter_mult = 3
+	var/burst_scatter_mult = 1
 	///Multiplier. Defaults to 1 (no penalty). Multiplies accuracy modifier by this amount while burst firing; usually a fraction (penalty) when set.
 	var/burst_accuracy_mult	= 1
 	///accuracy modifier, used by most attachments.
@@ -203,7 +203,7 @@
 	///same vars as above but for unwielded firing.
 	var/accuracy_mult_unwielded = 1
 	///Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
-	var/movement_acc_penalty_mult = 5
+	var/movement_acc_penalty_mult = 2
 	///For regular shots, how long to wait before firing again.
 	var/fire_delay = 6
 	///Modifies the speed of projectiles fired.
@@ -223,6 +223,8 @@
 	var/burst_delay = 0.1 SECONDS
 	///When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
 	var/extra_delay	= 0
+	///when autobursting, this is the amount of extra (extra) time before the weapon fires again. If no amount is specified, defaults to x2 fire_delay
+	var/autoburst_delay = 0
 
 	///Slowdown for wielding
 	var/aim_slowdown = 0
@@ -327,7 +329,7 @@
 	update_force_list() //This gives the gun some unique verbs for attacking.
 
 	setup_firemodes()
-	AddComponent(/datum/component/automatedfire/autofire, fire_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
+	AddComponent(/datum/component/automatedfire/autofire, fire_delay, autoburst_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachable_allowed, attachable_offset, starting_attachment_types, null, CALLBACK(src, .proc/on_attachment_attach), CALLBACK(src, .proc/on_attachment_detach), attachment_overlays)
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT))
 		AddElement(/datum/element/attachment, slot, icon, .proc/on_attach, .proc/on_detach, .proc/activate, .proc/can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, "firearms", SKILL_FIREARMS_DEFAULT, 'sound/machines/click.ogg')
@@ -1538,13 +1540,13 @@
 	else if(user && world.time - user.last_move_time < 5) //moved during the last half second
 		//accuracy and scatter penalty if the user fires unwielded right after moving
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * 0.15))
-		gun_scatter += max(0, movement_acc_penalty_mult * 5)
+		gun_scatter += max(0, movement_acc_penalty_mult)
 
 	if(gun_firemode == GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST && burst_amount > 1)
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
 
 	if(dual_wield) //akimbo firing gives terrible accuracy
-		gun_scatter += 8 * rand(upper_akimbo_accuracy, lower_akimbo_accuracy)
+		gun_scatter += 2 * rand(upper_akimbo_accuracy, lower_akimbo_accuracy)
 
 	if(user)
 		// Apply any skill-based bonuses to accuracy
@@ -1564,7 +1566,7 @@
 				var/mob/living/carbon/carbon_user = user
 				projectile_to_fire.def_zone = user.zone_selected
 				if(carbon_user.stagger)
-					gun_scatter += 30
+					gun_scatter += 5
 
 			// Status effect changes
 			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_BUFF))
@@ -1590,27 +1592,23 @@
 /obj/item/weapon/gun/proc/get_scatter(starting_scatter, mob/user)
 	. = starting_scatter //projectile_to_fire.scatter
 
-	if(. <= 0) //Not if the gun doesn't scatter at all, or negative scatter.
-		return 0
-
-
 	if(gun_firemode ==  GUN_FIREMODE_BURSTFIRE || gun_firemode == GUN_FIREMODE_AUTOBURST) //Much higher chance on a burst or similar.
 		if(flags_item & WIELDED && wielded_stable() || CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if deployed, its pretty stable.
 			. += burst_amount * burst_scatter_mult
 		else
-			. += burst_amount * burst_scatter_mult * 5
+			. += burst_amount * burst_scatter_mult * 2
 
 	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if our gun is deployed, change the scatter by this number, usually a negative
 		. += deployed_scatter_change
 
 	if(!user?.skills.getRating("firearms")) //no training in any firearms
-		. += 15
+		. += 10
 	else
 		var/scatter_tweak = user.skills.getRating(gun_skill_category)
-		if(scatter_tweak)
-			. -= scatter_tweak * 15
+		if(scatter_tweak > 1)
+			. -= scatter_tweak * 2
 
-	if(!prob(.)) //RNG at work.
+	if(. <= 0)
 		return 0
 
 

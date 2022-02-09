@@ -178,7 +178,8 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 19)
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.15 SECONDS
+	akimbo_additional_delay = 0.6 // Ends up as 0.249, so it'll get moved up to 0.25.
 	accuracy_mult_unwielded = 0.85
 	accuracy_mult = 1
 	scatter_unwielded = 15
@@ -291,7 +292,7 @@
 	aim_fire_delay = 0.3 SECONDS
 	recoil = 0
 	accuracy_mult = 1.1
-	scatter = 10
+	scatter = 6
 	accuracy_mult_unwielded = 0.6
 	scatter_unwielded = 20
 

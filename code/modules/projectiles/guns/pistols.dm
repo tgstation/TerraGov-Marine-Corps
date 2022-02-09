@@ -34,7 +34,7 @@
 	actions_types = list(/datum/action/item_action/aim_mode) // all pistols can aim mode
 	aim_speed_modifier = 0.65
 	scatter = 0
-	scatter_unwielded = 0
+	scatter_unwielded = 4
 	akimbo_additional_delay = 0.9
 
 	placed_overlay_iconstate = "pistol"
@@ -59,8 +59,8 @@
 	fire_delay = 0.15 SECONDS
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.95
-	scatter = -5
-	scatter_unwielded = 0
+	scatter = 0
+	scatter_unwielded = 4
 	recoil = -2
 	recoil_unwielded = -2
 	upper_akimbo_accuracy = 5
@@ -218,7 +218,7 @@
 
 /obj/item/weapon/gun/pistol/m1911/custom
 	name = "\improper M1911A1 custom pistol"
-	desc = "A 20th century military firearm that received several modifications. It seems to have been lovingly taken care of and passed down the family. Lacks an auto magazine eject feature."
+	desc = "A handgun that has received several modifications. It seems to have been lovingly taken care of and passed down for generations. Lacks an auto magazine eject feature."
 	icon_state = "m1911c"
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
@@ -231,8 +231,6 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
-
 	fire_delay = 0.15 SECONDS
 
 //-------------------------------------------------------
@@ -318,8 +316,8 @@
 	scatter_unwielded = 25
 	recoil = 1
 	recoil_unwielded = 2
-	scatter = 5
-	scatter_unwielded = 10
+	scatter = 4
+	scatter_unwielded = 7
 
 /obj/item/weapon/gun/pistol/heavy/gold
 	name = "\improper Desert Eagle custom pistol"
@@ -363,7 +361,7 @@
 	accuracy_mult = 1.65
 	accuracy_mult_unwielded = 1.5
 	scatter = 0
-	scatter_unwielded = 10
+	scatter_unwielded = 2
 	damage_mult = 1.3
 	aim_slowdown = 0.1
 
@@ -433,8 +431,8 @@
 	recoil_unwielded = -2
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 1
-	scatter = -10
-	scatter_unwielded = -5
+	scatter = -2
+	scatter_unwielded = 0
 	aim_speed_modifier = 0
 
 
@@ -465,8 +463,8 @@
 	recoil = 1
 	recoil_unwielded = 2
 	accuracy_mult = 1.5
-	scatter = 5
-	scatter_unwielded = 20
+	scatter = 3
+	scatter_unwielded = 6
 
 //-------------------------------------------------------
 //VP70
@@ -508,8 +506,8 @@
 	accuracy_mult_unwielded = 0.95
 	recoil = 0
 	aim_slowdown = 0.2
-	scatter = 5
-	scatter_unwielded = 15
+	scatter = 3
+	scatter_unwielded = 6
 
 
 //-------------------------------------------------------
@@ -600,7 +598,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 25
-	movement_acc_penalty_mult = 10
+	movement_acc_penalty_mult = 3
 	wield_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/pistol_service.ogg'
 	type_of_casings = "bullet"

@@ -350,18 +350,17 @@
 
 
 /mob/living/carbon/xenomorph/proc/update_progression()
-	if(upgrade_possible()) //upgrade possible
-		if(client && ckey) // pause for ssd/ghosted
-			if(!hive?.living_xeno_ruler || hive.living_xeno_ruler.loc.z == loc.z)
-				if(upgrade_stored >= xeno_caste.upgrade_threshold)
-					if(health == maxHealth && !incapacitated() && !handcuffed)
-						upgrade_xeno(upgrade_next())
-				else
-					// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
-					var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-					var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-					var/upgrade_points = 1 + (stored_larva/6) + hive.get_upgrade_boost()
-					upgrade_stored = min(upgrade_stored + upgrade_points, xeno_caste.upgrade_threshold)
+	if(!upgrade_possible()) //upgrade possible
+		return
+	if(upgrade_stored >= xeno_caste.upgrade_threshold)
+		if(!incapacitated())
+			upgrade_xeno(upgrade_next())
+		return
+	// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+	var/upgrade_points = 1 + (stored_larva/6) + hive.get_upgrade_boost()
+	upgrade_stored = min(upgrade_stored + upgrade_points, xeno_caste.upgrade_threshold)
 
 /mob/living/carbon/xenomorph/proc/update_evolving()
 	if(!client || !ckey) // stop evolve progress for ssd/ghosted xenos
@@ -408,9 +407,9 @@
 	if(isliving(hit_atom)) //Hit a mob! This overwrites normal throw code.
 		if(SEND_SIGNAL(src, COMSIG_XENO_LIVING_THROW_HIT, hit_atom) & COMPONENT_KEEP_THROWING)
 			return FALSE
-		set_throwing(FALSE) //Resert throwing since something was hit.
+		stop_throw() //Resert throwing since something was hit.
 		return TRUE
-	set_throwing(FALSE) //Resert throwing since something was hit.
+	stop_throw() //Resert throwing since something was hit.
 	return ..() //Do the parent otherwise, for turfs.
 
 /mob/living/carbon/xenomorph/proc/toggle_nightvision(new_lighting_alpha)
@@ -502,18 +501,18 @@
 		to_chat(src, span_xenowarning("Our pheromones have changed. The Queen has new plans for the Hive."))
 
 
-/mob/living/carbon/xenomorph/proc/update_spits()
+/mob/living/carbon/xenomorph/proc/update_spits(skip_ammo_choice = FALSE)
 	if(!ammo && length(xeno_caste.spit_types))
 		ammo = GLOB.ammo_list[xeno_caste.spit_types[1]]
 	if(!ammo || !xeno_caste.spit_types || !xeno_caste.spit_types.len) //Only update xenos with ammo and spit types.
 		return
-	for(var/i in 1 to xeno_caste.spit_types.len)
-		var/datum/ammo/A = GLOB.ammo_list[xeno_caste.spit_types[i]]
-		if(ammo.icon_state == A.icon_state)
-			ammo = A
-			return
-	ammo = GLOB.ammo_list[xeno_caste.spit_types[1]] //No matching projectile time; default to first spit type
-	return
+	if(!skip_ammo_choice)
+		for(var/i in 1 to xeno_caste.spit_types.len)
+			var/datum/ammo/A = GLOB.ammo_list[xeno_caste.spit_types[i]]
+			if(ammo.icon_state == A.icon_state)
+				ammo = A
+				break
+	SEND_SIGNAL(src, COMSIG_XENO_AUTOFIREDELAY_MODIFIED, xeno_caste.spit_delay + ammo?.added_spit_delay)
 
 /mob/living/carbon/xenomorph/proc/handle_decay()
 	if(prob(7+(3*tier)+(3*upgrade_as_number()))) // higher level xenos decay faster, higher plasma storage.
