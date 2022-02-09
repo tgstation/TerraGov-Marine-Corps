@@ -65,7 +65,7 @@
 
 /datum/reagent/water/on_mob_delete(mob/living/L, metabolism)
 	to_chat(L, span_userdanger("You start to feel thirsty."))
-	TIMER_COOLDOWN_START(L, name, 10 SECONDS)
+	TIMER_COOLDOWN_START(L, name, 5 SECONDS)
 
 /datum/reagent/water/overdose_process(mob/living/L, metabolism)
 	if(prob(10))
