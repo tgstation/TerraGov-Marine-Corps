@@ -1,0 +1,1263 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>TerraGov Marine Corps Changelog</title>
+  <link rel="stylesheet" type="text/css" href="changelog.css">
+  <base target="_blank" />
+  <script type='text/javascript'>
+
+	function changeText(tagID, newText, linkTagID){
+		var tag = document.getElementById(tagID);
+		tag.innerHTML = newText;
+		var linkTag = document.getElementById(linkTagID);
+		linkTag.removeAttribute("href");
+		linkTag.removeAttribute("onclick");
+	}
+
+  </script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+
+<body>
+<table align='center' width='650'><tr><td>
+<table align='center' class="top">
+	<tr>
+		<td valign='top'>
+			<div align='center'><font size='3'><b>Welcome to TGMC!</b></font></div><br>
+			<div align='center'><font size='2'><i>TerraGov Marine Corps is a medium roleplay Space Station 13 server branched off CM-SS13, which branched off Baystation 12, which branched off /tg/Station 13.</i></font></div>
+			<br>
+			<div align='center'><font size='3'><a href="https://tgstation13.org/wiki/TGMC:Rules">Rules</a> | <a href="https://tgstation13.org/phpBB/viewforum.php?f=64">Forum</a> | <a href="https://tgstation13.org/wiki/TGMC">Wiki</a><br></font></div>
+		</td>
+	</tr>
+</table>
+
+
+<br><b>TerraGov Marine Corps</b>
+<table align='center' class="top">
+	<tr>
+		<td valign='top'>
+			<font size='2'><b>Staff:</b> <a href='https://tgstation13.org/phpBB/viewtopic.php?f=69&t=19855'>Here</a><br></font>
+			<font size='2'><b>Contributors:</b> <a href='https://github.com/tgstation/TerraGov-Marine-Corps/graphs/contributors'>Here</a><br></font>
+			<font size='2'><b>Thanks to:</b> The CM-SS13 devs, The Russian CM, Baystation 12, /tg/Station, /vg/station, NTstation, CDK Station devs, FacepunchStation, GoonStation devs and the original SpaceStation 13 developers.</font>
+		</td>
+	</tr>
+</table>
+
+		<!--
+		
+		TO ADD AN ENTRY, ADD AND MAINTAIN YOUR OWN changelog/USERNAME.yml FILE. 
+		
+		*** DO NOT FUCK WITH THIS FILE OR YOU WILL CAUSE MERGE CONFLICTS. ***
+		
+		-->
+		<div class="commit sansserif">
+
+			<h2 class="date">05 May 2021</h2>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscdel">Removed unused map</li>
+			</ul>
+
+			<h2 class="date">04 May 2021</h2>
+			<h3 class="author">Arturlang updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">You can now toggle TGUI window compability mode from the preferences tab too</li>
+			</ul>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">You can leave the larva queue. Also, a new action to join/leave the queue gave to observers</li>
+				<li class="rscadd">Tadpole is reworked. New layout, can hover, no cooldown to land/take off.</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">A number of backend icon changes</li>
+			</ul>
+			<h3 class="author">Wayland-Smithy updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">Two-handed weapons can no longer be picked up with a macro.</li>
+			</ul>
+
+			<h2 class="date">03 May 2021</h2>
+			<h3 class="author">AyyRobotics updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added the Barrenquilla Mining Facility</li>
+				<li class="rscadd">Added some fluff lore and things to be expanded upon later.</li>
+				<li class="rscdel">Removed old Lava Outpost</li>
+				<li class="imageadd">added some sprites for areas and other non-important things.</li>
+			</ul>
+
+			<h2 class="date">02 May 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">Linters for pixel z / pixel w and for centcomm with two m</li>
+				<li class="bugfix">Small silo cannot be placed in medium-high pop</li>
+				<li class="bugfix">Cannot vote for crash when pop is > 40</li>
+				<li class="bugfix">Corpses are no longer invisible in cloak nades</li>
+			</ul>
+			<h3 class="author">TG-Eris updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Edited the /obj/item/storage/internal/tie/holster path to allow for the standard_machinepistol</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">HUD tracker code improvements</li>
+				<li class="bugfix">Open helmets use the correct colors and can be colored</li>
+				<li class="bugfix">Minor sulaco fix</li>
+				<li class="qol">APC screens now glow</li>
+				<li class="qol">The Lobby UI title text now looks nicer</li>
+				<li class="qol">Fixed the lobby icon by Gohunt being squashed</li>
+				<li class="bugfix">fixed lobby UI not updating on character changes</li>
+				<li class="code_imp">improved attachment code</li>
+			</ul>
+			<h3 class="author">Wayland-Smithy updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixed throw force damage delay for xenos.</li>
+			</ul>
+			<h3 class="author">psykzz updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">bump attack toggle message was inverted</li>
+				<li class="bugfix">defenders laying down while fortified</li>
+			</ul>
+
+			<h2 class="date">01 May 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Negative larva fixed</li>
+				<li class="qol">CIC orders icons are now red when the order is on cooldown</li>
+				<li class="balance">Cooldown of orders is now 30 seconds</li>
+			</ul>
+
+			<h2 class="date">30 April 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Double the damage of bull gore and make it damage the area the player is aiming</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Cades can be rotated instantly clockwise with right click</li>
+			</ul>
+			<h3 class="author">XSlayer300 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Recolored the current Jaeger colors with somewhat accurate ones before the greyscale armor PR</li>
+			<h2 class="date">30 April 2021</h2>
+			<h3 class="author">Walarks updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">splints require taking a certain amount of damage to break, based on medical skill of the one applying it. Anyone with medical skill adds 15 splint health per medical skill rank. If you splint yourself, this is reduced by 15, but can't be lower than 0.</li>
+				<li class="balance">removes small chance for splints to not be damaged</li>
+			</ul>
+			<h3 class="author">Wayland-Smithy updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Xeno hive status buttons work for observers too!</li>
+			</ul>
+			<h3 class="author">XSlayer300 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Made health analyzers and medical tweezers to be stored on more medical storages (medical belts for the former, webbings and medical armor modules for the latter)</li>
+			</ul>
+
+			<h2 class="date">29 April 2021</h2>
+			<h3 class="author">Alterist updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Larvaway and Ironutriment Autoinjectors now exists</li>
+				<li class="balance">Combat Autoinjector to 10/10/5u Bica/Kelo/Tram</li>
+				<li class="balance">Advanced Combat Autoinjector to 2 shots of 10/10/10u mera/derma/tram</li>
+				<li class="balance">Oxycodone Autoinjector to 2 shots of 10u</li>
+				<li class="balance">Autoinjector pouch can now hold 8 autoinjectors</li>
+				<li class="balance">Synth Closet Autoinjector Pouch now contains a variety of unique and useful chems</li>
+				<li class="balance">Corpsman Closet Autoinjector Pouch now contains some more useful chems</li>
+				<li class="balance">Corpsman Hypo pouch now holds 5</li>
+				<li class="balance">Corpsman hypo pouch now comes with both a meraderma hypo and an oxy hypo.</li>
+			</ul>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">SL rally orders is sent only to his squad</li>
+				<li class="code_imp">no runtime in arrow process</li>
+				<li class="balance">Can no longer place small silos in medium-high pop</li>
+			</ul>
+			<h3 class="author">David-Stormwell updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="refactor">refactored shoulder holsters</li>
+				<li class="balance">Removed Headbite from Crash.</li>
+			</ul>
+			<h3 class="author">DerrickChamberlain updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Overhauled marine prep, spawn and cafeteria on Sulaco</li>
+				<li class="qol">Added ladders in marine prep that lead outside CIC</li>
+				<li class="qol">Hardened Sulaco AI Core</li>
+				<li class="qol">Hardened Sulaco CIC APC</li>
+				<li class="qol">Moved dropship modules slightly closer on Sulaco</li>
+				<li class="qol">Moved two PACMAN gens to Sulaco Dropship Prep</li>
+				<li class="qol">Added some flavor to the Sulaco (think old marine prep)</li>
+				<li class="rscdel">Removed old marine prep from Sulaco</li>
+				<li class="bugfix">Returned Req blastdoors on Sulaco</li>
+				<li class="bugfix">Fixed airlock and shutter buttons appearing through walls</li>
+				<li class="rscdel">Removed a lot of old useless Sulaco areas, and repurposed some</li>
+			</ul>
+			<h3 class="author">Lauwma updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Jetpacks cost 15 -> 12</li>
+			</ul>
+			<h3 class="author">Psykzz revived by bravemole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">TGUI player preferences</li>
+			</ul>
+			<h3 class="author">TheOneAndMightyRed updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">calibers are now defines.</li>
+				<li class="bugfix">Map tables in conjuntion with command headset minimaps should work again.</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Jaeger can now be painted hot pink</li>
+				<li class="refactor">Jaeger is now greyscale</li>
+			</ul>
+			<h3 class="author">Walarks updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">splints require taking a certain amount of damage to break, based on medical skill of the one applying it. Anyone with medical skill adds 15 splint health per medical skill rank. If you splint yourself, this is reduced by 15, but can't be lower than 0.</li>
+				<li class="balance">removes small chance for splints to not be damaged</li>
+			</ul>
+			<h3 class="author">Wayland-Smithy updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Xenos now keep their selected targeting zone when evolving/regressing.</li>
+				<li class="bugfix">Fixed a small bug with the zone selection hud.</li>
+				<li class="bugfix">Crusher charge no longer damages resin silos and turrets. No more mystery silo damage alerts.</li>
+				<li class="bugfix">Shrike's unrelenting force no longer displaces dead humans.</li>
+				<li class="bugfix">Warrior's fling no longer works on dead humans.</li>
+				<li class="bugfix">Unconscious humans pulled through a Wraith teleport receive equivalent critdrag damage based on distance traveled.</li>
+				<li class="qol">Xeno hive status buttons work for observers too!</li>
+			</ul>
+			<h3 class="author">XSlayer300 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Made health analyzers and medical tweezers to be stored on more medical storages (medical belts for the former, webbings and medical armor modules for the latter)</li>
+			</ul>
+			<h3 class="author">hyper2snyper updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixes invisible jaeger helmets created when trying to cancel coloring them.</li>
+				<li class="bugfix">Fixes a TL-102 ammo counter bug.</li>
+			</ul>
+
+			<h2 class="date">28 April 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Larval won't purge neurotox</li>
+			</ul>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Arrow keys are grabbed by TGUI for keyboard navigation, and won't be moving your character.</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Tank transfer rates can be changed with right click now</li>
+				<li class="bugfix">milk dispenser works now</li>
+				<li class="bugfix">You can now get liquids out of tanks properly (yes this includes huffing welding fuel)</li>
+				<li class="refactor">refactored reagent tanks a bit</li>
+			</ul>
+			<h3 class="author">Wayland-Smithy updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Tactical explosive vests now have a short wind up time, more close range damage, and a guarantee you will become a dead nugget.</li>
+			</ul>
+
+			<h2 class="date">26 April 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">Prevent runtimes when config failed to load + backup solution when next_map.json is not found</li>
+			</ul>
+
+			<h2 class="date">25 April 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Totally new and original gamemode, hunt party</li>
+			</ul>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="refactor">Vendors can now have tabs</li>
+				<li class="qol">all weapons vendor now has tab and share same items, Special vendors on prep are gone.</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">The CIC minimap table will now display groundside</li>
+				<li class="refactor">Changed how minimaps were cached</li>
+				<li class="qol">Medevac beds can be instantly activated with right click</li>
+				<li class="rscadd">Some things will now glow in the dark</li>
+			</ul>
+			<h3 class="author">Wayland-Smithy updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Ghosts no longer have a fumble time when looking at the OB cannon console.</li>
+			</ul>
+			<h3 class="author">hyper2snyper updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Shows the Hiveminds nickname in its radio chat.</li>
+			</ul>
+
+			<h2 class="date">24 April 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Removed white pixel in green arrow</li>
+				<li class="bugfix">No longer weird damage overlay on silo</li>
+			</ul>
+			<h3 class="author">EvilMelonTheSecond updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">DMR gets sniper range</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixes non-larval huggers not attacking infected humans.</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">Suggested byond versions have been updated</li>
+				<li class="bugfix">You will no longer be ordered to attack the floor</li>
+				<li class="qol">monkey cubes now tell you when they're wrapped</li>
+				<li class="code_imp">cleaned up monkey cube code</li>
+				<li class="code_imp">Code cleanup</li>
+				<li class="imageadd">New screwdrivers</li>
+				<li class="refactor">New greyscaling system</li>
+			</ul>
+			<h3 class="author">Wayland-Smithy updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixed being able to remove items from storage on your person once dead.</li>
+				<li class="bugfix">Closing the "Warning : the game is unbalanced" dialog when joining late as a marine no longer proceeds to spawn you in.</li>
+				<li class="bugfix">Fixed a glitch which could break the metal economy.</li>
+			</ul>
+
+			<h2 class="date">23 April 2021</h2>
+			<h3 class="author">Pariah919 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscdel">Prae spits no longer extingush fire</li>
+			</ul>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="imageadd">added among us emojis to ooc, red, yellow blue, green, orange and purple, use :colorsus: for it.</li>
+			</ul>
+
+			<h2 class="date">22 April 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="admin">Bypassing respawn as an admin will leave a trace in admin logs</li>
+				<li class="bugfix">Can no longer jump over acid spray to avoid the stun</li>
+			</ul>
+			<h3 class="author">MsSeraph updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added milk dispenser</li>
+				<li class="bugfix">milk dispenser placements</li>
+			</ul>
+
+			<h2 class="date">21 April 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Prae spit extinguishes fire</li>
+			</ul>
+			<h3 class="author">Pariah919 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">hunter gets higher melee resist and one more point of slash damage</li>
+			</ul>
+			<h3 class="author">Swagile updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">OB warheads and fuel bought in req now comes in a locked crate for easy movement to / from OB room and to prevent random opening / theft of the crate.</li>
+			</ul>
+			<h3 class="author">Tupinambis updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">The TGMC logo is now actually centered between the TGMC letters on the Sulaco.</li>
+			</ul>
+			<h3 class="author">Walarks updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">updated Vali manual to be in-line with the recent rework of the active effect</li>
+			</ul>
+			<h3 class="author">Wayland-Smithy updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Bull's extra gore attack now always harms instead of using what ever intent is selected.</li>
+			</ul>
+			<h3 class="author">XSlayer300 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">After several incidents where drop pods accidentally land to places unsafe (*cough cough* water on Prison *cough*), TGMC finally upgraded the pod's safeties to not drop in these locations, as well as some locations they're not suppose to drop.</li>
+			</ul>
+
+			<h2 class="date">20 April 2021</h2>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Adds minimaps for xenos and marines</li>
+				<li class="imageadd">Special thanks to Ciel for icons and Ayy robotics for the medic icons</li>
+			</ul>
+
+			<h2 class="date">19 April 2021</h2>
+			<h3 class="author">Alterist updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Prison Balance Patch: more reinforced walls near central dome, and island has more land for xenos to weed and is harder to reach overall</li>
+			</ul>
+			<h3 class="author">Wayland-Smithy updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Xeno Queen overwatch from hivemind chat works again!</li>
+			</ul>
+
+			<h2 class="date">18 April 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">You cannot shoot the flamer if you didn't finish your wielding</li>
+				<li class="admin">Shipmap and Groundmap votes happen sooner</li>
+			</ul>
+			<h3 class="author">David-Stormwell updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Made Akimbo/Duel wielding less viable on the TP-14</li>
+				<li class="refactor">Adds vars for scatter on guns, you may now add specific values on a gun if required.</li>
+			</ul>
+			<h3 class="author">Walarks updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">removes item slowdown scalability from vali speed buff, changed Paracetamol buff from -0.2 to -0.1 and Neuraline buff from -0.4 to -0.3.</li>
+			</ul>
+
+			<h2 class="date">16 April 2021</h2>
+			<h3 class="author">AnCopper updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added a Flower Pin to the loadout menu.</li>
+			</ul>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Ravage and Shrike Screech can be selected with a new keybind, and then used with shift/middle/right click</li>
+				<li class="bugfix">Can psydrain / cocoon stacked bodies</li>
+			</ul>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">leader pheros are now removed when queen dies.</li>
+			</ul>
+			<h3 class="author">TheOneAndMightyRed updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">You can now click a stack of magazines with the ammo box to fill the ammo box with.</li>
+			</ul>
+			<h3 class="author">hyper2snyper updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Adds the TX7 Plasma Pistol, a 10 round incendiary weapon, available in the Automated Armaments Vendor.</li>
+			</ul>
+
+			<h2 class="date">15 April 2021</h2>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Swapped OK/Cancel buttons in tgui list input, so that it stays consistent with Windows UI guidelines (was Cancel/OK before).</li>
+			</ul>
+			<h3 class="author">Walarks updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added vali boost support for bicaridine, kelotane, dylovene, meralyne, dermaline, paracetamol, neuraline and synaptizine</li>
+				<li class="rscadd">Added a radial button with information about each reagent's effects</li>
+				<li class="qol">changed boost tier change text to correspond to new boost system</li>
+			</ul>
+			<h3 class="author">hyper2snyper updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Allows Mortar to be aimed using tactical binocs</li>
+			</ul>
+
+			<h2 class="date">14 April 2021</h2>
+			<h3 class="author">Alterist updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">New releases from TerraGov Publishing! Rouny the Big Red Dog will teach the world how to love big.</li>
+				<li class="balance">the captain's Claymore should now have slightly more damage</li>
+			</ul>
+			<h3 class="author">Walarks updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">added bump attack component to humans, added bump attack compatibility to wielded harvester and unarmed</li>
+			</ul>
+			<h3 class="author">hyper2snyper updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">fixes tactical reloading</li>
+			</ul>
+
+			<h2 class="date">13 April 2021</h2>
+			<h3 class="author">2whatever2 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Lowers tesla shell speed (2 to 0.1), lowers drain, and plasma regen disable (30 to 20), and increases the slow telsagun has (0.5 to 2)</li>
+			</ul>
+			<h3 class="author">AgentMA1 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Req Lemoline from 50 points to 25</li>
+			</ul>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="admin">Automatic votes at the end of each round</li>
+				<li class="qol">Almost all non-combat abilities of xenos can be used while resting (changing type of spit, pheros, queen orders, etc etc)</li>
+			</ul>
+			<h3 class="author">Pariah919 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">dmr has slightly less slowdown, less aim slowdown, and battle rifle has had its capacity upped from 25 to 35</li>
+				<li class="balance">nerfs hunter slash by 3 points, weed speed from -0.4 to .1 and he's slightly slower off weeds too</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="admin">Mass replace admin verb</li>
+			</ul>
+			<h3 class="author">XSlayer300 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Tips are updated, removed some outdated tips.</li>
+			</ul>
+			<h3 class="author">hyper2snyper updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Now if your hands are full, or there is a magazine in your gun, Pistol Belt reloading will instead perform a "Tactical Reload"</li>
+			</ul>
+
+			<h2 class="date">12 April 2021</h2>
+			<h3 class="author">2whatever2 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Lowered the cost for laying eggs from, 400 plasma to 200 plasma.</li>
+			</ul>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Every marine spawning for the first time will provide req 2.5 points</li>
+				<li class="balance">probability of each ERT depends on the state of the game. IE, if xenos are losing shipside there is more chance than an XRT is called rather than a PMC one</li>
+				<li class="balance">Each ERT can be called only once (unless admin interaction)</li>
+				<li class="admin">Admin can deny an ERT without annoncing if they want. They can then use distress beacon verb to send another ERT if they wish to</li>
+				<li class="bugfix">CIC order and rally no longer runtime</li>
+			</ul>
+			<h3 class="author">InterroLouis updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Buffed spears.</li>
+			</ul>
+			<h3 class="author">Swagile updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Adds handholding. Now you can hold your SL's hand before you get atomized by GOOD HITS. Help intent and aim at either hand (not arm). Locked behind fun config.</li>
+			</ul>
+			<h3 class="author">hyper2snyper updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Synths can no longer operate suicide vests</li>
+			</ul>
+
+			<h2 class="date">11 April 2021</h2>
+			<h3 class="author">Alterist updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">water around central dome on prison are now accessible</li>
+				<li class="bugfix">fixed the pocket of space localized entirely within prison station that was killing marines/xenos</li>
+			</ul>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Hitting the turf where the target is will automaticly redirect your ability on the target. This works for most xeno ability</li>
+				<li class="code_imp">Remove unused targeting flags</li>
+				<li class="qol">Xeno message is sent to the hive when silos/turrets are built</li>
+				<li class="admin">Psy points spent are now saved in game log</li>
+				<li class="bugfix">Democracy is restored</li>
+			</ul>
+			<h3 class="author">Pariah919 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">mortar kit and shells are bulky rather than huge, engineer bag is able to hold them</li>
+			</ul>
+			<h3 class="author">SkeletalElite updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">hold orders are more effective at reducing incoming damage</li>
+				<li class="qol">moved fences on the ice colony LZ2 flanks, this means you can put cades where they used to be on the FOB drone now</li>
+				<li class="bugfix">Wraith can't phase into ice colony LZ1 through a gap in the shutters</li>
+			</ul>
+
+			<h2 class="date">10 April 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">Protection against temporary visuals hard del</li>
+			</ul>
+			<h3 class="author">Swagile updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Miners now give off their own light; both in the repairing process and in the final running phase.</li>
+				<li class="balance">This buffs properly defended miners.</li>
+				<li class="balance">However, stealth mining is now nerfed, since fully operational miners give off huge light, which is easy to spot on most maps.</li>
+			</ul>
+			<h3 class="author">XSlayer300 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Clicking yourself with the fire extinguisher while on HELP intent and with the safety off will extinguish yourself instead of bashing.</li>
+			</ul>
+			<h3 class="author">hyper2snyper updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Adds an explosive suicide vest with customizable warcry.</li>
+			</ul>
+
+			<h2 class="date">09 April 2021</h2>
+			<h3 class="author">Alterist updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">even more areas of what was once deadly water on prison should be accessable now</li>
+			</ul>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Can no longer vote for any map</li>
+				<li class="bugfix">Admins have access to a readable list of voters</li>
+				<li class="bugfix">Voting buttons change in real time</li>
+				<li class="rscadd">Hivemind open resin doors with alt click</li>
+				<li class="balance">Silo less timer from 10 minutes to 5</li>
+				<li class="qol">You can aim at black tiles while shooting</li>
+				<li class="balance">The cas laser can no longer be hidden below an object or a mob</li>
+			</ul>
+			<h3 class="author">SkeletalElite updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">The FOB drone can now move on ice tiles in ice colony LZ2</li>
+			</ul>
+			<h3 class="author">TGCMbetcher updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Tasers wont murder people</li>
+			</ul>
+			<h3 class="author">Walarks updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">vali now heals 6/12 brute/burn instead of boosting reagents and provides stamina regen if you have a connected weapon. Reduced reagent storage from 60u to 30u. Weapon takes 1s to connect instead of 2s.</li>
+				<li class="bugfix">vali checks for germ level instead of necrotized limb flag since the negatives associated with necrotized limbs are based on germ levels</li>
+			</ul>
+			<h3 class="author">XSlayer300 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Metal/Plasteel sheets and barbed wire now have the NOBLUDGEON flag, which prevents accidentally damaging the cades while hitting them on harm intent. This also means you cannot attack anyone with it anymore, not like it really matters...</li>
+			</ul>
+			<h3 class="author">hyper2snyper updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Allows an empty pistol to be reloaded from a pistol belt using right click so long as right click is disabled and there is no ammo within.</li>
+				<li class="rscadd">Allows entrenching tool to be sharpened by the machete to be a comparable weapon.</li>
+			</ul>
+
+			<h2 class="date">08 April 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">TGUI vote panel</li>
+				<li class="rscadd">User can change vote</li>
+			</ul>
+
+			<h2 class="date">07 April 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Nests are really gone now</li>
+				<li class="qol">Select resin and build resin buttons are merged</li>
+				<li class="rscadd">Rally order for SL, FC, captain and SO</li>
+				<li class="balance">Change leading skill for SL (from 2 to 3) and for CE (from 4 to 2)</li>
+				<li class="qol">Order text are bigger, and the sound is louder. Marines are blind and deaf</li>
+				<li class="bugfix">Ai order no longer runtime that much</li>
+				<li class="qol">When sending an order as CIC or AI, you have feedback on what you've done</li>
+				<li class="bugfix">Autofire mode in lasgun will be on when you buy the gun</li>
+				<li class="balance">Carrier can lay eggs</li>
+			</ul>
+			<h3 class="author">Swagile updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Robo limbs now malfunction at a proper threshold, and do it at a lower probability than fleshy limbs.</li>
+				<li class="balance">Robo limbs take more punishment; from 0.66 reduction to 0.50 reduction to brute and burn damage.</li>
+			</ul>
+			<h3 class="author">XSlayer300 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixed HvH variants of ERT that will despawn automatically after spawning.</li>
+			</ul>
+
+			<h2 class="date">06 April 2021</h2>
+			<h3 class="author">Alterist updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscdel">No more regular helmets for medics, engies, and leaders when they choose jaeger loadout.</li>
+				<li class="qol">Cleanup and organizes marine vending file</li>
+			</ul>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Larva output number in hivestatus is now correct shipside</li>
+			</ul>
+			<h3 class="author">Pariah919 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">compared to t-45 the tx-8 fires slightly faster and holds more in a magazine, has more attachment options</li>
+			</ul>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">arm is now harder to delimb, max damage raised to 125</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">Distance data is now included for Hive and Tunnel status lists.</li>
+				<li class="bugfix">Should fix a bug that stopped Tunnel lists from being openable.</li>
+			</ul>
+			<h3 class="author">hyper2snyper updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Removes Engineer skill requirements for Mortar.</li>
+			</ul>
+
+			<h2 class="date">04 April 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="refactor">Autofire use bucket system</li>
+				<li class="refactor">Gun system use signals and callbacks</li>
+				<li class="refactor">Firing in akimbo now respect ROF and fire mode of each gun, and applies innacuracy maluses on both gun rather than only one</li>
+				<li class="refactor">Burstfire is no longer using sleep</li>
+				<li class="bugfix">Masterkey shotgun was runtiming when running out of ammunition</li>
+				<li class="bugfix">Burst fire assembly now works</li>
+				<li class="bugfix">You can no longer shoot while laying down or unconcious (sorry marine turrets)</li>
+				<li class="rscadd">Devour and cocoon, a new ability for queen, shrike, hivelord, drone, carrier and defiler. Devour a marine bodies that was not psy drain and you will eject it in a cocoon 5 seconds later. For 10 minutes or until marines manage to break it, you will get 1.2 points every 5 seconds. Marines inside the cocoon are in statis, which mean their DNR timer stays at zero, and that for 10 minutes</li>
+				<li class="code_imp">Remove some dead code from former devour and regurgitate code</li>
+				<li class="spellcheck">Some typo in psy drain code</li>
+				<li class="bugfix">Make the "sharp" bayonetknife really sharp, so you can use it to break cocoon</li>
+				<li class="bugfix">Prae acid spray back to normal</li>
+				<li class="balance">Fresh acid (from acid spray) stun when you walk on it, acid is considered fresh for 1 second rather than 0.5 previously</li>
+			</ul>
+			<h3 class="author">InterroLouis updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Same tile screech does a bit more stamina damage.</li>
+				<li class="bugfix">Screech stamina damage no longer reversed.</li>
+			</ul>
+			<h3 class="author">Lewdcifer updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Wound slowdown halved, appears slightly later</li>
+			</ul>
+			<h3 class="author">Naaanii updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Reduces damage and sunder of AT Sniper.</li>
+			</ul>
+			<h3 class="author">Swagile updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">B18 gauntlets to B18 req crate.</li>
+				<li class="balance">B17 and B18 rebalanced; 70 melee for chest, 75 melee for helmet on both armor sets.</li>
+				<li class="balance">B18 and B17 now have 0.55 slowdown, making it only 0.05 slower than PAS.</li>
+				<li class="balance">In return, B18 is now 120 points from 100 points, and B17 is 80 points from 60.</li>
+			</ul>
+			<h3 class="author">Walarks updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">changed harvester effects cost from 10u to 5u. Kelotane effect now ignites all mobs in the cone, dealing additional fire damage, without leaving fire tiles. Tramadol effect deals 60% bonus damage that ignores armor, but the slow lasts 1s instead of 2s. Bicaridine effect heals 12.5 brute instead of 10 brute. If you target yourself, it instantly restores 6 brute and 30 stamina.</li>
+				<li class="qol">failing to fill the harvester no longer makes you lose reagents from the liquid container, this wasn't an intended thing</li>
+			</ul>
+			<h3 class="author">XSlayer300 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added the Basketball Arena as one of the EORD options, map made by me.</li>
+			</ul>
+
+			<h2 class="date">03 April 2021</h2>
+			<h3 class="author">Alterist updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Marines should no longer be able to delay prison rounds by tadpoling to the tiny island</li>
+			</ul>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">You can corrupt a generator as queen or shrike by clicking on it. Corrupt generators ability is gone</li>
+				<li class="bugfix">Defiler can lay eggs</li>
+				<li class="balance">Hivemind collapse will now ALWAYS be 5 minutes</li>
+			</ul>
+			<h3 class="author">DerrickChamberlain updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">optimized cables on Sulaco.</li>
+				<li class="qol">optimized some atmos pipes</li>
+				<li class="qol">Gave AI more to do.</li>
+				<li class="rscadd">Repurposed a maintenance room near Alamo to serve as a staging area</li>
+				<li class="rscadd">added more vents around the ship.</li>
+				<li class="rscdel">Removed rogue photocopiers near the Condor, and embedded in the outer hull.</li>
+				<li class="bugfix">Repositioned a few APC's around ship</li>
+				<li class="bugfix">Fixed up medbay area tiles making more power independent rooms. (You know with APCs)</li>
+				<li class="bugfix">Fixed Sulaco's power distribution problem with an additional SMES</li>
+				<li class="bugfix">Possible lock out of RnD and Engineering engine room</li>
+			</ul>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">lasergun mode changing now uses a radial menu.</li>
+				<li class="balance">delay for switching modes on the lasergun removed.</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added Neuro Huggers, Clawed Huggers, Resin Huggers, and Acid Huggers; Carrier can now select between hugger types. tweak: Facehugger stun time reduced from 6 seconds to 1 second. tweak: Huggers now signify when they're about to attack with an overlay.</li>
+				<li class="refactor">Carrier hugger storage code refactored.</li>
+				<li class="refactor">Xeno announcements refactored; new parameter, distance added. Redundant spans removed.</li>
+				<li class="bugfix">Hugger throw impact behaviour improved and made consistent.</li>
+				<li class="bugfix">Opaque xeno smoke now reliably stops huggers from attacking.</li>
+				<li class="code_imp">Cleaned up/improved hugger code in general</li>
+			</ul>
+			<h3 class="author">Swagile updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Portable turrets are now 30 points and base turrets are 60 points in requisitions.</li>
+				<li class="qol">You no longer have to fumble around with barbed wire and rods to create razorwire; it can now be made straight from the metal menu.</li>
+			</ul>
+			<h3 class="author">TGCMbetcher updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Medical belt(not lifesaver bag) now fits small SMG mags.</li>
+			</ul>
+			<h3 class="author">lovegreenstuff updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">gives slugs the same slowdown that TX15 slugs have.</li>
+			</ul>
+
+			<h2 class="date">02 April 2021</h2>
+			<h3 class="author">BlackFira updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Armored lab coat weight 0.3 -> 0.2</li>
+				<li class="balance">Armored lab coat coverage increased to full body -head</li>
+				<li class="balance">Armored lab coat soft melee protection 35% -> 30%</li>
+			</ul>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">CIC orders are way more generic</li>
+				<li class="rscadd">AI can use CIC orders. Alt click to send one remove: Ai can now longer electify doors with alt click</li>
+				<li class="balance">Power fist throw distance is now linear with the mob size</li>
+				<li class="balance">Powerfist only takes now lasgun battery as power source. That mean 3 times less punch per battery overall. You can change the battery just by clicking on the powerfist with a full one, no need for screwdriver</li>
+				<li class="rscadd">Xenos can build small pools. Half the price for half the HP and half the larva output. Click on build xenos ability to switch silo type</li>
+				<li class="balance">queen lose the ability to produce eggs, defiler gains it</li>
+				<li class="code_imp">Acid spray cone code no longer uses sleep.</li>
+				<li class="refactor">Cone spray use recursive code, which mean blocking the middle row will not block the other part of the cone. In short, collisions are more consistent</li>
+				<li class="rscadd">Praetorian can spray diagonally</li>
+				<li class="bugfix">You can no longer avoid acid spray by running towards the caster. Works for boiler, prae and spitter</li>
+				<li class="bugfix">Wraith get psy drain</li>
+				<li class="qol">Select spit and spit buttons are merged</li>
+				<li class="rscdel">Tank crewman is gone</li>
+				<li class="bugfix">Silo price fixed</li>
+			</ul>
+			<h3 class="author">Pariah919 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">power req guns reduced in price. railgun goes from 130 to 75, rounds reduced as you only get one. anti mat from 120 to 70, ammo normal halved in price M4RA goes from 80 to 50</li>
+				<li class="balance">drone speed up on weeds reduced</li>
+			</ul>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">dead people now appear on orbit menu under dead section.</li>
+				<li class="balance">revolver screenshake when hit reduced by half.</li>
+			</ul>
+			<h3 class="author">Swagile updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Surgical vest to synth prep vendor.</li>
+				<li class="rscadd">Tweezers to essential synth kit in synth prep vendor.</li>
+				<li class="balance">Construction pouches get 1 extra storage slots.</li>
+				<li class="balance">Essential combat engi kit now gets 50 sandbags, 50 metal, 30 plasteel.</li>
+				<li class="balance">Material points buffed; its much less expensive to use your points for materials in combat engi point vendor now.</li>
+				<li class="rscadd">Razor burn grenade boxes.</li>
+				<li class="rscadd">Razor burn grenade boxes to req for 50 points.</li>
+			</ul>
+			<h3 class="author">Walarks updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">cloak grenades cloak only marines instead of marines and xenos, decreased alpha by ~70%</li>
+				<li class="balance">cut cloak grenade supplies in half</li>
+			</ul>
+			<h3 class="author">XSlayer300 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Added an examine message whenever someone was admin slept.</li>
+			</ul>
+			<h3 class="author">bobbahbrown updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="server">Fixed missing dependency for libssl1.1 in PreCompile.sh</li>
+			</ul>
+
+			<h2 class="date">31 March 2021</h2>
+			<h3 class="author">TheOneAndMightyRed(redory), Alterist updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Powernets, Disposalnets and Atmosnets on most maps.</li>
+				<li class="bugfix">Some camera dirs.</li>
+			</ul>
+
+			<h2 class="date">30 March 2021</h2>
+			<h3 class="author">Alterist updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">no more invisible DS weapons</li>
+			</ul>
+
+			<h2 class="date">29 March 2021</h2>
+			<h3 class="author">Alterist updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="imageadd">added open SSA belt sprite</li>
+			</ul>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">You are warned when you failed to qualify to get a larva and were ejected from the queue (because of you respawn timer, for exemple)</li>
+				<li class="qol">The queue take into account when there is no silos, and will propose larvas only when silos and larva are present</li>
+			</ul>
+			<h3 class="author">Swagile updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Certain roles that used to have empty combat boots, such as FC and CSE, now start with a boot knife in them on spawn.</li>
+				<li class="rscdel">Removes redundant radio to lessen clutter from FC essential kit.</li>
+				<li class="bugfix">Fixed FC vendor not having jaeger exo or facepaint; comes in essential commander kit now.</li>
+			</ul>
+			<h3 class="author">TGCMbetcher updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">arithrazine becomes scannable</li>
+				<li class="qol">Swaps arith for hyro in injectors</li>
+			</ul>
+
+			<h2 class="date">27 March 2021</h2>
+			<h3 class="author">XSlayer300 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="spellcheck">Fixed some grammar errors regarding with droids</li>
+			</ul>
+
+			<h2 class="date">26 March 2021</h2>
+			<h3 class="author">DerrickChamberlain updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Fixed AI interior shutters being tied to exterior button (First thing I ever fixed never mentioned it)</li>
+				<li class="qol">More cameras around the ship</li>
+				<li class="qol">fixed bad camera directions</li>
+				<li class="qol">fixed power problem for CLs office</li>
+				<li class="qol">two more maint doors behind AI core</li>
+				<li class="qol">Gave engineering their own autolathe</li>
+				<li class="qol">Made CL's room safer from ungas (and me)</li>
+				<li class="qol">Gave East Req shutters near firing range (No idea why they had none to begin)</li>
+				<li class="qol">added and fixed engineering blast doors to engine room looks better and makes more sense</li>
+				<li class="qol">re-routed some cables to have shorter lengths. (some of the cables lines were just silly.)</li>
+				<li class="qol">AI core has less fragile glass surrounding it.</li>
+				<li class="qol">AI core far more defensible and hardended (not from wraiths) from unga's and standard xenos.</li>
+				<li class="qol">Engineer vendors above medical got pushed up one tile, and CMO office got one tile taller</li>
+				<li class="qol">Replaced Glass Frames with Safety glass, and SD safety glass with Kevlar glass</li>
+				<li class="qol">Reconfigured CSE office (Just removed the extra front door)</li>
+				<li class="qol">Some maint fire shutters. (Only the ones near briefing)</li>
+				<li class="qol">An O2 canister in maint near the AI core</li>
+				<li class="qol">Some cables that were stacked onto on another.</li>
+				<li class="qol">redundant buttons in engineering that did nothing</li>
+			</ul>
+
+			<h2 class="date">24 March 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">Show the origin of larva points in statistic</li>
+				<li class="rscdel">Nests are no longer buildable</li>
+				<li class="admin">Queen time role is time locked (10 hours)</li>
+			</ul>
+			<h3 class="author">Swagile updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">RO Ammo boxes moved to big ammo vendors.</li>
+			</ul>
+			<h3 class="author">lbnesquik updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Adds a shortcut for the AI to turn on & off fire alarms using shift & Ctrl click.</li>
+			</ul>
+
+			<h2 class="date">23 March 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">No more negative burrowed larva</li>
+			</ul>
+
+			<h2 class="date">22 March 2021</h2>
+			<h3 class="author">2whatever2 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Lowered the price of all OB related materials, ( Fuel blocks from 10 to 5, Incin & cluster to 20, HE lowered to 30, Plasma drain to 15)</li>
+			</ul>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Psy drain will now take 5 seconds instead of 10 seconds</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">RNG hard stuns from traumatic shock have been replaced with slowdown and stagger stacks.</li>
+				<li class="bugfix">Fixes bug with scatterspit projectiles going too far.</li>
+				<li class="balance">Scatterspit max range increased to 8 tiles.</li>
+			</ul>
+			<h3 class="author">Swagile updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Adds combat backpack to corpsman point vendor for 15 points.</li>
+			</ul>
+			<h3 class="author">Vondiech updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Transit shutters can no longer be triggered by any buttons on shipside or groundside that has its ID set to null</li>
+			</ul>
+			<h3 class="author">lbnesquik updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Missing wire in POS hangar fixed</li>
+				<li class="bugfix">fix weird gaps in camera coverage on pillar of spring.</li>
+			</ul>
+
+			<h2 class="date">21 March 2021</h2>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">fixed a exploit with rightclicking on guns</li>
+			</ul>
+
+			<h2 class="date">20 March 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscdel">Salvage biomass xeno ability removed.</li>
+			</ul>
+			<h3 class="author">lbnesquik updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Gives 1 Synth job slot every 40 pop.</li>
+			</ul>
+
+			<h2 class="date">19 March 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Queue system to respawn as a xeno</li>
+			</ul>
+			<h3 class="author">Pariah919 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">healing infusion cd increased</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Droids can now use guns</li>
+				<li class="bugfix">fix uniqueaction not working</li>
+			</ul>
+
+			<h2 class="date">17 March 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Sandbags are no longer bulky, can hold in construction pouch and be build faster by engies</li>
+			</ul>
+			<h3 class="author">SkeletalElite updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">New miner upgrade that automates the miner.</li>
+			</ul>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">neurotoxin from neurospit doens't purge medicine anymore, all other neurotoxin sources remains same.</li>
+				<li class="qol">added tgui preferences to char setup</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Banish now physically teleports things to Brazil, thus addressing corner case issues with things like CAS flares and explosives.</li>
+				<li class="balance">Banish cooldown reduced when used on friendly targets/self by 40% from 20 seconds to 12 seconds, allowing it to be more readily used defensively.</li>
+			</ul>
+			<h3 class="author">fernandos13 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">medics now fireman carry faster than marines do</li>
+			</ul>
+			<h3 class="author">lbnesquik updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">fix the AI being blind while using the FOB drone.</li>
+				<li class="bugfix">You can now see the amount of ammo the condor minigun has by just looking.</li>
+			</ul>
+
+			<h2 class="date">16 March 2021</h2>
+			<h3 class="author">2whatever2 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Incendiary OB now drops a 17 tile WP smoke that lasts for half the duration of the OB (flame_duration 40, warcrime 20)</li>
+			</ul>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Silo price up from 900 to 1200</li>
+				<li class="qol">Feedback message when you build a silo so you know its price</li>
+				<li class="balance">silos no longer mature. base output is 0.5 instead of 0.4</li>
+				<li class="bugfix">Psy drain sound stops when you stop psydraining</li>
+			</ul>
+			<h3 class="author">Naaanii updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Gives marines the minor victory option.</li>
+				<li class="bugfix">fixed win conditions.</li>
+			</ul>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">fixed a few things related to tgui asset sending.</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Hotkey binding added for Scatterspit.</li>
+			</ul>
+			<h3 class="author">Walarks updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">changed pools collapse timer from 20 minutes to 10 minutes</li>
+			</ul>
+			<h3 class="author">lbnesquik updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Sulaco medical had cameras pointing the wrong way.</li>
+				<li class="bugfix">fixed POS garbage conveyor & a superfluous wall</li>
+			</ul>
+
+			<h2 class="date">13 March 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Xenos keep their upgrade points when evolving, meaning that an ancient drone will evolve into an elder hivelord, and not a young one. They also keep points when regressing, which then can easily switch from one caste to another</li>
+				<li class="balance">Change how points from recycling a xeno are calculated, overall a T1 will give less and a ancient T3 will give way more</li>
+				<li class="balance">Engies build faster</li>
+			</ul>
+			<h3 class="author">SkeletalElite updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">got rid of unused/obsolete compactor upgrade</li>
+			</ul>
+
+			<h2 class="date">12 March 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Xeno turrets are now 150 psy points</li>
+			</ul>
+			<h3 class="author">EgorDinamit updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added new beard style.</li>
+				<li class="balance">General-purpose machine gun shoots a bit slower with aim mode on.</li>
+			</ul>
+			<h3 class="author">TGCMbetcher updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Modules provide accurate descriptions</li>
+				<li class="bugfix">fixed some inaccurate gun attachment descriptions</li>
+			</ul>
+			<h3 class="author">fernandos13 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">fix chempacket icon when removing cigs from it</li>
+			</ul>
+			<h3 class="author">lbnesquik updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fix missing fire alarms</li>
+			</ul>
+
+			<h2 class="date">11 March 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Spawning a new silo will generate a tunnel north of it automaticly</li>
+				<li class="balance">Psy points are disabled in crash</li>
+				<li class="balance">Xeno turrets are destroyed on hijacking</li>
+				<li class="balance">Xeno turrets no longer have IFF spit.</li>
+				<li class="balance">Xeno turrets shoot on random body parts, easier to heal people that were killed by it</li>
+			</ul>
+			<h3 class="author">Kuro-ai updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Agrip now adds 5 scatter to the gun when attached.</li>
+			</ul>
+			<h3 class="author">SkeletalElite updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">focus orders let you enter aim mode instantly</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Incorporeal entities can no longer be attacked in melee, point blanked, grabbed, or shoved around by explosives.</li>
+				<li class="bugfix">Shared cooldown for Grapple Toss and Fling fixed so that using one doesn't cause the other to have an indefinite cooldown.</li>
+			</ul>
+			<h3 class="author">XSlayer300 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added exclusive gun rattle sounds to the GPMG, DMR, battle rifle and sniper instead of sound-pitching them.</li>
+				<li class="rscdel">Revolvers do not use rattling sounds as they do not make any mechanical sense, also for the case of some weapons.</li>
+			</ul>
+			<h3 class="author">lbnesquik updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added a dropship points voucher to req under OPERATIONS.</li>
+				<li class="bugfix">fix missing wires in sulaco surgery</li>
+				<li class="bugfix">fixed some missing lights and cameras in the sulaco.</li>
+				<li class="bugfix">Fixed the complete absence of fire alarms on the sulaco</li>
+			</ul>
+
+			<h2 class="date">10 March 2021</h2>
+			<h3 class="author">BeloneX updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">the message that plays when your splint breaks is now bigger</li>
+			</ul>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">The number of larva points per marine spawn is reduced</li>
+			</ul>
+			<h3 class="author">SkeletalElite updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Miners now sell ore on their own, no crate dragging or export pad required.</li>
+				<li class="balance">Phoron value from 20 to 15. Plat value from 40 to 30.</li>
+				<li class="bugfix">megaphone respects IC filter</li>
+			</ul>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">sentry prices reduced.</li>
+				<li class="balance">point defense sentry ammo price reduced.</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">Potential hard deletes for destroyed xeno tunnels fixed.</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Drop pods now fall from the sky</li>
+				<li class="bugfix">fixed voter fraud</li>
+				<li class="code_imp">Add support for right click human actions</li>
+			</ul>
+			<h3 class="author">fernandos13 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">chempacket cigs to the vendor. with bica. kelo. tram. antineuro. and rr cigs, SPRITES BY Ciel</li>
+				<li class="qol">overhauls PoS prep</li>
+			</ul>
+			<h3 class="author">lbnesquik updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixes a missing button for the armory shutters on PoS engineering.</li>
+			</ul>
+
+			<h2 class="date">08 March 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Corrupted generators output scale with the players count. Also big nerf compared to previous output</li>
+			</ul>
+			<h3 class="author">Bravemole & Ciel (sprites) updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Xeno turrets. They start at 600 health points and will mature up to 1500. They have a range of 7, rapid fire of acid prae. They are especially weak against nades (4 to kill), sadar rockets (one shot), and fire (1 minute to completly burn, that's 2 incend nades). Deal 20 raw burn damage per spit</li>
+				<li class="rscadd">Xeno turrets placed at strategic locations in all major maps (except prison)</li>
+				<li class="rscadd">Queen, Shrike and Hivelord can build them for 100 points</li>
+			</ul>
+			<h3 class="author">SkeletalElite updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">CAS rockets are faster and most are less expensive, mini rockets don't blind marines as much</li>
+				<li class="balance">Orbit level affects CAS less, both in terms of dropship point generation and fly time.</li>
+			</ul>
+			<h3 class="author">SplinterGP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">ghost orbit menu now has an auto observe button, which allows you to see what the orbitted mob sees(atleast HUD's)</li>
+				<li class="bugfix">fixes ghost orbit menu not following certain things like larvas.</li>
+				<li class="code_imp">orbit menu doens't autoupdate anymore to save perfomance, now has a refresh button</li>
+				<li class="bugfix">Icons in tgui shouldn't disappear any more.</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">Xeno hive alert code improved; can now visibly ping non-turf targets. tweak: Xeno health alert preferences made more intuitive.</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="refactor">Ambience will now play consistently rather only when walking a lot</li>
+				<li class="admin">Add banish logging</li>
+			</ul>
+
+			<h2 class="date">07 March 2021</h2>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">AI can use fob drone</li>
+				<li class="qol">Fob drone is prefilled with mats, and you can put as many mats in it as you want</li>
+				<li class="qol">Mats are automaticly ejected when alamo leaves</li>
+				<li class="balance">No more siloless collapse timer before 13:00. If you didn't put a silo before that time, the timer will still show up even if you never lost any silos</li>
+			</ul>
+			<h3 class="author">SkeletalElite updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Hypervene no longer remains in your system for an obscene amount of time</li>
+			</ul>
+			<h3 class="author">bobbahbrown updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="server">Ported tgsv4 scripts from /tg/ to allow for creating tgsv4 instances</li>
+				<li class="bugfix">Fixed a bug with extools causing issues when hosting on linux</li>
+				<li class="bugfix">Fixed broken UI on vending machines and marine cabinets.</li>
+			</ul>
+
+			<h2 class="date">06 March 2021</h2>
+			<h3 class="author">BlackFira updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Burst fire 2 -> 3</li>
+				<li class="balance">Magazine size 40 -> 42</li>
+				<li class="rscadd">Armored lab coat</li>
+			</ul>
+			<h3 class="author">BraveMole updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Jetpack now has a windup of 0.3 seconds</li>
+				<li class="balance">Xenos gain larva and psych points everytime a marine spawn , even for very late joins. Doesn't work for respawn</li>
+				<li class="bugfix">No more unbalance join message when all xenos are dead</li>
+				<li class="balance">Respawn for marines are now 30 minutes instead of 45</li>
+				<li class="rscadd">Psy drain, an ability that all xenos have that allow them to get psych points and 1/8th of a larva from dead marines. A psy drained marine is NOT perma dead, this is not headbite</li>
+				<li class="balance">Silos get more expensive, to account for psy drain</li>
+			</ul>
+			<h3 class="author">Pariah919 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">hypervene isn't purged by chems that purge any medicine like neuro/larval.</li>
+				<li class="rscdel">Removed squad smartgunner</li>
+				<li class="balance">smartgunner disabled, smartguns useable by anyone</li>
+			</ul>
+			<h3 class="author">SkeletalElite updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Miners don't need to be emptied as often</li>
+			</ul>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added the Wraith Tier 2 caste.</li>
+				<li class="refactor">Minor supportive refactoring.</li>
+				<li class="bugfix">Removes Headbite and Regurgitate from Wraith.</li>
+				<li class="balance">Chestburst victims are now revivable, albeit with internal bleeding, rib fractures and organ damage.</li>
+			</ul>
+			<h3 class="author">TiviPlus updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="refactor">Rewrote how looping sounds are handled for free performance</li>
+			</ul>
+			<h3 class="author">Walarks updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">fixed vali actions runtimes</li>
+			</ul>
+			<h3 class="author">XSlayer300 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="qol">Ballistic weapons have a rattling sound when fired at 25% ammo left.</li>
+			</ul>
+			<h3 class="author">fernandos13 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fire Support key. no longer gives the command channel</li>
+			</ul>
+
+			<h2 class="date">04 March 2021</h2>
+			<h3 class="author">Surrealaser updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Spitters gain a new ability: Scatter Spit; discharges a buckshot spread blast of 6x 15 burn damage acid projectiles that leave short duration acid puddles behind.</li>
+			</ul>
+			<h3 class="author">hyper2snyper updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Gives the TL-102 HSG a health and ammo indicator like the Sentries have.</li>
+			</ul>
+		</div>
+
+<b>GoonStation 13 Development Team</b>
+	<div class = "top">
+	<b>Coders:</b> Stuntwaffle, Showtime, Pantaloons, Nannek, Keelin, Exadv1, hobnob, Justicefries, 0staf, sniperchance, AngriestIBM, BrianOBlivion<br>
+	<b>Spriters:</b> Supernorn, Haruhi, Stuntwaffle, Pantaloons, Rho, SynthOrange, I Said No<br>
+	</div>
+<br>
+<p class="lic"><a name="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img src="88x31.png" alt="Creative Commons License" /></a><br><i>Except where otherwise noted, Goon Station 13 is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-Noncommercial-Share Alike 3.0 License</a>.<br>Rights are currently extended to <a href="http://forums.somethingawful.com/">SomethingAwful Goons</a> only.</i></p>
+<p class="lic">Some icons by <a href="http://p.yusukekamiyamane.com/">Yusuke Kamiyamane</a>. All rights reserved. Licensed under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>.</p>
+</td></tr></table>
+</body>
+</html>
