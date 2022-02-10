@@ -767,7 +767,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	///The range of the ability
 	var/range = 1
 	///How long is the bullet freeze staying
-	var/duration = 70 SECONDS
+	var/duration = 7 SECONDS
 
 /datum/action/xeno_action/timestop/action_activate()
 	. = ..()
