@@ -19,40 +19,25 @@
 		),
 		"Red" = list(
 			"Red" = VISOR_PALETTE_RED,
-			"Strawberry" = VISOR_PALETTE_STRAWBERRY,
-			"Maroon" = VISOR_PALETTE_MAROON,
 		),
 		"Green" = list(
 			"Green" = VISOR_PALETTE_GREEN,
-			"Turquoise" = VISOR_PALETTE_TURQUOISE,
-			"Apple Green" = VISOR_PALETTE_APPLE_GREEN,
-			"Leaf" = VISOR_PALETTE_LEAF,
-			"Lime" = VISOR_PALETTE_LIME,
 		),
 		"Purple" = list(
 			"Purple" = VISOR_PALETTE_PURPLE,
 			"Magenta" = VISOR_PALETTE_MAGENTA,
-			"Lavender" = VISOR_PALETTE_LAVENDER,
 		),
 		"Blue" = list(
 			"Blue" = VISOR_PALETTE_BLUE,
-			"Amethyst" = VISOR_PALETTE_AMETHYST,
-			"Royal Blue" = VISOR_PALETTE_ROYAL_BLUE,
-			"Steel Blue" = VISOR_PALETTE_STEEL_BLUE,
-			"Navy Blue" = VISOR_PALETTE_NAVY_BLUE,
 			"Ice Blue" = VISOR_PALETTE_ICE,
 			"Sky Blue" = VISOR_PALETTE_SKY_BLUE,
 		),
 		"Yellow" = list(
-			"Angelic Gold" = VISOR_PALETTE_ANGELIC,
 			"Honey" = VISOR_PALETTE_HONEY,
 			"Metallic Bronze" = VISOR_PALETTE_METALLIC_BRONZE,
 		),
 		"Orange" = list(
 			"Orange" = VISOR_PALETTE_ORANGE,
-			"Mars-Pattern Orange" = VISOR_PALETTE_MARS_ORANGE,
-			"Neon Orange" = VISOR_PALETTE_NEON_ORANGE,
-			"Pumpkin Orange" = VISOR_PALETTE_PUMPKIN,
 		),
 		"Pink" = list(
 			"Salmon" = VISOR_PALETTE_SALMON,

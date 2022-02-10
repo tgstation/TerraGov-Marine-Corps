@@ -140,15 +140,12 @@
 			"Gun Metal" = ARMOR_PALETTE_GUN_METAL,
 			"Night Slate" = ARMOR_PALETTE_NIGHT_SLATE,
 			"Fall" = ARMOR_PALETTE_FALL,
-			"Chocolate" = ARMOR_PALETTE_CHOCOLATE,
 		),
 		"Red" = list(
 			"Dark Red" = ARMOR_PALETTE_RED,
 			"Bronze Red" = ARMOR_PALETTE_BRONZE_RED,
 			"Red" = ARMOR_PALETTE_LIGHT_RED,
-			"Ruby" = ARMOR_PALETTE_RUBY,
 			"Blood Red" = ARMOR_PALETTE_BLOOD_RED,
-			"Police Red" = ARMOR_PALETTE_POLICE_RED,
 		),
 		"Green" = list(
 			"Green" = ARMOR_PALETTE_GREEN,
@@ -156,7 +153,6 @@
 			"Lime" = ARMOR_PALETTE_LIME,
 			"Mint" = ARMOR_PALETTE_MINT,
 			"Jade" = ARMOR_PALETTE_JADE,
-			"Olive" = ARMOR_PALETTE_OLIVE,
 			"Leaf" = ARMOR_PALETTE_LEAF,
 			"Forest" = ARMOR_PALETTE_FOREST,
 			"Smoked Green" = ARMOR_PALETTE_SMOKED_GREEN,
@@ -181,20 +177,18 @@
 		"Yellow" = list(
 			"Gold" = ARMOR_PALETTE_YELLOW,
 			"Yellow" = ARMOR_PALETTE_LIGHT_YELLOW,
-			"Molten Gold" = ARMOR_PALETTE_GOLD,
 			"Angelic Gold" = ARMOR_PALETTE_ANGELIC,
 			"Honey" = ARMOR_PALETTE_HONEY,
-		),
-		"Pink" = list(
-			"Salmon" = ARMOR_PALETTE_SALMON_PINK,
-			"Magenta" = ARMOR_PALETTE_MAGENTA_PINK,
-			"Sakura" = ARMOR_PALETTE_SAKURA,
-			"Onion" = ARMOR_PALETTE_ONION,
 		),
 		"Orange" = list(
 			"Orange" = ARMOR_PALETTE_ORANGE,
 			"Beige" = ARMOR_PALETTE_BEIGE,
 			"Earth" = ARMOR_PALETTE_EARTH,
+		),
+		"Pink" = list(
+			"Salmon" = ARMOR_PALETTE_SALMON_PINK,
+			"Magenta" = ARMOR_PALETTE_MAGENTA_PINK,
+			"Sakura" = ARMOR_PALETTE_SAKURA,
 		),
 	)
 	///Some defines to determin if the armor piece is allowed to be recolored.
