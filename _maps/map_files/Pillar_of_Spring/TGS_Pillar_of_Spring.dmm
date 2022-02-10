@@ -7185,6 +7185,8 @@
 "xb" = (
 /obj/structure/table/mainship,
 /obj/item/clothing/suit/storage/hazardvest,
+/obj/item/clothing/suit/storage/hazardvest/lime,
+/obj/item/clothing/suit/storage/hazardvest/blue,
 /obj/item/tool/shovel/etool,
 /obj/item/storage/pouch/medkit/full,
 /obj/item/storage/pouch/medical/full,
