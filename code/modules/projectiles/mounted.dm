@@ -45,7 +45,7 @@
 	if(!ishuman(user))
 		return
 	var/obj/item/weapon/gun/internal_gun = internal_item
-	internal_gun.unique_action(internal_gun, user)
+	internal_gun.do_unique_action(internal_gun, user)
 
 /obj/machinery/deployable/mounted/attackby(obj/item/I, mob/user, params) //This handles reloading the gun, if its in acid cant touch it.
 	. = ..()
@@ -72,7 +72,7 @@
 
 	if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 		return
-	gun.unique_action(gun, user)
+	gun.do_unique_action(gun, user)
 
 
 ///This is called when a user tries to operate the gun

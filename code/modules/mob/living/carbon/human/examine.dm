@@ -9,7 +9,7 @@
 		if(species.species_flags & IS_SYNTHETIC)
 			msg += "<span style='font-weight: bold; color: purple;'>You sense this creature is not organic.</span>\n"
 		if(status_flags & XENO_HOST)
-			msg += "This creature is impregnated and [reagents.get_reagent_amount(/datum/reagent/toxin/xeno_growthtoxin) > 0 ? "" : "not"] inoculated with Larval Accelerant. \n"
+			msg += "This creature is impregnated. \n"
 		else if(chestburst == 2)
 			msg += "A larva escaped from this creature.\n"
 		if (headbitten)

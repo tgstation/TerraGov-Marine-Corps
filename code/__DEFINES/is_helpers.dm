@@ -31,7 +31,6 @@
 
 #define ismineralturf(A) (istype(A, /turf/closed/mineral))
 
-
 //Mobs
 #define isliving(A) (istype(A, /mob/living))
 
@@ -91,6 +90,7 @@
 #define isxenoboiler(A) (istype(A, /mob/living/carbon/xenomorph/boiler))
 #define isxenocarrier(A) (istype(A, /mob/living/carbon/xenomorph/carrier))
 #define isxenocrusher(A) (istype(A, /mob/living/carbon/xenomorph/crusher))
+#define isxenogorger(A) (istype(A, /mob/living/carbon/xenomorph/gorger))
 #define isxenodrone(A) (istype(A, /mob/living/carbon/xenomorph/drone))
 #define isxenohivelord(A) (istype(A, /mob/living/carbon/xenomorph/hivelord))
 #define isxenohunter(A) (istype(A, /mob/living/carbon/xenomorph/hunter))
@@ -168,8 +168,6 @@
 #define issuitwithstorage(A) (istype(A, /obj/item/clothing/suit/storage))
 
 #define isuniform(A) (istype(A, /obj/item/clothing/under))
-
-#define iswebbing(A) (istype(A, /obj/item/clothing/tie/storage))
 
 #define ismodulararmor(A) (istype(A, /obj/item/clothing/suit/modular))
 

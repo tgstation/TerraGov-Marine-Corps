@@ -148,7 +148,7 @@
 		else if (href_list["addcustom"])
 
 			var/id = text2path(href_list["addcustom"])
-			useramount = input("Select the amount to transfer.", 30, useramount) as num
+			useramount = tgui_input_number(usr, "Select the amount to transfer.", 30, useramount)
 			transfer_chemicals(src, beaker, useramount, id)
 
 		else if (href_list["remove"])
@@ -169,7 +169,7 @@
 		else if (href_list["removecustom"])
 
 			var/id = text2path(href_list["removecustom"])
-			useramount = input("Select the amount to transfer.", 30, useramount) as num
+			useramount = tgui_input_number(usr, "Select the amount to transfer.", 30, useramount)
 			if(mode)
 				transfer_chemicals(beaker, src, useramount, id)
 			else
@@ -189,7 +189,7 @@
 				if(loaded_pill_bottle)
 					to_chat(user, span_warning("A pill bottle is already loaded into the machine."))
 					return
-				var/bottle_label = reject_bad_text(input(user, "Label:", "Enter desired bottle label", null) as text|null)
+				var/bottle_label = reject_bad_text(tgui_input_text(user, "Label:", "Enter desired bottle label", encode = FALSE))
 				var/obj/item/storage/pill_bottle/I = new/obj/item/storage/pill_bottle
 				if(pillbottlesprite == "2")//if the "2" sprite is selected, use the round pill bottle sprite
 					I.set_greyscale_config(/datum/greyscale_config/pillbottleround)
@@ -206,7 +206,7 @@
 				return
 
 			if (href_list["createpill_multiple"])
-				count = clamp(input("Select the number of pills to make. (max: [max_pill_count])", 16, pillamount) as num|null,0,max_pill_count)
+				count = tgui_input_number(usr, "Select the number of pills to make.", 16, pillamount, max_pill_count, 0)
 				if(!count)
 					return
 
@@ -216,7 +216,7 @@
 			var/amount_per_pill = reagents.total_volume/count
 			if (amount_per_pill > 15) amount_per_pill = 15
 
-			var/name = reject_bad_text(input(user,"Name:","Name your pill!","[reagents.get_master_reagent_name()] ([amount_per_pill] units)") as text|null)
+			var/name = reject_bad_text(tgui_input_text(user,"Name:","Name your pill!","[reagents.get_master_reagent_name()] ([amount_per_pill] units)", encode = FALSE))
 			if(!name)
 				return
 
@@ -238,7 +238,7 @@
 
 		else if (href_list["createbottle"])
 			if(!condi)
-				var/name = reject_bad_text(input(user,"Name:","Name your bottle!",reagents.get_master_reagent_name()) as text|null)
+				var/name = reject_bad_text(tgui_input_text(user,"Name:","Name your bottle!",reagents.get_master_reagent_name(), encode = FALSE))
 				if(!name)
 					return
 				var/obj/item/reagent_containers/glass/bottle/P = new/obj/item/reagent_containers/glass/bottle(loc)
@@ -255,7 +255,7 @@
 
 		else if (href_list["createautoinjector"])
 			if(!condi)
-				var/name = reject_bad_text(input(user,"Name:","Name your autoinjector!",reagents.get_master_reagent_name()) as text|null)
+				var/name = reject_bad_text(tgui_input_text(user,"Name:","Name your autoinjector!",reagents.get_master_reagent_name(), encode = FALSE))
 				if(!name)
 					return
 				var/obj/item/reagent_containers/hypospray/autoinjector/fillable/P = new/obj/item/reagent_containers/hypospray/autoinjector/fillable(loc)
@@ -393,3 +393,9 @@
 /obj/machinery/chem_master/condimaster
 	name = "CondiMaster 3000"
 	condi = TRUE
+
+/obj/machinery/chem_master/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/chem_master/condimaster/nopower
+	use_power = NO_POWER_USE

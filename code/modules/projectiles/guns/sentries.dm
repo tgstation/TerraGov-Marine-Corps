@@ -29,7 +29,6 @@
 	deploy_time = 5 SECONDS
 
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry)
-	sentry_battery_type = /obj/item/cell/lasgun/lasrifle/marine
 
 /obj/item/storage/box/sentry
 	name = "\improper UA 571-C sentry crate"
@@ -40,9 +39,12 @@
 	max_w_class = 5
 	storage_slots = 6
 	max_storage_space = 16
+	can_hold = list(
+		/obj/item/weapon/gun/sentry,
+		/obj/item/ammo_magazine/sentry,
+	)
 	bypass_w_limit = list(
 		/obj/item/weapon/gun/sentry,
-		/obj/item/cell,
 		/obj/item/ammo_magazine/sentry,
 	)
 
@@ -50,23 +52,21 @@
 	. = ..()
 	new /obj/item/weapon/gun/sentry/big_sentry(src)
 	new /obj/item/ammo_magazine/sentry(src)
-	new /obj/item/cell/lasgun/lasrifle/marine(src)
-	new /obj/item/cell/lasgun/lasrifle/marine(src)
 
 /obj/item/weapon/gun/sentry/big_sentry
 	name = "\improper UA 571-C sentry gun"
-	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with a M30 autocannon and a 25-round box magazine. Use Alt-Click to remove its battery."
+	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with a M30 autocannon and a 25-round box magazine."
 	icon_state = "sentry"
 
 	turret_range = 8
 	deploy_time = 8 SECONDS
 	max_shells = 50
 
+	scatter = 2
+
 	ammo_datum_type = /datum/ammo/bullet/turret
 	default_ammo_type = /obj/item/ammo_magazine/sentry
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry)
-
-	sentry_battery_drain = 50
 
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 
@@ -99,7 +99,6 @@
 	turret_flags = TURRET_IMMOBILE|TURRET_RADIAL|TURRET_LOCKED|TURRET_ON
 	default_ammo_type = /obj/item/ammo_magazine/sentry/fob_sentry
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/fob_sentry)
-	sentry_battery_type = /obj/item/cell/lasgun/fob_sentry/cell
 
 /obj/item/weapon/gun/sentry/big_sentry/fob_sentry/rebel
 	sentry_iff_signal = TGMC_REBEL_IFF
@@ -114,7 +113,6 @@
 	can_hold = list(
 		/obj/item/weapon/gun/sentry/mini,
 		/obj/item/ammo_magazine/minisentry,
-		/obj/item/cell/lasgun/lasrifle/marine,
 	)
 
 /obj/item/storage/box/minisentry/Initialize(mapload, ...)
@@ -122,12 +120,10 @@
 	new /obj/item/weapon/gun/sentry/mini(src)
 	new /obj/item/ammo_magazine/minisentry(src)
 	new /obj/item/ammo_magazine/minisentry(src)
-	new /obj/item/cell/lasgun/lasrifle/marine(src)
-	new /obj/item/cell/lasgun/lasrifle/marine(src)
 
 /obj/item/weapon/gun/sentry/mini
 	name = "\improper UA-580 point defense sentry"
-	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 100-round drum magazine. Use Alt-Click to remove its battery."
+	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 100-round drum magazine."
 	icon_state = "minisentry"
 
 	max_shells = 100
@@ -141,7 +137,7 @@
 	burst_delay = 0.2 SECONDS
 	burst_amount = 3
 	extra_delay = 0.3 SECONDS
-	scatter = 2
+	scatter = 3
 
 	deploy_time = 3 SECONDS
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)

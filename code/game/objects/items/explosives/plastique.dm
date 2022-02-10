@@ -25,11 +25,7 @@
 	return ..()
 
 /obj/item/explosive/plastique/attack_self(mob/user)
-	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num
-	if(newtime < 10)
-		newtime = 10
-	if(newtime > 60)
-		newtime = 60
+	var/newtime = tgui_input_number(usr, "Please set the timer.", "Timer", 10, 60, 10)
 	timer = newtime
 	to_chat(user, "Timer set for [timer] seconds.")
 

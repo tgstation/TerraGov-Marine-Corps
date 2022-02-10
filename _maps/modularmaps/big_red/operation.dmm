@@ -194,9 +194,9 @@
 /area/bigredv2/outside/admin_building)
 "kc" = (
 /obj/machinery/door_control{
+	dir = 1;
 	id = "Operations";
-	name = "Storm Shutters";
-	pixel_y = -32
+	name = "Storm Shutters"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark/red2,
@@ -1007,18 +1007,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
-"QJ" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/machinery/door_control{
-	id = "Operations";
-	name = "Storm Shutters";
-	pixel_y = -32
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark/red2,
-/area/bigredv2/outside/admin_building)
 "QL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/red2{
@@ -1083,6 +1071,10 @@
 "TO" = (
 /obj/structure/table,
 /obj/machinery/computer/med_data/laptop,
+/obj/machinery/door_control{
+	id = "Operations";
+	name = "Storm Shutters"
+	},
 /turf/open/floor/carpet/edge2,
 /area/bigredv2/outside/admin_building)
 "TV" = (
@@ -1619,7 +1611,7 @@ LW
 sT
 eL
 fO
-QJ
+UW
 sT
 TO
 iu

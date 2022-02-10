@@ -265,6 +265,8 @@
 	LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
 	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/human_z_changed)
 
+	hud_list[HEART_STATUS_HUD].icon_state = ""
+
 /mob/living/carbon/xenomorph/on_revive()
 	. = ..()
 	GLOB.alive_xeno_list += src
@@ -422,7 +424,7 @@
 			a_intent = INTENT_HARM
 	if(should_zombify)
 		set_species("Strong zombie")
-		faction = FACTION_XENO
+		faction = FACTION_ZOMBIE
 	heal_limbs(- health)
 	set_stat(CONSCIOUS)
 	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /obj/screen/fullscreen/black)

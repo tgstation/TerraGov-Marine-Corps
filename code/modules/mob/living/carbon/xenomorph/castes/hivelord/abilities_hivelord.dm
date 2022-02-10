@@ -287,7 +287,7 @@
 		if(!silent)
 			to_chat(owner, span_warning("Too far for our reach... We need to be [dist - heal_range] steps closer!"))
 		return FALSE
-	else if(!owner.line_of_sight(target))
+	else if(!line_of_sight(owner, target))
 		if(!silent)
 			to_chat(owner, span_warning("We can't focus properly without a clear line of sight!"))
 		return FALSE

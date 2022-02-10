@@ -11,7 +11,8 @@
 	idle_power_usage = 5
 	active_power_usage = 500
 
-
+/obj/machinery/processor/nopower
+	use_power = NO_POWER_USE
 
 /datum/food_processor_process
 	var/input

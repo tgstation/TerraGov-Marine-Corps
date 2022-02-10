@@ -101,7 +101,7 @@
 					to_chat(usr, span_warning("Please allow at least [COOLDOWN_COMM_MESSAGE*0.1] second\s to pass between announcements."))
 					return FALSE
 
-				var/input = input(usr, "Please write a message to announce to the station crew.", "Priority Announcement", "") as message|null
+				var/input = tgui_input_text(usr, "Please write a message to announce to the station crew.", "Priority Announcement", "",multiline = TRUE, encode = FALSE)
 				if(!input || !(usr in view(1,src)) || authenticated != 2 || world.time < cooldown_message + COOLDOWN_COMM_MESSAGE)
 					return FALSE
 
@@ -288,10 +288,10 @@
 					post_status(href_list["statdisp"])
 
 		if("setmsg1")
-			stat_msg1 = reject_bad_text(input("Line 1", "Enter Message Text", stat_msg1) as text|null, 40)
+			stat_msg1 = reject_bad_text(tgui_input_text(usr, "Line 1", "Enter Message Text", stat_msg1, 40, encode = FALSE))
 
 		if("setmsg2")
-			stat_msg2 = reject_bad_text(input("Line 2", "Enter Message Text", stat_msg2) as text|null, 40)
+			stat_msg2 = reject_bad_text(tgui_input_text(usr, "Line 2", "Enter Message Text", stat_msg2, 40, encode = FALSE))
 
 		if("messageTGMC")
 			if(authenticated == 2)
@@ -299,7 +299,7 @@
 					to_chat(usr, span_warning("Arrays recycling.  Please stand by."))
 					return FALSE
 
-				var/msg = input(usr, "Please choose a message to transmit to the TGMC High Command.  Please be aware that this process is very expensive, and abuse will lead to termination.  Transmission does not guarantee a response. There is a small delay before you may send another message. Be clear and concise.", "To abort, send an empty message.", "")
+				var/msg = tgui_input_text(usr, "Please choose a message to transmit to the TGMC High Command.  Please be aware that this process is very expensive, and abuse will lead to termination.  Transmission does not guarantee a response. There is a small delay before you may send another message. Be clear and concise.", "To abort, send an empty message.", "", encode = FALSE)
 				if(!msg || !usr.Adjacent(src) || authenticated != 2 || world.time < cooldown_central + COOLDOWN_COMM_CENTRAL)
 					return FALSE
 

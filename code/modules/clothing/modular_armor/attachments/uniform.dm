@@ -2,6 +2,7 @@
 //Uniform Storage.
 /obj/item/armor_module/storage/uniform
 	slot = ATTACHMENT_SLOT_UNIFORM
+	w_class = WEIGHT_CLASS_BULKY
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB|ATTACH_SEPERATE_MOB_OVERLAY|ATTACH_NO_HANDS
 	icon = 'icons/obj/clothing/ties.dmi'
 	attach_icon = 'icons/obj/clothing/ties_overlay.dmi'
@@ -15,11 +16,13 @@
 
 /obj/item/storage/internal/webbing
 	max_w_class = WEIGHT_CLASS_SMALL
+	storage_slots = 3
 	bypass_w_limit = list(
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/cell/lasgun,
+		/obj/item/tool/solderingtool,
 	)
 	cant_hold = list(
 		/obj/item/stack/razorwire,

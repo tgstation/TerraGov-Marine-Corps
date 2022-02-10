@@ -4,13 +4,12 @@
 		return // smelly badmins
 	hive.upgrade_xeno(src, upgrade, newlevel)
 	upgrade = newlevel
+	upgrade_stored = 0
 	if(!silent)
 		visible_message(span_xenonotice("\The [src] begins to twist and contort."), \
 		span_xenonotice("We begin to twist and contort."))
 		do_jitter_animation(1000)
-	if(upgrade_stored < xeno_caste.upgrade_threshold)
-		upgrade_stored = xeno_caste.upgrade_threshold
-	set_datum()
+	set_datum(FALSE)
 	var/selected_ability_type = selected_ability?.type
 
 	for(var/check_existing_actions in xeno_abilities) //Remove xenos actions we shouldn't have
@@ -126,6 +125,9 @@
 /mob/living/carbon/xenomorph/drone/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/drone/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //-----DRONE END-----//
 //================//
 
@@ -157,6 +159,9 @@
 /mob/living/carbon/xenomorph/carrier/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/carrier/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //-----CARRIER END-----//
 //================//
 //----HIVELORD START----//
@@ -187,6 +192,9 @@
 
 /mob/living/carbon/xenomorph/praetorian/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/praetorian/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----PRAETORIAN END----//
 //================//
@@ -318,6 +326,22 @@
 
 //---CRUSHER END---//
 //============//
+//---GORGER START---//
+
+/mob/living/carbon/xenomorph/gorger/mature
+	upgrade = XENO_UPGRADE_ONE
+
+/mob/living/carbon/xenomorph/gorger/elder
+	upgrade = XENO_UPGRADE_TWO
+
+/mob/living/carbon/xenomorph/gorger/ancient
+	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/gorger/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
+//---GORGER END---//
+//============//
 //---BOILER START---//
 
 /mob/living/carbon/xenomorph/boiler/mature
@@ -328,6 +352,9 @@
 
 /mob/living/carbon/xenomorph/boiler/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/boiler/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //---BOILER END---//
 //============//
@@ -357,6 +384,9 @@
 
 /mob/living/carbon/xenomorph/warrior/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/warrior/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----WARRIOR END----//
 //============//

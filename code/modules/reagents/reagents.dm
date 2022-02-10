@@ -75,8 +75,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 		return FALSE
 	if(method == VAPOR && L.reagents) //foam, spray
 		var/amount = round(volume * touch_protection, 0.1)
-		if(amount >= 0.5)
-			L.reagents.add_reagent(type, amount)
+		L.reagents.add_reagent(type, amount)
 
 	return TRUE
 

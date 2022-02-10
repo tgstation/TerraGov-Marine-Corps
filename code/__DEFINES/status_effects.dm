@@ -17,7 +17,19 @@
 
 #define STATUS_EFFECT_GUN_SKILL_SCATTER_BUFF /datum/status_effect/stacking/gun_skill/scatter/buff // Increases the scatter of the mob
 
+#define STATUS_EFFECT_XENO_REJUVENATE /datum/status_effect/xeno_rejuvenate
+
+#define STATUS_EFFECT_XENO_PSYCHIC_LINK /datum/status_effect/xeno_psychic_link
+
+#define STATUS_EFFECT_XENO_CARNAGE /datum/status_effect/xeno_carnage
+
+#define STATUS_EFFECT_XENO_FEAST /datum/status_effect/xeno_feast
+
 #define STATUS_EFFECT_RESIN_JELLY_COATING /datum/status_effect/resin_jelly_coating
+
+#define STATUS_EFFECT_PLASMA_SURGE /datum/status_effect/plasma_surge
+
+#define STATUS_EFFECT_HEALING_INFUSION /datum/status_effect/healing_infusion
 
 /////////////
 // DEBUFFS //

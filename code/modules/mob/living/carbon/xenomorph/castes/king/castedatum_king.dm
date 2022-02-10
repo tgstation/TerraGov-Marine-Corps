@@ -22,7 +22,7 @@
 	max_health = 450
 
 	// *** Evolution *** //
-	upgrade_threshold = 350
+	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
@@ -43,6 +43,7 @@
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/activable/nightfall,
 		/datum/action/xeno_action/activable/gravity_crush,
+		/datum/action/xeno_action/psychic_summon,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/rally_hive,
 		/datum/action/xeno_action/rally_minion,
@@ -69,24 +70,10 @@
 	max_health = 500
 
 	// *** Evolution *** //
-	upgrade_threshold = 500
+	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = XENO_BOMB_RESIST_3, "bio" = 50, "rad" = 50, "fire" = 100, "acid" = 50)
-
-	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/cocoon,
-		/datum/action/xeno_action/activable/plant_weeds,
-		/datum/action/xeno_action/activable/corrosive_acid/strong,
-		/datum/action/xeno_action/activable/nightfall,
-		/datum/action/xeno_action/activable/gravity_crush,
-		/datum/action/xeno_action/toggle_pheromones,
-		/datum/action/xeno_action/rally_hive,
-		/datum/action/xeno_action/rally_minion,
-		/datum/action/xeno_action/set_agressivity,
-	)
 
 
 /datum/xeno_caste/king/elder
@@ -108,28 +95,13 @@
 	max_health = 600
 
 	// *** Evolution *** //
-	upgrade_threshold = 1000
+	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = XENO_BOMB_RESIST_3, "bio" = 55, "rad" = 55, "fire" = 100, "acid" = 55)
 
 	// *** Pheromones *** //
 	aura_strength = 5
-
-	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/cocoon,
-		/datum/action/xeno_action/activable/plant_weeds,
-		/datum/action/xeno_action/activable/corrosive_acid/strong,
-		/datum/action/xeno_action/activable/nightfall,
-		/datum/action/xeno_action/activable/gravity_crush,
-		/datum/action/xeno_action/psychic_summon,
-		/datum/action/xeno_action/toggle_pheromones,
-		/datum/action/xeno_action/rally_hive,
-		/datum/action/xeno_action/rally_minion,
-		/datum/action/xeno_action/set_agressivity,
-	)
 
 /datum/xeno_caste/king/ancient
 	caste_desc = "Harbinger of doom."
@@ -150,7 +122,7 @@
 	max_health = 700
 
 	// *** Evolution *** //
-	upgrade_threshold = 1000
+	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 65, "energy" = 65, "bomb" = XENO_BOMB_RESIST_4, "bio" = 60, "rad" = 60, "fire" = 100, "acid" = 60)
@@ -160,18 +132,3 @@
 
 	// *** Pheromones *** //
 	aura_strength = 6
-
-	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/cocoon,
-		/datum/action/xeno_action/activable/plant_weeds,
-		/datum/action/xeno_action/activable/corrosive_acid/strong,
-		/datum/action/xeno_action/activable/nightfall,
-		/datum/action/xeno_action/activable/gravity_crush,
-		/datum/action/xeno_action/psychic_summon,
-		/datum/action/xeno_action/toggle_pheromones,
-		/datum/action/xeno_action/rally_hive,
-		/datum/action/xeno_action/rally_minion,
-		/datum/action/xeno_action/set_agressivity,
-	)

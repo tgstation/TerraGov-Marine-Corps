@@ -107,6 +107,7 @@
 		clean_operator()
 
 /obj/item/attachable/motiondetector/removed_from_inventory(mob/user)
+	. = ..()
 	clean_operator()
 
 /// Signal handler to clean out user vars

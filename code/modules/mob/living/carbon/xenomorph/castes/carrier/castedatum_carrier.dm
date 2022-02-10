@@ -25,14 +25,14 @@
 
 	// *** Evolution *** //
 	evolution_threshold = 180
-	upgrade_threshold = 120
+	upgrade_threshold = TIER_TWO_YOUNG_THRESHOLD
 
 	deevolves_to = /mob/living/carbon/xenomorph/drone
 
 	evolves_to = list(/mob/living/carbon/xenomorph/Defiler)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CAN_BECOME_KING
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
 	can_hold_eggs = CAN_HOLD_ONE_HAND
 
 	// *** Defense *** //
@@ -45,7 +45,6 @@
 	// *** Carrier Abilities *** //
 	huggers_max = 4
 	hugger_delay = 2.5 SECONDS
-	eggs_max = 3
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -54,7 +53,6 @@
 		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/activable/throw_hugger,
 		/datum/action/xeno_action/lay_egg,
-		/datum/action/xeno_action/activable/retrieve_egg,
 		/datum/action/xeno_action/place_trap,
 		/datum/action/xeno_action/spawn_hugger,
 		/datum/action/xeno_action/toggle_pheromones,
@@ -83,7 +81,7 @@
 	max_health = 275
 
 	// *** Evolution *** //
-	upgrade_threshold = 360
+	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 20, "acid" = 5)
@@ -94,7 +92,6 @@
 	// *** Carrier Abilities *** //
 	huggers_max = 5
 	hugger_delay = 2.5 SECONDS
-	eggs_max = 4
 
 /datum/xeno_caste/carrier/elder
 	upgrade_name = "Elder"
@@ -116,7 +113,7 @@
 	max_health = 300
 
 	// *** Evolution *** //
-	upgrade_threshold = 840
+	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 25, "acid" = 7)
@@ -127,7 +124,6 @@
 	// *** Carrier Abilities *** //
 	huggers_max = 6
 	hugger_delay = 2 SECONDS
-	eggs_max = 5
 
 /datum/xeno_caste/carrier/ancient
 	upgrade_name = "Ancient"
@@ -149,7 +145,7 @@
 	max_health = 325
 
 	// *** Evolution *** //
-	upgrade_threshold = 1320
+	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 10)
@@ -160,5 +156,47 @@
 	// *** Carrier Abilities *** //
 	huggers_max = 7
 	hugger_delay = 1.5 SECONDS
-	eggs_max = 6
+
+/datum/xeno_caste/carrier/primodial
+	upgrade_name = "Primordial"
+	caste_desc = "It's literally crawling with 11 huggers."
+	upgrade = XENO_UPGRADE_FOUR
+	primordial_message = ""
+
+	// *** Melee Attacks *** //
+	melee_damage = 20
+
+	// *** Speed *** //
+	speed = -0.3
+
+	// *** Plasma *** //
+	plasma_max = 800
+	plasma_gain = 38
+
+	// *** Health *** //
+	max_health = 325
+
+	// *** Defense *** //
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 10)
+
+	// *** Pheromones *** //
+	aura_strength = 2.5
+
+	// *** Carrier Abilities *** //
+	huggers_max = 7
+	hugger_delay = 1.5 SECONDS
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/cocoon,
+		/datum/action/xeno_action/activable/plant_weeds,
+		/datum/action/xeno_action/activable/throw_hugger,
+		/datum/action/xeno_action/lay_egg,
+		/datum/action/xeno_action/place_trap,
+		/datum/action/xeno_action/spawn_hugger,
+		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/choose_hugger_type,
+		/datum/action/xeno_action/build_hugger_turret,
+	)
 

@@ -421,3 +421,11 @@
 /area/mainship/hallways/hangar/droppod
 	name = "Drop Pod Bay"
 	icon_state = "storage"
+
+/area/mainship/living/evacuation
+	name = "Evacuation"
+	icon_state = "departures"
+
+/area/mainship/medical/lounge
+	name = "Medical Lounge"
+	icon_state = "medical"

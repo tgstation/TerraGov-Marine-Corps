@@ -45,6 +45,8 @@
 	var/lifetimer
 	///The timer tracking when we next jump
 	var/jumptimer
+	///The timer to go active
+	var/activetimer
 	///Time to become active after impacting on a direct thrown hit
 	var/impact_time = 1.5 SECONDS
 	///Time to become active again
@@ -91,11 +93,7 @@
 	source = null
 
 /obj/item/clothing/mask/facehugger/Destroy()
-	deltimer(jumptimer)
-	deltimer(lifetimer)
 	remove_danger_overlay() //Remove the danger overlay
-	lifetimer = null
-	jumptimer = null
 	if(source)
 		clear_hugger_source()
 	return ..()
@@ -134,7 +132,7 @@
 		var/mob/living/carbon/xenomorph/X = user
 		if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
 			deltimer(jumptimer)
-			jumptimer = null
+			deltimer(activetimer)
 			remove_danger_overlay() //Remove the exclamation overlay as we pick it up
 			facehugger_register_source(X)
 			return ..() // These can pick up huggers.
@@ -192,14 +190,12 @@
 	// Whena  xeno removes the hugger from storage we don't want to start the active timer until they drop or throw it
 	if(isxeno(user)) //Set the source mob
 		facehugger_register_source(user)
-	if(isxenocarrier(user))
-		go_active(TRUE)
 
 /obj/item/clothing/mask/facehugger/proc/go_idle(hybernate = FALSE, no_activate = FALSE)
 	if(stat == DEAD)
 		return FALSE
 	deltimer(jumptimer) //Clear jump timers
-	jumptimer = null
+	deltimer(activetimer)
 	remove_danger_overlay() //Remove the danger overlay
 	if(stat == CONSCIOUS)
 		stat = UNCONSCIOUS
@@ -207,9 +203,8 @@
 	if(hybernate) //If we're hybernating we're going into stasis; we no longer have a death timer
 		stasis = TRUE
 		deltimer(lifetimer)
-		lifetimer = null
 	else if(!attached && !(stasis || no_activate))
-		addtimer(CALLBACK(src, .proc/go_active), activate_time)
+		activetimer = addtimer(CALLBACK(src, .proc/go_active), activate_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 		lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 ///Resets the life timer for the facehugger
@@ -235,7 +230,6 @@
 	pre_leap() //Go into the universal leap set up proc
 	update_icon()
 	return TRUE
-
 
 ///Called before we leap
 /obj/item/clothing/mask/facehugger/proc/pre_leap(activation_time = jump_cooldown)
@@ -589,7 +583,7 @@
 	else
 		reset_attach_status(as_planned)
 		playsound(loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
-		addtimer(CALLBACK(src, .proc/go_active), activate_time)
+		activetimer = addtimer(CALLBACK(src, .proc/go_active), activate_time)
 		update_icon()
 
 	if(as_planned)
@@ -609,8 +603,7 @@
 
 	deltimer(jumptimer)
 	deltimer(lifetimer)
-	lifetimer = null
-	jumptimer = null
+	deltimer(activetimer)
 	remove_danger_overlay() //Remove the danger overlay
 
 	update_icon()

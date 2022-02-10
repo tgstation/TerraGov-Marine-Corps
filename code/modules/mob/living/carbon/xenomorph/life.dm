@@ -116,9 +116,8 @@
 
 	var/list/heal_data = list(amount)
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, heal_data)
-	var/remainder = max(0, heal_data[1]-getBruteLoss())
-	adjustBruteLoss(-heal_data[1])
-	adjustFireLoss(-remainder)
+	HEAL_XENO_DAMAGE(src, heal_data[1])
+	return heal_data[1]
 
 /mob/living/carbon/xenomorph/proc/handle_living_plasma_updates()
 	var/turf/T = loc

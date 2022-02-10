@@ -36,7 +36,7 @@
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle)
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
-	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23, "flamer_nozzle_x" = 33, "flamer_nozzle_y" = 20)
 	fire_delay = 4
 
@@ -222,7 +222,7 @@
 			turfs_to_burn -= turf_to_check
 			continue
 		for(var/obj/object in turf_to_check)
-			if(!object.density || object.throwpass || istype(object, /obj/structure/mineral_door/resin))
+			if(!object.density || object.throwpass || istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno))
 				continue
 			turfs_to_burn -= turf_to_check
 
@@ -310,7 +310,10 @@
 	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/mini
-	allowed_ammo_types = list(/obj/item/ammo_magazine/flamer_tank/mini)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/flamer_tank/mini,
+		/obj/item/ammo_magazine/flamer_tank/backtank,
+	)
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/unremovable/invisible)
 	attachable_allowed = list(
 		/obj/item/attachable/flamer_nozzle/unremovable/invisible,
@@ -321,6 +324,7 @@
 	pixel_shift_x = 15
 	pixel_shift_y = 18
 
+	mob_flame_damage_mod = 1
 	flame_max_range = 4
 
 /obj/item/weapon/gun/flamer/mini_flamer/unremovable

@@ -15,7 +15,8 @@
 	burst_amount = 3
 	burst_delay = 0.2 SECONDS
 	accuracy_mult_unwielded = 0.6
-	scatter_unwielded = 40
+	scatter = 0
+	scatter_unwielded = 13
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
 	upper_akimbo_accuracy = 5
@@ -65,6 +66,7 @@
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -78,9 +80,9 @@
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.1 SECONDS
-	extra_delay = 0.5 SECONDS
 	accuracy_mult = 1.10
-	scatter = -5
+	scatter = 2
+	burst_scatter_mult = 0.25
 	burst_amount = 4
 	aim_slowdown = 0.30
 	damage_falloff_mult = 0.9
@@ -135,6 +137,7 @@
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -149,7 +152,7 @@
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
-	scatter = -10
+	scatter = 0
 	wield_delay = 0.7 SECONDS
 	burst_amount = 3
 	aim_slowdown = 0.4
@@ -209,6 +212,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -222,7 +226,7 @@
 
 	fire_delay = 0.65 SECONDS
 	accuracy_mult = 1.25
-	scatter = -15
+	scatter = -3
 	burst_amount = 1
 
 /obj/item/weapon/gun/rifle/standard_dmr/marksman
@@ -277,6 +281,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -293,7 +298,7 @@
 	burst_delay = 0.10 SECONDS
 	extra_delay = 0.35 SECONDS
 	accuracy_mult = 1.25
-	scatter = -10
+	scatter = 0
 //-------------------------------------------------------
 //M412 Pulse Rifle
 
@@ -304,7 +309,7 @@
 	icon_state = "m412"
 	item_state = "m412"
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	fire_sound = "sound/weapons/guns/fire/m412.ogg"
+	fire_sound = "sound/weapons/guns/fire/M412.ogg"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
@@ -340,6 +345,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -351,7 +357,7 @@
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
-	scatter = -10
+	scatter = 0
 	wield_delay = 0.7 SECONDS
 	burst_amount = 3
 	aim_slowdown = 0.4
@@ -389,6 +395,7 @@
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/stock/irremoveable/rifle,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -446,14 +453,14 @@
 	burst_amount = 4
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.10
-	scatter = -10
+	scatter = 0
 	fire_delay = 0.2 SECONDS
 
 
 
 //-------------------------------------------------------
 
-/obj/item/weapon/gun/rifle/ak47
+/obj/item/weapon/gun/rifle/mpi_km
 	name = "\improper MPi-KM assault rifle"
 	desc = "A cheap and robust rifle, sometimes better known as an 'AK'. Chambers 7.62x39mm. Despite lacking attachment points, remains a popular product on the black market with its cheap cost and higher than usual caliber rounds."
 	icon_state = "ak47"
@@ -465,22 +472,22 @@
 	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
-	default_ammo_type = /obj/item/ammo_magazine/rifle/ak47
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/ak47)
+	default_ammo_type = /obj/item/ammo_magazine/rifle/mpi_km
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/mpi_km, /obj/item/ammo_magazine/rifle/mpi_km/extended)
 	aim_slowdown = 0.7
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/stock/ak47,
+		/obj/item/attachable/stock/mpi_km,
 		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 17, "under_x" = 24, "under_y" = 13, "stock_x" = 0, "stock_y" = 12)
-	starting_attachment_types = list(/obj/item/attachable/stock/ak47)
+	starting_attachment_types = list(/obj/item/attachable/stock/mpi_km)
 
 	accuracy_mult = 1
 	burst_amount = 1
@@ -531,6 +538,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
 	)
 
@@ -542,7 +550,7 @@
 	aim_speed_modifier = 2.5
 
 	fire_delay = 0.2 SECONDS
-	scatter = -2
+	scatter = 3
 	extra_delay = -0.05 SECONDS
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.3
@@ -598,6 +606,7 @@
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
@@ -609,7 +618,7 @@
 	accuracy_mult = 1.25
 	wield_delay = 0.5 SECONDS
 	damage_mult = 1.2
-	scatter = 5
+	scatter = 3
 
 /obj/item/weapon/gun/rifle/famas/freelancermedic
 	starting_attachment_types = list(/obj/item/attachable/lasersight, /obj/item/attachable/suppressor)
@@ -657,6 +666,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/t42barrel,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
 	flags_gun_features = GUN_AMMO_COUNTER
@@ -665,14 +675,14 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.18 SECONDS
+	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 5
 
 	fire_delay = 0.2 SECONDS
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1
-	scatter = 10
+	scatter = 4
 	scatter_unwielded = 80
 
 //-------------------------------------------------------
@@ -730,8 +740,8 @@
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.4
 	accuracy_mult = 1
-	scatter = 25
-	scatter_unwielded = 80
+	scatter = 10
+	scatter_unwielded = 45
 
 	placed_overlay_iconstate = "lmg"
 
@@ -774,6 +784,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/stock/irremoveable/rifle,
 		/obj/item/attachable/shoulder_mount,
 	)
@@ -792,8 +803,8 @@
 	burst_delay = 0.1 SECONDS
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1.05
-	scatter = 15
-	scatter_unwielded = 80
+	scatter = 7
+	scatter_unwielded = 25
 	recoil_unwielded = 5
 
 	placed_overlay_iconstate = "lmg"
@@ -842,6 +853,7 @@
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/weapon/gun/flamer/mini_flamer/unremovable,
 		/obj/item/attachable/suppressor/unremovable/invisible,
 		/obj/item/attachable/scope/unremovable,
@@ -851,7 +863,7 @@
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 24, "under_x" = 34, "under_y" = 16, "stock_x" = 19, "stock_y" = 13)
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.125 SECONDS
+	aim_fire_delay = 0.15 SECONDS
 	aim_speed_modifier = 2
 
 	fire_delay = 0.25 SECONDS
@@ -917,9 +929,9 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
-		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY //Its a shotgun type weapon effectively, most shotgun type weapons shouldn't be able to point blank 1 handed.
@@ -976,10 +988,13 @@
 	burst_amount = 0
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1.2
-	scatter = -20
-	scatter_unwielded = 80
+	scatter = -5
+	scatter_unwielded = 40
 
 	placed_overlay_iconstate = "smartgun"
+
+/obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc
+	starting_attachment_types = list(/obj/item/attachable/stock/t29stock, /obj/item/attachable/t29barrel, /obj/item/attachable/magnetic_harness)
 
 // T-25 Smartrifle
 
@@ -1019,13 +1034,11 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/marine,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
-		/obj/item/weapon/gun/shotgun/combat/masterkey,
-		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	gun_skill_category = GUN_SKILL_SMARTGUN //Uses SG skill for the penalties.
 	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 12, "stock_y" = 13)
@@ -1033,8 +1046,8 @@
 	burst_amount = 0
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1.2
-	scatter = -5
-	scatter_unwielded = 60
+	scatter = 0
+	scatter_unwielded = 15
 
 //-------------------------------------------------------
 //Sectoid Rifle
@@ -1110,6 +1123,7 @@
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/compensator,
+		/obj/item/attachable/bipod,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -1129,8 +1143,8 @@
 	fire_delay = 1.35 SECONDS
 	accuracy_mult = 1.35
 	accuracy_mult_unwielded = 0.7
-	scatter = -30
-	scatter_unwielded = 40
+	scatter = -5
+	scatter_unwielded = 20
 	recoil = 0
 	recoil_unwielded = 4
 	aim_slowdown = 1
@@ -1173,11 +1187,11 @@
 	)
 
 	burst_amount = 0
-	fire_delay = 0.5 SECONDS
+	fire_delay = 0.55 SECONDS
 	accuracy_mult = 1.35
 	accuracy_mult_unwielded = 0.7
-	scatter = -30
-	scatter_unwielded = 40
+	scatter = -5
+	scatter_unwielded = 20
 	recoil = 0
 	recoil_unwielded = 4
 	aim_slowdown = 1
@@ -1194,7 +1208,7 @@
 	caliber = CALIBER_492X34_CASELESS //codex
 	max_shells = 70 //codex
 	wield_delay = 0.65 SECONDS
-	fire_sound = "sound/weapons/guns/fire/m412.ogg"
+	fire_sound = "sound/weapons/guns/fire/M412.ogg"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
@@ -1210,23 +1224,24 @@
 		/obj/item/attachable/stock/irremoveable/tx11,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/scope/marine,
 	)
 
 	flags_gun_features = GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11, /obj/item/attachable/scope/mini/tx11)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 19, "stock_y" = 23)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.125 SECONDS
+	aim_fire_delay = 0.15 SECONDS
 
-	fire_delay = 0.225 SECONDS
-	extra_delay = 0.5 SECONDS
+	fire_delay = 0.25 SECONDS
 	burst_amount = 3
 	burst_delay = 0.05 SECONDS
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1.2
-	scatter = -10
-	scatter_unwielded = 30
+	scatter = 0
+	scatter_unwielded = 15
+	burst_scatter_mult = 0.33
 	aim_slowdown = 0.45
 
 /obj/item/weapon/gun/rifle/tx11/scopeless
@@ -1273,6 +1288,7 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
@@ -1286,7 +1302,7 @@
 	burst_amount = 1
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
-	scatter = -10
+	scatter = 0
 	wield_delay = 0.6 SECONDS
 	aim_slowdown = 0.5
 	damage_falloff_mult = 0.5
@@ -1328,7 +1344,7 @@
 	burst_delay = 0.1 SECONDS
 	extra_delay = 0.5 SECONDS
 	accuracy_mult = 1
-	scatter = 12
+	scatter = 7
 	burst_amount = 4
 	aim_slowdown = 0.3
 	wield_delay = 0.4 SECONDS
@@ -1339,20 +1355,20 @@
 
 /obj/item/weapon/gun/rifle/mkh
 	name = "\improper MKH-98 storm rifle"
-	desc = "A certified classic, this design was hailed as the first successful assault rifle concept, generally termed a 'storm rifle'. This version of it chambers 7.62x39mm."
+	desc = "A certified classic, this design was hailed as the first successful assault rifle concept, generally termed a 'storm rifle'. Has a higher than usual firerate for it's class, but suffers in capacity. This version of it chambers 7.62x39mm."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "mkh98"
 	item_state = "mkh98"
 	caliber = CALIBER_762X39 //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	max_shells = 26 //codex
+	max_shells = 30 //codex
 	fire_sound = 'sound/weapons/guns/fire/ak47.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/rifle/mkh
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/mkh)
-	aim_slowdown = 0.45
+	aim_slowdown = 0.35
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
@@ -1371,6 +1387,6 @@
 
 	accuracy_mult = 1.1
 	burst_amount = 1
-	fire_delay = 0.25 SECONDS
+	fire_delay = 0.2 SECONDS
 	scatter = 2
-	wield_delay = 0.6 SECONDS
+	wield_delay = 0.5 SECONDS

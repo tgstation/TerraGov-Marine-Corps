@@ -101,6 +101,10 @@
 	else if (!istype(hard_armor, /datum/armor))
 		stack_trace("Invalid type [hard_armor.type] found in .hard_armor during /turf Initialize()")
 
+	if(smoothing_behavior)
+		smooth_self()
+		smooth_neighbors()
+
 	return INITIALIZE_HINT_NORMAL
 
 
@@ -173,8 +177,7 @@
 	if(QDELETED(mover)) //Mover deleted from Cross/CanPass/Bump, do not proceed.
 		return FALSE
 	if(firstbump)
-		mover.Bump(firstbump)
-		return FALSE
+		return mover.Bump(firstbump)
 	return TRUE
 
 
@@ -308,6 +311,10 @@
 
 	if(W.directional_opacity != old_directional_opacity)
 		W.reconsider_lights()
+
+	var/area/thisarea = get_area(W)
+	if(thisarea.lighting_effect)
+		W.add_overlay(thisarea.lighting_effect)
 
 	return W
 
@@ -554,6 +561,10 @@
 		if(istype(O, /obj/structure/xeno))
 			if(!silent)
 				to_chat(builder, span_warning("There's already a resin structure here!"))
+			return FALSE
+		if(istype(O, /obj/structure/xeno/plant))
+			if(!silent)
+				to_chat(builder, span_warning("There is a plant growing here, destroying it would be a waste to the hive."))
 			return FALSE
 		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/structure/ladder) || istype(O, /obj/effect/alien/resin))
 			has_obstacle = TRUE

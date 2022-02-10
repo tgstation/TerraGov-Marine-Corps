@@ -82,7 +82,7 @@
 		return /datum/item_representation/armor_module/colored
 	if(ispath(item_type, /obj/item/armor_module/storage))
 		return /datum/item_representation/armor_module/storage
-	if(ispath(item_type, /obj/item/storage) && !ispath(item_type, /obj/item/storage/pill_bottle))
+	if(ispath(item_type, /obj/item/storage))
 		return /datum/item_representation/storage
 	if(ispath(item_type, /obj/item/clothing/suit/storage))
 		return /datum/item_representation/suit_with_storage
@@ -96,6 +96,8 @@
 		return /datum/item_representation/stack
 	if(ispath(item_type, /obj/item/card/id))
 		return /datum/item_representation/id
+	if(ispath(item_type, /obj/item/clothing/shoes/marine))
+		return /datum/item_representation/boot
 	return /datum/item_representation
 
 /// Return TRUE if this handful should be buyable, aka if it's corresponding aka box is in a linked vendor

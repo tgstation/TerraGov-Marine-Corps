@@ -52,6 +52,9 @@
 		to_chat(xeno, span_warning("That announcement contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span>"))
 		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
 		return FALSE
+	if(NON_ASCII_CHECK(input))
+		to_chat(usr, span_warning("That announcement contained characters prohibited in IC chat! Consider reviewing the server rules."))
+		return FALSE
 
 	var/queensWord = "<br><h2 class='alert'>The words of the queen reverberate in your head...</h2>"
 	queensWord += "<br>[span_alert("[input]")]<br><br>"
@@ -531,46 +534,7 @@
 
 	to_chat(T, span_xenowarning("The queen is deevolving us for the following reason: [reason]"))
 
-	var/xeno_type = new_caste.caste_type_path
-
-	//From there, the new xeno exists, hopefully
-	var/mob/living/carbon/xenomorph/new_xeno = new xeno_type(get_turf(T))
-
-	if(!istype(new_xeno))
-		//Something went horribly wrong!
-		stack_trace("[X] tried to deevolve [X.observed_xeno] but their new_xeno wasn't a xeno at all.")
-		if(new_xeno)
-			qdel(new_xeno)
-		return
-
-	for(var/obj/item/W in T.contents) //Drop stuff
-		T.dropItemToGround(W)
-
-	if(T.mind)
-		T.mind.transfer_to(new_xeno)
-	else
-		new_xeno.key = T.key
-
-	//Pass on the unique nicknumber, then regenerate the new mob's name now that our player is inside
-	new_xeno.nicknumber = T.nicknumber
-	new_xeno.generate_name()
-
-	if(T.xeno_mobhud)
-		var/datum/atom_hud/H = GLOB.huds[DATA_HUD_XENO_STATUS]
-		H.add_hud_to(new_xeno) //keep our mobhud choice
-		new_xeno.xeno_mobhud = TRUE
-
-	new_xeno.visible_message(span_xenodanger("A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [T]."), \
-	span_xenodanger("[X] makes us regress into our previous form."))
-
-	if(T.queen_chosen_lead)
-		new_xeno.queen_chosen_lead = TRUE
-		new_xeno.hud_set_queen_overwatch()
-
-	SEND_SIGNAL(T, COMSIG_XENOMORPH_DEEVOLVED, new_xeno)
-
-	// this sets the right datum
-	new_xeno.upgrade_xeno(T.upgrade_next()) //a young Crusher de-evolves into a MATURE Hunter
+	T.do_evolve(new_caste.caste_type_path, new_caste.caste_name, TRUE)
 
 	log_game("[key_name(X)] has deevolved [key_name(T)]. Reason: [reason]")
 	message_admins("[ADMIN_TPMONTY(X)] has deevolved [ADMIN_TPMONTY(T)]. Reason: [reason]")

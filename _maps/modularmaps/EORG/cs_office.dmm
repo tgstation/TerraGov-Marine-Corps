@@ -1,0 +1,4452 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ad" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/stairs/rampbottom{
+	dir = 8
+	},
+/area/deathmatch)
+"ai" = (
+/turf/open/floor/tile/arrival{
+	dir = 10
+	},
+/area/deathmatch)
+"am" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/tile/arrival{
+	dir = 5
+	},
+/area/deathmatch)
+"av" = (
+/obj/structure/table/woodentable,
+/obj/structure/paper_bin,
+/obj/item/tool/pen,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"ay" = (
+/obj/structure/platform,
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/turf/open/floor/plating/ground/snow/layer1,
+/area/deathmatch)
+"aI" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/blue2,
+/area/deathmatch)
+"aT" = (
+/obj/structure/platform,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"bB" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"bC" = (
+/obj/structure/table/woodentable,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"bL" = (
+/obj/machinery/light,
+/turf/open/floor/tile/dark/blue2,
+/area/deathmatch)
+"bZ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/stairs,
+/area/deathmatch)
+"cc" = (
+/obj/structure/platform,
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"co" = (
+/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/deathmatch)
+"ct" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/stairs,
+/area/deathmatch)
+"cA" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/tile/dark/blue2,
+/area/deathmatch)
+"dg" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"di" = (
+/obj/structure/closet/secure_closet/engineering_electrical,
+/obj/machinery/light,
+/turf/open/floor/stairs,
+/area/deathmatch)
+"dj" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"do" = (
+/obj/structure/fence,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/floor/plating/ground/snow/layer1,
+/area/deathmatch)
+"ds" = (
+/obj/structure/prop/mainship/valmoric,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/deathmatch)
+"dF" = (
+/obj/structure/table/woodentable,
+/obj/item/radio,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"dH" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/tile/dark/blue2{
+	dir = 5
+	},
+/area/deathmatch)
+"dY" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 8
+	},
+/area/deathmatch)
+"dZ" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/deathmatch)
+"eq" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/deathmatch)
+"eE" = (
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/floor/stairs,
+/area/deathmatch)
+"eG" = (
+/obj/structure/table,
+/obj/structure/paper_bin,
+/obj/item/tool/pen,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"eH" = (
+/obj/structure/table/reinforced,
+/obj/item/tool/kitchen/utensil/knife,
+/obj/item/reagent_containers/food/condiment/peppermill,
+/obj/item/reagent_containers/food/condiment/saltshaker,
+/obj/item/reagent_containers/food/condiment/saltshaker,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"eU" = (
+/obj/structure/table/reinforced,
+/obj/structure/sink{
+	dir = 4
+	},
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"fv" = (
+/obj/structure/largecrate/random,
+/turf/open/floor/stairs,
+/area/deathmatch)
+"fy" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 4
+	},
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 1
+	},
+/area/deathmatch)
+"fK" = (
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"fZ" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/tile/arrival{
+	dir = 5
+	},
+/area/deathmatch)
+"ga" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/arrival/corner{
+	dir = 1
+	},
+/area/deathmatch)
+"gn" = (
+/obj/structure/inflatable/popped,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/tile/arrival{
+	dir = 4
+	},
+/area/deathmatch)
+"gq" = (
+/obj/machinery/vending/dinnerware,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"gA" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"gE" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"gJ" = (
+/obj/structure/table,
+/obj/structure/paper_bin,
+/obj/item/tool/pen,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"gM" = (
+/obj/structure/bed/chair/sofa/right{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/blue2,
+/area/deathmatch)
+"gN" = (
+/obj/machinery/light,
+/turf/open/floor/stairs,
+/area/deathmatch)
+"gX" = (
+/obj/structure/table/woodentable,
+/obj/item/radio,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"gY" = (
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/closed/wall/mainship/gray/outer{
+	icon = null
+	},
+/area/deathmatch)
+"hp" = (
+/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/stairs,
+/area/deathmatch)
+"hv" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 4
+	},
+/area/deathmatch)
+"hS" = (
+/obj/structure/flora/pottedplant/ten,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"ia" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/deathmatch)
+"ib" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/arrival,
+/area/deathmatch)
+"ih" = (
+/obj/structure/bed/chair/comfy/black,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/deathmatch)
+"ii" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/deathmatch)
+"io" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/snacks/cookie,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"ix" = (
+/obj/structure/table/woodentable,
+/obj/item/flashlight/lamp,
+/obj/item/tool/hand_labeler,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"iy" = (
+/obj/structure/flora/pottedplant/twentyone,
+/turf/open/floor/tile/dark/blue2{
+	dir = 5
+	},
+/area/deathmatch)
+"iI" = (
+/obj/structure/table/woodentable,
+/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"jf" = (
+/obj/structure/reagent_dispensers/beerkeg,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"jg" = (
+/turf/open/floor/tile/arrival,
+/area/deathmatch)
+"jm" = (
+/obj/structure/platform_decoration{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"js" = (
+/obj/structure/table/woodentable,
+/obj/item/tool/pen,
+/obj/item/clipboard,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"jT" = (
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 1
+	},
+/area/deathmatch)
+"kc" = (
+/obj/machinery/light,
+/turf/open/floor/tile/dark/blue2{
+	dir = 10
+	},
+/area/deathmatch)
+"kj" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/arrival{
+	dir = 1
+	},
+/area/deathmatch)
+"kx" = (
+/obj/structure/table/woodentable,
+/obj/structure/paper_bin,
+/obj/item/tool/pen,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"ky" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"kP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/stairs/rampbottom{
+	dir = 1
+	},
+/area/deathmatch)
+"kV" = (
+/obj/structure/prop/mainship/ship_memorial,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"kX" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 8
+	},
+/area/deathmatch)
+"lb" = (
+/turf/open/floor/tile/arrival{
+	dir = 4
+	},
+/area/deathmatch)
+"lf" = (
+/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2,
+/area/deathmatch)
+"li" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/snow/layer1,
+/area/deathmatch)
+"lk" = (
+/obj/structure/ore_box,
+/turf/open/floor/stairs,
+/area/deathmatch)
+"lm" = (
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/stairs,
+/area/deathmatch)
+"ln" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"lv" = (
+/obj/structure/bed/chair/comfy/black,
+/turf/open/floor/tile/dark/blue2{
+	dir = 9
+	},
+/area/deathmatch)
+"lx" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 4
+	},
+/area/deathmatch)
+"lE" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/plating,
+/area/deathmatch)
+"lH" = (
+/obj/structure/inflatable,
+/turf/open/floor/stairs,
+/area/deathmatch)
+"mg" = (
+/obj/structure/closet/cabinet,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2{
+	dir = 6
+	},
+/area/deathmatch)
+"ml" = (
+/obj/structure/table/woodentable,
+/obj/machinery/recharger,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"mE" = (
+/obj/structure/table/reinforced,
+/obj/machinery/microwave,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"mK" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/snow/layer1,
+/area/deathmatch)
+"mO" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/deathmatch)
+"nc" = (
+/obj/structure/bed/stool,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"np" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/tile/arrival{
+	dir = 5
+	},
+/area/deathmatch)
+"nJ" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/tile/dark/blue2{
+	dir = 5
+	},
+/area/deathmatch)
+"nK" = (
+/obj/structure/table/woodentable,
+/obj/item/flashlight/lamp,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"nL" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/arrival{
+	dir = 1
+	},
+/area/deathmatch)
+"nM" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/tile/dark/blue2{
+	dir = 5
+	},
+/area/deathmatch)
+"nQ" = (
+/obj/structure/flora/pottedplant/twentyone,
+/turf/open/floor/tile/arrival{
+	dir = 9
+	},
+/area/deathmatch)
+"og" = (
+/obj/structure/table/woodentable,
+/obj/item/radio,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"oh" = (
+/obj/structure/sink{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"on" = (
+/obj/structure/inflatable/popped,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/gray,
+/area/deathmatch)
+"ot" = (
+/obj/structure/window/framed/mainship/gray/toughened/hull,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"oy" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"oA" = (
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/tile/arrival{
+	dir = 1
+	},
+/area/deathmatch)
+"oP" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/arrival/corner,
+/area/deathmatch)
+"oU" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 6
+	},
+/area/deathmatch)
+"pa" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/arrival{
+	dir = 4
+	},
+/area/deathmatch)
+"pf" = (
+/obj/structure/bed/chair/sofa/right{
+	dir = 4
+	},
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"pn" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/deathmatch)
+"pG" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/obj/structure/ore_box,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"pI" = (
+/obj/structure/bed/chair/sofa/right{
+	dir = 1
+	},
+/obj/effect/landmark/deathmatch,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2,
+/area/deathmatch)
+"pM" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/deathmatch)
+"pU" = (
+/obj/structure/cargo_container/hd{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/snow/layer1,
+/area/deathmatch)
+"qe" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/floor/stairs{
+	color = "#888888"
+	},
+/area/deathmatch)
+"qt" = (
+/obj/machinery/vending/cola,
+/turf/open/floor/tile/arrival{
+	dir = 6
+	},
+/area/deathmatch)
+"qw" = (
+/obj/structure/table,
+/obj/structure/paper_bin,
+/obj/item/tool/pen,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"qI" = (
+/obj/structure/largecrate/random,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"qP" = (
+/obj/structure/largecrate/random,
+/obj/item/tool/crowbar,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2{
+	dir = 10
+	},
+/area/deathmatch)
+"qW" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/obj/structure/largecrate/random,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/deathmatch)
+"rf" = (
+/obj/structure/inflatable/popped,
+/turf/open/floor/stairs,
+/area/deathmatch)
+"ri" = (
+/obj/structure/ore_box,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"rl" = (
+/obj/structure/ore_box,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"ro" = (
+/obj/structure/inflatable/popped,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/tile/dark/gray,
+/area/deathmatch)
+"rp" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/stairs,
+/area/deathmatch)
+"ru" = (
+/turf/open/floor/tile/arrival/corner,
+/area/deathmatch)
+"rw" = (
+/obj/structure/table,
+/obj/item/camera,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"ry" = (
+/obj/structure/bed/chair/sofa,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/deathmatch)
+"rF" = (
+/obj/structure/bed/chair/sofa/left,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/deathmatch)
+"rP" = (
+/obj/structure/prop/mainship/toolboxforacause2020,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/deathmatch)
+"sa" = (
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/tile/dark/gray,
+/area/deathmatch)
+"sh" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/stairs,
+/area/deathmatch)
+"ss" = (
+/obj/structure/cargo_container/hd{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/snow/layer1,
+/area/deathmatch)
+"sw" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/dark/gray,
+/area/deathmatch)
+"sy" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/arrival{
+	dir = 8
+	},
+/area/deathmatch)
+"sV" = (
+/obj/machinery/light,
+/turf/open/floor/tile/arrival{
+	dir = 4
+	},
+/area/deathmatch)
+"ta" = (
+/obj/structure/flora/pottedplant/twentytwo,
+/turf/open/floor/tile/arrival{
+	dir = 9
+	},
+/area/deathmatch)
+"tl" = (
+/obj/structure/platform_decoration{
+	dir = 8
+	},
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/deathmatch)
+"tn" = (
+/turf/open/floor/tile/dark/blue2,
+/area/deathmatch)
+"tD" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/plasteel/large_stack,
+/obj/item/stack/sheet/plasteel/large_stack,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/deathmatch)
+"tI" = (
+/obj/item/reagent_containers/food/snacks/grown/poppy{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"tJ" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/stairs,
+/area/deathmatch)
+"tO" = (
+/obj/machinery/door/poddoor/mainship/umbilical/south{
+	dir = 2;
+	id = "s_umbilical_outer"
+	},
+/turf/open/floor/plating,
+/area/deathmatch)
+"uE" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"uS" = (
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"uU" = (
+/obj/structure/flora/pottedplant/twentyone,
+/turf/open/floor/tile/dark/blue2{
+	dir = 6
+	},
+/area/deathmatch)
+"uX" = (
+/turf/open/floor/plating/ground/snow/layer1,
+/area/deathmatch)
+"vm" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp,
+/obj/item/clipboard,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"vr" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"vy" = (
+/obj/structure/largecrate/random,
+/turf/open/floor/tile/arrival,
+/area/deathmatch)
+"vA" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/arrival,
+/area/deathmatch)
+"vL" = (
+/obj/structure/table/woodentable,
+/obj/structure/paper_bin,
+/obj/item/tool/pen,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"vM" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"vO" = (
+/obj/structure/inflatable,
+/turf/open/floor/tile/arrival,
+/area/deathmatch)
+"vQ" = (
+/obj/structure/closet/crate/freezer,
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"vU" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/deathmatch)
+"wh" = (
+/obj/structure/bed/chair/sofa{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"wn" = (
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/deathmatch)
+"wG" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/arrival/corner{
+	dir = 8
+	},
+/area/deathmatch)
+"wM" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"wN" = (
+/obj/structure/table/woodentable,
+/obj/item/radio,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"wP" = (
+/turf/open/floor/tile/arrival{
+	dir = 9
+	},
+/area/deathmatch)
+"xj" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"xo" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"xr" = (
+/obj/structure/filingcabinet,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/deathmatch)
+"xB" = (
+/obj/structure/fence,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"xD" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "\improper Recreation Area"
+	},
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/floor/stairs,
+/area/deathmatch)
+"xM" = (
+/obj/structure/inflatable/popped,
+/turf/open/floor/stairs/rampbottom,
+/area/deathmatch)
+"xN" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/tile/arrival{
+	dir = 10
+	},
+/area/deathmatch)
+"yc" = (
+/obj/structure/table,
+/obj/machinery/computer/emails,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"yh" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"yo" = (
+/obj/structure/window/framed/mainship/gray/toughened,
+/turf/open/floor/tile/dark/gray,
+/area/deathmatch)
+"yz" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/floor/stairs{
+	color = "#888888"
+	},
+/area/deathmatch)
+"yA" = (
+/obj/structure/flora/pottedplant/twentyone,
+/turf/open/floor/tile/dark/blue2{
+	dir = 10
+	},
+/area/deathmatch)
+"yP" = (
+/obj/structure/flora/pottedplant/twentyone,
+/turf/open/floor/tile/dark/blue2{
+	dir = 9
+	},
+/area/deathmatch)
+"yY" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2,
+/area/deathmatch)
+"zd" = (
+/obj/structure/flora/pottedplant/twentyone,
+/turf/open/floor/tile/arrival{
+	dir = 5
+	},
+/area/deathmatch)
+"ze" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/obj/structure/fence,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"zf" = (
+/obj/structure/table,
+/obj/item/clipboard,
+/obj/item/tool/pen,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"zg" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/tile/arrival{
+	dir = 1
+	},
+/area/deathmatch)
+"zl" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 1
+	},
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/dark/blue2{
+	dir = 6
+	},
+/area/deathmatch)
+"zm" = (
+/obj/structure/flora/pottedplant/ten,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/deathmatch)
+"zt" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"zB" = (
+/obj/structure/bed/chair/sofa/right{
+	dir = 4
+	},
+/obj/effect/landmark/deathmatch,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"zR" = (
+/obj/structure/cargo_container/hd,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/deathmatch)
+"zV" = (
+/obj/structure/table/reinforced,
+/obj/item/tool/kitchen/tray,
+/obj/item/reagent_containers/food/snacks/monkeyburger,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"zZ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/arrival{
+	dir = 4
+	},
+/area/deathmatch)
+"Ag" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/tile/dark/blue2{
+	dir = 9
+	},
+/area/deathmatch)
+"Aj" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2{
+	dir = 6
+	},
+/area/deathmatch)
+"Al" = (
+/obj/structure/filingcabinet,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/deathmatch)
+"An" = (
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/turf/open/floor/tile/dark/blue2/corner,
+/area/deathmatch)
+"AH" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/deathmatch)
+"AI" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"AJ" = (
+/turf/open/floor/tile/dark/blue2/corner,
+/area/deathmatch)
+"AM" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/structure/platform_decoration{
+	dir = 5
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"AR" = (
+/obj/structure/inflatable,
+/obj/machinery/light,
+/turf/open/floor/tile/arrival,
+/area/deathmatch)
+"Bp" = (
+/obj/structure/table,
+/obj/item/clipboard,
+/obj/item/tool/pen,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"Bs" = (
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/tile/arrival{
+	dir = 4
+	},
+/area/deathmatch)
+"Bw" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"Bx" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/deathmatch)
+"BA" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2/corner,
+/area/deathmatch)
+"BR" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 1
+	},
+/area/deathmatch)
+"Cb" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/tile/arrival{
+	dir = 4
+	},
+/area/deathmatch)
+"Cq" = (
+/obj/structure/table/woodentable,
+/obj/item/tool/hand_labeler,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"CD" = (
+/obj/structure/bed/chair/office/dark,
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"CQ" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/deathmatch)
+"CT" = (
+/obj/structure/table,
+/obj/machinery/computer/emails,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"CW" = (
+/obj/structure/ore_box,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/arrival{
+	dir = 4
+	},
+/area/deathmatch)
+"Df" = (
+/obj/structure/filingcabinet,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"DM" = (
+/obj/machinery/computer/security/telescreen/entertainment,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"DP" = (
+/obj/structure/bed/chair/sofa/right{
+	dir = 8
+	},
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"Eb" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/arrival{
+	dir = 4
+	},
+/area/deathmatch)
+"Eg" = (
+/obj/machinery/vending/cola,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/arrival{
+	dir = 1
+	},
+/area/deathmatch)
+"Eh" = (
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 4
+	},
+/area/deathmatch)
+"Ej" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"Eq" = (
+/obj/structure/table/woodentable,
+/obj/item/stack/sheet/cardboard{
+	amount = 50
+	},
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"Ev" = (
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/tile/dark/gray,
+/area/deathmatch)
+"Ez" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"EB" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/arrival{
+	dir = 8
+	},
+/area/deathmatch)
+"EJ" = (
+/obj/structure/bed/stool,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"Fg" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/plasteel/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/turf/open/floor/stairs,
+/area/deathmatch)
+"Fk" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/tile/dark/blue2{
+	dir = 10
+	},
+/area/deathmatch)
+"Fp" = (
+/obj/structure/table,
+/obj/item/tool/hand_labeler,
+/obj/item/clipboard,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"FA" = (
+/obj/structure/largecrate/random,
+/obj/item/tool/crowbar,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"FT" = (
+/obj/structure/platform_decoration{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"Gh" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/gray,
+/area/deathmatch)
+"Gz" = (
+/obj/structure/bed/chair/sofa/right{
+	dir = 1
+	},
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/dark/blue2,
+/area/deathmatch)
+"GC" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/arrival{
+	dir = 8
+	},
+/area/deathmatch)
+"GF" = (
+/obj/effect/landmark/deathmatch,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"GK" = (
+/obj/structure/largecrate/guns/merc,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/deathmatch)
+"GO" = (
+/obj/structure/flora/pottedplant,
+/turf/open/floor/tile/dark/blue2{
+	dir = 9
+	},
+/area/deathmatch)
+"GP" = (
+/obj/structure/bed/chair/sofa{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"GX" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"Hg" = (
+/obj/structure/table/woodentable,
+/obj/item/flashlight/lamp,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"Hk" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/plating,
+/area/deathmatch)
+"Hm" = (
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"HA" = (
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/tile/arrival{
+	dir = 4
+	},
+/area/deathmatch)
+"HB" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/stairs/rampbottom{
+	dir = 4
+	},
+/area/deathmatch)
+"HR" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/stairs,
+/area/deathmatch)
+"Ij" = (
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/deathmatch)
+"IC" = (
+/obj/machinery/griddle,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"IE" = (
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 4
+	},
+/area/deathmatch)
+"IQ" = (
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"IV" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/tile/arrival{
+	dir = 9
+	},
+/area/deathmatch)
+"Jr" = (
+/obj/structure/flora/pottedplant/twentytwo,
+/turf/open/floor/tile/dark/blue2{
+	dir = 9
+	},
+/area/deathmatch)
+"Jz" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/obj/structure/platform{
+	dir = 4
+	},
+/obj/structure/platform_decoration{
+	dir = 9
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"JF" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"JG" = (
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 1
+	},
+/area/deathmatch)
+"Kn" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/tile/arrival/corner{
+	dir = 4
+	},
+/area/deathmatch)
+"Kx" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/arrival{
+	dir = 1
+	},
+/area/deathmatch)
+"Ky" = (
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"KA" = (
+/obj/machinery/computer/security/telescreen/entertainment,
+/turf/closed/wall/mainship/gray,
+/area/deathmatch)
+"KB" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/deathmatch)
+"KD" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/tile/dark/blue2{
+	dir = 6
+	},
+/area/deathmatch)
+"KH" = (
+/turf/closed/wall/mainship/gray/outer{
+	icon = null
+	},
+/area/deathmatch)
+"KK" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 10
+	},
+/area/deathmatch)
+"KQ" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/snow/layer1,
+/area/deathmatch)
+"Ld" = (
+/obj/machinery/gibber,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"Le" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/stairs/rampbottom{
+	dir = 8
+	},
+/area/deathmatch)
+"Lf" = (
+/obj/structure/platform_decoration,
+/turf/open/floor/stairs,
+/area/deathmatch)
+"Lo" = (
+/obj/structure/table/woodentable,
+/obj/item/clipboard,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"Lu" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/structure/reagent_dispensers/water_cooler,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/deathmatch)
+"Lw" = (
+/obj/structure/table/reinforced,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"LC" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"LT" = (
+/turf/open/floor/tile/arrival/corner{
+	dir = 8
+	},
+/area/deathmatch)
+"LW" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"LY" = (
+/obj/machinery/vending/cola,
+/turf/open/floor/tile/arrival{
+	dir = 5
+	},
+/area/deathmatch)
+"Mc" = (
+/obj/structure/inflatable,
+/turf/open/floor/tile/arrival{
+	dir = 1
+	},
+/area/deathmatch)
+"Md" = (
+/obj/structure/inflatable/popped,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"Mr" = (
+/turf/open/floor/plating,
+/area/deathmatch)
+"Mw" = (
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/gray,
+/area/deathmatch)
+"Mz" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"MF" = (
+/obj/structure/bed/chair/office/dark,
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"MH" = (
+/obj/structure/bed/stool,
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"MW" = (
+/obj/structure/ore_box,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/deathmatch)
+"MY" = (
+/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"Nk" = (
+/obj/effect/landmark/deathmatch,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/stairs,
+/area/deathmatch)
+"Nm" = (
+/turf/closed/wall/mainship/gray,
+/area/deathmatch)
+"Np" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/stairs/rampbottom{
+	dir = 1
+	},
+/area/deathmatch)
+"ND" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"NF" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/tile/dark/blue2{
+	dir = 9
+	},
+/area/deathmatch)
+"NM" = (
+/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"NN" = (
+/turf/open/floor/tile/arrival/corner{
+	dir = 4
+	},
+/area/deathmatch)
+"NS" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 9
+	},
+/area/deathmatch)
+"Oh" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/arrival{
+	dir = 4
+	},
+/area/deathmatch)
+"Ot" = (
+/obj/machinery/vending/sovietsoda/nopower,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2{
+	dir = 5
+	},
+/area/deathmatch)
+"Oz" = (
+/obj/structure/ore_box,
+/turf/open/floor/tile/arrival{
+	dir = 1
+	},
+/area/deathmatch)
+"OC" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"OQ" = (
+/obj/structure/platform_decoration{
+	dir = 8
+	},
+/turf/open/floor/stairs,
+/area/deathmatch)
+"OU" = (
+/obj/effect/landmark/deathmatch,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/gray,
+/area/deathmatch)
+"Po" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 4
+	},
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"Pq" = (
+/turf/open/floor/tile/arrival{
+	dir = 8
+	},
+/area/deathmatch)
+"Pt" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"Px" = (
+/turf/open/floor/tile/arrival/corner{
+	dir = 1
+	},
+/area/deathmatch)
+"PH" = (
+/obj/structure/table/woodentable,
+/obj/structure/paper_bin,
+/obj/item/tool/pen,
+/turf/open/floor/tile/dark/blue2/corner,
+/area/deathmatch)
+"PU" = (
+/obj/machinery/vending/snack,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/arrival{
+	dir = 4
+	},
+/area/deathmatch)
+"PW" = (
+/obj/structure/bed/chair/sofa/right{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/deathmatch)
+"PX" = (
+/obj/structure/flora/pottedplant/ten,
+/turf/open/floor/tile/arrival{
+	dir = 9
+	},
+/area/deathmatch)
+"PY" = (
+/obj/structure/closet/secure_closet/engineering_personal,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2{
+	dir = 6
+	},
+/area/deathmatch)
+"Qc" = (
+/obj/structure/platform,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/deathmatch)
+"Qj" = (
+/obj/structure/table/woodentable,
+/obj/machinery/recharger,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"Qt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/arrival,
+/area/deathmatch)
+"Qw" = (
+/obj/structure/window/framed/mainship/gray/toughened/hull,
+/turf/closed/wall/mainship/gray/outer{
+	icon = null
+	},
+/area/deathmatch)
+"QF" = (
+/obj/structure/bed/chair/comfy/black,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"QK" = (
+/obj/structure/table,
+/obj/machinery/recharger,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"QV" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 8
+	},
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"QY" = (
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 8
+	},
+/area/deathmatch)
+"Rb" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/stairs/rampbottom{
+	dir = 1
+	},
+/area/deathmatch)
+"Rw" = (
+/obj/structure/table/woodentable,
+/obj/structure/paper_bin,
+/obj/item/tool/pen,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"RE" = (
+/obj/structure/prop/mainship/ship_memorial{
+	desc = "A ship memorial dedicated to the triumphs of the TGMC and the fallen marines of this ship. On the left there are grand tales of victory etched into the slab. On the right there is a list of famous marines who have fallen in combat serving the TGMC. There seems to be an etch of three spikes on the free space below."
+	},
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"RK" = (
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/deathmatch)
+"RQ" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/arrival{
+	dir = 8
+	},
+/area/deathmatch)
+"RZ" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"Sf" = (
+/obj/structure/table,
+/obj/item/tool/hand_labeler,
+/obj/machinery/light,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/tile/dark/blue2,
+/area/deathmatch)
+"Sg" = (
+/obj/structure/table/woodentable,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"Sh" = (
+/obj/structure/table/woodentable,
+/obj/item/megaphone,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"Sr" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/stairs,
+/area/deathmatch)
+"Sz" = (
+/obj/machinery/light,
+/turf/open/floor/tile/arrival,
+/area/deathmatch)
+"SS" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/obj/structure/inflatable,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/deathmatch)
+"To" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/arrival{
+	dir = 8
+	},
+/area/deathmatch)
+"Tp" = (
+/obj/structure/table/woodentable,
+/obj/item/camera,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"Ts" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"TC" = (
+/obj/machinery/vending/marineFood,
+/turf/open/floor/tile/arrival{
+	dir = 4
+	},
+/area/deathmatch)
+"TH" = (
+/obj/structure/filingcabinet,
+/obj/machinery/light,
+/turf/open/floor/tile/dark/blue2,
+/area/deathmatch)
+"TQ" = (
+/obj/structure/flora/pottedplant,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/deathmatch)
+"TS" = (
+/obj/structure/platform_decoration{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"Uc" = (
+/obj/structure/table/woodentable,
+/obj/item/megaphone,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"Un" = (
+/obj/structure/flora/pottedplant,
+/turf/open/floor/tile/arrival{
+	dir = 10
+	},
+/area/deathmatch)
+"Uw" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/deathmatch)
+"UJ" = (
+/obj/structure/table,
+/obj/item/tool/hand_labeler,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"UK" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"Vb" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/tile/arrival{
+	dir = 4
+	},
+/area/deathmatch)
+"VK" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/tile/arrival{
+	dir = 6
+	},
+/area/deathmatch)
+"VM" = (
+/obj/structure/bed/chair/comfy/black,
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/deathmatch)
+"VQ" = (
+/obj/structure/inflatable,
+/turf/open/floor/tile/arrival{
+	dir = 4
+	},
+/area/deathmatch)
+"VR" = (
+/obj/structure/bed/chair/comfy/black,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"VY" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 10
+	},
+/area/deathmatch)
+"We" = (
+/obj/structure/inflatable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/gray,
+/area/deathmatch)
+"Wl" = (
+/obj/structure/table,
+/obj/item/stack/sheet/cardboard{
+	amount = 50
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"WD" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/deathmatch)
+"WK" = (
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"WN" = (
+/obj/machinery/vending/marineFood,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"WR" = (
+/obj/machinery/processor,
+/obj/machinery/light,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"WY" = (
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"WZ" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"Xa" = (
+/obj/structure/inflatable/popped,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/arrival,
+/area/deathmatch)
+"Xb" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/stairs/rampbottom,
+/area/deathmatch)
+"Xg" = (
+/obj/structure/flora/pottedplant/twentytwo,
+/turf/open/floor/tile/dark/blue2{
+	dir = 10
+	},
+/area/deathmatch)
+"Xl" = (
+/obj/structure/table/reinforced,
+/obj/item/book/manual/chef_recipes,
+/obj/item/tool/kitchen/knife/butcher,
+/obj/item/tool/kitchen/rollingpin,
+/obj/item/clothing/head/chefhat,
+/obj/item/clothing/suit/chef/classic,
+/obj/item/clothing/suit/chef,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"Xo" = (
+/obj/structure/window/framed/mainship/gray/toughened,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"Xq" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/deathmatch)
+"Xr" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/blue2/corner,
+/area/deathmatch)
+"Xv" = (
+/turf/closed/wall/mainship/gray/outer,
+/area/deathmatch)
+"Xw" = (
+/turf/open/floor/stairs,
+/area/deathmatch)
+"Xx" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/deathmatch)
+"XI" = (
+/obj/structure/inflatable/popped,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/tile/dark/gray,
+/area/deathmatch)
+"XK" = (
+/obj/structure/table/woodentable,
+/obj/machinery/computer/security/telescreen/entertainment,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"XS" = (
+/obj/structure/closet/cabinet,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/deathmatch)
+"XY" = (
+/obj/structure/bed/chair/sofa/right,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/deathmatch)
+"Yb" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/arrival/corner{
+	dir = 4
+	},
+/area/deathmatch)
+"Yc" = (
+/obj/structure/ore_box,
+/turf/open/floor/tile/dark/gray,
+/area/deathmatch)
+"Ye" = (
+/turf/open/floor/tile/arrival{
+	dir = 1
+	},
+/area/deathmatch)
+"Yj" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 1
+	},
+/area/deathmatch)
+"Yn" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"Yu" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/cmo,
+/area/deathmatch)
+"YH" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/stairs,
+/area/deathmatch)
+"YV" = (
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/stairs,
+/area/deathmatch)
+"Zb" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 9
+	},
+/area/deathmatch)
+"Ze" = (
+/obj/structure/table,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"Zf" = (
+/obj/structure/table,
+/obj/item/clipboard,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"Zh" = (
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/turf/open/floor/stairs,
+/area/deathmatch)
+"Zs" = (
+/obj/structure/table/woodentable,
+/obj/item/flashlight/lamp,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"Zx" = (
+/obj/structure/inflatable,
+/turf/open/floor/tile/dark/gray,
+/area/deathmatch)
+"Zy" = (
+/obj/effect/landmark/deathmatch,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/stairs,
+/area/deathmatch)
+"ZD" = (
+/turf/closed/brock,
+/area/deathmatch)
+"ZF" = (
+/obj/structure/table,
+/obj/structure/paper_bin,
+/obj/item/tool/pen,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+"ZJ" = (
+/turf/open/floor/tile/dark/gray,
+/area/deathmatch)
+"ZN" = (
+/obj/structure/table,
+/obj/machinery/computer/emails,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/deathmatch)
+"ZQ" = (
+/obj/structure/bed/chair/office/dark,
+/turf/open/floor/tile/dark2,
+/area/deathmatch)
+
+(1,1,1) = {"
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Qw
+Qw
+Qw
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Qw
+Qw
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+"}
+(2,1,1) = {"
+Xv
+lv
+RK
+KB
+VM
+Ij
+VY
+Nm
+Nm
+NS
+eq
+kc
+Nm
+GO
+xr
+Lu
+Al
+yA
+Nm
+lv
+dZ
+Uw
+Xg
+Nm
+GK
+xM
+WK
+WK
+uX
+WK
+WK
+WK
+WK
+WK
+WK
+uX
+Xv
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Xv
+"}
+(3,1,1) = {"
+Qw
+vU
+WY
+vM
+vM
+vM
+QY
+dZ
+dZ
+vU
+WY
+tn
+dZ
+Yj
+vM
+WY
+Hm
+cA
+Nm
+pn
+WY
+Cq
+gM
+Nm
+CQ
+mK
+zR
+WK
+IQ
+WK
+gE
+uX
+WK
+WK
+uX
+Mr
+tO
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Xv
+"}
+(4,1,1) = {"
+Qw
+vU
+vM
+vM
+Nm
+hS
+WY
+Ze
+Bp
+vU
+fK
+tn
+ZF
+WY
+AI
+vM
+UK
+tn
+Nm
+mO
+vM
+PH
+zl
+Nm
+CQ
+mK
+pU
+uX
+WK
+WK
+ND
+WK
+WK
+uX
+Mr
+uX
+tO
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Xv
+"}
+(5,1,1) = {"
+Xv
+MW
+WY
+FA
+Nm
+WY
+WY
+WY
+QK
+vU
+WY
+tn
+rw
+Mz
+gJ
+Zf
+ZF
+Sf
+Nm
+AH
+vM
+TH
+Nm
+Nm
+CQ
+mK
+ss
+WK
+uX
+WK
+WK
+WK
+WK
+uX
+Mr
+WK
+tO
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Xv
+"}
+(6,1,1) = {"
+Xv
+XS
+WY
+vM
+qI
+WY
+WY
+vM
+Mz
+vU
+WY
+QY
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+zm
+jT
+uS
+dY
+KK
+Xo
+Mr
+yh
+WK
+WK
+WK
+WK
+WK
+wn
+WK
+WK
+uX
+Mr
+tO
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Xv
+"}
+(7,1,1) = {"
+Xv
+XS
+WY
+WY
+WY
+fK
+WY
+WY
+zf
+mO
+vM
+vM
+WY
+MY
+WY
+WY
+vM
+WY
+WY
+WY
+vM
+vM
+tn
+Xo
+lE
+Jz
+li
+jm
+WK
+WK
+WK
+WK
+WK
+WK
+uX
+Mr
+tO
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Xv
+"}
+(8,1,1) = {"
+Xv
+TQ
+WY
+WY
+WY
+vM
+vM
+AJ
+Wl
+mO
+vM
+WY
+fK
+AJ
+wM
+wM
+wM
+wM
+wM
+wM
+wM
+wM
+oU
+Xo
+Hk
+Mr
+Mr
+yh
+uX
+uX
+WK
+WK
+WK
+WK
+WK
+WK
+Xv
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Xv
+"}
+(9,1,1) = {"
+Qw
+vU
+WY
+Po
+wh
+zB
+vM
+tn
+Nm
+XY
+zt
+WY
+WY
+tn
+oy
+Fp
+ZF
+Nm
+tn
+Nm
+Xv
+Xv
+Xv
+Xv
+Xo
+Xo
+Xo
+Nm
+rp
+Xw
+Nm
+Nm
+Nm
+Nm
+Nm
+Nm
+Xv
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Xv
+"}
+(10,1,1) = {"
+Qw
+vU
+VR
+WY
+WY
+WY
+GX
+bL
+Nm
+ry
+XK
+WY
+WY
+tn
+ZF
+WY
+dj
+vM
+QY
+Fk
+Xv
+ZD
+ZD
+Xv
+wP
+Pq
+ai
+Nm
+rp
+rp
+Np
+HR
+kP
+rp
+Xw
+rf
+Xv
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Xv
+"}
+(11,1,1) = {"
+Xv
+nM
+wM
+Sg
+iI
+bC
+wM
+uU
+Nm
+rF
+Pt
+WY
+WY
+tn
+ZN
+hv
+vM
+uS
+vM
+pI
+Xv
+ZD
+ZD
+Xv
+zg
+ZJ
+jg
+Nm
+Xw
+rp
+Np
+Sr
+kP
+rp
+lm
+Xw
+Xv
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Xv
+"}
+(12,1,1) = {"
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+iy
+LC
+IE
+vM
+yY
+Nm
+nM
+wM
+Yn
+ky
+Aj
+Xv
+ZD
+ZD
+Xv
+Ye
+OU
+jg
+Nm
+Xw
+Lf
+Rb
+YH
+Rb
+OQ
+rp
+gN
+Xv
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Xv
+"}
+(13,1,1) = {"
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+Nm
+Nm
+Ye
+ZJ
+vA
+Nm
+Nm
+Nm
+Nm
+Nm
+Nm
+Xv
+Xv
+Xv
+Xv
+Ye
+Gh
+Qt
+Nm
+Nm
+Nm
+yz
+qe
+qe
+ad
+Le
+Le
+Xv
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Xv
+"}
+(14,1,1) = {"
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+IV
+Pq
+Px
+ZJ
+LT
+Pq
+RQ
+RQ
+Pq
+Pq
+Pq
+RQ
+RQ
+GC
+Pq
+Px
+ZJ
+wG
+To
+Nm
+rp
+Xb
+Xw
+Xb
+rp
+Zy
+gN
+Xv
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Xv
+"}
+(15,1,1) = {"
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+Eg
+sw
+ZJ
+sa
+ZJ
+ZJ
+Gh
+We
+on
+XI
+sw
+Gh
+ZJ
+Mw
+Gh
+ZJ
+sa
+ZJ
+ZJ
+rp
+rp
+Xb
+lm
+Xb
+Xw
+tJ
+lH
+Xv
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Xv
+"}
+(16,1,1) = {"
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+am
+pa
+Yb
+ZJ
+ru
+Eb
+CW
+VQ
+VQ
+VQ
+VQ
+gn
+lb
+lb
+lb
+NN
+ZJ
+ru
+sV
+Nm
+Xw
+Xb
+bZ
+Xb
+Xw
+fv
+lk
+Xv
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Xv
+"}
+(17,1,1) = {"
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+Xv
+Xv
+kj
+ZJ
+jg
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Ye
+ZJ
+jg
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Xv
+"}
+(18,1,1) = {"
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+kj
+ZJ
+jg
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+Ye
+Gh
+Qt
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+"}
+(19,1,1) = {"
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+Ye
+sw
+AR
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+Mc
+ZJ
+vA
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+lk
+fv
+fv
+hp
+Nm
+Xv
+"}
+(20,1,1) = {"
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+kj
+ro
+vO
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+Oz
+ZJ
+Sz
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Fg
+Zh
+Nk
+di
+Xv
+Xv
+"}
+(21,1,1) = {"
+Xv
+Xv
+Xv
+Xv
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+kj
+Zx
+vO
+Xv
+ZD
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+ZD
+Xv
+Ye
+ZJ
+ib
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+YV
+rp
+Xb
+sh
+Xb
+Xw
+Xw
+lm
+Xw
+xD
+gY
+"}
+(22,1,1) = {"
+Xv
+Xv
+IV
+xN
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Ye
+ZJ
+jg
+Xv
+Xv
+Xv
+Bw
+RZ
+vQ
+jf
+Xv
+Xv
+Xv
+Ye
+ZJ
+jg
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+Xw
+rp
+Xb
+rp
+Xb
+Xw
+rp
+rp
+Xw
+eE
+gY
+"}
+(23,1,1) = {"
+Qw
+PX
+Px
+LT
+Pq
+Pq
+EB
+Pq
+Pq
+Pq
+Pq
+Px
+ZJ
+LT
+Pq
+Ky
+LW
+Ky
+Ky
+Ky
+Ky
+Ky
+gA
+Pq
+Px
+Mw
+vy
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+Le
+Le
+Nm
+Nm
+Nm
+Nm
+Nm
+Xw
+rp
+Xv
+Xv
+"}
+(24,1,1) = {"
+Qw
+nL
+Gh
+Gh
+Mw
+ZJ
+ZJ
+Zx
+Yc
+ZJ
+ZJ
+ZJ
+sa
+ZJ
+ZJ
+Ky
+Yu
+Ky
+Ky
+Ky
+Ky
+Ky
+Ky
+ZJ
+ZJ
+Gh
+Xa
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+ct
+Sr
+Nm
+AM
+WZ
+Xx
+Nm
+HB
+HB
+Nm
+Xv
+"}
+(25,1,1) = {"
+Qw
+np
+NN
+oP
+Eb
+Eb
+lb
+Vb
+Oh
+HA
+zZ
+lb
+lb
+lb
+Eb
+Ez
+Yu
+Ky
+MH
+nc
+Ky
+LW
+Ky
+lb
+NN
+ZJ
+vA
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+Le
+Le
+Nm
+Jz
+tl
+WK
+Nm
+uX
+uX
+Nm
+Xv
+"}
+(26,1,1) = {"
+Xv
+Nm
+Ye
+vA
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Nm
+KA
+WN
+mE
+eH
+eU
+Nm
+Nm
+Nm
+Kx
+ZJ
+jg
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+Xv
+kj
+jg
+Nm
+Nm
+yh
+WK
+WK
+WK
+uX
+WK
+KH
+"}
+(27,1,1) = {"
+Xv
+ta
+Px
+jg
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+Nm
+Nm
+Nm
+Nm
+Nm
+Nm
+Nm
+Nm
+Nm
+Ye
+ZJ
+jg
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+nQ
+ga
+wG
+Un
+Nm
+yh
+WK
+IQ
+uX
+uX
+WK
+KH
+"}
+(28,1,1) = {"
+Qw
+Ye
+ZJ
+Sz
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+Xv
+yP
+dZ
+dZ
+dZ
+WD
+dZ
+dZ
+Pq
+Pq
+Px
+ZJ
+wG
+RQ
+Pq
+Pq
+sy
+Pq
+RQ
+RQ
+Px
+ZJ
+Ev
+vA
+yo
+qW
+WK
+WK
+WK
+WK
+gE
+KH
+"}
+(29,1,1) = {"
+Qw
+Ye
+ZJ
+jg
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+Xv
+GO
+jT
+WY
+WY
+WY
+vM
+vM
+WY
+ZJ
+Gh
+sa
+ZJ
+ZJ
+Gh
+sa
+ZJ
+Gh
+ZJ
+ZJ
+Mw
+ZJ
+ZJ
+ZJ
+jg
+yo
+SS
+rl
+uX
+NM
+WK
+ND
+KH
+"}
+(30,1,1) = {"
+Xv
+Ye
+sa
+vA
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+Jr
+BR
+BA
+bB
+wM
+wM
+Eh
+AJ
+wM
+Eb
+Eb
+Kn
+sw
+ru
+lb
+lb
+lb
+Eb
+lb
+lb
+lb
+NN
+ZJ
+sa
+Sz
+Nm
+pG
+Md
+uX
+WK
+uX
+WK
+KH
+"}
+(31,1,1) = {"
+Qw
+nL
+Gh
+vA
+Xv
+ZD
+ZD
+ZD
+ZD
+ZD
+Xv
+Xv
+Xv
+vU
+BA
+mg
+Xv
+Xv
+Xv
+vU
+tn
+Nm
+Nm
+Nm
+fZ
+PU
+qt
+Nm
+Nm
+Xv
+Xv
+Xv
+Xv
+Xv
+Ye
+ZJ
+ZJ
+jg
+yo
+SS
+WK
+WK
+WK
+WK
+WK
+KH
+"}
+(32,1,1) = {"
+Qw
+zg
+Gh
+vA
+Xv
+ZD
+ZD
+Xv
+Xv
+Xv
+Xv
+NF
+dZ
+jT
+yY
+Nm
+Xv
+ZD
+Xv
+mO
+tn
+Nm
+Nm
+Nm
+Nm
+Nm
+Nm
+Nm
+Nm
+Xv
+AM
+KQ
+ay
+Xv
+zg
+sw
+ZJ
+jg
+yo
+qW
+WK
+WK
+WK
+wn
+WK
+KH
+"}
+(33,1,1) = {"
+Xv
+Kx
+Gh
+vA
+Xv
+Xv
+Xv
+Xv
+NS
+dZ
+dZ
+jT
+fK
+WY
+tn
+Nm
+Xv
+ZD
+Xv
+mO
+dY
+qP
+Nm
+Nm
+gq
+LW
+oh
+IC
+Xl
+Xv
+yh
+uX
+aT
+Xv
+LY
+TC
+Cb
+VK
+Nm
+yh
+WK
+WK
+WK
+WK
+WK
+KH
+"}
+(34,1,1) = {"
+Qw
+Ye
+ZJ
+vA
+Nm
+Nm
+Jr
+dZ
+jT
+Xv
+Xv
+JF
+vM
+WY
+kX
+KK
+Xv
+ZD
+Xv
+ii
+GF
+lf
+Nm
+Nm
+Bw
+Ky
+nc
+Ky
+eH
+Xv
+yh
+WK
+aT
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+ze
+xB
+do
+xB
+xB
+xB
+KH
+"}
+(35,1,1) = {"
+Qw
+oA
+ZJ
+LT
+Pq
+dZ
+jT
+vM
+uS
+Xv
+Xv
+vM
+vM
+vM
+ml
+Gz
+Xv
+ZD
+Xv
+tD
+fK
+dY
+Xq
+Ky
+Yu
+Ky
+io
+Ky
+Ld
+Xv
+yh
+WK
+TS
+Xx
+Xx
+Xx
+Xx
+Xx
+Xx
+FT
+WK
+WK
+WK
+WK
+WK
+KH
+"}
+(36,1,1) = {"
+Xv
+zd
+lb
+Bs
+lb
+wM
+lx
+vM
+vM
+CT
+vr
+vM
+Df
+WY
+ix
+aI
+Xv
+ZD
+Xv
+AH
+vM
+An
+bB
+Yu
+Yu
+EJ
+zV
+ln
+WR
+Xv
+yh
+uX
+uX
+WK
+WK
+WK
+WK
+WK
+WK
+uX
+WK
+uX
+WK
+WK
+WK
+KH
+"}
+(37,1,1) = {"
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+ih
+Zs
+WY
+vm
+WY
+WY
+qw
+WY
+Xr
+KD
+Xv
+ZD
+Xv
+Ot
+ri
+PY
+Nm
+Nm
+Ky
+Ky
+Ky
+Ky
+Lw
+Xv
+yh
+WK
+WK
+WK
+uX
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+rP
+uX
+WK
+KH
+"}
+(38,1,1) = {"
+KH
+RE
+Xx
+cc
+Xv
+Xv
+PW
+QV
+WY
+yc
+OC
+CD
+ZF
+vM
+tn
+Nm
+Xv
+Xv
+Xv
+Nm
+Nm
+Nm
+Nm
+Nm
+uE
+Ky
+RZ
+mE
+zV
+Xv
+yh
+WK
+WK
+WK
+WK
+WK
+WK
+uX
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+KH
+"}
+(39,1,1) = {"
+KH
+WK
+WK
+Qc
+ot
+Zb
+fy
+pf
+AJ
+eG
+wM
+wM
+UJ
+lx
+yY
+Nm
+Ag
+dZ
+Xq
+co
+dZ
+dZ
+yA
+Nm
+Ky
+Ky
+Nm
+Xv
+Xv
+Xv
+yh
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+uX
+WK
+WK
+WK
+WK
+KH
+"}
+(40,1,1) = {"
+KH
+ds
+tI
+Qc
+ot
+ia
+WY
+WY
+tn
+Xv
+Xv
+Xv
+Nm
+mO
+tn
+KA
+vU
+QF
+Tp
+av
+Qj
+GX
+tn
+Nm
+vU
+tn
+Nm
+Xv
+AM
+Xx
+FT
+WK
+uX
+WK
+WK
+uX
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+KH
+"}
+(41,1,1) = {"
+KH
+kV
+WK
+Qc
+ot
+dH
+DM
+xj
+oU
+Xv
+yh
+Xv
+NS
+jT
+QY
+dZ
+Yj
+Pt
+DP
+GP
+QV
+Pt
+QY
+dZ
+JG
+QY
+KK
+Xv
+yh
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+uX
+WK
+WK
+uX
+WK
+WK
+WK
+KH
+"}
+(42,1,1) = {"
+KH
+WK
+Bx
+aT
+Xv
+ot
+Xv
+ot
+ot
+Xv
+mK
+Xv
+vU
+WY
+fK
+vM
+vM
+Nm
+Nm
+Nm
+Nm
+Nm
+WY
+vM
+vM
+WY
+tn
+Xv
+yh
+uX
+WK
+WK
+WK
+uX
+WK
+WK
+uX
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+KH
+"}
+(43,1,1) = {"
+KH
+WK
+WK
+TS
+Xx
+KQ
+Xx
+KQ
+KQ
+Xx
+FT
+Xv
+pM
+vM
+vM
+vM
+vM
+WY
+WY
+Ts
+WY
+WY
+fK
+WY
+vM
+vM
+bL
+Xv
+mK
+WK
+WK
+uX
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+KH
+"}
+(44,1,1) = {"
+KH
+WK
+uX
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+Xv
+vU
+ZQ
+Rw
+Hg
+Sh
+kx
+OC
+WY
+ZQ
+Rw
+wN
+Lo
+Eq
+xo
+cA
+Xv
+yh
+WK
+WK
+WK
+WK
+uX
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+uX
+WK
+WK
+WK
+KH
+"}
+(45,1,1) = {"
+KH
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+uX
+WK
+Xv
+nJ
+MF
+vL
+gX
+dF
+js
+Ej
+dg
+MF
+Uc
+og
+nK
+vL
+Ej
+oU
+Xv
+yh
+WK
+uX
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+WK
+KH
+"}
+(46,1,1) = {"
+KH
+KH
+KH
+KH
+KH
+KH
+KH
+KH
+KH
+KH
+KH
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+Xv
+KH
+KH
+KH
+KH
+KH
+KH
+KH
+KH
+KH
+KH
+KH
+KH
+KH
+KH
+KH
+KH
+KH
+KH
+"}

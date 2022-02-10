@@ -41,8 +41,6 @@
 	var/list/speech_sounds        // A list of sounds to potentially play when speaking.
 	var/list/speech_chance
 	var/has_fine_manipulation = TRUE // Can use small items.
-	/// Whether it is immune to electrocution and glass shards to the feet.
-	var/insulated = FALSE
 	var/count_human = FALSE // Does this count as a human?
 
 	///Inventory slots the race can't equip stuff to. Golems cannot wear jumpsuits, for example.
@@ -242,6 +240,13 @@
 			H.dropItemToGround(thing)
 	for(var/newtrait in inherent_traits)
 		ADD_TRAIT(H, newtrait, SPECIES_TRAIT)
+	var/datum/reagents/R
+	if(species_flags & NO_CHEM_METABOLIZATION)
+		R = new /datum/reagents(0)
+	else
+		R = new /datum/reagents(1000)
+	H.reagents = R
+	R.my_atom = H
 
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
@@ -490,14 +495,13 @@
 	brute_mod = 0.15
 	burn_mod = 1.50
 	reagent_tag = IS_HORROR
-	species_flags = HAS_SKIN_COLOR|NO_BREATHE|NO_POISON|HAS_LIPS|NO_PAIN|NO_SCAN|NO_POISON|NO_BLOOD|NO_SLIP|NO_CHEM_METABOLIZATION|NO_STAMINA
+	species_flags = HAS_SKIN_COLOR|NO_BREATHE|NO_POISON|HAS_LIPS|NO_PAIN|NO_SCAN|NO_POISON|NO_BLOOD|NO_CHEM_METABOLIZATION|NO_STAMINA|IS_INSULATED
 	unarmed_type = /datum/unarmed_attack/punch/strong
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
 	death_message = "doubles over, unleashes a horrible, ear-shattering scream, then falls motionless and still..."
 	death_sound = 'sound/voice/scream_horror1.ogg'
 
 	slowdown = 0.3
-	insulated = 1
 	has_fine_manipulation = FALSE
 
 	heat_level_1 = 1000
@@ -691,9 +695,8 @@
 
 	breath_type = "oxygen"//"nitrogen"
 	poison_type = "phoron"//"oxygen"
-	insulated = 1
 
-	species_flags = NO_SCAN
+	species_flags = NO_SCAN|IS_INSULATED
 
 	blood_color = "#2299FC"
 	flesh_color = "#808D11"
@@ -948,7 +951,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	body_temperature = 350
 
 	inherent_traits = list(TRAIT_NON_FLAMMABLE)
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
 
 	no_equip = list(
 		SLOT_W_UNIFORM,
@@ -961,10 +964,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	)
 	blood_color = "#2d2055" //"oil" color
 	hair_color = "#00000000"
-	has_organ = list(
-		"heart" = /datum/internal_organ/heart/prosthetic,
-		"brain" = /datum/internal_organ/brain/prosthetic,
-		)
+	has_organ = list()
 
 
 	screams = list(MALE = "robot_scream", FEMALE = "robot_scream")

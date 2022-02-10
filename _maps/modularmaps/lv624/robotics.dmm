@@ -328,7 +328,6 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/machinery/vending/engineering,
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "PQ" = (

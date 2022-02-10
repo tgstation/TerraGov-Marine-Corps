@@ -9,7 +9,7 @@
 	if(user.get_inactive_held_item() != src)
 		return ..()
 	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
-		unique_action(user, TRUE)
+		do_unique_action(user, TRUE)
 		return
 	unload(user)
 
@@ -32,7 +32,7 @@
 
 /obj/item/weapon/gun/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
-	if(!active_attachable)
+	if(!active_attachable || user.get_inactive_held_item() != src)
 		return
 
 	active_attachable.reload(I, user)
@@ -139,64 +139,23 @@ should be alright.
 		return
 	wield(user)//Trying to wield it
 
-
-
-
-///Reloads the sentry battery. This is used both in the gun, and called from /deployed/mounted/sentry
-/obj/item/weapon/gun/proc/reload_sentry_cell(obj/item/cell/cell, mob/user)
-	if(!istype(cell, sentry_battery_type))
-		to_chat(user, span_warning("[cell] wont fit there!"))
-		return
-	if(sentry_battery)
-		to_chat(user, span_warning("[src] already has a battery installed! Use Alt-Right-Click to remove it!"))
-		return
-	if(!cell.charge)
-		to_chat(user, span_warning("[cell] is out of charge!"))
-		return
-	playsound(src, 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg', 20)
-	sentry_battery = cell
-	user.temporarilyRemoveItemFromInventory(cell)
-	cell.forceMove(src)
-	to_chat(user, span_notice("You install the [cell] into the [src]."))
-	if(istype(attachments_by_slot[ATTACHMENT_SLOT_RAIL], /obj/item/attachable/buildasentry)) //This and the piece of code below that is the same are here because the build-a-sentry attachment does not keep track of the sentry battery when it is attached to the gun. Therefore this is so the overlay updates.
-		var/obj/item/attachable/buildasentry/sentry = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
-		sentry.update_icon_state()
-	update_icon()
-
-/obj/item/weapon/gun/AltRightClick(mob/user)
-	. = ..()
-	remove_sentry_cell(user)
-
-///Removes the sentry battery. This is used both in the gun, and called from /deployed/mounted/sentry.
-/obj/item/weapon/gun/proc/remove_sentry_cell(mob/user)
-	if(!user.Adjacent(src) || !ishuman(user) || !CHECK_BITFIELD(flags_gun_features, GUN_IS_SENTRY))
-		return
-	var/mob/living/carbon/human/human = user
-	if(!sentry_battery)
-		to_chat(human, "<span class='warning'> There is no battery to remove from [src].</span>")
-		return
-	if(human.get_active_held_item() != src && human.get_inactive_held_item() != src && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		to_chat(human, "<span class='notice'>You have to hold [src] to take out its battery.</span>")
-		return
-	playsound(src, 'sound/weapons/flipblade.ogg', 20)
-	human.put_in_hands(sentry_battery)
-	sentry_battery = null
-	if(istype(attachments_by_slot[ATTACHMENT_SLOT_RAIL], /obj/item/attachable/buildasentry)) //This and the piece of code below that is the same are here because the build-a-sentry attachment does not keep track of the sentry battery when it is attached to the gun. Therefore this is so the overlay updates.
-		var/obj/item/attachable/buildasentry/sentry = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
-		sentry.update_icon_state()
-	update_icon()
-
 //tactical reloads
 /obj/item/weapon/gun/MouseDrop_T(atom/dropping, mob/living/carbon/human/user)
-	if(istype(dropping, /obj/item/ammo_magazine))
+	if(istype(dropping, /obj/item/ammo_magazine) || istype(dropping, /obj/item/cell))
 		tactical_reload(dropping, user)
 	return ..()
 
 ///This performs a tactical reload with src using new_magazine to load the gun.
-/obj/item/weapon/gun/proc/tactical_reload(obj/item/ammo_magazine/new_magazine, mob/living/carbon/human/user)
-	if(!istype(user) || user.incapacitated(TRUE))
+/obj/item/weapon/gun/proc/tactical_reload(obj/item/new_magazine, mob/living/carbon/human/user)
+	if(!istype(user) || user.incapacitated(TRUE) || user.do_actions)
 		return
-	if(src != user.r_hand && src != user.l_hand)
+	if(!(new_magazine.type in allowed_ammo_types))
+		if(active_attachable)
+			active_attachable.tactical_reload(new_magazine, user)
+			return
+		to_chat(user, span_warning("[new_magazine] cannot fit into [src]!"))
+		return
+	if(src != user.r_hand && src != user.l_hand && master_gun != user.r_hand && master_gun != user.l_hand)
 		to_chat(user, span_warning("[src] must be in your hand to do that."))
 		return
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) || max_chamber_items > 1)
@@ -206,16 +165,19 @@ should be alright.
 	if(!user.skills.getRating("firearms"))
 		to_chat(user, span_warning("You don't know how to do tactical reloads."))
 		return
+	to_chat(user, span_notice("You start a tactical reload."))
+	var/tac_reload_time = max(0.25 SECONDS, 0.75 SECONDS - user.skills.getRating("firearms") * 5)
 	if(length(chamber_items))
+		if(!do_after(user, tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
+			return
 		unload(user)
-		to_chat(user, span_notice("You start a tactical reload."))
-	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
 	if(!do_after(user, tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
 		return
 	if(istype(new_magazine.loc, /obj/item/storage))
 		var/obj/item/storage/S = new_magazine.loc
 		S.remove_from_storage(new_magazine, get_turf(user), user)
-	user.put_in_any_hand_if_possible(new_magazine)
+	if(!CHECK_BITFIELD(get_flags_magazine_features(new_magazine), MAGAZINE_WORN))
+		user.put_in_any_hand_if_possible(new_magazine)
 	reload(new_magazine, user)
 
 //----------------------------------------------------------
@@ -548,7 +510,7 @@ should be alright.
 	set name = "Unique Action (Weapon)"
 	set desc = "Use anything unique your firearm is capable of. Includes pumping a shotgun or spinning a revolver."
 
-	unique_action(usr)
+	do_unique_action(usr)
 
 
 /mob/living/carbon/human/verb/toggle_gun_safety()
@@ -679,6 +641,30 @@ should be alright.
 			add_firemode(GUN_FIREMODE_BURSTFIRE, user)
 		if((GUN_FIREMODE_AUTOMATIC in gun_firemode_list) && !(GUN_FIREMODE_AUTOBURST in gun_firemode_list))
 			add_firemode(GUN_FIREMODE_AUTOBURST, user)
+
+///Calculates aim_fire_delay, can't be below 0
+#define RECALCULATE_AIM_MODE_FIRE_DELAY \
+	var/modification_value = 0; \
+	for(var/key in aim_fire_delay_mods) { \
+		modification_value += aim_fire_delay_mods[key]; \
+	}; \
+	var/old_delay = aim_fire_delay; \
+	aim_fire_delay = max(initial(aim_fire_delay) + modification_value, 0); \
+	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING)) { \
+		modify_fire_delay(aim_fire_delay - old_delay); \
+	}
+
+///Adds an aim_fire_delay modificatio value
+/obj/item/weapon/gun/proc/add_aim_mode_fire_delay(source, value)
+	aim_fire_delay_mods[source] = value
+	RECALCULATE_AIM_MODE_FIRE_DELAY
+
+///Removes an aim_fire_delay modificatio value
+/obj/item/weapon/gun/proc/remove_aim_mode_fire_delay(source)
+	aim_fire_delay_mods -= source
+	RECALCULATE_AIM_MODE_FIRE_DELAY
+
+#undef RECALCULATE_AIM_MODE_FIRE_DELAY
 
 /obj/item/weapon/gun/proc/toggle_auto_aim_mode(mob/living/carbon/human/user) //determines whether toggle_aim_mode activates at the end of gun/wield proc
 

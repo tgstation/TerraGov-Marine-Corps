@@ -122,13 +122,25 @@
 		to_chat(occupant, span_notice("You start getting out of the cockpit."))
 		if(!do_after(occupant, 2 SECONDS, TRUE, src))
 			return
-		set_cockpit_overlay("cockpit_opening")
-		addtimer(CALLBACK(src, .proc/set_cockpit_overlay, "cockpit_open"), 7)
+	set_cockpit_overlay("cockpit_opening")
+	addtimer(CALLBACK(src, .proc/set_cockpit_overlay, "cockpit_open"), 7)
 	UnregisterSignal(occupant, COMSIG_LIVING_DO_RESIST)
 	occupant.unset_interaction()
-	occupant.forceMove(loc)
+	occupant.forceMove(get_step(loc, WEST))
 	occupant = null
 
+/obj/structure/caspart/caschair/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	if(!occupant)
+		to_chat(X, span_xenowarning("There is nothing of interest in there."))
+		return
+	if(X.status_flags & INCORPOREAL || X.do_actions)
+		return
+	visible_message(span_warning("[X] begins to pry the [src]'s cover!"), 3)
+	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
+	if(!do_after(X, 2 SECONDS))
+		return
+	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	eject_user(TRUE)
 
 /obj/structure/caspart/caschair/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	if(!istype(port, /obj/docking_port/mobile/marine_dropship/casplane))
